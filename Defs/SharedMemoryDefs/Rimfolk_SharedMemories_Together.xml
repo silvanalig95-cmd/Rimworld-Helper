@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What two colonists live through together in the newest content (Source/ColonyCouncil/Social/Talk/SharedTimesTogether.cs
+    and the social events of Defs/SocialEventDefs/Rimfolk_SocialEvents_Together.xml), brought up in conversation like
+    the others (their lines: Defs/FlavorPoolDefs/Rimfolk_Talk_Lines_Together.xml). {A} and {B} are the two, the first
+    the one it was about where it matters: the doctor who nursed the other, the one the danger hurt, the one who was
+    saved. {LABEL} is what it was: the illness ("the flu", "black bane"), the danger on the map ("the rockfall at the
+    dig"), the colony founded ("Newhold"), the fight a debt was owed for, "the downpour", "the snowball fight".
+
+    Each comes from one line where the colony already says the thing happened: a doctor pulled a patient through a
+    dangerous illness (HealthTracker.PulledThrough, the doctor who tended it twice or more), a danger on the map hurt
+    someone with another of the colony right there (MapDangers.Wound), a new colony stands (Foundings.Founded: the
+    founding party, each with the three closest of them), and a social event (a debt remembered, the rain, the snow).
+  -->
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_Nursed</defName>
+    <label>nursed through an illness</label>
+    <description>One of them lay sick with something that could have killed them, and the other tended them through it, dose by dose, until it broke.</description>
+    <text>{A} nursed {B} through {LABEL}</text>
+    <weight>1.4</weight>
+    <fadeDays>180</fadeDays>
+    <valence>1</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_CloseCall</defName>
+    <label>a close call</label>
+    <description>Something on the land nearly did for one of them, with the other right there to see it. It comes up every time they pass the spot.</description>
+    <text>came through {LABEL} together</text>
+    <weight>1.1</weight>
+    <fadeDays>90</fadeDays>
+    <valence>0</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_Founding</defName>
+    <label>founded a colony together</label>
+    <description>They set out together to make a new home from nothing, and were there on its first night.</description>
+    <text>were among the founders of {LABEL}</text>
+    <weight>1.5</weight>
+    <fadeDays>0</fadeDays>
+    <valence>1</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_Repaid</defName>
+    <label>a debt remembered</label>
+    <description>One of them was tended under fire by the other, and has said out loud that they mean to pay it back.</description>
+    <text>{B} still owes {A} for {LABEL}</text>
+    <weight>1.2</weight>
+    <fadeDays>150</fadeDays>
+    <valence>1</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <!-- ===================== Mishaps that became in-jokes ===================== -->
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_Downpour</defName>
+    <label>the downpour</label>
+    <description>They got caught out in the rain together and gave up trying to stay dry. Neither of them will say who ran first.</description>
+    <text>still joke about {LABEL}</text>
+    <weight>0.9</weight>
+    <fadeDays>75</fadeDays>
+    <valence>1</valence>
+    <joke>true</joke>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_Snowball</defName>
+    <label>the snowball fight</label>
+    <description>One snowball became a war, and the two of them still argue about who won it.</description>
+    <text>still joke about {LABEL}</text>
+    <weight>1</weight>
+    <fadeDays>90</fadeDays>
+    <valence>1</valence>
+    <joke>true</joke>
+  </ColonyCouncil.SharedMemoryDef>
+
+</Defs>

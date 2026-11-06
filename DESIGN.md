@@ -779,7 +779,7 @@ component of its own, so an old save just starts without it and finds its groups
   Barr (at odds with Toni, Penguin and Macy)"), and on their character page. An older save's groups regroup by these rules
   over ten days (`GroupMath.RegroupDays`, `GroupTracker.regroup`), quietly at the usual pace, told once in the news; a
   new game's groups form as ever. The names stay as they were given (named for what they share, 0.101.2).
-- **Identity.** The kind is what binds most of it (`GroupKindDef`: 25, lowest order wins, friendship last); it gives a
+- **Identity.** The kind is what binds most of it (`GroupKindDef`: 26, lowest order wins, friendship last); it gives a
   name picked once, in the colony's era, and kept. A group is never named after one of its people (the colony is the
   family, and its groups are of the colony, not of a person: the player's report of "Stace's friends", 5 November
   2026). A friendship group is named for what its people share (`GroupShareDef`, `Rimfolk_GroupShares.xml`, ranked by
@@ -854,7 +854,7 @@ What people did, who knows it, how the story spreads, and the name that follows 
 What colonists talk about, the views they hold, and what they went through together (`Social/Talk/`; the arithmetic in
 `TalkMath.cs` and the lines' queue in `ExchangeQueue.cs`, checked by `Tools/Tests/TalkTests.cs`).
 
-- **Topics** (`TopicDef`, 23, a worker each) say when they come up, what's news (`TalkNote`s from the game's events and
+- **Topics** (`TopicDef`, 24, a worker each) say when they come up, what's news (`TalkNote`s from the game's events and
   the talk's hour, and the game's state: the food, a disaster, traders; and in `TalkScene`, found once an hour: a
   calendar day from three days before to two after it was kept, the newest world situation, the camp on the map), who
   or what a talk is about, and what a
@@ -913,6 +913,49 @@ What colonists talk about, the views they hold, and what they went through toget
   a `Rimfolk_Mem_JokeHeard` memory under the joke's own label, which is never passed on again.
 - **The character page**: views (section 30, with what each rests on and the last talk that moved it) and shared
   memories (40).
+
+### New moments of life together (the player's request, 6 November 2026)
+
+"Do another big content update to existing mechanics": this part, what happens between colonists, in the existing
+frameworks at their existing rates. Every piece starts from something on the map and takes a share of a draw that
+doesn't read the defs, so none of them makes the colony busier; none stages a scene, hurts anyone or is saved. The pure
+rules are `Social/TogetherFourMath.cs` (checked in `Tools/Tests/TogetherFourTests.cs`).
+
+- **Social events** (`Rimfolk_SocialEvents_Together.xml`, 25; their rewards `Rimfolk_Thoughts_Together.xml`, mostly a
+  few points of opinion and belonging instead of mood). New conditions on `SocialEventDef`, read where an event is cast:
+  `bMemoryAboutA` (B's memory, `bMemories`, is of A: the game's `HadAngeringFight` after their fight, `Council_SavedMe`
+  for the one who came for them), `sameWork` (both at the same work right now, side by side, of the listed work types;
+  `{WORK}` its gerund, its first skill the event's for a lesson; `TogetherFourMath.SameWork`), `bMadeFineDays` (B
+  finished something excellent or better within the days, `{THING}`: `Patch_ArcMade` tells `SocialEvents.Notify_Made`,
+  kept unsaved by pawn) and `bHurtDays` (a hurt of everyday life within the days, `Harm.DaysSince`, with a wound that
+  still shows). Role tags of the moment (the weather, the hour, at work or at the table, a newcomer:
+  `TogetherFourMath.NeedsMoment`) are now read from the moment (`PeopleTags.MatchesNow`, `Flavor.TagsFor`) in
+  `DilemmaRole.Extras`: before, the mud's in-joke (`Rimfolk_Soc_Mud`, roleA "rain|snow") fitted nobody, since who
+  someone is has no weather. Texts take the age's form ([tribal], [medieval], [industrial], [spacer], [lowtech]), with
+  untagged ones for any age.
+- **Shared memories** (`Rimfolk_SharedMemories_Together.xml`, 6; lines `Rimfolk_Talk_Lines_Together.xml`), from one
+  line each where the colony already says the thing happened (`Social/Talk/SharedTimesTogether.cs`): an illness nursed
+  (`HealthTracker.PulledThrough`: the doctor who tended it twice or more, Rimfolk's serious illnesses and the game's
+  own), a close call (`MapDangers.Wound`: the one hurt and whoever is in talking range, `Together.Company`, by the
+  danger's name `CC_Times_Close_*`), a colony founded (`Foundings.Founded`: the party, each with the three closest), a
+  debt remembered and two in-jokes (the downpour, the snowball fight) from social events.
+- **The sick and the hurt** (`Rimfolk_Topic_Health`, `TopicWorker_Health`, its lines `Rimfolk_Talk_Lines_Health.xml`):
+  comes up only while someone of the colony on the map is ill or healing from a hurt (looked up hourly a map), about the
+  worst off when it isn't one of the two, more while something that can kill goes round (then nobody teases). A topic
+  takes a share of the talk's one budget (`TalkMath.Shares`); it steps back with RimTalk or Speak Up.
+- **Group habits** (`Rimfolk_GroupHabits_Together.xml`): an hour with a book (`read`: the game's reading), keeping the
+  sick company (`sickbed`: one of them abed and healing, the others on the game's visit to the sick), music of an
+  evening (`music`: one playing an instrument, Royalty's, the others at leisure within earshot) and the night sky
+  (outdoors, 20 to 1). None has a `playKind`, and each comes after a kind's own habits, so what an anchor calls the
+  group to and the colony's gatherings are as they were; a group still keeps one habit a day at most. Each is something
+  a friendship group may be named for (`GroupShareDef`). A kind of group, the wardens (`Rimfolk_Group_Wardens`, the
+  Warden work), and its share.
+- **Dreams** (`Rimfolk_Dreams_Together.xml`, 11) after the new moments' memories ({OTHER} the one it was with) and after
+  a founding (`Rimfolk_Parted`, `Rimfolk_Uprooted`); three of them nightmares.
+- **A personal story**, back to it (`Rimfolk_Arc_BackToIt`, `ArcWorker_BackToIt`): a close call within three days
+  (`SharedTimesTogether.RecentCloseCall`, unsaved), the one closest to them; a shaken day, a talk between the two, 800
+  experience at the work it happened at (`TogetherFourMath.CloseCallSkill`: mining, plants, crafting) or what they do
+  best, then it's just work again. Its gates never pass on time alone, so what its words say happened did.
 
 ### Traits that change
 The game's traits can grow, appear or fade at the end of a stretch of life the player can read (`Persona/TraitChanges.cs`,

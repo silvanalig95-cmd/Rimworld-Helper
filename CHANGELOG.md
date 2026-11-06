@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## New moments of life together
+
+*6 November 2026, version 0.123.0*
+
+- Twenty-five new moments between colonists, among them making it up after a fight, a joke that goes too far, a debt remembered after being tended under fire, rivals racing at the same work, friends with a work song, a student's fine piece and a quiet word after a loss.
+- More of them: an old remedy from an older colonist for someone ill, a newcomer shown the ropes, company at a bad meal, a snowball fight, a drink in the heat, the last of the harvest and talk of the region's news.
+- Six new shared memories: an illness nursed, a close call, a colony founded, a debt remembered, and in-jokes about a downpour and a snowball fight. The mud in-joke now really happens after rain or snow.
+- A new conversation topic about the sick and the hurt, which comes up only while someone is ill or healing.
+- Friendship groups get four new habits (an hour with a book, keeping the sick company, music of an evening, the night sky), and those who keep the prisoners can become the wardens.
+- Eleven new dreams, and a new personal story for someone getting back to work after a close call, with help from the one closest to them.
+- All of it takes a share of the old, so moments, gatherings and messages come as often as before.
+
 ## New neighbours' requests and callers
 
 *6 November 2026, version 0.122.0*

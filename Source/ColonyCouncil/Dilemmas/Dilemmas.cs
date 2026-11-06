@@ -126,7 +126,8 @@ namespace ColonyCouncil
         public bool secret;
         /// <summary>
         /// Who they are, by name (see PeopleTags): "trait:VTE_Workaholic", "mage", "meme:VME_Royal|meme:VME_Aristocratic".
-        /// The way to ask for another mod's trait, class or meme: it simply never fits when that mod is missing.
+        /// The way to ask for another mod's trait, class or meme: it simply never fits when that mod is missing. Tags of the
+        /// moment ("rain|snow", "work:Mining", "eating") are read from the moment (PeopleTags.MatchesNow).
         /// </summary>
         public string tags;
         /// <summary>Ill (see <see cref="LifeChecks.Illness"/>; {ILLNESS} in texts names it).</summary>
@@ -152,7 +153,7 @@ namespace ColonyCouncil
         private bool Extras(Pawn p)
         {
             var comp = CouncilGameComponent.Instance;
-            if (!tags.NullOrEmpty() && !PeopleTags.Matches(p, tags)) return false;
+            if (!tags.NullOrEmpty() && !PeopleTags.MatchesNow(p, tags)) return false;
             if (heirloom && (!ColonyCouncilMod.Settings.heirlooms || comp?.legacy.HeirloomCarriedBy(p) == null)) return false;
             if (secret && (!ColonyCouncilMod.Settings.secrets || !(comp?.secrets.Of(p) is Secret s) || s.revealed)) return false;
             return true;

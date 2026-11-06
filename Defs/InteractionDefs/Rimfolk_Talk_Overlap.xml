@@ -41,6 +41,7 @@
       <li>Rimfolk_Talk_World</li>
       <li>Rimfolk_Talk_Camp</li>
       <li>Rimfolk_Talk_Growing</li>
+      <li>Rimfolk_Talk_Health</li>
     </moments>
     <factor>0.4</factor>
   </ColonyCouncil.ModOverlapDef>

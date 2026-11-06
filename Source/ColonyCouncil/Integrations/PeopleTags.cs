@@ -231,6 +231,39 @@ namespace ColonyCouncil
             return Matches(Parse(expr), Identity(p));
         }
 
+        /// <summary>
+        /// Like <see cref="Matches(Pawn, string)"/>, except that an expression naming a tag of the moment (the weather, the
+        /// hour, what they are doing: <see cref="TogetherFourMath.NeedsMoment"/>) is matched against the moment's tags, which
+        /// hold who they are as well (<see cref="Flavor.TagsFor"/>). Who someone is has no weather, so a role written for a
+        /// wet day ("rain|snow", the mud's in-joke) fitted nobody before.
+        /// </summary>
+        public static bool MatchesNow(Pawn p, string expr)
+        {
+            if (p == null || expr.NullOrEmpty()) return false;
+            if (!TogetherFourMath.NeedsMoment(expr)) return Matches(p, expr);
+            return Matches(Parse(expr), MomentOf(p));
+        }
+
+        // The moment's tags, worked out once a tick for each person: a social event weighs every pair against a role.
+        private static readonly Dictionary<int, HashSet<string>> moments = new Dictionary<int, HashSet<string>>();
+        private static int momentsTick = -1;
+
+        private static HashSet<string> MomentOf(Pawn p)
+        {
+            int now = Find.TickManager?.TicksGame ?? 0;
+            if (now != momentsTick)
+            {
+                moments.Clear();
+                momentsTick = now;
+            }
+            if (!moments.TryGetValue(p.thingIDNumber, out var tags))
+            {
+                tags = Flavor.TagsFor(p);
+                if (moments.Count < 200) moments[p.thingIDNumber] = tags;
+            }
+            return tags;
+        }
+
         /// <summary>The same rules as <see cref="Flavor.Match"/>: every comma part must fit, by any of its | alternatives.</summary>
         private static bool Matches((string tag, bool neg)[][] parts, HashSet<string> tags)
         {

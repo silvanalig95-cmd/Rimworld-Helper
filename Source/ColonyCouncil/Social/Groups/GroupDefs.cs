@@ -244,7 +244,9 @@ namespace ColonyCouncil
         /// <summary>
         /// What they do and where: fire (at leisure by a lit fire of the colony's), table (eating in the same room), rec
         /// (at leisure in a rec room), work (at their group's work, side by side), night (awake in the small hours),
-        /// prayer (praying or meditating), outdoors (at leisure under the sky), any (at leisure anywhere).
+        /// prayer (praying or meditating), outdoors (at leisure under the sky), any (at leisure anywhere), read (reading
+        /// a book), sickbed (one of them laid up in bed, ill or hurt, and the others sitting with them: the game's visit to
+        /// the sick), music (one of them playing an instrument, the others at leisure within earshot).
         /// </summary>
         public string where = "any";
         /// <summary>Work: the work types; empty: the group kind's own.</summary>
@@ -275,7 +277,7 @@ namespace ColonyCouncil
 
         public bool FitsEra => (!lowtechOnly || Avail.IsPreIndustrial) && (!hightechOnly || !Avail.IsPreIndustrial);
 
-        private static readonly HashSet<string> Wheres = new HashSet<string> { "fire", "table", "rec", "work", "night", "prayer", "outdoors", "any" };
+        private static readonly HashSet<string> Wheres = new HashSet<string> { "fire", "table", "rec", "work", "night", "prayer", "outdoors", "any", "read", "sickbed", "music" };
 
         public override IEnumerable<string> ConfigErrors()
         {

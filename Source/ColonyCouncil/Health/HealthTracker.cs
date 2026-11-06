@@ -691,6 +691,8 @@ namespace ColonyCouncil
         {
             if (doctor == null || patient == null || doctor == patient) return;
             PersonaMarks.Notify_PulledThrough(doctor, patient, illness);
+            // The two remember it together (Social/Talk/SharedTimesTogether.cs).
+            SharedTimesTogether.Nursed(doctor, patient, illness);
             // The patient is grateful to the doctor who saw them through (Social/Bonds.cs).
             Bonds.Notify_Healed(doctor, patient, false);
             if (!rimfolk && ConvalescenceOn) Convalesce(patient, HealthMath.AfterIllness(peak), "Illness", doctor);

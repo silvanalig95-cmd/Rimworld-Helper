@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Dreams of what happened between the dreamer and someone else in the new moments of life together
+    (Defs/SocialEventDefs/Rimfolk_SocialEvents_Together.xml), each after the memory that moment left ({OTHER} is the one
+    it was with), and of a new colony founded: the one left behind at the old home (Rimfolk_Parted, about them) and being
+    sent against their wish (Rimfolk_Uprooted). Fields as in Council_Dreams.xml. Like the other dreams of what happened,
+    they're much likelier than the everyday ones while they hold (Dreams.cs), and they take a share of the night's
+    dreams: none of them makes anyone dream more often.
+  -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Rimfolk_DreamT_MadeUp</defName>
+    <label>a dream of the fight undone</label>
+    <kind>Sweet</kind>
+    <afterThoughts><li>Rimfolk_SocT_MadeItUp</li></afterThoughts>
+    <withinDays>3</withinDays>
+    <lines>
+      <plain>
+        <li>Dreamt the fight with {OTHER_nameDef} again, but this time we both stopped before the first blow and just stood there.</li>
+        <li>In the dream {OTHER_nameDef} and I were fighting with pillows, and neither of us could remember what about.</li>
+        <li>Last night I dreamt I'd said sorry to {OTHER_nameDef} first. I think I did, actually.</li>
+        <li>[lowtech] Dreamt {OTHER_nameDef} and I buried a hatchet out past the fields, a real one, and marked the spot with a stone.</li>
+      </plain>
+      <warm><li>Dreamt {OTHER_nameDef} and I were laughing about the fight with everyone at the table. It felt like a long time ago.</li></warm>
+      <blunt><li>Fight dream. We shook hands at the end of it. Fine by me.</li></blunt>
+      <cheerful><li>In my dream {OTHER_nameDef} and I fought a duel with soup ladles, and called it a draw.</li></cheerful>
+      <gloomy><li>Dreamt the fight went the other way, and we never spoke again. Then I woke and remembered we did.</li></gloomy>
+      <cold><li>I went over the fight with {OTHER_nameDef} in my sleep. It was a waste of both our energy.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Rimfolk_DreamT_Laughed</defName>
+    <label>a dream of being laughed at</label>
+    <kind>Nightmare</kind>
+    <afterThoughts><li>Rimfolk_SocT_JokeTooFar</li><li>Rimfolk_SocT_WoundTeased</li></afterThoughts>
+    <withinDays>2</withinDays>
+    <lines>
+      <plain>
+        <li>Dreamt I walked into the dining room and everyone stopped talking, and then {OTHER_nameDef} started to laugh.</li>
+        <li>In the dream {OTHER_nameDef} kept telling the joke about me, and every time it was longer and everyone laughed louder.</li>
+        <li>Last night I dreamt my own name had turned into a joke, and I was the only one who didn't get it.</li>
+        <li>Dreamt I was standing in front of the whole colony and couldn't remember why, and {OTHER_nameDef} was grinning.</li>
+      </plain>
+      <warm><li>In the dream I laughed along with {OTHER_nameDef}, and it didn't hurt. I'd like that to be true.</li></warm>
+      <blunt><li>{OTHER_nameDef} laughing, all night, in my head. Enough.</li></blunt>
+      <cheerful><li>Dreamt I told a joke about {OTHER_nameDef} and it was so good the walls laughed. Small revenge.</li></cheerful>
+      <gloomy><li>In my dream they were all laughing, and they'd always been laughing, and I'd only just noticed.</li></gloomy>
+      <cold><li>Dreamt of {OTHER_nameDef}'s joke. I've decided it wasn't funny, asleep or awake.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Rimfolk_DreamT_Praised</defName>
+    <label>a dream of the fine piece</label>
+    <kind>Sweet</kind>
+    <children>true</children>
+    <afterThoughts><li>Rimfolk_SocT_TeacherPraised</li><li>Rimfolk_SocT_PieceAdmired</li></afterThoughts>
+    <withinDays>3</withinDays>
+    <lines>
+      <plain>
+        <li>Dreamt I was making the piece again, and this time my hands knew every step before I did.</li>
+        <li>In the dream {OTHER_nameDef} held up what I'd made, and the whole room went quiet looking at it.</li>
+        <li>Last night I dreamt of a bench as long as a road, and everything I made on it came out right.</li>
+        <li>[child] I dreamt I made something so good it got its own name, and it was my name.</li>
+      </plain>
+      <warm><li>Dreamt {OTHER_nameDef} said it was good again, and I believed it a bit more the second time.</li></warm>
+      <blunt><li>Dreamt about the work. Good work. That's all.</li></blunt>
+      <cheerful><li>In my dream traders came from three worlds away just to look at what I'd made.</li></cheerful>
+      <gloomy><li>Dreamt I could never make anything that good again. I'm going to try today anyway.</li></gloomy>
+      <cold><li>I went over the piece in my sleep and found two things I'd do differently.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Rimfolk_DreamT_Envied</defName>
+    <label>a dream of the other's piece</label>
+    <kind>Nightmare</kind>
+    <afterThoughts><li>Rimfolk_SocT_PieceEnvied</li></afterThoughts>
+    <withinDays>2</withinDays>
+    <lines>
+      <plain>
+        <li>Dreamt everything I made turned to sawdust in my hands, while {OTHER_nameDef}'s pieces stood all round the walls.</li>
+        <li>In the dream I kept trying to show my work to someone, and they kept walking past me to look at {OTHER_nameDef}'s.</li>
+        <li>Last night I dreamt {OTHER_nameDef}'s piece was on my shelf, and I couldn't make myself give it back.</li>
+      </plain>
+      <warm><li>Dreamt I told {OTHER_nameDef} the piece was good. Maybe I should, awake.</li></warm>
+      <blunt><li>Their piece, in my sleep. I'll make a better one.</li></blunt>
+      <cheerful><li>Dreamt I made one twice the size of {OTHER_nameDef}'s and it fell on my foot. Fair enough.</li></cheerful>
+      <gloomy><li>In my dream nobody had ever looked at anything I made, and nobody ever would.</li></gloomy>
+      <cold><li>I dreamt about the flaws in {OTHER_nameDef}'s piece. There are several.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Rimfolk_DreamT_QuietWord</defName>
+    <label>a dream of the one we lost</label>
+    <kind>Strange</kind>
+    <afterThoughts><li>Rimfolk_SocT_QuietWord</li></afterThoughts>
+    <withinDays>3</withinDays>
+    <lines>
+      <plain>
+        <li>Dreamt {OTHER_nameDef} and I were walking somewhere with the one we lost between us, and nobody said a word.</li>
+        <li>In the dream {OTHER_nameDef} kept saying the name of the dead, softly, so I wouldn't forget it.</li>
+        <li>Last night the one we buried came and sat at the end of my bed, and said {OTHER_nameDef} was right.</li>
+        <li>[lowtech] Dreamt the grave was a garden, and {OTHER_nameDef} was watering it.</li>
+      </plain>
+      <warm><li>Dreamt {OTHER_nameDef} was holding my hand at the grave. I woke and felt less alone.</li></warm>
+      <blunt><li>Dreamt of the dead. {OTHER_nameDef} was there. It helped.</li></blunt>
+      <cheerful><li>In the dream the dead were telling {OTHER_nameDef} and me off for moping. That sounds like them.</li></cheerful>
+      <gloomy><li>Dreamt I went looking for the one we lost, and found only {OTHER_nameDef}, looking too.</li></gloomy>
+      <cold><li>The dead were in my dream. So was {OTHER_nameDef}. I'm sleeping badly.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Rimfolk_DreamT_Repaid</defName>
+    <label>a dream of a debt</label>
+    <kind>Sweet</kind>
+    <afterThoughts><li>Rimfolk_SocT_DebtRepaid</li></afterThoughts>
+    <withinDays>3</withinDays>
+    <lines>
+      <plain>
+        <li>Dreamt I was back in the fight, going out for {OTHER_nameDef}, and this time I wasn't frightened at all.</li>
+        <li>In the dream {OTHER_nameDef} kept handing me things, a cup, a coat, a whole house, and saying it was owed.</li>
+        <li>Last night I dreamt it was {OTHER_nameDef} who came for me, and we both laughed about it being the wrong way round.</li>
+      </plain>
+      <warm><li>Dreamt {OTHER_nameDef} and I were old, still looking out for each other. I liked that one.</li></warm>
+      <blunt><li>Dreamt about the fight. We both came out of it. Good.</li></blunt>
+      <cheerful><li>In my dream {OTHER_nameDef} paid me back in pies, hundreds of them, and I ate every one.</li></cheerful>
+      <gloomy><li>Dreamt I didn't reach {OTHER_nameDef} in time. I'm glad I did, in the real one.</li></gloomy>
+      <cold><li>Dreamt {OTHER_nameDef} kept a ledger of what we owe each other. In the dream the columns balanced.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Rimfolk_DreamT_Raced</defName>
+    <label>a dream of the race</label>
+    <kind>Strange</kind>
+    <afterThoughts><li>Rimfolk_SocT_Raced</li></afterThoughts>
+    <withinDays>2</withinDays>
+    <lines>
+      <plain>
+        <li>Dreamt {OTHER_nameDef} and I were still at the work, racing, and the job never got any smaller.</li>
+        <li>In the dream I finally beat {OTHER_nameDef}, and there was nobody there to see it.</li>
+        <li>Last night I dreamt the work turned into a road, and {OTHER_nameDef} and I ran down it until morning.</li>
+      </plain>
+      <warm><li>Dreamt {OTHER_nameDef} and I stopped racing and finished the job together. Strange dream.</li></warm>
+      <blunt><li>Dreamt I won. Woke up tired.</li></blunt>
+      <cheerful><li>In my dream {OTHER_nameDef} and I raced so fast we went right through the wall and kept going.</li></cheerful>
+      <gloomy><li>Dreamt I lost to {OTHER_nameDef} again and again, and everyone kept count.</li></gloomy>
+      <cold><li>I worked through the job in my sleep. My pace was better than {OTHER_nameDef}'s.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Rimfolk_DreamT_Snow</defName>
+    <label>a dream of the snow</label>
+    <kind>Sweet</kind>
+    <children>true</children>
+    <afterThoughts><li>Rimfolk_SocT_Snowball</li></afterThoughts>
+    <withinDays>2</withinDays>
+    <lines>
+      <plain>
+        <li>Dreamt the snow was up to the roofs and {OTHER_nameDef} and I dug tunnels through it all night.</li>
+        <li>In the dream every snowball I threw at {OTHER_nameDef} turned into a bird and flew off.</li>
+        <li>Last night I dreamt of a snow fort as big as the colony, with {OTHER_nameDef} holding the other side.</li>
+        <li>[child] I dreamt it snowed forever and nobody had to do chores, ever.</li>
+      </plain>
+      <warm><li>Dreamt {OTHER_nameDef} and I were lying in the snow making shapes, and we didn't feel the cold at all.</li></warm>
+      <blunt><li>Snowball dream. I won that one.</li></blunt>
+      <cheerful><li>In my dream I finally got {OTHER_nameDef} right down the back of the neck, and the whole sky cheered.</li></cheerful>
+      <gloomy><li>Dreamt the snow melted before I could throw a single one.</li></gloomy>
+      <cold><li>I dreamt about the angle I should have thrown at. I'll remember it.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Rimfolk_DreamT_Rain</defName>
+    <label>a dream of the rain</label>
+    <kind>Strange</kind>
+    <afterThoughts><li>Rimfolk_SocT_Downpour</li></afterThoughts>
+    <withinDays>2</withinDays>
+    <lines>
+      <plain>
+        <li>Dreamt it was raining indoors, and {OTHER_nameDef} and I just sat there in it, eating supper.</li>
+        <li>In the dream the rain never stopped, and {OTHER_nameDef} and I kept saying it would any minute now.</li>
+        <li>Last night I dreamt the rain was warm as a bath, and nobody wanted to go inside.</li>
+      </plain>
+      <warm><li>Dreamt {OTHER_nameDef} held something over my head in the rain, and for once it worked.</li></warm>
+      <blunt><li>Rain dream. Woke up checking my blanket was dry.</li></blunt>
+      <cheerful><li>In my dream {OTHER_nameDef} and I danced in the rain, badly, and the frogs clapped.</li></cheerful>
+      <gloomy><li>Dreamt the rain washed the whole colony away, and only {OTHER_nameDef} and I were left, soaked.</li></gloomy>
+      <cold><li>Dreamt about the rain. We should have gone in sooner.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <!-- ===================== A new colony ===================== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Rimfolk_DreamT_Parted</defName>
+    <label>a dream of the one left behind</label>
+    <kind>Strange</kind>
+    <afterThoughts><li>Rimfolk_Parted</li></afterThoughts>
+    <withinDays>6</withinDays>
+    <lines>
+      <plain>
+        <li>Dreamt {OTHER_nameDef} was waiting at the edge of the fields, the way {OTHER_pronoun} used to, and I couldn't get any closer.</li>
+        <li>In the dream the two colonies were one again, and {OTHER_nameDef} was at the table as if nothing had changed.</li>
+        <li>Last night I dreamt I walked all the way back to the old home in one night, just to tell {OTHER_nameDef} something.</li>
+        <li>[lowtech] Dreamt I sent {OTHER_nameDef} a message tied to a bird, and the bird came back with an answer I couldn't read.</li>
+      </plain>
+      <warm><li>Dreamt {OTHER_nameDef} came to visit, and stayed for supper, and it was like no time had passed.</li></warm>
+      <blunt><li>Dreamt of {OTHER_nameDef}. Miss {OTHER_objective}.</li></blunt>
+      <cheerful><li>In my dream {OTHER_nameDef} turned up at the gate with a cart full of everything we forgot to bring.</li></cheerful>
+      <gloomy><li>Dreamt I went back and {OTHER_nameDef} didn't know who I was.</li></gloomy>
+      <cold><li>Dreamt of the old colony. {OTHER_nameDef} is managing without me, I expect.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Rimfolk_DreamT_Uprooted</defName>
+    <label>a dream of the old home</label>
+    <kind>Nightmare</kind>
+    <afterThoughts><li>Rimfolk_Uprooted</li></afterThoughts>
+    <withinDays>8</withinDays>
+    <lines>
+      <plain>
+        <li>Dreamt I was back at the old colony and my room had been given to someone else.</li>
+        <li>In the dream I kept walking toward the old home, and the road kept bending away from it.</li>
+        <li>Last night I dreamt I'd never left, and woke up in a bed I didn't know.</li>
+        <li>[lowtech] Dreamt the old walls were calling me back, in a voice like the wind in the smoke-hole.</li>
+      </plain>
+      <warm><li>Dreamt the people back there were all right without me. I hope it's true.</li></warm>
+      <blunt><li>Old home dream. I didn't choose this.</li></blunt>
+      <cheerful><li>In my dream I carried the whole old colony here on my back, and set it down next to the new one.</li></cheerful>
+      <gloomy><li>Dreamt I'll never see the old place again. I think that one's true.</li></gloomy>
+      <cold><li>I dreamt of the old colony's layout. This one is worse planned.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+</Defs>

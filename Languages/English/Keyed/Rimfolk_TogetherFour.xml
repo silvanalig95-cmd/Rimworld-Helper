@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- New moments of life together (Social/Talk/SharedTimesTogether.cs): what a close call with a danger on the map is called once two remember it. -->
+  <CC_Times_Close_Rock>the rockfall at the dig</CC_Times_Close_Rock>
+  <CC_Times_Close_Tree>the falling tree</CC_Times_Close_Tree>
+  <CC_Times_Close_Smoulder>the fire in the dry grass</CC_Times_Close_Smoulder>
+  <CC_Times_Close_Shell>the old shell going up</CC_Times_Close_Shell>
+  <CC_Times_Close_Scrap>the sparking scrap</CC_Times_Close_Scrap>
+  <CC_Times_Close_Ground>the ground that gave way</CC_Times_Close_Ground>
+
+</LanguageData>

@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    New habits of the colony's groups (Source/ColonyCouncil/Social/Groups/GroupHabits.cs), kept as they come and never
+    called as a gathering (no playKind): once an hour, two or more of a group really together doing the thing keep it
+    (at most one habit a day for a group, as ever), each feels they belong, their strain eases a little, one of them says
+    a line, and the group grows closer. So they add nothing to the colony's gatherings or to how often a group keeps a
+    habit in a day; they give its people more of their own life to keep it in.
+
+    where: read (reading a book, the game's reading), sickbed (one of them laid up in bed, ill or hurt and still
+    healing, and the others sitting with them, the game's visit to the sick), music (one of them playing an instrument,
+    Royalty's, the others at leisure within earshot), outdoors (at leisure under the sky, here of a night).
+    The pools are spoken aloud, so their lines carry no names. Each habit is something a friendship group may be named
+    for (its GroupShareDef below), and the kinds that keep it list it after their own (Rimfolk_GroupKinds.xml).
+    Also here: the wardens, a kind of group for those who keep the colony's prisoners, and what a friendship group of
+    them is named.
+  -->
+
+  <!-- ===================== The habits ===================== -->
+
+  <ColonyCouncil.GroupHabitDef>
+    <defName>Rimfolk_Habit_Reading</defName>
+    <label>an hour with a book</label>
+    <description>They read in the same room of an evening, and now and then one reads a line aloud to the rest.</description>
+    <where>read</where>
+    <hourFrom>8</hourFrom>
+    <hourTo>23</hourTo>
+    <pool>Rimfolk_Pool_Group_Reading</pool>
+    <cohesion>1.5</cohesion>
+    <ease>2</ease>
+  </ColonyCouncil.GroupHabitDef>
+
+  <ColonyCouncil.GroupHabitDef>
+    <defName>Rimfolk_Habit_Sickbed</defName>
+    <label>keeping the sick company</label>
+    <description>When one of them is laid up, ill or hurt, the others come and sit by the bed.</description>
+    <where>sickbed</where>
+    <hourFrom>7</hourFrom>
+    <hourTo>22</hourTo>
+    <pool>Rimfolk_Pool_Group_Sickbed</pool>
+    <cohesion>2.5</cohesion>
+    <ease>2</ease>
+  </ColonyCouncil.GroupHabitDef>
+
+  <ColonyCouncil.GroupHabitDef>
+    <defName>Rimfolk_Habit_Music</defName>
+    <label>music of an evening</label>
+    <description>One of them plays, and the rest listen, hum along, or try to sing.</description>
+    <where>music</where>
+    <hourFrom>17</hourFrom>
+    <hourTo>23</hourTo>
+    <pool>Rimfolk_Pool_Group_Music</pool>
+  </ColonyCouncil.GroupHabitDef>
+
+  <ColonyCouncil.GroupHabitDef>
+    <defName>Rimfolk_Habit_Stars</defName>
+    <label>the night sky</label>
+    <description>Of a night they go out under the open sky together and name what they see up there.</description>
+    <where>outdoors</where>
+    <hourFrom>20</hourFrom>
+    <hourTo>1</hourTo>
+    <pool>Rimfolk_Pool_Group_Stars</pool>
+  </ColonyCouncil.GroupHabitDef>
+
+  <!-- ===================== What a friendship group may be named for ===================== -->
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_Reading</defName>
+    <label>reading</label>
+    <idea>Habit</idea>
+    <habit>Rimfolk_Habit_Reading</habit>
+    <names>
+      <li>the page-turners</li>
+      <li>the book swappers</li>
+      <li>the quiet readers</li>
+      <li>[lowtech] the candle readers</li>
+      <li>[!lowtech] the book club</li>
+    </names>
+    <why>They are friends, and read together of an evening.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_Sickbed</defName>
+    <label>the sickbed</label>
+    <idea>Habit</idea>
+    <habit>Rimfolk_Habit_Sickbed</habit>
+    <names>
+      <li>the bedside watch</li>
+      <li>the soup-bringers</li>
+      <li>the get-well crowd</li>
+      <li>[lowtech] the broth circle</li>
+    </names>
+    <why>They are friends, and keep each other company when one of them is laid up.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_Music</defName>
+    <label>music</label>
+    <idea>Habit</idea>
+    <habit>Rimfolk_Habit_Music</habit>
+    <names>
+      <li>the evening players</li>
+      <li>the singers</li>
+      <li>the tune-hummers</li>
+      <li>[tribal] the drum circle</li>
+      <li>[medieval] the minstrel bench</li>
+      <li>[!lowtech] the band</li>
+    </names>
+    <why>They are friends, and make music together of an evening.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_Stars</defName>
+    <label>the night sky</label>
+    <idea>Habit</idea>
+    <habit>Rimfolk_Habit_Stars</habit>
+    <names>
+      <li>the stargazers</li>
+      <li>the night-sky crowd</li>
+      <li>the star-namers</li>
+      <li>[tribal] the star readers</li>
+      <li>[spacer] the sky watchers</li>
+    </names>
+    <why>They are friends, and go out under the night sky together.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <ColonyCouncil.GroupShareDef>
+    <defName>Rimfolk_Share_Wardens</defName>
+    <label>the cells</label>
+    <idea>Work</idea>
+    <workTypes><li>Warden</li></workTypes>
+    <names>
+      <li>the cell-keepers</li>
+      <li>the key-holders</li>
+      <li>the prison watch</li>
+      <li>[tribal] the captive-watchers</li>
+      <li>[medieval] the jailers</li>
+    </names>
+    <why>They are friends, and most of them keep the prisoners.</why>
+  </ColonyCouncil.GroupShareDef>
+
+  <!-- ===================== A kind of group ===================== -->
+
+  <ColonyCouncil.GroupKindDef>
+    <defName>Rimfolk_Group_Wardens</defName>
+    <label>wardens</label>
+    <binds>Work</binds>
+    <workTypes><li>Warden</li></workTypes>
+    <names>
+      <li>the wardens</li>
+      <li>the turnkeys</li>
+      <li>the cell watch</li>
+      <li>[tribal] the captive-keepers</li>
+      <li>[medieval] the keepers of the keys</li>
+      <li>[spacer] the brig detail</li>
+    </names>
+    <why>They keep the colony's prisoners, and talk about little else.</why>
+    <habits><li>Rimfolk_Habit_Talk</li><li>Rimfolk_Habit_Table</li></habits>
+    <tag>wardens</tag>
+    <order>21</order>
+  </ColonyCouncil.GroupKindDef>
+
+  <!-- ===================== What's said at them ===================== -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Group_Reading</defName>
+    <lines>
+      <plain>
+        <li>Listen to this bit.</li>
+        <li>I've read this page three times now.</li>
+        <li>Don't tell me how it ends.</li>
+        <li>This one's better than the last one.</li>
+        <li>Who folded the corner of my page?</li>
+        <li>I'll swap you when I'm done.</li>
+        <li>Quiet, I'm at the good part.</li>
+        <li>Have you got to the bit with the river yet?</li>
+        <li>[lowtech] Move the candle a little closer, would you?</li>
+        <li>[!lowtech] Turn the light up a little, would you?</li>
+        <li>[winter] Good weather for a book, this.</li>
+        <li>[rain] Rain on the roof and a book, that's all I want.</li>
+        <li>[child] Can you read me the next page?</li>
+        <li>[grouprole:anchor] Same time tomorrow, then.</li>
+        <li>[grouprole:joker] I only read for the pictures.</li>
+        <li>[grouprole:quiet] Mm.</li>
+        <li>[grouprole:newcomer] Is there a book I could borrow?</li>
+        <li>[grouprole:worrier] I shouldn't have started a sad one before bed.</li>
+        <li>[groupkind:scholars] This disagrees with everything we found last week.</li>
+        <li>[groupkind:elders] My eyes aren't what they were, so read it out for me.</li>
+      </plain>
+      <warm>
+        <li>I'm glad of the company, even a quiet one.</li>
+        <li>Read me the end again, I liked it.</li>
+      </warm>
+      <blunt>
+        <li>Turn the page.</li>
+        <li>No talking.</li>
+      </blunt>
+      <cheerful>
+        <li>I've finished another one, that's four this season.</li>
+        <li>This one made me laugh out loud.</li>
+      </cheerful>
+      <gloomy>
+        <li>Everyone in this one dies.</li>
+        <li>I can't keep my eyes open.</li>
+      </gloomy>
+      <cold>
+        <li>The writer is wrong about nearly everything.</li>
+        <li>This is the one quiet hour I get.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Group_Sickbed</defName>
+    <lines>
+      <plain>
+        <li>How are you feeling today?</li>
+        <li>I brought you some water.</li>
+        <li>Don't try to sit up.</li>
+        <li>You look better than you did yesterday.</li>
+        <li>The healer says another day or two.</li>
+        <li>We've kept your seat for you.</li>
+        <li>Shall I tell you what you've missed?</li>
+        <li>Is it hurting much?</li>
+        <li>Try to sleep a little, I'll stay.</li>
+        <li>[lowtech] I've brought you broth, and it's still warm.</li>
+        <li>[!lowtech] I brought you something to read.</li>
+        <li>[child] Are you going to be all right?</li>
+        <li>[grouprole:joker] You'll do anything to get out of the hauling.</li>
+        <li>[grouprole:anchor] We're all here, so rest easy.</li>
+        <li>[grouprole:worrier] Are you sure you're warm enough?</li>
+        <li>[grouprole:quiet] I'll just sit.</li>
+        <li>[grouprole:peacemaker] Nobody minds about the work, just get well.</li>
+        <li>[groupkind:healers] Let me look at that dressing while I'm here.</li>
+        <li>[groupkind:comrades] You've had worse than this, I've seen you.</li>
+      </plain>
+      <warm>
+        <li>We missed you at supper.</li>
+        <li>Get well, that's all we want.</li>
+      </warm>
+      <blunt>
+        <li>Stay in bed.</li>
+        <li>Eat something.</li>
+      </blunt>
+      <cheerful>
+        <li>You've got the best bed in the place, lucky you.</li>
+        <li>I've saved up all the gossip for you.</li>
+      </cheerful>
+      <gloomy>
+        <li>You gave us all a fright.</li>
+        <li>This place makes everyone sick sooner or later.</li>
+      </gloomy>
+      <cold>
+        <li>You'll be back at work soon enough.</li>
+        <li>It should ease by morning.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Group_Music</defName>
+    <lines>
+      <plain>
+        <li>Play the one about the river.</li>
+        <li>Again, from the start.</li>
+        <li>That's a good tune.</li>
+        <li>I don't know the words, but I'll hum.</li>
+        <li>Slower, I can't keep up.</li>
+        <li>Who taught you that one?</li>
+        <li>Play something we can sing to.</li>
+        <li>One more, then bed.</li>
+        <li>[lowtech] My mother sang that one at harvest.</li>
+        <li>[winter] Play something warm.</li>
+        <li>[child] Can I have a go?</li>
+        <li>[grouprole:joker] I'm going to sing, and you've all been warned.</li>
+        <li>[grouprole:anchor] Good, now everyone sit down.</li>
+        <li>[grouprole:quiet] Lovely.</li>
+        <li>[grouprole:newcomer] Do you play every evening?</li>
+        <li>[groupkind:artists] You came in a beat early there.</li>
+        <li>[groupkind:young] Play something fast.</li>
+        <li>[groupnorm:merry] Up, everyone, we're dancing.</li>
+      </plain>
+      <warm>
+        <li>That one always makes me think of home.</li>
+        <li>I could listen to you all night.</li>
+      </warm>
+      <blunt>
+        <li>Again.</li>
+        <li>Louder.</li>
+      </blunt>
+      <cheerful>
+        <li>I'm dancing whether you like it or not.</li>
+        <li>That's my favorite, play it twice.</li>
+      </cheerful>
+      <gloomy>
+        <li>Play the sad one, it suits the day.</li>
+        <li>That tune makes me miss people.</li>
+      </gloomy>
+      <cold>
+        <li>You're out of tune.</li>
+        <li>Adequate.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Group_Stars</defName>
+    <lines>
+      <plain>
+        <li>There, that bright one, see it?</li>
+        <li>It's a clear night for it.</li>
+        <li>I always look for the same three stars.</li>
+        <li>Do you think anyone's looking back at us?</li>
+        <li>That one moved, I swear it did.</li>
+        <li>Lie back, you see more that way.</li>
+        <li>My neck's stiff from looking up.</li>
+        <li>Look how many there are tonight.</li>
+        <li>[lowtech] My grandmother had a name for every one of those.</li>
+        <li>[spacer] One of those is the sun I was born under.</li>
+        <li>[winter] Cold out here, but worth it.</li>
+        <li>[child] How far away are they?</li>
+        <li>[grouprole:joker] I've named that one after the cook's stew.</li>
+        <li>[grouprole:anchor] Let's come out again tomorrow if it's clear.</li>
+        <li>[grouprole:quiet] Look at that.</li>
+        <li>[grouprole:worrier] We should get back in before it gets any colder.</li>
+        <li>[groupkind:elders] They were brighter when I was young.</li>
+        <li>[groupkind:offworlders] I can't tell which one was home any more.</li>
+        <li>[groupkind:tribeborn] The old ones read the seasons in those.</li>
+        <li>[groupkind:nightshift] Best part of the night shift, this.</li>
+      </plain>
+      <warm>
+        <li>I'm glad we came out.</li>
+        <li>It makes everything down here seem small, in a good way.</li>
+      </warm>
+      <blunt>
+        <li>Cold out here.</li>
+        <li>Pretty.</li>
+      </blunt>
+      <cheerful>
+        <li>I'm going to count them all, give me a minute.</li>
+        <li>Quick, make a wish.</li>
+      </cheerful>
+      <gloomy>
+        <li>They'll still be up there long after we're gone.</li>
+        <li>It's lonely, looking at that.</li>
+      </gloomy>
+      <cold>
+        <li>It's mostly empty space.</li>
+        <li>That light is older than this colony.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

@@ -99,10 +99,22 @@ namespace ColonyCouncil
                 }
                 case "outdoors":
                     return Leisure(p) && (p.GetRoom()?.PsychologicallyOutdoors ?? true);
+                case "read":
+                    return job?.def != null && job.def.defName == "Reading";
+                case "sickbed":
+                    // Sitting with one of them who is laid up (the game's visit to the sick), or laid up (awake, in bed,
+                    // ill or hurt and still healing) with one of them visiting: two abed side by side aren't keeping it.
+                    if (job?.def == JobDefOf.VisitSickPawn) return job.targetA.Thing is Pawn sick && g.Has(sick);
+                    return p.InBed() && LifeChecks.Healing(p) && g.Pawns.Any(o => o != p && o.CurJobDef == JobDefOf.VisitSickPawn && o.CurJob.targetA.Thing == p);
+                case "music":
+                    return Playing(p) || (Leisure(p) && p.Map.mapPawns.FreeColonistsSpawned.Any(o => o != p && Playing(o) && Together.Hears(p, o, 9f)));
                 default:
                     return Leisure(p);
             }
         }
+
+        /// <summary>Playing an instrument (Royalty's harp, harpsichord or piano, and any mod's that uses the game's job).</summary>
+        private static bool Playing(Pawn p) => p?.CurJob?.def != null && p.CurJob.def.defName == "Play_MusicalInstrument";
 
         /// <summary>
         /// The biggest knot of them who are really together (each within talking range of another: Together.Can; at a
@@ -144,8 +156,10 @@ namespace ColonyCouncil
                 CouncilGameComponent.GiveThought(p, GroupDefs.Habit, null, -1f, cause);
                 Interplay.Ease(p, habit.ease, StrainRelief.Friends);
             }
-            var speaker = Speaker(g, circle);
-            var other = circle.Where(x => x != speaker).RandomElementWithFallback();
+            // At the sickbed the visitor speaks, to the one laid up.
+            bool bedside = habit.where == "sickbed";
+            var speaker = Speaker(g, bedside ? circle.Where(x => !x.InBed()).ToList() : circle);
+            var other = circle.Where(x => x != speaker && (!bedside || x.InBed())).RandomElementWithFallback();
             if (speaker != null && other != null)
             {
                 string line = Flavor.FromPool(habit.pool, speaker);

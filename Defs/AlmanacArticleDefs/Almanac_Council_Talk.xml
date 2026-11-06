@@ -10,13 +10,13 @@
     <order>9</order>
     <summary>What colonists talk about, the views they hold, and how a talk goes between two people.</summary>
     <tip>A colonist's views are in their Culture tab, under Views. Hover one to see what it rests on and the last talk that moved it.</tip>
-    <description>Colonists don't only chat. Now and then two of them who are together get talking about something real: the last raid, the council and its decrees, the food, the work and who does too little, the newest face in the colony, faith, the world outside and its traders, the animals, the weather, art, the future and whether to stay, the dead, the prisoners, drink, new learning against the old ways, the children, the colony's project, money, love, a day on the colony's calendar coming up or just kept, the world's latest news, the camp on the map. Each of them holds a view on each of these, and says so in their own voice. Children talk too, of growing up.
+    <description>Colonists don't only chat. Now and then two of them who are together get talking about something real: the last raid, the council and its decrees, the food, the work and who does too little, the newest face in the colony, faith, the world outside and its traders, the animals, the weather, art, the future and whether to stay, the dead, the prisoners, drink, new learning against the old ways, the children, the colony's project, money, love, a day on the colony's calendar coming up or just kept, the world's latest news, the camp on the map, the sick and the hurt. Each of them holds a view on each of these, and says so in their own voice. Children talk too, of growing up.
 
 The talk shows over their heads as two to four lines, the two taking turns, a few seconds apart; if one of them walks off, the rest isn't said. The social log keeps one line saying what it was about and how it went.</description>
     <sections>
       <li>
         <heading>Views</heading>
-        <text>Each view runs from against to for: for meeting raiders at the gate or for thicker walls, trusting the council or not, grateful for the food or not, welcoming a newcomer or wary of them (a view for each newcomer), loving the colony's days or grudging the work they cost, wanting a hand in the world's troubles or keeping out of them, glad of the people camped nearby or wanting the land back. A view starts from who the colonist is, the first time it's needed:</text>
+        <text>Each view runs from against to for: for meeting raiders at the gate or for thicker walls, trusting the council or not, grateful for the food or not, welcoming a newcomer or wary of them (a view for each newcomer), loving the colony's days or grudging the work they cost, wanting a hand in the world's troubles or keeping out of them, glad of the people camped nearby or wanting the land back, putting the sick to bed and nursing them or working through it and keeping the beds for the dying. A view starts from who the colonist is, the first time it's needed:</text>
         <points>
           <li>their character: the bold want to fight back and the timid want walls, the trusting back the council, the curious welcome newcomers, traders and new learning, the warm count the animals as family;</li>
           <li>their traits and passions: a brawler or a shooter leans to the fight, an ascetic thinks the food is fine, a teetotaler is against drink, a passion for art is for art;</li>
@@ -35,7 +35,7 @@ The talk shows over their heads as two to four lines, the two taking turns, a fe
           <li>what they went through together (see "shared memories and in-jokes"), and whether one of them is low;</li>
           <li>what they talked about lately: the same topic between the same two is much rarer for two days.</li>
         </points>
-        <after>A colonist who starts a talk waits four hours before starting another, and the same two talk at most every ten hours. On top of that, someone who has just started any of Rimfolk's exchanges (a moment, a talk, a story passed on) waits an hour before starting another, and nobody starts one with someone still in the middle of a talk. A topic only comes up when it means something: no prisoners, no talk of prisoners; no children, little talk of them; the colony's days only from three days before a day until two after it was kept (with the calendar on), the world's news only while a world situation runs, the camp only while one is coming or settled and not at odds with the colony.</after>
+        <after>A colonist who starts a talk waits four hours before starting another, and the same two talk at most every ten hours. On top of that, someone who has just started any of Rimfolk's exchanges (a moment, a talk, a story passed on) waits an hour before starting another, and nobody starts one with someone still in the middle of a talk. A topic only comes up when it means something: no prisoners, no talk of prisoners; no children, little talk of them; the colony's days only from three days before a day until two after it was kept (with the calendar on), the world's news only while a world situation runs, the camp only while one is coming or settled and not at odds with the colony, the sick and the hurt only while someone of the colony on the map is ill or still healing from a hurt (more while something that can kill is going round, and then nobody teases anyone about it).</after>
       </li>
       <li>
         <heading>How it goes</heading>
@@ -101,6 +101,10 @@ The talk shows over their heads as two to four lines, the two taking turns, a fe
           <li>The enemy dead carried out to a pyre or the tree line | Those who carried them, by the fight's name | half in 90 days</li>
           <li>A night watch walked on the walls | Those who walked it, by the date | half in 90 days</li>
           <li>Lantern night | Those at its gathering while the lanterns stood, by the year | half in 120 days</li>
+          <li>An illness nursed: a doctor pulling a patient through something that could kill, tended twice or more | The doctor and the patient, by the illness ("the flu", "black bane") | half in 180 days</li>
+          <li>A close call: one of the land's dangers hurting someone | The one it hurt and whoever was right there with them, by the danger ("the rockfall at the dig", "the falling tree") | half in 90 days</li>
+          <li>A new colony founded | The founding party, each with the three of them they're closest to, by its name | never</li>
+          <li>A debt remembered: someone tended under fire saying they'll pay it back | The two, by the fight | half in 150 days</li>
         </table>
       </li>
       <li>
@@ -113,7 +117,8 @@ The talk shows over their heads as two to four lines, the two taking turns, a fe
           <li>a small fire beaten out together ("the little fire", "the fire in the kitchen");</li>
           <li>a short binge, food or drink, and the friend who saw it ("the midnight feast", "that long night");</li>
           <li>going down in the mud together on a wet day (a small event of its own, "the mud");</li>
-          <li>a calendar day's gathering held out in the rain ("the harvest day in the rain"), and a feast day's dish that burned ("the burned pie on the harvest day"): these two become jokes half a day later, among those who were there.</li>
+          <li>a calendar day's gathering held out in the rain ("the harvest day in the rain"), and a feast day's dish that burned ("the burned pie on the harvest day"): these two become jokes half a day later, among those who were there;</li>
+          <li>caught out in the rain together and laughing ("the downpour"), and a snowball fight while it snows ("the snowball fight"), small events of their own too.</li>
         </points>
         <after>A joke gets funnier the first few times it comes up, then wears thin: after four tellings it weighs less with every one, the other groans instead of laughing, and it leaves only a small opinion. In the end they find a new one.</after>
       </li>

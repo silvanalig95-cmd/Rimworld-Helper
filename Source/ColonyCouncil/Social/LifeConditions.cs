@@ -82,7 +82,10 @@ namespace ColonyCouncil
         public static float Convalescing(Pawn p) => HealthTracker.ConvalescenceOf(p)?.Severity ?? 0f;
 
         /// <summary>A memory of one of these thoughts (names or "Prefix*"), at most <paramref name="days"/> old, or null.</summary>
-        public static Thought_Memory Remembered(Pawn p, List<string> thoughts, float days)
+        public static Thought_Memory Remembered(Pawn p, List<string> thoughts, float days) => Remembered(p, thoughts, days, null);
+
+        /// <summary>As <see cref="Remembered(Pawn, List{string}, float)"/>, and about <paramref name="about"/> when it's given (the fight was with them).</summary>
+        public static Thought_Memory Remembered(Pawn p, List<string> thoughts, float days, Pawn about)
         {
             var memories = p?.needs?.mood?.thoughts?.memories?.Memories;
             if (memories == null || thoughts.NullOrEmpty()) return null;
@@ -90,7 +93,7 @@ namespace ColonyCouncil
             for (int i = 0; i < memories.Count; i++)
             {
                 var m = memories[i];
-                if (m?.def != null && m.age <= max && Matches(m.def.defName, thoughts)) return m;
+                if (m?.def != null && m.age <= max && (about == null || m.otherPawn == about) && Matches(m.def.defName, thoughts)) return m;
             }
             return null;
         }

@@ -31,6 +31,21 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.123.0</version>
+        <date>6 November 2026</date>
+        <title>New moments of life together</title>
+        <points>
+          <li>Twenty-five new moments between colonists, among them making it up after a fight, a joke that goes too far, a debt remembered after being tended under fire, rivals racing at the same work, friends with a work song, a student's fine piece and a quiet word after a loss.</li>
+          <li>More of them: an old remedy from an older colonist for someone ill, a newcomer shown the ropes, company at a bad meal, a snowball fight, a drink in the heat, the last of the harvest and talk of the region's news.</li>
+          <li>Six new shared memories: an illness nursed, a close call, a colony founded, a debt remembered, and in-jokes about a downpour and a snowball fight. The mud in-joke now really happens after rain or snow.</li>
+          <li>A new conversation topic about the sick and the hurt, which comes up only while someone is ill or healing.</li>
+          <li>Friendship groups get four new habits (an hour with a book, keeping the sick company, music of an evening, the night sky), and those who keep the prisoners can become the wardens.</li>
+          <li>Eleven new dreams, and a new personal story for someone getting back to work after a close call, with help from the one closest to them.</li>
+          <li>All of it takes a share of the old, so moments, gatherings and messages come as often as before.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.122.0</version>
         <date>6 November 2026</date>
         <title>New neighbours' requests and callers</title>

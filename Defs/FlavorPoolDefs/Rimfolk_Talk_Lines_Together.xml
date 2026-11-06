@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Remembering what the newest content leaves between two colonists (Defs/SharedMemoryDefs/Rimfolk_SharedMemories_Together.xml):
+    per kind of memory, the opening, the reply and the close, in every voice. {LABEL} is what it was: the illness ("the
+    flu", "black bane"), the danger on the map ("the rockfall at the dig", "the falling tree"), the colony founded
+    ("Newhold"), "the fight" a debt is owed for, "the downpour", "the snowball fight". [byme]: the speaker is the one
+    it was about (the doctor who nursed, the one the danger hurt, the one who saved the other); [byother]: the other is.
+    [first]: the first time it comes up. Jokes: [fresh], [told], [worn].
+  -->
+
+  <!-- ===================== Nursed through an illness ===================== -->
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_Nursed_Open</defName>
+    <memory>Rimfolk_Mem_Nursed</memory>
+    <turn>Open</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>[byother] I don't remember much of {LABEL}, only your hands.</li>
+        <li>[byme] You gave me a real fright with {LABEL}, you know.</li>
+        <li>[byother] I wouldn't be here without you, after {LABEL}.</li>
+        <li>[first,byother] I've been meaning to thank you properly for {LABEL}.</li>
+        <li>[byme] I still listen for your cough at night, since {LABEL}.</li>
+        <li>Strange to think of {LABEL} now, with you up and about.</li>
+        <li>[lowtech,byme] I used every herb we had on you during {LABEL}.</li>
+        <li>[!lowtech,byme] I went through half the medicine shelf on you during {LABEL}.</li>
+      </plain>
+      <warm>
+        <li>[byother] I owe you more than I can say for {LABEL}.</li>
+        <li>[byme] Seeing you well after {LABEL} is all the thanks I need.</li>
+      </warm>
+      <blunt>
+        <li>[byme] You nearly died of {LABEL}, so rest when I tell you to.</li>
+        <li>[byother] You got me through {LABEL}, and I won't forget it.</li>
+      </blunt>
+      <cheerful>
+        <li>[byother] I'm still here, whatever {LABEL} had to say about it.</li>
+        <li>[byme] You were a terrible patient all through {LABEL}, I'll have you know.</li>
+      </cheerful>
+      <gloomy>
+        <li>[byother] Some nights I wake up sure that {LABEL} has come back.</li>
+        <li>We were lucky with {LABEL}, luckier than most.</li>
+      </gloomy>
+      <cold>
+        <li>[byme] With care, {LABEL} ran its course as I expected.</li>
+        <li>[byother] You kept me alive through {LABEL}, and I've noted it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_Nursed_Reply</defName>
+    <memory>Rimfolk_Mem_Nursed</memory>
+    <turn>Reply</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>[byme] I only did what anyone would have done.</li>
+        <li>[byme] You did the hard part, getting better.</li>
+        <li>[byother] I'd thank you again, but you'd only wave it off.</li>
+        <li>[byother] I remember your voice more than anything else.</li>
+        <li>It was a bad few days for both of us.</li>
+        <li>[first] We've never really talked about it, have we.</li>
+      </plain>
+      <warm>
+        <li>[byme] I'm just glad you're here to talk about it.</li>
+        <li>[byother] You were there every time I woke up.</li>
+      </warm>
+      <blunt>
+        <li>[byme] Don't get sick again.</li>
+        <li>[byother] I know, I owe you.</li>
+      </blunt>
+      <cheerful>
+        <li>[byme] And now look at you, eating everyone's share.</li>
+        <li>[byother] I was a better patient than you make out.</li>
+      </cheerful>
+      <gloomy>
+        <li>[byme] It was closer than I let you know.</li>
+        <li>[byother] I was sure that was the end of me.</li>
+      </gloomy>
+      <cold>
+        <li>[byme] You answered the treatment well.</li>
+        <li>[byother] You took a sensible risk on me.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_Nursed_Close</defName>
+    <memory>Rimfolk_Mem_Nursed</memory>
+    <turn>Close</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>Look after yourself, that's all I ask.</li>
+        <li>Let's neither of us do that again.</li>
+        <li>Well, here we both are.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <!-- ===================== A close call on the land ===================== -->
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_CloseCall_Open</defName>
+    <memory>Rimfolk_Mem_CloseCall</memory>
+    <turn>Open</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>I still slow down every time I pass the spot, since {LABEL}.</li>
+        <li>[byme] I can still feel {LABEL} when the weather turns.</li>
+        <li>[byother] You gave me a scare with {LABEL}.</li>
+        <li>[first,byme] I never said how glad I was you were there for {LABEL}.</li>
+        <li>We were lucky with {LABEL}, it could have been much worse.</li>
+        <li>I keep thinking about {LABEL}, and how quick it all was.</li>
+      </plain>
+      <warm>
+        <li>[byme] I was glad of you beside me at {LABEL}.</li>
+        <li>[byother] I'm just glad it wasn't worse, at {LABEL}.</li>
+      </warm>
+      <blunt>
+        <li>[byme] I should have seen {LABEL} coming.</li>
+        <li>[byother] You were careless at {LABEL}, and you know it.</li>
+      </blunt>
+      <cheerful>
+        <li>[byme] I've got a story to tell now, thanks to {LABEL}.</li>
+        <li>We both walked away from {LABEL}, more or less.</li>
+      </cheerful>
+      <gloomy>
+        <li>[byme] This land wants us dead, and {LABEL} proves it.</li>
+        <li>Next time it'll be worse than {LABEL}.</li>
+      </gloomy>
+      <cold>
+        <li>We should have marked the danger before {LABEL}.</li>
+        <li>[byme] The hurt from {LABEL} healed as I expected it to.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_CloseCall_Reply</defName>
+    <memory>Rimfolk_Mem_CloseCall</memory>
+    <turn>Reply</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>[byme] I've still got the mark to show for it.</li>
+        <li>[byother] I can still hear it.</li>
+        <li>[byother] I thought you were done for, just for a moment.</li>
+        <li>[byme] It happened so fast I didn't even shout.</li>
+        <li>We should both keep away from there.</li>
+      </plain>
+      <warm>
+        <li>[byother] I'd have come running whatever it was.</li>
+        <li>[byme] You kept me calm, you know.</li>
+      </warm>
+      <blunt>
+        <li>[byme] It hurt.</li>
+        <li>[byother] Watch where you put your feet.</li>
+      </blunt>
+      <cheerful>
+        <li>[byme] And I've got a scar to show off now.</li>
+        <li>[byother] You moved faster than I've ever seen you move.</li>
+      </cheerful>
+      <gloomy>
+        <li>[byme] I still dream about it.</li>
+        <li>[byother] One step either way and we'd have been digging a grave.</li>
+      </gloomy>
+      <cold>
+        <li>[byme] It was bad luck, nothing more.</li>
+        <li>[byother] You were in the wrong place.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_CloseCall_Close</defName>
+    <memory>Rimfolk_Mem_CloseCall</memory>
+    <turn>Close</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>Let's both be more careful out there.</li>
+        <li>I'm glad you're still in one piece.</li>
+        <li>Mind that place, that's all.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <!-- ===================== A colony founded together ===================== -->
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_Founding_Open</defName>
+    <memory>Rimfolk_Mem_Founding</memory>
+    <turn>Open</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>Remember the first night at {LABEL}, with no roof at all?</li>
+        <li>I still think about the walk out to {LABEL}.</li>
+        <li>[first] I never thought we'd really do it, found {LABEL}.</li>
+        <li>Do you remember what {LABEL} looked like the day we came?</li>
+        <li>We made {LABEL} out of nothing, the two of us and the rest.</li>
+        <li>[tribal] We carried the fire all the way to {LABEL}, remember?</li>
+        <li>[medieval] We marked out {LABEL} with a cord and four stakes, do you remember?</li>
+        <li>[!lowtech] We came to {LABEL} with what we could carry, and look at it now.</li>
+      </plain>
+      <warm>
+        <li>I'm glad it was you I came out to {LABEL} with.</li>
+        <li>I think {LABEL} feels like home because of who I came with.</li>
+      </warm>
+      <blunt>
+        <li>Hard work, founding {LABEL}.</li>
+        <li>We earned {LABEL}.</li>
+      </blunt>
+      <cheerful>
+        <li>We founded {LABEL}, us, can you believe it?</li>
+        <li>I still can't believe {LABEL} is ours.</li>
+      </cheerful>
+      <gloomy>
+        <li>Some days I wonder why we ever left to found {LABEL}.</li>
+        <li>The first winter at {LABEL} nearly finished us.</li>
+      </gloomy>
+      <cold>
+        <li>Founding {LABEL} was the sensible choice.</li>
+        <li>We chose a good site for {LABEL}.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_Founding_Reply</defName>
+    <memory>Rimfolk_Mem_Founding</memory>
+    <turn>Reply</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>Cold, mostly, that's what I remember.</li>
+        <li>We had no idea what we were doing.</li>
+        <li>I remember who was there, every one of them.</li>
+        <li>We slept in a heap that first night.</li>
+        <li>[first] I didn't know it meant as much to you.</li>
+      </plain>
+      <warm>
+        <li>I'd do it all again, with you.</li>
+        <li>We made a home of it, didn't we.</li>
+      </warm>
+      <blunt>
+        <li>We did, and it was hard.</li>
+        <li>No roof, no food, no regrets.</li>
+      </blunt>
+      <cheerful>
+        <li>And look at the place now.</li>
+        <li>Best walk I ever took.</li>
+      </cheerful>
+      <gloomy>
+        <li>Not everyone who came out with us is still here.</li>
+        <li>I miss the old place, some days.</li>
+      </gloomy>
+      <cold>
+        <li>It was the right decision.</li>
+        <li>We had our reasons.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_Founding_Close</defName>
+    <memory>Rimfolk_Mem_Founding</memory>
+    <turn>Close</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>We did well by the place, all told.</li>
+        <li>Here's to the next one, if there is one.</li>
+        <li>It's ours, that's the thing.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <!-- ===================== A debt remembered ===================== -->
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_Repaid_Open</defName>
+    <memory>Rimfolk_Mem_Repaid</memory>
+    <turn>Open</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>[byother] I haven't forgotten {LABEL}, and I won't.</li>
+        <li>[byother] Every time there's a fight I think of you at {LABEL}.</li>
+        <li>[byme] You don't owe me anything for {LABEL}, you know.</li>
+        <li>[byme] You keep bringing up {LABEL}, as if I'd forget.</li>
+        <li>[first,byother] I've been meaning to say it properly, about {LABEL}.</li>
+      </plain>
+      <warm>
+        <li>[byother] I'd be dead but for you at {LABEL}.</li>
+        <li>[byme] I'd do it again, after {LABEL} or any other.</li>
+      </warm>
+      <blunt>
+        <li>[byother] I owe you for {LABEL}.</li>
+        <li>[byme] Stop thanking me for {LABEL}.</li>
+      </blunt>
+      <cheerful>
+        <li>[byother] Next fight, I'm the one patching you up.</li>
+        <li>[byme] You can carry my things forever, for {LABEL}.</li>
+      </cheerful>
+      <gloomy>
+        <li>[byother] Some nights I'm back in {LABEL}.</li>
+        <li>[byme] I nearly didn't reach you, in {LABEL}.</li>
+      </gloomy>
+      <cold>
+        <li>[byother] A debt from {LABEL} is a debt.</li>
+        <li>[byme] What I did in {LABEL} doesn't need repaying.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_Repaid_Reply</defName>
+    <memory>Rimfolk_Mem_Repaid</memory>
+    <turn>Reply</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>[byme] You'd have done the same for me.</li>
+        <li>[byother] I'll pay it back one day.</li>
+        <li>[byme] Just keep your head down next time.</li>
+        <li>[byother] I mean it, whenever you need me.</li>
+        <li>It was a bad day, that one.</li>
+      </plain>
+      <warm>
+        <li>[byme] I'd go out there for you again.</li>
+        <li>[byother] You're the first one I'd go to.</li>
+      </warm>
+      <blunt>
+        <li>[byme] Forget it.</li>
+        <li>[byother] I don't forget.</li>
+      </blunt>
+      <cheerful>
+        <li>[byme] I'll hold you to it, then.</li>
+        <li>[byother] I'm keeping count, you know.</li>
+      </cheerful>
+      <gloomy>
+        <li>[byme] I hope you never have to.</li>
+        <li>[byother] There'll be another fight, there always is.</li>
+      </gloomy>
+      <cold>
+        <li>[byme] It was the practical thing to do.</li>
+        <li>[byother] I keep my accounts.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_Repaid_Close</defName>
+    <memory>Rimfolk_Mem_Repaid</memory>
+    <turn>Close</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>We look out for each other, that's all.</li>
+        <li>Stay close to me next time.</li>
+        <li>We'll call it even when it's even.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <!-- ===================== The downpour ===================== -->
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Joke_Downpour_Open</defName>
+    <memory>Rimfolk_Mem_Downpour</memory>
+    <turn>Open</turn>
+    <outcomes><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>Smells like rain, {OTHER}, shall we go and stand in it?</li>
+        <li>I've only just dried out from {LABEL}.</li>
+        <li>[rain] Here comes {LABEL} again.</li>
+        <li>[told] I told them about {LABEL}, and how you stood there like a post.</li>
+        <li>[fresh] My boots are still wet from {LABEL}.</li>
+      </plain>
+      <warm>
+        <li>I still laugh when it rains, because of {LABEL}.</li>
+        <li>[fresh] That was the best soaking I've ever had.</li>
+      </warm>
+      <blunt>
+        <li>Wet, that was {LABEL}.</li>
+        <li>[worn] Rain, yes, I know.</li>
+      </blunt>
+      <cheerful>
+        <li>I'm going to stand in the next rain on purpose, for {LABEL}.</li>
+        <li>[fresh] We looked like two drowned cats in {LABEL}.</li>
+      </cheerful>
+      <gloomy>
+        <li>I caught a chill from {LABEL}.</li>
+        <li>[worn] It always rains here.</li>
+      </gloomy>
+      <cold>
+        <li>We should have sheltered during {LABEL}.</li>
+        <li>[worn] It was water, falling.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Joke_Downpour_Reply</defName>
+    <memory>Rimfolk_Mem_Downpour</memory>
+    <turn>Reply</turn>
+    <outcomes><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>[fresh] I was wet to the bone.</li>
+        <li>[told] I did not stand there like a post.</li>
+        <li>[worn] Yes, the rain, I remember.</li>
+        <li>[told] You ran first, I saw you.</li>
+        <li>[fresh] I'm still wringing out my socks.</li>
+      </plain>
+      <warm>
+        <li>[fresh] Best part of the day, that was.</li>
+        <li>[told] I'd get soaked with you again.</li>
+      </warm>
+      <blunt>
+        <li>[fresh] Soaked.</li>
+        <li>[worn] Enough about the rain.</li>
+      </blunt>
+      <cheerful>
+        <li>[fresh] We should do it again.</li>
+        <li>[told] I've been damp ever since.</li>
+      </cheerful>
+      <gloomy>
+        <li>[fresh] I sneezed for two days.</li>
+        <li>[worn] It'll rain again tomorrow.</li>
+      </gloomy>
+      <cold>
+        <li>[fresh] It was poor planning.</li>
+        <li>[told] We should have gone inside.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Joke_Downpour_Close</defName>
+    <memory>Rimfolk_Mem_Downpour</memory>
+    <turn>Close</turn>
+    <outcomes><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>Next rain, we race for the door.</li>
+        <li>Bring something for your head next time.</li>
+        <li>We'll stay dry next time, I promise you.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <!-- ===================== The snowball fight ===================== -->
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Joke_Snowball_Open</defName>
+    <memory>Rimfolk_Mem_Snowball</memory>
+    <turn>Open</turn>
+    <outcomes><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>I've been saving a snowball for you since {LABEL}.</li>
+        <li>[snow] Good snow for another {LABEL}, isn't it.</li>
+        <li>[told] I told the others how {LABEL} went, and I won it.</li>
+        <li>[fresh] I've still got snow down my collar from {LABEL}.</li>
+        <li>Mind your back when it snows, {OTHER}.</li>
+      </plain>
+      <warm>
+        <li>I hope we're still throwing snow at each other when we're old.</li>
+        <li>[fresh] That was the most fun I've had all winter.</li>
+      </warm>
+      <blunt>
+        <li>I won {LABEL}.</li>
+        <li>[worn] Snow, yes.</li>
+      </blunt>
+      <cheerful>
+        <li>I'm training for the next {LABEL}, you've been warned.</li>
+        <li>[fresh] My aim has never been better than in {LABEL}.</li>
+      </cheerful>
+      <gloomy>
+        <li>My hands still haven't warmed up from {LABEL}.</li>
+        <li>[worn] It's always winter here.</li>
+      </gloomy>
+      <cold>
+        <li>My aim in {LABEL} was better than yours.</li>
+        <li>[worn] It was frozen water, thrown.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Joke_Snowball_Reply</defName>
+    <memory>Rimfolk_Mem_Snowball</memory>
+    <turn>Reply</turn>
+    <outcomes><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>[fresh] You started it.</li>
+        <li>[told] I did not lose.</li>
+        <li>[worn] Yes, the snowballs, I know.</li>
+        <li>[told] You threw like a child.</li>
+        <li>[fresh] My ears are still burning.</li>
+      </plain>
+      <warm>
+        <li>[fresh] You've got a good arm, I'll give you that.</li>
+        <li>[told] Any time you want a rematch.</li>
+      </warm>
+      <blunt>
+        <li>[fresh] You cheated.</li>
+        <li>[worn] Enough snow.</li>
+      </blunt>
+      <cheerful>
+        <li>[fresh] Rematch, at the next snow.</li>
+        <li>[told] I let you win.</li>
+      </cheerful>
+      <gloomy>
+        <li>[fresh] My fingers went numb.</li>
+        <li>[worn] I'm sick of snow.</li>
+      </gloomy>
+      <cold>
+        <li>[fresh] Your technique was poor.</li>
+        <li>[told] It was a draw at best.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Joke_Snowball_Close</defName>
+    <memory>Rimfolk_Mem_Snowball</memory>
+    <turn>Close</turn>
+    <outcomes><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>Truce, until the next snow.</li>
+        <li>Next time I'm building a wall first.</li>
+        <li>Fair warning, I've been practicing.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+</Defs>

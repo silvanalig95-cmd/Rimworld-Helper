@@ -513,6 +513,8 @@ namespace Balance
                     continue;
                 }
                 if (Rates.Gates.TryGetValue(n, out float factor)) g *= factor;
+                // A role written for a moment (a wet day, two at their work, at supper): only while the moment holds.
+                if ((n == "roleA" || n == "roleB" || n == "dreamer") && ColonyCouncil.TogetherFourMath.NeedsMoment((string)c.Element("tags"))) g *= Rates.MomentTagGate;
                 // A name in the colony (rep:cruel, rep:brave...) shows for a few colonists, not most.
                 if ((n == "initiatorTags" || n == "recipientTags") && c.Value.Contains("rep:")) g *= Rates.RepTagShare;
             }

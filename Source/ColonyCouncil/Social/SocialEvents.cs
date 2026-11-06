@@ -64,6 +64,17 @@ namespace ColonyCouncil
         public List<string> aMemories;
         public List<string> bMemories;
         public float memoryDays = 2f;
+        /// <summary>B's memory (bMemories) is about A: the fight between them, the one who carried them out of it.</summary>
+        public bool bMemoryAboutA;
+        /// <summary>
+        /// Both at the same work right now, side by side, one of these work types (WorkTypeDef names; empty: any of
+        /// <see cref="TogetherFourMath.SideBySideWork"/>). {WORK} names it, and its skill is the event's ({SKILL}, a lesson).
+        /// </summary>
+        public List<string> sameWork;
+        /// <summary>B finished something excellent or better within this many days ({THING}); 0: no need.</summary>
+        public float bMadeFineDays;
+        /// <summary>B took a hurt of everyday life (the harm service's) within this many days, and has a wound to show; 0: no need.</summary>
+        public float bHurtDays;
         /// <summary>A camp (world events) is set up on the map.</summary>
         public bool camp;
         /// <summary>A world event of one of these kinds ("sickness", "hunger") or defNames is running.</summary>
@@ -74,6 +85,22 @@ namespace ColonyCouncil
             foreach (var e in base.ConfigErrors()) yield return e;
             if (texts.NullOrEmpty()) yield return "social event has no texts";
             if (tone != "neutral" && tone != "warm" && tone != "friction" && tone != "mend") yield return "tone must be warm, friction, mend or neutral";
+            if (bMemoryAboutA && bMemories.NullOrEmpty()) yield return "bMemoryAboutA needs bMemories";
+            if (sameWork != null)
+                foreach (var w in sameWork)
+                    if (DefDatabase<WorkTypeDef>.GetNamedSilentFail(w) == null) yield return "sameWork: no work type " + w;
+        }
+    }
+
+    /// <summary>A social event's context: the work two are at side by side ({WORK}), beside a dilemma's.</summary>
+    public class SocialEventContext : DilemmaContext
+    {
+        public WorkTypeDef work;
+
+        protected override void AddArgs(List<NamedArgument> args)
+        {
+            base.AddArgs(args);
+            args.Add((work?.gerundLabel ?? work?.labelShort ?? "").Named("WORK"));
         }
     }
 
@@ -196,7 +223,10 @@ namespace ColonyCouncil
             if (def.camp && !LifeConditions.CampOn(a.MapHeld)) return false;
             if (def.situations != null && !LifeConditions.Situation(def.situations)) return false;
             if (def.aMemories != null && LifeConditions.Remembered(a, def.aMemories, def.memoryDays) == null) return false;
-            if (def.bMemories != null && LifeConditions.Remembered(b, def.bMemories, def.memoryDays) == null) return false;
+            if (def.bMemories != null && LifeConditions.Remembered(b, def.bMemories, def.memoryDays, def.bMemoryAboutA ? a : null) == null) return false;
+            if (def.sameWork != null && WorkSideBySide(def, a, b) == null) return false;
+            if (def.bMadeFineDays > 0f && FineOf(b, def.bMadeFineDays) == null) return false;
+            if (def.bHurtDays > 0f && !HurtShows(b, def.bHurtDays)) return false;
             if (def.aFeelings != null)
             {
                 var felt = LifeConditions.Feels(a, def.aFeelings, def.minFeeling, def.aFeelingAboutB);
@@ -209,10 +239,63 @@ namespace ColonyCouncil
         private static Faction SharedVendetta(CouncilGameComponent comp, Pawn a, Pawn b) =>
             comp.vendettas.Of(a).Select(v => v.faction).FirstOrDefault(f => comp.vendettas.Of(b).Any(v => v.faction == f));
 
+        // ---------------- What they are doing and have done, on the map ----------------
+
+        /// <summary>The work both are at right now, the same and side by side (they are near: SocialLog.Near), or null.</summary>
+        private static WorkTypeDef WorkSideBySide(SocialEventDef def, Pawn a, Pawn b)
+        {
+            var wa = a.CurJob?.workGiverDef?.workType;
+            var wb = b.CurJob?.workGiverDef?.workType;
+            if (wa == null || wb == null) return null;
+            return TogetherFourMath.SameWork(wa.defName, wb.defName, def.sameWork) ? wa : null;
+        }
+
+        /// <summary>The fine pieces the colony's people finished lately (by thingIDNumber: the tick and what it was). Not saved: a load forgets two days of them.</summary>
+        private static readonly Dictionary<int, (int tick, ThingDef def)> fine = new Dictionary<int, (int, ThingDef)>();
+
+        private static Game fineGame;
+
+        /// <summary>Something was made with a quality (Patch_ArcMade): an excellent piece or better is kept a while to be shown round.</summary>
+        public static void Notify_Made(Pawn worker, Thing thing)
+        {
+            if (worker == null || thing?.def == null || !thing.TryGetQuality(out var q) || !TogetherFourMath.Fine((int)q)) return;
+            if (fineGame != Current.Game)
+            {
+                fine.Clear();
+                fineGame = Current.Game;
+            }
+            if (fine.Count > 60) fine.Clear();
+            fine[worker.thingIDNumber] = (Find.TickManager.TicksGame, thing.def);
+        }
+
+        /// <summary>What they finished that was excellent or better within <paramref name="days"/>, or null.</summary>
+        public static ThingDef FineOf(Pawn p, float days)
+        {
+            if (p == null || fineGame != Current.Game || !fine.TryGetValue(p.thingIDNumber, out var f)) return null;
+            return TogetherFourMath.FreshWithin(f.tick, Find.TickManager.TicksGame, days, GenDate.TicksPerDay) ? f.def : null;
+        }
+
+        /// <summary>A hurt of everyday life within <paramref name="days"/> (Harm), with a wound still to show for it.</summary>
+        private static bool HurtShows(Pawn p, float days)
+        {
+            if (!Harm.On || !TogetherFourMath.HurtLately(Harm.DaysSince(p), days)) return false;
+            var hs = p.health?.hediffSet?.hediffs;
+            if (hs == null) return false;
+            for (int i = 0; i < hs.Count; i++)
+                if (hs[i] is Hediff_Injury inj && inj.Visible && !inj.IsPermanent()) return true;
+            return false;
+        }
+
         private static void Fire(SocialEventDef def, CouncilGameComponent comp, Map map, Pawn a, Pawn b, SocialTie tie)
         {
             // together: TryOne casts only two who are together (Hourly: awake, not drafted, downed or in a mental state, and near).
-            var ctx = new DilemmaContext { map = map, a = a, b = b, skill = tie?.skill, why = def.label };
+            var ctx = new SocialEventContext { map = map, a = a, b = b, skill = tie?.skill, why = def.label };
+            if (def.sameWork != null)
+            {
+                ctx.work = WorkSideBySide(def, a, b);
+                if (ctx.work?.relevantSkills != null && ctx.work.relevantSkills.Count > 0) ctx.skill = ctx.work.relevantSkills[0];
+            }
+            if (def.bMadeFineDays > 0f) ctx.thing = FineOf(b, def.bMadeFineDays);
             string text = ctx.Format(Flavor.PickText(def.texts));
             ctx.cause = text;
             if (def.sharedVendetta) ctx.faction = SharedVendetta(comp, a, b);

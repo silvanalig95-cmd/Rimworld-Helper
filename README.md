@@ -747,11 +747,18 @@ less often and frictions more, and after a few days side by side they don't clic
 on each other's nerves (up to -10, deepening over a month). Two who get on easily grow closer the same way (up to +6).
 Most pairs are in between, and what happens between them decides. Partners are left alone.
 
-Most days something small happens between two people who are together at the time (79 kinds of social event): a
+Most days something small happens between two people who are together at the time (123 kinds of social event): a
 late talk, a shared joke, a prank that lands badly, a snub at dinner, a squabble over chores, war stories, a lesson,
 a contest between rivals, a handmade gift, gossip that gets found out, an unexpected truce. Life brings its own: a
 vigil at a friend's sickbed, an evening at a camp on the map, a quarrel over what the council decided, fears confided
-in the night, grief carried together, a peace offering after a quarrel. Each one nudges their bond; most change how the two see each other
+in the night, grief carried together, a peace offering after a quarrel. What happens on the map brings more (25 of
+them, the round of 6 November 2026): two who came to blows making it up, a debt remembered by someone tended under fire,
+the heavy end taken for someone with an old injury, two at the same work racing it or keeping each other company, a
+fine piece just finished shown to the teacher (or admired, or envied), a quiet word after a loss, asking after a hurt
+from one of the land's dangers (or teasing about it), an old remedy, a newcomer shown the ropes, company at a meal for
+someone low, rain, snow, heat and bitter cold out in the open, the last of the harvest, and the region's news (the
+neighbors' war, the households on the road, a dry town, a great work, the summer that never came), each in the form of
+the colony's age, and as a share of the day's small events, never more of them. Each one nudges their bond; most change how the two see each other
 rather than anyone's mood (a shared joke is a little recreation, a lesson practice). In conversation they share smaller moments
 too (about a hundred kinds, 44 of them frictions), shaped by who they are (night owls keeping each other company,
 brawlers comparing scars, an iron-willed colonist steadying a nervous one) and by what's going on (visiting the sick,
@@ -875,7 +882,8 @@ newest face in the colony, faith, the world outside and its traders, the animals
 whether to stay, the dead, the prisoners, drink, new learning against the old ways, the children, the colony's project,
 money, love, a day on the calendar coming up or just kept (a birthday, a tradition, a day of mourning nobody jokes
 about), the world's latest news (good or bad, and whether the colony helped), the camp on the map (who they are, what
-they take) (23 topics). Children talk too, of growing up, with a grown-up or each other. What comes up follows the news
+they take), the sick and the hurt (put to bed and nursed, or worked through; only while someone is ill or healing)
+(24 topics). Children talk too, of growing up, with a grown-up or each other. What comes up follows the news
 (a raid yesterday, a death, a new decree, a wedding, a newcomer, a harvest, a disaster, a day due tomorrow, a camp
 walking in), what each of them cares about and who they are, and their tie: friends talk about anything, rivals find
 what they disagree on.
@@ -889,12 +897,15 @@ cold are curt, the gloomy see the worst), in about 6,900 lines, so a topic's rep
 year and every voice has its own lines for every turn. A talk leaves a small opinion of each other, not a
 mood; arguing hardens a temper a little over time, and a long friendship warms.
 
-Pairs also keep **shared memories** (33 kinds): fighting side by side (those really seen together in the fight), being patched up while down, a funeral, a feast,
+Pairs also keep **shared memories** (43 kinds): fighting side by side (those really seen together in the fight), being patched up while down, a funeral, a feast,
 a disaster come through, a caravan, something big built together, a long night shift, lessons, a quarrel made up, a
 secret kept, an evening of faith; and from the newer systems, evenings at a camp's fire, a camp healer's last round, a
 smith's mending, a lost child found, a pilgrim walked home, a neighbour's harvest, the colony's part in a world event,
-a calendar day kept together, the dead carried out to the pyre, the night watch on the walls and lantern night. Small
-mishaps become **in-jokes** ("the stew", "the boomalope", "the alpaca", the little fire, the mud, a short binge, a
+a calendar day kept together, the dead carried out to the pyre, the night watch on the walls and lantern night; and an
+illness nursed (the doctor and the patient), a close call with one of the land's dangers (the one hurt and whoever was
+there), a colony founded together, and a debt remembered. Small
+mishaps become **in-jokes** ("the stew", "the boomalope", "the alpaca", the little fire, the mud, the downpour, a
+snowball fight, a short binge, a
 day's gathering in the rain, a burned feast dish) once everyone's fine, funnier the first few times and then worn
 thin, and a good one can be passed on once to a friend who wasn't there, who shares it from then on. The character page lists their
 **views** (with what each rests on; in the Culture tab) and their **shared memories** (in the Social tab's column). Almanac: "Conversations and views", "Shared memories
@@ -904,7 +915,7 @@ and in-jokes".
 Groups replace the old circles of friends (which come back, simpler, with "Personalities and social life" off). They grow out of something real (friendship,
 the same work, a fight fought together, the night hours, an ideoligion held hard, where people came from, age, being alike) and keep the
 name they were given: **the hunters, the night shift, the old hands, the kitchen crowd, the faithful, the ones from the
-ship, the fireside circle** (25 kinds, with names for a tribe or a keep). They form around what binds some of the
+ship, the fireside circle, the wardens** (26 kinds, with names for a tribe or a keep). They form around what binds some of the
 colony more than the rest, not around what everyone shares (everyone fought side by side), and a group holds well under
 half the colony. Someone outside every group shows as outside, with why (at odds with some who are in one, new here, or
 their own way), on the People table, the Bonds page and their character page. Each has:
@@ -912,9 +923,10 @@ their own way), on the People table, the Bonds page and their character page. Ea
   anchor, the joker, the peacemaker (who steps into its quarrels), the firebrand, the worrier, the quiet one, the newcomer;
 - **ways** it shares and expects (18: loud and merry, keep to themselves, suspicious of outsiders, brave to a fault...),
   which its people drift towards over the weeks, and **views** most of them hold;
-- **habits** kept together when they're really together (9: an evening at the fire, a shared table, a game night, the
-  small hours...), which ease strain and count for belonging rather than mood; now and then the anchor calls them all to
-  one on the map;
+- **habits** kept together when they're really together (13: an evening at the fire, a shared table, a game night, the
+  small hours, an hour with a book, keeping the sick company, music of an evening, the night sky...), which ease strain
+  and count for belonging rather than mood; now and then the anchor calls them all to one on the map (never to the four
+  newest, which are only kept as they come);
 - **cohesion** that grows with habits and shared memories and falls with quarrels, losses and time apart, and a history.
 
 Newcomers are outsiders until a group takes them in, sooner in a warm, trusting group, while a wary one closes ranks.
@@ -1052,7 +1064,7 @@ what they never got to do, and their friends write about it.
 
 ### Personal stories
 A few times a year, one colonist's own story begins, and plays out in three to five stages over days to a season.
-There are 32 of them: the long way home (away for days, missing someone; home; the road told), somewhere to belong (a
+There are 33 of them: the long way home (away for days, missing someone; home; the road told), somewhere to belong (a
 homesick newcomer finds a friendly face, a room, roots), a companion (an animal that follows its master about, until
 they bond), grudging respect (rivals who are good at the same thing), old wounds (former lovers, family at odds, a
 friend who let a secret slip), an old debt (a rescue or a kindness repaid with something made by hand), second chances
@@ -1062,9 +1074,10 @@ betrothed dead: the empty side of the bed, their things, a first season), a secr
 everyone), a fear faced (an enemy who got away, a dread of the dark or of storms), the fear laid to rest (that enemy
 in the cells or gone for good, and the fear not yet), the recurring dream, a grudge laid down, within reach (halfway
 to a life goal and doubting it), getting clean (someone in drug withdrawal and a friend who sits with them of an
-evening, stays through the worst night and raises a cup of tea at supper once it's over; a slip ends it without blame)
-and the new leg (the first steps on a fitted leg with a friend at their side, a frustrating day, the first full day's
-work). Others grow out of the world and the colony's offices: the road calls (a friend made at a camp, and the itch to
+evening, stays through the worst night and raises a cup of tea at supper once it's over; a slip ends it without blame),
+the new leg (the first steps on a fitted leg with a friend at their side, a frustrating day, the first full day's
+work) and back to it (one of the land's dangers hurt them: a shaken day, a talk with the one closest to them, real
+work again at what it happened at). Others grow out of the world and the colony's offices: the road calls (a friend made at a camp, and the itch to
 go with them), the weight of office (a new seat on the council that sits heavy) and word from far away (family out in
 the world when sickness, famine or war comes there). The young and the old have their own: bad nights (a child's
 nightmares), not a child any more (a teenager and a grown-up who won't see it), a new parent (Biotech), one more
