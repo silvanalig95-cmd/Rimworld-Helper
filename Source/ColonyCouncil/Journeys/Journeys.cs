@@ -112,6 +112,8 @@ namespace ColonyCouncil
     {
         public int id;
         public Map map;
+        /// <summary>The fresh start this journey is the founding party of (Colonies/Foundings.cs), by its id, or -1: one way, to settle.</summary>
+        public int founding = -1;
         public List<Pawn> travellers = new List<Pawn>();
         public List<Pawn> animals = new List<Pawn>();
         /// <summary>The destination's tile on the home's layer of the world, or -1 for none.</summary>
@@ -188,6 +190,7 @@ namespace ColonyCouncil
         {
             Scribe_Values.Look(ref id, "id");
             Scribe_References.Look(ref map, "map");
+            Scribe_Values.Look(ref founding, "founding", -1);
             Scribe_Collections.Look(ref travellers, "travellers", LookMode.Reference);
             Scribe_Collections.Look(ref animals, "animals", LookMode.Reference);
             Scribe_Values.Look(ref destTile, "destTile", -1);

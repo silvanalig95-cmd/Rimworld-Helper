@@ -413,6 +413,7 @@ namespace ColonyCouncil
                 case CalendarKind.Situation: return 3;
                 case CalendarKind.FaithDay: return 3;
                 case CalendarKind.Rescue: return 2;
+                case CalendarKind.Parting: return 3;
                 default: return 1;
             }
         }
@@ -461,6 +462,7 @@ namespace ColonyCouncil
             switch (d.kind)
             {
                 case CalendarKind.Founding: return "CC_Cal_Name_Founding".Translate();
+                case CalendarKind.Parting: return "CC_Cal_Name_Parting".Translate((d.subject ?? "?").Named("PLACE")).Resolve();
                 case CalendarKind.Harvest: return "CC_Cal_Name_Harvest".Translate();
                 case CalendarKind.FirstSnow: return "CC_Cal_Name_FirstSnow".Translate();
                 case CalendarKind.Battle:
@@ -498,6 +500,7 @@ namespace ColonyCouncil
                 case CalendarKind.FirstSnow: return DayWay.Games;
                 case CalendarKind.Battle: return fallen ? DayWay.Remembrance : DayWay.Feast;
                 case CalendarKind.Death: return DayWay.Remembrance;
+                case CalendarKind.Parting: return DayWay.Remembrance;
                 case CalendarKind.Arrival:
                 case CalendarKind.Birthday: return DayWay.Personal;
                 case CalendarKind.FirstChild:
@@ -931,6 +934,7 @@ namespace ColonyCouncil
                     case CalendarKind.GreatHunt:
                     case CalendarKind.Companion:
                     case CalendarKind.Situation:
+                    case CalendarKind.Parting:
                         if (!d.tradition && d.knew.Count > 0 && !d.knew.Any(k => Living(k, known) != null)) days.Remove(d);
                         break;
                     case CalendarKind.Rescue:

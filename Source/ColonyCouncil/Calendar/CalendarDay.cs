@@ -51,7 +51,12 @@ namespace ColonyCouncil
         /// One of the council's customs the colony kept (a midsummer bonfire, the harvest dance, the planting day): its
         /// question comes on the day it was first kept, or with its occasion (Calendar/CalendarCustoms.cs).
         /// </summary>
-        Custom
+        Custom,
+        /// <summary>
+        /// A fresh start (Colonies/Foundings.cs): the parting day on the old colony's calendar, the day its people set out
+        /// to found a new one; or the old colony's founding day on the new one's calendar, once the old was abandoned.
+        /// </summary>
+        Parting
     }
 
     /// <summary>How the colony keeps a day.</summary>

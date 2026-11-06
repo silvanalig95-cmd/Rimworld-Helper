@@ -594,20 +594,21 @@ namespace ColonyCouncil
             if (!leftBehind.NullOrEmpty()) text += " " + "CC_Journey_Without".Translate(TextUtil.JoinAnd(leftBehind.Select(p => p.LabelShort).ToList())).Resolve();
             if (shortOf.Count > 0) text += " " + "CC_Journey_ShortOf".Translate(TextUtil.JoinAnd(shortOf)).Resolve();
             Notify.Message(text, new LookTargets(going), MessageTypeDefOf.PositiveEvent, Importance.Important);
-            SeeOff(map, going, plan.gate);
+            // A founding party leaves for good: its words and its farewell are a parting's (Colonies/Foundings.cs).
+            SeeOff(map, going, plan.gate, plan.founding >= 0);
         }
 
         /// <summary>A word from one of the travellers, and those at home nearest the gate see them off.</summary>
-        private static void SeeOff(Map map, List<Pawn> going, IntVec3 gate)
+        private static void SeeOff(Map map, List<Pawn> going, IntVec3 gate, bool founding)
         {
             if (!Speech.On) return;
             try
             {
                 var traveller = going.Where(p => p.Spawned && p.RaceProps.Humanlike && p.Awake()).RandomElementWithFallback();
-                if (traveller != null) Say(traveller, "leave");
+                if (traveller != null) Say(traveller, founding ? "foundleave" : "leave");
                 var home = map.mapPawns.FreeColonistsSpawned.Where(p => !going.Contains(p) && PlayOuts.OurPerson(p) && p.Awake() && !p.Downed && !p.Drafted && !p.InMentalState)
                     .OrderBy(p => gate.IsValid ? p.Position.DistanceToSquared(gate) : 0).Take(4).InRandomOrder().Take(2);
-                foreach (var p in home) Say(p, "seeoff");
+                foreach (var p in home) Say(p, founding ? "foundseeoff" : "seeoff");
             }
             catch (Exception e)
             {
