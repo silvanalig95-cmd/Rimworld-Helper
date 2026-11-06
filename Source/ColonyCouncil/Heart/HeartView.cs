@@ -78,9 +78,9 @@ namespace ColonyCouncil
         public static string InspectLine(PawnHeart h)
         {
             Heart.Dominant(h, dominantTmp);
-            // On the good side, the heart reads by its band there ("Heart: in good heart · proud").
+            // On the good side, from steady, the heart reads by its band there ("Heart: in good heart · proud").
             var good = GoodHeart.Band(h);
-            bool goodSide = good != GoodBand.Steady;
+            bool goodSide = good != GoodBand.None;
             string band = goodSide ? GoodHeart.BandLabel(good) : BandLabel(h.Band);
             string line;
             if (dominantTmp.Count == 0) line = (goodSide ? "CC_Good_Inspect" : "CC_Heart_Inspect").Translate(band).Resolve();
@@ -97,7 +97,7 @@ namespace ColonyCouncil
             h.inspectLine = InspectLine(h);
             // RimHUD's values, each in its own colour: the band's (the good side's while it shows), each feeling's, and the lacking need's.
             var good = GoodHeart.Band(h);
-            h.hudStrain = good != GoodBand.Steady
+            h.hudStrain = good != GoodBand.None
                 ? "CC_Heart_StrainValue".Translate(GoodHeart.BandLabel(good), h.good.ToString("0")).Resolve().Colorize(GoodColor)
                 : "CC_Heart_StrainValue".Translate(BandLabel(h.Band), h.strain.ToString("0")).Resolve().Colorize(BandColor(h.Band));
             h.hudFeelings = ColoredFeelings(h);
@@ -561,7 +561,7 @@ namespace ColonyCouncil
                 m.goodFill = h.good / HeartMath.Max;
                 m.goodTip = GoodHeart.Tip(p, h);
                 string filled = GoodHeart.BuiltDetailed(h, 3);
-                m.goodLine = good != GoodBand.Steady ? GoodHeart.BandDesc(good)
+                m.goodLine = good != GoodBand.None ? GoodHeart.BandDesc(good)
                     : h.strain > 0f ? "CC_Good_WaitsForStrain".Translate(p.Named("PAWN")).Resolve()
                     : filled != null ? "CC_Good_BuiltBy".Translate(filled.Named("WHAT")).Resolve() : "CC_Good_NothingBuilt".Translate().ToString();
             }
@@ -692,11 +692,13 @@ namespace ColonyCouncil
             int strained = list.Count(x => x.h.Band == StrainBand.Strained);
             int worn = list.Count(x => x.h.Band >= StrainBand.Worn);
             m.summary = "CC_Heart_ColonySummary".Translate(avg.ToString("0"), BandLabel(HeartMath.BandFor(avg)), strained, worn).Resolve();
-            // And the good side: how many are in good heart and in high spirits.
+            // And the good side: how many are steady, in good heart and in high spirits.
             if (GoodHeart.On)
             {
+                int steady = list.Count(x => GoodHeart.Band(x.h) == GoodBand.Steady);
                 int goodHeart = list.Count(x => GoodHeart.Band(x.h) == GoodBand.GoodHeart), high = list.Count(x => GoodHeart.Band(x.h) == GoodBand.HighSpirits);
-                if (goodHeart + high > 0) m.summary += " " + "CC_Good_ColonySummary".Translate(goodHeart.Named("GOOD"), high.Named("HIGH")).Resolve();
+                if (steady + goodHeart + high > 0)
+                    m.summary += " " + "CC_GoodSide_ColonySummary".Translate(steady.Named("STEADY"), goodHeart.Named("GOOD"), high.Named("HIGH")).Resolve();
             }
             foreach (var (p, h) in list.Where(x => x.h.strain >= 30f).OrderByDescending(x => x.h.strain).Take(8))
             {

@@ -3,7 +3,7 @@
 
   <!-- The heart's good side (Source/ColonyCouncil/Heart/GoodHeart.cs, GoodRelease.cs, HeartCard.cs): the player's request of 6 November 2026. -->
 
-  <!-- The bands, the player's names. -->
+  <!-- The bands, the player's names: left unused since the bands as the player approved them (Rimfolk_GoodHeart_Bands.xml, steady with a mood of its own). -->
   <CC_Good_Band_Steady>steady</CC_Good_Band_Steady>
   <CC_Good_Band_GoodHeart>in good heart</CC_Good_Band_GoodHeart>
   <CC_Good_Band_HighSpirits>in high spirits</CC_Good_Band_HighSpirits>
@@ -30,6 +30,7 @@
   <CC_Good_LastRelease>Lately it overflowed: {WHAT}, {WHEN}.</CC_Good_LastRelease>
   <CC_Good_Ago>{0} ago</CC_Good_Ago>
   <CC_Good_JustNow>just now</CC_Good_JustNow>
+  <!-- CC_Good_Explain and CC_Good_ColonySummary are left unused: CC_GoodSide_Explain and CC_GoodSide_ColonySummary (Rimfolk_GoodHeart_Bands.xml) say the bands as the player approved them. -->
   <CC_Good_Explain>The heart's good side is the other side of strain, and never both at once. It fills slowly while strain is at nothing, mostly from what can't be bought: friends close by, a purpose, deeds the colony speaks well of, gatherings, good talks and a run of small joys; the comforts of home only a little (4 a day at most in all). A hard knock spends it, half a point for each point of strain it would have built, before any strain builds, and it fades slowly. In good heart from 45 (+2 mood), in high spirits from 65 (+3 mood), with brighter dreams and a quicker recovery from strain.</CC_Good_Explain>
   <CC_Good_InStrainTip>The other side of the heart: {BAND} ({VALUE}). Hardship spends it before strain builds; good things ease strain before they fill it.</CC_Good_InStrainTip>
   <CC_Good_Inspect>Heart: {0}</CC_Good_Inspect>
@@ -50,7 +51,7 @@
 
   <!-- Settings, on the Heart & health page beside the heart's own. -->
   <CC_Settings_HeartGoodSide>The heart's good side: in good heart, in high spirits</CC_Settings_HeartGoodSide>
-  <CC_Settings_HeartGoodSide_Tip>The other side of strain. While strain is at nothing, good days that keep coming fill it slowly: friends close by, a purpose, deeds the colony speaks well of, gatherings, good talks and small joys, the comforts of home only a little. Hardship spends it before strain builds, and it fades slowly. In good heart and in high spirits a colonist has a small good mood (+2 and +3), brighter dreams and a quicker recovery from strain, and in high spirits, now and then, an inspiration or a kind word for someone close. Turned off, nothing fills it and the bands give nothing; strain works as it always has.</CC_Settings_HeartGoodSide_Tip>
+  <CC_Settings_HeartGoodSide_Tip>The other side of strain. While strain is at nothing, good days that keep coming fill it slowly: friends close by, a purpose, deeds the colony speaks well of, gatherings, good talks and small joys, the comforts of home only a little. Hardship spends it before strain builds, and it fades slowly. Steady, in good heart and in high spirits a colonist has a small good mood (+2, +3 and +5); in good heart and in high spirits also brighter dreams and a quicker recovery from strain, and in high spirits, now and then, an inspiration or a kind word for someone close. Turned off, nothing fills it and the bands give nothing; strain works as it always has.</CC_Settings_HeartGoodSide_Tip>
   <CC_SetNote_HeartGoodSide>Good days that keep coming fill the heart's other side: a small good mood, brighter dreams, now and then an inspiration.</CC_SetNote_HeartGoodSide>
 
 </LanguageData>
