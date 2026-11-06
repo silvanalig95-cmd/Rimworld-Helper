@@ -121,6 +121,7 @@
   <CC_Found_Kept>{MOTHER} is kept as a second home, with its own council and calendar.</CC_Found_Kept>
   <CC_Found_Kept_Seat>{MOTHER} is kept as a second home, and the seat ({SEAT}) is here now.</CC_Found_Kept_Seat>
   <CC_Found_Abandoning>{MOTHER} will be abandoned once everyone who goes has left it.</CC_Found_Abandoning>
+  <CC_Found_OldGone>{MOTHER} was left behind, abandoned as the game abandons a home.</CC_Found_OldGone>
   <CC_Found_SeatNotYet>The seat stays where it is for now: {WHY}</CC_Found_SeatNotYet>
   <CC_Found_NewcomersComing>The newcomers called are on their way: you'll be asked who they are.</CC_Found_NewcomersComing>
   <CC_Found_History>{PLACE} was founded by {NAMES}, from {MOTHER}.</CC_Found_History>

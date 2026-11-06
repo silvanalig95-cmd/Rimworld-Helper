@@ -480,9 +480,11 @@ namespace ColonyCouncil
                 if (mother != null) WorldLedger.NoteColony(mother, CalendarTracker.Instance?.Colony(mother)?.FoundedTick ?? 0);
                 else
                 {
-                    // Gone already (a gravship's takeoff without an anchor): its record, ended as the game ended it.
+                    // Gone already (a gravship's takeoff without an anchor): its record, ended as the game ended it, and
+                    // nothing kept whatever was planned.
                     WorldLedger.NoteColony(plan.from, plan.fromName, -1, 0);
                     WorldLedger.EndColony(plan.from, ColonyEnd.Abandoned, -1);
+                    plan.keepOld = false;
                 }
                 WorldLedger.NoteColony(map, Now, plan.from, plan.fromName);
                 var founders = map.mapPawns.FreeColonists.Where(p => plan.party.Contains(p)).ToList();
@@ -516,7 +518,8 @@ namespace ColonyCouncil
 
         /// <summary>What becomes of the old colony, in a sentence: kept (with the seat here or not), or abandoned once those who go have left.</summary>
         private static string OldColonyLine(FoundingPlan plan, Map map, bool seat) =>
-            plan.keepOld
+            Homes.MapOf(plan.from) == null ? "CC_Found_OldGone".Translate((plan.fromName ?? "?").Named("MOTHER")).Resolve()
+            : plan.keepOld
                 ? (seat ? "CC_Found_Kept_Seat" : "CC_Found_Kept").Translate((plan.fromName ?? "?").Named("MOTHER"), ColonySeat.Word(map).Named("SEAT")).Resolve()
                 : "CC_Found_Abandoning".Translate((plan.fromName ?? "?").Named("MOTHER")).Resolve();
 

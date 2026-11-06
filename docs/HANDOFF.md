@@ -6,9 +6,78 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- stage 3 release 1: a fresh start (6 November 2026, the player's decisions 1A, 2A, 3A, 4A and 5B of the day;
+  `docs/design/stage3-many-colonies.md`, release 1, now marked built with what differs; DESIGN.md "A fresh start" under
+  Many homes). Not released: no round in Almanac_WhatsNew.xml, About.xml untouched. Built in `Source/ColonyCouncil/Colonies/`:
+  (1) The place: "Found a new colony" on a colony's card (a home on the ground, one founding at a time) opens the game's
+  world targeter with Rimfolk's facts of the tile under the cursor (`FoundingPlace.Facts`: whose land with Faction
+  Territories, the towns within 12 tiles and their stance, how remote by the region's rule, days by caravan from each
+  home, the land, the game's own tile check and the proximity goodwill), then the founding window (`Dialog_Founding`).
+  (2) Who goes (2A): the home's people, grown-ups first, children following their parents unless moved; each grown-up's
+  wish from their own ties (`FoundingMath.Pull`/`WishOf`/`Reasons`: their own ±3, at odds +2 by the council's counted
+  fights, friends ±1 and rivals the other way, a council seat, an own room and old age -1, youth +1; the line 1.5), shown
+  with why; nobody refuses; sent or kept against it, `Rimfolk_Uprooted` (-4, 15 days) and, with the old colony kept, one
+  question between days 3 and 15 to move to the colony they wanted (`FoundingAsk`, `ChoiceLetter_Founding`: a journey of
+  one, or asked to stay for 2 trust); close bonds split, `Rimfolk_Parted` (-3, 15 days, the three closest). (3) How they
+  go: the journey planner's own plan (`Foundings.PlanJourney`, `JourneyPlan.founding`: one way, food for the road and
+  fifteen days, the founding kit by age from the stores, fitted to 90% of the party's room, fewer food days first), the
+  planner opening on it, a parting's farewell (`Rimfolk_Pool_FoundingSays`); or the colony's own pods or shuttle, or the
+  gravship, the game's way. A caravan of theirs stopped within two tiles is asked "Settle here?" (the game's own
+  `SettleInEmptyTileUtility.Settle` behind its proximity warning); any home made since the start at the place (anywhere
+  for the gravship) is the new colony. Nobody going: the newcomers alone, `SettleUtility.AddNewHome` and
+  `GetOrGenerateMap` in the game's long events. (4) Newcomers (3A, 4A): `Dialog_Newcomers`, the game's
+  `Dialog_ChooseNewWanderers` rebuilt with its own `StartingPawnUtility` calls (1 to 6, the character card and its
+  randomize, Biotech's options, possessions, the skills summary), the start data cleared however it closes; at once with
+  nobody going, else asked for once the colony stands (let go after 10 days unanswered); they walk in from the edge with
+  their possessions. Free with the old colony abandoned in the same act; kept, once a year (`Homes.newcomersPaidAt`), the
+  passage about their kit's worth, at least 150 each, up to half in food (`FoundingMath.Passage`/`Pay`), named at the
+  window's foot, Confirm held back when the stores can't pay. (5) The colony stands (`Foundings.Founded`): `LedgerColony`
+  records for it and its mother (`World/Ledger/LedgerColonies.cs`, written only once there are two, 24 at most), the
+  milestone `colony:founded`, a letter (the party by its age form: `AgeFeature.Party`), the seat if ticked, the moods, the
+  parting day on the old colony's calendar (`CalendarKind.Parting`, a remembrance, `Calendar/CalendarParting.cs`), and the
+  first night: a bonfire play-out at 17 to 21h (`Rimfolk_Pool_FirstNight`, the seat holder or eldest organizing,
+  `Rimfolk_FirstNight` +4 for 4 days held until it is over). (6) The old colony kept, or abandoned once the new one stands
+  and nobody of the party is still on its map (a straggler holds it, told once): the game's `MapParent.Abandon` at the next
+  frame and `GameEnder.CheckOrUpdateGameOver`, its council carried to the new home (`FoundingMath.CarryCouncil`), its
+  record ended with the game's ruin, `colony:abandoned`, and its founding day kept on the new calendar. A home on the
+  record lost any other way ends there (`Foundings.HomesLost`). (7) The game's colony limit (5B): `Prefs.MaxNumberOfPlayerSettlements`
+  raised by one as the founding starts when the new colony needs it, never past five (`LimitFor`), said in the window and
+  the first letter with where to lower it; set back by one after an abandon or a call-off while still Rimfolk's value
+  (`LimitBack`). (8) The seat (1A, `ColonySeat.cs`): "Make this the seat" on a colony's card, ground homes of several,
+  once a season (`Homes.seatMovedAt`); what reads `Homes.Seat` moves with it (the world's attention, the seat's council
+  and its speaker's letters, world days and nemeses from then on, the seat-anchored notables and world events, the region
+  map's default); the old seat's people -3 trust; `colony:seat`; its word by age (`AgeFeature.Seat`). (9) The Ours lens
+  (`ColonyCards.cs`): every home however far, its row its grown-ups and children, speaker, mood and strain with its card's
+  lines on hover (founded when and from where, the seat, wealth, its next day by name and date, a threat now); a founding
+  on its way; the colonies of the past (group 3) with cards from their record; the card's acts go there, make this the
+  seat, found a new colony, plan the party's journey, choose the newcomers, call it off. A colony chip in every view's
+  header with more than one colony (`ColonyView.Chip` in `UiKit.ViewHeader`), the council pages' own line gone. Settings:
+  "Many colonies" (Fresh starts, Newcomers under it). New: `AgeFeature.Seat`, `Party`, `Call` (twenty features now),
+  `AnswerMath` source "founding", `Rimfolk_FoundingLetter`, three thoughts with mood hints, the Almanac page "a fresh start"
+  (`Council_Alm_C_FreshStart`). Saves of one colony are unchanged (every new list is written only when it holds
+  something; new values sit at their defaults); nothing per tick (the council's hour, after the homes, and only while a
+  founding or a question waits). Tests: `FoundingTests` (wishes and reasons, against a wish, asking to move, close
+  bonds, who may go and the party's checks, the means, the place's reach, the price and its payment, once a year, the
+  seat once a season, the limit raised by one and set back over every setting, the kit by age, the records' fold, the
+  council carried, the game's calls and the seams), `WorldMechanicsTests` (twenty features). To try in game (dev mode
+  helps: a second home needs the limit, which the window raises): a fresh start by caravan with the old colony kept and
+  the seat ticked (the planner opens on the plan, the farewell, "Settle here?" at the place, the letter, the seat moving,
+  uprooted and parted moods, the first night's fire, the parting day on the old calendar, an event of no home then
+  coming to the new seat); the same abandoned (the old colony waits for anyone of the party left, then the game's
+  abandon and ruin, the council carried, the limit set back in Options); newcomers only (the window, closed with the X,
+  then confirmed: they walk in on a fresh map) and with a party (the letter once it stands, the passage taken from the
+  stores, once a year); pods and a gravship; the Ours lens and its acts, the chip in each window's header, a colony of
+  the past's card. Unconfirmed: the first night's fire lit from a party's carried wood (the play-out's fire takes wood
+  from stores, which a fresh map has only once the caravan's goods are dropped), the planner's own recompute keeping the
+  founding's days, and the old colony's map removal from a long event during play. Left for later releases: release 2
+  the hand-over (the founding window's third choice and a card act, marked `HandOver`; the meeting's vote is its), release
+  3 a scenario's start parts for the newcomers (`Dialog_Newcomers.Request`, marked), release 4 the notables and world
+  events near every home, the pages following the colony in view, merging councils and This week listing a founding,
+  release 5 the town's life; the content pass for a medieval group's cart, newcomers by pods or shuttle, vehicles and the
+  Empire's shuttle permit as means.
 - 6 November 2026, the player's stage 3 decisions: 1A, 2A, 3A, 4A, 5B, 6B, 7A, 8A, 9A, 10A, 11B, 12A, 13A, 14A, 15B
   (recorded at the top of `docs/design/stage3-many-colonies.md` with how the four not as recommended are built).
-  Release 1 (a fresh start) building first; harm parts 2 and 3 and schemes wait.
+  Release 1 (a fresh start) built (the entry above); release 2, the hand-over, next; harm parts 2 and 3 and schemes wait.
 - 0.116.1, the review's phases, checked over together (6 November 2026, the review recommended in the entry below: how the
   parallel phases 0.106.1 to 0.116.0 meet, read against each other, the player's save Atia at day 128 taken through each
   release's load path in order, and `Tools/perf_audit.py` run on the tree at 0.106.1 and now). Not released: no round,
