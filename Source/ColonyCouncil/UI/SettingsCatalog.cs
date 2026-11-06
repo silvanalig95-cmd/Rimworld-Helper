@@ -296,7 +296,7 @@ namespace ColonyCouncil
             Toggle("smallHabits", "CC_Settings_SmallHabits", "CC_SetNote_SmallHabits");
             Section("CC_Settings_Memory");
             Toggle("journals", "CC_Settings_Journals", "CC_SetNote_Journals");
-            Toggle("epithets", "CC_Settings_Epithets", "CC_SetNote_Epithets");
+            Toggle("epithets", "CC_Settings_Epithets", "CC_SetNote_Epithets", tip: "CC_Name_Settings_Epithets_Tip");
             Toggle("anniversaries", "CC_Settings_Anniversaries", "CC_SetNote_Anniversaries");
             Toggle("annals", "CC_Settings_Annals", "CC_SetNote_Annals");
             Toggle("eulogies", "CC_Settings_Eulogies", "CC_SetNote_Eulogies");

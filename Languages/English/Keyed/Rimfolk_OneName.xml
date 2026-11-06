@@ -46,6 +46,9 @@
   <!-- A way the colony was renowned for, now only known for: the news ({0}: "merciful"). -->
   <CC_Name_Ways_Narrower>Travelers far and wide no longer call the colony {0}, though its neighbors still do.</CC_Name_Ways_Narrower>
 
+  <!-- The names setting's tooltip, as names move now. -->
+  <CC_Name_Settings_Epithets_Tip>Whoever has done the most of something (tended wounds, killed raiders, cleaned messes, caught fire) earns a name for it. A name holds: it passes to someone else only when they clearly outdo the holder over a whole season, and each colonist is known by one name.</CC_Name_Settings_Epithets_Tip>
+
   <!-- Council → Ways, the colony's one name. -->
   <CC_Name_PageTitle>The colony's name</CC_Name_PageTitle>
   <CC_Name_PageSub>What the colony is known for and how far its name carries: its ways, what its work has made it, its renown and what each people remembers.</CC_Name_PageSub>
