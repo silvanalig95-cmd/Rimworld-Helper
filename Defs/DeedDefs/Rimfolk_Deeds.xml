@@ -30,6 +30,7 @@
     <logTopic>Rimfolk_GossipTopic_Rescue</logTopic>
     <memories><li>RescuedMe</li></memories>
     <duringFight>true</duringFight>
+    <record>Council_Rescues</record>
   </ColonyCouncil.DeedDef>
 
   <ColonyCouncil.DeedDef>
@@ -103,6 +104,7 @@
       <li>Council_EncP_RefugeeThanks</li>
       <li>Council_EncH_NightTalk</li>
     </encounters>
+    <record>Council_KindToStrangers</record>
   </ColonyCouncil.DeedDef>
 
   <ColonyCouncil.DeedDef>
@@ -262,6 +264,7 @@
     <interest>1</interest>
     <text>made {DETAIL}</text>
     <logTopic>Rimfolk_GossipTopic_Masterwork</logTopic>
+    <record>Council_Masterworks</record>
   </ColonyCouncil.DeedDef>
 
   <ColonyCouncil.DeedDef>
@@ -328,6 +331,7 @@
     <textAlone>won at {DETAIL}</textAlone>
     <logTopic>Rimfolk_GossipTopic_Contest</logTopic>
     <notInFight>true</notInFight>
+    <record>Council_ContestsWon</record>
   </ColonyCouncil.DeedDef>
 
   <ColonyCouncil.DeedDef>

@@ -71,6 +71,15 @@ namespace ColonyCouncil
                 Add("Council_Quirk_HealersSalve", "Council_Pool_BubbleSalve", (p, hour) => p.Awake() && QuirkHabits.StillPatient(p));
                 Add("Council_Quirk_Juggles", "Council_Pool_BubbleJuggles", (p, hour) => p.Awake() && (p.CurJobDef == JobDefOf.Ingest || p.CurJob?.def?.joyKind != null));
                 Add("Council_Quirk_ColdTrick", "Council_Pool_BubbleColdTrick", (p, hour) => p.Awake() && p.Spawned && p.AmbientTemperature < 0f);
+                // The quirks a hurt, an ailment, a founding, a parting and a camp's evening leave (People4).
+                Add("Rimfolk_Quirk_WatchesFooting", "Rimfolk_Pool_BubbleFooting", (p, hour) => p.Awake() && p.Spawned && (p.pather?.Moving ?? false) && !p.Position.Roofed(p.Map));
+                Add("Rimfolk_Quirk_TapsTheRoof", "Rimfolk_Pool_BubbleTapsRoof", (p, hour) => p.Awake() && Work(p) == WorkTypeDefOf.Mining);
+                Add("Rimfolk_Quirk_BootsByTheFire", "Rimfolk_Pool_BubbleBoots", (p, hour) => QuirkEvents.NearOpenFire(p) && !AtWork(p));
+                Add("Rimfolk_Quirk_BoilsWater", "Rimfolk_Pool_BubbleBoils", (p, hour) => p.Awake() && p.CurJobDef == JobDefOf.Ingest);
+                Add("Rimfolk_Quirk_FirstFire", "Rimfolk_Pool_BubbleFirstFire", (p, hour) => QuirkEvents.NearOpenFire(p) && (hour >= 17 || hour < 2));
+                Add("Rimfolk_Quirk_LooksBack", "Rimfolk_Pool_BubbleLooksBack", (p, hour) => p.Awake() && (hour >= 21 || hour < 4) && !AtWork(p));
+                Add("Rimfolk_Quirk_RoadSong", "Rimfolk_Pool_BubbleRoadSong", (p, hour) => p.Awake() && p.Spawned && !p.Position.Roofed(p.Map) && AtWork(p));
+                Add("Rimfolk_Quirk_IndoorsByDusk", "Rimfolk_Pool_BubbleDusk", (p, hour) => p.Awake() && p.Spawned && (hour >= 18 || hour < 5) && !p.Position.Roofed(p.Map));
                 return bubbles;
             }
         }

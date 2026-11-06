@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More of what colonists do that the others talk about (the player's request, 6 November 2026), under the rules of
+    Rimfolk_Deeds.xml: each is met where the game already notices it, never made to happen. Four mental breaks the game
+    starts on its own (letting the prisoners out, a binge on the colony's drugs, a body dug up, running off into the
+    wild), and two of the game's own moments between two people, by the memory the other is left with: a wedding
+    (GotMarried, a deed of each of the two) and a proposal turned down (RejectedMyProposal, the one who said no). Names
+    that aren't in this game are never met.
+  -->
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_Jailbreak</defName>
+    <label>let the prisoners out</label>
+    <theme>jailbreak</theme>
+    <facets><discretion>-6</discretion><temper>4</temper></facets>
+    <fadeDays>120</fadeDays>
+    <interest>1.5</interest>
+    <text>let the prisoners out of their cells</text>
+    <logTopic>Rimfolk_GossipTopic_Jailbreak</logTopic>
+    <mentalStates><li>Jailbreaker</li></mentalStates>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_Binge</defName>
+    <label>went on a binge</label>
+    <theme>binge</theme>
+    <facets><diligence>-4</diligence><discretion>-3</discretion><kindness>-2</kindness></facets>
+    <fadeDays>90</fadeDays>
+    <mergeDays>3</mergeDays>
+    <interest>1.3</interest>
+    <text>went through our drugs on a binge</text>
+    <logTopic>Rimfolk_GossipTopic_Binge</logTopic>
+    <mentalStates><li>Binging_DrugMajor</li><li>Binging_DrugExtreme</li></mentalStates>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_DugUpDead</defName>
+    <label>dug up a body</label>
+    <theme>dugupdead</theme>
+    <facets><temper>3</temper><kindness>-4</kindness></facets>
+    <fadeDays>150</fadeDays>
+    <interest>1.8</interest>
+    <text>dug up a body and carried it about</text>
+    <logTopic>Rimfolk_GossipTopic_DugUpDead</logTopic>
+    <mentalStates><li>CorpseObsession</li></mentalStates>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_RanWild</defName>
+    <label>ran off into the wild</label>
+    <theme>ranwild</theme>
+    <facets><diligence>-6</diligence><courage>-2</courage></facets>
+    <fadeDays>150</fadeDays>
+    <interest>1.6</interest>
+    <text>ran off to live in the wild</text>
+    <logTopic>Rimfolk_GossipTopic_RanWild</logTopic>
+    <mentalStates><li>RunWild</li></mentalStates>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_Married</defName>
+    <label>got married</label>
+    <theme>married</theme>
+    <facets><kindness>2</kindness><discretion>1</discretion></facets>
+    <fadeDays>120</fadeDays>
+    <mergeDays>2</mergeDays>
+    <mergeShare>0</mergeShare>
+    <interest>1.2</interest>
+    <text>married {VICTIM}</text>
+    <textAlone>got married</textAlone>
+    <logTopic>Rimfolk_GossipTopic_Married</logTopic>
+    <memories><li>GotMarried</li></memories>
+    <notInFight>true</notInFight>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_TurnedDown</defName>
+    <label>turned down a proposal</label>
+    <theme>turneddown</theme>
+    <facets><kindness>-1</kindness></facets>
+    <size>0.8</size>
+    <fadeDays>90</fadeDays>
+    <mergeDays>5</mergeDays>
+    <mergeShare>0</mergeShare>
+    <interest>1.6</interest>
+    <text>turned down {VICTIM}'s proposal</text>
+    <textAlone>turned down a proposal of marriage</textAlone>
+    <logTopic>Rimfolk_GossipTopic_TurnedDown</logTopic>
+    <memories><li>RejectedMyProposal</li></memories>
+    <notInFight>true</notInFight>
+  </ColonyCouncil.DeedDef>
+
+  <!-- ===================== What the social log calls them ===================== -->
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_Jailbreak</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the night the cells were opened</li>
+        <li>gossip_topic->the prisoners let out</li>
+        <li>gossip_topic->who opened the cell doors</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_Binge</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the binge</li>
+        <li>gossip_topic->where the stores' drink went</li>
+        <li>gossip_topic->a few lost days</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_DugUpDead</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the body that was dug up</li>
+        <li>gossip_topic->the open grave</li>
+        <li>gossip_topic->what was carried about the colony</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_RanWild</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the one who ran off into the wild</li>
+        <li>gossip_topic->the empty bed</li>
+        <li>gossip_topic->living out with the beasts</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_Married</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the wedding</li>
+        <li>gossip_topic->the two newlyweds</li>
+        <li>gossip_topic->who's married now</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_TurnedDown</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the proposal that was turned down</li>
+        <li>gossip_topic->a ring given back</li>
+        <li>gossip_topic->who said no</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>

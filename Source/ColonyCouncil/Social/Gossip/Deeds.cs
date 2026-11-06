@@ -76,6 +76,8 @@ namespace ColonyCouncil
             if (victim == doer) victim = null;
             try
             {
+                // Counted for the names, each time (People4): the record goes on whether or not the deed merges.
+                if (!def.record.NullOrEmpty()) CouncilRecords.Add(doer, def.record);
                 int now = Now;
                 float s = size > 0f ? size : def.size;
                 int victimId = victim?.thingIDNumber ?? -1;

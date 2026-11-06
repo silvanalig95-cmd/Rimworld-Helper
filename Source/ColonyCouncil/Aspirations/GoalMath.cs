@@ -54,6 +54,8 @@ namespace ColonyCouncil
                 case null: return 1f;
                 case "battle": return 0.7f;
                 case "nemesis": return 0.6f;
+                // A war among the neighbours (6 November 2026): every colonist hears of it at once, so it pulls like a foe.
+                case "war": return 0.6f;
                 default: return 1f;
             }
         }
@@ -62,10 +64,17 @@ namespace ColonyCouncil
         public static float Shared(int heldByOthers) => 1f / (1f + (heldByOthers < 0 ? 0 : heldByOthers));
 
         /// <summary>
-        /// Whether a spark may set them on a goal: a fight's never on a goal someone else at home took up after a fight and
-        /// is still at, so one fighting goal is never chosen by several at once; any other spark always may.
+        /// A spark of fighting: a fight the colony fought, or a war among the neighbours running now (one spark for every
+        /// colonist at once, held to the same rule so a war doesn't set several on one fighting goal).
         /// </summary>
-        public static bool FightMaySpark(string spark, int othersAfterAFight) => spark != "battle" || othersAfterAFight <= 0;
+        public static bool FightSpark(string spark) => spark == "battle" || spark == "war";
+
+        /// <summary>
+        /// Whether a spark may set them on a goal: a fight's (or a war's) never on a goal someone else at home took up after
+        /// a fight or a war and is still at, so one fighting goal is never chosen by several at once; any other spark always
+        /// may.
+        /// </summary>
+        public static bool FightMaySpark(string spark, int othersAfterAFight) => !FightSpark(spark) || othersAfterAFight <= 0;
 
         /// <summary>
         /// Those who fought hardest in a fight and may take a fighting goal from it (indexes into the lists, in their order):

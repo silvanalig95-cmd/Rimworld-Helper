@@ -19,6 +19,9 @@ namespace ColonyCouncil
         public const string CampsGreeted = "Council_CampsGreeted";
         public const string DaysKept = "Council_DaysKept";
         public const string WorldCallsAnswered = "Council_WorldCallsAnswered";
+        // Deeds the colony talks about, counted for the names (Defs/Misc/Rimfolk_Records_People4.xml): the deeds' own
+        // records (DeedDef.record) and students taught to stand alone (SocialWeb, a mentorship's end).
+        public const string StudentsTaught = "Council_StudentsTaught";
 
         /// <summary>One more of this deed for a colonist (quietly nothing if the record or the colonist isn't there).</summary>
         public static void Add(Pawn p, string record)

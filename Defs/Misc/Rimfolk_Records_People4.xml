@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Deeds the colony talks about, counted for the names (see Council_Records.xml). Six are a deed's own record
+    (DeedDef.record: one more each time the deed is done, whether or not it merges with the last), so they count while
+    personalities and social life are on; students taught is counted where a mentorship ends with the student standing
+    alone (Social/SocialWeb.cs). They show in the game's Records tab, and the names in
+    Defs/EpithetDefs/Rimfolk_Epithets_People4.xml are built on them.
+  -->
+
+  <RecordDef>
+    <defName>Council_Rescues</defName>
+    <label>people carried out of a fight</label>
+    <description>Times this colonist carried someone of the colony out of a fight while it was still going on.</description>
+    <type>Int</type>
+    <displayOrder>1627</displayOrder>
+  </RecordDef>
+
+  <RecordDef>
+    <defName>Council_NightWatches</defName>
+    <label>night watches kept</label>
+    <description>Nights this colonist walked the walls on watch until morning.</description>
+    <type>Int</type>
+    <displayOrder>1628</displayOrder>
+  </RecordDef>
+
+  <RecordDef>
+    <defName>Council_ContestsWon</defName>
+    <label>contests won</label>
+    <description>Contests of skill this colonist won against someone else: at a feast, a fair, a friendly match.</description>
+    <type>Int</type>
+    <displayOrder>1629</displayOrder>
+  </RecordDef>
+
+  <RecordDef>
+    <defName>Council_Masterworks</defName>
+    <label>masterworks made</label>
+    <description>Pieces of masterwork quality or better this colonist made, the kind people stop to look at.</description>
+    <type>Int</type>
+    <displayOrder>1630</displayOrder>
+  </RecordDef>
+
+  <RecordDef>
+    <defName>Council_RoundsMade</defName>
+    <label>rounds of the sick</label>
+    <description>Times this colonist went round the sickbeds looking in on each of the sick and wounded.</description>
+    <type>Int</type>
+    <displayOrder>1631</displayOrder>
+  </RecordDef>
+
+  <RecordDef>
+    <defName>Council_KindToStrangers</defName>
+    <label>kindnesses to strangers</label>
+    <description>Times this colonist did a stranger a kindness: water for a thirsty traveler, a kind word, a meal, a night's talk.</description>
+    <type>Int</type>
+    <displayOrder>1632</displayOrder>
+  </RecordDef>
+
+  <RecordDef>
+    <defName>Council_StudentsTaught</defName>
+    <label>students taught to stand alone</label>
+    <description>Students this colonist taught until they no longer needed a teacher.</description>
+    <type>Int</type>
+    <displayOrder>1633</displayOrder>
+  </RecordDef>
+
+</Defs>

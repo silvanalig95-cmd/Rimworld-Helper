@@ -138,6 +138,7 @@
     <interest>0.7</interest>
     <text>walked the walls all night on watch</text>
     <logTopic>Rimfolk_GossipTopic_NightWatch</logTopic>
+    <record>Council_NightWatches</record>
   </ColonyCouncil.DeedDef>
 
   <ColonyCouncil.DeedDef>
@@ -162,6 +163,7 @@
     <interest>0.7</interest>
     <text>went round looking in on the sick</text>
     <logTopic>Rimfolk_GossipTopic_Rounds</logTopic>
+    <record>Council_RoundsMade</record>
   </ColonyCouncil.DeedDef>
 
   <!-- ===================== The social log's words for them ===================== -->
