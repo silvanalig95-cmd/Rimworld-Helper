@@ -15,6 +15,7 @@
     <ways><toil>6</toil></ways>
     <hediff>Council_Decree_LongHours</hediff>
     <thought>Council_Decree_LongHours</thought>
+    <hurts>TiredHands</hurts>
     <defaultReaction>Dislike</defaultReaction>
     <reactions>
       <li><trait>Industriousness</trait><degree>2</degree><reaction>Like</reaction></li>
@@ -101,6 +102,7 @@
     <practiceSkills><li>Shooting</li><li>Melee</li></practiceSkills>
     <practiceXpPerHour>50</practiceXpPerHour>
     <practiceNeedsViolence>true</practiceNeedsViolence>
+    <hurts>Drills</hurts>
     <reactions>
       <li><nonViolent>true</nonViolent><reaction>Neutral</reaction></li>
       <li><trait>Bloodlust</trait><reaction>Love</reaction></li>

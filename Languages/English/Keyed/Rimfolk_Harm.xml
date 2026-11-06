@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Hurts from everyday life (Source/ColonyCouncil/Harm/). -->
+
+  <!-- ===================== The setting (Heart & health) ===================== -->
+
+  <CC_SetSec_Hurts>Hurts from everyday life</CC_SetSec_Hurts>
+  <CC_SetSec_Hurts_Note>Rimfolk's own small hurts: a real blow at drill, a slip on a long day, a strain worked until it gives. Never more than one in three days for anyone, none for babies, only the mildest for children, and nothing that kills outright.</CC_SetSec_Hurts_Note>
+  <CC_Settings_EverydayHurts>Hurts from everyday life: {0}</CC_Settings_EverydayHurts>
+  <CC_Settings_EverydayHurts_Tip>How often Rimfolk's own small hurts come, from 0% (never) to 200% (twice as often). They also lean with the storyteller's threat and disease settings, so a peaceful game stays gentle. Each comes from something on the map, is one of the game's own wounds or one of Rimfolk's ailments, and is tended by the game's doctors. Each system's own setting still switches its part off.</CC_Settings_EverydayHurts_Tip>
+  <CC_SetNote_EverydayHurts>At 100%, about one real blow per five-day drills decree for ten people, and a slip in one long workday in 150.</CC_SetNote_EverydayHurts>
+
+  <!-- ===================== Named before the choice (a decree's card and letter) ===================== -->
+
+  <CC_Harm_Decree_Drills>Pairs spar in the open each evening, and now and then a blow lands for real.</CC_Harm_Decree_Drills>
+  <CC_Harm_Decree_Muster>A pair spars at most evenings' muster, and now and then a blow lands for real.</CC_Harm_Decree_Muster>
+  <CC_Harm_Decree_TiredHands>Long, driven days bring a slip at the work now and then, more for those short of sleep.</CC_Harm_Decree_TiredHands>
+
+  <!-- ===================== Drills that bruise ===================== -->
+
+  <CC_Harm_Report_Drill>sparring with {OTHER_labelShort}.</CC_Harm_Report_Drill>
+  <CC_Harm_DrillBlow>{OTHER_nameDef}'s blow at the evening drill landed for real: {PAWN_nameDef} is hurt on the {PART}.</CC_Harm_DrillBlow>
+  <CC_Harm_DrillBlow_2>At the evening drill one of {OTHER_nameDef}'s blows wasn't pulled, and {PAWN_nameDef} took it on the {PART}.</CC_Harm_DrillBlow_2>
+  <CC_Harm_DrillBlow_3>{PAWN_nameDef} came out of the evening's bout with {OTHER_nameDef} hurt on the {PART}.</CC_Harm_DrillBlow_3>
+  <CC_Harm_MusterBlow>At the militia's muster, a blow of {OTHER_nameDef}'s landed for real: {PAWN_nameDef} is hurt on the {PART}.</CC_Harm_MusterBlow>
+  <CC_Harm_MusterBlow_2>{PAWN_nameDef} took a real blow on the {PART} from {OTHER_nameDef} at the evening's muster.</CC_Harm_MusterBlow_2>
+
+  <!-- ===================== Tired hands ===================== -->
+
+  <CC_Harm_Slip_Bench>Worn out by the {DECREE}, {PAWN_nameDef} slipped at the bench and hurt {PAWN_possessive} {PART}.</CC_Harm_Slip_Bench>
+  <CC_Harm_Slip_Bench_2>{PAWN_nameDef}'s tired hands slipped at the bench after a long day of the {DECREE}: a wound to the {PART}.</CC_Harm_Slip_Bench_2>
+  <CC_Harm_Slip_Hot>Worn out by the {DECREE}, {PAWN_nameDef} burned {PAWN_possessive} {PART} at {PAWN_possessive} work.</CC_Harm_Slip_Hot>
+  <CC_Harm_Slip_Hot_2>A long day of the {DECREE} and a moment's carelessness: {PAWN_nameDef} burned {PAWN_possessive} {PART}.</CC_Harm_Slip_Hot_2>
+  <CC_Harm_Slip_Heavy>Too tired to step clear on a long day of the {DECREE}, {PAWN_nameDef} was caught: a crush to the {PART}.</CC_Harm_Slip_Heavy>
+  <CC_Harm_Slip_Heavy_2>Something heavy came down on {PAWN_nameDef}'s {PART} near the end of a long day of the {DECREE}.</CC_Harm_Slip_Heavy_2>
+  <CC_Harm_Slip_Load>Worn out by the {DECREE}, {PAWN_nameDef} dropped a load on {PAWN_possessive} {PART}.</CC_Harm_Slip_Load>
+  <CC_Harm_Slip_Load_2>A tired grip gave way after a long day of the {DECREE}: {PAWN_nameDef}'s load came down on {PAWN_possessive} {PART}.</CC_Harm_Slip_Load_2>
+  <CC_Harm_Slip_Field>Tired hands in the field after a long day of the {DECREE}: {PAWN_nameDef} cut {PAWN_possessive} {PART} with the blade.</CC_Harm_Slip_Field>
+  <CC_Harm_Slip_Field_2>Late in a long day of the {DECREE}, {PAWN_nameDef}'s blade slipped and cut {PAWN_possessive} {PART}.</CC_Harm_Slip_Field_2>
+
+  <!-- ===================== Working through it ===================== -->
+
+  <CC_Harm_TornBack>{PAWN_nameDef} worked on through a strained back, and it has torn.</CC_Harm_TornBack>
+  <CC_Harm_TornBack_2>{PAWN_nameDef}'s strained back gave at the heavy work once too often: it's torn now, and it will take weeks.</CC_Harm_TornBack_2>
+  <CC_Harm_AnkleFall>{PAWN_nameDef}'s sprained ankle gave at the heavy work, and {PAWN_pronoun} went down hard on {PAWN_possessive} {PART}.</CC_Harm_AnkleFall>
+  <CC_Harm_AnkleFall_2>Working on a bad ankle, {PAWN_nameDef} went down hard and bruised {PAWN_possessive} {PART}.</CC_Harm_AnkleFall_2>
+  <CC_Harm_AnkleCrack>{PAWN_nameDef}'s sprained ankle gave at the heavy work, and the fall cracked {PAWN_possessive} {PART}.</CC_Harm_AnkleCrack>
+  <CC_Harm_AnkleCrack_2>Working on a bad ankle, {PAWN_nameDef} went down hard: a crack in {PAWN_possessive} {PART}.</CC_Harm_AnkleCrack_2>
+
+</LanguageData>

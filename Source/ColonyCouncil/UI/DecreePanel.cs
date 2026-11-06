@@ -363,6 +363,9 @@ namespace ColonyCouncil
             l.effects = string.Join("\n", def.effects.Select(e => "- " + e));
             // Feelings and strain (Heart/): a hard decree wears on those who resent it.
             if (def.strainPerDay > 0f && Heart.On) l.effects += "\n- " + "CC_Heart_DecreeStrain".Translate(def.strainPerDay.ToString("0.#")).Resolve();
+            // What it can do to the body, named before it's declared (Harm/).
+            string hurtLine = Harm.DecreeLine(def);
+            if (hurtLine != null) l.effects += "\n- " + hurtLine;
             // One faith for the colony: which faith it names (Decrees/DecreeFaith.cs).
             string faithLine = DecreeFaith.CardLine(def);
             if (faithLine != null) l.effects += "\n- " + faithLine;

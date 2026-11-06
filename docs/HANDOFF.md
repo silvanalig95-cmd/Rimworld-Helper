@@ -6,6 +6,69 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 0.106.0, harm, part 1: the shared rules and work's hurts (the player's pick, 6 November 2026): "my top ten, then more" from
+  `docs/harm-review-proposals.md`. Built: the review's "Rules every proposal keeps" as one service, and 1.2.1, 1.2.2 and
+  3.2.1 (marked built there). DESIGN.md, "Harm from everyday life" (the rules, the service's table for the next builders,
+  each of the three). Not released: no round in Almanac_WhatsNew.xml, About.xml untouched. The rules are
+  `Harm/HarmMath.cs` (pure, `HarmTests`): the setting "Hurts from everyday life" (`everydayHurts`, Heart & health under its
+  own heading, 0 to 200%, 100 by default; the light-touch preset 50%) times the storyteller's lean (`Lean`: the geometric
+  mean of a threat term, 0.35 at no threats to 1.25 at twice, and a disease term, one over the interval between a half
+  and 1.25, diseases off a half; no threats and diseases half as often about two fifths, the hardest a quarter more); the cap (`Bar`): one
+  Rimfolk-made hurt per colonist in three days, none while downed, in a sickbed or in need of one (`Harm.Sickbed`: a
+  medical bed or resting, bleeding, or ill with something that can kill; a strain still to tend is not), pregnant or
+  already fighting (drafted, a fight or a rage, at an attack, hurt or attacking within the hour), babies never, children
+  only `HurtClass.Mild`; a wound never takes more than a part has left but one point (`SafeSeverity`). The game's side is
+  `Harm/Harm.cs`: `Harm.Scale`, `Chance`, `Roll` (with a pawn, the cap first), `May`/`Bar`, `Injure(pawn, HurtKind,
+  HurtWhere, low, high, why, cls)` (the game's own Bruise, Cut, Burn, Crush, Crack or Scratch on a hand, arm, foot, leg or
+  torso, a crack on one of their bones, never a vital part, the head or the neck; sized by `IncomingDamageFactor`, so the
+  tough take half; the red flash, blood or a puff of smoke), `Ail(pawn, hediff, severity, why, cls, replaces)`,
+  `Fight(a, b, why)` (the game's social fight under the cap for both), `Note(pawn, why)` (a hurt that came another way),
+  `DecreeLine(def)`. `HarmBook` (a GameComponent) saves `lastHurt` (thingIDNumber to tick, pruned past three days) and
+  `drillDay` (a home's last evening drill), both modelled in `Tools/save_estimate.py`, and runs the hour at
+  `Sched.RareHarm` 67 (moved from 53 at the merge, which triage took first; a tenth of the colonists each 250 ticks, the colony's part on the first slice; `Pass.RareHarm`,
+  `CC_Clock_Pass_RareHarm`, DESIGN.md's ticking table). The feasts read it (`Feasts.HarmScale` is `Harm.Scale`,
+  `Feasts.MayBeHurt` asks `Harm.May` for a bout and keeps its old no-fresh-wound rule); a feast's hard blow, a guest's
+  sour night and the outsiders' practice bout's hard blow are counted with `Harm.Note`. Decrees carry `hurts`
+  (`DecreeHurt`: Drills, Muster, TiredHands) and `hurtsAt` (`WorkHurtKind`), and their card (`UI/DecreePanel.cs`) and
+  letter (`CouncilDynamics.Notify_DecreeEnacted`) name it in words (`CC_Harm_Decree_*`). (1.2.1) Drills that bruise,
+  `Harm/DrillBouts.cs`: with "Answers play out on the map" on, the drills decree pairs everyone of the colony who can
+  fight (grown-ups, free, not pressed, no lord, Melee not disabled) each evening from five to eight, once a day at a home,
+  tried again each hour until a pair begins; the militia one pair three evenings in four (`MusterEvening`). Not in danger
+  or weather that spoils being out. Places side by side near the yard (`PlaySpots.OpenCell`), the job
+  `Rimfolk_DrillBout` (`JobDriver_DrillBout`: to the place, wait for the other, a word, six pulled swings each with the
+  game's lunge and sound, a moment after; either leaving or danger ends it for both). One bout in 25 (a marshal halves
+  it), decided at the start on one of the pair `Harm.May` lets take a bout: a bruise or cut of 6 to 9 by the age
+  (`DrillBouts.BlowOf`: tribal a bruise anywhere, medieval and industrial a bruise or a cut on an arm, spacer a baton's
+  burn on the torso); the hurt one's line, the other's sorry, `CC_Harm_DrillBlow`/`CC_Harm_MusterBlow` (three and two
+  wordings). The pools `Rimfolk_Pool_DrillCall`, `DrillBegin`, `DrillHit`, `DrillSorry`, `DrillEnd`
+  (`Defs/FlavorPoolDefs/Rimfolk_Harm_Lines.xml`, tagged by age and wound, in `ImmersionTests.SpokenPools`). The militia
+  is declared in every age now (its `eras` gone, its description and a spacer and an industrial line for it, the
+  Almanac's two "not for a spacer colony" gone). (1.2.2) Tired hands, `Harm/WorkHurts.cs`: hours found at the work a
+  `TiredHands` decree drives (`HarmMath.WorkOf`: the stove and forge, the bench, building and mining, hauling, the
+  field; long hours any, a harvest push the field, a building season the building); from the sixth in a day, the first
+  hour found right at it (`WorkHurts.AtIt`: carrying the load, or standing at the work, not walking to it) has one roll, one in 150, twice below 30% rest, once more for a second work decree, half for the tough, half in a spacer
+  colony; a wound of 3 to 6 (5 to 8 spacer) by `HarmMath.WorkSlip` (a cut at the bench, a crushed hand at an industrial
+  machine, a fabricator's burn, a burn at the heat, a crushed foot, a dropped load, a sickle's cut), the job ended, a
+  load dropped, `Rimfolk_Pool_WorkSlip`, `CC_Harm_Slip_<work>` (two wordings each). The review's "one or two per decree
+  in a colony of ten" was a miscount against its own anchor; the anchored rate was kept (about a third of a slip per
+  five-day decree in a colony of ten, rested; twice with nobody sleeping enough), and said so in the review and DESIGN.md.
+  (3.2.1) Working through it, the same file, with the everyday ailments on: a strained back or a sprained ankle,
+  untended and out of bed, counts its heavy hours each day; from the fourth, the first hour right at it has one roll for it (once each, session memory):
+  one in ten, never while the rest-when-ill decree holds. A back tears (`Council_Ail_TornBack`, `Rimfolk_Hediffs_Harm.xml`:
+  a new everyday ailment with no causes, 3 to 5 weeks, sharper pain, half the carrying; its mood in place of the strain's,
+  `Council_Ail_TornBack_Mood`, hinted with the strains; ROADMAP's count 56); an ankle gives (a bruise of 3 to 5 on the leg,
+  or a crack of 2 to 4 on its bone one time in three; the sprain stays). The load drops, a short `Wait_MaintainPosture`
+  (sitting down hard), `Rimfolk_Pool_WorkedThrough`, the colony's best doctor within talking range says
+  `Rimfolk_Pool_DoctorsWord`, and `CC_Harm_TornBack`/`AnkleFall`/`AnkleCrack` with the ailment's doctor's note. Almanac:
+  "Decrees" gains "Decrees that can hurt", "Ailments and illnesses" gains "Working through it, and hurts from everyday
+  life" and a torn back row (no keyword changed). Dropped: nothing of the three leaned on council tasks or the keeper of
+  secrets; "the line" as a place for the drills is the yard only (the defence lines are left for 4.2.1's musters). For the
+  next builders (2.4.1, 2.2.1, 2.1.1, 3.1.1; 1.4.1, 3.3.1, 3.5.1): roll the base rate with `Harm.Roll(pawn, rate, cls)`,
+  give it through `Injure`, `Ail` or `Fight` (or `Note` what the game gave), say it in one sentence and tell it through
+  `Tell` in two wordings; a fight is `HurtClass.Fight`, never a child. To check in the game: the drills' pairs in the
+  yard at five, the swings, a real blow by dev rolls (the hurt one walking to the doctor), the militia's one pair, the
+  decree card's line; a slip at the bench on a long-hours day, the dropped load, the message; a strained back worked
+  through hauling turning into a torn back, the sit-down and the doctor's word; the setting at 0% stopping all of it.
 - medical triage with Move the Patient (the player's request, 6 November 2026, with a save): "i have a hospital bed with
   high criticality and set as surgery bed. when a pawn is injured they always take one of the other two beds though,
   even though the hospital bed is free and better. i want them to always take the best bed, and once a patient with a

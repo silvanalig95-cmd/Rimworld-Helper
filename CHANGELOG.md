@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Hurts from everyday life
+
+*6 November 2026, version 0.106.0*
+
+- Everyday life can hurt now, at the game's own rate and always on the map: a new setting, Hurts from everyday life (0 to 200 percent), leans with your storyteller's threat and disease settings, so a peaceful game stays gentle.
+- Nobody takes more than one of these hurts in three days, none while downed, sick in bed, pregnant or already fighting; babies never, children only the mildest, and nothing here kills.
+- Drills bruise: under the drills or the militia decree, the colony's fighters pair off in the yard of an evening, and about one bout in 25 lands a real blow. A marshal in office halves it. The militia can now be called in every age.
+- Tired hands: under long hours, a harvest push or a building season, someone at the sixth hour of the same work may slip, more often when exhausted or driven by two decrees at once: a cut at the bench, a burn at the forge, a crushed foot, a sickle cut.
+- Working through it: a strained back or sprained ankle worked on through hours of heavy labour may give way, the back tearing for weeks or the ankle cracking. Resting it, or the decree to rest when ill, prevents it.
+- Each decree's card and letter name its risk before you declare it.
+
 ## The best bed for the worst hurt
 
 *6 November 2026, version 0.105.0*

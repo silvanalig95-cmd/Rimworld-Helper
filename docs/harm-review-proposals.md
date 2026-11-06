@@ -21,6 +21,9 @@ game that may turn on its hunters in answers and on the calendar's hunt (2.1.1);
 out, ends in a fight (3.5.1); (8) hustings that come to blows (1.4.1); (9) frayed tempers, high strain making a fight
 likelier (3.3.1); (10) working through it, a sprain or a bad back worked on until it becomes a real injury (3.2.1).
 
+**The player's pick (6 November 2026):** "my top ten, then more". Built so far (harm, part 1): the shared rules below, as
+one service every hurt goes through (`Harm/Harm.cs`, DESIGN.md "Harm from everyday life"), and 1.2.1, 1.2.2 and 3.2.1.
+
 ## How to read it
 
 Each system has three parts: what can already go badly today, with the files it lives in; numbered proposals; and the
@@ -96,6 +99,8 @@ decree.
    each evening, the blow, a bubble, the hurt one walking to the doctor. *Ages:* sticks and wrestling (tribal), blunted
    blades and shields (medieval), the rifle range and bayonet drill with a ricochet graze (industrial), stun batons and
    training rounds (spacer, which also gives the militia a form it lacks today).
+   *Built (harm, part 1, 6 November 2026):* `Harm/DrillBouts.cs`, with "Answers play out on the map" on; the militia is
+   declared in every age now. A doctor tending at once is the game's own.
 2. **Tired hands.** Under long hours, a harvest push or a building season, a work injury is possible: a cut at the
    bench, a crushed foot under a load, a burn at the stove or forge, rolled like the everyday work ailments but for a
    real wound of 3 to 6, likelier as rest runs low. Adds the honest cost of driving people hard. *Prevent:* yes: shorter
@@ -104,6 +109,9 @@ decree.
    of ten. *Seen:* the slip at the bench or the dropped load, a line said, the hurt one going to the doctor. *Ages:*
    stone tools and the fire pit (tribal), the saw and the forge (medieval), machines (industrial, a crushed hand), a
    fabricator's burn (spacer, rarer and worse).
+   *Built (harm, part 1, 6 November 2026):* `Harm/WorkHurts.cs`, at the anchored rate of one in 150 long days; the "one or
+   two per decree in a colony of ten" above was a miscount against it (about a third of one with everyone rested, twice
+   that with nobody sleeping enough).
 3. **A cold night for the frail.** With banked fires in a hard frost, an elder, a small child or a convalescent whose
    bedroom falls below comfort may catch a head cold, which for the frail is the road to pneumonia (the serious tier's
    3% a day). Adds a real trade between fuel and the old. *Prevent:* yes: a heater kept up in the sickroom and the elders'
@@ -409,6 +417,8 @@ the end of a long life (`Health/LastSeason.cs`).
    crack). Adds a reason to give light duty, and makes the everyday tier matter. *Prevent:* yes: bed rest, the work tab,
    the rest-when-ill decree, a tending. *Rate:* one in 10 such ailments worked hard through. *Seen:* the colonist wincing
    under the load, sitting down hard, the doctor's word.
+   *Built (harm, part 1, 6 November 2026):* `Harm/WorkHurts.cs`; "worked hard through" is four hours of heavy work in a
+   day with it untended and out of bed; the torn back is Rimfolk's `Council_Ail_TornBack`, in the strain's place.
 2. **The patient who brings something worse.** One outside patient in 20 brings a catching serious illness
    (tuberculosis, cholera) that can pass to whoever sleeps in the same room. *Prevent:* yes: a separate ward, the
    quarantine decree, turning them away. *Rate:* one patient in 20. *Seen:* the patient's cough, the doctor's word, a

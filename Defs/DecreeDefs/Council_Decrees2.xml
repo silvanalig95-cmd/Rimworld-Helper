@@ -15,6 +15,8 @@
     <ways><toil>5</toil></ways>
     <hediff>Council_Decree_Harvest</hediff>
     <thought>Council_Decree_Harvest</thought>
+    <hurts>TiredHands</hurts>
+    <hurtsAt><li>Field</li></hurtsAt>
     <defaultReaction>Dislike</defaultReaction>
     <reactions>
       <li><passion>Plants</passion><reaction>Like</reaction></li>
@@ -52,6 +54,8 @@
     <ways><toil>5</toil></ways>
     <hediff>Council_Decree_Building</hediff>
     <thought>Council_Decree_Building</thought>
+    <hurts>TiredHands</hurts>
+    <hurtsAt><li>Heavy</li></hurtsAt>
     <defaultReaction>Dislike</defaultReaction>
     <reactions>
       <li><passion>Construction</passion><reaction>Like</reaction></li>

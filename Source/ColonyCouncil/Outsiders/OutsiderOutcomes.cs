@@ -969,6 +969,8 @@ namespace ColonyCouncil
                 {
                     bout.hardAt = -1;
                     bout.hurt = defender;
+                    // Counted toward the shared cap of hurts from everyday life (Harm/Harm.cs).
+                    Harm.Note(defender, "a practice bout's hard blow");
                 }
                 // Nobody's weapon and no instigator: practice, not an attack their people would count.
                 var dinfo = new DamageInfo(DamageDefOf.Blunt, OutsiderMath.SparDamage(Rand.Value, hard), 0f, -1f, null, null, null, DamageInfo.SourceCategory.ThingOrUnknown, null, false);

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Hurts from everyday life (Source/ColonyCouncil/Harm/WorkHurts.cs): a strained back worked through four hours of heavy
+    work in a day, untended and out of bed, tears one time in ten and becomes this, in the strain's place. It never comes
+    on its own (no causes), never kills and leaves no mark.
+  -->
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_TornBack</defName>
+    <label>torn back</label>
+    <description>A strained back worked through until the muscle tore: sharp pain with every bend and lift, and weeks to mend. Bed rest at the start helps most, then only light work; tending (strapping, a warm compress, something for the pain) speeds it along. It comes only from working on with a strained back instead of resting it.</description>
+    <initialSeverity>0.65</initialSeverity>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>TornBack</key>
+        <cooldownDays>30</cooldownDays>
+        <notes>
+          <li>Bed for the first days, then nothing heavier than a cup until it mends. A strain is a warning, and this is what comes of ignoring one.</li>
+          <li>[lowtech] Warm stones in a cloth, a tight wrap and a week in bed, then no lifting for a month.</li>
+          <li>[!lowtech] Heat, painkillers and strict rest at first, then gentle stretching. Weeks, not days.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>72</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.04</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.025</severityPerDay>
+        <bedFactor>2</bedFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>mending</label>
+        <painOffset>0.08</painOffset>
+        <statFactors><CarryingCapacity>0.8</CarryingCapacity></statFactors>
+        <capMods>
+          <li><capacity>Moving</capacity><offset>-0.08</offset></li>
+          <li><capacity>Manipulation</capacity><offset>-0.04</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.35</minSeverity>
+        <label>torn</label>
+        <painOffset>0.18</painOffset>
+        <statFactors><CarryingCapacity>0.5</CarryingCapacity></statFactors>
+        <capMods>
+          <li><capacity>Moving</capacity><offset>-0.2</offset></li>
+          <li><capacity>Manipulation</capacity><offset>-0.1</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+</Defs>

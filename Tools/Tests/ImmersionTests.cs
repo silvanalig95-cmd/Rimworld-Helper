@@ -53,6 +53,10 @@ public static class ImmersionTests
         "Rimfolk_Pool_NeighbourSays",
         // A colonist and someone from outside the colony doing something together (Outsiders/Outsiders.cs).
         "Rimfolk_Pool_OutsiderSays",
+        // Hurts from everyday life (Harm/): the evening drill's call, start, real blow, apology and end; a slip at work, a
+        // strain worked through, a doctor's word.
+        "Rimfolk_Pool_DrillCall", "Rimfolk_Pool_DrillBegin", "Rimfolk_Pool_DrillHit", "Rimfolk_Pool_DrillSorry", "Rimfolk_Pool_DrillEnd",
+        "Rimfolk_Pool_WorkSlip", "Rimfolk_Pool_WorkedThrough", "Rimfolk_Pool_DoctorsWord",
         // Travellers at the gate, waiting, setting off, and those at home seeing them off (Journeys/JourneyRun.cs).
         "Rimfolk_Pool_JourneySays",
         // Banishment by the council (Social/Banishment.cs): the council's word face to face and the answer, someone sent away

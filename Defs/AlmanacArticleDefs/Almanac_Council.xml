@@ -188,7 +188,7 @@ The "Good times" line in a colonist's Mood tab says what these rules take off ri
           <li>Decree | What it does</li>
           <li>Long hours | Work 15% faster.</li>
           <li>Rationing | Hunger 25% slower.</li>
-          <li>Drills | Everyone who can fight trains shooting and melee every waking hour.</li>
+          <li>Drills | Everyone who can fight trains shooting and melee every waking hour, and pairs spar in the open each evening.</li>
           <li>Study hours | Learning 30% and research 20% faster.</li>
           <li>Harvest push, building season | Faster at one kind of work.</li>
           <li>Clean sweep | Cleaning 50% faster, and everyone who can clean does it before other work, after fires, the sick, children, prisoners and cooking.</li>
@@ -205,7 +205,7 @@ The "Good times" line in a colonist's Mood tab says what these rules take off ri
           <li>A feast day | One day: hunger 40% faster, work 15% slower, standards rise slightly.</li>
           <li>Tithes | Each morning a tenth of the silver (5 to 40) goes to a people of the colony's ideoligion, or the nearest village: 1 goodwill a day, and with Ideology the faithful grow surer. Not for a tribe.</li>
           <li>A curfew | Night hours (10 at night to 5) become sleep in everyone's schedule, put back after; night owls keep the watch. Far fewer social fights.</li>
-          <li>Militia drills | Twelve days of light practice at shooting and melee for everyone who can fight; work 3% slower. Not for a spacer colony.</li>
+          <li>Militia drills | Twelve days of light practice at shooting and melee for everyone who can fight; work 3% slower. One pair spars at most evenings' muster, in every age.</li>
           <li>Alms for the poor | Each morning a little raw food (5 to 20) goes out at the gate: 1 goodwill a day with the nearest friendly people.</li>
           <li>Holy days | Ideology, a colony with an ideoligion: three days, the faithful 3% surer each day (half again with a chaplain) and a little steadier; work 8% slower.</li>
           <li>A market day | A trade caravan of a friendly people comes the day it's declared; trade prices 4% better and work 5% slower for two days.</li>
@@ -230,7 +230,7 @@ Colonists petition for these when the moment fits: when someone is ill or many a
 
 Tithes and alms give a share of what's in store each morning (a quartermaster stretches it), and the news says where it went. A curfew turns everyone's night hours to sleep and puts them back exactly as they were when it ends (an hour you changed meanwhile is left as you set it); night owls keep the watch, and the sleepless are left alone. A market day only comes when a friendly people who send caravans is near enough; if none can come, the news says so. A work song's recreation only goes to those who don't mind the singing.
 
-Some decrees only exist in the right colony: tithes are for a village, not a tribe, militia drills not for a spacer colony, holy days only with Ideology and an ideoligion of the colony's own. A decree that can never apply isn't listed at all. Two answer the region's hard times and can only be declared while one lasts: a quarantine while a sickness goes round (or someone at home is ill), famine bread while a famine, a drought or locusts lie over the region. Colonists petition for them when the moment fits: when the stores are full and the colony content, or when the world event they answer begins.
+Some decrees only exist in the right colony: tithes are for a village, not a tribe, holy days only with Ideology and an ideoligion of the colony's own. A decree that can never apply isn't listed at all. Two answer the region's hard times and can only be declared while one lasts: a quarantine while a sickness goes round (or someone at home is ill), famine bread while a famine, a drought or locusts lie over the region. Colonists petition for them when the moment fits: when the stores are full and the colony content, or when the world event they answer begins.
 
 Who minds what goes by their nature, as with every decree, and with Ideology by their ideoligion too: the devout love holy days and approve of tithes, alms and a fast; those of another ideoligion mind holy days.</text>
       </li>
@@ -247,6 +247,14 @@ Colonists sometimes petition for a decree when the moment fits. Declaring it wit
 Each repeat can also make someone snap: a 20% chance per recent time, 15% more when forced, at most 80%. The hot-tempered throw a tantrum; others wander off in a daze.
 
 So space out the decrees people hate. If you must repeat one, the tab shows how many times it was used this month, the chance someone snaps, and in how many days it's safe to enact again. Force a decree through only in an emergency, and keep the hot-tempered busy and away from the stores while it lasts.</text>
+      </li>
+      <li>
+        <heading>Decrees that can hurt</heading>
+        <text>Five decrees can hurt people on the map, and their cards and letters say so before you declare them. With "Answers play out on the map" on, drills pair everyone who can fight into practice bouts in the open each evening, and the militia's muster one pair most evenings: pulled blows that only show, except that one bout in 25 lands a blow for real, a bruise or a cut by the colony's means (sticks and wrestling, blunted blades and shields, the bayonet drill, a stun baton's burn). A marshal in office halves it, the tough take half the hurt, and the colony's doctor tends it. About one real injury comes of a five-day drills decree in a colony of ten, and about half that of the militia's twelve days. Children never spar.
+
+Long hours, a harvest push and a building season tire hands. A long day at the work the decree drives (six hours of it) has a small chance of a slip there, about one in 150: a cut at the bench, a burn at the stove or the forge, a crushed foot under a load, a cut from the sickle; a crushed hand at an industrial colony's machines, a fabricator's burn in a spacer colony (rarer, and worse). It is twice as likely for someone below 30% rest, and again with two work decrees driving the same work; the tough slip half as often. Keep the decrees short, never two at once, and let people sleep.
+
+These are among Rimfolk's hurts from everyday life: one setting on the Heart &amp; health page scales them all, nobody takes more than one in three days, babies none, and nothing here kills outright. "Ailments and illnesses" has the rest.</text>
       </li>
       <li>
         <heading>When it's needed and wanted</heading>
