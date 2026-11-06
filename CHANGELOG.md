@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Room for a camp
+
+*6 November 2026, version 0.104.1*
+
+- Fixed: on a map that is mostly mountain, fog or water, camps of travelers never came, because the search for a place to pitch tried random spots across the whole map and almost never hit the little open ground there was.
+- A camp now looks over all the open ground first, and on a tight map it settles a little nearer the colony and on ground a little less open, still clear of the home area and the colony's zones.
+
 ## The colony's name, not a house's
 
 *5 November 2026, version 0.104.0*

@@ -6,6 +6,15 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 0.104.1, camps on a tight map (the player's report, 6 November 2026: "i still haven't had one"): the save's camp
+  diary (`CampTracker` home `diary`) held 23 tries since day 108, every one "noroom". The player's map is 78% under
+  roof (mountain) and 55% fogged; `CampSite.TryFind` tried 260 random cells over the whole map, and only about 30
+  cells there meet its rules (open, unroofed, unfogged, 28 to 80 cells from the colony, four fifths of the radius
+  open, no zone or home area in it), so it missed nearly every day. Now it lists the open ground first (every second
+  cell each way, `OpenCells`) and weighs up to 400 of those, then on a tight map tries again nearer the colony and a
+  little less open (`MinFromColonyTight` 20, seven tenths open). Measured from the save's grids (a script outside the
+  repo; water, standability and reachability not modelled): about 30 cells pass the first try, about 400 the second.
+  Every caller (camps, the war band's camp, the hamlet's escort) gets the same search.
 - 6 November 2026, the player's priority: once the work under way lands (harm part 1, vendettas and hostages, medical
   triage with Move the Patient, the stage 3 design revision), nothing new is built until the existing systems are
   reviewed, balanced, improved and integrated: variety, flavour, immersion, writing, impacts, and how often things are
@@ -13,6 +22,46 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   make each worth its place). Two audits run first (staged scenes and attention; each system's value and writing);
   their proposals go to the player. Harm parts 2 and 3 (2.4.1, 2.2.1, 2.1.1, 3.1.1; 1.4.1, 3.3.1, 3.5.1), schemes
   (theirs only, the player's choice) and the stage 3 build wait until after.
+- stage 3 design revised (the colony is the family; tasks and keeper gone; release order for a fresh start first): 6
+  November 2026, docs only, nothing built (docs/design/stage3-many-colonies.md, its revision line at the top). The
+  player is close to wanting something new without giving up the colony they have, and may go on in this save or start
+  a new game; the design now says what each path gets ("This save or a new game": in this save a fresh start with the
+  old colony kept or abandoned, then handed over; a new game needs nothing from stage 3, and Rimfolk carries nothing
+  between two worlds). Recast for the colony is the family: the town a handed-over colony becomes is bound to it as a
+  colony (`TownKind.Former`, `KeepFor.Former`, the facts `town:former` and `them:former`, the goodwill situation "once
+  of [colony]"; no "kin" in its names), its next head is the head's second by office or standing (the code's
+  `NotableRole.Heir`, titled by age as the headman's second, the reeve's deputy, the deputy mayor, the deputy
+  administrator), set as the people's leader in the game's own succession (`Faction.TryGenerateNewLeader`, which would
+  otherwise make a stranger; read in the 1.6 code and added to the API diff list); the town has no founding families;
+  a colonist's own people in the town (a spouse, a child, a close friend) is a reason of its own beside the moving-on
+  questions. Renown: the colony's name stays one across its homes; a handed-over home's deeds stay in it (`Renown`
+  reads only `Homes.All` today, so the colony's own deeds there are to be read under every colony on the ledger's
+  record), what those who stay hold now leaves with them, and a former colonist's own name is said in their town's
+  letters and talk (`Renown.Own` reads only the colony's people today); founders carry their own names and the colony's
+  names for them from one colony's days (`EpithetMath.ForColony`). Banishment: each home's council banishes its own
+  (six people at that home), the hand-over waits while one plays out there, and the council's count of fights shows in
+  a wish. The design never used the council's tasks or the keeper; the scenario parts carried into a fresh start are
+  now all of Rimfolk's but Bad Blood's two quarrelling families (`ScenPart_CouncilFamilies`, a feud along family
+  lines), the grant of land without its warm goodwill (goodwill is the whole colony's). Checked against the code at
+  0.104.0 and fixed: the Colonies page is the region map's Ours lens with a card per colony and a colony chip in every
+  view's header (the interface decision 7 of 4 November; `ColonyView.Header` heads four pages today); the notables are
+  made two an hour at most, not two a day; `HomeMap` has about fifty-five callers; the region never gives up a people's
+  seat (`RiseFallMath.MayGiveUp`), so a struggling town the colony was asks to come back instead; the notables' old age
+  is rolled only for those Rimfolk made and never for a leader, so it is widened to the town's people; the colony's
+  ties at a home handed over are read at the seat already (`Diplomacy.HomeOf`); the region's towns in detail are per
+  home already. The game's own fresh start, the archonexus ending (`MoveColonyUtility.MoveColonyAndReset`), resets
+  research and every people's relations and is not used. The releases: 1 a fresh start (the place, a party and
+  newcomers, the arrival, the records, the old colony kept or abandoned, the seat's button, the colonies on the Ours
+  lens), 2 handing a colony over (also in the same act as a fresh start), 3 a scenario's start, 4 many colonies in play
+  (merging councils, the pages following the colony in view, notables and world events near every home, the character
+  per colony), 5 the town's life. The decisions, 15 of the 17, in the order the releases need them: the hand-over's say
+  and "against their wish" are one (2), the newcomers' window and scenario starts are one (3), Faction Territories'
+  vassalage at the hand-over is now what the town owes the colony with stage 2 built (9: free or a pact, fealty later
+  by stage 2's own rule); none added. ROADMAP's stage 3 lines, its wave row and stage 2's status line follow; the
+  interface design's Ours row names the towns the colony was; DESIGN.md's Ages says colony renown. Found outside the
+  design and left as they are: Bad Blood's feud between two families in the game today (`ScenPart_CouncilFamilies`),
+  the region's heirs made with their head's surname (`Notables.Make`, other peoples' ways), `AgeFeature.Renown`'s
+  comment ("A house's renown"). Waiting with the player: the fifteen decisions.
 - 0.104.0, diplomacy reshaped from family to colony (the player's decision, 5 November 2026): "we just need to make the shift from
   family to colony. family dynamics are fun and interesting, but it's never going to be a dynastic game like ck3, rather
   the colony is the 'family' so to say, so mechanics should revolve around that" (CLAUDE.md: the colony is the family).

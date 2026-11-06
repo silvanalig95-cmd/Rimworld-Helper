@@ -116,34 +116,65 @@ namespace ColonyCouncil
         {
             center = IntVec3.Invalid;
             if (map == null) return false;
-            var pts = ColonyPoints(map);
             int margin = CoreRadius + 8;
             if (map.Size.x < margin * 2 + 20 || map.Size.z < margin * 2 + 20) return false;
+            // The open ground first, so a map that is mostly mountain, fog or water still finds the little it has (a few
+            // hundred random tries over the whole map missed it nearly every day there); then, on a tight map, a spot a
+            // little nearer the colony and a little less open.
+            var open = OpenCells(map, margin);
+            if (open.Count == 0) return false;
+            var pts = ColonyPoints(map);
+            return TryFindIn(map, open, pts, shade, MinFromColony, 0.8f, out center)
+                || TryFindIn(map, open, pts, shade, MinFromColonyTight, 0.7f, out center);
+        }
+
+        /// <summary>On a tight map (mountain, marsh, a crowded valley): how near the colony a camp may come, as a last resort.</summary>
+        public const int MinFromColonyTight = 20;
+
+        /// <summary>How many open spots are weighed for a camp each time.</summary>
+        private const int Tries = 400;
+
+        /// <summary>Every open cell a camp's fire could stand on, every second cell each way (inside the map's margin).</summary>
+        private static List<IntVec3> OpenCells(Map map, int margin)
+        {
+            var list = new List<IntVec3>();
+            for (int x = margin; x < map.Size.x - margin; x += 2)
+                for (int z = margin; z < map.Size.z - margin; z += 2)
+                {
+                    var c = new IntVec3(x, 0, z);
+                    if (OpenGround(c, map)) list.Add(c);
+                }
+            return list;
+        }
+
+        private static bool TryFindIn(Map map, List<IntVec3> open, List<IntVec3> pts, bool shade, int minFrom, float openShare, out IntVec3 center)
+        {
+            center = IntVec3.Invalid;
             var traverse = TraverseParms.For(TraverseMode.PassDoors, Danger.Deadly, false);
             float bestScore = float.MinValue;
-            int minSq = MinFromColony * MinFromColony, maxSq = MaxFromColony * MaxFromColony;
-            for (int i = 0; i < 260; i++)
+            int minSq = minFrom * minFrom, maxSq = MaxFromColony * MaxFromColony;
+            int tries = Mathf.Min(Tries, open.Count);
+            for (int i = 0; i < tries; i++)
             {
-                var c = new IntVec3(Rand.RangeInclusive(margin, map.Size.x - margin - 1), 0, Rand.RangeInclusive(margin, map.Size.z - margin - 1));
-                if (!OpenGround(c, map)) continue;
+                var c = open.Count <= Tries ? open[i] : open.RandomElement();
                 // Well clear of neighbours settled for good (Holding.cs).
                 var h = CampTracker.HoldingAt(map);
                 if (h != null && h.map == map && h.center.IsValid && c.InHorDistOf(h.center, CoreRadius * 2 + 10)) continue;
                 int d = pts.Count > 0 ? MinDistSquared(c, pts) : int.MaxValue;
                 if (d < minSq || (pts.Count > 0 && d > maxSq)) continue;
                 // Room for the camp: nearly all of it open ground.
-                int open = 0, total = 0;
+                int clear = 0, total = 0;
                 foreach (var x in GenRadial.RadialCellsAround(c, CoreRadius, true))
                 {
                     total++;
-                    if (OpenGround(x, map)) open++;
+                    if (OpenGround(x, map)) clear++;
                     else if (x.InBounds(map) && (map.zoneManager.ZoneAt(x) != null || (map.areaManager.Home != null && map.areaManager.Home[x])))
                     {
-                        open = -999;
+                        clear = -999;
                         break;
                     }
                 }
-                if (open < total * 0.8f) continue;
+                if (clear < total * openShare) continue;
                 if (!map.reachability.CanReachMapEdge(c, traverse) || !map.reachability.CanReachColony(c)) continue;
                 // Close enough to share the land, with trees about; a little chance for variety.
                 float dist = pts.Count > 0 ? Mathf.Sqrt(d) : 50f;

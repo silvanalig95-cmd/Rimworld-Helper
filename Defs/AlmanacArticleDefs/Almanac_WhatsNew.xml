@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.104.1</version>
+        <date>6 November 2026</date>
+        <title>Room for a camp</title>
+        <points>
+          <li>Fixed: on a map that is mostly mountain, fog or water, camps of travelers never came, because the search for a place to pitch tried random spots across the whole map and almost never hit the little open ground there was.</li>
+          <li>A camp now looks over all the open ground first, and on a tight map it settles a little nearer the colony and on ground a little less open, still clear of the home area and the colony's zones.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.104.0</version>
         <date>5 November 2026</date>
         <title>The colony's name, not a house's</title>
