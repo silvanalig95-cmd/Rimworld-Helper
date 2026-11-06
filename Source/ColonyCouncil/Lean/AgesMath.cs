@@ -34,7 +34,13 @@ namespace ColonyCouncil
         /// <summary>An envoy who lives with the other side for a season: the word is the colony's (a consul), the rite how theirs come (letters of credence). Stage 2.</summary>
         Envoy,
         /// <summary>Fighters raised for a liege or a pact: the word is the colony's (a militia), the rite how theirs are raised (warriors at the chief's call). Stage 2.</summary>
-        Levy
+        Levy,
+        /// <summary>The seat, where the colony as a whole is run from: the word is the colony's (the council's hall), the rite how the seat moves (the council's chest carried to the new hall). Stage 3.</summary>
+        Seat,
+        /// <summary>A founding party: the word is the colony's (settlers with a charter and carts), the rite how a new place is claimed (a charter read at the boundary stone). Stage 3.</summary>
+        Party,
+        /// <summary>A call for newcomers: the word is how the colony sends it (an advertisement by radio), the rite how they come (off the road with their papers). Stage 3.</summary>
+        Call
     }
 
     /// <summary>
@@ -55,7 +61,7 @@ namespace ColonyCouncil
         {
             AgeFeature.Favor, AgeFeature.Pact, AgeFeature.Feast, AgeFeature.Marriage, AgeFeature.Ward, AgeFeature.Ransom, AgeFeature.Fealty,
             AgeFeature.Renown, AgeFeature.Schemes, AgeFeature.Founding, AgeFeature.Post, AgeFeature.Hamlet, AgeFeature.Oath,
-            AgeFeature.Truce, AgeFeature.Hostage, AgeFeature.Envoy, AgeFeature.Levy
+            AgeFeature.Truce, AgeFeature.Hostage, AgeFeature.Envoy, AgeFeature.Levy, AgeFeature.Seat, AgeFeature.Party, AgeFeature.Call
         };
 
         /// <summary>An age as lines are tagged: tribal, medieval, industrial, spacer (Flavor.AddEraTags, LineTags).</summary>

@@ -170,12 +170,7 @@ namespace ColonyCouncil
         /// <summary>The view in its rect: whose colony it is (with more than one), then the page with its header's modes and "?".</summary>
         private static void DrawView(Rect rect)
         {
-            // The council's own pages and the calendar, with more than one colony: whose they are, and the way to another's.
-            if (page == "Decrees" || page == "Ambition" || page == "Dilemmas" || page == "Calendar")
-            {
-                float named = ColonyView.Header(new Rect(rect.x, rect.y, rect.width, 26f));
-                if (named > 0f) rect = new Rect(rect.x, rect.y + named + 6f, rect.width, rect.height - named - 6f);
-            }
+            // With more than one colony, whose pages they are and the way to another's: the chip in every view's header (UI/ColonyView.cs).
             ViewHead.Draw(rect, page, Get(names, page, ModeName), TabIcon(page), Head(ViewOf(page)), drawPage);
         }
 

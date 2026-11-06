@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The first night of a new colony (Source/ColonyCouncil/Colonies/Foundings.cs): the founders gather at a fire, and the
+    speaker-to-be (a seat holder among them, else the eldest) speaks. Said over the speaker's head at the gathering;
+    [speaker] lines are the speaker's own when nothing plays out on the map. One sentence each.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_FirstNight</defName>
+    <lines>
+      <plain>
+        <li>First night under our own sky.</li>
+        <li>Tomorrow we start on the walls.</li>
+        <li>Pass the pot round, there's enough for everyone.</li>
+        <li>I wonder what they're doing back home tonight.</li>
+        <li>Listen to it out there, nothing but wind.</li>
+        <li>[lowtech] The fire caught on the first try, which is a good sign.</li>
+        <li>[child] Is this where we live now?</li>
+        <li>[speaker] We came a long way to sit round this fire, so let's make it worth the walk.</li>
+        <li>[speaker] Whatever we build here, we build it together.</li>
+        <li>[speaker] Tonight we rest, and tomorrow this place starts to become home.</li>
+      </plain>
+      <warm>
+        <li>I'm glad it's you lot I came with.</li>
+        <li>[speaker] Look around this fire, because these are the people who made this colony.</li>
+      </warm>
+      <blunt>
+        <li>Shelter first, speeches later.</li>
+      </blunt>
+      <cheerful>
+        <li>A whole new place, and it's ours to name.</li>
+      </cheerful>
+      <gloomy>
+        <li>I hope we didn't leave too much behind.</li>
+      </gloomy>
+      <cold>
+        <li>We have work to do in the morning.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

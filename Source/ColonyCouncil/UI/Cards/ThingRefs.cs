@@ -194,7 +194,7 @@ namespace ColonyCouncil
                     case ThingKind.People:
                         return Faction(r) != null;
                     case ThingKind.Colony:
-                        return WorldObject(r) != null || Home(r) != null;
+                        return WorldObject(r) != null || Home(r) != null || WorldLedger.ColonyRecord(r.id) != null;
                     case ThingKind.House:
                         return House(r) != null;
                     case ThingKind.Tile:
@@ -276,7 +276,8 @@ namespace ColonyCouncil
                     var home = Home(r);
                     if (home != null) return Homes.Name(home);
                     var s = Settlement(r);
-                    return s != null ? s.LabelCap.ToString() : null;
+                    // A colony of the past: its name on the ledger's record of every colony.
+                    return s != null ? s.LabelCap.ToString() : WorldLedger.ColonyRecord(r.id)?.name;
                 }
                 case ThingKind.House:
                 {

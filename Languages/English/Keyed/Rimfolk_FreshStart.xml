@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    A fresh start in the same world (Source/ColonyCouncil/Colonies/; docs/design/stage3-many-colonies.md, release 1):
+    the place picked on the world map, the founding window, the newcomers' window, the arrival, the records, the old
+    colony kept or abandoned, the seat button, and the colonies on the region map's Ours lens and their cards.
+  -->
+
+  <!-- Settings: Many colonies -->
+  <CC_SetSec_Colonies>Many colonies</CC_SetSec_Colonies>
+  <CC_Settings_FreshStarts>Fresh starts</CC_Settings_FreshStarts>
+  <CC_Settings_FreshStarts_Tip>"Found a new colony" on a colony's card: pick a place on the world map, choose who goes from that home (each grown-up's wish shown), newcomers or not, and whether the old colony is kept as a second home or abandoned. The party goes by the journey planner's caravan, or by the colony's own pods, shuttle or gravship; when their caravan reaches the place you're asked whether to settle there, which is the game's own Settle. Off: nothing new is offered, and a founding under way goes on as planned.</CC_Settings_FreshStarts_Tip>
+  <CC_SetNote_FreshStarts>Found a new colony from a colony's card, with people from the old one, newcomers or both.</CC_SetNote_FreshStarts>
+  <CC_Settings_Newcomers>Newcomers</CC_Settings_Newcomers>
+  <CC_Settings_Newcomers_Tip>A new colony may call newcomers, made with the game's own window for new people (the one it offers after a game over). They are free when the old colony is abandoned at the same time; with the old colony kept they come at most once a year, and the colony pays their passage from its stores (silver and food worth about what they bring).</CC_Settings_Newcomers_Tip>
+  <CC_SetNote_Newcomers>New people for a new colony, made with the game's own window.</CC_SetNote_Newcomers>
+
+  <!-- The place on the world map -->
+  <CC_Found_Act>Found a new colony</CC_Found_Act>
+  <CC_Found_ActTip>Pick a place on the world map, then choose who goes from here, newcomers or not, and what becomes of this colony.</CC_Found_ActTip>
+  <CC_Found_No_Off>Fresh starts are off in the settings (Many colonies).</CC_Found_No_Off>
+  <CC_Found_No_NotHome>Only one of the colony's homes can found a new colony.</CC_Found_No_NotHome>
+  <CC_Found_No_Orbit>A home in orbit can't send a founding party.</CC_Found_No_Orbit>
+  <CC_Found_No_UnderWay>A new colony is already being founded at {PLACE}.</CC_Found_No_UnderWay>
+  <CC_Found_No_Limit>The game allows {COUNT} colonies at most, and one more isn't possible from here: change it in the game's Options, Gameplay (five at most).</CC_Found_No_Limit>
+  <CC_Found_No_Tile>That isn't a place a colony can be founded.</CC_Found_No_Tile>
+  <CC_Found_No_Taken>Something already stands there.</CC_Found_No_Taken>
+  <CC_Found_Land>The land of {PEOPLE} ({STANCE}).</CC_Found_Land>
+  <CC_Found_Town>{TOWN} of {PEOPLE}, {STANCE}, {TILES} tiles away.</CC_Found_Town>
+  <CC_Found_NoTowns>No town within {TILES} tiles.</CC_Found_NoTowns>
+  <CC_Found_Road>From {HOME}: {DAYS} by caravan.</CC_Found_Road>
+  <CC_Found_NoRoad>From {HOME}: no way there by caravan.</CC_Found_NoRoad>
+  <CC_Found_Goodwill>Settling this close to a town costs goodwill each season: {LIST}.</CC_Found_Goodwill>
+
+  <!-- The founding window -->
+  <CC_Found_Title>A new colony: {PLACE}</CC_Found_Title>
+  <CC_Found_Subtitle>From {HOME}, {PARTY}.</CC_Found_Subtitle>
+  <CC_Found_Who>Who goes from {HOME}</CC_Found_Who>
+  <CC_Found_WhoLine>Your choice. Each grown-up's wish is shown with why: anyone sent or kept against it feels uprooted for a season and may ask later to move, and close bonds split between the two colonies feel parted for a season. Nobody refuses. Children follow their parents unless you move them.</CC_Found_WhoLine>
+  <CC_Found_Child>(a child)</CC_Found_Child>
+  <CC_Found_ChildFollows>Goes where their parents go unless moved.</CC_Found_ChildFollows>
+  <CC_Found_Wish_Go>wants to go</CC_Found_Wish_Go>
+  <CC_Found_Wish_Stay>wants to stay</CC_Found_Wish_Stay>
+  <CC_Found_Wish_Torn>torn</CC_Found_Wish_Torn>
+  <CC_Found_Against>against their wish</CC_Found_Against>
+  <CC_Found_AgainstSent>Sent against their wish, {PAWN} will feel uprooted for a season, and may ask later to move back.</CC_Found_AgainstSent>
+  <CC_Found_AgainstKept>Kept against their wish, {PAWN} will feel uprooted for a season, and may ask later to move to the new colony.</CC_Found_AgainstKept>
+  <CC_Found_Why_KinGoing>their own go (a partner, a child or a parent)</CC_Found_Why_KinGoing>
+  <CC_Found_Why_KinStaying>their own stay (a partner, a child or a parent)</CC_Found_Why_KinStaying>
+  <CC_Found_Why_AtOdds>at odds with most here</CC_Found_Why_AtOdds>
+  <CC_Found_Why_FriendsGoing>close friends go</CC_Found_Why_FriendsGoing>
+  <CC_Found_Why_FriendsStaying>close friends stay</CC_Found_Why_FriendsStaying>
+  <CC_Found_Why_RivalsGoing>a rival goes</CC_Found_Why_RivalsGoing>
+  <CC_Found_Why_RivalsStaying>a rival stays</CC_Found_Why_RivalsStaying>
+  <CC_Found_Why_Office>a seat on the council here</CC_Found_Why_Office>
+  <CC_Found_Why_OwnRoom>a room of their own here</CC_Found_Why_OwnRoom>
+  <CC_Found_Why_Elder>old, and settled here</CC_Found_Why_Elder>
+  <CC_Found_Why_Young>young, and ready for somewhere new</CC_Found_Why_Young>
+  <CC_Found_Cant_NotOurs>Not one of this home's people.</CC_Found_Cant_NotOurs>
+  <CC_Found_Cant_Lodger>A guest of another people's, not the colony's to send.</CC_Found_Cant_Lodger>
+  <CC_Found_Cant_Leaving>Being sent away by the council.</CC_Found_Cant_Leaving>
+  <CC_Found_Cant_OtherJourney>Planned on another journey.</CC_Found_Cant_OtherJourney>
+  <CC_Found_Cant_Away>Away from home now.</CC_Found_Cant_Away>
+  <CC_Found_ThePlace>The place</CC_Found_ThePlace>
+  <CC_Found_How>How they go</CC_Found_How>
+  <CC_Found_Means_Caravan>By caravan (the journey planner)</CC_Found_Means_Caravan>
+  <CC_Found_Means_Pods>By the colony's own pods or shuttle</CC_Found_Means_Pods>
+  <CC_Found_Means_Gravship>By the gravship</CC_Found_Means_Gravship>
+  <CC_Found_MeansLine_Caravan>The journey planner plans it: one way, with food for the road and fifteen days more, and what raises a first shelter by the colony's means from the stores. Open it from the Journeys section to change who brings what. When their caravan reaches the place you'll be asked whether to settle there.</CC_Found_MeansLine_Caravan>
+  <CC_Found_MeansLine_Pods>Load the pods or the shuttle the game's way and send them to the place. Once they land and their caravan stands at the place, you'll be asked whether to settle there.</CC_Found_MeansLine_Pods>
+  <CC_Found_MeansLine_Gravship>Fly the gravship to the place the game's way. The colony stands where it lands. Without a grav anchor left behind, the game abandons the old colony when the ship takes off.</CC_Found_MeansLine_Gravship>
+  <CC_Found_MeansLine_Newcomers>Nobody goes from the colony: the settlement is made the game's way and the newcomers walk in.</CC_Found_MeansLine_Newcomers>
+  <CC_Found_NewcomersHead>Newcomers</CC_Found_NewcomersHead>
+  <CC_Found_NewcomersCheck>Call newcomers ({CALL})</CC_Found_NewcomersCheck>
+  <CC_Found_NewcomersFree>Free, with the old colony abandoned at the same time.</CC_Found_NewcomersFree>
+  <CC_Found_NewcomersPrice>With the old colony kept, their passage is paid from the stores of {HOME}: silver and food worth about what each one brings, at least {SILVER} each. At most once a year.</CC_Found_NewcomersPrice>
+  <CC_Found_NewcomersNotYet>With the old colony kept, newcomers come at most once a year: the next from {DATE}.</CC_Found_NewcomersNotYet>
+  <CC_Found_NewcomersWhen>You make them with the game's own window for new people: at once with nobody going, else once the colony stands.</CC_Found_NewcomersWhen>
+  <CC_Found_OldHead>What becomes of {HOME}</CC_Found_OldHead>
+  <CC_Found_Keep>Kept, as a second home</CC_Found_Keep>
+  <CC_Found_KeepLine>Its people go on as they were, with their own council and calendar. The seat can move later from a colony's card, at most once a season.</CC_Found_KeepLine>
+  <CC_Found_MakeSeat>Make the new colony the seat ({SEAT}) once it stands</CC_Found_MakeSeat>
+  <CC_Found_MakeSeatTip>The seat is where the colony as a whole is run from: the world's attention, the speaker who signs letters to the world, the world's days on the calendar, and the region's faces. The old colony's people trust the council a little less when it moves.</CC_Found_MakeSeatTip>
+  <CC_Found_Abandon>Abandoned, once the new colony stands and those who go have left</CC_Found_Abandon>
+  <CC_Found_AbandonLine>Everyone goes. The game's own Abandon follows, and the old place becomes a ruin on the map.</CC_Found_AbandonLine>
+  <CC_Found_AbandonLeft>Left behind: {NAMES}. Anyone still there when it is abandoned is lost to the colony, as the game's own Abandon does.</CC_Found_AbandonLeft>
+  <CC_Found_LimitLine>The game allows {COUNT} colonies (Options, Gameplay). Founding this one raises it to {TO}: the setting is shared by every save, and you can lower it again in the game's Options.</CC_Found_LimitLine>
+  <CC_Found_LimitBack>Rimfolk sets it back by one once the old colony is abandoned, unless you changed it meanwhile.</CC_Found_LimitBack>
+  <CC_Found_MapTime>Two colonies cost about twice the map time.</CC_Found_MapTime>
+  <CC_Found_Confirm>Found the colony</CC_Found_Confirm>
+  <CC_Found_JourneyPlanned>A journey is already planned from here: call it off first.</CC_Found_JourneyPlanned>
+  <CC_Found_No_Nobody>Choose who goes, or call newcomers.</CC_Found_No_Nobody>
+  <CC_Found_No_NewcomersNotYet>Newcomers can't come this year with the old colony kept.</CC_Found_No_NewcomersNotYet>
+  <CC_Found_No_ChildrenOnly>Children can't found a colony on their own.</CC_Found_No_ChildrenOnly>
+  <CC_Found_No_NoMeans>Choose how they go.</CC_Found_No_NoMeans>
+  <CC_Found_No_NobodyStays>Keeping the old colony needs a grown colonist left in it.</CC_Found_No_NobodyStays>
+
+  <!-- Setting it going, and the place -->
+  <CC_Found_SendLabel>A new colony at {PLACE}</CC_Found_SendLabel>
+  <CC_Found_Send_Pods>{NAMES} are to found a new colony at {PLACE}. Load the pods or the shuttle and send them there the game's way. Once their caravan stands at the place, you'll be asked whether to settle.</CC_Found_Send_Pods>
+  <CC_Found_Send_Gravship>{NAMES} are to found a new colony at {PLACE}. Fly the gravship there the game's way: the colony stands where it lands.</CC_Found_Send_Gravship>
+  <CC_Found_LimitRaised>The game's colony limit was raised to {COUNT} for this (Options, Gameplay). It is shared by every save, and you can lower it again there.</CC_Found_LimitRaised>
+  <CC_Found_CalledOff>The founding at {PLACE} is called off.</CC_Found_CalledOff>
+  <CC_Found_CallOffConfirm>Call off the new colony at {PLACE}? A journey planned for it is called off too.</CC_Found_CallOffConfirm>
+  <CC_Found_ActCallOff>Call off the new colony</CC_Found_ActCallOff>
+  <CC_Found_ActCallOffTip>The founding under way from here is called off, with its journey if it hasn't left.</CC_Found_ActCallOffTip>
+  <CC_Found_ActJourney>Plan the founding party's journey</CC_Found_ActJourney>
+  <CC_Found_ActJourneyTip>The journey planner's plan for the party, one way to the place, with the founding kit.</CC_Found_ActJourneyTip>
+  <CC_Found_AskSettleLabel>Settle here?</CC_Found_AskSettleLabel>
+  <CC_Found_AskSettleHere>They are at the place chosen.</CC_Found_AskSettleHere>
+  <CC_Found_AskSettleNear>They are close to the place chosen.</CC_Found_AskSettleNear>
+  <CC_Found_AskSettleText>{NAMES} have come to {PLACE}, the place chosen for a new colony from {MOTHER}. {NEAR}\n\nSettle here: the game's own Settle makes the colony and its map, and they set to work on it.</CC_Found_AskSettleText>
+  <CC_Found_Choice_Settle>Settle here</CC_Found_Choice_Settle>
+  <CC_Found_Choice_NotYet>Not yet</CC_Found_Choice_NotYet>
+
+  <!-- The colony stands -->
+  <CC_Found_Newcomers>newcomers</CC_Found_Newcomers>
+  <CC_Found_LetterLabel>A new colony: {PLACE}</CC_Found_LetterLabel>
+  <CC_Found_LetterText>{PLACE} stands, founded by {NAMES} from {MOTHER}: {PARTY}.</CC_Found_LetterText>
+  <CC_Found_Kept>{MOTHER} is kept as a second home, with its own council and calendar.</CC_Found_Kept>
+  <CC_Found_Kept_Seat>{MOTHER} is kept as a second home, and the seat ({SEAT}) is here now.</CC_Found_Kept_Seat>
+  <CC_Found_Abandoning>{MOTHER} will be abandoned once everyone who goes has left it.</CC_Found_Abandoning>
+  <CC_Found_SeatNotYet>The seat stays where it is for now: {WHY}</CC_Found_SeatNotYet>
+  <CC_Found_NewcomersComing>The newcomers called are on their way: you'll be asked who they are.</CC_Found_NewcomersComing>
+  <CC_Found_History>{PLACE} was founded by {NAMES}, from {MOTHER}.</CC_Found_History>
+  <CC_Found_UprootedSent>sent from {MOTHER} against their wish</CC_Found_UprootedSent>
+  <CC_Found_UprootedKept>kept from {PLACE} against their wish</CC_Found_UprootedKept>
+  <CC_Found_FirstNightLabel>the first night</CC_Found_FirstNightLabel>
+  <CC_Found_FirstNightCause>the first night at {PLACE}</CC_Found_FirstNightCause>
+  <CC_Found_Abandoning_Long>Leaving the old colony</CC_Found_Abandoning_Long>
+  <CC_Found_AbandonedHistory>{MOTHER} was abandoned, its people gone to {PLACE}.</CC_Found_AbandonedHistory>
+
+  <!-- The newcomers -->
+  <CC_Found_AskNewcomersLabel>Newcomers for {PLACE}</CC_Found_AskNewcomersLabel>
+  <CC_Found_AskNewcomersText>{PLACE} stands, and the colony's {CALL} was answered. Who are the newcomers? You make them with the game's own window for new people.</CC_Found_AskNewcomersText>
+  <CC_Found_AskNewcomersPrice>Their passage is paid from the stores of {MOTHER} as they come: silver and food worth about what they bring.</CC_Found_AskNewcomersPrice>
+  <CC_Found_Choice_Choose>Choose the newcomers</CC_Found_Choice_Choose>
+  <CC_Found_NewcomersTitle>Newcomers for {PLACE}</CC_Found_NewcomersTitle>
+  <CC_Found_PriceLine>Their passage: {PRICE} silver's worth from the stores of {HOME}, {SILVER} silver and {FOOD} in food.</CC_Found_PriceLine>
+  <CC_Found_CantPay>The stores can't pay their passage ({SILVER} silver's worth in silver and food).</CC_Found_CantPay>
+  <CC_Found_Newcomers_Long>The newcomers arrive</CC_Found_Newcomers_Long>
+  <CC_Found_NewcomersLabel>Newcomers at {PLACE}</CC_Found_NewcomersLabel>
+  <CC_Found_NewcomersText>{NAMES} have come to {PLACE}, answering {CALL}. They walk in from the edge of the land with what they brought.</CC_Found_NewcomersText>
+  <CC_Found_NewcomersPaid>Their passage, {SILVER} silver's worth, was paid from the stores of {MOTHER}.</CC_Found_NewcomersPaid>
+  <CC_Found_NewcomersHistory>{NAMES} came to {PLACE} as newcomers.</CC_Found_NewcomersHistory>
+  <CC_Found_NewcomersLapsed>Nobody answered the call for newcomers to {PLACE}, and it was let go.</CC_Found_NewcomersLapsed>
+
+  <!-- Asking to move -->
+  <CC_Found_AskMoveLabel>{PAWN} asks to move</CC_Found_AskMoveLabel>
+  <CC_Found_AskMoveText>{PAWN} never wanted to stay at {HOME}, and asks to go and live at {PLACE}.\n\nLet them go: a journey is planned to take them there. Or ask them to stay.</CC_Found_AskMoveText>
+  <CC_Found_Choice_LetGo>Let them go</CC_Found_Choice_LetGo>
+  <CC_Found_Choice_Stay>Ask them to stay</CC_Found_Choice_Stay>
+  <CC_Found_StayWhy>asked to stay when they wanted to move to {PLACE}</CC_Found_StayWhy>
+
+  <!-- The seat -->
+  <CC_Seat_Act>Make this the seat ({SEAT})</CC_Seat_Act>
+  <CC_Seat_ActTip>The seat is where the colony as a whole is run from: the events and letters about no home of their own, the speaker who signs letters to the world, the world's days on the calendar from now on, and the region's faces near it. Each colony keeps its own council, calendar and names. The old seat's people trust the council a little less. At most once a season.</CC_Seat_ActTip>
+  <CC_Seat_No_NotHome>Only one of the colony's homes can be the seat.</CC_Seat_No_NotHome>
+  <CC_Seat_No_OneColony>With one colony, it is the seat.</CC_Seat_No_OneColony>
+  <CC_Seat_No_Already>This is the seat.</CC_Seat_No_Already>
+  <CC_Seat_No_Orbit>A home in orbit can't be the seat: nobody walks in.</CC_Seat_No_Orbit>
+  <CC_Seat_No_ThisSeason>The seat moved this season: it can move again from {DATE}.</CC_Seat_No_ThisSeason>
+  <CC_Seat_TrustWhy>the seat moved to {PLACE}</CC_Seat_TrustWhy>
+  <CC_Seat_History>The seat moved from {OLD} to {PLACE}: {SEAT}.</CC_Seat_History>
+  <CC_Seat_LetterLabel>The seat moves to {PLACE}</CC_Seat_LetterLabel>
+  <CC_Seat_LetterText>The colony is run from {PLACE} now ({SEAT}). The world's attention follows, and so do the speaker's letters to the world. {OLD} keeps its own council and calendar, and its people trust the council a little less.</CC_Seat_LetterText>
+
+  <!-- The colonies on the Ours lens and their cards -->
+  <CC_Lens_Ours_Group3>The colonies of the past</CC_Lens_Ours_Group3>
+  <CC_Colonies_CardHead>The colony</CC_Colonies_CardHead>
+  <CC_Colonies_GoThere>Go there</CC_Colonies_GoThere>
+  <CC_Colonies_GoThereTip>The map in view changes to this colony, and every page with it.</CC_Colonies_GoThereTip>
+  <CC_Colonies_InView>This colony is in view.</CC_Colonies_InView>
+  <CC_Colonies_People>{GROWN} grown, {CHILDREN} children</CC_Colonies_People>
+  <CC_Colonies_Grown>{GROWN} grown</CC_Colonies_Grown>
+  <CC_Colonies_Speaker>speaker {NAME}</CC_Colonies_Speaker>
+  <CC_Colonies_Mood>mood {MOOD}%</CC_Colonies_Mood>
+  <CC_Colonies_Wealth>Wealth: {WEALTH}.</CC_Colonies_Wealth>
+  <CC_Colonies_NextDay>Its next day: {DAY}, {DATE}.</CC_Colonies_NextDay>
+  <CC_Colonies_FoundedFrom>Founded {AGO} from {MOTHER}.</CC_Colonies_FoundedFrom>
+  <CC_Colonies_IsSeat>The seat ({SEAT}).</CC_Colonies_IsSeat>
+  <CC_Colonies_NotSeat>The seat is at {SEAT}.</CC_Colonies_NotSeat>
+  <CC_Colonies_FoundedHere>{PLACE} was founded from here {AGO}.</CC_Colonies_FoundedHere>
+  <CC_Colonies_OnItsWay>on its way</CC_Colonies_OnItsWay>
+  <CC_Colonies_Founding>A new colony at {PLACE}: {NAMES}, {STAGE}.</CC_Colonies_Founding>
+  <CC_Colonies_FoundingPlanned>setting off at {WHEN}</CC_Colonies_FoundingPlanned>
+  <CC_Colonies_FoundingOnTheWay>on the road</CC_Colonies_FoundingOnTheWay>
+  <CC_Colonies_FoundingNoJourney>no journey planned yet</CC_Colonies_FoundingNoJourney>
+  <CC_Colonies_FoundingBy_Pods>to go by the colony's pods or shuttle</CC_Colonies_FoundingBy_Pods>
+  <CC_Colonies_FoundingBy_Gravship>to go by the gravship</CC_Colonies_FoundingBy_Gravship>
+  <CC_Colonies_FoundingBy_Newcomers>the newcomers to choose</CC_Colonies_FoundingBy_Newcomers>
+  <CC_Colonies_FoundingBy_Caravan>by caravan</CC_Colonies_FoundingBy_Caravan>
+  <CC_Colonies_EndedWord_Abandoned>abandoned</CC_Colonies_EndedWord_Abandoned>
+  <CC_Colonies_EndedWord_HandedOver>handed over</CC_Colonies_EndedWord_HandedOver>
+  <CC_Colonies_EndedWord_Lost>lost</CC_Colonies_EndedWord_Lost>
+  <CC_Colonies_EndedWord_TakenBack>taken back</CC_Colonies_EndedWord_TakenBack>
+  <CC_Colonies_EndedWord_None>standing</CC_Colonies_EndedWord_None>
+  <CC_Colonies_Ended_Abandoned>Founded {FOUNDED}, abandoned {ENDED}.</CC_Colonies_Ended_Abandoned>
+  <CC_Colonies_Ended_HandedOver>Founded {FOUNDED}, handed over {ENDED}.</CC_Colonies_Ended_HandedOver>
+  <CC_Colonies_Ended_Lost>Founded {FOUNDED}, lost {ENDED}.</CC_Colonies_Ended_Lost>
+  <CC_Colonies_Ended_TakenBack>Founded {FOUNDED}, taken back {ENDED}.</CC_Colonies_Ended_TakenBack>
+  <CC_Colonies_Ended_None>Founded {FOUNDED}.</CC_Colonies_Ended_None>
+
+  <!-- The calendars -->
+  <CC_Cal_Name_Parting>The parting for {PLACE}</CC_Cal_Name_Parting>
+  <CC_Cal_Name_OldFounding>The founding of {PLACE}</CC_Cal_Name_OldFounding>
+  <CC_Cal_Origin_Parting>The day {NAMES} set out to found {PLACE}, in year {YEAR}.</CC_Cal_Origin_Parting>
+  <CC_Cal_Origin_OldFounding>The day {PLACE} was founded, in year {YEAR}: the colony's home before this one.</CC_Cal_Origin_OldFounding>
+
+</LanguageData>

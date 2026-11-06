@@ -515,7 +515,13 @@ namespace ColonyCouncil
                 Put(group, r);
             }
             if (m.lens == Lens.Threats) Fights(home, r => Put(RegionViewsMath.Group(Lens.Threats, RegionViewsMath.RowKind.Fight), r));
-            if (m.lens == Lens.Ours) Settlers(r => Put(RegionViewsMath.Group(Lens.Ours, RegionViewsMath.RowKind.Hamlet), r));
+            if (m.lens == Lens.Ours)
+            {
+                Settlers(r => Put(RegionViewsMath.Group(Lens.Ours, RegionViewsMath.RowKind.Hamlet), r));
+                // Every colony, however far (Colonies/ColonyCards.cs): homes beyond the reach, a founding on its way, the colonies of the past.
+                var shown = new HashSet<int>(places.Where(p => p.row == RegionViewsMath.RowKind.Home).Select(p => p.wo.ID));
+                ColonyCards.OursRows(shown, Put);
+            }
             foreach (var g in byGroup.Values)
             {
                 g.rows.Sort((a, b) => RegionViewsMath.Compare(a.order, b.order));
@@ -532,7 +538,7 @@ namespace ColonyCouncil
             {
                 case Lens.Threats: return group == 0 ? Icons.Raid : group == 1 ? Icons.Warning : Icons.LensThreats;
                 case Lens.Trade: return group == 0 ? Icons.Trader : group == 1 ? Icons.LensTrade : Icons.ModeMap;
-                case Lens.Ours: return group == 0 ? Icons.Colony : group == 1 ? Icons.LensOurs : Icons.Trader;
+                case Lens.Ours: return group == 0 ? Icons.Colony : group == 1 ? Icons.LensOurs : group == ColonyCards.PastGroup ? Icons.History : Icons.Trader;
                 case Lens.Fortunes: return group == 0 ? Icons.LensFortunes : Icons.History;
                 default: return Icons.World;
             }
@@ -659,19 +665,8 @@ namespace ColonyCouncil
             if (tips.Count > 0) r.tip = string.Join("\n", tips);
         }
 
-        private static void HomeRow(LensRow r, Settlement s, Place p)
-        {
-            var map = s.Map;
-            r.state = map != null && map == Homes.Seat && Homes.All.Count > 1 ? "CC_Lens_Seat".Translate() : "CC_Lens_Home".Translate();
-            r.stateColor = UiKit.Gold;
-            r.faction = null;
-            if (map != null)
-            {
-                int people = IncidentWorker_Happening.Colonists(map).Count;
-                r.line = "CC_Lens_HomePeople".Translate(people.Named("COUNT")).Resolve();
-                if (p.facts.threatened) r.line += " · " + "CC_Lens_ThreatNow".Translate().Resolve();
-            }
-        }
+        /// <summary>A home's row (Colonies/ColonyCards.cs): home or the seat, its grown-ups and children, speaker, mood and strain, a threat now; its card's lines on hover.</summary>
+        private static void HomeRow(LensRow r, Settlement s, Place p) => ColonyCards.HomeRow(r, s.Map, p.facts.threatened);
 
         private static void CampRow(LensRow r, Site site)
         {

@@ -117,6 +117,9 @@ namespace ColonyCouncil
             }
             LabelFit(new Rect(x, rect.y + 1f, Mathf.Max(0f, right - statW - x), 32f), title, Color.white, GameFont.Medium);
             float lineRight = article != null ? right + ViewHeadMath.HelpGap + ViewHeadMath.Help : right;
+            // With more than one colony, the colony in view in a chip at the end of the line, a click away from another (UI/ColonyView.cs).
+            float chip = ColonyView.Chip(lineRight, rect.y + 30f, Mathf.Max(0f, (lineRight - x) * 0.45f));
+            if (chip > 0f) lineRight -= chip + 8f;
             if (!subtitle.NullOrEmpty()) LabelFit(new Rect(x, rect.y + 29f, Mathf.Max(0f, lineRight - x), 22f), subtitle, Faint);
             bool modes = extras != null && extras.HasModes;
             float height = ViewHeadMath.Height(modes);
