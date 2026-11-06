@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The third round of variety: the council's questions about what the colony meets (Dilemmas/DilemmaWorkers_Variety3.cs). -->
+
+  <!-- The inspired hands -->
+  <CC_DlmE_BenchGone>The bench is gone, or can't be worked now.</CC_DlmE_BenchGone>
+  <CC_DlmE_ArtShort>The stores no longer hold enough {0} for the piece.</CC_DlmE_ArtShort>
+  <CC_Impact_ArtBill>{0} makes the {1} in {2} at the bench, alone, while the inspiration lasts</CC_Impact_ArtBill>
+  <CC_Impact_ArtBillBrief>{0} works the piece in {1}</CC_Impact_ArtBillBrief>
+  <CC_Impact_ArtSpent>The colony's {0} goes into it</CC_Impact_ArtSpent>
+  <CC_Impact_ArtSpentBrief>the {0} spent</CC_Impact_ArtSpentBrief>
+  <CC_DlmE_ArtBillSet>{PAWN_nameDef} has the {BENCH} to make the {PIECE} in {STUFF}.</CC_DlmE_ArtBillSet>
+
+  <!-- The shakes -->
+  <CC_DlmE_ShakesPassed>{PAWN_nameDef} is through the worst of it already.</CC_DlmE_ShakesPassed>
+  <CC_DlmE_DrugGone>There's no {0} left in the stores.</CC_DlmE_DrugGone>
+  <CC_Impact_Dose>{0} takes one dose of the {1} from the stores: the shaking stops, and the habit stays</CC_Impact_Dose>
+  <CC_Impact_DoseBrief>{0} eased, still wanting it</CC_Impact_DoseBrief>
+  <CC_DlmE_DoseTaken>{PAWN_nameDef} is going to take a dose of the {DRUG} from the stores.</CC_DlmE_DoseTaken>
+  <CC_DlmE_NoPolicy>None of the colony's drug policies keeps the {0} from anyone.</CC_DlmE_NoPolicy>
+  <CC_Impact_RideOut>{0} is put on the colony's "{1}" policy, which never gives the {2}: a few hard days of withdrawal, then the habit is broken</CC_Impact_RideOut>
+  <CC_Impact_RideOutBrief>{0} kept from it until the habit breaks</CC_Impact_RideOutBrief>
+  <CC_DlmE_PolicySet>{PAWN_nameDef} is on the "{POLICY}" drug policy now, and won't be given the {DRUG}.</CC_DlmE_PolicySet>
+
+  <!-- The food that won't keep -->
+  <CC_DlmE_StoveGone>The stove is gone, or can't be used now.</CC_DlmE_StoveGone>
+  <CC_DlmE_FoodGone>The {0} is gone from the stores.</CC_DlmE_FoodGone>
+  <CC_Impact_CookAll>{0} cooks all the {1} into simple meals today, first on the stove</CC_Impact_CookAll>
+  <CC_Impact_CookAllBrief>the {0} cooked before it turns</CC_Impact_CookAllBrief>
+  <CC_Impact_CookSupper>{0} cooks enough of the {1} for tonight's supper; the rest goes bad</CC_Impact_CookSupper>
+  <CC_Impact_CookSupperBrief>a supper of the {0}, the rest let go</CC_Impact_CookSupperBrief>
+  <CC_DlmE_CookSet>The {STOVE} has a bill for {N} simple meals from the {FOOD}, first on the list.</CC_DlmE_CookSet>
+
+  <!-- The stores in the rain -->
+  <CC_DlmE_StoresGone>The stockpile is gone.</CC_DlmE_StoresGone>
+  <CC_DlmE_NoRoofHolds>No wall or column stands close enough to carry a roof over the open part.</CC_DlmE_NoRoofHolds>
+  <CC_DlmE_NothingRoofed>None of the stockpile is under a roof: giving up the open part would give up all of it.</CC_DlmE_NothingRoofed>
+  <CC_Impact_RoofAll>The open part of {0} marked for a roof, for the builders to put up in their own time</CC_Impact_RoofAll>
+  <CC_Impact_RoofPart>The open part of {0} marked for a roof where the walls can carry one; the rest stays open</CC_Impact_RoofPart>
+  <CC_Impact_RoofBrief>a roof over {0}</CC_Impact_RoofBrief>
+  <CC_DlmE_RoofMarked>The open part of {ZONE} is marked for a roof.</CC_DlmE_RoofMarked>
+  <CC_Impact_GiveUpOpen>{0} drawn in under its roof: what lies in the open is carried to the colony's other stores where there's room</CC_Impact_GiveUpOpen>
+  <CC_Impact_GiveUpOpenBrief>{0} drawn in under the roof</CC_Impact_GiveUpOpenBrief>
+  <CC_DlmE_OpenGivenUp>{ZONE} is drawn in under its roof. What lay in the open will be carried to the other stores.</CC_DlmE_OpenGivenUp>
+
+  <!-- The old walls -->
+  <CC_DlmE_RuinGone>The old walls are gone.</CC_DlmE_RuinGone>
+  <CC_Impact_PullDown>The old walls marked to come down, for the builders to take apart for the {0}</CC_Impact_PullDown>
+  <CC_Impact_PullDownBrief>the ruin taken down for its {0}</CC_Impact_PullDownBrief>
+  <CC_Impact_ClaimWalls>The old walls of {0} claimed as the colony's own, to mend and to build on</CC_Impact_ClaimWalls>
+  <CC_Impact_ClaimWallsBrief>the ruin the colony's own</CC_Impact_ClaimWallsBrief>
+  <CC_DlmE_WallsMarked>The old walls of {STUFF} are marked to come down.</CC_DlmE_WallsMarked>
+  <CC_DlmE_WallsClaimed>The old walls of {STUFF} are the colony's now.</CC_DlmE_WallsClaimed>
+
+  <!-- The new room -->
+  <CC_DlmE_BedTaken>The new room's bed is someone's already.</CC_DlmE_BedTaken>
+  <CC_Impact_ClaimBed>The new room's bed is {0}'s from tonight</CC_Impact_ClaimBed>
+  <CC_Impact_ClaimBedBrief>{0} has the new room</CC_Impact_ClaimBedBrief>
+  <CC_DlmE_BedClaimed>The new room is {PAWN_nameDef}'s now.</CC_DlmE_BedClaimed>
+
+  <!-- What to learn next -->
+  <CC_DlmE_StudyChosen>A study has been chosen meanwhile.</CC_DlmE_StudyChosen>
+  <CC_DlmE_StudyClosed>{0} can't be taken up now.</CC_DlmE_StudyClosed>
+  <CC_Impact_Study>The colony's study set to {0}: the researchers go to their benches and work at it</CC_Impact_Study>
+  <CC_Impact_StudyBrief>the colony learns {0}</CC_Impact_StudyBrief>
+  <CC_DlmE_StudySet>The colony's study is {STUDY} now.</CC_DlmE_StudySet>
+
+  <!-- The hurt beast, and the wild one (Happenings/Workers_Variety3.cs) -->
+  <CC_DlmE_BeastGone>{0} is gone.</CC_DlmE_BeastGone>
+  <CC_DlmE_CantTame>{0} can't be tamed.</CC_DlmE_CantTame>
+  <CC_Impact_MarkHunt>{0} marked for the colony's hunters</CC_Impact_MarkHunt>
+  <CC_Impact_MarkHuntBrief>the hunters go to {0}</CC_Impact_MarkHuntBrief>
+  <CC_Impact_MarkTame>{0} marked for taming: the handlers try as soon as they can</CC_Impact_MarkTame>
+  <CC_Impact_MarkTameBrief>the handlers try to tame {0}</CC_Impact_MarkTameBrief>
+  <CC_Impact_TameRisk>A failed tame may turn {0} on the handler, as the game has it</CC_Impact_TameRisk>
+  <CC_Impact_TameRiskBrief>a failed tame may turn on the handler</CC_Impact_TameRiskBrief>
+  <CC_DlmE_MarkedHunt>{X_nameDef} is marked for the hunters.</CC_DlmE_MarkedHunt>
+  <CC_DlmE_MarkedTame>{X_nameDef} is marked for taming.</CC_DlmE_MarkedTame>
+
+</LanguageData>

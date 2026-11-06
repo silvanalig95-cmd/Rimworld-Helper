@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Memories from the third round's questions and events (Defs/DilemmaDefs/Rimfolk_Dilemmas_Variety3.xml,
+    Defs/IncidentDefs/Rimfolk_Events_Variety3.xml): the inspired hands, the shakes, the food that won't keep, the stores in
+    the rain, the old walls, the new room, the study chosen, the hurt beast, the ambrosia and the clutch in the grass. Few
+    and small: most answers reuse the council's own memories, and what an answer really does is on the map. The dangers
+    give none: a hurt is the game's pain and nothing on top.
+  -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_ArtFine</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>trusted with the colony's finest</label><description>The council let me work the colony's finest material while the idea was still in my hands. It will be the best thing I ever made.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_ArtWaited</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>told the work comes first</label><description>I had it, the whole piece, and the council said the work comes first. It's going already.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_DoseGiven</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>given a little to steady me</label><description>They let me have some. The shaking stopped, and nobody said anything about it after.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_MadeToQuit</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>kept from it</label><description>The council keeps it from me now. I know why. Knowing doesn't help at three in the morning.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_FoodWasted</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>good food left to rot</label><description>I brought it in, and it went rotten in the stores because nobody had the time to cook it.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_StoresRuined</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>the stores left in the rain</label><description>I carry those stores. The council would rather the rain had them than spare the time.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_RuinPulled</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>the old walls pulled down</label><description>Those walls stood longer than any of us will. Now they're building stone.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_RuinLeft</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>the old walls left standing</label><description>The council left the old walls as they stand. Some things should be older than us.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_RoomOfMyOwn</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>a room of my own at last</label><description>The council gave me the new room. A door that closes, and nobody snoring but me.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_StudyPassedOver</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>my study passed over</label><description>The council chose the other study. Mine will wait its turn, if it gets one.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_LeftHurt</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>left a hurt animal lying</label><description>It was lying there hurt, and the council said leave it to the wild. I keep looking out that way.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Evt_AmbrosiaPicked</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>the ambrosia brought in</label><description>The colony picked the ambrosia and put it in the stores. Sweet, and it pulls at people. I'd have left it.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Evt_Clutch</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>a clutch to raise</label><description>I found the eggs in the grass, and the colony is keeping them warm to see what hatches.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>
