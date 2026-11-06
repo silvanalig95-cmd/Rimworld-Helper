@@ -246,7 +246,8 @@ namespace ColonyCouncil
                         {
                             foreach (var th in things.Where(th => th != null && th.Spawned && InScope(t, th.Position, map, center) && Fits(t, wg, th, x)
                                                                   && (t != WorkTask.Harvest || wg.giverClass.Name != "WorkGiver_PlantsCut"
-                                                                      || map.designationManager.DesignationOn(th, DesignationDefOf.HarvestPlant) != null))
+                                                                      || map.designationManager.DesignationOn(th, DesignationDefOf.HarvestPlant) != null)
+                                                                  && MayNeed(t, th))
                                          .OrderBy(th => th.Position.DistanceToSquared(focus)).Take(40).ToList())
                             {
                                 if (th.IsForbidden(x) || !sc.HasJobOnThing(x, th, false) || !x.CanReach(th, sc.PathEndMode, danger)) continue;
@@ -260,7 +261,7 @@ namespace ColonyCouncil
                         {
                             var cells = sc.PotentialWorkCellsGlobal(x);
                             if (cells != null)
-                                foreach (var c in cells.Where(c => InScope(t, c, map, center)).OrderBy(c => c.DistanceToSquared(focus)).Take(40).ToList())
+                                foreach (var c in cells.Where(c => InScope(t, c, map, center) && MayNeed(t, c, map)).OrderBy(c => c.DistanceToSquared(focus)).Take(40).ToList())
                                 {
                                     if (c.IsForbidden(x) || !sc.HasJobOnCell(x, c, false) || !x.CanReach(c, sc.PathEndMode, danger)) continue;
                                     job = sc.JobOnCell(x, c, false);
@@ -299,6 +300,36 @@ namespace ColonyCouncil
                 return more;
             }
             return null;
+        }
+
+        /// <summary>
+        /// A cell that could hold the task's work at all, asked cheaply before the nearest forty are asked the game's own
+        /// question: for the sowing, one without its crop; for the harvest, one whose plant is ready. Only the nearest
+        /// forty cells of the fields were asked before, so a field sown near the party's spot hid the cells still waiting
+        /// for seed further off, and the planting day's party found "nothing that needed doing" (the player's save).
+        /// </summary>
+        private static bool MayNeed(WorkTask t, IntVec3 c, Map map)
+        {
+            if (t != WorkTask.Sow && t != WorkTask.Harvest) return true;
+            var plant = c.GetPlant(map);
+            if (t == WorkTask.Harvest) return plant != null && plant.HarvestableNow;
+            var crop = c.GetPlantToGrowSettable(map)?.GetPlantDefToGrow();
+            return crop != null && (plant == null || plant.def != crop);
+        }
+
+        /// <summary>The same for a thing: for the shearing and the milking, an animal whose coat or milk is ready.</summary>
+        private static bool MayNeed(WorkTask t, Thing th) =>
+            t != WorkTask.Tend || th is Pawn a && a.AllComps.OfType<CompHasGatherableBodyResource>().Any(c => c.ActiveAndFull);
+
+        /// <summary>
+        /// Why a work party found nothing to do, in its own words where they're known: a sowing whose fields the colony's
+        /// own growers had already sown (the planting day's first row, the player's save), else nothing that needed doing.
+        /// </summary>
+        public static string NoWorkWhy(PlayOut p)
+        {
+            if (p?.map != null && p.tasks != null && p.tasks.Count == 1 && p.tasks[0] == WorkTask.Sow && PlantingDay.Fields(p.map).Any() && PlantingDay.ToSow(p.map) == 0)
+                return "CC_Play_Why_Sown";
+            return "CC_Play_Why_NoWork";
         }
 
         /// <summary>How far out from the middle of the colony the woodpile's trees are looked for.</summary>

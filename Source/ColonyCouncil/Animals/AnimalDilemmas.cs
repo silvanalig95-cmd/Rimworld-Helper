@@ -139,9 +139,10 @@ namespace ColonyCouncil
     {
         private bool Fits(Pawn a, HerdConditions h)
         {
-            if (h.shearable && !AnimalFacts.Shearable(a)) return false;
-            if (h.milkable && !AnimalFacts.Milkable(a)) return false;
-            if (h.shearOrMilk && !AnimalFacts.Shearable(a) && !AnimalFacts.Milkable(a)) return false;
+            // Ready for the day's work, not only of a kind that could be: the shearing day's work party needs a coat to shear.
+            if (h.shearable && !AnimalFacts.ReadyToShear(a)) return false;
+            if (h.milkable && !AnimalFacts.ReadyToMilk(a)) return false;
+            if (h.shearOrMilk && !AnimalFacts.ReadyToShear(a) && !AnimalFacts.ReadyToMilk(a)) return false;
             if (h.pregnant && !AnimalFacts.Pregnant(a)) return false;
             if (h.young && !AnimalFacts.Young(a)) return false;
             return true;

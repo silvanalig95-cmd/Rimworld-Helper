@@ -28,6 +28,27 @@ namespace ColonyCouncil
         /// <summary>How long a plan waits by default for danger to pass and people to be free, after its hours open.</summary>
         public const float DefaultWaitHours = 6f;
 
+        /// <summary>
+        /// Why a gathering didn't come about, by what kept people from sitting down together (MeetingAttendance.GatherBar:
+        /// 1 danger, 2 another gathering, 3 half the colony under arms, 4 someone bleeding): the play-out's own words for each.
+        /// </summary>
+        public static string GatherWhyKey(int bar)
+        {
+            switch (bar)
+            {
+                case 1: return "CC_Play_Why_Danger";
+                case 3: return "CC_Play_Why_Drafted";
+                case 4: return "CC_Play_Why_Bleeding";
+                default: return "CC_Play_Why_Gathering";
+            }
+        }
+
+        /// <summary>
+        /// Why there was no place for it: the weather, when a place in the open was among those it could use and the
+        /// weather kept everyone in (it was told as "nowhere to hold it", the player's desert save); else no place.
+        /// </summary>
+        public static string PlaceWhyKey(bool openAirKeptByWeather) => openAirKeptByWeather ? "CC_Play_Why_Weather" : "CC_Play_Why_Place";
+
         /// <summary>The longest any plan waits, whatever its hours and wait say (so nothing hangs about for days).</summary>
         public const float MaxWaitHours = 30f;
 

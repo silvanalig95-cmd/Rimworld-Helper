@@ -41,8 +41,8 @@ public static class HerdStoryTests
                 Check(!herd.Contains("\"CC_Herd_SpringCalfTitle\"") && !herd.Contains("\"CC_Herd_SpringCalf\"") && herd.Contains("AnimalFacts.YoungWord(baby)"),
                     "the first born of spring is called by its kind's word, never a calf for every kind");
                 Check(herd.Contains("\"CC_Herd_LastSeason_Bird\"") && herd.Contains("\"CC_Herd_Leader_Pens\""), "old age and the leader's ways in the body's words");
-                string kinds = File.ReadAllText(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_HerdStory_Kinds.xml"));
-                Check(!kinds.Contains("calf") && !kinds.Contains("muzzle") && !kinds.Contains("this morning"), "the kinds' words say no calf, no muzzle, no hour they don't know");
+                var kinds = System.Xml.Linq.XDocument.Load(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_HerdStory_Kinds.xml")).Root!.Elements().Select(e => e.Value).ToList();
+                Check(kinds.Count >= 10 && kinds.All(v => !v.Contains("calf") && !v.Contains("muzzle") && !v.Contains("this morning")), "the kinds' words say no calf, no muzzle, no hour they don't know");
             }
         }
 

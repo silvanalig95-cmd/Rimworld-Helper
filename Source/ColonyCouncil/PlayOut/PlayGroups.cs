@@ -225,7 +225,7 @@ namespace ColonyCouncil
         {
             foreach (var h in p.hands.ToList()) PlayWork.Give(p, h.pawn);
             if (p.hands.Any(h => OnIt(p, h.pawn))) return true;
-            p.waitReason = "CC_Play_Why_NoWork".Translate();
+            p.waitReason = PlayWork.NoWorkWhy(p).Translate();
             return false;
         }
 

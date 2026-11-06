@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Why an answer's gathering never came about, said as it was (PlayOutMath.GatherWhyKey): "something else had everyone's
+       attention" stood for these too. -->
+  <CC_Play_Why_Drafted>half the colony was under arms</CC_Play_Why_Drafted>
+  <CC_Play_Why_Bleeding>someone was bleeding and needed tending first</CC_Play_Why_Bleeding>
+
+  <!-- A sowing party whose fields the colony's growers had sown already (PlayWork.NoWorkWhy). -->
+  <CC_Play_Why_Sown>the fields were already sown</CC_Play_Why_Sown>
+
+</LanguageData>

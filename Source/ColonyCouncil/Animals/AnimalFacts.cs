@@ -73,6 +73,12 @@ namespace ColonyCouncil
 
         public static bool Shearable(Pawn a) => CompNamed(a, typeof(CompShearable));
 
+        /// <summary>Its coat is nearly full: a shearing would find work (AnimalMath.ReadyToGather).</summary>
+        public static bool ReadyToShear(Pawn a) => a?.TryGetComp<CompShearable>() is { } c && AnimalMath.ReadyToGather(c.Fullness);
+
+        /// <summary>Its milk is nearly full: a milking would find work (AnimalMath.ReadyToGather).</summary>
+        public static bool ReadyToMilk(Pawn a) => a?.TryGetComp<CompMilkable>() is { } c && AnimalMath.ReadyToGather(c.Fullness);
+
         public static bool LaysEggs(Pawn a) => CompNamed(a, typeof(CompEggLayer));
 
         /// <summary>

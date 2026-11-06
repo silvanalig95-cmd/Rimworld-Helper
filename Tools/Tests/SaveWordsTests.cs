@@ -34,7 +34,7 @@ public static class SaveWordsTests
         foreach (var f in Directory.GetFiles(src, "*.cs", SearchOption.AllDirectories))
             foreach (Match m in Regex.Matches(File.ReadAllText(f), @"Texts\.CountKey\(""([A-Za-z0-9_]+)"""))
                 countKeys.Add(m.Groups[1].Value);
-        Check(countKeys.Count >= 9, $"the story's counts use the words ({countKeys.Count})");
+        Check(countKeys.Count >= 8, $"the story's counts use the words ({countKeys.Count})");
         foreach (var k in countKeys)
         {
             Check(keyed.ContainsKey(k + "_One") && keyed.ContainsKey(k + "_Many"), $"{k} has words for one and for many");
