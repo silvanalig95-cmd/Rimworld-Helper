@@ -215,7 +215,7 @@ reports come before all of it.
 | 8 | F8 adapters (Faction Territories, Factional War, Vanilla Outposts, the Empire, Diplomatic Marriage+), F9 ages | |
 | 9 to 10 | Stage 1, the region comes alive: the new towns' faces and stories, towns rising and falling, trading posts, raiders' camps, travellers to the remote, settlers under protection | its content pass, with what peoples remember (memory in more events' texts, a people's memory of single colonists, Empire titles and Ideology rites in invitations) and the world events' follow-ups (the warlord's son, the town that grew from the settlers' camp) |
 | 11 to 14 | Stage 2 in four rounds: (a) favours owed, pacts and truces, ransom, the envoy; (b) feasts and contests, marriage alliances, wards and hostages; (c) fealty and vassals, council tasks with the keeper of secrets (dropped, 5 November 2026), schemes; (d) house renown, stress against one's nature | a content pass per round, in every age's form |
-| 15 to 16 | Stage 3: many colonies in play, handing a colony over, a fresh start in the same save | its content pass |
+| 15 to 16 | Stage 3: a fresh start in the same save, handing a colony over, many colonies in play (the order revised 6 November 2026) | its content pass |
 
 **Later (approved, not critical; when the long-term plan allows or after it).** Rooms (upgrade advice for nobles'
 bedrooms and a kitchen past its stove, odd shapes, more mod furniture and themes); defense (Vanilla Furniture Expanded
@@ -310,7 +310,7 @@ Status (5 November 2026, 0.101.0): every item below is built, reviewed and given
 release 2c.3), which waits for the player's pick of the harm review's rival sabotage (3.5.1) or their go-ahead without
 it. The player's word the same day: the colony is the family, never a dynasty. Council tasks with the keeper of secrets
 (11) are dropped and taken out of the game, house renown (13) becomes the colony's renown and each colonist's own, and marriage alliances, wards
-and the talk are recast around the colony; stage 3's design is to be revised the same way before it continues. The plan as first written: notables of nearby settlements (1) and letters (2), with comms calls, couriers and right-click
+and the talk are recast around the colony; stage 3's design was revised the same way on 6 November 2026. The plan as first written: notables of nearby settlements (1) and letters (2), with comms calls, couriers and right-click
 interactions; favours owed and called in (3, release 2a.1); pacts and truces with terms that can be broken, and what
 breaking costs (4, release 2a.2); then feasts, hunts, games and contests with guests (5); marriage alliances, with Diplomatic Marriage+ (6);
 wards and hostages (7); ransom (8); swearing fealty to a stronger neighbour (9) and vassals of one's own, with Faction
@@ -341,11 +341,16 @@ titles and honour. Forms by age (tribal / medieval / industrial / spacer):
 The talk, letters and news for each feature are written per age too, from the shared facts (stage 0).
 
 ### Stage 3: many colonies, one world
-More than one colony supported in every system; handing a colony over to those who stay (it becomes a town of a new
-people, with the former colonists as its notables and the council's speaker as its head, keeping its history,
-writing, trading, asking for help, open to be taken back); and a fresh start inside the same save (a new place, a
-group from the old colony or newcomers, the old colony handed over, kept or abandoned).
-The design and its five releases: `docs/design/stage3-many-colonies.md` (17 decisions waiting for the player).
+A fresh start inside the same save (a new place, a group from the old colony or newcomers, the old colony kept,
+handed over or abandoned); handing a colony over to those who stay (it becomes a town of a new people, with the former
+colonists as its notables, the council's speaker as its head and the next head chosen by office or standing, keeping
+its history, writing, trading, asking for help, open to be taken back); and more than one colony supported in every
+system. Revised 6 November 2026 for the player's rule that the colony is the family (the town is bound to the colony as
+a colony, never as a house or a line; renown the colony's and each colonist's own), with council tasks and the keeper
+of secrets gone and the colonies on the region map's Ours lens. The player is close to wanting something new without
+giving up the colony they have, in this save or a new game, so the releases put the fresh start first and the hand-over
+second, then a scenario's start, then many colonies in play, then the town's life.
+The design and its five releases: `docs/design/stage3-many-colonies.md` (15 decisions waiting for the player).
 
 ### Alongside every stage
 - A content pass after each stage (conversations, letters, news, journals), to the line rules and with lint tests.

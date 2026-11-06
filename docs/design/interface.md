@@ -279,7 +279,7 @@ List its rows. The land's picture is made once, as today; a lens changes only wh
 | Fortunes | towns by fortune (struggling to flourishing) with an arrow when it moved this season, world events where they are, ruins, towns being built | none | towns by fortune, what moved each | the Events page's places |
 | Threats | hostile towns, raiders' camps found, war bands, a bandit road, the home with a threat now | from a camp to the home it raids | camps with their raids so far, their price and Pay | the Raiders' camps page |
 | Trade | trading posts and their keepers, towns by what they trade, caravans on the road | from each post to its town | posts with keeper, warning, last trade | the Trading posts page |
-| Ours | the colony's homes, hamlets, vassals, kin towns (a colony handed over), outposts, our caravans and journeys | from home to hamlet and vassal | each holding with its people, its next need; colonies of the past | the Hamlets page; stage 3's Colonies page |
+| Ours | the colony's homes, hamlets, vassals, towns the colony was (a colony handed over), outposts, our caravans and journeys | from home to hamlet and vassal | each holding with its people, its next need; colonies of the past | the Hamlets page; stage 3's Colonies page |
 
 A seventh lens comes only by replacing one: a lens is a new way of reading the whole region, not a feature's page.
 
