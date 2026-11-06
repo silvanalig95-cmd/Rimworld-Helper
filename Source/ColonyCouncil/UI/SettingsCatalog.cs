@@ -4,16 +4,22 @@ using System.Linq;
 
 namespace ColonyCouncil
 {
-    /// <summary>The pages of the mod settings window, in the order of the list on its left.</summary>
+    /// <summary>
+    /// The pages of the mod settings window, in the order of the list on its left: what a player thinks about, not how
+    /// the mod is built (the review's decision 15, 6 November 2026; seven pages by system before).
+    /// </summary>
     public enum SettingsPage
     {
-        Council,
-        People,
-        HeartHealth,
-        Events,
-        Building,
-        Interface,
-        Advanced
+        /// <summary>How much happens: every part's rate, the colony's pace first.</summary>
+        HowMuch,
+        /// <summary>How hard: the stakes, pressures and standards, strain, illness and hurts.</summary>
+        HowHard,
+        /// <summary>What's on: each part by what it is about (the council, lives, bonds, the story, the world, the peoples, the tools).</summary>
+        WhatsOn,
+        /// <summary>How you're told: messages and letters, speech on the map, alerts, buttons and windows, the panels, the bar.</summary>
+        HowTold,
+        /// <summary>Your other mods: only those loaded show.</summary>
+        OtherMods
     }
 
     public enum SettingKind
@@ -65,9 +71,16 @@ namespace ColonyCouncil
         public string[] covers;
         /// <summary>Not a field of CouncilSettings: an action, or something kept elsewhere (the colony's era).</summary>
         public bool notAField;
+        /// <summary>The other mods it is for, by package id: it shows only while all of them are loaded (the other mods' page).</summary>
+        public string[] mods;
 
         public bool IsField => !notAField;
-        public bool Indented => Parent != null;
+
+        /// <summary>
+        /// Drawn under the switch it hangs on, when that switch is on the same page (a rate or a knob on another page
+        /// stands alone). Worked out once, when the catalog is built.
+        /// </summary>
+        public bool Indented { get; internal set; }
 
         /// <summary>The switch this row hangs under: the first plain "switched on" term of <see cref="needs"/>.</summary>
         public string Parent => SettingsCatalog.ParseNeeds(needs).FirstOrDefault(t => t.values == null && !t.negate).field;
@@ -107,7 +120,7 @@ namespace ColonyCouncil
         public string id;
         public string label;
         public string tip;
-        /// <summary>The "what's switched on" setups on the Council page (as opposed to the left-hand style presets).</summary>
+        /// <summary>The "what's on" setups at the top of the What's on page (as opposed to the left-hand style presets).</summary>
         public bool scope;
         public List<PresetValue> values = new List<PresetValue>();
 
@@ -131,7 +144,7 @@ namespace ColonyCouncil
         /// <summary>Public fields of CouncilSettings that aren't settings, and why.</summary>
         public static readonly Dictionary<string, string> NotDrawn = new Dictionary<string, string>
         {
-            ["era"] = "kept only so old settings files load; the era belongs to each colony now (the Era row on the Advanced page)",
+            ["era"] = "kept only so old settings files load; the era belongs to each colony now (the Era row at the foot of the What's on page)",
             ["savedRooms"] = "the rooms the player saved from a map, managed in the room planner",
             ["planMaterials"] = "the materials last picked in the room planner",
             ["lastCouncilPage"] = "the council window's page when it was last closed",
@@ -202,6 +215,11 @@ namespace ColonyCouncil
         static SettingsCatalog()
         {
             Build();
+            foreach (var e in all)
+            {
+                string parent = e.Parent;
+                e.Indented = parent != null && Find(parent)?.page == e.page;
+            }
             BuildPresets();
         }
 
@@ -212,50 +230,53 @@ namespace ColonyCouncil
 
         private static void Build()
         {
-            // Council and wishes: what the council does, what's at stake, and how wishes, dilemmas and meetings run.
-            Page(SettingsPage.Council);
-            Section("CC_Settings_Presets");
-            Action("quickSetup", "CC_Settings_Presets", "CC_Settings_Presets_Tip", "CC_SetNote_QuickSetup");
-            Section("CC_Settings_Layers");
-            Toggle("enableAdvisor", "CC_Settings_EnableAdvisor", "CC_SetNote_EnableAdvisor");
-            Toggle("nextSteps", "CC_Settings_NextSteps", "CC_SetNote_NextSteps");
-            Toggle("enableWishes", "CC_Settings_EnableWishes", "CC_SetNote_EnableWishes");
-            Toggle("enableAmbitions", "CC_Settings_EnableAmbitions", "CC_SetNote_EnableAmbitions");
-            Toggle("interplay", "CC_Settings_Interplay", "CC_SetNote_Interplay");
+            // The five pages ask what a player thinks about (the review's decision 15, 6 November 2026): how much happens,
+            // how hard, what's on, how you're told, your other mods. Each row keeps its field, so its saved key and value.
+
+            // ================= How much happens: every part's rate in one place =================
+            Page(SettingsPage.HowMuch);
+            // The colony's pace (PlayOut/Stage.cs): its own doings come only while the week has room.
+            Section("CC_SetSec_Pace");
+            NoteUnder("CC_SetSec_Pace_Note");
+            Slider("gatheringsAWeek", "CC_Settings_GatheringsAWeek", "CC_SetNote_GatheringsAWeek", StageMath.MinAWeek, StageMath.MaxAWeek, 1f, "0");
+            Section("CC_SetSec_CouncilAsks");
+            Slider("daysBetweenWishes", "CC_Settings_DaysBetweenWishes", "CC_SetNote_DaysBetweenWishes", 0.5f, 10f, 0.5f, "0.0", "enableWishes");
+            Slider("maxOpenWishes", "CC_Settings_MaxOpenWishes", "CC_SetNote_MaxOpenWishes", 1f, 12f, 1f, "0", "enableWishes");
+            Slider("daysBetweenDilemmas", "CC_Settings_DaysBetweenDilemmas", "CC_SetNote_DaysBetweenDilemmas", 3f, 30f, 1f, "0", "enableDilemmas");
+            Slider("daysBetweenMeetings", "CC_Settings_DaysBetweenMeetings", "CC_SetNote_DaysBetweenMeetings", 5f, 60f, 1f, "0", "enableAmbitions");
+            Section("CC_SetSec_Lives");
+            Slider("momentFrequency", "CC_Settings_FreqMoments", "CC_SetNote_FreqMoments", 0.25f, 3f, 0.25f, "%");
+            Slider("socialEventFrequency", "CC_Settings_FreqSocial", "CC_SetNote_FreqSocial", 0.25f, 3f, 0.25f, "%");
+            Slider("dreamFrequency", "CC_Settings_FreqDreams", "CC_SetNote_FreqDreams", 0.25f, 3f, 0.25f, "%");
+            Choice("arcFrequency", "CC_Settings_Arcs", "CC_Settings_Arcs_Tip", "CC_Arcs_", "CC_SetNote_Arcs_", new[] { "Off", "Rare", "Normal", "Frequent" });
+            Slider("daysBetweenPersonalTouches", "CC_Settings_DaysBetweenTouches", "CC_SetNote_DaysBetweenTouches", 1f, 30f, 1f, "0", "enablePersonalTouches");
+            Slider("outsiderChatterFrequency", "CC_Settings_OutsiderChatterFrequency", "CC_SetNote_OutsiderChatterFrequency", 0.25f, 3f, 0.25f, "%",
+                "outsiderTalk,outsiderChatter");
+            Section("CC_SetSec_WorldPace");
+            Slider("encounterFrequency", "CC_Settings_FreqEncounters", "CC_SetNote_FreqEncounters", 0.25f, 3f, 0.25f, "%");
+            Slider("storytellerEventWeight", "CC_Settings_StorytellerEventWeight", "CC_SetNote_StorytellerEventWeight", 0.25f, 2f, 0.05f, "%",
+                "worldEvents,eventsFromStoryteller");
+            Slider("daysBetweenWorldEvents", "CC_Settings_DaysBetweenWorldEvents", "CC_SetNote_DaysBetweenWorldEvents", 1f, 20f, 0.5f, "0.#",
+                "worldEvents,!eventsFromStoryteller", "CC_SetWhy_OwnTimer");
+            Slider("daysBetweenWorldSituations", "CC_Settings_DaysBetweenWorldSituations", "CC_SetNote_DaysBetweenWorldSituations", 15f, 120f, 5f, "0",
+                "worldSituations");
+            // The region (World/Region/): how much a remote home draws travellers, and how likely raiders' camps are.
+            Slider("remoteTravellers", "CC_Settings_RemoteTravellers", "CC_SetNote_RemoteTravellers", 0f, 2f, 0.05f, "%");
+            Slider("raidersCamps", "CC_Settings_RaidersCamps", "CC_SetNote_RaidersCamps", 0f, 2f, 0.05f, "%");
+
+            // ================= How hard: what's at stake, pressures, strain, illness and hurts =================
+            Page(SettingsPage.HowHard);
             Section("CC_Settings_Stakes");
             Choice("stakes", "CC_Settings_Stakes", "CC_SetTip_Stakes", "CC_Stakes_", "CC_Stakes_Short_", new[] { "Gentle", "Balanced", "Demanding", "AdvisorOnly" });
             Slider("penaltyFactor", "CC_Settings_Penalty", "CC_SetNote_Penalty", 0.25f, 2f, 0.05f, "%", "stakes=Balanced|Demanding", "CC_SetWhy_Downsides");
             Slider("rewardFactor", "CC_Settings_Reward", "CC_SetNote_Reward", 0.25f, 2f, 0.05f, "%", "stakes!=AdvisorOnly", "CC_SetWhy_MoodEffects");
-            Section("CC_Settings_Wishes");
-            Slider("daysBetweenWishes", "CC_Settings_DaysBetweenWishes", "CC_SetNote_DaysBetweenWishes", 0.5f, 10f, 0.5f, "0.0", "enableWishes");
-            Slider("maxOpenWishes", "CC_Settings_MaxOpenWishes", "CC_SetNote_MaxOpenWishes", 1f, 12f, 1f, "0", "enableWishes");
             Slider("wishDurationFactor", "CC_Settings_WishDuration", "CC_SetNote_WishDuration", 0.5f, 3f, 0.05f, "%", "enableWishes");
+            Slider("ambitionDeadlineFactor", "CC_Settings_AmbitionDeadline", "CC_SetNote_AmbitionDeadline", 0.5f, 3f, 0.05f, "%", "enableAmbitions");
             Toggle("jealousy", "CC_Settings_Jealousy", "CC_SetNote_Jealousy", "stakes=Balanced|Demanding", "CC_SetWhy_Downsides");
-            Toggle("eventWishes", "CC_Settings_EventWishes", "CC_SetNote_EventWishes");
-            Toggle("reminders", "CC_Settings_Reminders", "CC_SetNote_Reminders");
-            Toggle("selfHelp", "CC_Settings_SelfHelp", "CC_SetNote_SelfHelp");
             Toggle("wishesTakenBack", "CC_Settings_TakenBack", "CC_SetNote_TakenBack", "stakes=Balanced|Demanding", "CC_SetWhy_Downsides");
             Choice("takenBackGrace", "CC_Settings_KeptGrace", "CC_SetTip_KeptGrace", "CC_KeptGrace_", "CC_SetNote_KeptGrace_", new[] { "Off", "Short", "Normal", "Long" },
                 "wishesTakenBack,stakes=Balanced|Demanding", "CC_SetWhy_Downsides");
             Toggle("allowQuitting", "CC_Settings_Quitting", "CC_SetNote_Quitting");
-            Toggle("wishesForOthers", "CC_Settings_ForOthers", "CC_SetNote_ForOthers");
-            Toggle("petitions", "CC_Settings_Petitions", "CC_SetNote_Petitions");
-            Section("CC_Settings_CouncilLife");
-            Toggle("enableDilemmas", "CC_Settings_Dilemmas", "CC_SetNote_Dilemmas");
-            Slider("daysBetweenDilemmas", "CC_Settings_DaysBetweenDilemmas", "CC_SetNote_DaysBetweenDilemmas", 3f, 30f, 1f, "0", "enableDilemmas");
-            Toggle("councilBanishment", "CC_Settings_Banishment", "CC_SetNote_Banishment", "enableDilemmas");
-            Choice("impactShows", "CC_Settings_ShowImpact", "CC_Settings_ShowImpact_Tip", "CC_ImpactShows_", "CC_SetNote_ImpactShows_", new[] { "Hints", "Exact", "Off" });
-            Toggle("decreeRequests", "CC_Settings_DecreeRequests", "CC_SetNote_DecreeRequests");
-            Toggle("colonyCharacter", "CC_Settings_Character", "CC_SetNote_Character");
-            Toggle("offices", "CC_Settings_Offices", "CC_SetNote_Offices");
-            Toggle("electionEvent", "CC_Settings_ElectionEvent", "CC_SetNote_ElectionEvent", "offices");
-            Section("CC_Settings_Meetings");
-            Slider("daysBetweenMeetings", "CC_Settings_DaysBetweenMeetings", "CC_SetNote_DaysBetweenMeetings", 5f, 60f, 1f, "0", "enableAmbitions");
-            Slider("ambitionDeadlineFactor", "CC_Settings_AmbitionDeadline", "CC_SetNote_AmbitionDeadline", 0.5f, 3f, 0.05f, "%", "enableAmbitions");
-            Toggle("meetingsCallFromWork", "CC_Settings_MeetingsCallFromWork", "CC_SetNote_MeetingsCallFromWork", "enableAmbitions");
-
-            // People and moods: the everyday pressures and good times, bonds, lives, moments and memory.
-            Page(SettingsPage.People);
             Section("CC_SetSec_Moods");
             Choice("lifePressure", "CC_Settings_Life", "CC_Settings_Life_Tip", "CC_Life_", "CC_SetNote_Life_", new[] { "Gentle", "Normal", "Demanding" },
                 "stakes!=AdvisorOnly", "CC_SetWhy_MoodEffects");
@@ -263,6 +284,68 @@ namespace ColonyCouncil
             Toggle("goodGrowsOrdinary", "CC_Settings_Ordinary", "CC_SetNote_Ordinary", "stakes!=AdvisorOnly", "CC_SetWhy_MoodEffects");
             Toggle("quietTroubles", "CC_Settings_QuietTroubles", "CC_SetNote_QuietTroubles", "stakes!=AdvisorOnly", "CC_SetWhy_MoodEffects");
             Toggle("frictions", "CC_Settings_Frictions", "CC_SetNote_Frictions");
+            // The heart (Heart/): how fast strain builds, the day off at the end of one's rope, and the good side against it.
+            Section("CC_Settings_HeartHeader");
+            Slider("strainSpeed", "CC_Settings_StrainSpeed", "CC_SetNote_StrainSpeed", 0.5f, 1.5f, 0.05f, "%", "heart");
+            Toggle("heartEpisodes", "CC_Settings_HeartEpisodes", "CC_SetNote_HeartEpisodes", "heart");
+            // The heart's good side (Heart/GoodHeart.cs): in good heart, in high spirits.
+            Toggle("heartGoodSide", "CC_Settings_HeartGoodSide", "CC_SetNote_HeartGoodSide", "heart");
+            Section("CC_Settings_AilmentsHeader");
+            Slider("ailmentFrequency", "CC_Settings_AilmentFrequency", "CC_SetNote_AilmentFrequency", 0.25f, 2f, 0.05f, "%", "ailments");
+            Toggle("seriousIllnesses", "CC_Settings_SeriousIllnesses", "CC_SetNote_SeriousIllnesses", "ailments");
+            Section("CC_SetSec_LifeRisks");
+            Toggle("crowdedSickness", "CC_Settings_CrowdedSickness", "CC_SetNote_CrowdedSickness", "seriousIllnesses");
+            Toggle("frailty", "CC_Settings_Frailty", "CC_SetNote_Frailty");
+            Toggle("dirtyWounds", "CC_Settings_DirtyWounds", "CC_SetNote_DirtyWounds");
+            Toggle("endOfLife", "CC_Settings_EndOfLife", "CC_SetNote_EndOfLife");
+            // Hurts from everyday life (Harm/): one factor on every Rimfolk-made hurt, the harm review's shared rules; and fights.
+            Section("CC_SetSec_Hurts");
+            NoteUnder("CC_SetSec_Hurts_Note");
+            Slider("everydayHurts", "CC_Settings_EverydayHurts", "CC_SetNote_EverydayHurts", 0f, 2f, 0.05f, "%");
+            Slider("scenarioThreat", "CC_Settings_ScenarioThreat", "CC_SetNote_ScenarioThreat", 0.25f, 2f, 0.25f, "%");
+            Toggle("worldEventBattles", "CC_Settings_WorldEventBattles", "CC_SetNote_WorldEventBattles", "worldEvents");
+
+            // ================= What's on: each part, by what it is about =================
+            Page(SettingsPage.WhatsOn);
+            Section("CC_Settings_Presets");
+            Action("quickSetup", "CC_Settings_Presets", "CC_Settings_Presets_Tip", "CC_SetNote_QuickSetup");
+            // The council: the advisor and the plan, wishes, meetings, questions, decrees and offices.
+            Section("CC_Settings_Layers");
+            Toggle("enableAdvisor", "CC_Settings_EnableAdvisor", "CC_SetNote_EnableAdvisor");
+            Toggle("nextSteps", "CC_Settings_NextSteps", "CC_SetNote_NextSteps");
+            Toggle("enableWishes", "CC_Settings_EnableWishes", "CC_SetNote_EnableWishes");
+            Toggle("eventWishes", "CC_Settings_EventWishes", "CC_SetNote_EventWishes", "enableWishes");
+            Toggle("reminders", "CC_Settings_Reminders", "CC_SetNote_Reminders", "enableWishes");
+            Toggle("selfHelp", "CC_Settings_SelfHelp", "CC_SetNote_SelfHelp", "enableWishes");
+            Toggle("wishesForOthers", "CC_Settings_ForOthers", "CC_SetNote_ForOthers", "enableWishes");
+            Toggle("petitions", "CC_Settings_Petitions", "CC_SetNote_Petitions", "enableWishes");
+            Toggle("enableAmbitions", "CC_Settings_EnableAmbitions", "CC_SetNote_EnableAmbitions");
+            Toggle("meetingsCallFromWork", "CC_Settings_MeetingsCallFromWork", "CC_SetNote_MeetingsCallFromWork", "enableAmbitions");
+            Toggle("enableDilemmas", "CC_Settings_Dilemmas", "CC_SetNote_Dilemmas");
+            Toggle("councilBanishment", "CC_Settings_Banishment", "CC_SetNote_Banishment", "enableDilemmas");
+            Toggle("movingOn", "CC_Settings_MovingOn", "CC_SetNote_MovingOn");
+            Toggle("decreeRequests", "CC_Settings_DecreeRequests", "CC_SetNote_DecreeRequests");
+            Toggle("offices", "CC_Settings_Offices", "CC_SetNote_Offices");
+            Toggle("electionEvent", "CC_Settings_ElectionEvent", "CC_SetNote_ElectionEvent", "offices");
+            Toggle("colonyCharacter", "CC_Settings_Character", "CC_SetNote_Character");
+            Toggle("interplay", "CC_Settings_Interplay", "CC_SetNote_Interplay");
+            // People's lives: the heart, life goals, quirks, dreams, moments, health.
+            Section("CC_SetSec_Lives");
+            Toggle("heart", "CC_Settings_Heart", "CC_SetNote_Heart");
+            Toggle("aspirations", "CC_Settings_Aspirations", "CC_SetNote_Aspirations");
+            Toggle("quirks", "CC_Settings_Quirks", "CC_SetNote_Quirks");
+            Toggle("heirlooms", "CC_Settings_Heirlooms", "CC_SetNote_Heirlooms");
+            Toggle("comingOfAge", "CC_Settings_ComingOfAge", "CC_SetNote_ComingOfAge");
+            Toggle("autonomy", "CC_Settings_Autonomy", "CC_SetNote_Autonomy");
+            Toggle("autonomyPlans", "CC_Settings_AutonomyPlans", "CC_SetNote_AutonomyPlans", "autonomy");
+            Toggle("dreams", "CC_Settings_Dreams", "CC_SetNote_Dreams");
+            Toggle("dreamOmens", "CC_Settings_DreamOmens", "CC_SetNote_DreamOmens", "dreams");
+            Toggle("colonistMoments", "CC_Settings_Moments", "CC_SetNote_Moments");
+            Toggle("worldReactions", "CC_Settings_WorldReactions", "CC_SetNote_WorldReactions");
+            Toggle("smallHabits", "CC_Settings_SmallHabits", "CC_SetNote_SmallHabits");
+            Toggle("ailments", "CC_Settings_Ailments", "CC_SetNote_Ailments");
+            Toggle("convalescence", "CC_Settings_Convalescence", "CC_SetNote_Convalescence");
+            Toggle("healerReputations", "CC_Settings_HealerReputations", "CC_SetNote_HealerReputations");
             Section("CC_Settings_Bonds");
             Toggle("socialWeb", "CC_Settings_SocialWeb", "CC_SetNote_SocialWeb");
             Toggle("socialEvents", "CC_Settings_SocialEvents", "CC_SetNote_SocialEvents", "socialWeb");
@@ -272,92 +355,33 @@ namespace ColonyCouncil
             Toggle("deedsRemembered", "CC_Settings_DeedsRemembered", "CC_SetNote_DeedsRemembered", "socialWeb");
             Toggle("seatFeelings", "CC_Settings_SeatFeelings", "CC_SetNote_SeatFeelings", "socialWeb,offices");
             Toggle("loveFeelings", "CC_Settings_LoveFeelings", "CC_SetNote_LoveFeelings", "socialWeb");
-            Toggle("socialTabColumn", "CC_Settings_SocialTabColumn", "CC_SetNote_SocialTabColumn", "deepHooks");
             Toggle("socialLife", "CC_Settings_SocialLife", "CC_SetNote_SocialLife");
             Toggle("traitChanges", "CC_Settings_TraitChanges", "CC_SetNote_TraitChanges", "socialLife");
             Toggle("faithLife", "CC_Settings_FaithLife", "CC_SetNote_FaithLife");
             Toggle("secrets", "CC_Settings_Secrets", "CC_SetNote_Secrets");
             Toggle("vendettas", "CC_Settings_Vendettas", "CC_SetNote_Vendettas");
-            Section("CC_Settings_Lives");
-            Toggle("aspirations", "CC_Settings_Aspirations", "CC_SetNote_Aspirations");
-            Choice("arcFrequency", "CC_Settings_Arcs", "CC_Settings_Arcs_Tip", "CC_Arcs_", "CC_SetNote_Arcs_", new[] { "Off", "Rare", "Normal", "Frequent" });
-            Toggle("quirks", "CC_Settings_Quirks", "CC_SetNote_Quirks");
-            Toggle("heirlooms", "CC_Settings_Heirlooms", "CC_SetNote_Heirlooms");
-            Toggle("comingOfAge", "CC_Settings_ComingOfAge", "CC_SetNote_ComingOfAge");
-            Toggle("autonomy", "CC_Settings_Autonomy", "CC_SetNote_Autonomy");
-            Toggle("autonomyPlans", "CC_Settings_AutonomyPlans", "CC_SetNote_AutonomyPlans", "autonomy");
-            Toggle("dreams", "CC_Settings_Dreams", "CC_SetNote_Dreams");
-            Toggle("dreamOmens", "CC_Settings_DreamOmens", "CC_SetNote_DreamOmens", "dreams");
-            Section("CC_SetSec_Moments");
-            Toggle("colonistMoments", "CC_Settings_Moments", "CC_SetNote_Moments");
-            Toggle("worldReactions", "CC_Settings_WorldReactions", "CC_SetNote_WorldReactions");
-            Toggle("smallHabits", "CC_Settings_SmallHabits", "CC_SetNote_SmallHabits");
-            Section("CC_Settings_Memory");
+            // The colony's story: journals, names, the year, the calendar, and answers and goods on the map.
+            Section("CC_SetSec_Story");
             Toggle("journals", "CC_Settings_Journals", "CC_SetNote_Journals");
             Toggle("epithets", "CC_Settings_Epithets", "CC_SetNote_Epithets", tip: "CC_Name_Settings_Epithets_Tip");
             Toggle("anniversaries", "CC_Settings_Anniversaries", "CC_SetNote_Anniversaries");
             Toggle("annals", "CC_Settings_Annals", "CC_SetNote_Annals");
             Toggle("eulogies", "CC_Settings_Eulogies", "CC_SetNote_Eulogies");
-            Section("CC_Settings_HowOften");
-            Slider("gatheringsAWeek", "CC_Settings_GatheringsAWeek", "CC_SetNote_GatheringsAWeek", StageMath.MinAWeek, StageMath.MaxAWeek, 1f, "0");
-            Slider("momentFrequency", "CC_Settings_FreqMoments", "CC_SetNote_FreqMoments", 0.25f, 3f, 0.25f, "%");
-            Slider("socialEventFrequency", "CC_Settings_FreqSocial", "CC_SetNote_FreqSocial", 0.25f, 3f, 0.25f, "%");
-            Slider("dreamFrequency", "CC_Settings_FreqDreams", "CC_SetNote_FreqDreams", 0.25f, 3f, 0.25f, "%");
-
-            // Heart and health: feelings and strain, ailments, recovery and healers.
-            Page(SettingsPage.HeartHealth);
-            Section("CC_Settings_HeartHeader");
-            Toggle("heart", "CC_Settings_Heart", "CC_SetNote_Heart");
-            Toggle("heartEpisodes", "CC_Settings_HeartEpisodes", "CC_SetNote_HeartEpisodes", "heart");
-            // The heart's good side (Heart/GoodHeart.cs): in good heart, in high spirits.
-            Toggle("heartGoodSide", "CC_Settings_HeartGoodSide", "CC_SetNote_HeartGoodSide", "heart");
-            Toggle("heartInspector", "CC_Settings_HeartInspector", "CC_SetNote_HeartInspector", "heart");
-            Slider("strainSpeed", "CC_Settings_StrainSpeed", "CC_SetNote_StrainSpeed", 0.5f, 1.5f, 0.05f, "%", "heart");
-            Section("CC_Settings_AilmentsHeader");
-            Toggle("ailments", "CC_Settings_Ailments", "CC_SetNote_Ailments");
-            Toggle("seriousIllnesses", "CC_Settings_SeriousIllnesses", "CC_SetNote_SeriousIllnesses", "ailments");
-            Slider("ailmentFrequency", "CC_Settings_AilmentFrequency", "CC_SetNote_AilmentFrequency", 0.25f, 2f, 0.05f, "%", "ailments");
-            Section("CC_SetSec_LifeRisks");
-            Toggle("crowdedSickness", "CC_Settings_CrowdedSickness", "CC_SetNote_CrowdedSickness", "seriousIllnesses");
-            Toggle("frailty", "CC_Settings_Frailty", "CC_SetNote_Frailty");
-            Toggle("dirtyWounds", "CC_Settings_DirtyWounds", "CC_SetNote_DirtyWounds");
-            Toggle("endOfLife", "CC_Settings_EndOfLife", "CC_SetNote_EndOfLife");
-            Toggle("movingOn", "CC_Settings_MovingOn", "CC_SetNote_MovingOn");
-            // Hurts from everyday life (Harm/): one factor on every Rimfolk-made hurt, the harm review's shared rules.
-            Section("CC_SetSec_Hurts");
-            NoteUnder("CC_SetSec_Hurts_Note");
-            Slider("everydayHurts", "CC_Settings_EverydayHurts", "CC_SetNote_EverydayHurts", 0f, 2f, 0.05f, "%");
-            Section("CC_SetSec_Recovery");
-            Toggle("convalescence", "CC_Settings_Convalescence", "CC_SetNote_Convalescence");
-            Toggle("healerReputations", "CC_Settings_HealerReputations", "CC_SetNote_HealerReputations");
-            Toggle("medicalTriage", "CC_Settings_MedicalTriage", "CC_SetNote_MedicalTriage", "deepHooks");
-
-            // Events and world: strangers, Rimfolk's events and camps, the region's world events, the calendar.
-            Page(SettingsPage.Events);
+            Toggle("colonyCalendar", "CC_Settings_Calendar", "CC_SetNote_Calendar");
+            Toggle("answersPlayOut", "CC_Settings_AnswersPlayOut", "CC_SetNote_AnswersPlayOut");
+            Toggle("goodsComeAndGo", "CC_Settings_GoodsComeAndGo", "CC_SetNote_GoodsComeAndGo");
             Section("CC_Settings_Strangers");
             Toggle("strangers", "CC_Settings_Encounters", "CC_SetNote_Encounters");
-            Slider("encounterFrequency", "CC_Settings_FreqEncounters", "CC_SetNote_FreqEncounters", 0.25f, 3f, 0.25f, "%");
             Toggle("nemeses", "CC_Settings_Nemeses", "CC_SetNote_Nemeses");
             Toggle("nemesisReturns", "CC_Settings_NemesisReturns", "CC_SetNote_NemesisReturns", "nemeses");
             Toggle("petMoments", "CC_Settings_PetMoments", "CC_SetNote_PetMoments");
-            Toggle("guestWill", "CC_Settings_GuestWill", "CC_SetNote_GuestWill", "deepHooks");
-            Toggle("guestStories", "CC_Settings_GuestStories", "CC_SetNote_GuestStories");
-            Toggle("guestCheck", "CC_Settings_GuestCheck", "CC_SetNote_GuestCheck", "deepHooks");
             Section("CC_Settings_WorldEventsHeader");
             Toggle("worldEvents", "CC_Settings_WorldEvents", "CC_SetNote_WorldEvents");
-            Toggle("worldEventBattles", "CC_Settings_WorldEventBattles", "CC_SetNote_WorldEventBattles", "worldEvents");
             Toggle("camps", "CC_Settings_Camps", "CC_SetNote_Camps", "worldEvents");
             Toggle("missionsAsQuests", "CC_Settings_MissionsAsQuests", "CC_SetNote_MissionsAsQuests", "worldEvents");
             Toggle("eventsFromStoryteller", "CC_Settings_EventsFromStoryteller", "CC_SetNote_EventsFromStoryteller", "worldEvents");
-            Slider("storytellerEventWeight", "CC_Settings_StorytellerEventWeight", "CC_SetNote_StorytellerEventWeight", 0.25f, 2f, 0.05f, "%",
-                "worldEvents,eventsFromStoryteller");
-            Slider("daysBetweenWorldEvents", "CC_Settings_DaysBetweenWorldEvents", "CC_SetNote_DaysBetweenWorldEvents", 1f, 20f, 0.5f, "0.#",
-                "worldEvents,!eventsFromStoryteller", "CC_SetWhy_OwnTimer");
-            Slider("scenarioThreat", "CC_Settings_ScenarioThreat", "CC_SetNote_ScenarioThreat", 0.25f, 2f, 0.25f, "%");
             Section("CC_Settings_WorldSituationsHeader");
             Toggle("worldSituations", "CC_Settings_WorldSituations", "CC_SetNote_WorldSituations");
-            Slider("daysBetweenWorldSituations", "CC_Settings_DaysBetweenWorldSituations", "CC_SetNote_DaysBetweenWorldSituations", 15f, 120f, 5f, "0",
-                "worldSituations");
             Toggle("factionMemory", "CC_Settings_FactionMemory", "CC_SetNote_FactionMemory");
             // The region (World/Region/): the towns within the region map's reach kept in detail.
             Section("CC_SetSec_Region");
@@ -365,22 +389,21 @@ namespace ColonyCouncil
             Toggle("regionStock", "CC_Settings_RegionStock", "CC_SetNote_RegionStock", "regionFortunes,deepHooks");
             Toggle("regionFaces", "CC_Settings_RegionFaces", "CC_SetNote_RegionFaces");
             Toggle("regionChange", "CC_Settings_RegionChange", "CC_SetNote_RegionChange");
-            Slider("remoteTravellers", "CC_Settings_RemoteTravellers", "CC_SetNote_RemoteTravellers", 0f, 2f, 0.05f, "%");
             Toggle("tradingPosts", "CC_Settings_TradingPosts", "CC_SetNote_TradingPosts");
             Toggle("hamlets", "CC_Settings_Hamlets", "CC_SetNote_Hamlets");
             Toggle("smallTownMaps", "CC_Settings_SmallTownMaps", "CC_SetNote_SmallTownMaps", "deepHooks");
-            Slider("raidersCamps", "CC_Settings_RaidersCamps", "CC_SetNote_RaidersCamps", 0f, 2f, 0.05f, "%");
-            // Diplomacy (Diplomacy/): stage 2's parts, each release adding its own.
-            Section("CC_SetSec_Diplomacy");
+            // The colony's bonds with other peoples (Diplomacy/): one place for each kind of bond. Fealty and vassals are
+            // pacts of their own kind (decision 14), so their switch hangs under the pacts': off with them.
+            Section("CC_SetSec_Peoples");
             Toggle("diplomacyFavours", "CC_Settings_DiplomacyFavours", "CC_SetNote_DiplomacyFavours", "factionMemory");
             Toggle("diplomacyPacts", "CC_Settings_DiplomacyPacts", "CC_SetNote_DiplomacyPacts", "factionMemory");
+            Toggle("diplomacyFealty", "CC_Settings_PactFealty", "CC_SetNote_PactFealty", "diplomacyPacts,factionMemory", tip: "CC_Settings_DiplomacyFealty_Tip");
             Toggle("truceRaids", "CC_Settings_TruceRaids", "CC_SetNote_TruceRaids", "diplomacyPacts,deepHooks");
             Toggle("diplomacyRansom", "CC_Settings_DiplomacyRansom", "CC_SetNote_DiplomacyRansom", "factionMemory");
             Toggle("diplomacyEnvoys", "CC_Settings_DiplomacyEnvoys", "CC_SetNote_DiplomacyEnvoys", "factionMemory");
             Toggle("diplomacyFeasts", "CC_Settings_DiplomacyFeasts", "CC_SetNote_DiplomacyFeasts", "factionMemory");
             Toggle("diplomacyMarriage", "CC_Settings_DiplomacyMarriage", "CC_SetNote_DiplomacyMarriage", "factionMemory");
             Toggle("diplomacyWards", "CC_Settings_DiplomacyWards", "CC_SetNote_DiplomacyWards", "factionMemory");
-            Toggle("diplomacyFealty", "CC_Settings_DiplomacyFealty", "CC_SetNote_DiplomacyFealty", "factionMemory");
             Toggle("diplomacyRenown", "CC_Settings_DiplomacyRenown", "CC_SetNote_DiplomacyRenown", "factionMemory");
             Toggle("diplomacyNature", "CC_Settings_DiplomacyNature", "CC_SetNote_DiplomacyNature", "heart");
             Section("CC_SetSec_Neighbours");
@@ -391,8 +414,6 @@ namespace ColonyCouncil
             Toggle("outsiderProvoke", "CC_Settings_OutsiderProvoke", "CC_SetNote_OutsiderProvoke", "outsiderTalk,deepHooks");
             Toggle("outsiderDuels", "CC_Settings_OutsiderDuels", "CC_SetNote_OutsiderDuels", "outsiderTalk,deepHooks");
             Toggle("outsiderChatter", "CC_Settings_OutsiderChatter", "CC_SetNote_OutsiderChatter", "outsiderTalk");
-            Slider("outsiderChatterFrequency", "CC_Settings_OutsiderChatterFrequency", "CC_SetNote_OutsiderChatterFrequency", 0.25f, 3f, 0.25f, "%",
-                "outsiderTalk,outsiderChatter");
             Section("CC_SetSec_Journeys");
             Toggle("journeys", "CC_Settings_Journeys", "CC_SetNote_Journeys");
             Toggle("journeyShiftSleep", "CC_Settings_JourneySleep", "CC_SetNote_JourneySleep", "journeys");
@@ -403,17 +424,17 @@ namespace ColonyCouncil
             Toggle("weatherTemperature", "CC_Settings_WeatherTemperature", "CC_SetNote_WeatherTemperature", "deepHooks");
             Toggle("weatherForecast", "CC_Settings_WeatherForecast", "CC_SetNote_WeatherForecast", "deepHooks");
             Toggle("rainWashesMore", "CC_Settings_RainWash", "CC_SetNote_RainWash");
-            Section("CC_SetSec_Calendar");
-            Toggle("colonyCalendar", "CC_Settings_Calendar", "CC_SetNote_Calendar");
-            Section("CC_SetSec_PlayOut");
-            Toggle("answersPlayOut", "CC_Settings_AnswersPlayOut", "CC_SetNote_AnswersPlayOut");
-            Toggle("goodsComeAndGo", "CC_Settings_GoodsComeAndGo", "CC_SetNote_GoodsComeAndGo");
-
-            // Building: personal touches, the room planner's defaults and the build menu.
-            Page(SettingsPage.Building);
+            // Building: personal touches, the build menu, the stores, defense.
             Section("CC_Settings_Touches");
             Toggle("enablePersonalTouches", "CC_Settings_EnableTouches", "CC_SetNote_EnableTouches");
-            Slider("daysBetweenPersonalTouches", "CC_Settings_DaysBetweenTouches", "CC_SetNote_DaysBetweenTouches", 1f, 30f, 1f, "0", "enablePersonalTouches");
+            Section("CC_SetSec_BuildMenu");
+            Toggle("buildMenuCounts", "CC_Settings_BuildMenuCounts", "CC_SetNote_BuildMenuCounts", "deepHooks");
+            Toggle("buildPriorities", "CC_Settings_BuildPriorities", "CC_SetNote_BuildPriorities", "deepHooks");
+            Section("CC_SetSec_Stores");
+            Toggle("shelfReserves", "CC_Settings_ShelfReserves", "CC_SetNote_ShelfReserves", "deepHooks");
+            Toggle("chewOutOfStores", "CC_Settings_ChewOutOfStores", "CC_SetNote_ChewOutOfStores", "deepHooks");
+            Section("CC_SetSec_Defense");
+            Toggle("coverDrag", "CC_Settings_CoverDrag", "CC_SetNote_CoverDrag", "deepHooks");
             Section("CC_SetSec_Planner");
             NoteUnder("CC_SetSec_Planner_Note");
             Toggle("planFurniture", "CC_SetLabel_PlanFurniture", "CC_SetNote_PlanFurniture", tip: "CC_SetTip_PlanFurniture");
@@ -421,12 +442,6 @@ namespace ColonyCouncil
             Toggle("planMineRock", "CC_Planner_MineRock", "CC_SetNote_PlanMineRock");
             Toggle("planReplaceOwn", "CC_Planner_ReplaceOwn", "CC_SetNote_PlanReplaceOwn");
             Toggle("planSmoothStone", "CC_Planner_Smooth", "CC_SetNote_PlanSmooth");
-            Section("CC_SetSec_BuildMenu");
-            Toggle("buildMenuCounts", "CC_Settings_BuildMenuCounts", "CC_SetNote_BuildMenuCounts", "deepHooks");
-            Toggle("buildPriorities", "CC_Settings_BuildPriorities", "CC_SetNote_BuildPriorities", "deepHooks");
-            Section("CC_SetSec_Stores");
-            Toggle("shelfReserves", "CC_Settings_ShelfReserves", "CC_SetNote_ShelfReserves", "deepHooks");
-            Toggle("chewOutOfStores", "CC_Settings_ChewOutOfStores", "CC_SetNote_ChewOutOfStores", "deepHooks");
             // The council's automations (Building/Automations.cs): what it would only suggest, done for the player, each its own switch, all off to begin with.
             Section("CC_SetSec_Automations");
             NoteUnder("CC_SetSec_Automations_Note");
@@ -453,9 +468,19 @@ namespace ColonyCouncil
             Toggle("fieldsByWeather", "CC_Settings_FieldsByWeather", "CC_SetNote_FieldsByWeather", "deepHooks");
             Toggle("frostHarvestSuggest", "CC_Settings_FrostHarvest", "CC_SetNote_FrostHarvest");
             Toggle("frostHarvestAuto", "CC_Settings_FrostHarvestAuto", "CC_SetNote_FrostHarvestAuto", "frostHarvestSuggest");
+            // The deeper game hooks, this colony's era, a check of what's working and a full reset.
+            Section("CC_SetSec_Hooks");
+            Toggle("deepHooks", "CC_Settings_DeepHooks", "CC_SetNote_DeepHooks");
+            Section("CC_Settings_Era");
+            var era = Choice("colonyEra", "CC_SetLabel_Era", "CC_SetTip_Era", "CC_Era_", "CC_SetNote_Era_", new[] { "Auto", "PreIndustrial", "Industrial" });
+            era.notAField = true;
+            era.whyOff = "CC_Settings_EraNoGame";
+            Section("CC_SetSec_Checks");
+            Action("selfCheck", "CC_SetLabel_SelfCheck", "CC_SetTip_SelfCheck", "CC_SetNote_SelfCheck").whyOff = "CC_SetWhy_NoGame";
+            Action("resetAll", "CC_Settings_Reset", "CC_SetTip_Reset", "CC_SetNote_Reset");
 
-            // Interface and integrations: messages, alerts, the council's own tabs and buttons, the deeper game hooks.
-            Page(SettingsPage.Interface);
+            // ================= How you're told: messages, speech, alerts, buttons, windows, panels, the bar =================
+            Page(SettingsPage.HowTold);
             Section("CC_Settings_Messages");
             Choice("messageLevel", "CC_SetLabel_MessageLevel", "CC_SetTip_MessageLevel", "CC_MsgLevel_", "CC_SetNote_MsgLevel_", new[] { "Everything", "Notable", "LettersOnly" });
             Choice("colonyNews", "CC_SetLabel_ColonyNews", "CC_SetTip_ColonyNews", "CC_NewsMode_", "CC_SetNote_News_", new[] { "AsItHappens", "Digest", "Off" });
@@ -465,29 +490,24 @@ namespace ColonyCouncil
             Toggle("wishLetters", "CC_Settings_WishLetters", "CC_SetNote_WishLetters");
             Toggle("grantedLetters", "CC_Settings_GrantedLetters", "CC_SetNote_GrantedLetters");
             Toggle("whatsNewLetter", "CC_Settings_WhatsNewLetter", "CC_SetNote_WhatsNewLetter");
+            Toggle("letterNotes", "CC_Settings_LetterNotes", "CC_SetNote_LetterNotes", "deepHooks");
+            Choice("impactShows", "CC_Settings_ShowImpact", "CC_Settings_ShowImpact_Tip", "CC_ImpactShows_", "CC_SetNote_ImpactShows_", new[] { "Hints", "Exact", "Off" });
+            // What shows on the map and in the game's own tabs.
+            Section("CC_SetSec_OnTheMap");
             Choice("speechShows", "CC_SetLabel_SpeechShows", "CC_SetTip_SpeechShows", "CC_SpeechShows_", "CC_SetNote_SpeechShows_",
                 new[] { "Bubbles", "Floating", "Off" });
             Toggle("visualTouches", "CC_Settings_VisualTouches", "CC_SetNote_VisualTouches");
             Toggle("moodBubbleText", "CC_Settings_MoodBubbleText", "CC_SetNote_MoodBubbleText");
+            Toggle("moodInsight", "CC_Settings_MoodInsight", "CC_SetNote_MoodInsight");
+            Toggle("needsTabHints", "CC_Settings_NeedsTabHints", "CC_SetNote_NeedsTabHints", "moodInsight");
+            Toggle("heartInspector", "CC_Settings_HeartInspector", "CC_SetNote_HeartInspector", "heart");
+            Toggle("socialTabColumn", "CC_Settings_SocialTabColumn", "CC_SetNote_SocialTabColumn", "deepHooks");
             Section("CC_Settings_Alerts");
             Toggle("advisorAlert", "CC_Settings_AdvisorAlert", "CC_SetNote_AdvisorAlert", "enableAdvisor");
             Toggle("wishAlert", "CC_Settings_WishAlert", "CC_SetNote_WishAlert", "enableWishes");
             Toggle("defenseGateReminder", "CC_Settings_DefenseGateReminder", "CC_SetNote_DefenseGateReminder");
-            Section("CC_Settings_Interface");
-            Toggle("moodInsight", "CC_Settings_MoodInsight", "CC_SetNote_MoodInsight");
-            Toggle("needsTabHints", "CC_Settings_NeedsTabHints", "CC_SetNote_NeedsTabHints", "moodInsight");
-            Toggle("coverDrag", "CC_Settings_CoverDrag", "CC_SetNote_CoverDrag", "deepHooks");
-            Toggle("marketStallWindow", "CC_Settings_MarketStallWindow", "CC_SetNote_MarketStallWindow", "deepHooks");
-            Toggle("marketStallShips", "CC_Settings_MarketStallShips", "CC_SetNote_MarketStallShips", "deepHooks");
-            Toggle("coveredLooks", "CC_Settings_CoveredLooks", "CC_SetNote_CoveredLooks", "deepHooks");
-            Toggle("magicGolemRepair", "CC_Settings_MagicGolemRepair", "CC_SetNote_MagicGolemRepair", "deepHooks");
-            Toggle("magicNeedRules", "CC_Settings_MagicNeedRules", "CC_SetNote_MagicNeedRules", "deepHooks");
-            Toggle("territoryNewsQuiet", "CC_Settings_TerritoryNewsQuiet", "CC_SetNote_TerritoryNewsQuiet", "deepHooks");
-            Toggle("faithTurretsHere", "CC_Settings_FaithTurretsHere", "CC_SetNote_FaithTurretsHere", "deepHooks");
-            Toggle("drinkBeforeWork", "CC_Settings_DrinkBeforeWork", "CC_SetNote_DrinkBeforeWork", "deepHooks");
-            Toggle("smokeBeforeWork", "CC_Settings_SmokeBeforeWork", "CC_SetNote_SmokeBeforeWork", "deepHooks");
-            Toggle("marketGuestsShop", "CC_Settings_MarketGuestsShop", "CC_SetNote_MarketGuestsShop", "deepHooks");
-            Toggle("marketCampersBuy", "CC_Settings_MarketCampersBuy", "CC_SetNote_MarketCampersBuy");
+            // Rimfolk's buttons and windows.
+            Section("CC_SetSec_Buttons");
             Toggle("slowButtons", "CC_Settings_SlowButtons", "CC_SetNote_SlowButtons");
             var reset = Action("slowButtonsReset", "CC_Settings_SlowButtonsReset", null, "CC_SetNote_SlowButtonsReset", "slowButtons");
             reset.covers = new[] { "slowButtonsX", "slowButtonsY" };
@@ -542,9 +562,6 @@ namespace ColonyCouncil
             Toggle("hoverHideGameTip", "CC_Settings_HoverHideGameTip", "CC_SetNote_HoverHideGameTip", "hoverCard");
             Slider("hoverScale", "CC_Settings_HoverScale", "CC_SetNote_HoverScale", 0.75f, 1.5f, 0.05f, "%", "hoverCard");
             Slider("hoverOpacity", "CC_Settings_HoverOpacity", "CC_SetNote_HoverOpacity", 0.3f, 1f, 0.05f, "%", "hoverCard");
-            Section("CC_SetSec_Hooks");
-            Toggle("deepHooks", "CC_Settings_DeepHooks", "CC_SetNote_DeepHooks");
-            Toggle("letterNotes", "CC_Settings_LetterNotes", "CC_SetNote_LetterNotes", "deepHooks");
             // The colonist bar's badges (ColonistBar/BarBadges.cs): what they show, and how.
             Section("CC_SetSec_ColonistBar");
             NoteUnder("CC_SetSec_ColonistBar_Note");
@@ -564,15 +581,56 @@ namespace ColonyCouncil
                 new[] { "TopRight", "TopLeft", "BottomRight", "BottomLeft" }, "barBadges");
             Slider("barBadgeMax", "CC_Settings_BarBadgeMax", "CC_SetNote_BarBadgeMax", 1f, 3f, 1f, "0", "barBadges");
 
-            // Advanced: the colony's era, a check of what's working, and a full reset.
-            Page(SettingsPage.Advanced);
-            Section("CC_Settings_Era");
-            var era = Choice("colonyEra", "CC_SetLabel_Era", "CC_SetTip_Era", "CC_Era_", "CC_SetNote_Era_", new[] { "Auto", "PreIndustrial", "Industrial" });
-            era.notAField = true;
-            era.whyOff = "CC_Settings_EraNoGame";
-            Section("CC_SetSec_Checks");
-            Action("selfCheck", "CC_SetLabel_SelfCheck", "CC_SetTip_SelfCheck", "CC_SetNote_SelfCheck").whyOff = "CC_SetWhy_NoGame";
-            Action("resetAll", "CC_Settings_Reset", "CC_SetTip_Reset", "CC_SetNote_Reset");
+            // ================= Your other mods: only those loaded show (the page's foot names the rest) =================
+            Page(SettingsPage.OtherMods);
+            Section("CC_SetSec_Mod_Hospitality");
+            Mod(Toggle("guestWill", "CC_Settings_GuestWill", "CC_SetNote_GuestWill", "deepHooks"), HospitalityId);
+            Mod(Toggle("guestStories", "CC_Settings_GuestStories", "CC_SetNote_GuestStories"), HospitalityId);
+            Mod(Toggle("guestCheck", "CC_Settings_GuestCheck", "CC_SetNote_GuestCheck", "deepHooks"), HospitalityId);
+            Section("CC_SetSec_Mod_RimMarket");
+            Mod(Toggle("marketStallWindow", "CC_Settings_MarketStallWindow", "CC_SetNote_MarketStallWindow", "deepHooks"), RimMarketId);
+            Mod(Toggle("marketStallShips", "CC_Settings_MarketStallShips", "CC_SetNote_MarketStallShips", "deepHooks"), RimMarketId);
+            Mod(Toggle("marketCampersBuy", "CC_Settings_MarketCampersBuy", "CC_SetNote_MarketCampersBuy"), RimMarketId);
+            // Guests shopping at the market needs both RimMarket and Hospitality.
+            Mod(Toggle("marketGuestsShop", "CC_Settings_MarketGuestsShop", "CC_SetNote_MarketGuestsShop", "deepHooks"), RimMarketId, HospitalityId);
+            Section("CC_SetSec_Mod_AlphaSkills");
+            Mod(Toggle("drinkBeforeWork", "CC_Settings_DrinkBeforeWork", "CC_SetNote_DrinkBeforeWork", "deepHooks"), AlphaSkillsId);
+            Mod(Toggle("smokeBeforeWork", "CC_Settings_SmokeBeforeWork", "CC_SetNote_SmokeBeforeWork", "deepHooks"), AlphaSkillsId);
+            Section("CC_SetSec_Mod_AlphaGenes");
+            Mod(Toggle("coveredLooks", "CC_Settings_CoveredLooks", "CC_SetNote_CoveredLooks", "deepHooks"), AlphaGenesId);
+            Section("CC_SetSec_Mod_Magic");
+            Mod(Toggle("magicGolemRepair", "CC_Settings_MagicGolemRepair", "CC_SetNote_MagicGolemRepair", "deepHooks"), MagicId);
+            Mod(Toggle("magicNeedRules", "CC_Settings_MagicNeedRules", "CC_SetNote_MagicNeedRules", "deepHooks"), MagicId);
+            Section("CC_SetSec_Mod_Territories");
+            Mod(Toggle("territoryNewsQuiet", "CC_Settings_TerritoryNewsQuiet", "CC_SetNote_TerritoryNewsQuiet", "deepHooks"), TerritoriesId);
+            Section("CC_SetSec_Mod_MoveThePatient");
+            Mod(Toggle("medicalTriage", "CC_Settings_MedicalTriage", "CC_SetNote_MedicalTriage", "deepHooks"), MoveThePatientId);
+            // Any mod's faith precept against turrets (TurretFaith.cs reads the precept, not one mod): always shown.
+            Section("CC_SetSec_Mod_Faiths");
+            Toggle("faithTurretsHere", "CC_Settings_FaithTurretsHere", "CC_SetNote_FaithTurretsHere", "deepHooks");
+        }
+
+        // The other mods' package ids, as their integrations check them (Integrations/), for the page that shows only those loaded.
+        public const string HospitalityId = "orion.hospitality", RimMarketId = "forti.rimmarket", AlphaSkillsId = "sarg.alphaskills", AlphaGenesId = "sarg.alphagenes",
+            MagicId = "torann.arimworldofmagic", TerritoriesId = "jaeger972.factionterritories", MoveThePatientId = "konstantynopolitaneczka.movethepatient";
+
+        /// <summary>Each other mod's heading on its page, by package id: its name where a row says it isn't loaded.</summary>
+        public static readonly Dictionary<string, string> ModSections = new Dictionary<string, string>
+        {
+            [HospitalityId] = "CC_SetSec_Mod_Hospitality",
+            [RimMarketId] = "CC_SetSec_Mod_RimMarket",
+            [AlphaSkillsId] = "CC_SetSec_Mod_AlphaSkills",
+            [AlphaGenesId] = "CC_SetSec_Mod_AlphaGenes",
+            [MagicId] = "CC_SetSec_Mod_Magic",
+            [TerritoriesId] = "CC_SetSec_Mod_Territories",
+            [MoveThePatientId] = "CC_SetSec_Mod_MoveThePatient"
+        };
+
+        /// <summary>A row of the other mods' page: it shows only while all these mods are loaded.</summary>
+        private static SettingEntry Mod(SettingEntry e, params string[] packageIds)
+        {
+            e.mods = packageIds;
+            return e;
         }
 
         private static void Page(SettingsPage p) => curPage = p;
@@ -615,74 +673,101 @@ namespace ColonyCouncil
 
         // ---------------- Presets ----------------
 
-        /// <summary>The systems the "what's switched on" setups turn on or off together (the old "people" switches).</summary>
-        public static readonly string[] PeopleSystems =
+        /// <summary>
+        /// The parts the "what's on" setups and story-rich reach: the What's on page's sections about the colony's life
+        /// and its world (the council, people's lives, bonds, the story, strangers, Rimfolk's events, world events, the region,
+        /// the bonds with other peoples, neighbours and letters). The tools after them (journeys, the weather, building, the
+        /// planner, the automations, planning ahead, the hooks) are the player's own and no setup touches them.
+        /// </summary>
+        public static readonly string[] SystemSections =
         {
-            "socialWeb", "socialEvents", "socialLife", "secrets", "vendettas", "aspirations", "quirks", "heirlooms", "comingOfAge", "dreams", "dreamOmens", "eulogies",
-            "heart", "strangers", "nemeses", "nemesisReturns", "petMoments", "colonistMoments", "frictions", "autonomy", "worldReactions", "worldEvents",
-            "worldSituations", "factionMemory", "notables", "neighbourLetters", "outsiderTalk", "ailments", "convalescence", "healerReputations"
+            "CC_Settings_Layers", "CC_SetSec_Lives", "CC_Settings_Bonds", "CC_SetSec_Story", "CC_Settings_Strangers", "CC_Settings_WorldEventsHeader",
+            "CC_Settings_WorldSituationsHeader", "CC_SetSec_Region", "CC_SetSec_Peoples", "CC_SetSec_Neighbours"
         };
 
-        /// <summary>The council's own parts beyond wishes and meetings.</summary>
-        public static readonly string[] CouncilSystems = { "enableDilemmas", "decreeRequests", "offices", "colonyCharacter" };
+        /// <summary>The council and the colony's story: what "Council only" keeps on.</summary>
+        public static readonly string[] CouncilSections = { "CC_Settings_Layers", "CC_SetSec_Story" };
 
-        /// <summary>The colony's memory: journals, names, anniversaries, annals and the calendar.</summary>
-        public static readonly string[] MemorySystems = { "journals", "epithets", "anniversaries", "annals", "colonyCalendar" };
+        /// <summary>The advisor's own: on in every setup.</summary>
+        public static readonly string[] AdvisorSystems = { "enableAdvisor", "nextSteps" };
+
+        /// <summary>Every switch of a part of the colony's life, in the setups' order: the What's on page's rows under <see cref="SystemSections"/>.</summary>
+        public static IEnumerable<SettingEntry> Systems => all.Where(e => e.page == SettingsPage.WhatsOn && e.kind == SettingKind.Toggle && SystemSections.Contains(e.section));
+
+        /// <summary>A system's own switch, not one that hangs under another's (those keep their values while their parent is off).</summary>
+        public static bool TopLevel(SettingEntry e) => !e.Indented;
 
         private static void BuildPresets()
         {
             // Each preset maps to the balance targets (DESIGN.md, "Balance targets"; Tools/Balance measures them, and
             // docs/balance-report.md has the numbers): what Rimfolk adds to a colonist's mood in a well-run, an average and
-            // a neglected colony, and how often it asks a question.
+            // a neglected colony, and how often it asks a question. Since the five pages (decision 15), the three set every
+            // rate on How much happens and every knob on How hard between them, and say how you're told; the region, the
+            // bonds with other peoples, the heart and its good side, hurts and the gatherings a week among them.
             //
             // Light touch: Rimfolk in the background. Only upsides, gentle pressures, fewer and quieter interruptions, no
-            // deadly illnesses and no fights from its events, its everyday hurts at half. Every system stays on, just slower. Targets: about +4 to +7
-            // well run, +2 to +5 average, around 0 neglected; under one question every two days.
+            // deadly illnesses and no fights from its events, its everyday hurts at half. Every system stays on, just slower:
+            // half the travellers and raiders' camps, one gathering of its own a week, half the outsiders' chatter, more time
+            // for wishes and ambitions, and no strain from diplomacy against someone's nature. Its upsides (personal touches,
+            // the heart's good side) come as by default. Targets: about +4 to +7 well run, +2 to +5 average, around 0
+            // neglected; under one question every two days.
             var light = NewPreset("lightTouch", "CC_SetPreset_LightTouch");
             light.values.AddRange(new[]
             {
-                V("stakes", "Gentle"), V("lifePressure", "Gentle"), V("messageLevel", "LettersOnly"), V("wishLetters", "false"),
-                V("allDreamMessages", "false"), V("daysBetweenWishes", "4"), V("maxOpenWishes", "3"), V("daysBetweenDilemmas", "15"),
-                V("daysBetweenMeetings", "20"), V("arcFrequency", "Rare"), V("frictions", "false"), V("allowQuitting", "false"),
-                V("heartEpisodes", "false"), V("strainSpeed", "0.75"), V("seriousIllnesses", "false"), V("ailmentFrequency", "0.5"),
-                V("crowdedSickness", "false"), V("frailty", "false"), V("dirtyWounds", "false"), V("endOfLife", "false"), V("movingOn", "false"), V("guestWill", "false"),
-                V("everydayHurts", "0.5"), V("gatheringsAWeek", "1"),
-                V("worldEventBattles", "false"), V("storytellerEventWeight", "0.5"), V("daysBetweenWorldEvents", "8"),
-                V("daysBetweenWorldSituations", "75"), V("encounterFrequency", "0.5"), V("momentFrequency", "0.75"),
-                V("socialEventFrequency", "0.5"), V("dreamFrequency", "0.5")
+                // How much happens.
+                V("gatheringsAWeek", "1"), V("daysBetweenWishes", "4"), V("maxOpenWishes", "3"), V("daysBetweenDilemmas", "15"), V("daysBetweenMeetings", "20"),
+                V("momentFrequency", "0.75"), V("socialEventFrequency", "0.5"), V("dreamFrequency", "0.5"), V("arcFrequency", "Rare"),
+                V("outsiderChatterFrequency", "0.5"), V("encounterFrequency", "0.5"), V("storytellerEventWeight", "0.5"),
+                V("daysBetweenWorldEvents", "8"), V("daysBetweenWorldSituations", "75"), V("remoteTravellers", "0.5"), V("raidersCamps", "0.5"),
+                // How hard.
+                V("stakes", "Gentle"), V("wishDurationFactor", "1.25"), V("ambitionDeadlineFactor", "1.25"), V("allowQuitting", "false"),
+                V("lifePressure", "Gentle"), V("frictions", "false"), V("strainSpeed", "0.75"), V("heartEpisodes", "false"), V("heartGoodSide", "true"),
+                V("ailmentFrequency", "0.5"), V("seriousIllnesses", "false"), V("crowdedSickness", "false"), V("frailty", "false"), V("dirtyWounds", "false"),
+                V("endOfLife", "false"), V("everydayHurts", "0.5"), V("scenarioThreat", "0.75"), V("worldEventBattles", "false"),
+                // What's on: fewer questions, no strain from diplomacy against someone's nature, guests join the game's way.
+                V("movingOn", "false"), V("diplomacyNature", "false"), V("guestWill", "false"),
+                // How you're told.
+                V("messageLevel", "LettersOnly"), V("messagesADay", "8"), V("lettersADay", "3"), V("wishLetters", "false"), V("allDreamMessages", "false")
             });
 
-            // Story-rich: every system that tells a story switched on, and more of each: personal stories, dilemmas,
-            // events, moments and dreams, with a message for each. Moods and pressures stay as they are. Targets: the
+            // Story-rich: every part that tells a story switched on (every system of the colony's life and its world, the
+            // region and the bonds with other peoples), and more of each: personal stories, dilemmas, events, moments,
+            // dreams, personal touches, the outsiders' chatter, travellers and raiders' camps, three gatherings a week, with a
+            // message for each. Wishes and meetings come as by default. Moods and pressures stay as they are. Targets: the
             // default's moods, and more questions by choice (a little over one every two days).
             var story = NewPreset("storyRich", "CC_SetPreset_StoryRich");
-            foreach (var f in PeopleSystems.Where(f => f != "frictions"))
-                story.values.Add(V(f, "true"));
-            foreach (var f in CouncilSystems.Concat(MemorySystems))
-                story.values.Add(V(f, "true"));
+            foreach (var e in Systems)
+                story.values.Add(V(e.id, "true"));
             story.values.AddRange(new[]
             {
-                V("enableWishes", "true"), V("enableAmbitions", "true"), V("camps", "true"), V("eventWishes", "true"), V("wishesForOthers", "true"),
-                V("petitions", "true"), V("speechShows", "Bubbles", "Off"), V("visualTouches", "true"), V("smallHabits", "true"), V("messageLevel", "Everything"),
-                V("arcFrequency", "Frequent"), V("daysBetweenDilemmas", "5"), V("encounterFrequency", "1.5"), V("momentFrequency", "1.5"),
-                V("socialEventFrequency", "1.5"), V("dreamFrequency", "1.5"), V("storytellerEventWeight", "1.5"), V("daysBetweenWorldEvents", "3"),
-                V("daysBetweenWorldSituations", "30"), V("gatheringsAWeek", "3")
+                // How much happens.
+                V("gatheringsAWeek", "3"), V("daysBetweenDilemmas", "5"),
+                V("momentFrequency", "1.5"), V("socialEventFrequency", "1.5"), V("dreamFrequency", "1.5"), V("arcFrequency", "Frequent"),
+                V("daysBetweenPersonalTouches", "4"), V("outsiderChatterFrequency", "1.5"), V("encounterFrequency", "1.5"), V("storytellerEventWeight", "1.5"),
+                V("daysBetweenWorldEvents", "3"), V("daysBetweenWorldSituations", "30"), V("remoteTravellers", "1.5"), V("raidersCamps", "1.25"),
+                // The heart's good side: brighter dreams and now and then an inspiration.
+                V("heartGoodSide", "true"),
+                // How you're told.
+                V("speechShows", "Bubbles", "Off"), V("visualTouches", "true"), V("messageLevel", "Everything"), V("messagesADay", "16"), V("lettersADay", "6")
             });
 
             // Demanding: harder moods, more frictions and pressures, rarer rewards. Downsides 50% stronger and then 85% more,
-            // rewards at 70%, less time to grant wishes and reach ambitions, strain building faster. Targets: a well-run
-            // colony about breaks even (0 to +2), an average one feels it (-3 to -6), a neglected one is in real trouble
-            // (-15 to -20). (Downsides were a quarter more and rewards 75%: an average colony sat near -5, a well-run one
-            // below nothing. Then 15% more and 80% until phase 3 of the review, when the small letdowns' weight moved to the
-            // heart and the four softening rules became one: the preset pressed a step less hard, so 85% more and 70%.)
+            // rewards at 70%, less time to grant wishes and reach ambitions, strain building faster, and a quarter more of
+            // illness, everyday hurts and the fights a scenario promises. Targets: a well-run colony about breaks even (0 to
+            // +2), an average one feels it (-3 to -6), a neglected one is in real trouble (-15 to -20). (Downsides were a
+            // quarter more and rewards 75%: an average colony sat near -5, a well-run one below nothing. Then 15% more and 80%
+            // until phase 3 of the review, when the small letdowns' weight moved to the heart and the four softening rules
+            // became one: the preset pressed a step less hard, so 85% more and 70%.)
             var hard = NewPreset("demanding", "CC_SetPreset_Demanding");
             hard.values.AddRange(new[]
             {
                 V("stakes", "Demanding"), V("lifePressure", "Demanding"), V("penaltyFactor", "1.85"), V("rewardFactor", "0.7"),
-                V("wishDurationFactor", "0.75"), V("ambitionDeadlineFactor", "0.75"), V("jealousy", "true"), V("allowQuitting", "true"),
+                V("wishDurationFactor", "0.75"), V("ambitionDeadlineFactor", "0.75"), V("jealousy", "true"), V("wishesTakenBack", "true"), V("takenBackGrace", "Short"),
+                V("allowQuitting", "true"),
                 V("frictions", "true"), V("momentFrequency", "1.25"), V("risingStandards", "true"), V("goodGrowsOrdinary", "true"),
                 V("quietTroubles", "true"), V("heart", "true"),
-                V("heartEpisodes", "true"), V("strainSpeed", "1.25")
+                V("heartEpisodes", "true"), V("strainSpeed", "1.25"),
+                V("ailmentFrequency", "1.25"), V("seriousIllnesses", "true"), V("everydayHurts", "1.25"), V("scenarioThreat", "1.25"), V("diplomacyNature", "true")
             });
 
             // Default: everything the three presets above can change, back to how Rimfolk ships. Nothing else. Targets: +3
@@ -691,7 +776,8 @@ namespace ColonyCouncil
             foreach (var f in light.Fields.Concat(story.Fields).Concat(hard.Fields).Distinct())
                 normal.values.Add(V(f, DefaultValue));
 
-            // What's switched on (on the Council page): the quick setups the settings have always had.
+            // What's on (the quick setup at the top of its page): the setups the settings have always had, reaching every
+            // part of the colony's life and its world, the region and the bonds with other peoples among them.
             var everything = NewPreset("everything", "CC_Preset_Everything", true);
             ScopeValues(everything, true, true);
             var core = NewPreset("councilOnly", "CC_Preset_Core", true);
@@ -701,26 +787,33 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The people systems on or off; councilOn also covers dilemmas, decree requests, offices and the colony's character.
-        /// Wishes and meetings stay on with either, the memory systems too. Personal stories go to normal only if they were off.
-        /// Advisor only also sets the stakes to Advisor only; the others lift the stakes out of Advisor only.
+        /// Everything on: every switch of every part on, the ones that hang under another too. Council only: the council
+        /// and the colony's story on, every other part's own switch off. Advisor only: the advisor and its plan on, every
+        /// other part's own switch off. A switch that hangs under another keeps its value while its parent is off, so the
+        /// player's choices under it come back with it. Personal stories go to normal only if they were off; Advisor only
+        /// also sets the stakes to Advisor only, the others lift the stakes out of it.
         /// </summary>
         private static void ScopeValues(SettingsPreset p, bool on, bool councilOn)
         {
-            string people = on ? "true" : "false";
-            foreach (var f in PeopleSystems) p.values.Add(V(f, people));
+            foreach (var e in Systems)
+            {
+                if (AdvisorSystems.Contains(e.id))
+                {
+                    p.values.Add(V(e.id, "true"));
+                    continue;
+                }
+                bool keep = on || councilOn && CouncilSections.Contains(e.section);
+                if (keep) p.values.Add(V(e.id, "true"));
+                else if (TopLevel(e)) p.values.Add(V(e.id, "false"));
+            }
             p.values.Add(on ? V("arcFrequency", "Normal", "Off") : V("arcFrequency", "Off"));
-            foreach (var f in CouncilSystems) p.values.Add(V(f, councilOn ? "true" : "false"));
-            string core = on || councilOn ? "true" : "false";
-            p.values.Add(V("enableWishes", core));
-            p.values.Add(V("enableAmbitions", core));
-            foreach (var f in MemorySystems) p.values.Add(V(f, core));
             p.values.Add(councilOn ? V("stakes", "Balanced", "AdvisorOnly") : V("stakes", "AdvisorOnly"));
         }
 
         private static SettingsPreset NewPreset(string id, string label, bool scope = false)
         {
-            var p = new SettingsPreset { id = id, label = label, tip = label + "_Tip", scope = scope };
+            // The tips say what each covers since the five pages (decision 15): label + "_TipWhole".
+            var p = new SettingsPreset { id = id, label = label, tip = label + "_TipWhole", scope = scope };
             presets.Add(p);
             return p;
         }

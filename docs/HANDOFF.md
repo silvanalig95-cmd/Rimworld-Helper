@@ -6,6 +6,83 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 0.116.0, phase 6 of the review, part 2: one way in (the player's decisions 15, 16 and 14 of 6 November 2026: "settings on five
+  pages (how much happens, how hard, what's on, how you're told, your other mods), presets covering every part", "the
+  on-screen council panel reads the inbox", "fealty and vassals: their pages and settings fold into pacts; the mechanics
+  stay"). Not released: no round in Almanac_WhatsNew.xml, About.xml untouched. (1) Settings on five pages
+  (`UI/SettingsCatalog.cs`, `SettingsPage`: HowMuch, HowHard, WhatsOn, HowTold, OtherMods; DESIGN.md "The settings:
+  five pages"). 264 rows: How much happens 17 (the colony's pace; the council's asks; people's lives; visitors, events
+  and the region: every rate that was spread over six pages), How hard 26 (stakes; moods and pressures; feelings and
+  strain with the good side; ailments and illnesses; realistic ways to die; hurts, a scenario's fights, events that
+  end in a fight), What's on 133 (the quick setup; the council; people's lives; bonds; the colony's story; strangers;
+  Rimfolk's events; world events; the region; bonds with other peoples; neighbours and letters; then the tools:
+  journeys, weather, personal touches, build menu, stores, defense, planner, automations, planning ahead; the hooks,
+  the era, checks and reset; the Advanced page is gone into its foot), How you're told 73 (messages, on the map and in
+  the game's tabs, alerts, buttons and windows, names and cards, panels, hover card, colonist bar), Your other mods 15
+  (Hospitality, RimMarket, Alpha Skills, Alpha Genes, RimWorld of Magic, Faction Territories, Move the Patient, faiths
+  from other mods). Every row keeps its field and so its saved key and value: `Tools/Tests/SettingsKeys.txt` is the
+  settings as they stood at 4cc8cb8 (field, key, type, default) and `SettingsTests` checks each is still saved so; a
+  later setting needs no line, a line is never removed. A row's needs still grey it; it hangs indented only under a
+  parent on its own page (`SettingEntry.Indented`, worked out once); a label that goes on from its parent's reads with
+  the parent's name where it stands alone ("Rimfolk events › including ones that can end in a fight",
+  `SettingsWindow.Standalone`, "and" dropped); the wishes' own switches hang under Wishes. Your other mods shows only
+  the mods loaded (`SettingEntry.mods`, `SettingsAccess.ModsLoaded` with `People.ModActive`), its foot naming the others;
+  the search still finds those rows, greyed "Only with RimMarket loaded." Page keys and headings in
+  `Rimfolk_Settings_Pages.xml`; lines elsewhere that named a page (the plan off, the "more" button, reserved slots, the
+  automations, a decree needing the heart, the Almanac's text size, planning ahead) point to new keys there, the old
+  ones left in place unused (textcheck keeps shipped lines). (2) Presets covering every part. Light touch, story-rich and
+  demanding between them set every rate on How much happens and every knob on How hard (tested), and say how you're
+  told. Light touch adds: one gathering a week, half the outsiders' chatter, travellers and raiders' camps, wishes and
+  ambitions at 125% of the time, the heart's good side on, a scenario's fights at 75%, no strain from diplomacy against
+  someone's nature, 8 messages and 3 letters a day. Story-rich turns on every system of the colony's life and its world
+  (`SettingsCatalog.Systems`: the What's on sections in `SystemSections`, 89 switches with the region's, diplomacy's,
+  the calendar, answers and goods on the map), only what is on by default (tested), and adds personal touches every 4
+  days, chatter and travellers at 150%, raiders' camps at 125%, the good side on, 16 messages and 6 letters a day; its
+  wishes and meetings stay at the default (they would have moved its moods). Demanding adds a short grace for what was
+  given and is gone, ailments, everyday hurts and a scenario's fights at 125%, against their nature on. The quick setup
+  (Everything on, Council only, Advisor only) reaches the same 89: everything on turns on every one, the switches under
+  them too; council only keeps the council and the colony's story; advisor only the advisor and its plan; a part's own
+  switch goes off and those under it keep their values. The tooltips say what each covers (`_TipWhole` keys). Measured
+  (`Tools/Balance`, `docs/balance-report.md` regenerated: only the presets' rows moved): light touch +7.3, +4.6, -1.7
+  to +7.2, +4.8, -1.6 (well run, average, neglected); story-rich +6.9, +3.2, -6.7 to +6.9, +3.1, -6.5; demanding +2.5,
+  -2.8, -14.8 to +2.3, -2.9, -14.9, time ill 9/15/32% to 12/17/37%; all within their targets and tooltips.
+  (3) The council panel reads the inbox (DESIGN.md "What waits, one list"). `Inbox.Waiting` (`InboxWaiting`, at most
+  once a second) reads Needs you's providers, as This week does, and indexes the rows by colonist (a petition's other
+  names too, `WeekRow.others`). Rows say what they are about
+  (`WeekRow.about`), how pressing on the panels' scale (`rank`, `HudRank.Wish`/`Question`, 270 or 230 for a promise),
+  their panel kind (`part`, else `InboxProvider.part`, else the other asks; `InboxMath.PanelPart`) and whether they wait
+  (`waits`, false for the news row). `HudCouncil` draws a line a kind (wishes, petitions, promises at risk, letters
+  waiting, a new part "asks" for the region's and the peoples' asks) from those rows, ranked by the most pressing
+  (`InboxMath.MostPressing`, `PanelScore`), its tooltip the rows and that row's own, its click that row's; its own walks
+  over wishes, petitions, promises and the letter stack are gone (a promised wish no longer counts twice; no countdowns
+  in its values now, only who waited longest). The bar's wish and promise badges read the colonist's rows
+  (`Inbox.Waiting.Of`), a petitioner's own want in a petition of several; ring, strain, faith and leaving read the
+  person as before. The game's alerts stay the game's. Fixed with it: a promise taken back past its days for amends no
+  longer waits (`AtRisk`), and the count counts wishes and petitions as the rows list them (a petition of several once,
+  as 0.114.0's rows and panel already did, no wish without an asker). (4) Fealty and vassals as pacts of their own kind:
+  on a people's card "A pact of fealty with ..., the colony sworn to them" and "A pact of protection with ..., the
+  colony's vassal" (`CC_Fealty_RowPact`, `CC_Vassal_RowPact`, `_RowPactHamlet`, `CC_Fealty_RowAwaitedPact`) among the
+  truces and pacts; the tie's card "A pact of fealty" or "A pact of protection" (`CardWords.TieName`); Needs you lists
+  them right after the pacts (32.5); the setting "... and pacts of fealty" under "Pacts and truces" in "Bonds with other
+  peoples", and `Fealty.On` reads `Pacts.On` (pacts off, no new pact of any kind; oaths and vassals standing run on);
+  the Almanac's diplomacy page tells them as "Pacts of fealty" and "Pacts of protection", its Pacts and Settings
+  sections point there. Mechanics untouched. (5) Words: the Almanac's Start here ("Too much at once?": the five pages and
+  what the presets reach) and every page that named a settings page (ailments, the council, stories, the colonist bar,
+  panels, seeing and hearing, visitors, weather, defending, the good side, factions' mods, one heart), README's
+  Settings, panels, badges and fealty, DESIGN.md. New keys in `Rimfolk_Settings_Pages.xml` and `Rimfolk_OneWayIn.xml`.
+  Tests: `SettingsTests` (five pages in order with their counts, the rates and knobs where they belong, other mods'
+  rows on their page with their mods, fealty under pacts, indents, the keys before the five pages, presets reaching
+  every slider of How much and How hard, the region, diplomacy, the heart and its good side, hurts and the gatherings,
+  story-rich only switching on what is on, the quick setup over every system), `InboxTests` (the panel's kinds, ranks,
+  the most pressing, the lines adding up to the one count, the panel and badges reading Needs you), `DiplomacyTests`
+  (the section's new heading). Left: the old page keys (`CC_SetPage_Council` and the rest) and the lines replaced stay
+  unused in their files; the colonist bar's leaving badge reads the standing (a warning, not something in Needs you);
+  a player who had switched the council panel's "petitions" part off keeps it off, and the new "asks" part is on. To
+  check in game: the settings window (five pages, the search across them, Your other mods with and without RimMarket
+  or Hospitality loaded, "Rimfolk events › including ones..." on How hard), each preset's list of changes, the quick
+  setup's lists, the council panel beside This week (the same wishes, letters and asks, one petition of several as one
+  line), a badge for each petitioner, a pact of fealty on a people's card and its tie card, pacts switched off greying
+  the fealty row.
 - 0.115.0, phase 5 of the review: one festive year (the player's decision 7 of 6 November 2026, "a custom becomes a tradition
   after three years running (one rule)", and the phase in `docs/review-2026-11/whole.md`: customs on the calendar, one
   tradition rule, one feast engine). Not released: no round in Almanac_WhatsNew.xml, About.xml untouched. (1) Customs on

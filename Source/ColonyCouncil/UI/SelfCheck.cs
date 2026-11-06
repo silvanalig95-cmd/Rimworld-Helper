@@ -434,7 +434,7 @@ namespace ColonyCouncil
             var switches = AutomationTracker.Switches().ToList();
             if (!switches.Any(s => s.on))
             {
-                part.Add("CC_Check_Auto_None".Translate(), UiKit.Faint);
+                part.Add("CC_Check_Auto_NoneWhatsOn".Translate(), UiKit.Faint);
                 return;
             }
             foreach (var (key, on) in switches)

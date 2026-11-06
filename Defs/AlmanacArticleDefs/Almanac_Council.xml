@@ -256,7 +256,7 @@ So space out the decrees people hate. If you must repeat one, the tab shows how 
 
 Long hours, a harvest push and a building season tire hands. A long day at the work the decree drives (six hours of it) has a small chance of a slip there, about one in 150: a cut at the bench, a burn at the stove or the forge, a crushed foot under a load, a cut from the sickle; a crushed hand at an industrial colony's machines, a fabricator's burn in a spacer colony (rarer, and worse). It is twice as likely for someone below 30% rest, and again with two work decrees driving the same work; the tough slip half as often. Keep the decrees short, never two at once, and let people sleep.
 
-These are among Rimfolk's hurts from everyday life: one setting on the Heart &amp; health page scales them all, nobody takes more than one in three days, babies none, and nothing here kills outright. "Ailments and illnesses" has the rest.</text>
+These are among Rimfolk's hurts from everyday life: one setting on the How hard page scales them all, nobody takes more than one in three days, babies none, and nothing here kills outright. "Ailments and illnesses" has the rest.</text>
       </li>
       <li>
         <heading>When it's needed and wanted</heading>
@@ -286,7 +286,7 @@ Check the trust list first: a colonist who is already doubtful takes being overr
       </li>
       <li>
         <heading>What each answer does</heading>
-        <text>Every answer in a dilemma's letter, and in the letters of Rimfolk's events and world events, has a short line under it that tells what it does, and hovering the answer tells more, grouped by kind. The row "What each answer does" on the Council page of the settings chooses how: hints in words (the default), exact numbers, or off.
+        <text>Every answer in a dilemma's letter, and in the letters of Rimfolk's events and world events, has a short line under it that tells what it does, and hovering the answer tells more, grouped by kind. The row "What each answer does" on the How you're told page of the settings chooses how: hints in words (the default), exact numbers, or off.
 
 As hints, nothing is a number. The line starts with what happens on the map and when, then who feels what and roughly how much: spirits and trust in the council rise or fall "a little", "noticeably" or "greatly", for a person by name or for a group ("especially Alo's" when one of them feels it more). It says what the answer costs ("uses some of the stores' beer", "costs a few hours of work"), whether it may not happen at all ("may", "likely", "almost surely"; "some may" when each person is rolled for separately), whether it is a gamble and what goes wrong then, and which way the colony leans. Small things and the colony's ways give way when the line gets long; the hover keeps everything, still in words.
 
@@ -324,7 +324,7 @@ The first time, banishment is never an answer. The speaker of the council (or th
 
 If the trouble goes on after a word or the nights apart, a later question offers to send them away, in the colony's own words for it: cast out from the fire, sent into exile, expelled from the colony, or struck off the colony's roster. The letter has the council's voices, each by their own opinion of them, the objection of a partner, kin or friend by name, and their own say. The hints under the answer name who would grieve and who would be glad, the game's heavier mood when they'd be sent out to die (hurt, ill, or into weather they can't live through), the skills the colony would lose, and the risks of their coming back.
 
-Sent away, they're told face to face, go to their room to gather their things and walk out by the edge of the map with what they wear and carry, through the game's own banishment and its own moods. Those who loved them stay hurt a while. One sent away may come back one day: at the gate asking to be let in, or, rarely, riding with raiders with a grudge. The setting "Banishment by the council" on the Council page turns it all off.</text>
+Sent away, they're told face to face, go to their room to gather their things and walk out by the edge of the map with what they wear and carry, through the game's own banishment and its own moods. Those who loved them stay hurt a while. One sent away may come back one day: at the gate asking to be let in, or, rarely, riding with raiders with a grudge. The setting "Banishment by the council" on the What's on page turns it all off.</text>
       </li>
       <li>
         <heading>What you'll see</heading>
@@ -1326,7 +1326,7 @@ To head it off, use days of rest: a decree that slows everyone's work by 10% for
         <heading>Where to see it</heading>
         <text>The Mood tab has a Heart section: the strain meter with its band, what built it lately, what would help, every feeling and the four needs (hover each for what it means). The council's Moods page lists who is worn down. A short line in the inspector reads like "Strain: worn down · restless, proud · lacks belonging" (the need shows while one is missed); hover it for the whole story. RimHUD can show strain, feelings and needs. Hover the strain mood in the Needs tab to see what built it up.
 
-Settings, on the Heart &amp; health page: feelings and strain on or off, the day off, the inspector line, and how quickly strain builds.
+Settings: feelings and strain on or off on the What's on page, the day off and how quickly strain builds on the How hard page, the inspector line on How you're told.
 
 Strain has another side: when it is at nothing and good things keep coming, the heart fills on the other side: steady, in good heart and in high spirits. It has a page of its own, "the heart's good side", and a second meter in the Heart section.</text>
       </li>

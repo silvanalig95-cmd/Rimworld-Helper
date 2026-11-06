@@ -52,6 +52,21 @@ public static class SettingsTests
             Check(scribed.ContainsKey(f), $"{f} is saved");
             if (scribed.TryGetValue(f, out var key)) Check(key == f, $"{f} keeps its Scribe key (saved as {key})");
         }
+        // The player's settings file carries over untouched: every field of the settings as they stood before the five
+        // pages (Tools/Tests/SettingsKeys.txt, from 4cc8cb8) is still saved under its key, with its type and default.
+        // Moving a row is never renaming its key.
+        int before = 0;
+        foreach (var line in File.ReadAllLines(Path.Combine(root, "Tools", "Tests", "SettingsKeys.txt")))
+        {
+            if (line.StartsWith("#") || line.Trim().Length == 0) continue;
+            var parts = line.Split('\t');
+            string f = parts[0], key = parts[1], type = parts[2], def = parts.Length > 3 ? parts[3] : "";
+            before++;
+            Check(fields.TryGetValue(f, out var now), $"{f}, a setting before the five pages, is still a field");
+            Check(scribed.TryGetValue(f, out var k) && k == key, $"{f} is still saved under its key {key}");
+            Check(now.type == type && (now.def ?? "") == def, $"{f} keeps its type and default ({type} {def})");
+        }
+        Check(before >= 270, $"the settings before the five pages are all listed ({before})");
 
         // ---------- Every field on exactly one page ----------
         var drawn = SettingsCatalog.DrawnFields.GroupBy(f => f).ToDictionary(g => g.Key, g => g.Count());
@@ -68,6 +83,54 @@ public static class SettingsTests
         Check(all.Select(e => e.id).Distinct().Count() == all.Count, "every row has its own id");
         foreach (var e in all.Where(e => e.notAField)) Check(!fields.ContainsKey(e.id), $"{e.id}: a row that isn't a field doesn't share a field's name");
         foreach (var p in SettingsCatalog.Pages) Check(SettingsCatalog.On(p).Count() >= 3, $"page {p} has settings on it");
+        // Five pages by what a player thinks about (decision 15): how much happens, how hard, what's on, how you're told, your other mods.
+        Check(SettingsCatalog.Pages.SequenceEqual(new[] { SettingsPage.HowMuch, SettingsPage.HowHard, SettingsPage.WhatsOn, SettingsPage.HowTold, SettingsPage.OtherMods }),
+            "five pages, in the player's order");
+        int Count(SettingsPage p) => SettingsCatalog.On(p).Count();
+        Check(Count(SettingsPage.HowMuch) >= 15 && Count(SettingsPage.HowHard) >= 20 && Count(SettingsPage.WhatsOn) >= 100 && Count(SettingsPage.HowTold) >= 60
+              && Count(SettingsPage.OtherMods) >= 10, $"each page holds its part ({string.Join(", ", SettingsCatalog.Pages.Select(p => p + " " + Count(p)))})");
+        // How much happens holds the rates: every slider there is a rate of something happening, and every rate is there.
+        var rates = new[]
+        {
+            "gatheringsAWeek", "daysBetweenWishes", "maxOpenWishes", "daysBetweenDilemmas", "daysBetweenMeetings", "momentFrequency", "socialEventFrequency",
+            "dreamFrequency", "arcFrequency", "daysBetweenPersonalTouches", "outsiderChatterFrequency", "encounterFrequency", "storytellerEventWeight",
+            "daysBetweenWorldEvents", "daysBetweenWorldSituations", "remoteTravellers", "raidersCamps"
+        };
+        foreach (var r in rates) Check(SettingsCatalog.Find(r)?.page == SettingsPage.HowMuch, $"the rate {r} is on How much happens");
+        Check(SettingsCatalog.On(SettingsPage.HowMuch).All(e => rates.Contains(e.id)), "How much happens holds only the rates");
+        var knobs = new[]
+        {
+            "stakes", "penaltyFactor", "rewardFactor", "wishDurationFactor", "ambitionDeadlineFactor", "lifePressure", "risingStandards", "goodGrowsOrdinary",
+            "quietTroubles", "frictions", "strainSpeed", "heartEpisodes", "heartGoodSide", "ailmentFrequency", "seriousIllnesses", "everydayHurts", "scenarioThreat"
+        };
+        foreach (var r in knobs) Check(SettingsCatalog.Find(r)?.page == SettingsPage.HowHard, $"{r} is on How hard");
+        // Other mods' switches are on their own page, each under its mod, shown only with the mod loaded.
+        var modded = new[]
+        {
+            "guestWill", "guestStories", "guestCheck", "marketStallWindow", "marketStallShips", "marketCampersBuy", "marketGuestsShop", "drinkBeforeWork",
+            "smokeBeforeWork", "coveredLooks", "magicGolemRepair", "magicNeedRules", "territoryNewsQuiet", "medicalTriage"
+        };
+        foreach (var r in modded)
+        {
+            var e = SettingsCatalog.Find(r);
+            Check(e?.page == SettingsPage.OtherMods && e.mods != null && e.mods.Length > 0 && e.mods.All(SettingsCatalog.ModSections.ContainsKey),
+                $"{r}: on Your other mods, shown only with its mod loaded");
+        }
+        Check(SettingsCatalog.Find("marketGuestsShop")?.mods?.Length == 2, "guests shopping at the market needs both RimMarket and Hospitality");
+        Check(SettingsCatalog.All.Where(e => e.mods != null).All(e => e.page == SettingsPage.OtherMods), "only the other mods' page has rows for other mods");
+        Check(SettingsCatalog.On(SettingsPage.OtherMods).All(e => e.mods != null || e.id == "faithTurretsHere"), "every row there is for a mod (a faith's precept from any mod aside)");
+        foreach (var kv in SettingsCatalog.ModSections)
+            Check(SettingsCatalog.On(SettingsPage.OtherMods).Any(e => e.section == kv.Value && e.mods != null && e.mods.Contains(kv.Key)), $"{kv.Key}: its heading has its rows");
+        // Fealty and vassals are a kind of pact (decision 14): their switch hangs under pacts and truces, on the same page.
+        var fealty = SettingsCatalog.Find("diplomacyFealty");
+        Check(fealty != null && fealty.Parent == "diplomacyPacts" && fealty.Indented && fealty.section == "CC_SetSec_Peoples", "fealty and vassals hang under pacts, in the bonds with other peoples");
+        var peoples = SettingsCatalog.On(SettingsPage.WhatsOn).Where(e => e.section == "CC_SetSec_Peoples").Select(e => e.id).ToList();
+        Check(peoples.IndexOf("diplomacyFealty") == peoples.IndexOf("diplomacyPacts") + 1, "fealty right under pacts");
+        Check(Regex.IsMatch(File.ReadAllText(Path.Combine(sourceDir, "Diplomacy", "Fealty.cs")),
+            @"public static bool On => Pacts\.On && \(ColonyCouncilMod\.Settings\?\.diplomacyFealty \?\? true\)"), "pacts off, no new pact of fealty either");
+        // A row hangs indented only under a parent on its own page; elsewhere it stands alone.
+        foreach (var e in all.Where(e => e.Parent != null))
+            Check(e.Indented == (SettingsCatalog.Find(e.Parent)?.page == e.page), $"{e.id}: indented only under a parent on its page");
         // Each page's headings come in one run each, so a heading is never drawn twice on a page.
         foreach (var p in SettingsCatalog.Pages)
         {
@@ -216,8 +279,42 @@ public static class SettingsTests
         var normal = SettingsCatalog.Preset("default");
         Check(normal != null && normal.Fields.ToHashSet().SetEquals(others) && normal.values.All(v => v.value == SettingsCatalog.DefaultValue),
             "default puts back exactly what the other presets change");
-        Check(SettingsCatalog.PeopleSystems.All(f => Value("everything", f) == "true"), "everything on: every people system on");
+        // The presets reach every page's sliders that are about play: every rate on How much happens and every knob on
+        // How hard is set by light touch, story-rich or demanding (and so put back by default). The tools' sliders, the
+        // panels' and the hover card's are the player's own.
+        foreach (var e in all.Where(e => (e.page == SettingsPage.HowMuch || e.page == SettingsPage.HowHard) && (e.kind == SettingKind.Slider || e.kind == SettingKind.Choice)))
+            Check(others.Contains(e.id), $"{e.id} ({e.page}): a preset reaches it");
+        foreach (var r in rates)
+            Check(Value("lightTouch", r) != null || Value("storyRich", r) != null, $"{r}: light touch or story-rich sets its pace");
+        // Every part, the newest third among them: the region, the bonds with other peoples, the heart and its good side,
+        // harm, the gatherings a week, how you're told.
+        foreach (var f in new[] { "remoteTravellers", "raidersCamps", "diplomacyNature", "strainSpeed", "heartEpisodes", "heartGoodSide", "everydayHurts", "scenarioThreat", "gatheringsAWeek", "messagesADay" })
+            Check(Value("lightTouch", f) != null, $"light touch reaches {f}");
+        foreach (var f in new[] { "regionFortunes", "regionChange", "tradingPosts", "hamlets", "diplomacyFavours", "diplomacyPacts", "diplomacyFealty", "diplomacyFeasts", "goodsComeAndGo", "heartGoodSide", "gatheringsAWeek" })
+            Check(Value("storyRich", f) != null, $"story-rich reaches {f}");
+        Check(Value("lightTouch", "gatheringsAWeek") == "1" && Value("storyRich", "gatheringsAWeek") == "3", "the gatherings a week: one in light touch, three in story-rich");
+        Check(Value("lightTouch", "everydayHurts") == "0.5" && Value("demanding", "everydayHurts") == "1.25", "hurts at half in light touch, a quarter more in demanding");
+        Check(Value("lightTouch", "heartGoodSide") == "true" && Value("demanding", "strainSpeed") == "1.25", "the heart: its good side on in light touch, strain faster in demanding");
+        // Story-rich switches on only what is on by default: it never turns on something the player wouldn't have had.
+        foreach (var v in SettingsCatalog.Preset("storyRich").values.Where(v => v.value == "true"))
+            Check(fields.TryGetValue(v.field, out var t) && t.def == "true", $"story-rich turns on {v.field}, which is on by default");
+
+        // ---------- What's on: the quick setup reaches every part of the colony's life and its world ----------
+        var systems = SettingsCatalog.Systems.ToList();
+        Check(systems.Count >= 85, $"the setups reach every system ({systems.Count} switches)");
+        foreach (var s in SettingsCatalog.SystemSections)
+            Check(systems.Any(e => e.section == s), $"the setups reach the section {s}");
+        foreach (var f in new[] { "regionFortunes", "tradingPosts", "hamlets", "diplomacyPacts", "diplomacyFealty", "diplomacyRenown", "goodsComeAndGo", "answersPlayOut", "heart" })
+            Check(systems.Any(e => e.id == f), $"the setups reach {f}");
+        Check(systems.All(e => Value("everything", e.id) == "true"), "everything on: every system on, the switches under them too");
+        Check(systems.Where(e => SettingsCatalog.CouncilSections.Contains(e.section)).All(e => Value("councilOnly", e.id) == "true"), "council only: the council and the story on");
+        Check(systems.Where(e => !SettingsCatalog.CouncilSections.Contains(e.section)).All(e => e.Indented ? Value("councilOnly", e.id) == null : Value("councilOnly", e.id) == "false"),
+            "council only: every other part's own switch off, the switches under them left as they are");
+        Check(SettingsCatalog.AdvisorSystems.All(f => Value("advisorOnly", f) == "true")
+              && systems.Where(e => !SettingsCatalog.AdvisorSystems.Contains(e.id)).All(e => e.Indented ? Value("advisorOnly", e.id) == null : Value("advisorOnly", e.id) == "false"),
+            "advisor only: the advisor and its plan, every other part's own switch off");
         Check(Value("advisorOnly", "stakes") == "AdvisorOnly" && Value("advisorOnly", "enableWishes") == "false", "advisor only: no wishes, no mood effects");
+        Check(systems.All(e => fields.TryGetValue(e.id, out var t) && t.def == "true"), "every system the setups reach is on by default");
 
         // ---------- It fits: small screens, big interface scales ----------
         var screens = new (float w, float h)[] { (1280f, 720f), (1366f, 768f), (1600f, 900f), (1920f, 1080f), (2560f, 1440f), (3840f, 2160f) };

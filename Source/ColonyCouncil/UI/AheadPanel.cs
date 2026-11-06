@@ -32,7 +32,7 @@ namespace ColonyCouncil
             var plan = view.plan;
             if (needs == null) return 0f;
             string from = needs.measured ? "CC_Ahead_FromRecord".Translate(needs.measuredDays.ToString("0.#")).Resolve()
-                : ColonyUse.Recording ? "CC_Ahead_FromSoon".Translate().Resolve() : "CC_Ahead_FromOff".Translate().Resolve();
+                : ColonyUse.Recording ? "CC_Ahead_FromSoon".Translate().Resolve() : "CC_Ahead_FromOffHooks".Translate().Resolve();
             y += UiKit.SectionTitle(x, y, width, "CC_Ahead_Section".Translate());
             TooltipHandler.TipRegion(new Rect(x, y - UiKit.SectionHeight, width, 24f), "CC_Ahead_SectionTip".Translate());
             y += UiKit.Paragraph(x + Pad, y, width - 2 * Pad, "CC_Ahead_Intro".Translate(Ahead.Who(needs)).Resolve() + " " + from, UiKit.Faint, GameFont.Tiny) + 6f;
@@ -94,7 +94,7 @@ namespace ColonyCouncil
                 var r = new Rect(Col(i), y, share[i] * inner - (i >= 1 && i <= 4 ? 10f : 4f), 18f);
                 Text.Anchor = i >= 1 && i <= 4 ? TextAnchor.UpperRight : TextAnchor.UpperLeft;
                 Widgets.Label(r, Columns[i].Translate());
-                TooltipHandler.TipRegion(r, (Columns[i] + "Tip").Translate());
+                TooltipHandler.TipRegion(r, (Columns[i] == "CC_Ahead_Col_Keep" ? "CC_Ahead_KeepTipWhatsOn" : Columns[i] + "Tip").Translate());
             }
             Text.Anchor = TextAnchor.UpperLeft;
             GUI.color = UiKit.Ink;

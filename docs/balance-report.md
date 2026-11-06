@@ -192,13 +192,13 @@ Filled and spent are per colonist over the 60-day year; "without" is the same se
 | 12 colonists, well run | 48% | 27% | 3% | 98% | 0.10 / 0.10 | purpose 57, belonging 44, good talks 42, small joys 25 | life 86, Rimfolk's letdowns 20, small moods 2 |
 | 12 colonists, average | 2% | 0% | 0% | 65% | 0.00 / 0.00 | purpose 23, good talks 22, belonging 15, small joys 11 | life 51, Rimfolk's letdowns 16, small moods 9 |
 | 12 colonists, neglectful | 0% | 0% | 0% | 8% | 0.00 / 0.00 | good talks 3, small joys 1, purpose 1, gatherings 0 | life 4, Rimfolk's letdowns 1, small moods 1 |
-| 6 colonists, well run, lightTouch | 45% | 34% | 6% | 99% | 0.21 / 0.19 | purpose 57, belonging 44, good talks 42, small joys 26 | life 90, Rimfolk's letdowns 8, small moods 0 |
+| 6 colonists, well run, lightTouch | 46% | 34% | 6% | 99% | 0.20 / 0.21 | purpose 57, belonging 44, good talks 42, small joys 26 | life 90, Rimfolk's letdowns 8, small moods 0 |
 | 6 colonists, average, lightTouch | 5% | 0% | 0% | 71% | 0.00 / 0.00 | purpose 25, good talks 24, belonging 16, small joys 13 | life 61, Rimfolk's letdowns 12, small moods 5 |
 | 6 colonists, neglectful, lightTouch | 0% | 0% | 0% | 9% | 0.00 / 0.00 | good talks 3, small joys 2, purpose 1, gatherings 1 | life 5, small moods 2, Rimfolk's letdowns 1 |
-| 6 colonists, well run, storyRich | 48% | 28% | 2% | 99% | 0.10 / 0.10 | purpose 57, belonging 44, good talks 42, small joys 24 | life 86, Rimfolk's letdowns 22, small moods 4 |
-| 6 colonists, average, storyRich | 2% | 0% | 0% | 66% | 0.00 / 0.00 | purpose 24, good talks 23, belonging 16, small joys 11 | life 51, Rimfolk's letdowns 16, small moods 10 |
+| 6 colonists, well run, storyRich | 47% | 28% | 3% | 99% | 0.10 / 0.11 | purpose 57, belonging 44, good talks 42, small joys 24 | life 85, Rimfolk's letdowns 22, small moods 4 |
+| 6 colonists, average, storyRich | 2% | 0% | 0% | 66% | 0.00 / 0.00 | purpose 24, good talks 23, belonging 15, small joys 11 | life 51, Rimfolk's letdowns 16, small moods 10 |
 | 6 colonists, neglectful, storyRich | 0% | 0% | 0% | 10% | 0.00 / 0.00 | good talks 3, small joys 2, purpose 1, gatherings 1 | life 5, Rimfolk's letdowns 1, small moods 1 |
-| 6 colonists, well run, demanding | 48% | 23% | 2% | 98% | 0.07 / 0.07 | purpose 57, belonging 45, good talks 42, small joys 21 | life 83, Rimfolk's letdowns 26, small moods 4 |
+| 6 colonists, well run, demanding | 48% | 23% | 2% | 98% | 0.06 / 0.06 | purpose 57, belonging 45, good talks 42, small joys 21 | life 83, Rimfolk's letdowns 26, small moods 4 |
 | 6 colonists, average, demanding | 1% | 0% | 0% | 64% | 0.00 / 0.00 | purpose 23, good talks 22, belonging 15, small joys 9 | life 47, Rimfolk's letdowns 17, small moods 9 |
 | 6 colonists, neglectful, demanding | 0% | 0% | 0% | 8% | 0.00 / 0.00 | good talks 3, small joys 1, purpose 1, gatherings 1 | life 4, Rimfolk's letdowns 1, small moods 1 |
 
@@ -336,15 +336,15 @@ The style presets of the settings window, applied as the window applies them (6 
 | default | well run | +6.4 | +8.7 | -8.5 | 0.50 | 0.64 | 9% |
 | default | average | +2.6 | +6.1 | -5.1 | 0.50 | 0.47 | 15% |
 | default | neglectful | -7.2 | +3.5 | -11.3 | 0.47 | 0.53 | 32% |
-| lightTouch | well run | +7.3 | +6.9 | -5.2 | 0.45 | 0.33 | 5% |
-| lightTouch | average | +4.6 | +4.8 | -1.8 | 0.44 | 0.27 | 7% |
-| lightTouch | neglectful | -1.7 | +3.0 | -5.1 | 0.43 | 0.36 | 15% |
-| storyRich | well run | +6.9 | +9.7 | -9.1 | 0.58 | 0.64 | 9% |
-| storyRich | average | +3.2 | +6.8 | -5.3 | 0.56 | 0.47 | 13% |
-| storyRich | neglectful | -6.7 | +4.2 | -11.4 | 0.54 | 0.53 | 30% |
-| demanding | well run | +2.5 | +6.3 | -8.7 | 0.50 | 0.68 | 9% |
-| demanding | average | -2.8 | +4.3 | -8.3 | 0.49 | 0.52 | 15% |
-| demanding | neglectful | -14.8 | +2.6 | -17.8 | 0.47 | 0.66 | 32% |
+| lightTouch | well run | +7.2 | +6.7 | -5.1 | 0.45 | 0.30 | 5% |
+| lightTouch | average | +4.8 | +5.1 | -1.8 | 0.45 | 0.24 | 7% |
+| lightTouch | neglectful | -1.6 | +3.0 | -5.1 | 0.44 | 0.30 | 15% |
+| storyRich | well run | +6.9 | +9.8 | -9.2 | 0.58 | 0.64 | 9% |
+| storyRich | average | +3.1 | +6.8 | -5.4 | 0.57 | 0.47 | 14% |
+| storyRich | neglectful | -6.5 | +4.3 | -11.4 | 0.54 | 0.52 | 32% |
+| demanding | well run | +2.3 | +6.3 | -8.7 | 0.49 | 0.69 | 12% |
+| demanding | average | -2.9 | +4.3 | -8.4 | 0.49 | 0.52 | 17% |
+| demanding | neglectful | -14.9 | +2.5 | -17.9 | 0.47 | 0.64 | 37% |
 
 ## How often things happen (per colony per year)
 

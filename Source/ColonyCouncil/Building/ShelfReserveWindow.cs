@@ -92,7 +92,7 @@ namespace ColonyCouncil
             float y = inRect.y + top;
             y += UiKit.Paragraph(inRect.x, y, inRect.width, "CC_Shelf_Explain".Translate(), UiKit.Faint) + 6f;
             if (!ShelfReserves.On)
-                y += UiKit.Paragraph(inRect.x, y, inRect.width, "CC_Shelf_Off".Translate(), UiKit.Warn) + 6f;
+                y += UiKit.Paragraph(inRect.x, y, inRect.width, "CC_Shelf_OffWhatsOn".Translate(), UiKit.Warn) + 6f;
 
             var entries = comp.EntriesOf(first);
             var st = comp.StateOf(first);

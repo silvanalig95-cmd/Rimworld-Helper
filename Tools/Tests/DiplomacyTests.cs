@@ -256,7 +256,7 @@ public static class DiplomacyTests
         string settings = Code("CouncilSettings.cs");
         string catalog = Code("UI/SettingsCatalog.cs");
         C(settings.Contains("public bool diplomacyFavours = true;") && settings.Contains("Scribe_Values.Look(ref diplomacyFavours, \"diplomacyFavours\", true);")
-          && catalog.Contains("Section(\"CC_SetSec_Diplomacy\")") && catalog.Contains("Toggle(\"diplomacyFavours\""), "the settings section Diplomacy, favours on by default");
+          && catalog.Contains("Section(\"CC_SetSec_Peoples\")") && catalog.Contains("Toggle(\"diplomacyFavours\""), "the settings section Bonds with other peoples (once Diplomacy), favours on by default");
         C(Code("Text/Facts/FactsLedger.cs").Contains("FactsMath.AddHonour(f, fact, DipWords.Why(honour.tie))"), "a debt of honour speaks as its own facts, with {FAVOURWHY}");
 
         // ---------------- The words ----------------

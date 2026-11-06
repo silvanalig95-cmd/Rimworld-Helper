@@ -55,14 +55,69 @@ public static class InboxTests
                 "the region's and diplomacy's asks add to it");
         }
         C(InboxMath.Count(new[] { 3, -2, 0 }) == 3 && InboxMath.Count(null) == 0, "a part's count below nothing counts as none");
+
+        // ---------------- One list: the council panel and the badges read Needs you (decision 16) ----------------
+        C(InboxMath.PanelParts.SequenceEqual(new[] { "wishes", "petitions", "promises", "questions", "asks" }), "the panel's kinds of what waits, in its order");
+        C(InboxMath.PanelPart("petitions", "wishes") == "petitions" && InboxMath.PanelPart(null, "questions") == "questions" && InboxMath.PanelPart(null, null) == "asks"
+          && InboxMath.PanelPart("", "") == "asks", "a row shows under its own kind, else its provider's, else the other asks");
+        C(InboxMath.Rank(0f) == InboxMath.WaitingRank && InboxMath.Rank(270f) == 270f && InboxMath.WaitingRank >= 100f && InboxMath.WaitingRank < 200f,
+            "a row with no rank of its own is worth knowing, on the panels' middle tier");
+        C(InboxMath.MostPressing(new float[] { 0f, 230f, 270f, 270f }) == 2 && InboxMath.MostPressing(new float[] { 0f, 0f }) == 0 && InboxMath.MostPressing(new float[0]) == -1,
+            "the most pressing row: the highest rank, the first among equals");
+        C(InboxMath.PanelScore(new float[] { 110f, 0f }) == InboxMath.WaitingRank && InboxMath.PanelScore(new float[0]) == 0f, "a line's score is its most pressing row's");
+        // The counts agree: each provider counts the rows it lists that wait (the news letters' row lists and asks nothing),
+        // so the panel's lines, the badges' rows and the one count on the button and This week are the same things.
+        var rndPanel = new Random(16);
+        string[] providerParts = { "wishes", "questions", null, null, null, "promises" };
+        for (int t = 0; t < 300; t++)
+        {
+            var counts = new List<int>();
+            var byPart = new Dictionary<string, int>();
+            int waitingRows = 0;
+            foreach (var pp in providerParts)
+            {
+                int listed = rndPanel.Next(0, 5), waits = 0;
+                for (int i = 0; i < listed; i++)
+                {
+                    bool news = pp == "questions" && i == listed - 1 && rndPanel.Next(2) == 0;
+                    if (news) continue;
+                    string rowPart = pp == "wishes" && rndPanel.Next(3) == 0 ? "petitions" : null;
+                    string part = InboxMath.PanelPart(rowPart, pp);
+                    byPart[part] = byPart.GetValueOrDefault(part) + 1;
+                    waits++;
+                }
+                counts.Add(waits);
+                waitingRows += waits;
+            }
+            C(InboxMath.Count(counts) == waitingRows && byPart.Values.Sum() == waitingRows && byPart.Keys.All(InboxMath.PanelParts.Contains),
+                "the panel's lines add up to the one count");
+        }
+        string hud = Code("Hud/HudCouncil.cs"), badges = Code("ColonistBar/BarBadges.cs");
+        C(hud.Contains("var waiting = Inbox.Waiting;") && hud.Contains("InboxMath.PanelPart(r.part, p.provider.part)") && !hud.Contains("LetterStack") && !hud.Contains("comp.wishes")
+          && !hud.Contains("kept?.watches") && !hud.Contains("decrees).requests"),
+            "the council panel reads what waits from Needs you, never the letters, wishes, petitions or promises itself");
+        C(Regex.Matches(badges, @"Inbox\.Waiting\.Of\(p\)").Count == 2 && !badges.Contains("comp.wishes") && badges.Contains("comp.PetitionOf(w).FirstOrDefault(x => x.pawn == p)") && !badges.Contains("kept.watches"),
+            "the bar's wish and promise badges read the colonist's rows of Needs you");
+        C(Code("Hud/HudAlerts.cs").Contains("HudCouncil.PartWishes") && Code("Hud/HudCouncil.cs").Contains("PartAsks"), "the game's alerts stay the game's; the panel's wishes still hide its wishes alert");
+        string own = Code("UI/InboxProviders.cs");
+        C(own.Contains("WishesCount, part: InboxMath.PartWishes") && own.Contains("AnswersCount, part: InboxMath.PartQuestions") && own.Contains("PromisesCount, part: InboxMath.PartPromises"),
+            "the own providers say the panel's kind of their rows");
+        C(own.Contains("about = w,") && own.Contains("about = r,") && own.Contains("about = l,") && own.Contains("part = InboxMath.PartPetitions") && own.Contains("waits = false"),
+            "rows say what they are about (a wish, a petition, a letter, a promise), petitions their own kind, the news row waits on nothing");
+        C(Regex.IsMatch(own, @"private static bool AtRisk\(GrantWatch w, int now\)[\s\S]*?KeptMath\.AmendsDays") && Regex.Matches(own, @"AtRisk\(w, now\)").Count == 2,
+            "a promise taken back past making amends no longer waits, in the count and the rows alike");
+        C(Regex.IsMatch(own, @"r\?\.def != null && r\.pawn != null\)\s*petitions\+\+") && own.Contains("w.state == WishState.Open && w.pawn != null && comp.LeadsPetition(w)") && own.Contains("others = others,"),
+            "wishes and petitions counted as their rows list them, a petition of several once, its other names reading the row too");
+        C(Code("UI/Inbox.cs").Contains("public static InboxWaiting Waiting") && Code("UI/Inbox.cs").Contains("now - waitingAt < 1f"), "what waits read at most once a second");
         string providers = Code("UI/InboxProviders.cs");
         string model = Code("UI/WeekModel.cs");
         string inbox = Code("UI/Inbox.cs");
         foreach (var (id, count) in new[] { ("wishes", "WishesCount"), ("answers", "AnswersCount"), ("asks", "AsksCount"), ("favours", "DiplomacyPanels.WeekCount"),
                      ("settlers", "HamletPage.WeekCount"), ("promises", "PromisesCount") })
-            C(Regex.IsMatch(providers, @"Inbox\.Register\(""" + id + @""", InboxSection\.Needs, [\d.]+f, [\w.]+, " + Regex.Escape(count) + @"\)"), $"Needs you's {id} has its count ({count})");
-        C(Regex.IsMatch(providers, @"WishesCount\(\)[\s\S]*?decrees\.requests\.Count[\s\S]*?WishState\.Open") && Regex.IsMatch(providers, @"AnswersCount\(\)[\s\S]*?WaitingKind\(l\) != null")
-          && Regex.IsMatch(providers, @"PromisesCount\(\)[\s\S]*?KeptPhase\.Kept"), "today's four parts count what NeedsCount counted");
+            C(Regex.IsMatch(providers, @"Inbox\.Register\(""" + id + @""", InboxSection\.Needs, [\d.]+f, [\w.]+, " + Regex.Escape(count) + @"(, part: InboxMath\.Part\w+)?\)"), $"Needs you's {id} has its count ({count})");
+        C(Regex.IsMatch(providers, @"WishesCount\(\)[\s\S]*?decrees\.requests[\s\S]*?WishState\.Open") && Regex.IsMatch(providers, @"AnswersCount\(\)[\s\S]*?WaitingKind\(l\) != null")
+          && Regex.IsMatch(providers, @"AtRisk\(GrantWatch w, int now\) =>[\s\S]*?KeptPhase\.Kept[\s\S]*?PromisesCount\(\)[\s\S]*?AtRisk\(w, now\)"),
+            "today's four parts count what NeedsCount counted (a petition of several once, a promise past making amends no longer)");
         C(model.Contains("public static int NeedsCount(CouncilGameComponent comp) => comp == null ? 0 : Inbox.Count;") && model.Contains("m.needs = Inbox.Count;"),
             "the tab, This week's stat and the old NeedsCount are the one count");
         // Needs you's own rows hold the news letters' row, which asks nothing: its heading says the one count, not its rows.

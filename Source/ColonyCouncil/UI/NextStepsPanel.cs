@@ -31,7 +31,7 @@ namespace ColonyCouncil
             Widgets.BeginScrollView(outRect, ref scroll, view);
             float y = 0f;
             y += BuildAheadPanel.Draw(0f, y, view.width, map) + 10f;
-            UiKit.EmptyLine(new Rect(0f, y, view.width, UiKit.RowStandard), "CC_Plan_Off".Translate());
+            UiKit.EmptyLine(new Rect(0f, y, view.width, UiKit.RowStandard), "CC_Plan_OffWhatsOn".Translate());
             y += UiKit.RowStandard + UiKit.CardGap;
             height = Mathf.Max(y + 20f, outRect.height);
             Widgets.EndScrollView();

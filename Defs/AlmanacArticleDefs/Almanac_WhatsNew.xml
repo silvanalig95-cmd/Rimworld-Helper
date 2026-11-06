@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.116.0</version>
+        <date>6 November 2026</date>
+        <title>One way in</title>
+        <points>
+          <li>The settings are on five pages by what you think about: How much happens (every rate in one place), How hard, What's on, How you're told, and Your other mods (only the mods you have loaded). Every setting keeps its value; search still finds any of them.</li>
+          <li>The presets reach every part now, the region, diplomacy, the heart and its good side, everyday hurts and the gathering budget included: light touch, story-rich, demanding, and default to put back what they change.</li>
+          <li>The council panel and the colonist bar's wish and promise badges read the same list as This week, so what waits on you is worked out once. The panel no longer shows countdowns.</li>
+          <li>Fealty and vassals are kinds of pact now: a pact of fealty, the colony sworn to them, or a pact of protection, the colony's vassal, shown among the colony's truces and pacts.</li>
+          <li>Fixed: a promise taken back past its days for amends still showed as waiting in This week, and a promised wish could show both as a wish and as a promise.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.115.0</version>
         <date>6 November 2026</date>
         <title>One festive year</title>

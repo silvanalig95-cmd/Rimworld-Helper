@@ -198,7 +198,8 @@ namespace ColonyCouncil
                 c.ties.Add(pr);
                 c.weight += 12;
             }
-            // Fealty to them or theirs to the colony (release 2c.2), the Empire's titled colonists as its own (decision 9).
+            // Pacts of fealty with them, or of protection with their towns (release 2c.2; pacts of their own kind since the
+            // review's decision 14, right after the pacts), the Empire's titled colonists as its own (decision 9).
             foreach (var fr in FealtyPanels.Rows(f, home))
             {
                 c.ties.Add(fr);

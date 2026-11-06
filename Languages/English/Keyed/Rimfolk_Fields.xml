@@ -61,7 +61,7 @@ While a crop sown now would bring at least {0} of a full harvest, the field sows
   <CC_Fields_Check_Late>the frost came ({LOW} at its coldest) before most were harvested: {SAVED} of {N} in time.</CC_Fields_Check_Late>
   <CC_Fields_Check_NoGrowers>Nobody here has Growing switched on.</CC_Fields_Check_NoGrowers>
 
-  <!-- Settings (Building, Planning ahead). -->
+  <!-- Settings (What's on, Planning ahead). -->
   <CC_Settings_FieldsByWeather>Fields by the weather</CC_Settings_FieldsByWeather>
   <CC_Settings_FieldsByWeather_Tip>Each growing zone gets a "By the weather" switch, off until you switch it on for a field. A field set to it sows only while a crop sown now would bring at least 60% of a full harvest by the forecast (worked out from the game's own temperatures for each hour, the conditions on the map and the weather now, plant by plant against each one's own cold limit); otherwise its sowing pauses and the field says when it should pay again. It only ever holds sowing back. Needs the deeper game hooks.</CC_Settings_FieldsByWeather_Tip>
   <CC_SetNote_FieldsByWeather>A By the weather switch on each field: sowing there pauses while a crop sown now wouldn't pay.</CC_SetNote_FieldsByWeather>

@@ -13,7 +13,7 @@
   <CC_News_Go>Go there</CC_News_Go>
   <CC_News_GoTip>Close the news and go to where it happened. The letter stays until you close it.</CC_News_GoTip>
 
-  <!-- The setting (Interface & integrations page, under Messages) -->
+  <!-- The setting (How you're told page, under Messages) -->
   <CC_SetLabel_ColonyNews>Colony news</CC_SetLabel_ColonyNews>
   <CC_SetTip_ColonyNews>Where Rimfolk's smaller news goes: new friends and rivals, quirks, personal stories, birthdays, ailments and recoveries, kept days and traditions, names, dreams, camps, strangers and the like. Letters that ask you to decide something, and serious news (a death, a raid, a serious illness, a camp arriving), always come at once. How much of the smaller news there is at all is set by "How many messages".</CC_SetTip_ColonyNews>
   <CC_NewsMode_AsItHappens>As it happens</CC_NewsMode_AsItHappens>

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Verse;
 
@@ -23,6 +24,53 @@ namespace ColonyCouncil
         public Func<int> needs;
         /// <summary>Its rows stand after the section's others, and show when the section is folded.</summary>
         public bool footer;
+        /// <summary>Needs you only: the on-screen council panel's part its rows show under (InboxMath.PanelParts); null, the other asks.</summary>
+        public string part;
+    }
+
+    /// <summary>One provider of Needs you, as last read: how many of its things wait (as the one count counts them) and its rows in their order.</summary>
+    public sealed class InboxWaitingPart
+    {
+        public InboxProvider provider;
+        public int count;
+        public readonly List<WeekRow> rows = new List<WeekRow>();
+    }
+
+    /// <summary>
+    /// What waits on the player, as Needs you lists it, read at most once a second for what shows it besides This week:
+    /// the on-screen council panel (Hud/HudCouncil.cs) by kind, the colonist bar's badges (ColonistBar/BarBadges.cs) by
+    /// colonist. One list, so the three never disagree (the review's decision 16); the game's alerts stay the game's.
+    /// </summary>
+    public sealed class InboxWaiting
+    {
+        public int count;
+        public readonly List<InboxWaitingPart> parts = new List<InboxWaitingPart>();
+        private readonly Dictionary<Pawn, List<WeekRow>> byPawn = new Dictionary<Pawn, List<WeekRow>>();
+        private static readonly List<WeekRow> None = new List<WeekRow>();
+
+        /// <summary>The rows about one colonist that wait on the player (their wishes, a promise to them at risk...).</summary>
+        public List<WeekRow> Of(Pawn p) => p != null && byPawn.TryGetValue(p, out var list) ? list : None;
+
+        internal void Index()
+        {
+            byPawn.Clear();
+            foreach (var part in parts)
+            foreach (var r in part.rows)
+            {
+                if (!r.waits) continue;
+                Add(r.pawn, r);
+                if (r.others != null)
+                    foreach (var o in r.others)
+                        Add(o, r);
+            }
+        }
+
+        private void Add(Pawn p, WeekRow r)
+        {
+            if (p == null) return;
+            if (!byPawn.TryGetValue(p, out var list)) byPawn[p] = list = new List<WeekRow>();
+            if (!list.Contains(r)) list.Add(r);
+        }
     }
 
     /// <summary>
@@ -63,8 +111,9 @@ namespace ColonyCouncil
         }
 
         /// <summary>Adds a part to This week: its section, its place there, its rows and, for Needs you, how many wait on the player.</summary>
-        public static void Register(string id, InboxSection section, float order, Action<List<WeekRow>> rows, Func<int> needs = null, bool footer = false) =>
-            Register(new InboxProvider { id = id, section = section, order = order, rows = rows, needs = needs, footer = footer });
+        public static void Register(string id, InboxSection section, float order, Action<List<WeekRow>> rows, Func<int> needs = null, bool footer = false,
+            string part = null) =>
+            Register(new InboxProvider { id = id, section = section, order = order, rows = rows, needs = needs, footer = footer, part = part });
 
         /// <summary>A section's parts in their order.</summary>
         public static List<InboxRegistry<InboxProvider>.Entry> In(InboxSection s)
@@ -82,7 +131,74 @@ namespace ColonyCouncil
         private static readonly List<WeekRow> scratch = new List<WeekRow>();
 
         /// <summary>Something waiting changed (a letter answered, a pin): the next ask counts again.</summary>
-        public static void Dirty() => countAt = -1f;
+        public static void Dirty()
+        {
+            countAt = -1f;
+            waitingAt = -1f;
+        }
+
+        // ---------------- What waits, for the panel and the badges ----------------
+
+        private static InboxWaiting waiting = new InboxWaiting();
+        private static float waitingAt = -1f;
+        private static Game waitingGame;
+
+        /// <summary>
+        /// What waits on the player, provider by provider of Needs you, each with its count (what the one count adds up)
+        /// and its rows in This week's order, and by colonist. Read at most once a second; This week builds its own copy
+        /// from the same providers.
+        /// </summary>
+        public static InboxWaiting Waiting
+        {
+            get
+            {
+                float now = Time.realtimeSinceStartup;
+                if (waitingAt >= 0f && now - waitingAt < 1f && now >= waitingAt && waitingGame == Current.Game) return waiting;
+                waitingAt = now;
+                waitingGame = Current.Game;
+                waiting = BuildWaiting();
+                return waiting;
+            }
+        }
+
+        private static InboxWaiting BuildWaiting()
+        {
+            var w = new InboxWaiting();
+            if (Current.Game == null || CouncilGameComponent.Instance == null) return w;
+            var counts = new List<int>();
+            var rows = new List<WeekRow>();
+            foreach (var e in In(InboxSection.Needs))
+            {
+                var p = e.value;
+                rows.Clear();
+                try
+                {
+                    p.rows(rows);
+                }
+                catch (Exception ex)
+                {
+                    CouncilLog.ErrorOnce("this week: " + p.id, ex);
+                    continue;
+                }
+                rows.RemoveAll(r => r == null);
+                var part = new InboxWaitingPart { provider = p };
+                // In This week's order: by the rows' own order, equals as found (a stable sort).
+                part.rows.AddRange(rows.OrderBy(r => r.order));
+                try
+                {
+                    part.count = p.needs != null ? p.needs() : part.rows.Count(r => r.waits);
+                }
+                catch (Exception ex)
+                {
+                    CouncilLog.ErrorOnce("this week: counting " + p.id, ex);
+                }
+                counts.Add(part.count);
+                w.parts.Add(part);
+            }
+            w.count = InboxMath.Count(counts);
+            w.Index();
+            return w;
+        }
 
         /// <summary>
         /// How many things wait on the player: what Needs you's providers count (with Rimfolk's own, 0.83's count of

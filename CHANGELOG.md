@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## One way in
+
+*6 November 2026, version 0.116.0*
+
+- The settings are on five pages by what you think about: How much happens (every rate in one place), How hard, What's on, How you're told, and Your other mods (only the mods you have loaded). Every setting keeps its value; search still finds any of them.
+- The presets reach every part now, the region, diplomacy, the heart and its good side, everyday hurts and the gathering budget included: light touch, story-rich, demanding, and default to put back what they change.
+- The council panel and the colonist bar's wish and promise badges read the same list as This week, so what waits on you is worked out once. The panel no longer shows countdowns.
+- Fealty and vassals are kinds of pact now: a pact of fealty, the colony sworn to them, or a pact of protection, the colony's vassal, shown among the colony's truces and pacts.
+- Fixed: a promise taken back past its days for amends still showed as waiting in This week, and a promised wish could show both as a wish and as a promise.
+
 ## One festive year
 
 *6 November 2026, version 0.115.0*

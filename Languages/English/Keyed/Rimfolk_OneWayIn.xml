@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- ===================== One way in (phase 6 of the review, part 2; the player's decisions 14 and 16 of 6 November 2026) ===================== -->
+
+  <!-- The on-screen council panel reads This week's Needs you (Hud/HudCouncil.cs): its line for the asks of the region and the peoples -->
+  <CC_Pnl_Asks>Asks waiting: {0}</CC_Pnl_Asks>
+  <CC_Pnl_Part_asks>Asks from the region and the peoples</CC_Pnl_Part_asks>
+
+  <!-- Fealty and vassals as pacts of their own kind (Diplomacy/FealtyPanels.cs, UI/Cards/CardWords.cs): one place for the colony's bonds with other peoples -->
+  <CC_Card_TieKind_FealtyPact>A pact of fealty</CC_Card_TieKind_FealtyPact>
+  <CC_Card_TieKind_ProtectionPact>A pact of protection</CC_Card_TieKind_ProtectionPact>
+  <CC_Fealty_RowPact>A pact of fealty with {PEOPLE}, the colony sworn to them: {WORD} ({RITE} by their ways)</CC_Fealty_RowPact>
+  <CC_Fealty_RowAwaitedPact>A pact of fealty agreed with {PEOPLE} ({WORD}): one of theirs is to come to the gate for the oath</CC_Fealty_RowAwaitedPact>
+  <CC_Vassal_RowPact>A pact of protection with {TOWN}, the colony's vassal: {WORD}</CC_Vassal_RowPact>
+  <CC_Vassal_RowPactHamlet>A pact of protection with {TOWN}, the colony's hamlet sworn to it: {WORD}</CC_Vassal_RowPactHamlet>
+
+</LanguageData>

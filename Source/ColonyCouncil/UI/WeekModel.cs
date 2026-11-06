@@ -41,6 +41,19 @@ namespace ColonyCouncil
         public string balanceGood, balanceBad;
         /// <summary>Sorting within its part of the section (smaller first); not shown.</summary>
         public float order;
+        /// <summary>
+        /// What the row is about (a Wish, a GrantWatch, a petition, a Letter...), for what reads the inbox besides This week:
+        /// the on-screen council panel and the colonist bar's badges (UI/Inbox.cs, <see cref="Inbox.Waiting"/>).
+        /// </summary>
+        public object about;
+        /// <summary>Others it is about besides its pawn: a petition's other names, each of whom it waits on too.</summary>
+        public List<Pawn> others;
+        /// <summary>How pressing it is on the on-screen panels' scale (Hud/HudRank.cs); 0 is merely waiting.</summary>
+        public float rank;
+        /// <summary>The on-screen council panel's part it shows under (InboxMath.PanelParts); null: its provider's.</summary>
+        public string part;
+        /// <summary>A row of Needs you that waits on the player; false for one that only tells (the news letters' row).</summary>
+        public bool waits = true;
         /// <summary>The note's and the act's widths, measured once when first drawn.</summary>
         public float noteWidth = -1f, actWidth = -1f;
 

@@ -179,7 +179,7 @@
   <CC_Suggest_Undone>Undone: {0}.</CC_Suggest_Undone>
   <CC_Suggest_Couldnt>Couldn't do it now: {0}.</CC_Suggest_Couldnt>
 
-  <!-- Settings (Building page). -->
+  <!-- Settings (What's on page, Planning ahead). -->
   <CC_SetSec_Ahead>Planning ahead</CC_SetSec_Ahead>
   <CC_SetSec_Ahead_Note>What the Ahead section at the top of the Making page works its stock targets out from. It only suggests: nothing changes until you click.</CC_SetSec_Ahead_Note>
   <CC_Settings_AheadMealDays>Days of meals to keep cooked</CC_Settings_AheadMealDays>

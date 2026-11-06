@@ -102,7 +102,7 @@ namespace ColonyCouncil
             if (auto != null)
             {
                 y += UiKit.SectionTitle(0f, y, view.width, "CC_Auto_Section".Translate()) + 4f;
-                TooltipHandler.TipRegion(new Rect(0f, y - 28f, view.width, 24f), "CC_Auto_SectionTip".Translate());
+                TooltipHandler.TipRegion(new Rect(0f, y - 28f, view.width, 24f), "CC_Auto_SectionTipWhatsOn".Translate());
                 int version = SuggestTracker.Instance?.Version ?? 0;
                 if (Time.frameCount - previewFrame > 120 || previewMap != map || version != previewVersion)
                 {

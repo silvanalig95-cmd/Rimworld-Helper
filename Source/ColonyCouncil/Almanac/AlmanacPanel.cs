@@ -113,7 +113,7 @@ namespace ColonyCouncil
             float x = r.x + FoldW + 12f;
             var aa = new Rect(x, r.y, AaW, r.height);
             UiKit.LabelFit(aa, "Aa", Faint, GameFont.Small, TextAnchor.MiddleCenter);
-            TooltipHandler.TipRegion(aa, "CC_Almanac_TextSizeNote".Translate());
+            TooltipHandler.TipRegion(aa, "CC_Almanac_TextSizeNoteHowTold".Translate());
             x += AaW;
             var size = TextSize;
             foreach (var step in Steps)
@@ -154,7 +154,7 @@ namespace ColonyCouncil
                 {
                     string name = ("CC_TextSize_" + Steps[i]).Translate();
                     stepTips[i] = "CC_Almanac_TextSize".Translate(name) + "\n\n" + ("CC_TextSize_" + Steps[i] + "_Tip").Translate() + "\n\n" +
-                                  "CC_Almanac_TextSizeNote".Translate();
+                                  "CC_Almanac_TextSizeNoteHowTold".Translate();
                 }
             }
             return stepTips[(int)step];

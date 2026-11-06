@@ -168,7 +168,7 @@ public static class BanishTests
         C(!keyed.Where(kv => kv.Key.StartsWith("CC_Banish_") || kv.Key.StartsWith("CC_Impact_Banish")).Any(kv => kv.Value.Contains('—') || kv.Value.Contains('!')), "no em dashes or exclamation marks");
         C(new[] { "CC_Settings_Banishment", "CC_Settings_Banishment_Tip", "CC_SetNote_Banishment", "CC_Card_Banished", "CC_World_Departed_Council" }.All(keyed.ContainsKey), "the setting's, the card's and the world panel's words");
         C(Code("CouncilSettings.cs").Contains("public bool councilBanishment = true;") && Code("CouncilSettings.cs").Contains("Scribe_Values.Look(ref councilBanishment, \"councilBanishment\", true);")
-          && Code("UI/SettingsCatalog.cs").Contains("Toggle(\"councilBanishment\""), "the setting, saved and on the Council page");
+          && Code("UI/SettingsCatalog.cs").Contains("Toggle(\"councilBanishment\""), "the setting, saved and on the What's on page");
 
         // The questions: a word first, banishment only in the second.
         var dilemmas = XDocument.Load(Path.Combine(root, "Defs", "DilemmaDefs", "Rimfolk_Dilemmas_Banish.xml")).Root!.Elements("ColonyCouncil.DilemmaDef").ToList();

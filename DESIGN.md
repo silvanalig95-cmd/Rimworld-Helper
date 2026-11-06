@@ -668,7 +668,7 @@ strain, right? If they have positive impacts over an extended period"): one hear
   says what filled it. Keys in `Rimfolk_GoodHeart.xml`, the bands' own in `Rimfolk_GoodHeart_Bands.xml` (the first
   file's band words, explanation and count left unused); the Almanac page "the heart's good side"
   (`Almanac_GoodHeart.xml`), the heart's page with its bands in the table.
-- **The setting** "The heart's good side" (`heartGoodSide`, on), on the Heart & health page beside the heart's own.
+- **The setting** "The heart's good side" (`heartGoodSide`, on), on the How hard page beside how fast strain builds and the day off (the heart's own switch is on What's on).
   Off (or the heart off): nothing fills it, what there was is gone at the next hour, the bands give nothing, hardship
   builds strain as before. Dev mode: fill it by 20, and overflow now.
 - **Saves.** Values on the heart (`good`, `goodTodayTotal`, `goodLately`, `deedTick`, `goalTick`, `goalProgress`,
@@ -1869,7 +1869,7 @@ of work (1.2.1, 1.2.2, 3.2.1, below); the other seven of the top ten are built o
 
 ### The shared rules
 
-- **One setting, leaning with the storyteller.** "Hurts from everyday life" (Heart & health, `everydayHurts`, 0 to 200%,
+- **One setting, leaning with the storyteller.** "Hurts from everyday life" (How hard, `everydayHurts`, 0 to 200%,
   100 by default; the light-touch preset sets 50%) multiplies every rate. It leans with the storyteller's own numbers
   (`HarmMath.Lean`): the geometric mean of a threat term (0.35 at no threats, 1 at the usual 100%, up to 1.25 at twice
   it) and a disease term (one over the disease interval, between a half and 1.25; diseases off count as a half). A
@@ -2190,7 +2190,11 @@ off. Measured (6 colonists, 120 runs, the code just before it and the same seeds
 **The presets** each aim at their own balance: Light touch about +5, +4 and 0 (well run, average, neglected) with
 fewer questions (measured +6.2, +4.7 and -1.7); Story-rich the default's moods with a question a little more often than
 every two days (+5.9, +3.0, -6.6); Demanding about 0, -4 and -18 (+1.7, -3.0, -14.7, with downsides 85% more and rewards
-at 70% since phase 3, was 15% and 80%). Each preset's tooltip says so.
+at 70% since phase 3, was 15% and 80%). Each preset's tooltip says so. Since the settings went onto five pages (phase 6 of
+the review, "The settings: five pages"), the presets reach every rate and every knob of difficulty; measured on the
+report's seeds before and after: Light touch +7.3, +4.6, -1.7 to +7.2, +4.8, -1.6; Story-rich +6.9, +3.2, -6.7 to +6.9,
++3.1, -6.5; Demanding +2.5, -2.8, -14.8 to +2.3, -2.9, -14.9, its time ill 9%, 15%, 32% to 12%, 17%, 37% (ailments at
+125%). Story-rich keeps the default's pace of wishes and meetings: more of them would have moved its moods.
 
 ## Building help: how far should the mod build things itself?
 
@@ -3089,7 +3093,7 @@ free.
   carried out of it. Without the surgery mark the same, by severity only: an operation then claims the bed like anyone
   else, by how badly they are hurt.
 
-The setting `medicalTriage` (Heart & health, Recovery; on by default, needs the deeper hooks). The mod's "by distance"
+The setting `medicalTriage` (Your other mods, Move the Patient, shown while it is loaded; on by default, needs the deeper hooks). The mod's "by distance"
 mode stands triage down: the player chose the nearest bed there. Nothing is saved: a load forgets a move under way
 (the carry itself is the game's and goes on) and who was moved lately.
 
@@ -4005,6 +4009,17 @@ tested (`FealtyMath.cs`; `Tools/Tests/FealtyTests.cs`).
   lens's gold marks and lines to the mod's outposts (`LensModel`). Facts (`FactsFealty.cs`): `fealty:oath`,
   `fealty:levies`, `fealty:protected`, `fealty:short`, `vassal:town`, `vassal:heavy`, `vassal:levy` beside the
   ledger's `tie:fealty`. Setting `diplomacyFealty` ("Fealty and vassals"). Dev actions in `FealtyDebug.cs`.
+- **Pacts of their own kind** (the player's decision 14, 6 November 2026: "fealty and vassals: their pages and settings
+  fold into pacts; the mechanics stay"). What the player sees is one place for the colony's bonds with other peoples:
+  on a people's card the liege's row reads "A pact of fealty with the Ironhold, the colony sworn to them: ..." and a
+  vassal's "A pact of protection with Ashford, the colony's vassal: ..." (`CC_Fealty_RowPact`, `CC_Vassal_RowPact`,
+  `_RowPactHamlet`, `CC_Fealty_RowAwaitedPact`), among the truces and pacts and right after them; the tie's card is
+  named "A pact of fealty" or "A pact of protection" (`CardWords.TieName`: a fealty tie from a town is a vassal's); Needs
+  you lists fealty's asks right after the pacts' (order 32.5); the setting is "... and pacts of fealty" under "Pacts and
+  truces" in the settings' "Bonds with other peoples" (What's on), and `Fealty.On` reads `Pacts.On` too, so pacts off is
+  no new pact of any kind (the oaths and vassals standing run on, as with the switch off); the Almanac's diplomacy page
+  tells fealty and vassals as "Pacts of fealty" and "Pacts of protection" and its Pacts section points to them. The
+  ties, their origins, terms, the hour, the oath, tribute, levies and the inbox's rows are as they were.
 
 #### Colony renown
 
@@ -4274,7 +4289,7 @@ parts (`ThingRefMath.cs`, `LinkTextMath.cs`, `NavTrailMath.cs`) are tested in `T
 - **The look** (`UI/UiKitCards.cs`): the design's tokens (link ink and its line, the cool stance, done, danger, the
   drawer's and the preview's surfaces) and the components UI 1 draws: a section heading with its count and fold, a
   thing chip, a state chip, an act button with why not, steps, an icon button.
-- **Settings**: `linkPreviews` and `linkPreviewDelay`, under "Names and cards" on the Interface page (`windowSize`,
+- **Settings**: `linkPreviews` and `linkPreviewDelay`, under "Names and cards" on the How you're told page (`windowSize`,
   since UI 5, beside the Almanac's text size).
 
 #### The council in four views (UI 4 of docs/design/interface.md)
@@ -4411,7 +4426,7 @@ of the windows' layout across screens. Built beside UI 3 (the inbox, search and 
 the grammar across every window (UI 5b) waits for it.
 
 - **The window size** (`UI/WindowLayoutMath.cs`, pure, tested in `Tools/Tests/LayoutTests.cs`): `windowSize`
-  (`WindowSizeChoice`, Standard at first, on the Interface page beside the Almanac's text size). Standard is 1010 by
+  (`WindowSizeChoice`, Standard at first, on the How you're told page beside the Almanac's text size). Standard is 1010 by
   720, Large up to 1280 by 860; both within the screen less 20 at the side and 55 at the foot, the large never smaller
   than the standard. `WindowTabs.Size` asks `WindowLayoutMath.Size`, so all four windows, the drawer, the region map
   and the views lay out at either (they work from their rects); a window takes the new size the next time it opens.
@@ -4507,7 +4522,27 @@ everywhere, any thing can be followed, and a search in every corner finds anyone
   with no new asks the number is the same (`InboxTests`), and the region's and diplomacy's asks add to it. It shows on
   This week's tab (`WeekModel.NeedsCount`), as the stat in its header, on the inbox in every window's corner
   (`UiKit.CountBadge`), and on the council button on the bottom bar (`MainButtonWorker_Council`, the button's own
-  worker in `Council_MainButton`; the setting `inboxCountOnButton`, on at first, on the Interface page).
+  worker in `Council_MainButton`; the setting `inboxCountOnButton`, on at first, on the How you're told page).
+- **What waits, one list** (phase 6 of the review, the player's decision 16 of 6 November 2026: "the on-screen council
+  panel reads the inbox"). What waits on the player was worked out four times: This week, the on-screen council panel
+  (its own lists of wishes, petitions, promises and letters), the colonist bar's badges (their own loops over the wishes
+  and the promises) and the game's alerts. Now Needs you is the one list. `Inbox.Waiting` (`InboxWaiting`, at most once
+  a second) asks Needs you's providers for their rows and counts, as This week does, and indexes the rows by colonist.
+  A row says what it is about (`WeekRow.about`: the `Wish`, the petition, the `Letter`, the `GrantWatch`), how pressing
+  it is on the panels' scale (`rank`: `HudRank.Wish` by the patience left, `HudRank.Question` by the hours before a
+  letter goes, 270 or 230 for a promise at risk, else worth knowing, `InboxMath.WaitingRank`), the panel's kind it shows
+  under (`part`, else its provider's `InboxProvider.part`, else the other asks: `InboxMath.PanelPart`) and whether it
+  waits at all (`waits`: the evening news' row asks nothing). The council panel (`Hud/HudCouncil.cs`) draws one line
+  per kind (wishes, petitions, promises at risk, letters waiting, the other asks of the region and the peoples, a new
+  part `asks`), its count, ranked by its most pressing row (`InboxMath.MostPressing`, `PanelScore`), the rows in its
+  tooltip and that row's own, and a click that goes where that row goes; its own walks over the wishes, the petitions
+  of the colony in view, the promises and the letter stack are gone, and a promised wish counts with the wishes (it was
+  counted twice, as a wish and a promise). The bar's wish and promise badges read the colonist's own rows
+  (`Inbox.Waiting.Of(p)`), with the badge's own patience threshold; the ring, strain, faith and leaving read the person
+  as before (how someone is, not what waits). Fixed with it: a promise taken back past its days for amends no longer
+  waits (`AtRisk`; it showed in This week until its watch closed, while the badge had already dropped it), and wishes
+  and petitions are counted as their rows list them (a wish with no asker, a petition with no decree). The game's alerts
+  stay the game's, Rimfolk's wishes alert hidden while the panel shows the wishes as before. Tested in `InboxTests`.
 - **Following** (`UI/FollowMath.cs`, `WeekMemory.following`, `UI/FollowWords.cs`): a pin in every card's head (and on a
   row that names a thing, the People table's rows, a wish card for the wish) follows any thing a card shows: a
   colonist, anyone outside, a place, a people, a house, a tie, a letter, an entry of the history. At most twelve
@@ -4672,6 +4707,52 @@ who to bring, in what state they are, what to take, with the recommended picked 
   is open (the press of Pick the recommended builds it at once); rows measure their pills once per width; nothing runs
   while the planner is shut.
 
+### The settings: five pages
+
+The player's decision 15 of 6 November 2026 ("settings on five pages: how much happens, how hard, what's on, how
+you're told, your other mods; presets covering every part"). The settings were seven pages by system (Council, People,
+Heart and health, Events, Building, Interface, Advanced): "how much happens" was about twenty sliders over six of them,
+"how hard" over three, ten switches for other mods sat under Interface beside the bar buttons, and the presets were made
+before the region and diplomacy. Now five pages by what a player thinks about (`SettingsPage`, `UI/SettingsCatalog.cs`),
+264 rows, every one keeping its field and so its saved key and value (`Tools/Tests/SettingsKeys.txt` holds the fields as
+they stood at 0.113.0; `SettingsTests` checks each is still saved under its key with its type and default):
+
+| Page | Rows | Sections |
+|---|---|---|
+| How much happens | 17 | the colony's pace (gatherings a week); the council's asks (wishes, how many open, dilemmas, meetings); people's lives (moments, social events, dreams, personal stories, personal touches, the outsiders' chatter); visitors, events and the region (encounters, Rimfolk's events by the storyteller or its own timer, world events, remote travellers, raiders' camps) |
+| How hard | 26 | stakes (with downsides and rewards, time for wishes and ambitions, jealousy, promises taken back and their grace, quitting); moods and pressures; feelings and strain (how fast, the day off, the heart's good side); ailments and illnesses; realistic ways to die; hurts from everyday life (everyday hurts, a scenario's fights, world events that end in a fight) |
+| What's on | 133 | the quick setup; the council; people's lives; bonds; the colony's story; strangers; Rimfolk's events; world events; the region; bonds with other peoples; neighbours and letters; then the tools: journeys, the weather, personal touches, the build menu, the stores, defense, the room planner, the automations, planning ahead; the deeper game hooks, this colony's era, checks and resets |
+| How you're told | 73 | messages (how many, the colony news, the day's messages and letters, which letters, the notes in the game's letters, what each answer does); on the map and in the game's tabs (speech, the game's own touches, mood bubbles, mood insight, the inspector line, the Social tab's column); alerts; buttons and windows; names and cards; on-screen panels; hover card; colonist bar |
+| Your other mods | 15 | Hospitality, RimMarket, Alpha Skills, Alpha Genes, RimWorld of Magic, Faction Territories and Vassalage, Move the Patient, faiths from other mods |
+
+- **Rows keep what they need.** A row's `needs` (a switch on, an option chosen) still greys it with why; a row hangs
+  indented under its parent only where the parent is on the same page (`SettingEntry.Indented`, worked out once), so a
+  rate on How much happens stands alone while its switch is on What's on, and a row whose label continues its parent's
+  ("... including ones that can end in a fight") reads "Rimfolk's events › including ones that can end in a fight"
+  there. The wishes' own switches (from a raid, reminders, self-help, for others, petitions) hang under Wishes now.
+  The deeper game hooks keep every row that needs them greyed while off. The search finds every row on every page.
+- **Your other mods shows only the mods loaded** (`SettingEntry.mods`, package ids as the integrations check them;
+  `SettingsAccess.ModsLoaded` with `People.ModActive`): a row for a mod not loaded isn't drawn on the page, and the
+  page's foot names those mods ("Rimfolk also has settings here for ..., shown when they're loaded"); the search still
+  finds such a row, greyed "Only with RimMarket loaded." Guests shopping at the market needs both RimMarket and
+  Hospitality. A faith's precept against turrets is any mod's, so it always shows.
+- **Presets reach every part.** Light touch, story-rich and demanding between them set every rate on How much happens and
+  every knob on How hard (`SettingsTests`), and say how you're told: light touch slows every rate, half the travellers,
+  raiders' camps and outsiders' chatter, one gathering a week, more time for wishes and ambitions, no strain from
+  diplomacy against someone's nature, a scenario's fights a quarter softer, 8 messages and 3 letters a day; story-rich
+  switches on every part of the colony's life and its world (the region and the bonds with other peoples among them),
+  half again as many personal touches, travellers and chatter, a quarter more raiders' camps, three gatherings a week,
+  16 messages and 6 letters a day, and only ever switches on what is on by default; demanding adds a shorter grace for
+  what was given and is gone, and a quarter more illness, everyday hurts and a scenario's fights. Default puts back
+  exactly what the three change. The quick setup at the top of What's on (Everything on, Council only, Advisor only)
+  reaches every switch of the parts of the colony's life and its world (`SettingsCatalog.SystemSections`, 89 switches
+  with the region's and diplomacy's): Everything on turns on all of them, the switches under them too; Council only
+  keeps the council and the colony's story; Advisor only the advisor and its plan; a part's own switch goes off and the
+  switches under it keep their values for when it comes back. The tools (journeys, the weather, building, the
+  planner, the automations, planning ahead) are the player's own and no preset touches them. Each preset's tooltip says
+  what it covers (`_TipWhole` keys).
+- **Fealty's switch hangs under the pacts'** ("... and pacts of fealty", "Pacts of their own kind" under Diplomacy).
+
 ### A colonist's tabs
 
 A colonist's inspect pane has four Rimfolk places, each a page of folding sections built a couple of times a second
@@ -4738,7 +4819,9 @@ into each colonist: close to a mental break (a soft ring, `BarRing`, tinted ambe
 following how close, or a dot among the badges), about to leave (`PawnStanding.leavingTick`), an own open wish past
 the set share of its patience (`Wish.Elapsed`, or on its last call), strain worn down or near breaking
 (`Heart.ForView`), wavering certainty (`Faiths.Wavering`, so only with Ideology and the setting) and a promise at risk (a
-`GrantWatch` missing or taken back and still within its amends window). A calm colonist shows nothing.
+`GrantWatch` missing or taken back and still within its amends window). A calm colonist shows nothing. The wish and
+the promise are what waits on the player, so since phase 6 of the review they are read from This week's Needs you, the
+colonist's own rows (`Inbox.Waiting.Of`, "What waits, one list" above), as the council panel and the council button read it.
 `BarBadgeMath` holds the parts without game types, tested in `Tools/Tests/BarBadgeTests.cs`: the break level and
 closeness against the colonist's own `MentalBreaker` lines, the ring's colour, each kind's step, one priority table
 (`Priority`: under the major line and leaving first, wavering certainty last) with an allocation-free sort, and the layout
@@ -4755,7 +4838,7 @@ Two patch classes, each applied on its own:
   selector's drag box, later in the frame) and its reordering never see it; every other event passes untouched. Without
   this patch the badges show and explain without clicks, and their tooltips leave the click out.
 
-Both signatures are the same in 1.6 and 1.7 (ApiDiff). The settings (Interface page, "Colonist bar") switch each kind,
+Both signatures are the same in 1.6 and 1.7 (ApiDiff). The settings (How you're told, "Colonist bar") switch each kind,
 the break mark and its margin above the minor line, the wish threshold, size, corner and the most shown.
 
 ### On-screen panels and the hover card
@@ -4916,6 +4999,12 @@ rule for all of it, from the player: the most impactful and relevant data comes 
   recalculates the alerts and keeps `activeAlerts` (the game's logic and the panel depend on it), is untouched. It
   hides nothing while the panels are hidden, on the world map, with the game hooks off, or when the list can't be
   read; if the patch can't be applied or throws, the game's list stays.
+- **The council panel** (`HudCouncil`): the plan's next step; what waits on the player read from This week's Needs you
+  (`Inbox.Waiting`, "What waits, one list" under Rimfolk's windows): a line each for wishes (with whose has waited
+  longest), petitions, promises at risk, letters waiting for an answer and the other asks of the region and the peoples
+  (the part `asks`), each with its count, ranked by its most pressing row and going where that row goes; then the
+  decrees in force, the next calendar day or meeting, and trust. Its parts (`HudCouncil.Parts`) switch each line, as
+  before; a part switched off in an older settings file stays off.
 - **The health panel** (`HudHealth`, rules in `HudHealthMath`, tested one exclusion at a time): a row for each colony
   pawn (free colonists and slaves; caravans and prisoners as options) with something that will pass or needs a
   reaction. `HudHealthMath.Shows` takes the facts of a visible hediff: never a lost part, an added part or implant
