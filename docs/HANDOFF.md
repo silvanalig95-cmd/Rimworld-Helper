@@ -6,6 +6,98 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- phase 0 of the review: what the save showed (the systems review and the holistic review's phase 0, 6 November 2026,
+  against the player's save Atia at day 128: the plain fixes, `[fix]`; what needs the player's word is left for them).
+  No version of its own: its points go with the next round. (1) The election results left seats out: the 5502 letter
+  named 7 of 11, and Barr, "standing unopposed for quartermaster", was never seated, so a by-election four days later
+  made Stakius quartermaster a day and a half after she joined. Barr held keeper of days; the candidates are chosen seat
+  by seat with a likely winner out of the running for the next, so keeper went unraced while Barr stood elsewhere, and
+  the count put everyone holding a seat not voted on out of the running: the seat Barr stood for had nobody to win it
+  and was dropped without a word (Macy, steward, likewise lost reeve and marshal). Now only one who doesn't stand in
+  this election is out (`ElectionMath.OutOfRunning`, `OfficesElection.CountOf`), as the instant vote always had it: the
+  seat they win is theirs and the old one is let go once every seat is filled. The results name every open seat
+  (`ElectionMath.UnvotedSeat`, `Offices.Finish`, the instant vote's too): a holder who keeps a seat nobody stood for, a
+  seat empty because its holder won another, and the seats nobody stood for in one line ("three seats among the
+  elders"); a by-election names only its empty seats, and one for several seats says seats
+  (`CC_Elect_AnnounceByTextMany`, `_CeremonyByTextMany`, `CC_Election_ByTextMany`, `CC_PM_Appoint_ByTextMany`). Keys in
+  `Rimfolk_Election_Seats.xml`. The wait before a newcomer can stand is the player's word. (2) Answers that didn't play
+  out: 9 of the save's last 30 (`PlayOutTracker.results`). The shearing day was asked a day after the sheep were shorn
+  (their wool at 0.79 a week later, ten days a coat) and its party found nothing to shear: a herd custom that shears or
+  milks now needs an animal nearly full (`HerdConditions`, `AnimalFacts.ReadyToShear`, `ReadyToMilk`,
+  `AnimalMath.ReadyToGather`, nine tenths). The planting day's first row found "nothing that needed doing": a work party
+  asked only the forty cells nearest its spot, so a field sown near the spot hid those still waiting for seed; now the
+  forty nearest that could hold the work at all (`PlayWork.MayNeed`: a cell without its crop, a ripe plant, an animal
+  ready for the shears), and a sowing whose fields were sown already says so (`CC_Play_Why_Sown`). The reasons told:
+  "something else had everyone's attention" stood for a fight, half the colony under arms and someone bleeding as much
+  as for another gathering (`MeetingAttendance.Bar`, `PlayOutMath.GatherWhyKey`, `CC_Play_Why_Drafted`, `_Bleeding`),
+  and "nowhere to hold it" for a place in the open the weather kept them from, in a desert (`PlaySpots.KeptByWeather`,
+  `PlayOutMath.PlaceWhyKey`, the gathering's and the visit's). Not bugs: an organizer never free (a speaker the words
+  name, kept by work the whole evening), the fire still being laid when the time ran out, and nobody free are waits that
+  ran out, their words true; which answer each of the nine was isn't kept (the results hold ids only), so two "nowhere"
+  and two "something else" are read from the code. Keys in `Rimfolk_PlayOut_Why.xml`. (3) Words untrue or broken: the
+  officers' `elected` lines said acts nobody saw ("went straight out to the gate", "walked the fields the same
+  afternoon" when the count is in the evening, "spent the evening at the altar"): rewritten in place as what they mean
+  to do (26 lines, textcheck clean). The herd called a chick "the first calf of spring" and an old chicken "gray at the
+  muzzle": the young's word from the kind's first life stage (`HerdStoryMath.YoungWord`, "spring's first born" for a
+  kind with none), hatched or born by whether the kind lays eggs, the leader's ways and old age by the body
+  (`HerdStoryMath.BodyOf`: beast, bird, other; `CC_Herd_Leader_Pens`, `CC_Herd_LastSeason_Bird`, `_Other`), the journal
+  tagged `body:` and `hatched`/`born`; three shipped journal lines retired (`ShippedLines.Retired`: the calf twice, and
+  "I sat with ... tonight" written before the sitting), new ones in `Rimfolk_Pools_HerdStory_Kinds.xml`, the thought
+  "the first born of spring"; keys in `Rimfolk_HerdStory_Kinds.xml`. A life goal's spark quoted a memory's label (after
+  "ate fine meal"): words for each of the 25 memories that spark goals (`CC_Asp_Spark_thought_DEFNAME`,
+  `Rimfolk_Aspirations_Sparks.xml`), "after what happened" for any other. A wish in mid line was capitalized ("wished
+  for To see something of the world"): `Wish.LabelInline` in the chronicle and the messages that put it mid-sentence,
+  and the three wish labels that began with "to" are things to wish for ("a trip out into the world", "a bed shared
+  with", "some mining to do"). "(s)" in story text: the chronicle's anniversaries and passed-over, the annals' raids,
+  wishes and questions, the year's letter's beast and road are said for one and for many (`Texts.CountKey`,
+  `_One`/`_Many` in `Rimfolk_StoryWords.xml`); the year's letter's "29 chronicle line(s)" and "0 of them born" have
+  words of their own. Chronicle lines begin with a capital whatever label leads them (`ChronicleEntry`); our ways and
+  the colony's traits put a sentence in the chronicle, not the letter's label ("Known as Walled":
+  `CC_Ways_KnownChronicle`, `_RenownedChronicle`); "A silver rush ended in over" was the ending's key as a word: its own
+  word where it has one, else "is over" (`YearLetter.WorldOne`). A conversion was told twice a day apart (the faith's
+  line, then the mark's): the mark keeps its journal line and leaves the news and the chronicle to the faith when it
+  told it (`Faiths.ToldConversion`, read from the chronicle). (4) People repeating their own lines: 24 of 630 journal
+  lines were the writer's own again, up to 49 entries apart; the line memory was per pool, shared by everyone and lost
+  at a load. Now each speaker has a part (`LineMemory`): their last twenty picks of any pool, and the pool's lines still
+  in their journal, read back from the journal itself (`LineMemory.Wrote`: the line's own words in order, anything where
+  it names someone, a name's colour passed over, at least 12 letters of its own; worked out again only when the journal
+  changes), so nothing new is saved and a load forgets nothing. `ToneLines.Pick` takes the speaker (`Flavor.FromPool`
+  and every call that picked by someone's tone), the conversations' `PickLine` too (their last twenty); a journal never
+  takes the very same words twice while it holds the first (`JournalTracker.WriteText`). A tone of one or two lines
+  draws together with the plain ones (`LineMemory.ToneDrawsAlone`): the cheerful "Laid low by a bug" was every cheerful
+  colonist's cold. (5) The marks' last fight was day 114 though the colony fought on day 124: not the load bug (the
+  marks' tracker saves its fight itself). The raid on day 124 came from the brigands' hold (`RaidersCamp.TryRaid`),
+  which isn't told to the storyteller, and a fight counted as won only after the storyteller's big threat
+  (`Battle.WasThreat`): no victory, no marks, no deeds, no calendar day for any raiders' camp's raid. Now every raid
+  Rimfolk sends is noted on the home's fight (`Raids.Send`, `SocialWeb.Notify_RaidSent`, `Battle.raidSent`, saved) and
+  counts (`BondsMath.WasThreat`). (6) The variety report measures one person over a year: "own" (the effective lines one
+  person draws from, the unlucky one of ten), "again" (the share of their lines that repeat one of their own with no
+  memory) and "left" (the same with the speaker's memory: a repeat only when every line that fits is theirs already),
+  `--by-speaker` to rank by it, flagged "repeats" past one time in ten; its pick follows the tone rule; the draws of the
+  journal pools the save shows most of are read from it (they were "rare" by hand, and that is where the repeats were).
+  At the top now: the elected, new-goal and ailment journals (thin for the colony, 3 to 11% again with no memory, none
+  left with it). Files: `Offices/ElectionMath.cs`, `OfficesElection.cs`, `Offices.cs`, the office defs;
+  `PlayOut/PlayWork.cs`, `PlayGroups.cs`, `PlayWords.cs`, `PlayOutMath.cs`, `PlaySpots.cs`, `PlayOutTracker.cs`,
+  `PlayOuts.cs`, `Ambitions/MeetingAttendance.cs`, `Animals/AnimalDilemmas.cs`, `AnimalFacts.cs`, `AnimalMath.cs`,
+  `HerdStory.cs`, `HerdStoryMath.cs`; `LineMemory.cs`, `Tone.cs`, `Flavor.cs`, `Journal.cs`, `Social/Talk/Talk.cs` and
+  the callers that pick by tone; `Social/Battle.cs`, `SocialWeb.cs`, `BondsMath.cs`, `Happenings/HappeningHelpers.cs`;
+  `Text/Fill.cs`, `Chronicle.cs`, `CouncilDynamics.cs`, `CouncilGameComponent.cs`, `Annals.cs`, `World/YearLetter.cs`,
+  `Character/Character.cs`, `ColonyTraits.cs`, `Persona/Marks.cs`, `Faith/Faiths.cs`, `Aspirations/Aspirations.cs`,
+  `Wishes/Wish.cs`, `WishEffects.cs`, three wish defs, `Lean/ShippedLines.cs`; `Tools/variety_report.py`. Tests:
+  `ElectionTests` (every seat counted and told), `BondsTests` (a raid of Rimfolk's own is a real fight), the line
+  memory's in `Program.cs` (a speaker's twenty, the journal read back, the very same words, the tone rule, another
+  game), `HerdStoryTests` (bodies, the young's word), `FellThroughTests` (new: the shearing, the sowing, the reasons),
+  `SaveWordsTests` (new: counts, sparks, wishes, the chronicle, the year's letter, the officers' lines). Docs: DESIGN.md
+  ("Elections: every seat accounted for", "Context- aware writing", the marks' fight won, the work party and "Why one
+  didn't happen, said as it was", "Words by the animal's kind" and "Story text in words" under Facts), README (the
+  election letter). Left for the player: a newcomer's wait before standing; running on a record and promises judged; one
+  name for the colony; one year letter; epithets and goals that churn; one petition for a shared want. Found and left:
+  the first-born journal's shipped warm, plain and blunt lines still speak of the visit to the pens before it happens
+  (they're written as the letter comes); a gathering whose fire can't be laid for want of wood is held in the open air
+  under words that speak of the fire; the camps' diary line on the region page keeps its "(s)". To look at in game: the
+  next election's results letter (every seat, a holder keeping one, one moved, the empty ones in a line); a shearing day
+  only once the coats are full; a planting day's party on a field half sown near its spot; a cheerful colonist's colds
+  over a season; a raiders' camp's raid seen off (the victory's line, marks, deeds); the year's letter.
 - medical triage with Move the Patient (the player's request, 6 November 2026, with a save): "i have a hospital bed with
   high criticality and set as surgery bed. when a pawn is injured they always take one of the other two beds though,
   even though the hospital bed is free and better. i want them to always take the best bed, and once a patient with a
