@@ -403,7 +403,18 @@ def toned_children(el):
     return kids and all(k.tag in TONES for k in kids)
 
 
+AILMENTS = []  # (key, serious) of every ailment (HediffCompProperties_Ailment), read by parse_defs
+
+
 def parse_defs(root="."):
+    AILMENTS.clear()
+    for f in sorted(glob.glob(f"{root}/Defs/HediffDefs/*.xml")):
+        try:
+            for c in ET.parse(f).getroot().iter("li"):
+                if c.get("Class", "").endswith("HediffCompProperties_Ailment") and c.findtext("key"):
+                    AILMENTS.append((c.findtext("key"), c.findtext("serious") == "true"))
+        except ET.ParseError:
+            pass
     pools = {}
     ext_targets = []
     log_targets = []
@@ -814,6 +825,14 @@ def estimate(pools):
                             ("preachedat", 0.15), ("nopreaching", 0.15))
         if p.name.startswith("Council_Journal_Day_"):
             p.extra = (("good|bad", 1.0),)
+        # The ailment journals (Ailments/AilmentTracker.cs Journal): the caller adds the ailment's key, everyday or
+        # serious, and again for one they have had before.
+        if p.name in ("Council_Journal_Ail_Start", "Council_Journal_Ail_Better", "Council_Journal_Ail_Serious") and AILMENTS:
+            serious = p.name == "Council_Journal_Ail_Serious"
+            keys = [k for k, s in AILMENTS if s == serious] or [k for k, _ in AILMENTS]
+            p.extra = (("|".join("ail:" + k for k in keys), 1.0), ("serious" if serious else "everyday", 1.0))
+            if p.name != "Council_Journal_Ail_Better":
+                p.extra += (("again", 0.3),)
         if p.field in ("request", "requestForOther", "thanks", "expired", "reminder") or p.name.startswith("Council_Pool_"):
             p.extra = (("promised", 0.1), ("petition", 0.1), ("forother", 0.1), ("repeat", 0.15))
         # The caller always adds the kind of thing: the item planned for a personal touch, the kind of outpost.
