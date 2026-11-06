@@ -695,7 +695,7 @@
         <effects>
           <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
           <li Class="ColonyCouncil.WorldEffect_Fortune"><amount>6</amount></li>
-          <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Council_WS_GoodNeighbors</thought></li>
+          <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Council_WS_GoodNeighbours</thought></li>
         </effects>
       </li>
       <li>
