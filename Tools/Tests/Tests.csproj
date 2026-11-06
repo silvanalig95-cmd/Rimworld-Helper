@@ -128,6 +128,8 @@
     <Compile Include="../../Source/ColonyCouncil/Lean/HomesMath.cs" Link="HomesMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Lean/ColonyStateMath.cs" Link="ColonyStateMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Epithets/EpithetMath.cs" Link="EpithetMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Epithets/NameMath.cs" Link="NameMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Character/ColonyNameMath.cs" Link="ColonyNameMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Lean/PassClockMath.cs" Link="PassClockMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/Ledger/LedgerMath.cs" Link="LedgerMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/Ledger/TieMath.cs" Link="TieMath.cs" />
