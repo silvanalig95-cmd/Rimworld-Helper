@@ -190,7 +190,7 @@
         </effects>
       </li>
       <li>
-        <label>Things get mended as they break</label>
+        <label>No day of its own for it</label>
         <outcome>The council sees no need for a day of it. {A_nameDef} folded the list and put it away.</outcome>
         <ways><tradition>-3</tradition></ways>
         <effects>
