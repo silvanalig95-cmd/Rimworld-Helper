@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using RimWorld;
 using Verse;
 
 namespace ColonyCouncil
@@ -50,15 +51,40 @@ namespace ColonyCouncil
         /// </summary>
         public static void CloseCall(Pawn hurt, string key)
         {
-            if (!Persona.On || hurt == null || !hurt.Spawned) return;
+            if (hurt == null || !hurt.Spawned) return;
             string kind = TogetherFourMath.CloseCallKind(key);
             if (kind == null) return;
+            Remember(hurt, kind);
+            if (!Persona.On) return;
             Safe("close call", () =>
             {
                 var other = Together.Company(hurt);
                 if (other == null || !Talk.Eligible(other) || !Talk.Eligible(hurt)) return;
                 TalkHooks.AddOnce(hurt, other, TogetherDefs.CloseCall, ("CC_Times_Close_" + kind).Translate().Resolve(), 1f);
             });
+        }
+
+        // The last close call each of the colony's people had (by thingIDNumber: its kind and when), for the personal story
+        // of getting back to the work it happened at (Arcs/ArcWorkers_Together.cs). Not saved: a load forgets three days of them.
+        private static readonly Dictionary<int, (string kind, int tick)> closeCalls = new Dictionary<int, (string, int)>();
+        private static Game closeGame;
+
+        private static void Remember(Pawn p, string kind)
+        {
+            if (closeGame != Current.Game)
+            {
+                closeCalls.Clear();
+                closeGame = Current.Game;
+            }
+            if (closeCalls.Count > 60) closeCalls.Clear();
+            closeCalls[p.thingIDNumber] = (kind, Find.TickManager.TicksGame);
+        }
+
+        /// <summary>The kind of close call on the map they had within <paramref name="days"/> (Rock, Tree...), or null.</summary>
+        public static string RecentCloseCall(Pawn p, float days)
+        {
+            if (p == null || closeGame != Current.Game || !closeCalls.TryGetValue(p.thingIDNumber, out var c)) return null;
+            return TogetherFourMath.FreshWithin(c.tick, Find.TickManager.TicksGame, days, GenDate.TicksPerDay) ? c.kind : null;
         }
 
         /// <summary>

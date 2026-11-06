@@ -107,6 +107,28 @@ namespace ColonyCouncil
         public static readonly string[] CloseCallKinds = { "Rock", "Tree", "Smoulder", "Shell", "Scrap", "Ground" };
 
         /// <summary>
+        /// The skill (a SkillDef name) of the work a close call happened at, which the story of getting back to it waits on
+        /// (Arcs/ArcWorkers_Together.cs): the dig's mining, the trees' and the fields' plants (the tree by a wall, the
+        /// smoulder in the grass, the shell in a growing zone), the scrap's crafting. Null for the ground that gave way,
+        /// which isn't anyone's work: the story then waits on what they do best.
+        /// </summary>
+        public static string CloseCallSkill(string kind)
+        {
+            switch (kind)
+            {
+                case "Rock": return "Mining";
+                case "Tree":
+                case "Smoulder":
+                case "Shell": return "Plants";
+                case "Scrap": return "Crafting";
+                default: return null;
+            }
+        }
+
+        /// <summary>How fresh a close call must be for the story of getting back to it to begin, in days.</summary>
+        public const float BackToItDays = 3f;
+
+        /// <summary>
         /// The doctor and the patient share the memory of an illness nursed only when the doctor tended it twice or more
         /// (HealthTracker's own rule for who pulled a patient through) and the illness was a dangerous one.
         /// </summary>

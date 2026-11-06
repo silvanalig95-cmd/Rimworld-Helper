@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A personal story of life together (Source/ColonyCouncil/Arcs/ArcWorkers_Together.cs): back to it. One of the dangers
+    on the map (the rock at the dig, a falling tree, a smoulder in the grass, an old shell, sparking scrap, the ground
+    giving way) hurt someone in the last three days, and the one closest to them is there for it: a shaken day, a word
+    about it between the two, the first real work back at what it happened at ({SKILL}: mining, plants or crafting, or
+    what they do best), and then it's just work again. Its thoughts are in Rimfolk_Thoughts_Together.xml. Like every
+    personal story it takes a share of the colony's stories a year (ArcMath.PerYear): none comes oftener for it.
+  -->
+
+  <InteractionDef ParentName="Council_ArcTalkBase">
+    <defName>Rimfolk_Arc_Talk_BackToIt</defName>
+    <label>talked over the close call</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went over the close call, step by step, until it was only a story.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how the hurt was mending, and they ended up talking about [topic].</li>
+        <li>topic->how quickly it all happened</li>
+        <li>topic->what they'd each do differently</li>
+        <li>topic->other close calls, older ones</li>
+        <li>topic->the work waiting, and who would do it</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that being afraid of the place for a while was only sense.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the close call, and [RECIPIENT_nameDef] laughed about it for the first time.</li>
+        <li>r_logentry->[INITIATOR_nameDef] sat with [RECIPIENT_nameDef] a while and let [RECIPIENT_objective] tell it as many times as [RECIPIENT_pronoun] needed.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <ColonyCouncil.ArcDef>
+    <defName>Rimfolk_Arc_BackToIt</defName>
+    <label>back to it</label>
+    <summary>One of the dangers on the map hurt someone, and they are shaken: a day of it, a word about it with the one closest to them, the first real work back at what it happened at, and then it's just work again.</summary>
+    <workerClass>ColonyCouncil.ArcWorker_BackToIt</workerClass>
+    <weight>1.4</weight>
+    <maxDays>30</maxDays>
+    <stages>
+      <li>
+        <label>shaken</label>
+        <waiting>Next: a word about it with {OTHER_nameDef}.</waiting>
+        <journal>
+          <plain>
+            <li>It keeps playing over in my head, how close it came. My hands shook all through supper.</li>
+            <li>I'm all right, everyone keeps saying so. I'm not sure I believe them yet.</li>
+            <li>[arcskill:Mining] I keep hearing the rock give, every time it goes quiet.</li>
+            <li>[arcskill:Plants] Walked past the place this morning and went the long way round.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} came to find me straight after, and stayed. I didn't have to ask.</li></warm>
+          <blunt><li>Nearly got done for today. Still here. Leave it.</li></blunt>
+          <cheerful><li>Still in one piece, more or less, and I've got a story nobody else here can tell.</li></cheerful>
+          <gloomy><li>This land tried to kill me today, and it'll try again.</li></gloomy>
+          <cold><li>I was careless, and I was hurt. I am working out where the mistake was.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>{OTHER_nameDef} had a close call today. I'll keep an eye on {OTHER_objective} for a day or two.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} is shaken after a close call, and {OTHER_nameDef} is keeping close.</li>
+          <li>The close call has left {PAWN_nameDef} shaken, and {OTHER_nameDef} has noticed.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.ArcEffect_Strain"><amount>3</amount></li>
+        </effects>
+        <gate>
+          <kind>Time</kind>
+          <days>1</days>
+          <minDays>1</minDays>
+        </gate>
+      </li>
+      <li>
+        <label>a word about it</label>
+        <waiting>Next: {PAWN_nameDef} and {OTHER_nameDef} talk it over.</waiting>
+        <journal>
+          <plain>
+            <li>I need to talk about it with someone, and {OTHER_nameDef} is the one I'd pick.</li>
+            <li>Every time I close my eyes I'm back there for a moment, then I'm here again.</li>
+            <li>[night] I couldn't sleep, so I lay there going over it, and over it.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} said to come and find {OTHER_objective} whenever I want to talk about it. I might.</li></warm>
+          <blunt><li>Should talk to {OTHER_nameDef} about it. Haven't.</li></blunt>
+          <cheerful><li>I've told the story four times now and it gets better every time, which means I'm fine.</li></cheerful>
+          <gloomy><li>Nobody wants to hear about it again, except maybe {OTHER_nameDef}.</li></gloomy>
+          <cold><li>Talking it through would settle it, I expect. {OTHER_nameDef} would listen.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} wants to talk the close call over with {OTHER_nameDef}.</li>
+          <li>{PAWN_nameDef} still goes over the close call, and is waiting for a quiet word with {OTHER_nameDef}.</li>
+        </chronicle>
+        <gate>
+          <kind>Talk</kind>
+          <talk>Rimfolk_Arc_Talk_BackToIt</talk>
+          <minDays>0.5</minDays>
+          <quietAfterDays>4</quietAfterDays>
+          <timeoutDays>8</timeoutDays>
+        </gate>
+      </li>
+      <li>
+        <label>back at the work</label>
+        <waiting>Next: some real work at {SKILL} again.</waiting>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} and I talked it through. It sounded smaller out loud than it did in my head.</li>
+            <li>Went back to the work today, slowly, watching everything twice.</li>
+            <li>[arcskill:Mining] Back at the rock face today, with an ear to the roof the whole time.</li>
+            <li>[arcskill:Plants] Out among the plants again today, and nothing fell on me.</li>
+            <li>[arcskill:Crafting] Back at the bench, and I checked every piece before I touched it.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} let me tell it all, twice, and then said I'd be fine. I think {OTHER_pronoun}'s right.</li></warm>
+          <blunt><li>Talked to {OTHER_nameDef}. Back to work now.</li></blunt>
+          <cheerful><li>{OTHER_nameDef} laughed at the part where I yelped, and so did I, and that was that.</li></cheerful>
+          <gloomy><li>Back at the work. I'm waiting for it to happen again.</li></gloomy>
+          <cold><li>The talk was useful. I've gone back to the work with better habits.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>Sat with {OTHER_nameDef} and let {OTHER_objective} tell me about the close call. I think it helped.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} has talked the close call over with {OTHER_nameDef}, and is getting back to {SKILL}.</li>
+          <li>After a word with {OTHER_nameDef}, {PAWN_nameDef} is back at the work, carefully.</li>
+        </chronicle>
+        <gate>
+          <kind>Practice</kind>
+          <amount>800</amount>
+          <minDays>1</minDays>
+          <timeoutDays>12</timeoutDays>
+        </gate>
+      </li>
+      <li>
+        <label>just work again</label>
+        <journal>
+          <plain>
+            <li>Worked all day without thinking about it once. It's just work again.</li>
+            <li>I walked past the place today and only noticed afterwards.</li>
+            <li>[arcskill:Mining] Dug a whole new face today, and only looked up at the roof twice.</li>
+          </plain>
+          <warm><li>I told {OTHER_nameDef} I'm past it now, and thanked {OTHER_objective} for the talk.</li></warm>
+          <blunt><li>Over it. Good.</li></blunt>
+          <cheerful><li>Back to my old self, and I've got a scar to show for it.</li></cheerful>
+          <gloomy><li>It's just work again, until the next time something goes wrong.</li></gloomy>
+          <cold><li>The matter is closed. I have changed how I work, and that is enough.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>{OTHER_nameDef} is back to {OTHER_possessive} old self. I didn't do much, but I was there.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} is past the close call, and it's just work again.</li>
+          <li>The close call is behind {PAWN_nameDef} now, with {OTHER_nameDef}'s help.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Rimfolk_Arc_BackToItDone</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Rimfolk_Arc_StoodByMe</thought></li>
+          <li Class="ColonyCouncil.ArcEffect_Tie"><kind>Friends</kind><amount>5</amount></li>
+          <li Class="ColonyCouncil.ArcEffect_Strain"><amount>-5</amount></li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[otherdead] {OTHER_nameDef} sat with me after the close call, and now {OTHER_nameDef} is gone.</li>
+        <li>[otherleft] {OTHER_nameDef} has gone, and I never did talk it all through.</li>
+        <li>[timeout] I still go the long way round that place. Maybe I always will.</li>
+        <li>It still comes back to me, the close call, now and then.</li>
+      </plain>
+    </fizzle>
+    <fizzleChronicle>
+      <li>{PAWN_nameDef} still hasn't quite shaken off the close call.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain>
+        <li>{OTHER_nameDef} had only just got over a close call, and was back at the work. I sat with {OTHER_objective} after it.</li>
+      </plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+</Defs>

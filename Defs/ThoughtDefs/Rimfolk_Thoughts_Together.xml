@@ -245,4 +245,23 @@
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><joy>0.04</joy></li></modExtensions>
   </ThoughtDef>
 
+  <!-- ===================== Back to it (Defs/ArcDefs/Rimfolk_Arcs_Together.xml) ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Arc_BackToItDone</defName>
+    <durationDays>8</durationDays>
+    <stages><li><label>back to my old self</label><description>The close call doesn't follow me round any more. I went back to the work and it was only work.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt><journal>true</journal><feelings><li>Relief</li><li>Resolve</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Arc_StoodByMe</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>12</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>stood by me after the close call</label><description>They let me tell it as often as I needed to, and never once said I should be over it by now.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
 </Defs>
