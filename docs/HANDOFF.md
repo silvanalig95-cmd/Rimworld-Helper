@@ -6,6 +6,62 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- phase 2 of the review: one teller, one pace (the player's decisions 1 and 2 of 6 November 2026). Not released: no
+  round in Almanac_WhatsNew.xml, About.xml untouched. (1) The pace (`PlayOut/Stage.cs`, pure `StageMath.cs`): one count
+  of gatherings per colony, saved with the play-outs (`PlayOutTracker.stage`, a `StageColony` a home: the start of each
+  gathering of the last ten days, the last of any kind, the season's custom, the toasts waiting). Every gathering lord
+  on a home is counted as it starts (`LordJob_Joinable_Gathering`, the game's marriage ceremony, feasts with guests: the
+  game's parties and rituals, play-outs, meetings, the election's), and every outing where it starts (`PlayGroups`, not
+  an errand or a gift); lords on at a load were counted before it. What the player chose always happens and counts. The
+  colony's own (`PlayOut.routine`, saved, false in an older save: a group's call, a family supper, a growth birthday's
+  toast, the floor's evening) start only with room (`StageMath.Room`: fewer gatherings in the last seven days than the
+  setting allows, two by default, and none in the last 36 hours), wait evening after evening up to three days and are
+  let go quietly; the tracker steps the player's plans first. A camp's show and song are offered only with room (their
+  letter says tonight). Calendar days (`CalendarKeeping`): days kept with a feast, games or a fire that come round within
+  three days ahead are named in the first one's letter and kept with its one gathering, each its tradition step, let
+  pass together (`KeptWith`, `ChoiceLetter_CalendarDay.withIds`/`withYears`, their `lastYear` spent by the letter); a day
+  that gathers people (those, faith, a remembrance) within two days of another gathering, or with a player's gathering
+  pending, is kept at supper (`atSupper`, saved on the letter; "Keep it at supper"; the keeper's word over the meal
+  through `Together` in supper hours, the day's memory then, a news line `CC_Cal_KeptAtSupper`/`_RememberedAtSupper`).
+  One seasonal custom a season (`Dilemmas.IsSeasonalCustom`: seasons and a tradition option; `Stage.CustomMayCome`,
+  `CustomAsked`; traditions forced as before). A life goal's toast is raised at the next festive gathering
+  (`Stage.Cup`/`Started`/`CupsAt`/`RaiseCups`, `GoalRewards.Toast` makes no evening of its own; both are asked to it, the
+  begin message says who has a cup to raise, the cups go up a while in, `LordJob_PlayOut.cupsRaised`), at supper after
+  two days, let go after five; a gathering that falls through hands its cups on. The hustings join the count
+  (`Election.speakAtCount`: `TryHustings` skips the evening, `CountTalk` lets each candidate there speak and be cheered or
+  heckled before the votes are read; the election texts say so; a hustings under way at a load runs as before). The
+  floor: from seven days without a gathering the colony's own come at once, from eight with nothing of its own on the
+  way the colony plans "an evening together" (the game's party with answers off). Fixes with it: a plan that falls
+  through gives nobody its moods (`Fallback` gives them only when the setting was switched off; "People took heart from
+  it all the same" is gone, the keys say "never came about"); a player's gathering kept from its evening by another
+  (`collided`) takes the next evening once (`movedOn`); a bonfire's fire is laid in the hour before its evening
+  (`PlayFire.Ahead`), and one still unlit two hours before the plan gives up is let go for a gathering without a fire, in
+  the open or at the rec room or table (`PlayFire.GiveUp`). The setting `gatheringsAWeek` (People, How often; light touch
+  1, story-rich 3). Keys in `Rimfolk_Pace.xml`. Measured (`Tools/Balance --scenes`, a new "As built" table on the very
+  rules, `StageMath.cs` linked): average play 4.7 gatherings and outings a week before, 2.7 after (well run 5.1 to 2.8),
+  the busiest week 14 to 9, days with two 8 to 2.2 a year, under a day apart 46% to 24%, the longest gap 9 days.
+  (2) The teller (`UI/Tell.cs`, pure `TellMath.cs`/`TellBook`): the channel by weight, kind and the colony's day. One count
+  a day per colony for messages (12) and letters (4), all kinds together (the per-kind caps of 20 and 6 folded in; new
+  setting keys `messagesADay`, `lettersADay`, so an older settings file's numbers don't stand); something hard to miss
+  always shown and the day busy for six hours (so is a raid on the home, `LastThreatBigTick`); on a busy day (that, or
+  half the messages) one person's, health and the land's news wait for the evening (`TellMath.Weighty`); the evening's
+  news has room by the day (`EveningRoom`: 8 lines down to 3, one fewer for each letter, message or question), keeps the
+  weightiest (`EveningScore`, `NewsItem.weight` saved) and puts the rest in the History tab; the same words shown as a
+  message aren't the evening's too (`TellBook.Told`). `AddChronicle` goes through `Tell.Chronicle`, which writes the
+  history. Dev menu: "Teller: what was told today", "Pace: the week's gatherings". Measured (`Tools/Balance --tell`, new:
+  the simulator's stream, old rules against the teller and the pace): letters and messages 1.92 a day to 1.64 (gathering
+  messages 0.67 to 0.39), the busiest day 12 to 8; on the save's archive (13 days; Rimfolk's messages aren't archived, so
+  only its letters and questions count toward the day) the evening's news 3.9 lines a day to 3.3. Tests: `StageTests`
+  (new), `TellTests` (the colony's day, the busy day, the evening), `HistoryTests` (the chronicle through the teller).
+  Save models: the count, its gatherings and toasts, the letter's days kept together. Docs: DESIGN.md (Telling the
+  player, the play-outs' moods and safety, "Pace: how often the colony gathers", the save table), README (the toast, the
+  calendar, Colony news and the teller, "The colony's pace", the settings), the Almanac (answers on the map, elections,
+  groups, birthdays, the calendar, life goals, customs, the guide's news). Left for the player's word: "within two days"
+  for customs beside a gathering (the review's proposal had it, the decision didn't); presets for the rest (phase 6). To
+  check in game: a week with a group's call waiting for room (This week shows it waiting), two calendar days three days
+  apart (one letter), a feast two days after a gathering (kept at supper, the word said at supper), a life goal reached
+  (the cup at the next gathering), the election's count with speeches, a bonfire with nobody free to lay its fire, a
+  busy raid day's messages.
 - 0.107.0, phase 1 of the review: one record (the player's decision 3 of 6 November 2026: "the chronicle becomes the colony's
   view of the history, every question records how it went, and the year is told once"). Not released: no round in
   Almanac_WhatsNew.xml, About.xml untouched. (1) The chronicle is the history's view. The save at day 128 showed the
