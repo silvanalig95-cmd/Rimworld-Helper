@@ -165,7 +165,8 @@ namespace ColonyCouncil
         /// <summary>
         /// Their farewell at the end of their stay, told as it went: a line about what they left ([left:key]), the healer's
         /// round ([round]), the smith's mending ([repaired]) or their dead carried home ([carried]) when that happened, any
-        /// other line otherwise. {X} is whoever took the last walk, {THING} what the smith mended.
+        /// other line otherwise; a line may ask for the hour they set off ([morning], [night]...), their animals going with
+        /// them ([animals]) or a camp come back ([back]). {X} is whoever took the last walk, {THING} what the smith mended.
         /// </summary>
         private string FarewellText()
         {
@@ -179,6 +180,11 @@ namespace ColonyCouncil
             var tags = new HashSet<string>();
             Flavor.AddEraTags(tags);
             CampWords.AddTags(tags, kind, faction, map);
+            AddStoryTags(tags);
+            // The hour they set off: a line that says dawn or night is said only then.
+            if (map != null) tags.Add(Flavor.HourTag(GenLocalDate.HourOfDay(map)));
+            // Their animals going with them, for a line that speaks of the beasts.
+            if (herd.Any(h => h != null && !h.Dead && h.Spawned)) tags.Add("animals");
             tags.UnionWith(marks);
             string line = marks.Count > 0 ? Flavor.Pick(lines.Where(l => marks.Any(m => HasTag(l, m))), tags) : null;
             line ??= Flavor.Pick(lines, tags) ?? Flavor.PickText(lines);

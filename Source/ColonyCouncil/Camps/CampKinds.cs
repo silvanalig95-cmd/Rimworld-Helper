@@ -101,7 +101,7 @@ namespace ColonyCouncil
             return s;
         }
 
-        /// <summary>The camp's own tags: faith, the world event behind it, the season.</summary>
+        /// <summary>The camp's own tags: faith, the world event behind it, their people's age (their:tribal..., their:lowtech or their:hightech), the season.</summary>
         public static void AddTags(HashSet<string> tags, CampKindDef kind, Faction f, Map map)
         {
             if (tags == null) return;
@@ -114,7 +114,11 @@ namespace ColonyCouncil
             var s = Situation(kind);
             if (s?.def?.kind != null) tags.Add("ws:" + s.def.kind);
             // Their own age (their:tribal...), so a kind of every age speaks as its people are (the scholars).
-            if (f != null) tags.Add("their:" + Ages.Tag(Ages.Of(f)));
+            if (f != null)
+            {
+                tags.Add("their:" + Ages.Tag(Ages.Of(f)));
+                tags.Add(f.def.techLevel <= TechLevel.Medieval ? "their:lowtech" : "their:hightech");
+            }
             if (map != null && !tags.Contains("spring") && !tags.Contains("summer") && !tags.Contains("fall") && !tags.Contains("winter"))
             {
                 switch (GenLocalDate.Season(map))
@@ -233,7 +237,7 @@ namespace ColonyCouncil
                             c.needs?.joy?.GainJoy(0.2f, JoyKindDefOf.Social);
                             CouncilGameComponent.GiveThought(c, show);
                         }
-                        if (!(kind?.lines).NullOrEmpty()) Arrivals.Say(star, Pick(kind.lines, star));
+                        Arrivals.Say(star, Bubble(star));
                     }
                     Tell(Text("CC_Camp_HelpTitle"), HelpText("show", star, colonists.RandomElement()), LetterDefOf.PositiveEvent, false);
                     return true;
@@ -279,7 +283,7 @@ namespace ColonyCouncil
                     {
                         foreach (var c in colonists.Where(c => !c.Downed && !c.InMentalState && c.Awake()))
                             CouncilGameComponent.GiveThought(c, heard);
-                        if (!(kind?.lines).NullOrEmpty()) Arrivals.Say(player, Pick(kind.lines, player));
+                        Arrivals.Say(player, Bubble(player));
                     }
                     Tell(Text("CC_Camp_HelpTitle"), HelpText("song", player, colonists.RandomElement()), LetterDefOf.PositiveEvent, false);
                     return true;

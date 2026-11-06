@@ -69,8 +69,29 @@ namespace ColonyCouncil
             "region:camp", "region:camp:theirfoe", "region:ruin", "region:ruin:theirs", "region:ruin:other", "region:ruin:fight",
             "them:seeking", "them:seeking:relic", "them:seeking:wonder", "them:seeking:trees", "them:seeking:ruins", "them:seeking:ruinRegion", "them:seeking:library",
             "them:seeking:history", "them:seeking:ore", "them:seeking:rush", "them:seeking:grazing", "them:seeking:road", "them:seeking:far",
-            "town:resettled:own", "town:resettled:newcomers", "their:givenup", "town:situation", "town:situation:bad", "town:situation:good"
+            "town:resettled:own", "town:resettled:newcomers", "their:givenup", "town:situation", "town:situation:bad", "town:situation:good",
+            // One of a camp of travellers at the colony (World/Region/RegionNearFacts.cs), and the camp's kind (CampTag).
+            "them:camp", "them:camp:Hunters", "them:camp:Refugees", "them:camp:Prospectors", "them:camp:Pilgrims", "them:camp:Market", "them:camp:Smith",
+            "them:camp:Hermit", "them:camp:Healers", "them:camp:Procession", "them:camp:Players", "them:camp:Surveyors", "them:camp:Fishers", "them:camp:Salvagers",
+            "them:camp:HarvestHands", "them:camp:Spacers", "them:camp:Watchers", "them:camp:BeastShow", "them:camp:Trainers", "them:camp:SaltCaravan",
+            "them:camp:FarMerchants", "them:camp:Drovers", "them:camp:Penitents", "them:camp:TreeSingers", "them:camp:LoneHealer", "them:camp:Minstrels",
+            "them:camp:Mourners", "them:camp:Scholars", "them:camp:Settlers", "them:camp:WarParty", "them:camp:Wardens", "them:camp:Deserters",
+            "them:camp:Woodcutters", "them:camp:HerbGatherers"
         };
+
+        /// <summary>The tag for one of a camp of this kind: them:camp: and the kind's defName without its Council_Camp_ or Rimfolk_Camp_ ("them:camp:SaltCaravan").</summary>
+        public static string CampTag(string kindDefName)
+        {
+            if (string.IsNullOrEmpty(kindDefName)) return null;
+            string k = kindDefName;
+            foreach (var prefix in new[] { "Council_Camp_", "Rimfolk_Camp_" })
+                if (k.StartsWith(prefix, StringComparison.Ordinal))
+                {
+                    k = k.Substring(prefix.Length);
+                    break;
+                }
+            return "them:camp:" + k;
+        }
 
         /// <summary>The region's placeholders: their town's fortune in a word and the world event behind it, its founder, mother town and why it was founded; a new town near and its people; a trading post near, its kind, its people and its keeper; a hamlet; a raiders' camp, a ruin, a traveller's reason, a town given up, the event at their town.</summary>
         public static readonly string[] RegionValues = { "FORTUNE", "FORTUNEWHY", "FOUNDER", "MOTHERTOWN", "WHYFOUNDED", "NEWTOWN", "NEWTOWNPEOPLE", "POST", "POSTKIND", "POSTPEOPLE", "KEEPER", "HAMLET", "HAMLETWORD",

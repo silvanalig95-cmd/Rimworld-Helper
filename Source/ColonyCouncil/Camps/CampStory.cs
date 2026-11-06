@@ -91,6 +91,8 @@ namespace ColonyCouncil
         private void StoryParting()
         {
             if (holding || beats.Contains("parting") || phase != CampPhase.Living || !CampStoryMath.PartingDue(DaysHere, StayDays) || Hostile) return;
+            // The parting word comes at dusk, as its words say: the last day of a stay holds an evening.
+            if (!CampStoryMath.PartingHour(GenLocalDate.HourOfDay(map))) return;
             if (Find.LetterStack.LettersListForReading.Any(l => l is ChoiceLetter_Camp c && c.campId == id && !c.resolved)) return;
             beats.Add("parting");
             var speaker = Speaker;
@@ -101,9 +103,12 @@ namespace ColonyCouncil
                 Ask("settle", Text("CC_Holding_AskTitle"), Text(kind.family ? "CC_Holding_Ask_Family" : "CC_Holding_Ask", speaker), speaker, 0.8f);
                 return;
             }
-            string key = helps + gifts + tradeDays > 0 ? "CC_Camp_Parting_Warm" : tension >= 40f ? "CC_Camp_Parting_Cool" : "CC_Camp_Parting";
-            if (Familiar) key = "CC_Camp_Parting_Again";
-            Ask("parting", Text("CC_Camp_PartingTitle"), Text(key, speaker, null, CampStoryMath.Provisions(Here.Count)), speaker, 0.6f);
+            // The parting's words (Rimfolk_CampWords_Goodbye.xml): sent at dusk, the camp soon on its way. The first wordings
+            // (CC_Camp_Parting...) had someone walk to the gate and the camp go on "in the morning", which neither the map
+            // nor the stay's end keeps; they are left unused.
+            string key = helps + gifts + tradeDays > 0 ? "CC_Camp_Goodbye_Warm" : tension >= 40f ? "CC_Camp_Goodbye_Cool" : "CC_Camp_Goodbye";
+            if (Familiar) key = "CC_Camp_Goodbye_Again";
+            Ask("parting", Text("CC_Camp_PartingTitle"), Text(TextVariants.Vary(key), speaker, null, CampStoryMath.Provisions(Here.Count)), speaker, 0.6f);
         }
 
         /// <summary>Trouble midway: one of the council's questions about this camp, else a trouble every camp can have.</summary>

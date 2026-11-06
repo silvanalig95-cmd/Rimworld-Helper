@@ -35,7 +35,41 @@ namespace ColonyCouncil
             ["[renowndown,us,tribal,!house:wasrenowned] The nearest camp tells other stories at its fire now."] = "!" + RenownMath.WasRenownedTag,
             ["[renowndown,us,medieval,!house:wasrenowned] Nobody at the next town's market speaks of us now."] = "!" + RenownMath.WasRenownedTag,
             ["[renowndown,us,industrial,!house:wasrenowned] The next town's found something else to talk about."] = "!" + RenownMath.WasRenownedTag,
-            ["[renowndown,us,spacer,!house:wasrenowned] Our name's gone quiet on the nearest settlement's channels."] = "!" + RenownMath.WasRenownedTag
+            ["[renowndown,us,spacer,!house:wasrenowned] Our name's gone quiet on the nearest settlement's channels."] = "!" + RenownMath.WasRenownedTag,
+            // The text pass on the world's voices (6 November 2026). A chat's opening (Rimfolk_Outsiders.xml) was said to
+            // anyone, however often the two had talked: the two that say they never met only to one never talked with.
+            ["[greet,us] Welcome to the colony, I'm glad to finally meet you."] = "first",
+            ["[greet,us] I don't think we've talked yet, have we?"] = "first",
+            // Getting to know them said "I'm glad you came back" to one met for the first time: only on a visit since the last.
+            ["[befriend,us] I'm glad you came back, I hoped you would."] = "returning",
+            // A meal shared at the table praised whatever was on the plate, paste too: only for one that isn't awful
+            // (Outsiders' meal tags the plate, fare:awful...).
+            ["[mealtalk] This is good, who made it?"] = "!fare:awful",
+            ["[mealtalk,them,theirLowtech] We'd sing over a meal like this at home."] = "!fare:awful",
+            ["[mealend,them] That was a fine meal, thank you."] = "!fare:awful",
+            // A war party's line about the enemy's archers (Rimfolk_CampKinds_War.xml) was said after any fight: only after
+            // one with a people of bows and spears (the camp's foe tags).
+            ["Their archers were a joke."] = "foe:lowtech",
+            // A camp's lines over their heads were said at any hour: the three that name one only then (Camp.Bubble).
+            ["They're biting this morning."] = "morning",
+            ["It's quieter tonight."] = "evening|night",
+            ["My back says it's evening."] = "evening",
+            // A camp's farewell is told as they set off (CampLife.Leave), at whatever hour that is: the lines that name the
+            // hour only then (CampLook.FarewellText tags it).
+            ["The pilgrims from {FACTION} broke camp {PLACE} at dawn and walked on toward their holy place."] = "morning",
+            ["The pilgrims from {FACTION} left at first light, singing under their breath so as not to wake the colony."] = "morning",
+            ["The hermit's hut {PLACE} is empty. {X_nameDef} left in the night without a word, which is how {X_nameDef} arrived."] = "night",
+            ["The surveyors from {FACTION} left before breakfast, carrying the colony's hills away with them on paper."] = "night|morning",
+            ["The fishers from {FACTION} rolled up their lines at first light and walked on along the water, baskets on their backs."] = "morning",
+            ["The beast show from {FACTION} led its beasts out at first light, the keepers walking beside them."] = "morning",
+            ["The trainers' camp {PLACE} is empty this morning. They left early, {X_nameDef} said, to be at the next town by market day."] = "morning",
+            ["The caravan from {FACTION} loaded up before dawn and went on toward the hills, bells ringing on the lead animal. {X_nameDef} promised to stop again next year."] = "night|morning",
+            ["[!lowtech] The convoy from {FACTION} got its part and its engines running, and was gone by mid-morning in a cloud of exhaust and goodwill."] = "morning",
+            ["The drovers from {FACTION} whistled the herd together before sunrise and drove it on down the road at an easy pace, the dog working the stragglers."] = "night|morning",
+            ["The penitents from {FACTION} went on at dawn, barefoot, without a word. Their camp {PLACE} is swept so clean it's hard to tell anyone was there."] = "morning",
+            ["[left:seeds] The tree-singers left at dawn, singing, and stopped at the edge of the woods to bow to the trees. They left a ring of planted seeds where their fire had been."] = "morning",
+            ["The minstrels from {FACTION} went on toward the next town at noon, still playing, with the drum keeping time for the walkers."] = "day",
+            ["The mourners from {FACTION} went on at first light, one of them carrying their dead and the others walking close around."] = "morning"
         };
 
         /// <summary>Shipped lines true in no case they are drawn for, never said again.</summary>
@@ -112,7 +146,35 @@ namespace ColonyCouncil
             // they hauled the stone for most of the walls, they stayed through the raids and the hungry seasons. Their fellows
             // for one two years or more with the colony ([longtime]) are in Rimfolk_Lines_Eulogies_More.xml.
             "{OTHER_nameDef} hauled the stone for most of these walls. We'll keep them standing.",
-            "{OTHER_nameDef} stayed through the raids and the hungry seasons, and never talked about leaving."
+            "{OTHER_nameDef} stayed through the raids and the hungry seasons, and never talked about leaving.",
+            // The text pass on the world's voices (6 November 2026). A camp's farewell is told as they pack up and set off
+            // (CampLife.Leave): what they take down goes with them (the fire too), and only the hermit, the healers and the
+            // mourners walk to the colony before they go (their farewellWalk). The lines that told of a wave, a bow or a word
+            // at the gate nobody walked to, a sound heard after they were out of sight, or ash and bones left round a fire
+            // that is gone. New farewells for each kind are in Rimfolk_CampWords_Voices.xml.
+            "The hunters from {FACTION} were gone before dawn. All that's left {PLACE} is a ring of ash and a few cracked bones.",
+            "The hunters of {FACTION} broke camp at first light. One of them lifted a hand toward the colony from a long way off, and then they were over the rise and out of sight.",
+            "The family from {FACTION} packed up their camp {PLACE} and went on down the road. {X_nameDef} waved until the colony was out of sight.",
+            "The procession from {FACTION} lifted its shrine at dawn and went on singing up the road. The colony could hear them long after they'd gone out of sight.",
+            "The procession from {FACTION} lifted its shrine and went, bells first. At the edge of the colony's land its leader turned and blessed the place once more, over one shoulder.",
+            "The players from {FACTION} took a last bow at the gate and went on to the next town, still arguing about the second act.",
+            "The fishers' camp {PLACE} is empty, and there's a ring of fish bones round the cold fire.",
+            "The drovers from {FACTION} moved the herd on at first light. The colony could hear the bells and the dogs long after they'd gone over the ridge.",
+            "The penitents left before sunrise. {X_nameDef} stopped at the gate to bow, and then they were gone up the road.",
+            "The minstrels from {FACTION} left the way they came, singing. The colony heard the last verse from the road.",
+            "{X_nameDef} shook every hand at the gate, thanked the colony twice, and led the scholars off with the pack beast complaining behind them.",
+            "The fighters of {FACTION} are gone from {PLACE}, leaving a ring of trampled grass and a cold fire. {X_nameDef} said, at the gate: \"Next time, you come to us.\"",
+            "{FACTION}'s wardens are gone from {PLACE}, called back down the road. {X_nameDef} said, at the gate: \"Keep the road for us a while.\"",
+            "The deserters' camp {PLACE} is empty this morning, the fire cold. They went in the night, as people do who don't want to be followed.",
+            "{X_nameDef} and the others have gone on from {PLACE}, looking for somewhere nobody knows their faces. {X_nameDef} left a word of thanks at the gate.",
+            "The merchants' camp {PLACE} is gone. {X_nameDef} bowed to the colony's gate before leaving, in some custom of their own.",
+            "The merchants from {FACTION} packed up their stall and went on toward the far markets. {X_nameDef} called something from the road in their own tongue, and it sounded like a blessing.",
+            // Callers at their work (Rimfolk_Events_Callers.xml): a captive's kin speaking of a sister and a dog the game never
+            // made, an undertaker calling every dead raider "he" and "somebody's son", and an animal doctor speaking of a leg
+            // whatever was hurt. Their own words beside them are in Rimfolk_Pool_CallerSays.xml.
+            "[talk] Your sister sends her love, and your old dog still waits by the door.",
+            "[load] Mind his head, he's somebody's son.",
+            "[tend] Who's been looking after this leg, then."
         };
 
         private static Dictionary<string, LineTags.Parsed> parsed;

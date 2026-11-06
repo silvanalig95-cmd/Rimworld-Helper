@@ -6,6 +6,72 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 0.109.2, text pass: the world's voices (6 November 2026, the player's "please launch one or more text enhancement tasks, adding
+  more immersion and variety": visitors and callers, the camps, the region, the outsiders' talk). Not released: no
+  round, About.xml untouched. First the words against the map, each case checked in the code and fixed where it was
+  wrong; shipped lines keep their text and tags (textcheck against 05c4efa clean), narrowed or retired through
+  `OutsiderTalkMath.AlsoWhen` and `ShippedLines` as round d's. Fixed: (1) a camp's lines over their heads (hourly,
+  `CampLife`) were picked by the era alone, so "Praise to {IDEO}." and "{IDEO} keep us." showed "{IDEO}" unfilled and
+  "It wasn't our war." or "Have you heard the word?" were said by any camp: `Camp.Bubble` picks by the camp's tags and the
+  speaker's moment (hour, weather, season) with the line memory, and the show and the song use it too; "Their archers
+  were a joke." only after a fight with a people of bows (a war party's `foe:` tags from its enemy), three bubbles that
+  name an hour only then; (2) a camp's farewell is told as they pack up and set off (`CampLife.Leave`): 17 lines that
+  told of a wave, a bow or a word at a gate nobody walked to (only the hermit, the healers and the mourners walk there),
+  a sound heard after they were out of sight, or ash and bones round a fire that is gone are retired, and 14 that name
+  the hour (dawn, first light, noon, in the night) are said only then (`CampLook.FarewellText` tags the hour, their
+  animals and a camp come back); (3) the parting question came at any hour of the stay's last day saying someone "came
+  to the gate at dusk" and the camp would "go on in the morning": it comes at dusk now (`CampStoryMath.PartingHour`),
+  sent rather than brought, in new words (`CC_Camp_Goodbye...`, nine wordings, `Rimfolk_CampWords_Goodbye.xml`), the old
+  keys left unused; (4) a chat's opening "I don't think we've talked yet, have we?" and "glad to finally meet you" were
+  said however often the two had talked, and "I'm glad you came back" to a new face: `Outsiders.Line` tags first, met,
+  returning and known (and the outsider's people by age, their:tribal... their:empire) and the three ask for them; (5) the
+  shared meal praised whatever was on the plate, paste too: the meal tags each plate (`fare:awful`, `simple`, `fine`,
+  `lavish`; `OutsiderOutcomes.Fare`) and three lines ask !fare:awful; (6) `did:KIND` is set by any asking, refused or
+  not, and eleven talk pieces spoke of a meal eaten together, a gift kept, a lesson given or a bout fought: `shared:meal`,
+  `drink`, `lesson`, `gift`, `bout` read the outsider's own memory of it (`Facts.Shared`, the game's mood memories) and
+  the eleven ask for it; (7) "Who's camped out on your land, then?" was asked by one of that very camp: `them:camp` and
+  `them:camp:KIND` (`RegionNearFacts.TheirCamp`, `FactsMath.CampTag`: the kind's defName without its prefix), and the
+  piece asks !them:camp; (8) callers: a captive's kin spoke of a sister and a dog the game never made, an undertaker
+  called every dead raider "he", the animal doctor spoke of a leg whatever was hurt: retired. Then variety, every line
+  said only on facts its providers set, each checked in code. Bubbles at the gate and the table, 323
+  (`Rimfolk_Lines_OutsiderSays_Voices.xml`): the basic moments of a talk with an outsider had 2 to 6 lines each and now
+  have 4 to 33 (greet 6 -> 32, chat 11 -> 33, the meal's ask, yes, no, talk and end 2 or 3 -> 7 to 19, drinks, gifts,
+  news of home, a good word, letters, lessons, asks, courting, faith, bouts, a talk's end), by their people's ways (the
+  Empire's court apart) and how well the two know each other. Camps, 307 (`Rimfolk_CampWords_Voices.xml`, a
+  FlavorExtensionDef with `camp`, joined at startup by `CampKindDef.AddWords`): bubbles 217 (each kind 6 to 13 -> 11 to
+  23: the hour, the weather, their people's age, the world event that brought them, a camp come back, a war party's foe)
+  and farewells 90 (each kind had 1 to 4, some of them untrue; now 3 to 7 true ones, the settlers' one aside). Talk
+  pieces, 116: with a camp's travelers 69
+  (`Rimfolk_OutsiderTalks_CampFolk.xml`: two for most of the 31 kinds, their trade and their road, six for any camp's
+  people, four for a visitor on the camp at the colony; before, one piece spoke of a camp at all) and the library's thin
+  spots 47 (`Rimfolk_OutsiderTalks_WorldVoices.xml`: the colony's news a visitor heard, a harvest, a decree, research, a
+  project, a newcomer, a quiet month, a feast day today or just past, machines, insects or beasts at the walls, the
+  speaker chosen 12; what went through 5; the colonist as leader, healer, old hand, newcomer or parent, an old or married
+  traveler 7; their town short of fuel or hands, their caravan and visitors on the road, its fortune poor, steady or
+  flourishing by their ways 13; their wars long, new, fought on the colony's land, with the colony's friend, a battle on
+  its land 5; fog, storm, an early start 3; a guest and a lodger 2). Callers 38 (`Rimfolk_Pool_CallerSays.xml`: the
+  collector, the barber, the animal doctor, the undertakers, a captive's kin, a wedding party, drawn by `Callers.Say`
+  beside the event's own three to six, with the memory). The region's news and letters 39 numbered fellows
+  (`Rimfolk_RegionVariants_Voices.xml`: far news from a camp's traveler 15, a raiders' camp seen and its raids 8, towns
+  emptied, faded, held on to and founded 4, trading posts closed, sacked and razed 5, a hamlet's asks and endings 7). The
+  talk library 1,630 -> 1,746 pieces; the variety report (which now counts a camp's words from a file of their own with
+  its kind) 63,897 -> 64,992 lines in 8,354 -> 8,471 pools; its draw estimates for the outsiders' bubbles and the camps'
+  lines are the rare default, so their "seen a year" stays near nought before and after, and its top three (the
+  ailment, new-goal and elected journals, 5.31, 3.46, 2.93) are outside this area and unchanged. Files:
+  `Camps/Camp.cs`, `CampKindDef.cs`, `CampKinds.cs`, `CampLife.cs`, `CampLook.cs`, `CampStory.cs`, `CampStoryMath.cs`,
+  `Flavor.cs` (`HourTag`), `FlavorExtension.cs`, `Lean/ShippedLines.cs`, `Outsiders/OutsiderOutcomes.cs`,
+  `OutsiderTalkMath.cs`, `Outsiders.cs`, `Text/Facts/FactsMath.cs`, `FactsWho.cs`, `Visitors/Callers.cs`,
+  `World/Region/RegionNearFacts.cs`, the talk format's header (`Rimfolk_OutsiderTalks_Greetings.xml`, a comment),
+  `Tools/variety_report.py`. Tests: `RenownTests` (the shipped lines' other tags set where they're picked),
+  `ImmersionTests` (the callers' pool, a camp's words from an extension one sentence each), `OutsiderTalkTests` (a tag
+  for each kind of camp and none for a kind that isn't, the `shared:` tags), `CampStoryTests` (the parting at dusk).
+  Found and left: the visitors' trips pool (`Rimfolk_VisitorLines`, 316 lines, rarely drawn) untouched; a camp's letters
+  still say someone "came to the gate" for an ask nobody walks to (the sick one's "before dawn" though asked between 9
+  and 18), and a few settled texts and bubbles claim what isn't shown ("a lookout in the nearest tree", "Carts coming,
+  two of them."); the meal's "fare" is the speaker's own plate, a drink none; `shared:` lasts as long as the mood memory
+  (8 to 20 days). To look at in game: a trader greeted the first time and the third; a meal of paste and one of fine
+  meals at the table; a camp's bubbles at night and in the rain; a farewell at dawn and one at dusk; the parting word at
+  dusk; a camp's traveler talking of their trade.
 - 0.109.1, text pass: dreams, ailments, stories and animals (the player's request of 6 November 2026, "text enhancement tasks,
   adding more immersion and variety": the colonists' inner and everyday words outside the systems being rebuilt, after
   the systems review's findings on dreams, ailments, personal stories, quirks and animals). Not released: no round, no

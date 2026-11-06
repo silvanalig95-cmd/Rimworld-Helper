@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The text pass on the world's voices (6 November 2026): more words for what a colonist and someone from outside the
+    colony say over their heads as they do something together (Rimfolk_Pool_OutsiderSays, Rimfolk_Outsiders.xml has the
+    moments and the format; Outsiders.Line picks). Most moments had two lines, so every trader and visitor said the
+    same two. Besides the moment, us/them, theirLowtech/theirHightech, the speaker's own traits and the hour, weather
+    and season, a line can ask for:
+      - the outsider's people by age: their:tribal, their:medieval, their:industrial, their:spacer, and their:empire for
+        the Empire (its own court, titles and honor; a spacer line says !their:empire);
+      - how well the two know each other: first (never talked), met (talked before), returning (on a new visit since),
+        known (familiar);
+      - at a shared meal, what is on the speaker's plate: fare:awful (paste, an awful meal), fare:simple, fare:fine,
+        fare:lavish.
+    The colony's own age (tribal, medieval, industrial, spacer, lowtech) is the colonist's way of saying things.
+    One sentence each, no claims of a fact the game doesn't hold.
+  -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_OutsiderSays_Voices</defName>
+    <pool>Rimfolk_Pool_OutsiderSays</pool>
+    <lines>
+      <plain>
+        <!-- ============ A chat's opening, by how well they know each other ============ -->
+        <li>[greet,us,first] I don't believe we've met, have you got a moment?</li>
+        <li>[greet,us,first] You're a new face, have you come far?</li>
+        <li>[greet,us,first,their:tribal] Welcome, stranger, will you share a word with me?</li>
+        <li>[greet,us,first,their:medieval] Good day to you, I don't know your face yet.</li>
+        <li>[greet,us,first,their:industrial] Hello, I don't think anyone's introduced us.</li>
+        <li>[greet,us,first,their:empire] Welcome to our colony, honored guest.</li>
+        <li>[greet,us,first,their:spacer,!their:empire] Hello, we don't often see gear like yours out here.</li>
+        <li>[greet,us,met] Good to see you again.</li>
+        <li>[greet,us,met] Have you got a minute for me again?</li>
+        <li>[greet,us,met,their:medieval] Well met again, friend.</li>
+        <li>[greet,us,met,tribal] We meet again, as the moons said we would.</li>
+        <li>[greet,us,met,their:empire] It's an honor to have your company again.</li>
+        <li>[greet,us,returning] You're back, how was the road this time?</li>
+        <li>[greet,us,returning] Back again, I'd hoped you'd come this way.</li>
+        <li>[greet,us,returning,their:tribal] Your feet found our trail again, I see.</li>
+        <li>[greet,us,known] There you are, I was hoping to find you.</li>
+        <li>[greet,us,known,kind] Sit a while, I've been saving up things to tell you.</li>
+        <li>[greet,us,morning] Morning, have you eaten yet?</li>
+        <li>[greet,us,evening] Evening, the light's going fast, isn't it?</li>
+        <li>[greet,us,night] Up late as well, are you?</li>
+        <li>[greet,us,rain] Wet enough for you?</li>
+        <li>[greet,us,snow] Snowing again, at least it's quiet.</li>
+        <li>[greet,us,hot] Hot one, isn't it, have you had water?</li>
+        <li>[greet,us,cold] Cold enough to bite, isn't it?</li>
+        <li>[greet,us,tribal] Be welcome among us, traveler.</li>
+        <li>[greet,us,abrasive] Right, you, I've got questions.</li>
+
+        <!-- ============ While they chat, when no conversation fits ============ -->
+        <li>[chat,them] The road out here is quieter than I expected.</li>
+        <li>[chat,them] It's a fair spot you've picked, I'll say that.</li>
+        <li>[chat,them,their:tribal] The spirits of this land are restless, our elders say.</li>
+        <li>[chat,them,their:tribal] Our hunters would like the look of this country.</li>
+        <li>[chat,them,their:medieval] Aye, there's worse places to put down roots.</li>
+        <li>[chat,them,their:medieval] You'd want a good wall here, and a good reeve.</li>
+        <li>[chat,them,their:industrial] Land's cheap out here, I suppose, and for good reason.</li>
+        <li>[chat,them,their:industrial] Everything out this way costs twice what it should.</li>
+        <li>[chat,them,their:empire] One learns a great deal about the outer lands on a visit like this.</li>
+        <li>[chat,them,their:spacer,!their:empire] You keep a small settlement, and it seems to suit you.</li>
+        <li>[chat,them,cold] My fingers haven't been warm since I got here.</li>
+        <li>[chat,them,hot] How do any of you work in this heat?</li>
+        <li>[chat,them,rain] Rain like this gets into everything, doesn't it?</li>
+        <li>[chat,them,fog] I could hardly see my own feet in this fog.</li>
+        <li>[chat,them,snow] Snow on the road slows everyone down, us included.</li>
+        <li>[chat,them,night] It's a quiet night, for the frontier.</li>
+        <li>[chat,us] How long are your people staying?</li>
+        <li>[chat,us] What's the road like between here and your people?</li>
+        <li>[chat,us,first] What should I call you, then?</li>
+        <li>[chat,us,met] It's good to pick up where we left off.</li>
+        <li>[chat,us,night] Can't sleep either?</li>
+        <li>[chat,us,lowtech] Do your people hunt this far out?</li>
+
+        <!-- ============ How a chat went, in their last word ============ -->
+        <li>[endwarm,them] I'll look for you next time I'm this way.</li>
+        <li>[endwarm,them,their:tribal] You speak well, the elders would like you.</li>
+        <li>[endwarm,them,their:medieval] You're good company, and that's rare on the road.</li>
+        <li>[endwarm,them,their:empire] I have enjoyed this more than most audiences at court.</li>
+        <li>[endgood,them] I enjoyed that, we should talk again.</li>
+        <li>[endgood,them] Thanks for the talk, it made the day go quicker.</li>
+        <li>[endgood,them,their:industrial] That was time well spent, thanks.</li>
+        <li>[endplain,them] Well, I've things to see to.</li>
+        <li>[endplain,them] Right, I'd best get back to it.</li>
+        <li>[endplain,them,their:tribal] The day is moving, and so must I.</li>
+        <li>[endcool,them] We'll leave it there, I think.</li>
+        <li>[endcool,them] I don't think we'll agree on much, you and I.</li>
+        <li>[endcool,them,their:empire] I believe we have said what was needed.</li>
+        <li>[endsour,them] We're done talking.</li>
+        <li>[endsour,them] Find someone else to bother.</li>
+        <li>[endsour,them,their:medieval] Mind your tongue with guests, colonist.</li>
+
+        <!-- ============ Won't stop, or no patience left today ============ -->
+        <li>[notnow,them] Later, I've something to finish first.</li>
+        <li>[notnow,them] Give me a moment, will you?</li>
+        <li>[notnow,them,their:empire] I am occupied, perhaps later.</li>
+        <li>[notnow,them,their:tribal] Not now, the moment isn't right.</li>
+        <li>[enough,them] I've had my fill of questions for today.</li>
+        <li>[enough,them,their:empire] I have given your colony a good deal of my day already.</li>
+        <li>[enough,them,their:medieval] I've talked myself hoarse, friend, tomorrow.</li>
+
+        <!-- ============ News of home ============ -->
+        <li>[homeask,us] How are things where you come from?</li>
+        <li>[homeask,us] What do your people talk about these days?</li>
+        <li>[homeask,us,their:tribal] What news do you carry from your fires?</li>
+        <li>[homeask,us,their:medieval] What's the talk at your market these days?</li>
+        <li>[homeask,us,their:empire] What news from your people's lands, if it's yours to tell?</li>
+        <li>[home,them] Home is home, the same faces and the same arguments.</li>
+        <li>[home,them] You'd hardly know anything changes there, and then it does.</li>
+        <li>[home,them,their:tribal] The elders say little changes, and they're mostly right.</li>
+        <li>[home,them,their:medieval] The market still runs on the same days, whatever else happens.</li>
+        <li>[home,us] Thank you, that's more than we usually hear.</li>
+        <li>[home,us] We hear so little out here, go on.</li>
+        <li>[home,us] I'll pass that on to the others.</li>
+        <li>[hometold,them] That's the news, as much as I know of it.</li>
+        <li>[hometold,them] That's all of it, or all I'd tell.</li>
+        <li>[hometold,them,their:tribal] That is all the news the trail gave me.</li>
+        <li>[hometold,them,their:empire] That is what I may tell, and I have told it.</li>
+        <li>[homenothing,them] Home's my business, and I'll keep it.</li>
+        <li>[homenothing,them] Nothing I'd tell a stranger.</li>
+        <li>[homenothing,them,their:tribal] What happens at our fires stays at our fires.</li>
+        <li>[homenothing,them,their:empire] Matters of my people are not for idle talk.</li>
+
+        <!-- ============ A meal shared at the colony's table ============ -->
+        <li>[mealask,us] Will you eat with me?</li>
+        <li>[mealask,us] I was about to eat, will you join me?</li>
+        <li>[mealask,us,their:tribal] Share food with us, as your people would.</li>
+        <li>[mealask,us,their:medieval] Will you break bread with me?</li>
+        <li>[mealask,us,their:empire] Would you do me the honor of dining with me?</li>
+        <li>[mealask,us,evening] Supper's on, will you sit with me?</li>
+        <li>[mealyes,them] Gladly, I've been eating on my feet for days.</li>
+        <li>[mealyes,them] I won't say no to a meal I didn't carry.</li>
+        <li>[mealyes,them,their:tribal] Food offered is not refused, the elders taught us.</li>
+        <li>[mealyes,them,their:medieval] Aye, and thank you, a seat at a table is a kindness.</li>
+        <li>[mealyes,them,their:empire] I accept, with thanks.</li>
+        <li>[mealyes,them,kind] Only if I'm not taking anyone's share.</li>
+        <li>[mealno,them] I ate not long ago, thank you.</li>
+        <li>[mealno,them] Another time, perhaps.</li>
+        <li>[mealno,them,their:tribal] I eat with my own people, it is our way.</li>
+        <li>[mealno,them,their:empire] Thank you, but I keep to my own table.</li>
+        <li>[mealno,them,abrasive] I'll eat when I'm hungry, thanks.</li>
+        <li>[mealtalk,fare:lavish] This is a feast, not a supper.</li>
+        <li>[mealtalk,them,fare:lavish] I haven't eaten like this since I don't know when.</li>
+        <li>[mealtalk,fare:fine] Whoever cooked this knows their trade.</li>
+        <li>[mealtalk,them,fare:fine] This is better than anything I've had on the road.</li>
+        <li>[mealtalk,fare:simple] Plain food, and plenty of it, that's all I ask.</li>
+        <li>[mealtalk,them,fare:simple] Good honest food, this.</li>
+        <li>[mealtalk,fare:awful] It fills the belly, which is what counts.</li>
+        <li>[mealtalk,them,fare:awful] I've eaten worse on the road, though not often.</li>
+        <li>[mealtalk,us,fare:awful] I know, it's not much to look at.</li>
+        <li>[mealtalk,us] Eat, there's no hurry, the work will keep.</li>
+        <li>[mealtalk,us] Is it to your taste?</li>
+        <li>[mealtalk,them,their:tribal] At home the hunters eat first, then everyone else.</li>
+        <li>[mealtalk,them,their:medieval] At home we'd say a word over the food first.</li>
+        <li>[mealtalk,them,their:industrial] Sitting down to eat, that's a luxury on the road.</li>
+        <li>[mealtalk,them,their:empire] At court a meal takes half a day and says very little.</li>
+        <li>[mealtalk,cold] A meal on a cold day is worth more than silver.</li>
+        <li>[mealend,them,fare:lavish] I'll be telling them at home about that meal for a month.</li>
+        <li>[mealend,them,fare:fine] That was good cooking, thank you for sharing it.</li>
+        <li>[mealend,them,fare:simple] Simple and filling, just what I needed, thank you.</li>
+        <li>[mealend,them,fare:awful] Thank you for sharing what you had.</li>
+        <li>[mealend,them,their:tribal] We have eaten together, so we are not strangers now.</li>
+        <li>[mealend,them,their:medieval] My thanks for your table and your company.</li>
+        <li>[mealend,them,their:empire] Your hospitality does you credit, and I will say so.</li>
+        <li>[mealend,them] I owe you a meal now, remember that.</li>
+
+        <!-- ============ A drink shared ============ -->
+        <li>[drinkask,us] A drink before you go back to your people?</li>
+        <li>[drinkask,us] Let's have a drink, the day's earned it.</li>
+        <li>[drinkask,us,their:medieval] Will you take a cup with me?</li>
+        <li>[drinkask,us,their:empire] May I offer you a drink?</li>
+        <li>[drinkask,us,evening] It's evening, that's reason enough for a drink.</li>
+        <li>[drinkyes,them] Go on, then, just a small one.</li>
+        <li>[drinkyes,them,their:tribal] We drink to the spirits first, then to each other.</li>
+        <li>[drinkyes,them,their:medieval] Aye, a cup wouldn't go amiss.</li>
+        <li>[drinkyes,them,their:empire] A drink, then, to good relations.</li>
+        <li>[drinkno,them] I keep a clear head among strangers.</li>
+        <li>[drinkno,them] Not while I'm on the road, thanks.</li>
+        <li>[drinkno,them,their:empire] Not while I'm on my people's business.</li>
+        <li>[drinktalk] Here's to the road being kind to you.</li>
+        <li>[drinktalk] To good neighbors, wherever they are.</li>
+        <li>[drinktalk,them,their:tribal] This would warm a whole hunting party.</li>
+        <li>[drinktalk,them,their:medieval] That's proper drink, that is.</li>
+        <li>[drinktalk,us] Go easy, it creeps up on you.</li>
+        <li>[drinktalk,winter] Nothing like it to keep the cold out.</li>
+        <li>[drinkend,them] That went down well, thank you.</li>
+        <li>[drinkend,them] One was right, two would have been trouble.</li>
+        <li>[drinkend,them,their:empire] A gracious gesture, and I thank you for it.</li>
+        <li>[drinkend,them,their:tribal] Now we have drunk together, remember that.</li>
+
+        <!-- ============ A gift ============ -->
+        <li>[gift,us] This is from all of us, not just me.</li>
+        <li>[gift,us] Here, before you go, take this.</li>
+        <li>[gift,us,their:empire] A small gift, in your honor.</li>
+        <li>[gift,us,tribal] A gift, from our fire to yours.</li>
+        <li>[giftsuits,them] You've been watching what I use, haven't you?</li>
+        <li>[giftsuits,them] Now that's a gift with some thought behind it.</li>
+        <li>[giftsuits,them,their:tribal] The spirits guided your hand in choosing this.</li>
+        <li>[giftsuits,them,their:empire] This is a fitting gift, and a generous one.</li>
+        <li>[giftthanks,them] Thank you, I'll find a use for it.</li>
+        <li>[giftthanks,them] That's generous of you.</li>
+        <li>[giftthanks,them,their:tribal] The elders will hear who gave me this.</li>
+        <li>[giftthanks,them,their:medieval] I'm obliged to you, truly.</li>
+        <li>[giftthanks,them,their:empire] A gracious gift, and it will be remembered.</li>
+        <li>[giftno,them] Keep it, you'll need it more than I will.</li>
+        <li>[giftno,them,their:empire] I cannot accept gifts while on my people's business.</li>
+        <li>[giftno,them,their:tribal] A gift carries a debt, and I can't carry it.</li>
+
+        <!-- ============ A good word for the colony at home ============ -->
+        <li>[wordask,us] When you're home, tell them we treated you fairly.</li>
+        <li>[wordask,us,their:tribal] Will you speak of us at your fires?</li>
+        <li>[wordask,us,their:empire] Would you speak for us, should our name come up among your people?</li>
+        <li>[wordyes,them] I will, and I'll mean it.</li>
+        <li>[wordyes,them,their:tribal] The elders will hear of your fairness.</li>
+        <li>[wordyes,them,their:medieval] Aye, I'll speak for you at the market.</li>
+        <li>[wordyes,them,their:empire] You have my word, and it carries some weight.</li>
+        <li>[wordno,them] My people will judge you for themselves.</li>
+        <li>[wordno,them,their:empire] My word is not mine to give lightly.</li>
+        <li>[wordno,them,abrasive] I'll say what I like about you, and you'll not like it.</li>
+
+        <!-- ============ A letter carried home ============ -->
+        <li>[letter,us] Could you carry a letter home for us?</li>
+        <li>[letter,us,their:tribal] Will you carry our words to your people?</li>
+        <li>[letter,us,their:empire] I have a letter, if you'd be good enough to carry it.</li>
+        <li>[letteryes,them] I'll keep it dry and hand it over myself.</li>
+        <li>[letteryes,them,their:tribal] Your words will reach the fire they're meant for.</li>
+        <li>[letteryes,them,their:empire] It will be delivered, sealed, as it was given.</li>
+        <li>[letteryes,them,their:industrial] Put it in my pack, it'll get there.</li>
+
+        <!-- ============ A lesson ============ -->
+        <li>[teachask,us] Would you show me how your people do it?</li>
+        <li>[teachask,us] I've watched you work, can you teach me a little?</li>
+        <li>[teachask,us,their:tribal] Will you teach me as your elders taught you?</li>
+        <li>[teachyes,them] All right, but you'll have to keep up.</li>
+        <li>[teachyes,them] Sit here, and watch my hands.</li>
+        <li>[teachyes,them,their:medieval] Aye, my master taught me, and I'll teach you.</li>
+        <li>[teachno,them] That took me years, I can't hand it over in an hour.</li>
+        <li>[teachno,them,their:tribal] That knowledge belongs to my people.</li>
+        <li>[teachno,them,their:empire] I am not here to instruct anyone.</li>
+        <li>[lesson,them] Easy, don't force it.</li>
+        <li>[lesson,them] Again, and slower this time.</li>
+        <li>[lesson,them] See, you had it there for a moment.</li>
+        <li>[lesson,them,their:tribal] Feel it first, then do it.</li>
+        <li>[lessonask,us] Is this how you hold it?</li>
+        <li>[lessonask,us] What am I doing wrong here?</li>
+        <li>[lessonask,us] How long did it take you to learn this?</li>
+        <li>[lessondone,them] That's a start, the rest comes with practice.</li>
+        <li>[lessondone,them] You've got the bones of it now.</li>
+        <li>[lessondone,them,their:medieval] You'd make a fair apprentice, you know.</li>
+
+        <!-- ============ Something asked for, brought next time ============ -->
+        <li>[bringask,us] If your people have any to spare, we could use some.</li>
+        <li>[bringask,us] Would your people bring a few things next time they come?</li>
+        <li>[bringask,us,their:empire] Might your people supply us, on their next visit?</li>
+        <li>[bringyes,them] I'll ask, and someone will bring it.</li>
+        <li>[bringyes,them,their:tribal] I will tell the others, and it will come.</li>
+        <li>[bringyes,them,their:industrial] I'll put it on the list for the next run.</li>
+        <li>[bringno,them] We're short of that ourselves.</li>
+        <li>[bringno,them,their:empire] That is not something I can promise you.</li>
+        <li>[bringno,them,abrasive] Get it yourselves.</li>
+        <li>[brought,them] This is what you asked for, I didn't forget.</li>
+        <li>[brought,them] This is what was promised to you.</li>
+        <li>[brought,them,their:tribal] We said it would come, and here it is.</li>
+
+        <!-- ============ Asked to stay for good ============ -->
+        <li>[inviteask,us] We could use someone like you here, for good.</li>
+        <li>[inviteask,us] Have you ever thought of staying on with us?</li>
+        <li>[inviteask,us,their:tribal] There is a place for you among us, if you want it.</li>
+        <li>[inviteyes,them] If you'll have me, I'll stay.</li>
+        <li>[inviteyes,them] I think I've been waiting for someone to say that.</li>
+        <li>[inviteyes,them,their:tribal] Then this is my fire now.</li>
+        <li>[inviteno,them] I've people waiting for me, I'm sorry.</li>
+        <li>[inviteno,them] It's a kind offer, but no.</li>
+        <li>[inviteno,them,their:tribal] My fire is with my people, it can't be moved.</li>
+        <li>[inviteno,them,their:empire] My place is in my people's service.</li>
+
+        <!-- ============ Getting to know them, and friends made ============ -->
+        <li>[befriend,us,first] I'd like to know you better, if you'll let me.</li>
+        <li>[befriend,us,met] We've talked a little, tell me more about yourself.</li>
+        <li>[befriend,us,known] I feel I know you, and I'd like to know you better.</li>
+        <li>[befriend,us,returning] You came back, so tell me about yourself.</li>
+        <li>[friends,us] There's always a place for you here, friend.</li>
+        <li>[friends,us] Next time you're near, come and find me.</li>
+        <li>[friends,us,their:tribal] You are a friend of our fire now.</li>
+
+        <!-- ============ Courting ============ -->
+        <li>[court,us] I keep looking for reasons to talk to you.</li>
+        <li>[court,us] You're the best thing to come up the road in a long time.</li>
+        <li>[court,us] I'm not good at this, but I like you.</li>
+        <li>[courttalk,them] And what would your people say about that?</li>
+        <li>[courttalk,us] Then stay a little longer.</li>
+        <li>[courttalk] I didn't expect this when I got up this morning.</li>
+        <li>[courtyes,them] Then I'm glad I came this way.</li>
+        <li>[courtyes,them] I was beginning to think you'd never say it.</li>
+        <li>[courtyes,them,their:tribal] My heart said the same, and I listened.</li>
+        <li>[courtno,them] I think you've got the wrong idea about me.</li>
+        <li>[courtno,them] You're kind, but no.</li>
+        <li>[courtno,them,their:empire] That would not be proper, and you know it.</li>
+        <li>[lovers,us] I'll be watching the road for you.</li>
+        <li>[lovers,us] Don't make me wait too long.</li>
+        <li>[lovers,us,tribal] Every moon I'll look for you.</li>
+
+        <!-- ============ Faith ============ -->
+        <li>[faith,us] How do your people pray, if they do?</li>
+        <li>[faith,us] What does your faith ask of you?</li>
+        <li>[faith,us,their:tribal] Which spirits do your people honor?</li>
+        <li>[faithtalk] We've more in common than I'd have guessed.</li>
+        <li>[faithtalk] I'll grant you that, but no more.</li>
+        <li>[faithtalk,them] My mother taught me that, and hers before her.</li>
+        <li>[faithtalk,them,their:tribal] The spirits speak plainly to those who listen.</li>
+        <li>[faithcloser,them] It's good to find the same faith this far from home.</li>
+        <li>[faithcloser,them] Then we pray to the same end, you and I.</li>
+        <li>[faithcloser,them,their:tribal] We sit at the same fire, in faith at least.</li>
+        <li>[faithsoftened,them] I'll be turning that over for a while.</li>
+        <li>[faithsoftened,them] You've a way of putting things, I'll give you that.</li>
+        <li>[faithagreed,them] We see it differently, and that's all right.</li>
+        <li>[faithagreed,them] Your faith is yours and mine is mine.</li>
+        <li>[faithagreed,them,their:medieval] Each to their own church, as we say.</li>
+        <li>[faithhardened,them] I'll thank you not to speak of my faith that way.</li>
+        <li>[faithhardened,them] We're done with this subject.</li>
+        <li>[faithhardened,them,their:empire] My faith is not a subject for argument.</li>
+
+        <!-- ============ A friendly bout ============ -->
+        <li>[sparask,us] A friendly bout, if you're game?</li>
+        <li>[sparask,us] Want to see which of us is quicker?</li>
+        <li>[sparask,us,their:tribal] Will you wrestle with me, as your people do?</li>
+        <li>[sparyes,them] Go on, then, but no hard feelings after.</li>
+        <li>[sparyes,them] All right, I could use the exercise.</li>
+        <li>[sparyes,them,their:medieval] Aye, let's see what you're made of.</li>
+        <li>[sparno,them] I'm not here to fight anyone.</li>
+        <li>[sparno,them] Not today, I'm sore from the road.</li>
+        <li>[sparno,them,their:empire] I do not brawl, even for sport.</li>
+        <li>[sparbegin,us] Until one of us calls it, then.</li>
+        <li>[sparbegin,us] Nothing broken, agreed?</li>
+        <li>[sparwin] Good bout, thank you for it.</li>
+        <li>[sparwin] You'll get me next time, maybe.</li>
+        <li>[sparwin,them,their:tribal] You fought well, there's no shame in it.</li>
+        <li>[sparlose] You had me fair, well done.</li>
+        <li>[sparlose] I'll be feeling that tomorrow.</li>
+        <li>[sparlose,us] Show me that move again sometime.</li>
+
+        <!-- ============ Hard words ============ -->
+        <li>[provoke,us] Your people send their best, I see, and it's not much.</li>
+        <li>[provoke,us] Do you always look this sour, or is it just us?</li>
+        <li>[provoke,us,abrasive] I don't like you, and I don't care who knows it.</li>
+        <li>[provoked,them] Say that again, I dare you.</li>
+        <li>[provoked,them] You'd better be joking.</li>
+        <li>[provoked,us] I said what I said.</li>
+        <li>[provokefight,them] That's it, you've earned this.</li>
+        <li>[provokefight,them,their:tribal] Then we settle it with our hands.</li>
+        <li>[provokecalm,them] I won't be baited by you.</li>
+        <li>[provokecalm,them] Say what you like, I've heard worse.</li>
+        <li>[provokecalm,them,their:empire] Your insolence is beneath my notice.</li>
+
+        <!-- ============ A challenge ============ -->
+        <li>[duelask,us] I challenge you to a fair fight, if you'll accept it.</li>
+        <li>[duelask,us,their:empire] By your own customs of honor, I challenge you.</li>
+        <li>[duelask,us,their:tribal] I challenge you, as your people would.</li>
+        <li>[duelyes,them] Then let's have it.</li>
+        <li>[duelyes,them,their:empire] Accepted, and may honor be served.</li>
+        <li>[duelyes,them,their:tribal] You will have your fight.</li>
+        <li>[duelno,them] I've nothing to prove to you.</li>
+        <li>[duelno,them] Find someone else to hurt.</li>
+        <li>[duelno,them,their:empire] You are not someone I would cross blades with.</li>
+        <li>[duelsalute,us] Ready when you are.</li>
+        <li>[duelsalute,us] Fairly, then, and may the better one win.</li>
+        <li>[duelwin] It's done, and fairly.</li>
+        <li>[duelwin] Enough, it's over.</li>
+        <li>[duelyield] Enough, I yield.</li>
+        <li>[duelyield] You win, I'll say it.</li>
+        <li>[duelyield,them,their:empire] I yield, and I concede the honor to you.</li>
+
+        <!-- ============ Watching a bout ============ -->
+        <li>[watch] Keep your guard up.</li>
+        <li>[watch] Steady now, steady.</li>
+        <li>[watch] Don't drop your hands.</li>
+        <li>[watch] Ooh, mind the face.</li>
+
+        <!-- ============ Asked again, asked too much ============ -->
+        <li>[already,them] I answered that already.</li>
+        <li>[already,them,their:empire] I have given my answer, and I do not repeat myself.</li>
+        <li>[already,them,their:tribal] My answer was spoken, it stays spoken.</li>
+        <li>[alreadyother,them] {ASKER} beat you to it, and my answer's the same.</li>
+        <li>[alreadyother,them,their:empire] I have answered {ASKER} on that already.</li>
+        <li>[pushy,them] One thing at a time, please.</li>
+        <li>[pushy,them,their:empire] Your colony asks a great deal of its guests.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

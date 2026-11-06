@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The world's voices
+
+*6 November 2026, version 0.109.2*
+
+- Visitors have far more to say at the gate and the table, about 320 new lines by their people's ways and how well they know the one they talk to, with the Empire's court kept apart.
+- Camps of travellers speak by their kind, the hour, the weather, the world event that brought them and a camp come back: about 300 new lines, true farewells for every kind, and 69 conversations with a camp's people where there was one before.
+- Callers, the region's towns, trading posts, raiders' camps and hamlets, and the news travellers bring have more wordings, and 47 new conversations fill the thin spots.
+- Fixed: camp lines picked by age alone (a prayer with the faith left unnamed, war talk from any camp), farewells telling of a wave at a gate nobody walked to, the parting question at any hour, greetings that forgot whether two people had met, and talk of a meal, a gift or a lesson that was only asked for.
+
 ## Dreams, ailments, stories and animals in words
 
 *6 November 2026, version 0.109.1*

@@ -458,6 +458,18 @@ def parse_defs(root="."):
         # A personal story's more words, stage by stage, join the story's own pools (named as walk_def names them).
         if d.findtext("arc"):
             walk_def(d, "ArcDef", d.findtext("arc"), rel, pools)
+        # A kind of camp (camp): its lists join the kind's own (campLines its lines; FlavorExtension.cs, CampKindDef.AddWords).
+        camp = d.findtext("camp")
+        if camp:
+            for child in d:
+                lis = child.findall("li")
+                if child.tag in ("defName", "camp") or not lis:
+                    continue
+                key = f"{camp}.{'lines' if child.tag == 'campLines' else child.tag}"
+                p = pools.get(key)
+                if p is None:
+                    p = pools[key] = Pool(key, "list", rel, None, child.tag)
+                p.lines.extend(text_of(li) for li in lis)
             continue
         for target_tag in ("pool", "wish", "ambition", "decree"):
             target = d.findtext(target_tag)

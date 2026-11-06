@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    The text pass on the world's voices (6 November 2026): more wordings of the region's news and letters, the
+    numbered fellows of keys already read through TextVariants.Vary (Text/TextVariants.cs: CC_X, CC_X_2 ... CC_X_6, one
+    picked at random among those that exist), each with only the placeholders its key is given. The news a camp's
+    traveler brings of a far town (World/Region/FarNews.cs: said aloud, then told, its {NEWS} kept in the town's "Heard
+    lately"), a raiders' camp seen and its raids (RaidersCamp.cs), towns emptied, faded, held on to and founded
+    (RiseFallWords.cs), trading posts closed, sacked and razed (TradingPostWords.cs), and a hamlet's asks and endings
+    (HamletWords.cs). Panels and history lines keep one wording, so they read the same each time.
+  -->
+
+  <!-- ================= News of far towns, from a camp's traveler ================= -->
+  <CC_FarNews_Say_6>I came through {TOWN} on the way here, and you'll want to hear this.</CC_FarNews_Say_6>
+  <CC_FarNews_Told_3>{X_nameDef} of the {CAMP} had news of {TOWN}, {WHERE}, and told it to {A_nameDef} over their fire: {NEWS}</CC_FarNews_Told_3>
+  <CC_FarNews_Told_4>The {CAMP} came by way of {TOWN}, {WHERE}, and {X_nameDef} passed the news on to {A_nameDef}: {NEWS}</CC_FarNews_Told_4>
+  <CC_FarNews_situation_3>In {TOWN} everyone is talking about {WHAT}, and little else.</CC_FarNews_situation_3>
+  <CC_FarNews_situation_4>{WHAT} is all anyone in {TOWN} wanted to talk about.</CC_FarNews_situation_4>
+  <CC_FarNews_war_3>{PEOPLE} are at war with {ENEMY} now, and {TOWN} is bracing for it.</CC_FarNews_war_3>
+  <CC_FarNews_war_4>War has come between {PEOPLE} and {ENEMY}, and nobody in {TOWN} talks of anything else.</CC_FarNews_war_4>
+  <CC_FarNews_peace_3>{PEOPLE} and {ENEMY} have put their war away, and {TOWN} breathes easier for it.</CC_FarNews_peace_3>
+  <CC_FarNews_peace_4>The war between {PEOPLE} and {ENEMY} is over, and {TOWN} is glad of it.</CC_FarNews_peace_4>
+  <CC_FarNews_new_3>{TOWN} is a new town of {PEOPLE}, raised only this year.</CC_FarNews_new_3>
+  <CC_FarNews_new_4>There is a town called {TOWN} now, where there was none last year, and {PEOPLE} built it.</CC_FarNews_new_4>
+  <CC_FarNews_site_3>Out to the {DIR} of {TOWN} there is {SITE}, the travelers there say.</CC_FarNews_site_3>
+  <CC_FarNews_site_4>The people of {TOWN} speak of {SITE}, out to the {DIR}.</CC_FarNews_site_4>
+  <CC_FarNews_quest_3>{PEOPLE} are asking every traveler through {TOWN} about "{QUEST}", and nobody has taken it on yet.</CC_FarNews_quest_3>
+  <CC_FarNews_quest_4>There is work going in {TOWN}, "{QUEST}", if anyone wants it.</CC_FarNews_quest_4>
+
+  <!-- ================= A raiders' camp ================= -->
+  <CC_RaidCamp_Say_4>That's a camp's smoke to the {DIR}, and nobody we know.</CC_RaidCamp_Say_4>
+  <CC_RaidCamp_Say_5>There are fires to the {DIR} that weren't there before.</CC_RaidCamp_Say_5>
+  <CC_RaidCamp_Say_Visitor_3>Mind the road to the {DIR}, there's a {KIND} out there.</CC_RaidCamp_Say_Visitor_3>
+  <CC_RaidCamp_Say_Visitor_4>We passed a {KIND} to the {DIR}, and didn't stop.</CC_RaidCamp_Say_Visitor_4>
+  <CC_RaidCamp_RaidText_4>{PEOPLE} have left their {KIND} {WHERE}, armed and coming this way.</CC_RaidCamp_RaidText_4>
+  <CC_RaidCamp_RaidText_5>From their {KIND} {WHERE}, {PEOPLE} are coming for the colony.</CC_RaidCamp_RaidText_5>
+  <CC_RaidCamp_Beaten_3>The {KIND} of {PEOPLE} sent {SIZE} against the colony, and {DOWN} of them fell or were taken before the rest gave up.</CC_RaidCamp_Beaten_3>
+  <CC_RaidCamp_Beaten_4>The colony held against the raid from the {KIND} of {PEOPLE}: of the {SIZE} who came, {DOWN} fell or were taken.</CC_RaidCamp_Beaten_4>
+
+  <!-- ================= Towns emptied, faded, held on to and founded ================= -->
+  <CC_RiseFall_HeldOn_3>{MEANS}: most of {TOWN}, {WHERE}, has gone, but a few families stayed behind, and {PEOPLE} have let them keep it.</CC_RiseFall_HeldOn_3>
+  <CC_RiseFall_Empty_4>{MEANS}: there is nobody left in {TOWN}, {WHERE}. {PEOPLE} have gone, and {RUIN} is all that stands there.</CC_RiseFall_Empty_4>
+  <CC_RiseFall_Faded_4>{MEANS}: the land has taken back the ruin of {TOWN}, {WHERE}, and only those who knew it could find it now.</CC_RiseFall_Faded_4>
+  <CC_RiseFall_Daughter_3>{MEANS}: families from {MOTHER} have struck out on their own and founded {TOWN} of {PEOPLE}, {WHERE}, {RITE}.</CC_RiseFall_Daughter_3>
+
+  <!-- ================= Trading posts ================= -->
+  <CC_Post_Closed_Sacked_3>{POST}, the {KIND} {PEOPLE} kept {WHERE}, has been sacked by raiders of {ENEMY}, and {PEOPLE} will not open it again. Nothing is left there but {LEFT}.</CC_Post_Closed_Sacked_3>
+  <CC_Post_Closed_Soured_3>{PEOPLE} have given up on {POST}, their {KIND} {WHERE}, with nothing mended between them and {COLONY}. Nothing is left there but {LEFT}.</CC_Post_Closed_Soured_3>
+  <CC_Post_Closed_War_3>{POST}, the {KIND} of {PEOPLE} {WHERE}, is closed: no people keeps a post open for those it is at war with. Nothing is left there but {LEFT}.</CC_Post_Closed_War_3>
+  <CC_Post_Razed_3>{COLONY} razed {POST}, the {KIND} {PEOPLE} had opened to trade with it, and {PEOPLE} will remember it.</CC_Post_Razed_3>
+  <CC_Post_Sacked_Text_3>Raiders of {ENEMY}, at war with {PEOPLE}, have come down on {POST}, their {KIND} {WHERE}, and taken all they could carry. The post still stands, but it will trade poorly for a long while.</CC_Post_Sacked_Text_3>
+
+  <!-- ================= A hamlet under the colony's protection ================= -->
+  <CC_Hamlet_Help_Food_3>The first fields at {HAMLET} have failed them, and {LEADER} asks whether the colony could spare {GOODS}, carried down to their carter at the gate, to see the families through.</CC_Hamlet_Help_Food_3>
+  <CC_Hamlet_Help_Doctor_3>Sickness has reached {HAMLET}, and {LEADER} has nobody who can treat it. Would the colony's doctor take {GOODS} down to their carter at the gate, and tell them how to use it?</CC_Hamlet_Help_Doctor_3>
+  <CC_Hamlet_Help_Tools_3>{HAMLET} is running short of everything {WORD} needs this season, and {LEADER} asks for {GOODS}, carried down to their carter at the gate.</CC_Hamlet_Help_Tools_3>
+  <CC_Hamlet_Refused_3>{LEADER} takes the colony's answer back to {HAMLET}: this time they will manage alone.</CC_Hamlet_Refused_3>
+  <CC_Hamlet_NotYet_3>{LEADER} will ask again, when the colony is ready to take {HAMLET}'s oath.</CC_Hamlet_NotYet_3>
+  <CC_Hamlet_End_Broken_3>{HAMLET} asked the colony for help twice this season, and was refused both times. Its people have stopped counting on the colony's protection, and the tie between them is broken. {HAMLET} goes on as a town of {PEOPLE}.</CC_Hamlet_End_Broken_3>
+  <CC_Hamlet_End_Failed_3>The families of {HAMLET} are leaving. Its people have given up the hamlet the colony took under its protection.</CC_Hamlet_End_Failed_3>
+
+</LanguageData>

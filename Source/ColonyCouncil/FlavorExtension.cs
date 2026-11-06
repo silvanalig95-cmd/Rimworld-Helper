@@ -5,7 +5,7 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// More lines for an existing wish, ambition, decree, flavour pool or personal story, kept in a separate file. Merged
+    /// More lines for an existing wish, ambition, decree, flavour pool, personal story or kind of camp, kept in a separate file. Merged
     /// in at startup, so writing can grow in content packs without touching the original defs (other mods can add lines
     /// too).
     /// </summary>
@@ -36,12 +36,24 @@ namespace ColonyCouncil
         public ToneLines fizzle;
         [MustTranslate] public List<string> fizzleChronicle;
         public ToneLines eulogy;
+        /// <summary>
+        /// A kind of camp (Camps/CampKindDef.cs): words joined to its own lists, the same tags and placeholders as there.
+        /// <see cref="campLines"/> joins its lines (the short lines over their heads).
+        /// </summary>
+        public CampKindDef camp;
+        [MustTranslate] public List<string> titles;
+        [MustTranslate] public List<string> texts;
+        [MustTranslate] public List<string> settled;
+        [MustTranslate] public List<string> joinTexts;
+        [MustTranslate] public List<string> farewell;
+        [MustTranslate] public List<string> campLines;
+        [MustTranslate] public List<string> momentLines;
 
         public override IEnumerable<string> ConfigErrors()
         {
             foreach (var e in base.ConfigErrors()) yield return e;
-            int targets = (pool.NullOrEmpty() ? 0 : 1) + (wish == null ? 0 : 1) + (ambition == null ? 0 : 1) + (decree == null ? 0 : 1) + (arc == null ? 0 : 1);
-            if (targets != 1) yield return "a flavor extension needs exactly one target: pool, wish, ambition, decree or arc";
+            int targets = (pool.NullOrEmpty() ? 0 : 1) + (wish == null ? 0 : 1) + (ambition == null ? 0 : 1) + (decree == null ? 0 : 1) + (arc == null ? 0 : 1) + (camp == null ? 0 : 1);
+            if (targets != 1) yield return "a flavor extension needs exactly one target: pool, wish, ambition, decree, arc or camp";
             if (arc != null && stages != null && stages.Count > (arc.stages?.Count ?? 0)) yield return "more stages than the personal story " + arc.defName + " has";
         }
     }
@@ -92,6 +104,7 @@ namespace ColonyCouncil
                     ext.decree.oppose.AddFrom(ext.oppose);
                 }
                 if (ext.arc != null) AddToArc(ext);
+                if (ext.camp != null) ext.camp.AddWords(ext);
                 merged++;
             }
             if (merged > 0 && Prefs.DevMode) Log.Message("[Rimfolk] merged " + merged + " flavor extension(s).");
