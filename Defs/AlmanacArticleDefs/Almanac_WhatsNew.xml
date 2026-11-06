@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.125.0</version>
+        <date>6 November 2026</date>
+        <title>Quieter Pokémon and fresh carcasses</title>
+        <points>
+          <li>With PokéWorld, Pokémon now call with the voice of the nearest animal of the game or another mod, by body plan and size, and as often as that animal does. A setting on the other mods' page keeps their own cries a third as often, or exactly as PokéWorld has them.</li>
+          <li>A new alert says when an animal's carcass lies out fresh with nobody seeing to it, an hour after it died. It lists each one, says when it's forbidden or past the home area, and a click goes to it. It can be turned off with the other alerts.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.124.0</version>
         <date>6 November 2026</date>
         <title>New decrees, customs and council questions</title>

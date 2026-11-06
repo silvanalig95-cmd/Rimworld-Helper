@@ -10,4 +10,17 @@
   <!-- The wish to catch a new species. -->
   <CC_PW_Reason_NewSpecies>{PAWN_nameDef} has a way with animals, and there's a wild {SPECIES} out there of a kind nobody here has caught.</CC_PW_Reason_NewSpecies>
 
+  <!-- What Pokémon sound like (Integrations/PokeWorldSounds.cs), the other mods' page. -->
+  <CC_Settings_PokemonSounds>Pokémon sound like</CC_Settings_PokemonSounds>
+  <CC_Settings_PokemonSounds_Tip>The cries PokéWorld gives its Pokémon, or the calls of the game's own animals. Each species borrows the voice of the nearest animal of the game or another mod: the same body plan, the nearest size. It also takes that animal's pace between calls, so a field of them is no louder than a field of animals.</CC_Settings_PokemonSounds_Tip>
+  <CC_PokemonSounds_Creatures>Animals</CC_PokemonSounds_Creatures>
+  <CC_PokemonSounds_Creatures_Tip>Each species calls with the voice and pace of the nearest animal of the game or another mod.</CC_PokemonSounds_Creatures_Tip>
+  <CC_PokemonSounds_Rarer>Their own, rarer</CC_PokemonSounds_Rarer>
+  <CC_PokemonSounds_Rarer_Tip>PokéWorld's own cries, a third as often.</CC_PokemonSounds_Rarer_Tip>
+  <CC_PokemonSounds_Own>Their own</CC_PokemonSounds_Own>
+  <CC_PokemonSounds_Own_Tip>PokéWorld's own cries, as often as the mod has them.</CC_PokemonSounds_Own_Tip>
+  <CC_SetNote_PokemonSounds_Creatures>Each species calls like the nearest animal by body plan and size, as often as that animal does.</CC_SetNote_PokemonSounds_Creatures>
+  <CC_SetNote_PokemonSounds_Rarer>Their own cries, with three times as long between calls.</CC_SetNote_PokemonSounds_Rarer>
+  <CC_SetNote_PokemonSounds_Own>As PokéWorld has them.</CC_SetNote_PokemonSounds_Own>
+
 </LanguageData>

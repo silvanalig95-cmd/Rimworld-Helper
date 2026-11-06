@@ -279,6 +279,9 @@ namespace ColonyCouncil
 
         public static bool IsPokemon(ThingDef race) => Active && race != null && species.ContainsKey(race);
 
+        /// <summary>Every Pokémon race PokéWorld adds (none when it isn't loaded).</summary>
+        public static IEnumerable<ThingDef> AllSpecies => Active ? species.Keys.ToList() : new List<ThingDef>();
+
         public static bool IsPokemon(PawnKindDef kind) => IsPokemon(kind?.race);
 
         public static bool IsPokemon(Pawn p) => IsPokemon(p?.def);

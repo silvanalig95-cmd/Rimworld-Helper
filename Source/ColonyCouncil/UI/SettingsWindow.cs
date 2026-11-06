@@ -657,7 +657,7 @@ namespace ColonyCouncil
         private static float AbsentMods(float width, float y, bool noneShown)
         {
             var names = SettingsCatalog.On(SettingsPage.OtherMods).Where(e => !SettingsAccess.ModsLoaded(e)).SelectMany(e => e.mods)
-                .Where(id => !People.ModActive(id)).Distinct().Select(ModName).Where(n => !n.NullOrEmpty()).Distinct().ToList();
+                .Where(id => !SettingsAccess.ModLoaded(id)).Distinct().Select(ModName).Where(n => !n.NullOrEmpty()).Distinct().ToList();
             if (names.Count == 0) return 0f;
             string text = (noneShown ? "CC_SetUI_ModsNone" : "CC_SetUI_ModsAbsent").Translate(names.ToCommaList(true).Named("MODS")).Resolve();
             return UiKit.Paragraph(4f, y + 8f, width - 8f, text, UiKit.Faint) + 12f;
@@ -671,7 +671,7 @@ namespace ColonyCouncil
         private static string WhyOff(CouncilSettings s, SettingEntry e)
         {
             if (!SettingsAccess.ModsLoaded(e))
-                return "CC_SetUI_ModAbsent".Translate(e.mods.Where(id => !People.ModActive(id)).Select(ModName).ToCommaList(true).Named("MODS")).Resolve();
+                return "CC_SetUI_ModAbsent".Translate(e.mods.Where(id => !SettingsAccess.ModLoaded(id)).Select(ModName).ToCommaList(true).Named("MODS")).Resolve();
             foreach (var term in SettingsCatalog.ParseNeeds(e.needs))
             {
                 object v = SettingsAccess.Get(s, term.field);

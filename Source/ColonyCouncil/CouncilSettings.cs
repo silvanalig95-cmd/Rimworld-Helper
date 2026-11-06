@@ -406,6 +406,10 @@ namespace ColonyCouncil
         public bool guestCheck = true;
         /// <summary>With Move the Patient: patients take the best free medical bed, and a lighter case is moved to another bed for someone worse off (Integrations/MedicalTriage.cs).</summary>
         public bool medicalTriage = true;
+        /// <summary>What PokéWorld's Pokémon sound like (Integrations/PokeWorldSounds.cs): the nearest animal's calls, their own a third as often, or their own.</summary>
+        public PokemonSounds pokemonSounds = PokemonSounds.Creatures;
+        /// <summary>An alert while an animal's fresh carcass lies out with nobody seeing to it (Animals/FreshCarcasses.cs).</summary>
+        public bool freshCarcassAlert = true;
         /// <summary>The colony's next steps: a plan the council proposes to and keeps with the player (Building/NextSteps.cs).</summary>
         public bool nextSteps = true;
 
@@ -745,6 +749,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref guestStories, "guestStories", true);
             Scribe_Values.Look(ref guestCheck, "guestCheck", true);
             Scribe_Values.Look(ref medicalTriage, "medicalTriage", true);
+            Scribe_Values.Look(ref pokemonSounds, "pokemonSounds", PokemonSounds.Creatures);
+            Scribe_Values.Look(ref freshCarcassAlert, "freshCarcassAlert", true);
             Scribe_Values.Look(ref nextSteps, "nextSteps", true);
             Scribe_Values.Look(ref planCutPlants, "planCutPlants", true);
             Scribe_Values.Look(ref planMineRock, "planMineRock", true);

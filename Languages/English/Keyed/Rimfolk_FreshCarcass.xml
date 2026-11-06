@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Fresh carcasses lying out (Animals/FreshCarcasses.cs): the alert and its setting. -->
+  <CC_FreshCarcass_Alert>Fresh carcass lying out</CC_FreshCarcass_Alert>
+  <CC_FreshCarcass_AlertMany>Fresh carcasses lying out ({0})</CC_FreshCarcass_AlertMany>
+  <CC_FreshCarcass_AlertWhat>These animals died an hour or more ago and haven't started to rot. Nobody is on their way to them and they aren't in a stockpile, so haul them in, butcher them or bury them before they spoil. A click on the alert goes to them.</CC_FreshCarcass_AlertWhat>
+  <CC_FreshCarcass_Forbidden>forbidden</CC_FreshCarcass_Forbidden>
+  <CC_FreshCarcass_Far>past the home area</CC_FreshCarcass_Far>
+  <CC_FreshCarcass_At>at {PLACE}</CC_FreshCarcass_At>
+  <CC_FreshCarcass_More>and {0} more</CC_FreshCarcass_More>
+
+  <CC_Settings_FreshCarcassAlert>Fresh carcasses lying out</CC_Settings_FreshCarcassAlert>
+  <CC_Settings_FreshCarcassAlert_Tip>An alert while an animal's carcass that hasn't started to rot lies on one of the colony's maps, out of the stockpiles, with nobody on their way to it, an hour or more after it died. It lists each one, says when it's forbidden or past the home area, and a click goes to it.</CC_Settings_FreshCarcassAlert_Tip>
+  <CC_SetNote_FreshCarcassAlert>An alert while a fresh animal carcass lies out with nobody seeing to it, before it spoils.</CC_SetNote_FreshCarcassAlert>
+
+</LanguageData>

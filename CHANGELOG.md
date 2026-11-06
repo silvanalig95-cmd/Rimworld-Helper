@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Quieter Pokémon and fresh carcasses
+
+*6 November 2026, version 0.125.0*
+
+- With PokéWorld, Pokémon now call with the voice of the nearest animal of the game or another mod, by body plan and size, and as often as that animal does. A setting on the other mods' page keeps their own cries a third as often, or exactly as PokéWorld has them.
+- A new alert says when an animal's carcass lies out fresh with nobody seeing to it, an hour after it died. It lists each one, says when it's forbidden or past the home area, and a click goes to it. It can be turned off with the other alerts.
+
 ## New decrees, customs and council questions
 
 *6 November 2026, version 0.124.0*

@@ -510,6 +510,7 @@ namespace ColonyCouncil
             Toggle("advisorAlert", "CC_Settings_AdvisorAlert", "CC_SetNote_AdvisorAlert", "enableAdvisor");
             Toggle("wishAlert", "CC_Settings_WishAlert", "CC_SetNote_WishAlert", "enableWishes");
             Toggle("defenseGateReminder", "CC_Settings_DefenseGateReminder", "CC_SetNote_DefenseGateReminder");
+            Toggle("freshCarcassAlert", "CC_Settings_FreshCarcassAlert", "CC_SetNote_FreshCarcassAlert");
             // Rimfolk's buttons and windows.
             Section("CC_SetSec_Buttons");
             Toggle("slowButtons", "CC_Settings_SlowButtons", "CC_SetNote_SlowButtons");
@@ -609,6 +610,9 @@ namespace ColonyCouncil
             Mod(Toggle("territoryNewsQuiet", "CC_Settings_TerritoryNewsQuiet", "CC_SetNote_TerritoryNewsQuiet", "deepHooks"), TerritoriesId);
             Section("CC_SetSec_Mod_MoveThePatient");
             Mod(Toggle("medicalTriage", "CC_Settings_MedicalTriage", "CC_SetNote_MedicalTriage", "deepHooks"), MoveThePatientId);
+            Section("CC_SetSec_Mod_PokeWorld");
+            Mod(Choice("pokemonSounds", "CC_Settings_PokemonSounds", "CC_Settings_PokemonSounds_Tip", "CC_PokemonSounds_", "CC_SetNote_PokemonSounds_",
+                new[] { "Creatures", "Rarer", "Own" }), PokeWorldId);
             // Any mod's faith precept against turrets (TurretFaith.cs reads the precept, not one mod): always shown.
             Section("CC_SetSec_Mod_Faiths");
             Toggle("faithTurretsHere", "CC_Settings_FaithTurretsHere", "CC_SetNote_FaithTurretsHere", "deepHooks");
@@ -617,6 +621,12 @@ namespace ColonyCouncil
         // The other mods' package ids, as their integrations check them (Integrations/), for the page that shows only those loaded.
         public const string HospitalityId = "orion.hospitality", RimMarketId = "forti.rimmarket", AlphaSkillsId = "sarg.alphaskills", AlphaGenesId = "sarg.alphagenes",
             MagicId = "torann.arimworldofmagic", TerritoriesId = "jaeger972.factionterritories", MoveThePatientId = "konstantynopolitaneczka.movethepatient";
+
+        /// <summary>
+        /// PokéWorld's row: its versions have had several package ids, so it is found by its Pokémon instead
+        /// (SettingsAccess.ModLoaded asks PokeWorldLink.Active for this id).
+        /// </summary>
+        public const string PokeWorldId = "gargamiel.pokeworld";
 
         /// <summary>Each other mod's heading on its page, by package id: its name where a row says it isn't loaded.</summary>
         public static readonly Dictionary<string, string> ModSections = new Dictionary<string, string>
@@ -627,7 +637,8 @@ namespace ColonyCouncil
             [AlphaGenesId] = "CC_SetSec_Mod_AlphaGenes",
             [MagicId] = "CC_SetSec_Mod_Magic",
             [TerritoriesId] = "CC_SetSec_Mod_Territories",
-            [MoveThePatientId] = "CC_SetSec_Mod_MoveThePatient"
+            [MoveThePatientId] = "CC_SetSec_Mod_MoveThePatient",
+            [PokeWorldId] = "CC_SetSec_Mod_PokeWorld"
         };
 
         /// <summary>A row of the other mods' page: it shows only while all these mods are loaded.</summary>

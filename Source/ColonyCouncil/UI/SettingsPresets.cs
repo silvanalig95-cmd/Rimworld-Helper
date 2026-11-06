@@ -80,10 +80,13 @@ namespace ColonyCouncil
         {
             if (e?.mods == null) return true;
             foreach (var id in e.mods)
-                if (!People.ModActive(id))
+                if (!ModLoaded(id))
                     return false;
             return true;
         }
+
+        /// <summary>One of the other mods is loaded: by its package id, or PokéWorld by its Pokémon (its versions had several ids).</summary>
+        public static bool ModLoaded(string id) => id == SettingsCatalog.PokeWorldId ? PokeWorldLink.Active : People.ModActive(id);
 
         /// <summary>The row's label as one plain line, for lists: a "... and so on" row says what it belongs to.</summary>
         public static string PlainLabel(SettingEntry e, string valueText = null)
@@ -122,6 +125,7 @@ namespace ColonyCouncil
             try
             {
                 if (ids.Contains("eventsFromStoryteller")) HappeningTracker.ApplyEventMode();
+                if (ids.Contains("pokemonSounds")) PokeWorldSounds.Apply();
                 if (ids.Contains("buttonPosition") || ids.Contains("worldButton") || ids.Contains("defenseButton") || ids.Contains("planButton")) CouncilStartup.ApplyButtonPosition(true);
             }
             catch (Exception e)

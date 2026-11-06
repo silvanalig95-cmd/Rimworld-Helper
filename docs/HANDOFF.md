@@ -6,6 +6,27 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 0.125.0, quieter Pokémon and fresh carcasses (the player's requests, 6 November 2026: "i love the pokeworld mod, but
+  the constant pokemon screetches not. can you make them less common? or even replace them with other creature sounds
+  from the base game or mods? i don't think the pokemon sounds fit well", and "can i have the option to be notified
+  when an animal corpse that's not rotting lays around?"). (1) PokéWorld's sounds (`Integrations/PokeWorldSounds.cs`,
+  pure rules in `PokeWorldSoundsMath.cs`, `PokeWorldSoundsTests`): the setting `pokemonSounds` on the other mods' page
+  (Creatures by default, Rarer, Own). The game plays an animal's calls from its race's life stages on a timer of the
+  race (`Pawn_CallTracker`, `LifeStageUtility.PlayNearestLifestageSound`), so it changes def data only, no hook: each
+  species gets its own copies of its life stages (MemberwiseClone) with the borrowed call, angry, wounded, death and
+  attack sounds of the nearest animal that isn't a Pokémon, mechanoid or dryad (body plan counts 2, flesh 1, the log
+  of the size ratio: `PokeWorldSoundsMath.Distance`; stages first to first, last to last: `StageFor`), and that
+  animal's call interval and friendly and aggressive factors. Rarer triples PokéWorld's interval. The originals come
+  back when the setting changes; applied at startup, on change (`SettingsAccess.AfterChange`) and when the settings
+  window closes (`ColonyCouncilMod.WriteSettings`). The row's package id is `SettingsCatalog.PokeWorldId`; since
+  PokéWorld's versions had several ids, `SettingsAccess.ModLoaded` asks `PokeWorldLink.Active` for it. Unconfirmed
+  without the mod: whether PokéWorld's species use the game's body plans (if they use their own, the match falls back
+  to flesh and size), and whether it plays any cry of its own outside the life stages (a ball's release goes through
+  the game's call). A dev-mode log line lists five matches. (2) Fresh carcasses lying out (`Animals/FreshCarcasses.cs`,
+  `Alert_FreshCarcass`, `FreshCarcassMath.LyingOut`, `FreshCarcassTests`): the game's alert while an animal's carcass
+  that is still fresh lies on a home map, not under fog, not in storage, not reserved by the colony, an hour or more
+  after the death; it lists up to twelve (forbidden, past the home area, which colony) and a click goes to them. The
+  setting `freshCarcassAlert` (on) is with the alerts on How you're told. Looked at every rare tick.
 - 0.124.0, new decrees, customs and council questions (the player's request, 6 November 2026): "do another big content update to
   existing mechanics"; this part the council and the colony's year (decrees, the council's questions, customs, faith
   and the advisor), in the existing frameworks at their existing rates; no round of its own, About.xml, What's new and

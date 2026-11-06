@@ -1324,6 +1324,10 @@ The herd and the pets are part of the colony's life, not only its larder and its
   sooner, and the chronicle keeps how. Another can take its place twenty days later.
 - **Dreams** of the herd, of talking animals, of riding, of an old pet young again, and of a lost one coming back.
 
+An alert says when an animal's **carcass lies out fresh**: one that hasn't started to rot, out of the stockpiles, with
+nobody on their way to it an hour after it died. It lists each one, says when it's forbidden or past the home area, and
+a click goes to it, so it can be hauled in, butchered or buried before it spoils (a setting with the alerts).
+
 The Overview page's card **The herd and the land** shows who leads the herd, of which line and generation, whether
 the old leader is in its last season, the beast the colony watches and what it has made of it, a shiny rumour on the
 wind (with PokéWorld) and the neighbours settled for good. The Almanac page "the colony's animals" has the numbers.
@@ -2195,8 +2199,11 @@ Rimfolk reads these mods by name while the game runs: with one missing, its part
   where it is named like any beast that stays, or it was a story after all. **Travelling trainers** camp on the land,
   two or three of a friendly people with their Pokémon at their heels: they trade, teach training to whoever asks, and
   put on a friendly contest with the colony's best Pokémon as a show at their fire (the higher level likelier to win,
-  never surely, nobody hurt), and when they come back like any remembered camp, the next contest is a rematch. Rimfolk
-  only reads the mod (by name, quietly skipping what a version lacks). Five Almanac pages explain it.
+  never surely, nobody hurt), and when they come back like any remembered camp, the next contest is a rematch. What
+  Pokémon **sound like** is a setting: by default each species calls with the voice of the nearest animal of the game
+  or another mod (the same body plan, the nearest size) and as often as it does; or their own cries a third as often;
+  or as PokéWorld has them. Rimfolk only reads the mod (by name, quietly skipping what a version lacks). Five Almanac
+  pages explain it.
 - **Giddy-Up 2:** a hunter, a restless soul or an animal lover may wish for a mount of their own.
 
 ### Your mods in Rimfolk's newer systems

@@ -34,6 +34,7 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("event pools", e);
             }
+            PokeWorldSounds.Apply();
         }
 
         public override void DoSettingsWindowContents(Rect inRect)
