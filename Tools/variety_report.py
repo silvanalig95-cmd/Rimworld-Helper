@@ -444,6 +444,19 @@ def parse_defs(root="."):
         walk_def(d, "TalkLinesDef", canon[talk_key(d)], rel, pools)
     # Extensions: lines merged into their targets at startup.
     for d, rel in ext_targets:
+        # A kind of camp (camp): its lists join the kind's own (campLines its lines; FlavorExtension.cs, CampKindDef.AddWords).
+        camp = d.findtext("camp")
+        if camp:
+            for child in d:
+                lis = child.findall("li")
+                if child.tag in ("defName", "camp") or not lis:
+                    continue
+                key = f"{camp}.{'lines' if child.tag == 'campLines' else child.tag}"
+                p = pools.get(key)
+                if p is None:
+                    p = pools[key] = Pool(key, "list", rel, None, child.tag)
+                p.lines.extend(text_of(li) for li in lis)
+            continue
         for target_tag in ("pool", "wish", "ambition", "decree"):
             target = d.findtext(target_tag)
             if not target:
