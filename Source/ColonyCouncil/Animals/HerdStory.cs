@@ -156,14 +156,15 @@ namespace ColonyCouncil
             AddToLine(best, generation);
             var keeper = Keeper(map, best);
             string kind = AnimalFacts.KindLabel(best);
-            var tags = new[] { first ? "first" : ofLine ? "line" : "new" };
+            var body = AnimalFacts.Body(best);
+            var tags = new[] { first ? "first" : ofLine ? "line" : "new", HerdStoryMath.BodyTag(body) };
             try
             {
                 if (keeper != null)
                 {
                     string title = (first ? "CC_Herd_LeaderTitle" : "CC_Herd_NewLeaderTitle").Translate(best.Named("PET")).Resolve();
                     string text = first
-                        ? "CC_Herd_Leader".Translate(best.Named("PET"), keeper.Named("PAWN"), kind.Named("KIND")).Resolve()
+                        ? (body == HerdStoryMath.HerdBody.Beast ? "CC_Herd_Leader" : "CC_Herd_Leader_Pens").Translate(best.Named("PET"), keeper.Named("PAWN"), kind.Named("KIND")).Resolve()
                         : ofLine
                             ? "CC_Herd_NewLeader_Line".Translate(best.Named("PET"), keeper.Named("PAWN"), lineName.Named("LINE"), Ordinal(generation).Named("COUNT")).Resolve()
                             : "CC_Herd_NewLeader_New".Translate(best.Named("PET"), keeper.Named("PAWN"), kind.Named("KIND")).Resolve();
@@ -194,10 +195,13 @@ namespace ColonyCouncil
             if (keeper == null) return;
             try
             {
+                // Old age in its body's words: gray at the muzzle is a beast's (HerdStoryMath.BodyOf).
+                var body = AnimalFacts.Body(leader);
+                string key = body == HerdStoryMath.HerdBody.Beast ? "CC_Herd_LastSeason" : body == HerdStoryMath.HerdBody.Bird ? "CC_Herd_LastSeason_Bird" : "CC_Herd_LastSeason_Other";
                 Tell.Letter(NewsKind.Land, Importance.Notable, map, "CC_Herd_LastSeasonTitle".Translate(leader.Named("PET")).Resolve(),
-                    "CC_Herd_LastSeason".Translate(leader.Named("PET"), keeper.Named("PAWN")).Resolve(), LetterDefOf.NeutralEvent, new LookTargets(leader));
+                    key.Translate(leader.Named("PET"), keeper.Named("PAWN")).Resolve(), LetterDefOf.NeutralEvent, new LookTargets(leader));
                 comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, "CC_Herd_LastSeasonChronicle".Translate(leader.Named("PET")).Resolve(), keeper));
-                Interplay.Journal(keeper, "Council_Journal_Herd_LastSeason", new string[0], leader.Named("PET"), AnimalFacts.KindLabel(leader).Named("KIND"));
+                Interplay.Journal(keeper, "Council_Journal_Herd_LastSeason", new[] { HerdStoryMath.BodyTag(body) }, leader.Named("PET"), AnimalFacts.KindLabel(leader).Named("KIND"));
                 // The keeper sits with the old leader at the pens this evening (PlayOut/).
                 new DilemmaEffect_Visit { label = "CC_Herd_SitWith".Translate(leader.Named("PET")).Resolve(), whom = PlayWho.Pet, hours = new IntRange(17, 21), duration = new FloatRange(0.75f, 1f) }
                     .Apply(new DilemmaContext { map = map, a = keeper, pet = leader });
@@ -265,20 +269,31 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The first calf of spring: the keeper goes down to the pens and stays until it stands; the colony is glad of it.</summary>
+        /// <summary>
+        /// The first born of spring: the keeper goes down to the pens and stays a while; the colony is glad of it. Called by
+        /// its kind's word for its young ("the first chick of spring"), hatched or born as its kind is (AnimalFacts).
+        /// </summary>
         private void SpringCalf(CouncilGameComponent comp, Map map, Pawn baby, Pawn mother)
         {
             var keeper = Keeper(map, mother);
             if (keeper == null) return;
             string kind = AnimalFacts.KindLabel(mother);
-            Tell.Letter(NewsKind.Land, Importance.Notable, map, "CC_Herd_SpringCalfTitle".Translate().Resolve(),
-                "CC_Herd_SpringCalf".Translate(baby.Named("PET"), mother.Named("OTHER"), keeper.Named("PAWN")).Resolve(), LetterDefOf.PositiveEvent, new LookTargets(baby));
-            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, "CC_Herd_SpringCalfChronicle".Translate(baby.Named("PET")).Resolve(), keeper));
+            string young = AnimalFacts.YoungWord(baby);
+            bool hatched = AnimalFacts.Hatches(mother);
+            var youngArg = (young ?? "").Named("YOUNG");
+            string title = (young != null ? "CC_Herd_SpringTitle_Young" : "CC_Herd_SpringTitle_Born").Translate(youngArg).Resolve().CapitalizeFirst();
+            string text = (hatched ? "CC_Herd_SpringHatched" : "CC_Herd_SpringBorn").Translate(baby.Named("PET"), mother.Named("OTHER"), keeper.Named("PAWN")).Resolve();
+            Tell.Letter(NewsKind.Land, Importance.Notable, map, title, text, LetterDefOf.PositiveEvent, new LookTargets(baby));
+            string chronicle = (young != null ? hatched ? "CC_Herd_SpringChronicle_YoungHatched" : "CC_Herd_SpringChronicle_Young"
+                : hatched ? "CC_Herd_SpringChronicle_BornHatched" : "CC_Herd_SpringChronicle_Born").Translate(baby.Named("PET"), youngArg).Resolve();
+            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, chronicle, keeper));
             foreach (var p in IncidentWorker_Happening.Colonists(map))
                 if (People.HasInnerLife(p)) CouncilGameComponent.GiveThought(p, HerdStoryDefOf.Council_Herd_FirstSpringCalf);
-            Interplay.Journal(keeper, "Council_Journal_Herd_SpringCalf", new string[0], baby.Named("PET"), mother.Named("OTHER"), kind.Named("KIND"));
+            Interplay.Journal(keeper, "Council_Journal_Herd_SpringCalf", new[] { HerdStoryMath.BodyTag(AnimalFacts.Body(baby)), hatched ? "hatched" : "born" },
+                baby.Named("PET"), mother.Named("OTHER"), kind.Named("KIND"));
             // apart: the keeper walks down to the newborn's side (PlayOut/) and stays a while.
-            new DilemmaEffect_Visit { label = "CC_Herd_SpringVisit".Translate().Resolve(), whom = PlayWho.Pet, hours = new IntRange(6, 18), duration = new FloatRange(0.5f, 0.75f) }
+            string visit = (young != null ? "CC_Herd_SpringVisit_Young" : "CC_Herd_SpringVisit_Born").Translate(youngArg).Resolve();
+            new DilemmaEffect_Visit { label = visit, whom = PlayWho.Pet, hours = new IntRange(6, 18), duration = new FloatRange(0.5f, 0.75f) }
                 .Apply(new DilemmaContext { map = map, a = keeper, pet = baby });
         }
 

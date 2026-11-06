@@ -21,6 +21,31 @@ public static class HerdStoryTests
         Check(HerdStoryMath.GenerationNews(2, 1) && !HerdStoryMath.GenerationNews(2, 2) && !HerdStoryMath.GenerationNews(1, 0), "a generation is news the first time it's reached, from the second on");
         Check(HerdStoryMath.SpringCalf(true, 5503, 5502) && !HerdStoryMath.SpringCalf(true, 5503, 5503) && !HerdStoryMath.SpringCalf(false, 5503, 5502), "one first calf a spring, in spring");
 
+        // Words by the animal's kind (the player's save: a chick called the first calf of spring, an old chicken gray at the muzzle).
+        Check(HerdStoryMath.BodyOf("Bird", false) == HerdStoryMath.HerdBody.Bird, "a chicken's body is a bird's");
+        Check(HerdStoryMath.BodyOf("QuadrupedAnimalWithHooves", false) == HerdStoryMath.HerdBody.Beast && HerdStoryMath.BodyOf("QuadrupedAnimalWithPaws", false) == HerdStoryMath.HerdBody.Beast
+              && HerdStoryMath.BodyOf("Monkey", false) == HerdStoryMath.HerdBody.Beast, "hooves, paws and a monkey are beasts");
+        Check(HerdStoryMath.BodyOf("Snake", false) == HerdStoryMath.HerdBody.Other && HerdStoryMath.BodyOf("TurtleLike", false) == HerdStoryMath.HerdBody.Other
+              && HerdStoryMath.BodyOf("QuadrupedAnimalWithPaws", true) == HerdStoryMath.HerdBody.Other && HerdStoryMath.BodyOf(null, false) == HerdStoryMath.HerdBody.Other,
+            "a snake, a turtle, an insect and the unknown are none of those");
+        Check(HerdStoryMath.BodyTag(HerdStoryMath.HerdBody.Bird) == "body:bird" && HerdStoryMath.BodyTag(HerdStoryMath.HerdBody.Beast) == "body:beast", "the body's tag for the journal");
+        Check(HerdStoryMath.YoungWord("chick", "chicken") == "chick" && HerdStoryMath.YoungWord(" calf ", "cow") == "calf", "the young by their kind's own word");
+        Check(HerdStoryMath.YoungWord(null, "chicken") == null && HerdStoryMath.YoungWord("", "chicken") == null && HerdStoryMath.YoungWord("Boomalope", "boomalope") == null,
+            "no word of its own for the young: the first born");
+        {
+            string root = AppContext.BaseDirectory;
+            while (root != null && !Directory.Exists(Path.Combine(root, "Defs"))) root = Path.GetDirectoryName(root);
+            if (root != null)
+            {
+                string herd = File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "Animals", "HerdStory.cs"));
+                Check(!herd.Contains("\"CC_Herd_SpringCalfTitle\"") && !herd.Contains("\"CC_Herd_SpringCalf\"") && herd.Contains("AnimalFacts.YoungWord(baby)"),
+                    "the first born of spring is called by its kind's word, never a calf for every kind");
+                Check(herd.Contains("\"CC_Herd_LastSeason_Bird\"") && herd.Contains("\"CC_Herd_Leader_Pens\""), "old age and the leader's ways in the body's words");
+                string kinds = File.ReadAllText(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_HerdStory_Kinds.xml"));
+                Check(!kinds.Contains("calf") && !kinds.Contains("muzzle") && !kinds.Contains("this morning"), "the kinds' words say no calf, no muzzle, no hour they don't know");
+            }
+        }
+
         Check(HerdStoryMath.BeastFits(0.8f, true, false, false), "a wolf fits");
         Check(!HerdStoryMath.BeastFits(0.3f, true, false, false), "a fox is too small to be the beast");
         Check(HerdStoryMath.BeastFits(2f, false, false, false) && !HerdStoryMath.BeastFits(1f, false, false, false), "a stag fits, a hare doesn't");

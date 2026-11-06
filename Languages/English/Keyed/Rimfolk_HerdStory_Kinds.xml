@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The herd's words by the animal's kind (Animals/HerdStory.cs, HerdStoryMath.BodyOf and YoungWord): a bird or a snake
+       isn't gray at the muzzle, and a chick isn't a calf. {YOUNG} is the kind's own word for its young ("chick"). -->
+  <CC_Herd_Leader_Pens>The colony's herd goes where {PET_nameDef} goes. The old {KIND} has led them about the pens for a while without anyone saying so; today {PAWN_nameDef} said so, and gave {PET_objective} the name.\n\nThe herd will follow {PET_nameDef} until {PET_pronoun} is too old to lead it, and then one of {PET_possessive} own, if there is one.</CC_Herd_Leader_Pens>
+  <CC_Herd_LastSeason_Bird>{PET_nameDef}, who leads the colony's herd, is old now: ragged in the feather, slow off the roost, the herd keeping to {PET_possessive} pace. {PAWN_nameDef} thinks this is the old leader's last season, and means to make it a good one.\n\nWhen {PET_nameDef} goes, the herd will follow one of {PET_possessive} own, if there is one.</CC_Herd_LastSeason_Bird>
+  <CC_Herd_LastSeason_Other>{PET_nameDef}, who leads the colony's herd, is old now: slow in everything, the herd keeping to {PET_possessive} pace. {PAWN_nameDef} thinks this is the old leader's last season, and means to make it a good one.\n\nWhen {PET_nameDef} goes, the herd will follow one of {PET_possessive} own, if there is one.</CC_Herd_LastSeason_Other>
+
+  <CC_Herd_SpringTitle_Young>The first {YOUNG} of spring</CC_Herd_SpringTitle_Young>
+  <CC_Herd_SpringTitle_Born>Spring's first born</CC_Herd_SpringTitle_Born>
+  <CC_Herd_SpringBorn>{PET_nameDef}, born today to {OTHER_nameDef}, is the first of the year born to the colony's herd. {PAWN_nameDef} is going down to the pens to look, and will stay a while.</CC_Herd_SpringBorn>
+  <CC_Herd_SpringHatched>{PET_nameDef}, hatched today from one of {OTHER_nameDef}'s eggs, is the first of the year born to the colony's herd. {PAWN_nameDef} is going down to the pens to look, and will stay a while.</CC_Herd_SpringHatched>
+  <CC_Herd_SpringChronicle_Young>The first {YOUNG} of spring, {PET_nameDef}, was born to the herd.</CC_Herd_SpringChronicle_Young>
+  <CC_Herd_SpringChronicle_YoungHatched>The first {YOUNG} of spring, {PET_nameDef}, hatched in the herd.</CC_Herd_SpringChronicle_YoungHatched>
+  <CC_Herd_SpringChronicle_Born>{PET_nameDef} was the first born to the herd this spring.</CC_Herd_SpringChronicle_Born>
+  <CC_Herd_SpringChronicle_BornHatched>{PET_nameDef} was the first hatched in the herd this spring.</CC_Herd_SpringChronicle_BornHatched>
+  <CC_Herd_SpringVisit_Young>the first {YOUNG} of spring</CC_Herd_SpringVisit_Young>
+  <CC_Herd_SpringVisit_Born>spring's first born</CC_Herd_SpringVisit_Born>
+
+</LanguageData>
