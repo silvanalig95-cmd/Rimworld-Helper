@@ -191,5 +191,6 @@
     <Compile Include="../../Source/ColonyCouncil/Dilemmas/ImpactMath.cs" Link="ImpactMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Dilemmas/ImpactHints.cs" Link="ImpactHints.cs" />
     <Compile Include="../../Source/ColonyCouncil/Dilemmas/AnswerShiftMath.cs" Link="AnswerShiftMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Dilemmas/VarietyTwoMath.cs" Link="VarietyTwoMath.cs" />
   </ItemGroup>
 </Project>

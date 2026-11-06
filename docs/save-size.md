@@ -8,7 +8,7 @@ generous guesses; sizes are rough XML sizes. Caps named as constants are read fr
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
 Saved collections found: 508; modelled: 508; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,447 KB** after a year, **2,904 KB** after two, **3,079 KB** after five.
+Rimfolk's part of the save, roughly: **2,448 KB** after a year, **2,905 KB** after two, **3,079 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -39,7 +39,7 @@ Rimfolk's part of the save, roughly: **2,447 KB** after a year, **2,904 KB** aft
 | `Strangers/Encounters.cs:lastTick` | one per encounter def, per colony | defs | 225 | 225 | 225 | 19.8 |
 | `Dreams/Dreams.cs:recent` | 80 recent dreams | cap | 80 | 80 | 80 | 19.5 |
 | `Outsiders/OutsiderBook.cs:pairs` | OutsiderBook.MaxPairs pairs, the longest quiet go first; the gone dropped after 30 days | fixed | 60 | 60 | 60 | 19.3 |
-| `Dilemmas/Dilemmas.cs:lastTick` | one per dilemma def | defs | 215 | 215 | 215 | 18.9 |
+| `Dilemmas/Dilemmas.cs:lastTick` | one per dilemma def | defs | 219 | 219 | 219 | 19.2 |
 | `Standing.cs:log` | 8 lines per colonist | colonists | 160 | 160 | 160 | 18.8 |
 | `Arcs/ArcTracker.cs:past` | ArcTracker.MaxPast | cap | 18 | 36 | 90 | 17.6 |
 | `Pressures/Pressures.cs:people` | one per colonist, the gone dropped daily | colonists | 20 | 20 | 20 | 17.6 |
@@ -81,7 +81,7 @@ Rimfolk's part of the save, roughly: **2,447 KB** after a year, **2,904 KB** aft
 | `Building/ColonyUse.cs:days` | the record of use: one entry a day per thing used, bench product and bench hand, today and UseLog.WindowDays before it | window | 280 | 280 | 280 | 6.8 |
 | `Dreams/Dreams.cs:seen` | dream counts of known pawns | known | 55 | 60 | 75 | 6.6 |
 | `Dilemmas/AnswerShifts.cs:shifts` | a colonist's hours or work changed by an answer, a night to a heat wave long, at most AnswerShifts.MaxShifts at once | cap | 18 | 36 | 40 | 6.2 |
-| `World/WorldSituations.cs:lastEnded` | one per situation def | defs | 68 | 68 | 68 | 6.0 |
+| `World/WorldSituations.cs:lastEnded` | one per situation def | defs | 70 | 70 | 70 | 6.2 |
 | `Health/HealthTracker.cs:healers` | known pawns only | known | 22 | 24 | 30 | 5.9 |
 | `Missions/StoriesComponent.cs:chains` | chains 120 days after they end | window | 6 | 12 | 12 | 5.9 |
 | `Outsiders/OutsiderBook.cs:visits` | OutsiderBook.MaxVisits outsiders met lately, let go 3 days after they leave | fixed | 30 | 30 | 30 | 5.9 |
@@ -89,7 +89,7 @@ Rimfolk's part of the save, roughly: **2,447 KB** after a year, **2,904 KB** aft
 | `Standing.cs:standings` | one per colonist, the gone dropped daily | colonists | 20 | 20 | 20 | 5.9 |
 | `World/FactionMemory.cs:notes` | who tended or freed whom: 30 days, 60 at most, dropped when the stranger dies | window | 30 | 30 | 30 | 5.9 |
 | `Ambitions/Ambitions.cs:lastOffered` | one per ambition def | defs | 66 | 66 | 66 | 5.8 |
-| `Dilemmas/Dilemmas.cs:traditionCount` | per tradition | defs | 64 | 64 | 64 | 5.7 |
+| `Dilemmas/Dilemmas.cs:traditionCount` | per tradition | defs | 66 | 66 | 66 | 5.8 |
 | `Epithets/Epithets.cs:holders` | one per title | defs | 63 | 63 | 63 | 5.5 |
 | `Visitors/VisitorTracker.cs:trips` | visits waiting or under way: VisitorMath.MaxTrips; ended ones dropped within a day | cap | 8 | 8 | 8 | 5.5 |
 | `CouncilGameComponent.cs:cooldowns` | dropped once over | window | 60 | 60 | 60 | 5.3 |
@@ -230,7 +230,7 @@ Rimfolk's part of the save, roughly: **2,447 KB** after a year, **2,904 KB** aft
 | `Harm/Harm.cs:lastHurt` | the shared cap of hurts from everyday life: the last one's tick per colonist hurt in the last three days, pruned past them daily and at saving | colonists | 10 | 10 | 10 | 0.9 |
 | `Persona/Marks.cs:once` | skills mastered; known pawns only, 800 at most | known | 16 | 18 | 22 | 0.9 |
 | `Quirks/Quirks.cs:downedTick` | within the longest quirk window | colonists | 10 | 10 | 10 | 0.9 |
-| `Dilemmas/Dilemmas.cs:traditions` | per tradition | defs | 22 | 22 | 22 | 0.8 |
+| `Dilemmas/Dilemmas.cs:traditions` | per tradition | defs | 22 | 22 | 22 | 0.9 |
 | `Pressures/Pressures.cs:apartSince` | pairs apart now | pairs | 10 | 10 | 10 | 0.8 |
 | `Ambitions/Ambitions.cs:voterPawns` | while the letter waits | while | 20 | 20 | 20 | 0.8 |
 | `Ambitions/CouncilMeeting.cs:attendees` | while a meeting is called | while | 20 | 20 | 20 | 0.8 |
