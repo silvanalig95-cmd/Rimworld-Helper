@@ -214,12 +214,13 @@ namespace ColonyCouncil
             var unopposed = e.races.Where(r => !r.Contested).ToList();
             if (e.ceremony)
             {
-                text.Append(Phrase(e, e.byElection ? "CC_Elect_CeremonyByText" : "CC_Elect_CeremonyText", ChairName(e, e.chair ?? Chair(e, e.map)).Named("CHAIR")));
+                string head = !e.byElection ? "CC_Elect_CeremonyText" : e.races.Count > 1 ? "CC_Elect_CeremonyByTextMany" : "CC_Elect_CeremonyByText";
+                text.Append(Phrase(e, head, ChairName(e, e.chair ?? Chair(e, e.map)).Named("CHAIR")));
                 text.Append("\n\n").Append("CC_Elect_Standing".Translate(UnopposedList(unopposed)).Resolve());
             }
             else
             {
-                text.Append(Phrase(e, e.byElection ? "CC_Elect_AnnounceByText" : "CC_Elect_AnnounceText"));
+                text.Append(Phrase(e, !e.byElection ? "CC_Elect_AnnounceText" : e.races.Count > 1 ? "CC_Elect_AnnounceByTextMany" : "CC_Elect_AnnounceByText"));
                 foreach (var r in e.races.Where(r => r.Contested))
                 {
                     text.Append("\n\n").Append(SeatName(r)).Append(": ");
@@ -245,8 +246,10 @@ namespace ColonyCouncil
         private static string ChairName(Election e, Pawn chair) =>
             chair?.LabelShort ?? Electorate(e.map).OrderByDescending(Flavor.HumanAge).FirstOrDefault()?.LabelShort ?? "CC_Elect_TheCouncil".Translate().ToString();
 
-        private static string SeatName(ElectionRace r) =>
-            r.office.Seats > 1 ? "CC_Office_Seat".Translate(r.office.LabelCap, r.seat + 1).Resolve() : r.office.LabelCap.ToString();
+        private static string SeatName(ElectionRace r) => SeatLabel(r.office, r.seat);
+
+        private static string SeatLabel(OfficeDef office, int seat) =>
+            office.Seats > 1 ? "CC_Office_Seat".Translate(office.LabelCap, seat + 1).Resolve() : office.LabelCap.ToString();
 
         private static string UnopposedList(List<ElectionRace> races) =>
             TextUtil.JoinAnd(races.Select(r => "CC_Elect_ForSeat".Translate(r.entries[0].pawn.LabelShort, r.office.label).Resolve()).ToList());
@@ -933,7 +936,8 @@ namespace ColonyCouncil
         /// <summary>
         /// The count, worked out from the ballots: seat by seat in the order they were set, each ballot going to its first
         /// choice still standing (not seated in an earlier seat, not gone, not holding a seat this election doesn't vote
-        /// on); a seat whose ballots were all lost goes to a show of hands; a seat with one name is theirs unopposed.
+        /// on unless they stand in it: ElectionMath.OutOfRunning); a seat whose ballots were all lost goes to a show of
+        /// hands; a seat with one name is theirs unopposed.
         /// </summary>
         public List<SeatCount> CountOf(Election e)
         {
@@ -941,7 +945,8 @@ namespace ColonyCouncil
             if (countCache != null && countCacheTick == key) return countCache;
             var list = new List<SeatCount>();
             var raced = new HashSet<string>(e.races.Select(r => Key(r.office, r.seat)));
-            var taken = new HashSet<Pawn>(holders.Where(kv => !raced.Contains(kv.Key) && kv.Value != null).Select(kv => kv.Value));
+            var running = new HashSet<Pawn>(e.races.SelectMany(r => r.entries).Select(en => en.pawn).Where(p => p != null));
+            var taken = ElectionMath.OutOfRunning(holders.Where(kv => !raced.Contains(kv.Key) && kv.Value != null).Select(kv => kv.Value), running);
             foreach (var race in e.races)
             {
                 var sc = new SeatCount { race = race };
@@ -1143,7 +1148,7 @@ namespace ColonyCouncil
             if (election != e) return;
             var count = CountOf(e);
             var voters = Electorate(e.map);
-            var round = new SeatingRound { voters = voters, open = Offices.Where(o => o.OpenFor(e.voterCount)).ToList() };
+            var round = new SeatingRound { voters = voters, byElection = e.byElection, open = Offices.Where(o => o.OpenFor(e.voterCount)).ToList() };
             // Who ran for which seat, and who campaigned for it: they wanted it (Offices.LostElection).
             foreach (var race in e.races)
                 foreach (var en in race.entries)
