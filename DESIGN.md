@@ -1655,9 +1655,14 @@ Tests: `FestiveYearTests` (a custom's day and grace days, a step once a year, th
 an older save's counts, and in the source one rule and one feast engine), `CustomYearsTests` (the custom's lines can
 come true under the one rule). Dev menu: "Calendar: a day comes round now..." asks a custom's question.
 
-Measured (`Tools/Balance --scenes`, which now holds the two seasonal customs a settled colony keeps by its third year,
-`Rates.SceneKeptCustoms`; before, they came as the council's traditions did, the first hour of their season):
-see the HANDOFF entry for the numbers; the festive gatherings a year did not rise.
+Measured (`Tools/Balance --scenes`, 800 colony-years each way of playing, a colony of ten; the model now holds the two
+seasonal customs a settled colony keeps by its third year, `Rates.SceneKeptCustoms`, which before came as the council's
+traditions did, the first hour of their season, and now come on their day): gatherings and outings staged as their own
+scene a year, floor evenings included, well run 24.3 before and 24.3 after, average 23.8 and 23.8, neglectful 23.7 and
+23.6 (2.8 a week); every gathering before the pace 42.6, 38.7 and 35.9 before, 42.2, 38.1 and 35.7 after. Customs asked
+3.9, 3.2 and 2.3 a year before (a tradition and the season's own question could fall in one season), 3.0, 2.4 and 1.7
+after, nine in ten of them their own scene. Without the kept customs (the model before this phase) the colony staged
+24.2, 23.6 and 22.9.
 
 ## Goods and people that come and go on the map
 

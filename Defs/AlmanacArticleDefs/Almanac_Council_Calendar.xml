@@ -10,9 +10,9 @@
     <order>8</order>
     <summary>The days that matter to this colony, how it keeps them, and how they become traditions.</summary>
     <tip>Name a rest day for the end of harvest. The colony will thank you for it every year.</tip>
-    <description>The colony calendar is a list of the days that matter to this colony, written down as its history happens: its founding, its first good harvest, the first snow, a battle it remembers, the death of someone it loved, a wedding, the arrival of one of its first members, the birthday of a long-serving colonist, the first child born here, the day its walls went up, a caravan home safe, the first harvest of a new crop, its first trade, a great hunt, the day a camp stayed and left something behind, the end of a world event the colony took part in, the holy days of its own ideoligion, the day one of its people came home from captivity, and any day you name yourself. It's on the Calendar page under History, soonest first.
+    <description>The colony calendar is a list of the days that matter to this colony, written down as its history happens: its founding, its first good harvest, the first snow, a battle it remembers, the death of someone it loved, a wedding, the arrival of one of its first members, the birthday of a long-serving colonist, the first child born here, the day its walls went up, a caravan home safe, the first harvest of a new crop, its first trade, a great hunt, the day a camp stayed and left something behind, the end of a world event the colony took part in, the holy days of its own ideoligion, the day one of its people came home from captivity, any day you name yourself, and the council's customs once the colony keeps one (a midsummer bonfire, the harvest dance, the planting day). It's on the Calendar page under History, soonest first: the colony's festive year in one place.
 
-Each year, when a day comes round, the colony can keep it with a feast, games, a rest day, a bonfire, a day of gifts, a hunt, a planting day, a walk out to what the day remembers, an ideoligion evening (with Ideology) or a quiet hour of remembrance. A day kept three years running becomes a tradition, and from then on the colony expects it.</description>
+Each year, when a day comes round, the colony can keep it with a feast, games, a rest day, a bonfire, a day of gifts, a hunt, a planting day, a walk out to what the day remembers, an ideoligion evening (with Ideology) or a quiet hour of remembrance; a custom comes as the council's question, with its own answers. A day or a custom kept three years running becomes a tradition, and from then on the colony expects it.</description>
     <sections>
       <li>
         <heading>The days it writes down</heading>
@@ -65,11 +65,13 @@ The calendar keeps the colony's pace too. Days kept with a feast, games or a fir
       </li>
       <li>
         <heading>Traditions</heading>
-        <text>Kept 3 years running, a day becomes a tradition, announced and remembered just as the council's seasonal traditions are: a letter, the chronicle, the year's annals, and someone's journal. Each year it's kept, everyone at home gets "a tradition kept" (+3 for 4 days; a remembrance's quiet hour is its own mood) and a few people sing. Letting it pass gives everyone but the ascetic "a tradition broken" (-5 for 5 days) and costs a little trust; let it pass twice in a row and it lapses. A day missed for a fight, or with nobody at home, costs nothing.
+        <text>Kept 3 years running, a day or one of the council's customs becomes a tradition (one rule for both), announced and remembered the same way: a letter, the chronicle, the year's annals, and someone's journal. Each year it's kept, everyone at home gets "a tradition kept" (+3 for 4 days; a remembrance's quiet hour is its own mood) and a few people sing. Letting it pass gives everyone but the ascetic "a tradition broken" (-5 for 5 days) and costs a little trust; let it pass twice in a row and it lapses. A day missed for a fight, or with nobody at home, costs nothing.
 
 Let a camp's gift, a world event, a holy day or a homecoming pass in a year it isn't a tradition, and someone says so in their own way: the gift visited alone after supper, a holy day's words said at dusk by one believer.
 
-The calendar's traditions are listed with the colony's other customs in the founding day's letter, and the Calendar page shows the seasonal customs grown from the council's dilemmas too. Keep a day only as long as you can afford it in a bad year.</text>
+The calendar's traditions, the customs among them, are listed in the founding day's letter. Keep a day only as long as you can afford it in a bad year.
+
+The council's customs live on the calendar too. The first time the colony keeps one (a seasonal dilemma's answer that can become a tradition: see "traditions"), it goes on the calendar with a "custom" tag: a seasonal one on the day it was kept, its question coming round on that day each year, or within 5 days when its weather or someone to ask for it isn't there (a swim waits for a warm day; after that its year is spent, with no blame); one asked in its moment (the planting day as the fields open, the herd brought home, the victory feast) "with its occasion", coming as it always did. The page shows where each came from and the answer that keeps it. It steps toward a tradition once a year; let pass before it is one, it leaves the calendar and is a question again in its season. A season that holds a custom's day is asked no other custom. You can rename a custom or take it off (its years are lost; kept again, it comes back), not change its way or its date.</text>
       </li>
       <li>
         <heading>The land and the ideoligion</heading>
@@ -89,7 +91,9 @@ The ideoligion's own holy days come onto the calendar by themselves: each of its
 
 People are kept by name, not tied to the save: a day about someone who has died or left is dropped quietly, except a death, which stays as long as someone who knew them is still here, or for good once it's a tradition. In the same way a camp's gift day goes when the gift is gone from the map (cut down, sold, burned), a world event's when nobody who lived through it is left, and a homecoming's with the one who came home; a tradition stays.
 
-The setting "The colony calendar" (People, under Memory) turns its events off: days are still written down, but nothing happens when they come.</text>
+The setting "The colony calendar" (People, under Memory) turns its events off: days are still written down, but nothing happens when they come, and the council's customs are asked in their season as its other questions are.
+
+An older save's customs go on the calendar the first hour it runs, each on the day it was last asked: one already a tradition stays one, and one counted under the old rule (a tradition after two years) keeps its count and needs the third year.</text>
       </li>
     </sections>
     <keywords><li>calendar</li><li>holiday</li><li>festival</li><li>feast</li><li>birthday</li><li>anniversary</li><li>remembrance</li><li>founding</li><li>harvest</li><li>snow</li><li>rest day</li><li>tradition</li><li>bonfire</li><li>gifts</li><li>hunt</li><li>walls</li><li>homecoming</li><li>caravan</li><li>crop</li><li>trade</li><li>first child</li></keywords>
