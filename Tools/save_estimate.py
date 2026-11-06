@@ -670,6 +670,8 @@ MODEL = {
     "Ailments/AilmentTracker.cs:seenDay": ("colonists", 1, D, "known pawns only"),
     "Ailments/AilmentTracker.cs:sweets": ("colonists", 0.5, D, "faded below 0.05 dropped"),
     "Ailments/AilmentTracker.cs:announced": ("colonists", 1, V, "only hediffs colonists still have"),
+    "Harm/Harm.cs:lastHurt": ("colonists", 0.5, D, "the shared cap of hurts from everyday life: the last one's tick per colonist hurt in the last three days, pruned past them daily and at saving"),
+    "Harm/Harm.cs:drillDay": ("fixed", 1, D, "each home's last evening drill, one per home (one in the model); maps gone dropped"),
     "Ailments/AilmentTracker.cs:woundsRolled": ("colonists", 1, V, "only hediffs colonists still have"),
     "Ailments/AilmentTracker.cs:bitesRolled": ("colonists", 0.2, V, "only hediffs colonists still have"),
     "Ailments/AilmentTracker.cs:doctors": ("colonists", 0.5, D, "only hediffs colonists still have"),

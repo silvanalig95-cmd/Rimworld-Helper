@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 506; modelled: 506; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,446 KB** after a year, **2,903 KB** after two, **3,078 KB** after five.
+Saved collections found: 508; modelled: 508; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,447 KB** after a year, **2,904 KB** after two, **3,079 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -227,6 +227,7 @@ Rimfolk's part of the save, roughly: **2,446 KB** after a year, **2,903 KB** aft
 | `Building/Suggest/SameRules.cs:markedCellDefs` | with the above: which order | fixed | 30 | 30 | 30 | 0.9 |
 | `Calendar/CalendarWatch.cs:awaySince` | the colony's people away now; the dead and those no longer ours dropped | colonists | 10 | 10 | 10 | 0.9 |
 | `Camps/CampCarry.cs:carries` | what they are bringing over by hand (herbs, milk, a gift, goods bought), one per bearer, gone once set down | while | 3 | 3 | 3 | 0.9 |
+| `Harm/Harm.cs:lastHurt` | the shared cap of hurts from everyday life: the last one's tick per colonist hurt in the last three days, pruned past them daily and at saving | colonists | 10 | 10 | 10 | 0.9 |
 | `Persona/Marks.cs:once` | skills mastered; known pawns only, 800 at most | known | 16 | 18 | 22 | 0.9 |
 | `Quirks/Quirks.cs:downedTick` | within the longest quirk window | colonists | 10 | 10 | 10 | 0.9 |
 | `Dilemmas/Dilemmas.cs:traditions` | per tradition | defs | 22 | 22 | 22 | 0.8 |
@@ -397,6 +398,7 @@ Rimfolk's part of the save, roughly: **2,446 KB** after a year, **2,903 KB** aft
 | `Building/Automations.cs:cells` | per action: cells added to a zone that was there | fixed | 8 | 8 | 8 | 0.1 |
 | `Annals.cs:threatSeen` | each home's last big threat counted, one per home (one in the model); homes no longer ours dropped | fixed | 1 | 1 | 1 | 0.1 |
 | `Happenings/Happenings.cs:timers` | Rimfolk's own event timer, one per home (one home here); a home lost takes its timer with it | fixed | 1 | 1 | 1 | 0.1 |
+| `Harm/Harm.cs:drillDay` | each home's last evening drill, one per home (one in the model); maps gone dropped | fixed | 1 | 1 | 1 | 0.1 |
 | `Setbacks/SetbackTracker.cs:lastGathering` | one per home map | fixed | 1 | 1 | 1 | 0.1 |
 | `Ambitions/Ambitions.cs:absentProposers` | while the letter waits | while | 2 | 2 | 2 | 0.1 |
 | `Calendar/CalendarDay.cs:kin` | per day on the calendar | fixed | 2 | 2 | 2 | 0.1 |
