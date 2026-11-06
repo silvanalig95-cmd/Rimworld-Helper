@@ -288,7 +288,7 @@ namespace ColonyCouncil
             float y = inRect.y + top;
             if (!BarMore.On)
             {
-                y += UiKit.Paragraph(inRect.x, y, inRect.width, (RimfolkPatches.On ? "CC_Bar_Off" : "CC_Bar_NeedsHooks").Translate(), UiKit.Warn) + 6f;
+                y += UiKit.Paragraph(inRect.x, y, inRect.width, (RimfolkPatches.On ? "CC_Bar_OffHowTold" : "CC_Bar_NeedsHooksWhatsOn").Translate(), UiKit.Warn) + 6f;
             }
             const float bottom = 44f, rowH = 32f;
             var outRect = new Rect(inRect.x, y, inRect.width, inRect.yMax - y - bottom - 40f);

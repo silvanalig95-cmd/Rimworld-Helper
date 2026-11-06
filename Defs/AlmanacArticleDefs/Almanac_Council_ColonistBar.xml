@@ -4,7 +4,7 @@
   <!--
     The colonist bar's badges (Source/ColonyCouncil/ColonistBar/BarBadges.cs and BarBadgeMath.cs, drawn through
     Patches/Patch_ColonistBarBadges.cs): what each means, which win when there are more than fit, hover and click, and
-    the settings on the Interface page.
+    the settings on the How you're told page.
   -->
 
   <ColonyCouncil.AlmanacArticleDef>
@@ -51,7 +51,7 @@ A left click on a badge goes there instead of doing the bar's usual click, and n
       </li>
       <li>
         <heading>Settings</heading>
-        <text>All on the Interface page of the mod settings, under "Colonist bar". The badges need the deeper game hooks.</text>
+        <text>All on the How you're told page of the mod settings, under "Colonist bar". The badges need the deeper game hooks.</text>
         <points>
           <li>Badges on the colonist bar: on or off (on).</li>
           <li>Close to breaking shows as: a ring (the default), a dot among the badges, or nothing.</li>

@@ -56,7 +56,7 @@
   <CC_Region_Std_Enemies>Enemies of everyone, never at peace</CC_Region_Std_Enemies>
   <CC_Region_Std_NoDealings>No dealings with the colony</CC_Region_Std_NoDealings>
 
-  <!-- The setting (Interface page). -->
+  <!-- The setting (How you're told page). -->
   <CC_Settings_RegionMapRadius>Region map: tiles each way</CC_Settings_RegionMapRadius>
   <CC_Settings_RegionMapRadius_Tip>How far the region map reaches from the colony, in tiles each way. A wider map shows more settlements, a narrower one is drawn finer. The map's page has the same control at its top.</CC_Settings_RegionMapRadius_Tip>
   <CC_SetNote_RegionMapRadius>The region map (the first page of the region button's window) shows the land this many tiles each way from the colony.</CC_SetNote_RegionMapRadius>

@@ -120,7 +120,7 @@ namespace ColonyCouncil
         public string id;
         public string label;
         public string tip;
-        /// <summary>The "what's switched on" setups on the Council page (as opposed to the left-hand style presets).</summary>
+        /// <summary>The "what's on" setups at the top of the What's on page (as opposed to the left-hand style presets).</summary>
         public bool scope;
         public List<PresetValue> values = new List<PresetValue>();
 

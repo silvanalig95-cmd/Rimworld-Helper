@@ -76,10 +76,10 @@ public static class InboxTests
             int waitingRows = 0;
             foreach (var pp in providerParts)
             {
-                int n = rndPanel.Next(0, 5), waits = 0;
-                for (int i = 0; i < n; i++)
+                int listed = rndPanel.Next(0, 5), waits = 0;
+                for (int i = 0; i < listed; i++)
                 {
-                    bool news = pp == "questions" && i == n - 1 && rndPanel.Next(2) == 0;
+                    bool news = pp == "questions" && i == listed - 1 && rndPanel.Next(2) == 0;
                     if (news) continue;
                     string rowPart = pp == "wishes" && rndPanel.Next(3) == 0 ? "petitions" : null;
                     string part = InboxMath.PanelPart(rowPart, pp);
@@ -114,9 +114,10 @@ public static class InboxTests
         string inbox = Code("UI/Inbox.cs");
         foreach (var (id, count) in new[] { ("wishes", "WishesCount"), ("answers", "AnswersCount"), ("asks", "AsksCount"), ("favours", "DiplomacyPanels.WeekCount"),
                      ("settlers", "HamletPage.WeekCount"), ("promises", "PromisesCount") })
-            C(Regex.IsMatch(providers, @"Inbox\.Register\(""" + id + @""", InboxSection\.Needs, [\d.]+f, [\w.]+, " + Regex.Escape(count) + @"\)"), $"Needs you's {id} has its count ({count})");
-        C(Regex.IsMatch(providers, @"WishesCount\(\)[\s\S]*?decrees\.requests\.Count[\s\S]*?WishState\.Open") && Regex.IsMatch(providers, @"AnswersCount\(\)[\s\S]*?WaitingKind\(l\) != null")
-          && Regex.IsMatch(providers, @"PromisesCount\(\)[\s\S]*?KeptPhase\.Kept"), "today's four parts count what NeedsCount counted");
+            C(Regex.IsMatch(providers, @"Inbox\.Register\(""" + id + @""", InboxSection\.Needs, [\d.]+f, [\w.]+, " + Regex.Escape(count) + @"(, part: InboxMath\.Part\w+)?\)"), $"Needs you's {id} has its count ({count})");
+        C(Regex.IsMatch(providers, @"WishesCount\(\)[\s\S]*?decrees\.requests[\s\S]*?WishState\.Open") && Regex.IsMatch(providers, @"AnswersCount\(\)[\s\S]*?WaitingKind\(l\) != null")
+          && Regex.IsMatch(providers, @"AtRisk\(GrantWatch w, int now\) =>[\s\S]*?KeptPhase\.Kept[\s\S]*?PromisesCount\(\)[\s\S]*?AtRisk\(w, now\)"),
+            "today's four parts count what NeedsCount counted (a petition of several once, a promise past making amends no longer)");
         C(model.Contains("public static int NeedsCount(CouncilGameComponent comp) => comp == null ? 0 : Inbox.Count;") && model.Contains("m.needs = Inbox.Count;"),
             "the tab, This week's stat and the old NeedsCount are the one count");
         // Needs you's own rows hold the news letters' row, which asks nothing: its heading says the one count, not its rows.

@@ -42,7 +42,7 @@ Each waiting moment is looked at again every hour, for a day or two. If the two 
       </li>
       <li>
         <heading>How speech shows</heading>
-        <text>One setting, "Colonists' speech shows as" on the Interface page, decides how everything Rimfolk's colonists say shows: a wish voiced, backed or granted, a word about the weather, how someone really is, a meeting's back and forth, the line of a moment between two people.</text>
+        <text>One setting, "Colonists' speech shows as" on the How you're told page, decides how everything Rimfolk's colonists say shows: a wish voiced, backed or granted, a word about the weather, how someone really is, a meeting's back and forth, the line of a moment between two people.</text>
         <points>
           <li>Bubbles if available (the default): with Interaction Bubbles, all of it is speech bubbles, like the game's own chats. Without it, floating text.</li>
           <li>Floating text: short lines floating up over the speaker, even with Interaction Bubbles loaded (its bubbles still show the game's own chats).</li>
@@ -52,7 +52,7 @@ Each waiting moment is looked at again every hour, for a day or two. If the two 
       </li>
       <li>
         <heading>The mood bubble's name</heading>
-        <text>The game shows a small mood bubble over a colonist when they gain some moods: a meal eaten without a table, a corpse seen, a fine room. It shows only the mood's icon. Rimfolk floats the mood's name up beside it, green for a good mood and red for a bad one, so what happened is seen without clicking them. The setting "Name the mood in a mood bubble" (Interface page) turns it off.</text>
+        <text>The game shows a small mood bubble over a colonist when they gain some moods: a meal eaten without a table, a corpse seen, a fine room. It shows only the mood's icon. Rimfolk floats the mood's name up beside it, green for a good mood and red for a bad one, so what happened is seen without clicking them. The setting "Name the mood in a mood bubble" (How you're told page) turns it off.</text>
       </li>
       <li>
         <heading>What is news, not talk</heading>

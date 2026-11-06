@@ -563,7 +563,7 @@ namespace ColonyCouncil
             if (IsActive(def)) return null;
             int now = Find.TickManager.TicksGame;
             if (!ColonyCouncilMod.Settings.MoodEffects) return "CC_Decree_NoMood".Translate();
-            if (def.needsHeart && !Heart.On) return "CC_Decree_NeedsHeart".Translate();
+            if (def.needsHeart && !Heart.On) return "CC_Decree_NeedsHeartWhatsOn".Translate();
             if (!force && ReadyAt(def) > now) return (Sooner(def) ? "CC_Decree_CooldownSooner" : "CC_Decree_Cooldown").Translate(TextUtil.DaysString(ReadyAt(def) - now));
             if (active.Count >= MaxActive) return "CC_Decree_TooMany".Translate(MaxActive);
             // Decrees that overlap don't run together: one idea's other form, or the other of a pair (DecreeMath.Excludes).

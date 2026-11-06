@@ -33,7 +33,7 @@
   <CC_Bar_Click_Wishes>Click for the council's Wishes page.</CC_Bar_Click_Wishes>
   <CC_Bar_Click_Culture>Click for the Culture tab.</CC_Bar_Click_Culture>
 
-  <!-- Settings: Interface page, "Colonist bar". -->
+  <!-- Settings: How you're told page, "Colonist bar". -->
   <CC_SetSec_ColonistBar>Colonist bar</CC_SetSec_ColonistBar>
   <CC_SetSec_ColonistBar_Note>Small badges on the portraits along the top of the screen, so you can see who needs you without clicking through everyone.</CC_SetSec_ColonistBar_Note>
   <CC_Settings_BarBadges>Badges on the colonist bar</CC_Settings_BarBadges>

@@ -668,7 +668,7 @@ strain, right? If they have positive impacts over an extended period"): one hear
   says what filled it. Keys in `Rimfolk_GoodHeart.xml`, the bands' own in `Rimfolk_GoodHeart_Bands.xml` (the first
   file's band words, explanation and count left unused); the Almanac page "the heart's good side"
   (`Almanac_GoodHeart.xml`), the heart's page with its bands in the table.
-- **The setting** "The heart's good side" (`heartGoodSide`, on), on the Heart & health page beside the heart's own.
+- **The setting** "The heart's good side" (`heartGoodSide`, on), on the How hard page beside how fast strain builds and the day off (the heart's own switch is on What's on).
   Off (or the heart off): nothing fills it, what there was is gone at the next hour, the bands give nothing, hardship
   builds strain as before. Dev mode: fill it by 20, and overflow now.
 - **Saves.** Values on the heart (`good`, `goodTodayTotal`, `goodLately`, `deedTick`, `goalTick`, `goalProgress`,
@@ -1869,7 +1869,7 @@ of work (1.2.1, 1.2.2, 3.2.1, below); the other seven of the top ten are built o
 
 ### The shared rules
 
-- **One setting, leaning with the storyteller.** "Hurts from everyday life" (Heart & health, `everydayHurts`, 0 to 200%,
+- **One setting, leaning with the storyteller.** "Hurts from everyday life" (How hard, `everydayHurts`, 0 to 200%,
   100 by default; the light-touch preset sets 50%) multiplies every rate. It leans with the storyteller's own numbers
   (`HarmMath.Lean`): the geometric mean of a threat term (0.35 at no threats, 1 at the usual 100%, up to 1.25 at twice
   it) and a disease term (one over the disease interval, between a half and 1.25; diseases off count as a half). A
@@ -2190,7 +2190,11 @@ off. Measured (6 colonists, 120 runs, the code just before it and the same seeds
 **The presets** each aim at their own balance: Light touch about +5, +4 and 0 (well run, average, neglected) with
 fewer questions (measured +6.2, +4.7 and -1.7); Story-rich the default's moods with a question a little more often than
 every two days (+5.9, +3.0, -6.6); Demanding about 0, -4 and -18 (+1.7, -3.0, -14.7, with downsides 85% more and rewards
-at 70% since phase 3, was 15% and 80%). Each preset's tooltip says so.
+at 70% since phase 3, was 15% and 80%). Each preset's tooltip says so. Since the settings went onto five pages (phase 6 of
+the review, "The settings: five pages"), the presets reach every rate and every knob of difficulty; measured on the
+report's seeds before and after: Light touch +7.3, +4.6, -1.7 to +7.2, +4.8, -1.6; Story-rich +6.9, +3.2, -6.7 to +6.9,
++3.1, -6.5; Demanding +2.5, -2.8, -14.8 to +2.3, -2.9, -14.9, its time ill 9%, 15%, 32% to 12%, 17%, 37% (ailments at
+125%). Story-rich keeps the default's pace of wishes and meetings: more of them would have moved its moods.
 
 ## Building help: how far should the mod build things itself?
 
@@ -3089,7 +3093,7 @@ free.
   carried out of it. Without the surgery mark the same, by severity only: an operation then claims the bed like anyone
   else, by how badly they are hurt.
 
-The setting `medicalTriage` (Heart & health, Recovery; on by default, needs the deeper hooks). The mod's "by distance"
+The setting `medicalTriage` (Your other mods, Move the Patient, shown while it is loaded; on by default, needs the deeper hooks). The mod's "by distance"
 mode stands triage down: the player chose the nearest bed there. Nothing is saved: a load forgets a move under way
 (the carry itself is the game's and goes on) and who was moved lately.
 
@@ -4285,7 +4289,7 @@ parts (`ThingRefMath.cs`, `LinkTextMath.cs`, `NavTrailMath.cs`) are tested in `T
 - **The look** (`UI/UiKitCards.cs`): the design's tokens (link ink and its line, the cool stance, done, danger, the
   drawer's and the preview's surfaces) and the components UI 1 draws: a section heading with its count and fold, a
   thing chip, a state chip, an act button with why not, steps, an icon button.
-- **Settings**: `linkPreviews` and `linkPreviewDelay`, under "Names and cards" on the Interface page (`windowSize`,
+- **Settings**: `linkPreviews` and `linkPreviewDelay`, under "Names and cards" on the How you're told page (`windowSize`,
   since UI 5, beside the Almanac's text size).
 
 #### The council in four views (UI 4 of docs/design/interface.md)
@@ -4422,7 +4426,7 @@ of the windows' layout across screens. Built beside UI 3 (the inbox, search and 
 the grammar across every window (UI 5b) waits for it.
 
 - **The window size** (`UI/WindowLayoutMath.cs`, pure, tested in `Tools/Tests/LayoutTests.cs`): `windowSize`
-  (`WindowSizeChoice`, Standard at first, on the Interface page beside the Almanac's text size). Standard is 1010 by
+  (`WindowSizeChoice`, Standard at first, on the How you're told page beside the Almanac's text size). Standard is 1010 by
   720, Large up to 1280 by 860; both within the screen less 20 at the side and 55 at the foot, the large never smaller
   than the standard. `WindowTabs.Size` asks `WindowLayoutMath.Size`, so all four windows, the drawer, the region map
   and the views lay out at either (they work from their rects); a window takes the new size the next time it opens.

@@ -122,7 +122,7 @@ The panels always stay beneath windows and the game's own readouts: a tab, the i
         <points>
           <li>Each panel's options: what it shows, whom it lists, its order or range, how many rows before "and more", its size (75% to 150%) and background.</li>
           <li>Arrange the panels: every bar shows and a small bar of its own switches panels on and off and puts their places back.</li>
-          <li>The settings (Interface, On-screen panels) have every option too: lock their places, hide them under big windows like the Work tab (off, as they sit beneath windows anyway), hide them on the world map, hide the game's own alert list while the alerts panel shows and its resource list while the inventory shows, a darker or clearer look, small or normal text, the food and mood lines, and putting everything back as shipped.</li>
+          <li>The settings (How you're told, On-screen panels) have every option too: lock their places, hide them under big windows like the Work tab (off, as they sit beneath windows anyway), hide them on the world map, hide the game's own alert list while the alerts panel shows and its resource list while the inventory shows, a darker or clearer look, small or normal text, the food and mood lines, and putting everything back as shipped.</li>
         </points>
         <after>The panels gather what they show at most twice a second and only while the game runs, so they cost very little. They work beside RimHUD, which shows the selected colonist in the inspect pane, and Dubs Mint Minimap; drag them clear of anything else on your screen.</after>
       </li>
@@ -132,7 +132,7 @@ The panels always stay beneath windows and the game's own readouts: a tab, the i
         <points>
           <li>Right-click any button on the bar to put it away. The game's menu button and the dots themselves always stay.</li>
           <li>Click the dots for the buttons put away: click one to open it as usual, or the pin beside it to put it back on the bar. One that can't open right now (on the world map, a button that needs a map) shows greyed out, and one its mod or the game is hiding for now isn't listed.</li>
-          <li>"Arrange the bottom bar", at the end of that list and in the settings (Interface), lists every button with a tick for those that stay on the bar.</li>
+          <li>"Arrange the bottom bar", at the end of that list and in the settings (How you're told), lists every button with a tick for those that stay on the bar.</li>
           <li>A button put away still opens with its key (Options, Keyboard), and the dots can have a key of their own there.</li>
           <li>Rimfolk keeps four buttons: council, region, defense and planning. Each of their windows has the four in its top right corner, so one put away or switched off in the settings is still a click away.</li>
         </points>

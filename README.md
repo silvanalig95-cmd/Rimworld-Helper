@@ -543,11 +543,11 @@ and their own say in the letter, and hints naming who would grieve, the game's h
 die, and the skills the colony would lose. Told face to face, they gather their things in their room and walk out by
 the edge through the game's own banishment; one sent away may come back one day, at the gate or, rarely, with raiders.
 Never a child, a slave, a guest or anyone held under a tie with another people, never in a colony of fewer than six,
-and off with "Banishment by the council" on the settings' Council page.
+and off with "Banishment by the council" on the settings' What's on page.
 
 **What each answer does.** Every answer in a dilemma's letter, and in the letters of Rimfolk's events and world
 events, has a short line under it, and hovering it shows more, grouped by kind, with gains in green and costs in red.
-The setting **What each answer does** (Council page) chooses how. **Hints in words** (the default) never shows a
+The setting **What each answer does** (How you're told page) chooses how. **Hints in words** (the default) never shows a
 number: what happens on the map and when, which way spirits and trust go and roughly how far ("a little",
 "noticeably", "greatly"), who by name or group, what it costs ("uses some of the stores' beer", "costs a few hours of
 work"), how likely ("may", "likely"), whether it's a gamble, and which way the colony leans
@@ -998,7 +998,7 @@ Select a colonist and three places in their inspect panel tell Rimfolk's side of
   bond, a secret, a group, a shared memory) is a link to their card, as a relative, a nemesis or a people is in the
   Story and Culture tabs and the one a mood is about in the Mood tab's why line. The column only widens the tab and
   draws beside the game's card; with another mod keeping the tab at a width of its own, or a screen too narrow, it
-  stays out of the way, and the Story tab shows those parts again. **Rimfolk in the Social tab** (People & moods
+  stays out of the way, and the Story tab shows those parts again. **Rimfolk in the Social tab** (How you're told
   page) turns it off.
 
 ### Life goals
@@ -1497,7 +1497,7 @@ when you say so, or when the need behind it has passed for three hours running. 
 in the council panel. **Ground plan** draws the plan's rooms and the proposals on the map together, each at the spot
 that fits best with the ones before it kept clear (around the rooms being built and their kept sides too), each in its
 own colour with its reasons; "Plan it here", or a click on the drawn outline, opens the planner there. The setting
-"The colony's next steps" (Council page) turns the steps off.
+"The colony's next steps" (What's on page) turns the steps off.
 
 #### The base, looked over
 The **Base** page is the council's walk round the base, once an hour or when you ask, most pressing first:
@@ -1529,7 +1529,7 @@ to keep and how it stands (short, low, enough, more than needed). Food is weighe
 cells, so a big pile of a crop with little in each piece is a small stock. Everyone who eats here counts by their own
 hunger (Hospitality's guests and the animals fed from the stores too), food in a RimFridge fridge counts as kept cold,
 and the use comes from the colony's record of the last three days (through the deeper game hooks; estimated until it
-covers a day). What to keep is a day's use times the days set under **Planning ahead** on the Building page of the
+covers a day). What to keep is a day's use times the days set under **Planning ahead** on the What's on page of the
 settings (two days of meals and five of food by default, plus the days nothing grows ahead), cut to what keeps without
 a freezer and to the room in the stores.
 
@@ -1856,7 +1856,7 @@ conflicts, and how it works with Rimfolk. Each page only shows when its mod is a
 page) gives Rimfolk in a few lines with links to the main systems' pages, and **Checking that it works** is a short
 checklist of where to look to see the newer features at work.
 
-Pages read at four text sizes: the **Aa** buttons at the top of the Almanac (also on the Interface page of the mod
+Pages read at four text sizes: the **Aa** buttons at the top of the Almanac (also on the How you're told page of the mod
 settings) pick Small, Normal, Large or Larger. The « button folds the categories and the page list into a thin strip,
 with buttons for the previous and next page, so a page gets the whole width. Tables size their columns by their text
 and never break a word; a table too wide for the page shows each row as a small card instead.
@@ -1924,7 +1924,7 @@ weather that comes is held to, and the forecast is right as often as they're goo
 station from Stormproof or Weather Control). **Each year leans** a little wetter or drier, warmer or colder, and the
 annals say so when it was. **Rain washes the yard**: the harder it rains, the faster blood, dirt and the other filth
 the game lets rain wash comes off the open ground; a drizzle adds nothing, and nothing under a roof is touched. Four
-settings under "The weather" on the Events page; the first three need the deeper game hooks, and nothing is added to
+settings under "The weather" on the What's on page; the first three need the deeper game hooks, and nothing is added to
 the map.
 
 ### The year's letter (annals)
@@ -2860,7 +2860,9 @@ among their people, one of their traders or seasoned fighters, never chosen by k
 leaves theirs the colony's to decide about, and the colony breaking its word leaves its own in their captivity. 29
 conversation pieces, 29 letter lines and 20 spoken lines speak of them. Setting: *Wards and hostages*.
 
-**Fealty and vassals.** The colony can swear fealty to a stronger neighbor at peace (goodwill 40 or more, two towns
+**Pacts of fealty and protection** (fealty and vassals, kinds of pact since phase 6 of the review: they show among the
+pacts and truces on a people's card and a tie's card, "a pact of fealty" and "a pact of protection"). The colony can
+swear fealty to a stronger neighbor at peace (goodwill 40 or more, two towns
 within reach, never the Empire, whose titles and permits are its own), by letter, or when a people offers its protection
 to a colony raided twice in a season with few fighters. Someone of theirs comes to the gate, anyone who objects (an
 avenger, the proud, a devout colonist of another faith) is heard by the council, and the speaker swears by their rite:
@@ -2872,7 +2874,8 @@ are its hamlet once sworn and up to two struggling towns that ask for its protec
 the council sets it (heavy costs their goodwill), send levies when called (their
 dead weigh on their head), ask for help, a judgment or a camp broken, and a sour head asks to be released. Faction
 Territories' vassals get a head of their first people who writes and asks; their tribute, purchases and points stay that
-mod's. 31 conversation pieces, 27 letter lines and 16 spoken lines speak of them. Setting: *Fealty and vassals*.
+mod's. 31 conversation pieces, 27 letter lines and 16 spoken lines speak of them. Setting: *... and pacts of fealty*,
+under *Pacts and truces* (with the pacts off, no pact of fealty is made either).
 
 **Colony renown.** The colony is the family, never a dynasty: its name among the peoples is the colony's, known for
 everything its people did that the world saw, the living and the gone: contests won at feasts, marriages with other
@@ -3076,9 +3079,11 @@ panel, it gets the click and the tooltip:
 - **Colony vitals**: days of food (orange under 10, red under 4, the advisor's line; both in the settings), medicine
   (the advisor's two per colonist), the power grid's balance, the temperature outside and the next season, days since
   the last raid, the research under way. Clicks go to the advisor, the temperature overlay, the defenses, the research tab.
-- **Council at a glance**: open wishes and whose has waited longest, petitions, promises coming due, questions
-  waiting, decrees in force with their days left, the next calendar day or meeting, the colony's trust. Only what has
-  something to say shows; each line opens the right page.
+- **Council at a glance**: the plan's next step; what waits on you, read from This week's Needs you, so it shows what
+  This week and the council button count: open wishes and whose has waited longest, petitions, promises at risk,
+  letters waiting for your answer, and the other asks of the region and the peoples, each line with its count and
+  going where its most pressing one does; decrees in force with their days left, the next calendar day or meeting, the
+  colony's trust. Only what has something to say shows.
 - **Alerts**: the game's alerts, its own and every mod's, in a panel you can move: red, orange or plain by priority,
   in the game's order (or the newest first), a count where an alert is about several things, the game's explanation
   on hover, and a click that does what clicking the game's alert does. New urgent ones flash. It starts in the game's
@@ -3220,8 +3225,8 @@ and held it down, what follows and what would help.
 
 **Where to see it:** the Heart section of the Mood tab (strain and its band, what built it, what would help, every
 feeling with its causes, the four needs), the strain list on the council's Moods page, a line in the inspector
-("Strain: worn down · restless, proud · lacks belonging", with a tooltip), the strain mood's tooltip and RimHUD. Settings (Heart & health page): feelings and
-strain on or off, the day off, the inspector line, and how quickly strain builds (50% to 150%). Switched off,
+("Strain: worn down · restless, proud · lacks belonging", with a tooltip), the strain mood's tooltip and RimHUD. Settings: feelings and
+strain on or off (What's on), the day off and how quickly strain builds, 50% to 150% (How hard), the inspector line (How you're told). Switched off,
 everything stops and the strain mood and slowdown are gone.
 
 **Safe to add and remove.** The strain mood and the work speed part store nothing, and strain itself is in
@@ -3284,8 +3289,8 @@ and patients write and talk about falling ill, getting better and the doctor who
 season, the hour, their age and their temperament, and notice when it's the second time; a letter about one person's
 illness names them; dreamfever, serious illnesses and many everyday ailments color their
 dreams; friends visit the sick; a doctor with a serious case is more likely to ask for a stocked infirmary when
-medicine is short, and pulling a patient through lifts both. Settings (Heart & health page): everyday ailments on or off,
-serious illnesses on or off, and how often (25% to 200%). Off, nothing new starts; what's running finishes its
+medicine is short, and pulling a patient through lifts both. Settings: everyday ailments on or off (What's on),
+serious illnesses on or off and how often, 25% to 200% (How hard). Off, nothing new starts; what's running finishes its
 course.
 
 **Realistic ways to die**, each with a warning, a way to fight it and its own switch. A crowded, dirty colony catches
@@ -3321,7 +3326,7 @@ bigger name); known across the region, they come twice as often. It shows on the
 its patients. Convalescents dream of running again and healers of the patients they pulled through or lost. Two life goals (pull ten patients
 through, deliver five babies), a wish (a visit from a friend) and four dilemmas (a doctor's day away after a loss, back
 to work too soon, family who want a say in an operation, a midwife's apprentice) come with it. Two switches on the
-Heart & health page: convalescence and sickbed visits, and doctors' and midwives' reputations (a third, with Move the
+What's on page: convalescence and sickbed visits, and doctors' and midwives' reputations (a third, with Move the
 Patient, below).
 
 **With Move the Patient** (konstantynopolitaneczka's mod, and only with it), the best bed goes to whoever needs it
@@ -3340,7 +3345,7 @@ labour, never into a bed of the other kind (a prisoner's, a colonist's, a slave'
 free, one move at a time on a map and nobody moved twice within four hours. The colony news tells it once the lighter
 case lies in their new bed, in the colony's own words (a healer's hut, an infirmary, a ward, a sickbay), and the bed
 and the patient moved say why under their inspect text. Switch "Best bed first, and room made for the worse off" on
-the Heart & health page (on by default, needs the deeper game hooks); with the mod set to pick the nearest bed, it
+the Your other mods page (on by default, needs the deeper game hooks); with the mod set to pick the nearest bed, it
 stands down.
 
 ## Seen and heard
@@ -3378,7 +3383,7 @@ All of this happens only on the map you're looking at and only on screen, a hand
 (**Visual and sound touches**) turns it off; the lines show the way all speech does (below).
 
 **One way of speaking.** Everything Rimfolk's colonists say goes one way, set by **Colonists' speech shows as** (on
-the Interface page): a wish voiced, backed or granted, a word about the weather, how someone really is, a meeting's
+the How you're told page): a wish voiced, backed or granted, a word about the weather, how someone really is, a meeting's
 back and forth, the line of a moment between two people. **Bubbles if available** (the default) makes all of it speech
 bubbles with Interaction Bubbles, like the game's own chats, and floating text without it; **Floating text** always
 floats; **Off** shows nothing. A line one person says never goes into the Log tab; a moment between two (a social
@@ -3397,7 +3402,7 @@ time, only when it is safe and nothing is more pressing ("going to have a word w
 they get there. A camp's evening show is a gathering at the camp's fire when answers play out on the map. For modders,
 `Tools/interaction_audit.py` lists every place in the code where two people interact and how each is held to this.
 
-**Small habits** (a setting of its own, on the People & moods page): free time spent the way people really would. A
+**Small habits** (a setting of its own, on the What's on page): free time spent the way people really would. A
 **grieving** colonist visits the grave; a **homesick** one sits a while alone just outside the colony, looking out; a
 **convalescent** takes slow walks; after a **hard fight**, those who fought sit round the colony's fire if one is lit;
 someone whose **friend left** finds a person at their leisure and talks about them; and in the two days after the
@@ -3459,39 +3464,48 @@ faster speed ends it; pausing and unpausing keeps it. Hide the buttons in the se
 The portraits along the top of the screen show who needs you, without clicking into each colonist: a soft ring that
 turns from amber to deep red as someone nears a mental break (or a dot, or nothing), and up to two small badges (one
 to three in the settings) for someone about to leave, a wish that has waited past half its time, strain near
-breaking, wavering certainty (with Ideology) or a promise at risk. A calm colonist shows nothing; when more apply, the most
+breaking, wavering certainty (with Ideology) or a promise at risk. The wish and the promise are read from This week's
+Needs you, so a badge, This week and the council panel always speak of the same things. A calm colonist shows nothing; when more apply, the most
 pressing win. Hover a badge for what it means, how big it is and what helps; click it for the Mood tab, the council's
 Wishes page or the Culture tab. Dragging and selecting work as before anywhere but a badge. Each kind, the ring's
 early warning, the wish badge's threshold, the size, the corner and how many show are all in the settings
-(Interface, "Colonist bar"); it is one of the deeper game hooks.
+(How you're told, "Colonist bar"); it is one of the deeper game hooks.
 
 ## Settings
 
 **Options → Mod options → Rimfolk.** A search box sits at the top: type a word (dreams, raids, letters, illness)
 and every matching setting from every page shows under its page and heading, ready to change; click the heading to
-open that page there. The list on the left has the seven pages, each with a small number when some of its settings
-differ from the defaults. Every switch has a grey line under it saying what you'll notice with it on (hover it for
-the full tooltip and its default), and a setting that only matters with another one on is grayed out, with the
-reason, until it does. Everything scrolls, and on a small screen at a big interface scale the window shrinks to fit.
+open that page there. The list on the left has five pages, by what you think about (How much happens, How hard,
+What's on, How you're told, Your other mods), each with a small number when some of its settings differ from the
+defaults. Every switch has a grey line under it saying what you'll notice with it on (hover it for the full tooltip
+and its default), and a setting that only matters with another one on is grayed out, with the reason, until it does.
+Everything scrolls, and on a small screen at a big interface scale the window shrinks to fit.
 
 **Presets**, under the page list. One click shows the list of what would change, and nothing changes until you
-apply it. Each sets only the values listed here and leaves everything else as you set it:
-- **Light touch**: Rimfolk in the background. Gentle stakes and everyday pressures, strain builds at 75%; a wish
-  about every 4 days (3 open at most), a dilemma about every 15 days, a meeting every 20, rare personal stories;
-  moments at 75%, encounters, social events and dreams at 50%; Rimfolk's events half as likely (every 8 days on its
-  own timer), world events about every 75 days; important messages only, and new wishes as messages; no frictions,
-  no colonist leaving or taking a day off, no serious illnesses, ailments at 50%, no fights from Rimfolk's events.
-- **Story-rich**: every system that tells a story switched on (the council's, the people systems but frictions,
-  the colony's memory, camps, wishes after events, wishes for others, petitions, speech and visual touches, small
-  habits), frequent
-  personal stories, a dilemma about every 5 days, moments, social events, dreams and encounters at 150%, Rimfolk's
-  events at 150% (every 3 days on its own timer), world events about every 30 days, and a message for everything.
-  Moods, pressures and stakes are left alone.
-- **Demanding**: harder moods, more frictions and pressures, rarer rewards. Demanding stakes, downsides at 115% and
-  rewards at 80%, wishes and ambitions with 75% of the time, demanding everyday pressures, frictions on and moments
-  between colonists (frictions among them) at 125%, jealousy, leaving, rising standards (also over the game's
-  comforts), good moods adding up slowly and fading sooner in good times, feelings and strain with the day off, and
-  strain building at 125%.
+apply it. Each sets only the values listed here and leaves everything else as you set it; between them they reach
+every rate on How much happens and every knob on How hard:
+- **Light touch**: Rimfolk in the background. How much happens: a wish about every 4 days (3 open at most), a
+  dilemma about every 15 days, a meeting every 20, rare personal stories, one gathering of the colony's own a week;
+  moments at 75%, encounters, social events, dreams and the outsiders' chatter at 50%; Rimfolk's events half as
+  likely (every 8 days on its own timer), world events about every 75 days, half the travellers a remote home draws
+  and half the raiders' camps. How hard: gentle stakes and everyday pressures, strain builds at 75%, wishes and
+  ambitions with 125% of the time, the heart's good side on, no frictions, no colonist leaving or taking a day off, no
+  serious illnesses, ailments at 50%, everyday hurts at 50%, a scenario's fights at 75%, no fights from Rimfolk's
+  events, and no strain from diplomacy against someone's nature. How you're told: important messages only, 8 messages
+  and 3 letters a day at most, and new wishes as messages.
+- **Story-rich**: every part of the colony's life and its world switched on (the council's, people's lives, bonds,
+  the colony's story with answers and goods on the map, strangers, Rimfolk's events and camps, world events, the
+  region and the bonds with other peoples), the heart's good side, speech and visual touches; frequent personal
+  stories, a dilemma about every 5 days, three gatherings a week, moments, social events, dreams, encounters,
+  personal touches, travellers and the outsiders' chatter at about 150%, raiders' camps at 125%, Rimfolk's events at
+  150% (every 3 days on its own timer), world events about every 30 days, and a message for everything (16 messages
+  and 6 letters a day at most). It only ever switches on what is on by default. Moods, pressures and stakes are left
+  alone.
+- **Demanding**: harder moods, more frictions and pressures, rarer rewards. Demanding stakes, downsides 85% stronger again and
+  rewards at 70%, wishes and ambitions with 75% of the time, a short grace for what was given and is gone, demanding
+  everyday pressures, frictions on and moments between colonists (frictions among them) at 125%, jealousy, leaving,
+  rising standards, good things that grow ordinary, quiet troubles, feelings and strain with the day off, strain
+  building at 125%, ailments, everyday hurts and a scenario's fights at 125%.
 - **Default**: everything the three presets above can change, back to how Rimfolk ships. Nothing else.
 
 Each preset aims at its own balance (DESIGN.md, "Balance targets"; `Tools/Balance` measures it, `docs/balance-report.md`
@@ -3500,72 +3514,88 @@ has the numbers). What Rimfolk adds to a colonist's mood, in a well-run, an ordi
 0, -4 and -18 with Demanding. By default it asks about one question every two days, fewer with Light touch.
 
 The pages:
-- **Council & wishes**: a quick setup (*Everything on*, *Council only*, *Advisor only*, also with a list of what
-  changes); the advisor, the colony's next steps, wishes and council meetings on or off; **Stakes**:
+- **How much happens**: every part's rate in one place. The colony's pace (how many gatherings a week before the
+  colony's own evenings and suppers wait their turn, two by default; see *The colony's pace*); the council's asks
+  (how often a wish, how many can be open at once, how often a dilemma, the meeting interval); people's lives (how
+  often moments, social events and dreams come, a quarter as often to three times as often; personal stories off,
+  rare, normal or frequent; how often personal touches; how often colonists chat with outsiders by themselves);
+  visitors, events and the region (encounters, how likely each of Rimfolk's events is beside the storyteller's or
+  how often on its own timer, world events about every 45 days, how much a remote home draws travellers, raiders'
+  camps).
+- **How hard**: **Stakes**:
   - **Gentle**: only upsides (decrees still cost some mood, at half strength, because you chose them)
   - **Balanced** (default): upsides and downsides in proportion
   - **Demanding**: downsides 50% stronger; bitter colonists may sulk
   - **Advisor only**: no mood effects at all
 
-  whether Rimfolk's systems talk to each other (see below); with the strength of downsides and of rewards; wish frequency, how many can be open at once and how long they
-  last, jealousy and favoritism, wishes after events, reminders, self-help, granted wishes taken back (and the grace
-  before they mind), leaving, wishes for others and
-  petitions; dilemmas (and how often), **What each answer does** (hints in words, exact numbers or off), decree requests, the colony's character and
-  offices; the meeting interval, ambition deadlines, and whether meetings call people from their work.
-- **People & moods**: **life's ups and downs** (how hard the everyday pressures and setbacks press: **gentle**, half
-  strength, no half-built work or the fussiest setbacks, and high standards don't make frictions sting more; **normal**, the default, a little under written strength; or **demanding**,
-  half again as strong), rising standards (and whether they also cover the game's comforts), whether Rimfolk's good
-  moods add up slowly, getting used to good times, everyday frictions; the social web and social events,
-  Rimfolk's column in the game's Social tab, personalities and social life, traits that change, ideoligions in the colony (with Ideology), secrets, vendettas; life goals, personal stories (off, rare, normal or frequent), quirks, heirlooms, coming of age,
-  colonists fixing what bothers them (and placing small plans), dreams and dream omens; moments between colonists,
-  the colony noticing what happens, and small habits in free time; journals, names, anniversaries, annals and eulogies; and how often moments,
-  social events and dreams come (a quarter as often to three times as often), and how many gatherings a week before the
-  colony's own evenings and suppers wait their turn (two by default; see *The colony's pace*).
-- **Heart & health**: feelings and strain, the day off at the end of one's rope, the inspector line, how quickly
-  strain builds (50% to 150%); everyday ailments, the serious (possibly fatal) illnesses on their own switch, how
-  often ailments come (25% to 200%); convalescence and sickbed visits, doctors' and midwives' reputations, and with
-  Move the Patient the best bed first and room made for the worse off.
-- **Events & world**: encounters with strangers and animals (and how often), nemeses (and whether they return), pets
-  as companions, and Hospitality's guests (joining only when they would, guests in the colony's stories, recruiting
-  spelled out on the guest tab); **Rimfolk events** on or off, whether they may bring fights, camps on the map,
-  missions in the Quests tab, and whether the storyteller draws them (and how likely each is) or Rimfolk's own timer
-  does (and how often); the strength of fights in Rimfolk's scenarios; **world events** on or off and how often (about
-  one every 45 days by default); whether the world's **peoples remember the colony**; the weather (weather that
-  changes like weather, its pull on the temperature, the forecast, rain washing the yard); the colony calendar's days;
-  and whether answers play out on the map (feasts eaten, fires lit, visits paid, work parties, vigils and errands) and
-  goods and people come and go by hand.
-- **Building**: personal touches and how often; what the room planner does by default (plan the furniture, cut
-  plants, mine rock, replace your own buildings, smooth stone; the planner shows the same switches); **material
-  counts in build menus** (the game's own material list shows what the colony has) and build priorities on
-  blueprints; reserved slots on shelves and drinks and smokes kept out of the freezer (all four among the deeper game
-  hooks); the council's **automations** (each its own switch, all off to begin with, with the materials budget and the
-  daily caps); and **Planning ahead**, the days of meals to keep cooked and of food to keep in store that the Making
-  page's stock targets are worked out from.
-- **Interface & integrations**: how chatty Rimfolk is: **Everything**, **Notable only** (default: messages for what
-  changes something; small moments stay in the journals, the Story tab and History) or **Important only**; where the
-  smaller news goes (**Colony news**: one letter each evening by default, as it happens, or off, to the History tab
-  only); the most messages and letters that only tell a day for each colony (twelve and four, past them the evening's
-  news); a message for every dream, letters or messages for new and granted wishes, a letter after each update (on
-  by default; see CHANGELOG.md), how colonists' speech shows
-  (bubbles with Interaction Bubbles, floating text, or off), the visual and sound touches; the alerts (and the
-  reminder about a defense line's shut gate); mood insight (and its hints in the Needs tab), taking cover with a drag,
-  RimMarket's stalls (Rimfolk's sales table, stall goods for trade ships, guests and campers buying at the stalls),
-  **A covered face hides looks (Alpha Genes)**, the slow speed buttons (and putting them
-  back), where the council button sits in the bottom bar, the region, defense and planning buttons, a "more" button for
-  the bottom bar's buttons you put away, which page the council window opens on
-  (**This week** by default, or the last page), the Almanac's text size; the **on-screen panels** (each panel's
-  options, lock, hiding, the game's own alert list, look, text size, the food and mood lines, putting them back) and
-  the **hover card** (the game's tooltip under it too); the
-  **badges on the colonist bar** (each kind, the break ring or dot and its early warning, the wish badge's threshold,
-  size, corner and how many show); the deeper game hooks and the notes in the game's letters.
-- **Advanced**: this colony's era (detected, pre-industrial or industrial; set per colony, so it needs a loaded game),
-  **Check what's on and working** (the same report as the dev action "Rimfolk: check myself"), and a full reset to
-  the defaults (with the list of what changes; saved rooms are kept).
+  with the strength of downsides and of rewards, how long wishes last and ambitions have, jealousy and favoritism,
+  granted wishes taken back (and the grace before they mind) and leaving; **life's ups and downs** (how hard the
+  everyday pressures and setbacks press: **gentle**, half strength, no half-built work or the fussiest setbacks, and
+  high standards don't make frictions sting more; **normal**, the default, a little under written strength; or
+  **demanding**, half again as strong), rising standards, good things growing ordinary, quiet troubles, everyday
+  frictions; how quickly strain builds (50% to 150%), the day off at the end of one's rope, the heart's good side;
+  how often ailments come (25% to 200%) and the serious (possibly fatal) illnesses on their own switch, crowding,
+  frailty, dirty wounds and the end of a long life; and **hurts from everyday life** (0% to 200%), the strength of
+  fights in Rimfolk's scenarios and whether Rimfolk's events may bring fights.
+- **What's on**: a quick setup (*Everything on*, *Council only*, *Advisor only*, also with a list of what changes),
+  reaching every part of the colony's life and its world; then each part by what it is about: the council (the
+  advisor, the colony's next steps, wishes and their wishes after events, reminders, self-help, wishes for others and
+  petitions, meetings and whether they call people from their work, dilemmas and banishment, moving on, decree
+  requests, offices and the election, the colony's character, whether Rimfolk's systems talk to each other); people's
+  lives (feelings and strain, life goals, quirks, heirlooms, coming of age, colonists fixing what bothers them and
+  placing small plans, dreams and omens, moments, the colony noticing what happens, small habits, everyday ailments,
+  convalescence and sickbed visits, doctors' and midwives' reputations); bonds (the social web and social events,
+  friendships that take time, chemistry, comrades, deeds remembered, seats and love's feelings, personalities and
+  social life, traits that change, ideoligions in the colony with Ideology, secrets, vendettas); the colony's story
+  (journals, names, anniversaries, annals, eulogies, the colony calendar, answers that play out on the map, goods and
+  people that come and go by hand); strangers and creatures (encounters, nemeses and their return, pets); **Rimfolk
+  events** (camps on the map, missions in the Quests tab, drawn by the storyteller or on their own timer); **world
+  events** and whether the world's **peoples remember the colony**; the region (fortunes and their stock, new towns'
+  faces, rise and fall, trading posts, hamlets, small towns' maps); **bonds with other peoples** (favors owed and
+  called in; pacts and truces, with pacts of fealty, the colony sworn to a stronger neighbor or keeping vassals of
+  its own, and truces keeping raids away under them; ransom, envoys, feasts with guests, marriage alliances, wards and
+  hostages, colony renown, against their nature); neighbours and letters (notables, letters, talking with outsiders,
+  sparring, insults, duels, their chatter); then the tools: journeys, the weather (weather that changes like weather,
+  its pull on the temperature, the forecast, rain washing the yard), personal touches, **material counts in build
+  menus** and build priorities on blueprints, reserved slots on shelves and drinks and smokes kept out of the freezer,
+  taking cover with a drag, what the room planner does by default (plan the furniture, cut plants, mine rock, replace
+  your own buildings, smooth stone; the planner shows the same switches), the council's **automations** (each its own
+  switch, all off to begin with, with the materials budget and the daily caps), **Planning ahead** (the days of meals
+  to keep cooked and of food to keep in store that the Making page's stock targets are worked out from, fields by
+  the weather and the frost harvest); at its foot the deeper game hooks, this colony's era (detected, pre-industrial
+  or industrial; set per colony, so it needs a loaded game), **Check what's on and working** (the same report as the
+  dev action "Rimfolk: check myself"), and a full reset to the defaults (with the list of what changes; saved rooms
+  are kept).
+- **How you're told**: how chatty Rimfolk is: **Everything**, **Notable only** (default: messages for what changes
+  something; small moments stay in the journals, the Story tab and History) or **Important only**; where the smaller
+  news goes (**Colony news**: one letter each evening by default, as it happens, or off, to the History tab only);
+  the most messages and letters that only tell a day for each colony (twelve and four, past them the evening's news);
+  a message for every dream, letters or messages for new and granted wishes, a letter after each update (on by
+  default; see CHANGELOG.md), the notes in the game's letters, **What each answer does** (hints in words, exact
+  numbers or off); how colonists' speech shows (bubbles with Interaction Bubbles, floating text, or off), the visual
+  and sound touches, the mood's name in a mood bubble, mood insight (and its hints in the Needs tab), the inspector's
+  strain line, Rimfolk's column in the game's Social tab; the alerts (and the reminder about a defense line's shut
+  gate); the slow speed buttons (and putting them back), where the council button sits in the bottom bar, the region,
+  defense and planning buttons, the count on the council button, a "more" button for the bottom bar's buttons you
+  put away, which page the council window opens on (**This week** by default, or the last page), the Almanac's text
+  size, the window size, the region map's reach; names and cards (previews and their pause); the **on-screen panels**
+  (each panel's options, lock, hiding, the game's own alert list, look, text size, the food and mood lines, putting
+  them back) and the **hover card** (the game's tooltip under it too); the **badges on the colonist bar** (each kind,
+  the break ring or dot and its early warning, the wish badge's threshold, size, corner and how many show).
+- **Your other mods**: only the mods you have loaded show, and the page's foot names the others Rimfolk works with:
+  Hospitality (guests joining only when they would, guests in the colony's stories, recruiting spelled out on the
+  guest tab), RimMarket (Rimfolk's sales table, stall goods for trade ships, campers buying at the stalls, and with
+  Hospitality guests always shopping), Alpha Skills (a drink or a smoke before work), **A covered face hides looks
+  (Alpha Genes)**, RimWorld of Magic (golems keep their energy, the mod's rules about needs hold), Faction
+  Territories and Vassalage (distant new settlements in the colony news), Move the Patient (the best bed first and
+  room made for the worse off), and a faith's precept against turrets from any mod minding only the turrets where
+  they are.
 
-Saved settings carry over unchanged: every setting keeps its name in the settings file. For modders: the window is
-drawn from one list, `Source/ColonyCouncil/UI/SettingsCatalog.cs` (each setting's page, heading, label, tooltip, line
-and what it needs), and `Tools/Tests` checks that every public field of `CouncilSettings` is on exactly one page, so a
-new setting needs a row there.
+Saved settings carry over unchanged: every setting keeps its name in the settings file, wherever its row now sits
+(moving a row never renames it). For modders: the window is drawn from one list,
+`Source/ColonyCouncil/UI/SettingsCatalog.cs` (each setting's page, heading, label, tooltip, line, what it needs and
+the other mods it is for), and `Tools/Tests` checks that every public field of `CouncilSettings` is on exactly one
+page, so a new setting needs a row there, and that every field before the five pages is still saved under its key.
 
 ## Optional mods that go well with it
 
@@ -3573,7 +3603,7 @@ new setting needs a row there.
   bubbles, and with it everything Rimfolk's colonists say is a bubble too: wishes, moments, social events, a word
   about the weather, a meeting's back and forth.
 - **RimMarket** by BenFD: a colony stall's "Set up the stall" opens Rimfolk's own sales table (setting on the
-  Interface page): the colony's goods by category on the left, a click to put them on the counter; what is for sale on
+  Your other mods page): the colony's goods by category on the left, a click to put them on the counter; what is for sale on
   the right, a card a line, with the count, the quality range, the price on a slider with what it fetches and how well
   it sells (and, with RimMarket 1.0.13 or later, its Refill and Keep home: Refill keeps that many on the counter for
   good, Keep home stops the haulers once the colony is down to that many, and changing a line's count, quality or price
@@ -3592,7 +3622,7 @@ new setting needs a row there.
   its pawn panel, with bars for strain and the heart's needs (see above).
 - **Move the Patient** by konstantynopolitaneczka: patients take the best free medical bed (its priority first,
   then the game's medical quality), and a lighter case is carried to another bed with its "Transfer to bed" for
-  someone worse off or for an operation in the surgery bed (setting on the Heart & health page; see "Recovery, doctors
+  someone worse off or for an operation in the surgery bed (setting on the Your other mods page; see "Recovery, doctors
   and midwives").
 
 ## Status and feedback
