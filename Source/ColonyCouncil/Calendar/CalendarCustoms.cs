@@ -33,7 +33,7 @@ namespace ColonyCouncil
         /// <summary>The custom's question comes from the calendar on its day (the calendar on, and the custom on it with a date).</summary>
         public bool BringsCustom(DilemmaDef def)
         {
-            if (!On) return false;
+            if (def == null || def.traditionOption < 0 || !On) return false;
             var d = CustomOf(def);
             return d != null && d.Dated;
         }
