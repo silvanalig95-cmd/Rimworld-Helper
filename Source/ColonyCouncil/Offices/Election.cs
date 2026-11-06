@@ -142,6 +142,11 @@ namespace ColonyCouncil
         /// <summary>The hustings went ahead (or were let go after too many evenings put off).</summary>
         public bool hustingsDone;
         public bool hustingsHeld;
+        /// <summary>
+        /// The hustings join the count (the colony's pace, PlayOut/Stage.cs): no evening of their own; at the count the
+        /// candidates speak first, then the votes are read.
+        /// </summary>
+        public bool speakAtCount;
         /// <summary>Where they gather, speak and vote: the meeting place, and its words for the letters.</summary>
         public IntVec3 spot = IntVec3.Invalid;
         public string venue;
@@ -207,6 +212,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref countPutOffs, "countPutOffs");
             Scribe_Values.Look(ref hustingsDone, "hustingsDone");
             Scribe_Values.Look(ref hustingsHeld, "hustingsHeld");
+            Scribe_Values.Look(ref speakAtCount, "speakAtCount");
             Scribe_Values.Look(ref spot, "spot", IntVec3.Invalid);
             Scribe_Values.Look(ref venue, "venue");
             Scribe_Values.Look(ref voterCount, "voterCount");

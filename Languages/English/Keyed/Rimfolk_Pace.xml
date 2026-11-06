@@ -14,6 +14,13 @@
   <!-- The floor: nine days without a gathering, and the colony keeps an evening together itself. -->
   <CC_Stage_EveningLabel>an evening together</CC_Stage_EveningLabel>
 
+  <!-- The calendar: a day within two days of another gathering is kept at supper; days within three days of each other are kept together (Calendar/CalendarKeeping.cs). -->
+  <CC_Cal_Way_Supper_Letter>The colony gathered only lately, so if the council keeps it, the day is kept at supper this evening: a better meal for everyone, and a word said over it.</CC_Cal_Way_Supper_Letter>
+  <CC_Cal_Keep_Supper>Keep it at supper</CC_Cal_Keep_Supper>
+  <CC_Cal_Together_Letter_One>{DAYS} comes round within days of it this year, and the colony keeps the two together, as one.</CC_Cal_Together_Letter_One>
+  <CC_Cal_Together_Letter_Many>{DAYS} come round within days of it this year, and the colony keeps them all together, as one.</CC_Cal_Together_Letter_Many>
+  <CC_Cal_KeptAtSupper>{DAY} was kept at supper, and {PAWN_nameDef} said a word over the meal.</CC_Cal_KeptAtSupper>
+
   <!-- A life goal's toast, raised at the colony's next gathering (added to its first message), or at supper. -->
   <CC_Stage_CupThere>{RAISER_nameDef} has a cup to raise there to {A_nameDef}.</CC_Stage_CupThere>
   <CC_Stage_CupThereAll>A cup is to be raised there to {A_nameDef}.</CC_Stage_CupThereAll>
