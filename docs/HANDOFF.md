@@ -6,6 +6,54 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 0.116.1, the review's phases, checked over together (6 November 2026, the review recommended in the entry below: how the
+  parallel phases 0.106.1 to 0.116.0 meet, read against each other, the player's save Atia at day 128 taken through each
+  release's load path in order, and `Tools/perf_audit.py` run on the tree at 0.106.1 and now). Not released: no round,
+  About.xml untouched. Fixed: (1) a feast with guests counted up to four times in the colony's week: once for each
+  people's group as it came to the gate (`LordJob_FeastGuests`, seen as a gathering lord) and again for its feast's
+  play-out, so after it the colony's own evenings waited a week; now counted once, as the guests come
+  (`Feasts.Arrive`, `Stage.Held`), its feast not again (`Stage.Began(..., counted)`, `p.guestsFrom ==
+  PlayGuests.Feast`), the guests' groups not a gathering of their own, and the guests' day still kept clear of the
+  colony's own (counting only at the feast would have let a family supper or a group's evening take the evening
+  first). (2) The teller counted
+  every chronicle line "beyond the homes" in its day ("Teller: what was told today"): the history lets go of who a line
+  is about as it writes it (`History.FromChronicle`), and `Tell.Chronicle` read them after; now read before. (3) The
+  setting "Petitions" ("Colonists who want the same thing back one wish instead of each asking") off still joined shared
+  wants into one petition (0.114.0's `ShareWith` came after the setting and never read it); now off, each asks on
+  their own (`Wishes/Petitions.cs`). (4) A custom kept, a day on the calendar since the festive year, never went on the
+  record of days kept (`Council_DaysKept`), which the keeper of days' seat work ("kept 3 days"), the Daykeeper's name
+  and the promises judged by days kept read ("the colony's traditions kept properly": on the save, its traditions are
+  customs, the harvest dance and the midwinter supper); now the keeper of days at home, else the one the question was
+  about, else a grown colonist of the colony's own, has it, as a calendar day's keeper does (`DilemmaTracker.Tradition`,
+  with the calendar on). Checked and sound:
+  every path to the chronicle goes through `Tell.Chronicle` into the history once (answers through `Answers.Record`,
+  the election's promises and verdicts into the holder's history only), no letter or message of these releases goes
+  around the teller (the petitions' Promise and Refuse, the dev menu and the seat appointed are answers to a click); the
+  good side's kind word is no gathering, its inspiration the game's own letter; the hustings speak at the count with the
+  verdicts judged at the announcement, before the new promise goes in; the heart's two sides are never both above
+  nothing on any path (`Spend` before every build, `Fill` only at nothing), the small moods' pile leaves the band's mood
+  out (`Council_Heart_`), a group's evening eases within the gathering cap; every new setting is read, on its page, the
+  presets reach it; the save's load: the chronicle list already in the history, names held from their history lines,
+  the week counted from the load, decrees carried on once, the groups told once, the good side at nothing, open wishes
+  alone, letters on the road keeping their days, its seven customs carried onto the calendar quietly and once
+  (`customsMoved`), nothing due within its grace days at day 128, no year letter (the landing's first three days are
+  past); new collections all null-safe on load. Performance: new since 0.106.1 only the pace's look every 250 ticks
+  (`Stage.Tick`, small) and the answers' watch; the memory hook and the heart's hour a little dearer, nothing per frame.
+  Unconfirmed, left for the player's word: (a) the save's customs carried onto the calendar land two to a season, the
+  midsummer fire (about day 21) and the swim (28) in summer, the harvest dance (35, a tradition) and the high watch (43)
+  in fall, and each comes on its day (`AskCustom` forces its question), against "one season, one custom"; holding the
+  second back by the pace's rule would leave it on the calendar never asked and never a tradition (under 0.111.0's rule
+  the harvest dance already kept the high watch from every fall), so it was left; new play can't put two in a season.
+  (b) A life goal's cup goes to the next festive gathering, a family's supper too (`Stage.Festive` takes every feast),
+  bringing the honoured and the one raising it to that family's table though the supper raises no cup of its own.
+  (c) The year's letter is a letter worth knowing, not one hard to miss: past the colony's four letters that day it
+  would come as one line of the evening's news; it is written in the first hour of the landing's day, so unlikely.
+  (d) An older save loaded exactly six days after a custom's date says "came and went this year" at the first day's
+  look (true, but on load). Tests: `StageTests` (the feast with guests counted once), `TellTests` (the chronicle's
+  tally), `LettersPetitionsTests` (the setting), `FestiveYearTests` (a custom on the record of days kept). Docs:
+  DESIGN.md (the pace's "Counted", shared wants' joining, what reads a custom). To check in game: a feast with guests of
+  two peoples (Dev: "Pace: the week's gatherings" shows one), a family supper waiting after it as before; the
+  Petitions setting off with two fighters wanting armor (two wishes); a custom kept, then the keeper of days' card.
 - 6 November 2026, the review's six phases are done (0.106.1 to 0.116.0, with the heart's good side 0.113.0/0.113.1
   and the text and event variety 0.108.0 to 0.109.2). Built in parallel and merged one by one, none of it yet seen in
   the game. Next, in the player's order (decision 17): harm parts 2 and 3 (2.4.1, 2.2.1, 2.1.1, 3.1.1; 1.4.1, 3.3.1,

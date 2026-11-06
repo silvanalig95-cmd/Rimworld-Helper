@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.116.1</version>
+        <date>6 November 2026</date>
+        <title>The new pieces, checked together</title>
+        <points>
+          <li>Fixed: a feast with guests counted up to four times toward the colony's week (each people's guests at the gate and the feast again), so the colony's own evenings waited a week after it. It counts once now, when the guests arrive.</li>
+          <li>Fixed: a custom kept never counted as a day kept, so the keeper of days' work, the Daykeeper's name and promises about keeping the colony's traditions never saw it.</li>
+          <li>Fixed: with Petitions switched off, shared wants still joined into one petition; now each colonist asks on their own.</li>
+          <li>Fixed: the developers' log of what was told today counted every chronicle line as news from beyond the homes.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.116.0</version>
         <date>6 November 2026</date>
         <title>One way in</title>

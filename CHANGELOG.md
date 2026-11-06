@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The new pieces, checked together
+
+*6 November 2026, version 0.116.1*
+
+- Fixed: a feast with guests counted up to four times toward the colony's week (each people's guests at the gate and the feast again), so the colony's own evenings waited a week after it. It counts once now, when the guests arrive.
+- Fixed: a custom kept never counted as a day kept, so the keeper of days' work, the Daykeeper's name and promises about keeping the colony's traditions never saw it.
+- Fixed: with Petitions switched off, shared wants still joined into one petition; now each colonist asks on their own.
+- Fixed: the developers' log of what was told today counted every chronicle line as news from beyond the homes.
+
 ## One way in
 
 *6 November 2026, version 0.116.0*

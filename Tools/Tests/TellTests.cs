@@ -160,6 +160,9 @@ public static class TellTests
         string comp = File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "CouncilGameComponent.cs"));
         C(comp.Contains("public void AddChronicle(ChronicleEntry entry) => Tell.Chronicle(entry);") && tell.Contains("History.FromChronicle(entry);"),
             "every chronicle line goes through the teller, which writes the history");
+        int aboutAt = tell.IndexOf("var about = entry.about;"), writeAt = tell.IndexOf("History.FromChronicle(entry);");
+        C(aboutAt >= 0 && aboutAt < writeAt && !tell.Contains("entry.about?.MapHeld"),
+            "a chronicle line is counted for the colony it is about, read before the history lets go of who it is about");
         C(Regex.IsMatch(tell, @"Book\.Judge\(""M\|"" \+ colony[^;]*item\.weight, MessagesADay, Now\)") && Regex.IsMatch(tell, @"Book\.Judge\(""L\|""[^;]*WeightOf\(importance\), LettersADay, Now\)"),
             "messages and letters are weighed by importance and kind against the colony's day");
         C(tell.Contains("if (Book.Told(\"M|\" + colony + \"|\" + text, Now)) return;"), "the evening's news doesn't repeat a message just shown");

@@ -165,6 +165,7 @@ tested in `LettersPetitionsTests`):
   armor is checked on them), linked by `Wish.petition` (the first want's id, saved, -1 alone) and kept out of the
   letters: a message names everyone ("Harper wants proper armor too: Stace, Dukialgac and Harper now ask the council
   for it together"), the line is said over their head, the joiners' bond warms a little, and the chronicle has one line.
+  With the "Petitions" setting off, each asks on their own, as for the wishes many back.
 - **One deadline, one count, one voice.** Joining moves the whole petition's deadline two days on (`PetitionMath.Deadline`,
   never past a fresh wish's full time, never sooner than it stood) and shares its promise and stage. It counts once
   toward the open wishes' cap (`OpenWishCount`, `LeadsPetition`), shows once on the Wishes page (its header names them
@@ -1639,8 +1640,9 @@ gatherings per colony, as letters and messages have theirs (`PlayOut/Stage.cs`; 
 tested in `StageTests` and run by `Tools/Balance --scenes`):
 
 - **Counted.** Every gathering on a home, whoever called it: each gathering lord seen as it starts (the game's parties,
-  rituals and weddings, Rimfolk's play-outs, the council meeting, the election's gatherings, feasts with guests:
-  `LordJob_Joinable_Gathering`, `LordJob_Joinable_MarriageCeremony`, `LordJob_FeastGuests`), and every outing as it
+  rituals and weddings, Rimfolk's play-outs, the council meeting, the election's gatherings:
+  `LordJob_Joinable_Gathering`, `LordJob_Joinable_MarriageCeremony`; a feast with guests once, as they come, not again
+  for each people's group at the gate, `LordJob_FeastGuests`, or for its feast), and every outing as it
   starts (work parties, walks, vigils, searches, hunts, the dead carried out; not an errand or a gift carried by one or
   two). Lords already on at a load were counted before it. The count is saved with the play-outs (`PlayOutTracker.stage`,
   one `StageColony` a home: the start of each gathering of the last ten days, the last of any kind, the season's
@@ -1727,9 +1729,12 @@ two. The player chose one rule, three years running. Built as one festive year (
 - **What reads a custom.** `DilemmaTracker.IsTradition`, `TraditionCount`, `Traditions` and `AddCustomTags` read the
   calendar (`CustomDay`); the forced traditions of the council's hour skip those the calendar brings on their day. The
   calendar's traditions (`ColonyCalendar.Traditions`) now hold the customs too, for the founding letter, the keeper of
-  days' promise and the colony's ways. The Calendar page shows each custom among the days, soonest first: its date
-  (or "with its occasion"), when it next comes, a "custom" pill, its years kept or its tradition, and where it came from
-  ("A custom the council first kept in 5502... Kept by answering 'Make a day of the planting'."); its way and date can't
+  days' promise and the colony's ways; a custom kept goes on the record of days kept (`Council_DaysKept`) of the keeper
+  of days at home, else of the one the question was about (else a grown colonist of the colony's own), as a calendar
+  day's keeper's does, for the seat's work and the promises judged by days kept. The Calendar page shows each custom
+  among the days, soonest first: its date (or "with its occasion"), when it next comes, a "custom" pill, its years kept
+  or its tradition, and where it came from ("A custom the council first kept in 5502... Kept by answering 'Make a day
+  of the planting'."); its way and date can't
   be changed, and taking it off loses its years (kept again, it comes back). The page's separate "Seasonal customs" list
   is gone. The days that come with an occasion are left out of what counts dates (This week's coming days, the advisor's
   day tomorrow, talk of tomorrow, an ambition's days ahead: `CalendarDay.Dated`).

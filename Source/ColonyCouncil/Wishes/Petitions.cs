@@ -69,7 +69,8 @@ namespace ColonyCouncil
         /// </summary>
         private Wish ShareWith(Wish w)
         {
-            if (w?.def == null || w.pawn == null) return null;
+            // The "Petitions" setting off: each asks on their own, as for the wishes many back.
+            if (w?.def == null || w.pawn == null || !Settings.petitions) return null;
             try
             {
                 var open = wishes.Where(o => o != w && o.state == WishState.Open && o.def == w.def && o.pawn != null).ToList();

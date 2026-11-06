@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using ColonyCouncil;
 
 /// <summary>
@@ -220,6 +221,8 @@ public static class LettersPetitionsTests
             "a warning's debt is made when the answer comes, and told once in the answer's words");
         string wishes = Code("CouncilGameComponent.cs") + Code("CouncilDynamics.cs") + Code("Wishes/Petitions.cs");
         Check(wishes.Contains("PetitionMath.Join(") && wishes.Contains("PetitionMath.Deadline("), "a want joins the petition for the same thing");
+        Check(Regex.IsMatch(Code("Wishes/Petitions.cs"), @"private Wish ShareWith\(Wish w\)\s*\{[^}]*!Settings\.petitions\) return null;"),
+            "with the Petitions setting off, each asks on their own, shared wants as the wishes many back");
         Check(Code("Wishes/Wish.cs").Contains("Scribe_Values.Look(ref petition, \"petition\", -1)"), "a wish keeps its petition, -1 in an older save");
     }
 }

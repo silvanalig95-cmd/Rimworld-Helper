@@ -725,6 +725,9 @@ namespace ColonyCouncil
                 CallOff(h, p, map, FeastWords.P("CC_Feast_Off_NoGuests"), true);
                 return;
             }
+            // The guests come: the day is one gathering in the colony's count (PlayOut/Stage.cs), once whatever the peoples,
+            // and its feast with them is not counted again.
+            Stage.Held(map);
             p.arrived = Now;
             p.contest = 0;
             p.contestStart = -1;
