@@ -32,6 +32,9 @@ namespace ColonyCouncil
                 r => NeedsJourney(CardSections.HomeOf(r)), 13f, "CC_Found_ActJourneyTip".Translate(), "colony-found-journey");
             CardActs.Register(CardKind.Place, _ => "CC_Found_ActCallOff".Translate().Resolve(), null, r => AskCallOff(Under(CardSections.HomeOf(r))),
                 r => Under(CardSections.HomeOf(r)) != null, 14f, "CC_Found_ActCallOffTip".Translate(), "colony-found-off");
+            CardActs.Register(CardKind.Place, _ => "CC_Found_ActNewcomers".Translate().Resolve(), null, r => Find.WindowStack.Add(new Dialog_Newcomers(Under(CardSections.HomeOf(r)))),
+                r => Under(CardSections.HomeOf(r)) is FoundingPlan f && f.means == FoundingMeans.Newcomers && f.newcomers && !f.newcomersChosen, 13.5f, "CC_Found_ActNewcomersTip".Translate(),
+                "colony-found-newcomers");
             // Release 2: "Hand it over" (HandOver) comes here, beside these.
         }
 

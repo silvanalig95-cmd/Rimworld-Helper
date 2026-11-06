@@ -387,7 +387,8 @@ namespace ColonyCouncil
             foreach (var map in Homes.All)
             {
                 if (map.Parent == null || Homes.KeyOf(map) == plan.from || Settled(map) < plan.started) continue;
-                if (!FoundingMath.AtPlace(Distance(map.Tile, plan.Tile))) continue;
+                // The gravship's landing is the new colony wherever it came down; any other way, at the place chosen.
+                if (plan.means != FoundingMeans.Gravship && !FoundingMath.AtPlace(Distance(map.Tile, plan.Tile))) continue;
                 Founded(plan, map);
                 return;
             }
@@ -447,7 +448,7 @@ namespace ColonyCouncil
         /// asked, the moods of those sent or kept against their wish and of close bonds split, the questions about moving,
         /// and the parting day on the old colony's calendar.
         /// </summary>
-        public static void Founded(FoundingPlan plan, Map map)
+        public static void Founded(FoundingPlan plan, Map map, bool tell = true)
         {
             plan.stage = FoundingStage.Founded;
             plan.founded = Now;
@@ -458,6 +459,12 @@ namespace ColonyCouncil
             {
                 // The record of every colony: the mother's, from its own founding day, and the new one's.
                 if (mother != null) WorldLedger.NoteColony(mother, CalendarTracker.Instance?.Colony(mother)?.FoundedTick ?? 0);
+                else
+                {
+                    // Gone already (a gravship's takeoff without an anchor): its record, ended as the game ended it.
+                    WorldLedger.NoteColony(plan.from, plan.fromName, -1, 0);
+                    WorldLedger.EndColony(plan.from, ColonyEnd.Abandoned, -1);
+                }
                 WorldLedger.NoteColony(map, Now, plan.from, plan.fromName);
                 var founders = map.mapPawns.FreeColonists.Where(p => plan.party.Contains(p)).ToList();
                 if (founders.Count == 0) founders = plan.party.Where(p => p != null && !p.Dead).ToList();
@@ -465,17 +472,18 @@ namespace ColonyCouncil
                 actors.Add(new HistoryActor(Ref.Colony(plan.from), HistoryRole.About));
                 string who = founders.Count > 0 ? Names(founders) : "CC_Found_Newcomers".Translate().Resolve();
                 History.Add(FoundingMath.KindFounded, actors, Refs.Colony(map), HistoryMath.Milestone,
-                    "CC_Found_History".Translate(name.Named("PLACE"), who.Named("NAMES"), (plan.fromName ?? "?").Named("MOTHER")).Resolve());
+                    (founders.Count > 0 ? "CC_Found_History" : "CC_Found_HistoryNewcomers").Translate(name.Named("PLACE"), who.Named("NAMES"), (plan.fromName ?? "?").Named("MOTHER")).Resolve());
                 bool seat = plan.makeSeat && plan.keepOld && ColonySeat.Move(map, true);
                 string text = "CC_Found_LetterText".Translate(name.Named("PLACE"), who.Named("NAMES"), (plan.fromName ?? "?").Named("MOTHER"),
                     Ages.Form(AgeFeature.Party, Ages.Of(map), Ages.Of(map)).word.Named("PARTY")).Resolve();
-                text += " " + (plan.keepOld
-                    ? (seat ? "CC_Found_Kept_Seat" : "CC_Found_Kept").Translate((plan.fromName ?? "?").Named("MOTHER"), ColonySeat.Word(map).Named("SEAT")).Resolve()
-                    : "CC_Found_Abandoning".Translate((plan.fromName ?? "?").Named("MOTHER")).Resolve());
+                text += " " + OldColonyLine(plan, map, seat);
                 if (plan.makeSeat && plan.keepOld && !seat) text += " " + "CC_Found_SeatNotYet".Translate(ColonySeat.WhyNot(map).Named("WHY")).Resolve();
                 if (plan.newcomers && !plan.newcomersChosen) text += " " + "CC_Found_NewcomersComing".Translate().Resolve();
-                Tell.Letter(NewsKind.Colony, Importance.Important, map, "CC_Found_LetterLabel".Translate(name.Named("PLACE")).Resolve(), text, LetterDefOf.PositiveEvent,
-                    new LookTargets(map.Parent));
+                plan.seatMoved = seat;
+                // Founded by newcomers alone, their own letter tells it as they walk in.
+                if (tell)
+                    Tell.Letter(NewsKind.Colony, Importance.Important, map, "CC_Found_LetterLabel".Translate(name.Named("PLACE")).Resolve(), text, LetterDefOf.PositiveEvent,
+                        new LookTargets(map.Parent));
                 Moods(plan, map, mother);
                 if (plan.keepOld && mother != null) PartingDay(plan, mother, name);
             }
@@ -486,6 +494,12 @@ namespace ColonyCouncil
             LensModel.Dirty();
             Cards.Dirty();
         }
+
+        /// <summary>What becomes of the old colony, in a sentence: kept (with the seat here or not), or abandoned once those who go have left.</summary>
+        private static string OldColonyLine(FoundingPlan plan, Map map, bool seat) =>
+            plan.keepOld
+                ? (seat ? "CC_Found_Kept_Seat" : "CC_Found_Kept").Translate((plan.fromName ?? "?").Named("MOTHER"), ColonySeat.Word(map).Named("SEAT")).Resolve()
+                : "CC_Found_Abandoning".Translate((plan.fromName ?? "?").Named("MOTHER")).Resolve();
 
         /// <summary>
         /// Uprooted (a season) for those sent or kept against their wish, with a question later about moving when the old
@@ -622,7 +636,18 @@ namespace ColonyCouncil
                 Ended(plan, -1);
                 return;
             }
-            if (plan.party.Any(p => p != null && !p.Dead && p.Spawned && p.Map == old)) return;
+            var still = plan.party.Where(p => p != null && !p.Dead && p.Spawned && p.Map == old).ToList();
+            if (still.Count > 0)
+            {
+                // Someone of the party never left: the old colony waits for them, and the colony is told once.
+                if (!plan.waitTold && !still.Any(p => Verse.AI.Group.LordUtility.GetLord(p)?.LordJob is LordJob_FormAndSendCaravan))
+                {
+                    plan.waitTold = true;
+                    Tell.Message(NewsKind.Colony, Importance.Important, old, "CC_Found_AbandonWaits".Translate(Names(still).Named("NAMES"), (plan.fromName ?? "?").Named("MOTHER")).Resolve(),
+                        new LookTargets(still), MessageTypeDefOf.CautionInput);
+                }
+                return;
+            }
             plan.abandoned = true;
             LongEventHandler.QueueLongEvent(() => Abandon(plan, old), "CC_Found_Abandoning_Long", false, null);
         }
@@ -714,16 +739,19 @@ namespace ColonyCouncil
                 if (made == null) return;
                 settlement.Notify_MyMapSettled(made);
                 Homes.Clear();
-                Founded(plan, made);
-                WalkIn(made, pawns, possessions, plan, price);
+                Founded(plan, made, false);
+                WalkIn(made, pawns, possessions, plan, price, true);
             }, "CC_Found_Newcomers_Long", true, GameAndMapInitExceptionHandlers.ErrorWhileGeneratingMap);
         }
 
         /// <summary>The newcomers come in from the edge of the map together, with what they brought, as the game's own new wanderers do.</summary>
-        private static void WalkIn(Map map, List<Pawn> pawns, Dictionary<Pawn, List<ThingDefCount>> possessions, FoundingPlan plan, int price)
+        private static void WalkIn(Map map, List<Pawn> pawns, Dictionary<Pawn, List<ThingDefCount>> possessions, FoundingPlan plan, int price, bool founding = false)
         {
-            if (!CellFinder.TryFindRandomEdgeCellWith(c => c.Standable(map) && !c.Roofed(map) && map.reachability.CanReach(c, map.Center, Verse.AI.PathEndMode.OnCell,
-                    TraverseMode.PassDoors, Danger.Deadly), map, CellFinder.EdgeRoadChance_Neutral, out var cell))
+            // From an edge they can walk in from: toward the colony's people where they are, else toward the middle of the land.
+            bool people = map.mapPawns.FreeColonistsSpawnedCount > 0;
+            if (!CellFinder.TryFindRandomEdgeCellWith(c => c.Standable(map) && (people ? map.reachability.CanReachColony(c) : map.reachability.CanReach(c, map.Center, Verse.AI.PathEndMode.Touch,
+                    TraverseMode.PassDoors, Danger.Deadly)), map, CellFinder.EdgeRoadChance_Neutral, out var cell)
+                && !CellFinder.TryFindRandomEdgeCellWith(c => c.Standable(map), map, CellFinder.EdgeRoadChance_Neutral, out cell))
                 cell = CellFinder.RandomEdgeCell(map);
             var came = new List<Pawn>();
             foreach (var p in pawns)
@@ -745,7 +773,9 @@ namespace ColonyCouncil
             if (came.Count == 0) return;
             FloodFillerFog.FloodUnfog(cell, map);
             string call = Ages.Form(AgeFeature.Call, Ages.Of(map), Ages.Of(map)).word;
-            string text = "CC_Found_NewcomersText".Translate(Names(came).Named("NAMES"), Homes.Name(map).Named("PLACE"), call.Named("CALL")).Resolve();
+            string text = (founding ? "CC_Found_NewcomersFoundText" : "CC_Found_NewcomersText").Translate(Names(came).Named("NAMES"), Homes.Name(map).Named("PLACE"), call.Named("CALL"),
+                (plan.fromName ?? "?").Named("MOTHER")).Resolve();
+            if (founding) text += " " + OldColonyLine(plan, map, plan.seatMoved);
             if (price > 0) text += " " + "CC_Found_NewcomersPaid".Translate(price.Named("SILVER"), (plan.fromName ?? "?").Named("MOTHER")).Resolve();
             else text += " " + "CC_Found_NewcomersFree".Translate().Resolve();
             Tell.Letter(NewsKind.Colony, Importance.Important, map, "CC_Found_NewcomersLabel".Translate(Homes.Name(map).Named("PLACE")).Resolve(), text, LetterDefOf.PositiveEvent,
@@ -839,6 +869,19 @@ namespace ColonyCouncil
             JourneyRun.Confirm(j, true);
         }
 
+        /// <summary>Homes lost: a colony on the record whose home is gone (the player's own Abandon, a home taken) ends there.</summary>
+        public static void HomesLost(IReadOnlyList<int> lost)
+        {
+            if (lost == null) return;
+            foreach (int key in lost)
+            {
+                var r = WorldLedger.ColonyRecord(key);
+                if (r == null || !r.Standing) continue;
+                var ruin = r.tile < 0 ? null : Find.WorldObjects.AllWorldObjects.FirstOrDefault(o => o != null && o.Tile.tileId == r.tile && o.def == WorldObjectDefOf.AbandonedSettlement);
+                WorldLedger.EndColony(key, ruin != null ? ColonyEnd.Abandoned : ColonyEnd.Lost, ruin?.ID ?? -1);
+            }
+        }
+
         // ================= Words =================
 
         public static string Names(IEnumerable<Pawn> pawns) => TextUtil.JoinAnd(pawns.Where(p => p != null).Select(p => p.LabelShort).ToList());
@@ -848,6 +891,16 @@ namespace ColonyCouncil
         {
             int tiles = from != null ? Mathf.RoundToInt(Find.WorldGrid.ApproxDistanceInTiles(from.Tile, tile)) : 0;
             return "CC_Journey_Place".Translate(tile.Tile?.PrimaryBiome?.label ?? "?", tiles).Resolve();
+        }
+    }
+
+    /// <summary>Listens for homes lost (Homes.Changed): a colony on the record whose home is gone ends there, abandoned (the game's ruin at its place) or lost.</summary>
+    [StaticConstructorOnStartup]
+    public static class FoundingListener
+    {
+        static FoundingListener()
+        {
+            Homes.Changed += (founded, lost) => Foundings.HomesLost(lost);
         }
     }
 

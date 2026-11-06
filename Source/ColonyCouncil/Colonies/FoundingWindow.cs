@@ -28,7 +28,7 @@ namespace ColonyCouncil
                 Messages.Message(why, MessageTypeDefOf.RejectInput, false);
                 return;
             }
-            Find.WindowStack.Windows.OfType<MainTabWindow>().ToList().ForEach(w => w.Close(false));
+            Find.MainTabsRoot.EscapeCurrentTab(false);
             Find.WindowStack.Windows.OfType<Window_Card>().ToList().ForEach(w => w.Close(false));
             CameraJumper.TryShowWorld();
             Find.WorldTargeter.BeginTargeting(t =>

@@ -80,6 +80,20 @@ namespace ColonyCouncil
             return r;
         }
 
+        /// <summary>A colony's record by its key when its home is gone already (written with what is known).</summary>
+        public static LedgerColony NoteColony(int key, string name, int tile, int founded)
+        {
+            var l = Instance;
+            if (l == null || key == HomesMath.None) return null;
+            var r = ColonyRecord(key);
+            if (r != null) return r;
+            r = new LedgerColony { key = key, name = name, tile = tile, founded = founded };
+            l.colonyRecords.Add(r);
+            l.FoldColonies();
+            Changed();
+            return r;
+        }
+
         /// <summary>A colony ended (abandoned; the hand-over is release 2's): when, how, and the ruin or town it left.</summary>
         public static void EndColony(int key, ColonyEnd end, int left)
         {

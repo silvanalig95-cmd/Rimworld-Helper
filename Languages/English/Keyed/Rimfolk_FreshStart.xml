@@ -124,6 +124,8 @@
   <CC_Found_SeatNotYet>The seat stays where it is for now: {WHY}</CC_Found_SeatNotYet>
   <CC_Found_NewcomersComing>The newcomers called are on their way: you'll be asked who they are.</CC_Found_NewcomersComing>
   <CC_Found_History>{PLACE} was founded by {NAMES}, from {MOTHER}.</CC_Found_History>
+  <CC_Found_HistoryNewcomers>{PLACE} was founded by newcomers answering the call of {MOTHER}.</CC_Found_HistoryNewcomers>
+  <CC_Found_AbandonWaits>{NAMES} of the founding party are still at {MOTHER}: it is abandoned once they have left (or use the game's own Abandon).</CC_Found_AbandonWaits>
   <CC_Found_UprootedSent>sent from {MOTHER} against their wish</CC_Found_UprootedSent>
   <CC_Found_UprootedKept>kept from {PLACE} against their wish</CC_Found_UprootedKept>
   <CC_Found_FirstNightLabel>the first night</CC_Found_FirstNightLabel>
@@ -142,6 +144,9 @@
   <CC_Found_Newcomers_Long>The newcomers arrive</CC_Found_Newcomers_Long>
   <CC_Found_NewcomersLabel>Newcomers at {PLACE}</CC_Found_NewcomersLabel>
   <CC_Found_NewcomersText>{NAMES} have come to {PLACE}, answering {CALL}. They walk in from the edge of the land with what they brought.</CC_Found_NewcomersText>
+  <CC_Found_NewcomersFoundText>{NAMES} have come to found {PLACE}, answering {CALL} from {MOTHER}. They walk in from the edge of the land with what they brought.</CC_Found_NewcomersFoundText>
+  <CC_Found_ActNewcomers>Choose the newcomers</CC_Found_ActNewcomers>
+  <CC_Found_ActNewcomersTip>The game's own window for new people: who founds the new colony.</CC_Found_ActNewcomersTip>
   <CC_Found_NewcomersPaid>Their passage, {SILVER} silver's worth, was paid from the stores of {MOTHER}.</CC_Found_NewcomersPaid>
   <CC_Found_NewcomersHistory>{NAMES} came to {PLACE} as newcomers.</CC_Found_NewcomersHistory>
   <CC_Found_NewcomersLapsed>Nobody answered the call for newcomers to {PLACE}, and it was let go.</CC_Found_NewcomersLapsed>

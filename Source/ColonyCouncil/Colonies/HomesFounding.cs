@@ -46,6 +46,8 @@ namespace ColonyCouncil
         public int askedCaravan = -1;
         /// <summary>What has been done once the colony stands: the moods, the first night, the old colony abandoned, the newcomers asked for.</summary>
         public bool moodsGiven, firstNight, abandoned, newcomersAsked;
+        /// <summary>The seat moved here as it stood; someone of the party still on the old map was told of once.</summary>
+        public bool seatMoved, waitTold;
 
         public PlanetTile Tile => tile < 0 ? PlanetTile.Invalid : new PlanetTile(tile, layer);
 
@@ -76,6 +78,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref firstNight, "firstNight");
             Scribe_Values.Look(ref abandoned, "abandoned");
             Scribe_Values.Look(ref newcomersAsked, "newcomersAsked");
+            Scribe_Values.Look(ref seatMoved, "seatMoved");
+            Scribe_Values.Look(ref waitTold, "waitTold");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 party ??= new List<Pawn>();
