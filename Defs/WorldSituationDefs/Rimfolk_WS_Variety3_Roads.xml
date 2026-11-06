@@ -1,0 +1,660 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- World events on the region's roads (the player's request, 6 November 2026, with Rimfolk_WS_Variety3.xml): a ban on
+       drink at a neighbour's town, a great caravan crossing the region, a people's households on the move to their
+       kin's town. Told from data with the default worker. The ban holds or falls by what the colony sold and said; the
+       caravan reaches its town or is robbed in the hills by whether the colony warned it; the households reach their
+       kin's town well or worn out by whether the colony saw them through, and the towns' fortunes move with each
+       (WorldEffect_Fortune). -->
+
+  <!-- ===================== A ban on drink ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_DryLaw</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a ban on drink</label>
+    <weight>0.6</weight>
+    <earliestDay>40</earliestDay>
+    <cooldownDays>240</cooldownDays>
+    <durationDays>16~24</durationDays>
+    <kind>law</kind>
+    <prosperity>-4</prosperity>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <names>
+      <li>the ban on drink</li>
+      <li>[lowtech] the elders' ban</li>
+      <li>[!lowtech] the dry law</li>
+    </names>
+    <titles>
+      <li>A ban on drink at {PLACE}</li>
+      <li>{PLACE} goes dry</li>
+    </titles>
+    <texts>
+      <li>{FACTION} have forbidden drink at {PLACE}: no brewing, no selling, no cup at the table. It came after a wedding feast ended in a killing, and {NAME} was passed the next morning.\n\nHalf the town agrees with it. The other half is already looking for someone who sells.</li>
+      <li>[theirLowtech] The elders of {FACTION} have broken the brewing jars at {PLACE} and forbidden the fermented drink, after two families came to blows over a feast. {NAME} holds for as long as the elders say it holds.\n\nThe young people of {PLACE} are not happy about it.</li>
+      <li>[theirHightech] {FACTION}'s council has closed every bar and brewhouse at {PLACE} under {NAME}, after a season of fights and a fire. Their wardens are watching the roads for carts with bottles in them.\n\nThe town is thirsty, and the colony is on the road.</li>
+      <li>[theirEmpire] By the {TITLE}'s edict, drink is forbidden at {PLACE} until the house there has answered for a drunken insult at court. The Empire calls it {NAME}, a matter of honour; the townspeople call it something else.\n\nThirsty people look for someone who sells.</li>
+      <li>[ideology] {FACTION}'s faithful have had drink forbidden at {PLACE}, by their elders' reading of {NAME}. The young of the town keep the letter of it and look for a way round the rest.\n\nThe colony is on the road out of {PLACE}.</li>
+    </texts>
+    <summaries>
+      <li>Visitors come by more often. People of {PLACE} will want to buy the colony's beer dear, and a smuggler may too; {FACTION}'s wardens will want the colony to keep their law. If enough drink gets in, the ban will not hold; if the colony keeps it, {FACTION} will remember.</li>
+    </summaries>
+    <modifiers>
+      <li><incident>VisitorGroup</incident><factor>1.2</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>thirsty</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>travelers</what><count>2</count><ages>18~30</ages></li>
+        </effects>
+        <day>2~6</day>
+        <count>4~8</count>
+        <titles>
+          <li>Thirsty visitors from {PLACE}</li>
+        </titles>
+        <texts>
+          <li>Two young people of {FACTION} have walked out from {PLACE} to the colony's gate. They have heard the colony brews, and would buy {COUNT} bottles of beer at three times its worth to take home, under {NAME} or not.\n\n{FACTION}'s wardens would not thank the colony if they heard of it.</li>
+          <li>[theirLowtech] Two of {FACTION}'s young people have come to the gate with a basket and a purse. Since {NAME} there is nothing to drink at {PLACE}, and they would pay three times over for {COUNT} jugs of the colony's beer.\n\nThe elders would not like it.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Sell them {COUNT} beer at three times its worth</label>
+            <outcome>The beer is handed over at the gate, the price is counted out, and they set off back toward {PLACE} looking pleased with themselves.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Sell"><thing>Beer</thing><price>3</price><toVisitor>true</toVisitor></li>
+            </effects>
+            <riskChance>0.25</riskChance>
+            <riskOutcome>The beer is handed over at the gate and paid for. A few days later {FACTION}'s wardens found the bottles at {PLACE}, and asked where they came from. They were told.</riskOutcome>
+            <riskEffects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-6</amount></li>
+            </riskEffects>
+            <flags><li>sold</li></flags>
+            <riskFlags><li>caught</li></riskFlags>
+          </li>
+          <li>
+            <label>Not against their law</label>
+            <outcome>The two of them are told the colony won't sell against {NAME}. They go back toward {PLACE} with the purse still full.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>smuggler</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>smuggler</what><gender>Male</gender><pack>true</pack></li>
+        </effects>
+        <day>5~10</day>
+        <count>20~40</count>
+        <titles>
+          <li>A cart with a false bottom</li>
+        </titles>
+        <texts>
+          <li>A carter of {FACTION} has come to the gate with a cart that has a false bottom, and doesn't hide it. The back rooms of {PLACE} will pay anything for drink since {NAME}, and he would buy {COUNT} bottles of the colony's beer at twice its worth.\n\nIf {FACTION}'s wardens stop his cart on the road, they will know where the beer came from.</li>
+          <li>[sold] The carter at the gate says he heard of the colony from two young people of {PLACE}. He has a cart with a false bottom and room in it for {COUNT} bottles of beer, at twice its worth.\n\n{FACTION}'s wardens are stopping carts on the road.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Sell him {COUNT} beer at twice its worth</label>
+            <outcome>The beer goes into the cart at the gate, under the boards. The carter pays and drives off toward {PLACE} at a careful pace.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Sell"><thing>Beer</thing><price>2</price><toVisitor>true</toVisitor></li>
+            </effects>
+            <riskChance>0.35</riskChance>
+            <riskOutcome>The beer goes into the cart at the gate and is paid for. Two days later {FACTION}'s wardens stopped the cart on the road and pulled up the boards, and the carter told them where the beer came from.</riskOutcome>
+            <riskEffects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-10</amount></li>
+            </riskEffects>
+            <flags><li>smuggled</li></flags>
+            <riskFlags><li>caught</li></riskFlags>
+          </li>
+          <li>
+            <label>Send him on</label>
+            <outcome>The carter shrugs and turns his cart round. There are other brewers in the region.</outcome>
+          </li>
+          <li>
+            <label>Tell {FACTION}'s wardens about him</label>
+            <outcome>Word goes to {FACTION}'s wardens about the cart with the false bottom, and they stop it on the road before it reaches {PLACE}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
+            </effects>
+            <flags><li>informed</li></flags>
+            <ways><mercy>-1</mercy></ways>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>unrest</key>
+        <day>7~12</day>
+        <chance>0.6</chance>
+        <message>true</message>
+        <texts>
+          <li>Word on the road: there was trouble at {PLACE} last night, when a crowd broke the seals on a brewhouse and {FACTION}'s wardens had to clear the street.</li>
+        </texts>
+      </li>
+      <li>
+        <key>warden</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>envoy</what></li>
+        </effects>
+        <day>9~14</day>
+        <forbids><li>caught</li></forbids>
+        <titles>
+          <li>{FACTION}'s warden at the gate</li>
+        </titles>
+        <texts>
+          <li>A warden of {FACTION} has come to the gate. {NAME} is hard enough to keep at {PLACE} without drink coming in from outside, and {FACTION} ask the colony, as a neighbour, not to sell to anyone from the town until it is lifted.</li>
+          <li>[sold] A warden of {FACTION} is at the gate, and knows the colony has sold beer to people of {PLACE}. The warden doesn't say so outright. {FACTION} ask the colony to sell no more to anyone from the town until {NAME} is lifted.</li>
+          <li>[smuggled] A warden of {FACTION} is at the gate. Beer has been getting into {PLACE} in a cart with a false bottom, and the warden looks at the colony's brewery while saying it. {FACTION} ask the colony to keep their law.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Promise to keep their law</label>
+            <outcome>The warden is told the colony will sell nothing to {PLACE} while {NAME} stands, and goes back to say so.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+            </effects>
+            <flags><li>promised</li></flags>
+          </li>
+          <li>
+            <label>The colony sells to whom it likes</label>
+            <outcome>The warden is told what the colony sells at its own gate is its own business. The warden goes back to {PLACE} without another word.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-3</amount></li>
+            </effects>
+            <flags><li>defied</li></flags>
+            <ways><openness>1</openness></ways>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>caught</key>
+        <requires><li>caught</li></requires>
+        <titles>
+          <li>{NAME} lifted</li>
+        </titles>
+        <texts>
+          <li>{FACTION} have lifted {NAME} at {PLACE} at last, and beer is sold there again. Their wardens still talk about the bottles they found and where it came from.</li>
+        </texts>
+        <chronicle>{NAME} at {PLACE} was lifted; {FACTION}'s wardens remember the colony's beer.</chronicle>
+      </li>
+      <li>
+        <key>gotIn</key>
+        <requires><li>smuggled</li></requires>
+        <titles>
+          <li>{NAME} lifted</li>
+        </titles>
+        <texts>
+          <li>{NAME} could not hold. Too much beer was getting into {PLACE}, and {FACTION} have given it up and opened the brewhouses again. Nobody at {PLACE} says where the beer came from, and everybody knows.</li>
+        </texts>
+        <chronicle>{NAME} at {PLACE} could not hold.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Fortune"><amount>4</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>soldIn</key>
+        <requires><li>sold</li><li>defied</li></requires>
+        <titles>
+          <li>{NAME} lifted</li>
+        </titles>
+        <texts>
+          <li>{NAME} could not hold. {FACTION} have opened the brewhouses at {PLACE} again, and their wardens say the colony did not make it easier.</li>
+        </texts>
+        <chronicle>{NAME} at {PLACE} could not hold.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Fortune"><amount>4</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>kept</key>
+        <requires><li>promised</li></requires>
+        <forbids><li>smuggled</li></forbids>
+        <helped>true</helped>
+        <titles>
+          <li>{NAME} kept</li>
+        </titles>
+        <texts>
+          <li>{NAME} has done what {FACTION} wanted of it. {PLACE} has had a quiet season, the families who quarrelled have made it up, and the brewhouses are to open again in the spring. {FACTION} say the colony kept their law when it could have made silver off it.</li>
+        </texts>
+        <chronicle>{NAME} at {PLACE} held; the colony kept {FACTION}'s law.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+          <li Class="ColonyCouncil.WorldEffect_Fortune"><amount>-2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>informed</key>
+        <requires><li>informed</li></requires>
+        <helped>true</helped>
+        <titles>
+          <li>{NAME} kept</li>
+        </titles>
+        <texts>
+          <li>{NAME} has held at {PLACE} to its end, and {FACTION}'s wardens say the cart the colony told them of was the last that tried. The brewhouses are to open again in the spring.</li>
+        </texts>
+        <chronicle>{NAME} at {PLACE} held; the colony told {FACTION}'s wardens of a smuggler.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+          <li Class="ColonyCouncil.WorldEffect_Fortune"><amount>-2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>lapsed</key>
+        <titles>
+          <li>{NAME} forgotten</li>
+        </titles>
+        <texts>
+          <li>Nobody at {PLACE} is keeping {NAME} any more, and {FACTION} have stopped pretending they are. The brewhouses are open again, quietly.</li>
+        </texts>
+        <chronicle>{NAME} at {PLACE} was quietly forgotten.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== A great caravan ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_GreatCaravan</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a great caravan</label>
+    <weight>0.6</weight>
+    <earliestDay>30</earliestDay>
+    <cooldownDays>200</cooldownDays>
+    <durationDays>10~16</durationDays>
+    <kind>trade</kind>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <names>
+      <li>[tribal] the amber train</li>
+      <li>[tribal] the long caravan</li>
+      <li>[medieval] the spice caravan</li>
+      <li>[medieval] the salt train</li>
+      <li>[industrial] the great convoy</li>
+      <li>[spacer] the hauler convoy</li>
+    </names>
+    <titles>
+      <li>A great caravan</li>
+      <li>{NAME} on the road</li>
+    </titles>
+    <texts>
+      <li>{NAME} is crossing the region, bound for {PLACE}: a hundred beasts and more, with goods from beyond the mountains that {FACTION} have waited two years for. Traders are already following it like gulls behind a plough.\n\nIts road passes close to the colony. So, the drivers say, do the bandits who have been watching it from the hills.</li>
+      <li>[theirLowtech] Word has come down the road that {NAME} is on its way to {PLACE}, the first in three summers: strings of beasts from beyond the mountains, with cloth and salt and things {FACTION} have no word for.\n\nIt will pass close by the colony, and so will everyone who means to rob it.</li>
+      <li>[theirHightech] {NAME}, thirty vehicles from beyond the mountains, is on the road to {PLACE} with a season's worth of goods for {FACTION}. Every trader in the region wants to be near it.\n\nIts route passes the colony. Its drivers are worried about the hills.</li>
+    </texts>
+    <summaries>
+      <li>Caravans come more often in its wake. Its outriders may ask the colony for a night on its far meadow, and bandits are said to be watching it. Warned of the hill road, it reaches {PLACE} safe and the town does well by it; robbed, {PLACE} is poorer for a season.</li>
+    </summaries>
+    <modifiers>
+      <li><incident>TraderCaravanArrival</incident><factor>1.3</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>outriders</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>rider</what></li>
+        </effects>
+        <day>1~4</day>
+        <count>60~120</count>
+        <wealthScaled>true</wealthScaled>
+        <titles>
+          <li>{NAME}'s outriders</li>
+        </titles>
+        <texts>
+          <li>An outrider of {NAME} is at the gate. The lead train will be past the colony this evening, and asks to rest its beasts on the colony's far meadow for the night and water them. They offer {COUNT} silver for it, or the friendship of {FACTION}'s merchants.\n\nThe beasts would leave the meadow well trodden.</li>
+          <li>[theirLowtech] A rider of {NAME} has come ahead to ask, in the old way, for a night's grazing on the colony's far meadow for the lead train, and water for the beasts. {FACTION} would pay {COUNT} silver, or remember it.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>The meadow is theirs for the night</label>
+            <outcome>The outrider rides back to the train. It will come onto the far meadow this evening and go on at first light.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.VisitEffect_Come"><what>caravan</what><count>3~5</count><pack>true</pack><livestock>3~5</livestock><spot>Far</spot><nights>1</nights><hourFrom>15</hourFrom><hourTo>20</hourTo><delay>2~5</delay><onward>true</onward><holdBeat>rested</holdBeat></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
+            </effects>
+            <flags><li>hosted</li></flags>
+            <help>1</help>
+            <deed>rested {NAME}'s beasts on its meadow</deed>
+            <ways><generosity>1</generosity></ways>
+            <next>rested</next>
+            <nextDays>0.5~1</nextDays>
+          </li>
+          <li>
+            <label>For {COUNT} silver</label>
+            <outcome>The outrider pays the silver at the gate and rides back to the train. It will come onto the far meadow this evening and go on at first light.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Silver" />
+              <li Class="ColonyCouncil.VisitEffect_Come"><what>caravan</what><count>3~5</count><pack>true</pack><livestock>3~5</livestock><spot>Far</spot><nights>1</nights><hourFrom>15</hourFrom><hourTo>20</hourTo><delay>2~5</delay><onward>true</onward></li>
+            </effects>
+            <flags><li>paid</li></flags>
+          </li>
+          <li>
+            <label>The meadow is the colony's</label>
+            <outcome>The outrider rides back to tell the train to go on past the colony without stopping.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>rested</key>
+        <called>true</called>
+        <message>true</message>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Loot"><value>120~240</value></li>
+        </effects>
+        <texts>
+          <li>{NAME}'s lead train has left the far meadow and gone on toward {PLACE}. One of its riders is bringing something back to the colony's gate for the night's grazing.</li>
+        </texts>
+      </li>
+      <li>
+        <key>hills</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>rider</what></li>
+        </effects>
+        <day>4~8</day>
+        <skill>Social</skill>
+        <titles>
+          <li>Bandits in the hills</li>
+        </titles>
+        <texts>
+          <li>{NAME}'s master has sent a rider back to the colony's gate. Bandits have been seen on the ridges ahead, watching the train, and the master asks whether the colony knows another way through the hills to {PLACE}.\n\n{A_nameDef} knows the old hill road. Telling it would take an hour at the gate.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>{A_nameDef} tells them the hill road</label>
+            <outcome>{A_nameDef} goes out to the rider at the gate and draws the old hill road in the dust, twice, until the rider has it. The rider goes back to the train at a gallop.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the hill road told at the gate</label><who>A</who><to>Stranger</to><duration>1~1.5</duration></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+            </effects>
+            <flags><li>warned</li></flags>
+            <help>2</help>
+            <deed>{A_nameDef} told {NAME} the hill road past the bandits</deed>
+          </li>
+          <li>
+            <label>The colony knows no other way</label>
+            <outcome>The rider is told the colony knows no other road, and goes back to the train to take its chances.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>safe</key>
+        <requires><li>warned</li></requires>
+        <helped>true</helped>
+        <titles>
+          <li>{NAME} reaches {PLACE}</li>
+        </titles>
+        <texts>
+          <li>{NAME} came into {PLACE} by the old hill road while the bandits waited on the ridges for it, and {FACTION} have a season's goods in their markets. The caravan's master says the colony's road saved the train.</li>
+        </texts>
+        <chronicle>{NAME} reached {PLACE} safe by the road the colony told it.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+          <li Class="ColonyCouncil.WorldEffect_Fortune"><amount>6</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>robbed</key>
+        <chance>0.5</chance>
+        <titles>
+          <li>{NAME} robbed</li>
+        </titles>
+        <texts>
+          <li>Bandits caught {NAME} in the hills short of {PLACE}. The drivers got away with their lives and half the beasts, and nothing else. {FACTION}'s markets will be bare this season.</li>
+          <li>[hosted] Bandits caught {NAME} in the hills short of {PLACE}. The drivers who rested on the colony's meadow got away with their lives, and little more.</li>
+        </texts>
+        <chronicle>{NAME} was robbed in the hills short of {PLACE}.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Fortune"><amount>-6</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>arrived</key>
+        <titles>
+          <li>{NAME} reaches {PLACE}</li>
+        </titles>
+        <texts>
+          <li>{NAME} has reached {PLACE}, worn and short of a few beasts but whole, and {FACTION} have a season's goods in their markets.</li>
+        </texts>
+        <chronicle>{NAME} reached {PLACE}.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Fortune"><amount>4</amount></li>
+        </effects>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== Households on the move ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_Trek</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>households on the move</label>
+    <weight>0.6</weight>
+    <earliestDay>30</earliestDay>
+    <cooldownDays>220</cooldownDays>
+    <durationDays>12~18</durationDays>
+    <kind>trek</kind>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <names>
+      <li>the long walk</li>
+      <li>[lowtech] the trek</li>
+      <li>[!lowtech] the resettlement</li>
+    </names>
+    <titles>
+      <li>Households on the move</li>
+      <li>{FACTION} on the road</li>
+    </titles>
+    <texts>
+      <li>Forty households of {FACTION} from the far side of their country are on the road, driven out by two dry years, bound for {PLACE} where their kin have promised them land. They are calling it {NAME}.\n\nTheir road runs past the colony. It will be a fortnight before the last of their carts go by.</li>
+      <li>[theirLowtech] The far villages of {FACTION} have given up their dry fields and are walking to {PLACE}, old and young, with their goats and their carts. {NAME} will take them past the colony's land.\n\nThey have little to eat and a long way still to go.</li>
+      <li>[theirHightech] {FACTION} are moving the households of their dry eastern farms to {PLACE}, in trucks where they have them and on foot where they don't. {NAME} runs past the colony for the next two weeks.\n\nMost of them carry everything they own.</li>
+    </texts>
+    <summaries>
+      <li>Travellers pass far more often. Their households go by on the road, their herders may ask for water, the slow ones may ask to rest, and some of the young may ask to stay. If they reach {PLACE} well, the town grows by them; worn out, it has more mouths than it can feed.</li>
+    </summaries>
+    <modifiers>
+      <li><incident>TravelerGroup</incident><factor>1.6</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>first</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_Come"><what>trek</what><count>4~6</count><family>true</family><pack>true</pack><livestock>2~4</livestock><spot>Road</spot><onward>true</onward><stopHours>1~2</stopHours><hourFrom>8</hourFrom><hourTo>16</hourTo><delay>0.5~2</delay></li>
+        </effects>
+        <day>1~3</day>
+        <message>true</message>
+        <texts>
+          <li>The first households of {NAME} will pass the colony on the road today, on their way to {PLACE}.</li>
+        </texts>
+      </li>
+      <li>
+        <key>water</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>elder</what><gender>Female</gender><ages>50~70</ages></li>
+        </effects>
+        <day>3~6</day>
+        <count>40~80</count>
+        <wealthScaled>true</wealthScaled>
+        <titles>
+          <li>Water for the herds</li>
+        </titles>
+        <texts>
+          <li>An elder of {NAME} is at the gate. Their herds have had nothing to drink since yesterday morning, and the elder asks to bring them down to the colony's water this evening and rest them there the night. They can pay {COUNT} silver, which is most of what they have.</li>
+          <li>[theirLowtech] An old woman of {FACTION}'s walking villages has come to the gate leaning on a stick. Their goats are dying of thirst, she says, and asks for a night at the colony's water for them. She offers {COUNT} silver, and is not happy about it.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>The water is theirs for the night</label>
+            <outcome>The elder thanks the colony and goes back the way she came. Their herders will bring the beasts down to the water this evening and go on at first light.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.VisitEffect_Come"><what>herders</what><count>3~4</count><livestock>5~8</livestock><spot>Water</spot><nights>1</nights><hourFrom>16</hourFrom><hourTo>21</hourTo><delay>1~3</delay><onward>true</onward></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>watered the herds of {NAME}</deed>
+            <ways><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>For {COUNT} silver</label>
+            <outcome>The elder pays the silver at the gate and goes back the way she came. Their herders will bring the beasts down to the water this evening.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Silver" />
+              <li Class="ColonyCouncil.VisitEffect_Come"><what>herders</what><count>3~4</count><livestock>5~8</livestock><spot>Water</spot><nights>1</nights><hourFrom>16</hourFrom><hourTo>21</hourTo><delay>1~3</delay><onward>true</onward></li>
+            </effects>
+            <ways><generosity>-1</generosity></ways>
+          </li>
+          <li>
+            <label>Not at the colony's water</label>
+            <outcome>The elder turns away from the gate without a word, and the herds go on thirsty.</outcome>
+            <ways><generosity>-1</generosity></ways>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>slow</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>elder</what><gender>Male</gender><ages>65~80</ages></li>
+        </effects>
+        <day>5~9</day>
+        <chance>0.6</chance>
+        <titles>
+          <li>Too slow for the road</li>
+        </titles>
+        <texts>
+          <li>An old man of {NAME} has dropped behind his household and come to the colony's gate. His feet are done, he says, and he asks to rest two nights by the colony's wall before he follows them to {PLACE}.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Two nights by the wall, and a meal</label>
+            <outcome>A meal is carried out to him at the gate, and he settles by the wall for two nights before he goes on after his household.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a meal for the old man of {NAME}</label><what>meals</what><count>1</count><to>Stranger</to><eat>true</eat></li>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>2</nights></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>rested an old man of {NAME} by its wall</deed>
+            <ways><mercy>1</mercy><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Food for the road</label>
+            <outcome>Food is carried out to him at the gate, and he goes on after his household slowly, eating as he walks.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the old man of {NAME}</label><what>rawfood</what><count>10</count><to>Stranger</to></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>He must go on</label>
+            <outcome>The old man nods, and goes on after his household on his bad feet.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>stay</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>travelers</what><count>2</count><ages>17~28</ages></li>
+        </effects>
+        <day>7~11</day>
+        <chance>0.6</chance>
+        <titles>
+          <li>Two who would stay</li>
+        </titles>
+        <texts>
+          <li>Two young people of {NAME} have come to the gate on their own. They would rather work for the colony than walk on to a strange town, they say, and ask to be taken in.\n\nTheir elders would see it as two pairs of hands lost.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Take them in</label>
+            <outcome>The two of them come in through the gate with their bundles, and are the colony's now.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Join"><count>2</count><ages>17~28</ages></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-3</amount></li>
+            </effects>
+            <flags><li>tookIn</li></flags>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Send them on to their kin</label>
+            <outcome>The two are told their kin need them at {PLACE}. They turn back, slowly.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>last</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_Come"><what>trek</what><count>3~5</count><family>true</family><pack>true</pack><livestock>1~3</livestock><spot>Road</spot><onward>true</onward><stopHours>1~2</stopHours><hourFrom>8</hourFrom><hourTo>16</hourTo><delay>0.5~2</delay></li>
+        </effects>
+        <day>10~14</day>
+        <message>true</message>
+        <texts>
+          <li>The last households of {NAME} will pass the colony on the road today.</li>
+        </texts>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>welcomed</key>
+        <minHelp>2</minHelp>
+        <helped>true</helped>
+        <titles>
+          <li>{NAME} ends at {PLACE}</li>
+        </titles>
+        <texts>
+          <li>The households of {NAME} have reached {PLACE}, and their kin have found them land. They came in thin but whole, with most of their beasts, and tell anyone who asks that the colony saw them through.</li>
+        </texts>
+        <chronicle>{NAME} reached {PLACE}; {FACTION} remember the colony's water and its wall.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+          <li Class="ColonyCouncil.WorldEffect_Fortune"><amount>5</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>arrived</key>
+        <chance>0.7</chance>
+        <titles>
+          <li>{NAME} ends at {PLACE}</li>
+        </titles>
+        <texts>
+          <li>The last of {NAME} have reached {PLACE}. It has been hard on them, but their kin have found them land, and the town has more hands for the next harvest.</li>
+        </texts>
+        <chronicle>{NAME} reached {PLACE}.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Fortune"><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>worn</key>
+        <titles>
+          <li>{NAME} ends at {PLACE}</li>
+        </titles>
+        <texts>
+          <li>{NAME} has reached {PLACE} worn to the bone, short of a third of its beasts, and the town has more mouths than it can feed this winter. {FACTION} will be a long time getting over it.</li>
+        </texts>
+        <chronicle>{NAME} reached {PLACE} worn out.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Fortune"><amount>-4</amount></li>
+        </effects>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+</Defs>
