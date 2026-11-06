@@ -29,7 +29,7 @@
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
     <stages>
       <li>
-        <label>parted from {0}</label>
+        <label>parted from someone close</label>
         <description>We live at two colonies now. I keep turning to say something to them, and they aren't there.</description>
         <baseMoodEffect>-3</baseMoodEffect>
       </li>

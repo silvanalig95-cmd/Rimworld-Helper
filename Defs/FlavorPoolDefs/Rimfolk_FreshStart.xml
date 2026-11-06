@@ -2,6 +2,34 @@
 <Defs>
 
   <!--
+    A founding party leaving for good (Source/ColonyCouncil/Journeys/JourneyRun.cs, SeeOff): one of them as they set off,
+    and those at home nearest the gate seeing them off. Not the journey's own words: they aren't coming back.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_FoundingSays</defName>
+    <lines>
+      <plain>
+        <li>[leave] Let's go and make a home of it.</li>
+        <li>[leave] Last look back, then the road.</li>
+        <li>[leave] Somewhere out there is our new hearth.</li>
+        <li>[seeoff] Send word when the first roof is up.</li>
+        <li>[seeoff] We'll miss you at supper.</li>
+        <li>[seeoff] Make it a good place.</li>
+      </plain>
+      <warm>
+        <li>[leave] Whatever we find there, it'll be ours.</li>
+        <li>[seeoff] Wherever you settle, you're still ours.</li>
+      </warm>
+      <blunt>
+        <li>[seeoff] Go on, then.</li>
+      </blunt>
+      <gloomy>
+        <li>[seeoff] It won't be the same here without you.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!--
     The first night of a new colony (Source/ColonyCouncil/Colonies/Foundings.cs): the founders gather at a fire, and the
     speaker-to-be (a seat holder among them, else the eldest) speaks. Said over the speaker's head at the gathering;
     [speaker] lines are the speaker's own when nothing plays out on the map. One sentence each.

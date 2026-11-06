@@ -522,7 +522,7 @@ namespace ColonyCouncil
                     CouncilGameComponent.GiveThought(p, FoundingDefOf.Rimfolk_Uprooted, null, -1f, "CC_Found_UprootedKept".Translate(Homes.Name(map).Named("PLACE")).Resolve());
                     if (h != null) h.asks.Add(new FoundingAsk { pawn = p, wants = plan.home, founded = Now });
                 }
-            // Close bonds split between the two colonies, while both stand.
+            // apart: close bonds split between the two colonies, while both stand: they are at two homes by now, which is the mood.
             if (!plan.keepOld || mother == null) return;
             var stayed = Homes.People(mother).Where(p => !plan.party.Contains(p)).ToList();
             var went = plan.party.Where(p => p != null && !p.Dead).ToList();
@@ -618,6 +618,7 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("founding: the first night", e);
                 }
             }
+            // apart: with answers not played out on the map, the first night is the speaker's word and the founders' mood, as any gathering is then.
             if (Speech.On) Speech.Say(speaker, Flavor.FromPool("Rimfolk_Pool_FirstNight", speaker, null, null, "speaker"));
             foreach (var x in founders) CouncilGameComponent.GiveThought(x, FoundingDefOf.Rimfolk_FirstNight, null, -1f, cause);
         }
