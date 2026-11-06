@@ -15,6 +15,12 @@ namespace ColonyCouncil
     public static class Texts
     {
         /// <summary>
+        /// The key for a sentence about <paramref name="n"/> of something, in story text where "(s)" won't do: the key with
+        /// "_One" for one, "_Many" for any other number ("marked a year", "marked 2 years").
+        /// </summary>
+        public static string CountKey(string key, int n) => key + (n == 1 ? "_One" : "_Many");
+
+        /// <summary>
         /// The text with each {KEY} that has a value filled with it (a null value as nothing); any other placeholder is
         /// left as written, for the game's own grammar or a context's Format after ({PAWN_nameDef}).
         /// </summary>

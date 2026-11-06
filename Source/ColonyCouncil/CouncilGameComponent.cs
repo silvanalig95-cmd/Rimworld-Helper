@@ -997,7 +997,7 @@ namespace ColonyCouncil
 
             Speak(w.pawn, w.quote, new Color(1f, 0.92f, 0.6f));
             AddChronicle(new ChronicleEntry(ChronicleKind.WishMade,
-                "CC_Chronicle_WishMade".Translate(w.pawn.LabelShort, w.Label, w.reason ?? "").Resolve(), w.pawn));
+                "CC_Chronicle_WishMade".Translate(w.pawn.LabelShort, w.LabelInline, w.reason ?? "").Resolve(), w.pawn));
         }
 
         public string DescribeForLetter(Wish w)
@@ -1119,7 +1119,7 @@ namespace ColonyCouncil
                 new LookTargets(p), MessageTypeDefOf.NeutralEvent);
             Speak(p, speech, new Color(1f, 0.92f, 0.6f));
             AddChronicle(new ChronicleEntry(ChronicleKind.Petition,
-                "CC_Chronicle_Petition".Translate(p.LabelShort, w.pawn.LabelShort, w.Label).Resolve(), p));
+                "CC_Chronicle_Petition".Translate(p.LabelShort, w.pawn.LabelShort, w.LabelInline).Resolve(), p));
         }
 
         // ================= Effects =================

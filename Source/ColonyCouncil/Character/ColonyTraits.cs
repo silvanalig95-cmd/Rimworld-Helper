@@ -255,7 +255,8 @@ namespace ColonyCouncil
                 // Those who love the work take pride in it; a name with no one skill behind it is simply the colony's.
                 if (def.skill != null) text += "\n\n" + "CC_Ways_TraitPride".Translate(def.skill.label).Resolve();
                 Tell.Letter(NewsKind.Colony, Importance.Notable, null, label, text, LetterDefOf.PositiveEvent);
-                comp?.AddChronicle(new ChronicleEntry(ChronicleKind.Council, label, null));
+                // The chronicle has a sentence, not the letter's label ("Known as Walled" stood as a line).
+                comp?.AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Ways_KnownChronicle".Translate(def.label).Resolve(), null));
             }
             else if (isKnown && !ColonyTraitMath.Known(true, rate, def.knownAt, LoseShare))
             {

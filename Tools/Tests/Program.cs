@@ -450,6 +450,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {ImmersionTests.Run(root, Check)} things about what colonists say and their small habits.");
         Console.WriteLine($"Checked {TogetherTests.Run(root, Check)} things about moments that need people together, and how speech shows.");
         Console.WriteLine($"Checked {ElectionTests.Run(root, Check)} things about elections on the map (the poll, the campaign, the hustings, the count, the planks).");
+        Console.WriteLine($"Checked {SaveWordsTests.Run(root, Check)} things about the words the player's save showed untrue (counts, sparks, wishes, the chronicle, the year's letter, the officers).");
         Console.WriteLine($"Checked {BanishTests.Run(root, Check)} things about banishment by the council (the trouble, a word first, banishment only if it goes on, who dislikes and who stands by, what the colony loses, every age, the player's own case).");
         Console.WriteLine($"Checked {ScribeTests.Run(root, Check)} things about saving and loading (a collection loaded into a local and read after loading comes back empty).");
         Console.WriteLine($"Checked {VendettaTests.Run(root, Check)} things about a vendetta passed on at its avenger's death (whoever was closest, by how close they really were, never blood kin first; noted at the death; the words).");

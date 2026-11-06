@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Story text counted in words, not "(s)" (Texts.CountKey: _One for one, _Many for any other number). The shipped keys
+       with "(s)" are left for the record and no longer said. -->
+  <CC_Chronicle_Anniversary_One>{0} marked a year in the colony.</CC_Chronicle_Anniversary_One>
+  <CC_Chronicle_Anniversary_Many>{0} marked {1} years in the colony.</CC_Chronicle_Anniversary_Many>
+  <CC_Log_Anniversary_One>a year in the colony</CC_Log_Anniversary_One>
+  <CC_Log_Anniversary_Many>{0} years in the colony</CC_Log_Anniversary_Many>
+  <CC_Chronicle_PassedOver_One>One colonist felt passed over when {1} got {2}.</CC_Chronicle_PassedOver_One>
+  <CC_Chronicle_PassedOver_Many>{0} colonists felt passed over when {1} got {2}.</CC_Chronicle_PassedOver_Many>
+  <CC_Annals_Raids_One>We were attacked once, by raiders, beasts or worse.</CC_Annals_Raids_One>
+  <CC_Annals_Raids_Many>We were attacked {0} times, by raiders, beasts and worse.</CC_Annals_Raids_Many>
+  <CC_Annals_Wishes_One>The council granted one wish and let {1} slip away.</CC_Annals_Wishes_One>
+  <CC_Annals_Wishes_Many>The council granted {0} wishes and let {1} slip away.</CC_Annals_Wishes_Many>
+  <CC_Annals_Dilemmas_One>The council was asked to settle one hard question.</CC_Annals_Dilemmas_One>
+  <CC_Annals_Dilemmas_Many>The council was asked to settle {0} hard questions.</CC_Annals_Dilemmas_Many>
+  <CC_Year_BeastStole_One>{PET_nameDef} has been at the stores once.</CC_Year_BeastStole_One>
+  <CC_Year_BeastStole_Many>{PET_nameDef} has been at the stores {N} times.</CC_Year_BeastStole_Many>
+  <CC_Year_Road_One>One load went down the road with the carters from their post.</CC_Year_Road_One>
+  <CC_Year_Road_Many>{N} loads went down the road with the carters from their post.</CC_Year_Road_Many>
+
+  <!-- The year's letter (World/YearLetter.cs): no herd born that year, a world event's end with no word of its own (it
+       said "ended in over"), and the chronicle's lines without a count. -->
+  <CC_Year_HerdNoneBorn>The herd numbers {COUNT}, none of them born this year. {LEAD}</CC_Year_HerdNoneBorn>
+  <CC_Year_WorldOver>{EVENT} is over</CC_Year_WorldOver>
+  <CC_Year_ChronicleSome>Some of what the year's chronicle says of strangers and the world:</CC_Year_ChronicleSome>
+
+  <!-- Our ways and the colony's traits in the chronicle: a sentence, where the letter's label ("Known as Walled") stood. -->
+  <CC_Ways_KnownChronicle>People have started calling the colony {0}.</CC_Ways_KnownChronicle>
+  <CC_Ways_RenownedChronicle>Travelers far and wide call the colony {0} now.</CC_Ways_RenownedChronicle>
+
+</LanguageData>
