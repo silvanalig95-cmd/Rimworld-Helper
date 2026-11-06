@@ -44,6 +44,8 @@ public static class ImmersionTests
         "Rimfolk_VisitorLines",
         // What visitors say at the relic, the anima tree, the gravship and the bookcase (Visitors/VisitorsMore2.cs).
         "Rimfolk_VisitorLines2",
+        // What callers say at their work, beside their event's own lines (Visitors/Callers.cs).
+        "Rimfolk_Pool_CallerSays",
         // A drink raised or a joint lit before work for Alpha Skills' drunken and stoned passions (Integrations/BeforeWork.cs).
         "Rimfolk_Pool_DrinkBeforeWork", "Rimfolk_Pool_SmokeBeforeWork",
         // A colonist setting off to carry a lighter case to another bed for someone worse off, or for an operation

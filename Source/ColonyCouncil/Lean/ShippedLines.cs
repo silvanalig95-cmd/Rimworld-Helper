@@ -149,7 +149,13 @@ namespace ColonyCouncil
             "The deserters' camp {PLACE} is empty this morning, the fire cold. They went in the night, as people do who don't want to be followed.",
             "{X_nameDef} and the others have gone on from {PLACE}, looking for somewhere nobody knows their faces. {X_nameDef} left a word of thanks at the gate.",
             "The merchants' camp {PLACE} is gone. {X_nameDef} bowed to the colony's gate before leaving, in some custom of their own.",
-            "The merchants from {FACTION} packed up their stall and went on toward the far markets. {X_nameDef} called something from the road in their own tongue, and it sounded like a blessing."
+            "The merchants from {FACTION} packed up their stall and went on toward the far markets. {X_nameDef} called something from the road in their own tongue, and it sounded like a blessing.",
+            // Callers at their work (Rimfolk_Events_Callers.xml): a captive's kin speaking of a sister and a dog the game never
+            // made, an undertaker calling every dead raider "he" and "somebody's son", and an animal doctor speaking of a leg
+            // whatever was hurt. Their own words beside them are in Rimfolk_Pool_CallerSays.xml.
+            "[talk] Your sister sends her love, and your old dog still waits by the door.",
+            "[load] Mind his head, he's somebody's son.",
+            "[tend] Who's been looking after this leg, then."
         };
 
         private static Dictionary<string, LineTags.Parsed> parsed;
