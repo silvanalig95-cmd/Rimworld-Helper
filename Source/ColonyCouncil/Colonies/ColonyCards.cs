@@ -28,6 +28,9 @@ namespace ColonyCouncil
                 r => ColonySeat.Move(CardSections.HomeOf(r)), r => CardSections.HomeOf(r) != null && Homes.All.Count > 1, 11f, "CC_Seat_ActTip".Translate(), "colony-seat");
             CardActs.Register(CardKind.Place, _ => "CC_Found_Act".Translate().Resolve(), r => Foundings.WhyNot(CardSections.HomeOf(r)), r => FoundingPlace.Pick(CardSections.HomeOf(r)),
                 r => Foundings.On && CardSections.HomeOf(r) != null && Foundings.Current == null, 12f, "CC_Found_ActTip".Translate(), "colony-found");
+            // In a new game's first days: the same colony on a new map (Colonies/Landing.cs).
+            CardActs.Register(CardKind.Place, _ => Landing.Label, _ => Landing.WhyNot(), _ => Dialog_Landing.Open(), r => Landing.ShowsFor(CardSections.HomeOf(r)), 12.5f,
+                "CC_Landing_CardTip".Translate(), "colony-landing");
             CardActs.Register(CardKind.Place, _ => "CC_Found_ActJourney".Translate().Resolve(), r => JourneyWhyNot(CardSections.HomeOf(r)), r => Foundings.PlanJourney(Under(CardSections.HomeOf(r))),
                 r => NeedsJourney(CardSections.HomeOf(r)), 13f, "CC_Found_ActJourneyTip".Translate(), "colony-found-journey");
             CardActs.Register(CardKind.Place, _ => "CC_Found_ActCallOff".Translate().Resolve(), null, r => AskCallOff(Under(CardSections.HomeOf(r))),

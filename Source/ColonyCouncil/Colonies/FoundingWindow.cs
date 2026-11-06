@@ -47,14 +47,17 @@ namespace ColonyCouncil
 
         private static readonly Dictionary<long, string> cache = new Dictionary<long, string>();
 
-        /// <summary>The tile's facts, as lines (short for the cursor's label).</summary>
-        public static List<string> Facts(PlanetTile tile, Map from, bool brief)
+        /// <summary>
+        /// The tile's facts, as lines (short for the cursor's label). <paramref name="landing"/>: for another landing site
+        /// (Colonies/Landing.cs), whose own check comes first and which no road leads from.
+        /// </summary>
+        public static List<string> Facts(PlanetTile tile, Map from, bool brief, bool landing = false)
         {
             var lines = new List<string>();
             if (!tile.Valid) return lines;
             try
             {
-                string no = Foundings.TileWhyNot(tile);
+                string no = landing ? null : Foundings.TileWhyNot(tile);
                 if (no != null)
                 {
                     lines.Add(no);
@@ -82,7 +85,7 @@ namespace ColonyCouncil
                 if (towns.Count == 0) lines.Add("CC_Found_NoTowns".Translate(Mathf.RoundToInt(NearTowns).Named("TILES")).Resolve());
                 lines.Add(("CC_Region_Panel_Remote_" + RegionMath.RemoteLevel(RegionMath.Remoteness(nearestPeaceful, within))).Translate().Resolve());
                 // The days by caravan from each home.
-                foreach (var home in Homes.All.Where(h => h.Tile.Layer == tile.Layer))
+                foreach (var home in Homes.All.Where(h => !landing && h.Tile.Layer == tile.Layer))
                 {
                     long key = (long)home.Tile.tileId << 32 | (uint)tile.tileId;
                     if (!cache.TryGetValue(key, out var road))

@@ -340,6 +340,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref scenarioSetUp, "scenarioSetUp");
             Scribe_Values.Look(ref fungusDietMade, "fungusDietMade");
             ExposeWelcome();
+            // The record of the start, while another landing site is offered (Colonies/LandingRecord.cs).
+            ExposeLanding();
             Scribe_Collections.Look(ref history, "history", LookMode.Deep);
             Scribe_Values.Look(ref era, "era", EraMode.Auto);
             if (Scribe.mode == LoadSaveMode.Saving) lastAtHome.RemoveAll(kv => kv.Key == null || kv.Key.Dead || kv.Key.Discarded);
