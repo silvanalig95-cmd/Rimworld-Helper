@@ -97,7 +97,7 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The lines of this pool (as picked, tags removed) the speaker has already written in their journal
-        /// (<paramref name="journal"/>, the entries as written). Worked out again only when <paramref name="stamp"/> (the
+        /// (<paramref name="journalNow"/>, the entries as written). Worked out again only when <paramref name="stamp"/> (the
         /// journal's length and last line's time, say) changes.
         /// </summary>
         public HashSet<string> WrittenBy(object pool, int speaker, int stamp, Func<IEnumerable<string>> lines, Func<IList<string>> journalNow)
@@ -106,14 +106,23 @@ namespace ColonyCouncil
             if (written.TryGetValue((pool, speaker), out var had) && had.stamp == stamp) return had.lines;
             var journal = journalNow();
             HashSet<string> found = null;
-            foreach (var line in journal == null || journal.Count == 0 ? Array.Empty<string>() : lines())
+            if (journal != null && journal.Count > 0)
             {
-                if (line == null || (found != null && found.Contains(line))) continue;
-                for (int i = journal.Count - 1; i >= 0; i--)
+                // Each entry's words made plain once, each line's shape once (Shape.Of keeps it), then line against entry.
+                var plain = new List<string>(journal.Count);
+                foreach (var w in journal)
+                    if (!string.IsNullOrEmpty(w)) plain.Add(Plain(w).Trim());
+                foreach (var line in lines())
                 {
-                    if (!Wrote(line, journal[i])) continue;
-                    (found ??= new HashSet<string>()).Add(line);
-                    break;
+                    if (line == null || (found != null && found.Contains(line))) continue;
+                    var shape = Shape.Of(line);
+                    if (!shape.usable) continue;
+                    for (int i = plain.Count - 1; i >= 0; i--)
+                    {
+                        if (!shape.Fits(plain[i])) continue;
+                        (found ??= new HashSet<string>()).Add(line);
+                        break;
+                    }
                 }
             }
             if (written.Count >= MaxWritten) written.Clear();
@@ -131,34 +140,57 @@ namespace ColonyCouncil
         public static bool Wrote(string line, string written)
         {
             if (string.IsNullOrEmpty(line) || string.IsNullOrEmpty(written)) return false;
-            var parts = Literals(line.Trim(), out bool openStart, out bool openEnd);
-            int letters = 0;
-            foreach (var p in parts)
-                foreach (char c in p)
-                    if (char.IsLetter(c)) letters++;
-            if (letters < MinWords) return false;
-            string text = Plain(written).Trim();
-            if (parts.Count == 1 && !openStart && !openEnd) return string.Equals(text, parts[0], StringComparison.OrdinalIgnoreCase);
-            int at = 0;
-            for (int i = 0; i < parts.Count; i++)
+            var shape = Shape.Of(line);
+            return shape.usable && shape.Fits(Plain(written).Trim());
+        }
+
+        /// <summary>A line taken apart once for <see cref="Wrote"/>: its own words and whether a name opens or closes it.</summary>
+        private sealed class Shape
+        {
+            public List<string> parts;
+            public bool openStart, openEnd, usable;
+
+            private static readonly Dictionary<string, Shape> known = new Dictionary<string, Shape>(StringComparer.Ordinal);
+
+            public static Shape Of(string line)
             {
-                string part = parts[i];
-                if (i == 0 && !openStart)
-                {
-                    if (!text.StartsWith(part, StringComparison.OrdinalIgnoreCase)) return false;
-                    at = part.Length;
-                    continue;
-                }
-                if (i == parts.Count - 1 && !openEnd)
-                {
-                    int end = text.Length - part.Length;
-                    return end >= at && text.EndsWith(part, StringComparison.OrdinalIgnoreCase);
-                }
-                int found = text.IndexOf(part, at, StringComparison.OrdinalIgnoreCase);
-                if (found < 0) return false;
-                at = found + part.Length;
+                if (known.TryGetValue(line, out var s)) return s;
+                s = new Shape();
+                s.parts = Literals(line.Trim(), out s.openStart, out s.openEnd);
+                int letters = 0;
+                foreach (var p in s.parts)
+                    foreach (char c in p)
+                        if (char.IsLetter(c)) letters++;
+                s.usable = letters >= MinWords;
+                if (known.Count >= 20000) known.Clear();
+                known[line] = s;
+                return s;
             }
-            return true;
+
+            public bool Fits(string text)
+            {
+                if (parts.Count == 1 && !openStart && !openEnd) return string.Equals(text, parts[0], StringComparison.OrdinalIgnoreCase);
+                int at = 0;
+                for (int i = 0; i < parts.Count; i++)
+                {
+                    string part = parts[i];
+                    if (i == 0 && !openStart)
+                    {
+                        if (!text.StartsWith(part, StringComparison.OrdinalIgnoreCase)) return false;
+                        at = part.Length;
+                        continue;
+                    }
+                    if (i == parts.Count - 1 && !openEnd)
+                    {
+                        int end = text.Length - part.Length;
+                        return end >= at && text.EndsWith(part, StringComparison.OrdinalIgnoreCase);
+                    }
+                    int found = text.IndexOf(part, at, StringComparison.OrdinalIgnoreCase);
+                    if (found < 0) return false;
+                    at = found + part.Length;
+                }
+                return true;
+            }
         }
 
         /// <summary>
@@ -241,6 +273,14 @@ namespace ColonyCouncil
         public const int MinOwnTone = 3;
 
         public static bool ToneDrawsAlone(int toneLines) => toneLines >= MinOwnTone;
+
+        /// <summary>Forgets every speaker's part (another game's people); the pools' own memory stays.</summary>
+        public void ForgetSpeakers()
+        {
+            said.Clear();
+            saidSets.Clear();
+            written.Clear();
+        }
 
         public void Clear()
         {

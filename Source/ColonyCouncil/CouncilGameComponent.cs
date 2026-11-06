@@ -195,8 +195,8 @@ namespace ColonyCouncil
             LensModel.Dirty();
             SocialColumn.Reset();
             Bonds.ResetCaches();
-            // The lines each pool and each speaker gave out lately were the last game's (a speaker's journal is read again).
-            Flavor.Memory.Clear();
+            // What each speaker said lately was the last game's people's (a speaker's journal is read again from this game).
+            Flavor.Memory.ForgetSpeakers();
             FightSides.Clear();
             CultureView.Reset();
             UiCache.Clear();

@@ -402,6 +402,9 @@ for (int r = 0; r < 4; r++)
     Check(memory.WrittenBy(pool2, 7, 2, PoolLines, () => new List<string>()) == null && asked == 1, "an empty journal keeps nothing out");
     Check(LineMemory.Repeats(journal, tinted) && !LineMemory.Repeats(journal, "A new day.") && !LineMemory.Repeats(null, tinted), "the very same words are never written twice while the journal holds them");
     Check(!LineMemory.ToneDrawsAlone(1) && !LineMemory.ToneDrawsAlone(2) && LineMemory.ToneDrawsAlone(3), "a tone of one or two lines draws together with the plain lines");
+    memory.Remember(pool, "line 9", 9);
+    memory.ForgetSpeakers();
+    Check(memory.SaidBy(7) == null && memory.IsRecent(pool, "line 9"), "another game forgets the speakers, not the pools");
 }
 
 // Every room template and size, in every turn, mirrored and not.
