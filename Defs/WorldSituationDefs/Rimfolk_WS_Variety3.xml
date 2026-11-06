@@ -158,14 +158,14 @@
           <li>A way across the colony's land</li>
         </titles>
         <texts>
-          <li>A rider of {FACTION} is at the gate. A column of their fighters wants to cross the colony's land today, the shortest way to {ENEMY}'s side of the border, and {FACTION} ask the colony's leave.\n\nThey would keep to the road. {ENEMY} would see it as the colony opening its gate to them.</li>
-          <li>[theirLowtech] A runner of {FACTION} has come to say their warriors would cross the colony's land by the road today, if the colony allows it, and be on {ENEMY}'s side of the hills by dark.\n\n{ENEMY} would not thank the colony for the road.</li>
+          <li>A rider of {FACTION} is at the gate. A column of their fighters wants to cross the colony's land by day, the shortest way to {ENEMY}'s side of the border, and {FACTION} ask the colony's leave.\n\nThey would keep to the road. {ENEMY} would see it as the colony opening its gate to them.</li>
+          <li>[theirLowtech] A runner of {FACTION} has come to say their warriors would cross the colony's land by the road, if the colony allows it, on their way to {ENEMY}'s side of the hills.\n\n{ENEMY} would not thank the colony for the road.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Let them cross by the road</label>
-            <outcome>The rider thanks the colony and goes back to the column. They will come along the road in the next hours and keep going.</outcome>
+            <outcome>The rider thanks the colony and goes back to the column. They will come along the road by day and keep going.</outcome>
             <effects>
               <li Class="ColonyCouncil.VisitEffect_Come"><what>band</what><count>4~6</count><armed>true</armed><spot>Road</spot><onward>true</onward><hourFrom>7</hourFrom><hourTo>18</hourTo><delay>1~3</delay><holdBeat>crossed</holdBeat></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
@@ -406,7 +406,7 @@
         <options>
           <li>
             <label>Let them graze, as neighbors</label>
-            <outcome>The herder goes back for the flock. They will come onto the far meadow this evening, graze there the night and go on at first light.</outcome>
+            <outcome>The herder goes back for the flock. They will come onto the far meadow toward evening, graze there the night and go on at first light.</outcome>
             <effects>
               <li Class="ColonyCouncil.VisitEffect_Come"><what>drovers</what><count>2~3</count><livestock>6~9</livestock><spot>Far</spot><nights>1</nights><hourFrom>15</hourFrom><hourTo>20</hourTo><delay>1~3</delay><onward>true</onward></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
@@ -610,14 +610,14 @@
           <li>{FACTION}'s master builder</li>
         </titles>
         <texts>
-          <li>{FACTION}'s master builder has come to the gate on the way back from the quarries. {NAME} has a problem in it the builder can't see past, and word is that the colony's {A_nameDef} knows how such things are raised.\n\nThe master builder asks for a few hours of {A_nameDef}'s time this evening, and a corner by the wall for the night.</li>
+          <li>{FACTION}'s master builder has come to the gate on the way back from the quarries. {NAME} has a problem in it the builder can't see past, and word is that the colony's {A_nameDef} knows how such things are raised.\n\nThe master builder asks for a few hours of {A_nameDef}'s time in the evening, and a corner by the wall for the night.</li>
           <li>[theirLowtech] The one who leads the building of {NAME} has come to the gate to ask for {A_nameDef}. The beams of the great roof will not sit the way they should, and the colony's builder could show why, they have been told.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>{A_nameDef} shows their master builder how</label>
-            <outcome>{A_nameDef} will go out to the master builder at the gate this evening with a stick to draw in the dirt, and talk it through. The master builder sleeps by the wall and goes back at first light.</outcome>
+            <outcome>{A_nameDef} will go out to the master builder at the gate in the evening with a stick to draw in the dirt, and talk it through. The master builder sleeps by the wall and goes back at first light.</outcome>
             <effects>
               <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
               <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>A</teacher><student>X</student><skill>Construction</skill><hours>16~20</hours><duration>2~3</duration></li>

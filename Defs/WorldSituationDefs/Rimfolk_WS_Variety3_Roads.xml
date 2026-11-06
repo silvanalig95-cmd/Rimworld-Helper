@@ -309,14 +309,14 @@
           <li>{NAME}'s outriders</li>
         </titles>
         <texts>
-          <li>An outrider of {NAME} is at the gate. The lead train will be past the colony this evening, and asks to rest its beasts on the colony's far meadow for the night and water them. They offer {COUNT} silver for it, or the friendship of {FACTION}'s merchants.\n\nThe beasts would leave the meadow well trodden.</li>
+          <li>An outrider of {NAME} is at the gate. The lead train will be past the colony toward evening, and asks to rest its beasts on the colony's far meadow for the night and water them. They offer {COUNT} silver for it, or the friendship of {FACTION}'s merchants.\n\nThe beasts would leave the meadow well trodden.</li>
           <li>[theirLowtech] A rider of {NAME} has come ahead to ask, in the old way, for a night's grazing on the colony's far meadow for the lead train, and water for the beasts. {FACTION} would pay {COUNT} silver, or remember it.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>The meadow is theirs for the night</label>
-            <outcome>The outrider rides back to the train. It will come onto the far meadow this evening and go on at first light.</outcome>
+            <outcome>The outrider rides back to the train. It will come onto the far meadow toward evening and go on at first light.</outcome>
             <effects>
               <li Class="ColonyCouncil.VisitEffect_Come"><what>caravan</what><count>3~5</count><pack>true</pack><livestock>3~5</livestock><spot>Far</spot><nights>1</nights><hourFrom>15</hourFrom><hourTo>20</hourTo><delay>2~5</delay><onward>true</onward><holdBeat>rested</holdBeat></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
@@ -330,7 +330,7 @@
           </li>
           <li>
             <label>For {COUNT} silver</label>
-            <outcome>The outrider pays the silver at the gate and rides back to the train. It will come onto the far meadow this evening and go on at first light.</outcome>
+            <outcome>The outrider pays the silver at the gate and rides back to the train. It will come onto the far meadow toward evening and go on at first light.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Silver" />
               <li Class="ColonyCouncil.VisitEffect_Come"><what>caravan</what><count>3~5</count><pack>true</pack><livestock>3~5</livestock><spot>Far</spot><nights>1</nights><hourFrom>15</hourFrom><hourTo>20</hourTo><delay>2~5</delay><onward>true</onward></li>
@@ -478,7 +478,7 @@
         <day>1~3</day>
         <message>true</message>
         <texts>
-          <li>The first households of {NAME} will pass the colony on the road today, on their way to {PLACE}.</li>
+          <li>The first households of {NAME} are on their way past the colony, on the road to {PLACE}.</li>
         </texts>
       </li>
       <li>
@@ -500,7 +500,7 @@
         <options>
           <li>
             <label>The water is theirs for the night</label>
-            <outcome>The elder thanks the colony and goes back the way she came. Their herders will bring the beasts down to the water this evening and go on at first light.</outcome>
+            <outcome>The elder thanks the colony and goes back the way she came. Their herders will bring the beasts down to the water toward evening and go on at first light.</outcome>
             <effects>
               <li Class="ColonyCouncil.VisitEffect_Come"><what>herders</what><count>3~4</count><livestock>5~8</livestock><spot>Water</spot><nights>1</nights><hourFrom>16</hourFrom><hourTo>21</hourTo><delay>1~3</delay><onward>true</onward></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
@@ -511,7 +511,7 @@
           </li>
           <li>
             <label>For {COUNT} silver</label>
-            <outcome>The elder pays the silver at the gate and goes back the way she came. Their herders will bring the beasts down to the water this evening.</outcome>
+            <outcome>The elder pays the silver at the gate and goes back the way she came. Their herders will bring the beasts down to the water toward evening.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Silver" />
               <li Class="ColonyCouncil.VisitEffect_Come"><what>herders</what><count>3~4</count><livestock>5~8</livestock><spot>Water</spot><nights>1</nights><hourFrom>16</hourFrom><hourTo>21</hourTo><delay>1~3</delay><onward>true</onward></li>
@@ -606,7 +606,7 @@
         <day>10~14</day>
         <message>true</message>
         <texts>
-          <li>The last households of {NAME} will pass the colony on the road today.</li>
+          <li>The last households of {NAME} are on their way past the colony.</li>
         </texts>
       </li>
     </beats>
