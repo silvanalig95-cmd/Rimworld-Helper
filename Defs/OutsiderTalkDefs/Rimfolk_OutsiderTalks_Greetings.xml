@@ -49,7 +49,9 @@
         condition; any piece with one is said only in that tone); first (never talked) met returning (on a new visit)
         known (familiarity 30) close (60) friends sweethearts lovers; talks:3 talks:8; likesyou coolyou (their regard
         of the colonist) likesus wary (of the colony); did:gift did:meal did:teach did:spar did:duel did:provoke
-        did:faith did:court did:letter did:bring; last:TOPIC (their last talk's topic)
+        did:faith did:court did:letter did:bring (asked, whatever the answer); shared:meal shared:drink shared:lesson
+        shared:gift shared:bout (it went through: the meal eaten together, the gift kept, as they remember it);
+        last:TOPIC (their last talk's topic)
       who they are: role:trader role:guest role:lodger role:visitor role:notable role:head role:heir role:envoy;
         them:young (a child: only pieces asking for it) them:old them:hurt them:kind them:abrasive them:leader
         them:married them:widowed them:spousehere them:parent them:smallchild them:childhere them:best:SKILLDEF
@@ -75,7 +77,9 @@
         year town:new, town:founder ({FOUNDER}), them:founder (the one spoken to led its settlers), town:mother (the town
         they came from, {MOTHERTOWN}), town:why:KEY (refugees ruin mother road river coast hills land; {WHYFOUNDED}
         finishes "We came ...": "for the river"); region:newtown (a town founded near the colony this year that isn't
-        theirs: {NEWTOWN} of {NEWTOWNPEOPLE}) with region:newtown:theirs (of their people) or region:newtown:other
+        theirs: {NEWTOWN} of {NEWTOWNPEOPLE}) with region:newtown:theirs (of their people) or region:newtown:other;
+        them:camp (one of a camp of travelers at the colony) and them:camp:KIND by the camp's kind (them:camp:Hunters,
+        them:camp:SaltCaravan: the kind's defName without its prefix)
       wars: their:war war:new war:long war:losing (they have fewer towns than when it began) war:winning (the
         enemy has) war:fought (their fighters and the enemy's met on the colony's land) war:ourfoe (their enemy is
         the colony's too) war:ourfriend; their:peace (a war of theirs over in 30 days); world:war (two other

@@ -40,7 +40,8 @@ namespace ColonyCouncil
         /// What the land must have for them to come, and what they pitch near (Camps/CampKindsLand.cs): "fish" (water with
         /// fish in it, and fishing open to the colony), "ruins" (ancient pieces to strip outside the home area), "harvest"
         /// (more ripe crop than the growers can bring in before the season ends), "edge" (a craft come down by the map's
-        /// edge), "monolith" (Anomaly's monolith woken on this map). None: any land.
+        /// edge), "monolith" (Anomaly's monolith woken on this map), "woods" (stands of grown wild trees clear of the
+        /// colony, for woodcutters). None: any land.
         /// </summary>
         public string needs;
         /// <summary>Their own work on the land by day (Camps/CampKindsLand.cs): "fish", "strip", "reap", "hull", "watch".</summary>
@@ -163,6 +164,25 @@ namespace ColonyCouncil
         [MustTranslate] public List<string> farewell = new List<string>();
         /// <summary>Short lines shown above heads now and then.</summary>
         [MustTranslate] public List<string> lines = new List<string>();
+
+        /// <summary>Words for this kind written in a file of their own (a FlavorExtensionDef with camp), joined to its lists at startup.</summary>
+        public void AddWords(FlavorExtensionDef ext)
+        {
+            if (ext == null) return;
+            void Join(ref List<string> to, List<string> from)
+            {
+                if (from.NullOrEmpty()) return;
+                to ??= new List<string>();
+                to.AddRange(from.Where(l => !l.NullOrEmpty()));
+            }
+            Join(ref titles, ext.titles);
+            Join(ref texts, ext.texts);
+            Join(ref settled, ext.settled);
+            Join(ref joinTexts, ext.joinTexts);
+            Join(ref farewell, ext.farewell);
+            Join(ref lines, ext.campLines);
+            Join(ref momentLines, ext.momentLines);
+        }
 
         public bool FitsEra()
         {

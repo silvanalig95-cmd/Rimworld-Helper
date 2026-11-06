@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Memories from the council's questions about what the colony meets (Defs/DilemmaDefs/Rimfolk_Dilemmas_Variety2.xml):
+    the cold snap, blight in the fields, the good weapon, the animal whose person died. Few and small: most answers
+    reuse the council's own memories (fair's fair, someone else got the honor, warm at last), and what an answer
+    really does is on the map.
+  -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_FrozenThrough</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>worked through the cold snap</label><description>The council said carry on, so we carried on in the cold. I couldn't feel my hands by noon.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_BlightLeft</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>left the blight alone</label><description>I found the blight, and the council let it be. I watch it walk down the rows every morning.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_ArmedWell</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>trusted with the good weapon</label><description>The council gave the good one to me. I mean to be worth it when it counts.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_KeptTheirAnimal</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>looking after their animal</label><description>Their animal is mine to look after now. It keeps close, the way it kept close to them.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_NewCharge</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>a new animal to handle</label><description>An animal that lost its person, and mine to settle. It'll take patience.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><skill>Animals</skill><xp>300</xp><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmE_NotGivenAnimal</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>their animal went to someone else</label><description>I'd have kept it close for their sake. The council gave it to someone who knows animals better.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

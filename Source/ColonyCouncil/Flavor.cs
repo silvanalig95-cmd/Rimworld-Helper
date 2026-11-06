@@ -30,6 +30,9 @@ namespace ColonyCouncil
         /// </summary>
         public static int AtHour = -1;
 
+        /// <summary>The hour as lines are tagged: night (22 to 6), morning (6 to 11), day (11 to 18), evening (18 to 22).</summary>
+        public static string HourTag(int hour) => hour < 6 || hour >= 22 ? "night" : hour < 11 ? "morning" : hour < 18 ? "day" : "evening";
+
         public static HashSet<string> TagsFor(Pawn p, Wish w = null)
         {
             var tags = new HashSet<string>();
@@ -48,7 +51,7 @@ namespace ColonyCouncil
                         case Season.PermanentWinter: tags.Add("winter"); break;
                     }
                     int hour = AtHour >= 0 ? AtHour : GenLocalDate.HourOfDay(map);
-                    tags.Add(hour < 6 || hour >= 22 ? "night" : hour < 11 ? "morning" : hour < 18 ? "day" : "evening");
+                    tags.Add(HourTag(hour));
                     var weather = map.weatherManager?.curWeather;
                     if (weather != null)
                     {

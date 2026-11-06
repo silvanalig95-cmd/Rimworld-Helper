@@ -1,0 +1,896 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The text pass on the world's voices (6 November 2026): talk with the travelers of a camp at the colony, by the kind of
+    camp they travel with (them:camp:KIND, World/Region/RegionNearFacts.cs: the kind's defName without its prefix), and
+    about a camp on the colony's land with a visitor who isn't one of it (colony:camp with !them:camp, {CAMP}). Before
+    this pass one piece spoke of a camp at all, and it was asked by the camp's own people too. The format is described at
+    the top of Rimfolk_OutsiderTalks_Greetings.xml.
+  -->
+
+  <!-- ================= Any camp's travelers ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_HowLong</defName>
+    <topic>camp</topic>
+    <when>them:camp</when>
+    <lines>
+      <li>[us] How long will your people stay?</li>
+      <li>[them] Until the road calls, or until you ask us to go.</li>
+      <li>[us] Nobody's asking.</li>
+      <li>[them] Then we'll see what the road says.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Back</defName>
+    <topic>camp</topic>
+    <when>them:camp,returning</when>
+    <lines>
+      <li>[us] You came back.</li>
+      <li>[them,their:tribal] Our feet remembered the way.</li>
+      <li>[them] Your land was good to us, so here we are.</li>
+      <li>[us] It still is.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Fire</defName>
+    <topic>camp</topic>
+    <when>them:camp,evening</when>
+    <lines>
+      <li>[them] Sit at our fire a while, if you like.</li>
+      <li>[us] I might, when the work's done.</li>
+      <li>[them] We'll keep a place for you.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Rain</defName>
+    <topic>camp</topic>
+    <when>them:camp,rain</when>
+    <lines>
+      <li>[them] A wet camp is a quiet camp, everyone stays under cover.</li>
+      <li>[us] Stay dry if you can.</li>
+      <li>[them] We've slept wetter.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Cold</defName>
+    <topic>camp</topic>
+    <when>them:camp,cold</when>
+    <lines>
+      <li>[them] Cold nights on the ground, the fire's all we have.</li>
+      <li>[us] Keep it high, then.</li>
+      <li>[them,their:tribal] We will, and the spirits will keep the rest.</li>
+      <li>[them] We will, and we'll sleep close.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Road</defName>
+    <topic>camp</topic>
+    <uses>chat,home</uses>
+    <when>them:camp</when>
+    <lines>
+      <li>[us] Is it a hard life, always on the road?</li>
+      <li>[them,their:tribal] The road is our home, as the fire is yours.</li>
+      <li>[them,their:medieval] Hard enough, but every town's a new market.</li>
+      <li>[them] Hard some days, but you see a lot of the world.</li>
+      <li>[us] I've not seen much of it myself.</li>
+      <li>[them] Then you've a lot left to see.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= A hunting party ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Hunters_Game</defName>
+    <topic>camp</topic>
+    <when>them:camp:Hunters</when>
+    <lines>
+      <li>[us] Is the hunting any good round here?</li>
+      <li>[them,winter] The cold brings the herds down, so yes, for now.</li>
+      <li>[them] Good enough that we stayed.</li>
+      <li>[us] Leave some for us, then.</li>
+      <li>[them] We only take what we can carry.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Hunters_Patience</defName>
+    <topic>camp</topic>
+    <when>them:camp:Hunters</when>
+    <lines>
+      <li>[them] What do your people hunt with, out here?</li>
+      <li>[us,lowtech] Bows, mostly, and patience.</li>
+      <li>[us] Whatever we've got to hand.</li>
+      <li>[them] A hunter is mostly patience, whatever they carry.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= A refugee family ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Refugees_Before</defName>
+    <topic>camp</topic>
+    <uses>chat,home</uses>
+    <when>them:camp:Refugees</when>
+    <lines>
+      <li>[us] Where were you before all this?</li>
+      <li>[them] A place with a roof and a door, and that's all I want to say about it.</li>
+      <li>[us] You don't have to say more.</li>
+      <li>[them] Thank you for letting us stop.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Refugees_Welcome</defName>
+    <topic>camp</topic>
+    <when>them:camp:Refugees</when>
+    <lines>
+      <li>[them] We won't stay longer than we're welcome.</li>
+      <li>[us,trait:Kind] Stay as long as you need.</li>
+      <li>[us] We'll see how it goes.</li>
+      <li>[them] That's more than most places say to us.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Prospectors ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Prospectors_Found</defName>
+    <topic>camp</topic>
+    <when>them:camp:Prospectors</when>
+    <lines>
+      <li>[us] Found anything yet?</li>
+      <li>[them] Nothing worth carrying, which is what we say right up until we do.</li>
+      <li>[us] And then?</li>
+      <li>[them] Then we say even less.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Prospectors_Ground</defName>
+    <topic>camp</topic>
+    <when>them:camp:Prospectors</when>
+    <lines>
+      <li>[them] Your ground is harder than it looks.</li>
+      <li>[us,us:best:Mining] I've dug enough of it to know.</li>
+      <li>[us] We've noticed.</li>
+      <li>[them] Hard ground keeps its secrets, that's why we like it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Pilgrims ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Pilgrims_End</defName>
+    <topic>camp</topic>
+    <uses>chat,home</uses>
+    <when>them:camp:Pilgrims</when>
+    <lines>
+      <li>[us] Where does your road end?</li>
+      <li>[them,samefaith] At a shrine of our faith, and yours, I think.</li>
+      <li>[them] At a shrine most of your people would walk past.</li>
+      <li>[us] And when you get there?</li>
+      <li>[them] We turn round and walk home, lighter.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Pilgrims_Pray</defName>
+    <topic>camp</topic>
+    <uses>chat,know</uses>
+    <when>them:camp:Pilgrims</when>
+    <lines>
+      <li>[them] We pray for the places that let us rest.</li>
+      <li>[us] Then I hope ours is in your prayers.</li>
+      <li>[them] It is now.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Traders ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Market_Stall</defName>
+    <topic>camp</topic>
+    <when>them:camp:Market</when>
+    <lines>
+      <li>[them] Have you had a look at the stall yet?</li>
+      <li>[us] Not yet, what have you got?</li>
+      <li>[them] A bit of everything, and fair prices for all of it.</li>
+      <li>[us] I'll come by.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Market_Trade</defName>
+    <topic>camp</topic>
+    <when>them:camp:Market</when>
+    <lines>
+      <li>[us] How's trade been on the road?</li>
+      <li>[them,their:medieval] Slow at every market but the last one, as always.</li>
+      <li>[them] Up and down, like the road.</li>
+      <li>[us] And here?</li>
+      <li>[them] Ask me when we've packed up.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= A traveling smith ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Smith_Mend</defName>
+    <topic>camp</topic>
+    <when>them:camp:Smith</when>
+    <lines>
+      <li>[us] Is it true you can mend anything?</li>
+      <li>[them] Anything iron, and most things that aren't, given a day.</li>
+      <li>[us] I'll remember that.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Smith_Hands</defName>
+    <topic>camp</topic>
+    <when>them:camp:Smith,us:best:Crafting</when>
+    <lines>
+      <li>[them] You've a crafter's way about you, I can tell.</li>
+      <li>[us] Is it that obvious?</li>
+      <li>[them] It's in how you watch the work.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= A hermit ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Hermit_Lonely</defName>
+    <topic>camp</topic>
+    <when>them:camp:Hermit</when>
+    <lines>
+      <li>[us] Do you ever get lonely out here?</li>
+      <li>[them] Lonely is a town full of people who don't listen.</li>
+      <li>[us] I'll leave you be, then.</li>
+      <li>[them] You can stay, you're quiet enough.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Hermit_Wood</defName>
+    <topic>camp</topic>
+    <when>them:camp:Hermit,winter</when>
+    <lines>
+      <li>[us] Have you got wood enough for the winter?</li>
+      <li>[them] I'll manage, I always have.</li>
+      <li>[us] Ask, if you need it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Traveling healers ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Healers_Charge</defName>
+    <topic>camp</topic>
+    <when>them:camp:Healers</when>
+    <lines>
+      <li>[us] Do you charge for what you do?</li>
+      <li>[them] We take what people can spare, and nothing from those who can't.</li>
+      <li>[us] That's generous.</li>
+      <li>[them,their:tribal] It is how the old healers taught us.</li>
+      <li>[them] It's how we were taught.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Healers_Look</defName>
+    <topic>camp</topic>
+    <when>them:camp:Healers,us:hurt</when>
+    <lines>
+      <li>[them] You're favoring something, come and let me look at it.</li>
+      <li>[us] It's nothing.</li>
+      <li>[them] Everything's nothing until it isn't.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= A procession of the faithful ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Procession_Relics</defName>
+    <topic>camp</topic>
+    <when>them:camp:Procession</when>
+    <lines>
+      <li>[us] What are you carrying on those poles?</li>
+      <li>[them] Relics of our faith, older than any of us.</li>
+      <li>[us] Can I see them?</li>
+      <li>[them,samefaith] Of course, they're yours as much as ours.</li>
+      <li>[them] From a respectful distance, yes.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Procession_Walk</defName>
+    <topic>camp</topic>
+    <uses>chat,know</uses>
+    <when>them:camp:Procession</when>
+    <lines>
+      <li>[them] We walk so that others don't have to, that's how my mother put it.</li>
+      <li>[us] Walk where?</li>
+      <li>[them] Wherever the relics are needed next.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Traveling players ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Players_Play</defName>
+    <topic>camp</topic>
+    <when>them:camp:Players</when>
+    <lines>
+      <li>[us] What's the play about?</li>
+      <li>[them,their:tribal] A hunter who chases the moon, and catches it.</li>
+      <li>[them] A king who loses everything and finds it was never his.</li>
+      <li>[us] Does it end well?</li>
+      <li>[them] Depends who you ask afterward.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Players_Artist</defName>
+    <topic>camp</topic>
+    <when>them:camp:Players,us:best:Artistic</when>
+    <lines>
+      <li>[them] They tell me you make things people stop to look at.</li>
+      <li>[us] Sometimes.</li>
+      <li>[them] Then you know what we're about.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Surveyors ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Surveyors_Measure</defName>
+    <topic>camp</topic>
+    <when>them:camp:Surveyors</when>
+    <lines>
+      <li>[us] What are you measuring?</li>
+      <li>[them] The hills, the valleys, the way from here to the next town.</li>
+      <li>[us] What for?</li>
+      <li>[them] So the next people out here don't get lost.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Surveyors_Map</defName>
+    <topic>camp</topic>
+    <when>them:camp:Surveyors,colony:old</when>
+    <lines>
+      <li>[them] Your colony will be on the map now, properly.</li>
+      <li>[us] We've been here long enough.</li>
+      <li>[them] Long enough to be a landmark.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Fishers ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Fishers_Catch</defName>
+    <topic>camp</topic>
+    <when>them:camp:Fishers</when>
+    <lines>
+      <li>[us] Catching much?</li>
+      <li>[them,morning] They're biting, come back in an hour and I'll know.</li>
+      <li>[them] Enough to eat and some to salt.</li>
+      <li>[us] Good water, then.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Fishers_Quiet</defName>
+    <topic>camp</topic>
+    <when>them:camp:Fishers</when>
+    <lines>
+      <li>[them] Do your people fish?</li>
+      <li>[us] When we have the time.</li>
+      <li>[them] Make the time, it's the only quiet work there is.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Salvagers ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Salvagers_Find</defName>
+    <topic>camp</topic>
+    <when>them:camp:Salvagers</when>
+    <lines>
+      <li>[us] What do you get out of those old ruins?</li>
+      <li>[them] Metal, mostly, and now and then something nobody's seen in a hundred years.</li>
+      <li>[us] Anything good this time?</li>
+      <li>[them] Ask me again when it's sold.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Salvagers_Builders</defName>
+    <topic>camp</topic>
+    <when>them:camp:Salvagers,their:lowtech</when>
+    <lines>
+      <li>[them] Whoever built those ruins knew things we don't.</li>
+      <li>[us] Will anyone ever know them again?</li>
+      <li>[them] One salvaged piece at a time, maybe.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Harvest hands ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_HarvestHands_Season</defName>
+    <topic>camp</topic>
+    <when>them:camp:HarvestHands</when>
+    <lines>
+      <li>[us] How many farms do you work in a season?</li>
+      <li>[them] As many as the weather allows.</li>
+      <li>[us] Hard life.</li>
+      <li>[them] An honest one, though.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_HarvestHands_Field</defName>
+    <topic>camp</topic>
+    <when>them:camp:HarvestHands,us:best:Plants</when>
+    <lines>
+      <li>[them] You grow a good field, I'll say that.</li>
+      <li>[us] Thank you, it's most of my day.</li>
+      <li>[them] It shows in the rows.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Stranded spacers ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Spacers_Ship</defName>
+    <topic>camp</topic>
+    <when>them:camp:Spacers</when>
+    <lines>
+      <li>[us] What happened to your ship?</li>
+      <li>[them] Something failed that shouldn't have, and we came down hard.</li>
+      <li>[us] Can it be fixed?</li>
+      <li>[them] Parts of it can be carried away, which is the next best thing.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Spacers_Sky</defName>
+    <topic>camp</topic>
+    <when>them:camp:Spacers,night</when>
+    <lines>
+      <li>[them] I keep looking up to see where we came from.</li>
+      <li>[us] Can you see it?</li>
+      <li>[them] No, but I know where it is.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Watchers of the monolith ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Watchers_Expect</defName>
+    <topic>camp</topic>
+    <when>them:camp:Watchers</when>
+    <lines>
+      <li>[us] What do you expect the monolith to do?</li>
+      <li>[them] Nothing, we hope, and we write that down every night.</li>
+      <li>[us] And if it does something?</li>
+      <li>[them] Then you'll want us here to write that down too.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Watchers_Elders</defName>
+    <topic>camp</topic>
+    <when>them:camp:Watchers,their:tribal</when>
+    <lines>
+      <li>[them] Our elders say such stones were set by the old powers.</li>
+      <li>[us] Do you believe them?</li>
+      <li>[them] I believe it's worth watching.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= A beast show ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_BeastShow_Where</defName>
+    <topic>camp</topic>
+    <when>them:camp:BeastShow</when>
+    <lines>
+      <li>[us] Where did you get animals like these?</li>
+      <li>[them] Some we raised, some we traded for, and one followed us home.</li>
+      <li>[us] Which one?</li>
+      <li>[them] The big one, and it's never left.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_BeastShow_Herd</defName>
+    <topic>camp</topic>
+    <when>them:camp:BeastShow,colony:animals</when>
+    <lines>
+      <li>[them] You keep a good herd yourselves.</li>
+      <li>[us] They keep us as much as we keep them.</li>
+      <li>[them] That's the truth of it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Traveling trainers ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Trainers_Train</defName>
+    <topic>camp</topic>
+    <when>them:camp:Trainers</when>
+    <lines>
+      <li>[us] How do you train them?</li>
+      <li>[them] Patience, treats, and losing a lot before you win.</li>
+      <li>[us] Sounds like raising children.</li>
+      <li>[them] Less shouting, mostly.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= A salt caravan ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_SaltCaravan_Road</defName>
+    <topic>camp</topic>
+    <uses>chat,home</uses>
+    <when>them:camp:SaltCaravan</when>
+    <lines>
+      <li>[us] How far do you carry the salt?</li>
+      <li>[them] From the flats to the hills, and back with whatever the hills will trade.</li>
+      <li>[us] Long road.</li>
+      <li>[them] Salt keeps, so we can take our time.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_SaltCaravan_Heat</defName>
+    <topic>camp</topic>
+    <when>them:camp:SaltCaravan,hot</when>
+    <lines>
+      <li>[them] In this heat a beast drinks twice what it carries.</li>
+      <li>[us] Rest them, then.</li>
+      <li>[them] We'll move them at night, it's kinder.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Merchants from afar ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_FarMerchants_Where</defName>
+    <topic>camp</topic>
+    <uses>chat,home</uses>
+    <when>them:camp:FarMerchants</when>
+    <lines>
+      <li>[us] Where are you from, really?</li>
+      <li>[them] Beyond the mountains, where the markets never close.</li>
+      <li>[us] Is it as far as it sounds?</li>
+      <li>[them] Farther, and every step of it worth it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_FarMerchants_Custom</defName>
+    <topic>camp</topic>
+    <when>them:camp:FarMerchants</when>
+    <lines>
+      <li>[them] In my country we give a gift before we talk of prices.</li>
+      <li>[us] And here?</li>
+      <li>[them] Here I will give you a good price instead, it is the same thing.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Drovers ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Drovers_Market</defName>
+    <topic>camp</topic>
+    <when>them:camp:Drovers</when>
+    <lines>
+      <li>[us] Where are you taking them?</li>
+      <li>[them] To market, if the grass holds out and the weather lets us.</li>
+      <li>[us] Good grass here?</li>
+      <li>[them] Good enough to stop for, and that's high praise from a drover.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Drovers_Coats</defName>
+    <topic>camp</topic>
+    <when>them:camp:Drovers,colony:animals</when>
+    <lines>
+      <li>[them] Your beasts look well kept.</li>
+      <li>[us] We try.</li>
+      <li>[them] It shows in the coats.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Penitents ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Penitents_Why</defName>
+    <topic>camp</topic>
+    <uses>chat,know</uses>
+    <when>them:camp:Penitents</when>
+    <lines>
+      <li>[us] What is it you're walking for?</li>
+      <li>[them] For something done that can't be undone, only walked off.</li>
+      <li>[us] Does the walking help?</li>
+      <li>[them] Ask me at the end of the road.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Penitents_Faith</defName>
+    <topic>camp</topic>
+    <when>them:camp:Penitents,samefaith</when>
+    <lines>
+      <li>[them] You keep our faith, so you know what this road is.</li>
+      <li>[us] I know it, though I've never walked it.</li>
+      <li>[them] May you never need to.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Tree-singers ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_TreeSingers_Song</defName>
+    <topic>camp</topic>
+    <when>them:camp:TreeSingers</when>
+    <lines>
+      <li>[us] What do you sing to them?</li>
+      <li>[them] What they need to hear, which is mostly that they're not alone.</li>
+      <li>[us] Do they answer?</li>
+      <li>[them] Listen tonight, by the old ones, and tell me they don't.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_TreeSingers_Winter</defName>
+    <topic>camp</topic>
+    <when>them:camp:TreeSingers,winter</when>
+    <lines>
+      <li>[them] The trees sleep now, so we sing softly.</li>
+      <li>[us] Do they hear it asleep?</li>
+      <li>[them] That's when they hear it best.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= A traveling healer ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_LoneHealer_Alone</defName>
+    <topic>camp</topic>
+    <uses>chat,know</uses>
+    <when>them:camp:LoneHealer</when>
+    <lines>
+      <li>[us] Why travel alone?</li>
+      <li>[them] Healers who stay put get comfortable, and comfortable healers get careless.</li>
+      <li>[us] Doesn't the road get lonely?</li>
+      <li>[them] Every village has someone who needs me, so no.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_LoneHealer_Doctor</defName>
+    <topic>camp</topic>
+    <when>them:camp:LoneHealer,colony:doctor</when>
+    <lines>
+      <li>[them] I hear {DOCTOR} is the one who sees to your sick.</li>
+      <li>[us,us:doctor] That's me, for my sins.</li>
+      <li>[us] That's right.</li>
+      <li>[them] Good, a colony needs a healer who stays.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= A band of minstrels ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Minstrels_Together</defName>
+    <topic>camp</topic>
+    <when>them:camp:Minstrels</when>
+    <lines>
+      <li>[us] How long have you played together?</li>
+      <li>[them] Long enough to argue about every song.</li>
+      <li>[us] And you still travel together?</li>
+      <li>[them] The arguing is half the music.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Minstrels_Tonight</defName>
+    <topic>camp</topic>
+    <when>them:camp:Minstrels,evening</when>
+    <lines>
+      <li>[them] Come to our fire tonight, we're trying a new song.</li>
+      <li>[us] I might, if the work lets me.</li>
+      <li>[them] The work always says no, come anyway.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Mourners passing through ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Mourners_Sorry</defName>
+    <topic>camp</topic>
+    <when>them:camp:Mourners</when>
+    <lines>
+      <li>[us] I'm sorry for your loss.</li>
+      <li>[them] Thank you, and thank you for letting us rest.</li>
+      <li>[us] Who were they?</li>
+      <li>[them] Someone who'd have liked your colony, I think.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Mourners_Yours</defName>
+    <topic>camp</topic>
+    <when>them:camp:Mourners,colony:death</when>
+    <lines>
+      <li>[them] I heard about {DEAD}, I'm sorry.</li>
+      <li>[us] Thank you.</li>
+      <li>[them] Grief walks with all of us, some days slower.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Scholars ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Scholars_Writing</defName>
+    <topic>camp</topic>
+    <uses>chat,know</uses>
+    <when>them:camp:Scholars</when>
+    <lines>
+      <li>[us] What are you writing all day?</li>
+      <li>[them] Everything people remember, before they forget it.</li>
+      <li>[us] Is it that interesting?</li>
+      <li>[them] Everyone's story is, once it's written down.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Scholars_History</defName>
+    <topic>camp</topic>
+    <when>them:camp:Scholars,colony:old</when>
+    <lines>
+      <li>[them] A colony that has lasted this long has a history worth writing.</li>
+      <li>[us] Then ask me anything.</li>
+      <li>[them] I'll start with the first day, if anyone remembers it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Settlers ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Settlers_Where</defName>
+    <topic>camp</topic>
+    <when>them:camp:Settlers</when>
+    <lines>
+      <li>[us] Where will you settle?</li>
+      <li>[them] Near enough to call you neighbors, if you'll have us.</li>
+      <li>[us] Good neighbors are hard to find.</li>
+      <li>[them] Then we'll try to be good ones.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= A war party ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_WarParty_Thanks</defName>
+    <topic>camp</topic>
+    <when>them:camp:WarParty</when>
+    <lines>
+      <li>[us] Thank you for standing with us.</li>
+      <li>[them,their:tribal] Your fight was our fight, as it should be between friends.</li>
+      <li>[them] Your fight was ours, the moment they came.</li>
+      <li>[us] We won't forget it.</li>
+      <li>[them] Good, we may need you one day.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_WarParty_Mend</defName>
+    <topic>camp</topic>
+    <when>them:camp:WarParty,us:hurt</when>
+    <lines>
+      <li>[them] You look like you've been through it too.</li>
+      <li>[us] I'll mend.</li>
+      <li>[them] We all will, given a night's rest.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Road wardens ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Wardens_Post</defName>
+    <topic>camp</topic>
+    <when>them:camp:Wardens</when>
+    <lines>
+      <li>[us] What's the post for?</li>
+      <li>[them] To keep the road open, and to know who's on it.</li>
+      <li>[us] And who is on it?</li>
+      <li>[them] That's what we're here to find out.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Deserters ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Deserters_Where</defName>
+    <topic>camp</topic>
+    <when>them:camp:Deserters</when>
+    <lines>
+      <li>[us] Where are you headed?</li>
+      <li>[them] Somewhere nobody asks where we've been.</li>
+      <li>[us] We won't ask.</li>
+      <li>[them] Then you're the first.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampFolk_Deserters_War</defName>
+    <topic>camp</topic>
+    <when>them:camp:Deserters,their:war</when>
+    <lines>
+      <li>[them] If anyone asks, you never saw us.</li>
+      <li>[us] Who would ask?</li>
+      <li>[them] People who still think the war is worth it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= A visitor on the camp at the colony ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampSeen_Passed</defName>
+    <topic>colony</topic>
+    <when>colony:camp,!them:camp</when>
+    <lines>
+      <li>[them] I passed {CAMP} on my way in.</li>
+      <li>[us] They're staying a few days.</li>
+      <li>[them,their:tribal] A camp on your land is a guest at your fire, our elders say.</li>
+      <li>[them] Travelers look after each other out here.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampSeen_Trader</defName>
+    <topic>colony</topic>
+    <when>colony:camp,!them:camp,role:trader</when>
+    <lines>
+      <li>[them] I've half a mind to see what {CAMP} will buy.</li>
+      <li>[us] Ask them, they might.</li>
+      <li>[them] Other traders on the road always know your prices, that's the trouble.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampSeen_Empire</defName>
+    <topic>colony</topic>
+    <when>colony:camp,!them:camp,their:empire</when>
+    <lines>
+      <li>[them] I see you host {CAMP} as well.</li>
+      <li>[us] They asked, and we had room.</li>
+      <li>[them] Hospitality to travelers is noted, even at court.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_CampSeen_Busy</defName>
+    <topic>colony</topic>
+    <when>colony:camp,!them:camp,colony:traders</when>
+    <lines>
+      <li>[them] {CAMP}, {TRADERS} and us, your colony is a crossroads these days.</li>
+      <li>[us] It feels like one.</li>
+      <li>[them] Crossroads grow into towns, given time.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

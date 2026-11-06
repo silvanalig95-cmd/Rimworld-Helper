@@ -257,7 +257,7 @@ namespace ColonyCouncil
             m.title = p.LabelShortCap;
             if (comp != null)
             {
-                string titles = comp.epithets.TitlesOf(p);
+                string titles = comp.epithets.NameOf(p);
                 if (!titles.NullOrEmpty()) m.title += ", " + titles;
                 m.ring = UiKit.TrustColor(comp.standings.TrustOf(p));
             }

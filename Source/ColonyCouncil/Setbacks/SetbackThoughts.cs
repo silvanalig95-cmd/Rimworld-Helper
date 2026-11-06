@@ -11,7 +11,20 @@ namespace ColonyCouncil
     /// </summary>
     public class Thought_Setback : Thought_Situational, IExplainedThought
     {
-        public override float MoodOffset() => Setbacks.Felt(pawn, def, base.MoodOffset());
+        /// <summary>
+        /// Its mood as felt, before it became small letdowns: the heart reads this while it holds (Moods/SmallMoments.cs),
+        /// a short moment when it begins, gets worse or holds another day, and the rest as strain.
+        /// </summary>
+        public float Felt() => Setbacks.Felt(pawn, def, base.MoodOffset());
+
+        /// <summary>While letdowns are moments (SmallMoments.On) it gives no mood of its own: its moments and the heart carry it.</summary>
+        public override float MoodOffset()
+        {
+            float m = Felt();
+            return m < 0f && SmallMoments.On && SmallMoments.Eligible(pawn) ? 0f : m;
+        }
+
+        public override bool VisibleInNeedsTab => base.VisibleInNeedsTab && MoodOffset() != 0f;
 
         private ThoughtWorker_Setback Worker => def.Worker as ThoughtWorker_Setback;
 

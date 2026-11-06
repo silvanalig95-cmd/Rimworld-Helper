@@ -49,8 +49,8 @@ public static class NatureTests
 
         // ================= The heart's new kinds =================
 
-        C(Enum.GetValues(typeof(StrainSource)).Cast<StrainSource>().Last() == StrainSource.Nature && Enum.GetValues(typeof(StrainRelief)).Cast<StrainRelief>().Last() == StrainRelief.Nature,
-            "a new source and a new relief, each at the end of its list (saved by position)");
+        C((int)StrainSource.Nature == HeartMath.SourceCount - 2 && (int)StrainRelief.Nature == HeartMath.ReliefCount - 2,
+            "a new source and a new relief, each at the end of its list when it came (saved by position; the small letdowns and joys after)");
         C((int)StrainSource.Nature == 16 && (int)StrainRelief.Nature == 8, "the older kinds keep their places");
         C(HeartMath.SourceCap(StrainSource.Nature) == NatureMath.MaxStrain, "the source's daily cap is one act's most");
         float today = 0f, total = 0f;
@@ -275,7 +275,7 @@ public static class NatureTests
 
         C(nature.Contains("HeartLogic.Build(p, StrainSource.Nature,") && nature.Contains("HeartLogic.Relieve(p, -felt, StrainRelief.Nature)"), "strain and relief through the heart, under their own kinds");
         string logic = Code("Heart/HeartLogic.cs");
-        C(Regex.IsMatch(logic, @"public static float Build\(Pawn p, StrainSource source, float raw\)[\s\S]{0,900}HeartMath\.Add\(raw, speed, HeartMath\.TraitFactor\(source"),
+        C(Regex.IsMatch(logic, @"public static float Build\(Pawn p, StrainSource source, float raw, string why = null\)[\s\S]{0,900}HeartMath\.Add\(raw, speed, HeartMath\.TraitFactor\(source"),
             "built as the hour builds: the strength setting, their traits, the source's cap and the day's");
         C(Regex.IsMatch(logic, @"public static float Relieve\([\s\S]{0,500}HeartMath\.ReliefTraitFactor"), "eased by their nature's way of letting go");
         C(!nature.Contains("ThoughtMaker") && !nature.Contains("TryGainMemory"), "no mood of its own (decision 19)");

@@ -255,15 +255,13 @@ namespace ColonyCouncil
                 // Those who love the work take pride in it; a name with no one skill behind it is simply the colony's.
                 if (def.skill != null) text += "\n\n" + "CC_Ways_TraitPride".Translate(def.skill.label).Resolve();
                 Tell.Letter(NewsKind.Colony, Importance.Notable, null, label, text, LetterDefOf.PositiveEvent);
-                // The chronicle has a sentence, not the letter's label ("Known as Walled" stood as a line).
-                comp?.AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Ways_KnownChronicle".Translate(def.label).Resolve(), null));
+                // The chronicle's sentence is the colony's one name's, at the end of the day (ColonyName.Look).
             }
             else if (isKnown && !ColonyTraitMath.Known(true, rate, def.knownAt, LoseShare))
             {
                 known.Remove(def.defName);
                 string text = def.lost.NullOrEmpty() ? "CC_Ways_TraitFading".Translate(def.label).Resolve() : def.lost;
                 News.Post(text, LookTargets.Invalid, NewsKind.Colony, MessageTypeDefOf.NeutralEvent, Importance.Notable);
-                comp?.AddChronicle(new ChronicleEntry(ChronicleKind.Council, text, null));
             }
         }
 
@@ -314,7 +312,7 @@ namespace ColonyCouncil
     public class Thought_ColonyTrait : Thought_Situational
     {
         /// <summary>Like pride in the colony's ways: it lasts as long as the trait, so it shrinks for the spoiled.</summary>
-        public override float MoodOffset() => base.MoodOffset() * SmallJoys.LiveScale(pawn);
+        public override float MoodOffset() => base.MoodOffset() * GoodLife.RewardScale(pawn);
 
         public override string Description
         {

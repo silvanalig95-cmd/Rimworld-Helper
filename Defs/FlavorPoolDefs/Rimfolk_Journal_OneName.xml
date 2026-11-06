@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- A proud name the colony knew someone by, lost (taken by someone who clearly outdid them over a season, or lost
+       the day they broke the condition it asked for): written once that evening in their own journal.
+       {TITLE} ("the Healer", "Deadeye"): lowercase, never at a sentence start. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_EpithetLost</defName>
+    <lines>
+      <plain>
+        <li>Nobody calls me {TITLE} any more. I hadn't noticed how much I liked it until it stopped.</li>
+        <li>I'm not {TITLE} now. The work I did is still mine.</li>
+        <li>Someone said my name at supper today, just my name. I used to be {TITLE}.</li>
+      </plain>
+      <warm><li>They don't call me {TITLE} any more. It was kind of them while it lasted.</li></warm>
+      <blunt><li>Not {TITLE} any more. Fine. I'll get on with things.</li></blunt>
+      <cheerful><li>So I'm not {TITLE} now. I'll just have to earn something better!</li></cheerful>
+      <gloomy><li>They've stopped calling me {TITLE}. Even that didn't last.</li></gloomy>
+      <cold><li>The colony no longer calls me {TITLE}. Names come and go; what I did stays done.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

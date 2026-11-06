@@ -435,7 +435,9 @@ namespace ColonyCouncil
                 }
                 if (honor == null && S.epithets && comp?.epithets != null)
                 {
-                    var name = comp.epithets.Of(o).FirstOrDefault(e => !e.dubious);
+                    // The name the other is known by (one name, 0.110.0), when it is a proud one.
+                    var chief = comp.epithets.Chief(o);
+                    var name = chief != null && !chief.dubious ? chief : null;
                     if (name != null && !comp.epithets.Of(p).Any(e => !e.dubious))
                     {
                         key = "CC_Trouble_Cause_EnvyName";
@@ -485,7 +487,7 @@ namespace ColonyCouncil
             if (memories == null) return;
             bool any = false;
             for (int i = 0; i < memories.Count; i++)
-                if (memories[i] is Thought_Trouble t && !t.eased && t.age < t.DurationTicks)
+                if (memories[i] is Thought_Trouble t && !t.eased && t.age < t.DurationTicks || TroubleMoment(memories[i]))
                 {
                     any = true;
                     break;
@@ -496,6 +498,8 @@ namespace ColonyCouncil
                 if (!Comforting(p, m, out string who)) return;
                 for (int i = 0; i < memories.Count; i++)
                 {
+                    // A trouble felt as a small letdown's moment (Moods/SmallMoments.cs) passes sooner too.
+                    if (TroubleMoment(memories[i])) memories[i].age = GoodLifeMath.EasedAge(memories[i].age, memories[i].DurationTicks);
                     if (!(memories[i] is Thought_Trouble t) || t.eased || t.age >= t.DurationTicks) continue;
                     t.age = GoodLifeMath.EasedAge(t.age, t.DurationTicks);
                     t.eased = true;
@@ -507,6 +511,8 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("quiet troubles: company", e);
             }
         }
+
+        private static bool TroubleMoment(Thought_Memory m) => m is Thought_SmallMoment sm && sm.kind == SmallKind.Trouble && sm.age < sm.DurationTicks / 2;
 
         // together: a deep talk and the game's social memories come from the two being face to face; a party from being at it.
         private static bool Comforting(Pawn p, Thought_Memory m, out string who)

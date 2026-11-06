@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More words for the personal stories that come round most often (the text pass of 6 November 2026), so a second run
+    of the same story, for someone else or the same person again, reads new: in the player's save the long discipline
+    ran for three people in 110 days with the same chronicle lines. Each stage gets more of the colonist's own lines,
+    the other's where the stage has them, and chronicle lines; then more for an early end and the eulogy. Merged into
+    the story at startup (FlavorExtension.cs, the arc target); tags and placeholders as in the story itself
+    (Council_Arcs_Home.xml says how a story is written). Each stage's lines are written as that stage begins: what moved
+    it on, and what it waits for next.
+  -->
+
+  <!-- ===================== The long discipline (A RimWorld of Magic) ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_ArcWords_PM_Discipline</defName>
+    <arc>Council_Arc_PM_Discipline</arc>
+    <stages>
+      <li>
+        <journal>
+          <plain>
+            <li>The same working, morning and evening, and the same place where it comes apart. I could draw you that place.</li>
+            <li>I used to come away from practice tired and pleased. Now I come away tired.</li>
+            <li>[teacher] {OTHER_nameDef} must have stood where I'm standing. I'll ask. Tomorrow, maybe.</li>
+          </plain>
+          <warm><li>I've been short with people this week. It isn't them, it's the art, and I should tell them so.</li></warm>
+          <cheerful><li>Stuck, which means there's something on the other side worth getting to.</li></cheerful>
+          <gloomy><li>Some nights I think the art has gone as far into me as it's ever going to.</li></gloomy>
+        </journal>
+        <otherJournal>
+          <plain>
+            <li>[teacher] {OTHER_nameDef} practices with the door shut now. I did that too, when I didn't want anyone to see how stuck I was.</li>
+            <li>[friend] {OTHER_nameDef} has been short-tempered all week and won't say why. I'll ask when the moment's right.</li>
+          </plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} has been practicing the same thing for days, and it still won't come.</li>
+          <li>Whatever {PAWN_nameDef} is reaching for in {PAWN_possessive} art, it stays just out of reach.</li>
+        </chronicle>
+      </li>
+      <li>
+        <journal>
+          <plain>
+            <li>[teacher] {OTHER_nameDef} said the wall is the same for everyone, only it stands in a different place. That helped more than advice.</li>
+            <li>[friend] Told {OTHER_nameDef} about the wall. {OTHER_pronoun} couldn't help with the art, but {OTHER_pronoun} helped with me.</li>
+            <li>Morning and evening the same forms, and between them the ordinary work. It's slow. Slow is how it's done.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} asks how the practice went each evening. I like having someone to answer.</li></warm>
+          <cold><li>A schedule now: before work and after supper. Small gains, noted.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>[teacher] {OTHER_nameDef} came to me about the wall. I told {OTHER_objective} what my own teacher told me, and hoped it would work as well.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} has settled into a long practice: the same forms, morning and evening, day after day.</li>
+          <li>{PAWN_nameDef} keeps at {PAWN_possessive} art early and late, as if the wall might give way any morning.</li>
+        </chronicle>
+      </li>
+      <li>
+        <journal>
+          <plain>
+            <li>A level stronger. It came all at once, the way they said it would, after all that time of nothing.</li>
+            <li>I did it without thinking, and only afterwards understood what I'd done.</li>
+            <li>[teacher] I went to tell {OTHER_nameDef}, and {OTHER_pronoun} could see it on me before I'd said a word.</li>
+          </plain>
+          <blunt><li>Through. Finally.</li></blunt>
+          <gloomy><li>Through the wall. I keep waiting for it to turn out I'm not.</li></gloomy>
+        </journal>
+        <otherJournal>
+          <plain><li>[teacher] {OTHER_nameDef} broke through today. I didn't say much. I didn't need to.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} has broken through in {PAWN_possessive} art, and is a level stronger for it.</li>
+          <li>All that practice has paid: {PAWN_nameDef} is past the wall.</li>
+        </chronicle>
+      </li>
+      <li>
+        <journal>
+          <plain>
+            <li>The new strength has settled in. I don't reach for it any more. It's simply there.</li>
+            <li>There'll be another wall some day. I know now what to do when I get to it.</li>
+            <li>[teacher] I thanked {OTHER_nameDef} properly. {OTHER_pronoun} said I did the work. We both know that's half true.</li>
+          </plain>
+          <cheerful><li>I can do things now I couldn't do a month ago, and I'm doing all of them twice.</li></cheerful>
+          <cold><li>The gain is consolidated. I'll set the next goal soon.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>{OTHER_nameDef} has come through the wall and out the other side. I'd forgotten how good it is to watch that happen.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} carries {PAWN_possessive} art more easily now, as if the wall had never been there.</li>
+          <li>{PAWN_nameDef}'s long discipline is done, and {PAWN_pronoun} is the stronger for it.</li>
+        </chronicle>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[taken] Whatever I had of the art, it's gone, and the wall with it. I don't know what to do with the mornings.</li>
+        <li>[otherdead] {OTHER_nameDef} is gone. When I get past the wall, the first thing I'll do is wish {OTHER_pronoun} could see.</li>
+        <li>[timeout] I've set the practice down for now. The wall will still be there. So will I.</li>
+      </plain>
+    </fizzle>
+    <fizzleChronicle>
+      <li>[otherdead] With {OTHER_nameDef} gone, {PAWN_nameDef} has set the long training aside, the wall still standing.</li>
+      <li>[taken] {PAWN_nameDef}'s art has gone from {PAWN_objective}, and the long training with it.</li>
+      <li>[timeout] {PAWN_nameDef} has set the long training aside for now, the wall still standing.</li>
+      <li>{PAWN_nameDef}'s long training has come to an end before its time.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain><li>{OTHER_nameDef} was so close to getting past it. I'd have liked to see {OTHER_objective} do it.</li></plain>
+    </eulogy>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Somewhere to belong (a newcomer) ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_ArcWords_FindingHome</defName>
+    <arc>Council_Arc_FindingHome</arc>
+    <stages>
+      <li>
+        <journal>
+          <plain>
+            <li>Everyone here knows which bucket is for what. I've been using the wrong one all day, I'm told.</li>
+            <li>I keep saying "back where I came from". I should stop.</li>
+            <li>[lowtech] They greet each other at the fire in a way I haven't learned yet. I nod and hope.</li>
+          </plain>
+          <warm><li>They've made room for me at the table. I want to earn it.</li></warm>
+          <cold><li>Learning the colony's routines: meals, work, who answers to whom.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} is still learning the colony's ways, and still asking which door goes where.</li>
+          <li>{PAWN_nameDef} is new here, and it shows in how carefully {PAWN_pronoun} watches the others.</li>
+        </chronicle>
+      </li>
+      <li>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} talked with me as if I'd been here for years. The first one to.</li>
+            <li>{OTHER_nameDef} told me who to ask for what. Saved me a week of asking the wrong people.</li>
+            <li>I'd like a corner that's mine. Somewhere to put my things down and leave them.</li>
+          </plain>
+          <cheerful><li>{OTHER_nameDef} has decided I'm worth talking to. I've decided the same about {OTHER_objective}.</li></cheerful>
+          <gloomy><li>{OTHER_nameDef} is friendly. I don't know yet whether the rest of them are.</li></gloomy>
+        </journal>
+        <otherJournal>
+          <plain><li>{OTHER_nameDef} is finding {OTHER_possessive} feet. I'll keep an eye out, the way someone did for me.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} is finding {PAWN_possessive} way about the colony, with {OTHER_nameDef} to ask.</li>
+          <li>{PAWN_nameDef} has a friendly face to look for at supper now: {OTHER_nameDef}'s.</li>
+        </chronicle>
+      </li>
+      <li>
+        <journal>
+          <plain>
+            <li>I know the colony's sounds now. The creak of the door, the cook's whistle. They've stopped waking me.</li>
+            <li>I've got a place I go back to at the end of the day, and I've started keeping it tidy.</li>
+            <li>[child] I know where everything is now, even the high-up things.</li>
+          </plain>
+          <warm><li>I'm starting to know what the others need before they ask. That's how you know a place.</li></warm>
+          <blunt><li>Settling in. Slowly.</li></blunt>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} has stopped looking for the way out of every room.</li>
+          <li>{PAWN_nameDef} is settling in, one ordinary day after another.</li>
+        </chronicle>
+      </li>
+      <li>
+        <journal>
+          <plain>
+            <li>If somebody new turned up tomorrow, I'd know what to tell them. That's how I know I'm home.</li>
+            <li>The colony's troubles have become my troubles. I don't mind.</li>
+            <li>I called it home in the middle of a sentence today and went on without stopping.</li>
+          </plain>
+          <cheerful><li>Home, then. Very ordinary, a bit loud, completely mine.</li></cheerful>
+          <cold><li>My place here is settled. I'll act accordingly.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>{OTHER_nameDef} is one of us now. I don't think {OTHER_pronoun} noticed when it happened, and neither did I.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} no longer says "your colony". It's "ours" now.</li>
+          <li>{PAWN_nameDef} came as a stranger and has found {PAWN_possessive} place among the colony's people.</li>
+        </chronicle>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[timeout] I know my way around now. I just don't know yet if I'm staying, not in my head.</li>
+        <li>[otherleft] {OTHER_nameDef} has gone, and I'm still finding my feet without {OTHER_objective}.</li>
+      </plain>
+    </fizzle>
+    <fizzleChronicle>
+      <li>[timeout] {PAWN_nameDef} knows the colony's ways now, but doesn't yet feel it's home.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain><li>{OTHER_nameDef} was only just becoming one of us. I'd have liked to see {OTHER_objective} settle.</li></plain>
+    </eulogy>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== A calling (a child or a teenager) ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_ArcWords_Calling</defName>
+    <arc>Council_Arc_Calling</arc>
+    <stages>
+      <li>
+        <journal>
+          <plain>
+            <li>[child] I sat where {OTHER_nameDef} could see me and didn't make a sound the whole time. Nearly.</li>
+            <li>[teen] I don't want anyone to know yet, but I keep thinking about {SKILL}. And about how {OTHER_nameDef} does it.</li>
+            <li>When {OTHER_nameDef} works, everything else goes quiet. I want to know what that's like.</li>
+          </plain>
+          <warm><li>[child] {OTHER_nameDef} smiled when I was watching. I think that means I can watch again.</li></warm>
+          <blunt><li>[teen] {SKILL}. That's what I want. Need to ask.</li></blunt>
+        </journal>
+        <otherJournal>
+          <plain><li>Every time I look up from the work, there's {OTHER_nameDef}, watching. I'll let it go on a while and see.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>Wherever {OTHER_nameDef} is at work, young {PAWN_nameDef} is never far off.</li>
+          <li>{PAWN_nameDef} has eyes for nothing but {SKILL} these days, and for {OTHER_nameDef}, who is good at it.</li>
+        </chronicle>
+      </li>
+      <li>
+        <journal>
+          <plain>
+            <li>[child] I asked {OTHER_nameDef} if I could help and {OTHER_pronoun} said yes. Then {OTHER_pronoun} showed me how to hold it properly.</li>
+            <li>[teen] {OTHER_nameDef} explains things like I'm already halfway to understanding them. Mostly I'm not.</li>
+            <li>{OTHER_nameDef} says the first thing is to watch your hands, not the work. I'm watching my hands.</li>
+          </plain>
+          <cheerful><li>{OTHER_nameDef} said I'm a quick learner. I'm going to be quicker.</li></cheerful>
+          <cold><li>I asked the right questions. {OTHER_nameDef} answered most of them.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>{OTHER_nameDef} finally asked. I've said I'll show {OTHER_objective} the start of {SKILL}, and we'll see where it goes.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{OTHER_nameDef} has started showing young {PAWN_nameDef} the first things about {SKILL}.</li>
+          <li>Young {PAWN_nameDef} has asked to learn {SKILL}, and {OTHER_nameDef} has said yes.</li>
+        </chronicle>
+      </li>
+      <li>
+        <journal>
+          <plain>
+            <li>[child] I did the hard part myself and nobody had to help. {OTHER_nameDef} saw.</li>
+            <li>[teen] I've been practicing when nobody's watching. It's showing, I think.</li>
+            <li>I made a mistake today and knew it was a mistake before {OTHER_nameDef} said anything. That's new.</li>
+          </plain>
+          <warm><li>I want to be good at this for {OTHER_nameDef}'s sake as well as mine.</li></warm>
+          <gloomy><li>Still so much I can't do. But a bit less than last week.</li></gloomy>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} is practicing {SKILL} every spare moment now, and it's starting to show.</li>
+          <li>Young {PAWN_nameDef}'s hands are getting surer at {SKILL}.</li>
+        </chronicle>
+      </li>
+      <li>
+        <journal>
+          <plain>
+            <li>[child] I'm going to be a {SKILL} person when I'm big. I told everybody. Some of them twice.</li>
+            <li>[teen] I'm not just helping any more. I'm learning a trade, and it's mine.</li>
+            <li>I know what I'm for. Not everyone gets to know that so soon. I'm lucky.</li>
+          </plain>
+          <cheerful><li>{SKILL} forever. {OTHER_nameDef} says I'll be sick of it in a year. I won't.</li></cheerful>
+          <blunt><li>{SKILL}. That's my work now.</li></blunt>
+        </journal>
+        <otherJournal>
+          <plain><li>{OTHER_nameDef} has found the work {OTHER_pronoun} wants to do. I can't think of a better thing to have helped with.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>Young {PAWN_nameDef} has chosen {SKILL}, and {OTHER_nameDef} thinks it chose well.</li>
+          <li>{PAWN_nameDef}'s interest in {SKILL} has become a calling.</li>
+        </chronicle>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[timeout] {SKILL} was fun for a while. Now I want to try something else, and I think that's allowed.</li>
+        <li>[otherleft] {OTHER_nameDef} went away. I still practice a bit, the way {OTHER_pronoun} showed me.</li>
+      </plain>
+    </fizzle>
+    <fizzleChronicle>
+      <li>[timeout] {PAWN_nameDef} has moved on from {SKILL} to the next thing, as the young do.</li>
+    </fizzleChronicle>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== The apprentice's masterwork ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_ArcWords_Masterwork</defName>
+    <arc>Council_Arc_Masterwork</arc>
+    <stages>
+      <li>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} does in one motion what takes me four. I'm counting the motions now.</li>
+            <li>I asked {OTHER_nameDef} why. {OTHER_pronoun} said "because it works" and kept going. I'm learning the "because" by watching.</li>
+            <li>[arcskill:Construction] Watched {OTHER_nameDef} set a wall true by eye. I needed the string and the level and still got it wrong.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} is patient with me. I'm trying to be worth the patience.</li></warm>
+          <cold><li>{OTHER_nameDef} is the best here at {SKILL}. I intend to learn everything that makes that so.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} has been at {OTHER_nameDef}'s elbow for days, learning {SKILL} the slow way.</li>
+          <li>{PAWN_nameDef} wants to be as good at {SKILL} as {OTHER_nameDef}, and has set about it.</li>
+        </chronicle>
+      </li>
+      <li>
+        <journal>
+          <plain>
+            <li>Better, and I know it, which is its own kind of danger. I want {OTHER_nameDef} to tell me what's still wrong.</li>
+            <li>My work's stopped looking like a beginner's. It doesn't look like {OTHER_nameDef}'s yet either.</li>
+            <li>[arcskill:Artistic] Finished a small piece and liked it for a whole hour. Then I saw the flaw.</li>
+          </plain>
+          <blunt><li>Improving. Need a hard look from {OTHER_nameDef}.</li></blunt>
+          <cheerful><li>I'm getting good. Not done, but good. {OTHER_nameDef} has noticed, I think.</li></cheerful>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef}'s work in {SKILL} has come on, and {PAWN_pronoun} wants {OTHER_nameDef}'s eye on it.</li>
+          <li>{PAWN_nameDef} is no beginner at {SKILL} any more.</li>
+        </chronicle>
+      </li>
+      <li>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} looked at everything I'd made and said one thing. I've been thinking about that one thing all day.</li>
+            <li>There's a piece in my head now that I've never been good enough to make. I think I might be.</li>
+            <li>[arcskill:Crafting] Chose the material slowly, the way {OTHER_nameDef} does. It's the first thing I've done the way {OTHER_nameDef} does.</li>
+          </plain>
+          <warm><li>Whatever I make next, a bit of it will be {OTHER_nameDef}'s. I'd like it to be the best bit.</li></warm>
+          <gloomy><li>I've started the piece. If it's no good, I'll know I'm not either.</li></gloomy>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} is working on something {PAWN_pronoun} won't talk about yet.</li>
+          <li>After {OTHER_nameDef} went over {PAWN_possessive} work, {PAWN_nameDef} has started on a piece of {PAWN_possessive} own.</li>
+        </chronicle>
+      </li>
+      <li>
+        <journal>
+          <plain>
+            <li>It's done, and it's good, and I don't have to be told so. I'll let {OTHER_nameDef} tell me anyway.</li>
+            <li>I made the best thing I've ever made. My hands still don't quite believe it.</li>
+            <li>[arcskill:Construction] It's built, and it stands, and it'll stand when I'm gone. I keep walking past it.</li>
+          </plain>
+          <blunt><li>Made it. Excellent. Mine.</li></blunt>
+          <cold><li>The piece is excellent. I'll set a higher bar for the next one.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>{OTHER_nameDef} has made a fine thing. Better than I'd have made at {OTHER_possessive} age. I'll tell {OTHER_objective} so, once.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} has made an excellent piece, the best of {PAWN_possessive} life so far.</li>
+          <li>{OTHER_nameDef}'s apprentice, {PAWN_nameDef}, has made something {OTHER_nameDef} can't fault.</li>
+        </chronicle>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[timeout] I'm a better hand at {SKILL} than I was, if not yet a master. That will have to do for this year.</li>
+        <li>[otherdead] {OTHER_nameDef} taught me more than I knew. I'll make the piece one day, and it'll be for {OTHER_objective}.</li>
+      </plain>
+    </fizzle>
+    <fizzleChronicle>
+      <li>[timeout] {PAWN_nameDef} has learned a good deal of {SKILL} from {OTHER_nameDef}, if not yet the masterwork.</li>
+    </fizzleChronicle>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Passing it on ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_ArcWords_PassingItOn</defName>
+    <arc>Council_Arc_PassingItOn</arc>
+    <stages>
+      <li>
+        <journal>
+          <plain>
+            <li>Someone should know what I know about {SKILL}. I've been watching who that might be. {OTHER_nameDef}, I think.</li>
+            <li>[elder] The young ones work fast and think slow. {OTHER_nameDef} is the other way round. Good.</li>
+            <li>[oldhand] I learned {SKILL} the hard way. {OTHER_nameDef} needn't.</li>
+          </plain>
+          <warm><li>I'd like to give {OTHER_nameDef} what I was given once. I'll ask.</li></warm>
+          <cold><li>{OTHER_nameDef} has the aptitude. Teaching {OTHER_objective} would be an efficient use of what I know.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} has been taking stock of who among the young could learn {SKILL}.</li>
+          <li>{PAWN_nameDef} has {PAWN_possessive} eye on {OTHER_nameDef} as someone to teach.</li>
+        </chronicle>
+      </li>
+      <li>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} wants to learn. We start at the beginning, because the beginning is where everyone gets it wrong.</li>
+            <li>Taught {OTHER_nameDef} the first thing I was ever taught about {SKILL}. It's still true.</li>
+            <li>[elder] I'm slower than I was, so I explain while I do it. {OTHER_nameDef} gets twice the lesson.</li>
+          </plain>
+          <blunt><li>Teaching {OTHER_nameDef}. Every morning. No shortcuts.</li></blunt>
+          <cheerful><li>{OTHER_nameDef} said yes before I'd finished asking. I like an eager student.</li></cheerful>
+        </journal>
+        <otherJournal>
+          <plain><li>{OTHER_nameDef} is going to teach me everything {OTHER_pronoun} knows about {SKILL}. I've never wanted to get something right so badly.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{OTHER_nameDef} has become {PAWN_nameDef}'s student in {SKILL}.</li>
+          <li>{PAWN_nameDef} has begun teaching {OTHER_nameDef} {SKILL}, one lesson a morning.</li>
+        </chronicle>
+      </li>
+      <li>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} doesn't need me to stand over {OTHER_objective} now. What's left are the things I've never said aloud.</li>
+            <li>The last lessons aren't about the work. They're about when to stop, and when not to.</li>
+            <li>[elder] {OTHER_nameDef} is nearly as good as I was at that age. Better in one or two places.</li>
+          </plain>
+          <warm><li>I'm proud of {OTHER_nameDef}. I'll say so before the lessons end, not after.</li></warm>
+          <gloomy><li>Soon there'll be nothing left to teach. I'm not sure what I'll be for then.</li></gloomy>
+        </journal>
+        <otherJournal>
+          <plain><li>{OTHER_nameDef} says there are only a few things left to tell me. I want to hear every one of them.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{OTHER_nameDef} has nearly caught up with {PAWN_nameDef} in {SKILL}. A few lessons remain.</li>
+          <li>{PAWN_nameDef}'s student, {OTHER_nameDef}, is close to {PAWN_possessive} own hand at {SKILL} now.</li>
+        </chronicle>
+      </li>
+      <li>
+        <journal>
+          <plain>
+            <li>It's all with {OTHER_nameDef} now. When I'm gone it won't be gone.</li>
+            <li>Told {OTHER_nameDef} the last of it today. {OTHER_pronoun} nodded as if I'd told {OTHER_objective} the weather. That's right.</li>
+            <li>[elder] I can put the tools down now and not worry who picks them up.</li>
+          </plain>
+          <cheerful><li>Taught {OTHER_nameDef} everything. Now I can retire and criticize.</li></cheerful>
+          <cold><li>The knowledge is passed on. The colony is the better for it.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>{OTHER_nameDef} says there's nothing left to teach me. There is. I'll find it out the way {OTHER_pronoun} did.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>What {PAWN_nameDef} knew of {SKILL}, {OTHER_nameDef} knows now.</li>
+          <li>{PAWN_nameDef}'s lessons are done: {OTHER_nameDef} has the craft in hand.</li>
+        </chronicle>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[timeout] The lessons have trailed off. {OTHER_nameDef} learned some of it. Some is better than none.</li>
+      </plain>
+    </fizzle>
+    <fizzleChronicle>
+      <li>[timeout] {PAWN_nameDef}'s lessons for {OTHER_nameDef} have trailed off, half given.</li>
+    </fizzleChronicle>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== A long grief ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_ArcWords_LongGrief</defName>
+    <arc>Council_Arc_LongGrief</arc>
+    <stages>
+      <li>
+        <journal>
+          <plain>
+            <li>I keep turning to tell {LOST} something and there's nobody there.</li>
+            <li>The work gets done. I'm not sure I'm the one doing it.</li>
+            <li>[morning] Woke and forgot for a moment. Then remembered. That's every morning now.</li>
+          </plain>
+          <blunt><li>{LOST}'s gone. Can't think past it.</li></blunt>
+          <cold><li>I continue my duties. {LOST}'s absence is in every one of them.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} goes about {PAWN_possessive} work in silence since {LOST} died.</li>
+          <li>{PAWN_nameDef} is grieving {LOST}, and it shows in everything.</li>
+        </chronicle>
+      </li>
+      <li>
+        <journal>
+          <plain>
+            <li>Days now. The worst of the shock has gone. What's left is plainer and heavier.</li>
+            <li>I found myself smiling at something {LOST} used to say, and then I had to sit down.</li>
+            <li>I want to talk about {LOST}. I don't know who to start with.</li>
+          </plain>
+          <warm><li>The others have been gentle with me. I'd like to tell them about {LOST}, so they'll know who I'm missing.</li></warm>
+          <gloomy><li>Everyone else is moving on. I can't yet.</li></gloomy>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} has begun to speak of {LOST} again, though not for long.</li>
+          <li>The first days are behind {PAWN_nameDef}. {LOST} is not.</li>
+        </chronicle>
+      </li>
+      <li>
+        <journal>
+          <plain>
+            <li>I can think about {LOST} now without everything stopping.</li>
+            <li>Remembering {LOST} hurts less when somebody else remembers too.</li>
+            <li>The world has started having colours in it again. Faint ones.</li>
+          </plain>
+          <cheerful><li>Remembered something daft {LOST} used to do and laughed out loud. {LOST} would have liked that.</li></cheerful>
+          <blunt><li>Thinking about {LOST}. Easier now.</li></blunt>
+        </journal>
+        <otherJournal>
+          <plain><li>{OTHER_nameDef} has started speaking of {LOST} again. I'll listen as long as {OTHER_pronoun} wants to talk.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} is beginning to find {PAWN_possessive} way back to ordinary days.</li>
+          <li>{PAWN_nameDef} can speak of {LOST} now without stopping halfway.</li>
+        </chronicle>
+      </li>
+      <li>
+        <journal>
+          <plain>
+            <li>The grief's still there. It's become something I carry instead of something that carries me.</li>
+            <li>I think of {LOST} every day. Most days now, it's a good thought.</li>
+            <li>[spring] Things are growing again. {LOST} would have had opinions about all of it.</li>
+          </plain>
+          <warm><li>I'm grateful I had {LOST} as long as I did. I couldn't say that a month ago.</li></warm>
+          <gloomy><li>It's eased. I hate that it's eased, a little. Then I don't.</li></gloomy>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} carries {PAWN_possessive} grief for {LOST} more lightly now.</li>
+          <li>{PAWN_nameDef} smiles when {LOST}'s name comes up these days.</li>
+        </chronicle>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[timeout] The grief hasn't moved. Maybe it moves on its own clock, not mine.</li>
+      </plain>
+    </fizzle>
+    <fizzleChronicle>
+      <li>[timeout] {PAWN_nameDef}'s grief for {LOST} hasn't eased, and {PAWN_pronoun} has stopped expecting it to.</li>
+    </fizzleChronicle>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Getting clean (it can begin again another time) ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_ArcWords_GettingClean</defName>
+    <arc>Rimfolk_Arc_GettingClean</arc>
+    <stages>
+      <li>
+        <journal>
+          <plain>
+            <li>Every hour without it is an hour. I'm counting them, and they're long.</li>
+            <li>My hands won't hold a cup still. I'll keep them in my lap at supper.</li>
+            <li>They've told me what's coming. Knowing doesn't make it shorter.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} has said {OTHER_pronoun}'ll sit with me this evening. I'll try to be decent company.</li></warm>
+          <gloomy><li>My body's begging and my head's agreeing with it. Only stubbornness left.</li></gloomy>
+        </journal>
+        <otherJournal>
+          <plain><li>{OTHER_nameDef}'s in a bad way with the craving. I'll sit with {OTHER_objective} this evening and talk about anything else.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} is going without the drug, and it's hard on {PAWN_objective}. {OTHER_nameDef} means to sit with {PAWN_objective} this evening.</li>
+        </chronicle>
+      </li>
+      <li>
+        <journal>
+          <plain>
+            <li>The worst night, they say. {OTHER_nameDef} has said {OTHER_pronoun}'ll stay. I'm frightened of the night and glad of the company.</li>
+            <li>If I can get through tonight, I can get through the rest. {OTHER_nameDef} is going to sit with me till it's done.</li>
+          </plain>
+          <blunt><li>Worst night tonight. {OTHER_nameDef}'s staying. Good.</li></blunt>
+        </journal>
+        <otherJournal>
+          <plain><li>Tonight's the bad one for {OTHER_nameDef}. I'll sit at {OTHER_possessive} side through the worst of it.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} faces the worst night of the withdrawal tonight, with {OTHER_nameDef} beside {PAWN_objective}.</li>
+        </chronicle>
+      </li>
+      <li>
+        <journal>
+          <plain>
+            <li>Woke up and didn't want it. Not a little, not at all. I lay there not wanting it for a long time.</li>
+            <li>Clean. {OTHER_nameDef} says {OTHER_pronoun}'ll raise a cup to me tonight. I'll be the one with the water.</li>
+            <li>Clean, and I mean to stay that way.</li>
+          </plain>
+          <cheerful><li>Free of it. There's going to be a toast, and I'm going to enjoy every word of it.</li></cheerful>
+          <cold><li>The addiction is gone. I'll take care not to put myself back in its way.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>{OTHER_nameDef} is free of it. I'm raising a cup to {OTHER_objective} tonight, and it'll be the best toast I've made.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} is free of the drug. {OTHER_nameDef} means to raise a cup to {PAWN_objective} tonight.</li>
+        </chronicle>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[relapse] I gave in. Tomorrow I'll be angry about it. Tonight I'm just tired.</li>
+        <li>[relapse] {OTHER_nameDef} sat with me even after. When I'm ready to try again, I'll ask {OTHER_objective} first.</li>
+      </plain>
+    </fizzle>
+    <fizzleChronicle>
+      <li>[relapse] The craving won this time. {PAWN_nameDef} may try again, and {OTHER_nameDef} has said {OTHER_pronoun}'ll be there.</li>
+    </fizzleChronicle>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

@@ -238,6 +238,31 @@ namespace ColonyCouncil
             return Format(Flavor.Pick(lines, tags) ?? Flavor.PickText(lines), x, a);
         }
 
+        /// <summary>
+        /// A line of the kind's own over <paramref name="speaker"/>'s head: by the camp's tags (their faith, their people's
+        /// age, the world event behind them, a camp come back, a war party's enemy) and the speaker's moment (the hour,
+        /// the weather, the season), not one the kind gave out lately while another fits. Null when none fits.
+        /// </summary>
+        public string Bubble(Pawn speaker)
+        {
+            if (kind == null || kind.lines.NullOrEmpty()) return null;
+            var tags = Flavor.TagsFor(speaker);
+            CampWords.AddTags(tags, kind, faction, map);
+            AddStoryTags(tags);
+            AddFoeTags(tags);
+            string line = Flavor.PickFresh(kind.lines, tags, kind.lines);
+            return line.NullOrEmpty() ? null : Format(line, speaker);
+        }
+
+        /// <summary>A war party's enemy as its lines are tagged: foe:mechs, foe:lowtech or foe:hightech, and oldfoe when their people were at war with it already.</summary>
+        private void AddFoeTags(HashSet<string> tags)
+        {
+            if (enemy?.def == null) return;
+            if (enemy == Faction.OfMechanoids) tags.Add("foe:mechs");
+            else tags.Add(enemy.def.techLevel <= TechLevel.Medieval ? "foe:lowtech" : "foe:hightech");
+            if (faction != null && enemy.def.humanlikeFaction && faction.HostileTo(enemy)) tags.Add("oldfoe");
+        }
+
         public LookTargets Look => map != null && center.IsValid ? new LookTargets(new TargetInfo(center, map)) : LookTargets.Invalid;
 
         /// <summary>A letter about the camp; it also goes in the chronicle when it matters.</summary>

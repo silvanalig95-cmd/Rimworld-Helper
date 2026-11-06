@@ -25,6 +25,8 @@ namespace Balance
         public int age;
         public int dur;
         public bool good;
+        /// <summary>A small letdown's or joy's moment (Moods/SmallMoments.cs): its own size and time, all of a side in one row that adds up.</summary>
+        public bool moment;
     }
 
     public sealed class Ail
@@ -73,6 +75,14 @@ namespace Balance
         public int contentDays, lastTrouble = -99999;
         /// <summary>What a good life takes back from them now (Moods/GoodLife.cs), for the report.</summary>
         public float takenBack;
+        /// <summary>Their heart (HeartSim.cs): strain played hour by hour.</summary>
+        public readonly HeartState heart = new HeartState();
+        /// <summary>Each lasting letdown or joy as last seen (Moods/SmallMoments.cs): its stage and the hour of its last moment.</summary>
+        public readonly Dictionary<string, (int stage, int hour)> lasting = new Dictionary<string, (int, int)>();
+        /// <summary>The small moods of Rimfolk's lasting ones on their mind this hour (ways, trust, ailments), for the heart's pile.</summary>
+        public float smallSteadyBad, smallSteadyGood;
+        /// <summary>The share of the game's good moods that grew ordinary last hour.</summary>
+        public float gameOrdinary;
 
         public bool Ill => ails.Count > 0;
     }
@@ -88,6 +98,8 @@ namespace Balance
     public struct Sample
     {
         public float good, goodRaw, bad, steadyGood, steadyBad, mood;
+        /// <summary>What good things growing ordinary took off the game's own good moods (not Rimfolk's mood; the colony's), and off Rimfolk's.</summary>
+        public float gameOrdinary, ordinary;
         public int goodCount;
         public float trust;
         public bool ill, illNotQuiet;
@@ -95,8 +107,8 @@ namespace Balance
 
     /// <summary>
     /// One colony, one settled year: Rimfolk's systems hour by hour, at the rates of the code and <see cref="Rates"/>,
-    /// with every mood sized and timed from the defs and weighed by the mod's own rules (GoodTimesMath: the shared
-    /// budget, fading sooner in good times, standards).
+    /// with every mood sized and timed from the defs and weighed by the mod's own rules (GoodLifeMath: good things growing
+    /// ordinary; PressureMath and SetbackMath for the letdowns).
     /// </summary>
     public sealed class Colony
     {
@@ -116,6 +128,8 @@ namespace Balance
         /// below that stages a scene draws a number or changes anything.
         /// </summary>
         public List<Scene> scenes;
+        /// <summary>--tell (Telling.cs): the hours of the measured year's big threats, for the teller's busy day. Filled only with <see cref="scenes"/>.</summary>
+        public readonly List<int> threats = new List<int>();
         /// <summary>What each source adds to one colonist's mood, summed over every sample (divide by <see cref="partSamples"/>).</summary>
         public readonly Dictionary<string, double> partSum = new Dictionary<string, double>();
         public int partSamples;
@@ -145,6 +159,15 @@ namespace Balance
         private int lastDecreeRequest = -9999;
         private readonly Dictionary<string, int> catchingLast = new Dictionary<string, int>();
         private readonly int startHour;
+        /// <summary>The heart's life for this play style, and its own draws (so the rest of the year draws as it always did).</summary>
+        private readonly HeartLife heartLife;
+        private readonly Random heartRng;
+        private int lastColonyEpisode = -999999;
+        private bool partyToday;
+        public int episodes;
+        /// <summary>Hours in each band of strain, all colonists, in the measured year; strain built and eased by what, per colonist.</summary>
+        public readonly double[] bandHours = new double[4];
+        public double heartHours;
 
         public Colony(DefSet defs, Settings set, Rates.Style style, int n, int seed)
         {
@@ -152,6 +175,8 @@ namespace Balance
             this.set = set;
             this.style = style;
             rng = new Random(seed);
+            heartLife = HeartState.For(style.key);
+            heartRng = new Random(seed ^ 0x5eed);
             for (int i = 0; i < n; i++)
             {
                 var c = new Colonist
@@ -260,7 +285,7 @@ namespace Balance
         }
 
         /// <summary>Something staged on the map now (only with <see cref="scenes"/>, in the measured year).</summary>
-        private void Stage(string source, string tier, int people, float hours, bool routine = false, bool custom = false, int at = -1)
+        private void Stage(string source, string tier, int people, float hours, bool routine = false, bool custom = false, int at = -1, string way = null)
         {
             if (scenes == null || !Measuring || tier == null) return;
             // At = the hour of today it is held (an evening's toast), else now.
@@ -268,7 +293,7 @@ namespace Balance
             scenes.Add(new Scene
             {
                 hour = when - WarmupDays * 24, source = source, tier = tier, people = Math.Max(1, Math.Min(people, this.people.Count)), hours = hours,
-                routine = routine, custom = custom
+                routine = routine, custom = custom, way = way
             });
         }
 
@@ -291,8 +316,73 @@ namespace Balance
             Send(system, set.S("colonyNews") == "AsItHappens" ? Channel.Message : Channel.Digest);
         }
 
-        private float LiveScale(Colonist c) => set.RewardFactor * (1f - 0.5f * c.standards);
+        // Good things grow ordinary (Moods/GoodLife.cs): a reward is given at the reward strength alone; how much it counts
+        // beside the colonist's other good moods is the one rule, worked out in UpdateMood.
+        private float LiveScale(Colonist c) => set.RewardFactor;
         private float BadScale(Colonist c) => 1f + 0.4f * c.standards;
+
+        /// <summary>
+        /// Small letdowns and joys as moments (Moods/SmallMoments.cs): with the heart and mood effects on. A run for comparison
+        /// may switch it off ("smallMomentsOff", the simulator's own): each a mood of its own as before, nothing to the heart.
+        /// </summary>
+        private bool Small => set.MoodEffects && set.B("heart") && !set.B("smallMomentsOff");
+
+        /// <summary>The strength of strain (the setting), as HeartLogic clamps it.</summary>
+        private float StrainSpeed => Math.Clamp(set.F("strainSpeed", 1f), 0.5f, 1.5f);
+
+        private void HeartBuild(Colonist c, float raw, string what)
+        {
+            if (set.B("heart")) c.heart.Build(ColonyCouncil.StrainSource.Letdowns, raw * StrainSpeed, what);
+        }
+
+        private void HeartEase(Colonist c, float amount, string what)
+        {
+            if (set.B("heart")) c.heart.EaseJoys(amount, what);
+        }
+
+        /// <summary>
+        /// A small letdown or joy of Rimfolk's comes as a moment: at most 3 points for half a day, in its side's row, and what
+        /// it would weigh beyond that to the heart (SmallMomentMath). Returns false when they're moods of their own (off).
+        /// </summary>
+        private bool Moment(Colonist c, ThoughtInfo t, float felt)
+        {
+            if (!Small || felt == 0f || t == null) return false;
+            bool joy = felt > 0f;
+            float days = t.durationDays;
+            AddMemory(c, t, SmallMomentMath.MomentMood(felt), (int)Math.Round(SmallMomentMath.MomentLength(days) * 24), true);
+            if (joy) HeartEase(c, SmallMomentMath.MomentRelief(felt, days), "Rimfolk's joys");
+            else HeartBuild(c, SmallMomentMath.MomentStrain(felt, days), "Rimfolk's letdowns");
+            Count(joy ? "small joys" : "small letdowns");
+            return true;
+        }
+
+        /// <summary>
+        /// A lasting letdown or joy (a pressure, a lasting setback, a varied table) this hour: no mood of its own, strain or
+        /// relief while it holds, and a moment when it begins, gets worse or holds two days more.
+        /// </summary>
+        private void Lasting(Colonist c, string key, ThoughtInfo t, int stage, float felt)
+        {
+            bool joy = felt > 0f;
+            float per = SmallMomentMath.LastingPerHour(felt, joy);
+            if (joy) HeartEase(c, per, "Rimfolk's joys");
+            else HeartBuild(c, per, "Rimfolk's letdowns");
+            bool had = c.lasting.TryGetValue(key, out var was);
+            float days = had ? (hour - was.hour) / 24f : float.NaN;
+            if (SmallMomentMath.MomentDue(stage, had ? was.stage : -1, days))
+            {
+                // The report's breakdown: a pressure's or a lasting setback's moment under its own name.
+                string was2 = source;
+                source = key.StartsWith("Council_Pressure_") ? "pressures" : "setbacks (lasting)";
+                AddMemory(c, t, SmallMomentMath.MomentMood(felt), (int)Math.Round(SmallMomentMath.MomentDays * 24), true);
+                source = was2;
+                c.lasting[key] = (stage, hour);
+                Count(joy ? "small joys" : "small letdowns");
+            }
+            else if (stage < was.stage) c.lasting[key] = (stage, was.hour);
+            seenLasting.Add(key);
+        }
+
+        private readonly HashSet<string> seenLasting = new HashSet<string>();
 
         /// <summary>How near breaking (PressureMath.HardTimes), with the game's usual minor-break line.</summary>
         private static float Hard(Colonist c) => PressureMath.HardTimes(c.mood, Rates.MinorBreak);
@@ -309,22 +399,21 @@ namespace Balance
             if (own == 0f) return;
             float factor = scale >= 0f ? scale : own > 0f ? set.RewardFactor : set.PenaltyScale;
             if (factor <= 0f) return;
-            factor *= own > 0f ? 1f - 0.5f * c.standards : 1f + 0.4f * c.standards;
+            if (own < 0f) factor *= 1f + 0.4f * c.standards;
             AddMemory(c, t, own * factor);
         }
 
-        /// <summary>A memory given as it is, or with a scale of its own (dreams in full; moments live).</summary>
-        private void AddMemory(Colonist c, ThoughtInfo t, float own)
+        /// <summary>A memory given as it is, or with a scale of its own (dreams in full; moments live), or a small moment's (its own length).</summary>
+        private void AddMemory(Colonist c, ThoughtInfo t, float own, int momentHours = -1, bool moment = false)
         {
-            if (own == 0f || t.durationDays <= 0f) return;
-            int dur = (int)Math.Round(t.durationDays * 24);
+            if (own == 0f || (t.durationDays <= 0f && !moment)) return;
+            int dur = moment ? Math.Max(1, momentHours) : (int)Math.Round(t.durationDays * 24);
             bool good = own > 0f;
-            if (good && set.B("goodTimesFade")) dur = GoodTimesMath.ShortenedTicks(dur, GoodTimesMath.DurationFactor(c.mood));
             int same = 0;
             Mem oldest = null;
             foreach (var m in c.mems)
             {
-                if (m.def != t) continue;
+                if (m.def != t || m.moment != moment) continue;
                 same++;
                 if (oldest == null || m.age > oldest.age) oldest = m;
             }
@@ -332,11 +421,11 @@ namespace Balance
             {
                 oldest.age = 0;
                 oldest.dur = dur;
-                oldest.own = own;
+                oldest.own = moment && Math.Abs(oldest.own) > Math.Abs(own) ? oldest.own : own;
                 oldest.src = source;
                 return;
             }
-            c.mems.Add(new Mem { def = t, src = source, own = own, dur = dur, good = good });
+            c.mems.Add(new Mem { def = t, src = source, own = own, dur = dur, good = good, moment = moment });
         }
 
         /// <summary>A setback: the group's setting, standards, and never less than a whole point (SetbackMath.AtLeastOnePoint).</summary>
@@ -377,7 +466,7 @@ namespace Balance
             }
             float own = t.Stage(stage);
             factor = SetbackMath.AtLeastOnePoint(own, factor * BadScale(c));
-            AddMemory(c, t, own * factor);
+            if (!Moment(c, t, own * factor)) AddMemory(c, t, own * factor);
         }
 
         /// <summary>
@@ -434,10 +523,21 @@ namespace Balance
             if (stage <= 0) return 0f;
             var t = defs.T(thought);
             if (t == null) return 0f;
-            return PressureMath.Scale(t.Stage(stage - 1), PressureMath.Factor(set.Life) * BadScale(c) * PressureMath.HardTimesPressure(Hard(c)));
+            float felt = PressureMath.Scale(t.Stage(stage - 1), PressureMath.Factor(set.Life) * BadScale(c) * PressureMath.HardTimesPressure(Hard(c)));
+            if (!Small) return felt;
+            Lasting(c, thought, t, stage, felt);
+            return 0f;
         }
 
         private float SetbackSituational(string thought, int stage, Colonist c)
+        {
+            float felt = SetbackFelt(thought, stage, c);
+            if (felt >= 0f || !Small) return felt;
+            Lasting(c, thought, defs.T(thought), stage + 1, felt);
+            return 0f;
+        }
+
+        private float SetbackFelt(string thought, int stage, Colonist c)
         {
             var t = defs.T(thought);
             if (t == null || !set.MoodEffects) return 0f;
@@ -455,11 +555,18 @@ namespace Balance
         {
             float good = 0f, bad = 0f;
             string part = "trust";
+            c.smallSteadyBad = c.smallSteadyGood = 0f;
             void Add(float v)
             {
                 if (v > 0f) good += v;
                 else bad += v;
                 if (parts != null && v != 0f) parts[part] = parts.GetValueOrDefault(part) + v;
+                // Every small mood counts toward the heart's pile (SmallMomentMath.IsSmall), the strain's own mood aside.
+                if (part != "strain" && SmallMomentMath.IsSmall(v, -1f))
+                {
+                    if (v < 0f) c.smallSteadyBad -= v;
+                    else c.smallSteadyGood += v;
+                }
             }
             Add(TrustMood(c));
             if (set.MoodEffects)
@@ -483,7 +590,13 @@ namespace Balance
                 part = Pr("missing");
                 Add(Pressure("Council_Pressure_Missing", c.missing, c));
                 part = Pr("varied table");
-                if (c.varied) Add(defs.T("Council_Pressure_VariedTable")?.First ?? 0f);
+                if (c.varied)
+                {
+                    var vt = defs.T("Council_Pressure_VariedTable");
+                    float v = (vt?.First ?? 0f) * LiveScale(c);
+                    if (Small && vt != null) Lasting(c, "Council_Pressure_VariedTable", vt, 1, v);
+                    else Add(v);
+                }
                 part = "setbacks (lasting)";
                 string Sub(string name) => Detail ? "setbacks (lasting): " + name : "setbacks (lasting)";
                 part = Sub("quiet days");
@@ -508,6 +621,7 @@ namespace Balance
                 part = "life goals";
                 if (c.inReach && set.B("aspirations")) Add((defs.T("Council_Asp_InReach")?.First ?? 0f) * LiveScale(c));
                 part = "strain";
+                c.strain = (int)HeartMath.BandFor(c.heart.strain);
                 if (set.B("heart") && c.strain > 0) Add(defs.T("Council_Heart_Strain")?.Stage(c.strain - 1) ?? 0f);
                 part = "health";
                 if (c.convalescentFrom >= 0 && hour >= c.convalescentFrom && hour < c.convalescentUntil)
@@ -520,60 +634,115 @@ namespace Balance
         }
 
         /// <summary>
-        /// The colonist's Rimfolk memories now: good ones weighed against each other (SmallJoys: the two biggest in full,
-        /// then GoodTimesMath.RankFactor), each mood group stacked as the game stacks it.
+        /// The colonist's Rimfolk memories now, each mood group stacked as the game stacks it (how much the good ones count
+        /// beside everything else on their mind is good things growing ordinary, in UpdateMood).
         /// </summary>
-        private (float good, float goodRaw, float bad, int goodCount) Memories(Colonist c)
+        /// <summary>
+        /// The colonist's Rimfolk memories now: their good and bad moods, each group stacked as the game stacks it (the small
+        /// letdowns' and joys' moments in one row each that adds up), how ordinary the good ones are (GoodLifeMath.AgeWeight,
+        /// for good things growing ordinary), and the small ones the heart's pile counts.
+        /// </summary>
+        private (float good, float goodRaw, float bad, int goodCount, float goodWeighted, float smallBad, float smallGood) Memories(Colonist c)
         {
-            var goods = c.mems.Where(m => m.good).OrderByDescending(m => m.own).ToList();
-            var factor = new Dictionary<Mem, float>();
-            bool budget = set.B("smallJoysDiminish");
-            for (int r = 0; r < goods.Count; r++) factor[goods[r]] = budget ? GoodTimesMath.RankFactor(r) : 1f;
-            float good = 0f, raw = 0f, bad = 0f;
-            foreach (var g in c.mems.GroupBy(m => m.def))
+            float good = 0f, raw = 0f, bad = 0f, weighted = 0f, smallBad = 0f, smallGood = 0f;
+            int goods = 0;
+            foreach (var g in c.mems.GroupBy(m => m.moment ? (object)(m.good ? "joys" : "letdowns") : m.def))
             {
                 var list = g.ToList();
-                float mult = 1f, total = 0f, felt = 0f, plain = 0f;
+                bool moments = list[0].moment;
+                float stack = moments ? 1f : list[0].def.stackMult;
+                float mult = 1f, total = 0f, sum = 0f, w = 0f;
                 foreach (var m in list)
                 {
-                    felt += m.own * (m.good ? factor[m] : 1f);
-                    plain += m.own;
+                    sum += m.own;
                     total += mult;
-                    mult *= g.Key.stackMult;
+                    mult *= stack;
+                    w += m.own * GoodLifeMath.AgeWeight(m.age / 24f, m.dur / 24f);
                 }
-                float avgFelt = felt / list.Count * total, avgRaw = plain / list.Count * total;
+                float k = total / list.Count;
+                float group = sum * k;
                 if (parts != null)
                     foreach (var m in list)
                     {
                         string key = Detail ? m.src + ": " + m.def.name : m.src + (m.good ? "" : " (bad)");
-                        parts[key] = parts.GetValueOrDefault(key) + m.own * (m.good ? factor[m] : 1f) / list.Count * total;
+                        parts[key] = parts.GetValueOrDefault(key) + m.own * k;
                     }
+                // The heart's pile: the moments always, other memories when small (SmallMomentMath.IsSmall). Bad council answers
+                // (a dilemma's, a meeting's) have the heart's own rule and are left to it.
+                bool ownRule = !list[0].good && (list[0].src == "dilemmas" || list[0].src.StartsWith("dilemmas") || list[0].src == "meetings");
+                if (moments || (!ownRule && SmallMomentMath.IsSmall(group, list[0].def.durationDays)))
+                {
+                    if (group < 0f) smallBad -= group;
+                    else smallGood += group;
+                }
                 if (list[0].good)
                 {
-                    good += avgFelt;
-                    raw += avgRaw;
+                    good += group;
+                    raw += group;
+                    weighted += w * k;
+                    goods += list.Count;
                 }
-                else bad += avgFelt;
+                else bad += group;
             }
-            return (good, raw, bad, goods.Count);
+            return (good, raw, bad, goods, weighted, smallBad, smallGood);
         }
 
         private void UpdateMood(Colonist c, bool record)
         {
             parts = record && Measuring ? new Dictionary<string, double>() : null;
-            var (good, raw, bad, n) = Memories(c);
+            seenLasting.Clear();
             var (sg, sb) = Steady(c);
-            float comfort = set.B("standardsCoverComforts") && set.B("risingStandards") ? GoodTimesMath.ComfortFactor((int)Math.Min(3, c.standards * 4f)) : 1f;
-            // Used to the good life (Moods/GoodLife.cs): part of every good mood above the line their standards set, the
-            // game's comforts and Rimfolk's alike, is taken back as one bad mood of Rimfolk's.
+            // A lasting letdown or joy that no longer holds is forgotten (it comes as a moment again when it's back).
+            foreach (var k in c.lasting.Keys.Where(k => !seenLasting.Contains(k)).ToList()) c.lasting.Remove(k);
+            var (good, raw, bad, n, weighted, smallBadMem, smallGoodMem) = Memories(c);
+            float gameGood = Math.Max(0f, c.vanillaGood);
+            // Good things grow ordinary (Moods/GoodLife.cs): part of every good mood above the line their standards set, the
+            // game's and Rimfolk's alike, no longer lifts them, spread by how ordinary each is (GoodLifeMath.Spread): the
+            // game's comforts are mostly everyday (Rates.GameOrdinaryWeight), Rimfolk's lasting moods are, and a memory is as
+            // ordinary as its age. Rimfolk's mood carries only the part off Rimfolk's own good moods.
             c.takenBack = 0f;
-            if (set.MoodEffects && set.B("usedToGoodLife"))
+            c.gameOrdinary = 0f;
+            if (set.MoodEffects && set.B("goodGrowsOrdinary"))
             {
-                float positives = Math.Max(0f, c.vanillaGood) * comfort + good + sg;
+                float positives = gameGood + good + sg;
                 float line = GoodLifeMath.LineFor(set.B("risingStandards") ? GoodLifeMath.Level(c.standards) : 0);
-                c.takenBack = GoodLifeMath.InHardTimes(GoodLifeMath.TakeBack(positives, line), Hard(c));
+                float take = GoodLifeMath.InHardTimes(GoodLifeMath.TakeBack(positives, line), Hard(c));
+                float wGame = gameGood * Rates.GameOrdinaryWeight, wRim = weighted + sg;
+                if (take > 0f && wGame + wRim > 0f)
+                {
+                    c.gameOrdinary = take * wGame / (wGame + wRim);
+                    c.takenBack = take - c.gameOrdinary;
+                }
                 sb -= c.takenBack;
-                if (parts != null && c.takenBack > 0f) parts["used to the good life"] = parts.GetValueOrDefault("used to the good life") - c.takenBack;
+                if (parts != null && c.takenBack > 0f) parts["good things grown ordinary"] = parts.GetValueOrDefault("good things grown ordinary") - c.takenBack;
+            }
+            // The heart's pile (Moods/SmallMoments.cs): every small mood on their mind, the game's too, once they pile up.
+            if (Small)
+            {
+                float gameBad = Math.Max(0f, -c.vanillaBad) * Rates.GameSmallBad;
+                float gameJoy = Math.Max(0f, gameGood - c.gameOrdinary) * Rates.GameSmallGood;
+                float allBad = smallBadMem + c.smallSteadyBad + gameBad, allGood = smallGoodMem + c.smallSteadyGood + gameJoy;
+                float strain = SmallMomentMath.PileStrainPerHour(allBad);
+                if (strain > 0f)
+                {
+                    float moved = c.heart.Build(ColonyCouncil.StrainSource.Letdowns, strain * StrainSpeed, null);
+                    Split(c.heart.built, moved, gameBad / allBad, "small moods: the game's", "small moods: Rimfolk's");
+                }
+                float relief = SmallMomentMath.JoyReliefPerHour(allGood);
+                if (relief > 0f)
+                {
+                    float eased = c.heart.EaseJoys(relief, null);
+                    Split(c.heart.eased, eased, gameJoy / allGood, "small moods: the game's", "small moods: Rimfolk's");
+                }
+            }
+            if (set.B("heart"))
+            {
+                if (c.heart.Hour(heartLife, heartRng, Day, HourOfDay, partyToday, hour, ref lastColonyEpisode, set.B("heartEpisodes")) && Measuring) episodes++;
+                if (Measuring)
+                {
+                    bandHours[(int)HeartMath.BandFor(c.heart.strain)]++;
+                    heartHours++;
+                }
             }
             if (parts != null)
             {
@@ -581,14 +750,22 @@ namespace Balance
                 partSamples++;
                 parts = null;
             }
-            float vanilla = c.vanillaGood * comfort + c.vanillaBad;
+            float vanilla = gameGood - c.gameOrdinary + Math.Min(0f, c.vanillaGood) + c.vanillaBad;
             c.mood = Math.Clamp(0.5f + (vanilla + good + bad + sg + sb) / 100f, 0f, 1f);
             if (!record || !Measuring) return;
             samples.Add((Day - WarmupDays, c, new Sample
             {
                 good = good, goodRaw = raw, bad = bad, steadyGood = sg, steadyBad = sb, mood = c.mood, goodCount = n, trust = c.trust,
-                ill = c.ails.Any(a => !a.info.serious), illNotQuiet = c.ails.Any(a => !a.info.quiet && !a.info.serious)
+                ill = c.ails.Any(a => !a.info.serious), illNotQuiet = c.ails.Any(a => !a.info.quiet && !a.info.serious), gameOrdinary = c.gameOrdinary, ordinary = c.takenBack
             }));
+        }
+
+        /// <summary>What the heart's pile built or eased, split by who made the small moods behind it.</summary>
+        private static void Split(Dictionary<string, double> into, float amount, float share, string a, string b)
+        {
+            if (amount <= 0f || float.IsNaN(share)) return;
+            into[a] = into.GetValueOrDefault(a) + amount * share;
+            into[b] = into.GetValueOrDefault(b) + amount * (1f - share);
         }
 
         // ---------------- The year ----------------
@@ -635,6 +812,14 @@ namespace Balance
         private void Daily()
         {
             int day = Day;
+            // The heart's day (HeartSim.cs): a raid, a death and a gathering are the colony's; the rest each colonist's own.
+            if (set.B("heart"))
+            {
+                bool raid = heartRng.NextDouble() < heartLife.raid, death = heartRng.NextDouble() < heartLife.deathsPerYear / HeartState.Days;
+                int raidHour = heartRng.Next(6, 20), deathHour = heartRng.Next(0, 24);
+                partyToday = heartRng.NextDouble() < heartLife.party;
+                foreach (var c in people) c.heart.StartDay(heartLife, heartRng, day, raid, raidHour, death, deathHour);
+            }
             foreach (var c in people)
             {
                 // Trust drifts back (StandingTracker.Daily); recent grants are forgotten after 30 days.
@@ -669,8 +854,9 @@ namespace Balance
                     c.envy = Chance(style.bedroomEnvy);
                     c.worry = Chance(style.worries);
                     c.inReach = set.B("aspirations") && Chance(0.08f);
-                    float s = (float)rng.NextDouble();
-                    c.strain = s < style.strain[2] ? 3 : s < style.strain[2] + style.strain[1] ? 2 : s < style.strain.Sum() ? 1 : 0;
+                    // The heart is played hour by hour now (HeartSim.cs); the draw that set a share of strain stays, so the rest of
+                    // the year draws as it did.
+                    rng.NextDouble();
                 }
                 c.triggerToday = c.discomforts.Any(_ => Chance(Rates.DiscomfortDays));
                 // Setbacks from what happens in play.
@@ -1029,6 +1215,7 @@ namespace Balance
             if (hour >= nextThreat)
             {
                 lastThreat = hour;
+                if (scenes != null && Measuring) threats.Add(hour - WarmupDays * 24);
                 nextThreat = hour + (int)(Exp(Rates.BigThreatDays) * 24) + 24;
             }
             if (dilemmaPending > hour) return;
@@ -1278,7 +1465,10 @@ namespace Balance
             var t = defs.T(thought);
             if (t == null || t.Situational || t.rewardInstead || !set.MoodEffects) return;
             float own = t.First;
-            AddMemory(c, t, own > 0f ? own * LiveScale(c) : own * PressureMath.LetdownFactor(set.Life) * BadScale(c) * PressureMath.HardTimesLetdown(Hard(c)));
+            float felt = own > 0f ? own * LiveScale(c) : own * PressureMath.LetdownFactor(set.Life) * BadScale(c) * PressureMath.HardTimesLetdown(Hard(c));
+            // A friction is a small letdown; a good moment small as written (SmallMoments.JoySource: 5 points, 2 days) a small joy.
+            bool small = felt < 0f || (own <= 5f && t.durationDays <= 2f);
+            if (!small || !Moment(c, t, felt)) AddMemory(c, t, felt);
         }
 
         private void Nuisances()
@@ -1296,7 +1486,7 @@ namespace Balance
             c.nuisanceLast[d.name] = hour;
             Count("nuisances");
             var t2 = defs.T(d.options[0].effects[0].thought);
-            if (t2 != null && set.MoodEffects) AddMemory(c, t2, t2.First);
+            if (t2 != null && set.MoodEffects && !Moment(c, t2, t2.First)) AddMemory(c, t2, t2.First);
         }
 
         private void Dreams()
@@ -1487,7 +1677,7 @@ namespace Balance
                     Send("calendar", Channel.Letter);
                     foreach (var c in people.Where(_ => Chance(0.6f))) Give(c, "Council_Cal_Remembered");
                     // Those who knew them stand a while at the grave, when there is one here (CalendarKeeping.DoWay).
-                    if (scenes != null && Chance(Rates.SceneRemembranceGrave)) Stage("calendar days", "gathering", 4, 1f, false, false, 17);
+                    if (scenes != null && Chance(Rates.SceneRemembranceGrave)) Stage("calendar days", "gathering", 4, 1f, false, false, 17, "remembrance");
                     continue;
                 }
                 Send("calendar", Channel.Decision);
@@ -1498,8 +1688,8 @@ namespace Balance
                     // How the day is kept (CalendarKeeping.DoWay): a feast, games or a fire for everyone, an evening of
                     // faith, gifts handed over in pairs; a rest day and a birthday stage nothing.
                     int all = (int)(people.Count * 0.8f);
-                    if (kind == "FeastDay" || kind == "GamesDay" || kind == "BonfireNight") Stage("calendar days", "gathering", all, 3f, false, false, 17);
-                    else if (kind == "FaithDay") Stage("calendar days", "gathering", all, 2f, false, false, 18);
+                    if (kind == "FeastDay" || kind == "GamesDay" || kind == "BonfireNight") Stage("calendar days", "gathering", all, 3f, false, false, 17, "feast");
+                    else if (kind == "FaithDay") Stage("calendar days", "gathering", all, 2f, false, false, 18, "faith");
                     else if (kind == "GiftDay") Stage("calendar days", "small", 2, 0.5f, false, false, 15);
                 }
                 if (kind == "FeastDay" || kind == "GamesDay")

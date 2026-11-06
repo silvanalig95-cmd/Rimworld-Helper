@@ -6,30 +6,28 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// Getting used to good times (GoodTimes.cs). Every memory a colonist gains passes through here, however it's given
-    /// (the council, a moment, an encounter, a dilemma, a world event): one of Rimfolk's good memories lasts less long
-    /// when the colonist's mood is already high. A memory that renews one already there, instead of joining the list,
-    /// passes its time on to that one. The same hook lets a memory leave a mark on a colonist's character (PersonaMarks),
-    /// lets a deep talk or a good time with someone close make a quiet trouble pass sooner (Troubles), and counts how
-    /// often each kind has come lately (GoodLife).
+    /// Every memory a colonist gains passes through here, however it's given (the council, a moment, an encounter, a
+    /// dilemma, a world event). A small letdown or joy of Rimfolk's becomes a short moment first (SmallMoments). It lets a memory leave a mark on a colonist's character (PersonaMarks), lets a deep talk
+    /// or a good time with someone close make a quiet trouble pass sooner (Troubles), and counts how often each kind has
+    /// come lately (GoodLife: the everyday ones grow ordinary soonest).
     /// </summary>
     [HarmonyPatch(typeof(MemoryThoughtHandler), nameof(MemoryThoughtHandler.TryGainMemory), new[] { typeof(Thought_Memory), typeof(Pawn) })]
     public static class Patch_GoodTimesFade
     {
-        public static void Prefix(MemoryThoughtHandler __instance, Thought_Memory newThought, out int __state)
+        /// <summary>A small letdown or joy of Rimfolk's becomes a moment, and the memory goes on without a mood (Moods/SmallMoments.cs).</summary>
+        public static void Prefix(MemoryThoughtHandler __instance, Thought_Memory newThought, Pawn otherPawn)
         {
-            __state = GoodTimes.Untouched;
             try
             {
-                __state = GoodTimes.BeforeGiven(__instance, newThought);
+                SmallMoments.Take(__instance, newThought, otherPawn);
             }
             catch (Exception e)
             {
-                CouncilLog.ErrorOnce("good times fade", e);
+                CouncilLog.ErrorOnce("small letdowns and joys", e);
             }
         }
 
-        public static void Postfix(MemoryThoughtHandler __instance, Thought_Memory newThought, int __state)
+        public static void Postfix(MemoryThoughtHandler __instance, Thought_Memory newThought)
         {
             // What happens to people changes them: some memories leave a mark on their character (Persona/Marks.cs).
             PersonaMarks.Notify_Memory(__instance?.pawn, newThought);
@@ -41,32 +39,21 @@ namespace ColonyCouncil
             Troubles.Notify_Memory(__instance?.pawn, newThought);
             // How often this kind has come lately: the everyday ones lose most to a good life (Moods/GoodLife.cs).
             GoodLife.Notify_Memory(__instance?.pawn, newThought);
-            if (__state == GoodTimes.Untouched) return;
-            try
-            {
-                GoodTimes.AfterGiven(__instance, newThought, __state);
-            }
-            catch (Exception e)
-            {
-                CouncilLog.ErrorOnce("good times fade", e);
-            }
         }
     }
 
     /// <summary>
-    /// Standards cover the game's comforts (GoodTimes.cs), and used to the good life (Moods/GoodLife.cs). The game adds
-    /// up a colonist's mood group by group through this method, and the Needs tab shows the same number, so a good mood
-    /// from the game or another mod is felt (and shown) a little less by a colonist with high standards, and every good
-    /// mood, Rimfolk's too, a share less by one whose good moods pile up past their standards' line, the everyday ones
-    /// most. Bad moods pass through unchanged.
+    /// Good things grow ordinary (Moods/GoodLife.cs). The game adds up a colonist's mood group by group through this
+    /// method, and the Needs tab shows the same number, so every good mood (the game's, other mods' and Rimfolk's) is
+    /// felt (and shown) a share less by one whose good moods pile up past their standards' line, the everyday ones most
+    /// and the new ones least. Bad moods pass through unchanged.
     /// </summary>
     [HarmonyPatch(typeof(ThoughtHandler), nameof(ThoughtHandler.MoodOffsetOfGroup))]
     public static class Patch_ComfortStandards
     {
         public static void Postfix(ThoughtHandler __instance, Thought group, ref float __result)
         {
-            if (__result <= 0f || GoodTimes.Raw) return;
-            // The good life's reading first: standards' cut eases for something new by it.
+            if (__result <= 0f || GoodLife.Raw) return;
             float share = 1f;
             try
             {
@@ -74,15 +61,7 @@ namespace ColonyCouncil
             }
             catch (Exception e)
             {
-                CouncilLog.ErrorOnce("used to the good life", e);
-            }
-            try
-            {
-                __result = GoodTimes.Felt(__instance, group, __result);
-            }
-            catch (Exception e)
-            {
-                CouncilLog.ErrorOnce("standards and comforts", e);
+                CouncilLog.ErrorOnce("good things grown ordinary", e);
             }
             if (share < 1f) __result *= share;
         }

@@ -16,12 +16,12 @@ namespace ColonyCouncil
         public const string Work = "Work", Anything = "Anything", Sleep = "Sleep", Joy = "Joy";
 
         /// <summary>
-        /// The plans: the heat wave's hours, a midday rest, a night at work, a late start, and the nights apart (someone who
-        /// keeps fighting kept from the others for a few days: Social/Banishment.cs).
+        /// The plans: the heat wave's hours, a midday rest, a night at work, a late start, the nights apart (someone who
+        /// keeps fighting kept from the others for a few days: Social/Banishment.cs), and the cold snap's short days.
         /// </summary>
-        public const string Heat = "heat", Siesta = "siesta", Night = "night", Late = "late", Apart = "apart";
+        public const string Heat = "heat", Siesta = "siesta", Night = "night", Late = "late", Apart = "apart", Cold = "cold";
 
-        public static readonly string[] Plans = { Heat, Siesta, Night, Late, Apart };
+        public static readonly string[] Plans = { Heat, Siesta, Night, Late, Apart, Cold };
 
         /// <summary>How long the nights apart last, in days.</summary>
         public const float ApartDays = 5f;
@@ -84,7 +84,8 @@ namespace ColonyCouncil
         /// "Sleep", "Joy" or another assignment's name): the heat wave's hours sleep through the midday heat (11 to 16)
         /// and work the night instead (21 to 2); a midday rest makes 12 to 15 recreation; a night at work turns tonight's
         /// sleep (22 to 5) to work and sleeps the morning after (6 to 10); a late start sleeps the morning (6 to 8); the nights
-        /// apart work the nights (22 to 5) and sleep through the day (10 to 17), awake while the others sleep. Only work,
+        /// apart work the nights (22 to 5) and sleep through the day (10 to 17), awake while the others sleep; the cold snap's
+        /// short days sleep through the frost of the early morning (5 to 8) and go to bed early (19 to 21). Only work,
         /// anything and sleep hours change, never someone's meditation or recreation.
         /// </summary>
         public static List<Change> Plan(string plan, Func<int, string> now)
@@ -119,6 +120,10 @@ namespace ColonyCouncil
                     Turn(22, 5, a => a == Sleep, Work);
                     Turn(10, 17, Waking, Sleep);
                     break;
+                case Cold:
+                    Turn(5, 8, Waking, Sleep);
+                    Turn(19, 21, Waking, Sleep);
+                    break;
             }
             return list;
         }
@@ -132,10 +137,10 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// How long a plan lasts, in hours, unless its condition ends sooner: the heat wave's hours and a midday rest until
-        /// the heat wave ends (at most <see cref="MaxDays"/> days); a night at work until 11 o'clock the morning after (the
-        /// next 11 o'clock at least 9 hours away, so a night already begun counts); a late start until 9 the next morning;
-        /// the nights apart <see cref="ApartDays"/> days.
+        /// How long a plan lasts, in hours, unless its condition ends sooner: the heat wave's hours, a midday rest and the
+        /// cold snap's short days until the heat wave or the cold snap ends (at most <see cref="MaxDays"/> days); a night at
+        /// work until 11 o'clock the morning after (the next 11 o'clock at least 9 hours away, so a night already begun
+        /// counts); a late start until 9 the next morning; the nights apart <see cref="ApartDays"/> days.
         /// </summary>
         public static float Hours(string plan, float hourNow)
         {

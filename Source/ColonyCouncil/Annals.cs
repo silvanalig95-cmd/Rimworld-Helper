@@ -294,7 +294,7 @@ namespace ColonyCouncil
                 string line = "CC_Annals_Offices".Translate(TextUtil.JoinAnd(seats)).Resolve();
                 Para(ColonyState.Several && council.Map != null ? "CC_Tell_At".Translate(council.Name.Named("PLACE"), line.Named("TEXT")).Resolve() : line);
             }
-            var titled = now.Select(p => (p, titles: comp.epithets.TitlesOf(p))).Where(x => !x.titles.NullOrEmpty())
+            var titled = now.Select(p => (p, titles: comp.epithets.NameOf(p))).Where(x => !x.titles.NullOrEmpty())
                 .Select(x => x.p.LabelShort + " " + x.titles).ToList();
             if (titled.Count > 0) Para("CC_Annals_Epithets".Translate(TextUtil.JoinAnd(titled)).Resolve());
             var spoiled = now.Where(p => Standards.LevelOf(p) == StandardsLevel.Spoiled).ToList();

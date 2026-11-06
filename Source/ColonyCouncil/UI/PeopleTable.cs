@@ -392,7 +392,7 @@ namespace ColonyCouncil
 
             // Name, with office and epithet under it.
             var office = s.offices ? OfficeTracker.HeldBy(p) : null;
-            string titles = s.epithets ? comp.epithets.TitlesOf(p) : null;
+            string titles = s.epithets ? comp.epithets.NameOf(p) : null;
             var under = new List<string>(2);
             if (office != null) under.Add(office.NameCap);
             if (!titles.NullOrEmpty()) under.Add(titles);
@@ -726,7 +726,7 @@ namespace ColonyCouncil
             if (!quirks.NullOrEmpty()) sb.Append("\n").Append(quirks);
             var office = OfficeTracker.HeldBy(p);
             if (office != null) sb.Append("\n").Append("CC_Office_Holds".Translate(p.LabelShort, office.Name).Resolve());
-            string titles = comp.epithets.TitlesOf(p);
+            string titles = comp.epithets.NameOf(p);
             if (!titles.NullOrEmpty()) sb.Append("\n").Append("CC_Epithet_Known".Translate(p.LabelShort, titles).Resolve());
             return sb.ToString();
         }

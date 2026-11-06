@@ -5,10 +5,9 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// A once-in-a-lifetime good memory (a life goal reached) counts in full. Put on its ThoughtDef: the colonist's
-    /// standards don't shrink it (CouncilGameComponent.GiveThought), good times don't shorten it (GoodTimes), and it
-    /// stays out of the good moods that add up slowly (SmallJoys), so it never pushes the others down either. The reward
-    /// strength setting still applies.
+    /// A once-in-a-lifetime good memory (a life goal reached) counts in full. Put on its ThoughtDef: it stays out of good
+    /// things growing ordinary (Moods/GoodLife.cs), so it never counts for less and never pushes the others down either.
+    /// The reward strength setting still applies.
     /// </summary>
     public class Milestone : DefModExtension
     {

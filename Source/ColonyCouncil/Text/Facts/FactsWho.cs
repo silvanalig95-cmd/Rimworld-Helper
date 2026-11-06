@@ -214,6 +214,26 @@ namespace ColonyCouncil
             Did(OutsiderAct.Letter, "letter");
             Did(OutsiderAct.Bring, "bring");
             if (pair.topics.Count > 0) f.Tag("last:" + pair.topics[pair.topics.Count - 1]);
+            Shared(f, c, x);
+        }
+
+        /// <summary>
+        /// What the two did together that went through, as the outsider remembers the colonist (the game's mood memories,
+        /// Outsiders/OutsiderOutcomes.cs): shared:meal, shared:drink, shared:lesson, shared:gift (taken, and counting for
+        /// something), shared:bout (a bout or a duel fought). did:KIND above is any asking, refused or not.
+        /// </summary>
+        private static void Shared(FactSet f, Pawn c, Pawn x)
+        {
+            var memories = x.needs?.mood?.thoughts?.memories?.Memories;
+            if (memories == null) return;
+            foreach (var m in memories)
+            {
+                if (m?.def == null || m.otherPawn != c) continue;
+                if (m.def == OutsiderDefOf.Rimfolk_OutsiderMeal) f.Tag(m.CurStageIndex == 1 ? "shared:drink" : "shared:meal");
+                else if (m.def == OutsiderDefOf.Rimfolk_OutsiderTaught) f.Tag("shared:lesson");
+                else if (m.def == OutsiderDefOf.Rimfolk_OutsiderGift) f.Tag("shared:gift");
+                else if (m.def == OutsiderDefOf.Rimfolk_OutsiderBout) f.Tag("shared:bout");
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using RimWorld;
 using RimWorld.Planet;
 using Verse;
@@ -6,17 +7,23 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// One voice to the player: every Rimfolk system tells the player through here, so that as the mod grows the player
-    /// isn't flooded.
+    /// The teller: every Rimfolk system tells the player through here, and the teller picks the channel by how much a
+    /// happening matters (its importance and its kind) and by how busy the colony's day already is (TellMath.cs has the
+    /// rules), so that as the mod grows the player isn't flooded.
     /// <list type="bullet">
     /// <item><see cref="Message"/>: something that happened, as a message now. The "How many messages" setting decides
     /// by its importance whether it's told at all; the same text (or key) within <see cref="TellMath.MergeHours"/> hours
-    /// is told once; past the day's cap for its kind and colony it waits for the evening's colony news instead (never
-    /// lost). Important messages are never held back.</item>
+    /// is told once, by whichever channel; something hard to miss is always shown; something worth knowing is shown
+    /// until the colony's messages for the day are reached, and on a busy day (half of them shown, or a threat or
+    /// something hard to miss in the last hours) one person's news, health and the land's wait for the evening's colony
+    /// news while the colony's and the world's still come. Nothing held back is lost.</item>
     /// <item><see cref="Minor"/>: the smaller news (what <see cref="News.Post"/> carries), to the evening's colony news, a
-    /// message or the History tab by the "Colony news" setting; as a message it keeps the same caps.</item>
-    /// <item><see cref="Letter"/>: a letter that only tells. Past the day's cap for its kind and colony it becomes a line
-    /// in the evening's news. Important letters are never held back.</item>
+    /// message or the History tab by the "Colony news" setting; as a message it is weighed as messages are. The evening's
+    /// letter carries the lines that matter most (<see cref="TellMath.EveningLines"/>); the rest go to the History tab.</item>
+    /// <item><see cref="Letter"/>: a letter that only tells. Past the colony's letters for the day, or a person's or the
+    /// land's on a busy day, it becomes a line in the evening's news. Important letters are never held back.</item>
+    /// <item><see cref="Chronicle"/>: a line for the colony's story, written into the one history; the chronicle shows
+    /// what its view selects (Chronicle.cs).</item>
     /// <item><see cref="Ask"/> and <see cref="CanAsk"/>: Rimfolk's questions (choice letters), never capped, spaced as
     /// <see cref="LetterGap"/> spaces them.</item>
     /// </list>
@@ -26,9 +33,9 @@ namespace ColonyCouncil
     /// </summary>
     public static class Tell
     {
-        public static int MessagesADay => ColonyCouncilMod.Settings?.tellMessagesADay ?? TellMath.DefaultMessagesADay;
+        public static int MessagesADay => Math.Max(TellMath.MinMessagesADay, ColonyCouncilMod.Settings?.messagesADay ?? TellMath.DefaultMessagesADay);
 
-        public static int LettersADay => ColonyCouncilMod.Settings?.tellLettersADay ?? TellMath.DefaultLettersADay;
+        public static int LettersADay => Math.Max(TellMath.MinLettersADay, ColonyCouncilMod.Settings?.lettersADay ?? TellMath.DefaultLettersADay);
 
         private static readonly TellBook book = new TellBook();
         private static Game bookGame;
@@ -62,7 +69,7 @@ namespace ColonyCouncil
             if (text.NullOrEmpty() || !Notify.Shows(importance)) return;
             // Links are for Rimfolk's own windows: a marker never reaches the game's (UI/Cards/LinkTextMath.cs).
             text = LinkTextMath.Plain(text);
-            AtOnce(kind, importance == Importance.Important, map, text, look, type, key, historical);
+            AtOnce(kind, importance, map, text, look, type, key, historical);
         }
 
         /// <summary>
@@ -82,7 +89,14 @@ namespace ColonyCouncil
                     case NewsMode.Digest:
                         var waiting = NewsComponent.Instance;
                         if (waiting == null) break;
-                        waiting.Add(Item(kind, HomeOf(map, look), text, look, type));
+                        var home = HomeOf(map, look);
+                        int colony = ColonyOf(home, look);
+                        // Told once: the same words shown as a message a little while ago aren't the evening's news too.
+                        if (Book.Told("M|" + colony + "|" + text, Now)) return;
+                        var item = Item(kind, home, text, look, type);
+                        item.weight = WeightOf(importance ?? Importance.Notable);
+                        waiting.Add(item);
+                        Book.Note(colony, "evening", Now);
                         return;
                     case NewsMode.Off:
                         if (Find.Archive == null) break;
@@ -94,10 +108,19 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("tell: colony news", e);
             }
-            AtOnce(kind, importance == Importance.Important, map, text, look, type, null, false);
+            AtOnce(kind, importance ?? Importance.Notable, map, text, look, type, null, false);
         }
 
-        private static void AtOnce(NewsKind kind, bool important, Map map, string text, LookTargets look, MessageTypeDef type, string key, bool historical)
+        private static int WeightOf(Importance i) => i == Importance.Important ? TellWeight.Important : i == Importance.Notable ? TellWeight.Notable : TellWeight.Flavor;
+
+        /// <summary>A threat on the colony's home (the storyteller's raid) in the last few hours makes its day busy, as something hard to miss told would.</summary>
+        private static void NoteThreat(Map home, int colony)
+        {
+            int threat = home?.storyState?.LastThreatBigTick ?? -1;
+            if (threat > 0) Book.Important(colony, threat, Now);
+        }
+
+        private static void AtOnce(NewsKind kind, Importance importance, Map map, string text, LookTargets look, MessageTypeDef type, string key, bool historical)
         {
             NewsItem item = null;
             var verdict = TellVerdict.Show;
@@ -106,7 +129,9 @@ namespace ColonyCouncil
                 var home = HomeOf(map, look);
                 int colony = ColonyOf(home, look);
                 item = Item(kind, home, text, look, type);
-                verdict = Book.Judge("M|" + colony + "|" + (key ?? text), colony, (int)kind, false, important ? 0 : MessagesADay, Now);
+                item.weight = WeightOf(importance);
+                NoteThreat(home, colony);
+                verdict = Book.Judge("M|" + colony + "|" + (key ?? text), colony, (int)kind, false, item.weight, MessagesADay, Now);
             }
             catch (Exception e)
             {
@@ -142,9 +167,13 @@ namespace ColonyCouncil
             {
                 var home = HomeOf(map, look);
                 int colony = ColonyOf(home, look);
-                verdict = Book.Judge("L|" + colony + "|" + (key ?? label + "\n" + text), colony, (int)kind, true,
-                    importance == Importance.Important ? 0 : LettersADay, Now);
-                if (verdict == TellVerdict.Held) line = Item(kind, home, TellMath.LetterLine(label, text), look, TypeOf(def));
+                NoteThreat(home, colony);
+                verdict = Book.Judge("L|" + colony + "|" + (key ?? label + "\n" + text), colony, (int)kind, true, WeightOf(importance), LettersADay, Now);
+                if (verdict == TellVerdict.Held)
+                {
+                    line = Item(kind, home, TellMath.LetterLine(label, text), look, TypeOf(def));
+                    line.weight = WeightOf(importance);
+                }
                 body = NamedLetter(body, home, label);
             }
             catch (Exception e)
@@ -155,6 +184,28 @@ namespace ColonyCouncil
             if (verdict == TellVerdict.Merged) return;
             if (verdict == TellVerdict.Held && Hold(line)) return;
             Find.LetterStack.ReceiveLetter(label ?? "", body, def, look, faction);
+        }
+
+        // ---------------- The colony's story ----------------
+
+        /// <summary>
+        /// A line for the colony's story: the teller writes it into the one history (World/Ledger/History.cs), which keeps
+        /// it by its own rules; the chronicle shown is the history's view of the colony and selects what it shows
+        /// (<see cref="ColonyCouncil.Chronicle"/>). Every system's <c>AddChronicle</c> comes here.
+        /// </summary>
+        public static void Chronicle(ChronicleEntry entry)
+        {
+            if (entry == null || entry.text.NullOrEmpty()) return;
+            History.FromChronicle(entry);
+            try
+            {
+                var home = entry.about?.MapHeld;
+                Book.Note(ColonyOf(home != null && Homes.IsHome(home) ? home : null, entry.about != null ? new LookTargets(entry.about) : null), "chronicle", Now);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("tell: the chronicle's tally", e);
+            }
         }
 
         // ---------------- Questions ----------------
@@ -181,6 +232,8 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("tell: a question", e);
             }
+            // Never capped, but part of how busy the day was (the evening's room).
+            Book.Asked(Now);
             Find.LetterStack.ReceiveLetter(letter);
         }
 
@@ -195,6 +248,35 @@ namespace ColonyCouncil
             waiting.Add(item);
             return true;
         }
+
+        /// <summary>The evening's letter's room tonight: fewer lines the more letters and messages the day already showed (TellMath.EveningRoom).</summary>
+        public static int EveningRoom => TellMath.EveningRoom(Book.ShownToday(Now));
+
+        /// <summary>The evening's lines that didn't fit its letter, gone to the History tab: counted in the day's tally.</summary>
+        internal static void NoteHistory(int n)
+        {
+            if (n <= 0) return;
+            for (int i = 0; i < n; i++) Book.Note(TellMath.NoColony, "history", Now);
+        }
+
+        /// <summary>The day so far, colony by colony: what went by each channel (the dev log's measure of a day).</summary>
+        public static string Today()
+        {
+            var sb = new System.Text.StringBuilder();
+            int now = Now;
+            foreach (int c in Book.ColoniesToday(now))
+            {
+                var map = c == TellMath.NoColony ? null : Homes.MapOf(c);
+                string name = c == TellMath.NoColony ? "beyond the homes" : map != null ? Homes.Name(map) ?? map.ToString() : "colony " + c;
+                sb.Append(name).Append(": ");
+                sb.Append(string.Join(", ", new[] { "letter", "message", "evening", "history", "merged", "chronicle" }.Select(ch => Book.Tally(c, ch, now) + " " + ch)));
+                sb.Append('\n');
+            }
+            return sb.Length == 0 ? "Nothing told today." : sb.ToString().TrimEnd();
+        }
+
+        [LudeonTK.DebugAction("Rimfolk", "Teller: what was told today", allowedGameStates = LudeonTK.AllowedGameStates.Playing)]
+        private static void DebugToday() => Log.Message("[Rimfolk] The teller today (day " + (Now / Sched.DayTicks) + "):\n" + Today());
 
         private static NewsItem Item(NewsKind kind, Map home, string text, LookTargets look, MessageTypeDef type)
         {

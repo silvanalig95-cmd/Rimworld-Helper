@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More words for getting back on their feet (Health/HealthTracker.cs), in every voice (the text pass of 6 November
+    2026). The weakness after an illness, a long time in bed, an operation, a lost limb, and the two that had no lines
+    of their own: after hunger ([hunger], malnutrition over) and after the cold or the heat ([exposure], hypothermia or
+    heatstroke over); a setback from working too soon; strength back; a friend's sickbed visit, the game's own (a sit
+    and a talk at the bedside, a quarter of an hour or more: {OTHER_...} is the visitor). Said over the head while
+    convalescing (Council_Pool_SayConvalescing, [walking] while on their feet) and while ill (Council_Pool_SayAilment):
+    one sentence each.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_Journal_Health_Convalescing_Voices</defName>
+    <pool>Council_Journal_Health_Convalescing</pool>
+    <lines>
+      <plain>
+        <li>[hunger] Eating properly again. My body takes each meal as if it doesn't believe there'll be another.</li>
+        <li>[hunger] The hunger's over, but it left me weak. I tire halfway up the slope.</li>
+        <li>[hunger,lowtech] Broth, then bread, then a little meat. The old way back from hunger, slowly.</li>
+        <li>[exposure] My body's had a fright from the weather. It's taking its time to forgive me.</li>
+        <li>[exposure] The weather nearly had me. I sat by the wall in the sun and couldn't think of anything better to do.</li>
+        <li>[illness] Over the fever, under the weakness. Every task takes two goes now.</li>
+        <li>[illness] I'm well, they tell me. My legs haven't heard yet.</li>
+        <li>[bed] Up and dressed for the first time in days. It took me most of the morning.</li>
+        <li>[bed] My back aches from the bed. I'd rather it ached from work.</li>
+        <li>[limb] I dropped the cup twice today. I'll learn. I'm learning.</li>
+        <li>[limb] There are things I won't do again the way I did them. I'm finding the new ways one at a time.</li>
+        <li>[surgery] The stitches pull when I laugh, so I'm trying not to. {OTHER_nameDef} says it's healing well.</li>
+        <li>[surgery,old] An operation at my age. {OTHER_nameDef} did well by me, and I mean to do well by the healing.</li>
+        <li>[impatient] Weak, and the work's piling up where I can see it. I'm told to leave it. I'm leaving it, mostly.</li>
+        <li>[patient] Weak, and slow, and in no hurry. The work will be there when I'm ready for it.</li>
+      </plain>
+      <warm>
+        <li>Still weak. The others have been carrying my share without a word, and I've noticed.</li>
+        <li>[surgery] I owe {OTHER_nameDef} the stitches and the steady hands. I don't know how to thank a person for that.</li>
+        <li>[hunger] Everyone's glad to see me eat. I'm glad to be eating with them.</li>
+      </warm>
+      <blunt>
+        <li>Weak. Sitting work for now.</li>
+        <li>[limb] One less. Managing.</li>
+        <li>[hunger] Fed. Weak. Getting there.</li>
+      </blunt>
+      <cheerful>
+        <li>Wobbly as a new lamb, but upright, which is the main thing.</li>
+        <li>[bed] Out of that bed at last. I may never lie down again. I'll lie down in an hour.</li>
+        <li>[exposure] The weather tried its best and here I am. Weak, but here.</li>
+      </cheerful>
+      <gloomy>
+        <li>Weak, and the days go on without me. I can hear them going.</li>
+        <li>[limb] I keep looking at where it was. I don't know when I'll stop.</li>
+        <li>[hunger] We were that close to starving. I don't want to forget how close.</li>
+      </gloomy>
+      <cold>
+        <li>Convalescing. I'll take on light work as the strength comes back.</li>
+        <li>[exposure] Exposure, recovered from. I'll dress for the weather from now on.</li>
+        <li>[limb] Adjusting to the loss. Some tasks will have to go to others.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_Journal_Health_Setback_Voices</defName>
+    <pool>Council_Journal_Health_Setback</pool>
+    <lines>
+      <plain>
+        <li>Felt well enough this morning to do a proper day. By afternoon my knees were shaking and I had to stop.</li>
+        <li>I tried to do it all at once. Now I'm back where I started, a few days further from being well.</li>
+        <li>[impatient] Couldn't bear watching the work go undone. Now I'll be watching it for longer.</li>
+        <li>[old] I forgot I'm not young and not well. My body reminded me before noon.</li>
+      </plain>
+      <warm><li>I wanted to pull my weight. Pulled too much of it. I'll let them carry me a little longer.</li></warm>
+      <blunt><li>Worked. Shouldn't have. Resting.</li></blunt>
+      <cheerful><li>Well, that was a mistake. Back to the blankets, and no complaints. Some complaints.</li></cheerful>
+      <gloomy><li>I'll never be quite well, will I. Every step forward, two back.</li></gloomy>
+      <cold><li>A setback from working too early. The rest I skipped is now owed with interest.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_Journal_Health_Strong_Voices</defName>
+    <pool>Council_Journal_Health_Strong</pool>
+    <lines>
+      <plain>
+        <li>The weakness has gone at last. I only noticed when I stopped noticing it.</li>
+        <li>Strong again. The stairs are just stairs now.</li>
+        <li>My strength's come back all at once, as if it had been waiting somewhere for me.</li>
+        <li>[lowtech] Strong enough again for the hauling and the hunt. I can feel it in my arms.</li>
+      </plain>
+      <warm><li>Well again. I'll make it up to the ones who covered for me, every one of them.</li></warm>
+      <blunt><li>Strong. Done resting.</li></blunt>
+      <cheerful><li>Back to my old self, and my old self is very glad to see me.</li></cheerful>
+      <gloomy><li>Strong again, for now. I'll enjoy it while it lasts.</li></gloomy>
+      <cold><li>Recovered. Capacity is back to what it was.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_Journal_Health_Visited_Voices</defName>
+    <pool>Council_Journal_Health_Visited</pool>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} sat by the bed for a while. We didn't talk about being ill at all, which was the best part.</li>
+        <li>{OTHER_nameDef} came in, sat down, and told me everything I'd missed. Most of it was gossip.</li>
+        <li>{OTHER_nameDef} looked in on me today. Just a while, but the day felt shorter after.</li>
+        <li>[convalescing] {OTHER_nameDef} came to see me and said I looked better. I've decided to believe it.</li>
+        <li>{OTHER_nameDef} sat with me a while. Neither of us said much, and it was enough.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} came to sit with me. There's a kindness in sitting that words don't have.</li></warm>
+      <blunt><li>{OTHER_nameDef} sat with me. Didn't fuss. Liked that.</li></blunt>
+      <cheerful><li>{OTHER_nameDef} came by and made me laugh, which hurt, and was worth it.</li></cheerful>
+      <gloomy><li>{OTHER_nameDef} came. I'd thought they'd forgotten me in here. They hadn't.</li></gloomy>
+      <cold><li>{OTHER_nameDef} spent time at my bedside. I'll return the favour when it's needed.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Said aloud ===================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_Say_Convalescing_Voices</defName>
+    <pool>Council_Pool_SayConvalescing</pool>
+    <lines>
+      <plain>
+        <li>One more day of this and I'll be back to it.</li>
+        <li>My legs are coming back to me, slowly.</li>
+        <li>[walking] Slow and steady, that's me for now.</li>
+        <li>[walking] Every step's a bit easier than yesterday's.</li>
+        <li>[walking,old] Walking like my grandmother did, and glad to.</li>
+        <li>[child] I'm getting better, I'm just slow.</li>
+      </plain>
+      <warm><li>Thank you all for your patience with me.</li></warm>
+      <blunt><li>Getting there.</li></blunt>
+      <cheerful><li>Nearly back to full speed, give or take most of it.</li></cheerful>
+      <gloomy><li>I'm so tired of being tired.</li></gloomy>
+      <cold><li>Recovery's on schedule.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_Say_Ailment_Voices</defName>
+    <pool>Council_Pool_SayAilment</pool>
+    <lines>
+      <plain>
+        <li>[ail:HeadCold] My nose has given up on me.</li>
+        <li>[ail:StomachBug] Don't come near me, it's catching.</li>
+        <li>[ail:ChestCold] Every cough starts at my boots.</li>
+        <li>[ail:HayFever] If one more flower opens I'm moving underground.</li>
+        <li>[ail:Sunburn] Don't slap my back, whatever you do.</li>
+        <li>[ail:Blisters] My feet and I aren't speaking.</li>
+        <li>[ail:InsectBites] I've been eaten alive and they're still hungry.</li>
+        <li>[ail:SoreHands] My hands want a holiday.</li>
+        <li>[ail:Splinter] It's in deep, the little devil.</li>
+        <li>[ail:Toothache] Not the cold water, please, not on this tooth.</li>
+      </plain>
+      <warm>
+        <li>[everyday] Don't worry about me, I'll mend.</li>
+        <li>[everyday] Kind of you to ask, I'm getting there.</li>
+        <li>[everyday] Go on, I'll be fine, you've work to do.</li>
+        <li>[serious] It helps, having you all near.</li>
+      </warm>
+      <blunt>
+        <li>[everyday] Sick, leave it.</li>
+        <li>[everyday] Not dying, just slow.</li>
+        <li>[everyday] I'll live, stop asking.</li>
+        <li>[serious] Bad, but I'm still here.</li>
+      </blunt>
+      <cheerful>
+        <li>[everyday] I've been better, and I'll be better again.</li>
+        <li>[everyday] Under the weather, but the weather always changes.</li>
+        <li>[everyday] A few days of this and I'll be back to annoy you all.</li>
+        <li>[serious] I'm too stubborn for this to finish me.</li>
+      </cheerful>
+      <gloomy>
+        <li>[everyday] Nobody else ever seems to catch anything.</li>
+        <li>[everyday] I'm always the one who gets it.</li>
+        <li>[everyday] It's one thing after another with me.</li>
+        <li>[serious] If I don't get up from this, remember me kindly.</li>
+      </gloomy>
+      <cold>
+        <li>[everyday] Ill, it will run its course.</li>
+        <li>[everyday] Lighter duties until this passes.</li>
+        <li>[everyday] A few days, no more, I expect.</li>
+        <li>[serious] Keep the others away until we know what this is.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

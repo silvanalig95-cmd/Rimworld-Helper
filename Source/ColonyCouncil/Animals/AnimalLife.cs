@@ -215,6 +215,8 @@ namespace ColonyCouncil
                 if (PokeWorldLink.IsPokemon(animal)) tags.Add("pokemon");
                 if (animal.Faction == null) tags.Add("wild");
                 if (animal.Name != null && !animal.Name.Numerical) tags.Add("named");
+                // Its body (a beast, a bird, anything else), so a hen isn't spoken to as a cow.
+                tags.Add(HerdStoryMath.BodyTag(AnimalFacts.Body(animal)));
                 string line = Interplay.Line("Council_Pool_SayToAnimal", p, tags.ToArray(), animal.Named("PET"));
                 if (line.NullOrEmpty()) continue;
                 // apart: said to the animal, not to another colonist.
@@ -247,7 +249,8 @@ namespace ColonyCouncil
                 a.jobs.StartJob(follow, JobCondition.InterruptForced);
                 if (vt.Free(person, map, view, now) && Rand.Chance(0.6f))
                 {
-                    string line = Interplay.Line("Council_Pool_AnimalFollows", person, PokeWorldLink.IsPokemon(a) ? new[] { "pokemon" } : null, a.Named("PET"));
+                    string body = HerdStoryMath.BodyTag(AnimalFacts.Body(a));
+                    string line = Interplay.Line("Council_Pool_AnimalFollows", person, PokeWorldLink.IsPokemon(a) ? new[] { "pokemon", body } : new[] { body }, a.Named("PET"));
                     // apart: said to the animal at their heels.
                     if (!line.NullOrEmpty() && Speech.Say(person, line, null, SpeechColor)) vt.Spoke(person, now + GenDate.TicksPerDay);
                 }

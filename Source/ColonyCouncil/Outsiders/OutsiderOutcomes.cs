@@ -22,6 +22,8 @@ namespace ColonyCouncil
         public float foodC, foodX;
         public bool cOn, xOn, cDone, xDone;
         public int said;
+        /// <summary>What is on each one's plate, as the table's lines are tagged (fare:awful, fare:simple, fare:fine, fare:lavish); null for a drink.</summary>
+        public string fareC, fareX;
     }
 
     /// <summary>A bout between a colonist (a) and an outsider (b), under way: who landed what, the terms, who watches (not saved).</summary>
@@ -734,11 +736,22 @@ namespace ColonyCouncil
             var jx = seated ? JobMaker.MakeJob(def, fx, seatX) : JobMaker.MakeJob(def, fx);
             jx.count = 1;
             x.jobs.StartJob(jx, JobCondition.InterruptForced, null, false, true);
-            meals.Add(new OutsiderMeal { c = c, x = x, drink = drink, start = Now, foodC = c.needs?.food?.CurLevel ?? 0f, foodX = x.needs?.food?.CurLevel ?? 0f });
+            meals.Add(new OutsiderMeal
+            {
+                c = c, x = x, drink = drink, start = Now, foodC = c.needs?.food?.CurLevel ?? 0f, foodX = x.needs?.food?.CurLevel ?? 0f,
+                fareC = drink ? null : Fare(fc), fareX = drink ? null : Fare(fx)
+            });
             var jc = seated ? JobMaker.MakeJob(def, fc, seatC) : JobMaker.MakeJob(def, fc);
             jc.count = 1;
             jc.playerForced = true;
             return jc;
+        }
+
+        /// <summary>A meal as the table's lines are tagged: fare:awful (paste, an awful meal), fare:simple, fare:fine or fare:lavish.</summary>
+        private static string Fare(Thing food)
+        {
+            var pref = food?.def?.ingestible?.preferability ?? FoodPreferability.MealSimple;
+            return pref <= FoodPreferability.MealAwful ? "fare:awful" : pref >= FoodPreferability.MealLavish ? "fare:lavish" : pref >= FoodPreferability.MealFine ? "fare:fine" : "fare:simple";
         }
 
         /// <summary>Two free chairs at one of the colony's tables, the nearest to the colonist first, one each.</summary>
@@ -789,7 +802,8 @@ namespace ColonyCouncil
                 if (cNow && xNow && m.said < 2 && Rand.Chance(0.2f) && Together.Can(m.c, m.x))
                 {
                     m.said++;
-                    Say(Rand.Bool ? m.c : m.x, m.drink ? "drinktalk" : "mealtalk", m.said % 2 == 0 ? m.c : m.x);
+                    var by = Rand.Bool ? m.c : m.x;
+                    Say(by, m.drink ? "drinktalk" : "mealtalk", by == m.c ? m.x : m.c, null, by == m.c ? m.fareC : m.fareX);
                 }
                 bool cOver = m.cDone || !m.cOn && now - m.start > 1200;
                 bool xOver = m.xDone || !m.xOn && now - m.start > 1200;
@@ -813,7 +827,7 @@ namespace ColonyCouncil
             if (!cAte || !xAte) return;
             var tone = OutsiderMath.Tone(Input(c, x, act), Rand.Value);
             if (tone > TalkTone.Plain) tone = TalkTone.Plain;
-            if (Together.Can(c, x)) Say(x, m.drink ? "drinkend" : "mealend", c);
+            if (Together.Can(c, x)) Say(x, m.drink ? "drinkend" : "mealend", c, null, m.fareX);
             // together: they ate (or drank) at the same time, side by side at the table.
             Memory(c, OutsiderDefOf.Rimfolk_OutsiderMeal, x, m.drink ? 1 : 0);
             Memory(x, OutsiderDefOf.Rimfolk_OutsiderMeal, c, m.drink ? 1 : 0);

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    The text pass on the world's voices (6 November 2026): a camp's parting word, its question at the end of a good stay
+    (Camps/CampStory.cs, StoryParting: at dusk on the stay's last day, CampStoryMath.PartingHour), with its numbered
+    fellows (Text/TextVariants.cs). It is sent, not brought to the gate (nobody walks there), and the camp goes on when its
+    stay is up, which may be before the morning. The first wordings, CC_Camp_Parting... in Rimfolk_CampsStory.xml, said
+    both, and are left unused. {X_nameDef} speaks for the camp, {NAME} is its kind, {COUNT} the meals for the road.
+  -->
+
+  <CC_Camp_Goodbye>{X_nameDef} sent word at dusk: the {NAME} will soon be on their way. {X_nameDef} thanked the colony for the land and the quiet, and asked whether they'd be welcome this way again.</CC_Camp_Goodbye>
+  <CC_Camp_Goodbye_2>At dusk the {NAME} sent word that they are getting ready to go on. They were glad of the colony's land, {X_nameDef} said, and would like to know whether they could stop here again.</CC_Camp_Goodbye_2>
+  <CC_Camp_Goodbye_3>Word came over from the {NAME} as the light went: their stay is nearly done. {X_nameDef} asked, for all of them, whether the colony would have them back another time.</CC_Camp_Goodbye_3>
+
+  <CC_Camp_Goodbye_Warm>{X_nameDef} sent word as the light went: the {NAME} will soon be on their way. The colony had been better to them than most, {X_nameDef} said, and they'd carry its name down the road. The colony could send them off with {COUNT} meals for the way, or just a word.</CC_Camp_Goodbye_Warm>
+  <CC_Camp_Goodbye_Warm_2>Word came from the {NAME} at dusk: they are nearly ready to go on. Few places on the road had treated them so well, {X_nameDef} said, and the colony's name would travel with them. The colony could send them off with {COUNT} meals for the way, or just a word.</CC_Camp_Goodbye_Warm_2>
+
+  <CC_Camp_Goodbye_Cool>{X_nameDef} sent word that the {NAME} will soon be gone. It was short, and nobody from the camp came to say it. Still, a road goes two ways, and a word now might count later.</CC_Camp_Goodbye_Cool>
+  <CC_Camp_Goodbye_Cool_2>The {NAME} let the colony know, briefly, that they are packing to go. {X_nameDef} had nothing more to say than that. A word from the colony now might still count for something on the road.</CC_Camp_Goodbye_Cool_2>
+
+  <CC_Camp_Goodbye_Again>{X_nameDef} sent word at dusk, as last time: the {NAME} will soon be on their way. They would pass this way again, {X_nameDef} said, if they're wanted.</CC_Camp_Goodbye_Again>
+  <CC_Camp_Goodbye_Again_2>The {NAME} are getting ready to go on again, and {X_nameDef} sent word at dusk the way {X_pronoun} did before. Would the colony have them back once more?</CC_Camp_Goodbye_Again_2>
+
+</LanguageData>

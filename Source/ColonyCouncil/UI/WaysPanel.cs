@@ -6,7 +6,11 @@ using Verse;
 
 namespace ColonyCouncil
 {
-    /// <summary>Council → Ways: what the colony is known for, who's proud of it and who chafes, and what shaped it.</summary>
+    /// <summary>
+    /// Council → Ways, the colony's one name (Character/ColonyName.cs): its card first (what it is known for and how far its
+    /// name carries, the deeds behind it, what each people remembers), then the parts it is read from: the five ways, what the
+    /// work has made it, who's proud of it and who chafes, and what shaped it.
+    /// </summary>
     public static class WaysPanel
     {
         // The interface's tokens (UI/UiKit.cs): the proud end warm, the chafing end sour.
@@ -14,6 +18,8 @@ namespace ColonyCouncil
         private static readonly Color Neg = UiKit.Sour;
         private static Vector2 scroll;
         private static float height = 600f;
+        private static List<string> card;
+        private static float cardAt = -1f;
 
         public static void Draw(Rect rect, CouncilGameComponent comp)
         {
@@ -23,14 +29,23 @@ namespace ColonyCouncil
                 return;
             }
             var ch = comp.character;
-            string known = UiCache.Get(ch, 80, () => ch.Describe());
-            string title = known != null ? "CC_Ways_KnownAs".Translate(known).Resolve() : "CC_Ways_NoName".Translate().ToString();
-            float top = UiKit.PageHeader(rect, Icons.Ways, title, "CC_UI_Sub_Ways".Translate());
+            // The card, built at most once a second while it shows.
+            if (card == null || Time.realtimeSinceStartup - cardAt > 1f || Time.realtimeSinceStartup < cardAt)
+            {
+                cardAt = Time.realtimeSinceStartup;
+                card = ColonyName.Lines();
+            }
+            float top = UiKit.PageHeader(rect, Icons.Ways, "CC_Name_PageTitle".Translate(), "CC_Name_PageSub".Translate());
             var outRect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
             var view = new Rect(0f, 0f, outRect.width - 16f, height);
             Widgets.BeginScrollView(outRect, ref scroll, view);
             float y = 0f;
             float w = view.width;
+            // The colony's name, in one reading.
+            for (int c = 0; c < card.Count; c++)
+                y += UiKit.Paragraph(8f, y, w - 16f, card[c], c == 0 ? UiKit.Ink : UiKit.Faint) + 4f;
+            y += UiKit.SectionGap;
+            y += UiKit.SectionTitle(0f, y, w, "CC_Name_PageWays".Translate(), Icons.Ways);
             y += UiKit.Paragraph(0f, y, w, "CC_Ways_Intro".Translate(), UiKit.Faint) + 10f;
 
             // The five ways, as bars from one pole to the other.

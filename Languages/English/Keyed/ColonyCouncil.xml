@@ -975,7 +975,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <!-- Rising standards -->
   <CC_Settings_CouncilLife>Council life</CC_Settings_CouncilLife>
   <CC_Settings_Standards>Rising standards: the happy grow harder to please</CC_Settings_Standards>
-  <CC_Settings_Standards_Tip>While colonists are happy, their standards creep up: the council's mood rewards shrink, letdowns sting more, and wishes come more often and ask for more. Hard times, and the austerity decree, bring standards back down.</CC_Settings_Standards_Tip>
+  <CC_Settings_Standards_Tip>While colonists are happy, their standards creep up: the line past which their good things grow ordinary falls, letdowns sting more, and wishes come more often and ask for more. Hard times, and the austerity decree, bring standards back down.</CC_Settings_Standards_Tip>
   <CC_Settings_StandardsComforts>Standards cover the game's comforts</CC_Settings_StandardsComforts>
   <CC_Settings_StandardsComforts_Tip>Rising standards also shrink the good moods from the base game and other mods, not only the council's: comfortable colonists feel them at 90%, particular ones at 80% and spoiled ones at 70%. Only the first 10 points of each count for less, so a wedding or a catharsis still lands. Bad moods are never touched. One of the deeper game hooks.</CC_Settings_StandardsComforts_Tip>
   <CC_Settings_GoodTimes>Getting used to good times</CC_Settings_GoodTimes>
@@ -990,7 +990,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_GoodTimes_RimfolkNow>Rimfolk's good moods {0}</CC_GoodTimes_RimfolkNow>
   <CC_GoodTimes_Sooner>{0} fading sooner</CC_GoodTimes_Sooner>
   <CC_GoodTimes_Comforts>the game's comforts {0} of {1} ({2})</CC_GoodTimes_Comforts>
-  <CC_GoodTimes_Tip>How a good life turns ordinary, without taking anything away:\n\nGetting used to good times: from 75% mood, Rimfolk's new good memories fade sooner, in half their usual time from 90%. In hard times they last their full length.\n\nGood moods add up slowly: of the good moods Rimfolk gives, the two biggest count in full, the next ones a half, a third and a quarter, and every one after that a fifth. Many small moments give something else instead of mood (recreation, rest, practice, trust).\n\nStandards and comforts: comfortable colonists feel the good moods of the game and other mods at 90%, particular ones at 80% and spoiled ones at 70%, on the first 10 points of each.\n\nUsed to the good life: good moods count in full up to a line set by standards, 45 points for the modest down to 30 for the spoiled. Above it, half of the first 20 points over the line and three quarters of the rest no longer lift them: most of that comes off everyday comforts and what they've had often lately, least off something new (which also feels standards' cut hardly at all, and more of both as the days go by), and nothing off a life goal reached. It eases in hard times, to nothing near a break.\n\nBad moods are never touched. Each rule has its own setting.</CC_GoodTimes_Tip>
+  <CC_GoodTimes_Tip>How a good life turns ordinary, without taking anything away. One rule: good moods (the game's, other mods' and Rimfolk's) count in full up to a line set by standards, 45 points for the modest down to 15 for the spoiled. Above it, half of the first 20 points over the line and three quarters of the rest no longer lift them: most of that comes off everyday comforts and what they've had often lately, least off something new, which counts for more again as the days go by, and nothing off a life goal reached. It eases in hard times, to nothing near a break.\n\nBad moods are never touched. Small joys and small letdowns each read as one row, and what they'd weigh beyond the moment goes to the heart. One setting: Good things grow ordinary.</CC_GoodTimes_Tip>
   <CC_Reason_Standards>{PAWN_nameDef} has grown used to comfort, and the bedroom doesn't feel good enough anymore.</CC_Reason_Standards>
   <CC_Reason_StandardsFood>{PAWN_nameDef} has grown used to good food, and simple meals aren't enough anymore.</CC_Reason_StandardsFood>
   <CC_Standards_Modest>modest</CC_Standards_Modest>
@@ -1313,7 +1313,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Asp_FulfilledLabel>Life goal reached: {0}</CC_Asp_FulfilledLabel>
   <CC_Asp_FulfilledText>{PAWN_nameDef} set out to {GOAL}, and now {PAWN_pronoun} has.</CC_Asp_FulfilledText>
   <CC_Asp_DeedPlain>did what they set out to do</CC_Asp_DeedPlain>
-  <CC_Asp_Reward_Toast>Those close to {PAWN_objective} will raise a glass to {PAWN_objective} at the table this evening.</CC_Asp_Reward_Toast>
+  <CC_Asp_Reward_Toast>A glass will be raised to {PAWN_objective} at the colony's next gathering, by the one who thinks best of {PAWN_objective}.</CC_Asp_Reward_Toast>
   <CC_Asp_Reward_Mark>{PAWN_nameDef} won't lose the knack for {SKILL} now, and learns it a little faster.</CC_Asp_Reward_Mark>
   <CC_Asp_Reward_Lesson>{OTHER_nameDef}, who shares the passion, will spend some hours learning {SKILL} at {PAWN_possessive} side.</CC_Asp_Reward_Lesson>
   <CC_Asp_Reward_Title>The colony will remember {PAWN_objective} as the one who {DEED}.</CC_Asp_Reward_Title>

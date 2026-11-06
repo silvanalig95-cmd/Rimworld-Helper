@@ -12,13 +12,17 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- The mod's own arithmetic, shared as it is (no game types): the same numbers the game uses. -->
-    <Compile Include="../../Source/ColonyCouncil/Moods/GoodTimesMath.cs" Link="Linked/GoodTimesMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Moods/GoodLifeMath.cs" Link="Linked/GoodLifeMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Moods/SmallMomentMath.cs" Link="Linked/SmallMomentMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Ailments/AilmentMath.cs" Link="Linked/AilmentMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Arcs/ArcMath.cs" Link="Linked/ArcMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Pressures/PressureMath.cs" Link="Linked/PressureMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Setbacks/SetbackMath.cs" Link="Linked/SetbackMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/SettingsCatalog.cs" Link="Linked/SettingsCatalog.cs" />
+    <!-- The teller and the colony's pace (Scenes.cs, with &#45;&#45;scenes and &#45;&#45;tell): the very rules the game keeps. -->
+    <Compile Include="../../Source/ColonyCouncil/Lean/Sched.cs" Link="Linked/Sched.cs" />
+    <Compile Include="../../Source/ColonyCouncil/UI/TellMath.cs" Link="Linked/TellMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/PlayOut/StageMath.cs" Link="Linked/StageMath.cs" />
     <!-- How bonds come about (SocialSim.cs, with &#45;&#45;social). -->
     <Compile Include="../../Source/ColonyCouncil/Social/BondsMath.cs" Link="Linked/BondsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Social/ChemistryMath.cs" Link="Linked/ChemistryMath.cs" />

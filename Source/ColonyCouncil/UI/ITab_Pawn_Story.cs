@@ -55,7 +55,7 @@ namespace ColonyCouncil
             UiKit.Portrait(new Rect(rect.x, rect.y, face, face), p, p.IsColonist ? UiKit.TrustColor(comp.standings.TrustOf(p)) : UiKit.Neutral);
             // The name, and under it what they're known as; the button keeps clear of the tab's close button in the top right corner.
             float tx = rect.x + face + 8f, tw = rect.width - face - 8f - 144f;
-            string titles = UiCache.Get(p, 41, () => comp.epithets.TitlesOf(p));
+            string titles = UiCache.Get(p, 41, () => comp.epithets.NameOf(p));
             if (titles.NullOrEmpty())
                 UiKit.LabelFit(new Rect(tx, rect.y + 4f, tw, 32f), p.LabelShortCap, Color.white, GameFont.Medium);
             else

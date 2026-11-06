@@ -222,7 +222,8 @@ namespace ColonyCouncil
                 .FirstOrDefault(e => RecordMath.Get(e.values, RecordMath.OfficeAt) == office.defName) : null;
             int all = Measure(office, p);
             int inSeat = promise == null ? -1 : all - (int)RecordMath.Number(promise.values, RecordMath.WorkAt);
-            string name = S.epithets ? comp?.epithets.Of(p).FirstOrDefault()?.label : null;
+            // The one name the colony knows them by (KnownAs's short form), as the card and the tables say it.
+            string name = KnownAs.Short(p);
             var goal = comp?.aspirations?.Fulfilled(p).OrderByDescending(a => a.doneTick).FirstOrDefault();
             switch (RecordMath.Record(holds, inSeat, all, !name.NullOrEmpty(), goal != null))
             {

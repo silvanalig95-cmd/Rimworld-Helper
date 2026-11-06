@@ -101,7 +101,7 @@ namespace ColonyCouncil
             return s;
         }
 
-        /// <summary>The camp's own tags: faith, the world event behind it, the season.</summary>
+        /// <summary>The camp's own tags: faith, the world event behind it, their people's age (their:tribal..., their:lowtech or their:hightech), the season.</summary>
         public static void AddTags(HashSet<string> tags, CampKindDef kind, Faction f, Map map)
         {
             if (tags == null) return;
@@ -114,7 +114,11 @@ namespace ColonyCouncil
             var s = Situation(kind);
             if (s?.def?.kind != null) tags.Add("ws:" + s.def.kind);
             // Their own age (their:tribal...), so a kind of every age speaks as its people are (the scholars).
-            if (f != null) tags.Add("their:" + Ages.Tag(Ages.Of(f)));
+            if (f != null)
+            {
+                tags.Add("their:" + Ages.Tag(Ages.Of(f)));
+                tags.Add(f.def.techLevel <= TechLevel.Medieval ? "their:lowtech" : "their:hightech");
+            }
             if (map != null && !tags.Contains("spring") && !tags.Contains("summer") && !tags.Contains("fall") && !tags.Contains("winter"))
             {
                 switch (GenLocalDate.Season(map))
@@ -207,13 +211,14 @@ namespace ColonyCouncil
                     // An evening performance at their fire: everyone at home who can come, comes.
                     int hour = GenLocalDate.HourOfDay(map);
                     if (hour < 16 || hour > 21) return false;
+                    // The colony's own doing (PlayOut/Stage.cs): offered only on an evening the colony's week has room for.
+                    if (PlayOuts.On && !Stage.Room(map, Find.TickManager.TicksGame)) return false;
                     var star = here.OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Artistic)?.Level ?? 0).First();
                     var show = DefDatabase<ThoughtDef>.GetNamedSilentFail("Council_Camp_Show");
                     if (PlayOuts.On)
                     {
                         // The colony walks over to their fire for it: a gathering at the camp (answers on the map), and
-                        // the evening is remembered by those who came. With nobody free tonight, everyone it was for
-                        // still has the memory, as answers that can't play out always do.
+                        // the evening is remembered by those who came. With nobody free tonight, nobody has it.
                         var effects = new List<DilemmaEffect>
                         {
                             new DilemmaEffect_Gathering
@@ -233,7 +238,7 @@ namespace ColonyCouncil
                             c.needs?.joy?.GainJoy(0.2f, JoyKindDefOf.Social);
                             CouncilGameComponent.GiveThought(c, show);
                         }
-                        if (!(kind?.lines).NullOrEmpty()) Arrivals.Say(star, Pick(kind.lines, star));
+                        Arrivals.Say(star, Bubble(star));
                     }
                     Tell(Text("CC_Camp_HelpTitle"), HelpText("show", star, colonists.RandomElement()), LetterDefOf.PositiveEvent, false);
                     return true;
@@ -259,6 +264,8 @@ namespace ColonyCouncil
                     // listen (a gathering at the camp) and those who came remember it; otherwise it carries to everyone awake.
                     int hour = GenLocalDate.HourOfDay(map);
                     if (hour < 17 || hour > 22) return false;
+                    // The colony's own doing (PlayOut/Stage.cs): offered only on an evening the colony's week has room for.
+                    if (PlayOuts.On && !Stage.Room(map, Find.TickManager.TicksGame)) return false;
                     var player = here.OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Artistic)?.Level ?? 0).First();
                     var heard = DefDatabase<ThoughtDef>.GetNamedSilentFail("Council_Camp_SongHeard");
                     if (PlayOuts.On)
@@ -279,7 +286,7 @@ namespace ColonyCouncil
                     {
                         foreach (var c in colonists.Where(c => !c.Downed && !c.InMentalState && c.Awake()))
                             CouncilGameComponent.GiveThought(c, heard);
-                        if (!(kind?.lines).NullOrEmpty()) Arrivals.Say(player, Pick(kind.lines, player));
+                        Arrivals.Say(player, Bubble(player));
                     }
                     Tell(Text("CC_Camp_HelpTitle"), HelpText("song", player, colonists.RandomElement()), LetterDefOf.PositiveEvent, false);
                     return true;

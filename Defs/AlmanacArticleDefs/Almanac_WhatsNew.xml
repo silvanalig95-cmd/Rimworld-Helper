@@ -31,6 +31,85 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.111.0</version>
+        <date>6 November 2026</date>
+        <title>One teller, one pace</title>
+        <points>
+          <li>The colony keeps one count of its gatherings: what you chose (an answer, a calendar day, a vote, a wedding, a decree, a meeting) always happens and counts, while the colony's own doings (a group's evening, a family supper, a toast) come only when fewer than two gatherings fell in the last week and none in the last day and a half. They wait up to three days for room, then are let go quietly.</li>
+          <li>Calendar days that come round within three days of each other are kept together, and one within two days of another gathering is kept at supper instead. One seasonal custom a season, a life goal's toast raised at the next gathering, and never more than about a week without one.</li>
+          <li>In the simulator a colony now gathers about 2.7 times a week instead of 4.7, the busiest week has 9 instead of 14, and fewer gatherings come within a day of the last. A new setting, Gatherings a week before the colony's own wait, on the People page, sets the room.</li>
+          <li>One teller decides how news reaches you: what is hard to miss always shows, other news shows until the colony's day is full and then waits for the evening's news, which keeps the lines that weigh most. Nothing is told twice.</li>
+          <li>Fixed: a plan that fell through still gave its moods and said people took heart from it; now it never came about. A gathering blocked by another takes the next evening, and a bonfire goes ahead without its fire rather than not at all.</li>
+          <li>The election's hustings are a gathering on the day of the vote: the candidates speak and are cheered or heckled before the votes are read.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.110.0</version>
+        <date>6 November 2026</date>
+        <title>One name</title>
+        <points>
+          <li>Each colonist is known by one name now, on their card, in talk and in letters: "Known as the Healer, the one who won the wrestling at the feast with the Lenlia, talked about in the next town." Their other names and reputation's sides show underneath.</li>
+          <li>Names move slowly: once given, nobody can take one for 30 days, and after that only someone clearly doing more of that work for 15 days in a row takes it. Whoever lost a name can't take it back for two months, so names no longer pass back and forth between two people.</li>
+          <li>The colony has one card at the top of Our ways and on its card in the region window: what it is called and known for, how far its name carries, where its renown comes from and what is held against it. A change of name is one line in the Chronicle.</li>
+          <li>Fixed: a way falling from renowned to merely known said people had stopped calling the colony by it.</li>
+          <li>Names already held stay with their holders; nothing moves or is told when an old save loads.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.109.2</version>
+        <date>6 November 2026</date>
+        <title>The world's voices</title>
+        <points>
+          <li>Visitors have far more to say at the gate and the table, about 320 new lines by their people's ways and how well they know the one they talk to, with the Empire's court kept apart.</li>
+          <li>Camps of travellers speak by their kind, the hour, the weather, the world event that brought them and a camp come back: about 300 new lines, true farewells for every kind, and 69 conversations with a camp's people where there was one before.</li>
+          <li>Callers, the region's towns, trading posts, raiders' camps and hamlets, and the news travellers bring have more wordings, and 47 new conversations fill the thin spots.</li>
+          <li>Fixed: camp lines picked by age alone (a prayer with the faith left unnamed, war talk from any camp), farewells telling of a wave at a gate nobody walked to, the parting question at any hour, greetings that forgot whether two people had met, and talk of a meal, a gift or a lesson that was only asked for.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.109.1</version>
+        <date>6 November 2026</date>
+        <title>Dreams, ailments, stories and animals in words</title>
+        <points>
+          <li>31 new dreams drawn from what really happened to the dreamer: being carried out of a fight, a wedding, a funeral, the road home, the herd's first young, the colony's first days. Dreams with no cause of their own come half as often, and one dreamt before grows rarer each time.</li>
+          <li>Ailments and getting better have about 370 new lines by the person and the illness, so four people laid low no longer say the same thing.</li>
+          <li>Seven personal stories, such as the long discipline and a long grief, have three or four wordings for each step, so a second run reads new.</li>
+          <li>Birds, insects, reptiles and other mods' creatures get words of their own, and the herd's leader, its last season and spring's first young have more.</li>
+          <li>Fixed: the long discipline's ending read as practice let slide when the art was taken away, spring's first young was told as visited before the visit, and eulogies said a newcomer or a child had hauled the stone for the walls.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.109.0</version>
+        <date>6 November 2026</date>
+        <title>One heart</title>
+        <points>
+          <li>Small letdowns are felt as a moment now (at most 3 points, for half a day), and the weight beyond the moment wears on the heart's strain when they keep coming. Pressures and lasting setbacks give a moment when they begin or worsen and build strain while they hold.</li>
+          <li>Small joys mirror them: a short good moment, and a run of them eases strain. On the mood tab both read as one row each, "Small letdowns" and "Small joys", with what they were when you hover them.</li>
+          <li>The game's and other mods' small moods count toward the heart too, by their size and length, never changing their mood values; the heavy kinds the heart already counts are not counted twice.</li>
+          <li>One rule for good things growing ordinary: fresh joys count nearly in full and drift down with age, everyday comforts shrink most, and a colony used to the good life asks more. The four old settings are one, "Good things grow ordinary".</li>
+          <li>The colony's ways read each colonist's character, so who minds an answer changes as their character changes.</li>
+          <li>Balanced in the simulator: the colony's whole mood is about where it was, the heart wears a little harder on a neglected colony and less elsewhere, and the Demanding preset is retuned to stay demanding.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.108.0</version>
+        <date>6 November 2026</date>
+        <title>New questions, events and camps</title>
+        <points>
+          <li>Four new council questions, each only while its situation is on the map: the cold snap's hours (shorter days or a fire kept in the coldest bedroom), blight in the fields (cut the sick plants, harvest early or let it spread), the good weapon in the stores (who carries it), and the animal left behind when its person dies (who becomes its master).</li>
+          <li>A new event while a herd crosses the map: mark a few of them, or the biggest, for the hunters, or let them pass, with the game's own risk of a beast turning on its hunter named before the choice.</li>
+          <li>Two new world situations: a blight in the region, making the colony's own fields likelier to catch it while neighbours pay well for food, and medicine gone scarce, with healers paying dear and hedge healers coming by more often.</li>
+          <li>Two new camps of travellers: woodcutters, who come only where the woods stand thick and fell real trees round their camp, and herb-gatherers, who gather at dawn and come more often while medicine is scarce.</li>
+          <li>Each comes in the forms of every age, and they join the existing pools, so the colony sees no more questions, events or camps a year than before, only more kinds of them.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.107.0</version>
         <date>6 November 2026</date>
         <title>One record of the colony's story</title>

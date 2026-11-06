@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- A Rimfolk event that grows out of what is on the map (Source/ColonyCouncil/Happenings/Workers_Variety2.cs): a herd
+       of wild animals crossing the colony's land, the game's own herd migration. It comes only while the herd is there,
+       and the hunt it sets going is the game's own, with its own risk, named before the answer. -->
+
+  <!-- ===================== The herd crossing ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_HerdCrossing</defName>
+    <label>the herd crossing</label>
+    <workerClass>ColonyCouncil.HappeningWorker_HerdCrossing</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>20</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <answerDays>0.2</answerDays>
+        <titles>
+          <li>The herd crossing</li>
+          <li>A herd on the land</li>
+        </titles>
+        <texts>
+          <li>A herd of {COUNT} {BEAST} is crossing the colony's land, walking steady for the far edge. {A_nameDef} has been watching them, and says the hunters could take one or two before they're gone. A herd that size can turn on whoever goes after it, too.</li>
+          <li>[big] {COUNT} {BEAST} are walking across the colony's land in a long line. {A_nameDef} wants the council's word: take the biggest, take a few for the stores, or let them pass. Hunted, a beast of a herd like that can turn on the hunter.</li>
+          <li>[lowtech] The {BEAST} are crossing, {COUNT} of them, the way they cross every few seasons on their way to other grass. {A_nameDef} is ready to go out after them. The old hunters' rule is to take from the back of the herd and never too many; even so, a hunted beast may turn.</li>
+          <li>[!lowtech] A herd of {COUNT} {BEAST} is moving across the colony's land toward the far edge, unhurried. {A_nameDef} wants the council's word before the herd is out of range. A beast of the herd, hunted, may turn on whoever is hunting it.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Take a few for the stores</label>
+            <outcome>A few of the grown {BEAST} are marked for the colony's hunters, who go out after them before the herd is gone.</outcome>
+            <outcomes>
+              <li>[lowtech] A few of the grown {BEAST} are marked for the hunters, the old way, never too many, and the hunters go out after them.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_HuntHerd" />
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Take the biggest one</label>
+            <outcome>The biggest of the {BEAST} is marked for the colony's hunters. The rest of the herd will be left to cross.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_HuntHerd"><count>1</count></li>
+            </effects>
+          </li>
+          <li>
+            <label>Let them cross</label>
+            <outcome>The {BEAST} are left to cross the colony's land in peace, on their way to wherever they're going.</outcome>
+            <ways><mercy>1</mercy></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More words for falling ill and getting over it, in each voice and by the colony's age (the text pass of 6 November
+    2026): the player's save had "Laid low by a bug" from four cheerful colonists, the one cheerful line their colds had.
+    Each everyday ailment gets more wordings of its first day and of its end, true to its course as its description in
+    Council_Hediffs_Ailments.xml tells it (a cold's worst day is the second or third, a stomach bug is someone else's, a
+    sprain wants the foot up); the voices get lines of their own for any ailment, so a tone with no line for this one
+    has more than one to fall back on. Tagged as the pools are ([ail:Key], [everyday], [serious], [again]); the age's
+    remedies are the age's (a poultice, a hot brick, a hot-water bottle, a patch from the medicine cabinet).
+  -->
+
+  <!-- ===================== Coming down with it ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_Journal_Ail_Start_Voices</defName>
+    <pool>Council_Journal_Ail_Start</pool>
+    <lines>
+      <plain>
+        <li>[tribal] Something has got into me. Bitter tea and an early night, the old way.</li>
+        <li>[medieval] Poorly today. I'll take a hot brick to bed and see how I am in the morning.</li>
+        <li>[industrial] Under the weather. A hot-water bottle and an early night, and we'll see.</li>
+        <li>[spacer] Felt off all day. Nothing the medicine cabinet can't handle, I expect.</li>
+        <li>[old] Took to my bed early. Things that were nothing at thirty take a week at my age.</li>
+        <li>[teen] Feel awful. Drink water, sleep, wait. That's apparently all there is.</li>
+        <li>[ail:HeadCold] The tickle in my throat this morning was a cold by supper. Two handkerchiefs gone already.</li>
+        <li>[ail:HeadCold] Caught a cold from somebody, I don't know who. I've decided not to mind.</li>
+        <li>[ail:HeadCold,lowtech] Sat close to the fire with a cloth over my head and the steam from the pot. It helped a little.</li>
+        <li>[ail:StomachBug] A stomach bug. It came from somebody's hands, the way they do.</li>
+        <li>[ail:StomachBug] Cramps since noon. I've given up on supper and taken a jug of water to bed.</li>
+        <li>[ail:ChestCold] The cold went down into my chest overnight. Every breath has a rattle at the bottom of it.</li>
+        <li>[ail:ChestCold,cold] The cold air got into the cough, and the cough went down into my chest.</li>
+        <li>[ail:HayFever,outside] Out in the fields with the plants in flower. My eyes were streaming before the first row.</li>
+        <li>[ail:HayFever,again] It's that time of year again, by my nose. Indoors helps. Indoors is not where the work is.</li>
+        <li>[ail:Pinkeye] My eye's gone red and weepy. I've been told, very firmly, to keep my own towel.</li>
+        <li>[ail:Pinkeye] Rubbed my eye without thinking and now both of them are at it.</li>
+        <li>[ail:Dreamfever] Woke up and spent half the morning sure that we'd had a feast yesterday. We hadn't.</li>
+        <li>[ail:Dreamfever] A light fever and the strangest dreams. I keep losing track of which things really happened.</li>
+        <li>[ail:StrainedBack] Bent for the next load and my back said no, very clearly. I'm lying flat tonight.</li>
+        <li>[ail:StrainedBack,skill:Mining|skill:Construction] One stone too many. My lower back's gone stiff as a plank.</li>
+        <li>[ail:SoreHands] My wrists ache from the bench. I'll have to let them rest, whether the work likes it or not.</li>
+        <li>[ail:SoreHands] Couldn't hold a spoon properly at supper. My hands have done too much of the same thing.</li>
+        <li>[ail:Blisters] A blister on each heel the size of a coin. I'm walking like a duck.</li>
+        <li>[ail:Blisters,lowtech] Walked the soles of my feet raw. I've wrapped them in clean cloth and I'm keeping them dry.</li>
+        <li>[ail:Chilblains] My toes came in from the cold red and swollen, and the itching started by the fire.</li>
+        <li>[ail:Chilblains,winter] Hours in the cold wet and now my fingers are fat and red and itching. Not frostbite, they tell me.</li>
+        <li>[ail:Sunburn] Out in the noon sun without a hat. My face is hot to the touch and my neck is worse.</li>
+        <li>[ail:Sunburn,hot] The sun was fierce today and I was out in all of it. My shoulders are glowing.</li>
+        <li>[ail:SmokeCough] The fire smoked all evening and the room was too small for it. My throat is raw.</li>
+        <li>[ail:SmokeCough,lowtech] Too much smoke in the room and no way for it to go. I've been coughing since.</li>
+        <li>[ail:Toothache] Took a drink of cold water and the tooth went off like a bell.</li>
+        <li>[ail:Toothache] The tooth throbs every time I chew. I've been living on soup.</li>
+        <li>[ail:StiffNeck] Slept on hard ground and woke with my neck locked. I turn my whole body to look at anyone.</li>
+        <li>[ail:StiffNeck] A crick in my neck from the bed. Warmth helps. I've got a hot cloth on it now.</li>
+        <li>[ail:SprainedAnkle] A bad step on the wet ground and my ankle rolled under me. It's up on a stool now, swelling.</li>
+        <li>[ail:SprainedAnkle] Twisted my ankle on the rough ground. I've been told to keep it up and keep off it.</li>
+        <li>[ail:EyeStrain] Worked too long in poor light. My eyes ache and the headache's behind both of them.</li>
+        <li>[ail:EyeStrain,night] Kept at the close work after dark. My eyes feel full of sand.</li>
+        <li>[ail:RimrotCough] A wet cough, the kind that comes from damp walls. My bedroom smells of mold, and so do I.</li>
+        <li>[ail:RimrotCough] Woke coughing. The walls in there are sweating, and my chest has taken after them.</li>
+        <li>[ail:AshLung] My chest is tight after the ash. Every cough brings up something gray.</li>
+        <li>[ail:AshLung] Fire or ash, it's all in my chest now. I cough gray.</li>
+        <li>[ail:Insomnia] Lay awake turning things over. They're still there in the morning, and now I'm tired too.</li>
+        <li>[ail:Insomnia,night] Up in the small hours again. I can't remember the last time I slept straight through.</li>
+        <li>[ail:Migraine] The headache came on, the bad one. One side of my head, and the light is like knives.</li>
+        <li>[ail:Migraine] Lay down in the dark with a wet cloth over my eyes. I'll have lost the afternoon to it.</li>
+        <li>[ail:Heartburn] Second helpings, and now a fire behind my breastbone. Sitting up in bed until it passes.</li>
+        <li>[ail:Heartburn] Ate too late and too much. Lying down makes it worse, so I'm not lying down.</li>
+        <li>[ail:Nosebleed] The freezing air cracked something in my nose. Pinched it and tipped my head forward till it stopped.</li>
+        <li>[ail:Nosebleed,cold] Blood on my scarf from the cold. It looked worse than it was. It always does.</li>
+        <li>[ail:MotionSick] The sway of the caravan got into my stomach. I walked beside the animals for the last of the day.</li>
+        <li>[ail:MotionSick] Queasy since morning. The road won't keep still and neither will my supper.</li>
+        <li>[ail:Splinter] A splinter deep in the heel of my hand from the last log. It throbs when I grip anything.</li>
+        <li>[ail:Splinter,lowtech] Tried to work the splinter out with a thorn. It went deeper.</li>
+        <li>[ail:InsectBites] The flies ate me alive today. I've stopped counting the bites and started counting the hours till they stop.</li>
+        <li>[ail:InsectBites,night] Every bite itches worse at night. I lay listening to them whining round my head.</li>
+        <li>[ail:PlantRash] Something I pulled from the rows has left my arms blistered and itching.</li>
+        <li>[ail:PlantRash] Washed my arms the moment I noticed the rash. Too late, but it should help.</li>
+        <li>[ail:Frostnip] My fingertips went white and dead out there. Warming them slowly, the way I was told, and they sting.</li>
+        <li>[ail:Frostnip,cold] The tip of my nose went numb in the wind. Now it burns as the feeling comes back.</li>
+        <li>[ail:HeatRash] The heat brought up a prickly rash under my shirt. Loose clothes and cool water tonight.</li>
+        <li>[ail:HeatRash,hot] Sweated through everything today, and now my skin's broken out in little red bumps.</li>
+        <li>[ail:ColdSore] A cold sore on my lip, the old one waking up. My own cup until it's gone.</li>
+        <li>[ail:ColdSore] It's come up at the corner of my mouth, the way it does when I'm worn out.</li>
+        <li>[ail:Lice] The itching in my scalp at night has a name now, and I didn't like hearing it.</li>
+        <li>[ail:Lice] Lice. I'll be combing and boiling everything I own for days.</li>
+        <li>[ail:AthletesFoot] Too many days with wet feet. Between my toes is raw and peeling.</li>
+        <li>[ail:AthletesFoot] Sat with my boots off and my feet airing. They sting, and they itch, and they smell.</li>
+        <li>[ail:Hiccups] The hiccups started after supper and haven't stopped. I'm hoping someone gives me a fright.</li>
+        <li>[ail:Hiccups] Held my breath three times and drank from the far side of the cup. Still hiccuping.</li>
+        <li>[ail:FluCough] The fever's gone but the cough's moved in for a week or two, by the sound of it.</li>
+        <li>[ail:FluCough,night] Coughed in fits all night. Something warm to drink helped, a little.</li>
+        <li>[ail:PlagueSwellings] The fever broke, but the swellings under my arms are hot and tender. I move like an old door.</li>
+        <li>[ail:PlagueSwellings] My neck's still swollen. It hurts to turn my head, and I'm grateful to have a head to turn.</li>
+        <li>[ail:MalariaAnemia] My hands are cold all the time and my heart races on the slope. The fever left me thin in the blood.</li>
+        <li>[ail:MalariaAnemia] Pale as milk, they say. I'm tired before the day's properly started.</li>
+        <li>[ail:DrowsySpells] Nodded off sitting up at noon, then lay awake half the night. My body's lost track of the clock.</li>
+        <li>[ail:DrowsySpells] Fell asleep with my spoon in my hand. The sleeping sickness hasn't quite let go.</li>
+        <li>[ail:Limp] The leg's knit, but it doesn't trust itself yet. Stiff in the morning and weak on the steps.</li>
+        <li>[ail:Limp] I favour the good leg without thinking. Ordinary walking is the cure, they tell me.</li>
+        <li>[ail:BurnItch] The burn's healed over, and the new skin itches like fury. I'm not scratching. I'm not.</li>
+        <li>[ail:BurnItch,hot] The heat makes the healed burn itch twice as much. A cool cloth over it tonight.</li>
+        <li>[ail:BadNights] Every sound in the night is the fight again. I slept in pieces.</li>
+        <li>[ail:BadNights] Every creak in the night and I was on my feet before I was awake.</li>
+        <li>[ail:Unease] I keep checking the corners. I know there's nothing there. I check anyway.</li>
+        <li>[ail:Unease] Jumped at my own shadow on the wall tonight. It'll pass, they say. I'd like it to.</li>
+        <li>[ail:PollutionCough] Out on the bad ground all day. The grit's in my throat and it burns going down.</li>
+        <li>[ail:PollutionCough] The haze got into my lungs. A dry cough, and a taste like old coins.</li>
+        <li>[ail:SnowBlind] Too long in the glare off the snow. My eyes are red and gritty and won't stop watering.</li>
+        <li>[ail:SnowBlind] I can't bear the light. Sitting in the dim with a cool cloth over my eyes.</li>
+        <li>[ail:Leeches] Came out of the water with three of them on the back of my knee, fat as thumbs.</li>
+        <li>[ail:Leeches] Found leeches between my toes after the swamp. They come off with salt, and they come off slowly.</li>
+        <li>[ail:OrbitSick] The floor under me isn't really floor. My stomach knows it even when I don't.</li>
+        <li>[ail:OrbitSick] Slept badly in the hum of the scrubbers. The stars keep going past the window.</li>
+        <li>[ail:SoreElbow] Every swing of the axe went up into my elbow by the end. Now I can't grip the kettle.</li>
+        <li>[ail:SoreElbow] My elbow's sore from the felling. Someone else should take a turn tomorrow.</li>
+        <li>[ail:ChappedHands] My knuckles split in the cold and they catch on everything. Greased them and wrapped them tonight.</li>
+        <li>[ail:ChappedHands] The cracks on my fingers bled a little when I made a fist. Gloves, next time.</li>
+        <li>[ail:SporeCough] The spores in the air got into my throat. A dry, tickling cough that won't sit still.</li>
+        <li>[ail:SporeCough] Coughing dust all evening. The spores are in everything here.</li>
+        <li>[ail:FumeHeadache] The fumes from the seeps sat on my head all day. A dull weight behind my eyes.</li>
+        <li>[ail:FumeHeadache,hot] Hard work in the heat and the stink of the ground. My head is pounding.</li>
+        <li>[ail:BeeStings] Got stung working the hives. My hand's hot and swollen, and it'll be fine tomorrow.</li>
+        <li>[ail:BeeStings] Two stings on the back of my hand. The bees weren't in the mood, and neither am I now.</li>
+        <li>[ail:Gout] My big toe's gone hot and red and swollen. A good supper or a good drink, and this is the price.</li>
+        <li>[ail:Gout,again] The gout's back in the same toe. I can't bear the blanket on it.</li>
+        <li>[ail:StoneDust] A day in the stone dust and my chest is tight with it. Every breath tickles.</li>
+        <li>[ail:StoneDust,skill:Mining] I love the work under the mountain. My lungs don't share the feeling.</li>
+        <li>[ail:SoreKnees] On my knees all day and now they're puffy and sore. Stairs are a problem.</li>
+        <li>[ail:SoreKnees] Knelt till sundown, and my knees are complaining in a language I don't know.</li>
+        <li>[ail:Ringworm] A round red ring on my arm, itching. Ringworm, from the animals. No worm in it, I'm told.</li>
+        <li>[ail:Ringworm,skill:Animals] Too many hours with the herd and I've brought something home from them. A red itching ring.</li>
+        <li>[ail:Worms] Hungry again an hour after eating. Something in the raw meat, I'd guess, and I'd guess right.</li>
+        <li>[ail:Worms] There's a gnawing in my belly that no meal fills. I'll cook everything from now on.</li>
+        <li>[ail:SmokersCough] Woke up coughing. The morning cough, from the smoke. I know.</li>
+        <li>[ail:SmokersCough,again] The cough's back first thing in the morning. One less smoke today, I suppose.</li>
+        <li>[ail:TornBack] I worked on with the bad back, and now it's torn. Every bend is a knife. Weeks, they say.</li>
+        <li>[ail:TornBack] Should have rested it when it was only strained. Lying flat now, as I should have then.</li>
+      </plain>
+      <warm>
+        <li>Feeling poorly. I'll be in bed early, and I'll try not to be a nuisance about it.</li>
+        <li>Under the weather, and the others have been kinder about it than I'd be.</li>
+        <li>Not myself today. I'll keep my distance from the others till I know what it is.</li>
+        <li>[ail:HeadCold] A cold. I'm keeping my cup and my sneezes to myself, for everyone's sake.</li>
+        <li>[ail:HeadCold] A cold. A hot drink with honey would be the thing, if there's any to be had.</li>
+        <li>[ail:StomachBug] I'm washing my hands until they're raw, so the bug stops with me.</li>
+        <li>[ail:SoreHands] My hands need a rest. I'll ask someone to help me with the fine work tomorrow.</li>
+        <li>[ail:Sunburn] Burned in the sun. I'll borrow a hat tomorrow, if anyone has one to spare.</li>
+        <li>[ail:Toothache] My tooth aches. I've been trying not to wince at supper so nobody worries.</li>
+      </warm>
+      <blunt>
+        <li>Sick. Not dying. Working.</li>
+        <li>Feel rotten. Early night.</li>
+        <li>Ill. It'll pass.</li>
+        <li>[ail:HeadCold] Cold. Nose running. Moving on.</li>
+        <li>[ail:StomachBug] Stomach bug. Water and the latrine. That's my day.</li>
+        <li>[ail:Blisters] Blisters. Feet up. Done walking today.</li>
+        <li>[ail:SprainedAnkle] Ankle's twisted. Foot up.</li>
+        <li>[ail:InsectBites] Bitten all over. Itching. Not scratching.</li>
+      </blunt>
+      <cheerful>
+        <li>Feeling rotten, but I've got a blanket and nowhere to be. Could be worse.</li>
+        <li>Under the weather today. Back to annoying everyone by the end of the week.</li>
+        <li>A bit poorly. The upside is I've got an excuse for a nap.</li>
+        <li>Caught something. I'm told I'm a terrible patient. I'm told correctly.</li>
+        <li>[ail:HeadCold] My nose is running a race and winning. A few days of this and I'll be fine.</li>
+        <li>[ail:StomachBug] Haven't kept anything down since noon, but I've learned the way to the latrine in the dark.</li>
+        <li>[ail:Sunburn] Pink as a radish. At least I know where the sun was all day.</li>
+        <li>[ail:Splinter] A splinter in my hand. The tree got the last word, but I got the tree.</li>
+        <li>[ail:Hiccups] Hiccups. I've been giving everyone a good laugh, which is something.</li>
+      </cheerful>
+      <gloomy>
+        <li>Ill again. My body has never been much of a friend to me.</li>
+        <li>Feeling poorly, and the weather's no better, and nobody's surprised.</li>
+        <li>Under the weather. It's always something here.</li>
+        <li>[ail:HeadCold] A cold, right when there's most to do. Of course.</li>
+        <li>[ail:StomachBug] Somebody passed this bug to me. Now I'll pass it to somebody else. That's how it goes.</li>
+        <li>[ail:Toothache] My tooth's rotting in my head. I suppose that's what years do.</li>
+        <li>[ail:StrainedBack] My back's gone. Everything I lift is a reminder that I'm wearing out.</li>
+      </gloomy>
+      <cold>
+        <li>Unwell. Lighter duties for a few days, then back to it.</li>
+        <li>A minor complaint. I've noted when it started, to see how long it takes.</li>
+        <li>Ill. Rest is the efficient choice, so I'm resting.</li>
+        <li>[ail:StomachBug] A stomach virus. Someone isn't washing their hands. I have a short list.</li>
+        <li>[ail:StrainedBack] A strained back. Rest now costs less than a torn one later.</li>
+        <li>[ail:SprainedAnkle] Sprained ankle. Raised, strapped, and out of the way.</li>
+        <li>[ail:Insomnia] Sleeping badly. I'll stop working after dark until it settles.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Over it ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_Journal_Ail_Better_Voices</defName>
+    <pool>Council_Journal_Ail_Better</pool>
+    <lines>
+      <plain>
+        <li>[old] Over it at last. It takes longer than it used to, but it goes in the end.</li>
+        <li>[child] I'm better now and I can play again.</li>
+        <li>[ail:HeadCold] Woke up and breathed through my nose without thinking about it. The cold's over.</li>
+        <li>[ail:StomachBug] Ate a proper supper and it stayed where I put it. Weak, but done with the bug.</li>
+        <li>[ail:ChestCold] Climbed the slope without stopping to cough. The chest's clearing.</li>
+        <li>[ail:HayFever] The plants have stopped flowering and my nose has stopped running. Until next year.</li>
+        <li>[ail:Pinkeye] My eyes are clear again. The world's sharp at the edges.</li>
+        <li>[ail:Dreamfever] The fever's gone and the dreams have gone back to being dreams.</li>
+        <li>[ail:StrainedBack] Lifted a full load today with a straight back and nothing to say about it.</li>
+        <li>[ail:SoreHands] The swelling's gone out of my wrists. The bench and I are friends again.</li>
+        <li>[ail:Blisters] My heels have healed over. I walked the whole day and thought about other things.</li>
+        <li>[ail:Chilblains] The itching's stopped and my toes look like toes again.</li>
+        <li>[ail:Sunburn] The last of the peeling's done. A hat from now on, mostly.</li>
+        <li>[ail:SmokeCough] A day in the open air and my throat's clear of the smoke.</li>
+        <li>[ail:Toothache] The tooth's stopped aching for now. I can chew on both sides.</li>
+        <li>[ail:StiffNeck] My neck's loose again. I nodded at everyone at breakfast.</li>
+        <li>[ail:SprainedAnkle] The swelling's gone down and the ankle takes my weight.</li>
+        <li>[ail:EyeStrain] A good sleep and my eyes are rested. Better light next time.</li>
+        <li>[ail:RimrotCough] The wet cough has gone. My chest feels dry and clean.</li>
+        <li>[ail:AshLung] The tightness has gone from my chest. Clean air is a fine thing.</li>
+        <li>[ail:Insomnia] Slept the whole night, and dreamt, and woke up in daylight.</li>
+        <li>[ail:Migraine] The headache's lifted. I can bear the window open again.</li>
+        <li>[ail:Heartburn] The burning's passed. Next time, one helping.</li>
+        <li>[ail:Nosebleed] My nose has healed. A scarf over it in the cold, from now on.</li>
+        <li>[ail:MotionSick] A day on still ground and my stomach's my own again.</li>
+        <li>[ail:Splinter] The splinter's gone and my hand's healed over.</li>
+        <li>[ail:InsectBites] The bites have stopped itching. I slept all night with my arms outside the blanket.</li>
+        <li>[ail:PlantRash] The rash has healed over. I know which plant it was now.</li>
+        <li>[ail:Frostnip] My fingertips are pink again and the stinging's gone.</li>
+        <li>[ail:HeatRash] My skin's calm again. A cool room did it.</li>
+        <li>[ail:ColdSore] The cold sore's gone. I'm allowed to share a cup again.</li>
+        <li>[ail:Lice] The lice are gone. My scalp feels like it belongs to me.</li>
+        <li>[ail:AthletesFoot] My feet have healed. Dry socks every evening, and I'll keep to it.</li>
+        <li>[ail:Hiccups] The hiccups went as suddenly as they came.</li>
+        <li>[ail:FluCough] The cough's gone at last. I slept through without a fit.</li>
+        <li>[ail:PlagueSwellings] The swellings have gone down. I can lift my arms over my head.</li>
+        <li>[ail:MalariaAnemia] The colour's back in my hands. The slope doesn't set my heart racing.</li>
+        <li>[ail:DrowsySpells] Awake all day and asleep all night, the right way round at last.</li>
+        <li>[ail:Limp] Walked the whole round without favouring the leg. It's remembered how.</li>
+        <li>[ail:BurnItch] The new skin over the burn has settled. It doesn't itch at all.</li>
+        <li>[ail:BadNights] Slept through without the fight coming back. The nights are mine again.</li>
+        <li>[ail:Unease] I didn't check the corners tonight. I only noticed afterwards.</li>
+        <li>[ail:PollutionCough] My throat's clear of the grit. Clean air, and the cough went.</li>
+        <li>[ail:SnowBlind] My eyes can take the light again. I'll wear something over them on the snow.</li>
+        <li>[ail:Leeches] The bites from the leeches have healed. I'm keeping my boots high.</li>
+        <li>[ail:OrbitSick] My body's given in and believes the floor. Slept well and ate everything.</li>
+        <li>[ail:SoreElbow] My elbow's stopped aching. Turns at the felling from now on.</li>
+        <li>[ail:SporeCough] The spore cough's gone. A cloth over my face in the rows, from now on.</li>
+        <li>[ail:FumeHeadache] Clean air and a rest, and the headache's gone.</li>
+        <li>[ail:BeeStings] The swelling's gone from my hand. The bees and I have an understanding again.</li>
+        <li>[ail:Gout] My toe's gone back to its proper size. Plainer suppers for a while.</li>
+        <li>[ail:StoneDust] The dust's out of my chest. I can take a deep breath without coughing.</li>
+        <li>[ail:SoreKnees] My knees have gone down. I knelt this morning and they didn't object.</li>
+        <li>[ail:Ringworm] The ring on my arm has faded. Washing after the animals, from now on.</li>
+        <li>[ail:Worms] The gnawing's gone. One meal fills me up again.</li>
+        <li>[ail:SmokersCough] The morning cough's gone. For now.</li>
+        <li>[ail:TornBack] Weeks of it, but the back's mended. I bend slowly, and I'll keep bending slowly.</li>
+        <li>[ail:NervePain] The burning along my side has faded. I can wear a shirt without thinking about it.</li>
+        <li>[ail:LingeringCough] The cough that hung on has gone at last.</li>
+      </plain>
+      <warm>
+        <li>Better. If anyone looked in on me while I slept, thank you.</li>
+        <li>Well again. I owe a few people a kindness, and I mean to pay it.</li>
+        <li>[ail:HeadCold] The cold's gone, and I don't think I gave it to anyone. That's the part I'm glad of.</li>
+      </warm>
+      <blunt>
+        <li>Over it. Working.</li>
+        <li>Fine now. Moving on.</li>
+        <li>[ail:SprainedAnkle] Ankle's good. Walking.</li>
+      </blunt>
+      <cheerful>
+        <li>Up and about again. Watch out, everyone.</li>
+        <li>Better. I'll take a walk round just to show off.</li>
+        <li>Back to myself, and starving. A very good sign.</li>
+        <li>[ail:StomachBug] I can eat again, and I've been making up for it all day.</li>
+      </cheerful>
+      <gloomy>
+        <li>Better, I suppose. It'll come back. These things do.</li>
+        <li>Recovered. I lost days I'll never get back.</li>
+        <li>[ail:HeadCold] The cold's gone. I'll catch the next one. I always do.</li>
+      </gloomy>
+      <cold>
+        <li>Recovered in the expected time. Back to full work.</li>
+        <li>Over it. I've noted what brought it on.</li>
+        <li>[ail:StrainedBack] Back recovered. I'll lift with my legs from now on.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== A serious illness ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_Journal_Ail_Serious_Voices</defName>
+    <pool>Council_Journal_Ail_Serious</pool>
+    <lines>
+      <plain>
+        <li>[old] This one's serious, and I'm not young. I want someone to know where my things are, just in case.</li>
+        <li>[tribal] This is the kind of sickness the old songs are about. I mean not to end up in one.</li>
+        <li>[industrial] It's the kind of illness they have hospitals for in the cities. We have a bed and each other.</li>
+        <li>[ail:Tetanus] My jaw won't open properly. The wound nobody dressed in time, a few days back.</li>
+        <li>[ail:Tetanus] My neck and jaw have gone stiff as wood. It's from the wound, they say, the dirty one.</li>
+        <li>[ail:Pneumonia] The cold went to my lungs. Each breath is short and it hurts at the bottom of it.</li>
+        <li>[ail:Pneumonia] Burning up, and my chest aches when I breathe. Bed, and stay in it. That's all there is for it.</li>
+        <li>[ail:Tuberculosis] The cough hasn't gone in weeks, and now there are night sweats. I should sleep apart from the others.</li>
+        <li>[ail:Tuberculosis] Consumption. Weeks of treatment, every day, they say. I've said I'll keep to it.</li>
+        <li>[ail:Typhus] A fever came on like a hammer, and a headache to go with it. The lice, they think.</li>
+        <li>[ail:Typhus] A rash across my chest and a fever I can't think through. I'm writing this while I still can.</li>
+        <li>[ail:Meningitis] My head is splitting and my neck won't bend. The light hurts, and it came on so fast it frightens me.</li>
+        <li>[ail:Scurvy] My gums bleed and my joints ache. Weeks without anything green. That's all it is, and it's enough.</li>
+        <li>[ail:Scurvy] Bruises I don't remember getting, and my gums are sore. We need fresh food, and soon.</li>
+        <li>[ail:Glassblood] There's a glitter along my veins, faint, in the light. The ruins, they say.</li>
+        <li>[ail:Glassblood] My joints are going stiff, and there's a fever under it. Whatever was in that old dust, I breathed it in.</li>
+        <li>[ail:Cholera] I can't keep water in me. It has to go in sip by sip, all night, or I'll dry out.</li>
+        <li>[ail:Cholera] It came on in hours. I've never been so thirsty or so sick at the same time.</li>
+        <li>[ail:Appendicitis] The pain started round my navel and moved low on the right. It's worse every hour.</li>
+        <li>[ail:Appendicitis] A pain in my side that won't let me stand straight. It may have to come out.</li>
+        <li>[ail:Rabies] The bite's started to tingle, and there's a fever. I know what that means. Everyone does.</li>
+        <li>[ail:Measles,child] I'm hot and my eyes hurt and there are spots coming on my face.</li>
+        <li>[ail:Measles,child] I have the measles. I want the room dark because my eyes hurt.</li>
+        <li>[ail:KidneyStone] A pain in my side and back like nothing else, in waves. It isn't dangerous, they say. It feels it.</li>
+        <li>[ail:KidneyStone] I'm to drink water by the jug and wait for the stone to pass. Every wave I hold the bed.</li>
+        <li>[ail:Shingles] A burning down one side for two days, and now the blisters have come up in a band.</li>
+        <li>[ail:Shingles] Shingles. The pox I had as a child, waking up after all these years. It burns.</li>
+        <li>[ail:HiveFever] The bite from the insect swelled and went hot, and now there's a fever and a humming in my ears.</li>
+        <li>[ail:HiveFever] The fever came a day after the insect got me. Something in their bite, they say.</li>
+        <li>[ail:SwampFever] My calves ache and my eyes are red. The swamp water, they think, through the cuts on my feet.</li>
+        <li>[ail:SwampFever] A sudden fever after days in the marsh. I'm not getting out of bed today.</li>
+      </plain>
+      <warm>
+        <li>I'm properly ill. Whatever happens, I want them to know I'm grateful for every one of them.</li>
+        <li>I'm properly ill. I hope nobody wears themselves out on my account.</li>
+      </warm>
+      <blunt>
+        <li>Bad one. In bed. Doing as I'm told.</li>
+        <li>Seriously ill. Not finished yet.</li>
+      </blunt>
+      <cheerful>
+        <li>I'm worse than I've been in years, but I've got good people round me and a stubborn streak.</li>
+        <li>Very ill, apparently. I plan to be very well again, and I usually get my way.</li>
+      </cheerful>
+      <gloomy>
+        <li>It's bad. I keep thinking about the ones who didn't get better.</li>
+        <li>I'm very ill. If this is it, I'd like it written down that I tried.</li>
+      </gloomy>
+      <cold>
+        <li>A dangerous illness. I've written down here how it started, for whoever tends me.</li>
+        <li>Serious. My chances depend on the tending, and on luck. I'd rather depend on the tending.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

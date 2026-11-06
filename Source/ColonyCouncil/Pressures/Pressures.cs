@@ -31,7 +31,7 @@ namespace ColonyCouncil
         /// Contrast: the comfortable feel the colony's own frictions more. The standards' factor for Rimfolk's bad moods
         /// that weren't scaled when they were given (moments, frictions) and for the pressures; off in gentle.
         /// </summary>
-        public static float Contrast(Pawn p) => Gentle || p == null ? 1f : Standards.MoodFactor(p, false);
+        public static float Contrast(Pawn p) => Gentle || p == null ? 1f : Standards.PenaltyFactor(p);
 
         /// <summary>A small letdown the council never gave (a moment, a friction) as it's felt: the setting's softening, the contrast and hard times.</summary>
         public static float Letdown(Pawn p) =>

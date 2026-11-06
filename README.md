@@ -61,7 +61,7 @@ beside the title that opens its page of the Almanac:
 | View | Modes | What's there |
 |---|---|---|
 | **This week** | | the one inbox: what you follow, what needs you, what is under way, what's coming, how people are and the plan |
-| **People** | Table · Moods · Bonds · Ideoligions · Renown | all colonists in one sortable table, with a colonist's card (their whole story, their dreams and journal) in the drawer beside it; every mood added up; friendships, rivalries, groups, vendettas, secrets; with Ideology, the colony's ideoligions; the colony's name among the peoples and its people known by name |
+| **People** | Table · Moods · Bonds · Ideoligions · Renown | all colonists in one sortable table, with a colonist's card (their whole story, their dreams and journal) in the drawer beside it; every mood added up; friendships, rivalries, groups, vendettas, secrets; with Ideology, the colony's ideoligions; each of its people by their one name, at home and beyond its walls |
 | **Council** | Offices and decrees · Ambition · Our ways · Wishes · Dilemmas | decrees, petitions and the council's offices with their elections (five, up to fourteen seats in a bigger colony); the current ambition and meetings; what the colony is known for and its traditions; open wishes, promises kept and trust; questions waiting and how the answers went |
 | **Colony** | Overview · Calendar · Chronicle | the colony at a glance (numbers, how they moved this week, graphs of mood, trust, wealth and people over the last weeks); the colony calendar; everything that happened since the first day, read from the one history, every answer with what came of it (filter by wishes, council, people, strangers, world events, losses, and every dream and journal) |
 
@@ -271,27 +271,35 @@ asking, and on Demanding stakes may sulk, go on an insulting spree, or announce 
 three days later unless you win them back. The Wishes tab shows everyone's trust and its history.
 
 **Rising standards.** Comfort breeds expectations. While a colonist is happy, their standards creep up from
-*modest* to *comfortable*, *particular* and finally *spoiled*. The council's mood rewards shrink for them, letdowns
-sting more (and so do the colony's own frictions, everyday pressures and setbacks, up to 40% more), their patience runs shorter, and their wishes come more often and ask for more: the next impressiveness
-level after that, fine meals instead of simple ones, luxuries. Hard times bring standards back down, and so does the
-austerity decree.
+*modest* to *comfortable*, *particular* and finally *spoiled*. Good things grow ordinary sooner for them (below),
+letdowns sting more (the colony's own frictions, everyday pressures and setbacks, up to 40% more), their patience runs
+shorter, and their wishes come more often and ask for more: the next impressiveness level after that, fine meals
+instead of simple ones, luxuries. Hard times bring standards back down, and so does the austerity decree.
 
-High standards also take the shine off the game's own comforts. A comfortable colonist feels the good moods of the
-base game and other mods (a fine meal, an impressive bedroom, a party, a joy activity) at 90%, a particular one at
-80% and a spoiled one at 70%. Only the first 10 points of each count for less, so the big moments of a life, like a
-wedding or a catharsis, still land almost in full; bad moods are never touched. Rimfolk's own good moods already
-follow standards, so they aren't shrunk twice. Hover a good mood in the Needs tab to see what it would be without
-standards. This works through one of the deeper game hooks, and the *standards cover the game's comforts* setting
-turns it off.
+**Good things grow ordinary.** One rule, for every good mood a colonist has, the game's, other mods' and Rimfolk's
+alike: they count in full up to a line their standards set (45 points for the modest, 35 for the comfortable, 25 for
+the particular, 15 for the spoiled: a colony used to the good life asks more), and of what is above it, half of the
+first 20 points and three quarters of the rest no longer lift them. It comes off the good moods themselves by how
+ordinary each is: everyday comforts (a fine room, their beliefs, trust in the council, a kind of memory they've had
+often lately) shrink most, something new (a wedding just attended) counts nearly in full and drifts down as the days
+go by, and a life goal reached never counts for less. Each good mood shows what it counts for now, and one line in its
+tooltip says why ("Grown ordinary: counts as +3 of +5, part of everyday life now"). Bad moods are never touched, every
+good thing still helps (each point more adds at least a quarter), and in hard times it fades, to nothing near a break.
+One setting, *good things grow ordinary*; until November 2026 four rules did this (standards shrinking the council's
+rewards and the game's comforts, good times fading sooner, good moods adding up slowly, used to the good life), and a
+settings file from then keeps the rule on if any of the four was on. It works through one of the deeper game hooks.
 
-**Good moods add up slowly.** Every good mood Rimfolk gives a colonist shares one budget: a wish granted, a wedding,
-a dilemma that went their way, a reunion, a feast. The two biggest on a colonist's mind count in full, the third
-60%, the fourth 45%, the fifth 35% and every one after that a quarter, so a small joy adds little on top of a
-wish just granted, but it never disappears: every good mood stays on the Needs tab at what it counts for now (a +3
-deep in the pile shows as +1), and its tooltip says so ("+0.8 instead of +3"). Bad moods aren't part of it, and
-neither is anything the game and other mods give (high standards take their own share of those, see above). The
-reward strength setting and rising standards apply to Rimfolk's good moods too. The *good moods add up slowly*
-setting turns this off.
+**Small letdowns and small joys.** Small things that go wrong (the same meal again, an idea turned down, rot in the
+stores, a spat about the chores) and small things that go right (a laugh with a friend, a kindness, a varied table) are
+each felt the way people feel them: a short, small mood at the moment, three points and half a day at most. On the Mood
+tab they read as two rows, *Small letdowns* and *Small joys*, and hovering a row says what each one was, how much it
+counts and why. What each would weigh beyond its moment goes to the heart instead: strain for a letdown, relief for a
+joy, at most 1.5 and 3 a day, so a single one passes and a run of them wears or eases. A letdown that lasts (days of
+the same work, someone away, a wish still waiting) is felt when it begins, gets worse or holds another day, and wears on
+the heart every hour it holds. The heart counts every small mood the same way, whoever made it: past 8 points of small
+bad moods (the game's and other mods' too) they build a little strain, past 12 of small good ones they ease it, while
+those moods stay just as the game and the mods made them. The heart's page names what wore on them and what eased them.
+With the heart off, every letdown and joy is a mood of its own as before.
 
 **Not every good moment is a good mood.** Rimfolk keeps mood for the moments that matter: weddings, wishes granted,
 reunions, victories, recoveries, life goals reached, the end of a personal story, real celebrations and grief shared.
@@ -312,24 +320,15 @@ About half of its small good moments (248 of the 474 worth +3 or less) give some
   outcome already pays out in silver, skill or goodwill.
 
 The moment itself still shows (a speech bubble, the social log, the news or the journal), and a small line over the
-colonist says what they got ("+ recreation"). These follow reward strength and standards like the moods they replace,
+colonist says what they got ("+ recreation"). These follow reward strength like the moods they replace,
 and give nothing on *Advisor only*. The heart still feels them at their old size, so feelings, belonging and the
 strain friends ease work as before. Four habits trade their mood for their knack, too (see Quirks). A settled
 colonist now carries about 4 of Rimfolk's good moods instead of about 10, and their total from Rimfolk comes out a
 little lower than before (roughly +10 instead of +11), lower still when nothing big has happened lately.
 
-**Getting used to good times.** Someone whose life is already good gets used to good things faster. When a colonist's
-mood is above 75%, a new good memory from Rimfolk (a wish granted, a good talk, a contest won, a dilemma that went
-their way) fades sooner, smoothly down to half its usual time from 90% mood. It feels just as good while it lasts,
-and in hard times good things last their full length. A good memory about someone (a friend who had their back)
-keeps its effect on opinion for the full time; only the mood ends sooner. A good memory that comes back renews with
-the time it would have now. Its tooltip says when it fades sooner. This works through one of the deeper game hooks, and a setting
-turns it off.
-
-None of these is a flat penalty, and nothing is taken away: a colony that lives well still feels it, it just doesn't
-float at the top of the mood bar on a pile of small pleasures. A line in the Mood tab says what they take off right
-now, for example "Good times: Rimfolk's good moods +11 of +18, 2 fading sooner · the game's comforts +14 of +19
-(particular)".
+None of this is a flat penalty, and nothing is taken away: a colony that lives well still feels it, it just doesn't
+float at the top of the mood bar on a pile of small pleasures. A line in the Mood tab says what good things grown
+ordinary take off right now, for example "Good times: good things grown ordinary, good moods +32 of +47".
 
 **Everyday frictions.** People who live close together get on each other's nerves. Colonists argue about the dishes,
 complain about a bunkmate's snoring, take the last good meal, keep a borrowed knife, correct each other at the table
@@ -344,13 +343,16 @@ stores, a bare earth floor, rotten food in the stockpile, work in the rain with 
 one, junk left in a bedroom, a butcher's table or spot where people eat or sleep, and in the cold a bed a few steps
 from a door straight outside (an anteroom stops the draught). Each names what it is about (the badly made parka, the
 wood left lying in the way, the filthy dining room), and colonists grumble aloud now and then about bad clothes,
-clutter, dirty rooms and hard beds. Each costs a point or two of mood for half a day to a day and a half. In an
+clutter, dirty rooms and hard beds. Each is a small letdown: a point or two of mood for half a day, and a little
+strain on the heart when they keep coming. In an
 ordinary colony they come about as often as the warm moments; less in a happy, roomy one, more in barracks or between
 people who dislike each other. Abrasive, volatile and jealous colonists start more of them, kind ones none. After a
 spat the two share no warm moments until it wears off or they clear the air. A setting turns them off.
 
-**Everyday pressures.** A colony that has everything still has its everyday wear. Five small, fixable pressures show
-as moods while their cause lasts, each saying what caused it, with what helps in the Mood tab:
+**Everyday pressures.** A colony that has everything still has its everyday wear. Five small, fixable pressures,
+each saying what caused it, with what helps in the Mood tab. Each is a small letdown (above): felt as a short mood when
+it begins, gets worse or holds another day, and wearing on the heart every hour its cause lasts. The sizes below are as
+they are felt:
 - **the same meal again**: 6 of the last 8 meals the same kind, more after 10 or 12 of 12 (-1 to -3). A colony that
   can cook only one kind feels it least; ascetics and anyone whose ideoligion allows only one kind of food (a fungus diet)
   don't mind, gourmands mind it more, and fine or lavish meals never count. Three different foods in two
@@ -373,9 +375,10 @@ nears breaking, Rimfolk's small letdowns weigh less (down to half at their minor
 three quarters, easing back to normal as they recover. Meals are noted through one of the deeper game hooks. The
 Almanac's *everyday pressures* page has the details.
 
-**Setbacks.** The other side of all the small rewards: about fifty bad moods that come from what actually happens in
-play, each naming its cause in its tooltip and, in the Mood tab, what helps. Most are -1 to -4 for a day or a few; the
-few bigger ones (-5 to -6) are for real losses.
+**Setbacks.** The other side of all the small rewards: about fifty letdowns that come from what actually happens in
+play, each naming its cause and, in the Mood tab, what helps. As written most are -1 to -4 for a day or a few, and the
+few bigger ones (-5 to -6) are for real losses; each is felt as a small letdown (at most -3 for half a day) and the
+rest wears on the heart.
 - **The council**: a wish still waiting while wishes voiced after it come true (-1 to -2), an idea turned down at a
   meeting (-2, -4 if the meeting backed it) or a vote lost (-1), a disliked decree dragging on past two days (-1 to
   -2), a promise broken to a close friend or someone they love (-3 to -5), a rival given a name or a council seat
@@ -463,12 +466,18 @@ wounded asking for it, a clean sweep can come again in about four days instead o
 The council's choices add up. Every dilemma answer, decree and many granted wishes nudge the colony's five ways:
 **merciful or harsh**, **generous or thrifty**, **traditional or restless**, **open or guarded**, **hard-working or
 easygoing**. Lean far enough and word spreads: a letter tells you the colony is now known (and later renowned) for
-it. Colonists whose nature fits are proud of it (up to +4 mood, less for the spoiled); those it clashes with chafe
-(up to -4): the kind
-hate harshness, the greedy love thrift, the lazy love an easygoing colony, the old love tradition. Neighbors warm to
+it. Colonists whose character fits are proud of it (up to +4 mood, grown ordinary like any good mood); those it
+clashes with chafe (up to -4). It is read from their character, the eight sides their traits, skills and age set and
+what happened to them moves: the warm hate harshness, the proud love thrift, the easy-going love an easygoing colony,
+the set in their ways love tradition, and someone hardened by a hard year may come to mind mercy less. Neighbors warm to
 a generous or open colony and cool towards a thrifty or guarded one, and some encounters and dilemmas only happen
 for a colony with a certain name. Old deeds fade (about half in a year), so a colony can change. The **Our ways**
-page in the council window shows where you stand, who is proud, who chafes, and what shaped it.
+page in the council window opens on the colony's one name, the same card a home shows in the region window: what
+people call it (its ways and what its work made it, in one list) and how far its name carries beyond its walls and for
+what, in one sentence ("People call the colony traditional, generous and walled; beyond its walls it is known for good
+doctors, its name talked about in the next town."), the deeds behind it, and a line for what each people remembers.
+Below it, where you stand, who is proud, who chafes, and what shaped it. When the name changes, the chronicle has one
+sentence for it.
 
 A colony also grows into what its people keep doing. A season of steady work earns it a name of its own:
 **green-fingered**, **builders**, **learned**, **craftsfolk**, **hunters** or **delvers**, counted from the
@@ -499,7 +508,7 @@ stash of beer, a cook who wants to spend the stores on one magnificent feast, a 
 can't cope. Kind, greedy, industrious and teetotal colonists all react differently. Leave a dilemma unanswered and
 the council's silence decides for you.
 
-There are 208 of them, and many grow out of everyday life: a sick colonist when the medicine is nearly gone,
+There are 219 of them, and many grow out of everyday life: a sick colonist when the medicine is nearly gone,
 whether to keep someone with a fever apart, a cook with a cold, an old family remedy, a visitor's strange cure, the
 camp on the colony's land asking for medicine, food or searchers for a lost child (and, new, one of them who wants to
 stay, a purse gone from their stash with a colonist blamed, one of theirs caught in the storeroom, their beasts standing
@@ -554,11 +563,16 @@ someone objects to can have its hard drug bills, or all but the medicine, suspen
 a colonist loves can teach them in the cell, or the wardens can be set to recruiting first. With Ideology, a
 slave a colonist has grown fond of can be freed into the colony by the game's own emancipation or walked to the edge
 to go home, and someone who broke one of the faith's precepts can be given a quiet word, a penance at the altar or the
-council's backing. Hours and work an answer changed go back by themselves when their time is up or the heat wave is
-over, with a message, but only where nobody changed them since: whatever you set by hand stays as you set it.
+council's backing. The colony is also asked about what it meets in the game itself: through a cold snap, short days
+until it ends (abed through the morning frost, to bed early) or a fire kept in the coldest bedroom; when the game's blight
+reaches its fields, the blighted plants marked for cutting, or that and the rest of those fields brought in early; a
+fine weapon in the stores two of the colony would be better armed with, taken up by the one chosen; and an animal
+trained to obey whose person died, given a new master it follows. Hours and work an answer changed go back by
+themselves when their time is up or the heat wave or cold snap is over, with a message, but only where nobody changed
+them since: whatever you set by hand stays as you set it.
 
-**Answers play out on the map.** When an answer describes something people do, they do it (641 answers of 177
-dilemmas and 178 Rimfolk events, stories and world events, plus calendar days, six decrees and nine ambitions, 25
+**Answers play out on the map.** When an answer describes something people do, they do it (669 answers of 183
+dilemmas and 185 Rimfolk events, stories and world events, plus calendar days, six decrees and nine ambitions, 25
 stages of 20 personal stories and 7 moments with visitors). A
 victory feast is eaten at the dining table, each guest sent to eat a cooked meal, the finest first they may eat, and
 the food the answer spends on it is cooked for it first, at the colony's stove by its organizer or best cook. The midsummer bonfire is lit (with no campfire, one of the colony carries wood out and lays one first, burned down to ash
@@ -1004,7 +1018,7 @@ goal someone at home already holds is less likely. A goal holds: nothing changes
 with death or a loss, and only once. When someone dies before reaching theirs, the
 person who loved them most may take it up and finish it for them. The Social tab shows everyone's progress and why.
 Achieving one is a big moment: a letter, a long good mood, trust, friends who are glad for them, and something that
-stays: a toast at the table that evening, an inspiration that fits the goal, a mark on the skill it was about (it
+stays: a cup raised to them at the colony's next gathering (or at supper, if none comes within two days), an inspiration that fits the goal, a mark on the skill it was about (it
 never slips again and comes a little faster), a younger colonist with the same passion learning at their side, and a
 title on their Story tab that the colony tells round in gossip. Dying before it is remembered: the chronicle notes
 what they never got to do, and their friends write about it.
@@ -1335,7 +1349,10 @@ together to what the day remembers (a camp's gift, a grave, the fields, the gate
 day's ideoligion and whoever chooses to come to hear its speaker (Ideoligions and the council, above); a **remembrance** is kept with
 a quiet, bittersweet mood for those who knew the person. A birthday comes as a message and a small lift for the colonist. People write about the day in their
 journals, talk about it in the social log, and mention it the evening before; This week shows the days coming
-up. All the moods are small and share the budget of good moods. Kept **three years running**, a day becomes a
+up. Days that fall within three days of each other come round as one, in one letter, kept together with one
+gathering; a day that comes within two days of another gathering is kept **at supper** instead (a better meal for
+everyone and a word said over it, or for a remembrance a word for them from those who knew them). All the moods are
+small and share the budget of good moods. Kept **three years running**, a day becomes a
 **tradition**, with the same letter, moods, chronicle and annals as the council's seasonal traditions, and letting it
 pass then disappoints everyone. With Ideology, the letter suggests the ideoligion's own rite where one fits (a funeral rite,
 a feast or festival), and holding it keeps the day. With Rimfolk events on, founding day is the founding event's to
@@ -1831,7 +1848,7 @@ with buttons for the previous and next page, so a page gets the whole width. Tab
 and never break a word; a table too wide for the page shows each row as a small card instead.
 
 ### Names, anniversaries and petitions
-Whoever has done the most of something earns a name for it, until someone overtakes them: *the Healer*, *the
+Whoever has done the most of something earns a name for it, and keeps it a good while: *the Healer*, *the
 Surgeon*, *Deadeye*, *the Builder*, *Beastfriend*, *Silver-Tongue*, *the Sower*, *Tinker*, *the Warden*, and some
 less flattering ones (*the Broom*, *the Mule*, *the Kindling* for whoever keeps catching fire, *the Storm*,
 *Patchwork*, *the Bottomless*). Some come with time: *the Old Hand*, *Homegrown*, and *the Unshaken* and *Lucky*,
@@ -1844,7 +1861,13 @@ the ideoligion and in the colony bring more: *Old Doc* and *Old Iron* (two years
 (three terms as speaker without ever losing a vote), *the Celebrant* and *the Shepherd* (rituals led and years as
 moral guide, with Ideology), *the Founder* (ten years since the first day), *the Last of the First*, *the Firstborn*
 and *the Annalist*, who keeps the pen. They show in play: travelers ask for Old Doc or the Celebrant by name, the
-founding day's letter names the last of the founders. 63 names in all. Each
+founding day's letter names the last of the founders. 63 names in all. A name holds: nobody can take it for two
+seasons, and after that it passes only to someone who stays clearly ahead a whole season and does half again as much of
+the work as the holder, never back to the one who lost it within a year (who writes it once in their journal). Each
+colonist is known by one name, the proud one held longest: it stands under their name on their card, in the tabs and
+tables and in their death letter, and their card says it in one line with what the peoples beyond the walls know them
+for ("Known as the Healer, the one who won the wrestling at the feast with the Lenlia, talked about in the next town."),
+their other names and what the others say of them under it. Each
 year since a colonist joined, they
 mark the anniversary in their own words, and their friends share it. And when the moment fits (food running low,
 right after a raid, while people grieve, when everyone has grown spoiled) a colonist may petition the council for
@@ -2254,7 +2277,9 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   children. What you do is remembered by the people it touched.
 - **From what the colony is doing.** A young animal left by a hunter's kill, a wild one of the colony's own livestock
   kind come down to the pens at dusk (see "The colony's animals"), a miner under the mountain breaking into a real
-  pocket of ore with a seam running on deeper (follow it and the deep rock opens, where insects nest), a visitor who
+  pocket of ore with a seam running on deeper (follow it and the deep rock opens, where insects nest), a **herd
+  crossing** the colony's land (the game's own migration: a few of it or the biggest marked for the hunters, the
+  game's own risk that a hunted beast turns named first, or let them cross), a visitor who
   sits down across the colony's chess or poker table to play its best (skill and luck decide it while they play; for
   silver the stake changes hands), and a neighbour's **commission** for one fine coat, bow, blade or gun the colony can
   make: a bill goes up at the right bench counting only pieces of the quality asked, their rider collects the first one
@@ -2299,9 +2324,9 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   **mourners** carrying their dead home. Refugees come more often while a famine, plague, war, flood, drought, hard
   winter or great fire runs in the region, and say what they fled; pilgrims follow a holy year, surveyors a new road
   or a rush, minstrels a season of songs, mourners a people's mourning. Every kind can be asked for something
-  from their page (51 asks): an evening at their fire, a beast from the herd, the healer's care, a lesson at their side,
+  from their page (70 asks): an evening at their fire, a beast from the herd, the healer's care, a lesson at their side,
   a song about the colony, a vigil with the mourners, a colonist out hunting with the party, a supper for the refugee
-  family, the smith's mending, a walk with the hermit, the players' show. And **camps ask things of the colony** (14
+  family, the smith's mending, a walk with the hermit, the players' show. And **camps ask things of the colony** (24
   requests, by letter, when things are calm and no other question came lately): the drovers would water their herd at
   your water, the healers' apprentice wants practice on your sick, the players want an audience, the prospectors a test
   hole on your side, the traders a day's stall at your gate, the pilgrims to pray at your graves, the hermit, once, a
@@ -2340,7 +2365,13 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   medicine for components, plasteel or steel, and leave the hull behind for the colony to take apart. With Anomaly,
   **watchers of the monolith** keep a night watch on the woken monolith, share their notes with the colony's study and
   ask for its free beds on a stormy evening. A travelling **beast show** brings beasts from far places (see "The
-  colony's animals").
+  colony's animals"). **Woodcutters** (of tribal to industrial peoples) come only where the woods stand thick clear of
+  the colony, pitch by them and fell real trees round their camp, a tree or two a day (keeping them to their side is
+  one of the terms): buy a load of their wood, have a colonist learn the axe at their side, or send the crew a hot
+  supper when they ask; their woodpile is left for the colony when they go in peace. **Herb-gatherers** (root-diggers,
+  herbalists, a botanist and students, or a survey of the land's plants, by their people's age) gather the land's wild
+  herbs at dawn and leave a share; buy a few bundles, learn the herbs at their side, or let them walk the colony's
+  fields for the herbs among the crops, and they come oftener while medicine is scarce.
 
   Some come for something the land near the colony has, and say so: the letter names it and looks at it. **Scholars**
   (a tale-seeker, a scholar with a mule of books, a professor and two students, or an archaeotech survey team, by their
@@ -2541,7 +2572,10 @@ the colony half.
   to take in), a **blood feud** between two families of two peoples (hide the one who ran, sit a talker between them,
   pay the last of the blood price), a **comet** (a night watch, a stargazer), a **bumper harvest**, the **drove
   roads**, a people **in mourning**, a **season of songs** with a song about the colony going round, a **toll** on the
-  roads, **iron gone scarce**, and **exiles** cast out by a neighbor. Two follow another's end with its people:
+  roads, **iron gone scarce**, **medicine gone scarce** (a neighbor's healer pays well for the colony's medicine, or
+  takes it as a gift; a herb-seller's healroot comes dear), a **blight in the region** (the game's blight comes to the
+  colony's own fields more often while it lasts; the neighbors buy food at twice its worth, and a family burned out by
+  it comes hungry to the gate), and **exiles** cast out by a neighbor. Two follow another's end with its people:
   **rebuilding** after a war, a fire or a flood, and **the road reopening** once the bandits, the snow, the toll or a
   closed market are gone.
 - **The wider world:** a **prophet on the roads** (feed her followers or shut the gate, let her speak at dusk, and
@@ -2643,7 +2677,7 @@ why, and a caravan at their town sends someone else to do the talking. No raid c
 ### The region
 The towns within the region map's reach of each home (the nearest 40) are known in detail. Each has a **fortune**,
 from struggling to flourishing, that the world's events move (a plague 20 down at its town and 10 at its people's
-others, a fair 8 up: 32 world events in all), that a war near it wears down and that drifts back toward the middle;
+others, a fair 8 up: 34 world events in all), that a war near it wears down and that drifts back toward the middle;
 its card on the region map, and the map's Fortunes lens, say how it stands and what moved it ("Struggling, since the plague"), its people speak
 of it, and what it has to trade follows it (a struggling town has a quarter less food, medicine and silver).
 
@@ -2825,8 +2859,9 @@ every people within reach, for its fighters, healers, hosts, traders, makers or 
 region, for good swords"). Notables think better of its people, good words and matches come easier, and what it is known
 for draws challengers, the sick, guests, pilgrims and the rest. Each colonist has a name of their own for their deeds,
 on their card and spoken of by visitors whose people know it ("the one who won the wrestling at the feast with the
-Lenlia"); one known by name as a fighter draws the champion's challenge, a healer the sick. People → Renown has the
-colony's name and its people known by name. 83 conversation pieces, 46 letter lines and 31 spoken lines speak of it.
+Lenlia"), said in one line with the colony's name for them; one known by name as a fighter draws the champion's
+challenge, a healer the sick. The colony's renown is part of its one name on **Our ways** and a home's card; People →
+Renown has each of its people by their one name. 83 conversation pieces, 46 letter lines and 31 spoken lines speak of it.
 Setting: *Colony renown*.
 
 **Against their nature.** Some of what diplomacy asks goes against a colonist's nature, and it weighs on their heart (its
@@ -3344,6 +3379,26 @@ about one every two days and seldom two at once. The **Colony news** setting can
 **as it happens**, or turn it **off**, so the smaller news goes only to the message log in the History tab; how much
 of it there is at all is still set by **How many messages**.
 
+Rimfolk's teller decides how each thing reaches you, by how much it matters and how busy the day already is. Something
+serious always comes at once. Something worth knowing comes as a message until the colony's day has had its share
+(twelve messages and four letters that only tell, by default, all kinds together); on a busy day (after a raid,
+something serious, or half the day's messages) one person's news, their health and the land's wait for the evening,
+while the colony's and the world's still come. The same thing is told once, as a message or in the evening's news. The
+evening's letter has less room the busier the day was (eight lines after a quiet day, one fewer for each letter,
+message or question the day brought, three at the least): it carries the lines that matter most, and the rest go to the
+History tab.
+
+## The colony's pace
+The colony gathers about twice a week, not four or five times. What you choose always happens and counts: an answer
+that gathers people, a calendar day kept, a vote, a wedding, a decree, a council meeting. The colony's own doings (a
+group's evening at the fire, a family supper, a child's birthday toast, a camp's show) come only when the last seven
+days hold fewer than two gatherings and none in the last day and a half; one waits up to three days for room, and is
+then let go without a word. One seasonal custom is asked a season; a life goal's toast is raised at the next gathering;
+the election's candidates speak at the count, before the votes are read. A plan that never comes about gives nobody
+its moods, and says why. Ten days never pass without a gathering: from the seventh the colony's own come at once, and
+from the eighth, if nothing is on the way, the colony keeps an evening together. The number is the setting
+**Gatherings a week before the colony's own wait** (People, How often).
+
 ## Slow speeds
 Two speeds slower than normal, **½×** and **¼×**, for planning without pausing: the colony keeps living, gently.
 Small buttons sit next to the time controls (drag them by their grip to put them wherever you like; on a
@@ -3414,7 +3469,8 @@ The pages:
   Rimfolk's column in the game's Social tab, personalities and social life, traits that change, ideoligions in the colony (with Ideology), secrets, vendettas; life goals, personal stories (off, rare, normal or frequent), quirks, heirlooms, coming of age,
   colonists fixing what bothers them (and placing small plans), dreams and dream omens; moments between colonists,
   the colony noticing what happens, and small habits in free time; journals, names, anniversaries, annals and eulogies; and how often moments,
-  social events and dreams come (a quarter as often to three times as often).
+  social events and dreams come (a quarter as often to three times as often), and how many gatherings a week before the
+  colony's own evenings and suppers wait their turn (two by default; see *The colony's pace*).
 - **Heart & health**: feelings and strain, the day off at the end of one's rope, the inspector line, how quickly
   strain builds (50% to 150%); everyday ailments, the serious (possibly fatal) illnesses on their own switch, how
   often ailments come (25% to 200%); convalescence and sickbed visits, doctors' and midwives' reputations, and with
@@ -3438,7 +3494,8 @@ The pages:
 - **Interface & integrations**: how chatty Rimfolk is: **Everything**, **Notable only** (default: messages for what
   changes something; small moments stay in the journals, the Story tab and History) or **Important only**; where the
   smaller news goes (**Colony news**: one letter each evening by default, as it happens, or off, to the History tab
-  only); a message for every dream, letters or messages for new and granted wishes, a letter after each update (on
+  only); the most messages and letters that only tell a day for each colony (twelve and four, past them the evening's
+  news); a message for every dream, letters or messages for new and granted wishes, a letter after each update (on
   by default; see CHANGELOG.md), how colonists' speech shows
   (bubbles with Interaction Bubbles, floating text, or off), the visual and sound touches; the alerts (and the
   reminder about a defense line's shut gate); mood insight (and its hints in the Needs tab), taking cover with a drag,

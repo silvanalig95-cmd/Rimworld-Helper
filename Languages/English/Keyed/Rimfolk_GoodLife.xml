@@ -19,7 +19,7 @@
   <CC_GoodLife_NoteSettled>Counts for less now that the moment has passed: {PAWN_nameDef} feels it as {FELT} instead of {FULL}.</CC_GoodLife_NoteSettled>
   <CC_GoodLife_NoteBoth>Counts for less: {PAWN_nameDef} has grown {LEVEL} and this has become ordinary, so {PAWN_pronoun} feels it as {FELT} instead of {FULL}.</CC_GoodLife_NoteBoth>
   <CC_GoodLife_Readout>used to the good life, good moods felt at {SHARE} in all</CC_GoodLife_Readout>
-  <CC_GoodLife_Why>Used to the good life: {PAWN_nameDef}'s good moods add up to {GOOD}. Up to {LINE}, the line for {LEVEL} standards, they count in full; above it, half of the first {FIRST} points and three quarters of the rest no longer lift {PAWN_objective}, so {PAWN_pronoun} feels {SHARE} of them in all. Most of it comes off everyday comforts and what {PAWN_pronoun} has had often lately; something new, like a wedding just attended, counts nearly in full and less as the days go by, and a life goal reached counts in full.</CC_GoodLife_Why>
+  <CC_GoodLife_Why>Grown ordinary: {PAWN_nameDef}'s good moods add up to {GOOD}. Up to {LINE}, the line for {LEVEL} standards, they count in full; above it, half of the first {FIRST} points and three quarters of the rest no longer lift {PAWN_objective}, so {PAWN_pronoun} feels {SHARE} of them in all. Most of it comes off everyday comforts and what {PAWN_pronoun} has had often lately; something new, like a wedding just attended, counts nearly in full and less as the days go by, and a life goal reached counts in full.</CC_GoodLife_Why>
   <CC_GoodLife_Hard>Times are hard for {PAWN_objective} just now, so good things count for more again, and in full near a break.</CC_GoodLife_Hard>
 
   <!-- Quiet troubles: what caused each one, shown as "Why: ..." in its tooltip -->

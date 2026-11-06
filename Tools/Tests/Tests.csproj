@@ -27,8 +27,8 @@
     <Compile Include="../../Source/ColonyCouncil/Health/HealthMath.cs" Link="HealthMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Health/BodyMath.cs" Link="BodyMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/LineMemory.cs" Link="LineMemory.cs" />
-    <Compile Include="../../Source/ColonyCouncil/Moods/GoodTimesMath.cs" Link="GoodTimesMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Moods/GoodLifeMath.cs" Link="GoodLifeMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Moods/SmallMomentMath.cs" Link="SmallMomentMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Moods/MoodSortMath.cs" Link="MoodSortMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/TabFitMath.cs" Link="TabFitMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/BarMoreMath.cs" Link="BarMoreMath.cs" />
@@ -131,11 +131,14 @@
     <Compile Include="../../Source/ColonyCouncil/Lean/HomesMath.cs" Link="HomesMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Lean/ColonyStateMath.cs" Link="ColonyStateMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Epithets/EpithetMath.cs" Link="EpithetMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Epithets/NameMath.cs" Link="NameMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Character/ColonyNameMath.cs" Link="ColonyNameMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Lean/PassClockMath.cs" Link="PassClockMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/Ledger/LedgerMath.cs" Link="LedgerMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/Ledger/TieMath.cs" Link="TieMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/Ledger/StoreMath.cs" Link="StoreMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/TellMath.cs" Link="TellMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/PlayOut/StageMath.cs" Link="StageMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/Ledger/HistoryMath.cs" Link="HistoryMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/ChronicleMath.cs" Link="ChronicleMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Dilemmas/AnswerMath.cs" Link="AnswerMath.cs" />
@@ -197,5 +200,6 @@
     <Compile Include="../../Source/ColonyCouncil/Dilemmas/ImpactMath.cs" Link="ImpactMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Dilemmas/ImpactHints.cs" Link="ImpactHints.cs" />
     <Compile Include="../../Source/ColonyCouncil/Dilemmas/AnswerShiftMath.cs" Link="AnswerShiftMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Dilemmas/VarietyTwoMath.cs" Link="VarietyTwoMath.cs" />
   </ItemGroup>
 </Project>

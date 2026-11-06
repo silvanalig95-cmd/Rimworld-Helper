@@ -134,6 +134,12 @@ namespace ColonyCouncil
 
         public bool Matters => notable || omen != null || wish != null || changeTie != TieKind.None || effects.Any(e => !(e is DilemmaEffect_Thought));
 
+        /// <summary>
+        /// Nothing of the dreamer's own in it: no happening, nobody it's about, no feeling or camp or the region's
+        /// troubles, no season, nothing of who they are (a dreamer's role), no omen. The filler between the others.
+        /// </summary>
+        public bool Generic => !AboutEvents && !AboutNow && about == DreamAbout.None && dreamer == null && seasons.NullOrEmpty() && omen == null;
+
         public override IEnumerable<string> ConfigErrors()
         {
             foreach (var e in base.ConfigErrors()) yield return e;
@@ -143,8 +149,8 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// A dream memory that carries the dream itself, shown in its tooltip. A good dream shares the budget of Rimfolk's
-    /// good moods (SmallJoys); dreams aren't scaled by reward strength or standards. A dream that gives something else
+    /// A dream memory that carries the dream itself, shown in its tooltip. A good dream grows ordinary like every good
+    /// mood (Moods/GoodLife.cs); dreams aren't scaled by reward strength. A dream that gives something else
     /// instead of mood (a sweet one rests, a strange one may inspire) does so as it's gained (RewardInstead).
     /// </summary>
     public class Thought_Dream : Thought_Memory, ICouncilMood
@@ -158,14 +164,9 @@ namespace ColonyCouncil
             set { }
         }
 
-        public override float MoodOffset()
-        {
-            float own = OwnOffset();
-            return own > 0f ? own * SmallJoys.Factor(this) : own;
-        }
+        public override float MoodOffset() => OwnOffset();
 
-        public override string Description =>
-            GoodTimes.FadeNote(this, SmallJoys.Note(this, dream.NullOrEmpty() ? base.Description : base.Description + "\n\n\"" + dream + "\""));
+        public override string Description => dream.NullOrEmpty() ? base.Description : base.Description + "\n\n\"" + dream + "\"";
 
         public override bool TryMergeWithExistingMemory(out bool showBubble)
         {
@@ -422,6 +423,9 @@ namespace ColonyCouncil
             if (def.AboutEvents) w *= 4f;
             else if (def.AboutNow) w *= 1.5f + 1.5f * feeling;
             else if (def.about != DreamAbout.None) w *= 1.5f;
+            // A dream with nothing of the dreamer's own in it (nothing that happened, nobody, no feeling, no season, nothing
+            // of who they are) is the filler between the others: half as likely.
+            else if (def.Generic) w *= 0.5f;
             float mood = p.needs.mood.CurLevelPercentage;
             // Low spirits make sweet dreams rare, and nightmares only a little likelier, so a bad stretch doesn't feed itself.
             if (def.kind == DreamKind.Nightmare) w *= mood < 0.35f ? 1.25f : mood > 0.75f ? 0.6f : 1f;
@@ -431,7 +435,8 @@ namespace ColonyCouncil
             if (def.kind == DreamKind.Nightmare) w *= QuirkMoments.NightmareFactor(p);
             // Strain turns dreams to nightmares; feelings color them (Heart/).
             w *= Heart.DreamFactor(p, def.kind);
-            if (seen.TryGetValue(Key(p, def), out int n) && n > 0) w *= 0.6f;
+            // One they've had before comes less often each time they have it (to about a fifth after three).
+            if (seen.TryGetValue(Key(p, def), out int n) && n > 0) w *= Mathf.Pow(0.6f, Mathf.Min(n, 3));
             c.weight = w;
             return c;
         }

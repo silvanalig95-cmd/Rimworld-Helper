@@ -394,7 +394,9 @@ public static class HistoryTests
         // ---------------- The mod's side: one record, the chronicle its view ----------------
 
         string comp = File.ReadAllText(Path.Combine(src, "CouncilGameComponent.cs"));
-        C(comp.Contains("public void AddChronicle(ChronicleEntry entry) => History.FromChronicle(entry);"), "a chronicle line is written into the history, and kept nowhere else");
+        string tellCode = File.ReadAllText(Path.Combine(src, "UI", "Tell.cs"));
+        C(comp.Contains("public void AddChronicle(ChronicleEntry entry) => Tell.Chronicle(entry);") && tellCode.Contains("History.FromChronicle(entry);"),
+            "a chronicle line is written into the history by the teller, and kept nowhere else");
         string hist2 = File.ReadAllText(Path.Combine(src, "World", "Ledger", "History.cs"));
         var from = Regex.Match(hist2, @"public static void FromChronicle\(ChronicleEntry entry\)(.*?)\n        \}", RegexOptions.Singleline).Groups[1].Value;
         C(from.Contains("try") && from.Contains("catch") && !from.Contains(".chronicle"), "the history's side can't throw into it");

@@ -22,36 +22,7 @@ namespace Balance
         private const int Days = 60;
         private const int HourTicks = 2500, DayTicks = 60000;
 
-        /// <summary>A play style's everyday life for the heart: chances a day for each colonist (or the colony), and how well they rest.</summary>
-        private sealed class Life
-        {
-            public string key, name;
-            public float raid, deathsPerYear, badNight, hungry, joyless, exhausted, lowMood, dark, decree, party, talk, comfy, mood;
-            /// <summary>A hard spell (a few days of bad nights, low spirits, no free time and a need of the heart missing) starting for a colonist on a given day, and how long.</summary>
-            public float spell, spellDays;
-            public float[] shares;
-        }
-
-        // The chances are set so the time strained, worn and near breaking comes near the colony-year report's shares for each
-        // style (2/0/0, 8/2/0 and 20/8/2 per cent): with these, 2.2/0.2/0, 7.8/2.1/0.4 and 18/8/2.5.
-        private static readonly Life[] Lives =
-        {
-            new Life
-            {
-                key = "well", name = "well-run", raid = 0.1f, deathsPerYear = 0.6f, badNight = 0.04f, hungry = 0.01f, joyless = 0.01f, exhausted = 0.01f, lowMood = 0.01f,
-                dark = 0.01f, decree = 0.05f, party = 0.12f, talk = 0.6f, comfy = 0.97f, mood = 1.35f, spell = 0.035f, spellDays = 6f, shares = Rates.WellRun.strain
-            },
-            new Life
-            {
-                key = "avg", name = "average", raid = 0.12f, deathsPerYear = 1.6f, badNight = 0.2f, hungry = 0.05f, joyless = 0.08f, exhausted = 0.05f, lowMood = 0.06f,
-                dark = 0.1f, decree = 0.15f, party = 0.07f, talk = 0.45f, comfy = 0.8f, mood = 1.1f, spell = 0.03f, spellDays = 7f, shares = Rates.Average.strain
-            },
-            new Life
-            {
-                key = "neglect", name = "neglectful", raid = 0.14f, deathsPerYear = 3.5f, badNight = 0.35f, hungry = 0.08f, joyless = 0.2f, exhausted = 0.1f, lowMood = 0.12f,
-                dark = 0.2f, decree = 0.3f, party = 0.02f, talk = 0.25f, comfy = 0.6f, mood = 0.95f, spell = 0.035f, spellDays = 5f, shares = Rates.Neglectful.strain
-            }
-        };
+        // A play style's everyday life for the heart: HeartSim.cs (HeartLife, HeartState.Lives), shared with the colony-year.
 
         /// <summary>The acts a year for a colony deep in diplomacy (every release of stage 2 at once, on the generous side): how often, and who.</summary>
         private static readonly (NatureAct act, float perYear, string who)[] Acts =
@@ -114,7 +85,7 @@ namespace Balance
             Console.WriteLine($"Against their nature: a colony-year ({Days} days), {runs} runs each, the \"Life's ups and downs\" setting on normal.");
             Console.WriteLine($"An act brings up to {NatureMath.MaxStrain:0} strain ({NatureMath.AlwaysStrain:0} at least for what weighs on anyone, {NatureMath.MaxStrain * NatureMath.Floor:0} just past where a side shows), up to {NatureMath.MaxRelief:0} relief; one a day; the heart's caps {HeartMath.SourceCap(StrainSource.Nature):0} for the source and {HeartMath.DailyCap:0} a day for everything.");
             Console.WriteLine();
-            foreach (var life in Lives)
+            foreach (var life in HeartState.Lives)
                 foreach (int n in new[] { 6, 12 })
                 {
                     var none = Play(life, n, 0f, runs, seed);
@@ -126,7 +97,7 @@ namespace Balance
                 }
         }
 
-        private static Tally Play(Life life, int n, float rate, int runs, int seed)
+        private static Tally Play(HeartLife life, int n, float rate, int runs, int seed)
         {
             var t = new Tally();
             for (int r = 0; r < runs; r++)
@@ -153,7 +124,7 @@ namespace Balance
             return p;
         }
 
-        private static void Year(Life life, int n, float rate, Tally t, Random actRng)
+        private static void Year(HeartLife life, int n, float rate, Tally t, Random actRng)
         {
             var people = new List<Person>();
             for (int i = 0; i < n; i++) people.Add(Make());
@@ -348,7 +319,7 @@ namespace Balance
             p.natureTick = now;
         }
 
-        private static void Report(Life life, int n, float rate, Tally t, Tally none)
+        private static void Report(HeartLife life, int n, float rate, Tally t, Tally none)
         {
             float years = Math.Max(1, t.colonists);
             float all = t.built.Sum();

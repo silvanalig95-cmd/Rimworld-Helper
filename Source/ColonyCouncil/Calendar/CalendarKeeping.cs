@@ -194,8 +194,10 @@ namespace ColonyCouncil
             }
             if (d.way == DayWay.Remembrance)
             {
-                RemembranceLetter(d, map, home, years);
-                KeepDay(d, occurrence, map, null, false);
+                // Within two days of another gathering, remembered at supper (the colony's pace).
+                bool supper = AtSupper(d, map);
+                RemembranceLetter(d, map, home, years, supper);
+                KeepDay(d, occurrence, map, null, false, false, supper);
                 return;
             }
             // (Kept another way than a feast, it's the calendar's own day again.)
@@ -251,15 +253,22 @@ namespace ColonyCouncil
             // A faith's own day offers the faith's own rite for it (the game's date ritual), whatever way the colony keeps it.
             var faithRite = FaithRite(d);
             var ritual = faithRite ?? RitualFor(d.way);
-            var parts = new List<string> { Opening(d, map, keeper, other, years), ("CC_Cal_Way_" + d.way + "_Letter").Translate().Resolve(), StatusLine(d) };
+            // The colony's pace (PlayOut/Stage.cs): days coming round within three days of this one are kept with it, and a
+            // day that gathers the colony within two days of another gathering is kept at supper.
+            var with = KeptWith(d, map);
+            bool supper = AtSupper(d, map);
+            string title = TitleOf(d, with);
+            var parts = new List<string> { Opening(d, map, keeper, other, years), (supper ? "CC_Cal_Way_Supper_Letter" : "CC_Cal_Way_" + d.way + "_Letter").Translate().Resolve() };
+            if (with.Count > 0) parts.Add((with.Count == 1 ? "CC_Cal_Together_Letter_One" : "CC_Cal_Together_Letter_Many").Translate(TextUtil.JoinAnd(with.Select(x => x.label).ToList()).CapitalizeFirst().Named("DAYS")).Resolve());
+            parts.Add(StatusLine(d));
             if (faithRite != null) parts.Add("CC_Cal_Ritual_FaithDay".Translate(IdeoName(), faithRite.LabelCap).Resolve());
             else if (ritual != null) parts.Add("CC_Cal_Ritual_Feast".Translate(IdeoName(), ritual.LabelCap).Resolve());
             int hour = GenLocalDate.HourOfDay(map);
             int ticks = Mathf.Max(2, 22 - hour) * GenDate.TicksPerHour;
-            string keepLabel = ("CC_Cal_Keep_" + d.way).Translate();
+            string keepLabel = (supper ? "CC_Cal_Keep_Supper" : "CC_Cal_Keep_" + d.way).Translate();
             parts.Add("CC_Cal_Deadline".Translate(TextUtil.DaysString(ticks), keepLabel).Resolve());
             var look = new LookTargets(new[] { keeper, other }.Where(p => p != null && p.Spawned).Distinct());
-            var letter = LetterMaker.MakeLetter(d.label.CapitalizeFirst(), string.Join("\n\n", parts.Where(p => !p.NullOrEmpty())), def, look) as ChoiceLetter_CalendarDay;
+            var letter = LetterMaker.MakeLetter(title, string.Join("\n\n", parts.Where(p => !p.NullOrEmpty())), def, look) as ChoiceLetter_CalendarDay;
             if (letter == null)
             {
                 KeepDay(d, occurrence, map, null, true);
@@ -270,17 +279,120 @@ namespace ColonyCouncil
             letter.ritual = ritual?.LabelCap;
             letter.keepLabel = keepLabel;
             letter.home = Homes.KeyOf(map);
+            letter.atSupper = supper;
+            // The days kept with it come round with it: their year is spent by this letter, kept or let pass with it.
+            foreach (var x in with)
+            {
+                letter.withIds.Add(x.id);
+                letter.withYears.Add(OccurrenceAhead(x, map));
+                x.lastYear = OccurrenceAhead(x, map);
+            }
             letter.StartTimeout(ticks);
             Tell.Ask(letter, map);
         }
 
-        private void RemembranceLetter(CalendarDay d, Map map, List<Pawn> home, int years)
+        // ---------------- The colony's pace ----------------
+
+        /// <summary>A way of keeping a day that gathers people for it (a feast, games, a fire, a faith's evening, a quiet hour at a grave): kept at supper beside another gathering.</summary>
+        private static bool Gathers(DayWay w) => w == DayWay.Feast || w == DayWay.Games || w == DayWay.Bonfire || w == DayWay.Faith || w == DayWay.Remembrance;
+
+        /// <summary>A way the colony keeps two days together with: a feast, games, a fire.</summary>
+        private static bool Joins(DayWay w) => w == DayWay.Feast || w == DayWay.Games || w == DayWay.Bonfire;
+
+        /// <summary>
+        /// The colony's other days that come round within three days after this one this year, kept together with it
+        /// (StageMath.KeptTogether): only days kept with the colony gathered (a feast, games, a fire), not one's own day,
+        /// a remembrance or the first snow, and not the founding day its own event keeps.
+        /// </summary>
+        private List<CalendarDay> KeptWith(CalendarDay d, Map map)
+        {
+            var list = new List<CalendarDay>();
+            if (d == null || map == null || !Joins(d.way) || d.Personal || d.kind == CalendarKind.Founding) return list;
+            int today = GenLocalDate.DayOfYear(map);
+            foreach (var x in days)
+            {
+                if (x == d || x.Personal || x.kind == CalendarKind.FirstSnow || x.kind == CalendarKind.Founding || !Joins(x.way)) continue;
+                int ahead = CalendarMath.Wrap(x.day - today);
+                if (!StageMath.KeptTogether(ahead) || x.lastYear >= OccurrenceAhead(x, map)) continue;
+                list.Add(x);
+            }
+            return list;
+        }
+
+        /// <summary>The year a day still ahead comes round in: this year, or next when it falls past the year's end.</summary>
+        private static int OccurrenceAhead(CalendarDay x, Map map)
+        {
+            int today = GenLocalDate.DayOfYear(map);
+            int year = GenLocalDate.Year(map);
+            return x.day >= today ? year : year + 1;
+        }
+
+        /// <summary>
+        /// The day gathers the colony and another gathering was held in the last two days, or one the council chose is on
+        /// its way: it is kept at supper instead (StageMath.AtSupper).
+        /// </summary>
+        private static bool AtSupper(CalendarDay d, Map map)
+        {
+            if (d == null || map == null || !Gathers(d.way) || !PlayOuts.On) return false;
+            int now = Find.TickManager.TicksGame;
+            if (Stage.AtSupper(map, now)) return true;
+            var t = PlayOutTracker.Instance;
+            return t != null && t.plays.Any(p => p.map == map && p.state == PlayState.Pending && p.IsGathering && !p.routine);
+        }
+
+        /// <summary>The letter's title: the day, or the days kept together ("The harvest and the victory over Hive").</summary>
+        private static string TitleOf(CalendarDay d, List<CalendarDay> with) =>
+            with.Count == 0 ? d.label.CapitalizeFirst() : TextUtil.JoinAnd(new[] { d.label }.Concat(with.Select(x => x.label)).ToList()).CapitalizeFirst();
+
+        /// <summary>
+        /// Kept at supper: no gathering of its own. That evening, when the keeper sits down with another of the colony, they
+        /// say a word over the meal for the day, and everyone at home has the day's good memory (the better supper). Told when
+        /// it is said.
+        /// </summary>
+        private static bool KeepAtSupper(CalendarDay d, Map map, List<Pawn> home)
+        {
+            bool remembrance = d.way == DayWay.Remembrance;
+            // A remembrance is kept by those who knew them; the rest by everyone at home.
+            var who = remembrance ? Mourners(d, home) : home;
+            var keeper = (remembrance ? null : Interplay.CalendarOrganizer(d, who)) ?? (who.Count > 0 ? Keeper(d, who) : null);
+            var thought = remembrance ? CalendarDefOf.Council_Cal_Remembered : d.way == DayWay.Games ? CalendarDefOf.Council_Cal_GamesDay
+                : d.way == DayWay.Bonfire ? CalendarDefOf.Council_Cal_BonfireNight : CalendarDefOf.Council_Cal_FeastDay;
+            var other = home.Where(p => p != keeper && !p.DevelopmentalStage.Baby()).OrderBy(p => keeper != null && p.Spawned && keeper.Spawned ? p.Position.DistanceToSquared(keeper.Position) : 0).FirstOrDefault();
+            string label = d.label.CapitalizeFirst();
+            string subject = d.kind == CalendarKind.Death || d.kind == CalendarKind.Companion ? d.pawnName
+                : d.kind == CalendarKind.Battle ? "CC_Cal_Subject_Battle".Translate(d.enemy ?? "?").Resolve() : d.label;
+            string cause = remembrance ? "CC_Cal_Cause_Remembered".Translate(subject ?? "?").Resolve() : Causes.Current;
+            var ids = new HashSet<Pawn>(who);
+            void Say()
+            {
+                // together: the keeper says it over supper, with another of the colony at the table beside them.
+                string line = remembrance ? Flavor.FromPool("Council_Pool_PlayRemembrance", keeper) : Flavor.FromPool("Council_Pool_PlayToast", keeper, null, null, "raise");
+                if (!line.NullOrEmpty()) Speech.Say(keeper, line, other);
+                foreach (var p in AtHome(map).Where(p => !remembrance || ids.Contains(p))) CouncilGameComponent.GiveThought(p, thought, null, -1f, cause);
+                Tell.Minor(NewsKind.Colony, Importance.Notable, map, (remembrance ? "CC_Cal_RememberedAtSupper" : "CC_Cal_KeptAtSupper").Translate(label.Named("DAY"), keeper.Named("PAWN")).Resolve(),
+                    new LookTargets(keeper), remembrance ? MessageTypeDefOf.NeutralEvent : MessageTypeDefOf.PositiveEvent);
+            }
+            if (keeper == null || other == null || thought == null) return false;
+            Together.When("calsupper|" + d.id, keeper, other, Say, 8f, -1f, () => Supper(map));
+            return true;
+        }
+
+        /// <summary>Supper time at the colony's home, from five to ten in the evening.</summary>
+        private static bool Supper(Map map)
+        {
+            int h = GenLocalDate.HourOfDay(map);
+            return h >= 17 && h <= 22;
+        }
+
+        private void RemembranceLetter(CalendarDay d, Map map, List<Pawn> home, int years, bool supper = false)
         {
             var keeper = Keeper(d, home);
             var who = Mourners(d, home);
             var parts = new List<string> { Opening(d, map, keeper, null, years) };
-            if (d.kind == CalendarKind.Holiday || d.knew.Count == 0 || who.Count == 0) parts.Add("CC_Cal_Way_RemembranceAll_Letter".Translate().Resolve());
-            else parts.Add("CC_Cal_Way_Remembrance_Letter".Translate(TextUtil.JoinAnd(who.Select(p => p.LabelShort).ToList())).Resolve());
+            string all = supper ? "CC_Cal_Way_RemembranceSupperAll_Letter" : "CC_Cal_Way_RemembranceAll_Letter";
+            string some = supper ? "CC_Cal_Way_RemembranceSupper_Letter" : "CC_Cal_Way_Remembrance_Letter";
+            if (d.kind == CalendarKind.Holiday || d.knew.Count == 0 || who.Count == 0) parts.Add(all.Translate().Resolve());
+            else parts.Add(some.Translate(TextUtil.JoinAnd(who.Select(p => p.LabelShort).ToList())).Resolve());
             var ritual = RitualFor(DayWay.Remembrance);
             if (ritual != null) parts.Add("CC_Cal_Ritual_Remembrance".Translate(IdeoName(), ritual.LabelCap).Resolve());
             Tell.Letter(NewsKind.Colony, Importance.Notable, map, d.label.CapitalizeFirst(), string.Join("\n\n", parts.Where(p => !p.NullOrEmpty())), LetterDefOf.NeutralEvent,
@@ -314,15 +426,28 @@ namespace ColonyCouncil
                 : choice == ChoiceLetter_CalendarDay.RitualChoice ? "CC_Cal_KeepRitual".Translate(letter.ritual).Resolve()
                 : letter.keepLabel.NullOrEmpty() ? "CC_Cal_Keep_Feast".Translate().Resolve() : letter.keepLabel;
             answerByDefault = byDefault;
+            // The days kept together with it go its way, kept or let pass with it.
+            var with = new List<(CalendarDay day, int year)>();
+            for (int i = 0; i < letter.withIds.Count; i++)
+            {
+                var x = Get(letter.withIds[i]);
+                if (x != null && x != d) with.Add((x, i < letter.withYears.Count ? letter.withYears[i] : letter.occurrence));
+            }
+            string title = TitleOf(d, with.Select(w => w.day).ToList());
             try
             {
                 if (choice == ChoiceLetter_CalendarDay.PassChoice)
                 {
                     PassDay(d, map);
+                    foreach (var w in with) PassDay(w.day, map);
                     // Let pass: kept in the answers' log; a tradition broken by it has its own line in the chronicle.
-                    Answers.Record("calendar", d.label.CapitalizeFirst(), answerLabel, null, null, null, map, byDefault, minor: true);
+                    Answers.Record("calendar", title, answerLabel, null, null, null, map, byDefault, minor: true);
                 }
-                else KeepDay(d, letter.occurrence, map, choice == ChoiceLetter_CalendarDay.RitualChoice ? letter.ritual : null, byDefault);
+                else
+                {
+                    keepingWith = with;
+                    KeepDay(d, letter.occurrence, map, choice == ChoiceLetter_CalendarDay.RitualChoice ? letter.ritual : null, byDefault, false, letter.atSupper);
+                }
             }
             catch (Exception e)
             {
@@ -331,36 +456,51 @@ namespace ColonyCouncil
             finally
             {
                 answerLabel = null;
+                keepingWith = null;
             }
         }
 
         /// <summary>The answer to a day's letter while it is carried out (KeepDay writes its record), else null.</summary>
         [Unsaved] private string answerLabel;
         [Unsaved] private bool answerByDefault;
+        /// <summary>The days kept together with the one being kept (and the year each comes round in), while KeepDay runs; else null.</summary>
+        [Unsaved] private List<(CalendarDay day, int year)> keepingWith;
 
         // ---------------- Keeping a day ----------------
 
         /// <summary>
         /// The colony keeps the day: the way it's kept (unless the faith's rite keeps it, or the founding event already
-        /// did), a step toward a tradition, journal lines, talk, and a line in the chronicle.
+        /// did), a step toward a tradition, journal lines, talk, and a line in the chronicle. <paramref name="atSupper"/>:
+        /// kept at supper instead of with a gathering of its own (the colony's pace). The days kept together with it
+        /// (<see cref="keepingWith"/>) share its gathering, and each takes its step toward a tradition.
         /// </summary>
-        private void KeepDay(CalendarDay d, int occurrence, Map map, string ritual, bool byDefault, bool quiet = false)
+        private void KeepDay(CalendarDay d, int occurrence, Map map, string ritual, bool byDefault, bool quiet = false, bool atSupper = false)
         {
             var comp = CouncilGameComponent.Instance;
             var home = AtHome(map);
             int years = YearsOf(d, occurrence);
-            using var _cause = Causes.Push("CC_Cal_Cause_Day".Translate(d.label).Resolve());
+            var with = keepingWith ?? new List<(CalendarDay day, int year)>();
+            string title = TitleOf(d, with.Select(w => w.day).ToList());
+            using var _cause = Causes.Push("CC_Cal_Cause_Day".Translate(with.Count > 0 ? title : d.label).Resolve());
             bool told = false;
             if (ritual != null)
             {
                 Tell.Message(NewsKind.Colony, Importance.Notable, map, "CC_Cal_Ritual_Chosen".Translate(d.label, ritual).Resolve(), null, MessageTypeDefOf.NeutralEvent);
                 told = true;
             }
-            else if (!quiet) told = DoWay(d, map, home);
+            else if (!quiet && atSupper && Gathers(d.way)) told = KeepAtSupper(d, map, home);
+            else if (!quiet) told = DoWay(d, map, home, with.Count > 0 ? title : null);
             var result = CalendarMath.Keep(ref d.keptYears, ref d.tradition, ref d.breaks);
             d.timesKept++;
             d.lastKeptYear = occurrence;
             Tradition(d, result, home, comp, map);
+            foreach (var w in with)
+            {
+                var r = CalendarMath.Keep(ref w.day.keptYears, ref w.day.tradition, ref w.day.breaks);
+                w.day.timesKept++;
+                w.day.lastKeptYear = w.year;
+                Tradition(w.day, r, home, comp, map);
+            }
             // The council of the colony keeping it (Offices: the keeper of days).
             if (!quiet) (ColonyState.For(map)?.offices ?? comp?.offices)?.Notify_CustomKept(home);
             if (!quiet) Journals(d, map, home, years);
@@ -374,23 +514,26 @@ namespace ColonyCouncil
             if (!quiet && keeper != null) CouncilRecords.Add(keeper, CouncilRecords.DaysKept);
             // The day kept is one line: the answer to its letter when it had one (the answers' log), else the chronicle's own.
             // Kept by the founding event, that event's answer already says how (quiet).
-            string kept = "CC_Cal_Chronicle_Kept".Translate(d.label).Resolve();
+            string kept = "CC_Cal_Chronicle_Kept".Translate(with.Count > 0 ? title : d.label).Resolve();
             if (answerLabel != null)
-                Answers.Record("calendar", d.label.CapitalizeFirst(), answerLabel, null, keeper, null, map, answerByDefault, line: kept, weight: HistoryMath.Milestone);
+                Answers.Record("calendar", title, answerLabel, null, keeper, null, map, answerByDefault, line: kept, weight: HistoryMath.Milestone);
             else if (!quiet) comp?.AddChronicle(new ChronicleEntry(ChronicleKind.Life, kept, keeper));
             if (!told && !quiet && d.way != DayWay.Remembrance)
                 Tell.Minor(NewsKind.Colony, byDefault ? Importance.Notable : Importance.Flavor, map, "CC_Cal_Kept".Translate(d.label.CapitalizeFirst(), WayLabel(d.way)).Resolve(),
                     new LookTargets(home), MessageTypeDefOf.PositiveEvent);
         }
 
-        /// <summary>The way a day is kept. Returns true when something the player sees already says so (the party's own letter).</summary>
-        private bool DoWay(CalendarDay d, Map map, List<Pawn> home)
+        /// <summary>
+        /// The way a day is kept. Returns true when something the player sees already says so (the party's own letter).
+        /// <paramref name="together"/>: the name of the days kept together, for their one gathering.
+        /// </summary>
+        private bool DoWay(CalendarDay d, Map map, List<Pawn> home, string together = null)
         {
             switch (d.way)
             {
                 case DayWay.Feast:
                     // With answers playing out: a meal from the stores eaten together, then the evening; its lift comes after.
-                    if (PlayDay(d, map, home, PlayKind.Feast, CalendarDefOf.Council_Cal_FeastDay, null, null, null)) return true;
+                    if (PlayDay(d, map, home, PlayKind.Feast, CalendarDefOf.Council_Cal_FeastDay, null, null, null, together)) return true;
                     if (StartParty(map, Interplay.CalendarOrganizer(d, home) ?? Keeper(d, home))) return true;
                     // No gathering possible (nowhere to gather, everyone busy): a better supper, and a little lift.
                     foreach (var p in home) CouncilGameComponent.GiveThought(p, CalendarDefOf.Council_Cal_FeastDay);
@@ -401,7 +544,7 @@ namespace ColonyCouncil
                     var at = DayThing(d, map);
                     var spots = new List<PlaySpot> { PlaySpot.Rec, PlaySpot.Outdoors, PlaySpot.Gather, PlaySpot.Dining };
                     if (at != null) spots.Insert(0, PlaySpot.Place);
-                    if (PlayDay(d, map, home, PlayKind.Gathering, CalendarDefOf.Council_Cal_GamesDay, null, spots, at))
+                    if (PlayDay(d, map, home, PlayKind.Gathering, CalendarDefOf.Council_Cal_GamesDay, null, spots, at, together))
                         return true;
                     foreach (var p in home)
                     {
@@ -424,7 +567,7 @@ namespace ColonyCouncil
                     if (by != null && by.Position.Roofed(map)) by = null;
                     var fireSpots = new List<PlaySpot> { PlaySpot.Fire, PlaySpot.Outdoors, PlaySpot.Gather };
                     if (by != null) fireSpots.Insert(0, PlaySpot.Place);
-                    if (PlayDay(d, map, round, PlayKind.Bonfire, CalendarDefOf.Council_Cal_BonfireNight, null, fireSpots, by))
+                    if (PlayDay(d, map, round, PlayKind.Bonfire, CalendarDefOf.Council_Cal_BonfireNight, null, fireSpots, by, together))
                         return true;
                     foreach (var p in round) CouncilGameComponent.GiveThought(p, CalendarDefOf.Council_Cal_BonfireNight);
                     return false;
@@ -462,10 +605,10 @@ namespace ColonyCouncil
 
         /// <summary>
         /// A day kept on the map (PlayOut/, with "Answers play out on the map" on): those it's for gather for it, and
-        /// <paramref name="thought"/> comes to those who were there when it's over (to all of them if it never happens).
+        /// <paramref name="thought"/> comes to those who were there when it's over (to nobody if it never happens).
         /// False when there's nothing to set going: the day is kept the old way.
         /// </summary>
-        private static bool PlayDay(CalendarDay d, Map map, List<Pawn> who, PlayKind kind, ThoughtDef thought, string cause, List<PlaySpot> spots, Thing grave)
+        private static bool PlayDay(CalendarDay d, Map map, List<Pawn> who, PlayKind kind, ThoughtDef thought, string cause, List<PlaySpot> spots, Thing grave, string label = null)
         {
             var tracker = PlayOutTracker.Instance;
             if (!PlayOuts.On || tracker == null || map == null || who == null || who.Count == 0) return false;
@@ -479,7 +622,7 @@ namespace ColonyCouncil
                     kind = kind,
                     map = map,
                     created = now,
-                    label = d.label,
+                    label = label ?? d.label,
                     invited = Interplay.WithoutMourners(d, kind, grave != null, who.Where(PlayOuts.OurPerson).ToList()),
                     organizer = keeper != null && who.Contains(keeper) ? keeper : null,
                     spots = spots ?? new List<PlaySpot> { PlaySpot.Dining, PlaySpot.Rec, PlaySpot.Gather, PlaySpot.Outdoors },
@@ -1152,6 +1295,11 @@ namespace ColonyCouncil
         public string keepLabel;
         /// <summary>The colony whose day it is (its key, <see cref="Homes.KeyOf"/>); an older letter has none (the seat's).</summary>
         public int home = HomesMath.None;
+        /// <summary>Kept at supper, another gathering being within two days (the colony's pace, PlayOut/Stage.cs).</summary>
+        public bool atSupper;
+        /// <summary>The days kept together with it (they fall within three days of it this year), and the year each comes round in.</summary>
+        public List<string> withIds = new List<string>();
+        public List<int> withYears = new List<int>();
 
         public override bool CanDismissWithRightClick => false;
 
@@ -1202,6 +1350,14 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref ritual, "ritual");
             Scribe_Values.Look(ref keepLabel, "keepLabel");
             Scribe_Values.Look(ref home, "home", HomesMath.None);
+            Scribe_Values.Look(ref atSupper, "atSupper");
+            Scribe_Collections.Look(ref withIds, "withIds", LookMode.Value);
+            Scribe_Collections.Look(ref withYears, "withYears", LookMode.Value);
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                withIds ??= new List<string>();
+                withYears ??= new List<int>();
+            }
         }
     }
 }

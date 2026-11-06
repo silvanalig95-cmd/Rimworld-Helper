@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The text pass on the world's voices (6 November 2026): more of what callers say over their heads at their work
+    (Visitors/Callers.cs, Callers.Say: drawn with the event's own lines, Rimfolk_Events_Callers.xml, by the moment, and
+    not one given at that moment lately while another fits). Moments: view (the art collector before a piece), bought
+    (a piece paid for), cut (the barber at work), tend and train (the animal doctor), dig and load (the undertakers, the
+    enemy dead), talk (a captive's kin, their last words at the cell door) and free (the captive let go, walking out
+    with them), fire (a wedding party lighting their own fire beyond the wall). The speaker's moment may be asked too
+    (morning, evening, night, rain, snow, cold, hot). One sentence each.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_CallerSays</defName>
+    <lines>
+      <plain>
+        <!-- The art collector -->
+        <li>[view] The hands that made this weren't in a hurry.</li>
+        <li>[view] Small, but it says a great deal.</li>
+        <li>[view] Now this one I'd carry home myself.</li>
+        <li>[view] Step back, it reads better from here.</li>
+        <li>[view,evening] It wants better light than this, but I can see enough.</li>
+        <li>[bought] Wrap it well, the road is rough.</li>
+        <li>[bought] A fair price, and a good piece.</li>
+        <li>[bought] This one will hang where people can see it.</li>
+
+        <!-- The barber -->
+        <li>[cut] Chin up a little, please.</li>
+        <li>[cut] Eyes shut, it gets everywhere.</li>
+        <li>[cut] Don't move, I'm nearly at the ear.</li>
+        <li>[cut] There, you'll be stopping traffic.</li>
+        <li>[cut,cold] Quick work today, my fingers are freezing.</li>
+
+        <!-- The animal doctor -->
+        <li>[tend] Shh, shh, I've got you.</li>
+        <li>[tend] Easy now, let's have a look at you.</li>
+        <li>[tend] Good animal, nearly done.</li>
+        <li>[train] Watch my hand, watch it.</li>
+        <li>[train] Good, and again, and reward it.</li>
+        <li>[train] Patience, it's learning faster than you think.</li>
+
+        <!-- The undertakers -->
+        <li>[dig] Straight sides, they deserve that much.</li>
+        <li>[dig] One more spade's depth, then we lay them in.</li>
+        <li>[dig,rain] Wet ground, it'll fill as fast as we dig.</li>
+        <li>[dig,cold] Hard ground today, put your back into it.</li>
+        <li>[load] Gently, whoever they were.</li>
+        <li>[load] Lift on three.</li>
+        <li>[load] Their people will want them home, so carefully.</li>
+
+        <!-- A captive's kin -->
+        <li>[talk] We came as soon as we heard where you were.</li>
+        <li>[talk] Keep your head down, and your temper.</li>
+        <li>[talk] Everyone at home is asking after you.</li>
+        <li>[talk] We'll find a way to bring you home.</li>
+        <li>[free] Walk with me, and don't look back.</li>
+        <li>[free] Lean on me if you need to, it's a long road.</li>
+        <li>[free] You're coming home, that's all that matters now.</li>
+
+        <!-- A wedding party's own fire -->
+        <li>[fire] To the two of them, and many years.</li>
+        <li>[fire] Pile it high, it's a wedding fire.</li>
+        <li>[fire] Somebody start a song, any song.</li>
+        <li>[fire,night] Nobody sleeps tonight, it's a wedding.</li>
+        <li>[fire,cold] Closer to the fire, all of you, it's a cold one.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

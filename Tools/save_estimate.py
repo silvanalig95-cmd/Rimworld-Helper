@@ -260,6 +260,7 @@ MODEL = {
     "Offices/Election.cs:heard": ("while", COLONISTS * COLONISTS, P, "who heard each candidate at the hustings, while it lasts"),
     "Offices/Election.cs:voted": ("while", COLONISTS, P, "who has voted, while it lasts"),
     "Epithets/Epithets.cs:holders": ("defs", ("EpithetDef", 1), D, "one per title"),
+    "Epithets/Epithets.cs:holdsSaved": ("defs", ("EpithetDef", 1), 140, "how each held name holds (NameMath.Pack: since, a challenger and their season, the last holder), one per name held"),
     "Epithets/Epithets.cs:founders": ("fixed", 6, 40, "those here in the colony's first two days (by ThingID)"),
     "Epithets/Epithets.cs:laterFounders": ("fixed", 0, 50, "a colony settled later: those who were its people in its first two days (none with one colony); a lost home's dropped"),
     "Epithets/Epithets.cs:laterFirstborn": ("fixed", 0, 50, "a colony settled later: its first child (none with one colony); a lost home's dropped"),
@@ -608,6 +609,13 @@ MODEL = {
     "PlayOut/PlayOutLord.cs:abstained": ("while", 4, P, "while the gathering lasts"),
     "PlayOut/PlayOutTracker.cs:plays": ("cap", (8, 0.5), 600, "waiting ones capped, done ones dropped"),
     "PlayOut/PlayOutTracker.cs:results": ("cap", (C["PlayResults"], 1), 120, "how the last ones went: PlayOutTracker.MaxResults"),
+    # The colony's pace (PlayOut/Stage.cs): one count per home, the gatherings of the last ten days, the toasts waiting
+    "PlayOut/PlayOutTracker.cs:stage": ("fixed", 1, 160, "one count per home (one in the model); homes no longer ours dropped"),
+    "PlayOut/Stage.cs:held": ("fixed", 2 * const("PlayOut/StageMath.cs", "KeepDays", 10), V,
+                              "when each gathering began, the last ten days (StageMath.KeepDays): two a day at the very most"),
+    "PlayOut/Stage.cs:cups": ("fixed", 3, 220, "life goals' toasts waiting for the next gathering, five days at most each (StageMath.CupLetGo)"),
+    "Calendar/CalendarKeeping.cs:withIds": ("while", 3, 40, "the days a calendar day's letter keeps together with it, while the letter waits"),
+    "Calendar/CalendarKeeping.cs:withYears": ("while", 3, V, "the year each of them comes round in, while the letter waits"),
     # Couriers: trips waiting or on the map (CourierMath.MaxTrips), each dropped two days after it ends at most
     "Couriers/CourierTracker.cs:trips": ("cap", (C["CourierTrips"], 0.5), 900, "trips waiting or under way: CourierMath.MaxTrips; ended ones dropped within two days"),
     "Couriers/CourierTrip.cs:people": ("while", C["CourierPeople"], P, "a trip's people, while it lasts"),

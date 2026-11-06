@@ -225,6 +225,8 @@ public static class OutsiderTalkTests
         "them:lately"
     }.Concat(Expand("tone:", "warm good plain cool sour"))
         .Concat(Expand("did:", "gift meal teach spar duel provoke faith court letter bring"))
+        // What went through, as the outsider remembers it (Facts.Shared): did: is any asking, refused or not.
+        .Concat(Expand("shared:", "meal drink lesson gift bout"))
         .Concat(Expand("role:", "trader guest lodger visitor notable head heir envoy"))
         .Concat(Expand("them:", "young old hurt kind abrasive leader married widowed spousehere parent smallchild childhere outranks"))
         .Concat(Expand("us:", "young old hurt newcomer leader speaker noble married widowed spousehere parent smallchild childhere outranks doctor"))
@@ -371,6 +373,12 @@ public static class OutsiderTalkTests
             // 2026) is never said, by design.
             C(p.retired ? !Sayable(p) && OutsiderTalkMath.Retired.Contains(name) : Sayable(p), p.retired ? $"{name} is retired, never said" : $"{name} can be said when its conditions hold");
         }
+
+        // One of a camp of travellers (World/Region/RegionNearFacts.cs): a tag for each kind of camp, and none for a kind that isn't there.
+        var campKinds = Directory.GetFiles(Path.Combine(root, "Defs", "CampDefs"), "*.xml").SelectMany(f => XDocument.Load(f).Root!.Elements("ColonyCouncil.CampKindDef"))
+            .Select(k => FactsMath.CampTag(k.Element("defName")!.Value)).ToHashSet();
+        C(FactsMath.RegionTags.Where(t => t.StartsWith("them:camp:")).ToHashSet().SetEquals(campKinds) && FactsMath.RegionTags.Contains("them:camp"),
+            $"a tag for each of the {campKinds.Count} kinds of camp (them:camp:KIND), and none for a kind that isn't there");
 
         // The library as a whole.
         var marked = pieces.Where(p => p.mark != null).Select(p => p.mark).ToHashSet();

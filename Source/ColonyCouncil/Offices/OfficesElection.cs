@@ -692,6 +692,20 @@ namespace ColonyCouncil
         {
             if (e.gathering || e.hustingsDone) return;
             if (Now < e.hustingsTick) return;
+            // The colony's pace (PlayOut/Stage.cs): the hustings join the count, with no evening of their own. The
+            // candidates speak at the count, before the votes are read (CountTalk).
+            if (!e.ceremony)
+            {
+                foreach (var c in e.campaigners)
+                {
+                    c.spoke = false;
+                    c.heard.Clear();
+                }
+                e.hustingsDone = true;
+                e.speakAtCount = true;
+                e.phase = ElectionPhase.Polling;
+                return;
+            }
             string wait = WhyNotGather(e, out var chair);
             if (wait == null)
             {
@@ -1071,7 +1085,9 @@ namespace ColonyCouncil
             if (wait == null)
             {
                 var count = CountOf(e);
-                StartGathering(e, chair, false, ElectionMath.CountLines(count.Sum(c => c.calls.Count), count.Count));
+                // The candidates' words first, when the hustings joined the count: a speech and an answer to it each.
+                int speeches = e.speakAtCount && !e.ceremony ? 2 * e.AllCandidates.Count() : 0;
+                StartGathering(e, chair, false, ElectionMath.CountLines(count.Sum(c => c.calls.Count), count.Count) + speeches);
                 Tell.Message(NewsKind.Colony, Importance.Notable, e.map, Phrase(e, e.ceremony ? "CC_Elect_CeremonyStart" : "CC_Elect_CountStart", chair.Named("CHAIR")),
                     new LookTargets(new TargetInfo(e.spot, e.map)), MessageTypeDefOf.PositiveEvent);
                 return;
@@ -1120,6 +1136,25 @@ namespace ColonyCouncil
                 VisualTouches.MeetingOpens(e.map, e.spot);
                 Say(counter, e.ceremony ? "Rimfolk_Pool_CeremonyOpen" : "Rimfolk_Pool_CountOpen", null, null);
                 return;
+            }
+            // The hustings joined the count (the colony's pace): each candidate there speaks first, with a cheer or a heckle
+            // after, and then the votes are read.
+            if (e.speakAtCount && !e.ceremony && !e.countStarted && e.raceStep == 0)
+            {
+                if (e.step % 2 == 1)
+                {
+                    e.step++;
+                    var last = e.CampaignerOf(lastSpeaker);
+                    if (last != null && last.spoke) React(e, last, here);
+                    return;
+                }
+                var next = e.AllCandidates.FirstOrDefault(c => !(e.CampaignerOf(c)?.spoke ?? false) && here.Contains(c));
+                if (next != null)
+                {
+                    Speak(e, next, here);
+                    e.step++;
+                    return;
+                }
             }
             var count = CountOf(e);
             if (e.raceStep >= count.Count)

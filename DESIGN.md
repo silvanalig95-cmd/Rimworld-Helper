@@ -270,7 +270,7 @@ once the vote was in. Now:
   mood, the herd, days kept, the faithful's share, or the holder's own work (which only ever keeps a promise: no trader
   may have come). Each test breaks a promise only where the map clearly shows it, and says nothing where it barely
   moved. The verdict is said in the announcement ("At the last election Toni promised a proper watch at night, and the
-  colony has lost nobody since: a promise kept."), at the hustings (a holder runs on a kept one,
+  colony has lost nobody since: a promise kept."), at the hustings before the votes are read (a holder runs on a kept one,
   `Rimfolk_Pool_HustingsKept`; someone who doesn't back them throws a broken one back, `Rimfolk_Pool_HustingsBroken`),
   on the panel and in the results, and goes into the holder's history (`office:kept`, `office:broken`). At the vote a
   kept promise helps the holder (+1.5) and a broken one costs (−1.75), within the luck of the day (`RecordLean`, one term
@@ -473,7 +473,7 @@ systems (wishes, life goals, dreams, decrees, dilemmas, moments, the UI). With t
 stat part contribute nothing and the hooks return 1.
 
 - **Strain** (0 to 100) is a slow reservoir. Each colonist is looked at once an hour, a tenth of the colony at a time.
-  Sources build it with their own daily caps and a cap of about 25 a day for everything; new memories count once, when
+  Sources build it (18, small letdowns among them: see "One heart" below) with their own daily caps and a cap of about 25 a day for everything; new memories count once, when
   they're new (a renewed memory, like a second cold night, counts again). Drains are slow and steady (sleep, quiet hours,
   recreation) with chunks for gatherings, good talks and catharsis. Small decaying totals per source and per kind of
   relief say what built it and what eased it lately. The pure math (bands, caps, trait factors, episode odds) is in
@@ -513,6 +513,67 @@ gave way to any spark after ten days. Now (`GoalMath`, pure):
 - **Measured.** `FairCouncilTests` runs twelve colonists over the save's 88 days with a raid every ten: fighting goals
   were 39 of 79 goals chosen under the old rules and are 0 of 15 now; the most changes of heart one colonist had within
   25 days went from 3 to 1. Goals held in an older save stay as they are.
+
+### One heart: small letdowns, small joys and good things growing ordinary
+
+Phase 3 of the review (`docs/review-2026-11/`), the player's decisions of 6 November 2026: small letdowns wear on the
+heart ("the letdowns also make sense as mood impact, no? But I like strain too though!"), the good side the same way
+("the positive mood buffs should also be adjusted accordingly and balanced"), every small mood by the same rule whoever
+made it ("then we might also have to look at non-rimfolk moods, right"), and one rule for good things growing ordinary.
+The game's mood stays the one number for breaks (the safety rule above): nothing here changes a mood the game or another
+mod made.
+
+- **Small letdowns** (`Moods/SmallMoments.cs`, `SmallMomentMath`). Rimfolk's five kinds (everyday pressures, setbacks,
+  quiet troubles, nuisances, frictions: a `SetbackExtension`, a `Thought_Pressure`, `Thought_Setback` or
+  `Thought_Trouble`, or a `Council_Friction_` or `Council_Nuisance_` name) are each felt as a short, small mood at the
+  moment they happen: three points at most, half a day at most. What they would have weighed beyond that moment (their
+  size times their days, less the moment's) goes to the heart as strain (`StrainSource.Letdowns`, at the end of the
+  list, saved by position), 0.6 a mood-day, within the heart's caps (1.5 a day for the source, at 100% strength, their
+  traits counted), so a run of them wears while one passes. The memory that brought it goes on without a mood (its
+  `moodPowerFactor` 0) for what else it does: a friction's opinion of the other, what dilemmas, arcs, speech and
+  journals look for. The hook is the one every memory passes (`Patch_GoodTimesFade`'s prefix); the heart leaves such a
+  memory to its moment (`SmallMoments.Converted`).
+- **A lasting one** (the same meal again, days of the same work, someone away, a crowded room, half-built work, a wish
+  still waiting, a decree dragging on, a sick friend...) gives no mood of its own any more: a moment when it begins,
+  gets worse or holds another day, and strain each hour while it holds at the same rate (its size a day). What the hour
+  last saw is kept on the heart unsaved; after a load, what holds already brings no moment until it changes.
+- **Small joys**, the mirror: Rimfolk's small good moments (its good memories that no council answer gave, a moment,
+  a talk, a kindness, scaled as they're felt, of five points and two days at most as written; a varied table) are each a
+  short, small mood at the moment, and what they'd weigh beyond eases strain (`StrainRelief.Joys`, at the end of its
+  list), 0.6 a mood-day, within a day's cap of 3. Council rewards, life goals reached and dreams stay moods of their own.
+- **One row a side.** Each moment is a `Thought_SmallMoment` of one of two defs (`Rimfolk_SmallLetdowns`,
+  `Rimfolk_SmallJoys`) carrying its own size, time, words and cause; the game groups them by def, so the Mood tab and
+  the game's Needs tab show "Small letdowns x3" and "Small joys x2", added up as they are, and the row's tooltip says
+  what each one was ("My idea turned down: -2. The council chose the well.") and that the rest goes to the heart. What
+  helps is the fixes of the letdowns behind the row (`SmallMoments.Advice`), else its own hint. Each one still feeds the
+  feelings its own memory fed, at the moment's size; a lasting one at its full size while it holds.
+- **Every small mood, anyone's.** Each hour the heart adds up every small mood on a colonist's mind, the game's and
+  other mods' too, by size and length, not by name (`SmallMomentMath.IsSmall`: six points or less, three days or less
+  or lasting): past 8 points of small bad moods each point builds 0.02 strain an hour, past 12 of small good ones each
+  eases 0.02, through the same source and relief and their caps. The heavy kinds that have strain sources of their own
+  are left to those, so nothing counts twice: the memories the heart counts by its own rules (losses, bad nights, the
+  council's hard choices, gatherings, talks), hunger, rest and recreation, pain, the dark, the heart's own strain mood,
+  and the moods that feed a feeling that wears (fear, grief, dread, despair). The moods themselves stay as the game and
+  the mods made them; only Rimfolk's own became smaller, and only Rimfolk's share a row.
+- **The heart's page** names what wore on them and what eased them: "small letdowns (the same meal and my idea turned
+  down)", "small joys (a laugh with Ana)" (`PawnHeart.letdownsWhy`, `joysWhy`, saved words like `natureWhy`), and
+  "fewer of the small things that keep going wrong" as what would help.
+- **Good things grow ordinary** (`Moods/GoodLife.cs`, `GoodLifeMath`), one rule in place of four (standards shrinking the
+  council's rewards by up to half and the game's comforts to 90, 80 and 70% on their first 10 points; good memories
+  fading up to half sooner from 75% mood; good moods adding up slowly, the third to fifth at 60, 45 and 35% and a quarter
+  after; used to the good life). The sum of every good mood on their mind counts in full up to a line their standards
+  set, 45 for the modest, then 35, 25 and 15 for the spoiled (a colony used to the good life asks more); of what's above
+  it, half of the first 20 points and three quarters of the rest no longer lift them, taken off the good moods by how
+  ordinary each is: a fresh joy counts nearly in full and drifts down with its age, an everyday comfort (a lasting mood,
+  a kind had often lately) shrinks most, a life goal reached never. One line in a good mood's tooltip says it ("Grown
+  ordinary: counts as +3 of +5, part of everyday life now."), one line under the Mood tab gives the sum. One setting,
+  "Good things grow ordinary" (`goodGrowsOrdinary`); an older settings file sets it on if any of the four was
+  (`GoodLifeMath.MergedSetting`, `ordinaryMerged`). Standards stay (they set the line, sting letdowns up to 40% more and
+  make wishes come sooner); rewards are given at the reward strength alone.
+- **Off.** With the heart off, the deeper game hooks off or "Advisor only", small letdowns and joys are moods of their
+  own as before. Older saves: memories given before keep their moods and run out as they were; a lasting one turns to
+  moments at the next hour; the heart's lists grow by a source and a relief (padded with nothing); shortened memories
+  from the old fading rule keep their time.
 
 ## Layer 8: Social life
 
@@ -564,6 +625,15 @@ and news for turning points.
 - **Rare enough to read.** `MarksMath.Blocked`: one small mark per three days, a turning point never twice within its
   keeping, one happening one mark (a story and who it was about), two turning points a day at most. A person keeps 12
   marks; small ones go first.
+- **The one reading of who someone is** (phase 3 of the review, November 2026). The colony's ways read a colonist's
+  eight sides, not a table of their own from traits (`PersonaMath.WayLean`, `CharacterTracker.Affinity`): mercy is
+  warmth without a temper, generosity warmth without pride, tradition the set in their ways, openness to strangers warmth,
+  trust and curiosity, hard work pride in it while the joker takes it easy; a side counts past 15 (the personal lean says
+  nothing) and in full at 55. Who minds an answer ("not my choice", "told them so") and the ways' mood follow, and change
+  as marks move a person. A stranger's fighting temper reads temper, nerve and warmth (`PersonaMath.FightTemper`). The
+  game's traits are the input to character, not a second reading: what the ways' table read and character didn't
+  (industriousness, a bloodthirsty temper, a few mods' traits) is in `Rimfolk_PersonaNature_Ways.xml`; a mod's personal
+  trait no longer leans the ways by itself (`ModPeople.OnlyTraits`), a kind or a belief still does.
 - **Soft feedback only.** Character tips weights already there and never adds mood: moment weights 0.7 to 1.35
   (`Heart.MomentWeightFactor`), soreness half again for hot-heads (`MomentTones`), confiding 0.4 to 1.6 and mentors
   0.5 to 1.6 (with the systems talking to each other). Conversation, groups and gossip read character through their
@@ -959,15 +1029,22 @@ gives those taking part come once it's over (PlayOut/).
   in what the answer set going is held with the plan (`PlayOuts.Hold`) and given when it's over to those who were
   there long enough (a quarter of a gathering, at most half an hour; half a visit) or ate at the feast. Bad memories,
   trust, standards and the rest come at once, as before. Calendar feasts, games and remembrances hold their own moods
-  the same way.
+  the same way. A plan that falls through gives its held moods to nobody: it never happened (the player's save showed 9
+  of its last 30 plans giving them all the same, with "People took heart from it all the same"). Its line says it never
+  came about and why; one of the colony's own is let go without a word (the pace, below).
 - **Safety.** Nobody is called from danger, sleep, a sickbed or the need of one, bleeding, starving or exhaustion,
   arms, a mental state, a caravan, the care of someone else (tending, rescuing, feeding, carrying) or an order of the
   player's; guests, prisoners and lodgers are never invited. Nothing starts while enemies are about, while another
   gathering is on, while half the colony is drafted or while someone is bleeding, and any danger calls a gathering off
   (as the council meeting is). A visit ends at any danger. A plan waits for its hours and up to its wait (six hours by
-  default, never more than thirty in all), then falls back to what answers always did: its moods for everyone it was
-  meant for, and for a gathering a line saying why. Every step is wrapped so a failure is logged once and the moods
-  still come. With the setting off, the effects do nothing and the moods come at once.
+  default, never more than thirty in all), then falls through: nobody has its moods, and a gathering or a plan the colony
+  was told of says why. A gathering of the player's kept from its evening by another one (the bar was another gathering,
+  `PlayOut.collided`) takes the next evening instead, once (`movedOn`). The player's plans take the evening first; the
+  colony's own come after. A bonfire's fire is laid in the hour before its evening opens (`PlayFire.Ahead`), and one
+  still not lit two hours before the plan would give up (`PlayFire.GiveUpHours`; "still laying the fire" in the save) is
+  let go: whoever was laying it stops, and it is held as a gathering without a fire, in the open or at the rec room or
+  the table. Every step is wrapped so a failure is logged once. With the setting off, the effects do nothing and the
+  moods come at once, as before; switched off while a plan waits, its moods and its outcome come as answers always gave them.
 - **Where it plugs in.** `DilemmaTracker.Resolve` and `HappeningTracker.Resolve` wrap an answer's effects in
   `PlayOuts.Collect`, and so do a world event's beats, answers and endings (`WorldSituations`), an event's letter
   without answers (`IncidentWorker_Happening.Send`) and a story's ending (`Workers_StoryFlow`); the helpers an answer
@@ -1452,6 +1529,67 @@ Outcomes that describe something people do but can't sensibly become one afterno
   locusts' harvest and watch are real). Personal stories, social events, dreams and encounters are moments that have
   already happened (interactions and moods), not answers to carry out.
 
+## Pace: how often the colony gathers
+
+The staging review (`docs/review-2026-11/staged-scenes.md`) counted about four gatherings a week and a group outing
+more, four in ten within a day of the one before, eight or more in the busiest weeks, against the base game's own party
+about once in forty days. The player chose a weekly budget (decision 1 of 6 November 2026), built as one count of
+gatherings per colony, as letters and messages have theirs (`PlayOut/Stage.cs`; the rules pure in `StageMath.cs`,
+tested in `StageTests` and run by `Tools/Balance --scenes`):
+
+- **Counted.** Every gathering on a home, whoever called it: each gathering lord seen as it starts (the game's parties,
+  rituals and weddings, Rimfolk's play-outs, the council meeting, the election's gatherings, feasts with guests:
+  `LordJob_Joinable_Gathering`, `LordJob_Joinable_MarriageCeremony`, `LordJob_FeastGuests`), and every outing as it
+  starts (work parties, walks, vigils, searches, hunts, the dead carried out; not an errand or a gift carried by one or
+  two). Lords already on at a load were counted before it. The count is saved with the play-outs (`PlayOutTracker.stage`,
+  one `StageColony` a home: the start of each gathering of the last ten days, the last of any kind, the season's
+  custom, the toasts waiting), so a load keeps the week; an older save starts each home's count from the load.
+- **What the player chose always happens, and counts**: an answer that gathers people, a calendar day kept, a vote, a
+  wedding, a decree, a meeting, an evening of faith, an ambition's feast.
+- **The colony's own wait for room** (`PlayOut.routine`): a group's evening called by its anchor, a family supper, a
+  child's birthday toast. Each comes only while the last seven days hold fewer gatherings than the week allows (two, the
+  setting "Gatherings a week before the colony's own wait" on the People page under How often; the player's choices
+  count) and none began in the last day and a half (`StageMath.Room`). It waits evening after evening, up to three days
+  (`StageMath.RoutineDeadline`), and is then let go without a word (no line, no moods: it never happened). A camp's show
+  or song at its fire is offered only on an evening with room, since its letter says tonight.
+- **Calendar days.** Days that come round within three days of each other this year are kept together, as one: the
+  first one's letter names them all ("The harvest and the victory over Hive"), its gathering is theirs, each takes its
+  step toward a tradition, and they are kept or let pass together (`CalendarKeeping.KeptWith`; only days kept with a
+  feast, games or a fire, never one's own day, a remembrance, the first snow or the founding day its event keeps). A day
+  that gathers people (a feast, games, a fire, a faith's evening, a quiet hour at a grave) within two days of another
+  gathering, or with one the council chose on its way, is kept at supper instead (`StageMath.AtSupper`): its letter says
+  so ("Keep it at supper"), and that evening, when the keeper sits down with another of the colony (`Together`, supper
+  hours), they say a word over the meal, the day's good memory comes to those at home (to those who knew them, for a
+  remembrance), and the evening's news says it was kept at supper. Before that moment nothing is given.
+- **One seasonal custom a season** (a dilemma with seasons that can become a tradition, `Dilemmas.IsSeasonalCustom`;
+  `StageColony.customSeason`, a season being fifteen days of the year). A tradition still comes round when its time
+  does, and counts as the season's.
+- **A life goal's toast is raised at the next gathering**, not on an evening of its own (`Stage.Cup`): the one who thinks
+  best of them has a cup to raise there, the two are asked to it, its first message says so, and a while in the cups go
+  up with the toast's words; their moods come when it's over. With no gathering within two days, it is raised at supper
+  when the two are together in the evening; past the colony's own wait, it is let go. A gathering that falls through
+  hands its toasts on to the next.
+- **The hustings join the count**: no evening of their own; at the count the candidates speak first, each answered by a
+  cheer or a heckle, and then the votes are read (`Election.speakAtCount`). Their words no longer move the vote, cast by
+  day; an election under way at a load with its hustings on keeps them.
+- **A floor**: ten days never pass without a gathering (where the quiet-days setback starts, `SetbackMath.QuietDays`).
+  From the seventh day without one the colony's own come at once whatever the week holds; from the eighth, with nothing
+  of its own on the way, the colony keeps an evening together itself ("an evening together", planned in the afternoon,
+  at its fire, the rec room or the table, led by its most sociable; the game's own party with answers not playing out).
+- **Collisions and fires** (bugs the report found): see the play-outs' safety rules above (the player's plan takes the
+  next evening once; a fire laid ahead, or let go near the end).
+
+The dev menu's "Pace: the week's gatherings" logs each home's count, the last gathering and whether there's room.
+
+Measured (`Tools/Balance --scenes`, a colony of ten, 300 colony-years each way of playing; "As built" uses
+`StageMath.cs` itself): with average play, gatherings and outings 4.7 a week before and 2.7 after (the review's model of
+the proposal said 2.6); any seven days median 3 (from 4 to 5), the busiest 9 (from 14), days with two or more 2.2 a year
+(from 8 or 9), under a day apart 24% (from 46%), the longest gap 9 days, floor evenings 0.2 a year. As their own scene:
+calendar days 42%, a group's evenings 32%, family suppers 34%, customs 88% (the model asks two to three a year; the
+player's game asked about seven in sixty days, of which four a year stay), toasts none (raised at the next gathering),
+elections' three gatherings 60%; meetings, decrees, answers, weddings and faith all of them. Well run 2.8 a week,
+neglectful 2.7.
+
 ## Goods and people that come and go on the map
 
 The player gave 250 corn to a village and later got silver back: the corn vanished from the stockpile and the silver
@@ -1746,13 +1884,15 @@ What the player asked for, over and over: it shouldn't be easy to keep everyone 
 not everything should be a mood, and neglect should have real consequences, never flat penalties. The targets below
 put numbers on that. `Tools/Balance` measures them: a colony-year simulator that plays a settled colony through one
 60-day year without the game, from the def XML, Rimfolk's rates (read from the source where it can) and the mod's own
-mood arithmetic (`GoodTimesMath`, `PressureMath`, `SetbackMath`, `AilmentMath`, `ArcMath`, compiled in as they are).
+mood arithmetic (`GoodLifeMath`, `SmallMomentMath`, `HeartMath`, `PressureMath`, `SetbackMath`, `AilmentMath`, `ArcMath`,
+compiled in as they are), with each colonist's heart played hour by hour (`HeartSim.cs`, since phase 3 of the review).
 What it can't know (the storyteller, how a player plays) is one documented table, `Tools/Balance/Rates.cs`. It writes
 `docs/balance-report.md`; run it after any change to moods, rates or ailments.
 
-**Rimfolk's mood** is everything Rimfolk adds to a colonist's mood, averaged over the year: its good memories (after
-the shared budget and fading sooner), its bad memories, and its steady moods (trust, the colony's ways, pressures,
-ailments, waiting, strain). The game's own moods aren't in it.
+**Rimfolk's mood** is everything Rimfolk adds to a colonist's mood, averaged over the year: its good memories (small joys
+as their short moments), its bad memories (small letdowns as theirs), and its steady moods (trust, the colony's ways,
+ailments, strain, and what good things growing ordinary takes off Rimfolk's own good moods). The game's own moods aren't
+in it; the colony's whole mood, theirs included, is a row of its own.
 
 | | Target (default settings) |
 |---|---|
@@ -1764,6 +1904,8 @@ ailments, waiting, strain). The game's own moods aren't in it.
 | Two questions at once | rare: a question that can wait doesn't come within 12 hours of another (`LetterGap`) |
 | Minor news | in the evening's colony news (`UI/News.cs`), not a letter or message of its own |
 | Everyday ailments | a colonist carries one no more than about 10 to 15% of the time in a reasonable colony |
+| The colony's whole mood (the game's moods with Rimfolk's) | about as before phase 3 of the review: 69%, 62% and 37% |
+| Breaks | no more time under the minor-break line than before; the heart's day off under once a colonist-year, neglected |
 
 **Levers, in order of preference.** Keep flavour; never add a flat penalty; tune values in XML and constants, not
 systems.
@@ -1818,9 +1960,35 @@ the time in an average colony, 11.7% in a well-run one and 36.5% in a neglected 
 
 Measured the same way: average 13.9%, well run 9.3%, neglected 30.5%. Rimfolk's mood moved by a few tenths at most.
 
+**One heart** (November 2026, phase 3 of the review; see "One heart" under Layer 7). Small letdowns became short
+moments with their weight on the heart, small joys the mirror, every small mood counts toward the heart by one rule,
+and one rule for good things growing ordinary took the place of four. The simulator now plays each colonist's heart
+hour by hour (`HeartSim.cs`: the life of each play style, set so that life alone gives the shares it always assumed),
+adds what the moments and the pile bring (the game's small moods as a share of its moods, `Rates.GameSmallBad` and
+`GameSmallGood`), and splits what growing ordinary takes between the game's good moods and Rimfolk's by how ordinary
+each is. Measured (6 colonists, 120 runs; before is the code before the phase, with strain a fixed share):
+- Rimfolk's mood: well run +2.3 to +5.6, average +0.3 to +2.5, neglected -9.1 to -7.2 (12 colonists +4.6, +1.8,
+  -6.5), all on target now (well run was under it before). The colony's whole mood: 69%, 64% and 39% (before 69%,
+  62% and 37%).
+- The letdowns' side (pressures with the varied table, setbacks, quiet troubles, nuisances, frictions) took -1.8, -3.8
+  and -6.4 off Rimfolk's mood (well run, average, neglected) as moods; as moments -0.4, -1.4 and -2.4, and strain's own
+  mood went from -0.1, -0.3 and -1.2 to -0.0, -0.4 and -2.4. The joys' side: the good moments' moods +0.6, +1.0, +1.0
+  before, +0.7, +0.7, +0.6 as moments; Rimfolk's good memories +4.5, +5.4, +3.7 before (after the budget and fading),
+  +8.8, +6.0, +3.5 now as given; growing ordinary takes -4.8, -0.5 and 0 off Rimfolk's good moods (-1.25, 0, 0 before
+  for used to the good life alone) and about 13, 2 and 0 points off the game's own good moods.
+- The heart: strained, worn and near breaking 1/0/0%, 8/2/0% and 30/17/8% of the time (the same model with letdowns as
+  moods: 2/0/0%, 9/2/0% and 23/11/4%); the day off 0, 0.05 and 0.74 a colonist-year (as moods 0, 0.05 and 0.40). Time
+  under the minor-break line, neglected: 34% (as moods 42%): fewer breaks, more days off. The game's own small moods
+  bring 1%, 6% and 6% of all strain built.
+- Tuned to get there: the letdowns' cap 1.5 a day and the joys' 3, the pile from 8 and 12 points at 0.02 an hour a
+  point, a lasting letdown felt once a day, 0.6 strain or relief a mood-day, and the line 45, 35, 25 and 15. Left a
+  little over: Rimfolk's good moods at a high point, well run, P99 +17.3 (before +15.4) and +12 or more 16% of the time
+  (before 10%), with the whole mood no higher (P90 74%, as before).
+
 **The presets** each aim at their own balance: Light touch about +5, +4 and 0 (well run, average, neglected) with
-fewer questions; Story-rich the default's moods with a question a little more often than every two days; Demanding
-about 0, -4 and -18. Each preset's tooltip says so.
+fewer questions (measured +6.2, +4.7 and -1.7); Story-rich the default's moods with a question a little more often than
+every two days (+5.9, +3.0, -6.6); Demanding about 0, -4 and -18 (+1.7, -3.0, -14.7, with downsides 85% more and rewards
+at 70% since phase 3, was 15% and 80%). Each preset's tooltip says so.
 
 ## Building help: how far should the mod build things itself?
 
@@ -2393,6 +2561,76 @@ with it. Its pure parts (`HistoryMath.cs`: the entry, the kinds, the book with i
 The history asks nothing heavy of the game: no pawn searches, a few index lookups an entry, and its fold has a pass of
 its own (`Pass.DailyHistory`, timed by Rimfolk's clock).
 
+### One name
+
+Phase 4 of the review, part 1 (the player's decision 6 of 6 November 2026: one slow "known as" per colonist and one
+"known for" card per colony; reputation's six sides stay as details). The save at day 128 showed a colonist carrying up
+to four names that churned ("the Healer" went Harper, Alo, Harper, Alo in 70 days; Harper held six names in 80 days;
+Hector was "Hector, the Builder, Beastfriend, Tinker" on his card, with renown's "Known as the one who ..." as a second
+line), and the colony told by four systems in four places (our ways and the colony's traits on Council → Ways, renown
+under People, what each people remembers in the region window), with their labels and lines in the chronicle each.
+
+- **A name holds** (`Epithets/NameMath.cs`, pure, `OneNameTests`; `EpithetTracker.Names`). A name still goes to whoever
+  has the most of its record past its threshold, but once given it is held (`NameHold`: since when, who is clearly ahead
+  and since when with both counts then, who had it before): nobody can take it for `HoldDays` (30, two seasons); after
+  that the best other must be clearly ahead on the count (`ClearLead`, a quarter, or the name's own margin if larger) every
+  day of a whole season (`ChallengeDays`, 15; a day not ahead ends the challenge, a new best begins their own), and over
+  that season do half again as much of the work as the holder (`OutdoShare`), or, twice the holder's count
+  (`FarAhead`), more of it (`Outdid`). A holder still at the work keeps it and the season starts again. The one who lost it
+  can't take it back for a year (`ReturnDays`, 60), so it never goes back and forth: on a model of the save's two doctors
+  taking turns at the sickbeds a season each, the old 15% passed the name three times in 80 days and the new rule not
+  once; a holder who stops loses it, once. A name lost by its condition (the Unshaken's break) goes at once, as before.
+  The one who lost the name they were known by writes it once in their journal (`Rimfolk_Journal_EpithetLost`). Saved
+  packed per name (`EpithetTracker.holds`, through the field `holdsSaved`, `NameMath.Pack`), one per name held.
+- **One "known as" per colonist** (`Epithets/KnownAs.cs`, the one place). Its short form is the colony's name for them,
+  one of those they hold (`EpithetTracker.Chief`, `NameMath.Chief`: a proud name before a dubious one, then the one held
+  longest, so a name earned later never pushes an older one aside; Hector the Builder, Harper the Vault, Alo the Healer).
+  Its line (`KnownAs.Line`, `NameMath.LineKey`) says it with what the peoples know them for, read from the history's deeds
+  and the peoples' memory (`Renown.Own`, unchanged) and how far it carries: "Known as the Healer, the one who won the
+  wrestling at the feast with the Lenlia, talked about in the next town."; "Known in the colony as the Healer." while
+  nobody outside speaks of them; a bad name abroad beside a good one at home in two halves; renown's own line for one with
+  no name at home. Under it, the details (`KnownAs.Details`): the colony's other names for them ("Also called Beastfriend
+  and Tinker.") and reputation's six sides as they show (`Reputations.SidesLine`, the character page's first line).
+  Readers: the card's title and its Who lines (`KnownAs` registers them; renown's own colonist line went), the Story tab's
+  header, the People table and its tooltip, the wishes' tooltip, the annals and the vendetta's eulogy tags
+  (`EpithetTracker.NameOf`), the death letter (`Chief`), renown's "the one the colony calls ..." in talk and letters
+  abroad (`Renown.Held` names the chief), People → Renown (each of the colony's people by their one name, with the
+  details; "Known by name"). The chronicle writes "X became known as Y." only when it is the name they are known by now
+  (`Award`); a second name is the news and their journal. What other systems count stays every name held
+  (`EpithetTracker.Of`: a ballot, renown's points, the heart, the events that ask for one known for a skill).
+- **One "known for" per colony** (`Character/ColonyName.cs`, pure `ColonyNameMath.cs`). The four keep their data where
+  everything else reads it (the ways' tiers and tags, the traits' tags and leanings, renown's band and factors, the
+  peoples' deeds and tones); the player reads one card: what people call the colony, its ways and what its work made it
+  in one list (`ColonyNameMath.Order`: a way known far and wide first, then the ways, then the traits), and what it is known
+  for beyond its walls and how far its name carries, in one sentence (`ColonyName.Main`, `ColonyNameMath.CardKey`:
+  "People call the colony traditional, generous and walled; beyond its walls it is known for good doctors, its name talked
+  about in the next town."); then what it comes from (renown's deeds, `RenownPanels.From`; the council's latest three
+  choices behind the ways it is called, from the ways' recent shifts) and what is held against it; what each people
+  remembers, a line each (four at most, the strongest first: how they stand, what they remember best); the notables who
+  know its people and what its name does (`RenownPanels.Reach`). Where: the top of Council → Ways ("The colony's name",
+  the ways, the traits, who's proud and who chafes, what shaped it below), a home's card where the colony is shown to
+  others (`CardSections.HomeLines`, in place of renown's), the Overview's line, the Culture tab, the founding letter's and
+  the press article's "what travellers call the colony" (`ColonyName.CalledWords`). What it is known for beyond its walls
+  holds while it is still enough by renown's own rule (`ColonyNameMath.HeldKind`), so two kinds close together don't take
+  turns.
+- **One sentence when it changes** (`ColonyName.Look`, `ColonyNameMath.Key`, `Diff`, `Clauses`). The name is kept as a
+  key (`CharacterTracker.nameKey`: what it is called with each one's strength, what it is known for beyond its walls)
+  and looked at after the ways move and at the end of the council's day: whatever changed (a way or a trait gained or lost,
+  a way known far and wide, what it is known for beyond its walls) is one chronicle sentence ("People have started calling
+  the colony walled and they have stopped calling it restless."). A way that falls from far and wide to known is still what
+  it is called: nothing in the chronicle, and its news says the neighbours still call it that (`CC_Name_Ways_Narrower`;
+  "people have stopped calling the colony merciful" was untrue of it). The ways and the traits write no chronicle line of
+  their own; their letters and news stay. A move of renown's band stays renown's own sentence (its five wordings, with
+  what it is known for), and the name's key takes it without another word (`ColonyName.Settle`).
+- **An older save.** Names already held stay. A name with no hold is held from the day the history wrote it given to them
+  (the newest "X became known as Y." line of theirs, `NameMath.SameLine`), else from its first look, so the hold may be
+  over and the new rule applies from that look, but nothing moves at once (a challenge needs a season) and nothing is told.
+  The colony's name has no key: its first look keeps it as it stands without a word; a part not read (the ways off,
+  renown not yet looked at) is never a change. On the player's save: Hector the Builder (also Beastfriend and Tinker), Harper
+  the Vault (also the Old Hand and the Bottomless), Alo the Healer (also Goodhands), Penguin the Cook (also the Unshaken),
+  Stace the Mender (also the Scholar), Barr the Sower, Macy Greenhand; the colony "traditional, generous, learned, devout,
+  artful and walled".
+
 ### Facts
 
 One way to know what is true for a text, and one way to fill it in, so a line is written once and reacts to the same
@@ -2487,28 +2725,57 @@ world wherever it is said: the facts service (`Text/Facts/`) and the fill (`Text
 
 ### Telling the player
 
-Every Rimfolk system tells the player through one place, `UI/Tell.cs`, so that as the mod grows the player isn't
-flooded. New code uses it; a second way of telling the player is a bug.
+Every Rimfolk system tells the player through one teller, `UI/Tell.cs`, and the teller picks the channel (the
+player's decision 2 of 6 November 2026): by how much a happening matters, its importance and its kind of news, and by
+how busy the colony's day already is. A system says what happened and how much it matters; it doesn't decide alone
+whether that is a letter, a message, a line of the evening's news or only the history. New code tells the player through
+the teller; a second way is a bug.
 
-- `Tell.Message(kind, importance, map, text, look, type)`: something that happened, as a message now. The "How many
-  messages" setting decides by its importance whether it's told at all. The same text (or the same `key`) within four
-  in-game hours is told once. Past the day's cap for its kind of news and its colony (20 a day by default, the setting
-  "Most messages a day from Rimfolk, by kind"), it waits for the evening's Colony news letter instead: never lost.
-  Important messages (harm, a death near, a mission's timing) are never held back.
-- `Tell.Minor(...)`, which `News.Post` calls: the smaller news, to the evening letter, a message or the History tab by
-  the "Colony news" setting, as before; as a message it keeps the same caps.
-- `Tell.Letter(kind, importance, map, label, text, def, look, faction)`: a letter that only tells. Past the day's cap for
-  its kind and colony (6 a day by default) it becomes a line in the evening's letter. Important letters and threats are
-  never held back.
+- `Tell.Message(kind, importance, map, text, look, type)`: something that happened, as a message now if the day allows.
+  The "How many messages" setting decides by its importance whether it's told at all (colour only with "everything").
+  Something hard to miss (harm, a death near, a mission's timing) is always shown, and makes the day busy for six hours.
+  Something worth knowing is shown until the colony's messages for the day are reached (12 by default, all kinds
+  together, the setting "Most messages a day from Rimfolk"), then waits for the evening's Colony news. On a busy day
+  (half the day's messages shown, something hard to miss told in the last six hours, or a raid on the home in them:
+  `storyState.LastThreatBigTick`) one person's news, their health and the land's wait for the evening while the
+  colony's and the world's still come (`TellMath.Weighty`). Nothing held back is lost.
+- `Tell.Minor(...)`, which `News.Post` calls: the smaller news, to the evening's letter, a message or the History tab
+  by the "Colony news" setting. As a message it is weighed as messages are. The same words shown as a message within
+  four hours aren't put in the evening's news again (`TellBook.Told`): told once, by whichever channel came first.
+- `Tell.Letter(kind, importance, map, label, text, def, look, faction)`: a letter that only tells. Past the colony's
+  letters for the day (4 by default, all kinds together), or a person's or the land's on a busy day, it becomes a line in
+  the evening's letter. Important letters and threats are never held back.
+- **The evening.** The Colony news letter has less room the busier the day was (`TellMath.EveningRoom`): eight lines
+  after a quiet day, one fewer for each letter, message or question the day already brought, three at the least. It
+  carries the lines that weigh most (`EveningScore`: hard to miss first, then what the day held back, then the colony's
+  and the world's before one person's, the earlier first among equals) and puts the rest in the History tab's message log.
+  Each line keeps its weight through a save (`NewsItem.weight`; an older save's are worth knowing).
+- `Tell.Chronicle(entry)`: a line for the colony's story. Every system's `AddChronicle` comes here; the teller writes
+  it into the one history, and the chronicle shows what its view selects (`ChronicleMath`, "One history" above).
 - `Tell.Ask(letter, map)` and `Tell.CanAsk`: Rimfolk's questions (choice letters). Never capped; those that can wait
-  check `CanAsk` first, which is `LetterGap`'s twelve hours between questions.
+  check `CanAsk` first, which is `LetterGap`'s twelve hours between questions. A question counts toward how busy the
+  day was (the evening's room).
 - With more than one colony, what happened at a home names its settlement (`Homes.Name`): "Oakhold: ..." on a message
   or a line of the news, "At Oakhold." heading a letter. With one colony the text is as it always was.
 - `Notify.Message` goes through `Tell.Message`, counted under the kind of news of its caller's folder
   (`TellMath.KindOfFolder`). Overflow past the 40 waiting for the evening goes to the History tab's message log.
 
-The counts (`TellBook`, in `UI/TellMath.cs`, pure and tested) are kept by colony, kind and channel for the day and
-aren't saved; a load only lets a little more through. The caps are there to catch floods, not to thin ordinary days.
+The counts (`TellBook`, in `UI/TellMath.cs`, pure and tested) are kept by colony and channel for the day, all kinds
+together (the old caps of 20 messages and 6 letters for each kind folded into one count a colony), with when the colony
+was last told something hard to miss and the day's tally of each channel; they aren't saved, so a load only lets a
+little more through. The settings moved to new keys (`messagesADay`, `lettersADay`), so an older settings file's caps of
+each kind don't stand for the colony's whole day. The dev menu's "Teller: what was told today" logs the day's tally,
+colony by colony (letters, messages, the evening, the History tab, merged, the chronicle).
+
+Measured (`Tools/Balance --tell`, the simulator's telling stream for a colony of ten, the old way and by the teller with
+the colony's pace, 300 colony-years): letters and messages together 1.92 a day before, 1.64 after, nearly all from the
+gatherings' own messages (0.67 to 0.39, see the pace below); the busiest day's letters and messages 12 to 8; questions
+and letters that only tell as before (an ordinary day is under the counts); lines in the evening's news 2.2 to 2.3 (a
+day kept at supper is a line there). The simulator models part of what Rimfolk tells (not the region, diplomacy,
+visitors or couriers), so these are the same stream before and after, not the game's whole day. On the player's save
+(the archive's last 13 whole days, Rimfolk's letters and questions picked out by their titles, its messages not kept by
+the game so not counted), the evening's news would carry 3.3 lines a day instead of 3.9, 14% fewer, more on a day the
+messages are counted too.
 
 What stays a direct `Messages.Message`: the answer to the player's own click, for the game's own sounds and timing. A
 rejection (`RejectInput`), a button's or designator's confirmation (`SilentInput`, `TaskCompletion`, `CautionInput`),
@@ -3552,12 +3819,14 @@ has a name of their own for their deeds. `Diplomacy/`, its rules pure and tested
   both); the champion challenges a colonist known by name as a fighter six times in ten (`Renown.KnownFighter`,
   `HappeningWorker_Champion`); a feast's guests answer a colony known for hosting up to three tenths more readily
   (`Feasts.Answer`).
-- **Where it shows** (`RenownPanels.cs`, `UI/RenownPage.cs`): People → Renown, where People → Houses was (`PagesMath.Moved`
-  sends the old address there; its "?" opens the diplomacy page): the colony's renown (how far and for what, by
-  `RenownWords.Standing`; the deeds it came from and those held against it; who knows its people; what it does), then its
-  people known by name, each a link to their card with their own name, and those not yet known; the same lines on a home's
-  card; a colonist's own name on their card ("Known as the one who ..., talked about in the next town."). No acts and
-  nothing in This week (it is earned). Facts (`FactsRenown.cs`, in the ties' provider, when one of the colony speaks or
+- **Where it shows**, since one name (phase 4 of the review, part 1; "One name" under the technical overview): inside the
+  colony's one name and each colonist's. The colony's card (`Character/ColonyName.cs`, on Council → Ways and a home's
+  card) says how far its name carries and for what in its first line, with renown's lines below
+  (`RenownPanels.From`, `Against`, `Reach`: the deeds it came from and those held against it, who knows its people, what
+  it does). A colonist's own name is part of their one "known as" (`Epithets/KnownAs.cs`): "Known as the Healer, the one
+  who won the wrestling at the feast with the Lenlia, talked about in the next town." on their card, and People → Renown
+  (where People → Houses was, `PagesMath.Moved` sends the old address there; its "?" opens the diplomacy page) lists each
+  of the colony's people by it, the band in its header. No acts and nothing in This week (it is earned). Facts (`FactsRenown.cs`, in the ties' provider, when one of the colony speaks or
   writes): `colony:known`, `colony:renowned`, `colony:wide`, `colony:infamous`, `colony:knownfor:KIND`, `{KNOWNFOR}` (by
   the colony's age), `{RENOWN}` (by the listener's ways; the Empire's people by the court's, whatever their tech level, its
   own row of the bands' words: "spoken of with honor in the region's noble houses"); the speaker known by their own name to
@@ -4644,8 +4913,9 @@ the Social tab column's own caches).
   the ways move (or 250 ticks, `Lean/Fresh.cs`).
 - *The social tie mood* (asked for every pair of colonists): one dictionary lookup in an index rebuilt only when ties
   change.
-- *Mood totals*: Rimfolk's memories scale themselves (SmallJoys ranks one colonist's good memories once per tick), and
-  the postfix on `ThoughtHandler.MoodOffsetOfGroup` applies the standards factor, cached per colonist and tick. A
+- *Mood totals*: Rimfolk's memories scale themselves (a small moment carries its own size), and the postfix on
+  `ThoughtHandler.MoodOffsetOfGroup` applies good things growing ordinary, a share per kind worked out at most every
+  250 ticks per colonist (`GoodLife.Refresh`). A
   decree's mood finds its decree in a map built once.
 - *Global work speed* (StatPart_HeartStrain): one dictionary lookup.
 - *Conversation weights*: each Rimfolk interaction is weighed every time two colonists talk; def-name endings, a
@@ -4731,8 +5001,8 @@ on a map, in the world or in a caravan), so such a record is let go when the gam
 | The region | one part per colony (when a new town last wrote to it and last welcomed it), a lost home's kept 30 days; the towns in detail and remoteness are worked out, not saved |
 | World history | 800 entries (every chronicle line, every answer with its six values, the peoples' deeds, the ledger's ties); everyday ones past sixty days folded into one per actor, kind and season; milestones (the chronicle's) kept longest; over the bound older seasons' summaries go first, the newest 200 always stay |
 | Everyday pressures | per colonist, the gone dropped daily; 12 meals; frames and plans while they stand |
-| Character | 5 ways; 30 recent shifts; the colony's traits one per trait, today's tallies emptied each day |
-| Decrees, dilemmas, offices, names, encounters, ambitions | one entry per def, office or title (decrees, dilemmas, offices and ambitions for each colony's council; a lost home's kept 30 days); a curfew's night hours per colonist while it lasts, then only for those away (the dead, those no longer the colony's and those the game no longer knows let go); the colony's founders: those here in its first two days |
+| Character | 5 ways; 30 recent shifts; the colony's traits one per trait, today's tallies emptied each day; the colony's one name as last looked at, one line |
+| Decrees, dilemmas, offices, names, encounters, ambitions | one entry per def, office or title, and how each name held holds (one line per name) (decrees, dilemmas, offices and ambitions for each colony's council; a lost home's kept 30 days); a curfew's night hours per colonist while it lasts, then only for those away (the dead, those no longer the colony's and those the game no longer knows let go); the colony's founders: those here in its first two days |
 | Heart | one per colonist, the gone dropped hourly |
 | Character marks | a person's record (sides moved, marks, views): the colony's own people the game still knows, empty records dropped at saving; 12 marks per person (small ones go first, each let go after its keeping, turning points three times as long); what the marks watch: per person, the last 8 fights won (a year), their addictions and their last breakdown (5 days), known pawns only; skills mastered: known pawns, 800 at most |
 | Traits that change | changes made: known pawns only, 8 per person, 200 in all; what each colonist is watched for: deeds counted 240 days (12 per kind), 10 snapshots of a few records, when they were last unsettled; the once-in-a-colony changes (2 keys) |
@@ -4745,7 +5015,7 @@ on a map, in the world or in a caravan), so such a record is let go when the gam
 | Journeys | one plan at a time: its travellers, animals, packing list, the last hours' steps done and the timetable hours it changed, all gone when they set off or it's called off |
 | World situations | 2 running; 40 past, each with what followed from it (once per def) |
 | Story chains, missions | chains 120 days after they end; missions 2 days |
-| Answers playing out | waiting ones 10 at most, done ones dropped (their people, places, hunt and search routes with them); how the last 30 went, for the dilemmas page |
+| Answers playing out | waiting ones 10 at most, done ones dropped (their people, places, hunt and search routes with them); how the last 30 went, for the dilemmas page; the colony's pace, one count a home (gatherings of the last ten days, the season's custom, life goals' toasts waiting five days at most), homes no longer ours dropped |
 | Defense lines | per home map, gone with it; only the lines the player makes: one mark per step done or set aside, 24 plans, the last 5 raids (4 downed and 3 lessons each); the raid under way only while it lasts |
 | Scenario parts | fixed by the scenario (its days, its seats) |
 | Faction memory | 12 deeds per people (the settled and the faintest make way); a deed is dropped once it fades below 1, and with its people when they're gone; who tended or freed whom: 60 notes, 30 days, dropped when the stranger dies |

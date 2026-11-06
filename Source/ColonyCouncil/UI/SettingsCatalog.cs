@@ -137,6 +137,7 @@ namespace ColonyCouncil
             ["lastCouncilPage"] = "the council window's page when it was last closed",
             ["roomsButton"] = "the old switch for the rooms button, read once into the planning button's (the row \"Show the planning button\") so older settings files load",
             ["planningMerged"] = "whether the rooms and planning buttons' settings were made one, so it is done once (BarMoreMath.MergePlanning)",
+            ["ordinaryMerged"] = "whether the four rules that softened good moods were read into one setting, so it is done once (GoodLifeMath.MergedSetting)",
             ["lastAlmanacPage"] = "the Almanac's page when it was last closed",
             ["almanacFolded"] = "whether the Almanac's categories and page list are folded away, switched in the Almanac itself",
             ["moodDetails"] = "whether the Mood tab and the Moods page show every mood as a card, switched on those pages (Compact / Details)",
@@ -259,10 +260,7 @@ namespace ColonyCouncil
             Choice("lifePressure", "CC_Settings_Life", "CC_Settings_Life_Tip", "CC_Life_", "CC_SetNote_Life_", new[] { "Gentle", "Normal", "Demanding" },
                 "stakes!=AdvisorOnly", "CC_SetWhy_MoodEffects");
             Toggle("risingStandards", "CC_Settings_Standards", "CC_SetNote_Standards");
-            Toggle("standardsCoverComforts", "CC_Settings_StandardsComforts", "CC_SetNote_StandardsComforts", "risingStandards");
-            Toggle("smallJoysDiminish", "CC_Settings_SmallJoys", "CC_SetNote_SmallJoys");
-            Toggle("goodTimesFade", "CC_Settings_GoodTimes", "CC_SetNote_GoodTimes");
-            Toggle("usedToGoodLife", "CC_Settings_GoodLife", "CC_SetNote_GoodLife", "stakes!=AdvisorOnly", "CC_SetWhy_MoodEffects");
+            Toggle("goodGrowsOrdinary", "CC_Settings_Ordinary", "CC_SetNote_Ordinary", "stakes!=AdvisorOnly", "CC_SetWhy_MoodEffects");
             Toggle("quietTroubles", "CC_Settings_QuietTroubles", "CC_SetNote_QuietTroubles", "stakes!=AdvisorOnly", "CC_SetWhy_MoodEffects");
             Toggle("frictions", "CC_Settings_Frictions", "CC_SetNote_Frictions");
             Section("CC_Settings_Bonds");
@@ -296,11 +294,12 @@ namespace ColonyCouncil
             Toggle("smallHabits", "CC_Settings_SmallHabits", "CC_SetNote_SmallHabits");
             Section("CC_Settings_Memory");
             Toggle("journals", "CC_Settings_Journals", "CC_SetNote_Journals");
-            Toggle("epithets", "CC_Settings_Epithets", "CC_SetNote_Epithets");
+            Toggle("epithets", "CC_Settings_Epithets", "CC_SetNote_Epithets", tip: "CC_Name_Settings_Epithets_Tip");
             Toggle("anniversaries", "CC_Settings_Anniversaries", "CC_SetNote_Anniversaries");
             Toggle("annals", "CC_Settings_Annals", "CC_SetNote_Annals");
             Toggle("eulogies", "CC_Settings_Eulogies", "CC_SetNote_Eulogies");
             Section("CC_Settings_HowOften");
+            Slider("gatheringsAWeek", "CC_Settings_GatheringsAWeek", "CC_SetNote_GatheringsAWeek", StageMath.MinAWeek, StageMath.MaxAWeek, 1f, "0");
             Slider("momentFrequency", "CC_Settings_FreqMoments", "CC_SetNote_FreqMoments", 0.25f, 3f, 0.25f, "%");
             Slider("socialEventFrequency", "CC_Settings_FreqSocial", "CC_SetNote_FreqSocial", 0.25f, 3f, 0.25f, "%");
             Slider("dreamFrequency", "CC_Settings_FreqDreams", "CC_SetNote_FreqDreams", 0.25f, 3f, 0.25f, "%");
@@ -458,8 +457,8 @@ namespace ColonyCouncil
             Section("CC_Settings_Messages");
             Choice("messageLevel", "CC_SetLabel_MessageLevel", "CC_SetTip_MessageLevel", "CC_MsgLevel_", "CC_SetNote_MsgLevel_", new[] { "Everything", "Notable", "LettersOnly" });
             Choice("colonyNews", "CC_SetLabel_ColonyNews", "CC_SetTip_ColonyNews", "CC_NewsMode_", "CC_SetNote_News_", new[] { "AsItHappens", "Digest", "Off" });
-            Slider("tellMessagesADay", "CC_Settings_TellMessagesADay", "CC_SetNote_TellMessagesADay", 5f, 60f, 1f, "0");
-            Slider("tellLettersADay", "CC_Settings_TellLettersADay", "CC_SetNote_TellLettersADay", 2f, 20f, 1f, "0");
+            Slider("messagesADay", "CC_Settings_TellMessagesADay", "CC_SetNote_TellMessagesADay", TellMath.MinMessagesADay, TellMath.MaxMessagesADay, 1f, "0");
+            Slider("lettersADay", "CC_Settings_TellLettersADay", "CC_SetNote_TellLettersADay", TellMath.MinLettersADay, TellMath.MaxLettersADay, 1f, "0");
             Toggle("allDreamMessages", "CC_Settings_AllDreamMessages", "CC_SetNote_AllDreamMessages", "dreams");
             Toggle("wishLetters", "CC_Settings_WishLetters", "CC_SetNote_WishLetters");
             Toggle("grantedLetters", "CC_Settings_GrantedLetters", "CC_SetNote_GrantedLetters");
@@ -645,7 +644,7 @@ namespace ColonyCouncil
                 V("daysBetweenMeetings", "20"), V("arcFrequency", "Rare"), V("frictions", "false"), V("allowQuitting", "false"),
                 V("heartEpisodes", "false"), V("strainSpeed", "0.75"), V("seriousIllnesses", "false"), V("ailmentFrequency", "0.5"),
                 V("crowdedSickness", "false"), V("frailty", "false"), V("dirtyWounds", "false"), V("endOfLife", "false"), V("movingOn", "false"), V("guestWill", "false"),
-                V("everydayHurts", "0.5"),
+                V("everydayHurts", "0.5"), V("gatheringsAWeek", "1"),
                 V("worldEventBattles", "false"), V("storytellerEventWeight", "0.5"), V("daysBetweenWorldEvents", "8"),
                 V("daysBetweenWorldSituations", "75"), V("encounterFrequency", "0.5"), V("momentFrequency", "0.75"),
                 V("socialEventFrequency", "0.5"), V("dreamFrequency", "0.5")
@@ -665,21 +664,22 @@ namespace ColonyCouncil
                 V("petitions", "true"), V("speechShows", "Bubbles", "Off"), V("visualTouches", "true"), V("smallHabits", "true"), V("messageLevel", "Everything"),
                 V("arcFrequency", "Frequent"), V("daysBetweenDilemmas", "5"), V("encounterFrequency", "1.5"), V("momentFrequency", "1.5"),
                 V("socialEventFrequency", "1.5"), V("dreamFrequency", "1.5"), V("storytellerEventWeight", "1.5"), V("daysBetweenWorldEvents", "3"),
-                V("daysBetweenWorldSituations", "30")
+                V("daysBetweenWorldSituations", "30"), V("gatheringsAWeek", "3")
             });
 
-            // Demanding: harder moods, more frictions and pressures, rarer rewards. Downsides 50% stronger and then 15% more,
-            // rewards at 80%, less time to grant wishes and reach ambitions, strain building faster. Targets: a well-run
+            // Demanding: harder moods, more frictions and pressures, rarer rewards. Downsides 50% stronger and then 85% more,
+            // rewards at 70%, less time to grant wishes and reach ambitions, strain building faster. Targets: a well-run
             // colony about breaks even (0 to +2), an average one feels it (-3 to -6), a neglected one is in real trouble
             // (-15 to -20). (Downsides were a quarter more and rewards 75%: an average colony sat near -5, a well-run one
-            // below nothing.)
+            // below nothing. Then 15% more and 80% until phase 3 of the review, when the small letdowns' weight moved to the
+            // heart and the four softening rules became one: the preset pressed a step less hard, so 85% more and 70%.)
             var hard = NewPreset("demanding", "CC_SetPreset_Demanding");
             hard.values.AddRange(new[]
             {
-                V("stakes", "Demanding"), V("lifePressure", "Demanding"), V("penaltyFactor", "1.15"), V("rewardFactor", "0.8"),
+                V("stakes", "Demanding"), V("lifePressure", "Demanding"), V("penaltyFactor", "1.85"), V("rewardFactor", "0.7"),
                 V("wishDurationFactor", "0.75"), V("ambitionDeadlineFactor", "0.75"), V("jealousy", "true"), V("allowQuitting", "true"),
-                V("frictions", "true"), V("momentFrequency", "1.25"), V("risingStandards", "true"), V("standardsCoverComforts", "true"),
-                V("smallJoysDiminish", "true"), V("goodTimesFade", "true"), V("usedToGoodLife", "true"), V("quietTroubles", "true"), V("heart", "true"),
+                V("frictions", "true"), V("momentFrequency", "1.25"), V("risingStandards", "true"), V("goodGrowsOrdinary", "true"),
+                V("quietTroubles", "true"), V("heart", "true"),
                 V("heartEpisodes", "true"), V("strainSpeed", "1.25")
             });
 

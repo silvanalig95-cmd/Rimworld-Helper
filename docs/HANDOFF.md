@@ -15,12 +15,13 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   by `OfficeNames.Apply`); every promise says what it promises and how it is judged (`OfficePlank.promise`, `test`).
   Each candidate runs on their own record (`OfficeTracker.RecordOf`, `RecordMath.Record`): their work in the seat since
   their promise (the seat's records, `OfficeWordsDef.measure`: tends, plants sown and brought in, kills, trades, quarrels
-  mended, days kept, animals tamed, rites led, camps greeted), else that work in all from ten, else a name, else a goal
-  reached; said after the promise in the announcement and on the election panel's tooltip. The winner's promise goes
-  into the history at the count (`office:promise`, a milestone with words and values: what the map showed then, the work
-  count), and the next yearly election judges it when it's called (`JudgeRace`, `RecordMath.Judge`: trust, rivalries,
-  the colony's dead by the game's count, food days, medicine each, sickbeds, mood, the herd, days kept, the faithful's
-  share, or the holder's work, which only ever keeps a promise), said in the announcement, at the hustings (the holder
+  mended, days kept, animals tamed, rites led, camps greeted), else that work in all from ten, else the name the colony
+  knows them by (`KnownAs.Short`), else a goal reached; said after the promise in the announcement and on the election
+  panel's tooltip. The winner's promise goes into the history at the count (`office:promise`, a milestone with words
+  and values: what the map showed then, the work count), and the next yearly election judges it when it's called
+  (`JudgeRace`, `RecordMath.Judge`: trust, rivalries, the colony's dead by the game's count, food days, medicine each,
+  sickbeds, mood, the herd, days kept, the faithful's share, or the holder's work, which only ever keeps a promise),
+  said in the announcement, at the hustings (held at the count since phase 2, before the votes are read; the holder
   runs on a kept one, `Rimfolk_Pool_HustingsKept`; a non-backer throws a broken one back, `_HustingsBroken`), on the
   panel and in the results ("At the last election Toni promised a proper watch at night, and the colony has lost nobody
   since: a promise kept."), and kept in the holder's history (`office:kept`, `office:broken`). At the vote +1.5 kept,
@@ -73,6 +74,370 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   the industrial names: chair, captain of the guard, doctor, farm foreman), a raid (one goal at most, for
   the one who brought down most), the groups' one message and Barr shown outside, the Decrees page (one drills, militia
   in force carried on as drills).
+- 0.111.0, phase 2 of the review: one teller, one pace (the player's decisions 1 and 2 of 6 November 2026). Not released: no
+  round in Almanac_WhatsNew.xml, About.xml untouched. (1) The pace (`PlayOut/Stage.cs`, pure `StageMath.cs`): one count
+  of gatherings per colony, saved with the play-outs (`PlayOutTracker.stage`, a `StageColony` a home: the start of each
+  gathering of the last ten days, the last of any kind, the season's custom, the toasts waiting). Every gathering lord
+  on a home is counted as it starts (`LordJob_Joinable_Gathering`, the game's marriage ceremony, feasts with guests: the
+  game's parties and rituals, play-outs, meetings, the election's), and every outing where it starts (`PlayGroups`, not
+  an errand or a gift); lords on at a load were counted before it. What the player chose always happens and counts. The
+  colony's own (`PlayOut.routine`, saved, false in an older save: a group's call, a family supper, a growth birthday's
+  toast, the floor's evening) start only with room (`StageMath.Room`: fewer gatherings in the last seven days than the
+  setting allows, two by default, and none in the last 36 hours), wait evening after evening up to three days and are
+  let go quietly; the tracker steps the player's plans first. A camp's show and song are offered only with room (their
+  letter says tonight). Calendar days (`CalendarKeeping`): days kept with a feast, games or a fire that come round within
+  three days ahead are named in the first one's letter and kept with its one gathering, each its tradition step, let
+  pass together (`KeptWith`, `ChoiceLetter_CalendarDay.withIds`/`withYears`, their `lastYear` spent by the letter); a day
+  that gathers people (those, faith, a remembrance) within two days of another gathering, or with a player's gathering
+  pending, is kept at supper (`atSupper`, saved on the letter; "Keep it at supper"; the keeper's word over the meal
+  through `Together` in supper hours, the day's memory then, a news line `CC_Cal_KeptAtSupper`/`_RememberedAtSupper`).
+  One seasonal custom a season (`Dilemmas.IsSeasonalCustom`: seasons and a tradition option; `Stage.CustomMayCome`,
+  `CustomAsked`; traditions forced as before). A life goal's toast is raised at the next festive gathering
+  (`Stage.Cup`/`Started`/`CupsAt`/`RaiseCups`, `GoalRewards.Toast` makes no evening of its own; both are asked to it, the
+  begin message says who has a cup to raise, the cups go up a while in, `LordJob_PlayOut.cupsRaised`), at supper after
+  two days, let go after five; a gathering that falls through hands its cups on. The hustings join the count
+  (`Election.speakAtCount`: `TryHustings` skips the evening, `CountTalk` lets each candidate there speak and be cheered or
+  heckled before the votes are read; the election texts say so; a hustings under way at a load runs as before). The
+  floor: from seven days without a gathering the colony's own come at once, from eight with nothing of its own on the
+  way the colony plans "an evening together" (the game's party with answers off). Fixes with it: a plan that falls
+  through gives nobody its moods (`Fallback` gives them only when the setting was switched off; "People took heart from
+  it all the same" is gone, the keys say "never came about"); a player's gathering kept from its evening by another
+  (`collided`) takes the next evening once (`movedOn`); a bonfire's fire is laid in the hour before its evening
+  (`PlayFire.Ahead`), and one still unlit two hours before the plan gives up is let go for a gathering without a fire, in
+  the open or at the rec room or table (`PlayFire.GiveUp`). The setting `gatheringsAWeek` (People, How often; light touch
+  1, story-rich 3). Keys in `Rimfolk_Pace.xml`. Measured (`Tools/Balance --scenes`, a new "As built" table on the very
+  rules, `StageMath.cs` linked): average play 4.7 gatherings and outings a week before, 2.7 after (well run 5.1 to 2.8),
+  the busiest week 14 to 9, days with two 8 to 2.2 a year, under a day apart 46% to 24%, the longest gap 9 days.
+  (2) The teller (`UI/Tell.cs`, pure `TellMath.cs`/`TellBook`): the channel by weight, kind and the colony's day. One count
+  a day per colony for messages (12) and letters (4), all kinds together (the per-kind caps of 20 and 6 folded in; new
+  setting keys `messagesADay`, `lettersADay`, so an older settings file's numbers don't stand); something hard to miss
+  always shown and the day busy for six hours (so is a raid on the home, `LastThreatBigTick`); on a busy day (that, or
+  half the messages) one person's, health and the land's news wait for the evening (`TellMath.Weighty`); the evening's
+  news has room by the day (`EveningRoom`: 8 lines down to 3, one fewer for each letter, message or question), keeps the
+  weightiest (`EveningScore`, `NewsItem.weight` saved) and puts the rest in the History tab; the same words shown as a
+  message aren't the evening's too (`TellBook.Told`). `AddChronicle` goes through `Tell.Chronicle`, which writes the
+  history. Dev menu: "Teller: what was told today", "Pace: the week's gatherings". Measured (`Tools/Balance --tell`, new:
+  the simulator's stream, old rules against the teller and the pace): letters and messages 1.92 a day to 1.64 (gathering
+  messages 0.67 to 0.39), the busiest day 12 to 8; on the save's archive (13 days; Rimfolk's messages aren't archived, so
+  only its letters and questions count toward the day) the evening's news 3.9 lines a day to 3.3. Tests: `StageTests`
+  (new), `TellTests` (the colony's day, the busy day, the evening), `HistoryTests` (the chronicle through the teller).
+  Save models: the count, its gatherings and toasts, the letter's days kept together. Docs: DESIGN.md (Telling the
+  player, the play-outs' moods and safety, "Pace: how often the colony gathers", the save table), README (the toast, the
+  calendar, Colony news and the teller, "The colony's pace", the settings), the Almanac (answers on the map, elections,
+  groups, birthdays, the calendar, life goals, customs, the guide's news). Left for the player's word: "within two days"
+  for customs beside a gathering (the review's proposal had it, the decision didn't); presets for the rest (phase 6). To
+  check in game: a week with a group's call waiting for room (This week shows it waiting), two calendar days three days
+  apart (one letter), a feast two days after a gathering (kept at supper, the word said at supper), a life goal reached
+  (the cup at the next gathering), the election's count with speeches, a bonfire with nobody free to lay its fire, a
+  busy raid day's messages.
+- 0.110.0, phase 4 of the review, part 1: one name (the player's decision 6 of 6 November 2026: "one slow 'known as' per colonist
+  and one 'known for' per colony; reputation's six sides stay as details"). Not released: no round in
+  Almanac_WhatsNew.xml, About.xml untouched. The save at day 128: "the Healer" went Harper, Alo, Harper, Alo in 70 days on
+  the old 15% margin, Harper held six names in 80 days, Hector's card read "Hector, the Builder, Beastfriend, Tinker" with
+  renown's "Known as the one who ..." as a second line, and the colony was told by four systems in four places with their
+  own chronicle lines. (1) A name holds (`Epithets/NameMath.cs`, pure; `EpithetTracker.Names`): nobody can take it for 30
+  days (`HoldDays`); then the best other must be clearly ahead on the count (`ClearLead`, a quarter, or the name's own
+  margin) every day of a season (`ChallengeDays` 15; a day not ahead ends it, a new best starts their own) and do half again
+  as much of the work as the holder over it (`OutdoShare`; twice the count and more of the work also does, `FarAhead`); a
+  holder still at the work keeps it and the season starts again; the one who lost it can't take it back for a year
+  (`ReturnDays`). On a model of the save's two doctors taking turns a season each, the old margin passed the name three
+  times in 80 days, the new rule never; one who stops loses it once. A condition broken (the Unshaken) still loses it at
+  once. The one who lost the name they were known by writes it once in their journal (`Rimfolk_Journal_EpithetLost`,
+  `Rimfolk_Journal_OneName.xml`). Saved packed, one line a name held (`holds` through the field `holdsSaved`,
+  `NameMath.Pack`; modelled in `Tools/save_estimate.py`). (2) One "known as" per colonist (`Epithets/KnownAs.cs`, the one
+  place): the short form is one of the names they hold (`EpithetTracker.Chief`: a proud one before a dubious one, then the
+  one held longest; `NameOf`, `AlsoOf`), the line says it with what the peoples know them for and how far it carries
+  (`Renown.Own`, read from the history and the peoples' memory; `NameMath.LineKey`, keys `CC_Name_Own_*`): "Known as the
+  Healer, the one who won the wrestling at the feast with the Lenlia, talked about in the next town."; "Known in the
+  colony as the Healer." while nobody outside speaks of them. Under it the other names ("Also called ...") and
+  reputation's sides (`Reputations.SidesLine`, also the character page's first line). The card's title and Who lines
+  (renown's own colonist line went), the Story tab, the People table, the wishes' tooltip, the annals, the eulogy tags
+  (`NameOf`, was `TitlesOf` joining every name), the death letter (`Chief`), renown's "the one the colony calls ..." in
+  talk and letters (`Renown.Held` names the chief) and People → Renown ("Known by name": each of the colony's people by it)
+  read it; the chronicle's "X became known as Y." only when it is the name they are known by now (a second name is the news
+  and the journal). Every name held still counts where systems count (`Of`: a ballot, renown, the heart, the events asking
+  for one by name). The names setting's tooltip says how a name moves (`CC_Name_Settings_Epithets_Tip`). (3) One "known
+  for" per colony (`Character/ColonyName.cs`, pure `ColonyNameMath.cs`): one card read from the ways, the traits, renown
+  and the peoples' memory, whose data stays where everything reads it: what people call it (ways and traits in one list,
+  a way known far and wide first, `Order`) and how far its name carries beyond its walls and for what, in one sentence
+  (`Main`, `CardKey`, keys `CC_Name_Card_*`); then the deeds behind it (renown's, `RenownPanels.From`; the council's latest
+  three choices behind its ways), what is held against it, what each people remembers (a line each, four at most), the
+  notables and what it does (`RenownPanels.Reach`; `RenownPanels` registers nothing now). On Council → Ways ("The
+  colony's name" at the top, the ways and the rest below), a home's card (in renown's place), the Overview's line, the
+  Culture tab, the founding letter and the press article (`CalledWords`). What it is known for abroad holds while still
+  enough by renown's rule (`HeldKind`). One chronicle sentence when it changes (`Look`, `Key`, `Diff`, `Clauses`,
+  `CC_Name_Changed_*`; the key `CharacterTracker.nameKey`): after the ways move and at the end of the council's day; the
+  ways and the traits write no chronicle line of their own (their letters and news stay); a way fallen from far and wide to
+  known says nothing in the chronicle and its news says the neighbours still call it that (`CC_Name_Ways_Narrower`, "people
+  have stopped calling the colony merciful" was untrue of it); a band move stays renown's own sentence and the key takes it
+  quietly (`ColonyName.Settle`). (4) Older saves: names held stay; a name with no hold is held from the newest history line
+  that gave it ("Alo became known as the Healer.", `NameMath.SameLine`), else from its first look, so nothing moves at once
+  (a challenge needs a season) and nothing is told; the colony's key is set at its first look without a word, and a part not
+  read (the ways off, renown not yet looked at) is never a change. On the player's save: Hector the Builder (also
+  Beastfriend and Tinker), Harper the Vault (also the Old Hand and the Bottomless), Alo the Healer since day 113 (also
+  Goodhands; held to day 143, so the earliest the Healer can move is day 158, and only to one who outdid Alo at the
+  sickbeds all that season), Penguin the Cook, Stace the Mender, Barr the Sower, Macy Greenhand; the colony "traditional,
+  generous, learned, devout, artful and walled"; its renown's band was never told (none saved), so the card reads renown as
+  it stands and what it is known for abroad joins the name's key quietly at the first diplomacy day. Keys in
+  `Rimfolk_OneName.xml`. Tests: `OneNameTests` (new: the hold, the
+  season, outdoing, the year's bar, the two doctors and the one who stops, packing, the one name, the line, the one list,
+  the key and what changed, the sentence's clauses, the card's line, where each is read), `RenownTests` (the card lines
+  moved). Docs: DESIGN.md ("One name" after "One history", renown's "Where it shows", the save table), README (names,
+  Our ways, renown, the People row), the Almanac's names and annals page, the colony's character page and the diplomacy
+  page. Left: colonist and kin memory as one, deeds kept once, and office names by age (the holistic review's phase 4,
+  the other part's and later); the envy trouble's name (`Setbacks/Troubles.cs`, the heart's part) still reads the first
+  proud name rather than the chief. To check in game: a colonist's card on the player's save (one name in the title, the
+  line, also called, the sides); People → Renown; Council → Ways (the card at the top); a home's card in the region window;
+  the chronicle after a way or a trait is gained (one sentence); the next name moved (not before its hold and a season).
+
+- 0.109.2, text pass: the world's voices (6 November 2026, the player's "please launch one or more text enhancement tasks, adding
+  more immersion and variety": visitors and callers, the camps, the region, the outsiders' talk). Not released: no
+  round, About.xml untouched. First the words against the map, each case checked in the code and fixed where it was
+  wrong; shipped lines keep their text and tags (textcheck against 05c4efa clean), narrowed or retired through
+  `OutsiderTalkMath.AlsoWhen` and `ShippedLines` as round d's. Fixed: (1) a camp's lines over their heads (hourly,
+  `CampLife`) were picked by the era alone, so "Praise to {IDEO}." and "{IDEO} keep us." showed "{IDEO}" unfilled and
+  "It wasn't our war." or "Have you heard the word?" were said by any camp: `Camp.Bubble` picks by the camp's tags and the
+  speaker's moment (hour, weather, season) with the line memory, and the show and the song use it too; "Their archers
+  were a joke." only after a fight with a people of bows (a war party's `foe:` tags from its enemy), three bubbles that
+  name an hour only then; (2) a camp's farewell is told as they pack up and set off (`CampLife.Leave`): 17 lines that
+  told of a wave, a bow or a word at a gate nobody walked to (only the hermit, the healers and the mourners walk there),
+  a sound heard after they were out of sight, or ash and bones round a fire that is gone are retired, and 14 that name
+  the hour (dawn, first light, noon, in the night) are said only then (`CampLook.FarewellText` tags the hour, their
+  animals and a camp come back); (3) the parting question came at any hour of the stay's last day saying someone "came
+  to the gate at dusk" and the camp would "go on in the morning": it comes at dusk now (`CampStoryMath.PartingHour`),
+  sent rather than brought, in new words (`CC_Camp_Goodbye...`, nine wordings, `Rimfolk_CampWords_Goodbye.xml`), the old
+  keys left unused; (4) a chat's opening "I don't think we've talked yet, have we?" and "glad to finally meet you" were
+  said however often the two had talked, and "I'm glad you came back" to a new face: `Outsiders.Line` tags first, met,
+  returning and known (and the outsider's people by age, their:tribal... their:empire) and the three ask for them; (5) the
+  shared meal praised whatever was on the plate, paste too: the meal tags each plate (`fare:awful`, `simple`, `fine`,
+  `lavish`; `OutsiderOutcomes.Fare`) and three lines ask !fare:awful; (6) `did:KIND` is set by any asking, refused or
+  not, and eleven talk pieces spoke of a meal eaten together, a gift kept, a lesson given or a bout fought: `shared:meal`,
+  `drink`, `lesson`, `gift`, `bout` read the outsider's own memory of it (`Facts.Shared`, the game's mood memories) and
+  the eleven ask for it; (7) "Who's camped out on your land, then?" was asked by one of that very camp: `them:camp` and
+  `them:camp:KIND` (`RegionNearFacts.TheirCamp`, `FactsMath.CampTag`: the kind's defName without its prefix), and the
+  piece asks !them:camp; (8) callers: a captive's kin spoke of a sister and a dog the game never made, an undertaker
+  called every dead raider "he", the animal doctor spoke of a leg whatever was hurt: retired. Then variety, every line
+  said only on facts its providers set, each checked in code. Bubbles at the gate and the table, 323
+  (`Rimfolk_Lines_OutsiderSays_Voices.xml`): the basic moments of a talk with an outsider had 2 to 6 lines each and now
+  have 4 to 33 (greet 6 -> 32, chat 11 -> 33, the meal's ask, yes, no, talk and end 2 or 3 -> 7 to 19, drinks, gifts,
+  news of home, a good word, letters, lessons, asks, courting, faith, bouts, a talk's end), by their people's ways (the
+  Empire's court apart) and how well the two know each other. Camps, 307 (`Rimfolk_CampWords_Voices.xml`, a
+  FlavorExtensionDef with `camp`, joined at startup by `CampKindDef.AddWords`): bubbles 217 (each kind 6 to 13 -> 11 to
+  23: the hour, the weather, their people's age, the world event that brought them, a camp come back, a war party's foe)
+  and farewells 90 (each kind had 1 to 4, some of them untrue; now 3 to 7 true ones, the settlers' one aside). Talk
+  pieces, 116: with a camp's travelers 69
+  (`Rimfolk_OutsiderTalks_CampFolk.xml`: two for most of the 31 kinds, their trade and their road, six for any camp's
+  people, four for a visitor on the camp at the colony; before, one piece spoke of a camp at all) and the library's thin
+  spots 47 (`Rimfolk_OutsiderTalks_WorldVoices.xml`: the colony's news a visitor heard, a harvest, a decree, research, a
+  project, a newcomer, a quiet month, a feast day today or just past, machines, insects or beasts at the walls, the
+  speaker chosen 12; what went through 5; the colonist as leader, healer, old hand, newcomer or parent, an old or married
+  traveler 7; their town short of fuel or hands, their caravan and visitors on the road, its fortune poor, steady or
+  flourishing by their ways 13; their wars long, new, fought on the colony's land, with the colony's friend, a battle on
+  its land 5; fog, storm, an early start 3; a guest and a lodger 2). Callers 38 (`Rimfolk_Pool_CallerSays.xml`: the
+  collector, the barber, the animal doctor, the undertakers, a captive's kin, a wedding party, drawn by `Callers.Say`
+  beside the event's own three to six, with the memory). The region's news and letters 39 numbered fellows
+  (`Rimfolk_RegionVariants_Voices.xml`: far news from a camp's traveler 15, a raiders' camp seen and its raids 8, towns
+  emptied, faded, held on to and founded 4, trading posts closed, sacked and razed 5, a hamlet's asks and endings 7). The
+  talk library 1,630 -> 1,746 pieces; the variety report (which now counts a camp's words from a file of their own with
+  its kind) 63,897 -> 64,992 lines in 8,354 -> 8,471 pools; its draw estimates for the outsiders' bubbles and the camps'
+  lines are the rare default, so their "seen a year" stays near nought before and after, and its top three (the
+  ailment, new-goal and elected journals, 5.31, 3.46, 2.93) are outside this area and unchanged. Files:
+  `Camps/Camp.cs`, `CampKindDef.cs`, `CampKinds.cs`, `CampLife.cs`, `CampLook.cs`, `CampStory.cs`, `CampStoryMath.cs`,
+  `Flavor.cs` (`HourTag`), `FlavorExtension.cs`, `Lean/ShippedLines.cs`, `Outsiders/OutsiderOutcomes.cs`,
+  `OutsiderTalkMath.cs`, `Outsiders.cs`, `Text/Facts/FactsMath.cs`, `FactsWho.cs`, `Visitors/Callers.cs`,
+  `World/Region/RegionNearFacts.cs`, the talk format's header (`Rimfolk_OutsiderTalks_Greetings.xml`, a comment),
+  `Tools/variety_report.py`. Tests: `RenownTests` (the shipped lines' other tags set where they're picked),
+  `ImmersionTests` (the callers' pool, a camp's words from an extension one sentence each), `OutsiderTalkTests` (a tag
+  for each kind of camp and none for a kind that isn't, the `shared:` tags), `CampStoryTests` (the parting at dusk).
+  Found and left: the visitors' trips pool (`Rimfolk_VisitorLines`, 316 lines, rarely drawn) untouched; a camp's letters
+  still say someone "came to the gate" for an ask nobody walks to (the sick one's "before dawn" though asked between 9
+  and 18), and a few settled texts and bubbles claim what isn't shown ("a lookout in the nearest tree", "Carts coming,
+  two of them."); the meal's "fare" is the speaker's own plate, a drink none; `shared:` lasts as long as the mood memory
+  (8 to 20 days). To look at in game: a trader greeted the first time and the third; a meal of paste and one of fine
+  meals at the table; a camp's bubbles at night and in the rain; a farewell at dawn and one at dusk; the parting word at
+  dusk; a camp's traveler talking of their trade.
+- 0.109.1, text pass: dreams, ailments, stories and animals (the player's request of 6 November 2026, "text enhancement tasks,
+  adding more immersion and variety": the colonists' inner and everyday words outside the systems being rebuilt, after
+  the systems review's findings on dreams, ailments, personal stories, quirks and animals). Not released: no round, no
+  version. 1,070 new lines in seven new files, every one said only on facts its system sets (checked in the code);
+  shipped lines keep their text and tags (`textcheck --base 05c4efa` clean). Dreams, 31 new and 272 lines
+  (`Rimfolk_Dreams_OwnDays.xml`): of what really happened to the dreamer, from what the dream system already reads:
+  carried out of a fight or tended under fire (`Council_SavedMe`, the one who came as {OTHER}), a caravan home after two
+  days (`Council_HomeAgain`), a wedding (GotMarried, about the partner), a baby on the way and the worry of it (the
+  father's `Council_Fam_BabyComing`, `_Worried`, the mother as {OTHER}), a break let out (Catharsis), a funeral, music
+  and a festival, the herd's first young, the colony's first days, a fine supper and a meal with no table (weight 0.3),
+  a hive or a mech cluster brought down; the body: a drink (AlcoholHigh, Hangover), a smoke, hunger (Malnutrition),
+  carrying a child (PregnantHuman), four ailment kinds (an upset stomach, sore eyes, burning skin, sore feet); a fight
+  two days gone for one who can fight, by the colony's age; who they are: a passion for the fields (spring and summer),
+  the kitchen, the rock, building, learning or art, and sixty or older. `Dreams.cs`: a dream with nothing of the
+  dreamer's own (`DreamDef.Generic`: no happening, nobody, no feeling, camp or region, no season, no dreamer's role, no
+  omen) is half as likely, and one they've had is 0.6 as likely a time to three (0.6 once before, however often: the
+  save's "best party there ever was" five times). Ailments, 275 (`Rimfolk_Lines_Ailments_Voices.xml`): the first day
+  159, the end 75, a serious illness 41, true to each ailment's course as its description tells it; the voices' fallback
+  lines are untagged, so a tone with no line for this ailment draws from several ([everyday] lines took the tagged pick
+  from the ailment's own); the age's remedies by the colony's tech. Getting better, 99
+  (`Rimfolk_Lines_Health_Voices.xml`): convalescing 30, the first after hunger ([hunger]) and the weather ([exposure],
+  sources the code had and no line had), a setback 9, strength back 9, a sickbed visit 10, said while convalescing 11,
+  said while ill 30 (three everyday and one serious a voice: the one [everyday] line a voice had was every cheerful
+  colonist's). Personal stories, 228 (`Rimfolk_Arcs_MoreWords.xml`): the long discipline 42, somewhere to belong 34, a
+  calling 34, passing it on 33, the apprentice's masterwork 32, a long grief 31, getting clean 22 (it can run again for
+  the same person): two more chronicle lines and three to five more of the colonist's own a stage, the other's where the
+  stage has them, words for an early end; a flavour extension can name a story now (`FlavorExtension.cs`: `arc`,
+  `ArcStageWords`, `AddToArc`; the other's and the third's lines only where the stage has some). Animals, 90
+  (`Rimfolk_Pools_Animals_Kinds.xml`): what's said to an animal at work with it and to one at the heels is told its body
+  now (`AnimalLife.cs`, `HerdStoryMath.BodyTag` as the herd's journal; the herd leader's death too, `HerdStory.Lost`):
+  words for birds (20) and for insects, reptiles and other mods' creatures (18) to the animal, 6 at the heels, and the
+  herd's leader 10, its words aloud 4, its last season 9 (the keeper sits with it that evening, as staged), its death
+  11, spring's first born 12 (looking forward to the visit staged later that day). Eulogies, 27
+  (`Rimfolk_Lines_Eulogies_More.xml`). Quirks shown on the map, 79 (`Rimfolk_Lines_Quirk_Habits_More.xml`): nine small
+  habits and three of the events' quirks, said by the same person every time: lines for any moment (one tagged for the
+  season or for being old took most picks while it held) and children's own. Words found untrue and fixed: (1) the long
+  discipline's art taken away was told as "lost", which no line was tagged for, so "I've let the practice slide. The
+  wall can wait." told it: the reason is "taken", as its line was tagged (`ArcWorker_MagicDiscipline.Broken`,
+  `Integrations/ModStory.cs`); that line, the chronicle's "put training aside, with the wall still standing" (untrue
+  then too) and "{OTHER} died before {PAWN} could get past the wall" (the teacher's death read as its cause, the
+  review's finding) are retired (`ShippedLines.Retired`), with words for each end beside; (2) spring's first born: three
+  shipped lines told the keeper's visit to the newborn, staged later that day, as done ("I stood by it", "I held my
+  breath until it stood", "Went to look"), the 0.106.1 pass's "found and left": retired; (3) two eulogy lines said
+  anyone, a newcomer or a child, hauled the stone for most of the walls and stayed through the raids and the hungry
+  seasons: retired, their fellows ask [longtime]. Variety (`Tools/variety_report.py`, before and after measured the same
+  way: the report gives the ailment journals, what the ill say and the animal pools their callers' tags now, weighs the
+  filler dreams as the code does and joins a story's extension to its pools): dreams with no cause 15.3% of dream draws
+  to 7.2%, of what happened 31.6% to 39.8%; the ailment's first day seen 3.61 times a line a year to 1.82, one person's
+  own lines 6.6 to 16.5, its "thin" flag gone; its end 8.4 to 10.2 own; what the ill say 1.1 to 4.2 own; a sickbed visit
+  1.5 to 3.4, strength back 1.2 to 2.1; the herd's leader 2.0 to 5.7 own, its last season 1.7 to 4.9, its death 2.0 to
+  4.6, spring's first 2.8 to 5.8; at the heels 2.8 to 6.3; eulogies 3.9 to 4.4; the habits 1.2 to 1.9 own (whittling,
+  stones, the sun, the snow) to 3.4 to 4.4; the seven stories' chronicle lines a stage 1 or 2 to 3 or 4, the colonist's
+  own 7 to 11 to 10 to 17. What's said to an animal went 10.2 to 5.6 own: a hen hears the 20 bird lines now, not all 54
+  general ones, which is the point. Nothing in the area repeats a person's own line past one time in ten, before or
+  after (the speaker memory). Found and left: the other 31 stories have their stage lines as they were (two chronicle
+  lines or one); untagged words to an animal that suit a beast best ("Hold still, you great lump") are still said to a
+  chick now and then; some eulogy lines give the dead habits the game doesn't know ("complained about the food at every
+  meal"); a quirk's journal lines when gained are one a voice, drawn with the plain ones; secrets are one a person by
+  nature. To look at in game: a dream the night after a drink, a wedding or a raid; a cheerful colonist's colds over a
+  season; the long discipline a second time; a hen at feeding time; the herd's leader's last evening.
+- 0.109.0, phase 3 of the review: one heart (the player's decisions 4 and 5 of 6 November 2026, with their words on the day:
+  "the letdowns also make sense as mood impact, no? But I like strain too though!", "the positive mood buffs should also
+  be adjusted accordingly and balanced, not that only the negative ones get adjusted" and "then we might also have to
+  look at non-rimfolk moods, right"). Not released: no round in Almanac_WhatsNew.xml, About.xml untouched. DESIGN.md
+  "One heart" under Layer 7, the character section's "one reading of who someone is", and "Balance targets" (the pass
+  and its numbers); `docs/balance-report.md` regenerated against the code before the phase (`Tools/Balance/before.json`).
+  (1) Small letdowns: Rimfolk's five kinds (pressures, setbacks, quiet troubles, nuisances, frictions; told apart by
+  class, `SetbackExtension` or name, `SmallMoments.LetdownKind`) are each a short, small mood at the moment they happen
+  (`SmallMomentMath`: 3 points and half a day at most), and what they would weigh beyond it wears on the heart
+  (`StrainSource.Letdowns`, the end of the enum, 0.6 a mood-day, 1.5 a day at most at 100%, their traits counted). It
+  happens in the hook every memory passes (`Patch_GoodTimesFade`'s prefix, `SmallMoments.Take`): a moment
+  (`Thought_SmallMoment`, saved with its words, size, cause and who it was about) is given, and the memory goes on with
+  `moodPowerFactor` 0 for what else it does (a friction's opinion, what dilemmas, arcs, speech and journals look for);
+  the heart's memory rules skip it (`SmallMoments.Converted`). A lasting one (a `Thought_Pressure`, a `Thought_Setback`)
+  gives no mood: a moment when it begins, gets worse or holds another day, and strain every hour it holds
+  (`SmallMoments.Hour` from `HeartLogic.Strain`; what the hour last saw is unsaved, and the first look after a load gives
+  no moment). (2) Small joys, the mirror: Rimfolk's good memories no council answer gave (unscaled), of 5 points and 2
+  days at most as written, not a life goal or a dream, and the varied table; relief through `StrainRelief.Joys` (the end
+  of its enum), 3 a day at most (`PawnHeart.todayJoys`, saved). (3) One row a side: two defs, `Rimfolk_SmallLetdowns`
+  and `Rimfolk_SmallJoys` (`Rimfolk_Thoughts_SmallMoments.xml`, stacking 1, so the row adds up), on the Mood tab and the
+  game's Needs tab; the row's tooltip lists each one (`SmallMoments.Describe`), its "why" says what they were, its advice
+  is the fixes of the letdowns behind it (`SmallMoments.Advice`, `MoodInsight.Advice`), else its own hint
+  (`Rimfolk_MoodHints_SmallMoments.xml`). Feelings read each moment's own memory at the moment's size and a lasting one at
+  its full size while it holds (`Feelings.Feed`); a quiet trouble's moment passes sooner in company too. (4) Every small
+  mood, anyone's: each hour the heart adds up the small moods on a colonist's mind, the game's and other mods' too, by
+  size and length (6 points, 3 days, or lasting: `SmallMomentMath.IsSmall`), past 8 points of bad ones 0.02 strain an
+  hour a point and past 12 of good ones 0.02 relief, through the same source and relief and their caps; the heavy kinds
+  with sources of their own are left out (`SmallMoments.Heavy`: the heart's memory rules, hunger, rest, recreation, pain,
+  the dark, its own strain mood, moods that feed a feeling that wears, `Feelings.FeedsWearingFeeling`). The game's and the
+  mods' moods are never changed and keep their own rows. The heart's page names what wore on them and eased them
+  (`PawnHeart.letdownsWhy`, `joysWhy`, saved words like `natureWhy`; `HeartView.SourceText`, `ReliefText`, the help line
+  `CC_Heart_Help_Letdowns`). (5) Good things grow ordinary, one rule in place of four (`Moods/GoodLife.cs`, which
+  `GoodTimes.cs`, `SmallJoys.cs` and `GoodTimesMath.cs` were folded into and removed): no standards cut on rewards or the
+  game's comforts (`Standards.PenaltyFactor` for letdowns alone; `CouncilGameComponent.GiveThought`, `DilemmaImpact`),
+  no fading sooner, no budget; the line 45, 35, 25 and 15 by standards (`GoodLifeMath.LineStep` 10, was 5), the spread by
+  how ordinary each is as before. One line in a good mood's tooltip (`GoodLife.Note`, `CC_Ordinary_Note`), one sum under
+  the Mood tab (`GoodLife.Readout`). (6) Character as the one nature: the colony's ways read the eight sides
+  (`PersonaMath.WayLean` in `CharacterTracker.Affinity`), so who minds an answer follows character and its marks; what the
+  ways' table read and character didn't is in `Rimfolk_PersonaWays.xml` (the industrious, a bloodthirsty temper, the
+  workaholic); a mod's personal trait leans the ways only through character where a nature def reads it
+  (`ModPeople.OnlyTraits`); the outsiders' fighting temper reads character too (`PersonaMath.FightTemper`, replacing
+  `OutsiderMath.Temper`). (7) Settings: one toggle, "Good things grow ordinary" (`goodGrowsOrdinary`), merged quietly
+  from the four (`smallJoysDiminish`, `standardsCoverComforts`, `goodTimesFade`, `usedToGoodLife`): on if any of them
+  was on, off only if all four were (`GoodLifeMath.MergedSetting`, done once, `ordinaryMerged`); the old keys' words stay
+  in the language files unused. The Demanding preset presses a step harder (downsides 85% more, rewards 70%, were 15%
+  and 80%). Old saves: letdowns and joys given before keep their moods and run out as they were; lasting ones become
+  moments at the next hour; the heart's lists grow by a source and a relief; memories shortened by the old fading keep
+  their time (`MoodInsight.MoodTicks`). With the heart off, the deeper game hooks off or Advisor only, every letdown and
+  joy is a mood of its own as before. (8) Balance (`Tools/Balance`): it now plays each colonist's heart hour by hour
+  (`HeartSim.cs`, NatureSim's calibrated life, shared), with the moments, the lasting ones, the pile (the game's small
+  share in `Rates.GameSmallBad`, `GameSmallGood`) and the one rule split between the game's moods and Rimfolk's; a
+  comparison case with letdowns and joys as moods, `BALANCE_QUICK=1` (and `BALANCE_PRESET`) for tuning. Default, 6
+  colonists, before and after: Rimfolk's mood well run +2.3 to +5.6, average +0.3 to +2.5, neglected -9.1 to -7.2
+  (targets +3 to +6, 0 to +3, -4 to -10); the whole mood 69/62/37% to 69/64/39%; strained, worn, near breaking 1/0/0,
+  8/2/0 and 30/17/8% (as moods on the same model 2/0/0, 9/2/0, 23/11/4); the day off 0, 0.05 and 0.74 a colonist-year
+  (as moods 0.40 neglected); under the minor-break line, neglected, 34% (as moods 42%); the game's small moods 1, 6 and
+  6% of the strain built. Over: Rimfolk's good moods' P99, well run, +17.3 (was +15.4). Files: `Moods/SmallMoments.cs`,
+  `SmallMomentMath.cs`, `GoodLife.cs`, `GoodLifeMath.cs`, `MoodInsight.cs`, `ITab_Pawn_Mood.cs`, `Milestone.cs`,
+  `RewardInstead.cs`; `Heart/HeartMath.cs`, `HeartLogic.cs`, `HeartData.cs`, `HeartView.cs`, `Feelings.cs`;
+  `Pressures/PressureThoughts.cs`, `Pressures.cs`; `Setbacks/SetbackThoughts.cs`, `Setbacks.cs`, `Troubles.cs`,
+  `SetbackCouncil.cs`; `Patches/Patch_GoodTimes.cs`; `Causes.cs`, `Standards.cs`, `Standing.cs`, `CouncilSettings.cs`,
+  `UI/SettingsCatalog.cs`, `CouncilGameComponent.cs`, `Dilemmas/DilemmaImpact.cs`, `Dreams/Dreams.cs`,
+  `Character/Character.cs`, `ColonyTraits.cs`, `Integrations/ModPeople.cs`, `Outsiders/Outsiders.cs`, `OutsiderMath.cs`,
+  `Persona/PersonaMath.cs`; defs `Rimfolk_Thoughts_SmallMoments.xml`, `Rimfolk_MoodHints_SmallMoments.xml`,
+  `Rimfolk_PersonaWays.xml`, `Almanac_OneHeart.xml` (two pages: small letdowns and small joys, good things grow
+  ordinary); keys `Rimfolk_OneHeart.xml`; the standards, heart, pressures, setbacks and ways pages rewritten (the old
+  rules kept as "until November 2026"). Tests: `SmallMomentTests` (new), `GoodLifeTests` (the line, the merged setting),
+  `PersonaTests` (the ways from character), `OutsiderTests` (the fighting temper), `NatureTests` and `ThoughtClassTests`
+  (the new kinds and class). Found and left: a lasting letdown's first moment after a load waits for it to change or a
+  day to pass; Rimfolk's good moods at a high point are a little higher than before though the whole mood isn't; feelings
+  now see a converted letdown at its moment's size, so frustration from setbacks is a little milder. To look at in game:
+  the two rows and their tooltips (and the game's Needs tab), a run of the same meal on the heart's page, a well-run
+  colony's good moods each saying "grown ordinary", and the colony's ways' mood after a mark moves someone.
+- 0.108.0, event variety: new questions, events, situations and camps (the player's request, 6 November 2026): "you can add more
+  'event variety' to existing systems that are more flexible to new additions". New content in the existing frameworks
+  only, at their existing rates; no version of its own (its points go with the next round). Each piece, what it plays
+  out, what lasts, how often:
+  - The cold snap's hours (`Rimfolk_DlmE_ColdSnap`, `DilemmaWorker_ColdSnap`): the game's cold snap, freezing outside,
+    two or more out working in it by day, A the one with the coldest bedroom. Short days (a new timetable plan,
+    `AnswerShiftMath.Cold`: abed 5 to 8, to bed 19 to 21, put back when the cold snap ends), a fire kept in A's room
+    (40 wood, `DilemmaEffect_KeepFire`), or carry on (the cold is the game's own). Lasts until the cold snap ends; weight
+    1.4, 20 days apart, only in a cold snap.
+  - Blight in the fields (`Rimfolk_DlmE_Blight`, `DilemmaWorker_Blight`, `DilemmaEffect_CutBlight`): the game's crop
+    blight in two or more plants of the colony's fields. The blighted plants marked to cut (the game's designation), or
+    that and the rest of those fields that can come in now marked to harvest, or let it spread as the game has it. The
+    crop saved or lost; weight 1.5, 15 days apart, only while there is blight.
+  - The good weapon (`Rimfolk_DlmE_GoodWeapon`, `DilemmaWorker_GoodWeapon`, `DilemmaEffect_TakeUp`, `StoredWeapons`): a
+    good-or-better weapon in storage two colonists would be better armed with (`VarietyTwoMath.Upgrade`, skilled at its
+    kind, able to equip it). The one chosen walks to the stores and takes it up (the game's equip job), or it stays.
+    Who carries it from then on; weight 1.2, 40 days apart.
+  - The animal left behind (`Rimfolk_DlmE_MasterGone`, `DilemmaWorker_MasterGone`, `DilemmaEffect_NewMaster`): an
+    obedience-trained animal whose bonded person died in the last 12 days, no living master. A new master (the one
+    closest to the dead, or the best handler), whom it keeps at the heels of a day (`TimedKind.Follow`), or the colony's.
+    The master stays; weight 1.3, 30 days apart. Six small memories in `Rimfolk_Thoughts_Variety2.xml`, the rest reused.
+  - The herd crossing (`Rimfolk_Evt_HerdCrossing`, `HappeningWorker_HerdCrossing`, `DilemmaEffect_HuntHerd`): a herd of
+    four or more of one kind crossing for an edge (the game's herd migration). A few of the grown ones (a third, two to
+    four) or the biggest marked to hunt, or let them cross; the game's own risk that a hunted beast turns is named in
+    every letter and under the answer. Meat or nothing; base chance 0.8 in Rimfolk's capped share of the storyteller's
+    pool, 20 days apart, only while a herd is on the map (rare).
+  - A blight in the region (`Rimfolk_WS_Blight`, data only): spring to fall, the game's crop blight 2.5 times as likely
+    at home, a neighbour's food bought at twice its worth or its plain worth, smoke over their town, a burned-out family
+    fed at the gate; ends by what the colony did. Weight 0.7, 150 days apart, 10 to 16 days, kind hunger.
+  - Medicine gone scarce (`Rimfolk_WS_MedicineScarce`, data only): medicine sold at a scarce year's price or given, a
+    herb-seller's healroot bought dear, hedge healers oftener and travelling doctors rarer. Weight 0.6, 200 days apart,
+    12 to 18 days, kind scarcity (never with iron gone scarce).
+  - Woodcutters (`Rimfolk_Camp_Woodcutters`): a new land need, `woods` (`CampKindsLand.WoodsTargets`, 30 grown wild trees
+    clear of the colony at least, `CampLandMath.WoodsEnough`); they pitch by the thickest stand and fell 1.5 trees a day.
+    Asks: their wood (60 logs to the gate), the axe (Plants lesson); their request a hot supper (4 meals to the camp);
+    their woodpile left for the colony in peace (goods, not a gift, so no calendar day). Weight 0.6 among the kinds that
+    fit, oftener in a hard winter, a fire or a rebuilding.
+  - Herb-gatherers (`Rimfolk_Camp_HerbGatherers`): wild herbs gathered at dawn and a share left (help "medicine"). Asks:
+    their herbs (4 herbal medicine to the gate), the herbs (Medicine lesson); their request to walk the colony's fields
+    (`CampComes` to the fields, `CC_CampErrand_Arrived_herbwalk`, then their gathering). Weight 0.6, oftener while
+    medicine is scarce or sickness is about. Every age by the people's own (root-diggers to a survey party).
+  - Rates, from `Tools/Balance` (120 runs a setup, 6 colonists, average play, before and after): questions a year 13.3
+    and 12.9, events 6.5 and 6.5, world events 1.1 and 1.1, questions a day 0.50 and 0.49 (within the runs' noise);
+    `--scenes` (10 colonists, well run): 52.5 and 52.4 staged a year, 5.1 gatherings and outings a week either way; no
+    new answer gathers people (the dilemmas that may: 24% of the rest before and after). Camps come on their own clock
+    (about one in 35 days), unchanged: a kind is picked among those that fit. Tests: `VarietyTwoTests`; the play-out
+    audit counts the four new effects (0 candidates); README and the Almanac's council, world events and camps pages.
+  - Needs a look in the game: the herd crossing (rare: the herd is on the map for hours), a fire laid in a cold room in a
+    spacer colony, the woodcutters' stand on a small map with a big home area.
 - 0.107.0, phase 1 of the review: one record (the player's decision 3 of 6 November 2026: "the chronicle becomes the colony's
   view of the history, every question records how it went, and the year is told once"). Not released: no round in
   Almanac_WhatsNew.xml, About.xml untouched. (1) The chronicle is the history's view. The save at day 128 showed the

@@ -395,7 +395,7 @@ namespace ColonyCouncil
             if (!quirkLine.NullOrEmpty()) tip = quirkLine + "\n" + tip;
             string bonds = comp.social.Describe(p);
             if (!bonds.NullOrEmpty()) tip = bonds + "\n\n" + tip;
-            string titles = comp.epithets.TitlesOf(p);
+            string titles = comp.epithets.NameOf(p);
             if (!titles.NullOrEmpty()) tip = "CC_Epithet_Known".Translate(p.LabelShort, titles) + "\n\n" + tip;
             if (st.log.Count > 0) tip += "\n\n" + string.Join("\n", st.log.AsEnumerable().Reverse());
             return tip;

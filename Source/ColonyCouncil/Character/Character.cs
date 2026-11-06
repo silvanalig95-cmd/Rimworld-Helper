@@ -98,6 +98,11 @@ namespace ColonyCouncil
         private readonly KeptAnswers<float> approvals = new KeptAnswers<float>(Sched.RareTicks);
         /// <summary>What the colony grows into by what its people do (green-fingered, builders...).</summary>
         public ColonyTraits traits = new ColonyTraits();
+        /// <summary>
+        /// The colony's one name as last looked at (ColonyName.Key: what it is called, what it is known for beyond its walls),
+        /// so a change is told once, in one sentence. Null until the first look (a new game, an older save): set without a word.
+        /// </summary>
+        public string nameKey;
 
         private static CouncilSettings S => ColonyCouncilMod.Settings;
 
@@ -153,6 +158,8 @@ namespace ColonyCouncil
         public void Shift(WayShift s, string why)
         {
             if (!S.colonyCharacter || s == null || !s.Any) return;
+            // The name as it stood before this, for a game or an older save not yet looked at (kept without a word).
+            if (nameKey == null) ColonyName.Look(CouncilGameComponent.Instance);
             foreach (var w in All)
             {
                 float amt = s.Get(w);
@@ -166,12 +173,14 @@ namespace ColonyCouncil
             version++;
             recent.Add(new CharacterEvent { what = why, shift = s.Summary(), tick = Find.TickManager.TicksGame });
             if (recent.Count > 30) recent.RemoveAt(0);
-            Check(CouncilGameComponent.Instance);
+            var comp = CouncilGameComponent.Instance;
+            if (Check(comp)) ColonyName.Look(comp);
         }
 
         public void Daily(CouncilGameComponent comp)
         {
             if (!S.colonyCharacter) return;
+            if (nameKey == null) ColonyName.Look(comp);
             for (int i = 0; i < values.Count; i++) values[i] *= 0.988f;
             version++;
             Check(comp);
@@ -184,6 +193,8 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("colony traits", e);
             }
+            // The day's changes to the colony's name, its ways and what the work made it, in one sentence.
+            ColonyName.Look(comp);
         }
 
         private int TierFor(float v, int current)
@@ -198,9 +209,14 @@ namespace ColonyCouncil
             return 0;
         }
 
-        private void Check(CouncilGameComponent comp)
+        /// <summary>
+        /// The ways' tiers against their values: a way gained is told in a letter, one faded in the news. Whether any moved.
+        /// The chronicle's sentence is the colony's one name's (ColonyName.Look), with what the work made it, never a line here.
+        /// </summary>
+        private bool Check(CouncilGameComponent comp)
         {
-            if (comp == null) return;
+            if (comp == null) return false;
+            bool moved = false;
             foreach (var w in All)
             {
                 int i = (int)w;
@@ -208,6 +224,7 @@ namespace ColonyCouncil
                 int now = TierFor(values[i], was);
                 if (now == was) continue;
                 tiers[i] = now;
+                moved = true;
                 bool gained = now != 0 && (was == 0 || Math.Sign(now) != Math.Sign(was) || Math.Abs(now) > Math.Abs(was));
                 string pole = PoleLabel(w, (now != 0 ? now : was) > 0);
                 if (gained)
@@ -215,16 +232,16 @@ namespace ColonyCouncil
                     string label = (Math.Abs(now) == 2 ? "CC_Ways_RenownedLabel" : "CC_Ways_KnownLabel").Translate(pole.CapitalizeFirst());
                     string text = (Math.Abs(now) == 2 ? "CC_Ways_Renowned" : "CC_Ways_Known").Translate(pole) + "\n\n" + ("CC_Ways_Meaning_" + w + (now > 0 ? "_Pos" : "_Neg")).Translate();
                     Tell.Letter(NewsKind.Colony, Importance.Notable, null, label, text, LetterDefOf.NeutralEvent);
-                    // The chronicle has a sentence, not the letter's label ("Known as Generous" stood as a line).
-                    comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, (Math.Abs(now) == 2 ? "CC_Ways_RenownedChronicle" : "CC_Ways_KnownChronicle").Translate(pole).Resolve(), null));
                 }
                 else
                 {
-                    string text = "CC_Ways_Fading".Translate(pole).Resolve();
+                    // Renowned to known: the neighbors still call it that, only not far and wide ("people have stopped calling
+                    // the colony merciful" wasn't true of it).
+                    string text = (now != 0 ? "CC_Name_Ways_Narrower" : "CC_Ways_Fading").Translate(pole).Resolve();
                     News.Post(text, LookTargets.Invalid, NewsKind.Colony, MessageTypeDefOf.NeutralEvent, Importance.Notable);
-                    comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, text, null));
                 }
             }
+            return moved;
         }
 
         /// <summary>Word gets around: a generous or open colony's neighbors warm to it a little; a thrifty or guarded one's cool.</summary>
@@ -249,58 +266,21 @@ namespace ColonyCouncil
 
         // ---------------- Who approves ----------------
 
-        /// <summary>Their trait of this name (by defName, so a mod's trait that isn't there is never matched), or null.</summary>
-        private static Trait TraitNamed(TraitSet t, string name)
-        {
-            var all = t.allTraits;
-            for (int i = 0; i < all.Count; i++)
-                if (all[i].def.defName == name)
-                    return all[i];
-            return null;
-        }
-
         /// <summary>
-        /// How much this colonist cares about each way, by nature (-1 = dislikes it, +1 = likes it). The colony's-ways mood
-        /// asks this for every colonist and way, so it reads the traits with plain loops.
+        /// How much this colonist cares about each way (-1 = dislikes it, +1 = likes it), read from their character
+        /// (Persona/: the eight sides the game's traits, skills and age set and what happened to them moves,
+        /// PersonaMath.WayLean), the one reading of who someone is; then their kind and their beliefs (ModPeopleDef: a
+        /// people's ways, a pacifist creed), which aren't nature. A mod's trait reaches it through character too.
         /// </summary>
-        public static float Affinity(Pawn p, Way w)
+        public static float Affinity(Pawn p, Way w) => Affinity(p, w, p?.story == null ? null : Persona.Values(p));
+
+        /// <summary>The same with their character's sides already read (the mood asks every way in a row).</summary>
+        public static float Affinity(Pawn p, Way w, float[] sides)
         {
-            var t = p?.story?.traits;
-            if (t == null) return 0f;
-            float a = 0f;
-            bool Has(string name) => TraitNamed(t, name) != null;
-            int Degree(string name) => TraitNamed(t, name)?.Degree ?? 0;
-            switch (w)
-            {
-                case Way.Mercy:
-                    if (Has("Kind")) a += 1f;
-                    if (Has("Psychopath")) a -= 0.8f;
-                    if (Has("Bloodlust")) a -= 1f;
-                    break;
-                case Way.Generosity:
-                    if (Has("Kind")) a += 0.6f;
-                    if (Has("Ascetic")) a += 0.4f;
-                    if (Has("Greedy")) a -= 1f;
-                    break;
-                case Way.Tradition:
-                    float age = Flavor.HumanAge(p);
-                    if (age >= 50f) a += 0.6f;
-                    else if (age < 24f) a -= 0.4f;
-                    if (Has("TooSmart")) a -= 0.3f;
-                    break;
-                case Way.Openness:
-                    if (Has("Kind")) a += 0.4f;
-                    if (People.Passionate(p.skills?.GetSkill(SkillDefOf.Social))) a += 0.4f;
-                    if (Has("Abrasive")) a -= 0.5f;
-                    if (Has("Psychopath")) a -= 0.3f;
-                    break;
-                case Way.Toil:
-                    a += 0.6f * Degree("Industriousness");
-                    break;
-            }
-            // Other mods' traits, classes and memes (ModPeopleDef): a workaholic, a pacifist creed.
+            if (p?.story == null) return 0f;
+            float a = PersonaMath.WayLean((int)w, sides);
             a += ModPeople.WayAffinity(p, w);
-            return Mathf.Clamp(a, -1.5f, 1.5f);
+            return Mathf.Clamp(a, -PersonaMath.WayMost, PersonaMath.WayMost);
         }
 
         /// <summary>
@@ -321,11 +301,13 @@ namespace ColonyCouncil
         public float Approval(Pawn p, List<string> reasons = null)
         {
             float score = 0f;
+            float[] sides = null;
             foreach (var w in All)
             {
                 float v = Value(w);
                 if (Mathf.Abs(v) < 10f) continue;
-                float a = Affinity(p, w);
+                sides ??= p?.story == null ? null : Persona.Values(p);
+                float a = Affinity(p, w, sides);
                 if (a == 0f) continue;
                 float part = v * a;
                 score += part;
@@ -342,6 +324,7 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref recent, "recent", LookMode.Deep);
             Scribe_Values.Look(ref lastWordTick, "lastWordTick", -999999);
             Scribe_Deep.Look(ref traits, "traits");
+            Scribe_Values.Look(ref nameKey, "nameKey");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (traits == null) traits = new ColonyTraits();
@@ -384,7 +367,7 @@ namespace ColonyCouncil
         public override float MoodOffset()
         {
             float m = base.MoodOffset();
-            return m < 0f ? m * ColonyCouncilMod.Settings.PenaltyScale : m * SmallJoys.LiveScale(pawn);
+            return m < 0f ? m * ColonyCouncilMod.Settings.PenaltyScale : m * GoodLife.RewardScale(pawn);
         }
 
         public string Why

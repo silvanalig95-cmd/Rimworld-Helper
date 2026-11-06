@@ -344,13 +344,30 @@ namespace ColonyCouncil
             p.jobs.StartJob(job, JobCondition.InterruptForced, null, p.RaceProps.Humanlike, true);
         }
 
-        /// <summary>A line from a caller at a moment of their work ("view", "cut", "tend", "train", "dig", "load", "talk", "night"), from the event's own lines.</summary>
+        /// <summary>More of the callers' lines, in a file of their own, by the same moments.</summary>
+        public const string MorePool = "Rimfolk_Pool_CallerSays";
+
+        /// <summary>
+        /// A line from a caller at a moment of their work ("view", "bought", "cut", "tend", "train", "dig", "load", "talk",
+        /// "free", "fire"), from the event's own lines and <see cref="MorePool"/>'s: the speaker's moment (the hour, the
+        /// weather) may be asked too, and not a line given at this moment lately while another fits.
+        /// </summary>
         public static void Say(Pawn p, CallerTask t, string moment, float chance = 1f)
         {
             if (p == null || t?.def == null || !Rand.Chance(chance)) return;
-            var lines = DefDatabase<IncidentDef>.GetNamedSilentFail(t.def)?.GetModExtension<HappeningExtension>()?.lines;
-            string line = Flavor.PickTagged(lines, new HashSet<string> { moment });
-            if (!line.NullOrEmpty()) Speech.Say(p, line);
+            var lines = new List<string>();
+            var own = DefDatabase<IncidentDef>.GetNamedSilentFail(t.def)?.GetModExtension<HappeningExtension>()?.lines;
+            if (own != null) lines.AddRange(own);
+            var more = DefDatabase<FlavorPoolDef>.GetNamedSilentFail(MorePool)?.lines?.plain;
+            if (more != null) lines.AddRange(more);
+            var tags = Flavor.TagsFor(p);
+            tags.Add(moment);
+            string key = MorePool + ":" + moment;
+            var recent = Flavor.Memory.Recent(key);
+            string line = Flavor.PickTagged(lines, tags, recent) ?? Flavor.PickTagged(lines, tags);
+            if (line.NullOrEmpty()) return;
+            Flavor.Memory.Remember(key, line, lines.Count(l => LineTags.Of(l)?.tags?.Contains(moment) ?? false));
+            Speech.Say(p, line);
         }
 
         /// <summary>

@@ -322,6 +322,23 @@ namespace Balance
             }
         }
 
+        // ---------------- The game's own moods and the heart (phase 3 of the review) ----------------
+
+        /// <summary>
+        /// How ordinary the game's good moods are to a colonist (GoodLifeMath.Weight, 0.15 new to 1 everyday): mostly
+        /// lasting comforts (a room, beauty, a fine meal had every day), now and then something new (a party, a gift).
+        /// </summary>
+        public const float GameOrdinaryWeight = 0.9f;
+
+        /// <summary>
+        /// The share of the game's bad and good moods that the heart's pile counts as small (Moods/SmallMoments.cs: six points
+        /// or less and three days or less, or lasting; the game's heavy kinds, losses, bad nights, hunger, pain, the dark and
+        /// the rest of the heart's own sources, left out). A neglected colony's bad side is mostly small things (an ugly room,
+        /// eating without a table, a cramped bedroom, the same old clothes) next to the heavy ones; the good side's small part
+        /// is a fine meal, a nice room, some recreation done well.
+        /// </summary>
+        public const float GameSmallBad = 0.55f, GameSmallGood = 0.45f;
+
         // ---------------- How the player plays ----------------
 
         public sealed class Style
@@ -366,7 +383,8 @@ namespace Balance
             // Small irritations
             public float nuisanceFits, frictionFactor;
 
-            // Steady moods: the colony's ways (share at -4, -2, +2, +4), strain (share at -3, -5, -8), others.
+            // Steady moods: the colony's ways (share at -4, -2, +2, +4), others. Strain's share at -3, -5, -8 (strained, worn, near
+            // breaking) from life alone: the heart's life (HeartSim.cs) is set to give it, and the colony-year plays the heart.
             public float[] ways, strain;
             public float aspirationsPerYear, convalescencePerYear;
             public float pets;

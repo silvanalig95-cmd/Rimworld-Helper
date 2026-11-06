@@ -496,7 +496,7 @@ namespace ColonyCouncil
             if (e.killers != null) tags.Add("battle");
             if (dead.DevelopmentalStage.Juvenile()) tags.Add("deadchild");
             else if (Flavor.HumanAge(dead) >= 60f) tags.Add("deadold");
-            string title = comp.epithets.TitlesOf(dead);
+            string title = comp.epithets.NameOf(dead);
             if (!title.NullOrEmpty()) tags.Add("titled");
             string goal = e.goal;
             if (goal.NullOrEmpty()) comp.aspirations.lastMourned.TryGetValue(dead, out goal);
