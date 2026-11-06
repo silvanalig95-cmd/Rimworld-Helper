@@ -33,3 +33,13 @@ All seventeen as recommended (the review page, https://claude.ai/artifact/MjBxUw
 16. The on-screen council panel reads the inbox.
 17. The phases first (1 one record, 2 one teller and one pace, 3 one heart, 4 one name and a fairer council, 5 one
     festive year, 6 one way in), then harm parts 2 and 3, schemes and stage 3.
+
+## Added the same day: the heart's good side
+
+"There should perhaps also be a counterweight/side to strain, right? If they have positive impacts over an extended
+period." Approved as proposed: one heart with two sides. "In good heart" builds slowly when strain is at nothing and
+good things keep coming, mostly from what can't be bought (friends and belonging, purpose, deeds honoured, gatherings,
+a run of small joys; fine rooms and meals only a little); hardship spends it before strain builds, and good things
+ease strain before building it; bands (steady, in good heart, in high spirits) give a small good mood (about +2, +3,
++5), brighter dreams and a quicker recovery; when high and safe, now and then one of the game's own inspirations by
+their passions or a generous act for someone close. No work-speed bonus. Built right after phase 3, balanced with it.
