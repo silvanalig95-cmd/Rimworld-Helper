@@ -1399,6 +1399,14 @@ namespace ColonyCouncil
                 if (day == null || map == null) return;
                 var result = CalendarMath.KeepInYear(ref day.keptYears, ref day.tradition, ref day.breaks, ref day.lastKeptYear, GenLocalDate.Year(map));
                 day.timesKept++;
+                // A day on the calendar kept, as the calendar's own are (CalendarKeeping): on the record of the one who stands
+                // for it, the keeper of days when there is one at home, for the seat's work and the promises judged by days kept.
+                if (ColonyCalendar.On)
+                {
+                    var keeper = (colony?.offices ?? comp.offices).KeeperOfDays;
+                    if (keeper == null || !colonists.Contains(keeper)) keeper = colonists.Contains(ctx.a) ? ctx.a : colonists.FirstOrDefault();
+                    if (keeper != null) CouncilRecords.Add(keeper, CouncilRecords.DaysKept);
+                }
                 if (result == CalendarMath.KeepResult.KeptTradition)
                 {
                     foreach (var p in colonists) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_TraditionKept);

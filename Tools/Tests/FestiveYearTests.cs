@@ -101,6 +101,9 @@ public static class FestiveYearTests
         string dilemmas = Read("Dilemmas/Dilemmas.cs");
         C(dilemmas.Contains("CalendarMath.KeepInYear") && dilemmas.Contains("CalendarMath.Pass("), "the council's customs keep the calendar's rule");
         C(dilemmas.Contains("CustomSeasonHeld") && dilemmas.Contains("BringsCustom"), "a season holding a custom's day is asked no other, and a dated custom comes on its day");
+        int keepAt = dilemmas.IndexOf("CalendarMath.KeepInYear("), recordAt = dilemmas.IndexOf("CouncilRecords.Add(keeper, CouncilRecords.DaysKept)");
+        C(keepAt >= 0 && recordAt > keepAt && recordAt - keepAt < 1200 && dilemmas.Contains(".KeeperOfDays"),
+            "a custom kept is a day on the calendar kept: on the keeper of days' record, as the promises judged by days kept read it");
 
         // The host's words, and the custom's lines, said over heads: one sentence each.
         var keyed = XDocument.Load(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_FestiveYear.xml")).Root!;

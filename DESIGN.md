@@ -1729,7 +1729,9 @@ two. The player chose one rule, three years running. Built as one festive year (
 - **What reads a custom.** `DilemmaTracker.IsTradition`, `TraditionCount`, `Traditions` and `AddCustomTags` read the
   calendar (`CustomDay`); the forced traditions of the council's hour skip those the calendar brings on their day. The
   calendar's traditions (`ColonyCalendar.Traditions`) now hold the customs too, for the founding letter, the keeper of
-  days' promise and the colony's ways. The Calendar page shows each custom among the days, soonest first: its date
+  days' promise and the colony's ways; a custom kept goes on the record of days kept (`Council_DaysKept`) of the keeper
+  of days at home, else of the one the question was about, as a calendar day's keeper's does, for the seat's work and
+  the promises judged by days kept. The Calendar page shows each custom among the days, soonest first: its date
   (or "with its occasion"), when it next comes, a "custom" pill, its years kept or its tradition, and where it came from
   ("A custom the council first kept in 5502... Kept by answering 'Make a day of the planting'."); its way and date can't
   be changed, and taking it off loses its years (kept again, it comes back). The page's separate "Seasonal customs" list
