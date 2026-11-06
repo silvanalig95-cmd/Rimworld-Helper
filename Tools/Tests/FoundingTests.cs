@@ -139,6 +139,9 @@ public static class FoundingTests
         C(FoundingMath.Shelter(0, 8).wood > tribe.wood && FoundingMath.Shelter(2, 8).steel > industry.steel, "more for a bigger party");
         C(FoundingMath.KitMedicine(1) == 1 && FoundingMath.KitMedicine(4) == 2 && FoundingMath.KitMedicine(5) == 3, "medicine for the first season");
         C(FoundingMath.KitFoodDays == 15, "food for fifteen days besides the road");
+        C(FoundingMath.FoodDaysTried[0] == FoundingMath.KitFoodDays && FoundingMath.FoodDaysTried.Last() == 0
+          && FoundingMath.FoodDaysTried.Zip(FoundingMath.FoodDaysTried.Skip(1), (a, b) => a > b).All(x => x), "fewer days of food tried in turn, down to the road's alone");
+        C(FoundingMath.LoadShare > 0.5f && FoundingMath.LoadShare <= 0.9f, "the kit never fills the room past the planner's own warning");
 
         // ---------------- The colonies' record ----------------
 

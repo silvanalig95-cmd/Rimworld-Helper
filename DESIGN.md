@@ -2420,8 +2420,8 @@ A colony is a player home map, known by its settlement's world object id (`map.P
 own id). `Lean/Homes.cs` is the one place that says which; its rules are pure (`Lean/HomesMath.cs`) and tested.
 
 - `Homes.All`: the player's homes in the order they were founded, those on the ground before those in orbit.
-- `Homes.Seat`: the colony the council sits at. The first home founded, unless a seat is stored (a saved id; no button
-  yet) and is still a home. It doesn't move as people do.
+- `Homes.Seat`: the colony the council sits at. The first home founded, unless a seat is stored (a saved id, set by
+  "Make this the seat" on a colony's card: below, "A fresh start") and is still a home. It doesn't move as people do.
 - `Homes.Of(pawn)`: the colony someone belongs to. On a home map now (held there too, as in a casket): that one. Else
   the home where they own a bed. Else the last home they lived on (set once they've been on it a day without a break,
   kept per colonist, forgotten once they're dead, discarded or no longer the colony's). Else the seat.
@@ -2565,6 +2565,100 @@ the same people are taken in the same order, and the same rolls are made in the 
 7b keeps to the same: lists are filtered by colony, never sorted again; each per-home loop has one pass with one home;
 keys (names, suggestions, automations' cooldowns) are what they always were with one colony; and where the place of a
 roll moved (a quarantine's factor) it stays where it was with one colony. Tests: `Tools/Tests/ManyHomesTests.cs`.
+
+#### A fresh start (stage 3, release 1)
+
+A new colony founded in the same world, without giving up the one there is (docs/design/stage3-many-colonies.md,
+section 1 without a scenario's parts, 3a and 3c; the player's decisions of 6 November 2026). `Source/ColonyCouncil/Colonies/`:
+the rules are pure (`FoundingMath.cs`, tested in `Tools/Tests/FoundingTests.cs`); `Foundings.cs` runs it in the
+council's hour, right after the homes (`Homes.Hourly`), and only while there is a founding or a question about moving
+(nothing per tick, no schedule slot); the place picker and the founding window are `FoundingWindow.cs`, the newcomers'
+window `NewcomersWindow.cs`, the questions `FoundingLetters.cs`, the seat `ColonySeat.cs`, the cards and the Ours lens
+`ColonyCards.cs`; what it keeps rides the homes' own component (`HomesFounding.cs`).
+- **The place.** "Found a new colony" on a colony's card (a home on the ground, one founding at a time) opens the
+  game's world targeter (`WorldTargeter.BeginTargeting`), with Rimfolk's facts of the tile under the cursor beside it
+  (`FoundingPlace.Facts`): whose land (Faction Territories, `WorldMechanics.TerritoryOwner`), the towns within 12 tiles
+  and their stance, how remote (`RegionMath.Remoteness`, the region's own five words), the days by caravan from each
+  home (the game's estimate), the land, and the game's checks (`TileFinder.IsValidTileForNewSettlement`, the goodwill
+  a nearby town loses each season, `SettlementProximityGoodwillUtility`).
+- **Who goes (decision 2A).** The founding window lists the home's people (`Homes.People`), grown-ups first; children
+  follow their parents unless moved. Each grown-up's wish comes from their own ties (`FoundingMath.Pull`: their own, a
+  partner, child or parent, going or staying ±3 each; at odds with most here by the fights the council counts +2;
+  close friends ±1, rivals the other way; a seat on the council, a room of their own, old age -1 each; youth +1; past
+  1.5 either way "wants to go" or "wants to stay", else "torn"), with the reasons. Nobody refuses. Sent or kept against
+  it (`AgainstWish`), they feel uprooted for a season (`Rimfolk_Uprooted`, -4, 15 days) and, with the old colony kept,
+  may ask once between the third day and the season's end to move to the colony they wanted (`FoundingAsk`, a
+  `Tell.Ask`: a journey plan of one, or asked to stay at 2 trust). Close bonds split between the two colonies (a
+  partner, a parent or child, a sibling, a friend of 60) feel parted for a season (`Rimfolk_Parted`, -3, the three
+  closest at most). Who may go: this home's people, at home, not a lodger, not being banished, not on another journey
+  (`CantSend`); the party needs a grown-up, and the old colony kept needs one left in it (`PartyCheck`).
+- **How they go.** By caravan through the journey planner's own plan (`Foundings.PlanJourney`: one way, a
+  `JourneyPlan.founding` id, food for the road and fifteen days more, the founding kit by the colony's age from what the
+  stores hold: wood for a tribe or a medieval colony, steel, components and a little wood for industry and beyond,
+  medicine for the first season; fitted to 90% of the party's room, fewer days of food first, then less of the
+  materials), and the planner opens on it. Its farewell at the gate is a parting's (`Rimfolk_Pool_FoundingSays`). By the
+  colony's own pods or shuttle (a launcher there), or the gravship (Odyssey's engine there): the game's own way, told
+  in a letter. A caravan of theirs stopped at the place or within two tiles is asked once "Settle here?"
+  (`ChoiceLetter_Founding`), which runs the game's own `SettleInEmptyTileUtility.Settle` with its proximity warning;
+  the game's Settle button works the same. Any home made since the founding set out at the place (anywhere, for the
+  gravship's landing) is the new colony. Nobody from the colony: the newcomers alone, the settlement made with
+  `SettleUtility.AddNewHome` and its map with `GetOrGenerateMapUtility.GetOrGenerateMap` in the game's long events.
+- **Newcomers (decisions 3A and 4A).** Made with `Dialog_Newcomers`, built as the game's `Dialog_ChooseNewWanderers`:
+  a fresh `GameInitData`, one to six people with `StartingPawnUtility` (the portrait area and character card with its
+  randomize, Biotech's options, health, relations, possessions, the skills summary), the player's people's kind; the
+  start data cleared however the window closes. At once with nobody going, else asked for once the colony stands (a
+  letter; unanswered, let go after 10 days). They walk in from the edge with their possessions, as the game's own new
+  wanderers do. Free with the old colony abandoned in the same act; with it kept, at most once a year
+  (`Homes.newcomersPaidAt`), their passage paid from the old colony's stores, about their kit's worth, at least 150
+  each, up to half in food (`FoundingMath.Passage`, `Pay`), named at the window's foot before Confirm. A scenario's
+  start parts come in release 3, through the window's request.
+- **The colony stands** (`Foundings.Founded`): the record of every colony on the world ledger (`LedgerColony`, below),
+  a milestone `colony:founded` (the founders "did", the mother colony "about"), a letter naming the founders, the party's
+  age form (a band to make a new hearth, settlers with a charter and carts, a settlement company, a colony mission) and
+  what becomes of the old colony, the seat moved if asked, the moods above, and on the old colony's calendar (kept) the
+  parting day (`CalendarKind.Parting`, a remembrance that may become a tradition). Its own council, calendar from its
+  founding day, founders and firstborn come from 7a and 7b's rules. Its first evening (17 to 21h, two hours after it
+  stands at least) is a fire (`PlayKind.Bonfire`, laid from the wood they brought if there's none): the founders
+  invited, a seat holder among them or the eldest organising, their words from `Rimfolk_Pool_FirstNight`, and
+  `Rimfolk_FirstNight` (+4, 4 days) held until it is over; with answers not played out, the speaker's line and the mood.
+- **The old colony.** Kept, a second home under the game's limit. Or abandoned: once the new colony stands and none of
+  the party is still on the old map (a straggler holds it back, and the colony is told once), the game's own
+  `MapParent.Abandon` at the next frame, then `GameEnder.CheckOrUpdateGameOver`; anyone left there is lost to the
+  colony as the game rules, and the window named them. Its council goes with its people to the new home
+  (`FoundingMath.CarryCouncil`, 7a's rule as a gravship landing carries it), its record ends "abandoned" with the
+  game's ruin, the milestone `colony:abandoned`, and its founding day stays on the new calendar as a remembrance. Any
+  home on the record that is lost another way ends there too (`Foundings.HomesLost`: abandoned when the game's ruin
+  stands at its place, else lost).
+- **The game's colony limit (decision 5B).** `Prefs.MaxNumberOfPlayerSettlements` is the game's preference, shared by
+  every save: as the founding starts, Rimfolk raises it by one when the new colony would pass it, never past the game's
+  five (`FoundingMath.LimitFor`, against the homes the game counts), and the founding window says so plainly, with
+  where to lower it again. With the old colony abandoned, or the founding called off, it is set back by one while it
+  is still what Rimfolk set and the homes left fit (`LimitBack`).
+- **The record of every colony** (`World/Ledger/LedgerColonies.cs`): `LedgerColony` per colony (its key, name, tile,
+  founding day, the colony it came from, how and when it ended, the ruin it left), 24 at most (the oldest ended ones
+  fold into the history), written only once a second colony is founded.
+- **The seat (decision 1A).** "Make this the seat" on a colony's card, a home on the ground of several, at most once a
+  season (`FoundingMath.SeatWhyNot`, `Homes.seatMovedAt`), or ticked in the founding window for the new colony. What
+  reads `Homes.Seat` moves with it: the events and letters about no home of their own (`HappeningTracker.HomeMap`), the
+  seat's council (`comp.offices` and the others, the speaker who signs to the world), the seat's calendar's world days
+  and nemeses from then on, the notables and world events anchored at the seat (release 4 gives every home its own),
+  the region map's default. Each colony's own council, calendar and names stay. The old seat's people lose 3 trust
+  (not a mood); the milestone `colony:seat`; the seat's word by age (`AgeFeature.Seat`: the elders' fire, the
+  council's hall, the town hall, the administration).
+- **Seeing every colony (3c).** The region map's Ours lens lists every home however far (beyond the map's reach too),
+  each row its grown-ups and children, speaker, mood and strain, its card's lines on hover (founded when and from
+  where, the seat or not, wealth, its next day by name and date, a threat now); a founding on its way; and the colonies
+  of the past (group 3), founded and ended how. A colony's card: go there, make this the seat, found a new colony, and
+  with a founding under way plan the party's journey, choose the newcomers or call it off; a colony of the past has a
+  card from its record. With more than one colony every view's header carries a chip naming the colony in view, a
+  click from another (`ColonyView.Chip`, drawn by `UiKit.ViewHeader`); the council pages' own line it replaces.
+- **Settings.** "Many colonies" on the What's on page: Fresh starts, and Newcomers under it. Off, nothing new is
+  offered; a founding under way goes on.
+- **Seams.** Release 2's hand-over is the founding window's third choice for the old colony and a card act beside
+  these (marked `HandOver`); release 3's scenario parts shape the newcomers' request; release 4 widens the seat-anchored
+  notables and world events to every home. With one colony nothing runs: no founding, no question, nothing saved (each
+  new list is written only when it holds something), and the Ours lens's home row reads the same people as before in
+  more words.
 
 ### The world ledger
 

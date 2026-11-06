@@ -314,6 +314,12 @@ namespace ColonyCouncil
         /// <summary>Food for fifteen days besides the road (the planner's own packing covers the road and its margin).</summary>
         public const int KitFoodDays = 15;
 
+        /// <summary>The days of food tried in turn when the party can't carry fifteen days' worth: fewer, down to the road's alone.</summary>
+        public static readonly int[] FoodDaysTried = { KitFoodDays, 10, 5, 0 };
+
+        /// <summary>The founding kit fills the party's room up to this share of it (the planner's own warning starts at 90%).</summary>
+        public const float LoadShare = 0.9f;
+
         /// <summary>
         /// What raises the first shelter by the colony's means: wood for a tribe or a medieval colony; steel and components
         /// for industry and beyond. Each kind's count for a party of <paramref name="people"/>, by the age (0 tribal, 1

@@ -227,7 +227,8 @@ namespace ColonyCouncil
             switch (plan.means)
             {
                 case FoundingMeans.Caravan:
-                    PlanJourney(plan);
+                    // The planner opens on the party's plan, to add pack animals or change what they bring.
+                    if (PlanJourney(plan) != null && Find.CurrentMap == home) Dialog_JourneyPlan.Open(true);
                     break;
                 case FoundingMeans.Pods:
                 case FoundingMeans.Gravship:
@@ -281,10 +282,27 @@ namespace ColonyCouncil
                 };
                 var route = JourneyPack.Route(home, j.DestTile, going, 0f, j.departAbs, false, -1f);
                 float road = route.oneWayTicks > 0 ? JourneyMath.TripDays(route.oneWayTicks, false) : 2f;
-                j.days = road + FoundingMath.KitFoodDays;
                 j.low = route.low;
                 j.high = route.high;
-                j.packing = JourneyPack.Packing(home, j.travellers, j.animals, j.days, route, Kit(home, going.Count));
+                // What they can carry (a caravan over its room doesn't move): the fifteen days' food first, fewer days if
+                // it won't fit, then the shelter's materials as far as the room left goes. Pack animals added in the
+                // planner make room for more.
+                float room = going.Sum(p => MassUtility.Capacity(p)) * FoundingMath.LoadShare;
+                var kit = Kit(home, going.Count);
+                foreach (int extra in FoundingMath.FoodDaysTried)
+                {
+                    j.days = road + extra;
+                    j.packing = JourneyPack.Packing(home, j.travellers, j.animals, j.days, route, kit);
+                    if (JourneyPack.Mass(j.travellers, j.packing) <= room) break;
+                }
+                foreach (var line in j.packing.Where(l => l.added && l.kind == "other").Reverse())
+                {
+                    float over = JourneyPack.Mass(j.travellers, j.packing) - room;
+                    if (over <= 0f) break;
+                    float unit = Mathf.Max(0.01f, JourneyPack.UnitMass(line.def));
+                    line.count = Math.Max(0, line.count - Mathf.CeilToInt(over / unit));
+                }
+                j.packing.RemoveAll(l => l.added && l.count <= 0);
                 JourneyRun.Confirm(j, old == null);
                 plan.journey = j.id;
                 return j;
