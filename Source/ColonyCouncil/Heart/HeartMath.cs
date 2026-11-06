@@ -58,11 +58,13 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// The heart's good side (the player's request of 6 November 2026): steady, in good heart, in high spirits. Steady is
-    /// the middle of the one heart, where strain's own steady band is: nothing to speak of either way.
+    /// The heart's good side (the player's request of 6 November 2026): steady, in good heart, in high spirits, each with
+    /// its own good mood (the bands as the player approved them, 6 November 2026). Below steady there is nothing to speak
+    /// of yet: the middle of the one heart, where strain's own steady band is. Never saved (always read from the value).
     /// </summary>
     public enum GoodBand
     {
+        None,
         Steady,
         GoodHeart,
         HighSpirits
@@ -319,29 +321,44 @@ namespace ColonyCouncil
 
         public static readonly int GoodSourceCount = Enum.GetValues(typeof(GoodSource)).Length;
 
-        /// <summary>From here a colonist is in good heart, and from <see cref="HighSpiritsAt"/> in high spirits.</summary>
-        public const float GoodHeartAt = 45f, HighSpiritsAt = 65f;
+        /// <summary>
+        /// From here a colonist is steady, from <see cref="GoodHeartAt"/> in good heart and from <see cref="HighSpiritsAt"/>
+        /// in high spirits; below <see cref="SteadyAt"/>, nothing to speak of yet.
+        /// </summary>
+        public const float SteadyAt = 20f, GoodHeartAt = 45f, HighSpiritsAt = 65f;
 
         public static GoodBand GoodBandFor(float good)
         {
             if (good >= HighSpiritsAt) return GoodBand.HighSpirits;
             if (good >= GoodHeartAt) return GoodBand.GoodHeart;
-            return GoodBand.Steady;
+            if (good >= SteadyAt) return GoodBand.Steady;
+            return GoodBand.None;
         }
 
         /// <summary>The lowest value of a band of the good side (for meters and tooltips).</summary>
-        public static float GoodBandStart(GoodBand band) => band == GoodBand.HighSpirits ? HighSpiritsAt : band == GoodBand.GoodHeart ? GoodHeartAt : 0f;
+        public static float GoodBandStart(GoodBand band)
+        {
+            switch (band)
+            {
+                case GoodBand.Steady: return SteadyAt;
+                case GoodBand.GoodHeart: return GoodHeartAt;
+                case GoodBand.HighSpirits: return HighSpiritsAt;
+                default: return 0f;
+            }
+        }
 
         /// <summary>
-        /// The situational mood thought's size at each band of the good side (Rimfolk_Thoughts_GoodHeart.xml has the same):
-        /// small, a mirror of strain's -3, -5 and -8, and kept small so a well-run colony stays on its balance targets.
+        /// The situational mood thought's size at each band of the good side (Rimfolk_Thoughts_GoodHeart.xml has the same,
+        /// one stage a band from steady): +2, +3 and +5, the bands as the player approved them; nothing yet gives nothing.
+        /// A mirror of strain's -3, -5 and -8, each smaller than strain's across from it.
         /// </summary>
         public static float GoodMood(GoodBand band)
         {
             switch (band)
             {
-                case GoodBand.GoodHeart: return 2f;
-                case GoodBand.HighSpirits: return 3f;
+                case GoodBand.Steady: return 2f;
+                case GoodBand.GoodHeart: return 3f;
+                case GoodBand.HighSpirits: return 5f;
                 default: return 0f;
             }
         }
@@ -461,7 +478,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// A quicker recovery from strain for someone in good heart lately (the good side spent by a hard spell, it stands
-        /// as it stood): strain drains this much faster.
+        /// as it stood): strain drains this much faster. Steady gives only its mood: the dreams and the recovery start in
+        /// good heart.
         /// </summary>
         public static float RecoveryFactor(GoodBand band) => band == GoodBand.HighSpirits ? 1.3f : band == GoodBand.GoodHeart ? 1.15f : 1f;
 

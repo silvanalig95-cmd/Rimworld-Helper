@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    The heart's good side's bands as the player approved them, 6 November 2026 (Source/ColonyCouncil/Heart/GoodHeart.cs,
+    HeartView.cs): steady from 20, in good heart from 45, in high spirits from 65, each with a mood of its own (+2, +3,
+    +5); below steady, nothing yet. These take the place of the "CC_Good_Band_" keys, "CC_Good_Explain" and
+    "CC_Good_ColonySummary" in Rimfolk_GoodHeart.xml, which are left unused.
+  -->
+
+  <!-- The bands, the player's names, and nothing yet below them. -->
+  <CC_GoodSide_Band_None>nothing yet</CC_GoodSide_Band_None>
+  <CC_GoodSide_Band_Steady>steady</CC_GoodSide_Band_Steady>
+  <CC_GoodSide_Band_GoodHeart>in good heart</CC_GoodSide_Band_GoodHeart>
+  <CC_GoodSide_Band_HighSpirits>in high spirits</CC_GoodSide_Band_HighSpirits>
+  <CC_GoodSide_Band_None_Desc>Nothing to speak of yet. Good days fill the heart's good side while strain is at nothing; from 20 a colonist is steady (+2 mood).</CC_GoodSide_Band_None_Desc>
+  <CC_GoodSide_Band_Steady_Desc>Good days are adding up: +2 mood, and a hard knock spends some of it before any strain builds. From 45, in good heart.</CC_GoodSide_Band_Steady_Desc>
+  <CC_GoodSide_Band_GoodHeart_Desc>The good days have added up: +3 mood, brighter dreams, and they get over hard times sooner. A hard knock spends some of it before any strain builds.</CC_GoodSide_Band_GoodHeart_Desc>
+  <CC_GoodSide_Band_HighSpirits_Desc>+5 mood, brighter dreams still, a quicker recovery from strain, and now and then something good comes of it: an inspiration, or a kind word for someone close.</CC_GoodSide_Band_HighSpirits_Desc>
+
+  <!-- The good meter's tooltip, at its foot, and the council's Moods page. -->
+  <CC_GoodSide_Explain>The heart's good side is the other side of strain, and never both at once. It fills slowly while strain is at nothing, mostly from what can't be bought: friends close by, a purpose, deeds the colony speaks well of, gatherings, good talks and a run of small joys; the comforts of home only a little (4 a day at most in all). A hard knock spends it, half a point for each point of strain it would have built, before any strain builds, and it fades slowly. Steady from 20 (+2 mood), in good heart from 45 (+3 mood), in high spirits from 65 (+5 mood); in good heart and in high spirits also brighter dreams and a quicker recovery from strain.</CC_GoodSide_Explain>
+  <CC_GoodSide_ColonySummary>{STEADY} steady, {GOOD} in good heart, {HIGH} in high spirits.</CC_GoodSide_ColonySummary>
+
+</LanguageData>

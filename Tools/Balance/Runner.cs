@@ -53,7 +53,8 @@ namespace Balance
         /// <summary>Strain built and eased a colonist-year, by what (life, Rimfolk's letdowns and joys, the small moods' pile by who made them).</summary>
         public Dictionary<string, double> strainBy { get; set; } = new Dictionary<string, double>();
         public Dictionary<string, double> reliefBy { get; set; } = new Dictionary<string, double>();
-        /// <summary>The heart's good side: time in good heart and in high spirits; inspirations and kind words a colonist-year.</summary>
+        /// <summary>The heart's good side: time steady, in good heart and in high spirits; inspirations and kind words a colonist-year.</summary>
+        public double steady { get; set; }
         public double goodHeart { get; set; }
         public double highSpirits { get; set; }
         /// <summary>Share of the time with strain at nothing.</summary>
@@ -137,8 +138,9 @@ namespace Balance
                 s.strained = colonies.Sum(c => c.bandHours[1]) / heartHours;
                 s.worn = colonies.Sum(c => c.bandHours[2]) / heartHours;
                 s.breaking = colonies.Sum(c => c.bandHours[3]) / heartHours;
-                s.goodHeart = colonies.Sum(c => c.goodBandHours[1]) / heartHours;
-                s.highSpirits = colonies.Sum(c => c.goodBandHours[2]) / heartHours;
+                s.steady = colonies.Sum(c => c.goodBandHours[1]) / heartHours;
+                s.goodHeart = colonies.Sum(c => c.goodBandHours[2]) / heartHours;
+                s.highSpirits = colonies.Sum(c => c.goodBandHours[3]) / heartHours;
                 s.noStrain = colonies.Sum(c => c.noStrainHours) / heartHours;
                 s.goodTenths = Enumerable.Range(0, 10).Select(t => colonies.Sum(c => c.goodTenths[t]) / heartHours).ToArray();
             }

@@ -80,7 +80,7 @@ namespace Balance
                 {
                     var g6 = R("default", st.key, 6).summary;
                     var g12 = R("default", st.key, 12).summary;
-                    sb.AppendLine($"| In good heart / in high spirits, {st.name} (for reference) | a well-run colony's reward | {P(g6.goodHeart)} / {P(g6.highSpirits)} | {P(g12.goodHeart)} / {P(g12.highSpirits)} |" + (before != null ? " - |" : ""));
+                    sb.AppendLine($"| Steady / in good heart / in high spirits, {st.name} (for reference) | a well-run colony's reward | {P(g6.steady)} / {P(g6.goodHeart)} / {P(g6.highSpirits)} | {P(g12.steady)} / {P(g12.goodHeart)} / {P(g12.highSpirits)} |" + (before != null ? " - |" : ""));
                 }
             }
             sb.AppendLine();
@@ -216,12 +216,13 @@ namespace Balance
             sb.AppendLine("The other side of strain (`HeartMath`, \"The good side\"; `HeartSim.cs`): hardship spends it before strain builds; what a");
             sb.AppendLine("gathering, a talk or a small joy eases beyond the strain there is fills it at its share, with friends close by and a");
             sb.AppendLine("purpose (the heart's needs well met, drawn a day at a time per play style), deeds the colony speaks well of and a life");
-            sb.AppendLine("goal moving; it fades slowly. In good heart from " + ColonyCouncil.HeartMath.GoodHeartAt.ToString("0") + ", in high spirits from "
-                + ColonyCouncil.HeartMath.HighSpiritsAt.ToString("0") + "; in high spirits, now and then, an inspiration or a kind word for someone close.");
+            sb.AppendLine("goal moving; it fades slowly. Steady from " + ColonyCouncil.HeartMath.SteadyAt.ToString("0") + ", in good heart from " + ColonyCouncil.HeartMath.GoodHeartAt.ToString("0")
+                + ", in high spirits from " + ColonyCouncil.HeartMath.HighSpiritsAt.ToString("0") + " (+" + ColonyCouncil.HeartMath.GoodMood(ColonyCouncil.GoodBand.Steady).ToString("0") + ", +" + ColonyCouncil.HeartMath.GoodMood(ColonyCouncil.GoodBand.GoodHeart).ToString("0")
+                + " and +" + ColonyCouncil.HeartMath.GoodMood(ColonyCouncil.GoodBand.HighSpirits).ToString("0") + " mood); in high spirits, now and then, an inspiration or a kind word for someone close.");
             sb.AppendLine("Filled and spent are per colonist over the 60-day year; \"without\" is the same seeds with its setting off.");
             sb.AppendLine();
-            sb.AppendLine("| Case | In good heart | In high spirits | Strain at nothing (without) | Inspirations / kind words a colonist-year | Filled by | Spent by |");
-            sb.AppendLine("|---|---|---|---|---|---|---|");
+            sb.AppendLine("| Case | Steady | In good heart | In high spirits | Strain at nothing (without) | Inspirations / kind words a colonist-year | Filled by | Spent by |");
+            sb.AppendLine("|---|---|---|---|---|---|---|---|");
             string Top(Dictionary<string, double> d) => d.Count == 0 ? "-" : string.Join(", ", d.OrderByDescending(kv => kv.Value).Take(4).Select(kv => $"{kv.Key} {kv.Value:0}"));
             foreach (var r in results.Where(r => r.preset == null || r.preset == "lightTouch" || r.preset == "storyRich" || r.preset == "demanding"))
             {
@@ -229,7 +230,7 @@ namespace Balance
                 var off = r.preset == null && r.colonists == 6 ? results.FirstOrDefault(x => x.preset == "" && x.style == r.style) : null;
                 string name = $"{r.colonists} colonists, {r.style.name}" + (r.preset != null ? ", " + r.preset : "");
                 string nothing = P(s.noStrain) + (off != null ? " (" + P(off.summary.noStrain) + ")" : "");
-                sb.AppendLine($"| {name} | {P(s.goodHeart)} | {P(s.highSpirits)} | {nothing} | {s.inspirationsPerYear:0.00} / {s.kindWordsPerYear:0.00} | {Top(s.goodBy)} | {Top(s.goodSpentBy)} |");
+                sb.AppendLine($"| {name} | {P(s.steady)} | {P(s.goodHeart)} | {P(s.highSpirits)} | {nothing} | {s.inspirationsPerYear:0.00} / {s.kindWordsPerYear:0.00} | {Top(s.goodBy)} | {Top(s.goodSpentBy)} |");
             }
             sb.AppendLine();
             sb.AppendLine("What it changes (6 colonists, the same seeds with and without it):");

@@ -480,8 +480,9 @@ stat part contribute nothing and the hooks return 1.
   `HeartMath`, covered by the tests.
 - **Bands** give the only direct effects: a mood of -3/-5/-8, work speed -5%/-10%, darker dreams.
 - **The good side** is strain's other side, never both at once (see "The heart's good side" below): it fills slowly
-  while strain is at nothing, hardship spends it first, and its bands (in good heart, in high spirits) give a second
-  situational thought of the same kind (+2/+3), brighter dreams and a quicker recovery, never work speed.
+  while strain is at nothing, hardship spends it first, and its bands (steady, in good heart, in high spirits) give a
+  second situational thought of the same kind (+2/+3/+5), the upper two brighter dreams and a quicker recovery, never
+  work speed.
 - **Episodes** are the pressure valve, not a punishment: a custom mental state on vanilla's hide-in-room class, started
   silently by the heart (its own letter) and never by the game's break picker, since no MentalBreakDef names it. A think
   tree inserted after the mental states gives it its behavior. Strict conditions (no danger, enough hands, cooldowns,
@@ -602,14 +603,18 @@ strain, right? If they have positive impacts over an extended period"): one hear
   (`StrainRelief.Joys` beyond the strain they have: 1.2), and the comforts of home (the pile of every small good mood,
   the game's fine rooms and meals among them: 0.4 a day, the smallest cap and share, so a rich colony doesn't simply
   buy it). The day's joys cap counts what a joy eased or filled. It fades slowly (about 3% a day, `GoodFadePerHour`).
-- **The bands** (the player's names): steady below 45, in good heart from 45, in high spirits from 65. A small good
-  mood, +2 and +3 (`Council_Heart_GoodSide`, a situational thought reading the band like strain's, nothing stored in
-  memories; it grows ordinary like any good mood, and the pile of small moods leaves it out, `SmallMoments.Heavy`);
-  brighter dreams (sweet dreams 1.2 and 1.4 times as likely, nightmares 0.85 and 0.7, `Heart.DreamFactor`); a quicker
-  recovery from strain (rest eases 1.15 and 1.3 times as fast), read from how high the good side stood lately
-  (`goodLately`, halving in about three days), so someone in good heart before a hard spell gets over it sooner. No
-  work speed. Proposed at about +2, +3 and +5; measured, +2 and +3 with the bands from 45 and 65 keep a well-run
-  colony on its target (see "Balance targets").
+- **The bands** (the player's names), as the player approved them (6 November 2026, "As I approved": three bands that
+  each give a mood): steady from 20 (`SteadyAt`), in good heart from 45, in high spirits from 65; below 20 nothing to
+  speak of yet (`GoodBand.None`, no mood, the meter says "nothing yet"). A small good mood each, +2, +3 and +5
+  (`Council_Heart_GoodSide`, one stage a band, a situational thought reading the band like strain's, nothing stored in
+  memories; it grows ordinary like any good mood, and the pile of small moods leaves it out, `SmallMoments.Heavy`). In
+  good heart and in high spirits also brighter dreams (sweet dreams 1.2 and 1.4 times as likely, nightmares 0.85 and
+  0.7, `Heart.DreamFactor`) and a quicker recovery from strain (rest eases 1.15 and 1.3 times as fast), read from how
+  high the good side stood lately (`goodLately`, halving in about three days), so someone in good heart before a hard
+  spell gets over it sooner; steady gives only its mood. No work speed. Shipped first (0.113.0) as two bands, +2 and
+  +3, steady giving nothing, to keep a well-run colony on its target; the player chose the stronger reward as first
+  approved, knowing Rimfolk's good moods at a high point rise with it (see "Balance targets"). The band is never saved
+  (read from the value), so an older save's colonist above 20 is steady at once.
 - **The release**, the mirror of strain's day off (`GoodRelease`): in high spirits, about once in four days held there
   (`ReleasePerHour`), at most once in 10 days for each colonist and once a day in the colony (`lastReleaseTick`,
   `HeartTracker.lastColonyReleaseTick`), only when it's safe, at home, awake, an adult free colonist, not drafted,
@@ -625,11 +630,12 @@ strain, right? If they have positive impacts over an extended period"): one hear
   weren't built: the game has no honest way to show either on the map.
 - **Words** in every age: the heart's page (the Mood tab's Heart section) has a second meter, "Good heart", with what
   filled it ("friends close by (+6), a purpose (+4)") and what spent it ("fighting (-6)"), a line while strain holds,
-  and the last release; the inspector line and RimHUD read the good band while it shows ("Heart: in good heart ·
+  and the last release; the inspector line and RimHUD read the good band from steady ("Heart: in good heart ·
   proud"); the strain meter's tooltip names the other side; the colonist's card (the Now slot) says the band and what
-  filled it; the council's Moods page counts who is in good heart and in high spirits; the band mood's tooltip says
-  what filled it. Keys in `Rimfolk_GoodHeart.xml`; the Almanac page "the heart's good side" (`Almanac_GoodHeart.xml`),
-  the heart's page with its bands in the table.
+  filled it; the council's Moods page counts who is steady, in good heart and in high spirits; the band mood's tooltip
+  says what filled it. Keys in `Rimfolk_GoodHeart.xml`, the bands' own in `Rimfolk_GoodHeart_Bands.xml` (the first
+  file's band words, explanation and count left unused); the Almanac page "the heart's good side"
+  (`Almanac_GoodHeart.xml`), the heart's page with its bands in the table.
 - **The setting** "The heart's good side" (`heartGoodSide`, on), on the Heart & health page beside the heart's own.
   Off (or the heart off): nothing fills it, what there was is gone at the next hour, the bands give nothing, hardship
   builds strain as before. Dev mode: fill it by 20, and overflow now.
@@ -2065,6 +2071,15 @@ off. Measured (6 colonists, 120 runs, the code just before it and the same seeds
   of the good side a point of hardship, 3% a day of fading, 4 a day in all. Left: Rimfolk's good moods at a high point,
   well run, P99 +17.5 to +17.6 and +12 or more 16% to 18%; +1 and +2 lifted the second just as much (any lasting good
   mood held a third of the time does), so the moods stayed where a colonist feels them.
+- The bands as the player approved them (6 November 2026, "As I approved"): steady from 20 with +2, in good heart +3,
+  in high spirits +5, nothing else changed. Measured against the two bands on the same seeds (6 colonists, 120 runs):
+  Rimfolk's mood well run +6.0 to +6.4, now just over its target (12 colonists +5.0 to +5.7), average +2.5 to +2.6,
+  neglected -7.2 as before (the good side never reaches 20 there); the band mood well run +0.7 to +2.0 before good
+  things growing ordinary take back their part; the whole mood 69%, 64% and 39% as before. Well run, a colonist is
+  steady about 48% of the time, in good heart 28% and in high spirits 3%; average, steady 2%. Rimfolk's good moods at a
+  high point, well run, P99 +17.6 to +17.9 and +12 or more 18% to 21% (at 480 runs +6.0 to +6.5, P99 +17.7 to +18.1,
+  22%): the rise the first pass tuned away, which the player chose knowing it. Strain, the day off and time under the
+  minor-break line unchanged.
 
 **The presets** each aim at their own balance: Light touch about +5, +4 and 0 (well run, average, neglected) with
 fewer questions (measured +6.2, +4.7 and -1.7); Story-rich the default's moods with a question a little more often than

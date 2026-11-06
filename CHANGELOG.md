@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Three good bands
+
+*6 November 2026, version 0.113.1*
+
+- The heart's good side has three bands that each lift the mood, as first approved: steady (+2), in good heart (+3) and in high spirits (+5). Below steady it is nothing to speak of yet.
+- Steady gives only its mood; in good heart and in high spirits keep their brighter dreams and quicker recovery from strain, and high spirits its inspirations and kind words. Steady shows on the meter, the card and the inspector like the others.
+- In the simulator a well-run colony's Rimfolk mood rises a little (about +6.0 to +6.5) while the whole colony's mood and every strained or neglected colony stay as they were.
+
 ## In good heart
 
 *6 November 2026, version 0.113.0*

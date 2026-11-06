@@ -83,7 +83,7 @@ if (quick)
     {
         var x = r.summary;
         Console.WriteLine($"{r.Key,-42} net {x.net,6:0.0} good {x.good,5:0.0} bad {x.bad,6:0.0} steady {x.steadyGood,4:0.0}/{x.steadyBad,5:0.0} mood {x.mood:P0} p10 {x.moodP10:P0} minor {x.underMinor:P1} strain {x.strained:P1}/{x.worn:P1}/{x.breaking:P1} ep {x.episodesPerYear:0.00} gameOrd {x.gameOrdinary:0.0} P99 {x.goodP99:0.0} high12 {x.goodHigh:P0}");
-        Console.WriteLine($"   good side: strain at nothing {x.noStrain:P0}, in good heart {x.goodHeart:P1}, in high spirits {x.highSpirits:P1}; inspirations {x.inspirationsPerYear:0.00}, kind words {x.kindWordsPerYear:0.00} a colonist-year");
+        Console.WriteLine($"   good side: strain at nothing {x.noStrain:P0}, steady {x.steady:P1}, in good heart {x.goodHeart:P1}, in high spirits {x.highSpirits:P1}; inspirations {x.inspirationsPerYear:0.00}, kind words {x.kindWordsPerYear:0.00} a colonist-year");
         if (x.goodTenths != null) Console.WriteLine("   good side by tenths: " + string.Join(" ", x.goodTenths.Select(v => $"{v:P0}")));
         Console.WriteLine("   filled: " + string.Join(", ", x.goodBy.OrderByDescending(kv => kv.Value).Select(kv => $"{kv.Key} {kv.Value:0}")) + "; spent: " + string.Join(", ", x.goodSpentBy.OrderByDescending(kv => kv.Value).Select(kv => $"{kv.Key} {kv.Value:0}")));
         Console.WriteLine("   built: " + string.Join(", ", x.strainBy.OrderByDescending(kv => kv.Value).Select(kv => $"{kv.Key} {kv.Value:0}")));

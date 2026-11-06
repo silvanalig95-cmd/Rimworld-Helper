@@ -17,10 +17,11 @@ namespace ColonyCouncil
     /// a life goal moving (once a day), gatherings, good talks and a run of small joys; the game's comforts (a fine room, a
     /// fine meal) only a little. It fades slowly.
     /// <para>
-    /// Its bands are steady (the middle), in good heart and in high spirits: a small good mood (one situational thought
-    /// reading the band, like strain's), brighter dreams, a quicker recovery from strain for someone in good heart lately,
-    /// and in high spirits, now and then, a release (GoodRelease). No work speed. With its setting off nothing fills, the
-    /// bands give nothing and hardship builds strain as before. Old saves start at nothing.
+    /// Its bands are steady (from 20), in good heart and in high spirits, as the player approved them: each a small good
+    /// mood (+2, +3, +5: one situational thought reading the band, like strain's); in good heart and in high spirits also
+    /// brighter dreams and a quicker recovery from strain for someone in good heart lately, and in high spirits, now and
+    /// then, a release (GoodRelease). Below steady there is nothing to speak of yet. No work speed. With its setting off
+    /// nothing fills, the bands give nothing and hardship builds strain as before. Old saves start at nothing.
     /// </para>
     /// </summary>
     public static class GoodHeart
@@ -30,7 +31,7 @@ namespace ColonyCouncil
         /// <summary>The heart is on and so is its good side.</summary>
         public static bool On => Heart.On && (S?.heartGoodSide ?? true);
 
-        public static GoodBand Band(PawnHeart h) => On && h != null ? HeartMath.GoodBandFor(h.good) : GoodBand.Steady;
+        public static GoodBand Band(PawnHeart h) => On && h != null ? HeartMath.GoodBandFor(h.good) : GoodBand.None;
 
         public static GoodBand BandOf(Pawn p) => Band(Heart.Of(p));
 
@@ -172,9 +173,10 @@ namespace ColonyCouncil
 
         // ---------------- Words ----------------
 
-        public static string BandLabel(GoodBand b) => ("CC_Good_Band_" + b).Translate();
+        // The bands' words, steady's own among them (Rimfolk_GoodHeart_Bands.xml); the "CC_Good_Band_" keys before them are left unused.
+        public static string BandLabel(GoodBand b) => ("CC_GoodSide_Band_" + b).Translate();
 
-        public static string BandDesc(GoodBand b) => ("CC_Good_Band_" + b + "_Desc").Translate();
+        public static string BandDesc(GoodBand b) => ("CC_GoodSide_Band_" + b + "_Desc").Translate();
 
         public static string SourceLabel(GoodSource s) => ("CC_Good_Source_" + s).Translate();
 
@@ -239,7 +241,7 @@ namespace ColonyCouncil
             if (h.strain > 0f) sb.Append("\n").Append("CC_Good_WaitsForStrain".Translate(p.Named("PAWN")).Resolve());
             if (!h.releaseWhy.NullOrEmpty() && Find.TickManager.TicksGame - h.lastReleaseTick < GenDate.TicksPerDay * 15)
                 sb.Append("\n\n").Append("CC_Good_LastRelease".Translate(h.releaseWhy.Named("WHAT"), Ago(h.lastReleaseTick).Named("WHEN")).Resolve());
-            sb.Append("\n\n").Append("CC_Good_Explain".Translate().ToString().Colorize(ColoredText.SubtleGrayColor));
+            sb.Append("\n\n").Append("CC_GoodSide_Explain".Translate().ToString().Colorize(ColoredText.SubtleGrayColor));
             return sb.ToString();
         }
 
@@ -250,11 +252,11 @@ namespace ColonyCouncil
             return ago < GenDate.TicksPerHour ? "CC_Good_JustNow".Translate().ToString() : "CC_Good_Ago".Translate(TextUtil.DaysString(ago)).Resolve();
         }
 
-        /// <summary>One line for the colonist's card and the Mood tab: "In good heart: friends close by and a purpose." Null while steady.</summary>
+        /// <summary>One line for the colonist's card and the Mood tab: "In good heart: friends close by and a purpose." Null with nothing yet.</summary>
         public static string Line(Pawn p, PawnHeart h)
         {
             var band = Band(h);
-            if (band == GoodBand.Steady) return null;
+            if (band == GoodBand.None) return null;
             string built = BuiltText(h, 2);
             return built == null
                 ? "CC_Good_Line".Translate(BandLabel(band).CapitalizeFirst().Named("BAND"), p.Named("PAWN")).Resolve()
@@ -264,8 +266,8 @@ namespace ColonyCouncil
 
     /// <summary>
     /// The good side as a mood: a situational thought that reads the colonist's band each time the game asks, so nothing
-    /// is stored in their memories. In good heart and in high spirits; nothing while steady, with the good side or the
-    /// heart off, or on "Advisor only" stakes.
+    /// is stored in their memories. A stage a band: steady, in good heart, in high spirits; nothing with nothing yet, with
+    /// the good side or the heart off, or on "Advisor only" stakes.
     /// </summary>
     public class ThoughtWorker_HeartGood : ThoughtWorker
     {
@@ -276,8 +278,9 @@ namespace ColonyCouncil
             if (h == null || !Heart.Eligible(p)) return ThoughtState.Inactive;
             switch (HeartMath.GoodBandFor(h.good))
             {
-                case GoodBand.GoodHeart: return ThoughtState.ActiveAtStage(0);
-                case GoodBand.HighSpirits: return ThoughtState.ActiveAtStage(1);
+                case GoodBand.Steady: return ThoughtState.ActiveAtStage(0);
+                case GoodBand.GoodHeart: return ThoughtState.ActiveAtStage(1);
+                case GoodBand.HighSpirits: return ThoughtState.ActiveAtStage(2);
                 default: return ThoughtState.Inactive;
             }
         }

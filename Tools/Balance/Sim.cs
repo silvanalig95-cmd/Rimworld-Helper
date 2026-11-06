@@ -169,8 +169,8 @@ namespace Balance
         public int episodes;
         /// <summary>Hours in each band of strain, all colonists, in the measured year; strain built and eased by what, per colonist.</summary>
         public readonly double[] bandHours = new double[4];
-        /// <summary>Hours in each band of the good side (steady, in good heart, in high spirits), and its releases (inspirations, kind words).</summary>
-        public readonly double[] goodBandHours = new double[3];
+        /// <summary>Hours in each band of the good side (nothing yet, steady, in good heart, in high spirits: GoodBand), and its releases (inspirations, kind words).</summary>
+        public readonly double[] goodBandHours = new double[4];
         public readonly int[] releases = new int[2];
         private int lastColonyRelease = -999999, heartRaidHour = -1;
         /// <summary>Hours with strain at nothing (when the good side can fill).</summary>
@@ -637,7 +637,7 @@ namespace Balance
                 part = "strain";
                 c.strain = (int)HeartMath.BandFor(c.heart.strain);
                 if (set.B("heart") && c.strain > 0) Add(defs.T("Council_Heart_Strain")?.Stage(c.strain - 1) ?? 0f);
-                // The heart's good side: in good heart, in high spirits (a situational mood like strain's).
+                // The heart's good side: steady, in good heart, in high spirits, a stage each (a situational mood like strain's).
                 part = "the good side";
                 int goodBand = c.heart.goodOn ? (int)HeartMath.GoodBandFor(c.heart.good) : 0;
                 if (goodBand > 0) Add(defs.T("Council_Heart_GoodSide")?.Stage(goodBand - 1) ?? 0f);
