@@ -279,12 +279,14 @@ namespace ColonyCouncil
         {
             var ep = CouncilGameComponent.Instance?.epithets;
             if (ep != null)
+            {
                 foreach (var d in ep.Of(p))
                     if (d != null && !d.dubious)
-                    {
                         hits.Add(new RenownMath.Hit("epithet", 0f, 1f, RenownMath.EpithetFor(d.defName)));
-                        if (details != null && !details.ContainsKey("epithet")) details["epithet"] = d.label;
-                    }
+                // Said abroad by the one name they are known by at home (KnownAs's short form; a proud one comes first).
+                var chief = details != null ? ep.Chief(p) : null;
+                if (chief != null && !chief.dubious) details["epithet"] = chief.label;
+            }
             if (p.records != null)
             {
                 foreach (var kv in RenownMath.Offices)
