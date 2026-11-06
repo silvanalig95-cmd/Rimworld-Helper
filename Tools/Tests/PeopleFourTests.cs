@@ -49,7 +49,6 @@ public static class PeopleFourTests
                 foreach (var li in e.Element(tone)?.Elements("li") ?? Enumerable.Empty<XElement>())
                     yield return (tone, li.Value);
         }
-        string Body(string line) => Regex.Replace(line, @"^\[[^\]]*\]\s*", "");
         void Words(string where, string text)
         {
             C(!text.Contains('—') && !text.Contains('–'), $"{where}: no dashes ({text})");
