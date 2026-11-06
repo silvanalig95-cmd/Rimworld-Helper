@@ -1395,7 +1395,8 @@ of work (1.2.1, 1.2.2, 3.2.1, below); the other seven of the top ten are built o
   peaceful game comes to about two fifths, the hardest about a quarter more. `Harm.Scale` is the two together.
 - **The shared cap** (`HarmMath.Bar`, `Harm.May`): at most one Rimfolk-made hurt per colonist in three days (the last
   one's tick saved in `HarmBook.lastHurt`, by thingIDNumber, pruned past three days), and none while downed, in a sickbed
-  or in need of one (`PlayOuts.MedicalRest`), pregnant, or already fighting (drafted, a social fight or a rage, at an
+  or in need of one (`Harm.Sickbed`: in a medical bed or resting, bleeding, or ill with something that can kill; a small
+  thing still to be tended, a strained back or last week's cut, is not a sickbed), pregnant, or already fighting (drafted, a social fight or a rage, at an
   attack, hurt or attacking within the hour). Babies never; children only `HurtClass.Mild` (a scrape, a cold), never an
   injury, a bout or a fight.
 - **Nothing kills outright.** A wound lands only on a hand, an arm, a foot, a leg or the torso (a crack on one of their

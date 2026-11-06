@@ -9,7 +9,7 @@
   <CC_SetSec_Hurts_Note>Rimfolk's own small hurts: a real blow at drill, a slip on a long day, a strain worked until it gives. Never more than one in three days for anyone, none for babies, only the mildest for children, and nothing that kills outright.</CC_SetSec_Hurts_Note>
   <CC_Settings_EverydayHurts>Hurts from everyday life: {0}</CC_Settings_EverydayHurts>
   <CC_Settings_EverydayHurts_Tip>How often Rimfolk's own small hurts come, from 0% (never) to 200% (twice as often). They also lean with the storyteller's threat and disease settings, so a peaceful game stays gentle. Each comes from something on the map, is one of the game's own wounds or one of Rimfolk's ailments, and is tended by the game's doctors. Each system's own setting still switches its part off.</CC_Settings_EverydayHurts_Tip>
-  <CC_SetNote_EverydayHurts>At 100%, a five-day drills decree in a colony of ten brings about one real blow, and a long day under a work decree a slip about one time in 150.</CC_SetNote_EverydayHurts>
+  <CC_SetNote_EverydayHurts>At 100%, about one real blow per five-day drills decree for ten people, and a slip in one long workday in 150.</CC_SetNote_EverydayHurts>
 
   <!-- ===================== Named before the choice (a decree's card and letter) ===================== -->
 

@@ -100,11 +100,23 @@ namespace ColonyCouncil
             HarmBook.Instance?.Record(p, Now);
         }
 
-        private static bool Sickbed(Pawn p)
+        /// <summary>
+        /// In a sickbed, or ought to be: in a medical bed or resting in one, bleeding, or ill with something that can kill
+        /// (the flu, the plague, an infection). A small thing still to be tended (a strained back, last week's cut) is not
+        /// a sickbed: people work on with those, and some of the hurts here are about just that.
+        /// </summary>
+        public static bool Sickbed(Pawn p)
         {
             try
             {
-                return PlayOuts.MedicalRest(p);
+                if (p.CurJobDef == JobDefOf.LayDownResting) return true;
+                if (p.InBed() && (RestUtility.CurrentBed(p)?.Medical ?? false)) return true;
+                var set = p.health.hediffSet;
+                if (set.BleedRateTotal > 0.01f) return true;
+                var hs = set.hediffs;
+                for (int i = 0; i < hs.Count; i++)
+                    if (!(hs[i] is Hediff_Injury) && hs[i].Visible && hs[i].def.lethalSeverity > 0f) return true;
+                return false;
             }
             catch
             {
