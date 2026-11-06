@@ -28,12 +28,10 @@ public static class HistoryTests
 
         // ---------------- Kinds ----------------
 
-        // The chronicle's kinds, in ChronicleKind's order, and its milestones, read from Chronicle.cs.
-        string chron = File.ReadAllText(Path.Combine(src, "Chronicle.cs"));
-        var enumBody = Regex.Match(chron, @"public enum ChronicleKind\s*\{(.*?)\}", RegexOptions.Singleline).Groups[1].Value;
-        enumBody = Regex.Replace(enumBody, @"///.*", "");
-        var kinds = Regex.Matches(enumBody, @"\b([A-Z]\w*)\b").Select(m => HistoryMath.LowerFirst(m.Groups[1].Value)).ToList();
+        // The chronicle's kinds, in ChronicleKind's order (ChronicleMath.cs, shared with the tests), and its milestones, read from Chronicle.cs.
+        var kinds = Enum.GetNames(typeof(ChronicleKind)).Select(HistoryMath.LowerFirst).ToList();
         C(kinds.Count == 20 && kinds.SequenceEqual(HistoryKinds.Chronicle), "the chronicle's kinds in ChronicleKind's order: " + string.Join(",", kinds));
+        string chron = File.ReadAllText(Path.Combine(src, "Chronicle.cs"));
         var mileExpr = Regex.Match(chron, @"public bool Milestone\s*=>(.*?);", RegexOptions.Singleline).Groups[1].Value;
         var miles = Regex.Matches(mileExpr, @"ChronicleKind\.(\w+)").Select(m => HistoryMath.LowerFirst(m.Groups[1].Value)).OrderBy(s => s).ToList();
         C(miles.Count == 6 && miles.SequenceEqual(HistoryKinds.Milestones.OrderBy(s => s)), "the milestones are the chronicle's own: " + string.Join(",", miles));
@@ -284,9 +282,10 @@ public static class HistoryTests
             var years = new HistoryBook();
             var r5 = new Random(seed);
             int maxSeen = 0;
+            // What the old chronicle list (300 lines, the newest 200 always, milestones longest) would hold, to compare.
             var chronicle = new List<(int tick, string kind, string text)>();
-            var control = new List<(int tick, string kind, string text)>();
             var everMile = new List<(int tick, string kind, string text)>();
+            var lineAt = new Dictionary<(int, string), string>();
             bool Mile((int tick, string kind, string text) x) => HistoryKinds.Milestones.Contains(x.kind);
             bool within = true;
             for (int d = 0; d < 300 && within; d++)
@@ -298,13 +297,12 @@ public static class HistoryTests
                     int kind = r5.Next(5) == 0 ? new[] { 14, 16, 19, 15, 7 }[r5.Next(5)] : new[] { 0, 1, 2, 3, 4, 10, 11, 12, 13, 17, 18 }[r5.Next(11)];
                     string text = new string('x', 60 + r5.Next(120)) + d + "." + i;
                     var entry = (tick, HistoryKinds.OfChronicle(kind), text);
-                    // The chronicle as AddChronicle keeps it, and the same with no history beside it.
                     chronicle.Add(entry);
-                    if (chronicle.Count > Caps.Chronicle) Caps.TrimKeeping(chronicle, Caps.Chronicle, Mile, Caps.ChronicleNewest);
-                    control.Add(entry);
-                    if (control.Count > Caps.Chronicle) Caps.TrimKeeping(control, Caps.Chronicle, Mile, Caps.ChronicleNewest);
+                    if (chronicle.Count > 300) Caps.TrimKeeping(chronicle, 300, Mile, 200);
                     if (Mile(entry)) everMile.Add(entry);
-                    years.Add(HistoryMath.FromChronicle(tick, kind, text, "Human" + r5.Next(20), col));
+                    string who = "Human" + r5.Next(20);
+                    lineAt[(tick, text)] = who;
+                    years.Add(HistoryMath.FromChronicle(tick, kind, text, who, col));
                 }
                 for (int i = 0; i < deeds; i++)
                 {
@@ -329,22 +327,57 @@ public static class HistoryTests
                                   + $"the most between folds {maxSeen}, reaching back to day {years.events.Min(e => e.tick) / Day}");
             C(years.events.Count(e => e.folded) > 0 && years.events.Where(e => e.folded).All(e => e.line == null && e.count > 1), $"{name}: old seasons are summaries without lines");
 
-            // The chronicle itself: exactly what it would be with no history beside it.
-            C(chronicle.SequenceEqual(control), $"{name}: the chronicle keeps what it kept before, in the same order");
-            // What the chronicle shows lately is in the history line for line: the last sixty days in an ordinary colony,
-            // the last fifteen in a busy one (crowded, it folds sooner); and every milestone the history still reaches.
+            // The chronicle is the history's view (ChronicleMath.Shows): what it shows lately is there line for line, the
+            // last sixty days in an ordinary colony, the last fifteen in a busy one (crowded, it folds sooner); and every
+            // milestone the history still reaches.
+            var view = years.events.Where(e => ChronicleMath.Shows(e, null)).ToList();
             int now5 = 299 * Day + Day / 2;
             int window = busy ? HistoryMath.CrowdedFoldDays.Min() : HistoryMath.FoldDays;
-            var hist = new HashSet<(int, string, string)>(years.events.Where(e => e.line != null).Select(e => (e.tick, e.kind, e.line)));
+            var hist = new HashSet<(int, string, string)>(view.Where(e => e.line != null).Select(e => (e.tick, e.kind, e.line)));
             var young = chronicle.Where(x => x.tick >= now5 - window * Day).ToList();
-            C(young.Count > 0 && young.All(x => hist.Contains((x.tick, x.kind, x.text))), $"{name}: the chronicle's last {window} days are in the history as written ({young.Count})");
+            C(young.Count > 0 && young.All(x => hist.Contains((x.tick, x.kind, x.text))), $"{name}: the chronicle's last {window} days are in its view as written ({young.Count})");
             int oldestKept = years.events.Min(e => e.tick);
             var miles2 = everMile.Where(x => x.tick >= oldestKept).ToList();
-            C(miles2.Count > 0 && miles2.All(x => hist.Contains((x.tick, x.kind, x.text))), $"{name}: every milestone the history reaches back to is there ({miles2.Count} of {everMile.Count})");
-            // The chronicle drops its older everyday lines at 300; the history keeps every milestone ever written in an ordinary colony.
+            C(miles2.Count > 0 && miles2.All(x => hist.Contains((x.tick, x.kind, x.text))), $"{name}: every milestone the history reaches back to is in the view ({miles2.Count} of {everMile.Count})");
+            // The old list dropped its older everyday lines at 300; the view keeps every milestone ever written in an ordinary colony.
             if (!busy) C(miles2.Count == everMile.Count, $"{name}: every milestone of five years is kept ({miles2.Count} of {everMile.Count})");
-            C(years.events.Where(e => !e.folded && HistoryKinds.Chronicle.Contains(e.kind)).All(e => e.line != null), $"{name}: a chronicle line that isn't folded keeps its words");
+            C(view.Where(e => !e.folded).All(e => e.line != null), $"{name}: a chronicle line that isn't folded keeps its words");
+            C(view.Count == years.events.Count(e => HistoryKinds.Chronicle.Contains(HistoryKinds.Family(e.kind))) && view.All(e => !HistoryKinds.Matches(e.kind, HistoryKinds.Deed)),
+                $"{name}: the view is the chronicle's lines and their summaries, never a people's deed ({view.Count})");
+            // Nothing the old list would still show is lost: each of its lines is in the view as written, or counted in its
+            // season's summary (folded into it), unless the bound let it go.
+            int lost = 0;
+            foreach (var x in chronicle)
+            {
+                if (hist.Contains((x.tick, x.kind, x.text))) continue;
+                var told = HistoryMath.FromChronicle(x.tick, HistoryKinds.Chronicle.ToList().IndexOf(x.kind), x.text, lineAt[(x.tick, x.text)], col);
+                if (!view.Any(s => HistoryBook.Holds(s, told))) lost++;
+            }
+            C(busy || lost == 0, $"{name}: every line the old chronicle list would show is in the view, or counted in its season's summary ({lost} not)");
+            // It reaches back further than the old list did.
+            C(view.Min(e => e.first) <= chronicle.Min(x => x.tick), $"{name}: the view reaches back to day {view.Min(e => e.first) / Day}, the old list to day {chronicle.Min(x => x.tick) / Day}");
         }
+
+        // An older save's list taken in where the history already folded its lines: counted once, not twice.
+        var folded = new HistoryBook();
+        var anaLines = new List<HistoryEntry>();
+        for (int i = 0; i < 4; i++)
+        {
+            var l = HistoryMath.FromChronicle(i * Day + 5, 0, "Ana wished " + i + ".", "Human1", col);
+            anaLines.Add(HistoryMath.FromChronicle(l.tick, 0, l.line, "Human1", col));
+            folded.Add(l);
+        }
+        folded.Add(HistoryMath.FromChronicle(5, 16, "Bo died.", "Human2", col));
+        folded.Fold(80 * Day, 0);
+        int wishes = folded.CountOf("wishMade");
+        C(folded.events.Count(e => e.folded) == 1 && wishes == 4, "four small lines of a season fold into one summary of four");
+        anaLines.Add(HistoryMath.FromChronicle(5, 16, "Bo died.", "Human2", col));
+        anaLines.Add(HistoryMath.FromChronicle(70 * Day, 0, "Cy wished.", "Human3", col));
+        C(folded.TakeChronicle(anaLines) == 1 && folded.CountOf("wishMade") == wishes + 1 && folded.CountOf("loss") == 1,
+            "an older save's lines already folded or kept stay out; only the one the history lacks comes in");
+        C(!HistoryBook.Holds(folded.events.First(e => e.folded), HistoryMath.FromChronicle(5, 0, "Ana wished 0.", "Human9", col))
+          && !HistoryBook.Holds(folded.events.First(e => e.folded), HistoryMath.FromChronicle(5, 1, "x", "Human1", col)),
+            "a summary holds only lines of its kind and of the one it is of");
 
         // An older save's chronicle comes in once, as it is, and again nothing (the same tick and words, as often as there).
         var older = new HistoryBook();
@@ -358,23 +391,24 @@ public static class HistoryTests
             HistoryMath.FromChronicle(20, 0, "Bo wished.", "Human2", col), HistoryMath.FromChronicle(30, 0, "New.", "Human2", col) };
         C(older.TakeChronicle(again) == 1 && older.Count == 4, "and only what isn't there yet the next time");
 
-        // ---------------- The mod's side: written through, and the chronicle untouched ----------------
+        // ---------------- The mod's side: one record, the chronicle its view ----------------
 
         string comp = File.ReadAllText(Path.Combine(src, "CouncilGameComponent.cs"));
-        var add = Regex.Match(comp, @"public void AddChronicle\(ChronicleEntry entry\)\s*\{(.*?)\n        \}", RegexOptions.Singleline).Groups[1].Value;
-        int iAdd = add.IndexOf("chronicle.Add(entry);", StringComparison.Ordinal);
-        int iTrim = add.IndexOf("Caps.TrimKeeping(chronicle, MaxChronicle, e => e.Milestone, Caps.ChronicleNewest);", StringComparison.Ordinal);
-        int iHist = add.IndexOf("History.FromChronicle(entry);", StringComparison.Ordinal);
-        C(iAdd >= 0 && iTrim > iAdd && iHist > iTrim, "AddChronicle adds and trims as before, then writes the history");
+        C(comp.Contains("public void AddChronicle(ChronicleEntry entry) => History.FromChronicle(entry);"), "a chronicle line is written into the history, and kept nowhere else");
         string hist2 = File.ReadAllText(Path.Combine(src, "World", "Ledger", "History.cs"));
         var from = Regex.Match(hist2, @"public static void FromChronicle\(ChronicleEntry entry\)(.*?)\n        \}", RegexOptions.Singleline).Groups[1].Value;
-        C(from.Contains("try") && from.Contains("catch") && !from.Contains(".chronicle"), "the history's side can't throw into it, and never touches the chronicle's list");
-        foreach (var reader in new[] { "UI/ChroniclePanel.cs", "World/YearLetter.cs", "Annals.cs", "UI/OverviewPanel.cs", "UI/AmbitionPanel.cs", "UI/WishesPanel.cs" })
+        C(from.Contains("try") && from.Contains("catch") && !from.Contains(".chronicle"), "the history's side can't throw into it");
+        foreach (var file in Directory.GetFiles(src, "*.cs", SearchOption.AllDirectories))
         {
-            string text = File.ReadAllText(Path.Combine(src, reader));
-            C(text.Contains("comp.chronicle") && !Regex.IsMatch(text, @"\bHistory\.(Of|At|Latest|Count|Get)\("), $"{reader} reads the chronicle as before");
+            string rel = file.Substring(src.Length + 1).Replace('\\', '/');
+            if (rel == "CouncilGameComponent.cs" || rel == "World/Ledger/History.cs") continue;
+            C(!Regex.IsMatch(File.ReadAllText(file), @"\bcomp\??\.chronicle\b|\bInstance\??\.chronicle\b"), $"{rel} reads the chronicle as the history's view, not the old list");
         }
-        C(Regex.Matches(comp, @"Scribe_Collections\.Look\(ref chronicle, ""chronicle"", LookMode\.Deep\)").Count == 1, "the chronicle is saved as before");
+        C(Regex.Matches(comp, @"if \(Scribe\.mode != LoadSaveMode\.Saving\) Scribe_Collections\.Look\(ref chronicle, ""chronicle"", LookMode\.Deep\)").Count == 1,
+            "an older save's chronicle list is read, never written again");
+        var ready = Regex.Match(hist2, @"private void HistoryReady\(\)(.*?)\n        \}", RegexOptions.Singleline).Groups[1].Value;
+        C(ready.Contains("history.TakeChronicle(lines);") && ready.Contains("chronicle.Clear();") && ready.Contains("catch"),
+            "the ledger takes an older save's list into the history at every load, each line once, then lets it go");
         string led = File.ReadAllText(Path.Combine(src, "World", "Ledger", "WorldLedger.cs"));
         C(led.Contains("ExposeHistory();") && led.Contains("HistoryReady();"), "the ledger saves the history and takes an older save's chronicle in");
         C(hist2.Contains("Sched.Every(tm.TicksGame, Sched.DayTicks, Sched.DailyHistory)") && hist2.Contains("PassClock.Time(Pass.DailyHistory)"), "the history folds in its own daily pass, timed");

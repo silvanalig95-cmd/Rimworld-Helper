@@ -10,9 +10,6 @@ namespace ColonyCouncil
     /// </summary>
     public static class Caps
     {
-        /// <summary>Chronicle entries; the newest <see cref="ChronicleNewest"/> always stay, older milestones outlast older everyday lines.</summary>
-        public const int Chronicle = 300;
-        public const int ChronicleNewest = 200;
         /// <summary>Journals of people no longer with the colony, kept by their last line (the living keep theirs).</summary>
         public const int DepartedJournals = 30;
         /// <summary>Years of annals.</summary>

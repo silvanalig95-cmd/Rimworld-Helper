@@ -10,9 +10,10 @@ namespace ColonyCouncil
     /// <summary>
     /// What the council window keeps with each game: the things the player follows (at most twelve, by their text form,
     /// "p123", "t55": UI/FollowMath.cs) and the wishes pinned to This week, a week of each colonist's trust (one sample a
-    /// day, for the trends), and the answered dilemmas (<see cref="DilemmaLog"/>). Things are kept by their text form,
-    /// never by reference, so something gone can't break a save. Its tick does almost nothing: one check every 250 ticks,
-    /// a sample once a day, and the dilemma watch only while an answer is still playing out. It also hears the optional
+    /// day, for the trends), the answered dilemmas (<see cref="DilemmaLog"/>), and every answer still playing out
+    /// (<see cref="Answers"/>). Things are kept by their text form, never by reference, so something gone can't break a
+    /// save. Its tick does almost nothing: one check every 250 ticks, a sample once a day, and the watch of answers only
+    /// while one is still playing out. It also hears the optional
     /// keyboard shortcuts for the council's pages (<see cref="CouncilKeys"/>) and the search's key.
     /// </summary>
     public class WeekMemory : GameComponent
@@ -23,6 +24,8 @@ namespace ColonyCouncil
         private List<string> pinnedPawns;
         public List<int> pinnedWishes = new List<int>();
         public List<DilemmaRecord> dilemmas = new List<DilemmaRecord>();
+        /// <summary>Answers of every kind whose play-outs are still watched (Dilemmas/Answers.cs): each only until what it set going is over.</summary>
+        public List<AnswerWatch> answers = new List<AnswerWatch>();
         /// <summary>Trust by day, per colonist: "ThingID" → "lastDay|v;v;v" (oldest first), parallel lists for saving.</summary>
         private List<string> trustKeys = new List<string>();
         private List<string> trustValues = new List<string>();
@@ -207,6 +210,7 @@ namespace ColonyCouncil
                     Sample(day);
                 }
                 if (DilemmaLog.AnyWatched(dilemmas)) DilemmaLog.Watch(dilemmas);
+                if (Answers.AnyWatched(answers)) Answers.Watch(answers);
             }
             catch (Exception e)
             {
@@ -239,6 +243,7 @@ namespace ColonyCouncil
             if (Scribe.mode == LoadSaveMode.LoadingVars) Scribe_Collections.Look(ref pinnedPawns, "pinnedPawns", LookMode.Value);
             Scribe_Collections.Look(ref pinnedWishes, "pinnedWishes", LookMode.Value);
             Scribe_Collections.Look(ref dilemmas, "dilemmas", LookMode.Deep);
+            Scribe_Collections.Look(ref answers, "answers", LookMode.Deep);
             Scribe_Collections.Look(ref trustKeys, "trustKeys", LookMode.Value);
             Scribe_Collections.Look(ref trustValues, "trustValues", LookMode.Value);
             Scribe_Values.Look(ref lastSampleDay, "lastSampleDay", -1);
@@ -251,6 +256,8 @@ namespace ColonyCouncil
                 pinnedWishes ??= new List<int>();
                 dilemmas ??= new List<DilemmaRecord>();
                 dilemmas.RemoveAll(d => d == null);
+                answers ??= new List<AnswerWatch>();
+                answers.RemoveAll(a => a == null);
                 trustKeys ??= new List<string>();
                 trustValues ??= new List<string>();
                 trails = null;

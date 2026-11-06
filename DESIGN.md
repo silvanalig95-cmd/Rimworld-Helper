@@ -1877,7 +1877,7 @@ Core types:
   and a reason) and says when a wish is fulfilled.
 - `Wish`: the live, saved instance (who asked, for whom, about whom, expiry, quote, co-signers).
 - `CouncilGameComponent`: generates, tracks, grants and expires wishes hourly; owns the
-  chronicle, the ambition tracker and personal touches.
+  ambition tracker and personal touches; tells the chronicle (`AddChronicle`, into the one history).
 - `AdvisorSignalDef` / `AdvisorSignalWorker` + `CouncilMapComponent`: advice per map,
   refreshed hourly, ranked by severity, urgency and confidence.
 - `AmbitionDef` + goal classes + `AmbitionTracker`: council meetings and the active ambition.
@@ -2180,16 +2180,67 @@ with it. Its pure parts (`HistoryMath.cs`: the entry, the kinds, the book with i
   calledIn, broken, ended, putOff) for the ledger's ties, and `world:founded`, `world:built`, `world:razed`,
   `world:taken`, `world:vassal` and `world:battle` for what other mods do to the world (below). Asking for a family
   finds every kind in it.
-- **What writes.** Every line of the chronicle: `AddChronicle` adds to the chronicle and trims it exactly as before,
-  then writes the same line into the history (its tick, words and kind, the colonist as an actor, their colony as the
-  place; a milestone of the chronicle is one here). The chronicle stays a list of its own rather than becoming a view:
-  its panel, the year letter, the annals, the calendar and its other readers index it directly, its cap keeps
-  milestones for years where the history folds and bounds by rules of its own, and the save keeps it where it was, so
-  every reader sees exactly what it saw. A world situation's lines carry its place, its people, its enemy and its own
-  person (`History.Situation`). The deeds the peoples remember (`FactionMemory.Note`): the people and the colony with
-  their parts by the deed's side, a run of the same within a day one entry with a count (a raid's fallen), a deed of
-  size 15 or more a milestone. The ledger's ties when made or moved, and when they reach their end at their until. An
-  older save's chronicle is taken in on its first load (where its lines happened isn't known: the seat).
+- **What writes.** Every line told for the chronicle: `AddChronicle` writes it into the history and nowhere else (its
+  tick, words and kind, the colonist as an actor, their colony as the place; a milestone of the chronicle is one here;
+  `History.About` adds others who took part, as an election's one line does for every seat filled). Every question's
+  answer (`Answers`, below). A world situation's lines carry its place, its people, its enemy and its own person
+  (`History.Situation`). The deeds the peoples remember (`FactionMemory.Note`): the people and the colony with their
+  parts by the deed's side, a run of the same within a day one entry with a count (a raid's fallen), a deed of size 15
+  or more a milestone. The ledger's ties when made or moved, and when they reach their end at their until. The region's
+  and diplomacy's own events, with their words.
+- **The chronicle is its view** (the player's decision of 6 November 2026, phase 1 of the review: one record). Colony →
+  Chronicle reads the history (`Chronicle.Lines`, newest first, built again when the history changes): every line told
+  for it, every answer, and the colony's own milestones written elsewhere with words (a brigands' hold found, a trading
+  post opened, a pact: at one of its homes or with its people in it). Never a deed, a tie or a far town's news: those
+  are the region window's History. Which kinds it shows and under which of its kinds, and a season's summary in words,
+  are `ChronicleMath` (pure, `Tools/Tests/OneRecordTests.cs`): the chronicle's twenty kinds, a situation's `world:began`
+  and `world:ended` (the region's other `world:` kinds are its own), an answer under its question's kind (a small one
+  not at all). A summary reads "Harper made 5 wishes. (Day 12 to Day 26)"; an answer adds what came of it ("It took
+  place (the feast: 12 came).") and shows its whole record on hover. So it reaches back to the first day: the last
+  sixty days line for line, older seasons' small lines as one each, milestones as told (the save at day 128 had lost
+  everything before day 41 in the old list). The overview's lately, the Wishes and Ambition pages' earlier lines, the
+  year's letter, the calendar's backfill, the storyteller's tale, the travellers' reason to visit and the faith's
+  "told already" all read the view or the history. Nothing is kept twice: the old list (300 lines) is gone.
+- **An older save.** Its chronicle list is read on load and never written again (`CouncilGameComponent.chronicle`, in
+  LoadingVars only); at every load the ledger takes it into the history (`HistoryBook.TakeChronicle`) and lets it go.
+  A line comes in unless the history has it already: the same tick and words (as many times as it is there), or a
+  season's summary of its kind and of the one it is of whose days hold it (folded into it, it counts there). A save from
+  before the history had its whole list come in; a later one had every line in the history already (where its lines
+  happened isn't known: the seat). No error is logged.
+- **The answers' log** (`Dilemmas/Answers.cs`, pure `AnswerMath.cs`). Every kind of question letter writes one entry of
+  the family `answer` when it is answered or its time runs out: the dilemma, Rimfolk's event, the world event, a camp's
+  word, the calendar's day, the meeting, the election (backing a candidate or calling a seat off, where it's done;
+  letting the vote run a small one), a brigands' hold's terms, a hamlet's ask, a journey at the gate, and the thirteen
+  of diplomacy (a call to arms, an envoy, two ransoms, a vassal's ask, a ward, a hostage forfeit, a match, a feast, a
+  favour, fealty, a pact, a truce): 23 letters, `AnswerMath.Sources`. Its values: the question, the answer, the
+  follow-up's first sentence, how it went, a word on it, and whether nobody answered. Its line is the chronicle's
+  (`CC_Answer_Line`, "the council chose", one wording for dilemmas and events alike; a meeting's choice and a kept day
+  keep their own lines, which become the answer's). What the answer set going on the map is watched (`AnswerWatch` in
+  `WeekMemory`, a light look every 250 ticks and only while one is): waiting, under way, then taken place (with the
+  play-out's note) or never come about; a gamble gone wrong stays so. A small answer (an event never chronicled, letting
+  the vote run, waiting an hour at the gate, letting a day pass) is kept and listed but not chronicled. The letters'
+  own options are wrapped (`Answers.Recorded`, `RecordedAll`: the letter's stock options pass as they are). Council →
+  Dilemmas lists every question's answer: the dilemmas from their own log (with what each answer was to do), the rest
+  from the history, sorted by day, filtered the same way.
+- **The year, told once** (`World/YearLetter.cs`, pure `YearLetterMath.cs`). It was told four times within two days
+  (the annals at the calendar's new year, "the year on this land" at the landing's anniversary, the founding day's
+  letter, and their chronicle lines). Now one letter on the landing's anniversary, the colony's founding day (the
+  first days of a new year since the landing), with the annals' setting, written by the annalist or whoever reads and
+  talks best: the people first (the annals' figures, `AnnalsTracker.PeoplePart`, the richest of the three, counted
+  from one landing day to the next; wishes and ambitions counted from the chronicle's view, a summary for all it
+  stands for), then the land and the world (the year letter's part), then the founding (who has been here since the
+  first days, the dead, the colony's name on the roads, its customs: the founding event's own lines, `YearFacts`), and
+  the author's last word. A year counted from part of the way through (the mod added midway, or an older save whose
+  annals ran by the calendar year) says since when. The founding event keeps only who keeps the day tonight (the last
+  of the first, the Founder, the first child grown) and asks how to keep it; the calendar's letter, when Rimfolk's
+  events are off, asks the same. The chronicle has one line ("Harper wrote down the colony's second year."), and the
+  Chronicle's header has a button for each year ("The second year"; an older save's annals keep "Annals of 5501").
+- **Less noise in the record** (the systems review's list). A fight's comradeship is told only when something changed:
+  the pairs who count each other comrades for the first time and who carried whom out of the fight, in one message and
+  one line; the roster of everyone after every raid is gone (the battle's own line names the best fighter). An
+  election is one line ("The colony elected its council: Harper as speaker and Hector as marshal."), everyone seated in
+  it. Those who mark the same years in the colony on the same day are one line. A day kept from its letter is one line
+  (the answer's), and the founding event's answer is the founding day's line.
 - **Folding**, once a day: everyday entries older than sixty days fold into one summary per kind, per the one they are
   of and per season (the planet's quadrum); milestones stay as they are, and a lone one in its season stays as it was.
   The bound is 800 entries. Over it, the oldest everyday ones from before those sixty days go first (older seasons'
@@ -4413,7 +4464,7 @@ chains, nemeses, camps, play-outs, the fights pass and the worn-out episode read
 | 167 | The colony news: what waits goes out (as the evening's digest, around six) | the waiting news |
 | 173 | The food policy on the road (Journeys/RoadFood.cs; once an hour, at tick 173 of the hour, and on the first pass after a load; only while one is chosen or someone is on it): the colony's people in caravans onto it, those home again back to their own | per player caravan, per colonist in it; per traveller on it |
 | 173 | A journey planned ahead (Journeys/JourneyRun.cs; only while there is one): the stage its hour has reached (a day before, the travellers' timetables shifted; the last hours begun), each traveller's next step, the hour itself and the question when someone isn't ready | per traveller: free for a step, the step's job; at the hour, each one ready or not |
-| 199 | The council window's memory: the day's trust sample, the dilemmas it watches | per colonist once a day |
+| 199 | The council window's memory: the day's trust sample, the dilemmas and answers it watches | per colonist once a day |
 | 187 | Who stands beside whom in a fight at home (only while one is on; Social/FightSides.cs), so only they remember it together and become comrades; who carries, tends or stands over someone down | per fighting colonist pair on that map (close, then the same room or in sight) |
 | 221 | Ailments: one tenth of the colonists (by ID), each once an hour; the slice at tick 2471 also carries the colony's part | the colony's serious illnesses counted (every colonist's hediffs, as before every hour's rolls), then per colonist in the slice: circumstances sampled, each ailment's counted causes rolled; diet and sweets on the first look of the day |
 | 211 | A neighbour's letter being written, a call under way or the comms console ringing (World/NeighbourLetters.cs; only while there is one) | per letter or call under way: the writer still at it, someone free to answer |
@@ -4524,9 +4575,9 @@ on a map, in the world or in a caravan), so such a record is let go when the gam
 
 | Saved | Cap or pruning |
 |---|---|
-| Chronicle | 300 entries; the newest 200 always stay, and of the older ones everyday lines go before milestones (losses, ambitions won or lost, life events, world events, secrets out) |
+| Chronicle | none of its own: the colony's view of the world history below (`Chronicle.cs`); an older save's 300-line list is read on load and taken into the history |
 | Journals | 60 lines each; journals of those no longer with the colony: the 30 written in most lately; grief already written about: cleared at 500; everyday moments: forgotten after 24 days |
-| Annals | the year in progress (reset each year); 40 written years |
+| Annals | the year in progress (from one landing day to the next, reset by the year's letter); 40 written years |
 | Day samples (history) | 120 days |
 | Wishes | open ones only; recent wishes 20 days or 60; cooldowns dropped once over |
 | Trust | one record per colonist, the gone dropped daily; 8 log lines; grants of the last 30 days |
@@ -4545,7 +4596,7 @@ on a map, in the world or in a caravan), so such a record is let go when the gam
 | Homes | one entry per colonist who has been on a home (the last home they lived on), forgotten once they're dead, discarded or no longer the colony's; the stored seat; the homes at the last look |
 | World ledger | its own ties (grudges, favours, good words, claims, the scenario's debt, fealty, a notable's and a regular's regard): three of a kind between the same two, sixty of a kind (three hundred regards), closed ones dropped after sixty days; a grudge's dead ten at most over all peoples, two years; persons while a notable, named by a tie or kept in the world, with their reasons; towns while a notable lives there or while they stand within the region map's reach of a home (the nearest 40 a home), a gone one two years; the founding families of new towns, two per town, six members each by first name, going with the town's record; the towns being built within reach, six at most, dropped when built or gone; the counter for ledger numbers |
 | The region | one part per colony (when a new town last wrote to it and last welcomed it), a lost home's kept 30 days; the towns in detail and remoteness are worked out, not saved |
-| World history | 800 entries; everyday ones past sixty days folded into one per actor, kind and season; milestones (the chronicle's) kept longest; over the bound older seasons' summaries go first, the newest 200 always stay |
+| World history | 800 entries (every chronicle line, every answer with its six values, the peoples' deeds, the ledger's ties); everyday ones past sixty days folded into one per actor, kind and season; milestones (the chronicle's) kept longest; over the bound older seasons' summaries go first, the newest 200 always stay |
 | Everyday pressures | per colonist, the gone dropped daily; 12 meals; frames and plans while they stand |
 | Character | 5 ways; 30 recent shifts; the colony's traits one per trait, today's tallies emptied each day |
 | Decrees, dilemmas, offices, names, encounters, ambitions | one entry per def, office or title (decrees, dilemmas, offices and ambitions for each colony's council; a lost home's kept 30 days); a curfew's night hours per colonist while it lasts, then only for those away (the dead, those no longer the colony's and those the game no longer knows let go); the colony's founders: those here in its first two days |

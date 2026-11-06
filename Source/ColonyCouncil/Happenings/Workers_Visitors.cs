@@ -53,8 +53,8 @@ namespace ColonyCouncil
         private static readonly ChronicleKind[] TaleKinds = { ChronicleKind.World, ChronicleKind.Stranger, ChronicleKind.AmbitionAchieved };
 
         /// <summary>A chronicle line that reads like a story (a beast felled, a contest won, a nemesis brought down), not a log entry.</summary>
-        private static bool Tellable(ChronicleEntry e, int now) =>
-            TaleKinds.Contains(e.kind) && now - e.tick < GenDate.TicksPerYear && !e.text.NullOrEmpty() && e.text.Length >= 30 && e.text.Length < 200
+        private static bool Tellable(ChronicleLine e, int now) =>
+            !e.Summary && !e.Answer && TaleKinds.Contains(e.kind) && now - e.tick < GenDate.TicksPerYear && !e.text.NullOrEmpty() && e.text.Length >= 30 && e.text.Length < 200
             && !e.text.Contains("\"") && !e.text.Contains(": ");
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
@@ -64,10 +64,9 @@ namespace ColonyCouncil
             MakeGroup(ctx, ext, 1, ext.ages);
             var r = ctx.stranger.skills?.GetSkill(SkillDefOf.Social);
             if (r != null && !r.TotallyDisabled && r.Level < 10) r.Level = Rand.RangeInclusive(10, 16);
-            var comp = CouncilGameComponent.Instance;
             int now = Find.TickManager.TicksGame;
             // They've heard of the colony: something it did this past year, if it did anything worth telling.
-            ctx.tale = comp?.chronicle.Where(e => Tellable(e, now)).RandomElementWithFallback()?.text;
+            ctx.tale = Chronicle.Since(now - GenDate.TicksPerYear).Where(e => Tellable(e, now)).RandomElementWithFallback()?.text;
             ctx.a = Colonists(ctx.map).Where(p => !p.DevelopmentalStage.Baby()).RandomElementByWeightWithFallback(p =>
                 p.skills?.GetSkill(SkillDefOf.Social) is SkillRecord s && People.Passionate(s) ? 3f : 1f);
             return ctx.a != null;

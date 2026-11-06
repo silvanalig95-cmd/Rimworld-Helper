@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## One record of the colony's story
+
+*6 November 2026, version 0.107.0*
+
+- The Chronicle is now the colony's view of its history: it reaches back to the first days instead of forgetting everything older than a few weeks, sums up older seasons' everyday lines, and keeps nothing twice.
+- Every kind of council question records how it went, not only dilemmas: the question, the answer, and later whether it took place, never came about or went wrong. The Dilemmas page lists them all.
+- The year is told once, in one letter on the landing's anniversary: the people, the land and the world, and the founding, with those here since the first days and the dead. The Chronicle has a button for each year.
+- Less noise: the roster of comrades after every raid is gone (new comrades and rescues are still told), an election is one line with every seat, and colonists marking their years on the same day share a line.
+- Old saves bring their chronicle into the history once, without losing or doubling a line; the save gets a little smaller.
+
 ## What the save showed
 
 *6 November 2026, version 0.106.1*

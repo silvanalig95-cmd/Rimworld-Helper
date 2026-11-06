@@ -152,9 +152,9 @@ namespace ColonyCouncil
             y += UiKit.SectionTitle(0f, y, width, "CC_Ambition_History".Translate(), Icons.Chronicle);
             int shown = 0;
             const float dateW = 64f;
-            for (int i = comp.chronicle.Count - 1; i >= 0 && shown < 15; i--)
+            foreach (var e in Chronicle.Lines)
             {
-                var e = comp.chronicle[i];
+                if (shown >= 15) break;
                 if (e.kind < ChronicleKind.Meeting || e.kind > ChronicleKind.AmbitionAbandoned) continue;
                 var col = UiKit.ChronicleColor(e.kind);
                 string text = ChroniclePanel.TextOf(e, comp);

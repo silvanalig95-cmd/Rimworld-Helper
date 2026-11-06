@@ -63,7 +63,7 @@ beside the title that opens its page of the Almanac:
 | **This week** | | the one inbox: what you follow, what needs you, what is under way, what's coming, how people are and the plan |
 | **People** | Table · Moods · Bonds · Ideoligions · Renown | all colonists in one sortable table, with a colonist's card (their whole story, their dreams and journal) in the drawer beside it; every mood added up; friendships, rivalries, groups, vendettas, secrets; with Ideology, the colony's ideoligions; the colony's name among the peoples and its people known by name |
 | **Council** | Offices and decrees · Ambition · Our ways · Wishes · Dilemmas | decrees, petitions and the council's offices with their elections (five, up to fourteen seats in a bigger colony); the current ambition and meetings; what the colony is known for and its traditions; open wishes, promises kept and trust; questions waiting and how the answers went |
-| **Colony** | Overview · Calendar · Chronicle | the colony at a glance (numbers, how they moved this week, graphs of mood, trust, wealth and people over the last weeks); the colony calendar; everything that happened (filter by wishes, council, people, strangers, world events, losses, and every dream and journal) |
+| **Colony** | Overview · Calendar · Chronicle | the colony at a glance (numbers, how they moved this week, graphs of mood, trust, wealth and people over the last weeks); the colony calendar; everything that happened since the first day, read from the one history, every answer with what came of it (filter by wishes, council, people, strangers, world events, losses, and every dream and journal) |
 
 The **Almanac**, the knowledge base, has a window of its own: the book in every window's corner opens it, and so does
 the "?" on every view, on that view's page. It moves and sizes like any window, so it can sit beside what it
@@ -1867,22 +1867,28 @@ the game lets rain wash comes off the open ground; a drizzle adds nothing, and n
 settings under "The weather" on the Events page; the first three need the deeper game hooks, and nothing is added to
 the map.
 
-### Annals
-When a new year begins, the colony's best reader or talker writes up the year that ended: how many you were and
-are, who joined, who died and who walked out, how often trouble came, whether you grew richer or poorer, what the
-council granted, declared and decided, the closest friends and the worst enemies, who trusts the council most and
-least, and a last word in the author's own voice. Past years can be reread from the Chronicle tab.
-
-At each anniversary of the landing a second letter comes, with the same setting, written by the annalist too: the
-year on the land and from beyond it, which the annals leave out. The herd (its head, who leads it and of which line,
-the young born this year, a new leader, one in its last season), the beast that stays, the neighbours settled for good
-and the loads that went down the road from their post, the camps that came, the faces that came back, the world
-events that ended and how, the allies, and a few lines of the year's chronicle about strangers and the world. The
-founding day's own event still marks the day.
+### The year's letter (annals)
+The year is told once: on each anniversary of the landing, the colony's founding day, the colony's best reader or
+talker (the annalist, once there is one) writes one letter about the year since the last. First the people: how many
+you were and are, who joined, who died and who walked out, how often trouble came, whether you grew richer or poorer,
+what the council granted, declared and decided, the traditions, the closest friends and the worst enemies, who trusts
+the council most and least, the seats and the names earned. Then the land and the world: the herd (its head, who leads
+it and of which line, the young born this year, a new leader, one in its last season), the beast that stays, the
+neighbours settled for good and the loads that went down the road from their post, the camps that came, the faces that
+came back, the world events that ended and how, the allies, and a few lines of the year's chronicle about strangers and
+the world. Then the founding: who has been here since the first days, how many have died since, what travellers call
+the colony and its customs. Last, a word in the author's own voice. The founding day's own event (or the calendar's
+letter) asks how to keep the day and no longer tells the year; the chronicle has one line for it. Past years can be
+reread from the Chronicle tab.
 
 ### Chronicle
-A running history of wishes, promises, petitions, meetings and ambitions. It keeps 300 lines; once it is full, the older
-everyday ones make way first, so the colony's losses, ambitions and life events are still there years later.
+The colony's view of its one history (the region window's History holds the same, with the world around it). It shows
+every line told for the colony (wishes, promises, petitions, meetings and ambitions, the council's doings, bonds, lives,
+losses, strangers and the world), every question the council answered with what came of it (hover one for the whole
+record), and the colony's own milestones in the region (a brigands' hold found, a pact). It reaches back to the first
+day: the last sixty days line for line, older seasons' small lines as one line each ("Harper made 5 wishes"), the
+milestones as they were told. An older save's chronicle list is read into the history once, nothing counted twice.
+Council → Dilemmas lists every question's answer, not only the dilemmas.
 
 ## Fits your world (medieval runs too)
 

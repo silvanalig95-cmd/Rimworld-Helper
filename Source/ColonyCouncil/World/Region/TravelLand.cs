@@ -213,9 +213,7 @@ namespace ColonyCouncil
         /// <summary>The colony's history: a year old or more, with milestones enough in its chronicle.</summary>
         private static void ReadHistory(LandReasons land, Map map)
         {
-            var comp = CouncilGameComponent.Instance;
-            if (comp?.chronicle == null) return;
-            int milestones = comp.chronicle.Count(e => e != null && e.Milestone);
+            int milestones = Chronicle.Lines.Count(e => e.Milestone);
             int founded = map.Parent?.creationGameTicks ?? 0;
             int daysOld = Math.Max(0, (Find.TickManager.TicksGame - Math.Max(0, founded)) / GenDate.TicksPerDay);
             if (!TravelMath.HistoryHolds(daysOld, milestones)) return;

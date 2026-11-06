@@ -37,16 +37,15 @@ namespace ColonyCouncil
 
     /// <summary>
     /// The world's one history, kept by the world ledger (the book is pure: HistoryMath.cs). What writes to it: every line
-    /// of the colony's chronicle (<see cref="CouncilGameComponent.AddChronicle"/>, which keeps its own list and caps as
-    /// before), world situations through their chronicle lines (with their place and peoples), the deeds the peoples
-    /// remember (<see cref="FactionMemory.Note"/>), and the ledger's ties as they are made and move. Once a day small
-    /// events past sixty days fold into one summary per actor, kind and season; milestones stay. Saved with the ledger.
+    /// told for the colony's chronicle (<see cref="CouncilGameComponent.AddChronicle"/>; the chronicle shown is this
+    /// history's view of the colony, <see cref="Chronicle"/>), every question's answer (<see cref="Answers"/>), world
+    /// situations through their chronicle lines (with their place and peoples), the deeds the peoples remember
+    /// (<see cref="FactionMemory.Note"/>), and the ledger's ties as they are made and move. Once a day small events past
+    /// sixty days fold into one summary per actor, kind and season; milestones stay. Saved with the ledger.
     /// </summary>
     public partial class WorldLedger
     {
         private HistoryBook history = new HistoryBook();
-        /// <summary>The chronicle's entries were taken into the history (an older save's, on its first load with it).</summary>
-        private bool chronicleRead;
 
         /// <summary>The history, for the queries (<see cref="ColonyCouncil.History"/>) and the dev window.</summary>
         public HistoryBook Book => history;
@@ -55,15 +54,16 @@ namespace ColonyCouncil
         {
             Scribe_Collections.Look(ref history.events, "events", LookMode.Deep);
             Scribe_Values.Look(ref history.nextId, "nextEvent", 1);
-            Scribe_Values.Look(ref chronicleRead, "chronicleRead");
             if (Scribe.mode == LoadSaveMode.PostLoadInit) history.Load(history.events, history.nextId);
         }
 
-        /// <summary>After loading or starting a game: an older save's chronicle is taken in, once.</summary>
+        /// <summary>
+        /// After loading or starting a game: an older save's chronicle list (read by the council, never saved again) comes
+        /// into the history, each line once (what is here already, or folded into a season's summary, stays out), and the
+        /// list is let go. A save from before the history had its whole chronicle; a later one had every line here already.
+        /// </summary>
         private void HistoryReady()
         {
-            if (chronicleRead) return;
-            chronicleRead = true;
             try
             {
                 var chronicle = Current.Game?.GetComponent<CouncilGameComponent>()?.chronicle;
@@ -72,9 +72,10 @@ namespace ColonyCouncil
                 var seat = Refs.Seat;
                 var lines = new List<HistoryEntry>();
                 foreach (var c in chronicle)
-                    if (c != null)
+                    if (c != null && !c.text.NullOrEmpty())
                         lines.Add(HistoryMath.FromChronicle(c.tick, (int)c.kind, c.text, c.pawnId, seat));
                 history.TakeChronicle(lines);
+                chronicle.Clear();
             }
             catch (Exception e)
             {

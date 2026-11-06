@@ -178,6 +178,12 @@ namespace ColonyCouncil
                         who.Add(n.Key);
                 text = WorldHistoryMath.Words(e.kind).CapitalizeFirst() + (who.Count > 0 ? ": " + TextUtil.JoinAnd(who) : "");
             }
+            // An answer says what came of it, once that's known (the answers' log).
+            else if (!e.folded && HistoryKinds.Matches(e.kind, AnswerMath.Family))
+            {
+                string came = Chronicle.CameOf(e.values);
+                if (!came.NullOrEmpty()) text += " " + came;
+            }
             if (e.count > 1)
             {
                 var (from, to) = WorldHistoryMath.Days(e);

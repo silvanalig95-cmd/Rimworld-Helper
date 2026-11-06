@@ -468,6 +468,8 @@ namespace ColonyCouncil
                 : "CC_Elect_Endorsed".Translate(candidate.Named("PAWN"), race.office.label.Named("OFFICE"), TextUtil.JoinAnd(against.Select(p => p.LabelShort).ToList()).Named("WHO")).Resolve();
             // direct: the answer to the player's click (the election letter's or panel's "endorse").
             Messages.Message(text, new LookTargets(candidate), MessageTypeDefOf.NeutralEvent, false);
+            Answers.Record("election", "CC_Answer_ElectionRace".Translate(race.office.label.Named("OFFICE")).Resolve(), "CC_Answer_Endorsed".Translate(candidate.Named("PAWN")).Resolve(),
+                text, candidate, null, e.map);
         }
 
         /// <summary>How many with a say lean to someone else in this race (each trusts the council a little less if it backs this candidate).</summary>
@@ -501,6 +503,8 @@ namespace ColonyCouncil
                 : "CC_Elect_CalledOff".Translate(race.office.label.Named("OFFICE"), leader.Named("PAWN"), TextUtil.JoinAnd(let.Select(p => p.LabelShort).ToList()).Named("WHO")).Resolve();
             // direct: the answer to the player's click (the election letter's or panel's "call off").
             Messages.Message(text, new LookTargets(appointee), MessageTypeDefOf.NeutralEvent, false);
+            Answers.Record("election", "CC_Answer_ElectionRace".Translate(race.office.label.Named("OFFICE")).Resolve(), "CC_Answer_Appointed".Translate(appointee.Named("PAWN")).Resolve(),
+                text, appointee, null, e.map);
             if (election == e && e.races.Count == 0) EndWithout(e);
         }
 

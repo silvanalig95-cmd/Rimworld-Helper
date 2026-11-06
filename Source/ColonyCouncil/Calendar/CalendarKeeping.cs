@@ -309,16 +309,34 @@ namespace ColonyCouncil
             var d = Get(letter.dayId);
             var map = HomeMap;
             if (d == null || map == null) return;
+            // The answer as the letter put it, for its record in the history (the answers' log).
+            answerLabel = choice == ChoiceLetter_CalendarDay.PassChoice ? "CC_Cal_Pass".Translate().Resolve()
+                : choice == ChoiceLetter_CalendarDay.RitualChoice ? "CC_Cal_KeepRitual".Translate(letter.ritual).Resolve()
+                : letter.keepLabel.NullOrEmpty() ? "CC_Cal_Keep_Feast".Translate().Resolve() : letter.keepLabel;
+            answerByDefault = byDefault;
             try
             {
-                if (choice == ChoiceLetter_CalendarDay.PassChoice) PassDay(d, map);
+                if (choice == ChoiceLetter_CalendarDay.PassChoice)
+                {
+                    PassDay(d, map);
+                    // Let pass: kept in the answers' log; a tradition broken by it has its own line in the chronicle.
+                    Answers.Record("calendar", d.label.CapitalizeFirst(), answerLabel, null, null, null, map, byDefault, minor: true);
+                }
                 else KeepDay(d, letter.occurrence, map, choice == ChoiceLetter_CalendarDay.RitualChoice ? letter.ritual : null, byDefault);
             }
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("calendar answer", e);
             }
+            finally
+            {
+                answerLabel = null;
+            }
         }
+
+        /// <summary>The answer to a day's letter while it is carried out (KeepDay writes its record), else null.</summary>
+        [Unsaved] private string answerLabel;
+        [Unsaved] private bool answerByDefault;
 
         // ---------------- Keeping a day ----------------
 
@@ -354,7 +372,12 @@ namespace ColonyCouncil
             talksLeft = Rand.RangeInclusive(2, 3);
             var keeper = Keeper(d, home);
             if (!quiet && keeper != null) CouncilRecords.Add(keeper, CouncilRecords.DaysKept);
-            comp?.AddChronicle(new ChronicleEntry(ChronicleKind.Life, "CC_Cal_Chronicle_Kept".Translate(d.label).Resolve(), keeper));
+            // The day kept is one line: the answer to its letter when it had one (the answers' log), else the chronicle's own.
+            // Kept by the founding event, that event's answer already says how (quiet).
+            string kept = "CC_Cal_Chronicle_Kept".Translate(d.label).Resolve();
+            if (answerLabel != null)
+                Answers.Record("calendar", d.label.CapitalizeFirst(), answerLabel, null, keeper, null, map, answerByDefault, line: kept, weight: HistoryMath.Milestone);
+            else if (!quiet) comp?.AddChronicle(new ChronicleEntry(ChronicleKind.Life, kept, keeper));
             if (!told && !quiet && d.way != DayWay.Remembrance)
                 Tell.Minor(NewsKind.Colony, byDefault ? Importance.Notable : Importance.Flavor, map, "CC_Cal_Kept".Translate(d.label.CapitalizeFirst(), WayLabel(d.way)).Resolve(),
                     new LookTargets(home), MessageTypeDefOf.PositiveEvent);

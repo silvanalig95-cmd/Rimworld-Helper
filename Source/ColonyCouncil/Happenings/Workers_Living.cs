@@ -972,13 +972,16 @@ namespace ColonyCouncil
             if (Find.StoryWatcher?.statsRecord?.colonistsKilled > 0) tags.Add("lost");
         }
 
+        /// <summary>
+        /// The day's own lines under the letter: those who keep it tonight (the last of the founders, the Founder, the first
+        /// child grown). The colony's founding facts (who is here since the first days, who died since, its name on the
+        /// roads, its customs) are the year letter's (<see cref="YearFacts"/>): the year is told once, on this day.
+        /// </summary>
         protected override string Extra(HappeningContext ctx)
         {
             var lines = VarietyUtil.More(def)?.extra;
             if (lines.NullOrEmpty()) return null;
             var parts = new List<string>();
-            var founders = Founders(ctx.map);
-            if (founders.Count > 0) parts.Add(Part(lines, ctx, "founders", TextUtil.JoinAnd(founders.Select(p => p.LabelShort).ToList())));
             // The names that come with the colony's years: the last of its founders, and its first child, grown.
             var names = ColonyCouncilMod.Settings.epithets ? CouncilGameComponent.Instance?.epithets : null;
             var last = names?.HolderOf("Council_Epithet_LastOfTheFirst", ctx.map);
@@ -987,23 +990,41 @@ namespace ColonyCouncil
             if (founder != null && founder != last && founder.Spawned && founder.Map == ctx.map) parts.Add(Part(lines, ctx, "founder", founder.LabelShort));
             var firstborn = names?.HolderOf("Council_Epithet_Firstborn", ctx.map);
             if (firstborn != null && firstborn.Spawned && firstborn.Map == ctx.map) parts.Add(Part(lines, ctx, "firstborn", firstborn.LabelShort));
-            int lost = Find.StoryWatcher?.statsRecord?.colonistsKilled ?? 0;
-            if (lost > 0) parts.Add(Part(lines, ctx, "lost", lost.ToString()));
-            var comp = CouncilGameComponent.Instance;
-            string known = comp?.character.Describe();
-            if (!known.NullOrEmpty()) parts.Add(Part(lines, ctx, "known", known));
-            var customs = ColonyState.For(ctx.map)?.dilemmas.Traditions.Select(d => d.traditionLabel).Concat(ColonyCalendar.TraditionLabels(ctx.map)).Where(l => !l.NullOrEmpty()).Distinct().ToList();
-            if (!customs.NullOrEmpty()) parts.Add(Part(lines, ctx, "customs", TextUtil.JoinAnd(customs)));
             return string.Join("\n", parts.Where(p => !p.NullOrEmpty()));
         }
 
-        /// <summary>One of the lines under the letter: only one tagged for this part.</summary>
+        /// <summary>
+        /// The colony's founding facts for the year letter (World/YearLetter.cs), in this event's own lines: who has been
+        /// here since the first days, how many colonists have died since the founding, what travellers call the colony, the
+        /// customs kept. Null when there is nothing to say (or no lines).
+        /// </summary>
+        public static string YearFacts(Map map)
+        {
+            if (map == null) return null;
+            var lines = VarietyUtil.More(DefDatabase<IncidentDef>.GetNamedSilentFail(DefName))?.extra;
+            if (lines.NullOrEmpty()) return null;
+            var parts = new List<string>();
+            var founders = Founders(map);
+            if (founders.Count > 0) parts.Add(Part(lines, null, "founders", TextUtil.JoinAnd(founders.Select(p => p.LabelShort).ToList())));
+            int lost = Find.StoryWatcher?.statsRecord?.colonistsKilled ?? 0;
+            if (lost > 0) parts.Add(Part(lines, null, "lost", lost.ToString()));
+            string known = CouncilGameComponent.Instance?.character.Describe();
+            if (!known.NullOrEmpty()) parts.Add(Part(lines, null, "known", known));
+            var customs = ColonyState.For(map)?.dilemmas.Traditions.Select(d => d.traditionLabel).Concat(ColonyCalendar.TraditionLabels(map)).Where(l => !l.NullOrEmpty()).Distinct().ToList();
+            if (!customs.NullOrEmpty()) parts.Add(Part(lines, null, "customs", TextUtil.JoinAnd(customs)));
+            parts.RemoveAll(p => p.NullOrEmpty());
+            return parts.Count == 0 ? null : string.Join("\n", parts);
+        }
+
+        /// <summary>One of the lines under the letter: only one tagged for this part (filled by the event's context when it has one).</summary>
         private static string Part(List<string> lines, HappeningContext ctx, string tag, string item)
         {
             var tags = new HashSet<string> { tag };
             Flavor.AddEraTags(tags);
             string s = Flavor.PickTagged(lines.Where(l => Flavor.Strip(l, out var t) != null && t != null && t.Contains(tag)), tags);
-            return s.NullOrEmpty() ? null : ctx.Format(Texts.Fill(s, ("ITEM", item)));
+            if (s.NullOrEmpty()) return null;
+            s = Texts.Fill(s, ("ITEM", item));
+            return ctx != null ? ctx.Format(s) : s;
         }
 
         public override string Unavailable(HappeningContext ctx, int option) =>

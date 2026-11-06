@@ -199,7 +199,7 @@ namespace ColonyCouncil
             var comp = CouncilGameComponent.Instance;
             if (comp != null)
                 part.Add("This colony: era " + comp.era + " (works out as " + Avail.EffectiveTech.ToStringHuman() + "), "
-                         + PawnsFinder.AllMaps_FreeColonists.Count() + " colonists on maps, " + comp.chronicle.Count + " chronicle entries, welcome letter "
+                         + PawnsFinder.AllMaps_FreeColonists.Count() + " colonists on maps, " + Chronicle.Count + " chronicle lines (read from the history), welcome letter "
                          + (comp.Welcomed ? "sent or not needed" : "still to come") + ".");
             part.Add(off.Count == 0 ? "All " + switches + " switches are on." : (switches - off.Count) + " of " + switches + " switches on. Off: " + string.Join(", ", off) + ".",
                 off.Count == 0 ? UiKit.Good : Color.white);

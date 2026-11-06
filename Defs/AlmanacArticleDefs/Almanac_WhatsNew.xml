@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.107.0</version>
+        <date>6 November 2026</date>
+        <title>One record of the colony's story</title>
+        <points>
+          <li>The Chronicle is now the colony's view of its history: it reaches back to the first days instead of forgetting everything older than a few weeks, sums up older seasons' everyday lines, and keeps nothing twice.</li>
+          <li>Every kind of council question records how it went, not only dilemmas: the question, the answer, and later whether it took place, never came about or went wrong. The Dilemmas page lists them all.</li>
+          <li>The year is told once, in one letter on the landing's anniversary: the people, the land and the world, and the founding, with those here since the first days and the dead. The Chronicle has a button for each year.</li>
+          <li>Less noise: the roster of comrades after every raid is gone (new comrades and rescues are still told), an election is one line with every seat, and colonists marking their years on the same day share a line.</li>
+          <li>Old saves bring their chronicle into the history once, without losing or doubling a line; the save gets a little smaller.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.106.1</version>
         <date>6 November 2026</date>
         <title>What the save showed</title>

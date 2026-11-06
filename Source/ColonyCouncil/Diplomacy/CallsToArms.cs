@@ -410,7 +410,9 @@ namespace ColonyCouncil
                     yield break;
                 }
                 var map = Homes.MapOf(home) ?? Homes.Seat;
-                yield return new DiaOption(PactWords.P("CC_Arms_Opt_Send"))
+                // Each answer is written in the history's answers' log, with the people who called.
+                var caller = Live(out bool isPact) is Tie c ? isPact ? c.kind == Tie.Kind.Fealty ? Fealty.LiegeOf(c) : Pacts.PeopleOf(c) : Refs.Faction(c.to) : null;
+                yield return Answers.Recorded(new DiaOption(PactWords.P("CC_Arms_Opt_Send"))
                 {
                     action = () =>
                     {
@@ -422,8 +424,8 @@ namespace ColonyCouncil
                         if (map != null) Find.WindowStack.Add(new Dialog_FormCaravan(map));
                     },
                     resolveTree = true
-                };
-                yield return new DiaOption(PactWords.P("CC_Arms_Opt_Refuse"))
+                }, this, "callToArms", caller, null, () => map);
+                yield return Answers.Recorded(new DiaOption(PactWords.P("CC_Arms_Opt_Refuse"))
                 {
                     action = () =>
                     {
@@ -434,7 +436,7 @@ namespace ColonyCouncil
                         CallsToArms.Refused(x, f, map, false, pact);
                     },
                     resolveTree = true
-                };
+                }, this, "callToArms", caller, null, () => map);
                 yield return Option_Postpone;
             }
         }

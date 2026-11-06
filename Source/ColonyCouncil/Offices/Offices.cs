@@ -390,6 +390,8 @@ namespace ColonyCouncil
             public readonly Dictionary<Pawn, int> stands = new Dictionary<Pawn, int>();
             /// <summary>Candidates who campaigned (visited voters or spoke at the hustings): they wanted it more.</summary>
             public readonly HashSet<Pawn> campaigned = new HashSet<Pawn>();
+            /// <summary>Each seat filled and who took it, in the order counted: the chronicle's one line for the election.</summary>
+            public readonly List<(Pawn who, OfficeDef office)> seated = new List<(Pawn, OfficeDef)>();
         }
 
         /// <summary>The seats few people can fill go first, so the colony's only doctor isn't spent on the speaker's chair.</summary>
@@ -507,9 +509,32 @@ namespace ColonyCouncil
             if (office.Seats == 1)
                 NameRecords.Notify_Election(office, winner, ranked.Skip(1).Where(kv => kv.Value > 0).Select(kv => kv.Key)
                     .Concat(previous != null && previous != winner && Valid(previous) ? new[] { previous } : new Pawn[0]), ruler != null);
-            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, ruler != null
-                ? "CC_PM_Chronicle_Named".Translate(ruler.LabelShort, winner.LabelShort, office.label).Resolve()
-                : "CC_Chronicle_Elected".Translate(winner.LabelShort, office.label).Resolve(), winner));
+            // The chronicle has the whole election in one line, once every seat is filled (Finish).
+            round.seated.Add((winner, office));
+        }
+
+        /// <summary>
+        /// The election (or the ruler's naming) as one line of the chronicle: every seat filled and who took it ("Harper as
+        /// speaker and Hector as marshal"), everyone seated part of it in the history, so each one's story still has it.
+        /// </summary>
+        private void ChronicleSeats(CouncilGameComponent comp, SeatingRound round)
+        {
+            if (round.seated.Count == 0) return;
+            if (round.seated.Count == 1)
+            {
+                var (w, o) = round.seated[0];
+                comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, round.ruler != null
+                    ? "CC_PM_Chronicle_Named".Translate(round.ruler.LabelShort, w.LabelShort, o.label).Resolve()
+                    : "CC_Chronicle_Elected".Translate(w.LabelShort, o.label).Resolve(), w));
+                return;
+            }
+            var seats = round.seated.Select(s => "CC_Chronicle_SeatAs".Translate(s.who.LabelShort.Named("PAWN"), s.office.label.Named("OFFICE")).Resolve()).ToList();
+            string line = round.ruler != null
+                ? "CC_PM_Chronicle_NamedAll".Translate(round.ruler.LabelShort.Named("RULER"), TextUtil.JoinAnd(seats).Named("SEATS")).Resolve()
+                : (round.byElection ? "CC_Chronicle_ElectedBy" : "CC_Chronicle_ElectedAll").Translate(TextUtil.JoinAnd(seats).Named("SEATS")).Resolve();
+            var actors = round.seated.Select(s => new HistoryActor(Refs.Of(s.who), HistoryRole.About)).ToList();
+            using (History.About("council", Refs.Colony(HomeMap ?? Homes.Seat), actors))
+                comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, line, round.seated[0].who));
         }
 
         /// <summary>Every seat is settled: the loose ends (seats left to their holders, the bench's losers), the edges, and the letter.</summary>
@@ -578,6 +603,7 @@ namespace ColonyCouncil
                 else if (moved.Add(who)) OtherSeat(comp, office, now, who);
             }
             SyncHediffs();
+            ChronicleSeats(comp, round);
             Tell.Letter(NewsKind.Colony, Importance.Notable, HomeMap, title, text, LetterDefOf.NeutralEvent, look);
         }
 

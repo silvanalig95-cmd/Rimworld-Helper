@@ -765,9 +765,11 @@ namespace ColonyCouncil
         /// <summary>Still waiting for the colony's answer (the inbox's row).</summary>
         public bool Waiting => !ArchivedOnly && Valid(out _);
 
-        public override IEnumerable<DiaOption> Choices
+        /// <summary>Each answer is written in the history's answers' log.</summary>
+        public override IEnumerable<DiaOption> Choices => Answers.RecordedAll(Options(), this, "fealty", people, null, () => Homes.MapOf(home) ?? Homes.Seat);
+
+        private IEnumerable<DiaOption> Options()
         {
-            get
             {
                 if (ArchivedOnly || !Valid(out _))
                 {

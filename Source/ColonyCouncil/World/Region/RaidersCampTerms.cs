@@ -86,12 +86,13 @@ namespace ColonyCouncil
                 };
                 string why = RaidersCampTerms.CantPay(Homes.MapOf(home), c);
                 if (why != null) pay.Disable(why);
-                yield return pay;
-                yield return new DiaOption("CC_RaidCamp_Refuse".Translate())
+                // Each answer is written in the history's answers' log, with what the carrying of the price came to.
+                yield return Answers.Recorded(pay, this, "raidersCamp", c.people, null, () => Homes.MapOf(home));
+                yield return Answers.Recorded(new DiaOption("CC_RaidCamp_Refuse".Translate())
                 {
                     action = () => Find.LetterStack.RemoveLetter(this),
                     resolveTree = true
-                };
+                }, this, "raidersCamp", c.people, null, () => Homes.MapOf(home));
                 yield return Option_Postpone;
             }
         }

@@ -1291,16 +1291,16 @@ namespace ColonyCouncil
             comp?.character.Shift(byDefault ? option.ways?.Scaled(0.5f) : option.ways, "CC_Ways_Why_Dilemma".Translate(ctx.def.label, ctx.Format(option.label)).Resolve());
             Setbacks.Notify_Answer(ctx, option.ways, byDefault, risk, ctx.def.label, ctx.Format(option.label));
             string told = ctx.Format(outcome);
-            // Written down for Council → Dilemmas, with what it set going on the map (UI/DilemmaLog.cs).
+            // Written down for Council → Dilemmas, with what it set going on the map (UI/DilemmaLog.cs), and in the history's
+            // answers' log, which the chronicle shows with what came of it (Dilemmas/Answers.cs).
             DilemmaLog.Record(ctx, option, told, risk, byDefault, impact, impactHint);
+            Answers.Record("dilemma", ctx.def.LabelCap, ctx.Format(option.label), told, ctx.a, ctx.faction, ctx.map, byDefault, risk, plays: plays);
             // What the answer set going on the map tells its outcome when it's over; until then, only when it will be.
             if (!told.NullOrEmpty() && !PlayOuts.TellWhenDone(plays, told, byDefault ? "CC_Dilemma_NoAnswer".Translate().ToString() : null))
             {
                 if (byDefault) told = "CC_Dilemma_NoAnswer".Translate() + " " + told;
                 Tell.Message(NewsKind.Colony, Importance.Notable, ctx.map, told, new LookTargets(new[] { ctx.a, ctx.b, ctx.stranger }.Where(p => p != null && p.Spawned)), MessageTypeDefOf.NeutralEvent);
             }
-            CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.Council,
-                "CC_Chronicle_Dilemma".Translate(ctx.def.label, ctx.Format(option.label)).Resolve(), ctx.a));
             // The letter's text is already written; let go of the people and places so old saves don't hold them.
             ctx.a = ctx.b = ctx.pet = ctx.stranger = null;
             ctx.map = null;

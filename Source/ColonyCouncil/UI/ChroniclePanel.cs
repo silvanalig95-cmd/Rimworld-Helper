@@ -9,7 +9,9 @@ namespace ColonyCouncil
     /// <summary>
     /// Colony → Chronicle: everything the colony has been through, newest first, as a timeline (the day on the left,
     /// an icon for each kind of entry on the line, the colonist it is about a link to their card), with filters and the
-    /// yearly annals. Two filters are what were pages of their own: Dreams (every dream told, by dreamer and kind) and
+    /// year's letters. It is the colony's view of the one history (<see cref="Chronicle"/>): back to the first day, old
+    /// seasons' small lines as one summary each, every answer with what came of it (on hover, the whole record).
+    /// Two filters are what were pages of their own: Dreams (every dream told, by dreamer and kind) and
     /// Journals (each colonist's journal to read), UI/HistoryPanels.cs. The filter is part of the way back
     /// (UI/Cards/Nav.cs), and the old addresses "Dreams" and "Journals" open the Chronicle on theirs.
     /// </summary>
@@ -59,15 +61,13 @@ namespace ColonyCouncil
                 PageMemory.SetEnum("chronicle.filter", value);
             }
         }
-        private static readonly Dictionary<ChronicleEntry, float> chronicleHeights = new Dictionary<ChronicleEntry, float>();
+        private static readonly Dictionary<ChronicleLine, float> chronicleHeights = new Dictionary<ChronicleLine, float>();
         private static float chronicleWidth;
 
-        // The filtered entries, rebuilt when the filter or the chronicle changes.
-        private static readonly List<ChronicleEntry> entries = new List<ChronicleEntry>();
+        // The filtered lines, rebuilt when the filter or the chronicle (the history's view) changes.
+        private static readonly List<ChronicleLine> entries = new List<ChronicleLine>();
         private static ChronicleFilter entriesFilter;
-        private static int entriesCount = -1;
-        private static List<ChronicleEntry> entriesSource;
-        private static ChronicleEntry entriesLast;
+        private static List<ChronicleLine> entriesSource;
 
         private static string[] filterLabels;
 
@@ -96,13 +96,13 @@ namespace ColonyCouncil
             }
             foreach (var a in comp.annals.written.AsEnumerable().Reverse().Take(6))
             {
-                string label = "CC_Annals_Button".Translate(a.year);
+                string label = a.Button;
                 float w = Text.CalcSize(label).x + 20f;
                 if (bx - w - 6f < minLeft) break;
                 bx -= w + 6f;
                 var entry = a;
                 if (UiKit.ActButton(new Rect(bx, rect.y + 6f, w, UiKit.RowStandard), label, null))
-                    Find.WindowStack.Add(new Dialog_MessageBox(entry.text, title: "CC_Annals_Title".Translate(entry.year)));
+                    Find.WindowStack.Add(new Dialog_MessageBox(entry.text, title: entry.Title));
             }
 
             var list = Entries(comp);
@@ -191,6 +191,8 @@ namespace ColonyCouncil
                 var color = UiKit.ChronicleColor(e.kind);
                 UiKit.Badge(new Rect(RailX - 10f, y + 3f, 20f, 20f), Icons.For(e.kind), color);
                 LinkText.Draw(new Rect(TextX, y + 3f, width - TextX - 6f, h - 6f), TextOf(e, comp), color == UiKit.Faint ? UiKit.Faint : UiKit.Ink);
+                // An answer's whole record (the question, the answer, the follow-up, how it went) on hover.
+                if (e.Tip.Length > 0) TooltipHandler.TipRegion(row, e.Tip);
                 GUI.color = UiKit.Ink;
                 y += h;
             }
@@ -198,12 +200,12 @@ namespace ColonyCouncil
             Widgets.EndScrollView();
         }
 
-        // Each entry's text with the colonists it names as links to their cards (the one it is about first), made once per entry.
-        private static readonly Dictionary<ChronicleEntry, string> marked = new Dictionary<ChronicleEntry, string>();
+        // Each line's text with the colonists it names as links to their cards (the one it is about first), made once per line.
+        private static readonly Dictionary<ChronicleLine, string> marked = new Dictionary<ChronicleLine, string>();
         private static readonly List<KeyValuePair<string, string>> names = new List<KeyValuePair<string, string>>();
 
-        /// <summary>An entry's text with the colony's people it names as links (the Chronicle, the Wishes page's earlier wishes).</summary>
-        internal static string TextOf(ChronicleEntry e, CouncilGameComponent comp)
+        /// <summary>A line's text with the colony's people it names as links (the Chronicle, the Wishes and Ambitions pages' earlier lines, the overview).</summary>
+        internal static string TextOf(ChronicleLine e, CouncilGameComponent comp)
         {
             if (marked.TryGetValue(e, out var s)) return s;
             s = e.text;
@@ -211,7 +213,7 @@ namespace ColonyCouncil
             {
                 var colonists = Colonists(comp);
                 names.Clear();
-                if (!e.pawnId.NullOrEmpty() && colonists.TryGetValue(e.pawnId, out var about)) Add(about);
+                if (!e.about.IsNone && colonists.TryGetValue(e.about, out var about)) Add(about);
                 foreach (var p in colonists.Values)
                     if (s.IndexOf(p.LabelShort, System.StringComparison.Ordinal) >= 0)
                         Add(p);
@@ -232,26 +234,25 @@ namespace ColonyCouncil
             names.Add(new KeyValuePair<string, string>(p.LabelShort, thing.ToString()));
         }
 
-        /// <summary>The colony's people by their ids, found again every few seconds.</summary>
-        private static Dictionary<string, Pawn> Colonists(CouncilGameComponent comp) =>
-            UiCache.Get(comp.chronicle, 94, () =>
+        /// <summary>The colony's people by who they are in the history, found again every few seconds.</summary>
+        private static Dictionary<Ref, Pawn> Colonists(CouncilGameComponent comp) =>
+            UiCache.Get(comp, 94, () =>
             {
-                var d = new Dictionary<string, Pawn>();
-                foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists) d[p.ThingID] = p;
+                var d = new Dictionary<Ref, Pawn>();
+                foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists) d[Refs.Of(p)] = p;
                 return d;
             }, 3f);
 
-        private static List<ChronicleEntry> Entries(CouncilGameComponent comp)
+        private static List<ChronicleLine> Entries(CouncilGameComponent comp)
         {
-            // The chronicle is capped, so its length alone doesn't tell when it changed: its newest entry does.
-            var last = comp.chronicle.Count > 0 ? comp.chronicle[comp.chronicle.Count - 1] : null;
-            if (entriesSource == comp.chronicle && entriesCount == comp.chronicle.Count && entriesLast == last && entriesFilter == chronicleFilter) return entries;
+            // The view is built again whenever the history changes: a new list is a new chronicle.
+            var all = Chronicle.Lines;
+            if (entriesSource == all && entriesFilter == chronicleFilter) return entries;
             entries.Clear();
-            for (int i = comp.chronicle.Count - 1; i >= 0; i--)
-                if (Matches(comp.chronicle[i].kind, chronicleFilter)) entries.Add(comp.chronicle[i]);
-            entriesSource = comp.chronicle;
-            entriesCount = comp.chronicle.Count;
-            entriesLast = last;
+            foreach (var l in all)
+                if (Matches(l.kind, chronicleFilter))
+                    entries.Add(l);
+            entriesSource = all;
             entriesFilter = chronicleFilter;
             return entries;
         }

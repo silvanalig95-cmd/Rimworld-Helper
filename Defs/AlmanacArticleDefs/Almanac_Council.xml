@@ -294,7 +294,9 @@ Either way, green lines on hover help the colony, red ones cost it, and white on
       </li>
       <li>
         <heading>Seasons and battles</heading>
-        <text>Seasonal dilemmas (midsummer, harvest home, the longest night, naming the year) and after-battle ones (the spoils, the enemy dead, a victory feast) come up at their moment. Every dilemma and its answer is written into the chronicle and counted in the year's annals.</text>
+        <text>Seasonal dilemmas (midsummer, harvest home, the longest night, naming the year) and after-battle ones (the spoils, the enemy dead, a victory feast) come up at their moment. Every dilemma and its answer is written into the chronicle and counted in the year's annals.
+
+Every other question the colony is asked writes down its answer too: Rimfolk's events, world events, a camp's word, a calendar day, a meeting, an election, a brigands' hold's terms, a hamlet's ask, a journey waiting at the gate, and each of diplomacy's offers. The Dilemmas page lists them all with the dilemmas, by day, with how each went.</text>
       </li>
       <li>
         <heading>Everyday life</heading>
@@ -340,7 +342,7 @@ What each colonist is served fits what they believe and eat. It's only what thei
     <order>6</order>
     <summary>How the colony remembers its people and its years.</summary>
     <tip>Write the year down before people start remembering it differently.</tip>
-    <description>Whoever has done the most of something earns a name for it (the Healer, Deadeye, the Kindling) until someone overtakes them. Each year since a colonist joined is marked. When a new year begins, the colony's best reader or talker writes the annals of the year that ended.</description>
+    <description>Whoever has done the most of something earns a name for it (the Healer, Deadeye, the Kindling) until someone overtakes them. Each year since a colonist joined is marked. On each anniversary of the landing, the colony's best reader or talker writes the year down in one letter, and the chronicle keeps everything since the first day.</description>
     <sections>
       <li>
         <heading>Earning a name</heading>
@@ -377,7 +379,13 @@ Others are given once, for one deed, and stay with their holder: the builder len
       </li>
       <li>
         <heading>The annals</heading>
-        <text>The annals cover who joined, died, left or walked out, raids, wealth, wishes, ambitions, decrees, dilemmas, friendships, feuds, trust and names. Past years can be reread from the Chronicle page. At each anniversary of the landing a second letter comes, with the same setting: the year on the land and from beyond it, which the annals leave out. The herd (its head, who leads it and of which line, the young born, a new leader, one in its last season), the beast that stays, the neighbours settled for good and the loads that went down the road from their post, the camps that came, the faces that came back, the world events that ended and how, the allies, and a few lines of the year's chronicle about strangers and the world. The annalist writes it too.</text>
+        <text>The year is told once, on the colony's founding day (each anniversary of the landing), in one letter the annalist writes. First the people: who joined, died, left or walked out, raids, wealth, wishes, ambitions, decrees, dilemmas, traditions, friendships, feuds, trust, the council's seats and names. Then the land and the world: the herd (its head, who leads it and of which line, the young born, a new leader, one in its last season), the beast that stays, the neighbours settled for good and the loads that went down the road from their post, the camps that came, the faces that came back, the world events that ended and how, the allies, and a few lines of the year's chronicle about strangers and the world. Then the founding: who has been here since the first days, how many have died since, what travellers call the colony, its customs. Last, a word in the writer's own voice.
+
+The founding day's own event (or the calendar's letter for the day) asks how to keep the day, with those who keep it tonight, and leaves the year to the letter. Past years can be reread from the Chronicle page, one button a year.
+
+The Chronicle page is the colony's view of its one history, the same history the region window's History page shows with the world around it. It shows every line told for the colony, every question the council answered with what came of it (it took place, it never came about, it went wrong; hover one for the question, the answer and the follow-up), and the colony's own milestones out in the region, such as a brigands' hold found or a pact made. It reaches back to the first day: the last sixty days line for line, older seasons' small lines as one line each ("Harper made 5 wishes"), and the milestones as they were told.
+
+The record keeps the news that matters and leaves the repeats: a fight's comradeship is told only when two people count each other comrades for the first time or one carried the other out; an election is one line with every seat; those who mark their years here on the same day share a line.</text>
       </li>
     </sections>
     <keywords><li>epithet</li><li>name</li><li>title</li><li>annals</li><li>anniversary</li><li>chronicle</li><li>Gatekeeper</li><li>Daykeeper</li><li>Good Neighbor</li><li>Road-Warden</li><li>Old Doc</li><li>Unbeaten</li><li>Celebrant</li><li>Shepherd</li><li>Founder</li><li>Annalist</li><li>Firstborn</li></keywords>

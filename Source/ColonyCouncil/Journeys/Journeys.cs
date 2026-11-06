@@ -421,7 +421,9 @@ namespace ColonyCouncil
                     yield return Option_Close;
                     yield break;
                 }
-                yield return new DiaOption("CC_Journey_Choice_Wait".Translate())
+                // Each answer is written in the history's answers' log (waiting an hour, a small one).
+                var home = Live?.map;
+                yield return Answers.Recorded(new DiaOption("CC_Journey_Choice_Wait".Translate())
                 {
                     action = () =>
                     {
@@ -430,7 +432,7 @@ namespace ColonyCouncil
                         Find.LetterStack.RemoveLetter(this);
                     },
                     resolveTree = true
-                };
+                }, this, "journey", map: () => home, minor: true);
                 // Someone isn't ready: leave without them. Only danger on the map: set off anyway.
                 var without = new DiaOption((JourneyRun.AnyNotReady(Live) ? "CC_Journey_Choice_Without" : "CC_Journey_Choice_Anyway").Translate())
                 {
@@ -443,8 +445,8 @@ namespace ColonyCouncil
                     resolveTree = true
                 };
                 if (!JourneyRun.AnyReady(Live)) without.Disable("CC_Journey_NobodyReady".Translate());
-                yield return without;
-                yield return new DiaOption("CC_Journey_Choice_CallOff".Translate())
+                yield return Answers.Recorded(without, this, "journey", map: () => home);
+                yield return Answers.Recorded(new DiaOption("CC_Journey_Choice_CallOff".Translate())
                 {
                     action = () =>
                     {
@@ -453,7 +455,7 @@ namespace ColonyCouncil
                         Find.LetterStack.RemoveLetter(this);
                     },
                     resolveTree = true
-                };
+                }, this, "journey", map: () => home);
             }
         }
 

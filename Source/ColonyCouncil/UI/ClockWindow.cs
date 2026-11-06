@@ -136,7 +136,7 @@ namespace ColonyCouncil
         private static void Stores(ClockModel m)
         {
             var comp = CouncilGameComponent.Instance;
-            Line(m.stores, () => "CC_Clock_Store_Chronicle".Translate(comp.chronicle.Count).Resolve());
+            Line(m.stores, () => "CC_Clock_Store_Chronicle".Translate(Chronicle.Count).Resolve());
             Line(m.stores, () =>
             {
                 var book = WorldLedger.Instance.Book;

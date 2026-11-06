@@ -7,18 +7,17 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 508; modelled: 508; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,447 KB** after a year, **2,904 KB** after two, **3,079 KB** after five.
+Saved collections found: 511; modelled: 511; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,377 KB** after a year, **2,818 KB** after two, **2,992 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
 | `Journal.cs:journals` | the living's, and the 30 departed written in most lately | cap | 30 | 50 | 50 | 468.8 |
-| `World/Ledger/History.cs:events` | HistoryMath.MaxEvents; small ones past 60 days fold into one per actor, kind and season, milestones stay; over it older seasons go first | cap | 660 | 800 | 800 | 234.4 |
+| `World/Ledger/History.cs:events` | HistoryMath.MaxEvents; small ones past 60 days fold into one per actor, kind and season, milestones stay; over it older seasons go first | cap | 720 | 800 | 800 | 250.0 |
 | `Social/Gossip/Deed.cs:heard` | who knows each deed (30 at most a deed), with its deed | cap | 2,000 | 2,000 | 2,000 | 214.8 |
 | `Persona/PersonaTracker.cs:memories` | PersonaTracker.MaxMemories, 8 per pair and 3 of a kind; past it by 60 the faintest go at once; faded ones and those of people the game no longer knows dropped at saving | cap | 300 | 600 | 600 | 187.5 |
 | `Persona/PersonaTracker.cs:peopleSaved` | the colony's own people the game still knows; empty records dropped at saving | known | 33 | 36 | 45 | 159.1 |
 | `World/Notables.cs:notables` | the towns' head, heir, envoy and trader (NotableMath.MaxNear + MaxDealt towns) and NotableMath.MaxAcquaintances faces met; with their notes and regards | fixed | 42 | 42 | 42 | 106.6 |
-| `CouncilGameComponent.cs:chronicle` | Caps.Chronicle; the newest 200 always, milestones longest | cap | 300 | 300 | 300 | 102.5 |
 | `UI/WeekMemory.cs:dilemmas` | DilemmaLog.MaxRecords; each with what the answer was to do in numbers (about 500 characters, at most 1600) and in words (about 400, at most 1200) | cap | 30 | 60 | 60 | 76.2 |
 | `World/Ledger/WorldLedger.cs:ties` | ties between two parties: 3 of a kind per pair, 60 per kind (regard 300), TieRules.MaxTies in all; closed ones dropped after 60 days | cap | 60 | 120 | 300 | 76.2 |
 | `Persona/TraitChanges.cs:watches` | one per colonist with its deeds and ten snapshots; known pawns only | colonists | 20 | 20 | 20 | 66.4 |
@@ -259,6 +258,7 @@ Rimfolk's part of the save, roughly: **2,447 KB** after a year, **2,904 KB** aft
 | `Health/HealthTracker.cs:worst` | hard times not over yet (hunger, cold, untended illness); known pawns only | known | 6 | 6 | 8 | 0.7 |
 | `Building/Suggest/SameRules.cs:pieceDefs` | with the above: what each blueprint was | fixed | 16 | 16 | 16 | 0.6 |
 | `Diplomacy/DiplomacyBook.cs:tales` | per home: who of the colony's won something at a neighbour's feast, FeastMath.MaxTales at most, told once home or let go after 30 days | cap | 3 | 4 | 4 | 0.6 |
+| `UI/WeekMemory.cs:answers` | answers of every kind whose play-outs are still watched, each only for the days they take (Answers.MaxWatched 40 at most) | fixed | 4 | 4 | 4 | 0.6 |
 | `Ambitions/CouncilMeeting.cs:pitches` | while a meeting is called | while | 3 | 3 | 3 | 0.6 |
 | `Building/Automations.cs:doneKeys` | one per kind of automated action (a dozen kinds) | fixed | 20 | 20 | 20 | 0.6 |
 | `Camps/Camp.cs:asksMade` | asks made of the camp (once each, or once a day), while it stays | while | 15 | 15 | 15 | 0.6 |
@@ -419,10 +419,12 @@ Rimfolk's part of the save, roughly: **2,447 KB** after a year, **2,904 KB** aft
 | `World/Region/Hamlet.cs:refused` | per home: when its hamlet's asks were refused, the newest HamletMath.MaxRefused, none older than a year | cap | 3 | 4 | 4 | 0.0 |
 | `PlayOut/OnMapTimed.cs:pawns` | per thing kept: those felling the trees (three at most), fellings only | fixed | 1 | 1 | 1 | 0.0 |
 | `PlayOut/PlayOuts.cs:led` | per play-out: animals led out to be let go (a pet, or a few of the herd), walks and visits only | fixed | 1 | 1 | 1 | 0.0 |
+| `Dilemmas/Answers.cs:started` | per answer watched | fixed | 1 | 1 | 1 | 0.0 |
 | `Lean/Homes.cs:known` | the homes at the last hourly look (their settlements' ids), one per home | fixed | 1 | 1 | 1 | 0.0 |
 | `Lives/Legacy.cs:cameOfAgeTick` | 6 days | window | 0 | 0 | 0 | 0.0 |
 | `Lives/Legacy.cs:cameOfAge` | 6 days | window | 0 | 0 | 0 | 0.0 |
 | `Building/ShelfReserves.cs:kinds` | read from saves of 0.23.0 and 0.23.1 only, then kept as entries | while | 0 | 0 | 0 | 0.0 |
+| `CouncilGameComponent.cs:chronicle` | an older save's chronicle, read on load and taken into the history (the chronicle is its view); never saved again | fixed | 0 | 0 | 0 | 0.0 |
 | `CouncilGameComponent.cs:oldGuestKin` | an older save's guest kin, read on load and moved into the world ledger (Claim ties); never saved again | fixed | 0 | 0 | 0 | 0.0 |
 | `Epithets/Epithets.cs:laterFirstborn` | a colony settled later: its first child (none with one colony); a lost home's dropped | fixed | 0 | 0 | 0 | 0.0 |
 | `Epithets/Epithets.cs:laterFounders` | a colony settled later: those who were its people in its first two days (none with one colony); a lost home's dropped | fixed | 0 | 0 | 0 | 0.0 |
@@ -455,6 +457,7 @@ Rimfolk's part of the save, roughly: **2,447 KB** after a year, **2,904 KB** aft
 | `Defense/DefenseLine.cs:raids` | per line: the last DefenseLine.MaxRaids raids (counted under lines) | fixed | 5 | 5 | 5 | (in its record) |
 | `Defense/DefenseLine.cs:skipped` | per line: steps set aside by hand, one per step (counted under lines) | defs | 6 | 6 | 6 | (in its record) |
 | `Defense/DefenseLine.cs:span` | per line: the cells across its gap, 29 at most (counted under lines) | fixed | 14 | 14 | 14 | (in its record) |
+| `Dilemmas/Answers.cs:plays` | per answer watched (counted under answers) | fixed | 2 | 2 | 2 | (in its record) |
 | `Diplomacy/FeastBook.cs:contests` | per feast: FeastMath.MaxContests at most (counted under homes) | fixed | 4 | 4 | 4 | (in its record) |
 | `Diplomacy/FeastBook.cs:guests` | per home: the feast under way and the last one, FeastMath.MaxGuests guests each (counted under homes) | fixed | 6 | 6 | 6 | (in its record) |
 | `Diplomacy/FeastBook.cs:results` | per feast: how each contest went, one each (counted under homes) | fixed | 4 | 4 | 4 | (in its record) |
@@ -508,7 +511,7 @@ Rimfolk's part of the save, roughly: **2,447 KB** after a year, **2,904 KB** aft
 | `UI/DilemmaLog.cs:plays` | per dilemma record (counted under dilemmas) | fixed | 4 | 4 | 4 | (in its record) |
 | `Wishes/Kept.cs:things` | per watch (counted under watches) | fixed | 2 | 2 | 2 | (in its record) |
 | `Wishes/Wish.cs:coSigners` | per open wish (counted under wishes) | fixed | 2 | 2 | 2 | (in its record) |
-| `World/Ledger/History.cs:values` | per event: a deed's name, when it has one (counted under events) | fixed | 1 | 1 | 1 | (in its record) |
+| `World/Ledger/History.cs:values` | per event: a deed's name, or an answer's six values, when it has them (counted under events) | fixed | 1 | 1 | 1 | (in its record) |
 | `World/Ledger/LedgerPersons.cs:kept` | per person: the reasons they're kept in the world, one per part of Rimfolk (counted under persons) | fixed | 2 | 2 | 2 | (in its record) |
 | `World/Ledger/LedgerRegion.cs:members` | per house: its members by first name, RegionMath.MembersPerHouse at most (counted under houses) | fixed | 4 | 4 | 4 | (in its record) |
 | `World/Notables.cs:done` | per notable: threats warned of and losses mourned, the newest 12 (counted under notables) | fixed | 12 | 12 | 12 | (in its record) |
