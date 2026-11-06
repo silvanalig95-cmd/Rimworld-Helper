@@ -5,7 +5,7 @@
        ColonyCouncil.CampKindDef as in Council_CampKinds.xml, each with what its land must have (Camps/CampKindsLand3.cs):
        stonecutters come for rock chunks lying clear of the colony and dress them into the game's own blocks, sold to the
        colony at its gate; shearers come to a colony with a woolly flock and offer to shear it in its pens for one fleece
-       in ten; beast-catchers come for a wild herd and rope two of it to lead away, one of them for sale; a travelling
+       in ten; beast-catchers come for a wild herd and rope one or two of it to lead away, for sale to the colony; a travelling
        teacher comes to a colony with children, for lessons at the camp; the wounded of a war (any land) come with the
        game's own wounds, oftener while a war runs, and ask for medicine. Each in the form of its own people's age; none
        leaves a gift that marks the calendar. -->
@@ -402,11 +402,11 @@
       <li>[their:industrial] Wranglers come</li>
     </titles>
     <texts>
-      <li>Beast-catchers of {FACTION} have come with ropes and a pack beast, after the wild herd on the colony's land. {X_nameDef} told {A_nameDef} they catch and gentle wild beasts for the region's farms, and asked to camp {PLACE} a few days and take two or three of the herd.</li>
+      <li>Beast-catchers of {FACTION} have come with ropes and a pack beast, after the wild herd on the colony's land. {X_nameDef} told {A_nameDef} they catch and gentle wild beasts for the region's farms, and asked to camp {PLACE} a few days and rope a couple of the herd.</li>
       <li>[their:tribal] Beast-callers of {FACTION} have come down from the hills with plaited ropes, following the wild herd. {X_nameDef} told {A_nameDef} their people have always called a few out of the herd in this season, and asked to camp {PLACE} while they do.</li>
-      <li>[their:medieval] Horse-catchers of {FACTION} have come with halters and long ropes, and a pack beast for their gear. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and take two or three of the wild herd grazing on the colony's land.</li>
+      <li>[their:medieval] Horse-catchers of {FACTION} have come with halters and long ropes, and a pack beast for their gear. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and take a couple of the wild herd grazing on the colony's land.</li>
       <li>[their:industrial] Wranglers of {FACTION} have ridden in with ropes and halters for the wild herd on the colony's land. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} a few days and rope a couple of them for the farms down the road.</li>
-      <li>[ws:herds] With the great herds moving, beast-catchers of {FACTION} have come for the wild beasts on the colony's land. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and take two or three of them.</li>
+      <li>[ws:herds] With the great herds moving, beast-catchers of {FACTION} have come for the wild beasts on the colony's land. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and take a couple of them.</li>
     </texts>
     <settled>
       <li>The beast-catchers' camp {PLACE} is up: a fire, a windbreak, and ropes coiled ready by the picket.</li>

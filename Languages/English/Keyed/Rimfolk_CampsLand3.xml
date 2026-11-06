@@ -7,10 +7,10 @@
   <!-- ===================== The arrival letter ===================== -->
   <CC_CampLand_Facts_cut>They will dress the loose rock near their camp into blocks, chunk by chunk, and stack the blocks at their camp.</CC_CampLand_Facts_cut>
   <CC_CampLand_Facts_shear>They shear flocks for a living: taken on, they shear the colony's beasts in its pens by day, for one fleece in ten.</CC_CampLand_Facts_shear>
-  <CC_CampLand_Facts_catch>They will rope two or three of the wild herd near their camp, gentle them at their picket and lead them away when they go.</CC_CampLand_Facts_catch>
+  <CC_CampLand_Facts_catch>They will rope one or two of the wild herd near their camp, keep them by their picket and lead them away when they go.</CC_CampLand_Facts_catch>
 
   <!-- ===================== Their work ===================== -->
-  <CC_CampLand_Caught>{X_nameDef} of the {NAME} has roped a {THING} out of the wild herd, and it is theirs now, tied at their picket.</CC_CampLand_Caught>
+  <CC_CampLand_Caught>{X_nameDef} of the {NAME} has roped a {THING} out of the wild herd, and it is theirs now, kept by their picket.</CC_CampLand_Caught>
   <CC_CampLand_LessonLabel>a lesson at the {NAME}'s camp</CC_CampLand_LessonLabel>
 
   <!-- ===================== Why an ask can't be made ===================== -->

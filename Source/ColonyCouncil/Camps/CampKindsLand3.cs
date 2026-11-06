@@ -12,7 +12,7 @@ namespace ColonyCouncil
     // The camp kinds of the player's request of 6 November 2026 (Defs/CampDefs/Rimfolk_CampKinds_Variety3.xml): what
     // their land must have, where they pitch, and their own work by day. Stonecutters come for rock chunks lying clear of
     // the colony and dress them into the game's own blocks; shearers come to a colony with a woolly flock and, taken on,
-    // shear it in its pens for one fleece in ten; beast-catchers come for a wild herd and rope two or three of it to lead
+    // shear it in its pens for one fleece in ten; beast-catchers come for a wild herd and rope one or two of it to lead
     // away; a travelling teacher comes to a colony with children. The wounded of a war come with their wounds
     // (CampKindDef.wounded). The arithmetic is CampLandMath's.
 
