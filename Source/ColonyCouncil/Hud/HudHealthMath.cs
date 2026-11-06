@@ -26,8 +26,14 @@ namespace ColonyCouncil
         public bool needsTend;
         /// <summary>An immunity race (HediffComp_Immunizable).</summary>
         public bool immunizable;
-        /// <summary>The game counts it as being ill (the def's makesSickThought: flu, food poisoning, gut worms).</summary>
+        /// <summary>The game counts it as being ill (the def's makesSickThought: flu, gut worms).</summary>
         public bool sick;
+        /// <summary>
+        /// It makes them vomit (one of its stages has the game's vomitMtbDays), or it is food poisoning: a sickness that passes
+        /// on its own, whatever the game's sick flag says. Food poisoning carries no sick flag, no immunity race and no
+        /// tending, so without this it read as another mod's lasting effect and never showed (the player's save, 6 November 2026).
+        /// </summary>
+        public bool vomits;
         /// <summary>Pregnancy and labour.</summary>
         public bool pregnancy;
         /// <summary>One of Rimfolk's own ailments (a cold, a stiff neck): they pass.</summary>
@@ -171,7 +177,7 @@ namespace ColonyCouncil
             if (f.bleedRate > 0f) return true;
             if (f.injury) return true;
             if (f.needsTend || (f.tendable && !f.tended)) return true;
-            if (f.immunizable || f.sick) return true;
+            if (f.immunizable || f.sick || f.vomits) return true;
             if (f.Lethal && f.Progress >= LethalShowsFrom) return true;
             // Nothing changes and nothing can be done: a lasting effect, not something that passes.
             if (Math.Abs(f.severityPerDay) < Still && !f.tendable) return false;

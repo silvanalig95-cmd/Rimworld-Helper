@@ -278,6 +278,7 @@ namespace ColonyCouncil
                 chronic = def.chronic,
                 bad = def.isBad,
                 sick = def.makesSickThought,
+                vomits = def == HediffDefOf.FoodPoisoning || def.stages != null && def.stages.Any(st => st != null && st.vomitMtbDays > 0f),
                 pregnancy = def.pregnant || hd is HediffWithParents,
                 lethalSeverity = def.lethalSeverity,
                 severity = hd.Severity,

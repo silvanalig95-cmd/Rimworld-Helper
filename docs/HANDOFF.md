@@ -6,6 +6,15 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 0.126.2, food poisoning on the health panel (the player's report, 6 November 2026: "the health ui element is not
+  picking up my food poisoning?", save New_Arrivals42 at 1.7.5000: Dawson, a colonist on the home map, with
+  FoodPoisoning at 0.81 easing by 1 a day). `HudHealthMath.Shows` keeps a bad condition only as a wound, an illness (an
+  immunity race or the def's makesSickThought), something wanting tending or something deadly; food poisoning has no sick
+  flag, no immunity, no tending and no lethal severity, so it read as another mod's passing effect and stayed off (the
+  `sick` field's comment wrongly named it). Now `HediffFacts.vomits` (food poisoning by def, or any stage with the game's
+  vomitMtbDays: cryptosleep sickness too) counts as being ill (`HudHealth.Facts`); `HudPanelTests` has food poisoning and
+  the same facts without vomiting (still off). Other uses of makesSickThought (talk, marks, letters about deadly illness)
+  were left as they are.
 - 0.126.1, Pokémon voices by body, type and size (the player's request, 6 November 2026: "can you do a full list of
   each pokemon and then the best matching sound?", with PokéWorld's files uploaded: PokéWorld Updated [1.6] [ALPHA],
   `themoonitself.PokeWorld`, workshop 3540803945, 898 species). What its files showed: every species uses PokéWorld's own

@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Food poisoning on the health panel
+
+*6 November 2026, version 0.126.2*
+
+- The health panel now shows food poisoning. It has no immunity race and needs no tending, so the panel took it for another mod's lasting effect and left it out.
+- Anything else that makes a colonist vomit, such as the sickness after cryptosleep, shows the same way while it passes.
+
 ## Pokémon voices by body, type and size
 
 *6 November 2026, version 0.126.1*

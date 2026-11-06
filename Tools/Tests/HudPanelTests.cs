@@ -23,6 +23,12 @@ public static class HudPanelTests
         var cut = new HediffFacts { bad = true, injury = true, tendable = true, tended = true, severity = 5f };
         Check(HudHealthMath.Shows(flu), "an illness racing immunity shows");
         Check(HudHealthMath.Shows(cut), "a fresh wound shows, even tended: it will pass");
+        // Food poisoning (the player's save, 6 November 2026): bad, easing by 1 a day, no sick flag, no immunity, no tending.
+        var foodPoisoning = new HediffFacts { bad = true, vomits = true, severity = 0.81f, severityPerDay = -1f };
+        Check(HudHealthMath.Shows(foodPoisoning), "food poisoning shows: it makes them vomit, a sickness that passes");
+        Check(!HudHealthMath.Shows(new HediffFacts { bad = true, severity = 0.81f, severityPerDay = -1f }),
+            "the same with no vomiting and no sick flag (another mod's passing effect) still stays off");
+        Check(HudHealthMath.Score(foodPoisoning, HealthRace.None, false) > 0f, "and it ranks with the things that pass");
         var scar = cut;
         scar.permanent = true;
         Check(!HudHealthMath.Shows(scar), "a scar (a permanent wound) never shows");

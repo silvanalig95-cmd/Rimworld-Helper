@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.126.2</version>
+        <date>6 November 2026</date>
+        <title>Food poisoning on the health panel</title>
+        <points>
+          <li>The health panel now shows food poisoning. It has no immunity race and needs no tending, so the panel took it for another mod's lasting effect and left it out.</li>
+          <li>Anything else that makes a colonist vomit, such as the sickness after cryptosleep, shows the same way while it passes.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.126.1</version>
         <date>6 November 2026</date>
         <title>Pokémon voices by body, type and size</title>
