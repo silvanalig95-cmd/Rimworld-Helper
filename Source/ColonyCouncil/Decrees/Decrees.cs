@@ -255,6 +255,23 @@ namespace ColonyCouncil
         /// Ideology, in classic mode, with "Faith in the colony" off, or with a single faith at home.
         /// </summary>
         public bool oneFaith;
+        /// <summary>
+        /// Ideology: every faith its evening (Decrees/DecreeWork.cs), the other way from one faith for the colony: declared,
+        /// the largest faith that isn't the colony's holds an evening of faith; each morning those of other faiths trust the
+        /// council a little more and the devout of the colony's own a little less. Listed only as one faith is (Ideology, faith
+        /// life on, more than one faith at home), and never while one faith for the colony holds.
+        /// </summary>
+        public bool everyFaith;
+        /// <summary>
+        /// What it marks for the colony's own work each morning while it holds, as an answer's effects (the hunters' game, trees
+        /// for the cutters, wild plants for the pickers): the game's own designations, done by whoever does that work.
+        /// </summary>
+        public List<DilemmaEffect> daily;
+        /// <summary>
+        /// Saving the power: the colony's lamps switched off from eleven at night to five in the morning (never one in a room
+        /// with a patient abed), and on again as they were (Decrees/DecreeWork.cs).
+        /// </summary>
+        public bool lightsOut;
 
         /// <summary>Never possible in this game as it stands (another era, a DLC or mod missing, another faith): not listed.</summary>
         public bool Hidden => DecreeWork.Hidden(this);
@@ -372,6 +389,8 @@ namespace ColonyCouncil
         public const int RequestDays = 5;
         /// <summary>A curfew's night hours: each colonist's (by ThingID) hours turned to sleep, "hour=TimeAssignmentDef;...".</summary>
         public Dictionary<string, string> nightHours = new Dictionary<string, string>();
+        /// <summary>Saving the power: the lamps (by ThingID) switched off for the night, to be switched on again at five.</summary>
+        public List<string> lampsOff = new List<string>();
         private List<string> tmpNightKeys, tmpNightValues;
 
         public DecreeRequest RequestFor(DecreeDef def) => requests.FirstOrDefault(r => r.def == def);
@@ -945,9 +964,11 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref lastRequestTick, "lastRequestTick", -999999);
             Scribe_Collections.Look(ref threatTicks, "threatTicks", LookMode.Value);
             Scribe_Collections.Look(ref nightHours, "nightHours", LookMode.Value, LookMode.Value, ref tmpNightKeys, ref tmpNightValues);
+            Scribe_Collections.Look(ref lampsOff, "lampsOff", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (nightHours == null) nightHours = new Dictionary<string, string>();
+                if (lampsOff == null) lampsOff = new List<string>();
                 if (threatTicks == null) threatTicks = new List<int>();
                 if (active == null) active = new List<ActiveDecree>();
                 active.RemoveAll(a => a?.def == null);

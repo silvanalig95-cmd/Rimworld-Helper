@@ -151,6 +151,19 @@ namespace ColonyCouncil
 
         // ---------------- A caravan home ----------------
 
+        [Unsaved] private int lastHomeTick = -1;
+        [Unsaved] private float lastHomeDays;
+        [Unsaved] private List<string> lastHomeIds = new List<string>();
+
+        /// <summary>The last time the colony's people came home from the road (five days or more): when it was seen, who, and the days away.</summary>
+        public bool LastHome(out int tick, out List<string> ids, out float daysAway)
+        {
+            tick = lastHomeTick;
+            ids = lastHomeIds;
+            daysAway = lastHomeDays;
+            return lastHomeTick >= 0 && ids.Count > 0;
+        }
+
         /// <summary>
         /// The colony's people away (a caravan, a journey, an outpost of the world) are noted; when they come home after
         /// <see cref="CalendarMath.HomecomingMinDays"/> days or more, the day is written down. One such day is kept, the
@@ -177,6 +190,11 @@ namespace ColonyCouncil
                 if (!known.TryGetValue(k, out var q) || q.Dead || !Mine(q)) awaySince.Remove(k);
             if (back.Count == 0) return;
             float days = back.Max(x => now - x.since) / (float)GenDate.TicksPerDay;
+            // Kept for the council's question about those home from the road (Dilemmas/DilemmaWorkers_YearFour.cs), whether
+            // or not the day goes on the calendar; not saved: after a load the question waits for the next homecoming.
+            lastHomeTick = now;
+            lastHomeDays = days;
+            lastHomeIds = back.Select(x => x.p.ThingID).ToList();
             var lead = back.Select(x => x.p).OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0).First();
             var d = Dated(new CalendarDay
             {

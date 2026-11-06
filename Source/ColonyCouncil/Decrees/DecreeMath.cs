@@ -100,8 +100,12 @@ namespace ColonyCouncil
         {
             new[] { "Council_Decree_Festival", "Council_Decree_FeastDay" },
             new[] { "Council_Decree_QuietHours", "Council_Decree_Rest" },
-            new[] { "Council_Decree_OnGuard", "Council_Decree_Curfew" }
+            new[] { "Council_Decree_OnGuard", "Council_Decree_Curfew" },
+            // One faith for the colony and every faith its evening are the two ways of the council with its faiths.
+            new[] { OneFaith, EveryFaith }
         };
+
+        public const string OneFaith = "Council_Decree_OneFaith", EveryFaith = "Rimfolk_Decree_EveryFaith";
 
         /// <summary>The other form of the idea a decree is one form of, or null for a decree of its own.</summary>
         public static string OtherForm(string defName)
