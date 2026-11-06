@@ -33,6 +33,12 @@ namespace ColonyCouncil
         public string how;
         /// <summary>Taken up from someone who died with it still open (their name), or null.</summary>
         public string heirOf;
+        /// <summary>
+        /// Their avenger dead with it open: who was closest to them of those who could take it up, noted at the death while
+        /// their bonds were still on record (VendettaEnds.NoteHeir; the colonist's thingIDNumber, VendettaMath.Nobody for
+        /// nobody close enough, VendettaMath.NotNoted before that or in an older save).
+        /// </summary>
+        public int heirId = VendettaMath.NotNoted;
 
         public const int KillsToSettle = 3;
 
@@ -73,6 +79,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref captives, "captives");
             Scribe_Values.Look(ref how, "how");
             Scribe_Values.Look(ref heirOf, "heirOf");
+            Scribe_Values.Look(ref heirId, "heirId", VendettaMath.NotNoted);
         }
     }
 
@@ -192,6 +199,9 @@ namespace ColonyCouncil
                     ColonyCalendar.Notify_Death(p);
                     var killers = Killers(p, now);
                     if (killers != null && S.vendettas) Swear(comp, p, killers, false);
+                    // Who was closest to them, for a vendetta they leave open, while their bonds are on record (after
+                    // those who swear for them now, who are sworn on that people already).
+                    if (S.vendettas) VendettaEnds.NoteHeir(comp, this, p);
                     comp.legacy.Notify_Death(comp, p);
                     if (S.eulogies) eulogies.Add(Snapshot(comp, p, killers, now));
                 }
@@ -427,7 +437,7 @@ namespace ColonyCouncil
 
         public void Daily(CouncilGameComponent comp)
         {
-            // Someone who died with a vendetta open may leave it to their kin or a close friend (Secrets/VendettaEnds.cs).
+            // Someone who died with a vendetta open may leave it to whoever was closest to them (Secrets/VendettaEnds.cs).
             if (S.vendettas) VendettaEnds.PassToHeirs(comp, this);
             vendettas.RemoveAll(v => v.avenger == null || v.avenger.Dead || v.avenger.Discarded || v.faction == null);
             foreach (var v in vendettas.Where(v => !v.settled).ToList())

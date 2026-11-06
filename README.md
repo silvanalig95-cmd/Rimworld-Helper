@@ -1046,7 +1046,8 @@ makes peace with the killers. It ends when enough of them fall or are taken aliv
 when the one carried off comes home, when the avenger lays it down in time (sooner if kind, likelier once there's
 peace, never if bloodthirsty), or when the killers send the **blood price** or, once there's peace, come to
 **apologise** (the council can take it, refuse it, or leave it to the avenger). An avenger who dies with the oath
-still open while the war goes on may pass it to an **heir**: their kin, their partner or a close friend.
+still open while the war goes on may pass it to an **heir**: whoever was closest to them, a partner, a friend or a
+relative, by how close they really were.
 
 When someone dies, the person closest to them speaks a **eulogy** at the grave, about who the dead really were:
 the years they gave, the name they earned, the goal they never reached, who killed them.

@@ -81,7 +81,13 @@ namespace ColonyCouncil
             "[ward,warm,askward,theirLowtech] It is an honor to be asked. One of our house will come to learn from yours.",
             "[wardbye,them,theirLowtech] My house will remember your name.",
             "[ward,warm,askward,letter] Your letter was read to the whole family, and the youth we chose hasn't sat still since. They will come.",
-            "[ward,cordial,askward,theirLowtech] A youth of our house will come. Teach them well and feed them well, as we would one of yours."
+            "[ward,cordial,askward,theirLowtech] A youth of our house will come. Teach them well and feed them well, as we would one of yours.",
+            // The player's decision of 6 November 2026: a vendetta left open at its avenger's death passes to whoever was
+            // closest to them, never to blood kin first (Secrets/VendettaMath.cs). The lines that made it the family's oath
+            // or a family debt (Rimfolk_Pools_VendettaEnds.xml); a relative who takes it up, kin and close besides, has
+            // words of their own in Rimfolk_Lines_VendettaCloseness.xml.
+            "[kin] With {OTHER_nameDef} gone, {PAWN_nameDef} has taken up the family's oath, and the debt for {LOST} is still {FACTION}'s to pay.",
+            "[kin] It's a family debt now: {FACTION}, {LOST}, and {OTHER_nameDef}. I'll see it paid."
         };
 
         private static Dictionary<string, LineTags.Parsed> parsed;
