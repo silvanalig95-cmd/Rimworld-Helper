@@ -534,22 +534,32 @@ A life goal is chosen from what fits a colonist (`AspirationDef.who`), made like
 fight, a brush with death, a loss, a child born, a dream come true, someone close reaching the same goal). In the
 player's save, of 38 goals chosen in 88 days 25 came after a battle or a brush with death ("bring down ten mechanoids"
 five times), and Stace changed hers four times in 25 days: every raid was a spark for everyone who fought, and a goal
-gave way to any spark after ten days. Now (`GoalMath`, pure):
+gave way to any spark after ten days. 0.112.0 let a fight spark only the one who brought down the most, at 0.4, and no
+goal came from fights at all; the player's word the same day: "some lifegoals should be sparked by fights, no? not 0."
+Now (`GoalMath`, pure):
 
-- **A fight sparks one person.** Only whoever brought down the most in it takes the fight as a spark
-  (`GoalMath.Foremost`, read before the battle's count is reset in `SocialWeb`); a fight where nobody brought anyone
-  down sparks nobody. A brush with death and a loss are still each person's own.
-- **The spark's weight spread over a life.** A fight's spark pulls less than the rest of life (`SparkPull`: 0.4, a
-  nemesis 0.6, everything else 1), both in the chance a spark makes them choose at once (0.6 times the strongest pull
-  of their sparks) and in which goal they take. A goal others of their colony hold now weighs less (`Shared`: half for
-  one, a third for two), so the colony doesn't fill with mechanoid hunters. Where a goal has several sparks that
-  happened, a brush with death or a loss counts first.
+- **A fight sparks those who fought hardest.** The three who brought down the most in it (`FightTop`, more first, the
+  first noted of equals), anyone of its fighters downed in it (the goals' own "downed" event since the fight began,
+  `AspirationTracker.HappenedSince`) and anyone of ours who carried someone out of it (`FightSides.Carried`) take the
+  fight as a spark (`GoalMath.Hardest`, read in `SocialWeb.HardestIn` before the battle's count is reset and before the
+  fight's sides are cleared). A brush with death and a loss are still each person's own.
+- **The spark's weight spread over a life.** A fight's spark pulls a little less than the rest of life (`SparkPull`:
+  0.7, it was 0.4; a nemesis 0.6, everything else 1), both in the chance a spark makes them choose at once (0.6 times
+  the strongest pull of their sparks) and in which goal they take. A goal others of their colony hold now weighs less
+  (`Shared`: half for one, a third for two), and a fight never sparks a goal someone else at home took up after a fight
+  and is still at (`FightMaySpark`, from `Aspiration.spark`), so one fighting goal is never chosen by several at once
+  and the colony doesn't fill with mechanoid hunters. Where a goal has several sparks that happened, a brush with death
+  or a loss counts first.
 - **A goal holds.** A change of heart only after twenty days with the goal (`HoldsDays`, it was ten), only while it's
   under a third done, only for a brush with death or a loss (`Big`), one chance in five a day, and once per goal: the
   goal it brings holds for good (`Aspiration.turned`, saved). A fight or a fine meal never changes a goal held.
-- **Measured.** `FairCouncilTests` runs twelve colonists over the save's 88 days with a raid every ten: fighting goals
-  were 39 of 79 goals chosen under the old rules and are 0 of 15 now; the most changes of heart one colonist had within
-  25 days went from 3 to 1. Goals held in an older save stay as they are.
+- **Measured.** `FairCouncilTests` runs twelve colonists over the save's 88 days, fighting as often as the save (21
+  fights in its 128 days, one every six days: nine fight, one is downed and another carries them out), goals reached in
+  15 to 90 days and 20 days before the next, fifty runs of a colony under way: goals from fights were 53% under the
+  rules before 0.112.0 (the save's own share was 23 of 47), 3% on 0.112.0's and 19% now (a fresh colony 11%: its first
+  goals come before its first fight); never two holding one goal from fights at once (six before); changes of heart 16.5
+  a run before, 0.3 now, never more than one for a colonist within 25 days. Goals held in an older save stay as they
+  are.
 
 ### One heart: small letdowns, small joys and good things growing ordinary
 
@@ -2052,7 +2062,7 @@ another and the colony reads as one life.
 | Promises kept | Elections | a ballot | a wish taken back in the last year: -3 for sitting officers |
 | Epithets | Elections | a ballot | +1 per name the colony gave, -1 per dubious one (at most 2) |
 | The history | Elections | a yearly election called | the holder's last promise judged from the map: +1.5 kept, -1.75 broken; +0.75 for work done in the seat; each candidate's record in the letter |
-| Battles | Life goals | a fight won | a fighting spark for the one who brought down the most, nobody else |
+| Battles | Life goals | a fight over | a fighting spark for those who fought hardest: the three who brought down the most, anyone downed in it, whoever carried someone out |
 | Quirks | Who someone is | any tag check | quirk:Hums, quirk:SleepTalker... for roles, lines and dreams; 12 social events use them |
 | Calendar, kept, setbacks, health, world events, camps, missions | Dreams | the memory those leave | 15 dreams (XML) |
 | Events, world events, camps, missions, encounters, dreams | Quirks | the memory those leave; a sight (the pyre, `QuirkSights`); a dream come true | 8 quirks (XML), their effects in `Quirks/QuirkEvents.cs` |
@@ -2783,14 +2793,18 @@ under People, what each people remembers in the region window), with their label
 
 - **A name holds** (`Epithets/NameMath.cs`, pure, `OneNameTests`; `EpithetTracker.Names`). A name still goes to whoever
   has the most of its record past its threshold, but once given it is held (`NameHold`: since when, who is clearly ahead
-  and since when with both counts then, who had it before): nobody can take it for `HoldDays` (30, two seasons); after
-  that the best other must be clearly ahead on the count (`ClearLead`, a quarter, or the name's own margin if larger) every
-  day of a whole season (`ChallengeDays`, 15; a day not ahead ends the challenge, a new best begins their own), and over
-  that season do half again as much of the work as the holder (`OutdoShare`), or, twice the holder's count
-  (`FarAhead`), more of it (`Outdid`). A holder still at the work keeps it and the season starts again. The one who lost it
-  can't take it back for a year (`ReturnDays`, 60), so it never goes back and forth: on a model of the save's two doctors
-  taking turns at the sickbeds a season each, the old 15% passed the name three times in 80 days and the new rule not
-  once; a holder who stops loses it, once. A name lost by its condition (the Unshaken's break) goes at once, as before.
+  and since when with both counts then, who had it before): nobody can take it for `HoldDays` (20); after that it
+  passes to the best other who is clearly ahead on the count (`ClearLead`, a fifth, or the name's own margin if larger)
+  every day of a week (`ChallengeDays`, 7; a day not ahead ends the challenge, a new best begins their own) and over
+  that week does more of the work than the holder (`Outdid`). A holder still at the work as much keeps it and the week
+  starts again. The one who lost it can't take it back for 30 days (`ReturnDays`), so it never goes back and forth.
+  The timings are the player's retune of the same day ("titles should be able to change if someone surpasses the
+  current owner"; 0.110.0 held a name 30 days, then asked a quarter ahead for 15 days with half again the work, and a
+  year before it came back): calmer than the old 15%, not frozen. On a model of the save's two doctors taking turns at
+  the sickbeds (`OneNameTests`), the old 15% passed the name three times in 80 days and the rule never; turns of 5 to
+  30 days, either first, over a year, pass it 0.28 times a year and never more than once in any 60 days; one who takes
+  over the sickbeds has it a week after the holder's 20 days, one doing twice the holder's share ten days after; a
+  holder who stops loses it, once. A name lost by its condition (the Unshaken's break) goes at once, as before.
   The one who lost the name they were known by writes it once in their journal (`Rimfolk_Journal_EpithetLost`). Saved
   packed per name (`EpithetTracker.holds`, through the field `holdsSaved`, `NameMath.Pack`), one per name held.
 - **One "known as" per colonist** (`Epithets/KnownAs.cs`, the one place). Its short form is the colony's name for them,
