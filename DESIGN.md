@@ -150,6 +150,38 @@ Same wish, different voice:
 **Petitions:** when several pawns want the same thing (e.g. 3 want a rec room), the wishes
 merge into one bigger request with a bigger, shared reward.
 
+### Shared wants as one petition (the player's decision 11, 6 November 2026)
+
+In the player's save "proper armor" was wished six times by six fighters in 45 days and given up five times, three of
+them asked within a day of each other: six letters, five lapses, each a separate disappointment. A wish many back for
+one thing (a rec room, a sick bay: `WishDef.allowPetition`) was already one wish with co-signers; a want each has for
+themselves was not. Now (`Wishes/Petitions.cs`, a partial of the component; pure rules in `Wishes/PetitionMath.cs`,
+tested in `LettersPetitionsTests`):
+
+- **Joining.** A new want (`CreateWish`, every path: the roll, a trigger, a dream, envy) that someone else in the same
+  colony already waits for joins theirs instead of being a wish of its own (`ShareWith`, `PetitionMath.Join`): the same
+  def, subject key and thing, both a want of the asker's own (not `allowPetition`, not spoken for someone else); a
+  petition under way first (the most names), then the oldest. Each want stays its own `Wish` underneath (each fighter's
+  armor is checked on them), linked by `Wish.petition` (the first want's id, saved, -1 alone) and kept out of the
+  letters: a message names everyone ("Harper wants proper armor too: Stace, Dukialgac and Harper now ask the council
+  for it together"), the line is said over their head, the joiners' bond warms a little, and the chronicle has one line.
+- **One deadline, one count, one voice.** Joining moves the whole petition's deadline two days on (`PetitionMath.Deadline`,
+  never past a fresh wish's full time, never sooner than it stood) and shares its promise and stage. It counts once
+  toward the open wishes' cap (`OpenWishCount`, `LeadsPetition`), shows once on the Wishes page (its header names them
+  all, a pill "A petition of 3"), in the inbox and on the on-screen panel, and only its oldest open want reminds and
+  makes the last call.
+- **Answered together.** Promise, Refuse and Not now answer every open want in it (`ForPetition`: the others quietly
+  first, then the first, told once with every name); a promise moves the one deadline on as for one wish.
+- **Met one by one, the letter at the last.** Each want is granted as it is met on the map, with its own mood, trust,
+  motivation and watch (`Grant`); while others still wait its thanks come as a news line naming who still waits
+  (`MetInPetition`), and the names met go on the others (`Wish.petitionMet`, saved); the last one met brings the letter,
+  naming everyone, and one chronicle line.
+- **Lapsing together.** At the shared deadline the first to lapse tells it once with every name (`LapseTogether`,
+  `CC_Petition_LapsedTitle`); the others' own lapses keep their trust, mood and journal, quietly.
+- **Older saves.** Wishes already open stay on their own (`petition` -1); a new want of the same joins the oldest. The
+  save's armor (days 82 to 128) would have come to the council as three: Toni and Alo's, the three fighters' of day 103,
+  Shigeko's; five given up as two petitions let lapse (the tests replay it).
+
 ### Stakes setting
 
 | Mode | Fulfilled | Ignored, refused, broken promises |
@@ -3232,6 +3264,42 @@ rules in `RegionMath.cs` (Tools/Tests: `RegionTests`).
   1.5 a point off, 40 at most) and `Known`, and the trade: at -12 or less `FactionUtility.CanTradeWith` says no with the
   reason (`Patch_ColonistMemoryTrade`), so the option is greyed out and a caravan's negotiator is someone else. No raid
   of its own.
+
+### Letters that arrive in days and bring something (the player's decision 12, 6 November 2026)
+
+In the player's save Stace wrote three letters to notables in 18 days; each leg took 12 to 14 days (the towns are over
+fifty tiles off, and a leg went at the other people's walking pace, twelve days at most), and the one answer was "Your
+letter came. We are well enough, thank you." and "It changed little between the colony and Blash", 26 days after it was
+written. Now (`World/LetterMath.cs`, pure and tested in `LettersPetitionsTests`; wired in `World/NeighbourLetters.cs`):
+
+- **By the colony's means.** A letter goes by the colony's age (`Ages.Ours`, `LetterMath.MeansOf`): runners (tribal), a
+  rider (medieval), a courier (industrial), a courier by shuttle (spacer); a call on the comms console is at once. Each
+  leg is half a day plus 0.09, 0.06, 0.04 or 0.015 days a tile, at most six, five, four or two days (`LegDays`); the
+  answer comes back the same way (`backDays`), and the courier tracker still brings it to the gate by a messenger of
+  theirs (`Couriers.MailAnswer`). Before (by the other people's age) and after (by the colony's), a leg at 10, 25, 50 and 80 tiles: tribal 4.4, 10.4, 12, 12
+  days before, 1.4, 2.8, 5, 6 now; medieval 3.7, 8.7, 12, 12 before, 1.1, 2, 3.5, 5 now; industrial 2.6, 5.9, 11.4, 12
+  before, 0.9, 1.5, 2.5, 3.7 now; spacer 1.6, 3.4, 6.4, 10 before, 0.65, 0.9, 1.25, 1.7 now. The save's letter: 12 days a
+  leg before, under three by courier. A letter carried home by one of their people at the colony goes at their means;
+  a call's "how far they are" (when a guest or raiders could come) at theirs too. Letters already on the road keep the
+  day they were given (`due`, `backDays` saved). The letters page says by which means it is on the road, never when.
+- **What an answer brings** (`LetterMath.Brings`), for the purposes whose answer was words only: greetings answered
+  warmly bring a token gift (50 to 100 silver's worth by the colony's wealth, `Loot.Make`) in the messenger's pack,
+  kindly or coolly how their town is faring (`RegionFortunes.Line`, else a piece of news near them, else that the roads
+  are quiet); condolences taken warmly or kindly are remembered by their people (the "mourned" deed, as before, now
+  said); a warning heeded kindly or coolly is remembered ("warned"), heeded warmly it is a debt of honour (the deed at
+  weight 10, `LetterMath.HeededWarmly`, made when the answer reaches the colony: `NeighbourLetter.owed`, saved, then
+  `Owed`, through `FavoursOwed.Quietly` so the answer's own words tell it once), where debts of honour are kept
+  (`CanOwe`; else remembered). News, help, a visit and stage 2's purposes (a favour, a pact, a truce, a ransom, an envoy,
+  a ward, a match, an oath, a feast) bring what they always did.
+- **Regard in words.** The answer's last line says how far it moved them, from their regard before and after
+  (`LetterMath.Move`: into another band, "civil before, friendly now"; a good deal, a shade, nothing, a shade less;
+  `CC_LetterRegard_*`), the writer named on a warm answer, and their people's goodwill when it rose. It replaces the
+  old tone line (`CC_Letter_Outcome_*`, kept for answers already written).
+- **A refusal with a reason.** A curt answer or a refusal says why (`LetterMath.Why`: the heaviest of what counted
+  against it in `NotableMath.Score`: a people at war first, then their regard of the colony or the writer, the writer's
+  words, their nature, hard times on business, the same asked lately, a call, a great deal asked, else a bad day), and
+  so does an invitation not taken up, or one taken up with nobody free to travel. A truce, a ransom, an envoy, a ward, a
+  match and an oath give their own reasons (`LetterMath.OwnReasons`) and get no second one.
 
 ### Diplomacy
 
