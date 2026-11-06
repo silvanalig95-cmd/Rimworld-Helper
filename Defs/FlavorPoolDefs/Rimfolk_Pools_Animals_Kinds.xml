@@ -28,6 +28,10 @@
         <li>[body:bird,young] You're all fluff and no feathers yet.</li>
         <li>[body:bird,oldanimal] Ragged old thing, you've earned your quiet corner.</li>
         <li>[body:bird,winter] Feathers puffed up against the cold, I don't blame you.</li>
+        <li>[body:bird] Shoo, not on my boots, please.</li>
+        <li>[body:bird] You've a beady eye on my pocket, haven't you?</li>
+        <li>[body:bird,rain] Wet feathers, poor thing, nearly done.</li>
+        <li>[body:bird,named] Come here, {PET_nameDef}, let me look at you.</li>
         <li>[body:other] I never know what you're thinking, and I suspect you don't either.</li>
         <li>[body:other] You're a strange sort of creature, but you're ours.</li>
         <li>[body:other] Easy, I'm not going to hurt you.</li>
@@ -37,6 +41,10 @@
         <li>[body:other,job:train] I've no idea if this is sinking in, but let's go again.</li>
         <li>[body:other,young] You're very small for something so strange.</li>
         <li>[body:other,winter] You don't like the cold any more than I do, do you?</li>
+        <li>[body:other] Whatever you are, you're a good one.</li>
+        <li>[body:other] Steady, I'll be quick about this.</li>
+        <li>[body:other,named] There you are, {PET_nameDef}, odd as ever.</li>
+        <li>[body:other,oldanimal] Old and slow, the pair of us, aren't we?</li>
       </plain>
       <warm>
         <li>[body:bird] There's my good bird.</li>
@@ -136,6 +144,10 @@
         <li>[body:beast] {PET_nameDef} is gone. The pens look wrong without it, and I keep counting heads.</li>
         <li>[body:bird] {PET_nameDef} is gone. I keep listening for its call over the others'.</li>
         <li>[body:other] {PET_nameDef} is gone. Whatever passes for grief in its kind, I've enough for all of them.</li>
+        <li>[body:beast] We lost {PET_nameDef} today. It led the herd longer than some of us have lived here.</li>
+        <li>[body:beast] {PET_nameDef} is dead, the old {KIND}. The herd will choose again. I'm not ready to.</li>
+        <li>[body:bird] {PET_nameDef} is dead, the old {KIND} the flock followed. The roost has a gap in it.</li>
+        <li>[body:other] We lost {PET_nameDef}, the old {KIND}. The others will find their way. I'll miss it more than I expected.</li>
         <li>The herd's leader is dead. {PET_nameDef}. Whoever leads them next, it won't be quite the same herd.</li>
       </plain>
       <cheerful><li>Goodbye, {PET_nameDef}. You led them well and bossed us all. The pens will be dull for a while.</li></cheerful>
@@ -152,6 +164,11 @@
         <li>[born] {PET_nameDef}, born today to {OTHER_nameDef}, the first of the year. I mean to go down and see it the moment I'm free.</li>
         <li>[hatched] The first egg of the year has hatched: {PET_nameDef}, {OTHER_nameDef}'s. I'll go and look at it when the work lets me.</li>
         <li>[born,body:beast] {OTHER_nameDef} has a young one at her side, {PET_nameDef}, the first of the year. I'll be at the pens before the day's out.</li>
+        <li>[born] A first young one for the year: {PET_nameDef}. I keep finding reasons to look towards the pens.</li>
+        <li>[born] {PET_nameDef} is born, {OTHER_nameDef}'s, and the year's started properly. I'll go and see it later.</li>
+        <li>[hatched] {PET_nameDef} is out of the shell, the first of the year. I'll go and look at the little thing when I can.</li>
+        <li>[hatched] The first hatchling of the year, {PET_nameDef}. I'll be down to see it before the day's done.</li>
+        <li>New life in the herd, the first of the year: {PET_nameDef}. The work can spare me a while later.</li>
       </plain>
       <warm><li>The first of the year, {PET_nameDef}. I'll go down to the pens later and sit with the pair of them a while.</li></warm>
       <blunt><li>First young of the year. {PET_nameDef}. Going to look later.</li></blunt>

@@ -846,6 +846,18 @@ def estimate(pools):
             p.extra = (("|".join("ail:" + k for k in keys), 1.0), ("serious" if serious else "everyday", 1.0))
             if p.name in ("Council_Journal_Ail_Start", "Council_Journal_Ail_Serious"):
                 p.extra += (("again", 0.3),)
+        # The animals (Animals/AnimalLife.cs, HerdStory.cs): the caller adds the animal's body (mostly beasts), and what
+        # the colonist is doing with it or how the herd's leader came to lead.
+        body = ("body:beast|body:beast|body:beast|body:bird|body:other", 1.0)
+        if p.name == "Council_Pool_SayToAnimal":
+            p.extra = (("job:milk|job:shear|job:tame|job:train|job:tend|job:feed|job:rescue|job:rope|childplay", 1.0), body,
+                       ("bonded", 0.2), ("young", 0.2), ("oldanimal", 0.1), ("named", 0.5))
+        elif p.name in ("Council_Pool_AnimalFollows", "Council_Journal_Herd_LastSeason", "Council_Journal_Herd_Gone"):
+            p.extra = (body,)
+        elif p.name in ("Council_Journal_Herd_Leader", "Council_Pool_Herd_SayLeader"):
+            p.extra = (("first|line|new", 1.0), body)
+        elif p.name == "Council_Journal_Herd_SpringCalf":
+            p.extra = (("born|born|hatched", 1.0), body)
     # A colonist starts at most one moment in six hours, and most of the day they're asleep or alone: about two and a
     # half a day at the very most, shared out among the moments in proportion.
     moments = [p for p in pools.values() if p.kind == "grammar" and p.basis.startswith("w ")]
