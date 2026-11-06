@@ -2059,6 +2059,25 @@ tending, the serious ones its immunity race with a hidden incubation (`Rimfolk_H
   and mechanites never come in the simulator's temperate colony; they take the place there of the chilblains and snow
   glare a desert never has.
 
+### Dangers on the map (the player's request, 6 November 2026)
+
+Six Rimfolk events of things that go wrong where the colony lives (`Happenings/Dangers.cs`,
+`Defs/IncidentDefs/Rimfolk_Events_Dangers.xml`, pure numbers in `Dilemmas/VarietyThreeMath.cs`): the creak at the dig,
+the leaning tree, smoke in the dry grass, the old shell, the twitching scrap, the ground giving. They are events like
+any other, in the same share of the storyteller's draw (`HappeningTracker.ShareFactor` counts every def, so a new one
+thins the rest a little), and come only with `Harm.On` and no threat on the map (`HappeningWorker_Danger`). Each is
+seen coming with the game's own signs (grit and rubble, heaved ground, smoke, sparks), asked about in a quick letter
+whose words say what can happen, and kept on the map as one of `OnMapTimed`'s kinds (`DigFace`, `Leaning`, `Smoulder`,
+`Shell`, `Scrap`, `SoftGround`: the sign until the answer, then the watch the answer sets; `MapDangers.Step`). Every
+answer names its hurt under it (a Health line), every hurt is `Harm.Injure` in `MapDangers.Wound` on the scaled chance
+(`Harm.Chance`), told at `Importance.Important` in two wordings, with a line said by whoever was there (the event's
+`lines`, tagged by the moment). When the cap keeps someone from the hurt, what happens on the map still happens (the rock
+falls, the ground gives) and they get clear. The game's own does the rest: its fire (`FireUtility.TryStartFireIn`) for a
+smoulder left to catch, its shell and fuse (`CompExplosive.StartWick`) for the shell set off, its mud for ground that
+gives, its column, floors and cut designation for the answers that make things safe. A falling tree breaks the wall it
+leans on and never brings it down (`VarietyThreeMath.TreeWallDamage`), and reaches only whoever stands on its side.
+No mood on top of a hurt; no fight of their own.
+
 ## How the systems talk to each other
 
 Each of Rimfolk's systems was built to stand on its own, and many already read each other (feelings nudge wishes,

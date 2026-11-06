@@ -516,7 +516,7 @@ stash of beer, a cook who wants to spend the stores on one magnificent feast, a 
 can't cope. Kind, greedy, industrious and teetotal colonists all react differently. Leave a dilemma unanswered and
 the council's silence decides for you.
 
-There are 219 of them, and many grow out of everyday life: a sick colonist when the medicine is nearly gone,
+There are 227 of them, and many grow out of everyday life: a sick colonist when the medicine is nearly gone,
 whether to keep someone with a fever apart, a cook with a cold, an old family remedy, a visitor's strange cure, the
 camp on the colony's land asking for medicine, food or searchers for a lost child (and, new, one of them who wants to
 stay, a purse gone from their stash with a colonist blamed, one of theirs caught in the storeroom, their beasts standing
@@ -575,12 +575,19 @@ council's backing. The colony is also asked about what it meets in the game itse
 until it ends (abed through the morning frost, to bed early) or a fire kept in the coldest bedroom; when the game's blight
 reaches its fields, the blighted plants marked for cutting, or that and the rest of those fields brought in early; a
 fine weapon in the stores two of the colony would be better armed with, taken up by the one chosen; and an animal
-trained to obey whose person died, given a new master it follows. Hours and work an answer changed go back by
+trained to obey whose person died, given a new master it follows. And more: someone **inspired** to make art given the
+colony's finest material or its plain one (a bill at the bench for them alone), someone in **withdrawal** given one dose
+from the stores or put on the colony's strictest drug policy to ride it out, **food that won't keep** cooked into meals
+today (all of it, or one supper's), **the stores in the rain** roofed over where the walls can carry it or drawn in
+under their roof, **the old walls** of a ruin near the colony pulled down for their stone or claimed and built on, **the
+new room** given to one of two who sleep worse, **what to learn next** chosen when the study benches stand idle, and
+**a hurt beast** lying on the land marked for a clean end or for taming once it's on its feet (the game's own risk of a
+failed tame named first). Hours and work an answer changed go back by
 themselves when their time is up or the heat wave or cold snap is over, with a message, but only where nobody changed
 them since: whatever you set by hand stays as you set it.
 
-**Answers play out on the map.** When an answer describes something people do, they do it (682 answers of 183
-dilemmas and 190 Rimfolk events, stories and world events, plus calendar days, six decrees and nine ambitions, 25
+**Answers play out on the map.** When an answer describes something people do, they do it (719 answers of 191
+dilemmas and 200 Rimfolk events, stories and world events, plus calendar days, six decrees and nine ambitions, 25
 stages of 20 personal stories and 7 moments with visitors). A
 victory feast is eaten at the dining table, each guest sent to eat a cooked meal, the finest first they may eat, and
 the food the answer spends on it is cooked for it first, at the colony's stove by its organizer or best cook; a while in, its host raises a cup and the table raises theirs. Every feast is held this one way, an answer's, a calendar day's or one with guests from the neighbours. The midsummer bonfire is lit (with no campfire, one of the colony carries wood out and lays one first, burned down to ash
@@ -2323,7 +2330,20 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   sits down across the colony's chess or poker table to play its best (skill and luck decide it while they play; for
   silver the stake changes hands), and a neighbour's **commission** for one fine coat, bow, blade or gun the colony can
   make: a bill goes up at the right bench counting only pieces of the quality asked, their rider collects the first one
-  good enough and pays, and a masterwork brings them back for another.
+  good enough and pays, and a masterwork brings them back for another. **The wild one** (the game's own wild man or
+  woman) living off the colony's edges marked for taming, let be or driven off; **the fence down** after a storm, the
+  same fence marked to go back or the gap left for the animals to graze outside; **the ambrosia ripe**, all of it or a
+  night's marked for harvest, or left (its pull named first); and **a clutch in the grass** of a wild bird's eggs,
+  raised for the colony by the game's own hatching, sent to the kitchen, or left to hatch wild.
+- **Dangers on the map.** Seen coming, asked about quickly, and only with hurts from everyday life on: **the creak at
+  the dig** (a rock face under the mountain drops grit; prop it, dig on and the rock may fall on the digger, or leave
+  the face), **the leaning tree** by a wall after rain (felled, or left for a wind to bring down on the wall and anyone
+  beside it), **smoke in the dry grass** on a hot summer day (stamped out at the risk of a burn, or left to catch, a
+  grass fire of the game's own), **the old shell** turned up in a field (carried far out, set off from well back, sent
+  to the mortars, or left), **the twitching scrap** of a mechanoid still sparking (broken up for steel at the risk of a
+  burn, or left for whoever handles it next), and **the ground giving** by a door after the rains (a floor laid over it,
+  or left, and a foot may go through). Every hurt is one of the game's own wounds under the shared rules of everyday
+  hurts, named under the answer before it's chosen and told as it happens.
 - **Faces that come back.** The tinker, the scholar, the doctor, the schoolteacher, the bonesetter, the wandering
   cook, the scribe, the players' storyteller, the kindred spirit, the art collector and the animal doctor are
   remembered when they go, up to five at a time. From twenty days on one of them may come back as a familiar face at
@@ -3600,7 +3620,7 @@ The pages:
   **demanding**, half again as strong), rising standards, good things growing ordinary, quiet troubles, everyday
   frictions; how quickly strain builds (50% to 150%), the day off at the end of one's rope, the heart's good side;
   how often ailments come (25% to 200%) and the serious (possibly fatal) illnesses on their own switch, crowding,
-  frailty, dirty wounds and the end of a long life; and **hurts from everyday life** (0% to 200%), the strength of
+  frailty, dirty wounds and the end of a long life; and **hurts from everyday life** (0% to 200%; the dangers on the map come only above nothing), the strength of
   fights in Rimfolk's scenarios and whether Rimfolk's events may bring fights.
 - **What's on**: a quick setup (*Everything on*, *Council only*, *Advisor only*, also with a list of what changes),
   reaching every part of the colony's life and its world; then each part by what it is about: the council (the

@@ -89,6 +89,33 @@ PLAY = {
     "DilemmaEffect_NewMaster": "new master",
     # A herd crossing the land (Happenings/Workers_Variety2.cs): grown ones of it marked for the colony's hunters.
     "DilemmaEffect_HuntHerd": "herd hunted",
+    # The third round (Dilemmas/DilemmaWorkers_Variety3.cs, Happenings/Workers_Variety3.cs): a bill at the art bench for
+    # the one inspired, a dose from the stores or a drug policy that keeps it from them, a cooking bill for the food that
+    # won't keep, a roof marked over the stores or the open part given up, a ruin marked to come down or claimed, a bed
+    # claimed, the colony's study chosen, an animal or a wild one marked for the hunters or for taming, a fence's
+    # blueprint, ambrosia marked for harvest, a clutch of eggs carried in.
+    "DilemmaEffect_ArtBill": "art bill",
+    "DilemmaEffect_Dose": "dose taken",
+    "DilemmaEffect_RideItOut": "drug policy",
+    "DilemmaEffect_CookIt": "cooking bill",
+    "DilemmaEffect_RoofStores": "roof marked",
+    "DilemmaEffect_GiveUpOpen": "stockpile drawn in",
+    "DilemmaEffect_OldWalls": "ruin marked",
+    "DilemmaEffect_ClaimBed": "bed claimed",
+    "DilemmaEffect_Study": "study chosen",
+    "DilemmaEffect_MarkBeast": "animal marked",
+    "DilemmaEffect_MendFence": "fence mended",
+    "DilemmaEffect_PickAmbrosia": "ambrosia picked",
+    "DilemmaEffect_Clutch": "eggs carried in",
+    # Dangers on the map (Happenings/Dangers.cs): a creaking face propped, dug on or left; a leaning tree felled or
+    # watched; a smoulder stamped out or left to catch; an old shell carried out, set off or kept; a live scrap broken up
+    # or left; soft ground floored or left.
+    "DilemmaEffect_DigFace": "creaking face",
+    "DilemmaEffect_LeaningTree": "leaning tree",
+    "DilemmaEffect_Smoulder": "smoulder",
+    "DilemmaEffect_OldShell": "old shell",
+    "DilemmaEffect_Scrap": "live scrap",
+    "DilemmaEffect_SoftGround": "soft ground",
     # Banishment by the council (Social/Banishment.cs): the council's word said face to face, and someone sent away told
     # face to face, gathering their things in their room and walking out by the edge.
     "DilemmaEffect_TroubleWord": "a word face to face",

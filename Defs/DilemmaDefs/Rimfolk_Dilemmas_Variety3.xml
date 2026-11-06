@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Questions about what the colony meets that the council was never asked about, third round
+    (Source/ColonyCouncil/Dilemmas/DilemmaWorkers_Variety3.cs): the inspired hands, the shakes, the food that won't keep,
+    the stores in the rain, the old walls, the new room, what to learn next and the hurt beast. Each comes only when the
+    colony is as its letter says, and each answer's words happen in the game: a bill at the bench, a dose taken or a drug
+    policy set, meals cooked, a roof marked or a stockpile drawn in, a ruin marked to come down or claimed, a bed claimed,
+    a study chosen, an animal marked for the hunters or for taming. The answer the council's silence picks gives the least.
+  -->
+
+  <!-- ===================== The inspired hands ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_Inspired</defName>
+    <label>the inspired hands</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_Inspired</workerClass>
+    <weight>1.3</weight>
+    <cooldownDays>30</cooldownDays>
+    <answerDays>0.75</answerDays>
+    <texts>
+      <li>{A_nameDef} has been drawing on every flat surface since morning and can't sit still: {A_pronoun} has a piece in {A_possessive} head and wants to make it now, while it's there. {A_pronoun} asks for the colony's {THING}. {B_nameDef}, who works the stores, says {THING} is worth more as {THING}, and that {PLAIN} takes a chisel just as well.</li>
+      <li>[precious] {A_nameDef} wants to work the piece in {THING}, and {A_pronoun} says it plainly: a thing like this comes once, and it should be made of something that lasts. {B_nameDef} says the colony's {THING} buys food and help in a bad year, and that {PLAIN} would do.</li>
+      <li>[lowtech] {A_nameDef} has had a carving in {A_possessive} hands all night, the elders say, and woke with it still there. {A_pronoun} wants the colony's {THING} for it. {B_nameDef} would sooner {A_pronoun} cut it from {PLAIN} and keep the {THING} for trade.</li>
+      <li>[!lowtech] {A_nameDef} is inspired, and anyone who has seen {A_objective} this week can tell. {A_pronoun} has asked for the colony's {THING} to make the piece in. {B_nameDef} has done the sums and would rather it were {PLAIN}.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>{A_nameDef} works it in {THING}</label>
+        <outcome>{A_nameDef} has the bench and the colony's {THING} for the piece, and has gone to make it while the idea lasts. {B_nameDef} has stopped counting.</outcome>
+        <outcomes>
+          <li>[lowtech] {A_nameDef} carries the {THING} to the bench {A_objective}self and starts on it before anyone can change their mind.</li>
+        </outcomes>
+        <ways><openness>1</openness><generosity>1</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_ArtBill" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_ArtFine</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{A_nameDef} works it in {PLAIN}</label>
+        <outcome>{A_nameDef} has the bench and the colony's {PLAIN} for the piece. The {THING} stays in the stores, and {B_nameDef} is pleased with that.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_ArtBill"><plain>true</plain></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>The work comes first</label>
+        <outcome>The council would rather {A_nameDef} kept to the colony's work. The idea will keep, or it won't.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_ArtWaited</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The shakes ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_Withdrawal</defName>
+    <label>the shakes</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_Withdrawal</workerClass>
+    <weight>1.3</weight>
+    <cooldownDays>25</cooldownDays>
+    <answerDays>0.5</answerDays>
+    <texts>
+      <li>{A_nameDef} has the shakes and can't hide it. It's the {THING}: there's some in the stores, and {A_pronoun} knows exactly where. {B_nameDef} says the only way out is through, and that it's a hard few days. {A_nameDef} asks for a little, to get through today.</li>
+      <li>[drink] {A_nameDef} was at the stores before breakfast, looking at the {THING} and not touching it. {A_possessive} hands won't keep still. {B_nameDef} says {A_pronoun} can be off it in a few bad days, if the colony keeps it from {A_objective}.</li>
+      <li>[lowtech] {A_nameDef} has gone grey and sweating for want of the {THING}, and the colony has some put by. The old healers say ride it out and tie the door if need be; {B_nameDef} says the same, more kindly. {A_nameDef} asks for a little, just today.</li>
+      <li>[!lowtech] {A_nameDef} is in withdrawal from the {THING}, and the colony keeps some in the stores. {B_nameDef} has seen it before: a few hard days and it's over, if nobody gives in. {A_nameDef} would rather not have the few hard days.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>A measured dose, to steady {A_objective}</label>
+        <outcome>{A_nameDef} takes one dose of the {THING} from the stores, and the shaking stops. The want of it stays.</outcome>
+        <ways><mercy>1</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Dose" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_DoseGiven</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{A_nameDef} rides it out</label>
+        <outcome>The colony keeps the {THING} from {A_nameDef} now, and {A_pronoun} goes through the bad days without it. {B_nameDef} looks in on {A_objective}.</outcome>
+        <outcomes>
+          <li>[lowtech] The {THING} is put where {A_nameDef} won't be given it, and {B_nameDef} sits with {A_objective} when it's worst.</li>
+        </outcomes>
+        <ways><tradition>1</tradition><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_RideItOut" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_MadeToQuit</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>It's {A_possessive} own business</label>
+        <outcome>The council leaves it to {A_nameDef}. What {A_pronoun} takes or doesn't is between {A_objective} and the stores.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Ignored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-2</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The food that won't keep ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_Spoiling</defName>
+    <label>the food that won't keep</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_Spoiling</workerClass>
+    <weight>1.3</weight>
+    <cooldownDays>20</cooldownDays>
+    <answerDays>0.3</answerDays>
+    <texts>
+      <li>{A_nameDef} lifted the cover off the {THING} this morning and put it straight back: it's on the turn, and by tomorrow it'll be past saving. There's enough for {COUNT} meals and more. {B_nameDef} brought it in and hates to see it go; {A_nameDef} says {A_pronoun} can cook it all, if the stove is {A_possessive} for the day.</li>
+      <li>[meat] The {THING} {B_nameDef} brought in won't keep another day where it lies. {A_nameDef} can cook it, all of it, if the colony can spare {A_objective} at the stove from dawn to dark, or just enough for tonight's supper.</li>
+      <li>[crop] The {THING} in the stores has started to go soft and smell sweet, and {A_nameDef} gives it a day. {B_nameDef} grew every bit of it. {A_nameDef} can cook it into meals, all of it or some, if someone else does {A_possessive} work today.</li>
+      <li>[lowtech] There's {THING} in the stores that won't see another dawn, by the smell of it. {A_nameDef} could keep the cookfire going all day and save it, {COUNT} bowls and more, or cook enough for one supper and let the rest go.</li>
+      <li>[!lowtech] The {THING} in the stores is going off, and nobody built anywhere cold enough to keep it. {A_nameDef} can cook it all today, about {COUNT} meals, or just tonight's.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>{A_nameDef} cooks it all, today</label>
+        <outcome>{A_nameDef} has the stove for the day and every scrap of the {THING} on the bill. The colony eats well for a while, and the rest of {A_possessive} work waits.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CookIt" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Enough for supper</label>
+        <outcome>{A_nameDef} cooks enough of the {THING} for tonight's supper. The rest goes to the midden when it turns.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CookIt"><supper>true</supper></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Compromise</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>Let it go</label>
+        <outcome>The {THING} is left where it lies, and the work goes on as it was.</outcome>
+        <ways><toil>-1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_FoodWasted</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-2</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The stores in the rain ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_StoresInRain</defName>
+    <label>the stores in the rain</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_StoresInRain</workerClass>
+    <weight>1.2</weight>
+    <cooldownDays>30</cooldownDays>
+    <answerDays>1</answerDays>
+    <texts>
+      <li>{A_nameDef} came in soaked and said what everyone knows: half the stockpile lies under the open sky, and the rain has been at it all week. {COUNT} stacks out there are going to ruin. {B_nameDef} says a roof can go over the part the walls can carry. {A_nameDef} would sooner give the open part up and carry it all in.</li>
+      <li>[allopen] The whole stockpile is out in the weather, and after the rain {A_nameDef} found {COUNT} stacks there spotted and swelling. {B_nameDef} says the builders can roof what the walls can carry, and the rest takes its chances.</li>
+      <li>[lowtech] The rain got into the stores again. {A_nameDef} carries them and says {COUNT} bundles out under the sky are going soft. {B_nameDef} could put a roof of poles and thatch over what the walls will hold up.</li>
+      <li>[!lowtech] After the rain, {A_nameDef} counted {COUNT} stacks in the open part of the stockpile with their wear showing. {B_nameDef} wants a roof over it; {A_nameDef} says pull the stockpile in under the roof the colony already has.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Roof it over</label>
+        <outcome>The open part of the stockpile is marked for a roof wherever the walls can carry one, and the builders will put it up in their own time.</outcome>
+        <outcomes>
+          <li>[lowtech] {B_nameDef} marks out where poles and thatch can go over the stores, and the builders will put it up when they can.</li>
+        </outcomes>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_RoofStores" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Give up the open part</label>
+        <outcome>The stockpile is drawn in under its roof. What lay out in the open is no longer in the stores, and the haulers will carry it to the colony's other stores where there's room.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_GiveUpOpen" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Leave it to the weather</label>
+        <outcome>The stockpile stays as it is. The colony has other work, and the weather will do what it does.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_StoresRuined</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-1</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The old walls ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_OldWalls</defName>
+    <label>the old walls</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_OldWalls</workerClass>
+    <weight>1</weight>
+    <cooldownDays>60</cooldownDays>
+    <answerDays>1.5</answerDays>
+    <texts>
+      <li>Somebody built here before the colony did, and left {COUNT} pieces of wall of {THING} standing near the colony to say so. {A_nameDef} has been looking at them with a builder's eye: good {THING}, already cut. {B_nameDef}, the eldest, says walls that old have stood long enough to be left alone, or built on.</li>
+      <li>[timber] An old timber ruin stands near the colony, {COUNT} pieces of wall gone grey. {A_nameDef} says the wood is sound under the weathering and wants it for the colony's own work. {B_nameDef} says leave it, or put a roof on it and call it ours.</li>
+      <li>[lowtech] The old ones' walls stand near the colony, {COUNT} pieces of {THING} that nobody living put up. {A_nameDef} wants the stone. {B_nameDef} says the old ones built them for a reason, and that a colony could do worse than build on them.</li>
+      <li>[!lowtech] The ruin near the colony is {COUNT} pieces of {THING} wall from before anyone's time. {A_nameDef} wants it pulled down for the material. {B_nameDef} would claim it and build on it, or leave it as it is.</li>
+      <li>[land:mountains] The ruin under the slope near the colony is {COUNT} pieces of {THING}, wind-scoured and still standing. {A_nameDef} wants the stone; {B_nameDef} wants the ruin.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Pull them down for the {THING}</label>
+        <outcome>The old walls are marked to come down, and the builders will take them apart for the {THING} in their own time.</outcome>
+        <ways><toil>1</toil><tradition>-1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_OldWalls" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_RuinPulled</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Claim them and build on them</label>
+        <outcome>The old walls are the colony's now, to mend and to build on.</outcome>
+        <outcomes>
+          <li>[lowtech] {B_nameDef} lays a hand on the old stones, and the walls are the colony's now, to mend and to build on.</li>
+        </outcomes>
+        <ways><tradition>1</tradition><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_OldWalls"><claim>true</claim></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Leave them as they stand</label>
+        <outcome>The old walls stand as they have stood, nobody's.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_RuinLeft</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-1</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The new room ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_NewRoom</defName>
+    <label>the new room</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_NewRoom</workerClass>
+    <weight>1.3</weight>
+    <cooldownDays>25</cooldownDays>
+    <answerDays>1</answerDays>
+    <texts>
+      <li>The new room is finished, with its bed made and nobody in it yet. {A_nameDef} has been with the colony longest of those who still sleep in a shared room, and says so. {B_nameDef} says {B_pronoun} has never had a door to close in {B_possessive} life.</li>
+      <li>[lowtech] A hut of its own, with one bed in it, and two who want it: {A_nameDef}, who came before most, and {B_nameDef}, who sleeps by the door in the long house and wakes every time it opens.</li>
+      <li>[!lowtech] One new bedroom, one bed, nobody's yet. {A_nameDef} has the longer claim by time served; {B_nameDef} sleeps worst of anyone in the barracks. Whoever gets it, the other stays where they are.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>{A_nameDef} has it</label>
+        <outcome>The new room is {A_nameDef}'s from tonight. {B_nameDef} stays where {B_pronoun} is.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_ClaimBed" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_RoomOfMyOwn</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Envious</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{B_nameDef} has it</label>
+        <outcome>The new room is {B_nameDef}'s from tonight. {A_nameDef} thinks time served ought to count for something.</outcome>
+        <ways><mercy>1</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_ClaimBed"><target>B</target></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_RoomOfMyOwn</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Envious</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Whoever sleeps in it first</label>
+        <outcome>The council won't choose between them. The bed goes to whoever lies down in it first.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Ignored</thought><chance>0.5</chance></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== What to learn next ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_NextStudy</defName>
+    <label>what to learn next</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_NextStudy</workerClass>
+    <weight>1.2</weight>
+    <cooldownDays>20</cooldownDays>
+    <answerDays>0.75</answerDays>
+    <texts>
+      <li>Nobody has said what the colony should learn next, and {A_nameDef} has been tidying the study benches for a day instead. {A_pronoun} would take up {STUDY1}, which is close to hand. {B_nameDef} wants {STUDY2}, which will take longer and, {B_pronoun} says, change more.</li>
+      <li>[lowtech] The one who keeps the colony's learning, {A_nameDef}, sits idle at the study for want of a question. {A_pronoun} says {STUDY1} is the next thing to know. {B_nameDef} says {STUDY2} is the thing worth knowing.</li>
+      <li>[!lowtech] The research benches have stood idle since the last study was done. {A_nameDef} has {STUDY1} ready to begin; {B_nameDef} has been asking about {STUDY2} for weeks. The council can choose, or leave the benches to wait.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>{STUDY1}</label>
+        <outcome>The colony takes up {STUDY1}, and {A_nameDef} goes back to the bench with something to work on.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Study" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_StudyPassedOver</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>{STUDY2}</label>
+        <outcome>The colony takes up {STUDY2}. It will be a long study, and {B_nameDef} means to ask after it every day.</outcome>
+        <ways><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Study"><second>true</second></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_StudyPassedOver</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>Leave it for now</label>
+        <outcome>The council won't choose today, and the benches wait.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The hurt beast ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_HurtBeast</defName>
+    <label>the hurt beast</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_HurtBeast</workerClass>
+    <weight>1.2</weight>
+    <cooldownDays>20</cooldownDays>
+    <answerDays>0.3</answerDays>
+    <texts>
+      <li>A wild {X_kind} is down out past the colony and can't get up. {A_nameDef} went close enough to see it breathing, and says it might mend and might be tamed after. {B_nameDef} says the kind thing is a clean end, and the meat besides.</li>
+      <li>[predator] A wild {X_kind} lies hurt and down out past the colony, and even down it watches anyone who comes close. {A_nameDef} thinks it could be tamed once it's on its feet. {B_nameDef} would end it now, while it can't fight back.</li>
+      <li>[untameable] A wild {X_kind} is down out past the colony, too wild for anyone to tame. {B_nameDef} says end it cleanly; {A_nameDef} says leave it to the wild, which has its own ways of ending things.</li>
+      <li>[lowtech] There's a hurt {X_kind} down in the grass past the colony. The hunters' way is a quick end and thanks for the meat; {A_nameDef} says if it lives, it might be the colony's. {B_nameDef} has already taken up {B_possessive} weapon.</li>
+      <li>[!lowtech] A wild {X_kind} is lying hurt past the colony and can't stand. {A_nameDef} would leave it to mend and try to tame it after; {B_nameDef} would end it now and save it the suffering.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>{B_nameDef} ends its pain</label>
+        <outcome>The {X_kind} is marked for the hunters, and {B_nameDef} goes out to give it a clean end.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_MarkBeast" />
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Tame it once it's on its feet</label>
+        <outcome>The {X_kind} is marked for taming. Once it's on its feet and can eat, {A_nameDef} and the other handlers will try.</outcome>
+        <ways><mercy>1</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_MarkBeast"><tame>true</tame></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Leave it to the wild</label>
+        <outcome>The {X_kind} is left where it lies. The wild will see to it, one way or another.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_LeftHurt</thought><chance>0.5</chance></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+</Defs>

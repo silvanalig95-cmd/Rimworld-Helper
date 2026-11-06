@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## New questions, events and dangers
+
+*6 November 2026, version 0.120.0*
+
+- Four new council questions about the colony's days: an inspired artist and what their work is made of, a colonist in withdrawal with the drug in the stores, food about to rot, and a stockpile left out in the rain.
+- Four more: an old ruin near the colony to pull down or claim, one free bed and two who sleep badly, nothing chosen to research, and a downed wild animal to hunt or tame.
+- Four new events: a wild man or woman near the colony, a pen's fence down after a storm, ambrosia ripe for picking, and a wild bird's clutch of eggs in the grass.
+- Six dangers on the map, each seen coming and asked about before anything happens: a creaking rock face at the dig, a leaning tree by a wall after rain, and smoke in the dry grass on a hot day.
+- The other three: an old shell turned up in a field, the twitching scrap of a dead mechanoid, and soft ground giving by a door after rain.
+- The dangers come only with Hurts from everyday life on and no threat on the map. Each answer names its hurt before you choose, and the hurts are small and never kill.
+- Questions and events come as often as before: the new ones take a share of the old.
+
 ## New illnesses and ailments
 
 *6 November 2026, version 0.119.0*
