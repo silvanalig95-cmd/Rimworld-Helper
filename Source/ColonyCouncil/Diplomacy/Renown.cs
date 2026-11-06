@@ -171,6 +171,8 @@ namespace ColonyCouncil
             Tell.Minor(NewsKind.Colony, Importance.Notable, home, line, speaker != null ? new LookTargets(speaker) : LookTargets.Invalid,
                 up ? MessageTypeDefOf.PositiveEvent : MessageTypeDefOf.NeutralEvent);
             Diplomacy.Dirty();
+            // This line is the colony's one name moving (Character/ColonyName.cs), with what it is known for: not told again.
+            ColonyName.Settle();
         }
 
         // ================= Reading it =================
@@ -279,12 +281,14 @@ namespace ColonyCouncil
         {
             var ep = CouncilGameComponent.Instance?.epithets;
             if (ep != null)
+            {
                 foreach (var d in ep.Of(p))
                     if (d != null && !d.dubious)
-                    {
                         hits.Add(new RenownMath.Hit("epithet", 0f, 1f, RenownMath.EpithetFor(d.defName)));
-                        if (details != null && !details.ContainsKey("epithet")) details["epithet"] = d.label;
-                    }
+                // Said abroad by the one name they are known by at home (KnownAs's short form; a proud one comes first).
+                var chief = details != null ? ep.Chief(p) : null;
+                if (chief != null && !chief.dubious) details["epithet"] = chief.label;
+            }
             if (p.records != null)
             {
                 foreach (var kv in RenownMath.Offices)

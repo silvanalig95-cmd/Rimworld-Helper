@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.110.0</version>
+        <date>6 November 2026</date>
+        <title>One name</title>
+        <points>
+          <li>Each colonist is known by one name now, on their card, in talk and in letters: "Known as the Healer, the one who won the wrestling at the feast with the Lenlia, talked about in the next town." Their other names and reputation's sides show underneath.</li>
+          <li>Names move slowly: once given, nobody can take one for 30 days, and after that only someone clearly doing more of that work for 15 days in a row takes it. Whoever lost a name can't take it back for two months, so names no longer pass back and forth between two people.</li>
+          <li>The colony has one card at the top of Our ways and on its card in the region window: what it is called and known for, how far its name carries, where its renown comes from and what is held against it. A change of name is one line in the Chronicle.</li>
+          <li>Fixed: a way falling from renowned to merely known said people had stopped calling the colony by it.</li>
+          <li>Names already held stay with their holders; nothing moves or is told when an old save loads.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.109.2</version>
         <date>6 November 2026</date>
         <title>The world's voices</title>

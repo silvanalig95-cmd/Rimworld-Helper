@@ -326,8 +326,9 @@ namespace ColonyCouncil
         private static List<string> Character(CouncilGameComponent comp)
         {
             if (!ColonyCouncilMod.Settings.colonyCharacter) return new List<string>();
-            string known = comp.character.Describe();
-            return new List<string> { known != null ? "CC_Ways_KnownAs".Translate(known).Resolve() : "CC_Ways_NoName".Translate().ToString() };
+            // The colony's one name in its card's first line (Character/ColonyName.cs).
+            string known = ColonyName.Main();
+            return new List<string> { known ?? "CC_Ways_NoName".Translate().ToString() };
         }
 
         /// <summary>The herd's leader and its line, the beast the colony watches, a shiny rumour, the neighbours settled for good.</summary>

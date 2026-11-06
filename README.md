@@ -61,7 +61,7 @@ beside the title that opens its page of the Almanac:
 | View | Modes | What's there |
 |---|---|---|
 | **This week** | | the one inbox: what you follow, what needs you, what is under way, what's coming, how people are and the plan |
-| **People** | Table · Moods · Bonds · Ideoligions · Renown | all colonists in one sortable table, with a colonist's card (their whole story, their dreams and journal) in the drawer beside it; every mood added up; friendships, rivalries, groups, vendettas, secrets; with Ideology, the colony's ideoligions; the colony's name among the peoples and its people known by name |
+| **People** | Table · Moods · Bonds · Ideoligions · Renown | all colonists in one sortable table, with a colonist's card (their whole story, their dreams and journal) in the drawer beside it; every mood added up; friendships, rivalries, groups, vendettas, secrets; with Ideology, the colony's ideoligions; each of its people by their one name, at home and beyond its walls |
 | **Council** | Offices and decrees · Ambition · Our ways · Wishes · Dilemmas | decrees, petitions and the council's offices with their elections (five, up to fourteen seats in a bigger colony); the current ambition and meetings; what the colony is known for and its traditions; open wishes, promises kept and trust; questions waiting and how the answers went |
 | **Colony** | Overview · Calendar · Chronicle | the colony at a glance (numbers, how they moved this week, graphs of mood, trust, wealth and people over the last weeks); the colony calendar; everything that happened since the first day, read from the one history, every answer with what came of it (filter by wishes, council, people, strangers, world events, losses, and every dream and journal) |
 
@@ -464,7 +464,12 @@ what happened to them moves: the warm hate harshness, the proud love thrift, the
 the set in their ways love tradition, and someone hardened by a hard year may come to mind mercy less. Neighbors warm to
 a generous or open colony and cool towards a thrifty or guarded one, and some encounters and dilemmas only happen
 for a colony with a certain name. Old deeds fade (about half in a year), so a colony can change. The **Our ways**
-page in the council window shows where you stand, who is proud, who chafes, and what shaped it.
+page in the council window opens on the colony's one name, the same card a home shows in the region window: what
+people call it (its ways and what its work made it, in one list) and how far its name carries beyond its walls and for
+what, in one sentence ("People call the colony traditional, generous and walled; beyond its walls it is known for good
+doctors, its name talked about in the next town."), the deeds behind it, and a line for what each people remembers.
+Below it, where you stand, who is proud, who chafes, and what shaped it. When the name changes, the chronicle has one
+sentence for it.
 
 A colony also grows into what its people keep doing. A season of steady work earns it a name of its own:
 **green-fingered**, **builders**, **learned**, **craftsfolk**, **hunters** or **delvers**, counted from the
@@ -1817,7 +1822,7 @@ with buttons for the previous and next page, so a page gets the whole width. Tab
 and never break a word; a table too wide for the page shows each row as a small card instead.
 
 ### Names, anniversaries and petitions
-Whoever has done the most of something earns a name for it, until someone overtakes them: *the Healer*, *the
+Whoever has done the most of something earns a name for it, and keeps it a good while: *the Healer*, *the
 Surgeon*, *Deadeye*, *the Builder*, *Beastfriend*, *Silver-Tongue*, *the Sower*, *Tinker*, *the Warden*, and some
 less flattering ones (*the Broom*, *the Mule*, *the Kindling* for whoever keeps catching fire, *the Storm*,
 *Patchwork*, *the Bottomless*). Some come with time: *the Old Hand*, *Homegrown*, and *the Unshaken* and *Lucky*,
@@ -1830,7 +1835,13 @@ the ideoligion and in the colony bring more: *Old Doc* and *Old Iron* (two years
 (three terms as speaker without ever losing a vote), *the Celebrant* and *the Shepherd* (rituals led and years as
 moral guide, with Ideology), *the Founder* (ten years since the first day), *the Last of the First*, *the Firstborn*
 and *the Annalist*, who keeps the pen. They show in play: travelers ask for Old Doc or the Celebrant by name, the
-founding day's letter names the last of the founders. 63 names in all. Each
+founding day's letter names the last of the founders. 63 names in all. A name holds: nobody can take it for two
+seasons, and after that it passes only to someone who stays clearly ahead a whole season and does half again as much of
+the work as the holder, never back to the one who lost it within a year (who writes it once in their journal). Each
+colonist is known by one name, the proud one held longest: it stands under their name on their card, in the tabs and
+tables and in their death letter, and their card says it in one line with what the peoples beyond the walls know them
+for ("Known as the Healer, the one who won the wrestling at the feast with the Lenlia, talked about in the next town."),
+their other names and what the others say of them under it. Each
 year since a colonist joined, they
 mark the anniversary in their own words, and their friends share it. And when the moment fits (food running low,
 right after a raid, while people grieve, when everyone has grown spoiled) a colonist may petition the council for
@@ -2822,8 +2833,9 @@ every people within reach, for its fighters, healers, hosts, traders, makers or 
 region, for good swords"). Notables think better of its people, good words and matches come easier, and what it is known
 for draws challengers, the sick, guests, pilgrims and the rest. Each colonist has a name of their own for their deeds,
 on their card and spoken of by visitors whose people know it ("the one who won the wrestling at the feast with the
-Lenlia"); one known by name as a fighter draws the champion's challenge, a healer the sick. People → Renown has the
-colony's name and its people known by name. 83 conversation pieces, 46 letter lines and 31 spoken lines speak of it.
+Lenlia"), said in one line with the colony's name for them; one known by name as a fighter draws the champion's
+challenge, a healer the sick. The colony's renown is part of its one name on **Our ways** and a home's card; People →
+Renown has each of its people by their one name. 83 conversation pieces, 46 letter lines and 31 spoken lines speak of it.
 Setting: *Colony renown*.
 
 **Against their nature.** Some of what diplomacy asks goes against a colonist's nature, and it weighs on their heart (its

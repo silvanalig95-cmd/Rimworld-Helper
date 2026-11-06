@@ -207,13 +207,8 @@ namespace ColonyCouncil
             if (!On || tr == null || p == null || !Persona.Eligible(p)) return s;
             int now = Find.TickManager.TicksGame;
             var st = Standing(p);
-            var good = WordsOf(st, true);
-            var bad = WordsOf(st, false);
-            string tip = StandingTip(st);
-            if (good.Count > 0 && bad.Count > 0)
-                s.Line("CC_Rep_Known_Both".Translate(p.Named("PAWN"), TextUtil.JoinAnd(good).Named("GOOD"), TextUtil.JoinAnd(bad).Named("BAD")).Resolve(), tip);
-            else if (good.Count > 0) s.Line("CC_Rep_Known_Good".Translate(p.Named("PAWN"), TextUtil.JoinAnd(good).Named("GOOD")).Resolve(), tip);
-            else if (bad.Count > 0) s.Line("CC_Rep_Known_Bad".Translate(p.Named("PAWN"), TextUtil.JoinAnd(bad).Named("BAD")).Resolve(), tip);
+            string known = SidesLine(p, st);
+            if (known != null) s.Line(known, StandingTip(st));
             // (The colony's own names for them are in the Standing section above, with a word on how a name eases them.)
             var deeds = tr.By(p.thingIDNumber).Where(d => d.def != null).OrderByDescending(d => d.Weight(now) * (1 + d.heard.Count)).Take(MaxDeedsShown).ToList();
             int others = Mathf.Max(0, tr.PublicCount - 1);
@@ -317,6 +312,26 @@ namespace ColonyCouncil
             lines.Add("CC_Rep_Chain_Fades".Translate().Resolve());
             return string.Join("\n", lines);
         }
+
+        /// <summary>
+        /// The sides of their name that show, in a line ("Ana is known to be brave and kind, though people also say she is a
+        /// gossip."), or null when nothing is said: the details under a colonist's one name (KnownAs) and the first line here.
+        /// </summary>
+        public static string SidesLine(Pawn p) => p == null || !On ? null : SidesLine(p, Standing(p));
+
+        private static string SidesLine(Pawn p, float[] st)
+        {
+            var good = WordsOf(st, true);
+            var bad = WordsOf(st, false);
+            if (good.Count > 0 && bad.Count > 0)
+                return "CC_Rep_Known_Both".Translate(p.Named("PAWN"), TextUtil.JoinAnd(good).Named("GOOD"), TextUtil.JoinAnd(bad).Named("BAD")).Resolve();
+            if (good.Count > 0) return "CC_Rep_Known_Good".Translate(p.Named("PAWN"), TextUtil.JoinAnd(good).Named("GOOD")).Resolve();
+            if (bad.Count > 0) return "CC_Rep_Known_Bad".Translate(p.Named("PAWN"), TextUtil.JoinAnd(bad).Named("BAD")).Resolve();
+            return null;
+        }
+
+        /// <summary>The sides of their name in words and numbers, for a tooltip.</summary>
+        public static string SidesTip(Pawn p) => p == null || !On ? null : StandingTip(Standing(p));
 
         private static string StandingTip(float[] st)
         {

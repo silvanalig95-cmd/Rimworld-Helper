@@ -319,7 +319,11 @@ public static class RenownTests
             "the word said by one of the colony on the seat's map, awake and free (never in their sleep)");
         C(dip["Renown.cs"].Contains("Outsiders.Say(speaker, moment, null, null, RenownMath.BubbleTag(was, r.band))")
           && Code("Outsiders/Outsiders.cs").Contains("if (!also.NullOrEmpty()) tags.Add(also);"), "the bubble said with the band it fell from");
-        C(dip["RenownPanels.cs"].Contains("CardKind.Colonist") && dip["RenownPanels.cs"].Contains("CardSections.HomeLines("), "a colonist's own name on their card, the colony's renown on a home's card");
+        // Since one name (phase 4 of the review, part 1): a colonist's own name is part of their one "known as", the colony's
+        // renown part of its one card.
+        C(Code("Epithets/KnownAs.cs").Contains("CardKind.Colonist") && Code("Epithets/KnownAs.cs").Contains("Renown.Own(p)")
+          && Code("Character/ColonyName.cs").Contains("CardSections.HomeLines(") && Code("Character/ColonyName.cs").Contains("RenownPanels.From(r)"),
+            "a colonist's own name on their card in their one name, the colony's renown on a home's card in its one name");
 
         // ================= Shipped lines asked for more, or retired =================
 

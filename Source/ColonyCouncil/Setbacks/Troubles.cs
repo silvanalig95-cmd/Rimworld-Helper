@@ -435,7 +435,9 @@ namespace ColonyCouncil
                 }
                 if (honor == null && S.epithets && comp?.epithets != null)
                 {
-                    var name = comp.epithets.Of(o).FirstOrDefault(e => !e.dubious);
+                    // The name the other is known by (one name, 0.110.0), when it is a proud one.
+                    var chief = comp.epithets.Chief(o);
+                    var name = chief != null && !chief.dubious ? chief : null;
                     if (name != null && !comp.epithets.Of(p).Any(e => !e.dubious))
                     {
                         key = "CC_Trouble_Cause_EnvyName";

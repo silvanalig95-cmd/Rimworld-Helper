@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## One name
+
+*6 November 2026, version 0.110.0*
+
+- Each colonist is known by one name now, on their card, in talk and in letters: "Known as the Healer, the one who won the wrestling at the feast with the Lenlia, talked about in the next town." Their other names and reputation's sides show underneath.
+- Names move slowly: once given, nobody can take one for 30 days, and after that only someone clearly doing more of that work for 15 days in a row takes it. Whoever lost a name can't take it back for two months, so names no longer pass back and forth between two people.
+- The colony has one card at the top of Our ways and on its card in the region window: what it is called and known for, how far its name carries, where its renown comes from and what is held against it. A change of name is one line in the Chronicle.
+- Fixed: a way falling from renowned to merely known said people had stopped calling the colony by it.
+- Names already held stay with their holders; nothing moves or is told when an old save loads.
+
 ## The world's voices
 
 *6 November 2026, version 0.109.2*

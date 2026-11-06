@@ -247,9 +247,9 @@ namespace ColonyCouncil
             var settings = ColonyCouncilMod.Settings;
             var ch = comp.character;
             if (!settings.colonyCharacter || ch == null || !p.IsColonist || p.IsQuestLodger() || !People.HasInnerLife(p) || p.DevelopmentalStage.Baby()) return null;
-            string known = ch.Describe();
-            var traits = ch.traits.Known.Select(d => d.label).ToList();
-            if (known == null && traits.Count == 0) return null;
+            // What the colony is called, as one list (its ways and what its work made it: Character/ColonyName.cs).
+            string known = ColonyName.CalledWords();
+            if (known == null) return null;
             var s = new PaneSection { key = "ways", header = "CC_Culture_Ways".Translate(), icon = Icons.Ways };
             var reasons = new List<string>();
             float approval = ch.Approval(p, reasons);
@@ -280,10 +280,7 @@ namespace ColonyCouncil
             foreach (var r in reasons) s.Add(r.CapitalizeFirst() + ".", UiKit.Faint);
             foreach (var d in ch.traits.PrideOf(p))
                 s.Add("CC_Culture_TraitPride".Translate(d.label, d.skill?.label ?? "").Resolve(), UiKit.Good, d.description);
-            var all = new List<string>();
-            if (known != null) all.Add(known);
-            all.AddRange(traits);
-            var knownRow = s.Add("CC_Ways_KnownAs".Translate(TextUtil.JoinAnd(all)).Resolve() + ".", UiKit.Faint, "CC_Culture_KnownTip".Translate());
+            var knownRow = s.Add("CC_Ways_KnownAs".Translate(known).Resolve() + ".", UiKit.Faint, "CC_Culture_KnownTip".Translate());
             if (knownRow != null)
             {
                 knownRow.icon = Icons.Ways;

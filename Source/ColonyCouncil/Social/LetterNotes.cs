@@ -87,7 +87,8 @@ namespace ColonyCouncil
             else if (bornHere) notes.Add("CC_DeathNote_Born".Translate(p.Named("PAWN")).Resolve());
             else if (years >= 2f) notes.Add("CC_DeathNote_Years".Translate(p.Named("PAWN"), yearsText.Named("YEARS")).Resolve());
             string office = S.offices ? OfficeTracker.HeldBy(p)?.label : null;
-            string title = S.epithets ? comp.epithets.Of(p).FirstOrDefault()?.label : null;
+            // The one name the colony knew them by (KnownAs's short form).
+            string title = S.epithets ? comp.epithets.Chief(p)?.label : null;
             if (!office.NullOrEmpty()) notes.Add("CC_DeathNote_Office".Translate(office.Named("OFFICE")).Resolve());
             else if (!title.NullOrEmpty()) notes.Add("CC_DeathNote_Title".Translate(p.Named("PAWN"), title.Named("TITLE")).Resolve());
             // A name with a place in the colony's years says what goes with them (the last of the founders).
