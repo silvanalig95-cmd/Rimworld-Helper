@@ -491,7 +491,7 @@ stash of beer, a cook who wants to spend the stores on one magnificent feast, a 
 can't cope. Kind, greedy, industrious and teetotal colonists all react differently. Leave a dilemma unanswered and
 the council's silence decides for you.
 
-There are 208 of them, and many grow out of everyday life: a sick colonist when the medicine is nearly gone,
+There are 219 of them, and many grow out of everyday life: a sick colonist when the medicine is nearly gone,
 whether to keep someone with a fever apart, a cook with a cold, an old family remedy, a visitor's strange cure, the
 camp on the colony's land asking for medicine, food or searchers for a lost child (and, new, one of them who wants to
 stay, a purse gone from their stash with a colonist blamed, one of theirs caught in the storeroom, their beasts standing
@@ -546,11 +546,16 @@ someone objects to can have its hard drug bills, or all but the medicine, suspen
 a colonist loves can teach them in the cell, or the wardens can be set to recruiting first. With Ideology, a
 slave a colonist has grown fond of can be freed into the colony by the game's own emancipation or walked to the edge
 to go home, and someone who broke one of the faith's precepts can be given a quiet word, a penance at the altar or the
-council's backing. Hours and work an answer changed go back by themselves when their time is up or the heat wave is
-over, with a message, but only where nobody changed them since: whatever you set by hand stays as you set it.
+council's backing. The colony is also asked about what it meets in the game itself: through a cold snap, short days
+until it ends (abed through the morning frost, to bed early) or a fire kept in the coldest bedroom; when the game's blight
+reaches its fields, the blighted plants marked for cutting, or that and the rest of those fields brought in early; a
+fine weapon in the stores two of the colony would be better armed with, taken up by the one chosen; and an animal
+trained to obey whose person died, given a new master it follows. Hours and work an answer changed go back by
+themselves when their time is up or the heat wave or cold snap is over, with a message, but only where nobody changed
+them since: whatever you set by hand stays as you set it.
 
-**Answers play out on the map.** When an answer describes something people do, they do it (641 answers of 177
-dilemmas and 178 Rimfolk events, stories and world events, plus calendar days, six decrees and nine ambitions, 25
+**Answers play out on the map.** When an answer describes something people do, they do it (669 answers of 183
+dilemmas and 185 Rimfolk events, stories and world events, plus calendar days, six decrees and nine ambitions, 25
 stages of 20 personal stories and 7 moments with visitors). A
 victory feast is eaten at the dining table, each guest sent to eat a cooked meal, the finest first they may eat, and
 the food the answer spends on it is cooked for it first, at the colony's stove by its organizer or best cook. The midsummer bonfire is lit (with no campfire, one of the colony carries wood out and lays one first, burned down to ash
@@ -2231,7 +2236,9 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   children. What you do is remembered by the people it touched.
 - **From what the colony is doing.** A young animal left by a hunter's kill, a wild one of the colony's own livestock
   kind come down to the pens at dusk (see "The colony's animals"), a miner under the mountain breaking into a real
-  pocket of ore with a seam running on deeper (follow it and the deep rock opens, where insects nest), a visitor who
+  pocket of ore with a seam running on deeper (follow it and the deep rock opens, where insects nest), a **herd
+  crossing** the colony's land (the game's own migration: a few of it or the biggest marked for the hunters, the
+  game's own risk that a hunted beast turns named first, or let them cross), a visitor who
   sits down across the colony's chess or poker table to play its best (skill and luck decide it while they play; for
   silver the stake changes hands), and a neighbour's **commission** for one fine coat, bow, blade or gun the colony can
   make: a bill goes up at the right bench counting only pieces of the quality asked, their rider collects the first one
@@ -2276,9 +2283,9 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   **mourners** carrying their dead home. Refugees come more often while a famine, plague, war, flood, drought, hard
   winter or great fire runs in the region, and say what they fled; pilgrims follow a holy year, surveyors a new road
   or a rush, minstrels a season of songs, mourners a people's mourning. Every kind can be asked for something
-  from their page (51 asks): an evening at their fire, a beast from the herd, the healer's care, a lesson at their side,
+  from their page (70 asks): an evening at their fire, a beast from the herd, the healer's care, a lesson at their side,
   a song about the colony, a vigil with the mourners, a colonist out hunting with the party, a supper for the refugee
-  family, the smith's mending, a walk with the hermit, the players' show. And **camps ask things of the colony** (14
+  family, the smith's mending, a walk with the hermit, the players' show. And **camps ask things of the colony** (24
   requests, by letter, when things are calm and no other question came lately): the drovers would water their herd at
   your water, the healers' apprentice wants practice on your sick, the players want an audience, the prospectors a test
   hole on your side, the traders a day's stall at your gate, the pilgrims to pray at your graves, the hermit, once, a
@@ -2317,7 +2324,13 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   medicine for components, plasteel or steel, and leave the hull behind for the colony to take apart. With Anomaly,
   **watchers of the monolith** keep a night watch on the woken monolith, share their notes with the colony's study and
   ask for its free beds on a stormy evening. A travelling **beast show** brings beasts from far places (see "The
-  colony's animals").
+  colony's animals"). **Woodcutters** (of tribal to industrial peoples) come only where the woods stand thick clear of
+  the colony, pitch by them and fell real trees round their camp, a tree or two a day (keeping them to their side is
+  one of the terms): buy a load of their wood, have a colonist learn the axe at their side, or send the crew a hot
+  supper when they ask; their woodpile is left for the colony when they go in peace. **Herb-gatherers** (root-diggers,
+  herbalists, a botanist and students, or a survey of the land's plants, by their people's age) gather the land's wild
+  herbs at dawn and leave a share; buy a few bundles, learn the herbs at their side, or let them walk the colony's
+  fields for the herbs among the crops, and they come oftener while medicine is scarce.
 
   Some come for something the land near the colony has, and say so: the letter names it and looks at it. **Scholars**
   (a tale-seeker, a scholar with a mule of books, a professor and two students, or an archaeotech survey team, by their
@@ -2518,7 +2531,10 @@ the colony half.
   to take in), a **blood feud** between two families of two peoples (hide the one who ran, sit a talker between them,
   pay the last of the blood price), a **comet** (a night watch, a stargazer), a **bumper harvest**, the **drove
   roads**, a people **in mourning**, a **season of songs** with a song about the colony going round, a **toll** on the
-  roads, **iron gone scarce**, and **exiles** cast out by a neighbor. Two follow another's end with its people:
+  roads, **iron gone scarce**, **medicine gone scarce** (a neighbor's healer pays well for the colony's medicine, or
+  takes it as a gift; a herb-seller's healroot comes dear), a **blight in the region** (the game's blight comes to the
+  colony's own fields more often while it lasts; the neighbors buy food at twice its worth, and a family burned out by
+  it comes hungry to the gate), and **exiles** cast out by a neighbor. Two follow another's end with its people:
   **rebuilding** after a war, a fire or a flood, and **the road reopening** once the bandits, the snow, the toll or a
   closed market are gone.
 - **The wider world:** a **prophet on the roads** (feed her followers or shut the gate, let her speak at dusk, and
@@ -2620,7 +2636,7 @@ why, and a caravan at their town sends someone else to do the talking. No raid c
 ### The region
 The towns within the region map's reach of each home (the nearest 40) are known in detail. Each has a **fortune**,
 from struggling to flourishing, that the world's events move (a plague 20 down at its town and 10 at its people's
-others, a fair 8 up: 32 world events in all), that a war near it wears down and that drifts back toward the middle;
+others, a fair 8 up: 34 world events in all), that a war near it wears down and that drifts back toward the middle;
 its card on the region map, and the map's Fortunes lens, say how it stands and what moved it ("Struggling, since the plague"), its people speak
 of it, and what it has to trade follows it (a struggling town has a quarter less food, medicine and silver).
 

@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## New questions, events and camps
+
+*6 November 2026, version 0.108.0*
+
+- Four new council questions, each only while its situation is on the map: the cold snap's hours (shorter days or a fire kept in the coldest bedroom), blight in the fields (cut the sick plants, harvest early or let it spread), the good weapon in the stores (who carries it), and the animal left behind when its person dies (who becomes its master).
+- A new event while a herd crosses the map: mark a few of them, or the biggest, for the hunters, or let them pass, with the game's own risk of a beast turning on its hunter named before the choice.
+- Two new world situations: a blight in the region, making the colony's own fields likelier to catch it while neighbours pay well for food, and medicine gone scarce, with healers paying dear and hedge healers coming by more often.
+- Two new camps of travellers: woodcutters, who come only where the woods stand thick and fell real trees round their camp, and herb-gatherers, who gather at dawn and come more often while medicine is scarce.
+- Each comes in the forms of every age, and they join the existing pools, so the colony sees no more questions, events or camps a year than before, only more kinds of them.
+
 ## One record of the colony's story
 
 *6 November 2026, version 0.107.0*

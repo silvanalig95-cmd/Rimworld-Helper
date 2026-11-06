@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- World events from the land and the roads of the region (told from data, the default worker): a blight going
+       through the region's fields, and medicine gone scarce on the roads. Each pulls both ways: what the colony has is
+       worth more to its neighbours, and what the region suffers can reach the colony too (blight comes to its own
+       fields more often while it lasts; its medicine sold is medicine it hasn't got). -->
+
+  <!-- ===================== A blight in the region ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_Blight</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a blight in the region</label>
+    <weight>0.7</weight>
+    <earliestDay>25</earliestDay>
+    <cooldownDays>150</cooldownDays>
+    <durationDays>10~16</durationDays>
+    <kind>hunger</kind>
+    <prosperity>-10</prosperity>
+    <bad>true</bad>
+    <seasons>
+      <li>Spring</li>
+      <li>Summer</li>
+      <li>Fall</li>
+      <li>PermanentSummer</li>
+    </seasons>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <titles>
+      <li>A blight in the region</li>
+      <li>Blight on the wind</li>
+    </titles>
+    <texts>
+      <li>[theirLowtech] A blight has come into the fields round {PLACE}. The growers of {FACTION} are cutting out whole rows and burning them at the field's edge. It travels on the wind and on boots, they say, from one field to the next.\n\nThe colony's own fields are not far off.</li>
+      <li>[theirHightech] {FACTION} have put up warnings on the roads out of {PLACE}: a crop blight is through their fields, and every farm in the region is told to check its rows daily and to cut out anything spotted. Food prices at {PLACE} have doubled in a week.\n\nThe colony's own fields are within reach of it.</li>
+      <li>[lowtech] The growers at {PLACE} have a word for this year's blight that the colony's children aren't allowed to repeat. It has taken half of what {FACTION} sowed, and it goes field to field on the wind.\n\nWhatever the colony grows is worth more now, and is at risk.</li>
+    </texts>
+    <summaries>
+      <li>Blight comes to the colony's own fields more often while it lasts. {FACTION} will pay well for food, and some of their people go hungry. A colony with food to spare can do well out of it, or do good.</li>
+    </summaries>
+    <modifiers>
+      <li><incident>CropBlight</incident><factor>2.5</factor></li>
+      <li><rimfolk>Council_Evt_BulkOrder</rimfolk><factor>1.5</factor></li>
+      <li><rimfolk>Council_Evt_GrowingSpell</rimfolk><factor>0.5</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>buyers</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>driver</what><pack>true</pack></li>
+        </effects>
+        <day>1~4</day>
+        <count>40~80</count>
+        <titles>
+          <li>{FACTION} want food</li>
+        </titles>
+        <texts>
+          <li>[theirLowtech] A cart from {PLACE} is at the gate, and the driver has a purse. {FACTION} lost half a season to the blight and are buying food wherever it can be had: {COUNT} portions, any kind, at twice what it's worth.\n\nIt's a good price. It's also the colony's food, and the blight may be on its way here.</li>
+          <li>[theirHightech] {FACTION}'s grain buyer has driven up from {PLACE} with an empty truck bed and a full purse. They want {COUNT} portions of food, any kind, and will pay twice what it's worth.\n\nThe colony's own fields may be next.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Sell {COUNT} food at twice its worth</label>
+            <outcome>The food is carried out to the gate and loaded, and the driver leaves the purse behind, as full as it came.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for {PLACE}</label><what>rawfood</what></li>
+              <li Class="ColonyCouncil.WorldEffect_Silver"><factor>2</factor></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>sold food to {PLACE} in the blight</deed>
+          </li>
+          <li>
+            <label>Sell it at its plain worth</label>
+            <outcome>The food is carried out and loaded, and the driver pays the plain price before the colony can change its mind. {FACTION} will hear of it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for {PLACE}</label><what>rawfood</what></li>
+              <li Class="ColonyCouncil.WorldEffect_Silver"><factor>1</factor></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>7</amount></li>
+            </effects>
+            <help>2</help>
+            <deed>sold food to {PLACE} at its plain worth in the blight</deed>
+            <ways><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>Keep it against the blight</label>
+            <outcome>The driver goes back to {PLACE} with the purse still full. The colony's stores stay as they are, in case the blight comes over the hill.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>smoke</key>
+        <day>3~7</day>
+        <message>true</message>
+        <texts>
+          <li>Smoke over {PLACE} again: {FACTION} are burning another field to stop the blight going further.</li>
+        </texts>
+      </li>
+      <li>
+        <key>hungry</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>travelers</what><count>2</count></li>
+        </effects>
+        <day>5~10</day>
+        <chance>0.7</chance>
+        <titles>
+          <li>A family from {PLACE}</li>
+        </titles>
+        <texts>
+          <li>Two of {FACTION} are at the gate, from a farm near {PLACE} that burned its field to stop the blight and has nothing left to eat until the next crop. They ask for a little food to see them home, and have nothing to pay with.</li>
+          <li>[theirLowtech] A farmer of {FACTION} and her son have walked up from {PLACE} with empty sacks. The blight took their field and the burning took the rest. They ask for enough to eat on the way home, and can only offer thanks.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Give them food for the road</label>
+            <outcome>Food is carried out to them at the gate, and they eat some of it there before they go.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the family from {PLACE}</label><what>rawfood</what><count>20</count><to>Stranger</to><eat>true</eat></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>fed a family of {PLACE} in the blight</deed>
+            <ways><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>Nothing to spare</label>
+            <outcome>The two of them turn back at the gate, and go home the way they came.</outcome>
+            <ways><generosity>-1</generosity></ways>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>helped</key>
+        <minHelp>2</minHelp>
+        <helped>true</helped>
+        <titles>
+          <li>The blight burns out</li>
+        </titles>
+        <texts>
+          <li>The blight has burned itself out across the region, and {FACTION} are sowing again round {PLACE}. They got through the hungry weeks partly on the colony's food, and say so to anyone who asks.</li>
+        </texts>
+        <chronicle>The blight left the region's fields; {FACTION} remember the colony's food.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>over</key>
+        <titles>
+          <li>The blight burns out</li>
+        </titles>
+        <texts>
+          <li>The blight has gone out of the region's fields, and the price of bread at {PLACE} is coming down.</li>
+        </texts>
+        <chronicle>The blight left the region's fields.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== Medicine gone scarce ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_MedicineScarce</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>medicine gone scarce</label>
+    <weight>0.6</weight>
+    <earliestDay>30</earliestDay>
+    <cooldownDays>200</cooldownDays>
+    <durationDays>12~18</durationDays>
+    <kind>scarcity</kind>
+    <prosperity>-5</prosperity>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <titles>
+      <li>Medicine gone scarce</li>
+      <li>Short of medicine</li>
+    </titles>
+    <texts>
+      <li>[theirLowtech] A wet spring rotted the healroot in the ground across the region, and the herb-women at {PLACE} have nothing left on their shelves. {FACTION} are binding wounds with clean cloth and hope, and paying whatever they must for anything that heals.\n\nThe colony has medicine in its stores, and people know it.</li>
+      <li>[theirHightech] The medicine that comes up the road to {PLACE} has stopped coming: a convoy lost, the traders say, and nobody in a hurry to send another. {FACTION} are down to their last kits and rationing them.\n\nThe colony has medicine in its stores, and people know it.</li>
+    </texts>
+    <summaries>
+      <li>{FACTION} will pay well for medicine. Healers on the road come by more often, and gatherers of herbs. A colony with medicine to spare can do well out of it, or do good; medicine sold is medicine the colony hasn't got.</li>
+    </summaries>
+    <modifiers>
+      <li><rimfolk>Council_Evt_Bonesetter</rimfolk><factor>1.5</factor></li>
+      <li><rimfolk>Council_Evt_Inoculation</rimfolk><factor>0.5</factor></li>
+      <li><rimfolk>Council_Evt_Camp</rimfolk><factor>1.2</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>buy</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>healer</what><ages>30~65</ages><pack>true</pack></li>
+        </effects>
+        <day>1~4</day>
+        <count>4~8</count>
+        <titles>
+          <li>{FACTION} want medicine</li>
+        </titles>
+        <texts>
+          <li>{FACTION}'s healer has walked up from {PLACE} with a purse and a list of the sick. {FACTION} need {COUNT} doses of medicine, and will pay far more than it's worth.\n\nIt's a good price. It's also the medicine the colony would use on its own.</li>
+          <li>[theirLowtech] The herb-woman from {PLACE} is at the gate with her basket empty and a purse in it. She asks for {COUNT} doses of whatever the colony heals with, and will pay far more than it's worth.\n\nThe colony would be that much shorter itself.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Sell {COUNT} medicine at a scarce year's price</label>
+            <outcome>The medicine is carried out to the gate, and {FACTION}'s healer counts out the price and goes back to {PLACE} at a walk that is nearly a run.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the medicine for {PLACE}</label><what>medicine</what><steward>false</steward></li>
+              <li Class="ColonyCouncil.WorldEffect_Silver"><factor>30</factor></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>sold medicine to {PLACE} when it was scarce</deed>
+          </li>
+          <li>
+            <label>Give it for their sick</label>
+            <outcome>The medicine is carried out to the gate, and {FACTION}'s healer takes it without being able to say much. {FACTION} will hear of it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the medicine for {PLACE}</label><what>medicine</what><steward>false</steward></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>9</amount></li>
+            </effects>
+            <help>2</help>
+            <deed>gave medicine to {PLACE} when it was scarce</deed>
+            <ways><generosity>3</generosity></ways>
+          </li>
+          <li>
+            <label>Keep it for the colony's own</label>
+            <outcome>The healer goes back to {PLACE} with the purse still full and the list still long.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>gatherer</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>gatherer</what><ages>25~60</ages><pack>true</pack></li>
+        </effects>
+        <day>5~10</day>
+        <count>4~6</count>
+        <chance>0.7</chance>
+        <titles>
+          <li>Healroot for sale</li>
+        </titles>
+        <texts>
+          <li>A herb-seller of {FACTION} has come back from the high valleys with healroot nobody else has found this year, and stopped at the colony's gate on the way to {PLACE}. {COUNT} bundles of it, at a price that would have been thought robbery last season.\n\nThis season it may be cheap.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Buy the {COUNT} bundles</label>
+            <outcome>The herb-seller is paid at the gate, sets the bundles down there, and goes on to {PLACE} with a lighter pack and a heavier purse.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Pay"><factor>30</factor><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>MedicineHerbal</thing><by>Outsiders</by></li>
+            </effects>
+          </li>
+          <li>
+            <label>Let it go on to {PLACE}</label>
+            <outcome>The herb-seller goes on down the road to {PLACE}, where the healroot is wanted more.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>helped</key>
+        <minHelp>2</minHelp>
+        <helped>true</helped>
+        <titles>
+          <li>Medicine on the roads again</li>
+        </titles>
+        <texts>
+          <li>Medicine is coming up the road to {PLACE} again, and the healers there have their shelves back. {FACTION} got their sick through the lean weeks partly on the colony's stores, and remember it.</li>
+        </texts>
+        <chronicle>Medicine came back to the region; {FACTION} remember the colony's help.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>over</key>
+        <titles>
+          <li>Medicine on the roads again</li>
+        </titles>
+        <texts>
+          <li>Medicine is back in the region's markets, and the prices are coming down.</li>
+        </texts>
+        <chronicle>Medicine came back to the region.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+</Defs>

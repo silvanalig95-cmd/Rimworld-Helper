@@ -40,7 +40,8 @@ namespace ColonyCouncil
         /// What the land must have for them to come, and what they pitch near (Camps/CampKindsLand.cs): "fish" (water with
         /// fish in it, and fishing open to the colony), "ruins" (ancient pieces to strip outside the home area), "harvest"
         /// (more ripe crop than the growers can bring in before the season ends), "edge" (a craft come down by the map's
-        /// edge), "monolith" (Anomaly's monolith woken on this map). None: any land.
+        /// edge), "monolith" (Anomaly's monolith woken on this map), "woods" (stands of grown wild trees clear of the
+        /// colony, for woodcutters). None: any land.
         /// </summary>
         public string needs;
         /// <summary>Their own work on the land by day (Camps/CampKindsLand.cs): "fish", "strip", "reap", "hull", "watch".</summary>

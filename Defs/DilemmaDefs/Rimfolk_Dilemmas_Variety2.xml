@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Questions about what the colony meets that the council was never asked about
+    (Source/ColonyCouncil/Dilemmas/DilemmaWorkers_Variety2.cs): the cold snap's hours, blight in the fields, a good weapon
+    in the stores with two who want it, and an animal whose person has died. Each comes only when the colony is as its
+    letter says, and each answer's words happen in the game: timetables shifted until the cold snap ends, a fire laid in
+    the coldest room, the blighted plants (and the rest of the field) marked for the growers, the weapon taken up by the
+    one chosen, the animal given a new master it follows. Every answer has its own upside and its own cost; the one the
+    council's silence picks gives the least.
+  -->
+
+  <!-- ===================== The cold snap's hours ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_ColdSnap</defName>
+    <label>the cold snap's hours</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_ColdSnap</workerClass>
+    <weight>1.4</weight>
+    <cooldownDays>20</cooldownDays>
+    <answerDays>0.5</answerDays>
+    <texts>
+      <li>The cold snap hasn't broken. {B_nameDef} came in from outside at midday and couldn't hold a cup, and {A_nameDef}'s room is the coldest in the colony: {A_pronoun} sleeps in {A_possessive} clothes now. Some want short days until the cold lets go, some a fire kept in {A_nameDef}'s room, and some say carry on.</li>
+      <li>[freezing] It's the kind of cold that splits stones. {B_nameDef} came in from the work outside with {B_possessive} fingers gone white, and {A_nameDef} hasn't slept warm in days in the coldest room the colony has. Something has to give: the hours, the woodpile or the people.</li>
+      <li>[lowtech] Frost has been on the inside of the walls three mornings running. {B_nameDef} came in from outside at noon and held {B_possessive} hands over the fire until they hurt, and {A_nameDef}'s room is so cold {A_pronoun} sleeps rolled in every blanket {A_pronoun} owns. The old way is short days until the cold lets go; the young would rather keep a fire going and carry on.</li>
+      <li>[!lowtech] The cold snap has sat on the land for days and shows no sign of lifting. {B_nameDef} came in from the work outside with {B_possessive} face gone stiff, and {A_nameDef}'s room is the coldest in the colony. The council can shorten the days, keep a fire going in that room, or keep to the work as it stands.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Short days until it breaks</label>
+        <outcome>Until the cold snap breaks, the colony lies in through the frost of the early morning and goes to bed early. Less gets done, and fingers stay warm. The timetables go back when the cold lets go.</outcome>
+        <outcomes>
+          <li>[lowtech] The colony keeps the old short days until the cold lets go: abed through the frost of the morning and back by the fire at dusk. The work waits.</li>
+        </outcomes>
+        <ways><mercy>1</mercy><toil>-1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Hours"><target>Colony</target><plan>cold</plan><condition>ColdSnap</condition></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Shirking</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Keep a fire going in {A_nameDef}'s room</label>
+        <outcome>Forty logs were set aside, and a fire is laid in a corner of {A_nameDef}'s room and kept going until the wood is burned. {A_nameDef} sleeps warm, and the others keep to the work outside.</outcome>
+        <outcomes>
+          <li>[lowtech] A fire is laid on stones in a corner of {A_nameDef}'s room, with forty logs set aside to feed it. {A_nameDef} sleeps warm for the first time in days.</li>
+        </outcomes>
+        <ways><generosity>1</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what><count>40</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_KeepFire"><wood>40</wood></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmLv_WarmAtLast</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_FrozenThrough</thought><chance>0.5</chance></li>
+        </effects>
+      </li>
+      <li>
+        <label>Carry on</label>
+        <outcome>The work goes on in the cold, as the hard workers wanted.</outcome>
+        <ways><toil>2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Rimfolk_DlmE_FrozenThrough</thought><chance>0.6</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_FairsFair</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Colony</target><amount>1</amount><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== Blight in the fields ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_Blight</defName>
+    <label>blight in the fields</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_Blight</workerClass>
+    <weight>1.5</weight>
+    <cooldownDays>15</cooldownDays>
+    <answerDays>0.5</answerDays>
+    <texts>
+      <li>{A_nameDef} found black spots on the leaves this morning, and by noon {COUNT} plants of the fields had them. It's blight, and it goes from plant to plant. {B_nameDef} wants the sick ones cut out today; {A_nameDef} would bring in what's close to ripe as well, before the blight gets to it.</li>
+      <li>[spread] The blight is in {COUNT} plants now and moving down the rows faster than {A_nameDef} has ever seen it. {A_nameDef} wants the sick plants out and the rest of those fields brought in early. {B_nameDef} says a hard cut of the sick ones will do, and the rest can ripen.</li>
+      <li>[lowtech] {A_nameDef} pulled up a plant with leaves gone grey and soft and held it up to the council: blight, in {COUNT} plants already. The old growers say cut the sick ones out before the rot walks down the row. {B_nameDef} says the sick ones and anything near ripe both.</li>
+      <li>[!lowtech] {A_nameDef} checked the spotted leaves twice and called it: crop blight, in {COUNT} plants so far. It spreads plant to plant until the sick ones are cut out. {B_nameDef} wants them out now; {A_nameDef} would bring in the rest of those fields early too.</li>
+      <li>[ripe] There's blight in {COUNT} plants of the fields. Part of the crop around it is near enough ripe to come in now, smaller than it would be, and {A_nameDef} wants it in before the blight gets there. {B_nameDef} says cut out the sick plants and let the rest grow.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Cut out the sick plants now</label>
+        <outcome>The blighted plants are marked for cutting, and the growers will take them out before the blight goes further down the rows. The rest of the field grows on.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CutBlight" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Cut them out, and bring in what's near ripe</label>
+        <outcome>The blighted plants are marked for cutting, and everything in those fields that can come in now is marked for harvest, ripe or not. A smaller harvest, and in before the blight reaches it.</outcome>
+        <ways><toil>2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CutBlight"><field>true</field></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Let it run its course</label>
+        <outcome>The council leaves the fields as they are. The growers keep to their own work, and the blight goes where it goes.</outcome>
+        <ways><toil>-1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_BlightLeft</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The good weapon ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_GoodWeapon</defName>
+    <label>the good weapon</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_GoodWeapon</workerClass>
+    <weight>1.2</weight>
+    <cooldownDays>40</cooldownDays>
+    <answerDays>1</answerDays>
+    <texts>
+      <li>There's a fine {THING} in the stores, better than anything {A_nameDef} or {B_nameDef} carries, and both of them have been to look at it. {A_nameDef} is the better hand with it. {B_nameDef} says {B_pronoun} stands the watch as often, and asks who will be out there when it counts.</li>
+      <li>[ranged] {A_nameDef} and {B_nameDef} have each taken the {THING} out of the stores, sighted along it and put it back as if it were theirs already. {A_nameDef} shoots better. {B_nameDef} says a good gun in the second hand makes two good shots, not one.</li>
+      <li>[melee] {A_nameDef} and {B_nameDef} have each tried the {THING}'s balance in the stores and set it down with care. {A_nameDef} fights better with a blade. {B_nameDef} says {B_pronoun} is the one more often at the gate when it comes to blows.</li>
+      <li>[lowtech] A {THING} like the one in the stores is a thing people tell of: well made, and better than anything {A_nameDef} or {B_nameDef} has carried into a fight. Both want it, and both have said so at the fire. It goes to one, or it waits.</li>
+      <li>[!lowtech] The {THING} in the stores is the best the colony has, and it isn't in anyone's hands. {A_nameDef} has the better record with it; {B_nameDef} has asked for it twice. Whoever carries it carries it in every fight from now on.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>{A_nameDef} carries it</label>
+        <outcome>The {THING} goes to {A_nameDef}, who walks to the stores to take it up and sets down what {A_pronoun} carried before. {B_nameDef} says nothing about it, which says enough.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_TakeUp" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_ArmedWell</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Envious</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{B_nameDef} carries it</label>
+        <outcome>The {THING} goes to {B_nameDef}, who walks to the stores to take it up and sets down what {B_pronoun} carried before. {A_nameDef} thinks it a waste of a good weapon.</outcome>
+        <ways><mercy>1</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_TakeUp"><target>B</target></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_ArmedWell</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Envious</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>It stays in the stores</label>
+        <outcome>The {THING} stays in the stores, and neither of them carries it.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Ignored</thought><chance>0.5</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><chance>0.4</chance></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The animal left behind ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_MasterGone</defName>
+    <label>the animal left behind</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_MasterGone</workerClass>
+    <weight>1.3</weight>
+    <cooldownDays>30</cooldownDays>
+    <answerDays>1.5</answerDays>
+    <texts>
+      <li>{PET_nameDef} hasn't settled since {PET_possessive} person died. It obeys whoever calls, but it has no master now. {A_nameDef}, who was closest to the dead, would take it on. {B_nameDef} knows animals best, and says it needs a steady hand.</li>
+      <li>[lowtech] Among the old peoples an animal whose person dies goes to the one who mourns them most. {A_nameDef} would take {PET_nameDef}. {B_nameDef}, who has the best hand with animals, says grief makes a poor handler, and that {PET_nameDef} needs someone who knows the work.</li>
+      <li>[!lowtech] {PET_nameDef} lost {PET_possessive} master when {PET_possessive} person died, and is still trained to follow someone who isn't there. {A_nameDef} has asked to take {PET_objective} on. {B_nameDef}, the colony's best handler, would rather do it properly.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>{A_nameDef} takes {PET_nameDef} on</label>
+        <outcome>{PET_nameDef} is {A_nameDef}'s to look after now. {A_nameDef} is {PET_possessive} master, and {PET_nameDef} keeps at {A_possessive} heels while they get used to each other.</outcome>
+        <ways><mercy>1</mercy><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_NewMaster" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_KeptTheirAnimal</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{B_nameDef}, who knows animals, takes {PET_nameDef} on</label>
+        <outcome>{B_nameDef} is {PET_nameDef}'s master now, and {PET_nameDef} keeps at {B_possessive} heels while it learns a new voice. {A_nameDef} understands, mostly.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_NewMaster"><target>B</target></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_NewCharge</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_NotGivenAnimal</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{PET_nameDef} is the colony's animal now</label>
+        <outcome>{PET_nameDef} has no master now, and belongs to the colony as a whole.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought><chance>0.5</chance></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+</Defs>
