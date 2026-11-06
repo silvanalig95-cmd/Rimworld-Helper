@@ -9,8 +9,8 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 - choose another landing site (the player's request, 6 November 2026): "after I create a character ... and load into it
   and have created everything, but I don't like the map ... reselect another map, without losing everything else". No
   round of its own: About.xml, What's new and CHANGELOG untouched. Pure rules in `Colonies/LandingMath.cs`
-  (`LandingTests`, prefix "landing: "); DESIGN.md "Another landing site"; the Almanac's fresh start page has a section;
-  README a paragraph. What it does:
+  (`LandingTests`, prefix "landing: "); DESIGN.md "Another landing site"; an Almanac page of its own (`Almanac_Landing.xml`,
+  "another landing site"); README a paragraph. What it does:
   - The entry: "Choose another landing site" ("starting site" for a start on foot) in the game's own menu (Esc), by a
     transpiler on `MainMenuDrawer.DoMainMenuControls` (its first `DrawOptionListing` through `LandingMenu.Draw`, before
     "Quit to main menu", the menu window one option taller), and on the colony's card beside "Found a new colony". Only
