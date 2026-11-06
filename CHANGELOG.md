@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Dreams, ailments, stories and animals in words
+
+*6 November 2026, version 0.109.1*
+
+- 31 new dreams drawn from what really happened to the dreamer: being carried out of a fight, a wedding, a funeral, the road home, the herd's first young, the colony's first days. Dreams with no cause of their own come half as often, and one dreamt before grows rarer each time.
+- Ailments and getting better have about 370 new lines by the person and the illness, so four people laid low no longer say the same thing.
+- Seven personal stories, such as the long discipline and a long grief, have three or four wordings for each step, so a second run reads new.
+- Birds, insects, reptiles and other mods' creatures get words of their own, and the herd's leader, its last season and spring's first young have more.
+- Fixed: the long discipline's ending read as practice let slide when the art was taken away, spring's first young was told as visited before the visit, and eulogies said a newcomer or a child had hauled the stone for the walls.
+
 ## One heart
 
 *6 November 2026, version 0.109.0*

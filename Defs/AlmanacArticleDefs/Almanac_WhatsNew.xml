@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.109.1</version>
+        <date>6 November 2026</date>
+        <title>Dreams, ailments, stories and animals in words</title>
+        <points>
+          <li>31 new dreams drawn from what really happened to the dreamer: being carried out of a fight, a wedding, a funeral, the road home, the herd's first young, the colony's first days. Dreams with no cause of their own come half as often, and one dreamt before grows rarer each time.</li>
+          <li>Ailments and getting better have about 370 new lines by the person and the illness, so four people laid low no longer say the same thing.</li>
+          <li>Seven personal stories, such as the long discipline and a long grief, have three or four wordings for each step, so a second run reads new.</li>
+          <li>Birds, insects, reptiles and other mods' creatures get words of their own, and the herd's leader, its last season and spring's first young have more.</li>
+          <li>Fixed: the long discipline's ending read as practice let slide when the art was taken away, spring's first young was told as visited before the visit, and eulogies said a newcomer or a child had hauled the stone for the walls.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.109.0</version>
         <date>6 November 2026</date>
         <title>One heart</title>

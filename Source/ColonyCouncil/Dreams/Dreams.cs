@@ -134,6 +134,12 @@ namespace ColonyCouncil
 
         public bool Matters => notable || omen != null || wish != null || changeTie != TieKind.None || effects.Any(e => !(e is DilemmaEffect_Thought));
 
+        /// <summary>
+        /// Nothing of the dreamer's own in it: no happening, nobody it's about, no feeling or camp or the region's
+        /// troubles, no season, nothing of who they are (a dreamer's role), no omen. The filler between the others.
+        /// </summary>
+        public bool Generic => !AboutEvents && !AboutNow && about == DreamAbout.None && dreamer == null && seasons.NullOrEmpty() && omen == null;
+
         public override IEnumerable<string> ConfigErrors()
         {
             foreach (var e in base.ConfigErrors()) yield return e;
@@ -417,6 +423,9 @@ namespace ColonyCouncil
             if (def.AboutEvents) w *= 4f;
             else if (def.AboutNow) w *= 1.5f + 1.5f * feeling;
             else if (def.about != DreamAbout.None) w *= 1.5f;
+            // A dream with nothing of the dreamer's own in it (nothing that happened, nobody, no feeling, no season, nothing
+            // of who they are) is the filler between the others: half as likely.
+            else if (def.Generic) w *= 0.5f;
             float mood = p.needs.mood.CurLevelPercentage;
             // Low spirits make sweet dreams rare, and nightmares only a little likelier, so a bad stretch doesn't feed itself.
             if (def.kind == DreamKind.Nightmare) w *= mood < 0.35f ? 1.25f : mood > 0.75f ? 0.6f : 1f;
@@ -426,7 +435,8 @@ namespace ColonyCouncil
             if (def.kind == DreamKind.Nightmare) w *= QuirkMoments.NightmareFactor(p);
             // Strain turns dreams to nightmares; feelings color them (Heart/).
             w *= Heart.DreamFactor(p, def.kind);
-            if (seen.TryGetValue(Key(p, def), out int n) && n > 0) w *= 0.6f;
+            // One they've had before comes less often each time they have it (to about a fifth after three).
+            if (seen.TryGetValue(Key(p, def), out int n) && n > 0) w *= Mathf.Pow(0.6f, Mathf.Min(n, 3));
             c.weight = w;
             return c;
         }

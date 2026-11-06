@@ -6,6 +6,66 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 0.109.1, text pass: dreams, ailments, stories and animals (the player's request of 6 November 2026, "text enhancement tasks,
+  adding more immersion and variety": the colonists' inner and everyday words outside the systems being rebuilt, after
+  the systems review's findings on dreams, ailments, personal stories, quirks and animals). Not released: no round, no
+  version. 1,070 new lines in seven new files, every one said only on facts its system sets (checked in the code);
+  shipped lines keep their text and tags (`textcheck --base 05c4efa` clean). Dreams, 31 new and 272 lines
+  (`Rimfolk_Dreams_OwnDays.xml`): of what really happened to the dreamer, from what the dream system already reads:
+  carried out of a fight or tended under fire (`Council_SavedMe`, the one who came as {OTHER}), a caravan home after two
+  days (`Council_HomeAgain`), a wedding (GotMarried, about the partner), a baby on the way and the worry of it (the
+  father's `Council_Fam_BabyComing`, `_Worried`, the mother as {OTHER}), a break let out (Catharsis), a funeral, music
+  and a festival, the herd's first young, the colony's first days, a fine supper and a meal with no table (weight 0.3),
+  a hive or a mech cluster brought down; the body: a drink (AlcoholHigh, Hangover), a smoke, hunger (Malnutrition),
+  carrying a child (PregnantHuman), four ailment kinds (an upset stomach, sore eyes, burning skin, sore feet); a fight
+  two days gone for one who can fight, by the colony's age; who they are: a passion for the fields (spring and summer),
+  the kitchen, the rock, building, learning or art, and sixty or older. `Dreams.cs`: a dream with nothing of the
+  dreamer's own (`DreamDef.Generic`: no happening, nobody, no feeling, camp or region, no season, no dreamer's role, no
+  omen) is half as likely, and one they've had is 0.6 as likely a time to three (0.6 once before, however often: the
+  save's "best party there ever was" five times). Ailments, 275 (`Rimfolk_Lines_Ailments_Voices.xml`): the first day
+  159, the end 75, a serious illness 41, true to each ailment's course as its description tells it; the voices' fallback
+  lines are untagged, so a tone with no line for this ailment draws from several ([everyday] lines took the tagged pick
+  from the ailment's own); the age's remedies by the colony's tech. Getting better, 99
+  (`Rimfolk_Lines_Health_Voices.xml`): convalescing 30, the first after hunger ([hunger]) and the weather ([exposure],
+  sources the code had and no line had), a setback 9, strength back 9, a sickbed visit 10, said while convalescing 11,
+  said while ill 30 (three everyday and one serious a voice: the one [everyday] line a voice had was every cheerful
+  colonist's). Personal stories, 228 (`Rimfolk_Arcs_MoreWords.xml`): the long discipline 42, somewhere to belong 34, a
+  calling 34, passing it on 33, the apprentice's masterwork 32, a long grief 31, getting clean 22 (it can run again for
+  the same person): two more chronicle lines and three to five more of the colonist's own a stage, the other's where the
+  stage has them, words for an early end; a flavour extension can name a story now (`FlavorExtension.cs`: `arc`,
+  `ArcStageWords`, `AddToArc`; the other's and the third's lines only where the stage has some). Animals, 90
+  (`Rimfolk_Pools_Animals_Kinds.xml`): what's said to an animal at work with it and to one at the heels is told its body
+  now (`AnimalLife.cs`, `HerdStoryMath.BodyTag` as the herd's journal; the herd leader's death too, `HerdStory.Lost`):
+  words for birds (20) and for insects, reptiles and other mods' creatures (18) to the animal, 6 at the heels, and the
+  herd's leader 10, its words aloud 4, its last season 9 (the keeper sits with it that evening, as staged), its death
+  11, spring's first born 12 (looking forward to the visit staged later that day). Eulogies, 27
+  (`Rimfolk_Lines_Eulogies_More.xml`). Quirks shown on the map, 79 (`Rimfolk_Lines_Quirk_Habits_More.xml`): nine small
+  habits and three of the events' quirks, said by the same person every time: lines for any moment (one tagged for the
+  season or for being old took most picks while it held) and children's own. Words found untrue and fixed: (1) the long
+  discipline's art taken away was told as "lost", which no line was tagged for, so "I've let the practice slide. The
+  wall can wait." told it: the reason is "taken", as its line was tagged (`ArcWorker_MagicDiscipline.Broken`,
+  `Integrations/ModStory.cs`); that line, the chronicle's "put training aside, with the wall still standing" (untrue
+  then too) and "{OTHER} died before {PAWN} could get past the wall" (the teacher's death read as its cause, the
+  review's finding) are retired (`ShippedLines.Retired`), with words for each end beside; (2) spring's first born: three
+  shipped lines told the keeper's visit to the newborn, staged later that day, as done ("I stood by it", "I held my
+  breath until it stood", "Went to look"), the 0.106.1 pass's "found and left": retired; (3) two eulogy lines said
+  anyone, a newcomer or a child, hauled the stone for most of the walls and stayed through the raids and the hungry
+  seasons: retired, their fellows ask [longtime]. Variety (`Tools/variety_report.py`, before and after measured the same
+  way: the report gives the ailment journals, what the ill say and the animal pools their callers' tags now, weighs the
+  filler dreams as the code does and joins a story's extension to its pools): dreams with no cause 15.3% of dream draws
+  to 7.2%, of what happened 31.6% to 39.8%; the ailment's first day seen 3.61 times a line a year to 1.82, one person's
+  own lines 6.6 to 16.5, its "thin" flag gone; its end 8.4 to 10.2 own; what the ill say 1.1 to 4.2 own; a sickbed visit
+  1.5 to 3.4, strength back 1.2 to 2.1; the herd's leader 2.0 to 5.7 own, its last season 1.7 to 4.9, its death 2.0 to
+  4.6, spring's first 2.8 to 5.8; at the heels 2.8 to 6.3; eulogies 3.9 to 4.4; the habits 1.2 to 1.9 own (whittling,
+  stones, the sun, the snow) to 3.4 to 4.4; the seven stories' chronicle lines a stage 1 or 2 to 3 or 4, the colonist's
+  own 7 to 11 to 10 to 17. What's said to an animal went 10.2 to 5.6 own: a hen hears the 20 bird lines now, not all 54
+  general ones, which is the point. Nothing in the area repeats a person's own line past one time in ten, before or
+  after (the speaker memory). Found and left: the other 31 stories have their stage lines as they were (two chronicle
+  lines or one); untagged words to an animal that suit a beast best ("Hold still, you great lump") are still said to a
+  chick now and then; some eulogy lines give the dead habits the game doesn't know ("complained about the food at every
+  meal"); a quirk's journal lines when gained are one a voice, drawn with the plain ones; secrets are one a person by
+  nature. To look at in game: a dream the night after a drink, a wedding or a raid; a cheerful colonist's colds over a
+  season; the long discipline a second time; a hen at feeding time; the herd's leader's last evening.
 - 0.109.0, phase 3 of the review: one heart (the player's decisions 4 and 5 of 6 November 2026, with their words on the day:
   "the letdowns also make sense as mood impact, no? But I like strain too though!", "the positive mood buffs should also
   be adjusted accordingly and balanced, not that only the negative ones get adjusted" and "then we might also have to

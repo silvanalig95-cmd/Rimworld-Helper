@@ -403,7 +403,18 @@ def toned_children(el):
     return kids and all(k.tag in TONES for k in kids)
 
 
+AILMENTS = []  # (key, serious) of every ailment (HediffCompProperties_Ailment), read by parse_defs
+
+
 def parse_defs(root="."):
+    AILMENTS.clear()
+    for f in sorted(glob.glob(f"{root}/Defs/HediffDefs/*.xml")):
+        try:
+            for c in ET.parse(f).getroot().iter("li"):
+                if c.get("Class", "").endswith("HediffCompProperties_Ailment") and c.findtext("key"):
+                    AILMENTS.append((c.findtext("key"), c.findtext("serious") == "true"))
+        except ET.ParseError:
+            pass
     pools = {}
     ext_targets = []
     log_targets = []
@@ -444,6 +455,10 @@ def parse_defs(root="."):
         walk_def(d, "TalkLinesDef", canon[talk_key(d)], rel, pools)
     # Extensions: lines merged into their targets at startup.
     for d, rel in ext_targets:
+        # A personal story's more words, stage by stage, join the story's own pools (named as walk_def names them).
+        if d.findtext("arc"):
+            walk_def(d, "ArcDef", d.findtext("arc"), rel, pools)
+            continue
         for target_tag in ("pool", "wish", "ambition", "decree"):
             target = d.findtext(target_tag)
             if not target:
@@ -624,6 +639,11 @@ def dream_rates(defs):
             w *= 1.5 * 0.08
         if d.find("situations") is not None:
             w *= 1.5 * 0.2
+        # Nothing of the dreamer's own in it (DreamDef.Generic): half as likely.
+        if all(d.find(t) is None for t in ("afterThoughts", "hediffs", "feelings", "situations", "seasons", "dreamer", "omen")) \
+                and ftext(d, "afterThreat") != "true" and ftext(d, "unconscious") != "true" and ftext(d, "camp") != "true" \
+                and about == "None":
+            w *= 0.5
         ws.append((d, w))
     tot = sum(x for _, x in ws) or 1
     return {d: COLONISTS * YEAR_DAYS * 0.3 * x / tot for d, x in ws}
@@ -817,6 +837,27 @@ def estimate(pools):
         if p.name == "Council_Journal_Outpost":
             p.extra += (("outpost:Mining|outpost:Logging|outpost:Farming|outpost:Hunting|outpost:Defensive"
                          "|outpost:Trading|outpost:Science|outpost:Town|outpost:Scavenging|outpost:Encampment", 1.0),)
+        # The ailment journals and what the ill say (Ailments/AilmentTracker.cs Journal, Immersion/StateSpeech.cs): the
+        # caller adds the ailment's key, everyday or serious, and on a first journal line again for one had before.
+        if p.name in ("Council_Journal_Ail_Start", "Council_Journal_Ail_Better", "Council_Journal_Ail_Serious",
+                      "Council_Pool_SayAilment") and AILMENTS:
+            serious = p.name == "Council_Journal_Ail_Serious"
+            keys = [k for k, s in AILMENTS if s == serious] or [k for k, _ in AILMENTS]
+            p.extra = (("|".join("ail:" + k for k in keys), 1.0), ("serious" if serious else "everyday", 1.0))
+            if p.name in ("Council_Journal_Ail_Start", "Council_Journal_Ail_Serious"):
+                p.extra += (("again", 0.3),)
+        # The animals (Animals/AnimalLife.cs, HerdStory.cs): the caller adds the animal's body (mostly beasts), and what
+        # the colonist is doing with it or how the herd's leader came to lead.
+        body = ("body:beast|body:beast|body:beast|body:bird|body:other", 1.0)
+        if p.name == "Council_Pool_SayToAnimal":
+            p.extra = (("job:milk|job:shear|job:tame|job:train|job:tend|job:feed|job:rescue|job:rope|childplay", 1.0), body,
+                       ("bonded", 0.2), ("young", 0.2), ("oldanimal", 0.1), ("named", 0.5))
+        elif p.name in ("Council_Pool_AnimalFollows", "Council_Journal_Herd_LastSeason", "Council_Journal_Herd_Gone"):
+            p.extra = (body,)
+        elif p.name in ("Council_Journal_Herd_Leader", "Council_Pool_Herd_SayLeader"):
+            p.extra = (("first|line|new", 1.0), body)
+        elif p.name == "Council_Journal_Herd_SpringCalf":
+            p.extra = (("born|born|hatched", 1.0), body)
     # A colonist starts at most one moment in six hours, and most of the day they're asleep or alone: about two and a
     # half a day at the very most, shared out among the moments in proportion.
     moments = [p for p in pools.values() if p.kind == "grammar" and p.basis.startswith("w ")]

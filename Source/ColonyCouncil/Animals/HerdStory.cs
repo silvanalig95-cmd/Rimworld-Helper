@@ -226,7 +226,7 @@ namespace ColonyCouncil
                     Tell.Letter(NewsKind.Land, Importance.Notable, map, "CC_Herd_GoneTitle".Translate(gone.Named("PET")).Resolve(),
                         "CC_Herd_Gone".Translate(gone.Named("PET"), keeper.Named("PAWN")).Resolve(), LetterDefOf.NeutralEvent, LookTargets.Invalid);
                     CouncilGameComponent.GiveThought(keeper, HerdStoryDefOf.Council_Herd_LeaderGone);
-                    Interplay.Journal(keeper, "Council_Journal_Herd_Gone", new string[0], gone.Named("PET"), AnimalFacts.KindLabel(gone).Named("KIND"));
+                    Interplay.Journal(keeper, "Council_Journal_Herd_Gone", new[] { HerdStoryMath.BodyTag(AnimalFacts.Body(gone)) }, gone.Named("PET"), AnimalFacts.KindLabel(gone).Named("KIND"));
                 }
                 comp.AddChronicle(new ChronicleEntry(ChronicleKind.Loss, "CC_Herd_GoneChronicle".Translate(gone.Named("PET")).Resolve(), keeper));
             }

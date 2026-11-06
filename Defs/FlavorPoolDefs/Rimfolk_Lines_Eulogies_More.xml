@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More words spoken at a grave (Council_Eulogies.xml; Secrets/Vendettas.cs Eulogy), the text pass of 6 November 2026:
+    each only on what the caller tells ([longtime] two years or more with the colony and {YEARS}, [titled] {TITLE},
+    [unfinished] {GOAL}, [battle] {FACTION}, [kin], [partner], [rival], [stranger] the speaker barely knew them,
+    [deadchild], [deadold]), and the untagged ones true of anyone, a newcomer or a child as much as an old hand: two
+    shipped lines said a newcomer had hauled the stone for most of the walls and stayed through the hungry seasons, and
+    are retired (Lean/ShippedLines.cs), their fellows here asking [longtime].
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_Eulogy_More</defName>
+    <pool>Council_Eulogy</pool>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} was one of us. That's the whole of it, and it's a great deal.</li>
+        <li>There's a place at the table that will stay empty a while. We'll leave it so.</li>
+        <li>I keep thinking of something I meant to say to {OTHER_nameDef}. I'll say it now, and hope it carries.</li>
+        <li>[longtime] {YEARS} years with us. There's hardly a wall or a field here {OTHER_nameDef} didn't put a hand to.</li>
+        <li>[longtime] {OTHER_nameDef} saw this place through its raids and its lean seasons, and never once talked of leaving.</li>
+        <li>[longtime] {OTHER_nameDef} was here before many of us. Some of what we know of this place, we learned from {OTHER_objective}.</li>
+        <li>[titled] {TITLE}, we called {OTHER_objective}, and not one of us had to think twice about why.</li>
+        <li>[unfinished] {OTHER_nameDef} meant to {GOAL}. It's not finished, and it's not forgotten.</li>
+        <li>[battle] {FACTION} came for us, and {OTHER_nameDef} is the price we paid. We won't forget what they took.</li>
+        <li>[kin] I knew {OTHER_nameDef} before any of you did. I'll miss {OTHER_objective} longer than any of you will.</li>
+        <li>[partner] Half of every plan I've made had {OTHER_nameDef} in it. I don't know yet what to do with the other half.</li>
+        <li>[rival] {OTHER_nameDef} never let me get away with anything. I'll have to watch myself now.</li>
+        <li>[stranger] I didn't know {OTHER_nameDef} well. Somebody should say something, so I will.</li>
+        <li>[deadchild] {OTHER_nameDef} had all of it ahead. We'll carry what we can of it.</li>
+        <li>[deadold] {OTHER_nameDef} lived a long life, much of it before any of us knew {OTHER_objective}. I wish we'd asked more about it.</li>
+        <li>[tribal] We'll keep {OTHER_nameDef}'s name in the stories at the fire. That's how the people remember.</li>
+        <li>[medieval] We'll say {OTHER_nameDef}'s name at the feasts, so the young ones know whose work they're living in.</li>
+      </plain>
+      <warm>
+        <li>{OTHER_nameDef} was kind to me when I needed it. I'll pass it on. That's the only way I know to thank {OTHER_objective} now.</li>
+        <li>[longtime] {YEARS} years of {OTHER_nameDef}. We were lucky, every one of us.</li>
+      </warm>
+      <blunt>
+        <li>{OTHER_nameDef}'s gone. We're less without {OTHER_objective}. That's it.</li>
+        <li>[battle] {FACTION} did this. Remember the name.</li>
+      </blunt>
+      <cheerful>
+        <li>{OTHER_nameDef} would want us to eat well tonight and tell stories. So let's do that.</li>
+        <li>[longtime] {YEARS} years, and {OTHER_nameDef} never once let a day go dull. I'll try to keep that up.</li>
+      </cheerful>
+      <gloomy>
+        <li>Another grave. Every one of them takes a piece of the rest of us with it.</li>
+        <li>[deadold] {OTHER_nameDef} had a long life. It still wasn't enough.</li>
+      </gloomy>
+      <cold>
+        <li>{OTHER_nameDef} is dead. The colony is smaller and the work is harder. We'll manage, because we must.</li>
+        <li>[unfinished] {OTHER_nameDef} meant to {GOAL} and didn't get to. Someone should take it up.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>
