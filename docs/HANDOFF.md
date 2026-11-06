@@ -6,6 +6,13 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 6 November 2026, the review's six phases are done (0.106.1 to 0.116.0, with the heart's good side 0.113.0/0.113.1
+  and the text and event variety 0.108.0 to 0.109.2). Built in parallel and merged one by one, none of it yet seen in
+  the game. Next, in the player's order (decision 17): harm parts 2 and 3 (2.4.1, 2.2.1, 2.1.1, 3.1.1; 1.4.1, 3.3.1,
+  3.5.1), schemes (theirs only), then stage 3 (its 15 revised decisions go to the player first:
+  `docs/design/stage3-many-colonies.md`). Recommended before them: the player's play test of the reworked whole, and a
+  review of how the parallel phases meet (the pace, the teller, the one record, one heart and its good side, one name,
+  the fairer council, the festive year, letters and petitions, the five settings pages).
 - 0.116.0, phase 6 of the review, part 2: one way in (the player's decisions 15, 16 and 14 of 6 November 2026: "settings on five
   pages (how much happens, how hard, what's on, how you're told, your other mods), presets covering every part", "the
   on-screen council panel reads the inbox", "fealty and vassals: their pages and settings fold into pacts; the mechanics
