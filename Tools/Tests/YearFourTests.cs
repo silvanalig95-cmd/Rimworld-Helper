@@ -170,6 +170,14 @@ public static class YearFourTests
                 C(Plain(string.Join(" ", new[] { (string)o.Element("label"), (string)o.Element("outcome") }.Concat(Lis(o, "outcomes")))), $"{name} [{(string)o.Element("label")}]: plain prose");
         }
         C(fallWinter == customs.Count, "the customs go to the seasons that had fewest (the autumn and the winter)");
+        var woodpile = customs.First(d => (string)d.Element("defName") == "Rimfolk_Dlm_Woodpile");
+        C(woodpile.Descendants("woodShort").Any(x => x.Value == "true") && Code("Dilemmas/DilemmaWorkers_Customs.cs").Contains("c.woodShort && !YearFour.WoodShort(map)")
+          && File.ReadAllText(Path.Combine(root, "Tools", "Balance", "Rates.cs")).Contains("[\"woodShort\"]"),
+            "the woodpile day only while the stores are short of the winter's wood (and the balance model knows it)");
+        C(customs.First(d => (string)d.Element("defName") == "Rimfolk_Dlm_WinterTales").Element("roleA")?.Element("passion")?.Value == "Social", "the winter tales told by one who loves to talk");
+        C(customs.All(d => d.Element("options")!.Elements("li").Skip(1).First().Element("effects")!.Elements("li")
+              .Any(e => Cls(e) == "DilemmaEffect_Thought" && (string)e.Element("target") == "Colony" && e.Element("chance") != null)),
+            "each custom's smaller form pleases most of the colony too, so the full one isn't plainly best");
         var tales = customs.First(d => (string)d.Element("defName") == "Rimfolk_Dlm_WinterTales").Descendants("lines").SelectMany(l => l.Elements("li")).Select(x => x.Value).ToList();
         C(tales.Count >= 4 && tales.All(t => Regex.Matches(t.TrimEnd('.'), @"[.?]\s").Count == 0), "the winter tales' lines are one sentence each");
         var timed = Code("PlayOut/OnMapTimed.cs");

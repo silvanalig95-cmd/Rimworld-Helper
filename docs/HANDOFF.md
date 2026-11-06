@@ -6,6 +6,88 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- new decrees, customs and council questions (the player's request, 6 November 2026): "do another big content update to
+  existing mechanics"; this part the council and the colony's year (decrees, the council's questions, customs, faith
+  and the advisor), in the existing frameworks at their existing rates; no round of its own, About.xml, What's new and
+  CHANGELOG untouched. Pure rules in `Dilemmas/YearFourMath.cs` (`YearFourTests`, prefix "year four: "). DESIGN.md "The
+  council and the colony's year, fourth round". Each piece, what starts it, what plays out, how often:
+  - Ten council questions about the colony's own systems (`Rimfolk_Dilemmas_YearFour.xml`,
+    `Dilemmas/DilemmaWorkers_YearFour.cs`), all in the usual draw (none timely, none after a raid, none seasonal), three
+    answers each, the silence setting nothing going, no answer gathering the colony; every age's form in the letter
+    ([lowtech], [!lowtech] and a plain one). Weight and rest each: the empty field 1.2/30 (an outdoor field of 20 cells
+    or more under two fifths sown in its growing season, not paused "By the weather": a sowing party of three near the
+    fields, or the zone given up); what the field grows 1.1/40 (medicine under a dose each or cloth under 25 each, food
+    for 20 days, healroot or cotton/devilstrand sowable: the whole food field or its far half set to it); snow on the
+    paths 1.2/25 (deep snow over three tenths of the home's open ground, a clear area of 20 cells or less, 5 °C or
+    colder: the game's snow-clearing area over all of it and three out with shovels, or by the doors only); the
+    unfinished work 1.2/30 (eight plans standing, two unpaid, four payable: a building party of three, or the unpaid
+    blueprints cancelled); the trees by the wall 1.1/45 (five grown wild trees within seven cells of an outer wall: all
+    or the nearest half marked for the cutters; B a tree-respecter where there is one); too many in the pens 1.2/40 (six
+    grazers, the grass-stopping cold within ten days, hay and kibble under three fifths of it: one to four marked for
+    slaughter so it lasts, or one; spared as the herd's cull spares, the spare males then the oldest, a male and a female
+    of each kind left); what to teach it 1.1/35 (an animal able to learn both to guard and to haul, set to neither: the
+    game's training set either way); home from the road 1.3/20 (back from five days away within a day and a half, read
+    from the calendar's homecoming look, `ColonyCalendar.LastHome`, unsaved: a day off for all of them, or the road told
+    to someone who stayed, a visit); doubts in the faith 1.1/35 (Ideology, someone under 35% certain: its guide or most
+    devout speaker sits an hour, 8% surer; or alone at its altar, 5%); the faith without a guide 1.2/40 (Ideology, the
+    moral guide's role empty and two could take it: either named with the game's own role, or nobody). The balance model
+    gates each (`Rates.WorkerGates`, 0.05 to 0.3).
+  - Four customs for the autumn and the winter (`Rimfolk_Dilemmas_Customs_YearFour.xml`), weight 0.6, rest 50, under the
+    one-a-season rule, on the calendar once kept: the woodpile day (fall, only while the stores are short of the winter's
+    wood, the new `CustomConditions.woodShort`; a work party of six for wood, cutting and hauling, or three for a
+    morning); the night of lights (fall and winter, graves of the colony's own; a light by each grave at dusk till first
+    light, the new lantern place "graves" in `PlayOut/OnMapTimed.cs`, and a short vigil; or the lights alone; 20 or 15
+    wood); the mending day (winter; a repair, clean and haul party and a lesson at the bench for one of thirty or under;
+    or three for a morning); the winter tales (winter, A with a love of talk; the year told by the fire, words with lines
+    of its own; or one tale at supper). Rebalanced so no answer is plainly best (the smaller forms please most of the
+    colony, the full ones cost the lazy's trust or wood; `dilemma_balance.py`: trade-offs, two refusals dominated as
+    shearing day's is).
+  - Five decrees, each one thing on the map (`Rimfolk_Decrees_YearFour.xml`; `DecreeDef.daily`, `lightsOut`,
+    `everyFaith`; `DecreeWork`): a hunting season (stores, six days, rest 20; two head of safe game marked each morning,
+    `DilemmaEffect_Hunt`; asked in autumn or food low), wood for the winter (stores, eight days, rest 20; up to six of
+    the nearest wild trees outside the home marked each morning until 150 a colonist for a tribe or a village, 80 for any
+    other, `DilemmaEffect_MarkTrees`; autumn, winter), foraging days (stores, six days, rest 15; up to twelve ripe wild
+    plants within 45 cells marked for harvest, never a drug, `DilemmaEffect_Forage`; food low, autumn), saving the power
+    (stores, Electricity, five days, rest 10; every lamp of 150 W or less with a switch off from eleven to five but by a
+    patient abed, and only those back on, `DecreeTracker.lampsOff` saved and modelled, the switch's wanted state set by
+    reflection so nobody walks over to flick it; asked when the batteries are under a third full, the new
+    `DecreeMoment.PowerShort`), every faith its evening (faith, Ideology and two faiths, ten days, rest 20; declared, the
+    largest other faith's evening of faith; each morning other faiths +0.25 to 0.5 trust by openness, the colony's devout
+    -0.25; never with one faith for the colony, `DecreeMath.Apart`; asked for by a newcomer or a low colony). Every age's
+    form in their words (the hunters' moon, open season, a game licence, a cull; axes or saws; a tribe banks its fires
+    instead of saving the power). None calls a gathering of its own; the morning marks run the day it's declared too.
+  - Seven advisor checks (`Advisor/AdvisorSignals_YearFour.cs`, `Rimfolk_Advisor_YearFour.xml`) in its thin parts: hay
+    short of the herd's winter (food), animals in a cold they can't bear (temperature), a generator under half a day's
+    fuel with none in store (power), four blueprints or more unpaid (work), five trees giving cover by the walls
+    (defence; a button marks them; never for a tree-respecting colony; the look kept six hours), deep snow with nowhere
+    to clear (work; a button marks the paths), a faith without a moral guide (Ideology).
+  - Rates, from `Tools/Balance` (before on 922aabc, after on this tree): 200 runs a setup for the year, 800 for the scenes.
+    Questions a year (dilemmas) 6 colonists well, average, neglectful 13.6, 13.4, 12.2 before and 13.5, 13.1, 11.9 after,
+    12 colonists 13.6, 13.1, 12.1 and 13.4, 13.0, 12.0; decisions a day (6) 0.50, 0.50, 0.48 and 0.50, 0.49, 0.47, (12)
+    0.53, 0.53, 0.51 and 0.54, 0.52, 0.51; `--tell` questions a day 0.57, 0.56, 0.54 and 0.57, 0.56, 0.55, messages the
+    same. `--scenes` (10 colonists, 800 runs, as built): staged as their own scene a year 24.1, 23.6, 23.3 before and
+    24.1, 23.6, 23.3 after (2.8, 2.8, 2.7 a week either way); customs asked a year 3.1, 2.4, 1.8 and 3.0, 2.4, 1.8 (at
+    weight 0.8 they rose to 3.2 and 2.5, so the four are weighted 0.6 and the woodpile day waits for a wood shortage);
+    the dilemmas with an answer that gathers people: seasonal 74% of 31 and 69% of 35, the rest 23% of 193 and 22% of
+    203. Mood (6, average) 64.0% and 63.9%, net 2.55 and 2.58, strained 5.8% either way, worn 1.3% and 1.4%. Decrees
+    only do what the player declares; their petitions keep their own pace (7.7, 7.8, 7.8 a year and 8.0, 7.5, 7.6).
+  - Shared code changed outside the new files: `Decrees/Decrees.cs` (three DecreeDef fields, `lampsOff` saved,
+    `DecreeMoment.PowerShort`), `Decrees/DecreeWork.cs` (the morning marks, every faith's evening and trust, the lamps),
+    `Decrees/DecreeMath.cs` (the faith pair apart), `Dilemmas/DilemmaWorkers_Customs.cs` (`woodShort`),
+    `Calendar/CalendarWatch.cs` (`LastHome`), `PlayOut/OnMapTimed.cs` (lanterns by the graves),
+    `Tools/playout_audit.py` (the new effects; a decree's daily marks counted), `Tools/Balance/Rates.cs` (worker and
+    custom gates), `Tools/Balance/Scenes.cs` (the altar visit is small), `Tools/save_estimate.py` (`lampsOff`),
+    `Tools/Tests/Program.cs`, `Tools/Tests/Tests.csproj`. Docs: the Almanac's decrees page (rows and a paragraph), its
+    traditions page (four rows), its council questions (a paragraph), its animals page (two rows), its faith page (the
+    decree and the two questions), its advisor page (a row); README (decrees thirty-six, customs thirty-eight, the
+    questions, the advisor list, the play-out count); DESIGN.md. `docs/dilemma-balance.md` and `docs/save-size.md` were
+    left for the merge to write again.
+  - The play-out audit: 747 answers of 205 dilemmas and 200 events, stories and world events, nine decrees; 0 candidates.
+  - Riskiest to look at in the game: saving the power's lamps (switched off by setting the switch and its wanted state
+    together; a lamp of another mod without a switch is left alone), the trees by the wall on a forest map (the look goes
+    out from the outer walls), the field split in half for healroot (`Sowing.MakeZone`), the snow area painted over a big
+    home, the moral guide named by the council (the game's own role with its apparel), the night of lights' torches by
+    the graves, the herd marked when the hay is short.
 - 0.120.0, new questions, events and dangers (the player's request, 6 November 2026): "drop some new additional dilemmas, events,
   world events, camps, illnesses/ailments (can also be some artificial ones), dangers etc., for further gameplay
   variety"; this part the council's questions, Rimfolk's events and dangers on the map (illnesses, world events and camps
