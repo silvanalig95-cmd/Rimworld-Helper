@@ -221,7 +221,7 @@
           <li>{NAME} kept</li>
         </titles>
         <texts>
-          <li>{NAME} has done what {FACTION} wanted of it. {PLACE} has had a quiet season, the families who quarrelled have made it up, and the brewhouses are to open again in the spring. {FACTION} say the colony kept their law when it could have made silver off it.</li>
+          <li>[!sold] {NAME} has done what {FACTION} wanted of it. {PLACE} has had a quiet season, the families who quarrelled have made it up, and the brewhouses are to open again in the spring. {FACTION} say the colony kept their law when it could have made silver off it.</li>
           <li>[sold] {NAME} has held at {PLACE} to its end. The colony sold a little beer to the town early on and kept {FACTION}'s law once asked, and the wardens have let the rest lie. The brewhouses are to open again in the spring.</li>
         </texts>
         <chronicle>{NAME} at {PLACE} held; the colony kept {FACTION}'s law.</chronicle>
