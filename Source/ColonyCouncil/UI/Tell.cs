@@ -196,11 +196,13 @@ namespace ColonyCouncil
         public static void Chronicle(ChronicleEntry entry)
         {
             if (entry == null || entry.text.NullOrEmpty()) return;
+            // Who it is about, read before the history takes the entry (it lets go of the pawn as it writes the line).
+            var about = entry.about;
             History.FromChronicle(entry);
             try
             {
-                var home = entry.about?.MapHeld;
-                Book.Note(ColonyOf(home != null && Homes.IsHome(home) ? home : null, entry.about != null ? new LookTargets(entry.about) : null), "chronicle", Now);
+                var home = about?.MapHeld;
+                Book.Note(ColonyOf(home != null && Homes.IsHome(home) ? home : null, about != null ? new LookTargets(about) : null), "chronicle", Now);
             }
             catch (Exception e)
             {
