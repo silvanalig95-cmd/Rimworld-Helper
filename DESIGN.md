@@ -827,7 +827,8 @@ play out (A and B are the dilemma's or event's people, X its stranger):
   player names and keeps that way) is a sowing party in the fields and a word at the field's edge after, or a walk out
   to the fields when there's nothing to sow.
 - **Decrees:** a feast day (a feast at noon), festival days (music on the first evening), days of rest (the first
-  day's work hours are free time).
+  day's work hours are free time); drills and the militia's muster, pairs sparring in the open each evening ("Harm from
+  everyday life", Drills that bruise).
 - **Ambitions reached (the council meeting's outcomes):** the great feast, the great hall, fine dining and a table for
   all (a feast), the brewery (a toast), fun and games (a games night), friends at the camp (an evening at the camp's
   fire, with songs).
