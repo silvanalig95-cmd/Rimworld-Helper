@@ -182,7 +182,7 @@
   <HediffDef ParentName="Rimfolk_AilmentByAgeBase">
     <defName>Council_Ail_JungleRot</defName>
     <label>jungle rot</label>
-    <description>Jungle rot: a festering sore that eats into the skin around a wound left open in the wet heat. A cut, scratch, stab or bite left untended for six hours in a swamp, jungle or rainforest, while it's 25 °C or more outside, can turn to it. Untreated it takes two weeks or more to close; clean dressings cut that to a few days, modern medicine (an antibiotic) more than herbs. Tending wounds within a few hours prevents it.</description>
+    <description>Jungle rot: a festering sore that eats into the skin around a wound left open in the wet heat. A cut, scratch, stab or bite left untended for six hours in a swamp, jungle or rainforest, while it's 25 °C or more outside, can turn to it. Untreated it takes about two weeks to close; clean dressings cut that to a few days, modern medicine (an antibiotic) more than herbs. Tending wounds within a few hours prevents it.</description>
     <tendable>true</tendable>
     <comps>
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
