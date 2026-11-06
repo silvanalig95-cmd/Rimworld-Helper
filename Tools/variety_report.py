@@ -455,6 +455,10 @@ def parse_defs(root="."):
         walk_def(d, "TalkLinesDef", canon[talk_key(d)], rel, pools)
     # Extensions: lines merged into their targets at startup.
     for d, rel in ext_targets:
+        # A personal story's more words, stage by stage, join the story's own pools (named as walk_def names them).
+        if d.findtext("arc"):
+            walk_def(d, "ArcDef", d.findtext("arc"), rel, pools)
+            continue
         for target_tag in ("pool", "wish", "ambition", "decree"):
             target = d.findtext(target_tag)
             if not target:
