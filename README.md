@@ -3240,7 +3240,7 @@ illness.
 
 - **Going round** (the game's own disease events, so immunity, genes and the medical tab work as usual; never babies):
   a head cold, a stomach bug, a chest cold in cold weather, hay fever in spring and summer (back to the same people
-  each year), pinkeye, and dreamfever, an invented rim fever of vivid dreams. About one every 55 days, more where the
+  each year), pinkeye, and dreamfever, an invented rim fever of vivid dreams. About one every 60 days, more where the
   game's diseases are common, less on gentle storyteller settings.
 - **From the day's work**, once a colonist's day holds enough hours of the cause: a strained back after long hauling,
   mining or building, sore hands after long bench work, blisters after a day's walking or a caravan trip, chilblains
@@ -3271,7 +3271,7 @@ illness.
   a simple prosthetic (never a bionic one); and mechanite fever for a day or two after a bionic part, an implant or a
   first dose of luciferium. These are hurts from everyday life: no one has one within three days of another hurt,
   never in a sickbed or while downed, never a baby, a child only the mildest three; each is told at once and said over
-  their head. The illnesses that go round come a little less often (about one every 55 days), so the colony is not sick
+  their head. The illnesses that go round come a little less often (about one every 60 days), so the colony is not sick
   more overall.
 - **After what happened**, once it's over: a cough after the flu, swellings after the plague, thin blood after malaria
   (pale and short of breath; rest helps), drowsy spells after sleeping sickness (asleep by day, awake at night; time

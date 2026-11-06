@@ -6,6 +6,62 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- new illnesses and ailments (the player's request, 6 November 2026: "drop some new additional ... illnesses/ailments
+  (can also be some artificial ones) ... for further gameplay variety"). Not released: no round, About.xml untouched.
+  Eight everyday ailments and three serious illnesses, each from something the hourly look finds on the map
+  (`AilmentChecks.Sample`, whose counted causes are the bits of a long now; the pure rules in
+  `Ailments/AilmentCauseMath.cs`), each the game's own hediff with stages and tending, the serious ones its immunity race
+  with a hidden incubation (`Rimfolk_Hediffs_Ailments_Land.xml`, `Rimfolk_Hediffs_Illnesses_Land.xml`; moods, hints and
+  lines in the `_Land` files of ThoughtDefs, MoodHintDefs and FlavorPoolDefs), named by the colony's age where natural
+  (`names`, `AilmentTracker.NameOf`; the health tab through `Hediff_Ailment`, the message, letter, journal and the
+  doctor's record). Each in a line (name by age; cause; course; prevention; ages; rate):
+  - swimmer's itch (pond itch): an hour's swim (`GoSwimming`) in still water, a lake, a pond or a marsh, never a river or
+    the sea; 2 to 4 days, a wash shortens it; swim in the river; every age; 4% a day, children half again (mild).
+  - trench foot (marsh foot): 4 hours outdoors in water, marsh or mud below 10 °C (their cold shift moves it); 1 to 2
+    weeks, less in bed, tending helps; a bridge or path over the wet, short shifts; every age; 1.5% a day, grown-ups.
+  - sandfly fever (three-day fever): 2 hours outdoors in a desert or dry scrubland from 18:00 to 5:00 at 20 °C or more;
+    about 3 days whatever is done; indoors after dusk; every age, arid lands; 3% a day, not again for 30 days (mild).
+  - jungle rot: a cut, scratch, stab or bite untended for 6 hours in a swamp, jungle or rainforest at 25 °C or more;
+    about two weeks, a few days tended, industrial best; wounds tended the same day; every age, wet hot lands; 8% a day
+    with such a wound (looked at in the one hour it turns six hours old, `RotWindow`), grown-ups.
+  - rabbit fever (hunter's fever): 2 hours butchering a small wild animal (body 0.5 or less: hares, squirrels, rats);
+    about a week, a few days tended, industrial best; a skilled butcher (Cooking); every age; 1.2% a day, grown-ups.
+  - metal fume fever (founder's ague): 4 hours smithing or smelting in a closed room of 60 cells or fewer; 1 to 2 days,
+    less in bed; a big or open smithy; wherever there's a forge (medieval on); 2.5% a day, grown-ups.
+  - stump sores: 8 hours walking or at heavy or bench work on a limb of the old kinds (weaker than natural, made before
+    the spacer age: a peg leg, a wooden foot, a simple prosthetic); 3 to 6 days, much less in bed; a lighter day after a
+    long one; tribal to industrial (a bionic limb never rubs); 3% a day (mild).
+  - mechanite fever (machine fever): a part or implant of the spacer age put in while one of the colony, or a first
+    dose of luciferium, the roll waiting until they're up, within 3 days (`FreshMechanites`; once a part, its load ID with
+    the bites); 1 to 3 days, less in bed; nothing prevents it; any colony that uses spacer parts; 1 in 4, grown-ups.
+  - anthrax (black bane), serious: an hour butchering an animal that had begun to rot or was sick when it died; hidden
+    1 to 6 days, kills in about 7 untreated, 4 to 5 days with industrial medicine, 8 to 9 with herbal; burn the
+    carcass, keep rotten bodies off the bill; every age; 4% such a day.
+  - valley fever (desert fever), serious: 4 hours building, mining in the open, sowing or clearing in an arid land with
+    no rain falling; hidden 7 to 20 days, kills in about 12 untreated, about 10 days with industrial medicine, 16 with
+    herbal; dig after rain, turns; every age, arid lands; 0.3% a day, the old half again.
+  - bird fever, serious: an hour cleaning a closed room where birds (the game's Bird body) are kept; hidden 5 to 14
+    days, kills in 7 to 8 untreated, 4 to 5 days with industrial medicine, about 9 with herbal; birds in an open pen;
+    every age with birds; 0.25% a day, the old half again.
+  Each is a Rimfolk-made hurt (`HediffCompProperties_Ailment.capped`, `hurt`): `CanGet` asks `Harm.May`, `Give` goes
+  through `Harm.Ail` (one in three days, none in a sickbed or while downed, none for babies, children only the three
+  mild ones; "Hurts from everyday life" at nothing stops them), told at `Importance.Important` with the doctor's note,
+  and said over their head as it shows (`AilmentTracker.SayOnset`, from `Council_Pool_SayAilment`); the serious ones by
+  their letter. The serious ones lean with the storyteller's disease setting as the catching clock does
+  (`AilmentCauseMath.DiseaseLean`, none with diseases off), and keep the serious illnesses' room (one kind at a time,
+  30 days apart). Balance (`Tools/Balance`, `Rates.cs` models the temperate ones; `docs/balance-report.md` regenerated):
+  the new everyday ones fill 0.15, 0.20 and 0.23 days of a colonist's year and take that share from the illnesses that
+  go round, the catching clock 50 to 60 days. Time ill on 480 runs against the code before, 6 colonists: well run 9.5%
+  to 9.1%, average 14.0% to 14.2%, neglected 31.5% to 31.7% (12 colonists 9.2/14.1/30.9% to 9.0/13.8/31.3%); on the
+  report's 120: 9.3/14.6/31.6% to 9.2/14.5/32.0%. Serious illnesses a colony-year (6) 0.24/0.46/1.80 to 0.26/0.53/2.00.
+  Rimfolk's mood within two tenths. Tests: `AilmentLandTests` (each cause, the cap's classes, the lean, the names in
+  every age, the rates against the existing ones', the words), `AilmentTests` (the new files; parents across files).
+  Docs: DESIGN.md ("Ailments of the land, the work and the age", "Balance targets"), the Almanac's ailments page (rows
+  in its four tables, the medicine, the cap and the setting; keywords unchanged), README. Left for the player's word:
+  the older ailments stay outside the cap (under it, every cold would hold back a drill's blow or a slip for three
+  days); the harm review's sickness from a journey (3.1.1) is untouched. To check in game: a swim in a pond in summer
+  (dev: a colonist swimming), a forge in a small room, a peg leg on a long hauling day, a bionic arm installed (the
+  fever once up), a rotten carcass allowed on the butcher's bill, the names in a tribal start.
 - 6 November 2026, the player's stage 3 decisions: 1A, 2A, 3A, 4A, 5B, 6B, 7A, 8A, 9A, 10A, 11B, 12A, 13A, 14A, 15B
   (recorded at the top of `docs/design/stage3-many-colonies.md` with how the four not as recommended are built).
   Release 1 (a fresh start) building first; harm parts 2 and 3 and schemes wait.

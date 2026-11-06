@@ -2044,7 +2044,7 @@ tending, the serious ones its immunity race with a hidden incubation (`Rimfolk_H
   the sickbed), then comes once for that part (its load ID in `bitesRolled`).
 - **Jungle rot** needs no memory: each colonist is looked at once an hour, so a wound is in its window
   (`RotWindow`, untended and six hours old) at exactly one look.
-- **What makes room for them.** The catching clock went from 50 to 55 days (`AilmentTracker.EverydayCatchingDays`), so
+- **What makes room for them.** The catching clock went from 50 to 60 days (`AilmentTracker.EverydayCatchingDays`), so
   the colony's time with an ailment stays where it was ("Balance targets"). The ailments of deserts, jungles, old limbs
   and mechanites never come in the simulator's temperate colony; they take the place there of the chilblains and snow
   glare a desert never has.
@@ -2247,6 +2247,17 @@ the review, "The settings: five pages"), the presets reach every rate and every 
 report's seeds before and after: Light touch +7.3, +4.6, -1.7 to +7.2, +4.8, -1.6; Story-rich +6.9, +3.2, -6.7 to +6.9,
 +3.1, -6.5; Demanding +2.5, -2.8, -14.8 to +2.3, -2.9, -14.9, its time ill 9%, 15%, 32% to 12%, 17%, 37% (ailments at
 125%). Story-rich keeps the default's pace of wishes and meetings: more of them would have moved its moods.
+
+**Ailments of the land, the work and the age** (6 November 2026; see the section of that name under "Harm from everyday
+life"). The simulator plays the new causes that a temperate colony has (`Rates.cs`: a swim in still water in summer, two
+hours butchering small game for the cook and now and then the hunter, the forge in a small room for a crafter, cold wet
+ground from autumn to spring for a hunter or a builder, a bird barn swept out, a bad carcass on the block) and leaves
+out those of deserts, jungles, old limbs and mechanites. The new everyday ones fill 0.15, 0.20 and 0.23 days of a
+colonist's year (well run, average, neglected, 6 colonists), and take that share from the illnesses that go round: the
+catching clock went from 50 to 60 days. Measured on 480 runs against the code before them (the same simulator): time
+with an everyday ailment, 6 colonists, 9.5%, 14.0% and 31.5% to 9.1%, 14.2% and 31.7%; 12 colonists 9.2%, 14.1% and
+30.9% to 9.0%, 13.8% and 31.3%; Rimfolk's mood within two tenths. Serious illnesses a colony-year, 6 colonists, 0.24,
+0.46 and 1.80 to 0.26, 0.53 and 2.00 (anthrax from a bad carcass, now and then bird fever).
 
 ## Building help: how far should the mod build things itself?
 
