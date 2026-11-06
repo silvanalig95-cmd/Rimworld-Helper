@@ -22,7 +22,29 @@ public static class LettersPetitionsTests
         Answers(Check);
         Petitions(Check);
         Wiring(Code, Check);
+        Words(root, Check);
         return cases;
+    }
+
+    /// <summary>Every key the code builds from these rules' names is written.</summary>
+    private static void Words(string root, Action<bool, string> Check)
+    {
+        var keys = new HashSet<string>(Directory.GetFiles(Path.Combine(root, "Languages", "English", "Keyed"), "*.xml")
+            .SelectMany(f => System.Xml.Linq.XDocument.Load(f).Root!.Elements()).Select(e => e.Name.LocalName));
+        foreach (LetterWhy w in Enum.GetValues(typeof(LetterWhy)))
+            Check(keys.Contains("CC_LetterWhy_" + w), $"why in words: {w}");
+        Check(keys.Contains("CC_LetterWhy_NoTraveller"), "why in words: nobody free to travel");
+        foreach (RegardMove m in Enum.GetValues(typeof(RegardMove)))
+            Check(keys.Contains("CC_LetterRegard_" + m), $"regard moved in words: {m}");
+        for (int i = 0; i <= 6; i++)
+            Check(keys.Contains("CC_LetterRegard_Level_" + i), $"regard band {i} in a word");
+        foreach (LetterMeans m in Enum.GetValues(typeof(LetterMeans)))
+            Check(keys.Contains("CC_LetterRoad_Status_Travelling_" + m) && keys.Contains("CC_LetterRoad_Status_Answering_" + m), $"on the road by {m}, in words");
+        foreach (var k in new[] { "CC_Petition_Joined", "CC_Petition_Header", "CC_Petition_Pill", "CC_Petition_PillTip", "CC_Petition_Week", "CC_Petition_RefuseConfirm",
+                     "CC_Petition_Promised", "CC_Petition_Refused", "CC_Petition_PartMet", "CC_Petition_AllMet", "CC_Petition_LapsedTitle", "CC_Petition_BrokenTitle",
+                     "CC_Chronicle_PetitionJoined", "CC_Chronicle_PetitionPromised", "CC_Chronicle_PetitionRefused", "CC_Chronicle_PetitionDismissed",
+                     "CC_Chronicle_PetitionGranted", "CC_Chronicle_PetitionLapsed", "CC_Chronicle_PetitionBroken" })
+            Check(keys.Contains(k), "a petition's words: " + k);
     }
 
     // ---------------- Decision 12: letters that arrive in days ----------------
@@ -194,6 +216,8 @@ public static class LettersPetitionsTests
         Check(letters.Contains("LetterMath.LegDays(") && letters.Contains("LetterMath.MeansOf(Ages.Ours)"), "letters go at the colony's means by its age");
         Check(!letters.Contains("NotableMath.TravelDays("), "no letter goes at the other people's walking pace any more");
         Check(letters.Contains("LetterMath.Brings(") && letters.Contains("LetterMath.Why("), "an answer brings something, or says why not");
+        Check(letters.Contains("Owed(l, n);") && Code("Diplomacy/FavoursOwed.cs").Contains("public static void Quietly("),
+            "a warning's debt is made when the answer comes, and told once in the answer's words");
         string wishes = Code("CouncilGameComponent.cs") + Code("CouncilDynamics.cs") + Code("Wishes/Petitions.cs");
         Check(wishes.Contains("PetitionMath.Join(") && wishes.Contains("PetitionMath.Deadline("), "a want joins the petition for the same thing");
         Check(Code("Wishes/Wish.cs").Contains("Scribe_Values.Look(ref petition, \"petition\", -1)"), "a wish keeps its petition, -1 in an older save");

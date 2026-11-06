@@ -6,6 +6,51 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- phase 6 of the review, part 1: letters and petitions (the player's decisions 12 and 11 of 6 November 2026: "letters to
+  notables arrive in days and an answer brings something concrete", "shared wants come to the council as one
+  petition"). Not released: no round in Almanac_WhatsNew.xml, About.xml untouched. (1) Letters by the colony's means
+  (`World/LetterMath.cs`, pure). A leg went at the other people's walking pace, twelve days at most, and the save's towns
+  are over fifty tiles off: Stace's greetings to Blash were answered 26 days after they were written. Now each leg goes
+  by the colony's age (`Ages.Ours`, `MeansOf`): runners, a rider, a courier, a courier by shuttle, half a day plus 0.09,
+  0.06, 0.04 or 0.015 days a tile, at most 6, 5, 4 or 2 days (`LegDays`), there and back (`NeighbourLetters.Handed`,
+  `backDays`); a letter carried home by one of theirs and a call's "how far" at their means. At 10, 25, 50, 80 tiles:
+  tribal 4.4, 10.4, 12, 12 days before, 1.4, 2.8, 5, 6 now; medieval 3.7, 8.7, 12, 12 before, 1.1, 2, 3.5, 5; industrial
+  2.6, 5.9, 11.4, 12 before, 0.9, 1.5, 2.5, 3.7; spacer 1.6, 3.4, 6.4, 10 before, 0.65, 0.9, 1.25, 1.7. The courier
+  tracker still brings the answer to the gate. The letters page says by which means (`CC_LetterRoad_Status_*`), never
+  when. Letters on the road in an older save keep their `due` and `backDays`. (2) What an answer brings
+  (`LetterMath.Brings`, `NeighbourLetters.Read`, `Body`, `Brought`): greetings warmly, a token of 50 to 100 silver's worth
+  in the messenger's pack; kindly or coolly, how their town fares (`RegionFortunes.Line`, else a piece of news, else the
+  roads quiet); condolences warmly or kindly, remembered by their people ("mourned", now said); a warning kindly or
+  coolly, remembered; warmly, a debt of honour (the "warned" deed at weight 10, made when the answer reaches the colony:
+  `NeighbourLetter.owed`, saved, `Owed` at the trip's end or at once for a call, through the new `FavoursOwed.Quietly` so
+  the answer's words tell it once; else remembered where debts aren't kept). Help, news, a visit and stage 2's purposes
+  bring what they did. Every answer ends with its regard moved in words from before and after (`LetterMath.Move`,
+  `CC_LetterRegard_*`: "civil before, friendly now", a good deal, a shade, nothing, a shade less), the writer on a warm
+  one, their people's goodwill when it rose; the old tone line (`CC_Letter_Outcome_*`) is no longer used. A curt answer or
+  a refusal says why (`LetterMath.Why`: war, their regard, the writer, the words, their nature, hard times on business,
+  lately, a call, a great deal asked, a bad day), and so does an invitation not taken up or taken up with nobody free to
+  travel; a truce, a ransom, an envoy, a ward, a match and an oath keep their own reasons (`OwnReasons`). Bug fix on the
+  way: a feast declined by letter now says so in their own words, not "won't be coming". (3) Shared wants as one
+  petition (`Wishes/Petitions.cs`, a partial of the component; pure `Wishes/PetitionMath.cs`). A want of one's own
+  (`allowPetition` off, not for someone else) that someone else in the colony already waits for joins theirs in
+  `CreateWish` (every path: the roll, triggers, dreams, envy): same def, subject key and thing; a petition under way first,
+  then the oldest (`ShareWith`, `Join`). Each want stays its own `Wish`, linked by `Wish.petition` (saved, -1 alone); a
+  message and a line over their head instead of a letter, the joiners' bond warmed, one chronicle line. One deadline for
+  all (two days more a name, never past a fresh wish's full time: `Deadline`), the promise and stage shared, counted once
+  (`OpenWishCount`, `LeadsPetition`: the Wishes page, the inbox, the on-screen panel, the tab and overview counts), one
+  voice for the reminder and last call. Promise, Refuse and Not now answer all of it, told once (`ForPetition`,
+  `PromiseOne`, `RefuseOne`, `DismissOne`). Each want is granted as it is met on the map (own mood, trust, watch); while
+  others wait its thanks are a news line naming who still waits (`MetInPetition`, `Wish.petitionMet`, saved, modelled in
+  `save_estimate.py`), and the last one met brings the letter naming everyone. At the shared deadline the first to lapse
+  tells it once with every name (`LapseTogether`), the others quietly. Co-signed wishes (`allowPetition`) are untouched;
+  wishes open in an older save stay on their own, new ones join them. The save's armor (days 82 to 128): six wishes
+  become three petitions, five given up two lapses. Keys in `Rimfolk_Letters_Bring.xml` and `Rimfolk_Wishes_Petitions.xml`
+  (no shipped line changed). Tests: `LettersPetitionsTests` (means and legs by age, before and after, the save's letter;
+  what each answer brings; regard moved; why; joining, deadline, leads, count; the save's armor replayed; the wiring; every
+  key built from these rules' names). Docs: DESIGN.md ("Shared wants as one petition", "Letters that arrive in days and
+  bring something"), the Almanac's neighbours and wishes pages, README. To check in game: a letter's leg in days by the
+  colony's means and the answer's last line in words; a warm warning's debt on the Peoples page once its answer is in; two
+  fighters wanting armor as one card with both names, one lapse letter or the letter at the last one met.
 - 0.112.0, phase 4 of the review, part 2: a fairer council (the player's decisions 8, 9, 10 and 13 of 6 November 2026: "life
   goals that last", "elections on a record", "office names by the colony's age", "overlapping decree pairs merge;
   groups form around real divides"). Not released: no round in Almanac_WhatsNew.xml, About.xml untouched. (1) Elections
