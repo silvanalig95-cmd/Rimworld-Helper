@@ -1639,8 +1639,9 @@ gatherings per colony, as letters and messages have theirs (`PlayOut/Stage.cs`; 
 tested in `StageTests` and run by `Tools/Balance --scenes`):
 
 - **Counted.** Every gathering on a home, whoever called it: each gathering lord seen as it starts (the game's parties,
-  rituals and weddings, Rimfolk's play-outs, the council meeting, the election's gatherings, feasts with guests:
-  `LordJob_Joinable_Gathering`, `LordJob_Joinable_MarriageCeremony`, `LordJob_FeastGuests`), and every outing as it
+  rituals and weddings, Rimfolk's play-outs, the council meeting, the election's gatherings:
+  `LordJob_Joinable_Gathering`, `LordJob_Joinable_MarriageCeremony`; a feast with guests once, as its feast begins, not
+  again for each people's group at the gate, `LordJob_FeastGuests`), and every outing as it
   starts (work parties, walks, vigils, searches, hunts, the dead carried out; not an errand or a gift carried by one or
   two). Lords already on at a load were counted before it. The count is saved with the play-outs (`PlayOutTracker.stage`,
   one `StageColony` a home: the start of each gathering of the last ten days, the last of any kind, the season's

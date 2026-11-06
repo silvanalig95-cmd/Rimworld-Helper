@@ -302,7 +302,12 @@ namespace ColonyCouncil
             if (seen.TryGetValue(map.uniqueID, out var before)) before.Add(lord.loadID);
         }
 
-        private static bool Gathering(LordJob job) => job is LordJob_Joinable_Gathering || job is LordJob_Joinable_MarriageCeremony || job is LordJob_FeastGuests;
+        /// <summary>
+        /// A gathering's lord: the game's parties, rituals and weddings, Rimfolk's play-outs, meetings and the election's.
+        /// A feast's guests (LordJob_FeastGuests, a group a people) are not a gathering of their own: the feast they come
+        /// for is counted once as it begins, its play-out's lord or, with answers not playing out, the table (Feasts.cs).
+        /// </summary>
+        private static bool Gathering(LordJob job) => job is LordJob_Joinable_Gathering || job is LordJob_Joinable_MarriageCeremony;
 
         /// <summary>The home's gathering lords: one that wasn't there last time began now, and is counted. Nothing is made when nothing changed.</summary>
         private static void Watch(Map map, int now)

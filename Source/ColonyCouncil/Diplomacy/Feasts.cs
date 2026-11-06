@@ -1132,6 +1132,8 @@ namespace ColonyCouncil
             {
                 if (hour < FeastMath.FeastFrom) return;
                 p.held = true;
+                // The feast at the table is the day's one gathering in the colony's count (with a play-out, its lord is).
+                Stage.Held(map);
                 foreach (var g in p.guests.Where(g => g.state == GuestState.Here))
                 {
                     var meal = g.pawn != null && Free(g.pawn) ? Hosting.Meal(g.pawn, Empire(g)) : null;

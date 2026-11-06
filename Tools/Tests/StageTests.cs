@@ -116,6 +116,9 @@ public static class StageTests
         string tracker = Read(Path.Combine("PlayOut", "PlayOutTracker.cs"));
         C(stage.Contains("LordJob_Joinable_Gathering") && stage.Contains("LordJob_Joinable_MarriageCeremony"),
             "every gathering on a home counts, the game's parties, rituals and weddings too");
+        string feasts = Read(Path.Combine("Diplomacy", "Feasts.cs"));
+        C(!stage.Contains("job is LordJob_FeastGuests") && feasts.Contains("Stage.Held(map);"),
+            "a feast with guests counts once, as its feast begins, not again for each people's group at the gate");
         C(tracker.Contains("Stage.Room(p.map") && tracker.Contains("p.routine"), "a play-out of the colony's own asks for room before it starts");
         C(Regex.IsMatch(tracker, @"OrderBy\(x => x\.routine\)"), "the player's plans take the evening first");
         string groups = Read(Path.Combine("Social", "Groups", "GroupHabits.cs"));
