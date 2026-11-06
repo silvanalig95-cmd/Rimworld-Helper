@@ -6,6 +6,98 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- new questions, events and dangers (the player's request, 6 November 2026): "drop some new additional dilemmas, events,
+  world events, camps, illnesses/ailments (can also be some artificial ones), dangers etc., for further gameplay
+  variety"; this part the council's questions, Rimfolk's events and dangers on the map (illnesses, world events and camps
+  are other agents'). New content in the existing frameworks at their existing rates; no round of its own, About.xml
+  untouched. Pure rules in `Dilemmas/VarietyThreeMath.cs` (`VarietyThreeTests`). Each piece, what plays out, what lasts
+  or hurts, how often:
+  - The inspired hands (`Rimfolk_DlmE_Inspired`, `DilemmaWorker_Inspired`, `DilemmaEffect_ArtBill`): the game's
+    creativity inspiration on A, an art bench, a fine stuff three times the plain one's worth. A bill at the bench for
+    the biggest piece both can pay for, A alone, in the fine stuff or the plain one, first on the bench; or the work
+    comes first. The piece (masterwork at least, the game's), the stuff spent; weight 1.3, 30 days apart.
+  - The shakes (`Rimfolk_DlmE_Withdrawal`, `DilemmaEffect_Dose`, `DilemmaEffect_RideItOut`): the game's withdrawal (never
+    luciferium or anything whose withdrawal kills) with the drug in the stores; B the doctor. One dose from the stores
+    (the game's ingest job, the habit kept), the colony's strictest drug policy that never gives it (the habit broken as
+    the game has it; it stays until the player sets another), or their own business. Weight 1.3, 25 days.
+  - The food that won't keep (`Rimfolk_DlmE_Spoiling`, `DilemmaEffect_CookIt`): raw food in the stores rotting within a
+    day and a half where it lies (5 nutrition at least), a stove with simple meals. A bill for all of it (2 to 20 meals)
+    or one supper's, that food alone, first on the stove; or let it go. Weight 1.3, 20 days.
+  - The stores in the rain (`Rimfolk_DlmE_StoresInRain`, `DilemmaEffect_RoofStores`, `DilemmaEffect_GiveUpOpen`): rain on
+    2 of the last 5 days, a stockpile with 6 open cells and 3 worn stacks. Its open cells in the game's build-roof area
+    where a wall or column can carry a roof, or taken out of the stockpile (the haulers move what lay there; the rest kept
+    whole, `CheckContiguous`); or left. Weight 1.2, 30 days.
+  - The old walls (`Rimfolk_DlmE_OldWalls`, `DilemmaEffect_OldWalls`): a ruin of 6 walls or more of nobody's, of stuff,
+    within 60 cells. Marked to come down (deconstruct) or claimed as the colony's; or left. Weight 1, 60 days.
+  - The new room (`Rimfolk_DlmE_NewRoom`, `DilemmaEffect_ClaimBed`): a bedroom with one bed nobody owns, two grown-ups in
+    a shared room or with no bed who'd sleep 10 impressiveness better. The bed claimed by one (the game's ownership), or
+    whoever lies down first. Weight 1.3, 25 days.
+  - What to learn next (`Rimfolk_DlmE_NextStudy`, `DilemmaEffect_Study`): no study chosen, a research bench, two or more
+    open. The nearest or a big one set as the game's research; or the benches wait. Weight 1.2, 20 days.
+  - The hurt beast (`Rimfolk_DlmE_HurtBeast`, `DilemmaEffect_MarkBeast`): a wild animal downed within 60 cells. Marked for
+    the hunters, or for taming (the handlers try once it can stand: the game won't tame a downed animal), the game's
+    failed-tame risk named; or left. Weight 1.2, 20 days.
+  - The wild one (`Rimfolk_Evt_WildOne`, `HappeningWorker_WildOne`): the game's wild man or woman on the land. Marked for
+    taming (risk named), let be, or driven off (`DilemmaEffect_DriveOff`). A colonist or not; base chance 0.7, 30 days.
+  - The fence down (`Rimfolk_Evt_FenceDown`, `DilemmaEffect_MendFence`): a storm in the last 2 days, a closed pen with two
+    animals or more: a piece of its fence gone (destroyed quietly, so the game's own auto-rebuild doesn't put it back),
+    splinters and a little of its stuff. The same fence's blueprint, or the gap left for grazing (the crops within
+    reach). Base 0.6, 40 days.
+  - The ambrosia ripe (`Rimfolk_Evt_Ambrosia`, `DilemmaEffect_PickAmbrosia`): three ripe wild bushes or more; B a
+    teetotaller if any. All or a night's (one a person) marked for harvest, the game's pull named; or left. Base 0.6, 40.
+  - A clutch in the grass (`Rimfolk_Evt_Clutch`, `DilemmaEffect_Clutch`): spring or summer, the fertilized eggs of a bird
+    that lives wild on the land (3 to 6), set down forbidden. Raised (the hatcher's faction the colony's, hauled in), the
+    kitchen (the same bird's unfertilized eggs in their place), or left to hatch wild. Base 0.6, 40.
+  - Dangers on the map (`Happenings/Dangers.cs`, `Rimfolk_Events_Dangers.xml`; DESIGN.md "Dangers on the map"): Rimfolk
+    events, only with `Harm.On` and no threat, a quick letter (0.12 to 0.75 days) whose words say what can happen, each
+    answer's hurt a Health line under it, every hurt `Harm.Injure` (via `MapDangers.Wound`) on `Harm.Chance`, told
+    Important in two wordings with a line said (`lines` tagged warn, go, work, carry, fire, out, clear, gone, fell,
+    hurt); kept on the map as new `OnMapTimed` kinds (the sign until the answer, then its watch; `MapDangers.Step`). When
+    the cap holds someone back, the rock still falls or the ground still gives and they get clear. No mood, no fight.
+    - The creak at the dig (`Rimfolk_Evt_DigCreak`, `DilemmaEffect_DigFace`): someone mining a face under a rock roof;
+      grit and rubble, the digging within 4 cells stopped and its marks kept, the miner steps back. A column of the
+      cheapest stuff marked beside it and the digging put back; dug on (the next to dig there: 1 in 4, a crush of 4 to 9
+      on the torso or an arm, rubble and a chunk); or the face left. Base 0.6, 45 days.
+    - The leaning tree (`Rimfolk_Evt_LeaningTree`, `DilemmaEffect_LeaningTree`): rain on 3 of 6 days, a grown tree in the
+      home area beside a wall or door; heaved ground at its foot. Felled (the game's cut), or watched 6 days: 8% an hour
+      in a wind (1.5 and up), 0.4% in still air; it falls on the wall (60% of its hit points, never the last), logs and
+      rubble, a crush of 4 to 8 for whoever stands beside it on its side. Base 0.6, 50 days.
+    - Smoke in the dry grass (`Rimfolk_Evt_Smoulder`, `DilemmaEffect_Smoulder`): summer, 26 degrees and up, no rain for 5
+      days, not raining; a wild flammable plant 10 to 28 cells out, outside the home area. Smoke until the answer. Stamped
+      out by A or the nearest free within 6 hours (12%: a burn of 2 to 5 on a hand or foot), else it catches; left, the
+      game's fire starts there in 1 to 3 hours. Base 0.6, 40 days.
+    - The old shell (`Rimfolk_Evt_OldShell`, `DilemmaEffect_OldShell`): someone sowing or harvesting a growing zone; the
+      game's high-explosive shell set down forbidden beside them. Carried 25 to 60 cells out (the game's haul to a cell,
+      forbidden there), set off by B from 9 cells with nobody within 7 (the shell's own fuse; 15%: a cut of 2 to 5 from a
+      stone), to the stores with a mortar built, or left (a fire sets it off anywhere, named). Base 0.5, 80 days.
+    - The twitching scrap (`Rimfolk_Evt_TwitchingScrap`, `DilemmaEffect_Scrap`): a mechanoid's corpse lying outside the
+      stores within 60 cells; sparks and machine bits. Broken up by B in half an hour (15%: a burn of 3 to 6 on a hand or
+      arm; steel by its size, 10 to 60), or left 3 days (the first to handle it, 25%). Base 0.6, 40 days.
+    - The ground giving (`Rimfolk_Evt_SoftGround`, `DilemmaEffect_SoftGround`): rain on 4 of 6 days, 3 to 5 natural soft
+      cells by a colony door; heaved ground. A floor marked where one can go (stone flags first, else the cheapest the
+      colony can build and pay for; cells where none can go stay watched), or watched 4 days: each of the first three to
+      cross may put a foot through (30%: mud from then on, a bruise of 3 to 6 on the foot or one time in four a crack).
+      Base 0.6, 50 days.
+    - Their rate: each comes in its moment only, a few times a year at most (a mountain colony's dig, a forest colony's
+      tree), and hurts only on the answer that risks it: at most about a fifth of a hurt a year each at the default
+      (`VarietyThreeMath.HurtsAYear`), times the setting and the storyteller's lean, under the one-in-three-days cap.
+  - Rates, from `Tools/Balance` (400 runs a setup, before on the start tree, after on this one): 6 colonists, average
+    play, questions a year 13.2 and 13.1, events 6.1 and 6.1 (with missions and camps 6.3 and 6.3), world events 1.1 and
+    1.0, decisions a day 0.50 and 0.49; across all 24 setups the differences scatter both ways. The events' count can't
+    rise: Rimfolk's share of the storyteller's draw is capped (`ShareFactor`, counted over every def), and in the game a
+    new def thins every other's weight while it can fire only in its moment. `--scenes` (10 colonists, 200 runs): well run
+    53.6 and 53.3 staged a year, as built 24.3 and 24.1 (2.9 and 2.8 gatherings and outings a week); average as built
+    23.7 and 23.6 (2.8 a week either way); no new answer gathers people (the dilemmas that may: 24% of 185 before, 23% of
+    193 after; events 23% of 208, 22% of 216). Tests: `VarietyThreeTests` (461 checks). The play-out audit counts the 19
+    new effects (0 candidates): 706 answers of 191 questions and 195 events, stories and world events play out. Docs: the
+    Almanac's council page (the questions), its Rimfolk events page ("From what the colony is doing": the events and the dangers), its
+    ailments page (the dangers among the hurts), README (lists, counts, the setting), DESIGN.md. The def validator knows
+    {PLAIN}, {STUDY1}, {STUDY2}. Not touched: the harm review's queued proposals (2.4.1, 2.2.1, 2.1.1, 3.1.1, 1.4.1,
+    3.3.1, 3.5.1).
+  - Needs a look in the game: the shell set off (the wick and blast of an item shell, the setter's walk to the stand-off),
+    a smoulder left to catch on a hot day, the leaning tree's fall onto a wall in a wind, a stockpile drawn in under its
+    roof, the bill at an art bench for the inspired one, ambrosia and clutches on a temperate map, a wild man's taming.
+
 - 6 November 2026, the player's stage 3 decisions: 1A, 2A, 3A, 4A, 5B, 6B, 7A, 8A, 9A, 10A, 11B, 12A, 13A, 14A, 15B
   (recorded at the top of `docs/design/stage3-many-colonies.md` with how the four not as recommended are built).
   Release 1 (a fresh start) building first; harm parts 2 and 3 and schemes wait.
