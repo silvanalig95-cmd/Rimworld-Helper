@@ -82,10 +82,15 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
     decree and the two questions), its advisor page (a row); README (decrees thirty-six, customs thirty-eight, the
     questions, the advisor list, the play-out count); DESIGN.md. `docs/dilemma-balance.md` and `docs/save-size.md` were
     left for the merge to write again.
-  - The play-out audit: 747 answers of 205 dilemmas and 200 events, stories and world events, nine decrees; 0 candidates.
+  - Tests: `YearFourTests` (593 checks: the rules, every question's and custom's forms and answers, the decrees' one
+    thing each and the faith pair apart, the lamps' save and model, the advisor's checks, the words, no new schedule slot,
+    no hurt of Rimfolk's own). The play-out audit: 747 answers of 205 dilemmas and 200 events, stories and world events,
+    nine decrees; 0 candidates. With "Answers play out on the map" off the hunting season marks nothing (the hunt mark is
+    a play-out's); the trees and wild plants are marked either way.
   - Riskiest to look at in the game: saving the power's lamps (switched off by setting the switch and its wanted state
     together; a lamp of another mod without a switch is left alone), the trees by the wall on a forest map (the look goes
-    out from the outer walls), the field split in half for healroot (`Sowing.MakeZone`), the snow area painted over a big
+    out from the outer walls), a field set to healroot while its old crop still grows (what the growers do with the
+    standing crop is the game's own, as when a zone's crop is changed by hand; the words say "as the old crop comes out"), the field split in half (`Sowing.MakeZone`), the snow area painted over a big
     home, the moral guide named by the council (the game's own role with its apparel), the night of lights' torches by
     the graves, the herd marked when the hay is short.
 - 0.120.0, new questions, events and dangers (the player's request, 6 November 2026): "drop some new additional dilemmas, events,
