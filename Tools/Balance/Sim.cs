@@ -1219,6 +1219,7 @@ namespace Balance
                 nextThreat = hour + (int)(Exp(Rates.BigThreatDays) * 24) + 24;
             }
             if (dilemmaPending > hour) return;
+            if (scenes != null && KeptCustom()) return;
             if (nextDilemma < 0) nextDilemma = hour + DilemmaInterval();
             // The aftermath of a raid brings its own questions.
             if (hour - lastThreat > 6 && hour - lastThreat < 36 && hour - lastDilemma > Code.DilemmaGapDays * 24 && Chance(Code.DilemmaRaidChance))
@@ -1876,6 +1877,48 @@ namespace Balance
             int families = (int)(people.Count * Rates.SceneSupperFamilies) + (Chance(people.Count * Rates.SceneSupperFamilies % 1f) ? 1 : 0);
             for (int i = 0; i < families; i++) supperLast.Add(-rng.Next(10) * 24);
             campNextFrom = (int)(rng.NextDouble() * SceneConstants.CampGapDays * 24);
+            // The seasonal customs the colony keeps by its third year (Rates.SceneKeptCustoms), each in a season of its own,
+            // on the day it was first kept.
+            foreach (int q in Enumerable.Range(0, 4).OrderBy(_ => rng.Next()).ToList())
+            {
+                if (keptCustoms.Count >= Rates.SceneKeptCustoms) break;
+                string season = new[] { "Spring", "Summer", "Fall", "Winter" }[q];
+                var pool = defs.dilemmas.Where(d => d.tradition >= 0f && d.seasons != null && d.seasons.Contains(season) && d.gate > 0f && d.minColonists <= people.Count)
+                    .Where(d => keptCustoms.All(k => k.def != d)).ToList();
+                var kept = Weighted(pool, d => d.weight * d.gate);
+                if (kept != null) keptCustoms.Add((kept, q * 15 + rng.Next(15)));
+            }
+        }
+
+        /// <summary>--scenes: the seasonal customs the colony keeps, each with the day of the year it falls on.</summary>
+        private readonly List<(OutcomeDef def, int day)> keptCustoms = new List<(OutcomeDef, int)>();
+
+        /// <summary>When each kept custom last came round.</summary>
+        private readonly Dictionary<string, int> keptLast = new Dictionary<string, int>();
+
+        /// <summary>
+        /// --scenes: a custom the colony keeps comes round once a year whatever the council's schedule says. As the council's
+        /// traditions came (DilemmaTracker.Hourly before the festive year): the first hour of its season it can be asked, a
+        /// month or more after it last came, while no question waits.
+        /// </summary>
+        private bool KeptCustom()
+        {
+            foreach (var (def, _) in keptCustoms)
+            {
+                if (!def.seasons.Contains(Season)) continue;
+                if (keptLast.TryGetValue(def.name, out int last) && hour - last < 30 * 24) continue;
+                if (!Chance(Rates.WorkerCasts * def.gate)) continue;
+                keptLast[def.name] = hour;
+                defLast[def.name] = hour;
+                lastDilemma = hour;
+                dilemmaPending = hour + AnswerDelay(2f);
+                Send("dilemmas", Channel.Decision);
+                Count("dilemmas");
+                var (a, b) = Cast();
+                Apply(def, Answer(def), a, b, "dilemmas");
+                return true;
+            }
+            return false;
         }
 
         /// <summary>Once a day: groups call their people, the election, weddings, family suppers, birthdays, decrees, camps.</summary>
