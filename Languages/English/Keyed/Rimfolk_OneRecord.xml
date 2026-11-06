@@ -11,6 +11,8 @@
   <CC_Answer_Came_WentWrong>It went wrong.</CC_Answer_Came_WentWrong>
   <CC_Answer_Silence>Say nothing</CC_Answer_Silence>
   <CC_Answer_ElectionRace>The vote for {OFFICE}</CC_Answer_ElectionRace>
+  <!-- The region window's History filter for them. -->
+  <CC_WHist_Kind_answer>The council's answers</CC_WHist_Kind_answer>
   <CC_Answer_Endorsed>Back {PAWN_nameDef}</CC_Answer_Endorsed>
   <CC_Answer_Appointed>Appoint {PAWN_nameDef}</CC_Answer_Appointed>
 
