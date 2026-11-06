@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The heart's good side (Source/ColonyCouncil/Heart/GoodHeart.cs, GoodRelease.cs), the player's request of 6 November
+    2026: "there should perhaps also be a counterweight/side to strain, right? If they have positive impacts over an
+    extended period." The heart's page ("feelings and strain") has its bands in its table and a pointer here.
+  -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Rimfolk_Alm_C_GoodHeart</defName>
+    <label>the heart's good side</label>
+    <category>Council</category>
+    <order>18</order>
+    <summary>When strain is at nothing and good things keep coming, the heart fills on the other side: in good heart, in high spirits.</summary>
+    <tip>Friends close by and work that means something fill it; a fine room only a little.</tip>
+    <description>Strain has another side. When a colonist has no strain at all and good things keep coming over days, the heart fills on the other side: first steady, then in good heart, then in high spirits. It is one heart, never both at once: hardship spends the good side before any strain builds, and good things ease strain before they fill the good side.
+
+It fills slowly and mostly from what can't be bought: friends close by, a purpose, deeds the colony speaks well of, gatherings, good talks and a run of small joys. The comforts of home count only a little, so a rich colony doesn't simply buy it. A save from before it starts at nothing.</description>
+    <sections>
+      <li>
+        <heading>What fills it</heading>
+        <text>Only while strain is at nothing, at most 4 a day in all, each kind of good within a cap of its own.</text>
+        <table>
+          <li>What | How much</li>
+          <li>Friends close by (belonging well met, 60 or more) | 0.035 to 0.07 an hour (1.2 a day at most)</li>
+          <li>A purpose (work they love, a life goal, a seat on the council: purpose well met) | the same (1.2 a day at most), and 0.6 when their life goal moved on since yesterday</li>
+          <li>A deed the colony speaks well of, that someone else knows of | 1, up to 2 for a big one (2 a day at most)</li>
+          <li>Gatherings and celebrations | 45% of what they ease beyond the strain there is (2.5 a day at most)</li>
+          <li>Good talks | 60% of the same (1.5 a day at most)</li>
+          <li>A run of small joys | 60% of the same (1.2 a day at most)</li>
+          <li>The comforts of home (every small good mood that adds up, a fine room and a fine meal among them) | 15% of the same (0.4 a day at most)</li>
+        </table>
+      </li>
+      <li>
+        <heading>What spends it</heading>
+        <text>Hardship spends it before any strain builds: a fight, a loss, pain, bad nights, hunger, small letdowns that keep coming, each half a point for each point of strain it would have built, so someone in good heart takes a hard knock in their stride. Only once it is gone does strain build. It also fades slowly, about 3% a day, so it needs good days to keep it.</text>
+      </li>
+      <li>
+        <heading>The bands</heading>
+        <table>
+          <li>Good side | Band | What it does</li>
+          <li>0 to 44 | Steady | Nothing</li>
+          <li>45 to 64 | In good heart | +2 mood, brighter dreams (sweet ones a fifth likelier, nightmares 15% rarer), strain drains 15% faster</li>
+          <li>65 to 100 | In high spirits | +3 mood, brighter dreams still (sweet ones 40% likelier, nightmares 30% rarer), strain drains 30% faster, and now and then something good comes of it</li>
+        </table>
+        <after>The quicker recovery lasts a few days after the good side is spent, so someone who was in good heart before a hard spell gets over it sooner. It never changes work speed. The mood is one line on the Mood tab, like strain's, and it grows ordinary like any good mood.</after>
+      </li>
+      <li>
+        <heading>When it overflows</heading>
+        <text>In high spirits, now and then (about once in four days held there, at most once in 10 days for each colonist and once a day in the colony), and only when it's safe and they're at home, awake and not at a gathering, something good comes of it. Either one of the game's own inspirations, which the game picks by their passions and by its own rules, with its own letter (12 off the good side); or they go and find someone close (a partner, kin or a friend, the one under the most strain first), say a kind word face to face, and the other has a small joy of it, which eases their strain or fills their own good side (6 off the good side).</text>
+      </li>
+      <li>
+        <heading>Where to see it</heading>
+        <text>The Mood tab's Heart section has a second meter, Good heart, with what filled it and what spent it lately and the last time it overflowed. The inspector line reads like "Heart: in good heart · proud" while it shows. The colonist's card says what filled it, and the council's Moods page counts who is in good heart and in high spirits.
+
+Its setting is on the Heart &amp; health page, beside the heart's own. Turned off, nothing fills it and the bands give nothing; strain works as it always has.</text>
+      </li>
+    </sections>
+    <keywords><li>good side</li><li>in good heart</li><li>high spirits</li><li>kind word</li></keywords>
+    <seeAlso><li>Council_Alm_C_Heart</li><li>Rimfolk_Alm_C_SmallMoments</li><li>Rimfolk_Alm_C_Ordinary</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>
