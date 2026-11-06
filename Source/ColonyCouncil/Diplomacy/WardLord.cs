@@ -319,9 +319,11 @@ namespace ColonyCouncil
 
         public bool Waiting => !ArchivedOnly && Valid(out _, out _);
 
-        public override IEnumerable<DiaOption> Choices
+        /// <summary>Each answer is written in the history's answers' log.</summary>
+        public override IEnumerable<DiaOption> Choices => Answers.RecordedAll(Options(), this, "ward", people, null, () => Homes.MapOf(home) ?? Homes.Seat);
+
+        private IEnumerable<DiaOption> Options()
         {
-            get
             {
                 if (ArchivedOnly || !Valid(out _, out _))
                 {
@@ -379,9 +381,18 @@ namespace ColonyCouncil
 
         public bool Waiting => !ArchivedOnly && Record(out _) != null;
 
+        /// <summary>Each answer is written in the history's answers' log, about the hostage and their people.</summary>
         public override IEnumerable<DiaOption> Choices
         {
             get
+            {
+                var w = Record(out var map);
+                return Answers.RecordedAll(Options(), this, "hostage", w?.pawn?.Faction, w?.pawn, () => map ?? Homes.Seat);
+            }
+        }
+
+        private IEnumerable<DiaOption> Options()
+        {
             {
                 var w = Record(out var map);
                 if (ArchivedOnly || w == null)

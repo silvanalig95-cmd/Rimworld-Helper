@@ -839,7 +839,8 @@ namespace ColonyCouncil
                         int count = FealtyMath.HelpCount(sickness);
                         if (PlayCarry.Have(map, what, null) < count) opt.Disable("CC_Dilemma_NotEnough".Translate(count, PlayCarry.Label(what, null)).ToString());
                     }
-                    yield return opt;
+                    // The answer is written in the history's answers' log, with what carrying the help came to.
+                    yield return Answers.Recorded(opt, this, "vassal", people, null, () => Homes.MapOf(home) ?? Homes.Seat);
                 }
                 yield return Option_Postpone;
             }

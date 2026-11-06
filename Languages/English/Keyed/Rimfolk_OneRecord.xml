@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- One record (phase 1 of the review): the chronicle read from the history, every question's answer, one year letter. -->
+
+  <!-- An answer's line in the chronicle (Dilemmas/Answers.cs), and what came of it once known. -->
+  <CC_Answer_Line>{QUESTION}: the council chose "{ANSWER}".</CC_Answer_Line>
+  <CC_Answer_LineDefault>{QUESTION}: no answer came in time, so it went the default way, "{ANSWER}".</CC_Answer_LineDefault>
+  <CC_Answer_Came_TookPlace>It took place.</CC_Answer_Came_TookPlace>
+  <CC_Answer_Came_TookPlaceNote>It took place ({NOTE}).</CC_Answer_Came_TookPlaceNote>
+  <CC_Answer_Came_FellThrough>It never came about.</CC_Answer_Came_FellThrough>
+  <CC_Answer_Came_WentWrong>It went wrong.</CC_Answer_Came_WentWrong>
+  <CC_Answer_Silence>Say nothing</CC_Answer_Silence>
+  <CC_Answer_ElectionRace>The vote for {OFFICE}</CC_Answer_ElectionRace>
+  <CC_Answer_Endorsed>Back {PAWN_nameDef}</CC_Answer_Endorsed>
+  <CC_Answer_Appointed>Appoint {PAWN_nameDef}</CC_Answer_Appointed>
+
+  <!-- An old season's small lines as one, in the chronicle (Chronicle.cs). {COUNT} is always two or more. -->
+  <CC_ChronFold_wishMade>{COUNT} wishes were made.</CC_ChronFold_wishMade>
+  <CC_ChronFold_wishMade_Of>{NAME} made {COUNT} wishes.</CC_ChronFold_wishMade_Of>
+  <CC_ChronFold_wishGranted>{COUNT} wishes came true.</CC_ChronFold_wishGranted>
+  <CC_ChronFold_wishGranted_Of>{COUNT} of {NAME}'s wishes came true.</CC_ChronFold_wishGranted_Of>
+  <CC_ChronFold_wishExpired>{COUNT} wishes were given up on.</CC_ChronFold_wishExpired>
+  <CC_ChronFold_wishExpired_Of>{NAME} gave up on {COUNT} wishes.</CC_ChronFold_wishExpired_Of>
+  <CC_ChronFold_wishDismissed>The council turned down {COUNT} wishes.</CC_ChronFold_wishDismissed>
+  <CC_ChronFold_wishDismissed_Of>The council turned down {COUNT} of {NAME}'s wishes.</CC_ChronFold_wishDismissed_Of>
+  <CC_ChronFold_petition>{COUNT} more turns in the colony's wishes: promises, objections, a wish seen to alone.</CC_ChronFold_petition>
+  <CC_ChronFold_petition_Of>{COUNT} more turns in {NAME}'s wishes: promises, objections, a wish seen to alone.</CC_ChronFold_petition_Of>
+  <CC_ChronFold_meeting>The council met {COUNT} times.</CC_ChronFold_meeting>
+  <CC_ChronFold_meeting_Of>The council met {COUNT} times over what {NAME} brought to it.</CC_ChronFold_meeting_Of>
+  <CC_ChronFold_ambitionChosen>The colony set out on {COUNT} ambitions.</CC_ChronFold_ambitionChosen>
+  <CC_ChronFold_ambitionChosen_Of>The colony set out on {COUNT} ambitions {NAME} put forward.</CC_ChronFold_ambitionChosen_Of>
+  <CC_ChronFold_ambitionAbandoned>The colony gave up on {COUNT} ambitions.</CC_ChronFold_ambitionAbandoned>
+  <CC_ChronFold_ambitionAbandoned_Of>The colony gave up on {COUNT} ambitions {NAME} put forward.</CC_ChronFold_ambitionAbandoned_Of>
+  <CC_ChronFold_personalTouch>{COUNT} rooms were made someone's own.</CC_ChronFold_personalTouch>
+  <CC_ChronFold_personalTouch_Of>{NAME} made a room their own {COUNT} times.</CC_ChronFold_personalTouch_Of>
+  <CC_ChronFold_note>{COUNT} things were noted down.</CC_ChronFold_note>
+  <CC_ChronFold_note_Of>{COUNT} things were noted down about {NAME}.</CC_ChronFold_note_Of>
+  <CC_ChronFold_council>The council's business, {COUNT} times: decrees, offices and traditions.</CC_ChronFold_council>
+  <CC_ChronFold_council_Of>The council's business with {NAME}, {COUNT} times: decrees, offices and traditions.</CC_ChronFold_council_Of>
+  <CC_ChronFold_bond>Friendships and quarrels moved {COUNT} times.</CC_ChronFold_bond>
+  <CC_ChronFold_bond_Of>{NAME}'s friendships and quarrels moved {COUNT} times.</CC_ChronFold_bond_Of>
+  <CC_ChronFold_dream>{COUNT} dreams were told.</CC_ChronFold_dream>
+  <CC_ChronFold_dream_Of>{NAME} told of {COUNT} dreams.</CC_ChronFold_dream_Of>
+  <CC_ChronFold_stranger>Strangers and beasts came into the colony's story {COUNT} times.</CC_ChronFold_stranger>
+  <CC_ChronFold_stranger_Of>{NAME} met with strangers and beasts {COUNT} times.</CC_ChronFold_stranger_Of>
+  <CC_ChronFold_answer>The council answered {COUNT} questions.</CC_ChronFold_answer>
+  <CC_ChronFold_answer_Of>The council answered {COUNT} questions about {NAME}.</CC_ChronFold_answer_Of>
+  <CC_ChronFold_Span>({FROM} to {TO})</CC_ChronFold_Span>
+  <CC_ChronFold_SpanDay>({DAY})</CC_ChronFold_SpanDay>
+</LanguageData>

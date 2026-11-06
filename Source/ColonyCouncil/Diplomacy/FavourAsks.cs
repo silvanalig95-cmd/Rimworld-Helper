@@ -438,7 +438,9 @@ namespace ColonyCouncil
                 resolveTree = true
             };
             if (disabled != null) o.Disable(disabled);
-            return o;
+            // The answer is written in the history's answers' log, with the people who asked.
+            var asked = Live(out _);
+            return Answers.Recorded(o, this, "favour", asked != null ? Refs.Faction(asked.to) : null, null, () => Homes.MapOf(home) ?? Homes.Seat);
         }
 
         public override IEnumerable<DiaOption> Choices

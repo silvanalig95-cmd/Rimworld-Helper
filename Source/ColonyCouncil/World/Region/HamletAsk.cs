@@ -145,7 +145,8 @@ namespace ColonyCouncil
                 resolveTree = true
             };
             if (disabled != null) o.Disable(disabled);
-            return o;
+            // The answer is written in the history's answers' log.
+            return Answers.Recorded(o, this, "hamlet", Live(out _)?.people, null, () => Homes.MapOf(home));
         }
 
         public override IEnumerable<DiaOption> Choices

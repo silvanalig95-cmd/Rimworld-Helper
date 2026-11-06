@@ -59,8 +59,14 @@ namespace ColonyCouncil
             ("truce", ChronicleKind.World, "ChoiceLetter_TruceOffer")
         };
 
-        /// <summary>The history kind of an answer from this source: "answer:dilemma".</summary>
-        public static string KindFor(string source) => Family + ":" + (string.IsNullOrEmpty(source) ? "?" : source);
+        /// <summary>The word for a small answer: kept in the history and the answers' log, but not one for the chronicle (an event that was never chronicled, "let the vote run").</summary>
+        public const string Minor = "minor";
+
+        /// <summary>The history kind of an answer from this source: "answer:dilemma", or "answer:event:minor" for a small one.</summary>
+        public static string KindFor(string source, bool minor = false) => Family + ":" + (string.IsNullOrEmpty(source) ? "?" : source) + (minor ? ":" + Minor : "");
+
+        /// <summary>A small answer (<see cref="Minor"/>).</summary>
+        public static bool IsMinor(string kind) => kind != null && SourceOf(kind) != null && kind.EndsWith(":" + Minor, StringComparison.Ordinal);
 
         /// <summary>The source of an answer's kind ("dilemma" of "answer:dilemma"), or null for one that isn't an answer.</summary>
         public static string SourceOf(string kind)

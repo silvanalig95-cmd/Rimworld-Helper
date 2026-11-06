@@ -52,7 +52,8 @@ namespace ColonyCouncil
                     action = () => Find.LetterStack.RemoveLetter(this),
                     resolveTree = true
                 };
-                yield return vote;
+                // Letting the vote run is kept in the answers' log; backing someone or calling a seat off is recorded where it's done.
+                yield return Answers.Recorded(vote, this, "election", map: () => map, minor: true);
                 var back = new DiaOption("CC_Elect_Choice_Endorse".Translate())
                 {
                     action = () => ElectionMenus.Endorse(null, offices),

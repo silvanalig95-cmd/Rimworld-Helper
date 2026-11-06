@@ -418,7 +418,7 @@ namespace ColonyCouncil
                     d.action = () =>
                     {
                         resolved = true;
-                        Answer(camp, o);
+                        Answer(camp, o, this, false);
                         Find.LetterStack.RemoveLetter(this);
                     };
                     d.resolveTree = true;
@@ -429,13 +429,15 @@ namespace ColonyCouncil
             }
         }
 
-        private static void Answer(Camp camp, CampOption o)
+        private static void Answer(Camp camp, CampOption o, ChoiceLetter_Camp letter, bool byDefault)
         {
             try
             {
                 string told;
                 using (CampTracker.Talking(camp)) told = o.act?.Invoke();
                 if (!told.NullOrEmpty()) Tell.Message(NewsKind.World, Importance.Notable, null, told, camp.Look, MessageTypeDefOf.NeutralEvent);
+                // How it went, in the history's answers' log (a line of the chronicle).
+                Answers.Record("camp", letter?.Label.Resolve(), o.label ?? "CC_Answer_Silence".Translate().Resolve(), told, letter?.pawn, camp.faction, camp.map, byDefault);
             }
             catch (Exception e)
             {
@@ -455,12 +457,12 @@ namespace ColonyCouncil
             if (what == "request")
             {
                 var ask = camp.AskByKey(askKey);
-                if (ask != null) Answer(camp, new CampOption { act = () => camp.Refuse(ask, true) });
+                if (ask != null) Answer(camp, new CampOption { act = () => camp.Refuse(ask, true) }, this, true);
                 return;
             }
             var opts = CampAnswers.Options(camp, what, pawn, askKey);
             int i = CampAnswers.DefaultIndex(what);
-            if (i < opts.Count) Answer(camp, opts[i]);
+            if (i < opts.Count) Answer(camp, opts[i], this, true);
         }
 
         public override void ExposeData()

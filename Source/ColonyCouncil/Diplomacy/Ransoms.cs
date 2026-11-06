@@ -1127,9 +1127,19 @@ namespace ColonyCouncil
         /// <summary>Still waiting for the colony's answer (the inbox's row).</summary>
         public bool Waiting => !ArchivedOnly && Live(out _) != null;
 
+        /// <summary>Each answer is written in the history's answers' log, with the people and the one they'd ransom.</summary>
         public override IEnumerable<DiaOption> Choices
         {
             get
+            {
+                DiplomacyHome h = null;
+                var o = ArchivedOnly ? null : Live(out h);
+                return Answers.RecordedAll(Options(), this, "ransom", o?.people, o?.captive, () => Homes.MapOf(h?.home ?? HomesMath.None) ?? Homes.Seat);
+            }
+        }
+
+        private IEnumerable<DiaOption> Options()
+        {
             {
                 var o = ArchivedOnly ? null : Live(out _);
                 if (o == null)
@@ -1198,9 +1208,19 @@ namespace ColonyCouncil
 
         public bool Waiting => !ArchivedOnly && Live() != null;
 
+        /// <summary>Each answer is written in the history's answers' log, with the people and the colonist they hold.</summary>
         public override IEnumerable<DiaOption> Choices
         {
             get
+            {
+                var o = ArchivedOnly ? null : Live();
+                Ransoms.Get(offer, out var h);
+                return Answers.RecordedAll(Options(), this, "ransomByHand", o?.people, o?.ours, () => Homes.MapOf(h?.home ?? HomesMath.None) ?? Homes.Seat);
+            }
+        }
+
+        private IEnumerable<DiaOption> Options()
+        {
             {
                 var o = ArchivedOnly ? null : Live();
                 if (o == null)

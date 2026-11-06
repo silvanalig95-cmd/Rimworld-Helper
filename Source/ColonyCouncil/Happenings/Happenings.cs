@@ -841,8 +841,8 @@ namespace ColonyCouncil
                     if (byDefault) told = "CC_Evt_NoAnswer".Translate() + " " + told;
                     Tell.Message(NewsKind.World, Importance.Notable, ctx.map, told, new LookTargets(new[] { ctx.a, ctx.b, ctx.stranger }.Where(p => p != null && p.Spawned)), MessageTypeDefOf.NeutralEvent);
                 }
-                if (ext.notable)
-                    comp?.AddChronicle(new ChronicleEntry(ChronicleKind.World, "CC_Chronicle_EventChoice".Translate(ctx.incident.LabelCap, ctx.Format(option.label)).Resolve(), ctx.a));
+                // How it went, in the history's answers' log; a notable event's answer is a line of the chronicle too.
+                Answers.Record("event", ctx.incident.LabelCap, ctx.Format(option.label), told, ctx.a, ctx.faction, ctx.map, byDefault, risk, plays: plays, minor: !ext.notable);
             }
             catch (Exception e)
             {

@@ -186,7 +186,8 @@ namespace ColonyCouncil
 
         /// <summary>An answer's line: "{QUESTION}: the council chose "{ANSWER}"." (or that no answer came in time).</summary>
         public static string AnswerLine(string question, string answer, bool byDefault) =>
-            (byDefault ? "CC_Answer_LineDefault" : "CC_Answer_Line").Translate(Flavor.Strip(question ?? "").Named("QUESTION"), Flavor.Strip(answer ?? "").Named("ANSWER")).Resolve();
+            (byDefault ? "CC_Answer_LineDefault" : "CC_Answer_Line").Translate((question ?? "").Trim().TrimEnd(':').Named("QUESTION"),
+                (answer ?? "").Trim().TrimEnd('.', ' ').Named("ANSWER")).Resolve();
 
         /// <summary>What came of an answer, once it's known: taken place (with a word on it), never come about, gone wrong; nothing while it waits.</summary>
         public static string CameOf(IReadOnlyList<string> values)

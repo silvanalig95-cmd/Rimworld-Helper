@@ -896,7 +896,8 @@ namespace ColonyCouncil
                     yield return Option_Close;
                     yield break;
                 }
-                yield return new DiaOption(RansomWords.P("CC_Envoy_Opt_Accept"))
+                // Each answer is written in the history's answers' log.
+                yield return Answers.Recorded(new DiaOption(RansomWords.P("CC_Envoy_Opt_Accept"))
                 {
                     action = () =>
                     {
@@ -909,12 +910,12 @@ namespace ColonyCouncil
                                 RansomWords.People(people).Named("PEOPLE")), LookTargets.Invalid, MessageTypeDefOf.PositiveEvent);
                     },
                     resolveTree = true
-                };
-                yield return new DiaOption(RansomWords.P("CC_Envoy_Opt_Decline"))
+                }, this, "envoy", people, null, () => Homes.MapOf(home) ?? Homes.Seat);
+                yield return Answers.Recorded(new DiaOption(RansomWords.P("CC_Envoy_Opt_Decline"))
                 {
                     action = () => Find.LetterStack.RemoveLetter(this),
                     resolveTree = true
-                };
+                }, this, "envoy", people, null, () => Homes.MapOf(home) ?? Homes.Seat);
                 yield return Option_Postpone;
             }
         }

@@ -960,8 +960,10 @@ namespace ColonyCouncil
                 foreach (var p in map.mapPawns.FreeColonistsSpawned)
                     if (p != proposer && p.needs?.mood != null && Rand.Chance(0.5f)) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_HeardAtMeeting);
             }
-            comp.AddChronicle(new ChronicleEntry(ChronicleKind.AmbitionChosen,
-                "CC_Chronicle_AmbitionChosen".Translate(def.label, proposer?.LabelShort ?? "?").Resolve(), proposer));
+            string chosenLine = "CC_Chronicle_AmbitionChosen".Translate(def.label, proposer?.LabelShort ?? "?").Resolve();
+            // The meeting's letter answered: its line is the answer's record (the answers' log); chosen otherwise, the chronicle's own.
+            if (letter != null) Answers.Record("meeting", letter.Label.Resolve(), def.LabelCap, null, proposer, null, map, line: chosenLine);
+            else comp.AddChronicle(new ChronicleEntry(ChronicleKind.AmbitionChosen, chosenLine, proposer));
         }
 
         /// <summary>
@@ -990,7 +992,9 @@ namespace ColonyCouncil
                     if (p != null && !p.Dead) comp?.standings.Change(p, -1f, "CC_Log_NoneChosen".Translate());
             }
             nextMeetingTick = Find.TickManager.TicksGame + GenDate.TicksPerDay * 5;
-            CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Chronicle_MeetingPostponed".Translate().Resolve()));
+            string put = "CC_Chronicle_MeetingPostponed".Translate().Resolve();
+            if (letter != null) Answers.Record("meeting", letter.Label.Resolve(), "CC_Meeting_None".Translate().Resolve(), null, null, null, letter.map, line: put);
+            else CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.Note, put));
         }
 
         private void Complete(CouncilGameComponent comp)

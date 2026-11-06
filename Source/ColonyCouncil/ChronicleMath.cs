@@ -48,7 +48,8 @@ namespace ColonyCouncil
         {
             if (string.IsNullOrEmpty(kind)) return -1;
             string fam = HistoryKinds.Family(kind);
-            if (fam == AnswerMath.Family) return (int)AnswerMath.KindOf(kind);
+            // A small answer stays in the history and the answers' log; the chronicle never told it.
+            if (fam == AnswerMath.Family) return AnswerMath.IsMinor(kind) ? -1 : (int)AnswerMath.KindOf(kind);
             // The world family is shared: the chronicle's own world lines are "world" and a situation's "world:began" and
             // "world:ended"; the region's kinds under it ("world:camp:found", "world:heard") are its own.
             if (fam == "world") return kind == "world" || kind == HistoryKinds.WorldBegan || kind == HistoryKinds.WorldEnded ? (int)ChronicleKind.World : -1;

@@ -668,7 +668,8 @@ namespace ColonyCouncil
                     yield break;
                 }
                 var m = map;
-                yield return new DiaOption(PactWords.P(renew >= 0 ? "CC_Pact_Opt_Renew" : "CC_Pact_Opt_Accept"))
+                // Each answer is written in the history's answers' log.
+                yield return Answers.Recorded(new DiaOption(PactWords.P(renew >= 0 ? "CC_Pact_Opt_Renew" : "CC_Pact_Opt_Accept"))
                 {
                     action = () =>
                     {
@@ -676,7 +677,7 @@ namespace ColonyCouncil
                         if (Valid(out var mm)) Pacts.Accept(people, mm, (PactKind)kind, renew);
                     },
                     resolveTree = true
-                };
+                }, this, "pact", people, null, () => m);
                 // A defence pact renewed may take a new hostage as a term of its own (the last one goes home with the year: Hostages.EndOf).
                 if (renew >= 0 && (PactKind)kind == PactKind.Defence && Hostages.On)
                     foreach (var o in Hostages.PactOptions(people, m))
@@ -698,9 +699,9 @@ namespace ColonyCouncil
                             resolveTree = true
                         };
                         if (o.why != null) opt.Disable(o.why);
-                        yield return opt;
+                        yield return Answers.Recorded(opt, this, "pact", people, null, () => m);
                     }
-                yield return new DiaOption(PactWords.P(renew >= 0 ? "CC_Pact_Opt_LetEnd" : "CC_Pact_Opt_Refuse"))
+                yield return Answers.Recorded(new DiaOption(PactWords.P(renew >= 0 ? "CC_Pact_Opt_LetEnd" : "CC_Pact_Opt_Refuse"))
                 {
                     action = () =>
                     {
@@ -710,7 +711,7 @@ namespace ColonyCouncil
                             PactWords.Kind((PactKind)kind).Named("KIND")));
                     },
                     resolveTree = true
-                };
+                }, this, "pact", people, null, () => m);
                 yield return Option_Postpone;
             }
         }
@@ -751,7 +752,8 @@ namespace ColonyCouncil
                     yield return Option_Close;
                     yield break;
                 }
-                yield return new DiaOption(PactWords.P("CC_Truce_Opt_Accept"))
+                // Each answer is written in the history's answers' log.
+                yield return Answers.Recorded(new DiaOption(PactWords.P("CC_Truce_Opt_Accept"))
                 {
                     action = () =>
                     {
@@ -764,12 +766,12 @@ namespace ColonyCouncil
                             MessageTypeDefOf.PositiveEvent);
                     },
                     resolveTree = true
-                };
-                yield return new DiaOption(PactWords.P("CC_Truce_Opt_Refuse"))
+                }, this, "truce", people, null, () => Homes.MapOf(home) ?? Homes.Seat);
+                yield return Answers.Recorded(new DiaOption(PactWords.P("CC_Truce_Opt_Refuse"))
                 {
                     action = () => Find.LetterStack.RemoveLetter(this),
                     resolveTree = true
-                };
+                }, this, "truce", people, null, () => Homes.MapOf(home) ?? Homes.Seat);
                 yield return Option_Postpone;
             }
         }

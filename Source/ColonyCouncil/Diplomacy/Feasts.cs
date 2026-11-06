@@ -1549,9 +1549,12 @@ namespace ColonyCouncil
 
         public bool Waiting => !ArchivedOnly && Valid(out _, out _);
 
-        public override IEnumerable<DiaOption> Choices
+        /// <summary>Each answer is written in the history's answers' log.</summary>
+        public override IEnumerable<DiaOption> Choices =>
+            Answers.RecordedAll(Options(), this, "feast", NotableBook.Instance?.Get(notable)?.faction, null, () => Homes.MapOf(home) ?? Homes.Seat);
+
+        private IEnumerable<DiaOption> Options()
         {
-            get
             {
                 if (ArchivedOnly || !Valid(out _, out _))
                 {

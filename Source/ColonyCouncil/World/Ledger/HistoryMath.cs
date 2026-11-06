@@ -435,6 +435,14 @@ namespace ColonyCouncil
             return false;
         }
 
+        /// <summary>An event's values changed in place (an answer's "what came of it"): the book moves on, so views are built again. True when it is the book's.</summary>
+        public bool Touch(HistoryEntry e)
+        {
+            if (e == null || !byId.TryGetValue(e.id, out var mine) || mine != e) return false;
+            Version++;
+            return true;
+        }
+
         /// <summary>Into a list kept oldest first: at the end, unless it is older than the last.</summary>
         private static void Insert(List<HistoryEntry> list, HistoryEntry e)
         {
