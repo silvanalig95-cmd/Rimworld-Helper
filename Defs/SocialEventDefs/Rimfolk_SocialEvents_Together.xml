@@ -65,7 +65,7 @@
       <li>{A_nameDef} kept a joke about {B_nameDef} going long after it was funny, and {B_nameDef} walked off in the middle of it.</li>
       <li>[tribal] {A_nameDef} acted out {B_nameDef} chasing a hare and losing it, and did it again when the first one got a laugh.</li>
       <li>[medieval] {A_nameDef} made up a rhyme about {B_nameDef} and kept singing it, a verse longer each time.</li>
-      <li>[!lowtech] {A_nameDef} pinned a drawing of {B_nameDef} up where everyone eats, and wouldn't take it down when asked.</li>
+      <li>[!lowtech] {A_nameDef} kept doing {B_nameDef}'s voice at every chance, and wouldn't stop when asked.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_SocT_JokeTooFar</thought></li>
@@ -445,7 +445,7 @@
       <li>{A_nameDef} pulled {B_nameDef} into the shade for a breather, out of the worst of the heat.</li>
       <li>{A_nameDef} told {B_nameDef} {B_pronoun} was red as a beet, and made {B_objective} stop and drink before going on.</li>
       <li>[tribal] {A_nameDef} made {B_nameDef} stop work and drink from the water skin before the heat got {B_objective}.</li>
-      <li>[medieval] {A_nameDef} brought {B_nameDef} a dipper of water from the barrel and stood over {B_objective} until {B_pronoun} drank all of it.</li>
+      <li>[medieval] {A_nameDef} made {B_nameDef} stop for a long drink of water and stood over {B_objective} until {B_pronoun} finished it.</li>
       <li>[industrial] {A_nameDef} passed {B_nameDef} a canteen in the heat and wouldn't take it back until it was half empty.</li>
       <li>[spacer] {A_nameDef} pushed a water flask into {B_nameDef}'s hands and told {B_objective} heatstroke would slow the work far more than a drink would.</li>
     </texts>

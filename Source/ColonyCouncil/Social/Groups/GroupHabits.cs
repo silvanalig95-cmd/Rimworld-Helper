@@ -102,8 +102,10 @@ namespace ColonyCouncil
                 case "read":
                     return job?.def != null && job.def.defName == "Reading";
                 case "sickbed":
-                    // Laid up (awake, in bed, ill or hurt and still healing), or sitting with one of them who is.
-                    return job?.def == JobDefOf.VisitSickPawn || (p.InBed() && LifeChecks.Healing(p));
+                    // Sitting with one of them who is laid up (the game's visit to the sick), or laid up (awake, in bed,
+                    // ill or hurt and still healing) with one of them visiting: two abed side by side aren't keeping it.
+                    if (job?.def == JobDefOf.VisitSickPawn) return job.targetA.Thing is Pawn sick && g.Has(sick);
+                    return p.InBed() && LifeChecks.Healing(p) && g.Pawns.Any(o => o != p && o.CurJobDef == JobDefOf.VisitSickPawn && o.CurJob.targetA.Thing == p);
                 case "music":
                     return Playing(p) || (Leisure(p) && p.Map.mapPawns.FreeColonistsSpawned.Any(o => o != p && Playing(o) && Together.Hears(p, o, 9f)));
                 default:
@@ -154,8 +156,10 @@ namespace ColonyCouncil
                 CouncilGameComponent.GiveThought(p, GroupDefs.Habit, null, -1f, cause);
                 Interplay.Ease(p, habit.ease, StrainRelief.Friends);
             }
-            var speaker = Speaker(g, circle);
-            var other = circle.Where(x => x != speaker).RandomElementWithFallback();
+            // At the sickbed the visitor speaks, to the one laid up.
+            bool bedside = habit.where == "sickbed";
+            var speaker = Speaker(g, bedside ? circle.Where(x => !x.InBed()).ToList() : circle);
+            var other = circle.Where(x => x != speaker && (!bedside || x.InBed())).RandomElementWithFallback();
             if (speaker != null && other != null)
             {
                 string line = Flavor.FromPool(habit.pool, speaker);

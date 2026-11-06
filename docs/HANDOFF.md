@@ -6,6 +6,77 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- new moments of life together (the player's request, 6 November 2026): "do another big content update to existing
+  mechanics"; this part, what happens between colonists (social events, groups' habits, shared memories and topics,
+  dreams and stories), in the existing frameworks at their existing rates; no round of its own, About.xml, the What's
+  new page and CHANGELOG untouched. Pure rules in `Social/TogetherFourMath.cs` (`TogetherFourTests`, 1,202 checks).
+  First a bug: the mud's in-joke (`Rimfolk_Soc_Mud`, roleA tags "rain|snow") never came, since a role's tags were
+  matched against who someone is (`PeopleTags.Identity`, no weather). A role's tags that name the moment (the weather,
+  the hour, at work or at the table, a newcomer: `TogetherFourMath.NeedsMoment`) are now read from the moment
+  (`PeopleTags.MatchesNow`, `Flavor.TagsFor`) in `DilemmaRole.Extras`; no other shipped role named one. Each piece,
+  what starts it on the map, its form by the age, how often:
+  - Social events, 25 (`Rimfolk_SocialEvents_Together.xml`, rewards `Rimfolk_Thoughts_Together.xml`: opinion and
+    belonging, five sore ones -1 or -2 mood, two warm ones +2). New `SocialEventDef` conditions: `bMemoryAboutA`,
+    `sameWork` (`{WORK}`, the work's skill for a lesson), `bMadeFineDays` (`{THING}`, from `Patch_ArcMade` through
+    `SocialEvents.Notify_Made`, unsaved), `bHurtDays` (`Harm.DaysSince` and a wound that shows). Making it up after the
+    fight (the game's HadAngeringFight/HadCatharticFight of each other within 2 days, tone mend; the quarrel buried the
+    tribe's way, a hand on it, a black eye; Rimfolk_Mem_Mended "the fight", rivals -6), a joke too far (a joker and a
+    proud, hot or serious one), a debt remembered (Council_SavedMe of the other within 30 days; a life owed, sworn, a
+    drink owed, a list), the heavy end (an old injury, the two at hauling, building, mining, cutting or growing), a race
+    at the work (rivals side by side; 150 xp each), good company at the work (friends side by side; a work song in a low
+    age), the student's fine piece (a mentorship and the student's excellent-or-better piece in 2 days; the ancestors,
+    a journeyman's piece, no fabricator), a fine piece admired, envied (jealous, greedy or proud), a quiet word after a
+    loss (grief within 5 days, a warm or calm one), asked after a hurt, teased about it (a hurt of everyday life in 3
+    days), an old remedy (A ill, B 50 or older: willow bark, a poultice, broth, the medicine), shown the ropes (a
+    newcomer's first 10 days), company at a bad meal (both eating, B low), caught in the rain (an in-joke, the
+    downpour), a snowball fight (children too; an in-joke), a drink in the heat (a water skin, a dipper, a canteen, a
+    flask), stamping in the cold, the last of the harvest (fall, both growing), and the region's news: sides in the
+    neighbors' war, people caught in it, the households on the road, the dry town, what we would build (a longhouse, a
+    hall, a dam, a signal tower), the summer that never came. Each is a share of the day's draw (`SocialEvents.Daily`
+    counts from the colony's size, never the defs). Balance gates in `Tools/Balance` (`Rates.Gates`: bMemoryAboutA
+    0.5, sameWork 0.15, bMadeFineDays 0.04, bHurtDays 0.03; `MomentTagGate` 0.25 for a role's moment tags, the mud's too).
+  - Shared memories, 6 (`Rimfolk_SharedMemories_Together.xml`, lines `Rimfolk_Talk_Lines_Together.xml`, from one line
+    each, `Social/Talk/SharedTimesTogether.cs`): an illness nursed (`HealthTracker.PulledThrough`: the doctor and the
+    patient, Rimfolk's serious illnesses and the game's dangerous ones), a close call (`MapDangers.Wound`: the one hurt
+    and whoever is in talking range, "the rockfall at the dig", `CC_Times_Close_*` in `Rimfolk_TogetherFour.xml`), a
+    colony founded (`Foundings.Founded`: the party, each with the three closest; never fades), a debt remembered, and
+    the in-jokes the downpour and the snowball fight.
+  - A topic, the sick and the hurt (`Rimfolk_Topic_Health`, `TopicWorker_Health`, `Rimfolk_Talk_Health`, 276 lines in
+    `Rimfolk_Talk_Lines_Health.xml`): only while someone on the map is ill or healing, about the worst off, hotter and
+    never teased while something that can kill goes round; for, to bed and nursed, against, worked through. Steps back
+    with RimTalk or Speak Up (the overlap list). Topics 23 to 24 (the tests allow 25); one budget, split by salience.
+  - Group habits, 4 (`Rimfolk_GroupHabits_Together.xml`; new places `read`, `sickbed`, `music` in `GroupHabits.Doing`):
+    an hour with a book (the game's reading), keeping the sick company (one abed and healing, the others visiting),
+    music of an evening (Royalty's instruments, listeners within earshot), the night sky (outdoors 20 to 1); added after
+    twelve kinds' own habits and the friends' (sickbed), never a `playKind`, so no call and no gathering; one habit a
+    day a group as ever. Five shares (the four and the wardens' work) and a kind, the wardens (Warden work; the
+    captive-keepers, the keepers of the keys, the brig detail).
+  - Dreams, 11 (`Rimfolk_Dreams_Together.xml`): after the new moments' memories ({OTHER} the one it was with) and after
+    a founding (Rimfolk_Parted, Rimfolk_Uprooted); 4 sweet, 4 strange, 3 nightmares; a share of the night's dreams.
+  - A personal story, back to it (`Rimfolk_Arc_BackToIt`, `ArcWorker_BackToIt`, the talk `Rimfolk_Arc_Talk_BackToIt`):
+    a close call in 3 days (`SharedTimesTogether.RecentCloseCall`, unsaved) and the one closest; a shaken day, a talk
+    (counts after 4 days on one map), 800 experience at the work it happened at (mining, plants, crafting, or what they
+    do best when that's under 4), then just work again (relief, a friendship +5, strain -5); no gate passes on time
+    alone, no play-out. A share of the colony's stories a year.
+  - Rates, from `Tools/Balance` (200 runs a setup; before on the start tree, after on this one): 6 colonists, average play: social events a year 71.2
+    and 71.2 (17.8 a season either way; 12 colonists 117.9 and 117.7); their mood +0.51 and +0.50 good, -0.15 and -0.13
+    bad (well run +0.49/-0.18 and +0.50/-0.17); the colony's mood 64% either way; strain 5.8%/1.3%/0.3% and
+    5.8%/1.5%/0.3%; dreams 107.9 and 107.6 a year, stories 3.23 and 3.33. `--tell` (10 colonists, the teller and the
+    pace): messages a day 0.69 and 0.69 (well run 0.70 and 0.70), letters and messages 1.66 and 1.66. `--scenes` (10
+    colonists, as built): 23.9, 23.4 and 23.6 staged as their own scene a year (well run, average, neglectful) and 24.0,
+    23.4 and 23.4, 2.8 gatherings and outings a week in every case. `--social` (bonds; reads no defs) the same. A first
+    after-run had four warm moods of +3 and lifted the social events' good side to +0.61: two are belonging instead
+    now and two +2, which brought it back.
+  - Docs: the Almanac's bonds page ("What moves a bond") and dreams, groups (the wardens, the habits), conversations
+    (the topic, its view, when it comes up), shared memories (four rows, two jokes) and personal stories (back to it);
+    README (the counts: 123 social events, 24 topics, 43 shared memories, 26 kinds of group, 13 habits, 33 stories);
+    DESIGN.md "New moments of life together". The def validator needed nothing new ({WORK}, {THING} known).
+  - Found and left: the Almanac's and README's "about 6,900" talk lines are older than the content (8,300 or so by a
+    count of every TalkLinesDef); the groups' habits file's header lists the old places only (the new file has its own).
+  - Needs a look in the game: two colonists making up the day after a social fight, a student's first excellent piece
+    shown to the teacher, a reading hour and a sickbed visit kept by a group, music with Royalty's harp, the mud and
+    snowball jokes coming up in talk, the sick-and-hurt talk while a plague goes round (no teasing), back to it after a
+    rockfall at the dig.
 - 0.120.0, new questions, events and dangers (the player's request, 6 November 2026): "drop some new additional dilemmas, events,
   world events, camps, illnesses/ailments (can also be some artificial ones), dangers etc., for further gameplay
   variety"; this part the council's questions, Rimfolk's events and dangers on the map (illnesses, world events and camps

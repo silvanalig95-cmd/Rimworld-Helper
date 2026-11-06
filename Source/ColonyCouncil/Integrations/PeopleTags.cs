@@ -241,7 +241,27 @@ namespace ColonyCouncil
         {
             if (p == null || expr.NullOrEmpty()) return false;
             if (!TogetherFourMath.NeedsMoment(expr)) return Matches(p, expr);
-            return Matches(Parse(expr), Flavor.TagsFor(p));
+            return Matches(Parse(expr), MomentOf(p));
+        }
+
+        // The moment's tags, worked out once a tick for each person: a social event weighs every pair against a role.
+        private static readonly Dictionary<int, HashSet<string>> moments = new Dictionary<int, HashSet<string>>();
+        private static int momentsTick = -1;
+
+        private static HashSet<string> MomentOf(Pawn p)
+        {
+            int now = Find.TickManager?.TicksGame ?? 0;
+            if (now != momentsTick)
+            {
+                moments.Clear();
+                momentsTick = now;
+            }
+            if (!moments.TryGetValue(p.thingIDNumber, out var tags))
+            {
+                tags = Flavor.TagsFor(p);
+                if (moments.Count < 200) moments[p.thingIDNumber] = tags;
+            }
+            return tags;
         }
 
         /// <summary>The same rules as <see cref="Flavor.Match"/>: every comma part must fit, by any of its | alternatives.</summary>
