@@ -372,7 +372,9 @@ namespace ColonyCouncil
             var toast = new DilemmaEffect_Toast
             {
                 target = DilemmaTarget.FamilyOfA, organizer = PlayWho.B, label = (age >= FamilyLifeMath.AdultAge ? "CC_Fam_EighteenLabel" : "CC_Fam_BirthdayToastLabel").Translate(),
-                hours = new IntRange(17, 22), duration = new FloatRange(0.75f, 1f), pool = "Council_Pool_PlayGrowth", waitHours = 4f
+                hours = new IntRange(17, 22), duration = new FloatRange(0.75f, 1f), pool = "Council_Pool_PlayGrowth", waitHours = 4f,
+                // The colony's own doing: it waits for room in the colony's week (PlayOut/Stage.cs).
+                routine = true
             };
             var play = toast.Begin(new DilemmaContext { map = p.Map, a = p, b = lead });
             if (play == null) return;

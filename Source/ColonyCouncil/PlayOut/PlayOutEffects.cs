@@ -39,6 +39,11 @@ namespace ColonyCouncil
         public IntRange hours = new IntRange(PlayOutMath.DayFrom, PlayOutMath.DayTo);
         public float waitHours = PlayOutMath.DefaultWaitHours;
         public FloatRange duration = new FloatRange(2f, 3f);
+        /// <summary>
+        /// The colony's own doing, set from code (a family supper, a camp's show, a birthday): it waits for room in the
+        /// colony's week (<see cref="PlayOut.routine"/>, PlayOut/Stage.cs). An answer the player gave never does.
+        /// </summary>
+        public bool routine;
 
         protected abstract PlayKind Kind { get; }
 
@@ -67,7 +72,8 @@ namespace ColonyCouncil
                     created = now,
                     hourFrom = hours.min,
                     hourTo = hours.max,
-                    durationTicks = PlayOutMath.DurationTicks(duration.RandomInRange)
+                    durationTicks = PlayOutMath.DurationTicks(duration.RandomInRange),
+                    routine = routine
                 };
                 p.label = !label.NullOrEmpty() ? ctx.Format(label) : DefaultLabel(ctx);
                 if (!Fill(p, ctx)) return null;

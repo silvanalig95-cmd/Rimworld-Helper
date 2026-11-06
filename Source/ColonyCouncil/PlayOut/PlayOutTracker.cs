@@ -11,16 +11,21 @@ namespace ColonyCouncil
     /// <summary>
     /// Answers waiting to play out, and those under way. Every few seconds of game time each waiting plan looks at the
     /// hour, at danger and at who is free, and starts if it can: a gathering (<see cref="LordJob_PlayOut"/>) or a visit
-    /// (<see cref="JobDriver_PlayOutVisit"/>). A plan that can't start within its hours and the wait it allows falls back
-    /// to what answers always did: its moods, for everyone it was meant for. Cheap when nothing is waiting (one list
-    /// check every 250 ticks).
+    /// (<see cref="JobDriver_PlayOutVisit"/>). The player's plans go first; the colony's own (<see cref="PlayOut.routine"/>)
+    /// start only when the colony's pace has room (PlayOut/Stage.cs). A plan that can't start within its hours and the
+    /// wait it allows falls through: nobody has its moods (it never happened), an answer's says why, and one of the colony's
+    /// own is let go without a word; a gathering kept from its evening by another one takes the next evening once. Also keeps
+    /// the colony's count of gatherings (<see cref="stage"/>). Cheap when nothing is waiting (one list check every 250 ticks).
     /// </summary>
     public class PlayOutTracker : GameComponent
     {
         public List<PlayOut> plays = new List<PlayOut>();
         private int nextId = 1;
 
-        /// <summary>More than this waiting at once and the oldest gives up (its moods are given).</summary>
+        /// <summary>Each colony's count of gatherings, its seasonal custom and the toasts waiting (PlayOut/Stage.cs).</summary>
+        public List<StageColony> stage = new List<StageColony>();
+
+        /// <summary>More than this waiting at once and the oldest gives up (it falls through).</summary>
         public const int MaxWaiting = 10;
 
         private static PlayOutTracker cached;
@@ -128,6 +133,8 @@ namespace ColonyCouncil
         {
             p.id = nextId++;
             p.state = PlayState.Pending;
+            // One of the colony's own waits up to three days for room, evening after evening (StageMath.WaitDays).
+            if (p.routine) p.deadline = Math.Max(p.deadline, StageMath.RoutineDeadline(p.created));
             plays.Add(p);
             var waiting = plays.Where(x => x.state == PlayState.Pending).ToList();
             if (waiting.Count > MaxWaiting) Fallback(waiting[0], null, true);
@@ -143,8 +150,18 @@ namespace ColonyCouncil
             using var clock = PassClock.Time(Pass.RarePlayOut);
             // Strangers fed and staying the night bed down by the wall (PlayStrangers.cs).
             PlayStrangers.Tick(now);
+            // The colony's count of gatherings, the toasts waiting, the floor (Stage.cs).
+            try
+            {
+                Stage.Tick(this, now);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("play out: the colony's pace", e);
+            }
             if (plays.Count == 0) return;
-            foreach (var p in plays.ToList())
+            // The player's plans take the evening first; the colony's own come after, if there's room.
+            foreach (var p in plays.OrderBy(x => x.routine).ToList())
             {
                 try
                 {
@@ -177,14 +194,32 @@ namespace ColonyCouncil
                 }
                 if (now > p.deadline)
                 {
-                    Fallback(p, p.waitReason, false);
+                    // Kept from its evening by another gathering: the player's plan takes the next evening, once.
+                    if (!p.routine && p.collided && !p.movedOn && p.IsGathering)
+                    {
+                        p.movedOn = true;
+                        p.collided = false;
+                        p.deadline += StageMath.TicksPerDay;
+                        return;
+                    }
+                    Fallback(p, p.waitReason, p.routine);
                     return;
                 }
                 // A feast's cook puts the pot on in the hours before it, and the feast waits while it's on (PlayCook.cs).
                 if (PlayCook.Waits(this, p, now)) return;
                 // A thing an answer says someone made is made first, at the bench, then carried over (PlayMake.cs).
                 if (PlayMake.Waits(this, p, now)) return;
-                if (!PlayOutMath.InHours(GenLocalDate.HourOfDay(p.map), p.hourFrom, p.hourTo)) return;
+                int hour = GenLocalDate.HourOfDay(p.map);
+                // A fire for tonight is laid in the hour before the evening opens, so it burns when they come (PlayFire.cs).
+                if (p.IsGathering && p.buildFire && PlayOutMath.HoursUntil(hour, p.hourFrom, p.hourTo) == 1 && (!p.routine || Stage.Room(p.map, now)))
+                    PlayFire.Ahead(p);
+                if (!PlayOutMath.InHours(hour, p.hourFrom, p.hourTo)) return;
+                // The colony's own wait for room in its week, and never come within a day and a half of another gathering.
+                if (p.routine && !Stage.Room(p.map, now))
+                {
+                    p.waitReason = "CC_Stage_Why_Room".Translate();
+                    return;
+                }
                 if (p.IsGathering) TryStartGathering(p, now);
                 else if (p.IsGroup) PlayGroups.TryStart(this, p, now);
                 else TryStartVisit(p, now);
@@ -235,6 +270,8 @@ namespace ColonyCouncil
             if (why != null)
             {
                 p.waitReason = why;
+                // Another gathering has the evening: noted, so the player's plan can take the next one (Step).
+                if (MeetingAttendance.Bar(map) == MeetingAttendance.GatherBar.Gathering) p.collided = true;
                 return;
             }
             p.invited.RemoveAll(x => x == null || x.Dead || x.Faction != Faction.OfPlayer);
@@ -258,8 +295,9 @@ namespace ColonyCouncil
             var organizer = p.organizer != null && able.Contains(p.organizer) ? p.organizer
                 : able.OrderByDescending(x => x.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0).First();
             organizer = SafeLead(p, organizer, able, map);
-            // A bonfire with no fire to gather at: one of the colony lays and lights it first (PlayFire.cs).
-            if (PlayFire.Waits(p, organizer, able)) return;
+            // A bonfire with no fire to gather at: one of the colony lays and lights it first (PlayFire.cs); one not laid with
+            // the evening running out is held at the colony's own fire, or indoors.
+            if (PlayFire.Waits(p, organizer, able, now)) return;
             if (!PlaySpots.TryFind(p, organizer, out var spot, out var where))
             {
                 p.waitReason = PlayOutMath.PlaceWhyKey(PlaySpots.KeptByWeather(p, null)).Translate();
@@ -290,12 +328,16 @@ namespace ColonyCouncil
             }
             // Guests from outside the colony the answer asked to it come up and take a place (PlayGuests.cs).
             job.guests = PlayGuests.Resolve(p, map);
+            // The toasts of life goals reached lately are raised at it, and those they're for asked to it (Stage.cs).
+            Stage.Started(p);
             LordMaker.MakeNewLord(Faction.OfPlayer, job, map, new List<Pawn> { organizer });
             p.state = PlayState.Running;
             p.started = now;
             p.organizer = organizer;
             string begin = BeginText(p, where, meals, able.Count, laid != null ? p.fireBy : null);
             if (job.guests.Count > 0) begin += " " + "CC_Play_GuestsCome".Translate(PlayGuests.Names(job.guests)).Resolve();
+            string cups = Stage.CupsAt(p);
+            if (!cups.NullOrEmpty()) begin += " " + cups;
             Tell.Message(NewsKind.Colony, Importance.Notable, map, begin, new LookTargets(new TargetInfo(spot, map)), MessageTypeDefOf.PositiveEvent);
         }
 
@@ -625,6 +667,7 @@ namespace ColonyCouncil
             Risks(p);
             PlayDepart.Over(p);
             Remember(p, true);
+            Stage.PlayOver(p, true);
             // What follows it (a secret said out loud at the end of the gathering called to hear it).
             PlayAfter.Run(p, true);
             // What those who took part remember and are talked of for (Social/Talk/SharedTimes.cs).
@@ -658,29 +701,34 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// It never happened (or the setting is off): the moods go to everyone they were meant for, as answers always
-        /// did, and if it was waited for, a word on why.
+        /// It never happened: nobody has its moods (they were for taking part, and nobody did: the player's save showed 9
+        /// of 30 plans giving them all the same), and if it was waited for, a word on why it didn't; one of the colony's
+        /// own (<see cref="PlayOut.routine"/>) is let go without a word. With the setting switched off meanwhile, the
+        /// answer's moods and its outcome come as answers always gave them, with nothing on the map.
         /// </summary>
         public void Fallback(PlayOut p, string why, bool quiet)
         {
             if (p == null || p.state == PlayState.Done) return;
             p.state = PlayState.Done;
             if (p.note.NullOrEmpty() && !why.NullOrEmpty()) p.note = why;
+            bool off = !PlayOuts.On;
             // The colony was told this was coming (the answer's outcome waited for it): a word on why it didn't, even when
             // it would otherwise pass quietly. With the setting switched off, the outcome is told as answers always were.
             bool told = !p.outcome.NullOrEmpty() && p.map != null && Find.Maps.Contains(p.map);
-            if (told && !PlayOuts.On)
+            if (told && off)
             {
                 Tell.Minor(NewsKind.Colony, Importance.Notable, p.map, p.outcome, null, MessageTypeDefOf.NeutralEvent);
                 told = false;
             }
             if (told) quiet = false;
+            if (p.routine) quiet = true;
             PlayCook.Clean(p);
             // A risk the answer ran comes all the same, as it always did; so does a departure it held back.
             Risks(p);
             PlayDepart.Over(p);
             Remember(p, false);
-            GiveAll(p);
+            Stage.PlayOver(p, false);
+            if (off) GiveAll(p);
             PlayAfter.Run(p, false);
             // A work party, a walk, a vigil, a search, an errand or a hunt lets go of anyone still on it; an errand
             // that never went takes its things from the stores all the same, as the answer always did.
@@ -700,9 +748,7 @@ namespace ColonyCouncil
             // visit or lesson that never came about passes quietly. The answer's outcome isn't told: it didn't happen.
             if (quiet || p.label.NullOrEmpty() || !(p.IsGathering || told)) return;
             string label = p.label.CapitalizeFirst();
-            string text = !p.IsGathering
-                ? (why.NullOrEmpty() ? "CC_Play_FellThroughPlain".Translate(label) : "CC_Play_FellThrough".Translate(label, why)).Resolve()
-                : (why.NullOrEmpty() ? "CC_Play_FallbackPlain".Translate(label) : "CC_Play_Fallback".Translate(label, why)).Resolve();
+            string text = (why.NullOrEmpty() ? "CC_Play_FellThroughPlain".Translate(label) : "CC_Play_FellThrough".Translate(label, why)).Resolve();
             Tell.Minor(NewsKind.Colony, Importance.Notable, p.map, text, null, MessageTypeDefOf.NeutralEvent);
         }
 
@@ -746,12 +792,16 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref plays, "plays", LookMode.Deep);
             Scribe_Values.Look(ref nextId, "nextId", 1);
             Scribe_Collections.Look(ref results, "results", LookMode.Deep);
+            Scribe_Collections.Look(ref stage, "stage", LookMode.Deep);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (plays == null) plays = new List<PlayOut>();
                 plays.RemoveAll(p => p == null || p.state == PlayState.Done);
                 if (results == null) results = new List<PlayResult>();
                 results.RemoveAll(r => r == null);
+                // An older save has no count yet: each home starts one from now (its first week lets the colony's own through).
+                stage ??= new List<StageColony>();
+                stage.RemoveAll(c => c == null);
             }
         }
     }

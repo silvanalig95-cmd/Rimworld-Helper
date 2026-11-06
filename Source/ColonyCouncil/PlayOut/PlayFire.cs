@@ -24,14 +24,22 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The gathering waits for its fire: a fire is being laid, or one is set going now. False: there's a fire to
-        /// gather at already (or it was laid), or none can be laid (the venue is found as before).
+        /// gather at already (or it was laid), or none can be laid (the venue is found as before). With under
+        /// <see cref="GiveUpHours"/> left before the plan would give up and the fire still not lit (the player's save:
+        /// "still laying the fire"), the laying is let go and the gathering is held without it, in the open or indoors at
+        /// the rec room or the table.
         /// </summary>
-        public static bool Waits(PlayOut p, Pawn organizer, List<Pawn> able)
+        public static bool Waits(PlayOut p, Pawn organizer, List<Pawn> able, int now)
         {
             var map = p.map;
             if (!p.buildFire || map == null || Def == null || p.spots == null || !p.spots.Contains(PlaySpot.Fire)) return false;
             if (p.fireLaid != null && p.fireLaid.Spawned) return false;
             if (PlaySpots.ColonyFire(map, organizer) != null) return false;
+            if (p.deadline - now < GiveUpHours * PlayOutMath.TicksPerHour)
+            {
+                GiveUp(p);
+                return false;
+            }
             // Someone is out there laying it.
             if (Laying(p))
             {
@@ -60,6 +68,45 @@ namespace ColonyCouncil
             Tell.Message(NewsKind.Colony, Importance.Notable, null, "CC_Play_Begin_LayFire".Translate(by.Named("PAWN")).Resolve(), new LookTargets(by), MessageTypeDefOf.NeutralEvent);
             p.waitReason = "CC_Play_Why_LayingFire".Translate(by.Named("PAWN")).Resolve();
             return true;
+        }
+
+        /// <summary>The hours before a plan would give up when a fire still not lit is let go for the colony's own fire or a room indoors.</summary>
+        public const int GiveUpHours = 2;
+
+        /// <summary>
+        /// The fire is laid in the hour before the evening opens (PlayOutTracker), by whoever of those asked is free, so it
+        /// burns when they come rather than being started when they should be sitting round it.
+        /// </summary>
+        public static void Ahead(PlayOut p)
+        {
+            var map = p?.map;
+            if (map == null || !p.buildFire || p.fireLaid != null && p.fireLaid.Spawned || Laying(p) || PlayOuts.WhyNotNow(map, false) != null) return;
+            var able = p.invited.Where(x => PlayOuts.CanTakePart(x, map) && PlayOuts.Interruptible(x)).ToList();
+            if (able.Count == 0) return;
+            var lead = p.organizer != null && able.Contains(p.organizer) ? p.organizer : able[0];
+            try
+            {
+                Waits(p, lead, able, Find.TickManager.TicksGame);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("play out: a fire laid ahead", e);
+            }
+        }
+
+        /// <summary>
+        /// The evening running out with no fire lit: whoever was laying it stops (the wood they carried is set down), and
+        /// the gathering is held without one, as a gathering (its words say no fire is lit): in the open where the colony
+        /// gathers, or indoors at the rec room or the table.
+        /// </summary>
+        private static void GiveUp(PlayOut p)
+        {
+            p.buildFire = false;
+            if (p.kind == PlayKind.Bonfire) p.kind = PlayKind.Gathering;
+            if (Laying(p)) p.fireBy.jobs.EndCurrentJob(JobCondition.InterruptForced);
+            p.fireBy = null;
+            foreach (var s in new[] { PlaySpot.Rec, PlaySpot.Dining })
+                if (!p.spots.Contains(s)) p.spots.Add(s);
         }
 
         /// <summary>The one laying the fire is still at it.</summary>

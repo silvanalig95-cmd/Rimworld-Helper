@@ -216,6 +216,8 @@ namespace ColonyCouncil
                 return;
             }
             p.waitReason = null;
+            // The colony's pace counts an outing as a gathering (PlayOut/Stage.cs); an errand or a gift carried out is one or two people.
+            if (p.kind != PlayKind.Carry && p.kind != PlayKind.Give) Stage.Held(p.map);
             if (p.organizer == null || p.Hand(p.organizer) == null) p.organizer = p.hands[0].pawn;
             Tell.Message(NewsKind.Colony, Importance.Notable, null, PlayWords.BeginText(p, where), new LookTargets(p.hands.Select(h => h.pawn).Where(x => x.Spawned)), MessageTypeDefOf.NeutralEvent);
             PlayWords.Invite(p);

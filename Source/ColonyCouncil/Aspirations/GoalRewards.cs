@@ -124,7 +124,16 @@ namespace ColonyCouncil
             if (any != null) h.TryStartInspiration(any, null, true);
         }
 
-        /// <summary>That evening, those close to them gather at the table; the one who thinks best of them raises a glass.</summary>
+        /// <summary>The memory of the one a toast was raised to, and of the one who raised it.</summary>
+        public static ThoughtDef Honoured => T("Council_Asp_Toasted");
+
+        public static ThoughtDef Glass => T("Council_Asp_RaisedGlass");
+
+        /// <summary>
+        /// The one who thinks best of them raises a cup to them at the colony's next gathering, and they're asked to it
+        /// (the colony's pace, PlayOut/Stage.cs: a toast is no evening of its own); with no gathering within two days, at
+        /// supper when the two are together.
+        /// </summary>
         private static bool Toast(Aspiration a)
         {
             var p = a.pawn;
@@ -134,25 +143,8 @@ namespace ColonyCouncil
                                                                      && (o.relations.OpinionOf(p) >= 20 || Family.Of(o, p) || LovePartnerRelationUtility.LovePartnerRelationExists(o, p))).ToList();
             if (close.Count == 0) return false;
             var friend = close.OrderByDescending(o => o.relations.OpinionOf(p)).First();
-            var lines = new List<string>
-            {
-                "CC_Asp_Toast_1".Translate(p.Named("A"), a.Deed.Named("DEED")).Resolve(),
-                "CC_Asp_Toast_2".Translate(p.Named("A")).Resolve(),
-                "CC_Asp_Toast_3".Translate(p.Named("A")).Resolve()
-            };
-            var play = new DilemmaEffect_Toast
-            {
-                target = DilemmaTarget.CloseToA, organizer = PlayWho.B, hours = new IntRange(17, 21), waitHours = 4f, lines = lines,
-                label = "CC_Asp_ToastLabel".Translate(p.Named("A")).Resolve()
-            }.Begin(new DilemmaContext { map = map, a = p, b = friend });
-            if (play == null) return false;
             string cause = "CC_Asp_ToastCause".Translate(p.Named("A"), a.Goal.Named("GOAL")).Resolve();
-            var honoured = T("Council_Asp_Toasted");
-            var glass = T("Council_Asp_RaisedGlass");
-            foreach (var m in play.invited)
-                if (m == p ? honoured != null : glass != null)
-                    play.moods.Add(new HeldMood { pawn = m, thought = m == p ? honoured : glass, about = m == p ? null : p, cause = cause });
-            return true;
+            return Stage.Cup(p, friend, a.Deed, cause);
         }
 
         /// <summary>

@@ -6,7 +6,7 @@
   <!-- The setting -->
   <CC_SetSec_PlayOut>Answers on the map</CC_SetSec_PlayOut>
   <CC_Settings_AnswersPlayOut>Answers play out on the map</CC_Settings_AnswersPlayOut>
-  <CC_Settings_AnswersPlayOut_Tip>When the council's answer to a dilemma or an event describes something people do, they do it. A victory feast is eaten at the dining table from the colony's own cooked meals, a bonfire is lit and gathered round, a toast is raised, someone goes to sit with a friend, by a grave or at the camp's fire, a student works at a teacher's side, a worn-out doctor is sent to bed. A work party cleans, hauls, mends or sows together, mourners walk out to a grave and back, a watch is kept at the gate through the night, searchers go out over the land, medicine sent to a neighbor is carried out to the rider at the gate, the hunters go after the game. A carving made as an apology is carried over by hand, lanterns are set out for the night, the enemy dead are burned on a pyre, buried in graves dug outside the wall or burned in the crematorium. The moods the answer gives come to those who took part, once it's over.\n\nNobody is pulled away from danger, sleep, a meal or a sickbed, and nothing starts while enemies are about; anyone drafted, hungry or worn out is let go. If it can't happen within a few hours, the moods come anyway, as they always did, and what was to be carried out leaves the stores all the same.\n\nOff: answers give their moods and messages only.</CC_Settings_AnswersPlayOut_Tip>
+  <CC_Settings_AnswersPlayOut_Tip>When the council's answer to a dilemma or an event describes something people do, they do it. A victory feast is eaten at the dining table from the colony's own cooked meals, a bonfire is lit and gathered round, a toast is raised, someone goes to sit with a friend, by a grave or at the camp's fire, a student works at a teacher's side, a worn-out doctor is sent to bed. A work party cleans, hauls, mends or sows together, mourners walk out to a grave and back, a watch is kept at the gate through the night, searchers go out over the land, medicine sent to a neighbor is carried out to the rider at the gate, the hunters go after the game. A carving made as an apology is carried over by hand, lanterns are set out for the night, the enemy dead are burned on a pyre, buried in graves dug outside the wall or burned in the crematorium. The moods the answer gives come to those who took part, once it's over.\n\nNobody is pulled away from danger, sleep, a meal or a sickbed, and nothing starts while enemies are about; anyone drafted, hungry or worn out is let go. If it can't happen within a few hours it doesn't count: nobody has its moods, you're told why, and what was to be carried out leaves the stores all the same. A gathering kept from its evening by another one is held the next evening instead.\n\nOff: answers give their moods and messages only.</CC_Settings_AnswersPlayOut_Tip>
   <CC_SetNote_AnswersPlayOut>Feasts, visits, work parties, vigils and errands happen on the map; the moods follow for those there.</CC_SetNote_AnswersPlayOut>
 
   <!-- What it's called when the answer doesn't name it -->
@@ -80,9 +80,7 @@
   <CC_Play_End_Learned>{0} learned from it: {1} +{2} xp each.</CC_Play_End_Learned>
   <CC_Play_End_LearnedOne>{0} learned from it: {1} +{2} xp.</CC_Play_End_LearnedOne>
 
-  <!-- When it never happens -->
-  <CC_Play_Fallback>{0} never quite happened ({1}). People took heart from it all the same.</CC_Play_Fallback>
-  <CC_Play_FallbackPlain>{0} never quite happened. People took heart from it all the same.</CC_Play_FallbackPlain>
+  <!-- When it never happens: nobody has its moods (it never happened), and the line is CC_Play_FellThrough with one of these. -->
   <CC_Play_Why_Danger>it wasn't safe</CC_Play_Why_Danger>
   <CC_Play_Why_Gathering>something else had everyone's attention</CC_Play_Why_Gathering>
   <CC_Play_Why_Busy>nobody was free</CC_Play_Why_Busy>

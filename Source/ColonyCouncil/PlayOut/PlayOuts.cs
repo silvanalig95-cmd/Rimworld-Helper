@@ -398,6 +398,14 @@ namespace ColonyCouncil
         public bool roofMarked;
         /// <summary>What follows once it's over, whether or not it came about (PlayAfter: a secret said out loud).</summary>
         public string afterward;
+        /// <summary>
+        /// The colony's own doing, not the player's choice (a group's evening, a family supper, a camp's show, a birthday):
+        /// it starts only when the colony's pace has room (PlayOut/Stage.cs), waits up to three days for it, and is let go
+        /// without a word. An older save's plans are the player's and happen as before.
+        /// </summary>
+        public bool routine;
+        /// <summary>Another gathering had the evening when it would have started; once, it takes the next evening instead.</summary>
+        public bool collided, movedOn;
 
         public bool IsGathering => kind == PlayKind.Gathering || kind == PlayKind.Feast || kind == PlayKind.Bonfire || kind == PlayKind.Toast;
 
@@ -518,6 +526,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref guestsFrom, "guestsFrom");
             Scribe_Values.Look(ref guestCount, "guestCount");
             Scribe_Values.Look(ref situationId, "situationId", -1);
+            Scribe_Values.Look(ref routine, "routine");
+            Scribe_Values.Look(ref collided, "collided");
+            Scribe_Values.Look(ref movedOn, "movedOn");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (things == null) things = new List<Thing>();
@@ -664,8 +675,7 @@ namespace ColonyCouncil
 
         /// <summary>
         /// A good memory the answer gives someone who takes part in what it set going: kept with the plan and given
-        /// when it's over (to those who were there), or when it falls through (to everyone it was meant for). False:
-        /// give it now.
+        /// when it's over, to those who were there; if it falls through, to nobody (it never happened). False: give it now.
         /// </summary>
         public static bool Hold(Pawn p, ThoughtDef thought, Pawn about)
         {

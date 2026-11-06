@@ -207,13 +207,14 @@ namespace ColonyCouncil
                     // An evening performance at their fire: everyone at home who can come, comes.
                     int hour = GenLocalDate.HourOfDay(map);
                     if (hour < 16 || hour > 21) return false;
+                    // The colony's own doing (PlayOut/Stage.cs): offered only on an evening the colony's week has room for.
+                    if (PlayOuts.On && !Stage.Room(map, Find.TickManager.TicksGame)) return false;
                     var star = here.OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Artistic)?.Level ?? 0).First();
                     var show = DefDatabase<ThoughtDef>.GetNamedSilentFail("Council_Camp_Show");
                     if (PlayOuts.On)
                     {
                         // The colony walks over to their fire for it: a gathering at the camp (answers on the map), and
-                        // the evening is remembered by those who came. With nobody free tonight, everyone it was for
-                        // still has the memory, as answers that can't play out always do.
+                        // the evening is remembered by those who came. With nobody free tonight, nobody has it.
                         var effects = new List<DilemmaEffect>
                         {
                             new DilemmaEffect_Gathering
@@ -259,6 +260,8 @@ namespace ColonyCouncil
                     // listen (a gathering at the camp) and those who came remember it; otherwise it carries to everyone awake.
                     int hour = GenLocalDate.HourOfDay(map);
                     if (hour < 17 || hour > 22) return false;
+                    // The colony's own doing (PlayOut/Stage.cs): offered only on an evening the colony's week has room for.
+                    if (PlayOuts.On && !Stage.Room(map, Find.TickManager.TicksGame)) return false;
                     var player = here.OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Artistic)?.Level ?? 0).First();
                     var heard = DefDatabase<ThoughtDef>.GetNamedSilentFail("Council_Camp_SongHeard");
                     if (PlayOuts.On)
