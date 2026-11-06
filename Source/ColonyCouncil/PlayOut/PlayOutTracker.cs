@@ -330,7 +330,8 @@ namespace ColonyCouncil
             job.guests = PlayGuests.Resolve(p, map);
             // The toasts of life goals reached lately are raised at it, and those they're for asked to it (Stage.cs).
             Stage.Started(p);
-            Stage.Began(map, LordMaker.MakeNewLord(Faction.OfPlayer, job, map, new List<Pawn> { organizer }));
+            // A feast with guests was counted as they came (Diplomacy/Feasts.cs): its feast is not counted again.
+            Stage.Began(map, LordMaker.MakeNewLord(Faction.OfPlayer, job, map, new List<Pawn> { organizer }), p.guestsFrom == PlayGuests.Feast);
             p.state = PlayState.Running;
             p.started = now;
             p.organizer = organizer;

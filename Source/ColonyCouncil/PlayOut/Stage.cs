@@ -294,18 +294,22 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>A gathering lord of Rimfolk's began on a home just now: counted at once (so a second plan in the same pass sees it), and not again when it is seen.</summary>
-        internal static void Began(Map map, Lord lord)
+        /// <summary>
+        /// A gathering lord of Rimfolk's began on a home just now: counted at once (so a second plan in the same pass sees it),
+        /// and not again when it is seen. <paramref name="counted"/>: its day was counted already (a feast with guests, as
+        /// they came: Diplomacy/Feasts.cs).
+        /// </summary>
+        internal static void Began(Map map, Lord lord, bool counted = false)
         {
             if (map == null || lord == null || !Homes.IsHome(map)) return;
-            Held(map);
+            if (!counted) Held(map);
             if (seen.TryGetValue(map.uniqueID, out var before)) before.Add(lord.loadID);
         }
 
         /// <summary>
         /// A gathering's lord: the game's parties, rituals and weddings, Rimfolk's play-outs, meetings and the election's.
-        /// A feast's guests (LordJob_FeastGuests, a group a people) are not a gathering of their own: the feast they come
-        /// for is counted once as it begins, its play-out's lord or, with answers not playing out, the table (Feasts.cs).
+        /// A feast's guests (LordJob_FeastGuests, a group a people) are not a gathering of their own: a feast with guests is
+        /// counted once, as they come (Feasts.cs), and its feast's play-out not again.
         /// </summary>
         private static bool Gathering(LordJob job) => job is LordJob_Joinable_Gathering || job is LordJob_Joinable_MarriageCeremony;
 

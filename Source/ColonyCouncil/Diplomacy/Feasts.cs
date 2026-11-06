@@ -725,6 +725,9 @@ namespace ColonyCouncil
                 CallOff(h, p, map, FeastWords.P("CC_Feast_Off_NoGuests"), true);
                 return;
             }
+            // The guests come: the day is one gathering in the colony's count (PlayOut/Stage.cs), once whatever the peoples,
+            // and its feast with them is not counted again.
+            Stage.Held(map);
             p.arrived = Now;
             p.contest = 0;
             p.contestStart = -1;
@@ -1132,8 +1135,6 @@ namespace ColonyCouncil
             {
                 if (hour < FeastMath.FeastFrom) return;
                 p.held = true;
-                // The feast at the table is the day's one gathering in the colony's count (with a play-out, its lord is).
-                Stage.Held(map);
                 foreach (var g in p.guests.Where(g => g.state == GuestState.Here))
                 {
                     var meal = g.pawn != null && Free(g.pawn) ? Hosting.Meal(g.pawn, Empire(g)) : null;
