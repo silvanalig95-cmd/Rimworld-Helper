@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 512; modelled: 512; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,386 KB** after a year, **2,827 KB** after two, **3,002 KB** after five.
+Saved collections found: 517; modelled: 517; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,388 KB** after a year, **2,829 KB** after two, **3,003 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -257,6 +257,7 @@ Rimfolk's part of the save, roughly: **2,386 KB** after a year, **2,827 KB** aft
 | `PlayOut/PlayOutLord.cs:lines` | while the gathering lasts | while | 6 | 6 | 6 | 0.7 |
 | `World/Notables.cs:seen` | visitors and traders seen at the colony until they're home, 6 at most, three days | fixed | 6 | 6 | 6 | 0.7 |
 | `Health/HealthTracker.cs:worst` | hard times not over yet (hunger, cold, untended illness); known pawns only | known | 6 | 6 | 8 | 0.7 |
+| `PlayOut/Stage.cs:cups` | life goals' toasts waiting for the next gathering, five days at most each (StageMath.CupLetGo) | fixed | 3 | 3 | 3 | 0.6 |
 | `Building/Suggest/SameRules.cs:pieceDefs` | with the above: what each blueprint was | fixed | 16 | 16 | 16 | 0.6 |
 | `Diplomacy/DiplomacyBook.cs:tales` | per home: who of the colony's won something at a neighbour's feast, FeastMath.MaxTales at most, told once home or let go after 30 days | cap | 3 | 4 | 4 | 0.6 |
 | `UI/WeekMemory.cs:answers` | answers of every kind whose play-outs are still watched, each only for the days they take (Answers.MaxWatched 40 at most) | fixed | 4 | 4 | 4 | 0.6 |
@@ -275,6 +276,7 @@ Rimfolk's part of the save, roughly: **2,386 KB** after a year, **2,827 KB** aft
 | `Animals/ResidentBeast.cs:knownIds` | wild beasts whose story has closed (ids), the newest 20 (ResidentBeast.KnownMax) | fixed | 20 | 20 | 20 | 0.5 |
 | `Building/BuildAhead.cs:removeCells` | per room step: what it marked to take down, inside the footprint | fixed | 20 | 20 | 20 | 0.5 |
 | `Defense/DefenseLinesWatch.cs:downedSeen` | colonists downed in the raid under way, cleared when it ends | while | 20 | 20 | 20 | 0.5 |
+| `PlayOut/Stage.cs:held` | when each gathering began, the last ten days (StageMath.KeepDays): two a day at the very most | fixed | 20 | 20 | 20 | 0.5 |
 | `Social/Autonomy.cs:lastActed` | with the above | window | 20 | 20 | 20 | 0.5 |
 | `Annals.cs:decrees` | the year in progress | yearly | 12 | 12 | 12 | 0.5 |
 | `Building/Automations.cs:droppedTicks` | with the above | fixed | 40 | 40 | 40 | 0.5 |
@@ -363,6 +365,7 @@ Rimfolk's part of the save, roughly: **2,386 KB** after a year, **2,827 KB** aft
 | `Heart/HeartData.cs:feelingSinceKeys` | per heart: feelings felt now | fixed | 4 | 4 | 4 | 0.2 |
 | `Missions/Missions.cs:group` | per mission | fixed | 4 | 4 | 4 | 0.2 |
 | `PlayOut/PlayOutLord.cs:abstained` | while the gathering lasts | while | 4 | 4 | 4 | 0.2 |
+| `PlayOut/PlayOutTracker.cs:stage` | one count per home (one in the model); homes no longer ours dropped | fixed | 1 | 1 | 1 | 0.2 |
 | `Scenarios/ScenarioParts.cs:offices` | a scenario part's seats, fixed by the scenario | fixed | 4 | 4 | 4 | 0.2 |
 | `Visitors/Callers.cs:pawns` | per task: who is still to have a cut (one per colonist), or the animals still to tend (CallerMath.MaxPatients at most) | fixed | 4 | 4 | 4 | 0.2 |
 | `Visitors/Callers.cs:things` | per task: the art still to see (seven at most) or the dead still to lay to rest (eight graves at most) | fixed | 4 | 4 | 4 | 0.2 |
@@ -378,6 +381,7 @@ Rimfolk's part of the save, roughly: **2,386 KB** after a year, **2,827 KB** aft
 | `Annals.cs:quit` | the year in progress | yearly | 3 | 3 | 3 | 0.1 |
 | `Annals.cs:traditionsBroken` | the year in progress | yearly | 3 | 3 | 3 | 0.1 |
 | `Calendar/CalendarDay.cs:things` | a camp gift's things, per day on the calendar (CalendarMath.MaxDayThings, at most 2 such days) | fixed | 3 | 3 | 3 | 0.1 |
+| `Calendar/CalendarKeeping.cs:withIds` | the days a calendar day's letter keeps together with it, while the letter waits | while | 3 | 3 | 3 | 0.1 |
 | `Calendar/CalendarTracker.cs:colonies` | one calendar per colony (one home in the model; a second doubles the calendar's rows), a lost home's kept 30 days, then let go | fixed | 1 | 1 | 1 | 0.1 |
 | `Camps/Camp.cs:joined` | while the camp stays | while | 3 | 3 | 3 | 0.1 |
 | `Camps/CampRequests.cs:stallWares` | a few stacks their trader set out by the gate for a day's stall, while it lasts | while | 3 | 3 | 3 | 0.1 |
@@ -412,6 +416,7 @@ Rimfolk's part of the save, roughly: **2,386 KB** after a year, **2,827 KB** aft
 | `Strangers/Encounters.cs:homes` | one per colony (EncounterHome: the day's count, the last, each kind's cooldown; one home in the model) | fixed | 1 | 1 | 1 | 0.1 |
 | `Visitors/Callers.cs:people` | per task: the undertakers (four at most) or the wedding party (five at most) | fixed | 2 | 2 | 2 | 0.1 |
 | `Visitors/Callers.cs:plots` | per task: the undertakers' row of graves (CallerMath.MaxGraves at most), graves only | fixed | 2 | 2 | 2 | 0.1 |
+| `Calendar/CalendarKeeping.cs:withYears` | the year each of them comes round in, while the letter waits | while | 3 | 3 | 3 | 0.1 |
 | `Camps/CampStory.cs:beats` | the beats of the stay played (ask, trouble, parting), while the camp stays | while | 3 | 3 | 3 | 0.1 |
 | `Setbacks/SetbackTracker.cs:ticks` | per sown field | fixed | 3 | 3 | 3 | 0.1 |
 | `Annals.cs:traditionsBorn` | the year in progress | yearly | 2 | 2 | 2 | 0.1 |

@@ -299,6 +299,7 @@ namespace ColonyCouncil
             Toggle("annals", "CC_Settings_Annals", "CC_SetNote_Annals");
             Toggle("eulogies", "CC_Settings_Eulogies", "CC_SetNote_Eulogies");
             Section("CC_Settings_HowOften");
+            Slider("gatheringsAWeek", "CC_Settings_GatheringsAWeek", "CC_SetNote_GatheringsAWeek", StageMath.MinAWeek, StageMath.MaxAWeek, 1f, "0");
             Slider("momentFrequency", "CC_Settings_FreqMoments", "CC_SetNote_FreqMoments", 0.25f, 3f, 0.25f, "%");
             Slider("socialEventFrequency", "CC_Settings_FreqSocial", "CC_SetNote_FreqSocial", 0.25f, 3f, 0.25f, "%");
             Slider("dreamFrequency", "CC_Settings_FreqDreams", "CC_SetNote_FreqDreams", 0.25f, 3f, 0.25f, "%");
@@ -456,8 +457,8 @@ namespace ColonyCouncil
             Section("CC_Settings_Messages");
             Choice("messageLevel", "CC_SetLabel_MessageLevel", "CC_SetTip_MessageLevel", "CC_MsgLevel_", "CC_SetNote_MsgLevel_", new[] { "Everything", "Notable", "LettersOnly" });
             Choice("colonyNews", "CC_SetLabel_ColonyNews", "CC_SetTip_ColonyNews", "CC_NewsMode_", "CC_SetNote_News_", new[] { "AsItHappens", "Digest", "Off" });
-            Slider("tellMessagesADay", "CC_Settings_TellMessagesADay", "CC_SetNote_TellMessagesADay", 5f, 60f, 1f, "0");
-            Slider("tellLettersADay", "CC_Settings_TellLettersADay", "CC_SetNote_TellLettersADay", 2f, 20f, 1f, "0");
+            Slider("messagesADay", "CC_Settings_TellMessagesADay", "CC_SetNote_TellMessagesADay", TellMath.MinMessagesADay, TellMath.MaxMessagesADay, 1f, "0");
+            Slider("lettersADay", "CC_Settings_TellLettersADay", "CC_SetNote_TellLettersADay", TellMath.MinLettersADay, TellMath.MaxLettersADay, 1f, "0");
             Toggle("allDreamMessages", "CC_Settings_AllDreamMessages", "CC_SetNote_AllDreamMessages", "dreams");
             Toggle("wishLetters", "CC_Settings_WishLetters", "CC_SetNote_WishLetters");
             Toggle("grantedLetters", "CC_Settings_GrantedLetters", "CC_SetNote_GrantedLetters");
@@ -643,7 +644,7 @@ namespace ColonyCouncil
                 V("daysBetweenMeetings", "20"), V("arcFrequency", "Rare"), V("frictions", "false"), V("allowQuitting", "false"),
                 V("heartEpisodes", "false"), V("strainSpeed", "0.75"), V("seriousIllnesses", "false"), V("ailmentFrequency", "0.5"),
                 V("crowdedSickness", "false"), V("frailty", "false"), V("dirtyWounds", "false"), V("endOfLife", "false"), V("movingOn", "false"), V("guestWill", "false"),
-                V("everydayHurts", "0.5"),
+                V("everydayHurts", "0.5"), V("gatheringsAWeek", "1"),
                 V("worldEventBattles", "false"), V("storytellerEventWeight", "0.5"), V("daysBetweenWorldEvents", "8"),
                 V("daysBetweenWorldSituations", "75"), V("encounterFrequency", "0.5"), V("momentFrequency", "0.75"),
                 V("socialEventFrequency", "0.5"), V("dreamFrequency", "0.5")
@@ -663,7 +664,7 @@ namespace ColonyCouncil
                 V("petitions", "true"), V("speechShows", "Bubbles", "Off"), V("visualTouches", "true"), V("smallHabits", "true"), V("messageLevel", "Everything"),
                 V("arcFrequency", "Frequent"), V("daysBetweenDilemmas", "5"), V("encounterFrequency", "1.5"), V("momentFrequency", "1.5"),
                 V("socialEventFrequency", "1.5"), V("dreamFrequency", "1.5"), V("storytellerEventWeight", "1.5"), V("daysBetweenWorldEvents", "3"),
-                V("daysBetweenWorldSituations", "30")
+                V("daysBetweenWorldSituations", "30"), V("gatheringsAWeek", "3")
             });
 
             // Demanding: harder moods, more frictions and pressures, rarer rewards. Downsides 50% stronger and then 85% more,

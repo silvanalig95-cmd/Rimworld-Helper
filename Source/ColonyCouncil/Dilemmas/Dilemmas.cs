@@ -1209,9 +1209,12 @@ namespace ColonyCouncil
             if (Waiting(map)) return false;
             if (!force && !Tell.CanAsk) return false;
             int now = Find.TickManager.TicksGame;
+            // One seasonal custom a season (the colony's pace, PlayOut/Stage.cs); a tradition still comes round when its time does.
+            bool customs = force || Stage.CustomMayCome(map);
             var pool = DefDatabase<DilemmaDef>.AllDefsListForReading
                 .Where(d => only == null || only(d))
                 .Where(d => force || !lastTick.TryGetValue(d.defName, out int t) || now - t > d.cooldownDays * GenDate.TicksPerDay)
+                .Where(d => customs || !IsSeasonalCustom(d))
                 .ToList();
             foreach (var def in pool.InRandomOrder().OrderByDescending(d => d.weight * Rand.Value * (d.seasons.NullOrEmpty() && d.withinDaysOfThreat <= 0f ? 1f : 3f)))
             {
@@ -1228,10 +1231,14 @@ namespace ColonyCouncil
                 Send(ctx);
                 lastTick[def.defName] = now;
                 lastFiredTick = now;
+                if (IsSeasonalCustom(def)) Stage.CustomAsked(map);
                 return true;
             }
             return false;
         }
+
+        /// <summary>A seasonal custom: a question of the land's year that can become a tradition (the midsummer fire, the harvest dance).</summary>
+        public static bool IsSeasonalCustom(DilemmaDef d) => d != null && !d.seasons.NullOrEmpty() && d.traditionOption >= 0;
 
         private void Send(DilemmaContext ctx)
         {

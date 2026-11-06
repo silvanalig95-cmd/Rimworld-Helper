@@ -218,7 +218,9 @@ namespace ColonyCouncil
                         durationTicks = PlayOutMath.DurationTicks(2f),
                         pool = habit.pool,
                         hourFrom = habit.hourFrom,
-                        hourTo = habit.hourTo
+                        hourTo = habit.hourTo,
+                        // The colony's own doing: it waits for room in the colony's week (PlayOut/Stage.cs).
+                        routine = true
                     };
                     if (play.kind == PlayKind.Bonfire)
                     {

@@ -135,6 +135,7 @@
     <Compile Include="../../Source/ColonyCouncil/World/Ledger/TieMath.cs" Link="TieMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/Ledger/StoreMath.cs" Link="StoreMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/TellMath.cs" Link="TellMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/PlayOut/StageMath.cs" Link="StageMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/Ledger/HistoryMath.cs" Link="HistoryMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/ChronicleMath.cs" Link="ChronicleMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Dilemmas/AnswerMath.cs" Link="AnswerMath.cs" />

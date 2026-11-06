@@ -9,6 +9,8 @@
 //   dotnet run -c Release --project Tools/Balance -- --nature [--runs N] [--seed S]
 // How often Rimfolk stages something on the map, by system, and what a weekly allowance would leave (Scenes.cs, printed):
 //   dotnet run -c Release --project Tools/Balance -- --scenes [repo root] [--runs N] [--colonists N] [--gap HOURS] [--week N]
+// What reaches the player in a day, the old way and by the teller with the colony's pace (Telling.cs, printed):
+//   dotnet run -c Release --project Tools/Balance -- --tell [repo root] [--runs N] [--colonists N]
 
 using System.Globalization;
 using System.Text.Json;
@@ -25,6 +27,11 @@ if (args.Contains("--social"))
 if (args.Contains("--nature"))
 {
     NatureSim.Run(args);
+    return;
+}
+if (args.Contains("--tell"))
+{
+    TellingSim.Run(args);
     return;
 }
 if (args.Contains("--scenes"))

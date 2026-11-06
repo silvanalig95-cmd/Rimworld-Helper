@@ -926,15 +926,22 @@ gives those taking part come once it's over (PlayOut/).
   in what the answer set going is held with the plan (`PlayOuts.Hold`) and given when it's over to those who were
   there long enough (a quarter of a gathering, at most half an hour; half a visit) or ate at the feast. Bad memories,
   trust, standards and the rest come at once, as before. Calendar feasts, games and remembrances hold their own moods
-  the same way.
+  the same way. A plan that falls through gives its held moods to nobody: it never happened (the player's save showed 9
+  of its last 30 plans giving them all the same, with "People took heart from it all the same"). Its line says it never
+  came about and why; one of the colony's own is let go without a word (the pace, below).
 - **Safety.** Nobody is called from danger, sleep, a sickbed or the need of one, bleeding, starving or exhaustion,
   arms, a mental state, a caravan, the care of someone else (tending, rescuing, feeding, carrying) or an order of the
   player's; guests, prisoners and lodgers are never invited. Nothing starts while enemies are about, while another
   gathering is on, while half the colony is drafted or while someone is bleeding, and any danger calls a gathering off
   (as the council meeting is). A visit ends at any danger. A plan waits for its hours and up to its wait (six hours by
-  default, never more than thirty in all), then falls back to what answers always did: its moods for everyone it was
-  meant for, and for a gathering a line saying why. Every step is wrapped so a failure is logged once and the moods
-  still come. With the setting off, the effects do nothing and the moods come at once.
+  default, never more than thirty in all), then falls through: nobody has its moods, and a gathering or a plan the colony
+  was told of says why. A gathering of the player's kept from its evening by another one (the bar was another gathering,
+  `PlayOut.collided`) takes the next evening instead, once (`movedOn`). The player's plans take the evening first; the
+  colony's own come after. A bonfire's fire is laid in the hour before its evening opens (`PlayFire.Ahead`), and one
+  still not lit two hours before the plan would give up (`PlayFire.GiveUpHours`; "still laying the fire" in the save) is
+  let go: whoever was laying it stops, and it is held as a gathering without a fire, in the open or at the rec room or
+  the table. Every step is wrapped so a failure is logged once. With the setting off, the effects do nothing and the
+  moods come at once, as before; switched off while a plan waits, its moods and its outcome come as answers always gave them.
 - **Where it plugs in.** `DilemmaTracker.Resolve` and `HappeningTracker.Resolve` wrap an answer's effects in
   `PlayOuts.Collect`, and so do a world event's beats, answers and endings (`WorldSituations`), an event's letter
   without answers (`IncidentWorker_Happening.Send`) and a story's ending (`Workers_StoryFlow`); the helpers an answer
@@ -1418,6 +1425,67 @@ Outcomes that describe something people do but can't sensibly become one afterno
 - **Other systems.** World events play out now (their answers' gifts and payments are carried to the gate, the
   locusts' harvest and watch are real). Personal stories, social events, dreams and encounters are moments that have
   already happened (interactions and moods), not answers to carry out.
+
+## Pace: how often the colony gathers
+
+The staging review (`docs/review-2026-11/staged-scenes.md`) counted about four gatherings a week and a group outing
+more, four in ten within a day of the one before, eight or more in the busiest weeks, against the base game's own party
+about once in forty days. The player chose a weekly budget (decision 1 of 6 November 2026), built as one count of
+gatherings per colony, as letters and messages have theirs (`PlayOut/Stage.cs`; the rules pure in `StageMath.cs`,
+tested in `StageTests` and run by `Tools/Balance --scenes`):
+
+- **Counted.** Every gathering on a home, whoever called it: each gathering lord seen as it starts (the game's parties,
+  rituals and weddings, Rimfolk's play-outs, the council meeting, the election's gatherings, feasts with guests:
+  `LordJob_Joinable_Gathering`, `LordJob_Joinable_MarriageCeremony`, `LordJob_FeastGuests`), and every outing as it
+  starts (work parties, walks, vigils, searches, hunts, the dead carried out; not an errand or a gift carried by one or
+  two). Lords already on at a load were counted before it. The count is saved with the play-outs (`PlayOutTracker.stage`,
+  one `StageColony` a home: the start of each gathering of the last ten days, the last of any kind, the season's
+  custom, the toasts waiting), so a load keeps the week; an older save starts each home's count from the load.
+- **What the player chose always happens, and counts**: an answer that gathers people, a calendar day kept, a vote, a
+  wedding, a decree, a meeting, an evening of faith, an ambition's feast.
+- **The colony's own wait for room** (`PlayOut.routine`): a group's evening called by its anchor, a family supper, a
+  child's birthday toast. Each comes only while the last seven days hold fewer gatherings than the week allows (two, the
+  setting "Gatherings a week before the colony's own wait" on the People page under How often; the player's choices
+  count) and none began in the last day and a half (`StageMath.Room`). It waits evening after evening, up to three days
+  (`StageMath.RoutineDeadline`), and is then let go without a word (no line, no moods: it never happened). A camp's show
+  or song at its fire is offered only on an evening with room, since its letter says tonight.
+- **Calendar days.** Days that come round within three days of each other this year are kept together, as one: the
+  first one's letter names them all ("The harvest and the victory over Hive"), its gathering is theirs, each takes its
+  step toward a tradition, and they are kept or let pass together (`CalendarKeeping.KeptWith`; only days kept with a
+  feast, games or a fire, never one's own day, a remembrance, the first snow or the founding day its event keeps). A day
+  that gathers people (a feast, games, a fire, a faith's evening, a quiet hour at a grave) within two days of another
+  gathering, or with one the council chose on its way, is kept at supper instead (`StageMath.AtSupper`): its letter says
+  so ("Keep it at supper"), and that evening, when the keeper sits down with another of the colony (`Together`, supper
+  hours), they say a word over the meal, the day's good memory comes to those at home (to those who knew them, for a
+  remembrance), and the evening's news says it was kept at supper. Before that moment nothing is given.
+- **One seasonal custom a season** (a dilemma with seasons that can become a tradition, `Dilemmas.IsSeasonalCustom`;
+  `StageColony.customSeason`, a season being fifteen days of the year). A tradition still comes round when its time
+  does, and counts as the season's.
+- **A life goal's toast is raised at the next gathering**, not on an evening of its own (`Stage.Cup`): the one who thinks
+  best of them has a cup to raise there, the two are asked to it, its first message says so, and a while in the cups go
+  up with the toast's words; their moods come when it's over. With no gathering within two days, it is raised at supper
+  when the two are together in the evening; past the colony's own wait, it is let go. A gathering that falls through
+  hands its toasts on to the next.
+- **The hustings join the count**: no evening of their own; at the count the candidates speak first, each answered by a
+  cheer or a heckle, and then the votes are read (`Election.speakAtCount`). Their words no longer move the vote, cast by
+  day; an election under way at a load with its hustings on keeps them.
+- **A floor**: ten days never pass without a gathering (where the quiet-days setback starts, `SetbackMath.QuietDays`).
+  From the seventh day without one the colony's own come at once whatever the week holds; from the eighth, with nothing
+  of its own on the way, the colony keeps an evening together itself ("an evening together", planned in the afternoon,
+  at its fire, the rec room or the table, led by its most sociable; the game's own party with answers not playing out).
+- **Collisions and fires** (bugs the report found): see the play-outs' safety rules above (the player's plan takes the
+  next evening once; a fire laid ahead, or let go near the end).
+
+The dev menu's "Pace: the week's gatherings" logs each home's count, the last gathering and whether there's room.
+
+Measured (`Tools/Balance --scenes`, a colony of ten, 300 colony-years each way of playing; "As built" uses
+`StageMath.cs` itself): with average play, gatherings and outings 4.7 a week before and 2.7 after (the review's model of
+the proposal said 2.6); any seven days median 3 (from 4 to 5), the busiest 9 (from 14), days with two or more 2.2 a year
+(from 8 or 9), under a day apart 24% (from 46%), the longest gap 9 days, floor evenings 0.2 a year. As their own scene:
+calendar days 42%, a group's evenings 32%, family suppers 34%, customs 88% (the model asks two to three a year; the
+player's game asked about seven in sixty days, of which four a year stay), toasts none (raised at the next gathering),
+elections' three gatherings 60%; meetings, decrees, answers, weddings and faith all of them. Well run 2.8 a week,
+neglectful 2.7.
 
 ## Goods and people that come and go on the map
 
@@ -2524,28 +2592,57 @@ world wherever it is said: the facts service (`Text/Facts/`) and the fill (`Text
 
 ### Telling the player
 
-Every Rimfolk system tells the player through one place, `UI/Tell.cs`, so that as the mod grows the player isn't
-flooded. New code uses it; a second way of telling the player is a bug.
+Every Rimfolk system tells the player through one teller, `UI/Tell.cs`, and the teller picks the channel (the
+player's decision 2 of 6 November 2026): by how much a happening matters, its importance and its kind of news, and by
+how busy the colony's day already is. A system says what happened and how much it matters; it doesn't decide alone
+whether that is a letter, a message, a line of the evening's news or only the history. New code tells the player through
+the teller; a second way is a bug.
 
-- `Tell.Message(kind, importance, map, text, look, type)`: something that happened, as a message now. The "How many
-  messages" setting decides by its importance whether it's told at all. The same text (or the same `key`) within four
-  in-game hours is told once. Past the day's cap for its kind of news and its colony (20 a day by default, the setting
-  "Most messages a day from Rimfolk, by kind"), it waits for the evening's Colony news letter instead: never lost.
-  Important messages (harm, a death near, a mission's timing) are never held back.
-- `Tell.Minor(...)`, which `News.Post` calls: the smaller news, to the evening letter, a message or the History tab by
-  the "Colony news" setting, as before; as a message it keeps the same caps.
-- `Tell.Letter(kind, importance, map, label, text, def, look, faction)`: a letter that only tells. Past the day's cap for
-  its kind and colony (6 a day by default) it becomes a line in the evening's letter. Important letters and threats are
-  never held back.
+- `Tell.Message(kind, importance, map, text, look, type)`: something that happened, as a message now if the day allows.
+  The "How many messages" setting decides by its importance whether it's told at all (colour only with "everything").
+  Something hard to miss (harm, a death near, a mission's timing) is always shown, and makes the day busy for six hours.
+  Something worth knowing is shown until the colony's messages for the day are reached (12 by default, all kinds
+  together, the setting "Most messages a day from Rimfolk"), then waits for the evening's Colony news. On a busy day
+  (half the day's messages shown, something hard to miss told in the last six hours, or a raid on the home in them:
+  `storyState.LastThreatBigTick`) one person's news, their health and the land's wait for the evening while the
+  colony's and the world's still come (`TellMath.Weighty`). Nothing held back is lost.
+- `Tell.Minor(...)`, which `News.Post` calls: the smaller news, to the evening's letter, a message or the History tab
+  by the "Colony news" setting. As a message it is weighed as messages are. The same words shown as a message within
+  four hours aren't put in the evening's news again (`TellBook.Told`): told once, by whichever channel came first.
+- `Tell.Letter(kind, importance, map, label, text, def, look, faction)`: a letter that only tells. Past the colony's
+  letters for the day (4 by default, all kinds together), or a person's or the land's on a busy day, it becomes a line in
+  the evening's letter. Important letters and threats are never held back.
+- **The evening.** The Colony news letter has less room the busier the day was (`TellMath.EveningRoom`): eight lines
+  after a quiet day, one fewer for each letter, message or question the day already brought, three at the least. It
+  carries the lines that weigh most (`EveningScore`: hard to miss first, then what the day held back, then the colony's
+  and the world's before one person's, the earlier first among equals) and puts the rest in the History tab's message log.
+  Each line keeps its weight through a save (`NewsItem.weight`; an older save's are worth knowing).
+- `Tell.Chronicle(entry)`: a line for the colony's story. Every system's `AddChronicle` comes here; the teller writes
+  it into the one history, and the chronicle shows what its view selects (`ChronicleMath`, "One history" above).
 - `Tell.Ask(letter, map)` and `Tell.CanAsk`: Rimfolk's questions (choice letters). Never capped; those that can wait
-  check `CanAsk` first, which is `LetterGap`'s twelve hours between questions.
+  check `CanAsk` first, which is `LetterGap`'s twelve hours between questions. A question counts toward how busy the
+  day was (the evening's room).
 - With more than one colony, what happened at a home names its settlement (`Homes.Name`): "Oakhold: ..." on a message
   or a line of the news, "At Oakhold." heading a letter. With one colony the text is as it always was.
 - `Notify.Message` goes through `Tell.Message`, counted under the kind of news of its caller's folder
   (`TellMath.KindOfFolder`). Overflow past the 40 waiting for the evening goes to the History tab's message log.
 
-The counts (`TellBook`, in `UI/TellMath.cs`, pure and tested) are kept by colony, kind and channel for the day and
-aren't saved; a load only lets a little more through. The caps are there to catch floods, not to thin ordinary days.
+The counts (`TellBook`, in `UI/TellMath.cs`, pure and tested) are kept by colony and channel for the day, all kinds
+together (the old caps of 20 messages and 6 letters for each kind folded into one count a colony), with when the colony
+was last told something hard to miss and the day's tally of each channel; they aren't saved, so a load only lets a
+little more through. The settings moved to new keys (`messagesADay`, `lettersADay`), so an older settings file's caps of
+each kind don't stand for the colony's whole day. The dev menu's "Teller: what was told today" logs the day's tally,
+colony by colony (letters, messages, the evening, the History tab, merged, the chronicle).
+
+Measured (`Tools/Balance --tell`, the simulator's telling stream for a colony of ten, the old way and by the teller with
+the colony's pace, 300 colony-years): letters and messages together 1.92 a day before, 1.64 after, nearly all from the
+gatherings' own messages (0.67 to 0.39, see the pace below); the busiest day's letters and messages 12 to 8; questions
+and letters that only tell as before (an ordinary day is under the counts); lines in the evening's news 2.2 to 2.3 (a
+day kept at supper is a line there). The simulator models part of what Rimfolk tells (not the region, diplomacy,
+visitors or couriers), so these are the same stream before and after, not the game's whole day. On the player's save
+(the archive's last 13 whole days, Rimfolk's letters and questions picked out by their titles, its messages not kept by
+the game so not counted), the evening's news would carry 3.3 lines a day instead of 3.9, 14% fewer, more on a day the
+messages are counted too.
 
 What stays a direct `Messages.Message`: the answer to the player's own click, for the game's own sounds and timing. A
 rejection (`RejectInput`), a button's or designator's confirmation (`SilentInput`, `TaskCompletion`, `CautionInput`),
@@ -4785,7 +4882,7 @@ on a map, in the world or in a caravan), so such a record is let go when the gam
 | Journeys | one plan at a time: its travellers, animals, packing list, the last hours' steps done and the timetable hours it changed, all gone when they set off or it's called off |
 | World situations | 2 running; 40 past, each with what followed from it (once per def) |
 | Story chains, missions | chains 120 days after they end; missions 2 days |
-| Answers playing out | waiting ones 10 at most, done ones dropped (their people, places, hunt and search routes with them); how the last 30 went, for the dilemmas page |
+| Answers playing out | waiting ones 10 at most, done ones dropped (their people, places, hunt and search routes with them); how the last 30 went, for the dilemmas page; the colony's pace, one count a home (gatherings of the last ten days, the season's custom, life goals' toasts waiting five days at most), homes no longer ours dropped |
 | Defense lines | per home map, gone with it; only the lines the player makes: one mark per step done or set aside, 24 plans, the last 5 raids (4 downed and 3 lessons each); the raid under way only while it lasts |
 | Scenario parts | fixed by the scenario (its days, its seats) |
 | Faction memory | 12 deeds per people (the settled and the faintest make way); a deed is dropped once it fades below 1, and with its people when they're gone; who tended or freed whom: 60 notes, 30 days, dropped when the stranger dies |

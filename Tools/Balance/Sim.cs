@@ -128,6 +128,8 @@ namespace Balance
         /// below that stages a scene draws a number or changes anything.
         /// </summary>
         public List<Scene> scenes;
+        /// <summary>--tell (Telling.cs): the hours of the measured year's big threats, for the teller's busy day. Filled only with <see cref="scenes"/>.</summary>
+        public readonly List<int> threats = new List<int>();
         /// <summary>What each source adds to one colonist's mood, summed over every sample (divide by <see cref="partSamples"/>).</summary>
         public readonly Dictionary<string, double> partSum = new Dictionary<string, double>();
         public int partSamples;
@@ -283,7 +285,7 @@ namespace Balance
         }
 
         /// <summary>Something staged on the map now (only with <see cref="scenes"/>, in the measured year).</summary>
-        private void Stage(string source, string tier, int people, float hours, bool routine = false, bool custom = false, int at = -1)
+        private void Stage(string source, string tier, int people, float hours, bool routine = false, bool custom = false, int at = -1, string way = null)
         {
             if (scenes == null || !Measuring || tier == null) return;
             // At = the hour of today it is held (an evening's toast), else now.
@@ -291,7 +293,7 @@ namespace Balance
             scenes.Add(new Scene
             {
                 hour = when - WarmupDays * 24, source = source, tier = tier, people = Math.Max(1, Math.Min(people, this.people.Count)), hours = hours,
-                routine = routine, custom = custom
+                routine = routine, custom = custom, way = way
             });
         }
 
@@ -1213,6 +1215,7 @@ namespace Balance
             if (hour >= nextThreat)
             {
                 lastThreat = hour;
+                if (scenes != null && Measuring) threats.Add(hour - WarmupDays * 24);
                 nextThreat = hour + (int)(Exp(Rates.BigThreatDays) * 24) + 24;
             }
             if (dilemmaPending > hour) return;
@@ -1674,7 +1677,7 @@ namespace Balance
                     Send("calendar", Channel.Letter);
                     foreach (var c in people.Where(_ => Chance(0.6f))) Give(c, "Council_Cal_Remembered");
                     // Those who knew them stand a while at the grave, when there is one here (CalendarKeeping.DoWay).
-                    if (scenes != null && Chance(Rates.SceneRemembranceGrave)) Stage("calendar days", "gathering", 4, 1f, false, false, 17);
+                    if (scenes != null && Chance(Rates.SceneRemembranceGrave)) Stage("calendar days", "gathering", 4, 1f, false, false, 17, "remembrance");
                     continue;
                 }
                 Send("calendar", Channel.Decision);
@@ -1685,8 +1688,8 @@ namespace Balance
                     // How the day is kept (CalendarKeeping.DoWay): a feast, games or a fire for everyone, an evening of
                     // faith, gifts handed over in pairs; a rest day and a birthday stage nothing.
                     int all = (int)(people.Count * 0.8f);
-                    if (kind == "FeastDay" || kind == "GamesDay" || kind == "BonfireNight") Stage("calendar days", "gathering", all, 3f, false, false, 17);
-                    else if (kind == "FaithDay") Stage("calendar days", "gathering", all, 2f, false, false, 18);
+                    if (kind == "FeastDay" || kind == "GamesDay" || kind == "BonfireNight") Stage("calendar days", "gathering", all, 3f, false, false, 17, "feast");
+                    else if (kind == "FaithDay") Stage("calendar days", "gathering", all, 2f, false, false, 18, "faith");
                     else if (kind == "GiftDay") Stage("calendar days", "small", 2, 0.5f, false, false, 15);
                 }
                 if (kind == "FeastDay" || kind == "GamesDay")

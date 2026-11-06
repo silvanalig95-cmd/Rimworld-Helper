@@ -101,7 +101,7 @@ namespace ColonyCouncil
                 var feast = new DilemmaEffect_Feast
                 {
                     target = DilemmaTarget.FamilyOfA, organizer = PlayWho.A, pool = "Council_Pool_PlayFamilySupper", hours = new IntRange(17, 20),
-                    duration = new FloatRange(1.5f, 2f), waitHours = 3f, spots = new List<PlaySpot> { PlaySpot.Dining },
+                    duration = new FloatRange(1.5f, 2f), waitHours = 3f, spots = new List<PlaySpot> { PlaySpot.Dining }, routine = true,
                     label = family != null ? "CC_Fam_SupperLabel".Translate(family.Named("FAMILY")).Resolve() : "CC_Fam_SupperLabelPlain".Translate().Resolve()
                 };
                 var play = feast.Begin(new DilemmaContext { map = map, a = head });

@@ -10,7 +10,7 @@
   <CC_Elect_BenchSeats>{COUNT} seats among the {OFFICES}</CC_Elect_BenchSeats>
 
   <!-- A by-election with more than one seat to fill (the shipped wordings say one seat). -->
-  <CC_Elect_AnnounceByTextMany>Seats on the council stand empty, and the colony will vote to fill them on election day, the {DATE}. Until then the candidates will make their case to people in their free time. On the evening before, they speak at the hustings {VENUE}. On the day itself everyone at home who is up to it casts a vote there, and that evening the votes are counted aloud.</CC_Elect_AnnounceByTextMany>
+  <CC_Elect_AnnounceByTextMany>Seats on the council stand empty, and the colony will vote to fill them on election day, the {DATE}. Until then the candidates will make their case to people in their free time. On the day itself everyone at home who is up to it casts a vote {VENUE}, and that evening the candidates speak there and the votes are counted aloud.</CC_Elect_AnnounceByTextMany>
   <CC_Election_ByTextMany>Seats on the council stood empty, so the colony voted to fill them.</CC_Election_ByTextMany>
   <CC_PM_Appoint_ByTextMany>Seats on the council stood empty. By the colony's beliefs they are not put to a vote: {PAWN_nameDef}, who leads the colony, named people to fill them.</CC_PM_Appoint_ByTextMany>
   <CC_Elect_CeremonyByTextMany>Seats on the council stand empty, and only one person can take each of them. On the evening of the {DATE}, {CHAIR} will name them to their seats at a short ceremony {VENUE}.</CC_Elect_CeremonyByTextMany>

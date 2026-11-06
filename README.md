@@ -1005,7 +1005,7 @@ a lost election someone who wants a seat, loneliness someone who wants friends, 
 can make them want the same. Something big can change their mind, and when someone dies before reaching theirs, the
 person who loved them most may take it up and finish it for them. The Social tab shows everyone's progress and why.
 Achieving one is a big moment: a letter, a long good mood, trust, friends who are glad for them, and something that
-stays: a toast at the table that evening, an inspiration that fits the goal, a mark on the skill it was about (it
+stays: a cup raised to them at the colony's next gathering (or at supper, if none comes within two days), an inspiration that fits the goal, a mark on the skill it was about (it
 never slips again and comes a little faster), a younger colonist with the same passion learning at their side, and a
 title on their Story tab that the colony tells round in gossip. Dying before it is remembered: the chronicle notes
 what they never got to do, and their friends write about it.
@@ -1326,7 +1326,10 @@ together to what the day remembers (a camp's gift, a grave, the fields, the gate
 day's ideoligion and whoever chooses to come to hear its speaker (Ideoligions and the council, above); a **remembrance** is kept with
 a quiet, bittersweet mood for those who knew the person. A birthday comes as a message and a small lift for the colonist. People write about the day in their
 journals, talk about it in the social log, and mention it the evening before; This week shows the days coming
-up. All the moods are small and share the budget of good moods. Kept **three years running**, a day becomes a
+up. Days that fall within three days of each other come round as one, in one letter, kept together with one
+gathering; a day that comes within two days of another gathering is kept **at supper** instead (a better meal for
+everyone and a word said over it, or for a remembrance a word for them from those who knew them). All the moods are
+small and share the budget of good moods. Kept **three years running**, a day becomes a
 **tradition**, with the same letter, moods, chronicle and annals as the council's seasonal traditions, and letting it
 pass then disappoints everyone. With Ideology, the letter suggests the ideoligion's own rite where one fits (a funeral rite,
 a feast or festival), and holding it keeps the day. With Rimfolk events on, founding day is the founding event's to
@@ -3353,6 +3356,26 @@ about one every two days and seldom two at once. The **Colony news** setting can
 **as it happens**, or turn it **off**, so the smaller news goes only to the message log in the History tab; how much
 of it there is at all is still set by **How many messages**.
 
+Rimfolk's teller decides how each thing reaches you, by how much it matters and how busy the day already is. Something
+serious always comes at once. Something worth knowing comes as a message until the colony's day has had its share
+(twelve messages and four letters that only tell, by default, all kinds together); on a busy day (after a raid,
+something serious, or half the day's messages) one person's news, their health and the land's wait for the evening,
+while the colony's and the world's still come. The same thing is told once, as a message or in the evening's news. The
+evening's letter has less room the busier the day was (eight lines after a quiet day, one fewer for each letter,
+message or question the day brought, three at the least): it carries the lines that matter most, and the rest go to the
+History tab.
+
+## The colony's pace
+The colony gathers about twice a week, not four or five times. What you choose always happens and counts: an answer
+that gathers people, a calendar day kept, a vote, a wedding, a decree, a council meeting. The colony's own doings (a
+group's evening at the fire, a family supper, a child's birthday toast, a camp's show) come only when the last seven
+days hold fewer than two gatherings and none in the last day and a half; one waits up to three days for room, and is
+then let go without a word. One seasonal custom is asked a season; a life goal's toast is raised at the next gathering;
+the election's candidates speak at the count, before the votes are read. A plan that never comes about gives nobody
+its moods, and says why. Ten days never pass without a gathering: from the seventh the colony's own come at once, and
+from the eighth, if nothing is on the way, the colony keeps an evening together. The number is the setting
+**Gatherings a week before the colony's own wait** (People, How often).
+
 ## Slow speeds
 Two speeds slower than normal, **½×** and **¼×**, for planning without pausing: the colony keeps living, gently.
 Small buttons sit next to the time controls (drag them by their grip to put them wherever you like; on a
@@ -3423,7 +3446,8 @@ The pages:
   Rimfolk's column in the game's Social tab, personalities and social life, traits that change, ideoligions in the colony (with Ideology), secrets, vendettas; life goals, personal stories (off, rare, normal or frequent), quirks, heirlooms, coming of age,
   colonists fixing what bothers them (and placing small plans), dreams and dream omens; moments between colonists,
   the colony noticing what happens, and small habits in free time; journals, names, anniversaries, annals and eulogies; and how often moments,
-  social events and dreams come (a quarter as often to three times as often).
+  social events and dreams come (a quarter as often to three times as often), and how many gatherings a week before the
+  colony's own evenings and suppers wait their turn (two by default; see *The colony's pace*).
 - **Heart & health**: feelings and strain, the day off at the end of one's rope, the inspector line, how quickly
   strain builds (50% to 150%); everyday ailments, the serious (possibly fatal) illnesses on their own switch, how
   often ailments come (25% to 200%); convalescence and sickbed visits, doctors' and midwives' reputations, and with
@@ -3447,7 +3471,8 @@ The pages:
 - **Interface & integrations**: how chatty Rimfolk is: **Everything**, **Notable only** (default: messages for what
   changes something; small moments stay in the journals, the Story tab and History) or **Important only**; where the
   smaller news goes (**Colony news**: one letter each evening by default, as it happens, or off, to the History tab
-  only); a message for every dream, letters or messages for new and granted wishes, a letter after each update (on
+  only); the most messages and letters that only tell a day for each colony (twelve and four, past them the evening's
+  news); a message for every dream, letters or messages for new and granted wishes, a letter after each update (on
   by default; see CHANGELOG.md), how colonists' speech shows
   (bubbles with Interaction Bubbles, floating text, or off), the visual and sound touches; the alerts (and the
   reminder about a defense line's shut gate); mood insight (and its hints in the Needs tab), taking cover with a drag,

@@ -72,6 +72,8 @@ namespace ColonyCouncil
         [Unsaved] private int nextLook;
         /// <summary>A toast's cups have gone up (Immersion/GatheringTouches.cs).</summary>
         [Unsaved] private bool raised;
+        /// <summary>The cups for life goals reached lately, raised at this gathering, have gone up (PlayOut/Stage.cs).</summary>
+        [Unsaved] private bool cupsRaised;
 
         private static FleckDef musicFleck;
         private static bool looked;
@@ -279,6 +281,12 @@ namespace ColonyCouncil
             if (here.Count == 0) return;
             // The fire's smoke, a grave's glow after dark, the toast's raised cups.
             GatheringTouches.Look(this, Play, here, map, spot, durationTicks, ref raised);
+            // A life goal's toast carried to this gathering: the cups go up for them a while in, with the toast's words.
+            if (!cupsRaised && here.Count >= 2 && lord.ticksInToil >= durationTicks * 0.4f)
+            {
+                cupsRaised = true;
+                Stage.RaiseCups(Play, here);
+            }
             if (music && VisualTouches.On)
             {
                 if (!looked)

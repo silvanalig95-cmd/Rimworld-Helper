@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.111.0</version>
+        <date>6 November 2026</date>
+        <title>One teller, one pace</title>
+        <points>
+          <li>The colony keeps one count of its gatherings: what you chose (an answer, a calendar day, a vote, a wedding, a decree, a meeting) always happens and counts, while the colony's own doings (a group's evening, a family supper, a toast) come only when fewer than two gatherings fell in the last week and none in the last day and a half. They wait up to three days for room, then are let go quietly.</li>
+          <li>Calendar days that come round within three days of each other are kept together, and one within two days of another gathering is kept at supper instead. One seasonal custom a season, a life goal's toast raised at the next gathering, and never more than about a week without one.</li>
+          <li>In the simulator a colony now gathers about 2.7 times a week instead of 4.7, the busiest week has 9 instead of 14, and fewer gatherings come within a day of the last. A new setting, Gatherings a week before the colony's own wait, on the People page, sets the room.</li>
+          <li>One teller decides how news reaches you: what is hard to miss always shows, other news shows until the colony's day is full and then waits for the evening's news, which keeps the lines that weigh most. Nothing is told twice.</li>
+          <li>Fixed: a plan that fell through still gave its moods and said people took heart from it; now it never came about. A gathering blocked by another takes the next evening, and a bonfire goes ahead without its fire rather than not at all.</li>
+          <li>The election's hustings are a gathering on the day of the vote: the candidates speak and are cheered or heckled before the votes are read.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.110.0</version>
         <date>6 November 2026</date>
         <title>One name</title>

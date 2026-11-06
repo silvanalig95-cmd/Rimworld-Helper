@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
 
-  <!-- Rimfolk's one voice to the player (Source/ColonyCouncil/UI/Tell.cs). -->
+  <!-- Rimfolk's teller (Source/ColonyCouncil/UI/Tell.cs). -->
 
   <!-- With more than one colony, what happened at one names its settlement: a message or a line of the colony news, and a letter's text. -->
   <CC_Tell_At>{PLACE}: {TEXT}</CC_Tell_At>
   <CC_Tell_AtLetter>At {PLACE}.\n\n{TEXT}</CC_Tell_AtLetter>
 
   <!-- Settings, under Messages. -->
-  <CC_Settings_TellMessagesADay>Most messages a day from Rimfolk, by kind</CC_Settings_TellMessagesADay>
-  <CC_Settings_TellMessagesADay_Tip>How many messages Rimfolk shows in a day of each kind of news (people, health, the colony, the world, the land), for each colony. Past it, the rest of the day's messages of that kind come in the evening's Colony news letter instead, so nothing is lost. The same message twice within a few hours is shown once. Important messages are never held back. An ordinary day stays well under the default; it is there for a day when something goes on and on.</CC_Settings_TellMessagesADay_Tip>
-  <CC_SetNote_TellMessagesADay>Past this, a day's messages of one kind wait for the evening's Colony news.</CC_SetNote_TellMessagesADay>
-  <CC_Settings_TellLettersADay>Most letters a day that only tell, by kind</CC_Settings_TellLettersADay>
-  <CC_Settings_TellLettersADay_Tip>How many of Rimfolk's letters that only tell you something come in a day, of each kind of news, for each colony. Past it, the rest become lines in the evening's Colony news letter. Letters that ask you to decide something are never held back, and neither is serious news (a serious illness, someone about to leave, a nemesis back).</CC_Settings_TellLettersADay_Tip>
-  <CC_SetNote_TellLettersADay>Past this, a day's letters of one kind become lines in the evening's Colony news; questions always come.</CC_SetNote_TellLettersADay>
+  <CC_Settings_TellMessagesADay>Most messages a day from Rimfolk</CC_Settings_TellMessagesADay>
+  <CC_Settings_TellMessagesADay_Tip>How many messages Rimfolk shows in a day for each colony, all kinds of news together. Past it, the rest of the day's messages come in the evening's Colony news letter instead, so nothing is lost. On a busy day (half of them shown, a raid, or something serious told in the last few hours), one person's news, their health and the land's wait for the evening while the colony's and the world's still come. The same thing twice within a few hours is told once, as a message or in the evening's news. Important messages are never held back. The evening's letter carries the lines that matter most: up to eight on a quiet day, one fewer for each letter or message the day already brought, three at the least; the rest go to the History tab.</CC_Settings_TellMessagesADay_Tip>
+  <CC_SetNote_TellMessagesADay>Past this, or for small news on a busy day, messages wait for the evening's Colony news.</CC_SetNote_TellMessagesADay>
+  <CC_Settings_TellLettersADay>Most letters a day that only tell</CC_Settings_TellLettersADay>
+  <CC_Settings_TellLettersADay_Tip>How many of Rimfolk's letters that only tell you something come in a day for each colony, all kinds together. Past it, the rest become lines in the evening's Colony news letter, and so do one person's and the land's letters in the hours after a raid or something serious. Letters that ask you to decide something are never held back, and neither is serious news (a serious illness, someone about to leave, a nemesis back).</CC_Settings_TellLettersADay_Tip>
+  <CC_SetNote_TellLettersADay>Past this, a day's letters become lines in the evening's Colony news; questions always come.</CC_SetNote_TellLettersADay>
 
 </LanguageData>

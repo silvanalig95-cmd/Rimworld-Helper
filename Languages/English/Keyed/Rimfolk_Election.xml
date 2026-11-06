@@ -5,15 +5,15 @@
 
   <!-- The setting -->
   <CC_Settings_ElectionEvent>Elections play out on the map</CC_Settings_ElectionEvent>
-  <CC_Settings_ElectionEvent_Tip>An election is announced for a date on the colony calendar, with two or three candidates for each seat and what each of them stands for. In the days before, the candidates make their case to people in their free time; on the evening before, they speak at the hustings; on election day everyone at home walks over and casts a vote, and that evening the votes are counted aloud. The council can back a candidate or call a seat's vote off and appoint someone. A colony too small for a race gets a short ceremony instead.\n\nTurned off, the colony votes at once and the result comes in a single letter, as before.</CC_Settings_ElectionEvent_Tip>
-  <CC_SetNote_ElectionEvent>On: a campaign, the hustings, polling day and a count aloud. Off: the colony votes at once.</CC_SetNote_ElectionEvent>
+  <CC_Settings_ElectionEvent_Tip>An election is announced for a date on the colony calendar, with two or three candidates for each seat and what each of them stands for. In the days before, the candidates make their case to people in their free time; on election day everyone at home walks over and casts a vote, and that evening the candidates speak and then the votes are counted aloud. The council can back a candidate or call a seat's vote off and appoint someone. A colony too small for a race gets a short ceremony instead.\n\nTurned off, the colony votes at once and the result comes in a single letter, as before.</CC_Settings_ElectionEvent_Tip>
+  <CC_SetNote_ElectionEvent>On: a campaign, polling day, the candidates heard and the count aloud. Off: the colony votes at once.</CC_SetNote_ElectionEvent>
 
   <!-- The announcement -->
   <CC_Elect_AnnounceTitle>Election day, year {0}</CC_Elect_AnnounceTitle>
   <CC_Elect_AnnounceByTitle>An election for an empty seat</CC_Elect_AnnounceByTitle>
   <CC_Elect_CeremonyTitle>The council's officers, year {0}</CC_Elect_CeremonyTitle>
-  <CC_Elect_AnnounceText>The colony will choose its council again, and election day is the {DATE}. Until then the candidates will make their case to people in their free time. On the evening before, they speak at the hustings {VENUE}. On the day itself everyone at home who is up to it casts a vote there, and that evening the votes are counted aloud.</CC_Elect_AnnounceText>
-  <CC_Elect_AnnounceByText>A seat on the council stands empty, and the colony will vote to fill it on election day, the {DATE}. Until then the candidates will make their case to people in their free time. On the evening before, they speak at the hustings {VENUE}. On the day itself everyone at home who is up to it casts a vote there, and that evening the votes are counted aloud.</CC_Elect_AnnounceByText>
+  <CC_Elect_AnnounceText>The colony will choose its council again, and election day is the {DATE}. Until then the candidates will make their case to people in their free time. On the day itself everyone at home who is up to it casts a vote {VENUE}, and that evening the candidates speak there and the votes are counted aloud.</CC_Elect_AnnounceText>
+  <CC_Elect_AnnounceByText>A seat on the council stands empty, and the colony will vote to fill it on election day, the {DATE}. Until then the candidates will make their case to people in their free time. On the day itself everyone at home who is up to it casts a vote {VENUE}, and that evening the candidates speak there and the votes are counted aloud.</CC_Elect_AnnounceByText>
   <CC_Elect_CeremonyText>The colony will choose its council again, but no seat has more than one person able to stand for it. On the evening of the {DATE}, {CHAIR} will name the officers at a short ceremony {VENUE}.</CC_Elect_CeremonyText>
   <CC_Elect_CeremonyByText>A seat on the council stands empty, and only one person can take it. On the evening of the {DATE}, {CHAIR} will name them to it at a short ceremony {VENUE}.</CC_Elect_CeremonyByText>
   <CC_Elect_Standing>Standing for their seats: {0}.</CC_Elect_Standing>
@@ -87,7 +87,7 @@
   <CC_Elect_Panel_Title>Election, year {0}</CC_Elect_Panel_Title>
   <CC_Elect_Panel_ByTitle>Election for an empty seat</CC_Elect_Panel_ByTitle>
   <CC_Elect_Panel_Ceremony>The officers' ceremony, year {0}</CC_Elect_Panel_Ceremony>
-  <CC_Elect_Panel_StatusCampaign>Election day is the {DATE}. The candidates are making their case; the hustings are on the evening before, {VENUE}.</CC_Elect_Panel_StatusCampaign>
+  <CC_Elect_Panel_StatusCampaign>Election day is the {DATE}. The candidates are making their case, and they speak at the count that evening, {VENUE}.</CC_Elect_Panel_StatusCampaign>
   <CC_Elect_Panel_StatusHustings>The hustings are this evening {VENUE}, when it is calm enough to gather. Election day is the {DATE}.</CC_Elect_Panel_StatusHustings>
   <CC_Elect_Panel_StatusHustingsOn>The hustings are under way {VENUE}. Election day is the {DATE}.</CC_Elect_Panel_StatusHustingsOn>
   <CC_Elect_Panel_StatusPolling>Election day, the {DATE}: {VOTED} of the {VOTERS} with a say have voted {VENUE}. The votes are counted that evening.</CC_Elect_Panel_StatusPolling>
@@ -100,14 +100,14 @@
   <CC_Elect_Panel_CallOffTip>Call this seat's vote off and appoint someone. Unless it is the one the colony leans to, those who would have voted for them trust the council less.</CC_Elect_Panel_CallOffTip>
   <CC_Elect_Panel_Unopposed>unopposed</CC_Elect_Panel_Unopposed>
   <CC_Elect_Panel_Votes>about {0} votes</CC_Elect_Panel_Votes>
-  <CC_Elect_Panel_PollTip>The votes each candidate could expect if everyone with a say voted now: skill, liking, friendship, the names the colony gave them, their visits, the hustings and the council's backing, without the luck of the day.</CC_Elect_Panel_PollTip>
+  <CC_Elect_Panel_PollTip>The votes each candidate could expect if everyone with a say voted now: skill, liking, friendship, the names the colony gave them, their visits and the council's backing, without the luck of the day.</CC_Elect_Panel_PollTip>
   <CC_Elect_Panel_Backed>backed by the council</CC_Elect_Panel_Backed>
   <CC_Elect_Panel_Days>Day by day: {0} ({1})</CC_Elect_Panel_Days>
 
   <!-- The calendar -->
   <CC_Elect_Cal_Day>Election day</CC_Elect_Cal_Day>
   <CC_Elect_Cal_Ceremony>The officers' ceremony</CC_Elect_Cal_Ceremony>
-  <CC_Elect_Cal_Note>The council's election: the hustings the evening before, the vote by day, the count that evening.</CC_Elect_Cal_Note>
+  <CC_Elect_Cal_Note>The council's election: the vote by day, and that evening the candidates speak and the votes are counted.</CC_Elect_Cal_Note>
   <CC_Elect_Cal_CeremonyNote>The council's officers named at a short ceremony in the evening.</CC_Elect_Cal_CeremonyNote>
   <CC_Elect_Cal_Coming>The council's election, on the {0}.</CC_Elect_Cal_Coming>
   <CC_Elect_Cal_Tip>Once, not every year. The candidates and how support leans are on the Decrees page.</CC_Elect_Cal_Tip>

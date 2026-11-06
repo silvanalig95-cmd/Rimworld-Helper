@@ -1313,7 +1313,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Asp_FulfilledLabel>Life goal reached: {0}</CC_Asp_FulfilledLabel>
   <CC_Asp_FulfilledText>{PAWN_nameDef} set out to {GOAL}, and now {PAWN_pronoun} has.</CC_Asp_FulfilledText>
   <CC_Asp_DeedPlain>did what they set out to do</CC_Asp_DeedPlain>
-  <CC_Asp_Reward_Toast>Those close to {PAWN_objective} will raise a glass to {PAWN_objective} at the table this evening.</CC_Asp_Reward_Toast>
+  <CC_Asp_Reward_Toast>A glass will be raised to {PAWN_objective} at the colony's next gathering, by the one who thinks best of {PAWN_objective}.</CC_Asp_Reward_Toast>
   <CC_Asp_Reward_Mark>{PAWN_nameDef} won't lose the knack for {SKILL} now, and learns it a little faster.</CC_Asp_Reward_Mark>
   <CC_Asp_Reward_Lesson>{OTHER_nameDef}, who shares the passion, will spend some hours learning {SKILL} at {PAWN_possessive} side.</CC_Asp_Reward_Lesson>
   <CC_Asp_Reward_Title>The colony will remember {PAWN_objective} as the one who {DEED}.</CC_Asp_Reward_Title>
