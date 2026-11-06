@@ -66,7 +66,8 @@ namespace ColonyCouncil
         private void Wishes(CouncilGameComponent comp, int now)
         {
             if (!S.enableWishes) return;
-            var open = comp.wishes.Where(w => w.state == WishState.Open && w.pawn != null).ToList();
+            // A petition of several counts once, as its first want (Wishes/Petitions.cs).
+            var open = comp.wishes.Where(w => w.state == WishState.Open && w.pawn != null && comp.LeadsPetition(w)).ToList();
             if (open.Count == 0) return;
             var oldest = open.OrderBy(w => w.createdTick).First();
             float score = 0f;
