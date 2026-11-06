@@ -303,9 +303,9 @@ The style presets of the settings window, applied as the window applies them (6 
 | storyRich | well run | +5.9 | +9.6 | -8.0 | 0.58 | 0.64 | 10% |
 | storyRich | average | +3.0 | +6.8 | -5.5 | 0.57 | 0.48 | 14% |
 | storyRich | neglectful | -6.6 | +4.3 | -11.4 | 0.53 | 0.53 | 31% |
-| demanding | well run | +3.3 | +7.3 | -7.5 | 0.49 | 0.70 | 10% |
-| demanding | average | -0.7 | +4.9 | -6.9 | 0.48 | 0.52 | 14% |
-| demanding | neglectful | -11.7 | +2.9 | -15.1 | 0.48 | 0.64 | 31% |
+| demanding | well run | +1.7 | +6.3 | -7.8 | 0.50 | 0.68 | 9% |
+| demanding | average | -3.0 | +4.3 | -8.5 | 0.49 | 0.52 | 14% |
+| demanding | neglectful | -14.7 | +2.5 | -17.6 | 0.47 | 0.65 | 30% |
 
 ## How often things happen (per colony per year)
 
