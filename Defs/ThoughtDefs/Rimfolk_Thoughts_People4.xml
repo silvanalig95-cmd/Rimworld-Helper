@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The colony's own people, the fourth round (6 November 2026): the new wishes' thanks, and the new quirks' moods. -->
+
+  <!-- ===================== Wishes granted ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Granted_Mending</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>cloth for mending</label><description>There's cloth in the stores for the winter's mending. Nobody will go about in rags while I can sew.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Granted_SpareSteel</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>steel put by</label><description>There's a proper pile of steel in the stores. I can finish what I start now.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Granted_SpareParts</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>spare parts on hand</label><description>There are spare parts in the stores. When something breaks down, I can fix it the same day.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Granted_Milk</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>milk for the little one</label><description>There's milk in the stores for the baby. I don't have to count the jugs any more.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Granted_Shelves</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>shelves in the stores</label><description>The colony's things are off the floor and on shelves. I can find what I need on the first try.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Granted_TreesByWalls</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>the trees by the walls felled</label><description>The trees that leaned over our walls are down. I'll sleep through the next storm.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Granted_SnowWays</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>a clear way out of the door</label><description>The snow by the doors has been cleared. I can walk out in the morning without filling my boots.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Quirks ===================== -->
+
+  <ThoughtDef ParentName="Council_QuirkBase">
+    <defName>Rimfolk_Quirk_TapsTheRoof</defName>
+    <stages><li><label>the roof checked</label><description>I knocked on the rock over my head before I started digging. It sounded sound. I can work now.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_QuirkBase">
+    <defName>Rimfolk_Quirk_BootsByTheFire</defName>
+    <stages><li><label>dry boots</label><description>My boots are steaming by the fire. Dry feet, after those weeks of wet ones, are worth everything.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_QuirkBase">
+    <defName>Rimfolk_Quirk_FirstFire</defName>
+    <stages><li><label>the first fire's ember</label><description>Every fire here is lit from the one we lit on the first night. Sitting by it, I remember how few of us there were.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_QuirkBase">
+    <defName>Rimfolk_Quirk_LooksBack</defName>
+    <stages><li><label>the ones left behind</label><description>Late at night I think about the people at the other colony, and wonder how they're getting on.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_QuirkBase">
+    <defName>Rimfolk_Quirk_RoadSong</defName>
+    <stages><li><label>a road song</label><description>I've a song in my head from the strangers' fire. It goes well with the open sky.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_QuirkBase">
+    <defName>Rimfolk_Quirk_IndoorsByDusk</defName>
+    <stages><li><label>out after dark</label><description>It's dark and I'm still outside. That's when the sandflies came, last time.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

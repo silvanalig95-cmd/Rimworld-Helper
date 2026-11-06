@@ -170,7 +170,11 @@ namespace ColonyCouncil
             ["ThingsHauled"] = RepFacet.Diligence, ["MessesCleaned"] = RepFacet.Diligence, ["PlantsHarvested"] = RepFacet.Diligence,
             ["PlantsSown"] = RepFacet.Diligence, ["CellsMined"] = RepFacet.Diligence, ["CorpsesBuried"] = RepFacet.Diligence,
             ["Council_SecretsKept"] = RepFacet.Discretion,
-            ["TimesInMentalState"] = RepFacet.Temper
+            ["TimesInMentalState"] = RepFacet.Temper,
+            // People4: the deeds' own records.
+            ["Council_Rescues"] = RepFacet.Courage, ["Council_NightWatches"] = RepFacet.Diligence, ["Council_ContestsWon"] = RepFacet.Skill,
+            ["Council_Masterworks"] = RepFacet.Skill, ["Council_RoundsMade"] = RepFacet.Kindness, ["Council_KindToStrangers"] = RepFacet.Kindness,
+            ["Council_StudentsTaught"] = RepFacet.Skill
         };
 
         /// <summary>The side of a name a colony name belongs to, by the record it counts; null for one that stands on its own.</summary>

@@ -42,6 +42,8 @@ Some wishes belong to an era (healroot for a tribe or a medieval village, a deep
           <li>A sauna for the cold months | On cold land (its coldest month freezing or worse) in fall and winter: the cold, the old and the sociable, while the colony has no sauna. With Dubs Bad Hygiene its sauna heater; without, a sauna of the colony's own: a small closed room (30 cells at most, no bed or workbench) with a seat and a heater set to 28 °C or more, or a campfire before electricity (as warm as it gets). Planned from the sweat room layout. On cold days people sit in it a while ("Small habits"): warmed through (comfort and a little rest, no mood), and two in there together talk.</li>
           <li>Time outside, more time to rest | The cooped-up, the worn out and the lazy.</li>
           <li>A roof over the way to the table | In a wet land, anyone who came in soaked to the table or to bed, when 3 to 40 steps of the way from their bed to the nearest dining table are open to the sky, all close enough to a wall for a roof to hold. Promising it marks those steps for the game's own roof building; fulfilled when every one is roofed.</li>
+          <li>The trees by the walls felled | Anyone grown (builders and growers more, and more in rain or wind), when 3 grown trees or more stand in the home area beside the colony's walls or doors, where a storm can bring one down on a roof. Promising it marks each for the game's own cutting; fulfilled when none still stands. Never for one whose ideoligion minds felling trees.</li>
+          <li>The snow cleared from the doors | Anyone grown (the old most), when deep snow lies on 12 cells or more of the open ground within two steps of the colony's doors and almost none of it is marked for snow clearing. Promising it puts those cells in the game's snow clearing area for the cleaners; fulfilled when nine in ten are clear.</li>
         </table>
       </li>
       <li>
@@ -55,6 +57,7 @@ Some wishes belong to an era (healroot for a tribe or a medieval village, a deep
           <li>Lessons from the colony's best | Children with a gift for a skill, when someone in the colony is far better at it.</li>
           <li>A pet to look after | Children, when something small and calm roams near the colony. Any new animal will do.</li>
           <li>New stories to read | Children, when the colony has fewer than three books.</li>
+          <li>Milk for the little one | Parents of a baby, or with one on the way (Biotech), when the stores hold less than 20 milk or baby food.</li>
         </table>
       </li>
       <li>
@@ -75,6 +78,9 @@ Some wishes belong to an era (healroot for a tribe or a medieval village, a deep
           <li>A fishing spot | Those who'd fish, the restless and gourmands, when fishing is part of the game (Odyssey, or Vanilla Fishing Expanded on its own), the water holds fish, and no fishing spot is in use. Fulfilled when a fishing zone is marked, fishing is allowed in it and someone at home has the fishing work on.</li>
           <li>A hunt | Shooters and the bloodthirsty.</li>
           <li>A freezer, a brewery | Cooks and anyone who ate something rotten, and in hot country (hot most of the year, or a hot summer) anyone, growers and cooks most, while there's food to keep; the chemically inclined. The freezer is only asked for when something can keep food frozen now: an electric cooler, a fridge from a mod, or a mod's cooler that freezes without power. A passive cooler can't (it stops at 17 °C), so a hot land before electricity hears about pemmican instead. Fulfilled when a room below 0 °C, or a working fridge, holds food.</li>
+          <li>Steel put by, cloth put by for mending | Builders and crafters, when the stores hold less than 150 steel; crafters in fall and winter, when they hold less than 80 cloth, wool, hide or any other textile.</li>
+          <li>Spare parts for the machines | Crafters and builders in an industrial or spacer colony, when the stores hold fewer than 6 components.</li>
+          <li>Shelves for the stores | Anyone ten days settled, while the colony has fewer than 2 shelves and one can be built.</li>
         </table>
       </li>
       <li>
@@ -316,6 +322,10 @@ Some run for a whole season: so many days in a row with something kept up, where
           <li>bring down 25 enemies or 10 mechanoids | Fighters; a battle, a loss.</li>
           <li>keep the colony spotless, put out 30 fires, bury 15 of the dead | Anyone; the kind, after seeing the dead left lying.</li>
           <li>read 6 different books from the colony's shelves | Anyone who can read, in a colony with 3 or more different books. Each book counts once, seen being read with the game's own reading.</li>
+          <li>learn enough doctoring to nurse the others | Anyone with Medicine under 8 (to 8, or 3 levels more); pulling through a serious illness, a hurt from everyday life, a loss.</li>
+          <li>mend forty worn or broken things around the colony | Builders.</li>
+          <li>strike six deals with traders for the colony | The sociable, as the colony's negotiator; a friend's deals.</li>
+          <li>learn to shoot straight enough to stand on the wall | Anyone who can fight, with Shooting under 8; a war among the neighbors, to one at a time.</li>
         </table>
       </li>
       <li>
@@ -331,6 +341,11 @@ Some run for a whole season: so many days in a row with something kept up, where
           <li>earn a name the colony remembers | Anyone; a friend's name.</li>
           <li>make friends among travelers and guests, see an old enemy brought down | With strangers on; a nemesis.</li>
           <li>dream something that comes true | Anyone; an omen.</li>
+          <li>mend three quarrels in the colony | Anyone but the abrasive, with friends and rivals on; a fight of their own, a loss.</li>
+          <li>spend five evenings at the fires of strangers camped nearby | With camps on; an evening at a camp's fire or its stories.</li>
+          <li>answer two of the neighbors' calls for help | With world events on; a war among the neighbors, a good turn on the road.</li>
+          <li>see two of the colony's days kept properly | With the calendar on; a new colony's first night, the founding day, a loss.</li>
+          <li>lead three of the faith's rites | Believers (Ideology); an omen, a loss.</li>
         </table>
       </li>
       <li>
@@ -345,6 +360,9 @@ Some run for a whole season: so many days in a row with something kept up, where
           <li>feel safe again, find something worth doing | Anyone whose safety (or purpose) is below 70, until it stays at 70 or more for 10 days in a row; a battle, a brush with death, a nemesis (safety); a lost seat or election, a loss (purpose).</li>
           <li>let the grief go, let go of an old shame | Anyone grieving (or ashamed) strongly now, until the feeling stays faint for 12 (or 10) days in a row; a loss.</li>
           <li>find someone to love, make a friend for life | Anyone 20 or more with no lover; a bond of friendship of 90 or more; a wedding, a loss, being left out.</li>
+          <li>go thirty days without another hurt | Anyone hurt from everyday life in the last 10 days (a danger, their work, an ailment), with hurts on; the hurt. The days start again at another hurt or a fall.</li>
+          <li>see this colony grow to 8 people | With two colonies or more, anyone whose own colony is smaller (to 8, or 2 more); its first night, a birth.</li>
+          <li>make the journey to the other colony | With two colonies or more, anyone fond of someone (30 or more) living at another; a parting, being sent away against their wish. Reached the day they stand on another of the colony's homes, by caravan, pods or ship.</li>
         </table>
         <after>The heart's goals need feelings and strain switched on, and are looked at once a day.</after>
       </li>

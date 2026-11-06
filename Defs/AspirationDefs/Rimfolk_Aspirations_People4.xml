@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More life goals (the player's request, 6 November 2026: another big content round), many sparked by what the newest
+    content brings: a hurt from everyday life (a danger, a work hurt, an ailment: the spark "hurt", read from the harm
+    service's book), a serious illness pulled through (Council_Ail_Survived), a war among the neighbours (the spark "war",
+    a spark of fighting: one fighting goal from it at a time), a new colony founded (its first night, a parting, being
+    sent against one's wish), an evening at a camp's fire. Workers: Aspirations/AspirationWorkers_People4.cs and the
+    existing ones. Goals on Rimfolk's own records (AspirationWorker_FeatureRecord) come only while their feature is on
+    (counter names it). Each holds like any goal (GoalMath: twenty days, a change of heart only for something big).
+  -->
+
+  <!-- ===================== After a hurt or an illness ===================== -->
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Rimfolk_Asp_Nurse</defName>
+    <label>a nurse's hands</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Skill</workerClass>
+    <skill>Medicine</skill>
+    <level>8</level>
+    <gain>3</gain>
+    <weight>0.6</weight>
+    <goal>learn enough doctoring to nurse the others</goal>
+    <deed>learned to nurse the others</deed>
+    <sparks><li>thought:Council_Ail_Survived</li><li>hurt</li><li>loss</li></sparks>
+    <sparkDays>5</sparkDays>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <chosen>
+      <plain>
+        <li>[spark:Council_Ail_Survived] Someone sat up with me through the worst of the fever. Next time I want to be the one sitting up.</li>
+        <li>[spark:hurt] I lay there hurt while everyone looked for the one person who knew what to do. I'm going to learn it myself.</li>
+        <li>[spark:loss] We lost one of ours, and all I could do was hold the bandages. I'm going to {GOAL}.</li>
+        <li>I don't need to be a surgeon. I just want to be some use when someone's hurt.</li>
+        <li>[tribal] The old ones knew which leaves close a wound and which root brings a fever down. I want to know them too.</li>
+        <li>[medieval] Every village had someone who could set a bone and clean a cut. Ours should have more than one.</li>
+        <li>[industrial] I want to know what every bottle in the medicine stores is for, and how much, and when.</li>
+        <li>[spacer] I can read a scan. I want to be able to do something about what it says.</li>
+      </plain>
+      <warm><li>When someone's frightened and in pain, they need a steady pair of hands. I'd like mine to be steady.</li></warm>
+      <blunt><li>One doctor isn't enough. I'll learn.</li></blunt>
+      <cheerful><li>I've decided I'm going to be the second-best nurse in the colony. The first is taken.</li></cheerful>
+      <gloomy><li>Someone else will get hurt soon. That's how it goes here. I'd rather know what to do when it happens.</li></gloomy>
+      <cold><li>A colony with a single healer has a single point of failure. I'll {GOAL}.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>I sat up with a patient last night and knew what to do the whole time. That's what I wanted.</li>
+        <li>I cleaned and dressed a wound today without asking anyone how. My hands didn't shake once.</li>
+        <li>[tribal] I know the leaves now, and the roots, and when to leave a wound alone.</li>
+      </plain>
+      <warm><li>The last one I nursed said I have a gentle way with a bandage. I'll take that.</li></warm>
+      <blunt><li>I can nurse the sick now. Call me when you need me.</li></blunt>
+      <cheerful><li>I'm a proper nurse. Well, nearly. Proper enough.</li></cheerful>
+      <gloomy><li>I know enough now to see how close some of them come. I suppose that's the price.</li></gloomy>
+      <cold><li>The colony has two people who can tend the sick now. Better odds.</li></cold>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Rimfolk_Asp_SureFooted</defName>
+    <label>sure on their feet again</label>
+    <workerClass>ColonyCouncil.AspirationWorker_SureFooted</workerClass>
+    <amount>30</amount>
+    <weight>1.2</weight>
+    <goal>go {COUNT} days without another hurt</goal>
+    <deed>went {COUNT} days without another hurt</deed>
+    <sparks><li>hurt</li></sparks>
+    <sparkDays>6</sparkDays>
+    <chosen>
+      <plain>
+        <li>[spark:hurt] I keep going over how it happened. I'm going to be careful now, and {GOAL}.</li>
+        <li>[spark:hurt] It still aches when I put weight on it. I'll watch every step until I trust my own feet again.</li>
+        <li>I've had enough of being the one carried in. A whole month without a scrape, that's what I want.</li>
+        <li>[tribal] My grandmother said the land bites the careless. I'll walk carefully until it forgets about me.</li>
+        <li>[child] I'm going to be really, really careful now, every day, until it's a whole month.</li>
+      </plain>
+      <warm><li>I gave everyone a fright. The least I can do is not do it again for a while.</li></warm>
+      <blunt><li>No more getting hurt. Thirty days clean, then we'll see.</li></blunt>
+      <cheerful><li>Starting today I'm the most careful person in the colony. Watch me.</li></cheerful>
+      <gloomy><li>It'll happen again, it always does out here. I'd just like a month of not bleeding first.</li></gloomy>
+      <cold><li>Most hurts come from hurry and habit. I'll change the habits and count the days.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>Thirty days and not a scratch. I trust my own feet again.</li>
+        <li>A month without a single hurt. I still look up before I walk under anything, but I don't flinch.</li>
+      </plain>
+      <warm><li>Nobody's had to carry me anywhere for a month. I think we're all relieved.</li></warm>
+      <blunt><li>Month's done. Not a scratch.</li></blunt>
+      <cheerful><li>A whole month. I'm practically made of stone now.</li></cheerful>
+      <gloomy><li>A month without getting hurt. Out here that's worth writing down.</li></gloomy>
+      <cold><li>Thirty days without injury. The care paid for itself.</li></cold>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <!-- ===================== The colony's work ===================== -->
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Rimfolk_Asp_Mender</defName>
+    <label>keep the colony mended</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Record</workerClass>
+    <record>ThingsRepaired</record>
+    <amount>40</amount>
+    <weight>0.6</weight>
+    <goal>mend forty worn or broken things around the colony</goal>
+    <deed>mended forty broken things</deed>
+    <who><passion>Construction</passion></who>
+    <chosen>
+      <plain>
+        <li>Everything around here is a little broken, and nobody minds until it falls apart. I mind. I'm going to {GOAL}.</li>
+        <li>I walk past three cracked things on my way to breakfast. Starting tomorrow, I stop walking past.</li>
+        <li>[tribal] A tent that's mended in time outlasts the one who made it. So does a wall.</li>
+        <li>[industrial] Half our machines are held together with wire and hope. I'd like to replace the hope.</li>
+        <li>[inherited] {NAME} kept everything here standing. Somebody has to carry on doing it.</li>
+      </plain>
+      <warm><li>A mended door that closes properly makes someone's evening better. I'd like to make forty evenings better.</li></warm>
+      <blunt><li>Things break. I fix them. Forty of them.</li></blunt>
+      <cheerful><li>I love the click of a thing that works again. I want forty more clicks.</li></cheerful>
+      <gloomy><li>Everything wears out in the end. I'll keep it going a bit longer than it wants to.</li></gloomy>
+      <cold><li>Repair costs less than replacement. The colony wastes a great deal by ignoring that.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>Forty things mended. Nothing in the colony squeaks, rattles or leaks that I know of.</li>
+        <li>I counted them up. Forty repairs, and every one still holding.</li>
+      </plain>
+      <warm><li>People don't notice when things work. That's how I know I've done it right.</li></warm>
+      <blunt><li>Forty fixed. Back to work.</li></blunt>
+      <cheerful><li>Forty. The colony runs like a well-oiled cart.</li></cheerful>
+      <cold><li>Forty repairs completed. The colony's things last longer now.</li></cold>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Rimfolk_Asp_Haggler</defName>
+    <label>a trader's name</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Record</workerClass>
+    <record>Council_TradesMade</record>
+    <amount>6</amount>
+    <weight>0.5</weight>
+    <goal>strike six deals with traders for the colony</goal>
+    <deed>struck six deals with traders</deed>
+    <sparks><li>fulfilled</li></sparks>
+    <who><passion>Social</passion></who>
+    <chosen>
+      <plain>
+        <li>The next caravan that comes through, I'm doing the talking. And the one after that.</li>
+        <li>[spark:fulfilled] {NAME} has a way with traders. I watched, and I think I can learn it.</li>
+        <li>[tribal] Trading is just talking with your hands full. I can do that.</li>
+        <li>[spacer] Every trade ship that calls, I want to be the one at the console.</li>
+      </plain>
+      <warm><li>A good deal leaves both sides glad they came. I'd like the traders to be glad to come here.</li></warm>
+      <blunt><li>Six deals. I'll get them.</li></blunt>
+      <cheerful><li>I love haggling. It's a game where everyone goes home with something.</li></cheerful>
+      <gloomy><li>They'll cheat us if we let them. I'd rather it were me they had to get past.</li></gloomy>
+      <cold><li>Trade is the cheapest way to get what the colony can't make. Someone should be good at it.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>Six deals struck, and the traders still smile when they see me coming.</li>
+        <li>That's six. The last caravan master asked for me by name.</li>
+      </plain>
+      <warm><li>We've fed people with what I traded for. That's a good feeling.</li></warm>
+      <blunt><li>Six done. I'll keep doing the talking.</li></blunt>
+      <cheerful><li>Six deals. I've got the colony a reputation for driving a fair bargain.</li></cheerful>
+      <cold><li>Six transactions. The colony is better supplied for it.</li></cold>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <!-- ===================== The colony's own records ===================== -->
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Rimfolk_Asp_FriendOfTheRoad</defName>
+    <label>a friend of the road</label>
+    <workerClass>ColonyCouncil.AspirationWorker_FeatureRecord</workerClass>
+    <counter>camps</counter>
+    <record>Council_CampEvenings</record>
+    <amount>5</amount>
+    <weight>0.6</weight>
+    <goal>spend five evenings at the fires of strangers camped nearby</goal>
+    <deed>spent five evenings at the strangers' fires</deed>
+    <sparks><li>thought:Council_Soc_EveningAtTheCamp</li><li>thought:Council_Granted_CampEvening</li><li>thought:Council_Moment_CampStories</li></sparks>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <chosen>
+      <plain>
+        <li>[spark:Council_Soc_EveningAtTheCamp] I sat at the strangers' fire last night and didn't want to leave. I'd like more evenings like that.</li>
+        <li>[spark:Council_Moment_CampStories] They told stories from roads I've never walked. I want to hear more of them, every camp that comes.</li>
+        <li>[spark:Council_Granted_CampEvening] The council let us go to the camp's fire, and it was the best evening I've had here.</li>
+        <li>Whoever camps near us next, I'll be at their fire with something to share.</li>
+        <li>[tribal] A stranger who shares your fire is a stranger no longer. That's what my mother said.</li>
+      </plain>
+      <warm><li>People on the road get lonely. A friendly face at their fire is the least we can offer.</li></warm>
+      <blunt><li>Next camp, I'm going over. And the one after.</li></blunt>
+      <cheerful><li>New faces, new songs, new food. I'll be at every camp's fire I can find.</li></cheerful>
+      <gloomy><li>They come and they go and we never see them again. I'd like to know a few of them before they do.</li></gloomy>
+      <cold><li>Travelers know what's happening on the roads. Their fires are worth the walk.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>Five evenings at five fires, and I remember every one of them. I've friends all down the road now.</li>
+        <li>That was the fifth camp's fire. I know songs from four peoples now.</li>
+      </plain>
+      <warm><li>Some of them will remember us kindly because I sat with them. That matters.</li></warm>
+      <blunt><li>Five fires. Good company, mostly.</li></blunt>
+      <cheerful><li>Five. I've eaten things I can't pronounce and loved every bite.</li></cheerful>
+      <cold><li>Five evenings. I know more about the roads than anyone here now.</li></cold>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Rimfolk_Asp_GoodNeighbour</defName>
+    <label>a good neighbor</label>
+    <workerClass>ColonyCouncil.AspirationWorker_FeatureRecord</workerClass>
+    <counter>worldSituations</counter>
+    <record>Council_WorldCallsAnswered</record>
+    <amount>2</amount>
+    <weight>0.5</weight>
+    <goal>answer two of the neighbors' calls for help</goal>
+    <deed>answered two of the neighbors' calls for help</deed>
+    <sparks><li>war</li><li>thought:Council_Evt_GoodTurn</li></sparks>
+    <sparkDays>6</sparkDays>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <chosen>
+      <plain>
+        <li>[spark:war] The neighbors are at war, and people out there are going to need help. When they call, I want to be the one who goes.</li>
+        <li>[spark:Council_Evt_GoodTurn] Someone on the road did us a good turn for nothing. I'd like to pay it forward, twice at least.</li>
+        <li>When a neighbor sends for help, someone has to answer. Next time it's me.</li>
+        <li>[lowtech] We'll need our neighbors one day. They should remember that we came when they called.</li>
+      </plain>
+      <warm><li>Out here, we're all somebody's neighbor. I'd like ours to be glad of us.</li></warm>
+      <blunt><li>Next time a neighbor calls, I go.</li></blunt>
+      <cheerful><li>I want every town on the road to know they can count on us. Starting with me.</li></cheerful>
+      <gloomy><li>Hard times are coming for everyone. Better they find us helpful than find us closed.</li></gloomy>
+      <cold><li>A colony that helps is a colony that gets helped. I'll make sure we're owed a favor or two.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>That's twice the neighbors called, and twice I went. They know my face down there now.</li>
+        <li>I answered their call again today. When we need help, I know where to send.</li>
+      </plain>
+      <warm><li>They thanked me with what little they had. I'd go again for nothing.</li></warm>
+      <blunt><li>Two calls, two answers.</li></blunt>
+      <cheerful><li>Twice. We're the good neighbors of the whole valley now.</li></cheerful>
+      <cold><li>Two calls answered. The neighbors owe us, and they know it.</li></cold>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Rimfolk_Asp_Daykeeper</defName>
+    <label>keep the colony's days</label>
+    <workerClass>ColonyCouncil.AspirationWorker_FeatureRecord</workerClass>
+    <counter>colonyCalendar</counter>
+    <record>Council_DaysKept</record>
+    <amount>2</amount>
+    <weight>0.5</weight>
+    <goal>see two of the colony's days kept properly</goal>
+    <deed>saw two of the colony's days kept</deed>
+    <sparks><li>thought:Rimfolk_FirstNight</li><li>thought:Council_Evt_FoundingDay</li><li>loss</li></sparks>
+    <chosen>
+      <plain>
+        <li>[spark:Rimfolk_FirstNight] We lit the first fire here and said a few words. Somebody has to remember days like that, and keep them.</li>
+        <li>[spark:Council_Evt_FoundingDay] The founding day came round and half of us nearly forgot it. Not next time.</li>
+        <li>[spark:loss] We lose people, and then we lose the days we shared with them. I'm going to keep the days.</li>
+        <li>A colony is the days it keeps. I'll see the next ones kept properly.</li>
+        <li>[tribal] The old days are kept by those who remember them. I'll remember.</li>
+      </plain>
+      <warm><li>The days we keep together are the ones the children will remember. I want them to be good ones.</li></warm>
+      <blunt><li>Days get forgotten. Not on my watch.</li></blunt>
+      <cheerful><li>I'm going to make every day we keep the best one of the season.</li></cheerful>
+      <gloomy><li>If nobody keeps the days, nobody will remember we were here.</li></gloomy>
+      <cold><li>Kept days hold a colony together. Someone should take charge of them.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>Two of the colony's days kept, the table laid and the words said. I'll keep the next ones too.</li>
+        <li>That's the second day I've seen kept. People came up afterwards to say they were glad of it.</li>
+      </plain>
+      <warm><li>Everyone was there, and everyone was glad. That's all a kept day needs.</li></warm>
+      <blunt><li>Two days kept. Properly.</li></blunt>
+      <cheerful><li>Two kept days, and both of them lovely.</li></cheerful>
+      <cold><li>Two days observed as they should be. The habit is forming.</li></cold>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Rimfolk_Asp_Peacemaker</defName>
+    <label>a peacemaker</label>
+    <workerClass>ColonyCouncil.AspirationWorker_FeatureRecord</workerClass>
+    <counter>socialWeb</counter>
+    <record>Council_QuarrelsMended</record>
+    <amount>3</amount>
+    <weight>0.6</weight>
+    <goal>mend three quarrels in the colony</goal>
+    <deed>mended three quarrels</deed>
+    <sparks><li>thought:HadAngeringFight</li><li>loss</li></sparks>
+    <who><notTrait><li>Abrasive</li><li>Psychopath</li></notTrait></who>
+    <chosen>
+      <plain>
+        <li>[spark:HadAngeringFight] I got into a fight this week and I'm ashamed of it. I'd rather be the one who stops them.</li>
+        <li>[spark:loss] We lost someone, and two of them still weren't speaking at the grave. That's not how it should be.</li>
+        <li>There's too much shouting in this colony. I'm going to {GOAL}.</li>
+        <li>[lowtech] Where I grew up, the one who ended a feud was honored more than the one who won it.</li>
+      </plain>
+      <warm><li>Most quarrels are two people who both want to be heard. I can listen to both.</li></warm>
+      <blunt><li>Three quarrels. I'll end them.</li></blunt>
+      <cheerful><li>Nothing ends a quarrel like a shared joke and a full plate. I've got both.</li></cheerful>
+      <gloomy><li>We're too few to hate each other. Somebody has to remind people of that.</li></gloomy>
+      <cold><li>Grudges cost work and sleep. I'll settle a few of them.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>Three quarrels mended. Two of them were sharing a table at supper tonight.</li>
+        <li>That's the third quarrel I've seen ended. The colony is quieter for it.</li>
+      </plain>
+      <warm><li>They're talking again. That was all I wanted.</li></warm>
+      <blunt><li>Three done. Less shouting.</li></blunt>
+      <cheerful><li>Three. Peace and quiet, and a lot more laughing.</li></cheerful>
+      <cold><li>Three disputes resolved. The colony works better for it.</li></cold>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Rimfolk_Asp_Celebrant</defName>
+    <label>lead the rites</label>
+    <workerClass>ColonyCouncil.AspirationWorker_FeatureRecord</workerClass>
+    <counter>ideology</counter>
+    <record>Council_RitualsLed</record>
+    <amount>3</amount>
+    <weight>0.5</weight>
+    <goal>lead three of the faith's rites</goal>
+    <deed>led three of the faith's rites</deed>
+    <sparks><li>omen</li><li>loss</li></sparks>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <chosen>
+      <plain>
+        <li>[spark:omen] I dreamt I was leading the rite, and then it came true in other ways. I think it's meant for me.</li>
+        <li>[spark:loss] We said the words over our dead, and I wanted to be the one saying them. I'll lead the next rites.</li>
+        <li>The rites hold us together. I'd like to be the one who leads them.</li>
+        <li>[tribal] The old songs need a voice to carry them. Mine will do.</li>
+      </plain>
+      <warm><li>When I lead the rite, I want everyone to feel they belong in it.</li></warm>
+      <blunt><li>I'll lead the rites. Three to start.</li></blunt>
+      <cheerful><li>I already know the words. Now I just need everyone to come.</li></cheerful>
+      <gloomy><li>The faith is all some of us have left. Someone should keep it properly.</li></gloomy>
+      <cold><li>Rituals done well bind people together. I can do them well.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>Three rites led to their end. I could see it in their faces: it meant something.</li>
+        <li>That was the third rite I led. My voice didn't shake once.</li>
+      </plain>
+      <warm><li>Everyone came, and everyone left a little lighter. That was the point.</li></warm>
+      <blunt><li>Three rites. Done right.</li></blunt>
+      <cheerful><li>Three. And the singing gets better every time.</li></cheerful>
+      <cold><li>Three rituals completed. The colony's faith is steadier.</li></cold>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <!-- ===================== A new colony ===================== -->
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Rimfolk_Asp_NewHome</defName>
+    <label>see the new colony grow</label>
+    <workerClass>ColonyCouncil.AspirationWorker_HomeGrows</workerClass>
+    <amount>8</amount>
+    <weight>1</weight>
+    <goal>see this colony grow to {COUNT} people</goal>
+    <deed>saw the colony grow to {COUNT} people</deed>
+    <sparks><li>thought:Rimfolk_FirstNight</li><li>birth</li></sparks>
+    <chosen>
+      <plain>
+        <li>[spark:Rimfolk_FirstNight] We lit the first fire here with so few of us around it. I want to see this place full.</li>
+        <li>[spark:birth] A child born here. That's how a place starts to be a home. I want to see it grow to {COUNT}.</li>
+        <li>It's a small colony still. I'd like to see the beds filled and the table crowded.</li>
+        <li>[tribal] A camp of a few becomes a village of many, if the hunting is good and the people stay.</li>
+        <li>[spacer] We came a long way to start again. I want to see it become a real settlement.</li>
+      </plain>
+      <warm><li>Every new face here is one more person to share the evenings with.</li></warm>
+      <blunt><li>We need more people. I want to see {COUNT}.</li></blunt>
+      <cheerful><li>More people, more noise, more suppers. I can't wait.</li></cheerful>
+      <gloomy><li>So few of us. One bad winter and there'd be nobody left. We need to grow.</li></gloomy>
+      <cold><li>A colony this small can't do everything it needs to. It must grow.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>The table is full tonight, every seat taken. This is a real colony now.</li>
+        <li>We're {COUNT} now. I remember when we were a handful round a fire.</li>
+      </plain>
+      <warm><li>I don't know everyone's name yet. That's how I know we've grown.</li></warm>
+      <blunt><li>{COUNT} of us. Good. Keep going.</li></blunt>
+      <cheerful><li>So many people. I had to wait for a seat at supper and I loved it.</li></cheerful>
+      <cold><li>The colony has reached a workable size.</li></cold>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Rimfolk_Asp_Visit</defName>
+    <label>the journey to the other colony</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Visit</workerClass>
+    <weight>1.2</weight>
+    <goal>make the journey to the other colony</goal>
+    <deed>made the journey to the other colony</deed>
+    <sparks><li>thought:Rimfolk_Parted</li><li>thought:Rimfolk_Uprooted</li></sparks>
+    <sparkDays>8</sparkDays>
+    <chosen>
+      <plain>
+        <li>[spark:Rimfolk_Parted] We parted at the edge of the old place and I didn't say half of what I meant to. I'm going to go and see them.</li>
+        <li>[spark:Rimfolk_Uprooted] I didn't choose to be here. I'd at least like to see the old place, and the people in it, once more.</li>
+        <li>Some of the people I care about most live in the other colony now. I'm going to make the journey.</li>
+        <li>[tribal] The trail between the two camps should be walked, or it grows over.</li>
+        <li>[spacer] It's not so far, by the standards of where we came from. I'll go and see them.</li>
+      </plain>
+      <warm><li>I miss them. I want to sit at their table, just once, and hear how they're getting on.</li></warm>
+      <blunt><li>I'm going over to the other colony. Soon.</li></blunt>
+      <cheerful><li>A trip to see them. I'm already packing in my head.</li></cheerful>
+      <gloomy><li>If I don't go now, I'll keep putting it off until it's too late.</li></gloomy>
+      <cold><li>The two colonies should know each other. Someone should make the journey.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>I made it. We sat up half the night telling each other everything.</li>
+        <li>I'm at the other colony. It looks different from how I pictured it, and the faces are just the same.</li>
+      </plain>
+      <warm><li>They were so glad to see me. I'd do the journey twice over for that.</li></warm>
+      <blunt><li>Made the trip. Good to see them.</li></blunt>
+      <cheerful><li>I'm here. The journey was long and every step was worth it.</li></cheerful>
+      <gloomy><li>I came all this way and it felt like a day. I'll miss them again when I go.</li></gloomy>
+      <cold><li>The journey is made. The colonies are a little closer for it.</li></cold>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <!-- ===================== A war among the neighbours ===================== -->
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Rimfolk_Asp_ReadyHands</defName>
+    <label>ready for what comes</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Skill</workerClass>
+    <skill>Shooting</skill>
+    <level>8</level>
+    <gain>3</gain>
+    <weight>0.5</weight>
+    <goal>learn to shoot straight enough to stand on the wall</goal>
+    <deed>learned to shoot straight</deed>
+    <sparks><li>war</li></sparks>
+    <who><canFight>true</canFight><notTrait><li>Psychopath</li></notTrait></who>
+    <chosen>
+      <plain>
+        <li>[spark:war] The neighbors are at war. If it comes up our road, I don't want to be the one hiding in the storeroom.</li>
+        <li>[spark:war] Every traveler brings worse news from the fighting. I'm going to {GOAL}.</li>
+        <li>[tribal] I'll learn the bow properly. When the drums come, I want to be on the wall.</li>
+        <li>[medieval] I'll practice at the butts every evening until I can put a bolt where I mean it.</li>
+        <li>[industrial] I'm going to learn to handle a rifle properly, before anyone needs me to.</li>
+        <li>[spacer] I've held a gun. I've never needed to hit anything with it. That should change.</li>
+      </plain>
+      <warm><li>I'm not a fighter. But I'd stand on the wall for the people here, and I'd rather be some use there.</li></warm>
+      <blunt><li>War's close. I'm learning to shoot.</li></blunt>
+      <cheerful><li>It can't hurt to be ready. Besides, I've always wanted to be a good shot.</li></cheerful>
+      <gloomy><li>Wars spread. It's only a matter of time before this one reaches us.</li></gloomy>
+      <cold><li>Every pair of hands on the wall is one more reason for raiders to go elsewhere.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>I can put a shot where I mean it now. If they come, I'll be on the wall.</li>
+        <li>I practiced until my arms ached, and now I'm a fair shot. I hope I never need to be.</li>
+      </plain>
+      <warm><li>If trouble comes, I can stand with the others now. That's what I wanted.</li></warm>
+      <blunt><li>I can shoot. Let them come.</li></blunt>
+      <cheerful><li>Bullseye. Well, nearly. Close enough for the wall.</li></cheerful>
+      <gloomy><li>I'm ready for the war. I'd much rather it never came.</li></gloomy>
+      <cold><li>I'm a competent shot now. The colony's defense is a little deeper.</li></cold>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+</Defs>

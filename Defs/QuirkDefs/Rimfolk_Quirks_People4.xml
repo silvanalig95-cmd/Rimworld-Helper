@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Quirks from what happens on the map (the player's request, 6 November 2026: another big content round): a hurt from
+    everyday life (afterHurt: a danger, a work hurt, read from the harm service's book), an ailment while it lasts
+    (whileIll: trench foot, sandfly fever), a serious illness pulled through, a new colony's first night, a parting, an
+    evening at a camp's fire. Each shows on the map now and then as a word over their head when it fits what they're
+    doing (Immersion/HabitBubbles.cs, the Rimfolk_Pool_Bubble pools in Rimfolk_Quirks_People4Bubbles.xml), holds a
+    season to a few, and counts toward the two quirks a colonist holds at most. Chances are small and the moments rare,
+    so they take a share of the quirks that come rather than add many.
+  -->
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Rimfolk_Quirk_WatchesFooting</defName>
+    <label>watches every step</label>
+    <children>true</children>
+    <afterHurt>true</afterHurt>
+    <withinDays>4</withinDays>
+    <chance>0.02</chance>
+    <days>90</days>
+    <gained>
+      <plain>
+        <li>Since I got hurt I watch where I put my feet, every stone and every root. I didn't know there were so many.</li>
+        <li>I walk round the loose ground now, even when it's the long way.</li>
+        <li>[child] I look at the ground the whole time now, so I don't fall again.</li>
+      </plain>
+      <warm><li>I don't want to give anyone another fright. So I'm careful now, very careful.</li></warm>
+      <blunt><li>I watch my step now. Once was enough.</li></blunt>
+      <cheerful><li>I've become an expert on the ground. I could tell you about every stone between here and the fields.</li></cheerful>
+      <gloomy><li>The ground is out to get me. I'm not giving it another chance.</li></gloomy>
+      <cold><li>Most falls come from not looking. I look now.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>I walked across the yard today without looking down once. I suppose I'm over it.</li></plain>
+      <cheerful><li>I ran to supper today. Didn't even think about it.</li></cheerful>
+      <cold><li>I've stopped watching every step. The habit wore off.</li></cold>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Rimfolk_Quirk_TapsTheRoof</defName>
+    <label>taps the roof before digging</label>
+    <afterHurt>true</afterHurt>
+    <practice><li>Mining</li></practice>
+    <onlyFromPractice>true</onlyFromPractice>
+    <practiceHours>30</practiceHours>
+    <withinDays>5</withinDays>
+    <chance>0.006</chance>
+    <days>150</days>
+    <passes>true</passes>
+    <condition>WorkingAt</condition>
+    <workType>Mining</workType>
+    <thought>Rimfolk_Quirk_TapsTheRoof</thought>
+    <gained>
+      <plain>
+        <li>I knock on the rock over my head before I swing at the face now. A sound roof rings; a bad one thuds.</li>
+        <li>Since the last time, I tap the ceiling before every shift. It takes a moment and it might save my neck.</li>
+        <li>[tribal] The old diggers sang to the stone before they cut it. I just knock on it, but it's the same idea.</li>
+      </plain>
+      <warm><li>I tap the roof for everyone working near me, not just myself.</li></warm>
+      <blunt><li>Knock first. Dig after.</li></blunt>
+      <cheerful><li>Knock knock. Who's there? Not a rockfall, today.</li></cheerful>
+      <gloomy><li>The mountain will come down on me one day. I'd like a warning first.</li></gloomy>
+      <cold><li>A hollow ring means a loose roof. Testing costs seconds.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>I forgot to knock on the roof today, and nothing happened. Maybe I don't need to any more.</li></plain>
+      <cold><li>I've stopped testing the roof. Most of it is sound.</li></cold>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Rimfolk_Quirk_BootsByTheFire</defName>
+    <label>dries their boots by every fire</label>
+    <whileIll><li>Council_Ail_TrenchFoot</li></whileIll>
+    <chance>0.03</chance>
+    <days>150</days>
+    <condition>NearFire</condition>
+    <thought>Rimfolk_Quirk_BootsByTheFire</thought>
+    <gained>
+      <plain>
+        <li>After the weeks of wet feet, I dry my boots by every fire I pass. I won't go through that again.</li>
+        <li>My feet are still sore from the marsh. Every evening my boots go by the fire, and my socks with them.</li>
+        <li>[tribal] My foot wraps go by the fire every night now, and I change them every morning.</li>
+      </plain>
+      <warm><li>I've started drying everyone's boots by the fire, not just mine. Nobody should get feet like mine.</li></warm>
+      <blunt><li>Boots by the fire. Every night. No arguments.</li></blunt>
+      <cheerful><li>Warm, dry boots in the morning. I'd forgotten how good that feels.</li></cheerful>
+      <gloomy><li>My feet will never be the same. At least they can be dry.</li></gloomy>
+      <cold><li>Wet feet rot. Dry boots by the fire stop it.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>I left my boots by the door last night instead of the fire. My feet must have forgotten.</li></plain>
+      <cheerful><li>My feet are fine now. Boots go wherever they like.</li></cheerful>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Rimfolk_Quirk_BoilsWater</defName>
+    <label>boils everything they drink</label>
+    <afterThoughts><li>Council_Ail_Survived</li></afterThoughts>
+    <withinDays>4</withinDays>
+    <chance>0.08</chance>
+    <days>200</days>
+    <passes>true</passes>
+    <gained>
+      <plain>
+        <li>After the fever I don't drink anything that hasn't been boiled first. I'm not going back to that bed.</li>
+        <li>I wash my hands before every meal now, and boil the water I drink. People think I'm odd. I'm alive.</li>
+        <li>[tribal] The healer said the sickness lives in still water. I boil all mine now.</li>
+      </plain>
+      <warm><li>I boil a pot for anyone who wants it. Nobody else should have to go through that fever.</li></warm>
+      <blunt><li>I boil my water now. Don't ask.</li></blunt>
+      <cheerful><li>Boiled water is my new favorite drink. It tastes like not being sick.</li></cheerful>
+      <gloomy><li>Something in the water nearly killed me. I can't trust any of it now.</li></gloomy>
+      <cold><li>Boiling kills most of what makes people ill. It's a small habit with a large return.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>I drank straight from the jug today without thinking. The fever must be a long way behind me.</li></plain>
+      <cold><li>I've stopped boiling my water. The fear has passed.</li></cold>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Rimfolk_Quirk_FirstFire</defName>
+    <label>keeps an ember of the first fire</label>
+    <children>true</children>
+    <afterThoughts><li>Rimfolk_FirstNight</li></afterThoughts>
+    <withinDays>4</withinDays>
+    <chance>0.12</chance>
+    <days>300</days>
+    <passes>true</passes>
+    <condition>NearFire</condition>
+    <thought>Rimfolk_Quirk_FirstFire</thought>
+    <gained>
+      <plain>
+        <li>I lit my first fire here from the embers of the first night's. I mean to keep it that way, every fire I light.</li>
+        <li>Every fire in this colony should come from the first one. I carry a coal from hearth to hearth.</li>
+        <li>[child] I'm the keeper of the first fire's ember now. I carry it in a little pot.</li>
+      </plain>
+      <warm><li>That first fire brought us together. I want every fire here to remember it.</li></warm>
+      <blunt><li>New fires get lit from the old one. That's the rule now.</li></blunt>
+      <cheerful><li>Our first fire is still burning, in a way. I made sure of it.</li></cheerful>
+      <gloomy><li>If the first fire goes out for good, I think something here will go out with it.</li></gloomy>
+      <cold><li>It's only fire. Still, the first one matters to people, and so it matters to me.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>I lit the stove with a match today and didn't think about the first fire until afterwards.</li></plain>
+      <warm><li>Every fire here feels like ours now, wherever it was lit from.</li></warm>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Rimfolk_Quirk_LooksBack</defName>
+    <label>looks back down the road</label>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <afterThoughts><li>Rimfolk_Parted</li><li>Rimfolk_Uprooted</li></afterThoughts>
+    <withinDays>5</withinDays>
+    <chance>0.08</chance>
+    <days>60</days>
+    <condition>LateNight</condition>
+    <thought>Rimfolk_Quirk_LooksBack</thought>
+    <gained>
+      <plain>
+        <li>Late at night I find myself looking down the road toward the other colony. I don't know what I expect to see.</li>
+        <li>I keep a list of things to tell them when I see them next. It's getting long.</li>
+      </plain>
+      <warm><li>I hope they're keeping warm over there. I think about them every night.</li></warm>
+      <blunt><li>I miss them. That's all.</li></blunt>
+      <cheerful><li>I've started writing them letters in my head. They're very funny letters.</li></cheerful>
+      <gloomy><li>Every night I wonder if we were right to split up.</li></gloomy>
+      <cold><li>I think about the other colony more than is useful.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>I didn't look down the road last night. This place is home now, I think.</li></plain>
+      <warm><li>I still miss them. But I sleep through the night again.</li></warm>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Rimfolk_Quirk_RoadSong</defName>
+    <label>sings a song from the strangers' fire</label>
+    <children>true</children>
+    <afterThoughts><li>Council_Soc_EveningAtTheCamp</li><li>Council_Moment_CampStories</li><li>Council_Granted_CampEvening</li></afterThoughts>
+    <withinDays>3</withinDays>
+    <chance>0.03</chance>
+    <days>200</days>
+    <passes>true</passes>
+    <condition>Outdoors</condition>
+    <thought>Rimfolk_Quirk_RoadSong</thought>
+    <gained>
+      <plain>
+        <li>The strangers sang a road song at their fire, and now I can't stop humming it.</li>
+        <li>I've picked up a song from the camp. I don't know half the words, so I make them up.</li>
+        <li>[child] The people at the camp taught me a song about a long road. I sing it everywhere.</li>
+      </plain>
+      <warm><li>Their song stays with me. It's like they're still here, a little.</li></warm>
+      <blunt><li>Got a song stuck in my head. Live with it.</li></blunt>
+      <cheerful><li>I learned a new song. Everyone's going to hear it until they learn it too.</li></cheerful>
+      <gloomy><li>It's a sad song, about leaving. It fits.</li></gloomy>
+      <cold><li>The tune is simple and good to work to.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>I tried to sing the road song today and couldn't remember how it went.</li></plain>
+      <cheerful><li>I've got a new favorite song now. The road song had a good run.</li></cheerful>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Rimfolk_Quirk_IndoorsByDusk</defName>
+    <label>indoors by dusk</label>
+    <whileIll><li>Council_Ail_SandflyFever</li></whileIll>
+    <chance>0.08</chance>
+    <days>90</days>
+    <condition>NightSky</condition>
+    <thought>Rimfolk_Quirk_IndoorsByDusk</thought>
+    <gained>
+      <plain>
+        <li>The sandflies came at dusk, and so did the fever. I'm indoors before the sun goes down now.</li>
+        <li>Three days of fever from one evening outside. I don't stay out after dark any more.</li>
+      </plain>
+      <warm><li>I've been telling everyone to come in at dusk. Nobody should get what I got.</li></warm>
+      <blunt><li>Dusk means inside. Learned that the hard way.</li></blunt>
+      <cheerful><li>Early nights for me from now on. I'll be the best rested person in the colony.</li></cheerful>
+      <gloomy><li>The night belongs to the flies. They can have it.</li></gloomy>
+      <cold><li>The flies come out after sunset. Being indoors then is simple prevention.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>I stayed out to watch the sunset tonight, and nothing bit me.</li></plain>
+      <cold><li>I no longer mind being outside after dark.</li></cold>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+</Defs>

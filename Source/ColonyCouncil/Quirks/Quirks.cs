@@ -78,6 +78,13 @@ namespace ColonyCouncil
         /// burning beyond the gate.
         /// </summary>
         public List<string> afterSeen;
+        /// <summary>
+        /// Picked up after a hurt from everyday life within withinDays (a fall at the dig, a burn, a crush, an ailment:
+        /// the harm service's book), once they're up again.
+        /// </summary>
+        public bool afterHurt;
+        /// <summary>Picked up while ill with one of these (hediff defNames: Rimfolk's ailments, the game's own), at its chance a day.</summary>
+        public List<string> whileIll;
         /// <summary>Simply who they are: picked up on any day by someone who fits <see cref="who"/>.</summary>
         public bool byNature;
         /// <summary>Chance per day while the trigger holds.</summary>
@@ -123,7 +130,7 @@ namespace ColonyCouncil
         /// <summary>Journal when it fades.</summary>
         public ToneLines faded = new ToneLines();
 
-        public bool HasTrigger => !afterThoughts.NullOrEmpty() || !afterSeen.NullOrEmpty() || afterBattle || afterDowned || afterOmen || byNature;
+        public bool HasTrigger => !afterThoughts.NullOrEmpty() || !afterSeen.NullOrEmpty() || afterBattle || afterDowned || afterOmen || byNature || afterHurt || !whileIll.NullOrEmpty();
 
         public override IEnumerable<string> ConfigErrors()
         {
@@ -453,6 +460,8 @@ namespace ColonyCouncil
             if (d.afterBattle && battleTick.TryGetValue(p, out int b) && now - b < window) return true;
             if (d.afterDowned && downedTick.TryGetValue(p, out int t) && now - t < window && !p.Downed) return true;
             if (d.afterOmen && comp.dreams.recent.Any(r => r.pawn == p && r.cameTrue && now - r.tick < GenDate.TicksPerDay * 10)) return true;
+            if (d.afterHurt && HurtWithin(p, d.withinDays)) return true;
+            if (IllWith(p, d.whileIll)) return true;
             if (d.byNature) return true;
             if (!d.afterSeen.NullOrEmpty() && QuirkSights.SawAny(p, d.afterSeen, window)) return true;
             if (!d.afterThoughts.NullOrEmpty())
@@ -460,6 +469,20 @@ namespace ColonyCouncil
                 var memories = p.needs?.mood?.thoughts?.memories?.Memories;
                 if (memories != null && memories.Any(m => m.def != null && m.age <= window && d.afterThoughts.Contains(m.def.defName))) return true;
             }
+            return false;
+        }
+
+        /// <summary>A hurt from everyday life within these days, and up again (People4: the quirks a danger or an ailment leaves).</summary>
+        private static bool HurtWithin(Pawn p, float days) => Harm.On && !p.Downed && Harm.DaysSince(p) < days;
+
+        /// <summary>Ill now with one of these (hediff defNames).</summary>
+        private static bool IllWith(Pawn p, List<string> ills)
+        {
+            if (ills.NullOrEmpty() || p?.health?.hediffSet == null) return false;
+            var hs = p.health.hediffSet.hediffs;
+            for (int i = 0; i < hs.Count; i++)
+                if (hs[i]?.def != null && ills.Contains(hs[i].def.defName))
+                    return true;
             return false;
         }
 
@@ -473,6 +496,8 @@ namespace ColonyCouncil
             if (d.afterDowned && downedTick.TryGetValue(p, out int t) && now - t < window) return QuirkCause.Downed;
             if (d.afterOmen && comp.dreams.recent.Any(r => r.pawn == p && r.cameTrue && now - r.tick < GenDate.TicksPerDay * 10)) return QuirkCause.Omen;
             if (!d.afterSeen.NullOrEmpty() && QuirkSights.SawAny(p, d.afterSeen, window)) return QuirkCause.Seen;
+            if (d.afterHurt && HurtWithin(p, d.withinDays)) return QuirkCause.Hurt;
+            if (IllWith(p, d.whileIll)) return QuirkCause.Ill;
             if (!d.afterThoughts.NullOrEmpty()) return QuirkCause.Lived;
             return QuirkCause.Nature;
         }

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Names for deeds the colony talks about (the player's request, 6 November 2026: another big content round), under the
+    same rules as Council_Epithets.xml and the one-name rules (Epithets/NameMath.cs): the most of the record past its
+    threshold earns it, it holds 20 days, then passes only to a clear surpasser. The records are in
+    Defs/Misc/Rimfolk_Records_People4.xml: six are counted by the deed they name (PeopleFourMath.DeedRecord), so they come while
+    personalities and social life are on; students taught, and votes lost (Rimfolk_Records_Names.xml), on their own. The
+    words are ones every age has: a tribe, a village, a town and a starship all have a shield, a night watch, a champion
+    and a teacher. Their thresholds are set for deeds that come a few times a year, so a colony earns each in a year or
+    two, not a season.
+  -->
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Rimfolk_Epithet_Shield</defName>
+    <label>the Shield</label>
+    <record>Council_Rescues</record>
+    <threshold>3</threshold>
+    <earned>{PAWN_nameDef} has carried more of the colony's people out of a fight than anyone, with the fighting still going on around {PAWN_objective}. The colony calls {PAWN_objective} the Shield.</earned>
+    <deathNote>{PAWN_nameDef} carried more of the colony out of the fighting than anyone. In the next fight, whoever falls will have to hope someone else comes for them.</deathNote>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Rimfolk_Epithet_NightWatch</defName>
+    <label>Night-Watch</label>
+    <record>Council_NightWatches</record>
+    <threshold>4</threshold>
+    <earned>{PAWN_nameDef} has walked the walls through more nights than anyone, and is still out there when the others come out at dawn. The colony calls {PAWN_objective} Night-Watch.</earned>
+    <deathNote>The colony will sleep less easily without {PAWN_nameDef} on the walls.</deathNote>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Rimfolk_Epithet_Champion</defName>
+    <label>the Champion</label>
+    <record>Council_ContestsWon</record>
+    <threshold>4</threshold>
+    <earned>Whatever the contest, a wrestle at a feast or a test of hands against a friend, {PAWN_nameDef} wins it more often than anyone here. The colony calls {PAWN_objective} the Champion, and the challengers keep coming.</earned>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Rimfolk_Epithet_MasterHand</defName>
+    <label>Master-Hand</label>
+    <record>Council_Masterworks</record>
+    <threshold>3</threshold>
+    <earned>More of the colony's finest pieces came out of {PAWN_nameDef}'s hands than anyone's: the kind people stop and look at twice. The colony calls {PAWN_objective} Master-Hand.</earned>
+    <deathNote>The finest things in the colony were made by {PAWN_nameDef}. They will outlast {PAWN_objective} by a long way.</deathNote>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Rimfolk_Epithet_Lamp</defName>
+    <label>the Lamp</label>
+    <record>Council_RoundsMade</record>
+    <threshold>4</threshold>
+    <earned>When the sickbeds fill, {PAWN_nameDef} goes round them, one bed after another, more often than anyone. The sick brighten when {PAWN_pronoun} comes in, and the colony calls {PAWN_objective} the Lamp.</earned>
+    <deathNote>The sick will miss {PAWN_nameDef} at their bedsides more than anyone.</deathNote>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Rimfolk_Epithet_OpenHand</defName>
+    <label>Open-Hand</label>
+    <record>Council_KindToStrangers</record>
+    <threshold>4</threshold>
+    <earned>Water for a thirsty traveler, a meal for a refugee, a long talk at a stranger's fire: {PAWN_nameDef} has done more strangers a kindness than anyone here. The colony calls {PAWN_objective} Open-Hand.</earned>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Rimfolk_Epithet_Teacher</defName>
+    <label>the Teacher</label>
+    <record>Council_StudentsTaught</record>
+    <threshold>2</threshold>
+    <earned>More of the colony's people learned their work at {PAWN_nameDef}'s elbow than at anyone else's, and now get on with it alone. The colony calls {PAWN_objective} the Teacher.</earned>
+    <deathNote>Some of what {PAWN_nameDef} knew lives on in the hands of the ones {PAWN_pronoun} taught.</deathNote>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Rimfolk_Epithet_Hopeful</defName>
+    <label>the Hopeful</label>
+    <record>Council_VotesLost</record>
+    <threshold>4</threshold>
+    <dubious>true</dubious>
+    <earned>{PAWN_nameDef} has stood for the council and lost more often than anyone, and stands again every time. The colony calls {PAWN_objective} the Hopeful, mostly kindly.</earned>
+  </ColonyCouncil.EpithetDef>
+
+</Defs>

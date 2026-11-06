@@ -358,7 +358,9 @@ A name, once earned, holds. Nobody can take it for 20 days; after that it passes
 
 A colonist may hold several names, but is known by one: a proud name before a dubious one, then the one held longest. It stands under their name on their card, in the Story tab and the tables, and in their death letter. The card says it in one line with what the peoples beyond the walls know them for and how far it carries ("Known as the Healer, the one who won the wrestling at the feast with the Lenlia, talked about in the next town."), with the other names and what the others say of them (brave, kind, a gossip) under it. The chronicle has a line when a name becomes the one someone is known by; a second name is the news and their journal. People → Renown lists everyone by their one name.
 
-Rimfolk also counts a few deeds the game doesn't, and shows them in the Records tab: quarrels mended (the Mender), trade deals struck as negotiator (the Haggler), secrets other colonists trusted them with (the Vault) and eulogies given (the Mourner).</text>
+Rimfolk also counts a few deeds the game doesn't, and shows them in the Records tab: quarrels mended (the Mender), trade deals struck as negotiator (the Haggler), secrets other colonists trusted them with (the Vault) and eulogies given (the Mourner).
+
+Six of the deeds people talk about are counted for names too, each time one happens (with personalities and social life on): people carried out of a fight while it was still going on (the Shield, from 3), night watches kept on the walls (Night-Watch, from 4), contests won (the Champion, from 4), masterworks made (Master-Hand, from 3), rounds of the sick (the Lamp, from 4) and kindnesses done to strangers (Open-Hand, from 4). Two more count on their own: students taught until they stand alone (the Teacher, from 2), and votes lost (the Hopeful, from 4, a mixed blessing and the Unbeaten's other side). They hold and pass like every name.</text>
       </li>
       <li>
         <heading>Names from beyond the walls</heading>
@@ -811,7 +813,7 @@ A watcher of the stars, the dread of storms and the other quirks born of somethi
       </li>
       <li>
         <heading>Quirks from what the colony lives through</heading>
-        <text>Some quirks come from what happens to the colony out in the world and at home, within a few days of it, and fade after a season or a year. Each shows on the map now and then, as a word over their head when it fits what they're doing.</text>
+        <text>Some quirks come from what happens to the colony out in the world and at home, within a few days of it (or while an illness lasts), and fade after a season or a year. Each shows on the map now and then, as a word over their head when it fits what they're doing.</text>
         <table>
           <li>Quirk | Comes from | What it does | On the map</li>
           <li>keeps a lamp lit for travelers | refugees seen through, a guest's thanks or a watch kept for one, being taken in, pilgrims fed, a good turn on the road, a pilgrim escorted home | friendly visitors and caravans who stay the night leave on better terms: +1 goodwill a visit | a word about the lamp at night</li>
@@ -822,8 +824,16 @@ A watcher of the stars, the dread of storms and the other quirks born of somethi
           <li>swears by a healer's salve | a camp's healer, the famous healer or a traveling healer saw to them, or they watched the famous healer at work | wounds heal 10% faster | a word in the sickbed</li>
           <li>juggles at supper | the players' evening, or a camp's show | eating or resting beside others in the same room, each of them has a little recreation (once in eight hours) | a word while juggling</li>
           <li>swears by a trick against the cold | a traveler's trick against the cold, out in the frozen lands | comfortable 3 °C colder | a word out in the frost</li>
+          <li>watches every step | a hurt from everyday life (a danger, their work, an ailment), once up again | nothing to play | a word walking out on open ground</li>
+          <li>taps the roof before digging | a hurt, for one who mines a good deal | +1 at the rock face | a word at the face</li>
+          <li>dries their boots by every fire | trench foot, while it lasts | +1 by an open fire | a word by the fire</li>
+          <li>boils everything they drink | a serious illness pulled through | nothing to play | a word at meals</li>
+          <li>keeps an ember of the first fire | a new colony's first night | +1 by an open fire | a word by the fire of an evening</li>
+          <li>looks back down the road | a parting, or being sent away against their wish | -1 awake late at night | a word late at night</li>
+          <li>sings a song from the strangers' fire | an evening at a camp's fire or its stories | +1 outdoors | a word at work under the sky</li>
+          <li>indoors by dusk | sandfly fever, while it lasts | -2 outside after dark | a word outside after dusk</li>
         </table>
-        <after>All but the smoke and the dream book pass between people close to each other, like the habits. Each has dreams of its own, and the lamp keeper's can come true: visitors follow the lamp a few days later.</after>
+        <after>All but the smoke and the dream book pass between people close to each other, like the habits; of the newer ones, watching every step, the boots by the fire, looking back down the road and indoors by dusk stay with the one who has them. The newer ones come seldom: a fight brings far more. Each has dreams of its own, and the lamp keeper's can come true: visitors follow the lamp a few days later.</after>
       </li>
       <li>
         <heading>Quirks in people's lives</heading>

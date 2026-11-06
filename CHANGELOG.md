@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## New wishes, goals and names
+
+*6 November 2026, version 0.121.0*
+
+- Twelve new life goals, among them a nurse's hands after pulling through an illness, a peacemaker after a fight of their own, and a friend of the road after evenings at camps' fires. With two colonies, someone may want to see the new one grow or make the journey to the other.
+- A hurt from everyday life or a war among the neighbours can now spark a life goal, and a war never puts two colonists on the same fighting goal.
+- Seven new wishes: cloth, steel and spare parts put by, milk or baby food for a little one, shelves for the stores, the trees by the walls felled and the snow cleared from the doors. The last two are marked on the map when promised.
+- Eight new quirks from what happens on the map, such as tapping the roof before digging after a hurt, drying boots by every fire after trench foot, or keeping an ember of a new colony's first fire.
+- Eight new names to earn: the Shield, Night-Watch, the Champion, Master-Hand, the Lamp, Open-Hand, the Teacher and the Hopeful, each counted from what the colonist really did.
+- Four new things the colony talks about: the prisoners let out, a binge on the colony's drugs, a body dug up and running off into the wild.
+- Wishes and life goals come as often as before: the new ones take a share of the old.
+
 ## New questions, events and dangers
 
 *6 November 2026, version 0.120.0*

@@ -353,7 +353,12 @@ namespace ColonyCouncil
             if (!graduated && (!t.a.IsColonist || !t.b.IsColonist)) quiet = true;
             bool fades = !graduated && t.kind == TieKind.Comrades;
             var aspirations = CouncilGameComponent.Instance?.aspirations;
-            if (graduated) aspirations?.Notify(t.a, "graduated");
+            if (graduated)
+            {
+                aspirations?.Notify(t.a, "graduated");
+                // A student taught to stand alone, for the Teacher (People4).
+                CouncilRecords.Add(t.a, CouncilRecords.StudentsTaught);
+            }
             else if (t.kind == TieKind.Rivals && t.a.IsColonist && t.b.IsColonist)
             {
                 aspirations?.Notify(t.a, "peace");

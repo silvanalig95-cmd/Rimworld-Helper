@@ -181,7 +181,10 @@ namespace ColonyCouncil
             ["Council_Epithet_Haggler"] = KnownFor.Traders, ["Council_Epithet_SilverTongue"] = KnownFor.Traders,
             ["Council_Epithet_Builder"] = KnownFor.Makers, ["Council_Epithet_Maker"] = KnownFor.Makers, ["Council_Epithet_RoofRaiser"] = KnownFor.Makers,
             ["Council_Epithet_Tinker"] = KnownFor.Makers,
-            ["Council_Epithet_Celebrant"] = KnownFor.Faithful, ["Council_Epithet_Mourner"] = KnownFor.Faithful
+            ["Council_Epithet_Celebrant"] = KnownFor.Faithful, ["Council_Epithet_Mourner"] = KnownFor.Faithful,
+            // People4: names for deeds the colony talks about.
+            ["Rimfolk_Epithet_Shield"] = KnownFor.Fighters, ["Rimfolk_Epithet_NightWatch"] = KnownFor.Fighters,
+            ["Rimfolk_Epithet_MasterHand"] = KnownFor.Makers, ["Rimfolk_Epithet_Lamp"] = KnownFor.Healers, ["Rimfolk_Epithet_OpenHand"] = KnownFor.Hosts
         };
 
         public static KnownFor EpithetFor(string defName) => defName != null && Epithets.TryGetValue(defName, out var k) ? k : KnownFor.None;

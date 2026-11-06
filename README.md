@@ -193,9 +193,12 @@ to them. A raid makes someone ask for defenses within hours; a cold night, a mea
 friend's death or food poisoning all set off matching wishes. Every wish arrives with a little scene and a line
 in the colonist's own voice, chosen to fit the season, weather, time of day and their situation.
 
-121 kinds of wish, most with variants (six kinds of work room, a dozen pieces of furniture, any
+128 kinds of wish, most with variants (six kinds of work room, a dozen pieces of furniture, any
 missing body part), so the same colony rarely hears the same request twice in a row: a wish the colony has
-heard several times lately becomes much less likely, and one nobody here has ever made a little more likely. The
+heard several times lately becomes much less likely, and one nobody here has ever made a little more likely. Among
+the newer ones: cloth put by for mending before the cold months, steel and spare parts in the stores, milk for a
+little one, shelves for the stores, the trees grown against the walls felled before a storm brings one down on a
+roof, and the snow cleared from the doors; promised, the last two are marked for the game's own cutters and cleaners. The
 wishes that come up most often (armor, a place to pray, a latrine, a seat at the table, a bath, warmth at night) have
 three to five ways to be asked in every temperament, so the same colonist rarely asks the same way twice.
 Every wish asks only for what the colony can do now, in its era: a tribe hears about healroot and pemmican, an
@@ -923,7 +926,7 @@ two went through together, and the character page has a "Groups and role" sectio
 group".
 
 #### Reputation and gossip: what people say about each other
-Colonists notice what the others do (31 kinds of deed): who carried a wounded friend out of a fight and who ran, who
+Colonists notice what the others do (51 kinds of deed): who carried a wounded friend out of a fight and who ran, who
 held the line or brought many down, who sat with the wounded for days, a tantrum, a berserk rage, the first punch, a
 binge while the stores ran low, a secret kept or let out, a masterwork, a great work seen through, a botched
 operation, a contest or an election won, a kindness to a stranger, a cruelty to a prisoner, an affair or a breakup,
@@ -936,7 +939,9 @@ good) and makes of it what their character does (the bold admire courage, the wa
 their heads, in about 660 lines by deed, slant and character, and the listener answers. Deeds come from the newer
 systems too: a friend made at a camp or a quarrel with one, a lost child found, a pilgrim walked home, a neighbour's
 harvest worked or a mission let slip, a call for help answered in a world event, a calendar day seen to, a feast dish
-burned or a quarrel at its table, the night watch walked, the dead carried out, the rounds of the sick.
+burned or a quarrel at its table, the night watch walked, the dead carried out, the rounds of the sick; and from the
+game's own moments: the prisoners let out of their cells, a binge on the colony's drugs, a body dug up, running off
+into the wild.
 
 What the colony knows of someone is their **name**: brave or a coward, kind or cruel, reliable or idle, skilled,
 trustworthy or a gossip, a hothead or level-headed. A name is a small opinion either way, steadies those beside the
@@ -1024,8 +1029,13 @@ young one grown, one last fine piece, no grudge to the grave, family set right) 
 the faithful want their faith found again or their ideoligion shared; a troubled heart wants to feel safe again, to
 let a grief go, to forgive itself or to find a friend for life. A reader may set out on a reader's year: six different
 books from the colony's shelves, each counted once as it's seen being read. Goals respect belief: nobody whose
-ideoligion forbids books, pets, travel or love sets their heart on them. 85 in all, listed on the Almanac page "every
-life goal". Goals fit the person (their passions, traits and situation) and grow out of what happens to them: a battle
+ideoligion forbids books, pets, travel or love sets their heart on them. What the newer content brings sparks goals
+too: after a hurt from everyday life someone wants thirty days without another, or to learn enough doctoring to nurse
+the others (as does one who pulled through a serious illness); with the neighbours at war someone learns to shoot
+straight enough to stand on the wall, or to answer the neighbours' calls; a new colony's first night makes someone want
+to see it grow or its days kept, and a parting the journey to the other colony; an evening at a camp's fire, five more.
+Others mend forty broken things, strike six deals with traders, mend three quarrels or lead three of the faith's rites.
+97 in all, listed on the Almanac page "every life goal". Goals fit the person (their passions, traits and situation) and grow out of what happens to them: a battle
 makes a warrior, a brush with death a healer, a wedding someone who wants to marry, a birth someone who wants a child,
 a lost election someone who wants a seat, loneliness someone who wants friends, and seeing a friend reach their goal
 can make them want the same. A fight can make a warrior of those who fought hardest in it (the three who brought down
@@ -1143,7 +1153,11 @@ swears by their salve (faster healing), one who saw the players juggles at suppe
 them), and one taught a traveler's trick against the cold feels it less. With a coffee or tea mod, an early riser may
 take up making the first pot: on a morning with coffee or tea in the stores they carry a real cup from the stockpile
 to a friend at their leisure, who drinks it there (never to someone whose drug policy, ideoligion or teetotalism rules
-it out). 61 quirks in all. Picking one up and letting it
+it out). A hurt from everyday life can leave someone watching every step (and a miner tapping the roof before
+digging), trench foot drying their boots by every fire, sandfly fever indoors by dusk, a serious illness pulled through
+boiling everything they drink, a new colony's first night keeping an ember of the first fire, a parting looking back
+down the road late at night, and an evening at a camp's fire singing the strangers' song. 69 quirks in all. Picking one
+up and letting it
 fade are written in the journal in the colonist's own voice. Quirks show up between people too: a hummer grates on a
 nervous neighbor or gets a duet, a sleep talker's words are repeated at breakfast, an early riser wakes a night owl,
 the singing cook wins over the gourmand, a whittler carves a gift, two superstitious colonists compare precautions,
@@ -1906,7 +1920,10 @@ the ideoligion and in the colony bring more: *Old Doc* and *Old Iron* (two years
 (three terms as speaker without ever losing a vote), *the Celebrant* and *the Shepherd* (rituals led and years as
 moral guide, with Ideology), *the Founder* (ten years since the first day), *the Last of the First*, *the Firstborn*
 and *the Annalist*, who keeps the pen. They show in play: travelers ask for Old Doc or the Celebrant by name, the
-founding day's letter names the last of the founders. 63 names in all. A name holds: nobody can take it for 20 days,
+founding day's letter names the last of the founders. Six deeds the colony talks about count for names too: *the
+Shield* (people carried out of a fight), *Night-Watch* (nights on the walls), *the Champion* (contests won),
+*Master-Hand* (masterworks), *the Lamp* (rounds of the sick) and *Open-Hand* (kindnesses to strangers), with *the
+Teacher* (students taught to stand alone) and *the Hopeful* (votes lost, again and again). 71 names in all. A name holds: nobody can take it for 20 days,
 and after that it passes to someone who stays a fifth ahead on the count every day of a week and does more of that work
 than the holder in it, never back to the one who lost it within 30 days (who writes it once in their journal). Two who
 share the work don't pass a name more than about once in 60 days; one who clearly surpasses the holder has it within a

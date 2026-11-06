@@ -523,6 +523,9 @@ namespace ColonyCouncil
         public bool HappenedSince(Pawn p, string key, int tick) =>
             p != null && key != null && events.TryGetValue(p.ThingID + "|" + key, out int t) && t >= tick;
 
+        /// <summary>When something that might give them a goal last happened to them (a tick), or -1 (kept a month).</summary>
+        public int When(Pawn p, string key) => p != null && key != null && events.TryGetValue(p.ThingID + "|" + key, out int t) ? t : -1;
+
         /// <summary>
         /// The spark of this goal that has happened to them lately, or null: a big one first (a brush with death, a loss),
         /// then the one that pulls most (GoalMath), then the first in the goal's list. A fight sparks no goal someone else at
@@ -545,6 +548,10 @@ namespace ColonyCouncil
                     now = memories != null && memories.Any(m => m.def != null && m.def.defName == name && m.age <= window);
                 }
                 else if (spark == "fulfilled") now = Recent(p, "fulfilled:" + d.defName, d.sparkDays);
+                // A hurt from everyday life (a fall at the dig, a burn, a crush, an ailment: the harm service's book), and a
+                // war among the neighbours running now (AspirationWorkers_People4.cs).
+                else if (spark == GoalSparks.Hurt) now = GoalSparks.HurtLately(p, d.sparkDays);
+                else if (spark == GoalSparks.War) now = GoalSparks.WarNear();
                 else now = Recent(p, spark, d.sparkDays);
                 if (!now) continue;
                 float pull = GoalMath.Big(spark) ? 2f : GoalMath.SparkPull(spark);
@@ -652,7 +659,7 @@ namespace ColonyCouncil
                 if (!a.done && a.def != null && a.pawn != p && a.pawn != null && !a.pawn.Dead && ColonyState.Of(a.pawn) == home)
                 {
                     held[a.def] = (held.TryGetValue(a.def, out int n) ? n : 0) + 1;
-                    if (a.spark == "battle") afterAFight[a.def] = (afterAFight.TryGetValue(a.def, out int f) ? f : 0) + 1;
+                    if (GoalMath.FightSpark(a.spark)) afterAFight[a.def] = (afterAFight.TryGetValue(a.def, out int f) ? f : 0) + 1;
                 }
             foreach (var d in DefDatabase<AspirationDef>.AllDefsListForReading)
             {

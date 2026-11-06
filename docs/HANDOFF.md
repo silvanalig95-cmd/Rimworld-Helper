@@ -6,6 +6,86 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 0.121.0, new wishes, goals and names (the player's request, 6 November 2026): "do another big content update to existing
+  mechanics"; this part the colony's own people, what they want, strive for and are known for (the other parts are
+  other agents'). New content in the existing frameworks at their existing rates; no round of its own, About.xml,
+  the What's new page and CHANGELOG untouched. Pure rules in `Lives/PeopleFourMath.cs` and `GoalMath` (`PeopleFourTests`);
+  DESIGN.md "What the colony's people want, strive for and are known for: the fourth round". Each piece, what starts it,
+  every age's form, how often:
+  - Two sparks for life goals (`Aspirations/AspirationWorkers_People4.cs`, `GoalSparks`, read in the tracker's
+    `Sparked`): `hurt`, a hurt from everyday life lately (whatever the harm service gave them: a danger, a work hurt, an
+    ailment; `Harm.DaysSince`), and `war`, a bad world event of the war kind running (the warlord, the clans, a war
+    between neighbours; looked at once an hour). A war is a spark of fighting (`GoalMath.FightSpark`, pull 0.6 like a
+    foe): the one-at-a-time rule holds it as it holds a fight. Neither is big enough to change a goal held. No new goal
+    is sparked by a fight. `AspirationTracker.When` gives a spark's last tick.
+  - Twelve life goals (`Defs/AspirationDefs/Rimfolk_Aspirations_People4.xml`), each with lines for what sparked it and
+    in six tones: a nurse's hands (Medicine to 8, anyone; an illness pulled through, a hurt, a loss; lines for the four
+    ages' means), sure on their feet again (30 days without another hurt or fall, only for someone hurt in the last
+    10, the clock starting again at each: `AspirationWorker_SureFooted`, with hurts on), keep the colony mended (40
+    repairs, builders), a trader's name (6 deals, the sociable), a friend of the road (5 evenings at camps' fires; an
+    evening there, its stories), a good neighbor (2 of the neighbours' calls answered; a war, a good turn on the road),
+    keep the colony's days (2 kept; a new colony's first night, the founding day, a loss), a peacemaker (3 quarrels
+    mended; a fight of their own, a loss), lead the rites (3, Ideology; an omen, a loss), see the new colony grow (its
+    own people to 8, 2 more at least, with two homes: `AspirationWorker_HomeGrows`; its first night, a birth), the
+    journey to the other colony (standing on another of the colony's homes, someone they're fond of living there:
+    `AspirationWorker_Visit`; a parting, being sent away), ready for what comes (Shooting to 8 for anyone who can
+    fight; a war; lines for bow, crossbow, rifle). Goals on Rimfolk's own records come only while their feature is on
+    (`AspirationWorker_FeatureRecord`, `counter` names it: camps, worldSituations, colonyCalendar, socialWeb, ideology).
+  - Seven wishes (`Defs/WishDefs/Rimfolk_Wishes_People4.xml`, thanks in `Rimfolk_Thoughts_People4.xml`, +3 or +4 for 4
+    or 5 days): cloth put by for mending (80 textiles of any kind, crafters, fall and winter), steel put by (150,
+    builders and crafters), spare parts for the machines (6 components, industrial and spacer only), milk for the little
+    one (20 milk or baby food, parents of a baby), shelves for the stores (2), and two that play out when promised
+    (`Wishes/WishWorkers_People4.cs`): the trees by the walls felled (3 grown trees or more in the home area beside the
+    colony's walls or doors, each marked for the game's cutting; never for one whose faith minds felling trees) and the
+    snow cleared from the doors (deep snow on 12 cells or more within two steps of the doors, put in the game's snow
+    clearing area). No triggers: they take a share of the wish roll, which comes as often as ever. The balance model's
+    gates for the two (`Tools/Balance/Rates.cs`, 0.2 and 0.1).
+  - Eight quirks (`Defs/QuirkDefs/Rimfolk_Quirks_People4.xml`, moods in `Rimfolk_Thoughts_People4.xml`, words over a
+    head in `Defs/FlavorPoolDefs/Rimfolk_Quirks_People4Bubbles.xml` through `HabitBubbles`), with two new triggers on
+    `QuirkDef`: `afterHurt` (a hurt within its days, once up) and `whileIll` (hediff defNames, while ill), and their
+    causes "after getting hurt", "from an illness". Watches every step (a hurt, 0.02 a day for 4 days), taps the roof
+    before digging (a hurt, only from mining practice, +1 at the face), dries their boots by every fire (trench foot,
+    +1 by a fire), boils everything they drink (a serious illness pulled through), keeps an ember of the first fire (a
+    new colony's first night, +1 by a fire), looks back down the road (a parting or being sent away, -1 late at night,
+    60 days), sings a song from the strangers' fire (a camp's evening, +1 outdoors), indoors by dusk (sandfly fever, -2
+    outside after dark). Their moments press 0.58 quirks a colonist-year on the test's generous model, against 8.4 the
+    fights already bring, under the cap of two. Dreams of their own (`Defs/DreamDefs/Rimfolk_Dreams_People4.xml`, three).
+  - Eight names and six deeds. Six deeds the colony talks about count a record each, each time they're recorded,
+    merged or not (`PeopleFourMath.DeedRecord`, in `Deeds.Record`; records in `Defs/Misc/Rimfolk_Records_People4.xml`):
+    people carried out of a fight (the Shield, from 3), night watches (Night-Watch, 4), contests won (the Champion, 4),
+    masterworks (Master-Hand, 3), rounds of the sick (the Lamp, 4), kindnesses to strangers (Open-Hand, 4); students
+    taught to stand alone are counted where a mentorship ends (`SocialWeb.End`; the Teacher, 2), votes lost were already
+    (the Hopeful, 4, dubious). `Defs/EpithetDefs/Rimfolk_Epithets_People4.xml`; words every age has; renown's known-for
+    and reputation's sides for them (`RenownMath.Epithets`, `Reputations.EpithetSides`). The one-name rules are
+    untouched. Four new deeds (`Defs/DeedDefs/Rimfolk_Deeds_People4.xml`, with their log topics), met where the game
+    notices them: the prisoners let out, a binge on the colony's drugs, a body dug up, running off into the wild (the
+    game's breaks). At the merge, a wedding and a proposal turned down were dropped: a deed moves how the colony sees
+    someone (its facets), and the colony is the family, with no mechanics on family life.
+  - Rates. Life goals (`PeopleFourTests`, a model of the real pool of grown-ups' goals with the tracker's rules: twelve
+    colonists over four years of sixty days, sixty runs, the same seeds and the same colonists fitting the same old goals
+    before and after): 70 goals before, 80 after (the two that need a second home left out); started 0.94 a
+    colonist-year before and 0.96 after; from fights 8.4% and 6.4% (a war 0.8%, a hurt 6.7% on the model's generous
+    two hurts a colonist-year); never two on one fighting goal from fights or a war at once. `Tools/Balance` (120 runs a
+    setup, before on the start tree, after on this one; reports kept outside the repo): 6 colonists average play, wishes
+    voiced 0.47 and 0.48 a day (7.1 and 7.2 a season), letters 0.39 and 0.40; wishes made a year (well, average,
+    neglect) 39.1, 27.9, 31.4 and 38.5, 28.8, 31.6; mood 69/64/39% either way; strain (strained, worn, breaking) 5.8,
+    1.4, 0.3% and 5.8, 1.5, 0.3% (average); net 2.6 and 2.7; the good side's steady/in good heart/in high spirits rows the
+    same. `--nature` and `--social` print the same, `--scenes` (10 colonists, 200 runs) as built 23.9, 23.4, 23.6 and
+    24.0, 23.5, 23.5 staged a year (2.8 a week either way); no new answer gathers people. Names hold and pass as before
+    (NameMath unchanged): the eight new ones are for deeds that come a few times a year, so a colony earns each in a year
+    or two; the save holds one more hold and holder per name (`save_estimate`: 71, about 2 KB).
+  - Shared code changed outside the new files: `Aspirations/Aspirations.cs` (the two sparks, `When`, the fighting tally by
+    `FightSpark`), `GoalMath.cs` (`FightSpark`, the war's pull), `Quirks/Quirks.cs` and `Practice.cs` (the two triggers,
+    two causes), `Immersion/HabitBubbles.cs` (eight bubbles), `Social/Gossip/Deeds.cs` (the deed's record),
+    `Social/SocialWeb.cs` (students taught), `Epithets/CouncilRecords.cs` (`StudentsTaught`), `Diplomacy/RenownMath.cs`,
+    `Social/Gossip/Reputations.cs`, `Tools/Balance/Rates.cs`, `Tools/Tests/FairCouncilTests.cs` (its code check reads
+    `FightSpark`), `ImmersionTests.cs` (the eight bubble pools). Docs: the Almanac's lists (wishes, life goals), its names
+    and quirks pages (rows at the end of their tables, a paragraph; keywords unchanged), README (lists and counts: 128
+    wishes, 97 life goals, 69 quirks, 71 names, 51 deeds), DESIGN.md.
+  - Needs a look in the game: trees against the walls marked and felled after a promise; the ways by the doors put in
+    the snow clearing area and shovelled; a goal "after getting hurt" after a danger's wound, and the thirty days
+    starting again at another; the journey to the other colony reached on arrival by caravan; the new names in the
+    Records tab after a raid's rescues and a feast's contests; a mood from taps-the-roof at the rock face.
 - 0.120.0, new questions, events and dangers (the player's request, 6 November 2026): "drop some new additional dilemmas, events,
   world events, camps, illnesses/ailments (can also be some artificial ones), dangers etc., for further gameplay
   variety"; this part the council's questions, Rimfolk's events and dangers on the map (illnesses, world events and camps

@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More wishes from what the colony really has and lacks (the player's request, 6 November 2026: another big content
+    round). Five on the XML-driven workers (WishWorker_Stock, _Have; see Wishes_Variety.xml for the rules of their
+    lines), each in the form the colony can have by its own means: cloth for mending is whatever cloth, wool or hide the
+    colony keeps, steel for every age, spare parts only where there are machines to keep, milk or baby food for a little
+    one, shelves where the stores lie on the floor. Two with workers of their own (Wishes/WishWorkers_People4.cs), each
+    played out on the map when promised by the game's own work: trees grown against the walls marked for the cutters,
+    and the snowed-in ways by the doors put in the snow clearing area for the cleaners. They take a share of the wishes
+    that come: the colony's wish roll comes as often as ever and picks among more.
+  -->
+
+  <!-- ===================== Cloth for mending ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Rimfolk_Wish_Mending</defName>
+    <label>cloth put by for mending</label>
+    <description>Someone who mends the colony's clothes wants cloth, wool or hide in the stores before the cold months wear everything thin.</description>
+    <workerClass>ColonyCouncil.WishWorker_Stock</workerClass>
+    <category>Gear</category>
+    <weight>0.7</weight>
+    <expiryDays>12</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Rimfolk_Granted_Mending</grantedThought>
+    <allowPetition>true</allowPetition>
+    <envy>0</envy>
+    <objectionChance>0.1</objectionChance>
+    <talkInteraction>Council_Talk_Work</talkInteraction>
+    <fulfilledWhen>Keep at least {TARGET} cloth, wool, hide or any other textile in storage or in the home area. Grow cotton, shear the flock, tan hides, or buy from traders.</fulfilledWhen>
+    <wants>
+      <categories><li>Textiles</li></categories>
+      <count>80</count>
+      <anySource>true</anySource>
+      <seasons><li>Fall</li><li>Winter</li></seasons>
+      <passions><li>Crafting</li></passions>
+      <minDaysInColony>5</minDaysInColony>
+      <reason>{PAWN_nameDef} mends the colony's clothes, and there's hardly any cloth, wool or hide left to patch them with.</reason>
+    </wants>
+    <request>
+      <plain>
+        <li>Half the colony's elbows are out of their sleeves, and I've nothing left to patch them with.</li>
+        <li>Could we put some cloth by? Winter's hard on clothes, and I can't mend with thread alone.</li>
+        <li>[winter] Every coat I mend tears somewhere else the next week. I need cloth, and plenty of it.</li>
+        <li>[tribal] We need hides put by, and good ones. The cold eats through a worn wrap in days.</li>
+        <li>[medieval] A bolt of wool in the stores would see us through the winter's mending.</li>
+        <li>[spacer] Even synthread wears through. I need something to patch it with.</li>
+      </plain>
+      <warm><li>I like seeing everyone warm and whole. I just need the cloth to do it.</li></warm>
+      <blunt><li>No cloth, no mending. Get some in.</li></blunt>
+      <cheerful><li>Give me a pile of cloth and I'll have everyone looking smart by spring.</li></cheerful>
+      <gloomy><li>We'll all be in rags by midwinter, the way things are going.</li></gloomy>
+      <cold><li>Mending is cheaper than making new. It still needs material.</li></cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>A proper pile of cloth to work with. Nobody's elbows are going to freeze this winter.</li>
+        <li>I've patched three coats today and there's plenty left.</li>
+      </plain>
+      <warm><li>Thank you. I'll keep everyone warm with it.</li></warm>
+      <blunt><li>Good. Now I can mend.</li></blunt>
+      <cheerful><li>So much cloth. I'm going to patch everything in sight.</li></cheerful>
+      <cold><li>The stores will cover the winter's mending.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>I'll patch with what I've got, which is mostly other patches.</li></plain>
+      <gloomy><li>Rags it is, then.</li></gloomy>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== Steel put by ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Rimfolk_Wish_SpareSteel</defName>
+    <label>steel put by</label>
+    <description>A builder or a crafter wants a pile of steel in the stores, so the next job or repair doesn't wait on it.</description>
+    <workerClass>ColonyCouncil.WishWorker_Stock</workerClass>
+    <category>Work</category>
+    <weight>0.6</weight>
+    <expiryDays>12</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Rimfolk_Granted_SpareSteel</grantedThought>
+    <allowPetition>true</allowPetition>
+    <envy>0</envy>
+    <objectionChance>0.1</objectionChance>
+    <talkInteraction>Council_Talk_Work</talkInteraction>
+    <fulfilledWhen>Keep at least {TARGET} steel in storage or in the home area. Mine it, smelt down scrap, or buy it from traders.</fulfilledWhen>
+    <wants>
+      <defNames><li>Steel</li></defNames>
+      <count>150</count>
+      <anySource>true</anySource>
+      <passions><li>Construction</li><li>Crafting</li></passions>
+      <minDaysInColony>5</minDaysInColony>
+      <reason>{PAWN_nameDef} builds and mends with steel, and the colony's pile of it is nearly gone.</reason>
+    </wants>
+    <request>
+      <plain>
+        <li>The steel pile is down to a few bars. The next thing that breaks will just stay broken.</li>
+        <li>Could we put some steel by? I keep starting jobs I can't finish.</li>
+        <li>[tribal] The sky-metal we found is nearly used up. Our knives and arrowheads need more of it.</li>
+        <li>[medieval] A smith without iron is just someone standing by a fire. We need steel in the stores.</li>
+        <li>[industrial] Everything we build needs steel, and we're nearly out.</li>
+      </plain>
+      <warm><li>I'd hate to have to tell someone their door can't be fixed for want of a few bars.</li></warm>
+      <blunt><li>We're out of steel. Fix that.</li></blunt>
+      <cheerful><li>A nice fat pile of steel, that's all I want. Well, for now.</li></cheerful>
+      <gloomy><li>When the next raid smashes the gate, we'll have nothing to mend it with.</li></gloomy>
+      <cold><li>Steel is the bottleneck on half the colony's work. A reserve would remove it.</li></cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>A proper pile of steel. I can finish what I start now.</li>
+        <li>I stacked it myself. It's a good-looking pile.</li>
+      </plain>
+      <warm><li>Now nobody has to wait on a repair. Thank you.</li></warm>
+      <blunt><li>Steel's in. Good.</li></blunt>
+      <cheerful><li>Look at it all. I'm going to build something wonderful.</li></cheerful>
+      <cold><li>The reserve should cover the next few jobs.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>We'll make do with scraps, then.</li></plain>
+      <blunt><li>No steel. No repairs. Don't blame me.</li></blunt>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== Spare parts ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Rimfolk_Wish_SpareParts</defName>
+    <label>spare parts for the machines</label>
+    <description>Someone who keeps the colony's machines running wants a few components in the stores for when one breaks down.</description>
+    <workerClass>ColonyCouncil.WishWorker_Stock</workerClass>
+    <category>Work</category>
+    <weight>0.6</weight>
+    <expiryDays>12</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Rimfolk_Granted_SpareParts</grantedThought>
+    <allowPetition>true</allowPetition>
+    <envy>0</envy>
+    <objectionChance>0.1</objectionChance>
+    <talkInteraction>Council_Talk_Work</talkInteraction>
+    <fulfilledWhen>Keep at least {TARGET} components in storage or in the home area. Make them at a fabrication bench, salvage them, or buy them from traders.</fulfilledWhen>
+    <wants>
+      <defNames><li>ComponentIndustrial</li></defNames>
+      <count>6</count>
+      <anySource>true</anySource>
+      <eras><li>industrial</li><li>spacer</li></eras>
+      <passions><li>Crafting</li><li>Construction</li></passions>
+      <minDaysInColony>5</minDaysInColony>
+      <reason>{PAWN_nameDef} keeps the colony's machines running, and the last spare parts are nearly gone.</reason>
+    </wants>
+    <request>
+      <plain>
+        <li>The next machine that breaks down will stay broken. We're out of spare parts.</li>
+        <li>Could we keep a few components by? Something always breaks at the worst time.</li>
+        <li>[night] The generator coughed twice tonight. If it goes, I've nothing to fix it with.</li>
+        <li>[winter] If the heaters break down this winter, we'll need parts the same day, not next month.</li>
+        <li>[spacer] Half our systems run on parts we can't spare. I'd sleep better with a few in the stores.</li>
+      </plain>
+      <warm><li>I don't want anyone to go cold because a heater broke and I couldn't fix it.</li></warm>
+      <blunt><li>Machines break. We need parts. Six, at least.</li></blunt>
+      <cheerful><li>A little box of spare parts would make me the happiest mechanic alive.</li></cheerful>
+      <gloomy><li>Everything breaks down eventually. I'd rather not be standing there empty-handed when it does.</li></gloomy>
+      <cold><li>A broken machine without a spare costs days. A handful of components costs very little.</li></cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>A box of spare parts on the shelf. Let something break; I'm ready.</li>
+        <li>I counted them twice. Enough for the next few breakdowns.</li>
+      </plain>
+      <warm><li>Now nobody goes without light or heat for want of a part. Thank you.</li></warm>
+      <blunt><li>Parts in. Good.</li></blunt>
+      <cheerful><li>Spare parts. I could kiss every one of them.</li></cheerful>
+      <cold><li>The reserve covers the likely failures.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>I'll keep my fingers crossed and the machines running as long as I can.</li></plain>
+      <gloomy><li>When it breaks, it stays broken. Remember I said so.</li></gloomy>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== Milk for the little one ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Rimfolk_Wish_Milk</defName>
+    <label>milk for the little one</label>
+    <description>A parent with a baby wants milk or baby food in the stores, so the little one never goes hungry.</description>
+    <workerClass>ColonyCouncil.WishWorker_Stock</workerClass>
+    <category>Childhood</category>
+    <weight>1</weight>
+    <expiryDays>8</expiryDays>
+    <cooldownDays>20</cooldownDays>
+    <grantedThought>Rimfolk_Granted_Milk</grantedThought>
+    <envy>0</envy>
+    <objectionChance>0.05</objectionChance>
+    <fixedPatience>true</fixedPatience>
+    <talkInteraction>Council_Talk_Child</talkInteraction>
+    <fulfilledWhen>Keep at least {TARGET} milk or baby food in storage or in the home area. Milk the animals, cook baby food, or buy milk from traders.</fulfilledWhen>
+    <wants>
+      <defNames><li>Milk</li><li>BabyFood</li></defNames>
+      <count>20</count>
+      <anySource>true</anySource>
+      <parentOfLittleOne>true</parentOfLittleOne>
+      <reason>{PAWN_nameDef} has a little one to feed, and the milk in the stores won't last the week.</reason>
+    </wants>
+    <request>
+      <plain>
+        <li>There's hardly any milk left for the baby. Could we put some by?</li>
+        <li>The little one is always hungry. I'd sleep better if there were milk in the stores.</li>
+        <li>[night] I was up three times with the baby last night, and the milk jug is nearly empty.</li>
+        <li>[tribal] The little one needs milk, and our goats can't keep up on their own.</li>
+        <li>[winter] Winter's coming and there's no milk put by. A baby can't wait for spring.</li>
+      </plain>
+      <warm><li>I just want to know there's enough for the little one, whatever happens.</li></warm>
+      <blunt><li>The baby needs milk. We're nearly out.</li></blunt>
+      <cheerful><li>The little one drinks like a calf. We'll need a lot more milk.</li></cheerful>
+      <gloomy><li>If the milk runs out, I don't know what we'll do.</li></gloomy>
+      <cold><li>An infant needs a steady supply. The stores should hold a few days of it.</li></cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>Milk in the stores. The little one slept right through for once, and so did I.</li>
+        <li>I don't have to count the jugs any more. Thank you.</li>
+      </plain>
+      <warm><li>The baby's fed, and I can breathe. Thank you, all of you.</li></warm>
+      <blunt><li>Milk's in. Good.</li></blunt>
+      <cheerful><li>Full jugs and a fat, happy baby.</li></cheerful>
+      <cold><li>The supply is secure for now.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>We'll manage somehow. We have to.</li></plain>
+      <gloomy><li>I'll go hungry before the baby does.</li></gloomy>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== Shelves for the stores ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Rimfolk_Wish_Shelves</defName>
+    <label>{THING} for the stores</label>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <description>Someone tired of stepping over the colony's things wants proper shelves in the stores.</description>
+    <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
+    <category>Work</category>
+    <weight>0.5</weight>
+    <expiryDays>12</expiryDays>
+    <cooldownDays>40</cooldownDays>
+    <grantedThought>Rimfolk_Granted_Shelves</grantedThought>
+    <allowPetition>true</allowPetition>
+    <lasting>true</lasting>
+    <envy>0</envy>
+    <objectionChance>0.1</objectionChance>
+    <talkInteraction>Council_Talk_Work</talkInteraction>
+    <fulfilledWhen>The colony has {TARGET} shelves, or more.</fulfilledWhen>
+    <wants>
+      <defNames><li>Shelf</li><li>ShelfSmall</li></defNames>
+      <nameContains><li>shelf</li></nameContains>
+      <notContains><li>book</li></notContains>
+      <count>2</count>
+      <minDaysInColony>10</minDaysInColony>
+      <reason>{PAWN_nameDef} keeps stepping over the colony's things where they lie on the storeroom floor.</reason>
+    </wants>
+    <request>
+      <plain>
+        <li>Everything we own is in a heap on the storeroom floor. Could we build {THING} or two?</li>
+        <li>I spent an hour looking for one thing today. It was under everything else.</li>
+        <li>[rain] The damp gets into everything that sits on the floor. Shelves would keep it off.</li>
+        <li>[tribal] Even a rack of poles would keep our things off the wet ground.</li>
+      </plain>
+      <warm><li>Shelves would save everyone a lot of bending and searching. Me included.</li></warm>
+      <blunt><li>The stores are a mess. Build shelves.</li></blunt>
+      <cheerful><li>Imagine finding things the first time you look. Shelves, please.</li></cheerful>
+      <gloomy><li>One day someone will trip over that pile and break their neck.</li></gloomy>
+      <cold><li>Shelving holds more in less space and keeps it in order.</li></cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>Everything off the floor and in its place. I found what I wanted on the first try today.</li>
+        <li>Shelves at last. The storeroom looks like somebody cares about it.</li>
+      </plain>
+      <warm><li>Thank you. Everyone's going to have an easier time of it.</li></warm>
+      <blunt><li>Shelves. Good.</li></blunt>
+      <cheerful><li>I've sorted everything by color. Don't touch anything.</li></cheerful>
+      <cold><li>The stores are in order now.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>Back to digging through the pile, then.</li></plain>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== Trees against the walls ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Rimfolk_Wish_TreesByWalls</defName>
+    <label>the trees by the walls felled</label>
+    <description>Grown trees stand right against the colony's walls, and someone worries the next storm will bring one down on a roof. They want them felled.</description>
+    <workerClass>ColonyCouncil.WishWorker_TreesByWalls</workerClass>
+    <forbiddenBy><li>NoTreeCutting</li></forbiddenBy>
+    <category>Safety</category>
+    <weight>0.8</weight>
+    <expiryDays>12</expiryDays>
+    <cooldownDays>40</cooldownDays>
+    <grantedThought>Rimfolk_Granted_TreesByWalls</grantedThought>
+    <allowPetition>true</allowPetition>
+    <envy>0</envy>
+    <objectionChance>0.15</objectionChance>
+    <talkInteraction>Council_Talk_Work</talkInteraction>
+    <fulfilledWhen>None of the {TARGET} grown trees against the walls still stands. Promised, they're marked for cutting, and the colony's cutters fell them.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>There are trees growing right against our walls. One good storm and one of them is coming through a roof.</li>
+        <li>Could we fell the trees by the walls? I lie awake listening to them creak.</li>
+        <li>[rain] The ground's soft and the trees by the walls are leaning. I don't like it.</li>
+        <li>[tribal] A tree that leans on your lodge will one day lie on it. Better we bring it down first.</li>
+        <li>[spacer] Our walls weren't built to take a falling tree. Those trees should come down.</li>
+      </plain>
+      <warm><li>I don't want anyone hurt in their bed because a tree came down. Let's fell them while it's calm.</li></warm>
+      <blunt><li>Trees by the walls. Cut them down.</li></blunt>
+      <cheerful><li>Free firewood, and a roof that stays a roof. It's a good trade.</li></cheerful>
+      <gloomy><li>It's only a matter of time before one of them falls on someone.</li></gloomy>
+      <cold><li>A falling tree costs a wall and maybe a life. Felling it costs an afternoon.</li></cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>The trees are down and stacked as logs. I'll sleep through the next storm.</li>
+        <li>Nothing leaning on the walls now but the wind.</li>
+      </plain>
+      <warm><li>Thank you. It's one less thing to fear on a windy night.</li></warm>
+      <blunt><li>Trees down. Good.</li></blunt>
+      <cheerful><li>Logs for the fire and nothing over our heads but the roof.</li></cheerful>
+      <cold><li>The risk is gone, and the wood is useful.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>The trees stay. I'll keep listening to them creak.</li></plain>
+      <gloomy><li>When one comes down on a roof, remember I asked.</li></gloomy>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== The snow by the doors ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Rimfolk_Wish_SnowWays</defName>
+    <label>the snow cleared from the doors</label>
+    <description>Deep snow lies on the ways by the colony's doors, and someone wades through it every morning. They want it cleared.</description>
+    <workerClass>ColonyCouncil.WishWorker_SnowWays</workerClass>
+    <category>Comfort</category>
+    <weight>0.8</weight>
+    <expiryDays>6</expiryDays>
+    <cooldownDays>20</cooldownDays>
+    <grantedThought>Rimfolk_Granted_SnowWays</grantedThought>
+    <allowPetition>true</allowPetition>
+    <envy>0</envy>
+    <objectionChance>0.1</objectionChance>
+    <talkInteraction>Council_Talk_Comfort</talkInteraction>
+    <fulfilledWhen>Nine in ten of the {TARGET} snowed-in cells by the doors are clear. Promised, they're marked for snow clearing, and the colony's cleaners shovel them.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>The snow by the doors is up to my knees. Could we clear a way out?</li>
+        <li>I waded out to the fields this morning and came back soaked to the thigh. Let's clear the ways by the doors.</li>
+        <li>[morning] It took me half the morning just to get out of the door.</li>
+        <li>[old] My knees can't take wading through that drift every morning.</li>
+        <li>[tribal] A path stamped through the snow is easier than a drift. Let's clear the ways to the lodges.</li>
+      </plain>
+      <warm><li>A cleared path to the door would make everyone's mornings easier.</li></warm>
+      <blunt><li>Shovel the doors out.</li></blunt>
+      <cheerful><li>I'll race anyone to the end of the path once it's cleared.</li></cheerful>
+      <gloomy><li>Someone's going to slip in that drift and not get up.</li></gloomy>
+      <cold><li>Deep snow slows every trip out of the door. Clearing it pays for itself in a day.</li></cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>Clear ways by the doors. I walked out this morning without filling my boots.</li>
+        <li>Someone shoveled the drifts away. My knees thank them.</li>
+      </plain>
+      <warm><li>Thank you. Everyone's mornings are easier now.</li></warm>
+      <blunt><li>Paths clear. Good.</li></blunt>
+      <cheerful><li>I can see the ground. Well, a path of it.</li></cheerful>
+      <cold><li>The ways are passable again.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>Wading again, then.</li></plain>
+      <gloomy><li>The snow will melt eventually. I'll be cold until then.</li></gloomy>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+</Defs>

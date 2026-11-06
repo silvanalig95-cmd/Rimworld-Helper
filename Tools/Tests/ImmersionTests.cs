@@ -36,6 +36,9 @@ public static class ImmersionTests
         // The quirks the colony's events leave behind (Quirks/QuirkEvents.cs).
         "Council_Pool_BubbleLamp", "Council_Pool_BubbleSmoke", "Council_Pool_BubbleCoins", "Council_Pool_BubbleFields", "Council_Pool_BubbleDreamBook",
         "Council_Pool_BubbleSalve", "Council_Pool_BubbleJuggles", "Council_Pool_BubbleColdTrick",
+        // The quirks a hurt, an ailment, a founding, a parting and a camp's evening leave (People4).
+        "Rimfolk_Pool_BubbleFooting", "Rimfolk_Pool_BubbleTapsRoof", "Rimfolk_Pool_BubbleBoots", "Rimfolk_Pool_BubbleBoils", "Rimfolk_Pool_BubbleFirstFire",
+        "Rimfolk_Pool_BubbleLooksBack", "Rimfolk_Pool_BubbleRoadSong", "Rimfolk_Pool_BubbleDusk",
         // Visitors and campers at the colony's market stalls (Visitors/VisitorTrade.cs).
         "Rimfolk_Pool_MarketBuy",
         // Visitors at the colony's instrument, their kill, its dressing (Visitors/VisitorActs.cs).
