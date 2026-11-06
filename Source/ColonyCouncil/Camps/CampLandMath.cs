@@ -5,7 +5,8 @@ namespace ColonyCouncil
     /// <summary>
     /// The plain arithmetic of the camps that come for something on the land (CampKindsLand.cs): whether the colony's
     /// growers are behind with the harvest, the reapers' sheaf in ten, how much a day of fishing or stripping comes to,
-    /// half a haul, a beast's price. No game types: tested in Tools/Tests (CampLandTests).
+    /// half a haul, a beast's price, whether the land has woods enough for woodcutters. No game types: tested in
+    /// Tools/Tests (CampLandTests, VarietyTwoTests).
     /// </summary>
     public static class CampLandMath
     {
@@ -66,5 +67,16 @@ namespace ColonyCouncil
 
         /// <summary>What they pay for one of the colony's beasts: seven tenths of its worth, in tens.</summary>
         public static int BeastPrice(float worth) => worth <= 0f ? 0 : Math.Max(10, (int)Math.Round(worth * 0.7f / 10f, MidpointRounding.AwayFromZero) * 10);
+
+        /// <summary>Woodcutters come only to land with at least this many grown wild trees clear of the colony.</summary>
+        public const int MinWoods = 30;
+
+        /// <summary>A tree this far grown is worth felling.</summary>
+        public const float TreeGrown = 0.6f;
+
+        /// <summary>A stand of trees: a tree with at least this many more within a dozen cells.</summary>
+        public const int StandAround = 5;
+
+        public static bool WoodsEnough(int wildTrees) => wildTrees >= MinWoods;
     }
 }

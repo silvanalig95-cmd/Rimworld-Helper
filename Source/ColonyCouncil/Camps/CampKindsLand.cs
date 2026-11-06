@@ -62,6 +62,7 @@ namespace ColonyCouncil
                     case "harvest": return HarvestBehind(map);
                     case "edge": return true;
                     case "monolith": return Monolith(map) != null;
+                    case "woods": return WoodsTargets(map).Count > 0;
                 }
             }
             catch (Exception e)
@@ -103,6 +104,11 @@ namespace ColonyCouncil
                         targets = EdgeTargets(map);
                         min = 0f;
                         max = 12f;
+                        break;
+                    case "woods":
+                        targets = WoodsTargets(map).Take(4).ToList();
+                        min = 5f;
+                        max = 14f;
                         break;
                 }
                 foreach (var t in targets)
@@ -409,6 +415,47 @@ namespace ColonyCouncil
                 if (!c.WorkTypeIsDisabled(WorkTypeDefOf.Growing) && c.workSettings != null && c.workSettings.WorkIsActive(WorkTypeDefOf.Growing))
                     speed += c.GetStatValue(StatDefOf.PlantWorkSpeed);
             return CampLandMath.HarvestBehind(CampLandMath.RipeHours(work), plants, speed, daysLeft);
+        }
+
+        // ---------------- The woods ----------------
+
+        /// <summary>The land's own grown trees that give wood, nobody's (never sown), clear of the colony.</summary>
+        public static List<Plant> WildTrees(Map map)
+        {
+            var list = new List<Plant>();
+            if (map == null) return list;
+            foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.Plant))
+            {
+                if (!(t is Plant p) || p.sown || p.def.plant == null || !p.def.plant.IsTree || p.def.plant.harvestedThingDef != ThingDefOf.WoodLog) continue;
+                if (p.Growth < CampLandMath.TreeGrown || map.designationManager.DesignationOn(p) != null || !ClearOfColony(map, p.Position)) continue;
+                list.Add(p);
+            }
+            return list;
+        }
+
+        /// <summary>
+        /// Where the woods stand thickest, for woodcutters: grown wild trees with enough more within a dozen cells, the
+        /// thickest first (<see cref="CampLandMath.MinWoods"/> such trees at least in all).
+        /// </summary>
+        public static List<IntVec3> WoodsTargets(Map map)
+        {
+            var trees = WildTrees(map);
+            var list = new List<IntVec3>();
+            if (!CampLandMath.WoodsEnough(trees.Count)) return list;
+            var sample = trees.InRandomOrder().Take(300).ToList();
+            var scored = new List<(IntVec3 c, int n)>();
+            foreach (var p in sample)
+            {
+                int near = sample.Count(o => o != p && o.Position.InHorDistOf(p.Position, 12f));
+                if (near >= CampLandMath.StandAround) scored.Add((p.Position, near));
+            }
+            foreach (var s in scored.OrderByDescending(s => s.n))
+            {
+                if (list.Any(c => c.InHorDistOf(s.c, 20f))) continue;
+                list.Add(s.c);
+                if (list.Count >= 4) break;
+            }
+            return list;
         }
 
         // ---------------- The edge, the monolith ----------------

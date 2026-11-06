@@ -38,4 +38,7 @@
   <CC_Impact_HuntHerdRisk>A hunted {0} may turn on its hunter, as the game has it</CC_Impact_HuntHerdRisk>
   <CC_Impact_HuntHerdRiskBrief>a hunted beast may turn</CC_Impact_HuntHerdRiskBrief>
 
+  <!-- Herb-gatherers walking the colony's fields (Defs/CampDefs/Rimfolk_CampKinds_Variety2.xml) -->
+  <CC_CampErrand_Arrived_herbwalk>{X_nameDef} of the {NAME} is walking the colony's fields, looking for the herbs among the crops.</CC_CampErrand_Arrived_herbwalk>
+
 </LanguageData>

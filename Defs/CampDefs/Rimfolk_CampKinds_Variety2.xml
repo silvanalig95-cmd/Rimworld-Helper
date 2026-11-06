@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Two camp kinds that take from the colony's land and give back (ColonyCouncil.CampKindDef, see
+       Council_CampKinds.xml). Woodcutters come only where the woods stand thick clear of the colony (needs "woods",
+       Camps/CampKindsLand.cs), pitch by them and fell real trees round their camp every day (their wood the colony can
+       buy, a load left for it now and then, their woodpile left behind when they go in peace); keeping them to their
+       side is one of the camp's terms. Herb-gatherers gather the land's wild herbs at dawn (the healroot that grows wild
+       near their camp first) and leave some for the colony; asked, they walk the colony's fields for the herbs among
+       the crops. Each in the form of its own people's age; neither leaves a gift that marks the calendar. -->
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_CampSplitLogs</defName>
+    <reportString>splitting logs by the fire.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>2000</ticks><effecterNamed>Harvest_Tree</effecterNamed></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_CampSortHerbs</defName>
+    <reportString>sorting herbs at the table.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>2200</ticks><social>true</social></li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- ===================== Woodcutters ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_Woodcutters</defName>
+    <label>woodcutters</label>
+    <arrives>7~12</arrives>
+    <minTech>Neolithic</minTech>
+    <maxTech>Industrial</maxTech>
+    <weight>0.6</weight>
+    <needs>woods</needs>
+    <people>3~5</people>
+    <days>4~8</days>
+    <ages>18~60</ages>
+    <chopsPerDay>1.5</chopsPerDay>
+    <task>Rimfolk_CampSplitLogs</task>
+    <hireChance>0.4</hireChance>
+    <joinChance>0.04</joinChance>
+    <helpChance>0.2</helpChance>
+    <help>
+      <li>wood</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>RoadFood</li>
+      <li>Clothes</li>
+    </buys>
+    <pride>0.25</pride>
+    <breakTerms>0.12</breakTerms>
+    <tensionPerDay>1</tensionPerDay>
+    <extendChance>0.3</extendChance>
+    <situationKinds>
+      <li>weather</li>
+      <li>rebuild</li>
+      <li>fire</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>VFEC_Tent</li><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>3</count></li>
+    </structures>
+    <animals>
+      <li><pack>true</pack><kinds><li>Donkey</li><li>Muffalo</li><li>Horse</li><li>Dromedary</li></kinds><count>1~1</count><at>picket</at></li>
+    </animals>
+    <campGoods>
+      <li><defs><li>WoodLog</li></defs><count>25~40</count><at>wall</at><leftForColony>true</leftForColony></li>
+    </campGoods>
+    <titles>
+      <li>Woodcutters in the woods</li>
+      <li>[their:tribal] Wood-gatherers come</li>
+      <li>[their:medieval] Woodcutters on the land</li>
+      <li>[their:industrial] A logging crew</li>
+    </titles>
+    <texts>
+      <li>A crew of woodcutters from {FACTION} has come to the woods {PLACE}, axes on their shoulders and a pack beast behind. {X_nameDef} told {A_nameDef} they cut for the towns of the region and would camp a few days by the colony's trees, cutting what they can carry and keeping to their side.</li>
+      <li>[their:tribal] Wood-gatherers of {FACTION} have come out of the hills to the woods {PLACE}, with a beast to drag the logs home. {X_nameDef} asked {A_nameDef} whether they might take wood from the colony's side of the hills for a few days, as their people have always taken it.</li>
+      <li>[their:medieval] Woodcutters of {FACTION} have come to the woods {PLACE} with their axes and a pack beast. {X_nameDef}, their foreman, asked {A_nameDef} for leave to camp and cut for a few days. They will fell only what they can carry, {X_pronoun} says, and keep clear of the colony's fields.</li>
+      <li>[their:industrial] A logging crew of {FACTION} has come to the woods {PLACE} with a pack beast for the timber. {X_nameDef} asked {A_nameDef}, cap in hand, whether they might work the trees there for a few days. Timber is wanted down the road, and these are good trees.</li>
+    </texts>
+    <settled>
+      <li>The woodcutters' camp {PLACE} is up: a fire, and a windbreak of logs between it and the wind.</li>
+      <li>The woodcutters from {FACTION} have made camp {PLACE}. The pack beast is tethered, and the crew are already looking over the trees.</li>
+      <li>At the woodcutters' camp {PLACE}, a windbreak of fresh logs stands between the fire and the wind.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, the youngest of the woodcutters {PLACE}, says {X_pronoun} has cut enough of other people's trees, and asks whether the colony could use a strong back and a good eye for timber.</li>
+      <li>{X_nameDef} from the woodcutters' camp has asked whether there might be a place for {X_objective} at the colony, where the trees stay standing and the fire is somebody else's to keep.</li>
+    </joinTexts>
+    <farewell>
+      <li>The woodcutters from {FACTION} have gone on, their pack beast loaded to the ears.</li>
+      <li>The woodcutters' camp {PLACE} is gone, the fire raked out and the stumps left behind.</li>
+      <li>{X_nameDef} and the crew have gone off down the road, and the woods {PLACE} are quiet again.</li>
+    </farewell>
+    <lines>
+      <li>Mind the fall.</li>
+      <li>That one's hollow.</li>
+      <li>Keep the edge sharp.</li>
+      <li>Good straight wood.</li>
+      <li>Stack it crossways.</li>
+      <li>One more before dark.</li>
+      <li>Wedge, then the axe.</li>
+      <li>Leave the young ones standing.</li>
+    </lines>
+    <momentLines>
+      <li>[carry] Heavy, this one.</li>
+      <li>[carry] Onto the pile with it.</li>
+    </momentLines>
+    <!-- What the colony can ask of them, and what they ask of the colony (CampAsks.cs, CampRequests.cs). -->
+    <asks>
+      <li>
+        <key>buy</key>
+        <label>Buy a load of their wood ({COUNT} silver)</label>
+        <tip>One of the woodcutters carries a load of their wood to the colony's gate.</tip>
+        <silver>40</silver>
+        <tension>-3</tension>
+        <warm>1</warm>
+        <outcomes>
+          <li>{X_nameDef} took the silver, counted it once, and sent one of the crew off with a load for the colony's gate.</li>
+          <li>The woodcutters will carry a load of their wood to the colony's gate today. {X_nameDef} says it's dry enough to burn by winter.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampBrings"><thing>WoodLog</thing><count>60</count></li>
+        </effects>
+      </li>
+      <li>
+        <key>learn</key>
+        <label>Have {A_nameDef} learn the axe from them</label>
+        <tip>{A_nameDef} works a few hours beside the woodcutters, learning where to cut and how a tree falls. Practice at growing and plant work.</tip>
+        <skill>Plants</skill>
+        <warm>2</warm>
+        <outcomes>
+          <li>{A_nameDef} is out with the woodcutters today, learning from {X_nameDef} where to cut so a tree falls where it's meant to.</li>
+          <li>{X_nameDef} has taken {A_nameDef} out to the trees to show {A_objective} the woodcutter's way of reading a trunk.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Plants</skill><duration>2~3</duration></li>
+        </effects>
+      </li>
+      <li>
+        <key>supper</key>
+        <theyAsk>true</theyAsk>
+        <minDays>1</minDays>
+        <label>Send a hot supper over to the crew</label>
+        <refuseLabel>They have their own fire</refuseLabel>
+        <tension>-6</tension>
+        <warm>1</warm>
+        <deed>aid</deed>
+        <askTexts>
+          <li>{X_nameDef} came up from the woodcutters' camp {PLACE} at the end of the day, stiff and smelling of resin. The crew have been living on hard bread since they came, and would give a lot for a hot supper from the colony's kitchen.</li>
+          <li>[their:tribal] {X_nameDef} of the wood-gatherers came to the colony's gate at dusk and asked, without much hope, whether the colony had cooked food to spare for the people who have been cutting all day.</li>
+        </askTexts>
+        <tip>Four of the colony's meals are carried out to the woodcutters' camp.</tip>
+        <outcomes>
+          <li>{A_nameDef} is carrying four hot meals down to the woodcutters' camp, and {X_nameDef} has gone back to tell the crew.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} nodded and went back to the camp, where the crew had another night of hard bread.</li>
+        </refused>
+        <refuseTension>4</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a hot supper for the woodcutters</label><what>meals</what><count>4</count><to>Camp</to></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== Herb-gatherers ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_HerbGatherers</defName>
+    <label>herb-gatherers</label>
+    <arrives>5~10</arrives>
+    <minTech>Neolithic</minTech>
+    <weight>0.6</weight>
+    <people>2~4</people>
+    <days>3~6</days>
+    <ages>16~70</ages>
+    <task>Rimfolk_CampSortHerbs</task>
+    <taskAt>stall</taskAt>
+    <hireChance>0.1</hireChance>
+    <joinChance>0.04</joinChance>
+    <helpChance>0.3</helpChance>
+    <help>
+      <li>medicine</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>Textiles</li>
+    </buys>
+    <pride>0.2</pride>
+    <breakTerms>0.05</breakTerms>
+    <tensionPerDay>0.5</tensionPerDay>
+    <extendChance>0.3</extendChance>
+    <situationKinds>
+      <li>scarcity</li>
+      <li>sickness</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>stall</role><defs><li>Table1x2c</li></defs><stuff><li>WoodLog</li></stuff></li>
+    </structures>
+    <animals>
+      <li><pack>true</pack><kinds><li>Donkey</li><li>Alpaca</li><li>Muffalo</li></kinds><count>1~1</count><at>picket</at></li>
+    </animals>
+    <campGoods>
+      <li><defs><li>MedicineHerbal</li></defs><count>3~5</count><at>stall</at></li>
+    </campGoods>
+    <titles>
+      <li>Herb-gatherers come</li>
+      <li>[their:tribal] Root-diggers come</li>
+      <li>[their:medieval] Herbalists on the road</li>
+      <li>[their:industrial] A botanist's party</li>
+      <li>[their:spacer] A survey of the land's plants</li>
+    </titles>
+    <texts>
+      <li>Herb-gatherers of {FACTION} have come along the road with baskets and a pack beast, looking for the plants that heal. {X_nameDef} told {A_nameDef} they go where the wild herbs grow thick, and asked to camp {PLACE} a few days and gather.</li>
+      <li>[their:tribal] Root-diggers of {FACTION} have come down with digging sticks and baskets on their backs. {X_nameDef} told {A_nameDef} the land here grows roots their healers need, and asked to camp {PLACE} and dig for a few days.</li>
+      <li>[their:medieval] Herbalists of {FACTION} have come up the track with a pack beast and a dozen baskets. {X_nameDef}, the eldest, asked {A_nameDef} for leave to camp {PLACE} and gather on the colony's wild ground for a few days. They will leave the colony a share, {X_pronoun} says, as is right.</li>
+      <li>[their:industrial] A botanist of {FACTION} and students have arrived with a pack beast and their notebooks. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} a few days to collect the land's medicinal plants.</li>
+      <li>[their:spacer] A small survey party of {FACTION} has come to catalogue the land's plants, with a pack beast for their gear. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and gather for a few days.</li>
+    </texts>
+    <settled>
+      <li>The herb-gatherers' camp {PLACE} is up: a table under the trees covered in bundles drying, and a fire kept low so the smoke doesn't get into them.</li>
+      <li>The herb-gatherers from {FACTION} have made camp {PLACE}. The pack beast grazes, and their table is already covered in leaves and roots.</li>
+      <li>At the herb-gatherers' camp {PLACE}, bundles of something green are drying on their table in the sun.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, the youngest of the herb-gatherers {PLACE}, says the colony's wild ground is the best {X_pronoun} has seen in years, and asks whether {X_pronoun} might stay and tend it.</li>
+      <li>{X_nameDef} of the herb-gatherers asked {A_nameDef} whether the colony's healer could use a pair of hands that knows which leaf is which.</li>
+    </joinTexts>
+    <farewell>
+      <li>The herb-gatherers from {FACTION} have gone on with their baskets full and the pack beast complaining under them.</li>
+      <li>The herb-gatherers' camp {PLACE} is empty this morning. They left at dawn, gathering as they went.</li>
+      <li>{X_nameDef} thanked the colony for the use of its wild ground and led the herb-gatherers off down the road, stopping twice before the edge to dig.</li>
+    </farewell>
+    <lines>
+      <li>Not that one, it's bitter.</li>
+      <li>Leave the roots, take the leaves.</li>
+      <li>Dry it in the shade.</li>
+      <li>Good for a fever, that.</li>
+      <li>Smell it first.</li>
+      <li>Tie them in tens.</li>
+      <li>Never take the last of a patch.</li>
+    </lines>
+    <momentLines>
+      <li>[carry] For the colony's healer.</li>
+      <li>[carry] Mind, it bruises.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[medicine] {X_nameDef} of the herb-gatherers went out at dawn and came back with more than they need. {COUNT} bundles of herbal medicine are waiting on the colony's side of their camp.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>buy</key>
+        <label>Buy a few bundles of their herbs ({COUNT} silver)</label>
+        <tip>One of the herb-gatherers carries a few bundles of herbal medicine to the colony's gate.</tip>
+        <silver>40</silver>
+        <tension>-3</tension>
+        <warm>1</warm>
+        <outcomes>
+          <li>{X_nameDef} took the silver and picked out the best of the bundles. One of them is carrying them over to the colony's gate.</li>
+          <li>The herb-gatherers will carry a few bundles over to the colony's gate today, tied in grass, the best they have.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampBrings"><thing>MedicineHerbal</thing><count>4</count></li>
+        </effects>
+      </li>
+      <li>
+        <key>learn</key>
+        <label>Have {A_nameDef} learn the herbs with them</label>
+        <tip>{A_nameDef} spends a few hours at the herb-gatherers' side, learning what heals and what harms. Practice in medicine.</tip>
+        <skill>Medicine</skill>
+        <warm>2</warm>
+        <outcomes>
+          <li>{A_nameDef} is out with the herb-gatherers today, learning from {X_nameDef} what heals and what harms.</li>
+          <li>{X_nameDef} has taken {A_nameDef} along on the gathering, to show {A_objective} which leaf is for a fever and which one only looks like it.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Medicine</skill><duration>2~3</duration></li>
+        </effects>
+      </li>
+      <li>
+        <key>fields</key>
+        <theyAsk>true</theyAsk>
+        <minDays>1</minDays>
+        <label>Let them walk the colony's fields</label>
+        <refuseLabel>Keep them out of the fields</refuseLabel>
+        <tension>-6</tension>
+        <warm>1</warm>
+        <askTexts>
+          <li>{X_nameDef} asks whether the herb-gatherers might walk the colony's fields. The herbs they want often grow at the edges of a crop, {X_pronoun} says, and they would touch nothing that's the colony's, and leave a share of what they find.</li>
+          <li>[their:medieval] The eldest of the herbalists asked {A_nameDef}, very politely, whether they might walk the colony's field edges, where the useful weeds grow. A share of the gathering would be the colony's, as is right.</li>
+        </askTexts>
+        <tip>Two of the herb-gatherers walk the colony's fields for a couple of hours, and their healer gathers herbs at the next dawn and leaves a share for the colony.</tip>
+        <outcomes>
+          <li>Two of the herb-gatherers will walk the colony's fields today, looking for the herbs that grow among the crops.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} said the wild ground was plenty, and the herb-gatherers kept to it.</li>
+        </refused>
+        <refuseTension>3</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampComes">
+            <to>fields</to>
+            <count>2</count>
+            <doing>herbwalk</doing>
+            <hours>2~3</hours>
+            <when>7~16</when>
+            <help>medicine</help>
+            <lines>
+              <li>Here, at the edge of the row.</li>
+              <li>The colony grows good weeds.</li>
+              <li>Don't step on the crop.</li>
+            </lines>
+          </li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+</Defs>
