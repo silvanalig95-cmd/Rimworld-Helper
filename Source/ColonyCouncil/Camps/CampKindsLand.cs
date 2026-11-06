@@ -18,6 +18,9 @@ namespace ColonyCouncil
         public static JobDef Rimfolk_CampTakeUp;
         public static JobDef Rimfolk_CampHull;
         public static JobDef Rimfolk_CampWatch;
+        public static JobDef Rimfolk_CampCut;
+        public static JobDef Rimfolk_CampShearFlock;
+        public static JobDef Rimfolk_CampCatch;
         public static JobDef Council_CampVigil;
         public static ThoughtDef Rimfolk_Camp_SoldOurBeast;
 
@@ -31,9 +34,10 @@ namespace ColonyCouncil
     /// What the camps that come for something on the land look for (CampKindDef.needs) and where they pitch: water with
     /// fish (the game's own fish stock with Odyssey, or Vanilla Fishing Expanded's open water on its own), ancient pieces
     /// to strip outside the home area, a harvest the colony's growers can't bring in before the season ends, the map's
-    /// edge (a craft come down there), Anomaly's woken monolith. Everything is read from the live map.
+    /// edge (a craft come down there), Anomaly's woken monolith; rock chunks, the colony's woolly flock, a wild herd and
+    /// the colony's children (CampKindsLand3.cs). Everything is read from the live map.
     /// </summary>
-    public static class CampLand
+    public static partial class CampLand
     {
         public static bool Odyssey => ModsConfig.OdysseyActive;
 
@@ -63,6 +67,10 @@ namespace ColonyCouncil
                     case "edge": return true;
                     case "monolith": return Monolith(map) != null;
                     case "woods": return WoodsTargets(map).Count > 0;
+                    case "stone": return StoneTargets(map).Count > 0;
+                    case "fleece": return CampLandMath.FleeceEnough(Flock(map).Count);
+                    case "wildHerd": return WildHerds(map).Count > 0;
+                    case "children": return Children(map).Count > 0;
                 }
             }
             catch (Exception e)
@@ -79,7 +87,7 @@ namespace ColonyCouncil
         /// </summary>
         public static IntVec3 SiteFor(CampKindDef kind, Map map, IntVec3 usual, bool shade)
         {
-            if (kind == null || map == null || kind.needs.NullOrEmpty() || kind.needs == "harvest") return usual;
+            if (kind == null || map == null || kind.needs.NullOrEmpty() || kind.needs == "harvest" || kind.needs == "fleece" || kind.needs == "children") return usual;
             try
             {
                 var targets = new List<IntVec3>();
@@ -110,6 +118,16 @@ namespace ColonyCouncil
                         min = 5f;
                         max = 14f;
                         break;
+                    case "stone":
+                        targets = StoneTargets(map).Take(4).ToList();
+                        min = 5f;
+                        max = 14f;
+                        break;
+                    case "wildHerd":
+                        targets = HerdTargets(map);
+                        min = 10f;
+                        max = 22f;
+                        break;
                 }
                 foreach (var t in targets)
                 {
@@ -126,7 +144,8 @@ namespace ColonyCouncil
 
         /// <summary>Their own work's target is theirs alone while they work on it (a piece of the ruins, a crop, their own stack).</summary>
         public static bool Reserves(JobDef def) =>
-            def != null && (def == CampLandDefOf.Rimfolk_CampStrip || def == CampLandDefOf.Rimfolk_CampReap || def == CampLandDefOf.Rimfolk_CampTakeUp);
+            def != null && (def == CampLandDefOf.Rimfolk_CampStrip || def == CampLandDefOf.Rimfolk_CampReap || def == CampLandDefOf.Rimfolk_CampTakeUp
+                            || def == CampLandDefOf.Rimfolk_CampCut || def == CampLandDefOf.Rimfolk_CampShearFlock || def == CampLandDefOf.Rimfolk_CampCatch);
 
         /// <summary>
         /// A camp's own spot near <paramref name="target"/> (between <paramref name="min"/> and <paramref name="max"/>
@@ -577,6 +596,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref hullWork, "hullWork");
             Scribe_Values.Look(ref shelterDay, "shelterDay", -1);
             Scribe_Values.Look(ref shelterAskDay, "shelterAskDay", -1);
+            ExposeLandMore();
         }
 
         private int Adults => Here.Count(p => !p.DevelopmentalStage.Juvenile() && !p.Downed);
@@ -598,6 +618,8 @@ namespace ColonyCouncil
         /// <summary>The spacers' craft lies where it came down, beside their camp: a ship's chunk of hull, theirs while they stay.</summary>
         public void LandStarted()
         {
+            // The wounded of a war come with their wounds (CampKindsLand3.cs).
+            ComeWounded();
             if (kind?.work != "hull" || map == null || hull != null) return;
             try
             {
@@ -654,6 +676,7 @@ namespace ColonyCouncil
             {
                 int hour = GenLocalDate.HourOfDay(map);
                 if (kind.work == "reap") ReapHourly(hour);
+                else if (kind.work == "shear") ShearHourly(hour);
                 else if (kind.work == "watch") WatchHourly(hour);
             }
             catch (Exception e)
@@ -757,6 +780,9 @@ namespace ColonyCouncil
                     case "fish": return FishJob(p);
                     case "strip": return StripJob(p);
                     case "reap": return ReapJob(p);
+                    case "cut": return CutJob(p);
+                    case "shear": return ShearJob(p);
+                    case "catch": return CatchJob(p);
                     case "hull":
                         // Their pilot is at the hull most of the day (where a colonist lent to them works beside them).
                         if (hull == null || hull.Destroyed || !hull.Spawned || !Rand.Chance(p == leader ? 0.85f : 0.6f) || !p.CanReach(hull, PathEndMode.Touch, Danger.Some)) return null;
@@ -1065,6 +1091,9 @@ namespace ColonyCouncil
             else if (def == CampLandDefOf.Rimfolk_CampReap) Reaped(p, job.targetA.Thing as Plant);
             else if (def == CampLandDefOf.Rimfolk_CampTakeUp) TookFromStash(p, job.targetA.Thing);
             else if (def == CampLandDefOf.Rimfolk_CampHull) hullWork++;
+            else if (def == CampLandDefOf.Rimfolk_CampCut) Cut(p, job.targetA.Thing);
+            else if (def == CampLandDefOf.Rimfolk_CampShearFlock) Shorn(p, job.targetA.Thing as Pawn);
+            else if (def == CampLandDefOf.Rimfolk_CampCatch) Caught(p, job.targetA.Thing as Pawn);
         }
 
         // ---------------- Errands and asks ----------------
@@ -1112,6 +1141,14 @@ namespace ColonyCouncil
                     if (clearNear) return "CC_CampAsk_Done".Translate();
                     return RuinPieces().Count == 0 ? "CC_CampLand_NoRuin".Translate().ToString() : null;
                 case "notHired": return reapPay != null ? "CC_CampLand_Hired".Translate().ToString() : null;
+                case "theirStone": return StoneSaleBlocked();
+                case "nearStone":
+                    if (clearNear) return "CC_CampAsk_Done".Translate();
+                    return ChunksNear().Count == 0 ? "CC_CampLand_NoChunks".Translate().ToString() : null;
+                case "notShearing":
+                    if (shearing) return "CC_CampLand_Shearing".Translate().ToString();
+                    return CampLandMath.FleeceEnough(CampLand.Flock(map).Count) ? null : "CC_CampLand_NoFleece".Translate().ToString();
+                case "caught": return CaughtToSell() == null ? "CC_CampLand_NoCaught".Translate().ToString() : null;
                 case "ourBeast": return CampLand.OurBeast(map) == null ? "CC_CampLand_NoBeast".Translate().ToString() : null;
                 case "children": return CampLand.Children(map).Count == 0 ? "CC_CampLand_NoChildren".Translate().ToString() : null;
                 case "study": return CampLand.StudyOpen() ? null : "CC_CampLand_NoStudy".Translate().ToString();
@@ -1128,6 +1165,8 @@ namespace ColonyCouncil
         private string LandAskThing(CampAsk a)
         {
             if (a?.price == CatchSale) return CatchWords();
+            if (a?.price == StoneSale) return StoneWords();
+            if (a?.price == "caught") return CaughtWords();
             if (a?.price == "beastsale")
             {
                 var beast = CampLand.OurBeast(map);
@@ -1139,7 +1178,7 @@ namespace ColonyCouncil
 
         // ---------------- The catch and the haul, carried over from their stash ----------------
 
-        private static bool FromStash(string help) => help == CatchSale || help == HaulShare;
+        private static bool FromStash(string help) => help == CatchSale || help == HaulShare || help == StoneSale;
 
         /// <summary>The most of one kind of fish in their stash now, and how many.</summary>
         public int CatchOffer(out ThingDef def)
@@ -1251,6 +1290,11 @@ namespace ColonyCouncil
         /// <summary>The catch or the share set down by the colony's gate: the catch is paid for at its worth, the share is told.</summary>
         private void StashBrought(Pawn p, CampCarry c, int n, Thing look)
         {
+            if (c.help == StoneSale)
+            {
+                StoneBrought(p, c, n, look);
+                return;
+            }
             if (c.help == HaulShare)
             {
                 Note(Text("CC_CampLand_HaulBrought", p, null, n, c.def.label), MessageTypeDefOf.PositiveEvent, Importance.Notable, look, true);
@@ -1440,12 +1484,13 @@ namespace ColonyCouncil
         {
             var c = CampOnMap.For(ctx);
             if (c?.kind?.work == "strip") sheet.Play("CC_Impact_ClearNear".Translate(c.Label).Resolve(), "CC_Impact_ClearNearBrief".Translate().Resolve());
+            else if (c?.kind?.work == "cut") sheet.Play("CC_Impact_ClearNear_cut".Translate(c.Label).Resolve(), "CC_Impact_ClearNearBrief_cut".Translate().Resolve());
         }
 
         public override void Apply(DilemmaContext ctx)
         {
             var c = CampOnMap.For(ctx);
-            if (c?.kind?.work != "strip" || (chance < 1f && !Rand.Chance(chance))) return;
+            if (c?.kind?.work != "strip" && c?.kind?.work != "cut" || (chance < 1f && !Rand.Chance(chance))) return;
             c.clearNear = true;
         }
     }

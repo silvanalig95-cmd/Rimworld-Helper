@@ -68,7 +68,7 @@ namespace ColonyCouncil
         public List<string> asksMade = new List<string>();
 
         public int AskCost(CampAsk a) =>
-            a?.price == "milk" ? MilkCost() : a?.price == CatchSale ? CatchCost() : !(a?.price).NullOrEmpty() ? 0
+            a?.price == "milk" ? MilkCost() : a?.price == CatchSale ? CatchCost() : a?.price == StoneSale ? StoneCost() : a?.price == "caught" ? CaughtCost() : !(a?.price).NullOrEmpty() ? 0
             : a == null || a.silver <= 0 ? 0 : CampAnswers.Round10(a.silver * LivingEvents.WealthFactor(map));
 
         /// <summary>What the ask is for, for {THING}: the herd's milk ready now ("about 26 milk for about 49 silver"); else nothing.</summary>

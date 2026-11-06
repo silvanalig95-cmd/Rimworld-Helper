@@ -411,7 +411,8 @@ namespace ColonyCouncil
                     return;
                 case CatchSale:
                 case HaulShare:
-                    // The fishers' catch the colony bought, the salvagers' share of the haul (CampKindsLand.cs).
+                case StoneSale:
+                    // The fishers' catch the colony bought, the salvagers' share of the haul, the stonecutters' stone (CampKindsLand.cs).
                     StashBrought(p, c, n, look);
                     return;
                 case "medicine":

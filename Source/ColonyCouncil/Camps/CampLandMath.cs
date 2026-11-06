@@ -78,5 +78,47 @@ namespace ColonyCouncil
         public const int StandAround = 5;
 
         public static bool WoodsEnough(int wildTrees) => wildTrees >= MinWoods;
+
+        // ---------------- The camps of 6 November 2026 (CampKindsLand3.cs) ----------------
+
+        /// <summary>Stonecutters come only to land with at least this many rock chunks lying clear of the colony.</summary>
+        public const int MinChunks = 12;
+
+        /// <summary>A scatter of rock: a chunk with at least this many more within a dozen cells.</summary>
+        public const int ScatterAround = 3;
+
+        public static bool StoneEnough(int chunks) => chunks >= MinChunks;
+
+        /// <summary>Chunks a crew of so many dresses in a day: one, and one more for every two grown hands.</summary>
+        public static int CutsADay(int adults) => adults <= 0 ? 0 : 1 + adults / 2;
+
+        /// <summary>The most dressed stone they sell at once, and the least worth carrying over.</summary>
+        public const int StoneLoad = 60;
+        public const int MinStoneSale = 20;
+
+        /// <summary>Shearers come to a colony with at least this many grown beasts whose wool is half grown or more.</summary>
+        public const int MinFleece = 4;
+        public const float FleeceReady = 0.5f;
+
+        public static bool FleeceEnough(int beasts) => beasts >= MinFleece;
+
+        /// <summary>The shearers' share: one fleece in ten.</summary>
+        public const float FleeceShare = 0.1f;
+
+        /// <summary>Beast-catchers come for a wild herd of at least this many of one kind, and rope this many of it in a stay at most.</summary>
+        public const int MinHerd = 3;
+        public const int MaxCaught = 2;
+
+        /// <summary>Only a beast this calm or calmer is worth roping.</summary>
+        public const float MaxWildness = 0.8f;
+
+        public static bool HerdEnough(int beasts) => beasts >= MinHerd;
+
+        /// <summary>What they ask for a beast they caught: four fifths of its worth, in tens.</summary>
+        public static int CaughtPrice(float worth) => worth <= 0f ? 0 : Math.Max(10, (int)Math.Round(worth * 0.8f / 10f, MidpointRounding.AwayFromZero) * 10);
+
+        /// <summary>How deep a wounded fighter's cut is when they come (a bruise is six tenths of it): never more than a limb takes.</summary>
+        public const float WoundMin = 3f;
+        public const float WoundMax = 6f;
     }
 }

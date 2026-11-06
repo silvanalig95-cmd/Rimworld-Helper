@@ -41,10 +41,12 @@ namespace ColonyCouncil
         /// fish in it, and fishing open to the colony), "ruins" (ancient pieces to strip outside the home area), "harvest"
         /// (more ripe crop than the growers can bring in before the season ends), "edge" (a craft come down by the map's
         /// edge), "monolith" (Anomaly's monolith woken on this map), "woods" (stands of grown wild trees clear of the
-        /// colony, for woodcutters). None: any land.
+        /// colony, for woodcutters), "stone" (rock chunks lying clear of the colony, for stonecutters), "fleece" (the
+        /// colony's woolly flock with wool to shear, for shearers), "wildHerd" (a wild herd that can be tamed, clear of the
+        /// colony, for beast-catchers), "children" (the colony's children, for a travelling teacher). None: any land.
         /// </summary>
         public string needs;
-        /// <summary>Their own work on the land by day (Camps/CampKindsLand.cs): "fish", "strip", "reap", "hull", "watch".</summary>
+        /// <summary>Their own work on the land by day (Camps/CampKindsLand.cs): "fish", "strip", "reap", "hull", "watch"; "cut", "shear", "catch" (CampKindsLand3.cs).</summary>
         public string work;
         /// <summary>Settled as neighbours, they bring word of the road when one comes up to the gate: a FlavorPoolDef of lines (Camps/RoadPost.cs).</summary>
         public string roadWord;
@@ -68,6 +70,11 @@ namespace ColonyCouncil
         public bool armedHunters;
         /// <summary>Mourners carrying their dead home: the body comes in in someone's arms, lies by their lamp, and goes home with them (CampDead.cs).</summary>
         public bool bearsDead;
+        /// <summary>
+        /// How many of them come hurt, the first time they come (the wounded of a war): a cut already bandaged on the road
+        /// and a fresh bruise the colony's doctor could see to, the game's own injuries (CampKindsLand3.cs).
+        /// </summary>
+        public IntRange wounded = IntRange.Zero;
         /// <summary>A daytime task of their own at one of their buildings (praying, prospecting, smithing, keeping the stall).</summary>
         public JobDef task;
         /// <summary>The role of the building the task is done at (see <see cref="CampStructure.role"/>); "herd": out among their animals; none = near the fire.</summary>

@@ -76,7 +76,8 @@ namespace ColonyCouncil
             "them:camp:HarvestHands", "them:camp:Spacers", "them:camp:Watchers", "them:camp:BeastShow", "them:camp:Trainers", "them:camp:SaltCaravan",
             "them:camp:FarMerchants", "them:camp:Drovers", "them:camp:Penitents", "them:camp:TreeSingers", "them:camp:LoneHealer", "them:camp:Minstrels",
             "them:camp:Mourners", "them:camp:Scholars", "them:camp:Settlers", "them:camp:WarParty", "them:camp:Wardens", "them:camp:Deserters",
-            "them:camp:Woodcutters", "them:camp:HerbGatherers"
+            "them:camp:Woodcutters", "them:camp:HerbGatherers", "them:camp:Stonecutters", "them:camp:Shearers", "them:camp:Catchers", "them:camp:Teacher",
+            "them:camp:Wounded"
         };
 
         /// <summary>The tag for one of a camp of this kind: them:camp: and the kind's defName without its Council_Camp_ or Rimfolk_Camp_ ("them:camp:SaltCaravan").</summary>
