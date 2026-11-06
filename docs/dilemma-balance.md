@@ -46,7 +46,7 @@ with an effect the scales don't measure (a faith's certainty, a guardian named, 
 it gets no verdict, and is read by hand.
 ```
 
-240 dilemmas, 801 answers. Flagged: 61 dilemmas, 89 answers (first pass: 61 dilemmas; second pass: 0).
+208 dilemmas, 708 answers. Flagged: 58 dilemmas, 86 answers (first pass: 58 dilemmas; second pass: 0).
 
 ## First pass: the dilemmas rebalanced in this round
 
@@ -440,18 +440,6 @@ it gets no verdict, and is read by hand.
 |  | 2 | A brings them in alone | 6 | 0 | 0 | 6 | work +3, skill +3 | dominated by answer 1 |
 |  | 3 | They'll find their own way in | 0 | 6 | 0 | -6 | mood -6 | dominated by answer 1; dominated by answer 2 |
 
-### Rimfolk_Dilemmas_Banish.xml
-
-| Dilemma | # | Answer | Benefit | Cost | Risk | Net | Scales | Verdict |
-|---|---|---|---|---|---|---|---|---|
-| trouble at every turn (`Rimfolk_Dilemma_Trouble`) | 1 | B has a word with A, face to face | 2 | 3 | 0 | -2 | trust -2 | partly scored (TroubleStep, TroubleWord): read by hand |
-|  | 2 | Keep A to the night hours for a while | 2 | 4 | 0 | -3 | trust -3 | partly scored (TroubleStep, TroubleWord): read by hand |
-|  | 3 | Let it be | 0 | 2 | 0 | -2 | trust -2 | partly scored (TroubleStep, TroubleWord): read by hand |
-| the last straw (`Rimfolk_Dilemma_Banish`) | 1 | {BANISH} | 0 | 0 | 0 | 0 | nothing scored | partly scored (Banish, TroubleStep, TroubleWord): read by hand |
-|  | 2 | A last word from B | 0 | 4 | 0 | -4 | trust -4 | partly scored (Banish, TroubleStep, TroubleWord): read by hand |
-|  | 3 | Keep A to the night hours for a while | 0 | 4 | 0 | -4 | trust -4 | partly scored (Banish, TroubleStep, TroubleWord): read by hand |
-|  | 4 | Let it be | 0 | 3 | 0 | -3 | trust -3 | partly scored (Banish, TroubleStep, TroubleWord): read by hand |
-
 ### Rimfolk_Dilemmas_Beast.xml
 
 | Dilemma | # | Answer | Benefit | Cost | Risk | Net | Scales | Verdict |
@@ -503,23 +491,6 @@ it gets no verdict, and is read by hand.
 |  | 2 | A goes round alone | 0 | 0 | 0 | -0 | nothing scored | trade-off |
 |  | 3 | It isn't done here | 3 | 7 | 0 | -4 | mood -7, trust +3 | trade-off |
 
-### Rimfolk_Dilemmas_Customs_YearFour.xml
-
-| Dilemma | # | Answer | Benefit | Cost | Risk | Net | Scales | Verdict |
-|---|---|---|---|---|---|---|---|---|
-| the woodpile day (`Rimfolk_Dlm_Woodpile`) | 1 | Everyone out for the wood | 80 | 6 | 0 | 73 | mood +62, trust +1, wellbeing +7, work +3 | trade-off |
-|  | 2 | A morning of it, for those who can be spared | 61 | 0 | 0 | 61 | mood +55, trust +3, work +3 | trade-off |
-|  | 3 | The stores have wood enough | 1 | 15 | 0 | -13 | mood -12, trust -2 | dominated by answer 1; dominated by answer 2 |
-| the night of lights (`Rimfolk_Dlm_GraveLights`) | 1 | A light by every grave, and the colony with them | 81 | 4 | 0 | 78 | mood +65, trust +4, wellbeing +12, work -1, goods -2 | trade-off |
-|  | 2 | The lights, and then to bed | 57 | 2 | 0 | 55 | mood +55, trust +2, goods -2 | trade-off |
-|  | 3 | The dead are at peace | 4 | 15 | 0 | -11 | mood -12, trust +1 | trade-off |
-| the mending day (`Rimfolk_Dlm_MendingDay`) | 1 | A day of mending, and a lesson at the bench | 75 | 7 | 0 | 68 | mood +62, trust +1, work +2, skill +3 | trade-off |
-|  | 2 | A morning's mending, without the lesson | 61 | 0 | 0 | 61 | mood +55, trust +3, work +3 | trade-off |
-|  | 3 | No day of its own for it | 1 | 15 | 0 | -13 | mood -12, trust -2 | dominated by answer 1; dominated by answer 2 |
-| the winter tales (`Rimfolk_Dlm_WinterTales`) | 1 | The year told by the fire | 79 | 4 | 0 | 75 | mood +65, trust +4, wellbeing +10, work -4 | trade-off |
-|  | 2 | One tale at supper | 57 | 1 | 0 | 55 | mood +55, trust +2, work -1 | trade-off |
-|  | 3 | The year is best forgotten | 1 | 15 | 0 | -13 | mood -12, trust -2 | trade-off |
-
 ### Rimfolk_Dilemmas_Faith.xml
 
 | Dilemma | # | Answer | Benefit | Cost | Risk | Net | Scales | Verdict |
@@ -544,15 +515,6 @@ it gets no verdict, and is read by hand.
 | the wedding (`Council_DlmFam_WeddingPlans`) | 1 | A wedding feast for the whole colony | 24 | 0 | 0 | 24 | mood +24 | partly scored (PlanWedding): read by hand |
 |  | 2 | A small wedding, and a toast with their friends | 24 | 0 | 0 | 24 | mood +24 | partly scored (PlanWedding): read by hand |
 |  | 3 | Ask them to wait for a calmer time | 0 | 48 | 0 | -48 | mood -48 | partly scored (PlanWedding): read by hand |
-
-### Rimfolk_Dilemmas_Fealty.xml
-
-| Dilemma | # | Answer | Benefit | Cost | Risk | Net | Scales | Verdict |
-|---|---|---|---|---|---|---|---|---|
-| an oath at the gate (`Rimfolk_DlmFealty_Swear`) | 1 | Swear the oath all the same | 0 | 33 | 0 | -33 | mood -30, trust -3 | partly scored (FealtySwear, FealtyTurnAway): read by hand |
-|  | 2 | Send them home | 6 | 0 | 0 | 6 | mood +6 | partly scored (FealtySwear, FealtyTurnAway): read by hand |
-| renouncing the oath (`Rimfolk_DlmFealty_Renounce`) | 1 | Renounce the oath | 0 | 0 | 0 | 0 | nothing scored | partly scored (FealtyRenounce): read by hand |
-|  | 2 | Keep the oath | 0 | 0 | 0 | 0 | nothing scored | partly scored (FealtyRenounce): read by hand |
 
 ### Rimfolk_Dilemmas_Guests.xml
 
@@ -632,13 +594,6 @@ it gets no verdict, and is read by hand.
 |  | 2 | Just A's tree, this year | 0 | 0 | 0 | -0 | nothing scored | trade-off |
 |  | 3 | Trees take room from the crops | 0 | 4 | 0 | -4 | mood -4 | dominated by answer 2 |
 
-### Rimfolk_Dilemmas_Match.xml
-
-| Dilemma | # | Answer | Benefit | Cost | Risk | Net | Scales | Verdict |
-|---|---|---|---|---|---|---|---|---|
-| a match the colonist is against (`Rimfolk_DlmMatch_Against`) | 1 | Press the match all the same | 0 | 124 | 0 | -124 | mood -120, trust -4 | partly scored (MatchPress, MatchWithdraw): read by hand |
-|  | 2 | Withdraw the match | 6 | 0 | 0 | 6 | mood +6 | partly scored (MatchPress, MatchWithdraw): read by hand |
-
 ### Rimfolk_Dilemmas_MovingOn.xml
 
 | Dilemma | # | Answer | Benefit | Cost | Risk | Net | Scales | Verdict |
@@ -704,94 +659,6 @@ it gets no verdict, and is read by hand.
 |  | 3 | Let A try to catch it | 1 | 0 | 0 | 1 | wellbeing +1 | partly scored (CatchPokemon, DriveOff, FeedBeast): read by hand |
 |  | 4 | Let it be | 0 | 0 | 0 | 0 | nothing scored | partly scored (CatchPokemon, DriveOff, FeedBeast): read by hand |
 |  | 5 | Drive it off | 0 | 0 | 0 | -0 | nothing scored | partly scored (CatchPokemon, DriveOff, FeedBeast): read by hand |
-
-### Rimfolk_Dilemmas_Truce.xml
-
-| Dilemma | # | Answer | Benefit | Cost | Risk | Net | Scales | Verdict |
-|---|---|---|---|---|---|---|---|---|
-| a truce with the killers (`Rimfolk_DlmTruce_Avenger`) | 1 | Swear the truce all the same | 0 | 123 | 0 | -123 | mood -120, trust -3 | partly scored (TruceSwear, TruceTurnAway): read by hand |
-|  | 2 | Send their envoy away | 6 | 0 | 0 | 6 | mood +6 | partly scored (TruceSwear, TruceTurnAway): read by hand |
-
-### Rimfolk_Dilemmas_Variety2.xml
-
-| Dilemma | # | Answer | Benefit | Cost | Risk | Net | Scales | Verdict |
-|---|---|---|---|---|---|---|---|---|
-| the cold snap's hours (`Rimfolk_DlmE_ColdSnap`) | 1 | Short days until it breaks | 3 | 4 | 0 | -2 | mood -4, trust +3 | trade-off |
-|  | 2 | Keep a fire going in A's room | 4 | 8 | 0 | -4 | mood -3, wellbeing +4, goods -5 | trade-off |
-|  | 3 | Carry on | 3 | 29 | 0 | -26 | mood -29, trust +3 | dominated by answer 1 |
-| blight in the fields (`Rimfolk_DlmE_Blight`) | 1 | Cut out the sick plants now | 23 | 0 | 0 | 23 | mood +20, trust +3 | partly scored (CutBlight): read by hand |
-|  | 2 | Cut them out, and bring in what's near ripe | 23 | 0 | 0 | 23 | mood +20, trust +3 | partly scored (CutBlight): read by hand |
-|  | 3 | Let it run its course | 0 | 15 | 0 | -15 | mood -12, trust -3 | partly scored (CutBlight): read by hand |
-| the good weapon (`Rimfolk_DlmE_GoodWeapon`) | 1 | A carries it | 18 | 20 | 0 | -2 | mood -5, trust +3 | partly scored (TakeUp): read by hand |
-|  | 2 | B carries it | 20 | 23 | 0 | -4 | mood -5, trust +2 | partly scored (TakeUp): read by hand |
-|  | 3 | It stays in the stores | 4 | 12 | 0 | -8 | mood -12, trust +4 | partly scored (TakeUp): read by hand |
-| the animal left behind (`Rimfolk_DlmE_MasterGone`) | 1 | A takes {PET_nameDef} on | 28 | 0 | 0 | 28 | mood +24, trust +4 | partly scored (NewMaster): read by hand |
-|  | 2 | B, who knows animals, takes {PET_nameDef} on | 6 | 12 | 0 | -6 | mood -12, trust +3, skill +3 | partly scored (NewMaster): read by hand |
-|  | 3 | {PET_nameDef} is the colony's animal now | 0 | 6 | 0 | -6 | mood -6 | partly scored (NewMaster): read by hand |
-
-### Rimfolk_Dilemmas_Variety3.xml
-
-| Dilemma | # | Answer | Benefit | Cost | Risk | Net | Scales | Verdict |
-|---|---|---|---|---|---|---|---|---|
-| the inspired hands (`Rimfolk_DlmE_Inspired`) | 1 | A works it in {THING} | 20 | 2 | 0 | 19 | mood +16, trust +3 | partly scored (ArtBill): read by hand |
-|  | 2 | A works it in {PLAIN} | 23 | 0 | 0 | 23 | mood +20, trust +3 | partly scored (ArtBill): read by hand |
-|  | 3 | The work comes first | 0 | 12 | 0 | -12 | mood -9, trust -3 | partly scored (ArtBill): read by hand |
-| the shakes (`Rimfolk_DlmE_Withdrawal`) | 1 | A measured dose, to steady A | 5 | 2 | 0 | 4 | mood +2, trust +2 | partly scored (Dose, RideItOut): read by hand |
-|  | 2 | A rides it out | 23 | 12 | 0 | 11 | mood +8, trust +3 | partly scored (Dose, RideItOut): read by hand |
-|  | 3 | It's A own business | 0 | 15 | 0 | -15 | mood -12, trust -3 | partly scored (Dose, RideItOut): read by hand |
-| the food that won't keep (`Rimfolk_DlmE_Spoiling`) | 1 | A cooks it all, today | 23 | 0 | 0 | 23 | mood +20, trust +3 | partly scored (CookIt): read by hand |
-|  | 2 | Enough for supper | 0 | 6 | 0 | -6 | mood -6 | partly scored (CookIt): read by hand |
-|  | 3 | Let it go | 0 | 7 | 0 | -7 | mood -4, trust -3 | partly scored (CookIt): read by hand |
-| the stores in the rain (`Rimfolk_DlmE_StoresInRain`) | 1 | Roof it over | 23 | 0 | 0 | 23 | mood +20, trust +3 | partly scored (GiveUpOpen, RoofStores): read by hand |
-|  | 2 | Give up the open part | 23 | 0 | 0 | 23 | mood +20, trust +3 | partly scored (GiveUpOpen, RoofStores): read by hand |
-|  | 3 | Leave it to the weather | 0 | 8 | 0 | -8 | mood -6, trust -2 | partly scored (GiveUpOpen, RoofStores): read by hand |
-| the old walls (`Rimfolk_DlmE_OldWalls`) | 1 | Pull them down for the {THING} | 3 | 8 | 0 | -5 | mood -8, trust +3 | partly scored (OldWalls): read by hand |
-|  | 2 | Claim them and build on them | 23 | 0 | 0 | 23 | mood +20, trust +3 | partly scored (OldWalls): read by hand |
-|  | 3 | Leave them as they stand | 8 | 2 | 0 | 6 | mood +8, trust -2 | partly scored (OldWalls): read by hand |
-| the new room (`Rimfolk_DlmE_NewRoom`) | 1 | A has it | 21 | 20 | 0 | 1 | mood -2, trust +3 | partly scored (ClaimBed): read by hand |
-|  | 2 | B has it | 22 | 22 | 0 | 1 | mood -2, trust +3 | partly scored (ClaimBed): read by hand |
-|  | 3 | Whoever sleeps in it first | 0 | 12 | 0 | -12 | mood -12 | partly scored (ClaimBed): read by hand |
-| what to learn next (`Rimfolk_DlmE_NextStudy`) | 1 | {STUDY1} | 20 | 3 | 0 | 17 | mood +17 | partly scored (Study): read by hand |
-|  | 2 | {STUDY2} | 20 | 3 | 0 | 17 | mood +17 | partly scored (Study): read by hand |
-|  | 3 | Leave it for now | 0 | 12 | 0 | -12 | mood -12 | partly scored (Study): read by hand |
-| the hurt beast (`Rimfolk_DlmE_HurtBeast`) | 1 | B ends its pain | 3 | 0 | 0 | 3 | trust +3 | partly scored (MarkBeast): read by hand |
-|  | 2 | Tame it once it's on its feet | 23 | 0 | 0 | 23 | mood +20, trust +3 | partly scored (MarkBeast): read by hand |
-|  | 3 | Leave it to the wild | 0 | 2 | 0 | -2 | mood -2 | partly scored (MarkBeast): read by hand |
-
-### Rimfolk_Dilemmas_YearFour.xml
-
-| Dilemma | # | Answer | Benefit | Cost | Risk | Net | Scales | Verdict |
-|---|---|---|---|---|---|---|---|---|
-| the empty field (`Rimfolk_DlmY_EmptyField`) | 1 | A few hands to sow it this afternoon | 12 | 2 | 0 | 10 | mood +6, trust +2, work +3 | partly scored (GiveUpField): read by hand |
-|  | 2 | Give the field up | 23 | 9 | 0 | 14 | mood +14 | partly scored (GiveUpField): read by hand |
-|  | 3 | The growers will get to it | 0 | 14 | 0 | -14 | mood -12, trust -2 | partly scored (GiveUpField): read by hand |
-| what the field grows (`Rimfolk_DlmY_WhichCrop`) | 1 | The whole field to {THING} | 10 | 33 | 0 | -22 | mood -24, trust +2 | partly scored (SetCrop): read by hand |
-|  | 2 | Half of it to {THING} | 2 | 12 | 0 | -10 | mood -12, trust +2 | partly scored (SetCrop): read by hand |
-|  | 3 | The field stays as it is | 22 | 15 | 0 | 6 | mood +8, trust -2 | partly scored (SetCrop): read by hand |
-| snow on the paths (`Rimfolk_DlmY_SnowPaths`) | 1 | Shovels out, and clear it all | 26 | 2 | 0 | 24 | mood +20, trust +2, work +3 | partly scored (SnowArea): read by hand |
-|  | 2 | The doorways only | 0 | 12 | 0 | -12 | mood -12 | partly scored (SnowArea): read by hand |
-|  | 3 | It will melt | 20 | 15 | 0 | 5 | mood +8, trust -3 | partly scored (SnowArea): read by hand |
-| the unfinished work (`Rimfolk_DlmY_Unfinished`) | 1 | A building party this afternoon | 26 | 2 | 0 | 24 | mood +20, trust +2, work +3 | partly scored (CancelPlans): read by hand |
-|  | 2 | Take off what we can't pay for | 23 | 32 | 0 | -8 | mood -10, trust +2 | partly scored (CancelPlans): read by hand |
-|  | 3 | The builders will get there | 0 | 15 | 0 | -15 | mood -12, trust -3 | partly scored (CancelPlans): read by hand |
-| the trees by the wall (`Rimfolk_DlmY_TreeLine`) | 1 | Every one of them down | 4 | 10 | 0 | -6 | mood -6 | partly scored (MarkTrees): read by hand |
-|  | 2 | The nearest half | 0 | 14 | 0 | -14 | mood -12, trust -2 | partly scored (MarkTrees): read by hand |
-|  | 3 | The trees stay | 23 | 9 | 0 | 14 | mood +14 | partly scored (MarkTrees): read by hand |
-| too many in the pens (`Rimfolk_DlmY_HerdTooBig`) | 1 | {COUNT} to the butcher, the oldest first | 3 | 15 | 0 | -12 | mood -12 | partly scored (MarkSlaughter): read by hand |
-|  | 2 | One now, and see | 0 | 12 | 0 | -12 | mood -12 | partly scored (MarkSlaughter): read by hand |
-|  | 3 | Keep them all | 23 | 11 | 0 | 12 | mood +12 | partly scored (MarkSlaughter): read by hand |
-| what to teach it (`Rimfolk_DlmY_TrainBeast`) | 1 | Teach {PET_objective} to guard | 23 | 32 | 0 | -8 | mood -10, trust +2 | partly scored (SetTraining): read by hand |
-|  | 2 | Teach {PET_objective} to haul | 23 | 32 | 0 | -8 | mood -10, trust +2 | partly scored (SetTraining): read by hand |
-|  | 3 | Let {PET_objective} be | 0 | 27 | 0 | -27 | mood -24, trust -3 | partly scored (SetTraining): read by hand |
-| home from the road (`Rimfolk_DlmY_HomeFromRoad`) | 1 | A day off for those back | 9 | 33 | 0 | -24 | mood -24 | partly scored (RestTravellers): read by hand |
-|  | 2 | A tells B the road | 6 | 6 | 0 | -1 | mood -2, trust +2 | partly scored (RestTravellers): read by hand |
-|  | 3 | Back to work in the morning | 22 | 7 | 0 | 14 | mood +16, trust -2 | partly scored (RestTravellers): read by hand |
-| doubts in the faith (`Rimfolk_DlmY_Doubter`) | 1 | B sits with A | 9 | 2 | 0 | 7 | mood +6, trust +2 | partly scored (Steady, VisitAltar): read by hand |
-|  | 2 | A goes to the altar alone | 2 | 0 | 0 | 2 | trust +2 | partly scored (Steady, VisitAltar): read by hand |
-|  | 3 | It's A own affair | 2 | 17 | 0 | -16 | mood -14, trust -2 | partly scored (Steady, VisitAltar): read by hand |
-| the faith without a guide (`Rimfolk_DlmY_NoGuide`) | 1 | A guides the faith | 20 | 9 | 0 | 10 | mood +9, trust +2 | partly scored (NameGuide): read by hand |
-|  | 2 | B guides the faith | 20 | 9 | 0 | 10 | mood +9, trust +2 | partly scored (NameGuide): read by hand |
-|  | 3 | The faithful can manage | 0 | 27 | 0 | -27 | mood -24, trust -3 | partly scored (NameGuide): read by hand |
 
 ## Second pass
 
