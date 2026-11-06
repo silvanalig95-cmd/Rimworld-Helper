@@ -165,6 +165,14 @@ namespace Balance
         public int episodes;
         /// <summary>Hours in each band of strain, all colonists, in the measured year; strain built and eased by what, per colonist.</summary>
         public readonly double[] bandHours = new double[4];
+        /// <summary>Hours in each band of the good side (steady, in good heart, in high spirits), and its releases (inspirations, kind words).</summary>
+        public readonly double[] goodBandHours = new double[3];
+        public readonly int[] releases = new int[2];
+        private int lastColonyRelease = -999999, heartRaidHour = -1;
+        /// <summary>Hours with strain at nothing (when the good side can fill).</summary>
+        public double noStrainHours;
+        /// <summary>Hours with the good side in each tenth (0 to 9, 10 to 19...).</summary>
+        public readonly double[] goodTenths = new double[10];
         public double heartHours;
 
         public Colony(DefSet defs, Settings set, Rates.Style style, int n, int seed)
@@ -186,6 +194,8 @@ namespace Balance
                     vanillaGood = style.vanillaGood + Gauss() * style.vanillaSpread * 0.6f,
                     vanillaBad = style.vanillaBad + Gauss() * style.vanillaSpread * 0.4f
                 };
+                // The heart's good side (Heart/GoodHeart.cs), with its setting.
+                c.heart.goodOn = set.B("heart") && set.B("heartGoodSide");
                 people.Add(c);
             }
             foreach (var c in people)
@@ -559,8 +569,8 @@ namespace Balance
                 if (v > 0f) good += v;
                 else bad += v;
                 if (parts != null && v != 0f) parts[part] = parts.GetValueOrDefault(part) + v;
-                // Every small mood counts toward the heart's pile (SmallMomentMath.IsSmall), the strain's own mood aside.
-                if (part != "strain" && SmallMomentMath.IsSmall(v, -1f))
+                // Every small mood counts toward the heart's pile (SmallMomentMath.IsSmall), the heart's own moods aside.
+                if (part != "strain" && part != "the good side" && SmallMomentMath.IsSmall(v, -1f))
                 {
                     if (v < 0f) c.smallSteadyBad -= v;
                     else c.smallSteadyGood += v;
@@ -621,6 +631,10 @@ namespace Balance
                 part = "strain";
                 c.strain = (int)HeartMath.BandFor(c.heart.strain);
                 if (set.B("heart") && c.strain > 0) Add(defs.T("Council_Heart_Strain")?.Stage(c.strain - 1) ?? 0f);
+                // The heart's good side: in good heart, in high spirits (a situational mood like strain's).
+                part = "the good side";
+                int goodBand = c.heart.goodOn ? (int)HeartMath.GoodBandFor(c.heart.good) : 0;
+                if (goodBand > 0) Add(defs.T("Council_Heart_GoodSide")?.Stage(goodBand - 1) ?? 0f);
                 part = "health";
                 if (c.convalescentFrom >= 0 && hour >= c.convalescentFrom && hour < c.convalescentUntil)
                     Add(defs.T("Council_Health_WeakFrustrated")?.First ?? 0f);
@@ -729,16 +743,26 @@ namespace Balance
                 float relief = SmallMomentMath.JoyReliefPerHour(allGood);
                 if (relief > 0f)
                 {
-                    float eased = c.heart.EaseJoys(relief, null);
+                    // Every small good mood that adds up, the game's comforts among them: what is beyond the strain they have
+                    // fills the good side only a little.
+                    float eased = c.heart.EaseJoys(relief, null, true);
                     Split(c.heart.eased, eased, gameJoy / allGood, "small moods: the game's", "small moods: Rimfolk's");
                 }
             }
             if (set.B("heart"))
             {
                 if (c.heart.Hour(heartLife, heartRng, Day, HourOfDay, partyToday, hour, ref lastColonyEpisode, set.B("heartEpisodes")) && Measuring) episodes++;
+                // The good side's release: in high spirits and safe (no fight this hour), now and then.
+                bool safe = heartRaidHour < 0 || HourOfDay < heartRaidHour || HourOfDay > heartRaidHour + 3;
+                int released = c.heart.Release(heartRng, hour * 2500, safe && Awake, ref lastColonyRelease);
+                if (released == 2) KindWord(c);
+                if (released > 0 && Measuring) releases[released - 1]++;
                 if (Measuring)
                 {
                     bandHours[(int)HeartMath.BandFor(c.heart.strain)]++;
+                    goodBandHours[(int)HeartMath.GoodBandFor(c.heart.good)]++;
+                    if (c.heart.strain <= 0f) noStrainHours++;
+                    goodTenths[Math.Clamp((int)(c.heart.good / 10f), 0, 9)]++;
                     heartHours++;
                 }
             }
@@ -815,6 +839,7 @@ namespace Balance
             {
                 bool raid = heartRng.NextDouble() < heartLife.raid, death = heartRng.NextDouble() < heartLife.deathsPerYear / HeartState.Days;
                 int raidHour = heartRng.Next(6, 20), deathHour = heartRng.Next(0, 24);
+                heartRaidHour = raid ? raidHour : -1;
                 partyToday = heartRng.NextDouble() < heartLife.party;
                 foreach (var c in people) c.heart.StartDay(heartLife, heartRng, day, raid, raidHour, death, deathHour);
             }
@@ -1466,6 +1491,20 @@ namespace Balance
             // A friction is a small letdown; a good moment small as written (SmallMoments.JoySource: 5 points, 2 days) a small joy.
             bool small = felt < 0f || (own <= 5f && t.durationDays <= 2f);
             if (!small || !Moment(c, t, felt)) AddMemory(c, t, felt);
+        }
+
+        /// <summary>
+        /// The good side's release (Heart/GoodRelease.cs): a kind word, face to face, for someone close; the one under the
+        /// most strain first. A small joy for them (Council_Heart_KindWord).
+        /// </summary>
+        private void KindWord(Colonist c)
+        {
+            var other = c.friends.OrderByDescending(f => f.heart.strain).FirstOrDefault();
+            if (other == null) return;
+            string was = source;
+            source = "the good side";
+            MomentThought(other, "Council_Heart_KindWord");
+            source = was;
         }
 
         private void Nuisances()

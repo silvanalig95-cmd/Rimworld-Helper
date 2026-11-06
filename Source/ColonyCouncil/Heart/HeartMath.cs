@@ -320,7 +320,7 @@ namespace ColonyCouncil
         public static readonly int GoodSourceCount = Enum.GetValues(typeof(GoodSource)).Length;
 
         /// <summary>From here a colonist is in good heart, and from <see cref="HighSpiritsAt"/> in high spirits.</summary>
-        public const float GoodHeartAt = 30f, HighSpiritsAt = 65f;
+        public const float GoodHeartAt = 40f, HighSpiritsAt = 60f;
 
         public static GoodBand GoodBandFor(float good)
         {
@@ -338,13 +338,13 @@ namespace ColonyCouncil
             switch (band)
             {
                 case GoodBand.GoodHeart: return 2f;
-                case GoodBand.HighSpirits: return 4f;
+                case GoodBand.HighSpirits: return 3f;
                 default: return 0f;
             }
         }
 
         /// <summary>The most the good side can fill in one day, from everything together.</summary>
-        public const float GoodDailyCap = 5f;
+        public const float GoodDailyCap = 4f;
 
         /// <summary>The most one source can fill in a day.</summary>
         public static float GoodCap(GoodSource s)
@@ -354,8 +354,8 @@ namespace ColonyCouncil
                 case GoodSource.Gathering: return 2.5f;
                 case GoodSource.Friends: return 1.5f;
                 case GoodSource.Joys: return 1.2f;
-                case GoodSource.Belonging: return 1f;
-                case GoodSource.Purpose: return 1f;
+                case GoodSource.Belonging: return 1.2f;
+                case GoodSource.Purpose: return 1.2f;
                 case GoodSource.Deeds: return 2f;
                 // A fine room and a fine meal: only a little, so a rich colony doesn't simply buy it.
                 case GoodSource.Comforts: return 0.4f;
@@ -371,9 +371,9 @@ namespace ColonyCouncil
         {
             switch (s)
             {
-                case GoodSource.Gathering: return 0.4f;
-                case GoodSource.Friends: return 0.5f;
-                case GoodSource.Joys: return 0.5f;
+                case GoodSource.Gathering: return 0.45f;
+                case GoodSource.Friends: return 0.6f;
+                case GoodSource.Joys: return 0.6f;
                 case GoodSource.Comforts: return 0.15f;
                 default: return 1f;
             }
@@ -386,7 +386,7 @@ namespace ColonyCouncil
         public static float NeedFillPerHour(float need)
         {
             if (float.IsNaN(need) || need < 60f) return 0f;
-            return Lerp(0.03f, 0.06f, (need - 60f) / 30f);
+            return Lerp(0.035f, 0.07f, (need - 60f) / 30f);
         }
 
         /// <summary>A deed the colony speaks well of: this much for a deed of size 1, up to twice for a big one.</summary>
@@ -414,23 +414,35 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// Hardship spends the good side before strain builds: of <paramref name="hardship"/>, what the good side takes
-        /// (point for point, as much as there is) comes off <paramref name="good"/>; the rest is returned, to build strain.
+        /// Someone in good heart takes a hard knock in their stride: each point of hardship spends this much of the good
+        /// side, and builds no strain while any is left.
+        /// </summary>
+        public const float SpendShare = 0.5f;
+
+        /// <summary>
+        /// Hardship spends the good side before strain builds: of <paramref name="hardship"/>, what the good side covers
+        /// (at <see cref="SpendShare"/> a point, as far as it goes) comes off <paramref name="good"/>; the rest is returned,
+        /// to build strain. <paramref name="spent"/> is what came off the good side.
         /// </summary>
         public static float Spend(float hardship, ref float good, out float spent)
         {
             spent = 0f;
             if (float.IsNaN(hardship) || hardship <= 0f) return 0f;
-            if (good > 0f)
+            if (good <= 0f) return hardship;
+            float cost = hardship * SpendShare;
+            if (cost <= good)
             {
-                spent = Math.Min(good, hardship);
-                good -= spent;
+                spent = cost;
+                good -= cost;
+                return 0f;
             }
-            return hardship - spent;
+            spent = good;
+            good = 0f;
+            return hardship - spent / SpendShare;
         }
 
-        /// <summary>The good side fades slowly: about 4% a day (halving in a little over two weeks without anything to fill it).</summary>
-        public const float GoodFadePerHour = 0.9983f;
+        /// <summary>The good side fades slowly: about 2.5% a day (halving in about four weeks without anything to fill it).</summary>
+        public const float GoodFadePerHour = 0.99873f;
 
         /// <summary>The good side after <paramref name="hours"/> of fading.</summary>
         public static float Faded(float good, float hours) => good <= 0f || float.IsNaN(good) ? 0f : good * (float)Math.Pow(GoodFadePerHour, Math.Max(0f, hours));

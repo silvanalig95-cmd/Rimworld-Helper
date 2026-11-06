@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The heart's good side (Source/ColonyCouncil/Heart/GoodHeart.cs), the player's request of 6 November 2026: the other
+    side of strain. Its mood is situational like strain's: it reads the colonist's band of the good side each time the
+    game asks and stores nothing in their memories. Steady (the middle) gives nothing; in good heart and in high spirits
+    give a small good mood. Words for every age.
+  -->
+
+  <ThoughtDef>
+    <defName>Council_Heart_GoodSide</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_HeartGood</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_HeartGood</thoughtClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <label>in good heart</label>
+        <description>The good days have been adding up: people I care about close by, and work that means something. It stays with me.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+      <li>
+        <label>in high spirits</label>
+        <description>Everything has been going right for a good while now. I feel I could take on whatever comes.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!--
+    A kind word from someone in high spirits (the good side's release): they walked over and said it, face to face. A
+    small good memory of Rimfolk's, so it comes as a small joy (a short moment, and what it weighs beyond eases the
+    heart of whoever heard it).
+  -->
+  <ThoughtDef>
+    <defName>Council_Heart_KindWord</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>a kind word from {0}</label>
+        <description>They came over just to say it. It was a small thing, and it helped more than they know.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+        <baseOpinionOffset>6</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>
