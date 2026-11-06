@@ -221,5 +221,16 @@ namespace ColonyCouncil
 
         /// <summary>An answer that says why: a curt one or a refusal (silence says nothing).</summary>
         public static bool SaysWhy(AnswerTone t) => t == AnswerTone.Curt || t == AnswerTone.Refusal;
+
+        /// <summary>
+        /// Purposes whose refusals give their own reason in their own words (a truce, a ransom, an envoy, a ward, a match, an
+        /// oath of fealty): no second reason is added to them.
+        /// </summary>
+        public static bool OwnReasons(LetterPurpose p) =>
+            p == LetterPurpose.Truce || p == LetterPurpose.Ransom || p == LetterPurpose.Envoy || p == LetterPurpose.Ward || p == LetterPurpose.Match
+            || p == LetterPurpose.Fealty || p == LetterPurpose.Task;
+
+        /// <summary>Their people's goodwill moved by so much, in words: a little (one or two), markedly (three or more).</summary>
+        public static bool GoodwillMarked(int gw) => gw >= 3;
     }
 }

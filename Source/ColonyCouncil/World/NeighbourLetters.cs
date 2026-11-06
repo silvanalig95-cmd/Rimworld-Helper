@@ -75,6 +75,11 @@ namespace ColonyCouncil
         /// <summary>Someone of their people at the colony who carries it home instead of a messenger (Outsiders/), while they're here.</summary>
         public Pawn bearer;
         public string bearerName;
+        /// <summary>
+        /// A warning heeded warmly: their people count it a debt of honour, made when the answer that says so reaches the
+        /// colony (NeighbourLetters.Owed), not before.
+        /// </summary>
+        public bool owed;
 
         public bool Open => stage != LetterStage.Done && stage != LetterStage.Cancelled;
 
@@ -114,6 +119,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref metAtGate, "metAtGate");
             Scribe_References.Look(ref bearer, "bearer");
             Scribe_Values.Look(ref bearerName, "bearerName");
+            Scribe_Values.Look(ref owed, "owed");
         }
     }
 
@@ -518,7 +524,12 @@ namespace ColonyCouncil
                     if (l.tripId >= 0)
                     {
                         var trip = CourierTracker.Instance?.Get(l.tripId);
-                        if (trip == null || trip.settled) Finish(l, n);
+                        if (trip == null || trip.settled)
+                        {
+                            // The answer is in: what it says they owe the colony is owed from now.
+                            Owed(l, n);
+                            Finish(l, n);
+                        }
                         return;
                     }
                     if (now < l.due) return;
@@ -675,8 +686,9 @@ namespace ColonyCouncil
             var n = Book?.Get(l?.notable ?? -1);
             if (l == null || n == null || l.stage != LetterStage.AwaitMessenger) return;
             float tiles = Tiles(n, l.map);
-            float there = NotableMath.TravelDays(tiles, TechOf(bearer?.Faction ?? n.faction));
-            l.backDays = NotableMath.TravelDays(tiles, TechOf(n.faction));
+            // Carried home by one of theirs, at their people's means; the answer comes back at the colony's (Means).
+            float there = LetterMath.LegDays(tiles, LetterMath.MeansOf(Ages.Of(bearer?.Faction ?? n.faction)));
+            l.backDays = LetterMath.LegDays(tiles, Means);
             l.stage = LetterStage.Travelling;
             l.stageTick = Now;
             // They set off for home when their stay ends: about half a day on.
@@ -736,15 +748,19 @@ namespace ColonyCouncil
             t.received = true;
             Say(by, "hand", n);
             CourierWords.Say(courier, t, "receive");
+            // On the road by the colony's means in its age (a runner, a rider, a courier, a courier by shuttle), there and
+            // back: days, not weeks (phase 6 of the review). A letter already on the road keeps the day it was given.
             float tiles = Tiles(n, l.map);
-            int tech = TechOf(t.faction ?? n.faction);
-            float there = NotableMath.TravelDays(tiles, tech);
-            l.backDays = NotableMath.TravelDays(tiles, TechOf(n.faction));
+            float there = LetterMath.LegDays(tiles, Means);
+            l.backDays = LetterMath.LegDays(tiles, Means);
             l.stage = LetterStage.Travelling;
             l.stageTick = Now;
             l.due = Now + Mathf.RoundToInt((there + NotableMath.ReplyDays(Rand.Value)) * GenDate.TicksPerDay);
             NotableBook.Changed();
         }
+
+        /// <summary>How the colony sends its letters, by its age (its means): a runner, a rider, a courier, a courier by shuttle.</summary>
+        public static LetterMeans Means => LetterMath.MeansOf(Ages.Ours);
 
         private static float Tiles(Notable n, Map map)
         {
@@ -815,8 +831,12 @@ namespace ColonyCouncil
             var dip = DiplomacyLetters.Read(l, n, speaker ?? l.writer, ref tone);
             // An invitation to a feast with guests (Diplomacy/FeastLetters.cs): their answer to it, which sets the tone.
             string feast = FeastLetters.Read(l, n, speaker ?? l.writer, ref tone);
-            // A call never walked the road: how far they are still sets when a guest or raiders could come.
-            if (l.backDays <= 0f) l.backDays = NotableMath.TravelDays(Tiles(n, l.map), TechOf(n.faction));
+            // What the answer brings beside its words (phase 6 of the review, World/LetterMath.cs): a token, how their town
+            // fares, their people's memory of it, a debt of honour; a debt only where debts of honour are kept.
+            var brings = LetterMath.Brings(l.purpose, tone);
+            if (brings == AnswerBrings.FavourOwed && !CanOwe(n.faction)) brings = AnswerBrings.Remembered;
+            // A call never went by road: how far they are, at their people's means, still sets when a guest or raiders could come.
+            if (l.backDays <= 0f) l.backDays = LetterMath.LegDays(Tiles(n, l.map), LetterMath.MeansOf(Ages.Of(n.faction)));
             l.tone = tone;
             float factor = NotableMath.ChannelFactor(l.purpose, l.channel, x.traditional);
             float shift = NotableMath.OpinionShift(tone, l.purpose, factor, x.lately);
@@ -837,19 +857,37 @@ namespace ColonyCouncil
             // What their people remember of it: a warning heeded, mourning shared, help the colony now owes them for.
             if (tone != AnswerTone.Silence && tone != AnswerTone.Refusal)
             {
-                if (l.purpose == LetterPurpose.Warning) KinMemory.Note(n.faction, "warned", speaker, l.topic);
+                // Heeded warmly: a debt of honour, made with its own weight when the answer reaches the colony (Owed).
+                if (l.purpose == LetterPurpose.Warning)
+                {
+                    if (brings == AnswerBrings.FavourOwed) l.owed = true;
+                    else KinMemory.Note(n.faction, "warned", speaker, l.topic);
+                }
                 else if (l.purpose == LetterPurpose.Condolences && tone <= AnswerTone.Cordial)
                     KinMemory.Note(n.faction, "mourned", speaker, l.topicKey != null && l.topicKey.StartsWith("loss:") ? l.topicKey.Substring(5) : null, 4);
             }
             if (l.purpose == LetterPurpose.Help && granted) FactionMemory.Note(n.faction, "letterAid", HelpLabel(l.help));
-            // What comes back with it.
+            // What comes back with it: carried to the gate by their messenger.
             var things = new List<Thing>();
             if (dip != null) things.AddRange(dip.things);
             if (l.purpose == LetterPurpose.Help && granted) things.AddRange(HelpThings(l.help, n.faction));
+            else if (brings == AnswerBrings.Token) things.AddRange(Loot.Make(LetterMath.TokenValue(Rand.Value) * LivingEvents.WealthFactor(l.map), false));
             else if (NotableMath.Gift(tone, l.purpose, NotableBook.Opinion(n), Rand.Value))
                 things.AddRange(Loot.Make(Rand.Range(80f, 160f) * LivingEvents.WealthFactor(l.map), false));
             string visit = null;
-            if (l.purpose == LetterPurpose.Invitation && granted) visit = feast ?? PlanVisit(l, n, now);
+            bool noTraveller = false;
+            if (l.purpose == LetterPurpose.Invitation && granted)
+            {
+                visit = feast ?? PlanVisit(l, n, now);
+                noTraveller = visit == null;
+            }
+            // How far it moved them, in words, and why when it went badly (World/LetterMath.cs).
+            var said = new Said
+            {
+                brings = brings, goodwill = gw, before = x.opinion, after = NotableBook.Opinion(n), shift = shift, noTraveller = noTraveller,
+                why = LetterMath.SaysWhy(tone) && !LetterMath.OwnReasons(l.purpose) || l.purpose == LetterPurpose.Invitation && visit == null && feast == null
+                    ? LetterMath.Why(x) : (LetterWhy?)null
+            };
             // A people at war may answer with a threat, and keep it.
             string threat = null;
             if (tone != AnswerTone.Silence && Raids.CanRaid(n.faction) && IncidentWorker_Happening.FightsPossible && l.map != null
@@ -881,7 +919,7 @@ namespace ColonyCouncil
                 return tone;
             }
             string title = Title(l, n, how);
-            string text = Body(l, n, speaker, tone, things, visit, how, dip?.line);
+            string text = Body(l, n, speaker, tone, things, visit, how, dip?.line, said);
             if (threat != null) text += "\n\n" + threat;
             var def = tone <= AnswerTone.Cordial ? LetterDefOf.PositiveEvent : LetterDefOf.NeutralEvent;
             string chronicle = "CC_Letter_Chronicle".Translate(l.WriterName.Named("PAWN"), n.Name.Named("NAME"), ToneWord(tone).Named("TONE")).Resolve();
@@ -902,6 +940,8 @@ namespace ColonyCouncil
                 }
             }
             else SendNow(l, title, text, def, chronicle, things);
+            // Told at once (a call, or nobody to carry it): what it says they owe is owed at once.
+            if (l.tripId < 0) Owed(l, n);
             if (visit == null || feast != null)
             {
                 l.stage = l.channel == LetterChannel.Courier && l.tripId >= 0 ? LetterStage.Answering : LetterStage.Done;
@@ -964,7 +1004,7 @@ namespace ColonyCouncil
             return key.Translate(n.Name.Named("NAME")).Resolve();
         }
 
-        private static string Body(NeighbourLetter l, Notable n, Pawn speaker, AnswerTone tone, List<Thing> things, string visit, string how, string dip = null)
+        private static string Body(NeighbourLetter l, Notable n, Pawn speaker, AnswerTone tone, List<Thing> things, string visit, string how, string dip, Said said)
         {
             string town = n.townName ?? n.faction?.Name ?? "";
             string title = NotableBook.TitleOf(n);
@@ -977,7 +1017,7 @@ namespace ColonyCouncil
             };
             // What is true between the colony and them, for their words and their news (the facts service, Text/Facts/).
             bool news = l.purpose == LetterPurpose.News && tone != AnswerTone.Refusal;
-            var facts = Facts.For(FactScene.Letter(n, speaker ?? l.writer, l.map, news));
+            var facts = Facts.For(FactScene.Letter(n, speaker ?? l.writer, l.map, news || said?.brings == AnswerBrings.TownNews));
             // Help is in their words only when it comes with the answer (World/NotableMath.cs, Grants): what they send is what the letter says.
             string quote = Quote(l, n, tone, speaker, facts, l.purpose == LetterPurpose.Help && things.Count > 0);
             if (!quote.NullOrEmpty()) parts.Add("\"" + quote + "\"");
@@ -991,8 +1031,113 @@ namespace ColonyCouncil
                 parts.Add(visit ?? "CC_Letter_InviteNot".Translate(n.Name.Named("NAME")).Resolve());
             // What they did about a debt of honour called in, or the colony's word given (Diplomacy/DiplomacyLetters.cs).
             if (!dip.NullOrEmpty()) parts.Add(dip);
-            parts.Add(("CC_Letter_Outcome_" + tone).Translate(n.Name.Named("NAME"), (speaker?.LabelShort ?? l.WriterName).Named("PAWN")).Resolve());
+            // What else it brings, why not when it went badly, and how far it moved them (phase 6 of the review).
+            string writer = speaker?.LabelShort ?? l.WriterName;
+            string brought = Brought(l, n, said, facts);
+            if (!brought.NullOrEmpty()) parts.Add(brought);
+            string why = WhyLine(l, n, said, writer);
+            if (!why.NullOrEmpty()) parts.Add(why);
+            parts.Add(RegardLine(n, tone, said, writer));
             return string.Join("\n\n", parts);
+        }
+
+        /// <summary>What a letter's answer did beside its words, worked out as it is read, for its words.</summary>
+        private sealed class Said
+        {
+            public AnswerBrings brings;
+            /// <summary>Their people's goodwill moved by this much.</summary>
+            public int goodwill;
+            /// <summary>Their regard of the colony before and after, and their own shift.</summary>
+            public int before, after;
+            public float shift;
+            /// <summary>Why it went badly, when it did and the purpose has no reason of its own.</summary>
+            public LetterWhy? why;
+            /// <summary>An invitation taken up with nobody free to travel.</summary>
+            public bool noTraveller;
+        }
+
+        /// <summary>A debt of honour can be kept with them: favours owed on, and a people the colony deals with.</summary>
+        private static bool CanOwe(Faction f) => f != null && FavoursOwed.On && Diplomacy.Deals(f) && FavourMath.Earns("warned", true, LetterMath.HeededWarmly);
+
+        /// <summary>
+        /// A warning heeded warmly, its answer in: their people remember it with the weight of a debt of honour, owed to the
+        /// colony (and named for the one who wrote), told in the answer's own words rather than on its own.
+        /// </summary>
+        private static void Owed(NeighbourLetter l, Notable n)
+        {
+            if (l == null || !l.owed || n?.faction == null) return;
+            l.owed = false;
+            try
+            {
+                FavoursOwed.Quietly(() => KinMemory.Note(n.faction, "warned", KinMemory.Ours(l.writer) ? l.writer : null, l.topic, LetterMath.HeededWarmly));
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("letter: a warning's debt", e);
+            }
+        }
+
+        /// <summary>What a letter of kind words brings beside them, in words (World/LetterMath.cs, Brings).</summary>
+        private static string Brought(NeighbourLetter l, Notable n, Said said, FactSet facts)
+        {
+            if (said == null) return null;
+            string people = n.faction?.Name ?? "";
+            string line = null;
+            switch (said.brings)
+            {
+                case AnswerBrings.TownNews:
+                {
+                    var rec = n.town >= 0 && RegionBook.FortunesOn ? WorldLedger.TownRecord(n.town) : null;
+                    string fortune = rec != null ? RegionFortunes.Line(rec) : null;
+                    string item = facts?.news?.FirstOrDefault();
+                    if (!fortune.NullOrEmpty() && !(n.townName ?? "").NullOrEmpty())
+                        line = "CC_LetterBring_Town".Translate(n.Name.Named("NAME"), n.townName.Named("TOWN"), fortune.UncapitalizeFirst().Named("FORTUNE")).Resolve();
+                    else if (!item.NullOrEmpty()) line = "CC_LetterBring_TownNews".Translate(n.Name.Named("NAME"), item.Named("NEWS")).Resolve();
+                    else line = "CC_LetterBring_TownQuiet".Translate(n.Name.Named("NAME")).Resolve();
+                    break;
+                }
+                case AnswerBrings.Remembered:
+                    line = (l.purpose == LetterPurpose.Condolences ? "CC_LetterBring_Mourned" : "CC_LetterBring_Heeded").Translate(people.Named("PEOPLE")).Resolve();
+                    break;
+                case AnswerBrings.FavourOwed:
+                {
+                    var form = DipWords.Form(l.map ?? Home, n.faction);
+                    line = "CC_LetterBring_Owed".Translate(people.Named("PEOPLE"), form.word.Named("WORD"), l.WriterName.Named("PAWN")).Resolve();
+                    break;
+                }
+            }
+            if (said.goodwill > 0)
+            {
+                string gw = (LetterMath.GoodwillMarked(said.goodwill) ? "CC_LetterBring_GoodwillMarked" : "CC_LetterBring_Goodwill").Translate(people.Named("PEOPLE")).Resolve();
+                line = line.NullOrEmpty() ? gw : line + " " + gw;
+            }
+            return line;
+        }
+
+        private static Map Home => HappeningTracker.HomeMap() ?? Homes.Seat;
+
+        /// <summary>Why a curt answer or a refusal went as it did (or an invitation not taken up), in words.</summary>
+        private static string WhyLine(NeighbourLetter l, Notable n, Said said, string writer)
+        {
+            if (said == null) return null;
+            if (said.noTraveller) return "CC_LetterWhy_NoTraveller".Translate(n.Name.Named("NAME"), (n.townName ?? n.faction?.Name ?? "").Named("TOWN")).Resolve();
+            if (said.why == null) return null;
+            return ("CC_LetterWhy_" + said.why.Value).Translate(n.Name.Named("NAME"), RegardWord(said.before).Named("LEVEL"), writer.Named("WRITER"),
+                (n.townName ?? n.faction?.Name ?? "").Named("TOWN")).Resolve();
+        }
+
+        /// <summary>Their regard as one word ("civil", "warm"), for the answer's words.</summary>
+        private static string RegardWord(int opinion) => ("CC_LetterRegard_Level_" + NotableMath.Level(opinion)).Translate().Resolve();
+
+        /// <summary>How far the answer moved their regard of the colony, in words: the band before and after, or how much within it.</summary>
+        private static string RegardLine(Notable n, AnswerTone tone, Said said, string writer)
+        {
+            if (said == null) return ("CC_Letter_Outcome_" + tone).Translate(n.Name.Named("NAME"), writer.Named("PAWN")).Resolve();
+            float moved = said.after != said.before ? said.after - said.before : said.shift;
+            var move = LetterMath.Move(said.before, said.after, moved);
+            string line = ("CC_LetterRegard_" + move).Translate(n.Name.Named("NAME"), RegardWord(said.before).Named("OLD"), RegardWord(said.after).Named("NOW")).Resolve();
+            if (tone == AnswerTone.Warm) line += " " + "CC_LetterRegard_Writer".Translate(n.Name.Named("NAME"), writer.Named("PAWN")).Resolve();
+            return line;
         }
 
         /// <summary>
