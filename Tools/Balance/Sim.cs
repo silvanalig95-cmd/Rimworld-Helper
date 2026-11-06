@@ -368,7 +368,11 @@ namespace Balance
             float days = had ? (hour - was.hour) / 24f : float.NaN;
             if (SmallMomentMath.MomentDue(stage, had ? was.stage : -1, days))
             {
+                // The report's breakdown: a pressure's or a lasting setback's moment under its own name.
+                string was2 = source;
+                source = key.StartsWith("Council_Pressure_") ? "pressures" : "setbacks (lasting)";
                 AddMemory(c, t, SmallMomentMath.MomentMood(felt), (int)Math.Round(SmallMomentMath.MomentDays * 24), true);
+                source = was2;
                 c.lasting[key] = (stage, hour);
                 Count(joy ? "small joys" : "small letdowns");
             }

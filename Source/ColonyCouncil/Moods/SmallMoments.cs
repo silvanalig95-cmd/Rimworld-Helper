@@ -215,7 +215,8 @@ namespace ColonyCouncil
             if (!ThoughtUtility.CanGetThought(p, t.def)) return;
             // Whose it is and whom it's about, as the game sets them next, so its size and words read right.
             var about = t is Thought_MemorySocial ? other ?? t.otherPawn : other;
-            if (t is Thought_MemorySocial && about == null) return;
+            // As the game would refuse it: a memory about someone needs them, of an age it is for.
+            if (t is Thought_MemorySocial && (about == null || !t.def.socialTargetDevelopmentalStageFilter.Has(about.DevelopmentalStage))) return;
             t.pawn = p;
             t.otherPawn = about;
             float felt;
