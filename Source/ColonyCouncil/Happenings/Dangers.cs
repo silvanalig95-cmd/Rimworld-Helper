@@ -225,7 +225,10 @@ namespace ColonyCouncil
             var wall = k.cell.IsValid ? k.cell.GetEdifice(map) : null;
             int wood = tree.def.plant?.harvestedThingDef != null ? Mathf.RoundToInt(tree.def.plant.harvestYield * tree.Growth) : 0;
             var woodDef = tree.def.plant?.harvestedThingDef;
-            var under = map.mapPawns.AllPawnsSpawned.Where(p => p.RaceProps.Humanlike && (p.Position.DistanceTo(k.cell) <= 1.5f || p.Position.DistanceTo(from) <= 1.5f)).ToList();
+            // Whoever stands under it on the tree's side of the wall: the wall stands, so nobody behind it is reached.
+            var side = from.GetRoom(map);
+            var under = map.mapPawns.AllPawnsSpawned.Where(p => p.RaceProps.Humanlike && p.GetRoom() == side
+                                                                && (p.Position.DistanceTo(k.cell) <= 1.5f || p.Position.DistanceTo(from) <= 1.5f)).ToList();
             tree.Destroy(DestroyMode.Vanish);
             FleckMaker.ThrowDustPuffThick(from.ToVector3Shifted(), map, 2.5f, new Color(0.6f, 0.55f, 0.45f));
             FilthMaker.TryMakeFilth(from, map, ThingDefOf.Filth_LooseGround, 2);
@@ -329,7 +332,7 @@ namespace ColonyCouncil
             var shell = k.things.FirstOrDefault();
             if (k.count == 2 && k.on)
             {
-                if (shell != null && !shell.Destroyed) return false;
+                if (shell != null && !shell.Destroyed) return now > k.until;
                 var p = k.pawn;
                 if (p != null && p.Spawned && Rand.Chance(Harm.Chance(VarietyThreeMath.BlastStoneChance))
                     && Wound(p, HurtKind.Cut, Rand.Bool ? HurtWhere.Arm : HurtWhere.Any, VarietyThreeMath.BlastStoneLow, VarietyThreeMath.BlastStoneHigh, "CC_Danger_BlastStone") != null)

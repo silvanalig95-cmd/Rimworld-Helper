@@ -661,6 +661,8 @@ namespace ColonyCouncil
                 if (open.Count >= z.Cells.Count) return;
                 var things = open.SelectMany(c => c.GetThingList(z.Map)).Where(t => t.def.category == ThingCategory.Item).ToList();
                 foreach (var c in open) z.RemoveCell(c);
+                // What's left under the roof may be in pieces now: the game makes each piece a stockpile of its own.
+                z.CheckContiguous();
                 Tell.Message(NewsKind.Colony, Importance.Notable, ctx.map, "CC_DlmE_OpenGivenUp".Translate(z.label.Named("ZONE")).Resolve(),
                     things.Count > 0 ? new LookTargets(things.Take(20)) : new LookTargets(z.Cells.First(), z.Map), MessageTypeDefOf.NeutralEvent);
             }
