@@ -76,8 +76,9 @@ public static class TellTests
         C(book.Count(Oak, false, t + TellMath.MergeTicks) == 2, "a merged one isn't counted");
         C(book.Judge(null, Oak, People, false, Notable, 20, t + 1) == TellVerdict.Show && book.Judge(null, Oak, People, false, Notable, 20, t + 2) == TellVerdict.Show,
             "without a key nothing is the same as anything");
-        int later = t + TellMath.MergeTicks + H;
-        C(book.Told("same", later) && !book.Told("other", later) && book.Told("other", later + H), "the evening's news asks whether a message said it already, and notes its own");
+        book.Clear();
+        book.Judge("said", Oak, People, false, Notable, 20, t);
+        C(book.Told("said", t + H) && !book.Told("other", t + H) && book.Told("other", t + H * 2), "the evening's news asks whether a message said it already, and notes its own");
         book.Clear();
         C(book.Judge("x1", Oak, Colony, false, Notable, 1, t) == TellVerdict.Show && book.Judge("x2", Oak, Colony, false, Notable, 1, t + 1) == TellVerdict.Held,
             "past the count it's held");

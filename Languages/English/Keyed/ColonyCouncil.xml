@@ -1321,6 +1321,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Asp_Toast_1>To {A_nameDef}, who {DEED}.</CC_Asp_Toast_1>
   <CC_Asp_Toast_2>{A_nameDef} said {A_pronoun} would, and {A_pronoun} did.</CC_Asp_Toast_2>
   <CC_Asp_Toast_3>Here's to {A_nameDef}.</CC_Asp_Toast_3>
+  <CC_Asp_ToastLabel>a toast to {A_nameDef}</CC_Asp_ToastLabel>
   <CC_Asp_ToastCause>{A_nameDef} set out to {GOAL}, and did it</CC_Asp_ToastCause>
   <CC_Asp_LessonLabel>learning {SKILL} at {B_nameDef}'s side</CC_Asp_LessonLabel>
   <CC_Asp_LessonCause>{A_nameDef} learned {SKILL} at {B_nameDef}'s side</CC_Asp_LessonCause>

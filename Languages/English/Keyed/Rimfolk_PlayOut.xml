@@ -80,7 +80,9 @@
   <CC_Play_End_Learned>{0} learned from it: {1} +{2} xp each.</CC_Play_End_Learned>
   <CC_Play_End_LearnedOne>{0} learned from it: {1} +{2} xp.</CC_Play_End_LearnedOne>
 
-  <!-- When it never happens: nobody has its moods (it never happened), and the line is CC_Play_FellThrough with one of these. -->
+  <!-- When it never happens: nobody has its moods (it never happened), and the line says why with one of these. -->
+  <CC_Play_Fallback>{0} never came about ({1}).</CC_Play_Fallback>
+  <CC_Play_FallbackPlain>{0} never came about.</CC_Play_FallbackPlain>
   <CC_Play_Why_Danger>it wasn't safe</CC_Play_Why_Danger>
   <CC_Play_Why_Gathering>something else had everyone's attention</CC_Play_Why_Gathering>
   <CC_Play_Why_Busy>nobody was free</CC_Play_Why_Busy>

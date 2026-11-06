@@ -748,7 +748,9 @@ namespace ColonyCouncil
             // visit or lesson that never came about passes quietly. The answer's outcome isn't told: it didn't happen.
             if (quiet || p.label.NullOrEmpty() || !(p.IsGathering || told)) return;
             string label = p.label.CapitalizeFirst();
-            string text = (why.NullOrEmpty() ? "CC_Play_FellThroughPlain".Translate(label) : "CC_Play_FellThrough".Translate(label, why)).Resolve();
+            string text = !p.IsGathering
+                ? (why.NullOrEmpty() ? "CC_Play_FellThroughPlain".Translate(label) : "CC_Play_FellThrough".Translate(label, why)).Resolve()
+                : (why.NullOrEmpty() ? "CC_Play_FallbackPlain".Translate(label) : "CC_Play_Fallback".Translate(label, why)).Resolve();
             Tell.Minor(NewsKind.Colony, Importance.Notable, p.map, text, null, MessageTypeDefOf.NeutralEvent);
         }
 
