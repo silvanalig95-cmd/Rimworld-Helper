@@ -24,9 +24,9 @@
   <CC_Promise_Broken_Trust>trust in the council fell</CC_Promise_Broken_Trust>
   <CC_Promise_Kept_Quarrels>there are no more quarrels than there were</CC_Promise_Kept_Quarrels>
   <CC_Promise_Broken_Quarrels>there are more quarrels than there were</CC_Promise_Broken_Quarrels>
-  <CC_Promise_Kept_Lost>nobody of the colony has been lost since</CC_Promise_Kept_Lost>
-  <CC_Promise_Broken_Lost>{COUNT} of the colony have been lost since</CC_Promise_Broken_Lost>
-  <CC_Promise_Broken_Lost_One>one of the colony has been lost since</CC_Promise_Broken_Lost_One>
+  <CC_Promise_Kept_Lost>the colony has lost nobody since</CC_Promise_Kept_Lost>
+  <CC_Promise_Broken_Lost>the colony has lost {COUNT} of its own since</CC_Promise_Broken_Lost>
+  <CC_Promise_Broken_Lost_One>the colony has lost one of its own since</CC_Promise_Broken_Lost_One>
   <CC_Promise_Kept_Food>the stores held</CC_Promise_Kept_Food>
   <CC_Promise_Broken_Food>the stores ran low</CC_Promise_Broken_Food>
   <CC_Promise_Kept_Medicine>there is medicine enough for everyone</CC_Promise_Kept_Medicine>
@@ -41,7 +41,7 @@
   <CC_Promise_Broken_Days>no day was kept</CC_Promise_Broken_Days>
   <CC_Promise_Kept_Faith>the faith held its own</CC_Promise_Kept_Faith>
   <CC_Promise_Broken_Faith>the faith lost ground</CC_Promise_Broken_Faith>
-  <CC_Promise_Kept_Work>the seat's work was done: {PAWN_pronoun} has {MEASURED} since</CC_Promise_Kept_Work>
+  <CC_Promise_Kept_Work>{PAWN_pronoun} has {MEASURED} since</CC_Promise_Kept_Work>
   <CC_Promise_Kept_Work_Mine>I have {MEASURED} since</CC_Promise_Kept_Work_Mine>
 
 </LanguageData>

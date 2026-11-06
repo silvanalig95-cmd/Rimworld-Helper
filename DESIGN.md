@@ -244,6 +244,71 @@ by-election only the empty seats were up. A by-election for more than one seat s
 results (`OfficeDef.elected`) says what they mean to do, not something done nobody saw ("says the first thing she will do
 is walk out to the gate"), since the results come as the votes are counted.
 
+### Elections on a record (the player's decision 9, 6 November 2026)
+
+In the player's save ten of the twelve seats had one promise that always fit, so in a quiet season every candidate ran
+on it, and three physicians promised word for word that nobody hurt would wait for a doctor; a promise was words only
+once the vote was in. Now:
+
+- **More promises.** Each seat has three or more that always fit, beside the ones for the moment (23 more,
+  `Rimfolk_OfficeWords.xml`, merged into each office at startup by `OfficeNames.Apply`; their canvass and hustings lines
+  in `Rimfolk_Election_PlankLines.xml`), so three candidates for one seat never make the same promise
+  (`ElectionPlanks.Deal` deals distinct ones while there are enough). Each promise has its words ("a proper watch at
+  night") and how it is judged (`OfficePlank.promise`, `test`; the offices' own planks get theirs from the office words).
+- **A record.** Each candidate runs on their own record, said after their promise in the announcement and on the
+  election panel (`OfficeTracker.RecordOf`, `RecordMath.Record`): their work in the seat since their promise, when they
+  hold it (the seat's work as the game counts it, `OfficeWordsDef.measure`: wounds and illness tended, plants sown and
+  brought in, enemies brought down, trades made, quarrels mended, days kept, animals tamed, rites led, camps greeted;
+  "In the seat, Alo has tended to the sick and hurt 23 times."); else that work for the colony in all, from ten; else a
+  name the colony gave them; else a life goal reached. A holder who did some of the seat's work leans voters a little
+  their way (`RecordMath.WorkLean`, 0.75).
+- **A promise kept or broken.** At the count, each winner's promise goes into the history (`office:promise`, a
+  milestone: the promise in words on their card, with what the map shows of it then and the seat's work count). The
+  next yearly election reads it back when it is called (`JudgeRace`, within a year and a season, not judged before) and
+  judges it from what the map shows now (`RecordMath.Judge`, at least ten days in the seat): trust in the council, known
+  rivalries, the colony's dead (the game's count), days of food, medicine for each, beds for the sick, the colony's
+  mood, the herd, days kept, the faithful's share, or the holder's own work (which only ever keeps a promise: no trader
+  may have come). Each test breaks a promise only where the map clearly shows it, and says nothing where it barely
+  moved. The verdict is said in the announcement ("At the last election Toni promised a proper watch at night, and the
+  colony has lost nobody since: a promise kept."), at the hustings (a holder runs on a kept one,
+  `Rimfolk_Pool_HustingsKept`; someone who doesn't back them throws a broken one back, `Rimfolk_Pool_HustingsBroken`),
+  on the panel and in the results, and goes into the holder's history (`office:kept`, `office:broken`). At the vote a
+  kept promise helps the holder (+1.5) and a broken one costs (−1.75), within the luck of the day (`RecordLean`, one term
+  of `Leaning`). Promises and their verdicts are the holders' records, never the chronicle's (`ChronicleMath.Shows`): the
+  election's one line tells the seats. By-elections fill empty seats and judge nothing; the instant vote (elections off
+  the map) has no promises.
+
+### Seats named by the colony's age (the player's decision 10, 6 November 2026)
+
+The seats had one set of names for every age (speaker, reeve, steward, warden of guests), so a spacer colony elected a
+reeve. Each seat now has a name in each age, by the colony's own tech level (its means, `Ages.Ours`), in its office words
+(`OfficeWordsDef`: tribal, medieval, industrial, spacer; the medieval one is the office's own label, so a medieval
+colony reads what it always did):
+
+| Seat | Tribal | Medieval | Industrial | Spacer |
+|---|---|---|---|---|
+| Speaker | first voice | speaker | chair | coordinator |
+| Marshal | war leader | marshal | captain of the guard | security chief |
+| Quartermaster | keeper of stores | quartermaster | quartermaster | logistics officer |
+| Physician | healer | physician | doctor | medical officer |
+| Steward | feast-giver | steward | welfare officer | morale officer |
+| Reeve | seed-keeper | reeve | farm foreman | agronomist |
+| Peacemaker | peace-weaver | peacemaker | arbiter | mediator |
+| Keeper of days | season-caller | keeper of days | master of ceremonies | ceremonies officer |
+| Herdmaster | herd-watcher | herdmaster | head stockman | husbandry chief |
+| Chaplain | spirit-speaker | chaplain | chaplain | chaplain |
+| Warden of guests | guest-friend | warden of guests | gatekeeper | liaison officer |
+| Elder | elder | elder | elder | senior councillor |
+
+Every place the code names a seat says `OfficeDef.Name` (the letters, the results, the chronicle, journals, the
+Decrees and election pages, the story tab, the People table, causes, deeds, the advisor, RimHUD); its duties and
+description, the offices' own lines (`Interplay.Line`, `Interplay.Journal`), the life goals of a seat (their goal,
+deed and lines) and the seats' marks in the health tab (`Patch_OfficeHediffLabel`) say a seat's old name with the age's
+(`OfficeNames.InAge`, the pure `OfficeNamesMath.Rename`: whole words, the plural and a possessive too, the article put
+right, never part of a word or a placeholder). Lines elsewhere that mention a seat in passing (a dilemma's "the
+quartermaster's friends", a camp's elders, other peoples' speakers) are left as written: renaming them would rename
+other peoples' elders too.
+
 ---
 
 ## Layer 4: Society (the social web)
@@ -423,6 +488,29 @@ stat part contribute nothing and the hooks return 1.
   they show what a life is missing and point wishes and life goals toward it.
 - **Removal.** No hediffs and no stored thoughts. The only trace is a colonist in the middle of an episode.
 
+### Life goals that last (the player's decision 8, 6 November 2026)
+
+A life goal is chosen from what fits a colonist (`AspirationDef.who`), made likelier by a spark lately (a memory, a
+fight, a brush with death, a loss, a child born, a dream come true, someone close reaching the same goal). In the
+player's save, of 38 goals chosen in 88 days 25 came after a battle or a brush with death ("bring down ten mechanoids"
+five times), and Stace changed hers four times in 25 days: every raid was a spark for everyone who fought, and a goal
+gave way to any spark after ten days. Now (`GoalMath`, pure):
+
+- **A fight sparks one person.** Only whoever brought down the most in it takes the fight as a spark
+  (`GoalMath.Foremost`, read before the battle's count is reset in `SocialWeb`); a fight where nobody brought anyone
+  down sparks nobody. A brush with death and a loss are still each person's own.
+- **The spark's weight spread over a life.** A fight's spark pulls less than the rest of life (`SparkPull`: 0.4, a
+  nemesis 0.6, everything else 1), both in the chance a spark makes them choose at once (0.6 times the strongest pull
+  of their sparks) and in which goal they take. A goal others of their colony hold now weighs less (`Shared`: half for
+  one, a third for two), so the colony doesn't fill with mechanoid hunters. Where a goal has several sparks that
+  happened, a brush with death or a loss counts first.
+- **A goal holds.** A change of heart only after twenty days with the goal (`HoldsDays`, it was ten), only while it's
+  under a third done, only for a brush with death or a loss (`Big`), one chance in five a day, and once per goal: the
+  goal it brings holds for good (`Aspiration.turned`, saved). A fight or a fine meal never changes a goal held.
+- **Measured.** `FairCouncilTests` runs twelve colonists over the save's 88 days with a raid every ten: fighting goals
+  were 39 of 79 goals chosen under the old rules and are 0 of 15 now; the most changes of heart one colonist had within
+  25 days went from 3 to 1. Goals held in an older save stay as they are.
+
 ## Layer 8: Social life
 
 One feature in four parts, under one setting (`socialLife`, "Personalities and social life"): **character**
@@ -494,6 +582,18 @@ component of its own, so an old save just starts without it and finds its groups
   likeness (`Persona.Likeness`), an ideoligion held hard, arriving together or the same kind of life before, age. A cluster of
   three to seven with no rift becomes a group; someone joins the group they hold to (and never one they left) and drifts
   off after days of not holding to it. Two groups each at most.
+- **Real divides** (the player's decision 13, 6 November 2026). In the player's save one group held 7 of 12 while Barr,
+  whom everyone fights with, belonged to none: after every raid everyone was everyone's comrade, and what everyone shared
+  bound one big group. Groups now form, take people in and keep them by what binds some of the colony more than the rest
+  (`GroupMath.Distinct`: each pair's pull less three quarters of the colony's mean pull, `GroupFacts.distinct`); how close
+  a group already is still reads the plain pull, so friends stay close while those who only fought beside them find
+  their own way. A group holds well under half the colony (`GroupMath.MaxFor`: 45%, three to seven; five in a colony of
+  twelve): a group grown past it lets its loosest member go, one a day at most, and merges stop there. Someone outside
+  every group is shown as outside, with why (`GroupMath.WhyOutside`, `GroupText.OutsideWhy`: at odds with some who are
+  in one, new here, or their own way): under their name on the People table, on the Bonds page ("Outside every group:
+  Barr (at odds with Toni, Penguin and Macy)"), and on their character page. An older save's groups regroup by these rules
+  over ten days (`GroupMath.RegroupDays`, `GroupTracker.regroup`), quietly at the usual pace, told once in the news; a
+  new game's groups form as ever. The names stay as they were given (named for what they share, 0.101.2).
 - **Identity.** The kind is what binds most of it (`GroupKindDef`: 25, lowest order wins, friendship last); it gives a
   name picked once, in the colony's era, and kept. A group is never named after one of its people (the colony is the
   family, and its groups are of the colony, not of a person: the player's report of "Stace's friends", 5 November
@@ -1521,8 +1621,9 @@ an arm; stun batons and training rounds: a burn on the torso; `DrillBouts.BlowOf
 `CC_Harm_MusterBlow`, a NegativeHealthEvent), and the game's doctor tends it. A bout done with nobody hurt ends with a
 word (`Rimfolk_Pool_DrillEnd`). Either one leaving ends it for both; danger ends it at once. The decree's hourly practice
 goes on as before. About one real injury per five-day drills decree in a colony of ten, the militia about half that
-(`HarmMath.DrillBlowsPerDecree`). The militia now has a spacer form (stun batons and training rounds) and is declared in
-every age.
+(`HarmMath.DrillBlowsPerDecree`). Since the player's decision 13 (6 November 2026) the drills are one decree in the
+colony's age's form: militia drills for a tribal or medieval colony, drills for an industrial or spacer one (see
+"Decrees that mean distinct things"); each keeps its own bouts and risk lines.
 
 ### Tired hands (1.2.2, decrees)
 
@@ -1540,6 +1641,32 @@ the hurt one goes to the doctor as the game sends anyone with a wound to tend. T
 colony of ten" was a miscount against its own anchor: at one in 150 long days, a five-day decree in a colony of ten brings
 about a third of a slip when everyone sleeps, about twice that when nobody does (`TiredHandsPerDecree`). The anchored rate
 was kept.
+
+### Decrees that mean distinct things (the player's decision 13, 6 November 2026)
+
+In the player's save drills and militia drills were declared the same day and both ran ("militia drills (2 times) ...
+and drills" in the annals); the review named more overlapping pairs. Each was looked at for what it does
+(`DecreeMath`, pure):
+
+- **One idea, one decree, in the form of the moment.** Where two decrees are one idea, only the form it takes now is
+  listed (`DecreeWork.FormNow`, `HiddenNow`): the drills by the colony's age (militia drills, the muster of a tribe or a
+  village, for a tribal or medieval colony; drills, all day, for an industrial or spacer one), rationing by the moment
+  (famine bread, smaller portions and a share for the hungry, while a famine or a drought lies over the region and the
+  colony's own stores aren't low; plain rationing otherwise). A form in force stays itself until it ends, and the page
+  shows it.
+- **Overlapping pairs don't run together.** Festival days and a feast day (both celebrations that raise standards),
+  quiet hours and days of rest (both rest and slower work), on guard and a curfew (sleep in shifts, or everyone abed by
+  ten): with one in force the other can't be declared, and its card says why (`DecreeMath.Excludes`,
+  `CC_Decree_Overlaps`, `DecreeTracker.CannotEnact`). An idea's two forms exclude each other the same way.
+- **Kept apart.** Rest when ill and quarantine may run together: one heals the sick, the other keeps the well from
+  catching it. Austerity (no new wishes) and rationing (food) never overlapped, nor shared meals (talk) and festival
+  days (rest and music).
+- **Older saves.** A decree in force that is an idea's form not listed now carries on as the listed one for what was
+  left of it, never longer than that form runs (`DecreeTracker.CarryOn`, `DecreeMath.CarriedEnd`, the first hour after
+  a load): militia drills in an industrial colony become its drills; with both forms in force the listed one goes on and
+  the other ends quietly. Rationing's forms only lose a duplicate (famine bread declared for a famine since gone stays
+  itself). A petition for a form not listed is let go quietly. The drills' bouts and the militia's muster keep their
+  risk lines (`hurts` Drills and Muster, "Drills that bruise").
 
 ### Working through it (3.2.1, ailments and health stories)
 
@@ -1603,6 +1730,8 @@ another and the colony reads as one life.
 | Secrets | Council meeting | the meeting's talk, a confidant who now dislikes the owner | a pointed remark (in the meeting's remarks), a rivalry; a rival may let it out |
 | Promises kept | Elections | a ballot | a wish taken back in the last year: -3 for sitting officers |
 | Epithets | Elections | a ballot | +1 per name the colony gave, -1 per dubious one (at most 2) |
+| The history | Elections | a yearly election called | the holder's last promise judged from the map: +1.5 kept, -1.75 broken; +0.75 for work done in the seat; each candidate's record in the letter |
+| Battles | Life goals | a fight won | a fighting spark for the one who brought down the most, nobody else |
 | Quirks | Who someone is | any tag check | quirk:Hums, quirk:SleepTalker... for roles, lines and dreams; 12 social events use them |
 | Calendar, kept, setbacks, health, world events, camps, missions | Dreams | the memory those leave | 15 dreams (XML) |
 | Events, world events, camps, missions, encounters, dreams | Quirks | the memory those leave; a sight (the pyre, `QuirkSights`); a dream come true | 8 quirks (XML), their effects in `Quirks/QuirkEvents.cs` |
@@ -2178,8 +2307,9 @@ with it. Its pure parts (`HistoryMath.cs`: the entry, the kinds, the book with i
   `wishGranted`...), `world:began` and `world:ended` for world situations (in the chronicle's family `world`),
   `deed:` and the deed's kind for what a people remembers, `tie:`, the tie's kind and what happened (made, kept,
   calledIn, broken, ended, putOff) for the ledger's ties, and `world:founded`, `world:built`, `world:razed`,
-  `world:taken`, `world:vassal` and `world:battle` for what other mods do to the world (below). Asking for a family
-  finds every kind in it.
+  `world:taken`, `world:vassal` and `world:battle` for what other mods do to the world (below), and `office:promise`,
+  `office:kept` and `office:broken` for a seat's promise and how the next election judged it (milestones with words,
+  on the holder's card, never in the chronicle: "Elections on a record"). Asking for a family finds every kind in it.
 - **What writes.** Every line told for the chronicle: `AddChronicle` writes it into the history and nowhere else (its
   tick, words and kind, the colonist as an actor, their colony as the place; a milestone of the chronicle is one here;
   `History.About` adds others who took part, as an election's one line does for every seat filled). Every question's
@@ -4584,7 +4714,7 @@ on a map, in the world or in a caravan), so such a record is let go when the gam
 | Social web | ties of the dead dropped daily, of those gone faded out; 40 lost bonds; pair tones (moment memory) forgotten after 4 quiet days or when one of the two is gone; one short line per pair of colonists who met (Social/Bonds.cs: how well they know each other, fights side by side, seats lost), dropped once the two have not both been among the colony's people for 60 days |
 | Groups | groups of 3 to 9, the dead and departed dropped daily (and anyone the game has let go of, at saving, so no reference is saved to nobody), a group ended when fewer than two are left; 14 history lines, 10 former names and the rivalries with groups still there each; newcomers 40 days at most; 12 past groups (those the game still knows); work samples of colonists only, 6 kinds each |
 | Dreams | 80 recent dreams (a discarded dreamer kept by name only); omens until they come; dream counts of known pawns. The session-only maps (last dream, untold dream) drop the dead and whatever is too old to matter |
-| Life goals | goals of the dead and departed end daily; finished ones of the dead kept 3 years, of discarded pawns dropped; counters of known pawns; sparks 30 days |
+| Life goals | goals of the dead and departed end daily; finished ones of the dead kept 3 years, of discarded pawns dropped; counters of known pawns; sparks 30 days; a goal chosen by a change of heart is marked (one value) |
 | Secrets | one per colonist, ended with their death; who was rolled for one: known pawns only |
 | Vendettas | 40 settled; avengers dead or discarded dropped; eulogies until given |
 | Quirks | 2 per colonist, the dead and discarded dropped; fights and falls only within the longest quirk window. Sights (the pyre), the lamp's visits and a juggler's last turn are held for the session only, a few days at most |

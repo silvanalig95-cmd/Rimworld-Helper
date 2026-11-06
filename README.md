@@ -439,6 +439,14 @@ while they last: a **quarantine** while sickness goes round (illness passes betw
 visitors are turned away) and **famine bread** while a famine lies over the region (the colony eats a little less
 and sends bread to the hungry people). A decree for another era or ideoligion isn't listed at all.
 
+Decrees mean distinct things: where two are one idea, only the form it takes now is listed, the **drills** by the
+colony's age (militia drills, the muster of a tribe or a village, for a tribal or medieval colony; drills all day for
+an industrial or spacer one) and **rationing** by the moment (famine bread while the region goes hungry and the
+colony's own stores aren't low). Two that overlap never run together: festival days and a feast day, quiet hours and
+days of rest, on guard and a curfew (the card says why). Rest when ill and a quarantine may: one heals the sick, the
+other keeps the well from catching it. In an older save, militia drills in force in an industrial colony carry on as
+its drills for what was left of them.
+
 There's no hard limit on repeating a decree, but there is a price. Enact the same one again within a month, or
 **force it through** before its cooldown is over, and those against it lose more trust and resent it more each
 time. Someone may even snap: the hot-tempered throw a tantrum, others wander off in a daze. The tab warns you how
@@ -864,7 +872,10 @@ and in-jokes".
 Groups replace the old circles of friends (which come back, simpler, with "Personalities and social life" off). They grow out of something real (friendship,
 the same work, a fight fought together, the night hours, an ideoligion held hard, where people came from, age, being alike) and keep the
 name they were given: **the hunters, the night shift, the old hands, the kitchen crowd, the faithful, the ones from the
-ship, Hector's lot** (25 kinds, with names for a tribe or a keep). Each has:
+ship, the fireside circle** (25 kinds, with names for a tribe or a keep). They form around what binds some of the
+colony more than the rest, not around what everyone shares (everyone fought side by side), and a group holds well under
+half the colony. Someone outside every group shows as outside, with why (at odds with some who are in one, new here, or
+their own way), on the People table, the Bonds page and their character page. Each has:
 - **roles** that come from character and settle slowly, and never against it (no cold anchor, no dour joker): the
   anchor, the joker, the peacemaker (who steps into its quarrels), the firebrand, the worrier, the quiet one, the newcomer;
 - **ways** it shares and expects (18: loud and merry, keep to themselves, suspicious of outsiders, brave to a fault...),
@@ -988,7 +999,9 @@ ideoligion forbids books, pets, travel or love sets their heart on them. 85 in a
 life goal". Goals fit the person (their passions, traits and situation) and grow out of what happens to them: a battle
 makes a warrior, a brush with death a healer, a wedding someone who wants to marry, a birth someone who wants a child,
 a lost election someone who wants a seat, loneliness someone who wants friends, and seeing a friend reach their goal
-can make them want the same. Something big can change their mind, and when someone dies before reaching theirs, the
+can make them want the same. A fight makes a warrior of the one who brought down the most in it, nobody else, and a
+goal someone at home already holds is less likely. A goal holds: nothing changes it for twenty days, then only a brush
+with death or a loss, and only once. When someone dies before reaching theirs, the
 person who loved them most may take it up and finish it for them. The Social tab shows everyone's progress and why.
 Achieving one is a big moment: a letter, a long good mood, trust, friends who are glad for them, and something that
 stays: a toast at the table that evening, an inspiration that fits the goal, a mark on the skill it was about (it
@@ -1250,7 +1263,17 @@ calendar day a small occasion, from six), the **herdmaster** (more from the anim
 ten, a **council of elders** (three seats, where age counts, and a steadier colony while they sit). Colonists elect
 them every year, voting for the skilled, the suited and the liked, friends and groups voting together, and the
 election letter names every seat: each new holder with a word on what they mean to do, a holder who keeps a seat
-nobody stood for, and the seats left empty. You can appoint and dismiss from the Decrees tab, but whoever the colony actually voted for will remember
+nobody stood for, and the seats left empty. Each seat takes the name of the colony's age: a tribe elects a first voice,
+a war leader and a healer, an industrial colony a chair, a captain of the guard and a doctor, a spacer colony a
+coordinator, a security chief and a medical officer (and a spacer colony never elects a reeve: it has an agronomist).
+
+Elections run on a record. Every seat has three or more promises that always fit, so no two candidates for a seat make
+the same one, and each candidate runs on their own record, said after their promise: what they did in the seat since
+they promised it (wounds tended, plants sown, enemies brought down, quarrels mended, days kept...), else that work for
+the colony, a name the colony gave them or a life goal reached. The next yearly election judges what the holder
+promised by what the map shows now ("At the last election Toni promised a proper watch at night, and the colony has
+lost nobody since: a promise kept."): a kept promise helps them at the vote, a broken one costs, and it's said in the
+letter, at the hustings and in the results. You can appoint and dismiss from the Decrees tab, but whoever the colony actually voted for will remember
 being overruled. A wish the council took back counts against those sitting on it at the next election, and the
 names the colony gave someone count for them.
 

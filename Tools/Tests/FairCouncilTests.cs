@@ -313,7 +313,7 @@ public static class FairCouncilTests
         }
         Check(planks >= 50, $"more promises to run on ({planks}, from 30)");
         foreach (var k in keyed.Keys.Where(k => k.StartsWith("CC_Promise_") && (k.Contains("_Kept_") || k.Contains("_Broken_"))))
-            Check(!keyed[k].EndsWith(".") && (char.IsLower(keyed[k][0]) || keyed[k].StartsWith("{COUNT}") || keyed[k].StartsWith("I ")), $"{k}: a clause after \"and\"");
+            Check(!keyed[k].EndsWith(".") && (char.IsLower(keyed[k][0]) || keyed[k].StartsWith("{") || keyed[k].StartsWith("I ")), $"{k}: a clause after \"and\"");
         var pools = defs.SelectMany(d => d.Elements("ColonyCouncil.FlavorPoolDef")).ToDictionary(p => p.Element("defName")!.Value, p => p.Descendants("li").Select(li => li.Value).ToList());
         foreach (var pool in new[] { "Rimfolk_Pool_HustingsKept", "Rimfolk_Pool_HustingsBroken" })
         {
