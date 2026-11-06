@@ -623,6 +623,9 @@ namespace ColonyCouncil
                 r.hits[c] = (r.hits.TryGetValue(c, out int hc) ? hc : 0) + Outsiders.Landed(r.bout, c);
                 r.hits[x] = (r.hits.TryGetValue(x, out int hx) ? hx : 0) + Outsiders.Landed(r.bout, x);
                 if (Outsiders.HardBlowOn(r.bout, x) && p.GuestOf(x) is FeastGuest g) g.hurt = true;
+                // The hard blow counts toward the shared cap (Harm/Harm.cs), whoever it fell on.
+                if (Outsiders.HardBlowOn(r.bout, c)) Harm.Note(c, "a feast's wrestling");
+                if (Outsiders.HardBlowOn(r.bout, x)) Harm.Note(x, "a feast's wrestling");
                 r.bout = null;
                 r.pause = now + 300;
             }

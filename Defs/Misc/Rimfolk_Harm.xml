@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Hurts from everyday life (Source/ColonyCouncil/Harm/): one of a pair at the evening's drill (DrillBouts.cs). -->
+
+  <JobDef>
+    <defName>Rimfolk_DrillBout</defName>
+    <driverClass>ColonyCouncil.JobDriver_DrillBout</driverClass>
+    <reportString>sparring at the drill.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+</Defs>

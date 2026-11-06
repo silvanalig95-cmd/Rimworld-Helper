@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Hurts from everyday life (Source/ColonyCouncil/Harm/): said over a head, one short sentence each. Lines tagged with an
+    age ([tribal], [medieval], [industrial], [spacer]) only come in a colony of that age; lines tagged with what happened
+    ([cut], [burn], [back], [field]...) come for that and nothing else.
+  -->
+
+  <!-- ===================== Drills that bruise (DrillBouts.cs) ===================== -->
+
+  <!-- The first of the pairs calls the evening's drill. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_DrillCall</defName>
+    <lines>
+      <plain>
+        <li>Evening drill, pair off and go easy.</li>
+        <li>Pair off, everyone, the light won't last.</li>
+        <li>[tribal] Sticks up, everyone, and pair off by the fire.</li>
+        <li>[tribal] Find a partner and show me how you wrestle.</li>
+        <li>[medieval] Blunted blades and shields, and pair off on the green.</li>
+        <li>[medieval] To the green, everyone, and mind your partner's fingers.</li>
+        <li>[industrial] Bayonets on with the scabbards still over them, and pair off.</li>
+        <li>[industrial] Evening drill, form pairs and keep the points covered.</li>
+        <li>[spacer] Batons on training charge, and pair off.</li>
+        <li>[spacer] Training rounds only, then find a partner.</li>
+      </plain>
+      <cheerful><li>Drill time, and try not to enjoy it too much.</li></cheerful>
+      <blunt><li>Pair off, and nobody whines.</li></blunt>
+      <gloomy><li>Another evening of this, then.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The first of a pair to the other, as the bout begins. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_DrillBegin</defName>
+    <lines>
+      <plain>
+        <li>Go easy on me, {OTHER_nameDef}.</li>
+        <li>Ready when you are.</li>
+        <li>Slow first, then faster.</li>
+        <li>Watch your guard, I won't tell you twice.</li>
+        <li>[tribal] Shoulders and arms only, {OTHER_nameDef}.</li>
+        <li>[medieval] Blades low and shields high, {OTHER_nameDef}.</li>
+        <li>[industrial] Butt and point, and pull the thrust, {OTHER_nameDef}.</li>
+        <li>[spacer] Baton on low, {OTHER_nameDef}, I mean it.</li>
+      </plain>
+      <cheerful><li>Try to keep up, {OTHER_nameDef}.</li></cheerful>
+      <blunt><li>Don't hold back on my account.</li></blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The one the real blow fell on. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_DrillHit</defName>
+    <lines>
+      <plain>
+        <li>That one landed for real.</li>
+        <li>Ow, that one wasn't pulled.</li>
+        <li>Stop, stop, that one really hurt.</li>
+        <li>I felt that one in my teeth.</li>
+        <li>[cut] I'm bleeding, that one bit.</li>
+        <li>[bruise] That'll be black by morning.</li>
+        <li>[burn] That baton was not on low.</li>
+      </plain>
+      <blunt><li>That's enough for tonight.</li></blunt>
+      <gloomy><li>Of course it was me.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The one who landed it, to the other. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_DrillSorry</defName>
+    <lines>
+      <plain>
+        <li>Sorry, {OTHER_nameDef}, I didn't pull it in time.</li>
+        <li>I'm so sorry, let me see.</li>
+        <li>That was too hard, I'm sorry.</li>
+        <li>Go and get that seen to, {OTHER_nameDef}.</li>
+        <li>I didn't mean it, honestly.</li>
+        <li>[spacer] I had it set wrong, I'm sorry.</li>
+      </plain>
+      <warm><li>Here, lean on me, we'll find the doctor.</li></warm>
+      <cold><li>You dropped your guard.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A bout done with nobody hurt: one of the pair to the other. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_DrillEnd</defName>
+    <lines>
+      <plain>
+        <li>Good bout, {OTHER_nameDef}.</li>
+        <li>Same time tomorrow, then.</li>
+        <li>You're getting quicker.</li>
+        <li>My arms will feel that tomorrow.</li>
+        <li>Not bad, not bad at all.</li>
+        <li>Enough for tonight.</li>
+      </plain>
+      <cheerful><li>Again tomorrow, and I'll win that one.</li></cheerful>
+      <gloomy><li>I'd still lose if it were real.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Tired hands and working through it (WorkHurts.cs) ===================== -->
+
+  <!-- The one who slipped, at their work (tagged by the work and the wound). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_WorkSlip</defName>
+    <lines>
+      <plain>
+        <li>I'm too tired for this work, that's what it is.</li>
+        <li>Long days, and now this.</li>
+        <li>[bench,cut] The blade slipped, right across my hand.</li>
+        <li>[bench,crush] The press caught my hand.</li>
+        <li>[bench,burn] The fabricator flared, and my hand was in it.</li>
+        <li>[hot] Ow, I grabbed the pot bare-handed.</li>
+        <li>[hot,medieval] The forge bit me, and it's my own fault.</li>
+        <li>[hot,tribal] Too close to the fire pit, and too tired to notice.</li>
+        <li>[heavy,lowtech] The stone came down on my foot.</li>
+        <li>[heavy,spacer] The crate came down on my foot.</li>
+        <li>[heavy,industrial] The machine caught my hand.</li>
+        <li>[load] I dropped it on my foot, I'm that tired.</li>
+        <li>[field] The sickle went into my hand.</li>
+      </plain>
+      <blunt><li>Days this long do this.</li></blunt>
+      <gloomy><li>I knew this would happen.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A strained back or a sprained ankle that gave under the work. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_WorkedThrough</defName>
+    <lines>
+      <plain>
+        <li>I'll sit a moment, just a moment.</li>
+        <li>[back] Something went in my back, properly this time.</li>
+        <li>[back] I can't straighten up, it's gone.</li>
+        <li>[back] I should have rested it, I know.</li>
+        <li>[ankle] My ankle went, and so did I.</li>
+        <li>[ankle] That ankle wasn't ready.</li>
+        <li>[ankle] I knew I should have kept off it.</li>
+      </plain>
+      <blunt><li>Don't say it.</li></blunt>
+      <gloomy><li>Weeks of this now, I suppose.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A doctor nearby, to the one who worked through it. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_DoctorsWord</defName>
+    <lines>
+      <plain>
+        <li>Rest it this time, {OTHER_nameDef}, I mean it.</li>
+        <li>Bed, {OTHER_nameDef}, and no arguing.</li>
+        <li>That's what working through it gets you.</li>
+        <li>Off your feet, and I'll come and look.</li>
+        <li>I told you to rest it.</li>
+        <li>Let me look at that, and then bed.</li>
+      </plain>
+      <warm><li>Come on, {OTHER_nameDef}, lean on me.</li></warm>
+      <blunt><li>Next time you rest when I say so.</li></blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

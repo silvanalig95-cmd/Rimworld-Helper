@@ -71,6 +71,22 @@ namespace ColonyCouncil
         TiredHands
     }
 
+    /// <summary>The work a long day's slip comes at (Harm/WorkHurts.cs), by the job's work type.</summary>
+    public enum WorkHurtKind
+    {
+        None,
+        /// <summary>Crafting, tailoring, art: a cut at the bench (a crushed hand at a machine, a fabricator's burn).</summary>
+        Bench,
+        /// <summary>Cooking and smithing: a burn at the stove, the fire pit or the forge.</summary>
+        Hot,
+        /// <summary>Building and mining: a crushed foot (a crushed hand at a machine).</summary>
+        Heavy,
+        /// <summary>Hauling: a load dropped on a foot.</summary>
+        Load,
+        /// <summary>Sowing, harvesting, cutting plants: a cut from the sickle.</summary>
+        Field
+    }
+
     /// <summary>
     /// The harm review's shared rules (docs/harm-review-proposals.md, "Rules every proposal keeps") and the rates of the
     /// hurts built on them, with no game types so Tools/Tests can check them. Harm/Harm.cs is the game's side: every
@@ -225,6 +241,73 @@ namespace ColonyCouncil
         public static float WorkLowFor(bool spacer) => spacer ? SpacerLow : WorkLow;
 
         public static float WorkHighFor(bool spacer) => spacer ? SpacerHigh : WorkHigh;
+
+        /// <summary>
+        /// What a slip at this work is, by the colony's means: a cut at the bench and a crushed foot under a load in every
+        /// age; at an industrial colony's machines a crushed hand; at a spacer colony's fabricator a burn (rarer, worse).
+        /// </summary>
+        public static void WorkSlip(WorkHurtKind work, WorldAge age, out HurtKind kind, out HurtWhere where)
+        {
+            switch (work)
+            {
+                case WorkHurtKind.Bench:
+                    kind = age == WorldAge.Industrial ? HurtKind.Crush : age == WorldAge.Spacer ? HurtKind.Burn : HurtKind.Cut;
+                    where = HurtWhere.Hand;
+                    return;
+                case WorkHurtKind.Hot:
+                    kind = HurtKind.Burn;
+                    where = HurtWhere.Hand;
+                    return;
+                case WorkHurtKind.Heavy:
+                    kind = HurtKind.Crush;
+                    where = age == WorldAge.Industrial ? HurtWhere.Hand : HurtWhere.Foot;
+                    return;
+                case WorkHurtKind.Load:
+                    kind = age == WorldAge.Spacer ? HurtKind.Bruise : HurtKind.Crush;
+                    where = HurtWhere.Foot;
+                    return;
+                case WorkHurtKind.Field:
+                    kind = HurtKind.Cut;
+                    where = HurtWhere.Hand;
+                    return;
+                default:
+                    kind = HurtKind.Bruise;
+                    where = HurtWhere.Any;
+                    return;
+            }
+        }
+
+        /// <summary>The work a job is, by its work type's name (and the game's mining and hauling jobs): none for the rest.</summary>
+        public static WorkHurtKind WorkOf(string workType, bool mining, bool hauling)
+        {
+            if (mining) return WorkHurtKind.Heavy;
+            switch (workType)
+            {
+                case "Cooking":
+                case "Smithing":
+                    return WorkHurtKind.Hot;
+                case "Crafting":
+                case "Tailoring":
+                case "Art":
+                    return WorkHurtKind.Bench;
+                case "Construction":
+                case "Mining":
+                    return WorkHurtKind.Heavy;
+                case "Growing":
+                case "PlantCutting":
+                    return WorkHurtKind.Field;
+            }
+            if (hauling || (workType != null && workType.IndexOf("Haul", StringComparison.Ordinal) >= 0)) return WorkHurtKind.Load;
+            return WorkHurtKind.None;
+        }
+
+        /// <summary>A work decree drives this work: with no work named, any work (long hours); else only the work it names.</summary>
+        public static bool Drives(WorkHurtKind[] named, WorkHurtKind work)
+        {
+            if (work == WorkHurtKind.None) return false;
+            if (named == null || named.Length == 0) return true;
+            return Array.IndexOf(named, work) >= 0;
+        }
 
         /// <summary>Expected work injuries in a decree, everyone working long days (for the tests and the docs).</summary>
         public static float TiredHandsPerDecree(int colonists, float days, float lowRestShare) =>

@@ -163,6 +163,13 @@ namespace ColonyCouncil
         /// injury on a long day. Named on its card and in its letter (Harm.DecreeLine).
         /// </summary>
         public DecreeHurt hurts;
+        /// <summary>A work decree's tired hands: the work it drives (Field, Heavy...); none named, any work (long hours).</summary>
+        public List<WorkHurtKind> hurtsAt;
+
+        [Unsaved] private WorkHurtKind[] hurtsAtArray;
+
+        /// <summary><see cref="hurtsAt"/> as an array, made once.</summary>
+        public WorkHurtKind[] HurtsAt => hurtsAtArray ??= hurtsAt?.ToArray() ?? new WorkHurtKind[0];
         /// <summary>Only when someone in the colony is grieving (a day of mourning).</summary>
         public bool needsGrief;
         /// <summary>Fraction of grief memories' duration that passes each day the decree holds.</summary>

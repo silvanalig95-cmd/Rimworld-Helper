@@ -1281,6 +1281,7 @@ namespace ColonyCouncil
                     .OrderBy(o => o.Position.DistanceToSquared(x.Position)).FirstOrDefault();
                 if (c == null) continue;
                 if (!Outsiders.FeastBrawl(c, x)) continue;
+                Harm.Note(c, "a guest's night gone sour");
                 g.sour = true;
                 // together: the two came to words where they stood; the fight is the game's own on the map.
                 Tell.Message(NewsKind.World, Importance.Important, map, FeastWords.T("CC_Feast_Msg_Sour", x.Named("GUEST"), c.Named("PAWN")), new LookTargets(x),
@@ -1288,18 +1289,21 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The "Hurts from everyday life" scale, once the harm review's setting is built; 1 until then.</summary>
-        public static float HarmScale => 1f;
+        /// <summary>The "Hurts from everyday life" scale (Harm/Harm.cs): the setting times the storyteller's lean.</summary>
+        public static float HarmScale => Harm.Scale;
 
-        /// <summary>Under the harm rule's shared cap: not a child, not pregnant, not hurt in the last three days.</summary>
+        /// <summary>
+        /// Under the harm rule's shared cap (Harm.May for a bout: a grown-up, not downed, in a sickbed, pregnant or already
+        /// fighting, no Rimfolk-made hurt in the last three days), and, as the feasts always kept it, no fresh wound of any
+        /// kind in the last three days.
+        /// </summary>
         public static bool MayBeHurt(Pawn p)
         {
-            if (p?.health?.hediffSet == null) return false;
+            if (p?.health?.hediffSet == null || !Harm.May(p, HurtClass.Bout)) return false;
             float since = float.MaxValue;
             foreach (var hd in p.health.hediffSet.hediffs)
                 if (hd is Hediff_Injury) since = Math.Min(since, hd.ageTicks / (float)GenDate.TicksPerDay);
-            bool pregnant = p.health.hediffSet.hediffs.Any(hd => hd.def?.defName != null && hd.def.defName.StartsWith("Pregnant"));
-            return FeastMath.MayBeHurt(p.DevelopmentalStage.Juvenile(), pregnant, since);
+            return FeastMath.MayBeHurt(p.DevelopmentalStage.Juvenile(), Harm.Pregnant(p), since);
         }
 
         private static void Night(DiplomacyHome h, GuestFeast p, Map map, int hour, int now)

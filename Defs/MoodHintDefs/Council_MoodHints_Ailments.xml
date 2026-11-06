@@ -46,6 +46,7 @@
     <defName>Council_Mood_RF_AilStrains</defName>
     <thoughts>
       <li>Council_Ail_StrainedBack_Mood</li>
+      <li>Council_Ail_TornBack_Mood</li>
       <li>Council_Ail_SprainedAnkle_Mood</li>
       <li>Council_Ail_SoreHands_Mood</li>
       <li>Council_Ail_SoreElbow_Mood</li>
