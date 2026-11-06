@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Choose another landing site
+
+*6 November 2026, version 0.126.0*
+
+- For the first three days of a new game, the Esc menu has Choose another landing site (another starting site for a start on foot). The same action is on the colony's card.
+- Pick a new map of the same place or another place on the world map, and the map size. The window says plainly what comes along and what is lost.
+- Every colonist, prisoner, slave, mech and animal comes along with what they wear and carry, and so does what is left of the starting kit, arriving the scenario's way. The ideology, the world, research and Rimfolk's records stay; only what was built, sown or made on the old map is lost.
+- Nothing is doubled: the kit that comes along is what's left of it, and steel mined onto the same pile stays behind. With Anomaly the new map gets its one monolith the game's way.
+- It isn't offered while a guest or a quest's people are on the map, someone of the colony is away, or a journey or a new colony is being planned. A gravship start can fly elsewhere instead.
+
 ## Quieter Pokémon and fresh carcasses
 
 *6 November 2026, version 0.125.0*

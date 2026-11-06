@@ -340,6 +340,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref scenarioSetUp, "scenarioSetUp");
             Scribe_Values.Look(ref fungusDietMade, "fungusDietMade");
             ExposeWelcome();
+            // The record of the start, while another landing site is offered (Colonies/LandingRecord.cs).
+            ExposeLanding();
             Scribe_Collections.Look(ref history, "history", LookMode.Deep);
             Scribe_Values.Look(ref era, "era", EraMode.Auto);
             if (Scribe.mode == LoadSaveMode.Saving) lastAtHome.RemoveAll(kv => kv.Key == null || kv.Key.Dead || kv.Key.Discarded);
@@ -571,6 +573,8 @@ namespace ColonyCouncil
             Safe("homes", Homes.Hourly);
             // A fresh start under way: a caravan at the place asked to settle, the new colony noticed, what comes after (Colonies/Foundings.cs).
             Safe("foundings", Foundings.Hourly);
+            // The record of the start let go once its first days are over (Colonies/Landing.cs).
+            Safe("landing", () => Landing.Expire(this));
             Safe("tamings", () => Tamings.Hourly(this));
             Safe("everyday pressures", () => pressures.Hourly(this));
             Safe("social events", () => SocialEvents.Hourly(this));

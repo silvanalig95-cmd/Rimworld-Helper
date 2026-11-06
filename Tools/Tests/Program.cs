@@ -419,6 +419,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {PokeWorldSoundsTests.Run(root, Check)} things about what PokéWorld's Pokémon sound like (the nearest animal's voice, the rarer pace, the setting).");
         Console.WriteLine($"Checked {FreshCarcassTests.Run(root, Check)} things about the alert for fresh carcasses lying out (fresh, seen, unstored, nobody on it, an hour after).");
         Console.WriteLine($"Checked {YearFourTests.Run(root, Check)} things about the council and the colony's year, fourth round (ten questions, four customs, five decrees, seven advisor checks).");
+        Console.WriteLine($"Checked {LandingTests.Run(root, Check)} things about choosing another landing site (when it is offered, who comes, the starting kit followed and never counted larger, the map's size and seed, the same settlement, the words).");
         Console.WriteLine($"Checked {VendettaTests.Run(root, Check)} things about a vendetta passed on at its avenger's death (whoever was closest, by how close they really were, never blood kin first; noted at the death; the words).");
         Console.WriteLine($"Checked {PersonaTests.Run(root, Check)} things about characters (nature, marks, drift, words, likeness).");
         Console.WriteLine($"Checked {FaithTests.Run(root, Check)} things about faith in the colony (devout, wavering, swaying, a split colony).");

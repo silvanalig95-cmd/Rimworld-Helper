@@ -1931,6 +1931,14 @@ mood and strain, and the colonies of the past; with more than one colony, every 
 in a chip that goes to another. Settings: Many colonies (Fresh starts, Newcomers). Handing a colony over to a people
 of its own comes next.
 
+### Another landing site
+Don't like the map? For the first three days of a new game, **Choose another landing site** in the game's menu (Esc),
+or on the colony's card, sets the same colony down on a new map: a new map of the same place or another place on the
+world map, at any of the game's map sizes. The colonists, prisoners, slaves, mechs and animals come with everything they
+wear and carry, and so does what is left of the starting kit (followed as it is hauled and used, never counted larger);
+they arrive the scenario's way, by drop pods or on foot. What was built on the old map stays with it. The world, the
+ideology, the storyteller, the research and Rimfolk's records of the colony stay as they are. Not for a gravship start.
+
 ### Almanac
 An in-game knowledge base: good practice and the numbers behind it, by topic, searchable, linked from the
 advisor's warnings and to room plans. The **Your mods** category explains the mods in your game (over 100 pages

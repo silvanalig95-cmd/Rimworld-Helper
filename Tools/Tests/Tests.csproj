@@ -212,5 +212,6 @@
     <Compile Include="../../Source/ColonyCouncil/Integrations/PokeWorldSoundsMath.cs" Link="PokeWorldSoundsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Animals/FreshCarcassMath.cs" Link="FreshCarcassMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Dilemmas/YearFourMath.cs" Link="YearFourMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Colonies/LandingMath.cs" Link="LandingMath.cs" />
   </ItemGroup>
 </Project>

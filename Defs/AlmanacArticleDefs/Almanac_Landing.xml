@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The Almanac page on choosing another landing site in a new game's first days (Source/ColonyCouncil/Colonies/:
+       LandingMath.cs, Landing.cs, LandingRecord.cs, LandingWindow.cs, LandingPatches.cs; DESIGN.md, "Another landing site"). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Landing</defName>
+    <label>another landing site</label>
+    <category>Council</category>
+    <order>16</order>
+    <summary>Don't like the map? In a new game's first 3 days, set the same colony down on a new map: a new map of the same place, or another place on the world map, with the same people, animals and what is left of the starting kit, in the same world.</summary>
+    <tip>Look the land over on the first day: rock, water, soil and a way in to defend. Choosing again leaves behind what was done on that map, never the people or the kit.</tip>
+    <description>For the first 3 days after a new game's landing, the game's own menu (Esc) has "Choose another landing site" ("Choose another starting site" for a start on foot), and so does the colony's card, beside "Found a new colony". Its window makes a new map for the same colony: a new map of the same place (the same tile with its land, hills, river and road, laid out anew), or another place picked on the world map, with what Rimfolk knows of the tile under the cursor and the game's own check, at any of the game's map sizes (the map's own first).
+
+The colonists, prisoners, slaves, mechs and animals come along with everything they wear, wield and carry, and so does what is left of the scenario's starting kit. They arrive the scenario's way at the new start, by drop pods or on foot, each person in a pod of their own as at the start, with the kit that came with them; what the scenario scattered near the start lies near the new one, and what it scattered anywhere (ship chunks, slag) lies anywhere. Everything built, sown or made on the old map stays with it, with the visitors, the wild animals and the dead.
+
+The world, the ideology, the storyteller, the research, the colony's relations with every people and every record Rimfolk keeps of the colony stay as they are: the settlement is the same one, with its name, moved on the world map for another place, and nothing is left at the old place. The date goes on, and the 3 days start again from each landing.</description>
+    <sections>
+      <li>
+        <heading>What is left of the starting kit</heading>
+        <text>Rimfolk notes the scenario's things as the game makes the first map, and follows the kit's own stacks from then on as they are hauled a load at a time, merged on a stockpile, used and eaten. When a stack holds both the kit and things found or made on the map, the kit's part is counted as used first, so it is never counted larger than it is: start with 450 steel, mine 200 more onto the same pile and build with 75, and 375 comes along of the 575 lying there. What lies on the map comes, and whatever of it someone who comes holds; what was used, built with, or put into a building, a grave or a stranger's hands stays.</text>
+      </li>
+      <li>
+        <heading>When it is offered</heading>
+        <points>
+          <li>Only in a new game whose start Rimfolk saw, for 3 days after a landing.</li>
+          <li>While the colony has its one home, nobody of it is away or inside a casket or pod, no guest stays, no quest under way has someone or something on the map, no journey or new colony is being planned, the void monolith (Anomaly) hasn't woken and no threat is on the map. Greyed, the entry says why.</li>
+          <li>Not in the tutorial, not for a start above the planet, and not for a gravship start (Odyssey): the gravship itself can fly the colony to another place.</li>
+          <li>With a scenario that sets the start's map itself, only a new map of the same place.</li>
+        </points>
+      </li>
+      <li>
+        <heading>The scenario's own</heading>
+        <points>
+          <li>The map conditions the scenario set (a start in a cold snap) come along with the time they had left.</li>
+          <li>With Anomaly, the new map has the void monolith the game's way, waking when the scenario said; there is never a second one.</li>
+          <li>The map size chosen becomes the world's size for maps made later, as if chosen at the start.</li>
+        </points>
+      </li>
+    </sections>
+    <keywords><li>landing site</li><li>starting site</li><li>another map</li><li>new map</li><li>map size</li><li>reroll</li><li>starting kit</li></keywords>
+    <seeAlso><li>Council_Alm_C_FreshStart</li><li>Council_Alm_C_Journeys</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>
