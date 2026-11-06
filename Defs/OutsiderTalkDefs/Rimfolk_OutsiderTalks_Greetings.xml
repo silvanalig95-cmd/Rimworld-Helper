@@ -49,7 +49,9 @@
         condition; any piece with one is said only in that tone); first (never talked) met returning (on a new visit)
         known (familiarity 30) close (60) friends sweethearts lovers; talks:3 talks:8; likesyou coolyou (their regard
         of the colonist) likesus wary (of the colony); did:gift did:meal did:teach did:spar did:duel did:provoke
-        did:faith did:court did:letter did:bring; last:TOPIC (their last talk's topic)
+        did:faith did:court did:letter did:bring (asked, whatever the answer); shared:meal shared:drink shared:lesson
+        shared:gift shared:bout (it went through: the meal eaten together, the gift kept, as they remember it);
+        last:TOPIC (their last talk's topic)
       who they are: role:trader role:guest role:lodger role:visitor role:notable role:head role:heir role:envoy;
         them:young (a child: only pieces asking for it) them:old them:hurt them:kind them:abrasive them:leader
         them:married them:widowed them:spousehere them:parent them:smallchild them:childhere them:best:SKILLDEF

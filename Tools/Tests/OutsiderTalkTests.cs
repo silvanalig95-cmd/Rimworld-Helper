@@ -225,6 +225,8 @@ public static class OutsiderTalkTests
         "them:lately"
     }.Concat(Expand("tone:", "warm good plain cool sour"))
         .Concat(Expand("did:", "gift meal teach spar duel provoke faith court letter bring"))
+        // What went through, as the outsider remembers it (Facts.Shared): did: is any asking, refused or not.
+        .Concat(Expand("shared:", "meal drink lesson gift bout"))
         .Concat(Expand("role:", "trader guest lodger visitor notable head heir envoy"))
         .Concat(Expand("them:", "young old hurt kind abrasive leader married widowed spousehere parent smallchild childhere outranks"))
         .Concat(Expand("us:", "young old hurt newcomer leader speaker noble married widowed spousehere parent smallchild childhere outranks doctor"))

@@ -260,7 +260,20 @@ namespace ColonyCouncil
             // (The round d text pass's three entries for the house renown talk went with its files, 5 November 2026.)
             // The text pass on the world's voices (6 November 2026): "Who's camped out on your land, then?" was asked by one of
             // that very camp too; only by a visitor who isn't (them:camp, World/Region/RegionNearFacts.cs).
-            ["Rimfolk_OT_Col_Camp"] = "!them:camp"
+            ["Rimfolk_OT_Col_Camp"] = "!them:camp",
+            // did:KIND is set by any asking, refused or not: the pieces that speak of a meal eaten together, a gift kept, a
+            // lesson given or a bout fought ask that it went through (shared:KIND, the outsider's own memory of it).
+            ["Rimfolk_OT_Age_AheadGift"] = "shared:gift",
+            ["Rimfolk_OT_Kid_Present"] = "shared:gift",
+            ["Rimfolk_OT_Emp_Gift"] = "shared:gift",
+            ["Rimfolk_OT_Tribe_GiftBond"] = "shared:gift",
+            ["Rimfolk_OT_Col_Plenty"] = "shared:meal",
+            ["Rimfolk_OT_Col_Cook"] = "shared:meal",
+            ["Rimfolk_OT_Tribe_Feast"] = "shared:meal",
+            ["Rimfolk_OT_Good_Recipe"] = "shared:meal",
+            ["Rimfolk_OT_Deed_Lesson"] = "shared:lesson",
+            ["Rimfolk_OT_Deed_Sparred"] = "shared:bout",
+            ["Rimfolk_OT_Emp_Duel"] = "shared:bout"
         };
 
         /// <summary>
