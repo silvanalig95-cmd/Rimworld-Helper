@@ -137,6 +137,7 @@ namespace ColonyCouncil
             ["lastCouncilPage"] = "the council window's page when it was last closed",
             ["roomsButton"] = "the old switch for the rooms button, read once into the planning button's (the row \"Show the planning button\") so older settings files load",
             ["planningMerged"] = "whether the rooms and planning buttons' settings were made one, so it is done once (BarMoreMath.MergePlanning)",
+            ["ordinaryMerged"] = "whether the four rules that softened good moods were read into one setting, so it is done once (GoodLifeMath.MergedSetting)",
             ["lastAlmanacPage"] = "the Almanac's page when it was last closed",
             ["almanacFolded"] = "whether the Almanac's categories and page list are folded away, switched in the Almanac itself",
             ["moodDetails"] = "whether the Mood tab and the Moods page show every mood as a card, switched on those pages (Compact / Details)",

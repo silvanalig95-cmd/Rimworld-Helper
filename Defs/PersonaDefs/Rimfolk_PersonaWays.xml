@@ -6,7 +6,7 @@
     (PersonaMath.WayLean), not a table of their own from traits to the ways. These entries add to the other
     PersonaNatureDefs (every one counts), so the traits that table read still show in character: the industrious take
     pride in their work and the lazy take it easy (hard work against an easy life), the bloodthirsty have a temper
-    (harsh against merciful), and a few mods' traits the ways once read alone (a priest, a paladin, a commander).
+    (harsh against merciful), and the workaholic of Vanilla Traits Expanded.
   -->
 
   <ColonyCouncil.PersonaNatureDef>
@@ -19,9 +19,6 @@
       <li><trait>Industriousness</trait><degree>-2</degree><humour>25</humour><pride>-15</pride></li>
       <li><trait>Bloodlust</trait><temper>15</temper><warmth>-10</warmth></li>
       <li><trait>VTE_Workaholic</trait><pride>25</pride><humour>-10</humour></li>
-      <li><trait>Priest</trait><warmth>25</warmth><trust>10</trust></li>
-      <li><trait>Paladin</trait><warmth>20</warmth><nerve>15</nerve></li>
-      <li><trait>TM_Commander</trait><pride>25</pride><nerve>10</nerve></li>
     </traits>
   </ColonyCouncil.PersonaNatureDef>
 

@@ -68,9 +68,6 @@ public static class GoodLifeTests
         C(Math.Abs(GoodLifeMath.AgeWeight(0.5f, 1f) - (GoodLifeMath.FreshWeight + (1f - GoodLifeMath.FreshWeight) * 0.5f)) < 0.001f,
             "a one-day memory settles over a day");
         C(GoodLifeMath.AgeWeight(3f, 0f) < 1f && GoodLifeMath.AgeWeight(6f, 0f) == 1f, "one without an end settles over six days");
-        // Standards' cut: in full on everyday comforts, hardly on something new.
-        C(GoodLifeMath.ComfortFor(0.7f, 1f) == 0.7f && GoodLifeMath.ComfortFor(1f, 0.2f) == 1f, "everyday comforts: the whole cut");
-        C(Math.Abs(GoodLifeMath.ComfortFor(0.7f, GoodLifeMath.FreshWeight) - (1f - 0.3f * GoodLifeMath.FreshWeight)) < 0.001f, "something new: hardly any cut");
         C(Math.Abs(GoodLifeMath.Decayed(4f, GoodLifeMath.RecentHalfLifeTicks) - 2f) < 0.001f && GoodLifeMath.Decayed(4f, 0) == 4f
           && GoodLifeMath.Decayed(-1f, 10) == 0f, "the count halves every two days");
         {

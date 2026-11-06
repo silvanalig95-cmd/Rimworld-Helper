@@ -119,13 +119,35 @@ namespace ColonyCouncil
 
         private static IEnumerable<ModPeopleDef> Defs => DefDatabase<ModPeopleDef>.AllDefsListForReading;
 
-        /// <summary>A tag that names only personal traits ("trait:VTE_Rebel|trait:VTE_Wanderlust"): their nature, which character reads.</summary>
+        /// <summary>
+        /// A tag that names only personal traits character reads ("trait:VTE_Rebel|trait:VTE_Wanderlust", each in a
+        /// PersonaNatureDef): their nature, which reaches the ways through character.
+        /// </summary>
         public static bool OnlyTraits(string who)
         {
             if (who.NullOrEmpty()) return false;
             foreach (var part in who.Split('|'))
-                if (!part.Trim().StartsWith("trait:")) return false;
+            {
+                string p = part.Trim();
+                if (!p.StartsWith("trait:") || !CharacterReads(p.Substring(6))) return false;
+            }
             return true;
+        }
+
+        private static HashSet<string> natureTraits;
+
+        /// <summary>A trait some PersonaNatureDef sets a person's sides by.</summary>
+        private static bool CharacterReads(string trait)
+        {
+            if (natureTraits == null)
+            {
+                natureTraits = new HashSet<string>();
+                foreach (var d in PersonaNatureDef.All)
+                    if (d.traits != null)
+                        foreach (var e in d.traits)
+                            if (!e.trait.NullOrEmpty()) natureTraits.Add(e.trait);
+            }
+            return natureTraits.Contains(trait);
         }
 
         private static void Build()
@@ -152,8 +174,8 @@ namespace ColonyCouncil
                         if (!offices.TryGetValue(o.office, out var list)) offices[o.office] = list = new List<OfficeLeaning>();
                         list.Add(o);
                     }
-                // A personal trait's leaning comes through character now (its PersonaNatureDef sets their sides, and the ways
-                // read the sides: Character.Affinity); only a kind, a class or a belief adds its own.
+                // A personal trait's leaning comes through character (its PersonaNatureDef sets their sides, and the ways read
+                // the sides: Character.Affinity); a kind, a class, a belief, or a trait character doesn't read, adds its own.
                 if (def.character != null) character.AddRange(def.character.Where(c => !c.who.NullOrEmpty() && c.affinity != null && !OnlyTraits(c.who)));
                 if (def.needs != null)
                     foreach (var n in def.needs.Where(n => n.need != null && n.wishes != null))

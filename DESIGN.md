@@ -534,6 +534,15 @@ and news for turning points.
 - **Rare enough to read.** `MarksMath.Blocked`: one small mark per three days, a turning point never twice within its
   keeping, one happening one mark (a story and who it was about), two turning points a day at most. A person keeps 12
   marks; small ones go first.
+- **The one reading of who someone is** (phase 3 of the review, November 2026). The colony's ways read a colonist's
+  eight sides, not a table of their own from traits (`PersonaMath.WayLean`, `CharacterTracker.Affinity`): mercy is
+  warmth without a temper, generosity warmth without pride, tradition the set in their ways, openness to strangers warmth,
+  trust and curiosity, hard work pride in it while the joker takes it easy; a side counts past 15 (the personal lean says
+  nothing) and in full at 55. Who minds an answer ("not my choice", "told them so") and the ways' mood follow, and change
+  as marks move a person. A stranger's fighting temper reads temper, nerve and warmth (`PersonaMath.FightTemper`). The
+  game's traits are the input to character, not a second reading: what the ways' table read and character didn't
+  (industriousness, a bloodthirsty temper, a few mods' traits) is in `Rimfolk_PersonaNature_Ways.xml`; a mod's personal
+  trait no longer leans the ways by itself (`ModPeople.OnlyTraits`), a kind or a belief still does.
 - **Soft feedback only.** Character tips weights already there and never adds mood: moment weights 0.7 to 1.35
   (`Heart.MomentWeightFactor`), soreness half again for hot-heads (`MomentTones`), confiding 0.4 to 1.6 and mentors
   0.5 to 1.6 (with the systems talking to each other). Conversation, groups and gossip read character through their
@@ -1675,13 +1684,15 @@ What the player asked for, over and over: it shouldn't be easy to keep everyone 
 not everything should be a mood, and neglect should have real consequences, never flat penalties. The targets below
 put numbers on that. `Tools/Balance` measures them: a colony-year simulator that plays a settled colony through one
 60-day year without the game, from the def XML, Rimfolk's rates (read from the source where it can) and the mod's own
-mood arithmetic (`GoodTimesMath`, `PressureMath`, `SetbackMath`, `AilmentMath`, `ArcMath`, compiled in as they are).
+mood arithmetic (`GoodLifeMath`, `SmallMomentMath`, `HeartMath`, `PressureMath`, `SetbackMath`, `AilmentMath`, `ArcMath`,
+compiled in as they are), with each colonist's heart played hour by hour (`HeartSim.cs`, since phase 3 of the review).
 What it can't know (the storyteller, how a player plays) is one documented table, `Tools/Balance/Rates.cs`. It writes
 `docs/balance-report.md`; run it after any change to moods, rates or ailments.
 
-**Rimfolk's mood** is everything Rimfolk adds to a colonist's mood, averaged over the year: its good memories (after
-the shared budget and fading sooner), its bad memories, and its steady moods (trust, the colony's ways, pressures,
-ailments, waiting, strain). The game's own moods aren't in it.
+**Rimfolk's mood** is everything Rimfolk adds to a colonist's mood, averaged over the year: its good memories (small joys
+as their short moments), its bad memories (small letdowns as theirs), and its steady moods (trust, the colony's ways,
+ailments, strain, and what good things growing ordinary takes off Rimfolk's own good moods). The game's own moods aren't
+in it; the colony's whole mood, theirs included, is a row of its own.
 
 | | Target (default settings) |
 |---|---|
@@ -1693,6 +1704,8 @@ ailments, waiting, strain). The game's own moods aren't in it.
 | Two questions at once | rare: a question that can wait doesn't come within 12 hours of another (`LetterGap`) |
 | Minor news | in the evening's colony news (`UI/News.cs`), not a letter or message of its own |
 | Everyday ailments | a colonist carries one no more than about 10 to 15% of the time in a reasonable colony |
+| The colony's whole mood (the game's moods with Rimfolk's) | about as before phase 3 of the review: 69%, 62% and 37% |
+| Breaks | no more time under the minor-break line than before; the heart's day off under once a colonist-year, neglected |
 
 **Levers, in order of preference.** Keep flavour; never add a flat penalty; tune values in XML and constants, not
 systems.
