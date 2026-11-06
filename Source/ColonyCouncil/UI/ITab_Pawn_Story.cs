@@ -282,8 +282,8 @@ namespace ColonyCouncil
                     "CC_Trust_Header".Translate() + "\n\n" + "CC_Trust_Tip".Translate(p.LabelShort, st.trust.ToString("0"), st.granted, st.ignored, st.refused, st.promisesKept, st.promisesBroken).Resolve()));
             var office = OfficeTracker.HeldBy(p);
             if (office != null)
-                o.standing.Add(new UiKit.PillSpec(office.LabelCap, UiKit.Gold, Icons.Council,
-                    "CC_Office_Holds".Translate(p.LabelShort, office.label).Resolve() + (office.description.NullOrEmpty() ? "" : "\n\n" + office.description)));
+                o.standing.Add(new UiKit.PillSpec(office.NameCap, UiKit.Gold, Icons.Council,
+                    "CC_Office_Holds".Translate(p.LabelShort, office.Name).Resolve() + (office.description.NullOrEmpty() ? "" : "\n\n" + office.Description)));
             string health = HealthTracker.StoryTag(p, out var healthColor);
             if (health != null) o.standing.Add(new UiKit.PillSpec(health.CapitalizeFirst(), healthColor, Icons.CatHealth, string.Join("\n", HealthTracker.StoryLines(p))));
             // What they want from life, and how far they've come.

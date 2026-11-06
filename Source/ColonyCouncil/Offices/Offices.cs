@@ -40,6 +40,20 @@ namespace ColonyCouncil
         /// <summary>What a candidate for the seat runs on in an election, by what the colony is going through (Offices/ElectionPlanks.cs).</summary>
         public List<OfficePlank> planks;
 
+        /// <summary>
+        /// The seat's name in the colony's age (Offices/OfficeWords.cs): a fire's first voice, a speaker, a chair, a
+        /// coordinator. Every place a seat is named says this, not the label (the medieval name the defs were written with).
+        /// </summary>
+        public string Name => OfficeNames.Of(this, Ages.Ours);
+
+        public string NameCap => Name.CapitalizeFirst();
+
+        /// <summary>Its duties in the colony's age's words.</summary>
+        public IEnumerable<string> Duties => duties.Select(OfficeNames.InAge);
+
+        /// <summary>Its description in the colony's age's words.</summary>
+        public string Description => OfficeNames.InAge(description);
+
         /// <summary>The seat exists in this game: with Ideology and a faith for the chaplain.</summary>
         public bool Available => !needsIdeology || DecreeWork.ColonyFaith != null;
 
@@ -261,7 +275,7 @@ namespace ColonyCouncil
                 if (S.offices && gone != null)
                 {
                     var def = DefDatabase<OfficeDef>.GetNamedSilentFail(DefNameOf(k));
-                    if (def != null) Tell.Minor(NewsKind.Colony, null, HomeMap, "CC_Office_Vacant".Translate(def.label, gone.LabelShort).Resolve(), null, MessageTypeDefOf.NeutralEvent);
+                    if (def != null) Tell.Minor(NewsKind.Colony, null, HomeMap, "CC_Office_Vacant".Translate(def.Name, gone.LabelShort).Resolve(), null, MessageTypeDefOf.NeutralEvent);
                 }
             }
             SyncHediffs();
@@ -453,8 +467,8 @@ namespace ColonyCouncil
                     }
                 }
                 var ranked = tally.OrderByDescending(kv => kv.Value).ThenByDescending(kv => office.Competence(kv.Key)).ToList();
-                string line = ruler != null ? "CC_PM_Appoint_Line".Translate(office.LabelCap, ranked[0].Key.Named("PAWN")).Resolve()
-                    : "CC_Election_Line".Translate(office.LabelCap, ranked[0].Key.Named("PAWN"), ranked[0].Value, voters.Count).Resolve();
+                string line = ruler != null ? "CC_PM_Appoint_Line".Translate(office.NameCap, ranked[0].Key.Named("PAWN")).Resolve()
+                    : "CC_Election_Line".Translate(office.NameCap, ranked[0].Key.Named("PAWN"), ranked[0].Value, voters.Count).Resolve();
                 Settle(comp, round, office, seat, ranked, line, text);
             }
             string title = ruler != null ? (byElection ? "CC_PM_Appoint_ByTitle" : "CC_PM_Appoint_Title").Translate(year).Resolve()
@@ -490,8 +504,8 @@ namespace ColonyCouncil
             if (ruler == null && S.epithets && office.defName == "Council_Office_Speaker" && previous == winner && comp.epithets.HolderOf("Council_Epithet_Unbeaten", colony?.Map ?? Homes.Seat) == winner)
                 text.Append(" ").Append("CC_Election_Unbeaten".Translate(winner.Named("PAWN")).Resolve());
             CouncilGameComponent.GiveThought(winner, CouncilDefOf.Council_ElectedToOffice);
-            comp.journals.Write(winner, "Council_Journal_Elected", null, office.label.Named("OFFICE"));
-            PersonaMarks.Notify_Elected(winner, office.label, previous == winner);
+            comp.journals.Write(winner, "Council_Journal_Elected", null, office.Name.Named("OFFICE"));
+            PersonaMarks.Notify_Elected(winner, office.Name, previous == winner);
             Deeds.Elected(winner, office, voters);
             // Told once every seat is filled (Finish): voted out of this seat may still mean a seat elsewhere.
             if (previous != null && previous != winner && Valid(previous))
@@ -524,11 +538,11 @@ namespace ColonyCouncil
             {
                 var (w, o) = round.seated[0];
                 comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, round.ruler != null
-                    ? "CC_PM_Chronicle_Named".Translate(round.ruler.LabelShort, w.LabelShort, o.label).Resolve()
-                    : "CC_Chronicle_Elected".Translate(w.LabelShort, o.label).Resolve(), w));
+                    ? "CC_PM_Chronicle_Named".Translate(round.ruler.LabelShort, w.LabelShort, o.Name).Resolve()
+                    : "CC_Chronicle_Elected".Translate(w.LabelShort, o.Name).Resolve(), w));
                 return;
             }
-            var seats = round.seated.Select(s => "CC_Chronicle_SeatAs".Translate(s.who.LabelShort.Named("PAWN"), s.office.label.Named("OFFICE")).Resolve()).ToList();
+            var seats = round.seated.Select(s => "CC_Chronicle_SeatAs".Translate(s.who.LabelShort.Named("PAWN"), s.office.Name.Named("OFFICE")).Resolve()).ToList();
             string line = round.ruler != null
                 ? "CC_PM_Chronicle_NamedAll".Translate(round.ruler.LabelShort.Named("RULER"), TextUtil.JoinAnd(seats).Named("SEATS")).Resolve()
                 : (round.byElection ? "CC_Chronicle_ElectedBy" : "CC_Chronicle_ElectedAll").Translate(TextUtil.JoinAnd(seats).Named("SEATS")).Resolve();
@@ -561,7 +575,7 @@ namespace ColonyCouncil
                             break;
                         case ElectionMath.Unvoted.Moved:
                             var to = round.won.TryGetValue(holder, out var o) ? o : null;
-                            if (to != null) seatLines.Add("CC_Elect_SeatMoved".Translate(SeatLabel(office, seat), holder.Named("PAWN"), to.label.Named("OFFICE")).Resolve());
+                            if (to != null) seatLines.Add("CC_Elect_SeatMoved".Translate(SeatLabel(office, seat), holder.Named("PAWN"), to.Name.Named("OFFICE")).Resolve());
                             break;
                         case ElectionMath.Unvoted.Empty:
                             emptyHere++;
@@ -576,8 +590,8 @@ namespace ColonyCouncil
             if (round.ruler == null && empty.Count > 0)
             {
                 var names = empty.Select(x => x.office.Seats > 1
-                    ? "CC_Elect_BenchSeats".Translate(Number(x.n).Named("COUNT"), Find.ActiveLanguageWorker.Pluralize(x.office.label).Named("OFFICES")).Resolve()
-                    : x.office.label).ToList();
+                    ? "CC_Elect_BenchSeats".Translate(Number(x.n).Named("COUNT"), Find.ActiveLanguageWorker.Pluralize(x.office.Name).Named("OFFICES")).Resolve()
+                    : x.office.Name).ToList();
                 bool one = empty.Count == 1 && empty[0].n == 1;
                 seatLines.Add((one ? "CC_Elect_SeatEmpty" : "CC_Elect_SeatsEmpty").Translate(TextUtil.JoinAnd(names).Named("SEATS")).Resolve());
             }
@@ -617,7 +631,7 @@ namespace ColonyCouncil
             float want = SeatWant(office, who, true, campaigned);
             bool bitter = S.seatFeelings && BondsMath.SeatStage(want) == BondsMath.SeatBitter;
             CouncilGameComponent.GiveThought(who, CouncilDefOf.Council_LostOffice, to, -1f, null, bitter ? 1 : 0);
-            comp.journals.Write(who, "Council_Journal_LostOffice", null, office.label.Named("OFFICE"));
+            comp.journals.Write(who, "Council_Journal_LostOffice", null, office.Name.Named("OFFICE"));
             if (S.seatFeelings) SeatGrudge(comp, office, who, to, want, true);
         }
 
@@ -650,15 +664,15 @@ namespace ColonyCouncil
             if (social == null || !ColonyCouncilMod.Settings.socialWeb) return;
             var r = social.bonds.Get(who, to, true);
             int losses = r?.AddLoss(who) ?? 1;
-            string note = (losses >= 2 ? "CC_TieNote_SeatAgain" : incumbent ? "CC_TieNote_SeatLost" : "CC_TieNote_Election").Translate(office.label).Resolve();
+            string note = (losses >= 2 ? "CC_TieNote_SeatAgain" : incumbent ? "CC_TieNote_SeatLost" : "CC_TieNote_Election").Translate(office.Name).Resolve();
             social.Bump(who, to, TieKind.Rivals, BondsMath.SeatGrudge(want, losses, incumbent), note);
             if (!(to.story?.traits?.HasTrait(TraitDefOf.Abrasive) ?? false)) return;
             Together.When("gloat|" + to.thingIDNumber + "|" + who.thingIDNumber, to, who, () =>
             {
-                string line = Interplay.Line("Rimfolk_Pool_SeatGloat", to, null, who.Named("OTHER"), office.label.Named("OFFICE"));
+                string line = Interplay.Line("Rimfolk_Pool_SeatGloat", to, null, who.Named("OTHER"), office.Name.Named("OFFICE"));
                 if (line.NullOrEmpty()) return;
                 Speech.Say(to, line, who);
-                comp.social?.Bump(who, to, TieKind.Rivals, BondsMath.Gloated, "CC_TieNote_Gloated".Translate(office.label).Resolve());
+                comp.social?.Bump(who, to, TieKind.Rivals, BondsMath.Gloated, "CC_TieNote_Gloated".Translate(office.Name).Resolve());
             }, 72f);
         }
 
@@ -680,10 +694,10 @@ namespace ColonyCouncil
             // apart: an election's outcome, told in its letter (Hold).
             var move = ElectionMath.Move(SeatRank(from), SeatRank(now), stood);
             bool down = move == ElectionMath.SeatMove.Down || move == ElectionMath.SeatMove.FarDown;
-            string cause = "CC_Office_MovedCause".Translate(from.label.Named("OFFICE"), now.label.Named("NEW")).Resolve();
+            string cause = "CC_Office_MovedCause".Translate(from.Name.Named("OFFICE"), now.Name.Named("NEW")).Resolve();
             if (down) CouncilGameComponent.GiveThought(who, CouncilDefOf.Council_MovedDown, null, -1f, cause, move == ElectionMath.SeatMove.FarDown ? 1 : 0);
             else if (move == ElectionMath.SeatMove.Moved) CouncilGameComponent.GiveThought(who, CouncilDefOf.Council_MovedSeat, null, -1f, cause);
-            comp.journals.Write(who, down ? "Council_Journal_MovedDown" : "Council_Journal_MovedSeat", null, from.label.Named("OFFICE"), now.label.Named("NEW"));
+            comp.journals.Write(who, down ? "Council_Journal_MovedDown" : "Council_Journal_MovedSeat", null, from.Name.Named("OFFICE"), now.Name.Named("NEW"));
         }
 
         /// <summary>
@@ -694,7 +708,7 @@ namespace ColonyCouncil
         {
             // apart: an election's outcome, told in its letter (Hold).
             CouncilGameComponent.GiveThought(who, CouncilDefOf.Council_OtherSeat, null, -1f,
-                "CC_Office_OtherSeatCause".Translate(wanted.label.Named("OFFICE"), now.label.Named("NEW")).Resolve(),
+                "CC_Office_OtherSeatCause".Translate(wanted.Name.Named("OFFICE"), now.Name.Named("NEW")).Resolve(),
                 SeatRank(wanted) > SeatRank(now) ? 1 : 0);
         }
 
@@ -709,7 +723,7 @@ namespace ColonyCouncil
             if (!S.seatFeelings)
             {
                 CouncilGameComponent.GiveThought(who, CouncilDefOf.Council_LostElection, to);
-                comp.social.Bump(who, to, TieKind.Rivals, 10f, "CC_TieNote_Election".Translate(office.label));
+                comp.social.Bump(who, to, TieKind.Rivals, 10f, "CC_TieNote_Election".Translate(office.Name));
                 return;
             }
             float want = SeatWant(office, who, false, campaigned);
@@ -748,7 +762,7 @@ namespace ColonyCouncil
         public void Appoint(OfficeDef office, Pawn p, CouncilGameComponent comp, int seat = 0)
         {
             if (office == null || p == null || !office.CanHold(p)) return;
-            using var _cause = Causes.Push("CC_Cause_Appointed".Translate(p.LabelShort, office.label).Resolve());
+            using var _cause = Causes.Push("CC_Cause_Appointed".Translate(p.LabelShort, office.Name).Resolve());
             // apart: the council names an officer (a message).
             seat = Mathf.Clamp(seat, 0, office.Seats - 1);
             string key = Key(office, seat);
@@ -762,18 +776,18 @@ namespace ColonyCouncil
             if (overrule)
             {
                 CouncilGameComponent.GiveThought(current, CouncilDefOf.Council_LostOffice, p);
-                comp.standings.Change(current, -8f, "CC_Log_RemovedFromOffice".Translate(office.label));
-                comp.social.Bump(current, p, TieKind.Rivals, 15f, "CC_TieNote_Seat".Translate(office.label));
-                comp.journals.Write(current, "Council_Journal_LostOffice", null, office.label.Named("OFFICE"));
+                comp.standings.Change(current, -8f, "CC_Log_RemovedFromOffice".Translate(office.Name));
+                comp.social.Bump(current, p, TieKind.Rivals, 15f, "CC_TieNote_Seat".Translate(office.Name));
+                comp.journals.Write(current, "Council_Journal_LostOffice", null, office.Name.Named("OFFICE"));
                 foreach (var voter in Eligible().Where(v => v != current && v != p && v.relations != null && v.relations.OpinionOf(current) > v.relations.OpinionOf(p)))
-                    comp.standings.Change(voter, -3f, "CC_Log_VoteOverruled".Translate(office.label));
+                    comp.standings.Change(voter, -3f, "CC_Log_VoteOverruled".Translate(office.Name));
                 // direct: the answer to the player's click (appointing in the council window, or calling a vote off).
-                Messages.Message("CC_Office_Overruled".Translate(p.Named("PAWN"), office.label.Named("OFFICE"), current.Named("OTHER")).Resolve(), new LookTargets(p), MessageTypeDefOf.NegativeEvent, false);
+                Messages.Message("CC_Office_Overruled".Translate(p.Named("PAWN"), office.Name.Named("OFFICE"), current.Named("OTHER")).Resolve(), new LookTargets(p), MessageTypeDefOf.NegativeEvent, false);
             }
-            else Messages.Message("CC_Office_Appointed".Translate(p.Named("PAWN"), office.label.Named("OFFICE")).Resolve(), new LookTargets(p), MessageTypeDefOf.NeutralEvent, false);
+            else Messages.Message("CC_Office_Appointed".Translate(p.Named("PAWN"), office.Name.Named("OFFICE")).Resolve(), new LookTargets(p), MessageTypeDefOf.NeutralEvent, false);
             CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_ElectedToOffice);
-            comp.journals.Write(p, "Council_Journal_Elected", null, office.label.Named("OFFICE"));
-            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Chronicle_Appointed".Translate(p.LabelShort, office.label).Resolve(), p));
+            comp.journals.Write(p, "Council_Journal_Elected", null, office.Name.Named("OFFICE"));
+            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Chronicle_Appointed".Translate(p.LabelShort, office.Name).Resolve(), p));
             Setbacks.Notify_OfficeWon(p, office, current != null ? new[] { current } : null);
             SyncHediffs();
         }
@@ -802,13 +816,13 @@ namespace ColonyCouncil
         public void Dismiss(OfficeDef office, CouncilGameComponent comp, int seat = 0)
         {
             if (office == null) return;
-            using var _cause = Causes.Push("CC_Cause_Dismissed".Translate(office.label).Resolve());
+            using var _cause = Causes.Push("CC_Cause_Dismissed".Translate(office.Name).Resolve());
             var current = HolderOf(office, seat);
             if (current == null) return;
             holders.Remove(Key(office, seat));
             CouncilGameComponent.GiveThought(current, CouncilDefOf.Council_LostOffice, null);
-            comp.standings.Change(current, -6f, "CC_Log_RemovedFromOffice".Translate(office.label));
-            comp.journals.Write(current, "Council_Journal_LostOffice", null, office.label.Named("OFFICE"));
+            comp.standings.Change(current, -6f, "CC_Log_RemovedFromOffice".Translate(office.Name));
+            comp.journals.Write(current, "Council_Journal_LostOffice", null, office.Name.Named("OFFICE"));
             SyncHediffs();
         }
 

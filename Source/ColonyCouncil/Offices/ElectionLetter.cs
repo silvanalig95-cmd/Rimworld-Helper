@@ -107,7 +107,7 @@ namespace ColonyCouncil
                     var r = race;
                     var p = en.pawn;
                     int against = offices.EndorseCost(r, p);
-                    string label = "CC_Elect_Menu_Endorse".Translate(p.LabelShort, r.office.label, against).Resolve();
+                    string label = "CC_Elect_Menu_Endorse".Translate(p.LabelShort, r.office.Name, against).Resolve();
                     options.Add(new FloatMenuOption(label, () => offices.Endorse(r, p, comp)));
                 }
             if (options.Count > 0) Find.WindowStack.Add(new FloatMenu(options));
@@ -130,8 +130,8 @@ namespace ColonyCouncil
                     var p = en.pawn;
                     int cost = leader != null && leader != p ? offices.Supporters(r, leader).Count(v => v != p) : 0;
                     string label = cost == 0
-                        ? "CC_Elect_Menu_AppointFree".Translate(p.LabelShort, r.office.label).Resolve()
-                        : "CC_Elect_Menu_Appoint".Translate(p.LabelShort, r.office.label, cost, leader.LabelShort).Resolve();
+                        ? "CC_Elect_Menu_AppointFree".Translate(p.LabelShort, r.office.Name).Resolve()
+                        : "CC_Elect_Menu_Appoint".Translate(p.LabelShort, r.office.Name, cost, leader.LabelShort).Resolve();
                     options.Add(new FloatMenuOption(label, () => offices.CallOff(r, p, comp)));
                 }
             }

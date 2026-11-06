@@ -29,7 +29,7 @@ namespace ColonyCouncil
             int i = 0;
             foreach (var race in e.races.ToList())
             {
-                string seat = race.office.Seats > 1 ? "CC_Office_Seat".Translate(race.office.LabelCap, race.seat + 1).Resolve() : race.office.LabelCap.ToString();
+                string seat = race.office.Seats > 1 ? "CC_Office_Seat".Translate(race.office.NameCap, race.seat + 1).Resolve() : race.office.NameCap.ToString();
                 var head = new Rect(0f, y, width, UiKit.RowStandard);
                 UiKit.Zebra(head, i++);
                 UiKit.LabelFit(new Rect(6f, y, width * 0.4f, UiKit.RowStandard), seat, UiKit.Heading);

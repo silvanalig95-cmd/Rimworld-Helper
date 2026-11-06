@@ -38,7 +38,7 @@ namespace ColonyCouncil
             if (office?.defName == "Council_Office_Steward" || office?.defName == "Council_Office_Speaker")
             {
                 w += 0.7f;
-                reason = "CC_PM_Reason_HostOffice".Translate(pawn.Named("PAWN"), office.label);
+                reason = "CC_PM_Reason_HostOffice".Translate(pawn.Named("PAWN"), office.Name);
             }
             if (w <= 0f) yield break;
             float best = BestRoom(map, out bool any);

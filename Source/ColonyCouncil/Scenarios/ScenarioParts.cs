@@ -40,7 +40,7 @@ namespace ColonyCouncil
                     ? able.OrderByDescending(p => p.ageTracker.AgeBiologicalYearsFloat).FirstOrDefault()
                     : able.OrderByDescending(p => office.Competence(p)).FirstOrDefault();
                 if (pick == null || !council.Seat(office, pick)) continue;
-                seated.Add("CC_Scen_Seat".Translate(pick.Named("PAWN"), office.label.Named("OFFICE")).Resolve());
+                seated.Add("CC_Scen_Seat".Translate(pick.Named("PAWN"), office.Name.Named("OFFICE")).Resolve());
                 ctx.look.Add(pick);
             }
             if (seated.Count == 0) return;
@@ -49,7 +49,7 @@ namespace ColonyCouncil
         }
 
         public override string Summary(Scenario scen) =>
-            ("CC_ScenPart_Seats_" + how).Translate(offices.Where(o => o != null).Select(o => o.label).ToCommaList(true));
+            ("CC_ScenPart_Seats_" + how).Translate(offices.Where(o => o != null).Select(o => o.Name).ToCommaList(true));
 
         public override bool HasNullDefs() => base.HasNullDefs() || offices == null || offices.Any(o => o == null);
 

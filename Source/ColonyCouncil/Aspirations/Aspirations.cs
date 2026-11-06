@@ -86,6 +86,9 @@ namespace ColonyCouncil
             }
             return Beliefs.ForbidsAny(p, forbiddenMask);
         }
+        /// <summary>A goal of a seat on the council names the seat: its words say it by its name in the colony's age.</summary>
+        public string InAge(string text) => workerClass == typeof(AspirationWorker_Office) ? OfficeNames.InAge(text) : text;
+
         /// <summary>Journal, when they set their heart on it ({GOAL}).</summary>
         public ToneLines chosen = new ToneLines();
         /// <summary>Journal and the letter, when they achieve it ({GOAL}).</summary>
@@ -139,11 +142,11 @@ namespace ColonyCouncil
         /// <summary>The skill the goal was about, marked once it's reached (GoalRewards): it never slips, and comes a little faster.</summary>
         public SkillDef mark;
 
-        public string Goal => def == null ? "" : def.goal.Formatted((skill?.label ?? "").Named("SKILL"), target.ToString("0").Named("COUNT")).Resolve();
+        public string Goal => def == null ? "" : def.InAge(def.goal).Formatted((skill?.label ?? "").Named("SKILL"), target.ToString("0").Named("COUNT")).Resolve();
 
         /// <summary>What they did, once done ("cooked five hundred meals").</summary>
         public string Deed => def == null ? "" : (def.deed.NullOrEmpty() ? "CC_Asp_DeedPlain".Translate().Resolve()
-            : def.deed.Formatted((skill?.label ?? "").Named("SKILL"), target.ToString("0").Named("COUNT")).Resolve());
+            : def.InAge(def.deed).Formatted((skill?.label ?? "").Named("SKILL"), target.ToString("0").Named("COUNT")).Resolve());
 
         public float Progress => def == null ? 0f : Mathf.Clamp01(def.Worker.Progress(this));
 
@@ -722,7 +725,7 @@ namespace ColonyCouncil
             var tags = Flavor.TagsFor(p);
             if (extraTags != null) foreach (var t in extraTags) tags.Add(t);
             string raw = lines.Pick(ToneUtility.ToneFor(p), tags, p);
-            return raw.NullOrEmpty() ? null : raw.Formatted(p.Named("PAWN"), a.Goal.Named("GOAL"), (a.skill?.label ?? "").Named("SKILL"), (a.sparkName ?? "").Named("NAME")).Resolve();
+            return raw.NullOrEmpty() ? null : a.def.InAge(raw).Formatted(p.Named("PAWN"), a.Goal.Named("GOAL"), (a.skill?.label ?? "").Named("SKILL"), (a.sparkName ?? "").Named("NAME")).Resolve();
         }
 
         private void Fulfil(CouncilGameComponent comp, Aspiration a)

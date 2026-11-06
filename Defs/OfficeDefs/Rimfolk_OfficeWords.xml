@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The seats' words beyond their own defs (Offices/OfficeWords.cs). Each seat's name in each age, by the colony's own
+    tech level (its means), the player's decision of 6 November 2026: a spacer colony doesn't elect a reeve. Every place a
+    seat is named says the age's name; the offices' own lines that name a seat by its old name say the age's name too.
+  -->
+
+  <ColonyCouncil.OfficeWordsDef>
+    <defName>Rimfolk_OfficeWords_Speaker</defName>
+    <office>Council_Office_Speaker</office>
+    <tribal>first voice</tribal>
+    <medieval>speaker</medieval>
+    <industrial>chair</industrial>
+    <spacer>coordinator</spacer>
+  </ColonyCouncil.OfficeWordsDef>
+
+  <ColonyCouncil.OfficeWordsDef>
+    <defName>Rimfolk_OfficeWords_Marshal</defName>
+    <office>Council_Office_Marshal</office>
+    <tribal>war leader</tribal>
+    <medieval>marshal</medieval>
+    <industrial>captain of the guard</industrial>
+    <spacer>security chief</spacer>
+  </ColonyCouncil.OfficeWordsDef>
+
+  <ColonyCouncil.OfficeWordsDef>
+    <defName>Rimfolk_OfficeWords_Quartermaster</defName>
+    <office>Council_Office_Quartermaster</office>
+    <tribal>keeper of stores</tribal>
+    <medieval>quartermaster</medieval>
+    <industrial>quartermaster</industrial>
+    <spacer>logistics officer</spacer>
+  </ColonyCouncil.OfficeWordsDef>
+
+  <ColonyCouncil.OfficeWordsDef>
+    <defName>Rimfolk_OfficeWords_Physician</defName>
+    <office>Council_Office_Physician</office>
+    <tribal>healer</tribal>
+    <medieval>physician</medieval>
+    <industrial>doctor</industrial>
+    <spacer>medical officer</spacer>
+  </ColonyCouncil.OfficeWordsDef>
+
+  <ColonyCouncil.OfficeWordsDef>
+    <defName>Rimfolk_OfficeWords_Steward</defName>
+    <office>Council_Office_Steward</office>
+    <tribal>feast-giver</tribal>
+    <medieval>steward</medieval>
+    <industrial>welfare officer</industrial>
+    <spacer>morale officer</spacer>
+  </ColonyCouncil.OfficeWordsDef>
+
+  <ColonyCouncil.OfficeWordsDef>
+    <defName>Rimfolk_OfficeWords_Reeve</defName>
+    <office>Council_Office_Reeve</office>
+    <tribal>seed-keeper</tribal>
+    <medieval>reeve</medieval>
+    <industrial>farm foreman</industrial>
+    <spacer>agronomist</spacer>
+  </ColonyCouncil.OfficeWordsDef>
+
+  <ColonyCouncil.OfficeWordsDef>
+    <defName>Rimfolk_OfficeWords_Peacemaker</defName>
+    <office>Council_Office_Peacemaker</office>
+    <tribal>peace-weaver</tribal>
+    <medieval>peacemaker</medieval>
+    <industrial>arbiter</industrial>
+    <spacer>mediator</spacer>
+  </ColonyCouncil.OfficeWordsDef>
+
+  <ColonyCouncil.OfficeWordsDef>
+    <defName>Rimfolk_OfficeWords_Keeper</defName>
+    <office>Council_Office_Keeper</office>
+    <tribal>season-caller</tribal>
+    <medieval>keeper of days</medieval>
+    <industrial>master of ceremonies</industrial>
+    <spacer>ceremonies officer</spacer>
+  </ColonyCouncil.OfficeWordsDef>
+
+  <ColonyCouncil.OfficeWordsDef>
+    <defName>Rimfolk_OfficeWords_Herdmaster</defName>
+    <office>Council_Office_Herdmaster</office>
+    <tribal>herd-watcher</tribal>
+    <medieval>herdmaster</medieval>
+    <industrial>head stockman</industrial>
+    <spacer>husbandry chief</spacer>
+  </ColonyCouncil.OfficeWordsDef>
+
+  <ColonyCouncil.OfficeWordsDef>
+    <defName>Rimfolk_OfficeWords_Chaplain</defName>
+    <office>Council_Office_Chaplain</office>
+    <tribal>spirit-speaker</tribal>
+    <medieval>chaplain</medieval>
+    <industrial>chaplain</industrial>
+    <spacer>chaplain</spacer>
+  </ColonyCouncil.OfficeWordsDef>
+
+  <ColonyCouncil.OfficeWordsDef>
+    <defName>Rimfolk_OfficeWords_Warden</defName>
+    <office>Council_Office_Warden</office>
+    <tribal>guest-friend</tribal>
+    <medieval>warden of guests</medieval>
+    <industrial>gatekeeper</industrial>
+    <spacer>liaison officer</spacer>
+  </ColonyCouncil.OfficeWordsDef>
+
+  <ColonyCouncil.OfficeWordsDef>
+    <defName>Rimfolk_OfficeWords_Elder</defName>
+    <office>Council_Office_Elder</office>
+    <tribal>elder</tribal>
+    <medieval>elder</medieval>
+    <industrial>elder</industrial>
+    <spacer>senior councillor</spacer>
+  </ColonyCouncil.OfficeWordsDef>
+
+</Defs>

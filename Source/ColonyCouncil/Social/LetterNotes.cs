@@ -86,7 +86,7 @@ namespace ColonyCouncil
             }
             else if (bornHere) notes.Add("CC_DeathNote_Born".Translate(p.Named("PAWN")).Resolve());
             else if (years >= 2f) notes.Add("CC_DeathNote_Years".Translate(p.Named("PAWN"), yearsText.Named("YEARS")).Resolve());
-            string office = S.offices ? OfficeTracker.HeldBy(p)?.label : null;
+            string office = S.offices ? OfficeTracker.HeldBy(p)?.Name : null;
             string title = S.epithets ? comp.epithets.Of(p).FirstOrDefault()?.label : null;
             if (!office.NullOrEmpty()) notes.Add("CC_DeathNote_Office".Translate(office.Named("OFFICE")).Resolve());
             else if (!title.NullOrEmpty()) notes.Add("CC_DeathNote_Title".Translate(p.Named("PAWN"), title.Named("TITLE")).Resolve());

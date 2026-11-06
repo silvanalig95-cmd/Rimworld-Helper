@@ -297,7 +297,7 @@ namespace ColonyCouncil
         public static void Elected(Pawn winner, OfficeDef office, List<Pawn> voters)
         {
             if (!On || winner == null || office == null) return;
-            Record("Rimfolk_Deed_Elected", winner, null, -1f, null, office.label, voters, false);
+            Record("Rimfolk_Deed_Elected", winner, null, -1f, null, office.Name, voters, false);
         }
 
         /// <summary>Something made at masterwork quality or better (Patch_ArcMade): a legendary piece counts double.</summary>

@@ -272,7 +272,7 @@ namespace ColonyCouncil
             }
             Skills(sheet, a, colony);
             var seat = OfficeTracker.HeldBy(a);
-            if (seat != null && ColonyCouncilMod.Settings.offices) sheet.Add(ImpactKind.Other, -1, "CC_Impact_BanishSeat".Translate(aName, seat.label).Resolve(), "CC_Impact_BanishSeatBrief".Translate(aName, seat.label).Resolve());
+            if (seat != null && ColonyCouncilMod.Settings.offices) sheet.Add(ImpactKind.Other, -1, "CC_Impact_BanishSeat".Translate(aName, seat.Name).Resolve(), "CC_Impact_BanishSeatBrief".Translate(aName, seat.Name).Resolve());
             sheet.Add(ImpactKind.People, -1, "CC_Impact_BanishBack".Translate(aName).Resolve(), "CC_Impact_BanishBackBrief".Translate(aName).Resolve());
         }
 

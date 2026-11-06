@@ -249,10 +249,10 @@ namespace ColonyCouncil
         private static string SeatName(ElectionRace r) => SeatLabel(r.office, r.seat);
 
         private static string SeatLabel(OfficeDef office, int seat) =>
-            office.Seats > 1 ? "CC_Office_Seat".Translate(office.LabelCap, seat + 1).Resolve() : office.LabelCap.ToString();
+            office.Seats > 1 ? "CC_Office_Seat".Translate(office.NameCap, seat + 1).Resolve() : office.NameCap.ToString();
 
         private static string UnopposedList(List<ElectionRace> races) =>
-            TextUtil.JoinAnd(races.Select(r => "CC_Elect_ForSeat".Translate(r.entries[0].pawn.LabelShort, r.office.label).Resolve()).ToList());
+            TextUtil.JoinAnd(races.Select(r => "CC_Elect_ForSeat".Translate(r.entries[0].pawn.LabelShort, r.office.Name).Resolve()).ToList());
 
         // ---------------- Each day and each hour ----------------
 
@@ -353,11 +353,11 @@ namespace ColonyCouncil
                     r.entries.Remove(en);
                     if (r.endorsed == p) r.endorsed = null;
                     if (p != null)
-                        Tell.Minor(NewsKind.Colony, null, e.map, "CC_Elect_Dropped".Translate(p.Named("PAWN"), r.office.label.Named("OFFICE")).Resolve(), null, MessageTypeDefOf.NeutralEvent);
+                        Tell.Minor(NewsKind.Colony, null, e.map, "CC_Elect_Dropped".Translate(p.Named("PAWN"), r.office.Name.Named("OFFICE")).Resolve(), null, MessageTypeDefOf.NeutralEvent);
                 }
                 if (r.entries.Count > 0) continue;
                 e.races.Remove(r);
-                Tell.Minor(NewsKind.Colony, null, e.map, "CC_Elect_SeatLetGo".Translate(r.office.label.Named("OFFICE")).Resolve(), null, MessageTypeDefOf.NeutralEvent);
+                Tell.Minor(NewsKind.Colony, null, e.map, "CC_Elect_SeatLetGo".Translate(r.office.Name.Named("OFFICE")).Resolve(), null, MessageTypeDefOf.NeutralEvent);
             }
             e.campaigners.RemoveAll(c => c.pawn == null || !e.IsCandidate(c.pawn));
             if (e.races.Count == 0) EndWithout(e);
@@ -462,13 +462,13 @@ namespace ColonyCouncil
             race.endorsed = candidate;
             pollCache.Remove(race);
             foreach (var v in against)
-                comp.standings.Change(v, -ElectionMath.EndorseTrustCost, "CC_Log_ElectionEndorsed".Translate(candidate.LabelShort, race.office.label));
+                comp.standings.Change(v, -ElectionMath.EndorseTrustCost, "CC_Log_ElectionEndorsed".Translate(candidate.LabelShort, race.office.Name));
             string text = against.Count == 0
-                ? "CC_Elect_EndorsedNobody".Translate(candidate.Named("PAWN"), race.office.label.Named("OFFICE")).Resolve()
-                : "CC_Elect_Endorsed".Translate(candidate.Named("PAWN"), race.office.label.Named("OFFICE"), TextUtil.JoinAnd(against.Select(p => p.LabelShort).ToList()).Named("WHO")).Resolve();
+                ? "CC_Elect_EndorsedNobody".Translate(candidate.Named("PAWN"), race.office.Name.Named("OFFICE")).Resolve()
+                : "CC_Elect_Endorsed".Translate(candidate.Named("PAWN"), race.office.Name.Named("OFFICE"), TextUtil.JoinAnd(against.Select(p => p.LabelShort).ToList()).Named("WHO")).Resolve();
             // direct: the answer to the player's click (the election letter's or panel's "endorse").
             Messages.Message(text, new LookTargets(candidate), MessageTypeDefOf.NeutralEvent, false);
-            Answers.Record("election", "CC_Answer_ElectionRace".Translate(race.office.label.Named("OFFICE")).Resolve(), "CC_Answer_Endorsed".Translate(candidate.Named("PAWN")).Resolve(),
+            Answers.Record("election", "CC_Answer_ElectionRace".Translate(race.office.Name.Named("OFFICE")).Resolve(), "CC_Answer_Endorsed".Translate(candidate.Named("PAWN")).Resolve(),
                 text, candidate, null, e.map);
         }
 
@@ -497,13 +497,13 @@ namespace ColonyCouncil
             Appoint(race.office, appointee, comp, race.seat);
             ElectionSeated(race.office, race.seat, appointee);
             foreach (var v in let)
-                comp.standings.Change(v, -ElectionMath.AppointTrustCost, "CC_Log_ElectionCalledOff".Translate(race.office.label, leader.LabelShort));
+                comp.standings.Change(v, -ElectionMath.AppointTrustCost, "CC_Log_ElectionCalledOff".Translate(race.office.Name, leader.LabelShort));
             string text = let.Count == 0
-                ? "CC_Elect_CalledOffNobody".Translate(race.office.label.Named("OFFICE")).Resolve()
-                : "CC_Elect_CalledOff".Translate(race.office.label.Named("OFFICE"), leader.Named("PAWN"), TextUtil.JoinAnd(let.Select(p => p.LabelShort).ToList()).Named("WHO")).Resolve();
+                ? "CC_Elect_CalledOffNobody".Translate(race.office.Name.Named("OFFICE")).Resolve()
+                : "CC_Elect_CalledOff".Translate(race.office.Name.Named("OFFICE"), leader.Named("PAWN"), TextUtil.JoinAnd(let.Select(p => p.LabelShort).ToList()).Named("WHO")).Resolve();
             // direct: the answer to the player's click (the election letter's or panel's "call off").
             Messages.Message(text, new LookTargets(appointee), MessageTypeDefOf.NeutralEvent, false);
-            Answers.Record("election", "CC_Answer_ElectionRace".Translate(race.office.label.Named("OFFICE")).Resolve(), "CC_Answer_Appointed".Translate(appointee.Named("PAWN")).Resolve(),
+            Answers.Record("election", "CC_Answer_ElectionRace".Translate(race.office.Name.Named("OFFICE")).Resolve(), "CC_Answer_Appointed".Translate(appointee.Named("PAWN")).Resolve(),
                 text, appointee, null, e.map);
             if (election == e && e.races.Count == 0) EndWithout(e);
         }
@@ -589,12 +589,12 @@ namespace ColonyCouncil
             if (!line.NullOrEmpty()) Speech.Say(c, Fill(line, c, v, race.office), v, SpeechColor);
             string reply = Flavor.FromPool(nudge > 0f ? "Rimfolk_Pool_CanvassWon" : "Rimfolk_Pool_CanvassUnmoved", v);
             if (!reply.NullOrEmpty()) Speech.Say(v, Fill(reply, v, c, race.office), c, SpeechColor);
-            SocialLog.Add(c, v, "CC_Elect_LogCanvass".Translate(c.Named("PAWN"), v.Named("OTHER"), race.office.label.Named("OFFICE")).Resolve(), false);
+            SocialLog.Add(c, v, "CC_Elect_LogCanvass".Translate(c.Named("PAWN"), v.Named("OTHER"), race.office.Name.Named("OFFICE")).Resolve(), false);
             c.skills?.Learn(SkillDefOf.Social, 60f);
         }
 
         private static string Fill(string line, Pawn speaker, Pawn other, OfficeDef office, string count = null) =>
-            line.Formatted(speaker.Named("PAWN"), (other ?? speaker).Named("OTHER"), (office?.label ?? "").Named("OFFICE"), (count ?? "").Named("COUNT")).Resolve();
+            line.Formatted(speaker.Named("PAWN"), (other ?? speaker).Named("OTHER"), (office?.Name ?? "").Named("OFFICE"), (count ?? "").Named("COUNT")).Resolve();
 
         // ---------------- Gatherings: the hustings and the count ----------------
 
@@ -1177,7 +1177,7 @@ namespace ColonyCouncil
                 if (missed.Count > 0) text.Append(" ").Append("CC_Elect_Missed".Translate(TextUtil.JoinAnd(missed)).Resolve());
                 if (e.races.Any(r => r.endorsed != null))
                     text.Append(" ").Append("CC_Elect_ResultEndorsed".Translate(TextUtil.JoinAnd(e.races.Where(r => r.endorsed != null)
-                        .Select(r => "CC_Elect_ForSeat".Translate(r.endorsed.LabelShort, r.office.label).Resolve()).ToList())).Resolve());
+                        .Select(r => "CC_Elect_ForSeat".Translate(r.endorsed.LabelShort, r.office.Name).Resolve()).ToList())).Resolve());
             }
             var seated = new List<Pawn>();
             foreach (var sc in count)

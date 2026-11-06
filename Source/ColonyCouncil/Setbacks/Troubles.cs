@@ -430,7 +430,7 @@ namespace ColonyCouncil
                 if (office != null && OfficeTracker.HeldBy(p) == null)
                 {
                     key = "CC_Trouble_Cause_EnvySeat";
-                    honor = office.label;
+                    honor = office.Name;
                     tag = "seat";
                 }
                 if (honor == null && S.epithets && comp?.epithets != null)

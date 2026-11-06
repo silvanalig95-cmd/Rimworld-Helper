@@ -15,6 +15,8 @@ namespace ColonyCouncil
             {
                 ApplyButtonPosition(false);
                 FlavorExtensions.Apply();
+                // The office words: more planks for each seat, and what their promises are (Offices/OfficeWords.cs).
+                OfficeNames.Apply();
                 LetterVariants.Apply();
                 AddStoryTab();
                 // Feelings nudge which moments colonists start (an angry one picks at people, a lonely one seeks them out).

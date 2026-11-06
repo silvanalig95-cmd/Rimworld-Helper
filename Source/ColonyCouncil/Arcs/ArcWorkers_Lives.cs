@@ -288,7 +288,7 @@ namespace ColonyCouncil
             var speaker = council.Speaker;
             var other = speaker != null && speaker != p && home.Contains(speaker) ? speaker : ArcUtil.Closest(p, home, 10f);
             if (other == null) return null;
-            return new ArcCandidate { other = other, key = office.defName, name = office.label, weight = 1.3f };
+            return new ArcCandidate { other = other, key = office.defName, name = office.Name, weight = 1.3f };
         }
 
         public override string Broken(Arc arc)

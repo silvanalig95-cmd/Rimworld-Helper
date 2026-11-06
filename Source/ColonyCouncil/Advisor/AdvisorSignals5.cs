@@ -276,8 +276,8 @@ namespace ColonyCouncil
             if (office == null || !office.OpenFor(voters) || offices.HolderOf(office) != null) return null;
             var best = colonists.Where(p => !p.DevelopmentalStage.Juvenile() && !p.IsSlave && office.CanHold(p)).OrderByDescending(office.Competence).FirstOrDefault();
             if (best == null) return null;
-            var s = Signal(severity, "CC_Adv_Office_Title".Translate(office.label).Resolve(),
-                why + " " + "CC_Adv_Office_Best".Translate(office.label, best.LabelShort, office.Competence(best).ToString("0")).Resolve(), 0.5f);
+            var s = Signal(severity, "CC_Adv_Office_Title".Translate(office.Name).Resolve(),
+                why + " " + "CC_Adv_Office_Best".Translate(office.Name, best.LabelShort, office.Competence(best).ToString("0")).Resolve(), 0.5f);
             s.page = "Decrees";
             s.look = new LookTargets(best);
             s.key = "office:" + defName;

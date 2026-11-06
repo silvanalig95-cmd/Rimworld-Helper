@@ -95,7 +95,7 @@ namespace ColonyCouncil
         public static void Notify_OfficeWon(Pawn p, OfficeDef office, IEnumerable<Pawn> ran)
         {
             if (p == null || office == null) return;
-            Honoured(p, ran != null ? new HashSet<Pawn>(ran) : null, "CC_Setback_Cause_RivalSeat".Translate(p.LabelShort, office.label).Resolve());
+            Honoured(p, ran != null ? new HashSet<Pawn>(ran) : null, "CC_Setback_Cause_RivalSeat".Translate(p.LabelShort, office.Name).Resolve());
         }
 
         private static void Honoured(Pawn p, HashSet<Pawn> skip, string cause)
