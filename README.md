@@ -307,8 +307,8 @@ settings file from then keeps the rule on if any of the four was on. It works th
 **Small letdowns and small joys.** Small things that go wrong (the same meal again, an idea turned down, rot in the
 stores, a spat about the chores) and small things that go right (a laugh with a friend, a kindness, a varied table) are
 each felt the way people feel them: a short, small mood at the moment, three points and half a day at most. On the Mood
-tab they read as two rows, *Small letdowns* and *Small joys*, and hovering a row says what each one was, how much it
-counts and why. What each would weigh beyond its moment goes to the heart instead: strain for a letdown, relief for a
+tab each one has a row of its own under its own name (the same one twice shares a row), and hovering it says how much
+it counts, why, and what it does to the heart. What each would weigh beyond its moment goes to the heart instead: strain for a letdown, relief for a
 joy, at most 1.5 and 3 a day, so a single one passes and a run of them wears or eases. A letdown that lasts (days of
 the same work, someone away, a wish still waiting) is felt when it begins, gets worse or holds another day, and wears on
 the heart every hour it holds. The heart counts every small mood the same way, whoever made it: past 8 points of small

@@ -6,6 +6,14 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 0.126.3, a row each for small letdowns and joys (the player's request, 6 November 2026, with a screenshot of
+  "Small letdowns x2": "i'd rather be able to see the small letdowns listed"). `Thought_SmallMoment` shows under its own
+  label (`LabelCap`) and groups only with the same label (`GroupsWith`), so the Mood tab and the game's Needs tab list
+  "Not asked along -1.5" and "Argued about the temperature -0.7" as rows of their own (the same one twice shares a row,
+  "x2"). The tooltip (`SmallMoments.Describe(row)`) describes that row's moments, with a one-moment intro
+  (`CC_Small_Letdown_Intro`, `CC_Small_Joy_Intro`) and the heart's line; `Why` is the moment's own cause and
+  `SmallMoments.Advice(moment)` its own fix; `WhatTheyWere` went with the shared row. Sizes, strain and stack limits are
+  unchanged.
 - 0.126.2, food poisoning on the health panel (the player's report, 6 November 2026: "the health ui element is not
   picking up my food poisoning?", save New_Arrivals42 at 1.7.5000: Dawson, a colonist on the home map, with
   FoodPoisoning at 0.81 easing by 1 a day). `HudHealthMath.Shows` keeps a bad condition only as a wound, an illness (an

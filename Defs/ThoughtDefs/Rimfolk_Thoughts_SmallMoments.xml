@@ -4,8 +4,8 @@
   <!--
     Small letdowns and small joys (Source/ColonyCouncil/Moods/SmallMoments.cs, phase 3 of the review, November 2026).
     Rimfolk's small letdowns (pressures, setbacks, quiet troubles, nuisances, frictions) and its small good moments are
-    each felt for a moment, half a day and three points at most, in one row of the Mood tab per side; the row's tooltip
-    says what each one was. What they would weigh beyond the moment goes to the heart (strain or relief). Each moment
+    each felt for a moment, half a day and three points at most, each in a row of its own on the Mood tab under its own
+    name (the same one twice shares a row); the row's tooltip says what it was. What they would weigh beyond the moment goes to the heart (strain or relief). Each moment
     carries its own size and time (Thought_SmallMoment), so the row adds them up as they are: the stack counts in full.
   -->
 

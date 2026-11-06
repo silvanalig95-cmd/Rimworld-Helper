@@ -5,7 +5,7 @@ using ColonyCouncil;
 /// <summary>
 /// Small letdowns and small joys (Moods/SmallMomentMath.cs, Moods/SmallMoments.cs, phase 3 of the review): each is a
 /// short, small moment; what it weighs beyond goes to the heart; a lasting one comes back as a moment; every small mood,
-/// anyone's, counts once they pile up, the heavy kinds left to their own sources; one row per side on the Mood tab; the
+/// anyone's, counts once they pile up, the heavy kinds left to their own sources; a row each on the Mood tab under its own name; the
 /// heart's new kinds at the end of their lists; and the game's moods are never changed.
 /// </summary>
 public static class SmallMomentTests
@@ -75,7 +75,12 @@ public static class SmallMomentTests
             C(el.Element("thoughtClass")?.Value == "ColonyCouncil.Thought_SmallMoment" && el.Element("workerClass") == null, $"{name} is a moment's memory");
             C(el.Element("stackedEffectMultiplier")?.Value == "1", $"{name}: the row adds them up as they are");
             C(float.Parse(el.Element("durationDays")!.Value, System.Globalization.CultureInfo.InvariantCulture) == SmallMomentMath.MomentDays, $"{name} lasts the moment's time");
-            C(int.Parse(el.Element("stackLimit")!.Value) >= 20, $"{name}: room for many in one row");
+            C(int.Parse(el.Element("stackLimit")!.Value) >= 20, $"{name}: room for many at once");
+        // A row each (the player's request, 6 November 2026): its own name, and only the same one shares a row.
+        string momentCode = File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "Moods", "SmallMoments.cs"));
+        C(momentCode.Contains("public override string LabelCap => label.NullOrEmpty() ? base.LabelCap : label.CapitalizeFirst();"), "each small moment shows under its own name");
+        C(momentCode.Contains("base.GroupsWith(other) && other is Thought_SmallMoment m && string.Equals(m.label ?? \"\", label ?? \"\", StringComparison.OrdinalIgnoreCase)"),
+            "only the same small thing shares a row");
         }
 
         // ---------- The code keeps the rules ----------

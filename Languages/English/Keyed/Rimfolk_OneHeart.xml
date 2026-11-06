@@ -10,6 +10,8 @@
 
   <CC_Small_Letdowns_Intro>Small things that went wrong for {PAWN_nameDef} lately, each felt for a moment:</CC_Small_Letdowns_Intro>
   <CC_Small_Joys_Intro>Small good things for {PAWN_nameDef} lately, each felt for a moment:</CC_Small_Joys_Intro>
+  <CC_Small_Letdown_Intro>A small thing that went wrong for {PAWN_nameDef} lately, felt for a moment:</CC_Small_Letdown_Intro>
+  <CC_Small_Joy_Intro>A small good thing for {PAWN_nameDef} lately, felt for a moment:</CC_Small_Joy_Intro>
   <CC_Small_Item>{LABEL}: {SIZE}.</CC_Small_Item>
   <CC_Small_Letdowns_Heart>Beyond the moment, each one wears a little on {PAWN_nameDef}'s heart instead, so a run of them strains {PAWN_objective} while a single one soon passes.</CC_Small_Letdowns_Heart>
   <CC_Small_Joys_Heart>Beyond the moment, each one eases {PAWN_nameDef}'s heart a little instead, so a run of good days settles {PAWN_objective}.</CC_Small_Joys_Heart>

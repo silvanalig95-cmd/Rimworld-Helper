@@ -26,9 +26,11 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// One small letdown or joy as it is felt in the moment: a short, small mood, in one row of the Mood tab with the others
-    /// of its side ("small letdowns", "small joys"), each saying in the row's tooltip what it was. The memory that brought it
-    /// stays on as it was for what else it does (an opinion of someone, what other systems look for), without a mood.
+    /// One small letdown or joy as it is felt in the moment: a short, small mood, in a row of the Mood tab under its own name
+    /// ("Not asked along", "Argued about the temperature"; the player's request, 6 November 2026: "i'd rather be able to see
+    /// the small letdowns listed"). The same one twice shares a row ("x2"); the row's tooltip says what it was and what it
+    /// does to the heart beyond the moment. The memory that brought it stays on as it was for what else it does (an opinion
+    /// of someone, what other systems look for), without a mood.
     /// </summary>
     public class Thought_SmallMoment : Thought_Memory, ICouncilMood, IExplainedThought
     {
@@ -59,9 +61,16 @@ namespace ColonyCouncil
 
         public override bool VisibleInNeedsTab => base.VisibleInNeedsTab && size != 0f;
 
-        public override string Description => SmallMoments.Describe(pawn, def) ?? base.Description;
+        /// <summary>Its own name, as it was when it happened: each small letdown or joy is its own row.</summary>
+        public override string LabelCap => label.NullOrEmpty() ? base.LabelCap : label.CapitalizeFirst();
 
-        public string Why => SmallMoments.WhatTheyWere(pawn, def);
+        /// <summary>Only the same small thing shares a row (shown "x2"); different ones are listed each on its own.</summary>
+        public override bool GroupsWith(Thought other) =>
+            base.GroupsWith(other) && other is Thought_SmallMoment m && string.Equals(m.label ?? "", label ?? "", StringComparison.OrdinalIgnoreCase);
+
+        public override string Description => SmallMoments.Describe(this) ?? base.Description;
+
+        public string Why => why;
 
         public override bool TryMergeWithExistingMemory(out bool showBubble)
         {
@@ -511,15 +520,18 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The row's tooltip: what each one was, its mood and its cause, and in a line what happens beyond the moment.
+        /// A row's tooltip: what it was (each time, when the same thing happened more than once), its mood and its cause,
+        /// and in a line what happens beyond the moment.
         /// </summary>
-        public static string Describe(Pawn p, ThoughtDef def)
+        public static string Describe(Thought_SmallMoment row)
         {
-            if (p == null || def == null) return null;
-            var all = Of(p, def);
+            var p = row?.pawn;
+            if (p == null || row.def == null) return null;
+            var all = Of(p, row.def).Where(m => m.GroupsWith(row) || m == row).ToList();
             if (all.Count == 0) return null;
-            bool joys = def == JoysDef;
-            var lines = new List<string> { (joys ? "CC_Small_Joys_Intro" : "CC_Small_Letdowns_Intro").Translate(p.Named("PAWN")).Resolve() };
+            bool joys = row.def == JoysDef;
+            string intro = all.Count == 1 ? joys ? "CC_Small_Joy_Intro" : "CC_Small_Letdown_Intro" : joys ? "CC_Small_Joys_Intro" : "CC_Small_Letdowns_Intro";
+            var lines = new List<string> { intro.Translate(p.Named("PAWN")).Resolve() };
             foreach (var m in all)
             {
                 string item = "CC_Small_Item".Translate((m.label ?? m.what?.label ?? "?").CapitalizeFirst().Named("LABEL"), MoodView.Number(m.size).Named("SIZE")).Resolve();
@@ -531,33 +543,16 @@ namespace ColonyCouncil
             return string.Join("\n", lines);
         }
 
-        /// <summary>What they were, in a few words ("my idea turned down and rot in the stores"), for the row's cause.</summary>
-        public static string WhatTheyWere(Pawn p, ThoughtDef def)
-        {
-            var all = Of(p, def);
-            if (all.Count == 0) return null;
-            var labels = all.Select(m => (m.label ?? m.what?.label ?? "?").ToLowerInvariant()).Distinct().Take(3).ToList();
-            return TextUtil.JoinAnd(labels);
-        }
-
         /// <summary>
-        /// What helps, for the row (MoodInsight.Advice): the fixes of the letdowns behind it that can be fixed, else that
-        /// they pass by themselves.
+        /// What helps, for a row (MoodInsight.Advice): the fix of the letdown behind it when it can be fixed (or how to keep
+        /// a joy coming), else null and the row's own hint.
         /// </summary>
-        public static string Advice(Pawn p, ThoughtDef def, bool bad)
+        public static string Advice(Thought_SmallMoment m, bool bad)
         {
-            var fixes = new List<string>();
-            foreach (var m in Of(p, def))
-            {
-                var hint = m.what == null ? null : MoodInsight.HintFor(m.what);
-                string text = hint == null ? null : bad ? hint.fix : hint.keep;
-                if (text.NullOrEmpty() || fixes.Contains(text)) continue;
-                if (bad && !hint.Actionable) continue;
-                fixes.Add(text);
-                if (fixes.Count >= 2) break;
-            }
-            if (fixes.Count > 0) return string.Join(" ", fixes);
-            return null;
+            var hint = m?.what == null ? null : MoodInsight.HintFor(m.what);
+            string text = hint == null ? null : bad ? hint.fix : hint.keep;
+            if (text.NullOrEmpty() || bad && !hint.Actionable) return null;
+            return text;
         }
     }
 }

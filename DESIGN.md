@@ -588,11 +588,13 @@ mod made.
   a talk, a kindness, scaled as they're felt, of five points and two days at most as written; a varied table) are each a
   short, small mood at the moment, and what they'd weigh beyond eases strain (`StrainRelief.Joys`, at the end of its
   list), 0.6 a mood-day, within a day's cap of 3. Council rewards, life goals reached and dreams stay moods of their own.
-- **One row a side.** Each moment is a `Thought_SmallMoment` of one of two defs (`Rimfolk_SmallLetdowns`,
-  `Rimfolk_SmallJoys`) carrying its own size, time, words and cause; the game groups them by def, so the Mood tab and
-  the game's Needs tab show "Small letdowns x3" and "Small joys x2", added up as they are, and the row's tooltip says
-  what each one was ("My idea turned down: -2. The council chose the well.") and that the rest goes to the heart. What
-  helps is the fixes of the letdowns behind the row (`SmallMoments.Advice`), else its own hint. Each one still feeds the
+- **A row each.** Each moment is a `Thought_SmallMoment` of one of two defs (`Rimfolk_SmallLetdowns`,
+  `Rimfolk_SmallJoys`) carrying its own size, time, words and cause. It has a row of its own under its own name
+  (`LabelCap`; the player's request, 6 November 2026: "i'd rather be able to see the small letdowns listed"): the game
+  groups thoughts by `GroupsWith`, which here holds only for the same label, so the Mood tab and the game's Needs tab show
+  "Not asked along" and "Argued about the temperature x2", added up as they are, and the row's tooltip says what it was
+  ("My idea turned down: -2. The council chose the well.") and that the rest goes to the heart. What helps is the fix
+  of the letdown behind the row (`SmallMoments.Advice`), else its own hint. Each one still feeds the
   feelings its own memory fed, at the moment's size; a lasting one at its full size while it holds.
 - **Every small mood, anyone's.** Each hour the heart adds up every small mood on a colonist's mind, the game's and
   other mods' too, by size and length, not by name (`SmallMomentMath.IsSmall`: six points or less, three days or less

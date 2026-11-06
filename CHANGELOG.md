@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Small letdowns listed
+
+*6 November 2026, version 0.126.3*
+
+- Small letdowns and small joys are listed on the Mood tab each on its own row under its own name, such as Not asked along or Argued about the temperature, instead of one Small letdowns row.
+- The same one twice shares a row, and hovering a row says how much it counts, why it happened and what it does to the heart beyond the moment.
+
 ## Food poisoning on the health panel
 
 *6 November 2026, version 0.126.2*

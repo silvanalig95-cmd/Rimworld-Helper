@@ -365,9 +365,9 @@ namespace ColonyCouncil
         {
             bool bad = l.mood < 0f;
             // Small letdowns and joys: what helps with the ones behind the row (Moods/SmallMoments.cs), else the row's own hint.
-            if (l.thought is Thought_SmallMoment)
+            if (l.thought is Thought_SmallMoment sm)
             {
-                string small = SmallMoments.Advice(l.pawn, l.def, bad);
+                string small = SmallMoments.Advice(sm, bad);
                 if (!small.NullOrEmpty()) return small;
             }
             var hint = HintFor(l.def);
