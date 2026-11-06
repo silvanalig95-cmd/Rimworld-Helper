@@ -17,9 +17,12 @@ namespace ColonyCouncil
 
         private static readonly string[] WetBiomes = { "swamp", "jungle", "rainforest", "bog", "marsh", "wetland", "mangrove" };
         private static readonly string[] AshBiomes = { "volcan", "lava", "ash", "pyroclast", "cinder" };
+        // Deserts and dry scrub: the game's Desert, ExtremeDesert and AridShrubland, and other mods' by name.
+        private static readonly string[] AridBiomes = { "desert", "arid", "dune", "badland", "steppe", "savanna" };
 
         private static readonly Dictionary<BiomeDef, bool> wetBiome = new Dictionary<BiomeDef, bool>();
         private static readonly Dictionary<BiomeDef, bool> ashBiome = new Dictionary<BiomeDef, bool>();
+        private static readonly Dictionary<BiomeDef, bool> aridBiome = new Dictionary<BiomeDef, bool>();
 
         private static NeedDef hygiene;
         private static TraitDef nightOwl;
@@ -43,6 +46,7 @@ namespace ColonyCouncil
         {
             wetBiome.Clear();
             ashBiome.Clear();
+            aridBiome.Clear();
             looked = false;
             hygiene = null;
             nightOwl = null;
@@ -70,14 +74,12 @@ namespace ColonyCouncil
 
         public static bool AshBiome(Map map) => BiomeIs(map?.Biome, AshBiomes, ashBiome);
 
-        private static bool Has(int mask, AilmentTrigger t) => (mask & (1 << (int)t)) != 0;
-
-        private static int Bit(AilmentTrigger t) => 1 << (int)t;
+        private static long Bit(AilmentTrigger t) => 1L << (int)t;
 
         /// <summary>The counted triggers that fit this colonist right now, as bits (1 &lt;&lt; trigger).</summary>
-        public static int Sample(Pawn p, bool awake)
+        public static long Sample(Pawn p, bool awake)
         {
-            int mask = 0;
+            long mask = 0;
             var caravan = p.GetCaravan();
             if (caravan != null)
             {
@@ -99,6 +101,8 @@ namespace ColonyCouncil
             BodyFit.TempShift(p, out float cold, out float heat);
             if (BodyMath.Sweltering(temp, WetBiome(map), heat)) mask |= Bit(AilmentTrigger.Sweltering);
             if (outdoors && temp >= 18f && WetBiome(map)) mask |= Bit(AilmentTrigger.Insects);
+            bool arid = AridBiome(map);
+            if (awake && AilmentCauseMath.Sandflies(arid, outdoors, temp, GenLocalDate.HourOfDay(map))) mask |= Bit(AilmentTrigger.Sandflies);
             if (!awake)
             {
                 var bed = RestUtility.CurrentBed(p);
@@ -132,7 +136,14 @@ namespace ColonyCouncil
             if (job != null && (job.def == JobDefOf.Clean || job.def == JobDefOf.Sow)) mask |= Bit(AilmentTrigger.Kneeling);
             if (work == "Handling") mask |= Bit(AilmentTrigger.Handling);
             if (job != null && (BeeThing(job.targetA.Thing) || BeeThing(job.targetB.Thing))) mask |= Bit(AilmentTrigger.Beekeeping);
-            if (moving && WetGround(p.Position, map)) mask |= Bit(AilmentTrigger.WetFeet);
+            bool wetGround = WetGround(p.Position, map);
+            if (moving && wetGround) mask |= Bit(AilmentTrigger.WetFeet);
+            if (AilmentCauseMath.ColdWet(outdoors, wetGround, temp, cold)) mask |= Bit(AilmentTrigger.ColdWetFeet);
+            if (job != null && job.def == JobDefOf.GoSwimming && StillWater(p.Position, map)) mask |= Bit(AilmentTrigger.StillSwim);
+            if (job != null && job.def == JobDefOf.DoBill) mask |= Bench(p, job, work, room);
+            if (job != null && job.def == JobDefOf.Clean && !outdoors && Birds(room)) mask |= Bit(AilmentTrigger.BirdBarn);
+            if ((moving || heavy || hands) && OldLimb(p)) mask |= Bit(AilmentTrigger.OldLimb);
+            if (arid && outdoors && AilmentCauseMath.DesertDust(true, true, Digging(job, work, map), Raining(map))) mask |= Bit(AilmentTrigger.DesertDust);
             if (outdoors)
             {
                 if (working && BodyMath.ColdWork(temp, cold)) mask |= Bit(AilmentTrigger.ColdWork);
@@ -206,9 +217,9 @@ namespace ColonyCouncil
         public static bool Counted(AilmentTrigger t) => t >= AilmentTrigger.HeavyWork && t < AilmentTrigger.Wound;
 
         /// <summary>What's going on inside them, wherever they are: hunger, and worry (low mood or strain).</summary>
-        private static int Inner(Pawn p)
+        private static long Inner(Pawn p)
         {
-            int mask = 0;
+            long mask = 0;
             var food = p.needs?.food;
             if (food != null && food.CurCategory >= HungerCategory.Hungry) mask |= Bit(AilmentTrigger.Hungry);
             var mood = p.needs?.mood;
@@ -267,6 +278,135 @@ namespace ColonyCouncil
             if (n == null || !n.StartsWith("RB_", StringComparison.Ordinal)) return false;
             return n.IndexOf("Beehouse", StringComparison.OrdinalIgnoreCase) >= 0 || n.IndexOf("BroodChamber", StringComparison.Ordinal) >= 0
                    || n.IndexOf("HybridizationChamber", StringComparison.Ordinal) >= 0;
+        }
+
+        // ---------------- The land, the work and the age (6 November 2026) ----------------
+
+        public static bool AridBiome(Map map) => BiomeIs(map?.Biome, AridBiomes, aridBiome);
+
+        /// <summary>A lake, a pond or a marsh underfoot: still water, never a river or the sea.</summary>
+        private static bool StillWater(IntVec3 c, Map map)
+        {
+            var t = c.GetTerrain(map);
+            if (t == null) return false;
+            bool marsh = t.defName.IndexOf("Marsh", StringComparison.OrdinalIgnoreCase) >= 0;
+            return AilmentCauseMath.StillWater(t.IsWater, t.IsRiver, t.IsOcean, marsh);
+        }
+
+        private static bool Raining(Map map)
+        {
+            var weather = map.weatherManager?.curWeather;
+            return weather != null && weather.rainRate > 0.1f;
+        }
+
+        /// <summary>Digging the ground: building, mining with open sky overhead, sowing or clearing plants.</summary>
+        private static bool Digging(Verse.AI.Job job, string work, Map map)
+        {
+            if (job == null) return false;
+            if (work == "Construction" || work == "Growing" || work == "PlantCutting") return true;
+            if (job.def != JobDefOf.Mine) return false;
+            var c = job.targetA.Cell;
+            return c.IsValid && c.InBounds(map) && !(map.roofGrid.RoofAt(c)?.isThickRoof ?? false);
+        }
+
+        /// <summary>
+        /// A bench's bill: butchering small wild game or a bad carcass (a corpse on the bill), or smithing and smelting in a
+        /// small closed room.
+        /// </summary>
+        private static long Bench(Pawn p, Verse.AI.Job job, string work, Room room)
+        {
+            long mask = 0;
+            RecipeDef recipe;
+            try
+            {
+                recipe = job.bill?.recipe;
+            }
+            catch
+            {
+                return 0;
+            }
+            if (recipe == null) return 0;
+            bool butcher = recipe.specialProducts != null && recipe.specialProducts.Contains(SpecialProductType.Butchery);
+            if (butcher)
+            {
+                var corpse = BillCorpse(job);
+                var inner = corpse?.InnerPawn;
+                if (inner?.RaceProps != null)
+                {
+                    bool animal = inner.RaceProps.Animal && inner.RaceProps.IsFlesh;
+                    if (AilmentCauseMath.SmallGame(animal, inner.Faction == null, inner.RaceProps.baseBodySize)) mask |= Bit(AilmentTrigger.SmallGame);
+                    bool rotting = corpse.GetRotStage() == RotStage.Rotting;
+                    if (AilmentCauseMath.BadCarcass(animal, rotting, DiedSick(inner))) mask |= Bit(AilmentTrigger.BadCarcass);
+                }
+            }
+            bool forge = work == "Smithing" || (job.targetA.Thing?.def?.defName?.IndexOf("Smelter", StringComparison.OrdinalIgnoreCase) ?? -1) >= 0;
+            if (forge && room != null && AilmentCauseMath.FumeRoom(room.ProperRoom, room.PsychologicallyOutdoors, room.CellCount)) mask |= Bit(AilmentTrigger.MetalFumes);
+            return mask;
+        }
+
+        /// <summary>The corpse a bill is working on: the one carried, the next in the queue, or one already on the bench.</summary>
+        private static Corpse BillCorpse(Verse.AI.Job job)
+        {
+            if (job.targetB.Thing is Corpse b) return b;
+            var queue = job.targetQueueB;
+            if (queue != null)
+                for (int i = 0; i < queue.Count; i++)
+                    if (queue[i].Thing is Corpse q)
+                        return q;
+            var placed = job.placedThings;
+            if (placed != null)
+                for (int i = 0; i < placed.Count; i++)
+                    if (placed[i]?.thing is Corpse c)
+                        return c;
+            return null;
+        }
+
+        /// <summary>The animal had an illness when it died: the animal flu or plague, or anything else that makes one sick.</summary>
+        private static bool DiedSick(Pawn inner)
+        {
+            var hs = inner.health?.hediffSet?.hediffs;
+            if (hs == null) return false;
+            for (int i = 0; i < hs.Count; i++)
+            {
+                var d = hs[i]?.def;
+                if (d == null || hs[i] is Hediff_Injury) continue;
+                if (d.makesSickThought || d.defName.StartsWith("Animal_", StringComparison.Ordinal)) return true;
+            }
+            return false;
+        }
+
+        /// <summary>Birds kept in the room (chickens, ducks, geese, turkeys and their kind, by their body), among its first few hundred things.</summary>
+        private static bool Birds(Room room)
+        {
+            if (room == null || !room.ProperRoom || room.PsychologicallyOutdoors) return false;
+            var things = room.ContainedAndAdjacentThings;
+            for (int i = 0; i < things.Count && i < MaxThingsLooked; i++)
+                if (things[i] is Pawn a && a.RaceProps != null && a.RaceProps.Animal && a.RaceProps.body?.defName == "Bird" && a.GetRoom() == room)
+                    return true;
+            return false;
+        }
+
+        /// <summary>A limb of the old kinds on a leg, a foot, an arm or a hand: a peg leg, a wooden foot or hand, a simple prosthetic.</summary>
+        public static bool OldLimb(Pawn p)
+        {
+            var hs = p.health?.hediffSet?.hediffs;
+            if (hs == null) return false;
+            for (int i = 0; i < hs.Count; i++)
+            {
+                if (!(hs[i] is Hediff_AddedPart part) || part.Part == null || part.def.addedPartProps == null) continue;
+                string n = part.Part.def.defName;
+                if (n != "Leg" && n != "Foot" && n != "Arm" && n != "Hand" && n != "Shoulder") continue;
+                var props = part.def.addedPartProps;
+                if (AilmentCauseMath.LowTechLimb(props.partEfficiency, props.betterThanNatural, TechOf(part.def))) return true;
+            }
+            return false;
+        }
+
+        /// <summary>The tech level of what a part or implant is made of (the thing a surgeon takes out again), as a number.</summary>
+        public static int TechOf(HediffDef d)
+        {
+            var thing = d?.spawnThingOnRemoved;
+            return thing != null ? (int)thing.techLevel : 0;
         }
 
         /// <summary>Water, marsh or mud underfoot (not sand or snow, which are only hard going).</summary>

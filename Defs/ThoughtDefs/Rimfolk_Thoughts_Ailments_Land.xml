@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Moods of the ailments and illnesses of the land, the work and the age (Defs/HediffDefs/Rimfolk_Hediffs_Ailments_Land.xml
+    and Rimfolk_Hediffs_Illnesses_Land.xml): one situational thought each, by the hediff's stage (ThoughtWorker_Ailment),
+    small like the others for the everyday ones, fear for the serious ones. The words name no age's name for it.
+  -->
+
+  <!-- ===================== Everyday ===================== -->
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_SwimmersItch_Mood</defName>
+    <hediff>Council_Ail_SwimmersItch</hediff>
+    <stages>
+      <li><label>itchy bumps</label><description>Little red bumps all over my legs from that swim. I keep catching myself scratching.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>itching all over</label><description>Everywhere the water touched me itches. I could tear my skin off.</description><baseMoodEffect>-2</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_TrenchFoot_Mood</defName>
+    <hediff>Council_Ail_TrenchFoot</hediff>
+    <stages>
+      <li><label>cold, numb feet</label><description>My feet feel like blocks of wood that someone else is walking on.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>swollen feet</label><description>My feet are swollen and they burn now that they're warm. Every step is a chore.</description><baseMoodEffect>-3</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_SandflyFever_Mood</defName>
+    <hediff>Council_Ail_SandflyFever</hediff>
+    <stages>
+      <li><label>aching eyes</label><description>My eyes ache when I move them and the light hurts. The fever's coming, I can feel it.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>a high fever</label><description>Burning up and shivering at once. Three days of this, they say, and nothing to be done.</description><baseMoodEffect>-3</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_JungleRot_Mood</defName>
+    <hediff>Council_Ail_JungleRot</hediff>
+    <stages>
+      <li><label>a festering wound</label><description>The wound smells wrong and won't close. The heat gets into everything here.</description><baseMoodEffect>-2</baseMoodEffect></li>
+      <li><label>an open ulcer</label><description>The sore has eaten into the skin around the wound. I can't stand to look at it.</description><baseMoodEffect>-3</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_HuntersFever_Mood</defName>
+    <hediff>Council_Ail_HuntersFever</hediff>
+    <stages>
+      <li><label>a fever and a sore</label><description>A fever, and the nick on my finger from the butchering has gone angry and red.</description><baseMoodEffect>-2</baseMoodEffect></li>
+      <li><label>swollen glands</label><description>The lumps under my arm are tender as bruises and the fever won't break.</description><baseMoodEffect>-3</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_FoundersAgue_Mood</defName>
+    <hediff>Council_Ail_FoundersAgue</hediff>
+    <stages>
+      <li><label>a taste of metal</label><description>Everything tastes of the forge, and my muscles ache like I've been beaten.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>chills and fever</label><description>Shivering in the heat and sweating in the cold. It's the fumes, they say. It'll pass.</description><baseMoodEffect>-2</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_StumpSores_Mood</defName>
+    <hediff>Council_Ail_StumpSores</hediff>
+    <stages>
+      <li><label>a chafed stump</label><description>The stump's sore where the limb sits on it. I'll be glad to take it off tonight.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>a raw stump</label><description>My stump is rubbed raw. Every step reminds me of what I lost.</description><baseMoodEffect>-3</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_AilmentThoughtBase">
+    <defName>Council_Ail_MechaniteFever_Mood</defName>
+    <hediff>Council_Ail_MechaniteFever</hediff>
+    <stages>
+      <li><label>a fever from the new part</label><description>A fever since the new part went in. I can almost feel the little machines finding their way.</description><baseMoodEffect>-2</baseMoodEffect></li>
+      <li><label>aching joints</label><description>Every joint aches while the mechanites settle. I hope they settle soon.</description><baseMoodEffect>-3</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ===================== Serious ===================== -->
+
+  <ThoughtDef ParentName="Council_IllnessThoughtBase">
+    <defName>Council_Ail_BlackBane_Mood</defName>
+    <hediff>Council_Ail_BlackBane</hediff>
+    <stages>
+      <li><label>a black sore</label><description>A sore with a black heart on my hand, where I nicked it at the butcher's block.</description><baseMoodEffect>-3</baseMoodEffect></li>
+      <li><label>swelling and fever</label><description>My whole arm has swollen up and the fever's on me. I keep thinking about that carcass.</description><baseMoodEffect>-6</baseMoodEffect></li>
+      <li><label>sickness in the blood</label><description>It's in my blood now. I can feel it in every part of me.</description><baseMoodEffect>-8</baseMoodEffect></li>
+      <li><label>poisoned blood</label><description>I can't think straight and I can hardly breathe. I'm frightened.</description><baseMoodEffect>-10</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_IllnessThoughtBase">
+    <defName>Council_Ail_ValleyFever_Mood</defName>
+    <hediff>Council_Ail_ValleyFever</hediff>
+    <stages>
+      <li><label>a cough and fever</label><description>A dry cough and a fever, weeks after all that digging. The dust got into me.</description><baseMoodEffect>-3</baseMoodEffect></li>
+      <li><label>aching joints</label><description>My joints ache and there's a red rash on my shins. It's slow, and it won't let go.</description><baseMoodEffect>-5</baseMoodEffect></li>
+      <li><label>a spreading fever</label><description>It's getting worse, not better. Every day I'm weaker than the day before.</description><baseMoodEffect>-8</baseMoodEffect></li>
+      <li><label>fever through my body</label><description>It's everywhere now. I can't get out of bed.</description><baseMoodEffect>-10</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_IllnessThoughtBase">
+    <defName>Council_Ail_BirdFever_Mood</defName>
+    <hediff>Council_Ail_BirdFever</hediff>
+    <stages>
+      <li><label>fever and headache</label><description>A fever and a headache that splits my skull. All from sweeping out the coop.</description><baseMoodEffect>-4</baseMoodEffect></li>
+      <li><label>a dry cough</label><description>A dry cough that won't stop, and every one of them hurts my head.</description><baseMoodEffect>-6</baseMoodEffect></li>
+      <li><label>pneumonia</label><description>It's gone to my lungs. I can't get a full breath.</description><baseMoodEffect>-8</baseMoodEffect></li>
+      <li><label>failing lungs</label><description>Every breath is a fight. I'm so tired of fighting.</description><baseMoodEffect>-10</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

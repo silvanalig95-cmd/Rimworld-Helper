@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What to do about the moods of the ailments and illnesses of the land, the work and the age
+    (Defs/ThoughtDefs/Rimfolk_Thoughts_Ailments_Land.xml).
+  -->
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_AilWaterLand</defName>
+    <thoughts>
+      <li>Council_Ail_SwimmersItch_Mood</li>
+      <li>Council_Ail_TrenchFoot_Mood</li>
+      <li>Council_Ail_SandflyFever_Mood</li>
+    </thoughts>
+    <fix>They pass on their own: the itch from a swim in still water in a few days, sandfly fever in about three, cold wet feet in a week or two (sooner in bed and with tending). Swim in the river rather than a lake or a pond; lay a bridge or a path over wet ground and keep shifts on it short when it's cold; stay indoors after dusk in a desert or dry scrubland.</fix>
+    <act>Change where they go</act>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_AilWorkGame</defName>
+    <thoughts>
+      <li>Council_Ail_HuntersFever_Mood</li>
+      <li>Council_Ail_FoundersAgue_Mood</li>
+      <li>Council_Ail_JungleRot_Mood</li>
+    </thoughts>
+    <fix>Have a doctor tend it: tending shortens the fever from small game and the rot of a wound in the wet heat, industrial medicine most. The fumes' fever passes in a day or two in bed. A skilled butcher nicks fewer fingers; a big or open smithy lets the fumes go; every wound tended the same day never rots.</fix>
+    <act>Have a doctor tend it</act>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_AilLimbs</defName>
+    <thoughts>
+      <li>Council_Ail_StumpSores_Mood</li>
+      <li>Council_Ail_MechaniteFever_Mood</li>
+    </thoughts>
+    <fix>A night or two in bed: stump sores heal fast with the limb off, and the fever of new mechanites passes in one to three days. A lighter day after a long one on a peg leg or a simple prosthetic keeps the stump whole; a bionic limb never rubs.</fix>
+    <act>A night or two in bed</act>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_AilSeriousLand</defName>
+    <thoughts>
+      <li>Council_Ail_BlackBane_Mood</li>
+      <li>Council_Ail_ValleyFever_Mood</li>
+      <li>Council_Ail_BirdFever_Mood</li>
+    </thoughts>
+    <fix>Keep the patient in bed and tended as often as possible, with the best medicine the colony has: industrial medicine does far more than herbs against all three. None of them passes from one person to another. Burn animals found dead or rotting instead of butchering them, dig the dry ground after rain, and keep birds in an open pen.</fix>
+    <act>Keep them in bed and tended</act>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+</Defs>

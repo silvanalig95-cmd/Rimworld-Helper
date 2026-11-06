@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## New illnesses and ailments
+
+*6 November 2026, version 0.119.0*
+
+- Four new ailments of the land: swimmer's itch after a swim in a pond or marsh, trench foot from long hours in cold wet ground, sandfly fever on warm desert nights, and jungle rot in a wound left untended in the heat.
+- Four new ailments of the work: rabbit fever from butchering small game, metal fume fever at a forge in a small closed room, stump sores after a long day on a peg leg, and mechanite fever after a spacer part or a first dose of luciferium.
+- Three new serious illnesses: anthrax from butchering a sick or rotten carcass, valley fever from digging dry ground, and bird fever from cleaning a closed room where birds are kept.
+- Each has a way to prevent it and a name by your colony's age, and shows with a doctor's note. The serious ones come by letter and follow the storyteller's disease setting.
+- They take a share of the colony's ailments rather than adding to them: colds and the like go round a little less often, the new ones never strike twice in three days or anyone in a sickbed, and children only catch the mild ones.
+
 ## New world events and camps
 
 *6 November 2026, version 0.118.0*

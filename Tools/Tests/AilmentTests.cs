@@ -39,15 +39,29 @@ public static class AilmentTests
         public float dietGrow, dietRecover;
     }
 
+    /// <summary>Every named HediffDef parent in the folder, so a def can inherit across files (and through more than one parent).</summary>
+    private static Dictionary<string, XElement> Parents(string folder)
+    {
+        var parents = new Dictionary<string, XElement>();
+        foreach (var f in Directory.GetFiles(folder, "*.xml"))
+            foreach (var d in XDocument.Load(f).Root!.Elements("HediffDef"))
+                if (d.Attribute("Name") != null) parents[(string)d.Attribute("Name")] = d;
+        return parents;
+    }
+
     public static List<Illness> Load(string file)
     {
         var doc = XDocument.Load(file);
-        var parents = doc.Root!.Elements("HediffDef").Where(d => d.Attribute("Name") != null).ToDictionary(d => (string)d.Attribute("Name"));
+        var parents = Parents(Path.GetDirectoryName(file)!);
         var list = new List<Illness>();
-        foreach (var def in doc.Root.Elements("HediffDef").Where(d => (string)d.Attribute("Abstract") != "True"))
+        foreach (var def in doc.Root!.Elements("HediffDef").Where(d => (string)d.Attribute("Abstract") != "True"))
         {
-            parents.TryGetValue((string)def.Attribute("ParentName") ?? "", out var parent);
-            float Inherit(string n, float fb) => F(def, n, F(parent, n, fb));
+            float Inherit(string n, float fb)
+            {
+                for (var e = def; e != null; e = parents.TryGetValue((string)e.Attribute("ParentName") ?? "", out var up) ? up : null)
+                    if (e.Element(n)?.Value?.Trim() is string v && float.TryParse(v, NumberStyles.Float, CultureInfo.InvariantCulture, out var f)) return f;
+                return fb;
+            }
             var imm = Comp(def, "AilmentImmunizable");
             var med = Comp(def, "AilmentMedicine");
             var staged = Comp(def, "AilmentCourse");
@@ -101,7 +115,7 @@ public static class AilmentTests
         check(AilmentMath.FreshFactor(true, 0.5f) == 0.5f && AilmentMath.FreshFactor(false, 0.5f) == 1f, "fruit or vegetables lately halve gout");
 
         // Everyday ailments: never lethal, and over within about two weeks with no care at all.
-        var everyday = new[] { "Council_Hediffs_Ailments.xml", "Rimfolk_Hediffs_Ailments_New.xml", "Rimfolk_Hediffs_Ailments_Mods_New.xml" }
+        var everyday = new[] { "Council_Hediffs_Ailments.xml", "Rimfolk_Hediffs_Ailments_New.xml", "Rimfolk_Hediffs_Ailments_Mods_New.xml", "Rimfolk_Hediffs_Ailments_Land.xml" }
             .SelectMany(f => Load(Path.Combine(root, "Defs", "HediffDefs", f))).ToList();
         foreach (var a in everyday)
         {
@@ -116,7 +130,8 @@ public static class AilmentTests
         }
 
         // Serious illnesses.
-        var serious = Load(Path.Combine(root, "Defs", "HediffDefs", "Council_Hediffs_Illnesses.xml"));
+        var serious = new[] { "Council_Hediffs_Illnesses.xml", "Rimfolk_Hediffs_Illnesses_Land.xml" }
+            .SelectMany(f => Load(Path.Combine(root, "Defs", "HediffDefs", f))).ToList();
         // The serious ones that can't kill pass on their own, within a month at most.
         foreach (var s in serious.Where(s => !s.lethal))
         {

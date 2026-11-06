@@ -296,14 +296,18 @@ namespace Balance
         public static readonly Dictionary<string, Dictionary<string, float>> RoleDays = new Dictionary<string, Dictionary<string, float>>
         {
             // Stone dust: mining under the mountain, or the stone saw in a small closed room; kneeling: sowing and cleaning;
-            // handling: milking, shearing, training and taming (the hunter here is the colony's animal hand too).
-            ["Builder"] = new Dictionary<string, float> { ["HeavyWork"] = 0.7f, ["Chopping"] = 0.15f, ["Walking"] = 0.1f, ["ColdWork"] = 0.7f, ["SunWork"] = 0.5f, ["AncientWork"] = 0.01f, ["StoneDust"] = 0.15f },
+            // handling: milking, shearing, training and taming (the hunter here is the colony's animal hand too). Small game:
+            // two hours butchering hares and squirrels (the cook, and a hunter who butchers their own); fumes: the forge or
+            // the smelter in a small closed room; cold wet feet: four hours on wet ground below 10 °C (by the season);
+            // a bird barn: sweeping out a closed coop. The ailments of deserts and jungles, of old limbs and of mechanites
+            // never come in this temperate colony of the model.
+            ["Builder"] = new Dictionary<string, float> { ["HeavyWork"] = 0.7f, ["Chopping"] = 0.15f, ["Walking"] = 0.1f, ["ColdWork"] = 0.7f, ["SunWork"] = 0.5f, ["AncientWork"] = 0.01f, ["StoneDust"] = 0.15f, ["ColdWetFeet"] = 0.03f },
             ["Grower"] = new Dictionary<string, float> { ["PlantWork"] = 0.8f, ["Chopping"] = 0.3f, ["SunWork"] = 0.7f, ["ColdWork"] = 0.5f, ["HeavyWork"] = 0.1f, ["Kneeling"] = 0.3f },
-            ["Crafter"] = new Dictionary<string, float> { ["HandWork"] = 0.75f, ["HeavyWork"] = 0.05f, ["StoneDust"] = 0.1f },
-            ["Cook"] = new Dictionary<string, float> { ["HandWork"] = 0.1f, ["Kneeling"] = 0.15f },
-            ["Researcher"] = new Dictionary<string, float> { ["HandWork"] = 0.05f, ["Kneeling"] = 0.1f },
-            ["Hunter"] = new Dictionary<string, float> { ["Walking"] = 0.5f, ["RoughGround"] = 0.35f, ["ColdWork"] = 0.6f, ["SunWork"] = 0.3f, ["WetFeet"] = 0.15f, ["Handling"] = 0.3f },
-            ["Doctor"] = new Dictionary<string, float> { ["HeavyWork"] = 0.2f, ["Kneeling"] = 0.1f }
+            ["Crafter"] = new Dictionary<string, float> { ["HandWork"] = 0.75f, ["HeavyWork"] = 0.05f, ["StoneDust"] = 0.1f, ["MetalFumes"] = 0.08f },
+            ["Cook"] = new Dictionary<string, float> { ["HandWork"] = 0.1f, ["Kneeling"] = 0.15f, ["SmallGame"] = 0.1f, ["BirdBarn"] = 0.05f },
+            ["Researcher"] = new Dictionary<string, float> { ["HandWork"] = 0.05f, ["Kneeling"] = 0.1f, ["BirdBarn"] = 0.03f },
+            ["Hunter"] = new Dictionary<string, float> { ["Walking"] = 0.5f, ["RoughGround"] = 0.35f, ["ColdWork"] = 0.6f, ["SunWork"] = 0.3f, ["WetFeet"] = 0.15f, ["Handling"] = 0.3f, ["SmallGame"] = 0.03f, ["ColdWetFeet"] = 0.1f },
+            ["Doctor"] = new Dictionary<string, float> { ["HeavyWork"] = 0.2f, ["Kneeling"] = 0.1f, ["BirdBarn"] = 0.03f }
         };
 
         /// <summary>The share of colonists at or above this age (human years): about three in ten are 45 or older.</summary>
@@ -324,6 +328,9 @@ namespace Balance
                 case "RoughGround": return quadrum == 3 ? 1.3f : 1f;
                 // Sowing is spring to autumn; the floors need scrubbing all year.
                 case "Kneeling": return quadrum == 3 ? 0.5f : 1f;
+                // A swim in summer, now and then in spring and autumn; the ground is cold and wet from autumn to spring.
+                case "StillSwim": return quadrum == 1 ? 1f : quadrum == 3 ? 0f : 0.3f;
+                case "ColdWetFeet": return quadrum == 3 ? 0.9f : quadrum == 2 ? 0.6f : quadrum == 0 ? 0.4f : 0.05f;
                 default: return 1f;
             }
         }
@@ -411,7 +418,8 @@ namespace Balance
             {
                 ["HardBed"] = 0f, ["DampSleep"] = 0f, ["CrowdedDirty"] = 0f, ["SmokyRoom"] = 0f, ["DarkWork"] = 0.02f, ["Hungry"] = 0.01f, ["NightWork"] = 0.08f,
                 ["Firefighting"] = 0.004f, ["CaravanTravel"] = 0.01f, ["Insects"] = 0f, ["Ashfall"] = 0f,
-                ["AfterIllness"] = 0.0012f, ["Healed"] = 0.0012f, ["AfterFight"] = 0.08f, ["Horror"] = 0.004f, ["Polluted"] = 0.01f, ["SnowGlare"] = 0.03f
+                ["AfterIllness"] = 0.0012f, ["Healed"] = 0.0012f, ["AfterFight"] = 0.08f, ["Horror"] = 0.004f, ["Polluted"] = 0.01f, ["SnowGlare"] = 0.03f,
+                ["StillSwim"] = 0.02f, ["BadCarcass"] = 0.0005f
             },
             // Fine meals never count as the same meal, work streaks start at 4 days (a passion takes a step off), and
             // only frames left standing count as unfinished: a well-run colony cooks fine meals and rotates work.
@@ -434,7 +442,8 @@ namespace Balance
             {
                 ["HardBed"] = 0.1f, ["DampSleep"] = 0.05f, ["CrowdedDirty"] = 0.05f, ["SmokyRoom"] = 0.1f, ["DarkWork"] = 0.1f, ["Hungry"] = 0.05f, ["NightWork"] = 0.12f,
                 ["Firefighting"] = 0.006f, ["CaravanTravel"] = 0.01f, ["Insects"] = 0f, ["Ashfall"] = 0f,
-                ["AfterIllness"] = 0.0015f, ["Healed"] = 0.0015f, ["AfterFight"] = 0.1f, ["Horror"] = 0.005f, ["Polluted"] = 0.02f, ["SnowGlare"] = 0.05f
+                ["AfterIllness"] = 0.0015f, ["Healed"] = 0.0015f, ["AfterFight"] = 0.1f, ["Horror"] = 0.005f, ["Polluted"] = 0.02f, ["SnowGlare"] = 0.05f,
+                ["StillSwim"] = 0.03f, ["BadCarcass"] = 0.002f
             },
             sameMeal = new[] { 0.62f, 0.28f, 0.1f, 0f }, sameWork = new[] { 0.72f, 0.18f, 0.07f, 0.03f }, crowded = new[] { 0.85f, 0.12f, 0.03f },
             unfinished = new[] { 0.8f, 0.15f, 0.05f, 0f }, missing = new[] { 0.94f, 0.04f, 0.02f, 0f }, variedTable = 0.2f,
@@ -455,7 +464,8 @@ namespace Balance
             {
                 ["HardBed"] = 0.6f, ["DampSleep"] = 0.3f, ["CrowdedDirty"] = 0.4f, ["SmokyRoom"] = 0.4f, ["DarkWork"] = 0.4f, ["Hungry"] = 0.25f, ["NightWork"] = 0.2f,
                 ["Firefighting"] = 0.01f, ["CaravanTravel"] = 0.01f, ["Insects"] = 0f, ["Ashfall"] = 0f,
-                ["AfterIllness"] = 0.0018f, ["Healed"] = 0.0018f, ["AfterFight"] = 0.12f, ["Horror"] = 0.006f, ["Polluted"] = 0.05f, ["SnowGlare"] = 0.06f
+                ["AfterIllness"] = 0.0018f, ["Healed"] = 0.0018f, ["AfterFight"] = 0.12f, ["Horror"] = 0.006f, ["Polluted"] = 0.05f, ["SnowGlare"] = 0.06f,
+                ["StillSwim"] = 0.03f, ["BadCarcass"] = 0.006f
             },
             sameMeal = new[] { 0.35f, 0.45f, 0.2f, 0f }, sameWork = new[] { 0.52f, 0.27f, 0.14f, 0.07f }, crowded = new[] { 0.6f, 0.3f, 0.1f },
             unfinished = new[] { 0.55f, 0.25f, 0.15f, 0.05f }, missing = new[] { 0.93f, 0.04f, 0.03f, 0f }, variedTable = 0.02f,

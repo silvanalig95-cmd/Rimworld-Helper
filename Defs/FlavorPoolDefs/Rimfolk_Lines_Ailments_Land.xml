@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Lines for the ailments and illnesses of the land, the work and the age (Defs/HediffDefs/Rimfolk_Hediffs_Ailments_Land.xml
+    and Rimfolk_Hediffs_Illnesses_Land.xml), added to the ailments' journal pools (Council_Journal_Ailments.xml) and to
+    what colonists say while they have one (Council_Pool_SayAilment; the first of these is also said as it shows,
+    since each is a Rimfolk-made hurt). Each is tagged [ail:Key]; where a line names the ailment, it is tagged with the
+    ages that call it so, and the age's remedies are the age's.
+  -->
+
+  <!-- ===================== Coming down with it ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_Journal_Ail_Start_Land</defName>
+    <pool>Council_Journal_Ail_Start</pool>
+    <lines>
+      <plain>
+        <li>[ail:SwimmersItch] Went for a swim in the still water. Came out itching everywhere the water touched.</li>
+        <li>[ail:SwimmersItch,tribal|medieval] The pond itch. The old ones say the river never gives it, and they were right.</li>
+        <li>[ail:SwimmersItch,industrial|spacer] Swimmer's itch, from the lake. Next time, the river, and a towel straight after.</li>
+        <li>[ail:SwimmersItch,child] I swam in the pond all afternoon and now I'm all spots and I can't stop scratching.</li>
+        <li>[ail:TrenchFoot] Stood in the cold wet all day. Took my boots off tonight and couldn't feel my toes.</li>
+        <li>[ail:TrenchFoot,tribal|medieval] Marsh foot. My feet are white and swollen and they burn by the fire.</li>
+        <li>[ail:TrenchFoot,industrial|spacer] Trench foot, the doctor called it. Dry socks, feet up, and no more wading for a while.</li>
+        <li>[ail:SandflyFever] Sat out after dark to watch the sky. Now I have bites on my ankles and a fever coming.</li>
+        <li>[ail:SandflyFever,tribal|medieval] The three-day fever. Everyone says three days. I'm counting.</li>
+        <li>[ail:SandflyFever,industrial|spacer] Sandfly fever. Three days of it, and nothing to be done but drink water and wait.</li>
+        <li>[ail:JungleRot] The cut on my leg never closed. In this heat it's gone soft and foul.</li>
+        <li>[ail:JungleRot,again] Jungle rot again. I should have had the cut seen to the same day, and I knew it.</li>
+        <li>[ail:HuntersFever] Nicked my finger skinning hares. Now the finger's angry and so is the fever.</li>
+        <li>[ail:HuntersFever,tribal|medieval] The hunter's fever. My grandmother had it every autumn, she said, and lived to be old.</li>
+        <li>[ail:HuntersFever,industrial|spacer] Rabbit fever, of all things. From the hares I butchered for the stew.</li>
+        <li>[ail:FoundersAgue] Shivering in the heat of the smithy, with a taste of pennies in my mouth.</li>
+        <li>[ail:FoundersAgue,tribal|medieval] The founder's ague. Every smith gets it in a small smithy, they say. I believe them now.</li>
+        <li>[ail:FoundersAgue,industrial|spacer] Metal fume fever, after the long shift at the smelter. My bones ache.</li>
+        <li>[ail:StumpSores] The stump's rubbed raw. I walked too far on it today, and I'm paying.</li>
+        <li>[ail:StumpSores,lowtech] The peg's worn the stump raw. Wool in the cup tomorrow, and fewer trips to the field.</li>
+        <li>[ail:MechaniteFever] A fever since the new part went in. The doctor says it's the mechanites settling.</li>
+        <li>[ail:MechaniteFever,tribal|medieval] A fever from the little machines in my new limb. I hope they're friendly ones.</li>
+        <li>[ail:MechaniteFever,spacer] Running a fever while the new part binds. On my homeworld they gave you something for this.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== A serious one ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_Journal_Ail_Serious_Land</defName>
+    <pool>Council_Journal_Ail_Serious</pool>
+    <lines>
+      <plain>
+        <li>[ail:BlackBane] A sore with a black heart on my hand, right where I nicked it at the butcher's block.</li>
+        <li>[ail:BlackBane,tribal|medieval] The black bane. I've seen it take a whole herd. I didn't think it took people.</li>
+        <li>[ail:BlackBane,industrial|spacer] Anthrax, from that carcass. I should have burned it. Everybody says so, kindly.</li>
+        <li>[ail:ValleyFever] A cough and a fever, weeks after the digging. The dust of this place got into me.</li>
+        <li>[ail:ValleyFever,tribal|medieval] Desert fever. The ground here is dry and old and it doesn't like being dug.</li>
+        <li>[ail:ValleyFever,industrial|spacer] Valley fever, from the dust. A fungus, they say. It's slow, and so am I.</li>
+        <li>[ail:BirdFever] A fever and a headache like an axe, and a dry cough. From sweeping out the coop, of all things.</li>
+        <li>[ail:BirdFever,old] Bird fever, at my age. I've kept hens all my life and never once had it.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Over it ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_Journal_Ail_Better_Land</defName>
+    <pool>Council_Journal_Ail_Better</pool>
+    <lines>
+      <plain>
+        <li>[ail:SwimmersItch] The bumps have gone. I'll swim in the river from now on.</li>
+        <li>[ail:TrenchFoot] I can feel my toes again, all ten. A plank path over the wet ground, tomorrow.</li>
+        <li>[ail:SandflyFever] Three days, exactly as promised. Doors shut at dusk from now on.</li>
+        <li>[ail:JungleRot] The sore has closed at last. Every cut gets cleaned the same day now.</li>
+        <li>[ail:HuntersFever] The fever's gone and the glands have gone down. I'll be careful with the knife.</li>
+        <li>[ail:FoundersAgue] Back at the forge, with the door wide open this time.</li>
+        <li>[ail:StumpSores] The stump has healed over. A lighter day after a long one, I've promised myself.</li>
+        <li>[ail:MechaniteFever] The fever's gone. The new part feels like mine now.</li>
+        <li>[ail:BlackBane] The black sore has dried up and fallen away. There's a scar, and I'm alive.</li>
+        <li>[ail:ValleyFever] The cough has finally let go of me. Weeks of it. I'll dig after rain from now on.</li>
+        <li>[ail:BirdFever] I can breathe all the way down again. Someone else can sweep the coop for a while.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== The doctor ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_Journal_Ail_Doctor_Land</defName>
+    <pool>Council_Journal_Ail_Doctor</pool>
+    <lines>
+      <plain>
+        <li>[ail:SwimmersItch] Washed {OTHER_nameDef}'s itching legs and told {OTHER_objective} to swim in the river next time.</li>
+        <li>[ail:TrenchFoot] Dried and wrapped {OTHER_nameDef}'s feet and put them up. A path over the wet ground would spare us this.</li>
+        <li>[ail:JungleRot] Cleaned out {OTHER_nameDef}'s rotting wound and dressed it. Every cut gets seen to the same day, I told them all.</li>
+        <li>[ail:HuntersFever] Dressed {OTHER_nameDef}'s hand and gave {OTHER_objective} something for the fever. Small game carries it.</li>
+        <li>[ail:StumpSores] Padded {OTHER_nameDef}'s stump and told {OTHER_objective} to leave the limb off tonight.</li>
+        <li>[ail:MechaniteFever] Sat with {OTHER_nameDef} through the mechanite fever. Nothing to do but cool the brow and wait.</li>
+        <li>[ail:BlackBane] Dressed the black sore on {OTHER_nameDef}'s hand again. Don't cut it, don't squeeze it, keep it clean.</li>
+        <li>[ail:ValleyFever] Tended {OTHER_nameDef}'s cough again. This one takes weeks; the trick is never to miss a day.</li>
+        <li>[ail:BirdFever] Propped {OTHER_nameDef} up for the cough and tended the fever. I've told them to pen the birds outside.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_Journal_Ail_DoctorSaved_Land</defName>
+    <pool>Council_Journal_Ail_DoctorSaved</pool>
+    <lines>
+      <plain>
+        <li>[ail:BlackBane] The black sore on {OTHER_nameDef}'s hand has dried up, and the hand and the life are both still {OTHER_possessive}.</li>
+        <li>[ail:ValleyFever] {OTHER_nameDef}'s cough has gone at last. Weeks of tending, every single day, and it was worth every one.</li>
+        <li>[ail:BirdFever] {OTHER_nameDef} breathed easy this morning for the first time in a week. I went outside and sat with the hens.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_Journal_Ail_DoctorLost_Land</defName>
+    <pool>Council_Journal_Ail_DoctorLost</pool>
+    <lines>
+      <plain>
+        <li>[ail:BlackBane] The bane got into {OTHER_nameDef}'s blood before I could stop it. We burned the carcass. Too late.</li>
+        <li>[ail:ValleyFever] {OTHER_nameDef} fought the fever for weeks. In the end it was everywhere in {OTHER_objective}.</li>
+        <li>[ail:BirdFever] {OTHER_nameDef}'s lungs gave out in the night. All for a swept-out coop.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Said aloud ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_SayAilment_Land</defName>
+    <pool>Council_Pool_SayAilment</pool>
+    <lines>
+      <plain>
+        <li>[ail:SwimmersItch] Don't let me scratch, it only makes the itch worse.</li>
+        <li>[ail:SwimmersItch] I'm swimming in the river from now on.</li>
+        <li>[ail:TrenchFoot] I can't feel my feet, and when I can, I wish I couldn't.</li>
+        <li>[ail:TrenchFoot] Someone lay planks over that wet ground, please.</li>
+        <li>[ail:SandflyFever] Three days, they said, so I'm counting them.</li>
+        <li>[ail:SandflyFever] Shut the door at dusk, the little flies are out.</li>
+        <li>[ail:JungleRot] Don't look at the sore, I can't bear to.</li>
+        <li>[ail:JungleRot] Get every cut cleaned the same day, trust me.</li>
+        <li>[ail:HuntersFever] Careful with the knife on those hares, look at my hand.</li>
+        <li>[ail:HuntersFever] The fever's in my glands now, they ache.</li>
+        <li>[ail:FoundersAgue] I'm shivering by the forge, if you can believe it.</li>
+        <li>[ail:FoundersAgue] Everything tastes of metal today.</li>
+        <li>[ail:StumpSores] Give me a moment, the stump's rubbed raw.</li>
+        <li>[ail:StumpSores] I'm taking the limb off tonight, whatever needs doing.</li>
+        <li>[ail:MechaniteFever] It's only the mechanites settling, the doctor says.</li>
+        <li>[ail:MechaniteFever] My joints ache like I'm full of sand.</li>
+        <li>[ail:BlackBane] Burn whatever is left of that carcass, all of it.</li>
+        <li>[ail:BlackBane] Don't touch the sore on my hand.</li>
+        <li>[ail:ValleyFever] This cough is weeks old and it isn't leaving.</li>
+        <li>[ail:ValleyFever] Dig after the rain, not before.</li>
+        <li>[ail:BirdFever] My head is splitting from this fever.</li>
+        <li>[ail:BirdFever] Someone else sweeps the coop from now on.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

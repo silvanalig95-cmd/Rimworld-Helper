@@ -5,7 +5,7 @@
     Catching ailments: the game's own human disease incidents (category DiseaseHuman, IncidentWorker_DiseaseHuman under
     ColonyCouncil.IncidentWorker_Ailment), so victims follow the game's colony-size rules and immunity, genes and the
     medical tab work as for any disease. No biome lists them, so the storyteller's own disease rolls are untouched;
-    AilmentTracker fires them on their own clock (about every 50 days for an everyday one, 300 for a serious one, scaled
+    AilmentTracker fires them on their own clock (about every 60 days for an everyday one, 300 for a serious one, scaled
     by the biome's disease rate, the storyteller's disease setting and Rimfolk's frequency slider) through the
     storyteller, so minRefireDays applies. AilmentIncident says when each fits and writes its letter: the opening, the
     list of who caught it, the closing ({PAWN} is the first of them), then a doctor's note from the illness. Babies are
