@@ -32,7 +32,19 @@ namespace ColonyCouncil
         /// <summary>Smudge fires along the edge of the colony's fields, kept fed and smoking day and night for a couple of days.</summary>
         Smudge,
         /// <summary>The colony's children running a race round the edge of its fields, while the gathering watches (or on their own).</summary>
-        Race
+        Race,
+        /// <summary>A danger on the map (Happenings/Dangers.cs): a creaking rock face where someone was digging.</summary>
+        DigFace,
+        /// <summary>A danger on the map: a tree leaning toward the colony's walls, that a wind may bring down.</summary>
+        Leaning,
+        /// <summary>A danger on the map: smoke in the dry grass, stamped out or left to catch.</summary>
+        Smoulder,
+        /// <summary>A danger on the map: an old shell turned up in a field, carried out or set off.</summary>
+        Shell,
+        /// <summary>A danger on the map: a mechanoid's remains with charge still in them.</summary>
+        Scrap,
+        /// <summary>A danger on the map: soft ground by a door that may give underfoot.</summary>
+        SoftGround
     }
 
     /// <summary>One thing an answer keeps on the map for a while, and when it ends.</summary>
@@ -212,6 +224,13 @@ namespace ColonyCouncil
                 case TimedKind.Marking: return StepMarking(k, now);
                 case TimedKind.Smudge: return StepSmudge(k, now);
                 case TimedKind.Race: return StepRace(k, now);
+                case TimedKind.DigFace:
+                case TimedKind.Leaning:
+                case TimedKind.Smoulder:
+                case TimedKind.Shell:
+                case TimedKind.Scrap:
+                case TimedKind.SoftGround:
+                    return MapDangers.Step(k, now);
                 default: return true;
             }
         }
@@ -250,6 +269,14 @@ namespace ColonyCouncil
                     break;
                 case TimedKind.Smudge:
                     EndSmudge(k);
+                    break;
+                case TimedKind.DigFace:
+                case TimedKind.Leaning:
+                case TimedKind.Smoulder:
+                case TimedKind.Shell:
+                case TimedKind.Scrap:
+                case TimedKind.SoftGround:
+                    MapDangers.End(k, early);
                     break;
             }
         }

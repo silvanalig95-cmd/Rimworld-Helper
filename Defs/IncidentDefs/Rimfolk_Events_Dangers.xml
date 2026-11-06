@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Dangers on the map (Source/ColonyCouncil/Happenings/Dangers.cs): things that can go wrong where the colony lives,
+       seen coming and asked about. A creak at a rock face under the mountain, a tree leaning toward the walls after the
+       rain, smoke in the dry grass on a hot day, an old shell turned up in a field, a mechanoid's remains with charge still
+       in them, and the ground by a door gone soft after the rains. Rimfolk events in the same pool at the same rate; they
+       come only with "Hurts from everyday life" above nothing. Every hurt is the harm service's (its scale, its cap, a wound
+       that never kills), named under the answer before it's chosen, shown where it happens and told. The spoken lines are
+       tagged with their moment: warn (seen), go, work, carry, fire, out, clear, gone, fell, hurt. -->
+
+  <!-- ===================== The creak at the dig ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_DigCreak</defName>
+    <label>the creak at the dig</label>
+    <workerClass>ColonyCouncil.HappeningWorker_DigCreak</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <threat>true</threat>
+        <answerDays>0.2</answerDays>
+        <titles>
+          <li>The creak at the dig</li>
+          <li>Grit from the roof</li>
+        </titles>
+        <texts>
+          <li>{A_nameDef} was cutting at the {THING} {PLACE} when the rock overhead gave a long creak and let down a trickle of grit. {A_pronoun} stepped back, and the digging at that face has stopped. {B_nameDef} says a prop under it would hold it. {A_nameDef} says rock always talks, and would dig on. A fall there would come down on whoever is digging.</li>
+          <li>[land:mountains] Under the mountain, {A_nameDef} heard the {THING} above the face creak and tick like cooling iron, and grit came down on {A_possessive} shoulders. {A_pronoun} backed off. {B_nameDef} wants a prop set before anyone goes back; dig on as it is, and the rock may come down on the one digging.</li>
+          <li>[lowtech] The rock groaned over {A_nameDef}'s head at the dig {PLACE}, the way the old miners say it does before it falls, and a dust of grit came down. {A_nameDef} came out quick. {B_nameDef} could set a timber prop; the brave would dig on, and the rock may come down on them.</li>
+          <li>[!lowtech] The roof over the face {A_nameDef} was working {PLACE} has started to crack and drop grit. {A_nameDef} pulled back and stopped the digging there. {B_nameDef} can set a prop. Dig on without one, and a fall may catch whoever is at the face.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Set a prop under it</label>
+            <outcome>A prop is marked beside the face for {B_nameDef} and the builders, and the digging there is marked again.</outcome>
+            <outcomes>
+              <li>[lowtech] {B_nameDef} marks where a timber prop goes under the creaking rock, and the digging there is marked again.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_DigFace"><mode>prop</mode></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Dig on, carefully</label>
+            <outcome>The digging at that face is marked again as it was. Whoever goes back to it goes back knowing.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_DigFace"><mode>dig</mode></li>
+            </effects>
+            <ways><toil>2</toil></ways>
+          </li>
+          <li>
+            <label>Leave that face</label>
+            <outcome>That face is left as it is, and nobody digs there.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_DigFace"><mode>leave</mode></li>
+            </effects>
+            <ways><toil>-1</toil></ways>
+          </li>
+        </options>
+        <lines>
+          <li>[warn] Did you hear that, up there in the rock?</li>
+          <li>[warn] Out, everyone out, the roof's talking.</li>
+          <li>[warn,lowtech] The rock is groaning, the way the old ones said it would.</li>
+          <li>[hurt] It came down on me, get it off.</li>
+          <li>[hurt] My arm, the rock got my arm.</li>
+          <li>[clear] That was close, too close.</li>
+          <li>[clear] I felt it go and jumped, and it missed me.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The leaning tree ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_LeaningTree</defName>
+    <label>the leaning tree</label>
+    <workerClass>ColonyCouncil.HappeningWorker_LeaningTree</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>50</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <weather>
+          <li>rain:3/6</li>
+        </weather>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>The leaning tree</li>
+          <li>A tree over the {TALE}</li>
+        </titles>
+        <texts>
+          <li>After the rain, the old {THING} by the colony's {TALE} has begun to lean toward it, and the ground at its foot has heaved up where the roots are letting go. {A_nameDef} says fell it now, while it can be felled where it's wanted. {B_nameDef} has known that tree since the colony came. Left standing, a wind could bring it down onto the {TALE}, and onto anyone beside it.</li>
+          <li>[door] The {THING} beside the door has a lean on it it didn't have last week, and the soaked ground around its roots has lifted. {A_nameDef} wants it down before a wind does it. {B_nameDef} says it's stood through worse. If it comes down, it comes down on the doorway.</li>
+          <li>[lowtech] The old {THING} by the {TALE} is leaning, its roots pulling up out of the wet ground. The elders say a tree that leans after rain falls in the next wind. {A_nameDef} has the axe ready; {B_nameDef} would leave it. A fall would take the {TALE} and whoever stood there.</li>
+          <li>[!lowtech] The {THING} next to the {TALE} is leaning at a bad angle after the rain, with its root plate lifting. {A_nameDef} wants it felled under control. Leave it, and the next strong wind may drop it on the {TALE} and whoever is near.</li>
+          <li>[land:forest] In this country the trees grow close to the walls, and after the rain the {THING} by the {TALE} has begun to lean onto it. {A_nameDef} would fell it; {B_nameDef} says the forest was here first. Left, a wind may bring it down on the {TALE}.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Fell it now</label>
+            <outcome>The {THING} is marked to be felled, and the cutters will bring it down where it's wanted. The wood is the colony's.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_LeaningTree"><fell>true</fell></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Overruled</thought><chance>0.4</chance></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Leave it standing</label>
+            <outcome>The {THING} stands as it is, leaning, and the colony keeps an eye on the sky.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_LeaningTree" />
+            </effects>
+            <ways><tradition>1</tradition></ways>
+          </li>
+        </options>
+        <lines>
+          <li>[warn] That tree wasn't leaning like that yesterday.</li>
+          <li>[warn] Look at the ground round its roots, it's lifting.</li>
+          <li>[warn,lowtech] A tree that leans after rain falls in the next wind.</li>
+          <li>[fell] There it goes, right onto the wall.</li>
+          <li>[fell] Timber, and nobody under it, thank the sky.</li>
+          <li>[hurt] It came down on me, I couldn't get clear.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Smoke in the dry grass ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_Smoulder</defName>
+    <label>smoke in the dry grass</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Smoulder</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <threat>true</threat>
+        <seasons>
+          <li>Summer</li>
+          <li>PermanentSummer</li>
+        </seasons>
+        <minTemp>26</minTemp>
+        <weather>
+          <li>dry:5</li>
+        </weather>
+        <answerDays>0.12</answerDays>
+        <titles>
+          <li>Smoke in the dry grass</li>
+          <li>Smoke {PLACE}</li>
+        </titles>
+        <texts>
+          <li>No rain for days, and the grass {PLACE} has gone brown and brittle in the heat. {A_nameDef} saw a thread of smoke rising out of it a little way past the colony: something is smouldering there, not yet burning. Someone could stamp it out now, and might burn a hand or a foot doing it. Left, it will catch, and dry grass burns fast.</li>
+          <li>[land:grassland] On the open grass {PLACE}, dry as tinder after the long heat, a wisp of smoke is coming up out of the stalks. {A_nameDef} pointed it out to {B_nameDef}. Stamp it out now, at the risk of a burn, or let it go, and the grass will carry fire a long way.</li>
+          <li>[land:desert] In the scrub {PLACE}, baked dry, something has started to smoulder: {A_nameDef} can see the smoke from the colony. It's small yet. Stamp it out, and maybe take a burn for it, or leave it to catch.</li>
+          <li>[lowtech] {A_nameDef} smelled it before seeing it: smoke from the dry grass {PLACE}. The old way is to beat it out while it's small, and every herder has a burn to show for it. Leave it, and the grass will catch.</li>
+          <li>[!lowtech] Smoke is rising from the dead grass {PLACE}, a little past the colony's edge: a smoulder, not yet a fire. {A_nameDef} could get out there and stamp it out, at some risk of a burn. Otherwise it will catch, and in this heat it will spread.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Stamp it out now</label>
+            <outcome>{A_nameDef} goes out at a run to stamp the smoulder out before it catches.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Smoulder"><stamp>true</stamp></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Leave it</label>
+            <outcome>Nobody goes out to it. The smoke keeps rising from the dry grass.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Smoulder" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[warn] Smoke, out there in the grass, can you see it?</li>
+          <li>[warn] Something's smouldering past the fields.</li>
+          <li>[go] I'll get it before it catches.</li>
+          <li>[go,lowtech] Give me a wet hide, I'm going out to beat it.</li>
+          <li>[out] That's it out, nothing but ash now.</li>
+          <li>[out] Stamped flat, it won't catch now.</li>
+          <li>[hurt] It flared up under my foot, I'm burned.</li>
+          <li>[hurt] Got it out, and my hand with it.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The old shell ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_OldShell</defName>
+    <label>the old shell</label>
+    <workerClass>ColonyCouncil.HappeningWorker_OldShell</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>80</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <threat>true</threat>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>The old shell</li>
+          <li>Something in the furrow</li>
+        </titles>
+        <texts>
+          <li>{A_nameDef} turned up something hard in the field and stopped dead: an old shell from a war before the colony's time, rusted, and still whole. Nobody has touched it since. It can be carried well out past the fields, set off where it lies from a safe distance, or left. A fire that reaches it will set it off wherever it is.</li>
+          <li>[lowtech] There's a metal egg in the furrow, heavy as a stone and crusted with rust, with a cap on one end that {A_nameDef} won't touch. The elders say such things wake when struck or burned. {B_nameDef} could break it from far off with a thrown stone or an arrow; or someone carries it gently a long way out.</li>
+          <li>[medieval] {A_nameDef}'s spade struck iron in the field: a great iron shell from some war of the old world, rusted shut. {B_nameDef} says strike it from far off and let it burst there. Carried out, it would lie in the grass a long while; left, it lies among the crops.</li>
+          <li>[!lowtech] {A_nameDef} found an unexploded shell in the field, an old high-explosive round in a crust of rust. {B_nameDef} can set it off from a safe distance, which will tear up the ground around it. Or it gets carried well out and left, or put in the stores for the mortars, if the colony has one.</li>
+        </texts>
+        <defaultOption>3</defaultOption>
+        <options>
+          <li>
+            <label>Carry it out past the fields, gently</label>
+            <outcome>{A_nameDef} lifts the shell like an egg and carries it well out past the fields, and sets it down there for nobody to touch.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_OldShell"><mode>carry</mode></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>{B_nameDef} sets it off from a distance</label>
+            <outcome>Once the field is clear, {B_nameDef} sets the shell off from well back, and the field takes the blast.</outcome>
+            <outcomes>
+              <li>[lowtech] Once the field is clear, {B_nameDef} throws from well back until a stone strikes the cap.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_OldShell"><mode>blast</mode></li>
+            </effects>
+            <ways><toil>1</toil><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Into the stores, for the mortars</label>
+            <outcome>The shell goes to the stores with the colony's own, for the mortars.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_OldShell"><mode>stores</mode></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Leave it where it lies</label>
+            <outcome>The shell stays in the field where it was found, and the growers work around it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_OldShell"><mode>leave</mode></li>
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[warn] Nobody touch it, nobody.</li>
+          <li>[warn] Stand back from that, it's a shell.</li>
+          <li>[warn,lowtech] Leave the iron egg alone, it's from the old wars.</li>
+          <li>[carry] Slow steps, and nobody bump me.</li>
+          <li>[clear] Everyone back from the field before I do this.</li>
+          <li>[fire] Heads down, here it goes.</li>
+          <li>[fire,lowtech] One more stone and it's done.</li>
+          <li>[gone] That's the last of the old war in our field.</li>
+          <li>[hurt] Something off the blast caught my arm.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The twitching scrap ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_TwitchingScrap</defName>
+    <label>the twitching scrap</label>
+    <workerClass>ColonyCouncil.HappeningWorker_TwitchingScrap</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>The twitching scrap</li>
+          <li>Life in the old {BEAST}</li>
+        </titles>
+        <texts>
+          <li>The wreck of a {BEAST} has lain {PLACE} since it was brought down, and as {A_nameDef} went past it this morning, one of its limbs jerked and it spat sparks. There's charge in it yet. {B_nameDef} could break it up for the metal, and might take a burn from the last of it. Left, whoever handles it next may be burned.</li>
+          <li>[lowtech] The dead iron beast {PLACE} moved when {A_nameDef} passed: a leg kicked out and fire jumped from it in little blue sparks. The elders say the iron things keep a spark of their life a long while. {B_nameDef} could break it apart for its metal, and the spark may bite.</li>
+          <li>[industrial] The wreck of the {BEAST} {PLACE} is still live: {A_nameDef} saw its actuators twitch and a shower of sparks from the torn housing. {B_nameDef} can strip it for steel and may get a jolt doing it. Leave it, and the first to haul it may get the jolt instead.</li>
+          <li>[spacer] The {BEAST}'s remains {PLACE} still hold a charge: a capacitor somewhere in the wreck is arcing, and a limb jerked when {A_nameDef} came near. {B_nameDef} can break it down for parts, at some risk of a burn.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>{B_nameDef} breaks it up now</label>
+            <outcome>{B_nameDef} goes out to the {BEAST} with the tools to break it up where it lies, for its metal.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Scrap"><breakUp>true</breakUp></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Leave it be</label>
+            <outcome>The {BEAST} is left where it lies, sparking now and then.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Scrap" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[warn] It moved, that dead thing out there just moved.</li>
+          <li>[warn] Keep clear, it's still sparking.</li>
+          <li>[warn,lowtech] The iron beast isn't all dead yet.</li>
+          <li>[work] Easy now, let's find where the charge is.</li>
+          <li>[work,lowtech] Hold its leg down while I break it.</li>
+          <li>[hurt] It bit me, the spark went right up my arm.</li>
+          <li>[hurt] Burned my hand on the last of its charge.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The ground giving ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_SoftGround</defName>
+    <label>the ground giving</label>
+    <workerClass>ColonyCouncil.HappeningWorker_SoftGround</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>50</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <weather>
+          <li>rain:4/6</li>
+        </weather>
+        <minTemp>1</minTemp>
+        <answerDays>0.75</answerDays>
+        <titles>
+          <li>The ground giving</li>
+          <li>Soft ground by the door</li>
+        </titles>
+        <texts>
+          <li>Days of rain have soaked the {TALE} just outside one of the colony's doors, and this morning {A_nameDef} felt it give under {A_possessive} boot: the ground there is slumping, soft as porridge underneath. {B_nameDef} could lay a floor over it. Left, someone crossing may put a foot through it.</li>
+          <li>[land:swamp] The marsh is creeping in: the {TALE} by the door has gone to sludge under its skin, and {A_nameDef} sank to the ankle stepping out. {B_nameDef} wants a floor laid over it. Leave it, and someone will go in deeper.</li>
+          <li>[land:river] The river has been at the ground under the {TALE} by the door all through the rains, and now it slumps when anyone steps on it. {A_nameDef} nearly turned an ankle. {B_nameDef} can lay a floor over it; left, the next foot may go through.</li>
+          <li>[lowtech] After the rains the ground by the door has gone hollow and soft, and {A_nameDef}'s foot went in to the ankle this morning. The old builders lay flat stones over such ground. Left, someone may break a foot on it.</li>
+          <li>[!lowtech] The {TALE} outside one of the doors is subsiding after the rain: {A_nameDef} felt it give. {B_nameDef} can lay a floor over the soft patch. Left as it is, someone crossing may put a foot through.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Lay a floor over it</label>
+            <outcome>A floor is marked over the soft ground for {B_nameDef} and the builders to lay, and the ground will hold under it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SoftGround"><lay>true</lay></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Leave it, and mind your step</label>
+            <outcome>The soft ground is left as it is, and everyone is told to mind it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SoftGround" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[warn] Mind the ground by the door, it gives.</li>
+          <li>[warn] It went soft under my boot, right there.</li>
+          <li>[hurt] My foot went straight through it.</li>
+          <li>[hurt] The ground gave, and my ankle went with it.</li>
+          <li>[clear] It gave under me, and I caught myself.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

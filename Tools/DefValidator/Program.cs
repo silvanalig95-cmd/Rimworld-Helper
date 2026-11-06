@@ -518,6 +518,9 @@ wishPh.Add("ASKER");
 wishPh.Add("SEEK");
 // Invitations (Missions/InviteForms.cs): the host by their title, the rite of the day, the colony's titled guest.
 wishPh.UnionWith(new[] { "HOST", "RITE", "GUEST" });
+// The third round's questions (Dilemmas/DilemmaWorkers_Variety3.cs, DilemmaContextMore): the plain stuff beside the fine
+// one, and the two studies the colony could take up.
+wishPh.UnionWith(new[] { "PLAIN", "STUDY1", "STUDY2" });
 // Banishment by the council (Social/BanishDilemmas.cs): how many fights and with whom, the council's voices, the answer
 // that sends them away by the colony's age.
 wishPh.UnionWith(new[] { "FIGHTS", "WITH", "VOICES", "BANISH" });

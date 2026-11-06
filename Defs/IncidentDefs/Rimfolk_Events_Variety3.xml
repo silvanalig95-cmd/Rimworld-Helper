@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Rimfolk events that grow out of what is on the map, third round (Source/ColonyCouncil/Happenings/Workers_Variety3.cs):
+       a wild one on the colony's land, a stretch of the pen's fence down after a storm, the wild ambrosia ripe, and a
+       clutch of a wild bird's eggs in the grass. Each answer has its way both ways, and each plays out with the game's own:
+       taming, a blueprint, harvest marks, an egg's own hatching. None ends in a fight. -->
+
+  <!-- ===================== The wild one ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_WildOne</defName>
+    <label>the wild one</label>
+    <workerClass>ColonyCouncil.HappeningWorker_WildOne</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>The wild one</li>
+          <li>Watched from the trees</li>
+        </titles>
+        <texts>
+          <li>There's a {X_kind} on the colony's land who has never lived under a roof, and keeps to the edges where the colony's people can see. {A_nameDef} has watched {X_objective} take food left out and says {X_pronoun} could be brought in, slowly, the way an animal is. {B_nameDef} doesn't like being watched, and would see {X_objective} sent on.</li>
+          <li>[lowtech] The {X_kind} has been seen again at the edge of the trees, the one who lives like the deer do. The old people say such a one can be gentled with food and patience, though some bite the hand. {A_nameDef} would try. {B_nameDef} says leave {X_objective} to the wild, or chase {X_objective} off.</li>
+          <li>[!lowtech] A {X_kind}, no faction and no words anyone has heard, has been living off the colony's edges for days. {A_nameDef}, the colony's best with animals, thinks {X_pronoun} could be tamed like one. {B_nameDef} wants {X_objective} off the land.</li>
+          <li>[land:forest] Someone has been sleeping under the trees past the colony and slipping away at dawn: a {X_kind}, {A_nameDef} says, watching the colony as warily as the colony watches {X_objective}.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>{A_nameDef} tries to bring {X_objective} in</label>
+            <outcome>{X_nameDef} is marked for taming, and {A_nameDef} and the other handlers will try with food and patience.</outcome>
+            <outcomes>
+              <li>[lowtech] {A_nameDef} sets out food at the edge of the trees, a little closer each day, the old way.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_MarkBeast"><tame>true</tame></li>
+            </effects>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>Let {X_objective} be</label>
+            <outcome>The colony leaves {X_nameDef} to the edges of its land. {X_pronoun} watches, and the colony watches back.</outcome>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Drive {X_objective} off the land</label>
+            <outcome>{X_nameDef} takes fright at last and goes off the colony's land at a run.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_DriveOff" />
+            </effects>
+            <ways><openness>-2</openness></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The fence down ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_FenceDown</defName>
+    <label>the fence down</label>
+    <workerClass>ColonyCouncil.HappeningWorker_FenceDown</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <weather>
+          <li>storm:2</li>
+        </weather>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>The fence down</li>
+          <li>A gap in the pen</li>
+        </titles>
+        <texts>
+          <li>The storm took down a stretch of the pen's {THING}, and {A_nameDef} found the gap at first light with the {BEAST} already nosing at it. {B_nameDef} can put it back today. {A_nameDef} says let them out a while: there's grazing past the pen, and the crops are close too.</li>
+          <li>[big] {COUNT} animals in the pen, and a gap in its {THING} where the storm leaned on it. {B_nameDef} wants it mended before they find it. {A_nameDef} says a few days on the open grass would do the {BEAST} good, if they keep out of the fields.</li>
+          <li>[lowtech] The wind in the night brought down part of the pen's {THING}. The {BEAST} have found the gap and stand looking out of it. {B_nameDef} has the tools ready to mend it; {A_nameDef} would let them graze outside for a while.</li>
+          <li>[!lowtech] Storm damage: a section of the pen's {THING} is down, and the {BEAST} can walk out through it. {B_nameDef} can rebuild it. {A_nameDef} points out the grass beyond is better than the pen's.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Mend it today</label>
+            <outcome>The gap is marked for {B_nameDef} and the builders to put back, and the handlers will bring the {BEAST} in once it's closed.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_MendFence" />
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Let them graze outside a while</label>
+            <outcome>The gap is left open, and the {BEAST} graze where they like until the colony mends it.</outcome>
+            <outcomes>
+              <li>[lowtech] The gap is left open, the old way, and the {BEAST} wander out to the better grass.</li>
+            </outcomes>
+            <ways><openness>1</openness></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The ambrosia ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_Ambrosia</defName>
+    <label>the ambrosia ripe</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Ambrosia</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>The ambrosia ripe</li>
+          <li>Sweet fruit {PLACE}</li>
+        </titles>
+        <texts>
+          <li>The wild ambrosia {PLACE} is ripe, {COUNT} bushes heavy with it, and {A_nameDef} came back with sticky hands. It's worth a great deal, and it's a joy to eat. {B_nameDef} says it pulls at some people who eat it, and would leave it on the bush.</li>
+          <li>[teetotal] {COUNT} ambrosia bushes are ripe {PLACE}. {A_nameDef} wants them picked for the stores. {B_nameDef} has never touched anything of the kind, and says the colony would be better off if nobody did.</li>
+          <li>[lowtech] The sweet fruit the elders call a gift is ripe on {COUNT} bushes {PLACE}. {A_nameDef} would pick it all. {B_nameDef} says some who eat it want nothing else after, and that a little, for one night, is enough.</li>
+          <li>[!lowtech] The ambrosia {PLACE} is ripe: {COUNT} bushes, worth good silver, and sweet enough that some eaters come back for more than they should. {A_nameDef} wants it in the stores. {B_nameDef} would pick only enough for one night.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Pick it all for the stores</label>
+            <outcome>Every ripe ambrosia bush is marked for the pickers, and the fruit goes to the stores.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_PickAmbrosia" />
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_Evt_AmbrosiaPicked</thought></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Enough for one night</label>
+            <outcome>As many bushes as the colony has people are marked for the pickers. The rest stay on the bush.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_PickAmbrosia"><night>true</night></li>
+            </effects>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Leave it on the bush</label>
+            <outcome>The ambrosia is left where it grows. {A_nameDef} goes past it every day and looks.</outcome>
+            <ways><mercy>1</mercy></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A clutch in the grass ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_Clutch</defName>
+    <label>a clutch in the grass</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Clutch</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <seasons>
+          <li>Spring</li>
+          <li>Summer</li>
+          <li>PermanentSummer</li>
+        </seasons>
+        <minTemp>5</minTemp>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>A clutch in the grass</li>
+          <li>Eggs {PLACE}</li>
+        </titles>
+        <texts>
+          <li>{A_nameDef} nearly stepped on them: {COUNT} eggs in a scrape in the grass {PLACE}, still warm, and no {BEAST} anywhere near. {B_nameDef} says kept warm they'll hatch, and the young would be the colony's to raise. {A_nameDef} says eggs are eggs, and the cooks would thank them.</li>
+          <li>[lowtech] A {BEAST}'s nest with {COUNT} eggs in it, {PLACE}, and the mother gone. The old way is to take one and leave the rest. {B_nameDef} would take them all and hatch them by the fire; {A_nameDef} would take them for the pot.</li>
+          <li>[!lowtech] {A_nameDef} found a clutch of {COUNT} {BEAST} eggs {PLACE}, abandoned and still warm. {B_nameDef} says they'd hatch in the warm stores. {A_nameDef} says the kitchen would make better use of them.</li>
+          <li>[land:grassland] Out in the long grass {PLACE}, {A_nameDef} found {COUNT} {BEAST} eggs in a hollow, the nest left. {B_nameDef} wants to see what hatches; {A_nameDef} wants an omelette.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Keep them warm and raise what hatches</label>
+            <outcome>The eggs are carried in to the warm, and whatever hatches is the colony's to raise.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Clutch"><raise>true</raise></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_Evt_Clutch</thought></li>
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>For the kitchen</label>
+            <outcome>The eggs go to the stores for the cooks, and none of them will hatch.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Clutch" />
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Leave them where they lie</label>
+            <outcome>The eggs are left in the grass. If anything hatches, it hatches wild.</outcome>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

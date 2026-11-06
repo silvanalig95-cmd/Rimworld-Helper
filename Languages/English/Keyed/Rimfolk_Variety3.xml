@@ -78,4 +78,23 @@
   <CC_DlmE_MarkedHunt>{X_nameDef} is marked for the hunters.</CC_DlmE_MarkedHunt>
   <CC_DlmE_MarkedTame>{X_nameDef} is marked for taming.</CC_DlmE_MarkedTame>
 
+  <!-- The events (Happenings/Workers_Variety3.cs): the fence down, the ambrosia, a clutch in the grass -->
+  <CC_Evt_FenceBlocked>Something stands where the fence was.</CC_Evt_FenceBlocked>
+  <CC_Impact_MendFence>The {0} marked to be put back where it stood, for the builders; the handlers bring the animals in once it's closed</CC_Impact_MendFence>
+  <CC_Impact_MendFenceBrief>the pen closed again</CC_Impact_MendFenceBrief>
+  <CC_Evt_AmbrosiaGone>The ripe ambrosia is gone.</CC_Evt_AmbrosiaGone>
+  <CC_Impact_AmbrosiaAll>Every ripe ambrosia bush marked for harvest, the fruit to the stores</CC_Impact_AmbrosiaAll>
+  <CC_Impact_AmbrosiaAllBrief>all the ambrosia picked</CC_Impact_AmbrosiaAllBrief>
+  <CC_Impact_AmbrosiaNight>As many ambrosia bushes marked for harvest as the colony has people</CC_Impact_AmbrosiaNight>
+  <CC_Impact_AmbrosiaNightBrief>ambrosia for one night</CC_Impact_AmbrosiaNightBrief>
+  <CC_Impact_AmbrosiaPull>Ambrosia pulls at some who eat it, as the game has it</CC_Impact_AmbrosiaPull>
+  <CC_Impact_AmbrosiaPullBrief>some may come to want it</CC_Impact_AmbrosiaPullBrief>
+  <CC_Evt_AmbrosiaMarked>{N} ripe ambrosia bushes are marked for harvest.</CC_Evt_AmbrosiaMarked>
+  <CC_Evt_EggsGone>The eggs are gone.</CC_Evt_EggsGone>
+  <CC_Evt_EggsNotFood>These eggs are no good for the kitchen without hatching first.</CC_Evt_EggsNotFood>
+  <CC_Impact_ClutchRaise>The {0} eggs carried in to the stores; whatever hatches is the colony's</CC_Impact_ClutchRaise>
+  <CC_Impact_ClutchRaiseBrief>{0} chicks to raise</CC_Impact_ClutchRaiseBrief>
+  <CC_Impact_ClutchKitchen>The {0} eggs to the stores for the cooks, none to hatch</CC_Impact_ClutchKitchen>
+  <CC_Impact_ClutchKitchenBrief>{0} eggs for the kitchen</CC_Impact_ClutchKitchenBrief>
+
 </LanguageData>
