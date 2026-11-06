@@ -47,24 +47,27 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Rimfolk_Dlm_Trad_Woodpile</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_StrainRelief"><target>Colony</target><amount>3</amount><onlyStrained>true</onlyStrained></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Rimfolk_DlmY_DraggedOut</thought><degreeTrait>Industriousness</degreeTrait><maxDegree>-1</maxDegree></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Others</target><amount>-3</amount><degreeTrait>Industriousness</degreeTrait><maxDegree>-1</maxDegree></li>
         </effects>
       </li>
       <li>
-        <label>{A_nameDef} and one other</label>
-        <outcome>{A_nameDef} and one other went out for the wood and brought in what two people can carry in an afternoon. The rest of the colony kept to its own work.</outcome>
-        <ways><tradition>1</tradition></ways>
+        <label>A morning of it, for those who can be spared</label>
+        <outcome>A few of the colony spent the morning on the woodpile with {A_nameDef}, carrying in what lay about and felling what had to be felled. The rest watched it grow from their own work.</outcome>
+        <ways><tradition>2</tradition></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the winter's wood</label><target>Colony</target><tasks><li>Wood</li><li>Haul</li></tasks><count>2</count><hours>9~16</hours><duration>2~3</duration></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_Dlm_Trad_Woodpile</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the winter's wood</label><target>Colony</target><tasks><li>Wood</li><li>Haul</li></tasks><count>3</count><hours>8~12</hours><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Rimfolk_Dlm_Trad_Woodpile</thought><exceptTrait><li>Psychopath</li></exceptTrait><chance>0.85</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
         </effects>
       </li>
       <li>
         <label>The stores have wood enough</label>
         <outcome>The council says the colony has wood enough already. {A_nameDef} put the axes back where they hang.</outcome>
-        <ways><tradition>-3</tradition></ways>
+        <ways><tradition>-3</tradition><toil>1</toil></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_NoCelebration</thought><exceptTrait><li>Ascetic</li></exceptTrait><chance>0.4</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmV_WorkFirst</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
         </effects>
       </li>
@@ -108,6 +111,7 @@
         </outcomes>
         <ways><tradition>5</tradition><mercy>1</mercy></ways>
         <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what><count>20</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Lanterns"><at>graves</at><count>12</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>the night of lights</label><target>Colony</target><count>6</count><to>Grave</to><pool>Council_Pool_PlayRemembrance</pool><hours>18~21</hours><duration>0.75~1</duration></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Rimfolk_Dlm_Trad_GraveLights</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
@@ -120,17 +124,19 @@
         <outcome>A light was set by every grave at dusk, and the colony went to bed at its usual hour. From the windows the graves could be seen burning all night.</outcome>
         <ways><tradition>2</tradition></ways>
         <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what><count>15</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Lanterns"><at>graves</at><count>12</count></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_Dlm_Trad_GraveLights</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Rimfolk_Dlm_Trad_GraveLights</thought><exceptTrait><li>Psychopath</li></exceptTrait><chance>0.85</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
         </effects>
       </li>
       <li>
         <label>The dead are at peace</label>
-        <outcome>The council says the dead are at peace as they are. {A_nameDef} put the torches away in the storeroom.</outcome>
-        <ways><tradition>-3</tradition></ways>
+        <outcome>The council says the dead are at peace as they are. {A_nameDef} put the torches away in the storeroom, and the wood stayed on the pile.</outcome>
+        <ways><tradition>-3</tradition><generosity>-1</generosity></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_NoCelebration</thought><exceptTrait><li>Ascetic</li></exceptTrait><chance>0.4</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmV_SavedForWinter</thought><chance>0.4</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
         </effects>
       </li>
@@ -177,24 +183,27 @@
           <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>a lesson at the bench</label><teacher>A</teacher><student>B</student><skill>Crafting</skill><hours>10~17</hours><duration>2~3</duration></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Rimfolk_Dlm_Trad_MendingDay</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Rimfolk_DlmY_DraggedOut</thought><degreeTrait>Industriousness</degreeTrait><maxDegree>-1</maxDegree></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Others</target><amount>-3</amount><degreeTrait>Industriousness</degreeTrait><maxDegree>-1</maxDegree></li>
         </effects>
       </li>
       <li>
-        <label>Only the lesson</label>
-        <outcome>{B_nameDef} spent an afternoon at the bench beside {A_nameDef}, watching and asking. The rest of the colony kept to its own work.</outcome>
-        <ways><tradition>1</tradition></ways>
+        <label>A morning's mending, without the lesson</label>
+        <outcome>A few of the colony spent the morning repairing what was worst and clearing up behind it. {B_nameDef} will learn the bench another time.</outcome>
+        <ways><tradition>2</tradition></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>a lesson at the bench</label><teacher>A</teacher><student>B</student><skill>Crafting</skill><hours>10~17</hours><duration>2~3</duration></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Rimfolk_Dlm_Trad_MendingDay</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the morning's mending</label><target>Colony</target><tasks><li>Repair</li><li>Clean</li></tasks><count>3</count><hours>8~12</hours><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Rimfolk_Dlm_Trad_MendingDay</thought><exceptTrait><li>Psychopath</li></exceptTrait><chance>0.85</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
         </effects>
       </li>
       <li>
         <label>No day of its own for it</label>
         <outcome>The council sees no need for a day of it. {A_nameDef} folded the list and put it away.</outcome>
-        <ways><tradition>-3</tradition></ways>
+        <ways><tradition>-3</tradition><toil>1</toil></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_NoCelebration</thought><exceptTrait><li>Ascetic</li></exceptTrait><chance>0.4</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmV_WorkFirst</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
         </effects>
       </li>
@@ -212,16 +221,13 @@
     <roleA>
       <bestAt>Social</bestAt>
     </roleA>
-    <roleB>
-      <notTrait><li>Psychopath</li></notTrait>
-    </roleB>
     <texts>
       <li>{A_nameDef} has been listening all year: who came, who left, who did what on the worst night. {A_pronoun} asks for an evening by the fire in the dark of the winter to tell it all back to the colony, the year as a story, the bad parts and the good.</li>
       <li>{A_nameDef} says every colony has a story and most never hear their own. {A_pronoun} would tell this one's, one winter evening, to everyone who'll sit and listen.</li>
       <li>[lowtech] Among {A_nameDef}'s people the long nights were for tales: the year told by the fire by whoever told it best, so nobody forgot. {A_pronoun} would like to tell this year's.</li>
       <li>[!lowtech] {A_nameDef} has kept notes all year and wants to read the colony its own year, one evening in the dark of the winter, with something warm to drink.</li>
       <li>[again] The long nights are here again, and {A_nameDef} has a new year's worth of tales to tell.</li>
-      <li>[tradition] Everyone knows {A_nameDef} tells the year in the dark of the winter. {B_nameDef} has already asked whether {B_pronoun} is in it.</li>
+      <li>[tradition] Everyone knows {A_nameDef} tells the year in the dark of the winter, and half the colony has already asked whether they're in it.</li>
     </texts>
     <traditionOption>0</traditionOption>
     <traditionLabel>the winter tales</traditionLabel>
@@ -250,12 +256,17 @@
         </effects>
       </li>
       <li>
-        <label>One tale, to {B_nameDef}</label>
-        <outcome>{A_nameDef} sat with {B_nameDef} for an hour and told {B_objective} the year, the parts {B_nameDef} had missed and the parts {B_pronoun} was in.</outcome>
-        <ways><tradition>1</tradition></ways>
+        <label>One tale at supper</label>
+        <outcome>At supper {A_nameDef} told one tale of the year, the best of them, and the table asked for another before letting {A_objective} eat.</outcome>
+        <ways><tradition>2</tradition></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the year told</label><who>A</who><to>Person</to><whom>B</whom><sit>true</sit><hours>17~22</hours><duration>0.75~1.25</duration></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Rimfolk_Dlm_Trad_WinterTales</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>a tale at supper</label><spots><li>Dining</li><li>Fire</li></spots><hours>17~21</hours><duration>0.5~0.75</duration>
+            <lines>
+              <li>Just the one, and it's the best of them.</li>
+              <li>This was the day the roof came off, remember.</li>
+            </lines>
+          </li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Rimfolk_Dlm_Trad_WinterTales</thought><exceptTrait><li>Psychopath</li></exceptTrait><chance>0.85</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
         </effects>
       </li>
@@ -264,7 +275,8 @@
         <outcome>The council would rather not hear it all again. {A_nameDef} kept {A_possessive} notes to {A_objective}self.</outcome>
         <ways><tradition>-3</tradition></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_NoCelebration</thought><exceptTrait><li>Ascetic</li></exceptTrait><chance>0.4</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmV_WorkFirst</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
         </effects>
       </li>

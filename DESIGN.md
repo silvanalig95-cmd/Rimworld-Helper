@@ -1780,6 +1780,82 @@ scene a year, floor evenings included, well run 24.3 before and 24.3 after, aver
 after, nine in ten of them their own scene. Without the kept customs (the model before this phase) the colony staged
 24.2, 23.6 and 22.9.
 
+## The council and the colony's year, fourth round (the player's request, 6 November 2026)
+
+"Do another big content update to existing mechanics": this part the council and the colony's year, in the frameworks
+already there (the council's draw, the customs' one-a-season rule, the decrees' hour and day, the advisor's hour). The
+pure rules are in `Dilemmas/YearFourMath.cs`, tested in `YearFourTests`.
+
+- **Questions about the colony's own systems** (`Dilemmas/DilemmaWorkers_YearFour.cs`, `Rimfolk_Dilemmas_YearFour.xml`),
+  in the usual rhythm (never timely, after a raid or seasonal), each only while the colony is as its letter says, three
+  answers, the council's silence setting nothing going. None gathers the colony; three send a few out to work.
+  - The empty field: an outdoor field (20 cells or more) under two fifths sown in its growing season, not paused by
+    "By the weather". A few hands sow it that afternoon (a work party, Sow, near the fields), or it is given up (the
+    game's zone deleted); or left to the growers.
+  - What the field grows: medicine under a dose a colonist (and under eight), or cloth under 25 a colonist, with food for
+    20 days, and healroot or cotton (devilstrand once researched) sowable there now. The food field set to it, or its far
+    half made a field of its own for it (`Sowing.MakeZone`); or kept.
+  - Snow on the paths: deep snow (0.5) over three tenths of the home area's open ground, a snow-clearing area of 20 cells
+    or fewer, not above 5 °C. The game's snow-clearing area marked over all of it and a party out with shovels, or by the
+    doors only (within four cells); or left to melt.
+  - The unfinished work: eight blueprints and frames standing, two at least waiting on stuff the stores don't hold, four
+    that can be paid for. A building party, or the unpaid blueprints cancelled (the game's own cancel); or left.
+  - The trees by the wall: five grown wild trees (never a sacred tree, never in a zone) within seven cells of an outer wall
+    of the colony's. All marked for the cutters, or the nearest half; or left. B is someone whose ideoligion holds trees
+    sacred when there is one, and the answer says so.
+  - Too many in the pens: six grazers, the cold that stops the grass within ten days (the advisor's `SeasonUtil.Winter`),
+    hay and kibble lasting under three fifths of it. Enough marked for slaughter that it lasts (one to four, a third at
+    most), or one, or none: as the herd's cull spares them (nobody's own, nothing bonded or named, never one carrying
+    young), the spare males first, then the oldest, a male and a female of each kind always left.
+  - What to teach it: a grown animal that could learn both to guard (Release, with Obedience) and to haul, set to learn
+    neither. Its training set to either (`SetWantedRecursive`), the handlers teaching it as the game has them; or left.
+  - Home from the road: some of the colony back from five days or more away within a day and a half (the calendar's
+    homecoming look keeps the last one, unsaved, `ColonyCalendar.LastHome`). A day off for all of them (the calendar's
+    rest timetable), or one tells someone who stayed the road for an hour (a visit); or back to work in the morning.
+  - Doubts in the faith (Ideology): someone of the colony's ideoligion under 35% certain. Its moral guide, else its most
+    devout speaker, sits with them an hour (8% surer, `Faiths.Steady`), or they sit alone at its altar an hour (5%, only
+    while it has one here); or it's left to them.
+  - The faith without a guide (Ideology): the moral guide's role empty and two of the faith could take it (grown, free,
+    no other role, the role's requirements met). Either named (the game's own `Assign`), or nobody.
+- **Customs of the autumn and the winter** (`Rimfolk_Dilemmas_Customs_YearFour.xml`), the seasons that had fewest (seven
+  and six before, against ten each in spring and summer). Each is a seasonal custom like the rest: one a season, on the
+  calendar once kept, a tradition three years running; the full keeping, a smaller one (silence), a refusal.
+  - The woodpile day (fall): a work party of six for the woodpile (logs carried in, a tree or two felled where none lie
+    about), cutting and hauling; or two of them. Never asked by someone whose ideoligion holds trees sacred.
+  - The night of lights (fall and winter, graves of the colony's own): a light by each such grave at dusk until first
+    light (`DilemmaEffect_Lanterns` "graves", `OnMapTimed.GraveCells`) and a short vigil among them; or the lights alone.
+    Never asked by someone whose ideoligion despises fire.
+  - The mending day (winter): a work party repairing, cleaning and hauling, and a lesson at the bench from the colony's
+    best crafter to one of thirty or under; or the lesson alone.
+  - The winter tales (winter): the best talker tells the year by the fire (words, with lines of its own); or to one
+    other for an hour (a visit).
+- **Decrees that each mean one thing on the map** (`Rimfolk_Decrees_YearFour.xml`; the player's decision 13). Three of
+  the land's year mark the game's own work each morning and the day they're declared (`DecreeDef.daily`, run by
+  `DecreeWork.RunDaily` from the decrees' day): a hunting season (six days, two head of safe game, `DilemmaEffect_Hunt`),
+  wood for the winter (eight days, up to six of the nearest wild trees outside the home area until the stores hold 150
+  a colonist for a tribe or a village, 80 for any other colony, `DilemmaEffect_MarkTrees` with `forWood`) and foraging
+  days (six days, up to twelve wild plants ripe for picking within 45 cells, never a drug, `DilemmaEffect_Forage`).
+  Saving the power (`lightsOut`, Electricity researched; asked for when the batteries are under a third full, the new
+  `DecreeMoment.PowerShort`): the colony's lamps (a light of 150 W or less with a switch) switched off from eleven to five
+  in the decrees' hour, never in a room with a patient abed, and only those switched back on (`DecreeTracker.lampsOff`,
+  saved; the switch's wanted state set with it, so nobody is sent to flick it). Every faith its evening (`everyFaith`,
+  Ideology and more than one faith at home, as one faith for the colony is listed): declared, the largest faith that isn't
+  the colony's holds an evening of faith; each morning those of other faiths trust the council a quarter to a half point
+  more by their openness, the colony's own devout a quarter less; never in force with one faith for the colony
+  (`DecreeMath.Apart`). Every age's form is in its words: the hunters' moon, a village's open season, a game licence, a
+  cull; axes or saws; the berry days or a survey of the land's harvest; a tribe or a village banks its fires instead of
+  saving the power. None calls a gathering of its own, and none hurts anyone of Rimfolk's own (a hunted animal may fight
+  back as the game has it, and says so).
+- **The advisor** (`Advisor/AdvisorSignals_YearFour.cs`, `Rimfolk_Advisor_YearFour.xml`), in its thin parts: hay short of
+  the herd's winter (food), animals in a cold they can't bear (temperature), a generator with under half a day's fuel and
+  none in store (power), four or more blueprints waiting on stuff the stores don't hold (work), five grown trees close
+  outside the walls (defence; a button marks them, never for a colony whose faith holds trees sacred; the look is kept
+  six hours a map), deep snow and nowhere set to clear (work; a button marks the paths) and, with Ideology, a faith without
+  a moral guide when someone could take the role.
+- **Rates**: no new schedule slot, no new setting; one saved list (`lampsOff`, modelled). The questions take a share of the
+  council's draw (the balance model knows how often each can be asked, `Rates.WorkerGates`), the customs a share of the
+  one-a-season rule's, the decrees only what the player declares. The numbers before and after are in the HANDOFF entry.
+
 ## Goods and people that come and go on the map
 
 The player gave 250 corn to a village and later got silver back: the corn vanished from the stockpile and the silver
@@ -1988,7 +2064,9 @@ and drills" in the annals); the review named more overlapping pairs. Each was lo
 - **Overlapping pairs don't run together.** Festival days and a feast day (both celebrations that raise standards),
   quiet hours and days of rest (both rest and slower work), on guard and a curfew (sleep in shifts, or everyone abed by
   ten): with one in force the other can't be declared, and its card says why (`DecreeMath.Excludes`,
-  `CC_Decree_Overlaps`, `DecreeTracker.CannotEnact`). An idea's two forms exclude each other the same way.
+  `CC_Decree_Overlaps`, `DecreeTracker.CannotEnact`). An idea's two forms exclude each other the same way. One faith for
+  the colony and every faith its evening (the fourth round, below) are the council's two ways with its faiths, and are
+  kept apart the same way.
 - **Kept apart.** Rest when ill and quarantine may run together: one heals the sick, the other keeps the well from
   catching it. Austerity (no new wishes) and rationing (food) never overlapped, nor shared meals (talk) and festival
   days (rest and music).

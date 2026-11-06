@@ -96,6 +96,12 @@
 
   <!-- ===================== The customs ===================== -->
 
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmY_DraggedOut</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>a custom's day of work</label><description>The whole colony out at it from morning, and me with them. A custom, they call it. I call it a day of work.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
   <ThoughtDef>
     <defName>Rimfolk_Dlm_Trad_Woodpile</defName>
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
