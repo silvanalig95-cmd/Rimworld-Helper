@@ -12,16 +12,17 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   About.xml untouched. Fixed: (1) a feast with guests counted up to four times in the colony's week: once for each
   people's group as it came to the gate (`LordJob_FeastGuests`, seen as a gathering lord) and again for its feast's
   play-out, so after it the colony's own evenings waited a week; now counted once, as the guests come
-  (`Feasts.Arrive`, `Stage.Held`), its feast not again (`Stage.Began(..., counted)`, `p.guestsFrom == PlayGuests.Feast`),
-  the guests' groups not a gathering of their own, and the guests' day still kept clear of the colony's own (counting
-  only at the feast would have let a family supper or a group's evening take the evening first). (2) The teller counted
+  (`Feasts.Arrive`, `Stage.Held`), its feast not again (`Stage.Began(..., counted)`, `p.guestsFrom ==
+  PlayGuests.Feast`), the guests' groups not a gathering of their own, and the guests' day still kept clear of the
+  colony's own (counting only at the feast would have let a family supper or a group's evening take the evening
+  first). (2) The teller counted
   every chronicle line "beyond the homes" in its day ("Teller: what was told today"): the history lets go of who a line
   is about as it writes it (`History.FromChronicle`), and `Tell.Chronicle` read them after; now read before. (3) The
   setting "Petitions" ("Colonists who want the same thing back one wish instead of each asking") off still joined shared
   wants into one petition (0.114.0's `ShareWith` came after the setting and never read it); now off, each asks on
   their own (`Wishes/Petitions.cs`). (4) A custom kept, a day on the calendar since the festive year, never went on the
-  record of days kept (`Council_DaysKept`), which the keeper of days' seat work ("kept 3 days"), the Daykeeper's name and
-  the promises judged by days kept read ("the colony's traditions kept properly": on the save, its traditions are
+  record of days kept (`Council_DaysKept`), which the keeper of days' seat work ("kept 3 days"), the Daykeeper's name
+  and the promises judged by days kept read ("the colony's traditions kept properly": on the save, its traditions are
   customs, the harvest dance and the midwinter supper); now the keeper of days at home, else the one the question was
   about, has it, as a calendar day's keeper does (`DilemmaTracker.Tradition`, with the calendar on). Checked and sound:
   every path to the chronicle goes through `Tell.Chronicle` into the history once (answers through `Answers.Record`,
