@@ -83,9 +83,57 @@ namespace ColonyCouncil
     }
 
     /// <summary>
+    /// The starting kit as its stacks are split (a load hauled, a part carried or used): the kit's part goes with the part
+    /// first (<see cref="LandingKit.Split"/>). Only a look-up while the offer is open; nothing at all after.
+    /// </summary>
+    [HarmonyPatch(typeof(Thing), nameof(Thing.SplitOff))]
+    public static class Patch_LandingKitSplit
+    {
+        public static void Postfix(Thing __instance, Thing __result)
+        {
+            if (!LandingKit.Tracking || __result == null || __result == __instance) return;
+            try
+            {
+                LandingKit.Split(__instance, __result);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("landing: the kit split", e);
+            }
+        }
+    }
+
+    /// <summary>The starting kit as its stacks merge (on a stockpile, in a pod, in a pack): the kit's part moves over first (<see cref="LandingKit.Merge"/>).</summary>
+    [HarmonyPatch(typeof(Thing), nameof(Thing.TryAbsorbStack))]
+    public static class Patch_LandingKitMerge
+    {
+        private const long NotTracked = long.MinValue;
+
+        public static void Prefix(Thing __instance, Thing other, out long __state)
+        {
+            // The two counts before, packed: the stack's own in the high half, the other's in the low.
+            __state = LandingKit.Tracking && other != null ? (long)__instance.stackCount << 32 | (uint)other.stackCount : NotTracked;
+        }
+
+        public static void Postfix(Thing __instance, Thing other, long __state)
+        {
+            if (__state == NotTracked) return;
+            try
+            {
+                LandingKit.Merge(__instance, other, (int)(__state >> 32), (int)(uint)__state);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("landing: the kit merged", e);
+            }
+        }
+    }
+
+    /// <summary>
     /// A new map of the same place: the game seeds a map from the world's seed and its tile, so the same tile would give the
     /// same map. While Rimfolk makes one (<see cref="Landing.SeedTurn"/>), the seed the map's content is made from is turned.
-    /// The world's own seed is never touched (the world's noise built lazily from it, a mineral-rich tile's ore, stays).
+    /// The world's own seed is never touched: the noise the game builds from it only once (which ore a mineral-rich tile
+    /// holds) stays as the world made it, so the same place keeps its rock, ore, river and road.
     /// </summary>
     [HarmonyPatch(typeof(MapGenerator), nameof(MapGenerator.GenerateContentsIntoMap))]
     public static class Patch_LandingSeed

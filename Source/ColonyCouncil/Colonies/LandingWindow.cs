@@ -175,7 +175,7 @@ namespace ColonyCouncil
                 if (Widgets.RadioButtonLabeled(new Rect(4f, y, w - 8f, 24f), label, size == s)) size = s;
                 y += 26f;
             }
-            if (size >= 300) y += UiKit.Paragraph(24f, y, w - 28f, "MapSizePerformanceWarning".Translate().Resolve(), UiKit.Faint, GameFont.Tiny) + 2f;
+            if (size > LandingMath.HeavySize) y += UiKit.Paragraph(24f, y, w - 28f, "MapSizePerformanceWarning".Translate().Resolve(), UiKit.Faint, GameFont.Tiny) + 2f;
             y += 8f;
 
             // What comes along.

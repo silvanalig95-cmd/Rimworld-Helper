@@ -8,15 +8,16 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// One piece of the scenario's starting kit, as the game made it: the thing itself (a reference: it is carried, never
-    /// copied), what it is and how many there were, and where it came from (<see cref="LandingKind"/>). The thing may be
-    /// gone (used, built, merged into another stack); its def and count stay, so the kit is never counted larger.
+    /// One piece of the scenario's starting kit: the stack itself (a reference: it is carried, never copied), what it is,
+    /// how many of it are the kit's, and where it came from (<see cref="LandingKind"/>). When the stack is split or merged
+    /// the kit's part follows it (<see cref="LandingKit"/>); when it is used up, so is the piece.
     /// </summary>
     public class LandingPiece : IExposable
     {
         public Thing thing;
         public ThingDef def;
         public ThingDef stuff;
+        /// <summary>How many of the stack are the kit's (never more than the stack: <see cref="LandingMath.KitIn"/>).</summary>
         public int count;
         public LandingKind kind;
 
@@ -29,15 +30,15 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref kind, "kind");
         }
 
-        /// <summary>What a thing is for the kit's count: a minified thing counts as what it holds.</summary>
+        /// <summary>What a thing is for the kit's words: a minified thing counts as what it holds.</summary>
         public static ThingDef DefOf(Thing t) => (t as MinifiedThing)?.InnerThing?.def ?? t?.def;
 
         public static ThingDef StuffOf(Thing t) => (t as MinifiedThing)?.InnerThing?.Stuff ?? t?.Stuff;
 
-        public static LandingPiece Of(Thing t, LandingKind kind) => new LandingPiece { thing = t, def = DefOf(t), stuff = StuffOf(t), count = t.stackCount, kind = kind };
+        public static LandingPiece Of(Thing t, LandingKind kind, int count) => new LandingPiece { thing = t, def = DefOf(t), stuff = StuffOf(t), count = count, kind = kind };
 
-        /// <summary>The group a piece counts in: the same thing of the same stuff, going the same way.</summary>
-        public string Group => (def?.defName ?? "?") + "/" + (stuff?.defName ?? "") + "/" + LandingMath.PlaceOf(kind);
+        /// <summary>The kit's part of its stack now.</summary>
+        public int Kit => thing == null || thing.Destroyed ? 0 : LandingMath.KitIn(count, thing.stackCount);
     }
 
     /// <summary>
@@ -62,26 +63,10 @@ namespace ColonyCouncil
 
         public bool ByPods => method == PlayerPawnsArriveMethod.DropPods;
 
-        /// <summary>The pieces still to be found: those used, built or merged away are let go (their count stays in <see cref="Totals"/>).</summary>
+        /// <summary>The pieces used up (their stack gone, or none of it the kit's any more) are let go.</summary>
         public void Prune()
         {
-            kit.RemoveAll(p => p == null || p.def == null);
-            foreach (var p in kit)
-                if (p.thing != null && p.thing.Destroyed)
-                    p.thing = null;
-        }
-
-        /// <summary>The kit's count in each group, as the game made it.</summary>
-        public Dictionary<string, int> Totals()
-        {
-            var d = new Dictionary<string, int>();
-            foreach (var p in kit)
-            {
-                if (p?.def == null) continue;
-                d.TryGetValue(p.Group, out int n);
-                d[p.Group] = n + Math.Max(0, p.count);
-            }
-            return d;
+            kit.RemoveAll(p => p == null || p.def == null || p.Kit <= 0);
         }
 
         public void ExposeData()
@@ -98,9 +83,10 @@ namespace ColonyCouncil
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 kit ??= new List<LandingPiece>();
-                kit.RemoveAll(p => p == null || p.def == null);
+                kit.RemoveAll(p => p == null || p.def == null || p.thing == null);
                 conditions ??= new List<GameConditionDef>();
                 conditions.RemoveAll(c => c == null);
+                LandingKit.Track(this);
             }
         }
     }
@@ -114,6 +100,87 @@ namespace ColonyCouncil
         {
             if (Scribe.mode == LoadSaveMode.Saving) Landing.Expire(this);
             if (Scribe.mode != LoadSaveMode.Saving || landing != null) Scribe_Deep.Look(ref landing, "landing");
+            // A save made after the offer closed has none: nothing is tracked from an earlier game.
+            if (Scribe.mode == LoadSaveMode.PostLoadInit && landing == null) LandingKit.Track(null);
+        }
+    }
+
+    /// <summary>
+    /// The kit's part of each stack, followed as the game splits and merges stacks (Colonies/LandingPatches.cs): the
+    /// colonists haul the kit to a stockpile a load at a time, and the loads merge there with each other and with what was
+    /// found on the map. Without this the kit would be lost from sight the first time it was hauled. Only while the offer
+    /// is open; a look-up of the stack and nothing else on every other split and merge.
+    /// </summary>
+    public static class LandingKit
+    {
+        /// <summary>The record being followed (null while nothing is), and its game.</summary>
+        private static LandingRecord live;
+        private static Game liveGame;
+        private static readonly Dictionary<Thing, LandingPiece> byThing = new Dictionary<Thing, LandingPiece>();
+
+        public static bool Tracking => live != null && liveGame == Current.Game;
+
+        /// <summary>Starts (or stops, with null) following a record's kit.</summary>
+        public static void Track(LandingRecord record)
+        {
+            live = record;
+            liveGame = record != null ? Current.Game : null;
+            byThing.Clear();
+            if (record == null) return;
+            foreach (var p in record.kit)
+                if (p?.thing != null && !byThing.ContainsKey(p.thing))
+                    byThing[p.thing] = p;
+        }
+
+        private static LandingPiece PieceOf(Thing t) => t != null && byThing.TryGetValue(t, out var p) ? p : null;
+
+        private static void Add(LandingPiece p)
+        {
+            live.kit.Add(p);
+            byThing[p.thing] = p;
+        }
+
+        private static void Drop(LandingPiece p)
+        {
+            live.kit.Remove(p);
+            if (p.thing != null && byThing.TryGetValue(p.thing, out var q) && q == p) byThing.Remove(p.thing);
+        }
+
+        /// <summary>A stack had <paramref name="part"/> split off it: the kit's part goes with the part first.</summary>
+        public static void Split(Thing from, Thing part)
+        {
+            if (!Tracking || from == null || part == null || from == part) return;
+            var p = PieceOf(from);
+            if (p == null) return;
+            int off = LandingMath.SplitKit(p.count, from.stackCount + part.stackCount, part.stackCount, out int rest);
+            p.count = rest;
+            if (off > 0)
+            {
+                var mine = PieceOf(part);
+                if (mine != null) mine.count += off;
+                else Add(new LandingPiece { thing = part, def = p.def, stuff = p.stuff, count = off, kind = p.kind });
+            }
+            if (rest <= 0) Drop(p);
+        }
+
+        /// <summary>A stack took <paramref name="taken"/> from another: the kit's part of it moves over first.</summary>
+        public static void Merge(Thing into, Thing other, int intoBefore, int otherBefore)
+        {
+            if (!Tracking || into == null || other == null || into == other) return;
+            int taken = into.stackCount - intoBefore;
+            if (taken <= 0) return;
+            var theirs = PieceOf(other);
+            var mine = PieceOf(into);
+            if (theirs == null && mine == null) return;
+            int kitOther = theirs == null ? 0 : LandingMath.KitIn(theirs.count, otherBefore);
+            int moved = LandingMath.MergeKit(kitOther, otherBefore, taken);
+            if (mine != null) mine.count = LandingMath.KitIn(mine.count, intoBefore) + moved;
+            else if (moved > 0) Add(new LandingPiece { thing = into, def = theirs.def, stuff = theirs.stuff, count = moved, kind = theirs.kind });
+            if (theirs != null)
+            {
+                theirs.count = kitOther - moved;
+                if (theirs.count <= 0 || other.Destroyed) Drop(theirs);
+            }
         }
     }
 
@@ -190,7 +257,7 @@ namespace ColonyCouncil
                 if (p.inventory != null) theirs.AddRange(p.inventory.innerContainer);
                 foreach (var t in theirs)
                     if (t != null && gear.Add(t))
-                        rec.kit.Add(LandingPiece.Of(t, LandingKind.Gear));
+                        rec.kit.Add(LandingPiece.Of(t, LandingKind.Gear, t.stackCount));
             }
             var after = AllOn(map);
             foreach (var t in after)
@@ -199,13 +266,14 @@ namespace ColonyCouncil
                 bool scatter = scattered.TryGetValue(t, out bool near);
                 var kind = LandingMath.KindOf(false, scatter, near);
                 if (!LandingMath.Recorded(t.def.category == ThingCategory.Item, t.def.category == ThingCategory.Building, kind)) continue;
-                rec.kit.Add(LandingPiece.Of(t, kind));
+                rec.kit.Add(LandingPiece.Of(t, kind, t.stackCount));
             }
             // The map conditions the scenario set (a start in a cold snap, a toxic fallout).
             foreach (var c in map.gameConditionManager.ActiveConditions)
                 if (c?.def != null && !conditionsBefore.Contains(c) && !rec.conditions.Contains(c.def))
                     rec.conditions.Add(c.def);
             comp.landing = rec;
+            LandingKit.Track(rec);
             before = null;
             conditionsBefore = null;
             scattered.Clear();

@@ -19,9 +19,9 @@ namespace ColonyCouncil
         public readonly List<Pawn> pawns = new List<Pawn>();
         /// <summary>Those carried by one of them (a baby, someone downed).</summary>
         public readonly List<Pawn> carried = new List<Pawn>();
-        /// <summary>The starting kit lying on the map: the thing, how much of it comes, the piece it is.</summary>
+        /// <summary>The starting kit lying on the map: the stack, how much of it comes (the kit's part), the piece it is.</summary>
         public readonly List<(Thing thing, int count, LandingPiece piece)> loose = new List<(Thing, int, LandingPiece)>();
-        /// <summary>The starting kit held by someone who comes along (worn, wielded, in an inventory), with the piece it is.</summary>
+        /// <summary>The starting kit held by someone who comes along (worn, wielded, in a pack, in their hands), with the piece it is.</summary>
         public readonly List<(Thing thing, LandingPiece piece)> held = new List<(Thing, LandingPiece)>();
 
         public IEnumerable<Pawn> Everyone => pawns.Concat(carried);
@@ -33,8 +33,9 @@ namespace ColonyCouncil
     /// kit, the same ideology, world, storyteller, research and Rimfolk records. Only the map changes. Offered from the
     /// game's own menu (Colonies/LandingPatches.cs) and the colony's card, in a window of its own
     /// (Colonies/LandingWindow.cs); the rules are in <see cref="LandingMath"/>, the record of the start in
-    /// <see cref="LandingRecorder"/>. The same settlement is kept, moved on the world map for another place, so every
-    /// record keyed by it stays with the colony; nothing here is a founding, an abandoning or a journey.
+    /// <see cref="LandingRecorder"/>. The same settlement is kept, moved on the world map for another place (the game's
+    /// own tile setter moves a world object cleanly), so every record keyed by it stays with the colony and every quest
+    /// that names it still finds it; nothing here is a founding, an abandoning or a journey.
     /// </summary>
     public static class Landing
     {
@@ -42,10 +43,12 @@ namespace ColonyCouncil
 
         public static LandingRecord Record => CouncilGameComponent.Instance?.landing;
 
-        /// <summary>The first days are over: the record is let go.</summary>
+        /// <summary>The first days are over: the record is let go, and the kit is no longer followed.</summary>
         public static void Expire(CouncilGameComponent comp)
         {
-            if (comp?.landing != null && !LandingMath.Open(Now, comp.landing.landedAt)) comp.landing = null;
+            if (comp?.landing == null || LandingMath.Open(Now, comp.landing.landedAt)) return;
+            comp.landing = null;
+            LandingKit.Track(null);
         }
 
         /// <summary>The home the colony landed on, while it is a home.</summary>
@@ -74,7 +77,7 @@ namespace ColonyCouncil
         /// <summary>On a colony's card: the home the colony landed on, while the entry shows.</summary>
         public static bool ShowsFor(Map map) => map != null && Shows && Homes.KeyOf(map) == Record?.home;
 
-        /// <summary>The entry's words: a landing site for a start by drop pods or gravship, a starting site for a standing one.</summary>
+        /// <summary>The entry's words: a landing site for a start by drop pods or gravship, a starting site for one on foot.</summary>
         public static string Label => (Record == null || Record.method != PlayerPawnsArriveMethod.Standing ? "CC_Landing_Menu" : "CC_Landing_MenuStanding").Translate().Resolve();
 
         public static string Tip => "CC_Landing_MenuTip".Translate(LandingMath.OfferDays.Named("DAYS")).Resolve();
@@ -116,11 +119,15 @@ namespace ColonyCouncil
             names = "";
             var r = Record;
             var map = Home;
-            bool open = r != null && LandingMath.Open(Now, r.landedAt);
-            bool gravship = r != null && r.method == PlayerPawnsArriveMethod.Gravship;
-            bool space = map != null && (map.Tile.LayerDef?.isSpace ?? false);
-            bool monolith = ModsConfig.AnomalyActive && Find.Anomaly != null && Find.Anomaly.Level > 0;
-            var away = map != null ? Away(map) : new List<Pawn>();
+            var s = new LandingState
+            {
+                on = RimfolkPatches.On, recorded = r != null, open = r != null && LandingMath.Open(Now, r.landedAt), tutorial = TutorSystem.TutorialMode,
+                gravship = r != null && r.method == PlayerPawnsArriveMethod.Gravship, space = map != null && (map.Tile.LayerDef?.isSpace ?? false),
+                homes = Homes.All.Count, startHome = map != null, monolithWoken = ModsConfig.AnomalyActive && Find.Anomaly != null && Find.Anomaly.Level > 0
+            };
+            if (map == null) return LandingMath.WhyNot(s);
+            s.plans = Foundings.Current != null || JourneyBook.PlanAt(map) != null;
+            var away = Away(map);
             bool borrowed = false;
             try
             {
@@ -130,12 +137,19 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("landing: colonists lent out", e);
             }
-            var inside = map != null ? Inside(map) : new List<Pawn>();
-            bool threat = map != null && (exact ? GenHostility.AnyHostileActiveThreatToPlayer(map) : MapFacts.ThreatOn(map));
-            var why = LandingMath.WhyNot(RimfolkPatches.On, r != null, open, TutorSystem.TutorialMode, gravship, space, Homes.All.Count, map != null, monolith,
-                away.Count > 0 || borrowed, inside.Count > 0, threat);
+            s.away = away.Count > 0 || borrowed;
+            var inside = Inside(map);
+            s.inside = inside.Count > 0;
+            var guests = Guests(map);
+            s.guests = guests.Count > 0;
+            var quests = QuestsHere(map);
+            s.quest = quests.Count > 0;
+            s.threat = exact ? GenHostility.AnyHostileActiveThreatToPlayer(map) : MapFacts.ThreatOn(map);
+            var why = LandingMath.WhyNot(s);
             if (why == LandingWhy.Away) names = away.Count > 0 ? Foundings.Names(away) : "CC_Landing_Borrowed".Translate().Resolve();
             else if (why == LandingWhy.Inside) names = Foundings.Names(inside);
+            else if (why == LandingWhy.Guests) names = Foundings.Names(guests);
+            else if (why == LandingWhy.Quest) names = TextUtil.JoinAnd(quests);
             return why;
         }
 
@@ -174,12 +188,49 @@ namespace ColonyCouncil
             return list;
         }
 
-        /// <summary>Whether another place can be picked: not when the scenario chose the place itself.</summary>
+        /// <summary>The colony's guests on the map (lodgers, the rescued in its beds): not the colony's to bring, and the game would count them lost.</summary>
+        private static List<Pawn> Guests(Map map)
+        {
+            var list = new List<Pawn>();
+            foreach (var p in map.mapPawns.AllPawns)
+                if (p != null && !p.Dead && LandingMath.Guest(p.HostFaction == Faction.OfPlayer, p.Faction == Faction.OfPlayer, p.IsPrisonerOfColony, p.IsSlaveOfColony))
+                    list.Add(p);
+            return list;
+        }
+
+        /// <summary>The quests under way with someone or something on this map that wouldn't come along (a shuttle waiting, a lodger), by name.</summary>
+        private static List<string> QuestsHere(Map map)
+        {
+            var list = new List<string>();
+            var quests = Find.QuestManager?.QuestsListForReading;
+            if (quests == null) return list;
+            foreach (var q in quests)
+            {
+                if (q == null || q.State != QuestState.Ongoing || q.hidden) continue;
+                try
+                {
+                    foreach (var t in q.QuestLookTargets)
+                    {
+                        if (!t.HasThing || t.Thing.MapHeld != map) continue;
+                        if (t.Thing is Pawn p && Comes(p)) continue;
+                        list.Add(q.name.NullOrEmpty() ? "?" : q.name);
+                        break;
+                    }
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("landing: a quest's targets", e);
+                }
+            }
+            return list;
+        }
+
+        /// <summary>Whether another place can be picked: not when the scenario sets the start's map itself.</summary>
         public static bool PlaceForced => Find.Scenario?.AllParts.Any(p => p is ScenPart_ForcedMap) ?? false;
 
         /// <summary>
         /// Why a tile won't do for the new map, or null: the game's own check for a new settlement, except that the colony's
-        /// own home, which moves, doesn't count as a neighbour; nothing else on the world map may stand there.
+        /// own home, which moves, doesn't count as a neighbour; nothing but a passing caravan may stand there.
         /// </summary>
         public static string TileWhyNot(PlanetTile tile, Map home)
         {
@@ -187,7 +238,7 @@ namespace ColonyCouncil
             var ours = home?.Parent;
             if (ours != null && tile == ours.Tile) return "CC_Landing_Pick_Here".Translate();
             if (ours != null && tile.Layer != ours.Tile.Layer) return "CC_Landing_Pick_Layer".Translate();
-            if (Find.WorldObjects.AnyWorldObjectAt(tile)) return "CC_Found_No_Taken".Translate();
+            if (Find.WorldObjects.ObjectsAt(tile).Any(o => !(o is Caravan))) return "CC_Found_No_Taken".Translate();
             var sb = new StringBuilder();
             if (TileFinder.IsValidTileForNewSettlement(tile, sb)) return null;
             string why = sb.ToString();
@@ -230,8 +281,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Who and what comes along from this map: every colonist, prisoner, slave, mech and animal of the colony with what
-        /// they wear and carry, and what is left of the starting kit, never more of it than the kit had
-        /// (<see cref="LandingMath.Take"/>).
+        /// they wear and carry, and what is left of the starting kit: the kit's part of each stack lying on the map
+        /// (<see cref="LandingMath.Takes"/>), and whatever of it someone who comes holds.
         /// </summary>
         public static LandingPlan Plan(Map map)
         {
@@ -247,27 +298,15 @@ namespace ColonyCouncil
             if (r == null) return plan;
             r.Prune();
             var comers = new HashSet<Pawn>(plan.Everyone);
-            var totals = r.Totals();
-            foreach (var group in r.kit.Where(p => p?.def != null).GroupBy(p => p.Group))
+            foreach (var piece in r.kit)
             {
-                var pieces = group.Where(p => p.thing != null && !p.thing.Destroyed && p.thing.MapHeld == map).ToList();
-                if (pieces.Count == 0) continue;
-                var have = new int[pieces.Count];
-                var held = new bool[pieces.Count];
-                for (int i = 0; i < pieces.Count; i++)
-                {
-                    var t = pieces[i].thing;
-                    held[i] = !t.Spawned && HolderPawn(t) is Pawn h && comers.Contains(h);
-                    // Lying on the map, or held by someone who comes along; not what lies in a grave, a crate or a stranger's hands.
-                    have[i] = t.Spawned || held[i] ? t.stackCount : 0;
-                }
-                totals.TryGetValue(group.Key, out int total);
-                var take = LandingMath.Take(have, held, total);
-                for (int i = 0; i < pieces.Count; i++)
-                {
-                    if (held[i]) plan.held.Add((pieces[i].thing, pieces[i]));
-                    else if (take[i] > 0) plan.loose.Add((pieces[i].thing, take[i], pieces[i]));
-                }
+                var t = piece.thing;
+                if (t == null || t.Destroyed || t.MapHeld != map) continue;
+                int kit = piece.Kit;
+                if (kit <= 0) continue;
+                if (t.Spawned) plan.loose.Add((t, LandingMath.Takes(kit, t.stackCount), piece));
+                // Held by someone who comes along; not what lies in a grave, a crate, a bookcase or a stranger's hands.
+                else if (HolderPawn(t) is Pawn h && comers.Contains(h)) plan.held.Add((t, piece));
             }
             return plan;
         }
@@ -322,20 +361,26 @@ namespace ColonyCouncil
             var plan = Plan(map);
             var people = new List<Pawn>();
             var inHand = new List<Thing>();
-            var kit = new List<(Thing thing, LandingPiece piece, int count)>();
-            var heldKit = plan.held.ToList();
+            var kit = new List<(Thing thing, LandingKind place)>();
+            var monolith = MonolithOn(map);
 
             // 1. Off the old map, as the game moves someone through a portal: their lord told, the claims on this map's beds
-            // given up, despawned with all they wear and carry. What they carry comes along beside them.
+            // given up, despawned with all they wear and carry. What they carry in their hands comes along beside them, but
+            // not a stranger or the dead.
             foreach (var p in plan.pawns)
             {
                 try
                 {
                     var c = p.carryTracker?.CarriedThing;
-                    if (c != null && p.carryTracker.innerContainer.Remove(c))
+                    if (c != null)
                     {
-                        if (c is Pawn cp && plan.carried.Contains(cp)) people.Add(cp);
-                        else inHand.Add(c);
+                        bool ours = c is Pawn cp ? plan.carried.Contains(cp) : !(c is Corpse);
+                        if (!ours) p.carryTracker.TryDropCarriedThing(p.PositionHeld, ThingPlaceMode.Near, out _);
+                        else if (p.carryTracker.innerContainer.Remove(c))
+                        {
+                            if (c is Pawn carriedPawn) people.Add(carriedPawn);
+                            else inHand.Add(c);
+                        }
                     }
                     p.GetLord()?.Notify_PawnLost(p, PawnLostCondition.ExitedMap);
                     if (p.drafter != null && p.Drafted) p.drafter.Drafted = false;
@@ -351,15 +396,15 @@ namespace ColonyCouncil
                 }
             }
             foreach (var cp in people.Where(x => plan.carried.Contains(x)).ToList()) cp.ownership?.UnclaimAll();
-            // The kit lying on the map: taken whole, or the part of a stack that the kit had.
+            // The kit lying on the map: taken whole, or the kit's part of a stack (Colonies/LandingRecord.cs follows the split).
             foreach (var (thing, count, piece) in plan.loose)
             {
                 try
                 {
-                    if (thing.Destroyed || !thing.Spawned) continue;
+                    if (thing.Destroyed || !thing.Spawned || count <= 0) continue;
                     var taken = count >= thing.stackCount ? thing : thing.SplitOff(count);
                     if (taken.Spawned) taken.DeSpawnOrDeselect();
-                    kit.Add((taken, piece, taken.stackCount));
+                    kit.Add((taken, LandingMath.PlaceOf(piece.kind)));
                 }
                 catch (Exception e)
                 {
@@ -367,10 +412,12 @@ namespace ColonyCouncil
                 }
             }
             // The map conditions the scenario set, as they stand now.
-            var conditions = new List<(GameConditionDef def, GameCondition now)>();
-            foreach (var def in r.conditions) conditions.Add((def, map.gameConditionManager.ActiveConditions.FirstOrDefault(c => c.def == def)));
-            var held = conditions.Select(c => (c.def, had: c.now != null, permanent: c.now?.Permanent ?? false, start: c.now?.startTick ?? 0,
-                duration: c.now != null && !c.now.Permanent ? c.now.Duration : 0)).ToList();
+            var held = new List<(GameConditionDef def, bool had, bool permanent, int start, int duration)>();
+            foreach (var def in r.conditions)
+            {
+                var c = map.gameConditionManager.ActiveConditions.FirstOrDefault(x => x.def == def);
+                held.Add((def, c != null, c?.Permanent ?? false, c?.startTick ?? 0, c != null && !c.Permanent ? c.Duration : 0));
+            }
 
             // 2. The old map goes, its settlement kept: its name, its founding day and every record keyed by it.
             Current.Game.DeinitAndRemoveMap(map, false);
@@ -379,13 +426,15 @@ namespace ColonyCouncil
             // 3. Another place: the same settlement moved on the world map.
             if (!same) MoveSettlement(settlement, to);
 
-            // 4. The new map, the game's way for a player home (the generator the start had); the same place's with its seed turned.
+            // 4. The new map, the game's way for a player home (the generator the start had); the same place's with its seed
+            // turned. The scenario's own after-map step runs inside (the void monolith on the starting tile).
             Map made = null;
             var mapSize = new IntVec3(size, 1, size);
+            var generator = same ? r.generator ?? settlement.MapGeneratorDef : settlement.MapGeneratorDef;
             try
             {
                 SeedTurn = same ? NonZero(Rand.Int) : 0;
-                made = MapGenerator.GenerateMap(mapSize, settlement, r.generator ?? settlement.MapGeneratorDef, settlement.ExtraGenStepDefs);
+                made = MapGenerator.GenerateMap(mapSize, settlement, generator, settlement.ExtraGenStepDefs);
             }
             catch (Exception e)
             {
@@ -400,10 +449,24 @@ namespace ColonyCouncil
             if (failed)
             {
                 // Back to where it was, with the game's own map of it.
-                var broken = Current.Game.FindMap(settlement);
-                if (broken != null) Current.Game.DeinitAndRemoveMap(broken, false);
-                if (!same) MoveSettlement(settlement, from);
-                made = MapGenerator.GenerateMap(mapSize, settlement, r.generator ?? settlement.MapGeneratorDef, settlement.ExtraGenStepDefs);
+                try
+                {
+                    var broken = Current.Game.FindMap(settlement);
+                    if (broken != null) Current.Game.DeinitAndRemoveMap(broken, false);
+                    if (!same) MoveSettlement(settlement, from);
+                    made = MapGenerator.GenerateMap(mapSize, settlement, r.generator ?? settlement.MapGeneratorDef, settlement.ExtraGenStepDefs);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("landing: making the map again where it was", e);
+                    made = null;
+                }
+            }
+            if (made == null)
+            {
+                // Nowhere to land at all: the colony goes on as a caravan at its place, never lost between maps.
+                Stranded(settlement, people, inHand.Concat(kit.Select(k => k.thing)).ToList());
+                return;
             }
             var start = MapGenerator.PlayerStartSpotValid && MapGenerator.PlayerStartSpot.InBounds(made) ? MapGenerator.PlayerStartSpot : StartNear(made);
 
@@ -439,6 +502,8 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("landing: the scenario's map conditions", e);
                 }
             }
+            // The void monolith (Anomaly): the new map's is the game's own from now on, with the scenario's waking time.
+            Monolith(monolith, made);
 
             // 6. They arrive the scenario's way at the new start: each person in a drop pod of their own (or standing there),
             // the mechs, animals and the kit that came with them shared between the pods.
@@ -449,7 +514,7 @@ namespace ColonyCouncil
                 if (LandingMath.OwnPod(SideOf(p))) groups.Add(new List<Thing> { p });
                 else shared.Add(p);
             }
-            shared.AddRange(kit.Where(k => LandingMath.PlaceOf(k.piece.kind) == LandingKind.Pods).Select(k => k.thing));
+            shared.AddRange(kit.Where(k => k.place == LandingKind.Pods).Select(k => k.thing));
             shared.AddRange(inHand);
             if (groups.Count == 0) groups.Add(new List<Thing>());
             for (int i = 0; i < shared.Count; i++) groups[i % groups.Count].Add(shared[i]);
@@ -470,9 +535,8 @@ namespace ColonyCouncil
                 if (p.IsPrisonerOfColony)
                     p.guest?.WaitInsteadOfEscapingForDefaultTicks();
             // What the scenario scattered: near the new start, or anywhere, as the game's scatter does.
-            foreach (var (thing, piece, _) in kit)
+            foreach (var (thing, place) in kit)
             {
-                var place = LandingMath.PlaceOf(piece.kind);
                 if (place == LandingKind.Pods) continue;
                 try
                 {
@@ -486,24 +550,13 @@ namespace ColonyCouncil
             }
 
             // 7. No game over while they were between maps.
-            try
-            {
-                Find.GameEnder.CheckOrUpdateGameOver();
-                if (Find.GameEnder.gameEnding)
-                {
-                    Log.Warning("[Rimfolk] After choosing another landing site the game thought the colony was gone; it isn't, so the game over is called off.");
-                    Find.GameEnder.gameEnding = false;
-                }
-            }
-            catch (Exception e)
-            {
-                CouncilLog.ErrorOnce("landing: the game over check", e);
-            }
+            NoGameOver();
 
-            // 8. The record: the new landing, and the kit as it came.
+            // 8. The record: the new landing, and the kit as it came; the world's size for new maps, as if chosen at the start.
             try
             {
-                Rerecord(r, made, start, kit, heldKit);
+                Rerecord(r, made, start);
+                Find.World.info.initialMapSize = mapSize;
                 var ledger = WorldLedger.ColonyRecord(Homes.KeyOf(made));
                 if (ledger != null) ledger.tile = made.Tile.tileId;
             }
@@ -511,13 +564,8 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("landing: the record", e);
             }
-            Homes.Clear();
-            MapFacts.Clear();
-            LensModel.Dirty();
-            Cards.Dirty();
-            whyAt = -10f;
+            Forget();
             Current.Game.CurrentMap = made;
-            Find.ColonistBar.MarkColonistsDirty();
 
             // 9. The camera at the new start, and a short message.
             string text = failed ? "CC_Landing_Failed".Translate(Homes.Name(made).Named("NAME")).Resolve()
@@ -541,6 +589,40 @@ namespace ColonyCouncil
 
         private static int NonZero(int n) => n == 0 ? 1 : n;
 
+        /// <summary>
+        /// The game counts the colony gone while nobody stands on a map (a wild animal spawned on the new map asks it), and
+        /// would end the game a moment later; with everyone landed or in their pods it is called off, and said once in the log.
+        /// </summary>
+        private static void NoGameOver()
+        {
+            try
+            {
+                Find.GameEnder.CheckOrUpdateGameOver();
+                if (Find.GameEnder.gameEnding)
+                {
+                    Log.Warning("[Rimfolk] After choosing another landing site the game thought the colony was gone; it isn't, so the game over is called off.");
+                    Find.GameEnder.gameEnding = false;
+                }
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("landing: the game over check", e);
+            }
+        }
+
+        /// <summary>Rimfolk's looks at the homes and the region, taken again for the new map and place.</summary>
+        private static void Forget()
+        {
+            Homes.Clear();
+            MapFacts.Clear();
+            RegionTowns.Invalidate();
+            TravelLand.Forget();
+            LensModel.Dirty();
+            Cards.Dirty();
+            whyAt = -10f;
+            Find.ColonistBar.MarkColonistsDirty();
+        }
+
         /// <summary>The same settlement moved on the world map: the game's tile setter redraws it and its tile's lookups; its cached drawn place is let go.</summary>
         private static void MoveSettlement(Settlement settlement, PlanetTile to)
         {
@@ -555,6 +637,54 @@ namespace ColonyCouncil
             }
             // The void monolith comes as at a game's start (ScenPart_MonolithGeneration checks the starting tile).
             Find.GameInfo.startingTile = to;
+        }
+
+        /// <summary>The colony's void monolith on the old map (Anomaly), with when the scenario wakes it (or -1).</summary>
+        private static (Building_VoidMonolith building, int wakeAt) MonolithOn(Map map)
+        {
+            if (!ModsConfig.AnomalyActive || Find.Anomaly?.monolith == null || Find.Anomaly.monolith.Map != map) return (null, -1);
+            var m = Find.Anomaly.monolith;
+            int at = m.TicksUntilAutoActivate + Now;
+            return (m, at > 0 ? at : -1);
+        }
+
+        /// <summary>
+        /// The new map's monolith is the game's from now on: the game only takes one as its own while it has none, and the
+        /// old one is still on its books as the new map is made. The scenario's time for it to wake comes along.
+        /// </summary>
+        private static void Monolith((Building_VoidMonolith building, int wakeAt) old, Map made)
+        {
+            if (old.building == null) return;
+            try
+            {
+                var fresh = made.listerThings.ThingsOfDef(ThingDefOf.VoidMonolith).OfType<Building_VoidMonolith>().FirstOrDefault();
+                if (Find.Anomaly.monolith == old.building || Find.Anomaly.monolith == null || !Find.Anomaly.monolith.Spawned) Find.Anomaly.monolith = fresh;
+                if (fresh != null && old.wakeAt > Now) fresh.AutoActivate(old.wakeAt);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("landing: the void monolith", e);
+            }
+        }
+
+        /// <summary>No map could be made at all: the colony, with all it brought, goes on as a caravan at its settlement's tile.</summary>
+        private static void Stranded(Settlement settlement, List<Pawn> people, List<Thing> things)
+        {
+            try
+            {
+                var caravan = CaravanMaker.MakeCaravan(people.Where(p => p != null && !p.Dead && !p.Spawned && p.holdingOwner == null), Faction.OfPlayer, settlement.Tile, true);
+                foreach (var t in things)
+                    if (t != null && !t.Destroyed && !t.Spawned && t.holdingOwner == null)
+                        CaravanInventoryUtility.GiveThing(caravan, t);
+                NoGameOver();
+                Forget();
+                string name = settlement.HasName ? settlement.Name : settlement.LabelCap;
+                LongEventHandler.ExecuteWhenFinished(() => Messages.Message("CC_Landing_Stranded".Translate(name.Named("NAME")).Resolve(), caravan, MessageTypeDefOf.NegativeEvent, false));
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("landing: the colony as a caravan", e);
+            }
         }
 
         /// <summary>A start spot when the generator gave none: open ground near the middle.</summary>
@@ -585,21 +715,18 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The record after a landing: when and where, and the kit as it came (each piece its own count, never more than
-        /// came; a piece that merged into another on landing keeps its count in the group).
+        /// The record after a landing: when and where, and the kit as it came. The pieces followed their stacks through the
+        /// move (and any merge as the pods opened); what stayed behind on the old map is let go.
         /// </summary>
-        private static void Rerecord(LandingRecord r, Map made, IntVec3 start, List<(Thing thing, LandingPiece piece, int count)> kit, List<(Thing thing, LandingPiece piece)> heldKit)
+        private static void Rerecord(LandingRecord r, Map made, IntVec3 start)
         {
             r.landedAt = Now;
             r.start = start;
             r.landings++;
             r.home = Homes.KeyOf(made);
-            var pieces = new List<LandingPiece>();
-            foreach (var (thing, piece, count) in kit)
-                pieces.Add(new LandingPiece { thing = thing.Destroyed ? null : thing, def = piece.def, stuff = piece.stuff, count = count, kind = piece.kind });
-            foreach (var (thing, piece) in heldKit)
-                pieces.Add(new LandingPiece { thing = thing.Destroyed ? null : thing, def = piece.def, stuff = piece.stuff, count = thing.stackCount, kind = piece.kind });
-            r.kit = pieces;
+            r.kit.RemoveAll(p => p?.thing == null || p.thing.Destroyed || p.thing.MapHeld != made);
+            r.Prune();
+            LandingKit.Track(r);
         }
     }
 }

@@ -35,12 +35,18 @@ namespace ColonyCouncil
         Space,
         /// <summary>More homes than the one the colony started on, or the start map is no longer a home.</summary>
         Homes,
+        /// <summary>A journey or a new colony is being planned from the home (Rimfolk's journey planner, a founding).</summary>
+        Plans,
         /// <summary>The void monolith (Anomaly) has woken: its study is tied to this map.</summary>
         Monolith,
         /// <summary>Someone of the colony is away from the map.</summary>
         Away,
         /// <summary>Someone of the colony is inside something on the map (a casket, a pod, a vat).</summary>
         Inside,
+        /// <summary>Guests of the colony stay on the map (lodgers, the rescued): they aren't the colony's to bring.</summary>
+        Guests,
+        /// <summary>A quest under way has someone or something on this map that wouldn't come along.</summary>
+        Quest,
         /// <summary>A threat is on the map.</summary>
         Threat
     }
@@ -57,10 +63,21 @@ namespace ColonyCouncil
         Other
     }
 
+    /// <summary>What is known of the colony now, for whether another landing site is offered (<see cref="LandingMath.WhyNot"/>).</summary>
+    public sealed class LandingState
+    {
+        public bool on = true, recorded = true, open = true, tutorial, gravship, space;
+        /// <summary>The colony's homes, and whether the one home is the map it landed on.</summary>
+        public int homes = 1;
+        public bool startHome = true;
+        public bool plans, monolithWoken, away, inside, guests, quest, threat;
+    }
+
     /// <summary>
     /// Choosing another landing site in the first days of a new game (DESIGN.md, "Another landing site"; the player's
-    /// request of 6 November 2026): when it is offered, who and what comes along, and where the starting kit goes on the
-    /// new map. Pure rules, tested in Tools/Tests/LandingTests.cs; the game's side is Colonies/Landing.cs.
+    /// request of 6 November 2026): when it is offered, who and what comes along, how much of the scenario's starting kit
+    /// is left as stacks are split, merged and used, and where the kit goes on the new map. Pure rules, tested in
+    /// Tools/Tests/LandingTests.cs; the game's side is Colonies/Landing.cs.
     /// </summary>
     public static class LandingMath
     {
@@ -77,30 +94,32 @@ namespace ColonyCouncil
         /// <summary>The game's own drop pods open after this many ticks (ScenPart_PlayerPawnsArriveMethod).</summary>
         public const int PodOpenDelay = 110;
 
+        /// <summary>The game warns of a map's weight on the computer above this size (Dialog_AdvancedGameConfig).</summary>
+        public const int HeavySize = 280;
+
         /// <summary>Still within the first days after the landing at <paramref name="landedAt"/>.</summary>
         public static bool Open(int now, int landedAt) => landedAt >= 0 && now >= landedAt && now - landedAt < OfferTicks;
 
         /// <summary>The menu's entry shows at all (greyed or not): a start Rimfolk saw, within its first days, not the tutorial.</summary>
         public static bool Shows(bool on, bool recorded, int now, int landedAt, bool tutorial) => on && recorded && !tutorial && Open(now, landedAt);
 
-        /// <summary>
-        /// Why it isn't offered, the first reason that holds, or <see cref="LandingWhy.None"/>. <paramref name="homes"/>: the
-        /// colony's homes; <paramref name="startHome"/>: the one home is the map the colony landed on.
-        /// </summary>
-        public static LandingWhy WhyNot(bool on, bool recorded, bool open, bool tutorial, bool gravship, bool space, int homes, bool startHome, bool monolithWoken,
-            bool away, bool inside, bool threat)
+        /// <summary>Why it isn't offered, the first reason that holds, or <see cref="LandingWhy.None"/>.</summary>
+        public static LandingWhy WhyNot(LandingState s)
         {
-            if (!on) return LandingWhy.Off;
-            if (!recorded) return LandingWhy.NotSeen;
-            if (!open) return LandingWhy.Over;
-            if (tutorial) return LandingWhy.Tutorial;
-            if (gravship) return LandingWhy.Gravship;
-            if (space) return LandingWhy.Space;
-            if (homes != 1 || !startHome) return LandingWhy.Homes;
-            if (monolithWoken) return LandingWhy.Monolith;
-            if (away) return LandingWhy.Away;
-            if (inside) return LandingWhy.Inside;
-            if (threat) return LandingWhy.Threat;
+            if (!s.on) return LandingWhy.Off;
+            if (!s.recorded) return LandingWhy.NotSeen;
+            if (!s.open) return LandingWhy.Over;
+            if (s.tutorial) return LandingWhy.Tutorial;
+            if (s.gravship) return LandingWhy.Gravship;
+            if (s.space) return LandingWhy.Space;
+            if (s.homes != 1 || !s.startHome) return LandingWhy.Homes;
+            if (s.plans) return LandingWhy.Plans;
+            if (s.monolithWoken) return LandingWhy.Monolith;
+            if (s.away) return LandingWhy.Away;
+            if (s.inside) return LandingWhy.Inside;
+            if (s.guests) return LandingWhy.Guests;
+            if (s.quest) return LandingWhy.Quest;
+            if (s.threat) return LandingWhy.Threat;
             return LandingWhy.None;
         }
 
@@ -118,6 +137,10 @@ namespace ColonyCouncil
 
         /// <summary>Every colonist, prisoner, slave, mech and animal of the colony comes along; nobody else does.</summary>
         public static bool Comes(LandingSide side) => side != LandingSide.Other;
+
+        /// <summary>A guest of the colony: hosted by it, neither its prisoner nor its slave nor one of its own.</summary>
+        public static bool Guest(bool hostedByColony, bool playerFaction, bool prisonerOfColony, bool slaveOfColony) =>
+            hostedByColony && !playerFaction && !prisonerOfColony && !slaveOfColony;
 
         /// <summary>Each of these gets a drop pod of their own, as each starting colonist did; mechs and animals share the pods with the kit.</summary>
         public static bool OwnPod(LandingSide side) => side == LandingSide.Colonist || side == LandingSide.Prisoner || side == LandingSide.Slave;
@@ -143,30 +166,38 @@ namespace ColonyCouncil
         /// </summary>
         public static LandingKind PlaceOf(LandingKind kind) => kind == LandingKind.Gear ? LandingKind.Pods : kind;
 
+        // ---------------- How much of a stack is the kit ----------------
+        // Each piece of the kit is a stack the game made at the start, with how many of it are the kit's. Stacks are split
+        // (hauled, carried, used a part at a time), merged (on a stockpile, in a pod) and used up. What the colony found or
+        // made on the map is never the kit's, and when a stack that holds both is split or used, the kit's part goes first,
+        // so the kit is never counted larger than it is.
+
+        /// <summary>The kit's part of a stack: never more than the stack (some were eaten, used or burnt), never below none.</summary>
+        public static int KitIn(int kit, int stack) => Math.Max(0, Math.Min(kit, stack));
+
         /// <summary>
-        /// How much of each recorded stack comes along, never more than the kit had (<paramref name="total"/>, the group's
-        /// recorded count: stacks merge, split and get used). <paramref name="held"/> marks the stacks someone who comes
-        /// along holds (worn, wielded, in their inventory): those come whole and count first; the loose ones then take what
-        /// is left, in order. Nothing is ever made: a loose stack bigger than what is left gives only part of itself.
+        /// A stack of <paramref name="before"/> holding <paramref name="kit"/> of the kit has <paramref name="split"/> split
+        /// off: the kit's part goes with it first. Returns the kit in the part split off; <paramref name="rest"/> is what
+        /// stays in the stack.
         /// </summary>
-        public static int[] Take(IReadOnlyList<int> have, IReadOnlyList<bool> held, int total)
+        public static int SplitKit(int kit, int before, int split, out int rest)
         {
-            var take = new int[have.Count];
-            int left = Math.Max(0, total);
-            for (int i = 0; i < have.Count; i++)
-                if (held[i] && have[i] > 0)
-                {
-                    take[i] = have[i];
-                    left -= have[i];
-                }
-            for (int i = 0; i < have.Count; i++)
-            {
-                if (held[i] || have[i] <= 0 || left <= 0) continue;
-                take[i] = Math.Min(have[i], left);
-                left -= take[i];
-            }
-            return take;
+            kit = KitIn(kit, before);
+            int off = KitIn(kit, Math.Max(0, split));
+            rest = kit - off;
+            return off;
         }
+
+        /// <summary>
+        /// A stack takes <paramref name="taken"/> from another of <paramref name="otherBefore"/> holding
+        /// <paramref name="kitOther"/> of the kit: the kit's part goes first. Returns the kit that moves over.
+        /// </summary>
+        public static int MergeKit(int kitOther, int otherBefore, int taken) => KitIn(KitIn(kitOther, otherBefore), Math.Max(0, taken));
+
+        /// <summary>How much of a loose stack comes along: the kit's part of it, never more (the rest stays with the map).</summary>
+        public static int Takes(int kit, int stack) => KitIn(kit, stack);
+
+        // ---------------- The map ----------------
 
         /// <summary>
         /// The map sizes offered: the game's own (its advanced options, with its larger test sizes when those are on) and the
