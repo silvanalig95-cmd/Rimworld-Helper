@@ -6,6 +6,45 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- the good side's bands as the player approved them (the player's decision, 6 November 2026: "As I approved": three
+  bands that each give a mood, steady +2, in good heart +3, in high spirits +5, against 0.113.0's two, where steady gave
+  nothing and the others +2 and +3). Not released: no round, About.xml untouched. (1) Below steady, nothing to speak of
+  yet: `GoodBand.None`, a new first value (the band is never saved, always read from the value, so no position moved
+  anything); steady from 20 (`HeartMath.SteadyAt`), in good heart from 45 and in high spirits from 65 as before.
+  (2) Moods +2, +3, +5 (`GoodMood`; `Council_Heart_GoodSide` with three stages, steady, in good heart, in high spirits,
+  `ThoughtWorker_HeartGood` mapping each band to its stage, nothing yet inactive). Steady gives only its mood: its dream
+  and recovery factors stay at 1. Everywhere `GoodBand.Steady` meant "nothing yet" now reads `GoodBand.None`, so steady
+  shows like the other two: the meter and its tooltip, the colonist's card, the inspector line and RimHUD ("Heart:
+  steady · proud"), and the council's Moods page counts it. (3) Words: new keys in `Rimfolk_GoodHeart_Bands.xml`
+  (`CC_GoodSide_Band_*` with nothing yet's and steady's own label and description, `CC_GoodSide_Explain`,
+  `CC_GoodSide_ColonySummary`), the code pointed at them and the old band words, explanation and count left unused in
+  `Rimfolk_GoodHeart.xml`; the setting's tooltip rewritten in place with its numbers kept ("+2, +3 and +5"), so
+  `SettingsCatalog.cs` is untouched; steady's stage has a line of its own for every age; the DefValidator knows the new
+  keys. Docs: DESIGN.md (Layer 7's summary, the bands, the words, Balance targets), the Almanac's good-side page and the
+  heart's page (rows rewritten keeping their numbers, "+3 mood in place of steady's +2"; no keyword change), README.
+  (4) Balance (`Tools/Balance` now counts steady: `goodBandHours` by `GoodBand`, `Summary.steady`, a Steady column in
+  the report's good-side table; 120 runs, the same seeds, before = 0.113.0; `before.json` kept as the code before the
+  good side): 6 colonists, Rimfolk's mood well run +6.0 to +6.4 (12 colonists +5.0 to +5.7), average +2.5 to +2.6,
+  neglected -7.2 to -7.2 (identical: the good side never reaches 20 there); the band mood well run +0.7 to +2.0 before
+  growing ordinary, which takes back 5.2 to 5.8; the whole mood 69, 64, 39% as before. Time in each band, well run:
+  steady 48%, in good heart 28%, in high spirits 3% (the same values before; only steady's mood is new), average steady
+  2% and nothing higher, neglected none; light touch well run 45/34/6%, story-rich 48/28/2%, demanding 48/23/2%. Over,
+  as the 0.113.0 builder warned and the player chose: Rimfolk's good moods at a high point, well run, P99 +17.6 to +17.9
+  and +12 or more 18% to 21% (12 colonists +16.1 to +16.6, 9% to 12%), and well run now above its target (+3 to +6);
+  nothing else retuned. Strain bands unchanged (strained/worn/near breaking average 5.9/1.5/0.3%, neglected
+  29.2/17.3/7.7%), the day off 0.03 and 0.72 a colonist-year as before, time under the minor-break line 34% neglected
+  as before. (5) Old saves: nothing saved
+  changes meaning (the good side is a number); a colonist above 20 is steady at once. Files: `Heart/HeartMath.cs`,
+  `GoodHeart.cs`, `HeartView.cs`, `HeartCard.cs` (a comment); `Rimfolk_Thoughts_GoodHeart.xml`,
+  `Rimfolk_GoodHeart_Bands.xml` (new), `Rimfolk_GoodHeart.xml`, `Almanac_GoodHeart.xml`, `Almanac_Council.xml`;
+  `Tools/Balance` (`Sim.cs`, `Runner.cs`, `Report.cs`, `Program.cs`), `Tools/DefValidator/Program.cs`. Tests:
+  `GoodHeartTests` (the three bands from 20, 45 and 65 and nothing yet, the moods +2, +3, +5, each smaller than
+  strain's across from it, the three stages and the worker's mapping, steady's factors at 1, the band never saved, the
+  new words and the old keys unused, steady shown and counted like the others). textcheck against 4cc8cb8 reports the
+  thought's third stage (label, description, mood) as "added outside an existing list", on purpose: the check is for
+  prose passes. To look at in game: a colonist with strain at nothing and the good side at 20 to 44 (dev mode: fill by
+  20): the meter and its tooltip say steady, the Mood tab's "steady" +2, the card's line, the inspector "Heart: steady";
+  below 20 the meter says nothing yet; the Moods page's count.
 - the heart's good side: in good heart (the player's request, 6 November 2026: "there should perhaps also be a
   counterweight/side to strain, right? If they have positive impacts over an extended period"; approved as proposed,
   `docs/review-2026-11/decisions.md`, built right after phase 3). Not released: no round, About.xml untouched. DESIGN.md
