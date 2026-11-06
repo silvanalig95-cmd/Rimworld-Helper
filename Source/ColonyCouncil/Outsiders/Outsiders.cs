@@ -506,7 +506,9 @@ namespace ColonyCouncil
         /// <summary>
         /// A line over someone's head at a moment of a talk with an outsider (one sentence, from Rimfolk_Pool_OutsiderSays),
         /// said to <paramref name="other"/>. {NAME} is the other's name, {TOWN} the outsider's town, {ASKER} who asked before;
-        /// <paramref name="also"/> a tag of the moment only its caller knows (a house's name fallen from the region's band).
+        /// <paramref name="also"/> a tag of the moment only its caller knows (a house's name fallen from the region's band,
+        /// what is on the plate at a meal). Lines can ask for the outsider's people by age (their:tribal... their:empire) and
+        /// for how well the two know each other (first, met, known).
         /// </summary>
         public static bool Say(Pawn p, string moment, Pawn other, Pawn asker = null, string also = null)
         {
@@ -531,15 +533,36 @@ namespace ColonyCouncil
                 // Who speaks: one of the colony's ("us") or the outsider ("them"); a line for either has neither tag.
                 tags.Add(KinMemory.Ours(p) ? "us" : "them");
                 var x = KinMemory.Ours(p) ? other : p;
-                if (x != null && PeopleOf(x) != null) tags.Add(Lowtech(x) ? "theirLowtech" : "theirHightech");
+                var people = x != null ? PeopleOf(x) : null;
+                if (people != null)
+                {
+                    tags.Add(Lowtech(x) ? "theirLowtech" : "theirHightech");
+                    // Their people's ways by age, and the Empire apart (its own titles and honour).
+                    tags.Add("their:" + Ages.Tag(Ages.Of(people)));
+                    if (Ages.IsEmpire(people)) tags.Add("their:empire");
+                }
+                // How well the two know each other: never talked (first), met before (met), known (familiar enough).
+                var c = KinMemory.Ours(p) ? p : other;
+                var pair = c != null && x != null ? Book?.Pair(c, x, false) : null;
+                if (pair == null || pair.talks == 0 && pair.lastTick < 0) tags.Add("first");
+                else
+                {
+                    tags.Add("met");
+                    if (pair.fam >= 30f) tags.Add("known");
+                }
                 if (Has(p, TraitDefOf.Kind)) tags.Add("kind");
                 if (Has(p, TraitDefOf.Abrasive)) tags.Add("abrasive");
                 // The colony's name (Diplomacy/Renown.cs): colony:known, colony:renowned, colony:knownfor:KIND.
                 Renown.AddTags(tags, KinMemory.Ours(p) ? p : other);
-                var lines = pool.lines.For(ToneUtility.ToneFor(p));
-                string line = Flavor.PickTagged(lines.Where(l => LineTags.Of(l).tags?.Contains(moment) ?? false), tags)
-                              ?? Flavor.PickTagged(pool.lines.plain.Where(l => LineTags.Of(l).tags?.Contains(moment) ?? false), tags);
+                var lines = pool.lines.For(ToneUtility.ToneFor(p)).Where(l => LineTags.Of(l).tags?.Contains(moment) ?? false).ToList();
+                var plain = pool.lines.plain.Where(l => LineTags.Of(l).tags?.Contains(moment) ?? false).ToList();
+                // Not a line given at this moment lately while another fits (two traders greeted in a row).
+                string key = Pool + ":" + moment;
+                var recent = Flavor.Memory.Recent(key);
+                string line = Flavor.PickTagged(lines, tags, recent) ?? Flavor.PickTagged(lines, tags)
+                              ?? Flavor.PickTagged(plain, tags, recent) ?? Flavor.PickTagged(plain, tags);
                 if (line.NullOrEmpty()) return null;
+                Flavor.Memory.Remember(key, line, Math.Max(lines.Count, plain.Count));
                 return Texts.Fill(line, ("NAME", other?.LabelShort ?? ""), ("TOWN", (x != null ? TownOf(x)?.Name : null) ?? ""), ("ASKER", asker?.LabelShort ?? ""));
             }
             catch (Exception e)

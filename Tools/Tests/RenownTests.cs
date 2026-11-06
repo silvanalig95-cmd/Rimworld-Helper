@@ -324,11 +324,19 @@ public static class RenownTests
         // ================= Shipped lines asked for more, or retired =================
 
         var allLis = Directory.GetFiles(Path.Combine(root, "Defs"), "*.xml", SearchOption.AllDirectories).SelectMany(f => XDocument.Load(f).Descendants("li").Select(e => e.Value)).ToHashSet();
+        // Besides the renown's: the text pass on the world's voices (6 November 2026) asked a chat's opening for two who
+        // never talked (Outsiders.Line), a meal for what is on the plate (the shared meal), a war party's line for its foe
+        // (Camp.Bubble) and a camp's farewell for the hour they set off (CampLook.FarewellText).
+        var others = new HashSet<string> { "first", "fare:awful", "foe:lowtech", "morning", "day", "evening", "night" };
+        C(Code("Outsiders/Outsiders.cs").Contains("tags.Add(\"first\")") && Code("Outsiders/OutsiderOutcomes.cs").Contains("\"fare:awful\"")
+          && Code("Camps/Camp.cs").Contains("\"foe:lowtech\"") && Code("Camps/CampLook.cs").Contains("tags.Add(Flavor.HourTag(") && Code("Flavor.cs").Contains("\"night\" : hour < 11 ? \"morning\""),
+            "the other tags the shipped lines ask for are set where those lines are picked");
         foreach (var kv in ShippedLines.AlsoWhen)
         {
             C(allLis.Contains(kv.Key), $"the shipped line is still in the defs, word for word: {kv.Key}");
             var cond = ShippedLines.ConditionOf(kv.Key);
-            C(cond?.tags != null && cond.alts.SelectMany(a => a).All(a => tags.Contains(a.name) || a.name == RenownMath.WasRenownedTag), $"its condition names tags the game sets: {kv.Value}");
+            C(cond?.tags != null && cond.alts.SelectMany(a => a).All(a => tags.Contains(a.name) || a.name == RenownMath.WasRenownedTag || others.Contains(a.name)),
+                $"its condition names tags the game sets: {kv.Value}");
         }
         foreach (var l in ShippedLines.Retired) C(allLis.Contains(l) && ShippedLines.ConditionOf(l) == ShippedLines.Never, $"the retired line is still in the defs, never said: {l}");
         var song = "[renownup,us,medieval] I hear there's a song with our name in it now.";

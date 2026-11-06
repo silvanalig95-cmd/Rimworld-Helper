@@ -199,13 +199,15 @@ public static class ImmersionTests
             foreach (var line in lines) Spoken(pool, line);
         }
         // The lines the defs give to be said: an event's (Arrivals.Say, the callers' work), an answer's play-out or a
-        // camp's errand (PlayWords.During, LordJob_PlayOut, CampRequests.ErrandWorked), a camp's own (CampLife, CampLook).
+        // camp's errand (PlayWords.During, LordJob_PlayOut, CampRequests.ErrandWorked), a camp's own (CampLife, CampLook), and
+        // those a file of their own adds to a kind of camp (a FlavorExtensionDef with camp: campLines, momentLines).
         int given = 0;
         foreach (var e in defs.SelectMany(d => d.Descendants()))
         {
             string cls = (string)e.Attribute("Class") ?? "";
             var fields = cls == "ColonyCouncil.HappeningExtension" || cls.StartsWith("ColonyCouncil.DilemmaEffect_") ? new[] { "lines" }
-                : e.Name.LocalName == "ColonyCouncil.CampKindDef" ? new[] { "lines", "momentLines" } : null;
+                : e.Name.LocalName == "ColonyCouncil.CampKindDef" ? new[] { "lines", "momentLines" }
+                : e.Name.LocalName == "ColonyCouncil.FlavorExtensionDef" && e.Element("camp") != null ? new[] { "campLines", "momentLines" } : null;
             if (fields == null) continue;
             string where = e.Element("defName")?.Value ?? e.Ancestors().Select(a => a.Element("defName")?.Value).FirstOrDefault(n => n != null) ?? cls;
             foreach (var f in fields)

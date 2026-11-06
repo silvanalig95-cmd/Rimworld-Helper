@@ -164,6 +164,25 @@ namespace ColonyCouncil
         /// <summary>Short lines shown above heads now and then.</summary>
         [MustTranslate] public List<string> lines = new List<string>();
 
+        /// <summary>Words for this kind written in a file of their own (a FlavorExtensionDef with camp), joined to its lists at startup.</summary>
+        public void AddWords(FlavorExtensionDef ext)
+        {
+            if (ext == null) return;
+            void Join(ref List<string> to, List<string> from)
+            {
+                if (from.NullOrEmpty()) return;
+                to ??= new List<string>();
+                to.AddRange(from.Where(l => !l.NullOrEmpty()));
+            }
+            Join(ref titles, ext.titles);
+            Join(ref texts, ext.texts);
+            Join(ref settled, ext.settled);
+            Join(ref joinTexts, ext.joinTexts);
+            Join(ref farewell, ext.farewell);
+            Join(ref lines, ext.campLines);
+            Join(ref momentLines, ext.momentLines);
+        }
+
         public bool FitsEra()
         {
             if (eras.NullOrEmpty()) return true;

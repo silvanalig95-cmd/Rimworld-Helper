@@ -173,7 +173,7 @@ namespace ColonyCouncil
             if (Rand.Chance(0.12f) && !kind.lines.NullOrEmpty())
             {
                 var speaker = Here.Where(p => p.Awake() && !p.Downed).RandomElementWithFallback();
-                if (speaker != null) Arrivals.Say(speaker, Flavor.PickText(kind.lines));
+                if (speaker != null) Arrivals.Say(speaker, Bubble(speaker));
             }
         }
 

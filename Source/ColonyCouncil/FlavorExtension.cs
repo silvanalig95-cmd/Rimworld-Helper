@@ -5,8 +5,9 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// More lines for an existing wish, ambition or flavour pool, kept in a separate file. Merged in at startup,
-    /// so writing can grow in content packs without touching the original defs (other mods can add lines too).
+    /// More lines for an existing wish, ambition, decree, flavour pool or kind of camp, kept in a separate file. Merged
+    /// in at startup, so writing can grow in content packs without touching the original defs (other mods can add lines
+    /// too).
     /// </summary>
     public class FlavorExtensionDef : Def
     {
@@ -29,11 +30,24 @@ namespace ColonyCouncil
         public ToneLines support;
         public ToneLines oppose;
 
+        /// <summary>
+        /// A kind of camp (Camps/CampKindDef.cs): words joined to its own lists, the same tags and placeholders as there.
+        /// <see cref="campLines"/> joins its lines (the short lines over their heads).
+        /// </summary>
+        public CampKindDef camp;
+        [MustTranslate] public List<string> titles;
+        [MustTranslate] public List<string> texts;
+        [MustTranslate] public List<string> settled;
+        [MustTranslate] public List<string> joinTexts;
+        [MustTranslate] public List<string> farewell;
+        [MustTranslate] public List<string> campLines;
+        [MustTranslate] public List<string> momentLines;
+
         public override IEnumerable<string> ConfigErrors()
         {
             foreach (var e in base.ConfigErrors()) yield return e;
-            int targets = (pool.NullOrEmpty() ? 0 : 1) + (wish == null ? 0 : 1) + (ambition == null ? 0 : 1) + (decree == null ? 0 : 1);
-            if (targets != 1) yield return "a flavor extension needs exactly one target: pool, wish, ambition or decree";
+            int targets = (pool.NullOrEmpty() ? 0 : 1) + (wish == null ? 0 : 1) + (ambition == null ? 0 : 1) + (decree == null ? 0 : 1) + (camp == null ? 0 : 1);
+            if (targets != 1) yield return "a flavor extension needs exactly one target: pool, wish, ambition, decree or camp";
         }
     }
 
@@ -73,6 +87,7 @@ namespace ColonyCouncil
                     ext.decree.support.AddFrom(ext.support);
                     ext.decree.oppose.AddFrom(ext.oppose);
                 }
+                if (ext.camp != null) ext.camp.AddWords(ext);
                 merged++;
             }
             if (merged > 0 && Prefs.DevMode) Log.Message("[Rimfolk] merged " + merged + " flavor extension(s).");
