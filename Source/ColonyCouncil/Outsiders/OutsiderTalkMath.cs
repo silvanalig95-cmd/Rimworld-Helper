@@ -276,14 +276,19 @@ namespace ColonyCouncil
         /// <summary>
         /// Shipped lines of a piece (one of a turn's choices, tags and all) true in no case they are drawn for: never said,
         /// the turn's other choices still are. The same decision: a family that outlasts any contract, a house that
-        /// remembers, a youth of a good house sent to make an alliance.
+        /// remembers, a youth of a good house sent to make an alliance; and since 6 November 2026 a hostage as one of the
+        /// chief's kin.
         /// </summary>
         public static readonly HashSet<string> RetiredLines = new HashSet<string>(StringComparer.Ordinal)
         {
             "[them,their:tribal] And a family can't, which is why the elders like it.",
             "[them,their:spacer] Contracts lapse, families mostly don't.",
             "[them,their:lowtech] It is the kind of thing a house remembers for a long time.",
-            "[them,their:medieval] A youth of a good house serves in another, it's how alliances are made."
+            "[them,their:medieval] A youth of a good house serves in another, it's how alliances are made.",
+            // The player's decision of 6 November 2026: a hostage is anyone of standing among their people, never by kinship
+            // (Diplomacy/Hostages.cs). The custom by the tribes' ways said one of the chief's kin; its own words are in
+            // Rimfolk_OutsiderTalks_HostageStanding.xml.
+            "[them,their:tribal] When two clans make peace, one of the chief's kin goes to live at the other's fire."
         };
 
         /// <summary>A piece's conditions with what <see cref="AlsoWhen"/> adds for it.</summary>

@@ -188,8 +188,13 @@ namespace ColonyCouncil
         public int lessons, lessonDay = -1, dayTallied = -1, days, hungryDays, injuries, hurt;
         public float xpAtStart = -1f, moodSum;
         public int letters;
-        /// <summary>The notable of theirs they are kin to (their parent), or -1.</summary>
+        /// <summary>
+        /// The notable of theirs who sent them and answers for them (Wards.Sender), or -1. Until 5 November 2026 a ward's
+        /// parent, and until 6 November a hostage's.
+        /// </summary>
         public int notable = -1;
+        /// <summary>Their hostage: what they are among their people (one of their traders, of their seasoned fighters); Unknown for one given before.</summary>
+        public HostageStanding standing;
         /// <summary>Ours with the Empire: a page in a titled household (regard only).</summary>
         public bool page;
         /// <summary>The colony asked for it by letter (else they offered, or it came with the terms).</summary>
@@ -238,6 +243,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref moodSum, "moodSum");
             Scribe_Values.Look(ref letters, "letters");
             Scribe_Values.Look(ref notable, "notable", -1);
+            Scribe_Values.Look(ref standing, "standing", HostageStanding.Unknown);
             Scribe_Values.Look(ref page, "page");
             Scribe_Values.Look(ref asked, "asked");
             Scribe_Values.Look(ref alone, "alone");

@@ -154,7 +154,7 @@
 
   <!-- A hostage given for a pact -->
   <CC_Form_Hostage_Tribal>a pledge of the clan's blood</CC_Form_Hostage_Tribal>
-  <CC_Form_Hostage_Tribal_Rite>one of the chief's kin given</CC_Form_Hostage_Tribal_Rite>
+  <CC_Form_Hostage_Tribal_Rite>one of the clan given to the other's fire</CC_Form_Hostage_Tribal_Rite>
   <CC_Form_Hostage_Medieval>a hostage for the pact</CC_Form_Hostage_Medieval>
   <CC_Form_Hostage_Medieval_Rite>hostages exchanged before witnesses</CC_Form_Hostage_Medieval_Rite>
   <CC_Form_Hostage_Industrial>a guarantor</CC_Form_Hostage_Industrial>

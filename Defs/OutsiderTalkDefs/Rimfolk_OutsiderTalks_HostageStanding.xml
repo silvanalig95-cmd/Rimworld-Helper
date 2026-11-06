@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Their hostage is anyone of standing among their people, never by kinship (the player's decision, 6 November 2026;
+       Source/ColonyCouncil/Diplomacy/Hostages.cs, MakeHostage): one of their traders or of their seasoned fighters, made
+       with the kinds their people's caravans and war bands bring. The one spoken to is that hostage (them:hostage) and
+       what they are (them:hostage:trader, them:hostage:fighter; Diplomacy/FactsWards.cs), or the custom by their ways
+       (tie:hostage), said instead of the tribal line of Rimfolk_OT_HostageMore_Custom that made it one of the chief's
+       kin (retired, Outsiders/OutsiderTalkMath.cs). The format is described at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_HostageStanding_Trader</defName>
+    <topic>hostage</topic>
+    <when>them:hostage:trader,!tie:hostage:due</when>
+    <lines>
+      <li>[us] They say you trade for your people.</li>
+      <li>[them] I do, and someone else leads the carts while I'm here.</li>
+      <li>[us] Then you know what our goods would fetch.</li>
+      <li>[them,their:lowtech] More at our market than you'd think, if you ever bring them.</li>
+      <li>[them] Better than you do, I'd guess.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_HostageStanding_Road</defName>
+    <topic>hostage</topic>
+    <uses>chat,know</uses>
+    <when>them:hostage:trader</when>
+    <lines>
+      <li>[them] I miss the road more than my own bed.</li>
+      <li>[us] Where did it take you?</li>
+      <li>[them,their:tribal] Every camp that would trade with us, and a few that wouldn't.</li>
+      <li>[them,their:hightech] Every settlement on the route, and a few off it.</li>
+      <li>[them] To every town that would open its gate to a cart.</li>
+      <li>[us] You'll be on it again when the term is out.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_HostageStanding_Fighter</defName>
+    <topic>hostage</topic>
+    <when>them:hostage:fighter,!tie:hostage:due</when>
+    <lines>
+      <li>[us] You carry yourself like someone who's stood in a fight before.</li>
+      <li>[them,their:tribal] I've gone out with the warriors since I could lift a spear.</li>
+      <li>[them] More fights than I like to count, for my people.</li>
+      <li>[us] Then you know why some of ours keep an eye on you.</li>
+      <li>[them] I'd keep an eye on me too.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_HostageStanding_Raid</defName>
+    <topic>hostage</topic>
+    <when>them:hostage:fighter,colony:raid</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] Next time raiders come, put me where I can be of some use.</li>
+      <li>[us,trait:Brawler] Gladly, there's always room on the wall.</li>
+      <li>[us] Your people would never forgive us if you fell.</li>
+      <li>[them] My people sent me knowing what I am.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_HostageStanding_Custom</defName>
+    <topic>hostage</topic>
+    <uses>chat,home</uses>
+    <when>tie:hostage</when>
+    <lines>
+      <li>[us] Who do your people send, when they send a hostage?</li>
+      <li>[them,their:tribal] Someone the clan would miss, a good hunter or one who trades for us.</li>
+      <li>[them,their:medieval] Someone of standing, or the other side won't take the word as given.</li>
+      <li>[them,their:hightech] Someone with a name of their own, or the guarantee isn't worth much.</li>
+      <li>[them] Someone whose absence costs us something, or it isn't much of a pledge.</li>
+      <li>[us] So it's someone you'd miss.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

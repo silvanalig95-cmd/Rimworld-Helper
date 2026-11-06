@@ -52,6 +52,22 @@ namespace ColonyCouncil
     }
 
     /// <summary>
+    /// What their hostage is among their people (the player's decision, 6 November 2026: anyone of standing among them,
+    /// never by kinship; until then one of their notable's kin): made with their own kinds as their people have them.
+    /// </summary>
+    public enum HostageStanding
+    {
+        /// <summary>Given before the rule (an older save's), or the colony's own.</summary>
+        Unknown,
+        /// <summary>One of their traders: the kind their caravans bring.</summary>
+        Trader,
+        /// <summary>One of their seasoned fighters: the stronger half of their war bands' kinds.</summary>
+        Fighter,
+        /// <summary>A people with neither: one of their people.</summary>
+        OneOfThem
+    }
+
+    /// <summary>
     /// The arithmetic of wards and hostages (docs/design/stage2-diplomacy.md, round b, item 7; release 2b.3; the player's
     /// decisions 9 and 10), with no game types so Tools/Tests can check it.
     /// <list type="bullet">
@@ -65,7 +81,8 @@ namespace ColonyCouncil
     /// <item>Our ward: a youth of the colony's goes to their town for a year, writes home every ten days and comes back with
     /// what their people are good at, by their ways, and a friend among their notables. With the Empire, a page in a titled
     /// household: regard only, no skill.</item>
-    /// <item>Hostages, adults only (children never): given for a truce's or a defence pact's terms, either way. Theirs lives
+    /// <item>Hostages, adults only (children never): given for a truce's or a defence pact's terms, either way. Theirs, one of
+    /// standing among their people (one of their traders or seasoned fighters, never by kinship since 6 November 2026), lives
     /// at the colony as a lodger for the term, ours at their town. At the end both go home; their side breaking the terms
     /// makes theirs the colony's to decide about, the colony breaking them leaves ours in the game's own captivity.</item>
     /// </list>
@@ -118,9 +135,6 @@ namespace ColonyCouncil
 
         /// <summary>The ward's age: a child of 9 to 12 where the game has children (Biotech), else a youth of 14 to 19.</summary>
         public static (float min, float max) WardAge(bool children) => children ? (9f, 12f) : (14f, 19f);
-
-        /// <summary>Their notable is old enough to be a hostage's parent (14 years at least between them): a hostage is still one of their notable's kin, as the ways of hostages have it.</summary>
-        public static bool CanBeParent(float notableAge, float wardAge) => notableAge - wardAge >= 14f;
 
         /// <summary>
         /// The skill the colony is known for, to teach (its index in <paramref name="best"/>, the best level of each skill
@@ -323,6 +337,40 @@ namespace ColonyCouncil
         public const float HostageAge = 18f;
 
         public static bool MayBeHostage(float age, bool juvenile) => !juvenile && age >= HostageAge;
+
+        /// <summary>
+        /// Their hostage's age as they are made: grown (never under <see cref="HostageAge"/>), and old enough to have some
+        /// standing among their people.
+        /// </summary>
+        public static (float min, float max) StandingAge => (20f, 50f);
+
+        /// <summary>
+        /// Which of what their people have their hostage is (the player's decision, 6 November 2026: anyone of standing
+        /// among them, never by kinship): one of their traders or of their seasoned fighters, by a roll where they have
+        /// both; one of their people where they have neither.
+        /// </summary>
+        public static HostageStanding Standing(bool traders, bool fighters, float roll) =>
+            traders && fighters ? (roll < 0.5f ? HostageStanding.Trader : HostageStanding.Fighter)
+            : traders ? HostageStanding.Trader : fighters ? HostageStanding.Fighter : HostageStanding.OneOfThem;
+
+        /// <summary>
+        /// A seasoned fighter of their war bands: a kind of the stronger half of those their war bands bring, by the game's
+        /// combat power (at or above the middle one; the only one where there is one).
+        /// </summary>
+        public static bool Seasoned(float power, IList<float> powers)
+        {
+            if (powers == null || powers.Count == 0) return false;
+            var sorted = new List<float>(powers);
+            sorted.Sort();
+            return power >= sorted[sorted.Count / 2];
+        }
+
+        /// <summary>The talk's tag for their hostage spoken to, by their standing (them:hostage:trader, :fighter), or null.</summary>
+        public static string StandingTag(HostageStanding s) =>
+            s == HostageStanding.Trader ? ThemHostageTag + ":trader" : s == HostageStanding.Fighter ? ThemHostageTag + ":fighter" : null;
+
+        /// <summary>The standing's tags, for the talk's conditions (beside <see cref="Tags"/>).</summary>
+        public static readonly string[] StandingTags = { ThemHostageTag + ":trader", ThemHostageTag + ":fighter" };
 
         /// <summary>
         /// A pact's roll with a hostage among its terms: their chance moves by the score shift over the pact's own curve (a

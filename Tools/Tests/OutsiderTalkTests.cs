@@ -256,8 +256,8 @@ public static class OutsiderTalkTests
         .Concat(FeastMath.Tags)
         // Marriage alliances (Diplomacy/FactsMatch.cs).
         .Concat(MatchMath.Tags)
-        // Wards and hostages (Diplomacy/FactsWards.cs).
-        .Concat(WardMath.Tags)
+        // Wards and hostages (Diplomacy/FactsWards.cs), and what their hostage is among their people.
+        .Concat(WardMath.Tags).Concat(WardMath.StandingTags)
         // Fealty and vassals (Diplomacy/FactsFealty.cs).
         .Concat(FealtyMath.Tags)
         // The colony's renown (Diplomacy/FactsRenown.cs).

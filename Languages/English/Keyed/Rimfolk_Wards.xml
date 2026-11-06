@@ -174,7 +174,7 @@
   <CC_Hostage_OptionOurs>one of the colony's as a hostage</CC_Hostage_OptionOurs>
   <CC_Hostage_OptionOursNamed>{PAWN} as the colony's hostage for the term</CC_Hostage_OptionOursNamed>
   <CC_Hostage_OptionNone>no hostages</CC_Hostage_OptionNone>
-  <CC_Hostage_Given_Theirs>{HOSTAGE}, one of their kin, will be brought to the gate to live at the colony for the term: {WORD} on the colony's side, {RITE} on theirs.</CC_Hostage_Given_Theirs>
+  <CC_Hostage_Given_Theirs>{HOSTAGE} will be brought to the gate to live at the colony for the term: {WORD} on the colony's side, {RITE} on theirs.</CC_Hostage_Given_Theirs>
   <CC_Hostage_Given_Ours>{HOSTAGE} will go to {TOWN} and live among {PEOPLE} for the term, as {WORD}.</CC_Hostage_Given_Ours>
   <CC_Hostage_Lapsed_Theirs>No hostage of {PEOPLE} could be brought, so the terms stand without one.</CC_Hostage_Lapsed_Theirs>
   <CC_Hostage_Lapsed_Ours>The one the colony named could not go to {PEOPLE}, so the terms stand without a hostage.</CC_Hostage_Lapsed_Ours>

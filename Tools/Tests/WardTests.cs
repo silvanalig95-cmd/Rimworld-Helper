@@ -44,7 +44,6 @@ public static class WardTests
         C(WardMath.SendChance(-1) == 0f && Math.Abs(WardMath.SendChance(0) - 0.3f) < 0.0001f && WardMath.SendChance(100) == 0.95f, "asked by letter: none below 0, three in ten at 0, never certain");
         C(!WardMath.SendsWhenAsked(true, 100, 0f) && WardMath.SendsWhenAsked(false, 30, 0.59f) && !WardMath.SendsWhenAsked(false, 30, 0.61f), "never by a people at war; by regard");
         C(WardMath.WardAge(true) == (9f, 12f) && WardMath.WardAge(false) == (14f, 19f), "a child of 9 to 12 where the game has children, else 14 to 19");
-        C(WardMath.CanBeParent(40f, 12f) && WardMath.CanBeParent(30f, 16f) && !WardMath.CanBeParent(28f, 16f), "a hostage is their notable's child where the ages fit (a ward is a youth of their town, nobody's child, since 5 November 2026)");
 
         // ---------------- The skill and the guardian ----------------
 
@@ -105,6 +104,23 @@ public static class WardTests
         // ---------------- Hostages ----------------
 
         C(WardMath.MayBeHostage(18f, false) && !WardMath.MayBeHostage(17.9f, false) && !WardMath.MayBeHostage(30f, true), "adults only: children are never hostages");
+        // The player's decision of 6 November 2026: their hostage is anyone of standing among their people, never by kinship.
+        C(WardMath.StandingAge.min >= WardMath.HostageAge && WardMath.StandingAge.max > WardMath.StandingAge.min && WardMath.MayBeHostage(WardMath.StandingAge.min, false),
+            "their hostage is made grown, of an age to have standing: never under the hostage's age");
+        C(WardMath.Standing(true, true, 0.2f) == HostageStanding.Trader && WardMath.Standing(true, true, 0.8f) == HostageStanding.Fighter,
+            "one of their traders or of their seasoned fighters, by a roll where their people have both");
+        C(WardMath.Standing(true, false, 0.9f) == HostageStanding.Trader && WardMath.Standing(false, true, 0.1f) == HostageStanding.Fighter,
+            "whichever their people really have");
+        C(WardMath.Standing(false, false, 0.5f) == HostageStanding.OneOfThem && default(HostageStanding) == HostageStanding.Unknown,
+            "one of their people where they have neither; an older save's hostage stands as it was (Unknown)");
+        C(WardMath.Seasoned(100f, new[] { 40f, 60f, 100f }) && WardMath.Seasoned(60f, new[] { 40f, 60f, 100f }) && !WardMath.Seasoned(40f, new[] { 40f, 60f, 100f }),
+            "a seasoned fighter: the stronger half of their war bands' kinds by combat power");
+        C(WardMath.Seasoned(80f, new[] { 50f, 80f }) && !WardMath.Seasoned(50f, new[] { 50f, 80f }) && WardMath.Seasoned(35f, new[] { 35f }) && !WardMath.Seasoned(90f, new float[0]),
+            "of two the stronger, of one that one, of none nobody");
+        C(WardMath.StandingTag(HostageStanding.Trader) == "them:hostage:trader" && WardMath.StandingTag(HostageStanding.Fighter) == "them:hostage:fighter"
+          && WardMath.StandingTag(HostageStanding.Unknown) == null && WardMath.StandingTag(HostageStanding.OneOfThem) == null
+          && WardMath.StandingTags.All(t => t.StartsWith(WardMath.ThemHostageTag + ":") && !WardMath.Tags.Contains(t)),
+            "the talk knows what their hostage is: them:hostage:trader, :fighter");
         int base0 = PactMath.TruceScore(-50, false, false, false, TrucePrice.None, TruceTerm.Season);
         C(PactMath.TruceScore(-50, false, false, false, TrucePrice.TheirHostage, TruceTerm.Season) == base0 + WardMath.TheirHostageScore
           && PactMath.TruceScore(-50, false, false, false, TrucePrice.OurHostage, TruceTerm.Season) == base0 + WardMath.OurHostageScore
@@ -338,6 +354,36 @@ public static class WardTests
         string wardKeyed = string.Concat(Directory.GetFiles(Path.Combine(root, "Languages", "English", "Keyed"), "*.xml").Select(File.ReadAllText));
         C(!wardKeyed.Contains("<CC_Ward_Offer>") && Regex.Matches(wardKeyed, @"<CC_Ward_OfferTown(_\d)?>").Count >= 4 && !Regex.IsMatch(wardKeyed, @"<CC_Ward_OfferTown[^>]*>[^<]*house"),
             "the offer in four wordings or more, a youth of their town, never of a house");
+
+        // The player's decision of 6 November 2026: their hostage is anyone of standing among their people (one of their
+        // traders or seasoned fighters, made with the kinds their caravans and war bands bring), never by kinship.
+        string makeHostage = Regex.Match(hostages, @"public static Pawn MakeHostage[\s\S]{0,2400}?\n        }").Value;
+        C(makeHostage.Contains("MakeHostage(Faction f, out HostageStanding standing)") && !makeHostage.Contains("PawnRelationDefOf.Parent") && !makeHostage.Contains("NameTriple")
+          && makeHostage.Contains("TraderKinds(f)") && makeHostage.Contains("FighterKinds(f)") && makeHostage.Contains("WardMath.Standing(") && makeHostage.Contains("WardMath.StandingAge"),
+            "their hostage made as one of standing: nobody's child or of a notable's name, a trader or a seasoned fighter of their kinds, grown");
+        C(hostages.Contains("PawnGroupKindDefOf.Trader") && hostages.Contains("PawnGroupKindDefOf.Combat") && hostages.Contains("k.factionLeader")
+          && hostages.Contains("k.titleRequired != null") && hostages.Contains("WardMath.Seasoned(k.combatPower, powers)") && hostages.Contains("Arrivals.Make(kind, f, age"),
+            "what their people's caravans and war bands really bring, never a leader's own kind or one of royal title, made by the game's own generation");
+        C(hostages.Contains("MakeHostage(f, out var standing)") && hostages.Contains("standing = standing") && hostages.Contains("notable = sender?.id ?? -1")
+          && Code("Diplomacy/DiplomacyBook.cs").Contains("Scribe_Values.Look(ref standing, \"standing\", HostageStanding.Unknown);"),
+            "the standing kept on the record; the notable who sends them answers for them");
+        C(Code("Diplomacy/FactsWards.cs").Contains("WardMath.StandingTag(hostage.standing)") && Code("Diplomacy/WardPanels.cs").Contains("WardWords.Standing(w.standing, LinkPeople(w.people))"),
+            "the talk and their card say what they are");
+        C(hostages.Contains("\"CC_Hostage_Given_TheirsStanding\"") && hostages.Contains("\"CC_Hostage_Arrives_Standing\"") && hostages.Contains("\"CC_Hostage_Why_NoSender\""),
+            "the letters say what they are, and why none can be given names the one who would send a hostage");
+        foreach (var k in new[] { "CC_Hostage_Standing_Trader", "CC_Hostage_Standing_Fighter", "CC_Hostage_Given_TheirsStanding", "CC_Hostage_Arrives_Standing", "CC_Hostage_Why_NoSender" })
+            C(Regex.IsMatch(wardKeyed, "<" + k + ">[^<]+</" + k + ">"), $"{k} has its words");
+        var hostageKeyed = Regex.Matches(wardKeyed, @"<(CC_Hostage_\w+|CC_Form_Hostage_\w+)>([^<]*)</").Select(m => m.Groups[2].Value).ToList();
+        C(hostageKeyed.Count > 40 && hostageKeyed.All(t => !Regex.IsMatch(t, @"\b(kin|kinsman|son|daughter|child of)\b", RegexOptions.IgnoreCase)),
+            "no hostage word calls them anyone's kin, son or daughter");
+        var hostageTalk = Directory.GetFiles(Path.Combine(root, "Defs", "OutsiderTalkDefs"), "*.xml").SelectMany(f => XDocument.Load(f).Descendants("li"))
+            .Select(l => l.Value).Where(l => !OutsiderTalkMath.RetiredLines.Contains(l)).ToList();
+        C(OutsiderTalkMath.RetiredLines.Contains("[them,their:tribal] When two clans make peace, one of the chief's kin goes to live at the other's fire.")
+          && !hostageTalk.Any(l => l.Contains("chief's kin")), "the custom that made a hostage one of the chief's kin is retired");
+        var standingTalk = XDocument.Load(Path.Combine(root, "Defs", "OutsiderTalkDefs", "Rimfolk_OutsiderTalks_HostageStanding.xml")).ToString();
+        foreach (var tag in WardMath.StandingTags) C(standingTalk.Contains(tag), $"the talk speaks of {tag}");
+        C(standingTalk.Contains("their:tribal") && standingTalk.Contains("<when>tie:hostage</when>"), "the custom by their ways, the tribes' in words of its own");
+        C(!almanac.Contains("one of their notable's kin") && almanac.Contains("one of standing among their people"), "the Almanac says one of standing among their people");
         return n;
     }
 }
