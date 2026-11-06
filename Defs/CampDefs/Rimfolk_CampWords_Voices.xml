@@ -1,0 +1,634 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The text pass on the world's voices (6 November 2026): more words for each kind of camp, joined to its own lists at
+    startup (a FlavorExtensionDef with camp: campLines join its lines, farewell its farewell; FlavorExtension.cs).
+    campLines: said over one of theirs now and then while the camp stands (Camp.Bubble), by the camp's tags (their
+      people's age their:tribal... their:lowtech their:hightech, their faith ideology sameFaith otherFaith meme:X, the
+      world event that brought them ws:KIND and {SITUATION}, a camp come back back, a war party's foe:mechs foe:lowtech
+      foe:hightech oldfoe) and the speaker's moment (morning day evening night, rain snow fog cold hot, the season,
+      child, hurt). One sentence each, said to nobody in particular.
+    farewell: the letter as they pack up and set off at the end of their stay (CampLook.FarewellText): what they take
+      down goes with them and the fire with it, so a line says they packed up and set off, never that they waved,
+      bowed or spoke at a gate nobody walked to, or what was left that isn't. A line can ask for the hour they set off
+      ([morning] [day] [evening] [night]), their animals going with them ([animals]), a camp come back ([back]) and the
+      marks of what they did ([round] [left:KEY]). {X_nameDef} is the one who took the last walk, else whoever leads.
+  -->
+
+  <!-- ===================== A hunting party ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_CampWords_Hunters</defName>
+    <camp>Council_Camp_Hunters</camp>
+    <campLines>
+      <li>[morning] Light's good, we go out now.</li>
+      <li>[evening] Hang the meat before it gets dark.</li>
+      <li>[night] Let the fire burn low, or the game won't come near.</li>
+      <li>[rain] Rain's washing the trail out, we'll wait.</li>
+      <li>[snow] Tracks show clean in fresh snow.</li>
+      <li>[fog] Can't see ten paces, nobody shoots in this.</li>
+      <li>[winter] The herds come down to the low ground in winter.</li>
+      <li>[their:lowtech] Wax the bowstring, the damp gets into it.</li>
+      <li>[their:hightech] Clean the barrel before you sleep.</li>
+      <li>[back] Same ground as last time, and still good.</li>
+    </campLines>
+    <farewell>
+      <li>The hunters of {FACTION} have packed up their camp {PLACE} and set off after the herds.</li>
+      <li>[morning] The hunters of {FACTION} broke camp this morning, to make the most of the light.</li>
+      <li>[night] The hunters of {FACTION} are moving on by night, the way hunters do when the game moves.</li>
+      <li>[back] The hunters of {FACTION} have packed up {PLACE} again, and say the colony's land is still the best hunting they know.</li>
+    </farewell>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== A refugee family ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_CampWords_Refugees</defName>
+    <camp>Council_Camp_Refugees</camp>
+    <campLines>
+      <li>[child] Are we staying here now?</li>
+      <li>[child] Can I go over there and look?</li>
+      <li>[night] Sleep, all of you, I'll keep the fire.</li>
+      <li>[cold] Everyone closer to the fire.</li>
+      <li>[rain] Get the bedding under cover.</li>
+      <li>[morning] Fold the blankets, we keep it tidy here.</li>
+      <li>[ws:war] We go back when it's quiet, and not before.</li>
+      <li>[ws:hunger] Little and often, that's how you eat after hungry times.</li>
+      <li>[ws:sickness] Wash your hands before you eat, every time.</li>
+      <li>[their:grateful] These people have been good to ours before.</li>
+    </campLines>
+    <farewell>
+      <li>The family from {FACTION} has packed up its camp {PLACE} and set off with everything they own on their backs.</li>
+      <li>[morning] The family from {FACTION} packed up this morning and set off while the day was young.</li>
+      <li>[back] The family from {FACTION} has packed up {PLACE} again. {X_nameDef} said the colony is the one place on the road where they can rest.</li>
+    </farewell>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Prospectors ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_CampWords_Prospectors</defName>
+    <camp>Council_Camp_Prospectors</camp>
+    <campLines>
+      <li>[morning] First hole of the day, make it a good one.</li>
+      <li>[evening] Wash the pans before you eat.</li>
+      <li>[rain] Wet ground digs easy and pans badly.</li>
+      <li>[their:hightech] Run the detector over that slope again.</li>
+      <li>[their:lowtech] Bring the sieve, the fine one.</li>
+      <li>[ws:rush] Everyone and their cousin is out digging this season.</li>
+      <li>[back] We passed this ground over last time, more fool us.</li>
+    </campLines>
+    <farewell>
+      <li>The prospectors from {FACTION} have packed their picks and pans and set off to try the next hills.</li>
+      <li>[evening|night] The prospectors from {FACTION} packed up {PLACE} by lamplight and set off, too restless to wait for morning.</li>
+      <li>[back] The prospectors from {FACTION} have packed up {PLACE} again, still certain the colony's land is hiding something.</li>
+    </farewell>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Pilgrims ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_CampWords_Pilgrims</defName>
+    <camp>Council_Camp_Pilgrims</camp>
+    <campLines>
+      <li>[morning] Morning prayers, then we eat.</li>
+      <li>[evening] Light the lamp, it's time to pray.</li>
+      <li>[night] Pray quietly, the others are asleep.</li>
+      <li>[rain] Rain on the road is a blessing too, they say.</li>
+      <li>[ideology,sameFaith] Here, of all places, they keep our faith.</li>
+      <li>[ideology,otherFaith] Their faith isn't ours, but they let us pray in peace.</li>
+      <li>[their:tribal] The spirits of the road walk with us.</li>
+      <li>[back] Same road, and the same kind hosts.</li>
+    </campLines>
+    <farewell>
+      <li>The pilgrims from {FACTION} have packed up their camp {PLACE} and taken to the road again, toward their shrine.</li>
+      <li>[ideology] The pilgrims of {IDEO} have set off from {PLACE}, their prayers said and their bedrolls on their backs.</li>
+      <li>[evening] The pilgrims from {FACTION} set off in the evening, to walk while the day cools.</li>
+    </farewell>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Traders ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_CampWords_Market</defName>
+    <camp>Council_Camp_Market</camp>
+    <campLines>
+      <li>[morning] Stall's open, come and look.</li>
+      <li>[evening] Last trade of the day, make me an offer.</li>
+      <li>[rain] Cover the cloth, quick.</li>
+      <li>[winter] Furs and blankets are what sells in winter.</li>
+      <li>[their:medieval] Fair weights and fair measure here.</li>
+      <li>[their:industrial] Cash or trade, I'm not fussy.</li>
+      <li>[their:tribal] Bring something to trade, we'll find a match for it.</li>
+      <li>[back] Same spot as last time, if nobody minds.</li>
+    </campLines>
+    <farewell>
+      <li>The traders from {FACTION} have packed up their stall {PLACE} and set off for the next settlement.</li>
+      <li>[day] The traders from {FACTION} packed up their stall in the middle of the day and are back on the road.</li>
+      <li>[back] The traders from {FACTION} have packed up {PLACE} again, and {X_nameDef} said they'll keep the colony as a stop on their road.</li>
+    </farewell>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== A traveling smith ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_CampWords_Smith</defName>
+    <camp>Council_Camp_Smith</camp>
+    <campLines>
+      <li>[morning] Light the forge, it takes an hour to come up.</li>
+      <li>[evening] Bank the fire, we'll want it in the morning.</li>
+      <li>[rain] Keep the charcoal dry, or we're done for the day.</li>
+      <li>[hot] Forge work on a hot day, there's nothing worse.</li>
+      <li>[their:industrial] Pass me the file, the fine one.</li>
+      <li>[their:medieval] Pump the bellows, slow and even.</li>
+      <li>[back] Same anvil, same spot as before.</li>
+    </campLines>
+    <farewell>
+      <li>The smith from {FACTION} has packed the tools and set off for the next settlement with something to mend.</li>
+      <li>[evening|night] The smith from {FACTION} let the forge go out at the end of the day's work and set off.</li>
+      <li>[back] The smith from {FACTION} has packed up {PLACE} again, and said the colony's custom is worth the walk.</li>
+    </farewell>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== A hermit (the hut is left for the colony) ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_CampWords_Hermit</defName>
+    <camp>Council_Camp_Hermit</camp>
+    <campLines>
+      <li>[morning] Up before the birds again.</li>
+      <li>[night,clear] Stars are bright tonight.</li>
+      <li>[rain] Let it rain, I've a roof.</li>
+      <li>[snow] Snow keeps the visitors away.</li>
+      <li>[winter] Wood, more wood, always more wood.</li>
+      <li>[back] Back again, and you're all still here.</li>
+    </campLines>
+    <farewell>
+      <li>{X_nameDef} has gone from the hut {PLACE}, and left it standing for whoever wants it.</li>
+      <li>[morning] {X_nameDef} left the hut {PLACE} this morning, with only what {X_pronoun} could carry.</li>
+      <li>[back] {X_nameDef} has left the hut {PLACE} again, without fuss, the same as last time.</li>
+    </farewell>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Traveling healers ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_CampWords_Healers</defName>
+    <camp>Council_Camp_Healers</camp>
+    <campLines>
+      <li>[morning] Line up, the early ones get seen first.</li>
+      <li>[evening] No more today, come back in the morning.</li>
+      <li>[cold] Coughs everywhere in this weather.</li>
+      <li>[their:tribal] The plant does the healing, we only gather it.</li>
+      <li>[their:hightech] Gloves on, then we look.</li>
+      <li>[ws:sickness] Cover your mouth when you cough, all of you.</li>
+      <li>[back] Some of the same faces as last time, that's good to see.</li>
+    </campLines>
+    <farewell>
+      <li>The healers from {FACTION} have packed up their remedies and set off for the next village that needs them.</li>
+      <li>[evening] The healers from {FACTION} saw their last patient of the day and set off.</li>
+      <li>[ws:sickness] The healers from {FACTION} have set off from {PLACE}, called on to wherever {SITUATION} is worst.</li>
+    </farewell>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== A procession of the faithful ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_CampWords_Procession</defName>
+    <camp>Council_Camp_Procession</camp>
+    <campLines>
+      <li>[morning] Morning hymn first, then we eat.</li>
+      <li>[evening] Light the candles round the relics.</li>
+      <li>[night] Someone must always sit with the relics.</li>
+      <li>[rain] Cover the relics, quickly.</li>
+      <li>[ideology,sameFaith] Our own faith, here, at the edge of the world.</li>
+      <li>[ideology,otherFaith] We pray for them too, whatever they keep.</li>
+      <li>[back] We rested here before, and it was kind to us.</li>
+    </campLines>
+    <farewell>
+      <li>The procession from {FACTION} has lifted its shrine and set off again, the relics carried in front.</li>
+      <li>[ideology] The faithful of {IDEO} have packed up their camp {PLACE} and taken their relics back to the road.</li>
+      <li>[morning] The procession from {FACTION} set off this morning with its shrine on its poles.</li>
+    </farewell>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Traveling players ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_CampWords_Players</defName>
+    <camp>Council_Camp_Players</camp>
+    <campLines>
+      <li>[evening] Lamps lit, places in a moment.</li>
+      <li>[morning] Lines, everyone, before breakfast.</li>
+      <li>[rain] No show in the rain, the paint runs.</li>
+      <li>[their:tribal] Paint first, then the story.</li>
+      <li>[their:medieval] The king's speech again, with feeling.</li>
+      <li>[their:industrial] Someone straighten that curtain.</li>
+      <li>[back] Same stage, new play, they won't have seen this one.</li>
+    </campLines>
+    <farewell>
+      <li>The players from {FACTION} have packed their costumes and set off for the next town.</li>
+      <li>[evening] The players from {FACTION} packed up in the evening and set off, saying a stage was waiting for them further on.</li>
+      <li>[back] The players from {FACTION} have packed up {PLACE} again, and promised the colony a new play next time.</li>
+    </farewell>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Surveyors ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_CampWords_Surveyors</defName>
+    <camp>Council_Camp_Surveyors</camp>
+    <campLines>
+      <li>[morning] Sun's low, the shadows are good for sighting.</li>
+      <li>[fog] Nothing to sight on in this, we wait.</li>
+      <li>[rain] Keep the sheets dry, all of them.</li>
+      <li>[their:hightech] Log the bearing and the time.</li>
+      <li>[their:medieval] Pace it again, and count aloud.</li>
+      <li>[ws:road] If the new road comes this way, it'll want this valley.</li>
+      <li>[back] Our old marks are still where we left them.</li>
+    </campLines>
+    <farewell>
+      <li>The surveyors from {FACTION} have pulled up their camp {PLACE} and set off to map the next valley.</li>
+      <li>[evening] The surveyors from {FACTION} packed up as the light went, their sheets rolled tight.</li>
+      <li>[back] The surveyors from {FACTION} have packed up {PLACE} again, and the colony's corner of their map is a little more exact.</li>
+    </farewell>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Fishers (a family, with a dog) ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_CampWords_Fishers</defName>
+    <camp>Rimfolk_Camp_Fishers</camp>
+    <campLines>
+      <li>[morning] Lines in before the sun's on the water.</li>
+      <li>[evening] Gut them now, before the flies find them.</li>
+      <li>[rain] They rise in the rain, get your line in.</li>
+      <li>[cold] Cold water, slow fish.</li>
+      <li>[hot] Too warm, they've gone deep.</li>
+      <li>[child] Can I hold the line this time?</li>
+      <li>[ws:run] The run's on, everybody to the water.</li>
+      <li>[back] Same pool as last time, and still full.</li>
+    </campLines>
+    <farewell>
+      <li>The fishers from {FACTION} have packed up their lines and baskets and set off along the water.</li>
+      <li>[animals] The fishers from {FACTION} have packed up {PLACE} and set off, their dog at their heels.</li>
+      <li>[back] The fishers from {FACTION} have packed up {PLACE} again, and say they'd know this water anywhere now.</li>
+    </farewell>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Salvagers (with a pack beast) ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_CampWords_Salvagers</defName>
+    <camp>Rimfolk_Camp_Salvagers</camp>
+    <campLines>
+      <li>[morning] Start on the far wall, it's the loosest.</li>
+      <li>[evening] Sort the scrap before we eat.</li>
+      <li>[rain] Cover the good plates, or they'll rust by morning.</li>
+      <li>[their:lowtech] Old metal's better than new, they knew how to make it.</li>
+      <li>[their:hightech] Cut along the seam, not through it.</li>
+      <li>[back] Still plenty left in those old walls.</li>
+    </campLines>
+    <farewell>
+      <li>The salvagers from {FACTION} have loaded what they stripped and set off with it.</li>
+      <li>[animals] The salvagers from {FACTION} have set off from {PLACE}, their pack beast loaded with old metal.</li>
+      <li>[back] The salvagers from {FACTION} have packed up {PLACE} again, a little more of the old ruins going with them.</li>
+    </farewell>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Harvest hands ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_CampWords_HarvestHands</defName>
+    <camp>Rimfolk_Camp_HarvestHands</camp>
+    <campLines>
+      <li>[morning] Out to the rows while it's cool.</li>
+      <li>[evening] Sharpen the sickles for tomorrow.</li>
+      <li>[hot] Water first, then another row.</li>
+      <li>[rain] Wet stalks, mind the blade.</li>
+      <li>[fall] Get it all in before the frost.</li>
+      <li>[their:tribal] Sing the harvest song, it keeps the rhythm.</li>
+      <li>[back] Same fields, same good crop.</li>
+    </campLines>
+    <farewell>
+      <li>The harvest hands from {FACTION} have shouldered their sickles and set off for the next farm.</li>
+      <li>[evening] The harvest hands from {FACTION} finished at dusk and set off, sickles over their shoulders.</li>
+      <li>[back] The harvest hands from {FACTION} have packed up {PLACE} again, and said they'll come when the next harvest needs hands.</li>
+    </farewell>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Stranded spacers ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_CampWords_Spacers</defName>
+    <camp>Rimfolk_Camp_Spacers</camp>
+    <campLines>
+      <li>[morning] Diagnostics first, then breakfast.</li>
+      <li>[night] The stars are in the wrong places from down here.</li>
+      <li>[rain] Seal the cells, this rain gets into everything.</li>
+      <li>[cold] Suit heaters are draining fast.</li>
+      <li>[ws:wreck] We're not the only ones who came down, are we?</li>
+      <li>[back] The hull's where we left it, at least.</li>
+    </campLines>
+    <farewell>
+      <li>The spacers from {FACTION} have packed what they stripped from the hull and set off to meet their people.</li>
+      <li>[night] The spacers from {FACTION} set off by night, sure of their bearing.</li>
+      <li>[back] The spacers from {FACTION} have packed up {PLACE} again, and left the hull a little lighter than they found it.</li>
+    </farewell>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Watchers of the monolith ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_CampWords_Watchers</defName>
+    <camp>Rimfolk_Camp_Watchers</camp>
+    <campLines>
+      <li>[night] Write down the hour, and what you see.</li>
+      <li>[morning] Nothing in the night, again.</li>
+      <li>[fog] Can't see it in this fog, write that down too.</li>
+      <li>[their:tribal] The old ones said stones like this should be watched.</li>
+      <li>[their:hightech] Note the readings, every hour.</li>
+      <li>[ws:comet] The comet and the stone, both at once, that's no accident.</li>
+      <li>[back] It's still here, of course it is.</li>
+    </campLines>
+    <farewell>
+      <li>The watchers from {FACTION} have packed up their camp {PLACE} and turned their backs on the monolith.</li>
+      <li>[morning] The watchers from {FACTION} packed up after their last night's watch and set off.</li>
+      <li>[back] The watchers from {FACTION} have packed up {PLACE} again, their notebooks fuller than the last time.</li>
+    </farewell>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== A beast show (a family, with their beasts) ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_CampWords_BeastShow</defName>
+    <camp>Rimfolk_Camp_BeastShow</camp>
+    <campLines>
+      <li>[morning] Water and brush them before anyone comes to look.</li>
+      <li>[evening] Pen them close tonight.</li>
+      <li>[hot] Shade for the big one, now.</li>
+      <li>[cold] Blankets on the thin-coated ones.</li>
+      <li>[child] Can I lead one in the show?</li>
+      <li>[ws:fair] They'll want the beasts at the fair, every one of them.</li>
+      <li>[back] They remember this place, look at them.</li>
+    </campLines>
+    <farewell>
+      <li>The beast show from {FACTION} has packed up its camp {PLACE} and set off for the next town.</li>
+      <li>[animals] The beast show from {FACTION} has set off from {PLACE}, its animals walking with their keepers.</li>
+      <li>[back] The beast show from {FACTION} has packed up {PLACE} again, and the keepers say their animals like the colony's ground.</li>
+    </farewell>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Traveling trainers (with PokéWorld) ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_CampWords_Trainers</defName>
+    <camp>Council_Camp_Trainers</camp>
+    <campLines>
+      <li>[rematch] We've been practicing since last time.</li>
+      <li>[beatUs] Your team had our measure, we haven't forgotten.</li>
+      <li>[beatThem] We'll go easy on you this time, maybe.</li>
+      <li>[morning] Morning drills, everyone up.</li>
+      <li>[rain] Some of them love the rain, some hate it.</li>
+    </campLines>
+    <farewell>
+      <li>The trainers of {FACTION} have packed up {PLACE} and set off with their Pokémon for the next town.</li>
+      <li>[rematch] The trainers of {FACTION} have packed up {PLACE}, already talking about the next rematch.</li>
+    </farewell>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== A salt caravan (with pack beasts) ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_CampWords_SaltCaravan</defName>
+    <camp>Council_Camp_SaltCaravan</camp>
+    <campLines>
+      <li>[morning] Load the beasts while it's cool.</li>
+      <li>[evening] Water the beasts, then us.</li>
+      <li>[rain] Salt and rain don't mix, cover the bales.</li>
+      <li>[hot] Rest the beasts in the heat of the day.</li>
+      <li>[their:lowtech] Bells on the lead beast, so we hear it in the dark.</li>
+      <li>[ws:toll] Every toll on the road comes out of the salt price.</li>
+      <li>[back] Same stop as last time, and glad of it.</li>
+    </campLines>
+    <farewell>
+      <li>The salt caravan from {FACTION} has loaded its beasts and set off down the road with its bales.</li>
+      <li>[animals] The caravan from {FACTION} has set off from {PLACE}, its beasts loaded with the bales.</li>
+      <li>[back] The salt caravan from {FACTION} has packed up {PLACE} again, and {X_nameDef} said the colony will stay on its road.</li>
+    </farewell>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Merchants from afar ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_CampWords_FarMerchants</defName>
+    <camp>Council_Camp_FarMerchants</camp>
+    <campLines>
+      <li>[morning] Lay out the cloth, the best pieces in front.</li>
+      <li>[evening] The lamps make the silver shine, light them.</li>
+      <li>[rain] Into the boxes, all of it, the rain spoils the dye.</li>
+      <li>[cold] In my country it is never this cold.</li>
+      <li>[hot] This heat is nothing, you should feel ours.</li>
+      <li>[back] Back again, my friends, and with new things.</li>
+    </campLines>
+    <farewell>
+      <li>The merchants from {FACTION} have packed their wares and set off toward the far markets.</li>
+      <li>[evening] The merchants from {FACTION} packed up by lamplight and set off, wanting to be well along the road by morning.</li>
+      <li>[back] The merchants from {FACTION} have packed up {PLACE} again, and {X_nameDef} said the colony is a good stop on a long road.</li>
+    </farewell>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Drovers (a herd and a dog) ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_CampWords_Drovers</defName>
+    <camp>Council_Camp_Drovers</camp>
+    <campLines>
+      <li>[morning] Let them graze an hour before we move them.</li>
+      <li>[evening] Bring them in close for the night.</li>
+      <li>[night] Easy now, it's only the wind.</li>
+      <li>[rain] Wet beasts and wet drovers, same as always.</li>
+      <li>[hot] Water them first, then yourself.</li>
+      <li>[snow] Keep them moving, or they'll stand and freeze.</li>
+      <li>[ws:drove] Half the region's herds are on the road this season.</li>
+      <li>[back] They know this grass, look how they settle.</li>
+    </campLines>
+    <farewell>
+      <li>The drovers from {FACTION} have gathered the herd and set off down the road at a beast's pace.</li>
+      <li>[animals] The drovers from {FACTION} have set off from {PLACE}, the herd in front and the dog with them.</li>
+      <li>[back] The drovers from {FACTION} have moved the herd on again, and say the colony's grass is the best on their road.</li>
+    </farewell>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Penitents ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_CampWords_Penitents</defName>
+    <camp>Council_Camp_Penitents</camp>
+    <campLines>
+      <li>[morning] Rise, pray, walk.</li>
+      <li>[evening] Say your wrongs aloud, then sleep.</li>
+      <li>[rain] The rain is part of the road too.</li>
+      <li>[cold] Cold is nothing to what we carry.</li>
+      <li>[ideology,sameFaith] They keep our faith here, they'll understand.</li>
+      <li>[meme:Guilty] Every step pays back a little of it.</li>
+      <li>[back] We rested here last time too, and they let us.</li>
+    </campLines>
+    <farewell>
+      <li>The penitents from {FACTION} have taken up their packs and set off again, walking in silence.</li>
+      <li>[morning] The penitents from {FACTION} set off this morning, as they set off every morning.</li>
+      <li>[ideology] The penitents of {IDEO} have left their camp {PLACE} to the wind and walked on.</li>
+    </farewell>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Tree-singers ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_CampWords_TreeSingers</defName>
+    <camp>Council_Camp_TreeSingers</camp>
+    <campLines>
+      <li>[morning] Sing the waking song to them.</li>
+      <li>[evening] Sing them to sleep, softly.</li>
+      <li>[rain] Hear how they drink.</li>
+      <li>[winter] They sleep in winter, sing quietly.</li>
+      <li>[ws:drought] They're thirsty, sing them the rain song.</li>
+      <li>[back] They remember our songs, listen.</li>
+    </campLines>
+    <farewell>
+      <li>The tree-singers from {FACTION} have packed up their camp {PLACE} and gone on to the next grove.</li>
+      <li>[left:seeds] The tree-singers from {FACTION} have set off, leaving a ring of planted seeds where their fire was.</li>
+      <li>[evening] The tree-singers from {FACTION} set off in the evening, when they say the trees listen best.</li>
+    </farewell>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== A traveling healer ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_CampWords_LoneHealer</defName>
+    <camp>Council_Camp_LoneHealer</camp>
+    <campLines>
+      <li>[morning] First one in gets me at my most patient.</li>
+      <li>[evening] Last one for today, sit down.</li>
+      <li>[cold] Keep that chest warm, I mean it.</li>
+      <li>[their:tribal] The plant knows what to do, I only give it to you.</li>
+      <li>[their:hightech] Swab first, always swab first.</li>
+      <li>[ws:sickness] I've seen a lot of {SITUATION} on the road this season.</li>
+      <li>[back] I remember some of your faces from last time.</li>
+    </campLines>
+    <farewell>
+      <li>The traveling healer from {FACTION} has packed the bag and set off for the next village.</li>
+      <li>[round] The healer from {FACTION} looked in on the colony's sick once more, then packed up and set off.</li>
+      <li>[back] The healer from {FACTION} has packed up {PLACE} again, and said to send word along the road if anyone needs {X_objective}.</li>
+    </farewell>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== A band of minstrels ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_CampWords_Minstrels</defName>
+    <camp>Council_Camp_Minstrels</camp>
+    <campLines>
+      <li>[evening] Tune up, they'll be listening soon.</li>
+      <li>[morning] Not so loud, it's early.</li>
+      <li>[rain] Strings hate the damp.</li>
+      <li>[their:tribal] Drum first, the voices follow.</li>
+      <li>[their:medieval] Play the old ballad, the one about the river.</li>
+      <li>[their:industrial] The new one, the one from the city.</li>
+      <li>[ws:songs] Everyone wants the new song this season, play it again.</li>
+      <li>[back] Play what we played last time, they'll know it.</li>
+    </campLines>
+    <farewell>
+      <li>The minstrels from {FACTION} have packed their instruments and set off for the next town.</li>
+      <li>[evening] The minstrels from {FACTION} set off in the evening, with a town ahead that's expecting them, they said.</li>
+      <li>[back] The minstrels from {FACTION} have packed up {PLACE} again, and promised a new song for next time.</li>
+    </farewell>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Mourners passing through ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_CampWords_Mourners</defName>
+    <camp>Council_Camp_Mourners</camp>
+    <campLines>
+      <li>[evening] Light the lamp, it's time.</li>
+      <li>[night] I'll sit with them tonight.</li>
+      <li>[rain] Keep them dry, cover them.</li>
+      <li>[their:tribal] The spirits are waiting for them at home.</li>
+      <li>[their:medieval] We'll lay them in the churchyard at home.</li>
+      <li>[ws:mourning] So many on the roads with their dead this season.</li>
+    </campLines>
+    <farewell>
+      <li>The mourners from {FACTION} have taken up their dead and set off for home, walking slowly.</li>
+      <li>[left:sprig] The mourners from {FACTION} have set off, and the sprig of green planted by the colony's gate is the sign they were here.</li>
+      <li>[ideology] The mourners of {IDEO} have packed their lamp and walked on with their dead.</li>
+    </farewell>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Scholars (with a pack beast) ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_CampWords_Scholars</defName>
+    <camp>Rimfolk_Camp_Scholars</camp>
+    <campLines>
+      <li>[morning] Fresh eyes, start again from the first page.</li>
+      <li>[evening] Copy it out fair before we sleep.</li>
+      <li>[night] Lamp, please, and quiet.</li>
+      <li>[rain] The notes, get the notes under cover.</li>
+      <li>[their:tribal] The old stories are the real books.</li>
+      <li>[their:hightech] Check it against the archive copy.</li>
+      <li>[ws:ruins] The ruins draw everyone this season, we were lucky to get here first.</li>
+      <li>[back] Last time we missed half of it.</li>
+    </campLines>
+    <farewell>
+      <li>The scholars from {FACTION} have packed their notes tight and set off.</li>
+      <li>[animals] The scholars from {FACTION} have set off from {PLACE}, their pack beast carrying more paper than food.</li>
+      <li>[back] The scholars from {FACTION} have packed up {PLACE} again, and say there is still more to learn here.</li>
+    </farewell>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Settlers on their way to a hamlet ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_CampWords_Settlers</defName>
+    <camp>Rimfolk_Camp_Settlers</camp>
+    <campLines>
+      <li>[morning] Up, everyone, it's a long day.</li>
+      <li>[evening] Count the seed bags again.</li>
+      <li>[rain] Good rain for a new field.</li>
+      <li>[child] Is this where we're going to live?</li>
+      <li>[their:tribal] The elders chose this land, it will be good to us.</li>
+      <li>[their:medieval] A new village, and we'll be the first in it.</li>
+    </campLines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== A war party (resting after the fight) ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_CampWords_WarParty</defName>
+    <camp>Council_Camp_WarParty</camp>
+    <campLines>
+      <li>[foe:mechs] Machines bleed oil, and they still fall.</li>
+      <li>[foe:hightech] They had better guns, and we still held.</li>
+      <li>[oldfoe] We've fought them before, and we'll fight them again.</li>
+      <li>[night] Sleep in your boots tonight.</li>
+      <li>[hurt] I've had worse, and I'll have worse again.</li>
+      <li>[their:tribal] The spirits saw us fight well.</li>
+      <li>[their:medieval] A good day's work for the shield wall.</li>
+    </campLines>
+    <farewell>
+      <li>The war party of {FACTION} has packed up its camp {PLACE} and set off for home.</li>
+      <li>[morning] The fighters of {FACTION} set off this morning, back to their own people.</li>
+      <li>[their:tribal] The war band of {FACTION} has gone from {PLACE}, back to their own fires.</li>
+      <li>[their:medieval] The fighters of {FACTION} have struck their camp {PLACE} and marched for home.</li>
+    </farewell>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Road wardens ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_CampWords_Wardens</defName>
+    <camp>Council_Camp_Wardens</camp>
+    <campLines>
+      <li>[morning] Walk the road to the bend and back.</li>
+      <li>[evening] Light at the post, so the road can see it.</li>
+      <li>[rain] Mud on the road, nobody's moving fast today.</li>
+      <li>[their:medieval] A road kept is a road traveled.</li>
+      <li>[their:hightech] Log every party that passes.</li>
+    </campLines>
+    <farewell>
+      <li>The wardens of {FACTION} have packed up their camp {PLACE} and gone back along the road to their people.</li>
+      <li>[evening] The wardens of {FACTION} packed up at dusk and set off back to their people.</li>
+    </farewell>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Deserters ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_CampWords_Deserters</defName>
+    <camp>Council_Camp_Deserters</camp>
+    <campLines>
+      <li>[night] Talk low, voices carry at night.</li>
+      <li>[morning] Nobody on the road, good.</li>
+      <li>[rain] Rain covers tracks, that's something.</li>
+      <li>[ws:war] They'll come looking for us, or they won't.</li>
+      <li>[their:medieval] I left the banner, and I'm not ashamed of it.</li>
+      <li>[back] They let us rest last time, and they didn't ask questions.</li>
+    </campLines>
+    <farewell>
+      <li>The deserters have packed up their camp {PLACE} and set off, looking for somewhere nobody knows their faces.</li>
+      <li>[night] The deserters slipped away from {PLACE} in the dark, as people do who don't want to be followed.</li>
+      <li>[morning|day] The deserters have packed up {PLACE} and set off, keeping well off the road.</li>
+    </farewell>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

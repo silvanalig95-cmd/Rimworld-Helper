@@ -50,6 +50,10 @@ namespace ColonyCouncil
             // A war party's line about the enemy's archers (Rimfolk_CampKinds_War.xml) was said after any fight: only after
             // one with a people of bows and spears (the camp's foe tags).
             ["Their archers were a joke."] = "foe:lowtech",
+            // A camp's lines over their heads were said at any hour: the three that name one only then (Camp.Bubble).
+            ["They're biting this morning."] = "morning",
+            ["It's quieter tonight."] = "evening|night",
+            ["My back says it's evening."] = "evening",
             // A camp's farewell is told as they set off (CampLife.Leave), at whatever hour that is: the lines that name the
             // hour only then (CampLook.FarewellText tags it).
             ["The pilgrims from {FACTION} broke camp {PLACE} at dawn and walked on toward their holy place."] = "morning",
@@ -128,7 +132,7 @@ namespace ColonyCouncil
             // (CampLife.Leave): what they take down goes with them (the fire too), and only the hermit, the healers and the
             // mourners walk to the colony before they go (their farewellWalk). The lines that told of a wave, a bow or a word
             // at the gate nobody walked to, a sound heard after they were out of sight, or ash and bones left round a fire
-            // that is gone. New farewells for each kind are in Rimfolk_CampWords_Farewells.xml.
+            // that is gone. New farewells for each kind are in Rimfolk_CampWords_Voices.xml.
             "The hunters from {FACTION} were gone before dawn. All that's left {PLACE} is a ring of ash and a few cracked bones.",
             "The hunters of {FACTION} broke camp at first light. One of them lifted a hand toward the colony from a long way off, and then they were over the rise and out of sight.",
             "The family from {FACTION} packed up their camp {PLACE} and went on down the road. {X_nameDef} waved until the colony was out of sight.",
