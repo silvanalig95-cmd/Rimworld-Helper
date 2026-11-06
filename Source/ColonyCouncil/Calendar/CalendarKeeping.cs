@@ -311,7 +311,7 @@ namespace ColonyCouncil
             int today = GenLocalDate.DayOfYear(map);
             foreach (var x in days)
             {
-                if (x == d || x.Personal || x.kind == CalendarKind.FirstSnow || x.kind == CalendarKind.Founding || !Joins(x.way)) continue;
+                if (x == d || x.Personal || !x.Dated || x.kind == CalendarKind.Founding || !Joins(x.way)) continue;
                 int ahead = CalendarMath.Wrap(x.day - today);
                 if (!StageMath.KeptTogether(ahead) || x.lastYear >= OccurrenceAhead(x, map)) continue;
                 list.Add(x);
@@ -532,8 +532,9 @@ namespace ColonyCouncil
             switch (d.way)
             {
                 case DayWay.Feast:
-                    // With answers playing out: a meal from the stores eaten together, then the evening; its lift comes after.
-                    if (PlayDay(d, map, home, PlayKind.Feast, CalendarDefOf.Council_Cal_FeastDay, null, null, null, together)) return true;
+                    // With answers playing out: the one feast engine (PlayOut/PlayFeast.cs), a meal from the stores eaten together
+                    // and a cup raised to the day; its lift comes after.
+                    if (FeastDay(d, map, home, together)) return true;
                     if (StartParty(map, Interplay.CalendarOrganizer(d, home) ?? Keeper(d, home))) return true;
                     // No gathering possible (nowhere to gather, everyone busy): a better supper, and a little lift.
                     foreach (var p in home) CouncilGameComponent.GiveThought(p, CalendarDefOf.Council_Cal_FeastDay);
@@ -604,7 +605,8 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// A day kept on the map (PlayOut/, with "Answers play out on the map" on): those it's for gather for it, and
+        /// A day kept on the map with games, a fire or a quiet hour (PlayOut/, with "Answers play out on the map" on; a feast
+        /// is the feast engine's, <see cref="FeastDay"/>): those it's for gather for it, and
         /// <paramref name="thought"/> comes to those who were there when it's over (to nobody if it never happens).
         /// False when there's nothing to set going: the day is kept the old way.
         /// </summary>
@@ -628,7 +630,7 @@ namespace ColonyCouncil
                     spots = spots ?? new List<PlaySpot> { PlaySpot.Dining, PlaySpot.Rec, PlaySpot.Gather, PlaySpot.Outdoors },
                     place = grave,
                     durationTicks = PlayOutMath.DurationTicks(kind == PlayKind.Toast ? 1f : 3f),
-                    pool = kind == PlayKind.Feast ? "Council_Pool_PlayFeast" : grave != null ? "Council_Pool_PlayRemembrance"
+                    pool = grave != null ? "Council_Pool_PlayRemembrance"
                         : kind == PlayKind.Bonfire ? "Council_Pool_PlaySong" : "Council_Pool_PlayParty"
                 };
                 if (kind == PlayKind.Bonfire)
@@ -652,6 +654,24 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("calendar play out", e);
                 return false;
             }
+        }
+
+        /// <summary>
+        /// A day kept with a feast, set going by the one feast engine as every feast is (PlayOut/PlayFeast.cs): the keeper of
+        /// days or whoever stands for the day as host, those deep in grief sitting it out, the day's lift held until it's
+        /// over, and a cup raised to the day. False when nothing could be set going: the day is kept the old way.
+        /// </summary>
+        private static bool FeastDay(CalendarDay d, Map map, List<Pawn> home, string together)
+        {
+            if (!PlayOuts.On || map == null || home == null || home.Count == 0) return false;
+            var keeper = Interplay.CalendarOrganizer(d, home) ?? Keeper(d, home);
+            var play = PlayFeast.Stage(new FeastOrder
+            {
+                why = FeastWhy.Day, map = map, label = together ?? d.label, organizer = keeper,
+                invited = Interplay.WithoutMourners(d, PlayKind.Feast, false, home.Where(PlayOuts.OurPerson).ToList()),
+                duration = new FloatRange(3f, 3f), mood = CalendarDefOf.Council_Cal_FeastDay, moodCause = Causes.Current
+            });
+            return play != null;
         }
 
         /// <summary>A vanilla party, thrown by whoever stands for the day if they can, else by anyone.</summary>
@@ -1067,7 +1087,8 @@ namespace ColonyCouncil
             }
             if (eveTalkDate == date || hour < 12 || hour > 20 || !Rand.Chance(0.25f)) return;
             int tomorrowYear = today + 1 >= CalendarMath.DaysPerYear ? year + 1 : year;
-            var eve = days.Where(x => x.kind != CalendarKind.FirstSnow && !x.Personal && CalendarMath.DaysUntil(today, x.day) == 1 && x.lastYear < tomorrowYear
+            // Not a custom: its question may wait a few days for its weather.
+            var eve = days.Where(x => x.Dated && !x.Custom && !x.Personal && CalendarMath.DaysUntil(today, x.day) == 1 && x.lastYear < tomorrowYear
                                       && (x.byPlayer || tomorrowYear > x.sinceYear))
                 .OrderByDescending(x => x.Standing).FirstOrDefault();
             // Brought up once that evening, by two who are together (tried again at a later hour if nobody is).
@@ -1240,7 +1261,7 @@ namespace ColonyCouncil
             int today = GenLocalDate.DayOfYear(map);
             int year = GenLocalDate.Year(map);
             int hour = GenLocalDate.HourOfDay(map);
-            foreach (var d in days.Where(x => x.kind != CalendarKind.FirstSnow).OrderBy(x => CalendarMath.DaysUntil(today, x.day)))
+            foreach (var d in days.Where(x => x.Dated).OrderBy(x => CalendarMath.DaysUntil(today, x.day)))
             {
                 int until = CalendarMath.DaysUntil(today, d.day);
                 if (until == 0 || until > 5) continue;

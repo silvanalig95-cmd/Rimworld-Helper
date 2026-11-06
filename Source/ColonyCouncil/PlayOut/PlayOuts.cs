@@ -406,6 +406,9 @@ namespace ColonyCouncil
         public bool routine;
         /// <summary>Another gathering had the evening when it would have started; once, it takes the next evening instead.</summary>
         public bool collided, movedOn;
+        /// <summary>A feast's cup, raised by its host a while in (PlayFeast.cs), and the words said with it (null: a toast's own).</summary>
+        public bool toast;
+        public string toastLine;
 
         public bool IsGathering => kind == PlayKind.Gathering || kind == PlayKind.Feast || kind == PlayKind.Bonfire || kind == PlayKind.Toast;
 
@@ -528,6 +531,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref situationId, "situationId", -1);
             Scribe_Values.Look(ref routine, "routine");
             Scribe_Values.Look(ref collided, "collided");
+            Scribe_Values.Look(ref toast, "toast");
+            Scribe_Values.Look(ref toastLine, "toastLine");
             Scribe_Values.Look(ref movedOn, "movedOn");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
