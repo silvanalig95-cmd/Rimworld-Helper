@@ -3205,7 +3205,27 @@ bigger name); known across the region, they come twice as often. It shows on the
 its patients. Convalescents dream of running again and healers of the patients they pulled through or lost. Two life goals (pull ten patients
 through, deliver five babies), a wish (a visit from a friend) and four dilemmas (a doctor's day away after a loss, back
 to work too soon, family who want a say in an operation, a midwife's apprentice) come with it. Two switches on the
-Heart & health page: convalescence and sickbed visits, and doctors' and midwives' reputations.
+Heart & health page: convalescence and sickbed visits, and doctors' and midwives' reputations (a third, with Move the
+Patient, below).
+
+**With Move the Patient** (konstantynopolitaneczka's mod, and only with it), the best bed goes to whoever needs it
+most. The mod on its own keeps a reservation scheme: each patient gets the lowest-ranked medical bed that fits how
+badly they are hurt, the High and Critical beds stay free for worse cases, and a bed marked as a surgery bed is never
+given to anyone but a patient waiting for an operation while another medical bed is free. Rimfolk changes that, after
+the mod has chosen: a patient going to a medical bed takes the best free one they may use, the one ranked highest
+with the mod's priority, then the one the game treats best in (the bed's tend quality and immunity gain, the room's
+infection chance), then the nearest, and never one the game or the mod would refuse them. A surgery bed is open to
+anyone while nobody waiting for an operation could use it. When someone worse off by the mod's own severity
+(Critical, High, Normal, Low) arrives, or someone waiting for an operation while an ordinary patient lies in the
+surgery bed, and no equally good bed is free, the nearest colonist who does doctoring carries the lighter case to the
+best other free medical bed with the mod's "Transfer to bed", saying why as they set off ("Making room for Ada, who is
+worse off."), and the one worse off is brought in. Never someone being operated on or tended, in a mental state or in
+labour, never into a bed of the other kind (a prisoner's, a colonist's, a slave's), never when no other medical bed is
+free, one move at a time on a map and nobody moved twice within four hours. The colony news tells it once the lighter
+case lies in their new bed, in the colony's own words (a healer's hut, an infirmary, a ward, a sickbay), and the bed
+and the patient moved say why under their inspect text. Switch "Best bed first, and room made for the worse off" on
+the Heart & health page (on by default, needs the deeper game hooks); with the mod set to pick the nearest bed, it
+stands down.
 
 ## Seen and heard
 Rimfolk adds no art of its own, so it uses the game's own effects, sky and sounds to show what its events say is
@@ -3365,7 +3385,8 @@ The pages:
   social events and dreams come (a quarter as often to three times as often).
 - **Heart & health**: feelings and strain, the day off at the end of one's rope, the inspector line, how quickly
   strain builds (50% to 150%); everyday ailments, the serious (possibly fatal) illnesses on their own switch, how
-  often ailments come (25% to 200%); convalescence and sickbed visits, and doctors' and midwives' reputations.
+  often ailments come (25% to 200%); convalescence and sickbed visits, doctors' and midwives' reputations, and with
+  Move the Patient the best bed first and room made for the worse off.
 - **Events & world**: encounters with strangers and animals (and how often), nemeses (and whether they return), pets
   as companions, and Hospitality's guests (joining only when they would, guests in the colony's stories, recruiting
   spelled out on the guest tab); **Rimfolk events** on or off, whether they may bring fights, camps on the map,
@@ -3430,6 +3451,10 @@ new setting needs a row there.
   the market").
 - **RimHUD** by Jaxe: can show trust, the open wish, office, life goal, strain, feelings and the heart's needs in
   its pawn panel, with bars for strain and the heart's needs (see above).
+- **Move the Patient** by konstantynopolitaneczka: patients take the best free medical bed (its priority first,
+  then the game's medical quality), and a lighter case is carried to another bed with its "Transfer to bed" for
+  someone worse off or for an operation in the surgery bed (setting on the Heart & health page; see "Recovery, doctors
+  and midwives").
 
 ## Status and feedback
 

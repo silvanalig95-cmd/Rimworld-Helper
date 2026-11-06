@@ -2192,6 +2192,64 @@ No pass of their own: the hooks run when the mods act, and the views when asked.
 the region a town begun or built within reach (its site, and the founder named in `world:built`), and a town taken
 starts its fortune again ("The region").
 
+### Medical triage with Move the Patient
+
+The player's request (6 November 2026, with a save): "i have a hospital bed with high criticality and set as surgery
+bed. when a pawn is injured they always take one of the other two beds though ... i want them to always take the best
+bed, and once a patient with a more serious injury arrives, the previous pawn should be put into another bed via
+'transfer to bed'". `Integrations/MedicalTriage.cs`, its pure rules in `MedicalTriageMath.cs` (Tools/Tests,
+`MedicalTriageTests`). Move the Patient (`konstantynopolitaneczka.movethepatient`, assembly `PatientBedTransfer`) is
+read by name: its settings (`PatientBedTransferMod.settings`: the priority system and its mode), a bed's priority and a
+patient's severity (`PatientTriage.GetBedPriority`, `CalculatePatientSeverity`, Low 1 to Critical 4), its surgery
+beds and pending operations, xenotype rule, bed kinds and transfers under way (`BedUtility`), who can carry
+(`PatientTransferUtility.CanPawnPerformTransfer`), its rerun without surgery beds (`MedicalBedSelector.Busy`) and its
+job (`TransferPatientToBed`, the patient then the bed). Anything missing: one warning, and nothing is patched. The
+mod's own scheme stays as it is underneath: each patient gets the lowest-priority bed at least as high as their
+severity (the higher beds kept for worse cases), and a surgery bed goes to nobody else while another medical bed is
+free.
+
+- **Best bed first.** Postfixes on `RestUtility.FindBedFor` (the five-argument one) and `FindPatientBedFor`, the
+  methods the mod's own postfixes adjust, ordered after them (`HarmonyAfter` its Harmony id, low priority), and only
+  when the result is a medical bed for one of the colony's people (not an enemy unless a prisoner, not a baby, not a
+  faith that wants slab beds). The best free bed they may use: the player's priority with the mod (Normal for all while
+  its priority system is off), then the game's medical quality (`MedicalTriageMath.Quality`: the bed's tend quality
+  offset, its immunity gain above 1, the room's infection chance below 1, in steps of 0.005 so the order is whole), then
+  the nearest. A candidate passes the call's own `IsValidBedFor` (forbidden, owner type, prisoner beds and cells,
+  reachable, reservable), the mod's xenotype rule, and is no more dangerous than the bed chosen. A surgery bed counts
+  for an ordinary patient only while nobody waiting for an operation could use it; one waiting for theirs keeps the
+  surgery bed the mod gave them. Someone already in a medical bed that counts keeps it (no getting up for a better
+  one), and a bed being freed for someone is theirs alone. Inside the mod's rerun without surgery beds it stands aside.
+- **Making room.** A pass (`GameComponent_MedicalTriage`, at tick 53 of the 250-tick cycle, `Sched.RareTriage`): on the
+  hour every home map; every 250 ticks only a map where a patient went to a lesser bed than the best of their kind in
+  the last hour (the bed choice notes it) and a move under way. The patients: those in the colony's medical beds and
+  those lying downed on the floor, the worst first by the mod's severity, one waiting for an operation first among
+  equals. For each, the beds ranked for them (a surgery bed first for an operation): when one better than what they
+  have (or the best free bed they would be carried to) holds someone they outrank (`Outranks`: more serious, or an
+  operation for the surgery bed over an ordinary patient; nobody is moved out of a surgery bed while waiting for their
+  own operation), and that one may be moved (`MayMove`: not being operated on, tended or on the way to, in a mental
+  state, in labour or carried; another free medical bed of their kind; not moved in four hours), the nearest awake
+  colonist who does doctoring and isn't busy (drafted, in a ritual, tending, rescuing, firefighting, carrying, on the
+  player's order) gets the mod's job to the best other free bed, as its "Transfer to bed" gives it (`playerForced`,
+  marked active in the mod). One move at a time per map; the bed is kept for the one worse off until they lie in it,
+  they no longer need it, or four hours pass. Once the lighter case lies in the new bed, the worse one is brought in:
+  by the game's rescue (best bed first sends them there), by another transfer when they lie in a lesser bed or on the
+  floor with nobody coming, or on their own feet. Each one carried by triage is held four hours.
+- **Shown.** The carrier says one line as they set off (`Rimfolk_Pool_TriageRoom`, `_TriageSurgery`, by the colony's
+  age); the colony news (`Tell.Minor`, Health) tells it once the lighter case lies in their new bed, in two wordings
+  for each age, with the room they were carried to in the age's word when it is a hospital (the healer's hut, the
+  infirmary, the ward, the sickbay); the bed kept says for whom, and the patient moved why, under their inspect text
+  for six hours.
+- **The player's case.** A hospital bed at High and marked for surgery, two plain beds at Normal. The mod alone sends
+  every ordinary patient to the plain beds while one is free. With triage the injured take the hospital bed first; a
+  newcomer worse off (open wounds over tended ones, downed and unconscious or bleeding out over the rest) has the
+  lighter case carried to a plain bed if one is free; and anyone waiting for an operation has an ordinary patient
+  carried out of it. Without the surgery mark the same, by severity only: an operation then claims the bed like anyone
+  else, by how badly they are hurt.
+
+The setting `medicalTriage` (Heart & health, Recovery; on by default, needs the deeper hooks). The mod's "by distance"
+mode stands triage down: the player chose the nearest bed there. Nothing is saved: a load forgets a move under way
+(the carry itself is the game's and goes on) and who was moved lately.
+
 ### Ages
 
 Every feature takes the form of the age (ROADMAP.md, "Every age, not only the medieval one"), and the ages are read in
@@ -4141,6 +4199,7 @@ chains, nemeses, camps, play-outs, the fights pass and the worn-out episode read
 |---|---|---|
 | 37 | World situations keep their people from the world's clean-up (only while one runs) | per person a situation holds |
 | 41 | Room planner queue (only while blueprints are queued) | the next blueprints |
+| 53 | Medical triage with Move the Patient (Integrations/MedicalTriage.cs; only with the mod): once an hour, at tick 53 of the hour, every home map's medical beds; every 250 ticks only a map where a patient lately went to a lesser bed, and a move under way followed (the lighter case carried out, then the worse one brought in) | per home map: its medical beds and the patients in them or downed on the floor, the mod's severity each; a carrier sought only for a move |
 | 71 | The heart: one tenth of the colonists (by ID), so each colonist once an hour | per colonist in the slice: moods, feelings, needs, strain; each map's context (food, medicine, filth, defences, dread) at most once an hour, its threat flag every 250 ticks; the dead pruned on slice 0 |
 | 77 | A camp's phase, hunts and trees (only while a camp is there) | per camp member, prey and tree |
 | 89 | Missions: an accepted quest starts, a goal met is noticed (with a map) | per open mission |
