@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- ===================== The settings on five pages (Source/ColonyCouncil/UI/SettingsCatalog.cs; the review's decision 15, 6 November 2026) ===================== -->
+
+  <!-- The pages, by what a player thinks about, and the line beside the search box that says what each is for -->
+  <CC_SetPage_HowMuch>How much happens</CC_SetPage_HowMuch>
+  <CC_SetPage_HowMuch_Desc>How often each part speaks up: gatherings, the council's asks, people's moments and stories, events, travellers.</CC_SetPage_HowMuch_Desc>
+  <CC_SetPage_HowHard>How hard</CC_SetPage_HowHard>
+  <CC_SetPage_HowHard_Desc>What's at stake and how hard life presses: the stakes, pressures and standards, strain, illness and hurts.</CC_SetPage_HowHard_Desc>
+  <CC_SetPage_WhatsOn>What's on</CC_SetPage_WhatsOn>
+  <CC_SetPage_WhatsOn_Desc>Each part on or off, by what it is about: the council, lives, bonds, the story, the world, other peoples, the tools.</CC_SetPage_WhatsOn_Desc>
+  <CC_SetPage_HowTold>How you're told</CC_SetPage_HowTold>
+  <CC_SetPage_HowTold_Desc>Messages, letters and the evening's news, speech on the map, alerts, buttons and windows, the panels and the bar.</CC_SetPage_HowTold_Desc>
+  <CC_SetPage_OtherMods>Your other mods</CC_SetPage_OtherMods>
+  <CC_SetPage_OtherMods_Desc>What Rimfolk does with the other mods it works with. Only the mods you have loaded show here.</CC_SetPage_OtherMods_Desc>
+
+  <!-- Headings -->
+  <CC_SetSec_Pace>The colony's pace</CC_SetSec_Pace>
+  <CC_SetSec_Pace_Note>Every part's rate in one place. The presets on the left set them all at once: light touch slower, story-rich livelier.</CC_SetSec_Pace_Note>
+  <CC_SetSec_CouncilAsks>The council's asks</CC_SetSec_CouncilAsks>
+  <CC_SetSec_Lives>People's lives</CC_SetSec_Lives>
+  <CC_SetSec_WorldPace>Visitors, events and the region</CC_SetSec_WorldPace>
+  <CC_SetSec_Story>The colony's story</CC_SetSec_Story>
+  <CC_SetSec_Peoples>Bonds with other peoples</CC_SetSec_Peoples>
+  <CC_SetSec_Defense>Defense</CC_SetSec_Defense>
+  <CC_SetSec_OnTheMap>On the map and in the game's tabs</CC_SetSec_OnTheMap>
+  <CC_SetSec_Buttons>Buttons and windows</CC_SetSec_Buttons>
+  <CC_SetSec_Mod_Hospitality>Hospitality</CC_SetSec_Mod_Hospitality>
+  <CC_SetSec_Mod_RimMarket>RimMarket</CC_SetSec_Mod_RimMarket>
+  <CC_SetSec_Mod_AlphaSkills>Alpha Skills</CC_SetSec_Mod_AlphaSkills>
+  <CC_SetSec_Mod_AlphaGenes>Alpha Genes</CC_SetSec_Mod_AlphaGenes>
+  <CC_SetSec_Mod_Magic>RimWorld of Magic</CC_SetSec_Mod_Magic>
+  <CC_SetSec_Mod_Territories>Faction Territories and Vassalage</CC_SetSec_Mod_Territories>
+  <CC_SetSec_Mod_MoveThePatient>Move the Patient</CC_SetSec_Mod_MoveThePatient>
+  <CC_SetSec_Mod_Faiths>Faiths from other mods</CC_SetSec_Mod_Faiths>
+
+  <!-- Fealty and vassals, a pact of their own kind (the review's decision 14): the row hangs under pacts and truces -->
+  <CC_Settings_PactFealty>... and pacts of fealty: sworn to a neighbor, or vassals of the colony's own</CC_Settings_PactFealty>
+  <CC_SetNote_PactFealty>A pact of its own kind: the colony may swear fealty to a stronger neighbor, and keep vassals of its own.</CC_SetNote_PactFealty>
+
+  <!-- The other mods' page -->
+  <CC_SetUI_ModAbsent>Only with {MODS} loaded.</CC_SetUI_ModAbsent>
+  <CC_SetUI_ModsAbsent>Rimfolk also has settings here for {MODS}, shown when they're loaded.</CC_SetUI_ModsAbsent>
+  <CC_SetUI_ModsNone>Rimfolk has settings here for {MODS}. None of them is loaded now.</CC_SetUI_ModsNone>
+
+  <!-- The presets, saying what each covers on the five pages -->
+  <CC_SetPreset_LightTouch_TipWhole>Rimfolk in the background. How much happens: fewer wishes, dilemmas, meetings, personal stories, events, moments, dreams, travellers and raiders' camps, half the outsiders' chatter, and one gathering of the colony's own a week. How hard: only upsides (Gentle stakes), gentle everyday pressures, strain that builds slower, more time for wishes and ambitions, no frictions, nobody walking out or taking a day off, no deadly illnesses (ailments half as often), everyday hurts half as often, the fights a scenario promises a quarter softer, no fights from Rimfolk's events, and no strain from diplomacy against someone's nature. How you're told: important messages only, fewer of them a day, and new wishes as messages rather than letters. Every part stays on, only quieter. Rimfolk's moods come to about +6 in a well-run colony and about +5 in an ordinary one, and even a neglected colony hardly feels them.</CC_SetPreset_LightTouch_TipWhole>
+  <CC_SetPreset_StoryRich_TipWhole>Every part that tells a story switched on, the region and the bonds with other peoples among them, and more of each: frequent personal stories, a dilemma about every five days, half again as many moments, social events, dreams, encounters, personal touches, travellers and outsiders' chatter, a quarter more raiders' camps, more of Rimfolk's events and world events, three gatherings a week, and a message for everything. Moods, pressures and stakes stay as they are, so the colony feels Rimfolk as it does by default, only with more to read and a question a little more often than every two days.</CC_SetPreset_StoryRich_TipWhole>
+  <CC_SetPreset_Demanding_TipWhole>Harder moods, more frictions and pressures, rarer rewards. Demanding stakes with downsides 85% stronger again and rewards at 70%, less time to grant wishes and reach ambitions, demanding everyday pressures, more frictions, rising standards, good things that grow ordinary, strain that builds a quarter faster, bitter colonists who may leave, and a quarter more illness, everyday hurts and fights a scenario promises. A well-run colony about breaks even on Rimfolk's moods, an ordinary one loses about 4, and a neglected one about 18.</CC_SetPreset_Demanding_TipWhole>
+  <CC_SetPreset_Default_TipWhole>Everything the other three presets change, back to how Rimfolk ships. Settings they don't touch stay as you set them; the full reset is at the foot of the What's on page. As shipped, Rimfolk's moods come to about +5 in a well-run colony, about +2 in an ordinary one and about -7 in a neglected one, where small letdowns also wear on the heart, with a question about every two days.</CC_SetPreset_Default_TipWhole>
+  <CC_Preset_Everything_TipWhole>Every part of Rimfolk on: the council, people's lives, bonds, the colony's story, strangers, Rimfolk's events and world events, the region and the bonds with other peoples, with every switch under them. Personal stories go to normal if they were off.</CC_Preset_Everything_TipWhole>
+  <CC_Preset_Core_TipWhole>The council and the colony's story without the rest: wishes, meetings, dilemmas, decrees, offices, the colony's character, its memory and its calendar stay on; people's lives, bonds, strangers, events, world events, the region and the bonds with other peoples go off. The switches under them keep their places for when they come back.</CC_Preset_Core_TipWhole>
+  <CC_Preset_AdvisorOnly_TipWhole>Only the advisor's ranked advice and its plan: every other part off, wishes, meetings and the colony's memory too, and no mood effects at all.</CC_Preset_AdvisorOnly_TipWhole>
+
+</LanguageData>

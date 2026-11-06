@@ -22,7 +22,7 @@ namespace ColonyCouncil
         private const float IndentW = 20f;
         private const float SegmentGap = 4f;
 
-        private static SettingsPage page = SettingsPage.Council;
+        private static SettingsPage page = SettingsPage.HowMuch;
         private static readonly Dictionary<SettingsPage, Vector2> scrolls = new Dictionary<SettingsPage, Vector2>();
         private static readonly Dictionary<SettingsPage, float> heights = new Dictionary<SettingsPage, float>();
         private static Vector2 searchScroll, leftScroll;
@@ -172,12 +172,11 @@ namespace ColonyCouncil
         {
             switch (p)
             {
-                case SettingsPage.Council: return Icons.Council;
-                case SettingsPage.People: return Icons.Moods;
-                case SettingsPage.HeartHealth: return Icons.Heart;
-                case SettingsPage.Events: return Icons.World;
-                case SettingsPage.Building: return Icons.Rooms;
-                case SettingsPage.Interface: return Icons.CatMods;
+                case SettingsPage.HowMuch: return Icons.Week;
+                case SettingsPage.HowHard: return Icons.Heart;
+                case SettingsPage.WhatsOn: return Icons.Overview;
+                case SettingsPage.HowTold: return Icons.Inbox;
+                case SettingsPage.OtherMods: return Icons.CatMods;
                 default: return Icons.CatManagement;
             }
         }
@@ -206,6 +205,8 @@ namespace ColonyCouncil
                 string section = null;
                 foreach (var e in SettingsCatalog.On(page))
                 {
+                    // The other mods' page shows only the mods loaded; the search still finds the rest, greyed with why.
+                    if (!SettingsAccess.ModsLoaded(e)) continue;
                     if (e.section != section)
                     {
                         section = e.section;
@@ -218,6 +219,7 @@ namespace ColonyCouncil
                     }
                     y += DrawEntry(s, e, 0f, y, view.width, top, bottom);
                 }
+                if (page == SettingsPage.OtherMods) y += AbsentMods(view.width, y, section == null);
             }
             finally
             {
@@ -635,9 +637,25 @@ namespace ColonyCouncil
             return i >= 0 ? t.optionNotes[i] : t.note;
         }
 
-        /// <summary>Why a row is grayed out: the switch it needs, or its own reason.</summary>
+        /// <summary>The other mods' page's foot: the mods Rimfolk has settings for that aren't loaded, by name.</summary>
+        private static float AbsentMods(float width, float y, bool noneShown)
+        {
+            var names = SettingsCatalog.On(SettingsPage.OtherMods).Where(e => !SettingsAccess.ModsLoaded(e)).SelectMany(e => e.mods)
+                .Where(id => !People.ModActive(id)).Distinct().Select(ModName).Where(n => !n.NullOrEmpty()).Distinct().ToList();
+            if (names.Count == 0) return 0f;
+            string text = (noneShown ? "CC_SetUI_ModsNone" : "CC_SetUI_ModsAbsent").Translate(names.ToCommaList(true).Named("MODS")).Resolve();
+            return UiKit.Paragraph(4f, y + 8f, width - 8f, text, UiKit.Faint) + 12f;
+        }
+
+        /// <summary>A mod's name, as its heading on the other mods' page says it.</summary>
+        private static string ModName(string packageId) =>
+            SettingsCatalog.ModSections.TryGetValue(packageId, out var key) ? SectionLabel(key) : packageId;
+
+        /// <summary>Why a row is grayed out: the mod it is for isn't loaded, the switch it needs, or its own reason.</summary>
         private static string WhyOff(CouncilSettings s, SettingEntry e)
         {
+            if (!SettingsAccess.ModsLoaded(e))
+                return "CC_SetUI_ModAbsent".Translate(e.mods.Where(id => !People.ModActive(id)).Select(ModName).ToCommaList(true).Named("MODS")).Resolve();
             foreach (var term in SettingsCatalog.ParseNeeds(e.needs))
             {
                 object v = SettingsAccess.Get(s, term.field);

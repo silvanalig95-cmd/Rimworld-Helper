@@ -61,6 +61,7 @@ namespace ColonyCouncil
         public static bool Met(CouncilSettings s, SettingEntry e)
         {
             if (e.id == "colonyEra" || e.id == "selfCheck") return Current.ProgramState == ProgramState.Playing && CouncilGameComponent.Instance != null;
+            if (!ModsLoaded(e)) return false;
             foreach (var t in SettingsCatalog.ParseNeeds(e.needs))
             {
                 object v = Get(s, t.field);
@@ -71,6 +72,16 @@ namespace ColonyCouncil
                 }
                 else if (t.values.Contains(v.ToString()) == t.negate) return false;
             }
+            return true;
+        }
+
+        /// <summary>Whether the other mods a row is for are all loaded (a row for no other mod always is).</summary>
+        public static bool ModsLoaded(SettingEntry e)
+        {
+            if (e?.mods == null) return true;
+            foreach (var id in e.mods)
+                if (!People.ModActive(id))
+                    return false;
             return true;
         }
 
@@ -249,7 +260,7 @@ namespace ColonyCouncil
             for (int i = 0; i < SettingsCatalog.All.Count; i++) order[SettingsCatalog.All[i]] = i;
             foreach (var page in SettingsCatalog.Pages)
             {
-                var lines = changes.Where(c => (c.entry?.page ?? SettingsPage.Advanced) == page)
+                var lines = changes.Where(c => (c.entry?.page ?? SettingsPage.WhatsOn) == page)
                     .OrderBy(c => c.entry != null && order.TryGetValue(c.entry, out int i) ? i : int.MaxValue)
                     .Select(Line).Distinct().ToList();
                 if (lines.Count == 0) continue;

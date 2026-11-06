@@ -33,8 +33,11 @@ namespace ColonyCouncil
 
         private static float Day => Now / (float)FealtyMath.DayTicks;
 
-        /// <summary>The setting "Fealty and vassals".</summary>
-        public static bool On => (ColonyCouncilMod.Settings?.diplomacyFealty ?? true) && FactionMemory.On;
+        /// <summary>
+        /// The setting "... and pacts of fealty", under "Pacts and truces" since fealty and vassals folded into pacts (the
+        /// review's decision 14): pacts off, no new pact of fealty either, and the oaths standing run on as with it off.
+        /// </summary>
+        public static bool On => Pacts.On && (ColonyCouncilMod.Settings?.diplomacyFealty ?? true) && FactionMemory.On;
 
         /// <summary>A call of the colony's levies, or their band, under way on the oath.</summary>
         public static bool CallUnderWay(Tie t) => t != null && !t.terms.goods.NullOrEmpty();
