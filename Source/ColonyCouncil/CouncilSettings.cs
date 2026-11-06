@@ -282,6 +282,11 @@ namespace ColonyCouncil
         public bool movingOn = true;
         /// <summary>How often ailments come: 0.25 to 2.</summary>
         public float ailmentFrequency = 1f;
+        /// <summary>
+        /// Hurts from everyday life (Harm/): the factor on every Rimfolk-made hurt (drills that bruise, tired hands,
+        /// a strain worked through), 0 to 2, leaning with the storyteller's own threat and disease numbers.
+        /// </summary>
+        public float everydayHurts = 1f;
         /// <summary>Convalescence after serious illness, operations, long bed rest and lost limbs; sickbed visits (Health/).</summary>
         public bool convalescence = true;
         /// <summary>Doctors' and midwives' reputations: names, the colony's trust, the weight of losses (Health/).</summary>
@@ -642,6 +647,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref endOfLife, "endOfLife", true);
             Scribe_Values.Look(ref movingOn, "movingOn", true);
             Scribe_Values.Look(ref ailmentFrequency, "ailmentFrequency", 1f);
+            Scribe_Values.Look(ref everydayHurts, "everydayHurts", 1f);
             Scribe_Values.Look(ref convalescence, "convalescence", true);
             Scribe_Values.Look(ref healerReputations, "healerReputations", true);
             Scribe_Values.Look(ref slowButtons, "slowButtons", true);

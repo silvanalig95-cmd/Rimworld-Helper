@@ -113,7 +113,14 @@ namespace ColonyCouncil
 
         /// <summary>The weather's push on each home map's outdoor temperature, eased toward what the weather makes it (Weather/WeatherDynamics.cs).</summary>
         public const int RareWeather = 97;
-        public static readonly int[] RareOffsets = { RareWorldKeep, RarePlanQueue, RareHeart, RareCamp, RareMissions, RareWelcome, RareAilments, RareHealth, RareDefenseLines, RareFightSides, RareSmoke, RareBuildPriority, RareWeather };
+
+        /// <summary>
+        /// Hurts from everyday life (Harm/HarmBook): one tenth of the colonists (see <see cref="SliceTurn"/>), their work
+        /// under a work decree and a strain worked through; the first slice also carries the colony's part (the evening
+        /// drill, the day's pruning). Nothing while the setting is at nothing.
+        /// </summary>
+        public const int RareHarm = 53;
+        public static readonly int[] RareOffsets = { RareWorldKeep, RarePlanQueue, RareHeart, RareCamp, RareMissions, RareWelcome, RareAilments, RareHealth, RareDefenseLines, RareFightSides, RareSmoke, RareBuildPriority, RareWeather, RareHarm };
 
         /// <summary>Passes on the 250-tick cycle that only run while something is waiting (the news of the evening, an answer playing out, the council window's memory).</summary>
         public const int RareNews = 167;

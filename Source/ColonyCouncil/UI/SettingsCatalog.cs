@@ -322,6 +322,10 @@ namespace ColonyCouncil
             Toggle("dirtyWounds", "CC_Settings_DirtyWounds", "CC_SetNote_DirtyWounds");
             Toggle("endOfLife", "CC_Settings_EndOfLife", "CC_SetNote_EndOfLife");
             Toggle("movingOn", "CC_Settings_MovingOn", "CC_SetNote_MovingOn");
+            // Hurts from everyday life (Harm/): one factor on every Rimfolk-made hurt, the harm review's shared rules.
+            Section("CC_SetSec_Hurts");
+            NoteUnder("CC_SetSec_Hurts_Note");
+            Slider("everydayHurts", "CC_Settings_EverydayHurts", "CC_SetNote_EverydayHurts", 0f, 2f, 0.05f, "%");
             Section("CC_SetSec_Recovery");
             Toggle("convalescence", "CC_Settings_Convalescence", "CC_SetNote_Convalescence");
             Toggle("healerReputations", "CC_Settings_HealerReputations", "CC_SetNote_HealerReputations");
@@ -640,6 +644,7 @@ namespace ColonyCouncil
                 V("daysBetweenMeetings", "20"), V("arcFrequency", "Rare"), V("frictions", "false"), V("allowQuitting", "false"),
                 V("heartEpisodes", "false"), V("strainSpeed", "0.75"), V("seriousIllnesses", "false"), V("ailmentFrequency", "0.5"),
                 V("crowdedSickness", "false"), V("frailty", "false"), V("dirtyWounds", "false"), V("endOfLife", "false"), V("movingOn", "false"), V("guestWill", "false"),
+                V("everydayHurts", "0.5"),
                 V("worldEventBattles", "false"), V("storytellerEventWeight", "0.5"), V("daysBetweenWorldEvents", "8"),
                 V("daysBetweenWorldSituations", "75"), V("encounterFrequency", "0.5"), V("momentFrequency", "0.75"),
                 V("socialEventFrequency", "0.5"), V("dreamFrequency", "0.5")
