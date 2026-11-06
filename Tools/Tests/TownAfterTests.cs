@@ -305,7 +305,8 @@ public static class TownAfterTests
         C(region.Contains("TownsAfter.Hourly(now)") && region.Contains("TownsAfter.Daily(now)") && region.Contains("WorldLedger.Formers.Count > 0"),
             "no schedule slot: the region's hour and day, only while a town the colony was is on record");
         string life = Code("Colonies/TownsAfter.cs");
-        C(life.Contains("FormerMath.LetterDue(") && life.Contains("Rimfolk_Pool_TownLetter") && life.Contains("Facts.For(FactScene.Event("), "the head's letters, by the rule and the facts");
+        C(life.Contains("FormerMath.LetterDue(") && life.Contains("Rimfolk_Pool_TownLetter") && life.Contains("Facts.For(FactScene.Event(") && life.Contains("Couriers.MailAnswer(home, rec.people"),
+            "the head's letters, by the rule and the facts, walked to the gate by their messenger");
         C(life.Contains("FormerMath.HomecomingDue(") && life.Contains("FoundingLetters.AskHomecoming(") && life.Contains("EdgeToward(home, rec.Town)") && life.Contains("Together.When("),
             "a homecoming asked by Tell.Ask, walked in from the town's side, welcomed face to face");
         C(life.Contains("TownDayMission.Invite(rec, day, home)") && life.Contains("FormerMath.DayComing("), "its days: an invitation a year at most, by the invitation missions");

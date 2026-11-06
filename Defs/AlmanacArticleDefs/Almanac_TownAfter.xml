@@ -18,7 +18,7 @@
         <heading>Its map</heading>
         <points>
           <li>At the hand-over Rimfolk keeps the colony's layout over its home area and 6 cells around it: every building of the colony's by its origin with its stuff and its turn, the floors and bridges, the roofs it built, and where rock was mined. Not its goods, plants, filth or art's stories.</li>
-          <li>A mid-game base takes a few KB to a few tens of KB in the save; a layout never takes more than 64 KB (past that, the roofs go first, then the floors).</li>
+          <li>A mid-game base takes about 10 KB in the save; a layout never takes more than 64 KB (past that, the roofs go first, then the floors).</li>
           <li>When the game makes the town's map (an attack, a fight there), it stands down its own base for that map and places the layout instead, with the town's notables at home in their own beds and the game's own defenders of that people. A thing the game no longer has (a mod removed) is left out.</li>
           <li>Without Rimfolk, or for a town handed over before the layout was kept, the game makes its ordinary base.</li>
         </points>

@@ -1043,7 +1043,8 @@ namespace ColonyCouncil
         {
             foreach (var r in WorldLedger.Formers)
             {
-                if (r == null || r.bondEnded || r.people == null) continue;
+                // A town taken back by its people's word, or a people the game has let go, has no bond left to break.
+                if (r == null || r.bondEnded || r.people == null || r.end == TownEnd.TakenBack || !Find.FactionManager.AllFactionsListForReading.Contains(r.people)) continue;
                 if (!HandOverMath.BondEnds(r.people.HostileTo(Faction.OfPlayer), r.end == TownEnd.Beaten)) continue;
                 r.bondEnded = true;
                 r.bondEndedAt = now;

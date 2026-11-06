@@ -3164,8 +3164,9 @@ the records on `LedgerFormer` (World/Ledger/LedgerFormers.cs). No schedule slot:
   (`DataExposeUtility.LookByteArray`: two bytes a cell, deflated), with the table and the beds (`LedgerLayout`). Past
   64 KB (base64 of the deflated grids, measured with the game's own `CompressUtility`), the roofs go, then the floors,
   then the lesser buildings; past that nothing is kept. Items, plants, filth and art's tales are not kept. A made-up
-  80 by 80 base of 18 rooms takes about 3 KB, one over most of a 275 map about 14 KB (the tests); a real base, with
-  more kinds of things, more.
+  80 by 80 base of 18 rooms takes about 3 KB, one over most of a 275 map about 14 KB (the tests); the player's own
+  colony (the Atia save of 5 November, a 250 map: 166 by 156 cells kept, 935 buildings, 140 defs) about 7.5 KB, most of
+  it the table of names.
 - **The town's map from it.** When the game makes the map of a town the colony was, still its people's, with a layout
   kept (an attack, a fight there): `Patch_TownLayoutSettlement`, a guarded prefix on `GenStep_Scatterer.Generate` for a
   `GenStep_Settlement` (the game's, and the Vanilla Expanded Framework's KCSG step, which derives from it and which
@@ -3180,10 +3181,11 @@ the records on `LedgerFormer` (World/Ledger/LedgerFormers.cs). No schedule slot:
   another size the layout keeps its place, moved in to fit. Without Rimfolk, deep hooks off, or a town handed over
   before 2b, the game builds its own base.
 - **Letters.** Its head (the people's leader) writes at most a season apart, the first some days after the hand-over,
-  then about one day in ten (`FormerMath.LetterDue`): an intro by the town's means (a runner, a rider, a courier, comms;
-  by the age it had at the hand-over), a line of `Rimfolk_Pool_TownLetter` by the town's fortune, the age, whether the
-  head was one of the colony's own, the years since and someone of its former people asking after their own in the
-  colony, with the facts service's tags, and the town's fortune in words.
+  then about one day in ten (`FormerMath.LetterDue`): carried to the gate by their messenger (the couriers' own mail,
+  `Couriers.MailAnswer`, read when it is handed over; over comms at once in the spacer age, by the age it had at the
+  hand-over; the word the old way when nobody of theirs can come), a line of `Rimfolk_Pool_TownLetter` by the town's
+  fortune, the age, whether the head was one of the colony's own, the years since and someone of its former people
+  asking after their own in the colony, with the facts service's tags, and the town's fortune in words.
 - **Trade.** The game's own caravans; when a trader caravan of theirs comes, its Trader notable (free at home) is the one
   who trades (`Patch_TownTrader`, a prefix on `PawnGroupKindWorker_Trader.GenerateTrader` for Rimfolk's peoples only),
   no longer the caravan's trader once home.

@@ -19,7 +19,8 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
     where natural rock is gone (flags), the beds of those who stay. Saved on `LedgerFormer.layout` (`LedgerLayout`) the
     game's way (`DataExposeUtility.LookByteArray`, deflated); fitted under 64 KB with the game's `CompressUtility`
     (roofs, then floors, then the under grid, else nothing). A dev-mode log line gives each layout's size at the
-    hand-over; the tests' made-up bases take 3 KB (80 by 80, 18 rooms) and 14 KB (most of a 275 map).
+    hand-over; the player's Atia save (5 November) would keep 166 by 156 cells, 935 buildings and 140 defs in about
+    7.5 KB (worked out from the save's own grids by a script); the tests' made-up bases take 3 KB and 14 KB.
   - The town's map: `Patch_TownLayoutSettlement`, a prefix on `GenStep_Scatterer.Generate` guarded to a
     `GenStep_Settlement` (the game's and KCSG's, which derives from it; VBGE gives KCSG's to TribeBase and
     OutlanderFactionBase, so to our peoples) on the map of a town the colony was with a layout: `TownLayouts.Place`
@@ -28,7 +29,8 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
     `LordJob_DefendBase`); `Patch_TownLayoutPower` stands `GenStep_Power` down for the same map. Deep hooks off, no
     layout (a 2a save), or without Rimfolk: the game's own base.
   - Its life (setting "The town's life", `townLife`, Many colonies), in the region's day (`TownsAfter.Daily`): the
-    head's letter (a season apart at least, `Rimfolk_Pool_TownLetter`, an intro by the town's means by age); the
+    head's letter (a season apart at least, `Rimfolk_Pool_TownLetter`, walked to the gate by their messenger as mail,
+    `Couriers.MailAnswer` with `TownsAfter.MailId`, over comms for a spacer town); the
     Trader notable as the caravan's trader (`Patch_TownTrader`, a prefix on `PawnGroupKindWorker_Trader.GenerateTrader`
     for our peoples); its days (`Rimfolk_Mission_TownDay` on the invitation's worker, base chance 0, the founding day or
     the hand-over's, a year apart); homecomings (`ChoiceLetter_Founding` ask 6, walked in from the town's side, welcomed
@@ -64,8 +66,9 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
        letter "X agrees", Take X back: the map at the colony's size, the layout, the formers walking out of
        their rooms as colonists, maybe joiners, the people gone from the factions tab at the next tick (with no other
        town), the colony card back, the limit raised by one if needed.
-    5. Its life: "Town after: the head's letter now" (the intro by the age, a line by its fortune, maybe someone asking
-       after their own); a trader caravan of the people (the game's own debug incident, Trader caravan arrival, with the
+    5. Its life: "Town after: the head's letter now" (their messenger walks in to the gate with it within hours, and
+       the letter comes when it is handed over: the intro by the age, a line by its fortune, maybe someone asking after
+       their own); a trader caravan of the people (the game's own debug incident, Trader caravan arrival, with the
        people chosen): its trader is the town's Trader notable; "its day's invitation now": the invitation in the Quests
        tab, a caravan of two there for the day; "a homecoming asked now" for a former colonist whose spouse, child or
        close friend is in the colony (Welcome: they walk in from the town's side, the one they came home to goes to meet

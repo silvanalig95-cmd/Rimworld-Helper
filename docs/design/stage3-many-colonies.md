@@ -626,9 +626,10 @@ colonies at once after. Each release plays as before with its settings off and o
    - *The layout*: two buildings a cell at most (the edifice, and what lies under or on it: a conduit, a lamp), each at
      its origin; "the rock that is gone" is every cell of the area with no natural rock at the hand-over, so a map whose
      ground came out otherwise (another landing on the same place turned its seed) still has the colony's open ground.
-     Past 64 KB, after the roofs and the floors the lesser buildings go, then nothing is kept. A made-up mid-game base
-     takes about 3 KB (an 80 by 80 home area) to 14 KB (most of a 275 map) in the tests, less than the design's 10 to
-     40; a real base's size is to be seen in the game (a dev-mode log line gives it at the hand-over).
+     Past 64 KB, after the roofs and the floors the lesser buildings go, then nothing is kept. The player's own colony
+     (the Atia save of 5 November: 166 by 156 cells kept, 935 buildings, 140 defs) takes about 7.5 KB, most of it the
+     table of names; made-up bases in the tests 3 KB (an 80 by 80 home area) to 14 KB (most of a 275 map); less than the
+     design's 10 to 40 (a dev-mode log line gives each layout's size at the hand-over).
    - *Base generation*: one guarded prefix covers the game's step and the Vanilla Expanded Framework's (its KCSG
      GenStep_Settlement derives from the game's, and Vanilla Base Generation Expanded gives it to the game's tribal and
      outlander peoples, ours among them), so no mod's own step is patched; the game's power step also stands down for
@@ -636,8 +637,8 @@ colonies at once after. Each release plays as before with its settings off and o
    - *Its people on the town's map*: its notables at home (their own beds), and the game's settlement group with the
      points the game gives a town less what the notables bring; its other former colonists stay in the world. Taken back
      by its people's word, every former colonist free at home comes.
-   - *Letters*: written by the people's leader, as letters that come (an intro by the town's means), not carried to the
-     gate by a messenger as the colony's own answers are.
+   - *Letters*: written by the people's leader and carried to the gate by their messenger, as the answers to the colony's
+     own letters are (a message over comms in the spacer age; the word comes the old way when nobody of theirs can come).
    - *Trade*: the Trader notable is the one who trades in a caravan of theirs, in place of a stranger the game makes.
    - *Its days*: a mission of its own on the invitation's worker (`Rimfolk_Mission_TownDay`, base chance 0), a few days
      before the day; the founding day from the first season after the hand-over, the hand-over's from its first year.

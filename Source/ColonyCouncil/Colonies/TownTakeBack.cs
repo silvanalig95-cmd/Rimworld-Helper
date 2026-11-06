@@ -141,6 +141,8 @@ namespace ColonyCouncil
         {
             if (rec == null || !rec.Standing || rec.end != TownEnd.None) return "CC_TownAfter_Why_NotHead".Translate();
             if (!rec.agreed || Now < rec.agreedAt) return "CC_TownAfter_Why_NotAgreed".Translate();
+            // Its map open (a quest, a visit by force): its people are on it, so it waits until the map closes.
+            if (rec.Town?.HasMap ?? false) return "CC_TownAfter_Why_MapOpen".Translate(TownsAfter.TownName(rec).Named("TOWN")).Resolve();
             if (rec.people.HostileTo(Faction.OfPlayer)) return "CC_TownAfter_Why_War".Translate(rec.people.Name.Named("PEOPLE")).Resolve();
             if (FoundingMath.LimitFor(Prefs.MaxNumberOfPlayerSettlements, Foundings.Counted()) < 0)
                 return "CC_TownAfter_Why_Limit".Translate(Prefs.MaxNumberOfPlayerSettlements.Named("COUNT")).Resolve();

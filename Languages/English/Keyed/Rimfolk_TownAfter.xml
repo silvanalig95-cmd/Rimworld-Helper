@@ -29,6 +29,7 @@
   <CC_TownAfter_Why_Agreed>{TOWN} has agreed already: take it back from its card or their letter.</CC_TownAfter_Why_Agreed>
   <CC_TownAfter_Why_Lately>The colony asked for {TOWN} back within the year; a second letter so soon would not be taken well.</CC_TownAfter_Why_Lately>
   <CC_TownAfter_Why_Limit>The game allows {COUNT} colonies, and the colony has that many already (Options, Gameplay).</CC_TownAfter_Why_Limit>
+  <CC_TownAfter_Why_MapOpen>The map of {TOWN} is open with its people on it: take it back once it closes.</CC_TownAfter_Why_MapOpen>
   <CC_TownAfter_Why_NotAgreed>Their head has not agreed to it, or their answer has not reached the colony yet.</CC_TownAfter_Why_NotAgreed>
 
   <!-- Their answer (the letter's own lines; their own words are the letters' pool's, takeback: Rimfolk_Lines_TownAfter.xml) -->
@@ -74,10 +75,12 @@
 
   <!-- The head's letters: the intro by their age (a runner, a rider, a courier, a message by comms) -->
   <CC_TownAfter_LetterLabel>A letter from {HEAD} of {TOWN}</CC_TownAfter_LetterLabel>
-  <CC_TownAfter_LetterIntro_Tribal>A runner from {TOWN} brought word from {HEAD}, {TITLE} of the hearth there, spoken to the runner and carried by heart:</CC_TownAfter_LetterIntro_Tribal>
-  <CC_TownAfter_LetterIntro_Medieval>A rider from {TOWN} brought a letter from {HEAD}, {TITLE} of the town, sealed with the old charter's seal:</CC_TownAfter_LetterIntro_Medieval>
-  <CC_TownAfter_LetterIntro_Industrial>A courier from {TOWN} brought a letter from {HEAD}, {TITLE} of the township:</CC_TownAfter_LetterIntro_Industrial>
+  <CC_TownAfter_LetterIntro_Tribal>Their messenger from {TOWN} brought word from {HEAD}, {TITLE} of the hearth there, carried by heart:</CC_TownAfter_LetterIntro_Tribal>
+  <CC_TownAfter_LetterIntro_Medieval>Their messenger from {TOWN} brought a letter from {HEAD}, {TITLE} of the town, sealed with the old charter's seal:</CC_TownAfter_LetterIntro_Medieval>
+  <CC_TownAfter_LetterIntro_Industrial>Their courier from {TOWN} brought a letter from {HEAD}, {TITLE} of the township:</CC_TownAfter_LetterIntro_Industrial>
   <CC_TownAfter_LetterIntro_Spacer>A message came in from {TOWN} over comms, from {HEAD}, {TITLE} of the colony there:</CC_TownAfter_LetterIntro_Spacer>
+  <CC_TownAfter_LetterIntro_Word>Word came from {TOWN}, from {HEAD}, {TITLE} there:</CC_TownAfter_LetterIntro_Word>
+  <CC_TownAfter_LetterBring>a letter from {HEAD}</CC_TownAfter_LetterBring>
   <CC_TownAfter_LetterFortune>As for {TOWN} itself: {FORTUNE}.</CC_TownAfter_LetterFortune>
   <CC_TownAfter_Since_Less>less than a year</CC_TownAfter_Since_Less>
   <CC_TownAfter_Since_One>a year</CC_TownAfter_Since_One>

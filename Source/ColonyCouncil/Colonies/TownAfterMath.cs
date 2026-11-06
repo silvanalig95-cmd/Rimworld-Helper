@@ -68,8 +68,11 @@ namespace ColonyCouncil
         /// <summary>The most a kept layout may take in the save: base64 of the deflated grids, with the table.</summary>
         public const int MaxBytes = 64 * 1024;
 
-        /// <summary>A mid-game base takes about this much (for the design's word, and the save model).</summary>
-        public const int TypicalBytes = 20480;
+        /// <summary>
+        /// A mid-game base takes about this much (the save model): the player's own colony, 166 by 156 cells kept with 935
+        /// buildings and 140 defs, takes about 7.5 KB, most of it the table of names.
+        /// </summary>
+        public const int TypicalBytes = 10240;
 
         /// <summary>The flags of a cell: a roof the colony built, no natural rock there (mined out, or open ground).</summary>
         public const byte Roof = 1, Clear = 2;

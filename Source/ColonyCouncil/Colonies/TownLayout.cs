@@ -387,9 +387,13 @@ namespace ColonyCouncil
 
         // ================= Its people at home =================
 
-        /// <summary>A pawn of the world, free (not in a caravan, not held), alive and of this people.</summary>
-        public static bool FreeAtHome(Pawn p, Faction f) =>
-            p != null && !p.Dead && !p.Discarded && !p.Spawned && p.Faction == f && Find.WorldPawns.Contains(p) && Find.WorldPawns.GetSituation(p) == WorldPawnSituation.Free;
+        /// <summary>A pawn of the world, at home (free, or their people's leader at their seat; not in a caravan, not held), alive and of this people.</summary>
+        public static bool FreeAtHome(Pawn p, Faction f)
+        {
+            if (p == null || p.Dead || p.Discarded || p.Spawned || p.Faction != f || !Find.WorldPawns.Contains(p)) return false;
+            var at = Find.WorldPawns.GetSituation(p);
+            return at == WorldPawnSituation.Free || at == WorldPawnSituation.FactionLeader;
+        }
 
         /// <summary>Where someone of the town is at home: their own bed when the layout knows it, else a roofed cell inside, else any open cell of the town.</summary>
         public static IntVec3 HomeCell(Map map, LedgerLayout layout, CellRect rect, Pawn p)

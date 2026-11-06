@@ -153,14 +153,31 @@ namespace ColonyCouncil
                 values["KIN"] = askedAfter.LabelShort;
             }
             string title = n != null ? NotableBook.TitleOf(n) : rec.people.LeaderTitle;
-            string text = ("CC_TownAfter_LetterIntro_" + rec.age).Translate(head.LabelShort.Named("HEAD"), (title ?? "").Named("TITLE"), town.Name.Named("TOWN")).Resolve() + "\n\n\""
-                          + Texts.Fill(line, values) + "\"";
+            // By the town's means: a message over comms comes at once; a runner, a rider or a courier of theirs walks it to
+            // the gate (the couriers' own messenger, Couriers.MailAnswer), and it is read when they hand it over; with
+            // nobody of theirs able to come, the word comes the old way.
+            bool comms = rec.age == WorldAge.Spacer;
+            bool messenger = !comms && Couriers.CanCarryMail(home, rec.people);
+            string intro = comms || messenger ? "CC_TownAfter_LetterIntro_" + rec.age : "CC_TownAfter_LetterIntro_Word";
+            string text = intro.Translate(head.LabelShort.Named("HEAD"), (title ?? "").Named("TITLE"), town.Name.Named("TOWN")).Resolve() + "\n\n\"" + Texts.Fill(line, values) + "\"";
             string fortune = RegionBook.FortunesOn ? RegionFortunes.Line(WorldLedger.TownRecord(rec.key)) : null;
             if (!fortune.NullOrEmpty()) text += "\n\n" + "CC_TownAfter_LetterFortune".Translate(town.Name.Named("TOWN"), fortune.UncapitalizeFirst().Named("FORTUNE")).Resolve();
-            // apart: a letter from their town; nobody of theirs is here.
-            Tell.Letter(NewsKind.World, Importance.Notable, home, "CC_TownAfter_LetterLabel".Translate(head.LabelShort.Named("HEAD"), town.Name.Named("TOWN")).Resolve(), text,
-                LetterDefOf.NeutralEvent, new LookTargets(town));
+            string label = "CC_TownAfter_LetterLabel".Translate(head.LabelShort.Named("HEAD"), town.Name.Named("TOWN")).Resolve();
+            if (messenger && Couriers.MailAnswer(home, rec.people, new List<Thing>(), MailId, now, "CC_TownAfter_LetterBring".Translate(head.LabelShort.Named("HEAD")).Resolve(),
+                    label, text, LetterDefOf.NeutralEvent, null, null) != null)
+                return;
+            if (messenger) text = "CC_TownAfter_LetterIntro_Word".Translate(head.LabelShort.Named("HEAD"), (title ?? "").Named("TITLE"), town.Name.Named("TOWN")).Resolve()
+                                  + "\n\n\"" + Texts.Fill(line, values) + "\"" + (fortune.NullOrEmpty() ? "" : "\n\n" + "CC_TownAfter_LetterFortune"
+                                      .Translate(town.Name.Named("TOWN"), fortune.UncapitalizeFirst().Named("FORTUNE")).Resolve());
+            // apart: a letter from their town over comms, or word that came; nobody of theirs is here.
+            Tell.Letter(NewsKind.World, Importance.Notable, home, label, text, LetterDefOf.NeutralEvent, new LookTargets(town));
         }
+
+        /// <summary>
+        /// The courier trip of a town's letter is mail (its messenger always comes, whatever the couriers' setting), but no
+        /// letter of the colony's own: a number no neighbour letter ever has, so nothing looks one up for it.
+        /// </summary>
+        public const int MailId = 1 << 30;
 
         /// <summary>One of its former people with someone of their own in the colony (a spouse, a child, a close friend), who asks after them in the letter.</summary>
         private static Pawn Asker(LedgerFormer rec, out Pawn kin)
@@ -241,7 +258,9 @@ namespace ColonyCouncil
         /// <summary>Why a homecoming can't be now (in words), or null: they are still the town's and free, and there is a home to come to.</summary>
         public static string HomecomingWhyNot(LedgerFormer rec, Pawn p, Pawn kin)
         {
-            if (rec == null || !rec.Standing || p == null || !TownLayouts.FreeAtHome(p, rec.people)) return "CC_TownAfter_HomeGone".Translate((p?.LabelShort ?? "?").Named("PAWN")).Resolve();
+            // Never the head: one who has come to lead the town since asking stays with it.
+            if (rec == null || !rec.Standing || p == null || p == rec.people.leader || !TownLayouts.FreeAtHome(p, rec.people))
+                return "CC_TownAfter_HomeGone".Translate((p?.LabelShort ?? "?").Named("PAWN")).Resolve();
             if (HomeFor(kin) == null) return "CC_TownAfter_HomeNoHome".Translate();
             return null;
         }
