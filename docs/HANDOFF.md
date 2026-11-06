@@ -31,7 +31,8 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   2% and nothing higher, neglected none; light touch well run 45/34/6%, story-rich 48/28/2%, demanding 48/23/2%. Over,
   as the 0.113.0 builder warned and the player chose: Rimfolk's good moods at a high point, well run, P99 +17.6 to +17.9
   and +12 or more 18% to 21% (12 colonists +16.1 to +16.6, 9% to 12%), and well run now above its target (+3 to +6);
-  nothing else retuned. Strain bands unchanged (strained/worn/near breaking average 5.9/1.5/0.3%, neglected
+  at 480 runs the same: well run +6.0 to +6.5, P99 +17.7 to +18.1, +12 or more 18% to 22%, average +2.4 and
+  neglected -7.2 both. Nothing else retuned. Strain bands unchanged (strained/worn/near breaking average 5.9/1.5/0.3%, neglected
   29.2/17.3/7.7%), the day off 0.03 and 0.72 a colonist-year as before, time under the minor-break line 34% neglected
   as before. (5) Old saves: nothing saved
   changes meaning (the good side is a number); a colonist above 20 is steady at once. Files: `Heart/HeartMath.cs`,

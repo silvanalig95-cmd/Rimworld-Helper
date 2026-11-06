@@ -2077,8 +2077,9 @@ off. Measured (6 colonists, 120 runs, the code just before it and the same seeds
   neglected -7.2 as before (the good side never reaches 20 there); the band mood well run +0.7 to +2.0 before good
   things growing ordinary take back their part; the whole mood 69%, 64% and 39% as before. Well run, a colonist is
   steady about 48% of the time, in good heart 28% and in high spirits 3%; average, steady 2%. Rimfolk's good moods at a
-  high point, well run, P99 +17.6 to +17.9 and +12 or more 18% to 21%: the rise the first pass tuned away, which the
-  player chose knowing it. Strain, the day off and time under the minor-break line unchanged.
+  high point, well run, P99 +17.6 to +17.9 and +12 or more 18% to 21% (at 480 runs +6.0 to +6.5, P99 +17.7 to +18.1,
+  22%): the rise the first pass tuned away, which the player chose knowing it. Strain, the day off and time under the
+  minor-break line unchanged.
 
 **The presets** each aim at their own balance: Light touch about +5, +4 and 0 (well run, average, neglected) with
 fewer questions (measured +6.2, +4.7 and -1.7); Story-rich the default's moods with a question a little more often than

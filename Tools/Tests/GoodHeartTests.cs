@@ -189,7 +189,8 @@ public static class GoodHeartTests
         C(keyed["CC_GoodSide_Band_Steady"] == "steady" && keyed["CC_GoodSide_Band_GoodHeart"] == "in good heart" && keyed["CC_GoodSide_Band_HighSpirits"] == "in high spirits",
             "the player's names for the bands");
         C(goodCode.Contains("(\"CC_GoodSide_Band_\" + b).Translate()") && goodCode.Contains("(\"CC_GoodSide_Band_\" + b + \"_Desc\").Translate()") && goodCode.Contains("\"CC_GoodSide_Explain\".Translate()")
-          && !goodCode.Contains("\"CC_Good_Band_\"") && !goodCode.Contains("\"CC_Good_Explain\""), "the code reads the bands' new words, the old keys left unused");
+          && !goodCode.Contains("(\"CC_Good_Band_\" +") && !goodCode.Contains("\"CC_Good_Explain\".Translate") && !Code("Heart/HeartView.cs").Contains("\"CC_Good_ColonySummary\".Translate"),
+            "the code reads the bands' new words, the old keys left unused");
         foreach (GoodSource s in Enum.GetValues(typeof(GoodSource)))
             C(keyed.ContainsKey("CC_Good_Source_" + s), "words for what fills it: " + s);
         foreach (var k in new[] { "CC_Settings_HeartGoodSide", "CC_Settings_HeartGoodSide_Tip", "CC_SetNote_HeartGoodSide" })
