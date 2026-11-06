@@ -102,6 +102,9 @@ namespace ColonyCouncil
         public void WriteText(Pawn p, string line)
         {
             if (!ColonyCouncilMod.Settings.journals || p == null || p.Dead || !p.RaceProps.Humanlike || line.NullOrEmpty()) return;
+            // Never the very words they already have in their journal (a line with one wording, a thought's own words):
+            // the pools' lines are kept apart when picked (Flavor.OwnLines), this is the last word for the rest.
+            if (LineMemory.Repeats(For(p)?.entries.Select(e => e.text), line)) return;
             var j = For(p, true);
             j.entries.Add(new JournalEntry { tick = Find.TickManager.TicksGame, date = DateNow(p), text = line });
             if (j.entries.Count > MaxEntries) j.entries.RemoveAt(0);

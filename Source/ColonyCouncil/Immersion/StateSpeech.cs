@@ -332,7 +332,7 @@ namespace ColonyCouncil
                 var extra = s.tags.Where(t => !t.NullOrEmpty()).ToArray();
                 var tags = s.arc != null ? ArcText.Tags(p, s.arc, s.arc.other, extra) : Flavor.TagsFor(p, s.wish);
                 foreach (var t in extra) tags.Add(t);
-                string raw = pool.lines.Pick(ToneUtility.ToneFor(p), tags);
+                string raw = pool.lines.Pick(ToneUtility.ToneFor(p), tags, p);
                 if (raw.NullOrEmpty()) return null;
                 if (s.wish != null) return s.wish.Format(raw);
                 if (s.arc != null) return raw.Formatted(ArcText.Args(s.arc, p, s.arc.other)).Resolve();

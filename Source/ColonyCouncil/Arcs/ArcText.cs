@@ -22,7 +22,7 @@ namespace ColonyCouncil
             try
             {
                 var tags = Tags(speaker, arc, about, extra);
-                string raw = lines.Pick(ToneUtility.ToneFor(speaker), tags);
+                string raw = lines.Pick(ToneUtility.ToneFor(speaker), tags, speaker);
                 return raw.NullOrEmpty() ? null : raw.Formatted(Args(arc, speaker, about)).Resolve();
             }
             catch (System.Exception e)

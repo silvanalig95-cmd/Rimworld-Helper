@@ -721,7 +721,7 @@ namespace ColonyCouncil
             if (lines == null || !lines.Any) return null;
             var tags = Flavor.TagsFor(p);
             if (extraTags != null) foreach (var t in extraTags) tags.Add(t);
-            string raw = lines.Pick(ToneUtility.ToneFor(p), tags);
+            string raw = lines.Pick(ToneUtility.ToneFor(p), tags, p);
             return raw.NullOrEmpty() ? null : raw.Formatted(p.Named("PAWN"), a.Goal.Named("GOAL"), (a.skill?.label ?? "").Named("SKILL"), (a.sparkName ?? "").Named("NAME")).Resolve();
         }
 

@@ -216,7 +216,7 @@ namespace ColonyCouncil
         private void Remind(Wish w)
         {
             var tags = Flavor.TagsFor(w.pawn, w);
-            string line = w.def.reminder.Any ? w.def.reminder.Pick(ToneUtility.ToneFor(w.pawn), tags) : null;
+            string line = w.def.reminder.Any ? w.def.reminder.Pick(ToneUtility.ToneFor(w.pawn), tags, w.pawn) : null;
             line = line != null ? w.Format(line) : PoolLine("Council_Pool_Reminder", w.pawn, w);
             if (line.NullOrEmpty()) return;
             Tell.Message(NewsKind.Colony, Importance.Notable, null, "CC_ReminderMessage".Translate(w.pawn.Named("PAWN"), w.Label.Named("WISH")).Resolve() + " \"" + TextUtil.ShortSpeech(line, 120) + "\"",
@@ -319,7 +319,7 @@ namespace ColonyCouncil
 
             Tone tone = ToneUtility.ToneFor(who);
             var tags = Flavor.TagsFor(who, w);
-            string thanks = w.Format(w.def.thanks.Pick(tone, tags));
+            string thanks = w.Format(w.def.thanks.Pick(tone, tags, who));
             if (thanks.NullOrEmpty()) thanks = "CC_ThanksFallback".Translate();
             string title = "CC_WishGrantedTitle".Translate(who.Named("PAWN"), w.Label.Named("WISH")).Resolve();
             string scene = Scene("Council_Pool_Scene_Thanks", who, w);
@@ -558,7 +558,7 @@ namespace ColonyCouncil
 
             Tone tone = ToneUtility.ToneFor(w.pawn);
             var tags = Flavor.TagsFor(w.pawn, w);
-            string line = w.Format(w.def.expired.Pick(tone, tags));
+            string line = w.Format(w.def.expired.Pick(tone, tags, w.pawn));
             if (w.promised)
             {
                 // The wish's own words for a promise broken (its [promised] lines) first, then the colony's general ones.
@@ -862,7 +862,7 @@ namespace ColonyCouncil
             var fan = lovers.RandomElementWithFallback();
             if (fan != null)
             {
-                string line = def.support.Pick(ToneUtility.ToneFor(fan), Flavor.TagsFor(fan));
+                string line = def.support.Pick(ToneUtility.ToneFor(fan), Flavor.TagsFor(fan), fan);
                 if (!line.NullOrEmpty())
                 {
                     line = line.Formatted(fan.Named("PAWN")).Resolve();
@@ -874,7 +874,7 @@ namespace ColonyCouncil
             var critic = haters.FirstOrDefault();
             if (critic != null)
             {
-                string line = def.oppose.Pick(ToneUtility.ToneFor(critic), Flavor.TagsFor(critic));
+                string line = def.oppose.Pick(ToneUtility.ToneFor(critic), Flavor.TagsFor(critic), critic);
                 if (!line.NullOrEmpty())
                 {
                     line = line.Formatted(critic.Named("PAWN")).Resolve();

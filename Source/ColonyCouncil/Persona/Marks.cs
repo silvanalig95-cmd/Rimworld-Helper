@@ -269,7 +269,7 @@ namespace ColonyCouncil
             if (x.journal != null && x.journal.Any && !comp.journals.WroteWithin(p)
                 && (other == null || MarkDefs.StoryOf(def) != "Loss" || comp.journals.FirstOnLoss(p, other)))
             {
-                string raw = x.journal.Pick(ToneUtility.ToneFor(p), Flavor.TagsFor(p));
+                string raw = x.journal.Pick(ToneUtility.ToneFor(p), Flavor.TagsFor(p), p);
                 if (!raw.NullOrEmpty()) comp.journals.WriteText(p, raw.Formatted(p.Named("PAWN"), otherArg, labelArg).Resolve());
             }
             if (x.news.NullOrEmpty() || !p.IsColonist) return;

@@ -594,7 +594,7 @@ namespace ColonyCouncil
             if (fever) tags.Add("fever");
             if (c.tags != null)
                 foreach (var t in c.tags) tags.Add(t);
-            string raw = def.lines.Pick(ToneUtility.ToneFor(p), tags);
+            string raw = def.lines.Pick(ToneUtility.ToneFor(p), tags, p);
             if (raw.NullOrEmpty()) return null;
             string text = raw.Formatted(p.Named("PAWN"), (c.other ?? p).Named("OTHER"), (c.pet ?? p).Named("PET"), (c.lost ?? "").Named("LOST"), (c.skill?.label ?? "").Named("SKILL"),
                 (comp.aspirations.Active(p)?.Goal ?? "").Named("GOAL"), (c.name ?? "").Named("NAME")).Resolve();
