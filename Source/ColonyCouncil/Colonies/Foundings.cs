@@ -330,6 +330,7 @@ namespace ColonyCouncil
             if (j != null) JourneyRun.CallOff(j, "CC_Journey_CalledOff");
             if (plan.stage == FoundingStage.Going) LowerLimit(plan, true);
             h.foundings.Remove(plan);
+            // direct: the answer to the player's own click (the card's "Call off").
             Messages.Message("CC_Found_CalledOff".Translate(plan.place.Named("PLACE")).Resolve(), MessageTypeDefOf.NeutralEvent, false);
             LensModel.Dirty();
             Cards.Dirty();

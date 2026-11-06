@@ -60,7 +60,8 @@ namespace ColonyCouncil
                 switch (ask)
                 {
                     case Settle:
-                        yield return new DiaOption("CC_Found_Choice_Settle".Translate())
+                        // Each answer is written in the history's answers' log, as every question's is.
+                        yield return Answers.Recorded(new DiaOption("CC_Found_Choice_Settle".Translate())
                         {
                             action = () =>
                             {
@@ -70,12 +71,12 @@ namespace ColonyCouncil
                                 Foundings.Settle(plan, c);
                             },
                             resolveTree = true
-                        };
-                        yield return new DiaOption("CC_Found_Choice_NotYet".Translate())
+                        }, this, "founding");
+                        yield return Answers.Recorded(new DiaOption("CC_Found_Choice_NotYet".Translate())
                         {
                             action = () => Find.LetterStack.RemoveLetter(this),
                             resolveTree = true
-                        };
+                        }, this, "founding", minor: true);
                         break;
                     case Newcomers:
                         yield return new DiaOption("CC_Found_Choice_Choose".Translate())

@@ -167,12 +167,12 @@ public static class FoundingTests
         C(found.Contains("Prefs.MaxNumberOfPlayerSettlements") && found.Contains("FoundingMath.LimitFor(") && found.Contains("FoundingMath.LimitBack("),
             "the game's limit raised by the rule and set back by it");
         C(found.Contains(".Abandon(false)") && found.Contains("CheckOrUpdateGameOver"), "the old colony abandoned the game's way");
-        C(found.Contains("HandOver") && found.Contains("release 2"), "the seam for the hand-over (release 2)");
+        C(found.Contains("HandOver") && found.Contains("Release 2"), "the seam for the hand-over (release 2)");
         string window = Code("Colonies/NewcomersWindow.cs");
         C(window.Contains("Current.Game.InitData = null") && window.Contains("ClearAllStartingPawns") && window.Contains("PostClose"),
             "the newcomers' window clears the game's start data however it closes");
         C(window.Contains("StartingPawnUtility.DrawPortraitArea(") && window.Contains("StartingPawnUtility.DrawSkillSummaries("), "the game's own portrait area and skills summary");
-        C(window.Contains("Scenario") && window.Contains("release 3"), "the seam for a scenario's start (release 3)");
+        C(window.Contains("Scenario") && window.Contains("Release 3"), "the seam for a scenario's start (release 3)");
         string seat = Code("Colonies/ColonySeat.cs");
         C(seat.Contains("FoundingMath.SeatWhyNot(") && seat.Contains("Homes.SetSeat(") && seat.Contains("FoundingMath.SeatTrust"), "the seat moved by the rule, with the trust it costs");
         return n;
