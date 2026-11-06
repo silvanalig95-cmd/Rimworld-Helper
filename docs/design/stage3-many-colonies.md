@@ -56,7 +56,7 @@ this save or start a new game. The design serves both, and the order to build it
 - **A new game.** Nothing in stage 3 is needed to start one: Rimfolk starts as it always has, its seventeen scenarios
   and every system from the first day, and the game's own new-game pages are where a whole new scenario is honest
   (decision 3). The old colony stays in its own save, untouched, to go back to; Rimfolk carries nothing between two
-  worlds. Stage 3 comes to the new game the same way once it has a colony to start from.
+  worlds. Everything in stage 3 works in the new game too, once its first colony wants a second.
 
 ## What the game lets a mod do (verified in the 1.6 code)
 
@@ -138,11 +138,11 @@ this save or start a new game. The design serves both, and the order to build it
   and talk where the listener's people know it (`Renown.Own` read for a former colonist too, from the history and the
   peoples' memory; today it reads only the colony's people). The town keeps no renown of its own: it is a people of
   the game, and its regard of the colony is the bond (decision 8).
-- **Banishment** (DESIGN.md, "Banishment by the council"). Each home's council banishes its own (`BanishMath.MinPeople`:
-  six people at that home, `BanishTracker.ColonyAt`), so a new colony asks no banishment until it has six. A colonist whose
-  banishment is under way is leaving and is in no party or hand-over: the hand-over waits while one plays out at that
-  home, and a banishment question there is called off once it is handed over. The fights the council counts show in a
-  colonist's wish ("at odds with most here", a reason to go).
+- **Banishment** (DESIGN.md, "Banishment by the council"). Each home's council banishes its own
+  (`BanishMath.MinPeople`: six people at that home, `BanishTracker.ColonyAt`), so a new colony asks no banishment until
+  it has six. A colonist whose banishment is under way is leaving and is in no party or hand-over: the hand-over waits
+  while one plays out at that home, and a banishment question there is called off once it is handed over. The fights
+  the council counts show in a colonist's wish ("at odds with most here", a reason to go).
 - **The ledger and the history own it.** A new record, `LedgerColony`, for every colony ever founded: its key (the
   settlement id), name, founding tick, its mother colony, how it ended (abandoned, handed over, lost, taken back) and
   when, the town or ruin it left. A town the colony was is a `LedgerTown` of a new kind, `Former`, whose id is the
@@ -489,10 +489,10 @@ go. What merges, once the newcomers have lived a day at the new home:
   part per colony, the Overview's wealth tile names each, the region map draws the colony in view's region.
 
 ### 3d. What 7b left that matters in real play
-- **The notables near every home** (decision 14). `NotableBook.Home` is the seat, so a second colony's nearby towns have no faces,
-  letters or calls. Each further home gets its nearest two towns staffed (beside the seat's four near, two dealt with
-  and two new), and acquaintances live in their people's town nearest their colony. (The region's towns in detail are
-  per home already.)
+- **The notables near every home** (decision 14). `NotableBook.Home` is the seat, so a second colony's nearby towns
+  have no faces, letters or calls. Each further home gets its nearest two towns staffed (beside the seat's four near,
+  two dealt with and two new), and acquaintances live in their people's town nearest their colony. (The region's towns
+  in detail are per home already.)
 - **World events across the homes.** `WorldSituations` places events from the seat; it picks the home first (weighted
   by its people), so a far colony hears of the world near it. The two running slots stay two.
 - **The colony's character per colony** (decision 13): the names for a place and its work (famed hall, walled,
