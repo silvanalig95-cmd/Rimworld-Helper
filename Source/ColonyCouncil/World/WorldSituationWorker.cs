@@ -394,6 +394,9 @@ namespace ColonyCouncil
             // The peoples' own era, for lines about how they live (a tribe has no radio, whatever the colony has).
             if (s.ctx.faction != null) tags.Add(s.ctx.faction.def.techLevel <= TechLevel.Medieval ? "theirLowtech" : "theirHightech");
             if (s.ctx.enemy != null) tags.Add(s.ctx.enemy.def.techLevel <= TechLevel.Medieval ? "enemyLowtech" : "enemyHightech");
+            // The Empire keeps its own titles and honour: lines can speak of it as itself.
+            if (Ages.IsEmpire(s.ctx.faction)) tags.Add("theirEmpire");
+            if (Ages.IsEmpire(s.ctx.enemy)) tags.Add("enemyEmpire");
             if (s.ctx.a != null) tags.Add(s.ctx.a.gender == Gender.Female ? "aFemale" : "aMale");
             // What the people remember of the colony and of single colonists: their:grateful, their:grudge, their:friend...
             Interplay.AddMemoryTags(tags, s.ctx.faction);

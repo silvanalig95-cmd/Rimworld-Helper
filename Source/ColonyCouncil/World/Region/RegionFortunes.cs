@@ -64,6 +64,32 @@ namespace ColonyCouncil
             WorldLedger.TownChanged();
         }
 
+        /// <summary>
+        /// A people's fortunes moved at once by how a world event ended (WorldEffect_Fortune): <paramref name="amount"/>
+        /// points at <paramref name="atTown"/> and half at the people's other towns in detail, with the cause their panels
+        /// name. Nothing when the fortunes are off or none of their towns is in detail.
+        /// </summary>
+        public static void Move(Faction people, int atTown, float amount, string cause)
+        {
+            if (people == null || Math.Abs(amount) < 0.001f || !RegionBook.FortunesOn) return;
+            int now = Now;
+            bool any = false;
+            foreach (var t in TownsInDetail())
+            {
+                if (t.Faction != people) continue;
+                var rec = WorldLedger.TownFor(t.ID, t.HasName ? t.Name : null, t.Faction, true);
+                if (rec == null || !rec.Seeded) continue;
+                float m = RegionMath.Share(amount, t.ID == atTown);
+                rec.prosperity = RegionMath.Clamp(rec.prosperity + m, rec.kind == TownKind.Post ? RegionMath.PostCap : RegionMath.MaxProsperity);
+                rec.cause = cause;
+                rec.causeDir = m > 0f ? 1 : -1;
+                rec.causeAt = now;
+                rec.lowSince = RegionMath.LowSince(rec.prosperity, rec.lowSince, now);
+                any = true;
+            }
+            if (any) WorldLedger.TownChanged();
+        }
+
         /// <summary>The towns kept in detail for any home, each once.</summary>
         private static List<Settlement> TownsInDetail()
         {
