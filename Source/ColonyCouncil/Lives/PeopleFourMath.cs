@@ -48,6 +48,27 @@ namespace ColonyCouncil
         /// <summary>Someone they're this fond of, living at another of the colony's homes, is who they'd go to see.</summary>
         public const int CloseOpinion = 30;
 
+        // ---------------- Names ----------------
+
+        /// <summary>
+        /// The deeds the colony talks about that count for a name, and the record each counts one more each time it's done,
+        /// merged with the last or not (Defs/Misc/Rimfolk_Records_People4.xml; the names in
+        /// Defs/EpithetDefs/Rimfolk_Epithets_People4.xml). Null for a deed that counts for none.
+        /// </summary>
+        public static string DeedRecord(string deed)
+        {
+            switch (deed)
+            {
+                case "Rimfolk_Deed_Rescue": return "Council_Rescues";
+                case "Rimfolk_Deed_NightWatch": return "Council_NightWatches";
+                case "Rimfolk_Deed_ContestWon": return "Council_ContestsWon";
+                case "Rimfolk_Deed_Masterwork": return "Council_Masterworks";
+                case "Rimfolk_Deed_Rounds": return "Council_RoundsMade";
+                case "Rimfolk_Deed_StrangerKindness": return "Council_KindToStrangers";
+                default: return null;
+            }
+        }
+
         // ---------------- Wishes ----------------
 
         /// <summary>Grown trees against the walls worth the council's word (a tree beside a wall or a door, in the home area).</summary>

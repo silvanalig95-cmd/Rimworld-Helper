@@ -8,7 +8,7 @@ generous guesses; sizes are rough XML sizes. Caps named as constants are read fr
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
 Saved collections found: 528; modelled: 528; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,391 KB** after a year, **2,833 KB** after two, **3,013 KB** after five.
+Rimfolk's part of the save, roughly: **2,393 KB** after a year, **2,835 KB** after two, **3,015 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -63,9 +63,9 @@ Rimfolk's part of the save, roughly: **2,391 KB** after a year, **2,833 KB** aft
 | `Happenings/Happenings.cs:memos` | memos 3 years (children's 10), used ones a day | window | 18 | 36 | 54 | 10.5 |
 | `Standing.cs:asked` | per colonist, one per wish def asked for | colonists | 300 | 300 | 300 | 10.3 |
 | `CouncilGameComponent.cs:nextSteps` | the colony's next steps: the plan, at most 8 proposals, done ones for 5 days, let-go ones for 15 (Building/NextSteps.cs) | fixed | 40 | 40 | 40 | 10.2 |
+| `Epithets/Epithets.cs:holdsSaved` | how each held name holds (NameMath.Pack: since, a challenger and their season, the last holder), one per name held | defs | 71 | 71 | 71 | 9.7 |
 | `Building/Suggest/SameRules.cs:markedDefs` | with the above: which order | fixed | 300 | 300 | 300 | 8.8 |
 | `Hud/HudComponent.cs:stock` | the inventory panel's stock: one packed line (about 120 items) every six hours per home map, the last five; only while that panel is on | cap | 5 | 5 | 5 | 8.8 |
-| `Epithets/Epithets.cs:holdsSaved` | how each held name holds (NameMath.Pack: since, a challenger and their season, the last holder), one per name held | defs | 63 | 63 | 63 | 8.6 |
 | `Outsiders/OutsiderBook.cs:heard` | OutsiderTalkMath.HeardMax news heard, all towns, 60 days at most | fixed | 40 | 40 | 40 | 8.6 |
 | `Quirks/Quirks.cs:quirks` | 2 per colonist, the dead and discarded dropped | colonists | 40 | 40 | 40 | 7.8 |
 | `Secrets/Secrets.cs:secrets` | one per colonist, ended with their death | colonists | 20 | 20 | 20 | 7.8 |
@@ -82,6 +82,7 @@ Rimfolk's part of the save, roughly: **2,391 KB** after a year, **2,833 KB** aft
 | `World/WorldSituations.cs:lastEnded` | one per situation def | defs | 76 | 76 | 76 | 6.7 |
 | `Dreams/Dreams.cs:seen` | dream counts of known pawns | known | 55 | 60 | 75 | 6.6 |
 | `Dilemmas/AnswerShifts.cs:shifts` | a colonist's hours or work changed by an answer, a night to a heat wave long, at most AnswerShifts.MaxShifts at once | cap | 18 | 36 | 40 | 6.2 |
+| `Epithets/Epithets.cs:holders` | one per title | defs | 71 | 71 | 71 | 6.2 |
 | `Dilemmas/Dilemmas.cs:traditionCount` | per tradition, an older save's until its customs go on the calendar (the first hour) | defs | 68 | 68 | 68 | 6.0 |
 | `Health/HealthTracker.cs:healers` | known pawns only | known | 22 | 24 | 30 | 5.9 |
 | `Missions/StoriesComponent.cs:chains` | chains 120 days after they end | window | 6 | 12 | 12 | 5.9 |
@@ -90,7 +91,6 @@ Rimfolk's part of the save, roughly: **2,391 KB** after a year, **2,833 KB** aft
 | `Standing.cs:standings` | one per colonist, the gone dropped daily | colonists | 20 | 20 | 20 | 5.9 |
 | `World/FactionMemory.cs:notes` | who tended or freed whom: 30 days, 60 at most, dropped when the stranger dies | window | 30 | 30 | 30 | 5.9 |
 | `Ambitions/Ambitions.cs:lastOffered` | one per ambition def | defs | 66 | 66 | 66 | 5.8 |
-| `Epithets/Epithets.cs:holders` | one per title | defs | 63 | 63 | 63 | 5.5 |
 | `Visitors/VisitorTracker.cs:trips` | visits waiting or under way: VisitorMath.MaxTrips; ended ones dropped within a day | cap | 8 | 8 | 8 | 5.5 |
 | `CouncilGameComponent.cs:cooldowns` | dropped once over | window | 60 | 60 | 60 | 5.3 |
 | `Building/Suggest/Suggestions.cs:done` | the steps done lately, SuggestMath.DoneKept at most, each with its undo and check | fixed | 20 | 20 | 20 | 5.1 |
@@ -105,7 +105,7 @@ Rimfolk's part of the save, roughly: **2,391 KB** after a year, **2,833 KB** aft
 | `Character/Character.cs:recent` | 30 recent shifts | cap | 30 | 30 | 30 | 4.4 |
 | `Social/Banishment.cs:records` | the people the council was asked about for trouble, and those it sent away, the oldest settled first past BanishTracker.MaxRecords | cap | 3 | 6 | 15 | 4.4 |
 | `Strangers/Nemeses.cs:all` | 30 that have ended | cap | 3 | 6 | 15 | 4.4 |
-| `CouncilGameComponent.cs:everWished` | one per wish def | defs | 121 | 121 | 121 | 4.1 |
+| `CouncilGameComponent.cs:everWished` | one per wish def | defs | 128 | 128 | 128 | 4.4 |
 | `Persona/Marks.cs:fights` | the last 8 fights won per person, a year at most | colonists | 160 | 160 | 160 | 3.9 |
 | `Building/BuildPriority.cs:levels` | blueprints and frames with a build priority set, per map, until built or cancelled | while | 40 | 40 | 40 | 3.5 |
 | `Building/RoomRearranger.cs:orders` | per map: a room's furniture moves still to be carried out, gone once done, called off or after 15 days (Building/RoomRearranger.cs) | fixed | 30 | 30 | 30 | 3.5 |

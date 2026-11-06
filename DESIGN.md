@@ -975,8 +975,8 @@ new content in the existing frameworks, nothing that asks more often. Pure rules
   fire (a camp's evening, +1 outdoors), indoors by dusk (sandfly fever, -2 outside after dark). Each shows over a head
   when it fits (`HabitBubbles`, the `Rimfolk_Pool_Bubble` pools). Small chances in rare moments: they press less than a
   tenth of what a fight already brings, under the cap of two.
-- **Eight names and six deeds.** A deed can count a record of its own (`DeedDef.record`, one more each time, merged or
-  not), and six do: people carried out of a fight (the Shield, from 3), night watches (Night-Watch, 4), contests won (the
+- **Eight names and six deeds.** Six deeds the colony talks about count a record each (`PeopleFourMath.DeedRecord`, one
+  more each time the deed is recorded, merged or not): people carried out of a fight (the Shield, from 3), night watches (Night-Watch, 4), contests won (the
   Champion, 4), masterworks (Master-Hand, 3), rounds of the sick (the Lamp, 4), kindnesses to strangers (Open-Hand, 4).
   Students taught to stand alone count where a mentorship ends (the Teacher, 2), votes lost already did (the Hopeful,
   4, dubious, the Unbeaten's other side). The words are ones every age has. They follow the one-name rules unchanged

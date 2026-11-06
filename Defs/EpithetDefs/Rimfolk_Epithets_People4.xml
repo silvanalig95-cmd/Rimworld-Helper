@@ -5,7 +5,7 @@
     Names for deeds the colony talks about (the player's request, 6 November 2026: another big content round), under the
     same rules as Council_Epithets.xml and the one-name rules (Epithets/NameMath.cs): the most of the record past its
     threshold earns it, it holds 20 days, then passes only to a clear surpasser. The records are in
-    Defs/Misc/Rimfolk_Records_People4.xml: six are counted by the deed they name (DeedDef.record), so they come while
+    Defs/Misc/Rimfolk_Records_People4.xml: six are counted by the deed they name (PeopleFourMath.DeedRecord), so they come while
     personalities and social life are on; students taught, and votes lost (Rimfolk_Records_Names.xml), on their own. The
     words are ones every age has: a tribe, a village, a town and a starship all have a shield, a night watch, a champion
     and a teacher. Their thresholds are set for deeds that come a few times a year, so a colony earns each in a year or

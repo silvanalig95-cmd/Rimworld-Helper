@@ -2,9 +2,9 @@
 <Defs>
 
   <!--
-    Deeds the colony talks about, counted for the names (see Council_Records.xml). Six are a deed's own record
-    (DeedDef.record: one more each time the deed is done, whether or not it merges with the last), so they count while
-    personalities and social life are on; students taught is counted where a mentorship ends with the student standing
+    Deeds the colony talks about, counted for the names (see Council_Records.xml). Six are counted by the deed they name
+    (PeopleFourMath.DeedRecord: one more each time the deed is done, whether or not it merges with the last), so they
+    count while personalities and social life are on; students taught is counted where a mentorship ends with the student standing
     alone (Social/SocialWeb.cs). They show in the game's Records tab, and the names in
     Defs/EpithetDefs/Rimfolk_Epithets_People4.xml are built on them.
   -->

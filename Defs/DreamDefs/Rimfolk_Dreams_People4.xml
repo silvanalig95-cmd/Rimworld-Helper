@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Dreams of the quirks a hurt, an illness, a new colony and a camp's evening leave (Rimfolk_Quirks_People4.xml), as
+    Rimfolk_Dreams_Habits.xml gives the older quirks theirs: each asks for its quirks by the dreamer's tags
+    (quirk:Rimfolk_Quirk_...), with lines for each beside lines that fit them all. Fields as in Council_Dreams.xml.
+  -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Rimfolk_DreamP4_Footing</defName>
+    <label>a dream of the ground giving way</label>
+    <kind>Strange</kind>
+    <children>true</children>
+    <dreamer><tags>quirk:Rimfolk_Quirk_WatchesFooting|quirk:Rimfolk_Quirk_TapsTheRoof|quirk:Rimfolk_Quirk_IndoorsByDusk</tags></dreamer>
+    <lines>
+      <plain>
+        <li>The ground went soft under every step in my dream, and I walked all night without getting anywhere.</li>
+        <li>[quirk:Rimfolk_Quirk_WatchesFooting] I dreamt every stone on the path had a name, and I had to say each one before I could step on it.</li>
+        <li>[quirk:Rimfolk_Quirk_TapsTheRoof] I knocked on the roof of the dig in my dream, and the rock knocked back, slow and patient.</li>
+        <li>[quirk:Rimfolk_Quirk_IndoorsByDusk] The sun went down in my dream and the air filled with wings, and I ran for the door and the door kept moving.</li>
+      </plain>
+      <warm><li>In my dream someone took my arm on the bad ground and walked me home, and I never saw their face.</li></warm>
+      <blunt><li>Dreamt I fell. Didn't land. Woke up.</li></blunt>
+      <cheerful><li>Dreamt I could walk on anything, mud, ice, the river, and never slip once.</li></cheerful>
+      <gloomy><li>The floor of the colony was thin as paper in my dream, and I could hear the dark underneath it.</li></gloomy>
+      <cold><li>A dream about falling, which is unsurprising after the last few weeks.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Rimfolk_DreamP4_Fire</defName>
+    <label>a dream of the first fire</label>
+    <kind>Sweet</kind>
+    <children>true</children>
+    <dreamer><tags>quirk:Rimfolk_Quirk_FirstFire|quirk:Rimfolk_Quirk_BootsByTheFire|quirk:Rimfolk_Quirk_BoilsWater</tags></dreamer>
+    <lines>
+      <plain>
+        <li>We were all round one fire in my dream, more of us than there have ever been, and nobody had to sit at the back.</li>
+        <li>[quirk:Rimfolk_Quirk_FirstFire] I carried the ember from the first night's fire through a long dark house in my dream, and every hearth lit as I passed.</li>
+        <li>[quirk:Rimfolk_Quirk_BootsByTheFire] My boots were dry in my dream, and my feet were warm, and that was the whole dream, and it was wonderful.</li>
+        <li>[quirk:Rimfolk_Quirk_BoilsWater] The kettle sang in my dream and the water came out clear as glass, and I drank it and was well.</li>
+      </plain>
+      <warm><li>Everyone I've ever shared a fire with was there last night, in the dream, passing round the cups.</li></warm>
+      <blunt><li>Good fire, dry boots, a full cup. Nice dream.</li></blunt>
+      <cheerful><li>I dreamt the fire told us stories, and it knew all our names.</li></cheerful>
+      <gloomy><li>The fire burned low in my dream, but it didn't go out, and I sat up with it till morning.</li></gloomy>
+      <cold><li>A warm dream about a fire. I slept well, which is the useful part.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Rimfolk_DreamP4_Road</defName>
+    <label>a dream of the long road</label>
+    <kind>Strange</kind>
+    <children>true</children>
+    <dreamer><tags>quirk:Rimfolk_Quirk_LooksBack|quirk:Rimfolk_Quirk_RoadSong</tags></dreamer>
+    <lines>
+      <plain>
+        <li>I walked a road in my dream that went between our colony and every other place I've ever been.</li>
+        <li>[quirk:Rimfolk_Quirk_LooksBack] In my dream the people at the other colony were waving from the end of the road, and I walked and walked and they stayed just as far.</li>
+        <li>[quirk:Rimfolk_Quirk_RoadSong] The strangers' song went on in my dream after they'd gone, and I knew all the verses, even the ones they never sang.</li>
+      </plain>
+      <warm><li>Dreamt the road was full of people I love, all coming this way.</li></warm>
+      <blunt><li>Long road. Kept walking. Didn't arrive.</li></blunt>
+      <cheerful><li>The road in my dream had a camp at every bend, and every camp had supper on.</li></cheerful>
+      <gloomy><li>I looked back down the road in my dream and there was nobody on it.</li></gloomy>
+      <cold><li>I dreamt of the road between the colonies. It was shorter than I think it is.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+</Defs>

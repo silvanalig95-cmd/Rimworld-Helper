@@ -305,13 +305,12 @@ public static class PeopleFourTests
             ["Rimfolk_Deed_Rescue"] = "Council_Rescues", ["Rimfolk_Deed_ContestWon"] = "Council_ContestsWon", ["Rimfolk_Deed_Masterwork"] = "Council_Masterworks",
             ["Rimfolk_Deed_StrangerKindness"] = "Council_KindToStrangers", ["Rimfolk_Deed_NightWatch"] = "Council_NightWatches", ["Rimfolk_Deed_Rounds"] = "Council_RoundsMade"
         };
-        var allDeeds = Directory.GetFiles(Path.Combine(root, "Defs", "DeedDefs"), "*.xml").SelectMany(f => XDocument.Load(f).Root!.Elements("ColonyCouncil.DeedDef")).ToList();
+        var allDeeds = new HashSet<string>(Directory.GetFiles(Path.Combine(root, "Defs", "DeedDefs"), "*.xml").SelectMany(f => XDocument.Load(f).Root!.Elements("ColonyCouncil.DeedDef"))
+            .Select(x => (string)x.Element("defName") ?? ""));
         foreach (var kv in counted)
-        {
-            var d = allDeeds.FirstOrDefault(x => (string)x.Element("defName") == kv.Key);
-            C(d != null && (string)d.Element("record") == kv.Value && records.Contains(kv.Value), $"{kv.Key}: counts {kv.Value} for the names");
-        }
-        C(Code("Social/Gossip/Deeds.cs").Contains("if (!def.record.NullOrEmpty()) CouncilRecords.Add(doer, def.record);"), "a deed's record counts each time it's done");
+            C(allDeeds.Contains(kv.Key) && PeopleFourMath.DeedRecord(kv.Key) == kv.Value && records.Contains(kv.Value), $"{kv.Key}: counts {kv.Value} for the names");
+        C(PeopleFourMath.DeedRecord("Rimfolk_Deed_Fled") == null && PeopleFourMath.DeedRecord(null) == null, "a deed that counts for no name counts nothing");
+        C(Code("Social/Gossip/Deeds.cs").Contains("string record = PeopleFourMath.DeedRecord(def.defName);"), "a deed's record counts each time it's done");
         C(Code("Social/SocialWeb.cs").Contains("CouncilRecords.Add(t.a, CouncilRecords.StudentsTaught);"), "a student standing alone counts for the teacher");
 
         // ================= Docs =================

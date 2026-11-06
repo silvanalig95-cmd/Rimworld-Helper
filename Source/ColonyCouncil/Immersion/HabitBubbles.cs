@@ -12,7 +12,10 @@ namespace ColonyCouncil
     /// checked twice on a building site, a load too big, the small hours kept, a sickbed that won't keep someone still,
     /// a page read over supper, a prisoner's name, a stitch at leisure, a doodle, a sniff at the night air; and the
     /// quirks the colony's events leave: the lamp lit at night, a wrinkled nose by a fire, the coins counted twice, the
-    /// fields walked at dawn, a dream written down, the salve rubbed in, a few things juggled at supper, the cold kept off.
+    /// fields walked at dawn, a dream written down, the salve rubbed in, a few things juggled at supper, the cold kept off;
+    /// and those a hurt, an ailment, a new colony's first night, a parting and a camp's evening leave (People4): a careful
+    /// step, a knock on the roof of the dig, boots by the fire, the water boiled, the first fire's ember, a look down the
+    /// road, the strangers' song, the door at dusk.
     /// </summary>
     /// <remarks>
     /// Once an hour (CouncilGameComponent), with the quirks and small habits settings on and speech showing: a colonist

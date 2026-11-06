@@ -53,11 +53,11 @@ Some wishes belong to an era (healroot for a tribe or a medieval village, a deep
           <li>To share a bed, or not to sleep next to someone | Partners who sleep apart; roommates who can't stand each other.</li>
           <li>A wedding, a birthday treat | The engaged; anyone with a birthday coming.</li>
           <li>A crib for the little one | Parents of a baby (Biotech).</li>
-          <li>Milk for the little one | Parents of a baby, or with one on the way (Biotech), when the stores hold less than 20 milk or baby food.</li>
           <li>Somewhere to learn and play | Children with nothing of their own (Biotech).</li>
           <li>Lessons from the colony's best | Children with a gift for a skill, when someone in the colony is far better at it.</li>
           <li>A pet to look after | Children, when something small and calm roams near the colony. Any new animal will do.</li>
           <li>New stories to read | Children, when the colony has fewer than three books.</li>
+          <li>Milk for the little one | Parents of a baby, or with one on the way (Biotech), when the stores hold less than 20 milk or baby food.</li>
         </table>
       </li>
       <li>
@@ -72,15 +72,15 @@ Some wishes belong to an era (healroot for a tribe or a medieval village, a deep
           <li>A tool cabinet by the workbench | Crafters.</li>
           <li>A lamp at the bench | Anyone seen working at a bench or researching in the dark in the last 3 days, while no lamp lights that bench's work spot. Promising it (or, out of patience, a handy colonist) plans a standing lamp beside it, a torch lamp without power; fulfilled when a lamp's light reaches the work spot, day or night.</li>
           <li>Stone blocks put by | Builders, when the colony can cut stone and has fewer than 300 blocks.</li>
-          <li>Steel put by, cloth put by for mending | Builders and crafters, when the stores hold less than 150 steel; crafters in fall and winter, when they hold less than 80 cloth, wool, hide or any other textile.</li>
-          <li>Spare parts for the machines | Crafters and builders in an industrial or spacer colony, when the stores hold fewer than 6 components.</li>
-          <li>Shelves for the stores | Anyone ten days settled, while the colony has fewer than 2 shelves and one can be built.</li>
           <li>A deep drill | Miners, once the colony has electricity and the research.</li>
           <li>A smokehouse, a beehive, fodder before winter | Cooks; growers and animal lovers; handlers with three or more animals in fall.</li>
           <li>A pen for the animals | Handlers, when the colony keeps two or more animals and has no pen.</li>
           <li>A fishing spot | Those who'd fish, the restless and gourmands, when fishing is part of the game (Odyssey, or Vanilla Fishing Expanded on its own), the water holds fish, and no fishing spot is in use. Fulfilled when a fishing zone is marked, fishing is allowed in it and someone at home has the fishing work on.</li>
           <li>A hunt | Shooters and the bloodthirsty.</li>
           <li>A freezer, a brewery | Cooks and anyone who ate something rotten, and in hot country (hot most of the year, or a hot summer) anyone, growers and cooks most, while there's food to keep; the chemically inclined. The freezer is only asked for when something can keep food frozen now: an electric cooler, a fridge from a mod, or a mod's cooler that freezes without power. A passive cooler can't (it stops at 17 °C), so a hot land before electricity hears about pemmican instead. Fulfilled when a room below 0 °C, or a working fridge, holds food.</li>
+          <li>Steel put by, cloth put by for mending | Builders and crafters, when the stores hold less than 150 steel; crafters in fall and winter, when they hold less than 80 cloth, wool, hide or any other textile.</li>
+          <li>Spare parts for the machines | Crafters and builders in an industrial or spacer colony, when the stores hold fewer than 6 components.</li>
+          <li>Shelves for the stores | Anyone ten days settled, while the colony has fewer than 2 shelves and one can be built.</li>
         </table>
       </li>
       <li>
@@ -355,14 +355,14 @@ Some run for a whole season: so many days in a row with something kept up, where
           <li>live to see 3 or 5 more years | Anyone; a brush with death, a loss.</li>
           <li>see the colony grow to 12 or 20 people | Anyone; a birth.</li>
           <li>have a bedroom fit for a noble | Anyone but ascetics; a night in a barracks or outside.</li>
-          <li>go thirty days without another hurt | Anyone hurt from everyday life in the last 10 days (a danger, their work, an ailment), with hurts on; the hurt. The days start again at another hurt or a fall.</li>
-          <li>see this colony grow to 8 people | With two colonies or more, anyone whose own colony is smaller (to 8, or 2 more); its first night, a birth.</li>
-          <li>make the journey to the other colony | With two colonies or more, anyone fond of someone (30 or more) living at another; a parting, being sent away against their wish. Reached the day they stand on another of the colony's homes, by caravan, pods or ship.</li>
           <li>feel at home here | Anyone whose belonging is below 70, until it stays at 70 or more for 10 days in a row; being left out, a shared table, a loss.</li>
           <li>feel free again | Anyone whose freedom is below 70, until it stays at 70 or more for 10 days in a row; a journey, an evening at the strangers' camp.</li>
           <li>feel safe again, find something worth doing | Anyone whose safety (or purpose) is below 70, until it stays at 70 or more for 10 days in a row; a battle, a brush with death, a nemesis (safety); a lost seat or election, a loss (purpose).</li>
           <li>let the grief go, let go of an old shame | Anyone grieving (or ashamed) strongly now, until the feeling stays faint for 12 (or 10) days in a row; a loss.</li>
           <li>find someone to love, make a friend for life | Anyone 20 or more with no lover; a bond of friendship of 90 or more; a wedding, a loss, being left out.</li>
+          <li>go thirty days without another hurt | Anyone hurt from everyday life in the last 10 days (a danger, their work, an ailment), with hurts on; the hurt. The days start again at another hurt or a fall.</li>
+          <li>see this colony grow to 8 people | With two colonies or more, anyone whose own colony is smaller (to 8, or 2 more); its first night, a birth.</li>
+          <li>make the journey to the other colony | With two colonies or more, anyone fond of someone (30 or more) living at another; a parting, being sent away against their wish. Reached the day they stand on another of the colony's homes, by caravan, pods or ship.</li>
         </table>
         <after>The heart's goals need feelings and strain switched on, and are looked at once a day.</after>
       </li>

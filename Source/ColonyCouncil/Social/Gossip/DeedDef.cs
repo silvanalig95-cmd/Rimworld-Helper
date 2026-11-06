@@ -95,12 +95,6 @@ namespace ColonyCouncil
         public bool duringHunger;
         /// <summary>The size instead, when the doer had been drafted (ran with a weapon in hand); 0: no different.</summary>
         public float draftedSize;
-        /// <summary>
-        /// A record of the doer's (a RecordDef name, Defs/Misc) counted one more each time the deed is done, merged or not:
-        /// rescues under fire, contests won, masterworks, night watches, rounds, kindnesses to strangers. Names are built
-        /// on them (Defs/EpithetDefs/Rimfolk_Epithets_People4.xml).
-        /// </summary>
-        public string record;
 
         [Unsaved] private float[] shiftArray;
         [Unsaved] private int valence = 2;
