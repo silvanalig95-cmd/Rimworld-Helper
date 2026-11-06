@@ -271,27 +271,35 @@ asking, and on Demanding stakes may sulk, go on an insulting spree, or announce 
 three days later unless you win them back. The Wishes tab shows everyone's trust and its history.
 
 **Rising standards.** Comfort breeds expectations. While a colonist is happy, their standards creep up from
-*modest* to *comfortable*, *particular* and finally *spoiled*. The council's mood rewards shrink for them, letdowns
-sting more (and so do the colony's own frictions, everyday pressures and setbacks, up to 40% more), their patience runs shorter, and their wishes come more often and ask for more: the next impressiveness
-level after that, fine meals instead of simple ones, luxuries. Hard times bring standards back down, and so does the
-austerity decree.
+*modest* to *comfortable*, *particular* and finally *spoiled*. Good things grow ordinary sooner for them (below),
+letdowns sting more (the colony's own frictions, everyday pressures and setbacks, up to 40% more), their patience runs
+shorter, and their wishes come more often and ask for more: the next impressiveness level after that, fine meals
+instead of simple ones, luxuries. Hard times bring standards back down, and so does the austerity decree.
 
-High standards also take the shine off the game's own comforts. A comfortable colonist feels the good moods of the
-base game and other mods (a fine meal, an impressive bedroom, a party, a joy activity) at 90%, a particular one at
-80% and a spoiled one at 70%. Only the first 10 points of each count for less, so the big moments of a life, like a
-wedding or a catharsis, still land almost in full; bad moods are never touched. Rimfolk's own good moods already
-follow standards, so they aren't shrunk twice. Hover a good mood in the Needs tab to see what it would be without
-standards. This works through one of the deeper game hooks, and the *standards cover the game's comforts* setting
-turns it off.
+**Good things grow ordinary.** One rule, for every good mood a colonist has, the game's, other mods' and Rimfolk's
+alike: they count in full up to a line their standards set (45 points for the modest, 35 for the comfortable, 25 for
+the particular, 15 for the spoiled: a colony used to the good life asks more), and of what is above it, half of the
+first 20 points and three quarters of the rest no longer lift them. It comes off the good moods themselves by how
+ordinary each is: everyday comforts (a fine room, their beliefs, trust in the council, a kind of memory they've had
+often lately) shrink most, something new (a wedding just attended) counts nearly in full and drifts down as the days
+go by, and a life goal reached never counts for less. Each good mood shows what it counts for now, and one line in its
+tooltip says why ("Grown ordinary: counts as +3 of +5, part of everyday life now"). Bad moods are never touched, every
+good thing still helps (each point more adds at least a quarter), and in hard times it fades, to nothing near a break.
+One setting, *good things grow ordinary*; until November 2026 four rules did this (standards shrinking the council's
+rewards and the game's comforts, good times fading sooner, good moods adding up slowly, used to the good life), and a
+settings file from then keeps the rule on if any of the four was on. It works through one of the deeper game hooks.
 
-**Good moods add up slowly.** Every good mood Rimfolk gives a colonist shares one budget: a wish granted, a wedding,
-a dilemma that went their way, a reunion, a feast. The two biggest on a colonist's mind count in full, the third
-60%, the fourth 45%, the fifth 35% and every one after that a quarter, so a small joy adds little on top of a
-wish just granted, but it never disappears: every good mood stays on the Needs tab at what it counts for now (a +3
-deep in the pile shows as +1), and its tooltip says so ("+0.8 instead of +3"). Bad moods aren't part of it, and
-neither is anything the game and other mods give (high standards take their own share of those, see above). The
-reward strength setting and rising standards apply to Rimfolk's good moods too. The *good moods add up slowly*
-setting turns this off.
+**Small letdowns and small joys.** Small things that go wrong (the same meal again, an idea turned down, rot in the
+stores, a spat about the chores) and small things that go right (a laugh with a friend, a kindness, a varied table) are
+each felt the way people feel them: a short, small mood at the moment, three points and half a day at most. On the Mood
+tab they read as two rows, *Small letdowns* and *Small joys*, and hovering a row says what each one was, how much it
+counts and why. What each would weigh beyond its moment goes to the heart instead: strain for a letdown, relief for a
+joy, at most 1.5 and 3 a day, so a single one passes and a run of them wears or eases. A letdown that lasts (days of
+the same work, someone away, a wish still waiting) is felt when it begins, gets worse or holds another day, and wears on
+the heart every hour it holds. The heart counts every small mood the same way, whoever made it: past 8 points of small
+bad moods (the game's and other mods' too) they build a little strain, past 12 of small good ones they ease it, while
+those moods stay just as the game and the mods made them. The heart's page names what wore on them and what eased them.
+With the heart off, every letdown and joy is a mood of its own as before.
 
 **Not every good moment is a good mood.** Rimfolk keeps mood for the moments that matter: weddings, wishes granted,
 reunions, victories, recoveries, life goals reached, the end of a personal story, real celebrations and grief shared.
@@ -312,24 +320,15 @@ About half of its small good moments (248 of the 474 worth +3 or less) give some
   outcome already pays out in silver, skill or goodwill.
 
 The moment itself still shows (a speech bubble, the social log, the news or the journal), and a small line over the
-colonist says what they got ("+ recreation"). These follow reward strength and standards like the moods they replace,
+colonist says what they got ("+ recreation"). These follow reward strength like the moods they replace,
 and give nothing on *Advisor only*. The heart still feels them at their old size, so feelings, belonging and the
 strain friends ease work as before. Four habits trade their mood for their knack, too (see Quirks). A settled
 colonist now carries about 4 of Rimfolk's good moods instead of about 10, and their total from Rimfolk comes out a
 little lower than before (roughly +10 instead of +11), lower still when nothing big has happened lately.
 
-**Getting used to good times.** Someone whose life is already good gets used to good things faster. When a colonist's
-mood is above 75%, a new good memory from Rimfolk (a wish granted, a good talk, a contest won, a dilemma that went
-their way) fades sooner, smoothly down to half its usual time from 90% mood. It feels just as good while it lasts,
-and in hard times good things last their full length. A good memory about someone (a friend who had their back)
-keeps its effect on opinion for the full time; only the mood ends sooner. A good memory that comes back renews with
-the time it would have now. Its tooltip says when it fades sooner. This works through one of the deeper game hooks, and a setting
-turns it off.
-
-None of these is a flat penalty, and nothing is taken away: a colony that lives well still feels it, it just doesn't
-float at the top of the mood bar on a pile of small pleasures. A line in the Mood tab says what they take off right
-now, for example "Good times: Rimfolk's good moods +11 of +18, 2 fading sooner · the game's comforts +14 of +19
-(particular)".
+None of this is a flat penalty, and nothing is taken away: a colony that lives well still feels it, it just doesn't
+float at the top of the mood bar on a pile of small pleasures. A line in the Mood tab says what good things grown
+ordinary take off right now, for example "Good times: good things grown ordinary, good moods +32 of +47".
 
 **Everyday frictions.** People who live close together get on each other's nerves. Colonists argue about the dishes,
 complain about a bunkmate's snoring, take the last good meal, keep a borrowed knife, correct each other at the table
@@ -344,13 +343,16 @@ stores, a bare earth floor, rotten food in the stockpile, work in the rain with 
 one, junk left in a bedroom, a butcher's table or spot where people eat or sleep, and in the cold a bed a few steps
 from a door straight outside (an anteroom stops the draught). Each names what it is about (the badly made parka, the
 wood left lying in the way, the filthy dining room), and colonists grumble aloud now and then about bad clothes,
-clutter, dirty rooms and hard beds. Each costs a point or two of mood for half a day to a day and a half. In an
+clutter, dirty rooms and hard beds. Each is a small letdown: a point or two of mood for half a day, and a little
+strain on the heart when they keep coming. In an
 ordinary colony they come about as often as the warm moments; less in a happy, roomy one, more in barracks or between
 people who dislike each other. Abrasive, volatile and jealous colonists start more of them, kind ones none. After a
 spat the two share no warm moments until it wears off or they clear the air. A setting turns them off.
 
-**Everyday pressures.** A colony that has everything still has its everyday wear. Five small, fixable pressures show
-as moods while their cause lasts, each saying what caused it, with what helps in the Mood tab:
+**Everyday pressures.** A colony that has everything still has its everyday wear. Five small, fixable pressures,
+each saying what caused it, with what helps in the Mood tab. Each is a small letdown (above): felt as a short mood when
+it begins, gets worse or holds another day, and wearing on the heart every hour its cause lasts. The sizes below are as
+they are felt:
 - **the same meal again**: 6 of the last 8 meals the same kind, more after 10 or 12 of 12 (-1 to -3). A colony that
   can cook only one kind feels it least; ascetics and anyone whose ideoligion allows only one kind of food (a fungus diet)
   don't mind, gourmands mind it more, and fine or lavish meals never count. Three different foods in two
@@ -373,9 +375,10 @@ nears breaking, Rimfolk's small letdowns weigh less (down to half at their minor
 three quarters, easing back to normal as they recover. Meals are noted through one of the deeper game hooks. The
 Almanac's *everyday pressures* page has the details.
 
-**Setbacks.** The other side of all the small rewards: about fifty bad moods that come from what actually happens in
-play, each naming its cause in its tooltip and, in the Mood tab, what helps. Most are -1 to -4 for a day or a few; the
-few bigger ones (-5 to -6) are for real losses.
+**Setbacks.** The other side of all the small rewards: about fifty letdowns that come from what actually happens in
+play, each naming its cause and, in the Mood tab, what helps. As written most are -1 to -4 for a day or a few, and the
+few bigger ones (-5 to -6) are for real losses; each is felt as a small letdown (at most -3 for half a day) and the
+rest wears on the heart.
 - **The council**: a wish still waiting while wishes voiced after it come true (-1 to -2), an idea turned down at a
   meeting (-2, -4 if the meeting backed it) or a vote lost (-1), a disliked decree dragging on past two days (-1 to
   -2), a promise broken to a close friend or someone they love (-3 to -5), a rival given a name or a council seat
@@ -455,9 +458,10 @@ wounded asking for it, a clean sweep can come again in about four days instead o
 The council's choices add up. Every dilemma answer, decree and many granted wishes nudge the colony's five ways:
 **merciful or harsh**, **generous or thrifty**, **traditional or restless**, **open or guarded**, **hard-working or
 easygoing**. Lean far enough and word spreads: a letter tells you the colony is now known (and later renowned) for
-it. Colonists whose nature fits are proud of it (up to +4 mood, less for the spoiled); those it clashes with chafe
-(up to -4): the kind
-hate harshness, the greedy love thrift, the lazy love an easygoing colony, the old love tradition. Neighbors warm to
+it. Colonists whose character fits are proud of it (up to +4 mood, grown ordinary like any good mood); those it
+clashes with chafe (up to -4). It is read from their character, the eight sides their traits, skills and age set and
+what happened to them moves: the warm hate harshness, the proud love thrift, the easy-going love an easygoing colony,
+the set in their ways love tradition, and someone hardened by a hard year may come to mind mercy less. Neighbors warm to
 a generous or open colony and cool towards a thrifty or guarded one, and some encounters and dilemmas only happen
 for a colony with a certain name. Old deeds fade (about half in a year), so a colony can change. The **Our ways**
 page in the council window shows where you stand, who is proud, who chafes, and what shaped it.

@@ -1146,8 +1146,9 @@ namespace ColonyCouncil
             bool positive = def.stages != null && def.stages.Count > 0 && def.stages[0] != null && def.stages[0].baseMoodEffect >= 0f;
             float factor = scale >= 0f ? scale : positive ? ColonyCouncilMod.Settings.rewardFactor : ColonyCouncilMod.Settings.PenaltyScale;
             if (factor <= 0f) return;
-            // A milestone (a life goal reached) counts in full, whatever their standards (Moods/Milestone.cs).
-            thought.moodPowerFactor = factor * (positive && Milestone.Is(def) ? 1f : Standards.MoodFactor(p, positive));
+            // A reward is given at the reward strength; how much it counts beside their other good moods is the one rule of good
+            // things growing ordinary (Moods/GoodLife.cs). Letdowns sting more for the comfortable.
+            thought.moodPowerFactor = factor * (positive ? 1f : Standards.PenaltyFactor(p));
             if (thought is ICouncilMood mood) mood.Scaled = true;
             if (thought is ICausedThought caused)
                 caused.Cause = cause ?? Causes.Current ?? (otherPawn != null && otherPawn != p && !def.IsSocial ? "CC_Cause_About".Translate(otherPawn.LabelShort).ToString() : null);

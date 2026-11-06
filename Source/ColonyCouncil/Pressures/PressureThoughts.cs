@@ -12,13 +12,23 @@ namespace ColonyCouncil
     /// </summary>
     public class Thought_Pressure : Thought_Situational, IExplainedThought
     {
-        public override float MoodOffset()
+        /// <summary>
+        /// Its mood as felt, before it became small letdowns and joys: the heart reads this while it holds
+        /// (Moods/SmallMoments.cs), a short moment when it begins, gets worse or holds another day, and the rest as strain
+        /// (the same meal again) or relief (a varied table).
+        /// </summary>
+        public float Felt()
         {
             float m = base.MoodOffset();
             if (m < 0f) return Pressures.Bad(pawn, m);
-            if (m > 0f) return m * SmallJoys.LiveScale(pawn);
+            if (m > 0f) return m * GoodLife.RewardScale(pawn);
             return m;
         }
+
+        /// <summary>While letdowns and joys are moments (SmallMoments.On) it gives no mood of its own: its moments and the heart carry it.</summary>
+        public override float MoodOffset() => SmallMoments.On && SmallMoments.Eligible(pawn) ? 0f : Felt();
+
+        public override bool VisibleInNeedsTab => base.VisibleInNeedsTab && MoodOffset() != 0f;
 
         public override string LabelCap
         {

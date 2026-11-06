@@ -250,60 +250,7 @@ Check(PressureMath.UnfinishedStage(PressureMath.UnfinishedScore(10)) == 2 && Pre
 Check(PressureMath.EffortFactor(-1f) == 1f && PressureMath.EffortFactor(0f) == 1f && PressureMath.EffortFactor(0.5f) == 1f, "an ambition with half or more to do is earned in full");
 Check(Math.Abs(PressureMath.EffortFactor(0.7f) - 0.8f) < 1e-4f && PressureMath.EffortFactor(0.95f) == 0.6f, "one mostly done already counts for less, 60% at least");
 
-// Good times turning ordinary: good memories fade sooner when life is good, standards and the game's comforts, and how
-// good moods add up (Moods/GoodTimesMath.cs).
-Check(GoodTimesMath.DurationFactor(0f) == 1f && GoodTimesMath.DurationFactor(0.5f) == 1f && GoodTimesMath.DurationFactor(0.75f) == 1f, "good things last in full up to 75% mood");
-Check(GoodTimesMath.DurationFactor(0.9f) == 0.5f && GoodTimesMath.DurationFactor(1f) == 0.5f, "half the time from 90% mood");
-Check(GoodTimesMath.DurationFactor(float.NaN) == 1f, "no mood known: in full");
-{
-    float last = 1f;
-    bool falls = true, smooth = true;
-    for (int i = 0; i <= 100; i++)
-    {
-        float f = GoodTimesMath.DurationFactor(i / 100f);
-        if (f > last + 1e-6f) falls = false;
-        if (last - f > 0.08f) smooth = false;
-        last = f;
-    }
-    Check(falls, "the time a good memory lasts never grows with mood");
-    Check(smooth, "and shrinks smoothly, no jumps between one percent and the next");
-}
-float fade80 = GoodTimesMath.DurationFactor(0.8f), fade85 = GoodTimesMath.DurationFactor(0.85f);
-Check(fade80 > 0.8f && fade80 < 0.95f && fade85 > 0.55f && fade85 < 0.7f, $"80% mood about 87%, 85% about 63% (got {fade80}, {fade85})");
-Check(GoodTimesMath.ShortenedTicks(60000, 0.5f) == 30000 && GoodTimesMath.ShortenedTicks(60000, 1f) == 60000 && GoodTimesMath.ShortenedTicks(3, 0.1f) == 1, "shortened ticks, one at least");
-Check(GoodTimesMath.ShortenedTicks(0, 0.5f) == 0 && GoodTimesMath.ShortenedTicks(-1, 0.5f) == -1, "no time of its own: left alone");
-Check(GoodTimesMath.ComfortFactor(0) == 1f && GoodTimesMath.ComfortFactor(1) == 0.9f && GoodTimesMath.ComfortFactor(2) == 0.8f && GoodTimesMath.ComfortFactor(3) == 0.7f,
-    "comforts: modest 100%, comfortable 90%, particular 80%, spoiled 70%");
-Check(GoodTimesMath.ComfortFactor(-1) == 1f && GoodTimesMath.ComfortFactor(9) == 0.7f, "comfort factor out of range");
-Check(Math.Abs(GoodTimesMath.Comfort(5f, 0.8f) - 4f) < 1e-4f && Math.Abs(GoodTimesMath.Comfort(10f, 0.7f) - 7f) < 1e-4f, "a small comfort is scaled in full");
-Check(Math.Abs(GoodTimesMath.Comfort(40f, 0.7f) - 37f) < 1e-4f && Math.Abs(GoodTimesMath.Comfort(12f, 0.9f) - 11f) < 1e-4f, "a big one only on its first 10 points");
-Check(GoodTimesMath.Comfort(-6f, 0.7f) == -6f && GoodTimesMath.Comfort(0f, 0.7f) == 0f && GoodTimesMath.Comfort(8f, 1f) == 8f, "bad moods and the modest are left alone");
-{
-    float last = 0f;
-    bool rises = true;
-    for (int i = 1; i <= 60; i++)
-    {
-        float v = GoodTimesMath.Comfort(i, 0.7f);
-        if (v <= last) rises = false;
-        last = v;
-    }
-    Check(rises, "a bigger comfort is always felt as more");
-}
-Check(GoodTimesMath.RankFactor(0) == 1f && GoodTimesMath.RankFactor(1) == 1f, "the two biggest good moods count in full");
-Check(GoodTimesMath.RankFactor(2) == 0.6f && GoodTimesMath.RankFactor(3) == 0.45f && GoodTimesMath.RankFactor(4) == 0.35f, "then 60%, 45% and 35%");
-Check(GoodTimesMath.RankFactor(5) == 0.25f && GoodTimesMath.RankFactor(40) == 0.25f && GoodTimesMath.RankFactor(1000) == 0.25f, "every one after that a quarter, however deep");
-Check(GoodTimesMath.RankFactor(-1) == 1f, "rank factor below range");
-{
-    bool never = true;
-    for (int r = 1; r < 60; r++) never &= GoodTimesMath.RankFactor(r) <= GoodTimesMath.RankFactor(r - 1) && GoodTimesMath.RankFactor(r) > 0f;
-    Check(never, "a later good mood never counts for more than an earlier one, and never for nothing");
-    // A +3 deep in the pile still shows on the Needs tab (whole numbers) as +1.
-    Check(Math.Round(3f * GoodTimesMath.RankFactor(30), MidpointRounding.AwayFromZero) == 1, "a +3 joy deep in the stack still shows as +1");
-    // A dozen good moods of +3 add up to under half their sum: far less than the pile, more than the old curve's +9.
-    float sum = 0f;
-    for (int r = 0; r < 12; r++) sum += 3f * GoodTimesMath.RankFactor(r);
-    Check(Math.Abs(sum - 15.45f) < 0.01f, $"a dozen +3 joys count as {sum}");
-}
+// Good things grow ordinary: the one rule's arithmetic is in GoodLifeTests (Moods/GoodLifeMath.cs).
 
 // ---------------- Room layouts (Building/TemplateLayout.cs) ----------------
 
@@ -445,7 +392,8 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {VisitorTradeTests.Run(root, Check)} things about visitors and campers buying at the colony's stalls, and the drovers' milk.");
         Console.WriteLine($"Checked {CallerTests.Run(root, Check)} things about visitors who come to do something (prices, cuts, their jobs and lines).");
         Console.WriteLine($"Checked {SetbackTests.Run(root, Check)} things about setbacks (when they come, how big, their settings and hints).");
-        Console.WriteLine($"Checked {GoodLifeTests.Run(root, Check)} things about a good life grown ordinary and the quiet troubles (the take-back, the line, the chance, the defs).");
+        Console.WriteLine($"Checked {GoodLifeTests.Run(root, Check)} things about good things growing ordinary and the quiet troubles (the take-back, the line, the chance, the defs).");
+        Console.WriteLine($"Checked {SmallMomentTests.Run(root, Check)} things about small letdowns and joys (the moment, what moves to the heart, every small mood's pile).");
         Console.WriteLine($"Checked {YardTests.Run(Check)} things about where the colony gathers out of doors (terraces and seats, not the machinery).");
         Console.WriteLine($"Checked {CustomYearsTests.Run(root, Check)} things about customs kept year after year (their tags, lines that can come true, what's said at them).");
         Console.WriteLine($"Checked {OutcomeTests.Run(root, Check)} things about how answers are told (the risk's words, variants picked by tags, world situations' answers).");

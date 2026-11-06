@@ -10,7 +10,7 @@
     <order>15</order>
     <summary>Small, fixable things that wear on colonists: the same meal, the same work, someone away, a packed room, half-built work.</summary>
     <tip>Two or three kinds of meal in the cooking bills keep the most common pressure away.</tip>
-    <description>A colony that has everything still has its everyday wear: the same stew every night, the same job every day, someone dear off on a long trip. Rimfolk adds five such pressures. Each is small, 1 to 3 mood, lasts only while its cause does, and says in its tooltip what caused it. The Mood tab says what helps. One has a good side: a varied table lifts the mood a little.
+    <description>A colony that has everything still has its everyday wear: the same stew every night, the same job every day, someone dear off on a long trip. Rimfolk adds five such pressures. Each is small, 1 to 3 as it's felt, lasts only while its cause does, and says what caused it. Since November 2026 each is one of the small letdowns: it is felt as a short mood when it begins, gets worse or holds another day, in the "Small letdowns" row of the Mood tab, and it wears on the heart's strain every hour its cause lasts (see "small letdowns and small joys"). The row says what helps. One has a good side: a varied table is a small joy the same way.
 
 None of them is a flat penalty. A well-kept colony hardly feels them, and fixing them is ordinary colony work: a second meal bill, a second job in the Work tab, a bigger dining room.
 

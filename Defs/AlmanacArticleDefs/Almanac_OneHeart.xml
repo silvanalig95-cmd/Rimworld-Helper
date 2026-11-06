@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    One heart (phase 3 of the review, November 2026): small letdowns and small joys (Source/ColonyCouncil/Moods/SmallMoments.cs)
+    and good things growing ordinary (Source/ColonyCouncil/Moods/GoodLife.cs). The older pages ("rising standards", the
+    pressures and setbacks) keep what they said before, marked as before, beside a pointer here.
+  -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Rimfolk_Alm_C_SmallMoments</defName>
+    <label>small letdowns and small joys</label>
+    <category>Council</category>
+    <order>3</order>
+    <summary>Small things that go wrong or right are felt for a moment; a run of them wears on the heart or eases it.</summary>
+    <tip>One cold supper is nothing. A week of them is something.</tip>
+    <description>Small things go wrong in a colony every day: the same meal again, an idea turned down at the meeting, rot in the stores, a spat about the chores. Small things go right too: a laugh with a friend, a kindness, a varied table. Rimfolk lets each be felt the way people feel them, sharply for a moment and then gone, and lets the ones that keep coming wear on the heart, or ease it.
+
+On the Mood tab they read as two rows, "Small letdowns" and "Small joys", each adding up the ones on their mind now. Hover a row to see what each one was, how much it counts and why it happened.</description>
+    <sections>
+      <li>
+        <heading>The moment</heading>
+        <text>Each small letdown or joy of Rimfolk's is a short, small mood when it happens: at most 3 points and half a day, less if it was written smaller or shorter. The five kinds of small letdown (everyday pressures, setbacks, quiet troubles, nuisances and frictions between people) all work this way, and so do the small good moments Rimfolk's systems give that no council answer gave (a moment's kindness, a laugh, a good talk). A wish granted, a council answer, a life goal reached and a dream are moods of their own as before.</text>
+      </li>
+      <li>
+        <heading>Beyond the moment</heading>
+        <text>What a letdown would have weighed beyond its moment (its size times its days, less the moment) wears on the heart as strain instead, and what a joy would have weighed eases it. So one small thing passes, and a run of them adds up where it matters: an idea turned down that once soured someone for three days is now a sharp half day and a little strain. The heart takes at most 1.5 a day from small letdowns and lets small joys ease at most 3 a day, at its strength setting and their nature's way of taking things.</text>
+      </li>
+      <li>
+        <heading>Things that last</heading>
+        <text>A letdown that lasts (the same meal again and again, days of the same work, someone close away, a crowded dining room, half-built work, a wish still waiting, a decree that drags on, a sick friend) has no lasting mood any more. It is felt as a moment when it begins, when it gets worse and once a day while it holds, and it wears on the heart every hour it holds. A varied table eases it the same way. Fix the cause and the wear stops at once.</text>
+      </li>
+      <li>
+        <heading>Every small mood, whoever made it</heading>
+        <text>The heart counts every small mood on a colonist's mind by the same rule, the game's and other mods' as well as Rimfolk's: one of 6 points or less that lasts 3 days or less, or lasts while its cause does. Past 8 points of small bad moods in all, each point more builds a little strain every hour; past 12 points of small good ones, each eases a little. These moods themselves stay just as the game and your mods made them, and keep their own rows. Heavy things the heart already counts on their own (deaths, bad nights, hunger, pain, the dark, fear and grief, the council's hard choices, gatherings and good talks) are left to that, so nothing counts twice.</text>
+      </li>
+      <li>
+        <heading>Where to see it</heading>
+        <text>The heart's section of the Mood tab names what wore on them lately ("small letdowns: the same meal and my idea turned down") and what eased them ("small joys: a laugh with Ana"), and says what would help. The rows' tooltips give what to do about the letdowns behind them.</text>
+      </li>
+      <li>
+        <heading>Older games</heading>
+        <text>A letdown or joy someone had before this came in keeps its mood and runs out as it was. With the heart off, the deeper game hooks off or Advisor only stakes, every letdown and joy is a mood of its own as before.</text>
+      </li>
+    </sections>
+    <keywords><li>small letdowns</li><li>letdowns</li><li>a run of letdowns</li><li>small good moments</li></keywords>
+    <seeAlso><li>Council_Alm_C_Heart</li><li>Council_Alm_C_Pressures</li><li>Council_Alm_C_Setbacks</li><li>Rimfolk_Alm_C_Ordinary</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Rimfolk_Alm_C_Ordinary</defName>
+    <label>good things grow ordinary</label>
+    <category>Council</category>
+    <order>3</order>
+    <summary>Why a pile of good moods doesn't carry anyone to the top of the bar: one rule, in place of four.</summary>
+    <tip>The first fine meal is a treat. The tenth is supper.</tip>
+    <description>A colony that does everything right can stack up so many good moods (fine meals, impressive rooms, a wedding, an office, trust in the council) that everyone sits at the top of the mood bar, where a bad day doesn't even show. So good things grow ordinary, by one rule: a colonist's good moods, from the game, other mods and Rimfolk alike, count in full up to a line their standards set, and above it they count for less.
+
+There is no bad mood for it: it comes off the good moods themselves, the way people get used to things. A life goal reached never counts for less.</description>
+    <sections>
+      <li>
+        <heading>The line</heading>
+        <text>A colony used to the good life asks more, so the line falls as standards rise. Above it, half of the first 20 points over the line and three quarters of the rest no longer lift them; every point more still adds at least a quarter, so a better colony is always a happier one.</text>
+        <table>
+          <li>Standards | The line | Good moods felt in all, with +30 of them | With +50 | With +80</li>
+          <li>Modest | +45 | 100% | 95% | 73%</li>
+          <li>Comfortable | +35 | 100% | 85% | 64%</li>
+          <li>Particular | +25 | 92% | 73% | 55%</li>
+          <li>Spoiled | +15 | 75% | 58% | 45%</li>
+        </table>
+      </li>
+      <li>
+        <heading>New things and everyday things</heading>
+        <text>What is taken off comes most off everyday comforts and least off something new. Lasting moods (a fine room, their beliefs, trust in the council) and memories of a kind they've had often lately (the third fine meal this week) shrink most. Something new, like a wedding just attended, counts nearly in full and drifts down as the days go by, until it is just another good memory.</text>
+      </li>
+      <li>
+        <heading>Where to see it</heading>
+        <text>Each good mood on the Mood tab and the game's Needs tab shows what it counts for now, and one line in its tooltip says why: "Grown ordinary: counts as +3 of +5, part of everyday life now." The line under the Mood tab's moods gives the sum, and its tooltip the numbers behind it. Bad moods are never touched, and in hard times the rule fades, to nothing at the edge of a break, so it never pushes anyone over.</text>
+      </li>
+      <li>
+        <heading>One rule, one setting</heading>
+        <text>Until November 2026 four rules did this (standards shrinking the council's rewards and the game's comforts, good times fading sooner, good moods adding up slowly, and used to the good life), each with its own setting. Now there is one, "Good things grow ordinary", on the People page. A settings file from before keeps it on if any of the four was on. Standards still rise and fall as they did; they set the line, make letdowns sting more and make wishes come sooner. Needs the deeper game hooks.</text>
+      </li>
+    </sections>
+    <keywords><li>ordinary</li><li>grown ordinary</li><li>used to good things</li><li>the line</li></keywords>
+    <seeAlso><li>Council_Alm_C_Standards</li><li>Rimfolk_Alm_C_SmallMoments</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

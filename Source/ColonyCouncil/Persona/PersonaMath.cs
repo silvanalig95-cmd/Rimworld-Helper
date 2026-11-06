@@ -157,5 +157,62 @@ namespace ColonyCouncil
 
         /// <summary>Order-free key for a pair of people.</summary>
         public static long PairKey(int a, int b) => a < b ? ((long)a << 32) | (uint)b : ((long)b << 32) | (uint)a;
+
+        // ---------------- The colony's ways, read from character ----------------
+
+        /// <summary>A side counts toward the colony's ways only past this much, so the small personal lean (12 at most) says nothing.</summary>
+        public const float WayFrom = 15f;
+
+        /// <summary>How far past <see cref="WayFrom"/> a side has to go to count in full.</summary>
+        public const float WaySpan = 40f;
+
+        /// <summary>The most anyone cares about one of the colony's ways, either way.</summary>
+        public const float WayMost = 1.5f;
+
+        /// <summary>One side as a lean toward the colony's ways: nothing up to 15, 1 at 55, at most 1.5, signed.</summary>
+        public static float Lean(float side)
+        {
+            if (float.IsNaN(side)) return 0f;
+            float a = Math.Abs(side) - WayFrom;
+            if (a <= 0f) return 0f;
+            float l = Math.Min(WayMost, a / WaySpan);
+            return side < 0f ? -l : l;
+        }
+
+        /// <summary>
+        /// How much someone cares for one of the colony's five ways (CharacterTracker.Way: 0 mercy, 1 generosity,
+        /// 2 tradition, 3 openness, 4 toil), from -1.5 (minds it) to 1.5 (likes it), read from their character: the one
+        /// reading of a person's nature, which the game's traits, their skills and age set and what happened to them
+        /// moves. Mercy is warmth without a temper; generosity warmth without pride; tradition is the set in their ways;
+        /// openness to strangers is warmth, trust and curiosity; hard work is pride in it, and the joker takes it easy.
+        /// </summary>
+        public static float WayLean(int way, float[] sides)
+        {
+            if (sides == null || sides.Length < Axes) return 0f;
+            float L(PersonaAxis a) => Lean(sides[(int)a]);
+            float v;
+            switch (way)
+            {
+                case 0: v = L(PersonaAxis.Warmth) - 0.8f * L(PersonaAxis.Temper); break;
+                case 1: v = 0.7f * L(PersonaAxis.Warmth) - 0.8f * L(PersonaAxis.Pride); break;
+                case 2: v = -0.9f * L(PersonaAxis.Openness); break;
+                case 3: v = 0.5f * L(PersonaAxis.Warmth) + 0.6f * L(PersonaAxis.Trust) + 0.3f * L(PersonaAxis.Openness); break;
+                case 4: v = 0.9f * L(PersonaAxis.Pride) - 0.7f * L(PersonaAxis.Humour); break;
+                default: return 0f;
+            }
+            return Clamp(v, WayMost);
+        }
+
+        /// <summary>
+        /// A fighting temper (-2 to 4) read from character, for a stranger offered a bout or pushed too far (Outsiders/):
+        /// a temper and nerve make one readier, warmth less so.
+        /// </summary>
+        public static int FightTemper(float[] sides)
+        {
+            if (sides == null || sides.Length < Axes) return 0;
+            float v = 1.6f * Lean(sides[(int)PersonaAxis.Temper]) + 2f * Lean(sides[(int)PersonaAxis.Nerve]) - 0.6f * Lean(sides[(int)PersonaAxis.Warmth]);
+            int t = (int)Math.Floor(v + 0.5f);
+            return t < -2 ? -2 : t > 4 ? 4 : t;
+        }
     }
 }

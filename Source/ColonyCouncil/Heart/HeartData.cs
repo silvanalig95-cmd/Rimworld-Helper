@@ -127,6 +127,13 @@ namespace ColonyCouncil
         public int natureAct = -1;
         public bool natureEased;
         public string natureWhy;
+        /// <summary>Relief from small joys had today (Moods/SmallMoments.cs: their daily cap, SmallMomentMath.JoyReliefCap).</summary>
+        public float todayJoys;
+        /// <summary>
+        /// What the small letdowns and joys were lately, in a few words for the heart's page ("the same meal, my idea turned
+        /// down"): the biggest of them, kept as words like <see cref="natureWhy"/>.
+        /// </summary>
+        public string letdownsWhy, joysWhy;
 
         // ---------------- Worked out each hour, not saved ----------------
 
@@ -148,6 +155,65 @@ namespace ColonyCouncil
         [Unsaved] public float lastHourBuild, lastHourRelief;
         /// <summary>When each kind of bad night was last counted, so a night renewed by waking again counts once.</summary>
         [Unsaved] public Dictionary<ThoughtDef, int> badNights;
+
+        /// <summary>A lasting letdown or joy as last seen: its stage, and when it last came as a moment.</summary>
+        public struct LastingSeen
+        {
+            public int stage, tick;
+        }
+
+        /// <summary>The lasting letdowns and joys holding for them, as last seen (Moods/SmallMoments.cs); worked out again after a load.</summary>
+        [Unsaved] public Dictionary<ThoughtDef, LastingSeen> lasting;
+        /// <summary>The hour has looked at the lasting ones since the game loaded (what held already then brings no moment).</summary>
+        [Unsaved] public bool lastingLooked;
+        /// <summary>What small letdowns and joys built and eased lately, by their words (halving in about two days).</summary>
+        [Unsaved] public Dictionary<string, float> wore, eased;
+
+        /// <summary>A small letdown wore on them, or a joy eased them, by this much: the heart's page names the biggest few.</summary>
+        public void Note(bool joy, string why, float amount)
+        {
+            if (why.NullOrEmpty() || amount <= 0f) return;
+            var d = joy ? eased ??= new Dictionary<string, float>() : wore ??= new Dictionary<string, float>();
+            string key = why.ToLowerInvariant();
+            d[key] = (d.TryGetValue(key, out float had) ? had : 0f) + amount;
+            Words(joy);
+        }
+
+        /// <summary>The hour's fading of what wore and eased (as the recent totals fade).</summary>
+        public void FadeNotes(float decay)
+        {
+            Fade(wore, decay);
+            Fade(eased, decay);
+        }
+
+        private static readonly List<string> keysTmp = new List<string>();
+
+        private static void Fade(Dictionary<string, float> d, float decay)
+        {
+            if (d == null || d.Count == 0) return;
+            keysTmp.Clear();
+            keysTmp.AddRange(d.Keys);
+            foreach (var k in keysTmp)
+            {
+                float v = d[k] * decay;
+                if (v < 0.2f) d.Remove(k);
+                else d[k] = v;
+            }
+            keysTmp.Clear();
+        }
+
+        private void Words(bool joy)
+        {
+            var d = joy ? eased : wore;
+            if (d == null) return;
+            var top = new List<KeyValuePair<string, float>>(d);
+            top.Sort((a, b) => b.Value.CompareTo(a.Value));
+            var words = new List<string>();
+            for (int i = 0; i < top.Count && words.Count < 3; i++) words.Add(top[i].Key);
+            string text = words.Count == 0 ? null : TextUtil.JoinAnd(words);
+            if (joy) joysWhy = text;
+            else letdownsWhy = text;
+        }
 
         public StrainBand Band => HeartMath.BandFor(strain);
 
@@ -241,6 +307,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref natureAct, "natureAct", -1);
             Scribe_Values.Look(ref natureEased, "natureEased");
             Scribe_Values.Look(ref natureWhy, "natureWhy");
+            Scribe_Values.Look(ref todayJoys, "todayJoys");
+            Scribe_Values.Look(ref letdownsWhy, "letdownsWhy");
+            Scribe_Values.Look(ref joysWhy, "joysWhy");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 // Saves from before the needs could wear on anyone have none: nobody has been lacking anything yet.

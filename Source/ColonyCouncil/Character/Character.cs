@@ -249,58 +249,21 @@ namespace ColonyCouncil
 
         // ---------------- Who approves ----------------
 
-        /// <summary>Their trait of this name (by defName, so a mod's trait that isn't there is never matched), or null.</summary>
-        private static Trait TraitNamed(TraitSet t, string name)
-        {
-            var all = t.allTraits;
-            for (int i = 0; i < all.Count; i++)
-                if (all[i].def.defName == name)
-                    return all[i];
-            return null;
-        }
-
         /// <summary>
-        /// How much this colonist cares about each way, by nature (-1 = dislikes it, +1 = likes it). The colony's-ways mood
-        /// asks this for every colonist and way, so it reads the traits with plain loops.
+        /// How much this colonist cares about each way (-1 = dislikes it, +1 = likes it), read from their character
+        /// (Persona/: the eight sides the game's traits, skills and age set and what happened to them moves,
+        /// PersonaMath.WayLean), the one reading of who someone is; then their kind and their beliefs (ModPeopleDef: a
+        /// people's ways, a pacifist creed), which aren't nature. A mod's trait reaches it through character too.
         /// </summary>
-        public static float Affinity(Pawn p, Way w)
+        public static float Affinity(Pawn p, Way w) => Affinity(p, w, p?.story == null ? null : Persona.Values(p));
+
+        /// <summary>The same with their character's sides already read (the mood asks every way in a row).</summary>
+        public static float Affinity(Pawn p, Way w, float[] sides)
         {
-            var t = p?.story?.traits;
-            if (t == null) return 0f;
-            float a = 0f;
-            bool Has(string name) => TraitNamed(t, name) != null;
-            int Degree(string name) => TraitNamed(t, name)?.Degree ?? 0;
-            switch (w)
-            {
-                case Way.Mercy:
-                    if (Has("Kind")) a += 1f;
-                    if (Has("Psychopath")) a -= 0.8f;
-                    if (Has("Bloodlust")) a -= 1f;
-                    break;
-                case Way.Generosity:
-                    if (Has("Kind")) a += 0.6f;
-                    if (Has("Ascetic")) a += 0.4f;
-                    if (Has("Greedy")) a -= 1f;
-                    break;
-                case Way.Tradition:
-                    float age = Flavor.HumanAge(p);
-                    if (age >= 50f) a += 0.6f;
-                    else if (age < 24f) a -= 0.4f;
-                    if (Has("TooSmart")) a -= 0.3f;
-                    break;
-                case Way.Openness:
-                    if (Has("Kind")) a += 0.4f;
-                    if (People.Passionate(p.skills?.GetSkill(SkillDefOf.Social))) a += 0.4f;
-                    if (Has("Abrasive")) a -= 0.5f;
-                    if (Has("Psychopath")) a -= 0.3f;
-                    break;
-                case Way.Toil:
-                    a += 0.6f * Degree("Industriousness");
-                    break;
-            }
-            // Other mods' traits, classes and memes (ModPeopleDef): a workaholic, a pacifist creed.
+            if (p?.story == null) return 0f;
+            float a = PersonaMath.WayLean((int)w, sides);
             a += ModPeople.WayAffinity(p, w);
-            return Mathf.Clamp(a, -1.5f, 1.5f);
+            return Mathf.Clamp(a, -PersonaMath.WayMost, PersonaMath.WayMost);
         }
 
         /// <summary>
@@ -321,11 +284,13 @@ namespace ColonyCouncil
         public float Approval(Pawn p, List<string> reasons = null)
         {
             float score = 0f;
+            float[] sides = null;
             foreach (var w in All)
             {
                 float v = Value(w);
                 if (Mathf.Abs(v) < 10f) continue;
-                float a = Affinity(p, w);
+                sides ??= p?.story == null ? null : Persona.Values(p);
+                float a = Affinity(p, w, sides);
                 if (a == 0f) continue;
                 float part = v * a;
                 score += part;
@@ -384,7 +349,7 @@ namespace ColonyCouncil
         public override float MoodOffset()
         {
             float m = base.MoodOffset();
-            return m < 0f ? m * ColonyCouncilMod.Settings.PenaltyScale : m * SmallJoys.LiveScale(pawn);
+            return m < 0f ? m * ColonyCouncilMod.Settings.PenaltyScale : m * GoodLife.RewardScale(pawn);
         }
 
         public string Why

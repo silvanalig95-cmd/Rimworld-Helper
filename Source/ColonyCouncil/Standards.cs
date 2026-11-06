@@ -15,9 +15,9 @@ namespace ColonyCouncil
 
     /// <summary>
     /// The hedonic treadmill. Each colonist's standards creep up while they're happy and fall in hard times.
-    /// High standards shrink the council's mood rewards, make letdowns sting more, and make wishes come
-    /// more often, ask for more and run out of patience sooner. A colony that is always content slowly
-    /// becomes a colony that is hard to please.
+    /// High standards lower the line past which good things grow ordinary (Moods/GoodLife.cs: a colony used to the good
+    /// life asks more), make letdowns sting more, and make wishes come more often, ask for more and run out of patience
+    /// sooner. A colony that is always content slowly becomes a colony that is hard to please.
     /// </summary>
     public static class Standards
     {
@@ -34,12 +34,11 @@ namespace ColonyCouncil
 
         public static StandardsLevel LevelOf(Pawn p) => LevelFor(Of(p));
 
-        /// <summary>Council mood effects: rewards shrink by up to half, penalties grow by up to 40%.</summary>
-        public static float MoodFactor(Pawn p, bool positive)
-        {
-            float s = Of(p);
-            return positive ? 1f - 0.5f * s : 1f + 0.4f * s;
-        }
+        /// <summary>
+        /// A bad mood as the comfortable feel it: up to 40% stronger. Good moods aren't scaled here: how much a good thing
+        /// counts is the one rule of good things growing ordinary (GoodLife), whose line standards set.
+        /// </summary>
+        public static float PenaltyFactor(Pawn p) => 1f + 0.4f * Of(p);
 
         /// <summary>Patience for a new wish: the spoiled wait up to 30% less.</summary>
         public static float PatienceFactor(Pawn p) => 1f - 0.3f * Of(p);

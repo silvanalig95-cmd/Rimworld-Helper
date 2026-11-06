@@ -492,13 +492,6 @@ namespace ColonyCouncil
 
         // ---------------- Temper ----------------
 
-        /// <summary>
-        /// A temper from traits: one step up for each of bloodlust, brawler, abrasive and volatile, one down for each of
-        /// kind and wimp (-2 to 4).
-        /// </summary>
-        public static int Temper(bool bloodlust, bool brawler, bool abrasive, bool volatile_, bool kind, bool wimp) =>
-            (bloodlust ? 1 : 0) + (brawler ? 1 : 0) + (abrasive ? 1 : 0) + (volatile_ ? 1 : 0) - (kind ? 1 : 0) - (wimp ? 1 : 0);
-
         // ---------------- A practice bout ----------------
 
         /// <summary>The chance they agree to a bout: a fighting temper more, a fighter better than the colonist more, a wimp seldom.</summary>

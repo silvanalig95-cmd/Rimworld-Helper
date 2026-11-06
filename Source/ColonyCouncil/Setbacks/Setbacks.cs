@@ -82,7 +82,7 @@ namespace ColonyCouncil
             {
                 case SetbackGroup.Council:
                     scaled = true;
-                    return S.PenaltyScale * Standards.MoodFactor(p, false);
+                    return S.PenaltyScale * Standards.PenaltyFactor(p);
                 case SetbackGroup.Friction:
                     // As the moments' frictions: felt with the colonist's standards (off on gentle life pressures).
                     scaled = false;
@@ -141,7 +141,7 @@ namespace ColonyCouncil
             var group = Ext(def)?.group ?? SetbackGroup.Life;
             switch (group)
             {
-                case SetbackGroup.Council: return m * S.PenaltyScale * Standards.MoodFactor(p, false);
+                case SetbackGroup.Council: return m * S.PenaltyScale * Standards.PenaltyFactor(p);
                 case SetbackGroup.Friction: return m * Pressures.Letdown(p);
                 default: return Pressures.Bad(p, m);
             }

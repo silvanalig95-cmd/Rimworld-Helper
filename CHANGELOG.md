@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## One heart
+
+*6 November 2026, version 0.109.0*
+
+- Small letdowns are felt as a moment now (at most 3 points, for half a day), and the weight beyond the moment wears on the heart's strain when they keep coming. Pressures and lasting setbacks give a moment when they begin or worsen and build strain while they hold.
+- Small joys mirror them: a short good moment, and a run of them eases strain. On the mood tab both read as one row each, "Small letdowns" and "Small joys", with what they were when you hover them.
+- The game's and other mods' small moods count toward the heart too, by their size and length, never changing their mood values; the heavy kinds the heart already counts are not counted twice.
+- One rule for good things growing ordinary: fresh joys count nearly in full and drift down with age, everyday comforts shrink most, and a colony used to the good life asks more. The four old settings are one, "Good things grow ordinary".
+- The colony's ways read each colonist's character, so who minds an answer changes as their character changes.
+- Balanced in the simulator: the colony's whole mood is about where it was, the heart wears a little harder on a neglected colony and less elsewhere, and the Demanding preset is retuned to stay demanding.
+
 ## New questions, events and camps
 
 *6 November 2026, version 0.108.0*

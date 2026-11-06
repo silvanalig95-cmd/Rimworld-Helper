@@ -27,6 +27,34 @@ public static class PersonaTests
         Check(PersonaMath.Add(40f, -10f, 50f) == 30f, "a push back the other way counts in full");
         Check(PersonaMath.Add(49f, 100f, 50f) == 50f, "never past the cap");
 
+        // ---------- The colony's ways read from character (one reading of nature) ----------
+        float[] With(params (PersonaAxis a, float v)[] sides)
+        {
+            var v = new float[PersonaMath.Axes];
+            foreach (var (a, x) in sides) v[(int)a] = x;
+            return v;
+        }
+        var plain = With((PersonaAxis.Warmth, 12f), (PersonaAxis.Pride, -12f), (PersonaAxis.Openness, 11f), (PersonaAxis.Temper, 12f));
+        bool none = true;
+        for (int w = 0; w < 5; w++) none &= PersonaMath.WayLean(w, plain) == 0f;
+        Check(none, "a personal lean alone (12 at most) cares for none of the ways");
+        var kind = With((PersonaAxis.Warmth, 50f), (PersonaAxis.Trust, 15f), (PersonaAxis.Temper, -15f));
+        Check(PersonaMath.WayLean(0, kind) > 0.7f && PersonaMath.WayLean(1, kind) > 0.5f && PersonaMath.WayLean(3, kind) > 0.3f, "the warm like mercy, generosity and openness");
+        var cold = With((PersonaAxis.Warmth, -60f), (PersonaAxis.Trust, -20f));
+        Check(PersonaMath.WayLean(0, cold) < -1f && PersonaMath.WayLean(3, cold) < -0.5f, "the cold mind mercy and strangers");
+        Check(PersonaMath.WayLean(0, With((PersonaAxis.Temper, 35f), (PersonaAxis.Warmth, -20f))) < -0.4f, "a temper minds mercy");
+        Check(PersonaMath.WayLean(1, With((PersonaAxis.Pride, 20f), (PersonaAxis.Warmth, -10f))) < 0f && PersonaMath.WayLean(1, With((PersonaAxis.Pride, -25f))) > 0f,
+            "pride minds giving; the humble like it");
+        Check(PersonaMath.WayLean(2, With((PersonaAxis.Openness, 35f))) < 0f && PersonaMath.WayLean(2, With((PersonaAxis.Openness, -30f))) > 0f, "the curious are restless, the set in their ways traditional");
+        Check(PersonaMath.WayLean(4, With((PersonaAxis.Pride, 35f), (PersonaAxis.Humour, -10f))) > 0.4f && PersonaMath.WayLean(4, With((PersonaAxis.Humour, 35f), (PersonaAxis.Pride, -15f))) < -0.3f,
+            "the industrious like hard work, the easy-going mind it");
+        var most = With((PersonaAxis.Warmth, 100f), (PersonaAxis.Temper, -100f), (PersonaAxis.Pride, -100f), (PersonaAxis.Openness, -100f), (PersonaAxis.Trust, 100f), (PersonaAxis.Humour, -100f));
+        bool within = true;
+        for (int w = 0; w < 5; w++) within &= Math.Abs(PersonaMath.WayLean(w, most)) <= PersonaMath.WayMost;
+        Check(within && PersonaMath.WayLean(9, kind) == 0f && PersonaMath.WayLean(0, null) == 0f, "within -1.5..1.5; no way or no sides, nothing");
+        Check(PersonaMath.Lean(15f) == 0f && PersonaMath.Lean(55f) == 1f && PersonaMath.Lean(-55f) == -1f && PersonaMath.Lean(100f) == PersonaMath.WayMost && PersonaMath.Lean(float.NaN) == 0f,
+            "a side's lean: from 15, in full at 55");
+
         // ---------- Words and tags ----------
         Check(PersonaMath.Degree(29f) == 0 && PersonaMath.Degree(30f) == 1 && PersonaMath.Degree(60f) == 2 && PersonaMath.Degree(-61f) == -2, "a side shows from 30 and is strong from 60");
         Check(PersonaMath.Tag(PersonaAxis.Temper, 45f) == "persona:hothead" && PersonaMath.Tag(PersonaAxis.Temper, -45f) == "persona:calm"

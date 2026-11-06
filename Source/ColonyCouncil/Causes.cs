@@ -68,6 +68,19 @@ namespace ColonyCouncil
         string Cause { get; set; }
     }
 
+    /// <summary>
+    /// The mod's memories: the mood each gives on its own. Every memory class in Rimfolk's defs implements it
+    /// (Tools/Tests checks), so a good one's share under good things growing ordinary (Moods/GoodLife.cs) is read the same
+    /// way for each.
+    /// </summary>
+    public interface ICouncilMood
+    {
+        float OwnOffset();
+
+        /// <summary>Set when the council's scale (reward strength, standards for a letdown) was already applied as it was given.</summary>
+        bool Scaled { set; }
+    }
+
     /// <summary>A lasting mood that can say why it's there right now (which decree, which reasons).</summary>
     public interface IExplainedThought
     {
@@ -98,17 +111,13 @@ namespace ColonyCouncil
             float own = base.MoodOffset();
             if (scaled) return own;
             // Not given through the council (a moment, a friction): scaled as it's felt instead. Rewards follow the reward
-            // strength and standards; letdowns sting more for the comfortable (contrast, off on gentle life pressures).
-            return own > 0f ? own * SmallJoys.LiveScale(pawn) : own < 0f ? own * Pressures.Letdown(pawn) : own;
+            // strength; letdowns sting more for the comfortable (contrast, off on gentle life pressures).
+            return own > 0f ? own * GoodLife.RewardScale(pawn) : own < 0f ? own * Pressures.Letdown(pawn) : own;
         }
 
-        public override float MoodOffset()
-        {
-            float own = OwnOffset();
-            return own > 0f ? own * SmallJoys.Factor(this) : own;
-        }
+        public override float MoodOffset() => OwnOffset();
 
-        public override string Description => GoodTimes.FadeNote(this, SmallJoys.Note(this, Causes.Append(base.Description, cause)));
+        public override string Description => Causes.Append(base.Description, cause);
 
         public override bool TryMergeWithExistingMemory(out bool showBubble)
         {
@@ -137,7 +146,7 @@ namespace ColonyCouncil
         public bool scaled;
 
         /// <summary>
-        /// Getting used to good times (GoodTimes): the age at which this memory's good mood ends, when it came while life
+        /// Getting used to good times, the old rule: the age at which this memory's good mood ends, when it came while life
         /// was already good; -1 for the memory's full time. The opinion of the other person always lasts the full time.
         /// </summary>
         public int moodTicks = -1;
@@ -162,17 +171,13 @@ namespace ColonyCouncil
             float own = base.MoodOffset();
             if (scaled) return own;
             // Not given through the council (a moment, a friction): scaled as it's felt instead. Rewards follow the reward
-            // strength and standards; letdowns sting more for the comfortable (contrast, off on gentle life pressures).
-            return own > 0f ? own * SmallJoys.LiveScale(pawn) : own < 0f ? own * Pressures.Letdown(pawn) : own;
+            // strength; letdowns sting more for the comfortable (contrast, off on gentle life pressures).
+            return own > 0f ? own * GoodLife.RewardScale(pawn) : own < 0f ? own * Pressures.Letdown(pawn) : own;
         }
 
-        public override float MoodOffset()
-        {
-            float own = OwnOffset();
-            return own > 0f ? own * SmallJoys.Factor(this) : own;
-        }
+        public override float MoodOffset() => OwnOffset();
 
-        public override string Description => GoodTimes.FadeNote(this, SmallJoys.Note(this, Causes.Append(base.Description, cause)));
+        public override string Description => Causes.Append(base.Description, cause);
 
         public override bool VisibleInNeedsTab => base.VisibleInNeedsTab && !MoodOver;
 

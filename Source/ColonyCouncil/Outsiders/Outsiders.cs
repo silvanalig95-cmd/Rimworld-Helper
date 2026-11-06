@@ -233,9 +233,11 @@ namespace ColonyCouncil
             return false;
         }
 
-        /// <summary>A fighting temper (OutsiderMath.Temper): bloodlust, brawler, abrasive and volatile up, kind and wimp down.</summary>
-        public static int Temper(Pawn p) =>
-            OutsiderMath.Temper(HasNamed(p, "Bloodlust"), HasNamed(p, "Brawler"), Has(p, TraitDefOf.Abrasive), HasNamed(p, "Nerves", -2), Has(p, TraitDefOf.Kind), HasNamed(p, "Wimp"));
+        /// <summary>
+        /// A fighting temper (-2 to 4), read from their character (PersonaMath.FightTemper: temper and nerve up, warmth down),
+        /// the one reading of who someone is, which their traits set.
+        /// </summary>
+        public static int Temper(Pawn p) => p?.story == null ? 0 : PersonaMath.FightTemper(Persona.Values(p));
 
         public static int Melee(Pawn p) => p?.skills?.GetSkill(SkillDefOf.Melee)?.Level ?? 0;
 

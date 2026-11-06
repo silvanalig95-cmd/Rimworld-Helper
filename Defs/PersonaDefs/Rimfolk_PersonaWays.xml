@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Character is the one reading of who someone is (November 2026): the colony's ways read a colonist's eight sides
+    (PersonaMath.WayLean), not a table of their own from traits to the ways. These entries add to the other
+    PersonaNatureDefs (every one counts), so the traits that table read still show in character: the industrious take
+    pride in their work and the lazy take it easy (hard work against an easy life), the bloodthirsty have a temper
+    (harsh against merciful), and the workaholic of Vanilla Traits Expanded.
+  -->
+
+  <ColonyCouncil.PersonaNatureDef>
+    <defName>Rimfolk_Nature_Ways</defName>
+    <label>what the colony's ways read</label>
+    <traits>
+      <li><trait>Industriousness</trait><degree>2</degree><pride>25</pride><humour>-10</humour></li>
+      <li><trait>Industriousness</trait><degree>1</degree><pride>20</pride></li>
+      <li><trait>Industriousness</trait><degree>-1</degree><humour>20</humour><pride>-5</pride></li>
+      <li><trait>Industriousness</trait><degree>-2</degree><humour>25</humour><pride>-15</pride></li>
+      <li><trait>Bloodlust</trait><temper>15</temper><warmth>-10</warmth></li>
+      <li><trait>VTE_Workaholic</trait><pride>25</pride><humour>-10</humour></li>
+    </traits>
+  </ColonyCouncil.PersonaNatureDef>
+
+</Defs>

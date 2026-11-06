@@ -45,6 +45,18 @@ namespace Balance
         public Dictionary<string, double> parts { get; set; } = new Dictionary<string, double>();
         /// <summary>Days per colonist per year with each ailment.</summary>
         public Dictionary<string, double> ailmentsBy { get; set; } = new Dictionary<string, double>();
+        /// <summary>The heart (HeartSim.cs): time strained, worn and near breaking; episodes (the day off) a colonist-year.</summary>
+        public double strained { get; set; }
+        public double worn { get; set; }
+        public double breaking { get; set; }
+        public double episodesPerYear { get; set; }
+        /// <summary>Strain built and eased a colonist-year, by what (life, Rimfolk's letdowns and joys, the small moods' pile by who made them).</summary>
+        public Dictionary<string, double> strainBy { get; set; } = new Dictionary<string, double>();
+        public Dictionary<string, double> reliefBy { get; set; } = new Dictionary<string, double>();
+        /// <summary>Share of the time a colonist's whole mood is under the game's usual minor-break line.</summary>
+        public double underMinor { get; set; }
+        /// <summary>What good things growing ordinary takes off the game's own good moods (the colony's mood, not Rimfolk's).</summary>
+        public double gameOrdinary { get; set; }
         public double[] netSeries { get; set; }
         public double[] goodSeries { get; set; }
         public double[] badSeries { get; set; }
@@ -90,7 +102,8 @@ namespace Balance
             s.goodCount = M(x => x.goodCount);
             s.standards = colonies.SelectMany(c => c.people).Average(p => p.standards);
             var nets = samples.Select(x => (double)(x.s.good + x.s.bad + x.s.steadyGood + x.s.steadyBad)).OrderBy(v => v).ToList();
-            var goods = samples.Select(x => (double)(x.s.good + x.s.steadyGood)).OrderBy(v => v).ToList();
+            // Rimfolk's good moods as felt: what growing ordinary takes off them comes off here too.
+            var goods = samples.Select(x => (double)(x.s.good + x.s.steadyGood - x.s.ordinary)).OrderBy(v => v).ToList();
             s.netP10 = Pct(nets, 0.1);
             s.netP90 = Pct(nets, 0.9);
             s.goodP90 = Pct(goods, 0.9);
@@ -104,6 +117,22 @@ namespace Balance
             s.illShare = M(x => x.ill ? 1 : 0);
             s.illNotQuietShare = M(x => x.illNotQuiet ? 1 : 0);
             s.ailmentDays = colonies.Sum(c => c.ailmentDays) / (runs * (double)n);
+            s.underMinor = M(x => x.mood < Rates.MinorBreak ? 1 : 0);
+            s.gameOrdinary = M(x => x.gameOrdinary);
+            double heartHours = colonies.Sum(c => c.heartHours);
+            if (heartHours > 0)
+            {
+                s.strained = colonies.Sum(c => c.bandHours[1]) / heartHours;
+                s.worn = colonies.Sum(c => c.bandHours[2]) / heartHours;
+                s.breaking = colonies.Sum(c => c.bandHours[3]) / heartHours;
+            }
+            double colonistYears = runs * (double)n;
+            s.episodesPerYear = colonies.Sum(c => c.episodes) / colonistYears;
+            foreach (var p in colonies.SelectMany(c => c.people))
+            {
+                foreach (var kv in p.heart.built) s.strainBy[kv.Key] = s.strainBy.GetValueOrDefault(kv.Key) + kv.Value / colonistYears * Colony.YearDays / (Colony.YearDays + Colony.WarmupDays);
+                foreach (var kv in p.heart.eased) s.reliefBy[kv.Key] = s.reliefBy.GetValueOrDefault(kv.Key) + kv.Value / colonistYears * Colony.YearDays / (Colony.YearDays + Colony.WarmupDays);
+            }
 
             double days = runs * (double)Colony.YearDays;
             var letters = colonies.SelectMany(c => c.letters.Select(l => (c, l))).ToList();

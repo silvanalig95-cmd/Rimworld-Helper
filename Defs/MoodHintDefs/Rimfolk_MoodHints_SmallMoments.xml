@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What to do about the rows of small letdowns and small joys (Defs/ThoughtDefs/Rimfolk_Thoughts_SmallMoments.xml).
+    The Mood tab gives the fixes of the letdowns behind the row first (Moods/SmallMoments.cs, SmallMoments.Advice); these
+    are for when none of them has one.
+  -->
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_SmallLetdowns</defName>
+    <thoughts><li>Rimfolk_SmallLetdowns</li></thoughts>
+    <fix>Each of these passes within half a day. If they keep coming, they wear on the heart: the heart section below says what wore on them most, and that is the thing to change.</fix>
+    <act>Each passes in half a day</act>
+    <actionable>false</actionable>
+    <article>Council_Alm_C_Setbacks</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_SmallJoys</defName>
+    <thoughts><li>Rimfolk_SmallJoys</li></thoughts>
+    <keep>Each lifts them for half a day, and a run of them eases the heart: time with friends, a varied table and the small kindnesses of colony life keep them coming.</keep>
+    <article>Council_Alm_C_Setbacks</article>
+  </ColonyCouncil.MoodHintDef>
+
+</Defs>

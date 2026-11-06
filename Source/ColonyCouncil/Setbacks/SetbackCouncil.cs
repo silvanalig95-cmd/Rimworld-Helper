@@ -151,8 +151,9 @@ namespace ColonyCouncil
             foreach (var p in map.mapPawns.FreeColonistsSpawned.ToList())
             {
                 if (p == ctx.a || p == ctx.b || p == ctx.stranger || !Eligible(p) || p.DevelopmentalStage.Juvenile() || UpsetJustNow(p)) continue;
-                // Their nature, and for an old hand a little of the colony's own name (Interplay/).
-                for (int i = 0; i < all.Length; i++) a[i] = Interplay.WayAffinity(p, all[i], CharacterTracker.Affinity(p, all[i]));
+                // Their character, and for an old hand a little of the colony's own name (Interplay/).
+                var sides = Persona.Values(p);
+                for (int i = 0; i < all.Length; i++) a[i] = Interplay.WayAffinity(p, all[i], CharacterTracker.Affinity(p, all[i], sides));
                 float clash = SetbackMath.Clash(s, a);
                 if (SetbackMath.ToldSo(clash, risk))
                 {

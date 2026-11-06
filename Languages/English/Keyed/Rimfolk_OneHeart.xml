@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    One heart (phase 3 of the review, November 2026): small letdowns and small joys (Source/ColonyCouncil/Moods/SmallMoments.cs)
+    and good things growing ordinary, the one rule for how much a good mood counts (Source/ColonyCouncil/Moods/GoodLife.cs).
+  -->
+
+  <!-- ===================== Small letdowns and small joys ===================== -->
+
+  <CC_Small_Letdowns_Intro>Small things that went wrong for {PAWN_nameDef} lately, each felt for a moment:</CC_Small_Letdowns_Intro>
+  <CC_Small_Joys_Intro>Small good things for {PAWN_nameDef} lately, each felt for a moment:</CC_Small_Joys_Intro>
+  <CC_Small_Item>{LABEL}: {SIZE}.</CC_Small_Item>
+  <CC_Small_Letdowns_Heart>Beyond the moment, each one wears a little on {PAWN_nameDef}'s heart instead, so a run of them strains {PAWN_objective} while a single one soon passes.</CC_Small_Letdowns_Heart>
+  <CC_Small_Joys_Heart>Beyond the moment, each one eases {PAWN_nameDef}'s heart a little instead, so a run of good days settles {PAWN_objective}.</CC_Small_Joys_Heart>
+
+  <CC_Heart_Source_Letdowns>small letdowns</CC_Heart_Source_Letdowns>
+  <CC_Heart_Source_LetdownsWhat>small letdowns ({0})</CC_Heart_Source_LetdownsWhat>
+  <CC_Heart_Relief_Joys>small joys</CC_Heart_Relief_Joys>
+  <CC_Heart_Relief_JoysWhat>small joys ({0})</CC_Heart_Relief_JoysWhat>
+  <CC_Heart_Help_Letdowns>fewer of the small things that keep going wrong</CC_Heart_Help_Letdowns>
+
+  <!-- ===================== Good things grow ordinary ===================== -->
+
+  <CC_Settings_Ordinary>Good things grow ordinary</CC_Settings_Ordinary>
+  <CC_Settings_Ordinary_Tip>A colonist with a pile of good moods stops feeling all of it, the way anyone gets used to a good life. Their good moods (from the game, other mods and Rimfolk alike) count in full up to a line set by their standards: 45 points for the modest, falling to 21 for the spoiled, since a colony used to the good life asks more. Above it, half of the first 20 points over the line and three quarters of the rest no longer lift them. That comes off the good moods themselves, most off everyday comforts (rooms, beliefs, the council) and what they've had often lately, least off something new, and never off a life goal reached. Something new, like a wedding just attended, lands nearly in full and counts for less as the days go by. Each good mood's tooltip says in one line how much it counts now. Every good thing still helps, so a well-run colony stays happy, but it settles below the top of the mood bar, where a bad day still shows. Bad moods are never touched, and it eases in hard times, to nothing for anyone near a break. One rule in place of four (the good moods' budget, standards over the game's comforts, good times fading sooner, used to the good life). Needs the deeper game hooks.</CC_Settings_Ordinary_Tip>
+  <CC_SetNote_Ordinary>Past a line their standards set, good moods count for less, everyday ones most.</CC_SetNote_Ordinary>
+
+  <CC_Ordinary_Note>Grown ordinary: counts as {FELT} of {FULL}, {HOW}.</CC_Ordinary_Note>
+  <CC_Ordinary_How_New>still new to {PAWN_objective}</CC_Ordinary_How_New>
+  <CC_Ordinary_How_Settled>now that the moment has passed</CC_Ordinary_How_Settled>
+  <CC_Ordinary_How_Lasting>part of everyday life now</CC_Ordinary_How_Lasting>
+  <CC_Ordinary_How_Often>had often lately</CC_Ordinary_How_Often>
+  <CC_Ordinary_How_Between>with so much good on {PAWN_possessive} mind</CC_Ordinary_How_Between>
+  <CC_Ordinary_Readout>good things grown ordinary, good moods {FELT} of {FULL}</CC_Ordinary_Readout>
+
+</LanguageData>

@@ -314,7 +314,7 @@ namespace ColonyCouncil
     public class Thought_ColonyTrait : Thought_Situational
     {
         /// <summary>Like pride in the colony's ways: it lasts as long as the trait, so it shrinks for the spoiled.</summary>
-        public override float MoodOffset() => base.MoodOffset() * SmallJoys.LiveScale(pawn);
+        public override float MoodOffset() => base.MoodOffset() * GoodLife.RewardScale(pawn);
 
         public override string Description
         {
