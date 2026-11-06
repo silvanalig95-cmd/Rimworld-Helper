@@ -1376,6 +1376,116 @@ night, a lord's retinue staying by the gate).
   `Rimfolk_VisitorLines`, by moment and what they are); messages through `Notify` only for a group coming along the
   road and for one the weather drove off.
 
+## Harm from everyday life
+
+The player's harm rule (3 November 2026) lets Rimfolk hurt its people when it is flavourful or makes the game more
+interesting, at the game's own rate, always from something on the map, and shown. The harm review
+(`docs/harm-review-proposals.md`) proposed 94 ways for its systems to go badly; the player picked "my top ten, then more"
+on 6 November 2026. Every one of them goes through one service, `Harm/Harm.cs` (pure part `Harm/HarmMath.cs`, tested in
+`Tools/Tests/HarmTests.cs`), which keeps the review's shared rules. The first part built the service and the three hurts
+of work (1.2.1, 1.2.2, 3.2.1, below); the other seven of the top ten are built on it.
+
+### The shared rules
+
+- **One setting, leaning with the storyteller.** "Hurts from everyday life" (Heart & health, `everydayHurts`, 0 to 200%,
+  100 by default; the light-touch preset sets 50%) multiplies every rate. It leans with the storyteller's own numbers
+  (`HarmMath.Lean`): the geometric mean of a threat term (0.35 at no threats, 1 at the usual 100%, up to 1.25 at twice
+  it) and a disease term (one over the disease interval, between a half and 1.25; diseases off count as a half). A
+  peaceful game comes to about two fifths, the hardest about a quarter more. `Harm.Scale` is the two together.
+- **The shared cap** (`HarmMath.Bar`, `Harm.May`): at most one Rimfolk-made hurt per colonist in three days (the last
+  one's tick saved in `HarmBook.lastHurt`, by thingIDNumber, pruned past three days), and none while downed, in a sickbed
+  or in need of one (`PlayOuts.MedicalRest`), pregnant, or already fighting (drafted, a social fight or a rage, at an
+  attack, hurt or attacking within the hour). Babies never; children only `HurtClass.Mild` (a scrape, a cold), never an
+  injury, a bout or a fight.
+- **Nothing kills outright.** A wound lands only on a hand, an arm, a foot, a leg or the torso (a crack on one of their
+  bones), never a vital part, the head or the neck, and never takes more than the part has left but one point
+  (`HarmMath.SafeSeverity`). The game's own fights and illnesses still may, as they always could.
+- **The game's own hurts.** A wound is the game's own injury (`Bruise`, `Cut`, `Burn`, `Crush`, `Crack`, `Scratch`), sized
+  by the body's own damage factor (the tough take half), shown as the game shows a hit (the red flash, blood for a cut or a
+  crush, a puff of smoke for a burn), then bled, tended, infected and scarred by the game as any wound. Ailments are
+  Rimfolk's own (`Ailments/`); fights the game's social fight.
+- **Named before the choice.** Where a choice brings the risk, its card says so in words, never numbers: a decree's card
+  and letter carry `Harm.DecreeLine` (`DecreeDef.hurts`).
+- **Each under its own system.** The drills' bouts need "Answers play out on the map"; working through it needs the
+  everyday ailments; the setting at nothing stops all of them. No mood is added: being hurt brings the game's pain and the
+  ailment's own mood, nothing on top.
+
+### The service, for the next builders
+
+`Harm` (static) in `Harm/Harm.cs`:
+
+| Call | What it does |
+|---|---|
+| `Harm.On`, `Harm.Setting`, `Harm.Lean`, `Harm.Scale` | the setting above nothing; its value; the storyteller's lean; the two together |
+| `Harm.Chance(baseChance)`, `Harm.Roll(baseChance)` | a base rate after the scale, and one roll of it (no cap) |
+| `Harm.Roll(pawn, baseChance, cls)` | the cap for that pawn and class, then the scaled roll |
+| `Harm.May(pawn, cls)`, `Harm.Bar(pawn, cls)` | whether the cap lets them take a hurt of that class now, and if not why (`HurtBar`) |
+| `Harm.Injure(pawn, kind, where, low, high, why, cls)` | one of the game's wounds (`HurtKind`) on a part (`HurtWhere`), sized low to high, under the cap; returns it or null |
+| `Harm.Ail(pawn, hediffDef, severity, why, cls, replaces)` | a hediff (an ailment, the game's flu) under the cap, optionally in place of another; returns it or null |
+| `Harm.Fight(a, b, why)` | the game's social fight between two grown-ups the cap lets fight, recorded for both |
+| `Harm.Note(pawn, why)` | a hurt that came another way (a bout's hard blow, a brawl), counted for the cap |
+| `Harm.DaysSince(pawn)`, `Harm.Pregnant(pawn)`, `Harm.Fighting(pawn, now)` | the cap's parts, for a caller's own checks |
+| `Harm.DecreeLine(decreeDef)` | the decree's line for its card and letter, or null |
+
+`HurtClass`: `Mild` (children may), `Injury`, `Bout`, `Fight` (grown-ups only). The caller rolls its own base rate
+through `Harm.Roll`, gives the hurt through `Injure`, `Ail` or `Fight` (each checks the cap again and records it), says
+it on the map (a bubble through `Speech.Say` or `CouncilGameComponent.Speak`, one sentence) and tells it through `Tell`
+in two wordings or more (`TextVariants.Vary`). A hurt the caller can't give through the service (the outsiders' practice
+bout, a feast's wrestling and sour night) is counted with `Harm.Note`; the feasts read `Harm.Scale` and `Harm.May` through
+`Feasts.HarmScale` and `Feasts.MayBeHurt`.
+
+`HarmBook` (a game component) holds the saved part (`lastHurt`; `drillDay`, a home's last evening drill) and runs the
+hour (Sched `RareHarm` 53): one tenth of the colonists each 250 ticks, the first slice also the colony's part.
+
+### Drills that bruise (1.2.1, decrees)
+
+With "Answers play out on the map" on, the drills decree (`hurts` Drills) pairs everyone of the colony who can fight into
+practice bouts in the open each evening between five and eight (`DrillBouts.cs`): grown-ups only, free and not pressed
+(`PlayOuts.CanJoin`, `Interruptible`, not `NeedsPress`), the yard or the open middle of the colony (`PlaySpots.OpenCell`),
+two places side by side for each pair, clear of the others. The militia drills (`hurts` Muster) call one pair, three
+evenings in four (`HarmMath.MusterEvening`). Not in bad weather or danger; once a day at a home (`HarmBook.drillDay`).
+The first of the pairs calls it (`Rimfolk_Pool_DrillCall`, by age), each pair walks to its places (`JobDriver_DrillBout`,
+the job `Rimfolk_DrillBout`), a word to begin (`Rimfolk_Pool_DrillBegin`) and six pulled swings each, the game's lunge and
+sound, no harm. One bout in 25 (`HarmMath.DrillBlowChance`, the outsiders' sparring rate; a marshal in office halves it)
+has one blow land for real, decided at the start on one of the pair the cap lets take a bout: a bruise or a cut of 6 to 9
+by the colony's means (sticks and wrestling: a bruise; blunted blades and shields, the bayonet drill: a bruise or a cut on
+an arm; stun batons and training rounds: a burn on the torso; `DrillBouts.BlowOf`). The hurt one says so
+(`Rimfolk_Pool_DrillHit`), the other says sorry (`Rimfolk_Pool_DrillSorry`), the news tells it (`CC_Harm_DrillBlow`,
+`CC_Harm_MusterBlow`, a NegativeHealthEvent), and the game's doctor tends it. A bout done with nobody hurt ends with a
+word (`Rimfolk_Pool_DrillEnd`). Either one leaving ends it for both; danger ends it at once. The decree's hourly practice
+goes on as before. About one real injury per five-day drills decree in a colony of ten, the militia about half that
+(`HarmMath.DrillBlowsPerDecree`). The militia now has a spacer form (stun batons and training rounds) and is declared in
+every age.
+
+### Tired hands (1.2.2, decrees)
+
+Under long hours (any work), a harvest push (`hurtsAt` Field) or a building season (`hurtsAt` Heavy), each with `hurts`
+TiredHands, the hourly look counts the hours each colonist is found at the work the decree drives (`HarmMath.WorkOf`: the
+stove and the forge, the bench, building and mining, hauling, the field). The sixth hour in a day, a long day, has one
+roll, at that work: one in 150 (`TiredHandsChance`, the everyday work ailments' rate), twice below 30% rest, once more for
+a second work decree driving it, half for the tough, half in a spacer colony. A slip is one of the game's wounds of 3 to 6
+(5 to 8 in a spacer colony) by the work and the colony's means (`HarmMath.WorkSlip`): a cut at the bench, a crushed hand
+at an industrial colony's machine, a fabricator's burn; a burn at the stove, fire pit or forge; a crushed foot under a
+stone or a crate (a hand at a machine); a load dropped on a foot; a sickle's cut. The job stops, a load drops at their
+feet, a line is said (`Rimfolk_Pool_WorkSlip`, tagged by work and wound), the news tells it (`CC_Harm_Slip_<work>`), and
+the hurt one goes to the doctor as the game sends anyone with a wound to tend. The review's "one or two per decree in a
+colony of ten" was a miscount against its own anchor: at one in 150 long days, a five-day decree in a colony of ten brings
+about a third of a slip when everyone sleeps, about twice that when nobody does (`TiredHandsPerDecree`). The anchored rate
+was kept.
+
+### Working through it (3.2.1, ailments and health stories)
+
+With the everyday ailments on, a strained back or a sprained ankle that is untended and out of bed counts its hours of
+heavy work (hauling, building, mining) each day. At the fourth hour in a day, one roll for that ailment (once each, in
+session memory): one in ten. Not while the rest-when-ill decree holds. A strained back tears: `Council_Ail_TornBack`
+(Rimfolk's own ailment, in the strain's place; 3 to 5 weeks, sharper pain, half the carrying, half as long in bed,
+tending helps; its own mood in place of the strain's, a hint with the strains). A sprained ankle gives: a fall, a bruise
+of 3 to 5 on the leg, or a crack of 2 to 4 on its bone one time in three; the sprain stays. Either way the load drops,
+they sit down hard for a few seconds (the game's wait), say so (`Rimfolk_Pool_WorkedThrough`), a doctor of the colony
+within talking range has a word (`Rimfolk_Pool_DoctorsWord`), and the news tells it with the ailment's doctor's note
+(`CC_Harm_TornBack`, `CC_Harm_AnkleFall`, `CC_Harm_AnkleCrack`). Prevent it with bed rest, the work tab, the rest-when-ill
+decree or a tending.
+
 ## How the systems talk to each other
 
 Each of Rimfolk's systems was built to stand on its own, and many already read each other (feelings nudge wishes,
@@ -4141,6 +4251,7 @@ chains, nemeses, camps, play-outs, the fights pass and the worn-out episode read
 |---|---|---|
 | 37 | World situations keep their people from the world's clean-up (only while one runs) | per person a situation holds |
 | 41 | Room planner queue (only while blueprints are queued) | the next blueprints |
+| 53 | Hurts from everyday life (Harm/HarmBook; nothing while the setting is at nothing): one tenth of the colonists (by ID), each once an hour; the first slice also calls the evening drill (with a drills or militia decree, five to eight, once a day) and prunes the cap's record in the first hour of the day | per colonist in the slice: the job's work under a work decree (a long day's one roll), a strain or a sprain worked through (heavy hours, one roll each); per colony, its drilling decree and home map's hour |
 | 71 | The heart: one tenth of the colonists (by ID), so each colonist once an hour | per colonist in the slice: moods, feelings, needs, strain; each map's context (food, medicine, filth, defences, dread) at most once an hour, its threat flag every 250 ticks; the dead pruned on slice 0 |
 | 77 | A camp's phase, hunts and trees (only while a camp is there) | per camp member, prey and tree |
 | 89 | Missions: an accepted quest starts, a goal met is noticed (with a map) | per open mission |
