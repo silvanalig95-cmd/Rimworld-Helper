@@ -90,6 +90,8 @@ namespace ColonyCouncil
             if (h == null) return null;
             string text = TextVariants.Vary(key).Translate(p.Named("PAWN"), (h.Part?.Label ?? "").Named("PART")).Resolve();
             Tell.Message(NewsKind.Health, Importance.Important, p.Map, text, new LookTargets(p), MessageTypeDefOf.NegativeHealthEvent);
+            // A close call they and whoever stood with them remember (Social/Talk/SharedTimesTogether.cs).
+            SharedTimesTogether.CloseCall(p, key);
             return h;
         }
 

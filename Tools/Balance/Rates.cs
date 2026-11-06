@@ -99,8 +99,17 @@ namespace Balance
             ["aHasQuirk"] = 0.5f, ["aHasGoal"] = 0.4f, ["secrets"] = 0.2f, ["ways"] = 0.35f, ["sameIdeo"] = 0.8f, ["otherIdeo"] = 0.25f,
             ["bondedPet"] = 0.3f, ["nemesisVictim"] = 0.03f, ["recipientBestCook"] = 0.5f, ["moreSkilled"] = 0.7f, ["initiatorTags"] = 0.4f,
             ["recipientTags"] = 0.75f, ["stillSore"] = 0.15f, ["moment"] = 0.5f, ["nightOnly"] = 0.3f, ["petOfA"] = 0.7f, ["busyTime"] = 0.6f,
-            ["minMedicine"] = 0.8f, ["maxMedicine"] = 0.4f, ["minMood"] = 0.7f, ["needsMechanoids"] = 0.1f
+            ["minMedicine"] = 0.8f, ["maxMedicine"] = 0.4f, ["minMood"] = 0.7f, ["needsMechanoids"] = 0.1f,
+            // Life together (Social/SocialEvents.cs): the memory is about the other one (the fight was with them), two at
+            // the same work side by side, a fine piece finished in the last day or two, a hurt of everyday life that shows.
+            ["bMemoryAboutA"] = 0.5f, ["sameWork"] = 0.15f, ["bMadeFineDays"] = 0.04f, ["bHurtDays"] = 0.03f
         };
+
+        /// <summary>
+        /// A role whose tags name the moment (the weather, the hour, at work or at the table: TogetherFourMath.NeedsMoment):
+        /// rain or snow on about one waking hour in five, two of them at supper or at the same work for a while each day.
+        /// </summary>
+        public const float MomentTagGate = 0.25f;
 
         /// <summary>
         /// Group moments (Social/Groups/, GroupMomentExtension): who they are between. Most pairs in a colony with groups

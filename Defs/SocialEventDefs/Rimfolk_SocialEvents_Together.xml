@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    New moments of life together (the player's request, 6 November 2026): what happens between two colonists from what
+    really happens on the map. Like every social event they come at a waking hour between two who are near each other,
+    as a share of the day's draw (SocialEvents.Daily counts the day's events from the colony's size, never from the defs),
+    so none of them makes the colony's social life busier: they only make it more varied. Their rewards are in
+    Rimfolk_Thoughts_Together.xml.
+
+    What starts each one is on the map: a social fight the two had (the game's HadAngeringFight or HadCatharticFight
+    memory of the other, bMemories with bMemoryAboutA), being tended under fire by the other (Council_SavedMe), the work
+    both are doing side by side right now (sameWork: {WORK} names it, its skill is the lesson), something excellent or
+    better one of them finished in the last two days (bMadeFineDays, {THING}: the game's craft notification), a hurt of
+    everyday life that still shows (bHurtDays, the harm service's), an old injury, a death in the colony, the weather and
+    the moment (role tags of the moment: rain, snow, hot, cold, outside, eating, fall, newcomer, read from the moment by
+    PeopleTags.MatchesNow), an illness, and the region's news (a world event running).
+
+    Every age: texts tagged [tribal], [medieval], [industrial], [spacer] or [lowtech] are told in that age only (by the
+    colony's own tech), the untagged ones in any.
+  -->
+
+  <!-- ===================== After a fight ===================== -->
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_SocT_MadeUpAfterFight</defName>
+    <label>making it up after the fight</label>
+    <tone>mend</tone>
+    <weight>1.4</weight>
+    <minOpinion>-60</minOpinion>
+    <bMemories><li>HadAngeringFight</li><li>HadCatharticFight</li></bMemories>
+    <memoryDays>2</memoryDays>
+    <bMemoryAboutA>true</bMemoryAboutA>
+    <texts>
+      <li>{A_nameDef} went looking for {B_nameDef} after their fight, and the two of them talked it through until neither was angry any more.</li>
+      <li>{A_nameDef} told {B_nameDef} the fight between them had been stupid, and {B_nameDef} said it had been, and that was the end of it.</li>
+      <li>After their fight, {A_nameDef} and {B_nameDef} both started to say sorry at the same moment, and then laughed about that.</li>
+      <li>{A_nameDef} held out a hand to {B_nameDef}, still sore from their fight, and after a long moment {B_nameDef} shook it.</li>
+      <li>[tribal] {A_nameDef} sat down beside {B_nameDef} and said, the way {A_possessive} people end a quarrel, that the fight was buried and wouldn't be dug up.</li>
+      <li>[medieval] {A_nameDef} told {B_nameDef} there was no shame in their fight and less in ending it, and gave {B_objective} {A_possessive} hand on it.</li>
+      <li>[industrial] {A_nameDef} found {B_nameDef} and said {A_pronoun}'d rather have {B_objective} on {A_possessive} side than a black eye to remember {B_objective} by, and {B_nameDef} agreed.</li>
+      <li>[spacer] {A_nameDef} told {B_nameDef} that two people on one small world can't afford a feud, and their fight was over.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Rimfolk_SocT_MadeItUp</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_SharedMemory"><memory>Rimfolk_Mem_Mended</memory><label>the fight</label></li>
+    </effects>
+    <changeTie>Rivals</changeTie>
+    <change>-6</change>
+    <note>made it up after a fight</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_SocT_JokeTooFar</defName>
+    <label>a joke too far</label>
+    <tone>friction</tone>
+    <minOpinion>0</minOpinion>
+    <maxOpinion>50</maxOpinion>
+    <roleA><tags>persona:joker</tags></roleA>
+    <roleB><tags>persona:proud|persona:hothead|persona:serious|trait:Abrasive|trait:Volatile</tags></roleB>
+    <texts>
+      <li>{A_nameDef} wouldn't let a joke at {B_nameDef}'s expense go, and by the fourth time {B_nameDef} wasn't laughing.</li>
+      <li>{A_nameDef} gave {B_nameDef} a new nickname and kept using it after {B_nameDef} asked {A_objective} to stop.</li>
+      <li>{A_nameDef} told the story of {B_nameDef}'s last mistake, then told it again with more in it.</li>
+      <li>{A_nameDef} kept a joke about {B_nameDef} going long after it was funny, and {B_nameDef} walked off in the middle of it.</li>
+      <li>[tribal] {A_nameDef} acted out {B_nameDef} chasing a hare and losing it, and did it again when the first one got a laugh.</li>
+      <li>[medieval] {A_nameDef} made up a rhyme about {B_nameDef} and kept singing it, a verse longer each time.</li>
+      <li>[!lowtech] {A_nameDef} pinned a drawing of {B_nameDef} up where everyone eats, and wouldn't take it down when asked.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_SocT_JokeTooFar</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>-3</change>
+    <note>a joke that went too far</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <!-- ===================== What's owed ===================== -->
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_SocT_DebtRepaid</defName>
+    <label>a debt remembered</label>
+    <tone>warm</tone>
+    <weight>1.3</weight>
+    <minOpinion>0</minOpinion>
+    <bMemories><li>Council_SavedMe</li></bMemories>
+    <memoryDays>30</memoryDays>
+    <bMemoryAboutA>true</bMemoryAboutA>
+    <texts>
+      <li>{B_nameDef} stopped {A_nameDef} to say it plainly: {B_pronoun} owes {A_objective} for patching {B_objective} up under fire, and means to pay it.</li>
+      <li>{B_nameDef} told {A_nameDef} {B_pronoun} still thinks about the fight, and who came for {B_objective} while it was going on.</li>
+      <li>{B_nameDef} saved {A_nameDef} the first helping and the warm seat, and said it was the least {B_pronoun} owed after the fight.</li>
+      <li>[tribal] {B_nameDef} told {A_nameDef} that where {B_pronoun} was raised a life saved is a life owed, and {B_pronoun} keeps to that.</li>
+      <li>[medieval] {B_nameDef} swore to {A_nameDef}, half in jest and half not, to stand at {A_possessive} side in the next fight as {A_pronoun} stood at {B_possessive}.</li>
+      <li>[industrial] {B_nameDef} told {A_nameDef} the next drink is on {B_objective}, and every one after it, for what {A_pronoun} did in the fight.</li>
+      <li>[spacer] {B_nameDef} told {A_nameDef} {B_pronoun} keeps a list of what {B_pronoun} owes, and {A_nameDef} is at the top of it.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_SocT_DebtRepaid</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_SharedMemory"><memory>Rimfolk_Mem_Repaid</memory><label>the fight</label></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>4</change>
+    <note>a debt remembered</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_SocT_HeavyEnd</defName>
+    <label>the heavy end</label>
+    <tone>warm</tone>
+    <minOpinion>5</minOpinion>
+    <roleB><oldInjury>true</oldInjury></roleB>
+    <sameWork><li>Hauling</li><li>Construction</li><li>Mining</li><li>PlantCutting</li><li>Growing</li></sameWork>
+    <texts>
+      <li>{A_nameDef} saw {B_nameDef} favoring {B_possessive} bad side while they were {WORK}, and took the heavy end without a word.</li>
+      <li>{B_nameDef}'s old injury was playing up while they were {WORK}, and {A_nameDef} took over the worst of it.</li>
+      <li>{A_nameDef} noticed {B_nameDef} wincing and swapped places with {B_objective}, so {B_nameDef} had the light work for a while.</li>
+      <li>[lowtech] {A_nameDef} told {B_nameDef} to rest the old hurt and leave the lifting to younger bones, whatever age those bones were.</li>
+      <li>[!lowtech] {A_nameDef} told {B_nameDef} to mind that old injury before it put {B_objective} back on the sick list, and took the load.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_SocT_CarriedLoad</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>3</change>
+    <note>took the heavy end</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <!-- ===================== At the same work ===================== -->
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_SocT_RivalsRace</defName>
+    <label>a race at the work</label>
+    <tone>friction</tone>
+    <tie>Rivals</tie>
+    <sameWork><li>Growing</li><li>PlantCutting</li><li>Mining</li><li>Construction</li><li>Hauling</li><li>Cleaning</li></sameWork>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} were {WORK} side by side, and without a word it became a race.</li>
+      <li>{A_nameDef} saw how fast {B_nameDef} was going and sped up, and {B_nameDef} saw that and sped up too.</li>
+      <li>{A_nameDef} and {B_nameDef} kept {WORK} long past the point of sense, each waiting for the other to stop first.</li>
+      <li>{A_nameDef} pointed out a spot {B_nameDef} had missed, and {B_nameDef} pointed out two of {A_nameDef}'s, and they went on {WORK} faster than ever.</li>
+      <li>[lowtech] {A_nameDef} and {B_nameDef} were {WORK} within earshot of each other, and each one counted the other's pace under {A_possessive} breath.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Rimfolk_SocT_Raced</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>AAndB</target><xp>150</xp></li>
+    </effects>
+    <changeTie>Rivals</changeTie>
+    <change>2</change>
+    <note>a race at the work</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_SocT_FriendsAtWork</defName>
+    <label>good company at the work</label>
+    <tone>warm</tone>
+    <tie>Friends</tie>
+    <sameWork>
+      <li>Growing</li><li>PlantCutting</li><li>Mining</li><li>Construction</li><li>Hauling</li><li>Cleaning</li><li>Cooking</li>
+      <li>Crafting</li><li>Smithing</li><li>Tailoring</li><li>Handling</li>
+    </sameWork>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} were {WORK} side by side and talked the whole way through it.</li>
+      <li>{A_nameDef} and {B_nameDef} found a rhythm, {WORK} together, and the work went quicker for it.</li>
+      <li>{A_nameDef} passed {B_nameDef} what {B_pronoun} needed before {B_pronoun} asked for it, the way people do who have worked together a long time.</li>
+      <li>{A_nameDef} told {B_nameDef} a long story while they were {WORK}, and {B_nameDef} made {A_objective} start it again from the middle.</li>
+      <li>[lowtech] {A_nameDef} started an old work song while they were {WORK}, and {B_nameDef} came in on the second verse.</li>
+      <li>[!lowtech] {A_nameDef} and {B_nameDef} argued about music the whole time they were {WORK}, and agreed on none of it.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Rimfolk_SocT_WorkedTogether</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>2</change>
+    <note>good company at the work</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <!-- ===================== A fine piece ===================== -->
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_SocT_FirstFinePiece</defName>
+    <label>the student's fine piece</label>
+    <tone>warm</tone>
+    <weight>1.5</weight>
+    <tie>Mentor</tie>
+    <children>true</children>
+    <bMadeFineDays>2</bMadeFineDays>
+    <texts>
+      <li>{B_nameDef} brought {A_nameDef} the {THING} {B_pronoun} had just finished, and {A_nameDef} turned it over a long time before saying it was good.</li>
+      <li>{A_nameDef} looked over {B_nameDef}'s new {THING}, found the one flaw in it, and then said {B_pronoun} had done well.</li>
+      <li>{A_nameDef} held up {B_nameDef}'s {THING} to the light and said {A_pronoun} had nothing left to teach {B_objective} about this one.</li>
+      <li>[tribal] {A_nameDef} told {B_nameDef} that the {THING} was the work of a sure hand, and that the old ones would have known it for one.</li>
+      <li>[medieval] {A_nameDef} told {B_nameDef} the {THING} was a journeyman's work, and meant it as the praise it was.</li>
+      <li>[industrial] {A_nameDef} told {B_nameDef} {A_pronoun} couldn't have made a better {THING} at {B_possessive} stage, and {A_pronoun} had tried.</li>
+      <li>[spacer] {A_nameDef} said no fabricator would have put the care into the {THING} that {B_nameDef} had, and the care showed.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_SocT_TeacherPraised</thought></li>
+    </effects>
+    <changeTie>Mentor</changeTie>
+    <change>5</change>
+    <note>praised the student's fine piece</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_SocT_PieceAdmired</defName>
+    <label>a fine piece admired</label>
+    <tone>warm</tone>
+    <minOpinion>0</minOpinion>
+    <bMadeFineDays>2</bMadeFineDays>
+    <texts>
+      <li>{A_nameDef} picked up {B_nameDef}'s new {THING} and didn't want to put it down.</li>
+      <li>{A_nameDef} asked {B_nameDef} how {B_pronoun} made the {THING}, and listened to the whole answer.</li>
+      <li>{A_nameDef} ran a thumb along {B_nameDef}'s {THING} and asked how long it took, and {B_nameDef} tried not to look pleased.</li>
+      <li>[lowtech] {A_nameDef} said {B_nameDef}'s {THING} would still be in use when both of them were long gone.</li>
+      <li>[!lowtech] {A_nameDef} said {B_nameDef}'s {THING} was better than anything the traders bring, and {A_pronoun} would know.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_SocT_PieceAdmired</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>2</change>
+    <note>admired a fine piece</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_SocT_PieceEnvied</defName>
+    <label>envy of a fine piece</label>
+    <tone>friction</tone>
+    <maxOpinion>30</maxOpinion>
+    <roleA><tags>trait:Jealous|trait:Greedy|persona:proud</tags></roleA>
+    <bMadeFineDays>2</bMadeFineDays>
+    <texts>
+      <li>{A_nameDef} looked at {B_nameDef}'s new {THING} for a long time and said only that the edges were rough.</li>
+      <li>{B_nameDef}'s {THING} was all the talk, and {A_nameDef} found somewhere else to be.</li>
+      <li>{A_nameDef} told {B_nameDef} the {THING} was fine, for a first try, which it wasn't.</li>
+      <li>{A_nameDef} asked {B_nameDef} who had really made the {THING}, and didn't seem to be joking.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_SocT_PieceEnvied</thought></li>
+    </effects>
+    <changeTie>Rivals</changeTie>
+    <change>2</change>
+    <note>envied a fine piece</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <!-- ===================== Hard days ===================== -->
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_SocT_QuietWord</defName>
+    <label>a quiet word after a loss</label>
+    <tone>warm</tone>
+    <weight>1.2</weight>
+    <minOpinion>5</minOpinion>
+    <roleA><tags>persona:warm|persona:calm|trait:Kind</tags></roleA>
+    <bMemories><li>KnowColonistDied</li><li>PawnWithGoodOpinionDied</li><li>MyFriendDied</li></bMemories>
+    <memoryDays>5</memoryDays>
+    <texts>
+      <li>{A_nameDef} stopped beside {B_nameDef} and said the name of the one they lost, and they stood a while without saying anything else.</li>
+      <li>{A_nameDef} told {B_nameDef} one small thing {A_pronoun} remembered about the dead, and {B_nameDef} told {A_objective} another.</li>
+      <li>{A_nameDef} didn't ask {B_nameDef} how {B_pronoun} was, only sat with {B_objective} long enough for {B_nameDef} to say it.</li>
+      <li>[tribal] {A_nameDef} told {B_nameDef} the dead walk with those who remember them, and {B_nameDef} remembers well.</li>
+      <li>[medieval] {A_nameDef} said a few plain words to {B_nameDef} about the one buried, and that the grave would be kept.</li>
+      <li>[industrial] {A_nameDef} told {B_nameDef} there's no right way to take a death, and {B_pronoun} was doing it as well as anyone.</li>
+      <li>[spacer] {A_nameDef} told {B_nameDef} the dead had chosen this place as much as any of them, and wouldn't have wanted the work to stop.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_SocT_QuietWord</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>3</change>
+    <note>a quiet word after a loss</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_SocT_HurtAskedAfter</defName>
+    <label>asked after a hurt</label>
+    <tone>warm</tone>
+    <weight>1.3</weight>
+    <minOpinion>0</minOpinion>
+    <bHurtDays>3</bHurtDays>
+    <texts>
+      <li>{A_nameDef} asked to see {B_nameDef}'s fresh hurt, winced at it, and wanted the whole story.</li>
+      <li>{A_nameDef} checked how {B_nameDef}'s hurt was mending and told {B_objective} to stop picking at it.</li>
+      <li>{A_nameDef} made {B_nameDef} tell how {B_pronoun} got hurt, and kept saying it could have been much worse.</li>
+      <li>[tribal] {A_nameDef} told {B_nameDef} a scar is a story the body keeps, and {B_nameDef} would have a good one.</li>
+      <li>[medieval] {A_nameDef} looked at {B_nameDef}'s hurt the way a farrier looks at a hoof, and pronounced it clean.</li>
+      <li>[!lowtech] {A_nameDef} told {B_nameDef} to keep the dressing dry and come to {A_objective} if it went red.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_SocT_WoundLooked</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>2</change>
+    <note>asked after a hurt</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_SocT_HurtTeased</defName>
+    <label>teased about a hurt</label>
+    <tone>friction</tone>
+    <maxOpinion>30</maxOpinion>
+    <roleA><tags>persona:joker|trait:Abrasive</tags></roleA>
+    <bHurtDays>3</bHurtDays>
+    <texts>
+      <li>{A_nameDef} asked {B_nameDef}, loudly, whether {B_pronoun} had ever tried looking where {B_pronoun} was going.</li>
+      <li>{A_nameDef} acted out how {B_nameDef} got hurt, with the yelp, and {B_nameDef} didn't laugh.</li>
+      <li>{A_nameDef} told {B_nameDef} {B_pronoun} had been lucky, and then listed all the ways {B_pronoun} had been stupid.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_SocT_WoundTeased</thought></li>
+    </effects>
+    <changeTie>Rivals</changeTie>
+    <change>2</change>
+    <note>teased about a hurt</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_SocT_OldRemedy</defName>
+    <label>an old remedy</label>
+    <tone>warm</tone>
+    <aAiling>true</aAiling>
+    <roleB><minAge>50</minAge></roleB>
+    <texts>
+      <li>{B_nameDef} listened to {A_nameDef} complain about the {ILLNESS}, then told {A_objective} what {B_pronoun} did for it in {B_possessive} day.</li>
+      <li>{B_nameDef} told {A_nameDef} {B_pronoun} had the {ILLNESS} twice when {B_pronoun} was young, and both times it went in the end.</li>
+      <li>[tribal] {B_nameDef} told {A_nameDef} to chew willow bark for the {ILLNESS} and sleep near the fire, as {B_possessive} people always did.</li>
+      <li>[medieval] {B_nameDef} swore by a mustard poultice for the {ILLNESS}, and described it to {A_nameDef} in more detail than {A_pronoun} wanted.</li>
+      <li>[industrial] {B_nameDef} told {A_nameDef} that for the {ILLNESS} there was nothing to beat bed, broth and leaving it alone.</li>
+      <li>[spacer] {B_nameDef} told {A_nameDef} the medicine would see to the {ILLNESS}, and the rest was rest and patience, which no medicine makes.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_SocT_OldRemedy</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>2</change>
+    <note>an old remedy</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <!-- ===================== Newcomers and the table ===================== -->
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_SocT_ShownTheRopes</defName>
+    <label>shown the ropes</label>
+    <tone>warm</tone>
+    <weight>1.2</weight>
+    <minOpinion>-5</minOpinion>
+    <roleA><tags>!newcomer</tags></roleA>
+    <roleB><tags>newcomer</tags></roleB>
+    <texts>
+      <li>{A_nameDef} told {B_nameDef} who to ask for what around here, and who never to ask.</li>
+      <li>{A_nameDef} told {B_nameDef} which jobs nobody wants and which ones are worth asking for.</li>
+      <li>{A_nameDef} told {B_nameDef} the things the colony never says out loud, starting with who doesn't get on with whom.</li>
+      <li>[tribal] {A_nameDef} named the landmarks around the camp for {B_nameDef}, and the stories that go with them.</li>
+      <li>[medieval] {A_nameDef} told {B_nameDef} the colony's ways: who sits where, who eats first, and what not to say to whom.</li>
+      <li>[industrial] {A_nameDef} told {B_nameDef} how the work gets shared out here, and how to get out of the worst of it.</li>
+      <li>[spacer] {A_nameDef} told {B_nameDef} that out here nobody cares where you came from, and then asked {B_objective} where {B_pronoun} came from.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_SocT_ShownRound</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>3</change>
+    <note>shown the ropes</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_SocT_BadMealCompany</defName>
+    <label>company at a bad meal</label>
+    <tone>warm</tone>
+    <minOpinion>0</minOpinion>
+    <roleA><tags>eating</tags></roleA>
+    <roleB><tags>eating,lowmood</tags></roleB>
+    <texts>
+      <li>{B_nameDef} was glaring at {B_possessive} plate, and {A_nameDef} sat across from {B_objective} and talked {B_objective} out of it.</li>
+      <li>{A_nameDef} kept up a stream of small talk over the meal until {B_nameDef} cracked a smile.</li>
+      <li>{A_nameDef} ate beside {B_nameDef} and asked nothing, which was what {B_nameDef} needed.</li>
+      <li>[lowtech] {A_nameDef} told {B_nameDef} every bit of the day's news over the meal, and {B_nameDef} stopped scowling halfway through.</li>
+      <li>[!lowtech] {A_nameDef} sat down with {B_nameDef} at the meal and complained about the food until {B_nameDef} joined in.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_SocT_SharedPlate</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>2</change>
+    <note>company at a bad meal</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <!-- ===================== The weather ===================== -->
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_SocT_Downpour</defName>
+    <label>caught in the rain</label>
+    <tone>warm</tone>
+    <minOpinion>0</minOpinion>
+    <roleA><tags>rain,outside</tags></roleA>
+    <roleB><tags>outside</tags></roleB>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} got caught out in the rain, gave up trying to stay dry, and stood in it laughing.</li>
+      <li>The rain came down on {A_nameDef} and {B_nameDef} out in the open, and neither of them would be the first to run for cover.</li>
+      <li>{A_nameDef} told {B_nameDef} the rain would stop any minute now, and kept saying it until they were both soaked through.</li>
+      <li>[lowtech] {A_nameDef} held a wide leaf over {B_nameDef}'s head in the rain, which kept neither of them dry.</li>
+      <li>[!lowtech] {A_nameDef} held {A_possessive} jacket over {B_nameDef}'s head in the rain, which kept neither of them dry.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Rimfolk_SocT_Downpour</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_SharedMemory"><memory>Rimfolk_Mem_Downpour</memory><label>the downpour</label></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>2</change>
+    <note>caught in the rain together</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_SocT_Snowball</defName>
+    <label>a snowball fight</label>
+    <tone>warm</tone>
+    <children>true</children>
+    <minOpinion>0</minOpinion>
+    <roleA><adult>false</adult><tags>snow,outside</tags></roleA>
+    <roleB><adult>false</adult><tags>outside</tags></roleB>
+    <texts>
+      <li>{A_nameDef} got {B_nameDef} in the back of the neck with a snowball, and it was war from then on.</li>
+      <li>{B_nameDef} was halfway through a sentence when {A_nameDef}'s snowball arrived, and the sentence was never finished.</li>
+      <li>{A_nameDef} and {B_nameDef} threw snow at each other until neither could feel their hands, and called it a draw.</li>
+      <li>{A_nameDef} built a wall of snow to hide behind, and {B_nameDef} walked round it and knocked {A_objective} into it.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Rimfolk_SocT_Snowball</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_SharedMemory"><memory>Rimfolk_Mem_Snowball</memory><label>the snowball fight</label></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>3</change>
+    <note>a snowball fight</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_SocT_HeatOfTheDay</defName>
+    <label>a drink in the heat</label>
+    <tone>warm</tone>
+    <minOpinion>0</minOpinion>
+    <roleA><tags>hot,outside</tags></roleA>
+    <roleB><tags>hot,outside,working</tags></roleB>
+    <texts>
+      <li>{A_nameDef} pulled {B_nameDef} into the shade for a breather, out of the worst of the heat.</li>
+      <li>{A_nameDef} told {B_nameDef} {B_pronoun} was red as a beet, and made {B_objective} stop and drink before going on.</li>
+      <li>[tribal] {A_nameDef} made {B_nameDef} stop work and drink from the water skin before the heat got {B_objective}.</li>
+      <li>[medieval] {A_nameDef} brought {B_nameDef} a dipper of water from the barrel and stood over {B_objective} until {B_pronoun} drank all of it.</li>
+      <li>[industrial] {A_nameDef} passed {B_nameDef} a canteen in the heat and wouldn't take it back until it was half empty.</li>
+      <li>[spacer] {A_nameDef} pushed a water flask into {B_nameDef}'s hands and told {B_objective} heatstroke would slow the work far more than a drink would.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_SocT_HeatShared</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>2</change>
+    <note>a drink in the heat</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_SocT_BitterCold</defName>
+    <label>stamping in the cold</label>
+    <tone>warm</tone>
+    <minOpinion>0</minOpinion>
+    <roleA><tags>cold,outside</tags></roleA>
+    <roleB><tags>cold,outside</tags></roleB>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} stood out in the bitter cold stamping their feet, each telling the other it wasn't so bad.</li>
+      <li>{A_nameDef} told {B_nameDef} {B_possessive} nose had gone white, and {B_nameDef} said {A_nameDef}'s had gone blue.</li>
+      <li>{A_nameDef} and {B_nameDef} compared which of their fingers they could still feel, and {B_nameDef} won by one.</li>
+      <li>[lowtech] {A_nameDef} and {B_nameDef} blew on their hands in the cold and talked about the fire they'd sit at later.</li>
+      <li>[!lowtech] {A_nameDef} told {B_nameDef} about the warmest place {A_pronoun} had ever been, in detail, to make the cold worse.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Rimfolk_SocT_ColdShared</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>2</change>
+    <note>stamped their feet in the cold together</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_SocT_LastOfHarvest</defName>
+    <label>the last of the harvest</label>
+    <tone>warm</tone>
+    <minOpinion>0</minOpinion>
+    <roleA><tags>fall</tags></roleA>
+    <sameWork><li>Growing</li></sameWork>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} worked the field side by side before the cold, and talked about what the winter would need.</li>
+      <li>{A_nameDef} and {B_nameDef} were bringing in the crop together and kept guessing how much the stores would hold this year.</li>
+      <li>[tribal] {A_nameDef} and {B_nameDef} worked the plants together and thanked the earth for each basket, the old way.</li>
+      <li>[medieval] {A_nameDef} and {B_nameDef} raced the frost together in the field, and {A_nameDef} said it was a good year's work.</li>
+      <li>[!lowtech] {A_nameDef} and {B_nameDef} worked the field together and worked out, between them, how many days of food each row was.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Rimfolk_SocT_LastRow</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>2</change>
+    <note>the harvest together</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <!-- ===================== The region's news ===================== -->
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_SocT_WarArgued</defName>
+    <label>sides in the neighbors' war</label>
+    <tone>friction</tone>
+    <maxOpinion>40</maxOpinion>
+    <situations><li>Rimfolk_WS_NeighborsWar</li></situations>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} took different sides in the neighbors' war, and it got loud.</li>
+      <li>{A_nameDef} said one side of the neighbors' war had it coming, and {B_nameDef} said that was exactly what the other side says.</li>
+      <li>{A_nameDef} asked {B_nameDef} whose side {B_pronoun} would be on in the neighbors' war, and didn't like the answer.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Rimfolk_SocT_WarArgued</thought></li>
+    </effects>
+    <changeTie>Rivals</changeTie>
+    <change>2</change>
+    <note>argued over the neighbors' war</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_SocT_WarWorry</defName>
+    <label>people caught in a war</label>
+    <tone>warm</tone>
+    <minOpinion>10</minOpinion>
+    <situations><li>Rimfolk_WS_NeighborsWar</li></situations>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} wondered who they knew in the towns at war, and whether they were all right.</li>
+      <li>{A_nameDef} told {B_nameDef} {A_pronoun} kept thinking of the farms between the two armies, and {B_nameDef} had been thinking the same.</li>
+      <li>{A_nameDef} and {B_nameDef} talked about the neighbors' war, and agreed the ones who pay for it are never the ones who start it.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Rimfolk_SocT_WorriedForOthers</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>2</change>
+    <note>talked about the neighbors' war</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_SocT_RoadFolk</defName>
+    <label>the households on the road</label>
+    <tone>warm</tone>
+    <minOpinion>5</minOpinion>
+    <situations><li>Rimfolk_WS_Trek</li></situations>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} talked about the households on the road, and where they would sleep tonight.</li>
+      <li>{A_nameDef} told {B_nameDef} about the time {A_pronoun} had to leave a home behind, and {B_nameDef} listened to the end.</li>
+      <li>{A_nameDef} and {B_nameDef} counted what the colony could spare for the families walking past, and came out at different numbers.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Rimfolk_SocT_WorriedForOthers</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>2</change>
+    <note>talked about the households on the road</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_SocT_DryTown</defName>
+    <label>a joke about the dry town</label>
+    <tone>warm</tone>
+    <minOpinion>0</minOpinion>
+    <situations><li>Rimfolk_WS_DryLaw</li></situations>
+    <roleA><tags>!trait:Teetotaler</tags></roleA>
+    <texts>
+      <li>{A_nameDef} told {B_nameDef} the colony could get rich selling beer over the dry town's wall, and {B_nameDef} started working out the price.</li>
+      <li>{A_nameDef} and {B_nameDef} raised imaginary cups to the dry town's thirsty young people.</li>
+      <li>{A_nameDef} wondered aloud to {B_nameDef} how long the dry town's law would last, and they bet on it.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc_Laughed</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>2</change>
+    <note>a joke about the dry town</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_SocT_GreatWorkTalk</defName>
+    <label>what we would build</label>
+    <tone>warm</tone>
+    <minOpinion>0</minOpinion>
+    <situations><li>Rimfolk_WS_GreatWork</li></situations>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} heard about the neighbors' great work and argued happily over what the colony would build if it could.</li>
+      <li>{A_nameDef} told {B_nameDef} the colony could raise something just as grand one day, and {B_nameDef} asked with whose hands.</li>
+      <li>[tribal] {A_nameDef} and {B_nameDef} talked about the neighbors' longhouse, and planned one of their own twice its length.</li>
+      <li>[medieval] {A_nameDef} and {B_nameDef} talked about the neighbors' new hall, and planned a tower for the colony that would look down on it.</li>
+      <li>[industrial] {A_nameDef} and {B_nameDef} talked about the neighbors' dam, and planned where the colony's would go.</li>
+      <li>[spacer] {A_nameDef} and {B_nameDef} talked about the neighbors' signal tower, and what they would say if the colony had one.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Rimfolk_SocT_DreamedBig</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>2</change>
+    <note>planned what the colony would build</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_SocT_SummerThatNeverCame</defName>
+    <label>the summer that never came</label>
+    <tone>warm</tone>
+    <minOpinion>0</minOpinion>
+    <situations><li>Rimfolk_WS_ColdYear</li></situations>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} talked about the summer that never came, and what the colony has put by against the winter.</li>
+      <li>{A_nameDef} told {B_nameDef} {A_pronoun} had never known a summer this cold, and {B_nameDef} said {B_pronoun} had, once, and told {A_objective} about it.</li>
+      <li>{A_nameDef} and {B_nameDef} went through what grows in the cold, and what the colony might plant instead.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc_GoodTalk</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>2</change>
+    <note>talked about the summer that never came</note>
+  </ColonyCouncil.SocialEventDef>
+
+</Defs>

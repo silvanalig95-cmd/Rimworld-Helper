@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What the new moments of life together leave between two colonists (Defs/SocialEventDefs/Rimfolk_SocialEvents_Together.xml):
+    mostly a few points of opinion and something small instead of mood (RewardInstead: belonging, a little recreation or
+    rest); the sore ones a point or two of mood, as the other social events' are; four warm ones a few points, as a word
+    when it mattered has always been.
+  -->
+
+  <!-- ===================== After a fight ===================== -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_SocT_MadeItUp</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>6</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>made it up after the fight</label><description>We came to blows and then we came to our senses. It's said, it's done, and it's easier between us now.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_SocT_JokeTooFar</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>a joke that went too far</label><description>It was funny the first time. They kept it going until it wasn't, and then a bit longer.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-6</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== What's owed ===================== -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_SocT_DebtRepaid</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>5</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>paid back</label><description>I carried them out of a bad day once. They haven't forgotten it, and today they made sure I knew.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_SocT_CarriedLoad</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>took the weight off my bad side</label><description>My old injury was playing up, and they took the heavy end without making a thing of it.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>7</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== At the same work ===================== -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_SocT_Raced</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>raced my rival at the work</label><description>We turned the work into a race, neither of us would call it, and now my arms ache.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-4</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_SocT_WorkedTogether</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>good company at the work</label><description>The work went quicker with them beside me, talking about nothing.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><joy>0.04</joy></li></modExtensions>
+  </ThoughtDef>
+
+  <!-- ===================== A fine piece ===================== -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_SocT_TeacherPraised</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>5</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>my teacher's praise</label><description>I showed my teacher what I'd made. They looked at it a long time, and then they said it was good.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_SocT_PieceAdmired</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>my work admired</label><description>They picked up what I'd made and turned it over in their hands as if it mattered.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_SocT_PieceEnvied</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>envious of their piece</label><description>Everyone keeps picking up the thing they made. Mine was nearly as good.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-5</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Hard days ===================== -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_SocT_QuietWord</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>5</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>a quiet word after the loss</label><description>They didn't say much about the one we lost, only enough to let me know they were thinking of them too.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_SocT_WoundLooked</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>asked after my hurt</label><description>They wanted to see the hurt and hear how it happened, and they winced in the right places.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><comfort>0.05</comfort></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_SocT_WoundTeased</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>teased about my hurt</label><description>I got hurt and they made a joke of it, and then they told the joke again at supper.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-5</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_SocT_OldRemedy</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>an old remedy</label><description>Someone who has seen a lot of this told me what they did for it in their day, and what not to bother with.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><rest>0.05</rest></li></modExtensions>
+  </ThoughtDef>
+
+  <!-- ===================== Newcomers and the table ===================== -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_SocT_ShownRound</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>shown the ropes</label><description>Someone who's been here a while showed me how things are done, and which things nobody says out loud.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_SocT_SharedPlate</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>company at a bad meal</label><description>I was in a black mood over my food, and they sat down with theirs and talked me out of it.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><comfort>0.05</comfort></li></modExtensions>
+  </ThoughtDef>
+
+  <!-- ===================== The weather and the year ===================== -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_SocT_Downpour</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>soaked together</label><description>We got caught out in the weather and gave up trying to stay dry, and that was the best part of the day.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><joy>0.06</joy></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_SocT_Snowball</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>a snowball fight</label><description>One snowball turned into a war, and I've got snow down my collar I'll be finding until spring.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><joy>0.1</joy></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_SocT_HeatShared</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>a drink in the heat</label><description>It was baking out there, and they made me stop and drink before I fell over.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><rest>0.05</rest></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_SocT_ColdShared</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>shared the cold</label><description>We stood out in the bitter cold together, stamping our feet and lying about how warm we were.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><joy>0.04</joy></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_SocT_LastRow</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>the last of the harvest</label><description>We brought in the last of it before the cold, side by side, and stood looking at the bare field after.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <!-- ===================== The world's news ===================== -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_SocT_WarArgued</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>argued about the neighbors' war</label><description>It isn't even our war, and we nearly came to blows over which side has the right of it.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-6</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_SocT_WorriedForOthers</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>worried for people out there</label><description>We got talking about the people out there having a hard time of it, and what we'd do in their place.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_SocT_DreamedBig</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>planned something grand</label><description>The neighbors are raising something great, and we spent an hour deciding what we'd build if it were us.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><joy>0.04</joy></li></modExtensions>
+  </ThoughtDef>
+
+</Defs>

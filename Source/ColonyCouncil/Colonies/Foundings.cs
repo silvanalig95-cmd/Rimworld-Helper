@@ -492,6 +492,8 @@ namespace ColonyCouncil
                 var actors = founders.Select(p => new HistoryActor(Refs.Of(p), HistoryRole.Did)).ToList();
                 actors.Add(new HistoryActor(Ref.Colony(plan.from), HistoryRole.About));
                 string who = founders.Count > 0 ? Names(founders) : "CC_Found_Newcomers".Translate().Resolve();
+                // The founding party remember it together (Social/Talk/SharedTimesTogether.cs).
+                SharedTimesTogether.Founded(founders, name);
                 History.Add(FoundingMath.KindFounded, actors, Refs.Colony(map), HistoryMath.Milestone,
                     (founders.Count > 0 ? "CC_Found_History" : "CC_Found_HistoryNewcomers").Translate(name.Named("PLACE"), who.Named("NAMES"), (plan.fromName ?? "?").Named("MOTHER")).Resolve());
                 bool seat = plan.makeSeat && plan.keepOld && ColonySeat.Move(map, true);

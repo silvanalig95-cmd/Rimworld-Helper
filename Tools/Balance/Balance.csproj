@@ -27,6 +27,8 @@
     <!-- How bonds come about (SocialSim.cs, with &#45;&#45;social). -->
     <Compile Include="../../Source/ColonyCouncil/Social/BondsMath.cs" Link="Linked/BondsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Social/ChemistryMath.cs" Link="Linked/ChemistryMath.cs" />
+    <!-- Which of a role's tags are the moment's (the weather, what someone is doing), for how often a social event can come. -->
+    <Compile Include="../../Source/ColonyCouncil/Social/TogetherFourMath.cs" Link="Linked/TogetherFourMath.cs" />
     <!-- Against their nature and the heart (NatureSim.cs, with &#45;&#45;nature). -->
     <Compile Include="../../Source/ColonyCouncil/Diplomacy/NatureMath.cs" Link="Linked/NatureMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Heart/HeartMath.cs" Link="Linked/HeartMath.cs" />
