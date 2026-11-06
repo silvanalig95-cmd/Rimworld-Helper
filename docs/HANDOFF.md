@@ -6,6 +6,10 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 6 November 2026, the player's decisions on the review: all seventeen as recommended, with one nuance on the
+  letdowns (both a short mood at the moment and strain for the grind): `docs/review-2026-11/decisions.md`. The
+  reports are beside it (`staged-scenes.md`, `systems.md`, `whole.md`). Phases 1 (one record) and 3 (one heart) run
+  first, side by side; 2 and 4 follow phase 1; then 5 and 6; then harm parts 2 and 3, schemes and stage 3.
 - 0.106.1, phase 0 of the review: what the save showed (the systems review and the holistic review's phase 0, 6 November 2026,
   against the player's save Atia at day 128: the plain fixes, `[fix]`; what needs the player's word is left for them).
   No version of its own: its points go with the next round. (1) The election results left seats out: the 5502 letter
