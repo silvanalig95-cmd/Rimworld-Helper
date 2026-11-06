@@ -34,6 +34,7 @@ namespace ColonyCouncil
             defs = null;
             index.Clear();
             generic.Clear();
+            wearing.Clear();
         }
 
         private static void Build()
@@ -114,6 +115,8 @@ namespace ColonyCouncil
             {
                 var group = moodGroups[g];
                 if (group?.def == null) continue;
+                // Small letdowns and joys share a row: each one feeds the feelings its own memory did (Moods/SmallMoments.cs).
+                if (group is Thought_SmallMoment) continue;
                 float off;
                 try
                 {
@@ -126,32 +129,20 @@ namespace ColonyCouncil
                 // A small moment that gives something else instead of mood is still felt (RewardInstead.felt).
                 if (Mathf.Abs(off) < 0.01f) off = RewardInstead.Felt(group.def);
                 if (Mathf.Abs(off) < 0.01f) continue;
-                var feeds = FeedsOf(group.def);
-                if (feeds == null && generic.Count == 0) continue;
-                Pawn other = OtherOf(group, p);
-                for (int i = 0; i < n; i++) best[i] = 0f;
-                if (feeds != null)
-                    foreach (var (fi, feed, _) in feeds)
-                        if (Holds(feed, off, other, p)) best[fi] = Mathf.Max(best[fi], feed.weight);
-                foreach (var (fi, feed) in generic)
-                    if (Holds(feed, off, other, p)) best[fi] = Mathf.Max(best[fi], feed.weight);
-                string label = null;
-                bool council = CouncilDidIt(group.def);
-                for (int i = 0; i < n; i++)
-                {
-                    if (best[i] <= 0f) continue;
-                    float amount = Mathf.Abs(off) * best[i];
-                    var f = work[i];
-                    f.intensity += amount;
-                    label ??= LabelOf(group);
-                    f.AddCause(label, amount);
-                    if (other != null && amount > f.targetAmount)
-                    {
-                        f.target = other;
-                        f.targetAmount = amount;
-                    }
-                    if (council) f.fromCouncil = true;
-                }
+                Feed(p, group.def, off, OtherOf(group, p), null, group, n);
+            }
+            // Each small letdown or joy at its moment's size, and a lasting one while it holds at its size as felt (it has no
+            // mood of its own while it is a letdown or a joy).
+            var memories = thoughts.memories?.Memories;
+            if (memories != null)
+                for (int i = 0; i < memories.Count; i++)
+                    if (memories[i] is Thought_SmallMoment sm && sm.what != null && sm.size != 0f && !sm.ShouldDiscard)
+                        Feed(p, sm.what, sm.size, sm.about, sm.label, null, n);
+            if (SmallMoments.On && SmallMoments.Eligible(p))
+            {
+                SmallMoments.Lasting(p, held);
+                foreach (var x in held) Feed(p, x.thought.def, x.felt, null, null, x.thought, n);
+                held.Clear();
             }
 
             // What thoughts can't say.
@@ -260,6 +251,60 @@ namespace ColonyCouncil
         private static readonly Dictionary<ThoughtDef, bool> councilDeed = new Dictionary<ThoughtDef, bool>();
 
         /// <summary>Whether the thought is one of the council's deeds, worked out once per thought.</summary>
+        private static readonly List<SmallMoments.Held> held = new List<SmallMoments.Held>();
+
+        /// <summary>One mood (or a small moment's own memory) feeding the feelings it feeds, by its size.</summary>
+        private static void Feed(Pawn p, ThoughtDef def, float off, Pawn other, string label, Thought shown, int n)
+        {
+            var feeds = FeedsOf(def);
+            if (feeds == null && generic.Count == 0) return;
+            for (int i = 0; i < n; i++) best[i] = 0f;
+            if (feeds != null)
+                foreach (var (fi, feed, _) in feeds)
+                    if (Holds(feed, off, other, p)) best[fi] = Mathf.Max(best[fi], feed.weight);
+            foreach (var (fi, feed) in generic)
+                if (Holds(feed, off, other, p)) best[fi] = Mathf.Max(best[fi], feed.weight);
+            bool council = CouncilDidIt(def);
+            for (int i = 0; i < n; i++)
+            {
+                if (best[i] <= 0f) continue;
+                float amount = Mathf.Abs(off) * best[i];
+                var f = work[i];
+                f.intensity += amount;
+                label ??= shown != null ? LabelOf(shown) : def.LabelCap.ToString();
+                f.AddCause(label, amount);
+                if (other != null && amount > f.targetAmount)
+                {
+                    f.target = other;
+                    f.targetAmount = amount;
+                }
+                if (council) f.fromCouncil = true;
+            }
+        }
+
+        private static readonly Dictionary<ThoughtDef, bool> wearing = new Dictionary<ThoughtDef, bool>();
+
+        /// <summary>
+        /// Whether this kind of mood feeds a feeling that wears on the heart by itself (fear, grief, dread, despair): the
+        /// small moods' pile leaves it to that feeling (Moods/SmallMoments.cs), so it isn't counted twice.
+        /// </summary>
+        public static bool FeedsWearingFeeling(ThoughtDef def)
+        {
+            if (def == null) return false;
+            if (wearing.TryGetValue(def, out bool w)) return w;
+            var all = All;
+            var feeds = FeedsOf(def);
+            if (feeds != null)
+                foreach (var (fi, _, _) in feeds)
+                    if (fi >= 0 && fi < all.Count && all[fi].strainPerHour > 0f)
+                    {
+                        w = true;
+                        break;
+                    }
+            wearing[def] = w;
+            return w;
+        }
+
         private static bool CouncilDidIt(ThoughtDef def)
         {
             if (councilDeed.TryGetValue(def, out bool did)) return did;

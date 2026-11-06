@@ -146,13 +146,13 @@ namespace Balance
                 sb.AppendLine($"| {k} | " + string.Join(" | ", six.Select(r => N(r.summary.parts.GetValueOrDefault(k), "0.00"))) + " |");
             }
             sb.AppendLine();
-            sb.AppendLine("What the shared budget and fading sooner take off (6 colonists):");
+            sb.AppendLine("What good things growing ordinary takes off (6 colonists):");
             sb.AppendLine();
-            sb.AppendLine("| Play | Net with both rules | Net without either | Good memories with | without |");
+            sb.AppendLine("| Play | Net with the rule | Net without it | Good memories with | without |");
             sb.AppendLine("|---|---|---|---|---|");
             foreach (var r in results.Where(r => r.preset == null && r.colonists == 6))
             {
-                var nr = results.FirstOrDefault(x => x.preset == "no budget or fading" && x.style == r.style);
+                var nr = results.FirstOrDefault(x => x.preset == "without growing ordinary" && x.style == r.style);
                 if (nr == null) continue;
                 sb.AppendLine($"| {r.style.name} | {N(r.summary.net)} | {N(nr.summary.net)} | {N(r.summary.good)} | {N(nr.summary.good)} |");
             }

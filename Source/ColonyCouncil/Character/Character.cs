@@ -349,7 +349,7 @@ namespace ColonyCouncil
         public override float MoodOffset()
         {
             float m = base.MoodOffset();
-            return m < 0f ? m * ColonyCouncilMod.Settings.PenaltyScale : m * SmallJoys.LiveScale(pawn);
+            return m < 0f ? m * ColonyCouncilMod.Settings.PenaltyScale : m * GoodLife.RewardScale(pawn);
         }
 
         public string Why

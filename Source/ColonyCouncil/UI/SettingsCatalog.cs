@@ -259,10 +259,7 @@ namespace ColonyCouncil
             Choice("lifePressure", "CC_Settings_Life", "CC_Settings_Life_Tip", "CC_Life_", "CC_SetNote_Life_", new[] { "Gentle", "Normal", "Demanding" },
                 "stakes!=AdvisorOnly", "CC_SetWhy_MoodEffects");
             Toggle("risingStandards", "CC_Settings_Standards", "CC_SetNote_Standards");
-            Toggle("standardsCoverComforts", "CC_Settings_StandardsComforts", "CC_SetNote_StandardsComforts", "risingStandards");
-            Toggle("smallJoysDiminish", "CC_Settings_SmallJoys", "CC_SetNote_SmallJoys");
-            Toggle("goodTimesFade", "CC_Settings_GoodTimes", "CC_SetNote_GoodTimes");
-            Toggle("usedToGoodLife", "CC_Settings_GoodLife", "CC_SetNote_GoodLife", "stakes!=AdvisorOnly", "CC_SetWhy_MoodEffects");
+            Toggle("goodGrowsOrdinary", "CC_Settings_Ordinary", "CC_SetNote_Ordinary", "stakes!=AdvisorOnly", "CC_SetWhy_MoodEffects");
             Toggle("quietTroubles", "CC_Settings_QuietTroubles", "CC_SetNote_QuietTroubles", "stakes!=AdvisorOnly", "CC_SetWhy_MoodEffects");
             Toggle("frictions", "CC_Settings_Frictions", "CC_SetNote_Frictions");
             Section("CC_Settings_Bonds");
@@ -678,8 +675,8 @@ namespace ColonyCouncil
             {
                 V("stakes", "Demanding"), V("lifePressure", "Demanding"), V("penaltyFactor", "1.15"), V("rewardFactor", "0.8"),
                 V("wishDurationFactor", "0.75"), V("ambitionDeadlineFactor", "0.75"), V("jealousy", "true"), V("allowQuitting", "true"),
-                V("frictions", "true"), V("momentFrequency", "1.25"), V("risingStandards", "true"), V("standardsCoverComforts", "true"),
-                V("smallJoysDiminish", "true"), V("goodTimesFade", "true"), V("usedToGoodLife", "true"), V("quietTroubles", "true"), V("heart", "true"),
+                V("frictions", "true"), V("momentFrequency", "1.25"), V("risingStandards", "true"), V("goodGrowsOrdinary", "true"),
+                V("quietTroubles", "true"), V("heart", "true"),
                 V("heartEpisodes", "true"), V("strainSpeed", "1.25")
             });
 

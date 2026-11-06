@@ -131,7 +131,7 @@ namespace ColonyCouncil
                     float lo = float.MaxValue, hi = float.MinValue;
                     foreach (var p in who)
                     {
-                        float v = mood * factor * (positive && Milestone.Is(t) ? 1f : Standards.MoodFactor(p, positive));
+                        float v = mood * factor * (positive ? 1f : Standards.PenaltyFactor(p));
                         lo = Mathf.Min(lo, v);
                         hi = Mathf.Max(hi, v);
                     }

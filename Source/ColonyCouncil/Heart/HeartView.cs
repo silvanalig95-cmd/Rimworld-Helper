@@ -44,12 +44,21 @@ namespace ColonyCouncil
         /// against ("swore the colony's oath to the Lenlia, against her pride"), the way a pressure says its cause; else the
         /// source's own words.
         /// </summary>
-        public static string SourceText(PawnHeart h, StrainSource s) =>
-            s == StrainSource.Nature && h != null && !h.natureEased && !h.natureWhy.NullOrEmpty() ? h.natureWhy : SourceLabel(s);
+        public static string SourceText(PawnHeart h, StrainSource s)
+        {
+            if (s == StrainSource.Nature && h != null && !h.natureEased && !h.natureWhy.NullOrEmpty()) return h.natureWhy;
+            // Small letdowns: what they were ("small letdowns: the same meal and my idea turned down").
+            if (s == StrainSource.Letdowns && h != null && !h.letdownsWhy.NullOrEmpty()) return "CC_Heart_Source_LetdownsWhat".Translate(h.letdownsWhy).Resolve();
+            return SourceLabel(s);
+        }
 
         /// <summary>A kind of relief as this heart's page says it: for an act with their nature, what they did and the side of them it suited.</summary>
-        public static string ReliefText(PawnHeart h, StrainRelief r) =>
-            r == StrainRelief.Nature && h != null && h.natureEased && !h.natureWhy.NullOrEmpty() ? h.natureWhy : ReliefLabel(r);
+        public static string ReliefText(PawnHeart h, StrainRelief r)
+        {
+            if (r == StrainRelief.Nature && h != null && h.natureEased && !h.natureWhy.NullOrEmpty()) return h.natureWhy;
+            if (r == StrainRelief.Joys && h != null && !h.joysWhy.NullOrEmpty()) return "CC_Heart_Relief_JoysWhat".Translate(h.joysWhy).Resolve();
+            return ReliefLabel(r);
+        }
 
         public static string NeedLabel(HeartNeed n) => ("CC_Heart_Need_" + n).Translate();
 
@@ -174,6 +183,7 @@ namespace ColonyCouncil
                 case StrainSource.Despair: return "CC_Heart_Help_Friends";
                 case StrainSource.Unmet: return "CC_Heart_Help_Needs";
                 case StrainSource.Nature: return "CC_Heart_Help_Nature";
+                case StrainSource.Letdowns: return "CC_Heart_Help_Letdowns";
                 default: return "CC_Heart_Help_Sleep";
             }
         }

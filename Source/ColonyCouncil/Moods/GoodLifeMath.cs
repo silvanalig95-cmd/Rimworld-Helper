@@ -140,15 +140,11 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// Standards' cut on a comfort (GoodTimesMath.ComfortFactor), as felt for something this ordinary: in full on an
-        /// everyday comfort, hardly at all on something new.
+        /// The one setting for good things growing ordinary, from the four that came before it (the good moods' budget,
+        /// standards over the game's comforts, good times fading sooner, used to the good life): on if any of them was,
+        /// so a player who kept one of the rules keeps the rule; off only if all four were off.
         /// </summary>
-        public static float ComfortFor(float factor, float weight)
-        {
-            if (float.IsNaN(factor) || factor >= 1f) return 1f;
-            float w = float.IsNaN(weight) ? 1f : Math.Max(0f, Math.Min(1f, weight));
-            return 1f - (1f - factor) * w;
-        }
+        public static bool MergedSetting(bool budget, bool comforts, bool fade, bool usedToGoodLife) => budget || comforts || fade || usedToGoodLife;
 
         /// <summary>
         /// Spreads what a good life takes back over their good moods by how ordinary each is: each one's share is

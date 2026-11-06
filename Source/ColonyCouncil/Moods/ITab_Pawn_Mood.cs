@@ -27,7 +27,7 @@ namespace ColonyCouncil
         private PawnMood mood;
         private List<MoodLine> bad, good;
         private CompactModel compact;
-        /// <summary>What getting used to good times, good moods adding up slowly and standards take off right now (GoodTimes.Readout).</summary>
+        /// <summary>What good things grown ordinary take off right now (GoodLife.Readout).</summary>
         private string goodTimes;
         private string title, weighing, lifting, badTotal, goodTotal, nothingBad;
         /// <summary>The state sentence's height at the width it was measured for.</summary>
@@ -100,7 +100,7 @@ namespace ColonyCouncil
             bad = mood.lines.Where(l => l.mood < 0f).ToList();
             good = mood.lines.Where(l => l.mood > 0f).OrderByDescending(l => l.mood).ToList();
             compact = isCompact ? MoodCompact.For(p, mood.lines) : null;
-            goodTimes = GoodTimes.Readout(p);
+            goodTimes = GoodLife.Readout(p);
             // The headings and their totals, with the model rather than every frame.
             title = "CC_Mood_Title".Translate(p.LabelShortCap).Resolve();
             weighing = "CC_Mood_Weighing".Translate(p.LabelShort).Resolve();
@@ -138,7 +138,7 @@ namespace ColonyCouncil
                 if (goodTimes != null)
                 {
                     float h = UiKit.Paragraph(0f, cy, w, goodTimes, MoodView.Faint, GameFont.Tiny);
-                    TooltipHandler.TipRegion(new Rect(0f, cy, w, h), () => GoodTimes.Tip(p), 0x600D7135);
+                    TooltipHandler.TipRegion(new Rect(0f, cy, w, h), () => GoodLife.Tip(p), 0x600D7135);
                     cy += h + 4f;
                 }
                 if (mood.sources != null) cy += UiKit.Paragraph(0f, cy, w, mood.sources, MoodView.Faint, GameFont.Tiny) + 8f;
@@ -185,7 +185,7 @@ namespace ColonyCouncil
                 if (goodTimes != null)
                 {
                     float h = UiKit.Paragraph(0f, cy, w, goodTimes, MoodView.Faint, GameFont.Tiny);
-                    TooltipHandler.TipRegion(new Rect(0f, cy, w, h), () => GoodTimes.Tip(p), 0x600D7135);
+                    TooltipHandler.TipRegion(new Rect(0f, cy, w, h), () => GoodLife.Tip(p), 0x600D7135);
                     cy += h + 4f;
                 }
                 cy += 4f;

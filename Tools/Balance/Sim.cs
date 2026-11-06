@@ -95,8 +95,8 @@ namespace Balance
 
     /// <summary>
     /// One colony, one settled year: Rimfolk's systems hour by hour, at the rates of the code and <see cref="Rates"/>,
-    /// with every mood sized and timed from the defs and weighed by the mod's own rules (GoodTimesMath: the shared
-    /// budget, fading sooner in good times, standards).
+    /// with every mood sized and timed from the defs and weighed by the mod's own rules (GoodLifeMath: good things growing
+    /// ordinary; PressureMath and SetbackMath for the letdowns).
     /// </summary>
     public sealed class Colony
     {
@@ -291,7 +291,9 @@ namespace Balance
             Send(system, set.S("colonyNews") == "AsItHappens" ? Channel.Message : Channel.Digest);
         }
 
-        private float LiveScale(Colonist c) => set.RewardFactor * (1f - 0.5f * c.standards);
+        // Good things grow ordinary (Moods/GoodLife.cs): a reward is given at the reward strength alone; how much it counts
+        // beside the colonist's other good moods is the one rule, worked out in UpdateMood.
+        private float LiveScale(Colonist c) => set.RewardFactor;
         private float BadScale(Colonist c) => 1f + 0.4f * c.standards;
 
         /// <summary>How near breaking (PressureMath.HardTimes), with the game's usual minor-break line.</summary>
@@ -309,7 +311,7 @@ namespace Balance
             if (own == 0f) return;
             float factor = scale >= 0f ? scale : own > 0f ? set.RewardFactor : set.PenaltyScale;
             if (factor <= 0f) return;
-            factor *= own > 0f ? 1f - 0.5f * c.standards : 1f + 0.4f * c.standards;
+            if (own < 0f) factor *= 1f + 0.4f * c.standards;
             AddMemory(c, t, own * factor);
         }
 
@@ -319,7 +321,6 @@ namespace Balance
             if (own == 0f || t.durationDays <= 0f) return;
             int dur = (int)Math.Round(t.durationDays * 24);
             bool good = own > 0f;
-            if (good && set.B("goodTimesFade")) dur = GoodTimesMath.ShortenedTicks(dur, GoodTimesMath.DurationFactor(c.mood));
             int same = 0;
             Mem oldest = null;
             foreach (var m in c.mems)
@@ -520,15 +521,14 @@ namespace Balance
         }
 
         /// <summary>
-        /// The colonist's Rimfolk memories now: good ones weighed against each other (SmallJoys: the two biggest in full,
-        /// then GoodTimesMath.RankFactor), each mood group stacked as the game stacks it.
+        /// The colonist's Rimfolk memories now, each mood group stacked as the game stacks it (how much the good ones count
+        /// beside everything else on their mind is good things growing ordinary, in UpdateMood).
         /// </summary>
         private (float good, float goodRaw, float bad, int goodCount) Memories(Colonist c)
         {
             var goods = c.mems.Where(m => m.good).OrderByDescending(m => m.own).ToList();
             var factor = new Dictionary<Mem, float>();
-            bool budget = set.B("smallJoysDiminish");
-            for (int r = 0; r < goods.Count; r++) factor[goods[r]] = budget ? GoodTimesMath.RankFactor(r) : 1f;
+            for (int r = 0; r < goods.Count; r++) factor[goods[r]] = 1f;
             float good = 0f, raw = 0f, bad = 0f;
             foreach (var g in c.mems.GroupBy(m => m.def))
             {
@@ -563,17 +563,18 @@ namespace Balance
             parts = record && Measuring ? new Dictionary<string, double>() : null;
             var (good, raw, bad, n) = Memories(c);
             var (sg, sb) = Steady(c);
-            float comfort = set.B("standardsCoverComforts") && set.B("risingStandards") ? GoodTimesMath.ComfortFactor((int)Math.Min(3, c.standards * 4f)) : 1f;
-            // Used to the good life (Moods/GoodLife.cs): part of every good mood above the line their standards set, the
-            // game's comforts and Rimfolk's alike, is taken back as one bad mood of Rimfolk's.
+            const float comfort = 1f;
+            // Good things grow ordinary (Moods/GoodLife.cs): part of every good mood above the line their standards set, the
+            // game's comforts and Rimfolk's alike, no longer lifts them (counted here as one sum taken off: the game spreads it
+            // over the good moods by how ordinary each is, which moves no total).
             c.takenBack = 0f;
-            if (set.MoodEffects && set.B("usedToGoodLife"))
+            if (set.MoodEffects && set.B("goodGrowsOrdinary"))
             {
                 float positives = Math.Max(0f, c.vanillaGood) * comfort + good + sg;
                 float line = GoodLifeMath.LineFor(set.B("risingStandards") ? GoodLifeMath.Level(c.standards) : 0);
                 c.takenBack = GoodLifeMath.InHardTimes(GoodLifeMath.TakeBack(positives, line), Hard(c));
                 sb -= c.takenBack;
-                if (parts != null && c.takenBack > 0f) parts["used to the good life"] = parts.GetValueOrDefault("used to the good life") - c.takenBack;
+                if (parts != null && c.takenBack > 0f) parts["good things grown ordinary"] = parts.GetValueOrDefault("good things grown ordinary") - c.takenBack;
             }
             if (parts != null)
             {

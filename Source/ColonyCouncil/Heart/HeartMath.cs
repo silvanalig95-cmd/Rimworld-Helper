@@ -32,7 +32,12 @@ namespace ColonyCouncil
         /// <summary>A need of the heart badly lacking for days (HeartNeedMath).</summary>
         Unmet,
         /// <summary>Something done, or made to do, against their nature (Diplomacy/Nature.cs, NatureMath): one act a day.</summary>
-        Nature
+        Nature,
+        /// <summary>
+        /// Small letdowns (Moods/SmallMoments.cs): what Rimfolk's small letdowns weigh beyond their moment, and every small
+        /// bad mood on their mind once they pile up, the game's and other mods' too (SmallMomentMath).
+        /// </summary>
+        Letdowns
     }
 
     /// <summary>What drains strain. Saved by position in lists, so new kinds go at the end.</summary>
@@ -47,7 +52,9 @@ namespace ColonyCouncil
         Episode,
         Council,
         /// <summary>Something done with their nature that eases them (Diplomacy/Nature.cs: the open sent abroad for a season).</summary>
-        Nature
+        Nature,
+        /// <summary>Small joys (Moods/SmallMoments.cs): Rimfolk's beyond their moment, and every small good mood once they add up.</summary>
+        Joys
     }
 
     /// <summary>The traits that change how strain builds and drains, as flags so the math needs no game types.</summary>
@@ -177,6 +184,8 @@ namespace ColonyCouncil
                 case StrainSource.Unmet: return 3f;
                 // One act a day, up to NatureMath.MaxStrain.
                 case StrainSource.Nature: return 12f;
+                // Small letdowns, Rimfolk's and everyone's small bad moods together.
+                case StrainSource.Letdowns: return 5f;
                 default: return 3f;
             }
         }

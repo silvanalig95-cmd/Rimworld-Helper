@@ -37,6 +37,7 @@ namespace ColonyCouncil
                 h.todayTotal = 0f;
                 h.todayGathering = 0f;
                 h.todayFriends = 0f;
+                h.todayJoys = 0f;
                 if (newDay) Daily(p, h, now);
                 h.strainDayAgo = h.strain;
                 h.strainDayAgoTick = now;
@@ -44,6 +45,7 @@ namespace ColonyCouncil
             float decay = Mathf.Pow(HeartMath.RecentDecayPerHour, hours);
             for (int i = 0; i < h.recentBuild.Count; i++) h.recentBuild[i] *= decay;
             for (int i = 0; i < h.recentRelief.Count; i++) h.recentRelief[i] *= decay;
+            h.FadeNotes(decay);
 
             NoteWork(p, h);
             NoteBreak(p, h, now);
@@ -287,6 +289,14 @@ namespace ColonyCouncil
             // ---- New memories: deaths and bad nights build it, gatherings, good talks and a cathartic cry drain it ----
             relief += Memories(p, h, since, now, Build, HeartMath.ReliefTraitFactor(traits));
 
+            // ---- Small letdowns and joys: the lasting ones while they hold, and every small mood once they pile up ----
+            relief += SmallMoments.Hour(p, h, moodGroups, hours, now, (s, raw, why) =>
+            {
+                float added = Build(s, raw);
+                h.Note(false, why, added);
+                return added;
+            });
+
             h.lastHourBuild = built;
             h.lastHourRelief = relief;
             h.strain = HeartMath.Clamp(h.strain + built - relief);
@@ -306,6 +316,19 @@ namespace ColonyCouncil
 
         private static ThoughtDef darkThought;
         private static bool darkLooked;
+
+        /// <summary>The game's "in darkness" mood (its own strain source, the dark).</summary>
+        public static ThoughtDef DarkThought
+        {
+            get
+            {
+                LookUpDefs();
+                return darkThought;
+            }
+        }
+
+        /// <summary>A kind of memory the heart counts by a rule of its own (a loss, a bad night, a gathering, a talk...).</summary>
+        public static bool HasRule(ThoughtDef def) => def != null && RuleFor(def) != null;
 
         /// <summary>The vanilla "dark environment" thought, looked up once.</summary>
         public static void LookUpDefs()
@@ -478,6 +501,8 @@ namespace ColonyCouncil
             {
                 var mem = list[i];
                 if (mem?.def == null) continue;
+                // A small letdown or joy whose mood went to a moment: the moment brought its strain or relief already.
+                if (SmallMoments.Converted(mem)) continue;
                 int born = now - mem.age;
                 if (born <= since - 150) continue;
                 if (seen.TryGetValue(mem, out int was) && Math.Abs(was - born) < 600) continue;
@@ -566,7 +591,7 @@ namespace ColonyCouncil
         /// everything (HeartMath.Add), on the record by its source. On a day the hour hasn't reached yet, yesterday's counts
         /// don't hold it back. Returns what was added.
         /// </summary>
-        public static float Build(Pawn p, StrainSource source, float raw)
+        public static float Build(Pawn p, StrainSource source, float raw, string why = null)
         {
             var h = Heart.Of(p);
             if (h == null || raw <= 0f) return 0f;
@@ -587,8 +612,44 @@ namespace ColonyCouncil
             h.strain = HeartMath.Clamp(h.strain + added);
             float moved = h.strain - before;
             h.recentBuild[i] += moved;
+            if (source == StrainSource.Letdowns) h.Note(false, why, moved);
             HeartView.Refresh(p, h);
             return moved;
+        }
+
+        /// <summary>
+        /// Relief from small joys in the hour (Moods/SmallMoments.cs): their nature's way of letting go, within the day's
+        /// cap for joys, on the record by its words. Returns what may be eased; the hour takes it off with the rest.
+        /// </summary>
+        public static float JoysWithinCap(PawnHeart h, float amount, string why)
+        {
+            if (h == null || amount <= 0f) return 0f;
+            h.EnsureLists();
+            float eased = SmallMomentMath.WithinJoyCap(amount, h.todayJoys);
+            if (eased <= 0f) return 0f;
+            h.todayJoys += eased;
+            h.recentRelief[(int)StrainRelief.Joys] += eased;
+            h.Note(true, why, eased);
+            return eased;
+        }
+
+        /// <summary>
+        /// Relief from a small joy that came as a moment (from outside the hour): their nature's way of letting go, within
+        /// the day's cap for joys, never more than the strain they have. On a day the hour hasn't reached yet, yesterday's
+        /// count doesn't hold it back. Returns what was eased.
+        /// </summary>
+        public static float EaseJoys(Pawn p, float amount, string why)
+        {
+            var h = Heart.Of(p);
+            if (h == null || amount <= 0f || h.strain <= 0f) return 0f;
+            h.EnsureLists();
+            if (h.day != Find.TickManager.TicksGame / GenDate.TicksPerDay) h.todayJoys = 0f;
+            float a = Mathf.Min(amount * HeartMath.ReliefTraitFactor(Heart.TraitsOf(p)), h.strain);
+            float eased = JoysWithinCap(h, a, why);
+            if (eased <= 0f) return 0f;
+            h.strain = HeartMath.Clamp(h.strain - eased);
+            HeartView.Refresh(p, h);
+            return eased;
         }
 
         /// <summary>

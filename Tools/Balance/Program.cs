@@ -58,10 +58,10 @@ foreach (int n in new[] { 6, 12 })
 foreach (var preset in new[] { "lightTouch", "storyRich", "demanding" })
     foreach (var style in Rates.Styles)
         results.Add(Runner.Run(defs, new Settings(defaults, preset), style, 6, runs, preset));
-// Without the shared budget and fading: what the rules take off.
-var noRules = new Dictionary<string, string>(defaults) { ["smallJoysDiminish"] = "false", ["goodTimesFade"] = "false" };
+// Without good things growing ordinary: what the one rule takes off.
+var noRules = new Dictionary<string, string>(defaults) { ["goodGrowsOrdinary"] = "false" };
 foreach (var style in Rates.Styles)
-    results.Add(Runner.Run(defs, new Settings(noRules), style, 6, runs, "no budget or fading"));
+    results.Add(Runner.Run(defs, new Settings(noRules), style, 6, runs, "without growing ordinary"));
 
 Dictionary<string, Summary> before = null;
 if (beforePath != null && File.Exists(beforePath))

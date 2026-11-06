@@ -96,10 +96,10 @@ namespace ColonyCouncil
             switch (t)
             {
                 case Thought_CouncilMemory m:
-                    s = m.scaled ? m.moodPowerFactor : SmallJoys.LiveScale(p);
+                    s = m.scaled ? m.moodPowerFactor : GoodLife.RewardScale(p);
                     break;
                 case Thought_CouncilSocial m:
-                    s = m.scaled ? m.moodPowerFactor : SmallJoys.LiveScale(p);
+                    s = m.scaled ? m.moodPowerFactor : GoodLife.RewardScale(p);
                     break;
                 default:
                     s = 1f;

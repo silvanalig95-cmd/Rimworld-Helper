@@ -55,14 +55,14 @@ namespace ColonyCouncil
         public KeptGrace takenBackGrace = KeptGrace.Normal;
         public bool allowQuitting = true;
         public bool risingStandards = true;
-        /// <summary>Rimfolk's good moods count with diminishing returns when several are on a colonist's mind (SmallJoys).</summary>
-        public bool smallJoysDiminish = true;
-        /// <summary>Rising standards also shrink the good moods of the base game and other mods (GoodTimes).</summary>
-        public bool standardsCoverComforts = true;
-        /// <summary>Getting used to good times: Rimfolk's new good memories fade sooner when mood is already high (GoodTimes).</summary>
-        public bool goodTimesFade = true;
-        /// <summary>Used to the good life: part of the good moods above a line set by standards is taken back (Moods/GoodLife.cs).</summary>
-        public bool usedToGoodLife = true;
+        /// <summary>
+        /// Good things grow ordinary (Moods/GoodLife.cs): part of the good moods above a line set by standards counts for
+        /// less, the everyday ones most and the new ones least. One setting for what four did until phase 3 of the review
+        /// (the good moods' budget, standards over the game's comforts, good times fading sooner, used to the good life).
+        /// </summary>
+        public bool goodGrowsOrdinary = true;
+        /// <summary>The four old switches were read into <see cref="goodGrowsOrdinary"/> (an older settings file reads false).</summary>
+        public bool ordinaryMerged = true;
         /// <summary>Quiet troubles: now and then a low day with a real cause for someone content a while (Setbacks/Troubles.cs).</summary>
         public bool quietTroubles = true;
         /// <summary>Life's ups and downs: how hard the everyday pressures press (the same meal, the same work, crowding...).</summary>
@@ -531,10 +531,19 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref takenBackGrace, "takenBackGrace", KeptGrace.Normal);
             Scribe_Values.Look(ref allowQuitting, "allowQuitting", true);
             Scribe_Values.Look(ref risingStandards, "risingStandards", true);
-            Scribe_Values.Look(ref smallJoysDiminish, "smallJoysDiminish", true);
-            Scribe_Values.Look(ref standardsCoverComforts, "standardsCoverComforts", true);
-            Scribe_Values.Look(ref goodTimesFade, "goodTimesFade", true);
-            Scribe_Values.Look(ref usedToGoodLife, "usedToGoodLife", true);
+            Scribe_Values.Look(ref goodGrowsOrdinary, "goodGrowsOrdinary", true);
+            Scribe_Values.Look(ref ordinaryMerged, "ordinaryMerged", false);
+            if (Scribe.mode == LoadSaveMode.LoadingVars && !ordinaryMerged)
+            {
+                // The four rules that softened good moods are one now: on if any of them was, off only if all four were off.
+                bool budget = true, comforts = true, fade = true, used = true;
+                Scribe_Values.Look(ref budget, "smallJoysDiminish", true);
+                Scribe_Values.Look(ref comforts, "standardsCoverComforts", true);
+                Scribe_Values.Look(ref fade, "goodTimesFade", true);
+                Scribe_Values.Look(ref used, "usedToGoodLife", true);
+                goodGrowsOrdinary = GoodLifeMath.MergedSetting(budget, comforts, fade, used);
+                ordinaryMerged = true;
+            }
             Scribe_Values.Look(ref quietTroubles, "quietTroubles", true);
             Scribe_Values.Look(ref lifePressure, "lifePressure", LifePressure.Normal);
             Scribe_Values.Look(ref enableDilemmas, "enableDilemmas", true);

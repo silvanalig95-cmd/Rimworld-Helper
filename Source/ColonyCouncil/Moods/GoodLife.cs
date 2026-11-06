@@ -8,19 +8,20 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// Used to the good life: a colonist with a pile of good moods stops feeling all of it, so each good mood counts for
-    /// a little less. The sum of every good mood on their mind (the game's, other mods' and Rimfolk's, as each is felt)
-    /// counts in full up to a soft line set by their standards (45 for the modest, down to 30 for the spoiled); of what is
-    /// above it, half of the first 20 points and three quarters of the rest no longer lift them. That part is not a mood
-    /// of its own: it comes off the good moods themselves, most off the everyday ones (lasting moods such as rooms,
-    /// beliefs and the council, and memories of a kind they've had often lately) and least off something new, so a
-    /// wedding still lands while the fifth fine meal this week barely registers. Each good mood's line on the Mood tab
-    /// shows what it counts for now, and its tooltip says why. Life goals reached count in full and are left out. Bad
-    /// moods are never touched, and every good thing still helps (each point more adds at least a quarter),
-    /// so progress adds up, but a richly comfortable colonist settles well under the top of the bar, where a bad day still
-    /// shows. Like Rimfolk's pressures it eases in hard times, to nothing at the minor-break line, so it never pushes
+    /// Good things grow ordinary: the one rule for how much a good mood counts (phase 3 of the review, 6 November 2026;
+    /// it took the place of four: standards shrinking the council's rewards and the game's comforts, good memories
+    /// fading sooner in good times, good moods adding up slowly, and used to the good life). The sum of every good mood
+    /// on a colonist's mind (the game's, other mods' and Rimfolk's, as each is felt) counts in full up to a soft line
+    /// their standards set: a colony used to the good life asks more, so the line is lower the more spoiled they are. Of
+    /// what is above it, half of the first 20 points and three quarters of the rest no longer lift them. That part is
+    /// not a mood of its own: it comes off the good moods themselves by how ordinary each is (GoodLifeMath.Weight), so a
+    /// fresh joy (a wedding just attended) counts nearly in full and drifts down as the days go by, and the everyday
+    /// comforts (a fine room, their beliefs, trust in the council, a kind of memory had often lately) shrink most. Each
+    /// good mood's line on the Mood tab shows what it counts for now, and one line in its tooltip says why. Life goals
+    /// reached count in full and are left out. Bad moods are never touched, every good thing still helps (each point
+    /// more adds at least a quarter), and it eases in hard times, to nothing at the minor-break line, so it never pushes
     /// anyone into a break. The arithmetic is in <see cref="GoodLifeMath"/>; the share is applied where the game adds up
-    /// each mood group (Patches/Patch_GoodTimes.cs, Patch_ComfortStandards).
+    /// each mood group (Patches/Patch_GoodTimes.cs, Patch_ComfortStandards). One setting, "Good things grow ordinary".
     /// <para>
     /// The sum is worked out from the thoughts themselves, grouped and stacked as the game stacks them, never through
     /// the game's own totals (those are what the share changes), and kept per colonist for a few seconds of game time.
@@ -30,7 +31,22 @@ namespace ColonyCouncil
     {
         private static CouncilSettings S => ColonyCouncilMod.Settings;
 
-        public static bool On => RimfolkPatches.On && S != null && S.usedToGoodLife && S.MoodEffects;
+        public static bool On => RimfolkPatches.On && S != null && S.goodGrowsOrdinary && S.MoodEffects;
+
+        /// <summary>
+        /// While set, moods read as they would without this rule: the Mood tab's readout and the tooltips use it to say how
+        /// much it takes off.
+        /// </summary>
+        public static bool Raw;
+
+        /// <summary>A def from Rimfolk itself, not from the game or another mod.</summary>
+        public static bool IsRimfolk(Def def) => def?.modContentPack != null && def.modContentPack == ColonyCouncilMod.Pack;
+
+        /// <summary>
+        /// The reward strength for a good mood Rimfolk gives that didn't go through the council (a moment, a lasting
+        /// reward): the setting alone. How much it counts beside their other good moods is this rule's.
+        /// </summary>
+        public static float RewardScale(Pawn p) => S?.rewardFactor ?? 1f;
 
         /// <summary>How long a colonist's sum is kept before it is worked out again.</summary>
         public const int RecomputeTicks = 250;
@@ -90,7 +106,7 @@ namespace ColonyCouncil
         /// </summary>
         public static float ShareOf(Pawn p, ThoughtDef def)
         {
-            if (p == null || def == null || GoodTimes.Raw || !On) return 1f;
+            if (p == null || def == null || Raw || !On) return 1f;
             var r = Refresh(p);
             return r != null && r.shares.TryGetValue(def, out float s) ? s : 1f;
         }
@@ -98,7 +114,7 @@ namespace ColonyCouncil
         /// <summary>The share of all their good moods together the colonist feels right now (1 when nothing is taken).</summary>
         public static float Share(Pawn p)
         {
-            if (p == null || GoodTimes.Raw || !On) return 1f;
+            if (p == null || Raw || !On) return 1f;
             return Refresh(p)?.share ?? 1f;
         }
 
@@ -235,7 +251,8 @@ namespace ColonyCouncil
             foreach (int k in old) readings.Remove(k);
         }
 
-        private static List<Thought_Situational> SituationalOf(SituationalThoughtHandler handler)
+        /// <summary>The lasting moods the game has worked out for them (its cache, read without changing it).</summary>
+        public static List<Thought_Situational> SituationalOf(SituationalThoughtHandler handler)
         {
             if (handler == null) return null;
             if (!situationalLooked)
@@ -256,8 +273,7 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Every good mood on their mind, as felt before this rule: the memories and the lasting moods that are on, grouped
-        /// and stacked as the game adds them up, with standards' share of the game's comforts taken off (GoodTimes.Felt,
-        /// as the game's total has it). Bad moods and life goals reached are left out. Each kind's total and how ordinary
+        /// and stacked as the game adds them up. Bad moods and life goals reached are left out. Each kind's total and how ordinary
         /// it is are left in tmpDefs, tmpValues and tmpWeights for the spread.
         /// </summary>
         private static float Positives(Pawn p, int now)
@@ -360,12 +376,12 @@ namespace ColonyCouncil
                 else kind = Kind.Between;
                 tmpKinds.Add(kind);
             }
-            // Then each group as felt, standards' cut on a comfort easing for something new.
+            // Then each group as felt.
             float sum = 0f;
             for (int g = 0; g < tmpGroups.Count; g++)
             {
                 int k = tmpDefs.IndexOf(tmpGroups[g].def);
-                float felt = GoodTimes.Felt(handler, tmpGroups[g], tmpGroupValues[g], tmpWeights[k]);
+                float felt = tmpGroupValues[g];
                 sum += felt;
                 tmpValues[k] += felt;
             }
@@ -386,30 +402,96 @@ namespace ColonyCouncil
             return r != null && group?.def != null && r.kinds.TryGetValue(group.def, out var k) ? k : Kind.Between;
         }
 
-        /// <summary>
-        /// How ordinary this kind of good mood is to them for standards' cut on a comfort (GoodTimes.Felt): 1 (the
-        /// whole cut) when the rule is off or the kind isn't known yet.
-        /// </summary>
-        public static float ComfortWeight(Pawn p, ThoughtDef def)
-        {
-            if (!On || GoodTimes.Raw) return 1f;
-            float w = WeightOf(p, def);
-            return w < 0f ? 1f : w;
-        }
-
         // ---------------- Text ----------------
 
         private static string Whole(float v) => (v >= 0f ? "+" : "") + Mathf.RoundToInt(v);
 
-        /// <summary>
-        /// The Mood tab readout's part: the share of their good moods they feel in all, from how far their good moods go
-        /// over their standards' line (null when it takes nothing).
-        /// </summary>
-        public static string ReadoutPart(Pawn p)
+        private static string LevelLabel(Pawn p) => ("CC_Standards_" + Standards.LevelOf(p)).Translate().ToString();
+
+        private static readonly List<Thought> tmpReadout = new List<Thought>();
+
+        /// <summary>A mood group as it would be without this rule.</summary>
+        public static float RawOffsetOfGroup(ThoughtHandler handler, Thought group)
         {
-            var r = ReadingOf(p);
-            if (!On || r == null || r.share >= 0.995f) return null;
-            return "CC_GoodLife_Readout".Translate(r.share.ToStringPercent().Named("SHARE")).Resolve();
+            bool was = Raw;
+            Raw = true;
+            try
+            {
+                return handler.MoodOffsetOfGroup(group);
+            }
+            finally
+            {
+                Raw = was;
+            }
+        }
+
+        /// <summary>
+        /// The one line for a good mood that counts for less (in its tooltip on the Mood tab and the game's Needs tab):
+        /// what it counts as now, of what, and why in a few words. Null when it counts in full.
+        /// </summary>
+        public static string Note(Pawn p, Thought group, float felt)
+        {
+            if (p == null || group?.def == null || felt <= 0f || !On) return null;
+            float share = ShareOf(p, group.def);
+            if (share >= 0.995f) return null;
+            float full = felt / share;
+            if (full - felt < 0.05f) return null;
+            string how;
+            switch (KindOf(p, group))
+            {
+                case Kind.New: how = "CC_Ordinary_How_New"; break;
+                case Kind.Settled: how = "CC_Ordinary_How_Settled"; break;
+                case Kind.Lasting: how = "CC_Ordinary_How_Lasting"; break;
+                case Kind.Often: how = "CC_Ordinary_How_Often"; break;
+                default: how = "CC_Ordinary_How_Between"; break;
+            }
+            return "CC_Ordinary_Note".Translate(MoodView.Number(felt).Named("FELT"), MoodView.Number(full).Named("FULL"),
+                how.Translate(p.Named("PAWN")).Resolve().Named("HOW"), p.Named("PAWN")).Resolve();
+        }
+
+        /// <summary>
+        /// One line for the Mood tab: what good things grown ordinary take off the colonist's good moods right now, as
+        /// felt against in full. Null when it takes nothing off.
+        /// </summary>
+        public static string Readout(Pawn p)
+        {
+            var handler = p?.needs?.mood?.thoughts;
+            if (handler == null || !On) return null;
+            float felt = 0f, full = 0f;
+            try
+            {
+                tmpReadout.Clear();
+                handler.GetDistinctMoodThoughtGroups(tmpReadout);
+                for (int i = 0; i < tmpReadout.Count; i++)
+                {
+                    var g = tmpReadout[i];
+                    if (g?.def == null) continue;
+                    float raw = RawOffsetOfGroup(handler, g);
+                    if (raw <= 0f) continue;
+                    full += raw;
+                    felt += Mathf.Max(0f, handler.MoodOffsetOfGroup(g));
+                }
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("good things grown ordinary: readout", e);
+                return null;
+            }
+            finally
+            {
+                // Don't keep thoughts (and through them, the whole game) alive between calls.
+                tmpReadout.Clear();
+            }
+            if (full - felt < 0.5f) return null;
+            return "CC_GoodTimes_Line".Translate("CC_Ordinary_Readout".Translate(Whole(felt).Named("FELT"), Whole(full).Named("FULL")).Resolve()).Resolve();
+        }
+
+        /// <summary>The Mood tab readout's tooltip: how the rule works, and the numbers behind it for them.</summary>
+        public static string Tip(Pawn p)
+        {
+            string tip = "CC_GoodTimes_Tip".Translate().Resolve();
+            string why = Why(p);
+            return why.NullOrEmpty() ? tip : tip + "\n\n" + why;
         }
 
         /// <summary>The paragraph for the readout's tooltip: the numbers behind the share, and hard times easing it.</summary>
@@ -417,8 +499,7 @@ namespace ColonyCouncil
         {
             var r = ReadingOf(p);
             if (!On || r == null || r.takeBack <= 0f) return null;
-            string level = ("CC_Standards_" + Standards.LevelOf(p)).Translate().ToString();
-            string why = "CC_GoodLife_Why".Translate(Whole(r.positives).Named("GOOD"), Whole(r.line).Named("LINE"), level.Named("LEVEL"),
+            string why = "CC_GoodLife_Why".Translate(Whole(r.positives).Named("GOOD"), Whole(r.line).Named("LINE"), LevelLabel(p).Named("LEVEL"),
                 Mathf.RoundToInt(GoodLifeMath.FirstStretch).Named("FIRST"), r.share.ToStringPercent().Named("SHARE"), p.Named("PAWN")).Resolve();
             if (r.hard > 0f) why += " " + "CC_GoodLife_Hard".Translate(p.Named("PAWN")).Resolve();
             return why;

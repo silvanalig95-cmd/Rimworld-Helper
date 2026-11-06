@@ -108,7 +108,7 @@ namespace ColonyCouncil
         public string why;
         /// <summary>Ticks until the last of them fades; -1 while its cause lasts; -2 never.</summary>
         public int ticksLeft = -1;
-        /// <summary>One of them was given while life was already good, and fades sooner for it (GoodTimes).</summary>
+        /// <summary>One of them faded sooner under the old rule of good times (kept for older saves; nothing sets it now).</summary>
         public bool sooner;
         public string description;
         /// <summary>Its text, worked out once (see MoodView).</summary>
@@ -231,8 +231,7 @@ namespace ColonyCouncil
                             mood = mood,
                             count = Mathf.Max(1, tmpThoughts.Count),
                             why = Why(group),
-                            ticksLeft = TicksLeft(tmpThoughts),
-                            sooner = AnySooner(tmpThoughts)
+                            ticksLeft = TicksLeft(tmpThoughts)
                         });
                     }
                     catch (Exception e)
@@ -296,9 +295,9 @@ namespace ColonyCouncil
                 try
                 {
                     l.description = l.thought.Description ?? "";
-                    // A comfort from the game or another mod that the colonist's standards make count for less.
-                    string comfort = GoodTimes.ComfortNote(l.pawn, l.thought, l.mood);
-                    if (!comfort.NullOrEmpty()) l.description = l.description.NullOrEmpty() ? comfort : l.description.TrimEnd() + "\n\n" + comfort;
+                    // A good thing grown ordinary: what it counts as now, in one line (Moods/GoodLife.cs).
+                    string ordinary = GoodLife.Note(l.pawn, l.thought, l.mood);
+                    if (!ordinary.NullOrEmpty()) l.description = l.description.NullOrEmpty() ? ordinary : l.description.TrimEnd() + "\n\n" + ordinary;
                 }
                 catch
                 {
@@ -318,17 +317,19 @@ namespace ColonyCouncil
                 // Some memories end by their own rules (renewed while a weapon is held, a harmonizer nearby...):
                 // they last while their cause does, whatever their clock says.
                 if (LastsWhileCause(m.GetType())) return -1;
-                left = Mathf.Max(left, GoodTimes.MoodTicks(m) - m.age);
+                left = Mathf.Max(left, MoodTicks(m) - m.age);
             }
             return left;
         }
 
-        private static bool AnySooner(List<Thought> thoughts)
+        /// <summary>
+        /// The age at which a memory's mood ends: its time, or sooner for a memory about someone that faded sooner in good
+        /// times under the old rule (saves from before good things grew ordinary keep it until it ends).
+        /// </summary>
+        public static int MoodTicks(Thought_Memory m)
         {
-            foreach (var t in thoughts)
-                if (t is Thought_Memory m && GoodTimes.FadingSooner(m))
-                    return true;
-            return false;
+            int full = m.DurationTicks;
+            return m is Thought_CouncilSocial s && s.moodTicks >= 0 && s.moodTicks < full ? s.moodTicks : full;
         }
 
         private static bool LastsWhileCause(Type type)
@@ -362,8 +363,14 @@ namespace ColonyCouncil
         /// <summary>What to do about it (or how to keep it).</summary>
         public static string Advice(MoodLine l)
         {
-            var hint = HintFor(l.def);
             bool bad = l.mood < 0f;
+            // Small letdowns and joys: what helps with the ones behind the row (Moods/SmallMoments.cs), else the row's own hint.
+            if (l.thought is Thought_SmallMoment)
+            {
+                string small = SmallMoments.Advice(l.pawn, l.def, bad);
+                if (!small.NullOrEmpty()) return small;
+            }
+            var hint = HintFor(l.def);
             string text = hint == null ? null : bad ? hint.fix : hint.keep;
             if (!text.NullOrEmpty()) return text;
             if (!bad) return null;
@@ -421,7 +428,6 @@ namespace ColonyCouncil
                 handler.GetMoodThoughts(group, tmpThoughts);
                 line.count = Mathf.Max(1, tmpThoughts.Count);
                 line.ticksLeft = TicksLeft(tmpThoughts);
-                line.sooner = AnySooner(tmpThoughts);
             }
             finally
             {
@@ -454,14 +460,9 @@ namespace ColonyCouncil
                 if (!meta.NullOrEmpty()) parts.Add(meta.Colorize(ColoredText.SubtleGrayColor));
                 // Rimfolk's own moods already say why in their description.
                 if (!l.why.NullOrEmpty() && !(group is ICausedThought) && !(group is IExplainedThought)) parts.Add("CC_Cause_Line".Translate(l.why).Resolve());
-                // Getting used to good times and standards: Rimfolk's own moods say so in their description already.
-                if (!(group is ICouncilMood) && group is Thought_Memory memory)
-                {
-                    string fade = GoodTimes.FadeLine(memory);
-                    if (fade != null) parts.Add(fade);
-                }
-                string comfort = GoodTimes.ComfortNote(p, group, l.mood);
-                if (comfort != null) parts.Add(comfort);
+                // A good thing grown ordinary: one line, the same for every good mood (Moods/GoodLife.cs).
+                string ordinary = GoodLife.Note(p, group, l.mood);
+                if (ordinary != null) parts.Add(ordinary);
                 string advice = Advice(l);
                 if (!advice.NullOrEmpty()) parts.Add((l.mood < 0f ? "CC_Mood_Fix" : "CC_Mood_Keep").Translate(advice).Resolve());
                 return string.Join("\n\n", parts);
