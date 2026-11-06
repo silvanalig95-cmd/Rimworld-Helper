@@ -8,16 +8,18 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// The council at a glance: open wishes (and whose has waited longest), petitions, promises coming due, questions
-    /// waiting for an answer, the decrees in force with the days they have left, the next day on the calendar or the
-    /// next meeting, and the colony's trust. Only what has something to say shows; each line opens the council window
-    /// on the right page (a waiting question opens its letter).
+    /// The council at a glance: the plan's next step; what waits on the player, read from This week's Needs you (the
+    /// one inbox, UI/Inbox.cs: open wishes and whose has waited longest, petitions, promises at risk, letters waiting
+    /// for an answer, the other asks of the region and the peoples), so it shows what This week and the council button
+    /// count; the decrees in force with the days they have left, the next day on the calendar or the next meeting, and
+    /// the colony's trust. Only what has something to say shows; each line goes where its most pressing thing does.
     /// </summary>
     public class HudCouncil : HudLinesPanel
     {
-        public const string PartWishes = "wishes", PartPetitions = "petitions", PartPromises = "promises", PartQuestions = "questions",
-            PartDecrees = "decrees", PartCalendar = "calendar", PartTrust = "trust", PartNext = "next";
-        public static readonly string[] Parts = { PartNext, PartWishes, PartPetitions, PartPromises, PartQuestions, PartDecrees, PartCalendar, PartTrust };
+        public const string PartWishes = InboxMath.PartWishes, PartPetitions = InboxMath.PartPetitions, PartPromises = InboxMath.PartPromises,
+            PartQuestions = InboxMath.PartQuestions, PartAsks = InboxMath.PartAsks, PartDecrees = "decrees", PartCalendar = "calendar", PartTrust = "trust",
+            PartNext = "next";
+        public static readonly string[] Parts = { PartNext, PartWishes, PartPetitions, PartPromises, PartQuestions, PartAsks, PartDecrees, PartCalendar, PartTrust };
 
         public HudCouncil() : base(HudLayout.Council)
         {
@@ -39,10 +41,7 @@ namespace ColonyCouncil
             if (comp == null) return;
             int now = Find.TickManager.TicksGame;
             Next(now);
-            Wishes(comp, now);
-            Petitions(comp);
-            Promises(comp, now);
-            Questions(now);
+            Waiting(now);
             Decrees(comp, now);
             Coming(comp, now);
             Trust(comp);
@@ -63,95 +62,76 @@ namespace ColonyCouncil
             Add(PartNext, Icons.Plan ?? Icons.Week, "CC_Pnl_Next".Translate(first.title.Named("STEP")).Resolve(), value, score, Tip(tip, ClickPage("Plan")), Page("Plan"));
         }
 
-        private void Wishes(CouncilGameComponent comp, int now)
+        /// <summary>
+        /// What waits on the player, read from This week's Needs you (Inbox.Waiting, the review's decision 16): one line for
+        /// each kind (wishes, petitions, promises at risk, letters waiting, the other asks), its count, ranked by its most
+        /// pressing row, the rows in the tooltip, and a click that goes where that row goes.
+        /// </summary>
+        private void Waiting(int now)
         {
-            if (!S.enableWishes) return;
-            var open = comp.wishes.Where(w => w.state == WishState.Open && w.pawn != null).ToList();
-            if (open.Count == 0) return;
-            var oldest = open.OrderBy(w => w.createdTick).First();
-            float score = 0f;
-            Wish worst = null;
-            foreach (var w in open)
+            var waiting = Inbox.Waiting;
+            var rows = new List<WeekRow>();
+            var ranks = new List<float>();
+            foreach (var part in InboxMath.PanelParts)
             {
-                int total = Mathf.Max(1, w.expiresTick - w.createdTick);
-                float s = HudRank.Wish(Mathf.Clamp01(w.TicksLeft / (float)total), w.stage);
-                if (s > score)
+                rows.Clear();
+                foreach (var p in waiting.parts)
+                foreach (var r in p.rows)
+                    if (r.waits && InboxMath.PanelPart(r.part, p.provider.part) == part)
+                        rows.Add(r);
+                if (rows.Count == 0) continue;
+                ranks.Clear();
+                foreach (var r in rows) ranks.Add(r.rank);
+                var first = rows[InboxMath.MostPressing(ranks)];
+                float score = InboxMath.PanelScore(ranks);
+                var tip = new List<string>();
+                if (part == InboxMath.PartWishes && score >= HudRank.SoonFloor && first.about is Wish lapsing && lapsing.pawn != null)
+                    tip.Add("CC_Pnl_WishLapsing".Translate(lapsing.pawn.LabelShort, lapsing.Label).Resolve() + "\n");
+                if (rows.Count > 1)
                 {
-                    score = s;
-                    worst = w;
+                    foreach (var r in rows.Take(6)) tip.Add(LinkTextMath.Plain(r.text));
+                    if (rows.Count > 6) tip.Add("CC_Week_More".Translate(rows.Count - 6).Resolve());
+                    tip.Add("");
                 }
+                tip.Add(first.tip.NullOrEmpty() ? LinkTextMath.Plain(first.text) : first.tip);
+                var go = first.click ?? (() => MainTabWindow_Council.OpenTab("Week"));
+                Add(part, PartIcon(part, first), PartText(part, rows.Count), PartValue(part, rows, now), score, string.Join("\n", tip), go);
             }
-            string text = "CC_Pnl_Wishes".Translate(open.Count).Resolve();
-            string value = "CC_Pnl_WaitedShort".Translate(oldest.pawn.LabelShort, UiKit.Duration(now - oldest.createdTick)).Resolve();
-            var tipLines = open.OrderBy(w => w.TicksLeft).Take(6)
-                .Select(w => "CC_Pnl_WishLine".Translate(w.pawn.LabelShort, w.Label, UiKit.Duration(Mathf.Max(0, w.TicksLeft))).Resolve());
-            string tip = string.Join("\n", tipLines);
-            if (worst != null && score >= HudRank.SoonFloor) tip = "CC_Pnl_WishLapsing".Translate(worst.pawn.LabelShort, worst.Label).Resolve() + "\n\n" + tip;
-            Add(PartWishes, Icons.Wishes, text, value, score, Tip(tip, ClickPage("Wishes")), Page("Wishes"));
         }
 
-        private void Petitions(CouncilGameComponent comp)
+        private static Texture2D PartIcon(string part, WeekRow first)
         {
-            // The colony in view's petitions.
-            var reqs = (ColonyView.Current?.decrees ?? comp.decrees).requests.Where(r => r?.def != null && r.pawn != null).ToList();
-            if (reqs.Count == 0) return;
-            string tip = string.Join("\n", reqs.Take(6).Select(r =>
-                (r.repeal ? "CC_Week_PetitionLift" : "CC_Week_Petition").Translate(r.pawn.LabelShort, r.def.label).Resolve()));
-            Add(PartPetitions, Icons.Decree, "CC_Pnl_Petitions".Translate(reqs.Count).Resolve(), null, 150f, Tip(tip, ClickPage("Decrees")), Page("Decrees"));
-        }
-
-        private void Promises(CouncilGameComponent comp, int now)
-        {
-            int count = 0, soonest = int.MaxValue;
-            float score = 0f;
-            var tip = new List<string>();
-            if (S.enableWishes)
-                foreach (var w in comp.wishes)
-                {
-                    if (w.state != WishState.Open || !w.promised || w.pawn == null) continue;
-                    count++;
-                    soonest = Mathf.Min(soonest, w.TicksLeft);
-                    int total = Mathf.Max(1, w.expiresTick - w.createdTick);
-                    score = Mathf.Max(score, HudRank.Wish(Mathf.Clamp01(w.TicksLeft / (float)total), w.stage));
-                    tip.Add("CC_Pnl_WishLine".Translate(w.pawn.LabelShort, w.Label, UiKit.Duration(Mathf.Max(0, w.TicksLeft))).Resolve());
-                }
-            var watches = comp.kept?.watches;
-            if (KeptTracker.On && watches != null)
-                foreach (var w in watches)
-                {
-                    if (w?.pawn == null || w.phase == KeptPhase.Kept) continue;
-                    bool missing = w.phase == KeptPhase.Missing;
-                    int left = missing ? w.graceUntil - now : w.takenBackTick + (int)(KeptMath.AmendsDays * KeptMath.TicksPerDay) - now;
-                    count++;
-                    soonest = Mathf.Min(soonest, left);
-                    // A granted wish taken back, or about to be: soon, sooner as its time runs out.
-                    score = Mathf.Max(score, left < GenDate.TicksPerDay ? 270f : 230f);
-                    tip.Add((missing ? "CC_Week_MissingLeft" : "CC_Week_TakenBackLeft").Translate(KeptTracker.Span(Mathf.Max(1, left))).Resolve() + ": " + w.pawn.LabelShort +
-                            ", " + (w.label ?? ""));
-                }
-            if (count == 0) return;
-            string value = soonest < int.MaxValue ? "CC_Pnl_DueIn".Translate(UiKit.Duration(Mathf.Max(0, soonest))).Resolve() : null;
-            Add(PartPromises, Icons.Promise, "CC_Pnl_Promises".Translate(count).Resolve(), value, Mathf.Max(score, 120f), Tip(string.Join("\n", tip), ClickPage("Wishes")),
-                Page("Wishes"));
-        }
-
-        private void Questions(int now)
-        {
-            var waiting = new List<(Letter letter, int left)>();
-            foreach (var l in Find.LetterStack.LettersListForReading)
+            switch (part)
             {
-                if (WeekModel.WaitingKind(l) == null) continue;
-                int left = l is LetterWithTimeout lt && lt.TimeoutActive ? lt.disappearAtTick - now : -1;
-                waiting.Add((l, left));
+                case InboxMath.PartWishes: return Icons.Wishes;
+                case InboxMath.PartPetitions: return Icons.Decree;
+                case InboxMath.PartPromises: return Icons.Promise;
+                case InboxMath.PartQuestions: return Icons.Dilemmas ?? Icons.Decree;
+                default: return first.icon ?? Icons.Inbox ?? Icons.Week;
             }
-            if (waiting.Count == 0) return;
-            var first = waiting.OrderBy(w => w.left >= 0 ? w.left : int.MaxValue).ThenBy(w => w.letter.arrivalTick).First();
-            float hours = first.left >= 0 ? first.left / (float)GenDate.TicksPerHour : -1f;
-            string value = first.left >= 0 ? "CC_Pnl_LeftShort".Translate(UiKit.Duration(first.left)).Resolve() : null;
-            string tip = string.Join("\n", waiting.Take(6).Select(w => w.letter.Label.ToString()));
-            var open = first.letter;
-            Add(PartQuestions, Icons.Dilemmas ?? Icons.Decree, "CC_Pnl_Questions".Translate(waiting.Count).Resolve(), value, HudRank.Question(hours),
-                Tip(tip, HudKit.T("CC_Pnl_ClickLetter")), () => open.OpenLetter());
+        }
+
+        private static string PartText(string part, int count)
+        {
+            switch (part)
+            {
+                case InboxMath.PartWishes: return "CC_Pnl_Wishes".Translate(count).Resolve();
+                case InboxMath.PartPetitions: return "CC_Pnl_Petitions".Translate(count).Resolve();
+                case InboxMath.PartPromises: return "CC_Pnl_Promises".Translate(count).Resolve();
+                case InboxMath.PartQuestions: return "CC_Pnl_Questions".Translate(count).Resolve();
+                default: return "CC_Pnl_Asks".Translate(count).Resolve();
+            }
+        }
+
+        /// <summary>The value at the right: for wishes, whose has waited longest and since when; the rest say it in their tooltips (never a time left).</summary>
+        private static string PartValue(string part, List<WeekRow> rows, int now)
+        {
+            if (part != InboxMath.PartWishes) return null;
+            Wish oldest = null;
+            foreach (var r in rows)
+                if (r.about is Wish w && w.pawn != null && (oldest == null || w.createdTick < oldest.createdTick))
+                    oldest = w;
+            return oldest == null ? null : "CC_Pnl_WaitedShort".Translate(oldest.pawn.LabelShort, UiKit.Duration(now - oldest.createdTick)).Resolve();
         }
 
         private void Decrees(CouncilGameComponent comp, int now)

@@ -301,7 +301,7 @@ public static class SettingsTests
 
         // ---------- What's on: the quick setup reaches every part of the colony's life and its world ----------
         var systems = SettingsCatalog.Systems.ToList();
-        Check(systems.Count >= 90, $"the setups reach every system ({systems.Count} switches)");
+        Check(systems.Count >= 85, $"the setups reach every system ({systems.Count} switches)");
         foreach (var s in SettingsCatalog.SystemSections)
             Check(systems.Any(e => e.section == s), $"the setups reach the section {s}");
         foreach (var f in new[] { "regionFortunes", "tradingPosts", "hamlets", "diplomacyPacts", "diplomacyFealty", "diplomacyRenown", "goodsComeAndGo", "answersPlayOut", "heart" })

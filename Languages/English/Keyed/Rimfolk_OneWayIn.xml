@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- ===================== One way in (phase 6 of the review, part 2; the player's decisions 14 and 16 of 6 November 2026) ===================== -->
+
+  <!-- The on-screen council panel reads This week's Needs you (Hud/HudCouncil.cs): its line for the asks of the region and the peoples -->
+  <CC_Pnl_Asks>Asks waiting: {0}</CC_Pnl_Asks>
+  <CC_Pnl_Part_asks>Asks from the region and the peoples</CC_Pnl_Part_asks>
+
+</LanguageData>

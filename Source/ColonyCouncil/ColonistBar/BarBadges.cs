@@ -14,6 +14,9 @@ namespace ColonyCouncil
     /// close to a mental break (a soft ring around the portrait, or a dot), about to leave the colony, a wish that has
     /// waited long, strain near breaking, wavering faith, a promise at risk. A calm colonist shows nothing. When more
     /// apply than are shown, the most pressing win (<see cref="BarBadgeMath.Priority"/>); the tooltip names the rest.
+    /// The wish and the promise at risk are what waits on the player, so they are read from This week's Needs you
+    /// (<see cref="Inbox.Waiting"/>), the one list the council panel and the council button read too; the rest are how
+    /// someone is, read from them.
     ///
     /// Each colonist's badges are worked out at most once a second into a small cache keyed by their id (started over
     /// with each game); drawing reads the cache, a few textures and nothing else, and tooltips are written only while the
@@ -296,15 +299,16 @@ namespace ColonyCouncil
                         Add(e, BarBadgeKind.Leaving, 0);
                     }
                 }
-                // Their own open wish that has waited longest, once past the set share of its patience.
+                // Their own open wish that has waited longest, once past the set share of its patience: from This week's
+                // Needs you (Inbox.Waiting), the one list of what waits, as the council panel reads it.
                 if (s.barBadgeWish)
                 {
                     int best = -1;
                     float bestElapsed = -1f;
-                    var wishes = comp.wishes;
-                    for (int i = 0; i < wishes.Count; i++)
+                    var waiting = Inbox.Waiting.Of(p);
+                    for (int i = 0; i < waiting.Count; i++)
                     {
-                        var w = wishes[i];
+                        var w = waiting[i].about as Wish;
                         if (w == null || w.state != WishState.Open || w.pawn != p || w.def == null) continue;
                         float elapsed = w.Elapsed;
                         int level = BarBadgeMath.WishLevel(elapsed, s.barWishPatience, w.stage);
@@ -341,18 +345,17 @@ namespace ColonyCouncil
                 Add(e, BarBadgeKind.Faith, BarBadgeMath.FaithLevel(e.certainty, FaithMath.WaveringBelow));
             }
 
-            // A promise at risk: something granted is gone (the grace running), or was taken back and can still be made right.
-            if (s.barBadgePromise && comp != null && KeptTracker.On && comp.kept?.watches != null)
+            // A promise at risk: something granted is gone (the grace running), or was taken back and can still be made right;
+            // Needs you's own rows (the promises at risk), so the badge, This week and the council panel agree.
+            if (s.barBadgePromise && comp != null)
             {
-                int now = Find.TickManager.TicksGame;
                 int best = -1;
-                var watches = comp.kept.watches;
-                for (int i = 0; i < watches.Count; i++)
+                var waiting = Inbox.Waiting.Of(p);
+                for (int i = 0; i < waiting.Count; i++)
                 {
-                    var w = watches[i];
+                    var w = waiting[i].about as GrantWatch;
                     if (w == null || w.pawn != p || w.phase == KeptPhase.Kept) continue;
                     int level = w.phase == KeptPhase.TakenBack ? 1 : 0;
-                    if (level == 1 && now >= w.takenBackTick + (int)(KeptMath.AmendsDays * KeptMath.TicksPerDay)) continue;
                     if (level <= best) continue;
                     best = level;
                     e.watch = w;

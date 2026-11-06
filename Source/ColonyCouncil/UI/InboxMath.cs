@@ -165,6 +165,54 @@ namespace ColonyCouncil
 
         /// <summary>When something comes, by the calendar days of the place (days since the start, as the game counts them): today, tomorrow, or its date.</summary>
         public static DueWord When(int dayNow, int dayDue) => dayDue <= dayNow ? DueWord.Today : dayDue == dayNow + 1 ? DueWord.Tomorrow : DueWord.Date;
+
+        // ---------------- What waits, as the on-screen council panel and the colonist bar read it ----------------
+        // The review's decision 16 (6 November 2026): what waits on the player was worked out four times (This week, the
+        // council panel on the screen, the colonist bar's badges, the game's alerts). Needs you is the one list now: the
+        // panel shows its rows by kind, the badges a colonist's own rows; the game's alerts stay the game's.
+
+        /// <summary>The council panel's parts that show what waits, in its order: wishes, petitions, promises at risk, letters waiting, the other asks.</summary>
+        public const string PartWishes = "wishes", PartPetitions = "petitions", PartPromises = "promises", PartQuestions = "questions", PartAsks = "asks";
+
+        public static readonly string[] PanelParts = { PartWishes, PartPetitions, PartPromises, PartQuestions, PartAsks };
+
+        /// <summary>The panel's part a row of Needs you shows under: its own, else its provider's, else the other asks.</summary>
+        public static string PanelPart(string rowPart, string providerPart) =>
+            !string.IsNullOrEmpty(rowPart) ? rowPart : !string.IsNullOrEmpty(providerPart) ? providerPart : PartAsks;
+
+        /// <summary>A row that waits with no rank of its own is worth knowing (the panels' middle tier, Hud/HudRank.cs).</summary>
+        public const float WaitingRank = 150f;
+
+        /// <summary>A row's rank on the panels' scale: its own, else worth knowing.</summary>
+        public static float Rank(float own) => own > 0f ? own : WaitingRank;
+
+        /// <summary>
+        /// The most pressing of a part's rows: the highest rank, the first in the inbox's order among equals. Returns its
+        /// index, or -1 for none.
+        /// </summary>
+        public static int MostPressing(IList<float> ranks)
+        {
+            int best = -1;
+            float top = float.MinValue;
+            if (ranks == null) return -1;
+            for (int i = 0; i < ranks.Count; i++)
+            {
+                float r = Rank(ranks[i]);
+                if (r > top)
+                {
+                    top = r;
+                    best = i;
+                }
+            }
+            return best;
+        }
+
+        /// <summary>The panel line's score: its most pressing row's rank (nothing when it has no rows).</summary>
+        public static float PanelScore(IList<float> ranks)
+        {
+            int i = MostPressing(ranks);
+            return i < 0 ? 0f : Rank(ranks[i]);
+        }
     }
 
     /// <summary>

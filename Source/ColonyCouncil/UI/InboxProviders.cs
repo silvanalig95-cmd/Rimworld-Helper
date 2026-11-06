@@ -73,13 +73,14 @@ namespace ColonyCouncil
             // Following: what the player follows, each with its newest change (UI/FollowWords.cs), then the wishes pinned.
             Inbox.Register("following", InboxSection.Following, 10f, FollowWords.Rows);
             Inbox.Register("pinned-wishes", InboxSection.Following, 20f, PinnedWishes);
-            // Needs you: the one count is what these count.
-            Inbox.Register("wishes", InboxSection.Needs, 10f, Wishes, WishesCount);
-            Inbox.Register("answers", InboxSection.Needs, 20f, Answers, AnswersCount);
+            // Needs you: the one count is what these count. The on-screen council panel and the colonist bar read the same
+            // rows (Inbox.Waiting): wishes and petitions, letters waiting, promises at risk, the other asks.
+            Inbox.Register("wishes", InboxSection.Needs, 10f, Wishes, WishesCount, part: InboxMath.PartWishes);
+            Inbox.Register("answers", InboxSection.Needs, 20f, Answers, AnswersCount, part: InboxMath.PartQuestions);
             Inbox.Register("asks", InboxSection.Needs, 25f, Asks, AsksCount);
             Inbox.Register("favours", InboxSection.Needs, 30f, DiplomacyPanels.WeekRows, DiplomacyPanels.WeekCount);
             Inbox.Register("settlers", InboxSection.Needs, 35f, HamletPage.WeekRows, HamletPage.WeekCount);
-            Inbox.Register("promises", InboxSection.Needs, 40f, Promises, PromisesCount);
+            Inbox.Register("promises", InboxSection.Needs, 40f, Promises, PromisesCount, part: InboxMath.PartPromises);
             // Coming, by date.
             Inbox.Register("calendar", InboxSection.Coming, 10f, Calendar);
             Inbox.Register("meetings", InboxSection.Coming, 15f, Meetings);
@@ -126,11 +127,15 @@ namespace ColonyCouncil
         {
             var comp = Comp;
             if (comp == null) return 0;
+            // What the rows list, counted the same way (the panel and the badges read the rows, the button this count).
             int petitions = 0, wishes = 0;
-            foreach (var council in ColonyState.Ticking()) petitions += council.decrees.requests.Count;
+            foreach (var council in ColonyState.Ticking())
+                foreach (var r in council.decrees.requests)
+                    if (r?.def != null && r.pawn != null)
+                        petitions++;
             if (S.enableWishes)
                 foreach (var w in comp.wishes)
-                    if (w.state == WishState.Open)
+                    if (w.state == WishState.Open && w.pawn != null)
                         wishes++;
             return petitions + wishes;
         }
@@ -164,7 +169,9 @@ namespace ColonyCouncil
                     act = InboxWords.Decide,
                     actRun = open,
                     follow = ThingRefs.Of(r.pawn),
-                    order = r.tick
+                    order = r.tick,
+                    about = r,
+                    part = InboxMath.PartPetitions
                 });
             }
         }
@@ -196,7 +203,11 @@ namespace ColonyCouncil
                 act = InboxWords.Look,
                 actRun = open,
                 pinWish = w,
-                order = w.createdTick
+                order = w.createdTick,
+                about = w,
+                // On the panels: worth knowing, soon as its patience runs out, as the council panel always ranked it.
+                rank = HudRank.Wish(Mathf.Clamp01(share), w.stage),
+                part = InboxMath.PartWishes
             };
         }
 
@@ -242,7 +253,10 @@ namespace ColonyCouncil
                     click = read,
                     act = InboxWords.Answer,
                     actRun = read,
-                    order = left > 0 ? left : int.MaxValue / 2 + l.arrivalTick
+                    order = left > 0 ? left : int.MaxValue / 2 + l.arrivalTick,
+                    about = l,
+                    // Soon on the panels when it would go unanswered within a day.
+                    rank = HudRank.Question(left > 0 ? left / (float)GenDate.TicksPerHour : -1f)
                 });
             }
             if (news > 0)
@@ -263,7 +277,9 @@ namespace ColonyCouncil
                         if (n > 0) Messages.Message("CC_Week_MarkedRead".Translate(n).Resolve(), MessageTypeDefOf.SilentInput, false);
                         WeekPanel.Dirty();
                     },
-                    order = int.MaxValue
+                    order = int.MaxValue,
+                    // The evenings' news asks nothing: not counted, not on the council panel.
+                    waits = false
                 });
             }
         }
@@ -323,20 +339,29 @@ namespace ColonyCouncil
                     act = InboxWords.Answer,
                     actRun = read,
                     follow = place,
-                    order = l.arrivalTick
+                    order = l.arrivalTick,
+                    about = l
                 });
             }
         }
 
         // ---------------- Needs you: promises at risk ----------------
 
+        /// <summary>
+        /// A promise at risk: what was given is gone (the grace running), or was taken back and can still be made right. One
+        /// taken back past the days to make amends is lost, not waiting (its watch closes at the next look).
+        /// </summary>
+        private static bool AtRisk(GrantWatch w, int now) =>
+            w?.pawn != null && w.phase != KeptPhase.Kept
+            && !(w.phase == KeptPhase.TakenBack && now >= w.takenBackTick + (int)(KeptMath.AmendsDays * KeptMath.TicksPerDay));
+
         private static int PromisesCount()
         {
             var watches = Comp?.kept?.watches;
             if (!KeptTracker.On || watches == null) return 0;
-            int n = 0;
+            int n = 0, now = Now;
             foreach (var w in watches)
-                if (w != null && w.phase != KeptPhase.Kept)
+                if (AtRisk(w, now))
                     n++;
             return n;
         }
@@ -348,7 +373,7 @@ namespace ColonyCouncil
             int now = Now;
             foreach (var w in watches)
             {
-                if (w?.pawn == null || w.phase == KeptPhase.Kept) continue;
+                if (!AtRisk(w, now)) continue;
                 bool missing = w.phase == KeptPhase.Missing;
                 int until = missing ? w.graceUntil : w.takenBackTick + (int)(KeptMath.AmendsDays * KeptMath.TicksPerDay);
                 int left = until - now;
@@ -367,7 +392,10 @@ namespace ColonyCouncil
                     act = InboxWords.Look,
                     actRun = go,
                     follow = ThingRefs.Of(w.pawn),
-                    order = missing ? left : -1000000 + left
+                    order = missing ? left : -1000000 + left,
+                    about = w,
+                    // Soon on the panels, sooner in its last day.
+                    rank = left < GenDate.TicksPerDay ? 270f : 230f
                 });
             }
         }
