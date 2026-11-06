@@ -6,6 +6,66 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- phase 4 of the review, part 1: one name (the player's decision 6 of 6 November 2026: "one slow 'known as' per colonist
+  and one 'known for' per colony; reputation's six sides stay as details"). Not released: no round in
+  Almanac_WhatsNew.xml, About.xml untouched. The save at day 128: "the Healer" went Harper, Alo, Harper, Alo in 70 days on
+  the old 15% margin, Harper held six names in 80 days, Hector's card read "Hector, the Builder, Beastfriend, Tinker" with
+  renown's "Known as the one who ..." as a second line, and the colony was told by four systems in four places with their
+  own chronicle lines. (1) A name holds (`Epithets/NameMath.cs`, pure; `EpithetTracker.Names`): nobody can take it for 30
+  days (`HoldDays`); then the best other must be clearly ahead on the count (`ClearLead`, a quarter, or the name's own
+  margin) every day of a season (`ChallengeDays` 15; a day not ahead ends it, a new best starts their own) and do half again
+  as much of the work as the holder over it (`OutdoShare`; twice the count and more of the work also does, `FarAhead`); a
+  holder still at the work keeps it and the season starts again; the one who lost it can't take it back for a year
+  (`ReturnDays`). On a model of the save's two doctors taking turns a season each, the old margin passed the name three
+  times in 80 days, the new rule never; one who stops loses it once. A condition broken (the Unshaken) still loses it at
+  once. The one who lost the name they were known by writes it once in their journal (`Rimfolk_Journal_EpithetLost`,
+  `Rimfolk_Journal_OneName.xml`). Saved packed, one line a name held (`holds` through the field `holdsSaved`,
+  `NameMath.Pack`; modelled in `Tools/save_estimate.py`). (2) One "known as" per colonist (`Epithets/KnownAs.cs`, the one
+  place): the short form is one of the names they hold (`EpithetTracker.Chief`: a proud one before a dubious one, then the
+  one held longest; `NameOf`, `AlsoOf`), the line says it with what the peoples know them for and how far it carries
+  (`Renown.Own`, read from the history and the peoples' memory; `NameMath.LineKey`, keys `CC_Name_Own_*`): "Known as the
+  Healer, the one who won the wrestling at the feast with the Lenlia, talked about in the next town."; "Known in the
+  colony as the Healer." while nobody outside speaks of them. Under it the other names ("Also called ...") and
+  reputation's sides (`Reputations.SidesLine`, also the character page's first line). The card's title and Who lines
+  (renown's own colonist line went), the Story tab, the People table, the wishes' tooltip, the annals, the eulogy tags
+  (`NameOf`, was `TitlesOf` joining every name), the death letter (`Chief`), renown's "the one the colony calls ..." in
+  talk and letters (`Renown.Held` names the chief) and People → Renown ("Known by name": each of the colony's people by it)
+  read it; the chronicle's "X became known as Y." only when it is the name they are known by now (a second name is the news
+  and the journal). Every name held still counts where systems count (`Of`: a ballot, renown, the heart, the events asking
+  for one by name). The names setting's tooltip says how a name moves (`CC_Name_Settings_Epithets_Tip`). (3) One "known
+  for" per colony (`Character/ColonyName.cs`, pure `ColonyNameMath.cs`): one card read from the ways, the traits, renown
+  and the peoples' memory, whose data stays where everything reads it: what people call it (ways and traits in one list,
+  a way known far and wide first, `Order`) and how far its name carries beyond its walls and for what, in one sentence
+  (`Main`, `CardKey`, keys `CC_Name_Card_*`); then the deeds behind it (renown's, `RenownPanels.From`; the council's latest
+  three choices behind its ways), what is held against it, what each people remembers (a line each, four at most), the
+  notables and what it does (`RenownPanels.Reach`; `RenownPanels` registers nothing now). On Council → Ways ("The
+  colony's name" at the top, the ways and the rest below), a home's card (in renown's place), the Overview's line, the
+  Culture tab, the founding letter and the press article (`CalledWords`). What it is known for abroad holds while still
+  enough by renown's rule (`HeldKind`). One chronicle sentence when it changes (`Look`, `Key`, `Diff`, `Clauses`,
+  `CC_Name_Changed_*`; the key `CharacterTracker.nameKey`): after the ways move and at the end of the council's day; the
+  ways and the traits write no chronicle line of their own (their letters and news stay); a way fallen from far and wide to
+  known says nothing in the chronicle and its news says the neighbours still call it that (`CC_Name_Ways_Narrower`, "people
+  have stopped calling the colony merciful" was untrue of it); a band move stays renown's own sentence and the key takes it
+  quietly (`ColonyName.Settle`). (4) Older saves: names held stay; a name with no hold is held from the newest history line
+  that gave it ("Alo became known as the Healer.", `NameMath.SameLine`), else from its first look, so nothing moves at once
+  (a challenge needs a season) and nothing is told; the colony's key is set at its first look without a word, and a part not
+  read (the ways off, renown not yet looked at) is never a change. On the player's save: Hector the Builder (also
+  Beastfriend and Tinker), Harper the Vault (also the Old Hand and the Bottomless), Alo the Healer since day 113 (also
+  Goodhands; held to day 143, so the earliest the Healer can move is day 158, and only to one who outdid Alo at the
+  sickbeds all that season), Penguin the Cook, Stace the Mender, Barr the Sower, Macy Greenhand; the colony "traditional,
+  generous, learned, devout, artful and walled"; its renown's band was never told (none saved), so the card reads renown as
+  it stands and what it is known for abroad joins the name's key quietly at the first diplomacy day. Keys in
+  `Rimfolk_OneName.xml`. Tests: `OneNameTests` (new: the hold, the
+  season, outdoing, the year's bar, the two doctors and the one who stops, packing, the one name, the line, the one list,
+  the key and what changed, the sentence's clauses, the card's line, where each is read), `RenownTests` (the card lines
+  moved). Docs: DESIGN.md ("One name" after "One history", renown's "Where it shows", the save table), README (names,
+  Our ways, renown, the People row), the Almanac's names and annals page, the colony's character page and the diplomacy
+  page. Left: colonist and kin memory as one, deeds kept once, and office names by age (the holistic review's phase 4,
+  the other part's and later); the envy trouble's name (`Setbacks/Troubles.cs`, the heart's part) still reads the first
+  proud name rather than the chief. To check in game: a colonist's card on the player's save (one name in the title, the
+  line, also called, the sides); People → Renown; Council → Ways (the card at the top); a home's card in the region window;
+  the chronicle after a way or a trait is gained (one sentence); the next name moved (not before its hold and a season).
+
 - 0.107.0, phase 1 of the review: one record (the player's decision 3 of 6 November 2026: "the chronicle becomes the colony's
   view of the history, every question records how it went, and the year is told once"). Not released: no round in
   Almanac_WhatsNew.xml, About.xml untouched. (1) The chronicle is the history's view. The save at day 128 showed the
