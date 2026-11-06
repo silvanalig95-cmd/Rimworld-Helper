@@ -469,6 +469,9 @@ Council_Dilemma_StarNight [option 2] a refusal: everyone keeps their usual hours
 Council_Dilemma_AutumnHunt [option 2] a refusal: no hunt is set going
 # Defs/DilemmaDefs/Rimfolk_Dilemmas_New.xml
 Council_DlmV_HeatWave [option 2] a refusal: the work goes on as the timetables already have it; the heat is the game's own
+# Defs/DilemmaDefs/Rimfolk_Dilemmas_Variety2.xml
+Rimfolk_DlmE_ColdSnap [option 2] a refusal: the work goes on as the timetables already have it; the cold is the game's own
+Rimfolk_DlmE_GoodWeapon [option 2] a refusal: the weapon stays where it lies and nobody takes it up
 # Defs/WorldSituationDefs/Rimfolk_WS_New.xml
 Council_WS_OrbitalLanes [agent/0] the goods are carried out to the agent at the gate in the effect's own code (WorldEffect_Sell toVisitor, a CarryOut to the stranger)
 Council_WS_OrbitalLanes [agent/1] the goods are carried out to the agent at the gate in the effect's own code (WorldEffect_Sell toVisitor, a CarryOut to the stranger); the risk is a refusal

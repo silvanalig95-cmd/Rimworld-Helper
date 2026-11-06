@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The second round of event variety: the council's questions about what the colony meets (Dilemmas/DilemmaWorkers_Variety2.cs). -->
+
+  <!-- The cold snap's hours (AnswerShiftMath.Cold) -->
+  <CC_DlmV_HoursLabel_cold>the cold snap</CC_DlmV_HoursLabel_cold>
+  <CC_Impact_Hours_cold>{0}: lie in through the frost of the early morning (5 to 8) and go to bed early (19 to 21), until the cold snap ends</CC_Impact_Hours_cold>
+  <CC_Impact_HoursBrief_cold>{0} keep short days</CC_Impact_HoursBrief_cold>
+  <CC_DlmV_Hours_cold>{0} will keep short days until the cold snap ends: abed through the frost of the morning, and to bed early.</CC_DlmV_Hours_cold>
+
+  <!-- Blight in the fields -->
+  <CC_DlmE_NoBlight>The blight is gone from the fields.</CC_DlmE_NoBlight>
+  <CC_Impact_BlightCut>The blighted plants of the fields marked for cutting, for the growers to take out before it spreads</CC_Impact_BlightCut>
+  <CC_Impact_BlightCutBrief>the blighted plants cut out</CC_Impact_BlightCutBrief>
+  <CC_Impact_BlightField>The blighted plants marked for cutting, and the rest of those fields that can come in now marked for harvest, ripe or not: a smaller harvest, safe from the blight</CC_Impact_BlightField>
+  <CC_Impact_BlightFieldBrief>the blight cut out, the field brought in early</CC_Impact_BlightFieldBrief>
+  <CC_DlmE_BlightMarked>The blighted plants in the fields are marked for cutting.</CC_DlmE_BlightMarked>
+  <CC_DlmE_BlightFieldMarked>The blighted plants are marked for cutting, and the rest of those fields for an early harvest.</CC_DlmE_BlightFieldMarked>
+
+  <!-- The good weapon -->
+  <CC_DlmE_WeaponGone>The {0} is no longer in the stores, or no longer a step up.</CC_DlmE_WeaponGone>
+  <CC_Impact_TakeUp>{0} walks to the stores and takes up the {1}, setting down what they carried</CC_Impact_TakeUp>
+  <CC_Impact_TakeUpBrief>{0} carries the {1}</CC_Impact_TakeUpBrief>
+  <CC_DlmE_TakingUp>{PAWN_nameDef} is going to the stores to take up the {1}.</CC_DlmE_TakingUp>
+
+  <!-- The animal left behind -->
+  <CC_DlmE_CantHandle>{PAWN_nameDef} hasn't the skill to handle {PET_nameDef}.</CC_DlmE_CantHandle>
+  <CC_Impact_NewMaster>{1} becomes {0}'s master, and {0} keeps at {1}'s heels for a day</CC_Impact_NewMaster>
+  <CC_Impact_NewMasterBrief>{0} goes to {1}</CC_Impact_NewMasterBrief>
+  <CC_DlmE_NewMaster>{PAWN_nameDef} is {PET_nameDef}'s master now.</CC_DlmE_NewMaster>
+
+</LanguageData>

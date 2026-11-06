@@ -82,6 +82,11 @@ PLAY = {
     "DilemmaEffect_Emancipate": "slave freed",
     "DilemmaEffect_SelfTend": "self-tend",
     "DilemmaEffect_MedCare": "best medicine",
+    # What the colony meets (Dilemmas/DilemmaWorkers_Variety2.cs): the blighted plants (and the field) marked for the
+    # growers, a weapon from the stores taken up by the one chosen, an animal given a new master it follows.
+    "DilemmaEffect_CutBlight": "blight marked",
+    "DilemmaEffect_TakeUp": "weapon taken up",
+    "DilemmaEffect_NewMaster": "new master",
     # Banishment by the council (Social/Banishment.cs): the council's word said face to face, and someone sent away told
     # face to face, gathering their things in their room and walking out by the edge.
     "DilemmaEffect_TroubleWord": "a word face to face",
