@@ -122,7 +122,7 @@ this save or start a new game. The design serves both, and the order to build it
   fresh start is a settlement and map the game's way. Without Rimfolk the town is an ordinary town of an ordinary
   people (only its kept layout is Rimfolk's).
 - **The colony is the family** (CLAUDE.md, the player's rule of 5 November 2026). A town the colony was is bound to the
-  colony as one colony to what it was, never as a family or a house: its people are the colony's former people, its
+  colony because it was the colony, never as a family or a house: its people are the colony's former people, its
   next head is chosen by office or standing (below: the head's second), it has no founding families (a new town's two
   families are other peoples' story, `RegionFaces`), and nothing is handed down. A colonist's own ties stay personal
   and do their part: who goes where with whom, coming home, moving there, "parted". The scenario's two quarrelling
@@ -174,7 +174,7 @@ this save or start a new game. The design serves both, and the order to build it
 ## 1. A fresh start in the same save
 
 ### Choosing a place
-"Found a new colony" on a colony's card (the Ours lens, section 3) starts the game's world targeter. For the tile under
+"Found a new colony" on a colony's card (the Ours lens, 3c) starts the game's world targeter. For the tile under
 the cursor Rimfolk's panel adds to the game's own tile view: whose land it is (Faction Territories), the towns within
 reach and their peoples' stance, how remote it would be (stage 1's rule for a tile), the days of travel from each home
 by the colony's means, and the game's own checks (a valid tile, the goodwill warning near a town, the max-settlements
