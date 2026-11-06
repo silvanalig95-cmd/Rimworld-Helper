@@ -186,7 +186,7 @@ namespace ColonyCouncil
             Say(p, "Rimfolk_Pool_WorkSlip", work.ToString().ToLowerInvariant(), kind.ToString().ToLowerInvariant());
             string part = h.Part?.Label ?? "";
             string text = TextVariants.Vary("CC_Harm_Slip_" + work).Translate(p.Named("PAWN"), part.Named("PART"), decree.label.Named("DECREE")).Resolve();
-            Tell.Message(NewsKind.Health, Importance.Notable, p.Map, text, new LookTargets(p), MessageTypeDefOf.NegativeHealthEvent);
+            Tell.Message(NewsKind.Health, Importance.Important, p.Map, text, new LookTargets(p), MessageTypeDefOf.NegativeHealthEvent);
         }
 
         // ================= Working through it =================
@@ -228,7 +228,7 @@ namespace ColonyCouncil
             string text = TextVariants.Vary("CC_Harm_TornBack").Translate(p.Named("PAWN")).Resolve();
             string note = AilmentTracker.DoctorsNote(tornBack);
             if (!note.NullOrEmpty()) text += " " + note;
-            Tell.Message(NewsKind.Health, Importance.Notable, p.Map, text, new LookTargets(p), MessageTypeDefOf.NegativeHealthEvent);
+            Tell.Message(NewsKind.Health, Importance.Important, p.Map, text, new LookTargets(p), MessageTypeDefOf.NegativeHealthEvent);
         }
 
         private static void AnkleGives(Pawn p, Hediff sprain)
@@ -249,7 +249,7 @@ namespace ColonyCouncil
             string text = TextVariants.Vary(crack ? "CC_Harm_AnkleCrack" : "CC_Harm_AnkleFall").Translate(p.Named("PAWN"), (h.Part?.Label ?? "").Named("PART")).Resolve();
             string note = AilmentTracker.DoctorsNote(sprain.def);
             if (!note.NullOrEmpty()) text += " " + note;
-            Tell.Message(NewsKind.Health, Importance.Notable, p.Map, text, new LookTargets(p), MessageTypeDefOf.NegativeHealthEvent);
+            Tell.Message(NewsKind.Health, Importance.Important, p.Map, text, new LookTargets(p), MessageTypeDefOf.NegativeHealthEvent);
         }
 
         /// <summary>The colony's best doctor nearby, if they're together, says to rest it this time.</summary>

@@ -256,7 +256,7 @@ namespace ColonyCouncil
             Say(attacker, "Rimfolk_Pool_DrillSorry", defender);
             string text = TextVariants.Vary(bout.muster ? "CC_Harm_MusterBlow" : "CC_Harm_DrillBlow")
                 .Translate(defender.Named("PAWN"), attacker.Named("OTHER"), (h.Part?.Label ?? "").Named("PART")).Resolve();
-            Tell.Message(NewsKind.Health, Importance.Notable, defender.Map, text, new LookTargets(defender), MessageTypeDefOf.NegativeHealthEvent);
+            Tell.Message(NewsKind.Health, Importance.Important, defender.Map, text, new LookTargets(defender), MessageTypeDefOf.NegativeHealthEvent);
             End(bout, false);
         }
 

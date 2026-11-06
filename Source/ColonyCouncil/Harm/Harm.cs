@@ -26,8 +26,9 @@ namespace ColonyCouncil
     /// <item><see cref="Note"/>: a hurt that came another way (a bout's hard blow, a guest's brawl) counted for the cap.</item>
     /// </list>
     /// Every one of these records the hurt for the cap (saved, <see cref="HarmBook"/>). The caller tells the player (a
-    /// bubble through Speech, a message through Tell) and names the risk before any choice that brings it (an impact
-    /// line, a decree's card: <see cref="DecreeLine"/>). No mood is added on top of the game's pain.
+    /// bubble through Speech, a message through Tell at Importance.Important, as harm always is) and names the risk
+    /// before any choice that brings it (an impact line, a decree's card: <see cref="DecreeLine"/>). No mood is added on
+    /// top of the game's pain.
     /// </summary>
     public static class Harm
     {

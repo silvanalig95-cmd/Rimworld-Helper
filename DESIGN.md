@@ -1431,8 +1431,8 @@ of work (1.2.1, 1.2.2, 3.2.1, below); the other seven of the top ten are built o
 
 `HurtClass`: `Mild` (children may), `Injury`, `Bout`, `Fight` (grown-ups only). The caller rolls its own base rate
 through `Harm.Roll`, gives the hurt through `Injure`, `Ail` or `Fight` (each checks the cap again and records it), says
-it on the map (a bubble through `Speech.Say` or `CouncilGameComponent.Speak`, one sentence) and tells it through `Tell`
-in two wordings or more (`TextVariants.Vary`). A hurt the caller can't give through the service (the outsiders' practice
+it on the map (a bubble through `Speech.Say` or `CouncilGameComponent.Speak`, one sentence) and tells it through
+`Tell.Message` at `Importance.Important` (harm is never held back) in two wordings or more (`TextVariants.Vary`). A hurt the caller can't give through the service (the outsiders' practice
 bout, a feast's wrestling and sour night) is counted with `Harm.Note`; the feasts read `Harm.Scale` and `Harm.May` through
 `Feasts.HarmScale` and `Feasts.MayBeHurt`.
 
