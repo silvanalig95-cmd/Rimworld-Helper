@@ -74,7 +74,7 @@ namespace ColonyCouncil
     /// play-outs, meetings and the election's gatherings (each a lord, seen as it starts), and its outings (work parties,
     /// walks, vigils: counted where they start). What the player chose always happens but counts; the colony's own
     /// doings (<see cref="PlayOut.routine"/>) start only when there is room, wait up to three days for it and are let go
-    /// quietly. A floor: from the eighth day without a gathering the colony's own come at once, and from the ninth, with
+    /// quietly. A floor: from the seventh day without a gathering the colony's own come at once, and from the eighth, with
     /// nothing on the way, the colony keeps an evening together itself. A life goal's toast waits for the next gathering
     /// (<see cref="Cup"/>). The count is saved with the play-outs (PlayOutTracker), so a load keeps the week.
     /// </summary>
@@ -349,7 +349,7 @@ namespace ColonyCouncil
         // ---------------- The floor ----------------
 
         /// <summary>
-        /// Nine days without a gathering and nothing of the colony's own on the way: the colony keeps an evening together
+        /// Eight days without a gathering and nothing of the colony's own on the way: the colony keeps an evening together
         /// itself, planned in the afternoon for that evening (a gathering at its fire, the rec room or the table), so ten
         /// days never pass without one. With answers not playing out on the map, the game's own party.
         /// </summary>
@@ -384,7 +384,9 @@ namespace ColonyCouncil
                 pool = "Council_Pool_PlayParty",
                 hourFrom = 18,
                 hourTo = 23,
-                music = true
+                music = true,
+                // The colony's own: let go without a word if no evening comes for it (the floor keeps room open for it).
+                routine = true
             };
             p.deadline = PlayOutMath.Deadline(now, hour, p.hourFrom, p.hourTo, 3f);
             t.Add(p);

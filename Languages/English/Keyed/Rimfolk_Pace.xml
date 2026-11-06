@@ -5,13 +5,13 @@
 
   <!-- Settings, under How often. -->
   <CC_Settings_GatheringsAWeek>Gatherings a week before the colony's own wait</CC_Settings_GatheringsAWeek>
-  <CC_Settings_GatheringsAWeek_Tip>How many gatherings any seven days may hold before the colony's own doings wait their turn: a group's evening at the fire, a family supper, a camp's show, a child's birthday toast. What you choose always happens and counts toward it: an answer that gathers people, a calendar day kept, a vote, a wedding, a decree, a council meeting. The colony's own never come within a day and a half of another gathering; one waits up to three days for room, and is then let go without a word.\n\nWith it: calendar days that fall within three days of each other are kept together, and one that comes within two days of another gathering is kept at supper; one seasonal custom is asked a season; a life goal's toast is raised at the next gathering; the election's candidates speak at the count. Ten days never pass without a gathering: from the eighth the colony's own come at once, and failing them it keeps an evening together.</CC_Settings_GatheringsAWeek_Tip>
+  <CC_Settings_GatheringsAWeek_Tip>How many gatherings any seven days may hold before the colony's own doings wait their turn: a group's evening at the fire, a family supper, a camp's show, a child's birthday toast. What you choose always happens and counts toward it: an answer that gathers people, a calendar day kept, a vote, a wedding, a decree, a council meeting. The colony's own never come within a day and a half of another gathering; one waits up to three days for room, and is then let go without a word.\n\nWith it: calendar days that fall within three days of each other are kept together, and one that comes within two days of another gathering is kept at supper; one seasonal custom is asked a season; a life goal's toast is raised at the next gathering; the election's candidates speak at the count. Ten days never pass without a gathering: from the seventh the colony's own come at once, and from the eighth, failing them, it keeps an evening together.</CC_Settings_GatheringsAWeek_Tip>
   <CC_SetNote_GatheringsAWeek>Past this many in seven days, the colony's own evenings and suppers wait their turn.</CC_SetNote_GatheringsAWeek>
 
   <!-- Why one of the colony's own is still waiting (a plan's note; it fits "never came about (...)"). -->
   <CC_Stage_Why_Room>the colony had gathered lately</CC_Stage_Why_Room>
 
-  <!-- The floor: nine days without a gathering, and the colony keeps an evening together itself. -->
+  <!-- The floor: eight days without a gathering, and the colony keeps an evening together itself. -->
   <CC_Stage_EveningLabel>an evening together</CC_Stage_EveningLabel>
 
   <!-- The calendar: a day within two days of another gathering is kept at supper; days within three days of each other are kept together (Calendar/CalendarKeeping.cs). -->
@@ -20,6 +20,9 @@
   <CC_Cal_Together_Letter_One>{DAYS} comes round within days of it this year, and the colony keeps the two together, as one.</CC_Cal_Together_Letter_One>
   <CC_Cal_Together_Letter_Many>{DAYS} come round within days of it this year, and the colony keeps them all together, as one.</CC_Cal_Together_Letter_Many>
   <CC_Cal_KeptAtSupper>{DAY} was kept at supper, and {PAWN_nameDef} said a word over the meal.</CC_Cal_KeptAtSupper>
+  <CC_Cal_Way_RemembranceSupper_Letter>The colony gathered only lately, so {0} will remember it at supper tonight, with a word said over the meal.</CC_Cal_Way_RemembranceSupper_Letter>
+  <CC_Cal_Way_RemembranceSupperAll_Letter>The colony gathered only lately, so it remembers the day at supper tonight, with a word said over the meal.</CC_Cal_Way_RemembranceSupperAll_Letter>
+  <CC_Cal_RememberedAtSupper>{DAY} was remembered at supper, and {PAWN_nameDef} said a word for it over the meal.</CC_Cal_RememberedAtSupper>
 
   <!-- A life goal's toast, raised at the colony's next gathering (added to its first message), or at supper. -->
   <CC_Stage_CupThere>{RAISER_nameDef} has a cup to raise there to {A_nameDef}.</CC_Stage_CupThere>

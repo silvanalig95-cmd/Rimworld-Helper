@@ -194,8 +194,10 @@ namespace ColonyCouncil
             }
             if (d.way == DayWay.Remembrance)
             {
-                RemembranceLetter(d, map, home, years);
-                KeepDay(d, occurrence, map, null, false);
+                // Within two days of another gathering, remembered at supper (the colony's pace).
+                bool supper = AtSupper(d, map);
+                RemembranceLetter(d, map, home, years, supper);
+                KeepDay(d, occurrence, map, null, false, false, supper);
                 return;
             }
             // (Kept another way than a feast, it's the calendar's own day again.)
@@ -291,8 +293,8 @@ namespace ColonyCouncil
 
         // ---------------- The colony's pace ----------------
 
-        /// <summary>A way of keeping a day that gathers the colony for it: kept at supper beside another gathering.</summary>
-        private static bool Gathers(DayWay w) => w == DayWay.Feast || w == DayWay.Games || w == DayWay.Bonfire || w == DayWay.Faith;
+        /// <summary>A way of keeping a day that gathers people for it (a feast, games, a fire, a faith's evening, a quiet hour at a grave): kept at supper beside another gathering.</summary>
+        private static bool Gathers(DayWay w) => w == DayWay.Feast || w == DayWay.Games || w == DayWay.Bonfire || w == DayWay.Faith || w == DayWay.Remembrance;
 
         /// <summary>A way the colony keeps two days together with: a feast, games, a fire.</summary>
         private static bool Joins(DayWay w) => w == DayWay.Feast || w == DayWay.Games || w == DayWay.Bonfire;
@@ -349,19 +351,26 @@ namespace ColonyCouncil
         /// </summary>
         private static bool KeepAtSupper(CalendarDay d, Map map, List<Pawn> home)
         {
-            var keeper = Interplay.CalendarOrganizer(d, home) ?? Keeper(d, home);
-            var thought = d.way == DayWay.Games ? CalendarDefOf.Council_Cal_GamesDay : d.way == DayWay.Bonfire ? CalendarDefOf.Council_Cal_BonfireNight : CalendarDefOf.Council_Cal_FeastDay;
+            bool remembrance = d.way == DayWay.Remembrance;
+            // A remembrance is kept by those who knew them; the rest by everyone at home.
+            var who = remembrance ? Mourners(d, home) : home;
+            var keeper = (remembrance ? null : Interplay.CalendarOrganizer(d, who)) ?? (who.Count > 0 ? Keeper(d, who) : null);
+            var thought = remembrance ? CalendarDefOf.Council_Cal_Remembered : d.way == DayWay.Games ? CalendarDefOf.Council_Cal_GamesDay
+                : d.way == DayWay.Bonfire ? CalendarDefOf.Council_Cal_BonfireNight : CalendarDefOf.Council_Cal_FeastDay;
             var other = home.Where(p => p != keeper && !p.DevelopmentalStage.Baby()).OrderBy(p => keeper != null && p.Spawned && keeper.Spawned ? p.Position.DistanceToSquared(keeper.Position) : 0).FirstOrDefault();
             string label = d.label.CapitalizeFirst();
-            string cause = Causes.Current;
+            string subject = d.kind == CalendarKind.Death || d.kind == CalendarKind.Companion ? d.pawnName
+                : d.kind == CalendarKind.Battle ? "CC_Cal_Subject_Battle".Translate(d.enemy ?? "?").Resolve() : d.label;
+            string cause = remembrance ? "CC_Cal_Cause_Remembered".Translate(subject ?? "?").Resolve() : Causes.Current;
+            var ids = new HashSet<Pawn>(who);
             void Say()
             {
                 // together: the keeper says it over supper, with another of the colony at the table beside them.
-                string line = Flavor.FromPool("Council_Pool_PlayToast", keeper, null, null, "raise");
+                string line = remembrance ? Flavor.FromPool("Council_Pool_PlayRemembrance", keeper) : Flavor.FromPool("Council_Pool_PlayToast", keeper, null, null, "raise");
                 if (!line.NullOrEmpty()) Speech.Say(keeper, line, other);
-                foreach (var p in AtHome(map)) CouncilGameComponent.GiveThought(p, thought, null, -1f, cause);
-                Tell.Minor(NewsKind.Colony, Importance.Notable, map, "CC_Cal_KeptAtSupper".Translate(label.Named("DAY"), keeper.Named("PAWN")).Resolve(), new LookTargets(keeper),
-                    MessageTypeDefOf.PositiveEvent);
+                foreach (var p in AtHome(map).Where(p => !remembrance || ids.Contains(p))) CouncilGameComponent.GiveThought(p, thought, null, -1f, cause);
+                Tell.Minor(NewsKind.Colony, Importance.Notable, map, (remembrance ? "CC_Cal_RememberedAtSupper" : "CC_Cal_KeptAtSupper").Translate(label.Named("DAY"), keeper.Named("PAWN")).Resolve(),
+                    new LookTargets(keeper), remembrance ? MessageTypeDefOf.NeutralEvent : MessageTypeDefOf.PositiveEvent);
             }
             if (keeper == null || other == null || thought == null) return false;
             Together.When("calsupper|" + d.id, keeper, other, Say, 8f, -1f, () => Supper(map));
@@ -375,13 +384,15 @@ namespace ColonyCouncil
             return h >= 17 && h <= 22;
         }
 
-        private void RemembranceLetter(CalendarDay d, Map map, List<Pawn> home, int years)
+        private void RemembranceLetter(CalendarDay d, Map map, List<Pawn> home, int years, bool supper = false)
         {
             var keeper = Keeper(d, home);
             var who = Mourners(d, home);
             var parts = new List<string> { Opening(d, map, keeper, null, years) };
-            if (d.kind == CalendarKind.Holiday || d.knew.Count == 0 || who.Count == 0) parts.Add("CC_Cal_Way_RemembranceAll_Letter".Translate().Resolve());
-            else parts.Add("CC_Cal_Way_Remembrance_Letter".Translate(TextUtil.JoinAnd(who.Select(p => p.LabelShort).ToList())).Resolve());
+            string all = supper ? "CC_Cal_Way_RemembranceSupperAll_Letter" : "CC_Cal_Way_RemembranceAll_Letter";
+            string some = supper ? "CC_Cal_Way_RemembranceSupper_Letter" : "CC_Cal_Way_Remembrance_Letter";
+            if (d.kind == CalendarKind.Holiday || d.knew.Count == 0 || who.Count == 0) parts.Add(all.Translate().Resolve());
+            else parts.Add(some.Translate(TextUtil.JoinAnd(who.Select(p => p.LabelShort).ToList())).Resolve());
             var ritual = RitualFor(DayWay.Remembrance);
             if (ritual != null) parts.Add("CC_Cal_Ritual_Remembrance".Translate(IdeoName(), ritual.LabelCap).Resolve());
             Tell.Letter(NewsKind.Colony, Importance.Notable, map, d.label.CapitalizeFirst(), string.Join("\n\n", parts.Where(p => !p.NullOrEmpty())), LetterDefOf.NeutralEvent,

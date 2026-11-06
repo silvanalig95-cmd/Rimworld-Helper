@@ -63,13 +63,13 @@ public static class StageTests
         // ---------------- The floor ----------------
 
         C(StageMath.FloorDays == SetbackMath.QuietDays, "the floor is where the quiet-days setback starts");
-        C(!StageMath.FloorOpen((int)(7.9f * D)) && StageMath.FloorOpen(8 * D) && StageMath.FloorOpen(9 * D), "from the eighth day without one, the colony's own come at once");
+        C(!StageMath.FloorOpen((int)(6.9f * D)) && StageMath.FloorOpen(7 * D) && StageMath.FloorOpen(9 * D), "from the seventh day without one, the colony's own come at once");
         held.Clear();
-        held.Add(now - 8 * D);
-        held.Add(now - 8 * D - H);
-        held.Add(now - 8 * D - 2 * H);
-        C(StageMath.Room(held, now, 1, 8 * D), "the floor open, room whatever the week held");
-        C(!StageMath.FloorEvening(8 * D) && StageMath.FloorEvening(9 * D), "from the ninth with nothing on the way, the colony keeps an evening itself");
+        held.Add(now - 7 * D);
+        held.Add(now - 7 * D - H);
+        held.Add(now - 7 * D - 2 * H);
+        C(StageMath.Room(held, now, 1, 7 * D), "the floor open, room whatever the week held");
+        C(!StageMath.FloorEvening(7 * D) && StageMath.FloorEvening(8 * D), "from the eighth with nothing on the way, the colony keeps an evening itself");
         C(!StageMath.FloorOpen(far) && !StageMath.FloorEvening(far), "a colony never seen to gather (just begun) isn't on the floor");
         C(StageMath.FloorEveningDays < StageMath.FloorDays && StageMath.FloorOpenDays < StageMath.FloorEveningDays, "the floor comes before the setback does");
 
@@ -122,8 +122,16 @@ public static class StageTests
         string family = Read(Path.Combine("Social", "FamilyBonds.cs"));
         string life = Read(Path.Combine("Social", "FamilyLife.cs"));
         string camps = Read(Path.Combine("Camps", "CampKinds.cs"));
-        C(groups.Contains("routine = true") && family.Contains("routine = true") && life.Contains("routine = true") && Regex.Matches(camps, "routine = true").Count >= 2,
-            "a group's evening, a family supper, a birthday's toast and a camp's show are the colony's own");
+        C(groups.Contains("routine = true") && family.Contains("routine = true") && life.Contains("routine = true"),
+            "a group's evening, a family supper and a birthday's toast are the colony's own, and wait for room");
+        C(Regex.Matches(camps, @"PlayOuts\.On && !Stage\.Room\(map, Find\.TickManager\.TicksGame\)\) return false;").Count >= 2,
+            "a camp's show and song are offered only on an evening with room (their letter says tonight)");
+        string fire = Read(Path.Combine("PlayOut", "PlayFire.cs"));
+        C(fire.Contains("public static void Ahead(PlayOut p)") && fire.Contains("GiveUpHours") && tracker.Contains("PlayFire.Ahead(p)"),
+            "a fire is laid in the hour before the evening, and one still not lit near the end is let go for a gathering without it");
+        C(tracker.Contains("if (off) GiveAll(p);") && !File.ReadAllText(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_PlayOut.xml")).Contains("took heart from it all the same"),
+            "a plan that falls through gives nobody its moods and says it never came about");
+        C(tracker.Contains("p.collided && !p.movedOn"), "a gathering kept from its evening by another takes the next evening, once");
         string goals = Read(Path.Combine("Aspirations", "GoalRewards.cs"));
         C(goals.Contains("Stage.Cup(") && !goals.Contains("new DilemmaEffect_Toast"), "a life goal's toast is raised at the next gathering, not on an evening of its own");
         string dilemmas = Read(Path.Combine("Dilemmas", "Dilemmas.cs"));

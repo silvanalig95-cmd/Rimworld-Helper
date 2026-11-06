@@ -46,10 +46,13 @@ namespace ColonyCouncil
         public const float FloorDays = SetbackMath.QuietDays;
 
         /// <summary>From this many days without one, the colony's own doings come at once, whatever the week holds.</summary>
-        public const float FloorOpenDays = FloorDays - 2f;
+        public const float FloorOpenDays = FloorDays - 3f;
 
-        /// <summary>From this many, with nothing of the colony's own on the way, the colony keeps an evening together itself.</summary>
-        public const float FloorEveningDays = FloorDays - 1f;
+        /// <summary>
+        /// From this many, with nothing of the colony's own on the way, the colony keeps an evening together itself: a day
+        /// for it to find an evening when people are free, and still under the ten.
+        /// </summary>
+        public const float FloorEveningDays = FloorDays - 2f;
 
         /// <summary>How long a life goal's toast waits for the next gathering to be raised at, before it is raised at supper.</summary>
         public const int CupWaitDays = 2;

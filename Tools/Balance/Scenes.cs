@@ -12,6 +12,7 @@
 // days, the model's: two or three a year). BALANCE_SCENES_DEBUG=1 lists the seasonal dilemmas with the gate the model gives them.
 
 using System.Globalization;
+using ColonyCouncil;
 
 namespace Balance
 {
@@ -30,6 +31,8 @@ namespace Balance
         public bool routine;
         /// <summary>A seasonal custom the council is asked about (a dilemma with seasons): need not be asked while the allowance is spent.</summary>
         public bool custom;
+        /// <summary>A calendar day's way: "feast" (a feast, games or a fire), "faith" (an evening of faith), "remembrance" (at a grave).</summary>
+        public string way;
     }
 
     /// <summary>The numbers of the code that the scene sources follow, read from the source where it can.</summary>
@@ -180,7 +183,142 @@ namespace Balance
             Bunching(all, "gathering or outing", s => s.tier != "small");
             Allowance(all, runs, gap, week);
             Proposal(all, runs, gap, week);
+            AsBuilt(all, runs, week);
             Console.WriteLine();
+        }
+
+        /// <summary>
+        /// The colony's pace as the mod keeps it, by its own rules (PlayOut/StageMath.cs, linked): what the player chose
+        /// always happens and counts; the colony's own (a group calling its people, a family supper, a camp's show, a
+        /// child's birthday toast) waits in the evenings for <see cref="StageMath.Room"/>, up to
+        /// <see cref="StageMath.WaitDays"/> days, then is let go; a life goal's toast is raised at the next gathering (never
+        /// a scene of its own); the hustings join the count; a calendar day's feast, games or fire within
+        /// <see cref="StageMath.TogetherDays"/> days after another kept that way is kept together with it, and a day that
+        /// gathers people (those, an evening of faith, a quiet hour at a grave) within <see cref="StageMath.SupperDays"/> days of another
+        /// gathering is kept at supper; one seasonal custom a season; and the floor's evening once nine days pass without a
+        /// gathering with nothing of the colony's own waiting.
+        /// </summary>
+        private static void AsBuilt(List<Scene>[] all, int runs, int week)
+        {
+            const int days = Colony.YearDays;
+            const int T = StageMath.TicksPerHour;
+            var kept = new Dictionary<string, (int all, int kept)>();
+            int total = 0, keptTotal = 0, folded = 0, twoDays = 0, floors = 0;
+            var weekly = new List<int>();
+            var gaps = new List<int>();
+            foreach (var run in all)
+            {
+                var list = run.Where(s => s.tier != "small").OrderBy(s => s.hour).ToList();
+                var held = new List<int>();
+                var ticks = new List<int>();
+                var waiting = new List<(Scene s, int until)>();
+                int lastFeastDay = -9999, customSeason = -1;
+                int Since(int h) => StageMath.Since(ticks, h * T);
+                void Note(Scene s, bool ok)
+                {
+                    var v = kept.GetValueOrDefault(s.source);
+                    kept[s.source] = (v.all + 1, v.kept + (ok ? 1 : 0));
+                    total++;
+                    if (ok) keptTotal++;
+                    else folded++;
+                }
+                void Hold(Scene s, int h)
+                {
+                    held.Add(h);
+                    ticks.Add(h * T);
+                    if (s != null) Note(s, true);
+                }
+                int idx = 0;
+                for (int h = 0; h < days * 24; h++)
+                {
+                    int hourOfDay = h % 24;
+                    for (int w = 0; w < waiting.Count; w++)
+                    {
+                        var (s, until) = waiting[w];
+                        if (hourOfDay >= 17 && hourOfDay <= 20 && StageMath.Room(ticks, h * T, week, Since(h)))
+                        {
+                            Hold(s, h);
+                            waiting.RemoveAt(w--);
+                        }
+                        else if (h >= until)
+                        {
+                            Note(s, false);
+                            waiting.RemoveAt(w--);
+                        }
+                    }
+                    // The floor: nine days without a gathering and nothing of the colony's own waiting, an evening together.
+                    if (hourOfDay == 18 && waiting.Count == 0 && StageMath.FloorEvening(Since(h)))
+                    {
+                        floors++;
+                        Hold(null, h);
+                    }
+                    while (idx < list.Count && list[idx].hour == h)
+                    {
+                        var s = list[idx++];
+                        if (s.source == "life goals' toasts")
+                        {
+                            // Raised at the next gathering, or at supper: never a scene of its own.
+                            Note(s, false);
+                            continue;
+                        }
+                        if (s.source == "elections" && list.Skip(idx).Any(o => o.source == "elections" && o.hour - h <= 30))
+                        {
+                            // The hustings: the candidates speak at the count instead.
+                            Note(s, false);
+                            continue;
+                        }
+                        if (s.source == "calendar days" && s.way == "feast" && StageMath.KeptTogether(h / 24 - lastFeastDay))
+                        {
+                            // Kept together with the day just kept (its letter named them both).
+                            Note(s, false);
+                            continue;
+                        }
+                        if (s.source == "calendar days" && s.way != null && StageMath.AtSupper(Since(h)))
+                        {
+                            Note(s, false);
+                            continue;
+                        }
+                        if (s.source == "calendar days" && s.way == "feast") lastFeastDay = h / 24;
+                        if (s.custom)
+                        {
+                            int season = StageMath.SeasonKey(h / 24 / days, h / 24 % days);
+                            if (!StageMath.CustomMayCome(customSeason, season))
+                            {
+                                Note(s, false);
+                                continue;
+                            }
+                            customSeason = season;
+                        }
+                        if (s.routine)
+                        {
+                            if (hourOfDay >= 17 && hourOfDay <= 20 && StageMath.Room(ticks, h * T, week, Since(h))) Hold(s, h);
+                            else waiting.Add((s, h + StageMath.WaitDays * 24));
+                            continue;
+                        }
+                        Hold(s, h);
+                    }
+                }
+                var perDay = new int[days];
+                foreach (int h in held)
+                    if (h / 24 < days) perDay[h / 24]++;
+                twoDays += perDay.Count(x => x >= 2);
+                for (int d = 0; d + 7 <= days; d++) weekly.Add(perDay.Skip(d).Take(7).Sum());
+                for (int i = 1; i < held.Count; i++) gaps.Add(held[i] - held[i - 1]);
+            }
+            weekly.Sort();
+            gaps.Sort();
+            double under24 = gaps.Count == 0 ? 0 : gaps.Count(g => g < 24) / (double)gaps.Count;
+            double perWeek = (keptTotal + floors) / (days / 7.0) / runs;
+            Console.WriteLine();
+            Console.WriteLine($"As built (PlayOut/StageMath.cs; {week} a week, {StageMath.GapHours / 24f:0.#} days apart, {StageMath.WaitDays} days' wait, the floor at {StageMath.FloorEveningDays:0} days): "
+                              + $"{keptTotal / (double)runs:0.0} of {total / (double)runs:0.0} a year staged as their own scene and {floors / (double)runs:0.0} floor evenings "
+                              + $"({perWeek:0.0} gatherings and outings a week), {folded / (double)runs:0.0} kept smaller, folded into another or let go; any 7 days: median "
+                              + $"{weekly[weekly.Count / 2]}, 1 in 10 {weekly[(int)(weekly.Count * 0.9)]} or more, the busiest {weekly.LastOrDefault()}; days with two or more "
+                              + $"{twoDays / (double)runs:0.0} a year; under a day apart {under24:P0}; the longest gap {(gaps.Count == 0 ? 0 : gaps[gaps.Count - 1]) / 24.0:0.0} days.");
+            Console.WriteLine("| Source | A year | As its own scene |");
+            Console.WriteLine("|---|---|---|");
+            foreach (var kv in kept.OrderByDescending(k => k.Value.all))
+                Console.WriteLine($"| {kv.Key} | {kv.Value.all / (double)runs:0.0} | {(kv.Value.all == 0 ? 0 : kv.Value.kept / (double)kv.Value.all):P0} |");
         }
 
         /// <summary>
