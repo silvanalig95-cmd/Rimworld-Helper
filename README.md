@@ -586,8 +586,8 @@ failed tame named first). Hours and work an answer changed go back by
 themselves when their time is up or the heat wave or cold snap is over, with a message, but only where nobody changed
 them since: whatever you set by hand stays as you set it.
 
-**Answers play out on the map.** When an answer describes something people do, they do it (719 answers of 191
-dilemmas and 200 Rimfolk events, stories and world events, plus calendar days, six decrees and nine ambitions, 25
+**Answers play out on the map.** When an answer describes something people do, they do it (729 answers of 191
+dilemmas and 207 Rimfolk events, stories and world events, plus calendar days, six decrees and nine ambitions, 25
 stages of 20 personal stories and 7 moments with visitors). A
 victory feast is eaten at the dining table, each guest sent to eat a cooked meal, the finest first they may eat, and
 the food the answer spends on it is cooked for it first, at the colony's stove by its organizer or best cook; a while in, its host raises a cup and the table raises theirs. Every feast is held this one way, an answer's, a calendar day's or one with guests from the neighbours. The midsummer bonfire is lit (with no campfire, one of the colony carries wood out and lays one first, burned down to ash
@@ -2373,7 +2373,15 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   slave set free) or asks to talk with them through the cell door (their resistance falls). A **travelling barber**
   sets a stool by the gate, or works at your styling station with Ideology, and gives those who want one a cut in a
   style they like. A drovers' **animal doctor** tends the colony's hurt and sick animals where they stand and, paid,
-  works one through a step of its training. The collector and the animal doctor become faces that come back.
+  works one through a step of its training. The collector and the animal doctor become faces that come back. Each
+  comes in more than one way, by the season, the colony's age and what they find.
+- **Neighbours on their own business.** A **herb-gatherer** who knows the plants of your land (gather with your grower
+  at their side, or buy a bundle of dried herbs), **drovers** on the road to a fair (a young beast bought, or a meal
+  carried out to them), a **seed-seller** in the sowing months (a patch sown by your grower, or a young tree at the
+  field's edge), a neighbour's **patrol** out after bandits (fed at the gate, its leader drilling your best shot, or
+  medicine sold), a **traveller on the wrong road** (a meal and the roads gone over at the table), a **petitioner**
+  with a grievance against their own head (heard out at the table), and a **brewer's cart** (a load of beer, or brewing
+  secrets swapped with your cook). Each comes in your age, from a people of about its own.
 - **Strangers who make camp.** Now and then a group that isn't hostile settles part of your map for days to a
   season: a **hunting party** following a herd, a **refugee family**, **prospectors**, **pilgrims** at rest,
   **traders** with a stall, a **traveling smith**, a **hermit** who builds a hut, **traveling healers** who ease an
@@ -2505,7 +2513,17 @@ bed), and **refugees** to see through (two or three meals a day each and a bed f
 eat or sleep in themselves; they come from a fire, or from whatever runs in the region). Friendly peoples also ask the
 colony to **walk an old pilgrim home** by caravan, to **carry word** to a far town of another people, to **find a lost
 child** of theirs somewhere on the colony's land, or to send **hands for their harvest**; each remembers the colonist
-who did it, by name. Each shows up in the game's
+who did it, by name. They ask for hands for a few days too: two **builders** after a storm or a fire, a **healer** for
+their sickhouse, someone learned to **teach** their young, a **witness** of good name at a truce or a boundary, or a
+**smith** before the harvest or the sowing (one or two of your people good at it at their town by caravan, half a day
+to two days; half the stay earns half). They ask the colony to **keep a store** of theirs over a season (their carts
+bring grain, timber, iron or cloth and come back for as much, paying a quarter of its worth; what is missing you pay
+for in silver), to **raise a young beast** of theirs (their drover hands it over at the gate and leads it home at the
+end, all the pay kept well, half kept poorly), to find **an old one who wandered off** or **a hunter overdue** on your
+land, to see **a trader, a healer or a scholar** to their town by caravan, and for the materials of **a wall** against
+bandits, **fodder** for their herds, **stores for a long road** or **seed** after a blight. When the region knows the
+town's head, the request comes in their name and by their title (the Empire's, for the Empire). Every mission shares
+one draw, so the newer kinds take a share of it and missions come no oftener than before. Each shows up in the game's
 **Quests** tab to accept or let expire (or as a letter, if you switch that off), runs against a deadline once
 accepted, and pays a reward, or costs goodwill if it fails. One mission at a time.
 
