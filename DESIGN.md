@@ -411,6 +411,9 @@ stat part contribute nothing and the hooks return 1.
   relief say what built it and what eased it lately. The pure math (bands, caps, trait factors, episode odds) is in
   `HeartMath`, covered by the tests.
 - **Bands** give the only direct effects: a mood of -3/-5/-8, work speed -5%/-10%, darker dreams.
+- **The good side** is strain's other side, never both at once (see "The heart's good side" below): it fills slowly
+  while strain is at nothing, hardship spends it first, and its bands (in good heart, in high spirits) give a second
+  situational thought of the same kind (+2/+3), brighter dreams and a quicker recovery, never work speed.
 - **Episodes** are the pressure valve, not a punishment: a custom mental state on vanilla's hide-in-room class, started
   silently by the heart (its own letter) and never by the game's break picker, since no MentalBreakDef names it. A think
   tree inserted after the mental states gives it its behavior. Strict conditions (no danger, enough hands, cooldowns,
@@ -483,6 +486,66 @@ mod made.
   own as before. Older saves: memories given before keep their moods and run out as they were; a lasting one turns to
   moments at the next hour; the heart's lists grow by a source and a relief (padded with nothing); shortened memories
   from the old fading rule keep their time.
+
+### The heart's good side: in good heart, in high spirits
+
+The player's request of 6 November 2026, approved as proposed ("there should perhaps also be a counterweight/side to
+strain, right? If they have positive impacts over an extended period"): one heart with two sides, not a new system.
+`Heart/GoodHeart.cs` (the rules in `HeartMath`, "The good side"), `GoodRelease.cs`, `HeartCard.cs`.
+
+- **One axis in effect.** The good side (0 to 100, `PawnHeart.good`) and strain are never both above nothing.
+  Hardship spends the good side before strain builds (`HeartMath.Spend`): each point of strain a source would build,
+  after its own caps, spends half a point of the good side (`SpendShare`, someone in good heart takes a knock in their
+  stride), and strain builds only from what is left once it's gone; the hour's sources, a moment's letdown from outside
+  the hour (`HeartLogic.Build`) and an answer's strain (`HeartLogic.Change`) alike, on its record by strain's own
+  source (`goodSpent`). Good things ease strain before they fill it: the hour applies rest first (sleep, quiet,
+  recreation, the decree), then each good thing in turn (gatherings, good talks, small joys, the pile of small good
+  moods), each easing what strain is left, and what is beyond fills the good side at its share (`GoodShare`: 45%, 60%,
+  60% and 15%). Rest never fills it.
+- **What fills it, slowly, mostly what can't be bought.** Only while strain is at nothing (`GoodHeart.Fill`), within a
+  cap a day for each source and 4 a day in all (`GoodCap`, `GoodDailyCap`; `goodToday`, saved): friends close by and a
+  purpose (the heart's needs of belonging and purpose well met, 60 or more: 0.035 to 0.07 an hour each, 1.2 a day),
+  a life goal moving on since yesterday (0.6 at the day's turn: `goalTick`, `goalProgress`), a deed of theirs the colony
+  speaks well of (its sides add up to good, `RepMath.Valence`, and someone else knows of it: 1, up to 2, 2 a day; read
+  from the reputations once a day, `deedTick`), gatherings (2.5 a day), good talks (1.5), a run of small joys
+  (`StrainRelief.Joys` beyond the strain they have: 1.2), and the comforts of home (the pile of every small good mood,
+  the game's fine rooms and meals among them: 0.4 a day, the smallest cap and share, so a rich colony doesn't simply
+  buy it). The day's joys cap counts what a joy eased or filled. It fades slowly (about 3% a day, `GoodFadePerHour`).
+- **The bands** (the player's names): steady below 45, in good heart from 45, in high spirits from 65. A small good
+  mood, +2 and +3 (`Council_Heart_GoodSide`, a situational thought reading the band like strain's, nothing stored in
+  memories; it grows ordinary like any good mood, and the pile of small moods leaves it out, `SmallMoments.Heavy`);
+  brighter dreams (sweet dreams 1.2 and 1.4 times as likely, nightmares 0.85 and 0.7, `Heart.DreamFactor`); a quicker
+  recovery from strain (rest eases 1.15 and 1.3 times as fast), read from how high the good side stood lately
+  (`goodLately`, halving in about three days), so someone in good heart before a hard spell gets over it sooner. No
+  work speed. Proposed at about +2, +3 and +5; measured, +2 and +3 with the bands from 45 and 65 keep a well-run
+  colony on its target (see "Balance targets").
+- **The release**, the mirror of strain's day off (`GoodRelease`): in high spirits, about once in four days held there
+  (`ReleasePerHour`), at most once in 10 days for each colonist and once a day in the colony (`lastReleaseTick`,
+  `HeartTracker.lastColonyReleaseTick`), only when it's safe, at home, awake, an adult free colonist, not drafted,
+  downed, in a mental state or at a gathering. Either one of the game's own inspirations, which the game picks by their
+  passions and its own rules (`InspirationHandler.GetRandomAvailableInspirationDef`, `TryStartInspiration` with its own
+  letter and Rimfolk's reason at its foot; a word said as it begins), 12 off the good side; or a kind word for someone
+  close (a partner, kin or a friend by opinion 20 or more, the one under the most strain first, then the lowest in
+  spirits): `Together.When` with a walk over in their free time, the line said face to face (`Speech.Say`, one
+  sentence, `Rimfolk_Pool_GoodHeart_KindWord`, by who hears it: under strain, grieving, low, hurt, a partner, kin, a
+  child, a newcomer), and the other gets a small good memory (`Council_Heart_KindWord`, +3 for 2 days, opinion +6, which
+  comes as a small joy and eases their strain or fills their own good side), 6 off the good side. A kind word is set
+  going when chosen; if the two never meet within ten hours, it doesn't come. A small gift and a hand with the work
+  weren't built: the game has no honest way to show either on the map.
+- **Words** in every age: the heart's page (the Mood tab's Heart section) has a second meter, "Good heart", with what
+  filled it ("friends close by (+6), a purpose (+4)") and what spent it ("fighting (-6)"), a line while strain holds,
+  and the last release; the inspector line and RimHUD read the good band while it shows ("Heart: in good heart ·
+  proud"); the strain meter's tooltip names the other side; the colonist's card (the Now slot) says the band and what
+  filled it; the council's Moods page counts who is in good heart and in high spirits; the band mood's tooltip says
+  what filled it. Keys in `Rimfolk_GoodHeart.xml`; the Almanac page "the heart's good side" (`Almanac_GoodHeart.xml`),
+  the heart's page with its bands in the table.
+- **The setting** "The heart's good side" (`heartGoodSide`, on), on the Heart & health page beside the heart's own.
+  Off (or the heart off): nothing fills it, what there was is gone at the next hour, the bands give nothing, hardship
+  builds strain as before. Dev mode: fill it by 20, and overflow now.
+- **Saves.** Values on the heart (`good`, `goodTodayTotal`, `goodLately`, `deedTick`, `goalTick`, `goalProgress`,
+  `lastReleaseTick`, `releaseWhy`) and three short lists (`goodToday` and `goodRecent` by source, `goodSpent` by strain's
+  sources; `Tools/save_estimate.py` models them). An older save loads with no good side and starts at nothing; the first
+  look at deeds and the life goal only takes note.
 
 ## Layer 8: Social life
 
@@ -1784,6 +1847,24 @@ each is. Measured (6 colonists, 120 runs; before is the code before the phase, w
   point, a lasting letdown felt once a day, 0.6 strain or relief a mood-day, and the line 45, 35, 25 and 15. Left a
   little over: Rimfolk's good moods at a high point, well run, P99 +17.3 (before +15.4) and +12 or more 16% of the time
   (before 10%), with the whole mood no higher (P90 74%, as before).
+
+**The heart's good side** (November 2026, the player's request; see "The heart's good side" under Layer 7). The
+simulator plays it in each colonist's heart (`HeartSim.cs`): rest and the good things in their order, the needs of
+belonging and purpose drawn a day at a time per play style with each colonist's own lean, deeds and a life goal moving
+as daily chances (`HeartLife`), the release with its own draws so the rest of the heart draws the same with it on or
+off. Measured (6 colonists, 120 runs, the code just before it and the same seeds with its setting off):
+- In good heart and in high spirits: well run 28% and 3%, average and neglected almost never (their good side stays
+  under 20: average colonists' hardship spends it about as fast as it fills); the good side still takes average
+  colonists' knocks (strain at nothing 46% to 66% of the time, strained, worn and near breaking 8/2/0% to 6/1/0%, the
+  day off 0.05 to 0.03 a colonist-year). Inspirations 0.11 and kind words 0.13 a colonist-year, well run (the game's
+  own at that mood come about 0.45 a 60-day year).
+- Rimfolk's mood: well run +5.6 to +6.0 (the band mood +0.7 before it grows ordinary), average +2.5 to +2.5,
+  neglected -7.0 to -7.2 (at 480 runs -7.1 and -7.2, time under the minor-break line 33.6% and 33.5%, the day off 0.78
+  both: noise); the colony's whole mood 69%, 64% and 39% as before.
+- Tuned to get there: the bands from 45 and 65 (proposed lower), +2 and +3 (proposed about +2, +3 and +5), half a point
+  of the good side a point of hardship, 3% a day of fading, 4 a day in all. Left: Rimfolk's good moods at a high point,
+  well run, P99 +17.5 to +17.6 and +12 or more 16% to 18%; +1 and +2 lifted the second just as much (any lasting good
+  mood held a third of the time does), so the moods stayed where a colonist feels them.
 
 **The presets** each aim at their own balance: Light touch about +5, +4 and 0 (well run, average, neglected) with
 fewer questions (measured +6.2, +4.7 and -1.7); Story-rich the default's moods with a question a little more often than

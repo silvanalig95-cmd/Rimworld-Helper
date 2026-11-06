@@ -3109,6 +3109,30 @@ in 2 days in the colony and once in 10 days for each colonist. A threat ends it 
 too cold or too hot. Afterwards strain drops by about 40 and they feel lighter for a day and a half. To head it off,
 declare **days of rest**: everyone works 10% slower for three days, and strain drains about twice as fast.
 
+**The heart's good side.** Strain has another side, and a colonist is never on both at once. When strain is at
+nothing and good things keep coming over days, the heart fills on the other side (0 to 100): slowly, at most 4 a day,
+mostly from what can't be bought. Friends close by and a purpose (belonging and purpose well met, a life goal moving
+on, a seat on the council) fill it by the hour, a deed the colony speaks well of once, and gatherings, good talks and a
+run of small joys with part of what they ease beyond the strain there is; the comforts of home (a fine room, a fine
+meal) only a little, so a rich colony doesn't simply buy it. Hardship spends it before any strain builds, half a point
+for each point of strain it would have built, and it fades slowly (about 3% a day).
+
+| Good side | Band | What it does |
+|---|---|---|
+| 0 to 44 | steady | nothing |
+| 45 to 64 | in good heart | +2 mood, brighter dreams, strain drains 15% faster |
+| 65 to 100 | in high spirits | +3 mood, brighter dreams still, strain drains 30% faster, and now and then something good comes of it |
+
+**When it overflows.** In high spirits and safe, now and then (about once in four days held there, at most once in 10
+days for each colonist and once a day in the colony), one of the game's own inspirations comes, picked by the game by
+their passions and its own rules; or they go and find someone close, the one under the most strain first, say a kind
+word face to face, and the other has a small joy of it. No work speed. The Heart section shows it as a second meter,
+"Good heart", with what filled it and what spent it; the inspector line reads "Heart: in good heart" while it shows,
+and the colonist's card says what filled it. Its setting is beside the heart's own; off, nothing fills it and the bands
+give nothing. A save from before starts at nothing. In the balance simulator a well-run colony's people are in good
+heart about 28% of the time and in high spirits 3%; an average colony's rarely get there, but the good side still
+takes their knocks (strained 8% to 6% of the time).
+
 **Feelings.** Each colonist has one or two feelings that stand out, out of twenty-six: grief, fear, dread (worry about
 what's coming), anger, shame, envy, disgust, loneliness, homesickness, frustration, despair and worry (for someone they
 love who is downed, ill, carried off or away); joy, pride, love, gratitude, hope, awe, contentment, curiosity,

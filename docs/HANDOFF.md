@@ -6,6 +6,61 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- the heart's good side: in good heart (the player's request, 6 November 2026: "there should perhaps also be a
+  counterweight/side to strain, right? If they have positive impacts over an extended period"; approved as proposed,
+  `docs/review-2026-11/decisions.md`, built right after phase 3). Not released: no round, About.xml untouched. DESIGN.md
+  "The heart's good side" under Layer 7 and its paragraph in "Balance targets"; `docs/balance-report.md` regenerated
+  against the code just before it (`Tools/Balance/before.json` replaced: phase 3's own before and after stay in
+  DESIGN.md). One heart with two sides, never both above nothing (`PawnHeart.good`, 0 to 100). (1) Hardship spends it
+  before strain builds: each point a source would build, after its caps, spends half a point (`HeartMath.Spend`,
+  `SpendShare`), in the hour's `Build`, `HeartLogic.Build` from outside and `HeartLogic.Change`; strain builds only once
+  it's gone. (2) Good things ease strain before they fill it: the hour applies rest first, then gatherings, talks,
+  small joys and the pile of small good moods in turn (`Memories` now hands gatherings and talks back by `GoodSource`,
+  `SmallMoments.Hour` returns the pile apart, `out comforts`), each easing what strain is left, the rest filling the good
+  side at its share (45%, 60%, 60%, 15%); `EaseJoys` from outside the hour the same. (3) What fills it, only while
+  strain is at nothing, within a cap each and 4 a day in all (`GoodCap`, `GoodDailyCap`, `goodToday`): belonging and
+  purpose well met by the hour (0.035 to 0.07, 1.2 a day each), a life goal moving since yesterday (0.6), a deed the
+  colony speaks well of that someone else knows of (1 to 2, read from the reputations once a day, `RepMath.Valence`),
+  gatherings 2.5, talks 1.5, small joys 1.2, the comforts of home 0.4; it fades 3% a day. (4) Bands, the player's names:
+  steady, in good heart from 45, in high spirits from 65: `Council_Heart_GoodSide` (+2, +3; situational like strain's,
+  it grows ordinary like any good mood, the pile leaves it out), brighter dreams (`Heart.DreamFactor`: sweet 1.2 and
+  1.4, nightmares 0.85 and 0.7), a quicker recovery (rest 1.15 and 1.3 times as fast, read from `goodLately`, how high
+  it stood lately). No work speed. (5) The release (`Heart/GoodRelease.cs`): in high spirits and safe, about once in four
+  days held there, once in 10 days a colonist, once a day in the colony: one of the game's inspirations by their
+  passions and its rules (`GetRandomAvailableInspirationDef`, `TryStartInspiration`, its own letter with Rimfolk's
+  reason, a bubble from `Rimfolk_Pool_GoodHeart_Inspired`), 12 off; or a kind word for someone close, the one under the
+  most strain first (`Together.When` with a walk over, `Speech.Say` face to face from `Rimfolk_Pool_GoodHeart_KindWord`
+  by who hears it, the memory `Council_Heart_KindWord`, a small joy for them with who came over as its cause), 6 off.
+  (6) Words: the heart's page has a second meter "Good heart" with what filled and spent it and the last release
+  (`HeartView`, `GoodHeart.Tip`), the inspector line and RimHUD read the good band ("Heart: in good heart · proud"), the
+  strain tooltip names the other side, the colonist's card one line (`HeartCard`, Now slot), the Moods page counts
+  them, the band mood says what filled it; keys `Rimfolk_GoodHeart.xml`, mood hints `Rimfolk_MoodHints_GoodHeart.xml`,
+  the Almanac page "the heart's good side" (`Almanac_GoodHeart.xml`) and two rows and a pointer on the heart's page.
+  (7) Setting "The heart's good side" (`heartGoodSide`, on) beside the heart's own; off, nothing fills it, the bands
+  give nothing, strain as before. Dev mode: fill by 20, overflow now. (8) Saves: values on the heart and three short
+  lists (`goodToday`, `goodRecent`, `goodSpent`, modelled in `save_estimate.py`); an older save starts at nothing and
+  the first look at deeds and the goal only takes note. (9) Balance (`Tools/Balance`: `HeartSim.cs` plays it with the
+  good side's own draws, the needs a day at a time with each colonist's lean; a "without the good side" case on the
+  same seeds and a section of its own in the report): 6 colonists, in good heart and in high spirits well run 28% and
+  3%, average and neglected almost never (their good side stays under 20, but it takes average colonists' knocks:
+  strain at nothing 46% to 66%, strained/worn/near breaking 8/2/0% to 6/1/0%, the day off 0.05 to 0.03); inspirations
+  0.11 and kind words 0.13 a colonist-year, well run; Rimfolk's mood +5.6 to +6.0, +2.5 to +2.5, -7.0 to -7.2 (noise at
+  480 runs: -7.1 and -7.2, under the minor-break line 33.6% and 33.5%, the day off 0.78 both); the whole mood 69, 64,
+  39% as before. Tuned down from the proposal: the bands from 45 and 65, +2 and +3 (about +2, +3, +5 proposed). Over:
+  Rimfolk's good moods at a high point, well run, P99 +17.5 to +17.6 and +12 or more 16% to 18% (+1 and +2 lifted it as
+  much). Files: `Heart/HeartMath.cs`, `GoodHeart.cs` (new), `GoodRelease.cs` (new), `HeartCard.cs` (new),
+  `HeartLogic.cs`, `HeartData.cs`, `HeartTracker.cs`, `HeartView.cs`, `Heart.cs`, `HeartDebug.cs`;
+  `Moods/SmallMoments.cs`; `CouncilSettings.cs`, `UI/SettingsCatalog.cs`; defs `Rimfolk_Thoughts_GoodHeart.xml`,
+  `Rimfolk_Pool_GoodHeart.xml`, `Rimfolk_MoodHints_GoodHeart.xml`, `Almanac_GoodHeart.xml`, `Almanac_Council.xml`;
+  `Tools/Balance` (`HeartSim.cs`, `Sim.cs`, `Runner.cs`, `Report.cs`, `Program.cs`, `before.json`). Tests:
+  `GoodHeartTests` (new: the bands, filling and spending, never both at once, the caps, the fade, the release, the
+  setting, old saves, the words), `SmallMomentTests` (the hour's new shape), `ImmersionTests` (the two pools). Found and
+  left: a kind word chosen is set going even if the two never meet within ten hours (the colonist's cooldown is spent);
+  a small gift and a hand with the work weren't built (nothing honest to show on the map); the people table's strain
+  cell and the bar badge show strain alone; the sim's needs of belonging and purpose are assumed per play style, not
+  measured. To look at in game: a colonist's Heart section after a quiet week with friends, the meter filling while
+  strain is at nothing and spent by a raid; the inspector line in good heart; the band mood's tooltip; a kind word
+  walked over and said; an inspiration's letter with its reason; the setting off.
 - 0.109.2, text pass: the world's voices (6 November 2026, the player's "please launch one or more text enhancement tasks, adding
   more immersion and variety": visitors and callers, the camps, the region, the outsiders' talk). Not released: no
   round, About.xml untouched. First the words against the map, each case checked in the code and fixed where it was
