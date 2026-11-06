@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 521; modelled: 521; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,388 KB** after a year, **2,830 KB** after two, **3,010 KB** after five.
+Saved collections found: 522; modelled: 522; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,389 KB** after a year, **2,830 KB** after two, **3,010 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -79,9 +79,9 @@ Rimfolk's part of the save, roughly: **2,388 KB** after a year, **2,830 KB** aft
 | `Building/Suggest/Suggestions.cs:declinedTitles` | with the above: the words they had | fixed | 80 | 80 | 80 | 7.0 |
 | `Building/ColonyUse.cs:amounts` | with the above: how much | window | 280 | 280 | 280 | 6.8 |
 | `Building/ColonyUse.cs:days` | the record of use: one entry a day per thing used, bench product and bench hand, today and UseLog.WindowDays before it | window | 280 | 280 | 280 | 6.8 |
+| `World/WorldSituations.cs:lastEnded` | one per situation def | defs | 76 | 76 | 76 | 6.7 |
 | `Dreams/Dreams.cs:seen` | dream counts of known pawns | known | 55 | 60 | 75 | 6.6 |
 | `Dilemmas/AnswerShifts.cs:shifts` | a colonist's hours or work changed by an answer, a night to a heat wave long, at most AnswerShifts.MaxShifts at once | cap | 18 | 36 | 40 | 6.2 |
-| `World/WorldSituations.cs:lastEnded` | one per situation def | defs | 70 | 70 | 70 | 6.2 |
 | `Health/HealthTracker.cs:healers` | known pawns only | known | 22 | 24 | 30 | 5.9 |
 | `Missions/StoriesComponent.cs:chains` | chains 120 days after they end | window | 6 | 12 | 12 | 5.9 |
 | `Outsiders/OutsiderBook.cs:visits` | OutsiderBook.MaxVisits outsiders met lately, let go 3 days after they leave | fixed | 30 | 30 | 30 | 5.9 |
@@ -411,6 +411,7 @@ Rimfolk's part of the save, roughly: **2,388 KB** after a year, **2,830 KB** aft
 | `Ambitions/Ambitions.cs:absentProposers` | while the letter waits | while | 2 | 2 | 2 | 0.1 |
 | `Calendar/CalendarDay.cs:kin` | per day on the calendar | fixed | 2 | 2 | 2 | 0.1 |
 | `Camps/Camp.cs:arrested` | while the camp stays | while | 2 | 2 | 2 | 0.1 |
+| `Camps/CampKindsLand3.cs:caught` | the beasts beast-catchers roped this stay, two at most (CampLandMath.MaxCaught), while the camp stays | while | 2 | 2 | 2 | 0.1 |
 | `Persona/TraitChanges.cs:once` | the changes that come once in a colony's life | fixed | 2 | 2 | 2 | 0.1 |
 | `PlayOut/OnMapTimed.cs:cells` | per thing kept: where each planter sets their sapling (OnMapMath.MaxSaplings at most), plantings only | fixed | 2 | 2 | 2 | 0.1 |
 | `PlayOut/PlayOuts.cs:plots` | per play-out: where a burial's graves lie (OnMapMath.MaxDead at most), burials only | fixed | 2 | 2 | 2 | 0.1 |
