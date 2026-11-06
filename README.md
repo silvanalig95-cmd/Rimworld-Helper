@@ -3234,13 +3234,13 @@ Rimfolk's own save data. The only trace in a save is a colonist in the middle of
 the game can't load that mental state, logs it once and lets them go back to work.
 
 ## Ailments and illnesses
-Colony life wears on the body too. **Everyday ailments** (55 of them) are small and temporary: they never kill, never
+Colony life wears on the body too. **Everyday ailments** (63 of them) are small and temporary: they never kill, never
 leave a mark, last from a night to two weeks, and say in their description what helps. Doctors tend them like any
 illness.
 
 - **Going round** (the game's own disease events, so immunity, genes and the medical tab work as usual; never babies):
   a head cold, a stomach bug, a chest cold in cold weather, hay fever in spring and summer (back to the same people
-  each year), pinkeye, and dreamfever, an invented rim fever of vivid dreams. About one every 50 days, more where the
+  each year), pinkeye, and dreamfever, an invented rim fever of vivid dreams. About one every 55 days, more where the
   game's diseases are common, less on gentle storyteller settings.
 - **From the day's work**, once a colonist's day holds enough hours of the cause: a strained back after long hauling,
   mining or building, sore hands after long bench work, blisters after a day's walking or a caravan trip, chilblains
@@ -3263,17 +3263,30 @@ illness.
   Bees, stings at the hives (less for a skilled handler). The commonest small ones (lice, damp and smoke coughs,
   sleepless nights, heartburn) come a little less often than they did, so the colony is not sick more overall. Never
   more than two at once, never the same one again within days, and never on guests, prisoners or babies.
+- **Of the land, the work and the age**, each named as the colony's age would name it: swimmer's itch (a tribe's pond
+  itch) after a swim in a lake, a pond or a marsh, never the river; trench foot (marsh foot) from hours in cold water or
+  mud; sandfly fever (three-day fever) from evenings out in a desert or dry scrubland; jungle rot in a wound left
+  untended in the wet heat; rabbit fever (hunter's fever) from butchering small wild game; metal fume fever (founder's
+  ague) from a long day at the forge or the smelter in a small closed room; stump sores from a long day on a peg leg or
+  a simple prosthetic (never a bionic one); and mechanite fever for a day or two after a bionic part, an implant or a
+  first dose of luciferium. These are hurts from everyday life: no one has one within three days of another hurt,
+  never in a sickbed or while downed, never a baby, a child only the mildest three; each is told at once and said over
+  their head. The illnesses that go round come a little less often (about one every 55 days), so the colony is not sick
+  more overall.
 - **After what happened**, once it's over: a cough after the flu, swellings after the plague, thin blood after malaria
   (pale and short of breath; rest helps), drowsy spells after sleeping sickness (asleep by day, awake at night; time
   outdoors helps), a limp once a broken leg bone has knit, an itching burn once a bad burn has healed, bad nights
   after a fight at home (likelier for those hurt in it), and with Anomaly, unease after a horror (an entity's wound, a
   chimera, the labyrinth, a psychic ritual).
 
-**Serious illnesses** (15 of them) are rare, behind their own switch, and most can kill: tetanus from a wound left
+**Serious illnesses** (18 of them) are rare, behind their own switch, and most can kill: tetanus from a wound left
 untended, pneumonia after a cold in someone old, frail or starving, tuberculosis, typhus in dirty crowded quarters,
 meningitis, scurvy after weeks without fruit or vegetables, cholera in hot weather, appendicitis, rabies from an
-animal's bite, swamp fever (leptospirosis) from wading in swamps and bogs, and two invented ones: glassblood from the
-dust of ancient ruins and hive fever from insectoid stings.
+animal's bite, swamp fever (leptospirosis) from wading in swamps and bogs, anthrax (a tribe's black bane) from
+butchering an animal that rotted or died sick, valley fever (desert fever) from digging the dry soil of a desert, bird
+fever from sweeping out a closed coop, and two invented ones: glassblood from the dust of ancient ruins and hive fever
+from insectoid stings. The three of the land and the work go through the same cap as everyday hurts and lean with the
+storyteller's disease setting.
 Measles in children, kidney stones, and shingles in people over fifty are hard going but never kill. One kind at a
 time in the colony, none within 30 days of the last, and each comes with a letter and a doctor's note saying what it
 is and what helps. They follow the real diseases: a quiet incubation where there is one, a course of days to weeks,

@@ -532,7 +532,13 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("ailment message " + h.def.defName, e);
                     text = null;
                 }
-                // A Rimfolk-made hurt is never held back (Harm/Harm.cs); the rest as small news.
+                // A Rimfolk-made hurt is never held back (Harm/Harm.cs), and comes with the doctor's note as a torn back
+                // does; the rest as small news.
+                if (info.capped && !text.NullOrEmpty())
+                {
+                    string note = DoctorsNote(h.def);
+                    if (!note.NullOrEmpty()) text += " " + note;
+                }
                 if (!text.NullOrEmpty())
                     News.Post(text, new LookTargets(p), NewsKind.Health, MessageTypeDefOf.NegativeHealthEvent,
                         info.capped ? Importance.Important : info.quiet ? Importance.Flavor : Importance.Notable);

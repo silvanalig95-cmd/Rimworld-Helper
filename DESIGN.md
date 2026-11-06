@@ -2002,6 +2002,53 @@ within talking range has a word (`Rimfolk_Pool_DoctorsWord`), and the news tells
 (`CC_Harm_TornBack`, `CC_Harm_AnkleFall`, `CC_Harm_AnkleCrack`). Prevent it with bed rest, the work tab, the rest-when-ill
 decree or a tending.
 
+### Ailments of the land, the work and the age (the player's request, 6 November 2026)
+
+Eight everyday ailments and three serious illnesses, each from something the hourly look finds on the map
+(`AilmentChecks.Sample`, which holds its counted causes as the bits of a long now; the pure rules in
+`Ailments/AilmentCauseMath.cs`, tested in `Tools/Tests/AilmentLandTests.cs`), each the game's own hediff with stages and
+tending, the serious ones its immunity race with a hidden incubation (`Rimfolk_Hediffs_Ailments_Land.xml`,
+`Rimfolk_Hediffs_Illnesses_Land.xml`; moods, hints and lines in the files of the same name).
+
+| Ailment (names by age) | Cause on the map | Course | Prevention | Rate |
+|---|---|---|---|---|
+| Swimmer's itch (pond itch) | an hour's swim (the game's `GoSwimming`) in still water: a lake, a pond, a marsh, not a river or the sea | 2 to 4 days, a wash shortens it | swim in the river | 4% a day, children half again |
+| Trench foot (marsh foot) | 4 hours outdoors in water, marsh or mud below 10 °C, the line moved by their own cold shift | 1 to 2 weeks, less in bed, tending helps | a bridge or path over the wet, short shifts | 1.5% a day |
+| Sandfly fever (three-day fever) | 2 hours outdoors in an arid land from 18:00 to 5:00 at 20 °C or more | about 3 days whatever is done | indoors after dusk | 3% a day, not again within 30 days |
+| Jungle rot | a cut, scratch, stab or bite untended for 6 hours in a wet land at 25 °C or more outside | about two weeks, a few days tended, industrial best | wounds tended the same day | 8% a day with such a wound |
+| Rabbit fever (hunter's fever) | 2 hours butchering a small wild animal (body 0.5 or less) | about a week, a few days tended, industrial best | a skilled butcher (Cooking) | 1.2% a day |
+| Metal fume fever (founder's ague) | 4 hours smithing or smelting in a closed room of 60 cells or fewer | 1 to 2 days, less in bed | a big or open smithy | 2.5% a day |
+| Stump sores | 8 hours walking or at heavy or bench work on a limb of the old kinds (weaker than natural, made before the spacer age) | 3 to 6 days, much less in bed | a lighter day after a long one | 3% a day |
+| Mechanite fever (machine fever) | a part or implant of the spacer age put in while one of the colony, or a first dose of luciferium | 1 to 3 days, less in bed | none: it's the mechanites | 1 in 4, once a part |
+| Anthrax (black bane), serious | an hour butchering an animal that had begun to rot or was sick when it died | 1 to 6 days hidden, kills in about 7 untreated | burn the carcass; rotten bodies off the bill | 4% such a day |
+| Valley fever (desert fever), serious | 4 hours building, mining in the open, sowing or clearing in an arid land with no rain falling | 7 to 20 days hidden, kills in about 12 untreated | dig after rain; turns | 0.3% a day |
+| Bird fever, serious | an hour cleaning a closed room where birds (a body of the game's Bird) are kept | 5 to 14 days hidden, kills in 7 to 8 untreated | an open pen; turns | 0.25% a day |
+
+- **Through the harm service.** Each is a Rimfolk-made hurt (`HediffCompProperties_Ailment.capped`, with its class in
+  `hurt`): `CanGet` asks `Harm.May` and `Give` goes through `Harm.Ail`, which checks the cap again and counts it. So one
+  in three days, none while downed, in a sickbed, pregnant or fighting, none for babies, and for children only the three
+  of class Mild (the itch, sandfly fever, stump sores); the rest have no child factor. "Hurts from everyday life" at
+  nothing stops them with the rest. They are told as harm is: the news at `Importance.Important` and a line of their
+  own from `Council_Pool_SayAilment` over their head as it shows (`AilmentTracker.SayOnset`), the serious ones in their
+  letter with the doctor's note. The older ailments stay as they were, outside the cap: putting them under it would also
+  hold back a drill's blow or a slip at work for three days after every cold.
+- **Named by the age.** `names` lists a name per age (`[tribal|medieval] pond itch`); `AilmentTracker.NameOf` gives the
+  colony's (cached per def and age), and the health tab (`Hediff_Ailment.LabelBase`), the message (`{ILLNESS}`), the
+  letter, the journal, the news of a recovery and the doctor's record use it. The def's label is the industrial name.
+- **The storyteller.** The new serious ones' chances lean as the catching clock does (`AilmentCauseMath.DiseaseLean`:
+  one over the storyteller's disease interval, between a quarter and double, nothing with the game's diseases off);
+  besides that, the serious illnesses' room in the colony (one kind at a time, none within 30 days) holds them as it
+  holds the others.
+- **Mechanites.** Within three days of the part (`FreshMechanites`: only if they were a colonist for longer than the part
+  is old, so a recruit with an old bionic arm has nothing new), the roll waits until the cap lets them be hurt (out of
+  the sickbed), then comes once for that part (its load ID in `bitesRolled`).
+- **Jungle rot** needs no memory: each colonist is looked at once an hour, so a wound is in its window
+  (`RotWindow`, untended and six hours old) at exactly one look.
+- **What makes room for them.** The catching clock went from 50 to 55 days (`AilmentTracker.EverydayCatchingDays`), so
+  the colony's time with an ailment stays where it was ("Balance targets"). The ailments of deserts, jungles, old limbs
+  and mechanites never come in the simulator's temperate colony; they take the place there of the chilblains and snow
+  glare a desert never has.
+
 ## How the systems talk to each other
 
 Each of Rimfolk's systems was built to stand on its own, and many already read each other (feelings nudge wishes,
