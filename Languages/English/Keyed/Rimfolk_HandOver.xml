@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    Handing a colony over (Source/ColonyCouncil/Colonies/HandOvers.cs and its files; docs/design/stage3-many-colonies.md,
+    section 2, release 2a): the window, the meeting's vote, the day set, the ceremony, the town made, its records, its
+    notables, the bond in goodwill, and the founding window's third choice. No countdowns: days are named by their date.
+  -->
+
+  <!-- Settings: Many colonies -->
+  <CC_Settings_HandOvers>Handing over</CC_Settings_HandOvers>
+  <CC_Settings_HandOvers_Tip>"Hand it over" on a colony's card and on its world buttons: choose who stays and who goes, the head and the head's second, the people's name and the terms. The colony's meeting votes on it, the day is set, and on that day everyone gathers for the hand-over. Once those who go have left, the place is a town of a people of its own, its people the colony's former colonists, allied with the colony. Off: nothing new is offered, and a hand-over under way goes on as planned.</CC_Settings_HandOvers_Tip>
+  <CC_SetNote_HandOvers>Hand a colony over to a people of its own: those who stay.</CC_SetNote_HandOvers>
+
+  <!-- The ages: a colony handed over (the word what changes hands, the rite how it is done) -->
+  <CC_Form_HandOver_Tribal>the fire passed on</CC_Form_HandOver_Tribal>
+  <CC_Form_HandOver_Tribal_Rite>the totem left at the old fire</CC_Form_HandOver_Tribal_Rite>
+  <CC_Form_HandOver_Medieval>the charter and the keys</CC_Form_HandOver_Medieval>
+  <CC_Form_HandOver_Medieval_Rite>a charter read before the hall</CC_Form_HandOver_Medieval_Rite>
+  <CC_Form_HandOver_Industrial>the town charter signed</CC_Form_HandOver_Industrial>
+  <CC_Form_HandOver_Industrial_Rite>the old flag lowered</CC_Form_HandOver_Industrial_Rite>
+  <CC_Form_HandOver_Spacer>the codes handed over</CC_Form_HandOver_Spacer>
+  <CC_Form_HandOver_Spacer_Rite>a charter registered</CC_Form_HandOver_Spacer_Rite>
+  <CC_HandOver_Token_Tribal>the totem</CC_HandOver_Token_Tribal>
+  <CC_HandOver_Token_Medieval>the keys and the charter</CC_HandOver_Token_Medieval>
+  <CC_HandOver_Token_Industrial>the town charter</CC_HandOver_Token_Industrial>
+  <CC_HandOver_Token_Spacer>the codes</CC_HandOver_Token_Spacer>
+  <CC_HandOver_PeopleName_Tribal>hearth of {PLACE}</CC_HandOver_PeopleName_Tribal>
+  <CC_HandOver_PeopleName_Medieval>folk of {PLACE}</CC_HandOver_PeopleName_Medieval>
+  <CC_HandOver_PeopleName_Industrial>township of {PLACE}</CC_HandOver_PeopleName_Industrial>
+  <CC_HandOver_PeopleName_Spacer>{PLACE} administration</CC_HandOver_PeopleName_Spacer>
+  <CC_HandOver_Second_Tribal>the headman's second</CC_HandOver_Second_Tribal>
+  <CC_HandOver_Second_Medieval>the reeve's deputy</CC_HandOver_Second_Medieval>
+  <CC_HandOver_Second_Industrial>deputy mayor</CC_HandOver_Second_Industrial>
+  <CC_HandOver_Second_Spacer>deputy administrator</CC_HandOver_Second_Spacer>
+  <CC_HandOver_HeadWord>head</CC_HandOver_HeadWord>
+
+  <!-- On the colony's card and the world buttons -->
+  <CC_HandOver_Act>Hand it over</CC_HandOver_Act>
+  <CC_HandOver_ActTip>Make this place a town of its own people: those who stay become a people of their own, allied with the colony, and those who go leave for another home, a new colony or the road. The colony's meeting votes on it first.</CC_HandOver_ActTip>
+  <CC_HandOver_ActCallOff>Call off the hand-over</CC_HandOver_ActCallOff>
+  <CC_HandOver_ActCallOffTip>The hand-over under way here is called off: nobody leaves for it and the place stays the colony's.</CC_HandOver_ActCallOffTip>
+  <CC_HandOver_CallOffConfirm>Call off the hand-over of {HOME}? A new colony to be founded with it is called off too.</CC_HandOver_CallOffConfirm>
+  <CC_HandOver_CalledOff>The hand-over of {HOME} is called off.</CC_HandOver_CalledOff>
+  <CC_HandOver_CalledOffWhy>the hand-over was called off</CC_HandOver_CalledOffWhy>
+  <CC_HandOver_No_Off>Handing over is off in the settings (Many colonies).</CC_HandOver_No_Off>
+  <CC_HandOver_No_NotHome>Only one of the colony's homes can be handed over.</CC_HandOver_No_NotHome>
+  <CC_HandOver_No_NotSettlement>Only a settlement on the ground can become a town.</CC_HandOver_No_NotSettlement>
+  <CC_HandOver_No_UnderWay>The hand-over of {HOME} is under way: one at a time.</CC_HandOver_No_UnderWay>
+  <CC_HandOver_No_Founding>A new colony is being founded from here at {PLACE}: call it off first, or hand this place over from the founding window.</CC_HandOver_No_Founding>
+  <CC_HandOver_No_Fight>Not during a fight or a threat here.</CC_HandOver_No_Fight>
+  <CC_HandOver_No_Banishment>Not while someone here is being banished.</CC_HandOver_No_Banishment>
+  <CC_HandOver_No_FewStay>At least {COUNT} grown-ups have to stay: fewer is a homestead, not a town.</CC_HandOver_No_FewStay>
+  <CC_HandOver_No_NobodyElse>Someone of the colony's has to stay the colony's: send someone with those who go, or keep another home, or the game would end.</CC_HandOver_No_NobodyElse>
+  <CC_HandOver_No_Anchor>A grav anchor stands here: the town can't keep it. Take it apart first.</CC_HandOver_No_Anchor>
+  <CC_HandOver_No_WhereHome>Choose where those who go go.</CC_HandOver_No_WhereHome>
+  <CC_HandOver_Name_Empty>Give the people a name.</CC_HandOver_Name_Empty>
+  <CC_HandOver_Name_Long>The people's name is too long ({COUNT} letters at most).</CC_HandOver_Name_Long>
+  <CC_HandOver_Name_Taken>Another people has that name already.</CC_HandOver_Name_Taken>
+
+  <!-- The window -->
+  <CC_HandOver_Title>Hand over {HOME}</CC_HandOver_Title>
+  <CC_HandOver_Subtitle>A town of its own people, {FORM}.</CC_HandOver_Subtitle>
+  <CC_HandOver_Who>Who stays at {HOME}, and who goes</CC_HandOver_Who>
+  <CC_HandOver_WhoCount>{STAY} stay, {GO} go</CC_HandOver_WhoCount>
+  <CC_HandOver_WhoLine>Your choice: a tick stays. Each grown-up's wish is shown with why: anyone sent or kept against it feels uprooted for a season, and close bonds split feel parted for a season. Nobody refuses. Children follow their parents unless you move them.</CC_HandOver_WhoLine>
+  <CC_HandOver_WhoLineFounding>Those who go are the founding party chosen in the founding window; everyone else stays. Each grown-up's wish is shown with why.</CC_HandOver_WhoLineFounding>
+  <CC_HandOver_IsHead>(the head)</CC_HandOver_IsHead>
+  <CC_HandOver_IsSecond>(the head's second)</CC_HandOver_IsSecond>
+  <CC_HandOver_CantStay>They go with those who go.</CC_HandOver_CantStay>
+  <CC_HandOver_Goes>goes</CC_HandOver_Goes>
+  <CC_HandOver_Stays>stays</CC_HandOver_Stays>
+  <CC_HandOver_AgainstSent>Sent against their wish, {PAWN} will feel uprooted for a season.</CC_HandOver_AgainstSent>
+  <CC_HandOver_AgainstKept>Kept against their wish, {PAWN} will feel uprooted for a season in the town.</CC_HandOver_AgainstKept>
+  <CC_HandOver_PeopleHead>The people</CC_HandOver_PeopleHead>
+  <CC_HandOver_TheHead>The head ({TITLE})</CC_HandOver_TheHead>
+  <CC_HandOver_TheSecond>The second ({TITLE})</CC_HandOver_TheSecond>
+  <CC_HandOver_Nobody>nobody</CC_HandOver_Nobody>
+  <CC_HandOver_HeadLine>By office or standing, never by blood: the speaker if they stay, else the first office holder who stays by the seats' order, else the one the others think best of; the second is the next by the same rule. When the head dies or is lost, the second leads. Pick others if you like.</CC_HandOver_HeadLine>
+  <CC_HandOver_TheName>The people's name</CC_HandOver_TheName>
+  <CC_HandOver_NameLine>A people of its own, of the colony's age: {KIND}.</CC_HandOver_NameLine>
+  <CC_HandOver_TermsHead>The terms</CC_HandOver_TermsHead>
+  <CC_HandOver_Terms_Free>A free town, owing nothing</CC_HandOver_Terms_Free>
+  <CC_HandOver_Terms_Defence>A defence pact for a year</CC_HandOver_Terms_Defence>
+  <CC_HandOver_Terms_Trade>A trade pact for a year</CC_HandOver_Terms_Trade>
+  <CC_HandOver_TermsLine_Free>The town owes the colony nothing; its regard is the bond between them.</CC_HandOver_TermsLine_Free>
+  <CC_HandOver_TermsLine_Defence>Their band comes when the colony calls during a threat, and the colony's fighters are asked for when their town is attacked. A year, renewed by their letter.</CC_HandOver_TermsLine_Defence>
+  <CC_HandOver_TermsLine_Trade>Their trader caravan comes each season, and a cart of the colony's surplus goes to their porters. A year, renewed by their letter.</CC_HandOver_TermsLine_Trade>
+  <CC_HandOver_NoFealty>Fealty isn't offered here: the town may ask for the colony's protection later, as any struggling town may.</CC_HandOver_NoFealty>
+  <CC_HandOver_Terms_Off>Pacts are off in the settings (Diplomacy).</CC_HandOver_Terms_Off>
+  <CC_HandOver_Terms_NoHome>A pact needs a home of the colony's left to be bound to.</CC_HandOver_Terms_NoHome>
+  <CC_HandOver_WhereHead>Where those who go go</CC_HandOver_WhereHead>
+  <CC_HandOver_WhereFounding>To found the new colony at {PLACE}: {MEANS}. They set out once the hand-over is done.</CC_HandOver_WhereFounding>
+  <CC_HandOver_WhereHome>To {HOME}</CC_HandOver_WhereHome>
+  <CC_HandOver_WhereCaravan>On the road: a caravan you form (or the pods, the shuttle or the gravship, the game's way)</CC_HandOver_WhereCaravan>
+  <CC_HandOver_WhereLine_Home>The journey planner plans their journey once the hand-over is done: one way, with food for the road. They walk in at the other home and live there.</CC_HandOver_WhereLine_Home>
+  <CC_HandOver_WhereLine_Caravan>Once the hand-over is done, form their caravan the game's way, or send them by pods, the shuttle or the gravship. They stay the colony's wherever they go.</CC_HandOver_WhereLine_Caravan>
+  <CC_HandOver_WhereLine_Founding>They found the new colony.</CC_HandOver_WhereLine_Founding>
+  <CC_HandOver_WhereFoundLine>To found a new colony with them, start from the founding window and choose to hand this place over there.</CC_HandOver_WhereFoundLine>
+  <CC_HandOver_FoundInstead>Found a new colony with them</CC_HandOver_FoundInstead>
+  <CC_HandOver_CaptivesHead>The colony's prisoners and slaves here ({COUNT}):</CC_HandOver_CaptivesHead>
+  <CC_HandOver_Captives_Free>Set free in the town: prisoners go back to their own people, slaves live there as free folk</CC_HandOver_Captives_Free>
+  <CC_HandOver_Captives_Go>Taken along by those who go, in the caravan you form (any still here are set free)</CC_HandOver_Captives_Go>
+  <CC_HandOver_StaysHead>What stays with the place</CC_HandOver_StaysHead>
+  <CC_HandOver_StaysLine>{BUILDINGS} buildings, {FIELDS} fields, goods worth {GOODS} silver, and {ANIMALS} animals unless they go along. The town keeps them as its own.</CC_HandOver_StaysLine>
+  <CC_HandOver_StaysMore>As with the game's own abandon, whatever the town can't keep goes with the map: held entities and what lies about. A relic stays theirs. Mechs go with their mechanitor, or stay. The game closes the map once those who go have left; if it is ever made again, it is the game's own town of that people.</CC_HandOver_StaysMore>
+  <CC_HandOver_ChecksHead>Before it can go ahead</CC_HandOver_ChecksHead>
+  <CC_HandOver_CheckOk>Yes: {TEXT}</CC_HandOver_CheckOk>
+  <CC_HandOver_CheckNo>Not yet: {TEXT}</CC_HandOver_CheckNo>
+  <CC_HandOver_Check_Three>at least {COUNT} grown-ups stay ({NOW} now)</CC_HandOver_Check_Three>
+  <CC_HandOver_Check_Elsewhere>someone of the colony's stays the colony's, among those who go or at another home</CC_HandOver_Check_Elsewhere>
+  <CC_HandOver_Check_Fight>no fight or threat at {HOME}</CC_HandOver_Check_Fight>
+  <CC_HandOver_Check_Banishment>no banishment under way here</CC_HandOver_Check_Banishment>
+  <CC_HandOver_Check_Anchor>no grav anchor here (the town can't keep one)</CC_HandOver_Check_Anchor>
+  <CC_HandOver_Check_Engine>The gravship's engine has to leave with those who go, or be taken apart, before the town is made.</CC_HandOver_Check_Engine>
+  <CC_HandOver_VoteLine>The colony's meeting gathers in the evening at the meeting spot and votes on it, each member by their wish and their trust in the council. Going ahead against its vote costs {TRUST} trust among those who stay. Then the day is set: everyone gathers for the hand-over, and those who go leave.</CC_HandOver_VoteLine>
+  <CC_HandOver_NeedsRimfolk>A save that holds this town needs Rimfolk from then on: its people ({KIND}) are one of Rimfolk's own, and without Rimfolk the game drops the town and its people with an error when the save is loaded.</CC_HandOver_NeedsRimfolk>
+  <CC_HandOver_Confirm>Put it to the meeting</CC_HandOver_Confirm>
+
+  <!-- The meeting and its vote -->
+  <CC_HandOver_MeetingLabel>the meeting on the hand-over</CC_HandOver_MeetingLabel>
+  <CC_HandOver_MeetingCalled>The meeting at {HOME} gathers in the evening to vote on handing it over, {CHAIR} in the chair.</CC_HandOver_MeetingCalled>
+  <CC_HandOver_VoteLabel>The vote at {HOME}</CC_HandOver_VoteLabel>
+  <CC_HandOver_VoteFor>The meeting at {HOME} voted to hand it over, {FOR} to {AGAINST}.</CC_HandOver_VoteFor>
+  <CC_HandOver_VoteAgainst>The meeting at {HOME} voted against handing it over, {FOR} to {AGAINST}.</CC_HandOver_VoteAgainst>
+  <CC_HandOver_VoteYes>For: {NAMES}.</CC_HandOver_VoteYes>
+  <CC_HandOver_VoteNo>Against: {NAMES}.</CC_HandOver_VoteNo>
+  <CC_HandOver_VoteTorn>Torn, and not counted: {NAMES}.</CC_HandOver_VoteTorn>
+  <CC_HandOver_VoteAsk>Go ahead, and the hand-over is set for {DATE}, or call it off.</CC_HandOver_VoteAsk>
+  <CC_HandOver_VoteAskAgainst>Going ahead against the vote costs {TRUST} trust among those who stay; the hand-over would be set for {DATE}. Or call it off.</CC_HandOver_VoteAskAgainst>
+  <CC_HandOver_Choice_GoAhead>Go ahead</CC_HandOver_Choice_GoAhead>
+  <CC_HandOver_Choice_CallOff>Call it off</CC_HandOver_Choice_CallOff>
+  <CC_HandOver_TrustWhy>handed over against the meeting's vote at {HOME}</CC_HandOver_TrustWhy>
+  <CC_HandOver_DaySetMsg>The hand-over of {HOME} is set for {DATE}.</CC_HandOver_DaySetMsg>
+
+  <!-- The ceremony -->
+  <CC_HandOver_CeremonyLabel>the hand-over, {FORM}</CC_HandOver_CeremonyLabel>
+  <CC_HandOver_CeremonyCalled>Everyone at {HOME} gathers at the meeting spot for the hand-over: {FORM}.</CC_HandOver_CeremonyCalled>
+  <CC_HandOver_TokenLog>{PAWN} handed {TOKEN} to {OTHER}.</CC_HandOver_TokenLog>
+  <CC_HandOver_FarewellLog>{PAWN} said goodbye to {OTHER}.</CC_HandOver_FarewellLog>
+  <CC_HandOver_CaravanLabel>Those who go from {HOME}</CC_HandOver_CaravanLabel>
+  <CC_HandOver_CaravanText>{NAMES} are ready to leave {HOME}. Form their caravan the game's way, or send them by pods, the shuttle or the gravship. Once the last of them has left, the place is the {PEOPLE}'s.</CC_HandOver_CaravanText>
+  <CC_HandOver_CaravanTextHome>{NAMES} are ready to leave {HOME} for {PLACE}, but the journey planner can't take them now. Form their caravan the game's way, or send them by pods or the shuttle. Once the last of them has left, the place is the {PEOPLE}'s.</CC_HandOver_CaravanTextHome>
+  <CC_HandOver_Choice_FormCaravan>Form their caravan</CC_HandOver_Choice_FormCaravan>
+  <CC_HandOver_Wait_Going>{NAMES} are still at {HOME}: it becomes a town once they have left.</CC_HandOver_Wait_Going>
+  <CC_HandOver_Wait_Lodgers>{NAMES}, guests of the colony, are still at {HOME}: they go with those who go, and it becomes a town once they have left.</CC_HandOver_Wait_Lodgers>
+  <CC_HandOver_Wait_Founding>{HOME} becomes a town once the new colony stands.</CC_HandOver_Wait_Founding>
+  <CC_HandOver_Wait_FewStay>Fewer than {COUNT} grown-ups are left at {HOME}: a town needs them. Call it off from the colony's card, or wait for them to come back.</CC_HandOver_Wait_FewStay>
+  <CC_HandOver_Wait_Engine>The gravship's engine is still at {HOME}: the town can't keep it. Fly it away or take it apart.</CC_HandOver_Wait_Engine>
+  <CC_HandOver_HomeGone>{HOME} is no longer the colony's, so its hand-over and the new colony with it are let go.</CC_HandOver_HomeGone>
+  <CC_HandOver_Long>The town takes over</CC_HandOver_Long>
+
+  <!-- The town is made -->
+  <CC_HandOver_LetterLabel>{HOME} is the {PEOPLE}'s</CC_HandOver_LetterLabel>
+  <CC_HandOver_LetterText>{HOME} is a town of its own now: the {PEOPLE}, the colony's former people, with {HEAD} at their head as {TITLE}. Those who stayed: {NAMES}.</CC_HandOver_LetterText>
+  <CC_HandOver_LetterToken>At the hand-over it was {FORM}.</CC_HandOver_LetterToken>
+  <CC_HandOver_LetterSecond>{SECOND} is {TITLE}, and leads when the head is gone.</CC_HandOver_LetterSecond>
+  <CC_HandOver_Terms_Made_Free>The {PEOPLE} are a free town, allied with the colony and owing it nothing.</CC_HandOver_Terms_Made_Free>
+  <CC_HandOver_Terms_Made_Defence>The {PEOPLE} are allied with the colony, and bound to it by a defence pact for a year.</CC_HandOver_Terms_Made_Defence>
+  <CC_HandOver_Terms_Made_Trade>The {PEOPLE} are allied with the colony, and bound to it by a trade pact for a year.</CC_HandOver_Terms_Made_Trade>
+  <CC_HandOver_LetterAfter>Their town stands where the colony was, with its name, on the world map and among the colony's neighbours, and they think well of the colony while one of their own former colonists leads them. The game closes the old map as it does any town's.</CC_HandOver_LetterAfter>
+  <CC_HandOver_History>{HOME} was handed over to its own people, the {PEOPLE}, with {HEAD} at their head.</CC_HandOver_History>
+  <CC_HandOver_FortuneCause>the colony {COLONY} was</CC_HandOver_FortuneCause>
+  <CC_HandOver_UprootedSent>sent from {HOME} against their wish when it was handed over</CC_HandOver_UprootedSent>
+  <CC_HandOver_UprootedKept>kept at {HOME} against their wish when it was handed over</CC_HandOver_UprootedKept>
+  <CC_HandOver_OnceOf>once of {COLONY}</CC_HandOver_OnceOf>
+  <CC_HandOver_BondEnded>The {PEOPLE} are at war with the colony: the bond of the people who were once of {COLONY} is broken.</CC_HandOver_BondEnded>
+  <CC_HandOver_BondEndedHistory>The {PEOPLE}, once of {COLONY}, went to war with the colony.</CC_HandOver_BondEndedHistory>
+
+  <!-- The colony's card and the town's card -->
+  <CC_HandOver_CardHead>The hand-over</CC_HandOver_CardHead>
+  <CC_HandOver_Line>To be handed over to the {PEOPLE}: {STAGE}.</CC_HandOver_Line>
+  <CC_HandOver_Stage_Meeting>the meeting gathers to vote</CC_HandOver_Stage_Meeting>
+  <CC_HandOver_Stage_VotedFor>the meeting voted for it, {FOR} to {AGAINST}, and waits for your word</CC_HandOver_Stage_VotedFor>
+  <CC_HandOver_Stage_VotedAgainst>the meeting voted against it, {FOR} to {AGAINST}, and waits for your word</CC_HandOver_Stage_VotedAgainst>
+  <CC_HandOver_Stage_Set>set for {DATE}</CC_HandOver_Stage_Set>
+  <CC_HandOver_Stage_Ceremony>everyone gathers for it</CC_HandOver_Stage_Ceremony>
+  <CC_HandOver_Stage_Leaving>{NAMES} still to leave</CC_HandOver_Stage_Leaving>
+  <CC_HandOver_Stage_Left>those who go have left</CC_HandOver_Stage_Left>
+  <CC_HandOver_TownHead>Once the colony's</CC_HandOver_TownHead>
+  <CC_HandOver_TownLine>Once the colony {COLONY}, handed over {AGO}; {COUNT} of its former people live here.</CC_HandOver_TownLine>
+  <CC_HandOver_TownBond>They think well of the colony: +{BOND} to the goodwill they come back to, once of {COLONY}.</CC_HandOver_TownBond>
+  <CC_HandOver_TownBondEnded>The bond with the colony was broken by war.</CC_HandOver_TownBondEnded>
+
+  <!-- The founding window's third choice (the hand-over in the same act) -->
+  <CC_HandOver_FoundChoice>Handed over, a town of those who stay</CC_HandOver_FoundChoice>
+  <CC_HandOver_FoundChoiceLine>The hand-over window follows: those who stay, the head, the people's name and the terms. The meeting votes, everyone gathers for the hand-over, and the party sets out after it. Newcomers come free.</CC_HandOver_FoundChoiceLine>
+  <CC_HandOver_NewcomersFree>Free, with the old colony handed over at the same time.</CC_HandOver_NewcomersFree>
+  <CC_HandOver_LimitBack>Rimfolk sets it back by one once the old colony is handed over, unless you changed it meanwhile.</CC_HandOver_LimitBack>
+  <CC_HandOver_FoundConfirm>On to the hand-over</CC_HandOver_FoundConfirm>
+  <CC_HandOver_FoundHandingOver>{MOTHER} becomes a town of its own people once those who go have left it.</CC_HandOver_FoundHandingOver>
+  <CC_HandOver_FoundOldGone>{MOTHER} was handed over, a town of its own people now.</CC_HandOver_FoundOldGone>
+
+</LanguageData>
