@@ -296,7 +296,7 @@ namespace ColonyCouncil
                 : able.OrderByDescending(x => x.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0).First();
             organizer = SafeLead(p, organizer, able, map);
             // A bonfire with no fire to gather at: one of the colony lays and lights it first (PlayFire.cs); one not laid with
-            // the evening running out is held at the colony's own fire, or indoors.
+            // the evening running out is held without a fire, in the open or indoors.
             if (PlayFire.Waits(p, organizer, able, now)) return;
             if (!PlaySpots.TryFind(p, organizer, out var spot, out var where))
             {
@@ -330,7 +330,7 @@ namespace ColonyCouncil
             job.guests = PlayGuests.Resolve(p, map);
             // The toasts of life goals reached lately are raised at it, and those they're for asked to it (Stage.cs).
             Stage.Started(p);
-            LordMaker.MakeNewLord(Faction.OfPlayer, job, map, new List<Pawn> { organizer });
+            Stage.Began(map, LordMaker.MakeNewLord(Faction.OfPlayer, job, map, new List<Pawn> { organizer }));
             p.state = PlayState.Running;
             p.started = now;
             p.organizer = organizer;

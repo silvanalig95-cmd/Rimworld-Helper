@@ -294,18 +294,36 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The home's gathering lords: one that wasn't there last time began now, and is counted.</summary>
+        /// <summary>A gathering lord of Rimfolk's began on a home just now: counted at once (so a second plan in the same pass sees it), and not again when it is seen.</summary>
+        internal static void Began(Map map, Lord lord)
+        {
+            if (map == null || lord == null || !Homes.IsHome(map)) return;
+            Held(map);
+            if (seen.TryGetValue(map.uniqueID, out var before)) before.Add(lord.loadID);
+        }
+
+        private static bool Gathering(LordJob job) => job is LordJob_Joinable_Gathering || job is LordJob_Joinable_MarriageCeremony || job is LordJob_FeastGuests;
+
+        /// <summary>The home's gathering lords: one that wasn't there last time began now, and is counted. Nothing is made when nothing changed.</summary>
         private static void Watch(Map map, int now)
         {
             var lords = map?.lordManager?.lords;
             if (lords == null) return;
             int key = map.uniqueID;
             bool primed = seen.TryGetValue(key, out var before);
+            int count = 0;
+            bool fresh = false;
+            foreach (var lord in lords)
+            {
+                if (lord == null || !Gathering(lord.LordJob)) continue;
+                count++;
+                if (!primed || !before.Contains(lord.loadID)) fresh = true;
+            }
+            if (primed && !fresh && count == before.Count) return;
             var current = new HashSet<int>();
             foreach (var lord in lords)
             {
-                var job = lord?.LordJob;
-                if (!(job is LordJob_Joinable_Gathering || job is LordJob_Joinable_MarriageCeremony || job is LordJob_FeastGuests)) continue;
+                if (lord == null || !Gathering(lord.LordJob)) continue;
                 current.Add(lord.loadID);
                 if (primed && !before.Contains(lord.loadID)) Held(map);
             }
