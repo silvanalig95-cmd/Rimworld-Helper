@@ -117,6 +117,7 @@
     <Compile Include="../../Source/ColonyCouncil/Animals/HerdStoryMath.cs" Link="HerdStoryMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Social/MovingOnMath.cs" Link="MovingOnMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Aspirations/GoalRewardMath.cs" Link="GoalRewardMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Aspirations/GoalMath.cs" Link="GoalMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/GuestWillMath.cs" Link="GuestWillMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/DrinkBeforeWorkMath.cs" Link="DrinkBeforeWorkMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/MedicalTriageMath.cs" Link="MedicalTriageMath.cs" />
