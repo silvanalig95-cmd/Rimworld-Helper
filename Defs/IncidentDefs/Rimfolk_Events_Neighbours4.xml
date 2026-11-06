@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- The fourth round of neighbours and callers (the player's request, 6 November 2026): people at the gate told from data
+       (HappeningWorker_Setting, Source/ColonyCouncil/Happenings/Workers_Setting.cs). A herb-gatherer who knows the
+       plants of the colony's land, drovers on the way to a fair, a seed-seller in the sowing months, a neighbour's
+       patrol out after bandits, a traveller who took the wrong road, a petitioner with a grievance against their own
+       head, and a brewer's cart. Each comes in the colony's age, from a people of about its own (people own), and what
+       an answer says is done on the map: a lesson at the visitor's side, an errand carried out to the gate, goods handed
+       over, a patch sown, an animal bought, a talk at the table. -->
+
+  <!-- ===================== A herb-gatherer ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_HerbGatherer</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a herb-gatherer</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>30~70</ages>
+        <stayHours>10~14</stayHours>
+        <amount>30~60</amount>
+        <answerDays>0.6</answerDays>
+        <seasons>
+          <li>Spring</li>
+          <li>Summer</li>
+          <li>Fall</li>
+          <li>PermanentSummer</li>
+        </seasons>
+        <second>
+          <bestAt>Plants</bestAt>
+        </second>
+        <titles>
+          <li>A herb-gatherer at the gate</li>
+          <li>{X_nameDef} and {X_possessive} basket</li>
+        </titles>
+        <texts>
+          <li>[tribal] {X_nameDef}, a root-gatherer of {FACTION}, came out of the trees with a basket on {X_possessive} back and asked, politely, whether the plants on the colony's land were spoken for. The ones {X_pronoun} wants grow in the shade at the treeline, and {X_pronoun} knows what each of them is good for.\n\nFor {COUNT} silver {X_pronoun} would sell a bundle of what {X_pronoun} has already dried.</li>
+          <li>[medieval] {X_nameDef}, a herbalist of {FACTION}, stopped at the gate with a basket and a knife and asked leave to gather along the colony's treeline. {X_pronoun} sells to the apothecaries in {PLACE}, and has a bundle already dried that {X_pronoun} would part with for {COUNT} silver.</li>
+          <li>[industrial] {X_nameDef}, a botanist of {FACTION} with a tin vasculum and a notebook full of pressed leaves, asks whether {X_pronoun} might collect on the colony's land for an afternoon. {X_pronoun} has a bundle of dried medicinal herbs to sell for {COUNT} silver, if anyone is interested.</li>
+          <li>[spacer] {X_nameDef}, a xenobotanist of {FACTION}, is cataloguing the plants of the region, sample tubes clinking at {X_possessive} belt, and asks leave to work along the colony's treeline. {X_pronoun} has a bundle of dried healing herbs to sell for {COUNT} silver, gathered the old way.</li>
+          <li>[fall] The last of the season's roots are coming up, and {X_nameDef}, a gatherer of {FACTION}, has walked out from {PLACE} to find them. {X_pronoun} asks leave to dig along the colony's treeline, and offers a bundle of dried herbs for {COUNT} silver.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let {X_objective} gather, with {B_nameDef} along</label>
+            <outcome>{X_nameDef} walked the treeline with {B_nameDef} at {X_possessive} elbow, naming each plant and what it does, which leaves heal and which do harm. {B_nameDef} came back with a head full of it.</outcome>
+            <outcomes>
+              <li>[b:office:Physician] The colony's physician, {B_nameDef}, went along with {X_nameDef} and argued about every second root. {X_nameDef} won most of the arguments, and {B_nameDef} wrote the rest down.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>B</student><skill>Plants</skill><duration>2~3</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Buy a bundle of dried herbs ({COUNT} silver)</label>
+            <outcome>{X_nameDef} counted the silver into {X_possessive} purse and handed over a bundle of herbs tied with grass, enough for a few dressings.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>MedicineHerbal</thing><count>3</count><by>Outsiders</by></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not on the colony's land</label>
+            <outcome>{X_nameDef} shouldered the basket and went to find somebody else's treeline.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <visitor>true</visitor>
+        <people>own</people>
+        <visitorSkill>Plants</visitorSkill>
+        <visitorLevel>9~15</visitorLevel>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Drovers on the way to a fair ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_Drovers</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>drovers on the road</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <count>2~3</count>
+        <ages>18~55</ages>
+        <stayHours>6~10</stayHours>
+        <amount>110~200</amount>
+        <answerDays>0.6</answerDays>
+        <titles>
+          <li>Drovers at the gate</li>
+          <li>{X_nameDef}'s herd</li>
+        </titles>
+        <texts>
+          <li>[tribal] Herders of {FACTION} are driving their beasts to the gathering at {PLACE}, and {X_nameDef} has come up to the gate from the valley road with two of them. They have more young ones than they can feed through the season, and would let one go for {COUNT} silver.</li>
+          <li>[medieval] {X_nameDef} and the drovers of {FACTION} are taking their herd to the fair at {PLACE}, and while it grazes down on the road they have walked up to the gate to ask the way and the price of a meal. They have young stock to sell, and would let one go here for {COUNT} silver and save themselves the fair's tolls.</li>
+          <li>[industrial] A cattle drive is resting on the old road toward {PLACE}, and {X_nameDef}, who leads it for {FACTION}, has walked up to the gate with two of the drovers. {X_pronoun} offers the colony one of the young ones for {COUNT} silver, and asks after a hot meal for the men.</li>
+          <li>[spacer] {X_nameDef}, a stockman of {FACTION}, is moving a herd of gene-bred stock between settlements the slow way, on foot, to keep them calm, and has left it grazing down the road to come up to the gate. {X_pronoun} would sell the colony a young one for {COUNT} silver, and wouldn't say no to a meal for the hands.</li>
+          <li>[colony:Hospitable] The colony's name for a warm welcome has reached the drovers' road. {X_nameDef} of {FACTION} has left the herd grazing down the road and come up to the gate to ask after a meal, and to offer a young beast for {COUNT} silver.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Buy a young beast ({COUNT} silver)</label>
+            <outcome>{X_nameDef} took the silver and handed over a young beast from the herd, and it is the colony's now.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_SpawnAnimal"><kinds><li>Cow</li><li>Goat</li><li>Sheep</li><li>Yak</li><li>Alpaca</li><li>Donkey</li><li>Muffalo</li><li>Dromedary</li></kinds></li>
+            </effects>
+          </li>
+          <li>
+            <label>A meal for the drovers</label>
+            <outcome>{A_nameDef} carried a hot meal out to each of the drovers, and they ate it standing by the gate before they went back down to the herd.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>3</count><to>Stranger</to><label>a meal for the drovers</label><eat>true</eat></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Send them on</label>
+            <outcome>{X_nameDef} nodded, and the drovers went back down the road to their herd.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <visitor>true</visitor>
+        <people>own</people>
+        <visitorSkill>Animals</visitorSkill>
+        <visitorLevel>7~13</visitorLevel>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A seed-seller ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_SeedSeller</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a seed-seller</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>25~65</ages>
+        <stayHours>6~10</stayHours>
+        <amount>30~70</amount>
+        <answerDays>0.6</answerDays>
+        <seasons>
+          <li>Spring</li>
+          <li>Summer</li>
+          <li>PermanentSummer</li>
+        </seasons>
+        <colonist>
+          <bestAt>Plants</bestAt>
+        </colonist>
+        <titles>
+          <li>A seed-seller</li>
+          <li>{X_nameDef}'s seed</li>
+        </titles>
+        <texts>
+          <li>[lowtech] {X_nameDef} of {FACTION} walks the roads in the sowing months with a pack of little cloth bags, each tied with a different coloured thread. {X_pronoun} has seen the colony's fields from the road and swears {X_possessive} seed would do better in them than what's there. A handful for {COUNT} silver, or a young tree for the field's edge.</li>
+          <li>[!lowtech] {X_nameDef}, a seed merchant of {FACTION}, has a case of labelled packets and a speech about yields. {X_pronoun} offers the colony a handful of good seed for {COUNT} silver, or a young tree to plant at the edge of the fields.</li>
+          <li>[spring] Sowing time brings {X_nameDef} of {FACTION} up the road with a sack of seed and an eye for other people's fields. {X_pronoun} has been watching {A_nameDef} at work and offers a handful of {X_possessive} best for {COUNT} silver, or a young tree for the field's edge.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Buy seed, and sow a patch ({COUNT} silver)</label>
+            <outcome>{A_nameDef} bought a handful of {X_nameDef}'s seed and sowed it in a little patch beside the fields, a row at a time, while {X_nameDef} watched and gave advice.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_SowPatch" />
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>A young tree for the field's edge ({COUNT} silver)</label>
+            <outcome>{X_nameDef} sold the colony a young tree with its roots in wet sacking, and {A_nameDef} planted it at the edge of the fields, where it will break the wind one day.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Plant"><near>Fields</near><markers>true</markers></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not today</label>
+            <outcome>{X_nameDef} tucked the bags away and went on down the road, still talking about yields.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <needs>
+          <li>crops</li>
+        </needs>
+        <visitor>true</visitor>
+        <people>own</people>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A neighbour's patrol ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_WatchPatrol</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a neighbour's patrol</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>12</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <count>3~3</count>
+        <ages>22~50</ages>
+        <stayHours>6~10</stayHours>
+        <amount>40~80</amount>
+        <answerDays>0.6</answerDays>
+        <second>
+          <bestAt>Shooting</bestAt>
+          <canFight>true</canFight>
+        </second>
+        <titles>
+          <li>A patrol at the gate</li>
+          <li>{FACTION}'s watch on the road</li>
+        </titles>
+        <texts>
+          <li>[tribal] Three hunters of {FACTION} with their faces painted for the road came to the gate. {X_nameDef}, who leads them, says raiders have been seen on the trails toward {PLACE}, and they are following them. They ask for food for the trail, and {X_nameDef} offers to show the colony's best with a bow how {FACTION} shoot.</li>
+          <li>[medieval] {X_nameDef}, a sergeant of {FACTION}'s watch, and two men-at-arms have ridden down from {PLACE} after a band of brigands. They ask at the gate for a meal, and two doses of medicine for the road if the colony can sell them, and {X_nameDef} would gladly drill the colony's best archer an hour in return.</li>
+          <li>[industrial] A three-man patrol of {FACTION}'s constables is working the roads out of {PLACE} after a gang that's been holding up carts. {X_nameDef}, their sergeant, asks the colony for a meal for the men and medicine if there's any to sell, and offers an hour at the gate with the colony's best shot.</li>
+          <li>[spacer] {X_nameDef} of {FACTION}'s security detail and two others have tracked a band of raiders onto the colony's side of the ridge and lost them. They ask for a meal and medicine to buy, and {X_nameDef} offers the colony's best shot an hour of drill in exchange.</li>
+        </texts>
+        <defaultOption>3</defaultOption>
+        <options>
+          <li>
+            <label>Feed the patrol</label>
+            <outcome>{A_nameDef} carried a hot meal out to each of them, and the patrol ate it by the gate with their weapons across their knees before they went back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>3</count><to>Stranger</to><label>a meal for the patrol</label><eat>true</eat></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Let {X_nameDef} drill {B_nameDef} at the gate</label>
+            <outcome>{X_nameDef} spent an hour by the gate with {B_nameDef}, correcting {B_possessive} stance and {B_possessive} breathing until the shots went where {B_pronoun} meant them to.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>B</student><skill>Shooting</skill><duration>1.5~2.5</duration></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Sell them two doses of medicine ({COUNT} silver)</label>
+            <outcome>The medicine went out to {X_nameDef} at the gate, and {X_pronoun} paid the {COUNT} silver without haggling.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>medicine</what><count>2</count><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Paid" />
+            </effects>
+          </li>
+          <li>
+            <label>Wish them luck on the road</label>
+            <outcome>{X_nameDef} nodded, and the patrol went on after their raiders.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <visitor>true</visitor>
+        <people>own</people>
+        <visitorSkill>Shooting</visitorSkill>
+        <visitorLevel>9~15</visitorLevel>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A traveller on the wrong road ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_LostTraveller</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a traveller on the wrong road</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>35</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>18~70</ages>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.6</answerDays>
+        <colonist>
+          <bestAt>Social</bestAt>
+        </colonist>
+        <titles>
+          <li>A traveller on the wrong road</li>
+          <li>{X_nameDef} is lost</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} of {FACTION} came to the gate footsore and cross. {X_pronoun} took the left fork two days ago, meaning to reach {PLACE}, and has been walking the wrong way ever since. {X_pronoun} would be glad of a meal, and gladder still of someone who knows the roads.</li>
+          <li>[lowtech] A traveller came out of the hills to the gate at a stumble: {X_nameDef} of {FACTION}, bound for {PLACE} and lost since the river crossing. {X_possessive} water skin is empty, and so is {X_possessive} pack, and {X_pronoun} asks only for the way.</li>
+          <li>[!lowtech] {X_nameDef} of {FACTION} has been following a road that ended in a bog, and walked back to the colony's gate to ask where {PLACE} might actually be. {X_possessive} map, {X_pronoun} says, was drawn by a liar.</li>
+          <li>[winter] {X_nameDef}, a traveller of {FACTION}, came to the gate with frost in {X_possessive} eyebrows. {X_pronoun} lost the road to {PLACE} in the snow, and would be glad of something hot and the right way to go.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>A hot meal, and {A_nameDef} goes over the road with {X_objective}</label>
+            <outcome>{A_nameDef} sat down with {X_nameDef} and a hot meal, and drew the roads to {PLACE} in the dust between them until {X_nameDef} could say them back.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>1</count><to>Stranger</to><label>a hot meal for the traveller</label><eat>true</eat></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the road to {PLACE}</label><to>Stranger</to><duration>0.75~1.25</duration><sit>true</sit></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Something for the road, and the way</label>
+            <outcome>{A_nameDef} carried out a meal wrapped in a cloth and pointed out the right road, and {X_nameDef} set off on it eating.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>1</count><to>Stranger</to><label>something for the road</label><eat>true</eat></li>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+          <li>
+            <label>Point the way</label>
+            <outcome>{A_nameDef} pointed out the road to {PLACE} from the gate, and {X_nameDef} set off along it, a good deal more sure of {X_objective}self.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <visitor>true</visitor>
+        <people>own</people>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A petitioner ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_Petitioner</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a petitioner at the gate</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>30~70</ages>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.6</answerDays>
+        <colonist>
+          <bestAt>Social</bestAt>
+        </colonist>
+        <titles>
+          <li>A petitioner at the gate</li>
+          <li>{X_nameDef}'s grievance</li>
+        </titles>
+        <texts>
+          <li>[tribal] {X_nameDef} of {FACTION} has walked from {PLACE} with a grievance: the elders gave {X_possessive} family's fishing place to another, and nobody at home will speak for {X_objective}. {X_pronoun} has heard the colony's people speak well, and asks only to be heard, and told what to say.</li>
+          <li>[medieval] {X_nameDef}, a tenant of {FACTION} at {PLACE}, has come to the gate with a petition rolled in {X_possessive} sleeve. The reeve has fined {X_objective} twice for the same fence, and {X_pronoun} wants advice from someone outside the town on how to put it to the lord.</li>
+          <li>[industrial] {X_nameDef} of {FACTION} has a folder of papers and a grievance against the town council at {PLACE} over a water right. {X_pronoun} came to the colony because, {X_pronoun} says, nobody here owes the council anything, and {X_pronoun} wants an honest opinion before the hearing.</li>
+          <li>[spacer] {X_nameDef} of {FACTION} has a dispute with the settlement board at {PLACE} over a plot boundary, and a data slate full of evidence. {X_pronoun} asks the colony for an outside opinion, and an afternoon's help putting the case.</li>
+          <li>[their:empire] {X_nameDef}, a commoner of the Empire at {PLACE}, wishes to petition the town's knight over a tithe {X_pronoun} thinks unjust, and dares not go without knowing how it should be said. {X_pronoun} asks the colony for counsel, and is careful to say nothing against the Empire itself.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>{A_nameDef} hears {X_objective} out at the table</label>
+            <outcome>{A_nameDef} sat down at the table with {X_nameDef} and went through the whole matter, then gave {X_objective} the words to put it in. {X_nameDef} went home with them by heart.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{X_nameDef}'s grievance</label><to>Stranger</to><duration>1.5~2.5</duration><sit>true</sit></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Social</skill><xp>400</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
+            </effects>
+            <ways><openness>1</openness><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>A meal, and good luck to {X_objective}</label>
+            <outcome>{A_nameDef} carried out a meal and listened while {X_nameDef} ate it at the gate, then wished {X_objective} well. {X_nameDef} went home no wiser, but fed.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>1</count><to>Stranger</to><label>a meal for {X_nameDef}</label><eat>true</eat></li>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+          <li>
+            <label>Stay out of their people's business</label>
+            <outcome>{A_nameDef} told {X_nameDef}, kindly, that it was a matter for {FACTION}, and {X_nameDef} went home with {X_possessive} petition still rolled up.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <visitor>true</visitor>
+        <people>own</people>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A brewer's cart ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_Brewer</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a brewer's cart</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>12</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>28~65</ages>
+        <stayHours>6~10</stayHours>
+        <amount>60~110</amount>
+        <answerDays>0.6</answerDays>
+        <second>
+          <bestAt>Cooking</bestAt>
+        </second>
+        <titles>
+          <li>A brewer's cart</li>
+          <li>{X_nameDef} and the barrels</li>
+        </titles>
+        <texts>
+          <li>[tribal] {X_nameDef} of {FACTION} came to the gate with a skin of honey-beer slung on each shoulder and a pack beast carrying more. {X_pronoun} would trade a load of it for {COUNT} silver, or a morning at the colony's pots showing whoever brews here how {FACTION} do it.</li>
+          <li>[medieval] A brewer's cart from {PLACE} has stopped at the gate, and {X_nameDef}, who drives it for {FACTION}, is tapping a barrel for anyone who wants a taste. {X_pronoun} would sell a cask's worth for {COUNT} silver, or swap brewing secrets with the colony's cook for the price of a chat.</li>
+          <li>[industrial] {X_nameDef}, a travelling salesman for a brewery of {FACTION} at {PLACE}, has a truck of bottled beer and a speech about hops. {X_pronoun} offers a crate for {COUNT} silver, or an hour with the colony's cook, comparing notes.</li>
+          <li>[spacer] {X_nameDef} of {FACTION} brews beer the old way as a hobby, on a long trip between settlements, and is very proud of it. {X_pronoun} offers a few kegs for {COUNT} silver, or an hour with whoever cooks for the colony, comparing yeasts.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Buy a load of beer ({COUNT} silver)</label>
+            <outcome>{X_nameDef} took the silver and set the beer down by the gate.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Beer</thing><count>12</count><by>Outsiders</by></li>
+            </effects>
+          </li>
+          <li>
+            <label>Let {B_nameDef} swap secrets with {X_objective}</label>
+            <outcome>{B_nameDef} spent an hour with {X_nameDef} by the cart, tasting and arguing over what makes a good brew. {B_nameDef} came back to the kitchen with three new ideas and a slight headache.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>B</student><skill>Cooking</skill><duration>1.5~2.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Not today</label>
+            <outcome>{X_nameDef} put the bung back in the barrel and drove on toward {PLACE}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <visitor>true</visitor>
+        <people>own</people>
+        <visitorSkill>Cooking</visitorSkill>
+        <visitorLevel>9~15</visitorLevel>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

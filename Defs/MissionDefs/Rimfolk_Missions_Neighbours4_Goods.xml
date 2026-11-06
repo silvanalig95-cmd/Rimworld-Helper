@@ -101,16 +101,16 @@
           <li>[partial] Part of a wall for {PLACE}</li>
         </doneTitles>
         <done>
-          <li>[delivered] {FACTION}'s carts went home loaded, and {DEAD} sent {ITEM} silver back with the drivers. The wall going up round {PLACE} will have the colony's timber and stone in it.</li>
-          <li>[delivered,tower] The materials went off to {PLACE}, and {DEAD} sent {ITEM} silver and word that the tower will be up before the raiders come back. From the top of it, the drivers said, you can see the colony.</li>
-          <li>[partial] Only part of the list was ready when {FACTION}'s carts came. They took it, paid its plain worth, {ITEM} silver, and went on looking for the rest.</li>
+          <li>[delivered] Everything is ready, and {FACTION}'s carts are coming for it with {ITEM} silver from {DEAD}. The wall going up round {PLACE} will have the colony's timber and stone in it.</li>
+          <li>[delivered,tower] {FACTION}'s carts are coming for the materials with {ITEM} silver, and {DEAD} sends word that the tower will be up before the raiders come back. From the top of it, they say, you will see the colony.</li>
+          <li>[partial] Only part of the list is ready. {FACTION}'s carts are coming for what there is, with its plain worth, {ITEM} silver, and they'll look elsewhere for the rest.</li>
         </done>
         <failTitles>
           <li>[missed] Nothing for {PLACE}'s wall</li>
           <li>[cancelled] The order is off</li>
         </failTitles>
         <fail>
-          <li>[missed] {FACTION}'s carts came for the wall's materials and went back nearly empty. {PLACE} will stand open a while longer, and {DEAD} has said so to anyone who will listen.</li>
+          <li>[missed] There was far too little ready for {FACTION}'s carts to be worth the road. {PLACE} will stand open a while longer, and {DEAD} has said so to anyone who will listen.</li>
         </fail>
         <cancelled>
           <li>{FACTION} have broken with the colony, and the order for {PLACE}'s wall is off.</li>
@@ -209,17 +209,17 @@
           <li>[partial] Part of the fodder for {PLACE}</li>
         </doneTitles>
         <done>
-          <li>[delivered,snow] The fodder went off to {PLACE} on {FACTION}'s carts, and {DEAD} sent {ITEM} silver back. The herds will see the spring, every head of them.</li>
-          <li>[delivered,parched] {FACTION}'s carts took the fodder straight out to the herds at {PLACE}, and the drivers left {ITEM} silver and {DEAD}'s thanks. The beasts are eating, {DEAD} writes, and so is everyone else.</li>
-          <li>[delivered] {FACTION}'s carts went home loaded with the colony's fodder, and {ITEM} silver stayed behind.</li>
-          <li>[partial] {FACTION}'s carts took what fodder there was, paid its plain worth, {ITEM} silver, and went on looking for the rest.</li>
+          <li>[delivered,snow] The fodder is ready, and {FACTION}'s carts are coming for it with {ITEM} silver from {DEAD}. The herds will see the spring, every head of them.</li>
+          <li>[delivered,parched] {FACTION}'s carts are coming for the fodder, to take it straight out to the herds at {PLACE}, with {ITEM} silver and {DEAD}'s thanks.</li>
+          <li>[delivered] {FACTION}'s carts are coming for the colony's fodder, with {ITEM} silver for it.</li>
+          <li>[partial] Only part of the fodder is ready. {FACTION}'s carts are coming for what there is, with its plain worth, {ITEM} silver.</li>
         </done>
         <failTitles>
           <li>[missed] No fodder for {PLACE}</li>
           <li>[cancelled] The order is off</li>
         </failTitles>
         <fail>
-          <li>[missed] {FACTION}'s carts came for the fodder and went back nearly empty. {PLACE} will have to thin its herds, and {DEAD} knows who to thank for it.</li>
+          <li>[missed] There was far too little fodder ready for {FACTION}'s carts to be worth the road. {PLACE} will have to thin its herds, and {DEAD} knows who to thank for it.</li>
         </fail>
         <cancelled>
           <li>{FACTION} have broken with the colony, and the order for {PLACE}'s fodder is off.</li>
@@ -319,18 +319,18 @@
           <li>[partial] Part of the stores for the road</li>
         </doneTitles>
         <done>
-          <li>[delivered,pilgrimage] The pilgrims of {PLACE} set out with the colony's food in their packs, and {DEAD} sent {ITEM} silver and a promise to say the colony's name at the holy place.</li>
-          <li>[delivered,trek] The households of {PLACE} have gone over the mountains with the colony's stores in their carts. {DEAD} left {ITEM} silver and the hope of sending word from the new land.</li>
-          <li>[delivered,expedition] The expedition set off north on the colony's provisions, and {DEAD} paid {ITEM} silver before the carts were out of sight.</li>
-          <li>[delivered] {FACTION}'s carts took everything for the road, and {ITEM} silver stayed behind.</li>
-          <li>[partial] Only part of the list was ready when {FACTION}'s carts came. They took it and paid its plain worth, {ITEM} silver.</li>
+          <li>[delivered,pilgrimage] {FACTION}'s carts are coming for the pilgrims' stores, with {ITEM} silver and {DEAD}'s promise to say the colony's name at the holy place.</li>
+          <li>[delivered,trek] {FACTION}'s carts are coming for the stores, and the households of {PLACE} will go over the mountains on them. {DEAD} sends {ITEM} silver and hopes to send word from the new land.</li>
+          <li>[delivered,expedition] {FACTION}'s carts are coming for the expedition's provisions, and {DEAD} sends {ITEM} silver with them.</li>
+          <li>[delivered] {FACTION}'s carts are coming for everything for the road, with {ITEM} silver.</li>
+          <li>[partial] Only part of the list is ready. {FACTION}'s carts are coming for what there is, with its plain worth, {ITEM} silver.</li>
         </done>
         <failTitles>
           <li>[missed] Nothing for the road</li>
           <li>[cancelled] The order is off</li>
         </failTitles>
         <fail>
-          <li>[missed] {FACTION}'s carts came for the stores and went back nearly empty. The road from {PLACE} will start late and hungry, and {DEAD} knows why.</li>
+          <li>[missed] There was far too little ready for {FACTION}'s carts to be worth the road. The road from {PLACE} will start late and hungry, and {DEAD} knows why.</li>
         </fail>
         <cancelled>
           <li>{FACTION} have broken with the colony, and the order for the road's stores is off.</li>
@@ -373,7 +373,7 @@
           </li>
           <li>
             <label>Decline</label>
-            <outcome>{FACTION} will look for seed elsewhere, if there is any.</outcome>
+            <outcome>{FACTION} will have to find seed somewhere else, if there is any.</outcome>
           </li>
         </options>
       </li>
@@ -430,15 +430,15 @@
           <li>[partial] Part of the seed for {PLACE}</li>
         </doneTitles>
         <done>
-          <li>[delivered] The seed went off to {PLACE} on {FACTION}'s carts, and {DEAD} sent {ITEM} silver and word that the fields will be green again this year, grown from the colony's grain.</li>
-          <li>[partial] {FACTION}'s carts took what seed there was, paid its plain worth, {ITEM} silver, and went looking for the rest.</li>
+          <li>[delivered] The seed is ready, and {FACTION}'s carts are coming for it with {ITEM} silver from {DEAD}. The fields at {PLACE} will be green again this year, grown from the colony's grain.</li>
+          <li>[partial] Only part of the seed is ready. {FACTION}'s carts are coming for what there is, with its plain worth, {ITEM} silver.</li>
         </done>
         <failTitles>
           <li>[missed] No seed for {PLACE}</li>
           <li>[cancelled] The order is off</li>
         </failTitles>
         <fail>
-          <li>[missed] {FACTION}'s carts came for the seed and went back nearly empty. Half the fields at {PLACE} will lie bare this year, and {DEAD} has said so.</li>
+          <li>[missed] There was far too little seed ready for {FACTION}'s carts to be worth the road. Half the fields at {PLACE} will lie bare this year, and {DEAD} has said so.</li>
         </fail>
         <cancelled>
           <li>{FACTION} have broken with the colony, and the order for {PLACE}'s seed is off.</li>

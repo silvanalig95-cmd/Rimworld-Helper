@@ -241,12 +241,12 @@
         <defaultOption>1</defaultOption>
         <options>
           <li>
-            <label>Lend a teacher to {PLACE}</label>
-            <outcome>The rider went home to say a teacher is coming.</outcome>
+            <label>Lend someone learned to {PLACE}</label>
+            <outcome>The rider went home with the colony's yes.</outcome>
           </li>
           <li>
             <label>Decline</label>
-            <outcome>{FACTION}'s young will wait for a teacher a while longer.</outcome>
+            <outcome>{FACTION}'s young will have to wait.</outcome>
           </li>
         </options>
       </li>
@@ -539,7 +539,7 @@
           </li>
           <li>
             <label>Decline</label>
-            <outcome>{FACTION} will look for room elsewhere.</outcome>
+            <outcome>{FACTION} will have to find room somewhere else.</outcome>
           </li>
         </options>
       </li>
@@ -573,14 +573,14 @@
           <li>[madegood] {FACTION}'s store, made good</li>
         </doneTitles>
         <done>
-          <li>[kept] {FACTION}'s carts took their store home just as they left it, and their drivers set down {ITEM} silver for the keeping. {PLACE} will remember the colony kept its word.</li>
-          <li>[madegood] Some of {FACTION}'s store had gone by the time their carts came back. The colony made it good with {ITEM} silver at its plain worth, and the drivers took that and what there was, and nodded.</li>
+          <li>[kept] {FACTION}'s store is all in the stockpiles just as they left it, and their carts are coming to take it home, with {ITEM} silver for the keeping. {PLACE} will remember the colony kept its word.</li>
+          <li>[madegood] Some of {FACTION}'s store is gone from the stockpiles. Their carts are coming for what there is, and for {ITEM} silver from the colony's stores to make the rest good at its plain worth.</li>
         </done>
         <failTitles>
           <li>[short] {FACTION}'s store came up short</li>
         </failTitles>
         <fail>
-          <li>[short] {FACTION}'s carts came back for their store and found {ITEM} missing, and nothing to pay for it. The drivers loaded what there was without a word, and {PLACE} will hear all about it.</li>
+          <li>[short] {ITEM} of {FACTION}'s store is gone from the stockpiles, and the colony hasn't the silver to make it good. Their carts are coming for what there is, and {PLACE} will hear all about it.</li>
         </fail>
         <cancelled>
           <li>{FACTION} have broken with the colony. Their store is left where it lies.</li>
@@ -675,8 +675,8 @@
           <li>[bonded] {BEAST} stays</li>
         </doneTitles>
         <done>
-          <li>[returned] {FACTION}'s drover walked round {BEAST} twice, felt the legs, looked at the teeth, and grinned. {BEAST} went home grown and glossy, and {ITEM} silver came the other way.</li>
-          <li>[poorly] {FACTION}'s drover took {BEAST} home with a frown at the ribs and paid {ITEM} silver, half what was promised.</li>
+          <li>[returned] {BEAST} has grown glossy and sure on its legs at the colony, and {FACTION}'s drover is on the road to lead the young {THING} home, with {ITEM} silver for its keep.</li>
+          <li>[poorly] {BEAST} has not done well at the colony, and {FACTION} have heard. Their drover is coming to lead it home, with {ITEM} silver, half what was promised.</li>
           <li>[bonded] {FACTION} sent word that {BEAST} follows {A_nameDef} about like a shadow now, and they won't part them. The colony keeps {BEAST}, and {PLACE} counts it a kindness done both ways.</li>
         </done>
         <failTitles>
@@ -722,12 +722,12 @@
         <defaultOption>0</defaultOption>
         <options>
           <li>
-            <label>Search for {DEAD}</label>
-            <outcome>The colony will look for {DEAD}.</outcome>
+            <label>Find {DEAD}</label>
+            <outcome>The colony has taken it on.</outcome>
           </li>
           <li>
             <label>The colony can't spare anyone</label>
-            <outcome>The rider turned back to the search without a word.</outcome>
+            <outcome>The rider turned back without a word.</outcome>
           </li>
         </options>
       </li>
@@ -760,7 +760,7 @@
           <li>[found] {DEAD} goes home</li>
         </doneTitles>
         <done>
-          <li>[found] {DEAD}'s kin came for {X_objective} with a blanket and a scolding, and walked {X_objective} home between them. {FACTION} left {ITEM} silver in thanks, and {PLACE} knows that {A_nameDef} found their old one.</li>
+          <li>[found] {DEAD}'s kin are on their way with a blanket and a scolding, to walk {X_objective} home between them. {FACTION} send {ITEM} silver in thanks, and {PLACE} will know that {A_nameDef} found their old one.</li>
         </done>
         <failTitles>
           <li>[searchers] {DEAD} found by others</li>
@@ -805,12 +805,12 @@
         <defaultOption>0</defaultOption>
         <options>
           <li>
-            <label>Search for {DEAD}</label>
-            <outcome>The colony will look for {DEAD}.</outcome>
+            <label>Find {DEAD}</label>
+            <outcome>The colony has taken it on.</outcome>
           </li>
           <li>
             <label>The colony can't spare anyone</label>
-            <outcome>The rider turned back to the search without a word.</outcome>
+            <outcome>The rider turned back without a word.</outcome>
           </li>
         </options>
       </li>
@@ -843,7 +843,7 @@
           <li>[found] {DEAD} goes home</li>
         </doneTitles>
         <done>
-          <li>[found] {DEAD}'s people came for {X_objective} and teased {X_objective} all the way out of the colony about the stag. {FACTION} left {ITEM} silver, and {PLACE} knows that {A_nameDef} found their hunter.</li>
+          <li>[found] {DEAD}'s people are on their way to take {X_objective} home, and they will tease {X_objective} about the stag the whole road. {FACTION} send {ITEM} silver, and {PLACE} will know that {A_nameDef} found their hunter.</li>
         </done>
         <failTitles>
           <li>[searchers] {DEAD} found by others</li>
@@ -888,8 +888,8 @@
         <defaultOption>1</defaultOption>
         <options>
           <li>
-            <label>Walk {DEAD} to {PLACE}</label>
-            <outcome>The rider went to tell {DEAD} the colony will walk with {X_objective}.</outcome>
+            <label>See {DEAD} to {PLACE}</label>
+            <outcome>The rider went to tell {DEAD} the colony will see {X_objective} home.</outcome>
           </li>
           <li>
             <label>Decline</label>

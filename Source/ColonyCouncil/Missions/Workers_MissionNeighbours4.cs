@@ -336,6 +336,8 @@ namespace ColonyCouncil
                 return;
             }
             g.have = Missions.Count(map, g.what);
+            // All of it in the stores: no reminder that it's short (Missions.Hourly reminds only at stage 0).
+            m.stage = g.have >= g.count ? 1 : 0;
             if (now < m.deadline) return;
             var spot = DropCellFinder.TradeDropSpot(map);
             var look = new LookTargets(new TargetInfo(spot, map));

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- More ways to tell the callers who come to do something (Defs/IncidentDefs/Rimfolk_Events_Callers.xml), which had
+       one reading each: the travelling barber, the animal doctor, the undertakers, a captive's kin and the art
+       collector. Each adds openings by the season, the colony's age and the people's ways, and endings for each answer,
+       with the same tags and placeholders as the event itself; what is done on the map is the event's own. -->
+
+  <!-- ===================== The travelling barber ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var4_Evt_Barber</defName>
+    <incident>Rimfolk_Evt_Barber</incident>
+    <texts>
+      <li>[spring,!station] Spring brings {X_nameDef} of {FACTION} up the road with a stool on {X_possessive} back, cutting winter's growth off everyone between the towns and the hills. {X_pronoun} has set up by the gate. Those who want a cut: {TALE}.</li>
+      <li>[industrial|spacer,!station] {X_nameDef} of {FACTION} has unfolded a barber's chair from a case on wheels by the gate and plugged in nothing at all: scissors and a comb, {X_pronoun} says, the way it should be done. Those who'd like a cut: {TALE}.</li>
+      <li>[station,lowtech] {X_nameDef}, a barber of {FACTION}, stopped dead at the sight of the colony's styling station and asked whether {X_pronoun} might work beside it for the day. Those who'd like a cut: {TALE}.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>Everyone took a turn on {X_nameDef}'s stool, and the gate is ankle deep in hair. {X_nameDef} talked the whole day and seems to know everyone's business now.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>Those who wanted a cut sat for {X_nameDef} one after another, and came away looking like new people. The rest watched, and one or two looked sorry by the end.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{X_nameDef} wiped the shears, packed the combs away in their cloth and went on to the next settlement.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The animal doctor ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var4_Evt_Vet</defName>
+    <incident>Rimfolk_Evt_Vet</incident>
+    <texts>
+      <li>[hurt,!lowtech] {X_nameDef}, a veterinarian of {FACTION} riding with their drovers, leaned on the colony's fence for a long minute and then asked who had been looking after {TALE}. {X_pronoun} offers to see to them, with medicine of {X_possessive} own, for {COUNT} silver or a load of feed for the drovers' beasts.</li>
+      <li>[hurt,winter] Winter is hard on animals, {X_nameDef} says, and {X_pronoun} would know: {X_pronoun} doctors {FACTION}'s herds, and has stopped at the gate on the way to the next village. {X_pronoun} offers to see to {TALE}, for {COUNT} silver or feed for the drovers' beasts.</li>
+      <li>[nohurt,young] {X_nameDef}, an animal doctor of {FACTION}, has been watching {PET_nameDef} from the gate and laughing. There is a good animal in there, {X_pronoun} says, if someone takes the time. {X_pronoun} would work {PET_objective} a morning, for {COUNT} silver or feed for the drovers' beasts.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[hurt] {X_nameDef} knelt by each hurt and sick animal in turn with a bag of salves and a steady voice, and left every one of them better than {X_pronoun} found it.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[hurt] {X_nameDef} saw to the colony's animals one after another, then loaded the feed onto the drovers' beasts and went after them.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{X_nameDef} tended the hurt and the sick by lantern light, and slept in the corner the colony gave {X_objective}, and was gone by morning.</li>
+        </lines>
+      </li>
+      <li>
+        <option>3</option>
+        <lines>
+          <li>{X_nameDef} said the animals would mend in their own time, and went to catch up with the drovers.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The undertakers ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var4_Evt_Undertakers</defName>
+    <incident>Rimfolk_Evt_Undertakers</incident>
+    <texts>
+      <li>[!nobeast,industrial|spacer] A burial detail of {FACTION} came up the road with shovels, sheets and a pack beast, and {X_nameDef}, who leads it, asked to see to the raiders lying by the colony. Graves beyond the wall for {COUNT} silver, or they take the dead away with everything on them for nothing.</li>
+      <li>[!nobeast,summer] The dead won't wait in this heat, {X_nameDef} says. {X_pronoun} leads a burial order of {FACTION}, and has come to the gate to see to the raiders still lying out. Graves beyond the wall for {COUNT} silver, or the order takes them away, gear and all, for nothing.</li>
+      <li>[nobeast,lowtech] The ash-keepers of {FACTION} have come, as they do wherever the dead lie unburied, with {X_nameDef} at their head and spades on their shoulders. They will dig a grave for each of the raiders beyond the wall for {COUNT} silver.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>{X_nameDef}'s people dug steadily all afternoon beyond the gate and laid each raider in a grave of their own. {X_nameDef} said a few words over them that nobody else understood.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>The undertakers loaded the dead onto their beast one by one, with whatever the raiders had carried, and led it off down the road without looking back.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{X_nameDef} shrugged, as if {X_pronoun} had heard that before, and the order went on down the road.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A captive's kin ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var4_Evt_KinForCaptive</defName>
+    <incident>Rimfolk_Evt_KinForCaptive</incident>
+    <texts>
+      <li>[prisoner,winter] {X_nameDef} of {FACTION}, {TALE}'s {RELATION}, came through the snow to the gate with {X_possessive} partner and {COUNT} silver in a knotted cloth. They have come for {TALE}, or at least to speak with {TALE} through the door.</li>
+      <li>[prisoner,!lowtech] {X_nameDef}, {TALE}'s {RELATION}, has come to the gate from {FACTION} with {X_possessive} partner and an envelope with {COUNT} silver in it. They read the colony's name in a list of where the raiders were taken, and have come for {TALE}.</li>
+      <li>[slave,lowtech] {X_nameDef} of {FACTION}, {TALE}'s {RELATION}, stands at the gate with {X_possessive} partner and {COUNT} silver, all they could sell their goats for. They have come to take {TALE} home.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>The silver changed hands at the gate, and {TALE} walked out to {X_nameDef}, who held on and didn't say anything for a long time. They went home together.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>The colony sent the family home with their silver and with {TALE}. {X_nameDef} turned at the bend in the road to look back at the gate.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{X_nameDef} talked with {TALE} through the cell door until the light went, mostly about home. {TALE} has been quieter since.</li>
+        </lines>
+      </li>
+      <li>
+        <option>3</option>
+        <lines>
+          <li>The family was sent away from the gate. {TALE} watched them go from the window, and has dug in since.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The art collector ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var4_Evt_Collector</defName>
+    <incident>Rimfolk_Evt_Collector</incident>
+    <texts>
+      <li>[maker,industrial|spacer] {X_nameDef}, who buys art for a gallery of {FACTION}, has photographed every piece the colony owns and come back to stand in front of one: "{TALE}", the {THING} {A_nameDef} made. {X_pronoun} offers {COUNT} silver for it, well over what any trader would pay.</li>
+      <li>[!maker,winter] {X_nameDef}, a collector of {FACTION}, came through the cold for the colony's art and has been walking round it with {X_possessive} coat still on. "{TALE}" has caught {X_possessive} eye, and {X_pronoun} offers {COUNT} silver for it, well above its worth.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>The {THING} was carried out to {X_nameDef}, who counted out the {COUNT} silver and wrapped "{TALE}" in three layers of cloth before {X_pronoun} would let anyone touch it again.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{X_nameDef} stood a long while in front of "{TALE}" before {X_pronoun} went, and said {X_pronoun} would tell people about it, which is almost as good as owning it.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{B_nameDef} sat down at the sculptor's table for {X_nameDef}, who went on down the road saying {X_pronoun} would be back for it, and meant it.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+</Defs>
