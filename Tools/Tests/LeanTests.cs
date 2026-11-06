@@ -37,10 +37,14 @@ public static class LeanTests
         }
         C(Sched.RareOffsets.Distinct().Count() == Sched.RareOffsets.Length, "every 250-tick pass has a tick of its own");
         C(!Sched.RareOffsets.Contains(Sched.RareRearrange), "the room moves' pass has a tick of its own");
-        var waiting = new[] { Sched.RareNews, Sched.RarePlayOut, Sched.RareWeekMemory, Sched.RareCouriers, Sched.RareVisitors, Sched.RareTimed, Sched.RareRearrange, Sched.RareNeighbours };
+        var waiting = new[] { Sched.RareNews, Sched.RarePlayOut, Sched.RareWeekMemory, Sched.RareCouriers, Sched.RareVisitors, Sched.RareTimed, Sched.RareRearrange, Sched.RareNeighbours, Sched.RareTriage };
         C(!Sched.RareOffsets.Contains(Sched.RareJourneys) && !waiting.Contains(Sched.RareJourneys), "the journeys' pass has a tick of its own");
         C(!Sched.RareOffsets.Contains(Sched.RareOutsiderTalk) && !waiting.Contains(Sched.RareOutsiderTalk) && Sched.RareOutsiderTalk != Sched.RareOutsiders
           && Sched.RareOutsiderTalk != Sched.RareJourneys, "the outsiders' talking pass has a tick of its own");
+        var othersRare = Sched.RareOffsets.Concat(new[] { Sched.RareNews, Sched.RarePlayOut, Sched.RareWeekMemory, Sched.RareCouriers, Sched.RareVisitors, Sched.RareTimed,
+            Sched.RareRearrange, Sched.RareNeighbours, Sched.RareOutsiders, Sched.RareJourneys, Sched.RareOutsiderTalk }).Concat(Sched.HourlyOnCycle).ToList();
+        C(!othersRare.Contains(Sched.RareTriage) && hourly.All(h => h % Sched.RareTicks != Sched.RareTriage) && Sched.RareTriage < Sched.RareTicks,
+            "medical triage's pass has a tick of the cycle of its own");
         foreach (int o in Sched.RareOffsets) C(o >= 0 && o < Sched.RareTicks, $"250-tick offset {o} is inside the cycle");
         // The people log every 1000 ticks lands on five different ticks of the hour over five hours.
         for (int h = 0; h < 5; h++)
@@ -119,7 +123,7 @@ public static class LeanTests
         C(Sched.SliceTurn(Sched.Ailments, Sched.HourTicks, Sched.Slices, Sched.RareAilments) >= 0, "the ailments' colony part rides on one of its slices");
         C(Sched.SliceTurn(Sched.Health, Sched.HourTicks, Sched.Slices, Sched.RareHealth) < 0, "the health stories' colony part has a tick of its own");
         // The passes that only run while something waits keep off the hourly passes too.
-        foreach (int o in new[] { Sched.RareNews, Sched.RarePlayOut, Sched.RareWeekMemory, Sched.RareCouriers, Sched.RareVisitors, Sched.RareTimed, Sched.RareRearrange, Sched.RareNeighbours, Sched.RareOutsiders, Sched.RareJourneys, Sched.RareOutsiderTalk })
+        foreach (int o in new[] { Sched.RareNews, Sched.RarePlayOut, Sched.RareWeekMemory, Sched.RareCouriers, Sched.RareVisitors, Sched.RareTimed, Sched.RareRearrange, Sched.RareNeighbours, Sched.RareOutsiders, Sched.RareJourneys, Sched.RareOutsiderTalk, Sched.RareTriage })
         for (int tick = o; tick < Sched.HourTicks; tick += Sched.RareTicks)
             C(!hourly.Contains(tick), $"the 250-tick pass at {o} misses every hourly pass (tick {tick})");
 
@@ -145,7 +149,7 @@ public static class LeanTests
         foreach (int o in hourly) C(PassTable.All.Any(p => p.period == Sched.HourTicks && p.offset == o), $"the hourly slot {o} is timed");
         // An hourly pass on the hour's first stretch keeps off every other pass's tick.
         var everyRare = Sched.RareOffsets.Concat(new[] { Sched.RareNews, Sched.RarePlayOut, Sched.RareWeekMemory, Sched.RareCouriers, Sched.RareVisitors, Sched.RareTimed,
-            Sched.RareRearrange, Sched.RareNeighbours, Sched.RareOutsiders, Sched.RareJourneys, Sched.RareOutsiderTalk }).ToList();
+            Sched.RareRearrange, Sched.RareNeighbours, Sched.RareOutsiders, Sched.RareJourneys, Sched.RareOutsiderTalk, Sched.RareTriage }).ToList();
         foreach (int o in Sched.HourlyOnCycle)
         {
             C(o >= 0 && o < Sched.RareTicks && !hourly.Contains(o), $"the hourly pass at {o} is on the hour's first stretch, off the hour's own ticks");

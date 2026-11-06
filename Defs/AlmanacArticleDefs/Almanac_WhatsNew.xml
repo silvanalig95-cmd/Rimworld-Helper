@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.105.0</version>
+        <date>6 November 2026</date>
+        <title>The best bed for the worst hurt</title>
+        <points>
+          <li>With Move the Patient, a patient goes to the best free medical bed: the priority you gave it first, then the bed's and the room's own medical quality. A bed marked for surgery takes ordinary patients too while nobody is waiting for an operation.</li>
+          <li>When someone worse off arrives and the best bed is taken by a lighter patient, a colonist who does doctor's work carries the lighter one to the next free medical bed with the mod's own transfer, and the bed is kept for the one who needs it. Someone waiting for an operation gets the surgery bed the same way.</li>
+          <li>Nobody is moved during an operation or while being tended, in labour or in a mental state, when no other medical bed is free, or twice within a few hours. The carrier says why as they go, and the news tells it once the patient is settled.</li>
+          <li>A new setting, Medical triage, on the Heart and health page under Recovery, switches it off. Without Move the Patient it does nothing.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.104.3</version>
         <date>6 November 2026</date>
         <title>Characters kept on loading</title>

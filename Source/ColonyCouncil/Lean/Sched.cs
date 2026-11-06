@@ -127,6 +127,12 @@ namespace ColonyCouncil
         public const int RareTimed = 149;
         /// <summary>A room's furniture moves still to be ordered (Building/RoomRearranger.cs), only while there are any.</summary>
         public const int RareRearrange = 29;
+        /// <summary>
+        /// Medical triage with Move the Patient (Integrations/MedicalTriage.cs): a patient moved out of a better bed for
+        /// someone worse off, followed while it goes on, and a map looked at again for an hour after a patient went to a
+        /// lesser bed; only with the mod. On the hour (tick 53 of the hour) every home map's medical beds.
+        /// </summary>
+        public const int RareTriage = 53;
         /// <summary>A letter being written, a call under way or a comms console ringing (World/NeighbourLetters.cs), only while there is one.</summary>
         public const int RareNeighbours = 211;
         /// <summary>A meal shared with an outsider, a bout or a brawl with one under way (Outsiders/), only while there is one.</summary>

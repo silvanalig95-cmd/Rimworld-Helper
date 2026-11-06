@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The best bed for the worst hurt
+
+*6 November 2026, version 0.105.0*
+
+- With Move the Patient, a patient goes to the best free medical bed: the priority you gave it first, then the bed's and the room's own medical quality. A bed marked for surgery takes ordinary patients too while nobody is waiting for an operation.
+- When someone worse off arrives and the best bed is taken by a lighter patient, a colonist who does doctor's work carries the lighter one to the next free medical bed with the mod's own transfer, and the bed is kept for the one who needs it. Someone waiting for an operation gets the surgery bed the same way.
+- Nobody is moved during an operation or while being tended, in labour or in a mental state, when no other medical bed is free, or twice within a few hours. The carrier says why as they go, and the news tells it once the patient is settled.
+- A new setting, Medical triage, on the Heart and health page under Recovery, switches it off. Without Move the Patient it does nothing.
+
 ## Characters kept on loading
 
 *6 November 2026, version 0.104.3*

@@ -6,6 +6,69 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- medical triage with Move the Patient (the player's request, 6 November 2026, with a save): "i have a hospital bed with
+  high criticality and set as surgery bed. when a pawn is injured they always take one of the other two beds though,
+  even though the hospital bed is free and better. i want them to always take the best bed, and once a patient with a
+  more serious injury arrives, the previous pawn should be put into another bed via 'transfer to bed' feature to free up
+  the best bed". Read in the mod (`konstantynopolitaneczka.movethepatient`, assembly `PatientBedTransfer`, its 1.6 and
+  1.7 DLLs the same): `MedicalBedSelector.Pick` keeps surgery beds for patients with a pending operation, so an ordinary
+  patient never gets one while another medical bed is free (and a non-downed one is turned out of it with
+  `blockSleepInSurgeryBeds`); `PatientTriage.ChooseByPriority` gives a patient of severity S the lowest-priority bed at
+  least S (higher beds kept for worse cases); `CalculatePatientSeverity`: Critical for heavy bleeding, near death,
+  health under 15%, a life-threatening condition or downed and not awake, High for bleeding, health under 35% or wounds
+  needing tending, Normal under 75%, else Low; its transfer is the job `TransferPatientToBed` (patient, bed), which
+  forces the patient downed for the carry and tucks them in; `SurgeryTransferScheduler` carries one waiting for an
+  operation to a free surgery bed; nothing ever moves a lighter patient out for a worse one. Built:
+  `Integrations/MedicalTriage.cs` (by name, every call guarded; anything missing, one warning and no patch; without the
+  mod its four patch classes stand down in `Prepare` and the pass is one remainder each 250 ticks), its pure rules
+  `MedicalTriageMath.cs` (`MedicalTriageTests`). (1) Best bed first: postfixes on `RestUtility.FindBedFor` (five
+  arguments) and `FindPatientBedFor`, the methods the mod's own postfixes adjust, after them (`HarmonyAfter`
+  `patientbedtransfer.mod`, `Priority.Low`), only on a medical result for one of the colony's people (not an enemy
+  unless a prisoner, not a baby, not a slab-bed faith), standing aside in the mod's rerun without surgery beds
+  (`MedicalBedSelector.Busy`): the best free bed they may use by the player's priority (Normal for all with the mod's
+  priority system off), then `Quality` (the bed's `MedicalTendQualityOffset`, its `ImmunityGainSpeedFactor` above 1,
+  the room's `InfectionChanceFactor` below 1, in steps of 0.005), then the nearest; each candidate passes the call's own
+  `IsValidBedFor`, the mod's xenotype rule and no more danger than the bed chosen; a surgery bed counts for an ordinary
+  patient only while nobody waiting for an operation could use it (`SurgeryBedOpen`); one waiting keeps the surgery bed
+  the mod gave them; someone already in a medical bed that counts keeps it; a bed kept by a move is the worse one's
+  alone. A patient given a lesser bed than the best of their kind marks the map to be looked at every 250 ticks for an
+  hour. (2) Making room: `GameComponent_MedicalTriage` at `Sched.RareTriage` (53, new: the hour's look at tick 53 of
+  the hour, `Pass.Triage`, and the 250-tick one only while a move or a marked map waits, `Pass.RareTriage`; LeanTests'
+  lists have it). Patients in the colony's medical beds and those downed on the floor, the worst first by the mod's
+  severity, an operation first among equals; for each, the beds ranked for them (`CompareFor`: a surgery bed first for
+  an operation), and a better one than they have or would be carried to, held by someone they outrank (`Outranks`:
+  Critical over High over Normal over Low, never an equal; in a surgery bed an operation over an ordinary patient, and
+  nobody over one waiting for theirs) who may be moved (`MayMove`: not operated on, tended or with a doctor on the way,
+  not in a mental state, labour or carried, another free medical bed of their kind, `SameKind`, not moved in 4 hours,
+  `CooldownTicks`): the nearest awake colonist with doctoring on, not busy (drafted, a lord's duty, carrying, tending,
+  rescuing, firefighting, an operation, a player's order, an uninterruptible job), who passes the mod's strict
+  `CanPawnPerformTransfer` and can reach and reserve both, gets the mod's job to the best other free bed as its
+  "Transfer to bed" gives it (`playerForced`, `MarkTransferActive`). One move per map; the bed kept for the worse one
+  until they lie in it, no longer need medical rest, or 4 hours (`GiveUpTicks`). Once the lighter one lies in the new
+  bed, the worse one comes in by the game's rescue (best bed first sends them there), by a transfer from a lesser bed
+  or the floor with nobody coming, or on their own feet; everyone carried by triage is held 4 hours. Nothing saved
+  (a load forgets a move under way and who was moved; the carry itself is the game's job and goes on). (3) Shown: the
+  carrier says one sentence as they set off (`Rimfolk_Pool_TriageRoom`, `_TriageSurgery`, 17 and 15 lines by the
+  colony's age, `ImmersionTests`); `Tell.Minor` (Health) once the lighter one lies in the new bed,
+  `CC_Triage_Moved_<Age>` and `CC_Triage_MovedOp_<Age>` in two wordings each, with the room they went to in the age's
+  word when it is a hospital (`CC_Triage_Ward_<Age>`: the healer's hut, the infirmary, the ward, the sickbay); the bed
+  kept (`CC_Triage_Kept`, `KeptOp`) and the patient moved (`CC_Triage_MadeRoom`, `MadeRoomOp`, 6 hours) say why under
+  their inspect text (postfixes on `Building_Bed` and `Pawn.GetInspectString`, a dictionary look only while a line
+  exists). Keys in `Rimfolk_MedicalTriage.xml`; setting `medicalTriage` (Heart & health, Recovery, on by default, needs
+  the deeper hooks); the mod's "by distance" mode stands triage down. The player's case: with the surgery mark, the
+  injured now take the hospital bed (High) first while nobody waits for an operation; a newcomer worse off (open wounds
+  against someone tended, downed and unconscious or bleeding out) has the one in it carried to a plain bed if one is
+  free, then takes it; someone waiting for an operation has an ordinary patient carried out of it. Without the mark the
+  same by severity alone; an operation has no claim of its own. Both plain beds taken: nobody moves. Limits in the mod:
+  its "Recommended" bed on the "Transfer to bed" gizmo is still its reservation scheme's; its own surgery transfer only
+  fills a free surgery bed (triage is what frees it); its severity is all there is to go on (a tended patient often
+  reads Normal or Low however long they still need the bed); the transfer forces the patient downed for the carry and
+  ends their job. Docs: DESIGN.md ("Medical triage with Move the Patient", the ticking table at 53), README (Recovery,
+  doctors and midwives; Optional mods; the settings), the Almanac's page `Council_AlmMod_H_MoveThePatient` (Mods, with
+  the mod only), the compatibility table (`Council_Support_MoveThePatient`). To look at in game: the player's save, an
+  injured colonist going to the hospital bed; a second, worse, arriving (the carrier's line, the plain bed, the news,
+  the inspect lines on the bed and the patient, the second brought in); an operation bill on someone while an ordinary
+  patient lies in the surgery bed; no plain bed free (nobody moves); the self-check lists the four patches applied.
 - 0.104.3, every colonist's character lost at each load (found by the systems review, 6 November 2026, and confirmed in
   the player's save: the seven elected on day 123.7 had no "elected" mark, the three elected after the last load did,
   and only those three had any nature). `PersonaTracker.ExposeData` saved `people` through a local list: the load
