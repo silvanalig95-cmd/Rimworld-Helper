@@ -40,7 +40,9 @@ namespace ColonyCouncil
         /// <summary>The world event the decree is for is running (its <see cref="DecreeDef.situationKinds"/>).</summary>
         Situation,
         /// <summary>Many are hurt: two colonists or more, and at least a third of them, with wounds still healing (<see cref="LifeChecks.HurtFrom"/>).</summary>
-        Wounded
+        Wounded,
+        /// <summary>Power short: the colony's batteries under a third full (<see cref="YearFourMath.PowerShort"/>).</summary>
+        PowerShort
     }
 
     /// <summary>Who feels how about a decree: by trait (and degree), by passion for a skill, or by being unable to fight.</summary>
@@ -899,6 +901,20 @@ namespace ColonyCouncil
                     return def != null && DecreeWork.SituationRunning(def) != null;
                 case DecreeMoment.Wounded:
                     return DecreeMath.ManyHurt(pawns.Count(p => LifeChecks.WoundSeverity(p) >= LifeChecks.HurtFrom), pawns.Count);
+                case DecreeMoment.PowerShort:
+                {
+                    float stored = 0f, capacity = 0f;
+                    foreach (var net in map.powerNetManager.AllNetsListForReading)
+                    {
+                        if (net?.batteryComps == null) continue;
+                        foreach (var b in net.batteryComps)
+                        {
+                            stored += b.StoredEnergy;
+                            capacity += b.Props.storedEnergyMax;
+                        }
+                    }
+                    return YearFourMath.PowerShort(stored, capacity);
+                }
                 default:
                     return false;
             }

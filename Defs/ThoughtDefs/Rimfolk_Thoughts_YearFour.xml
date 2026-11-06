@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Moods of the fourth round of the council and the colony's year: the council's questions about the fields, the herd,
+    the road and the faith (Rimfolk_Dilemmas_YearFour.xml), the four customs of the autumn and the winter
+    (Rimfolk_Dilemmas_Customs_YearFour.xml) and the five decrees of the land's year, the power and the faiths
+    (Rimfolk_Decrees_YearFour.xml). Small and short, as the council's moods are.
+  -->
+
+  <!-- ===================== The questions ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmY_FieldLost</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>my field given up</label><description>The council let the field go back to grass. I had it marked out to the last row.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmY_FieldSown</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>the field sown at last</label><description>The empty field has seed in it again. It looks like somebody's field now.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmY_CropHeard</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>the council heard me about the field</label><description>I asked for the field to grow what the colony is short of, and the council said yes.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmY_HerdCulled</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>the herd thinned</label><description>The council marked some of the herd for the butcher. I know the hay won't stretch. I raised them all the same.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmY_HerdWorry</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>hay that won't last</label><description>The council kept every animal, and I've counted the hay. Some of them will go hungry before spring.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmY_RoadRest</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>a day off after the road</label><description>Home from the road and the council gave me a day to myself. My feet are grateful.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmY_RoadTold</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>told them about the road</label><description>I sat down and told someone what the road was like, all of it. It helped to say it.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmY_RoadForgotten</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>back to work off the road</label><description>Days on the road, and the first thing anyone said when I got back was what needed doing.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmY_Steadied</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>doubts talked through</label><description>Someone sat with me and let me say every doubt I had out loud. I feel steadier for it.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmY_LeftToDoubt</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>left alone with my doubts</label><description>The council said my faith is my own business. Maybe it is. It's lonely business.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmY_GuideNamed</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>named the faith's guide</label><description>The council asked me to guide the faith. I hope I'm worth it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmY_GuidePassed</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>passed over as guide</label><description>The council chose someone else to guide the faith. I'd have done it well.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmY_TreesFelled</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>the trees by the wall cut down</label><description>Those trees were the only shade on that side of the colony. Now there's a field of stumps.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmY_Uneasy</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>an open flank</label><description>I told the council what the ground outside the wall looks like to someone with a rifle. It's still there.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== The customs ===================== -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_Dlm_Trad_Woodpile</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the woodpile day</label><description>We brought the winter's wood in together and stacked it by the wall. My arms ache and the pile is taller than I am.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Dlm_Trad_GraveLights</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the night of lights</label><description>A light by every grave, and the colony standing among them a while. Nobody we lost was left in the dark.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Dlm_Trad_MendingDay</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the mending day</label><description>A day of putting right what the year broke. Everything creaks a little less, and so do I.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Dlm_Trad_WinterTales</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the winter tales</label><description>Our own year told back to us in the dark, the bad parts and the good. I hadn't known it was a story until I heard it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== The decrees ===================== -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_Decree_HuntingSeason</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
+    <stages>
+      <li><label>a hunting season</label><description>Every morning more of the land's animals marked to die. I can't stand it.</description><baseMoodEffect>-4</baseMoodEffect></li>
+      <li><label>the hunters out every day</label><description>The hunters go out every morning now. I'd rather they didn't.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>a hunting season</label><description>Meat laid by before the cold. That's sense.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>the hunting season</label><description>Out at first light with the hunters, every day. This is the best time of the year.</description><baseMoodEffect>4</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Decree_WoodForWinter</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
+    <stages>
+      <li><label>the trees coming down</label><description>A morning's trees marked to be felled, every day, for the woodpile. The woods are going.</description><baseMoodEffect>-4</baseMoodEffect></li>
+      <li><label>wood for the winter</label><description>Axes from first light. My shoulders know it's autumn.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>wood for the winter</label><description>The woodpile grows every day. We won't be cold this year.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>a full woodpile</label><description>Wood stacked to the eaves before the first snow. I sleep better just looking at it.</description><baseMoodEffect>3</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Decree_Foraging</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
+    <stages>
+      <li><label>picking in the brush</label><description>Every morning out in the thorns for a few berries. It isn't worth the scratches.</description><baseMoodEffect>-3</baseMoodEffect></li>
+      <li><label>foraging days</label><description>Out picking in the brush when there's real work waiting.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>foraging days</label><description>Whatever the land gives, we take in while it's ripe. It feels like the old way of things.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>the land's harvest</label><description>Berries and roots and the land's own harvest, a basket every morning. I love these days.</description><baseMoodEffect>3</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Decree_SavePower</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
+    <stages>
+      <li><label>the lamps out at night</label><description>Every lamp in the colony switched off at eleven. I work at night, and now I work in the dark.</description><baseMoodEffect>-4</baseMoodEffect></li>
+      <li><label>saving the power</label><description>Dark corridors after eleven. I keep walking into things.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>saving the power</label><description>The batteries last the night now. It's only dark while we're asleep.</description><baseMoodEffect>1</baseMoodEffect></li>
+      <li><label>a dark, quiet colony</label><description>Every lamp out at night and nothing humming. I sleep like a stone.</description><baseMoodEffect>2</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Decree_EveryFaith</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
+    <stages>
+      <li><label>every faith the same to the council</label><description>The council treats the colony's own ideoligion as one among many. It isn't one among many to me.</description><baseMoodEffect>-3</baseMoodEffect></li>
+      <li><label>every faith its evening</label><description>Other ideoligions' evenings in our colony. I don't mind, quite.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>every faith its evening</label><description>My ideoligion has its evening here too, and nobody minds. That matters.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>a welcome for my faith</label><description>The council gave my ideoligion its evening, the same as theirs. I feel at home here for the first time.</description><baseMoodEffect>4</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>
