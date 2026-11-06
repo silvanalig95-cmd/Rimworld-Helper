@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Phase 6 of the review, part 1: shared wants as one petition (Source/ColonyCouncil/Wishes/Petitions.cs,
+       PetitionMath.cs, CouncilDynamics.cs, UI/WishesPanel.cs, UI/InboxProviders.cs). -->
+
+  <!-- A want joins the petition for the same thing -->
+  <CC_Petition_Joined>{PAWN_labelShort} wants {WISH} too: {NAMES} now ask the council for it together.</CC_Petition_Joined>
+  <CC_Chronicle_PetitionJoined>{0} wanted {1} too, and {2} asked the council for it together.</CC_Chronicle_PetitionJoined>
+
+  <!-- On the wishes page and in the inbox -->
+  <CC_Petition_Header>{NAMES} want {WISH}</CC_Petition_Header>
+  <CC_Petition_Pill>A petition of {COUNT}</CC_Petition_Pill>
+  <CC_Petition_PillTip>{NAMES} each want this for themselves and ask the council together: one deadline for all of them, and the council's answer is theirs together. Each is glad as their own is met on the map.</CC_Petition_PillTip>
+  <CC_Petition_Week>{NAMES} ask together for {WISH}</CC_Petition_Week>
+  <CC_Petition_RefuseConfirm>Refuse the petition of {NAMES} for {WISH}? Each of them takes it as a no, and none will ask for it again for a while.</CC_Petition_RefuseConfirm>
+
+  <!-- The council's answer, for all of them -->
+  <CC_Petition_Promised>The council promised {NAMES} {WISH}.</CC_Petition_Promised>
+  <CC_Chronicle_PetitionPromised>{0} were promised {1}.</CC_Chronicle_PetitionPromised>
+  <CC_Petition_Refused>The council refused the petition of {NAMES} for {WISH}.</CC_Petition_Refused>
+  <CC_Chronicle_PetitionRefused>{0} asked together for {1} and were refused.</CC_Chronicle_PetitionRefused>
+  <CC_Chronicle_PetitionDismissed>{0} asked together for {1} and were told "not now".</CC_Chronicle_PetitionDismissed>
+
+  <!-- Met one by one on the map, the letter with the last -->
+  <CC_Petition_PartMet>{PAWN_labelShort} has {WISH} now, and {OTHERS} still wait for theirs.</CC_Petition_PartMet>
+  <CC_Petition_AllMet>Everyone who asked for {WISH} has it now: {NAMES}.</CC_Petition_AllMet>
+  <CC_Chronicle_PetitionGranted>{0} asked together for {1}, and every one of them has it now.</CC_Chronicle_PetitionGranted>
+
+  <!-- Let lapse, told once -->
+  <CC_Petition_LapsedTitle>{NAMES} gave up on {WISH}</CC_Petition_LapsedTitle>
+  <CC_Petition_BrokenTitle>Broken promise to {NAMES}: {WISH}</CC_Petition_BrokenTitle>
+  <CC_Chronicle_PetitionLapsed>{0} gave up waiting for {1} together.</CC_Chronicle_PetitionLapsed>
+  <CC_Chronicle_PetitionBroken>The promise to {0} ({1}) was broken.</CC_Chronicle_PetitionBroken>
+
+</LanguageData>

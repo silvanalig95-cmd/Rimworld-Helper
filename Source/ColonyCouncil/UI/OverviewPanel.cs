@@ -143,7 +143,7 @@ namespace ColonyCouncil
             float mood = pawns.Count > 0 ? pawns.Average(p => p.needs.mood.CurLevelPercentage) : 0f;
             float trust = pawns.Count > 0 ? pawns.Average(p => comp.standings.TrustOf(p)) : 0f;
             float wealth = Find.Maps.Where(m => m.IsPlayerHome).Sum(m => m.wealthWatcher.WealthTotal);
-            int wishes = comp.OpenWishes.Count();
+            int wishes = comp.OpenWishes.Count(comp.LeadsPetition);
             var tiles = new List<Tile>
             {
                 Make(pawns.Count.ToString(), "CC_Overview_TilePeople".Translate(), "CC_Overview_TilePeople_Tip".Translate(), Icons.People, UiKit.Faint,

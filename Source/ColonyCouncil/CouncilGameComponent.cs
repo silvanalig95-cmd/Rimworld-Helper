@@ -633,7 +633,7 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The open wishes of one colony's people (those who asked), for the cap on how many wait at once, which is each
-        /// colony's own; every colony's with none given.
+        /// colony's own; every colony's with none given. A petition of several counts once (Wishes/Petitions.cs).
         /// </summary>
         public int OpenWishCount(ColonyState colony)
         {
@@ -641,7 +641,7 @@ namespace ColonyCouncil
             for (int i = 0; i < wishes.Count; i++)
             {
                 var w = wishes[i];
-                if (w.state == WishState.Open && (colony == null || colony.Has(w.pawn))) n++;
+                if (w.state == WishState.Open && (colony == null || colony.Has(w.pawn)) && LeadsPetition(w)) n++;
             }
             return n;
         }
@@ -970,6 +970,14 @@ namespace ColonyCouncil
             if (w.ForSomeoneElse && !def.requestForOther.Any)
                 w.quote = "CC_ForOtherFallback".Translate(beneficiary.Named("FOR"), w.Label.Named("WISH")).Resolve();
             NoteRenewed(w);
+            // Someone else in the colony already waits for the same thing: this want joins theirs, one petition to the
+            // council, never a wish of its own beside it (Wishes/Petitions.cs).
+            var lead = ShareWith(w);
+            if (lead != null)
+            {
+                JoinPetition(w, lead);
+                return w;
+            }
             wishes.Add(w);
 
             AnnounceNewWish(w);

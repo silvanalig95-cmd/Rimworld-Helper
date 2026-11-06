@@ -53,16 +53,40 @@ namespace ColonyCouncil
         public void Promise(Wish w)
         {
             if (w == null || w.state != WishState.Open || w.promised) return;
-            w.promised = true;
+            // A petition is promised whole: one deadline moved on for all of it, told once (Wishes/Petitions.cs).
+            var all = PetitionOf(w);
+            if (all.Count > 1)
+            {
+                int deadline = all.Max(o => o.expiresTick);
+                deadline += Mathf.Max(0, deadline - Find.TickManager.TicksGame) / 2 + GenDate.TicksPerDay * 2;
+                ForPetition(w, o => PromiseOne(o, all));
+                foreach (var o in all) o.expiresTick = deadline;
+                return;
+            }
             w.expiresTick += Mathf.Max(0, w.TicksLeft) / 2 + GenDate.TicksPerDay * 2;
+            PromiseOne(w, null);
+        }
+
+        private void PromiseOne(Wish w, List<Wish> petition)
+        {
+            if (w.state != WishState.Open || w.promised) return;
+            w.promised = true;
             foreach (var p in w.Supporters) standings.Change(p, 4f, "CC_Log_Promised".Translate(w.Label));
             if (w.ForSomeoneElse) standings.Change(w.Beneficiary, 4f, "CC_Log_Promised".Translate(w.Label));
-            string line = PoolLine("Council_Pool_Promised", w.pawn, w, "CC_PromisedFallback");
-            // direct: the answer to the player's click on "Promise", and below what the promise sets going.
-            Messages.Message("CC_PromisedMessage".Translate(w.pawn.Named("PAWN"), w.Label.Named("WISH")).Resolve() + (line != null ? " \"" + TextUtil.ShortSpeech(line, 120) + "\"" : ""),
-                new LookTargets(w.pawn), MessageTypeDefOf.NeutralEvent, false);
-            Speak(w.pawn, line, SpeechGood);
-            AddChronicle(new ChronicleEntry(ChronicleKind.Petition, "CC_Chronicle_Promised".Translate(w.pawn.LabelShort, w.LabelInline).Resolve(), w.pawn));
+            string names = petition != null ? NamesFor(w, petition) : null;
+            string line = w.toldWithPetition ? null : PoolLine("Council_Pool_Promised", w.pawn, w, "CC_PromisedFallback");
+            if (!w.toldWithPetition)
+            {
+                // direct: the answer to the player's click on "Promise", and below what the promise sets going.
+                Messages.Message((names != null ? "CC_Petition_Promised".Translate(names.Named("NAMES"), w.LabelInline.Named("WISH"))
+                                     : "CC_PromisedMessage".Translate(w.pawn.Named("PAWN"), w.Label.Named("WISH"))).Resolve()
+                                 + (line != null ? " \"" + TextUtil.ShortSpeech(line, 120) + "\"" : ""),
+                    new LookTargets(w.pawn), MessageTypeDefOf.NeutralEvent, false);
+                Speak(w.pawn, line, SpeechGood);
+                AddChronicle(new ChronicleEntry(ChronicleKind.Petition, names != null
+                    ? "CC_Chronicle_PetitionPromised".Translate(names, w.LabelInline).Resolve()
+                    : "CC_Chronicle_Promised".Translate(w.pawn.LabelShort, w.LabelInline).Resolve(), w.pawn));
+            }
             string act = null;
             try
             {
@@ -73,7 +97,7 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("promise " + w.def.defName, e);
             }
             // direct: still the answer to the click on "Promise".
-            if (!act.NullOrEmpty())
+            if (!act.NullOrEmpty() && !w.toldWithPetition)
                 Messages.Message(w.Format(act.CanTranslate() ? act.Translate().ToString() : act), w.Worker.LookAt(w), MessageTypeDefOf.PositiveEvent, false);
         }
 
@@ -82,6 +106,15 @@ namespace ColonyCouncil
         public static string WishCause(Wish w, string key) => w?.pawn == null ? null : key.Translate(w.pawn.LabelShort, w.Label).Resolve();
 
         public void Refuse(Wish w)
+        {
+            if (w == null || w.state != WishState.Open) return;
+            // A petition is refused whole: each of them takes the no, told once (Wishes/Petitions.cs).
+            var all = PetitionOf(w);
+            if (all.Count > 1) ForPetition(w, o => RefuseOne(o, all));
+            else RefuseOne(w, null);
+        }
+
+        private void RefuseOne(Wish w, List<Wish> petition)
         {
             using var _cause = Causes.Push(WishCause(w, "CC_Cause_WishRefused"));
             if (w == null || w.state != WishState.Open) return;
@@ -95,12 +128,20 @@ namespace ColonyCouncil
                 if (pen > 0f) GiveThought(p, CouncilDefOf.Council_Refused, null, pen * g);
                 SetCooldown(p, w.def, 3f);
             }
-            string line = PoolLine("Council_Pool_Refused", w.pawn, w, "CC_RefusedFallback");
-            // direct: the answer to the player's click on "Refuse".
-            Messages.Message("CC_RefusedMessage".Translate(w.pawn.Named("PAWN"), w.LabelInline.Named("WISH")).Resolve() + (line != null ? " \"" + TextUtil.ShortSpeech(line, 120) + "\"" : ""),
-                new LookTargets(w.pawn), MessageTypeDefOf.NeutralEvent, false);
-            Speak(w.pawn, line, SpeechSour);
-            AddChronicle(new ChronicleEntry(ChronicleKind.WishDismissed, "CC_Chronicle_Refused".Translate(w.pawn.LabelShort, w.LabelInline).Resolve(), w.pawn));
+            if (!w.toldWithPetition)
+            {
+                string names = petition != null ? NamesFor(w, petition) : null;
+                string line = PoolLine("Council_Pool_Refused", w.pawn, w, "CC_RefusedFallback");
+                // direct: the answer to the player's click on "Refuse".
+                Messages.Message((names != null ? "CC_Petition_Refused".Translate(names.Named("NAMES"), w.LabelInline.Named("WISH"))
+                                     : "CC_RefusedMessage".Translate(w.pawn.Named("PAWN"), w.LabelInline.Named("WISH"))).Resolve()
+                                 + (line != null ? " \"" + TextUtil.ShortSpeech(line, 120) + "\"" : ""),
+                    new LookTargets(w.pawn), MessageTypeDefOf.NeutralEvent, false);
+                Speak(w.pawn, line, SpeechSour);
+                AddChronicle(new ChronicleEntry(ChronicleKind.WishDismissed, names != null
+                    ? "CC_Chronicle_PetitionRefused".Translate(names, w.LabelInline).Resolve()
+                    : "CC_Chronicle_Refused".Translate(w.pawn.LabelShort, w.LabelInline).Resolve(), w.pawn));
+            }
             Safe("objection", () => ResolveObjection(w, false));
             w.state = WishState.Refused;
             wishes.Remove(w);
@@ -110,12 +151,24 @@ namespace ColonyCouncil
         public void Dismiss(Wish w)
         {
             if (w == null || w.state != WishState.Open) return;
+            // A petition is set aside whole, told once (Wishes/Petitions.cs).
+            var all = PetitionOf(w);
+            if (all.Count > 1) ForPetition(w, o => DismissOne(o, all));
+            else DismissOne(w, null);
+        }
+
+        private void DismissOne(Wish w, List<Wish> petition)
+        {
+            if (w == null || w.state != WishState.Open) return;
             if (Settings.Negatives)
             {
                 foreach (var p in w.Supporters) standings.Change(p, -2f * Gentleness(p), "CC_Log_SetAside".Translate(w.Label));
             }
-            AddChronicle(new ChronicleEntry(ChronicleKind.WishDismissed,
-                "CC_Chronicle_WishDismissed".Translate(w.pawn.LabelShort, w.LabelInline).Resolve(), w.pawn));
+            string names = petition != null ? NamesFor(w, petition) : null;
+            if (!w.toldWithPetition)
+                AddChronicle(new ChronicleEntry(ChronicleKind.WishDismissed, names != null
+                    ? "CC_Chronicle_PetitionDismissed".Translate(names, w.LabelInline).Resolve()
+                    : "CC_Chronicle_WishDismissed".Translate(w.pawn.LabelShort, w.LabelInline).Resolve(), w.pawn));
             foreach (var p in w.Supporters) SetCooldown(p, w.def, 2f);
             w.state = WishState.Dismissed;
             wishes.Remove(w);
@@ -200,6 +253,8 @@ namespace ColonyCouncil
         private void CheckStages(Wish w)
         {
             if (!Settings.reminders || !w.pawn.Spawned) return;
+            // A petition is brought up again by the one who leads it, once for all of it (Wishes/Petitions.cs).
+            if (w.petition >= 0 && !LeadsPetition(w)) return;
             float e = w.Elapsed;
             if (w.stage == 0 && e >= 0.5f)
             {
@@ -211,6 +266,9 @@ namespace ColonyCouncil
                 w.stage = 2;
                 LastCall(w);
             }
+            if (w.petition >= 0)
+                foreach (var o in PetitionOf(w))
+                    o.stage = Math.Max(o.stage, w.stage);
         }
 
         private void Remind(Wish w)
@@ -329,14 +387,27 @@ namespace ColonyCouncil
             if (w.promised) body += "\n\n" + "CC_PromiseKeptNote".Translate(who.Named("PAWN")).Resolve();
             if (inspired != null) body += "\n\n" + "CC_InspiredNote".Translate(who.Named("PAWN"), inspired.Named("INSPIRATION")).Resolve();
 
-            if (s.grantedLetters || inspired != null)
+            // In a petition (Wishes/Petitions.cs): while others still wait, their own thanks come as a word, and the letter
+            // comes with the last, naming everyone who has it now.
+            var waiting = PetitionOf(w).Where(o => o != w).ToList();
+            bool partOf = MetInPetition(w, who, out var metBefore);
+            string everyone = !partOf && metBefore.Count > 0 ? TextUtil.JoinAnd(metBefore.Select(p => p.LabelShort).Concat(new[] { who.LabelShort }).ToList()) : null;
+            if (everyone != null) body += "\n\n" + "CC_Petition_AllMet".Translate(everyone.Named("NAMES"), w.LabelInline.Named("WISH")).Resolve();
+
+            if (partOf)
+                News.Post("CC_Petition_PartMet".Translate(who.Named("PAWN"), w.LabelInline.Named("WISH"),
+                        TextUtil.JoinAnd(waiting.Select(o => o.pawn.LabelShort).ToList()).Named("OTHERS")).Resolve() + " \"" + TextUtil.ShortSpeech(thanks, 120) + "\"",
+                    new LookTargets(who), NewsKind.Colony, MessageTypeDefOf.PositiveEvent);
+            else if (s.grantedLetters || inspired != null || everyone != null)
                 Tell.Letter(NewsKind.Colony, Importance.Notable, null, title, body, LetterDefOf.PositiveEvent, new LookTargets(who));
             else
                 News.Post(title + ": \"" + TextUtil.ShortSpeech(thanks, 120) + "\"", new LookTargets(who), NewsKind.Colony, MessageTypeDefOf.PositiveEvent);
 
             Speak(who, thanks, SpeechGood);
-            AddChronicle(new ChronicleEntry(ChronicleKind.WishGranted,
-                "CC_Chronicle_WishGranted".Translate(who.LabelShort, w.Label).Resolve(), who));
+            if (!partOf)
+                AddChronicle(new ChronicleEntry(ChronicleKind.WishGranted, everyone != null
+                    ? "CC_Chronicle_PetitionGranted".Translate(everyone, w.LabelInline).Resolve()
+                    : "CC_Chronicle_WishGranted".Translate(who.LabelShort, w.Label).Resolve(), who));
             journals.Write(who, w.promised ? "Council_Journal_PromiseKept" : "Council_Journal_Granted", w);
 
             foreach (var p in w.Supporters) SetCooldown(p, w.def);
@@ -568,12 +639,21 @@ namespace ColonyCouncil
                 if (!broken.NullOrEmpty()) line = broken;
             }
             if (line.NullOrEmpty()) line = "CC_ExpiredFallback".Translate();
-            string titleKey = w.promised ? "CC_PromiseBrokenTitle" : "CC_WishExpiredTitle";
-            News.Post(titleKey.Translate(w.pawn.Named("PAWN"), w.Label.Named("WISH")).Resolve() + ": \"" + TextUtil.ShortSpeech(line, 120) + "\"",
-                new LookTargets(w.pawn), NewsKind.Colony, w.promised && pen > 0f ? MessageTypeDefOf.NegativeEvent : MessageTypeDefOf.NeutralEvent);
-            if (w.pawn.Spawned) Speak(w.pawn, line, w.promised ? SpeechSour : SpeechGrey);
-            AddChronicle(new ChronicleEntry(ChronicleKind.WishExpired,
-                (w.promised ? "CC_Chronicle_PromiseBroken" : "CC_Chronicle_WishExpired").Translate(w.pawn.LabelShort, w.LabelInline).Resolve(), w.pawn));
+            // A petition lapses as one (they share its deadline): told once, by the first of them, with every name
+            // (Wishes/Petitions.cs); the others' own lapses are quiet.
+            string together = LapseTogether(w);
+            if (!w.toldWithPetition)
+            {
+                string title = together != null
+                    ? (w.promised ? "CC_Petition_BrokenTitle" : "CC_Petition_LapsedTitle").Translate(together.Named("NAMES"), w.LabelInline.Named("WISH")).Resolve()
+                    : (w.promised ? "CC_PromiseBrokenTitle" : "CC_WishExpiredTitle").Translate(w.pawn.Named("PAWN"), w.Label.Named("WISH")).Resolve();
+                News.Post(title + ": \"" + TextUtil.ShortSpeech(line, 120) + "\"",
+                    new LookTargets(w.pawn), NewsKind.Colony, w.promised && pen > 0f ? MessageTypeDefOf.NegativeEvent : MessageTypeDefOf.NeutralEvent);
+                if (w.pawn.Spawned) Speak(w.pawn, line, w.promised ? SpeechSour : SpeechGrey);
+                AddChronicle(new ChronicleEntry(ChronicleKind.WishExpired, together != null
+                    ? (w.promised ? "CC_Chronicle_PetitionBroken" : "CC_Chronicle_PetitionLapsed").Translate(together, w.LabelInline).Resolve()
+                    : (w.promised ? "CC_Chronicle_PromiseBroken" : "CC_Chronicle_WishExpired").Translate(w.pawn.LabelShort, w.LabelInline).Resolve(), w.pawn));
+            }
             journals.Write(w.pawn, w.promised ? "Council_Journal_PromiseBroken" : "Council_Journal_Lapsed", w);
             foreach (var p in w.Supporters) SetCooldown(p, w.def, 1.5f);
             w.state = WishState.Expired;
