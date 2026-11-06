@@ -825,14 +825,6 @@ def estimate(pools):
                             ("preachedat", 0.15), ("nopreaching", 0.15))
         if p.name.startswith("Council_Journal_Day_"):
             p.extra = (("good|bad", 1.0),)
-        # The ailment journals (Ailments/AilmentTracker.cs Journal): the caller adds the ailment's key, everyday or
-        # serious, and again for one they have had before.
-        if p.name in ("Council_Journal_Ail_Start", "Council_Journal_Ail_Better", "Council_Journal_Ail_Serious") and AILMENTS:
-            serious = p.name == "Council_Journal_Ail_Serious"
-            keys = [k for k, s in AILMENTS if s == serious] or [k for k, _ in AILMENTS]
-            p.extra = (("|".join("ail:" + k for k in keys), 1.0), ("serious" if serious else "everyday", 1.0))
-            if p.name != "Council_Journal_Ail_Better":
-                p.extra += (("again", 0.3),)
         if p.field in ("request", "requestForOther", "thanks", "expired", "reminder") or p.name.startswith("Council_Pool_"):
             p.extra = (("promised", 0.1), ("petition", 0.1), ("forother", 0.1), ("repeat", 0.15))
         # The caller always adds the kind of thing: the item planned for a personal touch, the kind of outpost.
@@ -841,6 +833,15 @@ def estimate(pools):
         if p.name == "Council_Journal_Outpost":
             p.extra += (("outpost:Mining|outpost:Logging|outpost:Farming|outpost:Hunting|outpost:Defensive"
                          "|outpost:Trading|outpost:Science|outpost:Town|outpost:Scavenging|outpost:Encampment", 1.0),)
+        # The ailment journals and what the ill say (Ailments/AilmentTracker.cs Journal, Immersion/StateSpeech.cs): the
+        # caller adds the ailment's key, everyday or serious, and on a first journal line again for one had before.
+        if p.name in ("Council_Journal_Ail_Start", "Council_Journal_Ail_Better", "Council_Journal_Ail_Serious",
+                      "Council_Pool_SayAilment") and AILMENTS:
+            serious = p.name == "Council_Journal_Ail_Serious"
+            keys = [k for k, s in AILMENTS if s == serious] or [k for k, _ in AILMENTS]
+            p.extra = (("|".join("ail:" + k for k in keys), 1.0), ("serious" if serious else "everyday", 1.0))
+            if p.name in ("Council_Journal_Ail_Start", "Council_Journal_Ail_Serious"):
+                p.extra += (("again", 0.3),)
     # A colonist starts at most one moment in six hours, and most of the day they're asleep or alone: about two and a
     # half a day at the very most, shared out among the moments in proportion.
     moments = [p for p in pools.values() if p.kind == "grammar" and p.basis.startswith("w ")]
