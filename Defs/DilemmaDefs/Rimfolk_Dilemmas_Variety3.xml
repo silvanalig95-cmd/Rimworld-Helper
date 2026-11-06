@@ -90,7 +90,7 @@
         </effects>
       </li>
       <li>
-        <label>{A_pronoun} rides it out</label>
+        <label>{A_nameDef} rides it out</label>
         <outcome>The colony keeps the {THING} from {A_nameDef} now, and {A_pronoun} goes through the bad days without it. {B_nameDef} looks in on {A_objective}.</outcome>
         <outcomes>
           <li>[lowtech] The {THING} is put where {A_nameDef} won't be given it, and {B_nameDef} sits with {A_objective} when it's worst.</li>

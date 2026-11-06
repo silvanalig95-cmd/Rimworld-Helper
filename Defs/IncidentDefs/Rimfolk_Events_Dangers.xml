@@ -97,8 +97,8 @@
           <li>A tree over the {TALE}</li>
         </titles>
         <texts>
-          <li>After the rain, the old {THING} by the colony's {TALE} has begun to lean toward it, and the ground at its foot has heaved up where the roots are letting go. {A_nameDef} says fell it now, while it can be felled where it's wanted. {B_nameDef} has known that tree since the colony came. Left standing, a wind could bring it down onto the {TALE}, and onto anyone beside it.</li>
-          <li>[door] The {THING} beside the door has a lean on it it didn't have last week, and the soaked ground around its roots has lifted. {A_nameDef} wants it down before a wind does it. {B_nameDef} says it's stood through worse. If it comes down, it comes down on the doorway.</li>
+          <li>After the rain, the old {THING} by the colony's {TALE} has begun to lean toward it, and the ground at its foot has heaved up where the roots are letting go. {A_nameDef} says fell it now, while it can be felled where it's wanted. {B_nameDef} has known that tree since the colony came. Left standing, a wind may bring it down onto the {TALE}, and onto anyone beside it.</li>
+          <li>[door] The {THING} beside the door has a lean on it it didn't have last week, and the soaked ground around its roots has lifted. {A_nameDef} wants it down before a wind does it. {B_nameDef} says it's stood through worse. If it comes down, it will come down on the doorway.</li>
           <li>[lowtech] The old {THING} by the {TALE} is leaning, its roots pulling up out of the wet ground. The elders say a tree that leans after rain falls in the next wind. {A_nameDef} has the axe ready; {B_nameDef} would leave it. A fall would take the {TALE} and whoever stood there.</li>
           <li>[!lowtech] The {THING} next to the {TALE} is leaning at a bad angle after the rain, with its root plate lifting. {A_nameDef} wants it felled under control. Leave it, and the next strong wind may drop it on the {TALE} and whoever is near.</li>
           <li>[land:forest] In this country the trees grow close to the walls, and after the rain the {THING} by the {TALE} has begun to lean onto it. {A_nameDef} would fell it; {B_nameDef} says the forest was here first. Left, a wind may bring it down on the {TALE}.</li>
@@ -110,7 +110,6 @@
             <outcome>The {THING} is marked to be felled, and the cutters will bring it down where it's wanted. The wood is the colony's.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_LeaningTree"><fell>true</fell></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Overruled</thought><chance>0.4</chance></li>
             </effects>
             <ways><toil>1</toil></ways>
           </li>
@@ -164,7 +163,7 @@
         <texts>
           <li>No rain for days, and the grass {PLACE} has gone brown and brittle in the heat. {A_nameDef} saw a thread of smoke rising out of it a little way past the colony: something is smouldering there, not yet burning. Someone could stamp it out now, and might burn a hand or a foot doing it. Left, it will catch, and dry grass burns fast.</li>
           <li>[land:grassland] On the open grass {PLACE}, dry as tinder after the long heat, a wisp of smoke is coming up out of the stalks. {A_nameDef} pointed it out to {B_nameDef}. Stamp it out now, at the risk of a burn, or let it go, and the grass will carry fire a long way.</li>
-          <li>[land:desert] In the scrub {PLACE}, baked dry, something has started to smoulder: {A_nameDef} can see the smoke from the colony. It's small yet. Stamp it out, and maybe take a burn for it, or leave it to catch.</li>
+          <li>[land:desert] In the scrub {PLACE}, baked dry, something has started to smoulder: {A_nameDef} can see the smoke from the colony. It's small yet. Whoever stamps it out may take a burn for it; left, it will catch.</li>
           <li>[lowtech] {A_nameDef} smelled it before seeing it: smoke from the dry grass {PLACE}. The old way is to beat it out while it's small, and every herder has a burn to show for it. Leave it, and the grass will catch.</li>
           <li>[!lowtech] Smoke is rising from the dead grass {PLACE}, a little past the colony's edge: a smoulder, not yet a fire. {A_nameDef} could get out there and stamp it out, at some risk of a burn. Otherwise it will catch, and in this heat it will spread.</li>
         </texts>
@@ -220,7 +219,7 @@
         </titles>
         <texts>
           <li>{A_nameDef} turned up something hard in the field and stopped dead: an old shell from a war before the colony's time, rusted, and still whole. Nobody has touched it since. It can be carried well out past the fields, set off where it lies from a safe distance, or left. A fire that reaches it will set it off wherever it is.</li>
-          <li>[lowtech] There's a metal egg in the furrow, heavy as a stone and crusted with rust, with a cap on one end that {A_nameDef} won't touch. The elders say such things wake when struck or burned. {B_nameDef} could break it from far off with a thrown stone or an arrow; or someone carries it gently a long way out.</li>
+          <li>[lowtech] There's a metal egg in the furrow, heavy as a stone and crusted with rust, with a cap on one end that {A_nameDef} won't touch. The elders say such things wake when struck or burned, and this one may still. {B_nameDef} could break it from far off with a thrown stone or an arrow; or someone carries it gently a long way out.</li>
           <li>[medieval] {A_nameDef}'s spade struck iron in the field: a great iron shell from some war of the old world, rusted shut. {B_nameDef} says strike it from far off and let it burst there. Carried out, it would lie in the grass a long while; left, it lies among the crops.</li>
           <li>[!lowtech] {A_nameDef} found an unexploded shell in the field, an old high-explosive round in a crust of rust. {B_nameDef} can set it off from a safe distance, which will tear up the ground around it. Or it gets carried well out and left, or put in the stores for the mortars, if the colony has one.</li>
         </texts>
@@ -297,7 +296,7 @@
           <li>The wreck of a {BEAST} has lain {PLACE} since it was brought down, and as {A_nameDef} went past it this morning, one of its limbs jerked and it spat sparks. There's charge in it yet. {B_nameDef} could break it up for the metal, and might take a burn from the last of it. Left, whoever handles it next may be burned.</li>
           <li>[lowtech] The dead iron beast {PLACE} moved when {A_nameDef} passed: a leg kicked out and fire jumped from it in little blue sparks. The elders say the iron things keep a spark of their life a long while. {B_nameDef} could break it apart for its metal, and the spark may bite.</li>
           <li>[industrial] The wreck of the {BEAST} {PLACE} is still live: {A_nameDef} saw its actuators twitch and a shower of sparks from the torn housing. {B_nameDef} can strip it for steel and may get a jolt doing it. Leave it, and the first to haul it may get the jolt instead.</li>
-          <li>[spacer] The {BEAST}'s remains {PLACE} still hold a charge: a capacitor somewhere in the wreck is arcing, and a limb jerked when {A_nameDef} came near. {B_nameDef} can break it down for parts, at some risk of a burn.</li>
+          <li>[spacer] The {BEAST}'s remains {PLACE} still hold a charge: a capacitor somewhere in the wreck is arcing, and a limb jerked when {A_nameDef} came near. {B_nameDef} can break it down for parts, and may take a burn doing it.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>

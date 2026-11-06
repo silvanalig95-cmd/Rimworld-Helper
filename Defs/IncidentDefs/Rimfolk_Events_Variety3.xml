@@ -98,7 +98,7 @@
           </li>
           <li>
             <label>Let them graze outside a while</label>
-            <outcome>The gap is left open, and the {BEAST} graze where they like until the colony mends it.</outcome>
+            <outcome>The gap is left open, and the {BEAST} graze wherever they like.</outcome>
             <outcomes>
               <li>[lowtech] The gap is left open, the old way, and the {BEAST} wander out to the better grass.</li>
             </outcomes>

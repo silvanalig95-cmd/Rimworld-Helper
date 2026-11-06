@@ -1223,12 +1223,20 @@ namespace ColonyCouncil
                 .ThenBy(t => t.CostList.Sum(c => c.thingDef.BaseMarketValue * c.count)).FirstOrDefault();
         }
 
-        private static List<IntVec3> Cells(DilemmaContext ctx) => MapDangers.Of(TimedKind.SoftGround, ctx)?.cells ?? new List<IntVec3>();
+        /// <summary>The soft cells a floor of that kind can be laid on now.</summary>
+        private static List<IntVec3> Layable(DilemmaContext ctx, TerrainDef floor)
+        {
+            var map = ctx?.map;
+            var k = map == null || floor == null ? null : OnMapTimed.Instance?.kept.FirstOrDefault(x => x.kind == TimedKind.SoftGround && x.map == map && (ctx as HappeningContext)?.spot == x.cell);
+            if (k == null) return new List<IntVec3>();
+            return k.cells.Where(c => c.InBounds(map) && GenConstruct.CanPlaceBlueprintAt(floor, c, Rot4.North, map).Accepted).ToList();
+        }
 
         public override string Unavailable(DilemmaContext ctx)
         {
             if (!lay || ctx?.map == null || !(ctx is HappeningContext)) return null;
-            return Floor(ctx.map, Math.Max(1, ctx.count)) == null ? "CC_Danger_NoFloor".Translate().ToString() : null;
+            var floor = Floor(ctx.map, Math.Max(1, ctx.count));
+            return floor == null || Layable(ctx, floor).Count == 0 ? "CC_Danger_NoFloor".Translate().ToString() : null;
         }
 
         public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
@@ -1237,8 +1245,12 @@ namespace ColonyCouncil
             if (lay)
             {
                 var floor = Floor(ctx.map, Math.Max(1, ctx.count));
-                if (floor == null) return;
+                var layable = Layable(ctx, floor);
+                if (floor == null || layable.Count == 0) return;
                 sheet.Play("CC_Impact_LayFloor".Translate(floor.label).Resolve(), "CC_Impact_LayFloorBrief".Translate().Resolve());
+                int soft = OnMapTimed.Instance?.kept.FirstOrDefault(x => x.kind == TimedKind.SoftGround && x.map == ctx.map && (ctx as HappeningContext)?.spot == x.cell)?.cells.Count ?? 0;
+                if (layable.Count < soft && MapDangers.On)
+                    sheet.Add(ImpactKind.Health, -1, "CC_Impact_GroundRisk".Translate().Resolve(), "CC_Impact_GroundRiskBrief".Translate().Resolve(), "groundrisk");
                 return;
             }
             if (MapDangers.On) sheet.Add(ImpactKind.Health, -1, "CC_Impact_GroundRisk".Translate().Resolve(), "CC_Impact_GroundRiskBrief".Translate().Resolve(), "groundrisk");
@@ -1258,10 +1270,12 @@ namespace ColonyCouncil
                     return;
                 }
                 var floor = Floor(h.map, Math.Max(1, k.cells.Count));
-                if (floor != null)
-                    foreach (var c in k.cells.Where(c => c.InBounds(h.map) && GenConstruct.CanPlaceBlueprintAt(floor, c, Rot4.North, h.map).Accepted))
-                        GenConstruct.PlaceBlueprintForBuild(floor, c, h.map, Rot4.North, Faction.OfPlayer, null);
-                k.count = 2;
+                var cells = Layable(ctx, floor);
+                foreach (var c in cells) GenConstruct.PlaceBlueprintForBuild(floor, c, h.map, Rot4.North, Faction.OfPlayer, null);
+                // Where no floor could go, the ground is still soft: it is watched as if left.
+                k.cells.RemoveAll(cells.Contains);
+                k.count = k.cells.Count > 0 ? 1 : 2;
+                k.until = Find.TickManager.TicksGame + Mathf.RoundToInt(VarietyThreeMath.GroundWatchDays * GenDate.TicksPerDay);
             }
             catch (Exception e)
             {
