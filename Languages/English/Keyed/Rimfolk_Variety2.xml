@@ -30,4 +30,12 @@
   <CC_Impact_NewMasterBrief>{0} goes to {1}</CC_Impact_NewMasterBrief>
   <CC_DlmE_NewMaster>{PAWN_nameDef} is {PET_nameDef}'s master now.</CC_DlmE_NewMaster>
 
+  <!-- The herd crossing (Happenings/Workers_Variety2.cs) -->
+  <CC_Evt_HerdGone>The herd has crossed and gone.</CC_Evt_HerdGone>
+  <CC_Impact_HuntHerdOne>The biggest of the {0} marked for the colony's hunters</CC_Impact_HuntHerdOne>
+  <CC_Impact_HuntHerdFew>A few of the grown {0} marked for the colony's hunters</CC_Impact_HuntHerdFew>
+  <CC_Impact_HuntHerdBrief>the hunters after the {0}</CC_Impact_HuntHerdBrief>
+  <CC_Impact_HuntHerdRisk>A hunted {0} may turn on its hunter, as the game has it</CC_Impact_HuntHerdRisk>
+  <CC_Impact_HuntHerdRiskBrief>a hunted beast may turn</CC_Impact_HuntHerdRiskBrief>
+
 </LanguageData>

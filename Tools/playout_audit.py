@@ -87,6 +87,8 @@ PLAY = {
     "DilemmaEffect_CutBlight": "blight marked",
     "DilemmaEffect_TakeUp": "weapon taken up",
     "DilemmaEffect_NewMaster": "new master",
+    # A herd crossing the land (Happenings/Workers_Variety2.cs): grown ones of it marked for the colony's hunters.
+    "DilemmaEffect_HuntHerd": "herd hunted",
     # Banishment by the council (Social/Banishment.cs): the council's word said face to face, and someone sent away told
     # face to face, gathering their things in their room and walking out by the edge.
     "DilemmaEffect_TroubleWord": "a word face to face",
