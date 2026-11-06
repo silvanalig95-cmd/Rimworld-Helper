@@ -1137,6 +1137,9 @@ namespace ColonyCouncil
 
         public int nextTick = -1;
         private Dictionary<string, int> lastTick = new Dictionary<string, int>();
+
+        /// <summary>When the question was last asked in this colony, or -1 if never.</summary>
+        public int LastAsked(string defName) => defName != null && lastTick.TryGetValue(defName, out int t) ? t : -1;
         /// <summary>
         /// An older save's customs (how often the tradition answer was chosen, which were established, breaks in a row), until
         /// they are carried onto the colony's calendar (<see cref="MoveCustoms"/>), which keeps them from then on.

@@ -79,7 +79,7 @@ namespace Balance
                 case "DilemmaEffect_HuntParty": case "DilemmaEffect_HaulDead": case "DilemmaEffect_Rounds": case "DilemmaEffect_UndertakersBury":
                 case "DilemmaEffect_SmudgeFires": case "DilemmaEffect_SowPatch":
                     return "outing";
-                case "DilemmaEffect_Visit": case "DilemmaEffect_Lesson": case "DilemmaEffect_Teach": case "DilemmaEffect_Mentorship":
+                case "DilemmaEffect_Visit": case "DilemmaEffect_VisitAltar": case "DilemmaEffect_Lesson": case "DilemmaEffect_Teach": case "DilemmaEffect_Mentorship":
                 case "DilemmaEffect_CarryOut": case "DilemmaEffect_Made": case "DilemmaEffect_BurnIt": case "DilemmaEffect_TroubleWord":
                 case "DilemmaEffect_KinFree": case "DilemmaEffect_KinTalk": case "DilemmaEffect_BarberCuts": case "DilemmaEffect_VetRounds":
                 case "DilemmaEffect_SellArt": case "DilemmaEffect_ArtCommission": case "DilemmaEffect_WeddingNight": case "DilemmaEffect_Banish":

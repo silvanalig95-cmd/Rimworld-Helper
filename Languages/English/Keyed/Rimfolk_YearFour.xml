@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The fourth round of the council and the colony's year: the council's questions (Dilemmas/DilemmaWorkers_YearFour.cs),
+       the decrees of the land's year, the power and the faiths (Decrees/DecreeWork.cs), the lights by the graves
+       (PlayOut/OnMapTimed.cs) and the advisor's checks (Advisor/AdvisorSignals_YearFour.cs). -->
+
+  <!-- ===================== The empty field, and what it grows ===================== -->
+  <CC_Y4_FieldGone>The field is gone.</CC_Y4_FieldGone>
+  <CC_Impact_GiveUpField>The field {0} taken off the colony's plans and its {1} given up; its ground left to grass</CC_Impact_GiveUpField>
+  <CC_Impact_GiveUpFieldBrief>the field given up</CC_Impact_GiveUpFieldBrief>
+  <CC_Y4_FieldGivenUp>{FIELD} is given up and its ground left to grass.</CC_Y4_FieldGivenUp>
+  <CC_Y4_FieldAlready>The field grows {0} already.</CC_Y4_FieldAlready>
+  <CC_Impact_SetCrop>The field {0} set to grow {1} instead of {2}; the growers sow it as the old crop comes out</CC_Impact_SetCrop>
+  <CC_Impact_SetCropHalf>The far half of the field {0} made a field of its own for {1}; the near half keeps its {2}</CC_Impact_SetCropHalf>
+  <CC_Impact_SetCropBrief>the field to {0}</CC_Impact_SetCropBrief>
+  <CC_Impact_SetCropFood>Less {0} in the stores next harvest</CC_Impact_SetCropFood>
+  <CC_Impact_SetCropFoodBrief>less {0} next harvest</CC_Impact_SetCropFoodBrief>
+  <CC_Y4_CropSet>{FIELD} is set to grow {CROP} now.</CC_Y4_CropSet>
+
+  <!-- ===================== Snow on the paths ===================== -->
+  <CC_Y4_SnowGone>The snow has gone, or is already marked for clearing.</CC_Y4_SnowGone>
+  <CC_Impact_SnowAll>{0} cells of the home area's open ground marked for clearing, the nearest the middle first</CC_Impact_SnowAll>
+  <CC_Impact_SnowPaths>{0} cells by the colony's doors marked for clearing, for the cleaners in their own time</CC_Impact_SnowPaths>
+  <CC_Impact_SnowAreaBrief>the snow marked for clearing</CC_Impact_SnowAreaBrief>
+  <CC_Y4_SnowAllMarked>{N} cells of the colony's open ground are marked for snow clearing.</CC_Y4_SnowAllMarked>
+  <CC_Y4_SnowPathsMarked>The ground by the colony's doors is marked for snow clearing ({N} cells).</CC_Y4_SnowPathsMarked>
+
+  <!-- ===================== The unfinished work ===================== -->
+  <CC_Y4_NoUnpaid>Every plan standing can be paid for now.</CC_Y4_NoUnpaid>
+  <CC_Impact_CancelPlans>{0} plans waiting on stuff the stores don't hold taken off the ground</CC_Impact_CancelPlans>
+  <CC_Impact_CancelPlansBrief>the plans that can't be paid for taken off</CC_Impact_CancelPlansBrief>
+  <CC_Y4_PlansCancelled>{N} plans waiting on stuff the stores don't hold are taken off the ground.</CC_Y4_PlansCancelled>
+
+  <!-- ===================== Trees and wild plants ===================== -->
+  <CC_Y4_TreesGone>No grown trees stand by the walls now.</CC_Y4_TreesGone>
+  <CC_Impact_TreesAll>{0} grown trees close outside the colony's walls marked for the cutters</CC_Impact_TreesAll>
+  <CC_Impact_TreesHalf>{0} of the trees nearest the walls marked for the cutters; the rest stand</CC_Impact_TreesHalf>
+  <CC_Impact_TreesBrief>the trees by the wall marked to come down</CC_Impact_TreesBrief>
+  <CC_Impact_TreesFaith>Someone whose ideoligion holds trees sacred will feel each one fall, as the game has it</CC_Impact_TreesFaith>
+  <CC_Impact_TreesFaithBrief>a faith that holds trees sacred minds it</CC_Impact_TreesFaithBrief>
+  <CC_Impact_TreesForWood>Up to {0} of the nearest wild trees marked for the cutters each morning, until the stores hold the winter's wood</CC_Impact_TreesForWood>
+  <CC_Impact_TreesForWoodBrief>trees marked for wood each morning</CC_Impact_TreesForWoodBrief>
+  <CC_Y4_TreesMarked>{N} trees by the colony's walls are marked for the cutters.</CC_Y4_TreesMarked>
+  <CC_Y4_TreesForWood>Wood for the winter: {N} trees marked for the cutters this morning.</CC_Y4_TreesForWood>
+  <CC_Impact_Forage>Up to {0} wild plants ripe for picking marked for the growers each morning, the nearest first</CC_Impact_Forage>
+  <CC_Impact_ForageBrief>wild plants marked for picking</CC_Impact_ForageBrief>
+  <CC_Y4_Foraged>Foraging days: {N} wild plants marked for picking this morning ({KINDS}).</CC_Y4_Foraged>
+
+  <!-- ===================== The herd ===================== -->
+  <CC_Y4_HerdNone>None of the herd can be spared now.</CC_Y4_HerdNone>
+  <CC_Impact_Slaughter>{0} marked for slaughter, the spare males and the oldest first, never one of someone's own, bonded, named or carrying young</CC_Impact_Slaughter>
+  <CC_Impact_SlaughterBrief>{0} of the herd to the butcher</CC_Impact_SlaughterBrief>
+  <CC_Impact_SlaughterMeat>Meat for the stores, and the hay goes further for the rest</CC_Impact_SlaughterMeat>
+  <CC_Impact_SlaughterMeatBrief>meat, and hay that lasts</CC_Impact_SlaughterMeatBrief>
+  <CC_Y4_HerdMarked>{NAMES} marked for slaughter, so the hay lasts the winter.</CC_Y4_HerdMarked>
+  <CC_Y4_CantTrain>{0} can't learn that now.</CC_Y4_CantTrain>
+  <CC_Impact_TrainGuard>{0} set to learn to guard and to go for an enemy, for the handlers to teach as the game has them</CC_Impact_TrainGuard>
+  <CC_Impact_TrainHaul>{0} set to learn to haul, for the handlers to teach as the game has them</CC_Impact_TrainHaul>
+  <CC_Impact_TrainBrief>{0}'s training set</CC_Impact_TrainBrief>
+  <CC_Y4_TrainGuard>{PET_nameDef} is set to learn to guard and to go for an enemy.</CC_Y4_TrainGuard>
+  <CC_Y4_TrainHaul>{PET_nameDef} is set to learn to haul.</CC_Y4_TrainHaul>
+
+  <!-- ===================== Home from the road ===================== -->
+  <CC_Y4_NobodyBack>Nobody back from the road is at home now.</CC_Y4_NobodyBack>
+
+  <!-- ===================== The faith ===================== -->
+  <CC_Y4_NoAltar>The colony's ideoligion has no altar here.</CC_Y4_NoAltar>
+  <CC_Y4_GuideTaken>Someone holds that role already.</CC_Y4_GuideTaken>
+  <CC_Y4_CantGuide>{0} can't take that role now.</CC_Y4_CantGuide>
+  <CC_Impact_NameGuide>{0} named the ideoligion's {1}, with everything the role asks and gives, as the game has it</CC_Impact_NameGuide>
+  <CC_Impact_NameGuideBrief>{0} guides the faith</CC_Impact_NameGuideBrief>
+  <CC_Y4_GuideNamed>{PAWN_nameDef} is the ideoligion's {ROLE} now, by the council's word.</CC_Y4_GuideNamed>
+
+  <!-- ===================== The decrees ===================== -->
+  <CC_Log_EveryFaith>Every faith has its evening by decree</CC_Log_EveryFaith>
+  <CC_Decree_LampsOut>Saving the power: {0} lamps switched off for the night.</CC_Decree_LampsOut>
+
+  <!-- ===================== Lights by the graves ===================== -->
+  <CC_Impact_Lanterns_graves>A {1} by each grave of the colony's own for the night, {0} at most</CC_Impact_Lanterns_graves>
+  <CC_Timed_GraveLights_Lit>Dusk: {0} lights burn by the colony's graves. They'll be taken in at first light.</CC_Timed_GraveLights_Lit>
+  <CC_Timed_GraveLights_Out>The lights by the graves were taken in at first light.</CC_Timed_GraveLights_Out>
+  <CC_Week_Timed_GraveLights>Lights by the graves</CC_Week_Timed_GraveLights>
+
+  <!-- ===================== The advisor ===================== -->
+  <CC_Adv_HerdFeed_Title>Not enough hay for the herd's winter</CC_Adv_HerdFeed_Title>
+  <CC_Adv_HerdFeed_Detail>The colony's {0} grazing animals will eat the hay and kibble in store in about {1} days, and the cold that stops the grass lasts about {2}. Grow haygrass, make kibble, or keep fewer through the winter.</CC_Adv_HerdFeed_Detail>
+  <CC_Adv_HerdCold_Title>{0} animals out in the cold</CC_Adv_HerdCold_Title>
+  <CC_Adv_HerdCold_Detail>{0} are where it's colder than they can bear ({1} °C). A roofed barn with a heater, or a pen nearer the warmth, keeps them from freezing.</CC_Adv_HerdCold_Detail>
+  <CC_Adv_GenFuel_Title>The {0} is running dry</CC_Adv_GenFuel_Title>
+  <CC_Adv_GenFuel_Detail>The {0} has fuel for about {1} hours, and there's none of its fuel in the stores. When it stops, whatever it powers stops with it.</CC_Adv_GenFuel_Detail>
+  <CC_Adv_Unpaid_Title>{0} plans waiting on stuff the colony lacks</CC_Adv_Unpaid_Title>
+  <CC_Adv_Unpaid_Detail>{0} blueprints need {1} that the stores don't hold. They'll stand unbuilt until it's found, bought or the plans are taken off.</CC_Adv_Unpaid_Detail>
+  <CC_Adv_TreeCover_Title>{0} trees giving cover by the walls</CC_Adv_TreeCover_Title>
+  <CC_Adv_TreeCover_Detail>{0} grown trees stand close outside the colony's walls. Anyone coming at the colony can stand behind them; open ground gives the defenders the shots.</CC_Adv_TreeCover_Detail>
+  <CC_Adv_TreeCover_Act>Mark for cutting</CC_Adv_TreeCover_Act>
+  <CC_Adv_TreeCover_ActTip>Marks every grown tree close outside the walls for the colony's cutters.</CC_Adv_TreeCover_ActTip>
+  <CC_Adv_Snow_Title>Deep snow, and nowhere set to clear</CC_Adv_Snow_Title>
+  <CC_Adv_Snow_Detail>About {0}% of the home area's open ground lies under deep snow, and the colony has almost no snow-clearing area. Everyone walks at half pace through it.</CC_Adv_Snow_Detail>
+  <CC_Adv_Snow_Act>Mark the paths</CC_Adv_Snow_Act>
+  <CC_Adv_Snow_ActTip>Marks the open ground by the colony's doors for snow clearing.</CC_Adv_Snow_ActTip>
+  <CC_Adv_NoGuide_Title>No {0} for the colony's ideoligion</CC_Adv_NoGuide_Title>
+  <CC_Adv_NoGuide_Detail>Nobody holds the {0}'s role in {1}, so nobody leads its words or answers its doubters. {2} could take it, from the ideoligion's roles.</CC_Adv_NoGuide_Detail>
+
+</LanguageData>

@@ -180,6 +180,10 @@ ahead (the card's **Place the blueprints** is that same step, with the same Undo
 - a tribal or medieval colony before the cold: stores under the open sky, food that won't keep through a mild
   winter (smoke it, or make pemmican), firewood short of what the fires will burn by spring
 - power shortages, jobs nobody is assigned to, items rotting outside, an idle research bench, ideas for what's next
+- the herd, the walls and the year: hay and kibble short of the herd's winter, animals out in a cold they can't bear,
+  a generator running dry with none of its fuel in store, plans waiting on stuff the stores don't hold, grown trees
+  giving cover close outside the walls (a button marks them for the cutters), deep snow with nowhere set to clear (a
+  button marks the paths), and with Ideology the colony's faith without a moral guide
 - the quieter things, gently: a week without fruit or vegetables (before scurvy), someone with no friend here, a
   camp going hungry or growing tense, a calendar day coming round, graves left dirty or outside the home area,
   clothes worn to rags or taken from the dead, a schedule with no hour for recreation, strain near breaking,
@@ -442,7 +446,13 @@ a wound or an illness likes rest when ill and a clean sweep, and asks for either
 and wounded, children, prisoners and cooking still come first, and so do sleep, meals and washing. This is one of the
 deeper game hooks.
 
-Thirty-one decrees in all. The newest come from a village's own year and do something no stat can: **tithes** (a tenth
+Thirty-six decrees in all. The five newest each mean one thing on the map: **a hunting season** (two head of safe game
+marked for the hunters each morning), **wood for the winter** (the nearest wild trees marked for the cutters each
+morning until the stores hold the winter's wood, more for a colony that heats with it), **foraging days** (wild plants
+ripe for picking marked each morning), **saving the power** (for a colony on the grid: the lamps switched off from
+eleven at night to five, never by a patient, and on again as they were) and, with Ideology, **every faith its evening**
+(the largest ideoligion that isn't the colony's holds an evening of faith, and those of other ideoligions trust the
+council more; never together with one ideoligion for the colony). Before them came a village's own year, doing something no stat can: **tithes** (a tenth
 of the silver each morning to a people of the colony's ideoligion or the nearest village, for goodwill and, with Ideology,
 the faithful's certainty), **a curfew** (everyone's night hours turned to sleep and put back after; night owls keep
 the watch), **militia drills** (twelve days of light practice for everyone who can fight), **alms for the poor** (a
@@ -585,12 +595,20 @@ today (all of it, or one supper's), **the stores in the rain** roofed over where
 under their roof, **the old walls** of a ruin near the colony pulled down for their stone or claimed and built on, **the
 new room** given to one of two who sleep worse, **what to learn next** chosen when the study benches stand idle, and
 **a hurt beast** lying on the land marked for a clean end or for taming once it's on its feet (the game's own risk of a
-failed tame named first). Hours and work an answer changed go back by
+failed tame named first). And about the colony's own systems: **the empty field** in the growing season sown that
+afternoon by a few hands or given up, **what the field grows** when medicine or cloth runs short and food is plenty
+(the field, or its far half, turned to healroot or cotton), **snow on the paths** cleared all over or by the doors (the
+game's own snow-clearing area), **the unfinished work** put up by a building party or its unpaid plans taken off, **the
+trees by the wall** marked for the cutters (all, or the nearest half), **too many in the pens** when the hay won't last
+the winter (the oldest and the spare males marked for slaughter, never one bonded or carrying young), **what to teach**
+an animal (to guard or to haul, the game's own training), those **home from the road** given a day off or a listener,
+and with Ideology **doubts in the faith** (an hour with its guide, or alone at its altar) and **the faith without a
+guide** (the game's own moral guide named). Hours and work an answer changed go back by
 themselves when their time is up or the heat wave or cold snap is over, with a message, but only where nobody changed
 them since: whatever you set by hand stays as you set it.
 
-**Answers play out on the map.** When an answer describes something people do, they do it (729 answers of 191
-dilemmas and 207 Rimfolk events, stories and world events, plus calendar days, six decrees and nine ambitions, 25
+**Answers play out on the map.** When an answer describes something people do, they do it (757 answers of 205
+dilemmas and 207 Rimfolk events, stories and world events, plus calendar days, nine decrees and nine ambitions, 25
 stages of 20 personal stories and 7 moments with visitors). A
 victory feast is eaten at the dining table, each guest sent to eat a cooked meal, the finest first they may eat, and
 the food the answer spends on it is cooked for it first, at the colony's stove by its organizer or best cook; a while in, its host raises a cup and the table raises theirs. Every feast is held this one way, an answer's, a calendar day's or one with guests from the neighbours. The midsummer bonfire is lit (with no campfire, one of the colony carries wood out and lays one first, burned down to ash
@@ -1351,7 +1369,7 @@ weather isn't there), or with its occasion for a custom asked in its moment. Kee
 same rule as the calendar's own days, and it becomes a tradition: keeping it pleases everyone, breaking it disappoints
 them, and twice in a row it lapses. Let it pass before then and it leaves the calendar, a question again in its
 season. A season that holds a custom's day is asked no other. An older save's customs go on the calendar as they stood:
-a tradition stays one, one kept once needs two more years. Thirty-four customs can become traditions, among them the **planting day** (asked
+a tradition stays one, one kept once needs two more years. Thirty-eight customs can become traditions, among them the **planting day** (asked
 when the fields open after a cold season: the colony sows together, the grower says a few words at the field's edge,
 and a crop sown in full is remembered as a good start) and the **remembrance walk** to the colony's graves in spring, the **midsummer swim** on a hot day by the water,
 the **harvest dance**, **first-frost soup** on the first freezing day, and **lantern night** in winter. Some belong
@@ -1364,7 +1382,10 @@ year: **spring cleaning** when winter's dirt is about (a day with brooms and hau
 **the bounds walk** on a dry summer day (the colony walks the edge of its land and sets a stone at each turn, found
 again in later years), **the star night** on a clear warm night, **the fishing match** at the colony's fishing spots
 (Odyssey), **the autumn hunt** when the meat won't last the winter, and **telling the bees** the colony's news at Alpha
-Bees' beehouses.
+Bees' beehouses. Four more fill the autumn and the winter: **the woodpile day** (the colony out for the winter's wood while the stores are short of it),
+**the night of lights** (a light by every grave of the colony's own at dusk, and the colony standing among them), **the
+mending day** (a day of repairs, and the best crafter teaching a young one at the bench) and **the winter tales** (the
+year told by the fire).
 
 A custom kept year after year reads like one: its letters remember the last time, speak of a custom kept for years,
 and say so when one was let go; people talk about the occasion itself while it's kept; and openings and outcomes fit

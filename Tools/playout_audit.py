@@ -116,6 +116,21 @@ PLAY = {
     "DilemmaEffect_OldShell": "old shell",
     "DilemmaEffect_Scrap": "live scrap",
     "DilemmaEffect_SoftGround": "soft ground",
+    # The fourth round of the council and the colony's year (Dilemmas/DilemmaWorkers_YearFour.cs): a field given up or
+    # set to another crop, the snow-clearing area marked, the plans the stores can't pay for taken off, trees marked for
+    # the cutters, wild plants marked for picking, animals marked for slaughter, an animal's training set, a day off for
+    # those back from the road, an hour alone at the faith's altar, the faith's moral guide named.
+    "DilemmaEffect_GiveUpField": "field given up",
+    "DilemmaEffect_SetCrop": "crop set",
+    "DilemmaEffect_SnowArea": "snow marked",
+    "DilemmaEffect_CancelPlans": "plans taken off",
+    "DilemmaEffect_MarkTrees": "trees marked",
+    "DilemmaEffect_Forage": "plants marked",
+    "DilemmaEffect_MarkSlaughter": "herd marked",
+    "DilemmaEffect_SetTraining": "training set",
+    "DilemmaEffect_RestTravellers": "rest",
+    "DilemmaEffect_VisitAltar": "visit",
+    "DilemmaEffect_NameGuide": "guide named",
     # Banishment by the council (Social/Banishment.cs): the council's word said face to face, and someone sent away told
     # face to face, gathering their things in their room and walking out by the edge.
     "DilemmaEffect_TroubleWord": "a word face to face",
@@ -240,7 +255,7 @@ def walk():
                     words = " ".join(text_of(t) for t in lis(e, "texts"))
                     answers.append(Answer("world", defname, "end:" + key, key, words, effect_kinds(e), rel))
             elif tag == "ColonyCouncil.DecreeDef":
-                kinds = [PLAY.get((li.get("Class") or "").replace("ColonyCouncil.", "")) for li in lis(d, "onEnact")]
+                kinds = [PLAY.get((li.get("Class") or "").replace("ColonyCouncil.", "")) for li in lis(d, "onEnact") + lis(d, "daily")]
                 answers.append(Answer("decree", defname, "enact", text_of(d.find("label")), text_of(d.find("description")), [k for k in kinds if k], rel))
             elif tag == "ColonyCouncil.AmbitionDef":
                 kinds = [PLAY.get((li.get("Class") or "").replace("ColonyCouncil.", "")) for li in lis(d, "achievedEffects")]

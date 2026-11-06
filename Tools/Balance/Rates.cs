@@ -131,7 +131,9 @@ namespace Balance
         /// </summary>
         public static readonly Dictionary<string, float> CustomGates = new Dictionary<string, float>
         {
-            ["lands"] = 0.3f, ["raining"] = 0.3f, ["faith"] = 0.4f, ["memes"] = 0.15f
+            ["lands"] = 0.3f, ["raining"] = 0.3f, ["faith"] = 0.4f, ["memes"] = 0.15f,
+            // The woodpile day: the stores short of the winter's wood in the autumn (most colonies, not all).
+            ["woodShort"] = 0.6f
         };
 
         /// <summary>The same for who the stranger in an encounter or a stranger's question must be.</summary>
@@ -153,7 +155,16 @@ namespace Balance
             ["DilemmaWorker_PenStalker"] = 0.3f, ["DilemmaWorker_BondFaith"] = 0.05f, ["DilemmaWorker_HerdCustom"] = 0.4f,
             ["DilemmaWorker_FaithClash"] = FaithSplitColony * 0.7f, ["DilemmaWorker_FaithEvening"] = FaithSplitColony * 0.6f,
             // An animal in decline: A's own animal, old for its kind or with a lasting condition (Animals/FadingPet.cs).
-            ["DilemmaWorker_FadingPet"] = 0.25f
+            ["DilemmaWorker_FadingPet"] = 0.25f,
+            // The fourth round (Dilemmas/DilemmaWorkers_YearFour.cs), each only while the colony is as its letter says: a
+            // field more than half empty in the growing season; medicine or cloth short with food plenty; deep snow over the
+            // home and nowhere set to clear (a winter land); eight plans standing, some unpaid; trees by the outer wall; the
+            // herd's hay short of a winter coming; an animal that could learn to guard and to haul; travellers home within a
+            // day and a half; a doubter of the colony's faith, and the faith with its guide's role empty (Ideology).
+            ["DilemmaWorker_EmptyField"] = 0.25f, ["DilemmaWorker_WhichCrop"] = 0.2f, ["DilemmaWorker_SnowPaths"] = 0.08f,
+            ["DilemmaWorker_Unfinished"] = 0.2f, ["DilemmaWorker_TreeLine"] = 0.3f, ["DilemmaWorker_HerdTooBig"] = 0.08f,
+            ["DilemmaWorker_TrainBeast"] = 0.3f, ["DilemmaWorker_HomeFromRoad"] = 0.05f,
+            ["DilemmaWorker_Doubter"] = FaithSplitColony * 0.3f, ["DilemmaWorker_NoGuide"] = FaithSplitColony * 0.2f
         };
 
         // ---------------- Faith and the council (Faith/, with Ideology) ----------------

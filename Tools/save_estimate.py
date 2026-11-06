@@ -735,6 +735,7 @@ MODEL = {
     "Decrees/Decrees.cs:requests": ("fixed", 3, 150, "one per decree at most"),
     "Decrees/Decrees.cs:threatTicks": ("fixed", const("Decrees/Decrees.cs", "MaxThreats", 8), V, "DecreeTracker.MaxThreats: the big threats of the last half month, for how needed a decree is"),
     "Decrees/Decrees.cs:nightHours": ("colonists", 1, 150, "a curfew's night hours, per colonist while it lasts; after it only those away (the dead, the gone and the unknown let go)"),
+    "Decrees/Decrees.cs:lampsOff": ("fixed", 30, V, "saving the power: the lamps switched off for the night (ThingIDs), a colony's lamps at most, cleared at five in the morning and when the decree ends"),
     # Other mods
     "Integrations/ModLinks.cs:lastWater": ("colonists", 1, D, "today and yesterday only"),
     "Integrations/ModLinks.cs:lastMend": ("colonists", 1, D, "today and yesterday only"),

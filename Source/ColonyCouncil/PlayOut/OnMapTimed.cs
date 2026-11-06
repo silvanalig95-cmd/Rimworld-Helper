@@ -61,7 +61,7 @@ namespace ColonyCouncil
         public IntVec3 cell = IntVec3.Invalid;
         /// <summary>How many lanterns; for a bolted door, whether it was bolted tonight (1) or let open by hand (2).</summary>
         public int count;
-        /// <summary>Lanterns: "paths" or "gate".</summary>
+        /// <summary>Lanterns: "paths", "gate", "doors" or "graves".</summary>
         public string where;
         public int start;
         /// <summary>When it ends (0: not yet set going).</summary>
@@ -717,7 +717,7 @@ namespace ColonyCouncil
                 if (now < k.until) return false;
                 int still = k.things.Count(t => t != null && t.Spawned);
                 if (still > 0)
-                    Tell.Message(NewsKind.Colony, Importance.Notable, k.map, (k.where == "gate" ? "CC_Timed_Lantern_Out" : k.where == "doors" ? "CC_Timed_DoorTorches_Out" : "CC_Timed_Lanterns_Out").Translate(), null, MessageTypeDefOf.SilentInput);
+                    Tell.Message(NewsKind.Colony, Importance.Notable, k.map, (k.where == "gate" ? "CC_Timed_Lantern_Out" : k.where == "doors" ? "CC_Timed_DoorTorches_Out" : k.where == "graves" ? "CC_Timed_GraveLights_Out" : "CC_Timed_Lanterns_Out").Translate(), null, MessageTypeDefOf.SilentInput);
                 return true;
             }
             // Not set out within two days (the setting turned off, nowhere to put them): forgotten.
@@ -746,6 +746,7 @@ namespace ColonyCouncil
             k.until = UntilDawn(map);
             string text = k.where == "gate" ? "CC_Timed_Lantern_Lit".Translate().Resolve()
                 : k.where == "doors" ? "CC_Timed_DoorTorches_Lit".Translate(k.things.Count).Resolve()
+                : k.where == "graves" ? "CC_Timed_GraveLights_Lit".Translate(k.things.Count).Resolve()
                 : "CC_Timed_Lanterns_Lit".Translate(k.things.Count).Resolve();
             Tell.Message(NewsKind.Colony, Importance.Notable, k.map, text, new LookTargets(k.things), MessageTypeDefOf.NeutralEvent);
             return false;
@@ -772,6 +773,7 @@ namespace ColonyCouncil
                 return cells;
             }
             if (where == "doors") return DoorCells(map, def, OnMapMath.MaxLanterns);
+            if (where == "graves") return GraveCells(map, def, Math.Min(wanted, OnMapMath.MaxLanterns));
             int want = OnMapMath.Lanterns(wanted, OnMapMath.MaxLanterns);
             var center = TemplatePlanner.ColonyCenter(map);
             var home = map.areaManager.Home;
@@ -786,6 +788,30 @@ namespace ColonyCouncil
                     if (!FreeForLantern(c, map, def)) continue;
                     cells.Add(c);
                 }
+            return cells;
+        }
+
+        /// <summary>
+        /// One beside each grave of the colony's own dead (the night of lights, a custom of the colony's year), the nearest
+        /// the middle of the colony first, at the head of the grave where there's room.
+        /// </summary>
+        private static List<IntVec3> GraveCells(Map map, ThingDef def, int max)
+        {
+            var cells = new List<IntVec3>();
+            var center = TemplatePlanner.ColonyCenter(map);
+            var graves = map.listerBuildings.allBuildingsColonist.OfType<Building_Grave>()
+                .Where(g => g.Spawned && g.HasCorpse && g.Corpse?.InnerPawn != null && g.Corpse.InnerPawn.RaceProps.Humanlike && g.Corpse.InnerPawn.Faction == Faction.OfPlayer)
+                .OrderBy(g => g.Position.DistanceToSquared(center));
+            foreach (var g in graves)
+            {
+                if (cells.Count >= max) break;
+                foreach (var c in GenAdj.CellsAdjacent8Way(g))
+                {
+                    if (cells.Any(x => x.InHorDistOf(c, 1.5f)) || !FreeForLantern(c, map, def)) continue;
+                    cells.Add(c);
+                    break;
+                }
+            }
             return cells;
         }
 
@@ -1187,7 +1213,7 @@ namespace ColonyCouncil
                 switch (k.kind)
                 {
                     case TimedKind.Lights:
-                        text = (k.where == "gate" ? "CC_Week_Timed_Lantern" : "CC_Week_Timed_Lanterns").Translate();
+                        text = (k.where == "gate" ? "CC_Week_Timed_Lantern" : k.where == "graves" ? "CC_Week_Timed_GraveLights" : "CC_Week_Timed_Lanterns").Translate();
                         icon = Icons.Wedding;
                         break;
                     case TimedKind.Fire:
@@ -1317,7 +1343,8 @@ namespace ColonyCouncil
 
     /// <summary>
     /// Lanterns set out for the night (<see cref="count"/>; <see cref="at"/> "paths": along the outside of the colony's
-    /// walls, a few steps apart; "gate": one beside the gate; "doors": one beside each door to the outside), real torches of the kind the colony can build, lit at dusk
+    /// walls, a few steps apart; "gate": one beside the gate; "doors": one beside each door to the outside; "graves": one by
+    /// each grave of the colony's own dead), real torches of the kind the colony can build, lit at dusk
     /// and taken in at first light. They burn what the answer set aside for them: nobody carries more wood out to them.
     /// With "Answers play out on the map" off, or no torch the colony could make, the words alone.
     /// </summary>
@@ -1328,7 +1355,7 @@ namespace ColonyCouncil
         public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
         {
             if (!PlayOuts.On || ctx?.map == null || OnMapTimed.LanternDef(ctx.map) == null) return;
-            string where = at == "gate" || at == "doors" ? at : "paths";
+            string where = at == "gate" || at == "doors" || at == "graves" ? at : "paths";
             sheet.Play(("CC_Impact_Lanterns_" + where).Translate(Math.Max(1, count), OnMapTimed.LanternDef(ctx.map).label).Resolve(), "CC_Impact_LanternsBrief".Translate().Resolve());
         }
 
@@ -1343,7 +1370,7 @@ namespace ColonyCouncil
             try
             {
                 if (OnMapTimed.LanternDef(map) == null) return;
-                OnMapTimed.Instance?.Add(new TimedThing { kind = TimedKind.Lights, map = map, count = Math.Max(1, count), where = at == "gate" || at == "doors" ? at : "paths" });
+                OnMapTimed.Instance?.Add(new TimedThing { kind = TimedKind.Lights, map = map, count = Math.Max(1, count), where = at == "gate" || at == "doors" || at == "graves" ? at : "paths" });
             }
             catch (Exception e)
             {

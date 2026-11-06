@@ -70,6 +70,8 @@ namespace ColonyCouncil
         {
             var map = HomeMap(pawn);
             if (map == null || pawn.DevelopmentalStage.Juvenile()) yield break;
+            // The council's question about the same trees was asked lately (Rimfolk_DlmY_TreeLine): one voice at a time.
+            if (YearFour.AskedLately(map, "Rimfolk_DlmY_TreeLine")) yield break;
             string cells = TreesFor(map);
             if (cells.NullOrEmpty()) yield break;
             int n = LifeNewMath.Decode(cells).Count;
@@ -151,6 +153,8 @@ namespace ColonyCouncil
         {
             var map = HomeMap(pawn);
             if (map == null || !map.IsPlayerHome || pawn.DevelopmentalStage.Juvenile() || map.snowGrid == null) yield break;
+            // The council's question about the snow was asked lately (Rimfolk_DlmY_SnowPaths): one voice at a time.
+            if (YearFour.AskedLately(map, "Rimfolk_DlmY_SnowPaths")) yield break;
             var ways = Ways(map);
             var deep = ways.Where(c => map.snowGrid.GetDepth(c) >= PeopleFourMath.DeepSnow).ToList();
             if (!PeopleFourMath.SnowWorth(deep.Count, Marked(map, ways))) yield break;

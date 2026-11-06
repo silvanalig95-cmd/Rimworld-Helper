@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## New decrees, customs and council questions
+
+*6 November 2026, version 0.124.0*
+
+- Ten new council questions about the colony's own work: a field left half empty, what a field should grow, snow on the paths, plans left unbuilt, trees by the wall, too many animals for the hay, what to teach an animal, colonists home from the road, doubts in the faith and a faith without a guide.
+- The questions about trees and snow take turns with a colonist's wish about the same thing, so the same trees never bring two letters at once.
+- Four new customs for autumn and winter, the thinnest seasons: the woodpile day, the night of lights by the graves, the mending day and the winter tales.
+- Five new decrees, each one thing on the map: a hunting season, wood for the winter, foraging days, saving the power at night (never in a room with a patient) and every faith its evening.
+- Seven new advisor checks, two with a button: hay short of the winter, animals out in a cold they can't bear, a generator running dry, plans waiting on missing stuff, trees by the walls, deep snow with nowhere cleared, and a faith without a moral guide.
+- Questions, customs and gatherings come as often as before: the new ones take a share of the old.
+
 ## New moments of life together
 
 *6 November 2026, version 0.123.0*

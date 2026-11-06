@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using HarmonyLib;
 using RimWorld;
 using RimWorld.Planet;
 using UnityEngine;
@@ -137,7 +138,7 @@ namespace ColonyCouncil
             if (!WishParams.EraFits(d.eras)) return true;
             if ((d.needsIdeology || !d.memes.NullOrEmpty()) && ColonyFaith == null) return true;
             if (!d.memes.NullOrEmpty() && !FaithHas(d.memes)) return true;
-            if (d.oneFaith && DecreeFaith.Hidden) return true;
+            if ((d.oneFaith || d.everyFaith) && DecreeFaith.Hidden) return true;
             return false;
         }
 
@@ -219,6 +220,8 @@ namespace ColonyCouncil
                     PlayOuts.Run(def.enactEffects, new DilemmaContext { map = map, a = a, faction = GoodwillFaction(def, map), why = def.LabelCap }, "decree " + def.defName);
                 }
                 if (def.oneFaith) DecreeFaith.Enacted(def);
+                if (def.everyFaith && map != null) EveryFaithEvening(map);
+                if (!def.daily.NullOrEmpty() && map != null) RunDaily(t, def, map);
             }
             catch (Exception e)
             {
@@ -230,6 +233,7 @@ namespace ColonyCouncil
         {
             if (def.nightSleep && !t.active.Any(a => a.def != null && a.def.nightSleep)) RestoreNight(t);
             if (def.oneFaith) DecreeFaith.Ended(def);
+            if (def.lightsOut && !t.active.Any(a => a.def != null && a.def.lightsOut)) LampsOn(t, HomeOf(t));
         }
 
         // ---------------- The hour ----------------
@@ -241,6 +245,11 @@ namespace ColonyCouncil
                 bool night = t.active.Any(a => a.def != null && a.def.nightSleep);
                 if (night) ApplyNight(t);
                 else if (t.nightHours.Count > 0) RestoreNight(t);
+                // Saving the power: the lamps out from eleven to five, on again as they were.
+                var home = HomeOf(t);
+                bool lamps = t.active.Any(a => a.def != null && a.def.lightsOut);
+                if (lamps && home != null && YearFourMath.LightsOut(GenLocalDate.HourOfDay(home))) LampsOut(t, home);
+                else if (t.lampsOff.Count > 0) LampsOn(t, home);
                 foreach (var a in t.active)
                 {
                     if (a.def == null || a.def.joyWhileWorking <= 0f) continue;
@@ -290,6 +299,8 @@ namespace ColonyCouncil
                         if (Believer(p) && !p.IsQuestLodger() && (t == null || t.Ours(p))) p.ideo?.OffsetCertainty(amount);
                 }
                 if (def.oneFaith) DecreeFaith.Daily(t, def);
+                if (def.everyFaith) EveryFaithDaily(t, a);
+                if (!def.daily.NullOrEmpty() && map != null) RunDaily(t, def, map);
                 if (given > 0)
                 {
                     string text = to != null
@@ -535,6 +546,154 @@ namespace ColonyCouncil
                 else
                     foreach (var k in t.nightHours.Keys.Where(k => !away.Contains(k)).ToList())
                         t.nightHours.Remove(k);
+            }
+        }
+
+        // ---------------- The land's year: what's marked each morning ----------------
+
+        /// <summary>
+        /// A decree's morning work marked (<see cref="DecreeDef.daily"/>: the hunters' game, trees for the cutters, wild plants
+        /// for the pickers), at the colony's home on the ground; the day it's declared as well. Someone of the colony at home is
+        /// A, for the effects that need one.
+        /// </summary>
+        private static void RunDaily(DecreeTracker t, DecreeDef def, Map map)
+        {
+            var a = map.mapPawns.FreeColonistsSpawned.Where(p => PlayOuts.OurPerson(p) && (t == null || t.Ours(p))).RandomElementWithFallback();
+            if (a == null) return;
+            PlayOuts.Run(def.daily, new DilemmaContext { map = map, a = a, why = def.LabelCap }, "decree daily " + def.defName);
+        }
+
+        // ---------------- Every faith its evening ----------------
+
+        /// <summary>Declared: the largest faith at home that isn't the colony's own holds an evening of faith, when one can be held now.</summary>
+        private static void EveryFaithEvening(Map map)
+        {
+            if (!FaithEvenings.On) return;
+            var own = ColonyFaith;
+            foreach (var f in Faiths.Census())
+            {
+                if (f?.ideo == null || f.ideo == own || !FaithEvenings.CanCall(map, f.ideo, out _)) continue;
+                FaithEvenings.Call(map, f.ideo);
+                return;
+            }
+        }
+
+        /// <summary>
+        /// The decree's morning: those of other faiths than the colony's trust the council a little more, the more open the
+        /// more (<see cref="YearFourMath.ToleranceTrust"/>); the devout of the colony's own faith a little less. The trust log
+        /// says why on the first morning and every fifth.
+        /// </summary>
+        private static void EveryFaithDaily(DecreeTracker t, ActiveDecree a)
+        {
+            var comp = CouncilGameComponent.Instance;
+            if (comp == null || !Faiths.On) return;
+            var own = ColonyFaith;
+            int day = a == null ? 1 : Mathf.Max(1, (Find.TickManager.TicksGame - a.startTick) / GenDate.TicksPerDay + 1);
+            string why = day % 5 == 1 ? "CC_Log_EveryFaith".Translate().Resolve() : null;
+            foreach (var p in PawnsFinder.AllMaps_FreeColonistsSpawned.Where(p => !p.IsQuestLodger() && (t == null || t.Ours(p))).ToList())
+            {
+                if (!Faiths.Holds(p)) continue;
+                if (Faiths.Of(p) != own) comp.standings.Change(p, YearFourMath.ToleranceTrust(Persona.Get(p, PersonaAxis.Openness)), why);
+                else if (Faiths.Devout(p)) comp.standings.Change(p, YearFourMath.DevoutMinds, why);
+            }
+        }
+
+        // ---------------- Saving the power ----------------
+
+        private static AccessTools.FieldRef<CompFlickable, bool> wantOn;
+        private static bool wantLooked;
+
+        /// <summary>The switch's wanted state, set with it so the game sends nobody to flick it back (null when the game keeps it elsewhere).</summary>
+        private static AccessTools.FieldRef<CompFlickable, bool> WantOn
+        {
+            get
+            {
+                if (wantLooked) return wantOn;
+                wantLooked = true;
+                try
+                {
+                    wantOn = AccessTools.FieldRefAccess<CompFlickable, bool>("wantSwitchOn");
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("decree lamps switch", e);
+                    wantOn = null;
+                }
+                return wantOn;
+            }
+        }
+
+        /// <summary>A lamp of the colony's: a light on the grid that draws little (not a sun lamp over a field), with a switch.</summary>
+        public static bool Lamp(Thing t)
+        {
+            if (!(t is ThingWithComps tw) || t.Faction != Faction.OfPlayer || !t.Spawned || t is Building_Turret) return false;
+            if (tw.GetComp<CompGlower>() == null || tw.GetComp<CompFlickable>() == null) return false;
+            var power = tw.GetComp<CompPowerTrader>();
+            return power?.Props != null && power.Props.PowerConsumption > 0f && power.Props.PowerConsumption <= YearFourMath.LampWatts;
+        }
+
+        /// <summary>A patient lies abed in the lamp's room: that one stays lit.</summary>
+        private static bool Sickroom(Thing t)
+        {
+            var room = t.GetRoom();
+            return room != null && !room.PsychologicallyOutdoors && room.ContainedBeds.Any(b => b.Medical && b.CurOccupants.Any());
+        }
+
+        private static void Switch(CompFlickable f, bool on)
+        {
+            var want = WantOn;
+            if (want == null || f.SwitchIsOn == on) return;
+            want(f) = on;
+            f.SwitchIsOn = on;
+        }
+
+        /// <summary>The night hours: each lamp of the colony's that is on (and not in a sickroom) is switched off and noted.</summary>
+        private static void LampsOut(DecreeTracker t, Map map)
+        {
+            if (WantOn == null) return;
+            try
+            {
+                int n = 0;
+                foreach (var b in map.listerBuildings.allBuildingsColonist.ToList())
+                {
+                    if (!Lamp(b) || t.lampsOff.Contains(b.ThingID)) continue;
+                    var f = b.GetComp<CompFlickable>();
+                    if (!f.SwitchIsOn || Sickroom(b)) continue;
+                    Switch(f, false);
+                    t.lampsOff.Add(b.ThingID);
+                    n++;
+                }
+                if (n > 0) Tell.Minor(NewsKind.Colony, Importance.Flavor, map, "CC_Decree_LampsOut".Translate(n).Resolve(), null, MessageTypeDefOf.SilentInput);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("decree lamps out", e);
+            }
+        }
+
+        /// <summary>Five in the morning, or the decree over: each lamp switched off for the night and still off is switched on again.</summary>
+        private static void LampsOn(DecreeTracker t, Map map)
+        {
+            try
+            {
+                if (map != null && WantOn != null)
+                {
+                    var ids = new HashSet<string>(t.lampsOff);
+                    foreach (var b in map.listerBuildings.allBuildingsColonist.ToList())
+                    {
+                        if (!ids.Contains(b.ThingID)) continue;
+                        var f = b.GetComp<CompFlickable>();
+                        if (f != null && !f.SwitchIsOn) Switch(f, true);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("decree lamps on", e);
+            }
+            finally
+            {
+                t.lampsOff.Clear();
             }
         }
 
