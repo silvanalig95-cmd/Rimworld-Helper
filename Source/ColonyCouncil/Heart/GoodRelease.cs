@@ -163,7 +163,12 @@ namespace ColonyCouncil
                 string line = Flavor.FromPool(KindPool, p, null, null, tags.ToArray());
                 if (!line.NullOrEmpty()) Speech.Say(p, line, other);
                 var memories = other.needs?.mood?.thoughts?.memories;
-                if (S.MoodEffects && memories != null && ThoughtMaker.MakeThought(KindWordDef) is Thought_Memory t) memories.TryGainMemory(t, p);
+                if (S.MoodEffects && memories != null && ThoughtMaker.MakeThought(KindWordDef) is Thought_Memory t)
+                {
+                    // Who came over to say it, in its words and the small joys' row.
+                    if (t is Thought_CouncilSocial social) social.cause = "CC_Good_KindWordCause".Translate(p.Named("PAWN")).Resolve();
+                    memories.TryGainMemory(t, p);
+                }
                 var h = Heart.Of(p);
                 if (h == null) return;
                 h.good = Mathf.Max(0f, h.good - HeartMath.KindWordSpends);

@@ -46,6 +46,7 @@
   <CC_Good_InspiredReason>{PAWN_nameDef} has been in high spirits for a good while.</CC_Good_InspiredReason>
   <CC_Good_Release_Inspired>an inspiration ({WHAT})</CC_Good_Release_Inspired>
   <CC_Good_Release_KindWord>a kind word for {OTHER_nameDef}</CC_Good_Release_KindWord>
+  <CC_Good_KindWordCause>{PAWN_nameDef} came over to say it.</CC_Good_KindWordCause>
 
   <!-- Settings, on the Heart & health page beside the heart's own. -->
   <CC_Settings_HeartGoodSide>The heart's good side: in good heart, in high spirits</CC_Settings_HeartGoodSide>

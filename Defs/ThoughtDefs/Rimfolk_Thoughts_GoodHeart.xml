@@ -40,8 +40,8 @@
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
     <stages>
       <li>
-        <label>a kind word from {0}</label>
-        <description>They came over just to say it. It was a small thing, and it helped more than they know.</description>
+        <label>a kind word</label>
+        <description>It was only a word or two, and it helped more than they know.</description>
         <baseMoodEffect>3</baseMoodEffect>
         <baseOpinionOffset>6</baseOpinionOffset>
       </li>
