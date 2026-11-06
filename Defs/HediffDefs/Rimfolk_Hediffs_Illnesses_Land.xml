@@ -123,7 +123,7 @@
   <HediffDef ParentName="Rimfolk_IllnessByAgeBase">
     <defName>Council_Ail_ValleyFever</defName>
     <label>valley fever</label>
-    <description>Desert fever, or valley fever: a fungus that lives in the dry soil of deserts and scrubland, breathed in as dust when the ground is dug. Three hours or more in a day of building, mining in the open, sowing or clearing in an arid land, with no rain falling, can bring it on. One to three weeks later come a cough, a fever, aching joints and a rash on the legs. It is slow: most throw it off over some weeks, but untreated it can spread through the body and kill. Steady tending sees them through, and modern medicine (an antifungal) does more than herbs. It never passes from one person to another. Digging after rain, and turns at the digging, keep it away. Survivors are weak for a while.</description>
+    <description>Desert fever, or valley fever: a fungus that lives in the dry soil of deserts and scrubland, breathed in as dust when the ground is dug. Four hours or more in a day of building, mining in the open, sowing or clearing in an arid land, with no rain falling, can bring it on. One to three weeks later come a cough, a fever, aching joints and a rash on the legs. It is slow: most throw it off over some weeks, but untreated it can spread through the body and kill. Steady tending sees them through, and modern medicine (an antifungal) does more than herbs. It never passes from one person to another. Digging after rain, and turns at the digging, keep it away. Survivors are weak for a while.</description>
     <tendable>true</tendable>
     <comps>
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
@@ -134,7 +134,7 @@
           <li>[tribal|medieval] desert fever</li>
           <li>[industrial|spacer] valley fever</li>
         </names>
-        <causes><li><trigger>DesertDust</trigger><hours>3</hours><chance>0.004</chance></li></causes>
+        <causes><li><trigger>DesertDust</trigger><hours>4</hours><chance>0.003</chance></li></causes>
         <childFactor>0</childFactor>
         <oldFactor>1.5</oldFactor>
         <cooldownDays>120</cooldownDays>

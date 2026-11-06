@@ -365,6 +365,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {layouts} room layouts.");
         int ailments = AilmentTests.Run(root, Check);
         Console.WriteLine($"Checked {ailments} ailments and illnesses.");
+        Console.WriteLine($"Checked {AilmentLandTests.Run(root, Check)} things about the ailments of the land, the work and the age (their causes, the cap, the storyteller, their names and words).");
         Console.WriteLine($"Checked {LifeRiskTests.Run(root, Check)} things about the realistic ways to die (crowding and sickness, the frail, the end of a long life, wounds left untended).");
         int memories = ThoughtClassTests.Run(root, Check);
         Console.WriteLine($"Checked {memories} memories share the budget of good moods.");
