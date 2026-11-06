@@ -114,7 +114,7 @@ namespace ColonyCouncil
         /// <summary>
         /// How far the storyteller's own numbers lean the hurts: the geometric mean of a threat term (0.35 at no threats,
         /// 1 at the usual 100%, up to 1.25 at twice it) and a disease term (one over the disease interval, between a half
-        /// and 1.25; diseases off count as a half). A peaceful game comes to about two fifths, the hardest about a
+        /// and 1.25; diseases off count as a half). No threats and diseases half as often come to about two fifths, the hardest about a
         /// quarter more than the usual.
         /// </summary>
         public static float Lean(float threatScale, float diseaseInterval)

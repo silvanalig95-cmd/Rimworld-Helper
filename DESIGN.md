@@ -1392,7 +1392,7 @@ of work (1.2.1, 1.2.2, 3.2.1, below); the other seven of the top ten are built o
   100 by default; the light-touch preset sets 50%) multiplies every rate. It leans with the storyteller's own numbers
   (`HarmMath.Lean`): the geometric mean of a threat term (0.35 at no threats, 1 at the usual 100%, up to 1.25 at twice
   it) and a disease term (one over the disease interval, between a half and 1.25; diseases off count as a half). A
-  peaceful game comes to about two fifths, the hardest about a quarter more. `Harm.Scale` is the two together.
+  game with no threats and diseases half as often comes to about two fifths, the hardest about a quarter more. `Harm.Scale` is the two together.
 - **The shared cap** (`HarmMath.Bar`, `Harm.May`): at most one Rimfolk-made hurt per colonist in three days (the last
   one's tick saved in `HarmBook.lastHurt`, by thingIDNumber, pruned past three days), and none while downed, in a sickbed
   or in need of one (`Harm.Sickbed`: in a medical bed or resting, bleeding, or ill with something that can kill; a small

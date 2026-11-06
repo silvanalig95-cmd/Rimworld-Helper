@@ -29,7 +29,7 @@ public static class HarmTests
         // ---------------- The setting and the storyteller ----------------
 
         C(Near(HarmMath.Lean(1f, 1f), 1f), "the usual storyteller leans nothing");
-        C(HarmMath.Lean(0f, 2f) < 0.45f && HarmMath.Lean(0f, 2f) > 0.35f, $"a peaceful game about two fifths ({HarmMath.Lean(0f, 2f):0.00})");
+        C(HarmMath.Lean(0f, 2f) < 0.45f && HarmMath.Lean(0f, 2f) > 0.35f, $"no threats and diseases half as often, about two fifths ({HarmMath.Lean(0f, 2f):0.00})");
         C(HarmMath.Lean(0.1f, 1.5f) < 0.75f, "a gentle storyteller gentler");
         C(HarmMath.Lean(2.2f, 0.8f) <= 1.25f + 0.0001f && HarmMath.Lean(2.2f, 0.8f) > 1.1f, "the hardest about a quarter more, never past it");
         C(Near(HarmMath.Lean(1f, HarmMath.NoDiseases), HarmMath.Lean(1f, 2f)), "diseases off count as half as many");

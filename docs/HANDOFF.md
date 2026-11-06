@@ -13,7 +13,7 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   `Harm/HarmMath.cs` (pure, `HarmTests`): the setting "Hurts from everyday life" (`everydayHurts`, Heart & health under its
   own heading, 0 to 200%, 100 by default; the light-touch preset 50%) times the storyteller's lean (`Lean`: the geometric
   mean of a threat term, 0.35 at no threats to 1.25 at twice, and a disease term, one over the interval between a half
-  and 1.25, diseases off a half; a peaceful game about two fifths, the hardest a quarter more); the cap (`Bar`): one
+  and 1.25, diseases off a half; no threats and diseases half as often about two fifths, the hardest a quarter more); the cap (`Bar`): one
   Rimfolk-made hurt per colonist in three days, none while downed, in a sickbed or in need of one (`Harm.Sickbed`: a
   medical bed or resting, bleeding, or ill with something that can kill; a strain still to tend is not), pregnant or
   already fighting (drafted, a fight or a rage, at an attack, hurt or attacking within the hour), babies never, children

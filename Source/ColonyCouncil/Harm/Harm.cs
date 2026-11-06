@@ -40,7 +40,7 @@ namespace ColonyCouncil
         /// <summary>Hurts from everyday life happen at all (the setting above nothing).</summary>
         public static bool On => Setting > 0.001f;
 
-        /// <summary>The storyteller's lean: about two fifths in a peaceful game, a quarter more in the hardest.</summary>
+        /// <summary>The storyteller's lean: about two fifths with no threats and diseases half as often, a quarter more in the hardest.</summary>
         public static float Lean
         {
             get
