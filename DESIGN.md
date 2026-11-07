@@ -4713,6 +4713,68 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
   the enclave and the river folk*. Fixed on the way: a caller of a calling (`HappeningSetting.people` `calling:`) could
   be a Hospitality guest of any people already on the map, standing in under that people's name.
 
+### The colony's animals with powers
+
+The player's pick "magic and powers" (7 November 2026, built without a proposal round): four parts that share one pass
+(`Sched.RarePowers`, tick 227 of the 250-tick cycle; its hour on the pass at tick 227 of the hour, its day in the first
+hour of the day; `Animals/AnimalPowers.cs`, timed as `Pass.RarePowers`) and one saved book (`AnimalPowersBook`, a
+GameComponent). The numbers are pure (`Animals/AnimalPowersMath.cs`; `Tools/Tests/AnimalPowersTests.cs`, "animal
+powers: "). No Harmony patch, no letter: news, the chronicle, journals, moods, glows and one-sentence words.
+
+- **Pokémon types at home** (`Integrations/PokeWorldTypes.cs`; PokéWorld, types by `PokeWorldLink.TypesOf`). Only the
+  colony's own, spawned on a home map, up and not in a mental state; counted once an hour by species (`MaskOf`), run
+  every 250 ticks. "Rests" is not walking (`pather.Moving`). Fire: `GenTemperature.PushHeat` into the room it rests in,
+  6 heat a second times its body size (0.5 to 1.5) through the pass, only while the room is under 21 °C and never past
+  it (`AnimalPowersMath.HeatPush` stops at the mark: the game adds energy over the room's cells), nothing outdoors, two
+  a room. Ice: the same, cooling a room over 23 °C, never below. Grass: crops (sowable, in a growing zone or a plant
+  grower) within 2.9 cells grow a quarter faster by their own rate (`GrowthPush`: a quarter of `1/(60000 growDays)` times
+  `GrowthRate` for 250 ticks), only while plants are awake (the game's own resting hours), one push a crop a pass.
+  Electric: a battery of the colony's own within one cell (`CompPowerBattery.AddEnergy`) gets 100 W. Psychic: a colonist
+  within 6 cells in its sight, under their minor break threshold or within 5 points of it, gets `Rimfolk_PW_Calmed` (+5,
+  half a day); one in two days a colonist, one a day a Pokémon (`calmTicks`, by ThingID). Fighting: `JoyGiver_PokemonSpar`
+  (`Gaming_Dexterity`, base chance 2): a grown colonist who can fight, not hurting, no danger on the map, goes to a free
+  Fighting type (their own first) and spars 900 to 1,500 ticks (`JobDriver_PokemonSpar`: the game's lunge each way in
+  turn, 15 melee experience a swing of theirs; the Pokémon holds still in `JobDriver_StayWith`); at the end
+  `Harm.Roll(pawn, 1/25, HurtClass.Bout)` may land a bruise of 3 to 6 (`Harm.Injure`, under the shared cap), said and told
+  at `Importance.Important`. Water: a fire within 2.9 cells takes 40 extinguishing damage a pass; an idle one jogs to a
+  fire on the home area within 10 cells. Each shows a glow in view (the game's heat glow, a tinted lightning glow,
+  micro sparks, a splash) and, once a day at most for each power on a map and by a chance of one in eight, the nearest
+  colonist who sees it says a word (`Rimfolk_Pool_PW_Say*`). Settings `pokemonTypes` and its six parts.
+- **Familiars** (`Integrations/MagicFamiliars.cs`; A RimWorld of Magic, read by its defs' names: `TM_Mana`,
+  `TM_ArcaneWeakness`, the trait `Faceless`, checked against its 1.6 source). A mage is a grown colonist with an inner
+  life and the mana need, not faceless. Bound by the council's answer (`Rimfolk_Wish_Familiar`, `WishWorker_Familiar`:
+  promised, a `FamiliarBinding` waits) or the mage's own choice (a mage bonded to one of the colony's animals, one day in
+  four). A binding begins when the mage is free for a play-out, from eight in the morning to nine at night, no danger, the
+  animal awake and reachable; `JobDriver_BindFamiliar`: up to it, an hour beside it (`BindingTicks` 3,000; it stays
+  facing them), a glow between them, then `Bound` (named if it had no name, news, the chronicle, a journal line, +3 for
+  5 days). Dropped after 10 days or six tries. Every 250 ticks: the familiar glows faintly in view; within 12 cells of
+  its mage, 0.0004 mana (`Need.CurLevel`, never above `MaxLevel`) and the hediff `Rimfolk_FamiliarNear`
+  (`IncomingDamageFactor` 0.95, renewed while near, gone 700 ticks after). Its death: `Rimfolk_Fam_Died` (-12, 15 days),
+  the mana emptied, `TM_ArcaneWeakness` +4, told at `Importance.Important`, the chronicle and the journal. One a mage;
+  never an animal bonded to someone else, not flesh, or of the mod's own (its summoned creatures). Setting `familiars`.
+- **Omen animals** (`Animals/OmenAnimals.cs`). Each hour, a colony animal on a home map born within two hours, not seen
+  before: its sign now (`SignOf`: the game's Eclipse, then its Aurora, a shiny Pokémon, a calendar day falling today
+  that is a tradition, the founding, the player's own or kept before), at most one in 20 days and three living in a
+  colony, half the births on a kept day (by the animal's own seeded roll, so a reload doesn't roll it again). Named by
+  its keeper (`HerdStory.Keeper`; half the time a name from `Rimfolk_Pool_Omen_Names` by its sign), the news, the
+  chronicle, the keeper's journal, the name said over it and a word back from whoever is with them. While one thrives
+  (alive, up, not ill or starving: a per-map cache each hour), `Rimfolk_Omen_Thrives` (+2, a situational mood named for
+  it, `Thought_OmenThrives`) for its colony; its death `Rimfolk_Omen_Died` (-4, 5 days) for everyone on its home map,
+  told and in the chronicle. Sold or released, let go without ill luck. Saved: the living ones (`omens`) and the last
+  omen's tick. Setting `omenAnimals`.
+- **Sacred animals** (`Animals/SacredAnimals.cs`; Ideology). The kinds are the colony's faith's `VeneratedAnimals`; the
+  game's rules (hunting, slaughter, the meat, a tame one's death) stay. Each hour: a fresh corpse (dead within two
+  hours) on a home map of an animal that wasn't the colony's, of a kind a colonist's own faith venerates, gives those
+  colonists `Rimfolk_Sacred_Fell` (-2, 3 days, three at most), the news, and a word at the body (once an hour a map); a
+  hunt designation on one seen by a believer in view gets a word. The council's cull (`DilemmaEffect_Cull`) leaves out
+  any animal a faith of the colony's venerates (`SacredAnimals.HeldSacred`), as `PlayCarry` already did for hunts.
+  `Rimfolk_Dilemma_SacredDay` (`DilemmaWorker_SacredDay`, a custom: spring to autumn, a sacred animal on the map, asked of
+  a believer): food carried out to it (`DilemmaEffect_FeedBeast`) and a gathering round it (`PlaySpot.Stranger`), +3 for
+  3 days; or the food only; or not this year. Kept, it joins the calendar as every custom does
+  (`Calendar/CalendarCustoms.cs`). Setting `sacredAnimals`.
+- **Dev actions** (Debug actions, "Rimfolk", "Animal powers: ..."): what each part sees now (the log), the Pokémon types'
+  pass now, a spar, a binding begun now, a familiar's death, an animal born under a sign, the sacred animals' day asked.
+
 ### Letters that arrive in days and bring something (the player's decision 12, 6 November 2026)
 
 In the player's save Stace wrote three letters to notables in 18 days; each leg took 12 to 14 days (the towns are over
@@ -6537,6 +6599,7 @@ chains, nemeses, camps, play-outs, the fights pass and the worn-out episode read
 | 199 | The council window's memory: the day's trust sample, the dilemmas and answers it watches | per colonist once a day |
 | 187 | Who stands beside whom in a fight at home (only while one is on; Social/FightSides.cs), so only they remember it together and become comrades; who carries, tends or stands over someone down | per fighting colonist pair on that map (close, then the same room or in sight) |
 | 221 | Ailments: one tenth of the colonists (by ID), each once an hour; the slice at tick 2471 also carries the colony's part | the colony's serious illnesses counted (every colonist's hediffs, as before every hour's rolls), then per colonist in the slice: circumstances sampled, each ailment's counted causes rolled; diet and sweets on the first look of the day |
+| 227 | The colony's animals with powers (Animals/AnimalPowers.cs; nothing without PokéWorld, A RimWorld of Magic, Ideology or the omens' setting): the colony's typed Pokémon at home (warmth, crops, a battery, a calming, a fire), each familiar near its mage, a binding waiting; on the hour's first pass the typed Pokémon counted, newborns under a sign, omens' fates, sacred animals fallen and hunts marked; in the first hour of the day a mage's own choice | per typed Pokémon of the colony (a room, 25 cells, 9 cells, the colonists within 6, the fires); per familiar and binding; hourly per colony animal (a birth check) and per fresh corpse |
 | 211 | A neighbour's letter being written, a call under way or the comms console ringing (World/NeighbourLetters.cs; only while there is one) | per letter or call under way: the writer still at it, someone free to answer |
 | 83 | Colonists starting a talk with an outsider near them (Outsiders/OutsiderTalk.cs; on each home map with outsiders on it, whichever map is in view, with the setting on); every fourth look, the right-click's things done by themselves (Outsiders/OutsiderAuto.cs, with its setting on) | per home map, per free outsider: a free colonist near, the pair's and the visit's waits, then a small chance by both natures; one talk at most a home. By themselves: the day's pace first, then per home with no danger, per free outsider (three weighed at most) the pace with them, the six nearest free colonists times the things allowed (cheap facts), the best six checked by the menu's own reasons and the stores; one at most a look |
 | 241 | A meal or a drink shared with an outsider, a bout or a brawl with one (Outsiders/; only while there is one) | per meal: both still eating; per bout: still at it, its end by its terms; per brawl: still fighting |

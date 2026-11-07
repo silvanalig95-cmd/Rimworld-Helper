@@ -12,6 +12,86 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.147.0, the colony's animals with powers (7 November 2026, the player's pick "C, magic and powers" from a brainstorm,
+  built without a proposal round). Four parts in new
+  files, one pass and one book: `Animals/AnimalPowers.cs` (the pass `Sched.RarePowers`, tick 227 of the 250-tick cycle,
+  `Pass.RarePowers`; its hour on the pass at tick 227 of the hour, its day in the first hour of the day; the saved
+  `AnimalPowersBook`, a GameComponent), the pure numbers in `Animals/AnimalPowersMath.cs`
+  (`Tools/Tests/AnimalPowersTests.cs`, "animal powers: ", 183 checks), `Animals/AnimalPowersDebug.cs`. No Harmony patch,
+  no letter. DESIGN.md "The colony's animals with powers" and a ticking row; README (The colony's animals: two bullets;
+  PokéWorld and RoM paragraphs; the settings' pages); the Almanac: sections "Pokémon types at home" (PokéWorld's
+  colony's-life page, a point on the main page), "Familiars" (RoM's page), "Omen animals" and "Sacred animals" (the
+  animals page); keywords unchanged.
+  - Pokémon types at home (`Integrations/PokeWorldTypes.cs`; types by `PokeWorldLink.TypesOf`, the colony's own only,
+    spawned on a home map, up, not in a mental state; "rests" is not walking). Fire: `GenTemperature.PushHeat` into its
+    room, 6 heat a second times its body size (0.5 to 1.5), only under 21 °C and never past it, nothing outdoors, two a
+    room. Ice: the same cooling a room over 23 °C, never below. Grass: crops (a growing zone, a basin, a pot) within 2.9
+    cells grow a quarter faster by their own growth rate, never at night. Electric: a battery the colony built within a
+    cell gets 100 W (`AddEnergy`). Psychic: a colonist within 6 cells in its sight, under the minor break threshold or
+    within 5 points, +5 for half a day (`Rimfolk_PW_Calmed`), one in two days a colonist and one a day a Pokémon (saved
+    by ThingID). Fighting: a leisure (`Rimfolk_PW_SparGiver`, `Gaming_Dexterity`): practice swings each way (the game's
+    lunge), 15 melee experience a swing of the colonist's, the Pokémon holding still (`Rimfolk_StayWith`); one spar in
+    25 a bruise of 3 to 6 through `Harm` (scaled, capped, told at Important). Water: a fire within 2.9 cells takes 40
+    extinguishing damage a pass; an idle one jogs to a fire on the home area within 10 cells. A glow for each in view,
+    and once a day at most for each type on a map a colonist's one-sentence word. Settings: *Pokémon types at home* and
+    six parts (other mods' page, PokéWorld).
+  - Familiars (`Integrations/MagicFamiliars.cs`; RoM by its defs' names, checked against its 1.6 source: `TM_Mana`,
+    `TM_ArcaneWeakness`, the trait `Faceless`; the mod's own creatures left out by their mod). The council's answer (the
+    wish `Rimfolk_Wish_Familiar`: promised, a binding waits) or the mage's own choice (bonded to one of the colony's
+    animals, one day in four). In a quiet hour between eight in the morning and nine at night the mage walks to it and
+    stays an hour (`Rimfolk_BindFamiliar`), a glow between them; then it is theirs (named if it had none; news,
+    chronicle, journal, +3 for 5 days). It glows faintly; within 12 cells, 0.0004 mana a pass (about a tenth of a pool a
+    day) and the hediff *a familiar near* (`IncomingDamageFactor` 0.95). Its death: -12 for 15 days, the mana emptied,
+    the arcane weakness +4 (about eight hours), told at Important. Setting *Familiars* (other mods' page, RoM).
+  - Omen animals (`Animals/OmenAnimals.cs`): a colony newborn (within two hours, looked at hourly) under the game's
+    eclipse, its aurora, a shiny Pokémon, or a calendar day that falls today and is kept (a tradition, the founding, the
+    player's own, kept before; half of those births, by the animal's seeded roll); one in 20 days, three living. Named
+    by its keeper (half the time a sign's name), news, chronicle, journal, the name said and a word back. Thriving: +2
+    for its colony (a situational mood named for it); its death -4 for 5 days, told. Setting *Omen animals* (What's on).
+  - Sacred animals (`Animals/SacredAnimals.cs`; Ideology, the faith's `VeneratedAnimals`; the game's own sins stay). A
+    fresh corpse on a home map of one that wasn't the colony's: believers -2 for 3 days (three at most), news, a word at
+    the body; a hunt marked on one: a believer's word. The custom `Rimfolk_Dilemma_SacredDay` (spring to autumn, one on
+    the map, asked of a believer): food carried out to it and a gathering round it (+3 for 3 days), or the food only, or
+    not this year; kept, it joins the calendar and can become a tradition. Setting *Sacred animals* (What's on).
+  - Fixed on the way: the council's cull (`DilemmaEffect_Cull`, Animals/AnimalDilemmas.cs) could mark an animal the
+    colony's faith venerates for slaughter, a sin by the game's own rules; it leaves them out now
+    (`SacredAnimals.HeldSacred`).
+  - Saved: `AnimalPowersBook.familiars` (12 at most), `bindings` (6, dropped after 10 days), `omens` (the living, 6),
+    `calmTicks` (each let go after two days), all modelled in `Tools/save_estimate.py`. An existing save gets an empty
+    book.
+  - Try in the game (none of it could be run here):
+    1. Dev mode, Debug actions, Rimfolk: "Animal powers: what each part sees now (log)" (each typed Pokémon, its powers,
+       resting or not, its room's temperature, a battery beside; the mages and whom they'd choose; the omens and the
+       sign over the map; the faith's sacred kinds).
+    2. PokéWorld: a Fire type's sleeping spot in a cold closed room: the room warms toward 21 °C and stops (the
+       temperature readout), a soft heat glow at it; an Ice type in a hot room, frost glow, down to 23. A Grass type's
+       sleeping box in a greenhouse: the crops within three cells ahead of the rest (their growth on the inspect pane),
+       a green glow. An Electric type's box beside a battery: the battery's stored energy rising slowly, sparks. A
+       Psychic type near a colonist close to a break (dev: lower their mood): the lilac glow, their word, +5 on the
+       Needs tab, once in two days. "Animal powers: the selected colonist spars with a Fighting type (testing)": the
+       lunges each way, melee practice, the Pokémon standing still; let colonists play in their recreation time and see
+       them choose it. A fire (dev: start one) beside a Water type: it shrinks and goes out, splashes; one ten cells off
+       on the home area: the Pokémon jogs over. "Animal powers: the Pokémon types' pass now" runs a pass at once.
+    3. RoM: select a mage (and one of the colony's animals), "Animal powers: bind the selected animal to the selected
+       mage now (testing)": the walk, the hour with it, the glow, the news; then the faint glow on it, *a
+       familiar near* on the mage's health tab within 12 cells and the mana bar rising a little faster. "Animal powers:
+       the selected mage's familiar dies (testing)": the mood, the mana at nothing, the arcane weakness, the message. In
+       play: a mage's wish for a familiar, promised, then the binding in a quiet hour by day.
+    4. Omens: select a colony animal, "Animal powers: the selected animal was born under a sign (testing)..." for each
+       sign: the news, the name, the chronicle, the keeper's word and journal, the +2 named for it on everyone's Needs
+       tab; kill it (dev): -4 for 5 days, the message. In play: a birth during an eclipse or an aurora (dev: force the
+       condition) or on the founding day.
+    5. Ideology with a venerated animal on the map: kill a wild one (dev): the believers' -2, the news, a word at the
+       body; mark one to hunt: a believer's word. "Animal powers: ask the sacred animals' day now (testing)" (spring to
+       autumn): keep it, and see the food carried out to the animal and everyone gathering round it, then the custom on
+       the calendar ("goes on the calendar" message).
+    6. Settings: each part off (the other mods' page, What's on); with none of the mods, nothing but the omens.
+  - Riskiest: the animals' jobs (the Pokémon held still for a spar or a binding, a Water type sent jogging to a fire)
+    against their own think trees and pens; PokéWorld's Pokémon resting where the effects need them (a box beside a
+    battery, a bed in a greenhouse) and whether players will see it without being told; the familiar's mana written
+    straight into RoM's `Need_Mana.CurLevel` (its setter clamps; the mod's own gain is untouched) and its arcane
+    weakness added by name; the omen's kept-day sign on a busy calendar (half the births, one in 20 days); the sacred
+    day's gathering round a wild animal that may walk off before it starts (the gathering falls back to the open air).
 - 0.146.0, carrying and hauling: Harvest and Haul built in, and the long material run (7 November 2026, the player's requests:
   "when pawns go get materials on the map that are further away, they should always fill up their inventory with stuff
   on the way ... then they should also store the hauled items eventually", and "hauling into rimfolk please, i'd anyways

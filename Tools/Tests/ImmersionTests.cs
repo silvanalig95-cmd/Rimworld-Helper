@@ -128,7 +128,14 @@ public static class ImmersionTests
         "Council_Pool_PlayRounds", "Council_Pool_PlayHaulInvite", "Council_Pool_PlayHaul", "Council_Pool_PlayToast", "Council_Pool_PlayFeast",
         "Council_Pool_PlayFire", "Council_Pool_PlayParty", "Council_Pool_PlaySong", "Council_Pool_PlayWords", "Council_Pool_PlaySaidAloud",
         // The heart's good side overflowing (Heart/GoodRelease.cs): a kind word face to face, and a word as an inspiration begins.
-        "Rimfolk_Pool_GoodHeart_KindWord", "Rimfolk_Pool_GoodHeart_Inspired"
+        "Rimfolk_Pool_GoodHeart_KindWord", "Rimfolk_Pool_GoodHeart_Inspired",
+        // The colony's animals with powers (Animals/AnimalPowers.cs): the Pokémon types at home seen at it, the calmed, a
+        // spar's start and its blow; a familiar's binding, its taking and its death; an omen named, talked of and fallen; a
+        // sacred animal fallen and a hunt marked on one.
+        "Rimfolk_Pool_PW_SayWarm", "Rimfolk_Pool_PW_SayCool", "Rimfolk_Pool_PW_SayGrowth", "Rimfolk_Pool_PW_SayBattery", "Rimfolk_Pool_PW_SayCalm",
+        "Rimfolk_Pool_PW_SayDouse", "Rimfolk_Pool_PW_SaySparBegin", "Rimfolk_Pool_PW_SaySparBlow", "Rimfolk_Pool_Fam_Begin", "Rimfolk_Pool_Fam_Bound",
+        "Rimfolk_Pool_Fam_Died", "Rimfolk_Pool_Omen_Name", "Rimfolk_Pool_Omen_Talk", "Rimfolk_Pool_Omen_Died", "Rimfolk_Pool_Sacred_Fell",
+        "Rimfolk_Pool_Sacred_Hunt"
     };
 
     /// <summary>Spoken pools said so rarely (a record broken, a lightning rod struck) that a handful of lines is enough.</summary>
@@ -154,7 +161,9 @@ public static class ImmersionTests
         "Rimfolk_Journal_Trouble_Worry", "Rimfolk_Journal_Trouble_Anniversary", "Rimfolk_Journal_Trouble_FormerLife", "Rimfolk_Journal_Trouble_Restless",
         "Rimfolk_Journal_Trouble_Aches", "Rimfolk_Journal_Trouble_Envy",
         // Banishment by the council: the last entry of one sent away, and one who loved them (Social/Banishment.cs).
-        "Rimfolk_Journal_Banished", "Rimfolk_Journal_BanishedKin"
+        "Rimfolk_Journal_Banished", "Rimfolk_Journal_BanishedKin",
+        // A familiar bound and lost, an omen born (Animals/AnimalPowers.cs).
+        "Rimfolk_Journal_Fam_Bound", "Rimfolk_Journal_Fam_Died", "Rimfolk_Journal_Omen_Born"
     };
 
     private static readonly string[] Prefixes = { "Council_Setback_", "Council_Friction_", "Council_Nuisance_", "Council_Arc_" };

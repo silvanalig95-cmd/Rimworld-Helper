@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Animals with powers: Pokémon types, familiars, omens and sacred animals
+
+*7 November 2026, version 0.147.0*
+
+- With PokéWorld, the colony's own Pokémon help at home by their type, each a little and shown with a glow: a Fire type warms a cold room it rests in and an Ice type cools a hot one, a Grass type quickens the crops beside it, an Electric type tops up a battery, a Water type douses a fire near it.
+- A Psychic type calms a colonist close to a break now and then, and a Fighting type spars with colonists at their leisure for melee practice, now and then leaving a bruise within the everyday-hurts setting.
+- With A RimWorld of Magic, a mage can bind one of the colony's animals as a familiar, by the council's promise or of their own accord when bonded to it: the binding is done on the map. Near its mage it lends a little mana and a little protection; its death hits the mage hard.
+- Omen animals: one born on an eclipse or an aurora, a shiny Pokémon, or one born on a day the colony keeps is named by the keeper and lifts the colony's mood while it thrives. Its death is mourned.
+- With Ideology, a sacred animal of the colony's faith dying on its land is mourned by the believers, who also say so when one is marked for the hunt. A new custom question can keep a day for it, with food carried out and everyone gathering round it, and the day goes on the calendar.
+- Fixed: the council's cull could mark an animal the colony's faith venerates for slaughter. It now leaves them out.
+- New settings: Pokémon types at home with its six parts, Familiars, Sacred animals and Omen animals.
+
 ## Long material runs, and Harvest and Haul built in
 
 *7 November 2026, version 0.146.0*

@@ -31,6 +31,21 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.147.0</version>
+        <date>7 November 2026</date>
+        <title>Animals with powers: Pokémon types, familiars, omens and sacred animals</title>
+        <points>
+          <li>With PokéWorld, the colony's own Pokémon help at home by their type, each a little and shown with a glow: a Fire type warms a cold room it rests in and an Ice type cools a hot one, a Grass type quickens the crops beside it, an Electric type tops up a battery, a Water type douses a fire near it.</li>
+          <li>A Psychic type calms a colonist close to a break now and then, and a Fighting type spars with colonists at their leisure for melee practice, now and then leaving a bruise within the everyday-hurts setting.</li>
+          <li>With A RimWorld of Magic, a mage can bind one of the colony's animals as a familiar, by the council's promise or of their own accord when bonded to it: the binding is done on the map. Near its mage it lends a little mana and a little protection; its death hits the mage hard.</li>
+          <li>Omen animals: one born on an eclipse or an aurora, a shiny Pokémon, or one born on a day the colony keeps is named by the keeper and lifts the colony's mood while it thrives. Its death is mourned.</li>
+          <li>With Ideology, a sacred animal of the colony's faith dying on its land is mourned by the believers, who also say so when one is marked for the hunt. A new custom question can keep a day for it, with food carried out and everyone gathering round it, and the day goes on the calendar.</li>
+          <li>Fixed: the council's cull could mark an animal the colony's faith venerates for slaughter. It now leaves them out.</li>
+          <li>New settings: Pokémon types at home with its six parts, Familiars, Sacred animals and Omen animals.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.146.0</version>
         <date>7 November 2026</date>
         <title>Long material runs, and Harvest and Haul built in</title>

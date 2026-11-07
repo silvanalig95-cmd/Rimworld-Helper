@@ -380,6 +380,8 @@ namespace ColonyCouncil
             Toggle("nemeses", "CC_Settings_Nemeses", "CC_SetNote_Nemeses");
             Toggle("nemesisReturns", "CC_Settings_NemesisReturns", "CC_SetNote_NemesisReturns", "nemeses");
             Toggle("petMoments", "CC_Settings_PetMoments", "CC_SetNote_PetMoments");
+            Toggle("sacredAnimals", "CC_Settings_SacredAnimals", "CC_SetNote_SacredAnimals");
+            Toggle("omenAnimals", "CC_Settings_OmenAnimals", "CC_SetNote_OmenAnimals");
             Section("CC_Settings_WorldEventsHeader");
             Toggle("worldEvents", "CC_Settings_WorldEvents", "CC_SetNote_WorldEvents");
             Toggle("camps", "CC_Settings_Camps", "CC_SetNote_Camps", "worldEvents");
@@ -641,6 +643,7 @@ namespace ColonyCouncil
             Section("CC_SetSec_Mod_Magic");
             Mod(Toggle("magicGolemRepair", "CC_Settings_MagicGolemRepair", "CC_SetNote_MagicGolemRepair", "deepHooks"), MagicId);
             Mod(Toggle("magicNeedRules", "CC_Settings_MagicNeedRules", "CC_SetNote_MagicNeedRules", "deepHooks"), MagicId);
+            Mod(Toggle("familiars", "CC_Settings_Familiars", "CC_SetNote_Familiars"), MagicId);
             Section("CC_SetSec_Mod_Territories");
             Mod(Toggle("territoryNewsQuiet", "CC_Settings_TerritoryNewsQuiet", "CC_SetNote_TerritoryNewsQuiet", "deepHooks"), TerritoriesId);
             Section("CC_SetSec_Mod_MoveThePatient");
@@ -648,6 +651,13 @@ namespace ColonyCouncil
             Section("CC_SetSec_Mod_PokeWorld");
             Mod(Choice("pokemonSounds", "CC_Settings_PokemonSounds", "CC_Settings_PokemonSounds_Tip", "CC_PokemonSounds_", "CC_SetNote_PokemonSounds_",
                 new[] { "Creatures", "Rarer", "Own" }), PokeWorldId);
+            Mod(Toggle("pokemonTypes", "CC_Settings_PokemonTypes", "CC_SetNote_PokemonTypes"), PokeWorldId);
+            Mod(Toggle("pokemonTypeWarmth", "CC_Settings_PokemonTypeWarmth", "CC_SetNote_PokemonTypeWarmth", "pokemonTypes"), PokeWorldId);
+            Mod(Toggle("pokemonTypeGrowth", "CC_Settings_PokemonTypeGrowth", "CC_SetNote_PokemonTypeGrowth", "pokemonTypes"), PokeWorldId);
+            Mod(Toggle("pokemonTypeBattery", "CC_Settings_PokemonTypeBattery", "CC_SetNote_PokemonTypeBattery", "pokemonTypes"), PokeWorldId);
+            Mod(Toggle("pokemonTypeCalm", "CC_Settings_PokemonTypeCalm", "CC_SetNote_PokemonTypeCalm", "pokemonTypes"), PokeWorldId);
+            Mod(Toggle("pokemonTypeSpar", "CC_Settings_PokemonTypeSpar", "CC_SetNote_PokemonTypeSpar", "pokemonTypes"), PokeWorldId);
+            Mod(Toggle("pokemonTypeDouse", "CC_Settings_PokemonTypeDouse", "CC_SetNote_PokemonTypeDouse", "pokemonTypes"), PokeWorldId);
             // Any mod's faith precept against turrets (TurretFaith.cs reads the precept, not one mod): always shown.
             Section("CC_SetSec_Mod_Faiths");
             Toggle("faithTurretsHere", "CC_Settings_FaithTurretsHere", "CC_SetNote_FaithTurretsHere", "deepHooks");

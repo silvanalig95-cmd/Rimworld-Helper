@@ -120,7 +120,16 @@ namespace ColonyCouncil
         /// drill, the day's pruning). Nothing while the setting is at nothing.
         /// </summary>
         public const int RareHarm = 67;
-        public static readonly int[] RareOffsets = { RareWorldKeep, RarePlanQueue, RareHeart, RareCamp, RareMissions, RareWelcome, RareAilments, RareHealth, RareDefenseLines, RareFightSides, RareSmoke, RareBuildPriority, RareWeather, RareHarm };
+
+        /// <summary>
+        /// The colony's animals with powers (Animals/AnimalPowers.cs): PokéWorld's Pokémon by their type at home, A RimWorld
+        /// of Magic's familiars near their mages, omen animals thriving or fallen, a sacred animal fallen on the land. Its
+        /// hourly look (the colony's typed Pokémon counted, newborns under a sign, sacred deaths, bindings waiting) rides on
+        /// the pass at tick 227 of the hour, and its daily one in the first hour of the day. Nothing without the mods or
+        /// with every part off.
+        /// </summary>
+        public const int RarePowers = 227;
+        public static readonly int[] RareOffsets = { RareWorldKeep, RarePlanQueue, RareHeart, RareCamp, RareMissions, RareWelcome, RareAilments, RareHealth, RareDefenseLines, RareFightSides, RareSmoke, RareBuildPriority, RareWeather, RareHarm, RarePowers };
 
         /// <summary>Passes on the 250-tick cycle that only run while something is waiting (the news of the evening, an answer playing out, the council window's memory).</summary>
         public const int RareNews = 167;

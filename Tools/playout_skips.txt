@@ -505,3 +505,5 @@ Rimfolk_DlmFealty_Swear [option 0] already real, the event's own code: the speak
 
 # Defs/IncidentDefs/Rimfolk_Events_PeoplesC.xml
 Rimfolk_Evt_EnclaveLander [option 0] already real, the event's own code: the trade party comes down by drop pod and trades under the game's own visitors' lord, which walks them off when they are done (EnclaveLanding.Land)
+# Defs/DilemmaDefs/Rimfolk_Dilemmas_SacredDay.xml
+Rimfolk_Dilemma_SacredDay [option 1] the food is carried out to the sacred animal and left (DilemmaEffect_FeedBeast, a CarryOut to the stranger)

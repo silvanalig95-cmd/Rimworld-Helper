@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The colony's animals with powers (Source/ColonyCouncil/Animals/AnimalPowers.cs). Said over a head (one sentence of
+    90 characters at most, ImmersionTests), journal lines and an omen's names.
+    - The Pokémon types at home (Integrations/PokeWorldTypes.cs): {PET_...} is the Pokémon; tags pokemon, shiny, named.
+      A colonist who sees it at work says a word now and then (once a day at most for each type on a map); the calmed
+      colonist to the Psychic type; the colonist who spars with a Fighting type, as it begins and when a blow lands.
+    - Familiars (Integrations/MagicFamiliars.cs): the mage to the animal as the binding begins and when it takes ({PET_...});
+      as the familiar dies ({NAME}, its name).
+    - Omens (Animals/OmenAnimals.cs): the keeper naming the newborn ({PET_...} under its new name, {DAY} the day kept);
+      whoever is with them, to the keeper ({OTHER_...}); someone by the body ({NAME}). Tags sign:eclipse, sign:aurora,
+      sign:shiny, sign:keptday.
+    - Sacred animals (Animals/SacredAnimals.cs): a believer by a sacred animal's body, and one who sees a hunt marked on one
+      ({KIND}, its kind: "elk", so lines never say "a {KIND}").
+  -->
+
+  <!-- ===================== Pokémon types at home ===================== -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_PW_SayWarm</defName>
+    <lines>
+      <plain>
+        <li>The room's as warm as a hearth with {PET_nameDef} curled up in the corner.</li>
+        <li>Nobody's touched the heater since {PET_nameDef} took to sleeping in here.</li>
+        <li>I can feel the heat off {PET_nameDef} from across the room.</li>
+        <li>Best spot in the colony is wherever {PET_nameDef} is lying.</li>
+        <li>Cold out there, and toasty in here, thanks to {PET_nameDef}.</li>
+        <li>[named] Move over, {PET_nameDef}, I want some of that warmth.</li>
+        <li>[shiny] Even its odd colors look warm when it's curled up like that.</li>
+      </plain>
+      <cheerful><li>Who needs a fire when you've got {PET_nameDef}?</li></cheerful>
+      <gloomy><li>Warm enough in here, as long as {PET_nameDef} doesn't wander off.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_PW_SayCool</defName>
+    <lines>
+      <plain>
+        <li>It's cooler in here with {PET_nameDef} about, and in this heat that's a mercy.</li>
+        <li>Frost on the sill in high summer, that'll be {PET_nameDef}.</li>
+        <li>Sleep next to {PET_nameDef} on a night like this and you'll thank me.</li>
+        <li>The heat isn't getting in here while {PET_nameDef} lies by the door.</li>
+        <li>You can almost see your breath near {PET_nameDef}, even now.</li>
+        <li>[named] Stay put, {PET_nameDef}, you're the only cool thing for miles.</li>
+      </plain>
+      <cheerful><li>Come and stand by {PET_nameDef}, it's like a cellar in summer.</li></cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_PW_SayGrowth</defName>
+    <lines>
+      <plain>
+        <li>The rows round {PET_nameDef} are coming up faster than the rest.</li>
+        <li>Whatever {PET_nameDef} does, the crops beside it love it.</li>
+        <li>Look how green it is where {PET_nameDef} lies down.</li>
+        <li>If {PET_nameDef} naps in the field again, we'll be harvesting early.</li>
+        <li>The plants lean toward {PET_nameDef} as if it were the sun.</li>
+        <li>[named] Good, {PET_nameDef}, lie there a while longer.</li>
+      </plain>
+      <cold><li>The yield near {PET_nameDef} is measurably better.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_PW_SayBattery</defName>
+    <lines>
+      <plain>
+        <li>The battery's humming again, so {PET_nameDef} must be napping beside it.</li>
+        <li>Every time {PET_nameDef} leans on the battery, the needle creeps up.</li>
+        <li>Mind the sparks, {PET_nameDef} is charging the battery again.</li>
+        <li>Free power, as long as {PET_nameDef} likes sleeping there.</li>
+        <li>My hair stands up whenever I walk past {PET_nameDef} and that battery.</li>
+        <li>[named] Good, {PET_nameDef}, keep that battery company.</li>
+      </plain>
+      <cold><li>It isn't much, but {PET_nameDef} is a cheaper generator than most.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_PW_SayCalm</defName>
+    <lines>
+      <plain>
+        <li>It's gone quiet in my head, thank you, {PET_nameDef}.</li>
+        <li>I was about to lose it, and then {PET_nameDef} looked at me.</li>
+        <li>Stay a moment, {PET_nameDef}, just a moment more.</li>
+        <li>How do you do that, {PET_nameDef}, make everything go still?</li>
+        <li>I can breathe again, all right, I can breathe.</li>
+        <li>[named] Thank you, {PET_nameDef}, I needed that.</li>
+      </plain>
+      <gloomy><li>It won't last, but it's quiet for now.</li></gloomy>
+      <warm><li>You knew, didn't you, {PET_nameDef}?</li></warm>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_PW_SayDouse</defName>
+    <lines>
+      <plain>
+        <li>Look at {PET_nameDef} go, it's putting the fire out by itself.</li>
+        <li>Good, {PET_nameDef}, soak it all!</li>
+        <li>That fire never stood a chance with {PET_nameDef} next to it.</li>
+        <li>Steam everywhere and the flames going down, well done, {PET_nameDef}.</li>
+        <li>Keep at it, {PET_nameDef}, we're coming with the rest!</li>
+        <li>Somebody give {PET_nameDef} a medal for that fire.</li>
+      </plain>
+      <cold><li>Useful, {PET_nameDef}, very useful.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_PW_SaySparBegin</defName>
+    <lines>
+      <plain>
+        <li>Come on then, show me what those fists can do.</li>
+        <li>Easy on me today, {PET_nameDef}, I'm still sore from last time.</li>
+        <li>Right, {PET_nameDef}, guard up, and no biting.</li>
+        <li>One round, {PET_nameDef}, then we both rest.</li>
+        <li>You lead, and I'll try to keep up.</li>
+        <li>[named] Let's see if you've got any faster, {PET_nameDef}.</li>
+      </plain>
+      <cheerful><li>Ready when you are, {PET_nameDef}!</li></cheerful>
+      <cold><li>Again, {PET_nameDef}, and properly this time.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_PW_SaySparBlow</defName>
+    <lines>
+      <plain>
+        <li>Ow, that one landed, {PET_nameDef}.</li>
+        <li>Steady, steady, you got me there.</li>
+        <li>That's going to bruise, good hit, {PET_nameDef}.</li>
+        <li>Hold on, hold on, I need a moment.</li>
+        <li>Fair enough, I never saw that one coming.</li>
+        <li>[named] Who taught you that one, {PET_nameDef}?</li>
+      </plain>
+      <gloomy><li>Of course it was my bad side.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Familiars ===================== -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Fam_Begin</defName>
+    <lines>
+      <plain>
+        <li>Easy now, sit with me a while.</li>
+        <li>Look at me, {PET_nameDef}, and don't be afraid of the light.</li>
+        <li>Stay close, this won't hurt, I promise.</li>
+        <li>Hush now, and just breathe with me.</li>
+        <li>You can feel it too, can't you?</li>
+        <li>There you are, {PET_nameDef}, come here to me.</li>
+      </plain>
+      <cold><li>Hold still, {PET_nameDef}, this takes an hour.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Fam_Bound</defName>
+    <lines>
+      <plain>
+        <li>There, we're bound now, you and I.</li>
+        <li>Can you feel me there, {PET_nameDef}?</li>
+        <li>You're glowing, {PET_nameDef}, did you know that?</li>
+        <li>Wherever you go now, I'll know.</li>
+        <li>It took, it actually took.</li>
+        <li>Welcome, familiar, I'm glad it's you.</li>
+      </plain>
+      <warm><li>We'll look after each other now, {PET_nameDef}.</li></warm>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Fam_Died</defName>
+    <lines>
+      <plain>
+        <li>No, no, {NAME}, I felt that.</li>
+        <li>Something just went out, and {NAME} is gone.</li>
+        <li>I can't feel {NAME} anymore, it's simply gone.</li>
+        <li>The magic's gone cold, so {NAME} is dead.</li>
+        <li>Where are you, {NAME}, where did you go?</li>
+        <li>It's as if a door slammed shut inside me.</li>
+      </plain>
+      <cold><li>The bond is broken, and so am I, for now.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Fam_Bound</defName>
+    <lines>
+      <plain>
+        <li>I spent an hour with {PET_nameDef} today, and something passed between us. It's my familiar now. I can feel where it is with my eyes shut.</li>
+        <li>The binding took. {PET_nameDef} glows a little at night now, faint enough that only I notice, and the mana comes easier when it's near.</li>
+        <li>An hour of quiet, my hand on {PET_nameDef}'s back, and the light going back and forth between us. I've read about it all my life. It's nothing like the books.</li>
+        <li>It's bound to me now. I keep looking round to check {PET_nameDef} is still there, and it always is.</li>
+        <li>My familiar, at last. {PET_nameDef} didn't flinch once, even when the light came.</li>
+        <li>I thought binding a familiar would feel like casting. It felt more like making a friend.</li>
+      </plain>
+      <cold><li>Bound {PET_nameDef} as a familiar. The mana returns faster near it, as expected.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Fam_Died</defName>
+    <lines>
+      <plain>
+        <li>{NAME} died today. I felt it the moment it happened, like a candle going out behind me. The magic won't come.</li>
+        <li>My familiar is dead. I was halfway through a sentence when it happened, and I never finished it.</li>
+        <li>{NAME} is gone. The bond doesn't just break, it tears, and it takes the mana with it.</li>
+        <li>Everyone says I'll bind another one day. Maybe. Not yet. {NAME} was the one.</li>
+        <li>I keep reaching for {NAME} out of habit, and finding nothing there.</li>
+        <li>The healers can't mend what's wrong with me. It isn't a wound. It's {NAME}, gone.</li>
+      </plain>
+      <cold><li>{NAME} is dead. The bond's loss cost me my mana and most of a day. I will recover.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Omens ===================== -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Omen_Name</defName>
+    <lines>
+      <plain>
+        <li>[sign:eclipse] Born while the sun went dark, so we'll call this one {PET_nameDef}.</li>
+        <li>[sign:eclipse] A little one of the eclipse, {PET_nameDef}, and that means something.</li>
+        <li>[sign:aurora] Born under the lights in the sky, welcome, {PET_nameDef}.</li>
+        <li>[sign:aurora] The whole sky was dancing when {PET_nameDef} came, that's luck.</li>
+        <li>[sign:shiny] Look at those colors, {PET_nameDef}, you're one in a thousand.</li>
+        <li>[sign:shiny] A shiny one born to us, and we'll call it {PET_nameDef}.</li>
+        <li>[sign:keptday] Born on {DAY} of all days, so it's {PET_nameDef}.</li>
+        <li>[sign:keptday] A little one on {DAY}, {PET_nameDef}, that has to mean something.</li>
+        <li>Born under a sign, this one, and its name is {PET_nameDef}.</li>
+        <li>Welcome, {PET_nameDef}, you came on a strange day.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Omen_Talk</defName>
+    <lines>
+      <plain>
+        <li>[sign:eclipse] An eclipse birth, people will talk about that one for years.</li>
+        <li>[sign:aurora] Under the lights, of all things, that one's going to be lucky.</li>
+        <li>[sign:shiny] I've never seen colors like that on a newborn.</li>
+        <li>[sign:keptday] On {DAY}, too, you couldn't plan it better.</li>
+        <li>Mark it down, {OTHER_nameDef}, that's a sign if ever I saw one.</li>
+        <li>Lucky for all of us, I'd say.</li>
+        <li>My grandmother would have called that a blessing.</li>
+      </plain>
+      <gloomy><li>Let's hope it's the good kind of sign.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Omen_Died</defName>
+    <lines>
+      <plain>
+        <li>{NAME} is dead, and I don't like what that means.</li>
+        <li>Born under the sign, and now this, it's a bad omen.</li>
+        <li>[sign:eclipse] The eclipse's child, gone, and something's coming.</li>
+        <li>Nobody say it, but we're all thinking it.</li>
+        <li>Poor {NAME}, all that luck and it didn't last.</li>
+        <li>Cover it up, and don't let the children see.</li>
+      </plain>
+      <cold><li>An animal died; it means nothing, whatever they say.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Omen_Born</defName>
+    <lines>
+      <plain>
+        <li>[sign:eclipse] The sun went dark at midday, and the newborn came in the middle of it. I named it {PET_nameDef}. Everyone came to look.</li>
+        <li>[sign:aurora] There were lights across the whole sky tonight, green and red, and {PET_nameDef} was born under them. I named it myself.</li>
+        <li>[sign:shiny] The newborn came out in colors none of its kind has. One in a thousand, they say. I named it {PET_nameDef}.</li>
+        <li>[sign:keptday] Born on {DAY}, of all days. I named it {PET_nameDef}, and nobody argued.</li>
+        <li>A newborn under a sign, and I was the one who named it: {PET_nameDef}. The whole colony is talking.</li>
+        <li>I've raised animals all my life and never had one born like {PET_nameDef}. People keep stopping at the pen.</li>
+      </plain>
+      <cold><li>Named the newborn {PET_nameDef}. The others think its birth means something. It is a healthy animal.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- An omen's name, half the time, by its sign (one word; the game's own names otherwise). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Omen_Names</defName>
+    <lines>
+      <plain>
+        <li>[sign:eclipse] Umbra</li>
+        <li>[sign:eclipse] Shade</li>
+        <li>[sign:eclipse] Dusk</li>
+        <li>[sign:eclipse] Midnight</li>
+        <li>[sign:eclipse] Corona</li>
+        <li>[sign:aurora] Glimmer</li>
+        <li>[sign:aurora] Aurora</li>
+        <li>[sign:aurora] Ribbon</li>
+        <li>[sign:aurora] Skylight</li>
+        <li>[sign:aurora] Shimmer</li>
+        <li>[sign:shiny] Gleam</li>
+        <li>[sign:shiny] Sparkle</li>
+        <li>[sign:shiny] Penny</li>
+        <li>[sign:shiny] Glint</li>
+        <li>[sign:shiny] Luster</li>
+        <li>[sign:keptday] Feast</li>
+        <li>[sign:keptday] Holiday</li>
+        <li>[sign:keptday] Jubilee</li>
+        <li>[sign:keptday] Merry</li>
+        <li>[sign:keptday] Lucky</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Sacred animals ===================== -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Sacred_Fell</defName>
+    <lines>
+      <plain>
+        <li>A sacred one, dead on our own land, and it shouldn't be.</li>
+        <li>The faith holds them sacred, and look at it, lying there.</li>
+        <li>Rest now, sacred one, I'm sorry it ended here.</li>
+        <li>Somebody should say the words over it.</li>
+        <li>Not one of these, never one of these.</li>
+        <li>We'll answer for this somehow, I know it.</li>
+      </plain>
+      <cold><li>A sacred {KIND}, dead, and it's a poor sign for all of us.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Sacred_Hunt</defName>
+    <lines>
+      <plain>
+        <li>Someone's marked one of the sacred animals for the hunt, and I'll have no part of it.</li>
+        <li>Hunt a sacred one, they want, but not with my hands.</li>
+        <li>The faith says no, and I say no, so leave it be.</li>
+        <li>Whoever marked that animal can carry the guilt alone.</li>
+        <li>That's a sacred {KIND} out there, so take the mark off it.</li>
+        <li>I won't go near that hunt, and I'll tell anyone why.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

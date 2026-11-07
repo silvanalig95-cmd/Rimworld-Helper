@@ -193,6 +193,7 @@
     <Compile Include="../../Source/ColonyCouncil/Defense/DefenseApproach.cs" Link="DefenseApproach.cs" />
     <Compile Include="../../Source/ColonyCouncil/Advisor/AdvisorMath.cs" Link="AdvisorMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Animals/AnimalMath.cs" Link="AnimalMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Animals/AnimalPowersMath.cs" Link="AnimalPowersMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Character/ColonyTraitMath.cs" Link="ColonyTraitMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Social/Gossip/RepMath.cs" Link="RepMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/ColonistBar/BarBadgeMath.cs" Link="BarBadgeMath.cs" />
