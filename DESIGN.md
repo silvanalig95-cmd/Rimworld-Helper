@@ -4500,7 +4500,8 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
   woman's, heir and a woman's, envoy, trader), the messengers' word, the caravan weight, the camp kinds it favours, the
   town plan, the town's goods and herd. `Peoples` reads it: `Of`, `CallingOf`, `Title`, `Courier`, `CaravanFactor`,
   `CampFactor`, `Preference`, `Fits`, `CanSend`, `TendsLodgers`, `CaravanCanCome`, `Make` (a people made now, the game's
-  way, its town near a home: the dev tools now, release B later). Nothing saved, no clock of its own.
+  way, its town near a home and clear of the game's nearness rule: the dev tools). Nothing saved, no clock of its own
+  (release B's book aside, below).
 - **Words.** Notables titled by their ways (`NotableBook.TitleOf`, `RegionFaces.TitleOf`: waymaster, prior or prioress,
   camp elder; caravan master, cellarer, drover). Their messengers by their own word (`CourierWords.Noun`: road riders,
   postulants, riders). The tag `their:traders`, `their:healers` or `their:herders` (`PeoplesMath.Tags`) in the facts
@@ -4531,6 +4532,26 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
 - **Elsewhere.** A sickhouse of the order sees to the colony's lodgers as medicine would (`SickHome`); the hand-over's
   peoples never borrow these peoples' kinds (`HandOverPeoples.Lend`). The Almanac's page *the road league, the
   hospitallers and the herders*.
+- **Release B: peoples that arise during play** (`Peoples/Arising.cs`, `ArisingMath.cs` pure and tested in
+  `Tools/Tests/ArisingTests.cs`, "new peoples: "; `ArisingWords.cs`, `ArisingBook.cs`, `ArisingDebug.cs`). Four causes
+  read from what the world keeps: a fight's ruin within reach (`LedgerRuin.Fight`, from three days after the fall to
+  sixty, two in five: `ArisingMath.Fated`, the same answer each time it is asked), three or four towns of two peoples or
+  more at 62 or more within 18 tiles of the most prosperous and at peace with each other and the colony
+  (`ArisingMath.LeagueOf`, a fifth of the looks), one the council sent away (`BanishRecord`, alive in the world and of no
+  people, 15 to 300 days after, half of them), and with Ideology the end of a war of words (`Council_WS_HolyWar` in the
+  world events' history, within 30 days, half of them). The template by the cause's age (`ArisingMath.Template`: the
+  calling a cause may take nearest its age), made the game's way (`FactionGenerator.NewGeneratedFaction`, hidden while
+  made, no leader until its faith is set: `Arising.Making` in `Patch_HandOverLeader`), its name from its cause, its
+  colour the palette's farthest from the world's (`Faction.color`), its faith (survivors keep their old people's, a band
+  its leader's, a league another league's, the splinter a reformed creed: `IdeoUtility.RandomizeNormalMemesForReforming`),
+  goodwill by what happened (`ArisingMath.*Goodwill`, never past the game's -75 or 75), its town by `Arising.TryTownTile`
+  (a few days off, clear of `RiseFallMath.ClearOfHomes`, on no land but its own peoples', `NewTowns.MakeTown`), the
+  region's faces (`RegionFaces.Founded`) and the founding pace (`RiseFall.NoteFounded`), a letter
+  (`Importance.Important`, the founding's means and rite), the history's `world:arose`, a line on the people's and the
+  towns' cards. The one sent away leads the band (`Faction.leader`) and rides with no one else's raid. Run by the
+  region's day (`RegionBook.Daily`), one a day at most; the pace `ArisingMath.PaceAllows` (40 days between any two, 90
+  between two of a cause, none before day 15, six standing), scaled by the setting `newPeoples` (0 to 200%). Saved: the
+  records in `ArisingBook` (one per people, `ArisingMath.MaxRecords`). The Almanac's page *new peoples that arise*.
 
 ### Letters that arrive in days and bring something (the player's decision 12, 6 November 2026)
 
