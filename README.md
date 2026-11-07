@@ -3179,8 +3179,22 @@ and the league asks the colony's caravan to walk a factor home; the order's hosp
 for nothing, and in a plague year the order asks for medicine; the herders ask to winter a herd on the colony's land,
 and their drovers and shearers camp more often. With the VE apparel, armour and weapons sets their gear draws on
 those, with VE Memes their faiths take a meme of trade, of healthcare or of nomads. A save made before they were there
-doesn't have them (peoples that arise during play come next). The Almanac has a page, *the road league, the
-hospitallers and the herders*.
+meets them as they arise during play (below). The Almanac has a page, *the road league, the hospitallers and the
+herders*.
+
+**New peoples during play.** Now and then a new people comes into being from what happened in the region, in any age
+and in any save: the **survivors** of a town within reach that fell in a fight settle together near its ruin (a herding
+folk in a tribal world, a sickhouse in a medieval one, carriers on the road after that); the merchants of three
+prospering towns of two peoples band together as a **league** (among tribes, their herders as one folk); one the council
+**sent away** gathers others with nowhere to go and leads them; and with Ideology, **faithful who broke away** after a
+war of words over their faith found a creed of their own, their old faith with one teaching dropped or added. Each takes
+the ways of the road league, the hospitaller order or the herding folk by its age, a name from its cause ("Ashford
+Folk", "Barr's Company"), an emblem colour apart from the other peoples', and a town a few days from what made it,
+never near enough to a colony to cost goodwill. They start by what happened, never as an enemy or an ally: survivors of a town the colony took are cool, so
+is one sent away with a grudge; a league is as warm as its towns' peoples. A letter tells it by the colony's means and
+looks at their town on the world map, and their card says where they came from. At most one every 40 days, one of a
+cause every 90, six standing at once. Setting: *New peoples arise* (0% switches it off). The Almanac has a page, *new
+peoples that arise*.
 
 ## Scenarios with stakes
 Seventeen scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Each starts the game with

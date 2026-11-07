@@ -160,7 +160,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>A town of the game's own def for a people on a tile, under a name or one from their naming rule; null when it can't be made.</summary>
-        private static Settlement MakeTown(Faction people, PlanetTile tile, string name, WorldObject replaces = null)
+        internal static Settlement MakeTown(Faction people, PlanetTile tile, string name, WorldObject replaces = null)
         {
             try
             {

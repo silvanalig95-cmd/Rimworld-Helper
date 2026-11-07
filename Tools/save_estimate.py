@@ -665,6 +665,11 @@ MODEL = {
     "World/Region/RiseFallLedger.cs:ruins": ("cap", (C["RegionRuins"] + C["RegionRuinsWaiting"], 0.03), 190,
                                               "ruins of towns given up or destroyed in a fight within reach: twelve a home's reach, the oldest going first, "
                                               "each gone after 300 days; fights' ruins waiting, six at most"),
+    # Peoples that arose during play (Peoples/ArisingBook.cs): one record a people (two references and a few names), one
+    # every 40 days at most at the setting's 100% (ArisingMath.GapDays, 20 at 200%), ArisingMath.MaxRecords kept, the oldest
+    # of a people no longer standing first.
+    "Peoples/ArisingBook.cs:arisen": ("cap", (const("Peoples/ArisingMath.cs", "MaxRecords", 24), 0.05), 320,
+                                      "peoples that arose during play: one record each, one every 20 days at the most (the setting at 200%), ArisingMath.MaxRecords kept"),
     "Happenings/Workers_Chains2.cs:flags": ("fixed", 4, 40, "per story chain (counted under chains)"),
     # Answers playing out
     "PlayOut/PlayOutLord.cs:guests": ("while", 8, P, "while the gathering lasts: guests from outside the colony"),

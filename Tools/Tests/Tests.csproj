@@ -221,5 +221,6 @@
     <Compile Include="../../Source/ColonyCouncil/Harm/HarmTwoMath.cs" Link="HarmTwoMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Diplomacy/SchemeMath.cs" Link="SchemeMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Peoples/PeoplesMath.cs" Link="PeoplesMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Peoples/ArisingMath.cs" Link="ArisingMath.cs" />
   </ItemGroup>
 </Project>

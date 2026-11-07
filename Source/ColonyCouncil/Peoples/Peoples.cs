@@ -146,7 +146,8 @@ namespace ColonyCouncil
         /// <summary>
         /// A people of this template made now, the game's way (FactionGenerator.CreateFactionAndAddToManager: its faith, its
         /// leader, its relations with every other people, one town), its town moved within a few days of the home when one
-        /// can stand there. For the dev tools now; release B's peoples that arise during play build on it. Null when it
+        /// can stand there, clear of the game's nearness rule (a town within four tiles of a home costs goodwill every
+        /// quadrum). For the dev tools; the peoples that arise during play are made by Peoples/Arising.cs. Null when it
         /// couldn't be made.
         /// </summary>
         public static Faction Make(FactionDef def, Map near)
@@ -157,8 +158,7 @@ namespace ColonyCouncil
             var f = Find.FactionManager.AllFactionsListForReading.FirstOrDefault(x => !before.Contains(x) && x.def == def);
             if (f == null) return null;
             var town = Find.WorldObjects.Settlements.FirstOrDefault(s => s.Faction == f);
-            if (town != null && near != null && TileFinder.TryFindPassableTileWithTraversalDistance(near.Tile, 3, 10, out var tile,
-                    t => !Find.WorldObjects.AnyWorldObjectAt(t) && TileFinder.IsValidTileForNewSettlement(t)))
+            if (town != null && near != null && Arising.TryTownTile(near.Tile, 3, 10, null, null, out var tile))
                 town.Tile = tile;
             return f;
         }

@@ -300,6 +300,8 @@ namespace ColonyCouncil
                 return p != null && !p.Dead && !p.Discarded && !p.Spawned && Find.WorldPawns.Contains(p) && now - d.tick > GenDate.TicksPerDay * 12
                        && !p.IsPrisoner && !People.Kidnapped(p) && p.GetCaravan() == null && !QuestUtility.IsReservedByQuestOrQuestBeingGenerated(p)
                        && (p.Faction == null || !p.Faction.HostileTo(Faction.OfPlayer) || Rand.Chance(0.3f))
+                       // One who leads a people of their own now (a band they gathered: Peoples/Arising.cs) doesn't ask to be let in.
+                       && p.Faction?.leader != p
                        && !(CouncilGameComponent.Instance?.nemeses.IsNemesis(p) ?? false);
             }).RandomElementWithFallback();
         }

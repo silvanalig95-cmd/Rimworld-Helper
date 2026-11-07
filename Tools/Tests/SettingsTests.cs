@@ -94,7 +94,7 @@ public static class SettingsTests
         {
             "gatheringsAWeek", "daysBetweenWishes", "maxOpenWishes", "daysBetweenDilemmas", "daysBetweenMeetings", "momentFrequency", "socialEventFrequency",
             "dreamFrequency", "arcFrequency", "daysBetweenPersonalTouches", "outsiderChatterFrequency", "encounterFrequency", "storytellerEventWeight",
-            "daysBetweenWorldEvents", "daysBetweenWorldSituations", "remoteTravellers", "raidersCamps", "theirSchemes"
+            "daysBetweenWorldEvents", "daysBetweenWorldSituations", "remoteTravellers", "raidersCamps", "theirSchemes", "newPeoples"
         };
         foreach (var r in rates) Check(SettingsCatalog.Find(r)?.page == SettingsPage.HowMuch, $"the rate {r} is on How much happens");
         Check(SettingsCatalog.On(SettingsPage.HowMuch).All(e => rates.Contains(e.id)), "How much happens holds only the rates");

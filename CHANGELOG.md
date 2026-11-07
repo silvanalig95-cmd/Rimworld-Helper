@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## New peoples arise during play
+
+*7 November 2026, version 0.138.0*
+
+- New peoples can now come into being during a game, from what happens in it, so they appear in a save you are already playing. Each one comes with a letter saying where its new town stands and how it feels about your colony.
+- Survivors of a town that fell in a fight may settle a few days from its ruin, warm to their old people and cold to you if your colony took the town.
+- Prosperous towns of two or more peoples that live at peace near each other may band together as a league, with a waystation between them.
+- Someone your council banished may gather a band of their own and lead it, and how the band feels about the colony follows how the banishment went.
+- With Ideology, the faithful of a people whose war of words ran its course may break away under a creed of their own, their old faith with one teaching dropped or added.
+- They take the ways of the road league, the hospitallers or the herding folk by their age, each with its own name, colour and faith. A new setting, New peoples arise, sets how often, at most one or two a year, or switches it off. The Almanac has a page about them.
+
 ## Starting research that fits the story
 
 *7 November 2026, version 0.137.0*

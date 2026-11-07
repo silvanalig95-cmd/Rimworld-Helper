@@ -6,6 +6,77 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 0.138.0, new peoples, release B: peoples that arise during play (7 November 2026). The player's words: "they should also be able to arise during play so that i will see new factions in
+  an existing run", and "i'd be interested in some non-hostile faction variety" (an explicit request: no proposal
+  round). `docs/design/peoples.md` "What was built (release B)" (the four causes in a table, the pace, the making, the
+  letter, what is saved, the softness); DESIGN.md "Rimfolk's peoples", its last bullet; README a paragraph ("New
+  peoples during play.", after "Three new peoples."); an Almanac page of its own (`Almanac_NewPeoples.xml`, *new
+  peoples that arise*, beside the peoples' page, whose tip now points to it; its keywords unchanged). Tests:
+  `ArisingTests` ("new peoples: "; `Peoples/ArisingMath.cs` linked); `PeoplesTests`' seam check now leaves
+  `Arising*.cs` to them; `SettingsTests` has the new rate. No Sched slot (the region's day), no new Harmony patch (the
+  hand-over's leader prefix stands the game's leader down while one is made), one saved collection
+  (`ArisingBook.arisen`, modelled).
+  - The causes (`Peoples/Arising.cs`): survivors of a town within reach that fell in a fight (RiseFall's fight ruin, 3 to
+    60 days after, two in five) settle 2 to 6 tiles from its ruin; the merchants of three or four towns of two peoples
+    or more at 62 or more within 18 tiles of the most prosperous band together as a league (a fifth of the looks every
+    five days; needs the towns' fortunes); one the council sent away, alive in the world and of no people, 15 to 300
+    days after (half of them), gathers a band 7 to 14 tiles from the seat and leads it; with Ideology, after a war of
+    words (`Council_WS_HolyWar`) ended (within 30 days, half of them), faithful of the people whose preachers began it
+    break away near their town with a creed of their own (the game's reform: one meme dropped or added). The rolls are
+    a hash of the cause's id (`ArisingMath.Fated`), so a cause's fate is the same however often it is looked at.
+  - Each takes one of release A's templates by its cause and age (`ArisingMath.Template`; tribal, medieval, industrial,
+    spacer): survivors herders, order, league, league; a league herders, league, league, league; a band herders,
+    herders, league, league; faithful herders, order, order, order. A name from its cause ("Ashford Folk", "Brightwater
+    League", "Barr's Company"; the faithful their template's rule), the palette's colour farthest from every people's
+    (`Faction.color`), its faith (survivors their old people's, a band its leader's, a league another league's), goodwill
+    by what happened, never past -75 or 75 (survivors of a town the colony took -40, a band with a grudge -30, a league
+    by its towns' peoples; 40 with the survivors' old people, 50 with a league's, -30 between the faithful and those they
+    left), the region's faces for its town, the founding pace stamped.
+  - On the map and in letters: their town a few days from the cause (`Arising.TryTownTile`: clear of the game's nearness
+    rule round every home, on no land but its own peoples' with Faction Territories); a letter that is never held back
+    (`Importance.Important`), by the colony's means, with what they came from, how they live (which is what their town
+    and pawns show), where their town stands with the founding's rite, and how they feel with the grievance said; it
+    looks at their town, the ruin, the league's towns or the old people's town. The history's `world:arose` (a
+    milestone), a line on their card and their towns' cards ("Arose 40 days ago: ...").
+  - The pace (`ArisingMath.PaceAllows`): none before day 15, 40 days between any two, 90 between two of a cause, six
+    standing; the setting *New peoples arise* (`newPeoples`, How much happens, 0 to 200%, light touch 50%, story-rich
+    125%) divides the waits, 0 switches it off. One a day at most, from the region's day.
+  - Saved: `ArisingBook` (a new GameComponent: an existing save gets an empty one), one record a people (the people, the
+    kind, the cause's key, when, what it came from, its parent people), 24 kept.
+  - Fixed on the way: release A's dev action "a people of a template now, near this home" could put its town three or
+    four tiles from the home, inside the game's nearness rule (goodwill lost every quadrum); `Peoples.Make` now places it
+    with `Arising.TryTownTile`. Not a bug in play, but in a save tried with it.
+  - Not used: no new FactionDef (variety from the templates' names, colours, faiths and causes); the Sophian style and
+    VRE xenotypes, as in release A, unchecked here.
+  - Try in the game (none of it could be run here):
+    1. Dev mode, Debug actions, Rimfolk: "Peoples: what could arise now" in the existing save (the log: the pace, each
+       cause found or why not, the template it would take). Then "Peoples: a new people arises now (testing)..." for
+       each of the four: the letter (its means, its words, its look-target), the new people on the Factions tab with its
+       emblem in a new colour and its leader, their town on the world map a few days off, the town's card and the
+       people's card ("Arose lately: ..."), the History tab's line. A cause the save lacks uses a stand-in (the letter
+       then names it as if it had happened).
+    2. The survivors: destroy a town in reach (the game's dev tools, or an attack), wait for its ruin (RiseFall puts it
+       down once the game's destroyed settlement goes), then the dev action; the new town near the ruin, "New ..." when
+       free; goodwill -40 when the colony took it.
+    3. The band: have the council banish someone (or use the stand-in), then the dev action: the one sent away is the
+       new people's leader on the Factions tab; their goodwill by the grudge and who stood by them; a raid of another
+       people never brings them along after, and they don't come to the gate asking to be let in (Council_Evt_Prodigal).
+    4. The faithful (Ideology): the new creed on the Ideoligions page, its memes the old faith's with one dropped or
+       added, and the letter's line saying which.
+    5. The league: the dev action makes one from the most prosperous towns in reach whatever their fortune (the
+       league's waystation between them, 50 goodwill with their peoples); in play it needs three at 62 or more (each
+       town's fortune is on its panel on the region map; Rimfolk's world events move them); "what could arise now" lists
+       the towns it would take with their fortunes.
+    6. Visit or attack a new people's town: their template's plan (waystation, sickhouse or camp); their caravans,
+       camps and asks come as release A's do.
+    7. Settings, How much happens: *New peoples arise* at 0% (none), 200% (half the waits).
+  - Riskiest: the splinter's reformed creed (a faith generated for the template with another people's memes forced: its
+    precepts and roles weren't seen in the game); the band's leader as a former colonist of no people made a leader
+    (`SetFaction` on a world pawn, `Faction.leader` set by hand); the town tile search in a world full of Faction
+    Territories' land (a cause near no free land gives no people until one is found); the hand-over leader prefix
+    standing the game's leader down for Rimfolk's templates while one is made (a leader is then made by
+    `TryGenerateNewLeader`); a league forming too often or never in the player's region (the thresholds weren't tried
+    against a real run's fortunes).
 - 0.137.0, the scenarios' starting research (7 November 2026, the player's request: "review the different research levels and
   what kind of technologies are researched for each scenario, ... that it's a thematic fit. And if it has like a bigger
   impact, also mention it in the description"). Defs and text only; no code. Checked against 1.6's research defs

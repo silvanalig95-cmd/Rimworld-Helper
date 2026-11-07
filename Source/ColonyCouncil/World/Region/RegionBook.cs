@@ -200,6 +200,8 @@ namespace ColonyCouncil
             Safe("raiders' camps", () => RaidersCamps.Daily(this, now));
             // Towns given up, ruins, ruins settled again, Rimfolk's own new towns (World/Region/RiseFall.cs).
             if (RiseFall.On) Safe("rise and fall", () => RiseFall.Daily(this, now));
+            // New peoples that arise from what happened in the region (Peoples/Arising.cs), one a day at most.
+            if (Arising.On) Safe("new peoples", () => Arising.Daily(now));
             Safe("trading posts", () => TradingPosts.Daily(this, now));
             Safe("follow-ups", () => FollowUps.Daily(this, now));
             Safe("hamlets", () => Hamlets.Daily(this, now));

@@ -263,6 +263,8 @@ namespace ColonyCouncil
             // The region (World/Region/): how much a remote home draws travellers, and how likely raiders' camps are.
             Slider("remoteTravellers", "CC_Settings_RemoteTravellers", "CC_SetNote_RemoteTravellers", 0f, 2f, 0.05f, "%");
             Slider("raidersCamps", "CC_Settings_RaidersCamps", "CC_SetNote_RaidersCamps", 0f, 2f, 0.05f, "%");
+            // Rimfolk's peoples (Peoples/Arising.cs): how often a new people arises from what happened in the region.
+            Slider("newPeoples", "CC_Settings_NewPeoples", "CC_SetNote_NewPeoples", 0f, 2f, 0.05f, "%");
             // The bonds with other peoples (Diplomacy/Schemes.cs): how often those with a grudge scheme against the colony.
             Slider("theirSchemes", "CC_Settings_TheirSchemes", "CC_SetNote_TheirSchemes", 0f, 2f, 0.05f, "%", "answersPlayOut");
 
@@ -739,7 +741,7 @@ namespace ColonyCouncil
                 V("momentFrequency", "0.75"), V("socialEventFrequency", "0.5"), V("dreamFrequency", "0.5"), V("arcFrequency", "Rare"),
                 V("outsiderChatterFrequency", "0.5"), V("encounterFrequency", "0.5"), V("storytellerEventWeight", "0.5"),
                 V("daysBetweenWorldEvents", "8"), V("daysBetweenWorldSituations", "75"), V("remoteTravellers", "0.5"), V("raidersCamps", "0.5"),
-                V("theirSchemes", "0.5"),
+                V("theirSchemes", "0.5"), V("newPeoples", "0.5"),
                 // How hard.
                 V("stakes", "Gentle"), V("wishDurationFactor", "1.25"), V("ambitionDeadlineFactor", "1.25"), V("allowQuitting", "false"),
                 V("lifePressure", "Gentle"), V("frictions", "false"), V("strainSpeed", "0.75"), V("heartEpisodes", "false"), V("heartGoodSide", "true"),
@@ -766,7 +768,7 @@ namespace ColonyCouncil
                 V("momentFrequency", "1.5"), V("socialEventFrequency", "1.5"), V("dreamFrequency", "1.5"), V("arcFrequency", "Frequent"),
                 V("daysBetweenPersonalTouches", "4"), V("outsiderChatterFrequency", "1.5"), V("encounterFrequency", "1.5"), V("storytellerEventWeight", "1.5"),
                 V("daysBetweenWorldEvents", "3"), V("daysBetweenWorldSituations", "30"), V("remoteTravellers", "1.5"), V("raidersCamps", "1.25"),
-                V("theirSchemes", "1.25"),
+                V("theirSchemes", "1.25"), V("newPeoples", "1.25"),
                 // The heart's good side: brighter dreams and now and then an inspiration.
                 V("heartGoodSide", "true"),
                 // How you're told.

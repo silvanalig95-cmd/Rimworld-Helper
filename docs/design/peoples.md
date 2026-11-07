@@ -5,9 +5,9 @@ player's words, 7 November 2026: "we can start with a few factions and see how i
 those. reuse and create at your own discretion. they should also be able to arise during play so that i will see new
 factions in an existing run", and "use all dlc and mods to your availability".
 
-Two releases. **Release A** (this one, 7 November 2026): three peoples of peaceful callings the world lacked, made when
-a new world is made. **Release B** (next): peoples that arise during play, so an existing save sees new ones, built on
-release A's templates and code.
+Two releases. **Release A** (7 November 2026): three peoples of peaceful callings the world lacked, made when a new world
+is made. **Release B** (7 November 2026, below): peoples that arise during play, so an existing save sees new ones,
+built on release A's templates and code.
 
 ## What was built (release A)
 
@@ -144,6 +144,88 @@ What release B can reuse:
 Templates for release B to draw from (ideas, not built): a salt or river league (traders, the league's parent, a
 river-town plan), a mountain hospice (healers, a stone hospice plan), a reindeer folk of the cold (herders, yaks and
 the cold animals), a pilgrim order (healers' parent, pilgrim camps), a caravan town of former raiders turned traders.
+
+## What was built (release B: peoples that arise during play)
+
+New peoples come into being during a game from what happened in it, so the player sees new peoples appear in an
+existing run (the player's words: "they should also be able to arise during play so that i will see new factions in an
+existing run"; later "i'd be interested in some non-hostile faction variety"). No new FactionDef: each arising people is
+one of release A's three templates, by its cause and its age, with a name, an emblem colour and a town of its own. Code
+in `Source/ColonyCouncil/Peoples/`: `ArisingMath.cs` (pure, tested: `Tools/Tests/ArisingTests.cs`), `Arising.cs` (the
+causes, the pace, the making), `ArisingWords.cs` (the letter, the history, the cards), `ArisingBook.cs` (the records,
+saved), `ArisingDebug.cs` (dev actions). The Almanac has a page of its own, *new peoples that arise*.
+
+| | Survivors | A league | A band of the banished | Faithful who broke away |
+|---|---|---|---|---|
+| Kind | `refugees` | `league` | `exiles` | `splinter` (Ideology) |
+| Cause | a town within reach fell in a fight (RiseFall's fight ruin, `LedgerRuin.Fight`) | three or four towns of two peoples or more at 62 or more, within 18 tiles of the most prosperous, none at war with another or with the colony | one the council sent away (`BanishRecord`), alive in the world and of no people, not come home, never ridden with raiders | a war of words over a faith ended (`Council_WS_HolyWar` in the world events' history): the people whose preachers began it |
+| When | 3 to 60 days after the fall, two fallen towns in five | looked for every five days, on a fifth of the looks | 15 to 300 days after, half of those sent away, on a fifth of the looks | within 30 days of its end, half of them |
+| Age from | the fallen town's people | most of its towns' peoples | the colony | the people they left |
+| Template (tribal, medieval, industrial, spacer) | herders, order, league, league | herders, league, league, league | herders, herders, league, league | herders, order, order, order |
+| How they live (the letter) | kept to the open grass with what beasts they saved; a sickhouse begun for their own wounded; carrying goods between the towns from a waystation | the merchants keep the roads between their towns open; among tribes, herders join their herds and grazing | a few beasts on the grazing, taking in whoever else is turned out; hiring out as carriers and guards | vows and a sickhouse, as they say the faith first asked; their herds on the open grass apart from the old camps |
+| Goodwill with the colony | -40 if the colony's own people took the town; else half the colony's goodwill with their old people, -20 to 40, never warm toward a colony their old people were at war with | 10 and half its towns' peoples' average, -10 to 50 | -30 with a grudge; else 10, 8 more for each of the colony who stood by them, 8 less for each who was glad to see them go, -20 to 40 | 25 if the colony kept a fair table in the debate, else 10 |
+| With other peoples | 40 with their old people | 50 with each of its towns' peoples | none set | -30 with the people they left |
+| Faith (Ideology) | their old people's | another league's of the same ways, else its own | their leader's | their old faith reformed the game's way (`IdeoUtility.RandomizeNormalMemesForReforming`: one meme dropped or one added), of the same kind of foundation, a name of its own |
+| Name | "Ashford Folk", "Ashford Hospitallers", "Ashford Carriers" (or their second forms) | "Brightwater League", "League of Brightwater"; among tribes "Brightwater Drove" | "Barr's Folk", "Barr's Company" | their template's own rule |
+| Town | 2 to 6 tiles from the ruin, "New Ashford" when the name is free | 3 to 8 tiles from the most prosperous, likelier between them all | 7 to 14 tiles from the seat | 3 to 8 tiles from their old people's town |
+| Leader | made once their faith is set | made once their faith is set | the one sent away | made once their faith is set |
+
+**The pace** (`ArisingMath.PaceAllows`): none before the world's 15th day; 40 days at least between two new peoples and
+90 between two of the same cause, at the setting's 100% (the setting *New peoples arise*, `newPeoples`, 0 to 200%: the
+waits divided by it, 0 none); six standing at most. A year is 60 days, so one or two a year at most, and fewer in
+practice since most causes give none. Run by the region's day (`RegionBook.Daily`), one a day at most, the causes in
+turn so none waits behind another. No Sched slot.
+
+**Making one** (`Arising.Arise`): the town's tile first (`Arising.TryTownTile`: a few tiles' walk from the cause, valid
+for a town, nothing on it or next to a town being built, clear of the game's nearness rule round every home
+(`RiseFallMath.ClearOfHomes`), on no people's land but the cause's own peoples' (Faction Territories), by the biome's
+settlement weight; a second, wider look; none: nothing happens and the cause may give one later). Then the people
+(`FactionGenerator.NewGeneratedFaction` with the template's fixed faith parms, hidden while made so the game places no
+town, no leader until the faith is set: `Arising.Making` in `Patch_HandOverLeader`), its name (`CC_Arise_Name_*`, kept
+when 24 characters or fewer and no other people's), its colour (`ArisingMath.Palette`, the one farthest from every
+people's in the world, as `Faction.color`, which the game saves), its faith, its leader, its goodwill (both ways, by the
+game's thresholds, never for a pair that are enemies for good), then the game's peoples. Then its town
+(`NewTowns.MakeTown`), its record (`ArisingBook`), the region's faces (`RegionFaces.Founded` with its leader as founder:
+founding families, a notable at its head; the founding counts on the region's pace, `RiseFall.NoteFounded`), its
+letter and the history's `world:arose`.
+
+**The letter** (`ArisingWords.Tell`, `Importance.Important`, a positive letter unless they start cool): opens with the
+colony's means (`Ages.Form(AgeFeature.Founding)`: word from a traveler, a rider's news, the radio, a comms relay's
+report), says what they came from and, by their calling, how they live (which is what their town's plan and their
+pawns show); then where their town stands with the founding's rite by their age, and how they feel (cool, plain or warm
+by their goodwill, the grievance said). It looks at their town on the world map, with the ruin, the league's towns or
+the old people's town. Their card (`CardKind.People`) and their towns' cards: "Arose 40 days ago: the survivors of
+Ashford, a town of the Lenlia that fell."
+
+**Saved**: `ArisingBook.arisen`, one `ArisenPeople` a people (the people, the kind, the cause's key, when, what it came
+from, the parent people and their name), `ArisingMath.MaxRecords` (24) kept, the oldest of a people no longer standing
+first. A cause's key (the ruin's town, the banished one's id, the war of words, the league's towns) gives one people at
+most, and a town is in one league at most. Modelled in `Tools/save_estimate.py`. The rolls are `ArisingMath.Fated` (a
+hash of the cause's id), so nothing else needs keeping.
+
+**Softness**
+
+| Missing | What happens |
+|---|---|
+| Ideology | No faithful break away. The others keep the game's faith for a people without it. |
+| Faction Territories | Any land the game takes a town on. With it, no other people's land. |
+| Towns rise and fall (setting) | No new fight ruins are kept, so no new survivors (ruins kept already still count). |
+| Towns' fortunes (setting) | No league. |
+| Banishment by the council (setting) | No one newly sent away, so no new band (those sent away already still count). |
+| World events (setting) | No war of words, so no faithful break away. |
+| Rimfolk's peoples' defs | None arises (no template). |
+| A save made before release A | Arising is how it first meets Rimfolk's peoples. |
+
+**Dev actions** (Debug actions, Rimfolk): "Peoples: a new people arises now (testing)..." (each cause, whatever the
+pace and the rolls, from the cause the world has or a stand-in: a town in reach as if it fell, a stranger as if sent
+away, a people with a faith as if it split), "Peoples: what could arise now" (the pace, each cause found or not, the
+template it would take, the peoples that arose, in the log).
+
+The one sent away, once at the head of their band, rides with no one else's raid (`BanishTracker.JoinArrivingRaid`)
+and doesn't come to the gate asking to be let in (`HappeningWorker_Prodigal`): the band would lose its head.
+
+Fixed on the way: the dev action "a people of a template now, near this home" could put its town three or four tiles
+from the home, where the game takes goodwill every quadrum (`Peoples.Make` now uses `Arising.TryTownTile`).
 
 ## What could come next
 

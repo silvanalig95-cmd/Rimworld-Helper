@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.138.0</version>
+        <date>7 November 2026</date>
+        <title>New peoples arise during play</title>
+        <points>
+          <li>New peoples can now come into being during a game, from what happens in it, so they appear in a save you are already playing. Each one comes with a letter saying where its new town stands and how it feels about your colony.</li>
+          <li>Survivors of a town that fell in a fight may settle a few days from its ruin, warm to their old people and cold to you if your colony took the town.</li>
+          <li>Prosperous towns of two or more peoples that live at peace near each other may band together as a league, with a waystation between them.</li>
+          <li>Someone your council banished may gather a band of their own and lead it, and how the band feels about the colony follows how the banishment went.</li>
+          <li>With Ideology, the faithful of a people whose war of words ran its course may break away under a creed of their own, their old faith with one teaching dropped or added.</li>
+          <li>They take the ways of the road league, the hospitallers or the herding folk by their age, each with its own name, colour and faith. A new setting, New peoples arise, sets how often, at most one or two a year, or switches it off. The Almanac has a page about them.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.137.0</version>
         <date>7 November 2026</date>
         <title>Starting research that fits the story</title>

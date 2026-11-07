@@ -816,7 +816,8 @@ namespace ColonyCouncil
                 var x = r.pawn;
                 if (x.Dead || x.Discarded || x.Spawned || !Find.WorldPawns.Contains(x) || x.IsPrisoner || x.GetCaravan() != null || People.Kidnapped(x)
                     || QuestUtility.IsReservedByQuestOrQuestBeingGenerated(x) || x.health.summaryHealth.SummaryHealthPercent < 0.6f) continue;
-                if (x.Faction != null && !x.Faction.HostileTo(Faction.OfPlayer)) continue;
+                // One who leads a people of their own now (a band they gathered: Peoples/Arising.cs) rides with no one else's raid.
+                if (x.Faction != null && (x.Faction.leader == x || !x.Faction.HostileTo(Faction.OfPlayer))) continue;
                 if (!Rand.Chance(BanishMath.RaidChance)) continue;
                 if (!CellFinder.TryFindRandomCellNear(anchor.Position, map, 6, c => c.Standable(map) && !c.Fogged(map) && c.GetFirstPawn(map) == null, out var cell, 30)) return;
                 r.rode = true;
