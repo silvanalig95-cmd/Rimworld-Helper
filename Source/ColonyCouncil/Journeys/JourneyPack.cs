@@ -285,7 +285,9 @@ namespace ColonyCouncil
                     foods.Add(new JourneyMath.FoodOption
                     {
                         nutrition = Nutrition(d), mass = d.GetStatValueAbstract(StatDefOf.Mass), rotDays = RotDays(d), preferability = (int)d.ingestible.preferability,
-                        travel = d == ThingDefOf.MealSurvivalPack ? 2 : d == ThingDefOf.Pemmican ? 1 : 0, stock = g.Sum(t => t.stackCount)
+                        // Food made for the road first (Things/ThingRolesMath.cs): what never rots (a survival meal, a mod's
+                        // canned soup), then what keeps (pemmican, a mod's cheese).
+                        travel = ThingRolesMath.TravelRank(ThingRoles.Facts(d)), stock = g.Sum(t => t.stackCount)
                     });
                 }
                 foreach (var (i, units) in JourneyMath.PackFood(foods, days, need)) lines.Add(new JourneyLine(defs[i], units, "food"));

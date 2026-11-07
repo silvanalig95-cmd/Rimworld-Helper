@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Your mods' things in Rimfolk's gifts, feasts and finds
+
+*7 November 2026, version 0.162.0*
+
+- Where Rimfolk picks a thing for you or from you, it now chooses from everything your game and your mods have, by what the thing is for: a drink for a toast, a soft drink for the dry, a feast's dish, food for the road, a crop, medicine, something precious, a carving, a gift or a blade.
+- Each people gives what fits its age and ways: a tribe's jade or pemmican, a medieval town's gold or wine, an industrial people's packaged food, a spacer's glitterworld medicine, and your brewing, cooking and art mods' own among them.
+- Wedding and match gifts, the town's seasonal gift, the prospectors' finds, a tribe's ransom, a favour's goods, a help letter's food and medicine, an envoy's parting gift, a guest's provisions and what an outsider brings next time all draw from this.
+- Carvings and keepsakes, and the blade a fallen star becomes, are ones your colony knows how to make; a wedding or funeral mission can ask for drinks, and your own wine or mead counts.
+- Never anything special, from a quest, or made of a person (corpse rum and cannibal dishes included), and nothing most of your colony's beliefs would mind.
+
 ## Mishaps of work, animals and festivals, in the shared budget
 
 *7 November 2026, version 0.161.0*

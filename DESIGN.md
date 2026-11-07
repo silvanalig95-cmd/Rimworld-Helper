@@ -3417,6 +3417,66 @@ can't build. Every suggestion goes through one gate (`Avail`):
 - **Ambitions** are offered only if every goal is possible right now. "A ring of iron"
   (turrets) never comes up for a medieval colony, but "teeth in the mud" (traps) does.
 
+### Things by what they are for (the player's request, 7 November 2026)
+
+The player: "apply this def database to all that we created so far, if there is benefit". Where Rimfolk hands over,
+sends or makes a thing that stands for a kind (a gift, food for the road, a carving), it asks one picker
+(`Things/ThingRoles.cs`, its rules pure in `ThingRolesMath.cs`) instead of naming a base-game item. The picker judges
+every item of the game and the player's mods by what the def says it is, never by a mod's name, so a mod's wine,
+dish, statue or blade comes in on its own, and the base game's own item stays the fallback.
+
+- **The roles.** A *drink* (a social drink with alcohol: its drug's chemical is alcohol, or it is liquor by its food
+  type with no other chemical in it; worth 100 or less), a *soft drink* (one a teetotaler may have: tea, coffee), a
+  *feast's dish* (a fine or lavish meal a recipe cooks, fresh), *provisions* (a simple meal or better that keeps 20
+  days or more), *produce* (a sown crop, raw, not kept with the meals), *medicine*, a *precious* material (metal or
+  stone that gives 2 or more beauty, nothing else besides: silver, gold, jade, Odyssey's obsidian), *small art* (a work
+  of art made at a bench, a day's work or less, of wood, stone or metal; never a terror sculpture or one that holds
+  the dead), a *carving* (small art that may be of wood), a *gift* (a precious material, or a drink worth 15 or more)
+  and a *blade* (a melee weapon of metal that cuts or stabs, carried by the game's own weapon tags, never bonded).
+- **Never anything the colony would find wrong.** Only ordinary goods: traded, nothing of a person (human meat or
+  leather, a corpse), nothing to use rather than have (a comp that is used, targeted, bonded or hatches), nothing with
+  a trade tag the game marks exotic (but for medicine: glitterworld medicine is the spacer age's) or that only a mod
+  uses (A RimWorld of Magic's arcane metal, Deserters' contraband). What comes to the colony leaves out what most of
+  its grown people at home would mind (their faith's drug rules, a teetotaler's, their diet), `Beliefs.AgainstThing`.
+- **Every age.** A thing's age is its own tech level or the research its easiest recipe or crop needs, whichever is
+  later; one with neither known goes with every age (Medieval 2's wine), but food that keeps only from industry on (a
+  mod factory's canned soup). A giver's things are of its age (its means), the colony's own of the colony's; the age's
+  own things come twice as often as older ones (a spacer colony's cocktails, a tribe's beer and mead), medicine three
+  times. A gift goes by the giver's ways: a tribe's stone (jade), the middle ages' and the Empire's finest metal (gold,
+  by its beauty), silver for the industrial and spacer ages, a fine drink now and then (more in the middle ages).
+- **Only what the colony has unlocked.** Something the colony's own people make (a carving for a friend, a blade of
+  star iron) is one it knows how to make: a recipe whose research is done (`ThingRoles.ColonyCanMake`).
+- **Words match the map.** Where a letter or line names the thing, it names what was picked (its label), and a pick
+  an answer's words show and its effect then makes is seeded by the answer (its people, its home) so both are the
+  same. Where the words name the thing outright ("a skin of honey-beer", "a small sculpture", "a carved bird"), the
+  thing stays.
+- **The balance.** Amounts are by worth: a match's gift, the camp prospectors' find, a ransom's goods, a help letter's
+  food come to as much silver as before whatever is picked (`ThingRolesMath.CountFor`).
+- **Where.** A match's gift and the town's seasonal gift (`Matches.GiftDef`); the camp prospectors' finds
+  (`CampLife.Prospected`, `GiveGoods("found")`); a tribe's ransom goods (`Ransoms.TribeGoods`, saved as a def name as
+  before); a favour's medicine and food (`FavourCalls.Goods`, seeded by the tie); the envoy's parting gift (medicine
+  or a gift); a help letter's food and medicine (`NeighbourLetters.HelpThings`); old friends' relief
+  (`Workers_Remembered`); a guest's own provisions, one they will eat (`Hosting.Provision`); the wedding party's crop
+  (`DilemmaEffect_GuestsBringFood`, `@Produce`); the animal doctor's medicine; the silent guest's parting carving, a
+  stranger's carving and a regular's keepsake; a star-iron blade (one the words' "a" goes with); what an outsider may
+  be asked to bring (their medicine, provisions and drink, seeded by their people); a funeral's or wedding's drinks
+  (the mission's `drinks` goal: any drink in the stores, asked of a colony that brews or has ten); the journey
+  planner's road food first (`ThingRolesMath.TravelRank`: what never rots, then what keeps); the founding kit's
+  medicine (whichever the stores hold most of); an answer's made thing (`DilemmaEffect_Made`, `@Carving` among its
+  candidates); a camp's goods put out (`@Produce` for the settlers, `@Medicine` for the healers' stall).
+- **What stays as it was, and why.** Silver as money (payments, prices, ventures, rewards); the colony's own stores
+  given or used (raw food, meals, medicine, wood: already any kind, PlayCarry); materials (wood, steel, components);
+  animal feed (the journey's kibble and hay, by what each animal eats); the scenarios' starting kits (the game's own
+  part names its item on the scenario page before anything is picked); the brewer's cart, the stash of beer and the
+  smugglers' beer (their words say beer); the commission's and the likeness's small sculpture, the camp's carved bird
+  (their words); a camp's own simple meals.
+- **The catalogue.** `Tools/mod_pool.py` writes what the roles read into `docs/player-mods/items.tsv` (category, stack,
+  tradeability, preferability, food type, drug kind and chemical, teetotaler, rot days, comps, stuff kinds and beauty,
+  medical potency, what it is made of, size, minified, the age of its making, work, terror) and `weapons.tsv`
+  (tradeability, comps, the age of its making, its tools' capacities). `ThingRolesTests` runs the same rules on the player's active
+  rows: each role has several things in every age, the player's mods among them. Dev mode: "Things by role" (each
+  role's things by age, and five picks of each for the colony and its neighbours).
+
 ---
 
 ## Playing nicely with any modlist (rules for every integration)

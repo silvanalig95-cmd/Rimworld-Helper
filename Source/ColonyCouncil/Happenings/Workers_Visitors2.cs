@@ -666,25 +666,26 @@ namespace ColonyCouncil
     /// <summary>
     /// A keepsake from a regular for their friend (A): a small wooden carving of good make, signed by the regular, carried
     /// in by the one of them at the gate and set down there (Couriers: handed over as they arrive). With
-    /// <see cref="ofDead"/>, it was the dead regular's, brought by the one who carries the word.
+    /// <see cref="ofDead"/>, it was the dead regular's, brought by the one who carries the word. A carving of their
+    /// people's age (Things/ThingRoles.cs: a small sculpture, or a mod's small statue or pottery).
     /// </summary>
     public class DilemmaEffect_Keepsake : DilemmaEffect
     {
         public bool ofDead;
         public QualityCategory quality = QualityCategory.Good;
 
-        private static ThingDef Carving()
+        private static ThingDef Carving(DilemmaContext ctx)
         {
-            var def = DefDatabase<ThingDef>.GetNamedSilentFail("SculptureSmall");
             var wood = ThingDefOf.WoodLog;
-            return def != null && def.Minifiable && wood?.stuffProps != null && wood.stuffProps.CanMake(def) ? def : null;
+            if (wood?.stuffProps == null) return null;
+            return ThingRoles.From(ThingRole.Carving, Couriers.PeopleOf(ctx), ctx?.map, 0, d => d.Minifiable && wood.stuffProps.CanMake(d));
         }
 
         public override void Apply(DilemmaContext ctx)
         {
             var map = ctx?.map;
             var x = ctx?.stranger;
-            var def = Carving();
+            var def = Carving(ctx);
             if (map == null || x == null || !x.Spawned || def == null) return;
             try
             {
@@ -703,7 +704,7 @@ namespace ColonyCouncil
 
         public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
         {
-            if (ctx?.map == null || ctx.stranger == null || Carving() == null) return;
+            if (ctx?.map == null || ctx.stranger == null || Carving(ctx) == null) return;
             sheet.Add(ImpactKind.Goods, 1, "CC_Impact_V2Keepsake".Translate(ctx.a?.LabelShort ?? "?").Resolve(), "CC_Impact_V2KeepsakeBrief".Translate().Resolve());
         }
     }

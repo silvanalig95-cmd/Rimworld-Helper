@@ -225,7 +225,10 @@ namespace ColonyCouncil
             return true;
         }
 
-        /// <summary>What old friends send in a hard time: food or medicine of the colony's era, enough to matter.</summary>
+        /// <summary>
+        /// What old friends send in a hard time: food that keeps or medicine of the colony's era (Things/ThingRoles.cs: a
+        /// mod's as well as the game's), enough to matter.
+        /// </summary>
         private static bool Relief(HappeningContext ctx, Map map)
         {
             string why = HardTime(map);
@@ -234,12 +237,15 @@ namespace ColonyCouncil
             ThingDef def;
             if (medicine)
             {
-                def = DefDatabase<ThingDef>.GetNamedSilentFail(low ? "MedicineHerbal" : "MedicineIndustrial") ?? DefDatabase<ThingDef>.GetNamedSilentFail("MedicineHerbal");
-                ctx.count = Rand.RangeInclusive(6, 10) + map.mapPawns.FreeColonistsSpawnedCount / 3;
+                var age = low ? WorldAge.Medieval : Ages.Of(map);
+                def = ThingRoles.Pick(ThingRole.Medicine, age, false, map) ?? ThingDefOf.MedicineHerbal;
+                // As much as the age's own medicine always came to (fewer of a dearer kind).
+                int n = Rand.RangeInclusive(6, 10) + map.mapPawns.FreeColonistsSpawnedCount / 3;
+                ctx.count = ThingRoles.CountFor(n * (ThingRoles.Fallback(ThingRole.Medicine, age) ?? def).BaseMarketValue, def, 2);
             }
             else
             {
-                def = (low ? null : DefDatabase<ThingDef>.GetNamedSilentFail("MealSurvivalPack")) ?? DefDatabase<ThingDef>.GetNamedSilentFail("Pemmican");
+                def = ThingRoles.Pick(ThingRole.Provisions, low ? WorldAge.Medieval : Ages.Of(map), false, map);
                 if (def == null) return false;
                 // About three days' food for everyone at home.
                 float each = Mathf.Max(0.01f, def.GetStatValueAbstract(StatDefOf.Nutrition));

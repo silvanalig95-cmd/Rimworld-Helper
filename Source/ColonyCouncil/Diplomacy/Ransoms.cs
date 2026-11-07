@@ -196,16 +196,19 @@ namespace ColonyCouncil
             {
                 bool notable = Notable(captive, f, out bool leader, out _);
                 o.price = RansomMath.Price(captive.MarketValue, leader, notable, Rand.Value);
-                if (RansomMath.InGoods((int)f.def.techLevel)) o.goods = TribeGoods(Rand.Value)?.defName;
+                if (RansomMath.InGoods((int)f.def.techLevel)) o.goods = TribeGoods(f, Rand.Value)?.defName;
             }
             h.offers.Add(o);
             Diplomacy.Dirty();
             return o;
         }
 
-        /// <summary>What a tribe pays in: pemmican or healing herbs.</summary>
-        private static ThingDef TribeGoods(float roll) =>
-            roll < 0.5f ? DefDatabase<ThingDef>.GetNamedSilentFail("Pemmican") ?? ThingDefOf.MedicineHerbal : ThingDefOf.MedicineHerbal;
+        /// <summary>
+        /// What a tribe pays in: food that keeps or medicine, of its own age (Things/ThingRoles.cs: pemmican or a mod's that
+        /// keeps as well, healing herbs or a mod's medicine), counted by the price's worth.
+        /// </summary>
+        private static ThingDef TribeGoods(Faction f, float roll) =>
+            (roll < 0.5f ? ThingRoles.From(ThingRole.Provisions, f) : ThingRoles.From(ThingRole.Medicine, f)) ?? ThingDefOf.MedicineHerbal;
 
         /// <summary>An offer one step on: its captive gone, their messenger setting out, waiting at the gate, the price paid, ours walking in.</summary>
         private static void Step(DiplomacyHome h, RansomOffer o, int now)

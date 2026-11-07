@@ -642,9 +642,10 @@ everyone gets them anyway, as before. This week lists what's coming, the dilemma
 who took part write about it. A setting (Events & world) turns it off.
 
 What an answer says now exists is made real where that's safe, and made when the words say: the apology carving, a
-broken keepsake's replacement and the gift that settles an old debt are signed sculptures, worked first at the colony's
-bench for an hour or two, that the one who made them then carries over by hand and sets down at the other's feet (the
-moods wait for it), an old crafter hands the student their old knife, a scribe's bound
+broken keepsake's replacement and the gift that settles an old debt are signed sculptures (the last two any small
+work of art of wood the colony knows how to make, a mod's statue or pottery as well as the game's), worked first at
+the colony's bench for an hour or two, that the one who made them then carries over by hand and sets down at the
+other's feet (the moods wait for it), an old crafter hands the student their old knife, a scribe's bound
 copy is a real book with the scribe's name on it, a coffin made ready is a wooden sarcophagus in the corner of its
 owner's room, assigned as their grave, the hat bought on the side is a real hat, a guest who cut wood goes and fells
 real trees with the game's own cutting and leaves the logs by the stumps, each child walks out and plants their own
@@ -2309,6 +2310,14 @@ The council only suggests what your colony can actually do right now:
   you can change every material.
 - **What's on the map:** animals to tame, a body to bury, a prosthetic you can make, winter that actually comes.
 - **Ambitions:** only ones whose every goal is achievable for your colony are offered.
+- **Things by what they are for:** where Rimfolk hands over or makes a thing that stands for a kind (a gift, food for
+  the road, a drink, medicine, a carving, a blade), it picks from everything your game and your mods have of that kind,
+  by what each thing is, never by a mod's name, of the giver's age or your colony's: a tribe's gift is jade or stone,
+  a medieval people's gold or a fine wine, a spacer one's silver; a tribe's help comes as pemmican, an industrial
+  people's as survival meals or a mod's canned soup; a carving a traveller brings may be a small sculpture or a mod's
+  pottery or statue. Never anything most of your colonists' faith or diet rules out, never anything special, of a
+  person or a quest, and always as much silver's worth as before. Where a letter names it, it names what came; where
+  its words name a thing outright (a brewer's beer, a commissioned small sculpture), that thing it stays.
 - **Era setting:** the mod works out your era from finished research and from what's built (a generator
   counts as electricity). If a modded tech tree confuses it, set **General → Era** to *Pre-industrial* or
   *Industrial or later*. In a pre-industrial colony, text about guns, turrets, freezers, power or
@@ -2527,6 +2536,13 @@ modlist too, each by name and only when the mod is there:
   Vanilla Brewing Expanded's wines for those who may drink, its tea and coffee for teetotalers and the young); a
   feast never serves Vanilla Cooking Expanded's spoiled grills; a calendar feast or games day suggests Alpha Memes'
   and Vanilla Ideology Expanded - Memes' rites (tea ceremony, trading fair, wicker man, star-gazing).
+- **What others bring and give:** gifts, help, ransoms, keepsakes and the goods a camp sets out come from everything
+  your mods have of the kind (see "Things by what they are for" under Fits your world): Vanilla Brewing Expanded's
+  and Medieval 2's wines, meads and spirits as a match's gift or what an outsider brings, Vanilla Cooking Expanded's
+  cheese and canned soup as an industrial people's help, Vanilla Furniture Expanded - Art's carvings, pottery and
+  statues as a traveller's keepsake, Odyssey's obsidian or Alpha Animals' sky steel from the prospectors' hole,
+  Vanilla Weapons Expanded's and Medieval 2's blades from a fallen star, Vanilla Cooking Expanded's crops in a wedding
+  party's sacks.
 - **Peoples:** Stoneborn, elves, merfolk, Det's venators, boglegs and avaloi, and Alpha Genes' nereids, efreet and
   drakonori have wishes, decree likes and a pull on the colony's ways of their own.
 - **RimHUD:** four more lines (ailments, recovery, the personal story, a healer's standing) and a recovery bar.
@@ -2851,8 +2867,9 @@ the colony is known for and who answers the gate, and most answers have several 
 picked (a neighbours' dispute nobody comes in person for is sent in writing, and the letter says so).
 
 **Missions** are a neighbor's request with clear terms: goods for a **funeral or a wedding** by a set day (meals,
-sculptures, stone blocks, beer), a prize animal that **bolted** onto your land to tame and hand back (or buy, or
-keep), a **shrine** for their pilgrims (a sculpture of good enough quality under the open sky), materials to
+sculptures, stone blocks, and drinks, where beer, a mod's wine, mead, spirits or tea all count), a prize animal that
+**bolted** onto your land to tame and hand back (or buy, or keep), a **shrine** for their pilgrims (a sculpture of
+good enough quality under the open sky), materials to
 **rebuild** a town after a fire, a storm or a flood (wood, stone blocks, cloth, and steel or components for an
 industrial town), or **provisions** for a hard winter, a dry year or a sickhouse (raw food or pemmican, meals,
 medicine, cloth, firewood). The peoples that think best of the colony offer more: an **invitation** to their feast, a

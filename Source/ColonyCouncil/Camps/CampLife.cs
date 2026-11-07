@@ -724,31 +724,16 @@ namespace ColonyCouncil
             CouncilGameComponent.GiveThought(patient, CampDefOf.Council_Camp_Helped, healer);
         }
 
-        /// <summary>A prospector's day at the diggings: now and then something worth having.</summary>
+        /// <summary>
+        /// A prospector's day at the diggings: now and then something worth having, a precious metal or stone of the game's
+        /// or the player's mods (Things/ThingRoles.cs) by the camp people's ways, worth 15 to 45 silver.
+        /// </summary>
         public void Prospected(Pawn p)
         {
             AddTension(0.5f);
             if (!Rand.Chance(0.3f)) return;
-            ThingDef what;
-            int n;
-            float roll = Rand.Value;
-            var jade = DefDatabase<ThingDef>.GetNamedSilentFail("Jade");
-            var gold = DefDatabase<ThingDef>.GetNamedSilentFail("Gold");
-            if (roll < 0.15f && gold != null)
-            {
-                what = gold;
-                n = Rand.RangeInclusive(2, 6);
-            }
-            else if (roll < 0.35f && jade != null)
-            {
-                what = jade;
-                n = Rand.RangeInclusive(3, 8);
-            }
-            else
-            {
-                what = ThingDefOf.Silver;
-                n = Rand.RangeInclusive(15, 45);
-            }
+            var what = ThingRoles.From(ThingRole.Precious, faction) ?? ThingDefOf.Silver;
+            int n = Mathf.Min(what.stackLimit, ThingRoles.CountFor(Rand.RangeInclusive(15, 45), what, 2));
             var found = ThingMaker.MakeThing(what);
             found.stackCount = n;
             // Their trader has it to sell; otherwise it goes in their stash.

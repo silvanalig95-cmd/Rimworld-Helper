@@ -20,6 +20,7 @@
   <CC_Mission_Need_Textiles>{0} cloth or leather</CC_Mission_Need_Textiles>
   <CC_Mission_Need_RawFood>{0} raw food (fresh)</CC_Mission_Need_RawFood>
   <CC_Mission_Need_Medicine>{0} medicine (any kind)</CC_Mission_Need_Medicine>
+  <CC_Mission_Need_Drinks>{0} drinks (beer, wine, spirits, tea or the like)</CC_Mission_Need_Drinks>
   <CC_Mission_Need_Thing>{0} {1}</CC_Mission_Need_Thing>
   <CC_Mission_Goal_meals>Meals (simple or better)</CC_Mission_Goal_meals>
   <CC_Mission_Goal_art>Sculptures</CC_Mission_Goal_art>
@@ -27,6 +28,7 @@
   <CC_Mission_Goal_textiles>Cloth or leather</CC_Mission_Goal_textiles>
   <CC_Mission_Goal_rawfood>Raw food</CC_Mission_Goal_rawfood>
   <CC_Mission_Goal_medicine>Medicine</CC_Mission_Goal_medicine>
+  <CC_Mission_Goal_drinks>Drinks</CC_Mission_Goal_drinks>
 
   <!-- Where a mission stands (the World page, and under the quest's description). -->
   <CC_Mission_Feast_Ready>Everything is ready. {0}'s carts come for it in {1}.</CC_Mission_Feast_Ready>

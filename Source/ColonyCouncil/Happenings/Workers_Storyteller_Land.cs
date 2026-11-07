@@ -242,24 +242,43 @@ namespace ColonyCouncil
     /// </summary>
     public class HappeningWorker_StarIron : IncidentWorker_Happening
     {
-        /// <summary>What a smith of the colony's era would make of star iron: a spear before metalworking, a sword after.</summary>
-        private static ThingDef Blade()
+        /// <summary>
+        /// What a smith of the colony's era would make of star iron (Things/ThingRoles.cs): a blade of metal of its age, one
+        /// the colony knows how to make first (a knife before smithing, a sword or a spear after, a mod's blades as well
+        /// as the game's), one the words' "a" goes with.
+        /// </summary>
+        private static ThingDef Blade(Map map)
         {
             var steel = ThingDefOf.Steel?.stuffProps;
             if (steel == null) return null;
-            string[] names = Avail.EffectiveTech <= TechLevel.Neolithic
-                ? new[] { "MeleeWeapon_Spear", "MeleeWeapon_Knife" }
-                : Rand.Bool ? new[] { "MeleeWeapon_LongSword", "MeleeWeapon_Gladius", "MeleeWeapon_Knife" } : new[] { "MeleeWeapon_Gladius", "MeleeWeapon_LongSword", "MeleeWeapon_Knife" };
-            return names.Select(n => DefDatabase<ThingDef>.GetNamedSilentFail(n)).FirstOrDefault(d => d != null && d.MadeFromStuff && steel.CanMake(d));
+            bool Forgeable(ThingDef d) => d.MadeFromStuff && steel.CanMake(d) && TakesA(d.label);
+            return ThingRoles.Ours(ThingRole.Blade, map, 0, d => Forgeable(d) && ThingRoles.ColonyCanMake(d))
+                   ?? ThingRoles.Ours(ThingRole.Blade, map, 0, Forgeable)
+                   ?? new[] { "MeleeWeapon_LongSword", "MeleeWeapon_Knife" }.Select(n => DefDatabase<ThingDef>.GetNamedSilentFail(n))
+                       .FirstOrDefault(d => d != null && d.MadeFromStuff && steel.CanMake(d));
+        }
+
+        /// <summary>The words say "a {TALE}": a label that takes "a" (a sword, not an axe).</summary>
+        private static bool TakesA(string label)
+        {
+            if (label.NullOrEmpty()) return false;
+            try
+            {
+                return Find.ActiveLanguageWorker.WithIndefiniteArticle(label).StartsWith("a ", System.StringComparison.Ordinal);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         protected override bool CanHappen(Map map, HappeningExtension ext) =>
-            StorytellerEvents.Adults(map).Any() && Blade() != null && StorytellerEvents.TryOpenSpot(map, 15f, 50f, out _);
+            StorytellerEvents.Adults(map).Any() && Blade(map) != null && StorytellerEvents.TryOpenSpot(map, 15f, 50f, out _);
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {
             ctx.a = StorytellerEvents.BestOrAny(ctx.map, SkillDefOf.Crafting);
-            ctx.thing = Blade();
+            ctx.thing = Blade(ctx.map);
             if (ctx.a == null || ctx.thing == null) return false;
             ctx.tale = ctx.thing.label;
             return true;

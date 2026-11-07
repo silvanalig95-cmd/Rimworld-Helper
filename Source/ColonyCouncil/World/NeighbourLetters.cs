@@ -870,7 +870,7 @@ namespace ColonyCouncil
             // What comes back with it: carried to the gate by their messenger.
             var things = new List<Thing>();
             if (dip != null) things.AddRange(dip.things);
-            if (l.purpose == LetterPurpose.Help && granted) things.AddRange(HelpThings(l.help, n.faction));
+            if (l.purpose == LetterPurpose.Help && granted) things.AddRange(HelpThings(l.help, n.faction, l.map));
             else if (brings == AnswerBrings.Token) things.AddRange(Loot.Make(LetterMath.TokenValue(Rand.Value) * LivingEvents.WealthFactor(l.map), false));
             else if (NotableMath.Gift(tone, l.purpose, NotableBook.Opinion(n), Rand.Value))
                 things.AddRange(Loot.Make(Rand.Range(80f, 160f) * LivingEvents.WealthFactor(l.map), false));
@@ -974,17 +974,26 @@ namespace ColonyCouncil
 
         private static string HelpLabel(string help) => (help == "food" ? "CC_Letter_Help_Food" : "CC_Letter_Help_Medicine").Translate().Resolve();
 
-        /// <summary>The help they send: medicine of a kind the colony knows, or food that keeps on the road.</summary>
-        private static List<Thing> HelpThings(string help, Faction f)
+        /// <summary>
+        /// The help they send (Things/ThingRoles.cs): medicine of a kind the colony knows (of their age or the colony's,
+        /// whichever is the earlier), or food that keeps on the road of their age, as much as 40 to 65 pemmican is worth.
+        /// </summary>
+        private static List<Thing> HelpThings(string help, Faction f, Map map)
         {
             if (help == "food")
             {
-                var def = DefDatabase<ThingDef>.GetNamedSilentFail("Pemmican") ?? ThingDefOf.RawPotatoes;
-                return Couriers.Make(def, def == ThingDefOf.RawPotatoes ? Rand.RangeInclusive(60, 90) : Rand.RangeInclusive(40, 65));
+                var def = ThingRoles.From(ThingRole.Provisions, f, map) ?? ThingDefOf.RawPotatoes;
+                var pemmican = ThingDefOf.Pemmican;
+                int count = def == ThingDefOf.RawPotatoes ? Rand.RangeInclusive(60, 90)
+                    : def == pemmican || pemmican == null ? Rand.RangeInclusive(40, 65)
+                    : ThingRoles.CountFor(Rand.RangeInclusive(40, 65) * pemmican.BaseMarketValue, def, 3);
+                return Couriers.Make(def, count);
             }
-            bool low = Avail.IsPreIndustrial || TechOf(f) <= NotableMath.Medieval;
-            var med = low ? ThingDefOf.MedicineHerbal : ThingDefOf.MedicineIndustrial;
-            return Couriers.Make(med, Rand.RangeInclusive(4, 8));
+            var age = Ages.Of(f) < Ages.Of(map) ? Ages.Of(f) : Ages.Of(map);
+            if (Avail.IsPreIndustrial && age > WorldAge.Medieval) age = WorldAge.Medieval;
+            var med = ThingRoles.Pick(ThingRole.Medicine, age) ?? ThingDefOf.MedicineHerbal;
+            // As much as the age's own medicine always came to (fewer of a dearer kind).
+            return Couriers.Make(med, ThingRoles.CountFor(Rand.RangeInclusive(4, 8) * (ThingRoles.Fallback(ThingRole.Medicine, age) ?? med).BaseMarketValue, med, 2));
         }
 
         // ---------------- Words ----------------
