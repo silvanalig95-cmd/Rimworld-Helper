@@ -208,12 +208,16 @@ namespace ColonyCouncil
             return job;
         }
 
-        /// <summary>Hands what is wholly Rimfolk's to Pick Up And Haul's unloading; true if anything went.</summary>
+        /// <summary>
+        /// Hands what is wholly Rimfolk's to Pick Up And Haul's unloading; true if anything went. A kind a bill sent to a
+        /// stockpile the player picked stays with Rimfolk's job, which takes it there (that mod's unloading takes all to the best).
+        /// </summary>
         public static bool HandOver(Pawn pawn, HaulLoad load)
         {
             bool any = false;
             foreach (var def in load.owed.Keys.ToList())
             {
+                if (load.IntoOf(def).IsValid) continue;
                 int have = InInventory(pawn, def);
                 if (!HaulMath.WhollyOurs(load.OwedCount(def), have, Kept(pawn, def))) continue;
                 var inv = pawn.inventory.innerContainer;
@@ -227,6 +231,25 @@ namespace ColonyCouncil
                 Debug($"{pawn.LabelShort} hands {have}x {def.label} to Pick Up And Haul's unloading.");
             }
             return any;
+        }
+
+        /// <summary>
+        /// The storage cell a stack from the inventory goes to: in the stockpile a bill picked for that kind while it still
+        /// takes it, else the best storage the game's own search finds (where the game's haulers would take it anyway).
+        /// </summary>
+        public static bool StoreCellFor(Pawn pawn, Thing thing, HaulLoad load, out IntVec3 cell)
+        {
+            cell = IntVec3.Invalid;
+            Map map = pawn.Map;
+            if (map == null || thing == null) return false;
+            IntVec3 into = load?.IntoOf(thing.def) ?? IntVec3.Invalid;
+            if (into.IsValid && into.InBounds(map))
+            {
+                SlotGroup group = into.GetSlotGroup(map);
+                ISlotGroup picked = (ISlotGroup)group?.StorageGroup ?? group;
+                if (picked != null && StoreUtility.TryFindBestBetterStoreCellForIn(thing, pawn, map, StoragePriority.Unstored, pawn.Faction, picked, out cell)) return true;
+            }
+            return StoreUtility.TryFindBestBetterStoreCellFor(thing, pawn, map, StoragePriority.Unstored, pawn.Faction, out cell);
         }
 
         /// <summary>Queues the delivery after the pawn's present job, when nothing else waits in its queue and it may go now.</summary>
@@ -246,8 +269,9 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Every 250 ticks for each pawn carrying something for Rimfolk: never more owed than it has; a run whose build
-        /// area needs no more (or that went unused for two hours) ends and its leftovers go to storage; a load that must
-        /// go now, or that the job choice can't send (harvest and haul off or standing down), is queued for storage.
+        /// area needs no more (or that went unused for two hours) ends and its leftovers go to storage; meals go now while
+        /// someone is hungry with no meal in reach; a load that must go now, or that the job choice can't send (harvest
+        /// and haul off or standing down), is queued for storage.
         /// </summary>
         public static void Pass(Pawn pawn, HaulLoad load, int now)
         {
@@ -262,6 +286,12 @@ namespace ColonyCouncil
             load.Reconcile(pawn);
             if (load.haulNow.Count > 0 && now - load.haulNowTick > HaulMath.HaulNowWindowTicks) load.haulNow.Clear();
             if (!load.RunEmpty) MaterialRun.Look(pawn, load, now);
+            // Meals carried while someone is hungry and the meals in reach don't feed them all go to storage now.
+            if (!load.now && WorkProducts.MealsWanted(pawn, load))
+            {
+                load.now = true;
+                Debug($"{pawn.LabelShort} carries meals while someone is hungry: to storage now.");
+            }
             bool stuck = HaulMath.Stuck(load.startedTick, now, ColonyCouncilMod.Settings?.haulMaxHours ?? 8f);
             if (!load.Empty && (load.now || stuck || !HarvestHaul.Works) && !StillBuilding(pawn, load, pawn.CurJob)) TryQueueDelivery(pawn, load);
         }

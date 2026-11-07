@@ -642,9 +642,10 @@ everyone gets them anyway, as before. This week lists what's coming, the dilemma
 who took part write about it. A setting (Events & world) turns it off.
 
 What an answer says now exists is made real where that's safe, and made when the words say: the apology carving, a
-broken keepsake's replacement and the gift that settles an old debt are signed sculptures, worked first at the colony's
-bench for an hour or two, that the one who made them then carries over by hand and sets down at the other's feet (the
-moods wait for it), an old crafter hands the student their old knife, a scribe's bound
+broken keepsake's replacement and the gift that settles an old debt are signed sculptures (the last two any small
+work of art of wood the colony knows how to make, a mod's statue or pottery as well as the game's), worked first at
+the colony's bench for an hour or two, that the one who made them then carries over by hand and sets down at the
+other's feet (the moods wait for it), an old crafter hands the student their old knife, a scribe's bound
 copy is a real book with the scribe's name on it, a coffin made ready is a wooden sarcophagus in the corner of its
 owner's room, assigned as their grave, the hat bought on the side is a real hat, a guest who cut wood goes and fells
 real trees with the game's own cutting and leaves the logs by the stumps, each child walks out and plants their own
@@ -1872,6 +1873,21 @@ Pawns don't walk to storage with one handful at a time (settings: **What's on, C
   the player's own **Harvest and Haul**, built into Rimfolk: with that mod loaded on its own, Rimfolk's copy stands
   down completely, and the standalone mod can be removed now (Rimfolk then reads its settings, and in a save takes over
   what pawns still carry for it).
+- **What benches, barrels and other work make** goes the same way, each with its own switch. **Bills** at any bench
+  (crafting, cooking, butchering, smelting, stonecutting, tailoring, drugs, refining, and the benches mods add): when
+  a bill takes its products to the best stockpile or to one you picked, they go into the worker's inventory, and a
+  picked stockpile is where they go on the next trip; what doesn't fit is carried there in the hands as before, and a
+  "do until" bill counts what is in a pocket. **Production buildings:** beer from a fermenting barrel, eggs from an
+  egg box, bioferrite from a harvester or an entity, and the products of the mods' barrels, presses, processors,
+  beehouses and apiaries go into the pocket instead of the hands, and the pawn empties the next one while there is
+  room. **Any other work job** that makes something beside the pawn: a skull extracted, what the mods' work makes (a
+  fishing mod's catch goes by the fishing switch). What stays where it is: a bill set to drop its products on the
+  floor keeps them at the bench; a bill or other work you order yourself (taking a mechanoid apart, removing a
+  mechlink) goes as before; meals go into a cook's pocket only while nobody hungry would be left without a meal in
+  reach, and go to storage within two hours, at once when someone gets hungry; medicine, weapons, wastepacks,
+  fertilized eggs, a long project's masterpiece, xenogerms, genepacks and mechlinks go the game's way. Never what a
+  pawn drops on purpose, what a hauler carries, a bill's ingredients or a corpse. With the standalone Harvest and Haul
+  still loaded none of this happens: remove it to get it.
 - **Long material runs:** a pawn fetching building material from 30 cells away or more (the setting; straight from the
   material to the frame) takes enough for every unfinished frame and blueprint round it that uses that material (half
   that distance, 8 to 15 cells), not only the one it builds: the hands take what they hold, the inventory the rest, as
@@ -2294,6 +2310,14 @@ The council only suggests what your colony can actually do right now:
   you can change every material.
 - **What's on the map:** animals to tame, a body to bury, a prosthetic you can make, winter that actually comes.
 - **Ambitions:** only ones whose every goal is achievable for your colony are offered.
+- **Things by what they are for:** where Rimfolk hands over or makes a thing that stands for a kind (a gift, food for
+  the road, a drink, medicine, a carving, a blade), it picks from everything your game and your mods have of that kind,
+  by what each thing is, never by a mod's name, of the giver's age or your colony's: a tribe's gift is jade or stone,
+  a medieval people's gold or a fine wine, a spacer one's silver; a tribe's help comes as pemmican, an industrial
+  people's as survival meals or a mod's canned soup; a carving a traveller brings may be a small sculpture or a mod's
+  pottery or statue. Never anything most of your colonists' faith or diet rules out, never anything special, of a
+  person or a quest, and always as much silver's worth as before. Where a letter names it, it names what came; where
+  its words name a thing outright (a brewer's beer, a commissioned small sculpture), that thing it stays.
 - **Era setting:** the mod works out your era from finished research and from what's built (a generator
   counts as electricity). If a modded tech tree confuses it, set **General → Era** to *Pre-industrial* or
   *Industrial or later*. In a pre-industrial colony, text about guns, turrets, freezers, power or
@@ -2316,8 +2340,14 @@ while that feature is off; nothing vanilla is changed or removed. A few things i
   race's lifespan, so a 300-year-old elf isn't treated as elderly.
 - **Simple Sidearms:** an heirloom weapon carried as a sidearm still counts as carried.
 - **Harvest and Haul, Pick Up And Haul:** Harvest and Haul is built into Rimfolk now (Carrying and hauling); while the
-  standalone mod is loaded, Rimfolk's copy stands down, and it can be removed now. What Rimfolk's carrying and hauling
-  takes to storage goes through Pick Up And Haul's own unloading when that mod is there.
+  standalone mod is loaded, Rimfolk's copy stands down, and it can be removed now (remove it to have benches, barrels
+  and other work fill pockets too). What Rimfolk's carrying and hauling takes to storage goes through Pick Up And Haul's
+  own unloading when that mod is there, except a bill's products for a stockpile you picked, which Rimfolk takes there.
+- **Production mods:** the Vanilla Expanded processors (Vanilla Brewing Expanded's and Vanilla Cooking Expanded's barrels
+  and presses), the pipe processors, Alpha Bees' beehouses, Medieval 2's apiary, the Processor Framework, Vanilla
+  Fishing Expanded, Dubs Bad Hygiene where its work makes an item, and the rest of the mods' producers fill a working
+  pawn's pocket through one generic catch, with no hook of their own. **Simple Sidearms:** a weapon a crafter makes is
+  never pocketed, since that mod would read it as a sidearm.
 - **No mechanoids:** mechanoid dreams and goals only show up in games where mechanoids are around and hostile
   (Rimedieval's default, which turns them friendly, counts as none).
 - **Rimedieval:** events it removes stay removed (dream omens won't bring them back), and hidden buildings are
@@ -2506,6 +2536,13 @@ modlist too, each by name and only when the mod is there:
   Vanilla Brewing Expanded's wines for those who may drink, its tea and coffee for teetotalers and the young); a
   feast never serves Vanilla Cooking Expanded's spoiled grills; a calendar feast or games day suggests Alpha Memes'
   and Vanilla Ideology Expanded - Memes' rites (tea ceremony, trading fair, wicker man, star-gazing).
+- **What others bring and give:** gifts, help, ransoms, keepsakes and the goods a camp sets out come from everything
+  your mods have of the kind (see "Things by what they are for" under Fits your world): Vanilla Brewing Expanded's
+  and Medieval 2's wines, meads and spirits as a match's gift or what an outsider brings, Vanilla Cooking Expanded's
+  cheese and canned soup as an industrial people's help, Vanilla Furniture Expanded - Art's carvings, pottery and
+  statues as a traveller's keepsake, Odyssey's obsidian or Alpha Animals' sky steel from the prospectors' hole,
+  Vanilla Weapons Expanded's and Medieval 2's blades from a fallen star, Vanilla Cooking Expanded's crops in a wedding
+  party's sacks.
 - **Peoples:** Stoneborn, elves, merfolk, Det's venators, boglegs and avaloi, and Alpha Genes' nereids, efreet and
   drakonori have wishes, decree likes and a pull on the colony's ways of their own.
 - **RimHUD:** four more lines (ailments, recovery, the personal story, a healer's standing) and a recovery bar.
@@ -2830,8 +2867,9 @@ the colony is known for and who answers the gate, and most answers have several 
 picked (a neighbours' dispute nobody comes in person for is sent in writing, and the letter says so).
 
 **Missions** are a neighbor's request with clear terms: goods for a **funeral or a wedding** by a set day (meals,
-sculptures, stone blocks, beer), a prize animal that **bolted** onto your land to tame and hand back (or buy, or
-keep), a **shrine** for their pilgrims (a sculpture of good enough quality under the open sky), materials to
+sculptures, stone blocks, and drinks, where beer, a mod's wine, mead, spirits or tea all count), a prize animal that
+**bolted** onto your land to tame and hand back (or buy, or keep), a **shrine** for their pilgrims (a sculpture of
+good enough quality under the open sky), materials to
 **rebuild** a town after a fire, a storm or a flood (wood, stone blocks, cloth, and steel or components for an
 industrial town), or **provisions** for a hard winter, a dry year or a sickhouse (raw food or pemmican, meals,
 medicine, cloth, firewood). The peoples that think best of the colony offer more: an **invitation** to their feast, a
@@ -3815,7 +3853,7 @@ may. Where a choice brings the risk, its card or its answer says so first.
 
 **One shared budget.** All of Rimfolk's kinds of hurt share one budget: together they come about as often as the kinds
 built before it did, however many there are now (at 100%, about half a hurt a colonist-year in an average colony, a
-third in a careful one and three fifths in a careless one, beside a raid's wound or two). Each kind comes a little under half as often as it would alone, a kind that came lately waits its turn for
+third in a careful one and three fifths in a careless one, beside a raid's wound or two). Each kind comes about a third as often as it would alone, a kind that came lately waits its turn for
 up to thirty days while the others come a little more often, and switching a system off takes its kinds out of the
 budget, leaving the rest as they were. The setting and the storyteller scale all of it as before, and prevention still
 counts: a careful colony meets fewer of them than a careless one.
@@ -3884,6 +3922,29 @@ counts: a careful colony meets fewer of them than a careless one.
   predator may find them (a friend goes along when free); fishing below freezing ends in a slip into the water now and
   then, and the game's own hypothermia until they're warm. A field sown by the weather whose forecast missed a frost says
   so in its note.
+- **The work's accidents:** an answer's hot or heavy work (a gathering's fire laid, the pyre lit, the dead carried out,
+  their graves dug) may burn a hand or drop a load on a foot, less for skilled hands; one let back to light work too soon
+  who overdoes it may fall with a sack and be helped back to bed; a project's own building in its last three days, and
+  any work for someone worn down, can bring tired hands' slip; cooking at a campfire or butchering at a spot when a proper
+  bench could be built, and a wall or door taken down by an unskilled hand, now and then hurt; a hurried harvest (the
+  frost's all hands, a frost harvest, the harvest push) can cut a hand, twice as often after dark; one who carries more
+  than they should strains their back more often and drops a load now and then; a whittler or a blade-sharpener nicks a
+  finger about once a season; with Alpha Skills, one who has drunk before work three days running may go back for a
+  second cup, as their drug policy allows, and stagger at the bench; field hands home from a town's harvest may bring a
+  strained back, blisters or a sunburn with them.
+- **Animals not ours:** one of ours wandering among a camp's herd may be charged; stepping close to a wild animal in an
+  encounter may end in a kick or a bite, by the kind's own temper (the nervous never step closer); one who walks the
+  fields at dawn alone beyond the walls may meet a hungry predator; a predator the colony feeds grows bold, shows itself
+  at the stores' door at dusk, and may come for someone alone near the stores at night; with PokéWorld, a wild one the
+  colony tries to catch may fight back (a partner Pokémon at the trainer's side takes it), and a fed one at the stores
+  may swipe at whoever shoos it. Each answer that brings it says so.
+- **Contests and fights:** a bonfire on a dry, windy summer night may throw a spark into the dry grass, the game's own
+  fire, beaten out by those near (clear the ground round it); with the militia or the "hold the way in" project the
+  shooters muster at the line now and then, and one muster in 30 has a mishap (a bowstring, a powder burn); with A
+  RimWorld of Magic, two fighters spar now and then, one bout in 25 a blow; a group brave to a fault eggs one of its own
+  into a dare about once a season (a cold swim, wrestling its strongest), a cautious one talking them out of it half the
+  time; someone with a coward's name, or an avenger facing the people they swore against, may break from cover in a
+  fight at home, unless drafted and held.
 
 No mood is added on top of a hurt: it brings the game's pain and its own wound or illness, and the doctors tend it.
 

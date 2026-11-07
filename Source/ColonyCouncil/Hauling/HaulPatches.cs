@@ -13,7 +13,8 @@ namespace ColonyCouncil
     // what the game does, and none of them is applied while the standalone mod is loaded (Prepare, with the reason for
     // the self-check). The material run's two (the hands' pickup, and the delivery job for a frame or blueprint) and
     // things on the way don't touch what that mod patches, so they work beside it. Every hook does nothing while the
-    // deeper game hooks are off, and swallows its own errors.
+    // deeper game hooks are off, and swallows its own errors. The hooks of everything else work makes (bills,
+    // production buildings, other work) are in WorkProductPatches.cs.
 
     internal static class HaulHook
     {
@@ -281,15 +282,23 @@ namespace ColonyCouncil
     /// <summary>
     /// The material run, at the stack: before the game's delivery job puts building material in the hands, the inventory
     /// takes what the rest of the build area needs (MaterialRun.AtPickup). Only for the game's own delivery to a frame
-    /// or blueprint; every other job that starts carrying something is left as it is.
+    /// or blueprint. And before a work job carries what it made or took out of a building to a storage cell in its hands
+    /// (a barrel's beer, an egg box's eggs, a processor's product), the inventory takes it and the job ends there
+    /// (WorkProducts.AtCarry; only for a job that noted something it made, so nothing while harvest and haul stands
+    /// down). Every other job that starts carrying something is left as it is.
     /// </summary>
     [HarmonyPatch(typeof(Toils_Haul), nameof(Toils_Haul.StartCarryThing))]
     public static class Patch_HaulRunPickup
     {
         public static void Postfix(Toil __result, TargetIndex haulableInd)
         {
-            if (__result == null || haulableInd != TargetIndex.A) return;
+            if (__result == null) return;
             Toil toil = __result;
+            toil.AddPreInitAction(() =>
+            {
+                if (RimfolkPatches.On && WorkProducts.Any) WorkProducts.AtCarry(toil.actor, haulableInd);
+            });
+            if (haulableInd != TargetIndex.A) return;
             toil.AddPreInitAction(() =>
             {
                 if (!RimfolkPatches.On) return;

@@ -5,6 +5,35 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Your mods' things in Rimfolk's gifts, feasts and finds
+
+*7 November 2026, version 0.162.0*
+
+- Where Rimfolk picks a thing for you or from you, it now chooses from everything your game and your mods have, by what the thing is for: a drink for a toast, a soft drink for the dry, a feast's dish, food for the road, a crop, medicine, something precious, a carving, a gift or a blade.
+- Each people gives what fits its age and ways: a tribe's jade or pemmican, a medieval town's gold or wine, an industrial people's packaged food, a spacer's glitterworld medicine, and your brewing, cooking and art mods' own among them.
+- Wedding and match gifts, the town's seasonal gift, the prospectors' finds, a tribe's ransom, a favour's goods, a help letter's food and medicine, an envoy's parting gift, a guest's provisions and what an outsider brings next time all draw from this.
+- Carvings and keepsakes, and the blade a fallen star becomes, are ones your colony knows how to make; a wedding or funeral mission can ask for drinks, and your own wine or mead counts.
+- Never anything special, from a quest, or made of a person (corpse rum and cannibal dishes included), and nothing most of your colony's beliefs would mind.
+
+## Mishaps of work, animals and festivals, in the shared budget
+
+*7 November 2026, version 0.161.0*
+
+- Twenty-three more kinds of everyday mishap on the same budget, so the total stays where it was and each kind comes less often.
+- Work: a burn at a fire or pyre an answer lit, getting up too soon from a sprain, the last push of a council project, clumsiness when worn down, a makeshift spot's burn, a wall coming down on an unskilled worker, a sickle cut in a hurried harvest, a dropped load for one who carries too much, a whittler's nick, a second cup before work, and hands home sore from another people's harvest.
+- Animals: the drovers' bull, a wild animal stepped too close to in an encounter, a predator met on a dawn walk, a fed wolf grown bold at the stores, and with PokéWorld a wild Pokémon that fights back when caught or swipes when shooed from the stores.
+- Festivals and courage: a bonfire spark in dry grass on a windy night, a mishap at a muster on the line, sparring among A RimWorld of Magic's fighters, a brave group's dare, someone called a coward breaking cover to prove otherwise, and fury that forgets cover against the people they swore against.
+- As always the answers that bring a risk say so, care prevents most of it (skill, a marshal's word, a cleared spot, drafting), and the game's own fights, fires and hunts do the rest.
+
+## What work makes goes into the worker's pack
+
+*7 November 2026, version 0.160.0*
+
+- Rimfolk's Harvest and Haul now takes what every kind of work makes into the worker's inventory while it fits, and stores it in one trip by the same rules as harvests: products of bills at any bench (crafting, cooking, butchering, smelting, tailoring, brewing and your mods' benches), barrels and egg boxes emptied, and other work that makes things, from the game, the DLCs and your mods' processors.
+- Bills keep their store mode: drop on floor stays at the bench, take to a specific stockpile goes to that stockpile on the trip back, and a do until X bill counts what rides in pockets. Bills and work you ordered yourself go the game's way.
+- Meals stay within reach of the hungry, and some things are never pocketed: medicine for the doctors, weapons (which Simple Sidearms would take for sidearms), wastepacks, things that spoil out of a freezer or hatch, genes, embryos and corpses.
+- Three new settings under Carrying and hauling switch bills, buildings and other work on or off. With the separate Harvest and Haul mod still loaded, Rimfolk stands back; remove it to get all of this.
+
 ## Medicine by what is treated
 
 *7 November 2026, version 0.159.0*

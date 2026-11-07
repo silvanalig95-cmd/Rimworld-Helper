@@ -29,6 +29,12 @@ namespace ColonyCouncil
         public abstract string Describe(Map map, float baseline);
 
         protected static float Ratio(float have, float need) => need <= 0f ? 1f : UnityEngine.Mathf.Clamp01(have / need);
+
+        /// <summary>
+        /// Whether building this is the project's own work (harm, part 6: in its last days it counts as hard work): a goal to
+        /// build a kind of thing, its things; a goal of a room or a place, any building; the rest build nothing.
+        /// </summary>
+        public virtual bool OwnWork(Verse.ThingDef def) => false;
     }
 
     public class Goal_FoodDays : AmbitionGoal
@@ -43,6 +49,9 @@ namespace ColonyCouncil
 
     public class Goal_AllOwnRooms : AmbitionGoal
     {
+        /// <summary>A room's or a place's goal: any building is its own work (harm, part 6: the last push).</summary>
+        public override bool OwnWork(Verse.ThingDef def) => def?.building != null;
+
         public override bool Possible(Map map) => Avail.BestBuildable(map, Avail.IsSingleBed, "Bed") != null;
 
         private static int Count(Map map, out int total)
@@ -68,6 +77,9 @@ namespace ColonyCouncil
     /// <summary>A room with a given role (by worker class name), optionally holding certain furniture and looking good.</summary>
     public class Goal_Room : AmbitionGoal
     {
+        /// <summary>A room's or a place's goal: any building is its own work (harm, part 6: the last push).</summary>
+        public override bool OwnWork(Verse.ThingDef def) => def?.building != null;
+
         public string role = "Hospital";
         public string thingRole;
         public int thingCount = 0;
@@ -161,6 +173,9 @@ namespace ColonyCouncil
 
         public override float Baseline(Map map) => relative ? Avail.ColonyCount(map, Pred) : 0f;
 
+        /// <summary>Its own work: the things of its kind (harm, part 6: the last push).</summary>
+        public override bool OwnWork(ThingDef def) => def != null && (Pred?.Invoke(def) ?? false);
+
         public override float Progress(Map map, float baseline) => Ratio(Avail.ColonyCount(map, Pred) - baseline, count);
 
         public override string Describe(Map map, float baseline)
@@ -172,6 +187,9 @@ namespace ColonyCouncil
 
     public class Goal_Freezer : AmbitionGoal
     {
+        /// <summary>A room's or a place's goal: any building is its own work (harm, part 6: the last push).</summary>
+        public override bool OwnWork(Verse.ThingDef def) => def?.building != null;
+
         public override bool Possible(Map map) =>
             Avail.AnyBuildable(map, d => d.thingClass != null && typeof(Building_Cooler).IsAssignableFrom(d.thingClass));
 
@@ -182,6 +200,9 @@ namespace ColonyCouncil
 
     public class Goal_Greenhouse : AmbitionGoal
     {
+        /// <summary>A room's or a place's goal: any building is its own work (harm, part 6: the last push).</summary>
+        public override bool OwnWork(Verse.ThingDef def) => def?.building != null;
+
         /// <summary>Only where winter actually stops the fields, and only with hydroponics or sun lamps.</summary>
         public override bool Possible(Map map)
         {

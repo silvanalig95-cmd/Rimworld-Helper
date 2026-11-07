@@ -424,6 +424,7 @@ namespace ColonyCouncil
         public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
         {
             // How the colony stands with the beast: what the beast's story does with it is told as it comes.
+            WildHurts.DescribeStance(ctx, sheet, stance);
         }
 
         public string stance = "watched";

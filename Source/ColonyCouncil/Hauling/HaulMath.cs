@@ -8,7 +8,8 @@ namespace ColonyCouncil
     /// <summary>
     /// The pure rules of carrying and hauling (Hauling/; DESIGN.md "Carrying and hauling"), with no game types so
     /// Tools/Tests can check them: how much fits in a pawn's inventory, when a load is worth a trip and when it has been
-    /// carried long enough, the long material run (how far counts as far, the build area round the target, how much more
+    /// carried long enough, which of a bill's products and of what other work makes go into the inventory (the bill's
+    /// store mode, the meals left in reach of the hungry, the family a job's products belong to), the long material run (how far counts as far, the build area round the target, how much more
     /// to take), what counts as on the way, how much of a stack goes to storage and how much the pawn keeps, and the
     /// hand-over from the player's standalone Harvest and Haul mod (its settings file and the loads in a save).
     /// </summary>
@@ -54,6 +55,87 @@ namespace ColonyCouncil
         /// </summary>
         public static bool Stuck(int startedTick, int now, float maxHoldHours) =>
             startedTick >= 0 && now - startedTick > Math.Max(24f, maxHoldHours * 3f) * HourTicks;
+
+        // ================= Everything else work makes =================
+
+        /// <summary>What a pawn's work job made is taken only while it lies this close to the pawn when the job ends.</summary>
+        public const float MadeReach = 4f;
+        /// <summary>No more than this many things are noted for one job (a job that keeps making things is swept in parts).</summary>
+        public const int MaxMadePerJob = 40;
+        /// <summary>A load with meals in it goes to storage after two hours at most, whatever the setting allows.</summary>
+        public const float MealHoldHours = 2f;
+        /// <summary>The game tells a tale of a long crafting project from this much work on, with the first product: such a product is carried the game's way.</summary>
+        public const float LongProjectWork = 10000f;
+
+        /// <summary>A bill's store mode, as Rimfolk reads it.</summary>
+        public enum StoreMode
+        {
+            /// <summary>Drop on the floor: the product is meant to stay at the bench.</summary>
+            Floor,
+            /// <summary>Take to the best stockpile.</summary>
+            Best,
+            /// <summary>Take to a stockpile the player picked: remembered for the delivery.</summary>
+            Specific,
+            /// <summary>A mode a mod added: left to that mod.</summary>
+            Other
+        }
+
+        /// <summary>
+        /// A bill's products go into the worker's inventory only when the bill takes them to a stockpile (the best one or
+        /// a picked one), the player didn't order the bill, it isn't surgery or a building's own production (a mech
+        /// gestator's), and it isn't a long project whose first product the game names in a tale.
+        /// </summary>
+        public static bool BillPockets(StoreMode mode, bool forced, bool medicalOrAutonomous, float workAmount) =>
+            !forced && !medicalOrAutonomous && workAmount < LongProjectWork && (mode == StoreMode.Best || mode == StoreMode.Specific);
+
+        /// <summary>
+        /// How many of the meals just made go into the cook's inventory: all of them while nobody is hungry, and otherwise
+        /// all but those the hungry need that the meals already in reach don't cover, which stay where everyone can eat them.
+        /// </summary>
+        public static int MealsToPocket(int made, int hungry, int mealsInReach)
+        {
+            if (made <= 0) return 0;
+            int shortfall = Math.Max(0, hungry - Math.Max(0, mealsInReach));
+            return Math.Max(0, made - shortfall);
+        }
+
+        /// <summary>Meals in an inventory go to storage now: someone is hungry and the meals in reach don't feed them all.</summary>
+        public static bool MealsWanted(int hungry, int mealsInReach) => hungry > 0 && hungry > Math.Max(0, mealsInReach);
+
+        /// <summary>The longest a load is carried along at the same work: the setting's hours, two at most once it holds meals.</summary>
+        public static float HoldHours(float maxHoldHours, bool meals) => meals ? Math.Min(maxHoldHours, MealHoldHours) : maxHoldHours;
+
+        /// <summary>Which of the settings' families a work job's products belong to (other than bills).</summary>
+        public enum MadeFamily
+        {
+            /// <summary>Not taken here: a bill (its own way), a job a source of its own covers, building work, or no work job at all.</summary>
+            None,
+            /// <summary>What a production building gives up when a pawn empties or works it: barrels, egg boxes, processors, beehouses, harvesters.</summary>
+            Buildings,
+            /// <summary>Fish from a mod's fishing job.</summary>
+            Fishing,
+            /// <summary>Anything else a work job makes beside the pawn: extracting, taking apart a mechanoid, a mod's work.</summary>
+            OtherWork
+        }
+
+        /// <summary>
+        /// The family of a work job's products: none for a bill, for a job one of the sources of their own covers (plants,
+        /// sowing, mining, the deep drill, shearing and milking, taking down, Odyssey's fishing) and for building work;
+        /// fishing by its name (the mods' fishing jobs); a production building's when the job works a building; else other work.
+        /// </summary>
+        public static MadeFamily FamilyOf(bool workJob, bool bill, bool handledElsewhere, bool construction, bool fishingByName, bool worksABuilding)
+        {
+            if (!workJob || bill || handledElsewhere || construction) return MadeFamily.None;
+            if (fishingByName) return MadeFamily.Fishing;
+            return worksABuilding ? MadeFamily.Buildings : MadeFamily.OtherWork;
+        }
+
+        /// <summary>What a pocket holds for storage of a kind, as a bill counts it: what is owed, never more than is there of it.</summary>
+        public static int Carried(int owed, int have) => Math.Max(0, Math.Min(owed, have));
+
+        /// <summary>A mod's fishing job, by its driver's or its job's name (Vanilla Fishing Expanded's VCEF_FishJob, PokéWorld's PW_Fish).</summary>
+        public static bool FishingName(string driverType, string jobDef) =>
+            (driverType != null && driverType.IndexOf("Fish", StringComparison.Ordinal) >= 0) || (jobDef != null && jobDef.IndexOf("Fish", StringComparison.Ordinal) >= 0);
 
         // ================= The long material run =================
 

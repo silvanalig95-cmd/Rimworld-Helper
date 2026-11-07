@@ -564,8 +564,14 @@ namespace ColonyCouncil
         public bool haulDeconstruct = true;
         /// <summary>Whatever else a deconstruction leaves (chunks, fuel, its contents) is hauled by the same pawn right after.</summary>
         public bool haulLeftoversNow = true;
-        /// <summary>Fish and other catches (Odyssey).</summary>
+        /// <summary>Fish and other catches (Odyssey, and the mods' fishing jobs).</summary>
         public bool haulFishing = true;
+        /// <summary>A bill's products at a bench (crafting, cooking, butchering, smelting and the rest) when the bill takes them to a stockpile (Hauling/WorkProducts.cs).</summary>
+        public bool haulBills = true;
+        /// <summary>What a production building gives up when a pawn empties or works it: barrels, egg boxes, processors, beehouses, harvesters.</summary>
+        public bool haulBuildings = true;
+        /// <summary>Anything else a work job makes beside the pawn: extracting, taking apart a mechanoid, a mod's work.</summary>
+        public bool haulOtherWork = true;
         /// <summary>Stone and slag chunks too (off: one fills most of an inventory).</summary>
         public bool haulChunks = false;
         /// <summary>The share of a pawn's carrying capacity its inventory may be filled to.</summary>
@@ -963,6 +969,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref haulLeftoversNow, "haulLeftoversNow", true);
             Scribe_Values.Look(ref haulFishing, "haulFishing", true);
             Scribe_Values.Look(ref haulChunks, "haulChunks", false);
+            Scribe_Values.Look(ref haulBills, "haulBills", true);
+            Scribe_Values.Look(ref haulBuildings, "haulBuildings", true);
+            Scribe_Values.Look(ref haulOtherWork, "haulOtherWork", true);
             Scribe_Values.Look(ref haulFill, "haulFill", 1f);
             Scribe_Values.Look(ref haulMinTrip, "haulMinTrip", 5f);
             Scribe_Values.Look(ref haulMaxHours, "haulMaxHours", 8f);

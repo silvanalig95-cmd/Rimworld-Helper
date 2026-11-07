@@ -13,14 +13,14 @@
 
   <!-- Settings: What's on, Carrying and hauling -->
   <CC_SetSec_Hauling>Carrying and hauling</CC_SetSec_Hauling>
-  <CC_SetSec_Hauling_Note>Built in from Harvest and Haul: pawns take what their own work drops to storage themselves. Building material fetched from far away comes for the whole build at once.</CC_SetSec_Hauling_Note>
-  <CC_SetSec_Hauling_Standalone>Harvest and Haul is loaded on its own, so the rows for it here stand down while it is and its own settings apply. Long material runs and things on the way still work. Rimfolk has it built in now, so the standalone mod can be removed: Rimfolk reads its settings once it is gone and takes over what pawns still carry for it.</CC_SetSec_Hauling_Standalone>
+  <CC_SetSec_Hauling_Note>Built in from Harvest and Haul: pawns take what their own work drops or makes to storage themselves. Building material fetched from far away comes for the whole build at once.</CC_SetSec_Hauling_Note>
+  <CC_SetSec_Hauling_Standalone>Harvest and Haul is loaded on its own, so the rows for it here stand down while it is and its own settings apply. Long material runs and things on the way still work, but bills, production buildings and other work fill no pockets while it is loaded. Rimfolk has it built in now, so the standalone mod can be removed: Rimfolk reads its settings once it is gone and takes over what pawns still carry for it.</CC_SetSec_Hauling_Standalone>
 
   <CC_Settings_HaulOwnWork>Pawns carry what their work drops</CC_Settings_HaulOwnWork>
-  <CC_Settings_HaulOwnWork_Tip>Pawns put what their own work drops into their inventory while they work and take it to storage themselves: crops and berries, logs, ore, wool and milk, the materials a torn-down wall gives back, the day's catch. They keep at the same kind of work while there is room (harvest then sow, mine cell after cell, milk one cow after another) and deliver when something no longer fits, when they turn to something else, or after the hours set below.
+  <CC_Settings_HaulOwnWork_Tip>Pawns put what their own work drops or makes into their inventory while they work and take it to storage themselves: crops and berries, logs, ore, wool and milk, the materials a torn-down wall gives back, the day's catch, what a bill makes at a bench, what a barrel or an egg box gives up. They keep at the same kind of work while there is room (harvest then sow, mine cell after cell, milk one cow after another, cook one meal after another) and deliver when something no longer fits, when they turn to something else, or after the hours set below.
 
 Delivering is part of the work, so a pawn who can't haul still brings in what it produced. Drafting, fights, emergencies, medical rest, urgent hunger or exhaustion, rituals, caravans and your orders come first. Switched off, what pawns already carry still goes to storage.</CC_Settings_HaulOwnWork_Tip>
-  <CC_SetNote_HaulOwnWork>Growers, miners, cutters and herders bring their own produce to storage.</CC_SetNote_HaulOwnWork>
+  <CC_SetNote_HaulOwnWork>Growers, miners, cooks, crafters and herders bring their own produce to storage.</CC_SetNote_HaulOwnWork>
 
   <CC_Settings_HaulPlants>From plants: harvesting, chopping and cutting</CC_Settings_HaulPlants>
   <CC_Settings_HaulPlants_Tip>Crops, berries, logs, healroot, mushrooms and modded plants. Also when a plant is cut as part of another job, such as clearing a cell for sowing or for a building.</CC_Settings_HaulPlants_Tip>
@@ -47,8 +47,22 @@ Delivering is part of the work, so a pawn who can't haul still brings in what it
   <CC_SetNote_HaulLeftoversNow>Chunks, fuel and contents of a torn-down building go to storage straight after.</CC_SetNote_HaulLeftoversNow>
 
   <CC_Settings_HaulFishing>From fishing</CC_Settings_HaulFishing>
-  <CC_Settings_HaulFishing_Tip>Fish and the other catches (Odyssey).</CC_Settings_HaulFishing_Tip>
+  <CC_Settings_HaulFishing_Tip>Fish and the other catches: Odyssey's fishing, and the fishing jobs of mods such as Vanilla Fishing Expanded.</CC_Settings_HaulFishing_Tip>
   <CC_SetNote_HaulFishing>The day's catch goes into the fisher's pocket.</CC_SetNote_HaulFishing>
+
+  <CC_Settings_HaulBills>From bills at a bench</CC_Settings_HaulBills>
+  <CC_Settings_HaulBills_Tip>What a bill makes: crafting, cooking, butchering, smelting, stonecutting, tailoring, drugs, refining, and the benches mods add. Only for a bill set to take its products to the best stockpile or to a stockpile you picked; the picked one is remembered, and the products go there with the next trip. A bill set to drop its products on the floor keeps them at the bench, and so does a bill you ordered yourself.
+
+What doesn't fit is carried to the stockpile in the hands, as before. Never medicine or weapons, and never a long project's masterpiece. Meals go into the pocket only while nobody hungry would be left without a meal in reach, are carried two hours at most, and go to storage at once when someone gets hungry with nothing else to eat.</CC_Settings_HaulBills_Tip>
+  <CC_SetNote_HaulBills>A cook or crafter pockets what each bill makes and stores it with the next trip.</CC_SetNote_HaulBills>
+
+  <CC_Settings_HaulBuildings>From production buildings</CC_Settings_HaulBuildings>
+  <CC_Settings_HaulBuildings_Tip>What a building gives up when a pawn empties or works it: beer from fermenting barrels, eggs from egg boxes, bioferrite from a harvester or an entity, and the products of the mods' barrels, processors, presses, beehouses and apiaries. Where the work would carry it to storage in the hands, it goes into the pocket instead, and the pawn goes on to the next barrel or box while there is room.</CC_Settings_HaulBuildings_Tip>
+  <CC_SetNote_HaulBuildings>Barrels, egg boxes and processors are emptied into the pocket.</CC_SetNote_HaulBuildings>
+
+  <CC_Settings_HaulOtherWork>From any other work that makes something</CC_Settings_HaulOtherWork>
+  <CC_Settings_HaulOtherWork_Tip>Whatever else a pawn's work job makes and leaves beside it: a skull extracted, and whatever the mods' work makes. Only what the job itself made or took out of a building, never what a pawn drops on purpose, what a hauler carries or a corpse, and never for work you ordered yourself.</CC_Settings_HaulOtherWork_Tip>
+  <CC_SetNote_HaulOtherWork>Anything else a job makes beside the pawn goes into the pocket.</CC_SetNote_HaulOtherWork>
 
   <CC_Settings_HaulChunks>Stone and slag chunks too (heavy)</CC_Settings_HaulChunks>
   <CC_Settings_HaulChunks_Tip>A chunk weighs so much that one fills most of an inventory, so chunks are left for the haulers unless this is on.</CC_Settings_HaulChunks_Tip>

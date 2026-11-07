@@ -496,9 +496,10 @@ namespace ColonyCouncil
             var spot = GatheringSpot(map) ?? DropCellFinder.TradeDropSpot(map);
             Thing gift = null;
             string what;
-            var carving = DefDatabase<ThingDef>.GetNamedSilentFail("SculptureSmall");
+            // A carving of their people's (Things/ThingRoles.cs): a small sculpture, or a mod's statue or pottery, of wood.
             var wood = ThingDefOf.WoodLog;
-            if (carving != null && carving.Minifiable && wood?.stuffProps != null && wood.stuffProps.CanMake(carving))
+            var carving = ThingRoles.From(ThingRole.Carving, m.faction, map, 0, d => d.Minifiable && wood?.stuffProps != null && wood.stuffProps.CanMake(d));
+            if (carving != null)
             {
                 var art = ThingMaker.MakeThing(carving, wood);
                 art.TryGetComp<CompQuality>()?.SetQuality(Rand.Chance(0.4f) ? QualityCategory.Excellent : QualityCategory.Good, ArtGenerationContext.Outsider);

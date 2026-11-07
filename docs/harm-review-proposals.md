@@ -30,9 +30,11 @@ budget") and fifteen more: 1.1.1, 2.5.2, 2.2.3, 1.2.3, 4.3.1, 3.4.1, 4.7.2, 4.5.
 and 4.1.1, each marked built below with what differs; (harm, part 5, 7 November 2026, the first of three batches of the
 other 69 after the player's "all suggestions please") sickness that spreads, the weather and the cold: 1.2.5, 2.3.1, 2.4.2,
 2.7.2, 3.2.2, 2.2.4, 3.2.3, 4.9.3, 3.1.2, 4.2.2, 3.11.3, 3.12.1, 3.3.3 and 4.9.2 as kinds of the budget, and 4.4.2, which
-hurts nobody, outside it. With the budget, every rate below is a kind's own: the kinds share the total the first ones came
-to, each at a little under half its own rate now. The balance model's harm mode
-(`Tools/Balance -- --harm`) has their rates.
+hurts nobody, outside it; (harm, part 6, 7 November 2026, the second of the three batches) the work's accidents, the
+animals and the contests and festivals: 2.1.2, 2.1.3, 1.5.2, 3.3.2, 3.4.2, 4.3.2, 4.4.1, 3.11.1, 3.11.2, 4.7.1, 2.6.3, 2.4.3,
+2.10.2, 3.11.4, 4.5.2, 4.6.1, 4.6.2, 4.1.2, 4.2.1, 4.8.2, 3.6.2, 3.7.2 and 3.8.2, each a kind of the budget. With the budget,
+every rate below is a kind's own: the kinds share the total the first ones came to, each at about a third of its own rate
+now. The balance model's harm mode (`Tools/Balance -- --harm`) has their rates.
 
 ## How to read it
 
@@ -213,6 +215,13 @@ checklists, and failing one costs trust and mood (`Ambitions/Ambitions.cs`, `Fai
    tired-hands rule (1.2.2) applies there. Adds a cost to rushing the great hall. *Prevent:* yes: no rush, rest. *Rate:*
    as tired hands. *Seen:* as tired hands; the chronicle may name the hall "built with a bandaged hand". *Ages:* by the
    project.
+   *Built (harm, part 6, 7 November 2026):* `Harm/WorkSlips.cs`, in each colonist's hour: in a council project's last
+   three days, an hour right at a frame or a blueprint of the project's own work (a building goal's things; a room's, a
+   place's or the way in's, any building: `AmbitionGoal.OwnWork`) counts toward a long day, and from its sixth hour
+   tired hands' rule has its roll (one in 150, twice below 30% rest, half for the tough, half in a spacer colony). Not
+   for one a building season or long hours already drives at it: that day's roll is tired hands' own. The slip is tired
+   hands' wound by the colony's means, the job stopped, a line and a few words over them; no message, as parts 4 and 5
+   keep messages to what the game would tell. The chronicle's "bandaged hand" is left out. With the projects.
 
 **Pick:** 2, built together with tired hands; it costs almost nothing more.
 
@@ -245,10 +254,23 @@ hunters" (`PlayOut/PlayOutEffects.cs`, `DilemmaEffect_Hunt`; `PlayOutGroupEffect
    felling, a fire laid in a cold room, lanterns hung at night) roll once for a small injury: a burn at the pyre, a bruise
    from a log. *Prevent:* yes: another answer; skilled hands are hurt half as often. *Rate:* one in 40 such play-outs.
    *Seen:* the slip at the moment of the work, a line said.
+   *Built (harm, part 6, 7 November 2026):* `Harm/AnswerHurts.cs`, with answers on the map: the work an answer does with
+   someone's hands, a fire laid and lit for a gathering, the pyre lit at dusk, the dead carried out and their graves dug
+   (the first hour one of ours is right at it), has one roll a play-out at the moment of the work: one in 40, half for
+   skilled hands (Cooking 8 at a fire, Construction 8 at a load or a grave). A burn of 2 to 4 on a hand, or a bruise of
+   3 to 5 on a foot from what was dropped; a line and a few words, no message. The lanterns and the fire set in a cold
+   room are set out by the answer itself, with no hands at them, and the answers' felling is the game's own cutting,
+   already a felling mishap's (4.3.1), so neither is counted twice. Named under the answers that carry the dead out (and
+   light the pyre) and lay a bonfire.
 3. **Back too soon, for real.** Letting a convalescent back to light work can end with a fall at the storeroom, a bruise
    and two more days in bed, beside the longer convalescence it already costs when they overdo it. *Prevent:* yes: keep
    them in bed, or give them work from bed. *Rate:* a third of the times they overdo it. *Seen:* the colonist with the
    sack, sitting down hard, helped back to bed.
+   *Built (harm, part 6, 7 November 2026):* `Harm/AnswerHurts.cs` and `DilemmaEffect_BackTooSoonFall`, under the
+   light-work answer's own risk of overdoing it (0.3, which already costs two days): a third of those times, the first
+   hour within the day they're found carrying something, they fall with it: a bruise of 2 to 4, two more days of
+   convalescence, and whoever of the colony is near helps them back to bed, a line from each. Named under the risk on
+   the sheet. With convalescence.
 
 **Pick:** 1. It lifts the clearest "nobody is hurt" guard in the play-outs, at exactly the game's own rate.
 
@@ -362,6 +384,10 @@ them can take a fever that stays theirs (`Camps/CampStory.cs`); a war party figh
 3. **The drovers' bull.** A colonist who wanders among the drovers' herd or a camp's pack beasts can be charged by a
    startled animal (a bruise, rarely a crack). *Prevent:* yes: children and the curious kept from the herd. *Rate:* rare,
    one camp stay in 15 with a herd. *Seen:* the herd, a charge, the drover's dog barking.
+   *Built (harm, part 6, 7 November 2026):* `Harm/WildHurts.cs`, in each colonist's hour: one of ours within three cells
+   of a beast of a camp's herd (a body of 0.5 or more), one charge in 30 such hours, once a stay: a bruise of 3 to 6, a
+   crack one time in six, a child's small bruise; the beast's charge and a word from one of the camp (the drover's dog
+   is left to the words), told as the game tells an animal turning on someone. With the camps.
 
 **Pick:** 1. It is the clearest bad end the camps lack, and every part of it (tension, the dilemma, the game's fight,
 the goodwill rule) already exists.
@@ -412,6 +438,11 @@ of rank, refugees to see through. Failing costs goodwill and a setback; the road
 3. **The hands come home sore.** Hands back from a town's harvest bring what a day and a half in the fields would have
    given at home: a strained back, blisters, a sunburn. *Prevent:* partly: send the tough. *Rate:* the work ailments'
    own. *Seen:* the hands walking in, one limping.
+   *Built (harm, part 6, 7 November 2026):* `Harm/AnswerHurts.cs`, from the harvest mission's end: each hand's day and a
+   half in the fields, by the everyday ailments' own rates for it (a strained back 0.005 a heavy day, blisters and a
+   sunburn 0.03 a day each, a day and a half of each: about one hand in ten), half for the tough and half for half the
+   work. It waits in the harm book and shows once they're home and up and about: the ailment, a line, its message naming
+   the town. With the everyday ailments and "Systems talk to each other".
 
 **Pick:** 1. A lost child is the mission most players will feel; a found-late cost makes the search a real race.
 
@@ -485,6 +516,13 @@ a nemesis is a raider or beast who struck down one of ours and got away, and com
 2. **The wild one too close.** In a creature encounter, a colonist who steps closer may be bitten or kicked, at the
    game's taming-revenge chance; a bite can carry rabies by the serious tier's 3%. *Prevent:* partly: the cautious never
    step closer. *Rate:* one such encounter in 20. *Seen:* the colonist reaching out, the animal lashing out and fleeing.
+   *Built (harm, part 6, 7 November 2026):* `Harm/WildHurts.cs` and `DilemmaEffect_TooClose`, in the three encounters
+   where one of ours steps close to a wild animal (the great beast close, a wild thing fed, a child meeting one; the
+   beast poked has the game's manhunter in it already): within eight cells, by the game's own taming-revenge chance for
+   the kind, about one in 20 at the usual tenth (half to twice that), never the nervous. A kick from a big one (a bruise
+   of 3 to 6), a bite from a small one (2 to 4, named for the animal, so the ailments' own roll for a bite can bring
+   rabies at the serious tier's rate), a child nipped under the size that carries anything; the animal flees. No
+   message.
 
 **Pick:** 1. The nemesis is already a story; making it hunt its old victim pays that story off in the fight.
 
@@ -571,6 +609,10 @@ heart's safety rule: it never patches mood, the mental breaker or the game's bre
 2. **Clumsy when worn.** In the high band, work slips are a little likelier: the tired-hands rule (1.2.2) at half again
    its rate, decree or not. *Prevent:* yes: the worn-out day off. *Rate:* half the tired-hands rate without a decree,
    one and a half times it with one. *Seen:* as tired hands.
+   *Built (harm, part 6, 7 November 2026):* `Harm/WorkSlips.cs`: "the high band" is the heart's two upper ones (worn
+   down, near breaking); a long day (six hours found at any work) has one roll at half the tired-hands rate, decree or
+   not, beside tired hands' own roll under a work decree, so the two together come to one and a half. Tired hands'
+   wounds, a line, no message. With the heart.
 3. **A restless walk at dusk.** Someone with the restless feeling at its height walks out alone at dusk, and beyond the
    walls at night the game's predators may find them. *Prevent:* partly: a friend goes along (the walk becomes company);
    walls. *Rate:* rare, once a season for a restless colonist. *Seen:* the walk out past the gate, sometimes a predator.
@@ -601,6 +643,11 @@ without a coat (`Setbacks/SetbackNuisances.cs`). All moods.
 2. **The makeshift spot's burn.** Cooking at a campfire or butchering at a spot when a proper bench could be built
    carries a small chance of a burn or a cut. *Prevent:* yes: build the bench. *Rate:* one bill in 200. *Seen:* the cook
    pulling a hand back. *Ages:* never in a colony that can't build better yet, as the setback already rules.
+   *Built (harm, part 6, 7 November 2026):* `Harm/AnswerHurts.cs`, at the bill's end (the setbacks' own hook on the
+   game's recipe products, with the deeper hooks): a bill of cooking (butchering is one) at a campfire or at a spot
+   while a proper bench for that bill could be built here, one in 200: a burn of 2 to 4 at the fire, a cut at the spot,
+   a line and a few words. A colony that can't build better yet is the setback's own making-do check. With "Life's ups
+   and downs" and the deeper hooks.
 
 **Pick:** 1. Failed builds already happen and are already noticed; a bruise one time in 10 makes skill on heavy work
 matter.
@@ -645,6 +692,13 @@ what a group does against someone is small (-1 to -3).
 2. **Brave to a fault.** A group with that way, or the bold ones, sometimes eggs a member into a dare: a swim in a cold
    river, crossing thin ice, wrestling the strongest. A sprain or a chill. *Prevent:* partly: a cautious anchor talks them
    out of it. *Rate:* once a season for such a group. *Seen:* the dare said aloud, the attempt, a laugh or a limp.
+   *Built (harm, part 6, 7 November 2026):* `Harm/Contests.cs`: a group brave to a fault (its way) or the bold ones,
+   about once a season (one evening in 15, two of it free together), one eggs another on; a cautious one at hand (the
+   group's worrier, or a nervous anchor) talks them out of it half the time. With water in reach and the air at 12 °C or
+   colder, a swim (the job `Rimfolk_DareWalk` down to the water's edge): one in three a chill, the game's hypothermia in
+   a frost (and a dash for a fire), else a head cold; otherwise wrestling its strongest (the drills' bout): one in three
+   a sprained ankle. "Crossing thin ice" is left out: the game has no ice that gives way. With the groups and answers on
+   the map.
 
 **Pick:** 1. Group rivalry already exists and builds up; this gives it a peak the colony sees.
 
@@ -658,6 +712,12 @@ thought, tags and moments; a hothead or a rival tells it with its subject there.
 2. **A coward's name.** Someone whose name for courage has gone bad pushes forward in the next fight to prove otherwise,
    out of cover. *Prevent:* yes: draft and hold them; a word from the marshal beforehand. *Rate:* once after the name
    forms. *Seen:* the colonist breaking cover in a raid, a line said.
+   *Built (harm, part 6, 7 November 2026):* `Harm/Contests.cs`, from the name's own news
+   (`Social/Gossip/ReputationTracker.cs`: the courage side newly a coward's): it waits in the harm book sixty days for a
+   fight at home; at the first look in it, undrafted, armed and able, they push forward at the nearest enemy (a melee
+   weapon's holder at them, a gun's or a bow's to within range and firing), the game's own fight after, counted for the
+   cap as they break. Drafted and held, it passes; the marshal at their side as it begins has a word and holds them.
+   "Once after the name forms" is its base rate, scaled by the setting and the pass. With the names.
 
 **Pick:** 1. Gossip told in front of its subject is already allowed; this adds its natural answer.
 
@@ -672,6 +732,9 @@ thought, tags and moments; a hothead or a rival tells it with its subject there.
    *Seen:* the avenger walking straight to the visitor.
 2. **Fury that forgets cover.** In a fight against that people, the avenger sometimes breaks from cover toward them.
    *Prevent:* yes: draft and hold them. *Rate:* once a battle at most, one in 3. *Seen:* the run forward, a line said.
+   *Built (harm, part 6, 7 November 2026):* `Harm/Contests.cs`, every 250 ticks of a fight at home against the people
+   sworn against: once a battle for each avenger, one in three, undrafted and armed, they break from cover at the
+   nearest of that people, as the coward does. Drafting and holding them keeps them in it. With the vendettas.
 
 **Pick:** 1. Peace with the killers is already a way the vendetta ends; this makes the years before it tense.
 
@@ -710,8 +773,16 @@ fear faced, the new leg, getting clean).
 1. **Carries more than they should.** The strained back half again as likely for them, and now and then a dropped load
    bruises a foot. *Prevent:* not preventable, beyond rest. *Rate:* the strain ailment's rate times 1.5. *Seen:* the
    stagger under the load.
+   *Built (harm, part 6, 7 November 2026):* `Harm/WorkSlips.cs`: the quirk's heavy day (six hours building, mining or
+   hauling) has, the first hour after it that they're found carrying, the strained back half again (0.0025, beside the
+   ailment's own 0.005), told as an ailment caught; else one in 150 a dropped load on a foot, a bruise of 2 to 4. With
+   the quirks, the everyday ailments and "Systems talk to each other".
 2. **Sharp habits.** Always whittling, or sharpens every blade: a small nick once a season or so. *Prevent:* not
    preventable. *Rate:* once a season. *Seen:* whittling at the fire, a nick, a laugh.
+   *Built (harm, part 6, 7 November 2026):* `Harm/WorkSlips.cs`, on the quirks' own small habit (whittling or sharpening
+   a blade in a chair, `Immersion/QuirkHabits.cs`): a day one of them is found at it, one in ten a nick, a cut of 1 to 2
+   on a hand, the mildest; a line and a laugh, no message. "Once a season" is read against the days they sit down to it.
+   With the quirks and the small habits.
 3. **Weather lovers.** Stands in the rain, or loves the snow: the chest cold or frostnip a third likelier. *Prevent:*
    partly: a coat or a hood. *Rate:* the ailment's rate times 1.33. *Seen:* standing in the rain, face up.
    *Built (harm, part 5, 7 November 2026):* `Harm/ColdHurts.cs`: one who stands in the rain (the quirk) out two hours of
@@ -721,6 +792,11 @@ fear faced, the new leg, getting clean).
    everyday ailments and "Systems talk to each other".
 4. **Walks the fields at dawn.** In a land with predators, the dawn walk can meet one. *Prevent:* partly: walls round
    the fields. *Rate:* rare, the game's own predators. *Seen:* the walk, the predator at the field's edge.
+   *Built (harm, part 6, 7 November 2026):* `Harm/WildHurts.cs` and the job `Rimfolk_DawnWalk`: one with the quirk, free
+   at dawn (five to seven), walks out to a field's edge once a day (already at the growing outdoors, that is the walk);
+   alone there, beyond the walls (the map's edge in reach without a closed door) and with a hungry wild predator in
+   reach that would take them, one dawn in eight it comes, by the game's own hunt, which stops once they're down, with
+   the game's own warning. With the quirks.
 
 **Pick:** 1. One factor on an existing ailment, true to the quirk's name.
 
@@ -780,6 +856,12 @@ evening of faith (`Calendar/CalendarKeeping.cs`); a feast's dish may burn and ri
 2. **The bonfire's spark.** On a dry, windy summer night, a bonfire laid in the open can throw a spark into dry grass (the
    game's own fire), and someone near can be singed. *Prevent:* yes: a cleared spot, a firebreak. *Rate:* one bonfire in
    20 in dry wind, never in rain or snow. *Seen:* the spark, the grass catching, everyone beating it out.
+   *Built (harm, part 6, 7 November 2026):* `Harm/Contests.cs`: a bonfire (an answer's, the calendar's bonfire night,
+   any gathering round a fire) burning in the open on a summer night with no rain or snow and the game's wind at 1 or
+   more: once a night, one in 20, a spark lands in dry grass two to six cells off (a wild plant, not a tree) and the
+   game's own fire catches; up to three of ours near beat it out with the game's own firefighting, and one standing
+   within a step or two is singed (a burn of 1 to 2, the mildest). A cleared spot or a firebreak leaves it nothing to
+   catch. Named under the bonfire's answer in summer and in the calendar's way.
 3. **The feast that ends in a fistfight.** Rivals quarreling at the day's table come to blows when drink was poured.
    *Prevent:* yes: no drink for the day. *Rate:* one such quarrel in 4 with drink. *Seen:* the toast, the quarrel, the
    fight.
@@ -795,6 +877,13 @@ night watch on the walls is an on-map answer that tires the watcher (`Council_Dl
    ricochet graze. Adds practice where it counts. *Prevent:* partly: a marshal with Shooting 10 or more. *Rate:* one
    muster in 30. *Seen:* everyone at the sandbags, a shout, the hurt one walking back. *Ages:* bows and slings,
    crossbows, rifles, charge rifles (a burn).
+   *Built (harm, part 6, 7 November 2026):* `Harm/Contests.cs` and the job `Rimfolk_MusterPost`: with the militia's
+   drills (on the evening off its bouts, one in four) or while "hold the way in" is the colony's project, in the
+   evening, the marshal (or the first of them) calls up to four of ours with a gun or a bow to the line (a defense
+   line's way in, else the gate), each to a post behind it, by the cover there if there is any; a while at their posts,
+   and a little Shooting learned. One muster in 30 has a mishap at the first post the cap allows (half with a marshal of
+   Shooting 10): by the weapon's age, a snapped bowstring (a cut), a powder burn, a ricochet's graze, a charge cell's
+   burn; the hurt one walks back. Named on the militia's card and in the project's description.
 2. **The night watch in the cold.** A watcher on the walls in a hard frost without warm clothes gets frostnip or
    chilblains, and a lone watcher outside the walls may draw a predator. *Prevent:* yes: warm clothes, a heated guard
    post, two on watch. *Rate:* the cold ailments' rate. *Seen:* the watcher stamping on the wall, a cough in the morning.
@@ -827,6 +916,11 @@ carries the game's own risks and the work ailments, and the two below belong to 
 2. **Taking down hurts too.** Taking down a wall or a door (the take-down orders, or the player's) can drop stone or
    timber on the worker, at the failed build's rate (3.4.1). *Prevent:* partly: skilled builders. *Rate:* one wall in
    100 taken down by someone under Construction 5. *Seen:* the wall coming apart, the worker jumping back.
+   *Built (harm, part 6, 7 November 2026):* `Harm/AnswerHurts.cs` (`Patch_TakingDownHurts`, a prefix and postfix on the
+   game's `JobDriver_Deconstruct.FinishedRemoving`): a wall (one cell, filling it) or a door taken down by one of the
+   colony under Construction 5, whoever ordered it, one in 100: the failed build's hurt, a bruise of 3 to 6 on an arm, a
+   crushed foot one time in five. Dust where it stood, the worker down a moment, a line; no message. With the everyday
+   ailments and the deeper hooks.
 
 **Pick:** 1, as part of the work ailments rather than of the automations.
 
@@ -838,6 +932,11 @@ ailments (chilblains, frostnip, sunburn).
 1. **Hurried hands at the harvest.** In a frost harvest, the hardship's "all hands" or a harvest push, hurried harvesting
    by hand can cut a hand on a sickle. *Prevent:* partly: harvest before dark; skilled growers. *Rate:* one in 200 hours of
    hurried harvest. *Seen:* the dark field, a yelp. *Ages:* a flint sickle, a scythe, shears.
+   *Built (harm, part 6, 7 November 2026):* `Harm/WorkSlips.cs`: an hour found right at the game's harvesting in a hurry
+   (a work party bringing a crop in, which the killing frost's "all hands" is; a plant marked by a frost harvest still
+   waiting on its frost, `FieldWeather.FrostMarked`; the harvest push decree): one in 200, twice after dark, half for a
+   grower of Plants 8. A cut of 2 to 4 on a hand, a line by the age's tool (a flint sickle, a scythe, shears, a cutter),
+   a few words. "Harvest before dark" is the dark's doubling. With the everyday ailments.
 2. **The forecast can be wrong.** A field sown by the weather can still lose its crop to a cold snap harsher than the
    land's reckoning (the stray days `FieldWeather` already measures), and the zone's note says the forecast missed.
    Adds honest uncertainty to a helper that today is never wrong. *Prevent:* not preventable. *Rate:* as often as the
@@ -873,6 +972,12 @@ food left out, kept close, hunted, tamed or driven off (`Animals/ResidentBeast.c
    for someone alone near the stores at night (the game's own predator hunt, one animal). *Prevent:* yes: keep close,
    drive it off or tame it; never with grazing animals. *Rate:* one fed predator in 4 over a season. *Seen:* the wolf at
    the stores' door at dusk, a colonist backing away.
+   *Built (harm, part 6, 7 November 2026):* `Harm/WildHurts.cs`, on the harm book's hour: the beast that stays, a
+   predator (never a grazer; a Pokémon's is 4.6.2), the colony's last answer "fed" three days since: at dusk it comes to
+   the stores' door, and whoever sees it says so; a night with someone of ours alone (nobody within ten cells) within
+   twelve cells of the stores (the biggest stockpile), one in 40, it comes for them by the game's own hunt. Keeping
+   close, driving it off or taming it change the answer and stop it. Named under the answer for a predator. With the
+   beast that stays.
 3. **The rut in the pens.** In the rut, the colony's own males (bulls, rams, stags) can charge whoever enters their pen.
    *Prevent:* yes: keep the pens shut in the rut; leave it to the herdmaster. *Rate:* one charge per rut per pen of such
    animals. *Seen:* the bull lowering its head.
@@ -893,9 +998,19 @@ that keeps coming to the stores, the Pokédex project (`Integrations/PokeWorld.c
 1. **A catch that fights back.** "Let them try to catch it": the wild Pokémon fights PokéWorld's own way, and a trainer
    without a partner Pokémon at their side can be hurt. *Prevent:* yes: send a trainer with a partner. *Rate:* one try in
    4 turns into a fight. *Seen:* the chase, the fight, the catch or the escape.
+   *Built (harm, part 6, 7 November 2026):* `Harm/WildHurts.cs`, with PokéWorld: once the trainer the answer sent ("let
+   them try to catch it", a visit out to it) is within six cells of the wild Pokémon, once a day, one try in four it
+   fights: the game's own attack, which PokéWorld fights with its moves, for a while; with a partner Pokémon of the
+   trainer's (one they are master of) at their side, it goes for the partner and the trainer is spared. Named under the
+   answer. Its base rate is set by hand: the model's game hasn't PokéWorld.
 2. **The visitor at the stores turns.** The Pokémon that keeps coming, fed, may lash out at whoever shoos it (as 4.5.2).
    *Prevent:* yes: keep the stores shut, or catch it. *Rate:* one fed visitor in 5. *Seen:* the Pokémon at the stores,
    the swipe.
+   *Built (harm, part 6, 7 November 2026):* `Harm/WildHurts.cs` and the job `Rimfolk_ShooVisitor`, with PokéWorld: the
+   Pokémon that stays, fed, comes to the stores at dusk one day in three; the nearest of ours who is free walks over to
+   shoo it, and one shooing in ten it swipes first (a scratch of 2 to 4, a child's 1 to 2) before it runs; otherwise it
+   runs at the word. Keeping the stores shut (the watch's answer) or catching it stop it. Named under the answer. Its
+   base rate is set by hand.
 
 **Pick:** 1. Catching is the heart of the mod; a risk makes a partner Pokémon worth having.
 
@@ -909,6 +1024,13 @@ surgery, hunting, animals), never for addicts (`Integrations/BeforeWork.cs`); to
    second cup one day in 5, reaching the tipsy stage (the game's 2.5 fights) and slower hands, unless their drug policy
    stops it. Adds the habit's slope. *Prevent:* yes: the drug policy, or the setting. *Rate:* one day in 5 after three in
    a row. *Seen:* the second cup at the stores, a stagger at the bench, sometimes a fight.
+   *Built (harm, part 6, 7 November 2026):* `Harm/WorkSlips.cs` with `Integrations/BeforeWork.cs`, with Alpha Skills:
+   the days running with a drink before work are counted; from the fourth such day, one in five the drinker goes back to
+   the stores for a second cup of the same before the work, only if their drug policy allows it for fun (the game's own
+   drinking and drunkenness after, with the game's own fight chance at that stage, which stays outside the budget). The
+   next hour right at the bench, the stove or a build within four hours, still drunk, one stagger in four slips: tired
+   hands' wound, 2 to 5. The drink before work's setting off stops it. The days are session memory: a reload counts them
+   again.
 2. **Burned at the bench.** A drink before smithing or cooking (allowed today) carries a small chance of a burn or a
    cut. *Prevent:* yes: a new switch, no drink before hot work. *Rate:* one in 100 drinks before hot work. *Seen:* the
    hiss at the forge or the stove.
@@ -931,6 +1053,10 @@ surgery, hunting, animals), never for addicts (`Integrations/BeforeWork.cs`); to
    present. *Rate:* one practice in 25. *Seen:* the flash, the yelp, the teacher's word.
 2. **Fighters spar.** Fighter classes spar with the sparring rule between colonists. *Prevent:* yes: they spar only
    with consent. *Rate:* one bout in 25. *Seen:* the bout at the training dummy.
+   *Built (harm, part 6, 7 November 2026):* `Harm/Contests.cs`, on the drills' own bout (`DrillBouts`, in a form of its
+   own): with A RimWorld of Magic, two of its combat classes (the "fighter" tag group) free in the evening, one evening
+   in three; their consent is neither thinking ill of the other and neither worn down. One bout in 25 lands a blow, the
+   sparring rule's 6 to 9 by the colony's means. The game has no training dummy, so they spar in the open. No message.
 
 **Pick:** 1. The story already has practice stages to hang it on.
 

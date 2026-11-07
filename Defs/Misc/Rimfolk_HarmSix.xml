@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Harm, part 6 (Source/ColonyCouncil/Harm/WildHurts.cs, Contests.cs): the dawn walk to a field's edge, a walk over to
+       shoo the visitor at the stores, a shooter's walk to their post at a muster, a dared walk down to cold water. Each goes
+       out to its place, stays a while and ends; none starts in danger. -->
+
+  <JobDef>
+    <defName>Rimfolk_DawnWalk</defName>
+    <driverClass>ColonyCouncil.JobDriver_HarmWalk</driverClass>
+    <reportString>walking the fields at first light.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_ShooVisitor</defName>
+    <driverClass>ColonyCouncil.JobDriver_HarmWalk</driverClass>
+    <reportString>going to shoo the visitor from the stores.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_MusterPost</defName>
+    <driverClass>ColonyCouncil.JobDriver_HarmWalk</driverClass>
+    <reportString>at their post for the muster.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_DareWalk</defName>
+    <driverClass>ColonyCouncil.JobDriver_HarmWalk</driverClass>
+    <reportString>taking a dare at the water.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+</Defs>

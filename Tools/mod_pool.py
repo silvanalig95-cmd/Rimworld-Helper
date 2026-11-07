@@ -206,6 +206,45 @@ def lis(e, path):
     return [(li.text or "").strip() for li in x.findall("li") if li.text and li.text.strip()]
 
 
+def comp_names(d):
+    """The classes of a def's comps, as the game names them: a li's Class (CompProperties_Drug) and its compClass (CompArt)."""
+    names = []
+    comps = d.find("comps")
+    for li in (comps.findall("li") if comps is not None else []):
+        for n in (li.attrib.get("Class", ""), text(li, "compClass")):
+            n = n.split(".")[-1].strip()
+            if n and n not in names:
+                names.append(n)
+    return names
+
+
+def drug_comp(d):
+    comps = d.find("comps")
+    for li in (comps.findall("li") if comps is not None else []):
+        if li.attrib.get("Class", "").split(".")[-1] == "CompProperties_Drug":
+            return li
+    return None
+
+
+def rot_days(d):
+    comps = d.find("comps")
+    for li in (comps.findall("li") if comps is not None else []):
+        if li.attrib.get("Class", "").split(".")[-1] == "CompProperties_Rottable":
+            return text(li, "daysToRotStart") or "2"
+    return ""
+
+
+def research_of(e):
+    """The research a recipe, a recipe maker or a sown plant needs (one name, or a list; a mod that writes the one name
+    inside an li, as Vanilla Furniture Expanded - Art does, is read as the game reads it, by its text)."""
+    one = e.find("researchPrerequisite")
+    out = ["".join(one.itertext()).strip() if one is not None else ""] + lis(e, "researchPrerequisites")
+    return [x for x in out if x]
+
+
+TECHS = ["Undefined", "Animal", "Neolithic", "Medieval", "Industrial", "Spacer", "Ultra", "Archotech"]
+
+
 def main(root, out, save=None):
     folders, active = read_mods(root)
     active_set = set(active)
@@ -266,6 +305,40 @@ def main(root, out, save=None):
             if key not in self or self[key][2] != "yes" or row[2] == "yes":
                 super().__setitem__(key, row)
 
+    # How an item is come by in the player's game (their active mods): the recipes that make it, its recipe maker, the
+    # crops sown for it, each with the research it needs; madeTech is the age of the easiest of them (Undefined for one
+    # that needs no research, blank when none makes it).
+    research_tech = {}
+    made = {}
+    for pid, e in defs:
+        if not (pid in active_set or pid.startswith("ludeon.")):
+            continue
+        tag = e.tag.split(".")[-1]
+        d = resolved(e)
+        if tag == "ResearchProjectDef":
+            research_tech[text(d, "defName")] = text(d, "techLevel") or "Undefined"
+        elif tag == "RecipeDef":
+            prods = d.find("products")
+            for p in (list(prods) if prods is not None else []):
+                if isinstance(p.tag, str) and p.tag != "li":
+                    made.setdefault(p.tag, []).append(research_of(d))
+        elif tag == "ThingDef":
+            rm = d.find("recipeMaker")
+            if rm is not None:
+                made.setdefault(text(d, "defName"), []).append(research_of(rm))
+            pl = d.find("plant")
+            if pl is not None and text(pl, "harvestedThingDef") and pl.find("sowTags") is not None:
+                made.setdefault(text(pl, "harvestedThingDef"), []).append(lis(pl, "sowResearchPrerequisites"))
+
+    def made_tech(dn):
+        ways = made.get(dn)
+        if not ways:
+            return ""
+        def need(rs):
+            return max((TECHS.index(research_tech.get(r, "Undefined")) if research_tech.get(r, "Undefined") in TECHS else 0
+                        for r in rs), default=0)
+        return TECHS[min(need(rs) for rs in ways)]
+
     last = Last()
     for pid, e in defs:
         d = resolved(e)
@@ -288,7 +361,9 @@ def main(root, out, save=None):
                     text(v, "verbClass").endswith("Shoot") or "Shoot" in text(v, "verbClass") or "Launch" in text(v, "verbClass")
                     for v in d.find("verbs").findall("li")) else "melee"
                 row = [dn, pid, on, label, tech, ",".join(lis(d, "weaponTags")), kind, ",".join(lis(d, "stuffCategories")),
-                       value, trade, text(d, "generateCommonality")]
+                       value, trade, text(d, "generateCommonality"), text(d, "tradeability"), ",".join(comp_names(d)), made_tech(dn),
+                       ",".join(sorted({c for t in (d.find("tools").findall("li") if d.find("tools") is not None else [])
+                                        for c in lis(t, "capacities")}))]
                 last[("weapons", dn)] = row
             elif d.find("race") is not None:
                 race = d.find("race")
@@ -299,7 +374,18 @@ def main(root, out, save=None):
                        text(race, "predator"), text(race, "herdAnimal"), text(race, "maxPreyBodySize")]
                 last[("races", dn)] = row
             elif text(d, "category") == "Item" or cats:
-                row = [dn, pid, on, label, tech, cats, trade, value]
+                ing = d.find("ingestible")
+                drug = drug_comp(d)
+                row = [dn, pid, on, label, tech, cats, trade, value,
+                       text(d, "category"), text(d, "stackLimit"), text(d, "tradeability"),
+                       text(ing, "preferability") if ing is not None else "", text(ing, "foodType") if ing is not None else "",
+                       text(ing, "drugCategory") if ing is not None else "", text(ing, "sourceDef") if ing is not None else "",
+                       text(d, "statBases/Nutrition"), text(drug, "chemical") if drug is not None else "",
+                       text(drug, "teetotalerCanConsume") if drug is not None else "", rot_days(d), ",".join(comp_names(d)),
+                       ",".join(lis(d, "stuffProps/categories")), text(d, "stuffProps/statFactors/Beauty"),
+                       text(d, "statBases/MedicalPotency"), ",".join(lis(d, "stuffCategories")), text(d, "size"),
+                       text(d, "designationCategory"), text(d, "minifiedDef"), made_tech(dn), text(d, "statBases/WorkToMake"),
+                       text(d, "statBases/TerrorSource")]
                 last[("items", dn)] = row
         elif tag == "XenotypeDef":
             last[("xenotypes", dn)] = [dn, pid, on, label, text(d, "inheritable"), str(len(lis(d, "genes"))),
@@ -338,8 +424,11 @@ def main(root, out, save=None):
         "apparel": ["defName", "mod", "active", "label", "techLevel", "tags", "layers", "bodyPartGroups", "stuff", "marketValue", "tradeTags",
                     "commonality"],
         "weapons": ["defName", "mod", "active", "label", "techLevel", "weaponTags", "kind", "stuff", "marketValue", "tradeTags",
-                    "commonality"],
-        "items": ["defName", "mod", "active", "label", "techLevel", "thingCategories", "tradeTags", "marketValue"],
+                    "commonality", "tradeability", "comps", "madeTech", "capacities"],
+        "items": ["defName", "mod", "active", "label", "techLevel", "thingCategories", "tradeTags", "marketValue",
+                  "category", "stackLimit", "tradeability", "preferability", "foodType", "drugCategory", "sourceDef",
+                  "nutrition", "chemical", "teetotaler", "rotDays", "comps", "stuffProps", "beauty", "potency", "madeOf",
+                  "size", "designation", "minified", "madeTech", "work", "terror"],
         "races": ["defName", "mod", "active", "label", "kind", "bodySize", "foodType", "predator", "herdAnimal", "maxPreyBodySize"],
         "xenotypes": ["defName", "mod", "active", "label", "inheritable", "genes", "description"],
         "genes": ["defName", "mod", "active", "label", "displayCategory", "biostatMet", "biostatCpx"],

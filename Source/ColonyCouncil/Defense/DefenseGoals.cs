@@ -10,6 +10,9 @@ namespace ColonyCouncil
     /// </summary>
     public class Goal_HoldTheWayIn : AmbitionGoal
     {
+        /// <summary>A room's or a place's goal: any building is its own work (harm, part 6: the last push).</summary>
+        public override bool OwnWork(Verse.ThingDef def) => def?.building != null;
+
         public int cover = 3;
 
         private static DefenseSurvey Survey(Map map) => map != null && map.IsPlayerHome ? DefenseSurvey.For(map) : null;

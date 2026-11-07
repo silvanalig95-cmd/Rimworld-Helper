@@ -826,6 +826,17 @@ namespace ColonyCouncil
                 }
         }
 
+        /// <summary>A plant marked by a frost harvest step still waiting on its frost (harm, part 6: hurried hands at the harvest).</summary>
+        public static bool FrostMarked(Plant plant)
+        {
+            var t = SuggestTracker.Instance;
+            if (plant == null || t == null) return false;
+            foreach (var d in t.done)
+                if (d.state == SuggestMath.Waiting && d.check is FrostHarvestCheck && d.undo is UndoOrders u && u.marked.Contains(plant))
+                    return true;
+            return false;
+        }
+
         // ---------------- Saving ----------------
 
         public override void ExposeData()

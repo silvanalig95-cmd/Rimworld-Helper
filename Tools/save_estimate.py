@@ -672,10 +672,13 @@ MODEL = {
                                       "peoples that arose during play: one record each, one every 20 days at the most (the setting at 200%), ArisingMath.MaxRecords kept"),
     # Carrying and hauling (Hauling/HaulBook.cs): one load per pawn carrying something for Rimfolk (its work's produce, a
     # material run's stock), dropped once it carries nothing and on saving for pawns gone; each holds a few kinds owed,
-    # the skills of the work and a run's one or two materials.
+    # the skills and work givers of the work, the stockpile a bill picked for a kind, and a run's one or two materials.
+    # All of a load's lists empty with it (HaulLoad.Reset).
     "Hauling/HaulBook.cs:loads": ("colonists", 1, 260, "one per pawn carrying something for Rimfolk, dropped once it carries nothing"),
     "Hauling/HaulBook.cs:owed": ("fixed", 4, 90, "per load: the kinds owed to storage, a few (counted under loads)"),
     "Hauling/HaulBook.cs:skills": ("fixed", 2, 40, "per load: the skills of the work that made it (counted under loads)"),
+    "Hauling/HaulBook.cs:givers": ("fixed", 2, 40, "per load: the work givers of the work that made it, one or two (counted under loads)"),
+    "Hauling/HaulBook.cs:into": ("fixed", 1, 90, "per load: a kind a bill sent to a picked stockpile and a cell of it, kept only while that kind is owed (counted under loads)"),
     "Hauling/HaulBook.cs:run": ("fixed", 2, 90, "per load: a material run's one or two materials (counted under loads)"),
     # The colony's animals with powers (Animals/AnimalPowers.cs): one familiar a mage and a binding waiting at most a mage
     # (dropped after 10 days), the omen animals alive (one in 20 days at most, the dead told and let go), and the Psychic

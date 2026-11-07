@@ -104,6 +104,32 @@ namespace ColonyCouncil
         // companion's blow one bout in 25 (Tools/Balance/HarmSim.cs, TamerBouts).
         public static readonly HarmKind TamerBout = new HarmKind("tamerBout", "a tamer's bout (peoples)", "peoples", 0.009f, false);
 
+        // ---------------- Harm, part 6 (the work's accidents, the animals, the contests and festivals, 7 November 2026) ----------------
+
+        public static readonly HarmKind HotHeavy = new HarmKind("hotHeavy", "hot and heavy answers (2.1.2)", "hotHeavy", 0.0097f, false);
+        public static readonly HarmKind BackTooSoon = new HarmKind("backTooSoon", "back too soon, for real (2.1.3)", "backTooSoon", 0.0041f, false);
+        public static readonly HarmKind ProjectPush = new HarmKind("projectPush", "the project's last push (1.5.2)", "projectPush", 0.005f, false);
+        public static readonly HarmKind ClumsyWorn = new HarmKind("clumsyWorn", "clumsy when worn (3.3.2)", "clumsyWorn", 0.0023f, false);
+        public static readonly HarmKind Makeshift = new HarmKind("makeshift", "the makeshift spot's burn (3.4.2)", "makeshift", 0.0075f, false);
+        public static readonly HarmKind TakingDown = new HarmKind("takingDown", "taking down hurts too (4.3.2)", "takingDown", 0.021f, false);
+        public static readonly HarmKind HurriedHarvest = new HarmKind("hurriedHarvest", "hurried hands at the harvest (4.4.1)", "hurriedHarvest", 0.035f, false);
+        public static readonly HarmKind StrongBack = new HarmKind("strongBack", "carries more than they should (3.11.1)", "strongBack", 0.0052f, false);
+        public static readonly HarmKind SharpHabits = new HarmKind("sharpHabits", "sharp habits (3.11.2)", "sharpHabits", 0.036f, false);
+        public static readonly HarmKind SecondDrink = new HarmKind("secondDrink", "the second drink (4.7.1)", "secondDrink", 0.025f, false);
+        public static readonly HarmKind HandsSore = new HarmKind("handsSore", "the hands come home sore (2.6.3)", "handsSore", 0.0078f, false);
+        public static readonly HarmKind DroversBull = new HarmKind("droversBull", "the drovers' bull (2.4.3)", "droversBull", 0.007f, false);
+        public static readonly HarmKind TooClose = new HarmKind("tooClose", "the wild one too close (2.10.2)", "tooClose", 0.013f, false);
+        public static readonly HarmKind DawnWalk = new HarmKind("dawnWalk", "walks the fields at dawn (3.11.4)", "dawnWalk", 0.009f, false);
+        public static readonly HarmKind BoldWolf = new HarmKind("boldWolf", "the fed wolf grows bold (4.5.2)", "boldWolf", 0.0047f, false);
+        public static readonly HarmKind CatchFights = new HarmKind("catchFights", "a catch that fights back (4.6.1)", "pokemonCatch", 0.006f, false);
+        public static readonly HarmKind StoresVisitor = new HarmKind("storesVisitor", "the visitor at the stores turns (4.6.2)", "pokemonStores", 0.012f, false);
+        public static readonly HarmKind BonfireSpark = new HarmKind("bonfireSpark", "the bonfire's spark (4.1.2)", "bonfireSpark", 0.00015f, false);
+        public static readonly HarmKind LineMuster = new HarmKind("lineMuster", "musters at the line (4.2.1)", "lineMuster", 0.0067f, false);
+        public static readonly HarmKind MagicSpar = new HarmKind("magicSpar", "fighters spar (4.8.2)", "magicSpar", 0.010f, false);
+        public static readonly HarmKind BraveDare = new HarmKind("braveDare", "brave to a fault (3.6.2)", "braveDare", 0.039f, false);
+        public static readonly HarmKind CowardName = new HarmKind("cowardName", "a coward's name (3.7.2)", "cowardName", 0.0044f, false);
+        public static readonly HarmKind VendettaFury = new HarmKind("vendettaFury", "fury that forgets cover (3.8.2)", "vendettaFury", 0.003f, false);
+
         /// <summary>Every kind, in the order they were built.</summary>
         public static readonly HarmKind[] All =
         {
@@ -111,7 +137,10 @@ namespace ColonyCouncil
             FeastBout, FeastSour, PilgrimCough, SchemeFight, PokemonSpar,
             Physician, GuestCough, Hail, ColdNight, Felling, FailedBuild, HotBench, Rut, HerdLesson, Saddle, GroupBrawl, SoreLoser, GuestNight, GuestNightHospitality, Rematch, Games,
             SickWorkOn, GateSickness, CampFever, CourierSick, PatientIll, BadBatch, SmallThings, DirtyWater, GateCold, NightWatch, WeatherLovers, Sleepwalk, RestlessWalk, ColdWater,
-            TamerBout
+            TamerBout,
+            HotHeavy, BackTooSoon, ProjectPush, ClumsyWorn, Makeshift, TakingDown, HurriedHarvest, StrongBack, SharpHabits, SecondDrink, HandsSore,
+            DroversBull, TooClose, DawnWalk, BoldWolf, CatchFights, StoresVisitor,
+            BonfireSpark, LineMuster, MagicSpar, BraveDare, CowardName, VendettaFury
         };
 
         public static HarmKind Of(string key)

@@ -464,25 +464,31 @@ namespace ColonyCouncil
 
     /// <summary>
     /// The wedding party brings the food for its feast: {COUNT} raw food of theirs set down at the colony by X, and the
-    /// feast the same answer set going is cooked at the colony's stove from as much (PlayCook).
+    /// feast the same answer set going is cooked at the colony's stove from as much (PlayCook). Their crop, of their
+    /// people's age (<see cref="things"/>, @Produce: Things/ThingRoles.cs, a mod's vegetables and fruit as well as the
+    /// game's), the same in the answer's words and at the gate; or the first of a list of names.
     /// </summary>
     public class DilemmaEffect_GuestsBringFood : DilemmaEffect
     {
-        public string things = "RawPotatoes|RawRice|RawCorn|RawBerries";
+        public string things = "@Produce";
 
-        private static ThingDef Food(string names) =>
-            names.Split('|').Select(n => DefDatabase<ThingDef>.GetNamedSilentFail(n.Trim())).FirstOrDefault(d => d != null && d.IsNutritionGivingIngestible);
+        private static ThingDef Food(string names, DilemmaContext ctx)
+        {
+            if (ThingRolesMath.TryParse(names, out var role))
+                return ThingRoles.From(role, Couriers.PeopleOf(ctx), ctx?.map, ThingRoles.Seed(ctx, "guests' food"), d => d.IsNutritionGivingIngestible);
+            return (names ?? "").Split('|').Select(n => DefDatabase<ThingDef>.GetNamedSilentFail(n.Trim())).FirstOrDefault(d => d != null && d.IsNutritionGivingIngestible);
+        }
 
         public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
         {
-            var def = Food(things);
+            var def = Food(things, ctx);
             if (def == null || ctx?.stranger == null || ctx.count <= 0) return;
             sheet.Play("CC_Impact_Caller_BringFood".Translate(ctx.stranger.Named("OTHER"), ctx.count, def.label).Resolve(), "CC_Impact_Caller_BringFoodBrief".Translate().Resolve());
         }
 
         public override void Apply(DilemmaContext ctx)
         {
-            var def = Food(things);
+            var def = Food(things, ctx);
             var x = ctx?.stranger;
             if (def == null || x == null || ctx.map == null || ctx.count <= 0) return;
             // together: set down at the colony by the one of them who is here.
@@ -1002,10 +1008,13 @@ namespace ColonyCouncil
                 var r = x.skills?.GetSkill(skill);
                 if (r != null && !r.TotallyDisabled && r.Level < lo) r.Level = Rand.RangeInclusive(lo, hi);
             }
-            // Their own medicine for the colony's animals, what their people use.
+            // Their own medicine for the colony's animals, what their people use (Things/ThingRoles.cs: of their age,
+            // never above the colony's while it has no industry).
             try
             {
-                var med = ThingMaker.MakeThing(Avail.IsPreIndustrial ? ThingDefOf.MedicineHerbal : ThingDefOf.MedicineIndustrial);
+                var medAge = Ages.Of(ctx.faction);
+                if (Avail.IsPreIndustrial && medAge > WorldAge.Medieval) medAge = WorldAge.Medieval;
+                var med = ThingMaker.MakeThing(ThingRoles.Pick(ThingRole.Medicine, medAge) ?? ThingDefOf.MedicineHerbal);
                 med.stackCount = Mathf.Clamp(patients.Count + 1, 2, 6);
                 x.inventory?.innerContainer.TryAdd(med);
             }

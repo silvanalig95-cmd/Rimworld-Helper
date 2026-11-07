@@ -2786,35 +2786,92 @@ letter in a frost), `PlayOut/PlayOutGroupEffects.cs` (the watch's line); `Harm/C
 patient's answers). While the carriers at the gate are on, `Council_WS_Plague` raises the flu 1.35 times and the plague
 2.3 (the modifier's `withCarriers`; 1.5 and 2.5 with them off, as before): the carriers bring the rest.
 
+### Harm, part 6: the work's accidents, the animals, the contests and festivals (7 November 2026)
+
+The second of the three batches of the review's remaining proposals, after the player's "all suggestions please":
+twenty-three more kinds within the shared budget, each under its system's setting (a link between two systems behind
+"Systems talk to each other"), the pure rules in `Harm/HarmSixMath.cs` (`HarmSixTests`), the hub `Harm/HarmSix.cs` on the
+harm book's hour and slices (no new Sched slot). What waits is in `HarmBook.waiting` (`HarmWaiting` "fall", "hands",
+"coward": no new saved collection); the rest is session memory. Messages only where the game gives one for the same hurt
+(an ailment caught, an animal turning on someone); the rest is seen on the map, in the hit, a puff of dust or smoke, the
+line they say and a few words over them (`HarmFour.Mote`), and the fires, fights and predators that follow are the game's
+own. Nothing here makes a pet hunt or a pack or herd move: the colony's pets hunting (`Animals/PetHunts.cs`) and the wild's
+alphas and great herds (`Beasts/`) are left as they are. The pools are in `Rimfolk_HarmSix_Lines.xml`, the words in
+`Rimfolk_HarmSix.xml`, the four walks' jobs in `Defs/Misc/Rimfolk_HarmSix.xml` (`JobDriver_HarmWalk`); dev mode's
+"Harm six: ..." (`Harm/HarmSixDebug.cs`) brings each about past its rate, never past the cap.
+
+| Kind (review) | Where | Rate (its own) | Prevention | Seen |
+|---|---|---|---|---|
+| Hot and heavy answers (2.1.2) | `AnswerHurts.cs`, a gathering's fire laid, the pyre lit, the dead carried out, their graves dug | 1 play-out in 40 at the moment of the work | another answer; Cooking or Construction 8 half; named under the answer | a burn on a hand, or a load dropped on a foot; a line, a few words |
+| Back too soon, for real (2.1.3) | `AnswerHurts.cs`, the light-work answer's own risk | a third of the times they overdo it, the first hour within the day they're carrying something | keep them in bed, work from bed; named under the risk | the fall with the load, two more days in bed, helped back to it |
+| The project's last push (1.5.2) | `WorkSlips.cs`, a project's own building in its last three days | tired hands' rule: a long day 1 in 150, twice below 30% rest | no rush, rest; not on top of a work decree's own roll | tired hands' slip, a line |
+| Clumsy when worn (3.3.2) | `WorkSlips.cs`, the heart's two high bands | a long day at any work at half the tired-hands rate (one and a half with a decree) | the worn-out day off, easing the strain | tired hands' slip, a line |
+| The makeshift spot's burn (3.4.2) | `AnswerHurts.cs`, a bill's end | 1 bill in 200 cooked at a campfire or butchered at a spot while a proper bench could be built | build the bench | a burn at the fire, a cut at the spot, a line |
+| Taking down hurts too (4.3.2) | `AnswerHurts.cs`, `Patch_TakingDownHurts` | 1 wall or door in 100 under Construction 5 | skilled builders | dust, the worker down a moment, a bruise or a crushed foot |
+| Hurried hands at the harvest (4.4.1) | `WorkSlips.cs`, the harvest in a hurry | 1 hour in 200, twice after dark | harvest before dark, a grower of Plants 8 half | a sickle's cut by the age's tool, a line |
+| Carries more than they should (3.11.1) | `WorkSlips.cs`, the quirk's heavy day | the strained back half again (0.0025), 1 day in 150 a dropped load | rest | the strain's message, or the load on a foot |
+| Sharp habits (3.11.2) | `WorkSlips.cs`, the quirks' whittling and whetstone | 1 day in 10 at it, about once a season | not preventable | a nick, a laugh |
+| The second drink (4.7.1) | `WorkSlips.cs` with Alpha Skills' drink before work | after three days running, 1 day in 5 a second cup; then 1 stagger in 4 at the bench | the drug policy, the setting | the second cup at the stores, the game's own drunkenness, the slip |
+| The hands come home sore (2.6.3) | `AnswerHurts.cs`, the harvest mission's end | the work ailments' own for a day and a half, about 1 hand in 10 | send the tough (half) | the ailment as they walk in, its message naming the town |
+| The drovers' bull (2.4.3) | `WildHurts.cs`, a camp's herd | 1 hour in 30 among it, once a stay | keep away from the herd | the charge, a drover's word, the message |
+| The wild one too close (2.10.2) | `WildHurts.cs`, three encounters | the kind's taming revenge, about 1 in 20 | the nervous never step closer | a kick or a bite (rabies by the ailments' own roll), the animal fleeing |
+| Walks the fields at dawn (3.11.4) | `WildHurts.cs`, the job `Rimfolk_DawnWalk` | alone beyond the walls with a hungry predator in reach, 1 dawn in 8 | walls round the fields | the walk to the field's edge, the game's own hunt and warning |
+| The fed wolf grows bold (4.5.2) | `WildHurts.cs`, the beast that stays | fed three days on, 1 night in 40 with someone alone near the stores | keep close, drive it off, tame it; never a grazer; named under the answer | at the stores' door at dusk, then the game's own hunt |
+| A catch that fights back (4.6.1) | `WildHurts.cs`, PokéWorld | 1 try in 4 | a partner Pokémon at the trainer's side; named under the answer | PokéWorld's own fight with the trainer, or the partner |
+| The visitor at the stores turns (4.6.2) | `WildHurts.cs`, the job `Rimfolk_ShooVisitor`, PokéWorld | a fed Pokémon at the stores 1 dusk in 3, 1 shooing in 10 | keep the stores shut, catch it; named under the answer | the walk over to shoo it, a swipe, it runs |
+| The bonfire's spark (4.1.2) | `Contests.cs`, a bonfire | 1 dry, windy summer night in 20 | a cleared spot or a firebreak; never in rain or snow; named under the answer and in the calendar's way | the game's own fire in the grass, the nearest beating it out, a singe |
+| Musters at the line (4.2.1) | `Contests.cs`, the job `Rimfolk_MusterPost` | with the militia or "hold the way in", 1 evening in 4; 1 muster in 30 a mishap | a marshal of Shooting 10 half; named on the militia's card and the project | the call, each at a post, a bowstring, a powder burn, a graze, a cell's burn |
+| Fighters spar (4.8.2) | `Contests.cs`, A RimWorld of Magic's fighters, the drills' bout | 1 evening in 3, 1 bout in 25 a blow | only with consent | the bout, the blow, sorry |
+| Brave to a fault (3.6.2) | `Contests.cs`, a brave or bold group | about once a season a dare, 1 in 3 hurt | a cautious one at hand, half | the dare said, a cold swim (a chill) or a wrestle with the strongest (a sprain), a laugh |
+| A coward's name (3.7.2) | `Contests.cs`, from the name's news | once, the next fight at home | draft and hold them, the marshal's word | out of cover at the nearest enemy, the game's own fight |
+| Fury that forgets cover (3.8.2) | `Contests.cs`, a fight against the sworn people | once a battle, 1 in 3 | draft and hold them | out of cover toward them, the game's own fight |
+
+The ages: the drills' blow by the colony's means for the spar; the sickle's tool (a flint sickle, a scythe, shears, a
+cutter); the muster's mishap by the weapon (a bowstring's snap before industry, a powder burn or a ricochet's graze, a
+charge cell's burn); the muster's call by the age; the rest the same in every age. Changes outside: `HurtKind.Bite` and an
+`Injure` that names the animal (`Harm/Harm.cs`, `HarmMath.cs`), so a bite carries what the ailments' bite roll gives;
+`DrillBout.form` and `kind` for the spar and the dare's wrestle (`Harm/DrillBouts.cs`); `AmbitionGoal.OwnWork` and
+`AmbitionState.OwnWork` (`Ambitions/`, `Defense/DefenseGoals.cs`); `FieldWeather.FrostMarked`; `ColdHurts.ToTheFire`
+opened. Hooks in other systems (one line each): `PlayOut/PlayFire.cs` and `PlayDead.cs` (the fire and the pyre lit),
+`PlayOut/OnMapPlays.cs` and `PlayOutEffects.cs` (the answers' sheets), `Setbacks/SetbackHooks.cs` (a makeshift bill),
+`Missions/Workers_MissionRoad.cs` (the harvest's hands), `Integrations/BeforeWork.cs` (a drink before work),
+`Animals/ResidentBeast.cs` and `Integrations/PokeWorldCamp.cs` (the beast's answers), `Social/Gossip/ReputationTracker.cs`
+(a coward's name), `Harm/NightWalks.cs` (the walks' ends), `Harm/HarmFive.cs` (what waits). Defs: the back-too-soon risk's
+effect (`Council_Dilemmas_Health.xml`), `DilemmaEffect_TooClose` in three encounters (`Council_Encounters_Creatures.xml`),
+the "hold the way in" project's description, the militia's risk line and the calendar's bonfire way. One new Harmony
+patch: `Patch_TakingDownHurts` (a prefix and postfix on `JobDriver_Deconstruct.FinishedRemoving`).
+
 ### The rates (the balance model's harm mode)
 
 `dotnet run -c Release --project Tools/Balance -- --harm` plays a colony-year (60 days, 1500 runs by default) of each
 style and size with every kind of hurt from everyday life through the shared cap, the heart played hour by hour with each
 hurt's pain and each fight's hour of combat. What a kind does once it comes is the mod's arithmetic (`HarmMath`,
-`HarmTwoMath`, `HarmFourMath`, `HarmBudgetMath`, `HeartMath`, `BeastsMath`, compiled in); how often a colony meets it is
-the mode's own table, each an estimate that says where it comes from. Three runs of the same colonies: "before" (the
-kinds built before the budget, each at its own rate), "no budget" (every kind on, parts 4 and 5 too, each at its own
-rate), "budget" (every kind on, each at its pass). Alpha Skills, Giddy-Up, Hospitality and Odyssey's fishing loaded;
-PokéWorld and Dubs Bad Hygiene's thirst not. Hurts the cap counts, per colonist-year (4000 runs; harm, part 5):
+`HarmTwoMath`, `HarmFourMath`, `HarmFiveMath`, `HarmSixMath`, `HarmBudgetMath`, `HeartMath`, `BeastsMath`, compiled in);
+how often a colony meets it is the mode's own table, each an estimate that says where it comes from. Three runs of the
+same colonies: "before" (the kinds built before the budget, each at its own rate), "no budget" (every kind on, parts 4 to
+6 too, each at its own rate), "budget" (every kind on, each at its pass). Alpha Skills, Giddy-Up, Hospitality, Odyssey's
+fishing and A RimWorld of Magic loaded; PokéWorld and Dubs Bad Hygiene's thirst not (PokéWorld's catch and visitor at the
+stores have their base rates set by hand). Hurts the cap counts, per colonist-year (4000 runs; harm, part 6):
 
 | | 6, well run | 6, average | 6, neglectful | 12, well run | 12, average | 12, neglectful |
 |---|---|---|---|---|---|---|
 | Before (every kind built up to 0.149.0) | 0.339 | 0.453 | 0.560 | 0.290 | 0.395 | 0.504 |
-| Every kind on, no budget | 0.669 | 0.983 | 1.356 | 0.538 | 0.812 | 1.149 |
-| Every kind on, the budget | 0.307 | 0.454 | 0.629 | 0.242 | 0.367 | 0.526 |
+| Every kind on, no budget | 0.862 | 1.223 | 1.667 | 0.696 | 1.016 | 1.425 |
+| Every kind on, the budget | 0.318 | 0.456 | 0.630 | 0.251 | 0.370 | 0.528 |
+| With parts 4 and 5 (0.155.0 to 0.159.0), the budget | 0.309 | 0.455 | 0.627 | 0.242 | 0.366 | 0.523 |
 | With part 4 alone (0.153.0), the budget | 0.311 | 0.452 | 0.618 | 0.245 | 0.368 | 0.519 |
 | The game's own beside them: a raid's wound | 1.4 | 1.7 | 2.0 | 1.4 | 1.7 | 2.0 |
 
-The average colony of six, on which the base rates are measured, keeps its total (0.453 before, 0.454 after, with part 5's
-fourteen in: part 5 would add 0.12 a colonist-year on its own, and within the budget brings 0.055, the rest giving up as
-much; each kind now passes at about 44% of its own rate). Elsewhere
-the budget keeps prevention's meaning: a well-run colony prevents more of the new kinds and ends a little below its old
-total (9% with six, 17% with twelve), a neglectful one a little above (12% with six, 4% with twelve), and a colony of
-twelve meets fewer of the new kinds per head (a storm bruises two at most, a games day has two bouts). Each kind passes at
-a little under half its own rate. Part 4's fifteen would add 0.43 a colonist-year on their own; with part 5's beside them, the later kinds would add
-0.54 and within the budget bring 0.25, the founding kinds giving up as much. The variety: a kind coming again within thirty
-days of its last falls from 0.19 to 0.14 times a colony-year (the average colony of six), the commonest kind (the ailments
-of the land and the work) from 17.4% of the hurts to 16.6%, the total the same. The heart's strain, its days off and the strain's mood are the same
+The average colony of six, on which the base rates are measured, keeps its total (0.453 before, 0.456 after with part
+6's twenty-three in; 0.455 with parts 4 and 5 only: part 6 would add 0.23 a colonist-year on its own, and within the
+budget the later kinds bring 0.30 where they brought 0.26, the rest giving up as much; each kind now passes at about 35%
+of its own rate). Elsewhere the budget keeps prevention's meaning: a well-run colony prevents more of the new kinds and
+ends a little below its old total (6% with six, 13% with twelve), a neglectful one a little above (13% with six, 5% with
+twelve), and a colony of twelve meets fewer of the new kinds per head (a storm bruises two at most, a games day has two
+bouts). Parts 4 to 6 would add 0.79 a colonist-year on their own and within the budget bring 0.30, the founding kinds
+giving up as much. The variety: a kind coming again within thirty days of its last falls from 0.14 to 0.10 times a
+colony-year (the average colony of six), the commonest kind (the ailments of the land and the work) from 13.6% of the
+hurts to 13.1%, the total the same. The heart's strain, its days off and the strain's mood are the same
 before and after to a tenth. The beasts' summary (`BeastSim.cs`) still prints after it; their stampede is a kind in the
 budget now, their nemesis's return the game's own attack outside it.
 
@@ -3173,6 +3230,82 @@ words in `Languages/English/Keyed/Rimfolk_Hauling.xml`, the Almanac's page `Coun
   other builders (it may hold them back a while when a runner is stuck: an hour at most), and the hand-over to Pick Up
   And Haul (its comp read by name).
 
+### Everything else work makes (the player's request, 7 November 2026)
+
+"They should always take any 'produced' item or resource into their inventory when they have space, to later store
+it, for any possible item creating or harvesting interaction in the game and mods" (explicit: no proposal round). The
+code is `Hauling/WorkProducts.cs` and its hooks `Hauling/WorkProductPatches.cs`; the pure rules are in `HaulMath.cs`
+("Everything else work makes", `HaulTests`). Delivery is harvest and haul's own: the same kind of work by skill or by
+work giver, full and worth a trip, the longest hold, before needs, never instead of rest, Pick Up And Haul's unloading.
+
+- **Bills** (`WorkProducts.PocketBill`). The game's last toil of a bill (`Toils_Recipe.FinishRecipeAndStartStoringProduct`)
+  makes the products (`GenRecipe.MakeRecipeProducts`), counts them for the worker's records
+  (`RecordsUtility.Notify_BillDone`) and then places them by the bill's store mode: drop on floor near the worker, or
+  the first product in the hands to the best stockpile or the picked one (`HaulAIUtility.HaulToCellStorageJob`) and the
+  rest near the worker, or on the floor when no cell takes it. Rimfolk wraps that toil's init action to know the
+  worker is finishing (`WorkProducts.finishing`), and in a postfix on `Notify_BillDone` (last, so other mods counting
+  see every product) takes the products off the list before the game places them: only for a bill taking them to a
+  stockpile (`HaulMath.BillPockets`: best or picked; never drop on floor, a mod's own store mode, a bill the player
+  ordered, surgery (`Bill_Medical`) or a building's own production (`Bill_Autonomous`, the mech gestators), nor a project
+  of 10,000 work or more, whose first product the game names in a tale), only kinds that may go in, only what a store
+  cell takes (in the picked stockpile for that mode), and only as many as fit; a partly fitting stack is split. The game
+  then places or carries the rest its own way, so "too heavy to carry" is as before. The quests that count what is made
+  (`QuestManager.Notify_ThingsProduced`) are told of what went in, before it goes in (merged into a stack already
+  carried, the piece is gone). A picked stockpile is remembered by one of its cells per kind (`HaulLoad.into`); the
+  delivery finds a cell in that slot group or its storage group (`Carrying.StoreCellFor`), else the best storage (where
+  the game's haulers would take it anyway), and such a kind never goes through Pick Up And Haul's unloading, which knows
+  only the best. A "do until" bill would make more while the products ride in a pocket (the game counts the hands,
+  `RecipeWorkerCounter.GetCarriedCount`, not inventories): postfixes on `RecipeWorkerCounter.CountProducts` and the stone
+  block and butchering counters add what pawns owe to storage of it (`WorkProducts.CarriedFor`, by the bill's own
+  `CountValidThing`; with "count equipped" the game counts inventories itself; with a stockpile to count in, only what
+  goes there).
+- **Everything else, one generic catch** (no hook per mod). Three hooks set whose job runs a toil or a tick
+  (`JobDriver.TryActuallyStartNextToil`, `DriverTick`, `DriverTickInterval`: prefixes and finalizers that put the one
+  before back; `[ThreadStatic]`, so other threads see none). While one is set, an item made (`ThingMaker.MakeThing`) or
+  dropped out of a building's container (`GenDrop.TryDropSpawn`, the egg box's eggs) is noted for that job; a part split
+  off a stack (`Thing.SplitOff`: a hauler's handful) and anything dropped out of a pawn's hands or inventory, a corpse or
+  anything else is never one. Only for a work job (a work giver gave it), not ordered, of a pawn that carries, and not a
+  job one of the sources of their own covers (plants and sowing, mining, the deep drill, shearing and milking, taking
+  down and floors, Odyssey's fishing, bills, Rimfolk's delivery, Pick Up And Haul's unloading) nor building work. Two
+  moments take it: the carry step (the material run's hook on `Toils_Haul.StartCarryThing` adds a pre-init action)
+  about to put such a thing in the hands while one of the job's targets is a storage cell takes it into the inventory
+  instead, whole or not at all, and ends the job there (`EndJobWith(Succeeded)`: the preInit loop stops when the toils
+  are cleared); and the job's end (a prefix on `Pawn_JobTracker.CleanupCurrentJob`, before the game drops what the hands
+  hold) takes what still lies loose within 4 cells of the pawn and some storage takes, as far as it fits, the first that
+  doesn't fit carried in the hands on the delivery. Not while drafted, downed or in a mental state, nor for a job that
+  errored. At most 40 things a job; the note goes with the job.
+- **Families and settings** (What's on, Carrying and hauling; each needs "Pawns carry what their work drops"):
+  `haulBills` (bills), `haulBuildings` (a job whose first target is a building: the fermenting barrel, the egg box,
+  Anomaly's bioferrite harvester and the entity on its holding platform, the mods' barrels, presses, processors,
+  beehouses and apiaries), `haulOtherWork` (any other work job: a skull extracted for Ideology, the mods' work; taking
+  a mechanoid apart and removing a mechlink are orders, so they go as before), and a mod's fishing job by its name
+  (`HaulMath.FishingName`) under the existing `haulFishing`.
+- **What stays where it is** (`WorkProducts.PocketableDef`, `Allowed`): medicine (the doctors' to reach), weapons (Simple
+  Sidearms, in the player's list, reads a weapon in the inventory as a sidearm), what dissolves (`CompDissolution`:
+  wastepacks), what the weather ruins or hatches (`CompTemperatureRuinable`, `CompHatcher`: fertilized eggs, wort),
+  Biotech's xenogerms, genepacks, embryos, ova and mechlinks (used where they lie), corpses, minified things and chunks
+  (by their setting). Meals (`HaulMath.MealsToPocket`): all while nobody is hungry, else only past what the hungry need
+  and the meals in reach don't cover (a working paste dispenser feeds all); a load with meals is held two hours at most
+  (`HaulMath.HoldHours`), and the book's pass sends it at once while someone is hungry and the meals in reach don't feed
+  them all (`HaulMath.MealsWanted`). The same work for a load is also the same work giver (`HaulLoad.givers`): emptying
+  egg boxes and barrels is hauling work, which no skill names.
+- **The player's mods** (`docs/player-mods/`, the raw defs, and the sources read where they were to hand): the Vanilla
+  Expanded Framework's item processors (`IP_RemoveProduct`, Vanilla Brewing and Cooking Expanded's barrels and presses,
+  VFE Settlers and Classical), its pipe processors (`PS_PickUpProcessor`), Medieval 2's apiary
+  (`VFEM2_TakeHoneyOutOfApiary`) and the Processor Framework's emptying (`EmptyProcessor`) make the product, place it
+  and carry it to a storage cell with the game's carry step, as the fermenting barrel does; the Processor Framework's
+  last product of an emptied processor is left on the ground (its job ends first), and the job's end takes it. VEF's
+  draining of a marked tank (`PS_DrainFromMarkedStorage`) and Anomaly's bioferrite extraction leave it beside the pawn.
+  Alpha Bees' beehouses, Tabula Rasa's producers, Rimefeller's autoclave, Dubs Bad Hygiene's emptied latrines and septic
+  tanks and the other mods' producers are caught the same way if their work makes an item as these do; their code
+  wasn't to hand. Vanilla Fishing Expanded's and PokéWorld's fishing go by the fishing switch.
+- **Saved**: two lists more in each load (`givers`, `into`, modelled in `Tools/save_estimate.py`), emptied with the load.
+  The notes of what a job made aren't saved: a job loaded mid-way goes the game's way. No Sched slot, no new pass.
+- **Not checked here**: none of it could be run in the game. The riskiest parts are the three hooks on the job driver's
+  hot paths (a prefix and a finalizer each, nothing else), the job ended from the carry step's pre-init action, the
+  products taken off the game's list in `Notify_BillDone` (a mod reading the list after it sees fewer), and interplay
+  with Common Sense and Gastronomy (a restaurant waits up to two hours for meals in a cook's pocket).
+
 ## The trade screen (the player's request, 7 November 2026)
 
 "Can you please optimize the trade screen ui? things like sorting by price, recommended trades etc. i also just
@@ -3283,6 +3416,66 @@ can't build. Every suggestion goes through one gate (`Avail`):
   level first.
 - **Ambitions** are offered only if every goal is possible right now. "A ring of iron"
   (turrets) never comes up for a medieval colony, but "teeth in the mud" (traps) does.
+
+### Things by what they are for (the player's request, 7 November 2026)
+
+The player: "apply this def database to all that we created so far, if there is benefit". Where Rimfolk hands over,
+sends or makes a thing that stands for a kind (a gift, food for the road, a carving), it asks one picker
+(`Things/ThingRoles.cs`, its rules pure in `ThingRolesMath.cs`) instead of naming a base-game item. The picker judges
+every item of the game and the player's mods by what the def says it is, never by a mod's name, so a mod's wine,
+dish, statue or blade comes in on its own, and the base game's own item stays the fallback.
+
+- **The roles.** A *drink* (a social drink with alcohol: its drug's chemical is alcohol, or it is liquor by its food
+  type with no other chemical in it; worth 100 or less), a *soft drink* (one a teetotaler may have: tea, coffee), a
+  *feast's dish* (a fine or lavish meal a recipe cooks, fresh), *provisions* (a simple meal or better that keeps 20
+  days or more), *produce* (a sown crop, raw, not kept with the meals), *medicine*, a *precious* material (metal or
+  stone that gives 2 or more beauty, nothing else besides: silver, gold, jade, Odyssey's obsidian), *small art* (a work
+  of art made at a bench, a day's work or less, of wood, stone or metal; never a terror sculpture or one that holds
+  the dead), a *carving* (small art that may be of wood), a *gift* (a precious material, or a drink worth 15 or more)
+  and a *blade* (a melee weapon of metal that cuts or stabs, carried by the game's own weapon tags, never bonded).
+- **Never anything the colony would find wrong.** Only ordinary goods: traded, nothing of a person (human meat or
+  leather, a corpse), nothing to use rather than have (a comp that is used, targeted, bonded or hatches), nothing with
+  a trade tag the game marks exotic (but for medicine: glitterworld medicine is the spacer age's) or that only a mod
+  uses (A RimWorld of Magic's arcane metal, Deserters' contraband). What comes to the colony leaves out what most of
+  its grown people at home would mind (their faith's drug rules, a teetotaler's, their diet), `Beliefs.AgainstThing`.
+- **Every age.** A thing's age is its own tech level or the research its easiest recipe or crop needs, whichever is
+  later; one with neither known goes with every age (Medieval 2's wine), but food that keeps only from industry on (a
+  mod factory's canned soup). A giver's things are of its age (its means), the colony's own of the colony's; the age's
+  own things come twice as often as older ones (a spacer colony's cocktails, a tribe's beer and mead), medicine three
+  times. A gift goes by the giver's ways: a tribe's stone (jade), the middle ages' and the Empire's finest metal (gold,
+  by its beauty), silver for the industrial and spacer ages, a fine drink now and then (more in the middle ages).
+- **Only what the colony has unlocked.** Something the colony's own people make (a carving for a friend, a blade of
+  star iron) is one it knows how to make: a recipe whose research is done (`ThingRoles.ColonyCanMake`).
+- **Words match the map.** Where a letter or line names the thing, it names what was picked (its label), and a pick
+  an answer's words show and its effect then makes is seeded by the answer (its people, its home) so both are the
+  same. Where the words name the thing outright ("a skin of honey-beer", "a small sculpture", "a carved bird"), the
+  thing stays.
+- **The balance.** Amounts are by worth: a match's gift, the camp prospectors' find, a ransom's goods, a help letter's
+  food come to as much silver as before whatever is picked (`ThingRolesMath.CountFor`).
+- **Where.** A match's gift and the town's seasonal gift (`Matches.GiftDef`); the camp prospectors' finds
+  (`CampLife.Prospected`, `GiveGoods("found")`); a tribe's ransom goods (`Ransoms.TribeGoods`, saved as a def name as
+  before); a favour's medicine and food (`FavourCalls.Goods`, seeded by the tie); the envoy's parting gift (medicine
+  or a gift); a help letter's food and medicine (`NeighbourLetters.HelpThings`); old friends' relief
+  (`Workers_Remembered`); a guest's own provisions, one they will eat (`Hosting.Provision`); the wedding party's crop
+  (`DilemmaEffect_GuestsBringFood`, `@Produce`); the animal doctor's medicine; the silent guest's parting carving, a
+  stranger's carving and a regular's keepsake; a star-iron blade (one the words' "a" goes with); what an outsider may
+  be asked to bring (their medicine, provisions and drink, seeded by their people); a funeral's or wedding's drinks
+  (the mission's `drinks` goal: any drink in the stores, asked of a colony that brews or has ten); the journey
+  planner's road food first (`ThingRolesMath.TravelRank`: what never rots, then what keeps); the founding kit's
+  medicine (whichever the stores hold most of); an answer's made thing (`DilemmaEffect_Made`, `@Carving` among its
+  candidates); a camp's goods put out (`@Produce` for the settlers, `@Medicine` for the healers' stall).
+- **What stays as it was, and why.** Silver as money (payments, prices, ventures, rewards); the colony's own stores
+  given or used (raw food, meals, medicine, wood: already any kind, PlayCarry); materials (wood, steel, components);
+  animal feed (the journey's kibble and hay, by what each animal eats); the scenarios' starting kits (the game's own
+  part names its item on the scenario page before anything is picked); the brewer's cart, the stash of beer and the
+  smugglers' beer (their words say beer); the commission's and the likeness's small sculpture, the camp's carved bird
+  (their words); a camp's own simple meals.
+- **The catalogue.** `Tools/mod_pool.py` writes what the roles read into `docs/player-mods/items.tsv` (category, stack,
+  tradeability, preferability, food type, drug kind and chemical, teetotaler, rot days, comps, stuff kinds and beauty,
+  medical potency, what it is made of, size, minified, the age of its making, work, terror) and `weapons.tsv`
+  (tradeability, comps, the age of its making, its tools' capacities). `ThingRolesTests` runs the same rules on the player's active
+  rows: each role has several things in every age, the player's mods among them. Dev mode: "Things by role" (each
+  role's things by age, and five picks of each for the colony and its neighbours).
 
 ---
 

@@ -348,6 +348,8 @@ namespace ColonyCouncil
                     // Formed, grown strong, or turned round (the coward who stood their ground): told. Weakened: quietly.
                     if (isNow != 0 && (Math.Abs(isNow) > Math.Abs(was) || Math.Sign(isNow) != Math.Sign(was)))
                         text = "CC_Rep_News_Formed".Translate(p.Named("PAWN"), Reputations.Word((RepFacet)f, st[f]).Named("WORD")).Resolve();
+                    // A name for courage gone bad: the next fight, they may push forward out of cover to prove it wrong (Harm/Contests.cs).
+                    if (f == (int)RepFacet.Courage && HarmSixMath.CowardFormed(was, isNow)) Contests.CowardFormed(p);
                     else if (isNow == 0)
                     {
                         float v = Math.Sign(was) * (Math.Abs(was) >= 2 ? RepMath.Strong : RepMath.Shows);

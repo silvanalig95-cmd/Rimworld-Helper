@@ -440,6 +440,7 @@ namespace ColonyCouncil
                 if (p.CurJob != had.drug) continue;
                 r.pending.Remove(p.thingIDNumber);
                 if (had.hot) Mishaps.DrankBeforeHotWork(p);
+                if (r == Drink) WorkSlips.DrankBefore(p, drug);
                 if (!Speech.On || !Rand.Chance(0.5f)) return;
                 string line = Flavor.FromPool(r.pool, p, null, null, had.skill?.defName.ToLowerInvariant());
                 if (!line.NullOrEmpty()) Speech.Say(p, line);

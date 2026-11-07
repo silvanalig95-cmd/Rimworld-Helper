@@ -602,6 +602,7 @@ namespace ColonyCouncil
             int n = Going(Everyone(ctx).Count);
             if (dead == 0 || n == 0) return;
             sheet.Play(("CC_Impact_Haul_" + Mode).Translate(label, n, dead, DilemmaImpact.When(hours)).Resolve(), label);
+            AnswerHurts.Describe(sheet, Mode == PlayHaul.Pyre, true);
         }
 
         public string to = PlayHaul.Pyre;

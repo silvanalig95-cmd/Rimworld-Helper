@@ -489,7 +489,7 @@
           <li>There's a seam running toward the colony, {X_nameDef} insists, or under it. The prospectors ask leave to dig one hole on the colony's side, and promise a share.</li>
           <li>The prospectors have dug every likely spot around their camp, {X_nameDef} says, and the likeliest of all is on the colony's side. They'd fill the hole in after, and share what they find.</li>
         </askTexts>
-        <tip>Two of them dig at the edge of the colony for an afternoon and fill the hole in after. They leave a share of whatever they find beside it, most likely silver, now and then jade or gold.</tip>
+        <tip>Two of them dig at the edge of the colony for an afternoon and fill the hole in after. They leave a share of whatever they find beside it, a precious metal or stone of the kind their people prize (silver, gold, jade or another).</tip>
         <outcomes>
           <li>{X_nameDef} and another of the prospectors are coming over with picks this afternoon. {X_nameDef} has promised the colony a fair share of whatever's down there.</li>
           <li>The prospectors will dig at the colony's edge this afternoon, and {X_nameDef} shook {A_nameDef}'s hand on the share.</li>

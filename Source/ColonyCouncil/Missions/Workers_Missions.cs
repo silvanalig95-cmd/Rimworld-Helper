@@ -171,8 +171,9 @@ namespace ColonyCouncil
 
     /// <summary>
     /// A neighbor town has a funeral (or a wedding) to provide for and not enough hands: it asks the colony for meals,
-    /// sculptures, stone blocks or beer, all of it by a date. In full, it pays well over the worth; half of everything
-    /// at least, it pays the plain worth; less, and it goes elsewhere and remembers.
+    /// sculptures, stone blocks or drinks (beer, or a mod's wine, mead or spirits: Things/ThingRoles.cs), all of it by a
+    /// date. In full, it pays well over the worth; half of everything at least, it pays the plain worth; less, and it goes
+    /// elsewhere and remembers.
     /// </summary>
     public class HappeningWorker_MissionFeast : HappeningWorker_Mission
     {
@@ -180,11 +181,9 @@ namespace ColonyCouncil
 
         protected override bool Possible(Map map) => Neighbor(map) != null;
 
-        private static bool Brews(Map map)
-        {
-            var beer = DefDatabase<ThingDef>.GetNamedSilentFail("Beer");
-            return beer != null && (Avail.ResearchDone("Brewing") || VarietyUtil.InStores(map, beer) >= 10);
-        }
+        /// <summary>The colony brews (the game's brewing, or a barrel or still of a mod's), or has ten drinks in its stores.</summary>
+        private static bool Brews(Map map) =>
+            Avail.ResearchDone("Brewing") || Avail.ColonyHas(map, Avail.IsFermenter) || Missions.Count(map, "drinks") >= 10;
 
         private static bool CutsStone(Map map) => Avail.ResearchDone("Stonecutting") || Missions.Count(map, "blocks") >= 20;
 
@@ -223,7 +222,7 @@ namespace ColonyCouncil
             }
             else
             {
-                if (Brews(map)) Add(m, "Beer", Scaled(map, 25f, 40f));
+                if (Brews(map)) Add(m, "drinks", Scaled(map, 25f, 40f));
                 else Add(m, "textiles", Scaled(map, 50f, 90f));
                 if (art) Add(m, "art", 1);
                 else Add(m, "textiles", Scaled(map, 30f, 50f));
