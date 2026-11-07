@@ -219,6 +219,12 @@ namespace ColonyCouncil
         public bool diplomacyRenown = true;
         /// <summary>Against their nature (stage 2, release 2d.2): an act of diplomacy against a colonist's nature builds their strain through the heart, one with it eases them, and repeated acts may leave a mark. Off, nothing new is felt, and what was felt drains as any strain does.</summary>
         public bool diplomacyNature = true;
+        /// <summary>
+        /// Schemes against the colony (stage 2, release 2c.3, theirs only; 0 to 2, 1 by default): how often a people with a
+        /// grudge within reach, or a notable that cold, schemes against a home while one of theirs is on its map (a machine
+        /// broken down, a small valuable taken, a quarrel stirred up, a smear). 0: none begin, and those under way run out.
+        /// </summary>
+        public float theirSchemes = 1f;
         /// <summary>Right-clicking someone from outside the colony offers things to do together: talk, news, a meal, a gift, favours, bonds (Outsiders/).</summary>
         public bool outsiderTalk = true;
         /// <summary>A practice bout with an outsider: blunt, bruises likely, a real injury now and then.</summary>
@@ -649,6 +655,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref diplomacyFealty, "diplomacyFealty", true);
             Scribe_Values.Look(ref diplomacyRenown, "diplomacyRenown", true);
             Scribe_Values.Look(ref diplomacyNature, "diplomacyNature", true);
+            Scribe_Values.Look(ref theirSchemes, "theirSchemes", 1f);
             Scribe_Values.Look(ref outsiderTalk, "outsiderTalk", true);
             Scribe_Values.Look(ref outsiderSpar, "outsiderSpar", true);
             Scribe_Values.Look(ref outsiderProvoke, "outsiderProvoke", true);

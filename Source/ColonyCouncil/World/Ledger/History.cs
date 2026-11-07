@@ -266,6 +266,9 @@ namespace ColonyCouncil
             // A regard is a running score (a notable's or a regular's), not an event: made with every new face, it would
             // crowd the history with nothing to tell.
             if (t.kind == ColonyCouncil.Tie.Kind.Regard) return;
+            // A scheme of theirs against the colony is unknown until it is found out (Diplomacy/Schemes.cs): nothing of it is
+            // written here, where the History page would show it; once it is found out the schemes write its end themselves.
+            if (t.kind == ColonyCouncil.Tie.Kind.Scheme && t.origin == SchemeMath.Origin) return;
             var actors = new List<HistoryActor>
             {
                 new HistoryActor(t.from, HistoryRole.Did),

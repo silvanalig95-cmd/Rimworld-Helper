@@ -14,7 +14,8 @@ namespace ColonyCouncil
     /// the like, Diplomacy/DiplomacyModel.cs; a camp on the colony's land with its trade, terms and asks); what is on its
     /// way to the colony (questions waiting, debts and orders due, visits and markets announced, a story's next stage);
     /// the colony's letters and calls on the road; who of the colony's is away (people away, the journey planned, the
-    /// colony's caravans out on the land); the missions it took on or was offered; its houses. Every row opens its card
+    /// colony's caravans out on the land); the missions it took on or was offered; its houses; schemes against it found out
+    /// (Diplomacy/Schemes.cs). Every row opens its card
     /// in the drawer; names are links. Built at most once a second; each section says in a sentence what would show there.
     /// </summary>
     public static class HereAndAwayView
@@ -33,7 +34,7 @@ namespace ColonyCouncil
         }
 
         // The rows of the colony in view (all of them with one colony), made again when it or the model changes.
-        private static List<DipRow> here = new List<DipRow>(), away = new List<DipRow>();
+        private static List<DipRow> here = new List<DipRow>(), away = new List<DipRow>(), schemes = new List<DipRow>();
         private static int shownView = -1;
         private static DiplomacyModel shownFrom;
 
@@ -71,6 +72,7 @@ namespace ColonyCouncil
                 shownFrom = dip;
                 here = dip != null ? dip.here.Where(r => ColonyView.ShowsHome(r.home)).ToList() : new List<DipRow>();
                 away = dip != null ? dip.away.Where(r => ColonyView.ShowsHome(r.home)).ToList() : new List<DipRow>();
+                schemes = dip != null ? dip.schemes.Where(r => ColonyView.ShowsHome(r.home)).ToList() : new List<DipRow>();
             }
             float top = UiKit.ViewHeader(rect, Icons.Away ?? Icons.Visitor, "CC_Tab_HereAndAway".Translate(), "CC_Away_Line".Translate(), stat, null, 0f, null,
                 head ??= new ViewHeadModel { article = PagesMath.ArticleOf(RegionView.HereAndAway) });
@@ -95,6 +97,9 @@ namespace ColonyCouncil
                 y = MissionPanel.Draw(y, w);
                 y += 10f;
                 if (dip != null) y = DiplomacyPanels.Section(y, w, DipWords.P("CC_Dip_Married_Title"), dip.houses, DipWords.P("CC_Dip_Married_None"), folds, "houses");
+                // Schemes against the colony found out (Diplomacy/Schemes.cs), while schemes can come or one is still remembered.
+                if (dip != null && (Schemes.On || schemes.Count > 0))
+                    y = DiplomacyPanels.Section(y, w, "CC_Scheme_Found_Title".Translate(), schemes, "CC_Scheme_Found_None".Translate(), folds, "schemes");
                 height = Mathf.Max(y + 10f, 100f);
             }
             finally
