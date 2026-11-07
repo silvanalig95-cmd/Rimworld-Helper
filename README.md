@@ -3468,6 +3468,40 @@ everything stops and the strain mood and slowdown are gone.
 Rimfolk's own save data. The only trace in a save is a colonist in the middle of a day off: with Rimfolk removed,
 the game can't load that mental state, logs it once and lets them go back to work.
 
+## Hurts from everyday life
+Life in the colony can hurt, now and then, the way the game's own life does: always from something that happens on
+the map, seen there, said over someone's head and told in the news, at about the game's own rate, and through one
+setting, **hurts from everyday life** (How hard, 0% to 200%, leaning with the storyteller's threat and disease
+settings). Nobody takes more than one in three days, nobody while downed, in a sickbed, pregnant or already fighting;
+babies never, children only the mildest; nothing here kills outright, though the game's own fights and illnesses still
+may. Where a choice brings the risk, its card or its answer says so first.
+
+- **Work and drills:** a real blow in one drill bout in 25, a slip at the bench or under a load on a long day under a
+  work decree, a strained back or a bad ankle worked hard through until it gives, and the dangers on the map.
+- **A camp's quarrel that becomes a brawl:** while a camp's tension runs high, or for three days after the old quarrel
+  with another people goes badly, an evening at their fire may come to blows, others joining in. Their people remember
+  a fistfight (a little goodwill, never war) and the camp packs up early. Ease the tension, keep the peacemaker at
+  home, and keep hot tempers from their fire.
+- **Sickness brought home:** a night at a town under a plague or a famine (the region's world events say which) may
+  send someone home with the flu, now and then the plague, or a famine's stomach bug, two to four days later. Medicine
+  packed, modern medicine and the quarantine decree each halve it; a quick trade at the gate brings nothing home.
+- **The champion's bout:** a travelling champion's challenge at fighting is a bout in the yard before the colony, in
+  the challenger's people's way (wrestling and sticks, staves, boxing, a stun baton), and one bout in 25 a blow lands for
+  real.
+- **Hunts that can bite back:** an answer's hunt, a hunting party or the calendar's hunting day may take one lone boar,
+  elk or muffalo along with the safe game, named before it's chosen; it turns on its hunters at the game's own chance,
+  never on someone hurt lately. The hunting season decree keeps to safe game.
+- **A rival's sabotage:** someone petty or abrasive in a bitter rivalry may spoil the other's bench (a charm taken, a
+  tool broken, a machine jammed, a program tampered with). Seen, or found out by word going round, it ends in a fight.
+  The peacemaker and work kept apart make it rarer.
+- **Hustings that come to blows:** a heckle at a speech, with a rival of the heckler's among the speaker's backers, may
+  become a fight; the speeches wait and the chair calls for order. The peacemaker there, the best-behavior decree and
+  calm candidates each halve it.
+- **Frayed tempers:** someone worn down by strain comes to blows a quarter more easily over a sharp word, near
+  breaking half again (never past a beer's worth); the heart's page says so. Easing the strain eases it.
+
+No mood is added on top of a hurt: it brings the game's pain and its own wound or illness, and the doctors tend it.
+
 ## Ailments and illnesses
 Colony life wears on the body too. **Everyday ailments** (63 of them) are small and temporary: they never kill, never
 leave a mark, last from a night to two weeks, and say in their description what helps. Doctors tend them like any

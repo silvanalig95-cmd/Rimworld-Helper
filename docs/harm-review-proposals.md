@@ -22,7 +22,9 @@ out, ends in a fight (3.5.1); (8) hustings that come to blows (1.4.1); (9) fraye
 likelier (3.3.1); (10) working through it, a sprain or a bad back worked on until it becomes a real injury (3.2.1).
 
 **The player's pick (6 November 2026):** "my top ten, then more". Built so far (harm, part 1): the shared rules below, as
-one service every hurt goes through (`Harm/Harm.cs`, DESIGN.md "Harm from everyday life"), and 1.2.1, 1.2.2 and 3.2.1.
+one service every hurt goes through (`Harm/Harm.cs`, DESIGN.md "Harm from everyday life"), and 1.2.1, 1.2.2 and 3.2.1;
+(harm, parts 2 and 3, 7 November 2026) the other seven of the ten, 2.4.1, 3.1.1, 2.2.1, 2.1.1, 3.5.1, 1.4.1 and 3.3.1,
+each marked built below with what differs. The balance model's harm mode (`Tools/Balance -- --harm`) has their rates.
 
 ## How to read it
 
@@ -158,6 +160,11 @@ and trust. Nothing physical.
    *Prevent:* yes: the peacemaker present (half), the best-behavior decree, calm candidates. *Rate:* one hustings in 8
    with rivals in the crowd, once every few years. *Seen:* the heckle, a shove, the fight, the speaker calling for order.
    *Ages:* a moot at the fire (tribal), the hall (medieval), the town meeting (industrial), the assembly (spacer).
+   *Built (harm, parts 2 and 3, 7 November 2026):* `Harm/HustingsBrawls.cs`. "Rivals in the crowd" is narrowed to a rival
+   of the heckler's among the speaker's own supporters, so the shove answers the heckle; the first such heckle has the
+   hustings' one roll, at the rate above, each easing a half and a frayed temper half again at most. The speeches wait
+   while it lasts and whoever chairs the hustings calls for order, in the age's words (the gathering itself is the
+   colony's hustings in every age). About 0.01 to 0.03 fights a colony-year in the balance model.
 2. **The sore loser.** A hot-tempered or bitter candidate who lost a close race may pick a fight with the winner in the
    days after. *Prevent:* yes: a gracious winner (a handshake played out at the count), a calm loser. *Rate:* one loss
    in 10 among the hot-tempered. *Seen:* the loser walking over, words, sometimes blows; a deed for gossip.
@@ -196,6 +203,13 @@ hunters" (`PlayOut/PlayOutEffects.cs`, `DilemmaEffect_Hunt`; `PlayOutGroupEffect
    more hunters, ranged weapons, the safer answer. *Rate:* the game's own chance for the animal. *Seen:* the game's own
    hunt and the animal's charge. *Ages:* spears and bows bring the hunter closer and the risk higher (tribal, medieval);
    rifles keep it at range.
+   *Built (harm, parts 2 and 3, 7 November 2026):* `Harm/HuntsBite.cs`, with answers on the map and the deeper hooks
+   (a postfix on the game's revenge chance and one around its damage notice). One head a hunt at most, and only a lone
+   one (no packmate within the game's own reach), so a turn is never a herd; nobody's, bonded or venerated animal; the
+   game's chance times the harm scale, nothing for a hunter the cap holds back (their own shot at it not counted as
+   already fighting), the game's own for one the player drafted; a turn counts as the hunter's hurt. Named under the
+   answer and the hunting party, in the marking's message and the hunting day's letter. The hunting season decree keeps
+   to safe game. The ages are the game's own distance factor on the chance. About 0.4 to 0.5 turns a colony-year.
 2. **Hot and heavy answers.** Answers that do heavy or hot work on the map (the dead carried out and the pyre lit,
    felling, a fire laid in a cold room, lanterns hung at night) roll once for a small injury: a burn at the pyre, a bruise
    from a log. *Prevent:* yes: another answer; skilled hands are hurt half as often. *Rate:* one in 40 such play-outs.
@@ -221,6 +235,11 @@ crops, never people (DESIGN.md, Layer 5); the neighbors' events say "none ends i
    stake. *Prevent:* partly: decline, or send someone tough. *Rate:* one bout in 25. *Seen:* the bout in the yard before
    onlookers, the blow, the champion's apology or sneer. *Ages:* wrestling and stick-fighting (tribal), quarterstaff or
    blunted swords (medieval), boxing (industrial), a stun-baton exhibition (spacer).
+   *Built (harm, parts 2 and 3, 7 November 2026):* `Harm/ChampionBouts.cs`: a fighting challenge is the feast's bout at
+   a ring beside the colony's champion, the colony's people called round; its winner wins the contest (a draw by skill,
+   as before). The ages are the challenger's people's (the bout is theirs), and a real blow on the challenger is granted
+   as a fair one. Needs the outsiders' practice bouts allowed; without them, decided on the spot as before. A few in a
+   thousand colony-years: fighting challenges are rare.
 2. **The gambler's game turns.** Letting the colony play the traveling gambler can end with a cheat caught, and a
    hot-tempered loser starting a fistfight with the gambler (the outsiders' fistfight rule: goodwill lost, never a war).
    *Prevent:* yes: "No gambling at the colony", or only the calm play. *Rate:* one game in 6. *Seen:* the table, the
@@ -273,6 +292,12 @@ them can take a fever that stays theirs (`Camps/CampStory.cs`); a war party figh
    lower tension (trade, gifts, answers), the peacemaker, hot tempers kept away. *Rate:* once in a camp's stay when
    tension is high, a couple of times a year. *Seen:* raised voices at the fire, the brawl, the camp packing up early.
    *Ages:* the same; who backs down follows their people's ways.
+   *Built (harm, parts 2 and 3, 7 November 2026):* `Harm/CampBrawls.cs`: an evening's one chance in four at their fire
+   while tension is 70 or more or for three days after the shouting at the table or keeping out of it, once a stay; the
+   colony's side needs the deeper hooks (so the blows aren't an attack on guests); a brawl among themselves holds nothing
+   against the colony. "Who backs down" is the game's social fight's own end. "A couple of times a year" was the rate for a
+   camp whose tension runs high; with the camps' own pace (about one and a half a year, few at 70) it is about 0.06 a
+   colony-year with the colony in it, 0.11 neglectful.
 2. **The fever at their fire.** A camp's sick member can pass the fever to colonists who sit at their fire (a catching
    everyday ailment, or the game's flu). *Prevent:* yes: send the colony's doctor (an ask already), keep away while
    they're sick. *Rate:* one camp sickness in 5 passes to one colonist. *Seen:* colonists at the fire, a cough two days
@@ -399,6 +424,11 @@ ankle) and the game's own caravan dangers apply. A loved one's caravan in troubl
    the homecoming. Adds a cost to a journey into trouble. *Prevent:* yes: not lodging in a sick town, the quarantine
    decree for the returned, medicine packed. *Rate:* about one journey in 6 to such a town. *Seen:* the homecoming, then
    a cough, the news naming where it came from. *Ages:* the same; industrial and spacer medicine halve it.
+   *Built (harm, parts 2 and 3, 7 November 2026):* `Harm/SickHome.cs`: a sick town is one the region's world events
+   really lie over (a plague, or a famine: hunger, locusts, a long drought, a blight; its people's or within twenty tiles;
+   never the herds' murrain), which is also what a notable's town that is ill means here. One in six for a night's stay
+   there, less for a shorter one, nothing for a trade at the gate under two hours; a plague's is the game's flu or, one time
+   in four, its plague; a famine's the everyday stomach bug. Told in a letter naming the town.
 2. **Waiting at the gate in the cold.** When someone isn't ready and the others wait at the gate, a long wait in a hard
    frost gives frostnip or chilblains. *Prevent:* yes: answer the letter (go without them, or put it off), warm clothes.
    *Rate:* the cold ailments' rate for hours outdoors. *Seen:* the travelers stamping at the gate.
@@ -438,6 +468,11 @@ heart's safety rule: it never patches mood, the mental breaker or the game's bre
    beer's 1.5, through Rimfolk's own moments and never through the break picker. Adds what strain is: a short fuse.
    *Prevent:* yes: ease the strain (rest, gatherings, the heart's reliefs). *Rate:* the game's fight chance times 1.5 for
    the strained. *Seen:* the fight, and the heart's page saying they had been strained for days.
+   *Built (harm, parts 2 and 3, 7 November 2026):* `Harm/FrayedTempers.cs`: "the high band" is the two upper ones, worn
+   down a quarter more and near breaking half again; "the game's fight chance" is Rimfolk's own moments' (a near fight and
+   the other moments with a fight's own chance, hard words with an outsider, the camp's quarrel, the hustings' heckle).
+   Only the strain's part of a fight goes through the cap, told with the strain named. About 0.06 to 0.09 more fights a
+   colony-year when neglected, almost none when well run.
 2. **Clumsy when worn.** In the high band, work slips are a little likelier: the tired-hands rule (1.2.2) at half again
    its rate, decree or not. *Prevent:* yes: the worn-out day off. *Rate:* half the tired-hands rate without a decree,
    one and a half times it with one. *Seen:* as tired hands.
@@ -476,6 +511,11 @@ answers can make rivals of two who fought (`HeldRisk`); frictions sting; the pea
    rivalry; found out half the time. *Seen:* the act itself (the tool carried off to a corner, the gate open, the animals
    out), the discovery, the fight. *Ages:* a stolen charm (tribal), a broken tool (medieval), a jammed machine
    (industrial), a bench's program tampered with (spacer).
+   *Built (harm, parts 2 and 3, 7 November 2026):* `Harm/Sabotage.cs` and the job `Rimfolk_Sabotage`: one act, at the
+   other's bench (their best craft's), by the colony's means; a machine is jammed only where the bench has one, else it is
+   knocked about. The meal, the pen gate and the credit taken are left for the schemes. "Found out half the time" is half
+   with nobody to see; someone who saw it always tells. "Work kept apart" is their best crafts differing. About twice a
+   year a bitter rivalry of a petty nature, 0.04 fights a colony-year with six, 0.24 with twelve.
 2. **Friends stand by.** When one of a close pair is in a social fight, the friend may step in, to pull them apart or to
    help, and can take a blow. *Prevent:* not preventable. *Rate:* one fight in 6. *Seen:* the friend running over.
 
