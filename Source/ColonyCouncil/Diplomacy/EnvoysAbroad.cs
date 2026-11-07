@@ -405,10 +405,13 @@ namespace ColonyCouncil
                 p.GetCaravan() != null ? new LookTargets(p.GetCaravan()) : LookTargets.Invalid, f);
         }
 
-        /// <summary>A parting gift worth about 200 silver in what their people make: healing herbs or medicine, else silver.</summary>
+        /// <summary>
+        /// A parting gift worth about 200 silver in what their people make (Things/ThingRoles.cs): their medicine, or a
+        /// gift by their ways (a precious metal or stone, a fine drink of theirs), else silver.
+        /// </summary>
         private static (ThingDef def, int count) GiftOf(Faction f)
         {
-            var def = Ages.Of(f) <= WorldAge.Medieval ? ThingDefOf.MedicineHerbal : ThingDefOf.MedicineIndustrial;
+            var def = Rand.Chance(0.5f) ? ThingRoles.From(ThingRole.Medicine, f) : ThingRoles.From(ThingRole.Gift, f);
             if (def == null || def.BaseMarketValue <= 0f) def = ThingDefOf.Silver;
             return (def, RansomMath.GoodsCount(EnvoyMath.GiftWorth, def.BaseMarketValue));
         }

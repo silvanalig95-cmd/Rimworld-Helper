@@ -12,6 +12,64 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- Things by what they are for: the player's mods' items in Rimfolk's picks (7 November 2026, the player's explicit
+  request after the def database came: "apply this def database to all that we created so far, if there is benefit";
+  no proposal round). Not released: no What's new round, About.xml and CHANGELOG untouched, no version number (the
+  lead does that at the merge). DESIGN.md "Things by what they are for" (under Fitting the world: the roles, the
+  rules, every place, what stays and why, the catalogue); README "Fits your world" a bullet, "Your mods in Rimfolk's
+  newer systems" a bullet, the made things and the funeral's goods; the Almanac where a page named a fixed item
+  (the camps' prospectors, things an answer makes real), no keyword changed; `docs/player-mods/README.md` the columns.
+  - Code: `Things/ThingRolesMath.cs` (pure, linked in Tests.csproj: `ThingRole`, `ThingFacts`, `Fits`, `InAge`,
+    `AgeOf`, `Weight`, `CountFor`, `TravelRank`, `PickIndex`, `Alcoholic`, the special comps and trade tags, the game's
+    tech and preferability orders read by name, 1.6's `MealTerrible` among them) and `Things/ThingRoles.cs` (the facts
+    from the live def, once; the recipes' and crops' research for a thing's age; `Candidates`, `Pick`, `From` a people,
+    `Ours`, `Fallback`, `ColonyMinds` (most grown colonists at home: `Beliefs.AgainstThing`, an hour), `ColonyCanMake`,
+    `Seed`, `Explain`); `Things/ThingRolesDebug.cs` (two dev actions).
+  - The roles: drink, soft drink, feast's dish, provisions, produce, medicine, precious, small art, carving, gift,
+    blade (DESIGN.md has each rule). Never a quest's or special thing, nothing of a person, nothing with an exotic or
+    mod-only trade tag, nothing most of the colony would mind; of the giver's age or the colony's, the age's own twice
+    as likely; a gift by the giver's ways; amounts by worth; seeded where words and effect must agree.
+  - Wired: a match's and the town's seasonal gift, the prospectors' finds (camp life and their hole), a tribe's
+    ransom goods, a favour's goods, the envoy's parting gift, a help letter's food and medicine, old friends' relief,
+    a guest's own provisions, the wedding party's crop (`@Produce`), the animal doctor's medicine, the silent guest's
+    carving, a stranger's carving, a regular's keepsake, the star-iron blade (only one that takes "a" in the words),
+    what an outsider may bring, the funeral and wedding mission's `drinks` goal (new keyed `CC_Mission_Need_Drinks`,
+    `CC_Mission_Goal_drinks`), the journey planner's road food, the founding kit's medicine, `DilemmaEffect_Made`'s
+    `@Carving` (the keepsake's replacement and the old debt's gift), the settlers' and the healers' camp goods.
+  - Stayed: silver as money, the colony's own stores (already any kind), materials, animal feed, the scenarios'
+    starting kits (the game's own part names its item on the scenario page), every place whose words name the thing
+    (the brewer's beer, the stash, the commission's and the likeness's small sculpture, the carved bird).
+  - The catalogue: `Tools/mod_pool.py` adds columns to `items.tsv` and `weapons.tsv` (what the roles read, and
+    `madeTech`: the age of the easiest recipe or crop; a mod that writes its one research inside an li is read by its
+    text, as the game does), rebuilt from the same upload and save; every other table unchanged.
+  - Saved: nothing new (a ransom's goods stay a def name, a mission's goal a word). No Sched slot. Tests:
+    `ThingRolesTests` (173 checks: the rules on clear cases, and on the player's active rows each role in each age:
+    drinks 19 to 23, soft drinks 5 to 20, feast dishes 23, provisions 2 (pemmican, Alpha Crafts' yoghurt) for a tribe
+    and 6 from industry on, produce 61, medicine 2 to 3, precious 5, small art 3 for a tribe and 7 after, blades 2 for
+    a tribe (knife, Vanilla Weapons Expanded's shiv) and 12 to 13 after, gifts 17 to 21; the seams). ApiDiff: nothing
+    changed in 1.7.
+  - Try in the game (none of it could be run here; dev mode):
+    1. Debug actions, Rimfolk, "Things by role: each role's things by age (log)": every role's list for each age in
+       this game, Vanilla Brewing's spirits among the drinks, Vanilla Cooking's dishes among the feasts, Vanilla
+       Furniture Expanded - Art's pottery and carvings among the carvings; what the colony minds is marked. "Things
+       by role: five picks of each": the colony's and each neighbour's.
+    2. A marriage alliance's gifts at the gate: a tribe's jade or obsidian, a medieval people's gold or a wine, the
+       letter naming what came; a season's town gift the same.
+    3. The prospectors' camp: their finds and the hole's share (the message names it); a tribe's ransom offer
+       (pemmican or a mod's food, herbs or a mod's medicine); a help letter granted (food that keeps of their age).
+    4. The silent guest, a stranger's carving and a regular's keepsake: a small sculpture or a mod's carving, of wood,
+       the words naming it; the replacement keepsake and the old debt's gift made at the colony's bench, one the
+       colony knows how to make.
+    5. A fallen star: the blade named in the letter is one the colony can make (a knife for a tribe), forged at the
+       smithy as before.
+    6. A wedding mission for a colony that brews wine or mead: "drinks" on the list, and the wine counts.
+    7. An outsider's "bring next time": their people's medicine, food and drink, the same list each time.
+  - Riskiest: `ModContentPack.IsOfficialMod` decides which trade and weapon tags are the game's (a mod that patches a
+    tag of its own onto a base-game item makes that tag "the game's"); a mod's research written inside an li read as
+    the game reads it (if the game doesn't, that mod's art counts as needing no research); the corpse rum of Alpha
+    Memes is a drink like any other by its def (nothing in it says what it is made of); a mod's drink of no tech level
+    goes with every age; `Find.ActiveLanguageWorker` for the blade's article (another language: the base game's
+    longsword or knife).
 - 0.160.0, everything work makes goes into the pocket: bills, production buildings and any other work (7 November 2026, the
   player: "they should always take any 'produced' item or resource into their inventory when they have space, to later
   store it, for any possible item creating or harvesting interaction in the game and mods"; explicit, no proposal

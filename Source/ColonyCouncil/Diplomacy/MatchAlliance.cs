@@ -163,7 +163,7 @@ namespace ColonyCouncil
             WorldLedger.Touch(t);
             var town = WorldSituationWorker.NearestTown(f, home);
             int value = MatchMath.TownGiftValue(Fortune(town?.ID ?? -1));
-            var def = GiftDef(f);
+            var def = GiftDef(f, home);
             var things = Couriers.Make(def, MatchMath.GiftCount(value, def.BaseMarketValue));
             var gate = PlaySpots.GateCell(home, null);
             if (!Couriers.Deliver(home, things, f, gate)) Loot.Deliver(things, home, gate, false);

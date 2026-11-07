@@ -19,6 +19,9 @@ namespace ColonyCouncil
     /// Artistic; a work of art carries their name, a book is theirs) or got hold of (no maker: <see cref="quality"/>), for
     /// <see cref="forWhom"/> (A unless given). <see cref="things"/>: the candidates, "SculptureSmall" or
     /// "Apparel_HatTop|Apparel_BowlerHat", the first that exists and fits the colony's era; none does, nothing is made.
+    /// A candidate may be a kind of thing (Things/ThingRoles.cs: "@Carving", any small work of art of wood the colony's
+    /// age has, of the game's or the player's mods, one the colony knows how to make when its own people make it), the
+    /// same in the answer's words and in their hands.
     /// Of <see cref="stuff"/> when it may be (wood unless given), else the thing's usual stuff.
     /// How it reaches them: the one it's from (<see cref="giver"/>, the maker unless given) carries it over by hand and sets
     /// it down at their feet, and the good moods the answer gives the two wait until it's handed over; a thing a visitor
@@ -39,7 +42,7 @@ namespace ColonyCouncil
         private void Tell(DilemmaContext ctx, ImpactSheet sheet)
         {
             if (things.NullOrEmpty()) return;
-            var def = Pick(things);
+            var def = Pick(things, ctx, this);
             if (def == null) return;
             var to = PlayOuts.Who(forWhom, ctx);
             if (inRoom && def.category == ThingCategory.Building && !Avail.CanBuild(def, ctx.map)) return;
@@ -87,7 +90,7 @@ namespace ColonyCouncil
             if (chance < 1f && !Rand.Chance(chance)) return;
             try
             {
-                var def = Pick(things);
+                var def = Pick(things, ctx, this);
                 if (def == null) return;
                 var mk = PlayOuts.Who(maker, ctx);
                 if (mk != null && (mk.Dead || !(mk.RaceProps?.Humanlike ?? false))) mk = null;
@@ -248,12 +251,27 @@ namespace ColonyCouncil
             "CC_Play_Label_Give".Translate((pending != null ? PlayGive.Label(pending) : pendingDef?.label ?? "").Named("THING")).Resolve();
 
         /// <summary>The first of the candidates this game has, of the colony's era.</summary>
-        public static ThingDef Pick(string names)
+        public static ThingDef Pick(string names, DilemmaContext ctx = null, DilemmaEffect_Made made = null)
         {
             if (names.NullOrEmpty()) return null;
-            var defs = names.Split('|').Select(n => DefDatabase<ThingDef>.GetNamedSilentFail(n.Trim())).ToList();
+            var defs = names.Split('|').Select(n => ThingRolesMath.TryParse(n, out var role) ? ByRole(role, ctx, made) : DefDatabase<ThingDef>.GetNamedSilentFail(n.Trim())).ToList();
             int i = OnMapMath.FirstFitting(defs.Select(d => d == null ? -1 : (int)d.techLevel).ToList(), (int)Avail.EffectiveTech);
             return i >= 0 ? defs[i] : null;
+        }
+
+        /// <summary>
+        /// A kind of thing for an answer (Things/ThingRoles.cs): of the colony's age, of the effect's stuff when it is made
+        /// of stuff, one the colony knows how to make when its own people make it, the same each time for the answer.
+        /// </summary>
+        private static ThingDef ByRole(ThingRole role, DilemmaContext ctx, DilemmaEffect_Made made)
+        {
+            var map = ctx?.map ?? Find.AnyPlayerHomeMap;
+            var st = made == null || made.stuff.NullOrEmpty() ? null : DefDatabase<ThingDef>.GetNamedSilentFail(made.stuff);
+            var mk = made == null || ctx == null ? null : PlayOuts.Who(made.maker, ctx);
+            bool ours = mk != null && PlayOuts.OurPerson(mk);
+            int seed = ThingRoles.Seed(ctx, "made:" + role);
+            bool Fit(ThingDef d) => (!d.MadeFromStuff || st?.stuffProps == null || st.stuffProps.CanMake(d)) && (!ours || ThingRoles.ColonyCanMake(d));
+            return ThingRoles.Pick(role, Ages.Of(map), false, map, seed, Fit);
         }
 
         /// <summary>The thing itself: of <paramref name="stuff"/> if it may be, its quality from the maker's skill (else <paramref name="quality"/>), signed by them.</summary>

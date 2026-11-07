@@ -44,7 +44,7 @@
     </animals>
     <campGoods>
       <li><defs><li>WoodLog</li></defs><count>25~40</count><at>picket</at></li>
-      <li><defs><li>RawPotatoes</li><li>RawCorn</li></defs><count>15~25</count><at>picket</at></li>
+      <li><defs><li>@Produce</li><li>RawPotatoes</li><li>RawCorn</li></defs><count>15~25</count><at>picket</at></li>
     </campGoods>
     <titles>
       <li>Settlers at the gate</li>

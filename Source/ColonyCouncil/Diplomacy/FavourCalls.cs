@@ -126,21 +126,25 @@ namespace ColonyCouncil
             return null;
         }
 
-        /// <summary>The goods a kind means for them, and how many make the load (by their nearest town's fortune).</summary>
+        /// <summary>
+        /// The goods a kind means for them, and how many make the load (by their nearest town's fortune): medicine and food
+        /// that keeps of their own age (Things/ThingRoles.cs: a mod's as well as the game's), wood, steel, silver. The same
+        /// kind of a tie picks the same goods each time it's asked (its words and its load).
+        /// </summary>
         public static (ThingDef def, int count) Goods(string kind, Faction f, Tie t)
         {
             ThingDef def;
-            var age = Ages.Of(f);
+            int seed = ThingRoles.Seed("favour goods", kind, f, t?.id ?? 0);
             switch (kind)
             {
                 case "medicine":
-                    def = age <= WorldAge.Medieval ? ThingDefOf.MedicineHerbal : ThingDefOf.MedicineIndustrial;
+                    def = ThingRoles.From(ThingRole.Medicine, f, null, seed);
                     break;
                 case "wood": def = ThingDefOf.WoodLog; break;
                 case "steel": def = ThingDefOf.Steel; break;
                 case "silver": def = ThingDefOf.Silver; break;
                 default:
-                    def = DefDatabase<ThingDef>.GetNamedSilentFail("Pemmican") ?? ThingDefOf.RawPotatoes;
+                    def = ThingRoles.From(ThingRole.Provisions, f, null, seed) ?? ThingDefOf.RawPotatoes;
                     break;
             }
             if (def == null) return (null, 0);
