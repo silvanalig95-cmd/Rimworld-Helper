@@ -376,6 +376,8 @@ namespace ColonyCouncil
             }
             bool quiet = !initialized;
             initialized = true;
+            // A merged colony's names, looked at again before the round (Colonies/Merges.cs).
+            Merges.NamesRound(this, comp);
             var firstRound = new List<string>();
             // Each colony gives its own names, from its own people (one colony: everyone, as always).
             if (!Several) Names(comp, pawns, Homes.KeyOf(Homes.Seat), quiet, firstRound);
@@ -444,6 +446,51 @@ namespace ColonyCouncil
         }
 
         /// <summary>
+        /// Two councils become one (Colonies/Merges.cs): the names held under the old colony's key are looked at again. One
+        /// the colony has no holder of goes to its holder here, held as long as it was; where both have a holder the better
+        /// keeps it (ManyColoniesMath.NewcomerKeeps: the newcomer only when clearly ahead on its count), quietly, no rival made.
+        /// </summary>
+        public void Merged(int from, int into, List<Pawn> newcomers, CouncilGameComponent comp)
+        {
+            if (from == HomesMath.None || into == HomesMath.None) return;
+            var map = Homes.MapOf(into);
+            string place = map != null ? Homes.Name(map) : "?";
+            foreach (var key in holders.Keys.ToList())
+            {
+                string defName = EpithetMath.DefOf(key, out int colony);
+                if (colony != from) continue;
+                var p = holders[key];
+                var def = DefDatabase<EpithetDef>.GetNamedSilentFail(defName);
+                holds.TryGetValue(key, out var hold);
+                holders.Remove(key);
+                holds.Remove(key);
+                if (def == null || p == null || p.Dead || !p.IsColonist || Homes.KeyOf(Homes.Of(p)) != into) continue;
+                var host = Lookup(defName, into);
+                if (host != null && (host.Dead || !host.IsColonist)) host = null;
+                if (host == null)
+                {
+                    // Nobody here had it: theirs here, held as long as it was.
+                    Write(defName, into, p);
+                    if (hold != null) holds[KeyOf(defName, into)] = hold;
+                    continue;
+                }
+                if (def.record == null) continue;
+                float theirs = p.records?.GetValue(def.record) ?? 0f, ours = host.records?.GetValue(def.record) ?? 0f;
+                var keeper = ManyColoniesMath.NewcomerKeeps(theirs, ours) ? p : host;
+                var other = keeper == p ? host : p;
+                bool wasTheirs = Chief(other) == def;
+                if (keeper == p)
+                {
+                    Write(defName, into, p);
+                    if (hold != null) holds[KeyOf(defName, into)] = hold;
+                }
+                News.Post("CC_Many_NameKept".Translate(keeper.Named("PAWN"), def.label.Named("TITLE"), place.Named("PLACE"), other.Named("OTHER")).Resolve(),
+                    new LookTargets(keeper, other), NewsKind.People, MessageTypeDefOf.NeutralEvent, Importance.Flavor);
+                if (wasTheirs) Lost(def, other, comp);
+            }
+        }
+
+        /// <summary>
         /// A name earned some other way than by a record (a personal story's ending): given only if nobody living here
         /// holds it already. Names without a record stay with their holder.
         /// </summary>
@@ -470,7 +517,8 @@ namespace ColonyCouncil
             CouncilGameComponent.GiveThought(p, def.dubious ? CouncilDefOf.Council_EpithetDubious : CouncilDefOf.Council_Epithet);
             // The one who had it minds, and a rival is made, only within one colony (someone who has gone to live at another
             // has a name of theirs there to make).
-            if (previous != null && !def.dubious && (!Several || EpithetMath.Rivals(ColonyOf(previous), ColonyOf(p), colony)))
+            // Two councils just become one make no rival of a name taken over in their first season (Colonies/Merges.cs).
+            if (previous != null && !def.dubious && (!Several || EpithetMath.Rivals(ColonyOf(previous), ColonyOf(p), colony)) && !Merges.Quiet(colony, Find.TickManager.TicksGame))
             {
                 CouncilGameComponent.GiveThought(previous, CouncilDefOf.Council_EpithetLost, p);
                 comp.social.Bump(previous, p, TieKind.Rivals, 12f, "CC_TieNote_Name".Translate(def.label));

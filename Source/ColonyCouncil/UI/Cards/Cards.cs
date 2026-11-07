@@ -525,7 +525,8 @@ namespace ColonyCouncil
                 var lr = ThingRefs.Of(f.leader);
                 who.rows.Add(new CardRow { thing = lr, pawn = f.leader, name = Link(f.leader.LabelShort, lr), second = T("CC_Card_Leader") });
             }
-            var homeMap = HappeningTracker.HomeMap();
+            // Within reach of the colony in view (the seat's for a map that isn't a home).
+            var homeMap = ColonyState.Several && ColonyView.Current?.Map != null ? ColonyView.Current.Map : HappeningTracker.HomeMap();
             if (homeMap != null && NotableBook.Instance != null)
                 foreach (var t in NotableBook.Instance.Towns(homeMap))
                 {

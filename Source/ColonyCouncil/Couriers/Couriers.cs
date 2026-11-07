@@ -591,7 +591,8 @@ namespace ColonyCouncil
         /// </summary>
         public static bool TakeFor(DilemmaContext ctx, string what, ThingDef def, int n)
         {
-            var map = ctx?.map ?? HappeningTracker.HomeMap();
+            // An answer that names no map: the colony of the one it is about, else the seat (ManyColoniesMath.AnswerHome).
+            var map = ctx?.map ?? (ColonyState.Several && ctx?.a != null && People.StillOurs(ctx.a) ? Homes.Of(ctx.a) : null) ?? HappeningTracker.HomeMap();
             if (map == null || n <= 0) return false;
             if (ctx != null && ctx.map == null) ctx.map = map;
             if (InPerson(ctx?.stranger, map) && PlayOuts.On)

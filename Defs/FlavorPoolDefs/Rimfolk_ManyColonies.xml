@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Two councils become one (Source/ColonyCouncil/Colonies/Merges.cs): the meal together on the first evening after a
+    colony's people have come to live at another home, at the table where there is one. What is said as they eat, by
+    anyone there; [speaker] lines are its host's. One sentence each, nothing the meal itself might not have.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_MergeWelcome</defName>
+    <lines>
+      <plain>
+        <li>Pass that down to our new neighbours.</li>
+        <li>So which of you is the cook, then?</li>
+        <li>We'll need more seats at supper from now on.</li>
+        <li>Tell us how you did things back home.</li>
+        <li>It's good to see new faces at supper.</li>
+        <li>You'll get used to the way the wind comes in here.</li>
+        <li>[child] Are they staying for good?</li>
+        <li>There's room enough for everyone here.</li>
+        <li>[speaker] Eat up, there's plenty for all of us.</li>
+      </plain>
+      <warm>
+        <li>One colony, one supper, that's how it should be.</li>
+        <li>I'm glad you came to us.</li>
+      </warm>
+      <blunt>
+        <li>Mind, we all take a turn at the dishes here.</li>
+      </blunt>
+      <gloomy>
+        <li>I hope they don't miss the old place too much.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!--
+    The speaker's greeting at the welcome's meal, with the cup (Source/ColonyCouncil/Colonies/Merges.cs; PlayOut/PlayFeast.cs,
+    the toast): {OLD} the colony they came from, {PLACE} the home they came to. Said in a bubble without a meal when
+    answers don't play out on the map. One sentence each.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_MergeGreeting</defName>
+    <lines>
+      <plain>
+        <li>[speaker] To the people of {OLD}, who are the people of {PLACE} now.</li>
+        <li>[speaker] Welcome, all of you, this is your home as much as ours.</li>
+        <li>[speaker] We sit down tonight as two councils and get up as one.</li>
+        <li>[speaker,lowtech] One fire for all of us now, and may it never go out.</li>
+      </plain>
+      <warm>
+        <li>[speaker] We have waited for you, and we are glad you are here.</li>
+      </warm>
+      <blunt>
+        <li>[speaker] You live here now, so welcome, and pull your weight.</li>
+      </blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

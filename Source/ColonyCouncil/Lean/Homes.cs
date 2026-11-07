@@ -16,6 +16,12 @@ namespace ColonyCouncil
         /// <summary>The home they've been on since the last time they left one, and from when.</summary>
         public int at = HomesMath.None;
         public int since;
+        /// <summary>
+        /// The home they lived on before their last, and when they moved (a day lived at the new one), kept only with more
+        /// than one home (Colonies/HomesMerge.cs): a colony given up still knows its people who had moved on lately.
+        /// </summary>
+        public int prev = HomesMath.None;
+        public int movedAt = -1;
 
         public void ExposeData()
         {
@@ -23,6 +29,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref last, "last", HomesMath.None);
             Scribe_Values.Look(ref at, "at", HomesMath.None);
             Scribe_Values.Look(ref since, "since");
+            Scribe_Values.Look(ref prev, "prev", HomesMath.None);
+            Scribe_Values.Look(ref movedAt, "movedAt", -1);
         }
     }
 
@@ -374,7 +382,9 @@ namespace ColonyCouncil
                 {
                     if (p == null || p.Dead || !seen.Add(p)) continue;
                     var t = TieOf(p, true);
+                    int before = t.last;
                     HomesMath.Note(key, now, ref t.at, ref t.since, ref t.last);
+                    NoteMove(t, before, now);
                 }
             }
             foreach (var t in ties)
@@ -382,6 +392,8 @@ namespace ColonyCouncil
             // Kept in bounds: the dead, the discarded and those no longer the colony's are forgotten.
             if (ties.RemoveAll(t => t == null || !ColonyCouncil.People.StillOurs(t.pawn)) > 0) byPawn = null;
             Notice(homes.Select(KeyOf).ToList());
+            // Two councils become one once a colony's people have lived a day at another home (Colonies/Merges.cs).
+            Merges.Hourly(this, now);
         }
 
         /// <summary>Compares the homes with the last look's, and tells of any founded or lost.</summary>
@@ -432,6 +444,8 @@ namespace ColonyCouncil
             ExposeFounding();
             // A hand-over under way (Colonies/HomesHandOver.cs).
             ExposeHandOver();
+            // Two councils becoming one (Colonies/HomesMerge.cs), only while one is.
+            ExposeMerges();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 ties ??= new List<HomeTie>();

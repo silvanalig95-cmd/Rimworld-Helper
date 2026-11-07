@@ -153,7 +153,8 @@ namespace ColonyCouncil
             // The first comes sooner than the rest, once the colony has found its feet (around days 20 to 35 by default).
             if (nextTick < 0) nextTick = Mathf.Max(now, GenDate.TicksPerDay * 10) + Mathf.RoundToInt(Interval() * 0.35f);
             if (now < nextTick || active.Count(s => !s.ended) >= MaxActive) return;
-            var map = HappeningTracker.HomeMap();
+            // Near any home, picked by its people (the player's decision 14A); the seat with one colony, as always.
+            var map = PlaceNear();
             if (map == null) return;
             // Not in the middle of a fight, and not while the last one's question is still open.
             if (MapFacts.ThreatOn(map) || Waiting || !Tell.CanAsk)
@@ -163,6 +164,18 @@ namespace ColonyCouncil
             }
             nextTick = now + GenDate.TicksPerDay;
             if (TryStart(map, null, false) != null) nextTick = now + Interval();
+        }
+
+        /// <summary>
+        /// The home a world event is placed near: each home on the ground weighted by its people (ManyColoniesMath.PickHome),
+        /// so a far colony hears of the world near it; with one home on the ground the seat, without a roll.
+        /// </summary>
+        public static Map PlaceNear()
+        {
+            var homes = Homes.All.Where(m => !MapFacts.InVacuum(m)).ToList();
+            if (!ManyColoniesMath.RollsForHome(homes.Count)) return HappeningTracker.HomeMap();
+            var key = ManyColoniesMath.PickHome(homes.Select(Homes.KeyOf).ToList(), homes.Select(m => Homes.People(m).Count).ToList(), Rand.Value);
+            return Homes.MapOf(key) ?? HappeningTracker.HomeMap();
         }
 
         /// <summary>A world event's question nobody has answered yet.</summary>

@@ -61,9 +61,21 @@ namespace ColonyCouncil
         /// <summary>
         /// Two councils become one only where the home had people of its own before them (grown-ups who are not of the
         /// colony that came), and the other colony's council is still kept (its home lost under thirty days ago); a home of
-        /// theirs alone is their colony moved, and its council carried, by 7a's rule.
+        /// theirs alone is their colony moved, and its council carried, by 7a's rule. A colony founded from theirs lately (a
+        /// fresh start whose party it was, with the old colony handed over in the same act) is their founding, not a merge.
         /// </summary>
-        public static bool IsMerge(int hostGrownUps, bool fromCouncilKept) => hostGrownUps > 0 && fromCouncilKept;
+        public static bool IsMerge(int hostGrownUps, bool fromCouncilKept, bool foundedFromItLately = false) =>
+            hostGrownUps > 0 && fromCouncilKept && !foundedFromItLately;
+
+        /// <summary>A colony founded from the one that came within this long is their own founding (<see cref="IsMerge"/>).</summary>
+        public static bool FoundedLately(int founded, int now, int mother, int from) => mother == from && from != None && founded >= 0 && now - founded < SeasonTicks;
+
+        /// <summary>Someone's last home changed from one home to another: a move (with none before, it is their first home).</summary>
+        public static bool Moved(int before, int after) => before != None && after != None && before != after;
+
+        /// <summary>Someone moved from colony <paramref name="key"/> within the thirty days its council is kept: one of its people still.</summary>
+        public static bool CameFrom(int prev, int movedAt, int key, int now) =>
+            key != None && prev == key && movedAt >= 0 && now - movedAt <= ColonyStateMath.KeepLostDays * DayTicks;
 
         /// <summary>When the newcomers are a third or more of the grown-ups of the colony as it is now, the next election comes within the season.</summary>
         public static bool EarlyElection(int newcomerGrownUps, int allGrownUps) => allGrownUps > 0 && newcomerGrownUps > 0 && newcomerGrownUps * 3 >= allGrownUps;

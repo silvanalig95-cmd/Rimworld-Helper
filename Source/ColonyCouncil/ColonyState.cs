@@ -354,6 +354,8 @@ namespace ColonyCouncil
                 CampTracker.Instance?.HomesLost(lost);
                 RegionBook.Instance?.HomesLost(lost);
                 DiplomacyBook.Instance?.HomesLost(lost);
+                // A colony's people who may come to live at another home: two councils become one (Colonies/Merges.cs).
+                Merges.HomesLost(lost);
             };
         }
     }

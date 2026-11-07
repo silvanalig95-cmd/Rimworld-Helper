@@ -15,7 +15,8 @@ namespace ColonyCouncil
 
         private static void Town(FactSet f, Pawn x, Faction p, Settlement town)
         {
-            var map = HappeningTracker.HomeMap() ?? x.MapHeld;
+            // From the colony they are at (their own colony's distance), else the seat (ManyColoniesMath.OutsiderHome).
+            var map = ColonyState.Several && Homes.IsHome(x.MapHeld) ? x.MapHeld : HappeningTracker.HomeMap() ?? x.MapHeld;
             if (town != null)
             {
                 f.Tag("town");

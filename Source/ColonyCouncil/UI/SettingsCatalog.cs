@@ -425,6 +425,7 @@ namespace ColonyCouncil
             Toggle("newcomers", "CC_Settings_Newcomers", "CC_SetNote_Newcomers", "freshStarts");
             Toggle("handOvers", "CC_Settings_HandOvers", "CC_SetNote_HandOvers");
             Toggle("townLife", "CC_Settings_TownLife", "CC_SetNote_TownLife");
+            Toggle("manyMerge", "CC_Settings_ManyMerge", "CC_SetNote_ManyMerge");
             Section("CC_SetSec_Weather");
             Toggle("dynamicWeather", "CC_Settings_DynamicWeather", "CC_SetNote_DynamicWeather", "deepHooks");
             Toggle("weatherTemperature", "CC_Settings_WeatherTemperature", "CC_SetNote_WeatherTemperature", "deepHooks");

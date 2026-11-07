@@ -754,7 +754,9 @@ namespace ColonyCouncil
         {
             // Not the visit the favour was asked on: the one who promised goes home first.
             if (f.outsider != null && f.outsider.Spawned) return null;
-            foreach (var map in Find.Maps.Where(m => m.IsPlayerHome))
+            // At the colony of the one who asked (with more than one colony; any home once they are gone).
+            var asked = ColonyState.Several && f.by != null && !f.by.Dead && People.StillOurs(f.by) ? Homes.Of(f.by) : null;
+            foreach (var map in Find.Maps.Where(m => m.IsPlayerHome && (asked == null || m == asked)))
             {
                 if (map.dangerWatcher.DangerRating != StoryDanger.None) continue;
                 var people = map.mapPawns.AllPawnsSpawned.Where(p => p.Faction == f.faction && IsOutsider(p) && !p.DevelopmentalStage.Juvenile() && p.jobs != null

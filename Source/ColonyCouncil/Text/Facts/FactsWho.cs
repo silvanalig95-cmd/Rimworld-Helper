@@ -122,10 +122,12 @@ namespace ColonyCouncil
             Best(f, c, "us", "OURSKILL");
             Family(f, x, "them", "THEIRSPOUSE", "THEIRCHILD");
             Family(f, c, "us", "OURSPOUSE", "OURCHILD");
-            // Family of theirs in the colony.
+            // Family of theirs in the colony: the colony they are at (all of it, with one colony).
+            var at = ColonyState.Several && Homes.IsHome(x.MapHeld) ? x.MapHeld : null;
             foreach (var o in PawnsFinder.AllMaps_FreeColonists)
             {
                 if (o == null || o == x || o.Dead || x.relations == null) continue;
+                if (at != null && Homes.Of(o) != at) continue;
                 var rel = x.GetRelations(o).FirstOrDefault(r => r != null && (r.familyByBloodRelation || r == PawnRelationDefOf.Spouse));
                 if (rel == null) continue;
                 f.Tag("kin", 2f);

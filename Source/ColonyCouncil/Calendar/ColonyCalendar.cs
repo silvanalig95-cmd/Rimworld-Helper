@@ -934,8 +934,15 @@ namespace ColonyCouncil
                     case CalendarKind.GreatHunt:
                     case CalendarKind.Companion:
                     case CalendarKind.Situation:
-                    case CalendarKind.Parting:
                         if (!d.tradition && d.knew.Count > 0 && !d.knew.Any(k => Living(k, known) != null)) days.Remove(d);
+                        break;
+                    case CalendarKind.Parting:
+                        // An old colony's founding day stays while some of its people live here (Calendar/CalendarMerge.cs).
+                        if (d.id != null && d.id.StartsWith("oldfounding|") && !d.tradition && d.knew.Count > 0)
+                        {
+                            if (!KeepsOldFounding(d, known)) days.Remove(d);
+                        }
+                        else if (!d.tradition && d.knew.Count > 0 && !d.knew.Any(k => Living(k, known) != null)) days.Remove(d);
                         break;
                     case CalendarKind.Rescue:
                         if (Gone(d, d.pawnId, known)) days.Remove(d);

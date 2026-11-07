@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    Many colonies in play (Source/ColonyCouncil/Colonies/Merges.cs, ManyColoniesMath.cs; Character/ColonyCharacters.cs;
+    docs/design/stage3-many-colonies.md, section 3, release 4): two councils become one when a colony's people come to live
+    at another home, each colony its own character, the region's faces and events near every home, and the pages that
+    follow the colony in view. No countdowns.
+  -->
+
+  <!-- Two councils become one -->
+  <CC_Many_MergedLabel>{OLD} joins {PLACE}</CC_Many_MergedLabel>
+  <CC_Many_MergedText>The people of {OLD} ({NAMES}) have lived a day at {PLACE} now, and their council and the colony's council here are one.</CC_Many_MergedText>
+  <CC_Many_MergedTraditions>Their traditions join the colony's here: {TRADITIONS}. One only they kept counts at half its strength, and lapses as any tradition does unless the colony keeps it.</CC_Many_MergedTraditions>
+  <CC_Many_MergedElection>They are a third or more of the grown-ups here now, so the council is chosen again this season, with their say.</CC_Many_MergedElection>
+  <CC_Many_MergedNames>The names they were known by at {OLD} are looked at again in the next naming; where both colonies had someone known by one, the better keeps it.</CC_Many_MergedNames>
+  <CC_Many_MergedDay>The founding day of {OLD} is kept here as a day to remember while some of its people live here.</CC_Many_MergedDay>
+  <CC_Many_MergedMeal>On the first evening the colony sits down to a meal together to welcome them, and its speaker greets them as the cups go up.</CC_Many_MergedMeal>
+  <CC_Many_MergedGreeting>The colony's speaker has a word of welcome for them.</CC_Many_MergedGreeting>
+  <CC_Many_MergedHistory>The people of {OLD} came to live at {PLACE}, and the two councils became one.</CC_Many_MergedHistory>
+  <CC_Many_WelcomeLabel>the welcome for the people of {OLD}</CC_Many_WelcomeLabel>
+  <CC_Many_WelcomeCause>the welcome for the people of {OLD}</CC_Many_WelcomeCause>
+  <CC_Many_NameKept>{PAWN} keeps the name {TITLE} at {PLACE}, where {OTHER} was known by it too.</CC_Many_NameKept>
+
+  <!-- The frost alert at another home than the one in view -->
+  <CC_Many_FrostAt>{ALERT} at {PLACE}</CC_Many_FrostAt>
+
+  <!-- Each colony its own character -->
+  <CC_Many_NameAt>{PLACE}: {LINE}</CC_Many_NameAt>
+
+  <!-- The setting -->
+  <CC_Settings_ManyMerge>Two councils become one</CC_Settings_ManyMerge>
+  <CC_Settings_ManyMerge_Tip>When a colony's home is given up or handed over and its people come to live at another home that has people and a council of its own, once they have lived a day there the two councils become one: the traditions only they kept join the colony's at half their strength (one both kept keeps the stronger), the council is chosen again within the season when they are a third or more of the grown-ups, the names they were known by are looked at again in the next naming (the better keeps one both had, and no rival comes of a name taken over in the first season), their old colony's founding day is kept as a day to remember while some of them live there, and on the first evening the colony sits down to a meal together to welcome them. Off: a moving officer still steps down and the old council is kept thirty days, and nothing more.</CC_Settings_ManyMerge_Tip>
+  <CC_SetNote_ManyMerge>A colony's people who come to live at another home bring their traditions and their names, and are welcomed at a meal.</CC_SetNote_ManyMerge>
+
+</LanguageData>
