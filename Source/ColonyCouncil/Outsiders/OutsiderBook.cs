@@ -113,6 +113,13 @@ namespace ColonyCouncil
         public int chatters;
         /// <summary>The asks made of them lately: "colonistId|act|tick", newest last.</summary>
         public List<string> asks = new List<string>();
+        /// <summary>The things the colony's people did with them by themselves (OutsiderAuto.cs): how many on the day counted, that day, and when the last began.</summary>
+        public int autos;
+        public int autoDay = -1;
+        public int autoLast = -1;
+
+        /// <summary>How many were done with them by themselves on this day (OutsiderAutoMath.Day).</summary>
+        public int AutosOn(int day) => autoDay == day ? autos : 0;
 
         public void ExposeData()
         {
@@ -125,6 +132,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref chatterLast, "chatterLast", -1);
             Scribe_Values.Look(ref chatters, "chatters");
             Scribe_Collections.Look(ref asks, "asks", LookMode.Value);
+            Scribe_Values.Look(ref autos, "autos");
+            Scribe_Values.Look(ref autoDay, "autoDay", -1);
+            Scribe_Values.Look(ref autoLast, "autoLast", -1);
             if (Scribe.mode == LoadSaveMode.PostLoadInit) asks ??= new List<string>();
         }
     }
@@ -271,6 +281,16 @@ namespace ColonyCouncil
         public List<WarSeen> wars = new List<WarSeen>();
         /// <summary>When the world was last looked over for wars (once a day).</summary>
         public int warsLooked = -1;
+        /// <summary>
+        /// The things the colony's people did with outsiders by themselves (OutsiderAuto.cs), for their pace: the day
+        /// counted (OutsiderAutoMath.Day), how many that day, the stores' worth spent that day in silver, when the last one
+        /// began, and the day of the last practice bout.
+        /// </summary>
+        public int autoDay = -1;
+        public int autoToday;
+        public float autoSpent;
+        public int autoLast = -1;
+        public int autoBoutDay = -1;
 
         private static OutsiderBook cached;
         private static Game cachedGame;
@@ -332,6 +352,15 @@ namespace ColonyCouncil
                 {
                     CouncilLog.ErrorOnce("outsiders talking", e);
                 }
+                // The right-click's things done by the colonists themselves at a good moment (OutsiderAuto.cs), every fourth look.
+                try
+                {
+                    OutsiderAuto.Rare(now);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("outsiders by themselves", e);
+                }
             }
             if (!Outsiders.AnyLive) return;
             if (!Sched.Every(now, Sched.RareTicks, Sched.RareOutsiders)) return;
@@ -367,6 +396,16 @@ namespace ColonyCouncil
                 if (r.outsider == x)
                     best = Math.Max(best, r.Last(a));
             return best;
+        }
+
+        /// <summary>A new day for the things done by themselves: the day's count and spending start again.</summary>
+        public void AutoDay(int now)
+        {
+            int day = OutsiderAutoMath.Day(now);
+            if (day == autoDay) return;
+            autoDay = day;
+            autoToday = 0;
+            autoSpent = 0f;
         }
 
         /// <summary>Anyone of the colony is friends with them (a reason to stay).</summary>
@@ -442,6 +481,11 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref heard, "heard", LookMode.Deep);
             Scribe_Collections.Look(ref wars, "wars", LookMode.Deep);
             Scribe_Values.Look(ref warsLooked, "warsLooked", -1);
+            Scribe_Values.Look(ref autoDay, "autoDay", -1);
+            Scribe_Values.Look(ref autoToday, "autoToday");
+            Scribe_Values.Look(ref autoSpent, "autoSpent");
+            Scribe_Values.Look(ref autoLast, "autoLast", -1);
+            Scribe_Values.Look(ref autoBoutDay, "autoBoutDay", -1);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 visits ??= new List<OutsiderVisit>();

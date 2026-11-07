@@ -250,6 +250,13 @@ namespace ColonyCouncil
             return n;
         }
 
+        /// <summary>The asks this colonist made of them in the last six hours (a third in a row would be pushy).</summary>
+        public static int AsksBy(Pawn x, Pawn c)
+        {
+            var v = VisitOf(x, false);
+            return v == null || c == null ? 0 : AsksInRow(v, c, Now);
+        }
+
         private static void NoteAsk(OutsiderVisit v, Pawn c, OutsiderAct act, int now)
         {
             v.asks.Add(c.thingIDNumber + "|" + (int)act + "|" + now);

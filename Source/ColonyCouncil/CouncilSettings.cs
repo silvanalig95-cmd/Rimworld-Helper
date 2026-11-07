@@ -243,6 +243,12 @@ namespace ColonyCouncil
         public bool outsiderChatter = true;
         /// <summary>How often they do, 1 normal.</summary>
         public float outsiderChatterFrequency = 1f;
+        /// <summary>
+        /// The right-click's things done by the colonists themselves at a good moment (Outsiders/OutsiderAuto.cs): off, only
+        /// those that spend nothing of the colony's, or those and the ones that spend a little or take a small risk, within
+        /// the day's limits.
+        /// </summary>
+        public OutsiderAutoMode outsiderAuto = OutsiderAutoMode.WithinLimits;
         /// <summary>Journeys planned ahead: the travellers get ready together and set off at the hour chosen (Journeys/).</summary>
         public bool journeys = true;
         /// <summary>Many colonies (Colonies/Foundings.cs): a fresh start in the same world offered from a colony's card, and newcomers called to it.</summary>
@@ -669,6 +675,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref outsiderDuels, "outsiderDuels", true);
             Scribe_Values.Look(ref outsiderChatter, "outsiderChatter", true);
             Scribe_Values.Look(ref outsiderChatterFrequency, "outsiderChatterFrequency", 1f);
+            Scribe_Values.Look(ref outsiderAuto, "outsiderAuto", OutsiderAutoMode.WithinLimits);
             Scribe_Values.Look(ref journeys, "journeys", true);
             Scribe_Values.Look(ref freshStarts, "freshStarts", true);
             Scribe_Values.Look(ref newcomers, "newcomers", true);

@@ -48,6 +48,8 @@ namespace ColonyCouncil
         public bool quiet;
         /// <summary>Called once the bout is over (a champion's contest, Harm/ChampionBouts.cs); not saved, as the bouts aren't.</summary>
         public Action<OutsiderBout> after;
+        /// <summary>The colonist offered it by themselves (OutsiderAuto.cs): a bout that never came to blows says nothing.</summary>
+        public bool byThemselves;
 
         public Pawn Other(Pawn p) => p == a ? b : a;
         public bool Has(Pawn p) => p != null && (p == a || p == b);
@@ -64,12 +66,37 @@ namespace ColonyCouncil
         // ================= The talk's outcome =================
 
         /// <summary>
+        /// The talk the colonist began by themselves (OutsiderAuto.cs) is having its outcome now: the colonist's next job
+        /// (a meal, a lesson, a bout) is theirs too, not the player's order, and the everyday messages stay unsaid (the
+        /// bubbles say it); what changes someone's life still comes as a message (<see cref="StillTold"/>).
+        /// </summary>
+        private static bool byThemselvesNow;
+
+        /// <summary>The messages a talk begun by themselves still gives: a new friend, sweethearts, lovers, someone who stays.</summary>
+        private static bool StillTold(string key) =>
+            key == "CC_Out_Msg_Friends" || key == "CC_Out_Msg_Sweet" || key == "CC_Out_Msg_Lovers" || key == "CC_Out_Msg_InviteYes";
+
+        /// <summary>
         /// The talk is over (from the talk job, the two face to face): what comes of it. A meal, a lesson or a bout
         /// returns the colonist's next job (the outsider's own is started here); everything else is done.
+        /// <paramref name="byThemselves"/>: the colonist began it by themselves, not by the player's order.
         /// </summary>
-        public static Job Talked(Pawn c, Pawn x, OutsiderAct act, int extra, ThingDef thing)
+        public static Job Talked(Pawn c, Pawn x, OutsiderAct act, int extra, ThingDef thing, bool byThemselves = false)
         {
             if (c == null || x == null) return null;
+            byThemselvesNow = byThemselves;
+            try
+            {
+                return TalkedNow(c, x, act, extra, thing);
+            }
+            finally
+            {
+                byThemselvesNow = false;
+            }
+        }
+
+        private static Job TalkedNow(Pawn c, Pawn x, OutsiderAct act, int extra, ThingDef thing)
+        {
             try
             {
                 // Asked again within its wait: "you asked me that already" was the answer, and nothing more comes of it.
@@ -106,11 +133,17 @@ namespace ColonyCouncil
             return null;
         }
 
-        private static void Msg(string key, Pawn look, params NamedArgument[] args) =>
+        private static void Msg(string key, Pawn look, params NamedArgument[] args)
+        {
+            if (byThemselvesNow && !StillTold(key)) return;
             Notify.Message(key.Translate(args).Resolve(), look != null && look.Spawned ? new LookTargets(look) : LookTargets.Invalid, MessageTypeDefOf.NeutralEvent, Importance.Important);
+        }
 
-        private static void Good(string key, Pawn look, params NamedArgument[] args) =>
+        private static void Good(string key, Pawn look, params NamedArgument[] args)
+        {
+            if (byThemselvesNow && !StillTold(key)) return;
             Notify.Message(key.Translate(args).Resolve(), look != null && look.Spawned ? new LookTargets(look) : LookTargets.Invalid, MessageTypeDefOf.PositiveEvent, Importance.Important);
+        }
 
         /// <summary>One of Rimfolk's opinion memories, of the other.</summary>
         private static void Memory(Pawn p, ThoughtDef def, Pawn other, int stage)
@@ -231,7 +264,8 @@ namespace ColonyCouncil
             var spot = LessonSpot(c, x, skill);
             var job = JobMaker.MakeJob(OutsiderDefOf.Council_OutsiderLesson, x, spot);
             job.count = DefDatabase<SkillDef>.AllDefsListForReading.IndexOf(skill);
-            job.playerForced = true;
+            // The player's order holds the colonist to it; a lesson they asked for themselves is theirs to leave for something pressing.
+            job.playerForced = !byThemselvesNow;
             return job;
         }
 
@@ -753,7 +787,7 @@ namespace ColonyCouncil
             });
             var jc = seated ? JobMaker.MakeJob(def, fc, seatC) : JobMaker.MakeJob(def, fc);
             jc.count = 1;
-            jc.playerForced = true;
+            jc.playerForced = !byThemselvesNow;
             return jc;
         }
 
@@ -905,7 +939,7 @@ namespace ColonyCouncil
                     break;
                 }
             if (!theirs.IsValid) theirs = ring;
-            var bout = new OutsiderBout { a = c, b = x, kind = kind, terms = terms, ring = ring, start = Now };
+            var bout = new OutsiderBout { a = c, b = x, kind = kind, terms = terms, ring = ring, start = Now, byThemselves = byThemselvesNow };
             foreach (var h in c.health.hediffSet.hediffs) bout.before.Add(h);
             foreach (var h in x.health.hediffSet.hediffs) bout.before.Add(h);
             if (kind == BoutKind.Spar && Rand.Chance(OutsiderMath.SparHardBlowChance(Temper(c), Temper(x))))
@@ -917,7 +951,7 @@ namespace ColonyCouncil
             x.jobs.StartJob(jx, JobCondition.InterruptForced, null, false, true);
             var jc = JobMaker.MakeJob(OutsiderDefOf.Council_OutsiderBout, x, ring);
             jc.count = (int)kind;
-            jc.playerForced = true;
+            jc.playerForced = !byThemselvesNow;
             return jc;
         }
 
@@ -1149,8 +1183,8 @@ namespace ColonyCouncil
             var x = bout.b;
             if (bout.off || c == null || x == null)
             {
-                // apart: the bout never came to blows; said in a message.
-                if (c != null && x != null) Msg("CC_Out_Msg_BoutOff", c, c.Named("PAWN"), x.Named("OTHER"));
+                // apart: the bout never came to blows; said in a message (nothing, for one they offered by themselves).
+                if (c != null && x != null && !bout.byThemselves) Msg("CC_Out_Msg_BoutOff", c, c.Named("PAWN"), x.Named("OTHER"));
                 return;
             }
             if (bout.winner != null) Say(bout.winner, "sparwin", bout.Other(bout.winner));

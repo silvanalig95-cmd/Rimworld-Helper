@@ -22,6 +22,21 @@
   <CC_Settings_OutsiderChatterFrequency>How often they talk by themselves</CC_Settings_OutsiderChatterFrequency>
   <CC_Settings_OutsiderChatterFrequency_Tip>How likely a colonist near an outsider is to start a talk by themselves. An outsider still talks this way at most once every 4 hours and 4 times a visit, and the same two once every 12 hours.</CC_Settings_OutsiderChatterFrequency_Tip>
   <CC_SetNote_OutsiderChatterFrequency>More or fewer talks started by the colonists themselves.</CC_SetNote_OutsiderChatterFrequency>
+  <CC_Settings_OutsiderAuto>The right-click's things, done by themselves</CC_Settings_OutsiderAuto>
+  <CC_Settings_OutsiderAuto_Tip>At a good moment (a colonist idle or at leisure, someone from outside free and not on their way, no danger on the map), a colonist walks over and does one of the things of "Talk with..." by themselves: the thing that would bring most now, done by whoever suits it best (their way with words, how the two get on, the speaker or the steward with someone of rank, the warden of guests, the chaplain for faith), never the same colonist over and over. It plays out as when you order it, in bubbles, and every wait, the outsider's patience and "asked already" count the same for both; they never take the outsider's last patience, which is left for you. At most 5 a day across the colony, 2 a day with one outsider, two hours apart.
+
+Free ones only: news of their home, getting to know them, a good word at home, faith with someone of the same faith. Within limits, also: a meal when the colonist would eat soon anyway and the stores have meals to spare, a drink at leisure as their drug policy allows, a gift that suits them (the first of their visit, from plenty, within the day's budget of a four-hundredth of the colony's wealth, 30 to 250 silver), a lesson in a skill the colonist has a passion for, a practice bout between two keen on it (one a day, within the shared cap on everyday hurts), and courting someone who is already their sweetheart. Always yours: a chat (the talks of their own are one), a letter, something brought next time, an invitation to stay, courting someone new, faith with another faith, hard words, a duel, and the favours, pacts, matches and exchanges.
+
+Fewer messages than when you order it: only a new friend, sweethearts, lovers and a real injury are told; the rest shows in bubbles.</CC_Settings_OutsiderAuto_Tip>
+  <CC_OutsiderAuto_Off>Off</CC_OutsiderAuto_Off>
+  <CC_OutsiderAuto_Off_Tip>Only you, by right-clicking. The talks of their own stay as their own setting has them.</CC_OutsiderAuto_Off_Tip>
+  <CC_OutsiderAuto_FreeOnly>Free ones only</CC_OutsiderAuto_FreeOnly>
+  <CC_OutsiderAuto_FreeOnly_Tip>News of their home, getting to know them, a good word at home, faith with someone of the same faith: nothing of the colony's spent, nothing risked beyond a talk going cool.</CC_OutsiderAuto_FreeOnly_Tip>
+  <CC_OutsiderAuto_WithinLimits>Within limits</CC_OutsiderAuto_WithinLimits>
+  <CC_OutsiderAuto_WithinLimits_Tip>The free ones, and a meal, a drink, a gift, a lesson, a practice bout and courting a sweetheart, each only when it is clearly worth it and within the day's budget.</CC_OutsiderAuto_WithinLimits_Tip>
+  <CC_SetNote_OutsiderAuto_Off>Nothing from the menu happens unless you right-click.</CC_SetNote_OutsiderAuto_Off>
+  <CC_SetNote_OutsiderAuto_FreeOnly>News, getting to know them, a good word and faith, by themselves at a good moment.</CC_SetNote_OutsiderAuto_FreeOnly>
+  <CC_SetNote_OutsiderAuto_WithinLimits>Also meals, drinks, gifts, lessons and bouts, within a small budget and a few a day.</CC_SetNote_OutsiderAuto_WithinLimits>
 
   <!-- The menu -->
   <CC_Out_Menu>Talk with {OTHER}...</CC_Out_Menu>
