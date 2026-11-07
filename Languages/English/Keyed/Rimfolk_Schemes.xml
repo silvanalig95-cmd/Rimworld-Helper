@@ -7,9 +7,9 @@
 
   <!-- ===================== What they are doing (the job's report) ===================== -->
 
-  <CC_Scheme_Report_Take>slipping {THING} into a pack.</CC_Scheme_Report_Take>
+  <CC_Scheme_Report_Take>going for {THING} in the stores.</CC_Scheme_Report_Take>
   <CC_Scheme_Report_Look>looking about the place.</CC_Scheme_Report_Look>
-  <CC_Scheme_Report_Word>having a quiet word with {OTHER_nameDef}.</CC_Scheme_Report_Word>
+  <CC_Scheme_Report_Word>going for a quiet word with {OTHER_nameDef}.</CC_Scheme_Report_Word>
 
   <!-- ===================== What they were caught at, by its form (the letter, the history) ===================== -->
 

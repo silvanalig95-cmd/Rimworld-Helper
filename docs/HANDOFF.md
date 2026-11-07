@@ -6,6 +6,66 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- schemes against the colony (7 November 2026): stage 2's 2c.3, theirs only (the player's decision 16), on 0.132.0; no
+  round of its own (About.xml, What's new and CHANGELOG untouched). `docs/design/stage2-diplomacy.md` item 11 marked
+  built with what differs (and the build order's item 9); DESIGN.md "Schemes against the colony" (after "Against their
+  nature"); README a paragraph (after "Against their nature."); an Almanac page of its own (`Almanac_Schemes.xml`,
+  "schemes against the colony"). Pure rules in `Diplomacy/SchemeMath.cs` (`SchemesTests`, prefix "schemes: "; linked in
+  Tests.csproj and Tools/Balance); the game's side `Diplomacy/Schemes.cs` (+ `FactsSchemes.cs`, `SchemesDebug.cs`). One
+  setting, "Schemes against the colony" (`theirSchemes`, How much happens, 0 to 200%, 100%; Light touch 50%, Story-rich
+  125%; needs answers on the map). No Sched slot (diplomacy's hour and day), no new saved collection (the ledger's ties).
+  - Who and how often: per home, a people at peace with a town in reach and a grudge of 20 (the raiders' camps' reading),
+    or a neighbour notable at -40 or less; once a day 8% once a season has passed since the home's last began (about 2.3 a
+    year, one a season at most). The spec's "a roll every 15 days at 8% (about two a year)" can't be both (that is 0.32 a
+    year); the daily roll gives the two a year. With no schemer nothing rolls.
+  - The tie: `Scheme`, origin "theirs", from the people (or the notable's person) to the colony, a season long (given up by
+    the ledger's own end), key the act then the form it took. `History.Tie` writes nothing of it (the History page would
+    show it); found out, `tie:scheme:theirs:broken` and `dip:foundout`. Facts `tie:scheme:theirs:broken`, `them:caught`.
+  - Acted out only with one of theirs on the map: a grown-up of the game's visitors (`LordJob_VisitColony`) or a guard of
+    their trader's caravan (never the trader). The envoy's party, feast guests, Rimfolk's visitors and camps are not
+    agents (sending one off would end a stay their systems decide). At night (23 to 4): a machine (industrial and after)
+    through the sabotage's job, now at any building (`JobDriver_Sabotage` asks `Schemes.Done` first), the game's
+    breakdown; a theft (`Rimfolk_SchemeTake`: a tribe's small sculpture, a purse of silver, gold or jade, components; 60
+    to 180 silver's worth into their pack); a smear (`Rimfolk_SchemeLook`, an empty room; told round one to three days
+    later, 3 goodwill with each other people at peace in reach). By day (9 to 20): a lie in the hottest temper's ear
+    about the one they like least (`Rimfolk_SchemeWord`), then `Together.When` and `Harm.Fight` (hard words when the cap
+    holds). Nobody of the colony awake within 6 cells; never in danger.
+  - Caught as the act ends: a colonist awake within 12 in sight (half), a guard (drafted or on-guard decree) within 20
+    (nine in ten), a dog within 10 in sight or 5 through a wall (three in four); a whisper, whoever is in earshot (two in
+    five). A shout naming nobody, or the dog's call and the nearest sleeper woken; the thing dropped; their word; a jog off
+    the map alone; the tie broken, `schemedUs` (named), 5 goodwill never to hostility, a notable's memory line, a letter.
+    Not caught: only the game's own (a breakdown, a missing stack, the fight's message).
+  - Shown: Here and away's "Schemes found out" (the Household page's place now) and the people's card on Peoples, rows that
+    open the tie's card, for the sixty days the ledger keeps it. Pools `Rimfolk_Pool_SchemeCaught`, `...CaughtGoes`,
+    `...Whisper`, `...Provoked` (in `ImmersionTests.SpokenPools`).
+  - Rates (`Tools/Balance -- --schemes`, new `SchemeSim.cs`, 4,000 home-years; 0.132.0 had none): with a people with a
+    grudge in reach all year, 2.4 begun, 1.4 acted out (0.7 with their people seldom here), caught one in eight (a third
+    with a dog and the guard kept); a colony of six: a machine 0.35 a year (the game's own 2.6 for ten machines), a theft
+    0.3 to 0.5 (40 to 60 silver), a fight 0.16 to 0.21 (0.03 to 0.07 hurts a colonist-year beside harm's 0.26 to 0.50),
+    a smear 0.3 to 0.5, about 5 goodwill in all. No grudge and no notable that cold: nothing.
+  - Game code: no new Harmony patch (the breakdown, social fight, call, wake-up and exit are called). ApiDiff: nothing the
+    DLL uses changed on 1.7.
+  - Try in the game with dev tools (none of it could be run here):
+    1. A visitor group or a trader caravan of a people at peace (the game's Incidents dev tools), then Debug actions,
+       Rimfolk, "Schemes: a scheme against this home now..." and an act; "Schemes: their act at any hour" to skip waiting.
+       Within the hour one of theirs walks off from the group (the job's report), a few seconds at it, back to the group.
+    2. Machine (an industrial colony): the machine shows broken down (the game's overlay, a component to mend it), no
+       message. Spacer: the comms console first. Tribal or medieval: never picked.
+    3. Theft: their pack holds the stack (inspect them); "the next act is caught" first: a colonist's shout, the stack on
+       the ground, their word, a jog to the edge, the letter, their people's goodwill down 5, their page's memory "schemed
+       against the colony (… was caught at it)", Here and away's "Schemes found out" row and the tie's card.
+    4. Fight: by day, the agent at the hot temper's side, the lie in a bubble; the hot temper walks to the other, the line,
+       the game's social fight, the message. With someone standing by and "caught": "That's a lie" and no fight.
+    5. Smear: a look about an empty room in the night; "Schemes: a smear carried home is told now": the news line naming
+       the peoples, each 3 goodwill down (never to hostility). The Empire's: "at court".
+    6. A dog awake near the place and "caught": the bark, the nearest sleeper up. "Schemes: what is under way" lists the
+       hidden ones and the schemers in reach; nothing of a scheme under way shows on any page or in the History.
+    7. The setting at 0%: none begin; save and load mid-act (the act is forgotten and comes again; a job left from before
+       the load takes nothing).
+  - Riskiest: jobs forced on the game's visitors and caravan guards at night (their lord taking them back after; a lord
+    that interrupts would just leave the act for another hour); the agent sent off on a lord of their own while their group
+    stays; the theft's split stack in a guest's pack (it leaves with them, not sold back: guards' packs aren't trade goods);
+    the provoked fight relying on `Together.When` bringing the two together.
 - 0.132.0, harm, parts 2 and 3 (7 November 2026): the rest of the player's "my top ten, then more" from
   `docs/harm-review-proposals.md`, in the player's order: 2.4.1, 3.1.1, 2.2.1, 2.1.1, 3.5.1, 1.4.1, 3.3.1, each marked
   built there with what differs (and the Summary's "Built so far"). DESIGN.md "Harm, parts 2 and 3: the rest of the top

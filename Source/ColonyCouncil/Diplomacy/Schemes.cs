@@ -862,7 +862,10 @@ namespace ColonyCouncil
             switch (watch)
             {
                 case SchemeWatch.Guard: return P("CC_Scheme_How_Guard", by.Named("WATCHER"));
-                case SchemeWatch.Dog: return P("CC_Scheme_How_Dog", by.LabelShort.Named("DOG"));
+                case SchemeWatch.Dog:
+                    // A dog by its name, or "the husky".
+                    string dog = by.Name != null && !by.Name.Numerical ? by.LabelShort : Find.ActiveLanguageWorker.WithDefiniteArticle(by.LabelShort);
+                    return P("CC_Scheme_How_Dog", dog.CapitalizeFirst().Named("DOG"));
                 default: return P(act == SchemeAct.Fight ? "CC_Scheme_How_Heard" : "CC_Scheme_How_Awake", by.Named("WATCHER"));
             }
         }
