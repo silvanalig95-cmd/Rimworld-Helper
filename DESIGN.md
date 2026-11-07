@@ -3378,9 +3378,9 @@ dish, statue or blade comes in on its own, and the base game's own item stays th
   and a *blade* (a melee weapon of metal that cuts or stabs, carried by the game's own weapon tags, never bonded).
 - **Never anything the colony would find wrong.** Only ordinary goods: traded, nothing of a person (human meat or
   leather, a corpse), nothing to use rather than have (a comp that is used, targeted, bonded or hatches), nothing with
-  a trade tag the game marks exotic or that only a mod uses (A RimWorld of Magic's arcane metal, Deserters'
-  contraband). What comes to the colony leaves out what most of its grown people at home would mind (their faith's
-  drug rules, a teetotaler's, their diet), `Beliefs.AgainstThing`.
+  a trade tag the game marks exotic (but for medicine: glitterworld medicine is the spacer age's) or that only a mod
+  uses (A RimWorld of Magic's arcane metal, Deserters' contraband). What comes to the colony leaves out what most of
+  its grown people at home would mind (their faith's drug rules, a teetotaler's, their diet), `Beliefs.AgainstThing`.
 - **Every age.** A thing's age is its own tech level or the research its easiest recipe or crop needs, whichever is
   later; one with neither known goes with every age (Medieval 2's wine), but food that keeps only from industry on (a
   mod factory's canned soup). A giver's things are of its age (its means), the colony's own of the colony's; the age's

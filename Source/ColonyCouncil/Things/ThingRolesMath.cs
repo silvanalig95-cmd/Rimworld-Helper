@@ -58,6 +58,11 @@ namespace ColonyCouncil
         public bool untradeable;
         /// <summary>Something to use rather than have (a comp that is used, targeted, bonded or hatches), or marked by a trade tag of its own (exotic, an artifact, a mod's tag).</summary>
         public bool special;
+        /// <summary>
+        /// Marked exotic by one of the game's own trade tags (<see cref="ThingRolesMath.SpecialTags"/>: glitterworld
+        /// medicine, an advanced component, a thrumbo horn): no gift or ordinary good, but medicine all the same.
+        /// </summary>
+        public bool exotic;
         /// <summary>Of a person: human meat, a person's leather, a corpse.</summary>
         public bool humanlike;
         /// <summary>A drug, and its kind: 0 none, 1 medical, 2 social, 3 hard.</summary>
@@ -159,6 +164,10 @@ namespace ColonyCouncil
         public static bool SpecialTag(string tag, ICollection<string> gameTags) =>
             !string.IsNullOrEmpty(tag) && (SpecialTags.Contains(tag) || gameTags != null && !gameTags.Contains(tag));
 
+        /// <summary>A trade tag only a mod uses (one the game itself never puts on anything).</summary>
+        public static bool ModTag(string tag, ICollection<string> gameTags) =>
+            !string.IsNullOrEmpty(tag) && !SpecialTags.Contains(tag) && gameTags != null && !gameTags.Contains(tag);
+
         /// <summary>Index of a name in the game's order (tech levels, preferabilities), 0 when unknown.</summary>
         public static int IndexOf(string[] names, string name)
         {
@@ -186,12 +195,14 @@ namespace ColonyCouncil
             return a <= (int)age;
         }
 
-        /// <summary>An ordinary good anyone may have and give: traded, not special, not of a person, worth something.</summary>
-        public static bool Ordinary(ThingFacts f) => f != null && !f.untradeable && !f.special && !f.humanlike;
+        /// <summary>An ordinary good anyone may have and give: traded, not special or exotic, not of a person.</summary>
+        public static bool Ordinary(ThingFacts f) => f != null && !f.untradeable && !f.special && !f.exotic && !f.humanlike;
 
         /// <summary>The thing is of the role's kind (whatever its age).</summary>
         public static bool Fits(ThingRole role, ThingFacts f)
         {
+            // Medicine may be exotic (glitterworld medicine is the spacer age's own); nothing else may.
+            if (role == ThingRole.Medicine) return f != null && !f.untradeable && !f.special && !f.humanlike && f.item && f.potency > 0f && f.value > 0f;
             if (!Ordinary(f)) return false;
             switch (role)
             {
@@ -210,8 +221,6 @@ namespace ColonyCouncil
                 case ThingRole.Produce:
                     return f.item && !f.drug && f.humanEdible && f.vegetable && !f.meal && !f.fluid && !f.withMeals && (f.preferability == RawBad || f.preferability == RawTasty)
                            && f.madeTech >= 0 && f.nutrition > 0f;
-                case ThingRole.Medicine:
-                    return f.item && f.potency > 0f && f.value > 0f;
                 case ThingRole.Precious:
                     return f.item && (f.metallic || f.stony) && !f.otherStuff && f.beauty >= 2f && f.stack >= 10 && f.value > 0f;
                 case ThingRole.SmallArt:

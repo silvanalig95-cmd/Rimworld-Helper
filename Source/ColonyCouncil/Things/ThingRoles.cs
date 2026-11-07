@@ -311,7 +311,11 @@ namespace ColonyCouncil
                     }
                     if ((n + cc).IndexOf("Bladelink", StringComparison.Ordinal) >= 0 || (n + cc).IndexOf("Biocod", StringComparison.Ordinal) >= 0) f.bonded = true;
                 }
-            if (d.tradeTags != null && d.tradeTags.Any(t => ThingRolesMath.SpecialTag(t, gameTags))) f.special = true;
+            if (d.tradeTags != null)
+            {
+                if (d.tradeTags.Any(t => ThingRolesMath.ModTag(t, gameTags))) f.special = true;
+                if (d.tradeTags.Any(ThingRolesMath.SpecialTags.Contains)) f.exotic = true;
+            }
             f.art = f.art && d.IsArt;
             var ing = d.ingestible;
             if (ing != null)

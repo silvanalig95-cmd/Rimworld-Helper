@@ -43,11 +43,11 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     `madeTech`: the age of the easiest recipe or crop; a mod that writes its one research inside an li is read by its
     text, as the game does), rebuilt from the same upload and save; every other table unchanged.
   - Saved: nothing new (a ransom's goods stay a def name, a mission's goal a word). No Sched slot. Tests:
-    `ThingRolesTests` (173 checks: the rules on clear cases, and on the player's active rows each role in each age:
+    `ThingRolesTests` (175 checks: the rules on clear cases, and on the player's active rows each role in each age:
     drinks 19 to 23, soft drinks 5 to 20, feast dishes 23, provisions 2 (pemmican, Alpha Crafts' yoghurt) for a tribe
-    and 6 from industry on, produce 61, medicine 2 to 3, precious 5, small art 3 for a tribe and 7 after, blades 2 for
-    a tribe (knife, Vanilla Weapons Expanded's shiv) and 12 to 13 after, gifts 17 to 21; the seams). ApiDiff: nothing
-    changed in 1.7.
+    and 6 from industry on, produce 61, medicine 2 to 4 (glitterworld's in the spacer age), precious 5, small art 3
+    for a tribe and 7 after, blades 2 for a tribe (knife, Vanilla Weapons Expanded's shiv) and 12 to 13 after, gifts
+    17 to 21; the seams). ApiDiff: nothing changed in 1.7.
   - Try in the game (none of it could be run here; dev mode):
     1. Debug actions, Rimfolk, "Things by role: each role's things by age (log)": every role's list for each age in
        this game, Vanilla Brewing's spirits among the drinks, Vanilla Cooking's dishes among the feasts, Vanilla

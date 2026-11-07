@@ -84,6 +84,12 @@ public static class ThingRolesTests
         var game = new HashSet<string> { "Drugs", "Art", "ExoticMisc" };
         C(ThingRolesMath.SpecialTag("ExoticMisc", game) && ThingRolesMath.SpecialTag("RawArcane", game) && !ThingRolesMath.SpecialTag("Drugs", game) && !ThingRolesMath.SpecialTag("", game),
             "a trade tag the game marks exotic, or one the game never uses (a mod's own), is special");
+        C(ThingRolesMath.ModTag("RawArcane", game) && !ThingRolesMath.ModTag("ExoticMisc", game) && !ThingRolesMath.ModTag("Drugs", game), "a mod's own tag told from the game's exotic ones");
+        var glitter = new ThingFacts { item = true, potency = 1.6f, tech = 6, value = 50f, exotic = true };
+        var horn = Stuff(false, true, 3f, 800f);
+        horn.exotic = true;
+        C(ThingRolesMath.Fits(ThingRole.Medicine, glitter, WorldAge.Spacer) && !ThingRolesMath.Fits(ThingRole.Medicine, glitter, WorldAge.Industrial)
+          && !ThingRolesMath.Fits(ThingRole.Precious, horn) && !ThingRolesMath.Fits(ThingRole.Gift, horn), "an exotic thing is medicine all the same (glitterworld's), never a gift");
 
         ThingFacts Stuff(bool metal, bool stone, float beauty, float value = 5f) => new ThingFacts
             { item = true, metallic = metal, stony = stone, beauty = beauty, value = value, stack = 75 };
@@ -190,7 +196,8 @@ public static class ThingRolesTests
         var gameTags = itemsAll.Concat(weaponsAll).Where(r => r["mod"].StartsWith("ludeon.")).SelectMany(r => Split(r["tradeTags"])).ToHashSet();
         var gameWeaponTags = weaponsAll.Where(r => r["mod"].StartsWith("ludeon.")).SelectMany(r => Split(r["weaponTags"])).ToHashSet();
         bool Special(Dictionary<string, string> r) =>
-            Split(r["comps"]).Any(ThingRolesMath.SpecialComp) || Split(r["tradeTags"]).Any(t => ThingRolesMath.SpecialTag(t, gameTags));
+            Split(r["comps"]).Any(ThingRolesMath.SpecialComp) || Split(r["tradeTags"]).Any(t => ThingRolesMath.ModTag(t, gameTags));
+        bool Exotic(Dictionary<string, string> r) => Split(r["tradeTags"]).Any(ThingRolesMath.SpecialTags.Contains);
         int Made(string s) => string.IsNullOrEmpty(s) ? -1 : ThingRolesMath.IndexOf(ThingRolesMath.Techs, s);
         ThingFacts ItemFacts(Dictionary<string, string> r)
         {
@@ -210,6 +217,7 @@ public static class ThingRolesTests
                 stack = r["stackLimit"] == "" ? 1 : (int)F(r["stackLimit"]),
                 untradeable = r["tradeability"] == "None",
                 special = Special(r),
+                exotic = Exotic(r),
                 humanlike = humanRaces.Contains(r["sourceDef"]),
                 drug = drug != "" && drug != "None",
                 drugKind = drug == "Medical" ? 1 : drug == "Social" ? 2 : drug == "Hard" ? 3 : 0,
@@ -250,7 +258,8 @@ public static class ThingRolesTests
                 madeTech = Made(r["madeTech"]),
                 value = F(r["marketValue"]),
                 untradeable = r["tradeability"] == "None",
-                special = Split(r["tradeTags"]).Any(t => ThingRolesMath.SpecialTag(t, gameTags)),
+                special = Split(r["tradeTags"]).Any(t => ThingRolesMath.ModTag(t, gameTags)),
+                exotic = Exotic(r),
                 melee = r["kind"] == "melee",
                 edged = Split(r["capacities"]).Any(c => c == "Cut" || c == "Stab"),
                 ofWood = stuff.Contains("Woody"),
@@ -296,7 +305,8 @@ public static class ThingRolesTests
         C(In(ThingRole.Drink, "Beer", WorldAge.Tribal) && In(ThingRole.Feast, "MealFine", WorldAge.Tribal) && In(ThingRole.Provisions, "Pemmican", WorldAge.Tribal)
           && In(ThingRole.Medicine, "MedicineHerbal", WorldAge.Tribal) && In(ThingRole.Precious, "Gold", WorldAge.Tribal) && In(ThingRole.Carving, "SculptureSmall", WorldAge.Tribal)
           && In(ThingRole.Produce, "RawPotatoes", WorldAge.Tribal) && In(ThingRole.Provisions, "MealSurvivalPack", WorldAge.Industrial)
-          && !In(ThingRole.Provisions, "MealSurvivalPack", WorldAge.Medieval), "the base game's own things fit their roles and ages (the fallbacks)");
+          && !In(ThingRole.Provisions, "MealSurvivalPack", WorldAge.Medieval) && In(ThingRole.Medicine, "MedicineUltratech", WorldAge.Spacer)
+          && !In(ThingRole.Medicine, "MedicineUltratech", WorldAge.Industrial), "the base game's own things fit their roles and ages (the fallbacks, glitterworld medicine the spacer age's)");
         if (Known("VBE_Whiskey")) C(In(ThingRole.Drink, "VBE_Whiskey", WorldAge.Tribal), "Vanilla Brewing's whiskey is raised in any age's toast");
         if (Known("VFEM2_Wine")) C(In(ThingRole.Drink, "VFEM2_Wine", WorldAge.Medieval) && In(ThingRole.Gift, "VFEM2_Wine", WorldAge.Medieval), "Medieval 2's wine is a toast and a gift");
         if (Known("VBE_Tea")) C(In(ThingRole.SoftDrink, "VBE_Tea", WorldAge.Tribal) && !In(ThingRole.Drink, "VBE_Tea"), "Coffees and Teas' tea is the dry's toast");
