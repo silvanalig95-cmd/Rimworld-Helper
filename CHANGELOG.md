@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Long material runs, and Harvest and Haul built in
+
+*7 November 2026, version 0.146.0*
+
+- When a colonist fetches building material from far away, they now fill their inventory with what the build area still needs instead of carrying exactly one load, and deliver the rest from their pockets on the next trips. Other builders leave that material to them meanwhile.
+- Once the area needs no more of it, or the run sits unused for two hours, the leftovers go back to storage in one trip.
+- On a long walk to storage, a hauler picks up a few loose things close to the way, at most six and only what fits, and stores them with the rest. Nothing is picked up on the way out to a build.
+- Harvest and Haul is now part of Rimfolk: harvests, mining, shearing, milking, deconstruction and fishing are collected into the inventory while working and stored in one trip, with all its settings. With the separate mod loaded, Rimfolk leaves this part to it and the log says it can be removed; once removed, its settings and the loads in your save are taken over.
+- Pick Up And Haul's own unloading carries Rimfolk's loads when it is loaded. A delivery never takes the medicine, drugs or food a colonist is set to keep, and nothing is packed into someone carrying a caravan's packs.
+- All of it is in a new section of What's on, Carrying and hauling: Long material runs with the distance that counts as long, things picked up on the way, the share of the inventory to fill, and Harvest and Haul's settings.
+
 ## Colonists talk with visitors by themselves
 
 *7 November 2026, version 0.145.0*

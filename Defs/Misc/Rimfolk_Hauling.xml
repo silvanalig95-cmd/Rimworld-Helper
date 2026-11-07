@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Carrying and hauling (Source/ColonyCouncil/Hauling/; DESIGN.md "Carrying and hauling"): taking what Rimfolk put in a
+       pawn's inventory to storage, with the loose things on the way. From the player's Harvest and Haul (its
+       HarvestAndHaul_DeliverHarvest). -->
+
+  <JobDef>
+    <defName>Rimfolk_CarryToStorage</defName>
+    <driverClass>ColonyCouncil.JobDriver_CarryToStorage</driverClass>
+    <reportString>taking what was collected to storage.</reportString>
+    <suspendable>false</suspendable>
+  </JobDef>
+
+</Defs>

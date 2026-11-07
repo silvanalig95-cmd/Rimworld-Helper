@@ -225,5 +225,6 @@
     <Compile Include="../../Source/ColonyCouncil/Diplomacy/SchemeMath.cs" Link="SchemeMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Peoples/PeoplesMath.cs" Link="PeoplesMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Peoples/ArisingMath.cs" Link="ArisingMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Hauling/HaulMath.cs" Link="HaulMath.cs" />
   </ItemGroup>
 </Project>

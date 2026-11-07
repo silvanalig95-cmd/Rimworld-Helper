@@ -18,6 +18,11 @@ namespace ColonyCouncil
         public static readonly List<string> Failed = new List<string>();
         /// <summary>Why each failed patch class couldn't be applied (for "Rimfolk: check myself").</summary>
         public static readonly Dictionary<string, string> FailedWhy = new Dictionary<string, string>();
+        /// <summary>
+        /// Patch classes that stood down on purpose, with why: their Prepare said no for a reason of their own (another mod
+        /// does the same thing, as the standalone Harvest and Haul does), given by a static StandsDownWhy() on the class.
+        /// </summary>
+        public static readonly Dictionary<string, string> StoodDown = new Dictionary<string, string>();
         /// <summary>Why no patch was tried at all (Harmony missing, the classes couldn't be listed), or null.</summary>
         public static string NotStarted;
 
@@ -62,6 +67,12 @@ namespace ColonyCouncil
                     // Nothing patched: the class's Prepare found the game's method other than it expects and stood down.
                     if ((done == null || done.Count == 0) && type.GetMethod("Prepare", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic) != null)
                     {
+                        if (type.GetMethod("StandsDownWhy", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic, null, Type.EmptyTypes, null)?.Invoke(null, null) is string why
+                            && why.Length > 0)
+                        {
+                            StoodDown[type.Name] = why;
+                            continue;
+                        }
                         Failed.Add(type.Name);
                         FailedWhy[type.Name] = "skipped: the game's method isn't the one it expects in this version";
                         continue;

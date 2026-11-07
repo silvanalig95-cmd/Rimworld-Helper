@@ -2772,6 +2772,92 @@ honest about what the player has built:
 
 ---
 
+## Carrying and hauling (the player's request, 7 November 2026)
+
+The player's words: "when pawns go get materials on the map that are further away, they should always fill up their
+inventory with stuff on the way, not that they take just exactly what's required for the build. then they should also
+store the hauled items eventually", and "hauling into rimfolk please, i'd anyways want to integrate harvest and haul in
+here" (explicit requests: no proposal round). The code is in `Source/ColonyCouncil/Hauling/`, its pure rules in
+`HaulMath.cs` (Tools/Tests `HaulTests`), the settings under What's on, Carrying and hauling (`CC_SetSec_Hauling`), the
+words in `Languages/English/Keyed/Rimfolk_Hauling.xml`, the Almanac's page `Council_Alm_C_Hauling`.
+
+- **Harvest and haul** (`HarvestHaul.cs`, `JobDriver_CarryToStorage.cs`): the player's own Harvest and Haul 1.2.0
+  (`silvanalig95.HarvestAndHaul`, about 1,700 lines) as a Rimfolk system, with its behaviour, its sources (plants,
+  also a plant cut to clear a cell; mining; deep drilling; shearing and milking; deconstruction and floors; fishing;
+  chunks optional), its delivery rules (the same kind of work by skill, full and worth a trip at 5 kg, 8 hours at most,
+  before needs, what comes first), its deconstruction leftovers hauled right after, its delivery job (the game's own
+  unloading steps; the stack that didn't fit in the hands) and its settings with their defaults (the `haul*` fields;
+  `HaulMath.StandaloneKeys` maps each of its keys). Its hooks are Rimfolk's `[HarmonyPatch]` classes now
+  (`HaulPatches.cs`), each standing down on its own; collecting is off whenever the job choice isn't hooked, so pawns
+  never hoard (the standalone's own rule).
+- **Changed from the standalone, and why.** (1) A caravan's packs: nothing goes into a pawn whose inventory holds them
+  (the standalone could merge a harvest into them). (2) What a pawn keeps: a delivery never takes what its drug policy
+  carries, its inventory stock or the packed food it wants, as the game's own unloading keeps them
+  (`HaulMath.Deliverable`, `Carrying.Kept`); the standalone delivered all it was owed, so a doctor who had used some of
+  their stocked herbal medicine before the trip took stocked medicine to storage. (3) A load the job choice can't send
+  (the setting off, the deeper hooks off, the standalone loaded) is queued for storage by the book's pass instead of
+  waiting for a job choice that never comes. (4) Quest lodgers are left out. (5) With Pick Up And Haul, what is wholly
+  Rimfolk's goes through that mod's unloading (below). (6) A hook that stands down on purpose says why in the self-check
+  (`RimfolkPatches.StoodDown`, from a class's `StandsDownWhy`), rather than reading as a failed patch.
+- **Standing down for the standalone mod** (`HaulLinks.Standalone`: its package id, or its tracker's class
+  `HarvestAndHaul.HarvestTracker` in a loaded assembly): the ten hooks that are its own (the job choice's two, the
+  drop of unused inventory, the seven sources) aren't applied at all (`Prepare`), so nothing is patched twice; the log
+  says once at startup that Rimfolk has it built in and that it can be removed; the settings' heading says so
+  (`CC_SetSec_Hauling_Standalone`), and so do the Almanac (its mod page and Rimfolk's) and README. The material run's
+  two hooks and things on the way patch nothing the standalone patches, so they work beside it.
+- **The hand-over once it is gone.** Its settings file (`Mod_*_HarvestAndHaulMod.xml` in the game's Config folder, kept
+  by the game after a mod is removed) is read into Rimfolk's rows the first time Rimfolk starts without it
+  (`haulImported`, once; only values that read as what they are, clamped to the sliders). In a save, the book reads the
+  standalone tracker's loads from the save itself while it loads (`HaulBook`'s constructor,
+  `HaulMath.ReadStandaloneLoads`: the pawns' load ids and the owed counts by def name) and takes them over once the game
+  is in (`Carrying.TakeOver`): owed as before, never more than the pawn has, to storage at the next chance. The game
+  logs one error about the missing class as it loads such a save; a pawn saved mid-delivery loses that one job.
+- **The long material run** (`MaterialRun.cs`). Far is the straight distance from the material to the frame or
+  blueprint, from the setting's 30 cells (`HaulMath.Far`): it is the shortest the walk can be, it costs nothing while
+  the game looks for work (a path would be worked out for every candidate the work giver tries), and walls only make the
+  walk longer, so a run never starts for a trip that is short in truth. The build area is round that frame, half the
+  distance, 8 to 15 cells (`HaulMath.RunRadius`: never less than the game's own 8 for nearby frames, never reaching back
+  to the stockpile). At the stack (a pre-init action on the game's `Toils_Haul.StartCarryThing`, for the game's own
+  delivery job to a frame or blueprint only), the inventory takes what the area still needs past the hands' share and
+  the stock already carried (`HaulMath.Extra`; the area's need is the game's own count, `GetSpaceRemainingWithEnroute`,
+  leaving out what the pawn itself is bringing), from that stack (never what the hands are to take: hands first) and
+  from the stacks of it within the pawn's reach (the cells round it), as far as the fill limit and Combat Extended
+  allow. The next deliveries come out of the stock (a prefix on
+  `WorkGiver_ConstructDeliverResources.ResourceDeliverJobFor` builds the game's own `HaulToContainer` job with the
+  inventory stack as its thing, which the game's driver supports: it walks to the pawn itself and takes it from the
+  inventory, as a bill takes carried ingredients). While a runner's stock holds all the area still needs of a material
+  and it used the run within the hour, that prefix gives the other builders no delivery of it there
+  (`MaterialRun.CoveredForOthers`; never for an order), so nobody walks back to the stockpile for it; the area's need
+  for that is worked out on the book's pass. The run ends for a material its area needs none of any more, or after two
+  hours unused (`HaulMath.RunOver`), and what is left is owed to storage; it goes there once the pawn stops building
+  with the run's other material (`Carrying.StillBuilding`: one trip back for a run of two materials). Enroute claims
+  aren't used for the cover: the game saves them with the map and releases them only on a delivery, so a claim for a
+  stock in a pocket could outlive the run.
+- **Things on the way** (`OnTheWay.cs`): on a walk of twelve cells or more that ends at storage (Rimfolk's delivery, and
+  the walk back to a far stockpile for material, where the delivery job takes the place of the fetch and the fetch
+  follows from storage), loose things near the straight walk that the game's haulers would take, at most six cells out
+  of the way there and back (`HaulMath.OnTheWay`), six at most, only what fits, only for a pawn whose hauling work is
+  on. The walk from the stockpile to the build takes none: they would ride away from storage and take the room the
+  material needs. The game asks for a delivery job many times in one look for work, so the look is kept for the tick.
+- **Pick Up And Haul** (`HaulLinks.Puah`: its `PickUpAndHaul.CompHauledToInventory` and `UnloadYourHauledInventory`, by
+  name): a stack that is wholly Rimfolk's (`HaulMath.WhollyOurs`: none kept, none the pawn's own) is registered with its
+  comp at the moment it goes to storage, and its own unloading job takes it there with what it hauled itself; Rimfolk's
+  job keeps the rest (a stack partly kept, the stack in the hands, things on the way of a kind the pawn already had).
+  Registered any earlier, its unloading would take a harvest before the work is done. Without it, Rimfolk's own job,
+  built from the game's unloading steps: the game's own switch (`UnloadEverything`) unloads everything a pawn carries,
+  its sidearms and what the player had it pick up and keep among them. **Haul to Stack** is left alone: storage is
+  always found the game's way. **Combat Extended**: its bulk and weight limits, by reflection (the standalone's own
+  way).
+- **Saved**: `HaulBook.loads` (a GameComponent: an existing save gets an empty one), one load per pawn carrying
+  something for Rimfolk (what is owed by def, the work's skills, a run's materials, its centre and last use), dropped
+  once it carries nothing. One 250-tick pass (`Sched.RareHauling`, only while someone carries) and a per-tick look only
+  while a spot waits to be looked at again.
+- **Not checked here**: none of it could be run in the game. The riskiest parts are the take-over from a save (the
+  standalone's XML read without the mod), the pre-init action on every `StartCarryThing` (it returns at once for any
+  other job), the run's job from the inventory (the game's own support for it, not seen with frames), the cover for the
+  other builders (it may hold them back a while when a runner is stuck: an hour at most), and the hand-over to Pick Up
+  And Haul (its comp read by name).
+
 ## Algorithms, not AI
 
 **All logic is plain rules and weights.** It's deterministic, needs no API key, works
@@ -5976,7 +6062,7 @@ they stood at 0.113.0; `SettingsTests` checks each is still saved under its key 
 |---|---|---|
 | How much happens | 17 | the colony's pace (gatherings a week); the council's asks (wishes, how many open, dilemmas, meetings); people's lives (moments, social events, dreams, personal stories, personal touches, the outsiders' chatter); visitors, events and the region (encounters, Rimfolk's events by the storyteller or its own timer, world events, remote travellers, raiders' camps) |
 | How hard | 26 | stakes (with downsides and rewards, time for wishes and ambitions, jealousy, promises taken back and their grace, quitting); moods and pressures; feelings and strain (how fast, the day off, the heart's good side); ailments and illnesses; realistic ways to die; hurts from everyday life (everyday hurts, a scenario's fights, world events that end in a fight) |
-| What's on | 135 | the quick setup; the council; people's lives; bonds; the colony's story; strangers; Rimfolk's events; world events; the region; bonds with other peoples; neighbours and letters; then the tools: journeys, many colonies (fresh starts, newcomers), the weather, personal touches, the build menu, the stores, defense, the room planner, the automations, planning ahead; the deeper game hooks, this colony's era, checks and resets |
+| What's on | 153 | the quick setup; the council; people's lives; bonds; the colony's story; strangers; Rimfolk's events; world events; the region; bonds with other peoples; neighbours and letters; then the tools: journeys, many colonies (fresh starts, newcomers), the weather, personal touches, the build menu, the stores, carrying and hauling, defense, the room planner, the automations, planning ahead; the deeper game hooks, this colony's era, checks and resets |
 | How you're told | 73 | messages (how many, the colony news, the day's messages and letters, which letters, the notes in the game's letters, what each answer does); on the map and in the game's tabs (speech, the game's own touches, mood bubbles, mood insight, the inspector line, the Social tab's column); alerts; buttons and windows; names and cards; on-screen panels; hover card; colonist bar |
 | Your other mods | 15 | Hospitality, RimMarket, Alpha Skills, Alpha Genes, RimWorld of Magic, Faction Territories and Vassalage, Move the Patient, faiths from other mods |
 
@@ -6455,12 +6541,14 @@ chains, nemeses, camps, play-outs, the fights pass and the worn-out episode read
 | 83 | Colonists starting a talk with an outsider near them (Outsiders/OutsiderTalk.cs; on each home map with outsiders on it, whichever map is in view, with the setting on); every fourth look, the right-click's things done by themselves (Outsiders/OutsiderAuto.cs, with its setting on) | per home map, per free outsider: a free colonist near, the pair's and the visit's waits, then a small chance by both natures; one talk at most a home. By themselves: the day's pace first, then per home with no danger, per free outsider (three weighed at most) the pace with them, the six nearest free colonists times the things allowed (cheap facts), the best six checked by the menu's own reasons and the stores; one at most a look |
 | 241 | A meal or a drink shared with an outsider, a bout or a brawl with one (Outsiders/; only while there is one) | per meal: both still eating; per bout: still at it, its end by its terms; per brawl: still fighting |
 | 233 | Defense lines watch a raid (only while hostile people or mechanoids are on a home map that has lines) | per raider: in front of or behind each line, how it got behind; colonists newly downed near a line; the raid's lessons once it's over |
+| 7 | Carrying and hauling (Hauling/HaulBook.cs; only while a pawn carries something for Rimfolk): never more owed than it has, the run's build area looked at (what it still needs of each material, for the other builders' cover) and a run over sent to storage, a load the job choice can't send queued for storage | per pawn carrying something: a radial look round its run's frame per material carried (15 cells at most) |
 
 **Other rhythms**
 
 | How often | Pass | Work |
 |---|---|---|
 | every tick | Ailments and health: queued work (an ailment that ended, a tend) | only when something is queued |
+| every tick | Carrying and hauling: the look again round a spot where a pawn's work just dropped something (Hauling/HaulBook.cs) | only while a spot waits: its few cells |
 | every 30 ticks, tick 0 | Council: wishes after building (only after something was built) | per open wish |
 | every 30 ticks, tick 11 | Visual touches pulse (at most every 0.4 s of real time; only with them on) | the map in view: flecks due, a warlord's band, fireflies, hail, camp smoke, a camp walking in, the first snow's flakes, a dream told at breakfast (the untold dreams only) |
 | every 15 ticks, tick 7 | Conversations: the next line of a talk under way (only while one is) | the two speaking: still together? |

@@ -482,6 +482,43 @@ namespace ColonyCouncil
         public bool shelfReserves = true;
         /// <summary>A drink, smoke or snack had at a table or outside, not standing in a freezer or store room (Building/ChewSpots.cs).</summary>
         public bool chewOutOfStores = true;
+        // ---- Carrying and hauling (Hauling/): the player's Harvest and Haul folded in, and the long material run ----
+        /// <summary>Pawns put what their own work drops into their inventory and take it to storage themselves (Hauling/HarvestHaul.cs).</summary>
+        public bool haulOwnWork = true;
+        /// <summary>From harvesting, chopping and cutting plants, also a plant cut to clear a cell for sowing or building.</summary>
+        public bool haulPlants = true;
+        public bool haulMining = true;
+        public bool haulDeepDrill = true;
+        /// <summary>Wool, milk and the like from shearing and milking.</summary>
+        public bool haulAnimals = true;
+        /// <summary>The materials a building or floor gives back when it is taken apart.</summary>
+        public bool haulDeconstruct = true;
+        /// <summary>Whatever else a deconstruction leaves (chunks, fuel, its contents) is hauled by the same pawn right after.</summary>
+        public bool haulLeftoversNow = true;
+        /// <summary>Fish and other catches (Odyssey).</summary>
+        public bool haulFishing = true;
+        /// <summary>Stone and slag chunks too (off: one fills most of an inventory).</summary>
+        public bool haulChunks = false;
+        /// <summary>The share of a pawn's carrying capacity its inventory may be filled to.</summary>
+        public float haulFill = 1f;
+        /// <summary>A full pawn stops work for a trip to storage only with at least this many kg collected.</summary>
+        public float haulMinTrip = 5f;
+        /// <summary>A pawn carrying its load along while it keeps at the same kind of work delivers after this many hours anyway.</summary>
+        public float haulMaxHours = 8f;
+        /// <summary>Delivers before eating, sleeping, recreation or meditation (never when urgent).</summary>
+        public bool haulBeforeNeeds = true;
+        /// <summary>Colony mechanoids that can carry (agrihands, constructoids) take part too.</summary>
+        public bool haulMechs = true;
+        /// <summary>The long material run (Hauling/MaterialRun.cs): material fetched from far away comes for the whole build area, in the hands and the inventory.</summary>
+        public bool materialRun = true;
+        /// <summary>How far (cells, straight) the material must be from the build for a run.</summary>
+        public float materialRunDistance = 30f;
+        /// <summary>Loose things lying near a walk to storage that belong in storage are picked up on the way (Hauling/OnTheWay.cs).</summary>
+        public bool haulOnTheWay = true;
+        /// <summary>Writes each decision of carrying and hauling to the log (for bug reports).</summary>
+        public bool haulLog = false;
+        /// <summary>Whether the standalone Harvest and Haul's settings file was read into the rows above, so it is done once (Hauling/HaulLinks.cs).</summary>
+        public bool haulImported = false;
         /// <summary>Rooms the player saved from a map ("Your rooms"), usable in every save.</summary>
         public System.Collections.Generic.List<CustomRoomData> savedRooms = new System.Collections.Generic.List<CustomRoomData>();
         /// <summary>The materials last picked in the room planner, "room::group=>material", used again while there's enough.</summary>
@@ -817,6 +854,25 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref frostHarvestAuto, "frostHarvestAuto", true);
             Scribe_Values.Look(ref shelfReserves, "shelfReserves", true);
             Scribe_Values.Look(ref chewOutOfStores, "chewOutOfStores", true);
+            Scribe_Values.Look(ref haulOwnWork, "haulOwnWork", true);
+            Scribe_Values.Look(ref haulPlants, "haulPlants", true);
+            Scribe_Values.Look(ref haulMining, "haulMining", true);
+            Scribe_Values.Look(ref haulDeepDrill, "haulDeepDrill", true);
+            Scribe_Values.Look(ref haulAnimals, "haulAnimals", true);
+            Scribe_Values.Look(ref haulDeconstruct, "haulDeconstruct", true);
+            Scribe_Values.Look(ref haulLeftoversNow, "haulLeftoversNow", true);
+            Scribe_Values.Look(ref haulFishing, "haulFishing", true);
+            Scribe_Values.Look(ref haulChunks, "haulChunks", false);
+            Scribe_Values.Look(ref haulFill, "haulFill", 1f);
+            Scribe_Values.Look(ref haulMinTrip, "haulMinTrip", 5f);
+            Scribe_Values.Look(ref haulMaxHours, "haulMaxHours", 8f);
+            Scribe_Values.Look(ref haulBeforeNeeds, "haulBeforeNeeds", true);
+            Scribe_Values.Look(ref haulMechs, "haulMechs", true);
+            Scribe_Values.Look(ref materialRun, "materialRun", true);
+            Scribe_Values.Look(ref materialRunDistance, "materialRunDistance", 30f);
+            Scribe_Values.Look(ref haulOnTheWay, "haulOnTheWay", true);
+            Scribe_Values.Look(ref haulLog, "haulLog", false);
+            Scribe_Values.Look(ref haulImported, "haulImported", false);
             Scribe_Collections.Look(ref savedRooms, "savedRooms", LookMode.Deep);
             Scribe_Collections.Look(ref planMaterials, "planMaterials", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit || Scribe.mode == LoadSaveMode.LoadingVars)

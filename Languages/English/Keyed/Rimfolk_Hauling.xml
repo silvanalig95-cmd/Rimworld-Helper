@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- ===================== Carrying and hauling (Source/ColonyCouncil/Hauling/): the player's Harvest and Haul folded in, the long material run, things on the way ===================== -->
+
+  <!-- The delivery job's report -->
+  <CC_Haul_Report>taking what was collected to storage.</CC_Haul_Report>
+  <CC_Haul_ReportThing>taking {THING} to storage.</CC_Haul_ReportThing>
+  <CC_Haul_ReportOnTheWay>picking up {THING} on the way to storage.</CC_Haul_ReportOnTheWay>
+
+  <!-- Rimfolk's clock -->
+  <CC_Clock_Pass_RareHauling>Carrying and hauling</CC_Clock_Pass_RareHauling>
+
+  <!-- Settings: What's on, Carrying and hauling -->
+  <CC_SetSec_Hauling>Carrying and hauling</CC_SetSec_Hauling>
+  <CC_SetSec_Hauling_Note>Built in from Harvest and Haul: pawns take what their own work drops to storage themselves. Building material fetched from far away comes for the whole build at once.</CC_SetSec_Hauling_Note>
+  <CC_SetSec_Hauling_Standalone>Harvest and Haul is loaded on its own, so the rows for it here stand down while it is and its own settings apply. Long material runs and things on the way still work. Rimfolk has it built in now, so the standalone mod can be removed: Rimfolk reads its settings once it is gone and takes over what pawns still carry for it.</CC_SetSec_Hauling_Standalone>
+
+  <CC_Settings_HaulOwnWork>Pawns carry what their work drops</CC_Settings_HaulOwnWork>
+  <CC_Settings_HaulOwnWork_Tip>Pawns put what their own work drops into their inventory while they work and take it to storage themselves: crops and berries, logs, ore, wool and milk, the materials a torn-down wall gives back, the day's catch. They keep at the same kind of work while there is room (harvest then sow, mine cell after cell, milk one cow after another) and deliver when something no longer fits, when they turn to something else, or after the hours set below.
+
+Delivering is part of the work, so a pawn who can't haul still brings in what it produced. Drafting, fights, emergencies, medical rest, urgent hunger or exhaustion, rituals, caravans and your orders come first. Switched off, what pawns already carry still goes to storage.</CC_Settings_HaulOwnWork_Tip>
+  <CC_SetNote_HaulOwnWork>Growers, miners, cutters and herders bring their own produce to storage.</CC_SetNote_HaulOwnWork>
+
+  <CC_Settings_HaulPlants>From plants: harvesting, chopping and cutting</CC_Settings_HaulPlants>
+  <CC_Settings_HaulPlants_Tip>Crops, berries, logs, healroot, mushrooms and modded plants. Also when a plant is cut as part of another job, such as clearing a cell for sowing or for a building.</CC_Settings_HaulPlants_Tip>
+  <CC_SetNote_HaulPlants>Harvests, logs and what a cleared cell gives go into the pocket.</CC_SetNote_HaulPlants>
+
+  <CC_Settings_HaulMining>From mining</CC_Settings_HaulMining>
+  <CC_Settings_HaulMining_Tip>Steel, components, silver, gold, plasteel, uranium, jade and the other resources mining gives. Stone chunks only with the row for chunks below.</CC_Settings_HaulMining_Tip>
+  <CC_SetNote_HaulMining>Ore and steel from mining go into the miner's pocket.</CC_SetNote_HaulMining>
+
+  <CC_Settings_HaulDeepDrill>From deep drilling</CC_Settings_HaulDeepDrill>
+  <CC_Settings_HaulDeepDrill_Tip>The driller collects each portion. When it is full it stops drilling, delivers, and can come back for more.</CC_Settings_HaulDeepDrill_Tip>
+  <CC_SetNote_HaulDeepDrill>The driller pockets each portion and delivers when full.</CC_SetNote_HaulDeepDrill>
+
+  <CC_Settings_HaulAnimals>From animals: shearing and milking</CC_Settings_HaulAnimals>
+  <CC_Settings_HaulAnimals_Tip>Wool, milk and the other products gathered from animals.</CC_Settings_HaulAnimals_Tip>
+  <CC_SetNote_HaulAnimals>Wool and milk go into the herder's pocket.</CC_SetNote_HaulAnimals>
+
+  <CC_Settings_HaulDeconstruct>From taking down buildings and floors</CC_Settings_HaulDeconstruct>
+  <CC_Settings_HaulDeconstruct_Tip>The materials a building or floor gives back when it is taken apart.</CC_Settings_HaulDeconstruct_Tip>
+  <CC_SetNote_HaulDeconstruct>What a torn-down wall or floor gives back goes into the pocket.</CC_SetNote_HaulDeconstruct>
+
+  <CC_Settings_HaulLeftoversNow>Haul what else a building leaves, right away</CC_Settings_HaulLeftoversNow>
+  <CC_Settings_HaulLeftoversNow_Tip>Anything else a deconstructed building leaves behind (slag or stone chunks, fuel, its contents, materials that didn't fit in the inventory) is carried to storage by the same pawn right after the job, before it goes on. Things no storage takes stay where they are.</CC_Settings_HaulLeftoversNow_Tip>
+  <CC_SetNote_HaulLeftoversNow>Chunks, fuel and contents of a torn-down building go to storage straight after.</CC_SetNote_HaulLeftoversNow>
+
+  <CC_Settings_HaulFishing>From fishing</CC_Settings_HaulFishing>
+  <CC_Settings_HaulFishing_Tip>Fish and the other catches (Odyssey).</CC_Settings_HaulFishing_Tip>
+  <CC_SetNote_HaulFishing>The day's catch goes into the fisher's pocket.</CC_SetNote_HaulFishing>
+
+  <CC_Settings_HaulChunks>Stone and slag chunks too (heavy)</CC_Settings_HaulChunks>
+  <CC_Settings_HaulChunks_Tip>A chunk weighs so much that one fills most of an inventory, so chunks are left for the haulers unless this is on.</CC_Settings_HaulChunks_Tip>
+  <CC_SetNote_HaulChunks>Chunks from mining and taking down go into the pocket too.</CC_SetNote_HaulChunks>
+
+  <CC_Settings_HaulMinTrip>Stop work to deliver only with this many kg collected</CC_Settings_HaulMinTrip>
+  <CC_Settings_HaulMinTrip_Tip>A pawn that can barely carry anything more (in heavy armour, say) still fills its inventory, but keeps working instead of making a trip after every plant. It delivers when it is done with that kind of work.</CC_Settings_HaulMinTrip_Tip>
+  <CC_SetNote_HaulMinTrip>A full pawn with less than this keeps working and delivers later.</CC_SetNote_HaulMinTrip>
+
+  <CC_Settings_HaulMaxHours>Deliver after at most this many hours of the same work</CC_Settings_HaulMaxHours>
+  <CC_Settings_HaulMaxHours_Tip>A pawn that keeps at the same kind of work carries its load along. After this many in-game hours it delivers anyway, so the colony doesn't wait too long for it.</CC_Settings_HaulMaxHours_Tip>
+  <CC_SetNote_HaulMaxHours>Even at the same work, the load goes to storage after so many hours.</CC_SetNote_HaulMaxHours>
+
+  <CC_Settings_HaulBeforeNeeds>Deliver before eating, sleeping or recreation</CC_Settings_HaulBeforeNeeds>
+  <CC_Settings_HaulBeforeNeeds_Tip>When a pawn is done with its work and goes to eat, sleep, relax or meditate, it drops off its load first. Never when it is urgently hungry, very tired or needs medical rest.</CC_Settings_HaulBeforeNeeds_Tip>
+  <CC_SetNote_HaulBeforeNeeds>The load goes to storage before a meal, a nap or a rest.</CC_SetNote_HaulBeforeNeeds>
+
+  <CC_Settings_MaterialRun>Long material runs</CC_Settings_MaterialRun>
+  <CC_Settings_MaterialRun_Tip>A pawn that fetches building material from further away than the distance below takes enough for every unfinished frame and blueprint round the one it builds that uses that material (the build area: half that distance, 8 to 15 cells), not only for that one. Its hands carry what they hold, its inventory the rest, as far as its carrying weight allows; it takes it from the stack it stands at and the stacks within its reach.
+
+Its next deliveries there come out of its inventory, and the other builders leave that material to it while its stock holds all the build area still needs. When nothing nearby needs it any more, or the run goes unused for two hours, what is left goes to storage (with Pick Up And Haul, by that mod's own unloading).</CC_Settings_MaterialRun_Tip>
+  <CC_SetNote_MaterialRun>Far builds get their material in fewer trips, and the rest goes back to storage.</CC_SetNote_MaterialRun>
+
+  <CC_Settings_MaterialRunDistance>A material run for material this far away (cells)</CC_Settings_MaterialRunDistance>
+  <CC_Settings_MaterialRunDistance_Tip>How far the material must lie from the frame or blueprint, in a straight line, for a run. The straight line is the shortest the walk can be: a wall in the way only makes it longer.</CC_Settings_MaterialRunDistance_Tip>
+  <CC_SetNote_MaterialRunDistance>Material lying this far from the build comes for the whole build area.</CC_SetNote_MaterialRunDistance>
+
+  <CC_Settings_HaulOnTheWay>Pick up loose things on the way</CC_Settings_HaulOnTheWay>
+  <CC_Settings_HaulOnTheWay_Tip>On a long walk that ends at storage (taking a load there, or walking back to a far stockpile for building material), loose things lying near the way that belong in storage come along too: at most six cells out of the way, six things, and only what fits. Only for pawns whose hauling work is on, and only what the haulers would carry themselves. Things picked up on the way to a stockpile go into storage before the material is taken.</CC_Settings_HaulOnTheWay_Tip>
+  <CC_SetNote_HaulOnTheWay>Pawns walking to storage bring the loose things lying near their way.</CC_SetNote_HaulOnTheWay>
+
+  <CC_Settings_HaulFill>Fill the inventory up to this share of what a pawn can carry</CC_Settings_HaulFill>
+  <CC_Settings_HaulFill_Tip>How full pawns may fill their inventory, for their work's produce, a material run and things on the way. Once something no longer fits, a pawn stops and delivers, carrying in its hands what didn't fit.</CC_Settings_HaulFill_Tip>
+  <CC_SetNote_HaulFill>Pawns fill their inventory to this share of what they can carry.</CC_SetNote_HaulFill>
+
+  <CC_Settings_HaulMechs>Colony mechanoids take part too</CC_Settings_HaulMechs>
+  <CC_Settings_HaulMechs_Tip>Mechanoids that can carry things (agrihands, constructoids; Biotech) collect what their work drops and fetch material on long runs as colonists do.</CC_Settings_HaulMechs_Tip>
+  <CC_SetNote_HaulMechs>Agrihands and constructoids carry and deliver like colonists.</CC_SetNote_HaulMechs>
+
+  <CC_Settings_HaulLog>Write carrying decisions to the log (for bug reports)</CC_Settings_HaulLog>
+  <CC_Settings_HaulLog_Tip>Each pickup, delivery and run is written to the game's log. Leave it off in play.</CC_Settings_HaulLog_Tip>
+  <CC_SetNote_HaulLog>Each pickup and delivery goes in the log.</CC_SetNote_HaulLog>
+
+</LanguageData>

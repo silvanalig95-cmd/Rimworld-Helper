@@ -159,7 +159,8 @@ namespace ColonyCouncil
             ["councilPageState"] = "the filters and sort orders the council's pages remember, set on the pages themselves",
             ["lastSeenVersion"] = "the Rimfolk version the player last saw, so the letter after an update comes once (the row \"What's new letter\")",
             ["speechText"] = "the old switch for colonists speaking, kept in step with speechShows (the row \"Colonists' speech shows as\") so older settings files load",
-            ["showImpact"] = "the old switch for what each answer does, kept in step with impactShows (the row \"What each answer does\") so older settings files load"
+            ["showImpact"] = "the old switch for what each answer does, kept in step with impactShows (the row \"What each answer does\") so older settings files load",
+            ["haulImported"] = "whether the standalone Harvest and Haul's settings file was read into the carrying and hauling rows, so it is done once (HaulLinks.ImportStandaloneSettings)"
         };
 
         public static IReadOnlyList<SettingEntry> All => all;
@@ -447,6 +448,28 @@ namespace ColonyCouncil
             Section("CC_SetSec_Stores");
             Toggle("shelfReserves", "CC_Settings_ShelfReserves", "CC_SetNote_ShelfReserves", "deepHooks");
             Toggle("chewOutOfStores", "CC_Settings_ChewOutOfStores", "CC_SetNote_ChewOutOfStores", "deepHooks");
+            // Carrying and hauling (Hauling/): the player's Harvest and Haul folded in, the long material run, things on the way.
+            Section(HaulingSection);
+            NoteUnder("CC_SetSec_Hauling_Note");
+            Toggle("haulOwnWork", "CC_Settings_HaulOwnWork", "CC_SetNote_HaulOwnWork", "deepHooks");
+            Toggle("haulPlants", "CC_Settings_HaulPlants", "CC_SetNote_HaulPlants", "haulOwnWork,deepHooks");
+            Toggle("haulMining", "CC_Settings_HaulMining", "CC_SetNote_HaulMining", "haulOwnWork,deepHooks");
+            Toggle("haulDeepDrill", "CC_Settings_HaulDeepDrill", "CC_SetNote_HaulDeepDrill", "haulOwnWork,deepHooks");
+            Toggle("haulAnimals", "CC_Settings_HaulAnimals", "CC_SetNote_HaulAnimals", "haulOwnWork,deepHooks");
+            Toggle("haulDeconstruct", "CC_Settings_HaulDeconstruct", "CC_SetNote_HaulDeconstruct", "haulOwnWork,deepHooks");
+            Toggle("haulLeftoversNow", "CC_Settings_HaulLeftoversNow", "CC_SetNote_HaulLeftoversNow", "haulOwnWork,deepHooks");
+            Toggle("haulFishing", "CC_Settings_HaulFishing", "CC_SetNote_HaulFishing", "haulOwnWork,deepHooks");
+            Toggle("haulChunks", "CC_Settings_HaulChunks", "CC_SetNote_HaulChunks", "haulOwnWork,deepHooks");
+            Slider("haulMinTrip", "CC_Settings_HaulMinTrip", "CC_SetNote_HaulMinTrip", 0f, 30f, 0.5f, "0.#", "haulOwnWork,deepHooks");
+            Slider("haulMaxHours", "CC_Settings_HaulMaxHours", "CC_SetNote_HaulMaxHours", 1f, 24f, 1f, "0", "haulOwnWork,deepHooks");
+            Toggle("haulBeforeNeeds", "CC_Settings_HaulBeforeNeeds", "CC_SetNote_HaulBeforeNeeds", "haulOwnWork,deepHooks");
+            Toggle("materialRun", "CC_Settings_MaterialRun", "CC_SetNote_MaterialRun", "deepHooks");
+            Slider("materialRunDistance", "CC_Settings_MaterialRunDistance", "CC_SetNote_MaterialRunDistance", HaulMath.RunDistanceMin, HaulMath.RunDistanceMax, 5f, "0",
+                "materialRun,deepHooks");
+            Toggle("haulOnTheWay", "CC_Settings_HaulOnTheWay", "CC_SetNote_HaulOnTheWay", "deepHooks");
+            Slider("haulFill", "CC_Settings_HaulFill", "CC_SetNote_HaulFill", 0.1f, 1f, 0.05f, "%", "deepHooks");
+            Toggle("haulMechs", "CC_Settings_HaulMechs", "CC_SetNote_HaulMechs", "deepHooks");
+            Toggle("haulLog", "CC_Settings_HaulLog", "CC_SetNote_HaulLog");
             Section("CC_SetSec_Defense");
             Toggle("coverDrag", "CC_Settings_CoverDrag", "CC_SetNote_CoverDrag", "deepHooks");
             Section("CC_SetSec_Planner");
@@ -629,6 +652,9 @@ namespace ColonyCouncil
             Section("CC_SetSec_Mod_Faiths");
             Toggle("faithTurretsHere", "CC_Settings_FaithTurretsHere", "CC_SetNote_FaithTurretsHere", "deepHooks");
         }
+
+        /// <summary>The carrying and hauling heading: its note says so when the standalone Harvest and Haul stands in for it.</summary>
+        public const string HaulingSection = "CC_SetSec_Hauling";
 
         // The other mods' package ids, as their integrations check them (Integrations/), for the page that shows only those loaded.
         public const string HospitalityId = "orion.hospitality", RimMarketId = "forti.rimmarket", AlphaSkillsId = "sarg.alphaskills", AlphaGenesId = "sarg.alphagenes",

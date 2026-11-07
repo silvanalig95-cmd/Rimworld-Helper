@@ -215,7 +215,7 @@ namespace ColonyCouncil
                             scroll.y = y;
                             jumpTo = null;
                         }
-                        y += SectionHeader(0f, y, view.width, SectionLabel(section), SettingsCatalog.SectionNote(section), null, y == 0f);
+                        y += SectionHeader(0f, y, view.width, SectionLabel(section), SectionNoteKey(section), null, y == 0f);
                     }
                     y += DrawEntry(s, e, 0f, y, view.width, top, bottom);
                 }
@@ -295,6 +295,10 @@ namespace ColonyCouncil
             }
             return h;
         }
+
+        /// <summary>The note under a heading; carrying and hauling's says so while the standalone Harvest and Haul stands in for it.</summary>
+        private static string SectionNoteKey(string section) =>
+            section == SettingsCatalog.HaulingSection && HaulLinks.Standalone ? "CC_SetSec_Hauling_Standalone" : SettingsCatalog.SectionNote(section);
 
         private static string SectionLabel(string key) => key.NullOrEmpty() ? "" : key.Translate().RawText.TrimEnd(' ', ':');
 

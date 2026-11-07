@@ -670,6 +670,13 @@ MODEL = {
     # of a people no longer standing first.
     "Peoples/ArisingBook.cs:arisen": ("cap", (const("Peoples/ArisingMath.cs", "MaxRecords", 24), 0.05), 320,
                                       "peoples that arose during play: one record each, one every 20 days at the most (the setting at 200%), ArisingMath.MaxRecords kept"),
+    # Carrying and hauling (Hauling/HaulBook.cs): one load per pawn carrying something for Rimfolk (its work's produce, a
+    # material run's stock), dropped once it carries nothing and on saving for pawns gone; each holds a few kinds owed,
+    # the skills of the work and a run's one or two materials.
+    "Hauling/HaulBook.cs:loads": ("colonists", 1, 260, "one per pawn carrying something for Rimfolk, dropped once it carries nothing"),
+    "Hauling/HaulBook.cs:owed": ("fixed", 4, 90, "per load: the kinds owed to storage, a few (counted under loads)"),
+    "Hauling/HaulBook.cs:skills": ("fixed", 2, 40, "per load: the skills of the work that made it (counted under loads)"),
+    "Hauling/HaulBook.cs:run": ("fixed", 2, 90, "per load: a material run's one or two materials (counted under loads)"),
     "Happenings/Workers_Chains2.cs:flags": ("fixed", 4, 40, "per story chain (counted under chains)"),
     # Answers playing out
     "PlayOut/PlayOutLord.cs:guests": ("while", 8, P, "while the gathering lasts: guests from outside the colony"),
