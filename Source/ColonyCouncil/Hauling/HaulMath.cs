@@ -47,6 +47,14 @@ namespace ColonyCouncil
         public static bool HoldExpired(int startedTick, int now, float maxHoldHours) =>
             startedTick >= 0 && now - startedTick > maxHoldHours * HourTicks;
 
+        /// <summary>
+        /// A load held three times the longest hold, and a day at least, has waited too long for the job choice to send it
+        /// (the player's game, 7 November 2026: a grower with tuberculosis carried 68 logs for three days, his pack full, so
+        /// every harvest after fell to the ground): it is queued for storage between jobs, whatever comes next.
+        /// </summary>
+        public static bool Stuck(int startedTick, int now, float maxHoldHours) =>
+            startedTick >= 0 && now - startedTick > Math.Max(24f, maxHoldHours * 3f) * HourTicks;
+
         // ================= The long material run =================
 
         public const float RunDistanceDefault = 30f, RunDistanceMin = 15f, RunDistanceMax = 80f;

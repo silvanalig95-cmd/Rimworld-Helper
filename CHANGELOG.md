@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A sick colonist's full pack goes to storage
+
+*7 November 2026, version 0.154.2*
+
+- Fixed: a colonist who was ill but still up and working was never let take what they had gathered to storage, so their pack stayed full and everything they harvested afterwards fell to the ground for someone else to haul. Now they store their load before going back to work; only lying in bed stops it.
+- A load carried for more than a day (or three times the longest hold you set) now goes to storage between jobs, whatever the colonist does next.
+- This is in Rimfolk's own Harvest and Haul. If the separate Harvest and Haul mod is still loaded, Rimfolk's copy stands aside for it; remove the separate mod to get the fix, and Rimfolk takes over its settings and what your colonists carry.
+
 ## Food for an animal goes to the animal
 
 *7 November 2026, version 0.154.1*

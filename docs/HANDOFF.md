@@ -12,6 +12,17 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.154.2, a sick grower's full pack (7 November 2026, the player: "could it be that now if a colonist harvests a plant,
+  they no longer immediately put the item into their inventory, but instead have it fall to the ground and then
+  afterwards do a haul job?"). Their save: the standalone Harvest and Haul (still loaded, so Rimfolk's copy stands down)
+  held Ian's load of 67 logs, full, for 195,772 ticks (three days); Ian has `Council_Ail_Tuberculosis`, and both the
+  standalone and Rimfolk's copy refused any delivery while `HealthAIUtility.ShouldSeekMedicalRest`, so his pack never
+  emptied and every harvest of his fell to the ground for others to haul. Rimfolk's `Carrying.CanDeliverNow` now stops
+  only for a pawn lying in bed (the delivery only ever replaces work, never rest), and `HaulMath.Stuck` (three holds, a
+  day at least) queues a load for storage between jobs in the rare pass whatever comes next. The standalone keeps its
+  rule: the player was told to remove it, which hands its settings and the loads in the save to Rimfolk's copy. Tests:
+  `FieldReportTests`. Queued as its own piece: every item work makes goes into the maker's inventory (bills, butchering,
+  cooking and mods' production, as the player asked).
 - 0.154.1, food for an animal never goes to a courier (7 November 2026, the player: "events/dilemmas where you provide
   food to an animal shouldn't have some courier pick up the food, that makes no sense"). 0.142.1 counted only animals
   not the colony's as an errand's receiver, but the orphaned young's "Take it in and raise it by hand"

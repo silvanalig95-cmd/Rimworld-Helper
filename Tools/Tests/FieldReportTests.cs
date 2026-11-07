@@ -4,7 +4,8 @@ using ColonyCouncil;
 /// Bugs the player reported from a game (7 November 2026) that live in game code, checked by what the code says:
 /// a beast named a nemesis while it lay downed and dying (Strangers/Nemeses.cs), and the food left out for the beast that
 /// stays, which went to the gate and was taken by a courier instead of being set down in front of the animal
-/// (PlayOut/PlayOutGroupEffects.cs, PlayOut/PlayGroups.cs); and a pet's temperament that RimHUD's panel didn't show.
+/// (PlayOut/PlayOutGroupEffects.cs, PlayOut/PlayGroups.cs); a pet's temperament that RimHUD's panel didn't show; and a
+/// sick grower's full pack that never went to storage (Hauling/Carrying.cs).
 /// </summary>
 public static class FieldReportTests
 {
@@ -47,6 +48,16 @@ public static class FieldReportTests
         C(hud.Contains("public static class RimHud_AnimalNature") && hud.Contains("AnimalTempers.Of(pawn)") && hud.Contains("Patch_AnimalNatureInspect.Text(pawn)"),
             "RimHUD's panel shows an animal's temperament, with the inspect line's text as its tooltip");
         C(hudDefs.Contains("<defClass>ColonyCouncil.RimHud_AnimalNature</defClass>") && hudDefs.Contains("MayRequire=\"jaxe.rimhud\""), "its widget def, loaded only with RimHUD");
+
+        // "if a colonist harvests a plant, they no longer immediately put the item into their inventory": a grower with
+        // tuberculosis carried 68 logs for three days, never let take them to storage while ill, his pack full.
+        string carrying = File.ReadAllText(Path.Combine(root, "Source/ColonyCouncil/Hauling/Carrying.cs"));
+        C(!carrying.Contains("ShouldSeekMedicalRest") && carrying.Contains("if (pawn.InBed()) return false;"), "being ill alone doesn't stop a load going to storage, lying in bed does");
+        C(carrying.Contains("(load.now || stuck || !HarvestHaul.Works)"), "a load stuck too long is queued for storage between jobs");
+        int hour = 2500;
+        C(!HaulMath.Stuck(0, 23 * hour, 8f) && HaulMath.Stuck(0, 25 * hour, 8f), "stuck after a day with the usual 8 hours' hold");
+        C(!HaulMath.Stuck(0, 35 * hour, 12f) && HaulMath.Stuck(0, 37 * hour, 12f), "stuck after three holds when that is longer than a day");
+        C(!HaulMath.Stuck(-1, 999 * hour, 8f), "an empty load is never stuck");
         return n;
     }
 }

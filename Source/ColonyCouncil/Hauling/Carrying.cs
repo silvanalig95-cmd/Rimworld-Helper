@@ -135,7 +135,10 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Not now: drafted, downed, in a mental state, burning, in a lord (a ritual, a caravan forming), with enemies close,
-        /// needing medical rest, urgently hungry or very tired, carrying something in the hands, or a delivery failed lately.
+        /// lying in bed, urgently hungry or very tired, carrying something in the hands, or a delivery failed lately. Being ill
+        /// alone doesn't stop it (the player's game, 7 November 2026: a grower with tuberculosis kept harvesting with a full
+        /// pack he was never let take to storage, so every harvest after fell to the ground): the delivery only ever takes the
+        /// place of work, never of rest, so one who is up and working stores the load before working on.
         /// </summary>
         public static bool CanDeliverNow(Pawn pawn, HaulLoad load)
         {
@@ -143,7 +146,7 @@ namespace ColonyCouncil
             if (pawn.carryTracker == null || pawn.carryTracker.CarriedThing != null) return false;
             if (pawn.IsBurning() || pawn.GetLord() != null) return false;
             if (pawn.mindState != null && pawn.mindState.anyCloseHostilesRecently) return false;
-            if (HealthAIUtility.ShouldSeekMedicalRest(pawn)) return false;
+            if (pawn.InBed()) return false;
             var food = pawn.needs?.food;
             if (food != null && food.CurCategory >= HungerCategory.UrgentlyHungry) return false;
             var rest = pawn.needs?.rest;
@@ -259,7 +262,8 @@ namespace ColonyCouncil
             load.Reconcile(pawn);
             if (load.haulNow.Count > 0 && now - load.haulNowTick > HaulMath.HaulNowWindowTicks) load.haulNow.Clear();
             if (!load.RunEmpty) MaterialRun.Look(pawn, load, now);
-            if (!load.Empty && (load.now || !HarvestHaul.Works) && !StillBuilding(pawn, load, pawn.CurJob)) TryQueueDelivery(pawn, load);
+            bool stuck = HaulMath.Stuck(load.startedTick, now, ColonyCouncilMod.Settings?.haulMaxHours ?? 8f);
+            if (!load.Empty && (load.now || stuck || !HarvestHaul.Works) && !StillBuilding(pawn, load, pawn.CurJob)) TryQueueDelivery(pawn, load);
         }
 
         // ================= The standalone mod's loads =================
