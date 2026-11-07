@@ -10,6 +10,25 @@ namespace ColonyCouncil
     // after an illness, the personal story under way, and a doctor's or midwife's standing. Defs in
     // Defs/Misc/Council_RimHUD_More.xml, loaded only with RimHUD.
 
+    /// <summary>
+    /// One of the colony's animals: its temperament and whom it sleeps beside or is at odds with; the tooltip has its grief,
+    /// how it speaks and what it did lately (Animals/AnimalTempers.cs). RimHUD's panel stands in for the game's inspect
+    /// text, where the same line shows without it (the player's report, 7 November 2026: nothing showed for the pet).
+    /// </summary>
+    public static class RimHud_AnimalNature
+    {
+        public static (string label, string value, Func<string> tooltip, Action onHover, Action onClick) GetParameters(Pawn pawn)
+        {
+            if (pawn?.RaceProps == null || !pawn.RaceProps.Animal || pawn.Faction != Faction.OfPlayer || Current.ProgramState != ProgramState.Playing || !AnimalTempers.On)
+                return (null, null, null, null, null);
+            var t = AnimalTempers.Of(pawn);
+            if (t == null) return (null, null, null, null, null);
+            var parts = new List<string> { AnimalTempers.Label(t.Value) };
+            parts.AddRange(AnimalBonds.InspectParts(pawn));
+            return ("CC_Hud_Temper".Translate(), string.Join(" · ", parts).CapitalizeFirst(), () => Patch_AnimalNatureInspect.Text(pawn), null, null);
+        }
+    }
+
     /// <summary>Rimfolk's ailments and illnesses they have now (the lingering ones too); the tooltip has the doctor's notes.</summary>
     public static class RimHud_Ailments
     {

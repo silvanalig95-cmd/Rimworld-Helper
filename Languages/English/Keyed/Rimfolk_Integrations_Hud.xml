@@ -2,6 +2,7 @@
 <LanguageData>
   <!-- More RimHUD lines (Defs/Misc/Council_RimHUD_More.xml, Source/ColonyCouncil/Integrations/RimHudMore.cs). -->
   <CC_Hud_Ailments>Ailments</CC_Hud_Ailments>
+  <CC_Hud_Temper>Temperament</CC_Hud_Temper>
   <CC_Hud_Recovery>Recovery</CC_Hud_Recovery>
   <CC_Hud_Recovery_Full>full strength</CC_Hud_Recovery_Full>
   <CC_Hud_Recovery_Days>convalescing, about {0} days</CC_Hud_Recovery_Days>

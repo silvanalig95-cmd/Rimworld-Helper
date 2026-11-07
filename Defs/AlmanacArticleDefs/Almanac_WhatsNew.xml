@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.149.1</version>
+        <date>7 November 2026</date>
+        <title>An animal's temperament in RimHUD</title>
+        <points>
+          <li>With RimHUD, whose panel takes the place of the game's own inspect text, an animal's temperament didn't show anywhere. A new RimHUD line, Rimfolk: an animal's temperament, shows it with its friends and rivals; hover it for its grief, how it speaks and what it did lately.</li>
+          <li>Add it once in RimHUD's settings: the Content tab, Add third-party. Without RimHUD the line shows under the animal's card as before.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.149.0</version>
         <date>7 November 2026</date>
         <title>Pack alphas, beast nemeses, legends and great herds</title>

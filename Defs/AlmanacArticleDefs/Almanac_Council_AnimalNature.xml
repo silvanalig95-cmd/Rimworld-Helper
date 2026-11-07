@@ -10,7 +10,7 @@
     <category>Council</category>
     <order>13</order>
     <summary>Every named or bonded animal has a temperament that shows on its card and in what it does on the map. The colony's animals make friends and feuds and grieve their dead, an old animal knows its handler again, and, with a fantasy source, a few of them speak.</summary>
-    <tip>Select an animal: under its card's usual lines, its temperament, its friends and rivals, its grief and what it did lately. None of this ever sends a letter or a message.</tip>
+    <tip>Select an animal: under its card's usual lines, its temperament, its friends and rivals, its grief and what it did lately. With RimHUD, whose panel takes the card's place, add Rimfolk's line "an animal's temperament" in its layout editor. None of this ever sends a letter or a message.</tip>
     <description>The colony's named and bonded animals each have a nature of their own. It is given once, leaning by their kind, and kept with the game: a dog leans loyal, a cat proud, a muffalo gentle, a thrumbo gentle and proud, a Pokémon by its types (fire brave and proud, ghost mischievous, psychic proud and curious). What a temperament means is something the animal really does on the map, never only words, and whoever sees it may say something about it.
 
 Friendships, rivalries and grief show the same way: where they sleep, who they follow, a nuzzle or a hiss in the log and over their heads, their cards, and what the colonists say and write in their journals. The parts follow "Pets as companions" (What's on, Strangers and creatures), each with a switch of its own beside it.</description>

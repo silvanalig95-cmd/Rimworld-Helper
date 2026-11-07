@@ -211,6 +211,9 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>The whole text (cached as the inspect line is), for RimHUD's tooltip (Integrations/RimHudMore.cs).</summary>
+        public static string Text(Pawn a) => a == null ? null : Line(a);
+
         private static string Line(Pawn a)
         {
             if (game != Current.Game)

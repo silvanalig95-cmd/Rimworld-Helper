@@ -12,6 +12,13 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.149.1, a pet's temperament with RimHUD (7 November 2026, the player's screenshot of their husky Yuma with RimHUD's
+  panel: "AS IT stands i don't see anything for my pet yet, is that correct?"). The animals' natures (0.148.0) show
+  through a postfix on `Pawn.GetInspectString`, which RimHUD's panel replaces. New widget `RimHud_AnimalNature`
+  (`Integrations/RimHudMore.cs`, def `Council_Hud_AnimalNature` in `Defs/Misc/Council_RimHUD_More.xml`): the
+  temperament and the bonds as the value, `Patch_AnimalNatureInspect.Text` (the cached inspect text) as the tooltip.
+  The player adds it once in RimHUD's layout editor (Content tab, "Add third-party"), best for the player's creatures.
+  Also: the player was likely on a build from before 0.148.0. Test: `FieldReportTests`.
 - 0.149.0, alphas, legends and great herds (7 November 2026, the player's pick "D, alphas and bosses" from a brainstorm:
   built without a proposal round). At the merge: `GreatHerds.LandAnimals` reads through `BiomeAnimals` (0.141.0), and
   `ResidentBeast.Fits` leaves out an open alpha, its pack (`PackAlphas.InPack`) and a nemesis, so one animal carries

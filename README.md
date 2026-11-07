@@ -2331,7 +2331,9 @@ Each of these switches itself on only when its mod is there, and only asks for w
   five bars: strain (filling and reddening as it builds, marked where it becomes strained, worn down and near
   breaking) and belonging, purpose, safety and freedom (marked where each starts to be missed). Four more lines show
   Rimfolk's ailments (the doctor's notes in the tooltip), convalescence, the personal story under way and a doctor's
-  or midwife's standing, and a recovery bar fills as strength comes back. In RimHUD's settings, Content tab, use
+  or midwife's standing, and a recovery bar fills as strength comes back. One more is for the colony's animals: an
+  animal's temperament and its friends and rivals, with its grief, its voice and what it did lately in the tooltip
+  (RimHUD's panel stands in for the inspect text where that line shows otherwise). In RimHUD's settings, Content tab, use
   "Add third-party". To keep the panel short, put them in the column under the skills.
 - **Interaction Bubbles:** social events and encounters with visitors, traders and animals now go into the social
   log too, so they show as bubbles like Rimfolk's moments and wish talk. Everything else Rimfolk's colonists say

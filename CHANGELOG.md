@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## An animal's temperament in RimHUD
+
+*7 November 2026, version 0.149.1*
+
+- With RimHUD, whose panel takes the place of the game's own inspect text, an animal's temperament didn't show anywhere. A new RimHUD line, Rimfolk: an animal's temperament, shows it with its friends and rivals; hover it for its grief, how it speaks and what it did lately.
+- Add it once in RimHUD's settings: the Content tab, Add third-party. Without RimHUD the line shows under the animal's card as before.
+
 ## Pack alphas, beast nemeses, legends and great herds
 
 *7 November 2026, version 0.149.0*
