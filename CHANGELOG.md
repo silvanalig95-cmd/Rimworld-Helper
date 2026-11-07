@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Schemes against the colony
+
+*7 November 2026, version 0.134.0*
+
+- A people at peace that holds a grudge, or a notable who thinks very little of your colony, may scheme against a home while one of theirs is on the map: a visitor or a trader's guard.
+- At night one of them slips away to break a machine, take a small valuable from a stockpile by your colony's age, or go through a room for tales that are spread among other peoples a few days later.
+- By day one of them may whisper a lie to your hottest-tempered colonist about the one they like least, which can become a fight.
+- A colonist awake, a guard on duty or a dog can catch them: a shout or a bark, the thing dropped, the schemer gone at once, and their people lose some goodwill for being caught, never to hostility.
+- Schemes found out are listed under Here and away and on their people's card. A new setting, Schemes against the colony, sets how often, from none to twice as often.
+
 ## Words for many colonies
 
 *7 November 2026, version 0.133.0*

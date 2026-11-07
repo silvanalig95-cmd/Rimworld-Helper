@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Schemes against the colony (Source/ColonyCouncil/Diplomacy/Schemes.cs): one of theirs at the colony on a scheme's
+       errand. A machine broken down in the night uses the rival's sabotage job (Rimfolk_Sabotage, Rimfolk_HarmTwo.xml). -->
+
+  <JobDef>
+    <defName>Rimfolk_SchemeTake</defName>
+    <driverClass>ColonyCouncil.JobDriver_Scheme</driverClass>
+    <reportString>going for something in the stores.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_SchemeLook</defName>
+    <driverClass>ColonyCouncil.JobDriver_Scheme</driverClass>
+    <reportString>looking about the place.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_SchemeWord</defName>
+    <driverClass>ColonyCouncil.JobDriver_Scheme</driverClass>
+    <reportString>going for a quiet word with someone.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+</Defs>

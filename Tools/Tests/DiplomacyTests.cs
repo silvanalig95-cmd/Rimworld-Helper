@@ -161,10 +161,11 @@ public static class DiplomacyTests
 
         // ---------------- Reserved tie kinds ----------------
 
-        C(TieRules.Kinds == 14 && TieRules.MaxTies == 1080, "Secret and Scheme reserved: 14 kinds, 1,080 ties at most");
+        C(TieRules.Kinds == 14 && TieRules.MaxTies == 1080, "Secret reserved and Scheme for schemes against the colony: 14 kinds, 1,080 ties at most");
         C(TieRules.CanCallIn(Tie.Kind.Secret) && !TieRules.CanCallIn(Tie.Kind.Scheme) && TieRules.CanKeepOrBreak(Tie.Kind.Scheme) && TieRules.MaxOf(Tie.Kind.Secret) == 60,
             "a secret can be called in, a scheme kept or broken, each 60 at most");
-        C(!Regex.IsMatch(string.Concat(Directory.GetFiles(Path.Combine(src, "Diplomacy"), "*.cs").Select(File.ReadAllText)), @"Tie\.Kind\.Scheme"), "nothing uses schemes yet (release 2c.3)");
+        C(!Regex.IsMatch(string.Concat(Directory.GetFiles(Path.Combine(src, "Diplomacy"), "*.cs").Where(f => !Path.GetFileName(f).Contains("Scheme")).Select(File.ReadAllText)), @"Tie\.Kind\.Scheme"),
+            "only the schemes against the colony use Scheme ties (release 2c.3, theirs only)");
         C(!Regex.IsMatch(string.Concat(Directory.GetFiles(src, "*.cs", SearchOption.AllDirectories).Select(File.ReadAllText)), @"AddTie\(Tie\.Kind\.Secret"),
             "nothing makes Secret ties now (the keeper of secrets made them from release 2c.1 until it was dropped, 5 November 2026)");
         string est = File.ReadAllText(Path.Combine(root, "Tools", "save_estimate.py"));

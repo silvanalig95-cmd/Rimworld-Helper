@@ -707,6 +707,29 @@ cap.
 Hospitality's guests can be agents like any visitors. The harm review's 3.5.1 (a rival's sabotage between colonists),
 3.9.1 (a secret found out by the wronged one) and 2.9.1 (a challenge by letter), if picked, share this machinery.
 
+**Built (2c.3, theirs only, 7 November 2026; DESIGN.md "Schemes against the colony").** The player's decision 16, "only
+theirs": the colony's own schemes are not built. What differs from the above:
+- *The rate.* "A roll every 15 days at 8% (about two a year)" can't be both (a roll every 15 days at 8% is a third of one
+  a year), so it is a roll each day at 8% once a season has passed since the home's last scheme began: about 2.3 a year,
+  one a season at most, as "Performance" puts the schemes' rolls on the daily pass. A grudge is read as the raiders'
+  camps read one (20 or more: the wrongs still held, 15 a dead held, 20 a vendetta), from a people at peace with a town in
+  the home's reach; a notable of the home's neighbours at -40 or less.
+- *No keeper, no secret.* The keeper's watch went with the keeper (5 November 2026): theirs are caught by a colonist
+  awake, a guard on duty (drafted, or awake under the on-guard decree) or a dog. The envoy who spies out a colonist's
+  secret is left out: the Secret ties' code is gone and nothing simple stands in for it.
+- *Who acts.* One of the game's visitors or a guard of their trader's caravan (never the trader). Their envoy's party, feast
+  guests and Rimfolk's own visitors and camps are not agents: sending one off at once would end a stay their own systems
+  decide.
+- *A provoked fight* is a lie in a hot temper's ear about another of the colony, and the fight is between the two of the
+  colony (the game's social fight through the harm service and its cap), not with the guest, so no guest's lord or people
+  takes the blows for an attack.
+- *A smear* is gathered on the map (one of theirs going through an empty room in the night) and told round a day to three
+  later: 3 goodwill with each other people at peace in reach, never to hostility. Caught at any of it: 5 goodwill lost with
+  their own, never to hostility.
+- *Shown.* Found out, the tie writes `tie:scheme:theirs:broken` with `dip:foundout`; nothing of a scheme is in the history
+  before (the History page would show it). The Household page's place is Here and away now ("Schemes found out"), and the
+  people's card on Peoples lists it among the ties.
+
 ## Round d
 
 ### 12. House renown (reshaped as the colony's renown, 5 November 2026)
@@ -876,7 +899,7 @@ letters by purpose and age, news, an Almanac page).
 8. **2c.2 Fealty and vassals** (items 9 and 10). Needs stage 1's hamlet, 2a.2's calls and bands, and 2c.1's dues (the
    dues went with 2c.1).
 9. **2c.3 Schemes** (item 11). Needed 2c.1, now dropped: the keeper's watch and Secret ties' code are gone; the harm
-   review's rival sabotage (3.5.1) first, if the player picks it.
+   review's rival sabotage (3.5.1) first, if the player picks it. Built: theirs only (item 11, "Built").
 10. **2d.1 House renown** (item 12; wave 14). Reads every deed and tie before it.
 11. **2d.2 Against their nature** (item 13): the acts of every release switched on and tuned with the balance simulator.
     Built: every act but the dark scheme (item 13, "As built").

@@ -94,6 +94,8 @@ namespace ColonyCouncil
             FealtyFacts(s, f);
             // The colony's renown (Diplomacy/FactsRenown.cs): colony:known, colony:renowned, colony:knownfor:KIND, us:knownas, {KNOWNFOR}, {RENOWN}, {KNOWNAS}.
             RenownFacts(s, f);
+            // Schemes against the colony found out (Diplomacy/FactsSchemes.cs): tie:scheme:theirs:broken, them:caught.
+            SchemeFacts(s, f);
         }
 
         /// <summary>Which side of the scene a party is on: 1 ours, -1 theirs, 0 neither.</summary>

@@ -83,7 +83,7 @@ public static class LedgerTests
 
         var kinds = (Tie.Kind[])Enum.GetValues(typeof(Tie.Kind));
         var states = (Tie.State[])Enum.GetValues(typeof(Tie.State));
-        Check(kinds.Length == 14 && kinds.Length == TieRules.Kinds, "fourteen kinds of tie (Secret and Scheme reserved for stage 2)");
+        Check(kinds.Length == 14 && kinds.Length == TieRules.Kinds, "fourteen kinds of tie (Secret reserved for stage 2, Scheme for schemes against the colony)");
         Check(TieRules.MaxTies == 1080, "all ties at most 1,080, as stage 2 designed");
         Check(TieRules.Live(Tie.State.Open) && TieRules.Live(Tie.State.CalledIn), "open and called in are live");
         Check(!TieRules.Live(Tie.State.Kept) && !TieRules.Live(Tie.State.Broken) && !TieRules.Live(Tie.State.Ended), "kept, broken and ended are closed");

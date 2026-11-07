@@ -65,8 +65,9 @@ namespace ColonyCouncil
             /// </summary>
             Secret,
             /// <summary>
-            /// From (the schemer) works against to (the target), its progress in its terms (number). Reserved for schemes
-            /// (stage 2, round c): kept when it succeeds, broken when found out, ended when given up; nothing makes one yet.
+            /// From (the schemer) works against to (the target): kept when it succeeds, broken when found out, ended when
+            /// given up. Schemes against the colony (Diplomacy/Schemes.cs, release 2c.3, origin "theirs") make them, from
+            /// a people or a notable to a colony, unknown until found out; the colony's own are not built.
             /// </summary>
             Scheme
         }
@@ -143,7 +144,7 @@ namespace ColonyCouncil
         public const int MaxPerKind = 60;
         /// <summary>Regard is kept between many pairs (each notable and colonist, each outsider pair): more room.</summary>
         public const int MaxRegard = 300;
-        /// <summary>How many kinds of tie there are (Secret and Scheme reserved for stage 2's round c).</summary>
+        /// <summary>How many kinds of tie there are (Secret reserved for stage 2's round c; Scheme for schemes against the colony).</summary>
         public const int Kinds = 14;
         /// <summary>All ties at most: every kind but regard at <see cref="MaxPerKind"/>, and regard at <see cref="MaxRegard"/>.</summary>
         public const int MaxTies = (Kinds - 1) * MaxPerKind + MaxRegard;

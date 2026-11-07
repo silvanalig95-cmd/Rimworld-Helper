@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- ===================== Schemes against the colony (Source/ColonyCouncil/Diplomacy/Schemes.cs) ===================== -->
+
+  <!-- Whoever of the colony caught one of theirs at it, a shout across the dark ([act:...] what they were at: a machine,
+       a theft, a whispered lie, the rooms gone through). Nobody is named: it is a stranger they shout at. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SchemeCaught</defName>
+    <lines>
+      <plain>
+        <li>You there, what are you doing?</li>
+        <li>Hold it right there.</li>
+        <li>I see you, stranger.</li>
+        <li>That's far enough.</li>
+        <li>Guests don't wander about at this hour.</li>
+        <li>[act:machine] Get your hands off that.</li>
+        <li>[act:machine] Step away from the machine.</li>
+        <li>[act:theft] Put that down, it isn't yours.</li>
+        <li>[act:theft] Those are our stores, thief.</li>
+        <li>[act:fight] That's a lie, and you know it.</li>
+        <li>[act:fight] Don't listen to a word of that.</li>
+        <li>[act:smear] Nobody asked you in here.</li>
+        <li>[act:smear] What are you looking for in our rooms?</li>
+      </plain>
+      <blunt><li>Out, now.</li></blunt>
+      <cold><li>I knew you weren't here to trade.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- One of theirs, caught, as they make off. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SchemeCaughtGoes</defName>
+    <lines>
+      <plain>
+        <li>I was only looking.</li>
+        <li>All right, I'm going.</li>
+        <li>You never saw me.</li>
+        <li>This isn't over.</li>
+        <li>I'm leaving, keep your hands off me.</li>
+        <li>You'll be sorry you caught me.</li>
+      </plain>
+      <cold><li>Your colony will hear of this.</li></cold>
+      <gloomy><li>I knew this was a fool's errand.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- One of theirs, a word in a hot temper's ear ({ABOUT} the one they would set them against). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SchemeWhisper</defName>
+    <lines>
+      <plain>
+        <li>{ABOUT_nameDef} laughs at you behind your back.</li>
+        <li>I heard {ABOUT_nameDef} calling you a fool.</li>
+        <li>You know what {ABOUT_nameDef} says of you, don't you?</li>
+        <li>{ABOUT_nameDef} thinks you're the colony's weak link.</li>
+        <li>I wouldn't stand for what {ABOUT_nameDef} says about you.</li>
+        <li>{ABOUT_nameDef} told me you'd be the first to run.</li>
+      </plain>
+      <cold><li>{ABOUT_nameDef} would be glad to see you gone.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The hot temper, to the one they were told about, having it out. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SchemeProvoked</defName>
+    <lines>
+      <plain>
+        <li>I hear you've been talking about me, {OTHER_nameDef}.</li>
+        <li>Say it to my face, {OTHER_nameDef}.</li>
+        <li>You think I'm a fool, do you?</li>
+        <li>I know what you've been saying.</li>
+        <li>Laugh at me now, go on.</li>
+        <li>We'll settle this here, {OTHER_nameDef}.</li>
+      </plain>
+      <blunt><li>You and me, now.</li></blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

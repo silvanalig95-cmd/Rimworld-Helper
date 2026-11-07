@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Schemes against the colony (Source/ColonyCouncil/Diplomacy/Schemes.cs; docs/design/stage2-diplomacy.md, item 11,
+       theirs only). What one of theirs is doing on the map, what they were caught at, who caught them, what came of it,
+       a fight stirred up, a smear told round, the rows of the pages, the setting. -->
+
+  <!-- ===================== What they are doing (the job's report) ===================== -->
+
+  <CC_Scheme_Report_Take>going for {THING} in the stores.</CC_Scheme_Report_Take>
+  <CC_Scheme_Report_Look>looking about the place.</CC_Scheme_Report_Look>
+  <CC_Scheme_Report_Word>going for a quiet word with {OTHER_nameDef}.</CC_Scheme_Report_Word>
+
+  <!-- ===================== What they were caught at, by its form (the letter, the history) ===================== -->
+
+  <CC_Scheme_What_Machine>at {THING} in the night, working to jam it</CC_Scheme_What_Machine>
+  <CC_Scheme_What_Console>at {THING} in the night, opening it up to make it fail</CC_Scheme_What_Console>
+  <CC_Scheme_What_Totem>carrying off {THING} from the colony's stores, a carving to take home</CC_Scheme_What_Totem>
+  <CC_Scheme_What_Purse>cutting a purse of {THING} from the colony's stores</CC_Scheme_What_Purse>
+  <CC_Scheme_What_Tool>pocketing {THING} from the colony's stores</CC_Scheme_What_Tool>
+  <CC_Scheme_What_Fight>whispering lies to {HOT_nameDef} about {OTHER_nameDef}, to set the two of them fighting</CC_Scheme_What_Fight>
+  <CC_Scheme_What_Smear_Fires>going through the colony's rooms in the night, for tales to tell at other fires</CC_Scheme_What_Smear_Fires>
+  <CC_Scheme_What_Smear_Halls>going through the colony's rooms in the night, for slanders to carry to other halls</CC_Scheme_What_Smear_Halls>
+  <CC_Scheme_What_Smear_Papers>going through the colony's rooms in the night, for a smear in the papers</CC_Scheme_What_Smear_Papers>
+  <CC_Scheme_What_Smear_Feeds>going through the colony's rooms in the night, for a smear on the feeds</CC_Scheme_What_Smear_Feeds>
+  <CC_Scheme_What_Smear_Court>going through the colony's rooms in the night, for intrigue at court</CC_Scheme_What_Smear_Court>
+
+  <!-- The same, short, for a row of the pages. -->
+  <CC_Scheme_Short_Machine>at {THING} in the night, working to jam it</CC_Scheme_Short_Machine>
+  <CC_Scheme_Short_Console>at {THING} in the night, opening it up to make it fail</CC_Scheme_Short_Console>
+  <CC_Scheme_Short_Totem>carrying off a carving from the colony's stores</CC_Scheme_Short_Totem>
+  <CC_Scheme_Short_Purse>cutting a purse from the colony's stores</CC_Scheme_Short_Purse>
+  <CC_Scheme_Short_Tool>pocketing tools from the colony's stores</CC_Scheme_Short_Tool>
+  <CC_Scheme_Short_Fight>whispering lies to set the colony's people fighting</CC_Scheme_Short_Fight>
+  <CC_Scheme_AMachine>a machine</CC_Scheme_AMachine>
+  <CC_Scheme_Someone>someone</CC_Scheme_Someone>
+
+  <!-- ===================== Who caught them, and what came of it ===================== -->
+
+  <CC_Scheme_How_Guard>{WATCHER_nameDef} was on guard and saw it.</CC_Scheme_How_Guard>
+  <CC_Scheme_How_Awake>{WATCHER_nameDef} was still awake and saw it.</CC_Scheme_How_Awake>
+  <CC_Scheme_How_Heard>{WATCHER_nameDef} heard every word.</CC_Scheme_How_Heard>
+  <CC_Scheme_How_Dog>{DOG} caught the scent and barked until the colony woke.</CC_Scheme_How_Dog>
+  <CC_Scheme_After_Machine>{AGENT_nameDef} ran before doing any harm, and is leaving the colony at once.</CC_Scheme_After_Machine>
+  <CC_Scheme_After_Theft>{AGENT_nameDef} dropped {THING} and is leaving the colony at once.</CC_Scheme_After_Theft>
+  <CC_Scheme_After_Fight>{HOT_nameDef} paid the lies no heed, and {AGENT_nameDef} is leaving the colony at once.</CC_Scheme_After_Fight>
+  <CC_Scheme_After_Smear>{AGENT_nameDef} is leaving the colony at once, with nothing to tell.</CC_Scheme_After_Smear>
+
+  <CC_Scheme_Caught_Label>Caught at it: {AGENT_nameDef}</CC_Scheme_Caught_Label>
+  <CC_Scheme_Caught>{AGENT_nameDef} of {PEOPLE} was caught {WHAT}. {HOW} {AFTER}\n\n{PEOPLE} will remember that the colony caught them at it, and think a little less of it for that.</CC_Scheme_Caught>
+  <CC_Scheme_Caught_2>Caught {WHAT}: {AGENT_nameDef} of {PEOPLE}. {HOW} {AFTER}\n\nTheir people will not forget being caught, and think a little less of the colony for it.</CC_Scheme_Caught_2>
+
+  <!-- The history, the notable's memory, the memory's deed with the name of the one caught. -->
+  <CC_Scheme_Hist_Broken>A scheme of {PEOPLE} against {COLONY} was found out.</CC_Scheme_Hist_Broken>
+  <CC_Scheme_Hist_FoundOut>{AGENT} of {PEOPLE} was caught {WHAT}, and sent off from {COLONY}.</CC_Scheme_Hist_FoundOut>
+  <CC_Scheme_NotableNote>One of theirs, {AGENT}, was caught scheming against the colony.</CC_Scheme_NotableNote>
+  <CC_Memory_Deed_schemedUs_Name>schemed against the colony ({NAME} was caught at it)</CC_Memory_Deed_schemedUs_Name>
+
+  <!-- ===================== Not caught: a fight stirred up, a smear told round ===================== -->
+
+  <CC_Scheme_Fight>{PAWN_nameDef} went for {OTHER_nameDef} over something {PAWN_nameDef} had been told about {OTHER_objective}.</CC_Scheme_Fight>
+  <CC_Scheme_Fight_2>{PAWN_nameDef} picked a fight with {OTHER_nameDef} over what was said about {OTHER_objective}.</CC_Scheme_Fight_2>
+  <CC_Scheme_Words>{PAWN_nameDef} had hard words with {OTHER_nameDef} over something {PAWN_nameDef} had been told about {OTHER_objective}.</CC_Scheme_Words>
+  <CC_Scheme_Words_2>{PAWN_nameDef} took {OTHER_nameDef} to task over what was said about {OTHER_objective}.</CC_Scheme_Words_2>
+
+  <CC_Scheme_Smear>Ill words about {COLONY} are going round the region, {WHERE}: {PEOPLES} think a little less of it.</CC_Scheme_Smear>
+  <CC_Scheme_Smear_2>Someone has been talking against {COLONY} {WHERE}, and {PEOPLES} think a little less of it now.</CC_Scheme_Smear_2>
+  <CC_Scheme_SmearWhere_Fires>at the fires of other peoples</CC_Scheme_SmearWhere_Fires>
+  <CC_Scheme_SmearWhere_Halls>in the halls of other lords</CC_Scheme_SmearWhere_Halls>
+  <CC_Scheme_SmearWhere_Papers>in the papers</CC_Scheme_SmearWhere_Papers>
+  <CC_Scheme_SmearWhere_Feeds>on the feeds</CC_Scheme_SmearWhere_Feeds>
+  <CC_Scheme_SmearWhere_Court>at court</CC_Scheme_SmearWhere_Court>
+
+  <!-- ===================== The pages (Region: Here and away; a people's card on Peoples) ===================== -->
+
+  <CC_Scheme_Row>{AGENT} of {PEOPLE}, caught {WHAT}</CC_Scheme_Row>
+  <CC_Scheme_RowNote>found out {AGO}</CC_Scheme_RowNote>
+  <CC_Scheme_Found_Title>Schemes found out</CC_Scheme_Found_Title>
+  <CC_Scheme_Found_None>Nothing schemed against the colony has been found out.</CC_Scheme_Found_None>
+
+  <!-- ===================== The setting ===================== -->
+
+  <CC_Settings_TheirSchemes>Schemes against the colony</CC_Settings_TheirSchemes>
+  <CC_SetNote_TheirSchemes>Those with a grudge may send one of theirs to break a machine, steal, stir up a fight or gather tales.</CC_SetNote_TheirSchemes>
+  <CC_Settings_TheirSchemes_Tip>How often a scheme against the colony begins. At 100% (the default), a home with a people within reach that holds a grudge against it (and is at peace with it), or a notable who thinks -40 or less of it, has a chance of 8% each day once a season has passed since its last scheme began: about two a year, at most one a season. A scheme is acted out only while one of theirs is on the map (a visitor, or a guard of a trader's caravan) and is given up after a season. Caught by a colonist awake, a guard on duty or a dog, the one at it leaves at once and their people remember it. 200% doubles the chance; 0% switches schemes off. Needs answers on the map.</CC_Settings_TheirSchemes_Tip>
+
+</LanguageData>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The Almanac page on schemes against the colony (Source/ColonyCouncil/Diplomacy/Schemes.cs; the rules in
+       SchemeMath.cs; docs/design/stage2-diplomacy.md, item 11, theirs only; DESIGN.md "Schemes against the colony"). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Schemes</defName>
+    <label>schemes against the colony</label>
+    <category>Council</category>
+    <order>16</order>
+    <summary>A people that holds a grudge against the colony, or a notable who thinks little of it, may scheme against it while one of theirs is at the colony: a machine broken down in the night, something small and valuable taken from the stores, a quarrel stirred up among the colony's people, or ill words gathered to carry round the region. Someone awake, a guard or a dog may catch them at it.</summary>
+    <tip>The night is when they move. Someone up late, a guard on duty under the "on guard" decree or drafted, and a dog loose about the place are what catch them; a stores room or a machine out where nobody passes is where they try.</tip>
+    <description>Nothing is said of a scheme while it runs: the colony doesn't know of it. Only when one of theirs is caught at it does it come to light, and then the colony knows who and what. A scheme that works is noticed only the way the game shows such things: a machine broken down, something missing from the stores, a fight. Schemes take the form of the colony's own means, and a smear takes the form of their people's ways.</description>
+    <sections>
+      <li>
+        <heading>Who schemes, and how often</heading>
+        <points>
+          <li>A people at peace with the colony, with a town within the region's reach of a home, that holds a grudge of 20 or more against it (the wrongs they still hold, 15 for each of theirs who died in the colony's hands, 20 for a vendetta sworn against them: as the raiders' camps read a grudge); or a notable of a neighbouring town who thinks -40 or less of the colony.</li>
+          <li>While there is one, each home has a chance of 8% each day once a season has passed since its last scheme began: about two a year, never more than one a season. With no such people and no notable that cold, there are none.</li>
+          <li>A scheme is acted out only while one of theirs is on the home's map: one of a visitor group of theirs, or a guard of their trader's caravan (never the trader), grown up and up and about. Not acted out within a season, it is given up.</li>
+          <li>The setting "Schemes against the colony" (How much happens, 0 to 200%, 100% by default) scales the chance; at 0% none begin, and those under way run out. Needs answers on the map.</li>
+        </points>
+      </li>
+      <li>
+        <heading>What they do</heading>
+        <table>
+          <li>Act | When | What it is</li>
+          <li>A machine broken down | In the night, eleven to four | An industrial colony or later: one of theirs slips away to a machine and works at it a few seconds; the game's own breakdown, mended with a component. A spacer colony's comms console first.</li>
+          <li>Something taken | In the night | From a stockpile or a shelf, about 60 to 180 silver's worth into their pack: a small carving in a tribe (a totem), a purse of silver, gold or jade in a medieval colony, components in an industrial or spacer one (a tool). It goes with them when they leave.</li>
+          <li>A quarrel stirred up | By day | A word in the ear of one of the colony with a hot temper, about the one they like least (never kin or a lover). The hot temper goes to have it out: the game's social fight under the shared cap of hurts from everyday life, or hard words when the cap holds. None with hurts from everyday life at 0%.</li>
+          <li>Ill words gathered | In the night | One of theirs goes through one of the colony's empty rooms. A day to three later the tales are told round the region: at other peoples' fires, in other lords' halls, in the papers, on the feeds, or at the Empire's court. Every other people at peace within reach thinks 3 less of the colony, never so much as to turn hostile.</li>
+        </table>
+        <after>None of it while there is danger on the map, and they never start with someone of the colony awake within 6 cells.</after>
+      </li>
+      <li>
+        <heading>Caught at it</heading>
+        <points>
+          <li>Whoever is about when they finish may catch them: a colonist awake within 12 cells who can see the place (half the time), a guard on duty within 20 (nine times in ten), a dog awake within 10 in sight or 5 through a wall (three times in four). A word in someone's ear is overheard by anyone within earshot, two times in five.</li>
+          <li>Caught, it plays out at once: a shout (a dog barks, and the colony's nearest sleeper wakes), the thing taken is dropped, the machine is left as it was, the lie goes unheeded, and the one caught leaves the colony at a jog. A letter says who, at what, and who caught them.</li>
+          <li>Their people remember that the colony caught them at it (a wrong of theirs on their page) and think 5 less of the colony, never so much as to turn hostile. A notable's scheme is noted in their memory too.</li>
+          <li>Schemes found out are listed on the region window's Here and away, and on their people's card on Peoples, for sixty days.</li>
+        </points>
+      </li>
+    </sections>
+    <keywords><li>schemes against the colony</li><li>caught scheming</li><li>schemes found out</li><li>smear</li><li>visitor stealing</li></keywords>
+    <seeAlso><li>Council_Alm_C_Diplomacy</li><li>Council_Alm_C_WorldMemory</li><li>Council_Alm_C_Visitors</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

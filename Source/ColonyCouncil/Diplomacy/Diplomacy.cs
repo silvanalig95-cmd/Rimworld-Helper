@@ -7,8 +7,8 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// Stage 2's diplomacy, its base (docs/design/stage2-diplomacy.md; release 2a.1): rules and text on records that already
-    /// exist. Every bond is a world ledger tie (favours owed both ways: FavoursOwed.cs; the Secret and Scheme kinds reserved
-    /// in TieRules); what isn't a tie goes into the history's family "dip" (<see cref="Write"/>); the peoples remember the
+    /// exist. Every bond is a world ledger tie (favours owed both ways: FavoursOwed.cs; schemes against the colony, Scheme
+    /// ties: Schemes.cs; the Secret kind reserved in TieRules); what isn't a tie goes into the history's family "dip" (<see cref="Write"/>); the peoples remember the
     /// new deeds (FactionMemory.Kinds); words come by both sides' ages (Ages.Form: favor, truce, hostage, envoy, levy); the
     /// player is told through Tell; the region window has its Diplomacy and Household pages (DiplomacyPanels.cs), the
     /// region map's town panel a section, the right-click menu a frame for new acts (DiplomacyActs.cs) and the letters one
@@ -40,6 +40,8 @@ namespace ColonyCouncil
             Safe("calls to arms", () => CallsToArms.FavourHour(now / (float)PactMath.DayTicks));
             // Ransom and the envoy (release 2a.3): offers for captives either way, their envoy's stay, the colony's envoy away.
             Safe("ransom", () => Ransoms.Hourly(now));
+            // Schemes against the colony (release 2c.3, theirs only): one of theirs on the map acting at the act's hour, a smear told round.
+            Safe("schemes", () => Schemes.Hourly(now));
             if (DiplomacyBook.Instance?.AnyWaiting ?? false)
             {
                 Safe("envoys", () => Envoys.Hourly(now));
@@ -62,6 +64,8 @@ namespace ColonyCouncil
                 Safe("wards' day", () => Wards.Daily(now));
                 // The colony's renown (release 2d.1, reshaped 5 November 2026): a band moved told.
                 Safe("renown's day", () => Renown.Daily(now));
+                // Schemes against the colony: each home with a schemer in reach rolls once a day, a season apart.
+                Safe("schemes' day", () => Schemes.Daily(now));
                 // The secrets the keeper learned that an older save still holds, let go (Retired.cs).
                 Safe("retired", () => Retired.Daily());
                 Safe("diplomacy's book", () => DiplomacyBook.Instance?.Daily());

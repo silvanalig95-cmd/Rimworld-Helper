@@ -62,6 +62,8 @@ namespace ColonyCouncil
         public readonly List<DipRow> away = new List<DipRow>();
         /// <summary>The peoples the colony is bound to by marriage, one row a marriage (the field's name is from when it listed houses).</summary>
         public readonly List<DipRow> houses = new List<DipRow>();
+        /// <summary>Schemes against the colony found out (Schemes.cs, release 2c.3), newest first: who was caught at what.</summary>
+        public readonly List<DipRow> schemes = new List<DipRow>();
 
         private static DiplomacyModel current;
         private static float builtAt = -1f;
@@ -227,6 +229,12 @@ namespace ColonyCouncil
                 c.ties.Add(new DipRow { text = line, note = t.since >= 0 ? DipWords.Since(t.since) : null, color = UiKit.Info, link = f });
                 c.weight += 3;
             }
+            // Their schemes against the colony found out (release 2c.3); one not found out is not known, so not shown.
+            foreach (var sr in Schemes.FoundRows(f))
+            {
+                c.ties.Add(sr);
+                c.weight += 3;
+            }
             // Under way: letters and calls to their notables, their calls waiting on the colony.
             var book = NotableBook.Instance;
             if (book != null)
@@ -367,6 +375,8 @@ namespace ColonyCouncil
             // The colony bound to other peoples by marriage, one row a marriage (release 2b.2; the colony's houses and its
             // in-laws went with the houses, 5 November 2026: the colony is the family, never a dynasty).
             foreach (var r in MatchPanels.BondRows()) m.houses.Add(r);
+            // Schemes against the colony found out (release 2c.3: the Household page listed what was found out).
+            m.schemes.AddRange(Schemes.FoundRows());
         }
 
         /// <summary>Why someone of theirs is here: a lodger, trading, visiting, staying at the camp, or just here.</summary>

@@ -263,6 +263,8 @@ namespace ColonyCouncil
             // The region (World/Region/): how much a remote home draws travellers, and how likely raiders' camps are.
             Slider("remoteTravellers", "CC_Settings_RemoteTravellers", "CC_SetNote_RemoteTravellers", 0f, 2f, 0.05f, "%");
             Slider("raidersCamps", "CC_Settings_RaidersCamps", "CC_SetNote_RaidersCamps", 0f, 2f, 0.05f, "%");
+            // The bonds with other peoples (Diplomacy/Schemes.cs): how often those with a grudge scheme against the colony.
+            Slider("theirSchemes", "CC_Settings_TheirSchemes", "CC_SetNote_TheirSchemes", 0f, 2f, 0.05f, "%", "answersPlayOut");
 
             // ================= How hard: what's at stake, pressures, strain, illness and hurts =================
             Page(SettingsPage.HowHard);
@@ -725,10 +727,10 @@ namespace ColonyCouncil
             //
             // Light touch: Rimfolk in the background. Only upsides, gentle pressures, fewer and quieter interruptions, no
             // deadly illnesses and no fights from its events, its everyday hurts at half. Every system stays on, just slower:
-            // half the travellers and raiders' camps, one gathering of its own a week, half the outsiders' chatter, more time
-            // for wishes and ambitions, and no strain from diplomacy against someone's nature. Its upsides (personal touches,
-            // the heart's good side) come as by default. Targets: about +4 to +7 well run, +2 to +5 average, around 0
-            // neglected; under one question every two days.
+            // half the travellers, raiders' camps and schemes against the colony, one gathering of its own a week, half the
+            // outsiders' chatter, more time for wishes and ambitions, and no strain from diplomacy against someone's nature.
+            // Its upsides (personal touches, the heart's good side) come as by default. Targets: about +4 to +7 well run, +2 to
+            // +5 average, around 0 neglected; under one question every two days.
             var light = NewPreset("lightTouch", "CC_SetPreset_LightTouch");
             light.values.AddRange(new[]
             {
@@ -737,6 +739,7 @@ namespace ColonyCouncil
                 V("momentFrequency", "0.75"), V("socialEventFrequency", "0.5"), V("dreamFrequency", "0.5"), V("arcFrequency", "Rare"),
                 V("outsiderChatterFrequency", "0.5"), V("encounterFrequency", "0.5"), V("storytellerEventWeight", "0.5"),
                 V("daysBetweenWorldEvents", "8"), V("daysBetweenWorldSituations", "75"), V("remoteTravellers", "0.5"), V("raidersCamps", "0.5"),
+                V("theirSchemes", "0.5"),
                 // How hard.
                 V("stakes", "Gentle"), V("wishDurationFactor", "1.25"), V("ambitionDeadlineFactor", "1.25"), V("allowQuitting", "false"),
                 V("lifePressure", "Gentle"), V("frictions", "false"), V("strainSpeed", "0.75"), V("heartEpisodes", "false"), V("heartGoodSide", "true"),
@@ -750,9 +753,9 @@ namespace ColonyCouncil
 
             // Story-rich: every part that tells a story switched on (every system of the colony's life and its world, the
             // region and the bonds with other peoples), and more of each: personal stories, dilemmas, events, moments,
-            // dreams, personal touches, the outsiders' chatter, travellers and raiders' camps, three gatherings a week, with a
-            // message for each. Wishes and meetings come as by default. Moods and pressures stay as they are. Targets: the
-            // default's moods, and more questions by choice (a little over one every two days).
+            // dreams, personal touches, the outsiders' chatter, travellers, raiders' camps and schemes against the colony, three
+            // gatherings a week, with a message for each. Wishes and meetings come as by default. Moods and pressures stay as
+            // they are. Targets: the default's moods, and more questions by choice (a little over one every two days).
             var story = NewPreset("storyRich", "CC_SetPreset_StoryRich");
             foreach (var e in Systems)
                 story.values.Add(V(e.id, "true"));
@@ -763,6 +766,7 @@ namespace ColonyCouncil
                 V("momentFrequency", "1.5"), V("socialEventFrequency", "1.5"), V("dreamFrequency", "1.5"), V("arcFrequency", "Frequent"),
                 V("daysBetweenPersonalTouches", "4"), V("outsiderChatterFrequency", "1.5"), V("encounterFrequency", "1.5"), V("storytellerEventWeight", "1.5"),
                 V("daysBetweenWorldEvents", "3"), V("daysBetweenWorldSituations", "30"), V("remoteTravellers", "1.5"), V("raidersCamps", "1.25"),
+                V("theirSchemes", "1.25"),
                 // The heart's good side: brighter dreams and now and then an inspiration.
                 V("heartGoodSide", "true"),
                 // How you're told.

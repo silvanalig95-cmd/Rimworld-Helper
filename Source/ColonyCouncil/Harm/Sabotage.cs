@@ -279,25 +279,38 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>A rival at the other's bench (Sabotage): there, a few seconds at it with their back to the room, then what it does.</summary>
+    /// <summary>
+    /// A rival at the other's bench (Sabotage): there, a few seconds at it with their back to the room, then what it does.
+    /// One of theirs on a scheme against the colony uses it at a machine in the night (Diplomacy/Schemes.cs, which says
+    /// what comes of it); a machine with no place to stand at is worked from beside it.
+    /// </summary>
     public class JobDriver_Sabotage : JobDriver
     {
         private Building_WorkTable Bench => job.targetA.Thing as Building_WorkTable;
 
         public override bool TryMakePreToilReservations(bool errorOnFailed) => pawn.Reserve(job.targetA, job, 1, -1, null, errorOnFailed);
 
-        public override string GetReport() => Bench != null ? "CC_HarmTwo_Report_Sabotage".Translate(Bench.LabelShort.Named("BENCH")).Resolve() : base.GetReport();
+        public override string GetReport()
+        {
+            var t = job.targetA.Thing;
+            return t != null ? "CC_HarmTwo_Report_Sabotage".Translate(t.LabelShort.Named("BENCH")).Resolve() : base.GetReport();
+        }
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
             this.FailOnDespawnedNullOrForbidden(TargetIndex.A);
             this.FailOn(() => pawn.Map == null || pawn.Map.dangerWatcher.DangerRating != StoryDanger.None);
-            yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.InteractionCell);
+            var target = job.targetA.Thing;
+            yield return Toils_Goto.GotoThing(TargetIndex.A, target != null && target.def.hasInteractionCell ? PathEndMode.InteractionCell : PathEndMode.Touch);
             var at = Toils_General.Wait(240, TargetIndex.A);
             at.WithProgressBarToilDelay(TargetIndex.A);
             yield return at;
             var done = ToilMaker.MakeToil("SabotageDone");
-            done.initAction = () => Sabotage.Done(pawn, Bench);
+            // A scheme of theirs at a machine is the schemes' to resolve; a rival's at a bench, the sabotage's.
+            done.initAction = () =>
+            {
+                if (!Schemes.Done(pawn, job.targetA.Thing)) Sabotage.Done(pawn, Bench);
+            };
             done.defaultCompleteMode = ToilCompleteMode.Instant;
             yield return done;
         }
