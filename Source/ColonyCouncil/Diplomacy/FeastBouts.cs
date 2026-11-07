@@ -68,6 +68,22 @@ namespace ColonyCouncil
             return false;
         }
 
+        /// <summary>
+        /// A camp's quarrel come to blows between one of the colony's and one of theirs (Harm/CampBrawls.cs): counted as a
+        /// brawl so neither people takes a blow for an attack, its end told by the camp (no goodwill or message of its own
+        /// here). The caller starts the fight; null when either won't fight.
+        /// </summary>
+        public static OutsiderBout QuietBrawl(Pawn c, Pawn x)
+        {
+            if (c == null || x == null || x.interactions == null || Peaceful(x) || Peaceful(c)) return null;
+            var bout = new OutsiderBout { a = c, b = x, kind = BoutKind.Brawl, start = Now, quiet = true };
+            bouts.Add(bout);
+            return bout;
+        }
+
+        /// <summary>A brawl that never began after all.</summary>
+        public static void ForgetBrawl(OutsiderBout bout) => bouts.Remove(bout);
+
         /// <summary>A wrestler new to the ring this bout was hurt by it (a fresh injury beyond the bruises a bout leaves): the hard blow fell on them.</summary>
         public static bool HardBlowOn(OutsiderBout bout, Pawn p) => bout != null && p != null && bout.hurt == p;
 

@@ -849,11 +849,13 @@ namespace ColonyCouncil
             var b = withStranger ? ctx.stranger : ctx.b;
             if (ctx.a == null || b == null || !b.RaceProps.Humanlike) return;
             if (ctx.a.WorkTagIsDisabled(WorkTags.Violent) && b.WorkTagIsDisabled(WorkTags.Violent)) return;
-            if (chance < 1f && !Rand.Chance(chance)) return;
+            // A frayed temper on either side makes a sharp word likelier to come to blows (Harm/FrayedTempers.cs).
+            bool frayed = false;
+            if (chance < 1f && !FrayedTempers.Roll(ctx.a, b, chance, out frayed)) return;
             // During what the answer set going for them, if it did (PlayOut/); else now, wherever they stand.
-            if (PlayOuts.HoldRisk(ctx.a, b, null, !withStranger)) return;
+            if (PlayOuts.HoldRisk(ctx.a, b, null, !withStranger, frayed)) return;
             if (!ctx.a.Spawned || !b.Spawned || ctx.a.Downed || b.Downed || ctx.a.Map != b.Map) return;
-            new HeldRisk { pawn = ctx.a, other = b, rivals = !withStranger }.Fire();
+            new HeldRisk { pawn = ctx.a, other = b, rivals = !withStranger, frayed = frayed }.Fire();
         }
     }
 

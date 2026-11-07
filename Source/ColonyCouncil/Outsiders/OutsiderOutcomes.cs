@@ -44,6 +44,10 @@ namespace ColonyCouncil
         public Pawn winner;
         public bool draw, off;
         public List<Pawn> watchers = new List<Pawn>();
+        /// <summary>A brawl whose end is told by whoever began it (a camp's quarrel, Harm/CampBrawls.cs): no goodwill or message here.</summary>
+        public bool quiet;
+        /// <summary>Called once the bout is over (a champion's contest, Harm/ChampionBouts.cs); not saved, as the bouts aren't.</summary>
+        public Action<OutsiderBout> after;
 
         public Pawn Other(Pawn p) => p == a ? b : a;
         public bool Has(Pawn p) => p != null && (p == a || p == b);
@@ -492,13 +496,19 @@ namespace ColonyCouncil
                 game = 0f;
             }
             float chance = OutsiderMath.FightChance(Temper(x), Temper(c), OfColonist(x, c), game);
-            if (!Peaceful(x) && !Peaceful(c) && x.interactions != null && Rand.Chance(chance))
+            // A frayed temper of the colonist's makes the words likelier to come to blows (Harm/FrayedTempers.cs).
+            bool frayed = false;
+            if (!Peaceful(x) && !Peaceful(c) && x.interactions != null && FrayedTempers.Roll(c, x, chance, out frayed))
             {
                 var bout = new OutsiderBout { a = c, b = x, kind = BoutKind.Brawl, start = Now };
                 bouts.Add(bout);
                 Say(x, "provokefight", c);
                 x.interactions.StartSocialFight(c);
-                if (x.MentalStateDef == MentalStateDefOf.SocialFighting) return;
+                if (x.MentalStateDef == MentalStateDefOf.SocialFighting)
+                {
+                    if (frayed) FrayedTempers.Began(c, x);
+                    return;
+                }
                 bouts.Remove(bout);
             }
             Say(x, "provokecalm", c);
@@ -1123,6 +1133,14 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("outsider bout over", e);
             }
+            try
+            {
+                bout.after?.Invoke(bout);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("outsider bout's after", e);
+            }
         }
 
         private static void SparOver(OutsiderBout bout)
@@ -1210,7 +1228,7 @@ namespace ColonyCouncil
                     {
                         b.over = true;
                         b.endedAt = now;
-                        BrawlOver(b);
+                        if (!b.quiet) BrawlOver(b);
                     }
                 }
                 else if (!b.over)

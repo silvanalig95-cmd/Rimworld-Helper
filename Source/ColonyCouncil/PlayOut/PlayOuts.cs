@@ -212,6 +212,8 @@ namespace ColonyCouncil
         public MentalStateDef state;
         /// <summary>The fight makes rivals of them (two of the colony).</summary>
         public bool rivals;
+        /// <summary>Only a frayed temper made it a fight (Harm/FrayedTempers.cs): under the harm cap, and told with the strain behind it.</summary>
+        public bool frayed;
 
         public void ExposeData()
         {
@@ -219,6 +221,7 @@ namespace ColonyCouncil
             Scribe_References.Look(ref other, "other");
             Scribe_Defs.Look(ref state, "state");
             Scribe_Values.Look(ref rivals, "rivals");
+            Scribe_Values.Look(ref frayed, "frayed");
         }
 
         /// <summary>Now, if they're both still here and up to it.</summary>
@@ -234,9 +237,12 @@ namespace ColonyCouncil
             var b = other;
             if (b == null || b.Dead || !b.Spawned || b.Downed || b.InMentalState || a.Map != b.Map) return;
             if (a.WorkTagIsDisabled(WorkTags.Violent) && b.WorkTagIsDisabled(WorkTags.Violent)) return;
+            // Only the strain made it a fight: the harm cap for both still holds when it comes.
+            if (frayed && (!Harm.May(a, HurtClass.Fight) || !Harm.May(b, HurtClass.Fight))) return;
             // together: the game's own social fight, which brings the two to blows where they are.
             if (a.WorkTagIsDisabled(WorkTags.Violent)) b.interactions?.StartSocialFight(a);
             else a.interactions?.StartSocialFight(b);
+            if (frayed && (a.MentalStateDef == MentalStateDefOf.SocialFighting || b.MentalStateDef == MentalStateDefOf.SocialFighting)) FrayedTempers.Began(a, b);
             if (rivals) CouncilGameComponent.Instance?.social.Bump(a, b, TieKind.Rivals, 10f, "CC_TieNote_Fight".Translate());
         }
     }
@@ -698,13 +704,13 @@ namespace ColonyCouncil
         /// mental state): kept with the plan and set off partway into it, so the punch comes at the supper the words put
         /// it at, not where they stood when the answer was given. False: now.
         /// </summary>
-        public static bool HoldRisk(Pawn p, Pawn other, MentalStateDef state, bool rivals)
+        public static bool HoldRisk(Pawn p, Pawn other, MentalStateDef state, bool rivals, bool frayed = false)
         {
             if (scopes.Count == 0 || p == null) return false;
             var scope = scopes[scopes.Count - 1];
             var play = scope.plays.FirstOrDefault(x => x.state != PlayState.Done && (x.TakesPart(p) || x.named.Contains(p)));
             if (play == null) return false;
-            play.risks.Add(new HeldRisk { pawn = p, other = other, state = state, rivals = rivals });
+            play.risks.Add(new HeldRisk { pawn = p, other = other, state = state, rivals = rivals, frayed = frayed });
             return true;
         }
 
