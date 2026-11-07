@@ -1,0 +1,1273 @@
+defName	mod	active	defType	label	category
+Stagz_AbilityInkSpray	arquebus.stagzmerfolk	yes	AbilityDef	ink spray	
+Stagz_CallRain	arquebus.stagzmerfolk	yes	AbilityDef	call rain	
+Stagz_DeepDive	arquebus.stagzmerfolk	yes	AbilityDef	deep dive	
+Stagz_SirenCall	arquebus.stagzmerfolk	yes	AbilityDef	siren song	
+Stagz_SirenCallCharm	arquebus.stagzmerfolk	yes	AbilityDef	charm person	
+BotchJob_BestowCurse	botchjob.profaned	no	AbilityDef	bestow curse	
+DV_MuckSpit	det.boglegs	yes	AbilityDef	muck spit	
+DV_Stonecall	det.stoneborn	yes	AbilityDef	stonecall	
+DV_ParalyzingBite	det.venators	yes	AbilityDef	toxinbite	
+FG_Brandish	homebrew.fairycore	yes	AbilityDef	brandish	
+FG_FairyFlutter	homebrew.fairycore	yes	AbilityDef	flutter dash	
+FG_FairysGate	homebrew.fairycore	yes	AbilityDef	Fairy's Gate	
+FG_Indomitable	homebrew.fairycore	yes	AbilityDef	indomitable	
+FG_IntrepidStrike	homebrew.fairycore	yes	AbilityDef	avalanche	
+AgonyPulse	ludeon.rimworld.anomaly	yes	AbilityDef	agony pulse	
+ConsumeLeap_Devourer	ludeon.rimworld.anomaly	yes	AbilityDef	consume leap	
+CorrosiveSpray	ludeon.rimworld.anomaly	yes	AbilityDef	corrosive spray	
+EntitySkip	ludeon.rimworld.anomaly	yes	AbilityDef	entity skip	Skip
+FleshmelterBolt	ludeon.rimworld.anomaly	yes	AbilityDef	fleshmelter bolt	
+GhoulFrenzy	ludeon.rimworld.anomaly	yes	AbilityDef	ghoul frenzy	
+Heatspikes	ludeon.rimworld.anomaly	yes	AbilityDef	heatspikes	
+HellcatBurner	ludeon.rimworld.anomaly	yes	AbilityDef	bioferrite burner	
+IncineratorBurner	ludeon.rimworld.anomaly	yes	AbilityDef	incinerator burner	
+MetalbloodInjection	ludeon.rimworld.anomaly	yes	AbilityDef	metalblood injection	
+PsychicSlaughter	ludeon.rimworld.anomaly	yes	AbilityDef	psychic slaughter	
+ReleaseDeadlifeDust	ludeon.rimworld.anomaly	yes	AbilityDef	release deadlife dust	
+RevenantInvisibility	ludeon.rimworld.anomaly	yes	AbilityDef	revenant invisibility	
+ShapeFlesh	ludeon.rimworld.anomaly	yes	AbilityDef	shape flesh	
+SpikeLaunch_Fingerspike	ludeon.rimworld.anomaly	yes	AbilityDef	spike launch	
+SpikeLaunch_Toughspike	ludeon.rimworld.anomaly	yes	AbilityDef	spike launch	
+SpineLaunch_Gorehulk	ludeon.rimworld.anomaly	yes	AbilityDef	spine launch	
+TransmuteSteel	ludeon.rimworld.anomaly	yes	AbilityDef	transmute steel	
+UnnaturalCorpseSkip	ludeon.rimworld.anomaly	yes	AbilityDef	entity skip	Skip
+UnnaturalHealing	ludeon.rimworld.anomaly	yes	AbilityDef	unnatural healing	
+VoidTerror	ludeon.rimworld.anomaly	yes	AbilityDef	void terror	
+AcidSpray	ludeon.rimworld.biotech	yes	AbilityDef	acid spray	Sanguophage
+AnimalWarcall	ludeon.rimworld.biotech	yes	AbilityDef	animal warcall	
+Bloodfeed	ludeon.rimworld.biotech	yes	AbilityDef	bloodfeed	Sanguophage
+Coagulate	ludeon.rimworld.biotech	yes	AbilityDef	coagulate	Sanguophage
+FireBurst	ludeon.rimworld.biotech	yes	AbilityDef	fire burst	
+FireSpew	ludeon.rimworld.biotech	yes	AbilityDef	fire spew	
+FirefoampopMech	ludeon.rimworld.biotech	yes	AbilityDef	firefoam pop	
+FoamSpray	ludeon.rimworld.biotech	yes	AbilityDef	foam spray	
+Longjump	ludeon.rimworld.biotech	yes	AbilityDef	longjump	
+LongjumpMech	ludeon.rimworld.biotech	yes	AbilityDef	mech longjump	
+LongjumpMechLauncher	ludeon.rimworld.biotech	yes	AbilityDef	jump launcher	
+PiercingSpine	ludeon.rimworld.biotech	yes	AbilityDef	piercing spine	Sanguophage
+ReimplantXenogerm	ludeon.rimworld.biotech	yes	AbilityDef	implant genes	Sanguophage
+RemoteRepair	ludeon.rimworld.biotech	yes	AbilityDef	remote repair	
+RemoteShield	ludeon.rimworld.biotech	yes	AbilityDef	remote shield	
+Resurrect	ludeon.rimworld.biotech	yes	AbilityDef	resurrect	Sanguophage
+ResurrectionMech	ludeon.rimworld.biotech	yes	AbilityDef	resurrect mech	
+Sanguophage	ludeon.rimworld.biotech	yes	AbilityCategoryDef		
+SmokepopMech	ludeon.rimworld.biotech	yes	AbilityDef	mech smokepop	
+AnimalCalm	ludeon.rimworld.ideology	yes	AbilityDef	Animal calm	
+BerserkTrance	ludeon.rimworld.ideology	yes	AbilityDef	berserk trance	
+CombatCommand	ludeon.rimworld.ideology	yes	AbilityDef	combat command	
+ConversionRitual	ludeon.rimworld.ideology	yes	AbilityDef	conversion ritual	
+Convert	ludeon.rimworld.ideology	yes	AbilityDef	convert	
+Counsel	ludeon.rimworld.ideology	yes	AbilityDef	counsel	
+FarmingCommand	ludeon.rimworld.ideology	yes	AbilityDef	farming command	
+ImmunityDrive	ludeon.rimworld.ideology	yes	AbilityDef	Immunity drive	
+Leader	ludeon.rimworld.ideology	yes	AbilityGroupDef		
+LeaderSpeech	ludeon.rimworld.ideology	yes	AbilityDef	leader speech	
+MarksmanCommand	ludeon.rimworld.ideology	yes	AbilityDef	marksman command	
+MiningCommand	ludeon.rimworld.ideology	yes	AbilityDef	mining command	
+Moralist	ludeon.rimworld.ideology	yes	AbilityGroupDef		
+MultiRole	ludeon.rimworld.ideology	yes	AbilityGroupDef		
+PreachHealth	ludeon.rimworld.ideology	yes	AbilityDef	preach health	
+ProductionCommand	ludeon.rimworld.ideology	yes	AbilityDef	production command	
+Reassure	ludeon.rimworld.ideology	yes	AbilityDef	reassure	
+ResearchCommand	ludeon.rimworld.ideology	yes	AbilityDef	research command	
+Trial	ludeon.rimworld.ideology	yes	AbilityDef	trial	
+WorkDrive	ludeon.rimworld.ideology	yes	AbilityDef	work drive	
+CallDropPods	ludeon.rimworld.odyssey	yes	AbilityDef	call drop pods	
+CallMechanoids	ludeon.rimworld.odyssey	yes	AbilityDef	call mechanoids	
+DeactivateMechanoid	ludeon.rimworld.odyssey	yes	AbilityDef	deactivate mechanoid	
+EMPPulse	ludeon.rimworld.odyssey	yes	AbilityDef	fire EMP	
+EggSpew	ludeon.rimworld.odyssey	yes	AbilityDef	egg spew	
+LaunchEMPShell	ludeon.rimworld.odyssey	yes	AbilityDef	launch EMP shell	
+LaunchFragGrenade	ludeon.rimworld.odyssey	yes	AbilityDef	launch frag grenade	
+LaunchIncendiaryShell	ludeon.rimworld.odyssey	yes	AbilityDef	launch incendiary shell	
+LaunchSmokeShell	ludeon.rimworld.odyssey	yes	AbilityDef	launch smoke shell	
+SludgeSpew	ludeon.rimworld.odyssey	yes	AbilityDef	sludge spew	
+TerrorRoar	ludeon.rimworld.odyssey	yes	AbilityDef	terror roar	
+ThrumboRoar	ludeon.rimworld.odyssey	yes	AbilityDef	thrumbo roar	
+WarTrumpet	ludeon.rimworld.odyssey	yes	AbilityDef	war trumpet	
+Beckon	ludeon.rimworld.royalty	yes	AbilityDef	beckon	Psychic
+Berserk	ludeon.rimworld.royalty	yes	AbilityDef	berserk	Psychic
+BerserkPulse	ludeon.rimworld.royalty	yes	AbilityDef	berserk pulse	Psychic
+BlindingPulse	ludeon.rimworld.royalty	yes	AbilityDef	blinding pulse	Psychic
+BulletShield	ludeon.rimworld.royalty	yes	AbilityDef	skipshield	Skip
+Burden	ludeon.rimworld.royalty	yes	AbilityDef	burden	Psychic
+ChaosSkip	ludeon.rimworld.royalty	yes	AbilityDef	chaos skip	Skip
+Chunkskip	ludeon.rimworld.royalty	yes	AbilityDef	chunk skip	Skip
+EntropyDump	ludeon.rimworld.royalty	yes	AbilityDef	neural heat dump	Psychic
+Farskip	ludeon.rimworld.royalty	yes	AbilityDef	farskip	Skip
+Flashstorm	ludeon.rimworld.royalty	yes	AbilityDef	flashstorm	Skip
+Focus	ludeon.rimworld.royalty	yes	AbilityDef	focus	Psychic
+Invisibility	ludeon.rimworld.royalty	yes	AbilityDef	invisibility	Psychic
+ManhunterPulse	ludeon.rimworld.royalty	yes	AbilityDef	manhunter pulse	Psychic
+MassChaosSkip	ludeon.rimworld.royalty	yes	AbilityDef	mass chaos skip	Skip
+Neuroquake	ludeon.rimworld.royalty	yes	AbilityDef	neuroquake	Psychic
+Painblock	ludeon.rimworld.royalty	yes	AbilityDef	painblock	Psychic
+Psychic	ludeon.rimworld.royalty	yes	AbilityCategoryDef		
+Skip	ludeon.rimworld.royalty	yes	AbilityCategoryDef		
+Smokepop	ludeon.rimworld.royalty	yes	AbilityDef	smokepop	Skip
+SolarPinhole	ludeon.rimworld.royalty	yes	AbilityDef	solar pinhole	Skip
+Speech	ludeon.rimworld.royalty	yes	AbilityDef	throne speech	
+Stun	ludeon.rimworld.royalty	yes	AbilityDef	stun	Psychic
+VertigoPulse	ludeon.rimworld.royalty	yes	AbilityDef	vertigo pulse	Psychic
+Wallraise	ludeon.rimworld.royalty	yes	AbilityDef	wallraise	Skip
+Waterskip	ludeon.rimworld.royalty	yes	AbilityDef	waterskip	Skip
+WordOf	ludeon.rimworld.royalty	yes	AbilityCategoryDef		
+WordOfInspiration	ludeon.rimworld.royalty	yes	AbilityDef	word of inspiration	WordOf
+WordOfJoy	ludeon.rimworld.royalty	yes	AbilityDef	word of joy	WordOf
+WordOfLove	ludeon.rimworld.royalty	yes	AbilityDef	word of love	WordOf
+WordOfSerenity	ludeon.rimworld.royalty	yes	AbilityDef	word of serenity	WordOf
+WordOfTrust	ludeon.rimworld.royalty	yes	AbilityDef	word of trust	WordOf
+Outland_Spell_SoulTrap	neronix17.outland.core	no	AbilityDef	soul trap	VFECore.Abilities.Ability_Blank
+Ascension	neronix17.outland.genetics	no	AbilityCategoryDef		
+Outland_AscendOther	neronix17.outland.genetics	no	AbilityDef	ascend other	Ascension
+Outland_AscendSelf	neronix17.outland.genetics	no	AbilityDef	ascend self	Ascension
+Outland_FreezingSpray	neronix17.outland.genetics	no	AbilityDef	freezing spray	
+Outland_Leap	neronix17.outland.genetics	no	AbilityDef	leap	
+Outland_LightningSpray	neronix17.outland.genetics	no	AbilityDef	lightning spray	
+Outland_ParasiticImplantation	neronix17.outland.genetics	no	AbilityDef	parasitic implantation	
+Outland_ReimplantXenogerm	neronix17.outland.genetics	no	AbilityDef	implant genes	
+Outland_Resurrect	neronix17.outland.genetics	no	AbilityDef	resurrect	Sanguophage
+Outland_ShortFlight	neronix17.outland.genetics	no	AbilityDef	short flight	
+Outland_SymbioticImplantation	neronix17.outland.genetics	no	AbilityDef	symbiotic implantation	
+Outland_ToxicSpray	neronix17.outland.genetics	no	AbilityDef	toxic spray	
+Outland_Spell_FleetingMovement	neronix17.outland.motzcoalition	no	AbilityDef	fleeting movement	OutlandMotz.Ability_FleetingMovement
+Outland_Spell_AscendGoblinoid	neronix17.outland.redburnpact	no	AbilityDef	ascend goblinoid	RedburnPact.Ability_AscendPawn
+VEF_ControlledBlinking	oskarpotocki.vanillafactionsexpanded.core	yes	AbilityDef	controlled blinking	
+VEF_ControlledDetonation	oskarpotocki.vanillafactionsexpanded.core	yes	AbilityDef	controlled detonation	
+VEF_ControlledInvisibility	oskarpotocki.vanillafactionsexpanded.core	yes	AbilityDef	controlled invisibility	
+VFEE_BestowAcolyte	oskarpotocki.vfe.empire	yes	AbilityDef	bestow: Acolyte	
+VFEE_BestowBaron	oskarpotocki.vfe.empire	yes	AbilityDef	bestow: Baron	
+VFEE_BestowCount	oskarpotocki.vfe.empire	yes	AbilityDef	bestow: Count	
+VFEE_BestowFreeholder	oskarpotocki.vfe.empire	yes	AbilityDef	bestow: Freeholder	
+VFEE_BestowKnight	oskarpotocki.vfe.empire	yes	AbilityDef	bestow: Knight	
+VFEE_BestowPraetor	oskarpotocki.vfe.empire	yes	AbilityDef	bestow: Praetor	
+VFEE_BestowYeoman	oskarpotocki.vfe.empire	yes	AbilityDef	bestow: Yeoman	
+VFEE_RoyalAddress	oskarpotocki.vfe.empire	yes	AbilityDef	royal address	
+VFEI2_ChemfuelSpew	oskarpotocki.vfe.insectoid2	yes	AbilityDef	fuel spew	
+VFEI2_ChemfuelSpit	oskarpotocki.vfe.insectoid2	yes	AbilityDef	chemfuel spit	
+VFEI2_CreateLargeBurrow	oskarpotocki.vfe.insectoid2	yes	AbilityDef	create large burrow	
+VFEI2_CreateMediumBurrow	oskarpotocki.vfe.insectoid2	yes	AbilityDef	create burrow	
+VFEI2_CreateSmallBurrow	oskarpotocki.vfe.insectoid2	yes	AbilityDef	create small burrow	
+VFEI2_FlameSpew	oskarpotocki.vfe.insectoid2	yes	AbilityDef	flame spew	
+VFEI2_InsectAcidSpew	oskarpotocki.vfe.insectoid2	yes	AbilityDef	insect acid spew	
+VFEI2_InsectAcidSpit	oskarpotocki.vfe.insectoid2	yes	AbilityDef	insect acid spit	
+VFEI2_InsectGlide_Far	oskarpotocki.vfe.insectoid2	yes	AbilityDef	insect farglide	
+VFEI2_InsectGlide_Medium	oskarpotocki.vfe.insectoid2	yes	AbilityDef	insect glide	
+VFEI2_InsectGlide_Short	oskarpotocki.vfe.insectoid2	yes	AbilityDef	insect shortglide	
+VFEI2_LargeAcidSpew	oskarpotocki.vfe.insectoid2	yes	AbilityDef	large acid spew	
+VFEI2_WideTunnels	oskarpotocki.vfe.insectoid2	yes	AbilityDef	breacher charge	
+VFEP_BlastOff	oskarpotocki.vfe.pirates	yes	AbilityDef	Blast off	VFEPirates.Ability_BlastOff
+VFEP_Captain	oskarpotocki.vfe.pirates	yes	AbilityGroupDef		
+VFEP_FiringFrenzy	oskarpotocki.vfe.pirates	yes	AbilityDef	firing frenzy	
+VFEP_GrapplingHook	oskarpotocki.vfe.pirates	yes	AbilityDef	grappling hook	VFEPirates.Ability_GrapplingHook
+VFEP_PowerJump	oskarpotocki.vfe.pirates	yes	AbilityDef	Power jump	VFEPirates.Ability_PowerJump
+VFEP_SiegeMode	oskarpotocki.vfe.pirates	yes	AbilityDef	Siege Mode	VFEPirates.Ability_SiegeMode
+VWEB_WarbolterLongBurner	oskarpotocki.vfe.pirates	yes	AbilityDef	warbolter long burner	
+VFET_TribalGathering	oskarpotocki.vfe.tribals	yes	AbilityGroupDef		
+LightningSurge	rimsenal.askbarn	yes	AbilityDef	lightning surge	
+ThunderingRoar	rimsenal.askbarn	yes	AbilityDef	thundering roar	
+MicroMissileLauncher	rimsenal.core	yes	AbilityDef	launch micro missile	
+FragcatLauncher	rimsenal.evp	yes	AbilityDef	launch frag grenade	
+ThumpercatLauncher	rimsenal.evp	yes	AbilityDef	launch concussion blast	
+ThundercatLauncher	rimsenal.evp	yes	AbilityDef	discharge EMP blast	
+LaunchGrenadeMech	rimsenal.spacer	yes	AbilityDef	launch frag grenade	
+LaunchSmokeMech	rimsenal.spacer	yes	AbilityDef	launch smoke discharger	
+SelfDestructBombito	rimsenal.spacer	yes	AbilityDef	self destruction	
+AAVPE_AcidSpit	sarg.alphaanimals	yes	AbilityDef	acid spit	VEF.Abilities.Ability_ShootProjectile
+AAVPE_Charge	sarg.alphaanimals	yes	AbilityDef	leaping charge	AlphaBehavioursAndEvents.Ability_Melee
+AAVPE_ChargeAndSkewer	sarg.alphaanimals	yes	AbilityDef	charge and skewer	AlphaBehavioursAndEvents.Ability_Melee
+AAVPE_ChemfuelNodules	sarg.alphaanimals	yes	AbilityDef	chemfuel nodules	VEF.Abilities.Ability_Blank
+AAVPE_ClawFrenzy	sarg.alphaanimals	yes	AbilityDef	claw frenzy	AlphaBehavioursAndEvents.Ability_Melee
+AAVPE_DisablingStrike	sarg.alphaanimals	yes	AbilityDef	disabling strike	AlphaBehavioursAndEvents.Ability_Melee
+AAVPE_Electrify	sarg.alphaanimals	yes	AbilityDef	electrify	VEF.Abilities.Ability_Blank
+AAVPE_EmpBlow	sarg.alphaanimals	yes	AbilityDef	EMP blow	AlphaBehavioursAndEvents.Ability_Melee
+AAVPE_EyeEruption	sarg.alphaanimals	yes	AbilityDef	ocular eruption	AlphaBehavioursAndEvents.Ability_OcularEruption
+AAVPE_FatalBlow	sarg.alphaanimals	yes	AbilityDef	fatal blow	AlphaBehavioursAndEvents.Ability_Melee
+AAVPE_FungalSkin	sarg.alphaanimals	yes	AbilityDef	fungal skin	VEF.Abilities.Ability_Blank
+AAVPE_GreaterOcularSprout	sarg.alphaanimals	yes	AbilityDef	greater ocular sprout	AlphaBehavioursAndEvents.Ability_SpawnOnRadius
+AAVPE_Hover	sarg.alphaanimals	yes	AbilityDef	hover	VEF.Abilities.Ability_Blank
+AAVPE_KO	sarg.alphaanimals	yes	AbilityDef	KO	AlphaBehavioursAndEvents.Ability_Melee
+AAVPE_Laser	sarg.alphaanimals	yes	AbilityDef	concentrated light	VEF.Abilities.Ability_ShootProjectile
+AAVPE_LegSkip	sarg.alphaanimals	yes	AbilityDef	leg skip	AlphaBehavioursAndEvents.Ability_Melee
+AAVPE_LightSustenance	sarg.alphaanimals	yes	AbilityDef	light sustenance	VEF.Abilities.Ability_Blank
+AAVPE_OcularSprout	sarg.alphaanimals	yes	AbilityDef	ocular sprout	AlphaBehavioursAndEvents.Ability_SpawnOnRadius
+AAVPE_Regeneration	sarg.alphaanimals	yes	AbilityDef	regeneration	VEF.Abilities.Ability_Blank
+AAVPE_Skewer	sarg.alphaanimals	yes	AbilityDef	skewer	AlphaBehavioursAndEvents.Ability_Melee
+AAVPE_Slice	sarg.alphaanimals	yes	AbilityDef	savage psychic slice	AlphaBehavioursAndEvents.Ability_Melee
+AAVPE_SpinCut	sarg.alphaanimals	yes	AbilityDef	spin cut	AlphaBehavioursAndEvents.Ability_Melee
+AAVPE_StrengthenInsect	sarg.alphaanimals	yes	AbilityDef	strengthen insect	AlphaBehavioursAndEvents.Ability_OnlyBlackHive
+AAVPE_StrikeEyes	sarg.alphaanimals	yes	AbilityDef	destroy eyes	AlphaBehavioursAndEvents.Ability_DestroyEyes
+AAVPE_SummonBlackQueen	sarg.alphaanimals	yes	AbilityDef	summon black queen	AlphaBehavioursAndEvents.Ability_Summon
+AAVPE_SummonBlackScarab	sarg.alphaanimals	yes	AbilityDef	summon black scarab	AlphaBehavioursAndEvents.Ability_Summon
+AAVPE_SummonBlackSpelopede	sarg.alphaanimals	yes	AbilityDef	summon black spelopede	AlphaBehavioursAndEvents.Ability_Summon
+AAVPE_SummonBlackSpider	sarg.alphaanimals	yes	AbilityDef	summon black spider	AlphaBehavioursAndEvents.Ability_Summon
+AAVPE_SummonEyeling	sarg.alphaanimals	yes	AbilityDef	summon eyeling	AlphaBehavioursAndEvents.Ability_Summon
+AAVPE_SummonEyelingHorde	sarg.alphaanimals	yes	AbilityDef	summon eyeling horde	AlphaBehavioursAndEvents.Ability_Summon
+AAVPE_SummonHive	sarg.alphaanimals	yes	AbilityDef	summon entrance to the hive	AlphaBehavioursAndEvents.Ability_Summon_Hive
+AAVPE_SummonMammothWorm	sarg.alphaanimals	yes	AbilityDef	summon mammoth worm	AlphaBehavioursAndEvents.Ability_Summon
+AAVPE_SummonOcularOriginator	sarg.alphaanimals	yes	AbilityDef	summon ocular originator	AlphaBehavioursAndEvents.Ability_Summon
+AAVPE_VenomSpit	sarg.alphaanimals	yes	AbilityDef	venom spit	VEF.Abilities.Ability_ShootProjectile
+AAVPE_WebSlinging	sarg.alphaanimals	yes	AbilityDef	web slinging	AlphaBehavioursAndEvents.Ability_ShootMultipleProjectile
+AA_AcidBolt	sarg.alphaanimals	yes	AbilityDef	acidic spit	
+AA_AcidicVomit	sarg.alphaanimals	yes	AbilityDef	acidic vomit	
+AA_AcidicWeb	sarg.alphaanimals	yes	AbilityDef	acidic 'lisk web	
+AA_BarbedQuills	sarg.alphaanimals	yes	AbilityDef	barbed quills	
+AA_BlackHiveBolt	sarg.alphaanimals	yes	AbilityDef	vile spit	
+AA_Bullet_Rock	sarg.alphaanimals	yes	AbilityDef	psy-charged rock	
+AA_Bullet_VenomBarb	sarg.alphaanimals	yes	AbilityDef	venomous barb	
+AA_Bullet_VenomBarb_Minor	sarg.alphaanimals	yes	AbilityDef	venomous barb	
+AA_DarkBolt	sarg.alphaanimals	yes	AbilityDef	dark bolt	
+AA_ElectricBolt	sarg.alphaanimals	yes	AbilityDef	electric bolt	
+AA_FireSpit	sarg.alphaanimals	yes	AbilityDef	fire spit	
+AA_FireWeb	sarg.alphaanimals	yes	AbilityDef	fire 'lisk web	
+AA_FlameBreathAnimated	sarg.alphaanimals	yes	AbilityDef	flame breath	
+AA_FrostBolt	sarg.alphaanimals	yes	AbilityDef	frost bolt	
+AA_FrostWeb	sarg.alphaanimals	yes	AbilityDef	frost 'lisk web	
+AA_GazeAttack	sarg.alphaanimals	yes	AbilityDef	gaze attack	
+AA_GreaterVileSpit	sarg.alphaanimals	yes	AbilityDef	greater vile spit	
+AA_IncendiaryMote	sarg.alphaanimals	yes	AbilityDef	thermal detonating spit	
+AA_LaserBullet	sarg.alphaanimals	yes	AbilityDef	laser burst	
+AA_Plasma	sarg.alphaanimals	yes	AbilityDef	quad tesla cannon	
+AA_PoisonBolt	sarg.alphaanimals	yes	AbilityDef	venomous spit	
+AA_Quill	sarg.alphaanimals	yes	AbilityDef	barbed quills	
+AA_RedPoisonBolt	sarg.alphaanimals	yes	AbilityDef	venomous barb	
+AA_Web	sarg.alphaanimals	yes	AbilityDef	'lisk web	
+AA_WindBolt	sarg.alphaanimals	yes	AbilityDef	wind blast	
+AG_AcidicDetonation	sarg.alphagenes	yes	AbilityDef	acidic detonation	
+AG_AdaptiveBiology	sarg.alphagenes	yes	AbilityDef	adaptive biology	
+AG_BandwidthLoop	sarg.alphagenes	yes	AbilityDef	bandwidth loop	
+AG_BansheeScream	sarg.alphagenes	yes	AbilityDef	banshee scream	
+AG_DestroyPocketPlane	sarg.alphagenes	yes	AbilityDef	destroy pocket plane	
+AG_Detonation	sarg.alphagenes	yes	AbilityDef	detonation	
+AG_DevourBrains	sarg.alphagenes	yes	AbilityDef	devour brains	
+AG_EyeProjectile	sarg.alphagenes	yes	AbilityDef	eye	
+AG_FleshBulb	sarg.alphagenes	yes	AbilityDef	flesh bulb	
+AG_FleshSack	sarg.alphagenes	yes	AbilityDef	absorb fleshbeast	
+AG_FreezingBreath	sarg.alphagenes	yes	AbilityDef	freezing breath	
+AG_GeneSyphon	sarg.alphagenes	yes	AbilityDef	gene syphon	
+AG_GreaterAcidicVomit	sarg.alphagenes	yes	AbilityDef	greater acidic vomit	
+AG_GreaterFireSpew	sarg.alphagenes	yes	AbilityDef	greater fire spew	
+AG_GreyPocketPlane	sarg.alphagenes	yes	AbilityDef	grey pocket plane	
+AG_HealingTouch	sarg.alphagenes	yes	AbilityDef	healing touch	
+AG_InsanityBlast	sarg.alphagenes	yes	AbilityDef	insanity blast	
+AG_InsectRally	sarg.alphagenes	yes	AbilityDef	pack tactics	
+AG_InsectStinger	sarg.alphagenes	yes	AbilityDef	sting xenogenes	
+AG_InsectStingerEndogenes	sarg.alphagenes	yes	AbilityDef	sting endogenes	
+AG_Invisibility	sarg.alphagenes	yes	AbilityDef	psychic invisibility	
+AG_MajorSummon	sarg.alphagenes	yes	AbilityDef	major summon	
+AG_MechConversion	sarg.alphagenes	yes	AbilityDef	mech IFF scrambler	
+AG_MineralOverdriveA	sarg.alphagenes	yes	AbilityDef	mineral overdrive	AlphaGenes.Ability_MineralOverdrive
+AG_MineralShock	sarg.alphagenes	yes	AbilityDef	mineral shock	
+AG_MinorSummon	sarg.alphagenes	yes	AbilityDef	minor summon	
+AG_NereidPocketPlane	sarg.alphagenes	yes	AbilityDef	nereid pocket plane	
+AG_NightlingAffinity	sarg.alphagenes	yes	AbilityDef	nightling affinity	
+AG_NoxiousBreath	sarg.alphagenes	yes	AbilityDef	noxious breath	
+AG_OcularConversionAlphaAnimals	sarg.alphagenes	yes	AbilityDef	ocular conversion	
+AG_OcularConversionAlphaBiomes	sarg.alphagenes	yes	AbilityDef	ocular conversion	
+AG_ParasiticStinger	sarg.alphagenes	yes	AbilityDef	sting parasitic eggs	
+AG_ParasiticStingerEndogenes	sarg.alphagenes	yes	AbilityDef	sting endogenic parasitic eggs	
+AG_PetrifyingGaze	sarg.alphagenes	yes	AbilityDef	petrifying gaze	
+AG_PsychicAbsorption	sarg.alphagenes	yes	AbilityDef	psychic absorption	
+AG_ReactiveArmourA	sarg.alphagenes	yes	AbilityDef	reactive armour	AlphaGenes.Ability_ReactiveArmour
+AG_SelfSkip	sarg.alphagenes	yes	AbilityDef	self skip	
+AG_SpeedBurst	sarg.alphagenes	yes	AbilityDef	speed burst	
+AG_SterilizingBreath	sarg.alphagenes	yes	AbilityDef	sterilizing breath	
+AG_Summon	sarg.alphagenes	yes	AbilityDef	summon	
+AG_SummonCentipede	sarg.alphagenes	yes	AbilityDef	summon centipede	
+AG_SummonMilitor	sarg.alphagenes	yes	AbilityDef	summon militor	
+AG_SummonTempBandwidth	sarg.alphagenes	yes	AbilityDef	summon band node	
+AG_SummonTesseron	sarg.alphagenes	yes	AbilityDef	summon tesseron	
+AG_SuperAdaptiveBiology	sarg.alphagenes	yes	AbilityDef	superadaptive biology	
+AG_TailGrapple	sarg.alphagenes	yes	AbilityDef	tail grapple	
+AG_TeleportItemsPocketPlane	sarg.alphagenes	yes	AbilityDef	transfer to pocket plane	
+AG_TentacleGrapple	sarg.alphagenes	yes	AbilityDef	tentacle grapple	
+AG_TeratogenicBurst	sarg.alphagenes	yes	AbilityDef	teratogenic touch	
+AG_TeratogenicHealing	sarg.alphagenes	yes	AbilityDef	teratogenic healing	
+AG_TeratogenicManipulation	sarg.alphagenes	yes	AbilityDef	teratogenic coordination	
+AG_TeratogenicStamina	sarg.alphagenes	yes	AbilityDef	teratogenic stamina	
+AG_TeratogenicSwiftness	sarg.alphagenes	yes	AbilityDef	teratogenic swiftness	
+AG_UnstableMind	sarg.alphagenes	yes	AbilityDef	unstable mind	
+AG_UnstableMutation	sarg.alphagenes	yes	AbilityDef	unstable mutation	
+AG_UnstableRegeneration	sarg.alphagenes	yes	AbilityDef	unstable regeneration	
+AG_Web	sarg.alphagenes	yes	AbilityDef	web	
+AG_WingPoweredJump	sarg.alphagenes	yes	AbilityDef	wing-powered jump	
+AG_Zap	sarg.alphagenes	yes	AbilityDef	electric discharge	
+VRE_StrikeEyes	sarg.alphagenes	yes	AbilityDef	strike eyes	
+VRE_SummonOcularSlinger	sarg.alphagenes	yes	AbilityDef	summon ocular slinger	
+AI_AcidBolt	sarg.alphaimplants	yes	AbilityDef	acidic spit	
+AI_AcidicBreath	sarg.alphaimplants	yes	AbilityDef	acidic breath	
+AI_AcidicVomit	sarg.alphaimplants	yes	AbilityDef	acidic vomit	
+AI_AnimalAcidSpray	sarg.alphaimplants	yes	AbilityDef	acid spray	
+AI_AnimalFireSpew	sarg.alphaimplants	yes	AbilityDef	fire spew	
+AI_AnimalFoamSpray	sarg.alphaimplants	yes	AbilityDef	foam spray	
+AI_AnimalJump	sarg.alphaimplants	yes	AbilityDef	pouncing jump	
+AI_AnimalPiercingSpine	sarg.alphaimplants	yes	AbilityDef	piercing spine	
+AI_AnimalSkip	sarg.alphaimplants	yes	AbilityDef	skip	
+AI_AnimalUpsyDaisyVampireyHealyPower	sarg.alphaimplants	yes	AbilityDef	Upsy Daisy vampirey healy power	
+AI_ElectricBolt	sarg.alphaimplants	yes	AbilityDef	electric bolt	
+AI_FireBreath	sarg.alphaimplants	yes	AbilityDef	flame breath	
+AI_LaserBullet	sarg.alphaimplants	yes	AbilityDef	laser burst	
+AI_PetrifyingGaze	sarg.alphaimplants	yes	AbilityDef	petrifying gaze	
+AI_Plasma	sarg.alphaimplants	yes	AbilityDef	quad tesla cannon	
+AI_PoisonBolt	sarg.alphaimplants	yes	AbilityDef	venomous spit	
+AI_Quill	sarg.alphaimplants	yes	AbilityDef	barbed quills	
+AI_Stealthskin	sarg.alphaimplants	yes	AbilityDef	stealthskin	
+AI_ToxicBreath	sarg.alphaimplants	yes	AbilityDef	toxic breath	
+AI_TrispikeLaunch	sarg.alphaimplants	yes	AbilityDef	spike launch	
+AI_Web	sarg.alphaimplants	yes	AbilityDef	web	
+AI_WispFire	sarg.alphaimplants	yes	AbilityDef	wisp fire	
+AMVPE_EMPBlast	sarg.alphamechs	yes	AbilityDef	emp blast	VFECore.Abilities.Ability_ShootProjectile
+AMVPE_MechSkip	sarg.alphamechs	yes	AbilityDef	mech skip	VanillaPsycastsExpanded.Skipmaster.Ability_Teleport
+AM_Detonate	sarg.alphamechs	yes	AbilityDef	detonate	
+AM_LongjumpMech	sarg.alphamechs	yes	AbilityDef	enhanced mech longjump	
+AM_MechConversion	sarg.alphamechs	yes	AbilityDef	mech IFF scrambler	
+AM_ResurrectionMechSlow	sarg.alphamechs	yes	AbilityDef	resurrect mech, minor	
+AM_SwapWeapon	sarg.alphamechs	yes	AbilityDef	swap gun	
+AM_SwapWeapon_Mortar	sarg.alphamechs	yes	AbilityDef	swap gun	
+AM_WarcasketAbilityMechBlacklistDef	sarg.alphamechs	yes	WarcasketAbilityMechBlacklistDef		
+AM_AnalyzeCreature	sarg.alphamemes	yes	AbilityDef	analyze creature	
+AM_ArchitectFinishBuilding	sarg.alphamemes	yes	AbilityGroupDef		
+AM_ArchitectStone	sarg.alphamemes	yes	AbilityGroupDef		
+AM_ChangeStyle	sarg.alphamemes	yes	AbilityDef	change style	
+AM_ChangeStyleRadius	sarg.alphamemes	yes	AbilityDef	change style on area	
+AM_ChangeStyleRandom	sarg.alphamemes	yes	AbilityDef	change style, random	
+AM_ChangeStyle_AllMap	sarg.alphamemes	yes	AbilityDef	change style, map-wide	
+AM_ChangeStyle_AllMap_Swap	sarg.alphamemes	yes	AbilityDef	swap style A with style B, map-wide	
+AM_ConvertStone	sarg.alphamemes	yes	AbilityDef	convert to pristine limestone	
+AM_FinishConstruction	sarg.alphamemes	yes	AbilityDef	finish construction	
+AM_Ocular	sarg.alphamemes	yes	AbilityGroupDef		
+AM_OcularConversion	sarg.alphamemes	yes	AbilityDef	ocular conversion	
+AM_OnceAQuadrum	sarg.alphamemes	yes	AbilityGroupDef		
+AM_OnceAYear	sarg.alphamemes	yes	AbilityGroupDef		
+AM_PsychicDeathKnell	sarg.alphamemes	yes	AbilityDef	psychic death knell	
+MDWC_AdrenalineShot	shunter.medicwarcasket	yes	AbilityDef	adrenaline shot	MedicWarcasket.Ability_AdrenalineShot
+MDWC_MechaniteDressing	shunter.medicwarcasket	yes	AbilityDef	mechanite dressing	MedicWarcasket.Ability_MechaniteDressing
+GS_Mushroom_Spread	sovereign.kork	yes	AbilityDef	Spread spores	
+Forge_Verb	torann.arimworldofmagic	yes	AbilityDef	secondary targeter	
+TM_60mmMortar	torann.arimworldofmagic	yes	TMAbilityDef	60mm Mortar	TorannMagic.MightAbility
+TM_AMP	torann.arimworldofmagic	yes	TMAbilityDef	AMP	TorannMagic.MagicAbility
+TM_AMP_I	torann.arimworldofmagic	yes	TMAbilityDef	AMP	TorannMagic.MagicAbility
+TM_AMP_II	torann.arimworldofmagic	yes	TMAbilityDef	AMP	TorannMagic.MagicAbility
+TM_AMP_III	torann.arimworldofmagic	yes	TMAbilityDef	AMP	TorannMagic.MagicAbility
+TM_AccelerateTime	torann.arimworldofmagic	yes	TMAbilityDef	Accelerate Time	TorannMagic.MagicAbility
+TM_AdvancedHeal	torann.arimworldofmagic	yes	TMAbilityDef	Advanced Heal	TorannMagic.MagicAbility
+TM_AlterFate	torann.arimworldofmagic	yes	TMAbilityDef	Alter Fate	TorannMagic.MagicAbility
+TM_AlterStorm	torann.arimworldofmagic	yes	TMAbilityDef	Alter Storm	TorannMagic.MagicAbility
+TM_AnimalFriend	torann.arimworldofmagic	yes	TMAbilityDef	Animal Bond	TorannMagic.MightAbility
+TM_AntiArmor	torann.arimworldofmagic	yes	TMAbilityDef	Anti-Armor	TorannMagic.MightAbility
+TM_ArcaneBarrier	torann.arimworldofmagic	yes	TMAbilityDef	Arcane Barrier	TorannMagic.MagicAbility
+TM_ArcaneBolt	torann.arimworldofmagic	yes	TMAbilityDef	Arcane Bolt	TorannMagic.MagicAbility
+TM_ArrowStorm	torann.arimworldofmagic	yes	TMAbilityDef	Arrow Storm	TorannMagic.MightAbility
+TM_ArrowStorm_I	torann.arimworldofmagic	yes	TMAbilityDef	Arrow Storm (I)	TorannMagic.MightAbility
+TM_ArrowStorm_II	torann.arimworldofmagic	yes	TMAbilityDef	Arrow Storm (II)	TorannMagic.MightAbility
+TM_ArrowStorm_III	torann.arimworldofmagic	yes	TMAbilityDef	Arrow Storm (III)	TorannMagic.MightAbility
+TM_Artifact_Conviction	torann.arimworldofmagic	yes	TMAbilityDef	Conviction	TorannMagic.MagicAbility
+TM_Artifact_TraitInfuse	torann.arimworldofmagic	yes	AbilityDef	Infuse Soul	
+TM_Artifact_TraitThief	torann.arimworldofmagic	yes	AbilityDef	Devour Soul	
+TM_Attraction	torann.arimworldofmagic	yes	TMAbilityDef	Attraction	TorannMagic.MagicAbility
+TM_Attraction_I	torann.arimworldofmagic	yes	TMAbilityDef	Attraction	TorannMagic.MagicAbility
+TM_Attraction_II	torann.arimworldofmagic	yes	TMAbilityDef	Attraction	TorannMagic.MagicAbility
+TM_Attraction_III	torann.arimworldofmagic	yes	TMAbilityDef	Attraction	TorannMagic.MagicAbility
+TM_AwarenessBrand	torann.arimworldofmagic	yes	TMAbilityDef	Brand: Awareness	TorannMagic.MagicAbility
+TM_BardTraining	torann.arimworldofmagic	yes	TMAbilityDef	Bard Training	TorannMagic.MagicAbility
+TM_BattleHymn	torann.arimworldofmagic	yes	TMAbilityDef	Battle Hymn	TorannMagic.MagicAbility
+TM_BestowMight	torann.arimworldofmagic	yes	TMAbilityDef	Bestow Might	TorannMagic.MagicAbility
+TM_BestowMight_I	torann.arimworldofmagic	yes	TMAbilityDef	Bestow Might (I)	TorannMagic.MagicAbility
+TM_BestowMight_II	torann.arimworldofmagic	yes	TMAbilityDef	Bestow Might (II)	TorannMagic.MagicAbility
+TM_BestowMight_III	torann.arimworldofmagic	yes	TMAbilityDef	Bestow Might (III)	TorannMagic.MagicAbility
+TM_BladeArt	torann.arimworldofmagic	yes	TMAbilityDef	Body Training	TorannMagic.MightAbility
+TM_BladeFocus	torann.arimworldofmagic	yes	TMAbilityDef	Blade training	TorannMagic.MightAbility
+TM_BladeSpin	torann.arimworldofmagic	yes	TMAbilityDef	Blade Spin	TorannMagic.MightAbility
+TM_BlankMind	torann.arimworldofmagic	yes	TMAbilityDef	Blank Mind	TorannMagic.MagicAbility
+TM_Blink	torann.arimworldofmagic	yes	TMAbilityDef	Blink	TorannMagic.MagicAbility
+TM_Blink_I	torann.arimworldofmagic	yes	TMAbilityDef	Blink	TorannMagic.MagicAbility
+TM_Blink_II	torann.arimworldofmagic	yes	TMAbilityDef	Blink	TorannMagic.MagicAbility
+TM_Blink_III	torann.arimworldofmagic	yes	TMAbilityDef	Blink	TorannMagic.MagicAbility
+TM_Blizzard	torann.arimworldofmagic	yes	TMAbilityDef	Blizzard	TorannMagic.MagicAbility
+TM_BloodForBlood	torann.arimworldofmagic	yes	TMAbilityDef	Blood For Blood	TorannMagic.MagicAbility
+TM_BloodGift	torann.arimworldofmagic	yes	TMAbilityDef	Blood Sacrifice	TorannMagic.MagicAbility
+TM_BloodMoon	torann.arimworldofmagic	yes	TMAbilityDef	Blood Moon	TorannMagic.MagicAbility
+TM_BloodMoon_I	torann.arimworldofmagic	yes	TMAbilityDef	Blood Moon I	TorannMagic.MagicAbility
+TM_BloodMoon_II	torann.arimworldofmagic	yes	TMAbilityDef	Blood Moon II	TorannMagic.MagicAbility
+TM_BloodMoon_III	torann.arimworldofmagic	yes	TMAbilityDef	Blood Moon III	TorannMagic.MagicAbility
+TM_BloodShield	torann.arimworldofmagic	yes	TMAbilityDef	Blood Shield	TorannMagic.MagicAbility
+TM_Blur	torann.arimworldofmagic	yes	TMAbilityDef	Blur	TorannMagic.MagicAbility
+TM_BowTraining	torann.arimworldofmagic	yes	TMAbilityDef	Bow Training	TorannMagic.MightAbility
+TM_Branding	torann.arimworldofmagic	yes	TMAbilityDef	Branding	TorannMagic.MagicAbility
+TM_BreachingCharge	torann.arimworldofmagic	yes	TMAbilityDef	Breaching charge	TorannMagic.MightAbility
+TM_BriarPatch	torann.arimworldofmagic	yes	TMAbilityDef	Briar Patch	TorannMagic.MagicAbility
+TM_Buckshot	torann.arimworldofmagic	yes	TMAbilityDef	Buckshot	TorannMagic.MightAbility
+TM_BurningFury	torann.arimworldofmagic	yes	TMAbilityDef	Burning Fury	TorannMagic.MightAbility
+TM_CQC	torann.arimworldofmagic	yes	TMAbilityDef	CQC	TorannMagic.MightAbility
+TM_Cantrips	torann.arimworldofmagic	yes	TMAbilityDef	Cantrips	TorannMagic.MagicAbility
+TM_CauterizeWound	torann.arimworldofmagic	yes	TMAbilityDef	Cauterize Wounds	TorannMagic.MagicAbility
+TM_ChainLightning	torann.arimworldofmagic	yes	TMAbilityDef	Chain Lightning	TorannMagic.MagicAbility
+TM_ChaosTradition	torann.arimworldofmagic	yes	TMAbilityDef	Chaos Tradition	TorannMagic.MagicAbility
+TM_ChargeBattery	torann.arimworldofmagic	yes	TMAbilityDef	Charge Battery	TorannMagic.MagicAbility
+TM_Chi	torann.arimworldofmagic	yes	TMAbilityDef	Ch'i	TorannMagic.MightAbility
+TM_ChiBurst	torann.arimworldofmagic	yes	TMAbilityDef	Ch'i Burst	TorannMagic.MightAbility
+TM_ChronostaticField	torann.arimworldofmagic	yes	TMAbilityDef	Chronostatic Field	TorannMagic.MagicAbility
+TM_ChronostaticField_I	torann.arimworldofmagic	yes	TMAbilityDef	Chronostatic Field (I)	TorannMagic.MagicAbility
+TM_ChronostaticField_II	torann.arimworldofmagic	yes	TMAbilityDef	Chronostatic Field (II)	TorannMagic.MagicAbility
+TM_ChronostaticField_III	torann.arimworldofmagic	yes	TMAbilityDef	Chronostatic Field (III)	TorannMagic.MagicAbility
+TM_Cleave	torann.arimworldofmagic	yes	TMAbilityDef	Cleave	TorannMagic.MightAbility
+TM_CombatDrugs	torann.arimworldofmagic	yes	TMAbilityDef	Combat Drugs	TorannMagic.MightAbility
+TM_CommanderAura	torann.arimworldofmagic	yes	TMAbilityDef	Commander	TorannMagic.MightAbility
+TM_CompVerb	torann.arimworldofmagic	yes	TMAbilityDef	secondary targeter	TorannMagic.MagicAbility
+TM_ConsumeCorpse	torann.arimworldofmagic	yes	TMAbilityDef	Consume Corpse	TorannMagic.MagicAbility
+TM_ConsumeCorpse_I	torann.arimworldofmagic	yes	TMAbilityDef	Consume Corpse (I)	TorannMagic.MagicAbility
+TM_ConsumeCorpse_II	torann.arimworldofmagic	yes	TMAbilityDef	Consume Corpse (II)	TorannMagic.MagicAbility
+TM_ConsumeCorpse_III	torann.arimworldofmagic	yes	TMAbilityDef	Consume Corpse (III)	TorannMagic.MagicAbility
+TM_ConsumeCorpse_Mass	torann.arimworldofmagic	yes	TMAbilityDef	Consume Corpse: Mass	TorannMagic.MagicAbility
+TM_ControlSpiritStorm	torann.arimworldofmagic	yes	TMAbilityDef	Control Spirit Storm	TorannMagic.MagicAbility
+TM_Cooler	torann.arimworldofmagic	yes	TMAbilityDef	Magical cooler	TorannMagic.MagicAbility
+TM_CorpseExplosion	torann.arimworldofmagic	yes	TMAbilityDef	Corpse Explosion	TorannMagic.MagicAbility
+TM_CorpseExplosion_I	torann.arimworldofmagic	yes	TMAbilityDef	Corpse Explosion (I)	TorannMagic.MagicAbility
+TM_CorpseExplosion_II	torann.arimworldofmagic	yes	TMAbilityDef	Corpse Explosion (II)	TorannMagic.MagicAbility
+TM_CorpseExplosion_III	torann.arimworldofmagic	yes	TMAbilityDef	Corpse Explosion (III)	TorannMagic.MagicAbility
+TM_CureDisease	torann.arimworldofmagic	yes	TMAbilityDef	Cure Disease	TorannMagic.MagicAbility
+TM_DeathBolt	torann.arimworldofmagic	yes	TMAbilityDef	Death Bolt	TorannMagic.MagicAbility
+TM_DeathBolt_I	torann.arimworldofmagic	yes	TMAbilityDef	Death Bolt (I)	TorannMagic.MagicAbility
+TM_DeathBolt_II	torann.arimworldofmagic	yes	TMAbilityDef	Death Bolt (II)	TorannMagic.MagicAbility
+TM_DeathBolt_III	torann.arimworldofmagic	yes	TMAbilityDef	Death Bolt (III)	TorannMagic.MagicAbility
+TM_DeathMark	torann.arimworldofmagic	yes	TMAbilityDef	Death Mark	TorannMagic.MagicAbility
+TM_DeathMark_I	torann.arimworldofmagic	yes	TMAbilityDef	Death Mark (I)	TorannMagic.MagicAbility
+TM_DeathMark_II	torann.arimworldofmagic	yes	TMAbilityDef	Death Mark (II)	TorannMagic.MagicAbility
+TM_DeathMark_III	torann.arimworldofmagic	yes	TMAbilityDef	Death Mark (III)	TorannMagic.MagicAbility
+TM_DirtDevil	torann.arimworldofmagic	yes	TMAbilityDef	Dirt Devil	TorannMagic.MagicAbility
+TM_DisablingShot	torann.arimworldofmagic	yes	TMAbilityDef	Disabling Shot	TorannMagic.MightAbility
+TM_DisablingShot_I	torann.arimworldofmagic	yes	TMAbilityDef	Disabling Shot (I)	TorannMagic.MightAbility
+TM_DisablingShot_II	torann.arimworldofmagic	yes	TMAbilityDef	Disabling Shot (II)	TorannMagic.MightAbility
+TM_DisablingShot_III	torann.arimworldofmagic	yes	TMAbilityDef	Disabling Shot (III)	TorannMagic.MightAbility
+TM_Discord	torann.arimworldofmagic	yes	TMAbilityDef	Discord	TorannMagic.MagicAbility
+TM_Disguise	torann.arimworldofmagic	yes	TMAbilityDef	Deception	TorannMagic.MightAbility
+TM_DismissCooler	torann.arimworldofmagic	yes	TMAbilityDef	Dismiss Cooler	TorannMagic.MagicAbility
+TM_DismissEarthSprites	torann.arimworldofmagic	yes	TMAbilityDef	Dismiss Earth Sprites	TorannMagic.MagicAbility
+TM_DismissEnchanterStones	torann.arimworldofmagic	yes	TMAbilityDef	Dismiss Enchanter Stone	TorannMagic.MagicAbility
+TM_DismissFertileLands	torann.arimworldofmagic	yes	TMAbilityDef	End Fertile Lands	TorannMagic.MagicAbility
+TM_DismissGuardianSpirit	torann.arimworldofmagic	yes	TMAbilityDef	Dismiss Guardian Spirit	TorannMagic.MagicAbility
+TM_DismissHeater	torann.arimworldofmagic	yes	TMAbilityDef	Dismiss Heater	TorannMagic.MagicAbility
+TM_DismissLightningTrap	torann.arimworldofmagic	yes	TMAbilityDef	Dismiss Lightning Trap	TorannMagic.MagicAbility
+TM_DismissMinion	torann.arimworldofmagic	yes	TMAbilityDef	Dismiss Minion	TorannMagic.MagicAbility
+TM_DismissPowerNode	torann.arimworldofmagic	yes	TMAbilityDef	Dismiss Power Node	TorannMagic.MagicAbility
+TM_DismissSunlight	torann.arimworldofmagic	yes	TMAbilityDef	Dismiss Sun Light	TorannMagic.MagicAbility
+TM_DismissUndead	torann.arimworldofmagic	yes	TMAbilityDef	Dismiss Undead	TorannMagic.MagicAbility
+TM_DispelBranding	torann.arimworldofmagic	yes	TMAbilityDef	Dispel Brands	TorannMagic.MagicAbility
+TM_DispelEnchantWeapon	torann.arimworldofmagic	yes	TMAbilityDef	Dispel Weapon Enchantment	TorannMagic.MagicAbility
+TM_DispelLivingWall	torann.arimworldofmagic	yes	TMAbilityDef	Dispel Living Wall	TorannMagic.MagicAbility
+TM_DispelStoneskin	torann.arimworldofmagic	yes	TMAbilityDef	Dispel Stoneskin	TorannMagic.MagicAbility
+TM_DistortSpirit	torann.arimworldofmagic	yes	TMAbilityDef	Distort Spirit (I)	TorannMagic.MagicAbility
+TM_DistortSpirit_I	torann.arimworldofmagic	yes	TMAbilityDef	Distort Spirit (II)	TorannMagic.MagicAbility
+TM_DistortSpirit_II	torann.arimworldofmagic	yes	TMAbilityDef	Distort Spirit (III)	TorannMagic.MagicAbility
+TM_DistortSpirit_III	torann.arimworldofmagic	yes	TMAbilityDef	Distort Spirit (IV)	TorannMagic.MagicAbility
+TM_Dominate	torann.arimworldofmagic	yes	TMAbilityDef	Dominate	TorannMagic.MagicAbility
+TM_DragonStrike	torann.arimworldofmagic	yes	TMAbilityDef	Dragon Strike	TorannMagic.MightAbility
+TM_DryGround	torann.arimworldofmagic	yes	TMAbilityDef	Dry Ground	TorannMagic.MagicAbility
+TM_EMP	torann.arimworldofmagic	yes	TMAbilityDef	EMP	TorannMagic.MagicAbility
+TM_EarthSprites	torann.arimworldofmagic	yes	TMAbilityDef	Earth Sprites	TorannMagic.MagicAbility
+TM_EarthernHammer	torann.arimworldofmagic	yes	TMAbilityDef	Earthern Hammer	TorannMagic.MagicAbility
+TM_Elemental_Firebolt	torann.arimworldofmagic	yes	TMAbilityDef	Firebolt	TorannMagic.MagicAbility
+TM_Elemental_Icebolt	torann.arimworldofmagic	yes	TMAbilityDef	elemental icebolt	TorannMagic.MagicAbility
+TM_Elixir	torann.arimworldofmagic	yes	TMAbilityDef	Elixir	TorannMagic.MightAbility
+TM_Emergency	torann.arimworldofmagic	yes	TMAbilityDef	Emergency	TorannMagic.MightAbility
+TM_EmotionBrand	torann.arimworldofmagic	yes	TMAbilityDef	Brand: Emotion	TorannMagic.MagicAbility
+TM_Empathy	torann.arimworldofmagic	yes	TMAbilityDef	Empathy	TorannMagic.MagicAbility
+TM_Encase	torann.arimworldofmagic	yes	TMAbilityDef	Encase	TorannMagic.MagicAbility
+TM_Encase_I	torann.arimworldofmagic	yes	TMAbilityDef	Encase I	TorannMagic.MagicAbility
+TM_Encase_II	torann.arimworldofmagic	yes	TMAbilityDef	Encase II	TorannMagic.MagicAbility
+TM_Encase_III	torann.arimworldofmagic	yes	TMAbilityDef	Encase III	TorannMagic.MagicAbility
+TM_EnchantWeapon	torann.arimworldofmagic	yes	TMAbilityDef	Enchant Weapon	TorannMagic.MagicAbility
+TM_EnchantedAura	torann.arimworldofmagic	yes	TMAbilityDef	Enchanted Aura	TorannMagic.MagicAbility
+TM_EnchantedBody	torann.arimworldofmagic	yes	TMAbilityDef	Enchanted Body	TorannMagic.MagicAbility
+TM_EnchanterStone	torann.arimworldofmagic	yes	TMAbilityDef	Enchanter's Stone	TorannMagic.MagicAbility
+TM_Enrage	torann.arimworldofmagic	yes	TMAbilityDef	Enrage	TorannMagic.MagicAbility
+TM_Entertain	torann.arimworldofmagic	yes	TMAbilityDef	Entertain	TorannMagic.MagicAbility
+TM_Explosion	torann.arimworldofmagic	yes	TMAbilityDef	Explosion!	TorannMagic.MagicAbility
+TM_Extinguish	torann.arimworldofmagic	yes	TMAbilityDef	Extinguish	TorannMagic.MagicAbility
+TM_EyeOfTheStorm	torann.arimworldofmagic	yes	TMAbilityDef	Eye of the Storm	TorannMagic.MagicAbility
+TM_FadeEmotions	torann.arimworldofmagic	yes	TMAbilityDef	Fade Emotion	TorannMagic.MagicAbility
+TM_FertileLands	torann.arimworldofmagic	yes	TMAbilityDef	Fertile Lands	TorannMagic.MagicAbility
+TM_FieldTraining	torann.arimworldofmagic	yes	TMAbilityDef	Combat Training	TorannMagic.MightAbility
+TM_FightersFocus	torann.arimworldofmagic	yes	TMAbilityDef	Fighters Focus	TorannMagic.MightAbility
+TM_FireSuppressionFlask	torann.arimworldofmagic	yes	TMAbilityDef	Fire Suppression Flask	TorannMagic.MightAbility
+TM_FireSuppressionFlask_I	torann.arimworldofmagic	yes	TMAbilityDef	Fire Suppression Flask	TorannMagic.MightAbility
+TM_FireSuppressionFlask_II	torann.arimworldofmagic	yes	TMAbilityDef	Fire Suppression Flask	TorannMagic.MightAbility
+TM_FireSuppressionFlask_III	torann.arimworldofmagic	yes	TMAbilityDef	Fire Suppression Flask	TorannMagic.MightAbility
+TM_Fireball	torann.arimworldofmagic	yes	TMAbilityDef	Fireball	TorannMagic.MagicAbility
+TM_Firebolt	torann.arimworldofmagic	yes	TMAbilityDef	Firebolt	TorannMagic.MagicAbility
+TM_Fireclaw	torann.arimworldofmagic	yes	TMAbilityDef	Fireclaw	TorannMagic.MagicAbility
+TM_Firestorm	torann.arimworldofmagic	yes	TMAbilityDef	Firestorm	TorannMagic.MagicAbility
+TM_FirstAid	torann.arimworldofmagic	yes	TMAbilityDef	Self Aid	TorannMagic.MightAbility
+TM_FitnessBrand	torann.arimworldofmagic	yes	TMAbilityDef	Brand: Fitness	TorannMagic.MagicAbility
+TM_FleshGolem_BullCharge	torann.arimworldofmagic	yes	TM_GolemAbilityDef	bull charge	
+TM_FleshGolem_Dismember	torann.arimworldofmagic	yes	TM_GolemAbilityDef	dismember	
+TM_FleshGolem_EyeCurse	torann.arimworldofmagic	yes	TM_GolemAbilityDef	enfeeble	
+TM_FleshGolem_LeftCleave	torann.arimworldofmagic	yes	TM_GolemAbilityDef	cleave	
+TM_FleshGolem_RightCleave	torann.arimworldofmagic	yes	TM_GolemAbilityDef	cleave	
+TM_FleshGolem_WingHaste	torann.arimworldofmagic	yes	TM_GolemAbilityDef	haste	
+TM_Flight	torann.arimworldofmagic	yes	TMAbilityDef	Flight	TorannMagic.MagicAbility
+TM_FogOfTorment	torann.arimworldofmagic	yes	TMAbilityDef	Fog of Torment	TorannMagic.MagicAbility
+TM_FoldReality	torann.arimworldofmagic	yes	TMAbilityDef	Gateway	TorannMagic.MagicAbility
+TM_Fortitude	torann.arimworldofmagic	yes	TMAbilityDef	Fortitude	TorannMagic.MightAbility
+TM_FrostRay	torann.arimworldofmagic	yes	TMAbilityDef	Frost Ray	TorannMagic.MagicAbility
+TM_FrostRay_I	torann.arimworldofmagic	yes	TMAbilityDef	Frost Ray	TorannMagic.MagicAbility
+TM_FrostRay_II	torann.arimworldofmagic	yes	TMAbilityDef	Frost Ray	TorannMagic.MagicAbility
+TM_FrostRay_III	torann.arimworldofmagic	yes	TMAbilityDef	Frost Ray	TorannMagic.MagicAbility
+TM_GearRepair	torann.arimworldofmagic	yes	TMAbilityDef	Gear Repair	TorannMagic.MightAbility
+TM_Golemancy	torann.arimworldofmagic	yes	TMAbilityDef	Golemancy	TorannMagic.MagicAbility
+TM_Grapple	torann.arimworldofmagic	yes	TMAbilityDef	Grapple	TorannMagic.MightAbility
+TM_Grapple_I	torann.arimworldofmagic	yes	TMAbilityDef	Grapple	TorannMagic.MightAbility
+TM_Grapple_II	torann.arimworldofmagic	yes	TMAbilityDef	Grapple	TorannMagic.MightAbility
+TM_Grapple_III	torann.arimworldofmagic	yes	TMAbilityDef	Grapple	TorannMagic.MightAbility
+TM_GraveBlade	torann.arimworldofmagic	yes	TMAbilityDef	Grave Blade	TorannMagic.MightAbility
+TM_GraveBlade_I	torann.arimworldofmagic	yes	TMAbilityDef	Grave Blade I	TorannMagic.MightAbility
+TM_GraveBlade_II	torann.arimworldofmagic	yes	TMAbilityDef	Grave Blade II	TorannMagic.MightAbility
+TM_GraveBlade_III	torann.arimworldofmagic	yes	TMAbilityDef	Grave Blade III	TorannMagic.MightAbility
+TM_GuardianSpirit	torann.arimworldofmagic	yes	TMAbilityDef	Guardian Spirit	TorannMagic.MagicAbility
+TM_HarvestPassion	torann.arimworldofmagic	yes	TMAbilityDef	Harvest Passion	TorannMagic.MagicAbility
+TM_Headshot	torann.arimworldofmagic	yes	TMAbilityDef	Headshot	TorannMagic.MightAbility
+TM_Heal	torann.arimworldofmagic	yes	TMAbilityDef	Heal	TorannMagic.MagicAbility
+TM_HealingCircle	torann.arimworldofmagic	yes	TMAbilityDef	Healing Circle	TorannMagic.MagicAbility
+TM_HealingCircle_I	torann.arimworldofmagic	yes	TMAbilityDef	Healing Circle (I)	TorannMagic.MagicAbility
+TM_HealingCircle_II	torann.arimworldofmagic	yes	TMAbilityDef	Healing Circle (II)	TorannMagic.MagicAbility
+TM_HealingCircle_III	torann.arimworldofmagic	yes	TMAbilityDef	Healing Circle (III)	TorannMagic.MagicAbility
+TM_HeatShield	torann.arimworldofmagic	yes	TMAbilityDef	Heat Shield	TorannMagic.MagicAbility
+TM_Heater	torann.arimworldofmagic	yes	TMAbilityDef	Magical heater	TorannMagic.MagicAbility
+TM_HeavyBlow	torann.arimworldofmagic	yes	TMAbilityDef	Heavy Blow	TorannMagic.MightAbility
+TM_HerbalBliss	torann.arimworldofmagic	yes	TMAbilityDef	Bliss	TorannMagic.MightAbility
+TM_HerbalClarity	torann.arimworldofmagic	yes	TMAbilityDef	Clarity	TorannMagic.MightAbility
+TM_Herbalist	torann.arimworldofmagic	yes	TMAbilityDef	Herbalist	TorannMagic.MightAbility
+TM_Hex	torann.arimworldofmagic	yes	TMAbilityDef	Hex	TorannMagic.MagicAbility
+TM_Hex_CriticalFail	torann.arimworldofmagic	yes	TMAbilityDef	Critical Fail (Hex)	TorannMagic.MagicAbility
+TM_Hex_I	torann.arimworldofmagic	yes	TMAbilityDef	Hex	TorannMagic.MagicAbility
+TM_Hex_II	torann.arimworldofmagic	yes	TMAbilityDef	Hex	TorannMagic.MagicAbility
+TM_Hex_III	torann.arimworldofmagic	yes	TMAbilityDef	Hex	TorannMagic.MagicAbility
+TM_Hex_MentalAssault	torann.arimworldofmagic	yes	TMAbilityDef	Mental Assault (Hex)	TorannMagic.MagicAbility
+TM_Hex_Pain	torann.arimworldofmagic	yes	TMAbilityDef	Pain (Hex)	TorannMagic.MagicAbility
+TM_HoldTheLine	torann.arimworldofmagic	yes	TMAbilityDef	Hold The Line!	TorannMagic.MightAbility
+TM_HoldTheLine_I	torann.arimworldofmagic	yes	TMAbilityDef	Hold The Line!	TorannMagic.MightAbility
+TM_HoldTheLine_II	torann.arimworldofmagic	yes	TMAbilityDef	Hold The Line!	TorannMagic.MightAbility
+TM_HoldTheLine_III	torann.arimworldofmagic	yes	TMAbilityDef	Hold The Line!	TorannMagic.MightAbility
+TM_HollowGolem_AbsorbFire	torann.arimworldofmagic	yes	TM_GolemAbilityDef	absorb fire	
+TM_HollowGolem_Awakening	torann.arimworldofmagic	yes	TM_GolemAbilityDef	awakening	
+TM_HollowGolem_BurningFury	torann.arimworldofmagic	yes	TM_GolemAbilityDef	burning fury	
+TM_HollowGolem_Fade	torann.arimworldofmagic	yes	TM_GolemAbilityDef	fade	
+TM_HollowGolem_WellOfDespair	torann.arimworldofmagic	yes	TM_GolemAbilityDef	well of despair	
+TM_HolyWrath	torann.arimworldofmagic	yes	TMAbilityDef	Holy Wrath	TorannMagic.MagicAbility
+TM_Icebolt	torann.arimworldofmagic	yes	TMAbilityDef	Icebolt	TorannMagic.MagicAbility
+TM_Ignite	torann.arimworldofmagic	yes	TMAbilityDef	Ignite	TorannMagic.MagicAbility
+TM_IgniteBlood	torann.arimworldofmagic	yes	TMAbilityDef	Ignite Blood	TorannMagic.MagicAbility
+TM_IncitePassion	torann.arimworldofmagic	yes	TMAbilityDef	Incite Passion	TorannMagic.MagicAbility
+TM_InnerHealing	torann.arimworldofmagic	yes	TMAbilityDef	Inner Healing	TorannMagic.MightAbility
+TM_Inspire	torann.arimworldofmagic	yes	TMAbilityDef	Inspire	TorannMagic.MagicAbility
+TM_Invisibility	torann.arimworldofmagic	yes	TMAbilityDef	Invisibility	TorannMagic.MagicAbility
+TM_Legion	torann.arimworldofmagic	yes	TMAbilityDef	Legion	TorannMagic.MightAbility
+TM_LichForm	torann.arimworldofmagic	yes	TMAbilityDef	Lich Form	TorannMagic.MagicAbility
+TM_LifeSteal	torann.arimworldofmagic	yes	TMAbilityDef	Life Steal	TorannMagic.MightAbility
+TM_LightBurst	torann.arimworldofmagic	yes	TMAbilityDef	Light Burst	TorannMagic.MagicAbility
+TM_LightLance	torann.arimworldofmagic	yes	TMAbilityDef	Light Lance	TorannMagic.MagicAbility
+TM_LightSkip	torann.arimworldofmagic	yes	TMAbilityDef	Light Skip	TorannMagic.MagicAbility
+TM_LightSkipGlobal	torann.arimworldofmagic	yes	TMAbilityDef	Global Light Skip	TorannMagic.MagicAbility
+TM_LightSkipMass	torann.arimworldofmagic	yes	TMAbilityDef	Mass Light Skip	TorannMagic.MagicAbility
+TM_LightningBolt	torann.arimworldofmagic	yes	TMAbilityDef	Lightning Bolt	TorannMagic.MagicAbility
+TM_LightningCloud	torann.arimworldofmagic	yes	TMAbilityDef	Lightning Cloud	TorannMagic.MagicAbility
+TM_LightningStorm	torann.arimworldofmagic	yes	TMAbilityDef	Lightning Storm	TorannMagic.MagicAbility
+TM_LightningTrap	torann.arimworldofmagic	yes	TMAbilityDef	Lightning Trap	TorannMagic.MagicAbility
+TM_LivingWall	torann.arimworldofmagic	yes	TMAbilityDef	Living Wall	TorannMagic.MagicAbility
+TM_Lullaby	torann.arimworldofmagic	yes	TMAbilityDef	Lullaby	TorannMagic.MagicAbility
+TM_Lullaby_I	torann.arimworldofmagic	yes	TMAbilityDef	Lullaby (I)	TorannMagic.MagicAbility
+TM_Lullaby_II	torann.arimworldofmagic	yes	TMAbilityDef	Lullaby (II)	TorannMagic.MagicAbility
+TM_Lullaby_III	torann.arimworldofmagic	yes	TMAbilityDef	Lullaby	TorannMagic.MagicAbility
+TM_MageLight	torann.arimworldofmagic	yes	TMAbilityDef	Magelight	TorannMagic.MagicAbility
+TM_MagicMissile	torann.arimworldofmagic	yes	TMAbilityDef	Magic Missile	TorannMagic.MagicAbility
+TM_MagicMissile_I	torann.arimworldofmagic	yes	TMAbilityDef	Magic Missile	TorannMagic.MagicAbility
+TM_MagicMissile_II	torann.arimworldofmagic	yes	TMAbilityDef	Magic Missile	TorannMagic.MagicAbility
+TM_MagicMissile_III	torann.arimworldofmagic	yes	TMAbilityDef	Magic Missile	TorannMagic.MagicAbility
+TM_MagicWardrobe	torann.arimworldofmagic	yes	TMAbilityDef	Magic Wardrobe	TorannMagic.MagicAbility
+TM_ManaShield	torann.arimworldofmagic	yes	TMAbilityDef	Mana Shield	TorannMagic.MagicAbility
+TM_Mecha-Golem_AbsorbFilth	torann.arimworldofmagic	yes	TM_GolemAbilityDef	waste conversion	
+TM_Mecha-Golem_GatlingCannon	torann.arimworldofmagic	yes	TM_GolemAbilityDef	Shoulder mounted gatling cannon for mecha-golem	
+TM_Mecha-Golem_HealSelf	torann.arimworldofmagic	yes	TM_GolemAbilityDef	self-repair module	
+TM_Mecha-Golem_MiningLaser	torann.arimworldofmagic	yes	TM_GolemAbilityDef	Shoulder mounted mining laser for mecha-golem	
+TM_Mecha-Golem_ShieldSelf	torann.arimworldofmagic	yes	TM_GolemAbilityDef	energy shield module	
+TM_MechaniteReprogramming	torann.arimworldofmagic	yes	TMAbilityDef	Reprogram Mechanites	TorannMagic.MagicAbility
+TM_MedicalSupply	torann.arimworldofmagic	yes	TMAbilityDef	Resupply	TorannMagic.MightAbility
+TM_Medigel	torann.arimworldofmagic	yes	TMAbilityDef	Medigel	TorannMagic.MightAbility
+TM_Meditate	torann.arimworldofmagic	yes	TMAbilityDef	Meditate	TorannMagic.MightAbility
+TM_Meteor	torann.arimworldofmagic	yes	TMAbilityDef	Meteor	TorannMagic.MagicAbility
+TM_Meteor_I	torann.arimworldofmagic	yes	TMAbilityDef	Meteor I	TorannMagic.MagicAbility
+TM_Meteor_II	torann.arimworldofmagic	yes	TMAbilityDef	Meteor II	TorannMagic.MagicAbility
+TM_Meteor_III	torann.arimworldofmagic	yes	TMAbilityDef	Meteor III	TorannMagic.MagicAbility
+TM_Mimic	torann.arimworldofmagic	yes	TMAbilityDef	Mimic	TorannMagic.MightAbility
+TM_MindKiller	torann.arimworldofmagic	yes	TMAbilityDef	Mind Killer	TorannMagic.MagicAbility
+TM_MindOverBody	torann.arimworldofmagic	yes	TMAbilityDef	Mind Over Body	TorannMagic.MightAbility
+TM_Mk203GL	torann.arimworldofmagic	yes	TMAbilityDef	Mk203_GL	TorannMagic.MightAbility
+TM_MoveOut	torann.arimworldofmagic	yes	TMAbilityDef	Move Out!	TorannMagic.MightAbility
+TM_MoveOut_I	torann.arimworldofmagic	yes	TMAbilityDef	Move Out!	TorannMagic.MightAbility
+TM_MoveOut_II	torann.arimworldofmagic	yes	TMAbilityDef	Move Out!	TorannMagic.MightAbility
+TM_MoveOut_III	torann.arimworldofmagic	yes	TMAbilityDef	Move Out!	TorannMagic.MightAbility
+TM_NanoStimulant	torann.arimworldofmagic	yes	TMAbilityDef	Nano Stimulant	TorannMagic.MagicAbility
+TM_Nightshade	torann.arimworldofmagic	yes	TMAbilityDef	Nightshade	TorannMagic.MightAbility
+TM_OrbitalStrike	torann.arimworldofmagic	yes	TMAbilityDef	Orbital Strike	TorannMagic.MagicAbility
+TM_OrbitalStrike_I	torann.arimworldofmagic	yes	TMAbilityDef	Orbital Strike I	TorannMagic.MagicAbility
+TM_OrbitalStrike_II	torann.arimworldofmagic	yes	TMAbilityDef	Orbital Strike II	TorannMagic.MagicAbility
+TM_OrbitalStrike_III	torann.arimworldofmagic	yes	TMAbilityDef	Orbital Strike III	TorannMagic.MagicAbility
+TM_Overdrive	torann.arimworldofmagic	yes	TMAbilityDef	Overdrive	TorannMagic.MagicAbility
+TM_Overwhelm	torann.arimworldofmagic	yes	TMAbilityDef	Overwhelm	TorannMagic.MagicAbility
+TM_P_RayofHope	torann.arimworldofmagic	yes	TMAbilityDef	Ray of Hope	TorannMagic.MagicAbility
+TM_P_RayofHope_I	torann.arimworldofmagic	yes	TMAbilityDef	Ray of Hope	TorannMagic.MagicAbility
+TM_P_RayofHope_II	torann.arimworldofmagic	yes	TMAbilityDef	Ray of Hope	TorannMagic.MagicAbility
+TM_P_RayofHope_III	torann.arimworldofmagic	yes	TMAbilityDef	Ray of Hope	TorannMagic.MagicAbility
+TM_PhaseStrike	torann.arimworldofmagic	yes	TMAbilityDef	Phase Strike	TorannMagic.MightAbility
+TM_PhaseStrike_I	torann.arimworldofmagic	yes	TMAbilityDef	Phase Strike (I)	TorannMagic.MightAbility
+TM_PhaseStrike_II	torann.arimworldofmagic	yes	TMAbilityDef	Phase Strike (II)	TorannMagic.MightAbility
+TM_PhaseStrike_III	torann.arimworldofmagic	yes	TMAbilityDef	Phase Strike (III)	TorannMagic.MightAbility
+TM_PistolSpec	torann.arimworldofmagic	yes	TMAbilityDef	Pistol Specialization	TorannMagic.MightAbility
+TM_PistolWhip	torann.arimworldofmagic	yes	TMAbilityDef	Pistol Whip	TorannMagic.MightAbility
+TM_Poison	torann.arimworldofmagic	yes	TMAbilityDef	Poison	TorannMagic.MagicAbility
+TM_PoisonFlask	torann.arimworldofmagic	yes	TMAbilityDef	Poison Flask	TorannMagic.MightAbility
+TM_PoisonTrap	torann.arimworldofmagic	yes	TMAbilityDef	Poison Trap	TorannMagic.MightAbility
+TM_Polymorph	torann.arimworldofmagic	yes	TMAbilityDef	Polymorph	TorannMagic.MagicAbility
+TM_Polymorph_I	torann.arimworldofmagic	yes	TMAbilityDef	Polymorph (I)	TorannMagic.MagicAbility
+TM_Polymorph_II	torann.arimworldofmagic	yes	TMAbilityDef	Polymorph (II)	TorannMagic.MagicAbility
+TM_Polymorph_III	torann.arimworldofmagic	yes	TMAbilityDef	Polymorph	TorannMagic.MagicAbility
+TM_PommelStrike	torann.arimworldofmagic	yes	TMAbilityDef	Pommel Strike	TorannMagic.MightAbility
+TM_Possess	torann.arimworldofmagic	yes	TMAbilityDef	Possess	TorannMagic.MightAbility
+TM_PowerNode	torann.arimworldofmagic	yes	TMAbilityDef	Arcane Power Node	TorannMagic.MagicAbility
+TM_Prediction	torann.arimworldofmagic	yes	TMAbilityDef	Prediction	TorannMagic.MagicAbility
+TM_ProtectionBrand	torann.arimworldofmagic	yes	TMAbilityDef	Brand: Protection	TorannMagic.MagicAbility
+TM_ProvisionerAura	torann.arimworldofmagic	yes	TMAbilityDef	Provisioner	TorannMagic.MightAbility
+TM_PsionicAugmentation	torann.arimworldofmagic	yes	TMAbilityDef	Psionic Augmentation	TorannMagic.MightAbility
+TM_PsionicBarrier	torann.arimworldofmagic	yes	TMAbilityDef	Psionic Barrier	TorannMagic.MightAbility
+TM_PsionicBarrier_Projected	torann.arimworldofmagic	yes	TMAbilityDef	Psionic Barrier	TorannMagic.MightAbility
+TM_PsionicBlast	torann.arimworldofmagic	yes	TMAbilityDef	Psionic Blast	TorannMagic.MightAbility
+TM_PsionicBlast_I	torann.arimworldofmagic	yes	TMAbilityDef	Psionic Blast I	TorannMagic.MightAbility
+TM_PsionicBlast_II	torann.arimworldofmagic	yes	TMAbilityDef	Psionic Blast II	TorannMagic.MightAbility
+TM_PsionicBlast_III	torann.arimworldofmagic	yes	TMAbilityDef	Psionic Blast III	TorannMagic.MightAbility
+TM_PsionicDash	torann.arimworldofmagic	yes	TMAbilityDef	Psionic Dash	TorannMagic.MightAbility
+TM_PsionicStorm	torann.arimworldofmagic	yes	TMAbilityDef	Psionic Storm	TorannMagic.MightAbility
+TM_PsychicShock	torann.arimworldofmagic	yes	TMAbilityDef	Psychic Shock	TorannMagic.MagicAbility
+TM_Purify	torann.arimworldofmagic	yes	TMAbilityDef	Purify	TorannMagic.MagicAbility
+TM_Rainmaker	torann.arimworldofmagic	yes	TMAbilityDef	Rainmaker	TorannMagic.MagicAbility
+TM_RaiseUndead	torann.arimworldofmagic	yes	TMAbilityDef	Raise Undead	TorannMagic.MagicAbility
+TM_RangerTraining	torann.arimworldofmagic	yes	TMAbilityDef	Ranger Training	TorannMagic.MightAbility
+TM_RayofHope	torann.arimworldofmagic	yes	TMAbilityDef	Inner Fire	TorannMagic.MagicAbility
+TM_RayofHope_I	torann.arimworldofmagic	yes	TMAbilityDef	Inner Fire	TorannMagic.MagicAbility
+TM_RayofHope_II	torann.arimworldofmagic	yes	TMAbilityDef	Inner Fire	TorannMagic.MagicAbility
+TM_RayofHope_III	torann.arimworldofmagic	yes	TMAbilityDef	Inner Fire	TorannMagic.MagicAbility
+TM_Recall	torann.arimworldofmagic	yes	TMAbilityDef	Recall	TorannMagic.MagicAbility
+TM_Refraction	torann.arimworldofmagic	yes	TMAbilityDef	Refraction	TorannMagic.MagicAbility
+TM_Regenerate	torann.arimworldofmagic	yes	TMAbilityDef	Regenerate	TorannMagic.MagicAbility
+TM_RegrowLimb	torann.arimworldofmagic	yes	TMAbilityDef	Regrowth	TorannMagic.MagicAbility
+TM_Rend	torann.arimworldofmagic	yes	TMAbilityDef	Rend	TorannMagic.MagicAbility
+TM_Rend_I	torann.arimworldofmagic	yes	TMAbilityDef	Rend I	TorannMagic.MagicAbility
+TM_Rend_II	torann.arimworldofmagic	yes	TMAbilityDef	Rend (II)	TorannMagic.MagicAbility
+TM_Rend_III	torann.arimworldofmagic	yes	TMAbilityDef	Rend	TorannMagic.MagicAbility
+TM_Repulsion	torann.arimworldofmagic	yes	TMAbilityDef	Repulsion	TorannMagic.MagicAbility
+TM_Repulsion_I	torann.arimworldofmagic	yes	TMAbilityDef	Repulsion	TorannMagic.MagicAbility
+TM_Repulsion_II	torann.arimworldofmagic	yes	TMAbilityDef	Repulsion	TorannMagic.MagicAbility
+TM_Repulsion_III	torann.arimworldofmagic	yes	TMAbilityDef	Repulsion	TorannMagic.MagicAbility
+TM_Resurrection	torann.arimworldofmagic	yes	TMAbilityDef	Resurrection	TorannMagic.MagicAbility
+TM_Reversal	torann.arimworldofmagic	yes	TMAbilityDef	Reversal	TorannMagic.MightAbility
+TM_ReverseTime	torann.arimworldofmagic	yes	TMAbilityDef	Reverse Time	TorannMagic.MagicAbility
+TM_RifleSpec	torann.arimworldofmagic	yes	TMAbilityDef	Rifle Specialization	TorannMagic.MightAbility
+TM_RuneCarving	torann.arimworldofmagic	yes	TMAbilityDef	Rune Carving	TorannMagic.MagicAbility
+TM_Sabotage	torann.arimworldofmagic	yes	TMAbilityDef	Sabotage	TorannMagic.MagicAbility
+TM_Scorn	torann.arimworldofmagic	yes	TMAbilityDef	Scorn	TorannMagic.MagicAbility
+TM_SeismicSlash	torann.arimworldofmagic	yes	TMAbilityDef	Seismic Slash	TorannMagic.MightAbility
+TM_Sentinel	torann.arimworldofmagic	yes	TMAbilityDef	Sentinel	TorannMagic.MagicAbility
+TM_Shadow	torann.arimworldofmagic	yes	TMAbilityDef	Shadow	TorannMagic.MagicAbility
+TM_ShadowBolt	torann.arimworldofmagic	yes	TMAbilityDef	Shadow Bolt	TorannMagic.MagicAbility
+TM_ShadowBolt_I	torann.arimworldofmagic	yes	TMAbilityDef	Shadow Bolt	TorannMagic.MagicAbility
+TM_ShadowBolt_II	torann.arimworldofmagic	yes	TMAbilityDef	Shadow Bolt	TorannMagic.MagicAbility
+TM_ShadowBolt_III	torann.arimworldofmagic	yes	TMAbilityDef	Shadow Bolt	TorannMagic.MagicAbility
+TM_ShadowCall	torann.arimworldofmagic	yes	TMAbilityDef	Shadow Call	TorannMagic.MagicAbility
+TM_ShadowSlayer	torann.arimworldofmagic	yes	TMAbilityDef	Shadow Slayer	TorannMagic.MightAbility
+TM_ShadowStep	torann.arimworldofmagic	yes	TMAbilityDef	Shadow Step	TorannMagic.MagicAbility
+TM_ShadowStrike	torann.arimworldofmagic	yes	TMAbilityDef	Shadow Strike	TorannMagic.MightAbility
+TM_ShadowWalk	torann.arimworldofmagic	yes	TMAbilityDef	Shadow Walk	TorannMagic.MagicAbility
+TM_Shadow_I	torann.arimworldofmagic	yes	TMAbilityDef	Shadow	TorannMagic.MagicAbility
+TM_Shadow_II	torann.arimworldofmagic	yes	TMAbilityDef	Shadow	TorannMagic.MagicAbility
+TM_Shadow_III	torann.arimworldofmagic	yes	TMAbilityDef	Shadow	TorannMagic.MagicAbility
+TM_Shapeshift	torann.arimworldofmagic	yes	TMAbilityDef	Shapeshift	TorannMagic.MagicAbility
+TM_ShapeshiftDW	torann.arimworldofmagic	yes	TMAbilityDef	Shapeshift: Dire Wolf	TorannMagic.MagicAbility
+TM_ShatterSentinel	torann.arimworldofmagic	yes	TMAbilityDef	Shatter Sentinel	TorannMagic.MagicAbility
+TM_Shield	torann.arimworldofmagic	yes	TMAbilityDef	Shield	TorannMagic.MagicAbility
+TM_ShieldOther	torann.arimworldofmagic	yes	TMAbilityDef	Shield Other	TorannMagic.MagicAbility
+TM_Shield_I	torann.arimworldofmagic	yes	TMAbilityDef	Shield	TorannMagic.MagicAbility
+TM_Shield_II	torann.arimworldofmagic	yes	TMAbilityDef	Shield	TorannMagic.MagicAbility
+TM_Shield_III	torann.arimworldofmagic	yes	TMAbilityDef	Shield	TorannMagic.MagicAbility
+TM_ShotgunSpec	torann.arimworldofmagic	yes	TMAbilityDef	Shotgun Specialization	TorannMagic.MightAbility
+TM_Shroud	torann.arimworldofmagic	yes	TMAbilityDef	Shroud of Darkness	TorannMagic.MightAbility
+TM_SigilDrain	torann.arimworldofmagic	yes	TMAbilityDef	Sigil Drain	TorannMagic.MagicAbility
+TM_SigilSurge	torann.arimworldofmagic	yes	TMAbilityDef	Sigil Surge	TorannMagic.MagicAbility
+TM_SiphonBrand	torann.arimworldofmagic	yes	TMAbilityDef	Brand: Siphon	TorannMagic.MagicAbility
+TM_SiphonMana	torann.arimworldofmagic	yes	TMAbilityDef	Siphon Mana	TorannMagic.MagicAbility
+TM_SmokeCloud	torann.arimworldofmagic	yes	TMAbilityDef	Smoke Cloud	TorannMagic.MagicAbility
+TM_SnapFreeze	torann.arimworldofmagic	yes	TMAbilityDef	Snap Freeze	TorannMagic.MagicAbility
+TM_SniperFocus	torann.arimworldofmagic	yes	TMAbilityDef	Sniper Training	TorannMagic.MightAbility
+TM_Snowball	torann.arimworldofmagic	yes	TMAbilityDef	Snowball	TorannMagic.MagicAbility
+TM_SoL_CreateLight	torann.arimworldofmagic	yes	TMAbilityDef	Create Light	TorannMagic.MagicAbility
+TM_SoL_Equalize	torann.arimworldofmagic	yes	TMAbilityDef	Equalize	TorannMagic.MagicAbility
+TM_Soothe	torann.arimworldofmagic	yes	TMAbilityDef	Soothing Breeze	TorannMagic.MagicAbility
+TM_SootheAnimal	torann.arimworldofmagic	yes	TMAbilityDef	Beguile Animal	TorannMagic.MagicAbility
+TM_SootheAnimal_I	torann.arimworldofmagic	yes	TMAbilityDef	Beguile Animal (I)	TorannMagic.MagicAbility
+TM_SootheAnimal_II	torann.arimworldofmagic	yes	TMAbilityDef	Beguile Animal (II)	TorannMagic.MagicAbility
+TM_SootheAnimal_III	torann.arimworldofmagic	yes	TMAbilityDef	Beguile Animal (III)	TorannMagic.MagicAbility
+TM_Soothe_I	torann.arimworldofmagic	yes	TMAbilityDef	Soothing Breeze	TorannMagic.MagicAbility
+TM_Soothe_II	torann.arimworldofmagic	yes	TMAbilityDef	Soothing Breeze	TorannMagic.MagicAbility
+TM_Soothe_III	torann.arimworldofmagic	yes	TMAbilityDef	Soothing Breeze	TorannMagic.MagicAbility
+TM_SoothingBalm	torann.arimworldofmagic	yes	TMAbilityDef	Soothing Balm	TorannMagic.MightAbility
+TM_SoulBond	torann.arimworldofmagic	yes	TMAbilityDef	SoulBond	TorannMagic.MagicAbility
+TM_SpellMending	torann.arimworldofmagic	yes	TMAbilityDef	Spell Mending	TorannMagic.MagicAbility
+TM_SpiritDrain	torann.arimworldofmagic	yes	TMAbilityDef	Spirit Drain	TorannMagic.MagicAbility
+TM_SpiritOfLight	torann.arimworldofmagic	yes	TMAbilityDef	Spirit Of Light	TorannMagic.MagicAbility
+TM_SpiritPossession	torann.arimworldofmagic	yes	TMAbilityDef	Possess	TorannMagic.MagicAbility
+TM_SpiritRally	torann.arimworldofmagic	yes	TMAbilityDef	Spirit Rally (I)	TorannMagic.MagicAbility
+TM_SpiritRally_I	torann.arimworldofmagic	yes	TMAbilityDef	Spirit Rally (II)	TorannMagic.MagicAbility
+TM_SpiritRally_II	torann.arimworldofmagic	yes	TMAbilityDef	Spirit Rally (III)	TorannMagic.MagicAbility
+TM_SpiritRally_III	torann.arimworldofmagic	yes	TMAbilityDef	Spirit Rally (IV)	TorannMagic.MagicAbility
+TM_SpiritStorm	torann.arimworldofmagic	yes	TMAbilityDef	Spirit Storm	TorannMagic.MagicAbility
+TM_SpiritWolves	torann.arimworldofmagic	yes	TMAbilityDef	Spirit Wolves	TorannMagic.MagicAbility
+TM_SpiritWolves_I	torann.arimworldofmagic	yes	TMAbilityDef	Spirit Wolves (I)	TorannMagic.MagicAbility
+TM_SpiritWolves_II	torann.arimworldofmagic	yes	TMAbilityDef	Spirit Wolves (II)	TorannMagic.MagicAbility
+TM_SpiritWolves_III	torann.arimworldofmagic	yes	TMAbilityDef	Spirit Wolves (III)	TorannMagic.MagicAbility
+TM_Spite	torann.arimworldofmagic	yes	TMAbilityDef	Spite	TorannMagic.MightAbility
+TM_Spite_I	torann.arimworldofmagic	yes	TMAbilityDef	Spite I	TorannMagic.MightAbility
+TM_Spite_II	torann.arimworldofmagic	yes	TMAbilityDef	Spite II	TorannMagic.MightAbility
+TM_Spite_III	torann.arimworldofmagic	yes	TMAbilityDef	Spite III	TorannMagic.MightAbility
+TM_Sprint	torann.arimworldofmagic	yes	TMAbilityDef	Sprint	TorannMagic.MightAbility
+TM_Sprint_I	torann.arimworldofmagic	yes	TMAbilityDef	Sprint	TorannMagic.MightAbility
+TM_Sprint_II	torann.arimworldofmagic	yes	TMAbilityDef	Sprint	TorannMagic.MightAbility
+TM_Sprint_III	torann.arimworldofmagic	yes	TMAbilityDef	Sprint	TorannMagic.MightAbility
+TM_Start_ElementalDefenders	torann.arimworldofmagic	yes	AbilityDef	elemental defenders	
+TM_Start_ManaStorm	torann.arimworldofmagic	yes	AbilityDef	mana storm	
+TM_StayAlert	torann.arimworldofmagic	yes	TMAbilityDef	Stay Alert!	TorannMagic.MightAbility
+TM_StayAlert_I	torann.arimworldofmagic	yes	TMAbilityDef	Stay Alert!	TorannMagic.MightAbility
+TM_StayAlert_II	torann.arimworldofmagic	yes	TMAbilityDef	Stay Alert!	TorannMagic.MightAbility
+TM_StayAlert_III	torann.arimworldofmagic	yes	TMAbilityDef	Stay Alert!	TorannMagic.MightAbility
+TM_Stoneskin	torann.arimworldofmagic	yes	TMAbilityDef	Stoneskin	TorannMagic.MagicAbility
+TM_StrongBack	torann.arimworldofmagic	yes	TMAbilityDef	Strong Back	TorannMagic.MightAbility
+TM_Summon	torann.arimworldofmagic	yes	TMAbilityDef	Summon	TorannMagic.MagicAbility
+TM_SummonDemon	torann.arimworldofmagic	yes	TMAbilityDef	Summon Demon	TorannMagic.MagicAbility
+TM_SummonElemental	torann.arimworldofmagic	yes	TMAbilityDef	Summon Elemental	TorannMagic.MagicAbility
+TM_SummonExplosive	torann.arimworldofmagic	yes	TMAbilityDef	Summon explosive	TorannMagic.MagicAbility
+TM_SummonMinion	torann.arimworldofmagic	yes	TMAbilityDef	Summon Minion	TorannMagic.MagicAbility
+TM_SummonPoppi	torann.arimworldofmagic	yes	TMAbilityDef	Summon Poppi	TorannMagic.MagicAbility
+TM_SummonPylon	torann.arimworldofmagic	yes	TMAbilityDef	Summon defense pylon	TorannMagic.MagicAbility
+TM_SummonSpiritAnimalMass	torann.arimworldofmagic	yes	TMAbilityDef	Spirit Animals	TorannMagic.MagicAbility
+TM_SummonTotemEarth	torann.arimworldofmagic	yes	TMAbilityDef	Totem: Earth	TorannMagic.MagicAbility
+TM_SummonTotemHealing	torann.arimworldofmagic	yes	TMAbilityDef	Totem: Healing	TorannMagic.MagicAbility
+TM_SummonTotemLightning	torann.arimworldofmagic	yes	TMAbilityDef	Totem: Lightning	TorannMagic.MagicAbility
+TM_Summon_I	torann.arimworldofmagic	yes	TMAbilityDef	Summon	TorannMagic.MagicAbility
+TM_Summon_II	torann.arimworldofmagic	yes	TMAbilityDef	Summon	TorannMagic.MagicAbility
+TM_Summon_III	torann.arimworldofmagic	yes	TMAbilityDef	Summon	TorannMagic.MagicAbility
+TM_Sunfire	torann.arimworldofmagic	yes	TMAbilityDef	Sunfire	TorannMagic.MagicAbility
+TM_Sunfire_I	torann.arimworldofmagic	yes	TMAbilityDef	Sunfire (I)	TorannMagic.MagicAbility
+TM_Sunfire_II	torann.arimworldofmagic	yes	TMAbilityDef	Sunfire (II)	TorannMagic.MagicAbility
+TM_Sunfire_III	torann.arimworldofmagic	yes	TMAbilityDef	Sunfire (III)	TorannMagic.MagicAbility
+TM_Sunlight	torann.arimworldofmagic	yes	TMAbilityDef	Sun Light	TorannMagic.MagicAbility
+TM_SuppressingFire	torann.arimworldofmagic	yes	TMAbilityDef	Suppressing Fire	TorannMagic.MightAbility
+TM_SuppressiveAura	torann.arimworldofmagic	yes	TMAbilityDef	Suppressive Aura	TorannMagic.MagicAbility
+TM_Symbiosis	torann.arimworldofmagic	yes	TMAbilityDef	Symbiosis	TorannMagic.MagicAbility
+TM_TaskMasterAura	torann.arimworldofmagic	yes	TMAbilityDef	Task Master	TorannMagic.MightAbility
+TM_Taunt	torann.arimworldofmagic	yes	TMAbilityDef	Taunt	TorannMagic.MightAbility
+TM_TeachMagic	torann.arimworldofmagic	yes	TMAbilityDef	Mentor Magic	TorannMagic.MagicAbility
+TM_TeachMight	torann.arimworldofmagic	yes	TMAbilityDef	Combat Training	TorannMagic.MightAbility
+TM_TechnoBit	torann.arimworldofmagic	yes	TMAbilityDef	Techno-Bit	TorannMagic.MagicAbility
+TM_TechnoShield	torann.arimworldofmagic	yes	TMAbilityDef	Kinetic Shield	TorannMagic.MagicAbility
+TM_TechnoTurret	torann.arimworldofmagic	yes	TMAbilityDef	Mark-IV Turret	TorannMagic.MagicAbility
+TM_TechnoWeapon	torann.arimworldofmagic	yes	TMAbilityDef	Engineer Weapon	TorannMagic.MagicAbility
+TM_Teleport	torann.arimworldofmagic	yes	TMAbilityDef	Teleport	TorannMagic.MagicAbility
+TM_TempestStrike	torann.arimworldofmagic	yes	TMAbilityDef	Tempest Strike	TorannMagic.MightAbility
+TM_ThickSkin	torann.arimworldofmagic	yes	TMAbilityDef	Thick Skin	TorannMagic.MightAbility
+TM_ThrowingKnife	torann.arimworldofmagic	yes	TMAbilityDef	Throwing Knife	TorannMagic.MightAbility
+TM_ThunderStrike	torann.arimworldofmagic	yes	TMAbilityDef	Thunder Strike	TorannMagic.MightAbility
+TM_TigerStrike	torann.arimworldofmagic	yes	TMAbilityDef	Tiger Strike	TorannMagic.MightAbility
+TM_TimeMark	torann.arimworldofmagic	yes	TMAbilityDef	Time Mark	TorannMagic.MagicAbility
+TM_Totems	torann.arimworldofmagic	yes	TMAbilityDef	Totems	TorannMagic.MagicAbility
+TM_TransferMana	torann.arimworldofmagic	yes	TMAbilityDef	Transfer Mana	TorannMagic.MagicAbility
+TM_Transmutate	torann.arimworldofmagic	yes	TMAbilityDef	Transmutate	TorannMagic.MagicAbility
+TM_Transpose	torann.arimworldofmagic	yes	TMAbilityDef	Transpose	TorannMagic.MightAbility
+TM_Transpose_I	torann.arimworldofmagic	yes	TMAbilityDef	Transpose I	TorannMagic.MightAbility
+TM_Transpose_II	torann.arimworldofmagic	yes	TMAbilityDef	Transpose II	TorannMagic.MightAbility
+TM_Transpose_III	torann.arimworldofmagic	yes	TMAbilityDef	Transpose III	TorannMagic.MightAbility
+TM_ValiantCharge	torann.arimworldofmagic	yes	TMAbilityDef	Valiant Charge	TorannMagic.MagicAbility
+TM_VeilOfShadows	torann.arimworldofmagic	yes	TMAbilityDef	Veil of Shadows	TorannMagic.MightAbility
+TM_VitalityBrand	torann.arimworldofmagic	yes	TMAbilityDef	Brand: Vitality	TorannMagic.MagicAbility
+TM_Voidseeker	torann.arimworldofmagic	yes	AbilityGroupDef		
+TM_WandererCraft	torann.arimworldofmagic	yes	TMAbilityDef	The Wanderer	TorannMagic.MagicAbility
+TM_WaveOfFear	torann.arimworldofmagic	yes	TMAbilityDef	Wave of Fear	TorannMagic.MightAbility
+TM_WayfarerCraft	torann.arimworldofmagic	yes	TMAbilityDef	The Wayfarer	TorannMagic.MightAbility
+TM_Weapon_WintersFury	torann.arimworldofmagic	yes	TMAbilityDef	Winter's Fury	
+TM_WetGround	torann.arimworldofmagic	yes	TMAbilityDef	Moisturize Ground	TorannMagic.MagicAbility
+TM_Whirlwind	torann.arimworldofmagic	yes	TMAbilityDef	Whirlwind	TorannMagic.MightAbility
+TMagic_60mmMortar	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_AMP	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_AccelerateTime	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_AdvHeal	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_AdvHeal_Self	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_AntiArmor	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_AoEHeal	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Arcane	torann.arimworldofmagic	yes	AbilityUserAIProfileDef		
+TMagic_ArcaneBolt	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_ArrowStorm	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Attraction	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Bard	torann.arimworldofmagic	yes	AbilityUserAIProfileDef		
+TMagic_BattleHymn	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_BestowMight	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_BladeArt	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_BladeSpin	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Bladedancer	torann.arimworldofmagic	yes	AbilityUserAIProfileDef		
+TMagic_Blink	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Blizzard	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_BloodForBlood	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_BloodGift_Self	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_BloodMage	torann.arimworldofmagic	yes	AbilityUserAIProfileDef		
+TMagic_BloodMoon	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_BloodShield	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_BowTraining	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Brightmage	torann.arimworldofmagic	yes	AbilityUserAIProfileDef		
+TMagic_ChainLightning	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Chaos	torann.arimworldofmagic	yes	AbilityUserAIProfileDef		
+TMagic_Chronomancer	torann.arimworldofmagic	yes	AbilityUserAIProfileDef		
+TMagic_Cloak	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Commander	torann.arimworldofmagic	yes	AbilityUserAIProfileDef		
+TMagic_DeathBolt	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_DeathKnight	torann.arimworldofmagic	yes	AbilityUserAIProfileDef		
+TMagic_DeathMark	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_DisablingShot	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Dominate	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_DragonStrike	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Druid	torann.arimworldofmagic	yes	AbilityUserAIProfileDef		
+TMagic_EarthTotem	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_EarthernHammer	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Encase	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_EnchantWeapon	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_EnchantedBody	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Enchanter	torann.arimworldofmagic	yes	AbilityUserAIProfileDef		
+TMagic_Enrage	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_EnrageSelf	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_EyeOfTheStorm	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Faceless	torann.arimworldofmagic	yes	AbilityUserAIProfileDef		
+TMagic_Fire	torann.arimworldofmagic	yes	AbilityUserAIProfileDef		
+TMagic_Fireball	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Firebolt	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Fireclaw	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Firestorm	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_FirstAid	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_FogOfTorment	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Fortitude	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_FrostRay	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Geomancer	torann.arimworldofmagic	yes	AbilityUserAIProfileDef		
+TMagic_Gladiator	torann.arimworldofmagic	yes	AbilityUserAIProfileDef		
+TMagic_GraveBlade	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Headshot	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Heal	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Heal_Self	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_HealingTotem	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_HoldTheLine	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_HolyWrath	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Ice	torann.arimworldofmagic	yes	AbilityUserAIProfileDef		
+TMagic_Icebolt	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_IgniteBlood	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_LightBurst	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Lightning	torann.arimworldofmagic	yes	AbilityUserAIProfileDef		
+TMagic_LightningBolt	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_LightningCloud	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_LightningStorm	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_LightningTotem	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Lullaby	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_MagicMissile	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Meteor	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Monk	torann.arimworldofmagic	yes	AbilityUserAIProfileDef		
+TMagic_MoveOut	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Necromancer	torann.arimworldofmagic	yes	AbilityUserAIProfileDef		
+TMagic_Nightshade	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_OrbitalStrike	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Overwhelm	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Paladin	torann.arimworldofmagic	yes	AbilityUserAIProfileDef		
+TMagic_PhaseStrike	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Poison	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Polymorph	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Possess	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Prediction	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Priest	torann.arimworldofmagic	yes	AbilityUserAIProfileDef		
+TMagic_Psionic	torann.arimworldofmagic	yes	AbilityUserAIProfileDef		
+TMagic_PsionicBarrier	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_PsionicBlast	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_PsionicDash	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_PsionicStorm	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_PsychicShock	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Ranger	torann.arimworldofmagic	yes	AbilityUserAIProfileDef		
+TMagic_RayOfHope	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Regen	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Regen_Self	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Rend	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Repulsion	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Reversal	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_ReverseTime	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_ReverseTime_Self	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Sabotage	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Scorn	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_SeismicSlash	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Sentinel	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Shadow	torann.arimworldofmagic	yes	AbilityUserAIProfileDef		
+TMagic_ShadowBolt	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_ShadowStrike	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_ShadowSummon	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Shaman	torann.arimworldofmagic	yes	AbilityUserAIProfileDef		
+TMagic_Shield	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Sniper	torann.arimworldofmagic	yes	AbilityUserAIProfileDef		
+TMagic_Snowball	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Soothe	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_SpiritWolves	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Spite	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Sprint	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_StayAlert	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Stoneskin	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Stoneskin_Self	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Succubus	torann.arimworldofmagic	yes	AbilityUserAIProfileDef		
+TMagic_Summon	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_SummonElemental	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_SummonMinion	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_SummonPoppi	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_SummonedExplosive	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Summoner	torann.arimworldofmagic	yes	AbilityUserAIProfileDef		
+TMagic_Sunfire	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_SuperSoldier	torann.arimworldofmagic	yes	AbilityUserAIProfileDef		
+TMagic_TechnoShield	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_TechnoShield_Self	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Technomancer	torann.arimworldofmagic	yes	AbilityUserAIProfileDef		
+TMagic_ThrowingKnife	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_ThunderStrike	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_TigerStrike	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_TimeBubble	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Transpose	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_ValiantCharge	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Wanderer	torann.arimworldofmagic	yes	AbilityUserAIProfileDef		
+TMagic_Warlock	torann.arimworldofmagic	yes	AbilityUserAIProfileDef		
+TMagic_WaveOfFear	torann.arimworldofmagic	yes	AbilityAIDef		
+TMagic_Wayfarer	torann.arimworldofmagic	yes	AbilityUserAIProfileDef		
+TMagic_Whirlwind	torann.arimworldofmagic	yes	AbilityAIDef		
+DA_ArterialSlash	van.beasts	no	AbilityDef	arterial slash	
+DA_CrushingSlam	van.beasts	no	AbilityDef	crushing slam	
+DA_CrushingSlamTest	van.beasts	no	AbilityDef	crushing slam2	
+DA_DominatingRoar	van.beasts	no	AbilityDef	dominating roar	
+DA_FrogLeap	van.beasts	no	AbilityDef	frogleap	
+DA_GiantRockThrow	van.beasts	no	AbilityDef	boulder throw	
+DA_ImmobilizingBite	van.beasts	no	AbilityDef	immobilizing bite	
+DA_LavaSoar	van.beasts	no	AbilityDef	lava soar	
+DA_LavaSpew	van.beasts	no	AbilityDef	lava spew	
+DA_MuckbileSpew	van.beasts	no	AbilityDef	muckbile spew	
+DA_StunningScreech	van.beasts	no	AbilityDef	stunning screech	
+DA_ToxicBarbspike	van.beasts	no	AbilityDef	barbed quills	
+VGE_AnalyzeTheStars	vanillaexpanded.gravship	yes	AbilityDef	analyze the stars	
+VGE_EmergencyLaunch	vanillaexpanded.gravship	yes	AbilityDef	emergency launch	
+VGE_EngineeringCommand	vanillaexpanded.gravship	yes	AbilityDef	engineering command	
+AA_Bullet_TinyVenomBarb	vanillaexpanded.vgeneticse	yes	AbilityDef	tiny venomous barbs	
+AA_ExplodingWeb	vanillaexpanded.vgeneticse	yes	AbilityDef	exploding web	
+AA_HugeQuill	vanillaexpanded.vgeneticse	yes	AbilityDef	huge quill	
+GR_AdrenalineRush	vanillaexpanded.vgeneticse	yes	AbilityDef	adrenaline rush	
+GR_Burrow	vanillaexpanded.vgeneticse	yes	AbilityDef	burrow underground	
+GR_CatReflexes	vanillaexpanded.vgeneticse	yes	AbilityDef	cat reflexes	
+GR_ChemfuelDischarge	vanillaexpanded.vgeneticse	yes	AbilityDef	chemfuel discharge	
+GR_CryoBlast	vanillaexpanded.vgeneticse	yes	AbilityDef	cryo cannon	
+GR_DeathRay	vanillaexpanded.vgeneticse	yes	AbilityDef	orbital heat ray	
+GR_DetonateAcid	vanillaexpanded.vgeneticse	yes	AbilityDef	detonate acidic chemfuel	
+GR_DetonateBomb	vanillaexpanded.vgeneticse	yes	AbilityDef	detonate chemfuel	
+GR_DetonateFrost	vanillaexpanded.vgeneticse	yes	AbilityDef	detonate cryo chemfuel	
+GR_DetonatePoison	vanillaexpanded.vgeneticse	yes	AbilityDef	detonate venomous chemfuel	
+GR_DetonatePsionic	vanillaexpanded.vgeneticse	yes	AbilityDef	detonate psionic	
+GR_DetonateStun	vanillaexpanded.vgeneticse	yes	AbilityDef	detonate stunning chemfuel	
+GR_Disintegrator	vanillaexpanded.vgeneticse	yes	AbilityDef	disintegrator	
+GR_Distortion	vanillaexpanded.vgeneticse	yes	AbilityDef	spatial distortion	
+GR_EveryThreeDaysAbilitiesGroup	vanillaexpanded.vgeneticse	yes	AbilityGroupDef		
+GR_FireSpit	vanillaexpanded.vgeneticse	yes	AbilityDef	chemfuel spit	
+GR_FlameBreathAnimated	vanillaexpanded.vgeneticse	yes	AbilityDef	flame breath	
+GR_FragEggs	vanillaexpanded.vgeneticse	yes	AbilityDef	lay frag eggs	
+GR_HairballProjectile	vanillaexpanded.vgeneticse	yes	AbilityDef	blinding spit	
+GR_HellsphereBlast	vanillaexpanded.vgeneticse	yes	AbilityDef	hellsphere blast	
+GR_IncendiaryMote	vanillaexpanded.vgeneticse	yes	AbilityDef	chemfuel flamethrower	
+GR_InsanityCloud	vanillaexpanded.vgeneticse	yes	AbilityDef	invoke insanity	
+GR_InsectClouds	vanillaexpanded.vgeneticse	yes	AbilityDef	insect clouds	
+GR_KeenSenses	vanillaexpanded.vgeneticse	yes	AbilityDef	keen senses	
+GR_Laser	vanillaexpanded.vgeneticse	yes	AbilityDef	twin-coiled laser	
+GR_NoTargetAbilitiesGroup	vanillaexpanded.vgeneticse	yes	AbilityGroupDef		
+GR_OnceADayAbilitiesGroup	vanillaexpanded.vgeneticse	yes	AbilityGroupDef		
+GR_PackTactics	vanillaexpanded.vgeneticse	yes	AbilityDef	pack tactics	
+GR_PlasmaBurst	vanillaexpanded.vgeneticse	yes	AbilityDef	plasma burst	
+GR_PoisonBlast	vanillaexpanded.vgeneticse	yes	AbilityDef	poison blast	
+GR_PoisonBreathAnimated	vanillaexpanded.vgeneticse	yes	AbilityDef	poison breath	
+GR_PoisonousCloud	vanillaexpanded.vgeneticse	yes	AbilityDef	release venomous cloud	
+GR_Pounce	vanillaexpanded.vgeneticse	yes	AbilityDef	pounce	GeneticRim.Ability_Pounce
+GR_Proj_ThrownSac	vanillaexpanded.vgeneticse	yes	AbilityDef	explosive sac	
+GR_RazorProjectile	vanillaexpanded.vgeneticse	yes	AbilityDef	razor tail	
+GR_ResearchDrive	vanillaexpanded.vgeneticse	yes	AbilityDef	research drive	
+GR_SetTrap	vanillaexpanded.vgeneticse	yes	AbilityDef	set chemfuel trap	
+GR_SmokeBomb	vanillaexpanded.vgeneticse	yes	AbilityDef	smoke cannon	
+GR_SniperFlechette	vanillaexpanded.vgeneticse	yes	AbilityDef	sniper flechette	
+GR_Stamina	vanillaexpanded.vgeneticse	yes	AbilityDef	greater stamina	
+GR_StampedeClouds	vanillaexpanded.vgeneticse	yes	AbilityDef	stampede	
+GR_StraightCharge	vanillaexpanded.vgeneticse	yes	AbilityDef	charge	GeneticRim.Ability_Charge
+GR_StunBolt	vanillaexpanded.vgeneticse	yes	AbilityDef	stun bolt	
+GR_ThriceDayAbilitiesGroup	vanillaexpanded.vgeneticse	yes	AbilityGroupDef		
+GR_TwiceDayAbilitiesGroup	vanillaexpanded.vgeneticse	yes	AbilityGroupDef		
+GR_VentHeatedExhaust	vanillaexpanded.vgeneticse	yes	AbilityDef	vent heated exhaust	
+GR_Warhead	vanillaexpanded.vgeneticse	yes	AbilityDef	antigrain artillery	
+GR_Web	vanillaexpanded.vgeneticse	yes	AbilityDef	web	
+RB_Quill	vanillaexpanded.vgeneticse	yes	AbilityDef	ranged quill	
+VME_CallTradeCaravan	vanillaexpanded.vmemese	yes	AbilityDef	call trade caravan	
+VME_Commissar	vanillaexpanded.vmemese	yes	AbilityGroupDef		
+VME_ConstructANest	vanillaexpanded.vmemese	yes	AbilityDef	construct a nest	
+VME_EnableSelfDestruct	vanillaexpanded.vmemese	yes	AbilityDef	enable self-destruct	
+VME_EnforceCompliance	vanillaexpanded.vmemese	yes	AbilityDef	enforce compliance	
+VME_ExaltedLeader	vanillaexpanded.vmemese	yes	AbilityGroupDef		
+VME_FlameKeeper	vanillaexpanded.vmemese	yes	AbilityGroupDef		
+VME_Fleshcrafter	vanillaexpanded.vmemese	yes	AbilityGroupDef		
+VME_HarvestBodyParts	vanillaexpanded.vmemese	yes	AbilityDef	harvest body parts	
+VME_InsectoidHerder	vanillaexpanded.vmemese	yes	AbilityGroupDef		
+VME_InsectoidHerderNest	vanillaexpanded.vmemese	yes	AbilityGroupDef		
+VME_LeaderConversionRitual	vanillaexpanded.vmemese	yes	AbilityDef	conversion ritual (leader)	
+VME_LeaderConvert	vanillaexpanded.vmemese	yes	AbilityDef	convert (leader)	
+VME_LeaderCounsel	vanillaexpanded.vmemese	yes	AbilityDef	Counsel (leader)	
+VME_LeaderPreachHealth	vanillaexpanded.vmemese	yes	AbilityDef	preach health (leader)	
+VME_LeaderReassure	vanillaexpanded.vmemese	yes	AbilityDef	reassure (leader)	
+VME_Majordomo	vanillaexpanded.vmemese	yes	AbilityGroupDef		
+VME_MakeADessert	vanillaexpanded.vmemese	yes	AbilityDef	make a dessert	
+VME_Mechacker	vanillaexpanded.vmemese	yes	AbilityGroupDef		
+VME_MedicalEmergency	vanillaexpanded.vmemese	yes	AbilityDef	medical emergency	
+VME_Nurse	vanillaexpanded.vmemese	yes	AbilityGroupDef		
+VME_PartyHost	vanillaexpanded.vmemese	yes	AbilityGroupDef		
+VME_Patissier	vanillaexpanded.vmemese	yes	AbilityGroupDef		
+VME_StrengthenFlame	vanillaexpanded.vmemese	yes	AbilityDef	strengthen flame	
+VME_TameInsectoid	vanillaexpanded.vmemese	yes	AbilityDef	tame insectoid	
+VME_ThrowParty	vanillaexpanded.vmemese	yes	AbilityDef	throw party	
+VME_Trader	vanillaexpanded.vmemese	yes	AbilityGroupDef		
+VME_WorkCommand	vanillaexpanded.vmemese	yes	AbilityDef	work command	
+VPEH_BloodRite	vanillaexpanded.vpe.hemosage	yes	AbilityDef	blood rite	VFECore.Abilities.Ability_Blank
+VPEH_BloodShard	vanillaexpanded.vpe.hemosage	yes	AbilityDef	blood shard	VFECore.Abilities.Ability_ShootProjectile
+VPEH_BloodSpew	vanillaexpanded.vpe.hemosage	yes	AbilityDef	blood spew	VPEHemosage.Ability_BloodSpew
+VPEH_Bloodfocus	vanillaexpanded.vpe.hemosage	yes	AbilityDef	blood focus	VPEHemosage.Ability_Bloodfocus
+VPEH_Bloodstorm	vanillaexpanded.vpe.hemosage	yes	AbilityDef	bloodstorm	VPEHemosage.Ability_Bloodstorm
+VPEH_CloseWounds	vanillaexpanded.vpe.hemosage	yes	AbilityDef	close wounds	VPEHemosage.Ability_CloseWounds
+VPEH_CorpseExplosion	vanillaexpanded.vpe.hemosage	yes	AbilityDef	corpse explosion	VPEHemosage.Ability_CorpseExplosion
+VPEH_Hemodrain	vanillaexpanded.vpe.hemosage	yes	AbilityDef	hemodrain	VPEHemosage.Ability_Hemodrain
+VPEH_SanguineSpear	vanillaexpanded.vpe.hemosage	yes	AbilityDef	sanguine spear	VPEHemosage.Ability_SanguineSpear
+VPEH_WordofOffering	vanillaexpanded.vpe.hemosage	yes	AbilityDef	word of offering	VPEHemosage.Ability_WordofOffering
+VPEP_Ascension	vanillaexpanded.vpe.puppeteer	yes	AbilityDef	ascension	VPEPuppeteer.Ability_Ascension
+VPEP_BrainCut	vanillaexpanded.vpe.puppeteer	yes	AbilityDef	brain cut	VPEPuppeteer.Ability_BrainCut
+VPEP_BrainLeech	vanillaexpanded.vpe.puppeteer	yes	AbilityDef	brain leech	VPEPuppeteer.Ability_BrainLeech
+VPEP_Degrade	vanillaexpanded.vpe.puppeteer	yes	AbilityDef	degrade	VFECore.Abilities.Ability_ShootProjectile
+VPEP_MindJump	vanillaexpanded.vpe.puppeteer	yes	AbilityDef	mind jump	VPEPuppeteer.Ability_MindJump
+VPEP_MindSplit	vanillaexpanded.vpe.puppeteer	yes	AbilityDef	mind split	VPEPuppeteer.Ability_MindSplit
+VPEP_Puppet	vanillaexpanded.vpe.puppeteer	yes	AbilityDef	puppet	VPEPuppeteer.Ability_Puppet
+VPEP_PuppetSwarm	vanillaexpanded.vpe.puppeteer	yes	AbilityDef	puppet swarm	VPEPuppeteer.Ability_PuppetSwarm
+VPEP_Subjugation	vanillaexpanded.vpe.puppeteer	yes	AbilityDef	subjugation	VFECore.Abilities.Ability_Blank
+VPEP_SummonPuppet	vanillaexpanded.vpe.puppeteer	yes	AbilityDef	summon puppet	VPEPuppeteer.Ability_SummonPuppet
+VPE_AdrenalineRush	vanillaexpanded.vpsycastse	yes	AbilityDef	adrenaline rush	VFECore.Abilities.Ability_Blank
+VPE_Age	vanillaexpanded.vpsycastse	yes	AbilityDef	age	VFECore.Abilities.Ability_Blank
+VPE_AggressiveHeatDump	vanillaexpanded.vpsycastse	yes	AbilityDef	aggressive heat dump	VanillaPsycastsExpanded.Ability_AggressiveHeatDump
+VPE_AnimalAllies	vanillaexpanded.vpsycastse	yes	AbilityDef	animal allies	VFECore.Abilities.Ability_Blank
+VPE_Assassinate	vanillaexpanded.vpsycastse	yes	AbilityDef	assassinate	VanillaPsycastsExpanded.Nightstalker.Ability_Assassinate
+VPE_BallLightning	vanillaexpanded.vpsycastse	yes	AbilityDef	ball lightning	VFECore.Abilities.Ability_ShootProjectile
+VPE_Beckon	vanillaexpanded.vpsycastse	yes	AbilityDef	beckon	VFECore.Abilities.Ability_Blank
+VPE_BendProbability	vanillaexpanded.vpsycastse	yes	AbilityDef	bend probability	VanillaPsycastsExpanded.Harmonist.Ability_RandomEvent
+VPE_Berserk	vanillaexpanded.vpsycastse	yes	AbilityDef	berserk	VFECore.Abilities.Ability_Blank
+VPE_BerserkPulse	vanillaexpanded.vpsycastse	yes	AbilityDef	berserk pulse	VanillaPsycastsExpanded.Ability_BerserkPulse
+VPE_BladeFocus	vanillaexpanded.vpsycastse	yes	AbilityDef	blade focus	VFECore.Abilities.Ability_Blank
+VPE_BlindingPulse	vanillaexpanded.vpsycastse	yes	AbilityDef	blinding pulse	VFECore.Abilities.Ability_Blank
+VPE_Bliss	vanillaexpanded.vpsycastse	yes	AbilityDef	bliss	VFECore.Abilities.Ability_Blank
+VPE_Blizzard	vanillaexpanded.vpsycastse	yes	AbilityDef	blizzard	VFECore.Abilities.Ability_Blank
+VPE_Bolt	vanillaexpanded.vpsycastse	yes	AbilityDef	bolt	VFECore.Abilities.Ability_ShootProjectile
+VPE_BrambleMaze	vanillaexpanded.vpsycastse	yes	AbilityDef	bramble maze	VFECore.Abilities.Ability_Spawn
+VPE_BreatheFlame	vanillaexpanded.vpsycastse	yes	AbilityDef	breathe flame	VFECore.Abilities.Ability_ShootProjectile
+VPE_Burden	vanillaexpanded.vpsycastse	yes	AbilityDef	burden	VFECore.Abilities.Ability_Blank
+VPE_ChainBolt	vanillaexpanded.vpsycastse	yes	AbilityDef	chain bolt	VanillaPsycastsExpanded.Staticlord.Ability_ChainBolt
+VPE_ChaosSkip	vanillaexpanded.vpsycastse	yes	AbilityDef	chaos skip	VanillaPsycastsExpanded.Skipmaster.Ability_Teleport
+VPE_Chunkskip	vanillaexpanded.vpsycastse	yes	AbilityDef	chunk skip	VanillaPsycastsExpanded.Skipmaster.Ability_Chunkskip
+VPE_ColdZone	vanillaexpanded.vpsycastse	yes	AbilityDef	cold zone	VFECore.Abilities.Ability_Blank
+VPE_ConjureHeatPearls	vanillaexpanded.vpsycastse	yes	AbilityDef	conjure heat pearls	VanillaPsycastsExpanded.Technomancer.Ability_ConjureHeatPearls
+VPE_ConsumeBodies	vanillaexpanded.vpsycastse	yes	AbilityDef	consume bodies	VanillaPsycastsExpanded.Ability_ConsumeBodies
+VPE_ControlledFrenzy	vanillaexpanded.vpsycastse	yes	AbilityDef	controlled frenzy	VFECore.Abilities.Ability_Blank
+VPE_Corpsetalk	vanillaexpanded.vpsycastse	yes	AbilityDef	corpsetalk	VanillaPsycastsExpanded.Ability_Corpsetalk
+VPE_CraftPsyRing	vanillaexpanded.vpsycastse	yes	AbilityDef	craft psyring	VanillaPsycastsExpanded.Technomancer.Ability_Psyring
+VPE_CraftTimeskip	vanillaexpanded.vpsycastse	yes	AbilityDef	craft timeskip	VanillaPsycastsExpanded.Chronopath.Ability_Finish
+VPE_CropBurst	vanillaexpanded.vpsycastse	yes	AbilityDef	crop burst	VFECore.Abilities.Ability_Spawn
+VPE_Darkness	vanillaexpanded.vpsycastse	yes	AbilityDef	darkness	VFECore.Abilities.Ability_Spawn
+VPE_Darkvision	vanillaexpanded.vpsycastse	yes	AbilityDef	darkvision	VFECore.Abilities.Ability_Blank
+VPE_Deathshield	vanillaexpanded.vpsycastse	yes	AbilityDef	deathshield	VFECore.Abilities.Ability_Blank
+VPE_Decoy	vanillaexpanded.vpsycastse	yes	AbilityDef	decoy	VFECore.Abilities.Ability_Spawn
+VPE_DrainPsyessence	vanillaexpanded.vpsycastse	yes	AbilityDef	drain psyessence	VanillaPsycastsExpanded.Ability_DrainPsyessence
+VPE_Eclipse	vanillaexpanded.vpsycastse	yes	AbilityDef	eclipse	VFECore.Abilities.Ability_Blank
+VPE_EnchantQuality	vanillaexpanded.vpsycastse	yes	AbilityDef	enchant quality	VanillaPsycastsExpanded.Technomancer.Ability_IncreaseQuality
+VPE_EnergyDump	vanillaexpanded.vpsycastse	yes	AbilityDef	energy dump	VFECore.Abilities.Ability_Blank
+VPE_Enthrall	vanillaexpanded.vpsycastse	yes	AbilityDef	enthrall	VanillaPsycastsExpanded.Ability_SpawnSkeleton
+VPE_EssenceTransfer	vanillaexpanded.vpsycastse	yes	AbilityDef	essence transfer	VanillaPsycastsExpanded.Wildspeaker.Ability_EssenceTransfer
+VPE_Explosion	vanillaexpanded.vpsycastse	yes	AbilityDef	explosion	VFECore.Abilities.Ability_Explode
+VPE_EyeBlast	vanillaexpanded.vpsycastse	yes	AbilityDef	eye blast	VFECore.Abilities.Ability_ShootProjectile
+VPE_Farskip	vanillaexpanded.vpsycastse	yes	AbilityDef	farskip	VanillaPsycastsExpanded.Skipmaster.Ability_WorldTeleport
+VPE_FireBeam	vanillaexpanded.vpsycastse	yes	AbilityDef	fire beam	VFECore.Abilities.Ability_OrbitalStrike
+VPE_FireShield	vanillaexpanded.vpsycastse	yes	AbilityDef	fire shield	VFECore.Abilities.Ability_Blank
+VPE_FiringFocus	vanillaexpanded.vpsycastse	yes	AbilityDef	firing focus	VFECore.Abilities.Ability_Blank
+VPE_FlameTornado	vanillaexpanded.vpsycastse	yes	AbilityDef	fire tornado	VanillaPsycastsExpanded.Conflagrator.Ability_FireTornado
+VPE_Flameball	vanillaexpanded.vpsycastse	yes	AbilityDef	flameball	VFECore.Abilities.Ability_ShootProjectile
+VPE_Flashstorm	vanillaexpanded.vpsycastse	yes	AbilityDef	flashstorm	VanillaPsycastsExpanded.Staticlord.Ability_Flashstorm
+VPE_Focus	vanillaexpanded.vpsycastse	yes	AbilityDef	focus	VFECore.Abilities.Ability_Blank
+VPE_FrostRay	vanillaexpanded.vpsycastse	yes	AbilityDef	frost ray	VanillaPsycastsExpanded.Ability_FrostRay
+VPE_Ghostwalk	vanillaexpanded.vpsycastse	yes	AbilityDef	ghostwalk	VFECore.Abilities.Ability_Blank
+VPE_GroupLink	vanillaexpanded.vpsycastse	yes	AbilityDef	group link	VanillaPsycastsExpanded.Ability_GroupLink
+VPE_GuardianSkipbarrier	vanillaexpanded.vpsycastse	yes	AbilityDef	guardian skipbarrier	VanillaPsycastsExpanded.Ability_GuardianSkipBarrier
+VPE_GuidedShot	vanillaexpanded.vpsycastse	yes	AbilityDef	guided shot	VFECore.Abilities.Ability_Blank
+VPE_Haywire	vanillaexpanded.vpsycastse	yes	AbilityDef	haywire	VanillaPsycastsExpanded.Technomancer.Ability_AffectMechs
+VPE_HealthSwap	vanillaexpanded.vpsycastse	yes	AbilityDef	health swap	VanillaPsycastsExpanded.Harmonist.Ability_HealthSwap
+VPE_HeatFocus	vanillaexpanded.vpsycastse	yes	AbilityDef	heat focus	VanillaPsycastsExpanded.Harmonist.Ability_HeatFocus
+VPE_Hurricane	vanillaexpanded.vpsycastse	yes	AbilityDef	hurricane	VanillaPsycastsExpanded.Staticlord.Ability_Hurricane
+VPE_IceBlock	vanillaexpanded.vpsycastse	yes	AbilityDef	ice block	VanillaPsycastsExpanded.Ability_IceBlock
+VPE_IceBreath	vanillaexpanded.vpsycastse	yes	AbilityDef	breathe ice	VanillaPsycastsExpanded.Ability_IceBreath
+VPE_IceCrystal	vanillaexpanded.vpsycastse	yes	AbilityDef	ice crystal	VFECore.Abilities.Ability_SpawnBuilding
+VPE_IceShield	vanillaexpanded.vpsycastse	yes	AbilityDef	ice shield	VFECore.Abilities.Ability_Blank
+VPE_IceSpike	vanillaexpanded.vpsycastse	yes	AbilityDef	ice spike	VFECore.Abilities.Ability_ShootProjectile
+VPE_IceWall	vanillaexpanded.vpsycastse	yes	AbilityDef	ice wall	VanillaPsycastsExpanded.Ability_IceWall
+VPE_IntensifyShadows	vanillaexpanded.vpsycastse	yes	AbilityDef	intensify shadows	VFECore.Abilities.Ability_Blank
+VPE_Invisibility	vanillaexpanded.vpsycastse	yes	AbilityDef	invisibility	VFECore.Abilities.Ability_Blank
+VPE_Killskip	vanillaexpanded.vpsycastse	yes	AbilityDef	killskip	VanillaPsycastsExpanded.Ability_Killskip
+VPE_Liferot	vanillaexpanded.vpsycastse	yes	AbilityDef	liferot	VFECore.Abilities.Ability_Blank
+VPE_LocationSwap	vanillaexpanded.vpsycastse	yes	AbilityDef	location swap	VanillaPsycastsExpanded.Harmonist.Ability_LocationSwap
+VPE_LuckTransfer	vanillaexpanded.vpsycastse	yes	AbilityDef	luck transfer	VanillaPsycastsExpanded.Harmonist.Ability_LuckTransfer
+VPE_ManhunterPulse	vanillaexpanded.vpsycastse	yes	AbilityDef	manhunter pulse	VFECore.Abilities.Ability_Blank
+VPE_MassBeckon	vanillaexpanded.vpsycastse	yes	AbilityDef	mass beckon	VFECore.Abilities.Ability_Blank
+VPE_MassChaosSkip	vanillaexpanded.vpsycastse	yes	AbilityDef	mass chaos skip	VanillaPsycastsExpanded.Skipmaster.Ability_Teleport
+VPE_MassHallucination	vanillaexpanded.vpsycastse	yes	AbilityDef	mass hallucination	VanillaPsycastsExpanded.Ability_PsychicComa
+VPE_Mend	vanillaexpanded.vpsycastse	yes	AbilityDef	mend	VanillaPsycastsExpanded.Technomancer.Ability_Mend
+VPE_MeteorShower	vanillaexpanded.vpsycastse	yes	AbilityDef	meteor shower	VFECore.Abilities.Ability_Skyfallers
+VPE_MindBreak	vanillaexpanded.vpsycastse	yes	AbilityDef	mind break	VFECore.Abilities.Ability_Blank
+VPE_MindWipe	vanillaexpanded.vpsycastse	yes	AbilityDef	mind wipe	VFECore.Abilities.Ability_Blank
+VPE_Mindcontrol	vanillaexpanded.vpsycastse	yes	AbilityDef	mind control	VFECore.Abilities.Ability_Blank
+VPE_NeuralHeatDetonation	vanillaexpanded.vpsycastse	yes	AbilityDef	neural heat detonation	VanillaPsycastsExpanded.Ability_NeuralHeatDetonation
+VPE_NeuralHeatDump	vanillaexpanded.vpsycastse	yes	AbilityDef	neural heat dump	VFECore.Abilities.Ability_Blank
+VPE_Neuroquake	vanillaexpanded.vpsycastse	yes	AbilityDef	neuroquake	VFECore.Abilities.Ability_Blank
+VPE_Nightstep	vanillaexpanded.vpsycastse	yes	AbilityDef	nightstep	VanillaPsycastsExpanded.Nightstalker.Ability_WorldTeleportNight
+VPE_Obscure	vanillaexpanded.vpsycastse	yes	AbilityDef	obscure	VFECore.Abilities.Ability_Blank
+VPE_Overshield	vanillaexpanded.vpsycastse	yes	AbilityDef	overshield	VFECore.Abilities.Ability_Blank
+VPE_Painblock	vanillaexpanded.vpsycastse	yes	AbilityDef	painblock	VFECore.Abilities.Ability_Blank
+VPE_ParalysisPulse	vanillaexpanded.vpsycastse	yes	AbilityDef	paralysis pulse	VanillaPsycastsExpanded.Ability_ParalysisPulse
+VPE_PlantTimeskip	vanillaexpanded.vpsycastse	yes	AbilityDef	plant timeskip	VanillaPsycastsExpanded.Chronopath.Ability_MaturePlants
+VPE_Power	vanillaexpanded.vpsycastse	yes	AbilityDef	power	VanillaPsycastsExpanded.Technomancer.Ability_Power
+VPE_PowerLeap	vanillaexpanded.vpsycastse	yes	AbilityDef	power leap	VanillaPsycastsExpanded.Ability_PowerLeap
+VPE_PsychicDrone	vanillaexpanded.vpsycastse	yes	AbilityDef	psychic drone	VFECore.Abilities.Ability_Blank
+VPE_PsychicGuidance	vanillaexpanded.vpsycastse	yes	AbilityDef	psychic guidance	VFECore.Abilities.Ability_Blank
+VPE_PsychicShock	vanillaexpanded.vpsycastse	yes	AbilityDef	psychic shock	VanillaPsycastsExpanded.Ability_PsychicShock
+VPE_QuenchFlames	vanillaexpanded.vpsycastse	yes	AbilityDef	extinguish flames	VFECore.Abilities.Ability_Explode
+VPE_RaidPause	vanillaexpanded.vpsycastse	yes	AbilityDef	raid pause	VFECore.Abilities.Ability_Blank
+VPE_Recharge	vanillaexpanded.vpsycastse	yes	AbilityDef	recharge	VanillaPsycastsExpanded.Staticlord.Ability_Recharge
+VPE_RegrowLimbs	vanillaexpanded.vpsycastse	yes	AbilityDef	regrow limbs	VFECore.Abilities.Ability_Blank
+VPE_Resurrect	vanillaexpanded.vpsycastse	yes	AbilityDef	resurrect	VanillaPsycastsExpanded.Ability_Resurrect
+VPE_ReunionFarskip	vanillaexpanded.vpsycastse	yes	AbilityDef	reunion farskip	VanillaPsycastsExpanded.Ability_ReunionFarskip
+VPE_ReverseEngineer	vanillaexpanded.vpsycastse	yes	AbilityDef	reverse engineer	VanillaPsycastsExpanded.Technomancer.Ability_ReverseEngineer
+VPE_RockConstruct	vanillaexpanded.vpsycastse	yes	AbilityDef	rock construct	VanillaPsycastsExpanded.Technomancer.Ability_Construct_Rock
+VPE_SeasonTimeskip	vanillaexpanded.vpsycastse	yes	AbilityDef	season timeskip	VanillaPsycastsExpanded.Chronopath.Ability_AdvanceSeason
+VPE_SelfExplosion	vanillaexpanded.vpsycastse	yes	AbilityDef	self explosion	VFECore.Abilities.Ability_Explode
+VPE_ShadowFocus	vanillaexpanded.vpsycastse	yes	AbilityDef	shadowfocus	VFECore.Abilities.Ability_Blank
+VPE_Shadowskip	vanillaexpanded.vpsycastse	yes	AbilityDef	shadowskip	VanillaPsycastsExpanded.Nightstalker.Ability_TeleportDark
+VPE_ShieldAnimals	vanillaexpanded.vpsycastse	yes	AbilityDef	shield animals	VFECore.Abilities.Ability_Blank
+VPE_Shrineshield	vanillaexpanded.vpsycastse	yes	AbilityDef	shrineshield	VanillaPsycastsExpanded.Wildspeaker.Ability_ShrineShield
+VPE_SkillRoll	vanillaexpanded.vpsycastse	yes	AbilityDef	skillroll	VanillaPsycastsExpanded.Harmonist.Ability_Skillroll
+VPE_Skip	vanillaexpanded.vpsycastse	yes	AbilityDef	skip	VanillaPsycastsExpanded.Skipmaster.Ability_Teleport
+VPE_Skipdoor	vanillaexpanded.vpsycastse	yes	AbilityDef	skipdoor	VanillaPsycastsExpanded.Skipmaster.Ability_Skipdoor
+VPE_Skipshield	vanillaexpanded.vpsycastse	yes	AbilityDef	skipshield	VFECore.Abilities.Ability_Spawn
+VPE_Smokepop	vanillaexpanded.vpsycastse	yes	AbilityDef	smokepop	VanillaPsycastsExpanded.Skipmaster.Ability_Smokepop
+VPE_SnapFreeze	vanillaexpanded.vpsycastse	yes	AbilityDef	snap freeze	VanillaPsycastsExpanded.Ability_SnapFreeze
+VPE_SolarPinhole	vanillaexpanded.vpsycastse	yes	AbilityDef	solar pinhole	VFECore.Abilities.Ability_Spawn
+VPE_SootheFemale	vanillaexpanded.vpsycastse	yes	AbilityDef	psychic sooth (female)	VFECore.Abilities.Ability_Blank
+VPE_SootheMale	vanillaexpanded.vpsycastse	yes	AbilityDef	psychic sooth (male)	VFECore.Abilities.Ability_Blank
+VPE_SpeedBoost	vanillaexpanded.vpsycastse	yes	AbilityDef	speedboost	VFECore.Abilities.Ability_Blank
+VPE_Stabilize	vanillaexpanded.vpsycastse	yes	AbilityDef	stabilize	VFECore.Abilities.Ability_Blank
+VPE_StaticAura	vanillaexpanded.vpsycastse	yes	AbilityDef	static aura	VFECore.Abilities.Ability_Blank
+VPE_StaticPulse	vanillaexpanded.vpsycastse	yes	AbilityDef	static pulse	VFECore.Abilities.Ability_Explode
+VPE_StealVitality	vanillaexpanded.vpsycastse	yes	AbilityDef	steal vitality	VanillaPsycastsExpanded.Ability_StealVitality
+VPE_SteelConstruct	vanillaexpanded.vpsycastse	yes	AbilityDef	steel construct	VanillaPsycastsExpanded.Technomancer.Ability_Construct_Steel
+VPE_Stun	vanillaexpanded.vpsycastse	yes	AbilityDef	stun	VFECore.Abilities.Ability_Blank
+VPE_SummonPack	vanillaexpanded.vpsycastse	yes	AbilityDef	summon pack	VanillaPsycastsExpanded.Wildspeaker.Ability_SummonPack
+VPE_Thunderbolt	vanillaexpanded.vpsycastse	yes	AbilityDef	thunderbolt	VanillaPsycastsExpanded.Staticlord.Ability_Thunderbolt
+VPE_TimeReversal	vanillaexpanded.vpsycastse	yes	AbilityDef	time reversal	VFECore.Abilities.Ability_Blank
+VPE_TimeSphere	vanillaexpanded.vpsycastse	yes	AbilityDef	time sphere	VanillaPsycastsExpanded.Chronopath.Ability_TimeSphere
+VPE_Timequake	vanillaexpanded.vpsycastse	yes	AbilityDef	timequake	VanillaPsycastsExpanded.Chronopath.Ability_TimeQuake
+VPE_TimeskipMeditation	vanillaexpanded.vpsycastse	yes	AbilityDef	timeskip meditation	VanillaPsycastsExpanded.Chronopath.Ability_Meditate
+VPE_Transmutation	vanillaexpanded.vpsycastse	yes	AbilityDef	transmutation	VanillaPsycastsExpanded.Harmonist.Ability_TransmuteItem
+VPE_TransmuteStone	vanillaexpanded.vpsycastse	yes	AbilityDef	transmute stone	VanillaPsycastsExpanded.Harmonist.Ability_TransmuteStone
+VPE_TreeSprout	vanillaexpanded.vpsycastse	yes	AbilityDef	tree sprout	VFECore.Abilities.Ability_Spawn
+VPE_Vortex	vanillaexpanded.vpsycastse	yes	AbilityDef	vortex	VFECore.Abilities.Ability_SpawnBuilding
+VPE_Wallraise	vanillaexpanded.vpsycastse	yes	AbilityDef	wall raise	VanillaPsycastsExpanded.Skipmaster.Ability_Wallraise
+VPE_Waterskip	vanillaexpanded.vpsycastse	yes	AbilityDef	waterskip	VanillaPsycastsExpanded.Skipmaster.Ability_Waterskip
+VPE_WordofAlliance	vanillaexpanded.vpsycastse	yes	AbilityDef	word of alliance	VanillaPsycastsExpanded.Ability_GoodwillImpact
+VPE_WordofAnimals	vanillaexpanded.vpsycastse	yes	AbilityDef	word of animals	VanillaPsycastsExpanded.Wildspeaker.Ability_Animal
+VPE_WordofFear	vanillaexpanded.vpsycastse	yes	AbilityDef	word of fear	VanillaPsycastsExpanded.Ability_WordOf
+VPE_WordofForetelling	vanillaexpanded.vpsycastse	yes	AbilityDef	word of foretelling	VanillaPsycastsExpanded.Ability_WordOf
+VPE_WordofHealing	vanillaexpanded.vpsycastse	yes	AbilityDef	word of healing	VanillaPsycastsExpanded.Ability_WordOf
+VPE_WordofImmunity	vanillaexpanded.vpsycastse	yes	AbilityDef	word of immunity	VanillaPsycastsExpanded.Ability_WordOf
+VPE_WordofInspiration	vanillaexpanded.vpsycastse	yes	AbilityDef	word of inspiration	VanillaPsycastsExpanded.Ability_WordOf
+VPE_WordofJoy	vanillaexpanded.vpsycastse	yes	AbilityDef	word of joy	VanillaPsycastsExpanded.Ability_WordOf
+VPE_WordofLove	vanillaexpanded.vpsycastse	yes	AbilityDef	word of love	VanillaPsycastsExpanded.Ability_WordOf
+VPE_WordofPain	vanillaexpanded.vpsycastse	yes	AbilityDef	word of pain	VanillaPsycastsExpanded.Ability_WordOf
+VPE_WordofProductivity	vanillaexpanded.vpsycastse	yes	AbilityDef	word of productivity	VanillaPsycastsExpanded.Ability_WordOf
+VPE_WordofProgress	vanillaexpanded.vpsycastse	yes	AbilityDef	word of progress	VanillaPsycastsExpanded.Ability_WordOf
+VPE_WordofProtection	vanillaexpanded.vpsycastse	yes	AbilityDef	word of protection	VanillaPsycastsExpanded.Ability_WordOf
+VPE_WordofSerenity	vanillaexpanded.vpsycastse	yes	AbilityDef	word of serenity	VanillaPsycastsExpanded.Ability_WordOf
+VPE_WordofTrust	vanillaexpanded.vpsycastse	yes	AbilityDef	word of trust	VanillaPsycastsExpanded.Ability_WordOf
+VWE_LaunchFlare	vanillaexpanded.vwe	yes	AbilityDef	fire disruptor flare	
+VWE_UnderbarrelShotgun	vanillaexpanded.vwe	yes	AbilityDef	fire shotgun	
+VWEB_CycloneRapidBurst	vanillaexpanded.vwebf	yes	AbilityDef	cyclone rapid burst	
+VWEB_FirestormBlazer	vanillaexpanded.vwebf	yes	AbilityDef	firestorm blazer	
+VWEB_FlarestrikeFlare	vanillaexpanded.vwebf	yes	AbilityDef	flarestrike flare	
+VWEB_HeavyIncineratorVaporizer	vanillaexpanded.vwebf	yes	AbilityDef	heavy incinerator vaporizer	
+VQEA_EMPPulse	vanillaquestsexpanded.ancients	yes	AbilityDef	electromagnetic pulse	
+VQEA_HellsphereBlast	vanillaquestsexpanded.ancients	yes	AbilityDef	hellsphere blast	
+VQEA_InfernoSpew	vanillaquestsexpanded.ancients	yes	AbilityDef	inferno spew	
+VQEA_Invisibility	vanillaquestsexpanded.ancients	yes	AbilityDef	invisibility	
+VQEA_Levitation	vanillaquestsexpanded.ancients	yes	AbilityDef	levitation	
+VQEA_MatterPhasing	vanillaquestsexpanded.ancients	yes	AbilityDef	matter phasing	
+VQE_CraftAnARCComponent	vanillaquestsexpanded.generator	yes	AbilityDef	Craft an ARC component	
+VPEA_Shortskip	vanillaracesexpanded.archon	yes	AbilityDef	shortskip	VREArchon.Ability_Shortskip
+VREA_PsychicLance	vanillaracesexpanded.archon	yes	AbilityDef	psychic lance	VFECore.Abilities.Ability_ShootProjectile
+VREA_PsychicThrow	vanillaracesexpanded.archon	yes	AbilityDef	psychic throw	VREArchon.Ability_PsychicThrow
+VREA_PsychicWarp	vanillaracesexpanded.archon	yes	AbilityDef	psychic warp	VREArchon.Ability_PsychicThrow
+VRE_LeapjumpLegs	vanillaracesexpanded.archon	yes	AbilityDef	leapjump	
+VRE_InitiateLovin	vanillaracesexpanded.highmate	yes	AbilityDef	initiate lovin'	
+VFEI2_BreacherCharge_Colonists	vanillaracesexpanded.insector	yes	AbilityDef	breacher charge	
+VFEI2_InsectGlide_Far_Colonists	vanillaracesexpanded.insector	yes	AbilityDef	locust farglide	
+VREInsector_WingPoweredJump	vanillaracesexpanded.insector	yes	AbilityDef	insectleap	
+VRE_RoyalJellyInjector	vanillaracesexpanded.insector	yes	AbilityDef	inject royal jelly	
+VRE_Morph	vanillaracesexpanded.lycanthrope	yes	AbilityDef	morph	
+VRE_ReimplantGermline	vanillaracesexpanded.lycanthrope	yes	AbilityDef	implant genes	
+VRE_WarHowl	vanillaracesexpanded.lycanthrope	yes	AbilityDef	war howl	
+VRE_AnimaSong	vanillaracesexpanded.phytokin	yes	AbilityDef	anima song	
+VRE_PlantPoluxTree	vanillaracesexpanded.phytokin	yes	AbilityDef	plant polux bush	
+VRE_SummonCompanionDryads	vanillaracesexpanded.phytokin	yes	AbilityDef	summon companion dryads	
+VRE_AcidSpray_SingleUse	vanillaracesexpanded.sanguophage	yes	AbilityDef	acid spray	Sanguophage
+VRE_AnimalFeed	vanillaracesexpanded.sanguophage	yes	AbilityDef	animalfeed	Sanguophage
+VRE_Coagulate_SingleUse	vanillaracesexpanded.sanguophage	yes	AbilityDef	coagulate	Sanguophage
+VRE_CorpseFeed	vanillaracesexpanded.sanguophage	yes	AbilityDef	corpsefeed	Sanguophage
+VRE_Ecstasy	vanillaracesexpanded.sanguophage	yes	AbilityDef	ecstasy	Sanguophage
+VRE_Ecstasy_SingleUse	vanillaracesexpanded.sanguophage	yes	AbilityDef	ecstasy	Sanguophage
+VRE_FilterInfection	vanillaracesexpanded.sanguophage	yes	AbilityDef	filter infection	Sanguophage
+VRE_FilterInfection_SingleUse	vanillaracesexpanded.sanguophage	yes	AbilityDef	filter infection	Sanguophage
+VRE_HeartCrush	vanillaracesexpanded.sanguophage	yes	AbilityDef	heart crush	Sanguophage
+VRE_HeartCrush_SingleUse	vanillaracesexpanded.sanguophage	yes	AbilityDef	heart crush	Sanguophage
+VRE_Hemosmosis	vanillaracesexpanded.sanguophage	yes	AbilityDef	hemosmosis	Sanguophage
+VRE_Hemosmosis_SingleUse	vanillaracesexpanded.sanguophage	yes	AbilityDef	hemosmosis	Sanguophage
+VRE_PiercingSpine_SingleUse	vanillaracesexpanded.sanguophage	yes	AbilityDef	piercing spine	Sanguophage
+VRE_Resurrect	vanillaracesexpanded.sanguophage	yes	AbilityDef	resurrect	Sanguophage
+VRE_SanguoFeed	vanillaracesexpanded.sanguophage	yes	AbilityDef	sanguofeed	Sanguophage
+VRE_SingleUseAbilities	vanillaracesexpanded.sanguophage	yes	SingleUseAbilityDef		
+VRE_ToxicCloud	vanillaracesexpanded.sanguophage	yes	AbilityDef	toxic cloud	
+VRE_ToxicCloud_SingleUse	vanillaracesexpanded.sanguophage	yes	AbilityDef	toxic cloud	
+VRE_ViscuousGoo	vanillaracesexpanded.sanguophage	yes	AbilityDef	viscuous goo	Sanguophage
+VRE_ViscuousGoo_SingleUse	vanillaracesexpanded.sanguophage	yes	AbilityDef	viscuous goo	Sanguophage
+VREStarjack_SpacejumpLegs	vanillaracesexpanded.starjack	yes	AbilityDef	spacejump	
+VR_LongjumpConstruct	vr.fantasy.biotech	no	AbilityDef	construct longjump	
+VR_SteamBurst	vr.fantasy.biotech	no	AbilityDef	steam burst	
+Cults_PsionicBlast	zal.cocc	no	AbilityDef	Psionic Blast	
+Cults_PsionicBurn	zal.cocc	no	AbilityDef	Psionic Burn	
+Cults_PsionicShock	zal.cocc	no	AbilityDef	Psionic Shock	

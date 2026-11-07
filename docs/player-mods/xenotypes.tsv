@@ -1,0 +1,137 @@
+defName	mod	active	label	inheritable	genes	description
+Stagz_Merfolk_Abyssal	arquebus.stagzmerfolk	yes	abyssal merren	true	18	The spiritual leaders of the merren people, young coastal merren sometimes visit them in the deepsea for their life advice. However, they are usually hostile to
+Stagz_Merfolk_Coastal	arquebus.stagzmerfolk	yes	coastal merren	true	17	A hermit xenotype that comes from the ocean. Despite being fierce and graceful fighters in the water, they like to swim aimlessly and sing on reef rocks in hope
+BotchJob_ProfanedCursebearerXenotype	botchjob.profaned	no	profaned cursebearer	false	10	Cursed with undeath, the profaned exist in a state between life and death. Their partially decayed bodies render them slow moving with poor manipulation and a r
+BotchJob_ProfanedXenotype	botchjob.profaned	no	profaned	false	9	Cursed with undeath, the profaned exist in a state between life and death. Their partially decayed bodies render them slow moving with poor manipulation and a r
+DV_Avaloi	det.avaloi	yes	avaloi	true	25	The Avaloi are extremely psychically sensitive humans adapted to their low-grav glitterworld, whose technology has practically eliminated both pollution and nat
+DV_Bogleg	det.boglegs	yes	bogleg	true	25	Graced with a brutish physique and silver-tongued eloquence, the Boglegs are perfectly engineered to survive in hostile, plague-ridden swamps as well as in argu
+Stoneborn	det.stoneborn	yes	stoneborn	true	23	After the hardy, grayskinned dirtmoles, came the stoneborn. Ever-bearded and short, they mine and forge minerals with a passion few can top, and are able to rai
+DV_Venator	det.venators	yes	venator	true	29	Venators are naturally capable hunters and sharpshooters, adapted to taking down giant prey and curious outsiders on their tropical homeworld. This is by virtue
+DevDesigner_XenotypeDarkElves	devdesigner.elves.continued	yes	dark elf	true	11	Dark elf xenotype.
+DevDesigner_XenotypeHighElves	devdesigner.elves.continued	yes	high elf	true	11	High elf xenotype.
+DevDesigner_XenotypeWoodElves	devdesigner.elves.continued	yes	wood elf	true	13	Wood elf xenotype.
+FG_CourtFairy	homebrew.fairycore	yes	court fairy	true	28	A mysterious human-like race, exclusively female, whose fainter psychic gift still lets them take to the sky on glowing wings.
+FG_Fairy	homebrew.fairycore	yes	monarch fairy	true	40	A mysterious human-like race, exclusively female, who can manifest a pair of beautiful glowing psychic wings.
+FG_LesserFairy	homebrew.fairycore	yes	lesser fairy	true	27	A mysterious human-like race, exclusively female, born with a pair of beautiful wings that cannot carry them into the sky.
+FG_PixieFairy	homebrew.fairycore	yes	pixie	true	28	A mysterious human-like race, exclusively female, who stay as small as children all their lives and dart through the sky on glowing wings.
+Baseliner	ludeon.rimworld.biotech	yes	baseliner		0	A naturally-evolved human with no major significant genetic modifications.
+Dirtmole	ludeon.rimworld.biotech	yes	dirtmole	true	10	With gray skin adapted to artificial light, they thrive in cramped and dark spaces where combat and travel happen over short distances. They are extremely capab
+Genie	ludeon.rimworld.biotech	yes	genie		12	Designed to be engineers, genies' delicate bones and natural aptitude with machines allow them to manipulate devices with remarkable precision. They are emotion
+Highmate	ludeon.rimworld.biotech	yes	highmate		20	Designed companions and concubines with a unique ability to psychically bond with a mate, highmates are empathic, beautiful, cheerful, and talented in social ma
+Hussar	ludeon.rimworld.biotech	yes	hussar		19	Hussars are engineered soldiers. They fight aggressively and with precision, heal fast, thrive in extreme temperatures, and freely ingest military drugs. They h
+Impid	ludeon.rimworld.biotech	yes	impid	true	18	Made for desert life, impid cultures live on many rimworlds and dry deathworlds. Impids are extremely fast-moving, easily tolerate high temperatures, and can sp
+Neanderthal	ludeon.rimworld.biotech	yes	neanderthal	true	17	Neanderthals are stocky, powerfully-built humanoids. Their most salient characteristic is that they are difficult to hurt: They are very resistant to injury, an
+Pigskin	ludeon.rimworld.biotech	yes	pigskin	true	12	Pigskins are human-pig hybrids which are capable of two-legged movement, tool use, and speech, but which also retain many pig-like qualities. They are hardy and
+Sanguophage	ludeon.rimworld.biotech	yes	sanguophage		30	Sanguophages are a type of archotech-enhanced xenohuman. Powered by archites, their abilities go far beyond normal genetic enhancements. They are mentally adept
+Waster	ludeon.rimworld.biotech	yes	waster	true	13	Wasters are aggressive, immune to toxic pollution, almost impervious to disease, and can ingest as much psychite and wake-up drugs as they wish with no ill effe
+Yttakin	ludeon.rimworld.biotech	yes	yttakin	true	16	Yttakin descend from colonists engineered to thrive on ultra-cold planets. Their great size and fur make them hardy in frozen environments. Yttakin share a psyc
+Starjack	ludeon.rimworld.odyssey	yes	starjack		13	Engineered for life among the stars, starjack are built to withstand the unforgiving conditions of deep space living. Their reflective pressure-adaptive skin pr
+Forgotten_Aasimar	neronix17.forgottenrealms	no	aasimar	true	10	TODO
+Forgotten_AbyssalTiefling	neronix17.forgottenrealms	no	abyssal tiefling	true	42	Tieflings are planetouched humans, abyssal tieflings being those who were touched by chaotic evil planes, having a much more bestial visage.
+Forgotten_AirGenasi	neronix17.forgottenrealms	no	air genasi	true	14	TODO
+Forgotten_ArcticDwarf	neronix17.forgottenrealms	no	arctic dwarf	true	11	Arctic dwarves, also known as Inugaakalikurit, were a race of dwarves located in the isolated reaches of the Great Glacier in Faerûn's northernmost reaches. Arc
+Forgotten_Bugbear	neronix17.forgottenrealms	no	bugbear	true	13	Bugbears are a massive humanoid race distantly related to, but larger and stronger than, goblins and hobgoblins.
+Forgotten_Cambion	neronix17.forgottenrealms	no	Cambion	true	23	Cambions are a half-fiend race, and typically those who tieflings are mistaken for.
+Forgotten_Chitine	neronix17.forgottenrealms	no	chitine	true	12	A race of humanoids that resemble spiders and are typically found in the Underdark.
+Forgotten_ChthonicTiefling	neronix17.forgottenrealms	no	chthonic tiefling	true	34	Tieflings are planetouched humans, chthonic tieflings being those who were touched by the neutral evil planes, they tend to be at the extreme edges of the beaut
+Forgotten_DeepGnome	neronix17.forgottenrealms	no	deep gnome	true	11	Deep gnomes, called svirfneblin in their own language, were a gnome subrace that lived in the Underdark. While their surface cousins were known for their boundl
+Forgotten_Deva	neronix17.forgottenrealms	no	Deva	true	14	TODO
+Forgotten_DragonbornBlack	neronix17.forgottenrealms	no	dragonborn (black)	true	21	Dragonborn are a race of draconic humanoids, despite having no ancestral links to true dragons, the blood of dragons ran through the dragonborn clans, giving th
+Forgotten_DragonbornBlue	neronix17.forgottenrealms	no	dragonborn (blue)	true	21	Dragonborn are a race of draconic humanoids, despite having no ancestral links to true dragons, the blood of dragons ran through the dragonborn clans, giving th
+Forgotten_DragonbornBrass	neronix17.forgottenrealms	no	dragonborn (brass)	true	24	Dragonborn are a race of draconic humanoids, despite having no ancestral links to true dragons, the blood of dragons ran through the dragonborn clans, giving th
+Forgotten_DragonbornCopper	neronix17.forgottenrealms	no	dragonborn (copper)	true	21	Dragonborn are a race of draconic humanoids, despite having no ancestral links to true dragons, the blood of dragons ran through the dragonborn clans, giving th
+Forgotten_DragonbornGold	neronix17.forgottenrealms	no	dragonborn (gold)	true	24	Dragonborn are a race of draconic humanoids, despite having no ancestral links to true dragons, the blood of dragons ran through the dragonborn clans, giving th
+Forgotten_DragonbornGreen	neronix17.forgottenrealms	no	dragonborn (green)	true	24	Dragonborn are a race of draconic humanoids, despite having no ancestral links to true dragons, the blood of dragons ran through the dragonborn clans, giving th
+Forgotten_DragonbornRed	neronix17.forgottenrealms	no	dragonborn (red)	true	24	Dragonborn are a race of draconic humanoids, despite having no ancestral links to true dragons, the blood of dragons ran through the dragonborn clans, giving th
+Forgotten_DragonbornSilver	neronix17.forgottenrealms	no	dragonborn (silver)	true	23	Dragonborn are a race of draconic humanoids, despite having no ancestral links to true dragons, the blood of dragons ran through the dragonborn clans, giving th
+Forgotten_DragonbornWhite	neronix17.forgottenrealms	no	dragonborn (white)	true	23	Dragonborn are a race of draconic humanoids, despite having no ancestral links to true dragons, the blood of dragons ran through the dragonborn clans, giving th
+Forgotten_Drow	neronix17.forgottenrealms	no	drow	true	22	"Drow, also known as dark elves, deep elves, night elves, or sometimes ""The Ones Who Went Below"" on the surface, were a dark-skinned sub-race of elves that predo"
+Forgotten_Duergar	neronix17.forgottenrealms	no	duergar	true	15	Duergar, also known as gray dwarves, or underdwarves were a subterranean subrace of dwarves. They carved out an existence in the Underdark, often near volcanoes
+Forgotten_EarthGenasi	neronix17.forgottenrealms	no	earth genasi	true	16	TODO
+Forgotten_Firbolg	neronix17.forgottenrealms	no	firbolg	true	13	A race of reclusive giant-kin, usually they prefer to avoid contact with other sentient races making them a very rare sight.
+Forgotten_FireGenasi	neronix17.forgottenrealms	no	fire genasi	true	15	TODO
+Forgotten_ForestGnome	neronix17.forgottenrealms	no	forest gnome	true	8	Forest gnomes were among the least commonly seen gnomes on Toril, far shyer than even their deep gnome cousins. Small and reclusive, forest gnomes were so unkno
+Forgotten_Gith	neronix17.forgottenrealms	no	gith	true	13	The gith were a race of humanoids who had been enslaved by mind flayers for countless generations. Some sages claimed that they were once descended from humans,
+Forgotten_Goblin	neronix17.forgottenrealms	no	goblin	true	11	Goblins were a race of small and numerous goblinoids common throughout Toril, often living in underground caverns near the surface known as lairs. The race was 
+Forgotten_GoldDwarf	neronix17.forgottenrealms	no	gold dwarf	true	14	Gold dwarves, also known as hill dwarves, were the aloof, confident and sometimes proud subrace of dwarves that predominantly came from the Great Rift. They wer
+Forgotten_Goliath	neronix17.forgottenrealms	no	goliath	true	10	Goliaths are a nomadic race of humanoids native to the mountainous regions of Toril.
+Forgotten_HalfOrc	neronix17.forgottenrealms	no	half-orc	true	7	Half-orcs were humanoids born of both human and orc ancestry by a multitude of means. Having the combined physical power of their orcish ancestors with the agil
+Forgotten_Halfling	neronix17.forgottenrealms	no	halfling	true	1	"Also known as Hin, or the ""quick folk"" amongst themselves, Halflings are small humanoid creatures, very similar in appearance to Humans, but around half their s"
+Forgotten_HighElf	neronix17.forgottenrealms	no	high elf	true	14	High elves, also sometimes known as eladrin, were graceful warriors and wizards who originated from the realm of Faerie, also known as the Feywild. They lived i
+Forgotten_Hobgoblin	neronix17.forgottenrealms	no	hobgoblin	true	8	Hobgoblins are a larger, stronger, smarter, and more menacing form of goblinoids than goblins, but not as powerful as bugbears. It is believed they may have cre
+Forgotten_Illithid	neronix17.forgottenrealms	no	illithid	true	11	"Illithids or ""Mind Flayers"" were humanoid in appearance but with an octopus-like, ridged head with four tentacles surrounding a lamprey-like mouth. They were wa"
+Forgotten_InfernalTiefling	neronix17.forgottenrealms	no	infernal tiefling	true	34	Tieflings are planetouched humans, infernal tieflings being those who were touched by lawful evil planes, such as The Nine Hells.
+Forgotten_Killoren	neronix17.forgottenrealms	no	killoren	true	12	Killoren were a relatively recent and uncommon race of fey. It was unknown whether they were created by a deity or were spontaneously created by nature itself.
+Forgotten_Kobold	neronix17.forgottenrealms	no	kobold	true	15	Aggressive, xenophobic, yet industrious small humanoid creatures, kobolds are noted for their skill at building traps and preparing ambushes.
+Forgotten_Minotaur	neronix17.forgottenrealms	no	minotaur	true	21	TODO
+Forgotten_MoonElf	neronix17.forgottenrealms	no	moon elf	true	17	Moon elves, also known as Teu-tel-quessir in the elven language or as silver elves, were the most common of all the elven subraces. More tolerant of humans than
+Forgotten_Orc	neronix17.forgottenrealms	no	orc	true	12	Orcs were a race of humanoids that had been a threat to the civilized cultures of Toril, particularly Faerûn, for as long as any could remember. This changed so
+Forgotten_Planetar	neronix17.forgottenrealms	no	Planetar	true	17	TODO
+Forgotten_RockGnome	neronix17.forgottenrealms	no	rock gnome	true	5	Rock gnomes were a curious, childlike race very much unlike their cousins, the svirfneblin (or deep gnomes) and the forest gnomes. When most people thought of g
+Forgotten_Satyr	neronix17.forgottenrealms	no	satyr	true	13	Satyrs, also known as fauns or the Free Folk, are fey creatures that delight in singing, dancing, feasting, and debauchery.
+Forgotten_ShieldDwarf	neronix17.forgottenrealms	no	shield dwarf	true	6	Shield dwarves, also known as mountain dwarves, were among the most common of the dwarven peoples. Once the rulers of mighty kingdoms across Faerûn, the shield 
+Forgotten_SnowElf	neronix17.forgottenrealms	no	snow elf	true	20	Snow elves were rare, reclusive elves who lived in icy, mountainous regions far from other civilization.
+Forgotten_SunElf	neronix17.forgottenrealms	no	sun elf	true	16	The sun elves, also sometimes known as gold elves, sometimes as high elves due to their stereotypically elitist ways, and Ar-tel-quessir in their own language w
+Forgotten_Tabaxi	neronix17.forgottenrealms	no	tabaxi	true	17	Tabaxi also known as jaguar people or cat-men, were a race of feline humanoids native to the jungles of Maztica.
+Forgotten_ThriKreen	neronix17.forgottenrealms	no	thri-kreen	true	12	The thri-kreen were an insectoid monstrous humanoid race that primarily lived in the Shaar. The thri-kreen were a race of nomads and hunters. They were also kno
+Forgotten_WaterGenasi	neronix17.forgottenrealms	no	water genasi	true	15	TODO
+Forgotten_WildDwarf	neronix17.forgottenrealms	no	wild dwarf	true	9	"Wild dwarves, also known as jungle dwarves, greenbeards, or dur Authalar (""the People"") in their own language, were primitive dwarves who inhabited the Jungles "
+Forgotten_WildElf	neronix17.forgottenrealms	no	wild elf	true	19	Wood elves, also known as copper elves, or Or-tel-quessir were the most populous of the elven races. Wood elves saw themselves as guardians of the Tel-quessir f
+Forgotten_WoodElf	neronix17.forgottenrealms	no	wood elf	true	18	Wood elves, also known as copper elves, or Or-tel-quessir were the most populous of the elven races. Wood elves saw themselves as guardians of the Tel-quessir f
+Outland_Elf	neronix17.outland.eastbornempire	no	elf	true	7	A humanoid sentient species closely resembling a human with long pointy ears.
+Outland_Motz	neronix17.outland.motzcoalition	no	motz	true	27	A humanoid sentient species sharing many characteristics with that of a moth. They are a sub-species of Insectid, or humanoid insectoid, which split off from th
+Outland_Goblin	neronix17.outland.redburnpact	no	goblin	true	15	Goblins are a small but industrious race, they work faster than most, but their size leaves them generally weaker than others. They are often hard to distinguis
+Outland_Hobgoblin	neronix17.outland.redburnpact	no	hobgoblin	true	12	Hobgoblins, despite their clearly goblinoid appearance, are practically equal to humans aside from the goblinoid trait of having low psychic sensitivity.
+Outland_Orc	neronix17.outland.redburnpact	no	orc	true	13	A near human race most often seen among goblinoids, the only differences from humans on the surface are the two small tusks protruding from their mouths and tha
+Outland_Varag	neronix17.outland.redburnpact	no	varag	true	15	A race of goblinoids capable of high speed movement, they have developed a hardened carapace on top of their heads similar to a natural helmet of sorts to prote
+Outland_Faun	neronix17.outland.vathunnobles	no	faun	true	14	A humanoid sentient species sharing many characteristics with that of a deer. They generally have a subservient nature to them which led to a complicated hierar
+PoI_Absol	nialation.pawsofinterest	yes	Absol	true	8	"Absol from the ""Pokémon"" series! Placeholder until rewrite."
+PoI_Eevee	nialation.pawsofinterest	yes	Eevee	true	7	"Eevee from the ""Pokémon"" series! Usually a small brown creature with a fluffy neck, Eevees are known to be able to adapt to their surroundings and evolve into t"
+PoI_Espeon	nialation.pawsofinterest	yes	Espeon	true	7	"Espeon from the ""Pokémon"" series! Espeon is a cat-like creature, known to for its psychic abilities. They currently do not provide any psychic benefits for now."
+PoI_Flareon	nialation.pawsofinterest	yes	Flareon	true	6	"Flareon from the ""Pokémon"" series! Placeholder until rewrite."
+PoI_Glaceon	nialation.pawsofinterest	yes	Glaceon	true	6	"Glaceon from the ""Pokémon"" series! Glaceon is a fox-like creature, usually adorning a crown attached to it's head made out of pure ice. Supposedly contains ice "
+PoI_Goodra	nialation.pawsofinterest	yes	Goodra	true	7	"Goodra from the ""Pokémon"" series! Goodra is a big slug-like dragon pokemon! Apparently their species is very lonely for some reason."
+PoI_Leafeon	nialation.pawsofinterest	yes	Leafeon	true	6	"Leafeon from the ""Pokémon"" series! Placeholder until rewrite."
+PoI_Lopunny	nialation.pawsofinterest	yes	Lopunny	true	5	"Lopunny from the ""Pokémon"" series! A Lopunny is a bipedal creature with a rabbit-like appearance. They're known for their ability to kick very hard!"
+PoI_Marshmallow	nialation.pawsofinterest	yes	Marshmallow	true	10	"Marshmallow from the ""Mewgenics"" series! Originating from Mewgenics, Marshmallow acts as one of the 4 minibosses you face in Act 2 Chapter 1. Her fight is based"
+PoI_Netskie	nialation.pawsofinterest	yes	Netskie	true	5	"Netskie from ""Deltarune""! Fox thing."
+PoI_Skitty	nialation.pawsofinterest	yes	Skitty	true	4	"Skitty from the ""Pokémon"" series! Skittys are tiny little cat things! Aren't they cute?"
+PoI_Umbreon	nialation.pawsofinterest	yes	Umbreon	true	6	"Umbreon from the ""Pokémon"" series! Umbreons are creatures seemingly based on canines. They posses crimson colored eyes and various yellow rings around their bod"
+PoI_Vaporeon	nialation.pawsofinterest	yes	Vaporeon	true	8	"Vaporeon from the ""Pokémon"" series! Vaporeons are aquatic creatures with a cat-like appearance."
+Askbarn	rimsenal.askbarn	yes	Åskbarn	true	27	Originating from Jotun Interstellar's failed super soldier project, Åskbarns are fragile but shrewd race who can emit electromagnetic surge from their special o
+Uredd	rimsenal.askbarn	yes	Uredd	true	26	Uredde (Uredd in the singular) are xenohumans designed for anti-mechanoid combat, the intended outcome of the Stormweaver project. Tough, calm, and undaunted ev
+AG_Animusen	sarg.alphagenes	yes	animusen	true	12	Animusen were genetically spliced with Animus Vox genes to create a cold-thriving human xenotype with a much better -and less aggressive- disposition than Yttak
+AG_Drakonori	sarg.alphagenes	yes	drakonori	true	24	An attempt to create a xenotype of beautiful, harmless and subservient people, during the final synthesis of the genes one of the involved scientists failed to 
+AG_Efreet	sarg.alphagenes	yes	efreet	true	21	A modified strain of the impid xenotype designed as terrifying shock troopers, efreet were created to be as intimidating as possible. Whereas impids are adept a
+AG_Fleetkind	sarg.alphagenes	yes	fleetkind	true	10	Fleetkind were a misguided attempt at creating a human xenotype capable of flourishing on their own, completely isolated from other external societies. A proper
+AG_Forsaken	sarg.alphagenes	yes	forsaken	true	30	The legacy of a fallen empire, with a distant and tenuous link to the original genelines of Earth. Other than the fact that they began to awaken over the past c
+AG_Helixien	sarg.alphagenes	yes	helixan	true	13	The lowest of the low on the Rim, helixans were created as a human xenotype that would revel in the presence of decay, filth and refuse. Capable of exuding a fo
+AG_Hiveling	sarg.alphagenes	yes	hiveling	false	20	The result of an escaped experiment of the Sophian Empire, hivelings are barely human, thoroughly infused as they are with insectoid organs and genetic advantag
+AG_Lapis	sarg.alphagenes	yes	lapis	true	28	Where dirtmoles are unable to thrive due to inhospitable conditions, the lapis excel. Created by ultra-greedy corporations eager to wring the very last resource
+AG_Malachai	sarg.alphagenes	yes	malachai		44	The Malachai are a race of truly monstrous beings that have evolved from Strigoi. They possess the same thirst for blood as their Strigoi predecessors, but have
+AG_MindDevourer	sarg.alphagenes	yes	mind devourer	false	16	A xenotype inspired by the old eldritch folklore tales from old Earth, the Chthonian visage of mind devourers inspires terror and intense uneasiness. They are m
+AG_Mycormorph	sarg.alphagenes	yes	mycomorph	false	37	The result of ancient victims of the fungoid military bioweapons project, mycomorphs have been subjected to a specially virulent strain of the virus, which caus
+AG_Nereid	sarg.alphagenes	yes	nereid	true	17	Originally created as a xenotype adapted to living in shallow waters, Nereids evolved to thrive in the ocean's abyss. They have large, luminescent eyes, fin-lik
+AG_RandomCustom	sarg.alphagenes	yes	random custom		1	This will transform the xenotype of the pawn into one of the custom xenotypes created by the player at random.
+AG_RoxTouched	sarg.alphagenes	yes	rox-touched	true	15	Rox-touched are a xenotype of bovine-like humans, standing out by their tall, robust frames covered in velvety, thick fur, which comes in a wide array of colors
+AG_Taukai	sarg.alphagenes	yes	taukai	false	18	"Named after the ancient Lithuanian word for ""grease"", the taukai are a very strange human xenotype, created to withstand extremely radioactive environments. The"
+AG_Wretch	sarg.alphagenes	yes	wretch	false	8	A testament to the horrible dangers of genetic engineering, wretches are malformed and miserable creatures produced by genetic testing gone awry. The genome of 
+VRE_Ocularkin	sarg.alphagenes	yes	ocularkin	true	22	Based on genetic data retrofitted from Gauranlen Inc.’s investment into dendrology following the Fall of Sorne, phytokins are plant-based humanoids with an emph
+Korg	sovereign.kork	yes	Korg	true	24	Hostile and enduring, Korgs were engineered as a self-sustaining, mass replicating weapon. Sometimes used by corporate interests as means of pacifying blacklist
+VREA_AndroidAwakened	vanillaracesexpanded.android	yes	awakened android		10	Awakened androids are a rare and extraordinary species of sentient machines, having transcended their original programming through extreme emotional experiences
+VREA_AndroidBasic	vanillaracesexpanded.android	yes	basic android		21	Androids are synthetic, man-made constructs designed to emulate human behavior and appearance while offering a multitude of advantages over their organic counte
+VRE_Archon	vanillaracesexpanded.archon	yes	archon	true	17	A complete mystery whose earliest recorded appearance has been tied to the development of archotechnology and the first occurrences of Transcendence, the archon
+VRE_Fungoid	vanillaracesexpanded.fungoid	yes	fungoid	false	25	A private military project gone awry, fungoids were initially developed as militarized mycelium to be deployed against the increasingly prevalent Insectoid thre
+VRE_Lowmate	vanillaracesexpanded.highmate	yes	lowmate	false	21	Derived from popular highmates with a greater focus on physical aspects of lovin’, lowmates are attractive companions for those looking for no-risk thrills with
+VREH_Uhlan	vanillaracesexpanded.hussar	yes	uhlan		29	Uhlans are a side-development from captured hussars, turned by certain elements to become a counter to the military-developed supersoldier programs. Their genet
+VRE_Insector	vanillaracesexpanded.insector	yes	insector	true	13	Insectors were engineered as a military project to thrive on planets with harsh, insectoid environments. They can edit their genes to form various castes suited
+VRE_Lycan	vanillaracesexpanded.lycanthrope	yes	lycan	true	19	A dubious xenogerm of debated origin, wolfmen/lycans have propagated unimpeded throughout colonized space to stake territorial claims and establish packs or lar
+VRE_Wolfman	vanillaracesexpanded.lycanthrope	yes	wolfman	true	7	A dubious xenogerm of debated origin, wolfmen/lycans have propagated unimpeded throughout colonized space to stake territorial claims and establish packs or lar
+VRE_Animakin	vanillaracesexpanded.phytokin	yes	animakin	true	21	Based on genetic data retrofitted from Gauranlen Inc.’s investment into dendrology following the Fall of Sorne, phytokins are plant-based humanoids with an emph
+VRE_Gauranlenkin	vanillaracesexpanded.phytokin	yes	gauranlenkin	true	21	Based on genetic data retrofitted from Gauranlen Inc.’s investment into dendrology following the Fall of Sorne, phytokins are plant-based humanoids with an emph
+VRE_Poluxkin	vanillaracesexpanded.phytokin	yes	poluxkin	true	21	Based on genetic data retrofitted from Gauranlen Inc.’s investment into dendrology following the Fall of Sorne, phytokins are plant-based humanoids with an emph
+VRE_Boarskin	vanillaracesexpanded.pigskin	yes	boarskin	true	24	Boarskins, a formidable subspecies born from pigskins during captivity, stand as the vanguard of the revolution that ended their exploitation for organ farming.
+VRE_Bruxa	vanillaracesexpanded.sanguophage	yes	bruxa		34	In the complex tapestry of the universe, the Bruxas emerged as a unique and alluring subxenotype of sanguophage. Created by an enigmatic archotech entity seekin
+VRE_Ekkimian	vanillaracesexpanded.sanguophage	yes	ekkimian		38	In the darkest reaches of the universe, the Ekkimian vampires were birthed from the twisted ambitions of a rogue scientist named Dr. Mortis. Obsessed with the c
+VRE_Strigoi	vanillaracesexpanded.sanguophage	yes	strigoi		37	The Strigoi were born out of a catastrophic experiment gone awry. A brilliant scientist sought to create the ultimate soldier by merging the DNA of humans and a
+VRESaurids_Saurid	vanillaracesexpanded.saurid	yes	saurid	true	20	Genetically spliced with synthesized reptile genetic material for improved compatibility with arid environments, saurids are cold-blooded isolationists with har

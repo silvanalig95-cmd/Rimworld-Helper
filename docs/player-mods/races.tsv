@@ -1,0 +1,1891 @@
+defName	mod	active	label	kind	bodySize	foodType	predator	herdAnimal	maxPreyBodySize
+pphhyy_Demigryph_untameable	accurex.medievalempireoverhaul	no	Demigryph	animal	2.4	CarnivoreAnimal, OvivoreAnimal	true	true	5
+Stagz_Dryad_Squid	arquebus.stagzmerfolk	yes	inkshooter dryad	animal	0.667	None			
+BA_Alaunt	athelas.medievaltotalrim.animals	no	alaunt	animal	1.08	OmnivoreAnimal, OvivoreAnimal	true		2.5
+BA_Anatolian_Leopard	athelas.medievaltotalrim.animals	no	Anatolian leopard	animal	1.0	CarnivoreAnimal, OvivoreAnimal	true	false	1.0
+BA_Anatolian_Shepherd	athelas.medievaltotalrim.animals	no	Anatolian shepherd	animal	1.02	OmnivoreAnimal, OvivoreAnimal	true		2.5
+BA_Andalusian_Horse	athelas.medievaltotalrim.animals	no	andalusian	animal	2.35	VegetarianRoughAnimal		true	
+BA_Arabian_Horse	athelas.medievaltotalrim.animals	no	arabian horse	animal	2.0	VegetarianRoughAnimal		true	
+BA_Chartreux	athelas.medievaltotalrim.animals	no	chartreux	animal	0.3	CarnivoreAnimal, OvivoreAnimal	true		0.25
+BA_Destrier_Horse	athelas.medievaltotalrim.animals	no	destrier	animal	2.75	VegetarianRoughAnimal		true	
+BA_French_Mastiff	athelas.medievaltotalrim.animals	no	French mastiff	animal	1.15	OmnivoreAnimal, OvivoreAnimal	true		1.2
+BA_Gonczy_Polski	athelas.medievaltotalrim.animals	no	gonczy polski	animal	0.73	OmnivoreAnimal	false		1.2
+BA_Greyhound	athelas.medievaltotalrim.animals	no	greyhound	animal	0.68	OmnivoreAnimal, OvivoreAnimal	true		2.5
+BA_Iberian_Lynx	athelas.medievaltotalrim.animals	no	Iberian lynx	animal	0.5	CarnivoreAnimal, OvivoreAnimal	true	false	0.7
+BA_Merino_Sheep	athelas.medievaltotalrim.animals	no	merino	animal	0.72	VegetarianRoughAnimal		true	
+BA_Mongolian_Horse	athelas.medievaltotalrim.animals	no	mongolian horse	animal	2.2	VegetarianRoughAnimal		true	
+BA_Podengo	athelas.medievaltotalrim.animals	no	podengo	animal	0.52	OmnivoreAnimal	false		1.2
+BA_Pyrenean_Mountain_Dog	athelas.medievaltotalrim.animals	no	Pyrenean mountain dog	animal	1.0	OmnivoreAnimal, OvivoreAnimal	true		2.3
+BA_Saluki	athelas.medievaltotalrim.animals	no	saluki	animal	0.65	OmnivoreAnimal, OvivoreAnimal	true		2.5
+BA_Spanish_Cattle	athelas.medievaltotalrim.animals	no	Spanish cattle	animal	2.4	VegetarianRoughAnimal		true	
+BA_Swabian_Hall_Pig	athelas.medievaltotalrim.animals	no	Swabian hall pig	animal	1.9	OmnivoreRoughAnimal			
+BA_Thessalian_Horse	athelas.medievaltotalrim.animals	no	Thessalian	animal	2.25	VegetarianRoughAnimal		true	
+BA_Turkish_Angora	athelas.medievaltotalrim.animals	no	Turkish angora	animal	0.3	CarnivoreAnimal, OvivoreAnimal	true		0.25
+BA_Turkoman_Horse	athelas.medievaltotalrim.animals	no	turkoman	animal	2.15	VegetarianRoughAnimal		true	
+BotchJob_DivineOrderHorse	botchjob.divineorder	no	horse	animal	2.6	VegetarianRoughAnimal		true	
+BotchJob_Ghoul	botchjob.profaned	no	ghoul	animal	1.6	OmnivoreRoughAnimal		true	
+BotchJob_Skeleton	botchjob.profaned	no	skeleton	animal	1	OmnivoreRoughAnimal			
+BotchJob_UndeadCat	botchjob.profaned	no	undead cat	animal	0.4	OmnivoreRoughAnimal			
+BotchJob_UndeadColossus	botchjob.profaned	no	undead colossus	animal	4	OmnivoreRoughAnimal			
+BotchJob_UndeadDragon	botchjob.profaned	no	undead dragon	animal	5	OmnivoreRoughAnimal		false	4
+BotchJob_UndeadHorse	botchjob.profaned	no	undead horse	animal	2.4	OmnivoreRoughAnimal		true	
+BotchJob_UndeadWarg	botchjob.profaned	no	undead warg	animal	1.5	OmnivoreRoughAnimal			
+BotchJob_Wraith	botchjob.profaned	no	wraith	animal	1	OmnivoreRoughAnimal			
+DankPyon_Alp	dankpyon.medieval.overhaul	no	Alp	animal	1	CarnivoreAnimalStrict, Corpse	true	false	2
+DankPyon_AncientTroll	dankpyon.medieval.overhaul	no	ancient troll	animal	4	CarnivoreAnimalStrict, Corpse	true	false	3.5
+DankPyon_Angus	dankpyon.medieval.overhaul	no	Angus	animal	2.8	VegetarianRoughAnimal		true	
+DankPyon_Daer	dankpyon.medieval.overhaul	no	Daer	animal	4.2	OmnivoreAnimal, OvivoreAnimal	true	false	4
+DankPyon_Deathstinger	dankpyon.medieval.overhaul	no	deathstinger	animal	0.2	OmnivoreAnimal, AnimalProduct			
+DankPyon_DireBoar	dankpyon.medieval.overhaul	no	dire boar	animal	2.0	OmnivoreRoughAnimal	true	true	3
+DankPyon_Direwolf	dankpyon.medieval.overhaul	no	Direwolf	animal	1.0	CarnivoreAnimalStrict	true		2.3
+DankPyon_Ghoul_Stage_One	dankpyon.medieval.overhaul	no	Nachzehrer	animal	1	CarnivoreAnimalStrict, Corpse	true	false	2
+DankPyon_Ghoul_Stage_Three	dankpyon.medieval.overhaul	no	Nachzehrer	animal	4	CarnivoreAnimalStrict, Corpse	true	false	3
+DankPyon_Ghoul_Stage_Two	dankpyon.medieval.overhaul	no	Ghoul	animal	2	CarnivoreAnimalStrict, Corpse	true	false	2
+DankPyon_GiantConstrictorCave	dankpyon.medieval.overhaul	no	giant cave constrictor	animal	3.65	CarnivoreAnimal, OvivoreAnimal	true		3
+DankPyon_GiantConstrictorForest	dankpyon.medieval.overhaul	no	giant constrictor	animal	3.55	CarnivoreAnimal, OvivoreAnimal	true		0.80
+DankPyon_Gloucestershire	dankpyon.medieval.overhaul	no	gloucestershire	animal	1.8	OmnivoreRoughAnimal			
+DankPyon_Golem_Gold	dankpyon.medieval.overhaul	no	Golden Golem	animal	4	None			
+DankPyon_Golem_Iron	dankpyon.medieval.overhaul	no	Iron Golem	animal	4	None			
+DankPyon_Golem_Silver	dankpyon.medieval.overhaul	no	Silver Golem	animal	4	None			
+DankPyon_Golem_Steel	dankpyon.medieval.overhaul	no	Steel Golem	animal	4	None			
+DankPyon_Griffon	dankpyon.medieval.overhaul	no	Griffon	animal	4	CarnivoreAnimal, OvivoreAnimal	true	true	6
+DankPyon_Hampshire	dankpyon.medieval.overhaul	no	hampshire	animal	1.8	OmnivoreRoughAnimal			
+DankPyon_Hyena	dankpyon.medieval.overhaul	no	Hyena	animal	1.4	CarnivoreAnimal	true	false	2
+DankPyon_LargeCobraCave	dankpyon.medieval.overhaul	no	large cobra	animal	0.55	CarnivoreAnimal, OvivoreAnimal	true		0.80
+DankPyon_LargeCobraForest	dankpyon.medieval.overhaul	no	large cobra	animal	0.55	CarnivoreAnimal, OvivoreAnimal	true		0.80
+DankPyon_LindwurmCave	dankpyon.medieval.overhaul	no	cave lindwurm	animal	4	CarnivoreAnimal, OvivoreAnimal	true		4
+DankPyon_LindwurmForest	dankpyon.medieval.overhaul	no	forest lindwurm	animal	4	CarnivoreAnimal, OvivoreAnimal	true		4
+DankPyon_NorthernBoar	dankpyon.medieval.overhaul	no	northern boar	animal	1.7	OmnivoreRoughAnimal		true	
+DankPyon_Ravelder	dankpyon.medieval.overhaul	no	Ravelder	animal	2.6	VegetarianRoughAnimal		true	
+DankPyon_Rox	dankpyon.medieval.overhaul	no	rox	animal	4	VegetarianRoughAnimal, DendrovoreAnimal		true	
+DankPyon_RoyalMimic	dankpyon.medieval.overhaul	no	royal mimic	animal	1	OmnivoreRoughAnimal			
+DankPyon_RusticMimic	dankpyon.medieval.overhaul	no	mimic	animal	1	OmnivoreRoughAnimal			
+DankPyon_Schrat	dankpyon.medieval.overhaul	no	schrat	animal	4	None			
+DankPyon_SchratPlain	dankpyon.medieval.overhaul	no	schrat	animal	4	None			
+DankPyon_SchratPlain_Sapling	dankpyon.medieval.overhaul	no	schrat sapling	animal	1	None			
+DankPyon_Schrat_Sapling	dankpyon.medieval.overhaul	no	schrat sapling	animal	1	None			
+DankPyon_Unhold	dankpyon.medieval.overhaul	no	unhold	animal	3.5	CarnivoreAnimalStrict, Corpse	true	false	3.5
+DankPyon_UnholdSnow	dankpyon.medieval.overhaul	no	unhold	animal	3.5	CarnivoreAnimalStrict, Corpse	true	false	3.5
+DankPyon_Webknecht	dankpyon.medieval.overhaul	no	Webknecht	animal	1	CarnivoreAnimal, AnimalProduct	true	true	
+SD_Fey	det.sbdelights	no	fey	animal	0.2	OmnivoreAnimal, AnimalProduct			
+DevDesigner_AncientDeer	devdesigner.elves.continued	yes	ancient deer	animal	2.7	VegetarianRoughAnimal		true	
+DevDesigner_ColdOne	devdesigner.elves.continued	yes	Cold One	animal	3	CarnivoreAnimal, OvivoreAnimal	true	false	3
+Boneworm	ezfi.montereybayaquariumanimals	yes	bone-eating worm	animal	3	Corpse	false	false	
+SeaOtter	ezfi.montereybayaquariumanimals	yes	sea otter	animal	0.4	OmnivoreRoughAnimal			
+RG_Toxbeaver	local.regrowth2.wastelands	yes	toxbeaver	animal	0.40	OmnivoreRoughAnimal		true	
+RG_Toxirrel	local.regrowth2.wastelands	yes	toxirrel	animal	0.15	VegetarianRoughAnimal			
+Alpaca	ludeon.rimworld	yes	alpaca	animal	1.0	VegetarianRoughAnimal		true	
+Alphabeaver	ludeon.rimworld	yes	alphabeaver	animal	0.45	DendrovoreAnimal		true	
+Bear_Grizzly	ludeon.rimworld	yes	grizzly bear	animal	2.15	OmnivoreAnimal, OvivoreAnimal	true	false	3
+Bear_Polar	ludeon.rimworld	yes	polar bear	animal	2.15	OmnivoreAnimal, OvivoreAnimal	true	false	3
+Bison	ludeon.rimworld	yes	bison	animal	2.4	VegetarianRoughAnimal		true	
+Boomalope	ludeon.rimworld	yes	boomalope	animal	2.0	VegetarianRoughAnimal		true	
+Boomrat	ludeon.rimworld	yes	boomrat	animal	0.2	OmnivoreRoughAnimal			
+Capybara	ludeon.rimworld	yes	capybara	animal	0.75	VegetarianRoughAnimal		true	
+Caribou	ludeon.rimworld	yes	caribou	animal	1.0	VegetarianRoughAnimal		true	
+Cassowary	ludeon.rimworld	yes	cassowary	animal	0.6	VegetarianRoughAnimal		false	
+Cat	ludeon.rimworld	yes	cat	animal	0.32	CarnivoreAnimal, OvivoreAnimal	true		0.25
+Chicken	ludeon.rimworld	yes	chicken	animal	0.3	VegetarianRoughAnimal			
+Chinchilla	ludeon.rimworld	yes	chinchilla	animal	0.35	VegetarianRoughAnimal			
+Cobra	ludeon.rimworld	yes	cobra	animal	0.25	CarnivoreAnimal, OvivoreAnimal	true		0.35
+Cougar	ludeon.rimworld	yes	cougar	animal	1.0	CarnivoreAnimal, OvivoreAnimal	true	false	1.0
+Cow	ludeon.rimworld	yes	cow	animal	2.4	VegetarianRoughAnimal		true	
+Deer	ludeon.rimworld	yes	deer	animal	1.2	VegetarianRoughAnimal		true	
+Donkey	ludeon.rimworld	yes	donkey	animal	1.4	VegetarianRoughAnimal		true	
+Dromedary	ludeon.rimworld	yes	dromedary	animal	2.1	VegetarianRoughAnimal		true	
+Duck	ludeon.rimworld	yes	duck	animal	0.3	VegetarianRoughAnimal			
+Elephant	ludeon.rimworld	yes	elephant	animal	4.0	VegetarianRoughAnimal		true	
+Elk	ludeon.rimworld	yes	elk	animal	2.1	VegetarianRoughAnimal		true	
+Emu	ludeon.rimworld	yes	emu	animal	0.6	VegetarianRoughAnimal		false	
+Fox_Arctic	ludeon.rimworld	yes	arctic fox	animal	0.55	CarnivoreAnimal	true		0.80
+Fox_Fennec	ludeon.rimworld	yes	fennec fox	animal	0.55	CarnivoreAnimal	true		0.80
+Fox_Red	ludeon.rimworld	yes	red fox	animal	0.55	CarnivoreAnimal	true		0.80
+Gazelle	ludeon.rimworld	yes	gazelle	animal	0.7	VegetarianRoughAnimal		true	
+Goat	ludeon.rimworld	yes	goat	animal	0.75	VegetarianRoughAnimal			
+Goose	ludeon.rimworld	yes	goose	animal	0.60	VegetarianRoughAnimal			
+GuineaPig	ludeon.rimworld	yes	guinea pig	animal	0.2	VegetarianRoughAnimal			
+Hare	ludeon.rimworld	yes	hare	animal	0.2	VegetarianRoughAnimal			
+Horse	ludeon.rimworld	yes	horse	animal	2.4	VegetarianRoughAnimal		true	
+Human	ludeon.rimworld	yes	human	humanlike	1	OmnivoreHuman			
+Husky	ludeon.rimworld	yes	husky	animal	0.86	OmnivoreAnimal, OvivoreAnimal			
+Ibex	ludeon.rimworld	yes	ibex	animal	1.00	VegetarianRoughAnimal		true	
+Iguana	ludeon.rimworld	yes	iguana	animal	0.4	OmnivoreRoughAnimal			
+LabradorRetriever	ludeon.rimworld	yes	labrador retriever	animal	0.75	OmnivoreAnimal, OvivoreAnimal			
+Lynx	ludeon.rimworld	yes	lynx	animal	0.6	CarnivoreAnimal, OvivoreAnimal	true	false	1.0
+Mech_CentipedeBlaster	ludeon.rimworld	yes	centipede blaster	animal	3.0	None			
+Mech_CentipedeBurner	ludeon.rimworld	yes	centipede burner	animal	3.0	None			
+Mech_CentipedeGunner	ludeon.rimworld	yes	centipede gunner	animal	3.0	None			
+Mech_Lancer	ludeon.rimworld	yes	lancer	animal	1.0	None			
+Mech_Pikeman	ludeon.rimworld	yes	pikeman	animal	1.0	None			
+Mech_Scyther	ludeon.rimworld	yes	scyther	animal	1.0	None			
+Mech_Termite	ludeon.rimworld	yes	termite	animal	1.6	None			
+Megascarab	ludeon.rimworld	yes	megascarab	animal	0.2	OmnivoreAnimal, AnimalProduct			
+Megasloth	ludeon.rimworld	yes	megasloth	animal	4.0	VegetarianRoughAnimal			
+Megaspider	ludeon.rimworld	yes	megaspider	animal	1.2	OmnivoreAnimal, AnimalProduct			
+Monkey	ludeon.rimworld	yes	monkey	animal	0.35	OmnivoreRoughAnimal		true	
+Muffalo	ludeon.rimworld	yes	muffalo	animal	2.4	VegetarianRoughAnimal		true	
+Ostrich	ludeon.rimworld	yes	ostrich	animal	1.0	VegetarianRoughAnimal		false	
+Panther	ludeon.rimworld	yes	panther	animal	1.0	CarnivoreAnimal, OvivoreAnimal	true	false	1.0
+Pig	ludeon.rimworld	yes	pig	animal	1.7	OmnivoreRoughAnimal			
+Raccoon	ludeon.rimworld	yes	raccoon	animal	0.4	OmnivoreRoughAnimal			
+Rat	ludeon.rimworld	yes	rat	animal	0.2	OmnivoreRoughAnimal			
+Rhinoceros	ludeon.rimworld	yes	rhinoceros	animal	3.0	VegetarianRoughAnimal		true	
+Sheep	ludeon.rimworld	yes	sheep	animal	0.75	VegetarianRoughAnimal		true	
+Snowhare	ludeon.rimworld	yes	snowhare	animal	0.2	VegetarianRoughAnimal			
+Spelopede	ludeon.rimworld	yes	spelopede	animal	0.8	OmnivoreAnimal, AnimalProduct			
+Squirrel	ludeon.rimworld	yes	squirrel	animal	0.2	VegetarianRoughAnimal			
+Thrumbo	ludeon.rimworld	yes	thrumbo	animal	4	VegetarianRoughAnimal, DendrovoreAnimal			
+Tortoise	ludeon.rimworld	yes	tortoise	animal	0.5	OmnivoreRoughAnimal			
+Turkey	ludeon.rimworld	yes	turkey	animal	0.6	VegetarianRoughAnimal		false	
+Warg	ludeon.rimworld	yes	warg	animal	1.4	CarnivoreAnimalStrict	true		2.3
+WildBoar	ludeon.rimworld	yes	wild boar	animal	0.85	OmnivoreRoughAnimal		true	
+Wolf_Arctic	ludeon.rimworld	yes	arctic wolf	animal	0.85	CarnivoreAnimal	true		2.3
+Wolf_Timber	ludeon.rimworld	yes	timber wolf	animal	0.85	CarnivoreAnimal	true		2.3
+Yak	ludeon.rimworld	yes	yak	animal	2.1	VegetarianRoughAnimal		true	
+YorkshireTerrier	ludeon.rimworld	yes	yorkshire terrier	animal	0.32	OmnivoreAnimal, OvivoreAnimal			
+Bulbfreak	ludeon.rimworld.anomaly	yes	bulbfreak	animal	3.5	None			
+Chimera	ludeon.rimworld.anomaly	yes	chimera	animal	2.15	None			
+CreepJoiner	ludeon.rimworld.anomaly	yes	human	humanlike	1	OmnivoreHuman			
+Devourer	ludeon.rimworld.anomaly	yes	devourer	animal	4	None			
+Dreadmeld	ludeon.rimworld.anomaly	yes	dreadmeld	animal	5	None			
+Fingerspike	ludeon.rimworld.anomaly	yes	fingerspike	animal	0.6	None			
+FleshmassNucleus	ludeon.rimworld.anomaly	yes	fleshmass nucleus	mech	1	None			
+Gorehulk	ludeon.rimworld.anomaly	yes	gorehulk	animal	2	None			
+Metalhorror	ludeon.rimworld.anomaly	yes	metalhorror	animal		None			
+Nociosphere	ludeon.rimworld.anomaly	yes	nociosphere	animal	3.6	None			
+Noctol	ludeon.rimworld.anomaly	yes	noctol	animal	1	None			
+Revenant	ludeon.rimworld.anomaly	yes	revenant	animal	1	None			
+Sightstealer	ludeon.rimworld.anomaly	yes	sightstealer	animal	0.8	None			
+Toughspike	ludeon.rimworld.anomaly	yes	toughspike	animal	1	None			
+Trispike	ludeon.rimworld.anomaly	yes	trispike	animal	1	None			
+Mech_Agrihand	ludeon.rimworld.biotech	yes	agrihand	animal	0.7	None			
+Mech_Apocriton	ludeon.rimworld.biotech	yes	apocriton	animal	1.0	None			
+Mech_Centurion	ludeon.rimworld.biotech	yes	centurion	animal	3.6	None			
+Mech_Cleansweeper	ludeon.rimworld.biotech	yes	cleansweeper	animal	0.3	None			
+Mech_Constructoid	ludeon.rimworld.biotech	yes	constructoid	animal	0.7	None			
+Mech_Diabolus	ludeon.rimworld.biotech	yes	diabolus	animal	4	None			
+Mech_Fabricor	ludeon.rimworld.biotech	yes	fabricor	animal	0.7	None			
+Mech_Legionary	ludeon.rimworld.biotech	yes	legionary	animal	1.0	None			
+Mech_Lifter	ludeon.rimworld.biotech	yes	lifter	animal	0.7	None			
+Mech_Militor	ludeon.rimworld.biotech	yes	militor	animal	0.7	None			
+Mech_Paramedic	ludeon.rimworld.biotech	yes	paramedic	animal	0.7	None			
+Mech_Scorcher	ludeon.rimworld.biotech	yes	scorcher	animal	1.0	None			
+Mech_Tesseron	ludeon.rimworld.biotech	yes	tesseron	animal	1.0	None			
+Mech_Tunneler	ludeon.rimworld.biotech	yes	tunneler	animal	3.5	None			
+Mech_WarUrchin	ludeon.rimworld.biotech	yes	war urchin	animal	0.7	None			
+Mech_Warqueen	ludeon.rimworld.biotech	yes	war queen	animal	4	None			
+Toxalope	ludeon.rimworld.biotech	yes	toxalope	animal	1.4	VegetarianRoughAnimal		true	
+WasteRat	ludeon.rimworld.biotech	yes	waste rat	animal	0.3	OmnivoreRoughAnimal			
+Dryad_Barkskin	ludeon.rimworld.ideology	yes	barkskin dryad	animal	0.65	None			
+Dryad_Basic	ludeon.rimworld.ideology	yes	immature dryad	animal	0.667	None			
+Dryad_Berrymaker	ludeon.rimworld.ideology	yes	berrymaker dryad	animal	0.667	None			
+Dryad_Carrier	ludeon.rimworld.ideology	yes	carrier dryad	animal	0.667	None			
+Dryad_Clawer	ludeon.rimworld.ideology	yes	clawer dryad	animal	0.667	None			
+Dryad_Gaumaker	ludeon.rimworld.ideology	yes	gaumaker dryad	animal	0.667	None			
+Dryad_Medicinemaker	ludeon.rimworld.ideology	yes	medicinemaker dryad	animal	0.667	None			
+Dryad_Woodmaker	ludeon.rimworld.ideology	yes	woodmaker dryad	animal	0.667	None			
+Alligator	ludeon.rimworld.odyssey	yes	alligator	animal	1.5	CarnivoreAnimal	true		1.2
+AlphaThrumbo	ludeon.rimworld.odyssey	yes	alpha thrumbo	animal	5	VegetarianRoughAnimal, DendrovoreAnimal			
+Armadillo	ludeon.rimworld.odyssey	yes	armadillo	animal	0.4	OmnivoreRoughAnimal			
+Badger	ludeon.rimworld.odyssey	yes	badger	animal	0.6	OmnivoreRoughAnimal			
+Bluebird	ludeon.rimworld.odyssey	yes	bluebird	animal	0.15	VegetarianRoughAnimal			
+BogHound	ludeon.rimworld.odyssey	yes	bog hound	animal	0.85	OmnivoreAnimal, OvivoreAnimal	true	true	1.0
+Bullfrog	ludeon.rimworld.odyssey	yes	bullfrog	animal	0.2	OmnivoreRoughAnimal			
+Cat_Scimitar	ludeon.rimworld.odyssey	yes	scimitar cat	animal	1.3	CarnivoreAnimal, OvivoreAnimal	true	false	1.0
+ColossusToad	ludeon.rimworld.odyssey	yes	colossus toad	animal	0.8	OmnivoreRoughAnimal			
+Crow	ludeon.rimworld.odyssey	yes	crow	animal	0.15	OmnivoreAnimal, OvivoreAnimal		true	
+Drone_Hunter	ludeon.rimworld.odyssey	yes	hunter drone	animal	0.7	None			
+Drone_Sentry	ludeon.rimworld.odyssey	yes	sentry drone	animal	1	None			
+Drone_Wasp	ludeon.rimworld.odyssey	yes	wasp	animal	0.25	None			
+Flamingo	ludeon.rimworld.odyssey	yes	flamingo	animal	0.6	OmnivoreRoughAnimal		true	
+Gorilla	ludeon.rimworld.odyssey	yes	gorilla	animal	2	OmnivoreRoughAnimal			
+HermitCrab	ludeon.rimworld.odyssey	yes	hermit crab	animal	0.2	OmnivoreRoughAnimal			
+Heron	ludeon.rimworld.odyssey	yes	heron	animal	0.6	OmnivoreRoughAnimal			
+Hippo	ludeon.rimworld.odyssey	yes	hippo	animal	2.8	VegetarianRoughAnimal		true	
+HiveQueen	ludeon.rimworld.odyssey	yes	hive queen	animal	4.5	OmnivoreAnimal, AnimalProduct			
+Larva	ludeon.rimworld.odyssey	yes	larva	animal	0.2	OmnivoreAnimal, AnimalProduct			
+LavaSnail	ludeon.rimworld.odyssey	yes	lava snail	animal	0.9	VegetarianRoughAnimal			
+Locust	ludeon.rimworld.odyssey	yes	locust	animal	0.6	OmnivoreAnimal, AnimalProduct			
+Macaw	ludeon.rimworld.odyssey	yes	macaw	animal	0.35	VegetarianRoughAnimal		false	
+Mastodon	ludeon.rimworld.odyssey	yes	mastodon	animal	4.5	VegetarianRoughAnimal		true	
+Mech_Cyclops	ludeon.rimworld.odyssey	yes	cyclops	animal	1.0	None			
+Megavole	ludeon.rimworld.odyssey	yes	megavole	animal	0.8	OmnivoreRoughAnimal			
+Mink	ludeon.rimworld.odyssey	yes	mink	animal	0.35	OmnivoreAnimal, OvivoreAnimal			
+MonitorLizard	ludeon.rimworld.odyssey	yes	monitor lizard	animal	0.6	CarnivoreAnimal	true		0.80
+Moose	ludeon.rimworld.odyssey	yes	moose	animal	2.5	VegetarianRoughAnimal		false	
+Muskox	ludeon.rimworld.odyssey	yes	muskox	animal	2.5	VegetarianRoughAnimal		true	
+Otter	ludeon.rimworld.odyssey	yes	otter	animal	0.4	OmnivoreRoughAnimal			
+Panda	ludeon.rimworld.odyssey	yes	panda	animal	1.5	VegetarianRoughAnimal		false	
+Peacock	ludeon.rimworld.odyssey	yes	peafowl	animal	0.6	VegetarianRoughAnimal		false	
+Penguin	ludeon.rimworld.odyssey	yes	penguin	animal	0.6	CarnivoreAnimal		true	
+Porcupine	ludeon.rimworld.odyssey	yes	porcupine	animal	0.35	VegetarianRoughAnimal			
+PrairieDog	ludeon.rimworld.odyssey	yes	prairie dog	animal	0.2	VegetarianRoughAnimal			
+Quail	ludeon.rimworld.odyssey	yes	quail	animal	0.25	VegetarianRoughAnimal		true	
+SeaLion	ludeon.rimworld.odyssey	yes	sea lion	animal	1.2	CarnivoreAnimal		true	
+SeaTurtle	ludeon.rimworld.odyssey	yes	sea turtle	animal	0.5	OmnivoreRoughAnimal			
+Seal	ludeon.rimworld.odyssey	yes	seal	animal	0.8	CarnivoreAnimal		true	
+Sparrow	ludeon.rimworld.odyssey	yes	sparrow	animal	0.12	VegetarianRoughAnimal		true	
+StoneCrab	ludeon.rimworld.odyssey	yes	stone crab	animal	0.3	OmnivoreRoughAnimal			
+Swan	ludeon.rimworld.odyssey	yes	swan	animal	0.6	VegetarianRoughAnimal			
+Tiger	ludeon.rimworld.odyssey	yes	tiger	animal	1.4	CarnivoreAnimal, OvivoreAnimal	true	false	1.0
+Vulture	ludeon.rimworld.odyssey	yes	vulture	animal	0.6	CarnivoreAnimalStrict		false	
+Walrus	ludeon.rimworld.odyssey	yes	walrus	animal	2.0	CarnivoreAnimal		true	
+Wolf_Great	ludeon.rimworld.odyssey	yes	greatwolf	animal	1.5	CarnivoreAnimal	true		2.3
+Wolverine	ludeon.rimworld.odyssey	yes	wolverine	animal	0.7	CarnivoreAnimalStrict	true		0.8
+RG_ArcticDrak	mlie.regrowthextinctanimals	yes	arctic drak	animal	2.2	CarnivoreAnimalStrict	true		1.5
+RG_Dodo	mlie.regrowthextinctanimals	yes	dodo	animal	0.45	VegetarianRoughAnimal		True	
+RG_Megalenhydris	mlie.regrowthextinctanimals	yes	megalenhydris	animal	1.2	OmnivoreAnimal, OvivoreAnimal	true	true	0.8
+RG_SabertoothSquirrel	mlie.regrowthextinctanimals	yes	Sabertooth squirrel	animal	0.5	VegetarianRoughAnimal			
+RG_SabertoothTiger	mlie.regrowthextinctanimals	yes	smilodon	animal	1.2	CarnivoreAnimal, OvivoreAnimal	true		1.2
+RG_Synthetion	mlie.regrowthextinctanimals	yes	synthetion	animal	1.0	VegetarianRoughAnimal		true	
+RG_TerrorBird	mlie.regrowthextinctanimals	yes	terror bird	animal	2	CarnivoreAnimal, VegetarianRoughAnimal	true		3.2
+RG_Thrinaxodon	mlie.regrowthextinctanimals	yes	thrinaxodon	animal	0.42	CarnivoreAnimal, VegetarianRoughAnimal	true		0.5
+RG_Velociraptor	mlie.regrowthextinctanimals	yes	velociraptor	animal	0.75	CarnivoreAnimalStrict	true	true	2.5
+RG_WoollyMammoth	mlie.regrowthextinctanimals	yes	woolly mammoth	animal	4.2	VegetarianRoughAnimal		true	
+RG_WoollyRhinoceros	mlie.regrowthextinctanimals	yes	woolly rhinoceros	animal	3.2	VegetarianRoughAnimal		true	
+RG_WoollyStegosaurus	mlie.regrowthextinctanimals	yes	woolly stegosaurus	animal	4.0	VegetarianRoughAnimal		true	
+MultiMind_ConjoinedHuman	multimind.conjoinedtwins	yes	conjoined human	humanlike	1	OmnivoreHuman			
+Outland_FockattBlack	neronix17.outland.core	no	forest fockatt	animal	2.15	OmnivoreAnimal, OvivoreAnimal	true	false	3
+Outland_FockattBlue	neronix17.outland.core	no	forest fockatt	animal	2.15	OmnivoreAnimal, OvivoreAnimal	true	false	3
+Outland_FockattBrown	neronix17.outland.core	no	forest fockatt	animal	2.15	OmnivoreAnimal, OvivoreAnimal	true	false	3
+Outland_FockattGrey	neronix17.outland.core	no	grey fockatt	animal	2.15	OmnivoreAnimal, OvivoreAnimal	true	false	3
+Outland_FockattPolar	neronix17.outland.core	no	polar fockatt	animal	2.15	OmnivoreAnimal, OvivoreAnimal	true	false	3
+Outland_Oxect	neronix17.outland.motzcoalition	no	oxect	animal	2.4	OmnivoreAnimal, AnimalProduct			
+VFEI2_Acidspitter	oskarpotocki.vfe.insectoid2	yes	acidspitter	animal	1.8	OmnivoreAnimal, AnimalProduct			
+VFEI2_Boomtick	oskarpotocki.vfe.insectoid2	yes	boomtick	animal	0.18	OmnivoreAnimal, AnimalProduct			
+VFEI2_Durapod	oskarpotocki.vfe.insectoid2	yes	durapod	animal	0.8	OmnivoreAnimal, AnimalProduct			
+VFEI2_Empress	oskarpotocki.vfe.insectoid2	yes	empress	animal	4	OmnivoreAnimal, AnimalProduct			
+VFEI2_Fuelmite	oskarpotocki.vfe.insectoid2	yes	fuelmite	animal	1.35	OmnivoreAnimal, AnimalProduct			
+VFEI2_Gigalocust	oskarpotocki.vfe.insectoid2	yes	gigalocust	animal	2.2	OmnivoreAnimal, AnimalProduct			
+VFEI2_Gigamite	oskarpotocki.vfe.insectoid2	yes	gigamite	animal	4	OmnivoreAnimal, AnimalProduct			
+VFEI2_Hellbeetle	oskarpotocki.vfe.insectoid2	yes	hellbeetle	animal	1.2	OmnivoreAnimal, AnimalProduct			
+VFEI2_Ironclad	oskarpotocki.vfe.insectoid2	yes	ironclad	animal	3	OmnivoreAnimal, AnimalProduct			
+VFEI2_Macrofly	oskarpotocki.vfe.insectoid2	yes	macrofly	animal	0.8	OmnivoreAnimal, AnimalProduct			
+VFEI2_Megapede	oskarpotocki.vfe.insectoid2	yes	megapede	animal	1.8	OmnivoreAnimal, AnimalProduct			
+VFEI2_Megathrips	oskarpotocki.vfe.insectoid2	yes	megathrips	animal	0.35	OmnivoreAnimal, AnimalProduct			
+VFEI2_Megawasp	oskarpotocki.vfe.insectoid2	yes	megawasp	animal	1.35	OmnivoreAnimal, AnimalProduct			
+VFEI2_Patriarch	oskarpotocki.vfe.insectoid2	yes	patriarch	animal	4	OmnivoreAnimal, AnimalProduct			
+VFEI2_Queen	oskarpotocki.vfe.insectoid2	yes	insectoid queen	animal	4	OmnivoreAnimal, AnimalProduct			
+VFEI2_RoyalMegascarab	oskarpotocki.vfe.insectoid2	yes	royal megascarab	animal	0.8	OmnivoreAnimal, AnimalProduct			
+VFEI2_RoyalMegaspider	oskarpotocki.vfe.insectoid2	yes	royal megaspider	animal	1.8	OmnivoreAnimal, AnimalProduct			
+VFEI2_RoyalSpelopede	oskarpotocki.vfe.insectoid2	yes	royal spelopede	animal	1.2	OmnivoreAnimal, AnimalProduct			
+VFEI2_Silverfish	oskarpotocki.vfe.insectoid2	yes	silverfish	animal	5	OmnivoreAnimal, AnimalProduct			
+VFEI2_Swarmling	oskarpotocki.vfe.insectoid2	yes	swarmlings	animal	0.2	OmnivoreAnimal, AnimalProduct			
+VFEI2_Tankroach	oskarpotocki.vfe.insectoid2	yes	tankroach	animal	1.8	OmnivoreAnimal, AnimalProduct			
+VFEI2_Teramantis	oskarpotocki.vfe.insectoid2	yes	teramantis	animal	3.8	OmnivoreAnimal, AnimalProduct			
+VFEI2_Titantick	oskarpotocki.vfe.insectoid2	yes	titantick	animal	4	OmnivoreAnimal, AnimalProduct			
+VFEI2_Venomite	oskarpotocki.vfe.insectoid2	yes	venomite	animal	1.2	OmnivoreAnimal, AnimalProduct			
+VFEP_Mech_Spidermine	oskarpotocki.vfe.pirates	yes	spidermine	animal	0.25	None			
+VFEP_Mech_Wardrone	oskarpotocki.vfe.pirates	yes	wardrone	animal	0.25	None			
+pphyy_NorthernHorse	pphhyy.barbariansmosubmod	no	northern horse	animal	2.4	VegetarianRoughAnimal		true	
+pphhyy_CheetahDemigryph	pphhyy.demigryphsmod	yes	Cheetah Demigryph	animal	2.1	CarnivoreAnimal, OvivoreAnimal	true	false	5
+pphhyy_CrimsonDemigryph	pphhyy.demigryphsmod	yes	Crimson Demigryph	animal	2.4	CarnivoreAnimal, OvivoreAnimal	true	true	5
+pphhyy_Daermigryph	pphhyy.demigryphsmod	yes	Daermigryph	animal	2.6	CarnivoreAnimal, OvivoreAnimal	true	false	5
+pphhyy_Demigryph	pphhyy.demigryphsmod	yes	Demigryph	animal	2.4	CarnivoreAnimal, OvivoreAnimal	true	true	5
+pphhyy_JadeDemigryph	pphhyy.demigryphsmod	yes	Jade Demigryph	animal	2.4	CarnivoreAnimal, OvivoreAnimal	true	false	5
+pphhyy_LeopardDemigryph	pphhyy.demigryphsmod	yes	Leopard Demigryph	animal	2.4	CarnivoreAnimal, OvivoreAnimal	true	false	5
+pphhyy_PantherDemigryph	pphhyy.demigryphsmod	yes	Panther Demigryph	animal	2.4	CarnivoreAnimal, OvivoreAnimal	true	false	5
+pphhyy_TigerDemigryph	pphhyy.demigryphsmod	yes	Tiger Demigryph	animal	2.6	CarnivoreAnimal, OvivoreAnimal	true	false	5
+pphhyy_VultureDemigryph	pphhyy.demigryphsmod	yes	Vulture Demigryph	animal	2.1	CarnivoreAnimal, OvivoreAnimal	true	false	5
+pphhyy_BloodScarab	pphhyy.sanguinaryanimals	yes	BloodScarab	animal	0.2	CarnivoreAnimalStrict, Kibble			
+pphhyy_SanguineDeer	pphhyy.sanguinaryanimals	yes	Sanguine Deer	animal	1.2	CarnivoreAnimalStrict, Kibble	true	true	2
+pphhyy_Vargulf	pphhyy.sanguinaryanimals	yes	Vargulf	animal	2.4	CarnivoreAnimalStrict, Kibble	true	true	5
+RG_Owlbeast	regrowth.botr.boilingforest	yes	owlbeast	animal	2.15	OmnivoreAnimal, OvivoreAnimal	true	false	3
+RG_Hemolope	regrowth.botr.core	yes	hemolope	animal	2.0	VegetarianRoughAnimal		true	
+RG_KiwiBird	regrowth.botr.core	yes	kiwi	animal	0.15	VegetarianRoughAnimal		false	
+RG_Neutrolope	regrowth.botr.core	yes	neutrolope	animal	2.0	VegetarianRoughAnimal		true	
+RG_Rabbit	regrowth.botr.core	yes	rabbit	animal	0.2	VegetarianRoughAnimal			
+RG_Rimclaw	regrowth.botr.core	yes	rimclaw	animal	1	CarnivoreAnimal	true		
+Bion_Base	rimsenal.federation	yes	bion	animal	1.3	None			
+Bion_Hulk	rimsenal.federation	yes	bion hulk	animal	1.85	None			
+Bion_Stalker	rimsenal.federation	yes	bion stalker	animal	0.7	None			
+Mech_Federator	rimsenal.federation	yes	faderator	animal	4	None			
+Mech_Seeker	rimsenal.federation	yes	seeker	animal	0.5	None			
+Mutant_Ogron	rimsenal.feral	yes	ogron	animal	2.0	None			
+Mutant_Razortooth	rimsenal.feral	yes	razortooth	animal	1.4	None			
+Mutant_Shadark	rimsenal.feral	yes	shadark	animal	1.4	None			
+Mutant_Twisted	rimsenal.feral	yes	twisted	animal	1.0	None			
+Mech_Bombito	rimsenal.spacer	yes	bombito	animal	0.7	None			
+Mech_Borer	rimsenal.spacer	yes	borer	animal	0.7	None			
+Mech_Krambon	rimsenal.spacer	yes	krambon	animal	1.0	None			
+Mech_Omniservant	rimsenal.spacer	yes	omniservant	animal	1	None			
+Mech_Psiloid	rimsenal.spacer	yes	psiloid	animal	0.7	None			
+Mech_Skutaton	rimsenal.spacer	yes	skutaton	animal	1.0	None			
+Mech_Tagmaton	rimsenal.spacer	yes	tagmaton	animal	1.0	None			
+AAVPE_BlackQueen	sarg.alphaanimals	yes	summoned black queen	animal	4	OmnivoreAnimal, AnimalProduct			
+AA_AcanthamoebaGiganteaHuge	sarg.alphaanimals	yes	acanthamoeba gigantea, huge	animal	1.5	VegetarianRoughAnimal		false	
+AA_AcanthamoebaGiganteaLarge	sarg.alphaanimals	yes	acanthamoeba gigantea, large	animal	0.8	VegetarianRoughAnimal		false	
+AA_AcanthamoebaGiganteaSmall	sarg.alphaanimals	yes	acanthamoeba gigantea, small	animal	0.2	VegetarianRoughAnimal		false	
+AA_Aerofleet	sarg.alphaanimals	yes	aerofleet	animal	0.2	VegetarianRoughAnimal		true	
+AA_Agaripawn	sarg.alphaanimals	yes	agaripawn	animal	1.4	VegetarianRoughAnimal		false	
+AA_Agaripod	sarg.alphaanimals	yes	agaripod	animal	4.0	VegetarianRoughAnimal		false	
+AA_AngelMoth	sarg.alphaanimals	yes	angel moth	animal	0.75	VegetarianRoughAnimal		true	
+AA_AngelMothLarva	sarg.alphaanimals	yes	angel moth larva	animal	0.1	VegetarianRoughAnimal	false	true	
+AA_AnimaColossus	sarg.alphaanimals	yes	anima colossus	animal	6	VegetarianRoughAnimal			
+AA_Animalisk	sarg.alphaanimals	yes	animalisk	animal	1.00	VegetarianRoughAnimal		true	
+AA_AnimusVox	sarg.alphaanimals	yes	animus vox	animal	0.65	CarnivoreAnimal	true		0.80
+AA_ArcticLion	sarg.alphaanimals	yes	arctic lion	animal	2	CarnivoreAnimal, OvivoreAnimal	true	false	
+AA_Atispec	sarg.alphaanimals	yes	atispec	animal	7.00	CarnivoreAnimal	true	false	
+AA_AuroraSylph	sarg.alphaanimals	yes	Aurora sylph	animal	0.5	VegetarianRoughAnimal		true	
+AA_Barbslinger	sarg.alphaanimals	yes	barbslinger	animal	2.50	OmnivoreAnimal, AnimalProduct	true	false	
+AA_BedBug	sarg.alphaanimals	yes	bedbug	animal	0.5	OmnivoreAnimal, AnimalProduct	true	false	0.80
+AA_Behemoth	sarg.alphaanimals	yes	Behemoth	animal	8	OmnivoreRoughAnimal		false	
+AA_BlackLarvae	sarg.alphaanimals	yes	black larvae	animal	0.6	OmnivoreAnimal, AnimalProduct			
+AA_BlackScarab	sarg.alphaanimals	yes	black scarab	animal	0.3	OmnivoreAnimal, AnimalProduct			
+AA_BlackScarab_Temporary	sarg.alphaanimals	yes	summoned black scarab	animal	0.3	OmnivoreAnimal, AnimalProduct			
+AA_BlackSpelopede	sarg.alphaanimals	yes	black spelopede	animal	1	OmnivoreAnimal, AnimalProduct			
+AA_BlackSpelopede_Temporary	sarg.alphaanimals	yes	summoned black spelopede	animal	1	OmnivoreAnimal, AnimalProduct			
+AA_BlackSpider	sarg.alphaanimals	yes	blackspider	animal	1.5	OmnivoreAnimal, AnimalProduct			
+AA_BlackSpider_Temporary	sarg.alphaanimals	yes	summoned blackspider	animal	1.5	OmnivoreAnimal, AnimalProduct			
+AA_Blizzarisk	sarg.alphaanimals	yes	blizzarisk	animal	2.00	CarnivoreAnimal, OvivoreAnimal	true	false	
+AA_BlizzariskClutchMother	sarg.alphaanimals	yes	blizzarisk clutch mother	animal	3.00	CarnivoreAnimal, OvivoreAnimal	true	false	
+AA_BloodShrimp	sarg.alphaanimals	yes	blood shrimp	animal	1	CarnivoreAnimal, OvivoreAnimal	true	false	0.8
+AA_Bobeene	sarg.alphaanimals	yes	bobeene	animal	2.1	VegetarianRoughAnimal		true	
+AA_BoulderMit	sarg.alphaanimals	yes	bouldermit	animal	4.00	VegetarianRoughAnimal	false	false	
+AA_Bumbledrone	sarg.alphaanimals	yes	bumbledrone	animal	0.79	VegetarianRoughAnimal	false	true	
+AA_BumbledroneHierophant	sarg.alphaanimals	yes	bumbledrone hierophant	animal	0.79	VegetarianRoughAnimal	false	true	
+AA_BumbledroneQueen	sarg.alphaanimals	yes	bumbledrone queen	animal	0.79	VegetarianRoughAnimal	false	true	
+AA_Cactipine	sarg.alphaanimals	yes	cactipine	animal	0.5	OmnivoreAnimal, OvivoreAnimal	false	true	
+AA_ChameleonYak	sarg.alphaanimals	yes	chameleon yak	animal	2.5	VegetarianRoughAnimal		true	
+AA_ChemfuelMyrmidon	sarg.alphaanimals	yes	chemfuel myrmidon	animal	1.5	OmnivoreAnimal, AnimalProduct			
+AA_Cinderlisk	sarg.alphaanimals	yes	cinderlisk	animal	2.5	OmnivoreAnimal, AnimalProduct	true	true	
+AA_ColossalAerofleet	sarg.alphaanimals	yes	colossal aerofleet	animal	2	VegetarianRoughAnimal		true	
+AA_CrepuscularBeetle	sarg.alphaanimals	yes	Crepuscular Beetle	animal	3	OmnivoreRoughAnimal		true	
+AA_CrescendoAnole	sarg.alphaanimals	yes	crescendo anole	animal	0.3	OmnivoreRoughAnimal			
+AA_CrystalMit	sarg.alphaanimals	yes	crystalmit	animal	0.5	VegetarianRoughAnimal	false	false	
+AA_CrystallineCaracal	sarg.alphaanimals	yes	crystalline caracal	animal	0.8	CarnivoreAnimal, OvivoreAnimal	true	false	0.75
+AA_DarkVandal	sarg.alphaanimals	yes	dark vandal	animal	1.2	OmnivoreRoughAnimal		true	
+AA_Darkbeast	sarg.alphaanimals	yes	darkbeast	animal	1.5	VegetarianRoughAnimal			
+AA_DecayDrake	sarg.alphaanimals	yes	decay drake	animal	1	Liquor,CarnivoreAnimalStrict	true		2
+AA_DesertAve	sarg.alphaanimals	yes	desert ave	animal	1.0	VegetarianRoughAnimal	false	true	
+AA_DevilSheep	sarg.alphaanimals	yes	devil sheep	animal	0.5	VegetarianRoughAnimal	false	true	
+AA_Drainer	sarg.alphaanimals	yes	drainer	animal	0.5	VegetarianRoughAnimal		true	
+AA_DrainerLarva	sarg.alphaanimals	yes	drainer larva	animal	0.1	VegetarianRoughAnimal	false	true	
+AA_Dunealisk	sarg.alphaanimals	yes	dunealisk	animal	2.00	OmnivoreAnimal, AnimalProduct	true	true	
+AA_DunealiskClutchMother	sarg.alphaanimals	yes	dunealisk clutch mother	animal	3	OmnivoreAnimal, AnimalProduct	true	true	
+AA_DuskProwler	sarg.alphaanimals	yes	dusk prowler	animal	1.5	CarnivoreAnimal, OvivoreAnimal	true		3
+AA_DuskRat	sarg.alphaanimals	yes	dusk rat	animal	0.15	OmnivoreRoughAnimal			
+AA_EmpressButterfly	sarg.alphaanimals	yes	Empress butterfly	animal	0.75	VegetarianRoughAnimal		true	
+AA_EmpressButterflyLarva	sarg.alphaanimals	yes	Empress butterfly larva	animal	0.1	VegetarianRoughAnimal	false	true	
+AA_EngorgedTentacularAberration	sarg.alphaanimals	yes	engorged tentacular aberration	animal	6	CarnivoreAnimalStrict	true		4
+AA_Erin	sarg.alphaanimals	yes	erin	animal	1	Corpse,CarnivoreAnimalStrict	true		0.75
+AA_Fangsquid	sarg.alphaanimals	yes	fangsquid	animal	2	OmnivoreRoughAnimal	false	false	
+AA_Feralisk	sarg.alphaanimals	yes	feralisk	animal	1.00	OmnivoreAnimal, AnimalProduct	true	true	
+AA_FeraliskClutchMother	sarg.alphaanimals	yes	feralisk clutch mother	animal	3	OmnivoreAnimal, AnimalProduct	true	true	
+AA_FireWasp	sarg.alphaanimals	yes	fire wasp	animal	0.79	OmnivoreAnimal	true	true	0.5
+AA_FissionMouse	sarg.alphaanimals	yes	fission mouse	animal	0.5	VegetarianRoughAnimal	false	false	
+AA_FissionMouseSecond	sarg.alphaanimals	yes	fission mouse, second generation	animal	0.5	VegetarianRoughAnimal	false	false	
+AA_FissionMouseThird	sarg.alphaanimals	yes	fission mouse, third generation	animal	0.5	VegetarianRoughAnimal	false	false	
+AA_FlamingoPhoenix	sarg.alphaanimals	yes	flamingo phoenix	animal	0.6	VegetarianRoughAnimal	false	true	
+AA_FrostAve	sarg.alphaanimals	yes	frost ave	animal	1.3	VegetarianRoughAnimal	false	true	
+AA_FrostLynx	sarg.alphaanimals	yes	frost lynx	animal	2	CarnivoreAnimal, OvivoreAnimal	true	false	
+AA_FrostboundBehemoth	sarg.alphaanimals	yes	frostbound behemoth	animal	3.00	VegetarianRoughAnimal		true	
+AA_Frostling	sarg.alphaanimals	yes	frostling	animal	1.5	CarnivoreAnimal, OvivoreAnimal	true		3
+AA_Frostmite	sarg.alphaanimals	yes	frostmite	animal	0.50	Corpse,Meat	false	true	
+AA_FungalHusk	sarg.alphaanimals	yes	fungal husk	animal	1	OmnivoreHuman			
+AA_Gallatross	sarg.alphaanimals	yes	gallatross	animal	6.00	VegetarianRoughAnimal, DendrovoreAnimal	false	false	
+AA_GallatrossMoribund	sarg.alphaanimals	yes	moribund gallatross	animal	6.00	VegetarianRoughAnimal, DendrovoreAnimal	false	false	
+AA_Genix	sarg.alphaanimals	yes	genix	animal	2	CarnivoreAnimal, OvivoreAnimal	true	false	
+AA_GiantCrownedSilkie	sarg.alphaanimals	yes	giant crowned silkie	animal	1.1	VegetarianRoughAnimal	false	true	
+AA_Gigantelope	sarg.alphaanimals	yes	gigantelope	animal	2	VegetarianRoughAnimal	false	true	
+AA_GreatDevourer	sarg.alphaanimals	yes	great devourer	animal	2.5	CarnivoreAnimal	true		0.75
+AA_GreenGoo	sarg.alphaanimals	yes	green goo	animal	0.5	VegetarianRoughAnimal		false	
+AA_GreyCoatedMouflon	sarg.alphaanimals	yes	Grey-Coated Mouflon	animal	0.8	VegetarianRoughAnimal	false	true	
+AA_Groundrunner	sarg.alphaanimals	yes	groundrunner	animal	2	OmnivoreRoughAnimal	false	true	
+AA_Helixien	sarg.alphaanimals	yes	helixien	animal	4.00	OmnivoreRoughAnimal	false	false	
+AA_InfectedAerofleet	sarg.alphaanimals	yes	infected aerofleet	animal	0.2	VegetarianRoughAnimal		true	
+AA_IronhuskBeetle	sarg.alphaanimals	yes	ironhusk beetle	animal	2.5	VegetarianRoughAnimal, DendrovoreAnimal			
+AA_Junglelisk	sarg.alphaanimals	yes	junglelisk	animal	1.00	OmnivoreAnimal, AnimalProduct	true	true	
+AA_LarvalAtispec	sarg.alphaanimals	yes	larval atispec	animal	0.1	VegetarianRoughAnimal	false	true	
+AA_Lockjaw	sarg.alphaanimals	yes	lockjaw	animal	2.5	CarnivoreAnimal	true		0.95
+AA_Locusts	sarg.alphaanimals	yes	locusts	animal	0.01	VegetarianRoughAnimal			
+AA_LuciferBug	sarg.alphaanimals	yes	luciferbug	animal	0.15	OmnivoreRoughAnimal, AnimalProduct	false	true	
+AA_MammothWorm	sarg.alphaanimals	yes	mammoth worm	animal	3.00	OmnivoreAnimal, AnimalProduct		false	
+AA_MammothWorm_Temporary	sarg.alphaanimals	yes	summoned mammoth worm	animal	3.00	OmnivoreRoughAnimal		false	
+AA_Mantrap	sarg.alphaanimals	yes	mantrap	animal	2	CarnivoreAnimal, OvivoreAnimal	true	true	1
+AA_MatureFleshbeast	sarg.alphaanimals	yes	mature fleshbeast	animal	6	CarnivoreAnimalStrict	true		4
+AA_MeadowAve	sarg.alphaanimals	yes	meadow ave	animal	1.2	VegetarianRoughAnimal	false	true	
+AA_MegaLouse	sarg.alphaanimals	yes	megalouse	animal	0.5	OmnivoreAnimal, AnimalProduct	false	true	
+AA_Metallovore	sarg.alphaanimals	yes	metallovore	animal	2	VegetarianRoughAnimal	false		
+AA_Mime	sarg.alphaanimals	yes	mime	animal	1	OmnivoreHuman			
+AA_Murkling	sarg.alphaanimals	yes	murkling	animal	0.35	VegetarianRoughAnimal			
+AA_MycoidColossus	sarg.alphaanimals	yes	mycoid colossus	animal	6	VegetarianRoughAnimal			
+AA_Needlepost	sarg.alphaanimals	yes	needlepost	animal	0.79	VegetarianRoughAnimal	false	true	
+AA_Needleroll	sarg.alphaanimals	yes	needleroll	animal	.15	VegetarianRoughAnimal	false	true	
+AA_NightAve	sarg.alphaanimals	yes	night ave	animal	1.1	OmnivoreAnimal	true	true	0.6
+AA_NightMule	sarg.alphaanimals	yes	nightmule	animal	2.8	VegetarianRoughAnimal		true	
+AA_NightRam	sarg.alphaanimals	yes	nightram	animal	2.5	VegetarianRoughAnimal			
+AA_Nightling	sarg.alphaanimals	yes	nightling	animal	1.0	CarnivoreAnimal, OvivoreAnimal	true		2
+AA_OcularCactus	sarg.alphaanimals	yes	ocular cactus	animal	.15	VegetarianRoughAnimal	false	true	
+AA_OcularJelly	sarg.alphaanimals	yes	ocular jelly	animal	0.5	VegetarianRoughAnimal		true	
+AA_OcularNightling	sarg.alphaanimals	yes	ocular nightling	animal	1.2	CarnivoreAnimal, OvivoreAnimal	true		2
+AA_OcularOriginator	sarg.alphaanimals	yes	ocular originator	animal	5.00	VegetarianRoughAnimal	false	false	
+AA_OvergrownColossus	sarg.alphaanimals	yes	overgrown colossus	animal	6	VegetarianRoughAnimal			
+AA_PebbleMit	sarg.alphaanimals	yes	pebblemit	animal	0.5	VegetarianRoughAnimal	false	false	
+AA_PedigreedRaptor	sarg.alphaanimals	yes	pedigreed raptor	animal	0.75	OmnivoreRoughAnimal	false	true	
+AA_PhoenixOwlcat	sarg.alphaanimals	yes	phoenix owlcat	animal	0.2	CarnivoreAnimal, OvivoreAnimal	true		0.25
+AA_Plasmorph	sarg.alphaanimals	yes	plasmorph	animal	1.00	OmnivoreAnimal	true	false	0.3
+AA_Radyak	sarg.alphaanimals	yes	radyak	animal	2.5	VegetarianRoughAnimal	false	true	
+AA_RaptorShrimp	sarg.alphaanimals	yes	raptor shrimp	animal	1.40	CarnivoreAnimal, OvivoreAnimal	true	false	
+AA_Ravager	sarg.alphaanimals	yes	ravager	animal	2.5	OmnivoreAnimal, AnimalProduct	true	false	
+AA_RayHound	sarg.alphaanimals	yes	ray-hound	animal	1.5	OmnivoreRoughAnimal, OvivoreAnimal	false		
+AA_Razorjack	sarg.alphaanimals	yes	razorjack	animal	1	OmnivoreRoughAnimal	true		2
+AA_RedGoo	sarg.alphaanimals	yes	red goo	animal	0.5	VegetarianRoughAnimal		false	
+AA_RedSpore	sarg.alphaanimals	yes	red spore	animal	2	VegetarianRoughAnimal		true	
+AA_RipperHound	sarg.alphaanimals	yes	ripper hound	animal	1.5	CarnivoreAnimal, OvivoreAnimal	true		2
+AA_RoughPlatedMonitor	sarg.alphaanimals	yes	rough-plated monitor	animal	2	CarnivoreAnimalStrict	true		1.5
+AA_RoyalAve	sarg.alphaanimals	yes	royal ave	animal	1.1	VegetarianRoughAnimal	false	true	
+AA_SandLion	sarg.alphaanimals	yes	sand lion	animal	2	CarnivoreAnimal, OvivoreAnimal	true	false	
+AA_SandProwler	sarg.alphaanimals	yes	sand prowler	animal	2	CarnivoreAnimal, OvivoreAnimal	true	false	
+AA_SandSquid	sarg.alphaanimals	yes	sand squid	animal	2.00	VegetarianRoughAnimal	false	false	
+AA_ShadowCharger	sarg.alphaanimals	yes	shadow charger	animal	2.5	VegetarianRoughAnimal			
+AA_ShockGoat	sarg.alphaanimals	yes	shock goat	animal	0.65	VegetarianRoughAnimal	false	true	
+AA_Skiphound	sarg.alphaanimals	yes	skiphound	animal	0.79	CarnivoreAnimal	true		0.9
+AA_Skyeel	sarg.alphaanimals	yes	arcturan sky eel	animal	0.25	VegetarianRoughAnimal	false	false	
+AA_Slurrypede	sarg.alphaanimals	yes	slurrypede	animal	2	OmnivoreRoughAnimal,DendrovoreAnimal,OmnivoreAnimal,AnimalProduct	false	false	
+AA_SmallButterfly	sarg.alphaanimals	yes	small butterflies	animal	0.01	OmnivoreRoughAnimal			
+AA_SpinedGow	sarg.alphaanimals	yes	spined gow	animal	2.75	VegetarianRoughAnimal		true	
+AA_SummitCrab	sarg.alphaanimals	yes	summit crab	animal	15	VegetarianRoughAnimal	false	false	
+AA_Summoned_Eyeling	sarg.alphaanimals	yes	summoned eyeling	animal	0.4	OmnivoreRoughAnimal			
+AA_Swarmling	sarg.alphaanimals	yes	swarmling	animal	0.3	OmnivoreRoughAnimal	true	true	0.2
+AA_TarGuzzler	sarg.alphaanimals	yes	tar guzzler	animal	2	VegetarianRoughAnimal	false		
+AA_TeratogenicOriginator	sarg.alphaanimals	yes	teratogenic originator	animal	5.00	VegetarianRoughAnimal	false	false	
+AA_Terramorph	sarg.alphaanimals	yes	terramorph	animal	1.5	VegetarianRoughAnimal	false	false	
+AA_TetraSlug	sarg.alphaanimals	yes	tetra slug	animal	5.00	OmnivoreRoughAnimal	false	false	
+AA_Thermadon	sarg.alphaanimals	yes	thermadon	animal	1.5	OmnivoreAnimal, AnimalProduct			
+AA_Thunderbeast	sarg.alphaanimals	yes	thunderbeast	animal	1.5	VegetarianRoughAnimal			
+AA_Thunderox	sarg.alphaanimals	yes	thunderox	animal	2.5	VegetarianRoughAnimal		true	
+AA_UnblinkingEye	sarg.alphaanimals	yes	unblinking eye	animal	7.00	CarnivoreAnimal	true	false	
+AA_Wildpawn	sarg.alphaanimals	yes	wildpawn	animal	1.4	VegetarianRoughAnimal		false	
+AA_Wildpod	sarg.alphaanimals	yes	wildpod	animal	4.0	VegetarianRoughAnimal		false	
+AA_WindBeast	sarg.alphaanimals	yes	windbeast	animal	1.5	VegetarianRoughAnimal			
+VFEI2_BlackEmpress	sarg.alphaanimals	yes	black empress	animal	4	OmnivoreAnimal, AnimalProduct			
+VFEI2_BlackQueen	sarg.alphaanimals	yes	black insectoid queen	animal	4	OmnivoreAnimal, AnimalProduct			
+VFEI2_BlackSwarmling	sarg.alphaanimals	yes	black swarmlings	animal	0.2	OmnivoreAnimal, AnimalProduct			
+AB_UnshackledCompanionDryad	sarg.alphabiomes	yes	unshackled companion dryad	animal	2.4	OmnivoreRoughAnimal			
+AG_OcularSlinger	sarg.alphagenes	yes	ocular slinger	animal	2.50	OmnivoreAnimal, AnimalProduct	true	false	
+AM_Apoptosis	sarg.alphamechs	yes	apoptosis	animal	1.0	None			
+AM_Aura	sarg.alphamechs	yes	aura	animal	1.0	None			
+AM_Blitzkrieg	sarg.alphamechs	yes	blitzkrieg	animal	0.7	None			
+AM_Daggersnout	sarg.alphamechs	yes	daggersnout	animal	1.0	None			
+AM_Demolisher	sarg.alphamechs	yes	demolisher	animal	4	None			
+AM_Fireworm	sarg.alphamechs	yes	fireworm	animal	1.8	None			
+AM_Goliath	sarg.alphamechs	yes	goliath	animal	1.8	None			
+AM_Infernus	sarg.alphamechs	yes	infernus	animal	4	None			
+AM_Mech_Artilleron	sarg.alphamechs	yes	artilleron	animal	0.95	None			
+AM_Mech_Bellicor	sarg.alphamechs	yes	bellicor	animal	0.95	None			
+AM_Mech_Guttersnipe	sarg.alphamechs	yes	guttersnipe	animal	0.7	None			
+AM_Mech_Legate	sarg.alphamechs	yes	legate	animal	3.6	None			
+AM_Mech_Lux	sarg.alphamechs	yes	lux	animal	1.0	None			
+AM_Mech_MasterChef	sarg.alphamechs	yes	culinarius	animal	0.7	None			
+AM_Mech_Munifex	sarg.alphamechs	yes	munifex	animal	1.0	None			
+AM_Mech_Optio	sarg.alphamechs	yes	optio	animal	1.0	None			
+AM_Mech_Polychoron	sarg.alphamechs	yes	polychoron	animal	1.2	None			
+AM_Mech_PristineAssembler	sarg.alphamechs	yes	pristine assembler	animal	2	None			
+AM_Mech_PristineSlurrypede	sarg.alphamechs	yes	pristine slurrypede	animal	2	None			
+AM_Mech_Sagittarius	sarg.alphamechs	yes	sagittarius	animal	1.0	None			
+AM_Mech_TurboCleaner	sarg.alphamechs	yes	turbocleaner	animal	0.2	None			
+AM_Phalanx	sarg.alphamechs	yes	phalanx	animal	1.7	None			
+AM_PristineStrider	sarg.alphamechs	yes	pristine strider	animal		None			
+AM_Siegebreaker	sarg.alphamechs	yes	siegebreaker	animal	4	None			
+AM_Siegemelter	sarg.alphamechs	yes	siegemelter	animal	4	None			
+AM_Starfire	sarg.alphamechs	yes	starfire	animal	4	None			
+AM_WarEmpress	sarg.alphamechs	yes	war empress	animal	5	None			
+VFE_Mech_Advanced_Aura	sarg.alphamechs	yes	dominion	animal					
+VFE_Mech_Advanced_Daggersnout	sarg.alphamechs	yes	eviscerator	animal					
+VFE_Mech_Advanced_Fireworm	sarg.alphamechs	yes	incinerator	animal	1.8				
+VFE_Mech_Advanced_Goliath	sarg.alphamechs	yes	colossus	animal	1.8				
+VFE_Mech_Advanced_Phalanx	sarg.alphamechs	yes	hoplite	animal	1.7				
+VFE_Mech_Advanced_Siegebreaker	sarg.alphamechs	yes	siegemaster	animal	4				
+VFE_Mech_Aura	sarg.alphamechs	yes	aura	animal					
+VFE_Mech_Daggersnout	sarg.alphamechs	yes	daggersnout	animal					
+VFE_Mech_Fireworm	sarg.alphamechs	yes	fireworm	animal	1.8				
+VFE_Mech_Goliath	sarg.alphamechs	yes	goliath	animal	1.8				
+VFE_Mech_Phalanx	sarg.alphamechs	yes	phalanx	animal	1.7				
+VFE_Mech_Siegebreaker	sarg.alphamechs	yes	siegebreaker	animal	4				
+AA_Eyeling	sarg.alphamemes	yes	eyeling	animal	0.4	OmnivoreRoughAnimal			
+AM_Dryad_Corruptor	sarg.alphamemes	yes	corruptor dryad	animal	0.667	None			
+AM_Dryad_Ocular	sarg.alphamemes	yes	ocular dryad	animal	0.667	None			
+AM_Dryad_Spitter	sarg.alphamemes	yes	spitter dryad	animal	0.65	None			
+AM_Dryad_Tumorous	sarg.alphamemes	yes	tumorous dryad	animal	0.667	None			
+AM_Dryad_Unstable	sarg.alphamemes	yes	unstable dryad	animal	0.65	None			
+AM_UnshackledDryad	sarg.alphamemes	yes	unshackled dryad	animal	0.667	OmnivoreRoughAnimal			
+Allosaurus	spincrus.dinosauria	yes	allosaurus	animal	5	CarnivoreAnimal	true	false	
+Ankylosaurus	spincrus.dinosauria	yes	ankylosaurus	animal	3.5	VegetarianRoughAnimal	false	true	
+Baryonyx	spincrus.dinosauria	yes	baryonyx	animal	7	CarnivoreAnimal	true	false	
+Brachiosaurus	spincrus.dinosauria	yes	brachiosaurus	animal	12	VegetarianRoughAnimal, DendrovoreAnimal	false	true	
+Brontosaurus	spincrus.dinosauria	yes	brontosaurus	animal	12	VegetarianRoughAnimal, DendrovoreAnimal	false	true	
+Carnotaurus	spincrus.dinosauria	yes	carnotaurus	animal	5	CarnivoreAnimal	true	false	
+Compsognathus	spincrus.dinosauria	yes	compsognathus	animal	0.35	CarnivoreAnimal	true	true	0.5
+Corythosaurus	spincrus.dinosauria	yes	corythosaurus	animal	4	VegetarianRoughAnimal	false	true	
+Dakotaraptor	spincrus.dinosauria	yes	dakotaraptor	animal	2	CarnivoreAnimal	true	true	4
+Deinocheirus	spincrus.dinosauria	yes	deinocheirus	animal	4	VegetarianRoughAnimal	false	true	
+Dilophosaurus	spincrus.dinosauria	yes	dilophosaurus	animal	2	CarnivoreAnimal	true	true	4
+Diplodocus	spincrus.dinosauria	yes	diplodocus	animal	12	VegetarianRoughAnimal, DendrovoreAnimal	false	true	
+Dryosaurus	spincrus.dinosauria	yes	dryosaurus	animal	0.5	VegetarianRoughAnimal	false	true	
+Gallimimus	spincrus.dinosauria	yes	gallimimus	animal	3	VegetarianRoughAnimal	false	true	
+Gigantoraptor	spincrus.dinosauria	yes	gigantoraptor	animal	3	VegetarianRoughAnimal	false	true	
+Iguanodon	spincrus.dinosauria	yes	iguanodon	animal	4	VegetarianRoughAnimal	false	true	
+Magyarosaurus	spincrus.dinosauria	yes	magyarosaurus	animal	4	VegetarianRoughAnimal	false	true	
+Minmi	spincrus.dinosauria	yes	minmi	animal	2	VegetarianRoughAnimal	false	true	
+Pachycephalosaurus	spincrus.dinosauria	yes	pachycephalosaurus	animal	1.5	VegetarianRoughAnimal	false	true	
+Parasaur	spincrus.dinosauria	yes	parasaur	animal	4	VegetarianRoughAnimal	false	true	
+Protoceratops	spincrus.dinosauria	yes	protoceratops	animal	0.5	VegetarianRoughAnimal	false	true	
+Pteranodon	spincrus.dinosauria	yes	pteranodon	animal	0.5	OmnivoreRoughAnimal	false	true	
+Quetzalcoatlus	spincrus.dinosauria	yes	quetzalcoatlus	animal	6	OmnivoreRoughAnimal	false	true	
+Spinosaurus	spincrus.dinosauria	yes	spinosaurus	animal	7	CarnivoreAnimal	true	false	
+Stegosaurus	spincrus.dinosauria	yes	stegosaurus	animal	4.5	VegetarianRoughAnimal	false	true	
+Stygimoloch	spincrus.dinosauria	yes	stygimoloch	animal	0.5	VegetarianRoughAnimal	false	true	
+Therizinosaurus	spincrus.dinosauria	yes	therizinosaurus	animal	4	VegetarianRoughAnimal	false	true	
+Triceratops	spincrus.dinosauria	yes	triceratops	animal	4.5	VegetarianRoughAnimal	false	true	
+TyrannosaurusRex	spincrus.dinosauria	yes	tyrannosaurus rex	animal	7	CarnivoreAnimal	true	false	
+Utahraptor	spincrus.dinosauria	yes	utahraptor	animal	2	CarnivoreAnimal	true	true	5
+Velociraptor	spincrus.dinosauria	yes	velociraptor	animal	0.75	CarnivoreAnimal	true	true	2
+Yutyrannus	spincrus.dinosauria	yes	yutyrannus	animal	6.5	CarnivoreAnimal	true	false	
+Andrewsarchus	spino.megafauna	yes	andrewsarchus	animal	5	CarnivoreAnimal, OvivoreAnimal	true	false	9
+Arthropleura	spino.megafauna	yes	arthropleura	animal	3.5	VegetarianRoughAnimal			
+Aurochs	spino.megafauna	yes	aurochs	animal	3	VegetarianRoughAnimal	false	true	
+Castoroides	spino.megafauna	yes	castoroides	animal	1.75	DendrovoreAnimal, VegetarianAnimal	false	true	
+Chalicotherium	spino.megafauna	yes	chalicotherium	animal	4	VegetarianRoughAnimal	false	false	
+Daeodon	spino.megafauna	yes	daeodon	animal	3	OmnivoreAnimal, OvivoreAnimal	true	true	4.5
+Deinotherium	spino.megafauna	yes	deinotherium	animal	5.5	VegetarianRoughAnimal	false	true	
+Dinocrocuta	spino.megafauna	yes	dinocrocuta	animal	3.5	CarnivoreAnimal, OvivoreAnimal	true	true	7
+Dinopithecus	spino.megafauna	yes	dinopithecus	animal	2.5	OmnivoreAnimal	true	true	1.5
+Dinornis	spino.megafauna	yes	dinornis	animal	5	VegetarianRoughAnimal	false	true	
+Diprotodon	spino.megafauna	yes	diprotodon	animal	4.2	VegetarianRoughAnimal	false	true	
+Doedicurus	spino.megafauna	yes	doedicurus	animal	3	VegetarianRoughAnimal	false	true	
+Elasmotherium	spino.megafauna	yes	elasmotherium	animal	4	VegetarianRoughAnimal	false	true	
+Enhydriodon	spino.megafauna	yes	enhydriodon	animal	3	CarnivoreAnimal, OvivoreAnimal	true	true	3.75
+Gigantophis	spino.megafauna	yes	gigantophis	animal	11	CarnivoreAnimal	true		9
+Gigantopithecus	spino.megafauna	yes	gigantopithecus	animal	3.5	VegetarianRoughAnimal, DendrovoreAnimal	false	true	
+Gomphotaria	spino.megafauna	yes	gomphotaria	animal	5	CarnivoreAnimal	true	true	3.5
+Josephoartigasia	spino.megafauna	yes	josephoartigasia	animal	4	VegetarianRoughAnimal	false	true	
+Macrauchenia	spino.megafauna	yes	macrauchenia	animal	4	VegetarianRoughAnimal	false	true	
+Megalania	spino.megafauna	yes	megalania	animal	3	CarnivoreAnimal, OvivoreAnimal	true	false	4.5
+Megaloceros	spino.megafauna	yes	megaloceros	animal	4	VegetarianRoughAnimal	false	true	
+Megalochelys	spino.megafauna	yes	megalochelys	animal	4.5	VegetarianRoughAnimal	false	false	
+Meganeura	spino.megafauna	yes	meganeura	animal	0.7	CarnivoreAnimal			0.9
+Palaeeudyptes	spino.megafauna	yes	palaeeudyptes	animal	2.8	CarnivoreAnimal	true	true	1.5
+Paraceratherium	spino.megafauna	yes	paraceratherium	animal	15	VegetarianRoughAnimal, DendrovoreAnimal	false	true	
+Platybelodon	spino.megafauna	yes	platybelodon	animal	4.5	DendrovoreAnimal, VegetarianRoughAnimal	false	true	
+Procoptodon	spino.megafauna	yes	procoptodon	animal	3	VegetarianRoughAnimal	false	true	
+Pulmonoscorpius	spino.megafauna	yes	pulmonoscorpius	animal	1.1	CarnivoreAnimal	true		2
+Purussaurus	spino.megafauna	yes	purussaurus	animal	10	CarnivoreAnimal, OvivoreAnimal	true	false	8.5
+Quinkana	spino.megafauna	yes	quinkana	animal	3.5	CarnivoreAnimal, OvivoreAnimal	true	false	5
+ShortfacedBear	spino.megafauna	yes	Short-faced bear	animal	4.5	OmnivoreAnimal	true	false	5
+Sivatherium	spino.megafauna	yes	sivatherium	animal	8	VegetarianRoughAnimal, DendrovoreAnimal	false	true	
+Smilodon	spino.megafauna	yes	smilodon	animal	2.5	CarnivoreAnimal	true	true	4
+Titanis	spino.megafauna	yes	titanis	animal	3	CarnivoreAnimal	true	true	4
+Titanoboa	spino.megafauna	yes	titanoboa	animal	12	CarnivoreAnimal	true		10
+Uintatherium	spino.megafauna	yes	uintatherium	animal	4.5	VegetarianRoughAnimal	false	true	
+WoollyMammoth	spino.megafauna	yes	woolly mammoth	animal	5	VegetarianRoughAnimal	false	true	
+Zygolophodon	spino.megafauna	yes	zygolophodon	animal	5.3	VegetarianRoughAnimal	false	true	
+PW_Abomasnow	themoonitself.pokeworld	yes	Abomasnow	animal	1.38	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Abra	themoonitself.pokeworld	yes	Abra	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Absol	themoonitself.pokeworld	yes	Absol	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Accelgor	themoonitself.pokeworld	yes	Accelgor	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Aegislash	themoonitself.pokeworld	yes	Aegislash	animal	1.06	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Aerodactyl	themoonitself.pokeworld	yes	Aerodactyl	animal	1.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Aggron	themoonitself.pokeworld	yes	Aggron	animal	1.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Aipom	themoonitself.pokeworld	yes	Aipom	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Alakazam	themoonitself.pokeworld	yes	Alakazam	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Alcremie	themoonitself.pokeworld	yes	Alcremie	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Alomomola	themoonitself.pokeworld	yes	Alomomola	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Altaria	themoonitself.pokeworld	yes	Altaria	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Amaura	themoonitself.pokeworld	yes	Amaura	animal	0.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Ambipom	themoonitself.pokeworld	yes	Ambipom	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Amoonguss	themoonitself.pokeworld	yes	Amoonguss	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Ampharos	themoonitself.pokeworld	yes	Ampharos	animal	0.87	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Anorith	themoonitself.pokeworld	yes	Anorith	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Appletun	themoonitself.pokeworld	yes	Appletun	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Applin	themoonitself.pokeworld	yes	Applin	animal	0.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Araquanid	themoonitself.pokeworld	yes	Araquanid	animal	1.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Arbok	themoonitself.pokeworld	yes	Arbok	animal	1.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Arcanine	themoonitself.pokeworld	yes	Arcanine	animal	1.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Arceus	themoonitself.pokeworld	yes	Arceus	animal	2.00	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Archen	themoonitself.pokeworld	yes	Archen	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Archeops	themoonitself.pokeworld	yes	Archeops	animal	0.87	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Arctovish	themoonitself.pokeworld	yes	Arctovish	animal	1.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Arctozolt	themoonitself.pokeworld	yes	Arctozolt	animal	1.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Ariados	themoonitself.pokeworld	yes	Ariados	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Armaldo	themoonitself.pokeworld	yes	Armaldo	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Aromatisse	themoonitself.pokeworld	yes	Aromatisse	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Aron	themoonitself.pokeworld	yes	Aron	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Arrokuda	themoonitself.pokeworld	yes	Arrokuda	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Articuno	themoonitself.pokeworld	yes	Articuno	animal	1.06	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Audino	themoonitself.pokeworld	yes	Audino	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Aurorus	themoonitself.pokeworld	yes	Aurorus	animal	1.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Avalugg	themoonitself.pokeworld	yes	Avalugg	animal	1.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Axew	themoonitself.pokeworld	yes	Axew	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Azelf	themoonitself.pokeworld	yes	Azelf	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Azumarill	themoonitself.pokeworld	yes	Azumarill	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Azurill	themoonitself.pokeworld	yes	Azurill	animal	0.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Bagon	themoonitself.pokeworld	yes	Bagon	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Baltoy	themoonitself.pokeworld	yes	Baltoy	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Banette	themoonitself.pokeworld	yes	Banette	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Barbaracle	themoonitself.pokeworld	yes	Barbaracle	animal	0.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Barboach	themoonitself.pokeworld	yes	Barboach	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Barraskewda	themoonitself.pokeworld	yes	Barraskewda	animal	0.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Basculin	themoonitself.pokeworld	yes	Basculin	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Bastiodon	themoonitself.pokeworld	yes	Bastiodon	animal	0.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Bayleef	themoonitself.pokeworld	yes	Bayleef	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Beartic	themoonitself.pokeworld	yes	Beartic	animal	1.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Beautifly	themoonitself.pokeworld	yes	Beautifly	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Beedrill	themoonitself.pokeworld	yes	Beedrill	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Beheeyem	themoonitself.pokeworld	yes	Beheeyem	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Beldum	themoonitself.pokeworld	yes	Beldum	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Bellossom	themoonitself.pokeworld	yes	Bellossom	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Bellsprout	themoonitself.pokeworld	yes	Bellsprout	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Bergmite	themoonitself.pokeworld	yes	Bergmite	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Bewear	themoonitself.pokeworld	yes	Bewear	animal	1.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Bibarel	themoonitself.pokeworld	yes	Bibarel	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Bidoof	themoonitself.pokeworld	yes	Bidoof	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Binacle	themoonitself.pokeworld	yes	Binacle	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Bisharp	themoonitself.pokeworld	yes	Bisharp	animal	1.00	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Blacephalon	themoonitself.pokeworld	yes	Blacephalon	animal	1.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Blastoise	themoonitself.pokeworld	yes	Blastoise	animal	1.00	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Blaziken	themoonitself.pokeworld	yes	Blaziken	animal	1.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Blipbug	themoonitself.pokeworld	yes	Blipbug	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Blissey	themoonitself.pokeworld	yes	Blissey	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Blitzle	themoonitself.pokeworld	yes	Blitzle	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Boldore	themoonitself.pokeworld	yes	Boldore	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Boltund	themoonitself.pokeworld	yes	Boltund	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Bonsly	themoonitself.pokeworld	yes	Bonsly	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Bouffalant	themoonitself.pokeworld	yes	Bouffalant	animal	1.00	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Bounsweet	themoonitself.pokeworld	yes	Bounsweet	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Braixen	themoonitself.pokeworld	yes	Braixen	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Braviary	themoonitself.pokeworld	yes	Braviary	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Breloom	themoonitself.pokeworld	yes	Breloom	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Brionne	themoonitself.pokeworld	yes	Brionne	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Bronzong	themoonitself.pokeworld	yes	Bronzong	animal	0.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Bronzor	themoonitself.pokeworld	yes	Bronzor	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Bruxish	themoonitself.pokeworld	yes	Bruxish	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Budew	themoonitself.pokeworld	yes	Budew	animal	0.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Buizel	themoonitself.pokeworld	yes	Buizel	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Bulbasaur	themoonitself.pokeworld	yes	Bulbasaur	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Buneary	themoonitself.pokeworld	yes	Buneary	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Bunnelby	themoonitself.pokeworld	yes	Bunnelby	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Burmy	themoonitself.pokeworld	yes	Burmy	animal	0.12	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Butterfree	themoonitself.pokeworld	yes	Butterfree	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Buzzwole	themoonitself.pokeworld	yes	Buzzwole	animal	1.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Cacnea	themoonitself.pokeworld	yes	Cacnea	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Cacturne	themoonitself.pokeworld	yes	Cacturne	animal	0.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Calyrex	themoonitself.pokeworld	yes	Calyrex	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Camerupt	themoonitself.pokeworld	yes	Camerupt	animal	1.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Carbink	themoonitself.pokeworld	yes	Carbink	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Carkol	themoonitself.pokeworld	yes	Carkol	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Carnivine	themoonitself.pokeworld	yes	Carnivine	animal	0.87	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Carracosta	themoonitself.pokeworld	yes	Carracosta	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Carvanha	themoonitself.pokeworld	yes	Carvanha	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Cascoon	themoonitself.pokeworld	yes	Cascoon	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Castform	themoonitself.pokeworld	yes	Castform	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Caterpie	themoonitself.pokeworld	yes	Caterpie	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Celebi	themoonitself.pokeworld	yes	Celebi	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Celesteela	themoonitself.pokeworld	yes	Celesteela	animal	5.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Centiskorch	themoonitself.pokeworld	yes	Centiskorch	animal	1.88	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Chandelure	themoonitself.pokeworld	yes	Chandelure	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Chansey	themoonitself.pokeworld	yes	Chansey	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Charizard	themoonitself.pokeworld	yes	Charizard	animal	1.06	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Charjabug	themoonitself.pokeworld	yes	Charjabug	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Charmander	themoonitself.pokeworld	yes	Charmander	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Charmeleon	themoonitself.pokeworld	yes	Charmeleon	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Chatot	themoonitself.pokeworld	yes	Chatot	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Cherrim	themoonitself.pokeworld	yes	Cherrim	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Cherubi	themoonitself.pokeworld	yes	Cherubi	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Chesnaught	themoonitself.pokeworld	yes	Chesnaught	animal	1.00	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Chespin	themoonitself.pokeworld	yes	Chespin	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Chewtle	themoonitself.pokeworld	yes	Chewtle	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Chikorita	themoonitself.pokeworld	yes	Chikorita	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Chimchar	themoonitself.pokeworld	yes	Chimchar	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Chimecho	themoonitself.pokeworld	yes	Chimecho	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Chinchou	themoonitself.pokeworld	yes	Chinchou	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Chingling	themoonitself.pokeworld	yes	Chingling	animal	0.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Cinccino	themoonitself.pokeworld	yes	Cinccino	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Cinderace	themoonitself.pokeworld	yes	Cinderace	animal	0.87	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Clamperl	themoonitself.pokeworld	yes	Clamperl	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Clauncher	themoonitself.pokeworld	yes	Clauncher	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Clawitzer	themoonitself.pokeworld	yes	Clawitzer	animal	0.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Claydol	themoonitself.pokeworld	yes	Claydol	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Clefable	themoonitself.pokeworld	yes	Clefable	animal	0.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Clefairy	themoonitself.pokeworld	yes	Clefairy	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Cleffa	themoonitself.pokeworld	yes	Cleffa	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Clobbopus	themoonitself.pokeworld	yes	Clobbopus	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Cloyster	themoonitself.pokeworld	yes	Cloyster	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Coalossal	themoonitself.pokeworld	yes	Coalossal	animal	1.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Cobalion	themoonitself.pokeworld	yes	Cobalion	animal	1.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Cofagrigus	themoonitself.pokeworld	yes	Cofagrigus	animal	1.06	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Combee	themoonitself.pokeworld	yes	Combee	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Combusken	themoonitself.pokeworld	yes	Combusken	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Comfey	themoonitself.pokeworld	yes	Comfey	animal	0.06	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Conkeldurr	themoonitself.pokeworld	yes	Conkeldurr	animal	0.87	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Copperajah	themoonitself.pokeworld	yes	Copperajah	animal	1.88	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Corphish	themoonitself.pokeworld	yes	Corphish	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Corsola	themoonitself.pokeworld	yes	Corsola	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Corviknight	themoonitself.pokeworld	yes	Corviknight	animal	1.38	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Corvisquire	themoonitself.pokeworld	yes	Corvisquire	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Cosmoem	themoonitself.pokeworld	yes	Cosmoem	animal	0.06	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Cosmog	themoonitself.pokeworld	yes	Cosmog	animal	0.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Cottonee	themoonitself.pokeworld	yes	Cottonee	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Crabominable	themoonitself.pokeworld	yes	Crabominable	animal	1.06	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Crabrawler	themoonitself.pokeworld	yes	Crabrawler	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Cradily	themoonitself.pokeworld	yes	Cradily	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Cramorant	themoonitself.pokeworld	yes	Cramorant	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Cranidos	themoonitself.pokeworld	yes	Cranidos	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Crawdaunt	themoonitself.pokeworld	yes	Crawdaunt	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Cresselia	themoonitself.pokeworld	yes	Cresselia	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Croagunk	themoonitself.pokeworld	yes	Croagunk	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Crobat	themoonitself.pokeworld	yes	Crobat	animal	1.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Croconaw	themoonitself.pokeworld	yes	Croconaw	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Crustle	themoonitself.pokeworld	yes	Crustle	animal	0.87	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Cryogonal	themoonitself.pokeworld	yes	Cryogonal	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Cubchoo	themoonitself.pokeworld	yes	Cubchoo	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Cubone	themoonitself.pokeworld	yes	Cubone	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Cufant	themoonitself.pokeworld	yes	Cufant	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Cursola	themoonitself.pokeworld	yes	Cursola	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Cutiefly	themoonitself.pokeworld	yes	Cutiefly	animal	0.06	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Cyndaquil	themoonitself.pokeworld	yes	Cyndaquil	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Darkrai	themoonitself.pokeworld	yes	Darkrai	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Darmanitan	themoonitself.pokeworld	yes	Darmanitan	animal	0.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Dartrix	themoonitself.pokeworld	yes	Dartrix	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Darumaka	themoonitself.pokeworld	yes	Darumaka	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Decidueye	themoonitself.pokeworld	yes	Decidueye	animal	1.00	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Dedenne	themoonitself.pokeworld	yes	Dedenne	animal	0.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Deerling	themoonitself.pokeworld	yes	Deerling	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Deino	themoonitself.pokeworld	yes	Deino	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Delcatty	themoonitself.pokeworld	yes	Delcatty	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Delibird	themoonitself.pokeworld	yes	Delibird	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Delphox	themoonitself.pokeworld	yes	Delphox	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Deoxys	themoonitself.pokeworld	yes	Deoxys	animal	1.06	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Dewgong	themoonitself.pokeworld	yes	Dewgong	animal	1.06	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Dewott	themoonitself.pokeworld	yes	Dewott	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Dewpider	themoonitself.pokeworld	yes	Dewpider	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Dhelmise	themoonitself.pokeworld	yes	Dhelmise	animal	2.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Dialga	themoonitself.pokeworld	yes	Dialga	animal	3.38	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Diancie	themoonitself.pokeworld	yes	Diancie	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Diggersby	themoonitself.pokeworld	yes	Diggersby	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Diglett	themoonitself.pokeworld	yes	Diglett	animal	0.12	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Ditto	themoonitself.pokeworld	yes	Ditto	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Dodrio	themoonitself.pokeworld	yes	Dodrio	animal	1.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Doduo	themoonitself.pokeworld	yes	Doduo	animal	0.87	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Donphan	themoonitself.pokeworld	yes	Donphan	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Dottler	themoonitself.pokeworld	yes	Dottler	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Doublade	themoonitself.pokeworld	yes	Doublade	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Dracovish	themoonitself.pokeworld	yes	Dracovish	animal	1.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Dracozolt	themoonitself.pokeworld	yes	Dracozolt	animal	1.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Dragalge	themoonitself.pokeworld	yes	Dragalge	animal	1.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Dragapult	themoonitself.pokeworld	yes	Dragapult	animal	1.88	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Dragonair	themoonitself.pokeworld	yes	Dragonair	animal	1.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Dragonite	themoonitself.pokeworld	yes	Dragonite	animal	1.38	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Drakloak	themoonitself.pokeworld	yes	Drakloak	animal	0.87	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Drampa	themoonitself.pokeworld	yes	Drampa	animal	1.88	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Drapion	themoonitself.pokeworld	yes	Drapion	animal	0.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Dratini	themoonitself.pokeworld	yes	Dratini	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Drednaw	themoonitself.pokeworld	yes	Drednaw	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Dreepy	themoonitself.pokeworld	yes	Dreepy	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Drifblim	themoonitself.pokeworld	yes	Drifblim	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Drifloon	themoonitself.pokeworld	yes	Drifloon	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Drilbur	themoonitself.pokeworld	yes	Drilbur	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Drizzile	themoonitself.pokeworld	yes	Drizzile	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Drowzee	themoonitself.pokeworld	yes	Drowzee	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Druddigon	themoonitself.pokeworld	yes	Druddigon	animal	1.00	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Dubwool	themoonitself.pokeworld	yes	Dubwool	animal	0.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Ducklett	themoonitself.pokeworld	yes	Ducklett	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Dugtrio	themoonitself.pokeworld	yes	Dugtrio	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Dunsparce	themoonitself.pokeworld	yes	Dunsparce	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Duosion	themoonitself.pokeworld	yes	Duosion	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Duraludon	themoonitself.pokeworld	yes	Duraludon	animal	1.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Durant	themoonitself.pokeworld	yes	Durant	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Dusclops	themoonitself.pokeworld	yes	Dusclops	animal	1.00	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Dusknoir	themoonitself.pokeworld	yes	Dusknoir	animal	1.38	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Duskull	themoonitself.pokeworld	yes	Duskull	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Dustox	themoonitself.pokeworld	yes	Dustox	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Dwebble	themoonitself.pokeworld	yes	Dwebble	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Eelektrik	themoonitself.pokeworld	yes	Eelektrik	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Eelektross	themoonitself.pokeworld	yes	Eelektross	animal	1.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Eevee	themoonitself.pokeworld	yes	Eevee	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Eiscue	themoonitself.pokeworld	yes	Eiscue	animal	0.87	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Ekans	themoonitself.pokeworld	yes	Ekans	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Eldegoss	themoonitself.pokeworld	yes	Eldegoss	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Electabuzz	themoonitself.pokeworld	yes	Electabuzz	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Electivire	themoonitself.pokeworld	yes	Electivire	animal	1.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Electrike	themoonitself.pokeworld	yes	Electrike	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Electrode	themoonitself.pokeworld	yes	Electrode	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Elekid	themoonitself.pokeworld	yes	Elekid	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Elgyem	themoonitself.pokeworld	yes	Elgyem	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Emboar	themoonitself.pokeworld	yes	Emboar	animal	1.00	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Emolga	themoonitself.pokeworld	yes	Emolga	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Empoleon	themoonitself.pokeworld	yes	Empoleon	animal	1.06	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Entei	themoonitself.pokeworld	yes	Entei	animal	1.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Escavalier	themoonitself.pokeworld	yes	Escavalier	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Espeon	themoonitself.pokeworld	yes	Espeon	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Espurr	themoonitself.pokeworld	yes	Espurr	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Eternatus	themoonitself.pokeworld	yes	Eternatus	animal	12.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Excadrill	themoonitself.pokeworld	yes	Excadrill	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Exeggcute	themoonitself.pokeworld	yes	Exeggcute	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Exeggutor	themoonitself.pokeworld	yes	Exeggutor	animal	1.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Exploud	themoonitself.pokeworld	yes	Exploud	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Falinks	themoonitself.pokeworld	yes	Falinks	animal	1.88	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Farfetchd	themoonitself.pokeworld	yes	Farfetch'd	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Fearow	themoonitself.pokeworld	yes	Fearow	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Feebas	themoonitself.pokeworld	yes	Feebas	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Fennekin	themoonitself.pokeworld	yes	Fennekin	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Feraligatr	themoonitself.pokeworld	yes	Feraligatr	animal	1.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Ferroseed	themoonitself.pokeworld	yes	Ferroseed	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Ferrothorn	themoonitself.pokeworld	yes	Ferrothorn	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Finneon	themoonitself.pokeworld	yes	Finneon	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Flaaffy	themoonitself.pokeworld	yes	Flaaffy	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Flabebe	themoonitself.pokeworld	yes	Flabébé	animal	0.06	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Flapple	themoonitself.pokeworld	yes	Flapple	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Flareon	themoonitself.pokeworld	yes	Flareon	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Fletchinder	themoonitself.pokeworld	yes	Fletchinder	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Fletchling	themoonitself.pokeworld	yes	Fletchling	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Floatzel	themoonitself.pokeworld	yes	Floatzel	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Floette	themoonitself.pokeworld	yes	Floette	animal	0.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Florges	themoonitself.pokeworld	yes	Florges	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Flygon	themoonitself.pokeworld	yes	Flygon	animal	1.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Fomantis	themoonitself.pokeworld	yes	Fomantis	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Foongus	themoonitself.pokeworld	yes	Foongus	animal	0.12	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Forretress	themoonitself.pokeworld	yes	Forretress	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Fraxure	themoonitself.pokeworld	yes	Fraxure	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Frillish	themoonitself.pokeworld	yes	Frillish	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Froakie	themoonitself.pokeworld	yes	Froakie	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Frogadier	themoonitself.pokeworld	yes	Frogadier	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Froslass	themoonitself.pokeworld	yes	Froslass	animal	0.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Frosmoth	themoonitself.pokeworld	yes	Frosmoth	animal	0.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Furfrou	themoonitself.pokeworld	yes	Furfrou	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Furret	themoonitself.pokeworld	yes	Furret	animal	1.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Gabite	themoonitself.pokeworld	yes	Gabite	animal	0.87	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Gallade	themoonitself.pokeworld	yes	Gallade	animal	1.00	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Galvantula	themoonitself.pokeworld	yes	Galvantula	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Garbodor	themoonitself.pokeworld	yes	Garbodor	animal	1.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Garchomp	themoonitself.pokeworld	yes	Garchomp	animal	1.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Gardevoir	themoonitself.pokeworld	yes	Gardevoir	animal	1.00	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Gastly	themoonitself.pokeworld	yes	Gastly	animal	0.81	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Gastrodon	themoonitself.pokeworld	yes	Gastrodon	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Genesect	themoonitself.pokeworld	yes	Genesect	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Gengar	themoonitself.pokeworld	yes	Gengar	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Geodude	themoonitself.pokeworld	yes	Geodude	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Gible	themoonitself.pokeworld	yes	Gible	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Gigalith	themoonitself.pokeworld	yes	Gigalith	animal	1.06	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Girafarig	themoonitself.pokeworld	yes	Girafarig	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Giratina	themoonitself.pokeworld	yes	Giratina	animal	2.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Glaceon	themoonitself.pokeworld	yes	Glaceon	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Glalie	themoonitself.pokeworld	yes	Glalie	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Glameow	themoonitself.pokeworld	yes	Glameow	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Glastrier	themoonitself.pokeworld	yes	Glastrier	animal	1.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Gligar	themoonitself.pokeworld	yes	Gligar	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Gliscor	themoonitself.pokeworld	yes	Gliscor	animal	1.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Gloom	themoonitself.pokeworld	yes	Gloom	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Gogoat	themoonitself.pokeworld	yes	Gogoat	animal	1.06	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Golbat	themoonitself.pokeworld	yes	Golbat	animal	1.00	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Goldeen	themoonitself.pokeworld	yes	Goldeen	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Golduck	themoonitself.pokeworld	yes	Golduck	animal	1.06	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Golem	themoonitself.pokeworld	yes	Golem	animal	0.87	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Golett	themoonitself.pokeworld	yes	Golett	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Golisopod	themoonitself.pokeworld	yes	Golisopod	animal	1.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Golurk	themoonitself.pokeworld	yes	Golurk	animal	1.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Goodra	themoonitself.pokeworld	yes	Goodra	animal	1.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Goomy	themoonitself.pokeworld	yes	Goomy	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Gorebyss	themoonitself.pokeworld	yes	Gorebyss	animal	1.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Gossifleur	themoonitself.pokeworld	yes	Gossifleur	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Gothita	themoonitself.pokeworld	yes	Gothita	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Gothitelle	themoonitself.pokeworld	yes	Gothitelle	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Gothorita	themoonitself.pokeworld	yes	Gothorita	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Gourgeist	themoonitself.pokeworld	yes	Gourgeist	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Granbull	themoonitself.pokeworld	yes	Granbull	animal	0.87	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Grapploct	themoonitself.pokeworld	yes	Grapploct	animal	1.00	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Graveler	themoonitself.pokeworld	yes	Graveler	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Greedent	themoonitself.pokeworld	yes	Greedent	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Greninja	themoonitself.pokeworld	yes	Greninja	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Grimer	themoonitself.pokeworld	yes	Grimer	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Grimmsnarl	themoonitself.pokeworld	yes	Grimmsnarl	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Grookey	themoonitself.pokeworld	yes	Grookey	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Grotle	themoonitself.pokeworld	yes	Grotle	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Groudon	themoonitself.pokeworld	yes	Groudon	animal	2.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Grovyle	themoonitself.pokeworld	yes	Grovyle	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Growlithe	themoonitself.pokeworld	yes	Growlithe	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Grubbin	themoonitself.pokeworld	yes	Grubbin	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Grumpig	themoonitself.pokeworld	yes	Grumpig	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Gulpin	themoonitself.pokeworld	yes	Gulpin	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Gumshoos	themoonitself.pokeworld	yes	Gumshoos	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Gurdurr	themoonitself.pokeworld	yes	Gurdurr	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Guzzlord	themoonitself.pokeworld	yes	Guzzlord	animal	3.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Gyarados	themoonitself.pokeworld	yes	Gyarados	animal	4.06	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_HakamoO	themoonitself.pokeworld	yes	Hakamo-o	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Happiny	themoonitself.pokeworld	yes	Happiny	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Hariyama	themoonitself.pokeworld	yes	Hariyama	animal	1.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Hatenna	themoonitself.pokeworld	yes	Hatenna	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Hatterene	themoonitself.pokeworld	yes	Hatterene	animal	1.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Hattrem	themoonitself.pokeworld	yes	Hattrem	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Haunter	themoonitself.pokeworld	yes	Haunter	animal	1.00	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Hawlucha	themoonitself.pokeworld	yes	Hawlucha	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Haxorus	themoonitself.pokeworld	yes	Haxorus	animal	1.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Heatmor	themoonitself.pokeworld	yes	Heatmor	animal	0.87	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Heatran	themoonitself.pokeworld	yes	Heatran	animal	1.06	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Heliolisk	themoonitself.pokeworld	yes	Heliolisk	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Helioptile	themoonitself.pokeworld	yes	Helioptile	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Heracross	themoonitself.pokeworld	yes	Heracross	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Herdier	themoonitself.pokeworld	yes	Herdier	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Hippopotas	themoonitself.pokeworld	yes	Hippopotas	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Hippowdon	themoonitself.pokeworld	yes	Hippowdon	animal	1.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Hitmonchan	themoonitself.pokeworld	yes	Hitmonchan	animal	0.87	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Hitmonlee	themoonitself.pokeworld	yes	Hitmonlee	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Hitmontop	themoonitself.pokeworld	yes	Hitmontop	animal	0.87	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_HoOh	themoonitself.pokeworld	yes	Ho-Oh	animal	2.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Honchkrow	themoonitself.pokeworld	yes	Honchkrow	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Honedge	themoonitself.pokeworld	yes	Honedge	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Hoopa	themoonitself.pokeworld	yes	Hoopa	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Hoothoot	themoonitself.pokeworld	yes	Hoothoot	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Hoppip	themoonitself.pokeworld	yes	Hoppip	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Horsea	themoonitself.pokeworld	yes	Horsea	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Houndoom	themoonitself.pokeworld	yes	Houndoom	animal	0.87	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Houndour	themoonitself.pokeworld	yes	Houndour	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Huntail	themoonitself.pokeworld	yes	Huntail	animal	1.06	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Hydreigon	themoonitself.pokeworld	yes	Hydreigon	animal	1.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Hypno	themoonitself.pokeworld	yes	Hypno	animal	1.00	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Igglybuff	themoonitself.pokeworld	yes	Igglybuff	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Illumise	themoonitself.pokeworld	yes	Illumise	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Impidimp	themoonitself.pokeworld	yes	Impidimp	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Incineroar	themoonitself.pokeworld	yes	Incineroar	animal	1.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Indeedee	themoonitself.pokeworld	yes	Indeedee	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Infernape	themoonitself.pokeworld	yes	Infernape	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Inkay	themoonitself.pokeworld	yes	Inkay	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Inteleon	themoonitself.pokeworld	yes	Inteleon	animal	1.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Ivysaur	themoonitself.pokeworld	yes	Ivysaur	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_JangmoO	themoonitself.pokeworld	yes	Jangmo-o	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Jellicent	themoonitself.pokeworld	yes	Jellicent	animal	1.38	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Jigglypuff	themoonitself.pokeworld	yes	Jigglypuff	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Jirachi	themoonitself.pokeworld	yes	Jirachi	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Jolteon	themoonitself.pokeworld	yes	Jolteon	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Joltik	themoonitself.pokeworld	yes	Joltik	animal	0.06	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Jumpluff	themoonitself.pokeworld	yes	Jumpluff	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Jynx	themoonitself.pokeworld	yes	Jynx	animal	0.87	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Kabuto	themoonitself.pokeworld	yes	Kabuto	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Kabutops	themoonitself.pokeworld	yes	Kabutops	animal	0.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Kadabra	themoonitself.pokeworld	yes	Kadabra	animal	0.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Kakuna	themoonitself.pokeworld	yes	Kakuna	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Kangaskhan	themoonitself.pokeworld	yes	Kangaskhan	animal	1.38	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Karrablast	themoonitself.pokeworld	yes	Karrablast	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Kartana	themoonitself.pokeworld	yes	Kartana	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Kecleon	themoonitself.pokeworld	yes	Kecleon	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Keldeo	themoonitself.pokeworld	yes	Keldeo	animal	0.87	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Kingdra	themoonitself.pokeworld	yes	Kingdra	animal	1.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Kingler	themoonitself.pokeworld	yes	Kingler	animal	0.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Kirlia	themoonitself.pokeworld	yes	Kirlia	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Klang	themoonitself.pokeworld	yes	Klang	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Klefki	themoonitself.pokeworld	yes	Klefki	animal	0.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Klink	themoonitself.pokeworld	yes	Klink	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Klinklang	themoonitself.pokeworld	yes	Klinklang	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Koffing	themoonitself.pokeworld	yes	Koffing	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Komala	themoonitself.pokeworld	yes	Komala	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_KommoO	themoonitself.pokeworld	yes	Kommo-o	animal	1.00	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Krabby	themoonitself.pokeworld	yes	Krabby	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Kricketot	themoonitself.pokeworld	yes	Kricketot	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Kricketune	themoonitself.pokeworld	yes	Kricketune	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Krokorok	themoonitself.pokeworld	yes	Krokorok	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Krookodile	themoonitself.pokeworld	yes	Krookodile	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Kubfu	themoonitself.pokeworld	yes	Kubfu	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Kyogre	themoonitself.pokeworld	yes	Kyogre	animal	2.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Kyurem	themoonitself.pokeworld	yes	Kyurem	animal	1.88	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Lairon	themoonitself.pokeworld	yes	Lairon	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Lampent	themoonitself.pokeworld	yes	Lampent	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Landorus	themoonitself.pokeworld	yes	Landorus	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Lanturn	themoonitself.pokeworld	yes	Lanturn	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Lapras	themoonitself.pokeworld	yes	Lapras	animal	1.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Larvesta	themoonitself.pokeworld	yes	Larvesta	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Larvitar	themoonitself.pokeworld	yes	Larvitar	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Latias	themoonitself.pokeworld	yes	Latias	animal	0.87	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Latios	themoonitself.pokeworld	yes	Latios	animal	1.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Leafeon	themoonitself.pokeworld	yes	Leafeon	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Leavanny	themoonitself.pokeworld	yes	Leavanny	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Ledian	themoonitself.pokeworld	yes	Ledian	animal	0.87	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Ledyba	themoonitself.pokeworld	yes	Ledyba	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Lickilicky	themoonitself.pokeworld	yes	Lickilicky	animal	1.06	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Lickitung	themoonitself.pokeworld	yes	Lickitung	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Liepard	themoonitself.pokeworld	yes	Liepard	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Lileep	themoonitself.pokeworld	yes	Lileep	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Lilligant	themoonitself.pokeworld	yes	Lilligant	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Lillipup	themoonitself.pokeworld	yes	Lillipup	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Linoone	themoonitself.pokeworld	yes	Linoone	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Litleo	themoonitself.pokeworld	yes	Litleo	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Litten	themoonitself.pokeworld	yes	Litten	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Litwick	themoonitself.pokeworld	yes	Litwick	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Lombre	themoonitself.pokeworld	yes	Lombre	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Lopunny	themoonitself.pokeworld	yes	Lopunny	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Lotad	themoonitself.pokeworld	yes	Lotad	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Loudred	themoonitself.pokeworld	yes	Loudred	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Lucario	themoonitself.pokeworld	yes	Lucario	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Ludicolo	themoonitself.pokeworld	yes	Ludicolo	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Lugia	themoonitself.pokeworld	yes	Lugia	animal	3.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Lumineon	themoonitself.pokeworld	yes	Lumineon	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Lunala	themoonitself.pokeworld	yes	Lunala	animal	2.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Lunatone	themoonitself.pokeworld	yes	Lunatone	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Lurantis	themoonitself.pokeworld	yes	Lurantis	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Luvdisc	themoonitself.pokeworld	yes	Luvdisc	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Luxio	themoonitself.pokeworld	yes	Luxio	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Luxray	themoonitself.pokeworld	yes	Luxray	animal	0.87	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Lycanroc	themoonitself.pokeworld	yes	Lycanroc	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Machamp	themoonitself.pokeworld	yes	Machamp	animal	1.00	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Machoke	themoonitself.pokeworld	yes	Machoke	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Machop	themoonitself.pokeworld	yes	Machop	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Magby	themoonitself.pokeworld	yes	Magby	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Magcargo	themoonitself.pokeworld	yes	Magcargo	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Magearna	themoonitself.pokeworld	yes	Magearna	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Magikarp	themoonitself.pokeworld	yes	Magikarp	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Magmar	themoonitself.pokeworld	yes	Magmar	animal	0.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Magmortar	themoonitself.pokeworld	yes	Magmortar	animal	1.00	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Magnemite	themoonitself.pokeworld	yes	Magnemite	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Magneton	themoonitself.pokeworld	yes	Magneton	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Magnezone	themoonitself.pokeworld	yes	Magnezone	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Makuhita	themoonitself.pokeworld	yes	Makuhita	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Malamar	themoonitself.pokeworld	yes	Malamar	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Mamoswine	themoonitself.pokeworld	yes	Mamoswine	animal	1.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Manaphy	themoonitself.pokeworld	yes	Manaphy	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Mandibuzz	themoonitself.pokeworld	yes	Mandibuzz	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Manectric	themoonitself.pokeworld	yes	Manectric	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Mankey	themoonitself.pokeworld	yes	Mankey	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Mantine	themoonitself.pokeworld	yes	Mantine	animal	1.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Mantyke	themoonitself.pokeworld	yes	Mantyke	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Maractus	themoonitself.pokeworld	yes	Maractus	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Mareanie	themoonitself.pokeworld	yes	Mareanie	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Mareep	themoonitself.pokeworld	yes	Mareep	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Marill	themoonitself.pokeworld	yes	Marill	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Marowak	themoonitself.pokeworld	yes	Marowak	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Marshadow	themoonitself.pokeworld	yes	Marshadow	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Marshtomp	themoonitself.pokeworld	yes	Marshtomp	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Masquerain	themoonitself.pokeworld	yes	Masquerain	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Mawile	themoonitself.pokeworld	yes	Mawile	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Medicham	themoonitself.pokeworld	yes	Medicham	animal	0.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Meditite	themoonitself.pokeworld	yes	Meditite	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Meganium	themoonitself.pokeworld	yes	Meganium	animal	1.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Melmetal	themoonitself.pokeworld	yes	Melmetal	animal	1.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Meloetta	themoonitself.pokeworld	yes	Meloetta	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Meltan	themoonitself.pokeworld	yes	Meltan	animal	0.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Meowstic	themoonitself.pokeworld	yes	Meowstic	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Meowth	themoonitself.pokeworld	yes	Meowth	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Mesprit	themoonitself.pokeworld	yes	Mesprit	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Metagross	themoonitself.pokeworld	yes	Metagross	animal	1.00	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Metang	themoonitself.pokeworld	yes	Metang	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Metapod	themoonitself.pokeworld	yes	Metapod	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Mew	themoonitself.pokeworld	yes	Mew	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Mewtwo	themoonitself.pokeworld	yes	Mewtwo	animal	1.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Mienfoo	themoonitself.pokeworld	yes	Mienfoo	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Mienshao	themoonitself.pokeworld	yes	Mienshao	animal	0.87	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Mightyena	themoonitself.pokeworld	yes	Mightyena	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Milcery	themoonitself.pokeworld	yes	Milcery	animal	0.12	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Milotic	themoonitself.pokeworld	yes	Milotic	animal	3.88	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Miltank	themoonitself.pokeworld	yes	Miltank	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_MimeJr	themoonitself.pokeworld	yes	Mime Jr.	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Mimikyu	themoonitself.pokeworld	yes	Mimikyu	animal	0.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Minccino	themoonitself.pokeworld	yes	Minccino	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Minior	themoonitself.pokeworld	yes	Minior	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Minun	themoonitself.pokeworld	yes	Minun	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Misdreavus	themoonitself.pokeworld	yes	Misdreavus	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Mismagius	themoonitself.pokeworld	yes	Mismagius	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Moltres	themoonitself.pokeworld	yes	Moltres	animal	1.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Monferno	themoonitself.pokeworld	yes	Monferno	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Morelull	themoonitself.pokeworld	yes	Morelull	animal	0.12	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Morgrem	themoonitself.pokeworld	yes	Morgrem	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Morpeko	themoonitself.pokeworld	yes	Morpeko	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Mothim	themoonitself.pokeworld	yes	Mothim	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_MrMime	themoonitself.pokeworld	yes	Mr. Mime	animal	0.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_MrRime	themoonitself.pokeworld	yes	Mr. Rime	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Mudbray	themoonitself.pokeworld	yes	Mudbray	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Mudkip	themoonitself.pokeworld	yes	Mudkip	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Mudsdale	themoonitself.pokeworld	yes	Mudsdale	animal	1.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Muk	themoonitself.pokeworld	yes	Muk	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Munchlax	themoonitself.pokeworld	yes	Munchlax	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Munna	themoonitself.pokeworld	yes	Munna	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Murkrow	themoonitself.pokeworld	yes	Murkrow	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Musharna	themoonitself.pokeworld	yes	Musharna	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Naganadel	themoonitself.pokeworld	yes	Naganadel	animal	2.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Natu	themoonitself.pokeworld	yes	Natu	animal	0.12	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Necrozma	themoonitself.pokeworld	yes	Necrozma	animal	1.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Nickit	themoonitself.pokeworld	yes	Nickit	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Nidoking	themoonitself.pokeworld	yes	Nidoking	animal	0.87	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Nidoqueen	themoonitself.pokeworld	yes	Nidoqueen	animal	0.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_NidoranF	themoonitself.pokeworld	yes	Nidoran♀	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_NidoranM	themoonitself.pokeworld	yes	Nidoran♂	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Nidorina	themoonitself.pokeworld	yes	Nidorina	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Nidorino	themoonitself.pokeworld	yes	Nidorino	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Nihilego	themoonitself.pokeworld	yes	Nihilego	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Nincada	themoonitself.pokeworld	yes	Nincada	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Ninetales	themoonitself.pokeworld	yes	Ninetales	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Ninjask	themoonitself.pokeworld	yes	Ninjask	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Noctowl	themoonitself.pokeworld	yes	Noctowl	animal	1.00	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Noibat	themoonitself.pokeworld	yes	Noibat	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Noivern	themoonitself.pokeworld	yes	Noivern	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Nosepass	themoonitself.pokeworld	yes	Nosepass	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Numel	themoonitself.pokeworld	yes	Numel	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Nuzleaf	themoonitself.pokeworld	yes	Nuzleaf	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Obstagoon	themoonitself.pokeworld	yes	Obstagoon	animal	1.00	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Octillery	themoonitself.pokeworld	yes	Octillery	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Oddish	themoonitself.pokeworld	yes	Oddish	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Omanyte	themoonitself.pokeworld	yes	Omanyte	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Omastar	themoonitself.pokeworld	yes	Omastar	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Onix	themoonitself.pokeworld	yes	Onix	animal	5.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Oranguru	themoonitself.pokeworld	yes	Oranguru	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Orbeetle	themoonitself.pokeworld	yes	Orbeetle	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Oricorio	themoonitself.pokeworld	yes	Oricorio	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Oshawott	themoonitself.pokeworld	yes	Oshawott	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Pachirisu	themoonitself.pokeworld	yes	Pachirisu	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Palkia	themoonitself.pokeworld	yes	Palkia	animal	2.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Palossand	themoonitself.pokeworld	yes	Palossand	animal	0.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Palpitoad	themoonitself.pokeworld	yes	Palpitoad	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Pancham	themoonitself.pokeworld	yes	Pancham	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Pangoro	themoonitself.pokeworld	yes	Pangoro	animal	1.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Panpour	themoonitself.pokeworld	yes	Panpour	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Pansage	themoonitself.pokeworld	yes	Pansage	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Pansear	themoonitself.pokeworld	yes	Pansear	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Paras	themoonitself.pokeworld	yes	Paras	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Parasect	themoonitself.pokeworld	yes	Parasect	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Passimian	themoonitself.pokeworld	yes	Passimian	animal	1.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Patrat	themoonitself.pokeworld	yes	Patrat	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Pawniard	themoonitself.pokeworld	yes	Pawniard	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Pelipper	themoonitself.pokeworld	yes	Pelipper	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Perrserker	themoonitself.pokeworld	yes	Perrserker	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Persian	themoonitself.pokeworld	yes	Persian	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Petilil	themoonitself.pokeworld	yes	Petilil	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Phanpy	themoonitself.pokeworld	yes	Phanpy	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Phantump	themoonitself.pokeworld	yes	Phantump	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Pheromosa	themoonitself.pokeworld	yes	Pheromosa	animal	1.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Phione	themoonitself.pokeworld	yes	Phione	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Pichu	themoonitself.pokeworld	yes	Pichu	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Pidgeot	themoonitself.pokeworld	yes	Pidgeot	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Pidgeotto	themoonitself.pokeworld	yes	Pidgeotto	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Pidgey	themoonitself.pokeworld	yes	Pidgey	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Pidove	themoonitself.pokeworld	yes	Pidove	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Pignite	themoonitself.pokeworld	yes	Pignite	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Pikachu	themoonitself.pokeworld	yes	Pikachu	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Pikipek	themoonitself.pokeworld	yes	Pikipek	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Piloswine	themoonitself.pokeworld	yes	Piloswine	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Pincurchin	themoonitself.pokeworld	yes	Pincurchin	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Pineco	themoonitself.pokeworld	yes	Pineco	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Pinsir	themoonitself.pokeworld	yes	Pinsir	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Piplup	themoonitself.pokeworld	yes	Piplup	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Plusle	themoonitself.pokeworld	yes	Plusle	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Poipole	themoonitself.pokeworld	yes	Poipole	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Politoed	themoonitself.pokeworld	yes	Politoed	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Poliwag	themoonitself.pokeworld	yes	Poliwag	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Poliwhirl	themoonitself.pokeworld	yes	Poliwhirl	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Poliwrath	themoonitself.pokeworld	yes	Poliwrath	animal	0.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Polteageist	themoonitself.pokeworld	yes	Polteageist	animal	0.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Ponyta	themoonitself.pokeworld	yes	Ponyta	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Poochyena	themoonitself.pokeworld	yes	Poochyena	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Popplio	themoonitself.pokeworld	yes	Popplio	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Porygon	themoonitself.pokeworld	yes	Porygon	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Porygon2_	themoonitself.pokeworld	yes	Porygon2	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_PorygonZ	themoonitself.pokeworld	yes	Porygon-Z	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Primarina	themoonitself.pokeworld	yes	Primarina	animal	1.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Primeape	themoonitself.pokeworld	yes	Primeape	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Prinplup	themoonitself.pokeworld	yes	Prinplup	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Probopass	themoonitself.pokeworld	yes	Probopass	animal	0.87	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Psyduck	themoonitself.pokeworld	yes	Psyduck	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Pumpkaboo	themoonitself.pokeworld	yes	Pumpkaboo	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Pupitar	themoonitself.pokeworld	yes	Pupitar	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Purrloin	themoonitself.pokeworld	yes	Purrloin	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Purugly	themoonitself.pokeworld	yes	Purugly	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Pyroar	themoonitself.pokeworld	yes	Pyroar	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Pyukumuku	themoonitself.pokeworld	yes	Pyukumuku	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Quagsire	themoonitself.pokeworld	yes	Quagsire	animal	0.87	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Quilava	themoonitself.pokeworld	yes	Quilava	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Quilladin	themoonitself.pokeworld	yes	Quilladin	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Qwilfish	themoonitself.pokeworld	yes	Qwilfish	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Raboot	themoonitself.pokeworld	yes	Raboot	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Raichu	themoonitself.pokeworld	yes	Raichu	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Raikou	themoonitself.pokeworld	yes	Raikou	animal	1.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Ralts	themoonitself.pokeworld	yes	Ralts	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Rampardos	themoonitself.pokeworld	yes	Rampardos	animal	1.00	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Rapidash	themoonitself.pokeworld	yes	Rapidash	animal	1.06	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Raticate	themoonitself.pokeworld	yes	Raticate	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Rattata	themoonitself.pokeworld	yes	Rattata	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Rayquaza	themoonitself.pokeworld	yes	Rayquaza	animal	4.38	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Regice	themoonitself.pokeworld	yes	Regice	animal	1.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Regidrago	themoonitself.pokeworld	yes	Regidrago	animal	1.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Regieleki	themoonitself.pokeworld	yes	Regieleki	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Regigigas	themoonitself.pokeworld	yes	Regigigas	animal	2.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Regirock	themoonitself.pokeworld	yes	Regirock	animal	1.06	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Registeel	themoonitself.pokeworld	yes	Registeel	animal	1.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Relicanth	themoonitself.pokeworld	yes	Relicanth	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Remoraid	themoonitself.pokeworld	yes	Remoraid	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Reshiram	themoonitself.pokeworld	yes	Reshiram	animal	2.00	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Reuniclus	themoonitself.pokeworld	yes	Reuniclus	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Rhydon	themoonitself.pokeworld	yes	Rhydon	animal	1.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Rhyhorn	themoonitself.pokeworld	yes	Rhyhorn	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Rhyperior	themoonitself.pokeworld	yes	Rhyperior	animal	1.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Ribombee	themoonitself.pokeworld	yes	Ribombee	animal	0.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Rillaboom	themoonitself.pokeworld	yes	Rillaboom	animal	1.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Riolu	themoonitself.pokeworld	yes	Riolu	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Rockruff	themoonitself.pokeworld	yes	Rockruff	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Roggenrola	themoonitself.pokeworld	yes	Roggenrola	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Rolycoly	themoonitself.pokeworld	yes	Rolycoly	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Rookidee	themoonitself.pokeworld	yes	Rookidee	animal	0.12	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Roselia	themoonitself.pokeworld	yes	Roselia	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Roserade	themoonitself.pokeworld	yes	Roserade	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Rotom	themoonitself.pokeworld	yes	Rotom	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Rowlet	themoonitself.pokeworld	yes	Rowlet	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Rufflet	themoonitself.pokeworld	yes	Rufflet	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Runerigus	themoonitself.pokeworld	yes	Runerigus	animal	1.00	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Sableye	themoonitself.pokeworld	yes	Sableye	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Salamence	themoonitself.pokeworld	yes	Salamence	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Salandit	themoonitself.pokeworld	yes	Salandit	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Salazzle	themoonitself.pokeworld	yes	Salazzle	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Samurott	themoonitself.pokeworld	yes	Samurott	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Sandaconda	themoonitself.pokeworld	yes	Sandaconda	animal	2.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Sandile	themoonitself.pokeworld	yes	Sandile	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Sandshrew	themoonitself.pokeworld	yes	Sandshrew	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Sandslash	themoonitself.pokeworld	yes	Sandslash	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Sandygast	themoonitself.pokeworld	yes	Sandygast	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Sawk	themoonitself.pokeworld	yes	Sawk	animal	0.87	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Sawsbuck	themoonitself.pokeworld	yes	Sawsbuck	animal	1.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Scatterbug	themoonitself.pokeworld	yes	Scatterbug	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Sceptile	themoonitself.pokeworld	yes	Sceptile	animal	1.06	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Scizor	themoonitself.pokeworld	yes	Scizor	animal	1.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Scolipede	themoonitself.pokeworld	yes	Scolipede	animal	1.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Scorbunny	themoonitself.pokeworld	yes	Scorbunny	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Scrafty	themoonitself.pokeworld	yes	Scrafty	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Scraggy	themoonitself.pokeworld	yes	Scraggy	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Scyther	themoonitself.pokeworld	yes	Scyther	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Seadra	themoonitself.pokeworld	yes	Seadra	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Seaking	themoonitself.pokeworld	yes	Seaking	animal	0.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Sealeo	themoonitself.pokeworld	yes	Sealeo	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Seedot	themoonitself.pokeworld	yes	Seedot	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Seel	themoonitself.pokeworld	yes	Seel	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Seismitoad	themoonitself.pokeworld	yes	Seismitoad	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Sentret	themoonitself.pokeworld	yes	Sentret	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Serperior	themoonitself.pokeworld	yes	Serperior	animal	2.06	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Servine	themoonitself.pokeworld	yes	Servine	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Seviper	themoonitself.pokeworld	yes	Seviper	animal	0.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Sewaddle	themoonitself.pokeworld	yes	Sewaddle	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Sharpedo	themoonitself.pokeworld	yes	Sharpedo	animal	1.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Shaymin	themoonitself.pokeworld	yes	Shaymin	animal	0.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Shedinja	themoonitself.pokeworld	yes	Shedinja	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Shelgon	themoonitself.pokeworld	yes	Shelgon	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Shellder	themoonitself.pokeworld	yes	Shellder	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Shellos	themoonitself.pokeworld	yes	Shellos	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Shelmet	themoonitself.pokeworld	yes	Shelmet	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Shieldon	themoonitself.pokeworld	yes	Shieldon	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Shiftry	themoonitself.pokeworld	yes	Shiftry	animal	0.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Shiinotic	themoonitself.pokeworld	yes	Shiinotic	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Shinx	themoonitself.pokeworld	yes	Shinx	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Shroomish	themoonitself.pokeworld	yes	Shroomish	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Shuckle	themoonitself.pokeworld	yes	Shuckle	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Shuppet	themoonitself.pokeworld	yes	Shuppet	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Sigilyph	themoonitself.pokeworld	yes	Sigilyph	animal	0.87	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Silcoon	themoonitself.pokeworld	yes	Silcoon	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Silicobra	themoonitself.pokeworld	yes	Silicobra	animal	1.38	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Silvally	themoonitself.pokeworld	yes	Silvally	animal	1.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Simipour	themoonitself.pokeworld	yes	Simipour	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Simisage	themoonitself.pokeworld	yes	Simisage	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Simisear	themoonitself.pokeworld	yes	Simisear	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Sinistea	themoonitself.pokeworld	yes	Sinistea	animal	0.06	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Sirfetchd	themoonitself.pokeworld	yes	Sirfetch'd	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Sizzlipede	themoonitself.pokeworld	yes	Sizzlipede	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Skarmory	themoonitself.pokeworld	yes	Skarmory	animal	1.06	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Skiddo	themoonitself.pokeworld	yes	Skiddo	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Skiploom	themoonitself.pokeworld	yes	Skiploom	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Skitty	themoonitself.pokeworld	yes	Skitty	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Skorupi	themoonitself.pokeworld	yes	Skorupi	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Skrelp	themoonitself.pokeworld	yes	Skrelp	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Skuntank	themoonitself.pokeworld	yes	Skuntank	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Skwovet	themoonitself.pokeworld	yes	Skwovet	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Slaking	themoonitself.pokeworld	yes	Slaking	animal	1.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Slakoth	themoonitself.pokeworld	yes	Slakoth	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Sliggoo	themoonitself.pokeworld	yes	Sliggoo	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Slowbro	themoonitself.pokeworld	yes	Slowbro	animal	1.00	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Slowking	themoonitself.pokeworld	yes	Slowking	animal	1.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Slowpoke	themoonitself.pokeworld	yes	Slowpoke	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Slugma	themoonitself.pokeworld	yes	Slugma	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Slurpuff	themoonitself.pokeworld	yes	Slurpuff	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Smeargle	themoonitself.pokeworld	yes	Smeargle	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Smoochum	themoonitself.pokeworld	yes	Smoochum	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Sneasel	themoonitself.pokeworld	yes	Sneasel	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Snivy	themoonitself.pokeworld	yes	Snivy	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Snom	themoonitself.pokeworld	yes	Snom	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Snorlax	themoonitself.pokeworld	yes	Snorlax	animal	1.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Snorunt	themoonitself.pokeworld	yes	Snorunt	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Snover	themoonitself.pokeworld	yes	Snover	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Snubbull	themoonitself.pokeworld	yes	Snubbull	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Sobble	themoonitself.pokeworld	yes	Sobble	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Solgaleo	themoonitself.pokeworld	yes	Solgaleo	animal	2.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Solosis	themoonitself.pokeworld	yes	Solosis	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Solrock	themoonitself.pokeworld	yes	Solrock	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Spearow	themoonitself.pokeworld	yes	Spearow	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Spectrier	themoonitself.pokeworld	yes	Spectrier	animal	1.24	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Spewpa	themoonitself.pokeworld	yes	Spewpa	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Spheal	themoonitself.pokeworld	yes	Spheal	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Spinarak	themoonitself.pokeworld	yes	Spinarak	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Spinda	themoonitself.pokeworld	yes	Spinda	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Spiritomb	themoonitself.pokeworld	yes	Spiritomb	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Spoink	themoonitself.pokeworld	yes	Spoink	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Spritzee	themoonitself.pokeworld	yes	Spritzee	animal	0.12	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Squirtle	themoonitself.pokeworld	yes	Squirtle	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Stakataka	themoonitself.pokeworld	yes	Stakataka	animal	3.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Stantler	themoonitself.pokeworld	yes	Stantler	animal	0.87	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Staraptor	themoonitself.pokeworld	yes	Staraptor	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Staravia	themoonitself.pokeworld	yes	Staravia	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Starly	themoonitself.pokeworld	yes	Starly	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Starmie	themoonitself.pokeworld	yes	Starmie	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Staryu	themoonitself.pokeworld	yes	Staryu	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Steelix	themoonitself.pokeworld	yes	Steelix	animal	5.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Steenee	themoonitself.pokeworld	yes	Steenee	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Stonjourner	themoonitself.pokeworld	yes	Stonjourner	animal	1.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Stoutland	themoonitself.pokeworld	yes	Stoutland	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Stufful	themoonitself.pokeworld	yes	Stufful	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Stunfisk	themoonitself.pokeworld	yes	Stunfisk	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Stunky	themoonitself.pokeworld	yes	Stunky	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Sudowoodo	themoonitself.pokeworld	yes	Sudowoodo	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Suicune	themoonitself.pokeworld	yes	Suicune	animal	1.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Sunflora	themoonitself.pokeworld	yes	Sunflora	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Sunkern	themoonitself.pokeworld	yes	Sunkern	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Surskit	themoonitself.pokeworld	yes	Surskit	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Swablu	themoonitself.pokeworld	yes	Swablu	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Swadloon	themoonitself.pokeworld	yes	Swadloon	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Swalot	themoonitself.pokeworld	yes	Swalot	animal	1.06	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Swampert	themoonitself.pokeworld	yes	Swampert	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Swanna	themoonitself.pokeworld	yes	Swanna	animal	0.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Swellow	themoonitself.pokeworld	yes	Swellow	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Swinub	themoonitself.pokeworld	yes	Swinub	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Swirlix	themoonitself.pokeworld	yes	Swirlix	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Swoobat	themoonitself.pokeworld	yes	Swoobat	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Sylveon	themoonitself.pokeworld	yes	Sylveon	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Taillow	themoonitself.pokeworld	yes	Taillow	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Talonflame	themoonitself.pokeworld	yes	Talonflame	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Tangela	themoonitself.pokeworld	yes	Tangela	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Tangrowth	themoonitself.pokeworld	yes	Tangrowth	animal	1.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_TapuBulu	themoonitself.pokeworld	yes	Tapu Bulu	animal	1.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_TapuFini	themoonitself.pokeworld	yes	Tapu Fini	animal	0.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_TapuKoko	themoonitself.pokeworld	yes	Tapu Koko	animal	1.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_TapuLele	themoonitself.pokeworld	yes	Tapu Lele	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Tauros	themoonitself.pokeworld	yes	Tauros	animal	0.87	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Teddiursa	themoonitself.pokeworld	yes	Teddiursa	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Tentacool	themoonitself.pokeworld	yes	Tentacool	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Tentacruel	themoonitself.pokeworld	yes	Tentacruel	animal	1.00	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Tepig	themoonitself.pokeworld	yes	Tepig	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Terrakion	themoonitself.pokeworld	yes	Terrakion	animal	1.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Thievul	themoonitself.pokeworld	yes	Thievul	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Throh	themoonitself.pokeworld	yes	Throh	animal	0.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Thundurus	themoonitself.pokeworld	yes	Thundurus	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Thwackey	themoonitself.pokeworld	yes	Thwackey	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Timburr	themoonitself.pokeworld	yes	Timburr	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Tirtouga	themoonitself.pokeworld	yes	Tirtouga	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Togedemaru	themoonitself.pokeworld	yes	Togedemaru	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Togekiss	themoonitself.pokeworld	yes	Togekiss	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Togepi	themoonitself.pokeworld	yes	Togepi	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Togetic	themoonitself.pokeworld	yes	Togetic	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Torchic	themoonitself.pokeworld	yes	Torchic	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Torkoal	themoonitself.pokeworld	yes	Torkoal	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Tornadus	themoonitself.pokeworld	yes	Tornadus	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Torracat	themoonitself.pokeworld	yes	Torracat	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Torterra	themoonitself.pokeworld	yes	Torterra	animal	1.38	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Totodile	themoonitself.pokeworld	yes	Totodile	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Toucannon	themoonitself.pokeworld	yes	Toucannon	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Toxapex	themoonitself.pokeworld	yes	Toxapex	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Toxel	themoonitself.pokeworld	yes	Toxel	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Toxicroak	themoonitself.pokeworld	yes	Toxicroak	animal	0.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Toxtricity	themoonitself.pokeworld	yes	Toxtricity	animal	1.00	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Tranquill	themoonitself.pokeworld	yes	Tranquill	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Trapinch	themoonitself.pokeworld	yes	Trapinch	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Treecko	themoonitself.pokeworld	yes	Treecko	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Trevenant	themoonitself.pokeworld	yes	Trevenant	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Tropius	themoonitself.pokeworld	yes	Tropius	animal	1.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Trubbish	themoonitself.pokeworld	yes	Trubbish	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Trumbeak	themoonitself.pokeworld	yes	Trumbeak	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Tsareena	themoonitself.pokeworld	yes	Tsareena	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Turtonator	themoonitself.pokeworld	yes	Turtonator	animal	1.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Turtwig	themoonitself.pokeworld	yes	Turtwig	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Tympole	themoonitself.pokeworld	yes	Tympole	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Tynamo	themoonitself.pokeworld	yes	Tynamo	animal	0.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_TypeNull	themoonitself.pokeworld	yes	Type: Null	animal	1.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Typhlosion	themoonitself.pokeworld	yes	Typhlosion	animal	1.06	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Tyranitar	themoonitself.pokeworld	yes	Tyranitar	animal	1.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Tyrantrum	themoonitself.pokeworld	yes	Tyrantrum	animal	1.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Tyrogue	themoonitself.pokeworld	yes	Tyrogue	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Tyrunt	themoonitself.pokeworld	yes	Tyrunt	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Umbreon	themoonitself.pokeworld	yes	Umbreon	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Unfezant	themoonitself.pokeworld	yes	Unfezant	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Unown	themoonitself.pokeworld	yes	Unown	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Ursaring	themoonitself.pokeworld	yes	Ursaring	animal	1.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Urshifu	themoonitself.pokeworld	yes	Urshifu	animal	1.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Uxie	themoonitself.pokeworld	yes	Uxie	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Vanillish	themoonitself.pokeworld	yes	Vanillish	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Vanillite	themoonitself.pokeworld	yes	Vanillite	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Vanilluxe	themoonitself.pokeworld	yes	Vanilluxe	animal	0.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Vaporeon	themoonitself.pokeworld	yes	Vaporeon	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Venipede	themoonitself.pokeworld	yes	Venipede	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Venomoth	themoonitself.pokeworld	yes	Venomoth	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Venonat	themoonitself.pokeworld	yes	Venonat	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Venusaur	themoonitself.pokeworld	yes	Venusaur	animal	1.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Vespiquen	themoonitself.pokeworld	yes	Vespiquen	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Vibrava	themoonitself.pokeworld	yes	Vibrava	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Victini	themoonitself.pokeworld	yes	Victini	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Victreebel	themoonitself.pokeworld	yes	Victreebel	animal	1.06	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Vigoroth	themoonitself.pokeworld	yes	Vigoroth	animal	0.87	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Vikavolt	themoonitself.pokeworld	yes	Vikavolt	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Vileplume	themoonitself.pokeworld	yes	Vileplume	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Virizion	themoonitself.pokeworld	yes	Virizion	animal	1.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Vivillon	themoonitself.pokeworld	yes	Vivillon	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Volbeat	themoonitself.pokeworld	yes	Volbeat	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Volcanion	themoonitself.pokeworld	yes	Volcanion	animal	1.06	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Volcarona	themoonitself.pokeworld	yes	Volcarona	animal	1.00	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Voltorb	themoonitself.pokeworld	yes	Voltorb	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Vullaby	themoonitself.pokeworld	yes	Vullaby	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Vulpix	themoonitself.pokeworld	yes	Vulpix	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Wailmer	themoonitself.pokeworld	yes	Wailmer	animal	1.25	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Wailord	themoonitself.pokeworld	yes	Wailord	animal	9.06	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Walrein	themoonitself.pokeworld	yes	Walrein	animal	0.87	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Wartortle	themoonitself.pokeworld	yes	Wartortle	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Watchog	themoonitself.pokeworld	yes	Watchog	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Weavile	themoonitself.pokeworld	yes	Weavile	animal	0.69	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Weedle	themoonitself.pokeworld	yes	Weedle	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Weepinbell	themoonitself.pokeworld	yes	Weepinbell	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Weezing	themoonitself.pokeworld	yes	Weezing	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Whimsicott	themoonitself.pokeworld	yes	Whimsicott	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Whirlipede	themoonitself.pokeworld	yes	Whirlipede	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Whiscash	themoonitself.pokeworld	yes	Whiscash	animal	0.56	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Whismur	themoonitself.pokeworld	yes	Whismur	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Wigglytuff	themoonitself.pokeworld	yes	Wigglytuff	animal	0.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Wimpod	themoonitself.pokeworld	yes	Wimpod	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Wingull	themoonitself.pokeworld	yes	Wingull	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Wishiwashi	themoonitself.pokeworld	yes	Wishiwashi	animal	0.12	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Wobbuffet	themoonitself.pokeworld	yes	Wobbuffet	animal	0.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Woobat	themoonitself.pokeworld	yes	Woobat	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Wooloo	themoonitself.pokeworld	yes	Wooloo	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Wooper	themoonitself.pokeworld	yes	Wooper	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Wormadam	themoonitself.pokeworld	yes	Wormadam	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Wurmple	themoonitself.pokeworld	yes	Wurmple	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Wynaut	themoonitself.pokeworld	yes	Wynaut	animal	0.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Xatu	themoonitself.pokeworld	yes	Xatu	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Xerneas	themoonitself.pokeworld	yes	Xerneas	animal	1.88	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Xurkitree	themoonitself.pokeworld	yes	Xurkitree	animal	2.37	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Yamask	themoonitself.pokeworld	yes	Yamask	animal	0.31	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Yamper	themoonitself.pokeworld	yes	Yamper	animal	0.19	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Yanma	themoonitself.pokeworld	yes	Yanma	animal	0.75	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Yanmega	themoonitself.pokeworld	yes	Yanmega	animal	1.19	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Yungoos	themoonitself.pokeworld	yes	Yungoos	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Yveltal	themoonitself.pokeworld	yes	Yveltal	animal	3.62	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Zacian	themoonitself.pokeworld	yes	Zacian	animal	1.75	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Zamazenta	themoonitself.pokeworld	yes	Zamazenta	animal	1.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Zangoose	themoonitself.pokeworld	yes	Zangoose	animal	0.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Zapdos	themoonitself.pokeworld	yes	Zapdos	animal	1.00	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Zarude	themoonitself.pokeworld	yes	Zarude	animal	1.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Zebstrika	themoonitself.pokeworld	yes	Zebstrika	animal	1.00	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Zekrom	themoonitself.pokeworld	yes	Zekrom	animal	1.81	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Zeraora	themoonitself.pokeworld	yes	Zeraora	animal	0.94	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Zigzagoon	themoonitself.pokeworld	yes	Zigzagoon	animal	0.25	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Zoroark	themoonitself.pokeworld	yes	Zoroark	animal	1.00	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Zorua	themoonitself.pokeworld	yes	Zorua	animal	0.44	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Zubat	themoonitself.pokeworld	yes	Zubat	animal	0.50	OmnivoreAnimal, VegetarianRoughAnimal		true	
+PW_Zweilous	themoonitself.pokeworld	yes	Zweilous	animal	0.87	OmnivoreAnimal, VegetarianRoughAnimal		false	
+PW_Zygarde	themoonitself.pokeworld	yes	Zygarde	animal	3.12	OmnivoreAnimal, VegetarianRoughAnimal		false	
+TM_DemonR	torann.arimworldofmagic	yes	Demon	animal	2	OmnivoreAnimal	true	false	
+TM_Dire_WolfR	torann.arimworldofmagic	yes	dire wolf	animal	2.3	CarnivoreAnimal	true		3.3
+TM_Earth_ElementalR	torann.arimworldofmagic	yes	Earth Elemental	animal	2	OmnivoreAnimal	true	false	
+TM_Fire_ElementalR	torann.arimworldofmagic	yes	Fire Elemental	animal	2	OmnivoreAnimal	true	false	
+TM_FleshGolem	torann.arimworldofmagic	yes	flesh golem	animal	1	None			
+TM_GiantSkeletonR	torann.arimworldofmagic	yes	Giant skeleton	animal	1	None		false	
+TM_GraniteGolem	torann.arimworldofmagic	yes	granite golem	animal	1	None			
+TM_GreaterEarth_ElementalR	torann.arimworldofmagic	yes	Greater Earth Elemental	animal	2	OmnivoreAnimal	true	false	
+TM_GreaterFire_ElementalR	torann.arimworldofmagic	yes	Greater Fire Elemental	animal	2	OmnivoreAnimal	true	false	
+TM_GreaterMinionR	torann.arimworldofmagic	yes	greater minion	animal	2	CarnivoreAnimal, OvivoreAnimal	true		
+TM_GreaterWater_ElementalR	torann.arimworldofmagic	yes	Greater Water Elemental	animal	2	OmnivoreAnimal	true	false	
+TM_GreaterWind_ElementalR	torann.arimworldofmagic	yes	Greater Wind Elemental	animal	2	OmnivoreAnimal	true	false	
+TM_Greater_SentinelR	torann.arimworldofmagic	yes	Greater Sentinel	animal	1	OmnivoreAnimal	true	false	
+TM_HollowGolem	torann.arimworldofmagic	yes	hollow golem	animal	1	None			
+TM_LesserDemonR	torann.arimworldofmagic	yes	Lesser Demon	animal	2	OmnivoreAnimal	true	false	
+TM_LesserEarth_ElementalR	torann.arimworldofmagic	yes	Lesser Earth Elemental	animal	2	OmnivoreAnimal	true	false	
+TM_LesserFire_ElementalR	torann.arimworldofmagic	yes	Lesser Fire Elemental	animal	2	OmnivoreAnimal	true	false	
+TM_LesserWater_ElementalR	torann.arimworldofmagic	yes	Lesser Water Elemental	animal	2	OmnivoreAnimal	true	false	
+TM_LesserWind_ElementalR	torann.arimworldofmagic	yes	Lesser Wind Elemental	animal	2	OmnivoreAnimal	true	false	
+TM_Lesser_SentinelR	torann.arimworldofmagic	yes	Lesser Sentinel	animal	1	OmnivoreAnimal	true	false	
+TM_LimestoneGolem	torann.arimworldofmagic	yes	limestone golem	animal	1	None			
+TM_MaharalGolem	torann.arimworldofmagic	yes	maharal golem	animal	1	None			
+TM_MarbleGolem	torann.arimworldofmagic	yes	marble golem	animal	1	None			
+TM_MechaGolem	torann.arimworldofmagic	yes	mecha-golem	animal	1	None			
+TM_MinionR	torann.arimworldofmagic	yes	minion	animal	2	CarnivoreAnimal, OvivoreAnimal	true		
+TM_Poppi	torann.arimworldofmagic	yes	poppi	animal	0.2	OmnivoreRoughAnimal	true	false	
+TM_SandstoneGolem	torann.arimworldofmagic	yes	sandstone golem	animal	1	None			
+TM_SentinelR	torann.arimworldofmagic	yes	Sentinel	animal	1	OmnivoreAnimal	true	false	
+TM_SilkGolem	torann.arimworldofmagic	yes	silk golem	animal	1	None			
+TM_SkeletonLichR	torann.arimworldofmagic	yes	skeleton lich	animal	1	None		false	
+TM_SkeletonR	torann.arimworldofmagic	yes	Skeleton	animal	1	None		false	
+TM_SlateGolem	torann.arimworldofmagic	yes	slate golem	animal	1	None			
+TM_SpiritBearR	torann.arimworldofmagic	yes	spirit bear	animal	1	CarnivoreAnimal		false	3.3
+TM_SpiritCrowR	torann.arimworldofmagic	yes	spirit crow	animal	0.8	VegetarianRoughAnimal		false	
+TM_SpiritMongooseR	torann.arimworldofmagic	yes	spirit mongoose	animal	.9	VegetarianRoughAnimal		false	
+TM_SpiritTD	torann.arimworldofmagic	yes	spirit	humanlike	1	OmnivoreHuman			
+TM_SpiritWolfR	torann.arimworldofmagic	yes	spirit wolf	animal	2.3	CarnivoreAnimal	true	false	3.3
+TM_StoneGolem	torann.arimworldofmagic	yes	stone golem	animal	1	None			
+TM_StrawGolem	torann.arimworldofmagic	yes	straw golem	animal	1	None			
+TM_Water_ElementalR	torann.arimworldofmagic	yes	Water Elemental	animal	2	OmnivoreAnimal	true	false	
+TM_Wind_ElementalR	torann.arimworldofmagic	yes	Wind Elemental	animal	2	OmnivoreAnimal	true	false	
+TM_WoodGolem	torann.arimworldofmagic	yes	wood golem	animal	1	None			
+SEX_Mech_CentipedeRocketeer	turkler.advanced.armaments	yes	centipede rocketeer	animal	3.0	None			
+SEX_Mech_LegionaryGrenadier	turkler.advanced.armaments	yes	legionary fusilier	animal	1.0	None			
+DA_ArcticOwlcat	van.beasts	no	arctic owlcat	animal	0.38	CarnivoreAnimal, OvivoreAnimal	true		0.35
+DA_Barog	van.beasts	no	barogoth	animal	2.4	VegetarianRoughAnimal		true	
+DA_BeardedTroll	van.beasts	no	bearded troll	animal	2	OmnivoreAnimal, OvivoreAnimal	true	true	8.5
+DA_BlackScribe	van.beasts	no	black scribe	animal	0.5	OmnivoreAnimal, AnimalProduct	true		5
+DA_BlackscaledBaskar	van.beasts	no	blackscaled baskar	animal	4.5	OmnivoreAnimal, OvivoreAnimal	true		8.5
+DA_Crestel	van.beasts	no	crestel	animal	4.0	OmnivoreAnimal, OvivoreAnimal	true		3
+DA_DwarvenMuffton	van.beasts	no	dwarven muffton	animal	1.3	VegetarianRoughAnimal		true	
+DA_ForestOwlcat	van.beasts	no	forest owlcat	animal	0.38	CarnivoreAnimal, OvivoreAnimal	true		0.35
+DA_Goldilox	van.beasts	no	goldilox	animal	4.0	VegetarianRoughAnimal		true	
+DA_ImperialRedhound	van.beasts	no	imperial redhound	animal	2.15	CarnivoreAnimalStrict, OmnivoreAnimal, OvivoreAnimal	true		2.3
+DA_IroncasketBeetle	van.beasts	no	ironcasket beetle	animal	0.5	OmnivoreAnimal, AnimalProduct			
+DA_Karabal	van.beasts	no	karabal	animal	1.4	CarnivoreAnimalStrict	true		3.3
+DA_LeviathanCrab	van.beasts	no	leviathan	animal	3.3	OmnivoreRoughAnimal	true		
+DA_NorthernDrog	van.beasts	no	northern drog	animal	4.0	DendrovoreAnimal		true	
+DA_Phrak	van.beasts	no	phrak	animal	0.3	OmnivoreAnimal, AnimalProduct	true		5
+DA_Pilgrim	van.beasts	no	pilgrim	animal	2.4	OvivoreAnimal, VegetarianRoughAnimal		true	
+DA_RedhornedLarpah	van.beasts	no	red-horned larpah	animal	1	CarnivoreAnimalStrict, OmnivoreAnimal, OvivoreAnimal			
+DA_RockTroll	van.beasts	no	rock troll	animal	4.5	OmnivoreAnimal, OvivoreAnimal	true		8.5
+DA_SilverMole	van.beasts	no	silver mole	animal	0.2	VegetarianRoughAnimal			
+DA_Snaptoad	van.beasts	no	giant snaptoad	animal	2.3	CarnivoreAnimal	true		3
+DA_SnowTaraal	van.beasts	no	snow taraal	animal	2.5	OmnivoreAnimal, OvivoreAnimal	true		3
+DA_Taraal	van.beasts	no	taraal	animal	2.5	OmnivoreAnimal, OvivoreAnimal	true		3
+DA_Witchort	van.beasts	no	crowned witchort	animal	0.6	OmnivoreRoughAnimal		true	
+VGE_Astronaut	vanillaexpanded.gravship	yes	astronaut	animal	1	None			
+VGE_Astropede	vanillaexpanded.gravship	yes	astropede	animal	3.0	None			
+VGE_Hunter	vanillaexpanded.gravship	yes	hunter	animal	1	None			
+VFEI2_Nullipede	vanillaexpanded.gravship2	yes	nullipede	animal	4.8	OmnivoreAnimal, AnimalProduct			
+VGE_Exohive	vanillaexpanded.gravship2	yes	moving exohive	animal	3	OmnivoreAnimal, AnimalProduct			
+VGE_Exoleech	vanillaexpanded.gravship2	yes	exoleech	animal	1.35	OmnivoreAnimal, AnimalProduct			
+VGE_Exopede	vanillaexpanded.gravship2	yes	exopede	animal	1	OmnivoreAnimal, AnimalProduct			
+VGE_Exoworm	vanillaexpanded.gravship2	yes	exoworm	animal	0.2	OmnivoreAnimal, AnimalProduct			
+VGE_ExowormKnot	vanillaexpanded.gravship2	yes	exoworm knot	animal	4	OmnivoreAnimal, AnimalProduct			
+VDE_AwakenedDryad_Barkskin	vanillaexpanded.ideo.dryads	yes	awakened barkskin dryad	animal	1.4	OmnivoreRoughAnimal		true	
+VDE_AwakenedDryad_Berrymaker	vanillaexpanded.ideo.dryads	yes	awakened berrymaker dryad	animal	1.1	OmnivoreRoughAnimal		true	
+VDE_AwakenedDryad_Carrier	vanillaexpanded.ideo.dryads	yes	awakened carrier dryad	animal	2.4	OmnivoreRoughAnimal		true	
+VDE_AwakenedDryad_Clawer	vanillaexpanded.ideo.dryads	yes	awakened clawer dryad	animal	1.4	OmnivoreRoughAnimal		false	
+VDE_AwakenedDryad_Gaubricmaker	vanillaexpanded.ideo.dryads	yes	awakened gaubricmaker dryad	animal	1	OmnivoreRoughAnimal		true	
+VDE_AwakenedDryad_Medicinemaker	vanillaexpanded.ideo.dryads	yes	awakened medicinemaker dryad	animal	0.98	OmnivoreRoughAnimal		true	
+VDE_AwakenedDryad_Nectarmaker	vanillaexpanded.ideo.dryads	yes	awakened nectarmaker dryad	animal	1.2	OmnivoreRoughAnimal		true	
+VDE_AwakenedDryad_Spitter	vanillaexpanded.ideo.dryads	yes	awakened spitter dryad	animal	1.6	OmnivoreRoughAnimal		true	
+VDE_AwakenedDryad_Stonedigger	vanillaexpanded.ideo.dryads	yes	awakened stonedigger dryad	animal	2.2	OmnivoreRoughAnimal		true	
+VDE_AwakenedDryad_Woodmaker	vanillaexpanded.ideo.dryads	yes	awakened woodmaker dryad	animal	2.2	OmnivoreRoughAnimal		true	
+VDE_Dryad_Gaubricmaker	vanillaexpanded.ideo.dryads	yes	gaubricmaker dryad	animal	0.667	None			
+VDE_Dryad_Nectarmaker	vanillaexpanded.ideo.dryads	yes	nectarmaker dryad	animal	0.667	None			
+VDE_Dryad_Spitter	vanillaexpanded.ideo.dryads	yes	spitter dryad	animal	0.667	None			
+VDE_Dryad_Stonedigger	vanillaexpanded.ideo.dryads	yes	stonedigger dryad	animal	0.667	None			
+AEXP_AfricanWildDog	vanillaexpanded.vaeendandext	yes	african wild dog	animal	0.85	CarnivoreAnimal	true		0.99
+AEXP_BlackFootedFerret	vanillaexpanded.vaeendandext	yes	black-footed ferret	animal	0.5	CarnivoreAnimal	true		0.50
+AEXP_BlackRhino	vanillaexpanded.vaeendandext	yes	black rhinoceros	animal	2.7	VegetarianRoughAnimal		true	
+AEXP_Bonobo	vanillaexpanded.vaeendandext	yes	bonobo	animal	0.75	OmnivoreRoughAnimal		true	
+AEXP_Moa	vanillaexpanded.vaeendandext	yes	moa	animal	2	VegetarianRoughAnimal		false	
+AEXP_Panda	vanillaexpanded.vaeendandext	yes	giant panda	animal	2.15	VegetarianRoughAnimal		false	
+AEXP_Pangolin	vanillaexpanded.vaeendandext	yes	giant pangolin	animal	0.50	VegetarianRoughAnimal		true	
+AEXP_Quagga	vanillaexpanded.vaeendandext	yes	quagga	animal	2.0	VegetarianRoughAnimal		true	
+AEXP_RockhopperPenguin	vanillaexpanded.vaeendandext	yes	rockhopper penguin	animal	0.4	CarnivoreAnimal		true	
+AEXP_TasmanianDevil	vanillaexpanded.vaeendandext	yes	tasmanian devil	animal	0.75	CarnivoreAnimal	true		0.7
+AEXP_Thylacine	vanillaexpanded.vaeendandext	yes	thylacine	animal	0.86	CarnivoreAnimal			
+VAERoy_AngoraRabbit	vanillaexpanded.vaeroy	yes	angora rabbit	animal	0.2	VegetarianRoughAnimal			
+VAERoy_Crane	vanillaexpanded.vaeroy	yes	crane	animal	1.25	VegetarianRoughAnimal	false	true	
+VAERoy_Megachicken	vanillaexpanded.vaeroy	yes	megachicken	animal	0.3	VegetarianRoughAnimal			
+VAERoy_Orangutan	vanillaexpanded.vaeroy	yes	orangutan	animal	1.8	VegetarianRoughAnimal		true	
+VAERoy_Peacock	vanillaexpanded.vaeroy	yes	peacock	animal	0.65	VegetarianRoughAnimal	false	true	
+VAERoy_Pheasant	vanillaexpanded.vaeroy	yes	pheasant	animal	0.3	VegetarianRoughAnimal	false	true	
+VAERoy_Quail	vanillaexpanded.vaeroy	yes	quail	animal	0.3	VegetarianRoughAnimal	false	true	
+VAERoy_RoyalTiger	vanillaexpanded.vaeroy	yes	royal tiger	animal	1	CarnivoreAnimal, OvivoreAnimal	true	false	2.0
+VAERoy_Swan	vanillaexpanded.vaeroy	yes	swan	animal	0.6	VegetarianRoughAnimal			
+VAEWaste_Hydra	vanillaexpanded.vaewaste	yes	hydra	animal	0.35	CarnivoreAnimal, OvivoreAnimal	true		0.35
+VAEWaste_Megatardi	vanillaexpanded.vaewaste	yes	megatardi	animal	2	VegetarianRoughAnimal		false	
+VAEWaste_Pestigator	vanillaexpanded.vaewaste	yes	pestigator	animal	3	CarnivoreAnimal, OvivoreAnimal	true	false	3.0
+VAEWaste_Toxafox	vanillaexpanded.vaewaste	yes	toxafox	animal	0.55	CarnivoreAnimal	true		0.80
+VAEWaste_Toxbear	vanillaexpanded.vaewaste	yes	toxbear	animal	4	OmnivoreAnimal, OvivoreAnimal	true	false	3
+VAEWaste_Toxiguana	vanillaexpanded.vaewaste	yes	toxiguana	animal	1.4	OmnivoreRoughAnimal			
+VAEWaste_Toxlion	vanillaexpanded.vaewaste	yes	toxlion	animal	1.65	CarnivoreAnimal, OvivoreAnimal	true	false	2.0
+VAEWaste_Toxscorpion	vanillaexpanded.vaewaste	yes	toxscorpion	animal	2.50	OmnivoreAnimal, AnimalProduct	true	false	
+VAEWaste_Wasteboar	vanillaexpanded.vaewaste	yes	wasteboar	animal	1.3	OmnivoreRoughAnimal		true	
+VAEWaste_Wastedeer	vanillaexpanded.vaewaste	yes	wastedeer	animal	1.2	VegetarianRoughAnimal		true	
+VAEWaste_Wasteffalo	vanillaexpanded.vaewaste	yes	wasteffalo	animal	2.4	VegetarianRoughAnimal		true	
+AEXP_Alligator	vanillaexpanded.vanillaanimalsexpanded	yes	alligator	animal	1.85	CarnivoreAnimal, OvivoreAnimal	true	false	2.0
+AEXP_Anaconda	vanillaexpanded.vanillaanimalsexpanded	yes	anaconda	animal	3.0	CarnivoreAnimal, OvivoreAnimal	true		4
+AEXP_ArcticCoyote	vanillaexpanded.vanillaanimalsexpanded	yes	arctic coyote	animal	0.76	CarnivoreAnimal	true		0.9
+AEXP_Badger	vanillaexpanded.vanillaanimalsexpanded	yes	badger	animal	0.4	OmnivoreRoughAnimal	true	false	0.3
+AEXP_Beagle	vanillaexpanded.vanillaanimalsexpanded	yes	beagle	animal	0.3	OmnivoreAnimal, OvivoreAnimal			
+AEXP_Beaver	vanillaexpanded.vanillaanimalsexpanded	yes	beaver	animal	0.3	DendrovoreAnimal,VegetarianRoughAnimal		true	
+AEXP_BlackBear	vanillaexpanded.vanillaanimalsexpanded	yes	black bear	animal	1.9	OmnivoreAnimal, OvivoreAnimal	true	false	3
+AEXP_Boombat	vanillaexpanded.vanillaanimalsexpanded	yes	boombat	animal	0.4	VegetarianRoughAnimal		true	
+AEXP_Camel	vanillaexpanded.vanillaanimalsexpanded	yes	camel	animal	2.0	VegetarianRoughAnimal		true	
+AEXP_CatAbyssinian	vanillaexpanded.vanillaanimalsexpanded	yes	abyssinian cat	animal	0.32	CarnivoreAnimal, OvivoreAnimal	true		0.25
+AEXP_CatBengal	vanillaexpanded.vanillaanimalsexpanded	yes	bengal cat	animal	0.32	CarnivoreAnimal, OvivoreAnimal	true		0.25
+AEXP_CatBritishShorthair	vanillaexpanded.vanillaanimalsexpanded	yes	british shorthair cat	animal	0.32	CarnivoreAnimal, OvivoreAnimal	true		0.25
+AEXP_CatMaineCoon	vanillaexpanded.vanillaanimalsexpanded	yes	maine coon	animal	1	CarnivoreAnimal, OvivoreAnimal	true		1.25
+AEXP_CatMunchkin	vanillaexpanded.vanillaanimalsexpanded	yes	munchkin cat	animal	0.32	CarnivoreAnimal, OvivoreAnimal	true		0.25
+AEXP_CatNorwegianForest	vanillaexpanded.vanillaanimalsexpanded	yes	norwegian forest cat	animal	0.66	CarnivoreAnimal, OvivoreAnimal	true		0.25
+AEXP_CatPersian	vanillaexpanded.vanillaanimalsexpanded	yes	persian cat	animal	0.32	CarnivoreAnimal, OvivoreAnimal	true		0.25
+AEXP_CatSiamese	vanillaexpanded.vanillaanimalsexpanded	yes	siamese cat	animal	0.32	CarnivoreAnimal, OvivoreAnimal	true		0.25
+AEXP_CatSomali	vanillaexpanded.vanillaanimalsexpanded	yes	somali cat	animal	0.32	CarnivoreAnimal, OvivoreAnimal	true		0.25
+AEXP_CatSphynx	vanillaexpanded.vanillaanimalsexpanded	yes	sphynx cat	animal	0.32	CarnivoreAnimal, OvivoreAnimal	true		0.25
+AEXP_Cheetah	vanillaexpanded.vanillaanimalsexpanded	yes	cheetah	animal	1.0	CarnivoreAnimal, OvivoreAnimal	true	false	1.0
+AEXP_Chihuahua	vanillaexpanded.vanillaanimalsexpanded	yes	chihuahua	animal	0.15	OmnivoreAnimal, OvivoreAnimal			
+AEXP_Corgi	vanillaexpanded.vanillaanimalsexpanded	yes	corgi	animal	0.4	OmnivoreAnimal, OvivoreAnimal			
+AEXP_Coyote	vanillaexpanded.vanillaanimalsexpanded	yes	coyote	animal	0.76	CarnivoreAnimal	true		0.9
+AEXP_Crocodile	vanillaexpanded.vanillaanimalsexpanded	yes	crocodile	animal	1.6	CarnivoreAnimal	true	false	2.0
+AEXP_DesertTortoise	vanillaexpanded.vanillaanimalsexpanded	yes	desert tortoise	animal	0.6	OmnivoreRoughAnimal			
+AEXP_FrenchBulldog	vanillaexpanded.vanillaanimalsexpanded	yes	french bulldog	animal	0.4	OmnivoreAnimal, OvivoreAnimal			
+AEXP_GermanShepherd	vanillaexpanded.vanillaanimalsexpanded	yes	german shepherd	animal	1.0	OmnivoreAnimal, OvivoreAnimal	true		2.3
+AEXP_GilaMonster	vanillaexpanded.vanillaanimalsexpanded	yes	gila monster	animal	0.50	OmnivoreRoughAnimal			
+AEXP_Giraffe	vanillaexpanded.vanillaanimalsexpanded	yes	giraffe	animal	4	VegetarianRoughAnimal		true	
+AEXP_Gorilla	vanillaexpanded.vanillaanimalsexpanded	yes	gorilla	animal	1.9	VegetarianRoughAnimal		true	
+AEXP_GreatDane	vanillaexpanded.vanillaanimalsexpanded	yes	great dane	animal	1.45	OmnivoreAnimal, OvivoreAnimal			
+AEXP_Hedgehog	vanillaexpanded.vanillaanimalsexpanded	yes	hedgehog	animal	0.2	VegetarianRoughAnimal			
+AEXP_Hippopotamus	vanillaexpanded.vanillaanimalsexpanded	yes	hippopotamus	animal	4	VegetarianRoughAnimal		true	
+AEXP_Hyena	vanillaexpanded.vanillaanimalsexpanded	yes	hyena	animal	0.76	CarnivoreAnimal	true		0.7
+AEXP_IndianElephant	vanillaexpanded.vanillaanimalsexpanded	yes	indian elephant	animal	3.3	VegetarianRoughAnimal		true	
+AEXP_Jaguar	vanillaexpanded.vanillaanimalsexpanded	yes	jaguar	animal	1.0	CarnivoreAnimal, OvivoreAnimal	true	false	1.0
+AEXP_Kangaroo	vanillaexpanded.vanillaanimalsexpanded	yes	kangaroo	animal	1.8	VegetarianRoughAnimal		true	
+AEXP_Koala	vanillaexpanded.vanillaanimalsexpanded	yes	koala	animal	0.25	VegetarianRoughAnimal			
+AEXP_Lemur	vanillaexpanded.vanillaanimalsexpanded	yes	lemur	animal	0.25	OmnivoreRoughAnimal		true	
+AEXP_Lion	vanillaexpanded.vanillaanimalsexpanded	yes	lion	animal	1.65	CarnivoreAnimal, OvivoreAnimal	true	false	3.0
+AEXP_Mandrill	vanillaexpanded.vanillaanimalsexpanded	yes	mandrill	animal	0.8	OmnivoreRoughAnimal		true	
+AEXP_MegaWolverine	vanillaexpanded.vanillaanimalsexpanded	yes	megawolverine	animal	3.8	CarnivoreAnimal	true		
+AEXP_Megascorpion	vanillaexpanded.vanillaanimalsexpanded	yes	megascorpion	animal	0.2	OmnivoreAnimal, AnimalProduct			
+AEXP_Moose	vanillaexpanded.vanillaanimalsexpanded	yes	moose	animal	2.1	VegetarianRoughAnimal		true	
+AEXP_Muskox	vanillaexpanded.vanillaanimalsexpanded	yes	musk ox	animal	2.3	VegetarianRoughAnimal		true	
+AEXP_Otter	vanillaexpanded.vanillaanimalsexpanded	yes	otter	animal	0.50	OmnivoreAnimal, OvivoreAnimal	true	true	0.4
+AEXP_Penguin	vanillaexpanded.vanillaanimalsexpanded	yes	penguin	animal	0.8	CarnivoreAnimal		true	
+AEXP_Platypus	vanillaexpanded.vanillaanimalsexpanded	yes	platypus	animal	0.25	OmnivoreRoughAnimal			
+AEXP_Poodle	vanillaexpanded.vanillaanimalsexpanded	yes	poodle	animal	0.75	OmnivoreAnimal, OvivoreAnimal			
+AEXP_Porcupine	vanillaexpanded.vanillaanimalsexpanded	yes	porcupine	animal	0.25	VegetarianRoughAnimal			
+AEXP_Pug	vanillaexpanded.vanillaanimalsexpanded	yes	pug	animal	0.3	OmnivoreAnimal, OvivoreAnimal			
+AEXP_Rattlesnake	vanillaexpanded.vanillaanimalsexpanded	yes	rattlesnake	animal	0.25	CarnivoreAnimal, OvivoreAnimal	true		0.45
+AEXP_RedPanda	vanillaexpanded.vanillaanimalsexpanded	yes	red panda	animal	0.275	VegetarianRoughAnimal		false	
+AEXP_Rottweiler	vanillaexpanded.vanillaanimalsexpanded	yes	rottweiler	animal	0.75	OmnivoreAnimal, OvivoreAnimal			
+AEXP_Seal	vanillaexpanded.vanillaanimalsexpanded	yes	seal	animal	0.90	OmnivoreAnimal, OvivoreAnimal	true	false	0.81
+AEXP_Shih-Tzu	vanillaexpanded.vanillaanimalsexpanded	yes	shih-tzu	animal	0.32	OmnivoreAnimal, OvivoreAnimal			
+AEXP_Tapir	vanillaexpanded.vanillaanimalsexpanded	yes	tapir	animal	0.85	OmnivoreRoughAnimal			
+AEXP_Tiger	vanillaexpanded.vanillaanimalsexpanded	yes	tiger	animal	1.8	CarnivoreAnimal, OvivoreAnimal	true	false	2.0
+AEXP_Walrus	vanillaexpanded.vanillaanimalsexpanded	yes	walrus	animal	3.6	CarnivoreAnimal	true	false	3.4
+AEXP_WelshTerrier	vanillaexpanded.vanillaanimalsexpanded	yes	welsh terrier	animal	0.86	OmnivoreAnimal, OvivoreAnimal			
+AEXP_WildGoose	vanillaexpanded.vanillaanimalsexpanded	yes	wild goose	animal	0.30	VegetarianRoughAnimal			
+AEXP_Wildebeest	vanillaexpanded.vanillaanimalsexpanded	yes	wildebeest	animal	2.2	VegetarianRoughAnimal		true	
+AEXP_Zebra	vanillaexpanded.vanillaanimalsexpanded	yes	zebra	animal	2.0	VegetarianRoughAnimal		true	
+GR_AberrantFleshbeast	vanillaexpanded.vgeneticse	yes	aberrant fleshbeast	animal	5	VegetarianRoughAnimal			
+GR_AnimusHare	vanillaexpanded.vgeneticse	yes	animus hare	animal	0.35	VegetarianRoughAnimal	false	false	
+GR_ArchotechCentipede	vanillaexpanded.vgeneticse	yes	archocentipede	mech	20	VegetarianRoughAnimal		false	
+GR_BearBug	vanillaexpanded.vgeneticse	yes	bear bug	animal	2	CarnivoreAnimal	true	false	
+GR_Bearalope	vanillaexpanded.vgeneticse	yes	bearalope	animal	1.5	OmnivoreAnimal, OvivoreAnimal	true	false	2
+GR_Bearcat	vanillaexpanded.vgeneticse	yes	bearcat	animal	1.75	CarnivoreAnimal, OvivoreAnimal	true		2
+GR_Bearchicken	vanillaexpanded.vgeneticse	yes	bearchicken	animal	0.81	VegetarianRoughAnimal	false	false	
+GR_Bearffalo	vanillaexpanded.vgeneticse	yes	bearffalo	animal	1.5	VegetarianRoughAnimal	false	true	
+GR_Bearhorse	vanillaexpanded.vgeneticse	yes	bearhorse	animal	3.5	OmnivoreAnimal, OvivoreAnimal	true	true	2
+GR_Bearman	vanillaexpanded.vgeneticse	yes	bearman	animal	1.25	OmnivoreAnimal, OvivoreAnimal	true	false	2
+GR_Bearmole	vanillaexpanded.vgeneticse	yes	bearmole	animal	0.8	CarnivoreAnimal	true		
+GR_Bearodile	vanillaexpanded.vgeneticse	yes	bearodile	animal	3.5	OmnivoreAnimal, OvivoreAnimal			
+GR_Bearscarab	vanillaexpanded.vgeneticse	yes	bearscarab	animal	3	OmnivoreAnimal, AnimalProduct			
+GR_Bearwolf	vanillaexpanded.vgeneticse	yes	bearwolf	animal	1	OmnivoreAnimal, OvivoreAnimal			
+GR_Beaverwolf	vanillaexpanded.vgeneticse	yes	beaverwolf	animal	0.9	CarnivoreAnimal, DendrovoreAnimal	true		1.2
+GR_BeeHybrid_Bearbee	vanillaexpanded.vgeneticse	yes	bearbee	animal	2	OmnivoreRoughAnimal	true	true	
+GR_BeeHybrid_Boombee	vanillaexpanded.vgeneticse	yes	boombee	animal	1.5	VegetarianRoughAnimal	false	true	
+GR_BeeHybrid_Catbee	vanillaexpanded.vgeneticse	yes	catbee	animal	1.5	CarnivoreAnimal, OvivoreAnimal	true	true	0.5
+GR_BeeHybrid_Chickenbee	vanillaexpanded.vgeneticse	yes	chickenbee	animal	0.40	VegetarianRoughAnimal	false	true	
+GR_BeeHybrid_Lizardbee	vanillaexpanded.vgeneticse	yes	lizardbee	animal	1.5	OmnivoreAnimal, OvivoreAnimal	true	true	0.5
+GR_BeeHybrid_Mousebee	vanillaexpanded.vgeneticse	yes	mousebee	animal	0.15	VegetarianRoughAnimal	false	true	
+GR_BeeHybrid_Muffalobee	vanillaexpanded.vgeneticse	yes	muffalobee	animal	2.1	VegetarianRoughAnimal		true	
+GR_BeeHybrid_Spiderbee	vanillaexpanded.vgeneticse	yes	spiderbee	animal	1.8	OmnivoreRoughAnimal	true	true	0.5
+GR_BeeHybrid_Thrumbee	vanillaexpanded.vgeneticse	yes	thrumbee	animal	4	VegetarianRoughAnimal, DendrovoreAnimal	false	true	
+GR_BeeHybrid_Wolfbee	vanillaexpanded.vgeneticse	yes	wolfbee	animal	1.75	CarnivoreAnimal, OvivoreAnimal	true	true	1
+GR_Beetlefleet	vanillaexpanded.vgeneticse	yes	beetlefleet	animal	0.3	OmnivoreAnimal, AnimalProduct	true	true	
+GR_Boomabear	vanillaexpanded.vgeneticse	yes	boomabear	animal	2.5	VegetarianRoughAnimal		true	
+GR_Boomachicken	vanillaexpanded.vgeneticse	yes	boomachicken	animal	0.75	VegetarianRoughAnimal		true	
+GR_Boomalisk	vanillaexpanded.vgeneticse	yes	boomalisk	animal	2	OmnivoreAnimal, AnimalProduct	true	true	
+GR_Booman	vanillaexpanded.vgeneticse	yes	booman	animal	1.25	VegetarianRoughAnimal		false	
+GR_Boombeetle	vanillaexpanded.vgeneticse	yes	boombeetle	animal	1.5	OmnivoreAnimal, AnimalProduct			
+GR_Boomcat	vanillaexpanded.vgeneticse	yes	boomcat	animal	1.5	VegetarianRoughAnimal		false	
+GR_Boomffalo	vanillaexpanded.vgeneticse	yes	boomffalo	animal	2.25	VegetarianRoughAnimal		true	
+GR_Boomhorse	vanillaexpanded.vgeneticse	yes	boomhorse	animal	2	VegetarianRoughAnimal		true	
+GR_Boomnotherium	vanillaexpanded.vgeneticse	yes	boomnotherium	animal	5.5	VegetarianRoughAnimal	false	true	
+GR_Boomsnake	vanillaexpanded.vgeneticse	yes	boomsnake	animal	1.5	VegetarianRoughAnimal			
+GR_Boomsquirrel	vanillaexpanded.vgeneticse	yes	boomsquirrel	animal	1.3	VegetarianRoughAnimal			
+GR_Boomwolf	vanillaexpanded.vgeneticse	yes	boomwolf	animal	1.5	OmnivoreRoughAnimal		true	
+GR_Catalope	vanillaexpanded.vgeneticse	yes	catalope	animal	0.255	CarnivoreAnimal, OvivoreAnimal	true		0.25
+GR_Catbear	vanillaexpanded.vgeneticse	yes	catbear	animal	0.4	Corpse, CarnivoreAnimal, OvivoreAnimal	true		0.5
+GR_Catchicken	vanillaexpanded.vgeneticse	yes	catchicken	animal	0.255	CarnivoreAnimal, OvivoreAnimal	true		0.25
+GR_Catffalo	vanillaexpanded.vgeneticse	yes	catffalo	animal	0.4	VegetarianRoughAnimal	false		
+GR_Cathorse	vanillaexpanded.vgeneticse	yes	cathorse	animal	2	CarnivoreAnimal	true	true	0.75
+GR_Cathulhu	vanillaexpanded.vgeneticse	yes	cathulhu	animal	1.5	CarnivoreAnimal	true	false	1.0
+GR_Catman	vanillaexpanded.vgeneticse	yes	catman	animal	0.255	CarnivoreAnimal, OvivoreAnimal	true		0.25
+GR_Catrabbit	vanillaexpanded.vgeneticse	yes	catrabbit	animal	0.3	CarnivoreAnimal, OvivoreAnimal	true		0.25
+GR_Catwolf	vanillaexpanded.vgeneticse	yes	catwolf	animal	0.4	CarnivoreAnimal, OvivoreAnimal	true		0.25
+GR_Chickenbear	vanillaexpanded.vgeneticse	yes	chickenbear	animal	0.3	VegetarianRoughAnimal			
+GR_Chickencat	vanillaexpanded.vgeneticse	yes	chickencat	animal	0.3	VegetarianRoughAnimal			
+GR_Chickenffalo	vanillaexpanded.vgeneticse	yes	chickenffalo	animal	0.2	VegetarianRoughAnimal		true	
+GR_Chickenhorse	vanillaexpanded.vgeneticse	yes	chickenhorse	animal	1	VegetarianRoughAnimal		true	
+GR_Chickenlizard	vanillaexpanded.vgeneticse	yes	chickenlizard	animal	0.3	VegetarianRoughAnimal			
+GR_Chickenlodon	vanillaexpanded.vgeneticse	yes	chickenlodon	animal	2	CarnivoreAnimal	true	true	
+GR_Chickenlope	vanillaexpanded.vgeneticse	yes	chickenlope	animal	0.18	VegetarianRoughAnimal			
+GR_Chickennathus	vanillaexpanded.vgeneticse	yes	chickennathus	animal	0.35	CarnivoreAnimal	true	false	
+GR_Chickenrabbit	vanillaexpanded.vgeneticse	yes	chickenrabbit	animal	0.15	VegetarianRoughAnimal	false		
+GR_Chickenspider	vanillaexpanded.vgeneticse	yes	chickenspider	animal	1.1	OmnivoreAnimal, AnimalProduct			
+GR_Chickenwolf	vanillaexpanded.vgeneticse	yes	chickenwolf	animal	0.3	VegetarianRoughAnimal			
+GR_Crocorse	vanillaexpanded.vgeneticse	yes	crocorse	animal	2.75	VegetarianRoughAnimal		true	
+GR_Diplobeetle	vanillaexpanded.vgeneticse	yes	diplobeetle	animal	12	VegetarianRoughAnimal, DendrovoreAnimal	false	false	
+GR_Doedicoon	vanillaexpanded.vgeneticse	yes	doedicoon	animal	0.3	OmnivoreRoughAnimal	false	true	
+GR_Dogman	vanillaexpanded.vgeneticse	yes	dogman	animal	0.75	CarnivoreAnimal	true		1
+GR_Elasmobearium	vanillaexpanded.vgeneticse	yes	elasmobearium	animal	4	OmnivoreAnimal, OvivoreAnimal	true	true	
+GR_EldritchBear	vanillaexpanded.vgeneticse	yes	bear young	animal	3.5	CarnivoreAnimal	true	true	
+GR_EldritchBoomalope	vanillaexpanded.vgeneticse	yes	formless boomalope of Tsathoggua	animal	3.5	VegetarianRoughAnimal	false	true	
+GR_EldritchChicken	vanillaexpanded.vgeneticse	yes	chicken of Mi-go	animal	1.0	VegetarianRoughAnimal	false	true	
+GR_EldritchInsectoid	vanillaexpanded.vgeneticse	yes	armoured chthonian larva	animal	1.5	OmnivoreAnimal, AnimalProduct	false	false	
+GR_EldritchMuffalo	vanillaexpanded.vgeneticse	yes	star vampire muffalo	animal	3	OmnivoreAnimal, AnimalProduct	true	false	
+GR_EldritchReptile	vanillaexpanded.vgeneticse	yes	snake of Yig	animal	0.75	CarnivoreAnimal, OvivoreAnimal	true	false	0.95
+GR_EldritchThrumbo	vanillaexpanded.vgeneticse	yes	cthrumbo	animal	3.5	VegetarianRoughAnimal, DendrovoreAnimal		true	
+GR_EldritchWolf	vanillaexpanded.vgeneticse	yes	wolf-Sothoth	animal	1.5	CarnivoreAnimal	true	false	
+GR_FleshFlies	vanillaexpanded.vgeneticse	yes	flesh flies	animal	1	CarnivoreAnimal			
+GR_FleshGrowth	vanillaexpanded.vgeneticse	yes	flesh growth	animal	5	CarnivoreAnimal			
+GR_FleshMonstrosity	vanillaexpanded.vgeneticse	yes	flesh monstrosity	animal	5	CarnivoreAnimal			
+GR_Fleshling	vanillaexpanded.vgeneticse	yes	fleshling	animal	0.2	VegetarianRoughAnimal			
+GR_Groundffalo	vanillaexpanded.vgeneticse	yes	groundffalo	animal	3	VegetarianRoughAnimal	false	true	
+GR_Hurseman	vanillaexpanded.vgeneticse	yes	hurseman	animal	2.4	OmnivoreAnimal		true	
+GR_Lizardman	vanillaexpanded.vgeneticse	yes	lizardman	animal	1.5	CarnivoreAnimal, OvivoreAnimal	true		0.35
+GR_Lizardochs	vanillaexpanded.vgeneticse	yes	lizardochs	animal	3	VegetarianRoughAnimal	false	true	
+GR_Manalope	vanillaexpanded.vgeneticse	yes	manalope	animal	0.5	VegetarianRoughAnimal			
+GR_Manbear	vanillaexpanded.vgeneticse	yes	manbear	animal	0.35	OmnivoreAnimal, OvivoreAnimal			
+GR_Mancat	vanillaexpanded.vgeneticse	yes	mancat	animal	1.5	CarnivoreAnimal	true		0.35
+GR_Manchicken	vanillaexpanded.vgeneticse	yes	manchicken	animal	2	VegetarianRoughAnimal			
+GR_Manffalo	vanillaexpanded.vgeneticse	yes	manffalo	animal	2.4	VegetarianRoughAnimal		true	
+GR_Manscarab	vanillaexpanded.vgeneticse	yes	manscarab	animal	1	OmnivoreAnimal, AnimalProduct	true		0.5
+GR_Mansquirrel	vanillaexpanded.vgeneticse	yes	mansquirrel	animal	0.3	VegetarianRoughAnimal			
+GR_Mantistanis	vanillaexpanded.vgeneticse	yes	mantistanis	animal	3	CarnivoreAnimal	true	true	4
+GR_Manwolf	vanillaexpanded.vgeneticse	yes	manwolf	animal	2	CarnivoreAnimalStrict	true		
+GR_MeadowLizard	vanillaexpanded.vgeneticse	yes	meadow lizard	animal	1.5	OmnivoreAnimal, AnimalProduct	true	true	1.5
+GR_Mechabear	vanillaexpanded.vgeneticse	yes	mechabear	mech	2	VegetarianRoughAnimal		false	
+GR_Mechacat	vanillaexpanded.vgeneticse	yes	mechacat	mech	1.3	VegetarianRoughAnimal		false	
+GR_Mechachicken	vanillaexpanded.vgeneticse	yes	mecha-chicken	mech	0.75	VegetarianRoughAnimal		false	
+GR_Mechahorse	vanillaexpanded.vgeneticse	yes	mecha-horse	mech	4	VegetarianRoughAnimal		true	
+GR_Mechalope	vanillaexpanded.vgeneticse	yes	mechalope	mech	1.5	VegetarianRoughAnimal		false	
+GR_Mechamime	vanillaexpanded.vgeneticse	yes	mecha-mime	mech	1	CarnivoreAnimal			
+GR_Mechamuffalo	vanillaexpanded.vgeneticse	yes	mecha-muffalo	mech	13	VegetarianRoughAnimal		true	
+GR_Mecharat	vanillaexpanded.vgeneticse	yes	mecha-rat	mech	0.2	VegetarianRoughAnimal		false	
+GR_Mechaspider	vanillaexpanded.vgeneticse	yes	mechaspider	mech	2	VegetarianRoughAnimal		false	
+GR_Mechathrumbo	vanillaexpanded.vgeneticse	yes	mechathrumbo	mech	10	VegetarianRoughAnimal		false	
+GR_Mechaturtle	vanillaexpanded.vgeneticse	yes	mechaturtle	mech	1	VegetarianRoughAnimal		false	
+GR_Mechawolf	vanillaexpanded.vgeneticse	yes	mechawolf	mech	1.5	VegetarianRoughAnimal		false	
+GR_Molebear	vanillaexpanded.vgeneticse	yes	molebear	animal	1	OmnivoreAnimal	true		2
+GR_Molehorse	vanillaexpanded.vgeneticse	yes	molehorse	animal	1	VegetarianRoughAnimal		true	
+GR_Moleman	vanillaexpanded.vgeneticse	yes	moleman	animal	1.5	OmnivoreAnimal			
+GR_Muffalobear	vanillaexpanded.vgeneticse	yes	muffalobear	animal	2.5	VegetarianRoughAnimal		true	
+GR_Muffalocat	vanillaexpanded.vgeneticse	yes	muffalocat	animal	1.85	VegetarianRoughAnimal		true	
+GR_Muffalochicken	vanillaexpanded.vgeneticse	yes	muffalochicken	animal	1.8	VegetarianRoughAnimal		true	
+GR_Muffalohorse	vanillaexpanded.vgeneticse	yes	muffalohorse	animal	3.4	VegetarianRoughAnimal		true	
+GR_Muffalokomodo	vanillaexpanded.vgeneticse	yes	muffalokomodo	animal	3.5	VegetarianRoughAnimal		true	
+GR_Muffaloman	vanillaexpanded.vgeneticse	yes	muffaloman	animal	1.5	VegetarianRoughAnimal		true	
+GR_Muffalope	vanillaexpanded.vgeneticse	yes	muffalope	animal	2.0	VegetarianRoughAnimal		true	
+GR_Muffalopede	vanillaexpanded.vgeneticse	yes	muffalopede	animal	1.5	VegetarianRoughAnimal		true	
+GR_Muffalorat	vanillaexpanded.vgeneticse	yes	muffalorat	animal	1	VegetarianRoughAnimal	false		
+GR_Muffalowolf	vanillaexpanded.vgeneticse	yes	muffalowolf	animal	2.0	VegetarianRoughAnimal		true	
+GR_Needlechicken	vanillaexpanded.vgeneticse	yes	needlechicken	animal	0.25	VegetarianRoughAnimal	false	true	
+GR_Nighthrumbo	vanillaexpanded.vgeneticse	yes	nighthrumbo	animal	3	CarnivoreAnimal, OvivoreAnimal	true	false	
+GR_Paraceramuffalo	vanillaexpanded.vgeneticse	yes	paraceramuffalo	animal	16	VegetarianRoughAnimal, DendrovoreAnimal	false	true	
+GR_ParagonBear	vanillaexpanded.vgeneticse	yes	ursine paragon	animal	2.95	OmnivoreAnimal, OvivoreAnimal	true	false	
+GR_ParagonBoomalope	vanillaexpanded.vgeneticse	yes	boomalope paragon	animal	2.2	VegetarianRoughAnimal		true	
+GR_ParagonChicken	vanillaexpanded.vgeneticse	yes	avian paragon	animal	0.5	VegetarianRoughAnimal			
+GR_ParagonFeline	vanillaexpanded.vgeneticse	yes	feline paragon	animal	1.8	CarnivoreAnimal, OvivoreAnimal	true	false	0.9
+GR_ParagonHorse	vanillaexpanded.vgeneticse	yes	equine paragon	animal	3	VegetarianRoughAnimal		true	
+GR_ParagonHumanoid	vanillaexpanded.vgeneticse	yes	humanoid paragon	animal	2.3	VegetarianRoughAnimal		true	
+GR_ParagonIguana	vanillaexpanded.vgeneticse	yes	reptile paragon	animal	0.40	OmnivoreRoughAnimal			
+GR_ParagonInsectoid	vanillaexpanded.vgeneticse	yes	insectoid paragon	animal	2.5	OmnivoreAnimal, AnimalProduct			
+GR_ParagonMuffalo	vanillaexpanded.vgeneticse	yes	muffalo paragon	animal	2.5	VegetarianRoughAnimal		true	
+GR_ParagonRat	vanillaexpanded.vgeneticse	yes	rodent paragon	animal	0.3	OmnivoreRoughAnimal			
+GR_ParagonThrumbo	vanillaexpanded.vgeneticse	yes	colossal paragon	animal	4.5	VegetarianRoughAnimal, DendrovoreAnimal			
+GR_ParagonWolf	vanillaexpanded.vgeneticse	yes	canine paragon	animal	1	CarnivoreAnimal	true		
+GR_Parasaurolope	vanillaexpanded.vgeneticse	yes	parasaurolope	animal	4	VegetarianRoughAnimal	false	false	
+GR_Rabbitcat	vanillaexpanded.vgeneticse	yes	rabbitcat	animal	2.5	CarnivoreAnimal	true		
+GR_Rabbitchicken	vanillaexpanded.vgeneticse	yes	rabbitchicken	animal	0.1	VegetarianRoughAnimal	false		
+GR_Raptortoise	vanillaexpanded.vgeneticse	yes	raptortoise	animal	2	CarnivoreAnimal	true	false	
+GR_Ratffalo	vanillaexpanded.vgeneticse	yes	ratffalo	animal	1.75	Corpse,VegetarianRoughAnimal	false		
+GR_Snakecat	vanillaexpanded.vgeneticse	yes	snakecat	animal	1.5	CarnivoreAnimal, OvivoreAnimal	true		0.35
+GR_Spidercat	vanillaexpanded.vgeneticse	yes	spidercat	animal	0.85	OmnivoreAnimal, AnimalProduct	true		0.85
+GR_Spiderhorse	vanillaexpanded.vgeneticse	yes	spiderhorse	animal	2.4	OmnivoreAnimal, AnimalProduct		true	
+GR_Spidersnake	vanillaexpanded.vgeneticse	yes	spidersnake	animal	0.25	CarnivoreAnimal, OvivoreAnimal	true		0.35
+GR_Spinobear	vanillaexpanded.vgeneticse	yes	spinobear	animal	8	CarnivoreAnimal	true	false	
+GR_Squirralope	vanillaexpanded.vgeneticse	yes	squirralope	animal	0.2	VegetarianRoughAnimal			
+GR_Stegothrumbo	vanillaexpanded.vgeneticse	yes	stegothrumbo	animal	9	VegetarianRoughAnimal	false	false	
+GR_Thrumbalope	vanillaexpanded.vgeneticse	yes	thrumbalope	animal	4	VegetarianRoughAnimal, DendrovoreAnimal		true	
+GR_Thrumbear	vanillaexpanded.vgeneticse	yes	thrumbear	animal	6	VegetarianRoughAnimal, DendrovoreAnimal		true	
+GR_Thrumbocat	vanillaexpanded.vgeneticse	yes	thrumbocat	animal	2	CarnivoreAnimal	true	true	
+GR_Thrumbochicken	vanillaexpanded.vgeneticse	yes	thrumbochicken	animal	3	CarnivoreAnimal	true	true	
+GR_Thrumbolizard	vanillaexpanded.vgeneticse	yes	thrumbolizard	animal	3.5	VegetarianRoughAnimal, DendrovoreAnimal		true	
+GR_Thrumboman	vanillaexpanded.vgeneticse	yes	thrumboman	animal	4	VegetarianRoughAnimal, DendrovoreAnimal		true	
+GR_Thrumborat	vanillaexpanded.vgeneticse	yes	thrumborat	animal	1.5	VegetarianRoughAnimal, DendrovoreAnimal		true	
+GR_Thrumbospider	vanillaexpanded.vgeneticse	yes	thrumbospider	animal	4.5	VegetarianRoughAnimal, DendrovoreAnimal			
+GR_Thrumdraeodon	vanillaexpanded.vgeneticse	yes	thrumdraeodon	animal	4.5	OmnivoreAnimal, OvivoreAnimal, DendrovoreAnimal	true	true	6
+GR_Thrumffalo	vanillaexpanded.vgeneticse	yes	thrumffalo	animal	8.4	VegetarianRoughAnimal		true	
+GR_Thrumhorse	vanillaexpanded.vgeneticse	yes	thrumhorse	animal	4.5	VegetarianRoughAnimal, DendrovoreAnimal		true	
+GR_Thrumwolf	vanillaexpanded.vgeneticse	yes	thrumwolf	animal	2.2	CarnivoreAnimal	true	true	
+GR_Triceraffalo	vanillaexpanded.vgeneticse	yes	triceraffalo	animal	10	VegetarianRoughAnimal	false	false	
+GR_Turkeyman	vanillaexpanded.vgeneticse	yes	turkeyman	animal	0.6	OmnivoreAnimal			
+GR_Velociwolf	vanillaexpanded.vgeneticse	yes	velociwolf	animal	0.75	CarnivoreAnimal	true	false	
+GR_WolfShrimp	vanillaexpanded.vgeneticse	yes	wolf shrimp	animal	2	CarnivoreAnimal, OvivoreAnimal	true	false	
+GR_Wolfalope	vanillaexpanded.vgeneticse	yes	wolfalope	animal	0.85	CarnivoreAnimal	true		2
+GR_Wolfbear	vanillaexpanded.vgeneticse	yes	wolfbear	animal	1	CarnivoreAnimal	true		
+GR_Wolfbeaver	vanillaexpanded.vgeneticse	yes	wolfbeaver	animal	0.85	DendrovoreAnimal			
+GR_Wolfcat	vanillaexpanded.vgeneticse	yes	wolfcat	animal	1	CarnivoreAnimal	true		1.5
+GR_Wolfchicken	vanillaexpanded.vgeneticse	yes	wolfchicken	animal	0.65	VegetarianRoughAnimal	false		
+GR_Wolffalo	vanillaexpanded.vgeneticse	yes	wolffalo	animal	1.5	VegetarianRoughAnimal	false		
+GR_Wolfhorse	vanillaexpanded.vgeneticse	yes	wolfhorse	animal	2.8	CarnivoreAnimal	true	true	
+GR_Wolfscarab	vanillaexpanded.vgeneticse	yes	wolfscarab	animal	0.85	OmnivoreAnimal, AnimalProduct			
+GR_Wolfsnake	vanillaexpanded.vgeneticse	yes	wolfsnake	animal	1.0	CarnivoreAnimalStrict	true		
+GR_WoolyWolf	vanillaexpanded.vgeneticse	yes	wooly Wolf	animal	1.5	CarnivoreAnimal	true	false	
+VPE_RockConstruct	vanillaexpanded.vpsycastse	yes	rock construct	animal					
+VPE_SteelConstruct	vanillaexpanded.vpsycastse	yes	steel construct	animal					
+VPE_SummonedSkeleton	vanillaexpanded.vpsycastse	yes	skeleton	animal					
+VQEA_Splicefiend	vanillaquestsexpanded.ancients	yes	splicefiend	animal	4	None			
+VQEA_Splicehulk	vanillaquestsexpanded.ancients	yes	splicehulk	animal	3	None			
+VQEA_Spliceling	vanillaquestsexpanded.ancients	yes	spliceling	animal	2	None			
+VQEA_Splicetoot	vanillaquestsexpanded.ancients	yes	splicetoot	animal	0.8	None			
+VQE_IceCrawler	vanillaquestsexpanded.cryptoforge	yes	ice crawler	animal	0.8	OmnivoreAnimal, AnimalProduct			
+VQE_Megamidge	vanillaquestsexpanded.cryptoforge	yes	megamidge	animal	1.2	OmnivoreAnimal, AnimalProduct			
+VQE_AutobroadcasterDrone	vanillaquestsexpanded.dronefactory	yes	autobroadcaster drone	animal	0.3	None			
+VQE_BattleDrone	vanillaquestsexpanded.dronefactory	yes	battle drone	animal	0.8	None			
+VQE_CleanerDrone	vanillaquestsexpanded.dronefactory	yes	cleaner drone	animal	0.3	None			
+VQE_CraftingDrone	vanillaquestsexpanded.dronefactory	yes	crafting drone	animal	1.2	None			
+VQE_CrawlerDrone	vanillaquestsexpanded.dronefactory	yes	crawler drone	animal	0.35	None			
+VQE_DriverDrone	vanillaquestsexpanded.dronefactory	yes	driver drone	animal	0.35	None			
+VQE_FarmingDrone	vanillaquestsexpanded.dronefactory	yes	farming drone	animal	0.6	None			
+VQE_FirefighterDrone	vanillaquestsexpanded.dronefactory	yes	firefighter drone	animal	0.45	None			
+VQE_HaulerDrone	vanillaquestsexpanded.dronefactory	yes	hauler drone	animal	0.7	None			
+VQE_HornetDrone	vanillaquestsexpanded.dronefactory	yes	hornet drone	animal	0.8	None			
+VQE_MinerDrone	vanillaquestsexpanded.dronefactory	yes	miner drone	animal	0.7	None			
+VQE_PackDrone	vanillaquestsexpanded.dronefactory	yes	pack drone	animal	1.2	None			
+VQE_Protolancer	vanillaquestsexpanded.dronefactory	yes	protolancer	animal	1	None			
+VQE_RaiderDrone	vanillaquestsexpanded.dronefactory	yes	raider drone	animal	1.25	None			
+VQE_ShufflerDrone	vanillaquestsexpanded.dronefactory	yes	shuffler drone	animal	1	None			
+VQE_StingrayDrone	vanillaquestsexpanded.dronefactory	yes	stingray drone	animal	2	None			
+VQE_TurretDrone	vanillaquestsexpanded.dronefactory	yes	turret drone	animal	0.7	None			
+VRE_CompanionDryad	vanillaracesexpanded.phytokin	yes	companion dryad	animal	2.4	OmnivoreRoughAnimal			
+VCE_Megareindeer	ve.vanillachristmasexpanded	yes	megareindeer	animal	4.0	VegetarianRoughAnimal		true	
+VR_Construct_Agrihand	vr.fantasy.biotech	no	farmhand spider	animal	0.7	None			
+VR_Construct_Apocriton	vr.fantasy.biotech	no	overseer	animal	1.0	None			
+VR_Construct_Assembler	vr.fantasy.biotech	no	assembler	animal	0.7	None			
+VR_Construct_Ballistae	vr.fantasy.biotech	no	ballistae	animal	1.0	None			
+VR_Construct_Centurion	vr.fantasy.biotech	no	sentinel (melee)	animal	1.6	None			
+VR_Construct_Centurion_Burner	vr.fantasy.biotech	no	sentinel (burner)	animal	1.6	None			
+VR_Construct_Centurion_Hammer	vr.fantasy.biotech	no	sentinel (melee)	animal	1.6	None			
+VR_Construct_Centurion_Shooter	vr.fantasy.biotech	no	sentinel (ranged)	animal	1.6	None			
+VR_Construct_Centurion_StakeDriver	vr.fantasy.biotech	no	sentinel (melee)	animal	1.6	None			
+VR_Construct_Centurion_Sword	vr.fantasy.biotech	no	sentinel (melee)	animal	1.6	None			
+VR_Construct_Colossus	vr.fantasy.biotech	no	colossus (ranged)	animal	4	None			
+VR_Construct_Colossus_Melee	vr.fantasy.biotech	no	colossus (melee)	animal	4	None			
+VR_Construct_Constructoid	vr.fantasy.biotech	no	construction spider	animal	0.7	None			
+VR_Construct_Delver	vr.fantasy.biotech	no	delver	animal	3.5	None			
+VR_Construct_Lifter	vr.fantasy.biotech	no	transport spider	animal	0.7	None			
+VR_Construct_Mender	vr.fantasy.biotech	no	mender	animal	0.7	None			
+VR_Construct_Militor	vr.fantasy.biotech	no	vanguard (shooter)	animal	0.7	None			
+VR_Construct_Militor_Melee	vr.fantasy.biotech	no	vanguard (melee)	animal	0.7	None			
+VR_Construct_Scarab	vr.fantasy.biotech	no	scarab	animal	0.7	None			
+VR_Construct_ScarabQueen	vr.fantasy.biotech	no	scarab queen	animal	4	None			
+VR_Construct_Scorcher	vr.fantasy.biotech	no	scorcher	animal	1.0	None			
+VR_Construct_Sphere_Melee	vr.fantasy.biotech	no	sphere (melee)	animal	1.0	None			
+VR_Construct_Sphere_Melee_Hammer	vr.fantasy.biotech	no	sphere (melee)	animal	1.0	None			
+VR_Construct_Sphere_Melee_Lance	vr.fantasy.biotech	no	sphere (melee)	animal	1.0	None			
+VR_Construct_Sphere_Melee_Sword	vr.fantasy.biotech	no	sphere (melee)	animal	1.0	None			
+VR_Construct_Sphere_Range	vr.fantasy.biotech	no	sphere (ranged)	animal	1.0	None			
+VR_Construct_Tesseron	vr.fantasy.biotech	no	tesseron	animal	1.0	None			
+Cults_BlackGoat	zal.cocc	no	black goat	animal	0.85	OmnivoreRoughAnimal		true	
+Cults_ByakheeRace	zal.cocc	no	byakhee	animal	2.0	CarnivoreAnimal, OvivoreAnimal		true	
+Cults_FormlessSpawnRace	zal.cocc	no	formless spawn	animal	2.0	CarnivoreAnimal, OvivoreAnimal			
+GuardianBast	zal.cocc	no	Guardian	animal	2.2	CarnivoreAnimal, OvivoreAnimal	true	false	
+ReanimatedCorpse	zal.cocc	no	reanimated corpse	humanlike	1	CarnivoreAnimalStrict			

@@ -1,0 +1,445 @@
+packageId	name	folder	active	loadOrder	inSave	versions	catalogued
+brrainz.harmony	Harmony	2009463077	yes	0	yes	1.2,1.3,1.4,1.5,1.6,1.7	yes
+ilyvion.loadingprogress	Loading Progress	3535481557	yes	1	yes	1.6,1.7	yes
+smashphil.vehicleframework	Vehicle Framework	3014915404	yes	8	yes	1.4,1.5,1.6	yes
+vanillaexpanded.backgrounds	Vanilla Backgrounds Expanded	2775017012	yes	9	yes	1.7,1.5,1.6	yes
+unlimitedhugs.hugslib	HugsLib	818773962	yes	10	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6	yes
+syrchalis.processor.framework	[SYR] Processor Framework	3210544395	yes	11	yes	1.3,1.4,1.5,1.6	yes
+imranfish.xmlextensions	XML Extensions	2574315206	yes	12	yes	1.2,1.3,1.4,1.5,1.6,1.7	yes
+oskarpotocki.vanillafactionsexpanded.core	Vanilla Expanded Framework	2023507013	yes	13	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+zal.jecsliterwom	JecsLite - A RimWorld of Magic	3312959701	yes	14	yes	1.4,1.5,1.6,1.7	yes
+torann.arimworldofmagic	A RimWorld of Magic	1201382956	yes	15	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6	yes
+vanillaexpanded.achievements	Vanilla Achievements Expanded	2288125657	yes	16	yes	1.5,1.6,1.7	yes
+vanillaexpanded.vcef	Vanilla Fishing Expanded	1914064942	yes	17	yes	1.6,1.7,1.5	yes
+vanillaexpanded.vpsycastse	Vanilla Psycasts Expanded	2842502659	yes	18	yes	1.7,1.5,1.6	yes
+oskarpotocki.vfe.insectoid2	Vanilla Factions Expanded - Insectoids 2	3309003431	yes	19	yes	1.5,1.6,1.7	yes
+vanillaexpanded.vwe	Vanilla Weapons Expanded	1814383360	yes	20	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vweq	Vanilla Weapons Expanded - Quickdraw	1906780517	yes	21	yes	1.4,1.5,1.6	yes
+vanillaexpanded.vwel	Vanilla Weapons Expanded - Laser	1989352844	yes	22	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vwehw	Vanilla Weapons Expanded - Heavy Weapons	2329126791	yes	23	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vwec	Vanilla Weapons Expanded - Coilguns	2375692535	yes	24	yes	1.7,1.5,1.6	yes
+oskarpotocki.vanillafactionsexpanded.settlersmodule	Vanilla Factions Expanded - Settlers	2052918119	yes	25	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vweft	Vanilla Weapons Expanded - Frontier	2454918139	yes	26	yes	1.7,1.5,1.6	yes
+oskarpotocki.vfe.pirates	Vanilla Factions Expanded - Pirates	2723801948	yes	27	yes	1.7,1.5,1.6	yes
+vanillaracesexpanded.insector	Vanilla Races Expanded - Insector	3260509684	yes	28	yes	1.5,1.6,1.7	yes
+sarg.alphaanimals	Alpha Animals	1541721856	yes	29	yes	1.7,1.6	yes
+nals.facialanimation	[NL] Facial Animation - WIP	1635901197	yes	30	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6	yes
+vanillaexpanded.vcooke	Vanilla Cooking Expanded	2134308519	yes	31	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vbookse	Vanilla Books Expanded	2193152410	yes	32	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vmemese	Vanilla Ideology Expanded - Memes and Structures	2636329500	yes	33	yes	1.7,1.5,1.6	yes
+ninagoblin.alliesarehelpful	Allies are Helpful	3534920369	yes	34	yes	1.6,1.7	yes
+mlie.regrowthextinctanimals	[1.6] ReGrowth: Extinct Animals (Continued)	3602926791	yes	35	yes	1.6	yes
+oskarpotocki.vfe.empire	Vanilla Factions Expanded - Empire	2938820380	yes	36	yes	1.7,1.5,1.6	yes
+oskarpotocki.vfe.tribals	Vanilla Factions Expanded - Tribals	3079786283	yes	37	yes	1.7,1.5,1.6	yes
+oskarpotocki.vfe.medieval2	Vanilla Factions Expanded - Medieval 2	3444347874	yes	38	yes	1.5,1.6,1.7	yes
+regrowth.botr.core	ReGrowth 2	2260097569	yes	39	yes	1.5,1.6,1.7	yes
+sarg.alphabiomes	Alpha Biomes	1841354677	yes	40	yes	1.7,1.6,1.5	yes
+vanillaracesexpanded.android	Vanilla Races Expanded - Android	2975771801	yes	41	yes	1.7,1.5,1.6	yes
+sarg.alphagenes	Alpha Genes	2891845502	yes	42	yes	1.6,1.7,1.5	yes
+devdesigner.elves.continued	ↁ Elves (Continued)	3272603920	yes	43	yes	1.4,1.5,1.6	yes
+sarg.alphamemes	Alpha Memes	2661356814	yes	44	yes	1.6,1.7	yes
+unlimitedhugs.allowtool	Allow Tool	761421485	yes	45	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6	yes
+jaxe.rimhud	RimHUD	1508850027	yes	46	yes	1.1,1.2,1.3,1.4,1.5,1.6	yes
+vanillaexpanded.skills	Vanilla Skills Expanded	3400246558	yes	47	yes	1.7,1.5,1.6	yes
+sarg.alphaskills	Alpha Skills	3448953006	yes	48	yes	1.5,1.6,1.7	yes
+vanillaexpanded.vtexe	Vanilla Textures Expanded	2016436324	yes	49	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vieat	Vanilla Ideology Expanded - Anima Theme	2666998627	yes	50	yes	1.7,1.5,1.6	yes
+sarg.alphaprefabs	Alpha Prefabs	3070780021	yes	51	yes	1.6,1.7,1.5	yes
+turkler.advanced.armaments	Advanced Armaments	3350091075	yes	52	yes	1.5,1.6	yes
+cucumpear.azrael.varietycoats	Animal Variety Coats	1511926373	yes	53	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6	yes
+mlie.animalsforage	Animals Forage (Continued)	3667046888	yes	54	yes	1.2,1.3,1.4,1.5,1.6,1.7	yes
+m00nl1ght.geologicallandforms	Geological Landforms	2773943594	yes	55	yes	1.3,1.4,1.5,1.6,1.7	yes
+m00nl1ght.geologicallandforms.biometransitions	Biome Transitions	2814391846	yes	56	yes	1.3,1.4,1.5,1.6,1.7	yes
+meltup.beautifuloutdoors	Beautiful Outdoors	2011794898	yes	57	yes	1.1,1.2,1.3,1.4,1.5,1.6	yes
+oblitus.animalslogic	Animals Logic	1098354593	yes	58	yes	0.19,1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+voult.betterpawncontrol	Better Pawn Control	1541460369	yes	59	yes	1.2,1.3,1.4,1.5,1.6	yes
+ezfi.montereybayaquariumanimals	Animals of Monterey Bay	3565659222	yes	60	yes	1.6	yes
+sarg.rimbees	Alpha Bees	1558161673	yes	61	yes	1.5,1.6,1.7	yes
+vanillaexpanded.vfepropsanddecor	Vanilla Furniture Expanded - Props and Decor	2102143149	yes	62	yes	1.7,1.5,1.6	yes
+sarg.alphapropsparks	Alpha Props - Parks and Gardens	3146268928	yes	63	yes	1.7,1.6,1.5	yes
+sbz.bookcase	[sbz] Bookcase	3789304104	yes	64	yes	1.6,1.7	yes
+mlie.animalhusbandryraids	Animal Husbandry Raids (Continued)	2052156867	yes	65	yes	1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+sarg.alphacrafts	Alpha Crafts	3382446150	yes	66	yes	1.5,1.6,1.7	yes
+sarg.alphaimplants	Alpha Implants	3275091331	yes	67	yes	1.5,1.6,1.7	yes
+falconne.aff	Avoid Friendly Fire - 1.6	3532871145	yes	68	yes	1.6	yes
+telkir.tmods.morefloors	[T] MoreFloors	2878200208	yes	69	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+onlymonkey.awakenedapes	Awakened Apes	3646217940	yes	70	yes		yes
+sarg.alphamechs	Alpha Mechs	2973169158	yes	71	yes	1.7,1.6,1.5	yes
+falconne.bwm	Better Workbench Management	935982361	yes	72	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6	yes
+darknote.bunkbeds	Bunk Beds	2961752749	yes	73	yes	1.4,1.5,1.6	yes
+orion.cashregister	Cash Register	2506046833	yes	74	yes	1.2,1.3,1.4,1.5,1.6	yes
+s1.cleaningareatemp	CleaningAreaTemp	3229108269	yes	75	yes	1.5,1.6	yes
+crashm.colorcodedmoodbar.11	CM Color Coded Mood Bar [1.1+]	2006605356	yes	76	yes	1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+heaven.colonymanagerfork	Colony Manager Fork	3262932412	yes	77	yes	1.5,1.6	yes
+kikohi.coloreddeepresources	Colored deep resources	3203269467	yes	78	yes	1.5,1.6,1.7	yes
+dubwise.dubsbadhygiene	Dubs Bad Hygiene	836308268	yes	79	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+avilmask.commonsense	Common Sense	1561769193	yes	80	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6	yes
+erdelf.humanoidalienraces	Humanoid Alien Races	839005762	yes	81	yes	0.19,1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+mlie.deafnessblindness	Deafness and Blindness (Continued)	2019740307	yes	82	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+rimfridge.kv.rw	RimFridge: Now with Shelves!	2898411376	yes	83	yes	1.6,1.5,1.4	yes
+lwm.deepstorage	LWM's Deep Storage	3532608331	yes	84	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+mlie.deepstorageplus	Deep Storage Plus (Continued)	2589072911	yes	85	yes	1.2,1.3,1.4,1.5,1.6,1.7	yes
+unlimitedhugs.defensivepositions	Defensive Positions	761219125	yes	86	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6	yes
+det.avaloi	Det's Xenotypes - Avaloi	3199692643	yes	87	yes	1.4,1.5,1.6,1.7	yes
+det.boglegs	Det's Xenotypes - Boglegs	3146564944	yes	88	yes	1.4,1.5,1.6,1.7	yes
+det.stoneborn	Det's Xenotypes - Stoneborn	2888722722	yes	89	yes	1.4,1.5,1.6,1.7	yes
+det.venators	Det's Xenotypes - Venators	3140248688	yes	90	yes	1.4,1.5,1.6,1.7	yes
+spincrus.dinosauria	Dinosauria	1136958577	yes	91	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+proxyer.dismantleancientjunk	Dismantle Ancient Junk	2871064871	yes	92	yes	1.3,1.4,1.5,1.6,1.7	yes
+owlchemist.doorclearance	Door Clearance	3261310587	yes	93	yes	1.4,1.5,1.6	yes
+jecrell.doorsexpanded	Doors Expanded	3532342422	yes	94	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6	yes
+mlie.drugsplus	Drugs+ (Continued)	2018224594	yes	95	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+memegoddess.dualwield	Dual Wield - Continued	3630049419	yes	96	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+dubwise.dubsmintmenus	Dubs Mint Menus	1446523594	yes	97	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+dubwise.dubsmintminimap	Dubs Mint Minimap	1662119905	yes	98	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+dubwise.dubspaintshop	Dub's Paint Shop	1579516669	yes	99	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+dubwise.dubsperformanceanalyzer.steam	Dubs Performance Analyzer	2038874626	yes	100	yes	1.2,1.3,1.4,1.5,1.6,1.7	yes
+dubwise.rimatomics	Dubs Rimatomics	1127530465	yes	101	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+memegoddess.tdfindlib	TD Find Lib - Continued	3529443295	yes	102	yes	1.4,1.5,1.6,1.7	yes
+memegoddess.everybodygetsone	Everybody Gets One - Continued	3530806680	yes	103	yes	1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+nozome.mapmodeframework	Map Mode Framework	3296654393	yes	104	yes	1.6,1.5	yes
+homebrew.fairycoreapparel2	Fairycore - Apparel 2	3812924898	yes	105	yes	1.6,1.7	yes
+homebrew.fairycorecarillon	Fairycore - Carillon	3812921116	yes	106	yes	1.6,1.7	yes
+homebrew.fairycorepixiewands	Fairycore - Magic Wand	3814383460	yes	107	yes	1.6,1.7	yes
+homebrew.fairycore	Fairycore - Spirit Wings	3812515333	yes	108	yes	1.6,1.7	yes
+feb.medicineretexture	FEB's Medicine Retexture	3735458216	yes	109	yes	1.6	yes
+flyfire2002.fieldmedic	Field Medic [1.0-1.6]	1541287769	yes	110	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6	yes
+hawkwood.floorsarealmostworthless	Floors Are (Absolutely) Worthless	2960126462	yes	111	yes	1.4,1.5,1.6,1.7	yes
+mlie.foodalert	Food Alert (Continued)	2017538067	yes	112	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+mlie.foodpoisoningstackfix	Food Poisoning Stack Fix (Continued)	2843483188	yes	113	yes	1.3,1.4,1.5,1.6,1.7	yes
+orion.gastronomy	Gastronomy (Continued)	3509488152	yes	114	yes	1.6,1.7	yes
+memegoddess.giddyup	Giddy-Up 2 - Continued	3674332861	yes	115	yes	1.4,1.5,1.6,1.7	yes
+gideon.reborn.qualitysurgeon	Gideon's Quality Surgeon Reborn	3226013991	yes	116	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6	yes
+albion.goexplore	Go Explore!	1814100216	yes	117	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+arquebus.stagzmerfolk	Goji's Fantasy Race: Merren	3026235711	yes	118	yes	1.4,1.5,1.6,1.7	yes
+meltup.grandrivers.reborn	Grand Rivers Reborn	1675451818	yes	119	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6	yes
+oskarpotocki.vanillavehiclesexpanded	Vanilla Vehicles Expanded	3014906877	yes	120	yes	1.4,1.5,1.6	yes
+vanillaexpanded.gravship	Vanilla Gravship Expanded - Chapter 1	3609835606	yes	121	yes	1.6,1.7	yes
+maal.gravcamp	Gravcamp	3816083162	yes	122	yes	1.6,1.7	yes
+silvanalig95.harvestandhaul	Harvest and Haul	Harvest and Haul	yes	123	yes	1.6	yes
+jkluch.haultostack	Haul to Stack	949498803	yes	124	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6	yes
+orion.hospitality	Hospitality	753498552	yes	125	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6	yes
+arandomkiwi.huntforme	Hunt for Me	1593245720	yes	126	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6	yes
+mlie.iclearlyhaveenough	I Clearly Have Enough! (Continued)	2023661266	yes	127	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+keshash.injurytextures	Injury Texture Variety	3561610873	yes	128	yes	1.6	yes
+jaxe.bubbles	Interaction Bubbles	1516158345	yes	129	yes	1.3,1.4,1.5,1.6	yes
+ebsg.framework	EBSG Framework	3112549163	yes	130	yes	1.4,1.5,1.6,1.7	yes
+sovereign.kork	Korg Xenotype	3793104547	yes	131	yes	1.6	yes
+costel.layeredapparel	Layered Apparel	3632480044	yes	132	yes	1.6,1.7	yes
+krafs.levelup	Level Up!	1701592470	yes	133	yes	1.3,1.4,1.5,1.6,1.7	yes
+spino.megafauna	Megafauna	1055485938	yes	134	yes	1.3,1.4,1.5,1.6	yes
+co.uk.epicguru.meleeanimation	Melee Animation	2944488802	yes	135	yes	1.4,1.5,1.6	yes
+bamba.allbambamelee.tiered	Melee Weapons For All Post-Medieval Tech Levels	3726524693	yes	136	yes	1.6,1.7	yes
+migcorp.skiptech	MigCorp - Skiptech	3626074566	yes	137	yes	1.6,1.7	yes
+rabiosus.minesight	Mine Sight	3769804600	yes	138	yes	1.6,1.7	yes
+erdelf.minifyeverything	MinifyEverything	872762753	yes	139	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+haplo.miscellaneous.training	Misc. Training	717575199	yes	140	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+owlchemist.moonlight	Moonlight	3261311563	yes	141	yes	1.3,1.4,1.5,1.6	yes
+animal.bedsnew	More animal beds	3107972819	yes	142	yes	1.4,1.5,1.6,1.7	yes
+zylle.morevanillabiomes	More Vanilla Biomes	1931453053	yes	143	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+konstantynopolitaneczka.movethepatient	Move the Patient	3574898541	yes	144	yes	1.6,1.7	yes
+zal.musicmanager	Music Manager (Continued)	3220120457	yes	145	yes	1.5,1.6,1.7	yes
+andromeda.facialanimation	Nice Facial Animation	3302079637	yes	146	yes	1.5,1.6,1.7	yes
+mlie.showmeyourhands	Show Me Your Hands	2475965842	yes	147	yes	1.1,1.2,1.3,1.4,1.5,1.6	yes
+andromeda.nicehands	Nice Hands Retexture	3302328100	yes	148	yes	1.4,1.5,1.6,1.7	yes
+andromeda.nicehealthtab	Nice Health Tab	3328729902	yes	149	yes	1.5,1.6,1.7	yes
+andromeda.nicebilltab	Nice Bill Tab	3520130671	yes	150	yes	1.5,1.6,1.7	yes
+andromeda.niceinventorytab	Nice Inventory Tab	3609897594	yes	151	yes	1.6,1.7	yes
+andromeda.niceplantsmenu	Nice Plants Menu	3685058533	yes	152	yes	1.6,1.7	yes
+unon.noburnmetal	No Burn Metal	1923990111	yes	153	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+vesper.notmyfault	Not My Fault	2870045856	yes	154	yes	1.3,1.4,1.5,1.6	yes
+nialation.pawsofinterest	Paws Of Interest [ Xenotype Mod ]	3764120996	yes	155	yes	1.6,1.7	yes
+battlemage64.peoplecanchange	People Can Change	1257561308	yes	156	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6	yes
+mehni.pickupandhaul	Pick Up And Haul	1279012058	yes	157	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6	yes
+diddily.poweralerts	Power Alerts	1664714758	yes	158	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6	yes
+botchjob.possessedweapons	Possessed Weapons	2982391372	yes	159	yes	1.4,1.5,1.6	yes
+pphhyy.demigryphsmod	pphhyy's Demigryphs Continued	3540496928	yes	160	yes	1.6,1.7	yes
+dawnsglow.qualcolor	Quality Colors (Continued)	3513846773	yes	161	yes	1.2,1.3,1.4,1.5,1.6,1.7	yes
+hatti.qualitybuilder	QualityBuilder Unofficial 1.6	3512466087	yes	162	yes	1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+woolstrand.realruins	Real Ruins	1552146295	yes	163	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+vanillaexpanded.vaewaste	Vanilla Animals Expanded — Waste Animals	2962126499	yes	164	yes	1.7,1.5,1.6	yes
+local.regrowth2.wastelands	ReGrowth 2: Wastelands (Continued)	3803650100	yes	165	yes	1.6	yes
+silvanalig.colonycouncil	Rimfolk	Rimworld Helper	yes	166	yes	1.6,1.7	yes
+arandomkiwi.rimsaves	RimSaves	1713367505	yes	167	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6	yes
+rimsenal.evp	Rimsenal - Augmented Vanilla Pack	849231601	yes	168	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+rimsenal.hair	Rimsenal - Hair pack	725949967	yes	169	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+rimsenal.security	Rimsenal - Security Pack	736139206	yes	170	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+rimsenal.storyteller	Rimsenal - Storytellers Pack	725952322	yes	171	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+rimsenal.federation	Rimsenal Faction Pack - Federation	736172213	yes	172	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+rimsenal.feral	Rimsenal Faction Pack - Feral	736207111	yes	173	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+rimsenal.spacer	Rimsenal Faction Pack - Spacer	3086137468	yes	174	yes	1.4,1.5,1.6,1.7	yes
+rimsenal.sophian	Rimsenal Style Pack - Sophian	2655926624	yes	175	yes	1.3,1.4,1.5,1.6,1.7	yes
+rimsenal.urb	Rimsenal Style Pack - Urbworld	2908039338	yes	176	yes	1.4,1.5,1.6,1.7	yes
+rimsenal.askbarn	Rimsenal Xenotype Pack - Askbarn	2918812858	yes	177	yes	1.4,1.5,1.6,1.7	yes
+rimsenal.core	Rimsenal: Murder diversified	725947920	yes	178	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+memegoddess.runandgun	RunAndGun - Continued	3562365100	yes	179	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+pphhyy.sanguinaryanimals	Sanguinary Animals Reborn	3521331935	yes	180	yes	1.6	yes
+vanillaexpanded.vbrewe	Vanilla Brewing Expanded	2186560858	yes	181	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vbrewecandt	Vanilla Brewing Expanded - Coffees and Teas	2275449762	yes	182	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vfeproduction	Vanilla Furniture Expanded - Production	1880253632	yes	183	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vfepower	Vanilla Furniture Expanded - Power	2062943477	yes	184	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vfecore	Vanilla Furniture Expanded	1718190143	yes	185	yes	1.7,1.5,1.6	yes
+owlchemist.scatteredflames	Scattered Flames	3261108120	yes	186	yes	1.3,1.4,1.5,1.6	yes
+mlie.seasonalweather	Seasonal Weather (Continued)	2045114229	yes	187	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+alias.setupcamp	Set Up Camp	3234938357	yes	188	yes	1.5,1.6,1.7	yes
+petetimessix.simplesidearms	Simple sidearms	927155256	yes	189	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6	yes
+memegoddess.smartmedicine	Smart Medicine - Continued	3526251680	yes	190	yes	1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+weilbyte.snapout	Snap Out!	1319782555	yes	191	yes	1.1,1.0,1.2,1.3,1.4,1.5,1.6	yes
+marvinkosh.sometimesraidsgowrong	Sometimes Raids Go Wrong	1551336515	yes	192	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6	yes
+fluffy.stuffedfloors	Stuffed Floors	3245941356	yes	193	yes	1.5,1.6,1.7	yes
+neronix17.toolbox	Tabula Rasa	1660622094	yes	194	yes	1.3,1.4,1.5,1.6,1.7	yes
+orion.therapy	Therapy (Continued)	3509488682	yes	195	yes	1.6,1.7	yes
+vanillaexpanded.vfearchitect	Vanilla Furniture Expanded - Architect	2608762624	yes	196	yes	1.7,1.5,1.6	yes
+gt.sam.tilledsoil	Tilled Soil	725747149	yes	197	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+timmyliang.tradehelper	TradeHelper	2113372560	yes	198	yes	1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+superniquito.traiticons	Trait and Backstory Icons	2873494547	yes	199	yes	1.3,1.4,1.5,1.6,1.7	yes
+keno.tuckedfurniture	Tucked Furniture	3808739466	yes	200	yes	1.6,1.7	yes
+marvinkosh.ughyougotme	Ugh You Got Me	1542424705	yes	201	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+shunter.uniqueweaponsunbound	Unique Weapons Unbound	3707263149	yes	202	yes	1.6,1.7	yes
+vanillaexpanded.vanillaanimalsexpanded	Vanilla Animals Expanded	2871933948	yes	203	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vaeendandext	Vanilla Animals Expanded — Endangered	2366589898	yes	204	yes	1.6,1.7,1.5	yes
+vanillaexpanded.vaeroy	Vanilla Animals Expanded — Royal Animals	2858079457	yes	205	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vappe	Vanilla Apparel Expanded	1814987817	yes	206	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vaeaccessories	Vanilla Apparel Expanded — Accessories	2521176396	yes	207	yes	1.7,1.5,1.6	yes
+vanillaexpanded.varme	Vanilla Armour Expanded	1814988282	yes	208	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vcookestews	Vanilla Cooking Expanded - Stews	2134312965	yes	209	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vcookesushi	Vanilla Cooking Expanded - Sushi	2158539170	yes	210	yes	1.7,1.6	yes
+vanillaexpanded.vee	Vanilla Events Expanded	1938420742	yes	211	yes	1.7,1.5,1.6	yes
+oskarpotocki.vfe.classical	Vanilla Factions Expanded - Classical	2787850474	yes	212	yes	1.7,1.5,1.6	yes
+oskarpotocki.vfe.deserters	Vanilla Factions Expanded - Deserters	3025493377	yes	213	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vfeart	Vanilla Furniture Expanded - Art	1968134023	yes	214	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vfefarming	Vanilla Furniture Expanded - Farming	1957158779	yes	215	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vfemedical	Vanilla Furniture Expanded - Medical Module	1718191613	yes	216	yes	1.6,1.7,1.5	yes
+vanillaexpanded.vfesecurity	Vanilla Furniture Expanded - Security	1845154007	yes	217	yes	1.5,1.6,1.7	yes
+vanillaexpanded.vfespacer	Vanilla Furniture Expanded - Spacer Module	2028381079	yes	218	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vchemfuele	Vanilla Chemfuel Expanded	2792917473	yes	219	yes	1.6,1.7,1.5	yes
+vanillaexpanded.vgeneticse	Vanilla Genetics Expanded	2801160906	yes	220	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vhe	Vanilla Hair Expanded	1888705256	yes	221	yes	1.7,1.5,1.6	yes
+neronix17.retexture.vanillahair	Vanilla Hair Retextured	2748834409	yes	222	yes	1.3,1.4,1.5,1.6,1.7	yes
+vanillaexpanded.ideo.iconsandsymbols	Vanilla Ideology Expanded - Icons and Symbols	2552609458	yes	223	yes	1.7,1.5,1.6	yes
+vanillaexpanded.ideo.relicsandartifacts	Vanilla Ideology Expanded - Relics and Artifacts	2564895018	yes	224	yes	1.7,1.5,1.6	yes
+vanillaexpanded.viesas	Vanilla Ideology Expanded - Splits and Schisms	2573138902	yes	225	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vnutriente	Vanilla Nutrient Paste Expanded	2920385763	yes	226	yes	1.7,1.5,1.6	yes
+vanillaexpanded.outposts	Vanilla Outposts Expanded	2688941031	yes	227	yes	1.6,1.7,1.5	yes
+vanillaexpanded.vexploratione	Vanilla Landmarks Expanded	3656316229	yes	228	yes	1.6,1.7	yes
+regrowth.botr.boilingforest	ReGrowth: Boiling	2981924439	yes	229	yes	1.5,1.6,1.7	yes
+vanillaexpanded.vplantse	Vanilla Plants Expanded	2134308522	yes	230	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vplantsemore	Vanilla Plants Expanded - More Plants	2748889667	yes	231	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vplantsemushrooms	Vanilla Plants Expanded - Mushrooms	3006389281	yes	232	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vplantsesucculents	Vanilla Plants Expanded - Succulents	2198652536	yes	233	yes	1.7,1.5,1.6	yes
+vanillaracesexpanded.customicons	Vanilla Races Expanded - Custom Icons	2917311689	yes	234	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vanillasocialinteractionsexpanded	Vanilla Social Interactions Expanded	2439736083	yes	235	yes	1.7,1.5,1.6	yes
+zal.vseigorinvader	Vanilla Storytellers Expanded - Igor Invader (Continued)	3582195822	yes	236	yes	1.5,1.6	yes
+vse.perrypersistent	Vanilla Storytellers Expanded - Perry Persistent	2149702069	yes	237	yes	1.7,1.5,1.6	yes
+vanillaexpanded.temperature	Vanilla Temperature Expanded	3202046258	yes	238	yes	1.7,1.5,1.6	yes
+vanillaexpanded.helixiengas	Vanilla Helixien Gas Expanded	2877699803	yes	239	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vtexvariations	Vanilla Textures Expanded - Variations	2493234474	yes	240	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vanillatraitsexpanded	Vanilla Traits Expanded	2296404655	yes	241	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vweg	Vanilla Weapons Expanded - Grenades	2194472657	yes	242	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vwenl	Vanilla Weapons Expanded - Non-Lethal	2454918354	yes	243	yes	1.7,1.5,1.6	yes
+sirvan.mwretextured	Van's Retexture : Melee Weapons	2922441211	yes	244	yes	1.4,1.5,1.6	yes
+seohyeon.yart	Yet Another Research Tree (YART)	3745434121	yes	245	yes	1.6,1.7	yes
+zhuma.xenotypesummary	Xenotype Summary	3710012135	yes	246	yes	1.6,1.7	yes
+memegoddess.tdsbugfixes	TDS Bug Fixes - Continued	3529433984	yes	247	yes	1.4,1.5,1.6,1.7	yes
+sr.modrimworld.factionalwarcontinued	[SR]Factional War (fork)	3423264477	yes	248	yes	1.2,1.3,1.4,1.5,1.6	yes
+multimind.framework	MultiMind Framework	3804966993	yes	249	yes	1.6,1.7	yes
+multimind.conjoinedtwins	Conjoined Twins	3808663984	yes	250	yes	1.6,1.7	yes
+ionfrigate12345.diplomaticmarriageplus	Diplomatic Marriage +	3222768517	yes	251	yes	1.5,1.6	yes
+jaeger972.factionterritories	Faction Territories and Vassalage	3626725895	yes	252	yes	1.6	yes
+themoonitself.pokeworld	PokéWorld Updated [1.6] [ALPHA]	3540803945	yes	253	yes	1.6	yes
+forti.rimmarket	RimMarket	3817820660	yes	254	yes	1.6,1.7	yes
+fuu.bloodanimations	Blood Animations	3228047321	yes	255	yes	1.4,1.5,1.6,1.7	yes
+andromeda.usefulmarks	Useful Marks	3506573327	yes	256	yes	1.5,1.6,1.7	yes
+vanillaexpanded.basegeneration	Vanilla Base Generation Expanded	3209927822	yes	257	yes	1.7,1.5,1.6	yes
+local.moredoorvariants	[DG]More Door Variants	3832293718	yes	258	yes	1.6,1.7	yes
+m00nl1ght.mappreview	Map Preview	2800857642	yes	259	yes	1.3,1.4,1.5,1.6,1.7	yes
+madarauchiha.reminders	Reminders	2105399990	yes	260	yes	1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+memegoddess.replacestuff	Replace Stuff - Continued	3526354009	yes	261	yes	1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+dubwise.rimefeller	Rimefeller	1321849735	yes	262	yes	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+shunter.medicwarcasket	Medic Warcasket	3835096426	yes	263	yes	1.6,1.7	yes
+vanillaexpanded.vanomalyeinsanity	Vanilla Anomaly Expanded - Insanity	3342412435	yes	264	yes	1.5,1.6,1.7	yes
+vanillaexpanded.vanillaaspirationsexpanded	Vanilla Aspirations Expanded	3268401022	yes	265	yes	1.5,1.6,1.7	yes
+vanillaexpanded.vanillabackstoriesexpanded	Vanilla Backstories Expanded	2861806869	yes	266	yes	1.6,1.7,1.5	yes
+ve.vanillachristmasexpanded	Vanilla Christmas Expanded	3380695249	yes	267	yes	1.5,1.6,1.7	yes
+vanillaexpanded.vcookehaute	Vanilla Cooking Expanded - Haute	3455694362	yes	268	yes	1.5,1.6,1.7	yes
+vanillaexpanded.vcefaddon	Vanilla Fishing Expanded - Fishing Treasures AddOn	2468543398	yes	269	yes	1.6,1.7,1.5	yes
+vanillaexpanded.vanillafoodvarietyexpanded	Vanilla Food Variety Expanded	3334272487	yes	270	yes	1.5,1.6,1.7	yes
+vanillaexpanded.vfefactory	Vanilla Furniture Expanded - Factory	3686924415	yes	271	yes	1.6,1.7	yes
+vanillaexpanded.gravship2	Vanilla Gravship Expanded - Chapter 2	3799737423	yes	272	yes	1.6,1.7	yes
+vanillaexpanded.ideo.dryads	Vanilla Ideology Expanded - Dryads	2720631512	yes	273	yes	1.7,1.5,1.6	yes
+vanillaexpanded.viehar	Vanilla Ideology Expanded - Hats and Rags	2567387768	yes	274	yes	1.7,1.5,1.6	yes
+vanillaexpanded.ideo.sophianstyle	Vanilla Ideology Expanded - Sophian Style	3194606539	yes	275	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vpersonaweaponse	Vanilla Persona Weapons Expanded	2826922787	yes	276	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vpeflowers	Vanilla Plants Expanded - Flowers	3748351639	yes	277	yes	1.6,1.7	yes
+vanillaexpanded.vpe.hemosage	Vanilla Psycasts Expanded - Hemosage	2990596478	yes	278	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vpe.puppeteer	Vanilla Psycasts Expanded - Puppeteer	3033779606	yes	279	yes	1.7,1.5,1.6	yes
+vanillaquestsexpanded.ancients	Vanilla Quests Expanded - Ancients	3618306875	yes	280	yes	1.6,1.7	yes
+vanillaquestsexpanded.cryptoforge	Vanilla Quests Expanded - Cryptoforge	3461526070	yes	281	yes	1.5,1.6,1.7	yes
+vanillaquestsexpanded.deadlife	Vanilla Quests Expanded - Deadlife	3497226454	yes	282	yes	1.5,1.6,1.7	yes
+vanillaquestsexpanded.dronefactory	Vanilla Quests Expanded - Drone Factory	3733951755	yes	283	yes	1.6,1.7	yes
+vanillaquestsexpanded.generator	Vanilla Quests Expanded - The Generator	3411401573	yes	284	yes	1.5,1.6,1.7	yes
+vanillaracesexpanded.archon	Vanilla Races Expanded - Archon	3067715093	yes	285	yes	1.7,1.5,1.6	yes
+vanillaracesexpanded.fungoid	Vanilla Races Expanded - Fungoid	3042690053	yes	286	yes	1.7,1.5,1.6	yes
+vanillaracesexpanded.genie	Vanilla Races Expanded - Genie	2901424072	yes	287	yes	1.7,1.5,1.6	yes
+vanillaracesexpanded.highmate	Vanilla Races Expanded - Highmate	2995385834	yes	288	yes	1.7,1.5,1.6	yes
+vanillaracesexpanded.hussar	Vanilla Races Expanded - Hussar	2893586390	yes	289	yes	1.7,1.5,1.6	yes
+vanillaracesexpanded.lycanthrope	Vanilla Races Expanded - Lycanthrope	3114453100	yes	290	yes	1.7,1.5,1.6	yes
+vanillaracesexpanded.phytokin	Vanilla Races Expanded - Phytokin	2927323805	yes	291	yes	1.7,1.5,1.6	yes
+vanillaracesexpanded.pigskin	Vanilla Races Expanded - Pigskin	3164798809	yes	292	yes	1.7,1.5,1.6	yes
+vanillaracesexpanded.sanguophage	Vanilla Races Expanded - Sanguophage	2963116383	yes	293	yes	1.7,1.5,1.6	yes
+vanillaracesexpanded.saurid	Vanilla Races Expanded - Saurid	2880990495	yes	294	yes	1.7,1.5,1.6	yes
+vanillaracesexpanded.starjack	Vanilla Races Expanded - Starjack	3531912428	yes	295	yes	1.6,1.7	yes
+vanillaracesexpanded.waster	Vanilla Races Expanded - Waster	2983471725	yes	296	yes	1.7,1.5,1.6	yes
+vanillaexpanded.recycling	Vanilla Recycling Expanded	3155781848	yes	297	yes	1.7,1.5,1.6	yes
+vanillastorytellersexpanded.winstonwave	Vanilla Storytellers Expanded - Winston Waves	3215569151	yes	298	yes	1.6,1.7,1.5	yes
+vanillaexpanded.vanillatradingexpanded	Vanilla Trading Expanded	2785616901	yes	299	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vwebf	Vanilla Weapons Expanded - Bioferrite	3287469135	yes	300	yes	1.5,1.6,1.7	yes
+vanillaexpanded.vwems	Vanilla Weapons Expanded - Makeshift	2419690698	yes	301	yes	1.7,1.5,1.6	yes
+vanillaexpanded.vwetb	Vanilla Weapons Expanded - Tribal	2454918552	yes	302	yes	1.7,1.5,1.6	yes
+electricbraziers.papercrane.rw	[1001] Electric Braziers	2880247055	no		no	1.4,1.5,1.6,1.7	yes
+mlie.stockpilestacklimit	[Abandoned] Stockpile Stack Limit (Continued)	2274678322	no		no	1.0,1.1,1.2,1.3,1.4,1.5,1.6	yes
+al9000.medievaleuropeanarmors	[DEPRECATED, GET NEW] Tastier Armory - Medieval European Armors	3029073711	no		no	1.4,1.5	no (not for 1.6 or 1.7)
+jangodsoul.simplestorage	[JDS] Simple Storage	1961098970	no		no	1.0,1.1,1.2,1.3,1.4,1.5	no (not for 1.6 or 1.7)
+og.recruit.guest	[Og] Recruit Guest	3719628649	no		no	1.6,1.7	yes
+sarg.magicalmenagerie	Alpha Mythology	1821617793	no		no	1.4,1.5	no (not for 1.6 or 1.7)
+acutus.atmosphereoverhaul.release	Atmosphere Overhaul	3830470974	no		no	1.6,1.7	yes
+mlie.bioreactor	BioReactor (Continued)	3307031939	no		no	1.0,1.1,1.2,1.3,1.4,1.5,1.6	yes
+zal.cocc	Call of Cthulhu - Cults (Continued)	3588548484	no		no	1.5,1.6	yes
+brrainz.cameraplus	Camera+	867467808	no		no	1.0,1.1,1.2,1.3,1.4,1.5,1.6	yes
+mlie.centaurs	Centaurs (Continued)	2008741820	no		no	1.0,1.1,1.2,1.3,1.4	no (not for 1.6 or 1.7)
+leo.cleanresearchsort	Clean Research Sort	3566639513	no		no	1.4,1.5,1.6,1.7	yes
+ceteam.combatextended	Combat Extended	2890901044	no		no	1.6	yes
+ceteam.combatextendedarmors	Combat Extended Armors	2798914758	no		no	1.3,1.4,1.5	no (not for 1.6 or 1.7)
+ceteam.combatextendedarmory	Combat Extended Armory	2911110083	no		no	1.4,1.5,1.6	yes
+ceteam.combatextendedattachments	Combat Extended Attachments	2850166678	no		no	1.3,1.4,1.5	no (not for 1.6 or 1.7)
+ceteam.combatextendedguns	Combat Extended Guns	1582570547	no		no	1.3,1.4,1.5	no (not for 1.6 or 1.7)
+ceteam.combatextendedmelee	Combat Extended Melee	1924933379	no		no	1.3,1.4,1.5	no (not for 1.6 or 1.7)
+n7huntsman.combatextendedshields	Combat Extended: Shields	1586351220	no		no	1.6	yes
+mlie.crusadersfaction	Crusaders Faction (Continued)	2027727791	no		no	1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+memegoddess.ctrlf	Ctrl F - Continued	3529520961	no		no	1.4,1.5,1.6,1.7	yes
+van.beasts	Dark Ages : Beasts and Monsters	3472275628	no		no	1.5,1.6,1.7	yes
+van.dacrypts	Dark Ages : Crypts and Tombs	2963826335	no		no	1.4,1.5,1.6	yes
+eldersign.dbhformedieval	DBH for Medieval	2926675339	no		no	1.4,1.5,1.6	yes
+botchjob.divineorder	Divine Order	3017163907	no		no	1.4,1.5,1.6	yes
+det.epochsincense	Epochs - Incense	3072579620	no		no	1.4,1.5,1.6	yes
+det.epochspottery	Epochs - Pottery	3092351095	no		no	1.4,1.5,1.6	yes
+vr.fantasy.biotech	Fantasy Biotech	3632363090	no		no	1.6	yes
+neronix17.forgottenrealms	Forgotten Realms - Biotech Edition	3068979395	no		no	1.4,1.5,1.6	yes
+freemapa.freewill	Free Will	2580837227	no		no	1.6	yes
+mlie.gauranlentreeexpanded	Gauranlen Tree Expanded (Continued)	3025108023	no		no	1.3,1.4,1.5,1.6	yes
+gerrymon.greekcorestyle	Gerrymon's Greekcore Style	3666883698	no		no	1.6,1.7	yes
+gmmp.fences	Gerrymon's Misc Props: Fences	3797400517	no		no	1.6,1.7	yes
+owlchemist.giddyup	Giddy-Up 2 Forked	3246108162	no		no	1.4,1.5,1.6	yes
+roolo.giddyupbattlemounts	Giddy-up! Battle Mounts	1217001091	no		no	1.0,1.1,1.2,1.3,1.4	no (not for 1.6 or 1.7)
+roolo.giddyupcaravan	Giddy-up! Caravan	1253251478	no		no	1.0,1.1,1.2,1.3,1.4	no (not for 1.6 or 1.7)
+roolo.giddyuprideandroll	Giddy-up! Ride and Roll	1331961995	no		no	1.0,1.1,1.2,1.3,1.4	no (not for 1.6 or 1.7)
+hexi.improvethisbuilding	Improve This	2785022023	no		no	1.4,1.5	no (not for 1.6 or 1.7)
+jellycreative.isekaileveling	ISEKAI RPG LEVELING	3657580708	no		no	1.6,1.7	yes
+jecrell.jecstools	JecsTools	932008009	no		no	1.0,1.1,1.2,1.3,1.4,1.5	no (not for 1.6 or 1.7)
+concrete.longerdays	Longer Days	3816845390	no		no	1.6	yes
+pyrce.mass.graves.continued	Mass Graves (Continued)	3270803948	no		no	1.5	no (not for 1.6 or 1.7)
+serek.fantasyquestrewardsretexture	Medieval Fantasy Quest Rewards Retexture	2978904831	no		no	1.4,1.5	no (not for 1.6 or 1.7)
+botchjob.medievalfantasyquestrewards	Medieval Fantasy Themed Quest Rewards	2955864975	no		no	1.4,1.5,1.6	yes
+botchjob.medievalfantasyrareresources	Medieval Fantasy Themed Rare Resources	2942661554	no		no	1.4,1.5,1.6	yes
+botchjob.medievalfantasythemedrelicquests	Medieval Fantasy Themed Relic Quests	3035624471	no		no	1.4,1.5,1.6	yes
+rince.gaulishgojuice	Medieval Go-juice	2969927060	no		no		yes
+joedaly.medmeds.mo	Medieval Medicines Medieval Overhaul Edition	2883228057	no		no	1.4,1.5,1.6,1.7	yes
+dankpyon.medieval.overhaul	Medieval Overhaul	3219596926	no		no	1.4,1.5,1.6	yes
+jijiang.medieval.overhaul.patch	Medieval Overhaul : LWM's Deep Storage Patches	3027668458	no		no	1.4,1.5	no (not for 1.6 or 1.7)
+phant0m5.modeepveinmines	Medieval Overhaul Deep Vein Mining	2942453140	no		no	1.4,1.5,1.6,1.7	yes
+mewn.extra.signs	Medieval Overhaul Extra Signs	2967087032	no		no	1.4,1.5,1.6,1.7	yes
+gayuki.medievaloverhaulairvehicles	Medieval Overhaul: Air Vehicles	3302419308	no		no	1.4,1.5,1.6	yes
+pphhyy.barbariansmosubmod	Medieval Overhaul: Barbarians	3216459199	no		no	1.4,1.5,1.6	yes
+dankpyon.medieval.overhaul.house.roxmont	Medieval Overhaul: House Roxmont	3526042587	no		no	1.5,1.6	yes
+accurex.medievalempireoverhaul	Medieval Overhaul: Royalty	2646321064	no		no	1.3,1.4,1.5,1.6,1.7	yes
+accurex.medievaloverhaul.stuff	Medieval Overhaul: Toggleable Stuff	2898440531	no		no	1.4,1.5,1.6,1.7	yes
+tinda.medieval.tailor.continued	Medieval Tailor Continued	3512201406	no		no	1.5,1.6,1.7	yes
+athelas.medievaltotalrim.animals	Medieval Total Rim: Animals	3806262056	no		no	1.6,1.7	yes
+athelas.medievaltotalrim.armory	Medieval Total Rim: Armory	3806247184	no		no	1.6,1.7	yes
+athelas.medievaltotalrim.core	Medieval Total Rim: Core	3806242927	no		no	1.6,1.7	yes
+athelas.medievaltotalrim.russia	Medieval Total Rim: Grand Principality of Muscow	3806258934	no		no	1.6,1.7	yes
+athelas.medievaltotalrim.hediff	Medieval Total Rim: Pre-Industrial Prosthetics	3806277474	no		no	1.6,1.7	yes
+athelas.medievaltotalrim.events	Medieval Total Rim: Quests and Incidents	3806263602	no		no	1.6,1.7	yes
+athelas.medievaltotalrim.iberia	Medieval Total Rim: Reconquista	3806259927	no		no	1.6,1.7	yes
+athelas.medievaltotalrim.byzantium	Medieval Total Rim: The Eastern Roman Empire	3806255936	no		no	1.6,1.7	yes
+athelas.medievaltotalrim.hre	Medieval Total Rim: The Holy Roman Empire	3806257340	no		no	1.6,1.7	yes
+athelas.medievaltotalrim.france	Medieval Total Rim: The Kingdom of France	3806249061	no		no	1.6,1.7	yes
+athelas.medievaltotalrim.poland	Medieval Total Rim: The Kingdom of Poland	3806251054	no		no	1.6,1.7	yes
+athelas.medievaltotalrim.mongols	Medieval Total Rim: The Mongolian Khaganate	3806253198	no		no	1.6,1.7	yes
+athelas.medievaltotalrim.turks	Medieval Total Rim: The Ottoman Empire	3806254466	no		no	1.6,1.7	yes
+kongkim.medievalwalls	Medieval Walls	2883913520	no		no	1.2,1.3,1.4,1.5,1.6	yes
+andromeda.milkyway	Milky Way	3773448562	no		no	1.6,1.7	yes
+serek.misctrainingmedievalretexture	Misc. Training Medieval Retexture	3271602770	no		no	1.4,1.5,1.6	yes
+mlie.modmanager	Mod Manager (Continued)	3306654341	no		no	1.0,1.1,1.2,1.3,1.4,1.5,1.6	yes
+oblitus.mylittleplanet	My Little Planet	1117406550	no		no	0.19,1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+andromeda.niceresearchtab	Nice Research Tab	3773496046	no		no	1.6,1.7	yes
+neronix17.outland.core	Outland - Core	2755501685	no		no	1.3,1.4,1.5,1.6,1.7	yes
+neronix17.outland.eastbornempire	Outland - Eastborn Empire	2755502128	no		no	1.3,1.4,1.5,1.6,1.7	yes
+neronix17.outland.furnitureanddecor	Outland - Furniture & Decor	2897435739	no		no	1.4,1.5,1.6,1.7	yes
+neronix17.outland.genetics	Outland - Genetics	2910172297	no		no	1.4,1.5,1.6,1.7	yes
+neronix17.outland.morefloors	Outland - More Floors	2873199953	no		no	1.4,1.5,1.6,1.7	yes
+neronix17.outland.motzcoalition	Outland - Motz Coalition	2839780788	no		no	1.3,1.4,1.5,1.6,1.7	yes
+neronix17.outland.redburnpact	Outland - Redburn Pact	2839780900	no		no	1.3,1.4,1.5,1.6,1.7	yes
+neronix17.outland.terrain	Outland - Terrain	2850840457	no		no	1.3,1.4,1.5,1.6,1.7	yes
+neronix17.outland.vathunnobles	Outland - Vathun Nobles	3024247203	no		no	1.4,1.5,1.6,1.7	yes
+peppsen.pmusic	P-Music	725130005	no		no	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+regrowth.botr.extinctanimalspack	ReGrowth: Extinct Animals	2266685892	no		no	1.2,1.3,1.4,1.5	no (not for 1.6 or 1.7)
+dakkpasserida.gauranlenreplant	Replantable Gauranlen Trees	2586767283	no		no	1.3,1.4,1.5	no (not for 1.6 or 1.7)
+mlie.researchtree	Research Tree (Continued)	3030499331	no		no	1.0,1.1,1.2,1.3,1.4,1.5,1.6	yes
+ogam.rimedieval	Rimedieval	2516523040	no		no	1.2,1.3,1.4,1.5,1.6	yes
+sierra.rf.housedoyle	RimFantasy - House Doyle	2903293603	no		no	1.4,1.5,1.6,1.7	yes
+sierra.rf.medievaloverhaul	RimFantasy - Medieval Overhaul Edition	2836791007	no		no	1.4,1.5,1.6,1.7	yes
+sindre0830.rimnauts2	RimNauts 2	2880599514	no		no	1.4,1.5	no (not for 1.6 or 1.7)
+cj.rimtalk	RimTalk	3551203752	no		no	1.5,1.6,1.7	yes
+concrete.rimtalkchatorders	RimTalk - Chat Orders & Colony Mind	3816842855	no		no	1.6	yes
+ruaji.rimtalkpromptenhance	RimTalk - Enhanced Prompt and Announcement	3628795263	no		no	1.6,1.7	yes
+sanguo.rimtalk.expandactions	RimTalk - Expand Actions (English)	3816848569	no		no	1.4,1.5,1.6	yes
+cj.rimtalk.expandmemory	RimTalk - Expand Memory (English)	3816853314	no		no	1.6	yes
+maiya.rimtalkdynamiccolors	RimTalk DynamicColors 边缘世谭-言出多彩	3628773219	no		no	1.6,1.7	yes
+saltgin.rimtalkeventmemory	RimTalk Event+	3612632140	no		no	1.5,1.6,1.7	yes
+alus.rimtalk.lucidchronicle	RimTalk Lucid Chronicle	3749797638	no		no	1.5,1.6,1.7	yes
+oceantest5.rimtalk.enhance	RimTalk.DisplayOptimization	3629456304	no		no	1.6,1.7	yes
+rp.rimtalk.personadirector	RimTalk: Persona Director	3619548407	no		no	1.6	yes
+sierra.rt.generaltraits	RimTraits - General Traits	2206957172	no		no	1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+sierra.rt.medievaltalents	RimTraits - Medieval Talents	1916352291	no		no	1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+sierra.rt.vanillatraitcolors	RimTraits - Vanilla Trait Colors	2244594116	no		no	1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
+sandy.rpgstyleinventory	RPG Style Inventory	1561221991	no		no	1.0,1.1,1.2,1.3,1.4,1.5,1.6	yes
+sicefe.senseofdepth	Sense Of Depth For Tall Buildings	3246956515	no		no	1.5,1.6	yes
+uuugggg.sharetheload	Share The Load	1356838246	no		no	1.0,1.1,1.2,1.3,1.4	no (not for 1.6 or 1.7)
+owlchemist.simplefx.smoke2	Simple FX: Smoke	3261314247	no		no	1.3,1.4,1.5,1.6	yes
+owlchemist.simplefx.splashes	Simple FX: Splashes	3261109179	no		no	1.4,1.5,1.6	yes
+owlchemist.simplefx.vapor	Simple FX: Vapor	2886571275	no		no	1.4	no (not for 1.6 or 1.7)
+pb3n.simpleleadership	Simple Leadership	3668307448	no		no	1.6,1.7	yes
+owlchemist.smartfarming	Smart Farming	3220129183	no		no	1.3,1.4,1.5,1.6	yes
+det.sbdelights	Stoneborn - Delights	3106413957	no		no	1.5,1.6	yes
+det.dwarvenstyle	Stoneborn - Dwarven Style Pack	3172496453	no		no	1.4,1.5,1.6	yes
+trickity.seal.spirits	T's Seal the Spirits : Tribal Anomaly	3228158975	no		no	1.5,1.6,1.7	yes
+al9000.tastycore	Tasty Armory - Core	3469863391	no		no	1.5,1.6,1.7	yes
+al9000.fireandsteel	Tasty Armory - Fire and Steel	3469863838	no		no	1.5,1.6,1.7	yes
+al9000.highmedieval	Tasty Armory - High Medieval	3480089301	no		no	1.5,1.6,1.7	yes
+al9000.shiningarmor	Tasty Armory - In Shining Armor	3482266407	no		no	1.5,1.6,1.7	yes
+al9000.sengoku	Tasty Armory - Sengoku	3494429497	no		no	1.5,1.6,1.7	yes
+al9000.tastysteppe	Tasty Armory - Steppe Warriors	3472989392	no		no	1.5,1.6,1.7	yes
+ods.tavern	Tavern	3775694305	no		no	1.6,1.7	yes
+botchjob.profaned	The Profaned	3202008037	no		no	1.4,1.5,1.6	yes
+serek.thewildfields	The Wild Fields - apparel and weapons	2941661586	no		no	1.4,1.5,1.6	yes
+lumi.throneplus	Thrones plus	2290159596	no		no	1.2,1.3,1.4,1.5,1.6	yes
+princeofpluto.vehicles.trains	Trains of the Rim	3530446424	no		no	1.6	yes
+tribalcrib.mod	Tribal Crib	2881720620	no		no	1.4,1.5	no (not for 1.6 or 1.7)
+sindre0830.universum	Universum	2920558019	no		no	1.4,1.5	no (not for 1.6 or 1.7)
+mlie.usethisinstead	Use This Instead	3396308787	no		no	1.4,1.5,1.6	yes
+oskarpotocki.vanillaexpanded.royaltypatches	Vanilla Expanded - Royalty Patches	2260012940	no		no	1.1,1.2,1.3,1.4	no (not for 1.6 or 1.7)
+oskarpotocki.vfe.mechanoid	Vanilla Factions Expanded - Mechanoids	2329011599	no		no	1.3,1.4,1.5	no (not for 1.6 or 1.7)
+oskarpotocki.vanillafactionsexpanded.medievalmodule	Vanilla Factions Expanded - Medieval	2023513450	no		no	1.0,1.1,1.2,1.3,1.4	no (not for 1.6 or 1.7)
+oskarpotocki.vfe.vikings	Vanilla Factions Expanded - Vikings	2231295285	no		no	1.2,1.3,1.4	no (not for 1.6 or 1.7)
+stfau.vanillaoutpostmedievalpatch16	Vanilla Outpost Expanded Medieval Overhaul Patch	3744640103	no		no	1.4,1.5,1.6	yes
+vse.empressevil	Vanilla Storytellers Expanded - Empress Evil	2149702528	no		no	1.1,1.2,1.3,1.4	no (not for 1.6 or 1.7)
+vse.freyafierce	Vanilla Storytellers Expanded - Freya Fierce	2231483525	no		no	1.2,1.3,1.4	no (not for 1.6 or 1.7)
+vse.igorinvader	Vanilla Storytellers Expanded - Igor Invader	2249879548	no		no	1.2,1.3,1.4	no (not for 1.6 or 1.7)
+oskarpotocki.vanillavehiclesexpandedtier3	Vanilla Vehicles Expanded - Tier 3	3047892432	no		no	1.4,1.5,1.6	yes
+oskarpotocki.vanillavehiclesexpandedupgrades	Vanilla Vehicles Expanded - Upgrades	3302208420	no		no	1.5,1.6,1.7	yes
+murmur.walllight	Wall Light	1423699208	no		no	1.1,1.2,1.3,1.4,1.5	no (not for 1.6 or 1.7)
+xercaine.walltelevisions	Wall Televisions	3582096423	no		no	1.6	yes
+tammybee.whereismyweapon	Where is my weapon?	1539028008	no		no	1.0,1.1,1.2,1.3,1.4	no (not for 1.6 or 1.7)
+codeoptimist.jobsofopportunity	While You're Up (with add-on for PUAH)	2034960453	no		no	1.1,1.2,1.3,1.4,1.5	no (not for 1.6 or 1.7)
+m00nl1ght.worldtechlevel	World Tech Level	3414187030	no		no	1.5,1.6	yes

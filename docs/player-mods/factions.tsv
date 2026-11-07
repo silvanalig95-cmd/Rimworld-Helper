@@ -1,0 +1,168 @@
+defName	mod	active	label	techLevel	hidden	permanentEnemy	basicMemberKind
+Stagz_WaywardMerren	arquebus.stagzmerfolk	yes	wayward merren	Neolithic	true		Stagz_Ariel
+BA_Faction_Byzantine	athelas.medievaltotalrim.byzantium	no	Eastern Roman Empire	Medieval			
+BA_MedievalPlayer_Constantinople	athelas.medievaltotalrim.byzantium	no	Escapees from Constantinople	Medieval			BA_Peasant_Byzantine
+BA_Faction_Rogue_Teutonic	athelas.medievaltotalrim.core	no	the Teutonic order	Medieval	false	true	
+BA_Faction_French	athelas.medievaltotalrim.france	no	Kingdom of France	Medieval			
+BA_MedievalPlayer_Knight	athelas.medievaltotalrim.france	no	New Chivalrous Adventure	Medieval			BA_Elite_Cavalry_French
+BA_Faction_German	athelas.medievaltotalrim.hre	no	Holy Roman Empire	Medieval			
+BA_MedievalPlayer_Guild	athelas.medievaltotalrim.hre	no	A New Guild	Medieval			BA_Noble_Civilian_German
+BA_Faction_Moorish	athelas.medievaltotalrim.iberia	no	Almohad Caliphate	Medieval			
+BA_Faction_Portuguese	athelas.medievaltotalrim.iberia	no	Kingdom of Portugal	Medieval			
+BA_Faction_Spanish	athelas.medievaltotalrim.iberia	no	Kingdom of Spain	Medieval			
+BA_MedievalPlayer_Iberian_Muslim	athelas.medievaltotalrim.iberia	no	New Iberian Muslim frontier	Medieval			BA_Swordsman_Moorish
+BA_MedievalPlayer_Reconquista	athelas.medievaltotalrim.iberia	no	New Iberian Christian frontier	Medieval			BA_Elite_Knightly_Order_Spanish
+BA_Faction_Mongolian	athelas.medievaltotalrim.mongols	no	Mongolian Khaganate	Medieval			
+BA_MedievalPlayer_Raiders	athelas.medievaltotalrim.mongols	no	Failed Raid	Medieval			BA_Ranged_Cavalry_Mongolian
+BA_Faction_Polish	athelas.medievaltotalrim.poland	no	Kingdom of Poland	Medieval			
+BA_MedievalPlayer_PolishHussar	athelas.medievaltotalrim.poland	no	New Lone Adventure	Medieval			BA_Heavy_Cavalry_Polish
+BA_MedievalPlayer_PolishOutlaw	athelas.medievaltotalrim.poland	no	New Outlaw Adventure	Medieval			BA_Elite_Musketeer_Polish
+BA_Faction_Russian	athelas.medievaltotalrim.russia	no	Grand Principality of Muscow	Medieval			
+BA_MedievalPlayer_Pilgrims	athelas.medievaltotalrim.russia	no	Northern Pilgrimage	Medieval			BA_Pilgrim_Russia
+BA_Faction_Turkish	athelas.medievaltotalrim.turks	no	Ottoman Empire	Medieval			
+BA_MedievalPlayer_Akinci	athelas.medievaltotalrim.turks	no	New Uch Beg Adventure	Medieval			BA_Elite_Archer_Turkish
+BA_MedievalPlayer_Janissary	athelas.medievaltotalrim.turks	no	New Janissary Deserter	Medieval			BA_Musketeer_Turkish
+BotchJob_DivineOrderFaction	botchjob.divineorder	no	divine order	Medieval			
+BotchJob_DivineOrderPlayerFaction	botchjob.divineorder	no	Divine Order Defectors	Medieval			BotchJob_DivineOrderDefector
+BotchJob_ProfanedFaction	botchjob.profaned	no	profaned	Medieval		true	
+BotchJob_ProfanedPlayerFaction	botchjob.profaned	no	Profaned Cursebearers	Medieval			BotchJob_ProfanedCursebearer
+DankPyon_BrigandFaction	dankpyon.medieval.overhaul	no	brigands	Medieval	true	true	
+DankPyon_Forest_Faction	dankpyon.medieval.overhaul	no	the forest	Animal	true	true	
+DankPyon_Hornets	dankpyon.medieval.overhaul	no	hornets	Animal	true	true	
+DankPyon_LoneWolf	dankpyon.medieval.overhaul	no	New Kingdom	Medieval			DankPyon_HedgeKnight
+DankPyon_MercenaryCompany	dankpyon.medieval.overhaul	no	New Mercenary Company	Medieval			DankPyon_PlayerMercenary
+DankPyon_NobleHouseCivil	dankpyon.medieval.overhaul	no	civil noble house	Medieval			
+DankPyon_NobleHouseCivil2	dankpyon.medieval.overhaul	no	civil noble house	Medieval			
+DankPyon_NobleHouseFierce	dankpyon.medieval.overhaul	no	fierce noble house	Medieval			
+DankPyon_NobleHouseSavage	dankpyon.medieval.overhaul	no	savage noble house	Medieval		true	
+DankPyon_PlayerKingdom	dankpyon.medieval.overhaul	no	New Kingdom	Medieval			DankPyon_Subject
+DankPyon_ShadowSect	dankpyon.medieval.overhaul	no	Cultists	Medieval	true	true	
+DankPyon_SnakeCave_Faction	dankpyon.medieval.overhaul	no	cave snakes	Animal	true	true	
+DankPyon_UlrikFaction	dankpyon.medieval.overhaul	no	knights of ulrik	Medieval	true	false	
+DankPyon_Witch_Faction	dankpyon.medieval.overhaul	no	witch's charmed	Animal	true	true	
+DankPyon_LoneRoxKnight	dankpyon.medieval.overhaul.house.roxmont	no	New Kingdom	Medieval			DankPyon_HedgeKnightRox
+DankPyon_NobleHouseRoxmont	dankpyon.medieval.overhaul.house.roxmont	no	civil noble house	Medieval			
+OutlanderRoughStoneborn	det.stoneborn	yes	stoneborn clan	Ultra			
+DevDesigner_DarkElvesFaction	devdesigner.elves.continued	yes	Dark elves	Medieval	false	false	DevDesigner_DarkElves_Penitent
+DevDesigner_DarkElvesFaction_Player	devdesigner.elves.continued	yes	dark elf coven	Medieval			DevDesigner_DarkElves_Penitent
+DevDesigner_HighElvesFaction	devdesigner.elves.continued	yes	High elves	Medieval	false	false	DevDesigner_HighElves_Penitent
+DevDesigner_HighElvesFaction_Player	devdesigner.elves.continued	yes	high elf colony	Medieval			DevDesigner_HighElves_Penitent
+DevDesigner_RoughDarkElvesFaction	devdesigner.elves.continued	yes	rough Dark elves	Medieval	false		DevDesigner_RoughDarkElves_Penitent
+DevDesigner_RoughHighElvesFaction	devdesigner.elves.continued	yes	rough High elves	Medieval	false		DevDesigner_RoughHighElves_Penitent
+DevDesigner_SavageWoodElvesFaction	devdesigner.elves.continued	yes	savage Wood elves	Medieval	false		DevDesigner_SavageWoodElves_Penitent
+DevDesigner_WoodElvesFaction	devdesigner.elves.continued	yes	Wood elves	Medieval	false	false	DevDesigner_WoodElves_Penitent
+DevDesigner_WoodElvesFaction_Player	devdesigner.elves.continued	yes	wood elf clan	Medieval			DevDesigner_WoodElves_Penitent
+Ancients	ludeon.rimworld	yes	neutral ancients	Spacer	true		
+AncientsHostile	ludeon.rimworld	yes	hostile ancients	Spacer	true	true	
+Insect	ludeon.rimworld	yes	insect geneline	Animal	true		
+Mechanoid	ludeon.rimworld	yes	mechanoid hive	Ultra	true	true	
+OutlanderCivil	ludeon.rimworld	yes	civil outlander union	Industrial			
+OutlanderRough	ludeon.rimworld	yes	rough outlander union	Industrial			
+Pirate	ludeon.rimworld	yes	pirate gang	Spacer		true	
+PlayerColony	ludeon.rimworld	yes	New Arrivals	Industrial			Colonist
+PlayerTribe	ludeon.rimworld	yes	New Tribe	Neolithic			Tribesperson
+TribeCivil	ludeon.rimworld	yes	gentle tribe	Neolithic			
+TribeRough	ludeon.rimworld	yes	fierce tribe	Neolithic			
+TribeSavage	ludeon.rimworld	yes	savage tribe	Neolithic		true	
+Entities	ludeon.rimworld.anomaly	yes	entities	Animal	true		
+HoraxCult	ludeon.rimworld.anomaly	yes	horax cult	Spacer	true	true	
+ResearchExpedition	ludeon.rimworld.anomaly	yes	Research Expedition	Industrial			Researcher
+OutlanderRoughPig	ludeon.rimworld.biotech	yes	rough pig union	Industrial			
+PirateWaster	ludeon.rimworld.biotech	yes	waster pirates	Spacer		true	
+PirateYttakin	ludeon.rimworld.biotech	yes	yttakin pirates	Spacer		true	
+Sanguophages	ludeon.rimworld.biotech	yes	sanguophages	Spacer	true		Sanguophage
+TribeRoughNeanderthal	ludeon.rimworld.biotech	yes	fierce neanderthal tribe	Neolithic			
+TribeSavageImpid	ludeon.rimworld.biotech	yes	savage impid tribe	Neolithic		true	
+Beggars	ludeon.rimworld.ideology	yes	beggars	Neolithic	true		Beggar
+CannibalPirate	ludeon.rimworld.ideology	yes	cannibal pirate gang	Spacer		true	
+NudistTribe	ludeon.rimworld.ideology	yes	nudist tribe	Neolithic		false	
+Pilgrims	ludeon.rimworld.ideology	yes	pilgrims	Neolithic	true		PovertyPilgrim
+TribeCannibal	ludeon.rimworld.ideology	yes	cannibal tribe	Neolithic		true	
+GravshipCrew	ludeon.rimworld.odyssey	yes	gravship crew	Industrial			CrewMember
+Salvagers	ludeon.rimworld.odyssey	yes	salvagers	Spacer	true	true	
+TradersGuild	ludeon.rimworld.odyssey	yes	traders guild	Spacer			
+Empire	ludeon.rimworld.royalty	yes	shattered empire	Ultra			
+OutlanderRefugee	ludeon.rimworld.royalty	yes	outlander refugee group	Industrial	true		Refugee
+Maal_Car_Market_Nomad	maal.gravcamp	yes	Trade Convoy	Industrial			Maal_Pawn_Car_Nomad
+Maal_Car_Nomad	maal.gravcamp	yes	Roaming Convoy	Industrial			Maal_Pawn_Car_Nomad
+Maal_Nomad	maal.gravcamp	yes	Nomadic Band	Neolithic			Maal_Pawn_Nomad
+Maal_Nomad_Market	maal.gravcamp	yes	Trading Caravan	Neolithic			Maal_Pawn_Nomad
+Crusaders	mlie.crusadersfaction	no	Soldiers of God	Spacer	false		
+Outland_Empire	neronix17.outland.eastbornempire	no	eastborn empire	Medieval			
+Outland_PlayerEmpire	neronix17.outland.eastbornempire	no	Eastborn Empire	Medieval			Outland_ImperialCitizen
+Outland_MotzCoalition	neronix17.outland.motzcoalition	no	motz coalition	Medieval			
+Outland_MotzPlayerColony	neronix17.outland.motzcoalition	no	Motz Colony	Industrial			Outland_Motz
+Outland_MotzPlayerTribe	neronix17.outland.motzcoalition	no	Motz Tribe	Medieval			Outland_MotzTribal
+Outland_GoblinoidPlayerColony	neronix17.outland.redburnpact	no	Goblinoid Colony	Industrial			Outland_Goblin
+Outland_GoblinoidPlayerTribe	neronix17.outland.redburnpact	no	Goblinoid Tribe	Medieval			Outland_GoblinTribal
+Outland_RedburnPact	neronix17.outland.redburnpact	no	redburn pact	Medieval			
+Outland_PlayerVathun	neronix17.outland.vathunnobles	no	vathun nobles	Medieval			Outland_VathunPeasant_Player
+Outland_VathunNobles	neronix17.outland.vathunnobles	no	vathun nobles	Medieval			
+RM_FactionOne	ogam.rimedieval	no	Outlanders Covenant	Industrial			
+RM_FactionThree	ogam.rimedieval	no	Adventurers guild	Industrial			
+RM_FactionTwo	ogam.rimedieval	no	Raiders Empire	Industrial			
+SettlerCivil	oskarpotocki.vanillafactionsexpanded.settlersmodule	yes	civil settlers	Industrial			
+SettlerRough	oskarpotocki.vanillafactionsexpanded.settlersmodule	yes	rough settlers	Industrial			
+SettlerSavage	oskarpotocki.vanillafactionsexpanded.settlersmodule	yes	bandits	Industrial		true	
+VFES_PlayerSettlement	oskarpotocki.vanillafactionsexpanded.settlersmodule	yes	New Hideout	Industrial			VFES_Bandit
+VFEC_CentralRepublic	oskarpotocki.vfe.classical	yes	central republic	Neolithic			
+VFEC_EasternRepublic	oskarpotocki.vfe.classical	yes	eastern republic	Neolithic			
+VFEC_NewEmpire	oskarpotocki.vfe.classical	yes	New Empire	Neolithic			VFEC_Plebeian
+VFEC_WesternRepublic	oskarpotocki.vfe.classical	yes	western republic	Neolithic			
+VFED_NewSafehaven	oskarpotocki.vfe.deserters	yes	New Safehaven	Spacer			VFEE_Deserter
+VFEE_Deserters	oskarpotocki.vfe.empire	yes	deserters	Ultra	true		
+VFEE_NewFamily	oskarpotocki.vfe.empire	yes	New Family	Industrial			Empire_Royal_Baron
+VFEI2_PlayerOutpost	oskarpotocki.vfe.insectoid2	yes	New Squad	Spacer			VFE_Mercenary
+VFEM2_CivilClan	oskarpotocki.vfe.medieval2	yes	civil clan	Medieval		false	
+VFEM2_ClanRough	oskarpotocki.vfe.medieval2	yes	rough clan	Medieval		false	
+VFEM2_ClanSavage	oskarpotocki.vfe.medieval2	yes	savage clan	Medieval		true	
+VFEM2_KingdomCivil	oskarpotocki.vfe.medieval2	yes	civil kingdom	Medieval			
+VFEM2_KingdomRough	oskarpotocki.vfe.medieval2	yes	rough kingdom	Medieval			
+VFEM2_KingdomSavage	oskarpotocki.vfe.medieval2	yes	savage kingdom	Medieval		true	
+VFEM2_MerchantGuild	oskarpotocki.vfe.medieval2	yes	merchant's guild	Medieval	true		
+VFEM2_PlayerKingdom	oskarpotocki.vfe.medieval2	yes	New Kingdom	Medieval			VFEM2_Peasant
+VFEP_Junkers	oskarpotocki.vfe.pirates	yes	junkers	Industrial		true	
+VFEP_Mercenaries	oskarpotocki.vfe.pirates	yes	mercenaries	Spacer		false	
+VFEP_PlayerPirate	oskarpotocki.vfe.pirates	yes	New Cove	Industrial			VFEP_PirateColonist
+VFET_WildMen	oskarpotocki.vfe.tribals	yes	wild men	Animal			VFET_Wildperson
+VFET_WildMenGroup	oskarpotocki.vfe.tribals	yes		Animal	true		WildMan
+pphhyy_Barbarian_NonPlayerBarbTribe	pphhyy.barbariansmosubmod	no	Barbarian tribe	Medieval			
+pphhyy_Demigryph_DemigryphKnights	pphhyy.demigryphsmod	yes	Demigryph Knight Chapter House	Medieval			Tribesperson
+FPC	rimsenal.federation	yes	Federation Peacekeeper Corps	Spacer		true	
+Feral	rimsenal.feral	yes	feral band	Industrial		true	
+PlayerSpacerColony	rimsenal.spacer	yes	New Colonists	Spacer			SpacerColonist
+SpacerCivil	rimsenal.spacer	yes	glitterworld spacer expedition	Spacer			
+SpacerRough	rimsenal.spacer	yes	urbworld spacer expedition	Spacer			
+AA_BlackHive	sarg.alphaanimals	yes	black hive	Animal	true	true	
+AG_OutlanderCivilUnion	sarg.alphagenes	yes	civil xenohuman union	Industrial			
+AG_XenohumanPirates	sarg.alphagenes	yes	xenohuman pirate gang	Spacer		true	
+Council_PlayerHolding	silvanalig.colonycouncil	yes	New Holding	Medieval			Colonist
+Rimfolk_Enclave	silvanalig.colonycouncil	yes	spacer enclave	Spacer	false	false	Rimfolk_Enclave_Hand
+Rimfolk_Herders	silvanalig.colonycouncil	yes	herding folk	Neolithic	false	false	Rimfolk_Herders_Herder
+Rimfolk_League	silvanalig.colonycouncil	yes	road league	Industrial	false	false	Rimfolk_League_Wayfarer
+Rimfolk_Order	silvanalig.colonycouncil	yes	hospitaller order	Medieval	false	false	Rimfolk_Order_Lay
+Rimfolk_People_Industrial	silvanalig.colonycouncil	yes	township	Industrial	false	false	
+Rimfolk_People_Medieval	silvanalig.colonycouncil	yes	free folk	Medieval	false	false	
+Rimfolk_People_Spacer	silvanalig.colonycouncil	yes	free colony	Spacer	false	false	
+Rimfolk_People_Tribal	silvanalig.colonycouncil	yes	hearth folk	Neolithic	false	false	
+Rimfolk_Pilgrims	silvanalig.colonycouncil	yes	pilgrim fellowship	Medieval	false	false	Rimfolk_Pilgrims_Pilgrim
+Rimfolk_RiverFolk	silvanalig.colonycouncil	yes	river folk	Medieval	false	false	Rimfolk_RiverFolk_Fisher
+Rimfolk_Scholars	silvanalig.colonycouncil	yes	learned society	Industrial	false	false	Rimfolk_Scholars_Fellow
+PW_HostilePokemon	themoonitself.pokeworld	yes	Pokémon	Animal	true	true	
+Seers	torann.arimworldofmagic	yes	arcane fold	Neolithic			
+TM_ElementalFaction	torann.arimworldofmagic	yes	Elemental	Neolithic	true	true	
+TM_SkeletalFaction	torann.arimworldofmagic	yes	Skeletal	Neolithic	true	true	
+TM_SummonedFaction	torann.arimworldofmagic	yes	Summoned being	Neolithic	true	true	
+DA_Troll	van.beasts	no	trolls	Animal	true	true	
+GR_RoamingMonstrosities	vanillaexpanded.vgeneticse	yes	roaming monstrosities	Animal	true	true	
+VQE_NewVaultPlayerFaction	vanillaquestsexpanded.ancients	yes	New vault	Spacer			VQE_Patient
+VREA_AndroidAwakenedUtopia	vanillaracesexpanded.android	yes	New Utopia	Spacer			VREA_AndroidAwakened
+VRE_Archons	vanillaracesexpanded.archon	yes	archons	Archotech	true	true	
+VRE_InsectorPlayerTribe	vanillaracesexpanded.insector	yes	New Hive	Neolithic			Tribesperson
+VRE_WolfmenFaction	vanillaracesexpanded.lycanthrope	yes	wolfmen	Spacer	true		VRE_WolfmenPawnKindDef
+VRESaurids_OutlanderRoughSaurid	vanillaracesexpanded.saurid	yes	rough saurid union	Industrial			
+VR_ArtificerStart	vr.fantasy.biotech	no	New Village	Medieval			Colonist
+VR_Construct	vr.fantasy.biotech	no	construct swarm	Medieval	true	true	
+VR_VampireStart	vr.fantasy.biotech	no	Vampire Coven	Medieval			Colonist
+Cults_Sailors	zal.cocc	no	sailors	Neolithic	true	true	
+ROM_DeepOneAlt	zal.cocc	no	insects	Animal	true	true	

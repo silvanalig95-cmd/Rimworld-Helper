@@ -1,0 +1,365 @@
+defName	mod	active	degrees
+Bravery	ceteam.combatextended	no	cowardly / brave / fearless
+DankPyon_Fighter	dankpyon.medieval.overhaul	no	fighter
+DankPyon_Veteran	dankpyon.medieval.overhaul	no	veteran
+Hygienic	dubwise.dubsbadhygiene	yes	germaphobe / hygienic / unhygienic / slob
+HAR_Xenophobia	erdelf.humanoidalienraces	yes	xenophobe / xenophile
+Xenophobia	erdelf.humanoidalienraces	yes	xenophobe / xenophile
+Isekai_Agile	jellycreative.isekaileveling	no	agile
+Isekai_Antagonist	jellycreative.isekaileveling	no	antagonist
+Isekai_AwakenedPotential	jellycreative.isekaileveling	no	awakened potential
+Isekai_BattleManiac	jellycreative.isekaileveling	no	battle maniac
+Isekai_BeastWhisperer	jellycreative.isekaileveling	no	beast whisperer
+Isekai_BerserkerBlood	jellycreative.isekaileveling	no	berserker blood
+Isekai_Brilliant	jellycreative.isekaileveling	no	brilliant
+Isekai_CraftsmanSoul	jellycreative.isekaileveling	no	craftsman's soul
+Isekai_CursedLuck	jellycreative.isekaileveling	no	cursed luck
+Isekai_EchoOfDefeat	jellycreative.isekaileveling	no	echo of defeat
+Isekai_Enlightened	jellycreative.isekaileveling	no	enlightened
+Isekai_Fortress	jellycreative.isekaileveling	no	fortress
+Isekai_FragileVessel	jellycreative.isekaileveling	no	fragile vessel
+Isekai_Genius	jellycreative.isekaileveling	no	genius
+Isekai_GlassCannon	jellycreative.isekaileveling	no	glass cannon
+Isekai_HealerTouch	jellycreative.isekaileveling	no	healer's touch
+Isekai_HollowCore	jellycreative.isekaileveling	no	hollow core
+Isekai_IronWill	jellycreative.isekaileveling	no	iron will
+Isekai_LateBloomer	jellycreative.isekaileveling	no	late bloomer
+Isekai_Lucky	jellycreative.isekaileveling	no	lucky
+Isekai_MerchantEye	jellycreative.isekaileveling	no	merchant's eye
+Isekai_Mighty	jellycreative.isekaileveling	no	mighty
+Isekai_NaturalTalent	jellycreative.isekaileveling	no	natural talent
+Isekai_PowerSpike	jellycreative.isekaileveling	no	power spike
+Isekai_PredatorInstinct	jellycreative.isekaileveling	no	predator's instinct
+Isekai_Prodigy	jellycreative.isekaileveling	no	prodigy
+Isekai_Protagonist	jellycreative.isekaileveling	no	protagonist
+Isekai_QuickLearner	jellycreative.isekaileveling	no	quick learner
+Isekai_Rank_A	jellycreative.isekaileveling	no	Rank A
+Isekai_Rank_B	jellycreative.isekaileveling	no	Rank B
+Isekai_Rank_C	jellycreative.isekaileveling	no	Rank C
+Isekai_Rank_D	jellycreative.isekaileveling	no	Rank D
+Isekai_Rank_E	jellycreative.isekaileveling	no	Rank E
+Isekai_Rank_F	jellycreative.isekaileveling	no	Rank F
+Isekai_Rank_Nation	jellycreative.isekaileveling	no	Rank Nation
+Isekai_Rank_S	jellycreative.isekaileveling	no	Rank S
+Isekai_Rank_SS	jellycreative.isekaileveling	no	Rank SS
+Isekai_Rank_SSS	jellycreative.isekaileveling	no	Rank SSS
+Isekai_Regressor	jellycreative.isekaileveling	no	regressor
+Isekai_Reincarnated	jellycreative.isekaileveling	no	reincarnated
+Isekai_Resilient	jellycreative.isekaileveling	no	resilient
+Isekai_SealedPower	jellycreative.isekaileveling	no	sealed power
+Isekai_ShadowStep	jellycreative.isekaileveling	no	shadow step
+Isekai_SilverTongue	jellycreative.isekaileveling	no	silver tongue
+Isekai_SlowGrind	jellycreative.isekaileveling	no	slow grind
+Isekai_SummonedHero	jellycreative.isekaileveling	no	summoned hero
+Isekai_Title_Archer	jellycreative.isekaileveling	no	retired title / Archer Disciple / Archer Expert / Archer Saint / Archer King / Archer Emperor / Archer God
+Isekai_Title_Magic	jellycreative.isekaileveling	no	retired title / Magic Disciple / Magic Expert / Magic Saint / Magic King / Magic Emperor / Magic God
+Isekai_Title_Stormcaller	jellycreative.isekaileveling	no	retired title / Stormcaller Disciple / Stormcaller Expert / Stormcaller Saint / Stormcaller King / Stormcaller Emperor / Stormcaller God
+Isekai_Title_Sword	jellycreative.isekaileveling	no	retired title / Sword Disciple / Sword Expert / Sword Saint / Sword King / Sword Emperor / Sword God
+Isekai_Title_Voice	jellycreative.isekaileveling	no	retired title / Voice Disciple / Voice Expert / Voice Saint / Voice King / Voice Emperor / Voice God
+Isekai_Title_Warlord	jellycreative.isekaileveling	no	retired title / Warlord Disciple / Warlord Expert / Warlord Saint / Warlord King / Warlord Emperor / Warlord God
+Isekai_Title_Warmage	jellycreative.isekaileveling	no	retired title / Warmage Disciple / Warmage Expert / Warmage Saint / Warmage King / Warmage Emperor / Warmage God
+Isekai_Undying	jellycreative.isekaileveling	no	undying
+Abrasive	ludeon.rimworld	yes	abrasive
+AnnoyingVoice	ludeon.rimworld	yes	annoying voice
+Ascetic	ludeon.rimworld	yes	ascetic
+Asexual	ludeon.rimworld	yes	asexual
+Beauty	ludeon.rimworld	yes	beautiful / pretty / ugly / staggeringly ugly
+Bisexual	ludeon.rimworld	yes	bisexual
+Bloodlust	ludeon.rimworld	yes	bloodlust
+BodyPurist	ludeon.rimworld	yes	body purist
+Brawler	ludeon.rimworld	yes	brawler
+Cannibal	ludeon.rimworld	yes	cannibal
+CreepyBreathing	ludeon.rimworld	yes	creepy breathing
+DislikesMen	ludeon.rimworld	yes	misandrist
+DislikesWomen	ludeon.rimworld	yes	misogynist
+DrugDesire	ludeon.rimworld	yes	chemical fascination / chemical interest / teetotaler
+FastLearner	ludeon.rimworld	yes	fast learner
+Gay	ludeon.rimworld	yes	gay
+Gourmand	ludeon.rimworld	yes	gourmand
+GreatMemory	ludeon.rimworld	yes	great memory
+Greedy	ludeon.rimworld	yes	greedy
+Immunity	ludeon.rimworld	yes	super-immune / sickly
+Industriousness	ludeon.rimworld	yes	industrious / hard worker / lazy / slothful
+Jealous	ludeon.rimworld	yes	jealous
+Kind	ludeon.rimworld	yes	kind
+Masochist	ludeon.rimworld	yes	masochist
+NaturalMood	ludeon.rimworld	yes	sanguine / optimist / pessimist / depressive
+Nerves	ludeon.rimworld	yes	iron-willed / steadfast / nervous / volatile
+Neurotic	ludeon.rimworld	yes	neurotic / very neurotic
+NightOwl	ludeon.rimworld	yes	night owl
+Nimble	ludeon.rimworld	yes	nimble
+Nudist	ludeon.rimworld	yes	nudist
+PsychicSensitivity	ludeon.rimworld	yes	psychically hypersensitive / psychically sensitive / psychically dull / psychically deaf
+Psychopath	ludeon.rimworld	yes	psychopath
+Pyromaniac	ludeon.rimworld	yes	pyromaniac
+QuickSleeper	ludeon.rimworld	yes	quick sleeper
+ShootingAccuracy	ludeon.rimworld	yes	careful shooter / trigger-happy
+SlowLearner	ludeon.rimworld	yes	slow learner
+SpeedOffset	ludeon.rimworld	yes	slowpoke / fast walker / jogger
+TooSmart	ludeon.rimworld	yes	too smart
+TorturedArtist	ludeon.rimworld	yes	tortured artist
+Tough	ludeon.rimworld	yes	tough
+Transhumanist	ludeon.rimworld	yes	body modder
+Undergrounder	ludeon.rimworld	yes	undergrounder
+Wimp	ludeon.rimworld	yes	wimp
+BodyMastery	ludeon.rimworld.anomaly	yes	body mastery
+Disturbing	ludeon.rimworld.anomaly	yes	disturbing
+Joyous	ludeon.rimworld.anomaly	yes	joyous
+Occultist	ludeon.rimworld.anomaly	yes	occultist
+PerfectMemory	ludeon.rimworld.anomaly	yes	perfect memory
+VoidFascination	ludeon.rimworld.anomaly	yes	void fascination
+Delicate	ludeon.rimworld.biotech	yes	delicate
+Recluse	ludeon.rimworld.biotech	yes	recluse
+MultiMind_ConjoinedTwins	multimind.conjoinedtwins	yes	Conjoined Twins
+MultiMind_MultiplePersonality	multimind.framework	yes	multiple personality
+RimTalk_MindReader	oceantest5.rimtalk.enhance	no	Mind Reader
+VFEP_Shellcasket	oskarpotocki.vfe.pirates	yes	shellcasket
+VFEP_WarcasketTrait	oskarpotocki.vfe.pirates	yes	warcasket
+AG_Beauty	sarg.alphagenes	yes	angelic beauty / repulsive
+AM_Ahimsa	sarg.alphamemes	yes	vow of nonviolence
+MDWC_WarcasketTrait_Medic	shunter.medicwarcasket	yes	warcasket
+RT_Abstinent	sierra.rt.generaltraits	no	abstinent
+RT_Athletic	sierra.rt.generaltraits	no	athletic
+RT_ChronicallyIll	sierra.rt.generaltraits	no	chronically ill
+RT_Clumsy	sierra.rt.generaltraits	no	clumsy
+RT_ColdIntolerant	sierra.rt.generaltraits	no	cold intolerant
+RT_ColdTolerant	sierra.rt.generaltraits	no	cold tolerant
+RT_Composed	sierra.rt.generaltraits	no	composed
+RT_ConstantlyBemused	sierra.rt.generaltraits	no	constantly bemused
+RT_Coordinated	sierra.rt.generaltraits	no	coordinated
+RT_Craven	sierra.rt.generaltraits	no	craven
+RT_DemoCommon	sierra.rt.generaltraits	no	<color=#00ff00>Trait Demo: Common</color>
+RT_DemoEpic	sierra.rt.generaltraits	no	<color=#d4af37>Trait Demo: Epic</color>
+RT_DemoLegendary	sierra.rt.generaltraits	no	<color=#e0115f>Trait Demo: Legendary</color>
+RT_DemoRare	sierra.rt.generaltraits	no	<color=#9f40ff>Trait Demo: Rare</color>
+RT_DemoUncommon	sierra.rt.generaltraits	no	<color=#1f75fe>Trait Demo: Uncommon</color>
+RT_EasilyAmused	sierra.rt.generaltraits	no	easily amused
+RT_Efficient	sierra.rt.generaltraits	no	efficient
+RT_Energetic	sierra.rt.generaltraits	no	energetic
+RT_Farsighted	sierra.rt.generaltraits	no	farsighted
+RT_Feeble	sierra.rt.generaltraits	no	feeble
+RT_Fragile	sierra.rt.generaltraits	no	fragile
+RT_Frail	sierra.rt.generaltraits	no	frail
+RT_Gifted	sierra.rt.generaltraits	no	gifted
+RT_GoodHygiene	sierra.rt.generaltraits	no	good hygiene
+RT_Hardy	sierra.rt.generaltraits	no	hardy
+RT_Healthy	sierra.rt.generaltraits	no	healthy
+RT_HeatIntolerant	sierra.rt.generaltraits	no	heat intolerant
+RT_HeatTolerant	sierra.rt.generaltraits	no	heat tolerant
+RT_Ignorant	sierra.rt.generaltraits	no	ignorant
+RT_ImpatientCook	sierra.rt.generaltraits	no	impatient cook
+RT_Incompetent	sierra.rt.generaltraits	no	incompetent
+RT_Inefficient	sierra.rt.generaltraits	no	inefficient
+RT_Inquisitive	sierra.rt.generaltraits	no	inquisitive
+RT_Messy	sierra.rt.generaltraits	no	messy
+RT_Muscular	sierra.rt.generaltraits	no	muscular
+RT_Nearsighted	sierra.rt.generaltraits	no	nearsighted
+RT_PatientCook	sierra.rt.generaltraits	no	patient cook
+RT_Persuasive	sierra.rt.generaltraits	no	persuasive
+RT_PoorHygiene	sierra.rt.generaltraits	no	poor hygiene
+RT_Ravenous	sierra.rt.generaltraits	no	ravenous
+RT_Resilient	sierra.rt.generaltraits	no	resilient
+RT_Restful	sierra.rt.generaltraits	no	restful
+RT_Restless	sierra.rt.generaltraits	no	restless
+RT_Rowdy	sierra.rt.generaltraits	no	rowdy
+RT_Sluggish	sierra.rt.generaltraits	no	sluggish
+RT_Stiff	sierra.rt.generaltraits	no	stiff
+RT_TemperatureIntolerant	sierra.rt.generaltraits	no	temperature intolerant
+RT_TemperatureTolerant	sierra.rt.generaltraits	no	temperature tolerant
+RT_Tidy	sierra.rt.generaltraits	no	tidy
+RT_Unconvincing	sierra.rt.generaltraits	no	unconvincing
+RT_Valiant	sierra.rt.generaltraits	no	valiant
+RT_TalentAdventurer	sierra.rt.medievaltalents	no	<color=#9f40ff>Talent: Adventurer</color>
+RT_TalentArchitect	sierra.rt.medievaltalents	no	<color=#9f40ff>Talent: Architect</color>
+RT_TalentArmourer	sierra.rt.medievaltalents	no	<color=#2C82FF>Talent: Armourer</color>
+RT_TalentArtist	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Artist</color>
+RT_TalentBowman	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Bowman</color>
+RT_TalentBuilder	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Builder</color>
+RT_TalentButcher	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Butcher</color>
+RT_TalentChef	sierra.rt.medievaltalents	no	<color=#9f40ff>Talent: Chef</color>
+RT_TalentCook	sierra.rt.medievaltalents	no	<color=#2C82FF>Talent: Cook</color>
+RT_TalentCopycat	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Copycat</color>
+RT_TalentEngineer	sierra.rt.medievaltalents	no	<color=#2C82FF>Talent: Engineer</color>
+RT_TalentFarmer	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Farmer</color>
+RT_TalentFletcher	sierra.rt.medievaltalents	no	<color=#2C82FF>Talent: Fletcher</color>
+RT_TalentGroundskeeper	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Groundskeeper</color>
+RT_TalentHerald	sierra.rt.medievaltalents	no	<color=#e0115f>Talent: Herald</color>
+RT_TalentHerbalist	sierra.rt.medievaltalents	no	<color=#2C82FF>Talent: Herbalist</color>
+RT_TalentHerder	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Herder</color>
+RT_TalentHero	sierra.rt.medievaltalents	no	<color=#e0115f>Talent: Hero</color>
+RT_TalentHunter	sierra.rt.medievaltalents	no	<color=#2C82FF>Talent: Hunter</color>
+RT_TalentJackOfAllTrades	sierra.rt.medievaltalents	no	<color=#d4af37>Talent: Jack-of-all-trades</color>
+RT_TalentKitchenhand	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Kitchenhand</color>
+RT_TalentMiner	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Miner</color>
+RT_TalentNoTalent	sierra.rt.medievaltalents	no	<color=#ff6fff>No Talent</color>
+RT_TalentPhilosopher	sierra.rt.medievaltalents	no	<color=#9f40ff>Talent: Philosopher</color>
+RT_TalentPhysician	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Physician</color>
+RT_TalentRecruiter	sierra.rt.medievaltalents	no	<color=#d4af37>Talent: Recruiter</color>
+RT_TalentScholar	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Scholar</color>
+RT_TalentScout	sierra.rt.medievaltalents	no	<color=#d4af37>Talent: Scout</color>
+RT_TalentSmith	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Smith</color>
+RT_TalentSurgeon	sierra.rt.medievaltalents	no	<color=#9f40ff>Talent: Surgeon</color>
+RT_TalentSwordsman	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Swordsman</color>
+RT_TalentTailor	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Tailor</color>
+RT_TalentTrader	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Trader</color>
+RT_TalentVeterinarian	sierra.rt.medievaltalents	no	<color=#2C82FF>Talent: Veterinarian</color>
+RT_TalentWeaponsMaster	sierra.rt.medievaltalents	no	<color=#2C82FF>Talent: Weapons Master</color>
+TalentAdventurer	sierra.rt.medievaltalents	no	<color=#7f00ff>Talent: Adventurer</color>
+TalentArchitect	sierra.rt.medievaltalents	no	<color=#7f00ff>Talent: Architect</color>
+TalentArmourer	sierra.rt.medievaltalents	no	<color=#1f75fe>Talent: Armourer</color>
+TalentArtist	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Artist</color>
+TalentBowman	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Bowman</color>
+TalentBuilder	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Builder</color>
+TalentButcher	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Butcher</color>
+TalentChef	sierra.rt.medievaltalents	no	<color=#7f00ff>Talent: Chef</color>
+TalentCook	sierra.rt.medievaltalents	no	<color=#1f75fe>Talent: Cook</color>
+TalentCopycat	sierra.rt.medievaltalents	no	Talent: Copycat
+TalentEngineer	sierra.rt.medievaltalents	no	<color=#1f75fe>Talent: Engineer</color>
+TalentFarmer	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Farmer</color>
+TalentGroundskeeper	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Groundskeeper</color>
+TalentHerbalist	sierra.rt.medievaltalents	no	<color=#1f75fe>Talent: Herbalist</color>
+TalentHerder	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Herder</color>
+TalentHero	sierra.rt.medievaltalents	no	<color=#d4af37>Talent: Hero</color>
+TalentHunter	sierra.rt.medievaltalents	no	<color=#1f75fe>Talent: Hunter</color>
+TalentJackOfAllTrades	sierra.rt.medievaltalents	no	<color=#d4af37>Talent: Jack-of-all-trades</color>
+TalentKitchenhand	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Kitchenhand</color>
+TalentMiner	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Miner</color>
+TalentNoTalent	sierra.rt.medievaltalents	no	<color=#ff6fff>No Talent</color>
+TalentPhilosopher	sierra.rt.medievaltalents	no	<color=#7f00ff>Talent: Philosopher</color>
+TalentPhysician	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Physician</color>
+TalentRecruiter	sierra.rt.medievaltalents	no	<color=#d4af37>Talent: Recruiter</color>
+TalentScholar	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Scholar</color>
+TalentScout	sierra.rt.medievaltalents	no	<color=#e0115f>Talent: Scout</color>
+TalentSmith	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Smith</color>
+TalentSurgeon	sierra.rt.medievaltalents	no	<color=#7f00ff>Talent: Surgeon</color>
+TalentSwordsman	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Swordsman</color>
+TalentTailor	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Tailor</color>
+TalentTrader	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Trader</color>
+TalentWeaponsMaster	sierra.rt.medievaltalents	no	<color=#1f75fe>Talent: Weapons Master</color>
+Rimfolk_AnimalFriend	silvanalig.colonycouncil	yes	animal friend
+Rimfolk_BornCook	silvanalig.colonycouncil	yes	born cook
+Rimfolk_GreenThumb	silvanalig.colonycouncil	yes	green thumb
+Rimfolk_Healer	silvanalig.colonycouncil	yes	healer's hands
+Rimfolk_Mender	silvanalig.colonycouncil	yes	mender
+Rimfolk_Scholar	silvanalig.colonycouncil	yes	scholar
+Rimfolk_Tidy	silvanalig.colonycouncil	yes	tidy
+Rimfolk_TrailWise	silvanalig.colonycouncil	yes	trail-wise
+Arcanist	torann.arimworldofmagic	yes	Arcane mage
+Bladedancer	torann.arimworldofmagic	yes	Bladesman / Blademaster / Bladedancer / Legendary bladedancer
+BloodMage	torann.arimworldofmagic	yes	Blood Mage
+ChaosMage	torann.arimworldofmagic	yes	Chaos Mage
+Chronomancer	torann.arimworldofmagic	yes	Chronomancer
+DeathKnight	torann.arimworldofmagic	yes	Death Knight
+Druid	torann.arimworldofmagic	yes	Druid
+Enchanter	torann.arimworldofmagic	yes	Enchanter
+Faceless	torann.arimworldofmagic	yes	Faceless
+Geomancer	torann.arimworldofmagic	yes	Geomancer
+Gifted	torann.arimworldofmagic	yes	magically gifted
+Gladiator	torann.arimworldofmagic	yes	Gladiator
+HeartOfFrost	torann.arimworldofmagic	yes	Ice mage
+InnerFire	torann.arimworldofmagic	yes	Fire mage
+Lich	torann.arimworldofmagic	yes	Lich
+Necromancer	torann.arimworldofmagic	yes	Necromancer
+Paladin	torann.arimworldofmagic	yes	Paladin
+PhysicalProdigy	torann.arimworldofmagic	yes	physically adept
+Priest	torann.arimworldofmagic	yes	Priest
+Ranger	torann.arimworldofmagic	yes	Woodsman / Hunter / Scout / Ranger
+StormBorn	torann.arimworldofmagic	yes	Lightning mage
+Succubus	torann.arimworldofmagic	yes	Succubus
+Summoner	torann.arimworldofmagic	yes	Summoner
+TM_Apothecary	torann.arimworldofmagic	yes	Apothecary
+TM_ArcaneConduitTD	torann.arimworldofmagic	yes	Arcane Conduit
+TM_Bard	torann.arimworldofmagic	yes	Entertainer / Performer / Minstrel / Bard
+TM_BoundlessTD	torann.arimworldofmagic	yes	Boundless
+TM_Brightmage	torann.arimworldofmagic	yes	Brightmage
+TM_Commander	torann.arimworldofmagic	yes	Commander
+TM_CursedTD	torann.arimworldofmagic	yes	Cursed
+TM_Empath	torann.arimworldofmagic	yes	Empath
+TM_EnlightenedTD	torann.arimworldofmagic	yes	Enlightened
+TM_FaeBloodTD	torann.arimworldofmagic	yes	Fae blood
+TM_GiantsBloodTD	torann.arimworldofmagic	yes	Giants blood
+TM_Gifted	torann.arimworldofmagic	yes	magically gifted
+TM_Golemancer	torann.arimworldofmagic	yes	Golemancer
+TM_ManaWellTD	torann.arimworldofmagic	yes	Mana Well
+TM_Monk	torann.arimworldofmagic	yes	Monk
+TM_OKWithDeath	torann.arimworldofmagic	yes	Unaffected by death
+TM_Possessed	torann.arimworldofmagic	yes	Possessed
+TM_Possessor	torann.arimworldofmagic	yes	Spirit
+TM_Psionic	torann.arimworldofmagic	yes	Psionic
+TM_Shaman	torann.arimworldofmagic	yes	Shaman
+TM_Sniper	torann.arimworldofmagic	yes	Sharpshooter / Sniper / Master Sniper / Legendary Sniper
+TM_SuperSoldier	torann.arimworldofmagic	yes	Super Soldier
+TM_TheShadow	torann.arimworldofmagic	yes	Shadow
+TM_Wanderer	torann.arimworldofmagic	yes	Wanderer
+TM_Wayfarer	torann.arimworldofmagic	yes	Wayfarer
+Technomancer	torann.arimworldofmagic	yes	Technomancer
+Undead	torann.arimworldofmagic	yes	Undead
+Warlock	torann.arimworldofmagic	yes	Warlock
+VTE_AbsentMinded	vanillaexpanded.vanillatraitsexpanded	yes	absent-minded
+VTE_Academian	vanillaexpanded.vanillatraitsexpanded	yes	academian
+VTE_AnimalHater	vanillaexpanded.vanillatraitsexpanded	yes	animal hater
+VTE_AnimalLover	vanillaexpanded.vanillatraitsexpanded	yes	animal lover
+VTE_Anxious	vanillaexpanded.vanillatraitsexpanded	yes	anxious
+VTE_BigBoned	vanillaexpanded.vanillatraitsexpanded	yes	big-boned
+VTE_Brave	vanillaexpanded.vanillatraitsexpanded	yes	brave
+VTE_CatPerson	vanillaexpanded.vanillatraitsexpanded	yes	cat person
+VTE_ChildOfMountain	vanillaexpanded.vanillatraitsexpanded	yes	Mountain lover
+VTE_ChildOfSea	vanillaexpanded.vanillatraitsexpanded	yes	Ocean lover
+VTE_Clumsy	vanillaexpanded.vanillatraitsexpanded	yes	clumsy
+VTE_ColdInclined	vanillaexpanded.vanillatraitsexpanded	yes	cold inclined
+VTE_CouchPotato	vanillaexpanded.vanillatraitsexpanded	yes	couch potato
+VTE_Coward	vanillaexpanded.vanillatraitsexpanded	yes	coward
+VTE_Desensitized	vanillaexpanded.vanillatraitsexpanded	yes	desensitized
+VTE_DogPerson	vanillaexpanded.vanillatraitsexpanded	yes	dog person
+VTE_DrunkenMaster	vanillaexpanded.vanillatraitsexpanded	yes	drunken master
+VTE_Dunce	vanillaexpanded.vanillatraitsexpanded	yes	dunce
+VTE_Eccentric	vanillaexpanded.vanillatraitsexpanded	yes	eccentric
+VTE_Ecologist	vanillaexpanded.vanillatraitsexpanded	yes	ecologist
+VTE_FunLoving	vanillaexpanded.vanillatraitsexpanded	yes	fun-loving
+VTE_Gastronomist	vanillaexpanded.vanillatraitsexpanded	yes	gastronomist
+VTE_Groundbreaker	vanillaexpanded.vanillatraitsexpanded	yes	groundbreaker
+VTE_HeatInclined	vanillaexpanded.vanillatraitsexpanded	yes	heat inclined
+VTE_HeavySleeper	vanillaexpanded.vanillatraitsexpanded	yes	heavy sleeper
+VTE_Insatiable	vanillaexpanded.vanillatraitsexpanded	yes	insatiable
+VTE_Insomniac	vanillaexpanded.vanillatraitsexpanded	yes	insomniac
+VTE_IronStomach	vanillaexpanded.vanillatraitsexpanded	yes	iron stomach
+VTE_Kleptomaniac	vanillaexpanded.vanillatraitsexpanded	yes	kleptomaniac
+VTE_Lush	vanillaexpanded.vanillatraitsexpanded	yes	lush
+VTE_MadSurgeon	vanillaexpanded.vanillatraitsexpanded	yes	mad surgeon
+VTE_MartialArtist	vanillaexpanded.vanillatraitsexpanded	yes	martial artist
+VTE_Menagerist	vanillaexpanded.vanillatraitsexpanded	yes	menagerist
+VTE_Neat	vanillaexpanded.vanillatraitsexpanded	yes	neat
+VTE_Perfectionist	vanillaexpanded.vanillatraitsexpanded	yes	perfectionist
+VTE_Prodigy	vanillaexpanded.vanillatraitsexpanded	yes	prodigy
+VTE_Prude	vanillaexpanded.vanillatraitsexpanded	yes	prude
+VTE_Rebel	vanillaexpanded.vanillatraitsexpanded	yes	rebel
+VTE_RefinedPalate	vanillaexpanded.vanillatraitsexpanded	yes	refined palate
+VTE_Schizoid	vanillaexpanded.vanillatraitsexpanded	yes	schizoid
+VTE_Slob	vanillaexpanded.vanillatraitsexpanded	yes	slob
+VTE_Snob	vanillaexpanded.vanillatraitsexpanded	yes	snob
+VTE_Squeamish	vanillaexpanded.vanillatraitsexpanded	yes	squeamish
+VTE_Stoner	vanillaexpanded.vanillatraitsexpanded	yes	stoner
+VTE_Submissive	vanillaexpanded.vanillatraitsexpanded	yes	submissive
+VTE_Technophobe	vanillaexpanded.vanillatraitsexpanded	yes	technophobe
+VTE_ThickSkinned	vanillaexpanded.vanillatraitsexpanded	yes	thick skinned
+VTE_ThinSkinned	vanillaexpanded.vanillatraitsexpanded	yes	thin skinned
+VTE_Tycoon	vanillaexpanded.vanillatraitsexpanded	yes	tycoon
+VTE_Vengeful	vanillaexpanded.vanillatraitsexpanded	yes	vengeful
+VTE_Wanderlust	vanillaexpanded.vanillatraitsexpanded	yes	wanderlust
+VTE_Workaholic	vanillaexpanded.vanillatraitsexpanded	yes	workaholic
+VTE_WorldWeary	vanillaexpanded.vanillatraitsexpanded	yes	world weary
+VAEI_Distractable	vanillaexpanded.vanomalyeinsanity	yes	distractable
+VAEI_Germaphobe	vanillaexpanded.vanomalyeinsanity	yes	germaphobe
+VAEI_Inhumanized	vanillaexpanded.vanomalyeinsanity	yes	inhumanized
+VAEI_MoodSwings	vanillaexpanded.vanomalyeinsanity	yes	mood swings
+VAEI_Noncommittal	vanillaexpanded.vanomalyeinsanity	yes	noncommittal
+VAEI_Unstable	vanillaexpanded.vanomalyeinsanity	yes	impulsive
+VAEI_VoidTouched	vanillaexpanded.vanomalyeinsanity	yes	void touched
+VCEF_Fisherman	vanillaexpanded.vcef	yes	fisherman
+VME_Elder	vanillaexpanded.vmemese	yes	elder
+VPE_Thrall	vanillaexpanded.vpsycastse	yes	thrall
+VQE_IdealPatient	vanillaquestsexpanded.ancients	yes	ideal patient
+VRE_Distressed	vanillaracesexpanded.highmate	yes	distressed
+VRE_Flirty	vanillaracesexpanded.highmate	yes	flirty
+Cults_OathtakerHastur	zal.cocc	no	Oathtaker
+Cults_OathtakerHastur2	zal.cocc	no	Reanimated

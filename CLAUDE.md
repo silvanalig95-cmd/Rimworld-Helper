@@ -15,8 +15,11 @@ Work in progress and the next steps are in `docs/HANDOFF.md`: read it first.
 - The colony is the family (the player's rule since 5 November 2026): this is never a dynastic game. Mechanics revolve around the colony and its people, not houses, dynasties or family lines; everyday family life (names, suppers, kin's moments) stays as flavour with no mechanics tied to it. Council tasks and the keeper of secrets were dropped the same day.
 - Draw from the full mod pool (the player's rule, repeated 7 November 2026: "always draw from the full mod pool ... for
   weapons, apparell, items, gear, xenotypes etc."): content that picks things (weapons, apparel, items, gear, xenotypes
-  and races, animals, magic and abilities) uses everything in the player's mod list that fits (`docs/player-modlist.md`),
-  softly (`MayRequire` or by name in code), with a vanilla fallback; never only the base game when the mods offer more.
+  and races, animals, magic and abilities) uses everything in the player's mod list that fits, softly (`MayRequire` or
+  by name in code), with a vanilla fallback; never only the base game when the mods offer more. The catalogue of every
+  def the player's mods add is `docs/player-mods/` (built from their own files); build from its `active` rows only, the
+  mods actually enabled in their list and save (the player: "always consider the actual mods i have enabled in my save
+  and mod list"), and check every def name and tag against it.
 - Bug fixes come before features. No filler.
 - New wishes and features are proposed as a list first; the player's own explicit requests can go straight ahead.
 - Answers play out on the map; no countdowns in text. Speech goes through `Speech.Say` / `Together`.

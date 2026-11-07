@@ -1,0 +1,143 @@
+defName	mod	active	label	category	exclusionTags
+BotchJob_ProfanedMeme	botchjob.profaned	no	one with death		
+DV_Structure_Dwarven	det.dwarvenstyle	no	dwarven	Structure	
+HAR_Xenophilia	erdelf.humanoidalienraces	yes	xenophilia		HAR_XenoDisposition
+HAR_Xenophobia	erdelf.humanoidalienraces	yes	xenophobia		HAR_XenoDisposition
+Inhuman	ludeon.rimworld.anomaly	yes	inhuman		
+Ritualist	ludeon.rimworld.anomaly	yes	ritualist		
+Bloodfeeding	ludeon.rimworld.biotech	yes	bloodfeeding		
+AnimalPersonhood	ludeon.rimworld.ideology	yes	animal personhood		AnimalTreatment
+Blindsight	ludeon.rimworld.ideology	yes	blindsight		Darkness
+Cannibal	ludeon.rimworld.ideology	yes	cannibal		
+Collectivist	ludeon.rimworld.ideology	yes	collectivist		Individualism
+Darkness	ludeon.rimworld.ideology	yes	darkness		Darkness
+FemaleSupremacy	ludeon.rimworld.ideology	yes	female supremacy		GenderSupremacy
+FleshPurity	ludeon.rimworld.ideology	yes	flesh purity		DrugUse,FleshAugmentation
+Guilty	ludeon.rimworld.ideology	yes	guilty		GroupRelation
+HighLife	ludeon.rimworld.ideology	yes	high life		DrugUse
+HumanPrimacy	ludeon.rimworld.ideology	yes	human primacy		Primacy
+Individualist	ludeon.rimworld.ideology	yes	individualist		Individualism,SupremacistIndividualist
+Loyalist	ludeon.rimworld.ideology	yes	loyalist		GroupRelation
+MaleSupremacy	ludeon.rimworld.ideology	yes	male supremacy		GenderSupremacy
+NaturePrimacy	ludeon.rimworld.ideology	yes	nature primacy		Primacy
+Nudism	ludeon.rimworld.ideology	yes	nudism		
+PainIsVirtue	ludeon.rimworld.ideology	yes	pain is virtue		
+Proselytizer	ludeon.rimworld.ideology	yes	proselytizer		
+Raider	ludeon.rimworld.ideology	yes	raider		
+Rancher	ludeon.rimworld.ideology	yes	rancher		AnimalTreatment
+Structure_Animist	ludeon.rimworld.ideology	yes	animist	Structure	
+Structure_Archist	ludeon.rimworld.ideology	yes	archist	Structure	
+Structure_Ideological	ludeon.rimworld.ideology	yes	ideological	Structure	
+Structure_OriginBuddhist	ludeon.rimworld.ideology	yes	Buddhist origin	Structure	
+Structure_OriginChristian	ludeon.rimworld.ideology	yes	Christian origin	Structure	
+Structure_OriginHindu	ludeon.rimworld.ideology	yes	Hindu origin	Structure	
+Structure_OriginIslamic	ludeon.rimworld.ideology	yes	Islamic origin	Structure	
+Structure_TheistAbstract	ludeon.rimworld.ideology	yes	abstract theist	Structure	
+Structure_TheistEmbodied	ludeon.rimworld.ideology	yes	embodied theist	Structure	
+Supremacist	ludeon.rimworld.ideology	yes	supremacist		GroupRelation,SupremacistIndividualist
+Transhumanist	ludeon.rimworld.ideology	yes	transhumanist		FleshAugmentation
+TreeConnection	ludeon.rimworld.ideology	yes	tree connection		
+Tunneler	ludeon.rimworld.ideology	yes	tunneler		
+Shipborn	ludeon.rimworld.odyssey	yes	shipborn		
+VVE_Nauticals	oskarpotocki.vanillavehiclesexpanded	yes	nauticals		VVE_VehicleMemes
+VVE_Roadragers	oskarpotocki.vanillavehiclesexpanded	yes	roadragers		
+VVE_Skyseekers	oskarpotocki.vanillavehiclesexpanded	yes	skyseekers		VVE_VehicleMemes
+VVE_Travelers	oskarpotocki.vanillavehiclesexpanded	yes	travelers		VVE_VehicleMemes,VME_CityBuildersVsTravelers
+VFEM2_Structure_Norse	oskarpotocki.vfe.medieval2	yes	norse	Structure	
+VFEP_PirateMeme	oskarpotocki.vfe.pirates	yes	pirate		
+AM_Artist	sarg.alphamemes	yes	artist		
+AM_BiologicalCorruptors	sarg.alphamemes	yes	biological corruptors		AM_Biological,AnimalTreatment,TreeConnectionExclusion
+AM_BiologicalDefilers	sarg.alphamemes	yes	biological defilers		AM_Biological,AnimalTreatment,AA_SerketistAndEradicators,AM_DefilersVsNaturePrimacy,VME_VeganVsExterminators,VME_NonViolenceVoteVsDefilers,VME_PacifistsVsDefilers,VME_InsectoidVsDefilers,AM_DefilerVsTreeConnection
+AM_BiologicalReconstructors	sarg.alphamemes	yes	biological reconstructors		AM_Biological
+AM_Bulwark	sarg.alphamemes	yes	bulwark		AM_Combat,AM_BulwarkVsNudist
+AM_CoffeePrimacy	sarg.alphamemes	yes	coffee primacy		AM_CoffeeAndTea
+AM_Cowboys	sarg.alphamemes	yes	cowboys		VME_CowboysVsRancher,VME_CowboysVsVegan
+AM_DeepDevotion	sarg.alphamemes	yes	deep devotion		AM_TunnelerAndDeepDevotion,AM_LightAndDeepDevotion,AM_ShipbornAndDeepDevotion
+AM_Deforestation	sarg.alphamemes	yes	deforestation		AM_TreeConnectionAndDeforestation,AM_NaturePrimacyAndDeforestation
+AM_Epicurean	sarg.alphamemes	yes	epicurean		
+AM_Fertility	sarg.alphamemes	yes	fertility		
+AM_GauranlenSupremacy	sarg.alphamemes	yes	gauranlen supremacy		AM_GladiatorVsDryads,AM_SharpshooterVsDryads
+AM_Gladiator	sarg.alphamemes	yes	gladiator		AM_Combat,AM_GladiatorVsDryads,AM_NonViolenceVowVsGladiator
+AM_Iconoclast	sarg.alphamemes	yes	iconoclast		
+AM_Madness	sarg.alphamemes	yes	madness		VME_MadnessVsGestalt,VME_MadnessVsAstrology
+AM_Monastic	sarg.alphamemes	yes	monastic		AM_Ascetic,VME_AsceticVsHedonism,AM_AsceticVsHighLife,VME_AsceticVsSweetTeeth,VME_AsceticVsPartyLife
+AM_NakedTruth	sarg.alphamemes	yes	naked truth		AM_BulwarkVsNudist
+AM_NonViolence	sarg.alphamemes	yes	vow of nonviolence		VME_TooViolent,VME_PacifistsNotViolentConverters,VME_TooHonourable,VME_NotRaiders,VME_NoCannibalsAndNonviolenceVow,VME_NonViolenceVoteVsRancher,AM_NonViolenceVowVsSupremacist,VME_NonViolenceVoteVsDefilers,VME_NonViolenceVowVsNationalists,VME_NonViolenceVoteVsPsychicVampires,VME_SadistVsNonviolence,AM_NonViolenceVowVsSharpshooter,AM_NonViolenceVowVsGladiator,AM_NonViolenceVowVsVampireHunters
+AM_PainIsDivine	sarg.alphamemes	yes	pain is divine		AM_PainIsDivineAndPainIsVirtue
+AM_PrefabPreference	sarg.alphamemes	yes	prefab preference		
+AM_PsychicVampirism	sarg.alphamemes	yes	psychic vampirism		VME_AffinityVsVampires,VME_NonViolenceVoteVsPsychicVampires
+AM_Sadist	sarg.alphamemes	yes	sadist		VME_SadistVsPacifist,VME_SadistVsNonviolence,VME_SadistVsCraftCulture
+AM_Sharpshooter	sarg.alphamemes	yes	sharpshooter		AM_Combat,AM_SharpshooterVsDryads,AM_NonViolenceVowVsSharpshooter
+AM_Structure_Alienism	sarg.alphamemes	yes	alienism	Structure	
+AM_Structure_Atheist	sarg.alphamemes	yes	atheism	Structure	VME_GodEmperor,VME_Proselytism
+AM_Structure_Corsair	sarg.alphamemes	yes	corsair	Structure	
+AM_Structure_Cubicism	sarg.alphamemes	yes	cubicism	Structure	
+AM_Structure_FleshCult	sarg.alphamemes	yes	flesh cult	Structure	
+AM_Structure_Horaxian	sarg.alphamemes	yes	void-touched	Structure	
+AM_Structure_Jainism	sarg.alphamemes	yes	jain origin	Structure	
+AM_Structure_Jewish	sarg.alphamemes	yes	jewish origin	Structure	AM_Ascetic
+AM_Structure_Kemetism	sarg.alphamemes	yes	Kemetic origin	Structure	
+AM_Structure_Mesoamerican	sarg.alphamemes	yes	mesoamerican origin	Structure	
+AM_Structure_Neolithic	sarg.alphamemes	yes	neolithic	Structure	
+AM_Structure_Scavenger	sarg.alphamemes	yes	scavenger	Structure	
+AM_Structure_Sikhism	sarg.alphamemes	yes	Sikh origin	Structure	
+AM_Structure_SteampunkRevival	sarg.alphamemes	yes	steampunk revival	Structure	
+AM_TeaPrimacy	sarg.alphamemes	yes	tea primacy		AM_CoffeeAndTea
+AM_VampireHunting	sarg.alphamemes	yes	vampire hunting		AM_HuntersVSBloodfeeders,AM_PacifistVsVampireHunters,AM_NonViolenceVowVsVampireHunters
+AM_WaterPrimacy	sarg.alphamemes	yes	water primacy		
+AM_Youth	sarg.alphamemes	yes	youth		VME_EldersOrYouth
+TM_Transcendent	torann.arimworldofmagic	yes	transcendent		
+GR_CarefulGeneticists	vanillaexpanded.vgeneticse	yes	careful geneticists		GR_Genetics
+GR_MadScientists	vanillaexpanded.vgeneticse	yes	mad scientists		GR_Genetics
+VFEA_Isolationist	vanillaexpanded.vmemese	yes	isolationist		SupremacistIndividualist,IsolationistProselytizer
+VME_Angler	vanillaexpanded.vmemese	yes	fishing culture		VME_FishingVsFurries,VME_VeganVsFishing,VME_FishingVsNature
+VME_Anonymity	vanillaexpanded.vmemese	yes	anonymity		VME_PartyVsPrivacy
+VME_Aristocratic	vanillaexpanded.vmemese	yes	aristocratic		VME_Work
+VME_Astrology	vanillaexpanded.vmemese	yes	astrology		VME_AstrologyVsGestalt,VME_MadnessVsAstrology
+VME_BloodCourt	vanillaexpanded.vmemese	yes	blood court		VME_TooViolent,VME_LeaderPrecepts
+VME_Bushido	vanillaexpanded.vmemese	yes	bushido		VME_TooHonourable,VME_EmancipationVsBushido
+VME_CityBuilders	vanillaexpanded.vmemese	yes	city builders		VME_NomadVsCityBuilders
+VME_CraftCulture	vanillaexpanded.vmemese	yes	craft culture		VME_LeaderPrecepts,VME_SadistVsCraftCulture
+VME_Cultured	vanillaexpanded.vmemese	yes	cultured		
+VME_Egalitarian	vanillaexpanded.vmemese	yes	egalitarian		GroupRelation,VME_Proselytism,GenderSupremacy,VME_CollectivistVsEgalitarian,VME_IndustrialistVsEgalitarian
+VME_Elders	vanillaexpanded.vmemese	yes	elders		VME_EldersOrYouth,VME_EldersOrTranshumanist
+VME_Emancipation	vanillaexpanded.vmemese	yes	emancipation		GroupRelation,VME_EmancipationVsRaiders,VME_EmancipationVsViolentConversion,VME_EmancipationVsBushido
+VME_ExaltedPriesthood	vanillaexpanded.vmemese	yes	exalted priesthood		
+VME_FireWorship	vanillaexpanded.vmemese	yes	fire worship		
+VME_Fleshcrafters	vanillaexpanded.vmemese	yes	fleshcrafting		FleshAugmentation,VME_FleshcrafterVsHealthcare
+VME_Gestalt	vanillaexpanded.vmemese	yes	gestalt		Individualism,VME_AstrologyVsGestalt,VME_MadnessVsGestalt
+VME_GodEmperor	vanillaexpanded.vmemese	yes	god emperor		VME_GodEmperor
+VME_HardcoreIndustrialism	vanillaexpanded.vmemese	yes	industrialism		VME_Work,VME_IndustrialismVsViolent,VME_IndustrialistVsEgalitarian
+VME_Healthcare	vanillaexpanded.vmemese	yes	healthcare		VME_HolyDiseasesVsHealthcare,VME_FleshcrafterVsHealthcare
+VME_HolyDiseases	vanillaexpanded.vmemese	yes	holy diseases		VME_HolyDiseasesVsHealthcare
+VME_InsectoidSupremacy	vanillaexpanded.vmemese	yes	insectoid supremacy		VME_InsectoidVsDefilers
+VME_Light	vanillaexpanded.vmemese	yes	light		Darkness
+VME_MechanoidSupremacy	vanillaexpanded.vmemese	yes	mechanoid supremacy		Primacy
+VME_Nationalist	vanillaexpanded.vmemese	yes	nationalist		GroupRelation,VME_NationalistVsPacifist,VME_NonViolenceVowVsNationalists
+VME_Nomad	vanillaexpanded.vmemese	yes	nomad		VME_NomadVsCityBuilders
+VME_Pacifist	vanillaexpanded.vmemese	yes	pacifist		VME_TooViolent,VME_PacifistsNotViolentConverters,VME_TooHonourable,VME_NotRaiders,VME_SadistVsNonviolence,VME_PacifistsVsDefilers,VME_PacifistsVsSupremacist,VME_NationalistVsPacifist,VME_EldritchVsPacifist
+VME_PartyLife	vanillaexpanded.vmemese	yes	party life		VME_PartyVsPrivacy,VME_AsceticVsPartyLife
+VME_Progressive	vanillaexpanded.vmemese	yes	progressive		
+VME_PsychicFocus	vanillaexpanded.vmemese	yes	psychic focus		VME_LeaderPrecepts,VME_AffinityVsVampires
+VME_Republic	vanillaexpanded.vmemese	yes	republic		VME_LeaderPrecepts
+VME_Royal	vanillaexpanded.vmemese	yes	royal		VME_LeaderPrecepts
+VME_Scrapper	vanillaexpanded.vmemese	yes	scrapper		
+VME_Structure_Agnosticism	vanillaexpanded.vmemese	yes	agnosticism	Structure	VME_GodEmperor
+VME_Structure_Authoritarianism	vanillaexpanded.vmemese	yes	authoritarian	Structure	
+VME_Structure_Bacchanalianism	vanillaexpanded.vmemese	yes	hedonism	Structure	VME_AsceticVsHedonism
+VME_Structure_ChthonianCult	vanillaexpanded.vmemese	yes	eldritch cult	Structure	VME_EldritchVsPacifist
+VME_Structure_Corporate	vanillaexpanded.vmemese	yes	corporate origin	Structure	
+VME_Structure_CultOfPersonality	vanillaexpanded.vmemese	yes	cult of personality	Structure	
+VME_Structure_Eschatologism	vanillaexpanded.vmemese	yes	eschatologism	Structure	
+VME_Structure_Esotericism	vanillaexpanded.vmemese	yes	esotericism	Structure	
+VME_Structure_Omnism	vanillaexpanded.vmemese	yes	omnism	Structure	
+VME_Structure_Pantheism	vanillaexpanded.vmemese	yes	pantheism	Structure	
+VME_Structure_SecularSpirituality	vanillaexpanded.vmemese	yes	secular spirituality	Structure	
+VME_Structure_Serketist	vanillaexpanded.vmemese	yes	serketism	Structure	AA_SerketistAndEradicators
+VME_Structure_Shintaoism	vanillaexpanded.vmemese	yes	shintaoist origin	Structure	
+VME_SweetTeeth	vanillaexpanded.vmemese	yes	sweet teeth		VME_AsceticVsSweetTeeth,VME_FleshPurityVsSweetTeeth
+VME_Trader	vanillaexpanded.vmemese	yes	trader		
+VME_Vegan	vanillaexpanded.vmemese	yes	vegan		VME_VeganVsRancher,VME_VeganVsExterminators,VME_VeganVsFishing
+VME_ViolentConversion	vanillaexpanded.vmemese	yes	violent conversion		VME_Proselytism,VME_PacifistsNotViolentConverters,VME_IndustrialismVsViolent,VME_EmancipationVsViolentConversion
+VQE_Technophobia	vanillaquestsexpanded.generator	yes	technophobia		VQE_Technophobia_Transhumanist,VQE_Technophobia_Industrialist,VQE_Technophobia_MechSupremacy,VQE_Technophobia_Progressive
+ROM_CultOfTheOldOnes	zal.cocc	no	Cult of the Old Ones		

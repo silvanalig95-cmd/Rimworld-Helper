@@ -1,0 +1,1485 @@
+defName	mod	active	label	displayCategory	biostatMet	biostatCpx
+Furskin	andromeda.facialanimation	yes	furskin	Miscellaneous	-1	1
+Stagz_Aquatic	arquebus.stagzmerfolk	yes	aquatic	Miscellaneous	4	2
+Stagz_BodyFin	arquebus.stagzmerfolk	yes	pelvic fins	Miscellaneous	0	1
+Stagz_Charming	arquebus.stagzmerfolk	yes	charming	Ability	-2	1
+Stagz_ColoredFinEars	arquebus.stagzmerfolk	yes	colored fin ears	Cosmetic		0
+Stagz_FinEars	arquebus.stagzmerfolk	yes	fin ears	Cosmetic		0
+Stagz_Fishtail	arquebus.stagzmerfolk	yes	fishtail	Miscellaneous	-1	1
+Stagz_Gene_Tail_Fish_Black	arquebus.stagzmerfolk	yes	fishtail (black)	Miscellaneous	-2	2
+Stagz_Gene_Tail_Fish_Cyan	arquebus.stagzmerfolk	yes	fishtail (cyan)	Miscellaneous	-2	2
+Stagz_Gene_Tail_Fish_Magenta	arquebus.stagzmerfolk	yes	fishtail (magenta)	Miscellaneous	-2	2
+Stagz_Gene_Tail_Fish_Orange	arquebus.stagzmerfolk	yes	fishtail (orange)	Miscellaneous	-2	2
+Stagz_Gene_Tail_Fish_Random	arquebus.stagzmerfolk	yes	fishtail (random color)	Miscellaneous	-2	2
+Stagz_Gene_Tail_Fish_Salmon	arquebus.stagzmerfolk	yes	fishtail (salmon)	Miscellaneous	-2	2
+Stagz_Gene_Tail_Fish_Teal	arquebus.stagzmerfolk	yes	fishtail (teal)	Miscellaneous	-2	2
+Stagz_Gene_Tail_Fish_White	arquebus.stagzmerfolk	yes	fishtail (white)	Miscellaneous	-2	2
+Stagz_KeenReflexes	arquebus.stagzmerfolk	yes	keen reflexes	Archite	-5	2
+Stagz_MerfolkAdaptation	arquebus.stagzmerfolk	yes	underwater adaptation	Archite		3
+Stagz_Nimbleness	arquebus.stagzmerfolk	yes	naturally nimble	Miscellaneous	-1	1
+Stagz_RainVeil	arquebus.stagzmerfolk	yes	rain veil	Miscellaneous	-1	1
+Stagz_Raincaller	arquebus.stagzmerfolk	yes	raincaller	Archite	-5	3
+Stagz_SirenSong	arquebus.stagzmerfolk	yes	siren song	Ability	-2	1
+Stagz_SwiftSwim	arquebus.stagzmerfolk	yes	swift swim	Movement	-1	1
+Stagz_WebbedHands	arquebus.stagzmerfolk	yes	webbed hands	Miscellaneous	1	1
+BotchJob_Cursebearer	botchjob.profaned	no	cursebearer	Miscellaneous		3
+BotchJob_DaylightAversion	botchjob.profaned	no	aversion to daylight	ResistanceAndWeakness	5	5
+BotchJob_DecomposingBody	botchjob.profaned	no	decomposing body	Miscellaneous	3	3
+BotchJob_RottingFlesh	botchjob.profaned	no	rotting flesh	Miscellaneous	0	1
+BotchJob_RottingFleshFA	botchjob.profaned	no	rotting flesh head	Cosmetic		0
+BotchJob_SkeletalBody	botchjob.profaned	no	skeletal form	Miscellaneous	3	1
+BotchJob_UndeadHeatWeakness	botchjob.profaned	no	fire vulnerability	ResistanceAndWeakness	4	2
+BotchJob_UndeadPainlessness	botchjob.profaned	no	undead painlessness	Pain	0	2
+BotchJob_UndeadPsysiology	botchjob.profaned	no	undead psysiology	Miscellaneous	-8	5
+BotchJob_UnnaturalColdResistance	botchjob.profaned	no	unnatural cold resistance	Temperature	-4	2
+DV_AvaloiHairColors	det.avaloi	yes	bright hair colors			
+DV_Coral_Antlers	det.avaloi	yes	coral antlers	Miscellaneous		0
+DV_Coral_Beards	det.avaloi	yes	coral fans	Miscellaneous		0
+DV_Head_Avaloi	det.avaloi	yes	three-eyed head	Cosmetic		0
+DV_PsychicInebriation	det.avaloi	yes	psychic inebriation	Miscellaneous		1
+DV_ToxResist_Terrible	det.avaloi	yes	tox weakness	ResistanceAndWeakness	2	1
+Hair_PaleBlue	det.avaloi	yes	pale blue hair	Cosmetic_Hair		0
+Hair_PaleGreen	det.avaloi	yes	pale green hair	Cosmetic_Hair		0
+Hair_PaleMagenta	det.avaloi	yes	pale magenta hair	Cosmetic_Hair		0
+Hair_PaleOrange	det.avaloi	yes	pale orange hair	Cosmetic_Hair		0
+Hair_PalePurple	det.avaloi	yes	pale purple hair	Cosmetic_Hair		0
+Skin_SoftBlue	det.avaloi	yes	soft blue skin	Cosmetic_Skin		0
+Skin_SoftGreen	det.avaloi	yes	soft green skin	Cosmetic_Skin		0
+Skin_SoftPink	det.avaloi	yes	soft pink skin	Cosmetic_Skin		0
+Skin_SoftRed	det.avaloi	yes	soft red skin	Cosmetic_Skin		0
+Skin_SoftYellow	det.avaloi	yes	soft yellow skin	Cosmetic_Skin		0
+DV_FatStorage	det.boglegs	yes	blubber storage	Miscellaneous		1
+DV_IntimidatingPresence	det.boglegs	yes	intimidating presence	Miscellaneous		1
+DV_Jaw_FatSac	det.boglegs	yes	flabsack	Cosmetic		0
+DV_Materialistic	det.boglegs	yes	materialistic	Miscellaneous	1	1
+DV_MuckSpit	det.boglegs	yes	muck spit	Ability	-1	1
+DV_Nose_Whiskers	det.boglegs	yes	barbels	Cosmetic		0
+DV_Silvertongued	det.boglegs	yes	silvertongued	Miscellaneous	-1	1
+Skin_BrownMuddy	det.boglegs	yes	muddy brown skin	Cosmetic_Skin		0
+Skin_CyanMuddy	det.boglegs	yes	muddy cyan skin	Cosmetic_Skin		0
+Skin_GreenMuddy	det.boglegs	yes	muddy green skin	Cosmetic_Skin		0
+Skin_OliveMuddy	det.boglegs	yes	muddy olive skin	Cosmetic_Skin		0
+Skin_YellowMuddy	det.boglegs	yes	muddy yellow skin	Cosmetic_Skin		0
+DV_Aggression_Irascible	det.stoneborn	yes	irascible	Violence	1	
+DV_BushyEyebrows	det.stoneborn	yes	bushy eyebrows	Cosmetic		0
+DV_ExtendedMemory	det.stoneborn	yes	extended memory		-1	1
+DV_LifespanLong	det.stoneborn	yes	Long lifespan		0	1
+DV_MightyLiver	det.stoneborn	yes	mighty liver		0	1
+DV_NarrowMemory	det.stoneborn	yes	narrow memory		1	1
+DV_Stonecall	det.stoneborn	yes	stonecall	Ability	-3	1
+DV_Undergrounder	det.stoneborn	yes	Undergrounder		0	1
+DV_Ears_Downturned	det.venators	yes	extended ears	Cosmetic		0
+DV_FacePlating	det.venators	yes	facial plating	Cosmetic		1
+DV_Farsighted	det.venators	yes	farsighted	Miscellaneous	-2	1
+DV_HunterInstincts	det.venators	yes	hunter instincts	Miscellaneous	-1	
+DV_ParalyzingFangs	det.venators	yes	paralyzing fangs	Ability	-1	1
+Skin_BlueGray	det.venators	yes	dusty blue skin	Cosmetic_Skin		0
+Skin_BrownGray	det.venators	yes	dusty brown skin	Cosmetic_Skin		0
+Skin_PurpleGray	det.venators	yes	dusty purple skin	Cosmetic_Skin		0
+Skin_RedGray	det.venators	yes	dusty red skin	Cosmetic_Skin		0
+Skin_YellowGray	det.venators	yes	dusty yellow skin	Cosmetic_Skin		0
+DevDesigner_Ageless	devdesigner.elves.continued	yes	ageless	Healing	0	3
+DevDesigner_PaleSkin	devdesigner.elves.continued	yes	pale skin	Cosmetic_Skin		0
+FG_LesserVenenum	homebrew.fairycore	yes	lesser Venenum	FG_Wings	0	5
+FG_Pixie	homebrew.fairycore	yes	pixie	FG_Wings	0	5
+FG_Venenum	homebrew.fairycore	yes	Venenum	FG_Wings	20	10
+FG_Wings_Beetle	homebrew.fairycore	yes	beetle	FG_Wings	0	0
+FG_Wings_Birdwing	homebrew.fairycore	yes	birdwing	FG_Wings	0	0
+FG_Wings_BlueMorpho	homebrew.fairycore	yes	blue morpho	FG_Wings	0	0
+FG_Wings_Cicada	homebrew.fairycore	yes	cicada	FG_Wings	0	0
+FG_Wings_CommonBlue	homebrew.fairycore	yes	common blue	FG_Wings	0	0
+FG_Wings_Damselfly	homebrew.fairycore	yes	damselfly	FG_Wings	0	0
+FG_Wings_Dragonfly	homebrew.fairycore	yes	dragonfly	FG_Wings	0	0
+FG_Wings_Firefly	homebrew.fairycore	yes	firefly	FG_Wings	0	0
+FG_Wings_Glasswing	homebrew.fairycore	yes	glasswing	FG_Wings	0	0
+FG_Wings_Grasshopper	homebrew.fairycore	yes	grasshopper	FG_Wings	0	0
+FG_Wings_Lacewing	homebrew.fairycore	yes	lacewing	FG_Wings	0	0
+FG_Wings_LunaMoth	homebrew.fairycore	yes	luna moth	FG_Wings	0	0
+FG_Wings_Monarch	homebrew.fairycore	yes	monarch	FG_Wings	0	0
+FG_Wings_Moth	homebrew.fairycore	yes	moth	FG_Wings	0	0
+FG_Wings_PaperKite	homebrew.fairycore	yes	paper kite	FG_Wings	0	0
+FG_Wings_Peacock	homebrew.fairycore	yes	peacock	FG_Wings	0	0
+FG_Wings_PrayingMantis	homebrew.fairycore	yes	mantis	FG_Wings	0	0
+FG_Wings_RedAdmiral	homebrew.fairycore	yes	red admiral	FG_Wings	0	0
+FG_Wings_Swallowtail	homebrew.fairycore	yes	swallowtail	FG_Wings	0	0
+FG_Wings_Wasp	homebrew.fairycore	yes	wasp	FG_Wings	0	0
+Hair_Blonde	ludeon.rimworld	yes	blonde hair	Cosmetic_Hair		0
+Hair_BrightRed	ludeon.rimworld	yes	red hair	Cosmetic_Hair		0
+Hair_DarkBlack	ludeon.rimworld	yes	dark-black hair	Cosmetic_Hair		0
+Hair_DarkBrown	ludeon.rimworld	yes	brown hair	Cosmetic_Hair		0
+Hair_DarkReddish	ludeon.rimworld	yes	dark-reddish hair	Cosmetic_Hair		0
+Hair_DarkSaturatedReddish	ludeon.rimworld	yes	dark-brown hair	Cosmetic_Hair		0
+Hair_Gray	ludeon.rimworld	yes	gray hair	Cosmetic_Hair		0
+Hair_InkBlack	ludeon.rimworld	yes	ink-black hair	Cosmetic_Hair		0
+Hair_LightBlue	ludeon.rimworld	yes	blue hair	Cosmetic_Hair		0
+Hair_LightGreen	ludeon.rimworld	yes	green hair	Cosmetic_Hair		0
+Hair_LightOrange	ludeon.rimworld	yes	orange hair	Cosmetic_Hair		0
+Hair_LightPurple	ludeon.rimworld	yes	purple hair	Cosmetic_Hair		0
+Hair_LightTeal	ludeon.rimworld	yes	teal hair	Cosmetic_Hair		0
+Hair_MidBlack	ludeon.rimworld	yes	mid-black hair	Cosmetic_Hair		0
+Hair_Pink	ludeon.rimworld	yes	pink hair	Cosmetic_Hair		0
+Hair_ReddishBrown	ludeon.rimworld	yes	reddish-brown hair	Cosmetic_Hair		0
+Hair_SandyBlonde	ludeon.rimworld	yes	sandy-blonde hair	Cosmetic_Hair		0
+Hair_SnowWhite	ludeon.rimworld	yes	snow-white hair	Cosmetic_Hair		0
+Skin_Melanin1	ludeon.rimworld	yes	skin color	Cosmetic_Skin		0
+Skin_Melanin2	ludeon.rimworld	yes	skin color	Cosmetic_Skin		0
+Skin_Melanin3	ludeon.rimworld	yes	skin color	Cosmetic_Skin		0
+Skin_Melanin4	ludeon.rimworld	yes	skin color	Cosmetic_Skin		0
+Skin_Melanin5	ludeon.rimworld	yes	skin color	Cosmetic_Skin		0
+Skin_Melanin6	ludeon.rimworld	yes	skin color	Cosmetic_Skin		0
+Skin_Melanin7	ludeon.rimworld	yes	skin color	Cosmetic_Skin		0
+Skin_Melanin8	ludeon.rimworld	yes	skin color	Cosmetic_Skin		0
+Skin_Melanin9	ludeon.rimworld	yes	skin color	Cosmetic_Skin		0
+AcidSpray	ludeon.rimworld.biotech	yes	acid spray	Ability	-2	
+Ageless	ludeon.rimworld.biotech	yes	ageless	Archite		3
+Aggression_Aggressive	ludeon.rimworld.biotech	yes	aggressive	Violence	2	
+Aggression_DeadCalm	ludeon.rimworld.biotech	yes	dead calm	Violence	-1	
+Aggression_HyperAggressive	ludeon.rimworld.biotech	yes	hyper-aggressive	Violence	3	
+AnimalWarcall	ludeon.rimworld.biotech	yes	animal warcall	Ability	-3	1
+ArchiteMetabolism	ludeon.rimworld.biotech	yes	archite metabolism	Archite	6	6
+Beard_Always	ludeon.rimworld.biotech	yes	unisex beards	Cosmetic		0
+Beard_BushyOnly	ludeon.rimworld.biotech	yes	only bushy beards	Cosmetic		0
+Beard_NoBeardOnly	ludeon.rimworld.biotech	yes	beardless	Cosmetic		0
+Beauty_Beautiful	ludeon.rimworld.biotech	yes	very attractive	Beauty	-2	
+Beauty_Pretty	ludeon.rimworld.biotech	yes	attractive	Beauty	-1	
+Beauty_Ugly	ludeon.rimworld.biotech	yes	unattractive	Beauty	1	
+Beauty_VeryUgly	ludeon.rimworld.biotech	yes	very unattractive	Beauty	2	
+Bloodfeeder	ludeon.rimworld.biotech	yes	bloodfeeder	Hemogen	-1	
+Body_Fat	ludeon.rimworld.biotech	yes	fat body	Cosmetic_Body		0
+Body_Hulk	ludeon.rimworld.biotech	yes	hulk body	Cosmetic_Body		0
+Body_Standard	ludeon.rimworld.biotech	yes	standard body	Cosmetic_Body		0
+Body_Thin	ludeon.rimworld.biotech	yes	thin body	Cosmetic_Body		0
+Brow_Heavy	ludeon.rimworld.biotech	yes	heavy brow	Cosmetic		0
+CaveDweller	ludeon.rimworld.biotech	yes	indoor dweller	Miscellaneous	-1	
+Coagulate	ludeon.rimworld.biotech	yes	coagulate	Hemogen	-1	
+DarkVision	ludeon.rimworld.biotech	yes	dark vision	Miscellaneous	-1	
+Deathless	ludeon.rimworld.biotech	yes	deathless	Archite		7
+Deathrest	ludeon.rimworld.biotech	yes	deathrest	Hemogen	6	
+Delicate	ludeon.rimworld.biotech	yes	delicate	Pain	3	
+DiseaseFree	ludeon.rimworld.biotech	yes	non-senescent	Archite		3
+Ears_Cat	ludeon.rimworld.biotech	yes	cat ears	Cosmetic		0
+Ears_Floppy	ludeon.rimworld.biotech	yes	floppy ears	Cosmetic		0
+Ears_Human	ludeon.rimworld.biotech	yes	human ears	Cosmetic		0
+Ears_Pig	ludeon.rimworld.biotech	yes	pig ears	Cosmetic		0
+Ears_Pointed	ludeon.rimworld.biotech	yes	pointed ears	Cosmetic		0
+ElongatedFingers	ludeon.rimworld.biotech	yes	elongated fingers	Miscellaneous	-1	1
+Eyes_Gray	ludeon.rimworld.biotech	yes	gray eyes	Cosmetic		0
+Eyes_Red	ludeon.rimworld.biotech	yes	red eyes	Cosmetic		0
+FacialRidges	ludeon.rimworld.biotech	yes	facial ridges	Cosmetic		0
+Fertile	ludeon.rimworld.biotech	yes	fertile	Reproduction		
+FireResistant	ludeon.rimworld.biotech	yes	fire resistant	ResistanceAndWeakness	-2	
+FireSpew	ludeon.rimworld.biotech	yes	fire spew	Ability	-2	
+FireTerror	ludeon.rimworld.biotech	yes	pyrophobia	ResistanceAndWeakness	4	
+FireWeakness	ludeon.rimworld.biotech	yes	tinderskin	ResistanceAndWeakness	2	
+FoamSpray	ludeon.rimworld.biotech	yes	foam spray	Ability	-2	
+Hair_BaldOnly	ludeon.rimworld.biotech	yes	no hair	Cosmetic		0
+Hair_Grayless	ludeon.rimworld.biotech	yes	grayless hair	Miscellaneous		
+Hair_LongOnly	ludeon.rimworld.biotech	yes	long-haired	Cosmetic		0
+Hair_ShortOnly	ludeon.rimworld.biotech	yes	short-haired	Cosmetic		0
+Hands_Human	ludeon.rimworld.biotech	yes	human hands	Miscellaneous		0
+Hands_Pig	ludeon.rimworld.biotech	yes	trotter hands	Miscellaneous	1	1
+Head_Gaunt	ludeon.rimworld.biotech	yes	gaunt head	Cosmetic		0
+Headbone_CenterHorn	ludeon.rimworld.biotech	yes	center-horn	Cosmetic		0
+Headbone_Human	ludeon.rimworld.biotech	yes	human headbone	Cosmetic		0
+Headbone_MiniHorns	ludeon.rimworld.biotech	yes	mini-horns	Cosmetic		0
+HemogenDrain	ludeon.rimworld.biotech	yes	hemogen drain	Hemogen	6	1
+Hemogenic	ludeon.rimworld.biotech	yes	hemogenic	Hemogen	1	1
+Immunity_Strong	ludeon.rimworld.biotech	yes	strong immunity	Healing	-1	
+Immunity_SuperStrong	ludeon.rimworld.biotech	yes	super immunity	Healing	-2	2
+Immunity_Weak	ludeon.rimworld.biotech	yes	weak immunity	Healing	2	
+Inbred	ludeon.rimworld.biotech	yes	inbred	Miscellaneous	-2	
+Instability_Major	ludeon.rimworld.biotech	yes	major cell instability	Miscellaneous	4	
+Instability_Mild	ludeon.rimworld.biotech	yes	mild cell instability	Miscellaneous	2	
+Jaw_Baseline	ludeon.rimworld.biotech	yes	human jaw	Cosmetic		0
+Jaw_Heavy	ludeon.rimworld.biotech	yes	heavy jaw	Cosmetic		0
+KillThirst	ludeon.rimworld.biotech	yes	kill thirst	Violence	4	
+KindInstinct	ludeon.rimworld.biotech	yes	kind instinct	Violence	-1	
+Learning_Fast	ludeon.rimworld.biotech	yes	quick study	Miscellaneous	-3	2
+Learning_Slow	ludeon.rimworld.biotech	yes	slow study	Miscellaneous	2	
+Libido_High	ludeon.rimworld.biotech	yes	high libido	Reproduction		
+Libido_Low	ludeon.rimworld.biotech	yes	low libido	Reproduction		
+LongjumpLegs	ludeon.rimworld.biotech	yes	longjump legs	Hemogen	-2	
+LowSleep	ludeon.rimworld.biotech	yes	low sleep	Sleep	-4	2
+MaxTemp_LargeIncrease	ludeon.rimworld.biotech	yes	heat super-tolerant	Temperature	-2	
+MaxTemp_SmallDecrease	ludeon.rimworld.biotech	yes	heat weakness	Temperature	1	
+MaxTemp_SmallIncrease	ludeon.rimworld.biotech	yes	heat tolerant	Temperature	-1	
+MeleeDamage_Strong	ludeon.rimworld.biotech	yes	strong melee damage	Violence	-2	
+MeleeDamage_Weak	ludeon.rimworld.biotech	yes	weak melee damage	Violence	1	
+MinTemp_LargeDecrease	ludeon.rimworld.biotech	yes	cold super-tolerant	Temperature	-2	
+MinTemp_SmallDecrease	ludeon.rimworld.biotech	yes	cold tolerant	Temperature	-1	
+MinTemp_SmallIncrease	ludeon.rimworld.biotech	yes	cold weakness	Temperature	1	
+Mood_Depressive	ludeon.rimworld.biotech	yes	very unhappy	Mood	5	
+Mood_Optimist	ludeon.rimworld.biotech	yes	happy	Mood	-1	2
+Mood_Pessimist	ludeon.rimworld.biotech	yes	unhappy	Mood	3	
+Mood_Sanguine	ludeon.rimworld.biotech	yes	very happy	Mood	-2	3
+MoveSpeed_Quick	ludeon.rimworld.biotech	yes	fast runner	Movement	-3	
+MoveSpeed_Slow	ludeon.rimworld.biotech	yes	slow runner	Movement	3	
+MoveSpeed_VeryQuick	ludeon.rimworld.biotech	yes	very fast runner	Movement	-5	
+NakedSpeed	ludeon.rimworld.biotech	yes	naked speed	Movement	2	1
+Nearsighted	ludeon.rimworld.biotech	yes	nearsighted	Miscellaneous	2	
+Neversleep	ludeon.rimworld.biotech	yes	never sleep	Sleep	-6	3
+Nose_Human	ludeon.rimworld.biotech	yes	human nose	Cosmetic		0
+Nose_Pig	ludeon.rimworld.biotech	yes	pig nose	Miscellaneous		0
+Pain_Extra	ludeon.rimworld.biotech	yes	extra pain	Pain	2	
+Pain_Reduced	ludeon.rimworld.biotech	yes	reduced pain	Pain	-1	
+PerfectImmunity	ludeon.rimworld.biotech	yes	perfect immunity	Archite		3
+PiercingSpine	ludeon.rimworld.biotech	yes	piercing spine	Hemogen	-1	
+PollutionRush	ludeon.rimworld.biotech	yes	pollution stimulus	Miscellaneous	-1	1
+PsychicAbility_Deaf	ludeon.rimworld.biotech	yes	psychically deaf	Psychic	2	
+PsychicAbility_Dull	ludeon.rimworld.biotech	yes	psychically dull	Psychic	1	
+PsychicAbility_Enhanced	ludeon.rimworld.biotech	yes	psy-sensitive	Psychic	-2	
+PsychicAbility_Extreme	ludeon.rimworld.biotech	yes	super psy-sensitive	Psychic	-5	2
+PsychicBonding	ludeon.rimworld.biotech	yes	psychic bonding	Psychic	-1	1
+Robust	ludeon.rimworld.biotech	yes	robust	Pain	-2	
+RobustDigestion	ludeon.rimworld.biotech	yes	robust digestion	Miscellaneous	-2	2
+Skin_Blue	ludeon.rimworld.biotech	yes	blue skin	Cosmetic_Skin		0
+Skin_DeepRed	ludeon.rimworld.biotech	yes	deep red skin	Cosmetic_Skin		0
+Skin_DeepYellow	ludeon.rimworld.biotech	yes	deep yellow skin	Cosmetic_Skin		0
+Skin_Green	ludeon.rimworld.biotech	yes	green skin	Cosmetic_Skin		0
+Skin_InkBlack	ludeon.rimworld.biotech	yes	ink black skin	Cosmetic_Skin		0
+Skin_LightGray	ludeon.rimworld.biotech	yes	light gray skin	Cosmetic_Skin		0
+Skin_Orange	ludeon.rimworld.biotech	yes	orange skin	Cosmetic_Skin		0
+Skin_PaleRed	ludeon.rimworld.biotech	yes	pale red skin	Cosmetic_Skin		0
+Skin_PaleYellow	ludeon.rimworld.biotech	yes	pale yellow skin	Cosmetic_Skin		0
+Skin_Purple	ludeon.rimworld.biotech	yes	purple skin	Cosmetic_Skin		0
+Skin_SheerWhite	ludeon.rimworld.biotech	yes	sheer white skin	Cosmetic_Skin		0
+Skin_SlateGray	ludeon.rimworld.biotech	yes	slate gray skin	Cosmetic_Skin		0
+Sleepy	ludeon.rimworld.biotech	yes	sleepy	Sleep	2	
+Sterile	ludeon.rimworld.biotech	yes	sterile	Reproduction	1	
+StrongStomach	ludeon.rimworld.biotech	yes	strong stomach	Miscellaneous	-1	
+Superclotting	ludeon.rimworld.biotech	yes	superclotting	Healing	-1	
+Tail_Furry	ludeon.rimworld.biotech	yes	furry tail	Miscellaneous	-1	1
+Tail_Smooth	ludeon.rimworld.biotech	yes	smooth tail	Miscellaneous	-1	1
+TotalHealing	ludeon.rimworld.biotech	yes	scarless	Archite		4
+ToxResist_Partial	ludeon.rimworld.biotech	yes	tox resistance	ResistanceAndWeakness	-2	
+ToxResist_Total	ludeon.rimworld.biotech	yes	tox immunity	ResistanceAndWeakness	-4	2
+ToxicEnvironmentResistance_Partial	ludeon.rimworld.biotech	yes	partial antitoxic lungs	ResistanceAndWeakness	-1	
+ToxicEnvironmentResistance_Total	ludeon.rimworld.biotech	yes	total antitoxic lungs	ResistanceAndWeakness	-3	2
+UVSensitivity_Intense	ludeon.rimworld.biotech	yes	intense UV sensitivity	ResistanceAndWeakness	4	2
+UVSensitivity_Mild	ludeon.rimworld.biotech	yes	mild UV sensitivity	ResistanceAndWeakness	3	
+Unstoppable	ludeon.rimworld.biotech	yes	unstoppable	Miscellaneous	-2	1
+VerySleepy	ludeon.rimworld.biotech	yes	very sleepy	Sleep	4	
+ViolenceDisabled	ludeon.rimworld.biotech	yes	violence disabled	Violence	3	
+VoicePig	ludeon.rimworld.biotech	yes	pig voice	Cosmetic		0
+VoiceRoar	ludeon.rimworld.biotech	yes	roar voice	Cosmetic		0
+Voice_Human	ludeon.rimworld.biotech	yes	human voice	Cosmetic		0
+WebbedPhalanges	ludeon.rimworld.biotech	yes	webbed phalanges	Movement	-1	1
+WoundHealing_Fast	ludeon.rimworld.biotech	yes	fast wound healing	Healing	-2	
+WoundHealing_Slow	ludeon.rimworld.biotech	yes	slow wound healing	Healing	2	
+WoundHealing_SuperFast	ludeon.rimworld.biotech	yes	superfast wound healing	Healing	-3	
+XenogermReimplanter	ludeon.rimworld.biotech	yes	gene implanter	Archite		3
+MoveSpeed_Space	ludeon.rimworld.odyssey	yes	low gravity adapted		1	1
+VacuumResistance_Partial	ludeon.rimworld.odyssey	yes	vacuum resistant	ResistanceAndWeakness	-1	1
+VacuumResistance_Total	ludeon.rimworld.odyssey	yes	breathless	Archite		3
+Outland_ArcaneAffinity_LargeDecrease	neronix17.outland.core	no	strong arcane aversion	Outland_ArcaneGenes	2	
+Outland_ArcaneAffinity_LargeIncrease	neronix17.outland.core	no	strong arcane affinity	Outland_ArcaneGenes	-2	
+Outland_ArcaneAffinity_SmallDecrease	neronix17.outland.core	no	weak arcane aversion	Outland_ArcaneGenes	1	
+Outland_ArcaneAffinity_SmallIncrease	neronix17.outland.core	no	weak arcane affinity	Outland_ArcaneGenes	-1	
+Outland_AcceleratedAgeing	neronix17.outland.genetics	no	accelerated ageing	Miscellaneous	3	2
+Outland_AcceleratedMaturation	neronix17.outland.genetics	no	accelerated maturation	Miscellaneous	0	2
+Outland_AcceleratedPregnancy	neronix17.outland.genetics	no	accelerated pregnancy	Reproduction	-1	
+Outland_AllFemale	neronix17.outland.genetics	no	all female	Miscellaneous	0	1
+Outland_AllMale	neronix17.outland.genetics	no	all male	Miscellaneous	0	1
+Outland_Antenna_Feather	neronix17.outland.genetics	no	antenna (feather)	Outland_Ears		0
+Outland_Antenna_Fluted	neronix17.outland.genetics	no	antenna (fluted)	Outland_Ears		0
+Outland_Antenna_Jointed	neronix17.outland.genetics	no	antenna (jointed)	Outland_Ears		0
+Outland_Antenna_Leaf	neronix17.outland.genetics	no	antenna (leaf)	Outland_Ears		0
+Outland_Antenna_Owl	neronix17.outland.genetics	no	antenna (owl)	Outland_Ears		0
+Outland_Antenna_Segmented	neronix17.outland.genetics	no	antenna (segmented)	Outland_Ears		0
+Outland_Antenna_Socketed	neronix17.outland.genetics	no	antenna (socketed)	Outland_Ears		0
+Outland_ArachnidEyes_Blue	neronix17.outland.genetics	no	blue eyes (arachnid)	Outland_Eyes		0
+Outland_ArachnidEyes_Brown	neronix17.outland.genetics	no	brown eyes (arachnid)	Outland_Eyes		0
+Outland_ArachnidEyes_Cyan	neronix17.outland.genetics	no	cyan eyes (arachnid)	Outland_Eyes		0
+Outland_ArachnidEyes_Gray	neronix17.outland.genetics	no	gray eyes (arachnid)	Outland_Eyes		0
+Outland_ArachnidEyes_Green	neronix17.outland.genetics	no	green eyes (arachnid)	Outland_Eyes		0
+Outland_ArachnidEyes_LightBlue	neronix17.outland.genetics	no	light blue eyes (arachnid)	Outland_Eyes		0
+Outland_ArachnidEyes_Lime	neronix17.outland.genetics	no	lime eyes (arachnid)	Outland_Eyes		0
+Outland_ArachnidEyes_Magenta	neronix17.outland.genetics	no	magenta eyes (arachnid)	Outland_Eyes		0
+Outland_ArachnidEyes_Orange	neronix17.outland.genetics	no	orange eyes (arachnid)	Outland_Eyes		0
+Outland_ArachnidEyes_Pink	neronix17.outland.genetics	no	pink eyes (arachnid)	Outland_Eyes		0
+Outland_ArachnidEyes_Purple	neronix17.outland.genetics	no	purple eyes (arachnid)	Outland_Eyes		0
+Outland_ArachnidEyes_Red	neronix17.outland.genetics	no	red eyes (arachnid)	Outland_Eyes		0
+Outland_ArachnidEyes_White	neronix17.outland.genetics	no	white eyes (arachnid)	Outland_Eyes		0
+Outland_ArachnidEyes_Yellow	neronix17.outland.genetics	no	yellow eyes (arachnid)	Outland_Eyes		0
+Outland_ArachnidHead	neronix17.outland.genetics	no	arachnid head	Cosmetic		0
+Outland_AscendOther	neronix17.outland.genetics	no	ascend other	Outland_XenotypeAscension	1	1
+Outland_AscendSelf	neronix17.outland.genetics	no	ascend self	Outland_XenotypeAscension	1	1
+Outland_AsexualReproduction	neronix17.outland.genetics	no	asexual reproduction	Reproduction	0	
+Outland_Aura_AirAspect	neronix17.outland.genetics	no	aura (air)	Outland_Auras		0
+Outland_Aura_DarkAspect	neronix17.outland.genetics	no	aura (dark)	Outland_Auras		0
+Outland_Aura_DeathAspect	neronix17.outland.genetics	no	aura (death)	Outland_Auras		0
+Outland_Aura_EarthAspect	neronix17.outland.genetics	no	aura (earth)	Outland_Auras		0
+Outland_Aura_FireAspect	neronix17.outland.genetics	no	aura (fire)	Outland_Auras		0
+Outland_Aura_Gambit	neronix17.outland.genetics	no	aura (gambit)	Outland_Auras		0
+Outland_Aura_LifeAspect	neronix17.outland.genetics	no	aura (life)	Outland_Auras		0
+Outland_Aura_LightAspect	neronix17.outland.genetics	no	aura (light)	Outland_Auras		0
+Outland_Aura_Royal	neronix17.outland.genetics	no	aura (royal)	Outland_Auras		0
+Outland_Aura_Smelly	neronix17.outland.genetics	no	aura (smelly)	Outland_Auras		0
+Outland_Aura_WaterAspect	neronix17.outland.genetics	no	aura (water)	Outland_Auras		0
+Outland_Back_FeathersBlack	neronix17.outland.genetics	no	back feathers (black)	Cosmetic		0
+Outland_Back_FeathersWhite	neronix17.outland.genetics	no	back feathers (white)	Cosmetic		0
+Outland_BaldFemale	neronix17.outland.genetics	no	no hair (female only)	Cosmetic		0
+Outland_BaldMale	neronix17.outland.genetics	no	no hair (male only)	Cosmetic		0
+Outland_Beak_Hooked	neronix17.outland.genetics	no	beak (hooked)	Outland_FacialFeatures		0
+Outland_Beak_PointedBeak	neronix17.outland.genetics	no	beak (pointed)	Outland_FacialFeatures		0
+Outland_Beak_ShortBeak	neronix17.outland.genetics	no	beak (short)	Outland_FacialFeatures		0
+Outland_Beard_FurryOnly	neronix17.outland.genetics	no	only furry beards	Cosmetic		0
+Outland_Blood_Black	neronix17.outland.genetics	no	black blood	Outland_Blood		1
+Outland_Blood_Blue	neronix17.outland.genetics	no	blue blood	Outland_Blood		1
+Outland_Blood_Brown	neronix17.outland.genetics	no	brown blood	Outland_Blood		1
+Outland_Blood_Cyan	neronix17.outland.genetics	no	cyan blood	Outland_Blood		1
+Outland_Blood_Gray	neronix17.outland.genetics	no	gray blood	Outland_Blood		1
+Outland_Blood_Green	neronix17.outland.genetics	no	green blood	Outland_Blood		1
+Outland_Blood_LightBlue	neronix17.outland.genetics	no	light blue blood	Outland_Blood		1
+Outland_Blood_Lime	neronix17.outland.genetics	no	lime blood	Outland_Blood		1
+Outland_Blood_Magenta	neronix17.outland.genetics	no	magenta blood	Outland_Blood		1
+Outland_Blood_Orange	neronix17.outland.genetics	no	orange blood	Outland_Blood		1
+Outland_Blood_Pink	neronix17.outland.genetics	no	pink blood	Outland_Blood		1
+Outland_Blood_Purple	neronix17.outland.genetics	no	purple blood	Outland_Blood		1
+Outland_Blood_Red	neronix17.outland.genetics	no	red blood	Outland_Blood		1
+Outland_Blood_White	neronix17.outland.genetics	no	white blood	Outland_Blood		1
+Outland_Blood_Yellow	neronix17.outland.genetics	no	yellow blood	Outland_Blood		1
+Outland_BodyScale_Large	neronix17.outland.genetics	no	body scale (large)	Outland_BodyScale	0	1
+Outland_BodyScale_Massive	neronix17.outland.genetics	no	body scale (massive)	Outland_BodyScale	0	1
+Outland_BodyScale_Small	neronix17.outland.genetics	no	body scale (small)	Outland_BodyScale	0	1
+Outland_BodyScale_Squat	neronix17.outland.genetics	no	body scale (squat)	Outland_BodyScale	0	1
+Outland_BodyScale_Tiny	neronix17.outland.genetics	no	body scale (tiny)	Outland_BodyScale	0	1
+Outland_BovineHead	neronix17.outland.genetics	no	bovine head	Cosmetic		0
+Outland_Breedable	neronix17.outland.genetics	no	breedable	Reproduction	0	
+Outland_BumFluff	neronix17.outland.genetics	no	bum fluff	Miscellaneous	-1	1
+Outland_CalmingPheromones	neronix17.outland.genetics	no	calming pheromones	Miscellaneous		
+Outland_CanidHead	neronix17.outland.genetics	no	canid head	Cosmetic		0
+Outland_CephalomorphHead	neronix17.outland.genetics	no	cephalid head	Cosmetic		0
+Outland_Chest_Fur	neronix17.outland.genetics	no	chest fur	Cosmetic		0
+Outland_ChinHorns	neronix17.outland.genetics	no	chin horns	Outland_FacialFeatures		0
+Outland_ChitinousSkin	neronix17.outland.genetics	no	chitinous skin	Miscellaneous	-1	1
+Outland_ChitinousSkinTinted	neronix17.outland.genetics	no	chitinous skin (tinted)	Miscellaneous	-1	1
+Outland_ColdImmune	neronix17.outland.genetics	no	cold immunity	Temperature	-4	
+Outland_CompositeEyes	neronix17.outland.genetics	no	large eyes	Miscellaneous		0
+Outland_CompositeEyes_Blue	neronix17.outland.genetics	no	blue eyes (large)	Outland_Eyes		0
+Outland_CompositeEyes_Brown	neronix17.outland.genetics	no	brown eyes (large)	Outland_Eyes		0
+Outland_CompositeEyes_Cyan	neronix17.outland.genetics	no	cyan eyes (large)	Outland_Eyes		0
+Outland_CompositeEyes_Gray	neronix17.outland.genetics	no	gray eyes (large)	Outland_Eyes		0
+Outland_CompositeEyes_Green	neronix17.outland.genetics	no	green eyes (large)	Outland_Eyes		0
+Outland_CompositeEyes_LightBlue	neronix17.outland.genetics	no	light blue eyes (large)	Outland_Eyes		0
+Outland_CompositeEyes_Lime	neronix17.outland.genetics	no	lime eyes (large)	Outland_Eyes		0
+Outland_CompositeEyes_Magenta	neronix17.outland.genetics	no	magenta eyes (large)	Outland_Eyes		0
+Outland_CompositeEyes_Orange	neronix17.outland.genetics	no	orange eyes (large)	Outland_Eyes		0
+Outland_CompositeEyes_Pink	neronix17.outland.genetics	no	pink eyes (large)	Outland_Eyes		0
+Outland_CompositeEyes_Purple	neronix17.outland.genetics	no	purple eyes (large)	Outland_Eyes		0
+Outland_CompositeEyes_Red	neronix17.outland.genetics	no	red eyes (large)	Outland_Eyes		0
+Outland_CompositeEyes_White	neronix17.outland.genetics	no	white eyes (large)	Outland_Eyes		0
+Outland_CompositeEyes_Yellow	neronix17.outland.genetics	no	yellow eyes (large)	Outland_Eyes		0
+Outland_DarklightAffinity	neronix17.outland.genetics	no	darklight affinity	Miscellaneous	2	1
+Outland_DeceleratedMaturation	neronix17.outland.genetics	no	decelerated maturation	Miscellaneous	0	2
+Outland_DeceleratedPregnancy	neronix17.outland.genetics	no	decelerated pregnancy	Reproduction	1	
+Outland_DestinyMarks	neronix17.outland.genetics	no	destiny marks	Miscellaneous	0	1
+Outland_DistinctCheekbones	neronix17.outland.genetics	no	distinct cheekbones	Outland_FacialFeatures		0
+Outland_DraconicHead	neronix17.outland.genetics	no	draconic head	Cosmetic		0
+Outland_EarnedAscension	neronix17.outland.genetics	no	earned ascension	Outland_XenotypeAscension	0	1
+Outland_Ears_Akhkharu	neronix17.outland.genetics	no	ears (akhkharu)	Outland_Ears		0
+Outland_Ears_BigEars	neronix17.outland.genetics	no	ears (big)	Outland_Ears		0
+Outland_Ears_Bun	neronix17.outland.genetics	no	ears (bun)	Outland_Ears		0
+Outland_Ears_Curved	neronix17.outland.genetics	no	ears (curved)	Outland_Ears		0
+Outland_Ears_Doe	neronix17.outland.genetics	no	ears (doe)	Outland_Ears		0
+Outland_Ears_Fey	neronix17.outland.genetics	no	ears (fey)	Outland_Ears		0
+Outland_Ears_FlatPointed	neronix17.outland.genetics	no	ears (flat pointed)	Outland_Ears		0
+Outland_Ears_Fleef	neronix17.outland.genetics	no	ears (fleef)	Outland_Ears		0
+Outland_Ears_Flick	neronix17.outland.genetics	no	ears (flick)	Outland_Ears		0
+Outland_Ears_Flufftop	neronix17.outland.genetics	no	ears (flufftop)	Outland_Ears		0
+Outland_Ears_Foxie	neronix17.outland.genetics	no	ears (foxie)	Outland_Ears		0
+Outland_Ears_Furred	neronix17.outland.genetics	no	ears (furred)	Outland_Ears		0
+Outland_Ears_Goblinoid	neronix17.outland.genetics	no	ears (goblinoid)	Outland_Ears		0
+Outland_Ears_Jackal	neronix17.outland.genetics	no	ears (jackal)	Outland_Ears		0
+Outland_Ears_Large	neronix17.outland.genetics	no	ears (large)	Outland_Ears		0
+Outland_Ears_Nyoom	neronix17.outland.genetics	no	ears (nyoom)	Outland_Ears		0
+Outland_Ears_Ratty	neronix17.outland.genetics	no	ears (ratty)	Outland_Ears		0
+Outland_Ears_Rounded	neronix17.outland.genetics	no	ears (rounded)	Outland_Ears		0
+Outland_Ears_Serrated	neronix17.outland.genetics	no	ears (serrated)	Outland_Ears		0
+Outland_Ears_Swish	neronix17.outland.genetics	no	ears (swish)	Outland_Ears		0
+Outland_Ears_Teddy	neronix17.outland.genetics	no	ears (teddy)	Outland_Ears		0
+Outland_Ears_Ventral	neronix17.outland.genetics	no	ears (ventral)	Outland_Ears		0
+Outland_Ears_Vigilant	neronix17.outland.genetics	no	ears (vigilant)	Outland_Ears		0
+Outland_Ears_Webbed	neronix17.outland.genetics	no	ears (webbed)	Outland_Ears		0
+Outland_Ears_Wild	neronix17.outland.genetics	no	ears (wild)	Outland_Ears		0
+Outland_Ears_Woosh	neronix17.outland.genetics	no	ears (woosh)	Outland_Ears		0
+Outland_EasyEarnedAscension	neronix17.outland.genetics	no	easy earned ascension	Outland_XenotypeAscension	-1	1
+Outland_EggLayer	neronix17.outland.genetics	no	egg layer	Reproduction	0	
+Outland_ElvenEars	neronix17.outland.genetics	no	ears (elven)	Outland_Ears		0
+Outland_Empathic	neronix17.outland.genetics	no	empathic	Miscellaneous	0	
+Outland_Evasive	neronix17.outland.genetics	no	evasive	Miscellaneous	-1	1
+Outland_ExtremeMetabolism	neronix17.outland.genetics	no	+3 metabolism	Outland_Metabolism	3	1
+Outland_EyeVisual_Recessed	neronix17.outland.genetics	no	recessed eyes	Outland_FacialFeatures		0
+Outland_Eye_Blue	neronix17.outland.genetics	no	blue eyes	Outland_Eyes		0
+Outland_Eye_Brown	neronix17.outland.genetics	no	brown eyes	Outland_Eyes		0
+Outland_Eye_Cyan	neronix17.outland.genetics	no	cyan eyes	Outland_Eyes		0
+Outland_Eye_Green	neronix17.outland.genetics	no	green eyes	Outland_Eyes		0
+Outland_Eye_LightBlue	neronix17.outland.genetics	no	light blue eyes	Outland_Eyes		0
+Outland_Eye_Lime	neronix17.outland.genetics	no	lime eyes	Outland_Eyes		0
+Outland_Eye_Magenta	neronix17.outland.genetics	no	magenta eyes	Outland_Eyes		0
+Outland_Eye_Orange	neronix17.outland.genetics	no	orange eyes	Outland_Eyes		0
+Outland_Eye_Pink	neronix17.outland.genetics	no	pink eyes	Outland_Eyes		0
+Outland_Eye_Purple	neronix17.outland.genetics	no	purple eyes	Outland_Eyes		0
+Outland_Eye_White	neronix17.outland.genetics	no	white eyes	Outland_Eyes		0
+Outland_Eye_Yellow	neronix17.outland.genetics	no	yellow eyes	Outland_Eyes		0
+Outland_FaceTendrils	neronix17.outland.genetics	no	facial tendrils	Outland_FacialFeatures		0
+Outland_FamiliarScent	neronix17.outland.genetics	no	familiar scent	Miscellaneous		
+Outland_FelineFur	neronix17.outland.genetics	no	feline fur	Miscellaneous	0	1
+Outland_FelineHead	neronix17.outland.genetics	no	feline head	Cosmetic		0
+Outland_FeyAgeing	neronix17.outland.genetics	no	fey ageing	Miscellaneous	-3	2
+Outland_FeybarkHead	neronix17.outland.genetics	no	feybark head	Cosmetic		0
+Outland_FireImmune	neronix17.outland.genetics	no	fire immunity	ResistanceAndWeakness	-4	
+Outland_FragileHealing	neronix17.outland.genetics	no	fragile healing	Healing	2	
+Outland_FreezingSpray	neronix17.outland.genetics	no	freezing spray	Ability	-2	
+Outland_Furbody	neronix17.outland.genetics	no	furbody	Miscellaneous	-1	1
+Outland_GreaterGoblinoidHead	neronix17.outland.genetics	no	greater goblinoid head	Cosmetic		0
+Outland_HairColor_Aqua	neronix17.outland.genetics	no	aqua hair	Cosmetic_Hair		0
+Outland_HairColor_BrightAzure	neronix17.outland.genetics	no	bright azure hair	Cosmetic_Hair		0
+Outland_HairColor_BrightBlue	neronix17.outland.genetics	no	bright blue hair	Cosmetic_Hair		0
+Outland_HairColor_BrightGreen	neronix17.outland.genetics	no	bright green hair	Cosmetic_Hair		0
+Outland_HairColor_BrightLime	neronix17.outland.genetics	no	bright lime hair	Cosmetic_Hair		0
+Outland_HairColor_BrightMagenta	neronix17.outland.genetics	no	bright magenta hair	Cosmetic_Hair		0
+Outland_HairColor_BrightOrange	neronix17.outland.genetics	no	bright orange hair	Cosmetic_Hair		0
+Outland_HairColor_BrightPink	neronix17.outland.genetics	no	bright pink hair	Cosmetic_Hair		0
+Outland_HairColor_BrightPurple	neronix17.outland.genetics	no	bright purple hair	Cosmetic_Hair		0
+Outland_HairColor_BrightRed	neronix17.outland.genetics	no	bright red hair	Cosmetic_Hair		0
+Outland_HairColor_BrightSage	neronix17.outland.genetics	no	bright sage hair	Cosmetic_Hair		0
+Outland_HairColor_BrightViridian	neronix17.outland.genetics	no	bright viridian hair	Cosmetic_Hair		0
+Outland_HairColor_BrightYellow	neronix17.outland.genetics	no	bright yellow hair	Cosmetic_Hair		0
+Outland_HairColor_DarkAzure	neronix17.outland.genetics	no	dark azure hair	Cosmetic_Hair		0
+Outland_HairColor_DarkBlue	neronix17.outland.genetics	no	dark blue hair	Cosmetic_Hair		0
+Outland_HairColor_DarkGreen	neronix17.outland.genetics	no	dark green hair	Cosmetic_Hair		0
+Outland_HairColor_DarkLime	neronix17.outland.genetics	no	dark lime hair	Cosmetic_Hair		0
+Outland_HairColor_DarkMagenta	neronix17.outland.genetics	no	dark magenta hair	Cosmetic_Hair		0
+Outland_HairColor_DarkOrange	neronix17.outland.genetics	no	dark orange hair	Cosmetic_Hair		0
+Outland_HairColor_DarkPink	neronix17.outland.genetics	no	dark pink hair	Cosmetic_Hair		0
+Outland_HairColor_DarkPurple	neronix17.outland.genetics	no	dark purple hair	Cosmetic_Hair		0
+Outland_HairColor_DarkRed	neronix17.outland.genetics	no	dark red hair	Cosmetic_Hair		0
+Outland_HairColor_DarkSage	neronix17.outland.genetics	no	dark sage hair	Cosmetic_Hair		0
+Outland_HairColor_DarkViridian	neronix17.outland.genetics	no	dark viridian hair	Cosmetic_Hair		0
+Outland_HairColor_DarkYellow	neronix17.outland.genetics	no	dark yellow hair	Cosmetic_Hair		0
+Outland_HairColor_Indigo	neronix17.outland.genetics	no	indigo hair	Cosmetic_Hair		0
+Outland_HairColor_Lime	neronix17.outland.genetics	no	lime hair	Cosmetic_Hair		0
+Outland_HairColor_PastelBlue	neronix17.outland.genetics	no	pastel blue hair	Cosmetic_Hair		0
+Outland_HairColor_PastelGreen	neronix17.outland.genetics	no	faded green hair	Cosmetic_Hair		0
+Outland_HairColor_PastelOrange	neronix17.outland.genetics	no	pastel orange hair	Cosmetic_Hair		0
+Outland_HairColor_PastelPink	neronix17.outland.genetics	no	pastel pink hair	Cosmetic_Hair		0
+Outland_HairColor_Seafoam	neronix17.outland.genetics	no	seafoam hair	Cosmetic_Hair		0
+Outland_HairColor_SkyBlue	neronix17.outland.genetics	no	sky blue hair	Cosmetic_Hair		0
+Outland_HairColor_Violet	neronix17.outland.genetics	no	violet hair	Cosmetic_Hair		0
+Outland_HairColor_Yellow	neronix17.outland.genetics	no	yellow hair	Cosmetic_Hair		0
+Outland_Hands_BurningTalons	neronix17.outland.genetics	no	hands (burning talons)	Outland_HandsAndFeet	-2	1
+Outland_Hands_CrabClaw	neronix17.outland.genetics	no	hands (crab claw)	Outland_HandsAndFeet	1	1
+Outland_Hands_FreezingTalons	neronix17.outland.genetics	no	hands (freezing talons)	Outland_HandsAndFeet	-2	1
+Outland_Hands_RetractableBlades	neronix17.outland.genetics	no	hands (retractable blades)	Outland_HandsAndFeet	-2	1
+Outland_Hands_Talons	neronix17.outland.genetics	no	hands (talons)	Outland_HandsAndFeet	-1	1
+Outland_Hands_Tentacle	neronix17.outland.genetics	no	hands (tentacle)	Outland_HandsAndFeet	-1	1
+Outland_Hands_VenomTalons	neronix17.outland.genetics	no	hands (venom talons)	Outland_HandsAndFeet	-2	1
+Outland_HardEarnedAscension	neronix17.outland.genetics	no	hard earned ascension	Outland_XenotypeAscension	1	1
+Outland_Headbone_Antler	neronix17.outland.genetics	no	horns (antler)	Cosmetic		0
+Outland_Headbone_ArmouredPlates	neronix17.outland.genetics	no	plated headbone	Cosmetic		0
+Outland_Headbone_Bean	neronix17.outland.genetics	no	horns (bean)	Cosmetic		0
+Outland_Headbone_Benevolent	neronix17.outland.genetics	no	horns (benevolent)	Cosmetic		0
+Outland_Headbone_Bonfire	neronix17.outland.genetics	no	horns (bonfire)	Cosmetic		0
+Outland_Headbone_Bulb	neronix17.outland.genetics	no	horns (bulb)	Cosmetic		0
+Outland_Headbone_Bull	neronix17.outland.genetics	no	horns (bull)	Cosmetic		0
+Outland_Headbone_Cherub	neronix17.outland.genetics	no	horns (cherub)	Cosmetic		0
+Outland_Headbone_Crescent	neronix17.outland.genetics	no	horns (crescent)	Cosmetic		0
+Outland_Headbone_CrownArcuate	neronix17.outland.genetics	no	crown (arcuate)	Cosmetic		0
+Outland_Headbone_CrownClaws	neronix17.outland.genetics	no	crown (claws)	Cosmetic		0
+Outland_Headbone_CrownHalberd	neronix17.outland.genetics	no	crown (halberd)	Cosmetic		0
+Outland_Headbone_CrownHandles	neronix17.outland.genetics	no	crown (handles)	Cosmetic		0
+Outland_Headbone_CrownPhalanx	neronix17.outland.genetics	no	crown (phalanx)	Cosmetic		0
+Outland_Headbone_CrownPredacious	neronix17.outland.genetics	no	crown (predacious)	Cosmetic		0
+Outland_Headbone_CrownReptile	neronix17.outland.genetics	no	crown (reptile)	Cosmetic		0
+Outland_Headbone_CrownSpinous	neronix17.outland.genetics	no	crown (spinous)	Cosmetic		0
+Outland_Headbone_Crystal	neronix17.outland.genetics	no	horns (crystal)	Cosmetic		0
+Outland_Headbone_Daemon	neronix17.outland.genetics	no	horns (daemon)	Cosmetic		0
+Outland_Headbone_DevilsTwist	neronix17.outland.genetics	no	horns (devils twist)	Cosmetic		0
+Outland_Headbone_Dragon	neronix17.outland.genetics	no	horns (dragon)	Cosmetic		0
+Outland_Headbone_Drop	neronix17.outland.genetics	no	horns (drop)	Cosmetic		0
+Outland_Headbone_Fawn	neronix17.outland.genetics	no	horns (fawn)	Cosmetic		0
+Outland_Headbone_Flame	neronix17.outland.genetics	no	horns (flame)	Cosmetic		0
+Outland_Headbone_Forward	neronix17.outland.genetics	no	horns (forward)	Cosmetic		0
+Outland_Headbone_Heart	neronix17.outland.genetics	no	horns (heart)	Cosmetic		0
+Outland_Headbone_King	neronix17.outland.genetics	no	horns (king)	Cosmetic		0
+Outland_Headbone_Laurel	neronix17.outland.genetics	no	horns (laurel)	Cosmetic		0
+Outland_Headbone_Leafy	neronix17.outland.genetics	no	leafy protrusions	Cosmetic		0
+Outland_Headbone_LongProng	neronix17.outland.genetics	no	horns (long prong)	Cosmetic		0
+Outland_Headbone_PlatedUni	neronix17.outland.genetics	no	horns (large uni)	Cosmetic		0
+Outland_Headbone_Raffe	neronix17.outland.genetics	no	horns (raffe)	Cosmetic		0
+Outland_Headbone_Ram	neronix17.outland.genetics	no	horns (ram)	Cosmetic		0
+Outland_Headbone_Rookie	neronix17.outland.genetics	no	horns (rookie)	Cosmetic		0
+Outland_Headbone_Rough	neronix17.outland.genetics	no	horns (rough)	Cosmetic		0
+Outland_Headbone_Row	neronix17.outland.genetics	no	horns (row)	Cosmetic		0
+Outland_Headbone_Scalloped	neronix17.outland.genetics	no	horns (scalloped)	Cosmetic		0
+Outland_Headbone_SmallUni	neronix17.outland.genetics	no	horns (medium uni)	Cosmetic		0
+Outland_Headbone_SmolUni	neronix17.outland.genetics	no	horns (small uni)	Cosmetic		0
+Outland_Headbone_Splash	neronix17.outland.genetics	no	horns (splash)	Cosmetic		0
+Outland_Headbone_Spring	neronix17.outland.genetics	no	horns (spring)	Cosmetic		0
+Outland_Headbone_Straw	neronix17.outland.genetics	no	horns (straw)	Cosmetic		0
+Outland_Headbone_Strong	neronix17.outland.genetics	no	horns (strong)	Cosmetic		0
+Outland_Headbone_Thorn	neronix17.outland.genetics	no	horns (thorn)	Cosmetic		0
+Outland_Headbone_TwoProng	neronix17.outland.genetics	no	horns (two prong)	Cosmetic		0
+Outland_Headbone_Zilla	neronix17.outland.genetics	no	horns (zilla)	Cosmetic		0
+Outland_Headbone_ZillaEx	neronix17.outland.genetics	no	horns (zilla ex)	Cosmetic		0
+Outland_HeatImmune	neronix17.outland.genetics	no	heat immunity	Temperature	-4	
+Outland_HighMetabolism	neronix17.outland.genetics	no	+2 metabolism	Outland_Metabolism	2	1
+Outland_HoovedFeet	neronix17.outland.genetics	no	feet (hoof)	Outland_HandsAndFeet	-1	1
+Outland_InsectBody	neronix17.outland.genetics	no	insect body	Miscellaneous	-1	1
+Outland_InsectHead	neronix17.outland.genetics	no	insect head	Cosmetic		0
+Outland_JawTusks	neronix17.outland.genetics	no	jaw tusks	Outland_FacialFeatures		0
+Outland_KindEyes	neronix17.outland.genetics	no	kind eyes	Miscellaneous		
+Outland_LeaperLegs	neronix17.outland.genetics	no	leaper legs	Ability	-1	
+Outland_LesserGoblinoidHead	neronix17.outland.genetics	no	lesser goblinoid head	Cosmetic		0
+Outland_LightningSpray	neronix17.outland.genetics	no	lightning spray	Ability	-2	
+Outland_LongMouth	neronix17.outland.genetics	no	long snout	Outland_FacialFeatures		0
+Outland_LowFertility	neronix17.outland.genetics	no	low fertility	Reproduction	1	
+Outland_MonocularEye_Blue	neronix17.outland.genetics	no	blue eye (monocular)	Outland_Eyes		0
+Outland_MonocularEye_Brown	neronix17.outland.genetics	no	brown eye (monocular)	Outland_Eyes		0
+Outland_MonocularEye_Cyan	neronix17.outland.genetics	no	cyan eye (monocular)	Outland_Eyes		0
+Outland_MonocularEye_Gray	neronix17.outland.genetics	no	gray eye (monocular)	Outland_Eyes		0
+Outland_MonocularEye_Green	neronix17.outland.genetics	no	green eye (monocular)	Outland_Eyes		0
+Outland_MonocularEye_LightBlue	neronix17.outland.genetics	no	light blue eye (monocular)	Outland_Eyes		0
+Outland_MonocularEye_Lime	neronix17.outland.genetics	no	lime eye (monocular)	Outland_Eyes		0
+Outland_MonocularEye_Magenta	neronix17.outland.genetics	no	magenta eye (monocular)	Outland_Eyes		0
+Outland_MonocularEye_Orange	neronix17.outland.genetics	no	orange eye (monocular)	Outland_Eyes		0
+Outland_MonocularEye_Pink	neronix17.outland.genetics	no	pink eye (monocular)	Outland_Eyes		0
+Outland_MonocularEye_Purple	neronix17.outland.genetics	no	purple eye (monocular)	Outland_Eyes		0
+Outland_MonocularEye_Red	neronix17.outland.genetics	no	red eye (monocular)	Outland_Eyes		0
+Outland_MonocularEye_White	neronix17.outland.genetics	no	white eye (monocular)	Outland_Eyes		0
+Outland_MonocularEye_Yellow	neronix17.outland.genetics	no	yellow eye (monocular)	Outland_Eyes		0
+Outland_MonocularHead	neronix17.outland.genetics	no	monocular head	Cosmetic		0
+Outland_MothHead	neronix17.outland.genetics	no	moth head	Cosmetic		0
+Outland_NeckRuffle_Curly	neronix17.outland.genetics	no	neck ruffle (curly)	Cosmetic		0
+Outland_NeckRuffle_Fuzzy	neronix17.outland.genetics	no	neck ruffle (fuzzy)	Cosmetic		0
+Outland_NeckRuffle_Spikey	neronix17.outland.genetics	no	neck ruffle (spikey)	Cosmetic		0
+Outland_NeckRuffle_Wavy	neronix17.outland.genetics	no	neck ruffle (wavy)	Cosmetic		0
+Outland_Neg1Metabolism	neronix17.outland.genetics	no	-1 metabolism	Outland_Metabolism	-1	1
+Outland_Neg2Metabolism	neronix17.outland.genetics	no	-2 metabolism	Outland_Metabolism	-2	1
+Outland_Neg3Metabolism	neronix17.outland.genetics	no	-3 metabolism	Outland_Metabolism	-3	1
+Outland_Neg4Metabolism	neronix17.outland.genetics	no	-4 metabolism	Outland_Metabolism	-4	1
+Outland_Neg5Metabolism	neronix17.outland.genetics	no	-5 metabolism	Outland_Metabolism	-5	1
+Outland_Neg6Metabolism	neronix17.outland.genetics	no	-6 metabolism	Outland_Metabolism	-6	1
+Outland_Neg7Metabolism	neronix17.outland.genetics	no	-7 metabolism	Outland_Metabolism	-7	1
+Outland_Nose_Akhkharu	neronix17.outland.genetics	no	akhkharu nose	Outland_FacialFeatures		0
+Outland_Nose_BigNose	neronix17.outland.genetics	no	big nose	Outland_FacialFeatures		0
+Outland_Nose_Goblinoid	neronix17.outland.genetics	no	goblinoid nose	Outland_FacialFeatures		0
+Outland_Nose_Leathery	neronix17.outland.genetics	no	leathery nose	Outland_FacialFeatures		0
+Outland_Nose_NoseSlits	neronix17.outland.genetics	no	nasal slits	Outland_FacialFeatures		0
+Outland_ParasiticImplantation	neronix17.outland.genetics	no	parasitic implantation	Reproduction	-1	
+Outland_PawFeet	neronix17.outland.genetics	no	feet (paw)	Outland_HandsAndFeet	-1	1
+Outland_Pos1Metabolism	neronix17.outland.genetics	no	+1 metabolism	Outland_Metabolism	1	1
+Outland_Pos2Metabolism	neronix17.outland.genetics	no	+2 metabolism	Outland_Metabolism	2	1
+Outland_Pos3Metabolism	neronix17.outland.genetics	no	+3 metabolism	Outland_Metabolism	3	1
+Outland_Pos4Metabolism	neronix17.outland.genetics	no	+4 metabolism	Outland_Metabolism	4	1
+Outland_Pos5Metabolism	neronix17.outland.genetics	no	+5 metabolism	Outland_Metabolism	5	1
+Outland_Pos6Metabolism	neronix17.outland.genetics	no	+6 metabolism	Outland_Metabolism	6	1
+Outland_Pos7Metabolism	neronix17.outland.genetics	no	+7 metabolism	Outland_Metabolism	7	1
+Outland_RattyHead	neronix17.outland.genetics	no	ratty head	Cosmetic		0
+Outland_Regeneration	neronix17.outland.genetics	no	regeneration	Healing	-2	
+Outland_Resurrect	neronix17.outland.genetics	no	resurrect	Archite		4
+Outland_RidgedSkin	neronix17.outland.genetics	no	ridged skin	Miscellaneous	0	1
+Outland_ScaleSkin	neronix17.outland.genetics	no	scaleskin	Miscellaneous	-1	1
+Outland_Scalebody	neronix17.outland.genetics	no	scalebody	Miscellaneous	-1	1
+Outland_ShortFlight	neronix17.outland.genetics	no	short flight	Ability	-2	
+Outland_Skin_Auburn	neronix17.outland.genetics	no	auburn skin	Cosmetic_Skin		0
+Outland_Skin_Azure	neronix17.outland.genetics	no	azure skin	Cosmetic_Skin		0
+Outland_Skin_BlueDeep	neronix17.outland.genetics	no	deep blue skin	Cosmetic_Skin		0
+Outland_Skin_BlueIce	neronix17.outland.genetics	no	ice blue skin	Cosmetic_Skin		0
+Outland_Skin_BluePastel	neronix17.outland.genetics	no	pastel blue skin	Cosmetic_Skin		0
+Outland_Skin_BlueSky	neronix17.outland.genetics	no	sky blue skin	Cosmetic_Skin		0
+Outland_Skin_BlueSubtle	neronix17.outland.genetics	no	subtle blue skin	Cosmetic_Skin		0
+Outland_Skin_Brown	neronix17.outland.genetics	no	brown skin	Cosmetic_Skin		0
+Outland_Skin_BrownFaded	neronix17.outland.genetics	no	faded brown skin	Cosmetic_Skin		0
+Outland_Skin_BrownSubtle	neronix17.outland.genetics	no	subtle brown skin	Cosmetic_Skin		0
+Outland_Skin_BrownWood	neronix17.outland.genetics	no	wood brown skin	Cosmetic_Skin		0
+Outland_Skin_Burgundy	neronix17.outland.genetics	no	burgundy skin	Cosmetic_Skin		0
+Outland_Skin_Copper	neronix17.outland.genetics	no	copper skin	Cosmetic_Skin		0
+Outland_Skin_Cream	neronix17.outland.genetics	no	cream skin	Cosmetic_Skin		0
+Outland_Skin_DarkBrown	neronix17.outland.genetics	no	dark brown skin	Cosmetic_Skin		0
+Outland_Skin_DarkMauve	neronix17.outland.genetics	no	dark mauve skin	Cosmetic_Skin		0
+Outland_Skin_DeepAzure	neronix17.outland.genetics	no	deep azure skin	Cosmetic_Skin		0
+Outland_Skin_DeepBlue	neronix17.outland.genetics	no	deep blue skin	Cosmetic_Skin		0
+Outland_Skin_DeepBrown	neronix17.outland.genetics	no	deep brown skin	Cosmetic_Skin		0
+Outland_Skin_DeepGreen	neronix17.outland.genetics	no	deep green skin	Cosmetic_Skin		0
+Outland_Skin_DeepLime	neronix17.outland.genetics	no	deep lime skin	Cosmetic_Skin		0
+Outland_Skin_DeepMagenta	neronix17.outland.genetics	no	deep magenta skin	Cosmetic_Skin		0
+Outland_Skin_DeepOrange	neronix17.outland.genetics	no	deep orange skin	Cosmetic_Skin		0
+Outland_Skin_DeepPink	neronix17.outland.genetics	no	deep pink skin	Cosmetic_Skin		0
+Outland_Skin_DeepPurple	neronix17.outland.genetics	no	deep purple skin	Cosmetic_Skin		0
+Outland_Skin_DeepSage	neronix17.outland.genetics	no	deep sage skin	Cosmetic_Skin		0
+Outland_Skin_DeepViridian	neronix17.outland.genetics	no	deep viridian skin	Cosmetic_Skin		0
+Outland_Skin_DirtBrown	neronix17.outland.genetics	no	dirt brown skin	Cosmetic_Skin		0
+Outland_Skin_Dusk	neronix17.outland.genetics	no	dusk skin	Cosmetic_Skin		0
+Outland_Skin_Gold	neronix17.outland.genetics	no	gold skin	Cosmetic_Skin		0
+Outland_Skin_Golden	neronix17.outland.genetics	no	pale golden skin	Cosmetic_Skin		0
+Outland_Skin_Granite	neronix17.outland.genetics	no	granite skin	Cosmetic_Skin		0
+Outland_Skin_Grape	neronix17.outland.genetics	no	grape skin	Cosmetic_Skin		0
+Outland_Skin_GreenDeep	neronix17.outland.genetics	no	deep green skin	Cosmetic_Skin		0
+Outland_Skin_GreenFaded	neronix17.outland.genetics	no	faded green skin	Cosmetic_Skin		0
+Outland_Skin_GreenForest	neronix17.outland.genetics	no	forest green skin	Cosmetic_Skin		0
+Outland_Skin_GreenMarsh	neronix17.outland.genetics	no	marsh green skin	Cosmetic_Skin		0
+Outland_Skin_GreenMuddy	neronix17.outland.genetics	no	muddy green skin	Cosmetic_Skin		0
+Outland_Skin_GreenPastel	neronix17.outland.genetics	no	pastel green skin	Cosmetic_Skin		0
+Outland_Skin_GreenPine	neronix17.outland.genetics	no	pine green skin	Cosmetic_Skin		0
+Outland_Skin_GreenSwamp	neronix17.outland.genetics	no	swamp green skin	Cosmetic_Skin		0
+Outland_Skin_Indigo	neronix17.outland.genetics	no	indigo skin	Cosmetic_Skin		0
+Outland_Skin_IndigoLight	neronix17.outland.genetics	no	light indigo skin	Cosmetic_Skin		0
+Outland_Skin_LightBrown	neronix17.outland.genetics	no	light brown skin	Cosmetic_Skin		0
+Outland_Skin_Lime	neronix17.outland.genetics	no	lime skin	Cosmetic_Skin		0
+Outland_Skin_LimePale	neronix17.outland.genetics	no	pale lime skin	Cosmetic_Skin		0
+Outland_Skin_Limestone	neronix17.outland.genetics	no	limestone skin	Cosmetic_Skin		0
+Outland_Skin_Magenta	neronix17.outland.genetics	no	magenta skin	Cosmetic_Skin		0
+Outland_Skin_MagentaSubtle	neronix17.outland.genetics	no	subtle magenta skin	Cosmetic_Skin		0
+Outland_Skin_Marble	neronix17.outland.genetics	no	marble skin	Cosmetic_Skin		0
+Outland_Skin_Marine	neronix17.outland.genetics	no	marine skin	Cosmetic_Skin		0
+Outland_Skin_Moss	neronix17.outland.genetics	no	moss skin	Cosmetic_Skin		0
+Outland_Skin_MossBright	neronix17.outland.genetics	no	bright moss skin	Cosmetic_Skin		0
+Outland_Skin_Mustard	neronix17.outland.genetics	no	mustard skin	Cosmetic_Skin		0
+Outland_Skin_Olive	neronix17.outland.genetics	no	olive skin	Cosmetic_Skin		0
+Outland_Skin_OliveDark	neronix17.outland.genetics	no	dark olive skin	Cosmetic_Skin		0
+Outland_Skin_OrangePastel	neronix17.outland.genetics	no	pastel orange skin	Cosmetic_Skin		0
+Outland_Skin_PaleAzure	neronix17.outland.genetics	no	pale azure skin	Cosmetic_Skin		0
+Outland_Skin_PaleBlue	neronix17.outland.genetics	no	pale blue skin	Cosmetic_Skin		0
+Outland_Skin_PaleBrown	neronix17.outland.genetics	no	pale brown skin	Cosmetic_Skin		0
+Outland_Skin_PaleGreen	neronix17.outland.genetics	no	pale green skin	Cosmetic_Skin		0
+Outland_Skin_PaleLime	neronix17.outland.genetics	no	pale lime skin	Cosmetic_Skin		0
+Outland_Skin_PaleMagenta	neronix17.outland.genetics	no	pale magenta skin	Cosmetic_Skin		0
+Outland_Skin_PaleOrange	neronix17.outland.genetics	no	pale orange skin	Cosmetic_Skin		0
+Outland_Skin_PalePink	neronix17.outland.genetics	no	pale pink skin	Cosmetic_Skin		0
+Outland_Skin_PalePurple	neronix17.outland.genetics	no	pale purple skin	Cosmetic_Skin		0
+Outland_Skin_PaleSage	neronix17.outland.genetics	no	pale sage skin	Cosmetic_Skin		0
+Outland_Skin_PaleViridian	neronix17.outland.genetics	no	pale viridian skin	Cosmetic_Skin		0
+Outland_Skin_Pink	neronix17.outland.genetics	no	pastel pink skin	Cosmetic_Skin		0
+Outland_Skin_Plum	neronix17.outland.genetics	no	plum skin	Cosmetic_Skin		0
+Outland_Skin_PurpleDeep	neronix17.outland.genetics	no	deep purple skin	Cosmetic_Skin		0
+Outland_Skin_PurpleMuted	neronix17.outland.genetics	no	muted purple skin	Cosmetic_Skin		0
+Outland_Skin_PurpleSubtle	neronix17.outland.genetics	no	subtle purple skin	Cosmetic_Skin		0
+Outland_Skin_Red	neronix17.outland.genetics	no	red skin	Cosmetic_Skin		0
+Outland_Skin_RedPastel	neronix17.outland.genetics	no	pastel red skin	Cosmetic_Skin		0
+Outland_Skin_RedSubtle	neronix17.outland.genetics	no	subtle red skin	Cosmetic_Skin		0
+Outland_Skin_Sage	neronix17.outland.genetics	no	sage skin	Cosmetic_Skin		0
+Outland_Skin_Sandstone	neronix17.outland.genetics	no	sandstone skin	Cosmetic_Skin		0
+Outland_Skin_Scarlet	neronix17.outland.genetics	no	scarlet skin	Cosmetic_Skin		0
+Outland_Skin_Silver	neronix17.outland.genetics	no	silver skin	Cosmetic_Skin		0
+Outland_Skin_Teal	neronix17.outland.genetics	no	teal skin	Cosmetic_Skin		0
+Outland_Skin_UmberBurnt	neronix17.outland.genetics	no	burnt umber skin	Cosmetic_Skin		0
+Outland_Skin_Viridian	neronix17.outland.genetics	no	viridian skin	Cosmetic_Skin		0
+Outland_Skin_ViridianSubtle	neronix17.outland.genetics	no	subtle viridian skin	Cosmetic_Skin		0
+Outland_Skin_Yellow	neronix17.outland.genetics	no	yellow skin	Cosmetic_Skin		0
+Outland_Skin_YellowPastel	neronix17.outland.genetics	no	pastel yellow skin	Cosmetic_Skin		0
+Outland_Submissive	neronix17.outland.genetics	no	submissive	Miscellaneous	-2	1
+Outland_SvelteHead	neronix17.outland.genetics	no	svelte head	Cosmetic		0
+Outland_SymbioticImplantation	neronix17.outland.genetics	no	symbiotic implantation	Reproduction	-2	
+Outland_Tail_Curly	neronix17.outland.genetics	no	tail (curly)	Miscellaneous		1
+Outland_Tail_Flame	neronix17.outland.genetics	no	tail (flame)	Miscellaneous		1
+Outland_Tail_Flop	neronix17.outland.genetics	no	tail (flop)	Miscellaneous		1
+Outland_Tail_Fluffage	neronix17.outland.genetics	no	tail (fluffage)	Miscellaneous		1
+Outland_Tail_Furball	neronix17.outland.genetics	no	tail (furball)	Miscellaneous		1
+Outland_Tail_Hook	neronix17.outland.genetics	no	tail (hook)	Miscellaneous		1
+Outland_Tail_Imp	neronix17.outland.genetics	no	tail (imp)	Miscellaneous	-1	1
+Outland_Tail_Kink	neronix17.outland.genetics	no	tail (kink)	Miscellaneous		1
+Outland_Tail_Layered	neronix17.outland.genetics	no	tail (layered)	Miscellaneous		1
+Outland_Tail_Leathery	neronix17.outland.genetics	no	tail (leathery)	Miscellaneous		1
+Outland_Tail_Plated	neronix17.outland.genetics	no	tail (plated)	Miscellaneous		1
+Outland_Tail_Pointed	neronix17.outland.genetics	no	tail (pointed)	Miscellaneous	-1	1
+Outland_Tail_Pom	neronix17.outland.genetics	no	tail (pom)	Miscellaneous		1
+Outland_Tail_Ratty	neronix17.outland.genetics	no	tail (ratty)	Miscellaneous		1
+Outland_Tail_Rolled	neronix17.outland.genetics	no	tail (rolled)	Miscellaneous		1
+Outland_Tail_Spray	neronix17.outland.genetics	no	tail (spray)	Miscellaneous		1
+Outland_Tail_Torrent	neronix17.outland.genetics	no	tail (torrent)	Miscellaneous		1
+Outland_TalonFeet	neronix17.outland.genetics	no	feet (talon)	Outland_HandsAndFeet	-1	1
+Outland_Teeth_Fangs	neronix17.outland.genetics	no	teeth (fangs)	Outland_Teeth	-1	1
+Outland_Teeth_FangsBurning	neronix17.outland.genetics	no	teeth (burning fangs)	Outland_Teeth	-2	1
+Outland_Teeth_FangsFreezing	neronix17.outland.genetics	no	teeth (freezing fangs)	Outland_Teeth	-2	1
+Outland_Teeth_FangsVenom	neronix17.outland.genetics	no	teeth (venom fangs)	Outland_Teeth	-2	1
+Outland_Teeth_Mandibles	neronix17.outland.genetics	no	teeth (mandibles)	Outland_Teeth		0
+Outland_Teeth_None	neronix17.outland.genetics	no	human teeth	Outland_Teeth		0
+Outland_Teeth_TusksLarge	neronix17.outland.genetics	no	teeth (large tusks)	Outland_Teeth		0
+Outland_Teeth_TusksSmall	neronix17.outland.genetics	no	teeth (small tusks)	Outland_Teeth		0
+Outland_TermiteHead	neronix17.outland.genetics	no	termite head	Cosmetic	2	1
+Outland_ThickSkin	neronix17.outland.genetics	no	thick skin	Miscellaneous	-1	1
+Outland_ToxicSpray	neronix17.outland.genetics	no	toxic spray	Ability	-2	
+Outland_TrencherHead	neronix17.outland.genetics	no	trencher head	Cosmetic		0
+Outland_UVSensitivity_Extreme	neronix17.outland.genetics	no	extreme UV sensitivity	ResistanceAndWeakness	8	3
+Outland_UnusualSpeech	neronix17.outland.genetics	no	unusual speech	Miscellaneous	1	1
+Outland_Voice_Beastly	neronix17.outland.genetics	no	beastly voice	Cosmetic		0
+Outland_Voice_Clicker	neronix17.outland.genetics	no	clicker voice	Cosmetic		0
+Outland_Voice_Demonic	neronix17.outland.genetics	no	demonic voice	Cosmetic		0
+Outland_Voice_Draconic	neronix17.outland.genetics	no	draconic voice	Cosmetic		0
+Outland_Voice_Ethereal	neronix17.outland.genetics	no	ethereal voice	Cosmetic		0
+Outland_Voice_Ghoulish	neronix17.outland.genetics	no	ghoulish voice	Cosmetic		0
+Outland_Voice_Groany	neronix17.outland.genetics	no	groany voice	Cosmetic		0
+Outland_Voice_Insect	neronix17.outland.genetics	no	insect voice	Cosmetic		0
+Outland_Voice_Undead	neronix17.outland.genetics	no	undead voice	Cosmetic		0
+Outland_Voice_Vibronic	neronix17.outland.genetics	no	vibronic voice	Cosmetic		0
+Outland_Voice_Wolfy	neronix17.outland.genetics	no	wolfy voice	Cosmetic		0
+Outland_WebbedFeet	neronix17.outland.genetics	no	feet (webbed)	Outland_HandsAndFeet	-1	1
+Outland_Wings_Angel	neronix17.outland.genetics	no	wings (angel)	Outland_Wings	-2	1
+Outland_Wings_Bird	neronix17.outland.genetics	no	wings (bird)	Outland_Wings	-2	1
+Outland_Wings_Devil	neronix17.outland.genetics	no	wings (devil)	Outland_Wings	-2	1
+Outland_Wings_FallenAngel	neronix17.outland.genetics	no	wings (fallen angel)	Outland_Wings	-2	1
+Outland_Wings_Fey	neronix17.outland.genetics	no	wings (fey)	Outland_Wings	-2	1
+Outland_Wings_FlareBlue	neronix17.outland.genetics	no	wings (blue flare)	Outland_Wings	-2	1
+Outland_Wings_FlareGreen	neronix17.outland.genetics	no	wings (green flare)	Outland_Wings	-2	1
+Outland_Wings_FlareRed	neronix17.outland.genetics	no	wings (red flare)	Outland_Wings	-2	1
+Outland_Wings_GlassyBlue	neronix17.outland.genetics	no	wings (glassy blue)	Outland_Wings	-2	1
+Outland_Wings_Imp	neronix17.outland.genetics	no	wings (imp)	Outland_Wings	-2	1
+Outland_Wings_Insect	neronix17.outland.genetics	no	wings (insect)	Outland_Wings	-2	1
+Outland_Wings_None	neronix17.outland.genetics	no	no wings	Outland_Wings	0	0
+Outland_Wings_Plain	neronix17.outland.genetics	no	wings (plain)	Outland_Wings	-2	1
+Outland_Wings_Pointed	neronix17.outland.genetics	no	wings (pointed)	Outland_Wings	-2	1
+Outland_Wings_Roundel	neronix17.outland.genetics	no	wings (roundel)	Outland_Wings	-2	1
+Outland_Wings_Striped	neronix17.outland.genetics	no	wings (striped)	Outland_Wings	-2	1
+Outland_Wings_Wyvern	neronix17.outland.genetics	no	wings (wyvern)	Outland_Wings	-2	1
+Outland_YouthfulAgeing	neronix17.outland.genetics	no	youthful	Miscellaneous	-1	3
+PoI_Absol_Fluff	nialation.pawsofinterest	yes	Absol Fluff	PoI_MainGenes		0
+PoI_Absol_Gem	nialation.pawsofinterest	yes	Absol Gem	PoI_MainGenes		0
+PoI_Absol_Head	nialation.pawsofinterest	yes	Absol Head	PoI_MainGenes		0
+PoI_Absol_Horn	nialation.pawsofinterest	yes	Absol Horn	PoI_MainGenes		0
+PoI_Absol_Tail	nialation.pawsofinterest	yes	Absol Tail	PoI_MainGenes		0
+PoI_ActivatedCarbon_Skin	nialation.pawsofinterest	yes	Activated Carbon Skin	PoI_SkinGenes		0
+PoI_AnthraciteBlack_Skin	nialation.pawsofinterest	yes	Anthracite Black Skin	PoI_SkinGenes		0
+PoI_BahamaBlue_Skin	nialation.pawsofinterest	yes	Bahama Blue Skin	PoI_SkinGenes		0
+PoI_Brown_Skin	nialation.pawsofinterest	yes	Brown Skin	PoI_SkinGenes		0
+PoI_Bubble_Skin	nialation.pawsofinterest	yes	Bubble Skin	PoI_SkinGenes		0
+PoI_Buckskin_Skin	nialation.pawsofinterest	yes	Buckskin Skin	PoI_SkinGenes		0
+PoI_Chiara_Skin	nialation.pawsofinterest	yes	Chiara Skin	PoI_SkinGenes		0
+PoI_ComfortViolet _Skin	nialation.pawsofinterest	yes	Comfort Violet Skin	PoI_SkinGenes		0
+PoI_Coral_Skin	nialation.pawsofinterest	yes	Coral Skin	PoI_SkinGenes		0
+PoI_DarkBlue_Skin	nialation.pawsofinterest	yes	Dark Blue Skin	PoI_SkinGenes		0
+PoI_Eevee_Ears	nialation.pawsofinterest	yes	Eevee Ears	PoI_MainGenes		0
+PoI_Eevee_Fluff	nialation.pawsofinterest	yes	Eevee Fluff	PoI_MainGenes		0
+PoI_Eevee_Head	nialation.pawsofinterest	yes	Eevee Head	PoI_MainGenes		0
+PoI_Eevee_Tail	nialation.pawsofinterest	yes	Eevee Tail	PoI_MainGenes		0
+PoI_Espeon_Ears	nialation.pawsofinterest	yes	Espeon Ears	PoI_MainGenes		0
+PoI_Espeon_Fluff	nialation.pawsofinterest	yes	Espeon Fluff	PoI_MainGenes		0
+PoI_Espeon_Gem	nialation.pawsofinterest	yes	Espeon Gem	PoI_MainGenes		0
+PoI_Espeon_Head	nialation.pawsofinterest	yes	Espeon Head	PoI_MainGenes		0
+PoI_Espeon_Tail	nialation.pawsofinterest	yes	Espeon Tail	PoI_MainGenes		0
+PoI_FemaleOnly	nialation.pawsofinterest	yes	Female Only	PoI_ExtraGenes		0
+PoI_Flareon_Ears	nialation.pawsofinterest	yes	Flareon Ears	PoI_MainGenes		0
+PoI_Flareon_Head	nialation.pawsofinterest	yes	Flareon Head	PoI_MainGenes		0
+PoI_Flareon_HeadFluff	nialation.pawsofinterest	yes	Flareon Head Fluff	PoI_MainGenes		0
+PoI_Flareon_Mane	nialation.pawsofinterest	yes	Flareon Mane	PoI_MainGenes		0
+PoI_Flareon_Tail	nialation.pawsofinterest	yes	Flareon Tail	PoI_MainGenes		0
+PoI_FurWhite_Skin	nialation.pawsofinterest	yes	Fur White Skin	PoI_SkinGenes		0
+PoI_Glaceon_Ears	nialation.pawsofinterest	yes	Glaceon Ears	PoI_MainGenes		0
+PoI_Glaceon_FrostCrown	nialation.pawsofinterest	yes	Glaceon Frost Crown	PoI_MainGenes		0
+PoI_Glaceon_Head	nialation.pawsofinterest	yes	Glaceon Head	PoI_MainGenes		0
+PoI_Glaceon_Tail	nialation.pawsofinterest	yes	Glaceon Tail	PoI_MainGenes		0
+PoI_Goodra_Antennae	nialation.pawsofinterest	yes	Goodra Antennae	PoI_MainGenes		0
+PoI_Goodra_Ears	nialation.pawsofinterest	yes	Goodra Ears	PoI_MainGenes		0
+PoI_Goodra_Head	nialation.pawsofinterest	yes	Goodra Head	PoI_MainGenes		0
+PoI_Goodra_Tail	nialation.pawsofinterest	yes	Goodra Tail	PoI_MainGenes		0
+PoI_Leafeon_Ears	nialation.pawsofinterest	yes	Leafeon Ears	PoI_MainGenes		0
+PoI_Leafeon_FaceTuft	nialation.pawsofinterest	yes	Leafeon Face Tuft	PoI_MainGenes		0
+PoI_Leafeon_Head	nialation.pawsofinterest	yes	Leafeon Head	PoI_MainGenes		0
+PoI_Leafeon_Leaf	nialation.pawsofinterest	yes	Leafeon Leaf	PoI_MainGenes		0
+PoI_Leafeon_Tail	nialation.pawsofinterest	yes	Leafeon Tail	PoI_MainGenes		0
+PoI_LightBlue_Skin	nialation.pawsofinterest	yes	Light Blue Skin	PoI_SkinGenes		0
+PoI_Lime_Skin	nialation.pawsofinterest	yes	Lime Skin	PoI_SkinGenes		0
+PoI_LittleGirlPink_Skin	nialation.pawsofinterest	yes	Little Girl Pink Skin	PoI_SkinGenes		0
+PoI_Lopunny_Ears	nialation.pawsofinterest	yes	Lopunny Ears	PoI_MainGenes		0
+PoI_Lopunny_Eyebrows	nialation.pawsofinterest	yes	Lopunny Eyebrows	PoI_MainGenes		0
+PoI_Lopunny_Head	nialation.pawsofinterest	yes	Lopunny Head	PoI_MainGenes		0
+PoI_Lopunny_Tail	nialation.pawsofinterest	yes	Lopunny Tail	PoI_MainGenes		0
+PoI_Marshmallow_Ears	nialation.pawsofinterest	yes	Marshmallow Ears	PoI_MainGenes		0
+PoI_Marshmallow_Head	nialation.pawsofinterest	yes	Marshmallow Head	PoI_MainGenes		0
+PoI_Marshmallow_Tail	nialation.pawsofinterest	yes	Marshmallow Tail	PoI_MainGenes		0
+PoI_Netskie_Ears	nialation.pawsofinterest	yes	Netskie Ears	PoI_MainGenes		0
+PoI_Netskie_Head	nialation.pawsofinterest	yes	Netskie Head	PoI_MainGenes		0
+PoI_Netskie_Tail	nialation.pawsofinterest	yes	Netskie Tail	PoI_MainGenes		0
+PoI_Popcorn_Skin	nialation.pawsofinterest	yes	Popcorn Skin	PoI_SkinGenes		0
+PoI_Sea_Skin	nialation.pawsofinterest	yes	Sea Skin	PoI_SkinGenes		0
+PoI_SimpleCream_Skin	nialation.pawsofinterest	yes	Simple Cream Skin	PoI_SkinGenes		0
+PoI_Skitty_Ears	nialation.pawsofinterest	yes	Skitty Ears	PoI_MainGenes		0
+PoI_Skitty_Head	nialation.pawsofinterest	yes	Skitty Head	PoI_MainGenes		0
+PoI_Skitty_Tail	nialation.pawsofinterest	yes	Skitty Tail	PoI_MainGenes		0
+PoI_SoftPink_Skin	nialation.pawsofinterest	yes	Soft Pink Skin	PoI_SkinGenes		0
+PoI_SubtlePurple_Skin	nialation.pawsofinterest	yes	Subtle Purple Skin	PoI_SkinGenes		0
+PoI_TawnyLion_Skin	nialation.pawsofinterest	yes	Tawny Lion Skin	PoI_SkinGenes		0
+PoI_Trout_Skin	nialation.pawsofinterest	yes	Trout Skin	PoI_SkinGenes		0
+PoI_Umbreon_Ears	nialation.pawsofinterest	yes	Umbreon Ears	PoI_MainGenes		0
+PoI_Umbreon_Head	nialation.pawsofinterest	yes	Umbreon Head	PoI_MainGenes		0
+PoI_Umbreon_Tail	nialation.pawsofinterest	yes	Umbreon Tail	PoI_MainGenes		0
+PoI_UpliftingOrange_Skin	nialation.pawsofinterest	yes	Uplifting Orange Skin	PoI_SkinGenes		0
+PoI_Vaporeon_Collar	nialation.pawsofinterest	yes	Vaporeon Collar	PoI_MainGenes		0
+PoI_Vaporeon_Ears	nialation.pawsofinterest	yes	Vaporeon Ears	PoI_MainGenes		0
+PoI_Vaporeon_Head	nialation.pawsofinterest	yes	Vaporeon Head	PoI_MainGenes		0
+PoI_Vaporeon_Tail	nialation.pawsofinterest	yes	Vaporeon Tail	PoI_MainGenes		0
+BladedTail	rimsenal.askbarn	yes	bladed tail	Miscellaneous		0
+EMPRoar	rimsenal.askbarn	yes	thundering roar	Ability	-2	
+EMPSurge	rimsenal.askbarn	yes	lightning surge	Ability	-2	
+Gene_Hair_Blue_Sky	rimsenal.askbarn	yes	sky blue hair	Cosmetic_Hair		0
+Gene_Hair_Bright_Teal	rimsenal.askbarn	yes	bright teal hair	Cosmetic_Hair		0
+LowFertility	rimsenal.askbarn	yes	low fertility	Reproduction		
+Pointy_Average_Head	rimsenal.askbarn	yes	average pointy head	Cosmetic	0	0
+RSBornWarrior	rimsenal.askbarn	yes	born warrior	Miscellaneous	-3	
+RSLightningReflexes	rimsenal.askbarn	yes	lightning reflexes	Miscellaneous	-3	
+RSLongshot	rimsenal.askbarn	yes	longshot	Miscellaneous	-2	
+Race_Gene_AmberEyes	rimsenal.askbarn	yes	amber eyes	Cosmetic		0
+Race_Gene_BEA	rimsenal.askbarn	yes	blade ear appendages	Cosmetic		0
+Race_Gene_GlowingWhiteEyes	rimsenal.askbarn	yes	glowing white eyes	Cosmetic		0
+Race_Gene_PEA	rimsenal.askbarn	yes	pointy ear appendages	Cosmetic		0
+Skin_OceanGray	rimsenal.askbarn	yes	ocean gray skin	Cosmetic_Skin		0
+SpikedTail	rimsenal.askbarn	yes	spiked tail	Miscellaneous		0
+AG_AcidFangs	sarg.alphagenes	yes	acid fangs	Cosmetic	-2	1
+AG_AcidImmunity	sarg.alphagenes	yes	acid immunity	Healing	-1	
+AG_AcidRainMaker	sarg.alphagenes	yes	acid rainmaker	AG_SpecialEffectsCategory		3
+AG_AcidWeakness	sarg.alphagenes	yes	acid weakness	Healing	1	
+AG_AcidicBlood	sarg.alphagenes	yes	acidic blood	AG_BloodType	-1	1
+AG_AcidicDetonation	sarg.alphagenes	yes	acidic detonation	Ability	-1	
+AG_AdaptiveBiology	sarg.alphagenes	yes	adaptive biology	Healing	-1	2
+AG_AerofleetFlesh	sarg.alphagenes	yes	aerofleet flesh	AG_MeatType	-1	1
+AG_AerofleetHead	sarg.alphagenes	yes	aerofleet hood	AG_Cosmetic_Heads		1
+AG_AerofleetLeather	sarg.alphagenes	yes	aerofleet leather	AG_LeatherType	0	2
+AG_AnimalSummon_Randomizer	sarg.alphagenes	yes	random animal summon	AG_AnimalSummons	-3	2
+AG_AnimusEars	sarg.alphagenes	yes	animus ears	Cosmetic		0
+AG_AntlerHorns	sarg.alphagenes	yes	antlers	AG_Cosmetic_Horns		0
+AG_ArmourMajor	sarg.alphagenes	yes	plasteel skin	AG_Armour	-3	2
+AG_ArmourMedium	sarg.alphagenes	yes	ferrous skin	AG_Armour	-2	1
+AG_ArmourMinor	sarg.alphagenes	yes	bark skin	AG_Armour	-1	0
+AG_ArmouredSpeed	sarg.alphagenes	yes	armoured speed	Movement	-2	1
+AG_ArrestAvoidance	sarg.alphagenes	yes	arrest avoidant	Violence	1	
+AG_AsexualFission	sarg.alphagenes	yes	asexual fission	Archite	-2	10
+AG_AveAffinity	sarg.alphagenes	yes	ave affinity	AG_AnimalAffinity	-2	
+AG_BandwidthDecrease	sarg.alphagenes	yes	decreased bandwidth	AG_Mechanitor	1	1
+AG_BandwidthIncrease	sarg.alphagenes	yes	enhanced bandwidth	AG_Mechanitor	-1	1
+AG_BandwidthIncreaseMajor	sarg.alphagenes	yes	greatly enhanced bandwidth	AG_Mechanitor	-3	3
+AG_BandwidthLoop	sarg.alphagenes	yes	bandwidth loop	AG_Mechanitor	-1	1
+AG_BansheeScream	sarg.alphagenes	yes	banshee scream	Ability	-2	
+AG_BatWings	sarg.alphagenes	yes	bat wings	AG_Wings	-1	1
+AG_Beauty_Angelic	sarg.alphagenes	yes	angelic beauty	Beauty	-3	
+AG_Beauty_VeryVeryUgly	sarg.alphagenes	yes	repulsive	Beauty	3	
+AG_BeeMandibles	sarg.alphagenes	yes	bee mandibles	AG_Cosmetic_Horns		0
+AG_BeetleMandibles	sarg.alphagenes	yes	beetle mandibles	AG_Cosmetic_Horns		0
+AG_BioluminescentEyes	sarg.alphagenes	yes	bioluminescent eyes	Miscellaneous	0	2
+AG_BlackChitinLeather	sarg.alphagenes	yes	black chitin leather	AG_LeatherType	0	2
+AG_BloodVomit	sarg.alphagenes	yes	blood vomit	AG_VomitType	1	1
+AG_BloodsuckerDistrust	sarg.alphagenes	yes	bloodsucker distrust		1	
+AG_BlueGelProduction	sarg.alphagenes	yes	blue gel production	AG_SpecialEffectsCategory	-2	1
+AG_BodyTentacles	sarg.alphagenes	yes	body tentacles	Miscellaneous	-1	1
+AG_BoomNodules	sarg.alphagenes	yes	chemfuel nodules	AG_SpecialEffectsCategory		1
+AG_BrittleBones	sarg.alphagenes	yes	brittle bones	Pain	3	
+AG_BullHorns	sarg.alphagenes	yes	bull horns	AG_Cosmetic_Horns		0
+AG_BumbledroneWings	sarg.alphagenes	yes	bumbledrone wings	AG_Wings	-1	1
+AG_CancerousBody	sarg.alphagenes	yes	cancerous body	AG_Cosmetic_Bodies		2
+AG_CancerousFace	sarg.alphagenes	yes	cancerous head	AG_Cosmetic_Heads		0
+AG_ChainsawHands	sarg.alphagenes	yes	chainsaw hands	Cosmetic	-1	1
+AG_ChameleonVision	sarg.alphagenes	yes	chameleon vision	Miscellaneous	-1	1
+AG_ChameleonYakHorns	sarg.alphagenes	yes	chameleon yak horns	AG_Cosmetic_Horns		0
+AG_ChemfuelBlood	sarg.alphagenes	yes	chemfuel blood	AG_BloodType		1
+AG_ChemfuelVomit	sarg.alphagenes	yes	chemfuel vomit	AG_VomitType		1
+AG_ChitinLeather	sarg.alphagenes	yes	chitin leather	AG_LeatherType	0	2
+AG_ChocolateFlesh	sarg.alphagenes	yes	chocolate flesh	AG_MeatType	-1	1
+AG_ClawedHands	sarg.alphagenes	yes	clawed hands	Miscellaneous	-1	1
+AG_Clean	sarg.alphagenes	yes	clean	Healing	-1	
+AG_ClothLeather	sarg.alphagenes	yes	cloth leather	AG_LeatherType	0	2
+AG_ColdImmunity	sarg.alphagenes	yes	cold immunity	Archite	-5	2
+AG_ColdRadiating	sarg.alphagenes	yes	cold radiating	Temperature	-3	
+AG_ColdSlowness	sarg.alphagenes	yes	cold torpor	Temperature	1	
+AG_ColdSpeed	sarg.alphagenes	yes	cold speed	Temperature	-1	
+AG_CorpseFeeding	sarg.alphagenes	yes	corpse feeding	AG_FoodConsumption	-3	4
+AG_CrabClaw	sarg.alphagenes	yes	crab claw	Cosmetic	-1	1
+AG_CragAffinity	sarg.alphagenes	yes	crag affinity	Miscellaneous		1
+AG_CryoBlood	sarg.alphagenes	yes	cryo blood	AG_BloodType	-1	1
+AG_DangerousRaidPresence	sarg.alphagenes	yes	dangerous raid presence	AG_Presence	2	
+AG_DeadlifeProducer	sarg.alphagenes	yes	deadlife dust producer	AG_AnomalyCategory	-4	2
+AG_DeadlyRaidPresence	sarg.alphagenes	yes	deadly raid presence	AG_Presence	5	
+AG_Deaf	sarg.alphagenes	yes	deaf	Healing	1	1
+AG_DecreasedCommandRange	sarg.alphagenes	yes	decreased command range	AG_Mechanitor	1	1
+AG_DecreasedMechRepair	sarg.alphagenes	yes	decreased fix speed	AG_Mechanitor	1	1
+AG_DemonEars	sarg.alphagenes	yes	demon ears	Cosmetic		0
+AG_DemonHorns	sarg.alphagenes	yes	demon horns	AG_Cosmetic_Horns		0
+AG_DemonHornsQuadruple	sarg.alphagenes	yes	quad demon horns	AG_Cosmetic_Horns		0
+AG_DemonTail	sarg.alphagenes	yes	demon tail	Miscellaneous	-1	1
+AG_DemonWings	sarg.alphagenes	yes	demon wings	AG_Wings	-1	1
+AG_Detonation	sarg.alphagenes	yes	detonation	Ability	-1	
+AG_DevilEyes	sarg.alphagenes	yes	devil eyes	Cosmetic		0
+AG_DevilsheepHorns	sarg.alphagenes	yes	devilsheep horns	AG_Cosmetic_Horns		0
+AG_DevourBrains	sarg.alphagenes	yes	devour brains	Ability	-3	2
+AG_Digitigrade	sarg.alphagenes	yes	digitigrade legs	AG_Cosmetic_Bodies	-1	1
+AG_DownwardsAntennas	sarg.alphagenes	yes	wasp antennae	AG_Cosmetic_Horns		0
+AG_DrainerWings	sarg.alphagenes	yes	drainer wings	AG_Wings	-1	1
+AG_DrakonoriBody	sarg.alphagenes	yes	drakonori body	AG_Cosmetic_Bodies		0
+AG_DrakonoriHead	sarg.alphagenes	yes	drakonori head	AG_Cosmetic_Heads		0
+AG_DrakonoriWings	sarg.alphagenes	yes	drakonori wings	AG_Wings	-1	1
+AG_Drakonori_Horns	sarg.alphagenes	yes	drakonori horns	AG_Cosmetic_Horns		0
+AG_Drakonori_Tail	sarg.alphagenes	yes	drakonori tail	Miscellaneous	-1	1
+AG_DryThunderstormMaker	sarg.alphagenes	yes	thundermaker	AG_SpecialEffectsCategory		3
+AG_EarWings	sarg.alphagenes	yes	ear wings	Cosmetic		0
+AG_EfficientMandibles	sarg.alphagenes	yes	efficient mandibles	AG_FoodConsumption	-1	1
+AG_EggLaying	sarg.alphagenes	yes	egg laying	Reproduction	-3	3
+AG_EldritchHorns	sarg.alphagenes	yes	eldritch horns	AG_Cosmetic_Horns		0
+AG_EldritchVisage	sarg.alphagenes	yes	eldritch visage	Beauty	3	
+AG_Enforcer	sarg.alphagenes	yes	enforcer	Violence		
+AG_ExpertMechRepair	sarg.alphagenes	yes	mech repair passion	AG_Mechanitor	-2	2
+AG_ExtraLeather	sarg.alphagenes	yes	extra leather	Healing	0	2
+AG_ExtraordinaryLifespan	sarg.alphagenes	yes	extraordinary lifespan	Healing	-1	1
+AG_EyeOfShubNiggurath	sarg.alphagenes	yes	eye of Shub-Niggurath		0	0
+AG_FaceTentacles	sarg.alphagenes	yes	face tentacles	AG_Cosmetic_Horns		0
+AG_FastGestation	sarg.alphagenes	yes	fast gestation	Reproduction	-1	1
+AG_FasterAging	sarg.alphagenes	yes	faster aging	Healing	-1	1
+AG_FeatheredWings	sarg.alphagenes	yes	feathered wings	AG_Wings	-1	1
+AG_Female	sarg.alphagenes	yes	female	AG_Gender	0	0
+AG_FeraliskEyes	sarg.alphagenes	yes	feralisk eyes	Miscellaneous	-1	1
+AG_FertilityDarkness	sarg.alphagenes	yes	fertility in darkness	Reproduction	0	1
+AG_FertilityIndoors	sarg.alphagenes	yes	fertility while indoors	Reproduction	0	1
+AG_FertilityLight	sarg.alphagenes	yes	fertility in the light	Reproduction	0	1
+AG_FertilityOutdoors	sarg.alphagenes	yes	fertility while outdoors	Reproduction	0	1
+AG_Filthy	sarg.alphagenes	yes	filthy	Healing	1	
+AG_FireObsession	sarg.alphagenes	yes	fire obsession	Healing	1	
+AG_FirefoamBlood	sarg.alphagenes	yes	firefoam blood	AG_BloodType	-1	1
+AG_FissionMouseAffinity	sarg.alphagenes	yes	fission mouse affinity	AG_AnimalAffinity	-1	
+AG_FleshBulb	sarg.alphagenes	yes	flesh bulb	AG_AnomalyCategory	-1	1
+AG_FleshSack	sarg.alphagenes	yes	flesh sack	AG_AnomalyCategory	-1	1
+AG_FleshSpitter	sarg.alphagenes	yes	flesh spitter	AG_AnomalyCategory	-1	1
+AG_Fogger	sarg.alphagenes	yes	fogger	AG_SpecialEffectsCategory		3
+AG_FoggyRainMaker	sarg.alphagenes	yes	foggy rainmaker	AG_SpecialEffectsCategory		3
+AG_Foodless	sarg.alphagenes	yes	foodless	Archite	-1	7
+AG_FormicAntennas	sarg.alphagenes	yes	formic antennae	AG_Cosmetic_Horns		0
+AG_ForsakenBlood	sarg.alphagenes	yes	yellow blood	AG_BloodType	0	1
+AG_ForsakenBody	sarg.alphagenes	yes	forsaken body	AG_Cosmetic_Bodies	3	1
+AG_ForsakenBodyEmblem	sarg.alphagenes	yes	forsaken body emblem	Miscellaneous	-3	1
+AG_ForsakenEyes	sarg.alphagenes	yes	forsaken eyes	Cosmetic		0
+AG_ForsakenHead	sarg.alphagenes	yes	forsaken head	AG_Cosmetic_Heads	0	0
+AG_ForsakenHeadEmblem	sarg.alphagenes	yes	forsaken head emblem	Miscellaneous	-2	1
+AG_ForsakenHornsBull	sarg.alphagenes	yes	forsaken bull horns	AG_Cosmetic_Horns		0
+AG_ForsakenHornsCrown	sarg.alphagenes	yes	forsaken horn crown	AG_Cosmetic_Horns		0
+AG_ForsakenHornsDevil	sarg.alphagenes	yes	forsaken devil horns	AG_Cosmetic_Horns		0
+AG_ForsakenHornsGoat	sarg.alphagenes	yes	forsaken goat horns	AG_Cosmetic_Horns		0
+AG_ForsakenHornsReptilian	sarg.alphagenes	yes	forsaken reptilian horns	AG_Cosmetic_Horns		0
+AG_ForsakenHornsSheep	sarg.alphagenes	yes	forsaken sheep horns	AG_Cosmetic_Horns		0
+AG_ForsakenKnowledge	sarg.alphagenes	yes	forsaken knowledge	Miscellaneous	-1	1
+AG_ForsakenNightMaker	sarg.alphagenes	yes	nightmaker	AG_SpecialEffectsCategory		3
+AG_ForsakenQuadruple	sarg.alphagenes	yes	forsaken quad horns	AG_Cosmetic_Horns		0
+AG_FoxFace	sarg.alphagenes	yes	fox head	AG_Cosmetic_Heads		0
+AG_FoxTail	sarg.alphagenes	yes	fox tail	Miscellaneous	-1	1
+AG_FrailBack	sarg.alphagenes	yes	frail back	Healing	1	
+AG_FrailSkin	sarg.alphagenes	yes	frail skin	AG_Armour	1	0
+AG_FrailStomach	sarg.alphagenes	yes	frail stomach	AG_FoodConsumption	1	
+AG_FreezingBreath	sarg.alphagenes	yes	freezing breath	Ability	-2	
+AG_FrogVoice	sarg.alphagenes	yes	frog voice	Cosmetic		0
+AG_FrostbiteResistance	sarg.alphagenes	yes	frostbite resistance	Healing	-1	
+AG_FrostbiteVulnerability	sarg.alphagenes	yes	frostbite vulnerability	Healing	1	
+AG_FungalClumps	sarg.alphagenes	yes	fungal clumps	Miscellaneous		1
+AG_FungalSkin	sarg.alphagenes	yes	fungal skin	AG_Armour	-5	2
+AG_FungalSprout	sarg.alphagenes	yes	fungal sprout	Miscellaneous		1
+AG_FungalTentacles	sarg.alphagenes	yes	fungal tentacles	Miscellaneous		1
+AG_GasBags	sarg.alphagenes	yes	gas bags	AG_Wings	-2	2
+AG_GauntBody	sarg.alphagenes	yes	gaunt body	AG_Cosmetic_Bodies		0
+AG_GeneInfectionImmunity	sarg.alphagenes	yes	gene infection immunity	Healing	1	
+AG_GeneSyphon	sarg.alphagenes	yes	gene syphon	Ability	-5	5
+AG_Gene_VeryWeakImmunity	sarg.alphagenes	yes	very weak immunity	Healing	3	
+AG_GreaterAcidicVomit	sarg.alphagenes	yes	greater acid spray	Ability	-3	
+AG_GreaterFireSpew	sarg.alphagenes	yes	greater fire spew	Ability	-3	
+AG_GreaterFleshWhip	sarg.alphagenes	yes	greater flesh whip	AG_AnomalyCategory	-1	1
+AG_GreaterToughspikes	sarg.alphagenes	yes	greater toughspikes	AG_AnomalyCategory	-1	1
+AG_GreyPocketPlane	sarg.alphagenes	yes	grey pocket plane	AG_AnomalyCategory	-3	
+AG_GrowlingVoice	sarg.alphagenes	yes	growling voice	Cosmetic		0
+AG_GutturalVoice	sarg.alphagenes	yes	guttural voice	Cosmetic		0
+AG_Hair_DeepOrange	sarg.alphagenes	yes	deep orange hair	Cosmetic_Hair		0
+AG_Hair_DeepRed	sarg.alphagenes	yes	deep red hair	Cosmetic_Hair		0
+AG_Hair_Golden	sarg.alphagenes	yes	golden hair	Cosmetic_Hair		0
+AG_Hair_PaleGreen	sarg.alphagenes	yes	pale green hair	Cosmetic_Hair		0
+AG_HardBones	sarg.alphagenes	yes	hard bones	Healing	1	1
+AG_HealingTouch	sarg.alphagenes	yes	healing touch	AG_Teratogenic	-3	1
+AG_HeatImmunity	sarg.alphagenes	yes	heat immunity	Archite	-5	2
+AG_HeatRadiating	sarg.alphagenes	yes	heat radiating	Temperature	-3	
+AG_HeatSlowness	sarg.alphagenes	yes	heat torpor	Temperature	1	
+AG_HeatSpeed	sarg.alphagenes	yes	heat speed	Temperature	-1	
+AG_HeavilyScarred	sarg.alphagenes	yes	heavily scarred	Cosmetic		0
+AG_HivelingVoice	sarg.alphagenes	yes	hiveling voice	Cosmetic		0
+AG_HornCrown	sarg.alphagenes	yes	horn crown	AG_Cosmetic_Horns		0
+AG_IncreasedCommandRange	sarg.alphagenes	yes	increased command range	AG_Mechanitor	-1	1
+AG_IncreasedMechRepair	sarg.alphagenes	yes	increased fix speed	AG_Mechanitor	-1	1
+AG_InnateMechlink	sarg.alphagenes	yes	innate mechlink	AG_Mechanitor	-2	2
+AG_InnatePsylink	sarg.alphagenes	yes	innate psylink	Psychic	-2	2
+AG_InnerPeace	sarg.alphagenes	yes	inner peace	Violence	-1	
+AG_InsanityBlast	sarg.alphagenes	yes	insanity blast	Ability	-1	2
+AG_InsectBlood	sarg.alphagenes	yes	insect blood	AG_BloodType		1
+AG_InsectJellyProduction	sarg.alphagenes	yes	jelly sacs	AG_SpecialEffectsCategory	-1	1
+AG_InsectRally	sarg.alphagenes	yes	insect rally	Ability	-1	1
+AG_InsectStinger	sarg.alphagenes	yes	stinger implanter, xenogenes	Ability	-2	3
+AG_InsectStingerEndogenes	sarg.alphagenes	yes	stinger implanter, endogenes	Ability	-2	3
+AG_InsectoidChitinLeather	sarg.alphagenes	yes	insectoid chitin leather	AG_LeatherType	0	2
+AG_Instability_Lethal	sarg.alphagenes	yes	lethal cell instability	Miscellaneous	7	
+AG_Invisibility	sarg.alphagenes	yes	psychic camouflage	Ability	-3	1
+AG_JellyFlesh	sarg.alphagenes	yes	insect jelly flesh	AG_MeatType	-1	1
+AG_JorisAffinity	sarg.alphagenes	yes	joris affinity	AG_AnimalAffinity	-3	
+AG_LargerBodySize	sarg.alphagenes	yes	larger	AG_BodySize	-1	1
+AG_LightStriding	sarg.alphagenes	yes	light striding	Movement	-1	1
+AG_LightSustenance	sarg.alphagenes	yes	light sustenance	AG_FoodConsumption	-3	4
+AG_LimbRegeneration	sarg.alphagenes	yes	limb regeneration	Healing	-4	3
+AG_LongEars	sarg.alphagenes	yes	long ears	Cosmetic		0
+AG_LowLeather	sarg.alphagenes	yes	low leather	Healing	0	2
+AG_LowerAntennas	sarg.alphagenes	yes	lower antennae	AG_Cosmetic_Horns		0
+AG_LungRotImmunity	sarg.alphagenes	yes	total antirot lungs	Healing	-1	1
+AG_LungRotStrength	sarg.alphagenes	yes	lung rot strength	Healing	-2	1
+AG_MagicMushroomFlesh	sarg.alphagenes	yes	magic mushroom flesh	AG_MeatType	-1	1
+AG_MajorAnimalSummon_Randomizer	sarg.alphagenes	yes	random major animal summon	AG_AnimalSummons	-5	5
+AG_Male	sarg.alphagenes	yes	male	AG_Gender	0	0
+AG_MeatBurst	sarg.alphagenes	yes	meat burst	AG_AnomalyCategory	-1	
+AG_MechConversion	sarg.alphagenes	yes	mech conversion	AG_Mechanitor	-1	1
+AG_MetalEater	sarg.alphagenes	yes	mineral absorber	AG_Metallic		1
+AG_MineralEfficencyGood	sarg.alphagenes	yes	great mineral absorbtion	AG_Metallic	-4	
+AG_MineralEfficencyPoor	sarg.alphagenes	yes	poor mineral absorbtion	AG_Metallic	5	
+AG_MineralOverdrive	sarg.alphagenes	yes	mineral overdrive	AG_Metallic	-2	1
+AG_MineralShock	sarg.alphagenes	yes	mineral shock	AG_Metallic	-1	1
+AG_MiningYield_High	sarg.alphagenes	yes	high mining yield	AG_AptitudeModifier	-2	
+AG_MiningYield_Low	sarg.alphagenes	yes	low mining yield	AG_AptitudeModifier	2	
+AG_MinorAnimalSummon_Randomizer	sarg.alphagenes	yes	random minor animal summon	AG_AnimalSummons	-1	1
+AG_Mood_Unfeeling	sarg.alphagenes	yes	unfeeling	Archite		10
+AG_MothAntennae	sarg.alphagenes	yes	moth antennae	AG_Cosmetic_Horns		0
+AG_MothWings	sarg.alphagenes	yes	moth wings	AG_Wings	-1	1
+AG_NearBlindness	sarg.alphagenes	yes	near blindness	Miscellaneous	3	2
+AG_NeedlerollAffinity	sarg.alphagenes	yes	needleroll affinity	AG_AnimalAffinity	-1	
+AG_NereidBody	sarg.alphagenes	yes	nereid body	AG_Cosmetic_Bodies		0
+AG_NereidFins	sarg.alphagenes	yes	nereid fins	Cosmetic		0
+AG_NereidGlowlure	sarg.alphagenes	yes	nereid glow lure	AG_Cosmetic_Horns		0
+AG_NereidHead	sarg.alphagenes	yes	nereid head	AG_Cosmetic_Heads		0
+AG_NereidPocketPlane	sarg.alphagenes	yes	nereid pocket plane	Miscellaneous	-3	
+AG_NereidTail	sarg.alphagenes	yes	nereid tail	Miscellaneous	0	1
+AG_NightOwl	sarg.alphagenes	yes	night owl	Sleep	-1	1
+AG_NightStriding	sarg.alphagenes	yes	night striding	Movement	-1	1
+AG_NightlingAffinity	sarg.alphagenes	yes	nightling affinity	Ability	0	1
+AG_NoAntennae	sarg.alphagenes	yes	no upper antennae	AG_Cosmetic_Horns		0
+AG_NoLeather	sarg.alphagenes	yes	no leather	Healing	0	2
+AG_NoLowerAntennae	sarg.alphagenes	yes	no lower antennae	AG_Cosmetic_Horns		0
+AG_NoMeat	sarg.alphagenes	yes	no meat	Healing	0	2
+AG_NoRaidPresence	sarg.alphagenes	yes	no raid presence	AG_Presence	-5	
+AG_NoTusks	sarg.alphagenes	yes	no tusks / mandibles	AG_Cosmetic_Horns		0
+AG_NoWings	sarg.alphagenes	yes	no wings	AG_Wings		0
+AG_NoxiousBreath	sarg.alphagenes	yes	noxious breath	Ability	-2	
+AG_OcularAffinity	sarg.alphagenes	yes	ocular affinity	Archite	-3	3
+AG_OcularFlesh	sarg.alphagenes	yes	ocular flesh	AG_MeatType	-1	1
+AG_OcularJellyAffinity	sarg.alphagenes	yes	ocular affinity	AG_AnimalAffinity	-2	
+AG_OrnateEldritchHorns	sarg.alphagenes	yes	ornate eldritch horns	AG_Cosmetic_Horns		0
+AG_OutwardsAntennas	sarg.alphagenes	yes	bee antennae	AG_Cosmetic_Horns		0
+AG_PackMule	sarg.alphagenes	yes	pack mule	Healing	-1	
+AG_Painless	sarg.alphagenes	yes	painless	Pain	-5	
+AG_ParasiticStinger	sarg.alphagenes	yes	parasitic stinger implanter, xenogenes	Ability	-3	5
+AG_ParasiticStingerEndogenes	sarg.alphagenes	yes	parasitic stinger implanter, endogenes	Ability	-3	5
+AG_PassiveRegenerator	sarg.alphagenes	yes	passive regenerator	Healing	-6	5
+AG_PebbleBlood	sarg.alphagenes	yes	pebble blood	AG_BloodType		1
+AG_PegasusWings	sarg.alphagenes	yes	pegasus wings	AG_Wings	-1	1
+AG_PetrifyingGaze	sarg.alphagenes	yes	petrifying gaze	Ability	-3	
+AG_PincerMandibles	sarg.alphagenes	yes	pincer mandibles	AG_Cosmetic_Horns		0
+AG_PlainLeather	sarg.alphagenes	yes	plain leather	AG_LeatherType	0	2
+AG_PlantFlesh	sarg.alphagenes	yes	plant flesh	AG_MeatType	-1	1
+AG_Polluter	sarg.alphagenes	yes	polluter	AG_SpecialEffectsCategory		2
+AG_PollutionStriding	sarg.alphagenes	yes	pollution striding	Movement	-1	1
+AG_Proboscis	sarg.alphagenes	yes	proboscis	AG_Cosmetic_Horns		0
+AG_PseudoDeadlife	sarg.alphagenes	yes	pseudo deadlife	AG_AnomalyCategory	-1	1
+AG_PsychicAbility_Masterful	sarg.alphagenes	yes	master psychic	Psychic	-6	3
+AG_PsychicAbsorption	sarg.alphagenes	yes	psychic absorption	Ability	-1	1
+AG_PsychicInsanity	sarg.alphagenes	yes	psychic insanity	Psychic	-2	3
+AG_PsychicRemapping	sarg.alphagenes	yes	psychic remapping	Psychic	-1	1
+AG_PsychicSight	sarg.alphagenes	yes	psychic sight	Psychic	-2	2
+AG_PukeBile	sarg.alphagenes	yes	bile vomit	AG_VomitType	1	1
+AG_PukeCryo	sarg.alphagenes	yes	cryo vomit	AG_VomitType	-1	1
+AG_PukeWater	sarg.alphagenes	yes	water vomit	AG_VomitType		1
+AG_RadYakEars	sarg.alphagenes	yes	radyak ears	Cosmetic		0
+AG_RainMaker	sarg.alphagenes	yes	rainmaker	AG_SpecialEffectsCategory		3
+AG_RainbowWings	sarg.alphagenes	yes	rainbow wings	AG_Wings	-1	1
+AG_RainyThunderstormMaker	sarg.alphagenes	yes	rainy thundermaker	AG_SpecialEffectsCategory		3
+AG_RatAffinity	sarg.alphagenes	yes	rodent affinity	AG_AnimalAffinity	-1	
+AG_RatVomit	sarg.alphagenes	yes	rat vomit	AG_VomitType	1	1
+AG_RayHoundTentacles	sarg.alphagenes	yes	rayhound tentacles	AG_Cosmetic_Horns		0
+AG_ReactiveArmour	sarg.alphagenes	yes	reactive armour	AG_Metallic	-2	1
+AG_RedFogger	sarg.alphagenes	yes	red fogger	AG_SpecialEffectsCategory		3
+AG_ReducedFertile	sarg.alphagenes	yes	reduced fertility	Reproduction	1	1
+AG_ReducedRaidPresence	sarg.alphagenes	yes	reduced raid presence	AG_Presence	-2	
+AG_Regeneration	sarg.alphagenes	yes	regeneration	Archite	-4	5
+AG_RegenerationMinor	sarg.alphagenes	yes	regeneration, minor	Healing	-1	1
+AG_RockSpurs	sarg.alphagenes	yes	rocky ridges	AG_Cosmetic_Heads		0
+AG_RockVoice	sarg.alphagenes	yes	rock voice	Cosmetic		0
+AG_RockyBody	sarg.alphagenes	yes	rocky body	AG_Cosmetic_Bodies		3
+AG_RotStinkProducer	sarg.alphagenes	yes	rot stink producer	AG_SpecialEffectsCategory		2
+AG_Rowdy	sarg.alphagenes	yes	rowdy	Violence	1	
+AG_RoxHorns	sarg.alphagenes	yes	rox horns	AG_Cosmetic_Horns		0
+AG_RoxPelt	sarg.alphagenes	yes	rox pelt	Miscellaneous	-1	1
+AG_RoyalJellyFlesh	sarg.alphagenes	yes	royal jelly flesh	AG_MeatType	-1	1
+AG_RoyalJellyProduction	sarg.alphagenes	yes	royal jelly production	AG_SpecialEffectsCategory	-1	2
+AG_ScalyBody	sarg.alphagenes	yes	scaly body	AG_Cosmetic_Bodies	-1	3
+AG_ScytherHands	sarg.alphagenes	yes	scyther blades	Cosmetic	-1	1
+AG_SelfSkip	sarg.alphagenes	yes	self skip	Ability	-1	
+AG_Sensitivity_Lethal	sarg.alphagenes	yes	lethal UV sensitivity	ResistanceAndWeakness	9	3
+AG_Sensitivity_Vicious	sarg.alphagenes	yes	vicious UV sensitivity	ResistanceAndWeakness	8	3
+AG_Shambler_Acidic	sarg.alphagenes	yes	acid shambler	AG_AnomalyCategory	0	1
+AG_Shambler_Armoured	sarg.alphagenes	yes	armoured shambler	AG_AnomalyCategory	0	1
+AG_Shambler_DeadlifeBelcher	sarg.alphagenes	yes	deadlife belcher shambler	AG_AnomalyCategory	0	1
+AG_Shambler_Delicate	sarg.alphagenes	yes	rotting shambler	AG_AnomalyCategory	0	1
+AG_Shambler_Exploding	sarg.alphagenes	yes	exploding shambler	AG_AnomalyCategory	0	1
+AG_Shambler_HighMelee	sarg.alphagenes	yes	aggressive shambler	AG_AnomalyCategory	0	1
+AG_Shambler_LightningFast	sarg.alphagenes	yes	lightning fast shambler	AG_AnomalyCategory	0	1
+AG_Shambler_LowMelee	sarg.alphagenes	yes	weak shambler	AG_AnomalyCategory	0	1
+AG_Shambler_Photosynthetic	sarg.alphagenes	yes	photosynthetic shambler	AG_AnomalyCategory	0	1
+AG_Shambler_Plagued	sarg.alphagenes	yes	plagued shambler	AG_AnomalyCategory	0	1
+AG_Shambler_Polluter	sarg.alphagenes	yes	polluter shambler	AG_AnomalyCategory	0	1
+AG_Shambler_Spiked	sarg.alphagenes	yes	spiked shambler	AG_AnomalyCategory	0	1
+AG_Shambler_Stinker	sarg.alphagenes	yes	stinker shambler	AG_AnomalyCategory	0	1
+AG_Shambler_Timeless	sarg.alphagenes	yes	timeless shambler	AG_AnomalyCategory	0	1
+AG_Shambler_Tinderskin	sarg.alphagenes	yes	tinderskin shambler	AG_AnomalyCategory	0	1
+AG_Shambler_Tough	sarg.alphagenes	yes	tough shambler	AG_AnomalyCategory	0	1
+AG_Shambler_Toxic	sarg.alphagenes	yes	toxic shambler	AG_AnomalyCategory	0	1
+AG_Shambler_UVSensitive	sarg.alphagenes	yes	UV sensitive shambler	AG_AnomalyCategory	0	1
+AG_Shambler_VenomFangs	sarg.alphagenes	yes	venomous shambler	AG_AnomalyCategory	0	1
+AG_Shambler_VeryGaunt	sarg.alphagenes	yes	gaunt shambler	AG_AnomalyCategory	0	1
+AG_SingleEar	sarg.alphagenes	yes	single ear	Cosmetic		0
+AG_SingleWing	sarg.alphagenes	yes	malformed wing	AG_Wings		1
+AG_Skin_BlueFish	sarg.alphagenes	yes	blue fish skin	Cosmetic_Skin		0
+AG_Skin_DeepBlue	sarg.alphagenes	yes	deep blue skin	Cosmetic_Skin		0
+AG_Skin_DeepBlueFish	sarg.alphagenes	yes	deep blue fish skin	Cosmetic_Skin		0
+AG_Skin_DeepGreen	sarg.alphagenes	yes	deep green skin	Cosmetic_Skin		0
+AG_Skin_DeepPurple	sarg.alphagenes	yes	deep purple skin	Cosmetic_Skin		0
+AG_Skin_DeeperRed	sarg.alphagenes	yes	deeper red skin	Cosmetic_Skin		0
+AG_Skin_Drakonori_PaleBlue	sarg.alphagenes	yes	very pale blue skin	Cosmetic_Skin		0
+AG_Skin_Drakonori_PaleRed	sarg.alphagenes	yes	very pale red skin	Cosmetic_Skin		0
+AG_Skin_Gold	sarg.alphagenes	yes	golden skin	Cosmetic_Skin		0
+AG_Skin_PaleBlueFish	sarg.alphagenes	yes	pale blue fish skin	Cosmetic_Skin		0
+AG_Skin_PlantGreen	sarg.alphagenes	yes	plant green skin	Cosmetic_Skin		0
+AG_Skin_Rot	sarg.alphagenes	yes	rotten skin	Cosmetic_Skin		0
+AG_Skin_Silver	sarg.alphagenes	yes	Silver skin	Cosmetic_Skin		0
+AG_Skin_TrueBlack	sarg.alphagenes	yes	deep black skin	Cosmetic_Skin		0
+AG_SlimeBlood	sarg.alphagenes	yes	slime blood	AG_BloodType	1	1
+AG_SlimeBody	sarg.alphagenes	yes	slime body	AG_Cosmetic_Bodies		1
+AG_SlowGestation	sarg.alphagenes	yes	slow gestation	Reproduction	1	1
+AG_SlowerAging	sarg.alphagenes	yes	slower aging	Healing	-1	1
+AG_SlugBody	sarg.alphagenes	yes	slug body	AG_Cosmetic_Bodies	-1	3
+AG_SlugFace	sarg.alphagenes	yes	slug head	AG_Cosmetic_Heads	-1	1
+AG_SlugVoice	sarg.alphagenes	yes	slug voice	Cosmetic		0
+AG_SmallerBodySize	sarg.alphagenes	yes	smaller	AG_BodySize	-1	1
+AG_SmokeProducer	sarg.alphagenes	yes	smoke producer	AG_SpecialEffectsCategory	-1	2
+AG_SnowMaker	sarg.alphagenes	yes	snow maker	AG_SpecialEffectsCategory		3
+AG_SpeedByTemperature	sarg.alphagenes	yes	thermal speed	Movement	-1	1
+AG_Spinnerets	sarg.alphagenes	yes	spinnerets	Ability	-1	
+AG_Stalks	sarg.alphagenes	yes	eye stalks	AG_Cosmetic_Horns		0
+AG_SterilizingBreath	sarg.alphagenes	yes	sterilizing breath	Ability	-1	
+AG_Stinky	sarg.alphagenes	yes	stinky	Healing	1	
+AG_SummonTempBandwidth	sarg.alphagenes	yes	summon band node	AG_Mechanitor	-2	1
+AG_SuperAdaptiveBiology	sarg.alphagenes	yes	superadaptive biology	Archite		6
+AG_SurvivalInstinct_High	sarg.alphagenes	yes	survival instinct, high	AG_FoodConsumption	-1	1
+AG_SurvivalInstinct_Low	sarg.alphagenes	yes	survival instinct, low	AG_FoodConsumption	1	1
+AG_TableResistance	sarg.alphagenes	yes	table resistance	AG_FoodConsumption	-1	
+AG_TarBlood	sarg.alphagenes	yes	tarlike blood	AG_BloodType	1	1
+AG_TentacleHorns	sarg.alphagenes	yes	tentacles and horns	AG_AnomalyCategory		0
+AG_Teratogenesis	sarg.alphagenes	yes	teratogenesis	AG_Teratogenic	5	
+AG_TeratogenicBurst	sarg.alphagenes	yes	teratogenic touch	AG_Teratogenic	-1	1
+AG_TeratogenicHealing	sarg.alphagenes	yes	teratogenic healing	AG_Teratogenic	-1	1
+AG_TeratogenicManipulation	sarg.alphagenes	yes	teratogenic coordination	AG_Teratogenic	-1	1
+AG_TeratogenicStamina	sarg.alphagenes	yes	teratogenic stamina	AG_Teratogenic	-1	1
+AG_TeratogenicSwiftness	sarg.alphagenes	yes	teratogenic swiftness	AG_Teratogenic	-1	1
+AG_Teratophilia	sarg.alphagenes	yes	teratophilia	Beauty	-1	
+AG_TerrorMask	sarg.alphagenes	yes	terror mask	AG_Cosmetic_Horns		0
+AG_TetraCoils	sarg.alphagenes	yes	tetra coils	AG_SpecialEffectsCategory	-1	1
+AG_Thalassophobia	sarg.alphagenes	yes	thalassophobia	ResistanceAndWeakness	3	
+AG_ThirdEye	sarg.alphagenes	yes	third eye		-1	1
+AG_ToughSinews	sarg.alphagenes	yes	tough sinews	Violence	-2	
+AG_ToxGasProducer	sarg.alphagenes	yes	tox gas producer	AG_SpecialEffectsCategory		2
+AG_ToxResist_Vulnerability	sarg.alphagenes	yes	tox vulnerability	ResistanceAndWeakness	2	
+AG_ToxicEnvironmentResistance_Frail	sarg.alphagenes	yes	frail antitoxic lungs	ResistanceAndWeakness	1	
+AG_Tusks	sarg.alphagenes	yes	tusks	AG_Cosmetic_Horns		0
+AG_TwistedFlesh	sarg.alphagenes	yes	twisted flesh	AG_AnomalyCategory	-1	1
+AG_TwitchingFingerspike	sarg.alphagenes	yes	twitching fingerspike	AG_AnomalyCategory		1
+AG_TwitchingToughspikes	sarg.alphagenes	yes	twitching toughspikes	AG_AnomalyCategory		1
+AG_TwitchingTrispikes	sarg.alphagenes	yes	twitching trispikes	AG_AnomalyCategory		1
+AG_UVPowered_Major	sarg.alphagenes	yes	UV powered, major	ResistanceAndWeakness	-3	
+AG_UVPowered_Mild	sarg.alphagenes	yes	UV powered	ResistanceAndWeakness	-2	
+AG_UVSensitivity_Minor	sarg.alphagenes	yes	minor UV sensitivity	ResistanceAndWeakness	2	
+AG_UnderdevelopedTeeth	sarg.alphagenes	yes	underdeveloped teeth	AG_FoodConsumption	1	1
+AG_UnsettlingAppearance	sarg.alphagenes	yes	unsettling appearance	Beauty	2	
+AG_UnstableMind	sarg.alphagenes	yes	unstable mind	Ability	-1	1
+AG_UnstableMutation	sarg.alphagenes	yes	unstable mutation	Ability	-2	1
+AG_UnstableMutationCatastrophic	sarg.alphagenes	yes	unstable mutation, catastrophic	Healing	1	2
+AG_UnstableMutationMajor	sarg.alphagenes	yes	unstable mutation, major	Healing	-4	2
+AG_UnstableRegeneration	sarg.alphagenes	yes	unstable regeneration	Healing	-1	2
+AG_UpperTentacles	sarg.alphagenes	yes	upper tentacles	AG_Cosmetic_Horns		0
+AG_VFEI_AdrenalSecretors	sarg.alphagenes	yes	adrenal secretors	AG_InsectoidMutations	-1	1
+AG_VFEI_Antennae	sarg.alphagenes	yes	insectoid antennae	AG_InsectoidMutations	-1	1
+AG_VFEI_InsectoidArm	sarg.alphagenes	yes	insectoid arms	AG_InsectoidMutations	0	1
+AG_VFEI_InsectoidLeg	sarg.alphagenes	yes	insectoid legs	AG_InsectoidMutations	0	1
+AG_VFEI_InsectoidMandibles	sarg.alphagenes	yes	insectoid mandibles	AG_InsectoidMutations	-1	1
+AG_VFEI_InsectoidSkin	sarg.alphagenes	yes	insectoid skin	AG_InsectoidMutations		0
+AG_VFEI_PheromoneSecretor	sarg.alphagenes	yes	pheromone secretor	AG_InsectoidMutations	-1	1
+AG_VFEI_PneumaticClaw	sarg.alphagenes	yes	pneumatic claw	AG_InsectoidMutations	0	1
+AG_VFEI_PredatorStomach	sarg.alphagenes	yes	predator stomach	AG_InsectoidMutations	-1	1
+AG_VFEI_SegmentedEyes	sarg.alphagenes	yes	compound eyes	AG_InsectoidMutations	-1	1
+AG_VFEI_SynapticCerebellum	sarg.alphagenes	yes	synaptic cerebellum	AG_InsectoidMutations	-1	1
+AG_VFEI_VatGrownInsectoidSkin	sarg.alphagenes	yes	vat-grown insectoid skin	AG_InsectoidMutations		0
+AG_VFEI_VenomGland	sarg.alphagenes	yes	venom gland	AG_InsectoidMutations	-2	1
+AG_VFEI_VentricularSleeve	sarg.alphagenes	yes	ventricular sleeve	AG_InsectoidMutations	-3	1
+AG_VenomFangs	sarg.alphagenes	yes	venom fangs	Cosmetic	-1	1
+AG_VeryGauntHead	sarg.alphagenes	yes	very gaunt head	AG_Cosmetic_Heads		0
+AG_VolatileMood	sarg.alphagenes	yes	volatile	Mood	1	
+AG_VolcanicAshMaker	sarg.alphagenes	yes	ashmaker	AG_SpecialEffectsCategory		3
+AG_WaspWings	sarg.alphagenes	yes	wasp wings	AG_Wings	-1	1
+AG_WasteFlesh	sarg.alphagenes	yes	waste flesh	AG_MeatType	-1	1
+AG_WaterBlood	sarg.alphagenes	yes	water blood	AG_BloodType		1
+AG_WaterRegeneration	sarg.alphagenes	yes	water regeneration	Healing	-1	1
+AG_WaterStriding	sarg.alphagenes	yes	water striding	Movement	-1	1
+AG_WolfAffinity	sarg.alphagenes	yes	lupine affinity	AG_AnimalAffinity	-2	
+AG_WoodLeather	sarg.alphagenes	yes	wood leather	AG_LeatherType	0	2
+AG_WoolLeather	sarg.alphagenes	yes	wool leather	AG_LeatherType	0	2
+AG_Zap	sarg.alphagenes	yes	electric discharge	Ability	-3	1
+AlphaGenes_Animal_SummonCentipede	sarg.alphagenes	yes	summon centipede	AG_Mechanitor	-5	4
+AlphaGenes_Animal_SummonMilitor	sarg.alphagenes	yes	summon militor	AG_Mechanitor	-1	1
+AlphaGenes_Animal_SummonTesseron	sarg.alphagenes	yes	summon tesseron	AG_Mechanitor	-3	2
+AlphaGenes_ExoticOrganism	sarg.alphagenes	yes	exotic organism			0
+AlphaGenes_FungalSpeed	sarg.alphagenes	yes	fungal speed	Archite		5
+AlphaGenes_FungalStrength	sarg.alphagenes	yes	fungal strength	Archite		5
+AlphaGenes_Randomizer	sarg.alphagenes	yes	randomizer			0
+VRE_HairColor_Ocular	sarg.alphagenes	yes	ocular hair	Cosmetic_Hair		0
+VRE_SkinColor_OcularBark	sarg.alphagenes	yes	ocular bark skin	Cosmetic_Skin		0
+GS_AgeBuff	sovereign.kork	yes	Veterancy	Miscellaneous	-1	3
+GS_Fleeting	sovereign.kork	yes	Fleeting		3	1
+GS_Fungus	sovereign.kork	yes	Fungus reproduction	Archite		3
+GS_Head_Brute	sovereign.kork	yes	brute head	Cosmetic		0
+GS_Kill	sovereign.kork	yes	Born to kill	Mood	-1	1
+GS_Martial	sovereign.kork	yes	Martial	Miscellaneous	-2	1
+GS_RapidAge	sovereign.kork	yes	rapid ageing	Miscellaneous	3	3
+GS_Stubby_Ear	sovereign.kork	yes	stubby ears	Cosmetic		0
+GS_Tusks	sovereign.kork	yes	tusks	Cosmetic	0	0
+GS_Unity	sovereign.kork	yes	Unity	Miscellaneous	-3	2
+GS_smushed_nose	sovereign.kork	yes	smushed nose	Miscellaneous		0
+VQEA_BlurRunner	vanillaquestsexpanded.ancients	yes	blur runner	Archite	0	3
+VQEA_Bulwark	vanillaquestsexpanded.ancients	yes	bulwark	Archite	0	3
+VQEA_Electromagnetized	vanillaquestsexpanded.ancients	yes	electromagnetized	Archite	0	3
+VQEA_Enormous	vanillaquestsexpanded.ancients	yes	enormous	Archite	0	4
+VQEA_Genius	vanillaquestsexpanded.ancients	yes	genius	Archite	0	4
+VQEA_HellsphereBlast	vanillaquestsexpanded.ancients	yes	hellsphere blast	Archite	0	4
+VQEA_Herculean	vanillaquestsexpanded.ancients	yes	herculean	Archite	0	3
+VQEA_InfernoSpew	vanillaquestsexpanded.ancients	yes	inferno spew	Archite	0	3
+VQEA_Invisibility	vanillaquestsexpanded.ancients	yes	invisibility	Archite	0	3
+VQEA_Levitation	vanillaquestsexpanded.ancients	yes	levitation	Archite	0	3
+VQEA_Marksman	vanillaquestsexpanded.ancients	yes	marksman	Archite	0	3
+VQEA_MasterfulAnimals	vanillaquestsexpanded.ancients	yes	masterful animals	VQEA_ArchiteAptitudes	0	3
+VQEA_MasterfulArtistic	vanillaquestsexpanded.ancients	yes	masterful artistic	VQEA_ArchiteAptitudes	0	3
+VQEA_MasterfulConstruction	vanillaquestsexpanded.ancients	yes	masterful construction	VQEA_ArchiteAptitudes	0	3
+VQEA_MasterfulCooking	vanillaquestsexpanded.ancients	yes	masterful cooking	VQEA_ArchiteAptitudes	0	3
+VQEA_MasterfulCrafting	vanillaquestsexpanded.ancients	yes	masterful crafting	VQEA_ArchiteAptitudes	0	3
+VQEA_MasterfulIntellectual	vanillaquestsexpanded.ancients	yes	masterful intellectual	VQEA_ArchiteAptitudes	0	3
+VQEA_MasterfulMedical	vanillaquestsexpanded.ancients	yes	masterful medical	VQEA_ArchiteAptitudes	0	3
+VQEA_MasterfulMelee	vanillaquestsexpanded.ancients	yes	masterful melee	VQEA_ArchiteAptitudes	0	3
+VQEA_MasterfulMining	vanillaquestsexpanded.ancients	yes	masterful mining	VQEA_ArchiteAptitudes	0	3
+VQEA_MasterfulPlants	vanillaquestsexpanded.ancients	yes	masterful plants	VQEA_ArchiteAptitudes	0	3
+VQEA_MasterfulShooting	vanillaquestsexpanded.ancients	yes	masterful shooting	VQEA_ArchiteAptitudes	0	3
+VQEA_MasterfulSocial	vanillaquestsexpanded.ancients	yes	masterful social	VQEA_ArchiteAptitudes	0	3
+VQEA_MatterPhasing	vanillaquestsexpanded.ancients	yes	matter phasing	Archite	0	3
+VQEA_PassiveMeditation	vanillaquestsexpanded.ancients	yes	passive meditation	Archite	0	3
+VQEA_PerfectVision	vanillaquestsexpanded.ancients	yes	perfect vision	Archite	0	3
+VQEA_PlasteelClaws	vanillaquestsexpanded.ancients	yes	plasteel claws	Archite	0	2
+VQEA_PlasteelSkin	vanillaquestsexpanded.ancients	yes	plasteel skin	Archite	0	3
+VQEA_Prowess	vanillaquestsexpanded.ancients	yes	prowess	Archite	0	3
+VQEA_SelfRepairingTissue	vanillaquestsexpanded.ancients	yes	self-repairing tissue	Archite	0	3
+VQEA_Serene	vanillaquestsexpanded.ancients	yes	serene	Archite	0	4
+VQEA_SubstanceImpervious	vanillaquestsexpanded.ancients	yes	substance impervious	Archite	0	3
+VQEA_Woundless	vanillaquestsexpanded.ancients	yes	woundless	Archite	0	4
+VRE_Aggression_ExtremelyAggressive	vanillaracesexpanded.archon	yes	extremely aggressive	Violence	5	
+VRE_DreadHair	vanillaracesexpanded.archon	yes	dread hair	Cosmetic		0
+VRE_EarlyMaturity	vanillaracesexpanded.archon	yes	early maturity	Reproduction	-1	1
+VRE_ExtremeEntropyCapacity	vanillaracesexpanded.archon	yes	extreme entropy capacity	Psychic	-4	3
+VRE_ExtremeMeditation	vanillaracesexpanded.archon	yes	extreme meditation	Psychic	-4	3
+VRE_FacialSpots	vanillaracesexpanded.archon	yes	facial spots			1
+VRE_FastMeleeHitter	vanillaracesexpanded.archon	yes	fast melee hitter	Violence	-2	1
+VRE_FastShooter	vanillaracesexpanded.archon	yes	fast shooter	Violence	-2	1
+VRE_HighEntropyCapacity	vanillaracesexpanded.archon	yes	high entropy capacity	Psychic	-2	2
+VRE_InnatePsylink	vanillaracesexpanded.archon	yes	natural psylink	Archite	0	3
+VRE_LeapjumpLegs	vanillaracesexpanded.archon	yes	leapjump legs	Archite	0	3
+VRE_Leatherskin	vanillaracesexpanded.archon	yes	leatherskin	Miscellaneous	-2	1
+VRE_LongPregnancy	vanillaracesexpanded.archon	yes	long pregnancy	Reproduction	1	1
+VRE_Maniac	vanillaracesexpanded.archon	yes	maniac	Mood	4	1
+VRE_PsychicAbility_MoreExtreme	vanillaracesexpanded.archon	yes	extremely psy-sensitive	Psychic	0	3
+VRE_SerratedEars	vanillaracesexpanded.archon	yes	serrated ears	Cosmetic		0
+VRE_ShortPregnancy	vanillaracesexpanded.archon	yes	short pregnancy	Reproduction	-1	1
+VRE_SlowMeditation	vanillaracesexpanded.archon	yes	slow meditation	Psychic	1	1
+VRE_SlowMeleeHitter	vanillaracesexpanded.archon	yes	slow melee hitter	Violence	1	1
+VRE_SlowShooter	vanillaracesexpanded.archon	yes	slow shooter	Violence	1	1
+VRE_SwiftMeditation	vanillaracesexpanded.archon	yes	swift meditation	Psychic	-2	2
+VRE_Transcendent	vanillaracesexpanded.archon	yes	transcendent	Archite	0	4
+VRE_WeakEntropyCapacity	vanillaracesexpanded.archon	yes	weak entropy capacity	Psychic	1	1
+VRE_DeadVoice	vanillaracesexpanded.fungoid	yes	dead voice	Cosmetic		0
+VRE_ExtremeSkillLoss	vanillaracesexpanded.fungoid	yes	extreme skill loss	VRE_SkillLoss	4	1
+VRE_FungalArmor	vanillaracesexpanded.fungoid	yes	fungal armor	ResistanceAndWeakness	-3	1
+VRE_FungalCrest	vanillaracesexpanded.fungoid	yes	fungal crest	Cosmetic		0
+VRE_FungalFlesh	vanillaracesexpanded.fungoid	yes	fungal flesh	Healing	1	1
+VRE_FungalRegeneration	vanillaracesexpanded.fungoid	yes	fungal regeneration	Healing	-4	1
+VRE_Fungoid_Hair_DarkTan	vanillaracesexpanded.fungoid	yes	dark tan hair	Cosmetic_Hair		0
+VRE_Fungoid_Hair_MistyMoss	vanillaracesexpanded.fungoid	yes	misty moss hair	Cosmetic_Hair		0
+VRE_Fungoid_Hair_RoseTaupe	vanillaracesexpanded.fungoid	yes	rose taupe hair	Cosmetic_Hair		0
+VRE_Fungoid_Hair_Salmon	vanillaracesexpanded.fungoid	yes	salmon hair	Cosmetic_Hair		0
+VRE_Fungoid_Hair_SwampGreen	vanillaracesexpanded.fungoid	yes	swamp green hair	Cosmetic_Hair		0
+VRE_Fungoid_Hair_Tumbleweed	vanillaracesexpanded.fungoid	yes	tumbleweed hair	Cosmetic_Hair		0
+VRE_Fungoid_Hair_Wenge	vanillaracesexpanded.fungoid	yes	wenge hair	Cosmetic_Hair		0
+VRE_GeneInfector	vanillaracesexpanded.fungoid	yes	gene infector	Archite	0	3
+VRE_HairMushroom	vanillaracesexpanded.fungoid	yes	fungal hair	Cosmetic_Hair		0
+VRE_MindCoalescence	vanillaracesexpanded.fungoid	yes	mind coalescence	Archite	0	4
+VRE_MinorSkillLoss	vanillaracesexpanded.fungoid	yes	minor skill loss	VRE_SkillLoss	-3	1
+VRE_NoSkillLoss	vanillaracesexpanded.fungoid	yes	no skill loss	VRE_SkillLoss	-5	1
+VRE_NoStudy	vanillaracesexpanded.fungoid	yes	no study	VRE_SkillLoss	4	1
+VRE_PartialAntirotLungs	vanillaracesexpanded.fungoid	yes	partial antirot lungs	Healing	0	1
+VRE_Repulsive	vanillaracesexpanded.fungoid	yes	repulsive	Beauty	4	
+VRE_RotBlood	vanillaracesexpanded.fungoid	yes	rotblood	Healing	1	1
+VRE_SevereSkillLoss	vanillaracesexpanded.fungoid	yes	severe skill loss	VRE_SkillLoss	2	1
+VRE_SkillDegradation	vanillaracesexpanded.fungoid	yes	skill degradation	VRE_SkillLoss	2	1
+VRE_Telepathy	vanillaracesexpanded.fungoid	yes	telepathy	Psychic	-2	2
+VRE_TotalAntirotLungs	vanillaracesexpanded.fungoid	yes	total antirot lungs	Healing	-1	1
+VRE_BlueBlood	vanillaracesexpanded.genie	yes	blue blood	Healing		1
+VRE_Curiosity_Animals	vanillaracesexpanded.genie	yes	animals curiosity	VRE_Curiosity	-2	2
+VRE_Curiosity_Artistic	vanillaracesexpanded.genie	yes	artistic curiosity	VRE_Curiosity	-2	2
+VRE_Curiosity_Construction	vanillaracesexpanded.genie	yes	construction curiosity	VRE_Curiosity	-2	2
+VRE_Curiosity_Cooking	vanillaracesexpanded.genie	yes	cooking curiosity	VRE_Curiosity	-2	2
+VRE_Curiosity_Crafting	vanillaracesexpanded.genie	yes	crafting curiosity	VRE_Curiosity	-2	2
+VRE_Curiosity_Intellectual	vanillaracesexpanded.genie	yes	intellectual curiosity	VRE_Curiosity	-2	2
+VRE_Curiosity_Medicine	vanillaracesexpanded.genie	yes	medicine curiosity	VRE_Curiosity	-2	2
+VRE_Curiosity_Melee	vanillaracesexpanded.genie	yes	melee curiosity	VRE_Curiosity	-2	2
+VRE_Curiosity_Mining	vanillaracesexpanded.genie	yes	mining curiosity	VRE_Curiosity	-2	2
+VRE_Curiosity_Plants	vanillaracesexpanded.genie	yes	plants curiosity	VRE_Curiosity	-2	2
+VRE_Curiosity_Shooting	vanillaracesexpanded.genie	yes	shooting curiosity	VRE_Curiosity	-2	2
+VRE_Curiosity_Social	vanillaracesexpanded.genie	yes	social curiosity	VRE_Curiosity	-2	2
+VRE_ElongatedHead	vanillaracesexpanded.genie	yes	elongated head	Miscellaneous		1
+VRE_Hemophiliac	vanillaracesexpanded.genie	yes	hemophiliac	Healing	1	1
+VRE_Immunity_VeryWeak	vanillaracesexpanded.genie	yes	no immunity	Healing	4	1
+VRE_Slow_Diseases	vanillaracesexpanded.genie	yes	slow diseases	Healing	-2	1
+VRE_WoundHealing_VerySlow	vanillaracesexpanded.genie	yes	very slow wound healing	Healing	4	1
+VRE_Distressed	vanillaracesexpanded.highmate	yes	distressed	Mood	2	1
+VRE_DominantGenome	vanillaracesexpanded.highmate	yes	dominant genome	Reproduction	-2	0
+VRE_FelineEars	vanillaracesexpanded.highmate	yes	feline ears	Cosmetic	0	0
+VRE_FelineTail	vanillaracesexpanded.highmate	yes	feline tail	Miscellaneous	0	0
+VRE_Flirty	vanillaracesexpanded.highmate	yes	flirty	Reproduction	-1	1
+VRE_Harmless	vanillaracesexpanded.highmate	yes	harmless	Violence	-1	0
+VRE_HighmateHair	vanillaracesexpanded.highmate	yes	beautiful-haired	Cosmetic	0	0
+VRE_Libido_VeryHigh	vanillaracesexpanded.highmate	yes	very high libido	Reproduction	-2	1
+VRE_LovinDependency	vanillaracesexpanded.highmate	yes	lovin' dependency	Reproduction	3	1
+VRE_PerfectBody	vanillaracesexpanded.highmate	yes	perfect body		-1	1
+VRE_RecessiveGenome	vanillaracesexpanded.highmate	yes	recessive genome	Reproduction	1	0
+VREHT_WeaponAptitude_Randomizer	vanillaracesexpanded.hussar	yes	random weapon aptitude	VREH_WeaponAptitudes		
+VREH_Arrogant	vanillaracesexpanded.hussar	yes	arrogant	Miscellaneous	2	1
+VREH_BulletproofSkin	vanillaracesexpanded.hussar	yes	bulletproof skin	Miscellaneous	-2	
+VREH_ChemicalDependency_Luciferium	vanillaracesexpanded.hussar	yes	luciferium dependency	Archite	8	1
+VREH_Dutiful	vanillaracesexpanded.hussar	yes	dutiful	Miscellaneous	-1	
+VREH_Giant	vanillaracesexpanded.hussar	yes	giant	Miscellaneous	-2	1
+VREH_Glidewings	vanillaracesexpanded.hussar	yes	glidewings	Miscellaneous	-2	2
+VREH_Toughness	vanillaracesexpanded.hussar	yes	toughness	Miscellaneous	-3	1
+VREH_Unconstrained	vanillaracesexpanded.hussar	yes	unconstrained	Movement	-1	1
+VRE_BugBlood	vanillaracesexpanded.insector	yes	bugblood	Healing		1
+VRE_ChestburstPregnancy	vanillaracesexpanded.insector	yes	chestburst pregnancy	Reproduction	2	1
+VRE_GenelineEvolution	vanillaracesexpanded.insector	yes	geneline evolution	Healing	-5	3
+VRE_InsectAntennae	vanillaracesexpanded.insector	yes	insect antennae	Cosmetic		1
+VRE_InsectFlesh	vanillaracesexpanded.insector	yes	insect flesh	Healing	0	2
+VRE_InsectJellyDependency	vanillaracesexpanded.insector	yes	insect jelly dependency	Drugs	3	1
+VRE_InsectPheromones	vanillaracesexpanded.insector	yes	insect pheromones	Healing	-1	2
+VRE_InsectSkin	vanillaracesexpanded.insector	yes	insectskin	Cosmetic	-2	1
+VRE_MegascarabInsectoidSkin	vanillaracesexpanded.insector	yes	megascarab insectoid skin	Cosmetic_Skin		0
+VRE_MegaspiderInsectoidSkin	vanillaracesexpanded.insector	yes	megaspider insectoid skin	Cosmetic_Skin		0
+VRE_SpelopedeInsectoidSkin	vanillaracesexpanded.insector	yes	spelopede insectoid skin	Cosmetic_Skin		0
+VRE_VatGrownInsectoidSkin	vanillaracesexpanded.insector	yes	vat-grown insectoid skin	Cosmetic_Skin		0
+VRE_CanineEars	vanillaracesexpanded.lycanthrope	yes	canine ears	Cosmetic		1
+VRE_CanineNose	vanillaracesexpanded.lycanthrope	yes	canine nose	Miscellaneous		1
+VRE_CanineTail	vanillaracesexpanded.lycanthrope	yes	wolf tail	Miscellaneous		1
+VRE_ChestFur	vanillaracesexpanded.lycanthrope	yes	chest fur	Cosmetic	0	1
+VRE_DodgeDisabled	vanillaracesexpanded.lycanthrope	yes	dodge disabled	VRE_MeleeDodge	2	1
+VRE_GermlineReimplanter	vanillaracesexpanded.lycanthrope	yes	germline reimplanter	Archite		3
+VRE_ImprovedDodge	vanillaracesexpanded.lycanthrope	yes	improved dodge	VRE_MeleeDodge	-1	1
+VRE_IntenseLightSensitivity	vanillaracesexpanded.lycanthrope	yes	intense light sensitivity	ResistanceAndWeakness	3	1
+VRE_LightSensitivity	vanillaracesexpanded.lycanthrope	yes	light sensitivity	ResistanceAndWeakness	2	1
+VRE_Morphs_AdulthoodMorphing	vanillaracesexpanded.lycanthrope	yes	adulthood morphing	VRE_Morphs	2	1
+VRE_Morphs_DamageMorphing	vanillaracesexpanded.lycanthrope	yes	damage morphing	VRE_Morphs	2	1
+VRE_Morphs_NocturnalMorphing	vanillaracesexpanded.lycanthrope	yes	nocturnal morphing	VRE_Morphs	2	1
+VRE_Morphs_RandomMorphing	vanillaracesexpanded.lycanthrope	yes	random morphing	VRE_Morphs	2	1
+VRE_Morphs_SeasonalMorphing	vanillaracesexpanded.lycanthrope	yes	seasonal morphing	VRE_Morphs	2	1
+VRE_MoveSpeed_ExtremelyQuick	vanillaracesexpanded.lycanthrope	yes	extremely fast runner	Archite	0	2
+VRE_Nocturnal	vanillaracesexpanded.lycanthrope	yes	nocturnal	Sleep	0	1
+VRE_OnlySideburns	vanillaracesexpanded.lycanthrope	yes	only sideburns	Cosmetic		0
+VRE_PackMentality	vanillaracesexpanded.lycanthrope	yes	pack mentality	Miscellaneous	-1	1
+VRE_Photophobia	vanillaracesexpanded.lycanthrope	yes	photophobia	ResistanceAndWeakness	5	
+VRE_SpeechInability	vanillaracesexpanded.lycanthrope	yes	speech inability	Healing	3	1
+VRE_SuperiorDarkVision	vanillaracesexpanded.lycanthrope	yes	superior dark vision	Miscellaneous	-2	
+VRE_SuperiorDodge	vanillaracesexpanded.lycanthrope	yes	superior dodge	VRE_MeleeDodge	-2	1
+VRE_Territorial	vanillaracesexpanded.lycanthrope	yes	territorial	Mood	1	1
+VRE_WarHowl	vanillaracesexpanded.lycanthrope	yes	warhowl	Ability	-2	
+VRE_AnimaAffinity	vanillaracesexpanded.phytokin	yes	anima affinity	Archite	-3	3
+VRE_BarkSkin	vanillaracesexpanded.phytokin	yes	barkskin	Cosmetic	-1	1
+VRE_Female	vanillaracesexpanded.phytokin	yes	female-only	Healing		2
+VRE_FoliageHair	vanillaracesexpanded.phytokin	yes	foliage hair	Cosmetic		1
+VRE_GauranlenAffinity	vanillaracesexpanded.phytokin	yes	gauranlen affinity	Archite	-3	3
+VRE_GreenThumb	vanillaracesexpanded.phytokin	yes	green thumb	Mood	-1	
+VRE_HairColor_Anima	vanillaracesexpanded.phytokin	yes	anima hair	Cosmetic_Hair		0
+VRE_HairColor_Gauranlen	vanillaracesexpanded.phytokin	yes	gauranlen hair	Cosmetic_Hair		0
+VRE_HairColor_Pollux	vanillaracesexpanded.phytokin	yes	pollux hair	Cosmetic_Hair		0
+VRE_Photosynthesis	vanillaracesexpanded.phytokin	yes	photosynthesis	Archite	2	1
+VRE_PoluxAffinity	vanillaracesexpanded.phytokin	yes	polux affinity	Archite	-3	3
+VRE_ProgressiveAttunement	vanillaracesexpanded.phytokin	yes	progressive attunement	Psychic	-2	
+VRE_SapBlood	vanillaracesexpanded.phytokin	yes	sap blood	Healing	-2	1
+VRE_SaplingBirth	vanillaracesexpanded.phytokin	yes	saplingbirth	Archite	2	2
+VRE_AuburnSkin	vanillaracesexpanded.pigskin	yes	auburn Skin	Cosmetic_Skin		0
+VRE_Brave	vanillaracesexpanded.pigskin	yes	brave	Miscellaneous	-1	1
+VRE_ChocolateSkin	vanillaracesexpanded.pigskin	yes	chocolate Skin	Cosmetic_Skin		0
+VRE_Coward	vanillaracesexpanded.pigskin	yes	coward	Miscellaneous	2	1
+VRE_CurledTail	vanillaracesexpanded.pigskin	yes	curled tail	Miscellaneous	0	0
+VRE_EverGrowing	vanillaracesexpanded.pigskin	yes	ever growing	Healing	-3	2
+VRE_ExtraMeat	vanillaracesexpanded.pigskin	yes	extra meat	Healing	0	2
+VRE_FastAging	vanillaracesexpanded.pigskin	yes	fast aging	Healing	2	1
+VRE_Gluttonous	vanillaracesexpanded.pigskin	yes	Gluttonous	Healing	2	1
+VRE_HazelnutSkin	vanillaracesexpanded.pigskin	yes	hazelnut Skin	Cosmetic_Skin		0
+VRE_LowMeat	vanillaracesexpanded.pigskin	yes	low meat	Healing	0	2
+VRE_MouthTusks	vanillaracesexpanded.pigskin	yes	mouth tusks	Cosmetic	0	0
+VRE_OrganRegeneration	vanillaracesexpanded.pigskin	yes	organ regeneration	Healing	-3	2
+VRE_PigSkin	vanillaracesexpanded.pigskin	yes	pigskin	Healing	0	2
+VRE_PorkFlesh	vanillaracesexpanded.pigskin	yes	pork flesh	Healing	0	2
+VRE_RapidAging	vanillaracesexpanded.pigskin	yes	rapid aging	Healing	3	1
+VRE_SlowAging	vanillaracesexpanded.pigskin	yes	slow aging	Healing	-2	1
+VRE_AnimalFeeder	vanillaracesexpanded.sanguophage	yes	animalfeeder	Hemogen	-1	1
+VRE_BatEars	vanillaracesexpanded.sanguophage	yes	bat ears	Cosmetic		0
+VRE_BatNose	vanillaracesexpanded.sanguophage	yes	bat nose	Miscellaneous		0
+VRE_CorpseFeeder	vanillaracesexpanded.sanguophage	yes	corpsefeeder	Hemogen	-1	1
+VRE_Ecstasy	vanillaracesexpanded.sanguophage	yes	ecstasy	Ability	-1	
+VRE_ExtremeHemogenDrain	vanillaracesexpanded.sanguophage	yes	extreme hemogen drain	Hemogen	8	1
+VRE_FilterInfection	vanillaracesexpanded.sanguophage	yes	filter infection	Ability	-1	
+VRE_HeartCrush	vanillaracesexpanded.sanguophage	yes	heart crush	Ability	-4	
+VRE_Hemosmosis	vanillaracesexpanded.sanguophage	yes	hemosmosis	Ability	-2	
+VRE_LowHemogenDrain	vanillaracesexpanded.sanguophage	yes	low hemogen drain	Hemogen	3	1
+VRE_Resurrect	vanillaracesexpanded.sanguophage	yes	resurrect	Archite		4
+VRE_SanguineHair	vanillaracesexpanded.sanguophage	yes	sanguine haired	Cosmetic		0
+VRE_SanguoFeeder	vanillaracesexpanded.sanguophage	yes	sanguofeeder	Hemogen	-1	1
+VRE_Sensitivity_Dangerous	vanillaracesexpanded.sanguophage	yes	dangerous UV sensitivity	ResistanceAndWeakness	5	3
+VRE_Talons	vanillaracesexpanded.sanguophage	yes	talons	Miscellaneous	-1	1
+VRE_ToxicCloud	vanillaracesexpanded.sanguophage	yes	toxic cloud	Ability	-1	
+VRE_UpperBatEars	vanillaracesexpanded.sanguophage	yes	chiropteric ears	Cosmetic		0
+VRE_ViscuousGoo	vanillaracesexpanded.sanguophage	yes	viscuous goo	Ability	-1	
+VRESaurids_CenterFrill	vanillaracesexpanded.saurid	yes	center-frill	Cosmetic		0
+VRESaurids_ColdBlooded	vanillaracesexpanded.saurid	yes	cold-blooded	Miscellaneous	6	1
+VRESaurids_FrilledEars	vanillaracesexpanded.saurid	yes	frilled ears	Cosmetic		0
+VRESaurids_GeckoTail	vanillaracesexpanded.saurid	yes	gecko tail	Miscellaneous		
+VRESaurids_LizardVoice	vanillaracesexpanded.saurid	yes	lizard voice	Cosmetic		0
+VRESaurids_Oviparous	vanillaracesexpanded.saurid	yes	oviparous	Reproduction	-1	2
+VRESaurids_Pheromones	vanillaracesexpanded.saurid	yes	pheromones	Miscellaneous	0	1
+VRESaurids_SauridClaws	vanillaracesexpanded.saurid	yes	saurid claws	Miscellaneous	0	1
+VRESaurids_ScaleSkin	vanillaracesexpanded.saurid	yes	scaleskin	Miscellaneous	-1	1
+VREStarjack_Cryostasis	vanillaracesexpanded.starjack	yes	cryostasis	ResistanceAndWeakness		
+VREStarjack_Gene_Randomizer	vanillaracesexpanded.starjack	yes	randomizer			0
+VREStarjack_GravshipAffinity	vanillaracesexpanded.starjack	yes	gravship affinity	Miscellaneous	0	1
+VREStarjack_OxygenSensitivity_Extreme	vanillaracesexpanded.starjack	yes	extreme oxygen sensitivity	ResistanceAndWeakness	5	2
+VREStarjack_OxygenSensitivity_Intense	vanillaracesexpanded.starjack	yes	intense oxygen sensitivity	ResistanceAndWeakness	4	2
+VREStarjack_OxygenSensitivity_Mild	vanillaracesexpanded.starjack	yes	mild oxygen sensitivity	ResistanceAndWeakness	3	1
+VREStarjack_SpacejumpLegs	vanillaracesexpanded.starjack	yes	spacejump tail	Ability	-2	
+VREStarjack_VacuumEfficiency	vanillaracesexpanded.starjack	yes	vacuum efficiency	ResistanceAndWeakness	1	1
+VREStarjack_VacuumResistance_Total	vanillaracesexpanded.starjack	yes	vacuum impervious	ResistanceAndWeakness	-2	1
+VREW_Mutation_Randomizer	vanillaracesexpanded.waster	yes	randomizer			0
+VREW_PollutionAccuracy	vanillaracesexpanded.waster	yes	pollution accuracy	VREW_Mutations	-1	1
+VREW_PollutionCognition	vanillaracesexpanded.waster	yes	pollution cognition	VREW_Mutations	-1	1
+VREW_PollutionFertility	vanillaracesexpanded.waster	yes	pollution fertility	VREW_Mutations	-1	1
+VREW_PollutionHappiness	vanillaracesexpanded.waster	yes	pollution happiness	VREW_Mutations	-1	1
+VREW_PollutionNumbness	vanillaracesexpanded.waster	yes	pollution numbness	VREW_Mutations	-1	1
+VREW_PollutionProductivity	vanillaracesexpanded.waster	yes	pollution productivity	VREW_Mutations	-1	1
+VREW_PollutionPsySensitivity	vanillaracesexpanded.waster	yes	pollution psy-sensitivity	VREW_Mutations	-1	1
+VREW_PollutionRage	vanillaracesexpanded.waster	yes	pollution rage	VREW_Mutations	-1	1
+VREW_PollutionRegeneration	vanillaracesexpanded.waster	yes	pollution regeneration	VREW_Mutations	-1	1
+VREW_PollutionRush	vanillaracesexpanded.waster	yes	pollution stimulus	VREW_Mutations	-1	1
+VREW_PollutionSustenance	vanillaracesexpanded.waster	yes	pollution sustenance	VREW_Mutations	-1	1
+VRE_Instability_Extreme	vanillaracesexpanded.waster	yes	extreme cell instability	Miscellaneous	6	
+VRE_Instability_Nominal	vanillaracesexpanded.waster	yes	nominal cell instability	Miscellaneous	1	
+VRE_Instability_Progressive	vanillaracesexpanded.waster	yes	progressive cell instability	Miscellaneous	2	
+VRE_ToxAbsorption	vanillaracesexpanded.waster	yes	tox absorption	Miscellaneous	-1	1
