@@ -6,6 +6,90 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- New peoples, release C: four more peaceful peoples (7 November 2026; no What's new round or version yet: the lead
+  writes those when merging). The player's words: "yes, i'd be interested in some non-hostile faction variety", and
+  "go ahead on all the new factions also" (an explicit request: no proposal round). `docs/design/peoples.md` "What was
+  built (release C)" (the four in a table, their towns, the callers, the asks, the patch, release B's arising with them,
+  the softness); DESIGN.md "Rimfolk's peoples", its last bullet; README a paragraph ("Four more peoples.", after "New
+  peoples during play."); an Almanac page of its own (`Almanac_PeoplesC.xml`, *pilgrims, scholars, the enclave and the
+  river folk*), release A's page's tip and release B's page's words brought up to date (their keywords and links
+  unchanged). Tests: `PeoplesCTests` ("peoples, release C: "); `PeoplesTests` now checks all seven defs, plans, words and
+  emblems; `ArisingTests` the palette apart from all seven peoples' colours; `NeighboursFourTests` counts the new asks
+  with release A's. No Sched slot, no new Harmony patch, nothing new saved (the pilgrims' morning is a memo of the
+  living events).
+  - The peoples (`Defs/PeopleDefs/`): the pilgrim fellowship (`Rimfolk_Pilgrims`, medieval, tribal parent, calling
+    `pilgrims`: capes dyed sage, cone hats with Ideology, wardens of the way with spears and short bows; hostels, 0.5;
+    caravans 0.6), the learned society (`Rimfolk_Scholars`, industrial, outlander parent, `scholars`: claret coats,
+    proctors in flak; archives, 0.45; books, schematics, techprints with Royalty), the spacer enclave (`Rimfolk_Enclave`,
+    spacer, outlander parent, `brokers`: pale cyan, marshals in recon armour with charge rifles, a few bionics; markets
+    round a landing pad, 0.3; caravans 0.7), the river folk (`Rimfolk_RiverFolk`, medieval, tribal parent, `fishers`:
+    kingfisher blue, floppy hats with Ideology, river wardens with fishing spears; landings by a river, 0.7; caravans
+    1.2, fish with Odyssey). Each once among a new world's peoples, never required, raids 0.15 to 0.3 and only once
+    turned hostile; fixed faiths (The Pilgrim's Way: proselytizer and VE Memes' nomad, Buddhist style; The Open Book:
+    individualist and Alpha Memes' monastic, Islamic; The Exchange: transhumanist and VE Memes' trader, techist; The
+    River's Keeping: nature primacy and Alpha Memes' water primacy, totemic), their own names, kinds, traders, emblems and
+    town icons (`Tools/make_emblems.py`; `Textures/ColonyCouncil/Peoples/Pilgrims.png` and the rest). Their titles:
+    keeper of the shrines, hosteller, palmer, chandler; provost, archivist, society fellow, bookseller; chair of the
+    exchange, pad master, enclave factor, factor; river master, landing master, boatman, boat-trader; messengers palmers,
+    copyists, runners, boatmen. Letters, messengers' lines and twelve pieces of talk in their voices.
+  - The template's new fields (`PeopleExtension`): `ariseAges` (the ages release B makes a people of it in), `byWater`
+    (towns by a river), `fish` (Odyssey's fish of the map's own water in the stores). A new plan mark, `dock`.
+  - Their towns (`Rimfolk_TownPlans_PeoplesC.xml`): a shrine's court with its flame and a hostel of twelve bedrolls; an
+    archive with a reading hall, stacks and a scriptorium; a concrete landing pad, a square of stalls round the trade
+    beacon, the factors' house and a storehouse; a river landing with houses, a hall, a smokehouse, fish racks, a boat
+    shed and docks along two sides. `PeopleTowns.Spot` looks wider for a plan with docks and takes the place where most
+    are water; `LayDocks` lays the game's bridge over water and planks on dry ground. A new world's landings move to a
+    river tile within twelve as the game starts (`ArisingBook.StartedNewGame`, `PeopleTowns.ToTheRivers`); with none
+    they stay put, on dry ground.
+  - At the gate (`Peoples/PeoplesCallers.cs`, `Rimfolk_Events_PeoplesC.xml`): pilgrims asking a night's shelter at dusk
+    (each lodged indoors, the band gone at first light with a blessing said over the gate, the colony glad of it, and one
+    night in ten a pilgrim's cough caught by the one who sat up with them, through the harm setting); the society's
+    copyist (the colony's records copied where it gathers, a book of the colony's age left, or a lesson); a river
+    boat-trader's catch (Odyssey); the enclave's lander for an industrial or spacer colony (bidden, the factor, two to
+    four marshals and the goods come down by drop pod and trade from the factor's pack under the game's visitors' lord,
+    then walk off). Asks (`Rimfolk_Missions_PeoplesC.xml`): food for the hostel in a holy year, timber and net cloth for
+    the river folk. By patch (`Patches/Rimfolk_PeoplesC.xml`): nine world events prefer a calling, five visitor events
+    (`HappeningExtension.prefers`, new, read by the hungry pilgrims', the relic and anima pilgrims', the travelling
+    scholar's and the book swapper's workers).
+  - Release B's arising (`ArisingMath.Leans`, `Lean`, `Wanted`, `Template` with spans): survivors near a river (half of
+    them) become river folk, a band led by a learned one (Intellectual 10) scholars, a league of spacer-age towns an
+    enclave, faithful who broke away in an industrial or spacer world pilgrims; a river folk people only where a river
+    tile in reach takes its town, else the cause's own ways. Pace and caps unchanged.
+  - Fixed on the way (release A): a caller of a calling (the order's hospitaller, the league's outrider; now the copyist
+    and the boat-trader) was half the time, with Hospitality, a guest of any people already on the map standing in under
+    that people's name (and the outrider's "yes" then brought that people's caravan). `HappeningWorker_Setting` no longer
+    lets a guest stand in for a people of a calling.
+  - Not used: Royalty's shuttle for the lander (drop pods instead; the shuttle's leaving couldn't be tried here), other
+    mods' fish, VRE xenotypes, a ferry on the colony's journeys (it would need a hook into the world map's caravan paths).
+  - Try in the game (none of it could be run here):
+    1. A new world: the four in the world's faction list with their emblems; on the world map their towns' icons in sage,
+       claret, pale cyan and kingfisher blue; the river folk's landings on river tiles (the dev log says "moved to a
+       river" for each one moved). Their leaders and pawns on the Factions tab; with Ideology their faiths and styles.
+    2. Dev mode, Debug actions, Rimfolk: "Peoples: a people of a template now, near this home (testing)..." for each of
+       the four (the river folk's landing on a river in reach); "Peoples: lay a town's plan at the mouse (testing)..."
+       for the shrine and hostel, the archive, the landing-pad market and the river landing (laid over a river's edge:
+       the jetty over the water, planks on the bank; deconstruct after).
+    3. Their towns' maps (attack or visit one): each plan laid out; the river landing placed with its docks in the
+       water and fish in its racks (Odyssey); on a map with no water near, the landing on dry ground.
+    4. The game's Incidents dev tools, by defName: `Rimfolk_Evt_PilgrimShelter` in the evening (take them in: each
+       pilgrim beds down in a corner indoors at night, the band leaves at first light with a blessing over the gate and
+       a word in the news; try it a few times with the harm setting up for the cough); `Rimfolk_Evt_ScholarCopyist`
+       (the copyist works at the party spot, the fire or the table; the book handed over); `Rimfolk_Evt_RiverCatch`
+       (Odyssey: the basket handed over, the silver carried out); `Rimfolk_Evt_EnclaveLander` in an industrial colony
+       (bid them: drop pods by the trade drop spot, the factor trades from the pack, the marshals stand about, they
+       walk off after half a day); the missions `Rimfolk_Mission_RiverBoats` and, with a great pilgrimage or holy year
+       running, `Rimfolk_Mission_HostelBread`.
+    5. Release B: "Peoples: a new people arises now (testing)..." for the survivors near a river (river folk, half the
+       ruins), a band of a learned colonist sent away (scholars), and in a spacer world the league (an enclave) and the
+       faithful (pilgrims); "Peoples: what could arise now" lists the template each would take.
+    6. Letters and talk: write to a notable of each (their title and their answer in their voice); chat with a visitor
+       of theirs.
+  - Riskiest: the lander (pawns in drop pods given a visitors' lord before they land, the factor trading from its own
+    pack, never seen in the game); the landing's spot search and docks on real river maps (a river through the middle
+    may leave no spot with the rest on dry ground, and then the plan stands back from the water); the move of a new
+    world's landings at the game's start alongside Faction Territories' land; the shelter's lodging for a band of five
+    when the colony has few rooms (some may sleep outside at their spot); the new faiths' memes with VE Memes' and Alpha
+    Memes' (their exclusions weren't checkable); the cone hat, floppy hat, beret and ruffled shirt on these kinds.
 - The installer, second pass (7 November 2026, the player's report: RimWorld at `E:\Programme\Steam\steamapps\common\RimWorld`
   wasn't found, typed or looked for; "it's RimWorld.exe not 64"). 1.7's program is `RimWorld.exe`; the installer knew
   only `RimWorldWin64.exe`, so every check failed. A folder now counts as RimWorld's with `RimWorld*.exe` or

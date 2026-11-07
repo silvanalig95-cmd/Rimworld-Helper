@@ -4553,6 +4553,31 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
   region's day (`RegionBook.Daily`), one a day at most; the pace `ArisingMath.PaceAllows` (40 days between any two, 90
   between two of a cause, none before day 15, six standing), scaled by the setting `newPeoples` (0 to 200%). Saved: the
   records in `ArisingBook` (one per people, `ArisingMath.MaxRecords`). The Almanac's page *new peoples that arise*.
+- **Release C: four more peoples** (`Tools/Tests/PeoplesCTests.cs`, "peoples, release C: "). The pilgrim fellowship
+  (`Rimfolk_Pilgrims`, medieval, tribal parent, calling `pilgrims`), the learned society (`Rimfolk_Scholars`, industrial,
+  outlander parent, `scholars`), the spacer enclave (`Rimfolk_Enclave`, spacer, outlander parent, `brokers`), the river
+  folk (`Rimfolk_RiverFolk`, medieval, tribal parent, `fishers`), on release A's template with three new fields:
+  `ariseAges` (the ages a template arises in, wider than its own: `PeoplesMath.AgeSpan`), `byWater` (its towns by a
+  river: `PeopleTowns.ToTheRivers` from `ArisingBook.StartedNewGame` moves a new world's landings to a river tile within
+  twelve, a new people's town is looked for on one) and `fish` (Odyssey's fish of the map's own waters in the stores).
+  Their plans (`Rimfolk_TownPlans_PeoplesC.xml`) and a new plan mark, `dock`: `PeopleTowns.Spot` looks wider for a place
+  where most docks are water (`PeoplesMath.DockSpot`), `LayDocks` lays the game's bridge over water a bridge can stand
+  in and planks on dry ground. Callers (`Peoples/PeoplesCallers.cs`): the pilgrims' night (`HappeningWorker_PilgrimShelter`:
+  dusk, a band of three to five, each lodged by `VisitorServices.Lodge`, the morning a memo of the living events,
+  `LivingEvents.Shelter`, with the blessing said, the colony's feeling, and one night in ten a cough caught through
+  `Harm.Roll`/`Harm.Ail`), the society's copyist (`HappeningWorker_ScholarCopyist`: a book of the colony's age by
+  `DilemmaEffect_Goods`, or a lesson), the river folk's catch (`HappeningWorker_RiverCatch`, the biome's fresh-water fish),
+  the enclave's lander (`HappeningWorker_EnclaveLander`, an industrial or spacer colony: `DilemmaEffect_EnclaveLanding`
+  drops the factor with the stock in its pack, the marshals and the beasts by drop pod, under the game's visitors' lord,
+  as its visiting traders trade). Asks (`Rimfolk_Missions_PeoplesC.xml`): the hostel's food in a holy year
+  (`whileKind` `faith`), the river folk's timber and net cloth. By patch (`Patches/Rimfolk_PeoplesC.xml`): nine world
+  events prefer a calling, and five visitor events (`HappeningExtension.prefers`, read by their own workers through
+  `Peoples.Weigh`). Release B's causes may take their ways (`ArisingMath.Leans`, `Lean`, `Wanted`; the cause's `lean`):
+  survivors near a river (half of them, `SaltRiver`) river folk, a band led by a learned one (Intellectual 10)
+  scholars, a league of the spacer age an enclave, faithful who broke away in an industrial or spacer world pilgrims; a
+  lean with no river in reach is let go. Release B's pace and caps unchanged. The Almanac's page *pilgrims, scholars,
+  the enclave and the river folk*. Fixed on the way: a caller of a calling (`HappeningSetting.people` `calling:`) could
+  be a Hospitality guest of any people already on the map, standing in under that people's name.
 
 ### Letters that arrive in days and bring something (the player's decision 12, 6 November 2026)
 

@@ -46,8 +46,9 @@ Sanguophage, Saurid, Starjack and Waster, the elves, merfolk, Avaloi, Boglegs, S
 androids). Factional War lets them destroy each other; Faction Territories draws their lands; Diplomatic Marriage Plus
 offers marriages between leaders (the player's choice; Rimfolk ties no mechanics of its own to family lines).
 
-So new Rimfolk peoples fill what is missing rather than repeat these: peaceful callings (traders, healers, herders),
-and peoples that arise during play.
+So new Rimfolk peoples fill what is missing rather than repeat these: peaceful callings (traders, healers, herders;
+then pilgrims, scholars, a spacer enclave that lives on the ground, unlike Odyssey's orbital Traders Guild, and river
+folk), and peoples that arise during play.
 
 ## Art Rimfolk can draw on
 
