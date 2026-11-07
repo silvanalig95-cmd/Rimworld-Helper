@@ -93,6 +93,7 @@
         <li>[tie:pact:defence] The pact stands. If the colony calls, {TOWN} will come.</li>
         <li>[town:lately:colony:formerDied] We lost one of the colony's own here not long ago. I thought you should hear it from me as well.</li>
         <li>[town:lately:colony:homecoming] One of ours went home to the colony lately, and {TOWN} feels the gap.</li>
+        <li>[town:lately:colony:homecoming,former] One of us went home to the colony not long ago, and I find I envy them a little.</li>
         <li>[region:newtown:theirs] Some of our people have gone to settle {NEWTOWN}, and {TOWN} is quieter for it.</li>
         <!-- Any head, any time -->
         <li>Remember us to anyone at {COLONY} who still asks after {TOWN}.</li>

@@ -333,7 +333,7 @@ public static class RenownTests
         // (Camp.Bubble) and a camp's farewell for the hour they set off (CampLook.FarewellText).
         var others = new HashSet<string> { "first", "returning", "fare:awful", "foe:lowtech", "morning", "day", "evening", "night" };
         // Stage 3's content pass: the gathering's own speaker and the raid's dead (StageThreeWordsTests checks where they are set).
-        others.UnionWith(new[] { "speaker", "died", "diedMany" });
+        others.UnionWith(new[] { "speaker", "died", "diedMany", "tribal" });
         C(Code("Outsiders/Outsiders.cs").Contains("tags.Add(\"first\")") && Code("Outsiders/OutsiderOutcomes.cs").Contains("\"fare:awful\"")
           && Code("Camps/Camp.cs").Contains("\"foe:lowtech\"") && Code("Camps/CampLook.cs").Contains("tags.Add(Flavor.HourTag(") && Code("Flavor.cs").Contains("\"night\" : hour < 11 ? \"morning\""),
             "the other tags the shipped lines ask for are set where those lines are picked");

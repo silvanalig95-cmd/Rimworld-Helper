@@ -551,6 +551,7 @@ Console.WriteLine($"Checked {TownAfterTests.Run(Check)} things about the town a 
 Console.WriteLine($"Checked {ScenarioStartTests.Run(Check)} things about a scenario's start for a new colony (which parts come, Bad Blood's families never, the arrival and the gravship, the people and what is required of them, the passage with the kit, Rimfolk's own parts, the seventeen scenarios, the seams).");
 Console.WriteLine($"Checked {TownLifeTests.Run(Check)} things about the town's own life (a raid on it, its hard times and its people at the gate, its goodwill cooling, the region's hardships, growth at Faction Territories' pace, the seams).");
 Console.WriteLine($"Checked {ManyColoniesTests.Run(Check)} things about many colonies in play (two councils become one, each colony its own character, neighbours and world events near every home, the pages following the colony in view, the small ones, the seams).");
+Console.WriteLine($"Checked {StageThreeWordsTests.Run(Check)} things about stage 3's words (the town the colony was, its raid's letters, the founders and the newcomers, the letters' fellows, the shipped lines narrowed, no draw added).");
 
 Console.WriteLine(failures == 0 ? "All tests passed (template math, layout, strain, meetings, pressures, ailments, line memory, good times, tab sizes, calendar, personal stories, clock and caps, faction memory, answers on the map, setbacks, promises kept, what colonists say, the heart's needs, beliefs and diets, animals, other mods)." : failures + " failure(s).");
 return failures == 0 ? 0 : 1;

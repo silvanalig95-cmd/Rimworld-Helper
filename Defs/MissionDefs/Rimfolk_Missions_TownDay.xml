@@ -33,6 +33,10 @@
           <li>[founding,their:lowtech] A runner from {PLACE} brought word: {FACTION} light the fire on the day {DEAD} was founded, as the colony did, and they ask the colony's people to sit at it with them this year.</li>
           <li>[handover] It is a year again since {DEAD} was handed over and {PLACE} became the town of {FACTION}, and they mark the day with a meal. {HOST} asks the colony's people to come and sit with the ones who stayed.</li>
           <li>[handover,their:hightech] The message from {PLACE} is short: the anniversary of the hand-over, a dinner in the old common room, the colony's people invited. {HOST} signed it.</li>
+          <li>[founding] {HOST} sends word from {PLACE}: it is nearly {DEAD}'s day again, and {FACTION} would like to keep it with the colony's people at the table.</li>
+          <li>[founding,their:hightech] {HOST} writes from {PLACE}: {FACTION} will mark the day {DEAD} was founded with a dinner, and the colony's people are wanted at it.</li>
+          <li>[handover] {FACTION} remember the day {DEAD} became {PLACE}, and want the colony at their table for it this year. {HOST} asks that at least a few come.</li>
+          <li>[handover,their:lowtech] A runner from {PLACE} says {FACTION} will sit together on the day {DEAD} was handed over, and asks the colony's people to sit with them.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -57,6 +61,7 @@
         <ready>
           <li>The colony's guests have reached {PLACE} and been given the old seats at the table. Keep the caravan there until the day is over.</li>
           <li>[handover] The colony's guests have reached {PLACE}, and the ones who stayed came out to meet them. Keep the caravan there until the meal is over.</li>
+          <li>[founding] The colony's guests have reached {PLACE} for {DEAD}'s day, and {FACTION} have made room for them at the table. Keep the caravan there until the day is over.</li>
         </ready>
         <reminder>
           <li>The day at {PLACE} is coming, and the colony's guests haven't arrived.</li>
@@ -70,6 +75,8 @@
           <li>[attended,handover] The colony's guests sat with the ones who stayed at {PLACE} and remembered the day {DEAD} was handed over. {FACTION} sent them home with gifts: {ITEM}.</li>
           <li>[attended] The colony's guests were made welcome at {PLACE} and came home with gifts: {ITEM}.</li>
           <li>[brief] The colony's guests reached {PLACE} but didn't stay to the end. {FACTION} were glad they came at all.</li>
+          <li>[attended,founding] {DEAD}'s day was kept at {PLACE} with the colony's guests among {FACTION}, and they came home with gifts: {ITEM}.</li>
+          <li>[attended,handover] The colony's guests and {FACTION} remembered together the day {DEAD} was handed over, and the guests came home with gifts: {ITEM}.</li>
         </done>
         <failTitles>
           <li>[absent] No guests at {PLACE}</li>
@@ -77,6 +84,7 @@
         </failTitles>
         <fail>
           <li>[absent] {FACTION} kept the day at {PLACE} without the colony, with places set for its guests until late.</li>
+          <li>[absent] Nobody from the colony came to {PLACE} for the day, and {FACTION} noticed the empty seats.</li>
         </fail>
         <cancelled>
           <li>The invitation to {PLACE} no longer stands.</li>
