@@ -4822,6 +4822,18 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
   lean with no river in reach is let go. Release B's pace and caps unchanged. The Almanac's page *pilgrims, scholars,
   the enclave and the river folk*. Fixed on the way: a caller of a calling (`HappeningSetting.people` `calling:`) could
   be a Hospitality guest of any people already on the map, standing in under that people's name.
+- **Their gear, their kinds of people and their gifts** (`Tools/Tests/PeoplesGearTests.cs`, "peoples' gear: ";
+  docs/design/peoples.md, the section of that name). No kind has `apparelColor`: each people's base kind dyes its
+  signature pieces by name (`specificApparelRequirements` with an `apparelDef` and a `color`), a civilian kind picks its
+  signature garment by `alternateTagChoices`, the rest comes from wider tags and money by role. Soldiers wear a common
+  kit (`apparelRequired`), a religious habit is shared but not its cut or age, civilians vary. A mod's tags and pieces
+  only with `MayRequire` on it, every name in `Tools/Tests/PeopleGear.txt`; medieval and tribal peoples off
+  `IndustrialBasic` (Vanilla Apparel Expanded's modern clothes). `inventoryOptions` for what they carry, never on a
+  trader. `xenotypeSet` a real mix of Biotech's, Vanilla Races Expanded's, Alpha Genes' and the xenotype mods' kinds of
+  people, three in four or so baseliners. `PeopleKindExtension` (gifts: a class of A RimWorld of Magic by its trait's name,
+  or a psylink, with Vanilla Psycasts Expanded a path by name) given by `Patch_PeopleGifts`, a postfix on the game's
+  `GenerateNewPawnInternal` (fresh pawns only, the deeper game hooks on); `PeoplesGearMath` (one roll against the shares,
+  never more than 60% of a kind, the psylink's levels, the class's setting). Pawns already in a game keep theirs.
 
 ### The colony's animals with powers
 

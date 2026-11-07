@@ -154,7 +154,7 @@ public static class PeoplesTests
               && f.Element("styles")?.Elements("li").All(li => li.Attribute("MayRequire")?.Value == "Ludeon.RimWorld.Ideology") == true, $"{name}: its structure and style only with Ideology");
             var xeno = f.Element("xenotypeSet")?.Element("xenotypeChances")?.Elements().ToList() ?? new List<XElement>();
             C(xeno.Count >= 1 && xeno.All(e => (e.Attribute("MayRequire")?.Value ?? "").Contains("Ludeon.RimWorld.Biotech"))
-              && xeno.Sum(e => float.Parse(e.Value, System.Globalization.CultureInfo.InvariantCulture)) <= 0.15f, $"{name}: humans mostly, another kind of people only with Biotech");
+              && xeno.Sum(e => float.Parse(e.Value, System.Globalization.CultureInfo.InvariantCulture)) <= 0.35f, $"{name}: baseliners mostly, other kinds of people only with Biotech (the mix: PeoplesGearTests)");
             C(kindNames.Contains(f.Element("basicMemberKind")?.Value ?? ""), $"{name}: its ordinary member is its own");
             var groups = f.Element("pawnGroupMakers");
             C(groups?.Attribute("Inherit")?.Value == "False", $"{name}: its own groups, none of the parent's");

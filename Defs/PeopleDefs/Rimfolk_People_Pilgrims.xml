@@ -4,8 +4,8 @@
   <!--
     The pilgrim fellowship (docs/design/peoples.md, "Release C"; DESIGN.md "Rimfolk's peoples"; Source/ColonyCouncil/Peoples/):
     wandering faithful who walk the long roads between holy places and keep hostels at the shrines for anyone on the
-    road. Medieval, on the game's tribal parent: capes over plain clothes dyed sage grey, wide cone hats (Ideology),
-    wardens of the way with spears and short bows. Few towns (settlementGenerationWeight 0.5), each a shrine and its
+    road. Medieval, on the game's tribal parent: a travelling cloak dyed sage over plain clothes, wide cone hats
+    (Ideology), wardens of the way in one kit with spears, archers with bows (their kinds, below). Few towns (settlementGenerationWeight 0.5), each a shrine and its
     hostel (TownPlanDef Rimfolk_Plan_ShrineHostel); small caravans, a chandler's string of pack beasts, less often than
     another people's (caravanWeight 0.6). At dusk a band of them asks the colony for a night's shelter
     (Rimfolk_Evt_PilgrimShelter); in a holy year their hostel asks for food for the road (Rimfolk_Mission_HostelBread);
@@ -13,7 +13,9 @@
     come from them likeliest (Patches/Rimfolk_PeoplesC.xml). They defend their hostels and raid only when the colony has
     turned them hostile (raidCommonalityFromPointsCurve 0.2). Listed once among the world's peoples when a world is made,
     never required. Faith (Ideology): a fixed creed of the road and of carrying the faith (VE Memes' nomad where loaded),
-    the Buddhist style. Kind of people (Biotech): every kind walks with them, a few of each.
+    the Buddhist style. Kind of people (Biotech): every kind walks with them, a few of each, three in
+    four baseliners: the game's, Vanilla Races Expanded's anima and gauranlen tree folk, the Avaloi, Alpha Genes' forsaken, wood
+    elves.
   -->
 
   <FactionDef ParentName="TribeBase">
@@ -71,6 +73,13 @@
         <Neanderthal MayRequire="Ludeon.RimWorld.Biotech">0.02</Neanderthal>
         <Impid MayRequire="Ludeon.RimWorld.Biotech">0.02</Impid>
         <Pigskin MayRequire="Ludeon.RimWorld.Biotech">0.02</Pigskin>
+        <Yttakin MayRequire="Ludeon.RimWorld.Biotech">0.02</Yttakin>
+        <Highmate MayRequire="Ludeon.RimWorld.Biotech">0.02</Highmate>
+        <VRE_Animakin MayRequire="Ludeon.RimWorld.Biotech,Ludeon.RimWorld.Royalty,vanillaracesexpanded.phytokin">0.03</VRE_Animakin>
+        <VRE_Gauranlenkin MayRequire="Ludeon.RimWorld.Biotech,Ludeon.RimWorld.Ideology,vanillaracesexpanded.phytokin">0.02</VRE_Gauranlenkin>
+        <DV_Avaloi MayRequire="Ludeon.RimWorld.Biotech,det.avaloi">0.02</DV_Avaloi>
+        <AG_Forsaken MayRequire="Ludeon.RimWorld.Biotech,sarg.alphagenes">0.02</AG_Forsaken>
+        <DevDesigner_XenotypeWoodElves MayRequire="Ludeon.RimWorld.Biotech,DevDesigner.Elves.Continued">0.02</DevDesigner_XenotypeWoodElves>
       </xenotypeChances>
     </xenotypeSet>
     <fixedIdeo>true</fixedIdeo>
@@ -175,6 +184,16 @@
 
   <!-- ===================== Their people ===================== -->
 
+  <!--
+    How alike they look (docs/design/peoples.md "Their gear, their kinds of people and their gifts"): pilgrims come from
+    everywhere and vary freely around their signature, a travelling cloak dyed sage, whether a cape, a robe or (Vanilla
+    Factions Expanded - Medieval 2) a mantle, worn old or new; the fellowship's wide cone hats (Ideology) on its pilgrims
+    and keeper, hoods and caps (Medieval 2) on the rest or none. The wardens of the way are its guards and wear one kit:
+    a helmet, the sage cape, padding (Vanilla Armour Expanded), with spears, pikes (Medieval 2) and the game's axes; its
+    archers a quiver (Vanilla Apparel Expanded - Accessories). Pilgrims carry a book of the road or herbs. A few are A
+    RimWorld of Magic's priests (the keeper), wanderers and minstrels (pilgrims), paladins (wardens) or rangers (archers).
+    Without any mod: capes, robes and hoods, the game's shirts and trousers, helmets, clubs, knives, spears and bows.
+  -->
   <PawnKindDef Name="Rimfolk_PilgrimsKindBase" Abstract="True">
     <race>Human</race>
     <defaultFactionDef>Rimfolk_Pilgrims</defaultFactionDef>
@@ -182,13 +201,13 @@
     <invNutrition>2.55</invNutrition>
     <invFoodDef>Pemmican</invFoodDef>
     <maxGenerationAge>75</maxGenerationAge>
-    <apparelColor>(0.56, 0.62, 0.50)</apparelColor>
-    <apparelTags>
-      <li>IndustrialBasic</li>
-    </apparelTags>
-    <apparelRequired>
-      <li>Apparel_Cape</li>
-    </apparelRequired>
+    <specificApparelRequirements>
+      <!-- Sage on the travelling cloak, whichever it is. -->
+      <li><apparelDef>Apparel_Cape</apparelDef><color>(0.56, 0.62, 0.50)</color></li>
+      <li><apparelDef>Apparel_Robe</apparelDef><color>(0.56, 0.62, 0.50)</color></li>
+      <li MayRequire="Ludeon.RimWorld.Royalty"><apparelDef>Apparel_RobeRoyal</apparelDef><color>(0.56, 0.62, 0.50)</color></li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2"><apparelDef>VFEM2_Apparel_Mantle</apparelDef><color>(0.56, 0.62, 0.50)</color></li>
+    </specificApparelRequirements>
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimfolk_PilgrimsKindBase">
@@ -197,17 +216,48 @@
     <combatPower>30</combatPower>
     <isFighter>false</isFighter>
     <itemQuality>Poor</itemQuality>
-    <gearHealthRange>0.5~1.4</gearHealthRange>
+    <gearHealthRange>0.4~1.4</gearHealthRange>
+    <specificApparelRequirements>
+      <!-- The travelling cloak: a cape, a robe or a mantle. -->
+      <li>
+        <alternateTagChoices>
+          <li><tag>Cape</tag><chance>1</chance></li>
+          <li><tag>Robe</tag><chance>1</chance></li>
+          <li MayRequire="OskarPotocki.VFE.Medieval2"><tag>VFEM2_Medieval</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+    </specificApparelRequirements>
     <apparelRequired>
       <li MayRequire="Ludeon.RimWorld.Ideology">Apparel_Shadecone</li>
+      <li>Apparel_BasicShirt</li>
+      <li>Apparel_Pants</li>
     </apparelRequired>
+    <apparelTags>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Neolithic</li>
+    </apparelTags>
+    <apparelMoney>200~420</apparelMoney>
     <weaponTags>
       <li>NeolithicMeleeBasic</li>
     </weaponTags>
-    <weaponMoney>30~70</weaponMoney>
-    <apparelMoney>120~260</apparelMoney>
+    <weaponMoney>30~80</weaponMoney>
+    <!-- A book of the road, or herbs. -->
+    <inventoryOptions>
+      <skipChance>0.5</skipChance>
+      <subOptionsChooseOne>
+        <li><thingDef>Novel</thingDef><countRange>1~1</countRange></li>
+        <li><thingDef>MedicineHerbal</thingDef><countRange>1~2</countRange><choiceChance>2</choiceChance></li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
     <initialWillRange>1~3</initialWillRange>
     <initialResistanceRange>8~14</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>TM_Wanderer</trait><chance>0.04</chance></li>
+          <li><trait>TM_Bard</trait><chance>0.03</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimfolk_PilgrimsKindBase">
@@ -216,17 +266,33 @@
     <combatPower>60</combatPower>
     <itemQuality>Normal</itemQuality>
     <gearHealthRange>0.7~1.6</gearHealthRange>
+    <!-- The wardens' kit: a helmet and the sage cape over plain clothes. -->
     <apparelRequired>
       <li>Apparel_SimpleHelmet</li>
+      <li>Apparel_Cape</li>
+      <li>Apparel_BasicShirt</li>
+      <li>Apparel_Pants</li>
     </apparelRequired>
-    <apparelMoney>300~500</apparelMoney>
+    <apparelTags>
+      <li MayRequire="VanillaExpanded.VARME">MedievalArmorBasic</li>
+      <li MayRequire="VanillaExpanded.VARME">MedievalArmorDecent</li>
+    </apparelTags>
+    <apparelMoney>300~550</apparelMoney>
     <weaponTags>
       <li>NeolithicMeleeAdvanced</li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Pike</li>
     </weaponTags>
-    <weaponMoney>120~220</weaponMoney>
+    <weaponMoney>120~240</weaponMoney>
     <requiredWorkTags>Violent</requiredWorkTags>
     <initialWillRange>2~4</initialWillRange>
     <initialResistanceRange>14~22</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Paladin</trait><chance>0.1</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimfolk_PilgrimsKindBase">
@@ -236,17 +302,39 @@
     <itemQuality>Poor</itemQuality>
     <gearHealthRange>0.6~1.6</gearHealthRange>
     <apparelRequired>
-      <li MayRequire="Ludeon.RimWorld.Ideology">Apparel_Shadecone</li>
+      <li>Apparel_Cape</li>
+      <li>Apparel_BasicShirt</li>
+      <li>Apparel_Pants</li>
     </apparelRequired>
-    <apparelMoney>200~350</apparelMoney>
+    <specificApparelRequirements>
+      <li MayRequire="VanillaExpanded.VAEAccessories">
+        <alternateTagChoices>
+          <li><tag>VAEA_Quiver</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+    </specificApparelRequirements>
+    <apparelTags>
+      <li>BestowerHood</li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Cap</li>
+      <li MayRequire="VanillaExpanded.VARME">MedievalArmorBasic</li>
+    </apparelTags>
+    <apparelAllowHeadgearChance>0.6</apparelAllowHeadgearChance>
+    <apparelMoney>200~380</apparelMoney>
     <weaponTags>
       <li>NeolithicRangedBasic</li>
       <li>NeolithicRangedDecent</li>
     </weaponTags>
-    <weaponMoney>60~150</weaponMoney>
+    <weaponMoney>60~160</weaponMoney>
     <requiredWorkTags>Violent</requiredWorkTags>
     <initialWillRange>1~3</initialWillRange>
     <initialResistanceRange>10~18</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Ranger</trait><chance>0.06</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimfolk_PilgrimsKindBase">
@@ -256,11 +344,27 @@
     <combatPower>35</combatPower>
     <isFighter>false</isFighter>
     <itemQuality>Normal</itemQuality>
-    <gearHealthRange>1~1</gearHealthRange>
+    <gearHealthRange>0.8~1.2</gearHealthRange>
+    <specificApparelRequirements>
+      <li>
+        <alternateTagChoices>
+          <li><tag>Cape</tag><chance>1</chance></li>
+          <li><tag>Robe</tag><chance>1</chance></li>
+          <li MayRequire="OskarPotocki.VFE.Medieval2"><tag>VFEM2_Medieval</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+    </specificApparelRequirements>
     <apparelRequired>
-      <li MayRequire="Ludeon.RimWorld.Ideology">Apparel_Shadecone</li>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
     </apparelRequired>
-    <apparelMoney>250~400</apparelMoney>
+    <apparelTags>
+      <li>BestowerHood</li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Trader</li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Cap</li>
+    </apparelTags>
+    <apparelAllowHeadgearChance>0.7</apparelAllowHeadgearChance>
+    <apparelMoney>250~420</apparelMoney>
     <weaponTags>
       <li>NeolithicMeleeBasic</li>
     </weaponTags>
@@ -284,8 +388,19 @@
     <isFighter>false</isFighter>
     <itemQuality>Good</itemQuality>
     <gearHealthRange>1~1</gearHealthRange>
+    <specificApparelRequirements>
+      <li>
+        <alternateTagChoices>
+          <li><tag>Robe</tag><chance>1</chance></li>
+          <li><tag>Cape</tag><chance>1</chance></li>
+          <li MayRequire="Ludeon.RimWorld.Royalty"><tag>RoyalRobe</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+    </specificApparelRequirements>
     <apparelRequired>
       <li MayRequire="Ludeon.RimWorld.Ideology">Apparel_Shadecone</li>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
     </apparelRequired>
     <apparelMoney>400~700</apparelMoney>
     <weaponTags>
@@ -298,8 +413,20 @@
         <range>8~15</range>
       </li>
     </skills>
+    <inventoryOptions>
+      <subOptionsTakeAll>
+        <li><thingDef>Novel</thingDef><countRange>1~1</countRange></li>
+      </subOptionsTakeAll>
+    </inventoryOptions>
     <initialWillRange>3~5</initialWillRange>
     <initialResistanceRange>8~12</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Priest</trait><chance>0.3</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
   </PawnKindDef>
 
   <!-- ===================== Their traders: the chandler's string ===================== -->

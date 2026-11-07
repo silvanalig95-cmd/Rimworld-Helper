@@ -4,16 +4,16 @@
   <!--
     The spacer enclave (docs/design/peoples.md, "Release C"; DESIGN.md "Rimfolk's peoples"; Source/ColonyCouncil/Peoples/):
     high-tech brokers who live on the planet between its towns and the ships above, buying from the one and selling to
-    the other. Spacer, on the game's outlander parent: plain clothes and jackets dyed pale cyan, marshals in recon armour
-    with charge rifles, a few bionics. Very few towns (settlementGenerationWeight 0.3), each a market round a landing pad
+    the other. Spacer, on the game's outlander parent: coats of every cut dyed pale cyan, marshals in one issue of recon
+    armour and a charge weapon, a few bionics, a few psylinks (their kinds, below). Very few towns (settlementGenerationWeight 0.3), each a market round a landing pad
     (TownPlanDef Rimfolk_Plan_LandingMarket). Their caravans walk with pack beasts as the Empire's do, less often than
     another people's (caravanWeight 0.7); for an industrial or spacer colony their factor asks by radio for leave to come
     down by the gate with goods, and comes by drop pod when bidden (Rimfolk_Evt_EnclaveLander). Busy orbital lanes and a
     ship come down come from them likeliest (Patches/Rimfolk_PeoplesC.xml). They defend their markets and raid only when
     the colony has turned them hostile (raidCommonalityFromPointsCurve 0.15: few, and well armed). Listed once among the
     world's peoples when a world is made, never required. Faith (Ideology): a fixed creed of the body improved (VE Memes'
-    trader where loaded), the techist style. Kind of people (Biotech): hussars, genies and highmates among them, and
-    Odyssey's starjacks.
+    trader where loaded), the techist style. Kind of people (Biotech): seven in ten baseliners; hussars, genies,
+    highmates, Odyssey's starjacks, Vanilla Races Expanded's archons and androids, the Avaloi and Alpha Genes' lapis.
   -->
 
   <FactionDef ParentName="OutlanderFactionBase">
@@ -64,9 +64,13 @@
     <xenotypeSet Inherit="False">
       <xenotypeChances>
         <Hussar MayRequire="Ludeon.RimWorld.Biotech">0.03</Hussar>
-        <Genie MayRequire="Ludeon.RimWorld.Biotech">0.04</Genie>
-        <Highmate MayRequire="Ludeon.RimWorld.Biotech">0.04</Highmate>
-        <Starjack MayRequire="Ludeon.RimWorld.Biotech,Ludeon.RimWorld.Odyssey">0.03</Starjack>
+        <Genie MayRequire="Ludeon.RimWorld.Biotech">0.05</Genie>
+        <Highmate MayRequire="Ludeon.RimWorld.Biotech">0.05</Highmate>
+        <Starjack MayRequire="Ludeon.RimWorld.Biotech,Ludeon.RimWorld.Odyssey">0.04</Starjack>
+        <VRE_Archon MayRequire="Ludeon.RimWorld.Biotech,Ludeon.RimWorld.Royalty,vanillaracesexpanded.archon">0.03</VRE_Archon>
+        <DV_Avaloi MayRequire="Ludeon.RimWorld.Biotech,det.avaloi">0.03</DV_Avaloi>
+        <VREA_AndroidAwakened MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.android">0.03</VREA_AndroidAwakened>
+        <AG_Lapis MayRequire="Ludeon.RimWorld.Biotech,sarg.alphagenes">0.02</AG_Lapis>
       </xenotypeChances>
     </xenotypeSet>
     <fixedIdeo>true</fixedIdeo>
@@ -172,6 +176,17 @@
 
   <!-- ===================== Their people ===================== -->
 
+  <!--
+    How alike they look (docs/design/peoples.md "Their gear, their kinds of people and their gifts"): the enclave's hands,
+    factors and chair vary freely around their signature, a coat dyed pale cyan of whatever cut, over the game's and Vanilla
+    Apparel Expanded's industrial clothes, with tool belts, medic bags and packs (Vanilla Apparel Expanded - Accessories),
+    the factor's ruffled shirt and the chair's psychic finery (Royalty). The marshals are its soldiers and wear one issue:
+    recon armour and its helmet, a charge weapon (the game's, Vanilla Weapons Expanded's charge guns, its coilguns' gauss
+    rifles), a smoke or shield belt (Vanilla Apparel Expanded - Accessories' ranged shield belt). Hands carry components,
+    chemfuel or medicine. A few have a psylink (Royalty; with Vanilla Psycasts Expanded a harmonist's, empath's,
+    skipmaster's, protector's or warlord's path), a few are A RimWorld of Magic's technomancers or psionics. Without any
+    mod: jackets, dusters and flak, the game's industrial clothes, recon armour, charge rifles and lances.
+  -->
   <PawnKindDef Name="Rimfolk_EnclaveKindBase" Abstract="True">
     <race>Human</race>
     <defaultFactionDef>Rimfolk_Enclave</defaultFactionDef>
@@ -179,14 +194,11 @@
     <backstoryCryptosleepCommonality>0.08</backstoryCryptosleepCommonality>
     <invNutrition>2.55</invNutrition>
     <invFoodDef>MealSurvivalPack</invFoodDef>
-    <apparelColor>(0.66, 0.84, 0.90)</apparelColor>
-    <apparelTags>
-      <li>IndustrialBasic</li>
-      <li>IndustrialAdvanced</li>
-    </apparelTags>
-    <apparelRequired>
-      <li>Apparel_CollarShirt</li>
-    </apparelRequired>
+    <specificApparelRequirements>
+      <!-- Pale cyan on the marshals' armour, as the enclave issues it. -->
+      <li><apparelDef>Apparel_ArmorRecon</apparelDef><color>(0.66, 0.84, 0.90)</color></li>
+      <li><apparelDef>Apparel_ArmorHelmetRecon</apparelDef><color>(0.66, 0.84, 0.90)</color></li>
+    </specificApparelRequirements>
     <techHediffsMoney>200~1200</techHediffsMoney>
     <techHediffsTags>
       <li>Simple</li>
@@ -202,17 +214,53 @@
     <isFighter>false</isFighter>
     <itemQuality>Normal</itemQuality>
     <gearHealthRange>0.8~1.6</gearHealthRange>
-    <apparelRequired>
-      <li>Apparel_Jacket</li>
-    </apparelRequired>
+    <specificApparelRequirements>
+      <!-- The enclave's pale cyan coat, of any cut. -->
+      <li>
+        <apparelLayer>Shell</apparelLayer>
+        <bodyPartGroup>Torso</bodyPartGroup>
+        <color>(0.66, 0.84, 0.90)</color>
+        <alternateTagChoices>
+          <li><tag>IndustrialAdvanced</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+    </specificApparelRequirements>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li>IndustrialAdvanced</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Industrial</li>
+    </apparelTags>
+    <apparelAllowHeadgearChance>0.3</apparelAllowHeadgearChance>
+    <apparelMoney>400~800</apparelMoney>
     <weaponTags>
       <li>SimpleGun</li>
     </weaponTags>
-    <weaponMoney>150~300</weaponMoney>
-    <apparelMoney>400~700</apparelMoney>
-    <apparelAllowHeadgearChance>0.2</apparelAllowHeadgearChance>
+    <weaponMoney>150~320</weaponMoney>
+    <inventoryOptions>
+      <skipChance>0.4</skipChance>
+      <subOptionsChooseOne>
+        <li><thingDef>ComponentIndustrial</thingDef><countRange>1~2</countRange></li>
+        <li><thingDef>Chemfuel</thingDef><countRange>5~12</countRange></li>
+        <li><thingDef>MedicineIndustrial</thingDef><countRange>1~1</countRange></li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
     <initialWillRange>2~4</initialWillRange>
     <initialResistanceRange>12~20</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Technomancer</trait><chance>0.04</chance></li>
+          <li>
+            <psylink>1~1</psylink>
+            <paths>
+              <li>VPE_Skipmaster</li>
+              <li>VPE_Empath</li>
+            </paths>
+            <chance>0.03</chance>
+          </li>
+        </gifts>
+      </li>
+    </modExtensions>
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimfolk_EnclaveKindBase">
@@ -221,26 +269,41 @@
     <combatPower>130</combatPower>
     <itemQuality>Good</itemQuality>
     <gearHealthRange>0.9~2</gearHealthRange>
-    <apparelTags Inherit="False">
-      <li>SpacerMilitary</li>
-      <li>IndustrialMilitaryAdvanced</li>
-      <li>IndustrialBasic</li>
-    </apparelTags>
-    <apparelRequired Inherit="False">
+    <!-- One issue: recon armour and its helmet in the enclave's colour, over a collar shirt. -->
+    <apparelRequired>
       <li>Apparel_ArmorRecon</li>
       <li>Apparel_ArmorHelmetRecon</li>
+      <li>Apparel_CollarShirt</li>
     </apparelRequired>
+    <apparelTags>
+      <li>BeltDefensePop</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Spacer</li>
+    </apparelTags>
     <apparelMoney>2500~3500</apparelMoney>
     <weaponTags>
       <li>SpacerGun</li>
-      <li>IndustrialGunAdvanced</li>
     </weaponTags>
-    <weaponMoney>900~1500</weaponMoney>
+    <weaponMoney>1200~1800</weaponMoney>
     <techHediffsMoney>1000~2500</techHediffsMoney>
     <techHediffsChance>0.4</techHediffsChance>
     <requiredWorkTags>Violent</requiredWorkTags>
     <initialWillRange>3~5</initialWillRange>
     <initialResistanceRange>22~32</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>TM_Psionic</trait><chance>0.05</chance></li>
+          <li>
+            <psylink>1~2</psylink>
+            <paths>
+              <li>VPE_Protector</li>
+              <li>VPE_Warlord</li>
+            </paths>
+            <chance>0.06</chance>
+          </li>
+        </gifts>
+      </li>
+    </modExtensions>
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimfolk_EnclaveKindBase">
@@ -251,11 +314,25 @@
     <isFighter>false</isFighter>
     <itemQuality>Good</itemQuality>
     <gearHealthRange>1~1</gearHealthRange>
+    <specificApparelRequirements>
+      <li>
+        <apparelLayer>Shell</apparelLayer>
+        <bodyPartGroup>Torso</bodyPartGroup>
+        <color>(0.66, 0.84, 0.90)</color>
+        <alternateTagChoices>
+          <li><tag>IndustrialAdvanced</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+    </specificApparelRequirements>
     <apparelRequired>
-      <li>Apparel_Jacket</li>
       <li MayRequire="Ludeon.RimWorld.Royalty">Apparel_ShirtRuffle</li>
     </apparelRequired>
-    <apparelMoney>900~1400</apparelMoney>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li>IndustrialAdvanced</li>
+      <li MayRequire="Ludeon.RimWorld.Royalty">RoyalTier2</li>
+    </apparelTags>
+    <apparelMoney>900~1500</apparelMoney>
     <weaponTags>
       <li>SimpleGun</li>
     </weaponTags>
@@ -268,6 +345,21 @@
     </skills>
     <initialWillRange>2~4</initialWillRange>
     <initialResistanceRange>14~22</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li>
+            <psylink>1~2</psylink>
+            <paths>
+              <li>VPE_Skipmaster</li>
+              <li>VPE_Empath</li>
+              <li>VPE_Harmonist</li>
+            </paths>
+            <chance>0.2</chance>
+          </li>
+        </gifts>
+      </li>
+    </modExtensions>
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimfolk_EnclaveKindBase">
@@ -279,9 +371,27 @@
     <isFighter>false</isFighter>
     <itemQuality>Excellent</itemQuality>
     <gearHealthRange>1~1</gearHealthRange>
+    <!-- The chair's cape or coat in the enclave's colour, now and then psychic finery. -->
+    <specificApparelRequirements>
+      <li>
+        <apparelLayer>Shell</apparelLayer>
+        <bodyPartGroup>Torso</bodyPartGroup>
+        <color>(0.66, 0.84, 0.90)</color>
+        <alternateTagChoices>
+          <li><tag>Cape</tag><chance>1</chance></li>
+          <li><tag>IndustrialAdvanced</tag><chance>1</chance></li>
+          <li MayRequire="Ludeon.RimWorld.Royalty"><tag>RoyalRobe</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+    </specificApparelRequirements>
     <apparelRequired>
-      <li>Apparel_Cape</li>
+      <li>Apparel_CollarShirt</li>
     </apparelRequired>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li>IndustrialAdvanced</li>
+      <li MayRequire="Ludeon.RimWorld.Royalty">Psychic</li>
+    </apparelTags>
     <apparelMoney>1500~2500</apparelMoney>
     <weaponTags>
       <li>SimpleGun</li>
@@ -297,6 +407,21 @@
     </skills>
     <initialWillRange>3~5</initialWillRange>
     <initialResistanceRange>10~16</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li>
+            <psylink>2~4</psylink>
+            <paths>
+              <li>VPE_Harmonist</li>
+              <li>VPE_Empath</li>
+              <li>VPE_Skipmaster</li>
+            </paths>
+            <chance>0.45</chance>
+          </li>
+        </gifts>
+      </li>
+    </modExtensions>
   </PawnKindDef>
 
   <!-- ===================== Their traders: goods from above ===================== -->

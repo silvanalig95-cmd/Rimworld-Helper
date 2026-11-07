@@ -12,6 +12,62 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- The peoples' gear, kinds of people and gifts (7 November 2026; its round and version are the lead's at the merge). The
+  player's report: "could it be that the new factions pawns all wear just one single outfit per faction? ... the factions
+  should try to draw from all kinds of mod and vanilla references for items, weapons, gear, clothing & armor, magic and
+  abilities etc." (an explicit request: no proposal round), then "if there is an army faction or so, it makes sense if
+  people have more or less the same uniform ... but have variety whenever possible", "these include different xenotypes
+  not just baseliners, right?" and "again, always draw from the full mod pool". It was no coincidence: every kind of the
+  seven peoples had one `apparelColor` on everything and a required outfit. `docs/design/peoples.md` "Their gear, their
+  kinds of people and their gifts" (how alike each role is, what they draw on, carry, their kinds of people and gifts with
+  every share, the softness); DESIGN.md "Rimfolk's peoples", its last bullet; README "What the peoples wear."; the two
+  peoples' Almanac pages a section each, *What they wear, carry and know* (keywords unchanged). Tests: `PeoplesGearTests`
+  ("peoples' gear: "; `Peoples/PeoplesGearMath.cs` linked) against `Tools/Tests/PeopleGear.txt` (the base game's and the
+  mods' gear, kinds of people, classes and paths, read from their own 1.6 defs); `PeoplesTests`' cap on other kinds of
+  people raised to 35%. Nothing saved, no clock, no letter. Pawns already in a game keep what they have.
+  - Gear (`Defs/PeopleDefs/Rimfolk_People_*.xml`, every PawnKindDef): no `apparelColor`; each base kind dyes its signature
+    pieces by name (`specificApparelRequirements` with `apparelDef` and `color`: the order's ivory habit, plate and tabard;
+    the herders' russet caps, wraps and coats; the league's teal coat and duster; the pilgrims' sage cloak; the scholars'
+    claret gown, coat and jacket; the enclave's pale cyan coat and recon armour; the river folk's blue hats and coats). A
+    civilian picks its signature garment by `alternateTagChoices`; soldiers wear one kit (`apparelRequired`: the sworn
+    guards' plate, helmet and with Medieval 2 tabard and heater shield; the marshals' recon armour and a charge weapon;
+    the league's duster, cowboy hat and flak; the wardens' helmet and cape or veil or tuque). Mods by tag or piece only
+    with `MayRequire`: Vanilla Apparel Expanded and its Accessories (quivers, packs), Vanilla Armour Expanded, VFE Medieval
+    2, Tribals, Settlers, Vanilla Weapons Expanded's Frontier, Non-Lethal, Grenades and Tribal sets, the rest through the
+    game's tags. Medieval and tribal peoples are off `IndustrialBasic` (VAE's t-shirts and hoodies). `inventoryOptions`
+    for what they carry (herbs, cloth, hay, hides, beer, books, components), never on a trader.
+  - Kinds of people (each `xenotypeSet`, `Inherit="False"`): a real mix of Biotech's, Odyssey's starjack, Vanilla Races
+    Expanded's (archon, lowmate, uhlan, boarskin, saurid, poluxkin, animakin, gauranlenkin, android), Alpha Genes'
+    (drakonori, animusen, forsaken, lapis, nereid), Elves Continued, Stagz Merfolk, the Stoneborn, Avaloi, Boglegs and
+    Venators, 21 to 29 in a hundred, the rest baseliners; each with `MayRequire` on Biotech and its mod.
+  - Gifts (`PeopleKindExtension` in `Peoples/PeopleDefs.cs`, given by `Peoples/PeopleGifts.cs`, `Patch_PeopleGifts`, a
+    postfix on `PawnGenerator.GenerateNewPawnInternal`, the deeper game hooks on): A RimWorld of Magic's classes by name
+    (priests, paladins, druids, rangers, arcanists, chronomancers, enchanters, sharpshooters, gladiators, a commander,
+    technomancers, psionics, wanderers and minstrels; only when switched on in its settings and its share for the people
+    isn't 0, never a second class; its components' cached flags set back by name) and psylinks (Royalty, no letter; with
+    Vanilla Psycasts Expanded a path of the kind's by name and a few of its powers, read by reflection) for the scholars
+    and the enclave. Shares 3% to 45% of a kind, never more than 60%.
+  - Try in the game (none of it could be run here; Dev mode, Debug actions, Rimfolk):
+    1. "Peoples: their gear, kinds of people and gifts (log)..." for each of the seven: four new pawns of each kind, each
+       described in the log (kind of people, what they wear with its colour, weapon, what they carry, a class or a
+       psylink with its powers). The colour on one or two pieces each, the rest varied; the soldiers alike.
+    2. "Peoples: one of each of their kinds here now, as visitors (testing)..." near the mouse: look them over, the sworn
+       guards' tabards and shields (Medieval 2), the archers' quivers, the river folk's blue floppy hats, the enclave's
+       pale cyan armour; open a class's tab on one with A RimWorld of Magic (it should fill once they are spawned), and a
+       psycaster's psycasts tab with Vanilla Psycasts Expanded (one path, a power or two).
+    3. Their visitors, caravans and raids as the game sends them: the dressing the same; a trader's stock unchanged.
+    4. A RimWorld of Magic's settings: switch the priest class off, or the order's share to 0, and no hospitaller priest
+       comes (dev action 1 again).
+    5. The log after loading: no "Could not resolve cross-reference" for any of the new names (each mod's names
+       `MayRequire` it), and no config error from the peoples' kinds.
+  - Riskiest: A RimWorld of Magic's class on a pawn made by the game (its components' cached flag set back by name: if
+    the mod renames it, the class trait is there but its powers don't wake until the game is loaded again); Vanilla
+    Psycasts Expanded's path by reflection (any member renamed: the psylink stays, with points and no powers); the
+    heater shield in the kit with a two-handed weapon (Vanilla Expanded Framework's own rule, as Medieval 2's men-at-arms
+    have it); xenotypes of mods whose 1.7 builds may differ (each is looked up only when its mod is loaded, but a renamed
+    one would log a cross-reference error); `alternateTagChoices` weighs by each piece's stuffs, so a plain pick with
+    many leathers (a hood) outweighs one without (the plague mask is rare); the base game's prices in the test are
+    rough sums, not the game's own.
 - 0.150.0, the trade screen (7 November 2026, the player's request:
   "can you please optimize the trade screen ui? things like sorting by price, recommended trades etc. i also just
   installed vanilla trading expanded so integrate that as well"; built without a proposal round). `Source/ColonyCouncil/

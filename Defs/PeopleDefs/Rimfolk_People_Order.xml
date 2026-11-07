@@ -4,13 +4,16 @@
   <!--
     The hospitaller order (docs/design/peoples.md; DESIGN.md "Rimfolk's peoples"; Source/ColonyCouncil/Peoples/): an order
     of healers who keep sickhouses where the roads are worst and take in whoever comes. Medieval, on the game's tribal
-    parent: plain robes and hoods dyed the order's ivory, sworn guards in plate, lay archers with bows. Their towns are
+    parent: a habit dyed the order's ivory of every cut and age, sworn guards in one
+    kit of ivory plate, lay archers with bows (their kinds, below). Their towns are
     sickhouses round an herb garden (TownPlanDef Rimfolk_Plan_Sickhouse). In a plague year they ask the colony for medicine
     (Rimfolk_Mission_OrderMedicine), they lend a healer to a colony with its sick (Rimfolk_Evt_OrderHealer), and their
     sickhouse sees to the colony's travellers who lodge there. They defend their sickhouses and raid only when the colony
     has turned them hostile (raidCommonalityFromPointsCurve 0.25). Listed once among the world's peoples when a world is
     made, never required. Faith (Ideology): a fixed creed of penance and of the body kept whole (VE Memes' healthcare
-    where loaded), the Christian style's gothic halls. Kind of people (Biotech): humans, a few genies.
+    where loaded), the Christian style's gothic halls. Kind of people (Biotech): about four in five
+    baseliners; genies, highmates, pigskins, neanderthals, Vanilla Races Expanded's lowmates, Alpha Genes' drakonori and
+    high elves.
   -->
 
   <FactionDef ParentName="TribeBase">
@@ -62,9 +65,15 @@
         <li>(0, 0.25)</li>
       </points>
     </raidCommonalityFromPointsCurve>
-    <xenotypeSet>
+    <xenotypeSet Inherit="False">
       <xenotypeChances>
-        <Genie MayRequire="Ludeon.RimWorld.Biotech">0.03</Genie>
+        <Genie MayRequire="Ludeon.RimWorld.Biotech">0.06</Genie>
+        <Highmate MayRequire="Ludeon.RimWorld.Biotech">0.04</Highmate>
+        <Pigskin MayRequire="Ludeon.RimWorld.Biotech">0.02</Pigskin>
+        <Neanderthal MayRequire="Ludeon.RimWorld.Biotech">0.02</Neanderthal>
+        <VRE_Lowmate MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.highmate">0.03</VRE_Lowmate>
+        <AG_Drakonori MayRequire="Ludeon.RimWorld.Biotech,sarg.alphagenes">0.02</AG_Drakonori>
+        <DevDesigner_XenotypeHighElves MayRequire="Ludeon.RimWorld.Biotech,DevDesigner.Elves.Continued">0.03</DevDesigner_XenotypeHighElves>
       </xenotypeChances>
     </xenotypeSet>
     <fixedIdeo>true</fixedIdeo>
@@ -170,19 +179,35 @@
 
   <!-- ===================== Their people ===================== -->
 
+  <!--
+    How alike they look (docs/design/peoples.md "Their gear, their kinds of people and their gifts"): the order's habit is
+    shared, not its cut or its age. Its lay servants, hospitallers, cellarers and prior wear an outer habit dyed the order's
+    ivory: a plain robe, or with Vanilla Factions Expanded - Medieval 2 a mantle, the prior's a royal robe with Royalty;
+    worn thin or newly made (gear health), of any cloth or leather, with a hood, a cap or a plague doctor's mask (Medieval 2)
+    or bareheaded, the rest of what they wear their own. The sworn guards are soldiers and wear one kit: plate dyed ivory and
+    a helmet, with Medieval 2 the order's ivory tabard over the plate and a heater shield; only wear, quality and a soldier's
+    own touches differ (a gambeson or mail under the plate, plate gloves and boots, a battle banner with the Vanilla Expanded
+    armour and accessories). The lay archers are its militia: a helmet, an ivory cape and a quiver (Vanilla Apparel Expanded
+    - Accessories), padding where Vanilla Armour Expanded has it. Medieval weapons of the base game and the mods (Medieval 2's
+    heavy maces, flails and war bows, Vanilla Weapons Expanded's hammers, crossbows and longbows) under the game's tags. They
+    carry herbs and clean cloth. A few are A RimWorld of Magic's priests (the hospitallers and their prior) or paladins (the
+    sworn guards). Without any mod: the robe, the hood, plate and helmet, the base game's knives, maces, swords and bows.
+  -->
   <PawnKindDef Name="Rimfolk_OrderKindBase" Abstract="True">
     <race>Human</race>
     <defaultFactionDef>Rimfolk_Order</defaultFactionDef>
     <chemicalAddictionChance>0</chemicalAddictionChance>
     <invNutrition>2.55</invNutrition>
     <maxGenerationAge>75</maxGenerationAge>
-    <apparelColor>(0.90, 0.88, 0.80)</apparelColor>
-    <apparelTags>
-      <li>IndustrialBasic</li>
-    </apparelTags>
-    <apparelRequired>
-      <li>Apparel_Robe</li>
-    </apparelRequired>
+    <specificApparelRequirements>
+      <!-- The order's ivory, on its habit and its guards' plate, whichever of them is worn. -->
+      <li><apparelDef>Apparel_Robe</apparelDef><color>(0.90, 0.88, 0.80)</color></li>
+      <li><apparelDef>Apparel_Cape</apparelDef><color>(0.90, 0.88, 0.80)</color></li>
+      <li><apparelDef>Apparel_PlateArmor</apparelDef><color>(0.90, 0.88, 0.80)</color></li>
+      <li MayRequire="Ludeon.RimWorld.Royalty"><apparelDef>Apparel_RobeRoyal</apparelDef><color>(0.90, 0.88, 0.80)</color></li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2"><apparelDef>VFEM2_Apparel_Mantle</apparelDef><color>(0.90, 0.88, 0.80)</color></li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2"><apparelDef>VFEM2_Apparel_Tabard</apparelDef><color>(0.90, 0.88, 0.80)</color></li>
+    </specificApparelRequirements>
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimfolk_OrderKindBase">
@@ -191,13 +216,38 @@
     <combatPower>35</combatPower>
     <isFighter>false</isFighter>
     <itemQuality>Normal</itemQuality>
-    <gearHealthRange>0.6~1.4</gearHealthRange>
+    <gearHealthRange>0.5~1.4</gearHealthRange>
+    <specificApparelRequirements>
+      <!-- The habit: a robe, or a mantle. -->
+      <li>
+        <alternateTagChoices>
+          <li><tag>Robe</tag><chance>1</chance></li>
+          <li MayRequire="OskarPotocki.VFE.Medieval2"><tag>VFEM2_Medieval</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+    </specificApparelRequirements>
+    <apparelRequired>
+      <li>Apparel_BasicShirt</li>
+      <li>Apparel_Pants</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>BestowerHood</li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Cap</li>
+    </apparelTags>
+    <apparelAllowHeadgearChance>0.4</apparelAllowHeadgearChance>
+    <apparelMoney>150~350</apparelMoney>
     <weaponTags>
       <li>MedievalMeleeBasic</li>
+      <li>NeolithicMeleeBasic</li>
     </weaponTags>
-    <weaponMoney>40~90</weaponMoney>
-    <apparelMoney>150~300</apparelMoney>
-    <apparelAllowHeadgearChance>0.3</apparelAllowHeadgearChance>
+    <weaponMoney>40~110</weaponMoney>
+    <inventoryOptions>
+      <skipChance>0.5</skipChance>
+      <subOptionsChooseOne>
+        <li><thingDef>MedicineHerbal</thingDef><countRange>1~2</countRange></li>
+        <li><thingDef>Cloth</thingDef><countRange>4~10</countRange></li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
     <initialWillRange>1~3</initialWillRange>
     <initialResistanceRange>8~14</initialResistanceRange>
   </PawnKindDef>
@@ -208,15 +258,34 @@
     <combatPower>40</combatPower>
     <isFighter>false</isFighter>
     <itemQuality>Normal</itemQuality>
-    <gearHealthRange>0.8~1.4</gearHealthRange>
+    <gearHealthRange>0.6~1.4</gearHealthRange>
+    <specificApparelRequirements>
+      <li>
+        <alternateTagChoices>
+          <li><tag>Robe</tag><chance>1</chance></li>
+          <li MayRequire="OskarPotocki.VFE.Medieval2"><tag>VFEM2_Medieval</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+      <!-- A hospitaller's hood, now and then a plague doctor's mask. -->
+      <li>
+        <alternateTagChoices>
+          <li><tag>BestowerHood</tag><chance>1</chance></li>
+          <li MayRequire="OskarPotocki.VFE.Medieval2"><tag>MedievalApparelPlague</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+    </specificApparelRequirements>
     <apparelRequired>
-      <li>Apparel_HatHood</li>
+      <li>Apparel_BasicShirt</li>
+      <li>Apparel_Pants</li>
     </apparelRequired>
+    <apparelTags>
+      <li>BestowerHood</li>
+    </apparelTags>
     <weaponTags>
       <li>MedievalMeleeBasic</li>
     </weaponTags>
     <weaponMoney>40~90</weaponMoney>
-    <apparelMoney>200~350</apparelMoney>
+    <apparelMoney>200~400</apparelMoney>
     <skills>
       <li>
         <skill>Medicine</skill>
@@ -224,11 +293,28 @@
       </li>
     </skills>
     <requiredWorkTags>Caring</requiredWorkTags>
-    <fixedInventory>
-      <MedicineHerbal>3</MedicineHerbal>
-    </fixedInventory>
+    <!-- Their herbs and bandages; now and then a kit of the industrial medicine their caravans trade in. -->
+    <inventoryOptions>
+      <subOptionsTakeAll>
+        <li><thingDef>MedicineHerbal</thingDef><countRange>2~5</countRange></li>
+        <li>
+          <skipChance>0.6</skipChance>
+          <subOptionsChooseOne>
+            <li><thingDef>Cloth</thingDef><countRange>5~12</countRange><choiceChance>3</choiceChance></li>
+            <li><thingDef>MedicineIndustrial</thingDef><countRange>1~1</countRange></li>
+          </subOptionsChooseOne>
+        </li>
+      </subOptionsTakeAll>
+    </inventoryOptions>
     <initialWillRange>2~4</initialWillRange>
     <initialResistanceRange>10~16</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Priest</trait><chance>0.15</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimfolk_OrderKindBase">
@@ -237,11 +323,18 @@
     <combatPower>90</combatPower>
     <itemQuality>Normal</itemQuality>
     <gearHealthRange>0.8~1.8</gearHealthRange>
-    <apparelRequired Inherit="False">
+    <!-- One kit: the order's plate in ivory, a helmet; with Medieval 2 its tabard and a heater shield. -->
+    <apparelRequired>
       <li>Apparel_PlateArmor</li>
       <li>Apparel_SimpleHelmet</li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Apparel_Tabard</li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Shield_Heater</li>
     </apparelRequired>
-    <apparelMoney>1200~2000</apparelMoney>
+    <!-- A soldier's own touches: what is under the plate, gloves, boots, a banner. -->
+    <apparelTags>
+      <li>MedievalMilitary</li>
+    </apparelTags>
+    <apparelMoney>1200~2200</apparelMoney>
     <weaponTags>
       <li>MedievalMeleeDecent</li>
       <li>MedievalMeleeAdvanced</li>
@@ -250,6 +343,13 @@
     <requiredWorkTags>Violent</requiredWorkTags>
     <initialWillRange>3~5</initialWillRange>
     <initialResistanceRange>18~28</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Paladin</trait><chance>0.08</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimfolk_OrderKindBase">
@@ -258,14 +358,28 @@
     <combatPower>55</combatPower>
     <itemQuality>Normal</itemQuality>
     <gearHealthRange>0.6~1.8</gearHealthRange>
+    <!-- The militia's kit: a helmet and the order's ivory cape, a quiver. -->
     <apparelRequired>
       <li>Apparel_SimpleHelmet</li>
+      <li>Apparel_Cape</li>
+      <li>Apparel_Pants</li>
     </apparelRequired>
-    <apparelMoney>300~500</apparelMoney>
+    <specificApparelRequirements>
+      <li MayRequire="VanillaExpanded.VAEAccessories">
+        <alternateTagChoices>
+          <li><tag>VAEA_Quiver</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+    </specificApparelRequirements>
+    <apparelTags>
+      <li MayRequire="VanillaExpanded.VARME">MedievalArmorBasic</li>
+    </apparelTags>
+    <apparelMoney>300~550</apparelMoney>
     <weaponTags>
       <li>NeolithicRangedDecent</li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Warbow</li>
     </weaponTags>
-    <weaponMoney>100~200</weaponMoney>
+    <weaponMoney>100~220</weaponMoney>
     <requiredWorkTags>Violent</requiredWorkTags>
     <initialWillRange>1~3</initialWillRange>
     <initialResistanceRange>14~22</initialResistanceRange>
@@ -278,11 +392,26 @@
     <combatPower>40</combatPower>
     <isFighter>false</isFighter>
     <itemQuality>Good</itemQuality>
-    <gearHealthRange>1~1</gearHealthRange>
+    <gearHealthRange>0.9~1.3</gearHealthRange>
+    <specificApparelRequirements>
+      <li>
+        <alternateTagChoices>
+          <li><tag>Robe</tag><chance>1</chance></li>
+          <li MayRequire="OskarPotocki.VFE.Medieval2"><tag>VFEM2_Medieval</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+    </specificApparelRequirements>
     <apparelRequired>
-      <li>Apparel_HatHood</li>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
     </apparelRequired>
-    <apparelMoney>300~500</apparelMoney>
+    <apparelTags>
+      <li>BestowerHood</li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Trader</li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Cap</li>
+    </apparelTags>
+    <apparelAllowHeadgearChance>0.7</apparelAllowHeadgearChance>
+    <apparelMoney>300~550</apparelMoney>
     <weaponTags>
       <li>MedievalMeleeBasic</li>
     </weaponTags>
@@ -307,9 +436,23 @@
     <isFighter>false</isFighter>
     <itemQuality>Good</itemQuality>
     <gearHealthRange>1~1</gearHealthRange>
+    <specificApparelRequirements>
+      <li>
+        <alternateTagChoices>
+          <li><tag>Robe</tag><chance>1</chance></li>
+          <li MayRequire="Ludeon.RimWorld.Royalty"><tag>RoyalRobe</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+    </specificApparelRequirements>
     <apparelRequired>
-      <li>Apparel_HatHood</li>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
     </apparelRequired>
+    <apparelTags>
+      <li>BestowerHood</li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Trader</li>
+    </apparelTags>
+    <apparelAllowHeadgearChance>0.8</apparelAllowHeadgearChance>
     <apparelMoney>500~900</apparelMoney>
     <weaponTags>
       <li>MedievalMeleeBasic</li>
@@ -321,8 +464,20 @@
         <range>10~16</range>
       </li>
     </skills>
+    <inventoryOptions>
+      <subOptionsTakeAll>
+        <li><thingDef>MedicineHerbal</thingDef><countRange>2~4</countRange></li>
+      </subOptionsTakeAll>
+    </inventoryOptions>
     <initialWillRange>3~5</initialWillRange>
     <initialResistanceRange>8~12</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Priest</trait><chance>0.35</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
   </PawnKindDef>
 
   <!-- ===================== Their traders: medicine and plain goods ===================== -->
