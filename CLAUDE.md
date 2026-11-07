@@ -36,6 +36,7 @@ Work in progress and the next steps are in `docs/HANDOFF.md`: read it first.
 - Tests: `cd Tools/Tests && timeout 900 dotnet run -c Release` ("All tests passed"). Pure code shared with the mod is linked in `Tools/Tests/Tests.csproj`.
 - Text: `python3 Tools/labelcheck.py`, `python3 Tools/almanaccheck.py --base HEAD` (Almanac keywords must not change), `python3 Tools/save_estimate.py --strict` (a new saved collection needs a model in `Tools/save_estimate.py`), `python3 Tools/interaction_audit.py --open`, `python3 Tools/playout_audit.py`.
 - 1.7: `timeout 600 dotnet run -c Release --project Tools/ApiDiff -- 1.6/Assemblies/ColonyCouncil.dll 1.6.4871 1.7.4977-alpha.2` must print "Nothing the DLL uses has changed".
+- Mod pool: `python3 Tools/poolcheck.py` must print "OK" (every MayRequire'd def or tag exists in the player's mods under the package named; `docs/player-mods/`).
 
 ## Code conventions
 - Harmony patches are classes with `[HarmonyPatch]`, applied per class by `RimfolkPatches.ApplyAll`; `RimfolkPatches.On` is the deep-hooks setting.

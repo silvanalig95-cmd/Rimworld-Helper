@@ -9,7 +9,8 @@ save, whether it is in that save's mod list. Only mods that support RimWorld 1.6
 supportedVersions) are catalogued, active or not; the rest are listed in mods.tsv as such and their defs left out:
 
   mods.tsv, apparel.tsv, weapons.tsv, items.tsv, races.tsv (humanlike races and animals), xenotypes.tsv, genes.tsv,
-  traits.tsv, abilities.tsv, pawnkinds.tsv, factions.tsv, memes.tsv
+  traits.tsv, abilities.tsv, pawnkinds.tsv, factions.tsv, memes.tsv, and defs.tsv.gz: every def of every type
+  (type, defName, mod, active), for checking any name Rimfolk refers to
 
 Patches are not applied (a patch that adds a tag to another mod's apparel isn't seen); defs are as their files write
 them. Build anything for the player from the active rows ("active" = yes): the catalogue holds every mod subscribed, many of
@@ -17,6 +18,7 @@ them not in the game. Run:
   python3 Tools/mod_pool.py <folder with Data, Mods, mods.txt, ModsConfig.xml> docs/player-mods [save.rws]
 """
 import csv
+import gzip
 import os
 import re
 import sys
@@ -260,6 +262,17 @@ def main(root, out, save=None):
             last[("memes", dn)] = [dn, pid, on, label, text(d, "category"), ",".join(lis(d, "exclusionTags"))]
     for (k, _), row in last.items():
         tables[k].append(row)
+    every = {}
+    for pid, e in defs:
+        dn = text(e, "defName")
+        if dn:
+            every[(e.tag.split(".")[-1], dn)] = (pid, "yes" if pid in active_set or pid.startswith("ludeon.") else "no")
+    with gzip.open(os.path.join(out, "defs.tsv.gz"), "wt", encoding="utf-8", newline="") as f:
+        w = csv.writer(f, delimiter="\t", lineterminator="\n")
+        w.writerow(["type", "defName", "mod", "active"])
+        for (t, dn), (pid, on) in sorted(every.items()):
+            w.writerow([t, dn, pid, on])
+    print(f"every def: {len(every)} ({sum(1 for v in every.values() if v[1] == 'yes')} active)")
     heads = {
         "apparel": ["defName", "mod", "active", "label", "techLevel", "tags", "layers", "bodyPartGroups", "stuff", "marketValue", "tradeTags"],
         "weapons": ["defName", "mod", "active", "label", "techLevel", "weaponTags", "kind", "stuff", "marketValue", "tradeTags"],
