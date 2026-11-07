@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The colony's animals with powers (Source/ColonyCouncil/Animals/AnimalPowers.cs). The jobs of a spar with a Fighting
+    type (PokéWorld, Integrations/PokeWorldTypes.cs) and of a mage binding a familiar (A RimWorld of Magic,
+    Integrations/MagicFamiliars.cs), the animal's side of both, the spar's leisure, and the familiar's ward. All of it
+    loads without the mods and is never used without them.
+  -->
+
+  <!-- A colonist at their leisure spars with one of the colony's Fighting types: practice swings each way, melee practice. -->
+  <JobDef>
+    <defName>Rimfolk_PW_Spar</defName>
+    <driverClass>ColonyCouncil.JobDriver_PokemonSpar</driverClass>
+    <reportString>sparring with TargetA.</reportString>
+    <joyKind>Gaming_Dexterity</joyKind>
+    <joyGainRate>1</joyGainRate>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JoyGiverDef>
+    <defName>Rimfolk_PW_SparGiver</defName>
+    <giverClass>ColonyCouncil.JoyGiver_PokemonSpar</giverClass>
+    <baseChance>2</baseChance>
+    <jobDef>Rimfolk_PW_Spar</jobDef>
+    <joyKind>Gaming_Dexterity</joyKind>
+    <requiredCapacities>
+      <li>Moving</li>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </JoyGiverDef>
+
+  <!-- An animal stays with someone who came to it (a spar, a binding), facing them, while their job is about it. -->
+  <JobDef>
+    <defName>Rimfolk_StayWith</defName>
+    <driverClass>ColonyCouncil.JobDriver_StayWith</driverClass>
+    <reportString>staying with TargetA.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <!-- A mage stays with an animal a while, and binds it as a familiar. -->
+  <JobDef>
+    <defName>Rimfolk_BindFamiliar</defName>
+    <driverClass>ColonyCouncil.JobDriver_BindFamiliar</driverClass>
+    <reportString>binding TargetA as a familiar.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <!-- A mage's familiar within 12 cells: renewed every 250 ticks while it is, gone a little after it isn't. -->
+  <HediffDef>
+    <defName>Rimfolk_FamiliarNear</defName>
+    <label>a familiar near</label>
+    <description>This mage's familiar is close by. Mana comes back a little faster while it is, and harm lands a little lighter.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.74, 0.62, 1)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>700~700</disappearsAfterTicks>
+        <showRemainingTime>false</showRemainingTime>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <statFactors>
+          <IncomingDamageFactor>0.95</IncomingDamageFactor>
+        </statFactors>
+      </li>
+    </stages>
+  </HediffDef>
+
+</Defs>

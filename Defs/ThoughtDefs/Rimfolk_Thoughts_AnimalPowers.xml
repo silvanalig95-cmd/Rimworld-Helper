@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The colony's animals with powers (Source/ColonyCouncil/Animals/AnimalPowers.cs): a Psychic type's calm (PokéWorld),
+    a familiar bound and lost (A RimWorld of Magic), an omen thriving and dying, a sacred animal fallen and its day kept
+    (Ideology). Each loads without its mod and only comes with it.
+  -->
+
+  <!-- A Psychic type came close to someone near a break (Integrations/PokeWorldTypes.cs). -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_PW_Calmed</defName>
+    <durationDays>0.5</durationDays>
+    <stages><li><label>a Pokémon's calm</label><description>It was there beside me, and the noise in my head went quiet. I can breathe again.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- A mage bound a familiar (Integrations/MagicFamiliars.cs). -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Fam_Bound</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>a familiar of my own</label><description>It answers when I reach for it now, without a word between us. The magic is less lonely.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- Granted: the wish for a familiar (its own mood is the binding's, above). -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Granted_Familiar</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>the council let me bind it</label><description>They gave me the hour I asked for, and now it is bound to me.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><trust>1</trust><feelings><li>Hope</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <!-- A mage's familiar died. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Fam_Died</defName>
+    <durationDays>15</durationDays>
+    <stages><li><label>my familiar died</label><description>Something tore when it died. I felt it go from wherever I was, and the magic has been cold in my hands since.</description><baseMoodEffect>-12</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- An omen animal of the colony thrives (Animals/OmenAnimals.cs); the label and description name it. -->
+  <ThoughtDef>
+    <defName>Rimfolk_Omen_Thrives</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_OmenThrives</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_OmenThrives</thoughtClass>
+    <stages><li><label>our omen thrives</label><description>The animal born under the sign is doing well, and things go right while it does.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- An omen animal died. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Omen_Died</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>a bad omen</label><description>The one born under the sign is dead. Nobody says out loud what everyone is thinking.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- A sacred animal that wasn't the colony's fell on its land (Animals/SacredAnimals.cs). -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Sacred_Fell</defName>
+    <durationDays>3</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
+    <stages><li><label>a sacred animal fell</label><description>One of the animals my faith holds sacred lies dead on our land. It shouldn't have ended there.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- The sacred animals' day kept (Rimfolk_Dilemma_SacredDay). -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Sacred_DayKept</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>the sacred animals' day</label><description>We gave the afternoon to the animals the faith holds sacred: food carried out to them, and everyone gathered quietly nearby.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- Food carried out to a sacred animal, and the day went on. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Sacred_Offering</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>an offering to the sacred animals</label><description>I carried food out to one of the sacred animals and left it there. Small, but it was something.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

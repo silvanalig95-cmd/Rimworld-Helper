@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A RimWorld of Magic (Source/ColonyCouncil/Integrations/MagicFamiliars.cs). A mage with no familiar wants one of the
+    colony's animals bound to them: the one bonded to them, one they're master of, else a calm grown one with no person.
+    Promised, the binding plays out in a quiet hour of the day (the mage walks to it and stays with it a while); fulfilled
+    once it is their familiar. It always loads and never comes up without the mod. {OTHER} is the animal, {SUBJECT} its
+    name or its kind ("Rex", "muffalo"): lines say {OTHER_nameDef}, which reads "Rex" or "the muffalo".
+  -->
+  <ColonyCouncil.WishDef>
+    <defName>Rimfolk_Wish_Familiar</defName>
+    <label>a familiar</label>
+    <description>A mage of the colony without a familiar wants one of the colony's animals bound to them, and the time to spend with it.</description>
+    <workerClass>ColonyCouncil.WishWorker_Familiar</workerClass>
+    <category>Social</category>
+    <weight>0.8</weight>
+    <expiryDays>10</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Rimfolk_Granted_Familiar</grantedThought>
+    <envy>0</envy>
+    <talkInteraction>Council_Talk_Animals</talkInteraction>
+    <fulfilledWhen>{OTHER_nameDef} is {FOR_nameDef}'s familiar: once promised, {FOR_nameDef} stays with it a while in a quiet hour of the day, and it is bound.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>The magic sits better with something alive beside it. {OTHER_nameDef} already follows me about; let me bind it properly.</li>
+        <li>Every mage I ever learned from had a familiar. I'd like an hour with {OTHER_nameDef}, and then it would be mine.</li>
+        <li>[lowmood] The mana comes slow and lonely lately. A familiar would help, and {OTHER_nameDef} would do.</li>
+      </plain>
+      <warm>
+        <li>{OTHER_nameDef} and I understand each other already. Binding it would only say so out loud.</li>
+      </warm>
+      <blunt>
+        <li>I need a familiar. {OTHER_nameDef} is the one. An hour of quiet is all it takes.</li>
+      </blunt>
+      <cheerful>
+        <li>Picture it: me at the bench, {OTHER_nameDef} glowing at my feet. Say yes.</li>
+      </cheerful>
+      <gloomy>
+        <li>A mage alone wears out. Let me bind {OTHER_nameDef} before I do.</li>
+      </gloomy>
+      <cold>
+        <li>A familiar near a mage means more mana and fewer wounds. {OTHER_nameDef} is suitable. I need an hour.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>It's bound. I can feel where it is without looking.</li>
+        <li>Did you see it glow? That was the binding taking.</li>
+      </plain>
+      <warm><li>We'll look after each other now, the two of us.</li></warm>
+      <cheerful><li>It glows, faintly, but it really does glow.</li></cheerful>
+      <cold><li>Bound. The mana comes easier already.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>Never mind the familiar. The hour never came.</li></plain>
+      <gloomy><li>No familiar, then. I'll manage alone, as usual.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>I still need that hour with {OTHER_nameDef}, whenever the colony can spare me.</li></plain>
+      <blunt><li>One quiet hour, and {OTHER_nameDef} is bound. That's all I'm asking.</li></blunt>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+</Defs>

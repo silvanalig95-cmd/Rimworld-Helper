@@ -127,6 +127,10 @@ namespace ColonyCouncil
         /// <summary>A nemesis who got away may ride with their people's next raid.</summary>
         public bool nemesisReturns = true;
         public bool petMoments = true;
+        /// <summary>With Ideology: the animals the colony's faith holds sacred are mourned when one falls on the land, and their day can become a custom (Animals/SacredAnimals.cs).</summary>
+        public bool sacredAnimals = true;
+        /// <summary>An animal born to the colony under a sign (an eclipse, an aurora, a day the colony keeps, a shiny Pokémon) is an omen (Animals/OmenAnimals.cs).</summary>
+        public bool omenAnimals = true;
         public bool colonistMoments = true;
         /// <summary>Everyday frictions: small irritations between colonists, and with a messy or cramped home.</summary>
         public bool frictions = true;
@@ -426,6 +430,22 @@ namespace ColonyCouncil
         public bool medicalTriage = true;
         /// <summary>What PokéWorld's Pokémon sound like (Integrations/PokeWorldSounds.cs): the nearest animal's calls, their own a third as often, or their own.</summary>
         public PokemonSounds pokemonSounds = PokemonSounds.Creatures;
+        /// <summary>With PokéWorld: the colony's own Pokémon do a little at home by their type (Integrations/PokeWorldTypes.cs); its parts below.</summary>
+        public bool pokemonTypes = true;
+        /// <summary>A Fire type warms the room it rests in, an Ice type cools a hot one.</summary>
+        public bool pokemonTypeWarmth = true;
+        /// <summary>A Grass type quickens the crops close by.</summary>
+        public bool pokemonTypeGrowth = true;
+        /// <summary>An Electric type tops up a battery of the colony's it rests beside.</summary>
+        public bool pokemonTypeBattery = true;
+        /// <summary>A Psychic type calms a colonist close by who is near a mental break.</summary>
+        public bool pokemonTypeCalm = true;
+        /// <summary>A Fighting type spars with a colonist at their leisure.</summary>
+        public bool pokemonTypeSpar = true;
+        /// <summary>A Water type puts out a fire near it.</summary>
+        public bool pokemonTypeDouse = true;
+        /// <summary>With A RimWorld of Magic: a mage may bind one of the colony's animals as a familiar (Integrations/MagicFamiliars.cs).</summary>
+        public bool familiars = true;
         /// <summary>An alert while an animal's fresh carcass lies out with nobody seeing to it (Animals/FreshCarcasses.cs).</summary>
         public bool freshCarcassAlert = true;
         /// <summary>The colony's next steps: a plan the council proposes to and keeps with the player (Building/NextSteps.cs).</summary>
@@ -624,6 +644,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref nemeses, "nemeses", true);
             Scribe_Values.Look(ref nemesisReturns, "nemesisReturns", true);
             Scribe_Values.Look(ref petMoments, "petMoments", true);
+            Scribe_Values.Look(ref sacredAnimals, "sacredAnimals", true);
+            Scribe_Values.Look(ref omenAnimals, "omenAnimals", true);
             Scribe_Values.Look(ref colonistMoments, "colonistMoments", true);
             Scribe_Values.Look(ref frictions, "frictions", true);
             Scribe_Values.Look(ref autonomy, "autonomy", true);
@@ -773,6 +795,14 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref guestCheck, "guestCheck", true);
             Scribe_Values.Look(ref medicalTriage, "medicalTriage", true);
             Scribe_Values.Look(ref pokemonSounds, "pokemonSounds", PokemonSounds.Creatures);
+            Scribe_Values.Look(ref pokemonTypes, "pokemonTypes", true);
+            Scribe_Values.Look(ref pokemonTypeWarmth, "pokemonTypeWarmth", true);
+            Scribe_Values.Look(ref pokemonTypeGrowth, "pokemonTypeGrowth", true);
+            Scribe_Values.Look(ref pokemonTypeBattery, "pokemonTypeBattery", true);
+            Scribe_Values.Look(ref pokemonTypeCalm, "pokemonTypeCalm", true);
+            Scribe_Values.Look(ref pokemonTypeSpar, "pokemonTypeSpar", true);
+            Scribe_Values.Look(ref pokemonTypeDouse, "pokemonTypeDouse", true);
+            Scribe_Values.Look(ref familiars, "familiars", true);
             Scribe_Values.Look(ref freshCarcassAlert, "freshCarcassAlert", true);
             Scribe_Values.Look(ref nextSteps, "nextSteps", true);
             Scribe_Values.Look(ref planCutPlants, "planCutPlants", true);

@@ -170,8 +170,8 @@ namespace ColonyCouncil
 
     /// <summary>
     /// The council culls the herd: <see cref="count"/> head (or the letter's {COUNT}) are marked for slaughter, and the
-    /// colony's handlers see to it with the game's own work. Nobody's own animal, nothing bonded or named, and never a
-    /// mother in lamb or a youngster while an old one is left.
+    /// colony's handlers see to it with the game's own work. Nobody's own animal, nothing bonded or named, none a faith of
+    /// the colony's holds sacred, and never a mother in lamb or a youngster while an old one is left.
     /// </summary>
     public class DilemmaEffect_Cull : DilemmaEffect
     {
@@ -182,7 +182,8 @@ namespace ColonyCouncil
             if (ctx?.map == null) return;
             int n = count > 0 ? count : Math.Max(1, ctx.count);
             var dm = ctx.map.designationManager;
-            int can = AnimalFacts.Herd(ctx.map).Count(a => PetTracker.PersonOf(a) == null && (a.Name == null || a.Name.Numerical) && dm.DesignationOn(a) == null && !AnimalFacts.Pregnant(a) && !a.IsQuestLodger());
+            int can = AnimalFacts.Herd(ctx.map).Count(a => PetTracker.PersonOf(a) == null && (a.Name == null || a.Name.Numerical) && dm.DesignationOn(a) == null && !AnimalFacts.Pregnant(a) && !a.IsQuestLodger()
+                                                          && !SacredAnimals.HeldSacred(a));
             n = Math.Min(n, can);
             if (n > 0) sheet.Add(ImpactKind.People, -1, "CC_Impact_Cull".Translate(n).Resolve(), "CC_Impact_CullBrief".Translate(n).Resolve(), "cull");
         }
@@ -198,7 +199,9 @@ namespace ColonyCouncil
                 int n = count > 0 ? count : Math.Max(1, ctx.count);
                 var dm = ctx.map.designationManager;
                 var pick = AnimalFacts.Herd(ctx.map)
-                    .Where(a => PetTracker.PersonOf(a) == null && (a.Name == null || a.Name.Numerical) && dm.DesignationOn(a) == null && !AnimalFacts.Pregnant(a) && !a.IsQuestLodger())
+                    // Never one a faith of the colony's holds sacred: slaughtering it is the game's own sin (Animals/SacredAnimals.cs).
+                    .Where(a => PetTracker.PersonOf(a) == null && (a.Name == null || a.Name.Numerical) && dm.DesignationOn(a) == null && !AnimalFacts.Pregnant(a) && !a.IsQuestLodger()
+                                && !SacredAnimals.HeldSacred(a))
                     .OrderByDescending(a => AnimalFacts.Young(a) ? 0f : 1f + AnimalFacts.LifeShare(a))
                     .Take(n).ToList();
                 if (pick.Count == 0) return;

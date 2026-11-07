@@ -48,6 +48,7 @@ If you've had enough of Pokémon, set the wild Pokémon frequency slider in the 
           <li>Whoever catches the colony's first of a species writes about it in their journal and gets +3 mood for 3 days.</li>
           <li>What Pokémon sound like is a setting on Rimfolk's other mods' page. By default each species calls with the voice of one of the base game's animals, picked by its body, its types and its size: insects click like the game's insects, birds cluck, quack or honk, bats squeak like rats, small fire lizards hiss like an iguana, big beasts growl like a warg or a bear and the great ones roar like a thrumbo, and the stones, balls, gases, ice, shells and fish take the tortoise's voice. Only animals that call when grown lend their voice: never the cougar, which only snarls, the foxes, which are silent, or the turkey and the emu, whose chicks alone cheep. PokéWorld plays its cries nowhere else, so this covers all of them; its moves and balls keep their own sounds. It never calls more often than PokéWorld had it. You can also keep their own cries a third as often, or exactly as PokéWorld has them.</li>
           <li>Evolutions, levels, friendship, the Pokédex, rare sightings and the wishes, goals and stories of trainers: see "Pokémon in the colony's life".</li>
+          <li>The colony's own Pokémon do a little at home by their type: Fire warms a room, Ice cools one, Grass quickens the crops, Electric tops up a battery, Psychic calms someone near a break, Fighting spars, Water douses a fire. See "Pokémon types at home" on "Pokémon in the colony's life".</li>
         </points>
       </li>
     </sections>
@@ -327,6 +328,20 @@ A rare Pokémon sighted is a Rimfolk event: one of PokéWorld's rare species (ra
       <li>
         <heading>Traveling trainers</heading>
         <text>A camp of traveling trainers comes only with PokéWorld's Pokémon in play: two or three trainers of a friendly people, each with a Pokémon of the roaming kinds at their heels (the ones the colony hasn't caught likelier), who trade like any camp with a trader. The colony can ask them about training (a while at their fire, practice with animals) or for a friendly contest: the colony's highest-level Pokémon with a trainer against their best, as a show at their fire in the afternoon or evening, the camp's people as guests and whoever wants to watch. The higher level is likelier to win and never surely, nobody is hurt, the trainer whose Pokémon took part remembers it and so does the colony. The trainers come back like any remembered camp, and the score of the shows comes back with them: the next contest is a rematch, and their words know who won last time.</text>
+      </li>
+      <li>
+        <heading>Pokémon types at home</heading>
+        <table>
+          <li>Type | At home | Its bounds</li>
+          <li>Fire | Warms the room it rests in, like a little heater: 6 heat a second times its body size | Only a room under 21 °C, never past it; nothing outdoors; two a room</li>
+          <li>Ice | Cools the room it rests in the same way | Only a room over 23 °C, never below it</li>
+          <li>Grass | The crops within three cells of where it rests grow a quarter faster | By the crop's own growth rate: nothing in the dark, the cold, out of season or at night</li>
+          <li>Electric | Tops up a battery it rests beside: 100 W | Only a battery the colony built, until it's full</li>
+          <li>Psychic | Calms a colonist within 6 cells in its sight who is near a break: +5 for half a day | One calming in two days for a colonist, one a day for each Pokémon</li>
+          <li>Fighting | Spars with a colonist at their leisure: practice swings each way, melee practice and fun | One spar in 25 a blow lands, a bruise, as "Hurts from everyday life" allows</li>
+          <li>Water | Douses a fire within three cells a little every few seconds, and goes over to one on the colony's ground within 10 cells | More than rain, less than a colonist beating it</li>
+        </table>
+        <after>Only the colony's own, out of their balls on a home map, up and not in a mental state; a Pokémon of two types does both. "Rests" means it is where it is, not walking somewhere. Each shows on the map with a glow (heat, frost, green, sparks, lilac, splashes), and now and then, once a day at most for each type on a map, whoever sees it says a word. Rimfolk counts the colony's typed Pokémon once an hour, so a new one starts within the hour. The setting is "Pokémon types at home" (the other mods' page), with each part on its own switch.</after>
       </li>
     </sections>
     <keywords>

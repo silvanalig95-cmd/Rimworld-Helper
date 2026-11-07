@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The sacred animals' day (Ideology; Source/ColonyCouncil/Animals/SacredAnimals.cs, DilemmaWorker_SacredDay): the
+    colony's faith holds a kind of animal sacred (the game's venerated animals) and one of them is on the land, from spring
+    to autumn. A is someone whose own faith holds it so, X the animal (the colony's own first, else one in the wild), {THING}
+    its kind. A custom: kept, it goes on the colony's calendar and comes round on that date each year, and kept three
+    years running it is a tradition. Tags: tame (X is the colony's), wild. Never asked without Ideology.
+  -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dilemma_SacredDay</defName>
+    <label>the sacred animals' day</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_SacredDay</workerClass>
+    <weight>0.7</weight>
+    <cooldownDays>60</cooldownDays>
+    <minColonists>2</minColonists>
+    <seasons><li>Spring</li><li>Summer</li><li>Fall</li><li>PermanentSummer</li></seasons>
+    <texts>
+      <li>[tame] The faith holds the {THING} sacred, and {A_nameDef} says the colony has never once kept a day for them. {A_nameDef} would carry food out to {X_nameDef} and have everyone gather round it for an afternoon, the work set down.</li>
+      <li>[wild] {A_nameDef} has seen {X_nameDef} out at the edge of the colony's land, and the faith holds the {THING} sacred. {A_nameDef} would carry food out to it and have everyone gather quietly nearby for the afternoon, as a day for the sacred animals.</li>
+      <li>[colony:Traditional] Where {A_nameDef} grew up, the sacred animals had a day of their own each year. The faith holds the {THING} sacred here too, and {X_nameDef} is out there now.</li>
+    </texts>
+    <traditionOption>0</traditionOption>
+    <traditionLabel>the sacred animals' day</traditionLabel>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Keep a day for them</label>
+        <outcome>{A_nameDef} carried food out to {X_nameDef}, and everyone gathered near it through the afternoon, talking quietly, the work left for tomorrow.</outcome>
+        <ways><tradition>4</tradition><mercy>1</mercy><toil>-2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_FeedBeast" />
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the sacred animals' day</label><spots><li>Stranger</li><li>Outdoors</li><li>Gather</li></spots><hours>12~16</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Rimfolk_Sacred_DayKept</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Leave food out, and back to work</label>
+        <outcome>{A_nameDef} carried food out to {X_nameDef} and left it there, and the day went on like any other.</outcome>
+        <ways><generosity>1</generosity><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_FeedBeast" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_Sacred_Offering</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>Not this year</label>
+        <outcome>No day for the sacred animals this year. {A_nameDef} took it quietly.</outcome>
+        <ways><tradition>-3</tradition><toil>2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+</Defs>

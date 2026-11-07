@@ -502,3 +502,6 @@ Rimfolk_WS_SonRiders [end:refused] a refusal, told
 
 # Defs/DilemmaDefs/Rimfolk_Dilemmas_Fealty.xml
 Rimfolk_DlmFealty_Swear [option 0] already real, the event's own code: the speaker walks out to the gate and swears face to face (JobDriver_FealtyOath)
+
+# Defs/DilemmaDefs/Rimfolk_Dilemmas_SacredDay.xml
+Rimfolk_Dilemma_SacredDay [option 1] the food is carried out to the sacred animal and left (DilemmaEffect_FeedBeast, a CarryOut to the stranger)

@@ -51,6 +51,12 @@ Only a mage can enchant. Enchantments are permanent, one of each type per item, 
           <li>With Harmony 3 (RimWorld 1.7), the mod's own setup stops at its healing-rain patch, which Harmony 3 refuses, and most of its patches after that one are never applied: the log shows "Failed to apply Harmony patches" for it. Rimfolk applies the ones left out one at a time and runs the healing rain itself, and says so in the log. When the mod is fixed or Harmony lets it through, this does nothing.</li>
         </points>
       </li>
+      <li>
+        <heading>Familiars</heading>
+        <text>A mage (a colonist with the mod's mana, not one of the faceless) may bind one of the colony's animals as a familiar, one each. It comes about two ways: the mage asks the council for one (the animal bonded to them, one they're master of, else a calm grown one with no person), and a promise sets it going; or a mage bonded to one of the colony's animals chooses it of their own accord, one day in four. Either way it plays out on the map: in a quiet hour of the day the mage walks to the animal and stays with it about an hour, the animal staying and facing them and a faint light passing between them, and then it is theirs, named if it had no name, with news, a word, a journal line and the chronicle.
+
+The familiar glows faintly. Within 12 cells of its mage it lends a little: 0.0004 mana every 250 ticks (about a tenth of a pool a day near it all day; a mage's own gain is about half a pool), and a small ward, the hediff "a familiar near" on the mage's health tab (a twentieth less harm). Its death hits the mage hard: -12 for 15 days, the mana emptied and the mod's arcane weakness at 4 (weakened, about eight hours), told at once and kept in the chronicle. Never an animal bonded to someone else, a mechanoid or one of the mod's own summoned creatures. The setting is "Familiars" (the other mods' page).</text>
+      </li>
     </sections>
     <keywords>
       <li>magic</li>

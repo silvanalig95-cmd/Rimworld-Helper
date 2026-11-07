@@ -670,6 +670,16 @@ MODEL = {
     # of a people no longer standing first.
     "Peoples/ArisingBook.cs:arisen": ("cap", (const("Peoples/ArisingMath.cs", "MaxRecords", 24), 0.05), 320,
                                       "peoples that arose during play: one record each, one every 20 days at the most (the setting at 200%), ArisingMath.MaxRecords kept"),
+    # The colony's animals with powers (Animals/AnimalPowers.cs): one familiar a mage and a binding waiting at most a mage
+    # (dropped after 10 days), the omen animals alive (one in 20 days at most, the dead told and let go), and the Psychic
+    # types' cooldowns by ThingID (a colonist calmed, a Pokémon that calmed), each let go once two days are past.
+    "Animals/AnimalPowers.cs:familiars": ("cap", (const("Animals/AnimalPowersMath.cs", "MaxFamiliars", 12), 0.1), 2 * P + 160,
+                                          "a mage's familiar: one a mage, AnimalPowersMath.MaxFamiliars kept"),
+    "Animals/AnimalPowers.cs:bindings": ("cap", (const("Animals/AnimalPowersMath.cs", "MaxBindings", 6), 0.1), 2 * P + 80,
+                                         "bindings waiting for a quiet hour, AnimalPowersMath.MaxBindings at most, each dropped after 10 days"),
+    "Animals/AnimalPowers.cs:omens": ("cap", (const("Animals/AnimalPowersMath.cs", "MaxOmenRecords", 6), 0.05), P + 200,
+                                      "the omen animals alive: one in 20 days at most, AnimalPowersMath.MaxOmenRecords kept"),
+    "Animals/AnimalPowers.cs:calmTicks": ("window", (2, 1), D, "a Psychic type's calming: the colonist and the Pokémon, each let go two days after"),
     "Happenings/Workers_Chains2.cs:flags": ("fixed", 4, 40, "per story chain (counted under chains)"),
     # Answers playing out
     "PlayOut/PlayOutLord.cs:guests": ("while", 8, P, "while the gathering lasts: guests from outside the colony"),

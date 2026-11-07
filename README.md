@@ -1329,6 +1329,16 @@ The herd and the pets are part of the colony's life, not only its larder and its
   send the hunters, let the namer try to tame it, let it be, or drive it off with torches at dusk. After fifteen days
   it is part of the land and its story closes, the namer glad of it; hunted, tamed, driven off or gone, it closes
   sooner, and the chronicle keeps how. Another can take its place twenty days later.
+- **Omen animals:** an animal born to the colony under a sign (an eclipse, an aurora, a shiny Pokémon born or hatched,
+  or a day the colony keeps: a tradition, the founding day, a day you named) is talked about, named by its keeper
+  (half the time with a name the sign gives) and remembered in the chronicle. While it thrives, everyone of its colony
+  is a little glad (+2); if it dies, it is a bad omen (-4 for 5 days). One in 20 days at most, three living at once.
+- **Sacred animals (Ideology):** the animals the colony's faith holds sacred are the game's venerated animals, whose
+  hunting and slaughter the game already counts as wrong. One that falls on the colony's land and wasn't the colony's is
+  grieved by those whose faith holds it so (-2 for 3 days), with a word over the body; a believer who sees a hunt
+  marked on one says they'll have no part of it; the council's cull never takes one. From spring to autumn the
+  council may be asked to keep **the sacred animals' day**: food carried out to one of them where it is, and everyone
+  gathered round it for the afternoon. Kept, it is a custom on the calendar, and three years running a tradition.
 - **Dreams** of the herd, of talking animals, of riding, of an old pet young again, and of a lost one coming back.
 
 An alert says when an animal's **carcass lies out fresh**: one that hasn't started to rot, out of the stockpiles, with
@@ -2247,7 +2257,10 @@ Rimfolk reads these mods by name while the game runs: with one missing, its part
   magic. A mage and a fighter talk shop, two mages compare schools, two fighters compare forms and a healer eases an
   ache, and these become days in the journals. Life goals: grow ten levels in one's class, learn or deepen six
   workings or techniques, become a scholar of the art, or tend sixty wounds as a healer. Traveling mages and fighters
-  visit and share a working or a form.
+  visit and share a working or a form. A mage may bind one of the colony's animals as a **familiar**, as the council's
+  answer to their wish or of their own accord with an animal bonded to them: they spend an hour of the day with it, and
+  it is theirs. It glows faintly, and near its mage lends a little mana and a small ward; its death hits the mage hard
+  (-12 for 15 days, the mana emptied and the mod's arcane weakness for some hours).
 - **Vanilla Traits Expanded:** its traits have opinions on decrees (workaholics love long hours, rebels hate
   being told, the neat love a clean sweep), sway elections (brave marshals, no squeamish physicians), shape how
   people feel about the colony's ways, and voice wishes (academians want books, snobs fine clothes, tycoons
@@ -2292,7 +2305,12 @@ Rimfolk reads these mods by name while the game runs: with one missing, its part
   where it is named like any beast that stays, or it was a story after all. **Travelling trainers** camp on the land,
   two or three of a friendly people with their Pokémon at their heels: they trade, teach training to whoever asks, and
   put on a friendly contest with the colony's best Pokémon as a show at their fire (the higher level likelier to win,
-  never surely, nobody hurt), and when they come back like any remembered camp, the next contest is a rematch. What
+  never surely, nobody hurt), and when they come back like any remembered camp, the next contest is a rematch. The
+  colony's own **Pokémon types matter at home**, each a little and shown with a glow and now and then a word: a Fire
+  type warms the room it rests in like a little heater (only under 21 °C, never past it), an Ice type cools a hot one,
+  a Grass type quickens the crops close by by a quarter, an Electric type tops up a battery it rests beside (100 W), a
+  Psychic type calms a colonist near a break (+5 for half a day, with a cooldown), a Fighting type spars with a
+  colonist at their leisure (melee practice, now and then a bruise), and a Water type douses a fire near it. What
   Pokémon **sound like** is a setting: by default each species calls with the voice of a base-game animal picked by
   its body, types and size (insects click, birds cluck, quack or honk, bats squeak, big beasts roar, the stones, gases,
   ice, shells and fish take a tortoise's voice; only animals that call when grown), never more often than PokéWorld had
@@ -3888,7 +3906,8 @@ The pages:
   friendships that take time, chemistry, comrades, deeds remembered, seats and love's feelings, personalities and
   social life, traits that change, ideoligions in the colony with Ideology, secrets, vendettas); the colony's story
   (journals, names, anniversaries, annals, eulogies, the colony calendar, answers that play out on the map, goods and
-  people that come and go by hand); strangers and creatures (encounters, nemeses and their return, pets); **Rimfolk
+  people that come and go by hand); strangers and creatures (encounters, nemeses and their return, pets, sacred
+  animals with Ideology, omen animals); **Rimfolk
   events** (camps on the map, missions in the Quests tab, drawn by the storyteller or on their own timer); **world
   events** and whether the world's **peoples remember the colony**; the region (fortunes and their stock, new towns'
   faces, rise and fall, trading posts, hamlets, small towns' maps); **bonds with other peoples** (favors owed and
@@ -3929,7 +3948,7 @@ The pages:
   Hospitality guests always shopping), Alpha Skills (a drink or a smoke before work), **A covered face hides looks
   (Alpha Genes)**, RimWorld of Magic (golems keep their energy, the mod's rules about needs hold, and under Harmony 3 the patches its
   own setup leaves out after its refused healing-rain patch are applied one at a time, with the healing rain run by
-  Rimfolk), Faction
+  Rimfolk; familiars), PokéWorld (what Pokémon sound like; the Pokémon types at home and each of their six parts), Faction
   Territories and Vassalage (distant new settlements in the colony news), Move the Patient (the best bed first and
   room made for the worse off), and a faith's precept against turrets from any mod minding only the turrets where
   they are.

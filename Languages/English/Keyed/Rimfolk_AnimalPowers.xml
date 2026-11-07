@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- ===================== The colony's animals with powers (Animals/AnimalPowers.cs) ===================== -->
+
+  <!-- Settings: PokéWorld's section of the other mods' page. -->
+  <CC_Settings_PokemonTypes>Pokémon types at home</CC_Settings_PokemonTypes>
+  <CC_Settings_PokemonTypes_Tip>The colony's own Pokémon do a little at home by their type, each a small, real thing shown with a glow and now and then a word from whoever sees it. Only the colony's own, out of their balls on a home map. The parts below can be switched off one by one.</CC_Settings_PokemonTypes_Tip>
+  <CC_SetNote_PokemonTypes>The colony's own Pokémon help a little at home by their type: warmth, crops, power, calm, sparring, fires.</CC_SetNote_PokemonTypes>
+  <CC_Settings_PokemonTypeWarmth>Fire and Ice types: the room's warmth</CC_Settings_PokemonTypeWarmth>
+  <CC_Settings_PokemonTypeWarmth_Tip>A Fire type warms the room it rests in like a little heater (6 heat a second times its body size, about a quarter of a heater), only while the room is colder than 21 °C and never past it. An Ice type cools a room warmer than 23 °C the same way, never below it. Nothing outdoors, two of them a room at most.</CC_Settings_PokemonTypeWarmth_Tip>
+  <CC_SetNote_PokemonTypeWarmth>Fire types warm a cold room they rest in, up to 21 °C; Ice types cool a hot one, down to 23 °C.</CC_SetNote_PokemonTypeWarmth>
+  <CC_Settings_PokemonTypeGrowth>Grass types: the crops close by</CC_Settings_PokemonTypeGrowth>
+  <CC_Settings_PokemonTypeGrowth_Tip>The crops within three cells of a resting Grass type (in a growing zone, a hydroponics basin or a pot) grow a quarter faster, by their own growth rate: nothing in the dark, the cold, out of season or at night.</CC_Settings_PokemonTypeGrowth_Tip>
+  <CC_SetNote_PokemonTypeGrowth>Crops within three cells of a resting Grass type grow a quarter faster.</CC_SetNote_PokemonTypeGrowth>
+  <CC_Settings_PokemonTypeBattery>Electric types: a battery beside them</CC_Settings_PokemonTypeBattery>
+  <CC_Settings_PokemonTypeBattery_Tip>An Electric type resting beside a battery the colony built gives it 100 W, a small trickle (a battery holds 600 Wd).</CC_Settings_PokemonTypeBattery_Tip>
+  <CC_SetNote_PokemonTypeBattery>An Electric type resting beside a battery of the colony's gives it 100 W.</CC_SetNote_PokemonTypeBattery>
+  <CC_Settings_PokemonTypeCalm>Psychic types: a colonist near a break</CC_Settings_PokemonTypeCalm>
+  <CC_Settings_PokemonTypeCalm_Tip>A Psychic type calms a colonist within 6 cells, in its sight, whose mood is below their minor break threshold or within 5 points of it: +5 mood for half a day. One calming in two days for a colonist, one a day for each Psychic type.</CC_Settings_PokemonTypeCalm_Tip>
+  <CC_SetNote_PokemonTypeCalm>A Psychic type calms a colonist close by who is near a break (+5 for half a day, now and then).</CC_SetNote_PokemonTypeCalm>
+  <CC_Settings_PokemonTypeSpar>Fighting types: a spar at leisure</CC_Settings_PokemonTypeSpar>
+  <CC_Settings_PokemonTypeSpar_Tip>A colonist at their leisure who can fight (grown, not hurting, no danger about) may spar with one of the colony's Fighting types: practice swings each way, melee practice and fun. One spar in 25 ends with a blow that lands, a small bruise, as often as "Hurts from everyday life" and the storyteller allow.</CC_Settings_PokemonTypeSpar_Tip>
+  <CC_SetNote_PokemonTypeSpar>Colonists spar with a Fighting type in their free time: melee practice, now and then a bruise.</CC_SetNote_PokemonTypeSpar>
+  <CC_Settings_PokemonTypeDouse>Water types: fires near them</CC_Settings_PokemonTypeDouse>
+  <CC_Settings_PokemonTypeDouse_Tip>A Water type douses a fire within three cells a little every few seconds (more than rain, less than a colonist beating it), and one with nothing to do goes over to a fire on the colony's ground within 10 cells.</CC_Settings_PokemonTypeDouse_Tip>
+  <CC_SetNote_PokemonTypeDouse>A Water type douses a fire near it, and goes over to one on the colony's ground.</CC_SetNote_PokemonTypeDouse>
+
+  <!-- Settings: A RimWorld of Magic's section of the other mods' page. -->
+  <CC_Settings_Familiars>Familiars</CC_Settings_Familiars>
+  <CC_Settings_Familiars_Tip>With A RimWorld of Magic: a mage may bind one of the colony's animals as a familiar, as the council's answer to their wish or of their own accord with an animal bonded to them. The mage spends an hour of the day with it, and it is theirs: it glows faintly, and within 12 cells of its mage it lends a little mana (about a tenth of a pool a day) and a small ward (a twentieth less harm). Its death costs the mage dearly: -12 mood for 15 days, the mana emptied and the mod's arcane weakness for about eight hours.</CC_Settings_Familiars_Tip>
+  <CC_SetNote_Familiars>With A RimWorld of Magic, a mage may bind an animal as a familiar: a little mana and a ward near it.</CC_SetNote_Familiars>
+
+  <!-- Settings: What's on, with the animals. -->
+  <CC_Settings_SacredAnimals>Sacred animals</CC_Settings_SacredAnimals>
+  <CC_Settings_SacredAnimals_Tip>With Ideology: the animals the colony's faith holds sacred (the game's venerated animals). One that falls on the colony's land and wasn't the colony's is mourned by those whose faith holds it so (-2 for 3 days), a believer says they'll have no part of a hunt marked on one, the council's cull never takes one, and the council may be asked to keep a day for them, a custom that goes on the calendar and can become a tradition. The game's own rules about hunting and slaughtering them stay as they are.</CC_Settings_SacredAnimals_Tip>
+  <CC_SetNote_SacredAnimals>With Ideology, the faith's sacred animals are mourned when one falls, and can have a day of their own.</CC_SetNote_SacredAnimals>
+  <CC_Settings_OmenAnimals>Omen animals</CC_Settings_OmenAnimals>
+  <CC_Settings_OmenAnimals_Tip>An animal born to the colony under a sign (an eclipse, an aurora, a day the colony keeps, or a shiny Pokémon born or hatched) is talked about, named by its keeper and remembered. While it thrives, everyone of its colony is a little glad (+2); if it dies, it is a bad omen (-4 for 5 days). One in 20 days at most, three living at once.</CC_Settings_OmenAnimals_Tip>
+  <CC_SetNote_OmenAnimals>An animal born under a sign is named and remembered: a little gladness while it thrives.</CC_SetNote_OmenAnimals>
+
+  <!-- ===================== Pokémon types at home (Integrations/PokeWorldTypes.cs) ===================== -->
+  <CC_PW_Cause_Calmed>{PET_nameDef} came close</CC_PW_Cause_Calmed>
+  <CC_PW_Calmed>{PAWN_nameDef} was close to breaking, with {PET_nameDef} nearby, and is calmer for it.</CC_PW_Calmed>
+  <CC_PW_SparBlow>{PAWN_nameDef} was sparring with {PET_nameDef} and took a blow that landed: a bruise on the {PART}.</CC_PW_SparBlow>
+
+  <!-- ===================== Familiars (Integrations/MagicFamiliars.cs) ===================== -->
+  <CC_Fam_Reason>{PAWN_nameDef} is a mage without a familiar, and wants {PET_nameDef} bound to {PAWN_objective}.</CC_Fam_Reason>
+  <CC_Fam_Promise>{FOR_nameDef} will spend a quiet hour of the day with {OTHER_nameDef}, and bind it as a familiar.</CC_Fam_Promise>
+  <CC_Fam_Cause_Bound>bound {PET_nameDef} as a familiar</CC_Fam_Cause_Bound>
+  <CC_Fam_Bound>{PAWN_nameDef} stayed with {PET_nameDef} through the hour, and it is {PAWN_possessive} familiar now: it glows faintly, and lends {PAWN_objective} a little while it is near.</CC_Fam_Bound>
+  <CC_Fam_Chronicle_Bound>{PAWN_nameDef} bound {PET_nameDef} as a familiar.</CC_Fam_Chronicle_Bound>
+  <CC_Fam_Cause_Died>my familiar {NAME} died</CC_Fam_Cause_Died>
+  <CC_Fam_Died>{NAME}, {PAWN_nameDef}'s familiar, is dead. {PAWN_nameDef} felt it go: {PAWN_possessive} mana is gone, and the magic sits cold and heavy in {PAWN_objective} for a while.</CC_Fam_Died>
+  <CC_Fam_Chronicle_Died>{NAME}, the familiar of {PAWN_nameDef}, died, and {PAWN_nameDef} felt it go.</CC_Fam_Chronicle_Died>
+  <CC_Fam_Gone>{NAME} is no longer {PAWN_nameDef}'s familiar: it isn't the colony's any more.</CC_Fam_Gone>
+
+  <!-- ===================== Omens (Animals/OmenAnimals.cs): {PET} the newborn, named; {KIND} its kind; {DAY} the day kept ===================== -->
+  <CC_Omen_Born_eclipse>{PET_nameDef}, a newborn {KIND}, came into the world while the sun was eclipsed, and everyone who saw the sky go dark is calling it a sign.</CC_Omen_Born_eclipse>
+  <CC_Omen_Born_aurora>{PET_nameDef}, a newborn {KIND}, was born under the aurora, and the colony is calling it a sign.</CC_Omen_Born_aurora>
+  <CC_Omen_Born_shiny>{PET_nameDef}, a newborn {KIND}, came out shining in colors none of its kind has, and the colony is calling it a sign.</CC_Omen_Born_shiny>
+  <CC_Omen_Born_keptday>{PET_nameDef}, a newborn {KIND}, was born on {DAY}, a day the colony keeps, and the colony is calling it a sign.</CC_Omen_Born_keptday>
+  <CC_Omen_NamedBy>{PAWN_nameDef} named it.</CC_Omen_NamedBy>
+  <CC_Omen_Cause_eclipse>{PET_nameDef}, born under the eclipse</CC_Omen_Cause_eclipse>
+  <CC_Omen_Cause_aurora>{PET_nameDef}, born under the aurora</CC_Omen_Cause_aurora>
+  <CC_Omen_Cause_shiny>{PET_nameDef}, born shining</CC_Omen_Cause_shiny>
+  <CC_Omen_Cause_keptday>{PET_nameDef}, born on {DAY}</CC_Omen_Cause_keptday>
+  <CC_Omen_Chronicle_eclipse>{PET_nameDef}, a newborn {KIND}, was born under the eclipse: an omen, the colony says.</CC_Omen_Chronicle_eclipse>
+  <CC_Omen_Chronicle_aurora>{PET_nameDef}, a newborn {KIND}, was born under the aurora: an omen, the colony says.</CC_Omen_Chronicle_aurora>
+  <CC_Omen_Chronicle_shiny>{PET_nameDef}, a newborn {KIND}, was born shining: an omen, the colony says.</CC_Omen_Chronicle_shiny>
+  <CC_Omen_Chronicle_keptday>{PET_nameDef}, a newborn {KIND}, was born on {DAY}: an omen, the colony says.</CC_Omen_Chronicle_keptday>
+  <CC_Omen_CauseDied_eclipse>{NAME}, born under the eclipse, died</CC_Omen_CauseDied_eclipse>
+  <CC_Omen_CauseDied_aurora>{NAME}, born under the aurora, died</CC_Omen_CauseDied_aurora>
+  <CC_Omen_CauseDied_shiny>{NAME}, born shining, died</CC_Omen_CauseDied_shiny>
+  <CC_Omen_CauseDied_keptday>{NAME}, born on {DAY}, died</CC_Omen_CauseDied_keptday>
+  <CC_Omen_Died_eclipse>{NAME}, the {KIND} born under the eclipse, is dead. Nobody likes what it means.</CC_Omen_Died_eclipse>
+  <CC_Omen_Died_aurora>{NAME}, the {KIND} born under the aurora, is dead. Nobody likes what it means.</CC_Omen_Died_aurora>
+  <CC_Omen_Died_shiny>{NAME}, the shining {KIND}, is dead. Nobody likes what it means.</CC_Omen_Died_shiny>
+  <CC_Omen_Died_keptday>{NAME}, the {KIND} born on {DAY}, is dead. Nobody likes what it means.</CC_Omen_Died_keptday>
+  <CC_Omen_Chronicle_Died>{NAME}, the {KIND} born under a sign, died: a bad omen, the colony says.</CC_Omen_Chronicle_Died>
+  <CC_Omen_Thrives_Label>{PET_nameDef} thrives</CC_Omen_Thrives_Label>
+  <CC_Omen_Thrives_Desc_eclipse>{PET_nameDef}, born under the eclipse, is doing well, and things go right while it does.</CC_Omen_Thrives_Desc_eclipse>
+  <CC_Omen_Thrives_Desc_aurora>{PET_nameDef}, born under the aurora, is doing well, and things go right while it does.</CC_Omen_Thrives_Desc_aurora>
+  <CC_Omen_Thrives_Desc_shiny>{PET_nameDef}, born shining, is doing well, and things go right while it does.</CC_Omen_Thrives_Desc_shiny>
+  <CC_Omen_Thrives_Desc_keptday>{PET_nameDef}, born on {DAY}, is doing well, and things go right while it does.</CC_Omen_Thrives_Desc_keptday>
+
+  <!-- ===================== Sacred animals (Animals/SacredAnimals.cs) ===================== -->
+  <CC_Sacred_Cause_Fell>a sacred {KIND} fell on our land</CC_Sacred_Cause_Fell>
+  <CC_Sacred_Fell>On the colony's land lies {PET_indefinite}, dead, of a kind the faith holds sacred, and those who hold it so are grieving: {WHO}.</CC_Sacred_Fell>
+
+</LanguageData>
