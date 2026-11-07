@@ -4,6 +4,12 @@ Read this first; it is the whole state. CLAUDE.md has the binding rules and the 
 from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the player's words. The sections under
 "Older history" at the bottom are kept for reference only.
 
+How to run work (the player, 7 November 2026: "you decide when to do simultanious and when one after another"):
+pieces in unrelated areas run side by side in worktrees, three at most (the container has 4 cores, and builds and the
+test suite slow down when several run at once); pieces in the same area, or that should build on each other, run one
+after another, the later one starting from the merged earlier one. The player's bug reports are fixed in the main
+tree at once, alongside whatever runs. Each piece is merged as its own release, checks after every merge.
+
 ## State (5 November 2026)
 
 - 0.145.0, the right-click's things, done by themselves (7 November 2026, the player's request: "i'm noticing that i'm not really
