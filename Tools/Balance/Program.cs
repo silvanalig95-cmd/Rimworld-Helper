@@ -11,6 +11,9 @@
 //   dotnet run -c Release --project Tools/Balance -- --scenes [repo root] [--runs N] [--colonists N] [--gap HOURS] [--week N]
 // What reaches the player in a day, the old way and by the teller with the colony's pace (Telling.cs, printed):
 //   dotnet run -c Release --project Tools/Balance -- --tell [repo root] [--runs N] [--colonists N]
+// Hurts from everyday life by source, the fights Rimfolk starts and what they add to strain, before and after harm parts
+// 2 and 3 (HarmSim.cs, printed, nothing written):
+//   dotnet run -c Release --project Tools/Balance -- --harm [--runs N] [--seed S]
 
 using System.Globalization;
 using System.Text.Json;
@@ -37,6 +40,11 @@ if (args.Contains("--tell"))
 if (args.Contains("--scenes"))
 {
     ScenesSim.Run(args);
+    return;
+}
+if (args.Contains("--harm"))
+{
+    HarmSim.Run(args);
     return;
 }
 

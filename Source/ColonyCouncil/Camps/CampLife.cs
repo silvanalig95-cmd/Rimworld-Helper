@@ -160,6 +160,9 @@ namespace ColonyCouncil
             if (Ends()) return;
             CheckTension();
             if (!Settled) return;
+            // A quarrel come to blows at their fire, and the brawl watched until it's over (Harm/CampBrawls.cs).
+            BrawlHour();
+            if (!Settled) return;
             if (phase == CampPhase.Living && lastEventDay != day && GenLocalDate.HourOfDay(map) >= eventHour)
             {
                 lastEventDay = day;
@@ -1168,7 +1171,7 @@ namespace ColonyCouncil
             string text = ending == "time" ? FarewellText() ?? Text(key) : Text(key);
             if (final && ending == "fight") text = Text("CC_Camp_End_fightOver");
             if (joined.Count > 0 && ending != "fight") text += "\n\n" + "CC_Camp_Stayed".Translate(TextUtil.JoinAnd(joined.Select(p => p.LabelShort).ToList())).Resolve();
-            bool bad = ending == "harmed" || ending == "arrest" || ending == "fight" || ending == "fallout" || ending == "forced";
+            bool bad = ending == "harmed" || ending == "arrest" || ending == "fight" || ending == "fallout" || ending == "forced" || ending == "brawl";
             Tell(Text("CC_Camp_EndTitle"), text, bad ? LetterDefOf.NegativeEvent : LetterDefOf.NeutralEvent, true, leader);
             try
             {
@@ -1190,8 +1193,9 @@ namespace ColonyCouncil
             var comp = CouncilGameComponent.Instance;
             var colonists = IncidentWorker_Happening.Colonists(map);
             // apart: the camp has gone; the friendship was made face to face at their fire (Visited, Visitors need them together).
-            bool peaceful = ending == "time" || ending == "asked" || ending == "weather" || ending == "raid" || ending == "hunger" || ending == "crowded" || ending == "moved" || ending == "declined";
-            string outcome = peaceful ? "left" : ending == "forced" ? "forced" : ending == "fight" ? "fight" : ending == "fallout" ? "fallout" : "fled";
+            bool peaceful = ending == "time" || ending == "asked" || ending == "weather" || ending == "raid" || ending == "hunger" || ending == "crowded" || ending == "moved" || ending == "declined"
+                            || ending == "brawlTheirs";
+            string outcome = peaceful ? "left" : ending == "forced" ? "forced" : ending == "fight" ? "fight" : ending == "fallout" || ending == "brawl" ? "fallout" : "fled";
             var them = members.Where(m => m != null && !m.Dead && !joined.Contains(m)).ToList();
             Pawn friend = null, friendOf = null, foe = null, foeOf = null;
             float best = 14f;

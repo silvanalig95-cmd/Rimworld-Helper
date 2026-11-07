@@ -10,9 +10,9 @@ namespace ColonyCouncil
     // ===================== The challenger =====================
 
     /// <summary>
-    /// A travelling champion challenges the colony's best at something: a shooting match at targets, wrestling (no
-    /// weapons), crafting, cooking, art, a debate, handling animals. The colony may bet silver on its champion. Nobody
-    /// gets hurt: it's a contest, not a fight.
+    /// A travelling champion challenges the colony's best at something: a shooting match at targets, a bout of fighting,
+    /// crafting, cooking, art, a debate, handling animals. The colony may bet silver on its champion. A bout is fought on
+    /// the map by the sparring rule, and now and then a blow lands for real (Harm/ChampionBouts.cs); the rest hurt nobody.
     /// </summary>
     public class HappeningWorker_Champion : IncidentWorker_Happening
     {
@@ -95,6 +95,9 @@ namespace ColonyCouncil
         public static bool Hour(Visit v, CouncilGameComponent comp, int now)
         {
             if (v.done) return false;
+            // A bout under way: its end decides it (Harm/ChampionBouts.cs).
+            if (ChampionBouts.Live(v)) return true;
+            v.bout = null;
             if (now < v.due) return true;
             var a = v.a;
             var x = v.x;
@@ -116,7 +119,7 @@ namespace ColonyCouncil
                 {
                     if (!v.done) Contest(v, comp);
                 }, 8f, 0f))
-                return false;
+                return ChampionBouts.Live(v);
             // Still waiting for the two to meet; past the challenger's stay and the hours after it, it's off.
             if (now > v.until + GenDate.TicksPerHour * 8)
             {
@@ -134,18 +137,42 @@ namespace ColonyCouncil
             var a = v.a;
             var x = v.x;
             if (a == null || x == null || a.Dead || x.Dead || v.skill == null) return;
+            // Facing a challenger in front of everyone goes against a timid champion's nature (Diplomacy/Nature.cs).
+            string what = ChampionBouts.On && ChampionBouts.IsBout(v.skill) ? ChampionBouts.FormWord(x.Faction) : new HappeningContext { skill = v.skill, contest = true }.SkillText;
+            using (Causes.Push("CC_Cause_Challenge".Translate(what).Resolve()))
+                Nature.Felt(a, NatureAct.AcceptedChallenge, x.Faction, x.LabelShort);
+            // A fighting challenge is a bout on the map; its end decides the contest (Harm/ChampionBouts.cs).
+            if (ChampionBouts.Begin(v, comp)) return;
+            Decide(v, comp, SkillWins(a, x, v.skill), null);
+        }
+
+        /// <summary>The better one usually wins: by the two's levels at the skill, never surely.</summary>
+        public static bool SkillWins(Pawn a, Pawn x, SkillDef skill)
+        {
+            int al = a?.skills?.GetSkill(skill)?.Level ?? 0;
+            int xl = x?.skills?.GetSkill(skill)?.Level ?? 0;
+            return Rand.Chance(Mathf.Clamp(0.5f + (al - xl) * 0.07f, 0.1f, 0.9f));
+        }
+
+        /// <summary>The contest decided: won or lost, the stake, the letter. <paramref name="bout"/>: the champion's bout it was, if it was one.</summary>
+        public static void Decide(Visit v, CouncilGameComponent comp, bool won, OutsiderBout bout)
+        {
+            var a = v.a;
+            var x = v.x;
+            if (a == null || x == null || a.Dead || x.Dead || v.skill == null) return;
+            // together: decided once the two met for it (Contest, through Together.When), or at the bout's end at the ring.
             v.done = true;
-            int al = a.skills.GetSkill(v.skill)?.Level ?? 0;
-            int xl = x.skills?.GetSkill(v.skill)?.Level ?? 0;
-            bool won = Rand.Chance(Mathf.Clamp(0.5f + (al - xl) * 0.07f, 0.1f, 0.9f));
             var ctx = new HappeningContext { incident = v.incident, map = v.map, a = a, stranger = x, skill = v.skill, count = v.stake, contest = true };
-            string what = ctx.SkillText;
+            // A bout is named as the challenger's people fight it (wrestling, staves, boxing, the baton).
+            string what = bout != null ? ChampionBouts.FormWord(x.Faction) : ctx.SkillText;
             var ext = v.Ext;
             using var _cause = Causes.Push("CC_Cause_Challenge".Translate(what).Resolve());
-            // Facing a challenger in front of everyone goes against a timid champion's nature (Diplomacy/Nature.cs).
-            Nature.Felt(a, NatureAct.AcceptedChallenge, x.Faction, x.LabelShort);
-            Arrivals.Say(a, (won ? "CC_Evt_Contest_Won" : "CC_Evt_Contest_Lost").Translate().Resolve());
-            Arrivals.Say(x, (won ? "CC_Evt_Contest_Lost" : "CC_Evt_Contest_Won").Translate().Resolve());
+            // A bout's winner and loser have had their say at the ring (Outsiders.SparOver).
+            if (bout == null)
+            {
+                Arrivals.Say(a, (won ? "CC_Evt_Contest_Won" : "CC_Evt_Contest_Lost").Translate().Resolve());
+                Arrivals.Say(x, (won ? "CC_Evt_Contest_Lost" : "CC_Evt_Contest_Won").Translate().Resolve());
+            }
             if (won)
             {
                 CouncilGameComponent.GiveThought(a, CouncilDefOf.Council_Evt_WonChallenge);
@@ -169,6 +196,8 @@ namespace ColonyCouncil
             if (Rand.Bool) key += "B";
             string text = key
                 .Translate(a.Named("A"), x.Named("X"), what, v.stake).Resolve();
+            // A real blow in the bout is in its letter too.
+            if (bout?.hurt != null) text += " " + TextVariants.Vary("CC_HarmTwo_ChampionBlow").Translate(bout.hurt.Named("HURT"), (bout.hurt == a ? x : a).Named("OTHER")).Resolve();
             Tell.Letter(NewsKind.World, Importance.Notable, null, (won ? "CC_Evt_ContestWonTitle" : "CC_Evt_ContestLostTitle").Translate(a.Named("A")).Resolve(), text,
                 won ? LetterDefOf.PositiveEvent : LetterDefOf.NeutralEvent, new LookTargets(a));
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.World, text, a));
@@ -189,6 +218,9 @@ namespace ColonyCouncil
             if (ctx?.a == null || ctx.stranger == null) return;
             sheet.Play("CC_Impact_Contest".Translate(ctx.a.LabelShort, ctx.stranger.LabelShort, ctx.skill?.label ?? "").Resolve(), "CC_Impact_ContestBrief".Translate().Resolve());
             if (stake && ctx.count > 0) sheet.Add(ImpactKind.Goods, 0, "CC_Impact_Stake".Translate(ctx.count).Resolve(), "CC_Impact_StakeBrief".Translate(ctx.count).Resolve(), "stake");
+            // A bout of fighting can land a real blow (Harm/ChampionBouts.cs).
+            if (ChampionBouts.On && ChampionBouts.IsBout(ctx.skill))
+                sheet.Add(ImpactKind.Health, -1, "CC_Impact_ChampionBout".Translate(ctx.a.LabelShort).Resolve(), "CC_Impact_ChampionBoutBrief".Translate().Resolve(), "championbout");
             // A timid champion: facing the challenger goes against their nature (Diplomacy/Nature.cs).
             Nature.Impact(sheet, ctx.a, NatureAct.AcceptedChallenge, "CC_Impact_NatureAccept", "CC_Impact_NatureAcceptBrief", ctx.faction, ctx.stranger.LabelShort);
         }

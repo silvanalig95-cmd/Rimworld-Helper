@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Harm, parts 2 and 3 (Source/ColonyCouncil/Harm/): said over a head, one short sentence each. Lines tagged with an age
+    ([tribal], [medieval], [industrial], [spacer], [lowtech]) only come in a colony of that age; lines tagged with what
+    happened ([colony], [theirs], [plague], [famine], [form:tribal]...) come for that and nothing else.
+  -->
+
+  <!-- ===================== A camp's quarrel that becomes a brawl (CampBrawls.cs) ===================== -->
+
+  <!-- One of the camp, to the one they come to blows with: [colony] one of the colony's, [theirs] one of their own. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_CampQuarrel</defName>
+    <lines>
+      <plain>
+        <li>Say that again, {OTHER_nameDef}, I dare you.</li>
+        <li>I've had enough of your mouth tonight.</li>
+        <li>That's the last time you talk to me like that.</li>
+        <li>[colony] Your land or not, you'll take that back.</li>
+        <li>[colony] We came here in peace and you know it.</li>
+        <li>[colony] Keep your opinions on your own side of the fire.</li>
+        <li>[theirs] You've shamed us in front of these people.</li>
+        <li>[theirs] Not another word about my family, {OTHER_nameDef}.</li>
+        <li>[theirs] You'd have us run from them, would you?</li>
+      </plain>
+      <blunt><li>Right, that's it.</li></blunt>
+      <cold><li>You've been asking for this all evening.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Someone else at the fire, wading into the brawl. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_CampBrawlJoin</defName>
+    <lines>
+      <plain>
+        <li>Leave off, or I'll make you.</li>
+        <li>Not while I'm standing here.</li>
+        <li>You want a fight, you've got one.</li>
+        <li>Get your hands off them.</li>
+        <li>Two can play at that.</li>
+        <li>Enough, the lot of you.</li>
+      </plain>
+      <blunt><li>Fine, then.</li></blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== The champion's bout (ChampionBouts.cs) ===================== -->
+
+  <!-- The challenger to the colony's champion as the bout begins, by their people's ways. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_ChampionBegin</defName>
+    <lines>
+      <plain>
+        <li>Let's see what you've got, {OTHER_nameDef}.</li>
+        <li>Fair and clean, and the better one wins.</li>
+        <li>I've come a long way for this.</li>
+        <li>[form:tribal] Hands and sticks, as my people do it.</li>
+        <li>[form:medieval] Staff or blunted blade, your choice.</li>
+        <li>[form:industrial] Gloves up, and no low blows.</li>
+        <li>[form:spacer] Batons on exhibition charge, and nothing more.</li>
+      </plain>
+      <cheerful><li>This will be fun, I promise.</li></cheerful>
+      <cold><li>Try not to embarrass your people.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The challenger, whose blow landed for real on the colony's champion: sorry. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_ChampionSorry</defName>
+    <lines>
+      <plain>
+        <li>That one got away from me, I'm sorry.</li>
+        <li>I didn't mean it to land like that.</li>
+        <li>Let me help you up, that was my fault.</li>
+        <li>Forgive me, I meant to pull it.</li>
+        <li>Get that seen to, and I'm sorry.</li>
+        <li>That wasn't sport, and I know it.</li>
+      </plain>
+      <warm><li>Easy now, sit a moment.</li></warm>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The challenger, a hot temper, whose blow landed for real: a sneer. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_ChampionSneer</defName>
+    <lines>
+      <plain>
+        <li>You should have kept your guard up.</li>
+        <li>Is that all your colony has?</li>
+        <li>That's what a real bout feels like.</li>
+        <li>Next time, duck.</li>
+        <li>Your champion bruises easily.</li>
+        <li>I've hit harder at home.</li>
+      </plain>
+      <cold><li>Don't challenge what you can't take.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The challenger, who took the real blow from the colony's champion. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_ChampionTook</defName>
+    <lines>
+      <plain>
+        <li>A fair blow, I'll grant you.</li>
+        <li>You hit harder than you look.</li>
+        <li>I'll feel that one on the road.</li>
+        <li>Well struck, {OTHER_nameDef}.</li>
+        <li>I walked right into that.</li>
+        <li>That one I'll remember.</li>
+      </plain>
+      <cold><li>Lucky, that's all.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Hunts that can bite back (HuntsBite.cs) ===================== -->
+
+  <!-- The hunter, as the game turns on them. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GameTurns</defName>
+    <lines>
+      <plain>
+        <li>It's turning, it's coming at me.</li>
+        <li>That one isn't running, it's charging.</li>
+        <li>Wrong one to wound, get back.</li>
+        <li>It's had enough of running.</li>
+        <li>[lowtech] Too close, far too close.</li>
+        <li>[lowtech] My spear's in it and it's still coming.</li>
+        <li>[industrial] It's still up, it's coming for me.</li>
+        <li>[spacer] It's charging, put it down.</li>
+      </plain>
+      <blunt><li>Here it comes.</li></blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Sickness brought home (SickHome.cs) ===================== -->
+
+  <!-- The one taken ill, a few days home from a sick town. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SickHome</defName>
+    <lines>
+      <plain>
+        <li>I don't feel right, not right at all.</li>
+        <li>I think I brought something home with me.</li>
+        <li>My head's pounding and I'm shivering.</li>
+        <li>[plague] Half that town was coughing like this.</li>
+        <li>[plague] I knew we shouldn't have stayed there.</li>
+        <li>[famine] It was the water there, I'm sure of it.</li>
+        <li>[famine] My stomach's been wrong since that town.</li>
+      </plain>
+      <gloomy><li>So it followed us home.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== A rival's sabotage, found out (Sabotage.cs) ===================== -->
+
+  <!-- A witness, to the rival they saw at the other's bench. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SabotageSeen</defName>
+    <lines>
+      <plain>
+        <li>I saw that, {OTHER_nameDef}.</li>
+        <li>What are you doing at that bench?</li>
+        <li>That isn't your work to touch.</li>
+        <li>I know what you just did.</li>
+        <li>Step away from there, {OTHER_nameDef}.</li>
+        <li>You'll answer for that.</li>
+      </plain>
+      <blunt><li>I saw you.</li></blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The witness, telling the one whose work was spoiled ({ABOUT} the rival). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SabotageTold</defName>
+    <lines>
+      <plain>
+        <li>It was {ABOUT_nameDef} at your bench, I saw it.</li>
+        <li>You should know {ABOUT_nameDef} was at your work today.</li>
+        <li>I saw {ABOUT_nameDef} at your bench, and it wasn't to help.</li>
+        <li>{ABOUT_nameDef} did that to your work, I watched it.</li>
+        <li>Ask {ABOUT_nameDef} about your bench.</li>
+        <li>I'm sorry, but it was {ABOUT_nameDef}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Someone in company with the one whose work was spoiled, passing on what's being said. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SabotageWord</defName>
+    <lines>
+      <plain>
+        <li>Word is {ABOUT_nameDef} was at your bench.</li>
+        <li>People are saying it was {ABOUT_nameDef} at your work.</li>
+        <li>You didn't hear it from me, but it was {ABOUT_nameDef}.</li>
+        <li>Everyone knows who spoiled your work, it was {ABOUT_nameDef}.</li>
+        <li>Someone saw {ABOUT_nameDef} near your bench, they say.</li>
+        <li>I'd have a word with {ABOUT_nameDef} if I were you.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The one whose work was spoiled, to the rival, having it out ([form:...] what was done: a charm taken, a tool
+       broken, a machine jammed, a program tampered with). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SabotageConfront</defName>
+    <lines>
+      <plain>
+        <li>You spoiled my work, {OTHER_nameDef}.</li>
+        <li>I know it was you at my bench.</li>
+        <li>Touch my work again and see what happens.</li>
+        <li>You think I wouldn't find out?</li>
+        <li>That was low, even for you.</li>
+        <li>[form:tribal] You took my charm, and you'll give it back.</li>
+        <li>[form:medieval] You broke my tools, you coward.</li>
+        <li>[form:industrial] You jammed my machine, didn't you?</li>
+        <li>[form:spacer] You were in my bench's program.</li>
+      </plain>
+      <cold><li>We settle this now.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Hustings that come to blows (HustingsBrawls.cs) ===================== -->
+
+  <!-- A supporter of the speaker, answering a rival's heckle. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HustingsShove</defName>
+    <lines>
+      <plain>
+        <li>Say that again, {OTHER_nameDef}.</li>
+        <li>One more word out of you and you'll regret it.</li>
+        <li>Let them speak, or I'll make you.</li>
+        <li>You've been looking for this for months.</li>
+        <li>That's enough heckling for one night.</li>
+        <li>Outside, {OTHER_nameDef}, now.</li>
+      </plain>
+      <blunt><li>Shut up, {OTHER_nameDef}.</li></blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Whoever chairs the hustings, once the fight is over. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HustingsOrder</defName>
+    <lines>
+      <plain>
+        <li>Order, everyone, order.</li>
+        <li>That's enough, we'll hear the rest in peace.</li>
+        <li>Sit down, both of you, and let us go on.</li>
+        <li>This is a hustings, not a tavern.</li>
+        <li>[tribal] Back from the fire, both of you, and hold your tongues.</li>
+        <li>[medieval] Order in the hall.</li>
+        <li>[industrial] This meeting will come to order.</li>
+        <li>[spacer] The assembly will come to order.</li>
+      </plain>
+      <gloomy><li>Every election, something like this.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

@@ -744,6 +744,8 @@ namespace ColonyCouncil
             if (e == null || lord == null || !e.gathering) return;
             var here = Here(e, lord);
             if (here.Count == 0) return;
+            // A heckle come to blows: the speeches wait round it, then the chair calls for order (Harm/HustingsBrawls.cs).
+            if (BrawlPause(e, here)) return;
             float elapsed = Elapsed(lord);
             if (!e.opened && !Gathered(e, here, elapsed)) return;
             if (!e.opened)
@@ -823,7 +825,10 @@ namespace ColonyCouncil
             return s;
         }
 
-        /// <summary>Someone answers a speech: a supporter cheers a good one, a rival's supporter heckles a poor one (never anything that starts a fight).</summary>
+        /// <summary>
+        /// Someone answers a speech: a supporter cheers a good one, a rival's supporter heckles a poor one. A heckle with a
+        /// rival of the heckler's among the speaker's supporters may come to blows (Harm/HustingsBrawls.cs).
+        /// </summary>
         private void React(Election e, ElectionCampaigner rec, List<Pawn> here)
         {
             // together: a cheer or a heckle from someone standing at the hustings.
@@ -850,6 +855,7 @@ namespace ColonyCouncil
                 : others.RandomElementWithFallback();
             if (who == null) return;
             Say(who, cheer ? "Rimfolk_Pool_HustingsCheer" : "Rimfolk_Pool_HustingsHeckle", rec.pawn, race.office);
+            if (!cheer) HeckleTurns(e, race, rec.pawn, who, fans, here);
         }
 
         private void HustingsOver(Election e, bool early)

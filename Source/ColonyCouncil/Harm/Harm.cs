@@ -86,6 +86,21 @@ namespace ColonyCouncil
                 HarmBook.Instance?.Last(p) ?? HarmMath.Never, now, c);
         }
 
+        /// <summary>
+        /// The cap for someone whose own attack brings the hurt about (a hunter's shot at game that can turn,
+        /// Harm/HuntsBite.cs): that shot in the last hour doesn't count as already fighting; drafted, a fight or a rage, a
+        /// melee threat or a hurt in the last hour still do.
+        /// </summary>
+        public static bool MayAtOwnAttack(Pawn p, HurtClass c = HurtClass.Injury)
+        {
+            if (p?.health?.hediffSet == null || p.Dead || p.RaceProps == null || !p.RaceProps.Humanlike) return false;
+            int now = Now;
+            var stage = p.DevelopmentalStage;
+            bool fighting = Fighting(p, now, false);
+            return HarmMath.Bar(Scale, stage.Baby(), stage.Juvenile() && !stage.Baby(), p.Downed, Sickbed(p), Pregnant(p), fighting,
+                HarmBook.Instance?.Last(p) ?? HarmMath.Never, now, c) == HurtBar.None;
+        }
+
         /// <summary>Days since their last Rimfolk-made hurt (a large number when there was none).</summary>
         public static float DaysSince(Pawn p)
         {
@@ -135,18 +150,21 @@ namespace ColonyCouncil
         }
 
         /// <summary>Already fighting: drafted, in a fight or a rage, at an attack, or hurt or attacking in the last hour.</summary>
-        public static bool Fighting(Pawn p, int now)
+        public static bool Fighting(Pawn p, int now) => Fighting(p, now, true);
+
+        /// <summary>The same; without <paramref name="ownAttack"/>, their own attack in the last hour (a hunter's shot) left out.</summary>
+        private static bool Fighting(Pawn p, int now, bool ownAttack)
         {
             if (p.Drafted) return true;
             var ms = p.MentalStateDef;
             if (ms != null && (ms == MentalStateDefOf.SocialFighting || ms.IsAggro)) return true;
             var d = p.CurJobDef;
-            if (d == JobDefOf.AttackMelee || d == JobDefOf.AttackStatic) return true;
+            if (d == JobDefOf.AttackMelee || ownAttack && d == JobDefOf.AttackStatic) return true;
             var mind = p.mindState;
             if (mind == null) return false;
             if (mind.meleeThreat != null) return true;
             if (mind.lastHarmTick > 0 && now - mind.lastHarmTick < HarmMath.FreshHarmTicks) return true;
-            return mind.lastAttackTargetTick > 0 && now - mind.lastAttackTargetTick < HarmMath.FreshHarmTicks;
+            return ownAttack && mind.lastAttackTargetTick > 0 && now - mind.lastAttackTargetTick < HarmMath.FreshHarmTicks;
         }
 
         // ---------------- Wounds ----------------
@@ -332,8 +350,10 @@ namespace ColonyCouncil
 
     /// <summary>
     /// The harm review's saved part: each colonist's last Rimfolk-made hurt (by thingIDNumber), for the shared cap, kept
-    /// only for three days; the evening each home last drilled. The per-colonist hour of the work hurts and the evening's
-    /// drill run from here (WorkHurts.cs, DrillBouts.cs).
+    /// only for three days; the evening each home last drilled; the hunts' game that can turn while it's remembered
+    /// (HuntsBite.cs, six days); travellers' stays at sick towns and the sickness they carry home (SickHome.cs, while the
+    /// road home lasts and until it shows). The per-colonist hour of the work hurts, the evening's drill, the sick towns'
+    /// look and a rival's sabotage run from here (WorkHurts.cs, DrillBouts.cs, SickHome.cs, Sabotage.cs).
     /// </summary>
     public class HarmBook : GameComponent
     {
@@ -341,7 +361,11 @@ namespace ColonyCouncil
         private Dictionary<int, int> lastHurt = new Dictionary<int, int>();
         /// <summary>A home map's uniqueID: the game day its last evening drill was called.</summary>
         private Dictionary<int, int> drillDay = new Dictionary<int, int>();
-        private List<int> tmpKeys, tmpValues, tmpKeys2, tmpValues2;
+        /// <summary>An animal's thingIDNumber: the tick a hunt marked it as game that can turn (HuntsBite.cs), pruned past six days.</summary>
+        private Dictionary<int, int> turning = new Dictionary<int, int>();
+        /// <summary>Travellers' stays at sick towns, and the sickness one carries home until it shows (SickHome.cs).</summary>
+        public List<SickStay> sick = new List<SickStay>();
+        private List<int> tmpKeys, tmpValues, tmpKeys2, tmpValues2, tmpKeys3, tmpValues3;
 
         private static HarmBook cached;
         private static Game cachedGame;
@@ -372,6 +396,7 @@ namespace ColonyCouncil
             cachedGame = Current.Game;
             WorkHurts.Reset();
             DrillBouts.Reset();
+            Sabotage.Reset();
         }
 
         public int Last(Pawn p) => p != null && lastHurt.TryGetValue(p.thingIDNumber, out int t) ? t : HarmMath.Never;
@@ -389,6 +414,21 @@ namespace ColonyCouncil
             if (map != null) drillDay[map.uniqueID] = day;
         }
 
+        /// <summary>Any of the hunts' game that can turn is remembered (a quick look for the game's damage hooks).</summary>
+        public bool AnyTurning => turning.Count > 0;
+
+        public bool IsTurning(Pawn a) => a != null && turning.TryGetValue(a.thingIDNumber, out int t) && HarmTwoMath.TurningKept(t, Find.TickManager.TicksGame);
+
+        public void Turning(Pawn a, int now)
+        {
+            if (a != null) turning[a.thingIDNumber] = now;
+        }
+
+        public void NotTurning(Pawn a)
+        {
+            if (a != null) turning.Remove(a.thingIDNumber);
+        }
+
         public override void GameComponentTick()
         {
             int now = Find.TickManager.TicksGame;
@@ -402,6 +442,9 @@ namespace ColonyCouncil
                 if (slice == 0)
                 {
                     DrillBouts.Hourly(this, now);
+                    // Sickness carried home from a sick town, and a rival's sabotage (harm, parts 2 and 3).
+                    SickHome.Hourly(this, now);
+                    Sabotage.Hourly(this, now);
                     if (Sched.FirstHourOfDay(now)) Prune(now);
                 }
                 WorkHurts.Slice(slice, now);
@@ -417,6 +460,8 @@ namespace ColonyCouncil
             foreach (var k in lastHurt.Where(kv => !HarmMath.Lately(kv.Value, now)).Select(kv => kv.Key).ToList()) lastHurt.Remove(k);
             var maps = new HashSet<int>(Find.Maps.Select(m => m.uniqueID));
             foreach (var k in drillDay.Keys.Where(k => !maps.Contains(k)).ToList()) drillDay.Remove(k);
+            foreach (var k in turning.Where(kv => !HarmTwoMath.TurningKept(kv.Value, now)).Select(kv => kv.Key).ToList()) turning.Remove(k);
+            SickHome.Prune(this, now);
         }
 
         public override void ExposeData()
@@ -425,10 +470,15 @@ namespace ColonyCouncil
             if (Scribe.mode == LoadSaveMode.Saving && Find.TickManager != null) Prune(Find.TickManager.TicksGame);
             Scribe_Collections.Look(ref lastHurt, "lastHurt", LookMode.Value, LookMode.Value, ref tmpKeys, ref tmpValues);
             Scribe_Collections.Look(ref drillDay, "drillDay", LookMode.Value, LookMode.Value, ref tmpKeys2, ref tmpValues2);
+            Scribe_Collections.Look(ref turning, "turning", LookMode.Value, LookMode.Value, ref tmpKeys3, ref tmpValues3);
+            Scribe_Collections.Look(ref sick, "sick", LookMode.Deep);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 lastHurt ??= new Dictionary<int, int>();
                 drillDay ??= new Dictionary<int, int>();
+                turning ??= new Dictionary<int, int>();
+                sick ??= new List<SickStay>();
+                sick.RemoveAll(x => x == null || x.pawn == null);
             }
         }
     }

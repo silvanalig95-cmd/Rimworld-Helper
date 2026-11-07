@@ -2309,6 +2309,152 @@ gives, its column, floors and cut designation for the answers that make things s
 leans on and never brings it down (`VarietyThreeMath.TreeWallDamage`), and reaches only whoever stands on its side.
 No mood on top of a hurt; no fight of their own.
 
+### Harm, parts 2 and 3: the rest of the top ten (7 November 2026)
+
+The other seven of the player's top ten, in the player's order, each on the service above (`Harm/`, the pure rules in
+`Harm/HarmTwoMath.cs`, tested in `Tools/Tests/HarmTwoTests.cs`). No setting of their own: each sits under its system's
+and "Hurts from everyday life"; nothing new on the clock (the sick towns' look and a rival's sabotage ride on
+`HarmBook`'s hour, the rest on their system's own). Saved: `HarmBook.turning` (the hunts' game that can turn, six days)
+and `HarmBook.sick` (`SickStay`: travellers' stays at sick towns and a sickness carried home), a camp's `quarrelSouredAt`,
+`brawled`, `brawlAt`, `brawlDay` and `brawlNames`, an election's `brawlRolled`, a held risk's `frayed`. The service gained
+`Harm.MayAtOwnAttack(pawn, cls)`: the cap for someone whose own attack brings the hurt about (a hunter's shot), which
+leaves their attack in the last hour out of "already fighting" (the game sets it with every shot, so the plain cap would
+never let a hunted beast turn). The pools are in `Rimfolk_HarmTwo_Lines.xml` (in `ImmersionTests.SpokenPools`), the
+words in `Rimfolk_HarmTwo.xml`, each told message in two wordings. Dev mode: Debug actions, Rimfolk, "Harm two: ..."
+(`Harm/HarmTwoDebug.cs`), each bringing one of the seven about now past its rate, never past the cap.
+
+### A camp's quarrel that becomes a brawl (2.4.1, camps)
+
+`Harm/CampBrawls.cs`, in the camp's hour (`Camp.BrawlHour`). While a camp's tension is 70 or more (the council's second
+warning), or for three days after the old quarrel with another people was answered badly (`Rimfolk_DlmC_Feud`: the
+shouting at the table's risk and keeping out of it, `DilemmaEffect_CampQuarrel`, named under the answer), the first
+evening hour at their fire (six to ten) with someone fit there rolls once a day: one in four (`CampBrawlEvening`), half
+with the colony's peacemaker at home, a frayed temper among the colony's people at the fire half again at most, times
+`Harm.Scale`; once a stay. Fit: a grown-up up and about at the fire (14 cells for theirs, 16 for the colony's), not
+peaceful, able to move and use their hands, the cap letting them fight. With one of the colony there and the deeper
+hooks on (so their people don't count a blow as an attack: `Outsiders.QuietBrawl`, a brawl in the outsiders' bout list
+whose end the camp tells), the colony's hottest temper and the one of theirs they think least of within talking range;
+otherwise two of their own. The first of theirs says it (`Rimfolk_Pool_CampQuarrel`, tagged colony or theirs), the
+game's social fight through `Harm.Fight`, then up to two more pairs from those free at the fire (`JoinPairs`), each with a
+word (`Rimfolk_Pool_CampBrawlJoin`); tension 15 more; the message names them. Watched each hour until nobody is
+fighting (three hours at most): with the colony in it, their people remember a fistfight (`KinMemory.Note` "brawled",
+6 goodwill once through `Camp.LoseGoodwill`, which stops short of hostility; the camp's ending is not also remembered as
+a stay, `Patch_FactionMemory.CampEnded`), and the camp packs up early (`Leave("brawl")`, `CC_Camp_End_brawl`, a negative
+letter). Two of their own: `brawlTheirs`, a neutral letter, nothing held against the colony. Never in danger, never a
+child. Prevent it with the tension (trade, gifts, answering their asks), the peacemaker, and by keeping hot tempers from
+their fire.
+
+### Sickness brought home (3.1.1, journeys)
+
+`Harm/SickHome.cs`, on `HarmBook`'s hour. A caravan of the colony's found stopped on another people's town counts each
+traveller's hours there while the town lies under a sickness: a plague (`kind` sickness, `Council_WS_Plague`) or a famine
+(hunger or drought: the famine, the locusts, the long drought, the blight) among the region's running world events, its
+people's own or within twenty tiles (the same reading as the town's own hardships, `TownLifeMath.HardshipKind`); never the
+herds' murrain. Two hours or more is lodging there. The first hour any of them is home, the journey has one roll:
+`HarmTwoMath.SickHome`, one in six for a night's stay (eight hours), less for a shorter one, half with medicine in the
+caravan's packs, half with industrial or spacer medicine, half again if the quarantine decree holds for those back, a
+famine half a plague; times `Harm.Scale`. If it comes up, one of them the cap lets be hurt falls ill two to four days on:
+a plague's the game's flu, or its plague one time in four; a famine's the everyday stomach bug (with the everyday
+ailments on). It shows through `Harm.Ail` (an onset held back by the cap waits three days, then passes), with a line over
+their head (`Rimfolk_Pool_SickHome`, tagged plague or famine) and a letter naming the town and what lay over it, with the
+doctor's note.
+
+### The champion's bout (2.2.1, Rimfolk's events)
+
+`Harm/ChampionBouts.cs`. A travelling champion's challenge at fighting (Melee) is a bout on the map now: the feast's
+bout (`Outsiders.ChampionBout`: the sparring rules, eight swings each or until one yields to the pain) at a clear ring
+beside the colony's champion, the colony's people nearby called round to watch, the challenger's opening word by their
+people's ways (`Rimfolk_Pool_ChampionBegin`, `form:` tagged). One bout in 25 (`ChampionBlowChance`, the sparring rule)
+lands a real blow, decided at the start under the scale and the cap for both (the spar counts it with `Harm.Note`). The
+bout's winner wins the contest (a draw is settled by skill, as before) and the stake; a real blow gets the challenger's
+word (sorry, a sneer from a hot temper, a fair blow granted when it fell on them) and a line in the contest's letter
+(`CC_HarmTwo_ChampionBlow`). The answer's sheet names it (`CC_Impact_ChampionBout`). The bout is named as the
+challenger's people fight it (`HarmTwoMath.BoutForm`: wrestling and stick-fighting, staves and blunted swords, boxing, a
+stun-baton bout). Shooting at targets, crafts, cooking, art and debate are as they were; with the outsiders' practice
+bouts off or hurts at nothing, a fighting challenge is decided on the spot, unhurt, as before.
+
+### Hunts that can bite back (2.1.1, answers and the calendar)
+
+`Harm/HuntsBite.cs`, with answers on the map and the deeper hooks. An answer's hunt (`DilemmaEffect_Hunt`), a hunting
+party (`DilemmaEffect_HuntParty`) and the calendar's hunting day may take one head (at most) of game that can turn on its
+hunters (`HuntsBite.MayTurn`): wild, seen, up and about, a revenge chance above the safe game's (0.1, by its kind and the
+storyteller), never a predator, an insect, a dryad or anything bigger than a muffalo or an elk, nobody's, nobody's bond
+and not the faith's, and alone (no packmate within the game's own 24 cells, so a turn is that one animal and never a
+herd). The safe game comes first as before; the hunting season decree's morning hunt keeps to safe game
+(`HuntsBite.SafeOnly`). Marked, it's remembered six days (`HarmBook.turning`). The game's own revenge chance for it
+(`Patch_HuntTurnChance`, a postfix on `PawnUtility.GetManhunterOnDamageChance(Pawn, Thing, float)`, with its distance,
+stealth and the hunter's role) runs times `Harm.Scale`, and is nothing for a hunter the cap holds back
+(`Harm.MayAtOwnAttack`); a colonist the player drafted to shoot it has the game's own chance. When it turns
+(`Patch_HuntTurned`, around `Pawn_MindState.Notify_DamageTaken`): the hunter's hurt for the cap, a word from them
+(`Rimfolk_Pool_GameTurns`), a message, and the game's own revenge and fight. Named before: the answer's and the hunting
+party's sheet (`CC_Impact_HuntTurn`), the marking's message, the hunting day's letter. A hunt under way keeps its head
+that can turn as game (`PlayHunt.Huntable`). The ages' difference is the game's own: a bow's or a spear's range brings
+the hunter closer, and its distance factor lifts the chance.
+
+### A rival's sabotage, found out (3.5.1, bonds and rivalries)
+
+`Harm/Sabotage.cs`, on `HarmBook`'s hour, with the social web and answers on the map. A bitter rivalry (the web's
+rivals at 50 or more) and one of a petty or abrasive nature (abrasive or jealous, never kind): a day's chance of one in
+30 while their work is shared (the same best craft), half with it apart, half again with the peacemaker in office, times
+`Harm.Scale`; about twice a year. The other's work is a bench: their best of crafting, art and cooking (6 or more), the
+bench of that work with the most bills. Within the day, by day, with the bench free and the other 15 cells or more away
+and no danger, the rival walks there (the job `Rimfolk_Sabotage`, a few seconds at it): a machine jammed (the game's
+breakdown, a component to mend it) in an industrial or spacer colony where the bench has one, else the bench knocked
+about (a quarter of its hit points, never below a third; the game's builders repair it). Someone of the colony within
+12 cells in sight always tells (`FoundOut`), saying so to the rival there and to the other face to face; with nobody,
+word goes round half the time, through whoever is with the other within half a day. Found out, the other goes to have
+it out (`Together.When`): the game's social fight under the cap for both, or hard words when the cap holds, the rivalry
+8 deeper either way, a message naming what and how it was found out. Not found out, the bench's state is told and
+nobody is named. The words are by what was done (`SabotageForm`): a charm taken, a tool broken, a machine jammed, a
+program tampered with.
+
+### Hustings that come to blows (1.4.1, elections)
+
+`Harm/HustingsBrawls.cs`, in the hustings (`OfficeTracker.React`). The first heckle at a candidate's speech from someone
+backing another candidate, with a rival of the heckler's among the speaker's supporters there in talking range, has
+the hustings' one roll (`brawlRolled`): one in eight, half with the peacemaker there, half under the best-behavior
+decree for the heckler, half with calm candidates (none abrasive or volatile), a frayed temper half again at most,
+times `Harm.Scale`. The supporter answers the heckle (`Rimfolk_Pool_HustingsShove`), the game's social fight under the
+cap, a message; the speeches wait round it, and once it's over whoever chairs the hustings (or the eldest there) calls
+for order (`Rimfolk_Pool_HustingsOrder`, by age: the fire, the hall, the meeting, the assembly), and the hustings go on.
+
+### Frayed tempers (3.3.1, the heart)
+
+`Harm/FrayedTempers.cs`. Worn down, a sharp word comes to blows a quarter more often; near breaking, half again (a
+beer's 1.5, `DrinkBeforeWorkMath.MaxFightFactor`, never more), leaned by `Harm.Scale` up to the usual; the more frayed of
+the two sets it. It touches only Rimfolk's own moments with a fight's own chance: a near fight and the other moments
+of `DilemmaEffect_Fight` with a chance below certainty (also when held to their play-out, `HeldRisk.frayed`), hard words
+with an outsider, a camp's quarrel and the hustings' heckle. Never the game's insults, never the break picker, no mood.
+Only the part of a fight the strain made (`HarmTwoMath.FrayedRoll`: a roll between the old chance and the leaned one)
+goes through the cap for both and is told with the strain named (`CC_HarmTwo_Frayed`); the rest is the fight it was. The
+heart's page says it in the band's own words. An answer whose fight comes with its risk is the risk's roll, not leaned.
+
+### The rates (the balance model's harm mode)
+
+`dotnet run -c Release --project Tools/Balance -- --harm` plays a colony-year (60 days, 400 runs) of each style and
+size with every source of hurts from everyday life through the shared cap, the heart played hour by hour with each hurt's
+pain and each fight's hour of combat. What a source does once it comes is the mod's arithmetic (`HarmMath`, `HarmTwoMath`,
+`HeartMath`, compiled in); how often a colony meets it is the mode's own table, each an estimate that says where it
+comes from. "Before" leaves parts 2 and 3 out, which is what 0.131.0 does (part 1's code is unchanged). Hurts the cap
+counts, per colonist-year, before and after:
+
+| | 6, well run | 6, average | 6, neglectful | 12, average |
+|---|---|---|---|---|
+| Part 1 (drills, tired hands, working through it, dangers, the land's and the work's ailments) | 0.17 | 0.27 | 0.38 | 0.27 |
+| With parts 2 and 3 | 0.26 | 0.38 | 0.50 | 0.36 |
+| The game's own beside them: a raid's wound (the heart's model) | 1.4 | 1.7 | 2.0 | 1.7 |
+
+Of the seven, a colony of six (average) meets in a year: a hunt's beast turning about 0.46 times (the game's own revenge
+chance, so the same as a player's own boar hunt), a camp's brawl with the colony 0.06 (0.11 neglectful), a sabotage come
+to blows 0.04 (0.24 with twelve, where bitter rivalries are more), the hustings' blows 0.01 to 0.03, frayed tempers'
+fights 0.005 (0.06 to 0.09 neglectful, beside 0.9 to 1.7 fights of Rimfolk's moments as before), the champion's real blow
+and a sickness brought home a few in a thousand colony-years (both need their rare road: a fighting challenge, a night at
+a sick town). Rimfolk's hurts together stay a fifth to a quarter of a raid's wounds, below a middling cook's food
+poisonings (0.3 to 1 a colonist-year), and about a third more than part 1 alone. The heart: the time strained, worn and
+near breaking, the heart's days off and the strain's mood are the same before and after to a tenth of a point in every
+style. The colony-year report (`docs/balance-report.md`'s model, 60 runs) gives the same summary to the byte on 0.131.0
+and on this tree: none of it changes a mood.
+
 ## How the systems talk to each other
 
 Each of Rimfolk's systems was built to stand on its own, and many already read each other (feelings nudge wishes,

@@ -164,6 +164,11 @@ namespace ColonyCouncil
         /// <summary>The hustings went ahead (or were let go after too many evenings put off).</summary>
         public bool hustingsDone;
         public bool hustingsHeld;
+        /// <summary>A heckle has had its chance of coming to blows (once an election's hustings, Harm/HustingsBrawls.cs).</summary>
+        public bool brawlRolled;
+        /// <summary>The two who came to blows, while the speeches wait round them; the chair has called for order.</summary>
+        [Unsaved] public Pawn brawlA, brawlB;
+        [Unsaved] public bool brawlOrdered;
         /// <summary>
         /// The hustings join the count (the colony's pace, PlayOut/Stage.cs): no evening of their own; at the count the
         /// candidates speak first, then the votes are read.
@@ -234,6 +239,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref countPutOffs, "countPutOffs");
             Scribe_Values.Look(ref hustingsDone, "hustingsDone");
             Scribe_Values.Look(ref hustingsHeld, "hustingsHeld");
+            Scribe_Values.Look(ref brawlRolled, "brawlRolled");
             Scribe_Values.Look(ref speakAtCount, "speakAtCount");
             Scribe_Values.Look(ref spot, "spot", IntVec3.Invalid);
             Scribe_Values.Look(ref venue, "venue");

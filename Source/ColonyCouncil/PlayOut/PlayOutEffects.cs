@@ -512,23 +512,66 @@ namespace ColonyCouncil
     /// <summary>
     /// The hunters are sent out: up to <see cref="count"/> wild animals on the map marked for hunting, the event's own
     /// (X) if it's an animal, else game of the kinds in <see cref="kinds"/> ("Elk|Deer"), else any good game. Never a
-    /// predator or anything likely to turn on the hunters, and only when someone can hunt with a weapon.
+    /// predator, and only when someone can hunt with a weapon. With hurts from everyday life on, one head of it may be
+    /// game that can turn on its hunters (Harm/HuntsBite.cs), named under the answer and in the marking's message.
     /// </summary>
     public class DilemmaEffect_Hunt : DilemmaEffect
     {
         public override bool ChanceEach => false;
 
+        private static bool AnyHunter(Map map) =>
+            map.mapPawns.FreeColonistsSpawned.Any(p => !p.Downed && p.workSettings != null && p.workSettings.WorkIsActive(WorkTypeDefOf.Hunting) && WorkGiver_HunterHunt.HasHuntingWeapon(p));
+
         public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
         {
             if (!PlayOuts.On || ctx?.map == null) return;
-            if (!ctx.map.mapPawns.FreeColonistsSpawned.Any(p => !p.Downed && p.workSettings != null && p.workSettings.WorkIsActive(WorkTypeDefOf.Hunting)
-                                                               && WorkGiver_HunterHunt.HasHuntingWeapon(p))) return;
+            if (!AnyHunter(ctx.map)) return;
             string what = ctx.stranger != null && ctx.stranger.RaceProps.Animal ? ctx.stranger.LabelShort : DilemmaImpact.Kinds(kinds, Math.Max(1, count));
             sheet.Play("CC_Impact_Hunt".Translate(what).Resolve(), "CC_Impact_HuntBrief".Translate(what).Resolve());
+            HuntsBite.Describe(sheet, WouldTurn(ctx.map, ctx.stranger, kinds, Math.Max(1, count)));
         }
 
         public int count = 1;
         public string kinds;
+
+        /// <summary>
+        /// The hunt's game now: the one animal the answer is about first, whatever it is; then safe game (PlayHunt.Safe: no
+        /// predator, insect or dryad, nothing thrumbo-sized or likely to turn, nothing bonded or venerated), the kinds
+        /// wanted first, then the best eating; and with hurts from everyday life on, at most one head that can turn.
+        /// </summary>
+        public static List<Pawn> Game(Map map, Pawn stranger, string kinds, int count, out Pawn turning)
+        {
+            turning = null;
+            var dm = map.designationManager;
+            var wanted = kinds.NullOrEmpty() ? null : kinds.Split('|').Select(k => k.Trim()).Where(k => k.Length > 0).ToList();
+            bool mayTurn = HuntsBite.On;
+            var result = new List<Pawn>();
+            if (stranger != null && stranger.Spawned && stranger.Map == map && stranger.RaceProps.Animal && stranger.Faction == null && !stranger.Downed && !stranger.Dead
+                && dm.DesignationOn(stranger) == null)
+                result.Add(stranger);
+            var rest = map.mapPawns.AllPawnsSpawned
+                .Where(a => a != stranger && dm.DesignationOn(a) == null && (PlayHunt.Safe(a, map) || mayTurn && HuntsBite.MayTurn(a, map)))
+                .OrderByDescending(a => wanted != null && wanted.Contains(a.def.defName))
+                .ThenByDescending(a => a.GetStatValue(StatDefOf.MeatAmount));
+            result.AddRange(HuntsBite.Pick(rest, map, Math.Max(1, count) - result.Count, mayTurn, out turning));
+            return result;
+        }
+
+        /// <summary>The head that can turn the hunt would take now, or null.</summary>
+        public static Pawn WouldTurn(Map map, Pawn stranger, string kinds, int count)
+        {
+            if (map == null || !HuntsBite.On) return null;
+            try
+            {
+                Game(map, stranger, kinds, count, out var turning);
+                return turning;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("play out hunt's game", e);
+                return null;
+            }
+        }
 
         public override void Apply(DilemmaContext ctx)
         {
@@ -537,22 +580,14 @@ namespace ColonyCouncil
             try
             {
                 var map = ctx.map;
-                if (!map.mapPawns.FreeColonistsSpawned.Any(p => !p.Downed && p.workSettings != null && p.workSettings.WorkIsActive(WorkTypeDefOf.Hunting)
-                                                               && WorkGiver_HunterHunt.HasHuntingWeapon(p))) return;
+                if (!AnyHunter(map)) return;
                 var dm = map.designationManager;
-                var wanted = kinds.NullOrEmpty() ? null : kinds.Split('|').Select(k => k.Trim()).Where(k => k.Length > 0).ToList();
-                var game = map.mapPawns.AllPawnsSpawned
-                    // Only safe game (PlayHunt.Safe: no predator, insect or dryad, nothing thrumbo-sized or likely to turn,
-                    // nothing bonded or venerated); the one animal the answer is about may be hunted whatever it is.
-                    .Where(a => dm.DesignationOn(a) == null
-                                && (a == ctx.stranger ? a.RaceProps.Animal && a.Faction == null && !a.Downed && !a.Dead : PlayHunt.Safe(a, map)))
-                    .OrderByDescending(a => a == ctx.stranger)
-                    .ThenByDescending(a => wanted != null && wanted.Contains(a.def.defName))
-                    .ThenByDescending(a => a.GetStatValue(StatDefOf.MeatAmount))
-                    .Take(Math.Max(1, count)).ToList();
+                var game = Game(map, ctx.stranger, kinds, Math.Max(1, count), out var turning);
                 if (game.Count == 0) return;
                 foreach (var a in game) dm.AddDesignation(new Designation(a, DesignationDefOf.Hunt));
-                Tell.Message(NewsKind.Land, Importance.Notable, null, "CC_Play_Hunt".Translate(TextUtil.JoinAnd(game.Select(a => a.LabelShort).ToList())).Resolve(), new LookTargets(game),
+                if (turning != null) HuntsBite.Marked(turning);
+                Tell.Message(NewsKind.Land, Importance.Notable, null,
+                    "CC_Play_Hunt".Translate(TextUtil.JoinAnd(game.Select(a => a.LabelShort).ToList())).Resolve() + HuntsBite.MarkedNote(turning), new LookTargets(game),
                     MessageTypeDefOf.NeutralEvent);
             }
             catch (Exception e)

@@ -749,6 +749,8 @@ MODEL = {
     "Ailments/AilmentTracker.cs:announced": ("colonists", 1, V, "only hediffs colonists still have"),
     "Harm/Harm.cs:lastHurt": ("colonists", 0.5, D, "the shared cap of hurts from everyday life: the last one's tick per colonist hurt in the last three days, pruned past them daily and at saving"),
     "Harm/Harm.cs:drillDay": ("fixed", 1, D, "each home's last evening drill, one per home (one in the model); maps gone dropped"),
+    "Harm/Harm.cs:turning": ("while", 1, D, "the hunts' game that can turn, one head a hunt at most, remembered six days after its marking and pruned daily"),
+    "Harm/Harm.cs:sick": ("while", 4, 400, "travellers' stays at a sick town and a sickness carried home: a caravan's people while the road home lasts (thirty days at most), then one until it shows"),
     "Ailments/AilmentTracker.cs:woundsRolled": ("colonists", 1, V, "only hediffs colonists still have"),
     "Ailments/AilmentTracker.cs:bitesRolled": ("colonists", 0.2, V, "only hediffs colonists still have"),
     "Ailments/AilmentTracker.cs:doctors": ("colonists", 0.5, D, "only hediffs colonists still have"),

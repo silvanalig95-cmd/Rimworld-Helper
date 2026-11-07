@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Harm, parts 2 and 3 (Source/ColonyCouncil/Harm/): a rival at the other's bench (Sabotage.cs). -->
+
+  <JobDef>
+    <defName>Rimfolk_Sabotage</defName>
+    <driverClass>ColonyCouncil.JobDriver_Sabotage</driverClass>
+    <reportString>tampering with a bench.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+</Defs>

@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 547; modelled: 547; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,411 KB** after a year, **2,856 KB** after two, **3,048 KB** after five.
+Saved collections found: 549; modelled: 549; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,412 KB** after a year, **2,858 KB** after two, **3,050 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -186,6 +186,7 @@ Rimfolk's part of the save, roughly: **2,411 KB** after a year, **2,856 KB** aft
 | `Building/Automations.cs:droppedKeys` | bills the player removed, forgotten after a fortnight (AutomationMath.DroppedDays) | fixed | 40 | 40 | 40 | 1.6 |
 | `Building/BuildAhead.cs:queueDefs` | with the above: what each was | fixed | 40 | 40 | 40 | 1.6 |
 | `Calendar/CalendarWatch.cs:knownCrops` | one per crop the colony has grown (crop defs) | fixed | 40 | 40 | 40 | 1.6 |
+| `Harm/Harm.cs:sick` | travellers' stays at a sick town and a sickness carried home: a caravan's people while the road home lasts (thirty days at most), then one until it shows | while | 4 | 4 | 4 | 1.6 |
 | `Diplomacy/DiplomacyBook.cs:matches` | per home: matches under way, MatchMath.MaxPlans at most, each let go at the wedding or when called off | cap | 3 | 3 | 3 | 1.5 |
 | `World/Ledger/LedgerRegion.cs:foundings` | towns being built within reach: RegionMath.MaxFoundings, the oldest first; dropped when built or gone | cap | 6 | 6 | 6 | 1.5 |
 | `Advisor/AdvisorCore.cs:wealthHistory` | 60 days of wealth | window | 60 | 60 | 60 | 1.5 |
@@ -416,6 +417,7 @@ Rimfolk's part of the save, roughly: **2,411 KB** after a year, **2,856 KB** aft
 | `Annals.cs:threatSeen` | each home's last big threat counted, one per home (one in the model); homes no longer ours dropped | fixed | 1 | 1 | 1 | 0.1 |
 | `Happenings/Happenings.cs:timers` | Rimfolk's own event timer, one per home (one home here); a home lost takes its timer with it | fixed | 1 | 1 | 1 | 0.1 |
 | `Harm/Harm.cs:drillDay` | each home's last evening drill, one per home (one in the model); maps gone dropped | fixed | 1 | 1 | 1 | 0.1 |
+| `Harm/Harm.cs:turning` | the hunts' game that can turn, one head a hunt at most, remembered six days after its marking and pruned daily | while | 1 | 1 | 1 | 0.1 |
 | `Setbacks/SetbackTracker.cs:lastGathering` | one per home map | fixed | 1 | 1 | 1 | 0.1 |
 | `Ambitions/Ambitions.cs:absentProposers` | while the letter waits | while | 2 | 2 | 2 | 0.1 |
 | `Calendar/CalendarDay.cs:kin` | per day on the calendar | fixed | 2 | 2 | 2 | 0.1 |

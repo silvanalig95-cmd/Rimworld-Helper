@@ -35,7 +35,7 @@ namespace ColonyCouncil
 
         public static string BandLabel(StrainBand b) => ("CC_Heart_Band_" + b).Translate();
 
-        public static string BandDesc(StrainBand b) => ("CC_Heart_Band_" + b + "_Desc").Translate();
+        public static string BandDesc(StrainBand b) => ("CC_Heart_Band_" + b + "_Desc").Translate() + FrayedTempers.BandNote(b);
 
         public static string SourceLabel(StrainSource s) => ("CC_Heart_Source_" + s).Translate();
 

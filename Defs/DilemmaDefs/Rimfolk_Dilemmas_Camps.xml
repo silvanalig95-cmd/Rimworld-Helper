@@ -336,6 +336,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>4</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_RivalGoodwill"><amount>-2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampQuarrel" />
         </riskEffects>
       </li>
       <li>
@@ -354,6 +355,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>8</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampQuarrel" />
         </effects>
       </li>
     </options>

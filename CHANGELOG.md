@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Hurts from the colony's life, part two
+
+*7 November 2026, version 0.132.0*
+
+- A camp's quarrel can come to blows at their fire once tensions run high. With one of yours there it is a fistfight they remember, and the camp packs up early; among themselves it costs you nothing.
+- A caravan that stayed at a town hit by plague or famine may bring a sickness home a few days later. Packed medicine, modern medicine and a quarantine decree each make it less likely.
+- A champion's challenge at Melee is now a sparring bout at a ring in the challenger's people's style, the colony watching, and one bout in 25 lands a real blow.
+- A hunt's lone beast can turn on its hunter at the game's own rate, and the answers and the hunting day name the beast beforehand. The hunting season decree keeps to safe game.
+- In a bitter rivalry a spiteful rival may spoil the other's bench, and once found out the two may fight. A heckle at the hustings can come to blows when rivals stand on opposite sides.
+- Worn-down colonists are quicker to turn a sharp word in Rimfolk's own moments into a fight, and the heart page says so. Every hurt still goes through the same cap and the Hurts from everyday life setting.
+
 ## Many colonies in play
 
 *7 November 2026, version 0.131.0*

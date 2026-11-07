@@ -392,6 +392,8 @@ namespace ColonyCouncil
         public bool done;
         public string text;
         public List<Pawn> touched = new List<Pawn>();
+        /// <summary>A champion's bout under way for a fighting challenge (Harm/ChampionBouts.cs); not saved, as bouts aren't.</summary>
+        [Unsaved] public OutsiderBout bout;
 
         public HappeningExtension Ext => incident?.GetModExtension<HappeningExtension>();
 
