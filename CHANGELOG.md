@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The animals' natures: temperaments, friendships and animals that speak
+
+*7 November 2026, version 0.148.0*
+
+- Every named or bonded animal now has a temperament, leaning by its kind (a dog loyal, a cat proud, a Pokémon by its types), shown on its card with what it did lately.
+- Each temperament shows in small things on the map: the brave one stands between its person and an attacker, the timid one bolts from the shooting, the greedy one sneaks food from the stores, the gentle one nuzzles the sick, the loyal one waits at the door, the lazy one naps by the fire, the curious one follows visitors, and more. A new setting sets how often, from never to twice as often.
+- The colony's companion animals make friends and rivals of their own, with no letters and no messages: friends sleep side by side and follow each other about, rivals hiss and chase each other off without hurting anyone.
+- A bonded animal whose person has died goes to lie on their grave, a friend of a dead animal visits its grave, and an animal sold or released knows its old handler again if they meet.
+- Animals that speak, a setting of its own (Auto, On or Off; Auto only with PokéWorld, A RimWorld of Magic or a psylink in the colony): a Psychic Pokémon to its trainer, a druid's or ranger's bonded animal, a strong psycaster's bonded animal and Vanilla Genetics Expanded's hybrids speak to their person, warn of raiders and predators, and come along to the council.
+- In a tribal colony, or for a colonist whose faith holds animals as persons, a bonded animal is a spirit animal that speaks only in their dreams.
+
 ## Animals with powers: Pokémon types, familiars, omens and sacred animals
 
 *7 November 2026, version 0.147.0*

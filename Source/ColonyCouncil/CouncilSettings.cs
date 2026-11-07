@@ -131,6 +131,14 @@ namespace ColonyCouncil
         public bool sacredAnimals = true;
         /// <summary>An animal born to the colony under a sign (an eclipse, an aurora, a day the colony keeps, a shiny Pokémon) is an omen (Animals/OmenAnimals.cs).</summary>
         public bool omenAnimals = true;
+        /// <summary>Every named or bonded animal has a temperament, on its card and in small moments on the map (Animals/AnimalTempers.cs); needs pets as companions.</summary>
+        public bool animalTempers = true;
+        /// <summary>How often the animals' temperaments show on the map, 0 to 2 (0: never, the card still says it).</summary>
+        public float animalMoments = 1f;
+        /// <summary>Friendships, rivalries and grief among the colony's animals, and an old animal that knows its handler again (Animals/AnimalBonds.cs); never a letter or a message.</summary>
+        public bool animalBonds = true;
+        /// <summary>Animals that speak (Animals/AnimalVoices.cs), a fantasy part: Auto only with PokéWorld, A RimWorld of Magic or a psylink in the colony.</summary>
+        public AnimalSpeech speakingAnimals = AnimalSpeech.Auto;
         public bool colonistMoments = true;
         /// <summary>Everyday frictions: small irritations between colonists, and with a messy or cramped home.</summary>
         public bool frictions = true;
@@ -693,6 +701,10 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref petMoments, "petMoments", true);
             Scribe_Values.Look(ref sacredAnimals, "sacredAnimals", true);
             Scribe_Values.Look(ref omenAnimals, "omenAnimals", true);
+            Scribe_Values.Look(ref animalTempers, "animalTempers", true);
+            Scribe_Values.Look(ref animalMoments, "animalMoments", 1f);
+            Scribe_Values.Look(ref animalBonds, "animalBonds", true);
+            Scribe_Values.Look(ref speakingAnimals, "speakingAnimals", AnimalSpeech.Auto);
             Scribe_Values.Look(ref colonistMoments, "colonistMoments", true);
             Scribe_Values.Look(ref frictions, "frictions", true);
             Scribe_Values.Look(ref autonomy, "autonomy", true);

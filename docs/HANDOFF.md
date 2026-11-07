@@ -12,6 +12,105 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.148.0, the animals' natures: temperaments, friendships and grief among animals, animals that speak (7 November 2026, the
+  player's picks A1, A3 and B from the brainstorm, built without a proposal round; A3 with the player's condition "do it
+  a way where i don't have any more pop ups for this appearing"). No What's new round, version or CHANGELOG yet: the
+  lead writes them when merging. DESIGN.md "The animals' natures" (after "Traits that change"; the ticking rows 187 and
+  1544, the save-size row); README "The colony's animals" three bullets (Temperaments, Friends, feuds and grief,
+  Animals that speak) and the settings paragraph; an Almanac page of its own (`Almanac_Council_AnimalNature.xml`, *the
+  animals' natures*, beside the animals' page, whose description now points to it; no keyword changed). Tests:
+  `AnimalNatureTests` ("animal natures: ", 150 checks; `Animals/AnimalNatureMath.cs` linked), `SettingsTests`' rates
+  list has the new pace, `ImmersionTests` checks the three new spoken pools. No Sched slot (the animals' hour and day,
+  and the fight sides' 250-tick look for the fight), one new Harmony patch (`Patch_AnimalNatureInspect`, a postfix on
+  `Pawn.GetInspectString`, under the deeper hooks), one saved book (`AnimalBook`, three collections, modelled).
+  - Nothing in it sends a letter or a message (a test reads the five files for `Tell`, `News.Post`, `Messages`,
+    `LetterStack`): it shows on the map, on the animal's card (one line: "Temperament: loyal · sleeps beside Pepper · at
+    odds with Whiskers", then its grief, its voice, "Lately: waited at the door for Ana"), in what someone who sees it
+    says (`Speech.Say`, the on-screen once-a-day rate) and in journals.
+  - Temperaments (`Animals/AnimalTempers.cs`): every named or bonded animal, brave, timid, greedy, gentle, proud,
+    mischievous, loyal, lazy or curious, given once from its id and its kind's lean (`AnimalNatureMath.Weights`: its
+    family by its words, canine, feline, hoofed, grazer, ursine, thrumbo, bird, bug, reptile, small, beast; predator,
+    size, trainability; a Pokémon's types) and kept. Moments, each a real thing on the map: brave stands between its
+    person and the nearest attacker (`Rimfolk_AnimalStand`, fights what comes adjacent, ends when no danger is near;
+    never smaller than 0.4) or a wild predator near them; timid bolts from shooting within 20 cells (`FleeUtility`) or
+    shies from a stranger within 8; greedy eats a meal or 3 to 6 of a food from the stores or off a table; gentle gives
+    the game's nuzzle to someone sick, hurt or low, or lies by a patient asleep in a sickbed; proud follows its person
+    close while they work another animal, or stands before a visitor; mischievous: a grazer eats a crop in a growing
+    zone, else a light stack (2 kg a piece at most, a handful) is nosed off a shelf onto the floor beside it
+    (`JobDriver_AnimalKnockOver`); loyal waits at the door to the outside (or by the bed) while its person is away and
+    gives the game's nuzzle on their homecoming (within three hours of the last hour they were seen away); lazy naps
+    (the game's lying down, asleep, most of an hour) by a fire below 8°C, under a roof above 30°C, else in the sun; curious
+    follows a visitor about, or watches someone building, mining, repairing or at a bench. At 100%: greedy and
+    mischievous every 5 days, brave and timid every 2 when there is cause, loyal about twice a day while its person is
+    away, the rest every 3; one an hour on a map, none in danger; in a fight each brave or timid one once in eight hours.
+    Setting *Animals' temperaments* (What's on, Strangers and creatures, under pets) and its pace *Animals'
+    temperaments on the map* (`animalMoments`, How much happens, 0 to 200%; light touch 50%, story-rich 150%).
+  - Friends, rivals and grief (`Animals/AnimalBonds.cs`), the companions' (bonded, or not livestock: the named herd
+    stays the herd's): three nights asleep within 1.9 cells (a night counted once across midnight) make friends, two
+    each; by day a follow with a heart and a nuzzle in the log, about every day and a half; at bedtime a tired one lies
+    down beside its friend asleep. Feuds: two of different kinds within 6 cells by day roll once a day (one in 250, a
+    cat and a dog ten times that), one rival each; rivals in sight hiss, growl, snort or squawk in the log by their
+    voice, one flees, the other chases a moment; nobody hurt. Apart 40 days, they drift. Grief: a bonded animal whose
+    person lies in a grave on the map goes to lie on it (`Rimfolk_AnimalVigil`) about every 2.5 days for 60 days, every
+    8 until 120; the dead's partner, kin or warmest friend may say so and write it; a friend of a dead animal misses it
+    30 days and goes to its grave if it has one. An animal that left alive (`PetTracker.Watch`: sold, given, released,
+    gone wild) is kept with the person it was last with; on any map 2 to 120 days later, within 30 cells, it trots over
+    and stays at their side with a heart (not the game's nuzzle: it isn't the colony's), once in ten days. Setting
+    *Friendships and grief among animals* (What's on, under pets).
+  - Speaking animals (`Animals/AnimalVoices.cs`), setting *Animals speak* (Auto, On, Off; a Choice, so the setups and
+    story-rich never switch it on): Auto is on only while PokéWorld or A RimWorld of Magic is loaded, or a free colonist
+    has a psylink (looked at hourly), and the tooltip says so. Who: a psychic-type Pokémon, to its trainer, in the mind;
+    a druid's or a ranger's bonded animal (traits `Druid`, `Ranger` by name); the bonded animal of a psycaster of
+    psylink level 3 or more; Vanilla Genetics Expanded's humanoid hybrids (by their comp's name,
+    `CompProperties_HumanoidHybrid`: the only hook VGE's defs offer for a raised mind, the hybrids its own description
+    says hold conversations; no other gene work was found in its race defs); a tribe's (age neolithic or below) or an
+    animal-personhood faith's bonded animal speaks only in its person's dreams (`DreamAbout.SpiritAnimal`,
+    `Council_Dream_SpiritAnimal`, weight 3). It says a line to its person in its own voice when together and in view
+    (a chance in five an hour, a day apart), warns over its head of raiders in a fight or a predator within 45 cells
+    worth a warning (angry, hunting, or near its own size) with the compass word, comes to a council meeting at its
+    person's heels and has one line there (`CouncilMeeting.Talk`, written with the remarks, no vote), and has a word on
+    half the council's questions about its person or itself (`DilemmaTracker.Send`, in the letter, and over its head
+    when its person is beside it).
+  - Saved: `AnimalBook` (a new GameComponent: an existing save gets an empty one), all by id: `marks` (temperaments,
+    300, unseen 120 days let go), `ties` (pairs, friends, rivals, 80, pairs first), `gone` (30, the handler by
+    reference, 120 days). `PokeWorldLife` carries an evolved Pokémon's temperament and ties over (`AnimalBook.Carry`).
+  - Hooks into existing code: `AnimalLife.Hourly`/`Daily`, `TalkTracker` (the 187 look now runs for the animals even
+    with social life off; `FightSides.Sample` keeps its own condition), `PetTracker.Watch` (`Notify_Died`,
+    `Notify_Left`), `CouncilMeeting.Talk`, `DilemmaTracker.Send`, `Dreams.About`.
+  - Try in the game (none of it could be run here):
+    1. Dev mode, Debug actions, Rimfolk, "Animals: each named or bonded animal's temperament" (the log lists them with
+       their family; the ties). Select a named animal: the card's line. "Animals: give an animal a temperament..." to
+       try each.
+    2. "Animals: a temperament's moment now..." for each temperament, with what it needs on the map: a wild predator
+       near the brave one's person (spawn one), a visitor near the timid one, food on a shelf or a table for the greedy
+       one, a colonist hurt or in a sickbed for the gentle one, its person milking another animal for the proud one, a
+       crop field (a grazer) or a shelf of light things for the mischievous one, its person away with a caravan for the
+       loyal one (then bring them back: the run and the nuzzle), cold weather and a lit campfire for the lazy one,
+       someone building for the curious one. Each says what happened or why not; the card's "Lately" line follows.
+    3. A raid (the game's dev tools) with a brave and a timid animal near their people, then "Animals: the fight's look
+       now": the stand between, the fight when a raider comes close; the bolt from the shooting.
+    4. "Animals: make two friends or rivals..." (a cat and a dog for the feud), then "Animals: a friends' or rivals'
+       moment now": the follow with the heart and the log's nuzzle, or the hiss and the chase in the Log tab and as a
+       bubble with Interaction Bubbles. At night, two pets on beds side by side three nights become friends by
+       themselves; a tired friend lies down beside the other at bedtime.
+    5. Kill a colonist with a bonded animal (dev tools), bury them, then "Animals: a grieving animal goes to the grave
+       now": it lies on the grave; the card's grief line; the partner's word and journal.
+    6. "Animals: release an animal, remembering its handler..." then "Animals: an old animal meets its handler now":
+       the trot over, the heart, the handler's word and journal.
+    7. Speaking: with PokéWorld, RoM or a psylink (or the setting On), "Animals: who could speak here" (the log),
+       "Animals: let an animal speak (testing)...", "Animals: a speaking animal says something now..." (a line to its
+       person, or a warning if a predator or raider is near); a council meeting with its person (its one line, in the
+       decision letter's remarks); "Animals: the council's question has a word from a speaking animal", then a dilemma
+       about its person; a tribe (or a faith of animal personhood) and "Animals: a spirit animal's dream for its
+       person...".
+    8. Settings: the pace at 0% (no moments, cards still say), the bonds off, speech Off and Auto without the mods.
+  - Riskiest: the vanilla jobs given to animals outside their think tree (`LayDown` with `forceSleep` and an expiry for
+    naps, `Nuzzle`, `FollowClose` with expiry, `Ingest` of stored food and crops, `FleeUtility.FleeJob`) and the two new
+    drivers (the lying posture set and reset by hand, the stand starting `AttackMelee`) were never seen running; the
+    stand may draw a pet into a fight it loses (the game's own harm, shown); a mischievous grazer's crop and a greedy
+    one's meal are real losses; the PokéWorld evolution carry-over relies on the evolution being seen hourly; the
+    dilemma word changes a question letter's text; Interaction Bubbles drawing an animal's bubble (initiator an
+    animal) is untested.
 - 0.147.0, the colony's animals with powers (7 November 2026, the player's pick "C, magic and powers" from a brainstorm,
   built without a proposal round). Four parts in new
   files, one pass and one book: `Animals/AnimalPowers.cs` (the pass `Sched.RarePowers`, tick 227 of the 250-tick cycle,

@@ -107,17 +107,31 @@ namespace ColonyCouncil
                 if (!Persona.On) exchanges.Clear();
                 else Talk.Step(this, t);
             }
-            // Who stands beside whom in a fight, for the talk's memories and for comradeship (Social/FightSides.cs).
-            if (Sched.Every(t, Sched.RareTicks, Sched.RareFightSides) && (Persona.On || ColonyCouncilMod.Settings.socialWeb))
+            // Who stands beside whom in a fight, for the talk's memories and for comradeship (Social/FightSides.cs); and on the
+            // same look, the colony's animals in the fight (Animals/): the brave one by its person, the timid one bolting, a
+            // speaking animal's warning.
+            if (Sched.Every(t, Sched.RareTicks, Sched.RareFightSides))
             {
                 using var fight = PassClock.Time(Pass.RareFightSides);
+                if (Persona.On || ColonyCouncilMod.Settings.socialWeb)
+                {
+                    try
+                    {
+                        FightSides.Sample();
+                    }
+                    catch (Exception e)
+                    {
+                        CouncilLog.ErrorOnce("talk: the fight", e);
+                    }
+                }
                 try
                 {
-                    FightSides.Sample();
+                    AnimalTempers.FightLook();
+                    AnimalVoices.FightLook();
                 }
                 catch (Exception e)
                 {
-                    CouncilLog.ErrorOnce("talk: the fight", e);
+                    CouncilLog.ErrorOnce("animals: the fight", e);
                 }
             }
             if (!Sched.Hourly(t, Sched.Talk)) return;

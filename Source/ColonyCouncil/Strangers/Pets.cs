@@ -61,11 +61,17 @@ namespace ColonyCouncil
                 if (pet.Dead)
                 {
                     known.Remove(pet);
+                    // Its friends among the animals start to miss it (Animals/AnimalBonds.cs).
+                    AnimalBonds.Notify_Died(pet);
                     Farewell(comp, pet);
                     continue;
                 }
-                // Sold, released, run off: no farewell.
-                if (pet.Faction != Faction.OfPlayer) known.Remove(pet);
+                // Sold, released, run off: no farewell; it is remembered with its handler, for the day they meet again.
+                if (pet.Faction != Faction.OfPlayer)
+                {
+                    known.Remove(pet);
+                    AnimalBonds.Notify_Left(pet);
+                }
             }
         }
 

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A speaking animal's own words (Source/ColonyCouncil/Animals/AnimalVoices.cs), said over its head, one short sentence
+    each. The moment: idle (to its person, now and then), warn (raid, with mech for machines; predator), meeting
+    (side:person, with ownidea when it is its person's own idea; side:own), dilemma (side:person, side:own, aboutme when the
+    council's question is about the animal itself). Its voice: voice:dog, cat, horse, herd, bear, thrumbo, bird, bug,
+    reptile, small, beast, pokemon (with type:fire, type:psychic...). Its temperament: temper:brave and the rest. How it
+    speaks: gift:mind (a psychic Pokémon, in its trainer's mind), gift:commune (a druid's or a ranger's), gift:psylink (a
+    psycaster's), gift:hybrid (a humanoid hybrid's, aloud; stranger when it talks to someone not its person). Also
+    oldanimal, young, hunter, huge. {PET} the animal, {PAWN} whom it speaks to, {PLACE} where a danger is ("to the north"),
+    {OTHER} the danger or the idea's proposer, {AMBITION} the idea.
+  -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_AnimalVoice</defName>
+    <lines>
+      <plain>
+        <!-- Now and then, to its person. -->
+        <li>[idle,voice:dog] You smell of the fields today, {PAWN_nameDef}, I like it.</li>
+        <li>[idle,voice:dog] I will walk with you anywhere, you know that.</li>
+        <li>[idle,voice:dog,temper:loyal] Wherever you go, I go, that is the whole of it.</li>
+        <li>[idle,voice:dog,temper:greedy] Is that food in your pocket, or are you only pleased to see me?</li>
+        <li>[idle,voice:dog,temper:lazy] Must we walk today, could we not lie here instead?</li>
+        <li>[idle,voice:dog,temper:brave] Nothing comes near you while I am here.</li>
+        <li>[idle,voice:cat] I suppose you may stroke me, briefly.</li>
+        <li>[idle,voice:cat] You took your time, I have been waiting an hour.</li>
+        <li>[idle,voice:cat,temper:proud] I allow you to live here, do not forget it.</li>
+        <li>[idle,voice:cat,temper:mischievous] If something falls off a shelf today, I know nothing about it.</li>
+        <li>[idle,voice:cat,temper:lazy] Wake me when the sun moves.</li>
+        <li>[idle,voice:horse] The wind is from the hills today, it smells of rain.</li>
+        <li>[idle,voice:horse] Ride me out past the fields one day, I want to run.</li>
+        <li>[idle,voice:horse,temper:timid] Stay close, the shadows move strangely here.</li>
+        <li>[idle,voice:herd] The grass by the far fence is sweeter, tell the others.</li>
+        <li>[idle,voice:herd,temper:gentle] You work too hard, sit with us a while.</li>
+        <li>[idle,voice:herd,temper:greedy] Is there more hay, there is always room for more hay.</li>
+        <li>[idle,voice:bear] Honey, if you have it, and then a long sleep.</li>
+        <li>[idle,voice:bear,temper:lazy] Winter cannot come soon enough for me.</li>
+        <li>[idle,voice:thrumbo] I have seen many winters, small one, this one will pass too.</li>
+        <li>[idle,voice:thrumbo] Walk slowly with me, there is no hurry in the world.</li>
+        <li>[idle,voice:thrumbo,temper:proud] My kind were old when your kind first lit a fire.</li>
+        <li>[idle,voice:bird] There is a storm two valleys over, I feel it in my feathers.</li>
+        <li>[idle,voice:bird,temper:curious] What is that shiny thing, may I have it?</li>
+        <li>[idle,voice:bug] The hive hums for you, in its way.</li>
+        <li>[idle,voice:bug] Many legs, one mind, and the mind likes you.</li>
+        <li>[idle,voice:reptile] The sun is warm, the stone is warm, all is well.</li>
+        <li>[idle,voice:reptile,temper:lazy] I will move when the stone gets cold, not before.</li>
+        <li>[idle,voice:small] I found a seed under the table, a whole one.</li>
+        <li>[idle,voice:small,temper:timid] Is it safe to come out now?</li>
+        <li>[idle,voice:beast] I heard you sing to yourself today, do it again.</li>
+        <li>[idle,voice:beast] The land is quiet today, I like it quiet.</li>
+        <li>[idle,voice:beast,hunter] I could catch you a rabbit, if you wanted one.</li>
+        <li>[idle,voice:pokemon] I trained hard today, did you see?</li>
+        <li>[idle,voice:pokemon,type:psychic] I know what you are thinking, and the answer is yes.</li>
+        <li>[idle,voice:pokemon,type:psychic] Your dreams were loud last night, {PAWN_nameDef}.</li>
+        <li>[idle,voice:pokemon,type:fire] I could warm the whole room for you, if you asked.</li>
+        <li>[idle,voice:pokemon,type:water] Rain tomorrow, I can taste it already.</li>
+        <li>[idle,voice:pokemon,type:grass] The plants in the field are thirsty, they told me so.</li>
+        <li>[idle,voice:pokemon,type:ghost] Somebody walks the halls at night, and it is not me.</li>
+        <li>[idle,voice:pokemon,type:electric,industrial|spacer] One of the machines hums wrong today, have someone look at it.</li>
+        <li>[idle,voice:pokemon,type:dragon] One day I will fly you over the mountains.</li>
+        <li>[idle,voice:pokemon,type:fairy] You are kinder than you let them see.</li>
+        <li>[idle,voice:pokemon,type:dark] I took a berry from the stores, do not tell anyone.</li>
+        <li>[idle,gift:mind] Do not answer aloud, they will think you mad.</li>
+        <li>[idle,gift:psylink] I feel the hum in your head, it is louder today.</li>
+        <li>[idle,gift:commune] The woods speak well of you, and so do I.</li>
+        <li>[idle,gift:hybrid] Do you think they will ever stop staring at me?</li>
+        <li>[idle,gift:hybrid] I read the label on the vat I came out of, and it was not flattering.</li>
+        <li>[idle,gift:hybrid,stranger] You are not my person, but you will do for a chat.</li>
+        <li>[idle,oldanimal] My bones are slow this morning, walk gently.</li>
+        <li>[idle,young] Everything is new, is everything always new?</li>
+        <li>[idle,temper:curious] Where do the clouds go when they leave?</li>
+        <li>[idle,temper:gentle] You look tired, lie down beside me a while.</li>
+        <li>[idle,winter] The snow muffles everything, even you.</li>
+        <li>[idle,night] Listen, the night is full of small feet.</li>
+
+        <!-- A warning: raiders in a fight, a predator about. -->
+        <li>[warn,raid] Strangers with weapons, {PLACE}, many of them.</li>
+        <li>[warn,raid] They are coming {PLACE}, and they mean us harm.</li>
+        <li>[warn,raid] I smell iron and fear {PLACE}, get the others.</li>
+        <li>[warn,raid,mech] Cold things that do not breathe, {PLACE}, coming fast.</li>
+        <li>[warn,raid,voice:dog] Up, all of you, enemies {PLACE}!</li>
+        <li>[warn,raid,voice:bird] I saw them from above, {PLACE}, armed.</li>
+        <li>[warn,predator] Something hunts {PLACE}, keep close to me.</li>
+        <li>[warn,predator] A hunter's smell {PLACE}, do not walk out alone.</li>
+        <li>[warn,predator] There is a {OTHER} {PLACE}, and it is hungry.</li>
+        <li>[warn,predator,voice:herd] The herd smells it too, danger {PLACE}.</li>
+        <li>[warn,predator,voice:bird] I saw it from above, {PLACE}, coming this way.</li>
+        <li>[warn,predator,voice:dog] Something with teeth {PLACE}, stay behind me.</li>
+        <li>[warn,predator,temper:timid] Please, please, something {PLACE} wants to eat me.</li>
+        <li>[warn,predator,hunter] A rival hunter {PLACE}, on our ground.</li>
+        <li>[warn,gift:mind] Danger {PLACE}, I can feel its mind from here.</li>
+
+        <!-- At the council table, without a vote. -->
+        <li>[meeting,side:person,ownidea] Listen to {PAWN_nameDef}, the {AMBITION} is a good idea.</li>
+        <li>[meeting,side:person,ownidea] I would back {PAWN_nameDef} on the {AMBITION}, if I had a vote.</li>
+        <li>[meeting,side:person] Whatever {PAWN_nameDef} says, I say too.</li>
+        <li>[meeting,side:person,!ownidea] {OTHER_nameDef} speaks sense, and {PAWN_nameDef} thinks so too.</li>
+        <li>[meeting,side:own] I do not vote, but the {AMBITION} smells right to me.</li>
+        <li>[meeting,side:own,temper:greedy] Will the {AMBITION} have food in it, that is my only question.</li>
+        <li>[meeting,side:own,temper:lazy] Whichever one means less digging.</li>
+        <li>[meeting,side:own,voice:cat] You are all wrong, but do carry on.</li>
+        <li>[meeting,side:own,voice:thrumbo] Choose slowly, small ones, the land will still be here.</li>
+        <li>[meeting,side:own,temper:proud] I would have chosen the {AMBITION} days ago.</li>
+        <li>[meeting,side:own,temper:timid] So many voices, may we go home now?</li>
+        <li>[meeting,gift:mind] I will tell {PAWN_nameDef} what I think later, privately.</li>
+
+        <!-- On the council's question. -->
+        <li>[dilemma,side:person] {PAWN_nameDef} will choose well, {PAWN_nameDef} always does.</li>
+        <li>[dilemma,side:person] I stand with {PAWN_nameDef}, whatever the council says.</li>
+        <li>[dilemma,side:person,temper:loyal] Where {PAWN_nameDef} stands, I stand.</li>
+        <li>[dilemma,side:own] Do the kind thing, it is usually the right thing.</li>
+        <li>[dilemma,side:own,temper:brave] Whatever you choose, choose it without fear.</li>
+        <li>[dilemma,side:own,temper:greedy] Whichever way it goes, someone should feed me.</li>
+        <li>[dilemma,side:own,temper:timid] Please choose the safe way.</li>
+        <li>[dilemma,side:own,voice:cat] I could solve this, but I would rather watch you try.</li>
+        <li>[dilemma,side:own,voice:thrumbo] Whatever you decide will be forgotten by the next spring.</li>
+        <li>[dilemma,aboutme] You are talking about me, and I can hear you, you know.</li>
+        <li>[dilemma,aboutme] Ask me what I want, I am right here.</li>
+        <li>[dilemma,aboutme,temper:loyal] Whatever you decide, I stay with {PAWN_nameDef}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

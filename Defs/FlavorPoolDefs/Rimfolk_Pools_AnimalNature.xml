@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The animals' natures (Source/ColonyCouncil/Animals/AnimalTempers.cs, AnimalBonds.cs, AnimalVoices.cs): what someone
+    says on seeing an animal's temperament, its friends, its feud, its grief or an old animal coming back to them; what
+    they write down; and what a speaking animal says in its own voice. {PET} is the animal, {PAWN} the one speaking (or,
+    for an animal's own words, whom it speaks to), {OTHER} the other one (a person, an animal, a danger), {THING} what it
+    took or knocked over, {PLACE} where a danger is ("to the north"), {AMBITION} an idea put to the council.
+    Every line said over a head is one short sentence. Every line here carries its moment's tags, so none is said in
+    another's place.
+  -->
+
+  <!-- ===================== A temperament seen (AnimalTempers.Remark) =====================
+       Tags: temper:brave, timid, greedy, gentle, proud, mischievous, loyal, lazy, curious, with the moment's own tag;
+       body:beast, body:bird, body:other; pokemon, young, oldanimal. Said by someone who sees it, often its person. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SeeTemper</defName>
+    <lines>
+      <plain>
+        <li>[temper:brave,predator] Good {PET_nameDef}, hold there, it's seen you.</li>
+        <li>[temper:brave,predator] Look at {PET_nameDef}, squaring up to it like it's nothing.</li>
+        <li>[temper:brave,predator] Easy, {PET_nameDef}, I see it too.</li>
+        <li>[temper:timid,stranger] {PET_nameDef} has gone and hidden again, the strangers scare it.</li>
+        <li>[temper:timid,stranger] It's all right, {PET_nameDef}, they're only visitors.</li>
+        <li>[temper:timid,stranger] Somebody tell {PET_nameDef} the guests don't bite.</li>
+        <li>[temper:greedy,table] Hey, off the table, {PET_nameDef}!</li>
+        <li>[temper:greedy,table] Whose supper was that, {PET_nameDef}?</li>
+        <li>[temper:greedy,table] That was somebody's {THING}, you greedy thing.</li>
+        <li>[temper:greedy,stores] {PET_nameDef} has been at the stores again.</li>
+        <li>[temper:greedy,stores] Out of the stores, thief, that's the colony's {THING}.</li>
+        <li>[temper:greedy,stores] No wonder the {THING} keeps going down.</li>
+        <li>[temper:gentle,bedside] Look, {PET_nameDef} has come to keep {OTHER_nameDef} company.</li>
+        <li>[temper:gentle,bedside] {PET_nameDef} won't leave {OTHER_nameDef}'s side, bless it.</li>
+        <li>[temper:gentle,bedside] Let it stay, {OTHER_nameDef} sleeps better with {PET_nameDef} there.</li>
+        <li>[temper:proud,jealous] Yes, yes, you're still the best of them, {PET_nameDef}.</li>
+        <li>[temper:proud,jealous] Jealous of {OTHER_nameDef}, are we?</li>
+        <li>[temper:proud,jealous] Move over, {PET_nameDef}, I can't work with you underfoot.</li>
+        <li>[temper:proud,visitors] {PET_nameDef} is showing off for the visitors again.</li>
+        <li>[temper:proud,visitors] Look at {PET_nameDef}, strutting about like it owns the place.</li>
+        <li>[temper:proud,visitors] Don't mind {PET_nameDef}, it likes to be admired.</li>
+        <li>[temper:mischievous,crops] {PET_nameDef}, get out of the field, that's our harvest!</li>
+        <li>[temper:mischievous,crops] Who left the field open for {PET_nameDef} again?</li>
+        <li>[temper:mischievous,crops] There goes another {THING}, thanks to {PET_nameDef}.</li>
+        <li>[temper:mischievous,shelf] {PET_nameDef}, did you knock that over?</li>
+        <li>[temper:mischievous,shelf] Somebody put the {THING} back, {PET_nameDef} has been at the shelves.</li>
+        <li>[temper:mischievous,shelf] I just tidied that, you menace.</li>
+        <li>[temper:loyal,door] {PET_nameDef} is at the door again, waiting for {OTHER_nameDef}.</li>
+        <li>[temper:loyal,door] They'll be back soon, {PET_nameDef}, come away from the door.</li>
+        <li>[temper:loyal,door] {PET_nameDef} hasn't left that door since {OTHER_nameDef} went.</li>
+        <li>[temper:loyal,bed] {PET_nameDef} is lying by {OTHER_nameDef}'s bed again.</li>
+        <li>[temper:loyal,bed] Poor thing, it misses {OTHER_nameDef}.</li>
+        <li>[temper:loyal,home] There you are, {PET_nameDef}, did you wait for me?</li>
+        <li>[temper:loyal,home] I missed you too, {PET_nameDef}.</li>
+        <li>[temper:loyal,home] Hello, hello, yes, I'm home.</li>
+        <li>[temper:lazy,fire] {PET_nameDef} has found the warmest spot in the colony, of course.</li>
+        <li>[temper:lazy,fire] Don't step on {PET_nameDef}, it's asleep by the fire.</li>
+        <li>[temper:lazy,shade] {PET_nameDef} has the right idea, out of the heat.</li>
+        <li>[temper:lazy,shade] Some of us have to work, {PET_nameDef}.</li>
+        <li>[temper:lazy,sun] Look at {PET_nameDef}, flat out in the sun.</li>
+        <li>[temper:lazy,sun] Asleep again, {PET_nameDef}, at this hour?</li>
+        <li>[temper:curious,stranger] {PET_nameDef}, leave our guests alone.</li>
+        <li>[temper:curious,stranger,!body:bird] Sorry, {PET_nameDef} has to sniff everyone who comes.</li>
+        <li>[temper:curious,stranger,body:bird] Sorry, {PET_nameDef} has to peck at everyone who comes.</li>
+        <li>[temper:curious,stranger] {PET_nameDef} wants to know where you've been, that's all.</li>
+        <li>[temper:curious,work] Come to supervise, {PET_nameDef}?</li>
+        <li>[temper:curious,work,!body:bird] Mind your nose, {PET_nameDef}, this is sharp.</li>
+        <li>[temper:curious,work] {PET_nameDef} watches me work like it means to learn the trade.</li>
+        <li>[temper:greedy,pokemon] Not the berries, {PET_nameDef}, those are for training.</li>
+        <li>[temper:lazy,oldanimal] Sleep, old one, you've earned it.</li>
+        <li>[temper:mischievous,young] You're a little terror, {PET_nameDef}, do you know that?</li>
+      </plain>
+      <warm>
+        <li>[temper:gentle,bedside] Good {PET_nameDef}, you always know who needs you.</li>
+        <li>[temper:loyal,home] I thought of you every night, {PET_nameDef}.</li>
+      </warm>
+      <blunt>
+        <li>[temper:greedy,table|stores] Thief.</li>
+        <li>[temper:mischievous,shelf|crops] Out.</li>
+      </blunt>
+      <cheerful>
+        <li>[temper:proud,visitors] Isn't {PET_nameDef} gorgeous, go on, say it!</li>
+        <li>[temper:lazy,sun] Living the good life, {PET_nameDef}?</li>
+      </cheerful>
+      <gloomy>
+        <li>[temper:greedy,table|stores] Even the animals eat better than I do.</li>
+        <li>[temper:loyal,door] At least somebody waits for people around here.</li>
+      </gloomy>
+      <cold>
+        <li>[temper:mischievous,shelf] That animal needs a firmer hand.</li>
+        <li>[temper:timid,stranger] It will have to learn that guests are useful.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Friends, rivals, grief, an old animal back (AnimalBonds) =====================
+       Tags: friends, rivals, catdog, samekind; grave with person (its person's grave) or friend (an animal friend's);
+       knowsme with wild or sold, and again. Said by someone who sees it: its person, the dead's partner or kin, the
+       old handler. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SeeAnimals</defName>
+    <lines>
+      <plain>
+        <li>[friends] {PET_nameDef} and {OTHER_nameDef}, inseparable as ever.</li>
+        <li>[friends] Look at those two, thick as thieves.</li>
+        <li>[friends] Where {OTHER_nameDef} goes, {PET_nameDef} goes.</li>
+        <li>[friends,catdog] A cat and a dog, friends, now I've seen everything.</li>
+        <li>[friends,samekind] Those two would share one bed if we let them.</li>
+        <li>[rivals] Leave it, {PET_nameDef}, you two will never get on.</li>
+        <li>[rivals] Here we go again, {PET_nameDef} and {OTHER_nameDef}.</li>
+        <li>[rivals,!body:bird] Somebody separate those two before there's fur everywhere.</li>
+        <li>[rivals,catdog] Cat and dog, every single day.</li>
+        <li>[rivals] One day they'll be friends, and I'll be too old to see it.</li>
+        <li>[grave,person] {PET_nameDef} is out at {OTHER_nameDef}'s grave again.</li>
+        <li>[grave,person] Let it be, it misses {OTHER_nameDef} as much as any of us.</li>
+        <li>[grave,person] Every day it lies there, waiting for {OTHER_nameDef} to get up.</li>
+        <li>[grave,friend] {PET_nameDef} is lying by {OTHER_nameDef}'s grave again.</li>
+        <li>[grave,friend] It still goes looking for {OTHER_nameDef}, you know.</li>
+        <li>[grave,friend] They were never apart, those two, and now look at it.</li>
+        <li>[knowsme] {PET_nameDef}, is that you?</li>
+        <li>[knowsme] You remember me, don't you, {PET_nameDef}?</li>
+        <li>[knowsme,wild] Look at you, {PET_nameDef}, gone all wild.</li>
+        <li>[knowsme] Hello, old friend, I never thought I'd see you again.</li>
+        <li>[knowsme,again] Back to see me again, {PET_nameDef}?</li>
+        <li>[knowsme,sold] They're treating you well, I hope, {PET_nameDef}.</li>
+      </plain>
+      <warm>
+        <li>[knowsme] Oh, {PET_nameDef}, I've missed you so.</li>
+        <li>[grave,person] Come here, {PET_nameDef}, I miss {OTHER_nameDef} too.</li>
+      </warm>
+      <blunt>
+        <li>[rivals] Pack it in, both of you.</li>
+        <li>[knowsme] Huh, it's {PET_nameDef}.</li>
+      </blunt>
+      <cheerful>
+        <li>[friends] Best friends, the pair of them, it warms the heart.</li>
+      </cheerful>
+      <gloomy>
+        <li>[grave,person] Even the animals know we lost the best of us.</li>
+      </gloomy>
+      <cold>
+        <li>[rivals] They'll settle it themselves, or they won't.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Written down (journals) ===================== -->
+
+  <!-- A temperament's moment its person writes down: a loyal one at the door on their homecoming, a brave one in a fight.
+       Tags as Council_Pool_SeeTemper's, with home and fight. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_AnimalNature</defName>
+    <lines>
+      <plain>
+        <li>[temper:loyal,home] {PET_nameDef} was at the door when I got home. They say it waited there most days I was gone.</li>
+        <li>[temper:loyal,home] Came home to {PET_nameDef} at the door. I don't know which of us was gladder.</li>
+        <li>[temper:loyal,home] {PET_nameDef} hasn't let me out of its sight since I got back.</li>
+        <li>[temper:brave,fight] In the fight {PET_nameDef} planted itself between me and them and wouldn't move. I owe it.</li>
+        <li>[temper:brave,fight] {PET_nameDef} stood in front of me when they came. I didn't ask it to. I'd never have asked it to.</li>
+        <li>[temper:brave,fight,pokemon] {PET_nameDef} took its stand without a word from me. No trainer could ask for more.</li>
+      </plain>
+      <warm><li>[temper:loyal,home] Home, and {PET_nameDef}'s nose in my hand before I'd put my pack down.</li></warm>
+      <gloomy><li>[temper:brave,fight] {PET_nameDef} would have died for me today. I'm not sure I'm worth it.</li></gloomy>
+      <cold><li>[temper:brave,fight] {PET_nameDef} held its ground in the fight. A good animal. Better trained than I knew.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Friends, rivals, grief and an old animal back, written down: tags as Council_Pool_SeeAnimals'. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_AnimalBonds</defName>
+    <lines>
+      <plain>
+        <li>[friends] {PET_nameDef} and {OTHER_nameDef} sleep curled up together every night now. I've stopped trying to keep them apart.</li>
+        <li>[friends] {PET_nameDef} has a friend: {OTHER_nameDef}. They sleep in a heap and wake up in one.</li>
+        <li>[friends,catdog] {PET_nameDef} and {OTHER_nameDef} are friends. A cat and a dog. Nobody told them they shouldn't be.</li>
+        <li>[rivals] {PET_nameDef} and {OTHER_nameDef} have declared war, and the rest of us live in it.</li>
+        <li>[rivals] {PET_nameDef} can't stand {OTHER_nameDef}. Nobody knows why. I don't think they do either.</li>
+        <li>[rivals,catdog] {PET_nameDef} went for {OTHER_nameDef} again. Cats and dogs: some things don't change, out here or anywhere.</li>
+        <li>[grave,person] {PET_nameDef} lay on {OTHER_nameDef}'s grave again this morning. Nobody had the heart to call it away.</li>
+        <li>[grave,person] {PET_nameDef} goes out to {OTHER_nameDef} every day or two. I go too, sometimes, and sit with it.</li>
+        <li>[grave,friend] {PET_nameDef} went to {OTHER_nameDef}'s grave and lay there half the day. I didn't know animals did that.</li>
+        <li>[knowsme,wild] Saw {PET_nameDef} today, wild as anything, and it came straight to me as if it had never gone.</li>
+        <li>[knowsme,sold] {PET_nameDef} knew me. It's someone else's now, and it still knew me.</li>
+      </plain>
+      <warm><li>[knowsme] {PET_nameDef} remembered me. I cried, and I'm not ashamed of it.</li></warm>
+      <gloomy><li>[grave,person] Even the animal grieves properly. I can't seem to.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The first time a speaking animal speaks to its person (AnimalVoices.Say). Tags gift:mind, commune, psylink, hybrid. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_AnimalVoice</defName>
+    <lines>
+      <plain>
+        <li>[gift:mind] {PET_nameDef} spoke to me today, inside my head, as clear as anyone. I haven't told the others yet.</li>
+        <li>[gift:mind] There was a voice in my head this morning that wasn't mine. It was {PET_nameDef}, and it was laughing at me.</li>
+        <li>[gift:commune] The old ways worked. {PET_nameDef} and I spoke, really spoke, and it had been waiting a long time to.</li>
+        <li>[gift:psylink] Through the link I heard {PET_nameDef} today. Not words exactly. But I understood every one.</li>
+        <li>[gift:hybrid] {PET_nameDef} talks. Properly. The lab said it might. I didn't believe them until it asked what was for supper.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

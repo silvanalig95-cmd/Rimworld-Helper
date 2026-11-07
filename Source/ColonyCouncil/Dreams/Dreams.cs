@@ -37,6 +37,8 @@ namespace ColonyCouncil
         Lost,
         /// <summary>Their bonded animal: {PET}.</summary>
         Pet,
+        /// <summary>Their spirit animal, which speaks in their dreams (Animals/AnimalVoices.cs): {PET}. Never with speech off.</summary>
+        SpiritAnimal,
         /// <summary>Their life goal: {GOAL}.</summary>
         Goal,
         /// <summary>
@@ -502,6 +504,11 @@ namespace ColonyCouncil
                 case DreamAbout.Pet:
                     c.pet = p.relations?.DirectRelations.Where(r => r.def == PawnRelationDefOf.Bond && r.otherPawn != null && !r.otherPawn.Dead).Select(r => r.otherPawn).RandomElementWithFallback();
                     return c.pet != null;
+                case DreamAbout.SpiritAnimal:
+                    c.pet = AnimalVoices.SpiritOf(p);
+                    if (c.pet == null) return false;
+                    c.tags = AnimalVoices.Tags(c.pet, AnimalGift.Spirit);
+                    return true;
             }
             return c.other != null;
         }

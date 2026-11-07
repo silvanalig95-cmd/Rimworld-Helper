@@ -251,6 +251,8 @@ namespace ColonyCouncil
             Slider("dreamFrequency", "CC_Settings_FreqDreams", "CC_SetNote_FreqDreams", 0.25f, 3f, 0.25f, "%");
             Choice("arcFrequency", "CC_Settings_Arcs", "CC_Settings_Arcs_Tip", "CC_Arcs_", "CC_SetNote_Arcs_", new[] { "Off", "Rare", "Normal", "Frequent" });
             Slider("daysBetweenPersonalTouches", "CC_Settings_DaysBetweenTouches", "CC_SetNote_DaysBetweenTouches", 1f, 30f, 1f, "0", "enablePersonalTouches");
+            // The animals' temperaments on the map (Animals/AnimalTempers.cs): the greedy one at the stores, the loyal one at the door.
+            Slider("animalMoments", "CC_Settings_AnimalMoments", "CC_SetNote_AnimalMoments", 0f, 2f, 0.05f, "%", "petMoments,animalTempers");
             Slider("outsiderChatterFrequency", "CC_Settings_OutsiderChatterFrequency", "CC_SetNote_OutsiderChatterFrequency", 0.25f, 3f, 0.25f, "%",
                 "outsiderTalk,outsiderChatter");
             Section("CC_SetSec_WorldPace");
@@ -382,6 +384,11 @@ namespace ColonyCouncil
             Toggle("petMoments", "CC_Settings_PetMoments", "CC_SetNote_PetMoments");
             Toggle("sacredAnimals", "CC_Settings_SacredAnimals", "CC_SetNote_SacredAnimals");
             Toggle("omenAnimals", "CC_Settings_OmenAnimals", "CC_SetNote_OmenAnimals");
+            // The animals' natures (Animals/): temperaments, friendships and grief among them, and (a fantasy part) speech.
+            Toggle("animalTempers", "CC_Settings_AnimalTempers", "CC_SetNote_AnimalTempers", "petMoments");
+            Toggle("animalBonds", "CC_Settings_AnimalBonds", "CC_SetNote_AnimalBonds", "petMoments");
+            Choice("speakingAnimals", "CC_Settings_SpeakingAnimals", "CC_Settings_SpeakingAnimals_Tip", "CC_SpeakingAnimals_", "CC_SetNote_SpeakingAnimals_",
+                new[] { "Auto", "On", "Off" }, "petMoments");
             Section("CC_Settings_WorldEventsHeader");
             Toggle("worldEvents", "CC_Settings_WorldEvents", "CC_SetNote_WorldEvents");
             Toggle("camps", "CC_Settings_Camps", "CC_SetNote_Camps", "worldEvents");
@@ -782,7 +789,7 @@ namespace ColonyCouncil
                 V("momentFrequency", "0.75"), V("socialEventFrequency", "0.5"), V("dreamFrequency", "0.5"), V("arcFrequency", "Rare"),
                 V("outsiderChatterFrequency", "0.5"), V("encounterFrequency", "0.5"), V("storytellerEventWeight", "0.5"),
                 V("daysBetweenWorldEvents", "8"), V("daysBetweenWorldSituations", "75"), V("remoteTravellers", "0.5"), V("raidersCamps", "0.5"),
-                V("theirSchemes", "0.5"), V("newPeoples", "0.5"),
+                V("theirSchemes", "0.5"), V("newPeoples", "0.5"), V("animalMoments", "0.5"),
                 // How hard.
                 V("stakes", "Gentle"), V("wishDurationFactor", "1.25"), V("ambitionDeadlineFactor", "1.25"), V("allowQuitting", "false"),
                 V("lifePressure", "Gentle"), V("frictions", "false"), V("strainSpeed", "0.75"), V("heartEpisodes", "false"), V("heartGoodSide", "true"),
@@ -809,7 +816,7 @@ namespace ColonyCouncil
                 V("momentFrequency", "1.5"), V("socialEventFrequency", "1.5"), V("dreamFrequency", "1.5"), V("arcFrequency", "Frequent"),
                 V("daysBetweenPersonalTouches", "4"), V("outsiderChatterFrequency", "1.5"), V("encounterFrequency", "1.5"), V("storytellerEventWeight", "1.5"),
                 V("daysBetweenWorldEvents", "3"), V("daysBetweenWorldSituations", "30"), V("remoteTravellers", "1.5"), V("raidersCamps", "1.25"),
-                V("theirSchemes", "1.25"), V("newPeoples", "1.25"),
+                V("theirSchemes", "1.25"), V("newPeoples", "1.25"), V("animalMoments", "1.5"),
                 // The heart's good side: brighter dreams and now and then an inspiration.
                 V("heartGoodSide", "true"),
                 // How you're told.

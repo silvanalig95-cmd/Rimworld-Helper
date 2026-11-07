@@ -687,6 +687,17 @@ MODEL = {
     "Animals/AnimalPowers.cs:omens": ("cap", (const("Animals/AnimalPowersMath.cs", "MaxOmenRecords", 6), 0.05), P + 200,
                                       "the omen animals alive: one in 20 days at most, AnimalPowersMath.MaxOmenRecords kept"),
     "Animals/AnimalPowers.cs:calmTicks": ("window", (2, 1), D, "a Psychic type's calming: the colonist and the Pokémon, each let go two days after"),
+    # The animals' natures (Animals/AnimalBook.cs), all kept by id: a temperament for each named or bonded animal (three
+    # values), let go 120 days after it was last seen (a herd of twenty named head and a few pets, a new one every couple of
+    # days at the most); pairs seen asleep side by side, friends and rivals (eleven values and two names), the pairs not yet
+    # friends going first; animals that left the colony alive with their handler (a reference and seven values), the oldest
+    # first, forgotten 120 days on or when the handler dies.
+    "Animals/AnimalBook.cs:marks": ("cap", (const("Animals/AnimalNatureMath.cs", "MaxMarks", 300), 0.5), 90,
+                                    "a temperament for each named or bonded animal, AnimalNatureMath.MaxMarks at most, let go 120 days after last seen"),
+    "Animals/AnimalBook.cs:ties": ("cap", (const("Animals/AnimalNatureMath.cs", "MaxTies", 80), 1), 330,
+                                   "pairs asleep side by side, friends and rivals, AnimalNatureMath.MaxTies at most, pairs first to go, ties let go when apart 40 days"),
+    "Animals/AnimalBook.cs:gone": ("cap", (const("Animals/AnimalNatureMath.cs", "MaxGone", 30), 0.05), 260,
+                                   "animals that left alive with their handler, AnimalNatureMath.MaxGone at most, oldest first, forgotten after 120 days"),
     "Happenings/Workers_Chains2.cs:flags": ("fixed", 4, 40, "per story chain (counted under chains)"),
     # Answers playing out
     "PlayOut/PlayOutLord.cs:guests": ("while", 8, P, "while the gathering lasts: guests from outside the colony"),

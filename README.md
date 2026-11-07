@@ -1339,6 +1339,35 @@ The herd and the pets are part of the colony's life, not only its larder and its
   marked on one says they'll have no part of it; the council's cull never takes one. From spring to autumn the
   council may be asked to keep **the sacred animals' day**: food carried out to one of them where it is, and everyone
   gathered round it for the afternoon. Kept, it is a custom on the calendar, and three years running a tradition.
+- **Temperaments:** every named or bonded animal has one, given once and leaning by its kind (a dog loyal, a cat
+  proud, a muffalo gentle, a thrumbo gentle and proud, a Pokémon by its types), and it shows on the animal's card and in
+  small things it does on the map, never only in words: the brave one goes to stand between its person and an
+  attacker (or a wild predator that comes near them) and holds there; the timid one bolts from the shooting, or shies
+  away from a stranger; the greedy one sneaks a meal or a few mouthfuls from the stores or off a table; the gentle one
+  nuzzles someone sick, hurt or low, or lies down by a patient asleep in bed; the proud one shoulders in when its person
+  works with another animal, or shows itself off to visitors; the mischievous one gets into the crops, or knocks a few
+  light things off a shelf; the loyal one waits at the door while its person is away and runs to them when they come
+  home; the lazy one naps by the fire, in the shade or in the sun; the curious one follows visitors about, or goes to
+  watch someone at work. Whoever sees it may say something, and the card says what it did lately. About every three
+  to five days each at 100% (the setting "Animals' temperaments on the map"), once a fight for the brave and the timid,
+  one such moment an hour on a map at most.
+- **Friends, feuds and grief**, with no letters and no messages at all: two of the colony's companions (bonded, or
+  pets rather than the herd) seen asleep side by side three nights are friends, fall in together by day with a nuzzle
+  and a heart, and lie down beside each other at bedtime; two of different kinds may fall out, a cat and a dog far
+  likelier, and hiss or growl in the log and chase each other off (nobody is hurt); a bonded animal whose person died
+  goes to lie on their grave every few days for two months, then now and then, and a friend of an animal that died
+  misses it for a month; one sold, given away or released that meets its old handler again comes over to them with a
+  heart. Their cards say whom they sleep beside, whom they are at odds with and whom they grieve; whoever sees it says
+  so, and the people closest to it write it down.
+- **Animals that speak**, a fantasy part, rare (the setting "Animals speak": on Auto, the default, only while
+  PokéWorld or A RimWorld of Magic is loaded, or someone in the colony has a psylink): a psychic-type Pokémon speaks to
+  its trainer in the mind; a druid's or a ranger's bonded animal (A RimWorld of Magic), and a psycaster's of psylink
+  level three or more, speak with their person; Vanilla Genetics Expanded's humanoid hybrids speak as their making
+  allows; in a tribe, or a colony whose faith holds animals to be people, a bonded animal is a spirit animal that
+  speaks in its person's dreams. A speaking animal says a line to its person now and then in its own voice (a dog's
+  loyalty, a cat's disdain, a thrumbo's slow age, a Pokémon by its type), warns of raiders or a predator really on the
+  map near it and says where, and has a place at the council table without a vote: a line at a meeting its person sits
+  in, and a word on the council's questions about its person or itself. Never a letter or a message of its own.
 - **Dreams** of the herd, of talking animals, of riding, of an old pet young again, and of a lost one coming back.
 
 An alert says when an animal's **carcass lies out fresh**: one that hasn't started to rot, out of the stockpiles, with
@@ -1347,7 +1376,8 @@ a click goes to it, so it can be hauled in, butchered or buried before it spoils
 
 The Overview page's card **The herd and the land** shows who leads the herd, of which line and generation, whether
 the old leader is in its last season, the beast the colony watches and what it has made of it, a shiny rumour on the
-wind (with PokéWorld) and the neighbours settled for good. The Almanac page "the colony's animals" has the numbers.
+wind (with PokéWorld) and the neighbours settled for good. The Almanac page "the colony's animals" has the numbers, and
+"the animals' natures" those of the temperaments, friendships, grief and the animals that speak.
 
 ### Offices and elections
 Five council seats: **speaker** (chairs meetings, everyone's trust rises a little each day), **marshal** (drills
@@ -3954,7 +3984,7 @@ The pages:
   rare, normal or frequent; how often personal touches; how often colonists chat with outsiders by themselves);
   visitors, events and the region (encounters, how likely each of Rimfolk's events is beside the storyteller's or
   how often on its own timer, world events about every 45 days, how much a remote home draws travellers, raiders'
-  camps).
+  camps); and how often the animals' temperaments show on the map.
 - **How hard**: **Stakes**:
   - **Gentle**: only upsides (decrees still cost some mood, at half strength, because you chose them)
   - **Balanced** (default): upsides and downsides in proportion
@@ -3982,7 +4012,8 @@ The pages:
   social life, traits that change, ideoligions in the colony with Ideology, secrets, vendettas); the colony's story
   (journals, names, anniversaries, annals, eulogies, the colony calendar, answers that play out on the map, goods and
   people that come and go by hand); strangers and creatures (encounters, nemeses and their return, pets, sacred
-  animals with Ideology, omen animals); **Rimfolk
+  animals with Ideology, omen animals, the animals' temperaments, friendships and grief among animals, and whether
+  animals speak: Auto, On or Off); **Rimfolk
   events** (camps on the map, missions in the Quests tab, drawn by the storyteller or on their own timer); **world
   events** and whether the world's **peoples remember the colony**; the region (fortunes and their stock, new towns'
   faces, rise and fall, trading posts, hamlets, small towns' maps); **bonds with other peoples** (favors owed and

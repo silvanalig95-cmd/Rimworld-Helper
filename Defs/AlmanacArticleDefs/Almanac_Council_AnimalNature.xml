@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The animals' natures: temperaments, friendships, rivalries and grief among them, and animals that speak
+       (Source/ColonyCouncil/Animals/AnimalTempers.cs, AnimalBonds.cs, AnimalVoices.cs; DESIGN.md "The animals' natures"). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_AnimalNature</defName>
+    <label>the animals' natures</label>
+    <category>Council</category>
+    <order>13</order>
+    <summary>Every named or bonded animal has a temperament that shows on its card and in what it does on the map. The colony's animals make friends and feuds and grieve their dead, an old animal knows its handler again, and, with a fantasy source, a few of them speak.</summary>
+    <tip>Select an animal: under its card's usual lines, its temperament, its friends and rivals, its grief and what it did lately. None of this ever sends a letter or a message.</tip>
+    <description>The colony's named and bonded animals each have a nature of their own. It is given once, leaning by their kind, and kept with the game: a dog leans loyal, a cat proud, a muffalo gentle, a thrumbo gentle and proud, a Pokémon by its types (fire brave and proud, ghost mischievous, psychic proud and curious). What a temperament means is something the animal really does on the map, never only words, and whoever sees it may say something about it.
+
+Friendships, rivalries and grief show the same way: where they sleep, who they follow, a nuzzle or a hiss in the log and over their heads, their cards, and what the colonists say and write in their journals. The parts follow "Pets as companions" (What's on, Strangers and creatures), each with a switch of its own beside it.</description>
+    <sections>
+      <li>
+        <heading>What each temperament does</heading>
+        <table>
+          <li>Temperament | On the map</li>
+          <li>brave | In a fight it goes to stand between its person and the nearest attacker, and fights whatever comes at it there; out of one, between its person and a wild predator that comes near them. Never a very small animal.</li>
+          <li>timid | In a fight it bolts from the shooting near it; else it shies away from a stranger who comes close.</li>
+          <li>greedy | It sneaks a meal, or a few mouthfuls of what it eats, from the stores or off a table.</li>
+          <li>gentle | It nuzzles someone sick, hurt or low (the game's own nuzzle, and its own small lift), or lies down by a patient asleep in a sickbed.</li>
+          <li>proud | It shoulders in when its person milks, tends or trains another animal, or shows itself off to visitors.</li>
+          <li>mischievous | A grazer gets into the crops and eats one; anything else knocks a few light things off a shelf onto the floor, for a hauler to put back.</li>
+          <li>loyal | While its person is away it waits at the door to the outside (or by their bed), and runs to them when they come home.</li>
+          <li>lazy | It naps by a fire or a heater when it's cold, in the shade when it's hot, else in the sun near its person.</li>
+          <li>curious | It follows a visitor about, or goes to watch someone building, mining or at a bench.</li>
+        </table>
+        <after>At the setting's 100%, the greedy and the mischievous show it about every five days each, the gentle, proud, lazy and curious every three, the brave and the timid when there is something to be brave or timid about (once a fight each), and the loyal one goes to the door about twice a day while its person is away. One such moment an hour on a map at most, none while danger is about (the fight's own aside). The setting "Animals' temperaments on the map" (How much happens) sets the pace; at 0% the cards still say what each animal is.</after>
+      </li>
+      <li>
+        <heading>Friends, rivals and grief</heading>
+        <points>
+          <li>Two named or bonded animals seen asleep side by side on three nights are friends (two friends each at most). By day one falls in with the other now and then with a nuzzle and a heart; at bedtime a tired one goes to lie down beside its friend asleep. Its card says "sleeps beside" whom.</li>
+          <li>Two of different kinds about each other by day may fall out, a cat and a dog eight times likelier, the proud, the greedy and the mischievous likelier, the gentle less; never two of the same kind, nor friends. Rivals hiss, growl or snort at each other in the log, and one chases the other off. Nobody is hurt.</li>
+          <li>Friends or rivals not seen together for 40 days drift apart.</li>
+          <li>A bonded animal whose person died and lies in a grave on the map goes to lie on the grave about every two and a half days for 60 days, then about every eight until 120; whoever loved the dead may say so and write it down. A friend of an animal that died misses it for 30 days, and goes to its grave if it has one.</li>
+          <li>An animal sold, given away or released (or gone back to the wild) that meets its old handler again, two days to 120 days after, on whatever map, comes over to them with the game's own nuzzle, once in ten days at most. The handler says something, and writes the first time down.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Animals that speak</heading>
+        <text>A fantasy part, rare, under the setting "Animals speak": on Auto (the default) only while PokéWorld or A RimWorld of Magic is loaded, or someone in the colony has a psylink; On always; Off never. Who speaks: a psychic-type Pokémon, to its trainer, in the mind; a druid's or a ranger's bonded animal (A RimWorld of Magic); the bonded animal of a psycaster of psylink level three or more; Vanilla Genetics Expanded's humanoid hybrids, whose making gives them words; and in a tribe, or a colony whose faith holds animals to be people, a bonded animal is a spirit animal that speaks in its person's dreams. A speaking animal says a line to its person now and then in its own voice (a dog's loyalty, a cat's disdain, a thrumbo's slow age, a Pokémon's types), about once a day at most and only with the two together; warns, over its head, of raiders or a predator really on the map within 45 cells, saying where; and has a place at the council table without a vote: one line at a meeting its person sits in (written with the meeting's remarks), and a word on half the council's questions about its person or itself, in the question's letter. Never a letter or a message of its own.</text>
+      </li>
+      <li>
+        <heading>In development mode</heading>
+        <text>Debug actions, Rimfolk, "Animals: ...": the temperaments listed, any animal's moment now, a temperament given, the fight's look, two made friends or rivals, a friends' or rivals' moment, a grave visited, an animal released remembering its handler and the meeting after, who could speak, an animal let speak, a speaking animal's line or warning, a spirit animal's dream, and the council's next question carrying an animal's word.</text>
+      </li>
+    </sections>
+    <keywords><li>temperament</li><li>animal friends</li><li>animal rivals</li><li>animal grief</li><li>grave</li><li>talking animals</li><li>spirit animal</li><li>handler</li></keywords>
+    <seeAlso><li>Council_Alm_C_Animals</li><li>Council_Alm_C_Strangers</li><li>Council_Alm_C_Dreams</li><li>Council_Alm_C_Meetings</li><li>Council_AlmMod_D_PokeWorldLife</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

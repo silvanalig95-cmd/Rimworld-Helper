@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A tribe's spirit animal speaks in dreams (Source/ColonyCouncil/Animals/AnimalVoices.cs): in a colony of the tribal
+    age, or of a faith that holds animals to be people (Ideology's animal personhood), a colonist's bonded animal comes
+    to them in their dreams and speaks. Only while "Animals speak" is on (Auto: with PokéWorld, A RimWorld of Magic or a
+    psylink in the colony). The lines are tagged as the speaking animal's are (voice:dog, temper:loyal...). Same format
+    as Council_Dreams.xml.
+  -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_Dream_SpiritAnimal</defName>
+    <label>a dream of a spirit animal</label>
+    <kind>Sweet</kind>
+    <weight>3</weight>
+    <about>SpiritAnimal</about>
+    <children>true</children>
+    <lines>
+      <plain>
+        <li>{PET_nameDef} walked beside me in the dream and spoke, in a voice like wind in the long grass. It said the herds will come back with the rain.</li>
+        <li>My spirit animal came to me in the dream. {PET_nameDef}. It said nothing for a long time, and then it said my name.</li>
+        <li>In the dream {PET_nameDef} told me where the water runs under the ground. I woke knowing it, and I don't know how.</li>
+        <li>[voice:dog] In the dream {PET_nameDef} ran ahead of me and called back in a voice like mine: this way, this way, I know the way.</li>
+        <li>[voice:cat] {PET_nameDef} sat on my chest in the dream and told me, very patiently, everything I have been doing wrong.</li>
+        <li>[voice:horse] {PET_nameDef} carried me across a plain of white grass and said, without turning its head, that I was heavier than my worries.</li>
+        <li>[voice:herd] The whole herd spoke in the dream, all at once, with {PET_nameDef}'s voice. They said they were not afraid of the winter.</li>
+        <li>[voice:bird] {PET_nameDef} flew over the colony in the dream and named every one of us from up there, as if counting us home.</li>
+        <li>[voice:thrumbo] {PET_nameDef} lay down by the fire in the dream and told me about the world before people, slowly, for a very long time.</li>
+        <li>[voice:pokemon] {PET_nameDef} spoke in the dream with a voice too big for it, and told me which way the storm would come.</li>
+        <li>[temper:loyal] {PET_nameDef} said in the dream: I was here before you woke, and I will be here when you sleep for good.</li>
+        <li>[temper:mischievous] In the dream {PET_nameDef} laughed at me, properly laughed, and then showed me where it had hidden my good knife.</li>
+        <li>[afterraid] {PET_nameDef} stood over me in the dream and said the ones who came are gone, and our dead are not angry.</li>
+        <li>[winter] {PET_nameDef} curled round me in the dream, in the snow, and said the cold is only the land sleeping.</li>
+        <li>[child] {PET_nameDef} talked to me all night in my dream. It said I'm going to be brave when I'm big.</li>
+      </plain>
+      <warm><li>{PET_nameDef} came to me in the dream and said thank you, for every meal and every scratch behind the ears.</li></warm>
+      <gloomy><li>In the dream {PET_nameDef} told me the dead walk with us still, and that it sees them. I was glad, and then I wasn't.</li></gloomy>
+      <cold><li>{PET_nameDef} spoke to me in the dream, as the old ones say a spirit animal will. I wrote down what it said.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+</Defs>
