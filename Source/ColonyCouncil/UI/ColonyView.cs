@@ -24,10 +24,97 @@ namespace ColonyCouncil
                 if (frame != Time.frameCount || cached == null)
                 {
                     frame = Time.frameCount;
-                    cached = ColonyState.InView;
+                    var now = ColonyState.InView;
+                    if (now != cached) version++;
+                    cached = now;
                 }
                 return cached;
             }
+        }
+
+        // ---------------- The pages that follow the colony in view (3c) ----------------
+
+        private static int version;
+        private static int followsFrame = -1;
+        private static bool everyone;
+
+        /// <summary>
+        /// Bumped when the colony in view changes or "everyone" is turned on or off: a page that follows the colony in view
+        /// (ManyColoniesMath.FollowingPages) builds again at once when it moves.
+        /// </summary>
+        public static int Version
+        {
+            get
+            {
+                _ = Current;
+                return version;
+            }
+        }
+
+        /// <summary>Everyone from every colony on the pages that follow the colony in view (a click away on their header), for the session.</summary>
+        public static bool Everyone
+        {
+            get => everyone;
+            set
+            {
+                if (everyone == value) return;
+                everyone = value;
+                version++;
+            }
+        }
+
+        /// <summary>The page drawn this frame follows the colony in view: its header shows the chip for everyone (with more than one colony).</summary>
+        public static void Following(bool follows)
+        {
+            if (follows) followsFrame = Time.frameCount;
+        }
+
+        /// <summary>The colony in view's home key, or none (the seat's council for a map that isn't a home).</summary>
+        private static int InViewKey => Homes.KeyOf(Current?.Map);
+
+        /// <summary>
+        /// Someone shows on a page that follows the colony in view: always with one colony or with everyone chosen; else only
+        /// the colony in view's own people (ManyColoniesMath.Shows).
+        /// </summary>
+        public static bool Shows(Pawn p)
+        {
+            var homes = Homes.All;
+            if (homes.Count <= 1 || everyone || p == null) return true;
+            return ManyColoniesMath.Shows(Homes.KeyOf(Homes.Of(p)), InViewKey, everyone, homes.Count);
+        }
+
+        /// <summary>A colony's home (its key) shows on a page that follows the colony in view: none (about no home) always does.</summary>
+        public static bool ShowsHome(int key) => key == HomesMath.None || ManyColoniesMath.Shows(key, InViewKey, everyone, Homes.All.Count);
+
+        /// <summary>A line of the chronicle shows for the colony in view (ManyColoniesMath.ChronicleShows).</summary>
+        public static bool ShowsLine(Ref place, Pawn about)
+        {
+            var homes = Homes.All;
+            if (homes.Count <= 1 || everyone) return true;
+            int placeKey = place.kind == RefKind.Colony ? place.id : HomesMath.None;
+            int aboutKey = about != null ? Homes.KeyOf(Homes.Of(about)) : HomesMath.None;
+            return ManyColoniesMath.ChronicleShows(placeKey, aboutKey, InViewKey, everyone, homes.Count);
+        }
+
+        /// <summary>
+        /// On a page that follows the colony in view, with more than one colony: a chip to see everyone from every colony, or
+        /// only the colony in view's, right-aligned to end at <paramref name="right"/>. Returns the width it took (0 otherwise).
+        /// </summary>
+        public static float ScopeChip(float right, float y, float maxWidth)
+        {
+            if (followsFrame != Time.frameCount || !ColonyState.Several) return 0f;
+            string label = (everyone ? "CC_Many_ScopeEveryone" : "CC_Many_ScopeColony").Translate().Resolve();
+            Text.Font = GameFont.Tiny;
+            float w = Mathf.Min(maxWidth, Text.CalcSize(label).x + 14f);
+            Text.Font = GameFont.Small;
+            if (w < 40f) return 0f;
+            var r = new Rect(right - w, y, w, 20f);
+            Widgets.DrawBoxSolid(r, UiKit.WithAlpha(everyone ? UiKit.Gold : UiKit.Ink, 0.08f));
+            Widgets.DrawHighlightIfMouseover(r);
+            UiKit.LabelFit(new Rect(r.x + 6f, r.y, r.width - 8f, r.height), label, everyone ? UiKit.Gold : UiKit.Faint, GameFont.Tiny);
+            TooltipHandler.TipRegion(r, (everyone ? "CC_Many_ScopeEveryoneTip" : "CC_Many_ScopeColonyTip").Translate(Homes.Name(Current?.Map).Named("PLACE")).Resolve());
+            if (Widgets.ButtonInvisible(r)) Everyone = !everyone;
+            return w;
         }
 
         /// <summary>The chip's words: the colony in view, and whether it is the seat.</summary>

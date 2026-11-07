@@ -114,6 +114,7 @@ namespace ColonyCouncil
 
         private static Model model;
         private static float modelAt = -1f;
+        private static int modelView = -1;
         private static Vector2 scroll;
         private static float height = 600f;
 
@@ -124,8 +125,9 @@ namespace ColonyCouncil
             var m = new Model();
             // Who holds what right now: the colony's own people, as the core's census counts them, read fresh (the census
             // itself is kept an hour, and the game's own Convert ability can change a faith in between).
+            // The colony in view's own people with more than one colony, everyone a click away (UI/ColonyView.cs).
             var all = PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists_NoCryptosleep
-                .Where(p => p != null && !p.Dead && !p.IsQuestLodger() && Faiths.Of(p) != null).ToList();
+                .Where(p => p != null && !p.Dead && !p.IsQuestLodger() && Faiths.Of(p) != null && ColonyView.Shows(p)).ToList();
             var groups = all.GroupBy(Faiths.Of).Select(g => (ideo: g.Key, believers: g.ToList()))
                 .OrderByDescending(g => g.believers.Count).ThenByDescending(g => g.believers.Average(Faiths.Certainty)).ToList();
             m.people = all.Count;
@@ -296,7 +298,7 @@ namespace ColonyCouncil
                 UiKit.EmptyState(rect, Icons.CatIdeology ?? Icons.People, OffReason());
                 return;
             }
-            if (model == null || Time.realtimeSinceStartup - modelAt > 1f)
+            if (model == null || Time.realtimeSinceStartup - modelAt > 1f || modelView != ColonyView.Version)
             {
                 try
                 {
@@ -308,6 +310,7 @@ namespace ColonyCouncil
                     model = new Model();
                 }
                 modelAt = Time.realtimeSinceStartup;
+                modelView = ColonyView.Version;
             }
             var m = model;
             float top = UiKit.PageHeader(rect, Icons.CatIdeology, "CC_Tab_Faiths".Translate(), "CC_UI_Sub_Faiths".Translate(), m.statText,

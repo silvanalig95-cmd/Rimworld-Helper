@@ -170,7 +170,9 @@ namespace ColonyCouncil
         /// <summary>The view in its rect: whose colony it is (with more than one), then the page with its header's modes and "?".</summary>
         private static void DrawView(Rect rect)
         {
-            // With more than one colony, whose pages they are and the way to another's: the chip in every view's header (UI/ColonyView.cs).
+            // With more than one colony, whose pages they are and the way to another's: the chip in every view's header (UI/ColonyView.cs);
+            // the People view's pages and the Chronicle follow the colony in view, with everyone a click away (3c).
+            ColonyView.Following(ManyColoniesMath.Follows(page));
             ViewHead.Draw(rect, page, Get(names, page, ModeName), TabIcon(page), Head(ViewOf(page)), drawPage);
         }
 

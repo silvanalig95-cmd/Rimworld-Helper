@@ -67,6 +67,7 @@ namespace ColonyCouncil
         // The filtered lines, rebuilt when the filter or the chronicle (the history's view) changes.
         private static readonly List<ChronicleLine> entries = new List<ChronicleLine>();
         private static ChronicleFilter entriesFilter;
+        private static int entriesView = -1;
         private static List<ChronicleLine> entriesSource;
 
         private static string[] filterLabels;
@@ -247,13 +248,18 @@ namespace ColonyCouncil
         {
             // The view is built again whenever the history changes: a new list is a new chronicle.
             var all = Chronicle.Lines;
-            if (entriesSource == all && entriesFilter == chronicleFilter) return entries;
+            int view = ColonyView.Version;
+            if (entriesSource == all && entriesFilter == chronicleFilter && entriesView == view) return entries;
             entries.Clear();
+            // With more than one colony, the colony in view's lines (and the world's), everything a click away (3c).
+            bool several = ColonyState.Several && !ColonyView.Everyone;
+            var colonists = several ? Colonists(comp) : null;
             foreach (var l in all)
-                if (Matches(l.kind, chronicleFilter))
+                if (Matches(l.kind, chronicleFilter) && (!several || ColonyView.ShowsLine(l.entry?.place ?? Ref.None, !l.about.IsNone && colonists.TryGetValue(l.about, out var p) ? p : null)))
                     entries.Add(l);
             entriesSource = all;
             entriesFilter = chronicleFilter;
+            entriesView = view;
             return entries;
         }
 

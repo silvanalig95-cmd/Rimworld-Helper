@@ -34,14 +34,16 @@ namespace ColonyCouncil
 
         private static Model model;
         private static float builtAt = -1f;
+        private static int builtView = -1;
         private static Vector2 scroll;
         private static float height = 400f;
 
         public static void Draw(Rect rect, CouncilGameComponent comp)
         {
-            if (model == null || Time.realtimeSinceStartup - builtAt > 1f || Time.realtimeSinceStartup < builtAt)
+            if (model == null || Time.realtimeSinceStartup - builtAt > 1f || Time.realtimeSinceStartup < builtAt || builtView != ColonyView.Version)
             {
                 builtAt = Time.realtimeSinceStartup;
+                builtView = ColonyView.Version;
                 try
                 {
                     model = Build();
@@ -111,7 +113,8 @@ namespace ColonyCouncil
         {
             var m = new Model();
             var people = Renown.On ? Renown.People() : PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists.ToList();
-            foreach (var p in people.Where(p => p != null && p.RaceProps.Humanlike && !p.IsQuestLodger()).OrderBy(p => p.LabelShort))
+            // The colony in view's own people with more than one colony (the colony's name among the peoples stays one), everyone a click away.
+            foreach (var p in people.Where(p => p != null && p.RaceProps.Humanlike && !p.IsQuestLodger() && ColonyView.Shows(p)).OrderBy(p => p.LabelShort))
             {
                 var k = KnownAs.Of(p);
                 string line = KnownAs.Line(k);

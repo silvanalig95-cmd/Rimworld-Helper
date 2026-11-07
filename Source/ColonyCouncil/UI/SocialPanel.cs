@@ -62,11 +62,13 @@ namespace ColonyCouncil
         private static Model model;
         private static float modelAt = -1f;
         private static Pawn modelFocus;
+        private static int modelView = -1;
 
         private static Model Build(CouncilGameComponent comp)
         {
             var m = new Model();
-            var colonists = PawnsFinder.AllMaps_FreeColonists.Where(p => !p.IsQuestLodger() && p.RaceProps.Humanlike).ToList();
+            // The colony in view's own people with more than one colony, everyone a click away (UI/ColonyView.cs).
+            var colonists = PawnsFinder.AllMaps_FreeColonists.Where(p => !p.IsQuestLodger() && p.RaceProps.Humanlike && ColonyView.Shows(p)).ToList();
             bool on = ColonyCouncilMod.Settings.socialWeb;
             m.grouped = on && GroupLife.Active;
             m.cliques = on && !m.grouped ? comp.social.Cliques.Where(c => c.members.Count(Shown) >= 2).ToList() : new List<Clique>();
@@ -124,10 +126,11 @@ namespace ColonyCouncil
 
         public static void Draw(Rect rect, CouncilGameComponent comp)
         {
-            if (model == null || Time.realtimeSinceStartup - modelAt > 0.5f || modelFocus != focus)
+            if (model == null || Time.realtimeSinceStartup - modelAt > 0.5f || modelFocus != focus || modelView != ColonyView.Version)
             {
                 model = Build(comp);
                 modelAt = Time.realtimeSinceStartup;
+                modelView = ColonyView.Version;
                 modelFocus = focus;
             }
             var m = model;

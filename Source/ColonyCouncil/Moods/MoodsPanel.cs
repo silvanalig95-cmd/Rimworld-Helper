@@ -38,6 +38,7 @@ namespace ColonyCouncil
 
         private static Report report;
         private static float reportAt = -1f;
+        private static int reportView = -1;
 
         /// <summary>Forget the last game's colonists (called when a game loads).</summary>
         public static void Reset()
@@ -50,7 +51,8 @@ namespace ColonyCouncil
 
         private static Report Build()
         {
-            var r = new Report { pawns = MoodInsight.Colonists().Select(p => MoodInsight.MoodOf(p)).ToList() };
+            // The colony in view's own people with more than one colony, everyone a click away (UI/ColonyView.cs).
+            var r = new Report { pawns = MoodInsight.Colonists().Where(ColonyView.Shows).Select(p => MoodInsight.MoodOf(p)).ToList() };
             var colony = MoodInsight.Colony(r.pawns);
             foreach (var c in colony) c.texts = MoodView.TextsFor(c);
             r.bad = colony.Where(c => !c.good && c.total < -0.05f).OrderBy(c => c.total).Take(20).ToList();
@@ -91,7 +93,7 @@ namespace ColonyCouncil
                 return;
             }
             bool compact = !MoodCompact.Details;
-            if (report == null || Time.realtimeSinceStartup - reportAt > 1f || Time.realtimeSinceStartup < reportAt || compact != (report.compact != null))
+            if (report == null || Time.realtimeSinceStartup - reportAt > 1f || Time.realtimeSinceStartup < reportAt || compact != (report.compact != null) || reportView != ColonyView.Version)
             {
                 if (report != null && compact != (report.compact != null))
                 {
@@ -100,6 +102,7 @@ namespace ColonyCouncil
                 }
                 report = Build();
                 reportAt = Time.realtimeSinceStartup;
+                reportView = ColonyView.Version;
             }
             var r = report;
             float top = UiKit.PageHeader(rect, Icons.Moods, "CC_Moods_Header".Translate(), "CC_UI_Sub_Moods".Translate(), r.average, r.averageColor,

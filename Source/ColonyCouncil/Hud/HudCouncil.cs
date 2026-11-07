@@ -31,6 +31,31 @@ namespace ColonyCouncil
 
         protected override string Empty => HudKit.T("CC_Pnl_CouncilCalm");
 
+        /// <summary>With more than one colony the panel names the colony in view, whose council it shows (3c).</summary>
+        protected override string HeaderLabel
+        {
+            get
+            {
+                string own = base.HeaderLabel;
+                if (!ColonyState.Several) return own;
+                var map = ColonyView.Current?.Map;
+                if (map == null) return own;
+                // Made again only when the colony in view (or its name) changes, not every frame.
+                string place = Homes.Name(map);
+                if (labelMap != map || labelPlace != place || labelOwn != own)
+                {
+                    labelMap = map;
+                    labelPlace = place;
+                    labelOwn = own;
+                    label = "CC_Many_HudCouncil".Translate(own.Named("PANEL"), place.Named("PLACE")).Resolve();
+                }
+                return label;
+            }
+        }
+
+        private Map labelMap;
+        private string labelPlace, labelOwn, label;
+
         private static Action Page(string page) => () => MainTabWindow_Council.OpenTab(page);
 
         private static string ClickPage(string page) => "CC_Week_ClickPage".Translate(MainTabWindow_Council.TabName(page)).Resolve();
@@ -189,7 +214,13 @@ namespace ColonyCouncil
 
         private void Trust(CouncilGameComponent comp)
         {
+            // The colony in view's own people, with more than one colony.
             var people = WeekModel.Colonists();
+            if (ColonyState.Several)
+            {
+                var council = ColonyView.Current;
+                people = people.Where(p => council == null || council.Has(p)).ToList();
+            }
             if (people.Count == 0) return;
             float avg = 0f;
             foreach (var p in people) avg += comp.standings.TrustOf(p);

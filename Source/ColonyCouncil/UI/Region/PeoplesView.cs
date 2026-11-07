@@ -76,6 +76,8 @@ namespace ColonyCouncil
             bool faces = RegionView.faces;
             string stat = faces ? FacesStat() : DiplomacyPanels.OwedStat(dip) ?? (rows.Count > 0 ? "CC_Peoples_Stat".Translate(rows.Count).Resolve() : null);
             head.lit = faces ? 1 : 0;
+            // The colony in view's neighbours with more than one colony, everyone a click away on the header (3c).
+            ColonyView.Following(faces);
             float top = UiKit.ViewHeader(rect, faces ? Icons.Visitor : Icons.Trust ?? Icons.People, "CC_Tab_Peoples".Translate(),
                 (faces ? "CC_Faces_Line" : "CC_Peoples_Line").Translate(), stat, null, 0f, null, head);
             var outRect = new Rect(rect.x, rect.y + top + 4f, rect.width, rect.height - top - 4f);
