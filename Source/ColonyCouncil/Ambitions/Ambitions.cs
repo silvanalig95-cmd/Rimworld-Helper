@@ -109,6 +109,18 @@ namespace ColonyCouncil
         /// <summary>A later stage of a staged ambition, not begun yet.</summary>
         public bool Later(int i) => def != null && def.staged && i > stage;
 
+        /// <summary>Building this is the project's own work now (its goals not yet met; a staged one's current stage): harm, part 6's last push.</summary>
+        public bool OwnWork(ThingDef thing)
+        {
+            if (def?.goals == null || map == null || thing == null) return false;
+            for (int i = 0; i < def.goals.Count; i++)
+            {
+                if (def.staged && i != stage) continue;
+                if (def.goals[i].OwnWork(thing) && GoalProgress(i) < 0.999f) return true;
+            }
+            return false;
+        }
+
         public float Progress
         {
             get

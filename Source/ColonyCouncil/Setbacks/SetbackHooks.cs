@@ -174,6 +174,7 @@ namespace ColonyCouncil
             try
             {
                 Setbacks.Notify_BillDone(worker, recipeDef, bench);
+                AnswerHurts.MakeshiftBill(worker, recipeDef, bench);
             }
             catch (Exception e)
             {

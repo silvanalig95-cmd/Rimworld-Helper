@@ -12,6 +12,120 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- Harm, part 6: the work's accidents, the animals, the contests and festivals (7 November 2026, the second of three batches
+  of the review's remaining proposals after the player's "all suggestions please", on the shared budget so they add variety
+  and not more hurts in all). Not released: no version yet, no What's new round, About.xml and CHANGELOG untouched (the lead
+  numbers and releases it at the merge). Twenty-three kinds (2.1.2, 2.1.3, 1.5.2, 3.3.2, 3.4.2, 4.3.2, 4.4.1, 3.11.1, 3.11.2,
+  4.7.1, 2.6.3; 2.4.3, 2.10.2, 3.11.4, 4.5.2, 4.6.1, 4.6.2; 4.1.2, 4.2.1, 4.8.2, 3.6.2, 3.7.2, 3.8.2). `Harm/HarmSixMath.cs`
+  (the rates, `HarmSixTests`, "harm six: "; linked in Tests.csproj and Balance.csproj), `Harm/HarmSix.cs` (the hub on the
+  harm book's hour and slices, the walks' arrivals and ends), `AnswerHurts.cs`, `WorkSlips.cs`, `WildHurts.cs`,
+  `Contests.cs`, `HarmSixDebug.cs`; `Defs/Misc/Rimfolk_HarmSix.xml` (the jobs `Rimfolk_DawnWalk`, `Rimfolk_ShooVisitor`,
+  `Rimfolk_MusterPost`, `Rimfolk_DareWalk`, all `JobDriver_HarmWalk`), `Defs/FlavorPoolDefs/Rimfolk_HarmSix_Lines.xml` (40
+  pools, in `ImmersionTests.SpokenPools`), Keyed `Rimfolk_HarmSix.xml`. DESIGN.md "Harm, part 6" (a table of the
+  twenty-three) and "The rates" redone; README "Hurts from everyday life" three bullets; the Almanac's ailments page (prose
+  only, no keyword changed); the review marks each built with what differs, and its Summary.
+  - Registry (`HarmKinds`, founding false, base rates from the model at 4000 runs, PokéWorld's two by hand): hotHeavy 0.0097,
+    backTooSoon 0.0041, projectPush 0.005, clumsyWorn 0.0023, makeshift 0.0075, takingDown 0.021, hurriedHarvest 0.035,
+    strongBack 0.0052, sharpHabits 0.036, secondDrink 0.025, handsSore 0.0078, droversBull 0.007, tooClose 0.013, dawnWalk
+    0.009, boldWolf 0.0047, catchFights 0.006 (by hand), storesVisitor 0.012 (by hand), bonfireSpark 0.00015, lineMuster
+    0.0067, magicSpar 0.010, braveDare 0.039, cowardName 0.0044, vendettaFury 0.003; each a system of its own in
+    `Harm.SystemOn` (strongBack and handsSore behind `Interplay.On`; the soft ones with their mods: `WorkSlips.SecondDrinkOn`,
+    `Contests.MagicLoaded`, `PokeWorldLink.Active`). 72 kinds now; each passes at about 35% of its own rate.
+  - The twenty-three (rate on its own, prevention; seen). The work: (2.1.2) an answer's fire laid for a gathering, the pyre
+    lit, the dead carried out, their graves dug: one roll a play-out at the moment of the work, 1 in 40, half for Cooking or
+    Construction 8; a burn on a hand or a load on a foot; named under the haul's and the bonfire's answers. Lanterns and the
+    cold room's fire have no hands at them and the answers' felling is already 4.3.1's, so not counted twice. (2.1.3) the
+    light-work answer's own risk (0.3), a third of those a fall with a load within the day, two more days in bed, helped back
+    (`DilemmaEffect_BackTooSoonFall` in the risk's effects, named there). (1.5.2) a project's last three days, its own
+    building (`AmbitionGoal.OwnWork`, `AmbitionState.OwnWork`), tired hands' rule, not on top of a work decree's own roll.
+    (3.3.2) the heart's two high bands, half the tired-hands rate on any long day, decree or not. (3.4.2) a bill cooked at a
+    campfire or butchered at a spot while a proper bench could be built, 1 in 200 (the setbacks' bill hook). (4.3.2) a wall
+    or a door taken down under Construction 5, 1 in 100 (`Patch_TakingDownHurts`, new). (4.4.1) an hour harvesting in a
+    hurry (a harvest work party, a plant a frost harvest marked: `FieldWeather.FrostMarked`, the harvest push), 1 in 200,
+    twice after dark, half for Plants 8; the age's tool in the line. (3.11.1) the quirk's heavy day: the strain half again
+    (0.0025, told as an ailment caught), 1 in 150 a dropped load. (3.11.2) a day at the whittling or the whetstone (the
+    quirks' small habit), 1 in 10 a nick. (4.7.1) with Alpha Skills, after three days running of a drink before work, 1 day
+    in 5 a second cup at the stores (only as the drug policy allows for fun), then 1 stagger in 4 at the bench, the stove or
+    a build within four hours; the game's own drunkenness and its fight chance stay the game's. (2.6.3) the harvest
+    mission's hands, a day and a half of the work ailments' own rates (about 1 hand in 10, half for the tough), shown and told
+    once home. The animals: (2.4.3) an hour within three cells of a camp's herd beast, 1 in 30, once a stay; the charge, a
+    drover's word, told as an animal's turning. (2.10.2) three encounters where one of ours steps close to a wild animal
+    (`DilemmaEffect_TooClose`), by the kind's taming revenge (about 1 in 20), never the nervous; a kick, or a bite named for
+    the animal (`HurtKind.Bite`, `Injure`'s new `by`), so the ailments' own bite roll can bring rabies. (3.11.4) the quirk's
+    dawn walk to a field's edge; alone beyond the walls with a hungry predator in reach, 1 dawn in 8 its hunt. (4.5.2) the
+    beast that stays, a predator fed three days on: at the stores' door at dusk, then 1 night in 40 with someone alone near
+    the stores its hunt; named under the answer. (4.6.1) PokéWorld: the trainer sent to catch it, once in reach, 1 try in 4
+    it fights (the game's attack, its moves PokéWorld's); a partner at their side takes it; named under the answer. (4.6.2)
+    PokéWorld: the fed one at the stores 1 dusk in 3, shooed by whoever is free, 1 shooing in 10 a swipe; named under the
+    answer. The contests: (4.1.2) a bonfire on a dry, windy summer night in the open, 1 in 20 a spark in dry grass two to six
+    cells off, the game's own fire, up to three beating it out, a singe within a step; named under the bonfire's answer and
+    in the calendar's way. (4.2.1) the militia (its evening off the bouts, one in four) or the "hold the way in" project: the
+    shooters to posts behind the line's way in (or the gate), 1 muster in 30 a mishap by the weapon (half with a marshal of
+    Shooting 10), a little Shooting; named on the militia's card and the project's description. (4.8.2) A RimWorld of Magic's
+    fighters, one evening in 3, with consent (neither thinks ill of the other, neither worn down), the drills' bout
+    (`DrillBout.form` "spar"), 1 in 25 a blow. (3.6.2) a brave or bold group about once a season, a cautious one (its worrier,
+    a nervous anchor) talking them out half the time; a cold swim (1 in 3 a chill: hypothermia in a frost, else a head
+    cold) or wrestling its strongest (the bout's form "dare", 1 in 3 a sprained ankle); thin ice left out. (3.7.2) a
+    coward's name formed (`ReputationTracker`'s news): the next fight at home, undrafted, they break cover at the nearest
+    enemy; drafted it passes, the marshal at their side holds them. (3.8.2) an avenger in a fight against the sworn people,
+    once a battle, 1 in 3, undrafted.
+  - Messages only where the game gives one for the same hurt (an ailment caught: the strong back, the hands home; an
+    animal turning on someone: the drovers' bull); the rest seen on the map (the hit, dust, smoke, sparks, the line,
+    `HarmFour.Mote`). Saved: nothing new (`HarmBook.waiting`: `HarmWaiting` "fall", "hands", "coward"; `HarmFive.Due` and
+    `Lapsed` hand unknown ones to `HarmSix`); the rest session memory. No Sched slot. Hooks, one line each: PlayFire and
+    PlayDead (the fire and the pyre lit), OnMapPlays and PlayOutEffects (the sheets), SetbackHooks (the bill),
+    Workers_MissionRoad (the hands), BeforeWork (the drink), ResidentBeast and PokeWorldCamp (the sheets),
+    ReputationTracker (the coward), NightWalks (the walks), HarmFive (what waits). Defs: the back-too-soon risk, three
+    encounters, the project's description, the militia's risk line, the calendar's bonfire way.
+  - Rates (`Tools/Balance -- --harm --runs 4000`), hurts a colonist-year, before (every kind up to 0.149.0), every kind on
+    without the budget, with it (and at HEAD, with parts 4 and 5, with it): 6 well run 0.339, 0.862, 0.318 (0.309); 6
+    average 0.453, 1.223, 0.456 (0.455); 6 neglectful 0.560, 1.667, 0.630 (0.627); 12 well run 0.290, 0.696, 0.251 (0.242);
+    12 average 0.395, 1.016, 0.370 (0.366); 12 neglectful 0.504, 1.425, 0.528 (0.523). The average colony of six holds; no
+    kind flagged a quarter off. Part 6 alone would add 0.23 a colonist-year; within the budget the later kinds bring 0.30
+    where they brought 0.26. Variety: a kind again within thirty days 0.14 to 0.10 a colony-year; the commonest kind 13.6%
+    to 13.1%. The heart the same. A RimWorld of Magic is in the model's game now (its spar); PokéWorld still isn't.
+  - Try in the game (dev mode, Debug actions, Rimfolk, "Harm six: ..."; none of it could be run here):
+    1. "the next answer's hot or heavy work hurts": answer a raid's aftermath with the pyre, or a bonfire with a fire to
+       lay: the burn at the lighting, or a body dropped on a foot while carrying out; the sheet's line under the answer.
+    2. "one let back too soon falls...": the next hour they carry something they go down with it, a word, someone helps
+       them to bed, two more days on the convalescence. In play: "back too soon", let them back to light work.
+    3. "the next long day on a project's building slips": with a building project in its last three days.
+    4. "the next worn-down colonist's work slips": anyone at work. "the next makeshift bill hurts": cook at a campfire with a
+       stove researched. "the next wall or door taken down hurts": deconstruct a wall.
+    5. "the next hour harvesting is hurried and cuts": order a harvest (or let a frost harvest or the killing frost's all
+       hands run). "the next heavy day of one who carries too much", "the next whittler or sharpener nicks a finger".
+    6. With Alpha Skills: "a second cup before work for..." then let them drink before work: the walk back for a second
+       cup; "the stagger after a second cup for..." and a beer, then the bench: the slip.
+    7. "the next harvest hands come home sore": send hands to a town's harvest; when they're home, the ailment and its
+       message naming the town.
+    8. "the next hour among a camp's herd charges": walk someone in among a camp's beasts. "the next one too close to a
+       wild animal is bitten": wait for (or fire) a creature encounter close to a wild one.
+    9. "a dawn walk now...": on someone with "walks the fields at dawn", with a hungry predator about and no walls.
+    10. "the fed predator here grows bold": with a resident predator, someone alone near the stores at night.
+    11. With PokéWorld: "the next catch fights back" (answer "let them try to catch it"; with and without a partner at the
+        trainer's side) and "the fed visitor comes to the stores and swipes".
+    12. "the next bonfire throws a spark": a bonfire with grass about; the fire, the beaters, a singe. Clear the ground
+        round it: nothing catches.
+    13. "a muster at the line now, with a mishap": with the militia drills (or the "hold the way in" project) and a defense
+        line or a gate; the call, the posts, the mishap.
+    14. With A RimWorld of Magic: "two fighters spar now, a blow landing" with two of its fighter classes free in the
+        evening.
+    15. "a bold group's dare now": a group brave to a fault or the bold ones, two free; a swim by cold water, or a
+        wrestle, a cautious one maybe talking them out of it.
+    16. "a coward's name for..." then a raid with them undrafted: the run forward; drafted, nothing; with the marshal
+        beside them, the marshal's word. "the next one to break from cover goes" for an avenger in a raid of the sworn people.
+    17. "the shared budget (log)": the twenty-three listed with their passes (about 0.35).
+  - Riskiest: the coward's and the avenger's break from cover (an undrafted colonist given the game's attack or a sprint
+    into range and a static attack on a raider, which the game then fights out; the cap counts it as their hurt as they
+    go); the predator hunts started on a colonist (the fed wolf, the dawn walk: `PredatorHunt` with killIncapped off, as
+    part 5's); the wild Pokémon's attack job on a trainer (`AttackMelee`, 400 ticks, PokéWorld's own moves read from its
+    verbs, never seen here); the spark's fire in dry grass on a windy night (the game's own fire, beaten out by up to three,
+    but a windy summer grass fire can spread); the second cup queued before the work (the game's own ingesting, the policy
+    read at its joy flag only); `Patch_TakingDownHurts` on `JobDriver_Deconstruct.FinishedRemoving` (protected, by name;
+    ApiDiff found nothing changed); the bite named for the animal through `Injure`'s DamageInfo (instigator and weapon set,
+    for the ailments' bite roll); the muster's posts behind a defense line's way in (cells nearer the colony's middle, by
+    any cover there; a line drawn oddly could post them badly); the walks' jobs ending from inside their own toils, as part
+    5's did.
 - 0.159.0, medicine by what is treated (7 November 2026, the player's explicit request: "can you make it so that medicine is
   always taken according to the injury? if it's just scratches or bruises i don't want proper or glitterworld medicine
   used if a pawn also has a more serious illness at the same time. sometimes i even want no medicine if the injury is not

@@ -6,7 +6,7 @@
   <ColonyCouncil.AmbitionDef>
     <defName>Rimfolk_Amb_HoldTheWayIn</defName>
     <label>hold the way in</label>
-    <description>Put a gate across the way in that most raids take, with cover behind it; on open ground, wall the home in with one gate. The defense window shows where.</description>
+    <description>Put a gate across the way in that most raids take, with cover behind it; on open ground, wall the home in with one gate. The defense window shows where. While it's worked on, the shooters are called to the line now and then, and a muster can bring a small mishap: a bowstring's snap, a powder burn.</description>
     <days>16</days>
     <weight>1</weight>
     <relevantCategories>

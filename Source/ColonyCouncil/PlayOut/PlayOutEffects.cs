@@ -262,6 +262,13 @@ namespace ColonyCouncil
 
         protected override string DefaultPool => music ? "Council_Pool_PlaySong" : "Council_Pool_PlayFire";
 
+        /// <summary>Harm, part 6: a fire laid for it can burn a hand, and on a dry, windy summer night a spark can catch the grass.</summary>
+        protected override void Costs(DilemmaContext ctx, ImpactSheet sheet, List<Pawn> who)
+        {
+            AnswerHurts.Describe(sheet, build && !woodPaid, false);
+            Contests.DescribeSpark(sheet, ctx?.map);
+        }
+
         protected override bool Fill(PlayOut p, DilemmaContext ctx)
         {
             if (!base.Fill(p, ctx)) return false;

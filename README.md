@@ -3815,7 +3815,7 @@ may. Where a choice brings the risk, its card or its answer says so first.
 
 **One shared budget.** All of Rimfolk's kinds of hurt share one budget: together they come about as often as the kinds
 built before it did, however many there are now (at 100%, about half a hurt a colonist-year in an average colony, a
-third in a careful one and three fifths in a careless one, beside a raid's wound or two). Each kind comes a little under half as often as it would alone, a kind that came lately waits its turn for
+third in a careful one and three fifths in a careless one, beside a raid's wound or two). Each kind comes about a third as often as it would alone, a kind that came lately waits its turn for
 up to thirty days while the others come a little more often, and switching a system off takes its kinds out of the
 budget, leaving the rest as they were. The setting and the storyteller scale all of it as before, and prevention still
 counts: a careful colony meets fewer of them than a careless one.
@@ -3884,6 +3884,29 @@ counts: a careful colony meets fewer of them than a careless one.
   predator may find them (a friend goes along when free); fishing below freezing ends in a slip into the water now and
   then, and the game's own hypothermia until they're warm. A field sown by the weather whose forecast missed a frost says
   so in its note.
+- **The work's accidents:** an answer's hot or heavy work (a gathering's fire laid, the pyre lit, the dead carried out,
+  their graves dug) may burn a hand or drop a load on a foot, less for skilled hands; one let back to light work too soon
+  who overdoes it may fall with a sack and be helped back to bed; a project's own building in its last three days, and
+  any work for someone worn down, can bring tired hands' slip; cooking at a campfire or butchering at a spot when a proper
+  bench could be built, and a wall or door taken down by an unskilled hand, now and then hurt; a hurried harvest (the
+  frost's all hands, a frost harvest, the harvest push) can cut a hand, twice as often after dark; one who carries more
+  than they should strains their back more often and drops a load now and then; a whittler or a blade-sharpener nicks a
+  finger about once a season; with Alpha Skills, one who has drunk before work three days running may go back for a
+  second cup, as their drug policy allows, and stagger at the bench; field hands home from a town's harvest may bring a
+  strained back, blisters or a sunburn with them.
+- **Animals not ours:** one of ours wandering among a camp's herd may be charged; stepping close to a wild animal in an
+  encounter may end in a kick or a bite, by the kind's own temper (the nervous never step closer); one who walks the
+  fields at dawn alone beyond the walls may meet a hungry predator; a predator the colony feeds grows bold, shows itself
+  at the stores' door at dusk, and may come for someone alone near the stores at night; with PokéWorld, a wild one the
+  colony tries to catch may fight back (a partner Pokémon at the trainer's side takes it), and a fed one at the stores
+  may swipe at whoever shoos it. Each answer that brings it says so.
+- **Contests and fights:** a bonfire on a dry, windy summer night may throw a spark into the dry grass, the game's own
+  fire, beaten out by those near (clear the ground round it); with the militia or the "hold the way in" project the
+  shooters muster at the line now and then, and one muster in 30 has a mishap (a bowstring, a powder burn); with A
+  RimWorld of Magic, two fighters spar now and then, one bout in 25 a blow; a group brave to a fault eggs one of its own
+  into a dare about once a season (a cold swim, wrestling its strongest), a cautious one talking them out of it half the
+  time; someone with a coward's name, or an avenger facing the people they swore against, may break from cover in a
+  fight at home, unless drafted and held.
 
 No mood is added on top of a hurt: it brings the game's pain and its own wound or illness, and the doctors tend it.
 

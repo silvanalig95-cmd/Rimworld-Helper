@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Harm, part 6 (Source/ColonyCouncil/Harm/): the work's accidents, the animals, the contests and festivals. Messages
+       only where the game gives one for the same hurt (an ailment caught, an animal turning on someone); the rest is seen on
+       the map (a few words over them, their line, the hit, the game's own fire, fight and predator's warning). -->
+
+  <!-- ===================== The answers' work, the bills, the orders (AnswerHurts.cs) ===================== -->
+
+  <CC_HarmSix_Mote_Burn>burned at the fire</CC_HarmSix_Mote_Burn>
+  <CC_HarmSix_Mote_Dropped>dropped it on a foot</CC_HarmSix_Mote_Dropped>
+  <CC_HarmSix_Mote_Fall>a fall, back too soon</CC_HarmSix_Mote_Fall>
+  <CC_Impact_HotHeavy_Hot>Whoever lays and lights the fire may burn a hand at it</CC_Impact_HotHeavy_Hot>
+  <CC_Impact_HotHeavy_Heavy>Carrying the dead out is heavy work, and a load can come down on a foot</CC_Impact_HotHeavy_Heavy>
+  <CC_Impact_HotHeavy_Both>Carrying the dead out and lighting the pyre is heavy, hot work, and can bring a bruise or a burn</CC_Impact_HotHeavy_Both>
+  <CC_Impact_HotHeavyBrief>a small hurt at the work</CC_Impact_HotHeavyBrief>
+  <CC_Impact_BackTooSoonFall>If {0} overdoes it, a fall with a load can bring a bruise and more days in bed</CC_Impact_BackTooSoonFall>
+  <CC_Impact_BackTooSoonFallBrief>a fall if they overdo it</CC_Impact_BackTooSoonFallBrief>
+  <CC_HarmSix_HandsSore>{PAWN_nameDef} came home from the harvest at {PLACE} with {ILLNESS}. {NOTE}</CC_HarmSix_HandsSore>
+  <CC_HarmSix_HandsSore_2>The fields at {PLACE} took their toll: {PAWN_nameDef} is home with {ILLNESS}. {NOTE}</CC_HarmSix_HandsSore_2>
+
+  <!-- ===================== Slips at the day's work (WorkSlips.cs) ===================== -->
+
+  <CC_HarmSix_Mote_Slip_Bench>a slip at the bench</CC_HarmSix_Mote_Slip_Bench>
+  <CC_HarmSix_Mote_Slip_Hot>burned at the work</CC_HarmSix_Mote_Slip_Hot>
+  <CC_HarmSix_Mote_Slip_Heavy>a slip under the load</CC_HarmSix_Mote_Slip_Heavy>
+  <CC_HarmSix_Mote_Slip_Load>dropped the load</CC_HarmSix_Mote_Slip_Load>
+  <CC_HarmSix_Mote_Slip_Field>cut at the field</CC_HarmSix_Mote_Slip_Field>
+  <CC_HarmSix_Mote_Sickle_Tribal>the flint sickle slipped</CC_HarmSix_Mote_Sickle_Tribal>
+  <CC_HarmSix_Mote_Sickle_Medieval>the scythe slipped</CC_HarmSix_Mote_Sickle_Medieval>
+  <CC_HarmSix_Mote_Sickle_Industrial>the shears slipped</CC_HarmSix_Mote_Sickle_Industrial>
+  <CC_HarmSix_Mote_Sickle_Spacer>the cutter slipped</CC_HarmSix_Mote_Sickle_Spacer>
+  <CC_HarmSix_StrongBack>{PAWN_nameDef} carried more than anyone should, again, and has {ILLNESS} for it. {NOTE}</CC_HarmSix_StrongBack>
+  <CC_HarmSix_StrongBack_2>Two loads at once was one too many: {PAWN_nameDef} has {ILLNESS}. {NOTE}</CC_HarmSix_StrongBack_2>
+  <CC_HarmSix_Mote_Nick>a nicked thumb</CC_HarmSix_Mote_Nick>
+
+  <!-- ===================== Animals not ours (WildHurts.cs) ===================== -->
+
+  <CC_HarmSix_DroversBull>{PAWN_nameDef} walked in among the camp's herd and {ANIMAL_labelShort} charged, catching {PAWN_objective} on the {PART}.</CC_HarmSix_DroversBull>
+  <CC_HarmSix_DroversBull_2>One of the camp's beasts, {ANIMAL_labelShort}, took fright at {PAWN_nameDef} among the herd and knocked {PAWN_objective} down, hurting {PAWN_possessive} {PART}.</CC_HarmSix_DroversBull_2>
+  <CC_HarmSix_Mote_Kicked>kicked by {ANIMAL_labelShort}</CC_HarmSix_Mote_Kicked>
+  <CC_HarmSix_Mote_Bitten>bitten by {ANIMAL_labelShort}</CC_HarmSix_Mote_Bitten>
+  <CC_HarmSix_Mote_Swiped>swiped by {ANIMAL_labelShort}</CC_HarmSix_Mote_Swiped>
+  <CC_Impact_BoldWolf>Fed, a predator grows bold, and in some days it may come for someone alone near the stores at night</CC_Impact_BoldWolf>
+  <CC_Impact_BoldWolfBrief>fed, it may grow bold</CC_Impact_BoldWolfBrief>
+  <CC_Impact_StoresVisitor>Fed, it keeps coming to the stores, and now and then it swipes at whoever shoos it off</CC_Impact_StoresVisitor>
+  <CC_Impact_StoresVisitorBrief>it may swipe at whoever shoos it</CC_Impact_StoresVisitorBrief>
+  <CC_Impact_CatchFights>A wild one may fight back, and a partner Pokémon at the trainer's side takes it instead of the trainer</CC_Impact_CatchFights>
+  <CC_Impact_CatchFightsBrief>it may fight back</CC_Impact_CatchFightsBrief>
+
+  <!-- ===================== Contests and fights (Contests.cs) ===================== -->
+
+  <CC_HarmSix_Mote_Singed>singed by a spark</CC_HarmSix_Mote_Singed>
+  <CC_Impact_BonfireSpark>On a dry, windy summer night a spark from the fire can catch the grass, unless the spot is cleared round it</CC_Impact_BonfireSpark>
+  <CC_Impact_BonfireSparkBrief>a spark can catch the grass</CC_Impact_BonfireSparkBrief>
+  <CC_HarmSix_Mote_Muster_Bowstring>a snapped bowstring</CC_HarmSix_Mote_Muster_Bowstring>
+  <CC_HarmSix_Mote_Muster_Powder>a powder burn</CC_HarmSix_Mote_Muster_Powder>
+  <CC_HarmSix_Mote_Muster_Graze>a ricochet's graze</CC_HarmSix_Mote_Muster_Graze>
+  <CC_HarmSix_Mote_Muster_Charge>a burn from the cell</CC_HarmSix_Mote_Muster_Charge>
+  <CC_HarmSix_Mote_Sprain>a turned ankle, the dare won</CC_HarmSix_Mote_Sprain>
+  <CC_HarmSix_Mote_Chill>chilled to the bone</CC_HarmSix_Mote_Chill>
+  <CC_HarmSix_Report_spar>sparring with {OTHER_labelShort}.</CC_HarmSix_Report_spar>
+  <CC_HarmSix_Report_dare>wrestling {OTHER_labelShort} on a dare.</CC_HarmSix_Report_dare>
+
+</LanguageData>

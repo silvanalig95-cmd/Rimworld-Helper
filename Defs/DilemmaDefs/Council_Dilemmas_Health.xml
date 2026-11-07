@@ -130,6 +130,7 @@
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmH_Overdid</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Convalescence"><target>A</target><days>2</days></li>
+          <li Class="ColonyCouncil.DilemmaEffect_BackTooSoonFall"><target>A</target></li>
         </riskEffects>
       </li>
       <li>

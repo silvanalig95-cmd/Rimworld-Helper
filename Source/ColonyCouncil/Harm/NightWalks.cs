@@ -304,6 +304,7 @@ namespace ColonyCouncil
             try
             {
                 if (def == NightWalkDefOf.Rimfolk_RestlessWalk) RestlessArrived(p);
+                else HarmSix.Arrived(p, def);
             }
             catch (Exception e)
             {
@@ -317,6 +318,7 @@ namespace ColonyCouncil
             try
             {
                 if (def == NightWalkDefOf.Rimfolk_Sleepwalk && p.Spawned) SleepwalkEnded(p);
+                else if (p.Spawned) HarmSix.Ended(p, def);
                 alone.Remove(p.thingIDNumber);
             }
             catch (Exception e)

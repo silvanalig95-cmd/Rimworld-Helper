@@ -316,7 +316,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>They make for the nearest fire or heater burning at home, if one is in reach; else they just stop fishing.</summary>
-        private static void ToTheFire(Pawn p)
+        internal static void ToTheFire(Pawn p)
         {
             try
             {

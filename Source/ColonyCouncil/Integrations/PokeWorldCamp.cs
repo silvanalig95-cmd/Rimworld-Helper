@@ -169,6 +169,7 @@ namespace ColonyCouncil
         {
             if (ctx?.a == null || ctx.stranger == null) return;
             sheet.Play("CC_Impact_Catch".Translate(ctx.a.LabelShort, ctx.stranger.LabelShort).Resolve(), "CC_Impact_CatchBrief".Translate().Resolve());
+            WildHurts.DescribeCatch(sheet);
         }
 
         public override string Unavailable(DilemmaContext ctx) =>

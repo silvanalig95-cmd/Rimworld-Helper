@@ -53,8 +53,11 @@ public static class HarmBudgetTests
         var founding = all.Where(k => k.founding).ToList();
         var laterKinds = all.Where(k => !k.founding).ToList();
         var four = laterKinds.Where(k => Array.IndexOf(all, k) < Array.IndexOf(all, HarmKinds.SickWorkOn)).ToList();
-        C(founding.Count == 18 && four.Count == 16 && laterKinds.Count == 31 && all.Last() == HarmKinds.TamerBout,
-            $"the kinds built before the budget ({founding.Count}), harm part 4's ({four.Count}: the fifteen, a guest's night in two), part 5's ({laterKinds.Count - four.Count - 1}) and the tamers' bout (peoples, release D)");
+        int tamer = Array.IndexOf(all, HarmKinds.TamerBout);
+        var five = laterKinds.Where(k => Array.IndexOf(all, k) >= Array.IndexOf(all, HarmKinds.SickWorkOn) && Array.IndexOf(all, k) < tamer).ToList();
+        var six = laterKinds.Where(k => Array.IndexOf(all, k) > tamer).ToList();
+        C(founding.Count == 18 && four.Count == 16 && five.Count == 14 && six.Count == 23 && laterKinds.Count == 54 && all.Last() == HarmKinds.VendettaFury,
+            $"the kinds built before the budget ({founding.Count}), harm part 4's ({four.Count}: the fifteen, a guest's night in two), part 5's ({five.Count}), the tamers' bout (peoples, release D) and part 6's ({six.Count})");
         foreach (var id in new[] { "1.1.1", "2.5.2", "2.2.3", "1.2.3", "4.3.1", "3.4.1", "4.7.2", "4.5.3", "4.5.1", "4.9.1", "3.6.1", "1.4.2", "2.5.1", "2.8.1", "4.1.1" })
             C(four.Any(k => k.label.Contains("(" + id + ")")), $"the proposal {id} is a kind of part 4");
         foreach (var id in new[] { "1.2.1", "1.2.2", "3.2.1", "2.4.1", "3.1.1", "2.2.1", "2.1.1", "3.5.1", "1.4.1", "3.3.1" })
@@ -135,7 +138,7 @@ public static class HarmBudgetTests
             "no roll without a kind: every chance names what it is");
         C(harm.Contains("public static float PassOf(HarmKind kind)") && harm.Contains("public static float ScaleFor(HarmKind kind) => Scale * PassOf(kind)")
           && harm.Contains("HarmBudgetMath.PassFor(") && harm.Contains("public static bool SystemOn(string system)"), "the budget lives in the one service");
-        C(harm.Contains("public static void Note(Pawn p, HarmKind kind)") && harm.Contains("HarmKind why, HurtClass c = HurtClass.Injury)") && harm.Contains("public static bool Fight(Pawn a, Pawn b, HarmKind why)"),
+        C(harm.Contains("public static void Note(Pawn p, HarmKind kind)") && harm.Contains("HarmKind why, HurtClass c = HurtClass.Injury, Pawn by = null)") && harm.Contains("public static bool Fight(Pawn a, Pawn b, HarmKind why)"),
             "every hurt the service gives or counts names its kind");
         var defaults = new HashSet<string> { "decrees", "dangers", "hail", "peoples" };
         foreach (var system in all.Select(k => k.system).Distinct())
