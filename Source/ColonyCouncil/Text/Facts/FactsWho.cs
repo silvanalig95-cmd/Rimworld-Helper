@@ -66,6 +66,8 @@ namespace ColonyCouncil
                 // Outlaws by the game's own word (a rough outlander union, a fierce tribe), friendly enough now to talk.
                 if (p.def.naturalEnemy && !p.def.permanentEnemy) f.Tag("their:rough");
                 if (p.PlayerRelationKind == FactionRelationKind.Ally) f.Tag("their:ally");
+                // One of Rimfolk's peoples, by what it lives by: their:traders, their:healers, their:herders (Peoples/).
+                if (PeoplesMath.Tag(Peoples.CallingOf(p)) is string calling) f.Tag(calling);
             }
             var title = x.royalty?.MostSeniorTitle;
             if (title != null)

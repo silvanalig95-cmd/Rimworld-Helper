@@ -426,6 +426,8 @@ namespace ColonyCouncil
                 var t = WorldMechanics.Title(p);
                 if (t != null && !t.label.NullOrEmpty()) return t.label;
             }
+            // One of Rimfolk's peoples by its ways: the league's waymaster, the order's prior, the herders' camp elder (Peoples/).
+            if (Peoples.Title(f, "head", p?.gender == Gender.Female) is string ways) return ways;
             string era = Ages.Of(f) == WorldAge.Tribal ? "Tribal" : Ages.Of(f) == WorldAge.Medieval ? "Medieval" : Ages.Of(f) == WorldAge.Industrial ? "Industrial" : "Spacer";
             string key = "CC_Notable_Title_Head_" + era;
             if (p?.gender == Gender.Female && (key + "_F").CanTranslate()) key += "_F";

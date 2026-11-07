@@ -555,6 +555,7 @@ Console.WriteLine($"Checked {ManyColoniesTests.Run(Check)} things about many col
 Console.WriteLine($"Checked {HarmTwoTests.Run(Check)} things about harm, parts 2 and 3 (a camp's brawl, sickness brought home, the champion's bout, hunts that can turn, a rival's sabotage, the hustings' blows, frayed tempers, the one service, the words).");
 Console.WriteLine($"Checked {StageThreeWordsTests.Run(Check)} things about stage 3's words (the town the colony was, its raid's letters, the founders and the newcomers, the letters' fellows, the shipped lines narrowed, no draw added).");
 Console.WriteLine($"Checked {SchemesTests.Run(Check)} things about schemes against the colony (who schemes, how often, the acts by every age, who catches them, unknown until found out, the words).");
+Console.WriteLine($"Checked {PeoplesTests.Run(Check)} things about Rimfolk's own peoples (the callings and their tags, the weights, the titles, the towns' plans by the game's footprint rule, the three defs and their softness, the asks, callers and camp, the patch, the words, the emblems, the seams).");
 
 Console.WriteLine(failures == 0 ? "All tests passed (template math, layout, strain, meetings, pressures, ailments, line memory, good times, tab sizes, calendar, personal stories, clock and caps, faction memory, answers on the map, setbacks, promises kept, what colonists say, the heart's needs, beliefs and diets, animals, other mods)." : failures + " failure(s).");
 return failures == 0 ? 0 : 1;

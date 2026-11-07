@@ -119,6 +119,15 @@ namespace ColonyCouncil
         /// </summary>
         public List<string> memes;
         /// <summary>
+        /// Only from one of Rimfolk's peoples of this calling (Peoples/: traders, healers, herders): the herding folk's
+        /// winter grazing. Empty: any people. Such a kind comes only while a people of it is at peace with the colony.
+        /// </summary>
+        public string calling;
+        /// <summary>Only in these seasons (the herders' winter grazing: fall and winter). Empty: any season.</summary>
+        public List<Season> seasons;
+        /// <summary>How many animals the camp brings at most (a handful, CampLookMath.MaxAnimals; the herders' winter herd more, up to CampLookMath.MaxHerd).</summary>
+        public int maxAnimals = CampLookMath.MaxAnimals;
+        /// <summary>
         /// A colony known for one of these (a colony trait's tag, or a way: Devout, LongMemoried, Generous) draws this
         /// kind of camp: it comes twice as often there. Pilgrims seek out a devout colony; players, one that keeps its days.
         /// </summary>
@@ -201,7 +210,10 @@ namespace ColonyCouncil
         }
 
         public bool FitsFaction(Faction f) =>
-            f != null && f.def.techLevel >= minTech && f.def.techLevel <= maxTech && (memes.NullOrEmpty() || CampWords.HasMeme(f, memes));
+            f != null && f.def.techLevel >= minTech && f.def.techLevel <= maxTech && (memes.NullOrEmpty() || CampWords.HasMeme(f, memes)) && Peoples.Fits(calling, f);
+
+        /// <summary>The season at the home suits it (<see cref="seasons"/>).</summary>
+        public bool FitsSeason(Map map) => seasons.NullOrEmpty() || map != null && seasons.Contains(GenLocalDate.Season(map));
 
         /// <summary>Only when it could come at all: a kind for one kind of faith needs Ideology.</summary>
         public bool Possible => (memes.NullOrEmpty() || ModsConfig.IdeologyActive) && (!pokemon || (PokeWorldLink.Active && PokeWorldLink.PokemonShare() > 0f));

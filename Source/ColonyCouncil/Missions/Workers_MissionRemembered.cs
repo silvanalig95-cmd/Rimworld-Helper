@@ -23,18 +23,31 @@ namespace ColonyCouncil
         /// </summary>
         [ThreadStatic] public static Faction Only;
 
+        /// <summary>
+        /// While set, the mission being weighed or offered is one of Rimfolk's peoples' (Peoples/MissionPeople): only a
+        /// people of <see cref="OnlyCalling"/>, and one of <see cref="PreferCalling"/> likelier. Not saved: set and cleared
+        /// around one weighing (HappeningWorker_Mission).
+        /// </summary>
+        [ThreadStatic] public static string OnlyCalling, PreferCalling;
+
+        /// <summary>A people the mission being weighed may come from, by its calling (anyone when it names none).</summary>
+        public static bool CallingFits(Faction f) => Peoples.Fits(OnlyCalling, f);
+
+        /// <summary>A people's weight for the mission being weighed, by its calling (1 when it prefers none).</summary>
+        public static float CallingWeight(Faction f) => Peoples.Preference(PreferCalling, f);
+
         /// <summary>A people on good terms with the colony, likelier the more it owes it; with <paramref name="pred"/>.</summary>
         public static Faction Grateful(Func<Faction, bool> pred = null)
         {
             if (Only != null)
-                return FactionMemory.Remembers(Only) && !Only.defeated && LivingEvents.Friendly(Only) && Arrivals.PersonKind(Only) != null && (pred == null || pred(Only))
+                return FactionMemory.Remembers(Only) && !Only.defeated && LivingEvents.Friendly(Only) && Arrivals.PersonKind(Only) != null && CallingFits(Only) && (pred == null || pred(Only))
                     ? Only : null;
             var mem = FactionMemory.On ? FactionMemory.Instance : null;
             var tech = Avail.EffectiveTech;
             return Find.FactionManager.AllFactionsListForReading
                 .Where(f => FactionMemory.Remembers(f) && !f.defeated && LivingEvents.Friendly(f) && VarietyUtil.OnGoodTerms(f) && Arrivals.PersonKind(f) != null
-                            && (f.def.defName != "Empire" || ModsConfig.RoyaltyActive) && (pred == null || pred(f)))
-                .RandomElementByWeightWithFallback(f => Arrivals.TechWeight(f, tech) * (1f + (mem?.Sum(f, DeedSide.Favor) ?? 0f) / 8f));
+                            && (f.def.defName != "Empire" || ModsConfig.RoyaltyActive) && CallingFits(f) && (pred == null || pred(f)))
+                .RandomElementByWeightWithFallback(f => Arrivals.TechWeight(f, tech) * (1f + (mem?.Sum(f, DeedSide.Favor) ?? 0f) / 8f) * CallingWeight(f));
         }
 
         /// <summary>The people's town nearest the colony, or null.</summary>

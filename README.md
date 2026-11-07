@@ -3165,6 +3165,23 @@ ruin settled in 120, one town founded in 90, and a ruin Rimfolk made gone after 
 help more often and its families camp at the gate; a thriving one's caravans come more often. Setting: *Towns rise and
 fall*.
 
+**Three new peoples.** A new world can have three peoples of peaceful callings, listed once each among its peoples
+(remove or add them there like any other): a **road league** of caravan masters and waystation keepers (industrial,
+in dusters dyed teal; few towns, many caravans with rich stock and plenty of guards), a **hospitaller order** that
+keeps sickhouses (medieval, in ivory robes, its sworn guards in plate), and the **herding folk**, nomads who follow
+the grass (tribal, in russet hides; their caravans walk a herd for sale). Each has its own emblem, colours, names,
+faith and style (Ideology), a share of other kinds of people (Biotech), and towns laid out to a plan of their own when
+their map is made: a walled waystation with market stalls, a sickhouse round its herb garden, a camp of round houses
+and pens with the herd in them. They raid only when the colony has turned them hostile, and seldom then. In Rimfolk
+they are known by their ways: waymasters, priors and camp elders; road riders, postulants and riders bringing their
+letters; talk in their own voices. The league's outrider may ask whether its caravan should turn aside to the colony,
+and the league asks the colony's caravan to walk a factor home; the order's hospitallers see to a colonist's ailment
+for nothing, and in a plague year the order asks for medicine; the herders ask to winter a herd on the colony's land,
+and their drovers and shearers camp more often. With the VE apparel, armour and weapons sets their gear draws on
+those, with VE Memes their faiths take a meme of trade, of healthcare or of nomads. A save made before they were there
+doesn't have them (peoples that arise during play come next). The Almanac has a page, *the road league, the
+hospitallers and the herders*.
+
 ## Scenarios with stakes
 Seventeen scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Each starts the game with
 something already in motion, and a few seconds in, a letter says how things stand.

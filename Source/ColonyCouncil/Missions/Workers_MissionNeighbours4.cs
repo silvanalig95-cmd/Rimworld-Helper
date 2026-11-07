@@ -24,15 +24,20 @@ namespace ColonyCouncil
     public static class MissionPool
     {
         private static float total = -1f;
+        private static int totalDay = -1;
 
         public static float Factor(IncidentDef def)
         {
             if (def?.workerClass == null || !typeof(HappeningWorker_Mission).IsAssignableFrom(def.workerClass)) return 1f;
-            if (total < 0f)
+            // Worked out once a day: a mission only one of Rimfolk's peoples asks (Peoples/MissionPeople) takes its share
+            // only while a people of its calling is at peace with the colony, so a world without them draws as before.
+            int day = Find.TickManager?.TicksGame / GenDate.TicksPerDay ?? 0;
+            if (total < 0f || day != totalDay)
             {
                 total = 0f;
+                totalDay = day;
                 foreach (var d in DefDatabase<IncidentDef>.AllDefsListForReading)
-                    if (d.workerClass != null && typeof(HappeningWorker_Mission).IsAssignableFrom(d.workerClass) && d.baseChance > 0f)
+                    if (d.workerClass != null && typeof(HappeningWorker_Mission).IsAssignableFrom(d.workerClass) && d.baseChance > 0f && MissionPeople.Weighed(d))
                         total += d.baseChance;
             }
             return NeighboursFourMath.PoolFactor(total);

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The asks of Rimfolk's own peoples (Source/ColonyCouncil/Peoples/; docs/design/peoples.md), in the missions' existing
+    frameworks, only from a people of their calling (MissionPeople.only: none come in a world without one) and in one draw
+    with every other mission (MissionPool). The hospitaller order asks for medicine in a plague year (a sickness among the
+    region's world events: MissionPeople.whileKind); their carts come to the colony's gate for it. The road league asks the
+    colony's caravan to walk one of its factors home to a waystation with the season's silver or a chest of samples. The
+    herding folk ask for winter grazing as a camp asks (Defs/CampDefs/Rimfolk_CampKinds_Peoples.xml), and for fodder in
+    the existing ask, likelier from them (Patches/Rimfolk_Peoples.xml).
+  -->
+
+  <!-- ===================== The hospitallers ask for medicine ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_OrderMedicine</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>medicine for the sickhouse</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionDelivery</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Medicine for {PLACE}</li>
+          <li>The order's sickhouse is full</li>
+        </titles>
+        <texts>
+          <li>[plague] A postulant of {FACTION} has walked from the sickhouse at {PLACE} with a letter from {DEAD}, who keeps its ward. The sickness on the roads this year has filled every bed, the order's own medicine is nearly gone, and they ask the colony for what it can spare by a set day. The order pays, and well.</li>
+          <li>[plague,host] {HOST} of {PLACE} writes for {FACTION}: the sick are lying two to a bed in the sickhouse, the herb garden is stripped, and {DEAD}, their infirmarian, has made a list. The order asks the colony for medicine by a set day, at a good price.</li>
+          <li>[plague,their:friend] The hospitallers of {FACTION} have asked for {FRIEND_nameDef} by name. Their sickhouse at {PLACE} is full with the year's sickness, and {DEAD}, who keeps the ward, would rather buy the colony's medicine than anyone else's.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>The postulant went back to {PLACE} to tell {DEAD} the medicine is coming.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will have to stretch what they have, and find the rest elsewhere.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionPeople">
+        <only>healers</only>
+        <whileKind>sickness</whileKind>
+      </li>
+      <li Class="ColonyCouncil.MissionDelivery">
+        <kind>ordermedicine</kind>
+        <restDays>60</restDays>
+        <rating>2</rating>
+        <days>6~9</days>
+        <rewardFactor>1.6</rewardFactor>
+        <goodwill>14</goodwill>
+        <penalty>6</penalty>
+        <person>35~70</person>
+        <variants>
+          <li>
+            <tag>plague</tag>
+            <goals>
+              <li><what>medicine</what><count>8~16</count></li>
+            </goals>
+          </li>
+        </variants>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>{FACTION} are asking for {ITEM}, in the colony's stockpiles by the day the Quests tab shows, when the order's carts come.\n\nAll of it fetches {COUNT} silver, well over its worth. At least half, and they'll take what there is at its plain worth. Less, and the sickhouse goes short, and the order remembers it.</li>
+        </terms>
+        <accepted>
+          <li>The colony will have medicine ready for the sickhouse at {PLACE}: {ITEM}, in the stockpiles for {FACTION}'s carts.</li>
+        </accepted>
+        <ready>
+          <li>The medicine for {PLACE} is set aside, and {FACTION}'s carts are on their way for it.</li>
+        </ready>
+        <reminder>
+          <li>{FACTION}'s carts come soon for the medicine, and the stockpiles are still short: {ITEM}.</li>
+          <li>[plague] The sickhouse at {PLACE} is waiting on the colony's medicine, and the stockpiles are still short: {ITEM}.</li>
+        </reminder>
+        <doneTitles>
+          <li>[delivered] Medicine for {PLACE}</li>
+          <li>[partial] Part of the medicine for {PLACE}</li>
+        </doneTitles>
+        <done>
+          <li>[delivered] The medicine is ready, and {FACTION}'s carts are coming for it with {ITEM} silver and {DEAD}'s blessing. The ward at {PLACE} will have what it needs.</li>
+          <li>[delivered] {FACTION}'s carts are coming for the colony's medicine, to take it straight to the sickhouse at {PLACE}, with {ITEM} silver for it.</li>
+          <li>[partial] Only part of the medicine is ready. {FACTION}'s carts are coming for what there is, with its plain worth, {ITEM} silver.</li>
+        </done>
+        <failTitles>
+          <li>[missed] No medicine for {PLACE}</li>
+          <li>[cancelled] The order's ask is off</li>
+        </failTitles>
+        <fail>
+          <li>[missed] There was far too little medicine ready for {FACTION}'s carts to be worth the road. The sickhouse at {PLACE} will do what it can with what it has, and {DEAD} knows who said they would help.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} have broken with the colony, and their carts will not come.</li>
+          <li>The sickhouse at {PLACE} is gone, and nobody is left there to send for the medicine.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The road league asks for an escort ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_LeagueEscort</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a factor to see home</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionEscortWho</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>75</minRefireDays>
+    <earliestDay>25</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A factor of {FACTION} on the road</li>
+          <li>The road to {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[strongbox] {FACTION}'s road rider has brought the colony a request in the league's careful hand. {DEAD}, one of their factors, is carrying the season's takings home to the waystation at {PLACE}, and the road there has had riders on it that no league caravan sent. The league asks whether the colony's caravan would walk with {X_objective}, for a guard's pay.</li>
+          <li>[samples] {DEAD}, a factor of {FACTION}, has a chest of samples to bring home to {PLACE}: cloth, dyes and a few things the league would rather nobody else saw yet. The league's caravans are all out on the long roads, and they ask the colony's caravan to see {X_objective} there.</li>
+          <li>[their:friend] The league remembers {FRIEND_nameDef} and asks for that name: {DEAD}, a factor of {FACTION}, needs company on the road to {PLACE}, and the league would rather it were someone they know.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>See {DEAD} to {PLACE}</label>
+            <outcome>The road rider is taking {DEAD} the colony's word: its caravan will see {X_objective} to {PLACE}.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{DEAD} will wait for the league's own caravan, or risk the road alone.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionPeople">
+        <only>traders</only>
+      </li>
+      <li Class="ColonyCouncil.MissionEscortWho">
+        <kind>leaguefactor</kind>
+        <restDays>75</restDays>
+        <ages>25~60</ages>
+        <variants>
+          <li>strongbox</li>
+          <li>samples</li>
+        </variants>
+        <reward>200~380</reward>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>{DEAD} comes to the colony and waits there. Any caravan of the colony's, with one of its own people, that sets out from the colony for {PLACE} (about {TALE} away) takes {X_objective} along; when it gets there, {X_pronoun} is safe.\n\nThe league will pay {COUNT} silver at {PLACE}, as it pays its own guards, and remember who walked with {X_objective}.</li>
+        </terms>
+        <accepted>
+          <li>The colony will walk {DEAD} to {PLACE}, and {DEAD} is on the way to the colony to wait for the caravan.</li>
+        </accepted>
+        <ready>
+          <li>{DEAD} has come to the colony with the league's chest and is waiting for a caravan to {PLACE}.</li>
+        </ready>
+        <reminder>
+          <li>{DEAD} is still waiting at the colony for a caravan to {PLACE}, and checks the chest's lock every morning.</li>
+        </reminder>
+        <doneTitles>
+          <li>[arrived] {DEAD} reaches {PLACE}</li>
+        </doneTitles>
+        <done>
+          <li>[arrived,strongbox] At the waystation at {PLACE}, {DEAD} counted the takings into the league's strongroom, every coin of it, and paid the colony's caravan {ITEM} silver as the league pays its guards.</li>
+          <li>[arrived,samples] {DEAD} handed the chest of samples over at {PLACE} with its seal unbroken, and the waymaster paid the colony's caravan {ITEM} silver and wrote its name in the league's book.</li>
+          <li>[arrived] The road was long and quiet, and {DEAD} talked prices most of it. At {PLACE}, the league met the colony's caravan with {ITEM} silver.</li>
+        </done>
+        <failTitles>
+          <li>[alone] {DEAD} went alone</li>
+          <li>[turned] The caravan turned back</li>
+          <li>[harmed] {DEAD}</li>
+          <li>[late] Too late for {PLACE}</li>
+        </failTitles>
+        <fail>
+          <li>[alone] No caravan went to {PLACE}, and {DEAD} set off alone with the chest in the end. The league writes down who said they would walk with {X_objective}.</li>
+          <li>[turned] The colony's caravan turned back, and {DEAD} walked the rest of the road alone. The league has heard.</li>
+          <li>[harmed] {DEAD} never reached {PLACE}. The league will want to know why, and will remember whose care {X_pronoun} was in.</li>
+          <li>[late] The colony's caravan took so long that the league sent its own riders for {DEAD}. They're glad of {X_objective}, and not of the colony.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} have broken with the colony, and {DEAD} has gone another way.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

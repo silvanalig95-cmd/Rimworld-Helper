@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The hospitaller order (docs/design/peoples.md; DESIGN.md "Rimfolk's peoples"; Source/ColonyCouncil/Peoples/): an order
+    of healers who keep sickhouses where the roads are worst and take in whoever comes. Medieval, on the game's tribal
+    parent: plain robes and hoods dyed the order's ivory, sworn guards in plate, lay archers with bows. Their towns are
+    sickhouses round an herb garden (TownPlanDef Rimfolk_Plan_Sickhouse). In a plague year they ask the colony for medicine
+    (Rimfolk_Mission_OrderMedicine), they lend a healer to a colony with its sick (Rimfolk_Evt_OrderHealer), and their
+    sickhouse sees to the colony's travellers who lodge there. They defend their sickhouses and raid only when the colony
+    has turned them hostile (raidCommonalityFromPointsCurve 0.25). Listed once among the world's peoples when a world is
+    made, never required. Faith (Ideology): a fixed creed of penance and of the body kept whole (VE Memes' healthcare
+    where loaded), the Christian style's gothic halls. Kind of people (Biotech): humans, a few genies.
+  -->
+
+  <FactionDef ParentName="TribeBase">
+    <defName>Rimfolk_Order</defName>
+    <label>hospitaller order</label>
+    <description>An order of healers who keep sickhouses where the roads are worst and take in whoever comes to their door, friend or stranger. They live plainly, work the herb gardens and the wards, and send their almoners out with medicine and their postulants with letters.\n\nThey keep sworn guards in plate and lay archers on their walls, for the sick are not safe in a hard land, but they are slow to anger. Each sickhouse is kept by a prior or prioress.</description>
+    <pawnSingular>hospitaller</pawnSingular>
+    <pawnsPlural>hospitallers</pawnsPlural>
+    <leaderTitle>prior</leaderTitle>
+    <leaderTitleFemale>prioress</leaderTitleFemale>
+    <techLevel>Medieval</techLevel>
+    <basicMemberKind>Rimfolk_Order_Lay</basicMemberKind>
+    <factionNameMaker>Rimfolk_Namer_Order</factionNameMaker>
+    <settlementNameMaker>Rimfolk_Namer_OrderTown</settlementNameMaker>
+    <factionIconPath>ColonyCouncil/Peoples/Order</factionIconPath>
+    <settlementTexturePath>ColonyCouncil/Peoples/OrderTown</settlementTexturePath>
+    <colorSpectrum>
+      <li>(0.84, 0.82, 0.74)</li>
+      <li>(0.97, 0.95, 0.88)</li>
+    </colorSpectrum>
+    <hidden>false</hidden>
+    <naturalEnemy>false</naturalEnemy>
+    <permanentEnemy>false</permanentEnemy>
+    <canSiege>false</canSiege>
+    <requiredCountAtGameStart>0</requiredCountAtGameStart>
+    <startingCountAtWorldCreation>1</startingCountAtWorldCreation>
+    <maxConfigurableAtWorldCreation>9999</maxConfigurableAtWorldCreation>
+    <configurationListOrderPriority>35</configurationListOrderPriority>
+    <settlementGenerationWeight>0.8</settlementGenerationWeight>
+    <allowedCultures Inherit="False">
+      <li>Rustican</li>
+    </allowedCultures>
+    <backstoryFilters Inherit="False">
+      <li>
+        <categories>
+          <li>Outlander</li>
+        </categories>
+        <commonality>0.7</commonality>
+      </li>
+      <li>
+        <categories>
+          <li>Tribal</li>
+        </categories>
+        <commonality>0.3</commonality>
+      </li>
+    </backstoryFilters>
+    <raidCommonalityFromPointsCurve Inherit="False">
+      <points>
+        <li>(0, 0.25)</li>
+      </points>
+    </raidCommonalityFromPointsCurve>
+    <xenotypeSet>
+      <xenotypeChances>
+        <Genie MayRequire="Ludeon.RimWorld.Biotech">0.03</Genie>
+      </xenotypeChances>
+    </xenotypeSet>
+    <fixedIdeo>true</fixedIdeo>
+    <ideoName>The Open Hand</ideoName>
+    <ideoDescription>We were spared, and so we owe. The sick at the door are tended before the question of who they are, the body is kept whole and clean, and what the order has is held for whoever needs it next. A hospitaller's hand is open: it gives, and it is not raised first.</ideoDescription>
+    <forcedMemes>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Guilty</li>
+      <li MayRequire="Ludeon.RimWorld.Ideology">FleshPurity</li>
+      <li MayRequire="VanillaExpanded.VMemesE">VME_Healthcare</li>
+    </forcedMemes>
+    <structureMemeWeights Inherit="False">
+      <Structure_TheistAbstract MayRequire="Ludeon.RimWorld.Ideology">3</Structure_TheistAbstract>
+      <Structure_OriginChristian MayRequire="Ludeon.RimWorld.Ideology">1</Structure_OriginChristian>
+    </structureMemeWeights>
+    <styles>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Christian</li>
+    </styles>
+    <caravanTraderKinds Inherit="False">
+      <li>Rimfolk_Caravan_Order</li>
+    </caravanTraderKinds>
+    <visitorTraderKinds Inherit="False">
+      <li>Rimfolk_Visitor_Order</li>
+    </visitorTraderKinds>
+    <baseTraderKinds Inherit="False">
+      <li>Rimfolk_Base_Order</li>
+    </baseTraderKinds>
+    <pawnGroupMakers Inherit="False">
+      <li>
+        <!-- A fight: sworn guards in plate and lay archers -->
+        <kindDef>Combat</kindDef>
+        <options>
+          <Rimfolk_Order_Brother>8</Rimfolk_Order_Brother>
+          <Rimfolk_Order_Bowman>10</Rimfolk_Order_Bowman>
+        </options>
+      </li>
+      <li>
+        <kindDef>Peaceful</kindDef>
+        <options>
+          <Rimfolk_Order_Lay>16</Rimfolk_Order_Lay>
+          <Rimfolk_Order_Healer>10</Rimfolk_Order_Healer>
+          <Villager_Child MayRequire="Ludeon.RimWorld.Biotech">4</Villager_Child>
+          <Rimfolk_Order_Bowman>5</Rimfolk_Order_Bowman>
+        </options>
+      </li>
+      <li>
+        <kindDef>Trader</kindDef>
+        <traders>
+          <Rimfolk_Order_Cellarer>1</Rimfolk_Order_Cellarer>
+        </traders>
+        <carriers>
+          <Muffalo>5</Muffalo>
+          <Horse>4</Horse>
+          <Dromedary>3</Dromedary>
+          <Alpaca>2</Alpaca>
+        </carriers>
+        <guards>
+          <Rimfolk_Order_Brother>6</Rimfolk_Order_Brother>
+          <Rimfolk_Order_Bowman>10</Rimfolk_Order_Bowman>
+        </guards>
+      </li>
+      <li>
+        <kindDef>Settlement</kindDef>
+        <options>
+          <Rimfolk_Order_Brother>8</Rimfolk_Order_Brother>
+          <Rimfolk_Order_Bowman>10</Rimfolk_Order_Bowman>
+          <Rimfolk_Order_Healer>6</Rimfolk_Order_Healer>
+          <Rimfolk_Order_Lay>6</Rimfolk_Order_Lay>
+        </options>
+      </li>
+    </pawnGroupMakers>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleExtension">
+        <calling>healers</calling>
+        <townWord>sickhouse</townWord>
+        <townWords>sickhouses</townWords>
+        <head>prior</head>
+        <headFemale>prioress</headFemale>
+        <heir>subprior</heir>
+        <heirFemale>subprioress</heirFemale>
+        <envoy>almoner</envoy>
+        <trader>cellarer</trader>
+        <courier>postulant</courier>
+        <couriers>postulants</couriers>
+        <caravanWeight>1</caravanWeight>
+        <camps>
+          <li>Council_Camp_Healers</li>
+          <li>Council_Camp_LoneHealer</li>
+          <li>Rimfolk_Camp_HerbGatherers</li>
+          <li>Council_Camp_Pilgrims</li>
+          <li>Council_Camp_Penitents</li>
+        </camps>
+        <plan>Rimfolk_Plan_Sickhouse</plan>
+        <townGoods>
+          <MedicineHerbal>20~40</MedicineHerbal>
+          <MedicineIndustrial>4~10</MedicineIndustrial>
+          <Cloth>60~120</Cloth>
+          <Pemmican>40~80</Pemmican>
+          <WoodLog>60~120</WoodLog>
+        </townGoods>
+      </li>
+    </modExtensions>
+  </FactionDef>
+
+  <!-- ===================== Their people ===================== -->
+
+  <PawnKindDef Name="Rimfolk_OrderKindBase" Abstract="True">
+    <race>Human</race>
+    <defaultFactionDef>Rimfolk_Order</defaultFactionDef>
+    <chemicalAddictionChance>0</chemicalAddictionChance>
+    <invNutrition>2.55</invNutrition>
+    <maxGenerationAge>75</maxGenerationAge>
+    <apparelColor>(0.90, 0.88, 0.80)</apparelColor>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+    </apparelTags>
+    <apparelRequired>
+      <li>Apparel_Robe</li>
+    </apparelRequired>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_OrderKindBase">
+    <defName>Rimfolk_Order_Lay</defName>
+    <label>lay servant</label>
+    <combatPower>35</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.6~1.4</gearHealthRange>
+    <weaponTags>
+      <li>MedievalMeleeBasic</li>
+    </weaponTags>
+    <weaponMoney>40~90</weaponMoney>
+    <apparelMoney>150~300</apparelMoney>
+    <apparelAllowHeadgearChance>0.3</apparelAllowHeadgearChance>
+    <initialWillRange>1~3</initialWillRange>
+    <initialResistanceRange>8~14</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_OrderKindBase">
+    <defName>Rimfolk_Order_Healer</defName>
+    <label>hospitaller</label>
+    <combatPower>40</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.8~1.4</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_HatHood</li>
+    </apparelRequired>
+    <weaponTags>
+      <li>MedievalMeleeBasic</li>
+    </weaponTags>
+    <weaponMoney>40~90</weaponMoney>
+    <apparelMoney>200~350</apparelMoney>
+    <skills>
+      <li>
+        <skill>Medicine</skill>
+        <range>8~15</range>
+      </li>
+    </skills>
+    <requiredWorkTags>Caring</requiredWorkTags>
+    <fixedInventory>
+      <MedicineHerbal>3</MedicineHerbal>
+    </fixedInventory>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>10~16</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_OrderKindBase">
+    <defName>Rimfolk_Order_Brother</defName>
+    <label>sworn guard</label>
+    <combatPower>90</combatPower>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.8~1.8</gearHealthRange>
+    <apparelRequired Inherit="False">
+      <li>Apparel_PlateArmor</li>
+      <li>Apparel_SimpleHelmet</li>
+    </apparelRequired>
+    <apparelMoney>1200~2000</apparelMoney>
+    <weaponTags>
+      <li>MedievalMeleeDecent</li>
+      <li>MedievalMeleeAdvanced</li>
+    </weaponTags>
+    <weaponMoney>200~500</weaponMoney>
+    <requiredWorkTags>Violent</requiredWorkTags>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>18~28</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_OrderKindBase">
+    <defName>Rimfolk_Order_Bowman</defName>
+    <label>lay archer</label>
+    <combatPower>55</combatPower>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.6~1.8</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_SimpleHelmet</li>
+    </apparelRequired>
+    <apparelMoney>300~500</apparelMoney>
+    <weaponTags>
+      <li>NeolithicRangedDecent</li>
+    </weaponTags>
+    <weaponMoney>100~200</weaponMoney>
+    <requiredWorkTags>Violent</requiredWorkTags>
+    <initialWillRange>1~3</initialWillRange>
+    <initialResistanceRange>14~22</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_OrderKindBase">
+    <defName>Rimfolk_Order_Cellarer</defName>
+    <label>cellarer</label>
+    <trader>true</trader>
+    <combatPower>40</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Good</itemQuality>
+    <gearHealthRange>1~1</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_HatHood</li>
+    </apparelRequired>
+    <apparelMoney>300~500</apparelMoney>
+    <weaponTags>
+      <li>MedievalMeleeBasic</li>
+    </weaponTags>
+    <weaponMoney>60~120</weaponMoney>
+    <skills>
+      <li>
+        <skill>Social</skill>
+        <range>5~12</range>
+      </li>
+    </skills>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>10~16</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_OrderKindBase">
+    <defName>Rimfolk_Order_Prior</defName>
+    <label>prior</label>
+    <labelFemale>prioress</labelFemale>
+    <combatPower>45</combatPower>
+    <factionLeader>true</factionLeader>
+    <minGenerationAge>40</minGenerationAge>
+    <isFighter>false</isFighter>
+    <itemQuality>Good</itemQuality>
+    <gearHealthRange>1~1</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_HatHood</li>
+    </apparelRequired>
+    <apparelMoney>500~900</apparelMoney>
+    <weaponTags>
+      <li>MedievalMeleeBasic</li>
+    </weaponTags>
+    <weaponMoney>60~120</weaponMoney>
+    <skills>
+      <li>
+        <skill>Medicine</skill>
+        <range>10~16</range>
+      </li>
+    </skills>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>8~12</initialResistanceRange>
+  </PawnKindDef>
+
+  <!-- ===================== Their traders: medicine and plain goods ===================== -->
+
+  <TraderKindDef>
+    <defName>Rimfolk_Caravan_Order</defName>
+    <label>almoner's caravan</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>600~1000</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineHerbal</thingDef>
+        <countRange>25~45</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineIndustrial</thingDef>
+        <countRange>4~10</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Cloth</thingDef>
+        <countRange>150~300</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Pemmican</thingDef>
+        <countRange>100~200</countRange>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>Textiles</categoryDef>
+        <thingDefCountRange>2~2</thingDefCountRange>
+        <totalPriceRange>200~500</totalPriceRange>
+        <excludedThingDefs>
+          <li MayRequire="Ludeon.RimWorld.Anomaly">Leather_Dread</li>
+        </excludedThingDefs>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>FoodRaw</categoryDef>
+        <thingDefCountRange>3~4</thingDefCountRange>
+        <totalPriceRange>300~600</totalPriceRange>
+        <excludedCategories>
+          <li>EggsFertilized</li>
+        </excludedCategories>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>BasicClothing</tradeTag>
+        <countRange>5~6</countRange>
+        <maxTechLevelGenerate>Medieval</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponMelee</tradeTag>
+        <countRange>1~2</countRange>
+        <maxTechLevelGenerate>Medieval</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_Animals">
+        <maxWildness>0.60</maxWildness>
+        <tradeTagsSell>
+          <li>AnimalFarm</li>
+        </tradeTagsSell>
+        <tradeTagsBuy>
+          <li>AnimalFarm</li>
+        </tradeTagsBuy>
+        <kindCountRange>1~1</kindCountRange>
+        <countRange>1~3</countRange>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Visitor_Order</defName>
+    <label>almoner</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>200~400</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineHerbal</thingDef>
+        <countRange>8~16</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Cloth</thingDef>
+        <countRange>30~70</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Pemmican</thingDef>
+        <countRange>30~60</countRange>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Base_Order</defName>
+    <label>sickhouse</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>900~1500</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineHerbal</thingDef>
+        <countRange>35~60</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineIndustrial</thingDef>
+        <countRange>6~14</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Cloth</thingDef>
+        <countRange>200~400</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Pemmican</thingDef>
+        <countRange>150~250</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>WoodLog</thingDef>
+        <countRange>200~400</countRange>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>Textiles</categoryDef>
+        <thingDefCountRange>2~3</thingDefCountRange>
+        <totalPriceRange>300~700</totalPriceRange>
+        <excludedThingDefs>
+          <li MayRequire="Ludeon.RimWorld.Anomaly">Leather_Dread</li>
+        </excludedThingDefs>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>FoodRaw</categoryDef>
+        <thingDefCountRange>3~5</thingDefCountRange>
+        <totalPriceRange>300~800</totalPriceRange>
+        <excludedCategories>
+          <li>EggsFertilized</li>
+        </excludedCategories>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>BasicClothing</tradeTag>
+        <countRange>6~8</countRange>
+        <maxTechLevelGenerate>Medieval</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponMelee</tradeTag>
+        <countRange>2~3</countRange>
+        <maxTechLevelGenerate>Medieval</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_Animals">
+        <maxWildness>0.60</maxWildness>
+        <tradeTagsSell>
+          <li>AnimalFarm</li>
+        </tradeTagsSell>
+        <tradeTagsBuy>
+          <li>AnimalFarm</li>
+        </tradeTagsBuy>
+        <kindCountRange>1~2</kindCountRange>
+        <countRange>2~4</countRange>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <!-- ===================== Their names ===================== -->
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_Order</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=2)->Order of the [orderVirtue] [orderThing]</li>
+        <li>r_name->[PlaceOutlander] Hospitallers</li>
+        <li>r_name->Hospital of [PlaceOutlander]</li>
+        <li>r_name->The [orderVirtue] [orderThing]</li>
+        <li>r_name->Order of the Open Hand</li>
+        <li>orderVirtue->Quiet</li>
+        <li>orderVirtue->Mended</li>
+        <li>orderVirtue->Patient</li>
+        <li>orderVirtue->Gentle</li>
+        <li>orderVirtue->Kindled</li>
+        <li>orderVirtue->Open</li>
+        <li>orderVirtue->Steady</li>
+        <li>orderThing->Lamp</li>
+        <li>orderThing->Hand</li>
+        <li>orderThing->Hearth</li>
+        <li>orderThing->Well</li>
+        <li>orderThing->Bell</li>
+        <li>orderThing->Lantern</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_OrderTown</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->[PlaceOutlander] Hospice</li>
+        <li>r_name(p=2)->[PlaceOutlander] Sickhouse</li>
+        <li>r_name->[PlaceOutlander] Spring</li>
+        <li>r_name->[townVirtue] House</li>
+        <li>r_name->[townVirtue] Lamp</li>
+        <li>townVirtue->Quiet</li>
+        <li>townVirtue->Mercy</li>
+        <li>townVirtue->Patience</li>
+        <li>townVirtue->Mended</li>
+        <li>townVirtue->Lantern</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>

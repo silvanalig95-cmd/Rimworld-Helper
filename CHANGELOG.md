@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Three peaceful peoples
+
+*7 November 2026, version 0.136.0*
+
+- Three new peoples can be part of a new world, none of them hostile by nature: the road league of traders, the hospitaller order of healers, and the herding folk.
+- The road league sends rich trade caravans with many guards more often than any other people, and its outriders may ask whether a caravan should turn aside to your colony.
+- The hospitaller order sends healers in ivory robes who may treat an ailing colonist for free, asks for medicine in a plague year, and tends your travellers who lodge in its sickhouses.
+- The herding folk bring herds of animals to sell with their caravans, may camp near your colony with their herd in fall and winter, and walk the drove roads in their world events.
+- Each has its own emblem, faith, dress and kinds of people from your DLCs and mods where loaded, its own titles and words in letters and talk, and towns laid out as a waystation, a sickhouse or a herders' camp.
+- They turn hostile only if you make them so, and even then raid far less often than other peoples. The Almanac has a page about them.
+
 ## PokéWorld Updated, checked
 
 *7 November 2026, version 0.135.0*

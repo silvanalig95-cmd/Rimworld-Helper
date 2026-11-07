@@ -122,7 +122,8 @@ namespace ColonyCouncil
                 if (s?.Faction == null || s.Faction.IsPlayer) continue;
                 var kind = TownSickness(s);
                 if (kind == SickTown.None) continue;
-                bool medicine = CaravanInventoryUtility.AllInventoryItems(c).Any(t => t?.def != null && t.def.IsMedicine);
+                // A sickhouse of the hospitallers sees to the travellers who lodge there, as medicine in their packs would (Peoples/).
+                bool medicine = Peoples.TendsLodgers(s.Faction) || CaravanInventoryUtility.AllInventoryItems(c).Any(t => t?.def != null && t.def.IsMedicine);
                 foreach (var p in c.PawnsListForReading)
                 {
                     if (p == null || p.Dead || p.RaceProps == null || !p.RaceProps.Humanlike || !(p.IsColonist || p.IsSlaveOfColony)) continue;

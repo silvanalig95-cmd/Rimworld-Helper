@@ -12,7 +12,8 @@ namespace ColonyCouncil
     /// step: <c>GenStep_Settlement</c>, and the Vanilla Expanded Framework's own settlement step (read: KCSG's
     /// GenStep_Settlement derives from the game's and only overrides where it scatters and what it builds), which Vanilla
     /// Base Generation Expanded's layouts give every tribal and outlander people, ours among them; every other scatter
-    /// step and every other map pass untouched with one type check. With no layout kept, the game builds as always.
+    /// step and every other map pass untouched with one type check. With no layout kept, the game builds as always. A town
+    /// of one of Rimfolk's own peoples (Peoples/) is made from its people's plan the same way, where the land suits it.
     /// </summary>
     [HarmonyPatch(typeof(GenStep_Scatterer), nameof(GenStep_Scatterer.Generate))]
     public static class Patch_TownLayoutSettlement
@@ -22,7 +23,8 @@ namespace ColonyCouncil
             if (!(__instance is GenStep_Settlement) || map == null || !RimfolkPatches.On) return true;
             try
             {
-                return !TownLayouts.PlaceTown(map);
+                // A town the colony was, from its kept layout; else a town of one of Rimfolk's peoples, from its plan (Peoples/PeopleTowns.cs).
+                return !(TownLayouts.PlaceTown(map) || PeopleTowns.PlaceTown(map));
             }
             catch (Exception e)
             {

@@ -37,8 +37,14 @@ namespace ColonyCouncil
         /// <summary>The mission tells the people's memory itself how it went (World/FactionMemory.cs); else it's remembered as a promise kept or broken.</summary>
         public virtual bool OwnMemory => false;
 
-        protected override bool CanHappen(Map map, HappeningExtension ext) =>
-            Missions.CanOffer(Kind, RestDays) && StorytellerEvents.Adults(map).Any() && Possible(map);
+        protected override bool CanHappen(Map map, HappeningExtension ext)
+        {
+            // One of Rimfolk's peoples' asks: only in its season of need (a plague year), and from its people (Peoples/).
+            var who = def.GetModExtension<MissionPeople>();
+            if (who != null && !who.Possible) return false;
+            using (new MissionPeople.Scope(who))
+                return Missions.CanOffer(Kind, RestDays) && StorytellerEvents.Adults(map).Any() && Possible(map);
+        }
 
         /// <summary>The colony could do it at all (has what it takes, a neighbor to ask).</summary>
         protected abstract bool Possible(Map map);
@@ -46,7 +52,8 @@ namespace ColonyCouncil
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {
             making = new Mission { kind = Kind, def = def };
-            return Setup(making, ctx, ext);
+            using (new MissionPeople.Scope(def.GetModExtension<MissionPeople>()))
+                return Setup(making, ctx, ext);
         }
 
         /// <summary>The terms: who asks, what, by when, for what. Fills the mission and the offer's texts.</summary>
@@ -134,7 +141,8 @@ namespace ColonyCouncil
             VarietyUtil.Line(lines, Missions.Context(m, map), Missions.Tags(m), item ?? "", days);
 
         protected static Faction Neighbor(Map map) =>
-            Arrivals.Friendly(f => VarietyUtil.OnGoodTerms(f) && LivingEvents.TownOf(f, map) != null) ?? Arrivals.Friendly(VarietyUtil.OnGoodTerms);
+            Arrivals.Friendly(f => VarietyUtil.OnGoodTerms(f) && LivingEvents.TownOf(f, map) != null && MissionPeoples.CallingFits(f), MissionPeoples.CallingWeight)
+            ?? Arrivals.Friendly(f => VarietyUtil.OnGoodTerms(f) && MissionPeoples.CallingFits(f), MissionPeoples.CallingWeight);
 
         /// <summary>The colony could make sculptures: it has an art bench, or could build one, and someone to work it.</summary>
         public static bool CanSculpt(Map map)

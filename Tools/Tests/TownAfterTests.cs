@@ -266,7 +266,8 @@ public static class TownAfterTests
         C(layout.Contains("DefDatabase<ThingDef>.GetNamedSilentFail(def)") && layout.Contains("DefDatabase<TerrainDef>.GetNamedSilentFail(tdef)"), "a def the game no longer has is left out");
         C(layout.Contains("DataExposeUtility.LookByteArray(ref things, \"things\")") && layout.Contains("LayoutMath.Fit(g, CompressUtility.Compress)"),
             "saved as the game saves its own grids (bytes, deflated), fitted under the cap with the game's own deflate");
-        C(layout.Contains("new LordJob_DefendBase(f, rect.CenterCell, 25000)") && layout.Contains("PawnGroupKindDefOf.Settlement") && layout.Contains("HomeCell(map, rec.layout, rect, p)"),
+        C(layout.Contains("new LordJob_DefendBase(f, rect.CenterCell, 25000)") && layout.Contains("PawnGroupKindDefOf.Settlement") && layout.Contains("HomeCell(map, layout, rect, p)")
+          && layout.Contains("AtHome(map, rec.key, rec.layout, rect.Value, s.Faction)"),
             "its people: the game's settlement group under its defend-the-town lord, the notables at home in their own beds");
         C(layout.Contains("b.Faction == Faction.OfPlayer") && layout.Contains("d.building.isNaturalRock") && layout.Contains("b is Frame"),
             "only the colony's own buildings kept: not the land's rock, not a frame");

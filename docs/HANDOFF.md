@@ -6,6 +6,72 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 0.136.0, new peoples, release A (7 November 2026): the player's request of 7 November ("we can start with a few factions and see
+  how it goes ... they should also be able to arise during play", that part release B; "use all dlc and mods to your
+  availability"). `docs/design/peoples.md` (what was
+  built, the softness table, the templates for release B, what could come next); DESIGN.md "Rimfolk's peoples" (after
+  "The region"); README a paragraph ("Three new peoples.", the end of The region); an Almanac page of its own
+  (`Almanac_Peoples.xml`, "the road league, the hospitallers and the herders"). Tests: `PeoplesTests` ("peoples: ";
+  `Peoples/PeoplesMath.cs` linked). No Sched slot, nothing new saved, no new Harmony patch (two existing prefixes take
+  them: `Patch_RiseFallCaravans`, `Patch_TownLayoutSettlement`).
+  - The peoples (`Defs/PeopleDefs/`): the road league (`Rimfolk_League`, industrial, outlander parent, calling
+    `traders`: dusters dyed teal, few towns at 0.4, caravans three times as likely with rich stock and many guards), the
+    hospitaller order (`Rimfolk_Order`, medieval, tribal parent, `healers`: ivory robes and hoods, sworn guards in plate,
+    lay archers), the herding folk (`Rimfolk_Herders`, neolithic, tribal parent, `herders`: russet hides, tail caps; a
+    herd of 8 to 14 for sale walks with their caravans, which come half again as often). Each listed once among a new
+    world's peoples (`startingCountAtWorldCreation` 1), never required; no sieges, raids 0.25 to 0.5 of the usual
+    commonality, only once turned hostile. Fixed faiths (The Long Road, The Open Hand, The Long Grass: the game's memes,
+    VE Memes' trader, healthcare and nomad where loaded), styles (rustic, Christian, animalist), xenotype shares (Biotech,
+    Odyssey's starjack, Alpha Genes' animusen), their own name rule packs, trader kinds and pawn kinds. Emblems and town
+    icons drawn in code: `Tools/make_emblems.py` (preview `Tools/emblems_preview.png`), `Textures/ColonyCouncil/Peoples/`.
+  - The template (`PeopleExtension`; `Peoples/Peoples.cs` reads it): notables' titles (waymaster, prior or prioress,
+    camp elder; caravan master, cellarer, drover...), messengers (road riders, postulants, riders), the tag
+    `their:CALLING` in the facts and every line picker (asks, events, camps, bubbles, visitors, messengers, letters, world
+    events), the caravan weight, the camps it favours (4x), the town plan, its goods and herd.
+  - Theirs: the order's medicine for the sickhouse in a plague year (`Rimfolk_Mission_OrderMedicine`, `MissionPeople`
+    only and whileKind sickness), the league's factor to see home (`Rimfolk_Mission_LeagueEscort`), the order's
+    hospitaller at the gate (`Rimfolk_Evt_OrderHealer`, `calling:healers`, an ailing colonist), the league's outrider
+    (`Rimfolk_Evt_LeagueOutrider`, `calling:traders`, the need `caravan`: bidden, the league's own caravan comes), the
+    herders' winter herd camp (`Rimfolk_Camp_WinterHerd`, `CampKindDef.calling`/`seasons`/`maxAnimals`, fall and
+    winter). By patch (`Patches/Rimfolk_Peoples.xml`, conditional): eight world events prefer a calling
+    (`SituationFactionNeed.calling`), the healer lent and the fodder ask prefer one (`MissionPeople.prefers`), and three
+    callers the herders (`HappeningSetting.prefers`: a thirsty herd, a sick herd, drovers to a fair). An ask
+    only theirs takes no share of the missions' draw without them (`MissionPool`, worked out daily).
+  - Their towns (`Rimfolk_TownPlans.xml`, `TownPlanDef`; `Peoples/PeopleTowns.cs`): a plan read into the kept-layout
+    grid and placed by `TownLayouts.Place` in the settlement step's prefix after a town the colony was, where at most 6%
+    of its cells are bad ground; loot and goods in the storehouse, the herd in the pens, healroot in the garden, the
+    notables and the settlement group at home (`TownLayouts.AtHome`, now by town id and layout). Else the game's base.
+  - Fixed on the way: the hand-over's peoples could have borrowed the order's kinds as "a loaded mod's medieval people"
+    (`HandOverPeoples.Lend` now passes over Rimfolk's peoples).
+  - For release B: `Peoples.Templates`, `Peoples.Make(def, map)` (the game's way: faith, leader, relations, a town moved
+    near the home), the callings list, the emblem and plan pipelines, `MissionPeople`/`calling:` hooks; the template
+    ideas in `docs/design/peoples.md`. An existing save gets them only through release B (or the dev action below).
+  - Try in the game (none of it could be run here):
+    1. A new world: the three are in the world's faction list (the road league, the hospitaller order, the herding folk)
+       with their emblems; on the world map their towns' icons in teal, ivory and russet. Their leaders' titles and their
+       pawns' gear on the Factions tab and in a visiting group. With Ideology, their faiths on the Ideoligions page, with
+       the styles.
+    2. Dev mode, Debug actions, Rimfolk: "Peoples: Rimfolk's peoples in this world" (the log lists each); "Peoples: a
+       people of a template now, near this home (testing)..." in an existing save (the people made with a town a few days
+       off); "Peoples: lay a town's plan at the mouse (testing)..." to see each plan on the home map (the colony's own
+       buildings: deconstruct after).
+    3. Their towns' maps: attack one or visit with a caravan (or the game's dev tools); the waystation, sickhouse or camp
+       laid out near the map's middle, the herd in the herders' pens, healroot in the order's garden, goods in the
+       storehouse, defenders at home. On water or marsh the game's own base instead.
+    4. Caravans: the game's Incidents dev tools, TraderCaravanArrival a few times: the league's come far more often; the
+       herders' herd walking in with the caravan; their stock (Trade).
+    5. Rimfolk's events (the game's Incidents dev tools, by defName): `Rimfolk_Evt_OrderHealer` with an ailing colonist
+       (the hospitaller sits with them, no silver asked); `Rimfolk_Evt_LeagueOutrider` (bid it come: the league's caravan
+       arrives); the missions `Rimfolk_Mission_LeagueEscort` and, with a plague world event running,
+       `Rimfolk_Mission_OrderMedicine`. Debug actions, Rimfolk, "Peoples: one of their camps here now..." for the
+       herders' winter herd (a herd of up to twelve beyond their camp) or a camp a people favours.
+    6. Letters and talk: write to a notable of theirs (their title, their answer in their voice, their messengers' word
+       at the gate); chat with a visitor of theirs (their pieces of talk).
+  - Riskiest: the town plans on unusual maps (a mountain town has its rock cut away where the plan stands; a plan that
+    lands on ancient ruins wipes what it overlaps); trader stock generators and tag names checked against the 1.6 data
+    but not loaded in the game; the fixed faiths with VE Memes' memes (their exclusions with the game's weren't
+    checkable); the herd caravan's many animals and the winter camp's twelve head on a slow machine; the outrider's
+    caravan when the game would refuse it at the last moment (then no caravan comes after a "yes").
 - `Install Rimfolk.bat` finds RimWorld by itself (7 November 2026, the player's question: installing on another computer
   with another user name and Steam folder). Steam from the registry (`SteamPath`, `InstallPath`) and every library in
   its `libraryfolders.vdf` (new and old format), the installed programs' `InstallLocation` (Steam's "Steam App 294100",

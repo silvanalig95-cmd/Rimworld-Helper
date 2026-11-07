@@ -4479,6 +4479,59 @@ rules in `RegionMath.cs` (Tools/Tests: `RegionTests`).
   reason (`Patch_ColonistMemoryTrade`), so the option is greyed out and a caravan's negotiator is someone else. No raid
   of its own.
 
+### Rimfolk's peoples
+
+New peoples of peaceful callings the world lacked (the player's request, 7 November 2026; `docs/design/peoples.md`
+has the whole design, the softness and the templates for release B). Release A: three peoples a new world is made with;
+release B, peoples that arise during play, builds on them. `Defs/PeopleDefs/`, `Source/ColonyCouncil/Peoples/`, the
+pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
+
+- **The peoples.** The road league (`Rimfolk_League`, industrial, outlander parent, calling `traders`), the hospitaller
+  order (`Rimfolk_Order`, medieval, tribal parent, `healers`), the herding folk (`Rimfolk_Herders`, neolithic, tribal
+  parent, `herders`). Each a FactionDef on the game's abstract parent with its own pawn kinds (gear by the game's tags,
+  which the VE sets add to, a few required pieces, all dyed its colour), traders, names (its own rule packs), a fixed
+  faith (Ideology: the game's memes, VE Memes' where loaded, a style), a xenotype share (Biotech, Alpha Genes),
+  `colorSpectrum`, and an emblem and town icon drawn in code (`Tools/make_emblems.py`, preview
+  `Tools/emblems_preview.png`). Listed once among a new world's peoples at the game's usual chances
+  (`startingCountAtWorldCreation` 1), never required (`requiredCountAtGameStart` 0); never natural or permanent
+  enemies, no sieges, raids a quarter to a half of another people's commonality, and only once the colony has turned
+  them hostile. Few towns for the league (`settlementGenerationWeight` 0.4).
+- **The template** (`PeopleExtension` on the FactionDef): the calling, the town's word, the notables' titles (head and a
+  woman's, heir and a woman's, envoy, trader), the messengers' word, the caravan weight, the camp kinds it favours, the
+  town plan, the town's goods and herd. `Peoples` reads it: `Of`, `CallingOf`, `Title`, `Courier`, `CaravanFactor`,
+  `CampFactor`, `Preference`, `Fits`, `CanSend`, `TendsLodgers`, `CaravanCanCome`, `Make` (a people made now, the game's
+  way, its town near a home: the dev tools now, release B later). Nothing saved, no clock of its own.
+- **Words.** Notables titled by their ways (`NotableBook.TitleOf`, `RegionFaces.TitleOf`: waymaster, prior or prioress,
+  camp elder; caravan master, cellarer, drover). Their messengers by their own word (`CourierWords.Noun`: road riders,
+  postulants, riders). The tag `their:traders`, `their:healers` or `their:herders` (`PeoplesMath.Tags`) in the facts
+  (`Facts.People`), the asks' tags, the events', the camps', the bubbles', the visitors', the messengers', the letters'
+  and the world events'; their letters (`Rimfolk_Pool_NeighbourWrites`), their messengers' lines and nine pieces of talk
+  in their own voices.
+- **How often.** The game's trader caravans weigh each people's `caravanWeight` (`Patch_RiseFallCaravans`: the
+  league's 3, the herders' 1.5). A camp kind a people favours comes from them four times as often (the league's
+  market folk, salt caravans, far merchants and road wardens; the order's healers, herb-gatherers, pilgrims and
+  penitents; the herders' drovers, shearers and catchers). A world event's people (`SituationFactionNeed.calling`) and
+  an ask (`MissionPeople.prefers`) prefer a calling five times: by patch (`Patches/Rimfolk_Peoples.xml`), the drove
+  roads and the great herds the herders, six road and trade events the league, a healer lent the order, fodder the
+  herders; a caller's people (`HappeningSetting.prefers`): a thirsty herd, a sick herd and drovers on the road to a fair
+  the herders.
+- **Theirs only.** `MissionPeople.only` and `whileKind`: the order's medicine for the sickhouse in a plague year (a
+  delivery, their carts at the gate) and the league's factor to see home (the traveller's escort); an ask only theirs
+  takes no share of the missions' draw while no people of its calling is at peace (`MissionPool`). `HappeningSetting`
+  `people` `calling:CALLING`: the order's hospitaller at the gate (free care for an ailment, medicine sent back, the
+  doctor learning) and the league's outrider (the need `caravan`: bidden, the league's own trader caravan comes).
+  `CampKindDef.calling`, `seasons`, `maxAnimals`: the herders' winter herd (fall and winter, up to twelve head and a dog,
+  `CampLookMath.MaxHerd` 14).
+- **Their towns.** `TownPlanDef` (`Defs/PeopleDefs/Rimfolk_TownPlans.xml`): rows of keys read into the kept-layout grid
+  (`PeoplesMath.Grid`, the game's footprint rule `PeoplesMath.Footprint`) and placed by `TownLayouts.Place` from
+  `Patch_TownLayoutSettlement` (`PeopleTowns.PlaceTown`, after a town the colony was), near the map's middle where at
+  most 6% of its cells are bad ground; then the game's loot and the people's goods in the storehouse, the herd in the
+  pens, the healroot in the garden, the notables and the game's settlement group under its defend-the-town lord
+  (`TownLayouts.AtHome`). The power step stands down for it (`TownLayouts.NotePlaced`). Else the game's own base.
+- **Elsewhere.** A sickhouse of the order sees to the colony's lodgers as medicine would (`SickHome`); the hand-over's
+  peoples never borrow these peoples' kinds (`HandOverPeoples.Lend`). The Almanac's page *the road league, the
+  hospitallers and the herders*.
+
 ### Letters that arrive in days and bring something (the player's decision 12, 6 November 2026)
 
 In the player's save Stace wrote three letters to notables in 18 days; each leg took 12 to 14 days (the towns are over

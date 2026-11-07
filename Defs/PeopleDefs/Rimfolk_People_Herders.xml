@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The herding folk (docs/design/peoples.md; DESIGN.md "Rimfolk's peoples"; Source/ColonyCouncil/Peoples/): nomad herders
+    who follow the grass with great herds and keep only seasonal camps. Neolithic, on the game's tribal parent: hides and
+    fur caps dyed russet, archers and spear-wardens. Their caravans walk a herd of eight to fourteen beasts for sale along
+    with their pack animals (the game brings a caravan's animals for sale with it), and they come half again as often as
+    another people's. Their camps are round houses round a fire with pens (TownPlanDef Rimfolk_Plan_HerdCamp, their herd in
+    the pens). They bring their drovers and shearers to the colony's land more often, and in the fall and winter they ask
+    to graze a herd there (Rimfolk_Camp_WinterHerd); the drove roads' world event comes for them likeliest. They defend
+    their camps and raid only when the colony has turned them hostile (raidCommonalityFromPointsCurve 0.5). Listed once
+    among the world's peoples when a world is made, never required. Faith (Ideology): a fixed creed of the herd (VE Memes'
+    nomad where loaded), the animalist style. Kind of people (Biotech): humans mostly, some yttakin, pigskins and
+    neanderthals, and Alpha Genes' animusen where loaded.
+  -->
+
+  <FactionDef ParentName="TribeBase">
+    <defName>Rimfolk_Herders</defName>
+    <label>herding folk</label>
+    <description>Nomad herders who follow the grass with their great herds, from the summer pastures to the winter valleys and back. They keep only seasonal camps of round houses and pens, and trade beasts, wool and hides wherever they pass.\n\nThey are generous to a fair host and hard on a thief, and their archers ride the edges of every herd. Each camp is kept by its elder.</description>
+    <pawnSingular>herder</pawnSingular>
+    <pawnsPlural>herders</pawnsPlural>
+    <leaderTitle>first herder</leaderTitle>
+    <techLevel>Neolithic</techLevel>
+    <basicMemberKind>Rimfolk_Herders_Herder</basicMemberKind>
+    <factionNameMaker>Rimfolk_Namer_Herders</factionNameMaker>
+    <settlementNameMaker>Rimfolk_Namer_HerdersTown</settlementNameMaker>
+    <factionIconPath>ColonyCouncil/Peoples/Herders</factionIconPath>
+    <settlementTexturePath>ColonyCouncil/Peoples/HerdersTown</settlementTexturePath>
+    <colorSpectrum>
+      <li>(0.66, 0.36, 0.20)</li>
+      <li>(0.88, 0.58, 0.34)</li>
+    </colorSpectrum>
+    <hidden>false</hidden>
+    <naturalEnemy>false</naturalEnemy>
+    <permanentEnemy>false</permanentEnemy>
+    <canSiege>false</canSiege>
+    <requiredCountAtGameStart>0</requiredCountAtGameStart>
+    <startingCountAtWorldCreation>1</startingCountAtWorldCreation>
+    <maxConfigurableAtWorldCreation>9999</maxConfigurableAtWorldCreation>
+    <configurationListOrderPriority>36</configurationListOrderPriority>
+    <settlementGenerationWeight>0.6</settlementGenerationWeight>
+    <raidCommonalityFromPointsCurve Inherit="False">
+      <points>
+        <li>(0, 0.5)</li>
+      </points>
+    </raidCommonalityFromPointsCurve>
+    <xenotypeSet>
+      <xenotypeChances>
+        <Yttakin MayRequire="Ludeon.RimWorld.Biotech">0.05</Yttakin>
+        <Pigskin MayRequire="Ludeon.RimWorld.Biotech">0.03</Pigskin>
+        <Neanderthal MayRequire="Ludeon.RimWorld.Biotech">0.04</Neanderthal>
+        <AG_Animusen MayRequire="Ludeon.RimWorld.Biotech,sarg.alphagenes">0.03</AG_Animusen>
+      </xenotypeChances>
+    </xenotypeSet>
+    <fixedIdeo>true</fixedIdeo>
+    <ideoName>The Long Grass</ideoName>
+    <ideoDescription>The herd is the people's wealth and the grass is the herd's. A camp stays only as long as the grass does, a beast is never left behind on the road, and a guest at the fire eats from the same pot. Fields are for those who stay; the herders move on.</ideoDescription>
+    <forcedMemes>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Rancher</li>
+      <li MayRequire="VanillaExpanded.VMemesE">VME_Nomad</li>
+    </forcedMemes>
+    <structureMemeWeights Inherit="False">
+      <Structure_Animist MayRequire="Ludeon.RimWorld.Ideology">4</Structure_Animist>
+      <Structure_TheistEmbodied MayRequire="Ludeon.RimWorld.Ideology">1</Structure_TheistEmbodied>
+    </structureMemeWeights>
+    <styles>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Animalist</li>
+    </styles>
+    <caravanTraderKinds Inherit="False">
+      <li>Rimfolk_Caravan_Herders_Herd</li>
+      <li>Rimfolk_Caravan_Herders_Wool</li>
+    </caravanTraderKinds>
+    <visitorTraderKinds Inherit="False">
+      <li>Rimfolk_Visitor_Herders</li>
+    </visitorTraderKinds>
+    <baseTraderKinds Inherit="False">
+      <li>Rimfolk_Base_Herders</li>
+    </baseTraderKinds>
+    <pawnGroupMakers Inherit="False">
+      <li>
+        <!-- A fight: archers and spear-wardens -->
+        <kindDef>Combat</kindDef>
+        <options>
+          <Rimfolk_Herders_Archer>10</Rimfolk_Herders_Archer>
+          <Rimfolk_Herders_Warden>8</Rimfolk_Herders_Warden>
+          <Rimfolk_Herders_Herder>2</Rimfolk_Herders_Herder>
+        </options>
+      </li>
+      <li>
+        <kindDef>Peaceful</kindDef>
+        <options>
+          <Rimfolk_Herders_Herder>20</Rimfolk_Herders_Herder>
+          <Tribal_Child MayRequire="Ludeon.RimWorld.Biotech">8</Tribal_Child>
+          <Rimfolk_Herders_Archer>6</Rimfolk_Herders_Archer>
+          <Rimfolk_Herders_Warden>4</Rimfolk_Herders_Warden>
+        </options>
+      </li>
+      <li>
+        <!-- A caravan: their drover, many pack beasts, and a herd for sale walking with it (the trader's stock) -->
+        <kindDef>Trader</kindDef>
+        <traders>
+          <Rimfolk_Herders_Drover>1</Rimfolk_Herders_Drover>
+        </traders>
+        <carriers>
+          <Muffalo>8</Muffalo>
+          <Yak>6</Yak>
+          <Dromedary>5</Dromedary>
+          <Alpaca>4</Alpaca>
+          <Horse>4</Horse>
+          <Elephant>1</Elephant>
+        </carriers>
+        <guards>
+          <Rimfolk_Herders_Archer>10</Rimfolk_Herders_Archer>
+          <Rimfolk_Herders_Warden>8</Rimfolk_Herders_Warden>
+        </guards>
+      </li>
+      <li>
+        <kindDef>Settlement</kindDef>
+        <options>
+          <Rimfolk_Herders_Archer>10</Rimfolk_Herders_Archer>
+          <Rimfolk_Herders_Warden>8</Rimfolk_Herders_Warden>
+          <Rimfolk_Herders_Herder>10</Rimfolk_Herders_Herder>
+          <Rimfolk_Herders_Elder>2</Rimfolk_Herders_Elder>
+        </options>
+      </li>
+      <li MayRequire="Ludeon.RimWorld.Ideology">
+        <kindDef>Hunters</kindDef>
+        <commonality>1</commonality>
+        <options>
+          <Tribal_Hunter>1</Tribal_Hunter>
+        </options>
+      </li>
+      <li MayRequire="Ludeon.RimWorld.Ideology">
+        <kindDef>Loggers</kindDef>
+        <commonality>1</commonality>
+        <options>
+          <Tribal_Logger>1</Tribal_Logger>
+        </options>
+      </li>
+    </pawnGroupMakers>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleExtension">
+        <calling>herders</calling>
+        <townWord>camp</townWord>
+        <townWords>camps</townWords>
+        <head>camp elder</head>
+        <heir>second elder</heir>
+        <envoy>rider</envoy>
+        <trader>drover</trader>
+        <courier>rider</courier>
+        <couriers>riders</couriers>
+        <caravanWeight>1.5</caravanWeight>
+        <camps>
+          <li>Council_Camp_Drovers</li>
+          <li>Rimfolk_Camp_Shearers</li>
+          <li>Rimfolk_Camp_Catchers</li>
+          <li>Rimfolk_Camp_WinterHerd</li>
+        </camps>
+        <plan>Rimfolk_Plan_HerdCamp</plan>
+        <townGoods>
+          <Hay>120~240</Hay>
+          <WoolSheep>40~90</WoolSheep>
+          <Leather_Plain>30~70</Leather_Plain>
+          <Pemmican>60~120</Pemmican>
+          <MedicineHerbal>4~10</MedicineHerbal>
+        </townGoods>
+        <herd>
+          <li>Muffalo</li>
+          <li>Yak</li>
+          <li>Sheep</li>
+          <li>Goat</li>
+          <li>Cow</li>
+          <li>Alpaca</li>
+          <li>Dromedary</li>
+          <li>Horse</li>
+        </herd>
+        <herdCount>8~14</herdCount>
+      </li>
+    </modExtensions>
+  </FactionDef>
+
+  <!-- ===================== Their people ===================== -->
+
+  <PawnKindDef Name="Rimfolk_HerdersKindBase" Abstract="True">
+    <race>Human</race>
+    <defaultFactionDef>Rimfolk_Herders</defaultFactionDef>
+    <maxGenerationAge>70</maxGenerationAge>
+    <chemicalAddictionChance>0.04</chemicalAddictionChance>
+    <invNutrition>2.55</invNutrition>
+    <invFoodDef>Pemmican</invFoodDef>
+    <apparelColor>(0.70, 0.42, 0.24)</apparelColor>
+    <apparelTags>
+      <li>Neolithic</li>
+    </apparelTags>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_HerdersKindBase">
+    <defName>Rimfolk_Herders_Herder</defName>
+    <label>herder</label>
+    <combatPower>45</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Poor</itemQuality>
+    <gearHealthRange>0.5~1.6</gearHealthRange>
+    <apparelRequired>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Apparel_Tailcap</li>
+    </apparelRequired>
+    <apparelMoney>150~300</apparelMoney>
+    <weaponTags>
+      <li>NeolithicMeleeBasic</li>
+    </weaponTags>
+    <weaponMoney>50~100</weaponMoney>
+    <skills>
+      <li>
+        <skill>Animals</skill>
+        <range>6~14</range>
+      </li>
+    </skills>
+    <initialWillRange>1~3</initialWillRange>
+    <initialResistanceRange>10~17</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_HerdersKindBase">
+    <defName>Rimfolk_Herders_Archer</defName>
+    <label>herd archer</label>
+    <combatPower>55</combatPower>
+    <itemQuality>Poor</itemQuality>
+    <gearHealthRange>0.5~1.8</gearHealthRange>
+    <apparelRequired>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Apparel_Broadwrap</li>
+    </apparelRequired>
+    <apparelMoney>200~350</apparelMoney>
+    <weaponTags>
+      <li>NeolithicRangedDecent</li>
+    </weaponTags>
+    <weaponMoney>100~150</weaponMoney>
+    <disallowedTraits>
+      <li>Brawler</li>
+    </disallowedTraits>
+    <requiredWorkTags>Violent</requiredWorkTags>
+    <initialWillRange>1~3</initialWillRange>
+    <initialResistanceRange>14~22</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_HerdersKindBase">
+    <defName>Rimfolk_Herders_Warden</defName>
+    <label>herd warden</label>
+    <combatPower>60</combatPower>
+    <itemQuality>Poor</itemQuality>
+    <gearHealthRange>0.5~1.8</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_WarVeil</li>
+    </apparelRequired>
+    <apparelMoney>200~350</apparelMoney>
+    <weaponTags>
+      <li>NeolithicMeleeAdvanced</li>
+      <li>NeolithicMeleeDecent</li>
+    </weaponTags>
+    <weaponMoney>150~200</weaponMoney>
+    <requiredWorkTags>Violent</requiredWorkTags>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>8~14</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_HerdersKindBase">
+    <defName>Rimfolk_Herders_Drover</defName>
+    <label>drover</label>
+    <trader>true</trader>
+    <combatPower>50</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.8~1.4</gearHealthRange>
+    <apparelRequired>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Apparel_Tailcap</li>
+    </apparelRequired>
+    <apparelMoney>250~400</apparelMoney>
+    <weaponTags>
+      <li>NeolithicMeleeBasic</li>
+    </weaponTags>
+    <weaponMoney>60~100</weaponMoney>
+    <skills>
+      <li>
+        <skill>Animals</skill>
+        <range>8~15</range>
+      </li>
+    </skills>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>9~15</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_HerdersKindBase">
+    <defName>Rimfolk_Herders_Elder</defName>
+    <label>herd elder</label>
+    <combatPower>60</combatPower>
+    <factionLeader>true</factionLeader>
+    <minGenerationAge>40</minGenerationAge>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>1~1</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_TribalHeaddress</li>
+    </apparelRequired>
+    <apparelMoney>300~500</apparelMoney>
+    <weaponTags>
+      <li>NeolithicRangedChief</li>
+    </weaponTags>
+    <weaponMoney>150~250</weaponMoney>
+    <skills>
+      <li>
+        <skill>Animals</skill>
+        <range>8~16</range>
+      </li>
+    </skills>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>8~12</initialResistanceRange>
+  </PawnKindDef>
+
+  <!-- ===================== Their traders: beasts, wool and hides ===================== -->
+
+  <TraderKindDef>
+    <defName>Rimfolk_Caravan_Herders_Herd</defName>
+    <label>herd caravan</label>
+    <commonality>2</commonality>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>500~900</countRange>
+      </li>
+      <li Class="StockGenerator_Animals">
+        <maxWildness>0.70</maxWildness>
+        <tradeTagsSell>
+          <li>AnimalFarm</li>
+        </tradeTagsSell>
+        <tradeTagsBuy>
+          <li>AnimalFarm</li>
+          <li>AnimalExotic</li>
+        </tradeTagsBuy>
+        <kindCountRange>2~3</kindCountRange>
+        <countRange>8~14</countRange>
+        <createMatingPair>
+          <li>AnimalFarm</li>
+        </createMatingPair>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Pemmican</thingDef>
+        <countRange>100~200</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Hay</thingDef>
+        <countRange>120~300</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Milk</thingDef>
+        <countRange>15~40</countRange>
+      </li>
+      <li Class="StockGenerator_MultiDef">
+        <thingDefs>
+          <li>WoolSheep</li>
+          <li>WoolAlpaca</li>
+          <li>WoolMuffalo</li>
+        </thingDefs>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineHerbal</thingDef>
+        <countRange>3~8</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>BasicClothing</tradeTag>
+        <countRange>3~4</countRange>
+        <maxTechLevelGenerate>Neolithic</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Caravan_Herders_Wool</defName>
+    <label>wool and hide trader</label>
+    <commonality>1</commonality>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>600~1000</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>WoolSheep</thingDef>
+        <countRange>80~180</countRange>
+      </li>
+      <li Class="StockGenerator_MultiDef">
+        <thingDefs>
+          <li>WoolAlpaca</li>
+          <li>WoolMuffalo</li>
+        </thingDefs>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>Textiles</categoryDef>
+        <thingDefCountRange>3~4</thingDefCountRange>
+        <totalPriceRange>500~1000</totalPriceRange>
+        <excludedThingDefs>
+          <li MayRequire="Ludeon.RimWorld.Anomaly">Leather_Dread</li>
+        </excludedThingDefs>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Pemmican</thingDef>
+        <countRange>150~250</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Hay</thingDef>
+        <countRange>60~160</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>BasicClothing</tradeTag>
+        <countRange>5~6</countRange>
+        <maxTechLevelGenerate>Neolithic</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>Clothing</tradeTag>
+        <countRange>2~3</countRange>
+        <maxTechLevelGenerate>Neolithic</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponMelee</tradeTag>
+        <countRange>1~2</countRange>
+        <maxTechLevelGenerate>Neolithic</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_Animals">
+        <maxWildness>0.70</maxWildness>
+        <tradeTagsSell>
+          <li>AnimalFarm</li>
+        </tradeTagsSell>
+        <tradeTagsBuy>
+          <li>AnimalFarm</li>
+        </tradeTagsBuy>
+        <kindCountRange>1~2</kindCountRange>
+        <countRange>2~4</countRange>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Visitor_Herders</defName>
+    <label>herder</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>150~350</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Pemmican</thingDef>
+        <countRange>30~70</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>WoolSheep</thingDef>
+        <countRange>20~50</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Leather_Plain</thingDef>
+        <countRange>20~40</countRange>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Base_Herders</defName>
+    <label>herders' camp</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>700~1200</countRange>
+      </li>
+      <li Class="StockGenerator_Animals">
+        <maxWildness>0.70</maxWildness>
+        <tradeTagsSell>
+          <li>AnimalFarm</li>
+        </tradeTagsSell>
+        <tradeTagsBuy>
+          <li>AnimalFarm</li>
+          <li>AnimalExotic</li>
+        </tradeTagsBuy>
+        <kindCountRange>3~4</kindCountRange>
+        <countRange>8~16</countRange>
+        <createMatingPair>
+          <li>AnimalFarm</li>
+        </createMatingPair>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>WoolSheep</thingDef>
+        <countRange>100~250</countRange>
+      </li>
+      <li Class="StockGenerator_MultiDef">
+        <thingDefs>
+          <li>WoolAlpaca</li>
+          <li>WoolMuffalo</li>
+        </thingDefs>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>Textiles</categoryDef>
+        <thingDefCountRange>3~4</thingDefCountRange>
+        <totalPriceRange>500~1100</totalPriceRange>
+        <excludedThingDefs>
+          <li MayRequire="Ludeon.RimWorld.Anomaly">Leather_Dread</li>
+        </excludedThingDefs>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Pemmican</thingDef>
+        <countRange>200~350</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Hay</thingDef>
+        <countRange>200~400</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Milk</thingDef>
+        <countRange>20~50</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineHerbal</thingDef>
+        <countRange>5~12</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>BasicClothing</tradeTag>
+        <countRange>6~8</countRange>
+        <maxTechLevelGenerate>Neolithic</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponMelee</tradeTag>
+        <countRange>2~3</countRange>
+        <maxTechLevelGenerate>Neolithic</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <!-- ===================== Their names ===================== -->
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_Herders</defName>
+    <include>
+      <li>TribalWordUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=2)->The [WordTribal] Herd</li>
+        <li>r_name(p=2)->[WordTribal] Drove</li>
+        <li>r_name->Herders of [WordTribal]</li>
+        <li>r_name->The Long Grass</li>
+        <li>r_name->The [herdWord] Folk</li>
+        <li>herdWord->Horn</li>
+        <li>herdWord->Crook</li>
+        <li>herdWord->Grass</li>
+        <li>herdWord->Bell</li>
+        <li>herdWord->Wide</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_HerdersTown</defName>
+    <include>
+      <li>TribalWordUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->[WordTribal]</li>
+        <li>r_name(p=2)->[WordTribal] Fold</li>
+        <li>r_name->[WordTribal] Grazing</li>
+        <li>r_name->[WordTribal] Camp</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>

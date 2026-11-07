@@ -70,7 +70,7 @@ namespace ColonyCouncil
         {
             if (to == null) return;
             var donor = DefDatabase<FactionDef>.AllDefsListForReading
-                .Where(d => d != null && !IsOursDef(d) && !d.isPlayer && !d.hidden && d.humanlikeFaction && !d.permanentEnemy && !d.HasRoyalTitles && d.techLevel == tech
+                .Where(d => d != null && !IsOursDef(d) && !Peoples.IsOursDef(d) && !d.isPlayer && !d.hidden && d.humanlikeFaction && !d.permanentEnemy && !d.HasRoyalTitles && d.techLevel == tech
                             && d.modContentPack != null && !d.modContentPack.IsCoreMod && !d.modContentPack.IsOfficialMod && d.pawnGroupMakers != null
                             && d.pawnGroupMakers.Any(g => g?.kindDef == PawnGroupKindDefOf.Combat) && d.pawnGroupMakers.Any(g => g?.kindDef == PawnGroupKindDefOf.Settlement))
                 .OrderByDescending(d => MedievalOverhaul(d) ? 1 : 0).ThenBy(d => d.naturalEnemy ? 1 : 0).ThenBy(d => d.defName, StringComparer.Ordinal).FirstOrDefault();

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Callers of Rimfolk's own peoples at the gate (Source/ColonyCouncil/Peoples/; docs/design/peoples.md): data events
+    (HappeningWorker_Setting), each only from a people of its calling (HappeningSetting.people calling:CALLING), so none
+    come in a world without one.
+    - A hospitaller lent: the order sends one of its healers round the farms and holdings, and one stops for a colonist
+      with an everyday ailment. The order's care is free; the colony may send medicine back for the sickhouse, and its
+      own doctor learns at the hospitaller's side.
+    - The league's outrider: an outrider comes ahead of a league caravan on the road past the colony and asks whether it
+      should turn aside. Bidden, the league's trader caravan comes to the gate (the game's own caravan); only when one of
+      theirs can come now (the need "caravan").
+  -->
+
+  <!-- ===================== A hospitaller lent ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_OrderHealer</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a hospitaller at the gate</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <regular>healer</regular>
+        <ages>28~68</ages>
+        <stayHours>10~16</stayHours>
+        <answerDays>0.6</answerDays>
+        <journal>Rimfolk_Journal_Evt_OrderHealer</journal>
+        <titles>
+          <li>A hospitaller at the gate</li>
+          <li>The order's round</li>
+          <li>Something for {A_nameDef}'s {TALE}</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a hospitaller of {FACTION}, is walking the order's round of the farms and holdings, and stopped at the gate. {X_nameDef} had asked after {A_nameDef}'s {TALE} before anyone said a word about it.\n\nThe order asks nothing for its care, {X_nameDef} says, though the sickhouse at home is always short of medicine.</li>
+          <li>[lowtech] A hospitaller of {FACTION}, {X_nameDef}, has come up the road with a satchel of herbs and clean linen, on the order's round of the farms. {X_nameDef} saw {A_nameDef} favoring the {TALE} from the gate, and offers to see to it today, freely, as the order does.</li>
+          <li>[industrial|spacer] {X_nameDef} of {FACTION} looked at the colony's medicine with polite interest and opened a satchel of herbs and linen beside it. The order sends its hospitallers round the holdings every season, {X_nameDef} says, and {A_nameDef}'s {TALE} is just the thing they come for.</li>
+          <li>[ail:HeadCold|ail:ChestCold] {X_nameDef}, a hospitaller of {FACTION}, heard {A_nameDef} coughing from the road and came in to see about it. The order has a tea for that, and a poultice for the chest, and asks nothing for them.</li>
+          <li>[ail:StrainedBack] {A_nameDef} straightened up from a bucket very slowly, and {X_nameDef}, a hospitaller of {FACTION} on the order's round, saw it from the gate. {X_nameDef} has a way with backs, and offers to see to {A_nameDef}'s for nothing.</li>
+          <li>[their:grateful] The order remembers the colony kindly. {X_nameDef}, one of {FACTION}'s hospitallers, has come out of the way on the round to see how the colony does, and has already noticed {A_nameDef}'s {TALE}.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let {X_objective} see to {A_nameDef}</label>
+            <outcome>{X_nameDef} sat {A_nameDef} down at the table and saw to the {TALE} with clean hands and a great deal of patience, and would not take a coin for it. {A_nameDef} already feels better.</outcome>
+            <outcomes>
+              <li>[ail:StrainedBack] {X_nameDef} found the knot in {A_nameDef}'s back with two thumbs and worked it loose over an hour. {A_nameDef} stood up straight for the first time in days.</li>
+              <li>[ail:HeadCold|ail:ChestCold] {X_nameDef} brewed the tea at the colony's own fire, sat with {A_nameDef} while it was drunk, and left the rest in a twist of cloth.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>an afternoon with {X_nameDef}</label><to>Stranger</to><hours>12~17</hours><duration>2.5~3.5</duration><sit>true</sit></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EaseAilment"><factor>0.3</factor></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_HealerSawMe</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Send medicine back for the sickhouse (3), and let our doctor watch</label>
+            <outcome>{X_nameDef} treated {A_nameDef} with {B_nameDef} at {X_possessive} elbow the whole time, and went on down the road with three doses of the colony's medicine for the order's ward. {A_nameDef} is on the mend, and {B_nameDef} has filled a page with notes.</outcome>
+            <outcomes>
+              <li>[b:office:Physician] The colony's physician, {B_nameDef}, watched {X_nameDef} work and asked about everything twice. The order's ways are slow, {B_nameDef} says, and they work.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Others</target><skill>Medicine</skill><minLevel>0</minLevel><asB>true</asB></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>medicine</what><count>3</count><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EaseAilment"><factor>0.3</factor></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Medicine</skill><xp>800</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_HealerSawMe</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef}'s treatment</label><to>Stranger</to><duration>1.5~2</duration><sit>true</sit></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>B</student><skill>Medicine</skill><duration>1.5~2</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Thank {X_objective}, but no</label>
+            <outcome>{X_nameDef} wishes {A_nameDef} well and goes on with the order's round.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <needs>
+          <li>ailing</li>
+        </needs>
+        <visitor>true</visitor>
+        <people>calling:healers</people>
+        <visitorSkill>Medicine</visitorSkill>
+        <visitorLevel>10~15</visitorLevel>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The league's outrider ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_LeagueOutrider</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a league outrider</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>12</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>20~55</ages>
+        <stayHours>4~8</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A league outrider</li>
+          <li>A caravan on the road</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, an outrider of {FACTION}, has come up to the gate ahead of a league caravan on the road past the colony. The caravan carries more than it can sell on the road, {X_nameDef} says, and could turn aside to the colony's gate today if the colony has a mind to trade.</li>
+          <li>[lowtech] An outrider of {FACTION}, {X_nameDef}, has come up to the gate ahead of a long string of pack beasts on the road. The league's caravan could turn aside to the colony, {X_nameDef} says, if the colony wants to see what it carries.</li>
+          <li>[their:grateful] {X_nameDef} of {FACTION} came on ahead of the league's caravan to the colony's gate, as the league does for a friend on its roads. The caravan will turn aside if the colony asks it.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Bid the caravan come</label>
+            <outcome>{X_nameDef} has the colony's word, and the league's caravan is turning aside for the colony's gate.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Incident"><incident>TraderCaravanArrival</incident><withFaction>true</withFaction></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Not this time</label>
+            <outcome>{X_nameDef} touched a hand to {X_possessive} hat, and the league's caravan keeps on its way.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <needs>
+          <li>caravan</li>
+        </needs>
+        <visitor>true</visitor>
+        <people>calling:traders</people>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

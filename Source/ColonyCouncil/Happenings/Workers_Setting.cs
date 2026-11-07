@@ -43,7 +43,8 @@ namespace ColonyCouncil
         /// What has to be there: camp (a camp on the map that will talk), grave (a colonist's grave), crops (a field
         /// under the sky), ailing (A has an everyday ailment), strained (A is worn down), meetings (the council meets),
         /// animals (the colony keeps tame animals: {PET}), herd (at least three head of livestock: {PET} is one of them),
-        /// power, research (a project in hand), children, prisoner.
+        /// power, research (a project in hand), children, prisoner; caravan (the visitor's people can send a trader
+        /// caravan now: one of Rimfolk's peoples, with people calling:CALLING).
         /// </summary>
         public List<string> needs;
 
@@ -57,8 +58,13 @@ namespace ColonyCouncil
         public IntRange visitorLevel = new IntRange(8, 14);
         /// <summary>The visitor cooks the feast an answer sets going, at the colony's own stove (PlayOut/PlayCook.cs).</summary>
         public bool visitorCooks;
-        /// <summary>The visitor's people: lowtech (tribal or medieval), hightech (industrial or later), own (within one era of the colony), or any.</summary>
+        /// <summary>
+        /// The visitor's people: lowtech (tribal or medieval), hightech (industrial or later), own (within one era of the
+        /// colony), calling:CALLING (one of Rimfolk's peoples of that calling: calling:healers, Peoples/), or any.
+        /// </summary>
         public string people;
+        /// <summary>One of Rimfolk's peoples of this calling is five times as likely as another (a herder with a thirsty or sick herd: herders).</summary>
+        public string prefers;
 
         // ---- More of the cast ----
         /// <summary>{FACTION} (and {PLACE}, their nearest town): a people on good terms with the colony, when nobody comes from them.</summary>
@@ -104,7 +110,7 @@ namespace ColonyCouncil
         {
             var s = Setting;
             if (!EraFits(s.era) || !LandFits(map, s) || !NeedsMet(map, s)) return false;
-            if (s.visitor && People(s) == null) return false;
+            if (s.visitor && People(s, map) == null) return false;
             if (s.neighbor && Neighbor() == null) return false;
             if (s.enemy && Raids.Enemy() == null) return false;
             if (!s.stray.NullOrEmpty() && StrayBeast.Kind(map, s.stray) == null) return false;
@@ -218,16 +224,26 @@ namespace ColonyCouncil
 
         private static StrainBand Band(Pawn p) => Heart.On ? Heart.BandOf(p) : StrainBand.Steady;
 
-        /// <summary>The people a visitor comes from.</summary>
-        private static Faction People(HappeningSetting s)
+        /// <summary>The people a visitor comes from (one of Rimfolk's peoples of <see cref="HappeningSetting.prefers"/> likelier).</summary>
+        private static Faction People(HappeningSetting s, Map map)
         {
             var tech = Avail.EffectiveTech;
+            Func<Faction, float> prefer = s.prefers.NullOrEmpty() ? null : f => Peoples.Preference(s.prefers, f);
             switch (s.people)
             {
-                case "lowtech": return Arrivals.Friendly(f => f.def.techLevel <= TechLevel.Medieval);
-                case "hightech": return Arrivals.Friendly(f => f.def.techLevel >= TechLevel.Industrial);
-                case "own": return Arrivals.Friendly(f => Mathf.Abs((int)f.def.techLevel - (int)tech) <= 1);
-                default: return Arrivals.Friendly();
+                case "lowtech": return Arrivals.Friendly(f => f.def.techLevel <= TechLevel.Medieval, prefer);
+                case "hightech": return Arrivals.Friendly(f => f.def.techLevel >= TechLevel.Industrial, prefer);
+                case "own": return Arrivals.Friendly(f => Mathf.Abs((int)f.def.techLevel - (int)tech) <= 1, prefer);
+                default:
+                    // One of Rimfolk's peoples, by what it lives by (the order's healer, the league's outrider).
+                    if (s.people != null && s.people.StartsWith("calling:", StringComparison.Ordinal))
+                    {
+                        string calling = s.people.Substring("calling:".Length);
+                        // One whose trader caravan can come now, when the answer brings it (the league's outrider: the need "caravan").
+                        bool caravan = s.Needs("caravan");
+                        return Arrivals.Friendly(f => Peoples.CallingOf(f) == calling && (!caravan || Peoples.CaravanCanCome(f, map)));
+                    }
+                    return Arrivals.Friendly(null, prefer);
             }
         }
 
@@ -287,7 +303,7 @@ namespace ColonyCouncil
             }
             else if (s.visitor)
             {
-                ctx.faction = People(s);
+                ctx.faction = People(s, ctx.map);
                 if (ctx.faction == null) return false;
                 // A visitor who waits at the edge for the answer is never a guest who's here already.
                 MakeGroup(ctx, ext, Mathf.Max(1, ext.count.RandomInRange), ext.ages, null, !s.waits);
