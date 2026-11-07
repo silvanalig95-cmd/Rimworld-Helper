@@ -16,8 +16,8 @@
     has turned them hostile (raidCommonalityFromPointsCurve 0.25). Listed once among the world's peoples when a world is
     made, never required. Faith (Ideology): a fixed creed of penance and of the body kept whole (VE Memes' healthcare
     and light, the lamp over the door, where loaded), the Christian style's gothic halls. Kind of people (Biotech): about four in five
-    baseliners; genies, highmates, pigskins, neanderthals, Vanilla Races Expanded's lowmates, Alpha Genes' drakonori and
-    high elves.
+    baseliners; genies, highmates, pigskins, neanderthals, Vanilla Races Expanded's lowmates, Alpha Genes' drakonori, high
+    elves and Awakened Apes' orangutans (healers by nature).
   -->
 
   <FactionDef ParentName="TribeBase">
@@ -78,6 +78,7 @@
         <VRE_Lowmate MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.highmate">0.03</VRE_Lowmate>
         <AG_Drakonori MayRequire="Ludeon.RimWorld.Biotech,sarg.alphagenes">0.02</AG_Drakonori>
         <DevDesigner_XenotypeHighElves MayRequire="Ludeon.RimWorld.Biotech,DevDesigner.Elves.Continued">0.03</DevDesigner_XenotypeHighElves>
+        <Orangutan MayRequire="Ludeon.RimWorld.Biotech,OnlyMonkey.AwakenedApes">0.02</Orangutan>
       </xenotypeChances>
     </xenotypeSet>
     <fixedIdeo>true</fixedIdeo>
@@ -197,15 +198,19 @@
     How alike they look (docs/design/peoples.md "Their gear, their kinds of people and their gifts"): the order's habit is
     shared, not its cut or its age. Its lay servants, hospitallers, cellarers and prior wear an outer habit dyed the order's
     ivory: a plain robe, or with Vanilla Factions Expanded - Medieval 2 a mantle, the prior's a royal robe with Royalty;
-    worn thin or newly made (gear health), of any cloth or leather, with a hood, a cap or a plague doctor's mask (Medieval 2)
-    or bareheaded, the rest of what they wear their own. The sworn guards are soldiers and wear one kit: plate dyed ivory and
+    worn thin or newly made (gear health), of any cloth or leather, with a hood, a cap or a plague doctor's mask (Medieval 2),
+    a skullcap or a headscarf (Vanilla Ideology Expanded - Hats and Rags, Ideology's headwrap) or bareheaded, prayer beads
+    (Hats and Rags), now and then a prior in a bishop's mitre (Hats and Rags), the rest of what they wear their own. The sworn guards
+    are soldiers and wear one kit: plate dyed ivory and
     a helmet, with Medieval 2 the order's ivory tabard over the plate and a heater shield; only wear, quality and a soldier's
     own touches differ (a gambeson or mail under the plate, plate gloves and boots, a battle banner with the Vanilla Expanded
     armour and accessories). The lay archers are its militia: a helmet, an ivory cape and a quiver (Vanilla Apparel Expanded
     - Accessories), padding where Vanilla Armour Expanded has it. Medieval weapons of the base game and the mods (Medieval 2's
-    heavy maces, flails and war bows, Vanilla Weapons Expanded's hammers, crossbows and longbows) under the game's tags. They
-    carry herbs and clean cloth. A few are A RimWorld of Magic's priests (the hospitallers and their prior) or paladins (the
-    sworn guards). Without any mod: the robe, the hood, plate and helmet, the base game's knives, maces, swords and bows.
+    heavy maces, flails, war bows and arbalests, Vanilla Weapons Expanded's hammers, crossbows and longbows) under the game's
+    tags. They carry herbs and clean cloth, with Alpha Crafts aloe salve and candles for the sickhouse lamp, with Alpha
+    Animals a medicinal cactipine quill. A few are A RimWorld of Magic's priests (the hospitallers and their prior), paladins
+    (the sworn guards) or rangers (the lay archers). Without any mod: the robe, the hood, plate and helmet, the base game's
+    knives, maces, swords and bows.
   -->
   <PawnKindDef Name="Rimfolk_OrderKindBase" Abstract="True">
     <race>Human</race>
@@ -244,9 +249,12 @@
       <li>Apparel_BasicShirt</li>
       <li>Apparel_Pants</li>
     </apparelRequired>
+    <!-- A hood, a cap or a headscarf (Hats and Rags, Ideology's headwrap), and the order's prayer beads (Hats and Rags). -->
     <apparelTags>
       <li>BestowerHood</li>
       <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Cap</li>
+      <li>Rimfolk_Headscarf</li>
+      <li>Rimfolk_Beads</li>
     </apparelTags>
     <apparelAllowHeadgearChance>0.4</apparelAllowHeadgearChance>
     <apparelMoney>150~350</apparelMoney>
@@ -255,11 +263,14 @@
       <li>NeolithicMeleeBasic</li>
     </weaponTags>
     <weaponMoney>40~110</weaponMoney>
+    <!-- Herbs and clean cloth; with Alpha Crafts an aloe salve or the candles that keep the sickhouse lamp. -->
     <inventoryOptions>
       <skipChance>0.5</skipChance>
       <subOptionsChooseOne>
         <li><thingDef>MedicineHerbal</thingDef><countRange>1~2</countRange></li>
         <li><thingDef>Cloth</thingDef><countRange>4~10</countRange></li>
+        <li MayRequire="sarg.alphacrafts"><thingDef>AC_AloeVeraSalve</thingDef><countRange>1~3</countRange></li>
+        <li MayRequire="sarg.alphacrafts"><thingDef>AC_ScentedCandle</thingDef><countRange>1~2</countRange></li>
       </subOptionsChooseOne>
     </inventoryOptions>
     <initialWillRange>1~3</initialWillRange>
@@ -280,11 +291,12 @@
           <li MayRequire="OskarPotocki.VFE.Medieval2"><tag>VFEM2_Medieval</tag><chance>1</chance></li>
         </alternateTagChoices>
       </li>
-      <!-- A hospitaller's hood, now and then a plague doctor's mask. -->
+      <!-- A hospitaller's hood, now and then a plague doctor's mask or the skullcap of the wards (Hats and Rags). -->
       <li>
         <alternateTagChoices>
           <li><tag>BestowerHood</tag><chance>1</chance></li>
           <li MayRequire="OskarPotocki.VFE.Medieval2"><tag>MedievalApparelPlague</tag><chance>1</chance></li>
+          <li><tag>Rimfolk_Skullcap</tag><chance>0.6</chance></li>
         </alternateTagChoices>
       </li>
     </specificApparelRequirements>
@@ -294,6 +306,7 @@
     </apparelRequired>
     <apparelTags>
       <li>BestowerHood</li>
+      <li>Rimfolk_Beads</li>
     </apparelTags>
     <weaponTags>
       <li>MedievalMeleeBasic</li>
@@ -316,6 +329,8 @@
           <subOptionsChooseOne>
             <li><thingDef>Cloth</thingDef><countRange>5~12</countRange><choiceChance>3</choiceChance></li>
             <li><thingDef>MedicineIndustrial</thingDef><countRange>1~1</countRange></li>
+            <li MayRequire="sarg.alphaanimals"><thingDef>AA_CactipineQuill</thingDef><countRange>1~3</countRange></li>
+            <li MayRequire="sarg.alphacrafts"><thingDef>AC_AloeVeraSalve</thingDef><countRange>1~3</countRange></li>
           </subOptionsChooseOne>
         </li>
       </subOptionsTakeAll>
@@ -392,11 +407,19 @@
     <weaponTags>
       <li>NeolithicRangedDecent</li>
       <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Warbow</li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Arbalest</li>
     </weaponTags>
     <weaponMoney>100~220</weaponMoney>
     <requiredWorkTags>Violent</requiredWorkTags>
     <initialWillRange>1~3</initialWillRange>
     <initialResistanceRange>14~22</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Ranger</trait><chance>0.04</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimfolk_OrderKindBase">
@@ -423,6 +446,7 @@
       <li>BestowerHood</li>
       <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Trader</li>
       <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Cap</li>
+      <li>Rimfolk_Beads</li>
     </apparelTags>
     <apparelAllowHeadgearChance>0.7</apparelAllowHeadgearChance>
     <apparelMoney>300~550</apparelMoney>
@@ -465,6 +489,9 @@
     <apparelTags>
       <li>BestowerHood</li>
       <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Trader</li>
+      <!-- A hood, a chaperon (Medieval 2) or a bishop's mitre (Hats and Rags), or bareheaded; prayer beads. -->
+      <li>Rimfolk_Mitre</li>
+      <li>Rimfolk_Beads</li>
     </apparelTags>
     <apparelAllowHeadgearChance>0.8</apparelAllowHeadgearChance>
     <apparelMoney>500~900</apparelMoney>
@@ -481,6 +508,7 @@
     <inventoryOptions>
       <subOptionsTakeAll>
         <li><thingDef>MedicineHerbal</thingDef><countRange>2~4</countRange></li>
+        <li MayRequire="sarg.alphacrafts"><thingDef>AC_ScentedCandle</thingDef><countRange>1~2</countRange></li>
       </subOptionsTakeAll>
     </inventoryOptions>
     <initialWillRange>3~5</initialWillRange>

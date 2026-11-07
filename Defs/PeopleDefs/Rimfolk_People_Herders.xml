@@ -15,7 +15,8 @@
     their camps and raid only when the colony has turned them hostile (raidCommonalityFromPointsCurve 0.5). Listed once
     among the world's peoples when a world is made, never required. Faith (Ideology): a fixed creed of the herd (VE Memes'
     nomad and elders where loaded), the animalist style. Kind of people (Biotech): seven in ten baseliners; yttakin, neanderthals,
-    pigskins, Alpha Genes' animusen, Vanilla Races Expanded's boarskins and saurids, venators and wood elves.
+    pigskins, Alpha Genes' animusen, Vanilla Races Expanded's boarskins and saurids, venators, wood elves and Awakened Apes'
+    gorillas (gentle giants of the grazing).
   -->
 
   <FactionDef ParentName="TribeBase">
@@ -59,6 +60,7 @@
         <DV_Venator MayRequire="Ludeon.RimWorld.Biotech,det.venators">0.03</DV_Venator>
         <DevDesigner_XenotypeWoodElves MayRequire="Ludeon.RimWorld.Biotech,DevDesigner.Elves.Continued">0.04</DevDesigner_XenotypeWoodElves>
         <VRESaurids_Saurid MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.saurid">0.02</VRESaurids_Saurid>
+        <Gorilla MayRequire="Ludeon.RimWorld.Biotech,OnlyMonkey.AwakenedApes">0.02</Gorilla>
       </xenotypeChances>
     </xenotypeSet>
     <fixedIdeo>true</fixedIdeo>
@@ -205,11 +207,14 @@
     around their signature, russet on their caps and wraps (Ideology's tail caps and broadwraps, the war veil, the elder's
     headdress) and on whatever coat or poncho they wear over the hides; under it, the game's tribal gear and the mods'
     (Vanilla Apparel Expanded's kilts, ponchos and pelt coats, Vanilla Factions Expanded - Tribals' wraps) in their own
-    leathers and colours. Their herd wardens are their only fighters and wear one harness: the war veil, and Tribals' war
-    wraps where it is loaded. Archers carry a quiver (Vanilla Apparel Expanded - Accessories). Slings, clubs, spears and bows
-    of the game and the mods (Vanilla Weapons Expanded - Tribal's slings and clubs), under the game's neolithic tags. They
-    carry hay and hides. A few are A RimWorld of Magic's druids (their elder) or rangers (their archers). Without any mod:
-    tribalwear, parkas, the war veil and the headdress, the base game's clubs, spears, ikwas and bows.
+    leathers and colours; herders, drovers and the elder a lasso at the hip for the beasts (Melee Animation). Their herd
+    wardens are their only fighters and wear one harness: the war veil, and Tribals' war wraps where it is loaded. Archers
+    carry a quiver (Vanilla Apparel Expanded - Accessories). Slings, clubs, spears and bows of the game and the mods (Vanilla
+    Weapons Expanded - Tribal's slings and clubs, Rimsenal's blowguns and throwing clubs, Tribals' stakes), the archers'
+    javelins with Vanilla Factions Expanded - Classical, under the game's neolithic tags. They carry hay and hides, with
+    Odyssey muskox wool, with Alpha Crafts butter. A few are A RimWorld of Magic's druids (their elder), rangers (their
+    archers) or gladiators (their wardens). Without any mod: tribalwear, parkas, the war veil and the headdress, the base
+    game's clubs, spears, ikwas and bows.
   -->
   <PawnKindDef Name="Rimfolk_HerdersKindBase" Abstract="True">
     <race>Human</race>
@@ -243,6 +248,9 @@
     <apparelRequired>
       <li MayRequire="Ludeon.RimWorld.Ideology">Apparel_Tailcap</li>
     </apparelRequired>
+    <apparelTags>
+      <li MayRequire="co.uk.epicguru.meleeanimation">Lasso</li>
+    </apparelTags>
     <apparelMoney>150~320</apparelMoney>
     <weaponTags>
       <li>NeolithicMeleeBasic</li>
@@ -255,12 +263,14 @@
         <range>6~14</range>
       </li>
     </skills>
-    <!-- Hay for the beasts, or a few hides. -->
+    <!-- Hay for the beasts, a few hides; with Odyssey a bundle of muskox wool, with Alpha Crafts a crock of butter. -->
     <inventoryOptions>
       <skipChance>0.5</skipChance>
       <subOptionsChooseOne>
         <li><thingDef>Hay</thingDef><countRange>6~14</countRange></li>
         <li><thingDef>Leather_Plain</thingDef><countRange>4~10</countRange></li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey"><thingDef>WoolMuskox</thingDef><countRange>6~14</countRange></li>
+        <li MayRequire="sarg.alphacrafts"><thingDef>AC_Butter</thingDef><countRange>2~5</countRange></li>
       </subOptionsChooseOne>
     </inventoryOptions>
     <initialWillRange>1~3</initialWillRange>
@@ -294,6 +304,7 @@
     <weaponTags>
       <li>NeolithicRangedDecent</li>
       <li>NeolithicRangedBasic</li>
+      <li MayRequire="OskarPotocki.VFE.Classical">ClassicalRangedJavelin</li>
     </weaponTags>
     <weaponMoney>80~160</weaponMoney>
     <disallowedTraits>
@@ -331,6 +342,13 @@
     <requiredWorkTags>Violent</requiredWorkTags>
     <initialWillRange>2~4</initialWillRange>
     <initialResistanceRange>8~14</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Gladiator</trait><chance>0.04</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimfolk_HerdersKindBase">
@@ -344,6 +362,9 @@
     <apparelRequired>
       <li MayRequire="Ludeon.RimWorld.Ideology">Apparel_Tailcap</li>
     </apparelRequired>
+    <apparelTags>
+      <li MayRequire="co.uk.epicguru.meleeanimation">Lasso</li>
+    </apparelTags>
     <apparelMoney>250~420</apparelMoney>
     <weaponTags>
       <li>NeolithicMeleeBasic</li>
@@ -371,6 +392,9 @@
     <apparelRequired>
       <li>Apparel_TribalHeaddress</li>
     </apparelRequired>
+    <apparelTags>
+      <li MayRequire="co.uk.epicguru.meleeanimation">Lasso</li>
+    </apparelTags>
     <apparelMoney>300~550</apparelMoney>
     <weaponTags>
       <li>NeolithicRangedChief</li>

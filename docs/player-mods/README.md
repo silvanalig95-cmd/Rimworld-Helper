@@ -15,13 +15,19 @@ with 1.6 or 1.7". So:
 - Only mods that support 1.6 or 1.7 are catalogued; `mods.tsv` lists the others with `catalogued` no.
 
 The tables (one row per def, after resolving `ParentName` inheritance; patches are not applied, so a tag a mod adds to
-another mod's apparel by patch isn't seen):
+another mod's apparel by patch isn't seen). Only the folders RimWorld 1.7 loads are read: a mod's `LoadFolders.xml` for
+1.7 (or the newest version before it), its `IfModActive`, `IfModActiveAll` and `IfModNotActive` read against the
+player's list, else its root, `Common` and its newest version folder; the mods in the player's load order, so a later def
+of the same name wins as in the game, and a def of a mod not in their list never stands for one that is (Combat
+Extended's javelins are not the game's pila). Until 7 November 2026 every version folder was read, so a mod's 1.4 or 1.5
+defs could stand for its 1.6 ones (Vanilla Weapons Expanded's bows and guns had their old tags, Rimsenal's old guns were
+listed).
 
 | File | What | Columns besides defName, mod, active |
 |---|---|---|
 | mods.tsv | every mod subscribed | name, folder, active, load order, in the uploaded save, supported versions, catalogued |
-| apparel.tsv | clothing and armour | label, techLevel, apparel tags, layers, body part groups, stuff, market value, trade tags |
-| weapons.tsv | weapons | label, techLevel, weapon tags, ranged or melee, stuff, market value, trade tags |
+| apparel.tsv | clothing and armour | label, techLevel, apparel tags, layers, body part groups, stuff, market value, trade tags, how often the game picks it (`generateCommonality`, blank for 1) |
+| weapons.tsv | weapons | label, techLevel, weapon tags, ranged or melee, stuff, market value, trade tags, how often the game picks it |
 | items.tsv | everything else that is an item | label, techLevel, thing categories, trade tags, market value |
 | races.tsv | humanlike races, animals | label, kind, body size, food type, predator, herd animal, max prey size |
 | xenotypes.tsv | xenotypes | label, inheritable, gene count, description |

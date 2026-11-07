@@ -66,9 +66,10 @@ namespace ColonyCouncil
     /// <summary>
     /// What a share of one of Rimfolk's peoples' pawn kinds is born or trained to, beyond their gear (Peoples/PeopleGifts.cs,
     /// given as a new pawn of the kind is made, with the deeper game hooks on): a class of A RimWorld of Magic (a
-    /// hospitaller's priest, a warden's paladin, a river folk's druid), or a psylink (Royalty; with Vanilla Psycasts
-    /// Expanded, one of its paths). At most one gift a pawn; the shares never add up to the whole kind. Named by their
-    /// defNames, so a gift whose mod isn't loaded is simply never given. Pawns already in a game keep what they have.
+    /// hospitaller's priest, a warden's paladin, a river folk's druid), a psylink (Royalty; with Vanilla Psycasts
+    /// Expanded, one of its paths), or a gene or two put in (Biotech, for the peoples whose age has the means). At most one
+    /// gift a pawn; the shares never add up to the whole kind. Named by their defNames, so a gift whose mod isn't loaded is
+    /// simply never given. Pawns already in a game keep what they have.
     /// </summary>
     public class PeopleKindExtension : DefModExtension
     {
@@ -97,7 +98,8 @@ namespace ColonyCouncil
             if (gifts != null)
                 foreach (var g in gifts.Where(g => g != null))
                 {
-                    if (g.trait.NullOrEmpty() == (g.psylink.max <= 0)) yield return "a gift is either a class (trait) or a psylink (psylink levels), not both or neither";
+                    if (PeoplesGearMath.GiftKinds(!g.trait.NullOrEmpty(), g.psylink.max > 0, !g.genes.NullOrEmpty()) != 1)
+                        yield return "a gift is one of a class (trait), a psylink (psylink levels) or genes, not two or none";
                     if (!g.trait.NullOrEmpty() && PeoplesGearMath.MagicSetting(g.trait) == null) yield return "'" + g.trait + "' isn't one of A RimWorld of Magic's classes Rimfolk gives";
                 }
         }
@@ -112,6 +114,8 @@ namespace ColonyCouncil
         public IntRange psylink = IntRange.Zero;
         /// <summary>With Vanilla Psycasts Expanded: the paths a psycaster of this kind follows (by defName), one taken.</summary>
         public List<string> paths;
+        /// <summary>Genes put in (Biotech, by defName, the game's or a mod's), given to a baseliner as xenogenes; or none.</summary>
+        public List<string> genes;
         /// <summary>The share of the kind given this, 0 to 1.</summary>
         public float chance;
         /// <summary>Only in these ages of its people (0 tribal to 3 spacer: the tamers' Wildspeakers in the spacer age); unset, every age.</summary>

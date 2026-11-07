@@ -1,7 +1,4 @@
 defName	mod	active	label	race	faction	combatPower	apparelTags	weaponTags
-Accurex_Medieval_Empire_Archotechist	accurex.medievalempireoverhaul	no	royal archotechist	Human	Empire	85		EltexStaff
-Accurex_Medieval_Empire_Cavalry	accurex.medievalempireoverhaul	no	royal cavalry	Human	Empire	135		DankPyon_Arbelest,DankPyon_Longsword
-Accurex_Medieval_Empire_Conflagrator	accurex.medievalempireoverhaul	no	royal conflagrator	Human	Empire	85		EltexStaff
 Accurex_Medieval_Empire_Crusader	accurex.medievalempireoverhaul	no	Crusader	Human	Empire	130		DankPyon_Arbelest,DankPyon_Longsword
 Accurex_Medieval_Empire_Crusader_Mounted	accurex.medievalempireoverhaul	no	Crusader knight	Human	Empire	150		DankPyon_Longsword,DankPyon_BoarSpear,DankPyon_WingedMace
 Accurex_Medieval_Empire_Grenadier	accurex.medievalempireoverhaul	no	Cavalry	Human	Empire	100		DankPyon_Arbelest
@@ -11,7 +8,6 @@ Accurex_Medieval_Empire_Light_Infantry	accurex.medievalempireoverhaul	no	Light I
 Accurex_Medieval_Empire_Lord	accurex.medievalempireoverhaul	no	Praetorian Guard	Human	Empire	130		DankPyon_Greatsword
 Accurex_Medieval_Empire_Mercenary	accurex.medievalempireoverhaul	no	Mercenary	Human	Empire	60		DankPyon_Greataxe,DankPyon_Crossbow,DankPyon_WoodcuttersAxe
 Accurex_Medieval_Empire_Peasant	accurex.medievalempireoverhaul	no	Peasant	Human	Empire	35		DankPyon_WoodcuttersAxe,DankPyon_Warfork,DankPyon_Pitchfork,DankPyon_Pickaxe
-Accurex_Medieval_Empire_Protector	accurex.medievalempireoverhaul	no	royal protector	Human	Empire	85		EltexStaff
 Accurex_Medieval_Empire_Trader	accurex.medievalempireoverhaul	no	Royal Trader	Human	Empire	30		
 Accurex_Medieval_Settlement_Crusader_M	accurex.medievalempireoverhaul	no	Crusader	Human	Empire	100		DankPyon_Longsword
 Accurex_Medieval_Settlement_Crusader_R	accurex.medievalempireoverhaul	no	Crusader	Human	Empire	100		DankPyon_Arbelest
@@ -23,13 +19,8 @@ Accurex_Medieval_Settlement_Mercenary	accurex.medievalempireoverhaul	no	Mercenar
 Accurex_Medieval_Settlement_Peasant	accurex.medievalempireoverhaul	no	Peasant	Human	Empire	17		DankPyon_WoodcuttersAxe,DankPyon_Warfork,DankPyon_Pitchfork,DankPyon_Pickaxe
 Accurex_Medieval_Settlement_Ruler	accurex.medievalempireoverhaul	no	Feudal Ruler	Human	Empire	115		DankPyon_Greatsword
 Accurex_Medieval_Settlement_WallGuard	accurex.medievalempireoverhaul	no	Light Infantry	Human	Empire	45		DankPyon_Arbelest
-EEG_Demigryph_armored	accurex.medievalempireoverhaul	no	PantherDemigryph	pphhyy_Demigryph_untameable		200		
-EEG_Deserter_H_Melee	accurex.medievalempireoverhaul	no	deserter	Human	VFEE_Deserters	100	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced	DankPyon_TwoHandedFlangedMace,DankPyon_Greatsword,DankPyon_Bardiche
-EEG_Deserter_H_Ranged	accurex.medievalempireoverhaul	no	deserter	Human	VFEE_Deserters	100	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced	DankPyon_Arbelest
-EEG_Deserter_L_Melee	accurex.medievalempireoverhaul	no	deserter	Human	VFEE_Deserters	80	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced	DankPyon_TwoHandedMace,DankPyon_Greataxe,DankPyon_WoodcuttersAxe
-EEG_Deserter_L_Ranged	accurex.medievalempireoverhaul	no	deserter	Human	VFEE_Deserters	80	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced	DankPyon_Crossbow
 CityDwellerLGE	albion.goexplore	yes	citizen	Human		50	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced	
-Stagz_Ariel	arquebus.stagzmerfolk	yes	wayward merren	Human	TribeCivil	45	Neolithic	NeolithicRangedBasic,NeolithicMeleeDecent
+Stagz_Ariel	arquebus.stagzmerfolk	yes	wayward merren	Human	Stagz_WaywardMerren	45	Neolithic	Stagz_MerrenJoiner
 Stagz_Dryad_Squid	arquebus.stagzmerfolk	yes	inkshooter dryad	Stagz_Dryad_Squid		40		
 Stagz_Virtuoso	arquebus.stagzmerfolk	yes	merren virtuoso	Human	Stagz_WaywardMerren	45	Neolithic	Stagz_MerrenJoiner
 BA_Alaunt	athelas.medievaltotalrim.animals	no	alaunt	BA_Alaunt		95		
@@ -329,7 +320,7 @@ BotchJob_DivineOrderScout	botchjob.divineorder	no	scout	Human	BotchJob_DivineOrd
 BotchJob_DivineOrderSharpshooter	botchjob.divineorder	no	sharpshooter	Human	BotchJob_DivineOrderFaction	100	BotchJob_DivineOrderApparel	BotchJob_DivineOrderPistol
 BotchJob_DivineOrderStandardBearer	botchjob.divineorder	no	standard bearer	Human	BotchJob_DivineOrderFaction	60	BotchJob_DivineOrderApparel	BotchJob_DivineOrderBattleStandard
 BotchJob_DivineOrderZealot	botchjob.divineorder	no	zealot	Human	BotchJob_DivineOrderFaction	100	BotchJob_DivineOrderApparel	BotchJob_DivineOrderCleansingConcoction
-BotchJob_CryptLurker	botchjob.profaned	no	crypt lurker	Human	BotchJob_ProfanedFaction	150	BotchJob_TatteredUndershirt,BotchJob_RaggedLegwraps,BotchJob_ProfanedApparel,BotchJob_WeatheredChainmail	BotchJob_ProfanedScythe
+BotchJob_CryptLurker	botchjob.profaned	no	crypt lurker	Human	BotchJob_ProfanedFaction	150	BotchJob_TatteredUndershirt,BotchJob_RaggedLegwraps,BotchJob_ProfanedApparel,BotchJob_WeatheredChainmail	BotchJob_ProfanedScythe,BotchJob_ProfanedGlaive
 BotchJob_Ghoul	botchjob.profaned	no	ghoul	BotchJob_Ghoul		120		
 BotchJob_Gravetender	botchjob.profaned	no	gravetender	Human	BotchJob_ProfanedFaction	150	BotchJob_RaggedLegwraps	BotchJob_ProfanedStaff
 BotchJob_ProfanedCursebearer	botchjob.profaned	no	cursebearer	Human	BotchJob_ProfanedPlayerFaction	50	BotchJob_RaggedLegwraps,BotchJob_ProfanedApparel,BotchJob_WeatheredChainmail,BotchJob_TatteredUndershirt	
@@ -347,45 +338,9 @@ BotchJob_UndeadDragon	botchjob.profaned	no	undead dragon	BotchJob_UndeadDragon		
 BotchJob_UndeadHorse	botchjob.profaned	no	undead horse	BotchJob_UndeadHorse		120		
 BotchJob_UndeadWarg	botchjob.profaned	no	undead warg	BotchJob_UndeadWarg		150		
 BotchJob_Wraith	botchjob.profaned	no	wraith	BotchJob_Wraith		75		
-BearManGrenadier	ceteam.combatextended	no	boomer	BearMan	BearManTribe	60	Tribal	CE_GrenadeNeolithic
-BearManGunner	ceteam.combatextended	no	thunderer	BearMan	BearManTribe	60	Tribal	Gun
 CE_Mercenary_MachineGunner	ceteam.combatextended	no	mercenary machine gunner	Human	Pirate	110	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced,BeltDefensePop	CE_MachineGun
 CE_Tribal_Grenadier	ceteam.combatextended	no	boomer	Human	TribeCivil	60	Neolithic,Tribal	CE_GrenadeNeolithic
 CE_Tribal_Gunner	ceteam.combatextended	no	thunderer	Human	TribeCivil	60	Neolithic,Tribal	SimpleGun
-CamelManGrenadier	ceteam.combatextended	no	boomer	CamelMan	CamelManTribe	60	Tribal	CE_GrenadeNeolithic
-CamelManGunner	ceteam.combatextended	no	thunderer	CamelMan	CamelManTribe	60	Tribal	Gun
-CrocoGrenadier	ceteam.combatextended	no	growler	FR_Alien_Croco	FR_CrocoTribes	70	Tribal	CE_GrenadeNeolithic
-CrocoGunner	ceteam.combatextended	no	hisser	FR_Alien_Croco	FR_CrocoTribes	75	Tribal	Gun
-ElephantManGrenadier	ceteam.combatextended	no	boomer	ElephantMan	ElephantManTribe	60	Tribal	CE_GrenadeNeolithic
-ElephantManGunner	ceteam.combatextended	no	thunderer	ElephantMan	ElephantManTribe	60	Tribal	Gun
-ElkManGrenadier	ceteam.combatextended	no	boomer	ElkMan	ElkManTribe	60	Tribal	CE_GrenadeNeolithic
-ElkManGunner	ceteam.combatextended	no	thunderer	ElkMan	ElkManTribe	60	Tribal	Gun
-FoxManGrenadier	ceteam.combatextended	no	yeefers	FoxMan	FoxManTribe	60	Tribal	CE_GrenadeNeolithic
-FoxManGunner	ceteam.combatextended	no	yiffers	FoxMan	FoxManTribe	60	Tribal	Gun
-GazelleManGrenadier	ceteam.combatextended	no	boomer	GazelleMan	GazelleManTribe	60	Tribal	CE_GrenadeNeolithic
-GazelleManGunner	ceteam.combatextended	no	thunderer	GazelleMan	GazelleManTribe	60	Tribal	Gun
-HiveGrenadier	ceteam.combatextended	no	Hive boomer	Hiver_Soldier		60	Tribal	CE_GrenadeNeolithic
-HiveGrenadierS	ceteam.combatextended	no	Hive boomer	Hiver_Soldier_South		60	Tribal	CE_GrenadeNeolithic
-HiveGunner	ceteam.combatextended	no	Hive thunderer	Hiver_Soldier		60	Tribal	Gun
-HiveGunnerS	ceteam.combatextended	no	Hive thunderer	Hiver_Soldier_South		60	Tribal	Gun
-Kobold_Kamikaze	ceteam.combatextended	no	Blaster	Alien_Kobold	LTS_MedboldEmpireFriendly	65	IndustrialBasic	CE_GrenadeNeolithic
-Lemolim_Grenadier	ceteam.combatextended	no	blaster	Lemolim	LemolimTribeCautious	65	Tribal	CE_GrenadeNeolithic
-LizoGrenadier	ceteam.combatextended	no	boomer	FR_Alien_Squamata	FR_SquamataTribes	65	Tribal	CE_GrenadeNeolithic
-LizoGunner	ceteam.combatextended	no	thunderer	FR_Alien_Squamata	FR_SquamataTribes	65	Tribal	Gun
-LynxManGrenadier	ceteam.combatextended	no	boomer	LynxMan	LynxManTribe	60	Tribal	CE_GrenadeNeolithic
-LynxManGunner	ceteam.combatextended	no	thunderer	LynxMan	LynxManTribe	60	Tribal	Gun
-MercenaryChemGrenadier	ceteam.combatextended	no	mercenary chemical grenadier	Human	Pirate	60	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced,BeltDefensePop	GrenadeSmoke
-MinoGrenadier	ceteam.combatextended	no	kara boomer	FR_Alien_Minotaur	FR_MinotaurTribes	70	Tribal	CE_GrenadeNeolithic
-MinoGunner	ceteam.combatextended	no	boga thunderer	FR_Alien_Minotaur	FR_MinotaurTribes	75	Tribal	Gun
-Noxxer	ceteam.combatextended	no	scavenger noxxer	Human	Pirate	40	IndustrialBasic,IndustrialAdvanced	GrenadeSmoke
-PigManGrenadier	ceteam.combatextended	no	boomer	PigMan	PigManTribe	60	Tribal	CE_GrenadeNeolithic
-PigManGunner	ceteam.combatextended	no	thunderer	PigMan	PigManTribe	60	Tribal	Gun
-PpGrenadier	ceteam.combatextended	no	boomer	Poleepkwa	PoleepkwaFaction	60	Tribal	CE_GrenadeNeolithic
-PpGunner	ceteam.combatextended	no	thunderer	Poleepkwa	PoleepkwaFaction	60	Tribal	Gun
-RaccoonManGrenadier	ceteam.combatextended	no	boomer	RaccoonMan	RaccoonManTribe	60	Tribal	CE_GrenadeNeolithic
-RaccoonManGunner	ceteam.combatextended	no	thunderer	RaccoonMan	RaccoonManTribe	60	Tribal	Gun
-WolfManGrenadier	ceteam.combatextended	no	woofers	WolfMan	WolfManTribe	60	Tribal	CE_GrenadeNeolithic
-WolfManGunner	ceteam.combatextended	no	yiffers	WolfMan	WolfManTribe	60	Tribal	Gun
 DankPyon_Alp	dankpyon.medieval.overhaul	no	Alp	DankPyon_Alp	DankPyon_Forest_Faction	120		
 DankPyon_Amboise_LocalLord	dankpyon.medieval.overhaul	no	local lord	Human	DankPyon_NobleHouseCivil	60		DankPyon_NamedGreatsword,DankPyon_NamedTwoHandedFlangedMace,DankPyon_NamedGreataxe,DankPyon_NamedTwoHandedHammer
 DankPyon_Amboisse_Archer	dankpyon.medieval.overhaul	no	archer	Human	DankPyon_NobleHouseCivil	60		DankPyon_Crossbow
@@ -399,8 +354,8 @@ DankPyon_BrigandMarksman	dankpyon.medieval.overhaul	no	bowman	Human	DankPyon_Bri
 DankPyon_BrigandRaider	dankpyon.medieval.overhaul	no	brigand raider	Human	DankPyon_BrigandFaction	60	DankPyon_BrigandRaider	DankPyon_ArmingSword,DankPyon_MorningStar,DankPyon_MilitaryPick,DankPyon_Handaxe,DankPyon_Falchion,DankPyon_BoarSpear,DankPyon_Billhook,DankPyon_TwoHandedMallet,DankPyon_TwoHandedMace,DankPyon_Longsword,DankPyon_MorningStar
 DankPyon_BrigandThug	dankpyon.medieval.overhaul	no	brigand thug	Human	DankPyon_BrigandFaction	35	DankPyon_BrigandThug,DankPyon_PeasantHelmet	DankPyon_Bludgeon,DankPyon_Pitchfork,DankPyon_HookedBlade,DankPyon_Pickaxe,DankPyon_Hatchet,DankPyon_WoodcuttersAxe,DankPyon_Goedendag,DankPyon_MilitiaSpear,DankPyon_Pickaxe
 DankPyon_Cultist_Novice	dankpyon.medieval.overhaul	no	initiate	Human	DankPyon_ShadowSect	35		DankPyon_WoodcuttersAxe,DankPyon_Warfork,DankPyon_Pitchfork,DankPyon_Pickaxe,DankPyon_Hatchet
-DankPyon_Daer	dankpyon.medieval.overhaul	no	Daer	DankPyon_Daer		700		
-DankPyon_Deathstinger	dankpyon.medieval.overhaul	no	deathstinger	DankPyon_Deathstinger	DankPyon_Hornets	60		
+DankPyon_Daer	dankpyon.medieval.overhaul	no	Daer	DankPyon_Daer		600		
+DankPyon_Deathstinger	dankpyon.medieval.overhaul	no	deathstinger	DankPyon_Deathstinger	Insect	60		
 DankPyon_DireBoar	dankpyon.medieval.overhaul	no	dire boar	DankPyon_DireBoar		190		
 DankPyon_Direwolf	dankpyon.medieval.overhaul	no	Direwolf	DankPyon_Direwolf		160		
 DankPyon_FootmanAmboise	dankpyon.medieval.overhaul	no	footman	Human	DankPyon_NobleHouseCivil	60	DankPyon_Footman,DankPyon_FootmanHelmet	DankPyon_ArmingSword,DankPyon_MorningStar,DankPyon_MilitaryPick
@@ -438,8 +393,8 @@ DankPyon_Medieval_Arbalester	dankpyon.medieval.overhaul	no	arbalester	Human	Dank
 DankPyon_Medieval_Billman	dankpyon.medieval.overhaul	no	billman	Human	DankPyon_NobleHouseCivil	60	DankPyon_Footman,DankPyon_BillmanHelmet	DankPyon_Billhook,DankPyon_Polehammer,DankPyon_Pike
 DankPyon_Medieval_Bowman	dankpyon.medieval.overhaul	no	bowman	Human	DankPyon_NobleHouseCivil	90	DankPyon_ArbalesterHelmet,DankPyon_Archer	DankPyon_HuntingBow,DankPyon_GreatBow,DankPyon_Warbow
 DankPyon_Medieval_Lord	dankpyon.medieval.overhaul	no	lord	Human	DankPyon_NobleHouseCivil	140	DankPyon_Knight,DankPyon_KnightHelmet,DankPyon_Knight,DankPyon_LordHelmet	DankPyon_Greatsword,DankPyon_TwoHandedHammer
-DankPyon_Medieval_Mercenary	dankpyon.medieval.overhaul	no	mercenary	Human	DankPyon_NobleHouseCivil	60	DankPyon_Mercneary,DankPyon_MercenaryHelmet	DankPyon_ArmingSword,DankPyon_MorningStar,DankPyon_MilitaryPick,DankPyon_Handaxe,DankPyon_Falchion,DankPyon_BoarSpear,DankPyon_Billhook
-DankPyon_Medieval_MercenaryHeavy	dankpyon.medieval.overhaul	no	mercenary	Human	DankPyon_NobleHouseCivil	60	DankPyon_MercnearyHeavy,DankPyon_MercenaryHeavyHelmet	DankPyon_ArmingSword,DankPyon_MorningStar,DankPyon_MilitaryPick,DankPyon_Handaxe,DankPyon_Falchion,DankPyon_BoarSpear,DankPyon_Billhook,DankPyon_Longsword
+DankPyon_Medieval_Mercenary	dankpyon.medieval.overhaul	no	mercenary	Human	DankPyon_NobleHouseCivil	60	DankPyon_Mercenary,DankPyon_MercenaryHelmet	DankPyon_ArmingSword,DankPyon_MorningStar,DankPyon_MilitaryPick,DankPyon_Handaxe,DankPyon_Falchion,DankPyon_BoarSpear,DankPyon_Billhook
+DankPyon_Medieval_MercenaryHeavy	dankpyon.medieval.overhaul	no	mercenary	Human	DankPyon_NobleHouseCivil	60	DankPyon_MercenaryHeavy,DankPyon_MercenaryHeavyHelmet	DankPyon_ArmingSword,DankPyon_MorningStar,DankPyon_MilitaryPick,DankPyon_Handaxe,DankPyon_Falchion,DankPyon_BoarSpear,DankPyon_Billhook,DankPyon_Longsword
 DankPyon_Medieval_Merchant	dankpyon.medieval.overhaul	no	merchant	Human	DankPyon_NobleHouseCivil	40	DankPyon_Peasant,DankPyon_PeasantHelmet	DankPyon_Bludgeon,DankPyon_Hatchet,DankPyon_Falchion
 DankPyon_Medieval_Peasant	dankpyon.medieval.overhaul	no	peasant	Human	DankPyon_NobleHouseCivil	35	DankPyon_Peasant,DankPyon_PeasantHelmet	DankPyon_Bludgeon,DankPyon_Pitchfork,DankPyon_HookedBlade,DankPyon_Pickaxe,DankPyon_Hatchet,DankPyon_WoodcuttersAxe
 DankPyon_NorthernBoar	dankpyon.medieval.overhaul	no	northern boar	DankPyon_NorthernBoar		55		
@@ -455,9 +410,7 @@ DankPyon_RoyalMimic	dankpyon.medieval.overhaul	no	royal mimic	DankPyon_RoyalMimi
 DankPyon_RusticMimic_DarkWood	dankpyon.medieval.overhaul	no	dark rustic mimic	DankPyon_RusticMimic		30		
 DankPyon_RusticMimic_WoodLog	dankpyon.medieval.overhaul	no	wooden rustic mimic	DankPyon_RusticMimic		30		
 DankPyon_SchratDark_Sapling	dankpyon.medieval.overhaul	no	schrat sapling	DankPyon_Schrat_Sapling	DankPyon_Forest_Faction	30		
-DankPyon_SchratPlain_Sapling	dankpyon.medieval.overhaul	no	schrat sapling	DankPyon_SchratPlain	DankPyon_Forest_Faction	30		
 DankPyon_Schrat_Dark	dankpyon.medieval.overhaul	no	dark schrat	DankPyon_Schrat	DankPyon_Forest_Faction	400		
-DankPyon_Schrat_Plain	dankpyon.medieval.overhaul	no	schrat	DankPyon_SchratPlain	DankPyon_Forest_Faction	400		
 DankPyon_Soren_Archer	dankpyon.medieval.overhaul	no	archer	Human	DankPyon_NobleHouseCivil2	60		DankPyon_Crossbow
 DankPyon_Soren_Footman	dankpyon.medieval.overhaul	no	footman	Human	DankPyon_NobleHouseCivil2	60		DankPyon_Billhook,DankPyon_Polehammer,DankPyon_Pike
 DankPyon_Soren_Knight	dankpyon.medieval.overhaul	no	knight	Human	DankPyon_NobleHouseCivil2	60		DankPyon_MorningStar,DankPyon_ArmingSword
@@ -476,10 +429,10 @@ DankPyon_UnholdPlain	dankpyon.medieval.overhaul	no	unhold	DankPyon_Unhold	DankPy
 DankPyon_UnholdSnow	dankpyon.medieval.overhaul	no	unhold	DankPyon_UnholdSnow	DankPyon_Forest_Faction	350		
 DankPyon_UnholdSwamp	dankpyon.medieval.overhaul	no	unhold	DankPyon_Unhold	DankPyon_Forest_Faction	300		
 DankPyon_Webknecht	dankpyon.medieval.overhaul	no	Webknecht	DankPyon_Webknecht		180		
-DankPyon_ZweihanderAmboise	dankpyon.medieval.overhaul	no	zweihander	Human	DankPyon_NobleHouseCivil	100		DankPyon_Greatsword
-DankPyon_ZweihanderHesse	dankpyon.medieval.overhaul	no	zweihander	Human	DankPyon_NobleHouseSavage	100		DankPyon_Greatsword
-DankPyon_ZweihanderOswin	dankpyon.medieval.overhaul	no	zweihander	Human	DankPyon_NobleHouseFierce	100		DankPyon_Greatsword
-DankPyon_ZweihanderSoren	dankpyon.medieval.overhaul	no	zweihander	Human	DankPyon_NobleHouseCivil2	100		DankPyon_Greatsword
+DankPyon_ZweihanderAmboise	dankpyon.medieval.overhaul	no	zweihander	Human	DankPyon_NobleHouseCivil	100	DankPyon_Mercenary	DankPyon_Greatsword
+DankPyon_ZweihanderHesse	dankpyon.medieval.overhaul	no	zweihander	Human	DankPyon_NobleHouseSavage	100	DankPyon_Mercenary	DankPyon_Greatsword
+DankPyon_ZweihanderOswin	dankpyon.medieval.overhaul	no	zweihander	Human	DankPyon_NobleHouseFierce	100	DankPyon_Mercenary	DankPyon_Greatsword
+DankPyon_ZweihanderSoren	dankpyon.medieval.overhaul	no	zweihander	Human	DankPyon_NobleHouseCivil2	100	DankPyon_Mercenary	DankPyon_Greatsword
 DanyPyon_Cultist_Acolyte_Melee	dankpyon.medieval.overhaul	no	acolyte	Human	DankPyon_ShadowSect	50		DankPyon_HuntingBow,MedievalMeleeDecent
 DanyPyon_Cultist_Acolyte_Ranged	dankpyon.medieval.overhaul	no	acolyte	Human	DankPyon_ShadowSect	50		DankPyon_HuntingBow
 DanyPyon_Cultist_Adept_Melee	dankpyon.medieval.overhaul	no	adept	Human	DankPyon_ShadowSect	70		MedievalMeleeDecent
@@ -495,11 +448,10 @@ DankPyon_Roxmont_Footman	dankpyon.medieval.overhaul.house.roxmont	no	footman	Hum
 DankPyon_Roxmont_Knight	dankpyon.medieval.overhaul.house.roxmont	no	knight	Human	DankPyon_NobleHouseRoxmont	60		DankPyon_MeleeWeapon_RoxWaraxe
 DankPyon_Roxmont_LocalLord	dankpyon.medieval.overhaul.house.roxmont	no	local lord	Human	DankPyon_NobleHouseRoxmont	60		DankPyon_NamedGreataxe
 DankPyon_StandardRoxmont	dankpyon.medieval.overhaul.house.roxmont	no	standard bearer	Human	DankPyon_NobleHouseRoxmont	60	DankPyon_Footman,DankPyon_BillmanHelmet	DankPyon_PikeRoxmont
-DankPyon_ZweihanderRoxmont	dankpyon.medieval.overhaul.house.roxmont	no	zweihander	Human	DankPyon_NobleHouseRoxmont	100		DankPyon_Greatsword
+DankPyon_ZweihanderRoxmont	dankpyon.medieval.overhaul.house.roxmont	no	zweihander	Human	DankPyon_NobleHouseRoxmont	100	DankPyon_Mercenary	DankPyon_Greatsword
 EEG_Roxmont_Peasant	dankpyon.medieval.overhaul.house.roxmont	no	Peasant	Human	DankPyon_NobleHouseRoxmont	35		DankPyon_WoodcuttersAxe,DankPyon_Warfork,DankPyon_Pitchfork,DankPyon_Pickaxe,DankPyon_Hatchet
 Bogleg_Trader	det.boglegs	yes	town trader	Human	OutlanderCivil	45	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced,BeltDefensePop	Gun
 SD_Fey	det.sbdelights	no	fey	SD_Fey		0		
-DV_Venator_BountyHunter	det.venators	yes	bounty hunter	Human	Pirate	130	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced,SpacerMilitary,BeltDefensePop,SpacerMilitary	Longrifle,SniperRifle
 DevDesigner_AncientDeer	devdesigner.elves.continued	yes	ancient deer	DevDesigner_AncientDeer		100		
 DevDesigner_ColdOne	devdesigner.elves.continued	yes	Cold One	DevDesigner_ColdOne		185		
 DevDesigner_DarkElves_BlackGuard	devdesigner.elves.continued	yes	Black Guard	Human	DevDesigner_DarkElvesFaction	130	DevDesigner_Elves_Light,DevDesigner_DarkElves_Light	DevDesigner_DarkElves_Halberd
@@ -850,18 +802,8 @@ Crusader_Heavy	mlie.crusadersfaction	no	Heavy Knight	Human	Crusaders	140	Crusade
 Crusader_Knight	mlie.crusadersfaction	no	Knight	Human	Crusaders	100	Crusader,CrusaderKnight	Crusader
 Crusader_Sergeant	mlie.crusadersfaction	no	Sergeant	Human	Crusaders	80	Crusader	Crusader
 Crusader_Trader	mlie.crusadersfaction	no	trader	Human	Crusaders	50	Crusader	Crusader
-RG_ArcticDrak	mlie.regrowthextinctanimals	yes	arctic drak	RG_ArcticDrak		150		
-RG_Dodo	mlie.regrowthextinctanimals	yes	dodo	RG_Dodo		45		
-RG_Megalenhydris	mlie.regrowthextinctanimals	yes	megalenhydris	RG_Megalenhydris		64		
-RG_SabertoothSquirrel	mlie.regrowthextinctanimals	yes	Sabertooth squirrel	RG_SabertoothSquirrel		45		
 RG_SabertoothTiger	mlie.regrowthextinctanimals	yes	smilodon	RG_SabertoothTiger		150		
-RG_Synthetion	mlie.regrowthextinctanimals	yes	synthetion	RG_Synthetion		55		
 RG_TerrorBird	mlie.regrowthextinctanimals	yes	terror bird	RG_TerrorBird		160		
-RG_Thrinaxodon	mlie.regrowthextinctanimals	yes	thrinaxodon	RG_Thrinaxodon		85		
-RG_Velociraptor	mlie.regrowthextinctanimals	yes	velociraptor	RG_Velociraptor		175		
-RG_WoollyMammoth	mlie.regrowthextinctanimals	yes	woolly mammoth	RG_WoollyMammoth		280		
-RG_WoollyRhinoceros	mlie.regrowthextinctanimals	yes	woolly rhinoceros	RG_WoollyRhinoceros		300		
-RG_WoollyStegosaurus	mlie.regrowthextinctanimals	yes	woolly stegosaurus	RG_WoollyStegosaurus		135		
 MultiMind_ConjoinedColonist	multimind.conjoinedtwins	yes	conjoined colonist	MultiMind_ConjoinedHuman	PlayerColony	30	IndustrialBasic	
 Forgotten_Aasimar	neronix17.forgottenrealms	no	aasimar	Human	PlayerColony	40	IndustrialBasic	
 Forgotten_AasimarTribal	neronix17.forgottenrealms	no	tribal aasimar	Human	PlayerTribe	40	Neolithic,Medieval	
@@ -961,7 +903,6 @@ Forgotten_Tabaxi	neronix17.forgottenrealms	no	tabaxi	Human	PlayerColony	40	Indus
 Forgotten_TabaxiTribal	neronix17.forgottenrealms	no	tribal tabaxi	Human	PlayerTribe	40	Neolithic,Medieval	
 Forgotten_ThriKreen	neronix17.forgottenrealms	no	thri-kreen	Human	PlayerColony	40	IndustrialBasic	
 Forgotten_ThriKreenTribal	neronix17.forgottenrealms	no	tribal thri-kreen	Human	PlayerTribe	40	Neolithic,Medieval	
-Forgotten_Warforged	neronix17.forgottenrealms	no	warforged	Forgotten_Warforged	PlayerColony	40		
 Forgotten_WaterGenasi	neronix17.forgottenrealms	no	water genasi	Human	PlayerColony	40	IndustrialBasic	
 Forgotten_WaterGenasiTribal	neronix17.forgottenrealms	no	tribal water genasi	Human	PlayerTribe	40	Neolithic,Medieval	
 Forgotten_WildDwarf	neronix17.forgottenrealms	no	wild dwarf	Human	PlayerColony	40	IndustrialBasic	
@@ -975,74 +916,14 @@ Outland_FockattBlue	neronix17.outland.core	no	blue fockatt	Outland_FockattBlue		
 Outland_FockattBrown	neronix17.outland.core	no	brown fockatt	Outland_FockattBrown		200		
 Outland_FockattGrey	neronix17.outland.core	no	grey fockatt	Outland_FockattGrey		200		
 Outland_FockattPolar	neronix17.outland.core	no	polar fockatt	Outland_FockattPolar		200		
-Outland_Bowman	neronix17.outland.eastbornempire	no	bowman	Human	Outland_Empire	80	EastbornBasic,EastbornArmorDecent	EastbornRanged,EastbornRangedHeavy
-Outland_Citizen	neronix17.outland.eastbornempire	no	citizen	Human	Outland_Empire	35	EastbornBasic,EastbornBasic	EastbornMeleeCivilian
-Outland_Emperor	neronix17.outland.eastbornempire	no	emperor	Human	Outland_Empire	150	EastbornBasic,EastbornMilitary,EastbornArmorDecent,EastbornArmorElite	EastbornMeleeDecent,EastbornRangedHeavy,EastbornRangedAdvanced
-Outland_ImperialCitizen	neronix17.outland.eastbornempire	no	imperial citizen	Human	Outland_PlayerEmpire	30	EastbornBasic	
-Outland_Kazoku	neronix17.outland.eastbornempire	no	kazoku	Human	Outland_Empire	140	EastbornBasic,EastbornMilitary,EastbornArmorDecent,EastbornArmorElite	EastbornMeleeDecent,EastbornRangedHeavy
-Outland_Kensei	neronix17.outland.eastbornempire	no	kensei	Human	Outland_Empire	110	EastbornBasic,EastbornMilitary,EastbornArmorDecent,EastbornArmorElite	EastbornMeleeDecent,EastbornRangedHeavy
-Outland_Merchant	neronix17.outland.eastbornempire	no	merchant	Human	Outland_Empire	40	EastbornBasic	OutlandMeleeBasic
-Outland_Ninja	neronix17.outland.eastbornempire	no	ninja	Human	Outland_Empire	80	EastbornScout	EastbornLightSharp,EastbornRanged
-Outland_Samurai	neronix17.outland.eastbornempire	no	samurai	Human	Outland_Empire	90	EastbornBasic,EastbornMilitary,EastbornArmorDecent	EastbornMeleeDecent
-Outland_SamuraiInBlack	neronix17.outland.eastbornempire	no	samurai in black	Human	Outland_Empire	110	EastbornBasic,EastbornMilitary,EastbornArmorDecent,EastbornArmorElite	EastbornMeleeDecent,EastbornRangedHeavy
-Outland_Squire	neronix17.outland.eastbornempire	no	squire	Human	Outland_Empire	60	EastbornBasic,EastbornArmorBasic	EastbornMeleeDecent
-Outland_Councillor	neronix17.outland.motzcoalition	no	councillor	Human	Outland_MotzCoalition	150	MotzBasic,MotzMilitary,MotzArmorDecent,MotzArmorElite,MotzSoldierCaptain	MotzMeleeDecent,MotzRangedHeavy,MotzRangedHeavy
-Outland_Motz	neronix17.outland.motzcoalition	no	motz	Human	Outland_MotzPlayerColony	40	IndustrialBasic	
-Outland_MotzArcher	neronix17.outland.motzcoalition	no	archer	Human	Outland_MotzCoalition	80	MotzBasic,MotzArmorDecent	MotzRanged,MotzRangedHeavy
-Outland_MotzArcherCaptain	neronix17.outland.motzcoalition	no	archer captain	Human	Outland_MotzCoalition	140	MotzBasic,MotzMilitary,MotzArmorDecent,MotzArmorElite,MotzSoldierCaptain	MotzMeleeDecent,MotzRangedHeavy
-Outland_MotzHoplite	neronix17.outland.motzcoalition	no	hoplite	Human	Outland_MotzCoalition	90	MotzBasic,MotzMilitary,MotzArmorDecent,MotzSoldier	MotzMeleeDecent
-Outland_MotzHopliteCaptain	neronix17.outland.motzcoalition	no	hoplite captain	Human	Outland_MotzCoalition	110	MotzBasic,MotzMilitary,MotzArmorDecent,MotzArmorElite,MotzSoldierCaptain	MotzMeleeDecent,MotzRangedHeavy
-Outland_MotzInBlack	neronix17.outland.motzcoalition	no	motz in black	Human	Outland_MotzCoalition	110	MotzBasic,MotzMilitary,MotzArmorDecent,MotzArmorElite,MotzSoldierCaptain	MotzMeleeDecent,MotzRangedHeavy
-Outland_MotzInhabitant	neronix17.outland.motzcoalition	no	citizen	Human	Outland_MotzCoalition	35	MotzBasic,MotzBasic	MotzMeleeCivilian
-Outland_MotzMerchant	neronix17.outland.motzcoalition	no	merchant	Human	Outland_MotzCoalition	40	MotzBasic	MotzMeleeBasic
-Outland_MotzMilitia	neronix17.outland.motzcoalition	no	militia	Human	Outland_MotzCoalition	60	MotzBasic,MotzArmorBasic	MotzMeleeDecent
-Outland_MotzTribal	neronix17.outland.motzcoalition	no	tribal motz	Human	Outland_MotzPlayerTribe	40	Neolithic,Medieval	
 Outland_Oxect	neronix17.outland.motzcoalition	no	oxect bull	Outland_Oxect		150		
 Outland_OxectFemale	neronix17.outland.motzcoalition	no	oxect	Outland_Oxect		150		
-Outland_Ascensionist	neronix17.outland.redburnpact	no	ascensionist	Human	Outland_RedburnPact	150	RedburnPeasant,RedburnArmorDecent	RedburnMeleeRare,PactRangedAdvanced
-Outland_Goblin	neronix17.outland.redburnpact	no	goblin	Human	Outland_GoblinoidPlayerColony	40	IndustrialBasic	
-Outland_GoblinTribal	neronix17.outland.redburnpact	no	tribal goblin	Human	Outland_GoblinoidPlayerTribe	40	Neolithic,Medieval	
-Outland_Hobgoblin	neronix17.outland.redburnpact	no	hobgoblin	Human	Outland_GoblinoidPlayerColony	40	IndustrialBasic	
-Outland_HobgoblinTribal	neronix17.outland.redburnpact	no	tribal hobgoblin	Human	Outland_GoblinoidPlayerTribe	40	Neolithic,Medieval	
-Outland_Orc	neronix17.outland.redburnpact	no	orc	Human	Outland_GoblinoidPlayerColony	40	IndustrialBasic	
-Outland_OrcTribal	neronix17.outland.redburnpact	no	tribal orc	Human	Outland_GoblinoidPlayerTribe	40	Neolithic,Medieval	
-Outland_PactArcher	neronix17.outland.redburnpact	no	archer	Human	Outland_RedburnPact	80	RedburnPeasant,RedburnArmorModerate	PactRanged,PactRangedHeavy
-Outland_PactArcherCaptain	neronix17.outland.redburnpact	no	archer captain	Human	Outland_RedburnPact	140	RedburnPeasant,RedburnArmorModerate,RedburnArmorDecent	PactRangedHeavy
-Outland_PactCitizen	neronix17.outland.redburnpact	no	citizen	Human	Outland_RedburnPact	35	RedburnPeasant	PactMeleeCivilian
-Outland_PactMerchant	neronix17.outland.redburnpact	no	merchant	Human	Outland_RedburnPact	40	RedburnPeasant	PactMeleeBasic
-Outland_PactMilitia	neronix17.outland.redburnpact	no	militia	Human	Outland_RedburnPact	60	RedburnPeasant,PactArmorBasic	PactMeleeDecent
-Outland_PactWarrior	neronix17.outland.redburnpact	no	warrior	Human	Outland_RedburnPact	90	RedburnPeasant,RedburnArmorModerate	PactMeleeDecent
-Outland_PactWarriorCaptain	neronix17.outland.redburnpact	no	warrior captain	Human	Outland_RedburnPact	110	RedburnPeasant,RedburnArmorModerate,RedburnArmorDecent	PactMeleeDecent
-Outland_Varag	neronix17.outland.redburnpact	no	varag	Human	Outland_GoblinoidPlayerColony	40	IndustrialBasic	
-Outland_VaragTribal	neronix17.outland.redburnpact	no	tribal varag	Human	Outland_GoblinoidPlayerTribe	40	Neolithic,Medieval	
-Outland_FaunInBlack	neronix17.outland.vathunnobles	no	faun in black	Human	Outland_VathunNobles	110	VathunClothing,VathunCivilian,VathunMilitary,VathunArmorDecent,VathunArmorElite	VathunMeleeDecent,OutlandRangedHeavy
-Outland_VathunBowman	neronix17.outland.vathunnobles	no	bowman	Human	Outland_VathunNobles	80	VathunClothing,VathunCivilian,VathunMilitaryCheap,VathunGuard	VathunRanged,OutlandRangedHeavy
-Outland_VathunFootsoldier	neronix17.outland.vathunnobles	no	footsoldier	Human	Outland_VathunNobles	80	VathunMilitaryCheap	VathunLightSharp,VathunRanged
-Outland_VathunHighNoble	neronix17.outland.vathunnobles	no	high noble	Human	Outland_VathunNobles	140	VathunClothing,VathunCivilian,VathunMilitary,VathunArmorDecent,VathunArmorElite	VathunMeleeDecent,OutlandRangedHeavy
-Outland_VathunKnight	neronix17.outland.vathunnobles	no	knight	Human	Outland_VathunNobles	90	VathunClothing,VathunCivilian,VathunMilitary,VathunArmorDecent,VathunGuard	VathunMeleeDecent
-Outland_VathunLord	neronix17.outland.vathunnobles	no	lord	Human	Outland_VathunNobles	150	VathunClothing,VathunCivilian,VathunMilitary,VathunArmorDecent,VathunArmorElite	VathunRangedAdvanced
-Outland_VathunMerchant	neronix17.outland.vathunnobles	no	vathun merchant	Human	Outland_VathunNobles	40	VathunClothing,VathunCivilian	OutlandMeleeBasic
-Outland_VathunNoble	neronix17.outland.vathunnobles	no	noble	Human	Outland_VathunNobles	110	VathunClothing,VathunCivilian,VathunMilitary,VathunArmorDecent,VathunArmorElite	VathunMeleeDecent,OutlandRangedHeavy
-Outland_VathunPeasant	neronix17.outland.vathunnobles	no	peasant	Human	Outland_VathunNobles	35	VathunClothing,VathunCivilian,VathunPeasant	VathunMeleeCivilian
-Outland_VathunPeasant_Player	neronix17.outland.vathunnobles	no	vathun peasant	Human	Outland_PlayerVathun	30	VathunClothing,VathunCivilian	
-Outland_VathunSquire	neronix17.outland.vathunnobles	no	squire	Human	Outland_VathunNobles	60	VathunClothing,VathunCivilian,VathunMilitaryCheap	VathunMeleeDecent
-RM_Grenadier_Destructive	ogam.rimedieval	no	grenadier	Human	Pirate	70	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,BeltDefensePop	GrenadeDestructive
-RM_Grenadier_EMP	ogam.rimedieval	no	EMP grenadier	Human	Pirate	55	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,BeltDefensePop	GrenadeEMP
-RM_Grenadier_Smoke	ogam.rimedieval	no	smoke grenadier	Human	Pirate	55	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,BeltDefensePop	GrenadeSmoke
-RM_Mercenary_Elite	ogam.rimedieval	no	elite mercenary	Human	Pirate	130	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced,SpacerMilitary,BeltDefensePop	IndustrialGunAdvanced
-RM_Mercenary_Elite_Acidifier	ogam.rimedieval	no	elite mercenary	Human	Pirate	130	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced,SpacerMilitary,BeltDefensePop	IndustrialGunAdvanced
-RM_Mercenary_Gunner	ogam.rimedieval	no	mercenary gunner	Human	Pirate	85	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced,BeltDefensePop	Gun
-RM_Mercenary_Gunner_Acidifier	ogam.rimedieval	no	mercenary gunner	Human	Pirate	85	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced,BeltDefensePop	Gun
-RM_Mercenary_Heavy	ogam.rimedieval	no	heavy mercenary	Human	Pirate	140	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced,BeltDefensePop	GunHeavy,GunSingleUse
-RM_Mercenary_Slasher	ogam.rimedieval	no	mercenary slasher	Human	Pirate	140	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced	MedievalMeleeDecent,MedievalMeleeAdvanced
-RM_Mercenary_Slasher_Acidifier	ogam.rimedieval	no	mercenary slasher	Human	Pirate	140	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced	MedievalMeleeDecent,MedievalMeleeAdvanced
-RM_Mercenary_Sniper	ogam.rimedieval	no	mercenary sniper	Human	Pirate	110	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced	SniperRifle
-RM_Mercenary_Sniper_Acidifier	ogam.rimedieval	no	mercenary sniper	Human	Pirate	110	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced	SniperRifle
-RM_PirateBoss	ogam.rimedieval	no	boss	Human	Pirate	130	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced,SpacerMilitary,BeltDefensePop	IndustrialGunAdvanced
-RM_Town_Councilman	ogam.rimedieval	no	town councilman	Human	RM_FactionOne	40	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,BeltDefensePop	Gun
-RM_Town_Guard	ogam.rimedieval	no	town guard	Human	RM_FactionOne	60	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,BeltDefensePop	Gun
-RM_Town_Trader	ogam.rimedieval	no	town trader	Human	RM_FactionOne	45	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced,BeltDefensePop	Gun
-RM_Villager	ogam.rimedieval	no	villager	Human	RM_FactionOne	45	IndustrialBasic,IndustrialAdvanced	Gun,MedievalMeleeBasic
+ApeWarrior_Brawler	onlymonkey.awakenedapes	yes	ape brawler	Human	SettlementApeRepublic	75	IndustrialMilitaryBasic	
+ApeWarrior_Gunner	onlymonkey.awakenedapes	yes	ape gunner	Human	SettlementApeRepublic	80	IndustrialMilitaryBasic	AssaultRifle
+ApeWarrior_Heavy	onlymonkey.awakenedapes	yes	ape heavy gunner	Human	SettlementApeRepublic	150	IndustrialMilitaryAdvanced	AssaultRifle
+ApeWarrior_Leader	onlymonkey.awakenedapes	yes	ape alpha	Human	SettlementApeRepublic	150	IndustrialMilitaryAdvanced	Minigun
+ApeWarrior_Naked	onlymonkey.awakenedapes	yes	naked ape	Human	SettlementApeRepublic	40		
+ApeWarrior_Spear	onlymonkey.awakenedapes	yes	ape spearman	Human	SettlementApeRepublic	70	IndustrialMilitaryBasic	NeolithicMeleeAdvanced
 Bandit	oskarpotocki.vanillafactionsexpanded.settlersmodule	yes	bandit	Human	OutlanderCivil	45	IndustrialBasic,IndustrialAdvanced,Outlander	SimpleGun,GrenadeDestructive,NeolithicRangedBasic
 BanditLeader	oskarpotocki.vanillafactionsexpanded.settlersmodule	yes	bandit leader	Human	OutlanderCivil	120	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,BeltDefensePop	Revolver
 BountyHunter	oskarpotocki.vanillafactionsexpanded.settlersmodule	yes	bounty hunter	Human	OutlanderCivil	70	IndustrialBasic,IndustrialAdvanced,Outlander,IndustrialMilitaryBasic	Gun,Revolver
@@ -1173,20 +1054,27 @@ pphhyy_BloodScarab	pphhyy.sanguinaryanimals	yes	BloodScarab	pphhyy_BloodScarab		
 pphhyy_SanguineDeer	pphhyy.sanguinaryanimals	yes	Sanguine Deer	pphhyy_SanguineDeer		50		
 pphhyy_Vargulf	pphhyy.sanguinaryanimals	yes	Vargulf	pphhyy_Vargulf		200		
 RG_Owlbeast	regrowth.botr.boilingforest	yes	owlbeast	RG_Owlbeast		220		
+RG_ArcticDrak	regrowth.botr.core	yes	arctic drak	RG_ArcticDrak		150		
+RG_Dodo	regrowth.botr.core	yes	dodo	RG_Dodo		45		
 RG_Hemolope	regrowth.botr.core	yes	hemolope	RG_Hemolope		40		
 RG_KiwiBird	regrowth.botr.core	yes	kiwi	RG_KiwiBird		30		
 RG_Neutrolope	regrowth.botr.core	yes	neutrolope	RG_Neutrolope		60		
 RG_Rabbit	regrowth.botr.core	yes	rabbit	RG_Rabbit		33		
 RG_Rimclaw	regrowth.botr.core	yes	rimclaw	RG_Rimclaw		650		
+RG_SabertoothSquirrel	regrowth.botr.core	yes	Sabertooth squirrel	RG_SabertoothSquirrel		45		
+RG_Synthetion	regrowth.botr.core	yes	synthetion	RG_Synthetion		55		
+RG_Thrinaxodon	regrowth.botr.core	yes	thrinaxodon	RG_Thrinaxodon		85		
+RG_Velociraptor	regrowth.botr.core	yes	velociraptor	RG_Velociraptor		175		
+RG_WoollyStegosaurus	regrowth.botr.core	yes	woolly stegosaurus	RG_WoollyStegosaurus		300		
 FPCAssassin	rimsenal.federation	yes	assassin	Human	FPC	200	BeltDefensePop	FedSniper,FedPistol
 FPCAuxiliary	rimsenal.federation	yes	auxiliary	Human	FPC	45	BeltDefensePop	MedievalMeleeBasic,AuxPistol
 FPCBomber	rimsenal.federation	yes	suicide bomber	Human	FPC	105	BeltDefensePop	FedBomb
 FPCCommander	rimsenal.federation	yes	commander	Human	FPC	290	BeltDefensePop	Sentinel
 FPCFederator	rimsenal.federation	yes	federator	Mech_Federator	FPC	1000		Federator
 FPCPeacebringer	rimsenal.federation	yes	peacebringer	Bion_Stalker	FPC	250		FedSniper,FedPistol
-FPCPeacekeeper	rimsenal.federation	yes	peacekeeper	Bion_Base	FPC	180		FedRifle
+FPCPeacekeeper	rimsenal.federation	yes	peacekeeper	Bion_Base	FPC	210		FedRifle
 FPCPeacemaker	rimsenal.federation	yes	peacemaker	Bion_Base	FPC	180		FedMelee
-FPCPeacemonger	rimsenal.federation	yes	peacemonger	Bion_Hulk	FPC	300		FedHeavy,FedDemolition
+FPCPeacemonger	rimsenal.federation	yes	peacemonger	Bion_Hulk	FPC	350		FedHeavy,FedDemolition
 FPCSeeker	rimsenal.federation	yes	seeker	Mech_Seeker	FPC	55		
 FPCUnityGuard	rimsenal.federation	yes	unity guard	Human	FPC	160	ADJS,BeltDefensePop	FedCarbine
 FeralBoomer	rimsenal.feral	yes	boomer	Human	Feral	155	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic	FeralGrenade
@@ -1225,12 +1113,12 @@ Mech_Tagmaton	rimsenal.spacer	yes	tagmaton	Mech_Tagmaton	Mechanoid	200		Mechanoi
 SpacerColonist	rimsenal.spacer	yes	colonist	Human	PlayerSpacerColony	30	Spacer	
 Spacer_Common_Lodger	rimsenal.spacer	yes	spacer colonist	Human	SpacerCivil	30	IndustrialBasic,IndustrialAdvanced	SmartGunBasic
 Spacer_Common_Trader	rimsenal.spacer	yes	Spacer trader	Human	SpacerCivil	40	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced	SmartGunBasic,SmartGunRegular
-Spacer_Fighter_Breacher	rimsenal.spacer	yes	colonial guard breacher	Human	SpacerCivil	85	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced	SmartGrenades,SpacerBreacher
-Spacer_Fighter_Marshal	rimsenal.spacer	yes	colonial marshall	Human	SpacerCivil	120	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced	SmartRevolver
-Spacer_Fighter_Ranger	rimsenal.spacer	yes	colonial ranger	Human	SpacerCivil	110	Spacer	SmartGunAdvanced,SmartGunRegular
-Spacer_Fighter_Security	rimsenal.spacer	yes	colonial guard	Human	SpacerCivil	65	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced	SmartGunBasic,SmartGunRegular
-Spacer_Fighter_Sniper	rimsenal.spacer	yes	colonial ranger sharpshooter	Human	SpacerCivil	130	Spacer	SmartSniperRifle,SpacerSniperRifle
-Spacer_Fighter_Vanguard	rimsenal.spacer	yes	colonial vanguard	Human	SpacerCivil	180	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced	VanguardGun,SmartGunElite
+Spacer_Fighter_Breacher	rimsenal.spacer	yes	colonial guard breacher	Human	SpacerCivil	155	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced	SmartGrenades,SpacerBreacher
+Spacer_Fighter_Marshal	rimsenal.spacer	yes	colonial marshall	Human	SpacerCivil	180	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced	SmartRevolver
+Spacer_Fighter_Ranger	rimsenal.spacer	yes	colonial ranger	Human	SpacerCivil	210	Spacer	SmartGunAdvanced,SmartGunRegular
+Spacer_Fighter_Security	rimsenal.spacer	yes	colonial guard	Human	SpacerCivil	155	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced	SmartGunBasic,SmartGunRegular
+Spacer_Fighter_Sniper	rimsenal.spacer	yes	colonial ranger sharpshooter	Human	SpacerCivil	230	Spacer	SmartSniperRifle,SpacerSniperRifle
+Spacer_Fighter_Vanguard	rimsenal.spacer	yes	colonial vanguard	Human	SpacerCivil	280	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced	VanguardGun,SmartGunElite
 Spacer_Fighter_mechanist	rimsenal.spacer	yes	colonial machinist	Human	SpacerCivil	350	Spacer	SmartRevolver
 AAVPE_BlackQueen	sarg.alphaanimals	yes	summoned black queen	AAVPE_BlackQueen		300		
 AA_AcanthamoebaGiganteaHuge	sarg.alphaanimals	yes	acanthamoeba gigantea, huge	AA_AcanthamoebaGiganteaHuge		105		
@@ -1289,7 +1177,6 @@ AA_EmpressButterfly	sarg.alphaanimals	yes	Empress butterfly	AA_EmpressButterfly	
 AA_EmpressButterflyLarva	sarg.alphaanimals	yes	Empress butterfly larva	AA_EmpressButterflyLarva		10		
 AA_EngorgedTentacularAberration	sarg.alphaanimals	yes	engorged tentacular aberration	AA_EngorgedTentacularAberration		500		
 AA_Erin	sarg.alphaanimals	yes	erin	AA_Erin		175		
-AA_Fangsquid	sarg.alphaanimals	yes	fangsquid	AA_Fangsquid		350		
 AA_Feralisk	sarg.alphaanimals	yes	feralisk	AA_Feralisk		200		
 AA_FeraliskClutchMother	sarg.alphaanimals	yes	feralisk clutch mother	AA_FeraliskClutchMother		600		
 AA_FireWasp	sarg.alphaanimals	yes	fire wasp	AA_FireWasp		80		
@@ -1411,18 +1298,6 @@ AM_Siegebreaker	sarg.alphamechs	yes	siegebreaker	AM_Siegebreaker	Mechanoid	400		
 AM_Siegemelter	sarg.alphamechs	yes	siegemelter	AM_Siegemelter	Mechanoid	400		AM_SiegemelterTurret
 AM_Starfire	sarg.alphamechs	yes	starfire	AM_Starfire	Mechanoid	600		AM_StarfireTurret
 AM_WarEmpress	sarg.alphamechs	yes	war empress	AM_WarEmpress	Mechanoid	850		
-VFE_Mech_Advanced_Aura	sarg.alphamechs	yes	dominion	VFE_Mech_Advanced_Aura		200		
-VFE_Mech_Advanced_Daggersnout	sarg.alphamechs	yes	eviscerator	VFE_Mech_Advanced_Daggersnout		95		
-VFE_Mech_Advanced_Fireworm	sarg.alphamechs	yes	incinerator	VFE_Mech_Advanced_Fireworm		300		AM_MechanoidFlamethrower
-VFE_Mech_Advanced_Goliath	sarg.alphamechs	yes	colossus	VFE_Mech_Advanced_Goliath		400		AM_Gun_GoliathChargeBlaster,AM_Gun_GoliathNeedle
-VFE_Mech_Advanced_Phalanx	sarg.alphamechs	yes	hoplite	VFE_Mech_Advanced_Phalanx		275		AM_MechanoidCryoweapon
-VFE_Mech_Advanced_Siegebreaker	sarg.alphamechs	yes	siegemaster	VFE_Mech_Advanced_Siegebreaker		400		AM_SiegebreakerTurret
-VFE_Mech_Aura	sarg.alphamechs	yes	aura	VFE_Mech_Aura		200		
-VFE_Mech_Daggersnout	sarg.alphamechs	yes	daggersnout	VFE_Mech_Daggersnout		95		
-VFE_Mech_Fireworm	sarg.alphamechs	yes	fireworm	VFE_Mech_Fireworm		300		AM_MechanoidFlamethrower
-VFE_Mech_Goliath	sarg.alphamechs	yes	goliath	VFE_Mech_Goliath		400		AM_Gun_GoliathChargeBlaster,AM_Gun_GoliathNeedle
-VFE_Mech_Phalanx	sarg.alphamechs	yes	phalanx	VFE_Mech_Phalanx		275		AM_MechanoidCryoweapon
-VFE_Mech_Siegebreaker	sarg.alphamechs	yes	siegebreaker	VFE_Mech_Siegebreaker		400		AM_SiegebreakerTurret
 AA_Eyeling	sarg.alphamemes	yes	eyeling	AA_Eyeling		10		
 AM_Dryad_Corruptor	sarg.alphamemes	yes	corruptor dryad	AM_Dryad_Corruptor		40		
 AM_Dryad_Ocular	sarg.alphamemes	yes	ocular dryad	AM_Dryad_Ocular		40		
@@ -2488,7 +2363,7 @@ DA_Barog	van.beasts	no	barogoth	DA_Barog		100
 DA_BeardedTroll	van.beasts	no	bearded troll	DA_BeardedTroll		130		
 DA_BlackScribe	van.beasts	no	black scribe	DA_BlackScribe		300		
 DA_BlackscaledBaskar	van.beasts	no	blackscaled baskar	DA_BlackscaledBaskar		650		
-DA_Crestel	van.beasts	no	crestel	DA_Crestel		400		
+DA_Crestel	van.beasts	no	crestel	DA_Crestel		450		
 DA_DwarvenMuffton	van.beasts	no	dwarven muffton	DA_DwarvenMuffton		65		
 DA_ForestOwlcat	van.beasts	no	forest owlcat	DA_ForestOwlcat		45		
 DA_Goldilox	van.beasts	no	goldilox	DA_Goldilox		250		
@@ -2534,7 +2409,6 @@ AEXP_BlackFootedFerret	vanillaexpanded.vaeendandext	yes	black-footed ferret	AEXP
 AEXP_BlackRhino	vanillaexpanded.vaeendandext	yes	black rhinoceros	AEXP_BlackRhino		240		
 AEXP_Bonobo	vanillaexpanded.vaeendandext	yes	bonobo	AEXP_Bonobo		35		
 AEXP_Moa	vanillaexpanded.vaeendandext	yes	moa	AEXP_Moa		110		
-AEXP_Panda	vanillaexpanded.vaeendandext	yes	giant panda	AEXP_Panda		180		
 AEXP_Pangolin	vanillaexpanded.vaeendandext	yes	giant pangolin	AEXP_Pangolin		45		
 AEXP_Quagga	vanillaexpanded.vaeendandext	yes	quagga	AEXP_Quagga		80		
 AEXP_RockhopperPenguin	vanillaexpanded.vaeendandext	yes	rockhopper penguin	AEXP_RockhopperPenguin		40		
@@ -2544,11 +2418,8 @@ VAERoy_AngoraRabbit	vanillaexpanded.vaeroy	yes	angora rabbit	VAERoy_AngoraRabbit
 VAERoy_Crane	vanillaexpanded.vaeroy	yes	crane	VAERoy_Crane		75		
 VAERoy_Megachicken	vanillaexpanded.vaeroy	yes	megachicken	VAERoy_Megachicken		30		
 VAERoy_Orangutan	vanillaexpanded.vaeroy	yes	orangutan	VAERoy_Orangutan		135		
-VAERoy_Peacock	vanillaexpanded.vaeroy	yes	peacock	VAERoy_Peacock		52		
 VAERoy_Pheasant	vanillaexpanded.vaeroy	yes	pheasant	VAERoy_Pheasant		30		
-VAERoy_Quail	vanillaexpanded.vaeroy	yes	quail	VAERoy_Quail		30		
 VAERoy_RoyalTiger	vanillaexpanded.vaeroy	yes	royal tiger	VAERoy_RoyalTiger		150		
-VAERoy_Swan	vanillaexpanded.vaeroy	yes	swan	VAERoy_Swan		40		
 VAEWaste_Hydra	vanillaexpanded.vaewaste	yes	hydra	VAEWaste_Hydra		85		
 VAEWaste_Megatardi	vanillaexpanded.vaewaste	yes	megatardi	VAEWaste_Megatardi		100		
 VAEWaste_Pestigator	vanillaexpanded.vaewaste	yes	pestigator	VAEWaste_Pestigator		450		
@@ -2560,10 +2431,8 @@ VAEWaste_Toxscorpion	vanillaexpanded.vaewaste	yes	toxscorpion	VAEWaste_Toxscorpi
 VAEWaste_Wasteboar	vanillaexpanded.vaewaste	yes	wasteboar	VAEWaste_Wasteboar		75		
 VAEWaste_Wastedeer	vanillaexpanded.vaewaste	yes	wastedeer	VAEWaste_Wastedeer		50		
 VAEWaste_Wasteffalo	vanillaexpanded.vaewaste	yes	wasteffalo	VAEWaste_Wasteffalo		150		
-AEXP_Alligator	vanillaexpanded.vanillaanimalsexpanded	yes	alligator	AEXP_Alligator		200		
 AEXP_Anaconda	vanillaexpanded.vanillaanimalsexpanded	yes	anaconda	AEXP_Anaconda		225		
 AEXP_ArcticCoyote	vanillaexpanded.vanillaanimalsexpanded	yes	arctic coyote	AEXP_ArcticCoyote		55		
-AEXP_Badger	vanillaexpanded.vanillaanimalsexpanded	yes	badger	AEXP_Badger		65		
 AEXP_Beagle	vanillaexpanded.vanillaanimalsexpanded	yes	beagle	AEXP_Beagle		35		
 AEXP_Beaver	vanillaexpanded.vanillaanimalsexpanded	yes	beaver	AEXP_Beaver		25		
 AEXP_BlackBear	vanillaexpanded.vanillaanimalsexpanded	yes	black bear	AEXP_BlackBear		200		
@@ -2589,10 +2458,8 @@ AEXP_FrenchBulldog	vanillaexpanded.vanillaanimalsexpanded	yes	french bulldog	AEX
 AEXP_GermanShepherd	vanillaexpanded.vanillaanimalsexpanded	yes	german shepherd	AEXP_GermanShepherd		160		
 AEXP_GilaMonster	vanillaexpanded.vanillaanimalsexpanded	yes	gila monster	AEXP_GilaMonster		70		
 AEXP_Giraffe	vanillaexpanded.vanillaanimalsexpanded	yes	giraffe	AEXP_Giraffe		75		
-AEXP_Gorilla	vanillaexpanded.vanillaanimalsexpanded	yes	gorilla	AEXP_Gorilla		135		
 AEXP_GreatDane	vanillaexpanded.vanillaanimalsexpanded	yes	great dane	AEXP_GreatDane		55		
 AEXP_Hedgehog	vanillaexpanded.vanillaanimalsexpanded	yes	hedgehog	AEXP_Hedgehog		10		
-AEXP_Hippopotamus	vanillaexpanded.vanillaanimalsexpanded	yes	hippopotamus	AEXP_Hippopotamus		270		
 AEXP_Hyena	vanillaexpanded.vanillaanimalsexpanded	yes	hyena	AEXP_Hyena		60		
 AEXP_IndianElephant	vanillaexpanded.vanillaanimalsexpanded	yes	indian elephant	AEXP_IndianElephant		235		
 AEXP_Jaguar	vanillaexpanded.vanillaanimalsexpanded	yes	jaguar	AEXP_Jaguar		120		
@@ -2603,28 +2470,20 @@ AEXP_Lion	vanillaexpanded.vanillaanimalsexpanded	yes	lion	AEXP_Lion		220
 AEXP_Mandrill	vanillaexpanded.vanillaanimalsexpanded	yes	mandrill	AEXP_Mandrill		65		
 AEXP_MegaWolverine	vanillaexpanded.vanillaanimalsexpanded	yes	megawolverine	AEXP_MegaWolverine		380		
 AEXP_Megascorpion	vanillaexpanded.vanillaanimalsexpanded	yes	megascorpion	AEXP_Megascorpion		55		
-AEXP_Moose	vanillaexpanded.vanillaanimalsexpanded	yes	moose	AEXP_Moose		110		
-AEXP_Muskox	vanillaexpanded.vanillaanimalsexpanded	yes	musk ox	AEXP_Muskox		100		
-AEXP_Otter	vanillaexpanded.vanillaanimalsexpanded	yes	otter	AEXP_Otter		45		
-AEXP_Penguin	vanillaexpanded.vanillaanimalsexpanded	yes	penguin	AEXP_Penguin		60		
 AEXP_Platypus	vanillaexpanded.vanillaanimalsexpanded	yes	platypus	AEXP_Platypus		65		
 AEXP_Poodle	vanillaexpanded.vanillaanimalsexpanded	yes	poodle	AEXP_Poodle		55		
-AEXP_Porcupine	vanillaexpanded.vanillaanimalsexpanded	yes	porcupine	AEXP_Porcupine		35		
 AEXP_Pug	vanillaexpanded.vanillaanimalsexpanded	yes	pug	AEXP_Pug		30		
 AEXP_Rattlesnake	vanillaexpanded.vanillaanimalsexpanded	yes	rattlesnake	AEXP_Rattlesnake		85		
 AEXP_RedPanda	vanillaexpanded.vanillaanimalsexpanded	yes	red panda	AEXP_RedPanda		35		
 AEXP_Rottweiler	vanillaexpanded.vanillaanimalsexpanded	yes	rottweiler	AEXP_Rottweiler		65		
-AEXP_Seal	vanillaexpanded.vanillaanimalsexpanded	yes	seal	AEXP_Seal		65		
 AEXP_Shih-Tzu	vanillaexpanded.vanillaanimalsexpanded	yes	shih-tzu	AEXP_Shih-Tzu		30		
 AEXP_Tapir	vanillaexpanded.vanillaanimalsexpanded	yes	tapir	AEXP_Tapir		65		
-AEXP_Tiger	vanillaexpanded.vanillaanimalsexpanded	yes	tiger	AEXP_Tiger		120		
-AEXP_Walrus	vanillaexpanded.vanillaanimalsexpanded	yes	walrus	AEXP_Walrus		250		
 AEXP_WelshTerrier	vanillaexpanded.vanillaanimalsexpanded	yes	welsh terrier	AEXP_WelshTerrier		60		
 AEXP_WildGoose	vanillaexpanded.vanillaanimalsexpanded	yes	wild goose	AEXP_WildGoose		40		
 AEXP_Wildebeest	vanillaexpanded.vanillaanimalsexpanded	yes	wildebeest	AEXP_Wildebeest		75		
 AEXP_Zebra	vanillaexpanded.vanillaanimalsexpanded	yes	zebra	AEXP_Zebra		80		
-VEE_Hunter	vanillaexpanded.vee	yes	hunter	Human		30	IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced	SniperRifle,Gun
-VEE_TribalHunter	vanillaexpanded.vee	yes	hunter	Human		30	Neolithic	NeolithicRangedDecent
+VEE_Hunter	vanillaexpanded.vee	yes	hunter	Human		30	IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced	VEE_HunterIndustrialWeapon
+VEE_TribalHunter	vanillaexpanded.vee	yes	hunter	Human		30	Neolithic	VEE_HunterNeolithicWeapon
 GR_AberrantFleshbeast	vanillaexpanded.vgeneticse	yes	aberrant fleshbeast	GR_AberrantFleshbeast		50		
 GR_AnimusHare	vanillaexpanded.vgeneticse	yes	animus hare	GR_AnimusHare		70		
 GR_ArchotechCentipede	vanillaexpanded.vgeneticse	yes	archocentipede	GR_ArchotechCentipede		10000		

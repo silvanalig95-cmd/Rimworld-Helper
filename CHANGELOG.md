@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Rimfolk's peoples, dressed from your own mods
+
+*7 November 2026, version 0.158.0*
+
+- Rimfolk's seven older peoples are now checked against your own mod files: every piece of clothing, weapon, kind of people and gift they use exists in the mods you have enabled.
+- Some odd picks are gone: pilgrims and scholars no longer turn up in psychic eltex capes, a merchant master no longer in marine armour, and enclave hands and pilgrims no longer carry explosive belts, turret packs or quivers meant for soldiers.
+- They draw on more of your mods: headscarves, skullcaps, prayer beads and a bishop's mitre from Hats and Rags, lassos from Melee Animation, javelins from Vanilla Factions Expanded Classical, Rimsenal's unisuits, data glasses, bodysuits and smart rifles for the enclave, and goods from Alpha Crafts and Odyssey to carry.
+- A few more kinds of people (great apes from Awakened Apes, Rimsenal's Askbarn and Uredd, abyssal merren) and more gifts: monks, wayfarers and minstrels from A RimWorld of Magic, and a few genes put in for industrial and spacer peoples, such as quick study for scholars and fast wound healing for marshals.
+
 ## Four new peoples: Wardens, the Quiet Bell, Tamers and the Wheel
 
 *7 November 2026, version 0.157.0*

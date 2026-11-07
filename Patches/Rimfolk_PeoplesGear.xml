@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+  <!--
+    Rimfolk's own apparel tags for its peoples' pawn kinds (Defs/PeopleDefs/Rimfolk_People_*.xml; docs/design/peoples.md
+    "Their gear, their kinds of people and their gifts"). No other pawn kind names these tags, so nothing else changes:
+    they let a people's kind pick a piece the game's own tags can't single out.
+    - Pieces that carry no tag at all, so no pawn is ever made wearing them: Vanilla Ideology Expanded - Hats and Rags'
+      beads, bishop's hat, skullcap, brimless hat, headscarf, wide hat, fez and military cap, and Ideology's
+      headwrap.
+    - Pieces whose shared tag brings in other mods' pieces the game picks regardless of a kind's means: the plain cape
+      (the game's Cape tag is also Vanilla Psycasts Expanded's eltex cape, as likely as the cape itself), and Royalty's
+      finery (its RoyalTier2 tag is also Rimsenal's close combat armour, Vanilla Armour Expanded's marine boots and gloves,
+      and A RimWorld of Magic's and the elves' robes and cloaks).
+    Each name is looked up as it stands: with its mod missing nothing matches and nothing is logged. A piece without a tags
+    list is given one first.
+  -->
+
+  <Operation Class="PatchOperationAdd">
+    <success>Always</success>
+    <xpath>Defs/ThingDef[defName="Apparel_Cape" or defName="Apparel_Beret" or defName="Apparel_HatLadies" or defName="Apparel_HatTop" or defName="Apparel_ShirtRuffle" or defName="Apparel_VestRoyal" or defName="Apparel_Corset" or defName="Apparel_Headwrap" or defName="VIEHAR_Apparel_Beads" or defName="VIEHAR_Apparel_BishopHat" or defName="VIEHAR_Apparel_Skullcap" or defName="VIEHAR_Apparel_BrimlessHat" or defName="VIEHAR_Apparel_Headscarf" or defName="VIEHAR_Apparel_WideHat" or defName="VIEHAR_Apparel_Fez" or defName="VIEHAR_Apparel_MilitaryCap"]/apparel[not(tags)]</xpath>
+    <value>
+      <tags />
+    </value>
+  </Operation>
+
+  <!-- The plain cape: the pilgrims' sage cloak, the scholars' claret provost's cape. -->
+  <Operation Class="PatchOperationAdd">
+    <success>Always</success>
+    <xpath>Defs/ThingDef[defName="Apparel_Cape"]/apparel/tags</xpath>
+    <value>
+      <li>Rimfolk_Cape</li>
+    </value>
+  </Operation>
+
+  <!-- Royalty's finery for a league master or an enclave factor: the beret, the ladies' and the top hat, the formal shirt,
+       the royal vest and the corset. -->
+  <Operation Class="PatchOperationAdd">
+    <success>Always</success>
+    <xpath>Defs/ThingDef[defName="Apparel_Beret" or defName="Apparel_HatLadies" or defName="Apparel_HatTop" or defName="Apparel_ShirtRuffle" or defName="Apparel_VestRoyal" or defName="Apparel_Corset"]/apparel/tags</xpath>
+    <value>
+      <li>Rimfolk_Finery</li>
+    </value>
+  </Operation>
+
+  <!-- Prayer beads: the hospitallers and the pilgrims. -->
+  <Operation Class="PatchOperationAdd">
+    <success>Always</success>
+    <xpath>Defs/ThingDef[defName="VIEHAR_Apparel_Beads"]/apparel/tags</xpath>
+    <value>
+      <li>Rimfolk_Beads</li>
+    </value>
+  </Operation>
+
+  <!-- The bishop's hat: a prior's or a keeper of the shrines' mitre. -->
+  <Operation Class="PatchOperationAdd">
+    <success>Always</success>
+    <xpath>Defs/ThingDef[defName="VIEHAR_Apparel_BishopHat"]/apparel/tags</xpath>
+    <value>
+      <li>Rimfolk_Mitre</li>
+    </value>
+  </Operation>
+
+  <!-- A plain skullcap or brimless hat: hospitallers at the beds, scholars at their desks. -->
+  <Operation Class="PatchOperationAdd">
+    <success>Always</success>
+    <xpath>Defs/ThingDef[defName="VIEHAR_Apparel_Skullcap" or defName="VIEHAR_Apparel_BrimlessHat"]/apparel/tags</xpath>
+    <value>
+      <li>Rimfolk_Skullcap</li>
+    </value>
+  </Operation>
+
+  <!-- A headscarf or a headwrap: lay servants, pilgrims and ferry folk on the road. -->
+  <Operation Class="PatchOperationAdd">
+    <success>Always</success>
+    <xpath>Defs/ThingDef[defName="VIEHAR_Apparel_Headscarf" or defName="Apparel_Headwrap"]/apparel/tags</xpath>
+    <value>
+      <li>Rimfolk_Headscarf</li>
+    </value>
+  </Operation>
+
+  <!-- The wide hat of the road: the pilgrims' archers and chandlers, the river's boat-traders. -->
+  <Operation Class="PatchOperationAdd">
+    <success>Always</success>
+    <xpath>Defs/ThingDef[defName="VIEHAR_Apparel_WideHat"]/apparel/tags</xpath>
+    <value>
+      <li>Rimfolk_WideHat</li>
+    </value>
+  </Operation>
+
+  <!-- A fez: the road league's wayfarers and factors, folk of every road. -->
+  <Operation Class="PatchOperationAdd">
+    <success>Always</success>
+    <xpath>Defs/ThingDef[defName="VIEHAR_Apparel_Fez"]/apparel/tags</xpath>
+    <value>
+      <li>Rimfolk_Fez</li>
+    </value>
+  </Operation>
+
+  <!-- A military cap: the learned society's proctors, part of their kit. -->
+  <Operation Class="PatchOperationAdd">
+    <success>Always</success>
+    <xpath>Defs/ThingDef[defName="VIEHAR_Apparel_MilitaryCap"]/apparel/tags</xpath>
+    <value>
+      <li>Rimfolk_MilitaryCap</li>
+    </value>
+  </Operation>
+
+</Patch>

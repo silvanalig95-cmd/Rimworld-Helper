@@ -67,7 +67,19 @@ def own_defs():
     return names
 
 
-TAG_LISTS = {"apparelTags", "weaponTags", "alternateTagChoices", "tags", "requiredTag", "tag"}
+TAG_LISTS = {"apparelTags", "weaponTags", "alternateTagChoices", "tags", "requiredTag", "tag", "apparelDisallowTags",
+             "weaponDisallowTags"}
+
+
+def own_tags():
+    """Tags Rimfolk's own patches give other mods' gear (Patches/: Rimfolk_Cape, Rimfolk_Finery...)."""
+    tags = set()
+    for dp, _, fs in os.walk(os.path.join(ROOT, "Patches")):
+        for f in fs:
+            if f.endswith(".xml"):
+                s = open(os.path.join(dp, f), encoding="utf-8", errors="replace").read()
+                tags.update(re.findall(r"<li>(Rimfolk_[A-Za-z0-9_]+)</li>", s))
+    return tags
 
 
 def xml_refs():
@@ -134,6 +146,8 @@ def main():
     show_all = "--all" in sys.argv
     pool = load_pool()
     tags = load_tags()
+    for t in own_tags():
+        tags.setdefault(t, set()).add((SELF, True))
     own = own_defs()
     counts = {"ok": 0, "inactive": 0, "missing": 0, "wrong-mod": 0, "vanilla": 0}
     problems = []

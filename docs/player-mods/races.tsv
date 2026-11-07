@@ -1,5 +1,4 @@
 defName	mod	active	label	kind	bodySize	foodType	predator	herdAnimal	maxPreyBodySize
-pphhyy_Demigryph_untameable	accurex.medievalempireoverhaul	no	Demigryph	animal	2.4	CarnivoreAnimal, OvivoreAnimal	true	true	5
 Stagz_Dryad_Squid	arquebus.stagzmerfolk	yes	inkshooter dryad	animal	0.667	None			
 BA_Alaunt	athelas.medievaltotalrim.animals	no	alaunt	animal	1.08	OmnivoreAnimal, OvivoreAnimal	true		2.5
 BA_Anatolian_Leopard	athelas.medievaltotalrim.animals	no	Anatolian leopard	animal	1.0	CarnivoreAnimal, OvivoreAnimal	true	false	1.0
@@ -32,10 +31,10 @@ BotchJob_UndeadHorse	botchjob.profaned	no	undead horse	animal	2.4	OmnivoreRoughA
 BotchJob_UndeadWarg	botchjob.profaned	no	undead warg	animal	1.5	OmnivoreRoughAnimal			
 BotchJob_Wraith	botchjob.profaned	no	wraith	animal	1	OmnivoreRoughAnimal			
 DankPyon_Alp	dankpyon.medieval.overhaul	no	Alp	animal	1	CarnivoreAnimalStrict, Corpse	true	false	2
-DankPyon_AncientTroll	dankpyon.medieval.overhaul	no	ancient troll	animal	4	CarnivoreAnimalStrict, Corpse	true	false	3.5
+DankPyon_AncientTroll	dankpyon.medieval.overhaul	no	ancient troll	animal	4	CarnivoreAnimalStrict, Corpse	true	false	4
 DankPyon_Angus	dankpyon.medieval.overhaul	no	Angus	animal	2.8	VegetarianRoughAnimal		true	
 DankPyon_Daer	dankpyon.medieval.overhaul	no	Daer	animal	4.2	OmnivoreAnimal, OvivoreAnimal	true	false	4
-DankPyon_Deathstinger	dankpyon.medieval.overhaul	no	deathstinger	animal	0.2	OmnivoreAnimal, AnimalProduct			
+DankPyon_Deathstinger	dankpyon.medieval.overhaul	no	deathstinger	animal	0.2	AnimalProduct, Fluid			
 DankPyon_DireBoar	dankpyon.medieval.overhaul	no	dire boar	animal	2.0	OmnivoreRoughAnimal	true	true	3
 DankPyon_Direwolf	dankpyon.medieval.overhaul	no	Direwolf	animal	1.0	CarnivoreAnimalStrict	true		2.3
 DankPyon_Ghoul_Stage_One	dankpyon.medieval.overhaul	no	Nachzehrer	animal	1	CarnivoreAnimalStrict, Corpse	true	false	2
@@ -61,8 +60,6 @@ DankPyon_Rox	dankpyon.medieval.overhaul	no	rox	animal	4	VegetarianRoughAnimal, D
 DankPyon_RoyalMimic	dankpyon.medieval.overhaul	no	royal mimic	animal	1	OmnivoreRoughAnimal			
 DankPyon_RusticMimic	dankpyon.medieval.overhaul	no	mimic	animal	1	OmnivoreRoughAnimal			
 DankPyon_Schrat	dankpyon.medieval.overhaul	no	schrat	animal	4	None			
-DankPyon_SchratPlain	dankpyon.medieval.overhaul	no	schrat	animal	4	None			
-DankPyon_SchratPlain_Sapling	dankpyon.medieval.overhaul	no	schrat sapling	animal	1	None			
 DankPyon_Schrat_Sapling	dankpyon.medieval.overhaul	no	schrat sapling	animal	1	None			
 DankPyon_Unhold	dankpyon.medieval.overhaul	no	unhold	animal	3.5	CarnivoreAnimalStrict, Corpse	true	false	3.5
 DankPyon_UnholdSnow	dankpyon.medieval.overhaul	no	unhold	animal	3.5	CarnivoreAnimalStrict, Corpse	true	false	3.5
@@ -232,18 +229,8 @@ Vulture	ludeon.rimworld.odyssey	yes	vulture	animal	0.6	CarnivoreAnimalStrict		fa
 Walrus	ludeon.rimworld.odyssey	yes	walrus	animal	2.0	CarnivoreAnimal		true	
 Wolf_Great	ludeon.rimworld.odyssey	yes	greatwolf	animal	1.5	CarnivoreAnimal	true		2.3
 Wolverine	ludeon.rimworld.odyssey	yes	wolverine	animal	0.7	CarnivoreAnimalStrict	true		0.8
-RG_ArcticDrak	mlie.regrowthextinctanimals	yes	arctic drak	animal	2.2	CarnivoreAnimalStrict	true		1.5
-RG_Dodo	mlie.regrowthextinctanimals	yes	dodo	animal	0.45	VegetarianRoughAnimal		True	
-RG_Megalenhydris	mlie.regrowthextinctanimals	yes	megalenhydris	animal	1.2	OmnivoreAnimal, OvivoreAnimal	true	true	0.8
-RG_SabertoothSquirrel	mlie.regrowthextinctanimals	yes	Sabertooth squirrel	animal	0.5	VegetarianRoughAnimal			
 RG_SabertoothTiger	mlie.regrowthextinctanimals	yes	smilodon	animal	1.2	CarnivoreAnimal, OvivoreAnimal	true		1.2
-RG_Synthetion	mlie.regrowthextinctanimals	yes	synthetion	animal	1.0	VegetarianRoughAnimal		true	
 RG_TerrorBird	mlie.regrowthextinctanimals	yes	terror bird	animal	2	CarnivoreAnimal, VegetarianRoughAnimal	true		3.2
-RG_Thrinaxodon	mlie.regrowthextinctanimals	yes	thrinaxodon	animal	0.42	CarnivoreAnimal, VegetarianRoughAnimal	true		0.5
-RG_Velociraptor	mlie.regrowthextinctanimals	yes	velociraptor	animal	0.75	CarnivoreAnimalStrict	true	true	2.5
-RG_WoollyMammoth	mlie.regrowthextinctanimals	yes	woolly mammoth	animal	4.2	VegetarianRoughAnimal		true	
-RG_WoollyRhinoceros	mlie.regrowthextinctanimals	yes	woolly rhinoceros	animal	3.2	VegetarianRoughAnimal		true	
-RG_WoollyStegosaurus	mlie.regrowthextinctanimals	yes	woolly stegosaurus	animal	4.0	VegetarianRoughAnimal		true	
 MultiMind_ConjoinedHuman	multimind.conjoinedtwins	yes	conjoined human	humanlike	1	OmnivoreHuman			
 Outland_FockattBlack	neronix17.outland.core	no	forest fockatt	animal	2.15	OmnivoreAnimal, OvivoreAnimal	true	false	3
 Outland_FockattBlue	neronix17.outland.core	no	forest fockatt	animal	2.15	OmnivoreAnimal, OvivoreAnimal	true	false	3
@@ -291,11 +278,18 @@ pphhyy_BloodScarab	pphhyy.sanguinaryanimals	yes	BloodScarab	animal	0.2	Carnivore
 pphhyy_SanguineDeer	pphhyy.sanguinaryanimals	yes	Sanguine Deer	animal	1.2	CarnivoreAnimalStrict, Kibble	true	true	2
 pphhyy_Vargulf	pphhyy.sanguinaryanimals	yes	Vargulf	animal	2.4	CarnivoreAnimalStrict, Kibble	true	true	5
 RG_Owlbeast	regrowth.botr.boilingforest	yes	owlbeast	animal	2.15	OmnivoreAnimal, OvivoreAnimal	true	false	3
+RG_ArcticDrak	regrowth.botr.core	yes	arctic drak	animal	2.2	CarnivoreAnimalStrict	true		1.5
+RG_Dodo	regrowth.botr.core	yes	dodo	animal	0.45	VegetarianRoughAnimal		True	
 RG_Hemolope	regrowth.botr.core	yes	hemolope	animal	2.0	VegetarianRoughAnimal		true	
 RG_KiwiBird	regrowth.botr.core	yes	kiwi	animal	0.15	VegetarianRoughAnimal		false	
 RG_Neutrolope	regrowth.botr.core	yes	neutrolope	animal	2.0	VegetarianRoughAnimal		true	
-RG_Rabbit	regrowth.botr.core	yes	rabbit	animal	0.2	VegetarianRoughAnimal			
+RG_Rabbit	regrowth.botr.core	yes	rabbit	animal	0.2	VegetarianRoughAnimal		true	
 RG_Rimclaw	regrowth.botr.core	yes	rimclaw	animal	1	CarnivoreAnimal	true		
+RG_SabertoothSquirrel	regrowth.botr.core	yes	Sabertooth squirrel	animal	0.5	VegetarianRoughAnimal			
+RG_Synthetion	regrowth.botr.core	yes	synthetion	animal	1.0	VegetarianRoughAnimal		true	
+RG_Thrinaxodon	regrowth.botr.core	yes	thrinaxodon	animal	0.42	CarnivoreAnimal, VegetarianRoughAnimal	true		0.5
+RG_Velociraptor	regrowth.botr.core	yes	velociraptor	animal	0.75	CarnivoreAnimalStrict	true	true	2.5
+RG_WoollyStegosaurus	regrowth.botr.core	yes	woolly stegosaurus	animal	4.0	VegetarianRoughAnimal		true	
 Bion_Base	rimsenal.federation	yes	bion	animal	1.3	None			
 Bion_Hulk	rimsenal.federation	yes	bion hulk	animal	1.85	None			
 Bion_Stalker	rimsenal.federation	yes	bion stalker	animal	0.7	None			
@@ -369,7 +363,6 @@ AA_EmpressButterfly	sarg.alphaanimals	yes	Empress butterfly	animal	0.75	Vegetari
 AA_EmpressButterflyLarva	sarg.alphaanimals	yes	Empress butterfly larva	animal	0.1	VegetarianRoughAnimal	false	true	
 AA_EngorgedTentacularAberration	sarg.alphaanimals	yes	engorged tentacular aberration	animal	6	CarnivoreAnimalStrict	true		4
 AA_Erin	sarg.alphaanimals	yes	erin	animal	1	Corpse,CarnivoreAnimalStrict	true		0.75
-AA_Fangsquid	sarg.alphaanimals	yes	fangsquid	animal	2	OmnivoreRoughAnimal	false	false	
 AA_Feralisk	sarg.alphaanimals	yes	feralisk	animal	1.00	OmnivoreAnimal, AnimalProduct	true	true	
 AA_FeraliskClutchMother	sarg.alphaanimals	yes	feralisk clutch mother	animal	3	OmnivoreAnimal, AnimalProduct	true	true	
 AA_FireWasp	sarg.alphaanimals	yes	fire wasp	animal	0.79	OmnivoreAnimal	true	true	0.5
@@ -491,18 +484,6 @@ AM_Siegebreaker	sarg.alphamechs	yes	siegebreaker	animal	4	None
 AM_Siegemelter	sarg.alphamechs	yes	siegemelter	animal	4	None			
 AM_Starfire	sarg.alphamechs	yes	starfire	animal	4	None			
 AM_WarEmpress	sarg.alphamechs	yes	war empress	animal	5	None			
-VFE_Mech_Advanced_Aura	sarg.alphamechs	yes	dominion	animal					
-VFE_Mech_Advanced_Daggersnout	sarg.alphamechs	yes	eviscerator	animal					
-VFE_Mech_Advanced_Fireworm	sarg.alphamechs	yes	incinerator	animal	1.8				
-VFE_Mech_Advanced_Goliath	sarg.alphamechs	yes	colossus	animal	1.8				
-VFE_Mech_Advanced_Phalanx	sarg.alphamechs	yes	hoplite	animal	1.7				
-VFE_Mech_Advanced_Siegebreaker	sarg.alphamechs	yes	siegemaster	animal	4				
-VFE_Mech_Aura	sarg.alphamechs	yes	aura	animal					
-VFE_Mech_Daggersnout	sarg.alphamechs	yes	daggersnout	animal					
-VFE_Mech_Fireworm	sarg.alphamechs	yes	fireworm	animal	1.8				
-VFE_Mech_Goliath	sarg.alphamechs	yes	goliath	animal	1.8				
-VFE_Mech_Phalanx	sarg.alphamechs	yes	phalanx	animal	1.7				
-VFE_Mech_Siegebreaker	sarg.alphamechs	yes	siegebreaker	animal	4				
 AA_Eyeling	sarg.alphamemes	yes	eyeling	animal	0.4	OmnivoreRoughAnimal			
 AM_Dryad_Corruptor	sarg.alphamemes	yes	corruptor dryad	animal	0.667	None			
 AM_Dryad_Ocular	sarg.alphamemes	yes	ocular dryad	animal	0.667	None			
@@ -1573,7 +1554,6 @@ AEXP_BlackFootedFerret	vanillaexpanded.vaeendandext	yes	black-footed ferret	anim
 AEXP_BlackRhino	vanillaexpanded.vaeendandext	yes	black rhinoceros	animal	2.7	VegetarianRoughAnimal		true	
 AEXP_Bonobo	vanillaexpanded.vaeendandext	yes	bonobo	animal	0.75	OmnivoreRoughAnimal		true	
 AEXP_Moa	vanillaexpanded.vaeendandext	yes	moa	animal	2	VegetarianRoughAnimal		false	
-AEXP_Panda	vanillaexpanded.vaeendandext	yes	giant panda	animal	2.15	VegetarianRoughAnimal		false	
 AEXP_Pangolin	vanillaexpanded.vaeendandext	yes	giant pangolin	animal	0.50	VegetarianRoughAnimal		true	
 AEXP_Quagga	vanillaexpanded.vaeendandext	yes	quagga	animal	2.0	VegetarianRoughAnimal		true	
 AEXP_RockhopperPenguin	vanillaexpanded.vaeendandext	yes	rockhopper penguin	animal	0.4	CarnivoreAnimal		true	
@@ -1583,11 +1563,8 @@ VAERoy_AngoraRabbit	vanillaexpanded.vaeroy	yes	angora rabbit	animal	0.2	Vegetari
 VAERoy_Crane	vanillaexpanded.vaeroy	yes	crane	animal	1.25	VegetarianRoughAnimal	false	true	
 VAERoy_Megachicken	vanillaexpanded.vaeroy	yes	megachicken	animal	0.3	VegetarianRoughAnimal			
 VAERoy_Orangutan	vanillaexpanded.vaeroy	yes	orangutan	animal	1.8	VegetarianRoughAnimal		true	
-VAERoy_Peacock	vanillaexpanded.vaeroy	yes	peacock	animal	0.65	VegetarianRoughAnimal	false	true	
 VAERoy_Pheasant	vanillaexpanded.vaeroy	yes	pheasant	animal	0.3	VegetarianRoughAnimal	false	true	
-VAERoy_Quail	vanillaexpanded.vaeroy	yes	quail	animal	0.3	VegetarianRoughAnimal	false	true	
 VAERoy_RoyalTiger	vanillaexpanded.vaeroy	yes	royal tiger	animal	1	CarnivoreAnimal, OvivoreAnimal	true	false	2.0
-VAERoy_Swan	vanillaexpanded.vaeroy	yes	swan	animal	0.6	VegetarianRoughAnimal			
 VAEWaste_Hydra	vanillaexpanded.vaewaste	yes	hydra	animal	0.35	CarnivoreAnimal, OvivoreAnimal	true		0.35
 VAEWaste_Megatardi	vanillaexpanded.vaewaste	yes	megatardi	animal	2	VegetarianRoughAnimal		false	
 VAEWaste_Pestigator	vanillaexpanded.vaewaste	yes	pestigator	animal	3	CarnivoreAnimal, OvivoreAnimal	true	false	3.0
@@ -1599,10 +1576,8 @@ VAEWaste_Toxscorpion	vanillaexpanded.vaewaste	yes	toxscorpion	animal	2.50	Omnivo
 VAEWaste_Wasteboar	vanillaexpanded.vaewaste	yes	wasteboar	animal	1.3	OmnivoreRoughAnimal		true	
 VAEWaste_Wastedeer	vanillaexpanded.vaewaste	yes	wastedeer	animal	1.2	VegetarianRoughAnimal		true	
 VAEWaste_Wasteffalo	vanillaexpanded.vaewaste	yes	wasteffalo	animal	2.4	VegetarianRoughAnimal		true	
-AEXP_Alligator	vanillaexpanded.vanillaanimalsexpanded	yes	alligator	animal	1.85	CarnivoreAnimal, OvivoreAnimal	true	false	2.0
 AEXP_Anaconda	vanillaexpanded.vanillaanimalsexpanded	yes	anaconda	animal	3.0	CarnivoreAnimal, OvivoreAnimal	true		4
 AEXP_ArcticCoyote	vanillaexpanded.vanillaanimalsexpanded	yes	arctic coyote	animal	0.76	CarnivoreAnimal	true		0.9
-AEXP_Badger	vanillaexpanded.vanillaanimalsexpanded	yes	badger	animal	0.4	OmnivoreRoughAnimal	true	false	0.3
 AEXP_Beagle	vanillaexpanded.vanillaanimalsexpanded	yes	beagle	animal	0.3	OmnivoreAnimal, OvivoreAnimal			
 AEXP_Beaver	vanillaexpanded.vanillaanimalsexpanded	yes	beaver	animal	0.3	DendrovoreAnimal,VegetarianRoughAnimal		true	
 AEXP_BlackBear	vanillaexpanded.vanillaanimalsexpanded	yes	black bear	animal	1.9	OmnivoreAnimal, OvivoreAnimal	true	false	3
@@ -1628,10 +1603,8 @@ AEXP_FrenchBulldog	vanillaexpanded.vanillaanimalsexpanded	yes	french bulldog	ani
 AEXP_GermanShepherd	vanillaexpanded.vanillaanimalsexpanded	yes	german shepherd	animal	1.0	OmnivoreAnimal, OvivoreAnimal	true		2.3
 AEXP_GilaMonster	vanillaexpanded.vanillaanimalsexpanded	yes	gila monster	animal	0.50	OmnivoreRoughAnimal			
 AEXP_Giraffe	vanillaexpanded.vanillaanimalsexpanded	yes	giraffe	animal	4	VegetarianRoughAnimal		true	
-AEXP_Gorilla	vanillaexpanded.vanillaanimalsexpanded	yes	gorilla	animal	1.9	VegetarianRoughAnimal		true	
 AEXP_GreatDane	vanillaexpanded.vanillaanimalsexpanded	yes	great dane	animal	1.45	OmnivoreAnimal, OvivoreAnimal			
 AEXP_Hedgehog	vanillaexpanded.vanillaanimalsexpanded	yes	hedgehog	animal	0.2	VegetarianRoughAnimal			
-AEXP_Hippopotamus	vanillaexpanded.vanillaanimalsexpanded	yes	hippopotamus	animal	4	VegetarianRoughAnimal		true	
 AEXP_Hyena	vanillaexpanded.vanillaanimalsexpanded	yes	hyena	animal	0.76	CarnivoreAnimal	true		0.7
 AEXP_IndianElephant	vanillaexpanded.vanillaanimalsexpanded	yes	indian elephant	animal	3.3	VegetarianRoughAnimal		true	
 AEXP_Jaguar	vanillaexpanded.vanillaanimalsexpanded	yes	jaguar	animal	1.0	CarnivoreAnimal, OvivoreAnimal	true	false	1.0
@@ -1642,22 +1615,14 @@ AEXP_Lion	vanillaexpanded.vanillaanimalsexpanded	yes	lion	animal	1.65	CarnivoreA
 AEXP_Mandrill	vanillaexpanded.vanillaanimalsexpanded	yes	mandrill	animal	0.8	OmnivoreRoughAnimal		true	
 AEXP_MegaWolverine	vanillaexpanded.vanillaanimalsexpanded	yes	megawolverine	animal	3.8	CarnivoreAnimal	true		
 AEXP_Megascorpion	vanillaexpanded.vanillaanimalsexpanded	yes	megascorpion	animal	0.2	OmnivoreAnimal, AnimalProduct			
-AEXP_Moose	vanillaexpanded.vanillaanimalsexpanded	yes	moose	animal	2.1	VegetarianRoughAnimal		true	
-AEXP_Muskox	vanillaexpanded.vanillaanimalsexpanded	yes	musk ox	animal	2.3	VegetarianRoughAnimal		true	
-AEXP_Otter	vanillaexpanded.vanillaanimalsexpanded	yes	otter	animal	0.50	OmnivoreAnimal, OvivoreAnimal	true	true	0.4
-AEXP_Penguin	vanillaexpanded.vanillaanimalsexpanded	yes	penguin	animal	0.8	CarnivoreAnimal		true	
 AEXP_Platypus	vanillaexpanded.vanillaanimalsexpanded	yes	platypus	animal	0.25	OmnivoreRoughAnimal			
 AEXP_Poodle	vanillaexpanded.vanillaanimalsexpanded	yes	poodle	animal	0.75	OmnivoreAnimal, OvivoreAnimal			
-AEXP_Porcupine	vanillaexpanded.vanillaanimalsexpanded	yes	porcupine	animal	0.25	VegetarianRoughAnimal			
 AEXP_Pug	vanillaexpanded.vanillaanimalsexpanded	yes	pug	animal	0.3	OmnivoreAnimal, OvivoreAnimal			
 AEXP_Rattlesnake	vanillaexpanded.vanillaanimalsexpanded	yes	rattlesnake	animal	0.25	CarnivoreAnimal, OvivoreAnimal	true		0.45
 AEXP_RedPanda	vanillaexpanded.vanillaanimalsexpanded	yes	red panda	animal	0.275	VegetarianRoughAnimal		false	
 AEXP_Rottweiler	vanillaexpanded.vanillaanimalsexpanded	yes	rottweiler	animal	0.75	OmnivoreAnimal, OvivoreAnimal			
-AEXP_Seal	vanillaexpanded.vanillaanimalsexpanded	yes	seal	animal	0.90	OmnivoreAnimal, OvivoreAnimal	true	false	0.81
 AEXP_Shih-Tzu	vanillaexpanded.vanillaanimalsexpanded	yes	shih-tzu	animal	0.32	OmnivoreAnimal, OvivoreAnimal			
 AEXP_Tapir	vanillaexpanded.vanillaanimalsexpanded	yes	tapir	animal	0.85	OmnivoreRoughAnimal			
-AEXP_Tiger	vanillaexpanded.vanillaanimalsexpanded	yes	tiger	animal	1.8	CarnivoreAnimal, OvivoreAnimal	true	false	2.0
-AEXP_Walrus	vanillaexpanded.vanillaanimalsexpanded	yes	walrus	animal	3.6	CarnivoreAnimal	true	false	3.4
 AEXP_WelshTerrier	vanillaexpanded.vanillaanimalsexpanded	yes	welsh terrier	animal	0.86	OmnivoreAnimal, OvivoreAnimal			
 AEXP_WildGoose	vanillaexpanded.vanillaanimalsexpanded	yes	wild goose	animal	0.30	VegetarianRoughAnimal			
 AEXP_Wildebeest	vanillaexpanded.vanillaanimalsexpanded	yes	wildebeest	animal	2.2	VegetarianRoughAnimal		true	

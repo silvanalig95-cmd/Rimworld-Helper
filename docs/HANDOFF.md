@@ -12,6 +12,75 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.158.0, the seven peoples' gear checked against the player's own mods, and widened from them (7 November 2026, the player's
+  explicit request after uploading their mod files: "full mod list to be considered everywhere, and now first for the
+  faction gear, items, clothing, abilities etc.", "always consider the actual mods i have enabled in my save and mod list
+  ... but of course include all of them in the catalog"). Not released: no What's new round, About.xml and CHANGELOG
+  untouched (the lead does that at the merge). `docs/design/peoples.md` "Their gear, their kinds of people and their
+  gifts": its kinds-of-people table, gifts and softness brought up to date and a part *Checked against the player's own
+  mods*; the two peoples' Almanac pages, *What they wear, carry and know*, prose only (keywords unchanged).
+  - The catalogue first (a bug): `Tools/mod_pool.py` read every version folder of every mod, so 1.4 and 1.5 defs stood
+    for 1.6 ones (Vanilla Weapons Expanded's bows and guns had their old tags, Rimsenal's retired guns were listed) and an
+    inactive mod's def could stand for an active one's (Combat Extended's javelins for the game's pila). It now reads only
+    the folders 1.7 loads (`load_folders`: `LoadFolders.xml` for 1.7 or the newest before it, `IfModActive`,
+    `IfModActiveAll`, `IfModNotActive` read against the player's list, names matched as Windows does; else root, `Common`
+    and the newest version folder), in the player's load order, a parent by the game's rule (its own mod's first), and
+    adds a `commonality` column (`generateCommonality`) to apparel and weapons. `docs/player-mods/*.tsv` rebuilt from the
+    same upload and save (League of Toba.rws, which reproduced the old tables exactly first); README says so.
+  - What was wrong against the player's real mods (every name the peoples used was in their active mods; the problems
+    were what the game picks with them): VPE's eltex cape shares the game's `Cape` tag and is as likely as the plain cape
+    in a tag choice (which ignores a kind's money), so a quarter of the pilgrims, chandlers, keepers and the scholars'
+    provost would have worn it without the people's colour; Royalty's `RoyalTier2` on the league master and enclave
+    factor also brought Rimsenal's close combat armour, VAE's marine boots and gloves, A RimWorld of Magic's and the elves'
+    robes (about one piece in a hundred by the game's weights); VAE Accessories' `VAEA_Utility_Industrial` gave enclave hands explosive belts, turret
+    packs and battle banners, its `VAEA_Utility_Neolithic` pilgrims quivers. Fixes:
+    Rimfolk's own tags by patch (`Patches/Rimfolk_PeoplesGear.xml`, `success Always`, by name: `Rimfolk_Cape` on the plain
+    cape, `Rimfolk_Finery` on Royalty's beret, hats, formal shirt, vest and corset), and `apparelDisallowTags` on the
+    hands (and wayfarers) for the soldiers' belts, packs and banners, on the pilgrims for the quiver. `Tools/Tests/PeopleGear.txt` rebuilt from the catalogue
+    (old rows of 1.6 sources gone: the cloth mask and pila are core in 1.7; new kinds of row, `gene` and `item`).
+  - Added from the player's active mods (soldiers still one kit): Hats and Rags' tagless pieces made wearable by Rimfolk's
+    tags (`Rimfolk_Beads`, `_Mitre`, `_Skullcap`, `_Headscarf` with Ideology's headwrap, `_WideHat`, `_Fez`,
+    `_MilitaryCap`): beads for the order and pilgrims, a mitre for the keeper (a tag choice before the required
+    cone hat, which the game then leaves out as they overlap; a choice's chance is weighed per stuff, so it can't make it
+    "most") and now and then a prior (among its tags), skullcaps for hospitallers and
+    scholars, headscarves, wide hats, fezzes, a military cap in the proctors' kit. Melee Animation's lassos (herders,
+    drovers, the herd elder, outriders); Accessories' ammo packs (league guards and outriders) and packs, tool belts and
+    medic bags (wayfarers); Rimsenal's unisuits and data glasses (enclave hands, data glasses for factors), its spacer
+    bodysuit under the marshals' armour (required before the collar shirt, which the game leaves out when both are
+    there) and its smart rifles (`SmartGunAdvanced`); Classical's javelins (herd archers, river fishers); Medieval 2's
+    arbalests (lay archers); carried: Alpha Crafts' aloe salve, candles, butter, fish sauce, Alpha Animals' cactipine
+    quill, Medieval 2's wine, Odyssey's maps, muskox wool and river fish (`MayRequire` on each `li`). Rimsenal's and
+    Advanced Armaments' other guns already come in under the game's `Gun`, `SpacerGun`, `IndustrialGunAdvanced`.
+    "Variety Coats" is Animal Variety Coats (fur textures): nothing to wear.
+  - Kinds of people: Awakened Apes' orangutans (order 2%, scholars 2%), gorillas (herders 2%, pilgrims 2%), bonobos (league
+    2%); Rimsenal Askbarn's Åskbarns 2% and Uredde 1% (enclave); Stagz' abyssal merren 1% (river folk). Fairycore's fairies
+    left out (exclusively female). Totals 22% to 31%.
+  - Gifts: A RimWorld of Magic's ranger for lay archers 4%, gladiator for herd wardens 4%, wayfarer 3% and minstrel 2%
+    for league wayfarers, monk 3% for pilgrims. New: genes put in (`PeopleGift.genes`, `PeopleGifts.GiveGenes`): only for
+    peoples of the industrial age and later (`PeoplesGearMath.GenesFit`), only into a baseliner of no custom xenotype, as
+    xenogenes, by name, none that conflicts; scholars quick study 4%, enclave hands strong immunity 4%, marshals fast
+    wound healing 4%, factors attractive 4%, the chair Alpha Genes' extraordinary lifespan 10% (`ModDefNames.txt` has
+    it). `PeopleKindExtension` takes one of a class, a psylink or genes (`PeoplesGearMath.GiftKinds`). The gear log dev
+    action names a baseliner's genes put in.
+  - Tests (`PeoplesGearTests`, 2160 checks): it loads the catalogue's TSVs and fails on any row of PeopleGear.txt not in
+    the active rows (same mod, same tags), any name the peoples use (pieces, tags, disallowed tags, weapon tags,
+    xenotypes, classes, genes, goods, memes, every `MayRequire` id) not in the player's active mods, a Rimfolk tag on a
+    piece not there or unused, a piece of the player's mods under the peoples' tags missing from PeopleGear.txt, a
+    signature choice under 97% on the people's own pieces (weighted by `generateCommonality`), and another calling's or
+    age's armour (arcane, elven, forsaken, prestige; spacer-only armour but for spacer fighters) over half a hundredth of what a kind's
+    tags give. Mutations checked: `Cape` back on a pilgrim, `RoyalTier2` back on the master and a made-up tag each fail.
+  - Try in the game (none of it could be run here): dev action "Peoples: their gear, kinds of people and gifts (log)..."
+    for each of the seven: pilgrims' cloaks all sage (no eltex cape), keepers in mitres, priors now and then, beads
+    and skullcaps, lassos on herders, league masters and enclave factors with no armour or robes of other mods, enclave
+    hands without explosive belts, marshals in spacer bodysuits; the visitors' action for a look; the log after loading for
+    any patch error from `Rimfolk_PeoplesGear.xml` (there should be none).
+  - Riskiest, not verifiable without the game: Rimfolk's tags added by patch (if another mod replaces those pieces' tag
+    lists after Rimfolk's patch runs, they lose the tag and the kinds fall back to the hood or cone hat); A RimWorld of
+    Magic's turret-only weapons (its energy focus points and Mark-IV systems) inherit the game's `Gun` tag at no price,
+    so any `Gun` kind (the league's guards and outriders, the proctors, and the game's own) might be handed one unless the
+    mod keeps them from pawns in its code; the lasso in the hands of the AI (Melee Animation's own use of it); a fairy
+    or ape xenotype's apparel restrictions (an ape's body may not wear every piece the kind picks); xenogenes on a
+    baseliner showing as "baseliner" with genes.
 - 0.157.0, new peoples, release D: the Lantern Wardens, the Quiet Bell, the Circuit of Tamers and the Wheel (7 November 2026, the
   first four of `docs/design/peoples-next.md`; the player's words "love all these factions, go ahead!", an explicit
   request, no proposal round). Not released: no What's new round, About.xml and CHANGELOG untouched (the lead does that at

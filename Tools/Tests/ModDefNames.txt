@@ -92,6 +92,7 @@ AG_Awe
 AG_Disgust
 AG_Drakonori
 AG_Efreet
+AG_ExtraordinaryLifespan
 AG_FrailBack
 AG_FrailStomach
 AG_FungalSkin
