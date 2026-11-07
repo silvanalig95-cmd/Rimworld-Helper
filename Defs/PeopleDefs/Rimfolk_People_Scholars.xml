@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The learned society (docs/design/peoples.md, "Release C"; DESIGN.md "Rimfolk's peoples"; Source/ColonyCouncil/Peoples/):
+    scholars, copyists and booksellers who keep an archive of everything written down in the region and trade in books
+    and knowledge. Industrial, on the game's outlander parent: collar shirts and jackets dyed claret, proctors in flak
+    with rifles to guard the archive. Few towns (settlementGenerationWeight 0.45), each an archive with its reading hall
+    and stacks (TownPlanDef Rimfolk_Plan_Archive); a bookseller's caravan of books, schematics and techprints (Royalty),
+    no more often than another people's. A copyist of theirs asks to copy the colony's records for the archive
+    (Rimfolk_Evt_ScholarCopyist); a travelling scholar, a book swapper, the old vault opened and the comet come from them
+    likeliest (Patches/Rimfolk_PeoplesC.xml). They defend their archives and raid only when the colony has turned them
+    hostile (raidCommonalityFromPointsCurve 0.2). Listed once among the world's peoples when a world is made, never
+    required. Faith (Ideology): a fixed creed of the self and of inquiry (Alpha Memes' monastic life where loaded), the
+    Islamic style's arched halls. Kind of people (Biotech): humans mostly, genies among them.
+  -->
+
+  <FactionDef ParentName="OutlanderFactionBase">
+    <defName>Rimfolk_Scholars</defName>
+    <label>learned society</label>
+    <description>A society of scholars, copyists and booksellers who keep an archive of everything written down in the region: histories, ledgers, letters, plans of machines and lists of the stars. They buy books, sell copies, and send their copyists to any town that keeps records of its own.\n\nThey would rather argue than fight, but their proctors keep rifles for the archive's sake. Each archive is kept by its archivist, and the society by its provost.</description>
+    <pawnSingular>scholar</pawnSingular>
+    <pawnsPlural>scholars</pawnsPlural>
+    <leaderTitle>provost</leaderTitle>
+    <techLevel>Industrial</techLevel>
+    <basicMemberKind>Rimfolk_Scholars_Fellow</basicMemberKind>
+    <factionNameMaker>Rimfolk_Namer_Scholars</factionNameMaker>
+    <settlementNameMaker>Rimfolk_Namer_ScholarsTown</settlementNameMaker>
+    <factionIconPath>ColonyCouncil/Peoples/Scholars</factionIconPath>
+    <settlementTexturePath>ColonyCouncil/Peoples/ScholarsTown</settlementTexturePath>
+    <colorSpectrum>
+      <li>(0.48, 0.12, 0.26)</li>
+      <li>(0.64, 0.24, 0.40)</li>
+    </colorSpectrum>
+    <hidden>false</hidden>
+    <naturalEnemy>false</naturalEnemy>
+    <permanentEnemy>false</permanentEnemy>
+    <canSiege>false</canSiege>
+    <requiredCountAtGameStart>0</requiredCountAtGameStart>
+    <startingCountAtWorldCreation>1</startingCountAtWorldCreation>
+    <maxConfigurableAtWorldCreation>9999</maxConfigurableAtWorldCreation>
+    <configurationListOrderPriority>16</configurationListOrderPriority>
+    <settlementGenerationWeight>0.45</settlementGenerationWeight>
+    <raidCommonalityFromPointsCurve Inherit="False">
+      <points>
+        <li>(0, 0.2)</li>
+      </points>
+    </raidCommonalityFromPointsCurve>
+    <xenotypeSet Inherit="False">
+      <xenotypeChances>
+        <Genie MayRequire="Ludeon.RimWorld.Biotech">0.08</Genie>
+        <Highmate MayRequire="Ludeon.RimWorld.Biotech">0.02</Highmate>
+      </xenotypeChances>
+    </xenotypeSet>
+    <fixedIdeo>true</fixedIdeo>
+    <ideoName>The Open Book</ideoName>
+    <ideoDescription>Nothing known should be lost. A scholar reads what was written, copies what is failing, and asks the question nobody else will; whatever can be written down is kept, and whatever is kept is lent. Each mind finds its own way to the truth, and the archive remembers all of them.</ideoDescription>
+    <forcedMemes>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Individualist</li>
+      <li MayRequire="sarg.alphamemes">AM_Monastic</li>
+    </forcedMemes>
+    <structureMemeWeights Inherit="False">
+      <Structure_Ideological MayRequire="Ludeon.RimWorld.Ideology">4</Structure_Ideological>
+      <Structure_TheistAbstract MayRequire="Ludeon.RimWorld.Ideology">1</Structure_TheistAbstract>
+    </structureMemeWeights>
+    <styles>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Islamic</li>
+    </styles>
+    <caravanTraderKinds Inherit="False">
+      <li>Rimfolk_Caravan_Scholars</li>
+    </caravanTraderKinds>
+    <visitorTraderKinds Inherit="False">
+      <li>Rimfolk_Visitor_Scholars</li>
+    </visitorTraderKinds>
+    <baseTraderKinds Inherit="False">
+      <li>Rimfolk_Base_Scholars</li>
+    </baseTraderKinds>
+    <pawnGroupMakers Inherit="False">
+      <li>
+        <!-- A fight: the archive's proctors, a few fellows with pistols -->
+        <kindDef>Combat</kindDef>
+        <options>
+          <Rimfolk_Scholars_Proctor>10</Rimfolk_Scholars_Proctor>
+          <Mercenary_Gunner>3</Mercenary_Gunner>
+          <Rimfolk_Scholars_Fellow>2</Rimfolk_Scholars_Fellow>
+        </options>
+      </li>
+      <li>
+        <kindDef>Peaceful</kindDef>
+        <options>
+          <Rimfolk_Scholars_Fellow>20</Rimfolk_Scholars_Fellow>
+          <Rimfolk_Scholars_Don>8</Rimfolk_Scholars_Don>
+          <Villager_Child MayRequire="Ludeon.RimWorld.Biotech">4</Villager_Child>
+          <Rimfolk_Scholars_Proctor>6</Rimfolk_Scholars_Proctor>
+        </options>
+      </li>
+      <li>
+        <!-- A bookseller's caravan: crates of books on pack beasts, and proctors -->
+        <kindDef>Trader</kindDef>
+        <traders>
+          <Rimfolk_Scholars_Bookseller>1</Rimfolk_Scholars_Bookseller>
+        </traders>
+        <carriers>
+          <Muffalo>5</Muffalo>
+          <Horse>4</Horse>
+          <Dromedary>3</Dromedary>
+          <Alpaca>2</Alpaca>
+        </carriers>
+        <guards>
+          <Rimfolk_Scholars_Proctor>10</Rimfolk_Scholars_Proctor>
+          <Mercenary_Gunner>2</Mercenary_Gunner>
+        </guards>
+      </li>
+      <li>
+        <kindDef>Settlement</kindDef>
+        <options>
+          <Rimfolk_Scholars_Proctor>10</Rimfolk_Scholars_Proctor>
+          <Rimfolk_Scholars_Fellow>8</Rimfolk_Scholars_Fellow>
+          <Rimfolk_Scholars_Don>4</Rimfolk_Scholars_Don>
+          <Rimfolk_Scholars_Bookseller>1</Rimfolk_Scholars_Bookseller>
+        </options>
+      </li>
+    </pawnGroupMakers>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleExtension">
+        <calling>scholars</calling>
+        <townWord>archive</townWord>
+        <townWords>archives</townWords>
+        <head>archivist</head>
+        <heir>under-archivist</heir>
+        <envoy>society fellow</envoy>
+        <trader>bookseller</trader>
+        <courier>copyist</courier>
+        <couriers>copyists</couriers>
+        <caravanWeight>1</caravanWeight>
+        <camps>
+          <li>Rimfolk_Camp_Scholars</li>
+          <li>Council_Camp_Surveyors</li>
+          <li>Rimfolk_Camp_Teacher</li>
+          <li>Rimfolk_Camp_Watchers</li>
+        </camps>
+        <plan>Rimfolk_Plan_Archive</plan>
+        <townGoods>
+          <TextBook>3~6</TextBook>
+          <Novel>2~4</Novel>
+          <Schematic>1~3</Schematic>
+          <Cloth>40~90</Cloth>
+          <MedicineIndustrial>2~6</MedicineIndustrial>
+          <Silver>100~250</Silver>
+        </townGoods>
+        <ariseAges>1~3</ariseAges>
+      </li>
+    </modExtensions>
+  </FactionDef>
+
+  <!-- ===================== Their people ===================== -->
+
+  <PawnKindDef Name="Rimfolk_ScholarsKindBase" Abstract="True">
+    <race>Human</race>
+    <defaultFactionDef>Rimfolk_Scholars</defaultFactionDef>
+    <chemicalAddictionChance>0.04</chemicalAddictionChance>
+    <backstoryCryptosleepCommonality>0.02</backstoryCryptosleepCommonality>
+    <invNutrition>2.55</invNutrition>
+    <apparelColor>(0.56, 0.18, 0.32)</apparelColor>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+    </apparelTags>
+    <apparelRequired>
+      <li>Apparel_CollarShirt</li>
+    </apparelRequired>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_ScholarsKindBase">
+    <defName>Rimfolk_Scholars_Fellow</defName>
+    <label>fellow</label>
+    <combatPower>35</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.7~1.5</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_Jacket</li>
+    </apparelRequired>
+    <weaponTags>
+      <li>SimpleGun</li>
+    </weaponTags>
+    <weaponMoney>80~200</weaponMoney>
+    <apparelMoney>250~450</apparelMoney>
+    <apparelAllowHeadgearChance>0.3</apparelAllowHeadgearChance>
+    <initialWillRange>1~3</initialWillRange>
+    <initialResistanceRange>10~16</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_ScholarsKindBase">
+    <defName>Rimfolk_Scholars_Don</defName>
+    <label>scholar</label>
+    <combatPower>35</combatPower>
+    <isFighter>false</isFighter>
+    <minGenerationAge>28</minGenerationAge>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.8~1.4</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_Jacket</li>
+    </apparelRequired>
+    <weaponTags>
+      <li>SimpleGun</li>
+    </weaponTags>
+    <weaponMoney>80~200</weaponMoney>
+    <apparelMoney>300~500</apparelMoney>
+    <skills>
+      <li>
+        <skill>Intellectual</skill>
+        <range>8~15</range>
+      </li>
+    </skills>
+    <fixedInventory>
+      <TextBook>1</TextBook>
+    </fixedInventory>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>10~16</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_ScholarsKindBase">
+    <defName>Rimfolk_Scholars_Proctor</defName>
+    <label>proctor</label>
+    <combatPower>70</combatPower>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.7~1.8</gearHealthRange>
+    <apparelTags Inherit="False">
+      <li>IndustrialMilitaryBasic</li>
+      <li>IndustrialBasic</li>
+    </apparelTags>
+    <apparelRequired>
+      <li>Apparel_FlakVest</li>
+    </apparelRequired>
+    <apparelMoney>500~800</apparelMoney>
+    <weaponTags>
+      <li>Gun</li>
+    </weaponTags>
+    <weaponMoney>250~500</weaponMoney>
+    <requiredWorkTags>Violent</requiredWorkTags>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>15~24</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_ScholarsKindBase">
+    <defName>Rimfolk_Scholars_Bookseller</defName>
+    <label>bookseller</label>
+    <trader>true</trader>
+    <combatPower>40</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Good</itemQuality>
+    <gearHealthRange>1~1</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_Jacket</li>
+      <li>Apparel_BowlerHat</li>
+    </apparelRequired>
+    <apparelMoney>400~700</apparelMoney>
+    <weaponTags>
+      <li>SimpleGun</li>
+    </weaponTags>
+    <weaponMoney>150~200</weaponMoney>
+    <skills>
+      <li>
+        <skill>Social</skill>
+        <range>6~13</range>
+      </li>
+    </skills>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>12~20</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_ScholarsKindBase">
+    <defName>Rimfolk_Scholars_Provost</defName>
+    <label>provost</label>
+    <combatPower>40</combatPower>
+    <factionLeader>true</factionLeader>
+    <minGenerationAge>45</minGenerationAge>
+    <isFighter>false</isFighter>
+    <itemQuality>Good</itemQuality>
+    <gearHealthRange>1~1</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_Cape</li>
+      <li MayRequire="Ludeon.RimWorld.Royalty">Apparel_Beret</li>
+    </apparelRequired>
+    <apparelMoney>700~1200</apparelMoney>
+    <weaponTags>
+      <li>SimpleGun</li>
+    </weaponTags>
+    <weaponMoney>150~250</weaponMoney>
+    <skills>
+      <li>
+        <skill>Intellectual</skill>
+        <range>10~17</range>
+      </li>
+    </skills>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>8~12</initialResistanceRange>
+  </PawnKindDef>
+
+  <!-- ===================== Their traders: books and what is known ===================== -->
+
+  <TraderKindDef>
+    <defName>Rimfolk_Caravan_Scholars</defName>
+    <label>bookseller's caravan</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>700~1200</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>TextBook</thingDef>
+        <countRange>3~5</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Novel</thingDef>
+        <countRange>2~4</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Schematic</thingDef>
+        <countRange>1~3</countRange>
+      </li>
+      <li Class="StockGenerator_Techprints">
+        <countChances>
+          <li>
+            <count>1</count>
+            <chance>0.6</chance>
+          </li>
+          <li>
+            <count>2</count>
+            <chance>0.4</chance>
+          </li>
+        </countChances>
+      </li>
+      <li MayRequire="Ludeon.RimWorld.Anomaly" Class="StockGenerator_Tomes">
+        <countRange>0~1</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineIndustrial</thingDef>
+        <countRange>3~8</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Cloth</thingDef>
+        <countRange>60~140</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentIndustrial</thingDef>
+        <countRange>4~10</countRange>
+      </li>
+      <li Class="StockGenerator_Tag">
+        <tradeTag>Art</tradeTag>
+        <thingDefCountRange>1~2</thingDefCountRange>
+        <countRange>1~1</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>BasicClothing</tradeTag>
+        <countRange>3~4</countRange>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuySingleDef"><thingDef>TextBook</thingDef></li>
+      <li Class="StockGenerator_BuySingleDef"><thingDef>Novel</thingDef></li>
+      <li Class="StockGenerator_BuySingleDef"><thingDef>Schematic</thingDef></li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>Artifact</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Visitor_Scholars</defName>
+    <label>society fellow</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>200~450</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>TextBook</thingDef>
+        <countRange>1~2</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Novel</thingDef>
+        <countRange>1~2</countRange>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuySingleDef"><thingDef>TextBook</thingDef></li>
+      <li Class="StockGenerator_BuySingleDef"><thingDef>Novel</thingDef></li>
+      <li Class="StockGenerator_BuySingleDef"><thingDef>Schematic</thingDef></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Base_Scholars</defName>
+    <label>archive</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>1000~1800</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>TextBook</thingDef>
+        <countRange>4~7</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Novel</thingDef>
+        <countRange>3~5</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Schematic</thingDef>
+        <countRange>2~4</countRange>
+      </li>
+      <li Class="StockGenerator_Techprints">
+        <countChances>
+          <li>
+            <count>2</count>
+            <chance>0.5</chance>
+          </li>
+          <li>
+            <count>3</count>
+            <chance>0.5</chance>
+          </li>
+        </countChances>
+      </li>
+      <li MayRequire="Ludeon.RimWorld.Anomaly" Class="StockGenerator_Tomes">
+        <countRange>0~1</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineIndustrial</thingDef>
+        <countRange>5~12</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Cloth</thingDef>
+        <countRange>100~250</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentIndustrial</thingDef>
+        <countRange>8~16</countRange>
+      </li>
+      <li Class="StockGenerator_Tag">
+        <tradeTag>Art</tradeTag>
+        <thingDefCountRange>2~3</thingDefCountRange>
+        <countRange>1~1</countRange>
+      </li>
+      <li Class="StockGenerator_Tag">
+        <tradeTag>Television</tradeTag>
+        <thingDefCountRange>0~1</thingDefCountRange>
+        <countRange>1~1</countRange>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>BuildingsFurniture</categoryDef>
+        <thingDefCountRange>2~4</thingDefCountRange>
+        <countRange>1~1</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>BasicClothing</tradeTag>
+        <countRange>4~6</countRange>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuySingleDef"><thingDef>TextBook</thingDef></li>
+      <li Class="StockGenerator_BuySingleDef"><thingDef>Novel</thingDef></li>
+      <li Class="StockGenerator_BuySingleDef"><thingDef>Schematic</thingDef></li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>Artifact</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <!-- ===================== Their names ===================== -->
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_Scholars</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->[PlaceOutlander] Society</li>
+        <li>r_name(p=2)->Society of the [bookThing]</li>
+        <li>r_name->The [PlaceOutlander] Archive</li>
+        <li>r_name->Fellows of the [bookThing]</li>
+        <li>r_name->The Learned of [PlaceOutlander]</li>
+        <li>bookThing->Open Book</li>
+        <li>bookThing->Lamp and Quill</li>
+        <li>bookThing->Long Shelf</li>
+        <li>bookThing->Inkwell</li>
+        <li>bookThing->Copied Page</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_ScholarsTown</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->[PlaceOutlander] Archive</li>
+        <li>r_name(p=2)->[PlaceOutlander] Library</li>
+        <li>r_name->[PlaceOutlander] College</li>
+        <li>r_name->[PlaceOutlander] Reading Rooms</li>
+        <li>r_name->The [hallWord] at [PlaceOutlander]</li>
+        <li>hallWord->Stacks</li>
+        <li>hallWord->Scriptorium</li>
+        <li>hallWord->Long Hall</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>

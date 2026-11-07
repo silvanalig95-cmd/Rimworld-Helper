@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The pilgrim fellowship (docs/design/peoples.md, "Release C"; DESIGN.md "Rimfolk's peoples"; Source/ColonyCouncil/Peoples/):
+    wandering faithful who walk the long roads between holy places and keep hostels at the shrines for anyone on the
+    road. Medieval, on the game's tribal parent: capes over plain clothes dyed sage grey, wide cone hats (Ideology),
+    wardens of the way with spears and short bows. Few towns (settlementGenerationWeight 0.5), each a shrine and its
+    hostel (TownPlanDef Rimfolk_Plan_ShrineHostel); small caravans, a chandler's string of pack beasts, less often than
+    another people's (caravanWeight 0.6). At dusk a band of them asks the colony for a night's shelter
+    (Rimfolk_Evt_PilgrimShelter); in a holy year their hostel asks for food for the road (Rimfolk_Mission_HostelBread);
+    hungry pilgrims, pilgrims to a relic or an anima tree, the great pilgrimage, the holy year and the prophet on the roads
+    come from them likeliest (Patches/Rimfolk_PeoplesC.xml). They defend their hostels and raid only when the colony has
+    turned them hostile (raidCommonalityFromPointsCurve 0.2). Listed once among the world's peoples when a world is made,
+    never required. Faith (Ideology): a fixed creed of the road and of carrying the faith (VE Memes' nomad where loaded),
+    the Buddhist style. Kind of people (Biotech): every kind walks with them, a few of each.
+  -->
+
+  <FactionDef ParentName="TribeBase">
+    <defName>Rimfolk_Pilgrims</defName>
+    <label>pilgrim fellowship</label>
+    <description>A fellowship of wandering faithful who walk the long roads between holy places: old shrines, the graves of the good, springs and stones the faith remembers. They keep a hostel at each shrine for anyone on the road, and wherever they come to a door at dusk they ask for a night's shelter.\n\nThe wardens of the way walk with every band, with spear and bow, but the fellowship is quick to bless and slow to anger. Each hostel is kept by its hosteller, and the fellowship by the keeper of the shrines.</description>
+    <pawnSingular>pilgrim</pawnSingular>
+    <pawnsPlural>pilgrims</pawnsPlural>
+    <leaderTitle>keeper of the shrines</leaderTitle>
+    <techLevel>Medieval</techLevel>
+    <basicMemberKind>Rimfolk_Pilgrims_Pilgrim</basicMemberKind>
+    <factionNameMaker>Rimfolk_Namer_Pilgrims</factionNameMaker>
+    <settlementNameMaker>Rimfolk_Namer_PilgrimsTown</settlementNameMaker>
+    <factionIconPath>ColonyCouncil/Peoples/Pilgrims</factionIconPath>
+    <settlementTexturePath>ColonyCouncil/Peoples/PilgrimsTown</settlementTexturePath>
+    <colorSpectrum>
+      <li>(0.46, 0.52, 0.40)</li>
+      <li>(0.68, 0.74, 0.62)</li>
+    </colorSpectrum>
+    <hidden>false</hidden>
+    <naturalEnemy>false</naturalEnemy>
+    <permanentEnemy>false</permanentEnemy>
+    <canSiege>false</canSiege>
+    <requiredCountAtGameStart>0</requiredCountAtGameStart>
+    <startingCountAtWorldCreation>1</startingCountAtWorldCreation>
+    <maxConfigurableAtWorldCreation>9999</maxConfigurableAtWorldCreation>
+    <configurationListOrderPriority>37</configurationListOrderPriority>
+    <settlementGenerationWeight>0.5</settlementGenerationWeight>
+    <allowedCultures Inherit="False">
+      <li>Rustican</li>
+    </allowedCultures>
+    <backstoryFilters Inherit="False">
+      <li>
+        <categories>
+          <li>Outlander</li>
+        </categories>
+        <commonality>0.6</commonality>
+      </li>
+      <li>
+        <categories>
+          <li>Tribal</li>
+        </categories>
+        <commonality>0.4</commonality>
+      </li>
+    </backstoryFilters>
+    <raidCommonalityFromPointsCurve Inherit="False">
+      <points>
+        <li>(0, 0.2)</li>
+      </points>
+    </raidCommonalityFromPointsCurve>
+    <xenotypeSet Inherit="False">
+      <xenotypeChances>
+        <Hussar MayRequire="Ludeon.RimWorld.Biotech">0.02</Hussar>
+        <Genie MayRequire="Ludeon.RimWorld.Biotech">0.02</Genie>
+        <Neanderthal MayRequire="Ludeon.RimWorld.Biotech">0.02</Neanderthal>
+        <Impid MayRequire="Ludeon.RimWorld.Biotech">0.02</Impid>
+        <Pigskin MayRequire="Ludeon.RimWorld.Biotech">0.02</Pigskin>
+      </xenotypeChances>
+    </xenotypeSet>
+    <fixedIdeo>true</fixedIdeo>
+    <ideoName>The Pilgrim's Way</ideoName>
+    <ideoDescription>The faith is carried on foot. A pilgrim walks from shrine to shrine as those before walked, asks for shelter at any door and blesses the house that gives it, and keeps a hostel open for whoever walks the road behind. What is holy is not kept behind walls: it is visited, and told of on the way.</ideoDescription>
+    <forcedMemes>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Proselytizer</li>
+      <li MayRequire="VanillaExpanded.VMemesE">VME_Nomad</li>
+    </forcedMemes>
+    <structureMemeWeights Inherit="False">
+      <Structure_TheistEmbodied MayRequire="Ludeon.RimWorld.Ideology">2</Structure_TheistEmbodied>
+      <Structure_TheistAbstract MayRequire="Ludeon.RimWorld.Ideology">2</Structure_TheistAbstract>
+      <Structure_OriginBuddhist MayRequire="Ludeon.RimWorld.Ideology">1</Structure_OriginBuddhist>
+    </structureMemeWeights>
+    <styles>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Buddhist</li>
+    </styles>
+    <caravanTraderKinds Inherit="False">
+      <li>Rimfolk_Caravan_Pilgrims</li>
+    </caravanTraderKinds>
+    <visitorTraderKinds Inherit="False">
+      <li>Rimfolk_Visitor_Pilgrims</li>
+    </visitorTraderKinds>
+    <baseTraderKinds Inherit="False">
+      <li>Rimfolk_Base_Pilgrims</li>
+    </baseTraderKinds>
+    <pawnGroupMakers Inherit="False">
+      <li>
+        <!-- A fight: the wardens of the way, with spears and short bows -->
+        <kindDef>Combat</kindDef>
+        <options>
+          <Rimfolk_Pilgrims_Warden>10</Rimfolk_Pilgrims_Warden>
+          <Rimfolk_Pilgrims_Bowman>8</Rimfolk_Pilgrims_Bowman>
+          <Rimfolk_Pilgrims_Pilgrim>2</Rimfolk_Pilgrims_Pilgrim>
+        </options>
+      </li>
+      <li>
+        <kindDef>Peaceful</kindDef>
+        <options>
+          <Rimfolk_Pilgrims_Pilgrim>24</Rimfolk_Pilgrims_Pilgrim>
+          <Villager_Child MayRequire="Ludeon.RimWorld.Biotech">3</Villager_Child>
+          <Rimfolk_Pilgrims_Warden>6</Rimfolk_Pilgrims_Warden>
+        </options>
+      </li>
+      <li>
+        <!-- A chandler's string: candles, tokens and plain goods on a few pack beasts, a warden or two -->
+        <kindDef>Trader</kindDef>
+        <traders>
+          <Rimfolk_Pilgrims_Chandler>1</Rimfolk_Pilgrims_Chandler>
+        </traders>
+        <carriers>
+          <Donkey>5</Donkey>
+          <Alpaca>3</Alpaca>
+          <Dromedary>2</Dromedary>
+          <Horse>2</Horse>
+        </carriers>
+        <guards>
+          <Rimfolk_Pilgrims_Warden>8</Rimfolk_Pilgrims_Warden>
+          <Rimfolk_Pilgrims_Bowman>6</Rimfolk_Pilgrims_Bowman>
+        </guards>
+      </li>
+      <li>
+        <kindDef>Settlement</kindDef>
+        <options>
+          <Rimfolk_Pilgrims_Warden>10</Rimfolk_Pilgrims_Warden>
+          <Rimfolk_Pilgrims_Bowman>8</Rimfolk_Pilgrims_Bowman>
+          <Rimfolk_Pilgrims_Pilgrim>10</Rimfolk_Pilgrims_Pilgrim>
+          <Rimfolk_Pilgrims_Chandler>2</Rimfolk_Pilgrims_Chandler>
+        </options>
+      </li>
+    </pawnGroupMakers>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleExtension">
+        <calling>pilgrims</calling>
+        <townWord>hostel</townWord>
+        <townWords>hostels</townWords>
+        <head>hosteller</head>
+        <heir>under-hosteller</heir>
+        <envoy>palmer</envoy>
+        <trader>chandler</trader>
+        <courier>palmer</courier>
+        <couriers>palmers</couriers>
+        <caravanWeight>0.6</caravanWeight>
+        <camps>
+          <li>Council_Camp_Pilgrims</li>
+          <li>Council_Camp_Procession</li>
+          <li>Council_Camp_Penitents</li>
+          <li>Council_Camp_Mourners</li>
+        </camps>
+        <plan>Rimfolk_Plan_ShrineHostel</plan>
+        <townGoods>
+          <Pemmican>60~120</Pemmican>
+          <MedicineHerbal>8~16</MedicineHerbal>
+          <Cloth>40~90</Cloth>
+          <WoodLog>60~120</WoodLog>
+          <Beer>10~25</Beer>
+        </townGoods>
+        <ariseAges>1~3</ariseAges>
+      </li>
+    </modExtensions>
+  </FactionDef>
+
+  <!-- ===================== Their people ===================== -->
+
+  <PawnKindDef Name="Rimfolk_PilgrimsKindBase" Abstract="True">
+    <race>Human</race>
+    <defaultFactionDef>Rimfolk_Pilgrims</defaultFactionDef>
+    <chemicalAddictionChance>0.02</chemicalAddictionChance>
+    <invNutrition>2.55</invNutrition>
+    <invFoodDef>Pemmican</invFoodDef>
+    <maxGenerationAge>75</maxGenerationAge>
+    <apparelColor>(0.56, 0.62, 0.50)</apparelColor>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+    </apparelTags>
+    <apparelRequired>
+      <li>Apparel_Cape</li>
+    </apparelRequired>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_PilgrimsKindBase">
+    <defName>Rimfolk_Pilgrims_Pilgrim</defName>
+    <label>pilgrim</label>
+    <combatPower>30</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Poor</itemQuality>
+    <gearHealthRange>0.5~1.4</gearHealthRange>
+    <apparelRequired>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Apparel_Shadecone</li>
+    </apparelRequired>
+    <weaponTags>
+      <li>NeolithicMeleeBasic</li>
+    </weaponTags>
+    <weaponMoney>30~70</weaponMoney>
+    <apparelMoney>120~260</apparelMoney>
+    <initialWillRange>1~3</initialWillRange>
+    <initialResistanceRange>8~14</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_PilgrimsKindBase">
+    <defName>Rimfolk_Pilgrims_Warden</defName>
+    <label>warden of the way</label>
+    <combatPower>60</combatPower>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.7~1.6</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_SimpleHelmet</li>
+    </apparelRequired>
+    <apparelMoney>300~500</apparelMoney>
+    <weaponTags>
+      <li>NeolithicMeleeAdvanced</li>
+    </weaponTags>
+    <weaponMoney>120~220</weaponMoney>
+    <requiredWorkTags>Violent</requiredWorkTags>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>14~22</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_PilgrimsKindBase">
+    <defName>Rimfolk_Pilgrims_Bowman</defName>
+    <label>way archer</label>
+    <combatPower>45</combatPower>
+    <itemQuality>Poor</itemQuality>
+    <gearHealthRange>0.6~1.6</gearHealthRange>
+    <apparelRequired>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Apparel_Shadecone</li>
+    </apparelRequired>
+    <apparelMoney>200~350</apparelMoney>
+    <weaponTags>
+      <li>NeolithicRangedBasic</li>
+      <li>NeolithicRangedDecent</li>
+    </weaponTags>
+    <weaponMoney>60~150</weaponMoney>
+    <requiredWorkTags>Violent</requiredWorkTags>
+    <initialWillRange>1~3</initialWillRange>
+    <initialResistanceRange>10~18</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_PilgrimsKindBase">
+    <defName>Rimfolk_Pilgrims_Chandler</defName>
+    <label>chandler</label>
+    <trader>true</trader>
+    <combatPower>35</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>1~1</gearHealthRange>
+    <apparelRequired>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Apparel_Shadecone</li>
+    </apparelRequired>
+    <apparelMoney>250~400</apparelMoney>
+    <weaponTags>
+      <li>NeolithicMeleeBasic</li>
+    </weaponTags>
+    <weaponMoney>40~80</weaponMoney>
+    <skills>
+      <li>
+        <skill>Social</skill>
+        <range>5~12</range>
+      </li>
+    </skills>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>10~16</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_PilgrimsKindBase">
+    <defName>Rimfolk_Pilgrims_Keeper</defName>
+    <label>keeper of the shrines</label>
+    <combatPower>40</combatPower>
+    <factionLeader>true</factionLeader>
+    <minGenerationAge>45</minGenerationAge>
+    <isFighter>false</isFighter>
+    <itemQuality>Good</itemQuality>
+    <gearHealthRange>1~1</gearHealthRange>
+    <apparelRequired>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Apparel_Shadecone</li>
+    </apparelRequired>
+    <apparelMoney>400~700</apparelMoney>
+    <weaponTags>
+      <li>NeolithicMeleeBasic</li>
+    </weaponTags>
+    <weaponMoney>40~80</weaponMoney>
+    <skills>
+      <li>
+        <skill>Social</skill>
+        <range>8~15</range>
+      </li>
+    </skills>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>8~12</initialResistanceRange>
+  </PawnKindDef>
+
+  <!-- ===================== Their traders: the chandler's string ===================== -->
+
+  <TraderKindDef>
+    <defName>Rimfolk_Caravan_Pilgrims</defName>
+    <label>chandler's string</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>400~800</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineHerbal</thingDef>
+        <countRange>10~20</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Pemmican</thingDef>
+        <countRange>80~160</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Cloth</thingDef>
+        <countRange>60~140</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Beer</thingDef>
+        <countRange>10~25</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Novel</thingDef>
+        <countRange>1~2</countRange>
+      </li>
+      <li Class="StockGenerator_Tag">
+        <tradeTag>Art</tradeTag>
+        <thingDefCountRange>1~2</thingDefCountRange>
+        <countRange>1~1</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>BasicClothing</tradeTag>
+        <countRange>3~5</countRange>
+        <maxTechLevelGenerate>Medieval</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>FoodRaw</categoryDef>
+        <thingDefCountRange>2~3</thingDefCountRange>
+        <totalPriceRange>150~400</totalPriceRange>
+        <excludedCategories>
+          <li>EggsFertilized</li>
+        </excludedCategories>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>MusicalInstrument</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Visitor_Pilgrims</defName>
+    <label>pilgrim band</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>100~250</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineHerbal</thingDef>
+        <countRange>3~8</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Pemmican</thingDef>
+        <countRange>20~50</countRange>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Base_Pilgrims</defName>
+    <label>hostel</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>700~1200</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineHerbal</thingDef>
+        <countRange>15~30</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Pemmican</thingDef>
+        <countRange>120~240</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Cloth</thingDef>
+        <countRange>100~220</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>WoodLog</thingDef>
+        <countRange>150~300</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Beer</thingDef>
+        <countRange>20~40</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Novel</thingDef>
+        <countRange>1~3</countRange>
+      </li>
+      <li Class="StockGenerator_Tag">
+        <tradeTag>Art</tradeTag>
+        <thingDefCountRange>2~3</thingDefCountRange>
+        <countRange>1~1</countRange>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>FoodRaw</categoryDef>
+        <thingDefCountRange>3~4</thingDefCountRange>
+        <totalPriceRange>300~700</totalPriceRange>
+        <excludedCategories>
+          <li>EggsFertilized</li>
+        </excludedCategories>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>BasicClothing</tradeTag>
+        <countRange>4~6</countRange>
+        <maxTechLevelGenerate>Medieval</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_Animals">
+        <maxWildness>0.60</maxWildness>
+        <tradeTagsSell>
+          <li>AnimalFarm</li>
+        </tradeTagsSell>
+        <tradeTagsBuy>
+          <li>AnimalFarm</li>
+        </tradeTagsBuy>
+        <kindCountRange>1~1</kindCountRange>
+        <countRange>1~3</countRange>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>MusicalInstrument</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <!-- ===================== Their names ===================== -->
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_Pilgrims</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->Pilgrims of the [wayThing]</li>
+        <li>r_name(p=2)->[PlaceOutlander] Pilgrims</li>
+        <li>r_name->Fellowship of the [wayThing]</li>
+        <li>r_name->The [wayVirtue] Road</li>
+        <li>r_name->Walkers of [PlaceOutlander]</li>
+        <li>wayThing->Long Walk</li>
+        <li>wayThing->Seven Shrines</li>
+        <li>wayThing->Open Door</li>
+        <li>wayThing->Staff</li>
+        <li>wayThing->Spring</li>
+        <li>wayThing->Lamp on the Hill</li>
+        <li>wayVirtue->Patient</li>
+        <li>wayVirtue->Footsore</li>
+        <li>wayVirtue->Blessed</li>
+        <li>wayVirtue->Humble</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_PilgrimsTown</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->[PlaceOutlander] Shrine</li>
+        <li>r_name(p=2)->[PlaceOutlander] Hostel</li>
+        <li>r_name->[PlaceOutlander] Well</li>
+        <li>r_name->[shrineWord] of [PlaceOutlander]</li>
+        <li>r_name->[shrineVirtue] Stone</li>
+        <li>shrineWord->Shrine</li>
+        <li>shrineWord->Spring</li>
+        <li>shrineWord->Cairn</li>
+        <li>shrineVirtue->Resting</li>
+        <li>shrineVirtue->Pilgrim's</li>
+        <li>shrineVirtue->Lantern</li>
+        <li>shrineVirtue->Mercy</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The plans of release C's peoples' towns (docs/design/peoples.md, "Release C"; the format is in Rimfolk_TownPlans.xml's
+    header; Source/ColonyCouncil/Peoples/PeopleTowns.cs places them). Only the base game's buildings, so every plan stands
+    without the DLCs; the tests check every plan (Tools/Tests/PeoplesTests.cs). A new mark here, "dock": the river folk's
+    landing looks for a place where most of its docks reach into the water, and lays them as a jetty (the game's bridge)
+    where they do and as planks on dry ground where they don't.
+  -->
+
+  <ColonyCouncil.TownPlanDef>
+    <defName>Rimfolk_Plan_ShrineHostel</defName>
+    <label>shrine and hostel</label>
+    <description>The pilgrim fellowship's shrine and hostel: a flagstone court ringed by columns, with flower beds and the shrine's flame between two lamps, and below it the hostel: a dormitory of twelve bedrolls, a refectory of four tables, the hosteller's room and the storehouse.</description>
+    <wallStuff>
+      <li>BlocksSandstone</li>
+      <li>BlocksGranite</li>
+      <li>WoodLog</li>
+    </wallStuff>
+    <keys>
+      <li><key>#</key><thing>Wall</thing><wall>true</wall></li>
+      <li><key>D</key><thing>Door</thing><wall>true</wall></li>
+      <li><key>.</key><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>r</key><thing>Bedroll</thing><stuff>Cloth</stuff><rot>South</rot><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>b</key><thing>Bed</thing><stuff>WoodLog</stuff><rot>South</rot><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>L</key><thing>TorchLamp</thing><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>T</key><thing>Table2x2c</thing><stuff>WoodLog</stuff><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>s</key><thing>Stool</thing><stuff>WoodLog</stuff><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>x</key><floor>WoodPlankFloor</floor><roof>true</roof><mark>store</mark></li>
+      <li><key>S</key><thing>ShelfSmall</thing><stuff>WoodLog</stuff><floor>WoodPlankFloor</floor><roof>true</roof><mark>store</mark></li>
+      <li><key>,</key><floor>FlagstoneSandstone</floor></li>
+      <li><key>c</key><thing>Column</thing><wall>true</wall><floor>FlagstoneSandstone</floor></li>
+      <li><key>l</key><thing>TorchLamp</thing><floor>FlagstoneSandstone</floor></li>
+      <li><key>F</key><thing>Campfire</thing><floor>FlagstoneSandstone</floor></li>
+      <li><key>h</key><mark>plant:Plant_Rose</mark></li>
+    </keys>
+    <rows>
+      <li>______c,,c,,c,,c,,c,,c,,c______</li>
+      <li>______,,,,,,,,,,,,,,,,,,,______</li>
+      <li>______c,,hhh,,,,,,,hhh,,c______</li>
+      <li>______,,,,,,,l,F,l,,,,,,,______</li>
+      <li>______,,,,,,,,,,,,,,,,,,,______</li>
+      <li>______c,,hhh,,,,,,,hhh,,c______</li>
+      <li>______,,,,,,,,,,,,,,,,,,,______</li>
+      <li>______c,,c,,c,,c,,c,,c,,c______</li>
+      <li>______________,,,______________</li>
+      <li>#####D#########D###############</li>
+      <li>#.r.r.r.r.#.........#.b.......#</li>
+      <li>#.........#s..s.s..s#.........#</li>
+      <li>#.........#.T....T..D.........#</li>
+      <li>#.r.r.r.r.#s..s.s..s#.......L.#</li>
+      <li>#.........#.........###########</li>
+      <li>#.........Ds..s.s..s#xSSxxSSxx#</li>
+      <li>#.r.r.r.r.#.T....T..#xxxxxxxxx#</li>
+      <li>#.........#s..s.s..sDxxxxxxxxx#</li>
+      <li>#.........#.........#xxxxxxxxx#</li>
+      <li>#L.......L#....L....#xxxxxxxxL#</li>
+      <li>###############################</li>
+    </rows>
+  </ColonyCouncil.TownPlanDef>
+
+  <ColonyCouncil.TownPlanDef>
+    <defName>Rimfolk_Plan_Archive</defName>
+    <label>archive</label>
+    <description>The learned society's archive: a reading hall with bookcases along its wall and three pairs of reading tables, the stacks where the archive's books are kept, a yard with a fire, the fellows' house, and the scriptorium with its research bench and writing tables.</description>
+    <wallStuff>
+      <li>BlocksGranite</li>
+      <li>BlocksSandstone</li>
+      <li>WoodLog</li>
+    </wallStuff>
+    <keys>
+      <li><key>#</key><thing>Wall</thing><wall>true</wall></li>
+      <li><key>D</key><thing>Door</thing><wall>true</wall></li>
+      <li><key>.</key><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>K</key><thing>Bookcase</thing><stuff>WoodLog</stuff><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>k</key><thing>BookcaseSmall</thing><stuff>WoodLog</stuff><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>t</key><thing>Table1x2c</thing><stuff>WoodLog</stuff><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>a</key><thing>DiningChair</thing><stuff>WoodLog</stuff><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>b</key><thing>Bed</thing><stuff>WoodLog</stuff><rot>South</rot><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>L</key><thing>TorchLamp</thing><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>R</key><thing>SimpleResearchBench</thing><stuff>WoodLog</stuff><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>x</key><floor>WoodPlankFloor</floor><roof>true</roof><mark>store</mark></li>
+      <li><key>,</key><floor>FlagstoneGranite</floor></li>
+      <li><key>l</key><thing>TorchLamp</thing><floor>FlagstoneGranite</floor></li>
+      <li><key>F</key><thing>Campfire</thing><floor>FlagstoneGranite</floor></li>
+    </keys>
+    <rows>
+      <li>#################################</li>
+      <li>#K.K.K.K.K.K.K.K.K..#xxxxxxxxxxx#</li>
+      <li>#...................#xkxkxkxkxkx#</li>
+      <li>#...................#xxxxxxxxxxx#</li>
+      <li>#.a.a..a.a..a.a.....#xxxxxxxxxxx#</li>
+      <li>#.ata..ata..ata.....#xkxkxkxkxkx#</li>
+      <li>#L.................LDxxxxxxxxxxx#</li>
+      <li>#...................#xxxxxxxxxxx#</li>
+      <li>#.a.a..a.a..a.a.....#xkxkxkxkxkx#</li>
+      <li>#.ata..ata..ata.....#xxxxxxxxxxx#</li>
+      <li>#...................#xxxxxxxxxxx#</li>
+      <li>#k.................k#xxxxxxxxxxL#</li>
+      <li>##########D###############D######</li>
+      <li>,,,,,,,,,,,,,,,,F,,,,,,,,,,,,,,,,</li>
+      <li>,,,,,,,,l,,,,,,,,,,,,,,,l,,,,,,,,</li>
+      <li>#######D########_#######D########</li>
+      <li>#.b.b.b..b.b.b.#_#..............#</li>
+      <li>#..............#_#......ata.ata.#</li>
+      <li>#..............#_#..R...........#</li>
+      <li>#L............L#_#.............L#</li>
+      <li>################_################</li>
+    </rows>
+  </ColonyCouncil.TownPlanDef>
+
+  <ColonyCouncil.TownPlanDef>
+    <defName>Rimfolk_Plan_LandingMarket</defName>
+    <label>landing-pad market</label>
+    <description>The spacer enclave's market: a landing pad of concrete in a ring of paved tiles with its centre marked, a paved market square with ten stalls round the orbital trade beacon, the factors' house with its comms console, and a long storehouse of shelves.</description>
+    <wallStuff>
+      <li>Steel</li>
+      <li>BlocksGranite</li>
+      <li>WoodLog</li>
+    </wallStuff>
+    <keys>
+      <li><key>#</key><thing>Wall</thing><wall>true</wall></li>
+      <li><key>D</key><thing>Door</thing><wall>true</wall></li>
+      <li><key>.</key><floor>MetalTile</floor><roof>true</roof></li>
+      <li><key>b</key><thing>Bed</thing><stuff>Steel</stuff><rot>South</rot><floor>MetalTile</floor><roof>true</roof></li>
+      <li><key>L</key><thing>TorchLamp</thing><floor>MetalTile</floor><roof>true</roof></li>
+      <li><key>C</key><thing>CommsConsole</thing><floor>MetalTile</floor><roof>true</roof></li>
+      <li><key>x</key><floor>MetalTile</floor><roof>true</roof><mark>store</mark></li>
+      <li><key>Z</key><thing>Shelf</thing><stuff>Steel</stuff><floor>MetalTile</floor><roof>true</roof><mark>store</mark></li>
+      <li><key>=</key><floor>Concrete</floor></li>
+      <li><key>+</key><floor>SterileTile</floor></li>
+      <li><key>-</key><floor>PavedTile</floor></li>
+      <li><key>l</key><thing>TorchLamp</thing><floor>PavedTile</floor></li>
+      <li><key>1</key><thing>Table1x2c</thing><stuff>Steel</stuff><floor>PavedTile</floor></li>
+      <li><key>O</key><thing>OrbitalTradeBeacon</thing><floor>PavedTile</floor></li>
+    </keys>
+    <rows>
+      <li>l-----------l_---------------------</li>
+      <li>-===========-_---------------------</li>
+      <li>-===========-_---------------------</li>
+      <li>-===========-_--1---1---1---1---1--</li>
+      <li>-=====+=====-_---------------------</li>
+      <li>-=====+=====-_---------------------</li>
+      <li>-===+++++===-_--l-------O-------l--</li>
+      <li>-=====+=====-_---------------------</li>
+      <li>-=====+=====-_---------------------</li>
+      <li>-===========-_--1---1---1---1---1--</li>
+      <li>-===========-_---------------------</li>
+      <li>-===========-_---------------------</li>
+      <li>l-----------l_---------------------</li>
+      <li>___________________________________</li>
+      <li>########D########_########D########</li>
+      <li>#.b.b.b...b.b.b.#_#xxxxxxxxxxxxxxx#</li>
+      <li>#...............#_#xZxxZxxxxxZxxZx#</li>
+      <li>#...............#_#xxxxxxxxxxxxxxx#</li>
+      <li>#...............#_#xxxxxxxLxxxxxxx#</li>
+      <li>#...............#_#xxxxxxxxxxxxxxx#</li>
+      <li>#..C............#_#xZxxZxxxxxZxxZx#</li>
+      <li>#.......L.....L.#_#xxxxxxxxxxxxxxx#</li>
+      <li>#################_#################</li>
+    </rows>
+  </ColonyCouncil.TownPlanDef>
+
+  <ColonyCouncil.TownPlanDef>
+    <defName>Rimfolk_Plan_RiverLanding</defName>
+    <label>river landing</label>
+    <description>The river folk's landing: three houses and the landing master's hall, a smokehouse, an open shed of fish racks, a boat shed on posts by the water, a yard fire and willows on the bank, and docks along its south and east sides, a jetty where they reach into the river.</description>
+    <wallStuff>
+      <li>WoodLog</li>
+    </wallStuff>
+    <keys>
+      <li><key>#</key><thing>Wall</thing><wall>true</wall></li>
+      <li><key>D</key><thing>Door</thing><wall>true</wall></li>
+      <li><key>.</key><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>b</key><thing>Bed</thing><stuff>WoodLog</stuff><rot>South</rot><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>L</key><thing>TorchLamp</thing><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>T</key><thing>Table2x2c</thing><stuff>WoodLog</stuff><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>s</key><thing>Stool</thing><stuff>WoodLog</stuff><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>F</key><thing>Campfire</thing><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>x</key><floor>WoodPlankFloor</floor><roof>true</roof><mark>store</mark></li>
+      <li><key>Z</key><thing>Shelf</thing><stuff>WoodLog</stuff><floor>WoodPlankFloor</floor><roof>true</roof><mark>store</mark></li>
+      <li><key>c</key><thing>Column</thing><wall>true</wall><roof>true</roof></li>
+      <li><key>o</key><roof>true</roof></li>
+      <li><key>,</key><mark>hearth</mark></li>
+      <li><key>f</key><thing>Campfire</thing></li>
+      <li><key>l</key><thing>TorchLamp</thing></li>
+      <li><key>w</key><mark>plant:Plant_TreeWillow</mark></li>
+      <li><key>d</key><mark>dock</mark></li>
+    </keys>
+    <rows>
+      <li>#######_#######_#############dddd</li>
+      <li>#b.b.b#_#b.b.b#_#b.b.b##s..s#dddd</li>
+      <li>#.....#_#.....#_#.....##.T..#dddd</li>
+      <li>#.....#_#.....#_#.....##s..s#dddd</li>
+      <li>#L....#_#L....#_#L....##....#dddd</li>
+      <li>###D###_###D###_###D####....#dddd</li>
+      <li>_______________________#L...#dddd</li>
+      <li>_______________________##D###dddd</li>
+      <li>######________________l______dddd</li>
+      <li>#xxxx#__cxxxxxxxxxc__________dddd</li>
+      <li>#xFxx#__xxZxxZxxZxx__________dddd</li>
+      <li>#xxxx#__xxxxxxxxxxx__________dddd</li>
+      <li>###D##__cxxxxxxxxxc__________dddd</li>
+      <li>_____________________________dddd</li>
+      <li>______,,,,__________cooocooocdddd</li>
+      <li>___w__,f,,__________ooooooooodddd</li>
+      <li>______,,,,__w_______ooooooooodddd</li>
+      <li>____________________cooocooocdddd</li>
+      <li>ddddddddddddddddddddddddddddddddd</li>
+      <li>ddddddddddddddddddddddddddddddddd</li>
+      <li>ddddddddddddddddddddddddddddddddd</li>
+      <li>ddddddddddddddddddddddddddddddddd</li>
+    </rows>
+  </ColonyCouncil.TownPlanDef>
+
+</Defs>
