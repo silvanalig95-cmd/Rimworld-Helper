@@ -379,7 +379,9 @@ namespace ColonyCouncil
             if (town == null) return f;
             Safe("the town's faces", () =>
             {
-                RegionFaces.Founded(town, f.leader, c.kind == ArisingMath.Refugees ? "refugees" : null);
+                // Its place's reason read from the world (a road, a river, the old walls of a ruin beside it); the region's
+                // "refugees" are families of a town given up, not the survivors of a fight.
+                RegionFaces.Founded(town, f.leader);
                 RiseFall.NoteFounded(town);
             });
             Safe("the letter", () => ArisingWords.Tell(c, f, town, detail));
@@ -538,7 +540,8 @@ namespace ColonyCouncil
             detail.dropped = old.memes.FirstOrDefault(m => !memes.Contains(m));
             detail.added = memes.FirstOrDefault(m => !old.memes.Contains(m));
             if (detail.dropped == null && detail.added == null) return null;
-            var parms = new IdeoGenerationParms(c.parent.def, false, null, null, memes);
+            // Made for their new ways (the template's culture and gear), with the old faith's memes reformed.
+            var parms = new IdeoGenerationParms(f.def, false, null, null, memes);
             var foundation = old.foundation?.def ?? DefDatabase<IdeoFoundationDef>.AllDefs.RandomElement();
             var ideo = IdeoGenerator.MakeIdeo(foundation);
             ideo.foundation.Init(parms);

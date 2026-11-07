@@ -219,11 +219,17 @@ public static class ArisingTests
           && catalog.Contains("V(\"newPeoples\", \"0.5\")") && catalog.Contains("V(\"newPeoples\", \"1.25\")"), "a slider from 0 to 200%; light touch halves it, story-rich a quarter more");
         C(arising.Contains("ColonyCouncilMod.Settings?.newPeoples ?? 1f"), "read where it runs");
 
-        // The Almanac: a section on the peoples' page, its keywords as they were.
+        // The Almanac: a page of its own, linked to the peoples' page, whose keywords are as they were.
+        var mine = XDocument.Load(Path.Combine(root, "Defs", "AlmanacArticleDefs", "Almanac_NewPeoples.xml")).Root!.Elements().Single();
+        C(mine.Element("defName")?.Value == "Council_Alm_C_NewPeoples" && mine.Element("seeAlso")!.Elements("li").Any(l => l.Value == "Council_Alm_C_Peoples")
+          && mine.Element("keywords")!.Elements("li").Count() >= 3, "an Almanac page of its own, beside the peoples' page");
+        var almText = string.Join("\n", mine.Descendants().Where(e => !e.HasElements).Select(e => e.Value));
+        C(almText.Contains("40 days") && almText.Contains("90") && almText.Contains("15th day") && almText.Contains("six at most") && almText.Contains("62 or more")
+          && almText.Contains("two fallen towns in five") && almText.Contains("Ideology"), "its numbers are the rules'");
+        C(!almText.Contains('—') && !almText.Contains('!') && !Regex.IsMatch(almText, @"\bin \d+ (days?|hours?)\b"), "its words plain, no countdowns");
         var page = XDocument.Load(Path.Combine(root, "Defs", "AlmanacArticleDefs", "Almanac_Peoples.xml")).Root!.Elements().Single();
-        C(page.Element("sections")!.Elements("li").Any(li => (li.Element("heading")?.Value ?? "").Contains("arise")), "the Almanac's peoples page has a section on peoples that arise");
-        C(page.Element("keywords")!.Elements("li").Select(l => l.Value).SequenceEqual(new[] { "road league", "hospitaller order", "herding folk", "waystation", "sickhouse", "winter grazing" }),
-            "its keywords unchanged");
+        C(page.Element("keywords")!.Elements("li").Select(l => l.Value).SequenceEqual(new[] { "road league", "hospitaller order", "herding folk", "waystation", "sickhouse", "winter grazing" })
+          && page.Element("tip")!.Value.Contains("arises during play"), "the peoples' page says a save made before them meets them as they arise, its keywords unchanged");
         return n;
     }
 

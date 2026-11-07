@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The Almanac page on peoples that arise during play (Source/ColonyCouncil/Peoples/Arising.cs; docs/design/peoples.md,
+       "Release B"; DESIGN.md "Rimfolk's peoples"). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_NewPeoples</defName>
+    <label>new peoples that arise</label>
+    <category>Council</category>
+    <order>16</order>
+    <summary>Now and then a new people comes into being from what happened in the region: the survivors of a town that fell, a league of prospering towns, a band gathered by one the council sent away, or faithful who broke away from their faith. Each takes the ways of the road league, the hospitaller order or the herding folk by its age, with a name, an emblem colour and a town of its own a few days from what made it.</summary>
+    <tip>It works in any save, even one made before Rimfolk's peoples were in the world: that is how such a save first meets them. The setting is New peoples arise, on How much happens; 0% switches it off.</tip>
+    <description>A letter tells of each new people by the colony's means (word from a traveler, a rider's news, the radio, a comms relay), names what they came from and how they live, and looks at their town on the world map, with the ruin, the league's towns or their old people's town beside it. Their card and their towns' cards say where they came from, and the history keeps it. From then on they are a people like any other of Rimfolk's: their caravans, camps, asks and letters come as the road league's, the order's or the herders' do.</description>
+    <sections>
+      <li>
+        <heading>What makes one</heading>
+        <table>
+          <li>What happened | Who they are | How they feel at first</li>
+          <li>A town within reach fell in a fight | Its survivors, settled near its ruin: herders in a tribal world, a sickhouse in a medieval one, carriers on the road after that | Cool if the colony's own people took the town; else by the colony's goodwill with their old people</li>
+          <li>Three prospering towns (62 or more) of two peoples or more, near each other and at peace | Their merchants as a road league, or among tribes their herders as one folk | By their towns' peoples' goodwill with the colony, and warm toward those peoples</li>
+          <li>One the council sent away, 15 days or more after | A band gathered round them, with them at its head: herders in a tribal or medieval colony, carriers and guards after that | Cool if they went with a grudge; warmer for each of the colony who stood by them, cooler for each who was glad to see them go</li>
+          <li>A war of words over a faith has ended (Ideology) | Faithful who broke away, with a creed of their own (their old faith with one teaching dropped or added): a sickhouse, or among tribes their herds | Warm if the colony kept a fair table in the debate; cool toward the people they left</li>
+        </table>
+        <after>None is an enemy or an ally on its first day. A people that starts cool says why in its letter, and the game's own goodwill moves it from there.</after>
+      </li>
+      <li>
+        <heading>How often</heading>
+        <points>
+          <li>At the setting's 100%, one arises every 40 days at most and one of the same cause every 90; none before the world's 15th day; six at most stand at once. 200% halves the waits.</li>
+          <li>Most causes give none: two fallen towns in five leave survivors who settle, half of those sent away gather a band, half the wars of words leave faithful who break away, and prospering towns band together on one look in five.</li>
+          <li>Survivors settle from three days after their town fell to sixty; a band gathers from 15 days after the banishment to 300; faithful break away within 30 days of the war of words' end.</li>
+        </points>
+      </li>
+      <li>
+        <heading>On the map</heading>
+        <points>
+          <li>Their town stands a few days' walk from what made it, never within the game's reach of a home where a town costs goodwill, and on no people's land (Faction Territories) but that of the peoples they came from.</li>
+          <li>The survivors may call their town after the one they lost; the league, the band and the survivors take a name from their town or their leader, the faithful a name in their new ways.</li>
+          <li>Their emblem takes the colour, of twelve, farthest from every other people's in the world.</li>
+          <li>The one the council sent away leads the band they gathered, and rides with no one else's raid after.</li>
+        </points>
+      </li>
+    </sections>
+    <keywords><li>new peoples</li><li>peoples that arise</li><li>survivors</li><li>league of towns</li><li>band of the banished</li><li>splinter</li></keywords>
+    <seeAlso><li>Council_Alm_C_Peoples</li><li>Council_Alm_C_Region</li><li>Council_Alm_C_Dilemmas</li><li>Council_Alm_C_WorldSituations</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>
