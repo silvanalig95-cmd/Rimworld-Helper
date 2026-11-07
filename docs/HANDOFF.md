@@ -12,6 +12,62 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.156.0, pets hunt for themselves, and an alert for an animal with no food in reach (7 November 2026). The player's report: their
+  husky Yuma was starving (the game never lets an animal it doesn't flag a predator hunt, tame animals hunt only as the
+  food search's last resort, huskies can't graze, and the dog's area "Animals" left out the stores); their request, an
+  explicit one: "yes, can you make animals hunt if they would do in reality, and your judgement for fictive species, and
+  that they hunt what they would normally would, or hunt things below them in the food chain, not above". Not released:
+  no What's new round, About.xml and CHANGELOG untouched (the lead does that at the merge). DESIGN.md "The colony's
+  animals hunting for themselves" (the table of who hunts, the rule, the Pokémon, the prey rules with examples, when, harm
+  beside the budget, the alert); README "The colony's animals" (two paragraphs); the Almanac's colony's animals page three
+  sections (*Hunting for themselves*, *Who hunts, and what*, *No food in reach*) and Hunt for Me's page a paragraph, no
+  keyword changed.
+  - Code: `Animals/HuntMath.cs` (pure, linked in Tests.csproj; `HuntTests`, "pets hunting: "): `FoodChain` (prey, small
+    hunter, hunter, apex), `Judge` (dryads, no food and no meat never; a Pokémon by species in its table, else a Dark type
+    of 0.4+ or a Dragon type of 1+ by size, legendaries never; else the defName table, else a word of the name, last word
+    first, a prey word never over the game's predator flag unless firm; else `Rule`: the flag or a meat-only diet with
+    teeth by size, under 0.7 small, under 1.6 hunter), `WhyNotPrey`, `PreyLimit`, `WhyNot`, the fed hunts' pace, the
+    alert's words. `Animals/PetHunts.cs` (the game's side: facts from defs, the prey search, the hungry hunt, the fed
+    hunts, the short pass, the kill, the carry home, the alert's look, the button; `JobDriver_PetBringsKill`),
+    `PetHuntsPatches.cs` (`Patch_PetHuntsHungry` a postfix on `JobGiver_GetFood.TryGiveJob`, `Patch_PetHuntsKill` on
+    `Pawn.Kill`, `Patch_PetHuntsGizmo` on `Pawn.GetGizmos`, `Alert_NoFoodInReach`), `PetHuntsDebug.cs`. `PackAlphas.Storied`
+    (public, for the prey rules); `Alert_FreshCarcass` leaves a kill alone while a colony animal eats it. Defs:
+    `Defs/Misc/Rimfolk_PetHunts.xml` (the job `Rimfolk_PetBringsKill`), `Defs/FlavorPoolDefs/Rimfolk_Pools_PetHunts.xml`
+    (three pools, in `ImmersionTests.SpokenPools`), Keyed `Rimfolk_PetHunts.xml`. `Tools/Tests/HuntKinds.txt`: every animal
+    of the base game, the DLCs (Odyssey's defs weren't to hand: its animals go by the rule) and the player's 29 animal
+    mods, read from their own defs (1544 kinds), which the tests judge (16 of the base game's 71 hunt, 194 of the mods' 575,
+    119 of PokéWorld's 898).
+  - No Sched slot: the short pass (the hunts kept to the rules, the alert's look, the person's line) rides on the wild's
+    (`BeastBook.Rare`, every 250 ticks), the fed hunts on the people's hour (`CouncilGameComponent.HourlyPeople`), the
+    hungry hunt on the game's own food search. Saved: `AnimalBook.keptHome` (the ids whose "May hunt" is off, 200 at most;
+    in `Tools/save_estimate.py`). Settings: `petsHunt` ("Pets hunt for themselves", What's on, on) and `noFoodAlert` ("An
+    animal with no food in reach", Alerts, on). AnimalNatureTests count four saved collections in the book now.
+  - Harm: no roll of Rimfolk's own; the hunt is the game's fight (the prey picked small, weak, unlikely to turn, never
+    venomous), so the shared budget doesn't count it, as it doesn't count the game's predators or the colony's hunters.
+  - Try in the game (dev mode, Debug actions, Rimfolk, "Pets hunting: ..."; none of it could be run here):
+    1. Select a husky (or any dog), set its area to a small one with no food in it and some hares about, then "make an
+       animal hungry...": it goes after a hare inside its area (the game's "hunting" report), kills it and eats; someone in
+       view says a word; its card says "caught a hare". With no prey in its area: the alert "Animal with no food in reach"
+       names it with why and how to fix it, a click selects it, and its bonded person says so once.
+    2. "why an animal hunts or not (log)...": its place in the food chain and why, whether it may now, its limits, and the
+       twenty nearest wild animals each with why it may or may not take them.
+    3. "send a hunter after small game now..." and "send a hunter to bring its person a kill...": the second carries the
+       kill to its person and sets it down at their feet (their word, the thought "a present from my animal").
+    4. Two dogs or wolves idle side by side, one made hungry with only an ibex or a gazelle about: both go after it.
+    5. The "May hunt" button off on a hungry hunter: no hunt (the alert says it is kept); a tame wolf or cat (flagged
+       predators) with nothing to eat goes by Rimfolk's rules, not the game's; the setting off: the game's own behaviour.
+    6. Draft the master of a hunting dog, or let a raid come, mid-chase: it breaks off within 250 ticks; a chase that
+       runs 6 cells out of its area is given up too.
+    7. "the food chain of every loaded animal (log)": every kind of the mod list with its place and the reason.
+  - Riskiest: the postfix on `JobGiver_GetFood.TryGiveJob` (it replaces the game's last-resort hunt for flagged predators
+    of the colony, and reads its private `minCategory` and `maxLevelPercentage` by name; an exception switches it off for
+    the session); Pokémon hunting depends on PokéWorld giving them melee verbs (its own melee order reads
+    `meleeVerbs.TryGetMeleeVerb`, so they should; one without an attack is "can't hunt just now"); the carry home
+    (`JobDriver_PetBringsKill`: an animal taking up and carrying a body, `StartCarryThing` and the drop at the person's
+    feet); the revenge chance read with the hunter as instigator (three times the kind's in melee: wild Pokémon near the
+    hunter's size are mostly left alone); the alert's food search each 250 ticks for each hungry animal (the game's own
+    `BestFoodSourceOnMap`, reservations ignored); interplay with Hunt for Me, Animals Forage and Animals Logic (all active
+    in the player's list, none read here: a food job they give always stands).
 - 0.155.0, harm, part 5: sickness that spreads, the weather and the cold (7 November 2026, the first of three batches of the review's
   other 69 after the player's "all suggestions please", on the shared budget so they add variety and not more hurts in all).
   Not released: no What's new round, About.xml and CHANGELOG untouched (the lead does that at the merge). Fourteen kinds

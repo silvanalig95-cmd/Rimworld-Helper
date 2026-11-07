@@ -465,6 +465,9 @@ namespace ColonyCouncil
         /// <summary>Temperaments kept (one an animal), friendships and rivalries (with the pairs still being watched), and animals gone with their handler.</summary>
         public const int MaxMarks = 300, MaxTies = 80, MaxGone = 30;
 
+        /// <summary>The colony's animals kept from hunting (their "May hunt" off, Animals/PetHunts.cs), the oldest first to go past it.</summary>
+        public const int MaxKeptHome = 200;
+
         /// <summary>An animal not seen for this long is let go from the temperaments kept (one away in a ball, a caravan or a cryptosleep pod comes back to the same one, by its id).</summary>
         public const float MarkForgetDays = 120f;
 

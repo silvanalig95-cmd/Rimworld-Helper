@@ -1370,6 +1370,24 @@ The herd and the pets are part of the colony's life, not only its larder and its
   map near it and says where, and has a place at the council table without a vote: a line at a meeting its person sits
   in, and a word on the council's questions about its person or itself. Never a letter or a message of its own.
 - **Dreams** of the herd, of talking animals, of riding, of an old pet young again, and of a lost one coming back.
+- **Pets hunt for themselves** (the setting of that name, on by default): an animal whose kind hunts in real life (dogs,
+  cats, foxes, wolves, bears, big cats, birds of prey, snakes, crocodiles; other kinds by what they are, from a table with
+  a reason for each and a rule for the rest; Pokémon by their species and type) goes after wild prey below it in the food
+  chain when it is hungry and nothing it may eat lies inside its allowed area, with the game's own hunt: it kills, then
+  eats. Now and then (about every four days) a fed one goes after small game, as a cat keeps the mice down, and a third of
+  the time carries the kill to its person, who is glad of it. It takes only wild animals smaller and much weaker than
+  itself that are unlikely to turn on it (a husky a hare or a fox, a cat a rat, two wolves together an ibex, a bear a deer),
+  never anyone's animals, insects, venomous ones, a herd on the move or a beast of the colony's stories, and only inside
+  its area. Never while drafted, following its master, roped or penned, young, hurt or ill, or with danger on the map.
+  The fight is the game's own, so prey fighting back can hurt it now and then, as it hurts the game's wild hunters.
+  Whoever sees the kill says a word, and its card says what it caught. Each such animal has a **May hunt** button to keep
+  it at home.
+
+An alert names any of the colony's animals that is **hungry with no food in reach**: nothing it may eat inside its
+allowed area and no hunt to go on. Its tooltip says why (the food it eats lies outside its area, the food inside it is
+forbidden, or there is nothing it eats on the map) and how to put it right (set its area to Unrestricted or widen it,
+unforbid the food, or put a stockpile of what it eats inside its area), a click selects them, and its bonded person says
+so aloud once (the setting "An animal with no food in reach", with the alerts).
 
 An alert says when an animal's **carcass lies out fresh**: one that hasn't started to rot, out of the stockpiles, with
 nobody on their way to it an hour after it died. It lists each one, says when it's forbidden or past the home area, and

@@ -52,13 +52,18 @@ namespace ColonyCouncil
                 foreach (var map in Find.Maps)
                 {
                     if (map == null || !map.IsPlayerHome) continue;
+                    // A kill one of the colony's animals is eating (Animals/PetHunts.cs) is seen to: the game's hunt reserves nothing.
+                    var eaten = new HashSet<Thing>();
+                    foreach (var a in map.mapPawns.SpawnedColonyAnimals)
+                        if (a.CurJobDef == JobDefOf.PredatorHunt && a.CurJob.targetA.Thing is Corpse kill)
+                            eaten.Add(kill);
                     foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.Corpse))
                     {
                         if (!(t is Corpse c) || !c.Spawned || c.Destroyed) continue;
                         var inner = c.InnerPawn;
                         var rot = c.GetComp<CompRottable>();
                         if (inner?.RaceProps == null || rot == null) continue;
-                        bool claimed = map.reservationManager.IsReservedByAnyoneOf(c, Faction.OfPlayer);
+                        bool claimed = map.reservationManager.IsReservedByAnyoneOf(c, Faction.OfPlayer) || eaten.Contains(c);
                         if (!FreshCarcassMath.LyingOut(inner.RaceProps.Animal, rot.Stage == RotStage.Fresh, c.Position.Fogged(map), c.IsInAnyStorage(), claimed, c.Age))
                             continue;
                         culprits.Add(c);

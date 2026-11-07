@@ -1,0 +1,1549 @@
+# Every animal of the base game, its DLCs (Odyssey aside) and the player's active animal mods (7 November 2026), as
+# RimWorld 1.7 loads them, with what Rimfolk's food chain reads (Animals/HuntMath.cs; HuntTests): the source (base
+# or the mod's package id), defName, label, the game's predator flag, maxPreyBodySize, diet (m meat, p plants, n
+# nothing), body size, an attack with teeth, claws or a sting, a venomous one, insect flesh, a dryad, a Pokemon's
+# types and whether it is legendary. Mechanoids and the Anomaly entities are left out (not animals to the game).
+base	Warg	warg	1	2.3	m	1.4	1	0	0	0	-	0
+base	Cat	cat	1	0.25	m	0.32	1	0	0	0	-	0
+base	YorkshireTerrier	yorkshire terrier	0	-	mp	0.32	1	0	0	0	-	0
+base	GuineaPig	guinea pig	0	-	p	0.2	1	0	0	0	-	0
+base	LabradorRetriever	labrador retriever	0	-	mp	0.75	1	0	0	0	-	0
+base	Husky	husky	0	-	mp	0.86	1	0	0	0	-	0
+base	Monkey	monkey	0	-	mp	0.35	1	0	0	0	-	0
+base	Megascarab	megascarab	0	-	mp	0.2	1	0	1	0	-	0
+base	Spelopede	spelopede	0	-	mp	0.8	1	0	1	0	-	0
+base	Megaspider	megaspider	0	-	mp	1.2	1	0	1	0	-	0
+base	Cow	cow	0	-	p	2.4	1	0	0	0	-	0
+base	Boomalope	boomalope	0	-	p	2.0	1	0	0	0	-	0
+base	Muffalo	muffalo	0	-	p	2.4	1	0	0	0	-	0
+base	Bison	bison	0	-	p	2.4	1	0	0	0	-	0
+base	Dromedary	dromedary	0	-	p	2.1	1	0	0	0	-	0
+base	Goat	goat	0	-	p	0.75	1	0	0	0	-	0
+base	Elk	elk	0	-	p	2.1	1	0	0	0	-	0
+base	Yak	yak	0	-	p	2.1	1	0	0	0	-	0
+base	Caribou	caribou	0	-	p	1.0	1	0	0	0	-	0
+base	Horse	horse	0	-	p	2.4	1	0	0	0	-	0
+base	Donkey	donkey	0	-	p	1.4	1	0	0	0	-	0
+base	Elephant	elephant	0	-	p	4.0	1	0	0	0	-	0
+base	Rhinoceros	rhinoceros	0	-	p	3.0	1	0	0	0	-	0
+base	Chicken	chicken	0	-	p	0.3	1	0	0	0	-	0
+base	Duck	duck	0	-	p	0.3	1	0	0	0	-	0
+base	Turkey	turkey	0	-	p	0.6	1	0	0	0	-	0
+base	Goose	goose	0	-	p	0.60	1	0	0	0	-	0
+base	Hare	hare	0	-	p	0.2	1	0	0	0	-	0
+base	Snowhare	snowhare	0	-	p	0.2	1	0	0	0	-	0
+base	Cougar	cougar	1	1.0	m	1.0	1	0	0	0	-	0
+base	Panther	panther	1	1.0	m	1.0	1	0	0	0	-	0
+base	Lynx	lynx	1	1.0	m	0.6	1	0	0	0	-	0
+base	Bear_Grizzly	grizzly bear	1	3	mp	2.15	1	0	0	0	-	0
+base	Bear_Polar	polar bear	1	3	mp	2.15	1	0	0	0	-	0
+base	Wolf_Timber	timber wolf	1	2.3	m	0.85	1	0	0	0	-	0
+base	Wolf_Arctic	arctic wolf	1	2.3	m	0.85	1	0	0	0	-	0
+base	Fox_Fennec	fennec fox	1	0.80	m	0.55	1	0	0	0	-	0
+base	Fox_Red	red fox	1	0.80	m	0.55	1	0	0	0	-	0
+base	Fox_Arctic	arctic fox	1	0.80	m	0.55	1	0	0	0	-	0
+base	Thrumbo	thrumbo	0	-	p	4	1	0	0	0	-	0
+base	Cobra	cobra	1	0.35	m	0.25	1	1	0	0	-	0
+base	Tortoise	tortoise	0	-	mp	0.5	1	0	0	0	-	0
+base	Alphabeaver	alphabeaver	0	-	p	0.45	1	0	0	0	-	0
+base	Pig	pig	0	-	mp	1.7	1	0	0	0	-	0
+base	WildBoar	wild boar	0	-	mp	0.85	1	0	0	0	-	0
+base	Ibex	ibex	0	-	p	1.00	1	0	0	0	-	0
+base	Deer	deer	0	-	p	1.2	1	0	0	0	-	0
+base	Gazelle	gazelle	0	-	p	0.7	1	0	0	0	-	0
+base	Chinchilla	chinchilla	0	-	p	0.35	1	0	0	0	-	0
+base	Squirrel	squirrel	0	-	p	0.2	1	0	0	0	-	0
+base	Rat	rat	0	-	mp	0.2	1	0	0	0	-	0
+base	Boomrat	boomrat	0	-	mp	0.2	1	0	0	0	-	0
+base	Raccoon	raccoon	0	-	mp	0.4	1	0	0	0	-	0
+base	Iguana	iguana	0	-	mp	0.4	1	0	0	0	-	0
+base	Sheep	sheep	0	-	p	0.75	1	0	0	0	-	0
+base	Alpaca	alpaca	0	-	p	1.0	1	0	0	0	-	0
+base	Megasloth	megasloth	0	-	p	4.0	1	0	0	0	-	0
+base	Capybara	capybara	0	-	p	0.75	1	0	0	0	-	0
+base	Ostrich	ostrich	0	-	p	1.0	1	0	0	0	-	0
+base	Emu	emu	0	-	p	0.6	1	0	0	0	-	0
+base	Cassowary	cassowary	0	-	p	0.6	1	0	0	0	-	0
+base	Dryad_Basic	immature dryad	0	-	n	0.667	1	0	0	1	-	0
+base	Dryad_Woodmaker	woodmaker dryad	0	-	n	0.667	1	0	0	1	-	0
+base	Dryad_Berrymaker	berrymaker dryad	0	-	n	0.667	1	0	0	1	-	0
+base	Dryad_Medicinemaker	medicinemaker dryad	0	-	n	0.667	1	0	0	1	-	0
+base	Dryad_Gaumaker	gaumaker dryad	0	-	n	0.667	1	0	0	1	-	0
+base	Dryad_Carrier	carrier dryad	0	-	n	0.667	1	0	0	1	-	0
+base	Dryad_Clawer	clawer dryad	0	-	n	0.667	1	0	0	1	-	0
+base	Dryad_Barkskin	barkskin dryad	0	-	n	0.65	1	0	0	1	-	0
+base	WasteRat	waste rat	0	-	mp	0.3	1	1	0	0	-	0
+base	Toxalope	toxalope	0	-	p	1.4	1	0	0	0	-	0
+Spino.Megafauna	Arthropleura	arthropleura	0	-	p	3.5	1	0	1	0	-	0
+Spino.Megafauna	Doedicurus	doedicurus	0	-	p	3	1	0	0	0	-	0
+Spino.Megafauna	Daeodon	daeodon	1	4.5	mp	3	1	0	0	0	-	0
+Spino.Megafauna	Gigantopithecus	gigantopithecus	0	-	p	3.5	1	0	0	0	-	0
+Spino.Megafauna	Paraceratherium	paraceratherium	0	-	p	15	1	0	0	0	-	0
+Spino.Megafauna	Titanis	titanis	1	4	m	3	1	0	0	0	-	0
+Spino.Megafauna	Titanoboa	titanoboa	1	10	m	12	1	0	0	0	-	0
+Spino.Megafauna	WoollyMammoth	woolly mammoth	0	-	p	5	1	0	0	0	-	0
+Spino.Megafauna	Elasmotherium	elasmotherium	0	-	p	4	1	0	0	0	-	0
+Spino.Megafauna	Smilodon	smilodon	1	4	m	2.5	1	0	0	0	-	0
+Spino.Megafauna	Chalicotherium	chalicotherium	0	-	p	4	1	0	0	0	-	0
+Spino.Megafauna	Megaloceros	megaloceros	0	-	p	4	0	0	0	0	-	0
+Spino.Megafauna	Procoptodon	procoptodon	0	-	p	3	1	0	0	0	-	0
+Spino.Megafauna	Megalania	megalania	1	4.5	m	3	1	1	0	0	-	0
+Spino.Megafauna	Deinotherium	deinotherium	0	-	p	5.5	1	0	0	0	-	0
+Spino.Megafauna	Aurochs	aurochs	0	-	p	3	1	0	0	0	-	0
+Spino.Megafauna	Megalochelys	megalochelys	0	-	p	4.5	1	0	0	0	-	0
+Spino.Megafauna	Palaeeudyptes	palaeeudyptes	1	1.5	m	2.8	1	0	0	0	-	0
+Spino.Megafauna	Josephoartigasia	josephoartigasia	0	-	p	4	1	0	0	0	-	0
+Spino.Megafauna	Gigantophis	gigantophis	1	9	m	11	1	0	0	0	-	0
+Spino.Megafauna	Meganeura	meganeura	0	0.9	m	0.7	1	0	1	0	-	0
+Spino.Megafauna	Zygolophodon	zygolophodon	0	-	p	5.3	1	0	0	0	-	0
+Spino.Megafauna	Platybelodon	platybelodon	0	-	p	4.5	1	0	0	0	-	0
+Spino.Megafauna	Purussaurus	purussaurus	1	8.5	m	10	1	0	0	0	-	0
+Spino.Megafauna	Uintatherium	uintatherium	0	-	p	4.5	1	0	0	0	-	0
+Spino.Megafauna	Pulmonoscorpius	pulmonoscorpius	1	2	m	1.1	1	1	1	0	-	0
+Spino.Megafauna	Dinopithecus	dinopithecus	1	1.5	mp	2.5	1	0	0	0	-	0
+Spino.Megafauna	Castoroides	castoroides	0	-	p	1.75	1	0	0	0	-	0
+Spino.Megafauna	Enhydriodon	enhydriodon	1	3.75	m	3	1	0	0	0	-	0
+Spino.Megafauna	Gomphotaria	gomphotaria	1	3.5	m	5	1	0	0	0	-	0
+Spino.Megafauna	Diprotodon	diprotodon	0	-	p	4.2	1	0	0	0	-	0
+Spino.Megafauna	ShortfacedBear	Short-faced bear	1	5	mp	4.5	1	0	0	0	-	0
+Spino.Megafauna	Dinocrocuta	dinocrocuta	1	7	m	3.5	1	0	0	0	-	0
+Spino.Megafauna	Sivatherium	sivatherium	0	-	p	8	1	0	0	0	-	0
+Spino.Megafauna	Andrewsarchus	andrewsarchus	1	9	m	5	1	0	0	0	-	0
+Spino.Megafauna	Dinornis	dinornis	0	-	p	5	1	0	0	0	-	0
+Spino.Megafauna	Macrauchenia	macrauchenia	0	-	p	4	1	0	0	0	-	0
+Spino.Megafauna	Quinkana	quinkana	1	5	m	3.5	1	0	0	0	-	0
+spincrus.dinosauria	TyrannosaurusRex	tyrannosaurus rex	1	-	m	7	1	0	0	0	-	0
+spincrus.dinosauria	Yutyrannus	yutyrannus	1	-	m	6.5	1	0	0	0	-	0
+spincrus.dinosauria	Carnotaurus	carnotaurus	1	-	m	5	1	0	0	0	-	0
+spincrus.dinosauria	Allosaurus	allosaurus	1	-	m	5	1	0	0	0	-	0
+spincrus.dinosauria	Spinosaurus	spinosaurus	1	-	m	7	1	0	0	0	-	0
+spincrus.dinosauria	Baryonyx	baryonyx	1	-	m	7	1	0	0	0	-	0
+spincrus.dinosauria	Ankylosaurus	ankylosaurus	0	-	p	3.5	0	0	0	0	-	0
+spincrus.dinosauria	Minmi	minmi	0	-	p	2	0	0	0	0	-	0
+spincrus.dinosauria	Brachiosaurus	brachiosaurus	0	-	p	12	0	0	0	0	-	0
+spincrus.dinosauria	Brontosaurus	brontosaurus	0	-	p	12	0	0	0	0	-	0
+spincrus.dinosauria	Diplodocus	diplodocus	0	-	p	12	0	0	0	0	-	0
+spincrus.dinosauria	Magyarosaurus	magyarosaurus	0	-	p	4	0	0	0	0	-	0
+spincrus.dinosauria	Utahraptor	utahraptor	1	5	m	2	1	0	0	0	-	0
+spincrus.dinosauria	Dakotaraptor	dakotaraptor	1	4	m	2	1	0	0	0	-	0
+spincrus.dinosauria	Dilophosaurus	dilophosaurus	1	4	m	2	1	0	0	0	-	0
+spincrus.dinosauria	Velociraptor	velociraptor	1	2	m	0.75	1	0	0	0	-	0
+spincrus.dinosauria	Compsognathus	compsognathus	1	0.5	m	0.35	1	0	0	0	-	0
+spincrus.dinosauria	Gallimimus	gallimimus	0	-	p	3	0	0	0	0	-	0
+spincrus.dinosauria	Gigantoraptor	gigantoraptor	0	-	p	3	0	0	0	0	-	0
+spincrus.dinosauria	Iguanodon	iguanodon	0	-	p	4	0	0	0	0	-	0
+spincrus.dinosauria	Parasaur	parasaur	0	-	p	4	0	0	0	0	-	0
+spincrus.dinosauria	Corythosaurus	corythosaurus	0	-	p	4	0	0	0	0	-	0
+spincrus.dinosauria	Deinocheirus	deinocheirus	0	-	p	4	1	0	0	0	-	0
+spincrus.dinosauria	Therizinosaurus	therizinosaurus	0	-	p	4	1	0	0	0	-	0
+spincrus.dinosauria	Pachycephalosaurus	pachycephalosaurus	0	-	p	1.5	0	0	0	0	-	0
+spincrus.dinosauria	Stygimoloch	stygimoloch	0	-	p	0.5	0	0	0	0	-	0
+spincrus.dinosauria	Dryosaurus	dryosaurus	0	-	p	0.5	0	0	0	0	-	0
+spincrus.dinosauria	Stegosaurus	stegosaurus	0	-	p	4.5	1	0	0	0	-	0
+spincrus.dinosauria	Triceratops	triceratops	0	-	p	4.5	1	0	0	0	-	0
+spincrus.dinosauria	Protoceratops	protoceratops	0	-	p	0.5	0	0	0	0	-	0
+spincrus.dinosauria	Quetzalcoatlus	quetzalcoatlus	0	-	mp	6	1	0	0	0	-	0
+spincrus.dinosauria	Pteranodon	pteranodon	0	-	mp	0.5	1	0	0	0	-	0
+Torann.ARimworldOfMagic	TM_MinionR	minion	1	-	m	2	1	0	0	0	-	0
+Torann.ARimworldOfMagic	TM_GreaterMinionR	greater minion	1	-	m	2	1	0	0	0	-	0
+Torann.ARimworldOfMagic	TM_Dire_WolfR	dire wolf	1	3.3	m	2.3	1	0	0	0	-	0
+Torann.ARimworldOfMagic	TM_SpiritWolfR	spirit wolf	1	3.3	m	2.3	1	0	0	0	-	0
+Torann.ARimworldOfMagic	TM_SpiritBearR	spirit bear	0	3.3	m	1	1	0	0	0	-	0
+Torann.ARimworldOfMagic	TM_SpiritMongooseR	spirit mongoose	0	-	p	.9	1	0	0	0	-	0
+Torann.ARimworldOfMagic	TM_SpiritCrowR	spirit crow	0	-	p	0.8	1	0	0	0	-	0
+Torann.ARimworldOfMagic	TM_LesserEarth_ElementalR	Lesser Earth Elemental	1	-	mp	2	1	0	0	0	-	0
+Torann.ARimworldOfMagic	TM_Earth_ElementalR	Earth Elemental	1	-	mp	2	1	0	0	0	-	0
+Torann.ARimworldOfMagic	TM_GreaterEarth_ElementalR	Greater Earth Elemental	1	-	mp	2	1	0	0	0	-	0
+Torann.ARimworldOfMagic	TM_LesserFire_ElementalR	Lesser Fire Elemental	1	-	mp	2	1	0	0	0	-	0
+Torann.ARimworldOfMagic	TM_Fire_ElementalR	Fire Elemental	1	-	mp	2	1	0	0	0	-	0
+Torann.ARimworldOfMagic	TM_GreaterFire_ElementalR	Greater Fire Elemental	1	-	mp	2	1	0	0	0	-	0
+Torann.ARimworldOfMagic	TM_LesserWater_ElementalR	Lesser Water Elemental	1	-	mp	2	1	0	0	0	-	0
+Torann.ARimworldOfMagic	TM_Water_ElementalR	Water Elemental	1	-	mp	2	1	0	0	0	-	0
+Torann.ARimworldOfMagic	TM_GreaterWater_ElementalR	Greater Water Elemental	1	-	mp	2	1	0	0	0	-	0
+Torann.ARimworldOfMagic	TM_LesserWind_ElementalR	Lesser Wind Elemental	1	-	mp	2	1	0	0	0	-	0
+Torann.ARimworldOfMagic	TM_Wind_ElementalR	Wind Elemental	1	-	mp	2	1	0	0	0	-	0
+Torann.ARimworldOfMagic	TM_GreaterWind_ElementalR	Greater Wind Elemental	1	-	mp	2	1	0	0	0	-	0
+Torann.ARimworldOfMagic	TM_Lesser_SentinelR	Lesser Sentinel	1	-	mp	1	1	0	0	0	-	0
+Torann.ARimworldOfMagic	TM_SentinelR	Sentinel	1	-	mp	1	1	0	0	0	-	0
+Torann.ARimworldOfMagic	TM_Greater_SentinelR	Greater Sentinel	1	-	mp	1	1	0	0	0	-	0
+Torann.ARimworldOfMagic	TM_SkeletonLichR	skeleton lich	0	-	n	1	0	0	0	0	-	0
+Torann.ARimworldOfMagic	TM_GiantSkeletonR	Giant skeleton	0	-	n	1	1	0	0	0	-	0
+Torann.ARimworldOfMagic	TM_SkeletonR	Skeleton	0	-	n	1	1	0	0	0	-	0
+Torann.ARimworldOfMagic	TM_DemonR	Demon	1	-	mp	2	1	0	0	0	-	0
+Torann.ARimworldOfMagic	TM_LesserDemonR	Lesser Demon	1	-	mp	2	1	0	0	0	-	0
+sarg.alphaanimals	VFEI2_BlackSwarmling	black swarmlings	0	-	mp	0.2	1	0	1	0	-	0
+sarg.alphaanimals	VFEI2_BlackEmpress	black empress	0	-	mp	4	1	0	1	0	-	0
+sarg.alphaanimals	VFEI2_BlackQueen	black insectoid queen	0	-	mp	4	1	0	1	0	-	0
+sarg.alphaanimals	AA_Fangsquid	fangsquid	0	-	mp	2	1	0	0	0	-	0
+sarg.alphaanimals	AA_BlackScarab_Temporary	summoned black scarab	0	-	mp	0.3	1	0	1	0	-	0
+sarg.alphaanimals	AA_BlackSpelopede_Temporary	summoned black spelopede	0	-	mp	1	1	0	1	0	-	0
+sarg.alphaanimals	AA_BlackSpider_Temporary	summoned blackspider	0	-	mp	1.5	1	0	1	0	-	0
+sarg.alphaanimals	AA_MammothWorm_Temporary	summoned mammoth worm	0	-	mp	3.00	1	0	1	0	-	0
+sarg.alphaanimals	AA_Summoned_Eyeling	summoned eyeling	0	-	mp	0.4	1	1	0	0	-	0
+sarg.alphaanimals	AAVPE_BlackQueen	summoned black queen	0	-	mp	4	1	0	1	0	-	0
+sarg.alphaanimals	AA_OcularOriginator	ocular originator	0	-	p	5.00	0	0	0	0	-	0
+sarg.alphaanimals	AA_BlackLarvae	black larvae	0	-	mp	0.6	1	0	1	0	-	0
+sarg.alphaanimals	AA_TarGuzzler	tar guzzler	0	-	p	2	1	0	0	0	-	0
+sarg.alphaanimals	AA_Slurrypede	slurrypede	0	-	mp	2	0	0	0	0	-	0
+sarg.alphaanimals	AA_Erin	erin	1	0.75	m	1	1	0	0	0	-	0
+sarg.alphaanimals	AA_Bobeene	bobeene	0	-	p	2.1	1	0	0	0	-	0
+sarg.alphaanimals	AA_Lockjaw	lockjaw	1	0.95	m	2.5	0	0	0	0	-	0
+sarg.alphaanimals	AA_Mantrap	mantrap	1	1	m	2	1	0	0	0	-	0
+sarg.alphaanimals	AA_CrystalMit	crystalmit	0	-	p	0.5	1	0	0	0	-	0
+sarg.alphaanimals	AA_BloodShrimp	blood shrimp	1	0.8	m	1	1	0	0	0	-	0
+sarg.alphaanimals	AA_RaptorShrimp	raptor shrimp	1	-	m	1.40	1	0	0	0	-	0
+sarg.alphaanimals	AA_TetraSlug	tetra slug	0	-	mp	5.00	0	0	0	0	-	0
+sarg.alphaanimals	AA_DrainerLarva	drainer larva	0	-	p	0.1	1	0	1	0	-	0
+sarg.alphaanimals	AA_Drainer	drainer	0	-	p	0.5	1	0	1	0	-	0
+sarg.alphaanimals	AA_BlackScarab	black scarab	0	-	mp	0.3	1	0	1	0	-	0
+sarg.alphaanimals	AA_BlackSpelopede	black spelopede	0	-	mp	1	1	0	1	0	-	0
+sarg.alphaanimals	AA_BlackSpider	blackspider	0	-	mp	1.5	1	0	1	0	-	0
+sarg.alphaanimals	AA_OcularNightling	ocular nightling	1	2	m	1.2	1	1	0	0	-	0
+sarg.alphaanimals	AA_FlamingoPhoenix	flamingo phoenix	0	-	p	0.6	1	0	0	0	-	0
+sarg.alphaanimals	AA_SandProwler	sand prowler	1	-	m	2	1	0	0	0	-	0
+sarg.alphaanimals	AA_LarvalAtispec	larval atispec	0	-	p	0.1	0	0	1	0	-	0
+sarg.alphaanimals	AA_Atispec	atispec	1	-	m	7.00	1	1	0	0	-	0
+sarg.alphaanimals	AA_DuskRat	dusk rat	0	-	mp	0.15	1	0	0	0	-	0
+sarg.alphaanimals	AA_SandSquid	sand squid	0	-	p	2.00	1	0	0	0	-	0
+sarg.alphaanimals	AA_Blizzarisk	blizzarisk	1	-	m	2.00	1	1	1	0	-	0
+sarg.alphaanimals	AA_BlizzariskClutchMother	blizzarisk clutch mother	1	-	m	3.00	1	1	1	0	-	0
+sarg.alphaanimals	AA_EngorgedTentacularAberration	engorged tentacular aberration	1	4	m	6	0	0	0	0	-	0
+sarg.alphaanimals	AA_DevilSheep	devil sheep	0	-	p	0.5	1	0	0	0	-	0
+sarg.alphaanimals	AA_IronhuskBeetle	ironhusk beetle	0	-	p	2.5	1	0	1	0	-	0
+sarg.alphaanimals	AA_SandLion	sand lion	1	-	m	2	1	0	0	0	-	0
+sarg.alphaanimals	AA_OvergrownColossus	overgrown colossus	0	-	p	6	1	0	0	0	-	0
+sarg.alphaanimals	AA_DarkVandal	dark vandal	0	-	mp	1.2	1	0	0	0	-	0
+sarg.alphaanimals	AA_Skyeel	arcturan sky eel	0	-	p	0.25	0	0	0	0	-	0
+sarg.alphaanimals	AA_DecayDrake	decay drake	1	2	m	1	1	0	0	0	-	0
+sarg.alphaanimals	AA_Wildpod	wildpod	0	-	p	4.0	1	1	0	0	-	0
+sarg.alphaanimals	AA_NightRam	nightram	0	-	p	2.5	1	0	0	0	-	0
+sarg.alphaanimals	AA_Swarmling	swarmling	1	0.2	mp	0.3	1	0	0	0	-	0
+sarg.alphaanimals	AA_MycoidColossus	mycoid colossus	0	-	p	6	1	0	0	0	-	0
+sarg.alphaanimals	AA_MammothWorm	mammoth worm	0	-	mp	3.00	0	0	1	0	-	0
+sarg.alphaanimals	AA_GiantCrownedSilkie	giant crowned silkie	0	-	p	1.1	1	0	0	0	-	0
+sarg.alphaanimals	AA_Wildpawn	wildpawn	0	-	p	1.4	1	1	0	0	-	0
+sarg.alphaanimals	AA_Gigantelope	gigantelope	0	-	p	2	1	0	0	0	-	0
+sarg.alphaanimals	AA_RoyalAve	royal ave	0	-	p	1.1	1	0	0	0	-	0
+sarg.alphaanimals	AA_Genix	genix	1	-	m	2	1	0	0	0	-	0
+sarg.alphaanimals	AA_FireWasp	fire wasp	1	0.5	mp	0.79	1	0	1	0	-	0
+sarg.alphaanimals	AA_AngelMothLarva	angel moth larva	0	-	p	0.1	1	0	1	0	-	0
+sarg.alphaanimals	AA_AngelMoth	angel moth	0	-	p	0.75	1	0	1	0	-	0
+sarg.alphaanimals	AA_BoulderMit	bouldermit	0	-	p	4.00	1	0	0	0	-	0
+sarg.alphaanimals	AA_SummitCrab	summit crab	0	-	p	15	1	0	0	0	-	0
+sarg.alphaanimals	AA_DuskProwler	dusk prowler	1	3	m	1.5	1	0	0	0	-	0
+sarg.alphaanimals	AA_SpinedGow	spined gow	0	-	p	2.75	1	0	0	0	-	0
+sarg.alphaanimals	AA_GreyCoatedMouflon	Grey-Coated Mouflon	0	-	p	0.8	1	0	0	0	-	0
+sarg.alphaanimals	AA_Frostmite	frostmite	0	-	m	0.50	1	0	1	0	-	0
+sarg.alphaanimals	AA_TeratogenicOriginator	teratogenic originator	0	-	p	5.00	0	0	0	0	-	0
+sarg.alphaanimals	AA_AcanthamoebaGiganteaSmall	acanthamoeba gigantea, small	0	-	p	0.2	0	0	0	0	-	0
+sarg.alphaanimals	AA_AcanthamoebaGiganteaLarge	acanthamoeba gigantea, large	0	-	p	0.8	0	0	0	0	-	0
+sarg.alphaanimals	AA_AcanthamoebaGiganteaHuge	acanthamoeba gigantea, huge	0	-	p	1.5	0	0	0	0	-	0
+sarg.alphaanimals	AA_LuciferBug	luciferbug	0	-	mp	0.15	1	0	1	0	-	0
+sarg.alphaanimals	AA_MeadowAve	meadow ave	0	-	p	1.2	1	0	0	0	-	0
+sarg.alphaanimals	AA_Metallovore	metallovore	0	-	p	2	0	0	0	0	-	0
+sarg.alphaanimals	AA_Aerofleet	aerofleet	0	-	p	0.2	1	0	0	0	-	0
+sarg.alphaanimals	AA_ColossalAerofleet	colossal aerofleet	0	-	p	2	1	0	0	0	-	0
+sarg.alphaanimals	AA_Radyak	radyak	0	-	p	2.5	1	0	0	0	-	0
+sarg.alphaanimals	AA_Gallatross	gallatross	0	-	p	6.00	1	0	0	0	-	0
+sarg.alphaanimals	AA_GallatrossMoribund	moribund gallatross	0	-	p	6.00	1	0	0	0	-	0
+sarg.alphaanimals	AA_Agaripawn	agaripawn	0	-	p	1.4	1	1	0	0	-	0
+sarg.alphaanimals	AA_PedigreedRaptor	pedigreed raptor	0	-	mp	0.75	1	0	0	0	-	0
+sarg.alphaanimals	AA_DesertAve	desert ave	0	-	p	1.0	1	0	0	0	-	0
+sarg.alphaanimals	AA_NightMule	nightmule	0	-	p	2.8	1	0	0	0	-	0
+sarg.alphaanimals	AA_AnimaColossus	anima colossus	0	-	p	6	1	0	0	0	-	0
+sarg.alphaanimals	AA_AuroraSylph	Aurora sylph	0	-	p	0.5	1	0	1	0	-	0
+sarg.alphaanimals	AA_FrostAve	frost ave	0	-	p	1.3	1	0	0	0	-	0
+sarg.alphaanimals	AA_Thermadon	thermadon	0	-	mp	1.5	1	0	1	0	-	0
+sarg.alphaanimals	AA_SmallButterfly	small butterflies	0	-	mp	0.01	1	0	0	0	-	0
+sarg.alphaanimals	AA_RipperHound	ripper hound	1	2	m	1.5	1	0	0	0	-	0
+sarg.alphaanimals	AA_CrepuscularBeetle	Crepuscular Beetle	0	-	mp	3	1	0	1	0	-	0
+sarg.alphaanimals	AA_Agaripod	agaripod	0	-	p	4.0	1	1	0	0	-	0
+sarg.alphaanimals	AA_Thunderox	thunderox	0	-	p	2.5	1	0	0	0	-	0
+sarg.alphaanimals	AA_Razorjack	razorjack	1	2	mp	1	1	0	0	0	-	0
+sarg.alphaanimals	AA_BedBug	bedbug	1	0.80	mp	0.5	1	0	1	0	-	0
+sarg.alphaanimals	AA_Mime	mime	0	-	mp	1	1	0	0	0	-	0
+sarg.alphaanimals	AA_Eyeling	eyeling	0	-	mp	0.4	1	1	0	0	-	0
+sarg.alphaanimals	AA_Barbslinger	barbslinger	1	-	mp	2.50	1	1	1	0	-	0
+sarg.alphaanimals	AA_Dunealisk	dunealisk	1	-	mp	2.00	1	1	1	0	-	0
+sarg.alphaanimals	AA_DunealiskClutchMother	dunealisk clutch mother	1	-	mp	3	1	1	1	0	-	0
+sarg.alphaanimals	AA_UnblinkingEye	unblinking eye	1	-	m	7.00	1	0	0	0	-	0
+sarg.alphaanimals	AA_Cinderlisk	cinderlisk	1	-	mp	2.5	1	0	1	0	-	0
+sarg.alphaanimals	AA_RoughPlatedMonitor	rough-plated monitor	1	1.5	m	2	1	0	0	0	-	0
+sarg.alphaanimals	AA_Helixien	helixien	0	-	mp	4.00	0	0	0	0	-	0
+sarg.alphaanimals	AA_Skiphound	skiphound	1	0.9	m	0.79	1	0	0	0	-	0
+sarg.alphaanimals	AA_OcularCactus	ocular cactus	0	-	p	.15	1	1	0	0	-	0
+sarg.alphaanimals	AA_MatureFleshbeast	mature fleshbeast	1	4	m	6	0	0	0	0	-	0
+sarg.alphaanimals	AA_Behemoth	Behemoth	0	-	mp	8	1	0	0	0	-	0
+sarg.alphaanimals	AA_Animalisk	animalisk	0	-	p	1.00	1	1	1	0	-	0
+sarg.alphaanimals	AA_ChemfuelMyrmidon	chemfuel myrmidon	0	-	mp	1.5	1	0	1	0	-	0
+sarg.alphaanimals	AA_FissionMouse	fission mouse	0	-	p	0.5	1	0	0	0	-	0
+sarg.alphaanimals	AA_FissionMouseSecond	fission mouse, second generation	0	-	p	0.5	1	0	0	0	-	0
+sarg.alphaanimals	AA_FissionMouseThird	fission mouse, third generation	0	-	p	0.5	1	0	0	0	-	0
+sarg.alphaanimals	AA_Needlepost	needlepost	0	-	p	0.79	1	1	0	0	-	0
+sarg.alphaanimals	AA_PhoenixOwlcat	phoenix owlcat	1	0.25	m	0.2	1	0	0	0	-	0
+sarg.alphaanimals	AA_AnimusVox	animus vox	1	0.80	m	0.65	1	0	0	0	-	0
+sarg.alphaanimals	AA_ShockGoat	shock goat	0	-	p	0.65	1	0	0	0	-	0
+sarg.alphaanimals	AA_ChameleonYak	chameleon yak	0	-	p	2.5	1	0	0	0	-	0
+sarg.alphaanimals	AA_Frostling	frostling	1	3	m	1.5	1	0	0	0	-	0
+sarg.alphaanimals	AA_ArcticLion	arctic lion	1	-	m	2	1	0	0	0	-	0
+sarg.alphaanimals	AA_Feralisk	feralisk	1	-	mp	1.00	1	1	1	0	-	0
+sarg.alphaanimals	AA_FeraliskClutchMother	feralisk clutch mother	1	-	mp	3	1	1	1	0	-	0
+sarg.alphaanimals	AA_MegaLouse	megalouse	0	-	mp	0.5	0	0	1	0	-	0
+sarg.alphaanimals	AA_Ravager	ravager	1	-	mp	2.5	1	0	1	0	-	0
+sarg.alphaanimals	AA_NightAve	night ave	1	0.6	mp	1.1	1	0	0	0	-	0
+sarg.alphaanimals	AA_GreenGoo	green goo	0	-	p	0.5	0	0	0	0	-	0
+sarg.alphaanimals	AA_FungalHusk	fungal husk	0	-	mp	1	1	0	0	0	-	0
+sarg.alphaanimals	AA_GreatDevourer	great devourer	1	0.75	m	2.5	1	0	1	0	-	0
+sarg.alphaanimals	AA_Murkling	murkling	0	-	p	0.35	1	1	0	0	-	0
+sarg.alphaanimals	AA_EmpressButterflyLarva	Empress butterfly larva	0	-	p	0.1	0	0	1	0	-	0
+sarg.alphaanimals	AA_EmpressButterfly	Empress butterfly	0	-	p	0.75	1	0	1	0	-	0
+sarg.alphaanimals	AA_FrostboundBehemoth	frostbound behemoth	0	-	p	3.00	0	0	1	0	-	0
+sarg.alphaanimals	AA_RedGoo	red goo	0	-	p	0.5	0	0	0	0	-	0
+sarg.alphaanimals	AA_ShadowCharger	shadow charger	0	-	p	2.5	1	0	0	0	-	0
+sarg.alphaanimals	AA_OcularJelly	ocular jelly	0	-	p	0.5	1	0	0	0	-	0
+sarg.alphaanimals	AA_WindBeast	windbeast	0	-	p	1.5	1	0	0	0	-	0
+sarg.alphaanimals	AA_RayHound	ray-hound	0	-	mp	1.5	1	0	0	0	-	0
+sarg.alphaanimals	AA_Nightling	nightling	1	2	m	1.0	1	1	0	0	-	0
+sarg.alphaanimals	AA_RedSpore	red spore	0	-	p	2	0	0	0	0	-	0
+sarg.alphaanimals	AA_InfectedAerofleet	infected aerofleet	0	-	p	0.2	1	0	0	0	-	0
+sarg.alphaanimals	AA_Junglelisk	junglelisk	1	-	mp	1.00	1	1	1	0	-	0
+sarg.alphaanimals	AA_Thunderbeast	thunderbeast	0	-	p	1.5	1	0	0	0	-	0
+sarg.alphaanimals	AA_CrescendoAnole	crescendo anole	0	-	mp	0.3	1	0	0	0	-	0
+sarg.alphaanimals	AA_Groundrunner	groundrunner	0	-	mp	2	1	0	0	0	-	0
+sarg.alphaanimals	AA_PebbleMit	pebblemit	0	-	p	0.5	1	0	0	0	-	0
+sarg.alphaanimals	AA_Cactipine	cactipine	0	-	mp	0.5	1	0	0	0	-	0
+sarg.alphaanimals	AA_Bumbledrone	bumbledrone	0	-	p	0.79	1	1	1	0	-	0
+sarg.alphaanimals	AA_BumbledroneHierophant	bumbledrone hierophant	0	-	p	0.79	1	1	1	0	-	0
+sarg.alphaanimals	AA_BumbledroneQueen	bumbledrone queen	0	-	p	0.79	1	1	1	0	-	0
+sarg.alphaanimals	AA_FrostLynx	frost lynx	1	-	m	2	1	0	0	0	-	0
+sarg.alphaanimals	AA_Plasmorph	plasmorph	1	0.3	mp	1.00	0	0	0	0	-	0
+sarg.alphaanimals	AA_CrystallineCaracal	crystalline caracal	1	0.75	m	0.8	1	0	0	0	-	0
+sarg.alphaanimals	AA_Locusts	locusts	0	-	p	0.01	1	0	0	0	-	0
+sarg.alphaanimals	AA_Darkbeast	darkbeast	0	-	p	1.5	1	0	0	0	-	0
+sarg.alphaanimals	AA_Needleroll	needleroll	0	-	p	.15	1	1	0	0	-	0
+sarg.alphaanimals	AA_Terramorph	terramorph	0	-	p	1.5	1	0	0	0	-	0
+sarg.alphabiomes	AB_UnshackledCompanionDryad	unshackled companion dryad	0	-	mp	2.4	1	0	0	1	-	0
+ReGrowth.BOTR.Core	RG_Hemolope	hemolope	0	-	p	2.0	1	0	0	0	-	0
+ReGrowth.BOTR.Core	RG_WoollyStegosaurus	woolly stegosaurus	0	-	p	4.0	1	0	0	0	-	0
+ReGrowth.BOTR.Core	RG_KiwiBird	kiwi	0	-	p	0.15	1	0	0	0	-	0
+ReGrowth.BOTR.Core	RG_Rabbit	rabbit	0	-	p	0.2	1	0	0	0	-	0
+ReGrowth.BOTR.Core	RG_Neutrolope	neutrolope	0	-	p	2.0	1	0	0	0	-	0
+ReGrowth.BOTR.Core	RG_Rimclaw	rimclaw	1	-	m	1	1	0	0	0	-	0
+ReGrowth.BOTR.Core	RG_Dodo	dodo	0	-	p	0.45	1	0	0	0	-	0
+ReGrowth.BOTR.Core	RG_SabertoothSquirrel	Sabertooth squirrel	0	-	p	0.5	1	0	0	0	-	0
+ReGrowth.BOTR.Core	RG_ArcticDrak	arctic drak	1	1.5	m	2.2	1	0	0	0	-	0
+ReGrowth.BOTR.Core	RG_Thrinaxodon	thrinaxodon	1	0.5	mp	0.42	1	0	0	0	-	0
+ReGrowth.BOTR.Core	RG_Velociraptor	velociraptor	1	2.5	m	0.75	1	0	0	0	-	0
+ReGrowth.BOTR.Core	RG_Synthetion	synthetion	0	-	p	1.0	1	0	0	0	-	0
+VanillaExpanded.VAEEndAndExt	AEXP_Panda	giant panda	0	-	p	2.15	1	0	0	0	-	0
+VanillaExpanded.VAEEndAndExt	AEXP_BlackFootedFerret	black-footed ferret	1	0.50	m	0.5	1	0	0	0	-	0
+VanillaExpanded.VAEEndAndExt	AEXP_BlackRhino	black rhinoceros	0	-	p	2.7	1	0	0	0	-	0
+VanillaExpanded.VAEEndAndExt	AEXP_Bonobo	bonobo	0	-	mp	0.75	1	0	0	0	-	0
+VanillaExpanded.VAEEndAndExt	AEXP_Moa	moa	0	-	p	2	1	0	0	0	-	0
+VanillaExpanded.VAEEndAndExt	AEXP_Quagga	quagga	0	-	p	2.0	1	0	0	0	-	0
+VanillaExpanded.VAEEndAndExt	AEXP_RockhopperPenguin	rockhopper penguin	0	-	m	0.4	1	0	0	0	-	0
+VanillaExpanded.VAEEndAndExt	AEXP_TasmanianDevil	tasmanian devil	1	0.7	m	0.75	1	0	0	0	-	0
+VanillaExpanded.VAEEndAndExt	AEXP_Thylacine	thylacine	0	-	m	0.86	1	0	0	0	-	0
+VanillaExpanded.VAEEndAndExt	AEXP_AfricanWildDog	african wild dog	1	0.99	m	0.85	1	0	0	0	-	0
+VanillaExpanded.VAEEndAndExt	AEXP_Pangolin	giant pangolin	0	-	p	0.50	1	0	0	0	-	0
+Sarg.AlphaMemes	AM_UnshackledDryad	unshackled dryad	0	-	mp	0.667	1	0	0	1	-	0
+Sarg.AlphaMemes	AM_Dryad_Ocular	ocular dryad	0	-	n	0.667	1	0	0	1	-	0
+Sarg.AlphaMemes	AM_Dryad_Spitter	spitter dryad	0	-	n	0.65	1	0	0	1	-	0
+Sarg.AlphaMemes	AM_Dryad_Corruptor	corruptor dryad	0	-	n	0.667	1	0	0	1	-	0
+Sarg.AlphaMemes	AM_Dryad_Unstable	unstable dryad	0	-	n	0.65	1	0	0	1	-	0
+Sarg.AlphaMemes	AM_Dryad_Tumorous	tumorous dryad	0	-	n	0.667	1	0	0	1	-	0
+VanillaExpanded.Ideo.Dryads	VDE_AwakenedDryad_Carrier	awakened carrier dryad	0	-	mp	2.4	1	0	0	1	-	0
+VanillaExpanded.Ideo.Dryads	VDE_AwakenedDryad_Clawer	awakened clawer dryad	0	-	mp	1.4	1	0	0	1	-	0
+VanillaExpanded.Ideo.Dryads	VDE_AwakenedDryad_Barkskin	awakened barkskin dryad	0	-	mp	1.4	1	0	0	1	-	0
+VanillaExpanded.Ideo.Dryads	VDE_AwakenedDryad_Woodmaker	awakened woodmaker dryad	0	-	mp	2.2	1	0	0	1	-	0
+VanillaExpanded.Ideo.Dryads	VDE_AwakenedDryad_Medicinemaker	awakened medicinemaker dryad	0	-	mp	0.98	1	0	0	1	-	0
+VanillaExpanded.Ideo.Dryads	VDE_AwakenedDryad_Berrymaker	awakened berrymaker dryad	0	-	mp	1.1	1	0	0	1	-	0
+VanillaExpanded.Ideo.Dryads	VDE_AwakenedDryad_Stonedigger	awakened stonedigger dryad	0	-	mp	2.2	1	0	0	1	-	0
+VanillaExpanded.Ideo.Dryads	VDE_AwakenedDryad_Nectarmaker	awakened nectarmaker dryad	0	-	mp	1.2	1	0	0	1	-	0
+VanillaExpanded.Ideo.Dryads	VDE_AwakenedDryad_Spitter	awakened spitter dryad	0	-	mp	1.6	1	0	0	1	-	0
+VanillaExpanded.Ideo.Dryads	VDE_AwakenedDryad_Gaubricmaker	awakened gaubricmaker dryad	0	-	mp	1	1	0	0	1	-	0
+VanillaExpanded.Ideo.Dryads	VDE_Dryad_Stonedigger	stonedigger dryad	0	-	n	0.667	1	0	0	1	-	0
+VanillaExpanded.Ideo.Dryads	VDE_Dryad_Spitter	spitter dryad	0	-	n	0.667	1	0	0	1	-	0
+VanillaExpanded.Ideo.Dryads	VDE_Dryad_Gaubricmaker	gaubricmaker dryad	0	-	n	0.667	1	0	0	1	-	0
+VanillaExpanded.Ideo.Dryads	VDE_Dryad_Nectarmaker	nectarmaker dryad	0	-	n	0.667	1	0	0	1	-	0
+VanillaExpanded.VGeneticsE	GR_BearBug	bear bug	1	-	m	2	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Boomalisk	boomalisk	1	-	mp	2	1	1	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Needlechicken	needlechicken	0	-	p	0.25	1	1	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Beetlefleet	beetlefleet	1	-	mp	0.3	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Groundffalo	groundffalo	0	-	p	3	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_MeadowLizard	meadow lizard	1	1.5	mp	1.5	1	1	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_AnimusHare	animus hare	0	-	p	0.35	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Nighthrumbo	nighthrumbo	1	-	m	3	1	1	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_WolfShrimp	wolf shrimp	1	-	m	2	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Elasmobearium	elasmobearium	1	-	mp	4	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Boomnotherium	boomnotherium	0	-	p	5.5	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Chickenlodon	chickenlodon	1	-	m	2	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Mantistanis	mantistanis	1	4	m	3	1	0	1	0	-	0
+VanillaExpanded.VGeneticsE	GR_Paraceramuffalo	paraceramuffalo	0	-	p	16	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Lizardochs	lizardochs	0	-	p	3	1	1	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Doedicoon	doedicoon	0	-	mp	0.3	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Thrumdraeodon	thrumdraeodon	1	6	mp	4.5	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_WoolyWolf	wooly Wolf	1	-	m	1.5	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_EldritchBear	bear young	1	-	m	3.5	1	1	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_EldritchBoomalope	formless boomalope of Tsathoggua	0	-	p	3.5	1	1	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_EldritchChicken	chicken of Mi-go	0	-	p	1.0	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_EldritchInsectoid	armoured chthonian larva	0	-	mp	1.5	1	0	1	0	-	0
+VanillaExpanded.VGeneticsE	GR_EldritchMuffalo	star vampire muffalo	1	-	mp	3	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_EldritchReptile	snake of Yig	1	0.95	m	0.75	1	1	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_EldritchThrumbo	cthrumbo	0	-	p	3.5	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_EldritchWolf	wolf-Sothoth	1	-	m	1.5	1	1	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Cathulhu	cathulhu	1	1.0	m	1.5	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_BeeHybrid_Bearbee	bearbee	1	-	mp	2	1	1	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_BeeHybrid_Boombee	boombee	0	-	p	1.5	1	1	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_BeeHybrid_Catbee	catbee	1	0.5	m	1.5	1	1	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_BeeHybrid_Chickenbee	chickenbee	0	-	p	0.40	1	1	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_BeeHybrid_Spiderbee	spiderbee	1	0.5	mp	1.8	1	1	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_BeeHybrid_Muffalobee	muffalobee	0	-	p	2.1	1	1	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_BeeHybrid_Lizardbee	lizardbee	1	0.5	mp	1.5	1	1	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_BeeHybrid_Mousebee	mousebee	0	-	p	0.15	1	1	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_BeeHybrid_Thrumbee	thrumbee	0	-	p	4	1	1	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_BeeHybrid_Wolfbee	wolfbee	1	1	m	1.75	1	1	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Spinobear	spinobear	1	-	m	8	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Parasaurolope	parasaurolope	0	-	p	4	0	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Chickennathus	chickennathus	1	-	m	0.35	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Diplobeetle	diplobeetle	0	-	p	12	0	0	1	0	-	0
+VanillaExpanded.VGeneticsE	GR_Triceraffalo	triceraffalo	0	-	p	10	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Raptortoise	raptortoise	1	-	m	2	1	1	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Stegothrumbo	stegothrumbo	0	-	p	9	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Velociwolf	velociwolf	1	-	m	0.75	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Wolfbear	wolfbear	1	-	m	1	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Wolfalope	wolfalope	1	2	m	0.85	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Wolfchicken	wolfchicken	0	-	p	0.65	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Wolffalo	wolffalo	0	-	p	1.5	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Wolfbeaver	wolfbeaver	0	-	p	0.85	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Wolfcat	wolfcat	1	1.5	m	1	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Dogman	dogman	1	1	m	0.75	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Fleshling	fleshling	0	-	p	0.2	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_AberrantFleshbeast	aberrant fleshbeast	0	-	p	5	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_FleshMonstrosity	flesh monstrosity	0	-	m	5	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_FleshGrowth	flesh growth	0	-	m	5	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_FleshFlies	flesh flies	0	-	m	1	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Bearhorse	bearhorse	1	2	mp	3.5	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Boomhorse	boomhorse	0	-	p	2	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Chickenhorse	chickenhorse	0	-	p	1	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Cathorse	cathorse	1	0.75	m	2	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Molehorse	molehorse	0	-	p	1	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Wolfhorse	wolfhorse	1	-	m	2.8	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Muffalohorse	muffalohorse	0	-	p	3.4	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Crocorse	crocorse	0	-	p	2.75	1	1	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Spiderhorse	spiderhorse	0	-	mp	2.4	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Hurseman	hurseman	0	-	mp	2.4	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_ParagonBear	ursine paragon	1	-	mp	2.95	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_ParagonBoomalope	boomalope paragon	0	-	p	2.2	0	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_ParagonChicken	avian paragon	0	-	p	0.5	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_ParagonMuffalo	muffalo paragon	0	-	p	2.5	0	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_ParagonWolf	canine paragon	1	-	m	1	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_ParagonRat	rodent paragon	0	-	mp	0.3	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_ParagonIguana	reptile paragon	0	-	mp	0.40	1	1	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_ParagonHorse	equine paragon	0	-	p	3	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_ParagonThrumbo	colossal paragon	0	-	p	4.5	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_ParagonHumanoid	humanoid paragon	0	-	p	2.3	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_ParagonFeline	feline paragon	1	0.9	m	1.8	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_ParagonInsectoid	insectoid paragon	0	-	mp	2.5	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Chickenbear	chickenbear	0	-	p	0.3	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Chickenlope	chickenlope	0	-	p	0.18	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Chickenffalo	chickenffalo	0	-	p	0.2	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Chickenwolf	chickenwolf	0	-	p	0.3	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Chickenrabbit	chickenrabbit	0	-	p	0.15	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Chickencat	chickencat	0	-	p	0.3	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Turkeyman	turkeyman	0	-	mp	0.6	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Molebear	molebear	1	2	mp	1	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Squirralope	squirralope	0	-	p	0.2	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Rabbitchicken	rabbitchicken	0	-	p	0.1	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Ratffalo	ratffalo	0	-	p	1.75	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Beaverwolf	beaverwolf	1	1.2	mp	0.9	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Rabbitcat	rabbitcat	1	-	m	2.5	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Moleman	moleman	0	-	mp	1.5	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Boomabear	boomabear	0	-	p	2.5	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Boomachicken	boomachicken	0	-	p	0.75	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Boomffalo	boomffalo	0	-	p	2.25	0	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Boomwolf	boomwolf	0	-	mp	1.5	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Boomsquirrel	boomsquirrel	0	-	p	1.3	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Boomcat	boomcat	0	-	p	1.5	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Booman	booman	0	-	p	1.25	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Thrumbear	thrumbear	0	-	p	6	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Thrumbalope	thrumbalope	0	-	p	4	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Thrumbochicken	thrumbochicken	1	-	m	3	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Thrumffalo	thrumffalo	0	-	p	8.4	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Thrumwolf	thrumwolf	1	-	m	2.2	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Thrumbocat	thrumbocat	1	-	m	2	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Thrumbospider	thrumbospider	0	-	p	4.5	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Thrumbolizard	thrumbolizard	0	-	p	3.5	1	1	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Thrumborat	thrumborat	0	-	p	1.5	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Thrumhorse	thrumhorse	0	-	p	4.5	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Thrumboman	thrumboman	0	-	p	4	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Muffalobear	muffalobear	0	-	p	2.5	0	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Muffalope	muffalope	0	-	p	2.0	0	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Muffalochicken	muffalochicken	0	-	p	1.8	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Muffalowolf	muffalowolf	0	-	p	2.0	0	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Muffalocat	muffalocat	0	-	p	1.85	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Muffalorat	muffalorat	0	-	p	1	0	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Muffaloman	muffaloman	0	-	p	1.5	0	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Bearalope	bearalope	1	2	mp	1.5	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Bearchicken	bearchicken	0	-	p	0.81	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Bearffalo	bearffalo	0	-	p	1.5	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Bearwolf	bearwolf	0	-	mp	1	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Bearmole	bearmole	1	-	m	0.8	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Bearcat	bearcat	1	2	m	1.75	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Bearman	bearman	1	2	mp	1.25	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Catbear	catbear	1	0.5	m	0.4	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Catalope	catalope	1	0.25	m	0.255	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Catchicken	catchicken	1	0.25	m	0.255	0	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Catffalo	catffalo	0	-	p	0.4	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Catrabbit	catrabbit	1	0.25	m	0.3	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Catwolf	catwolf	1	0.25	m	0.4	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Catman	catman	1	0.25	m	0.255	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Bearodile	bearodile	0	-	mp	3.5	1	1	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Boomsnake	boomsnake	0	-	p	1.5	1	1	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Chickenlizard	chickenlizard	0	-	p	0.3	1	1	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Muffalokomodo	muffalokomodo	0	-	p	3.5	1	1	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Spidersnake	spidersnake	1	0.35	m	0.25	1	1	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Wolfsnake	wolfsnake	1	-	m	1.0	1	1	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Snakecat	snakecat	1	0.35	m	1.5	1	1	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Lizardman	lizardman	1	0.35	m	1.5	1	1	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Manbear	manbear	0	-	mp	0.35	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Manalope	manalope	0	-	p	0.5	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Manchicken	manchicken	0	-	p	2	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Manffalo	manffalo	0	-	p	2.4	0	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Manwolf	manwolf	1	-	m	2	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Mancat	mancat	1	0.35	m	1.5	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Mansquirrel	mansquirrel	0	-	p	0.3	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Bearscarab	bearscarab	0	-	mp	3	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Boombeetle	boombeetle	0	-	mp	1.5	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Chickenspider	chickenspider	0	-	mp	1.1	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Muffalopede	muffalopede	0	-	p	1.5	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Wolfscarab	wolfscarab	0	-	mp	0.85	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Spidercat	spidercat	1	0.85	mp	0.85	1	0	0	0	-	0
+VanillaExpanded.VGeneticsE	GR_Manscarab	manscarab	1	0.5	mp	1	1	0	0	0	-	0
+VanillaExpanded.VAERoy	VAERoy_RoyalTiger	royal tiger	1	2.0	m	1	1	0	0	0	-	0
+VanillaExpanded.VAERoy	VAERoy_Megachicken	megachicken	0	-	p	0.3	1	0	0	0	-	0
+VanillaExpanded.VAERoy	VAERoy_Crane	crane	0	-	p	1.25	1	0	0	0	-	0
+VanillaExpanded.VAERoy	VAERoy_Orangutan	orangutan	0	-	p	1.8	1	0	0	0	-	0
+VanillaExpanded.VAERoy	VAERoy_AngoraRabbit	angora rabbit	0	-	p	0.2	1	0	0	0	-	0
+VanillaExpanded.VAERoy	VAERoy_Pheasant	pheasant	0	-	p	0.3	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_Camel	camel	0	-	p	2.0	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_Rattlesnake	rattlesnake	1	0.45	m	0.25	1	1	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_Megascorpion	megascorpion	0	-	mp	0.2	1	1	1	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_Hyena	hyena	1	0.7	m	0.76	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_DesertTortoise	desert tortoise	0	-	mp	0.6	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_Lion	lion	1	3.0	m	1.65	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_GilaMonster	gila monster	0	-	mp	0.50	1	1	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_Coyote	coyote	1	0.9	m	0.76	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_Giraffe	giraffe	0	-	p	4	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_Zebra	zebra	0	-	p	2.0	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_Wildebeest	wildebeest	0	-	p	2.2	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_Crocodile	crocodile	1	2.0	m	1.6	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_Cheetah	cheetah	1	1.0	m	1.0	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_ArcticCoyote	arctic coyote	1	0.9	m	0.76	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_BlackBear	black bear	1	3	mp	1.9	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_Anaconda	anaconda	1	4	m	3.0	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_IndianElephant	indian elephant	0	-	p	3.3	0	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_Jaguar	jaguar	1	1.0	m	1.0	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_Lemur	lemur	0	-	mp	0.25	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_Mandrill	mandrill	0	-	mp	0.8	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_Tapir	tapir	0	-	mp	0.85	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_Boombat	boombat	0	-	p	0.4	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_Kangaroo	kangaroo	0	-	p	1.8	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_Koala	koala	0	-	p	0.25	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_Platypus	platypus	0	-	mp	0.25	1	1	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_RedPanda	red panda	0	-	p	0.275	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_WildGoose	wild goose	0	-	p	0.30	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_Beaver	beaver	0	-	p	0.3	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_Hedgehog	hedgehog	0	-	p	0.2	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_MegaWolverine	megawolverine	1	-	m	3.8	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_Beagle	beagle	0	-	mp	0.3	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_Chihuahua	chihuahua	0	-	mp	0.15	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_Corgi	corgi	0	-	mp	0.4	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_FrenchBulldog	french bulldog	0	-	mp	0.4	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_GermanShepherd	german shepherd	1	2.3	mp	1.0	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_GreatDane	great dane	0	-	mp	1.45	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_Poodle	poodle	0	-	mp	0.75	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_Pug	pug	0	-	mp	0.3	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_Rottweiler	rottweiler	0	-	mp	0.75	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_Shih-Tzu	shih-tzu	0	-	mp	0.32	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_WelshTerrier	welsh terrier	0	-	mp	0.86	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_CatAbyssinian	abyssinian cat	1	0.25	m	0.32	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_CatBengal	bengal cat	1	0.25	m	0.32	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_CatBritishShorthair	british shorthair cat	1	0.25	m	0.32	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_CatMaineCoon	maine coon	1	1.25	m	1	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_CatMunchkin	munchkin cat	1	0.25	m	0.32	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_CatNorwegianForest	norwegian forest cat	1	0.25	m	0.66	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_CatPersian	persian cat	1	0.25	m	0.32	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_CatSiamese	siamese cat	1	0.25	m	0.32	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_CatSomali	somali cat	1	0.25	m	0.32	1	0	0	0	-	0
+VanillaExpanded.VanillaAnimalsExpanded	AEXP_CatSphynx	sphynx cat	1	0.25	m	0.32	1	0	0	0	-	0
+sarg.alphagenes	AG_OcularSlinger	ocular slinger	1	-	mp	2.50	1	1	1	0	-	0
+vanillaracesexpanded.phytokin	VRE_CompanionDryad	companion dryad	0	-	mp	2.4	1	0	0	1	-	0
+VanillaExpanded.VAEWaste	VAEWaste_Toxiguana	toxiguana	0	-	mp	1.4	1	0	0	0	-	0
+VanillaExpanded.VAEWaste	VAEWaste_Wastedeer	wastedeer	0	-	p	1.2	1	0	0	0	-	0
+VanillaExpanded.VAEWaste	VAEWaste_Toxscorpion	toxscorpion	1	-	mp	2.50	1	1	1	0	-	0
+VanillaExpanded.VAEWaste	VAEWaste_Hydra	hydra	1	0.35	m	0.35	1	1	0	0	-	0
+VanillaExpanded.VAEWaste	VAEWaste_Toxbear	toxbear	1	3	mp	4	1	0	0	0	-	0
+VanillaExpanded.VAEWaste	VAEWaste_Megatardi	megatardi	0	-	p	2	1	0	1	0	-	0
+VanillaExpanded.VAEWaste	VAEWaste_Toxafox	toxafox	1	0.80	m	0.55	1	0	0	0	-	0
+VanillaExpanded.VAEWaste	VAEWaste_Wasteffalo	wasteffalo	0	-	p	2.4	1	0	0	0	-	0
+VanillaExpanded.VAEWaste	VAEWaste_Toxlion	toxlion	1	2.0	m	1.65	1	0	0	0	-	0
+VanillaExpanded.VAEWaste	VAEWaste_Wasteboar	wasteboar	0	-	mp	1.3	1	0	0	0	-	0
+VanillaExpanded.VAEWaste	VAEWaste_Pestigator	pestigator	1	3.0	m	3	1	0	0	0	-	0
+ReGrowth.BOTR.BoilingForest	RG_Owlbeast	owlbeast	1	3	mp	2.15	1	0	0	0	-	0
+Arquebus.StagzMerfolk	Stagz_Dryad_Squid	inkshooter dryad	0	-	n	0.667	1	0	0	1	-	0
+DevDesigner.Elves.Continued	DevDesigner_AncientDeer	ancient deer	0	-	p	2.7	1	0	0	0	-	0
+DevDesigner.Elves.Continued	DevDesigner_ColdOne	Cold One	1	3	m	3	1	1	0	0	-	0
+OskarPotocki.VFE.Insectoid2	VFEI2_Megawasp	megawasp	0	-	mp	1.35	1	0	1	0	-	0
+OskarPotocki.VFE.Insectoid2	VFEI2_Patriarch	patriarch	0	-	mp	4	1	0	1	0	-	0
+OskarPotocki.VFE.Insectoid2	VFEI2_Swarmling	swarmlings	0	-	mp	0.2	1	0	1	0	-	0
+OskarPotocki.VFE.Insectoid2	VFEI2_RoyalMegascarab	royal megascarab	0	-	mp	0.8	1	0	1	0	-	0
+OskarPotocki.VFE.Insectoid2	VFEI2_Teramantis	teramantis	0	-	mp	3.8	1	0	1	0	-	0
+OskarPotocki.VFE.Insectoid2	VFEI2_Acidspitter	acidspitter	0	-	mp	1.8	1	1	1	0	-	0
+OskarPotocki.VFE.Insectoid2	VFEI2_Queen	insectoid queen	0	-	mp	4	1	0	1	0	-	0
+OskarPotocki.VFE.Insectoid2	VFEI2_Megathrips	megathrips	0	-	mp	0.35	1	0	1	0	-	0
+OskarPotocki.VFE.Insectoid2	VFEI2_Megapede	megapede	0	-	mp	1.8	1	1	1	0	-	0
+OskarPotocki.VFE.Insectoid2	VFEI2_Macrofly	macrofly	0	-	mp	0.8	1	0	1	0	-	0
+OskarPotocki.VFE.Insectoid2	VFEI2_Venomite	venomite	0	-	mp	1.2	1	0	1	0	-	0
+OskarPotocki.VFE.Insectoid2	VFEI2_Silverfish	silverfish	0	-	mp	5	1	0	1	0	-	0
+OskarPotocki.VFE.Insectoid2	VFEI2_RoyalMegaspider	royal megaspider	0	-	mp	1.8	1	1	1	0	-	0
+OskarPotocki.VFE.Insectoid2	VFEI2_Gigamite	gigamite	0	-	mp	4	1	0	1	0	-	0
+OskarPotocki.VFE.Insectoid2	VFEI2_Tankroach	tankroach	0	-	mp	1.8	1	1	1	0	-	0
+OskarPotocki.VFE.Insectoid2	VFEI2_Titantick	titantick	0	-	mp	4	1	0	1	0	-	0
+OskarPotocki.VFE.Insectoid2	VFEI2_Hellbeetle	hellbeetle	0	-	mp	1.2	1	0	1	0	-	0
+OskarPotocki.VFE.Insectoid2	VFEI2_Ironclad	ironclad	0	-	mp	3	1	0	1	0	-	0
+OskarPotocki.VFE.Insectoid2	VFEI2_Boomtick	boomtick	0	-	mp	0.18	1	0	1	0	-	0
+OskarPotocki.VFE.Insectoid2	VFEI2_Fuelmite	fuelmite	0	-	mp	1.35	1	0	1	0	-	0
+OskarPotocki.VFE.Insectoid2	VFEI2_Gigalocust	gigalocust	0	-	mp	2.2	1	0	1	0	-	0
+OskarPotocki.VFE.Insectoid2	VFEI2_RoyalSpelopede	royal spelopede	0	-	mp	1.2	1	0	1	0	-	0
+OskarPotocki.VFE.Insectoid2	VFEI2_Durapod	durapod	0	-	mp	0.8	1	0	1	0	-	0
+OskarPotocki.VFE.Insectoid2	VFEI2_Empress	empress	0	-	mp	4	1	0	1	0	-	0
+VE.VanillaChristmasExpanded	VCE_Megareindeer	megareindeer	0	-	p	4.0	1	0	0	0	-	0
+vanillaquestsexpanded.cryptoforge	VQE_IceCrawler	ice crawler	0	-	mp	0.8	1	0	1	0	-	0
+vanillaquestsexpanded.cryptoforge	VQE_Megamidge	megamidge	0	-	mp	1.2	0	0	1	0	-	0
+pphhyy.SanguinaryAnimals	pphhyy_SanguineDeer	Sanguine Deer	1	2	m	1.2	1	0	0	0	-	0
+pphhyy.SanguinaryAnimals	pphhyy_BloodScarab	BloodScarab	0	-	m	0.2	1	0	1	0	-	0
+pphhyy.SanguinaryAnimals	pphhyy_Vargulf	Vargulf	1	5	m	2.4	1	0	0	0	-	0
+pphhyy.DemigryphsMod	pphhyy_Demigryph	Demigryph	1	5	m	2.4	1	0	0	0	-	0
+pphhyy.DemigryphsMod	pphhyy_CrimsonDemigryph	Crimson Demigryph	1	5	m	2.4	1	0	0	0	-	0
+pphhyy.DemigryphsMod	pphhyy_CheetahDemigryph	Cheetah Demigryph	1	5	m	2.1	1	0	0	0	-	0
+pphhyy.DemigryphsMod	pphhyy_VultureDemigryph	Vulture Demigryph	1	5	m	2.1	1	0	0	0	-	0
+pphhyy.DemigryphsMod	pphhyy_LeopardDemigryph	Leopard Demigryph	1	5	m	2.4	1	0	0	0	-	0
+pphhyy.DemigryphsMod	pphhyy_PantherDemigryph	Panther Demigryph	1	5	m	2.4	1	0	0	0	-	0
+pphhyy.DemigryphsMod	pphhyy_TigerDemigryph	Tiger Demigryph	1	5	m	2.6	1	0	0	0	-	0
+pphhyy.DemigryphsMod	pphhyy_Daermigryph	Daermigryph	1	5	m	2.6	1	0	0	0	-	0
+pphhyy.DemigryphsMod	pphhyy_JadeDemigryph	Jade Demigryph	1	5	m	2.4	1	0	0	0	-	0
+themoonitself.PokeWorld	PW_Bulbasaur	Bulbasaur	0	-	mp	0.44	0	0	0	0	Grass,Poison	0
+themoonitself.PokeWorld	PW_Ivysaur	Ivysaur	0	-	mp	0.62	0	0	0	0	Grass,Poison	0
+themoonitself.PokeWorld	PW_Venusaur	Venusaur	0	-	mp	1.25	0	0	0	0	Grass,Poison	0
+themoonitself.PokeWorld	PW_Charmander	Charmander	0	-	mp	0.37	0	0	0	0	Fire	0
+themoonitself.PokeWorld	PW_Charmeleon	Charmeleon	0	-	mp	0.69	0	0	0	0	Fire	0
+themoonitself.PokeWorld	PW_Charizard	Charizard	0	-	mp	1.06	0	0	0	0	Fire,Flying	0
+themoonitself.PokeWorld	PW_Squirtle	Squirtle	0	-	mp	0.31	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Wartortle	Wartortle	0	-	mp	0.62	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Blastoise	Blastoise	0	-	mp	1.00	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Caterpie	Caterpie	0	-	mp	0.19	0	0	0	0	Bug	0
+themoonitself.PokeWorld	PW_Metapod	Metapod	0	-	mp	0.44	0	0	0	0	Bug	0
+themoonitself.PokeWorld	PW_Butterfree	Butterfree	0	-	mp	0.69	0	0	0	0	Bug,Flying	0
+themoonitself.PokeWorld	PW_Weedle	Weedle	0	-	mp	0.19	0	0	0	0	Bug,Poison	0
+themoonitself.PokeWorld	PW_Kakuna	Kakuna	0	-	mp	0.37	0	0	0	0	Bug,Poison	0
+themoonitself.PokeWorld	PW_Beedrill	Beedrill	0	-	mp	0.62	0	0	0	0	Bug,Poison	0
+themoonitself.PokeWorld	PW_Pidgey	Pidgey	0	-	mp	0.19	0	0	0	0	Normal,Flying	0
+themoonitself.PokeWorld	PW_Pidgeotto	Pidgeotto	0	-	mp	0.69	0	0	0	0	Normal,Flying	0
+themoonitself.PokeWorld	PW_Pidgeot	Pidgeot	0	-	mp	0.94	0	0	0	0	Normal,Flying	0
+themoonitself.PokeWorld	PW_Rattata	Rattata	0	-	mp	0.19	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Raticate	Raticate	0	-	mp	0.44	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Spearow	Spearow	0	-	mp	0.19	0	0	0	0	Normal,Flying	0
+themoonitself.PokeWorld	PW_Fearow	Fearow	0	-	mp	0.75	0	0	0	0	Normal,Flying	0
+themoonitself.PokeWorld	PW_Ekans	Ekans	0	-	mp	0.62	0	0	0	0	Poison	0
+themoonitself.PokeWorld	PW_Arbok	Arbok	0	-	mp	1.12	0	0	0	0	Poison	0
+themoonitself.PokeWorld	PW_Pikachu	Pikachu	0	-	mp	0.25	0	0	0	0	Electric	0
+themoonitself.PokeWorld	PW_Raichu	Raichu	0	-	mp	0.50	0	0	0	0	Electric	0
+themoonitself.PokeWorld	PW_Sandshrew	Sandshrew	0	-	mp	0.37	0	0	0	0	Ground	0
+themoonitself.PokeWorld	PW_Sandslash	Sandslash	0	-	mp	0.62	0	0	0	0	Ground	0
+themoonitself.PokeWorld	PW_NidoranF	Nidoran♀	0	-	mp	0.25	0	0	0	0	Poison	0
+themoonitself.PokeWorld	PW_Nidorina	Nidorina	0	-	mp	0.50	0	0	0	0	Poison	0
+themoonitself.PokeWorld	PW_Nidoqueen	Nidoqueen	0	-	mp	0.81	0	0	0	0	Poison,Ground	0
+themoonitself.PokeWorld	PW_NidoranM	Nidoran♂	0	-	mp	0.31	0	0	0	0	Poison	0
+themoonitself.PokeWorld	PW_Nidorino	Nidorino	0	-	mp	0.56	0	0	0	0	Poison	0
+themoonitself.PokeWorld	PW_Nidoking	Nidoking	0	-	mp	0.87	0	0	0	0	Poison,Ground	0
+themoonitself.PokeWorld	PW_Clefairy	Clefairy	0	-	mp	0.37	0	0	0	0	Fairy	0
+themoonitself.PokeWorld	PW_Clefable	Clefable	0	-	mp	0.81	0	0	0	0	Fairy	0
+themoonitself.PokeWorld	PW_Vulpix	Vulpix	0	-	mp	0.37	0	0	0	0	Fire	0
+themoonitself.PokeWorld	PW_Ninetales	Ninetales	0	-	mp	0.69	0	0	0	0	Fire	0
+themoonitself.PokeWorld	PW_Jigglypuff	Jigglypuff	0	-	mp	0.31	0	0	0	0	Normal,Fairy	0
+themoonitself.PokeWorld	PW_Wigglytuff	Wigglytuff	0	-	mp	0.62	0	0	0	0	Normal,Fairy	0
+themoonitself.PokeWorld	PW_Zubat	Zubat	0	-	mp	0.50	0	0	0	0	Poison,Flying	0
+themoonitself.PokeWorld	PW_Golbat	Golbat	0	-	mp	1.00	0	0	0	0	Poison,Flying	0
+themoonitself.PokeWorld	PW_Oddish	Oddish	0	-	mp	0.31	0	0	0	0	Grass,Poison	0
+themoonitself.PokeWorld	PW_Gloom	Gloom	0	-	mp	0.50	0	0	0	0	Grass,Poison	0
+themoonitself.PokeWorld	PW_Vileplume	Vileplume	0	-	mp	0.75	0	0	0	0	Grass,Poison	0
+themoonitself.PokeWorld	PW_Paras	Paras	0	-	mp	0.19	0	0	0	0	Bug,Grass	0
+themoonitself.PokeWorld	PW_Parasect	Parasect	0	-	mp	0.62	0	0	0	0	Bug,Grass	0
+themoonitself.PokeWorld	PW_Venonat	Venonat	0	-	mp	0.62	0	0	0	0	Bug,Poison	0
+themoonitself.PokeWorld	PW_Venomoth	Venomoth	0	-	mp	0.94	0	0	0	0	Bug,Poison	0
+themoonitself.PokeWorld	PW_Diglett	Diglett	0	-	mp	0.12	0	0	0	0	Ground	0
+themoonitself.PokeWorld	PW_Dugtrio	Dugtrio	0	-	mp	0.44	0	0	0	0	Ground	0
+themoonitself.PokeWorld	PW_Meowth	Meowth	0	-	mp	0.25	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Persian	Persian	0	-	mp	0.62	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Psyduck	Psyduck	0	-	mp	0.50	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Golduck	Golduck	0	-	mp	1.06	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Mankey	Mankey	0	-	mp	0.31	0	0	0	0	Fighting	0
+themoonitself.PokeWorld	PW_Primeape	Primeape	0	-	mp	0.62	0	0	0	0	Fighting	0
+themoonitself.PokeWorld	PW_Growlithe	Growlithe	0	-	mp	0.44	0	0	0	0	Fire	0
+themoonitself.PokeWorld	PW_Arcanine	Arcanine	0	-	mp	1.19	0	0	0	0	Fire	0
+themoonitself.PokeWorld	PW_Poliwag	Poliwag	0	-	mp	0.37	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Poliwhirl	Poliwhirl	0	-	mp	0.62	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Poliwrath	Poliwrath	0	-	mp	0.81	0	0	0	0	Water,Fighting	0
+themoonitself.PokeWorld	PW_Abra	Abra	0	-	mp	0.56	0	0	0	0	Psychic	0
+themoonitself.PokeWorld	PW_Kadabra	Kadabra	0	-	mp	0.81	0	0	0	0	Psychic	0
+themoonitself.PokeWorld	PW_Alakazam	Alakazam	0	-	mp	0.94	0	0	0	0	Psychic	0
+themoonitself.PokeWorld	PW_Machop	Machop	0	-	mp	0.50	0	0	0	0	Fighting	0
+themoonitself.PokeWorld	PW_Machoke	Machoke	0	-	mp	0.94	0	0	0	0	Fighting	0
+themoonitself.PokeWorld	PW_Machamp	Machamp	0	-	mp	1.00	0	0	0	0	Fighting	0
+themoonitself.PokeWorld	PW_Bellsprout	Bellsprout	0	-	mp	0.44	0	0	0	0	Grass,Poison	0
+themoonitself.PokeWorld	PW_Weepinbell	Weepinbell	0	-	mp	0.62	0	0	0	0	Grass,Poison	0
+themoonitself.PokeWorld	PW_Victreebel	Victreebel	0	-	mp	1.06	0	0	0	0	Grass,Poison	0
+themoonitself.PokeWorld	PW_Tentacool	Tentacool	0	-	mp	0.56	0	0	0	0	Water,Poison	0
+themoonitself.PokeWorld	PW_Tentacruel	Tentacruel	0	-	mp	1.00	0	0	0	0	Water,Poison	0
+themoonitself.PokeWorld	PW_Geodude	Geodude	0	-	mp	0.25	0	0	0	0	Rock,Ground	0
+themoonitself.PokeWorld	PW_Graveler	Graveler	0	-	mp	0.62	0	0	0	0	Rock,Ground	0
+themoonitself.PokeWorld	PW_Golem	Golem	0	-	mp	0.87	0	0	0	0	Rock,Ground	0
+themoonitself.PokeWorld	PW_Ponyta	Ponyta	0	-	mp	0.62	0	0	0	0	Fire	0
+themoonitself.PokeWorld	PW_Rapidash	Rapidash	0	-	mp	1.06	0	0	0	0	Fire	0
+themoonitself.PokeWorld	PW_Slowpoke	Slowpoke	0	-	mp	0.75	0	0	0	0	Water,Psychic	0
+themoonitself.PokeWorld	PW_Slowbro	Slowbro	0	-	mp	1.00	0	0	0	0	Water,Psychic	0
+themoonitself.PokeWorld	PW_Magnemite	Magnemite	0	-	mp	0.19	0	0	0	0	Electric,Steel	0
+themoonitself.PokeWorld	PW_Magneton	Magneton	0	-	mp	0.62	0	0	0	0	Electric,Steel	0
+themoonitself.PokeWorld	PW_Farfetchd	Farfetch'd	0	-	mp	0.50	0	0	0	0	Normal,Flying	0
+themoonitself.PokeWorld	PW_Doduo	Doduo	0	-	mp	0.87	0	0	0	0	Normal,Flying	0
+themoonitself.PokeWorld	PW_Dodrio	Dodrio	0	-	mp	1.12	0	0	0	0	Normal,Flying	0
+themoonitself.PokeWorld	PW_Seel	Seel	0	-	mp	0.69	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Dewgong	Dewgong	0	-	mp	1.06	0	0	0	0	Water,Ice	0
+themoonitself.PokeWorld	PW_Grimer	Grimer	0	-	mp	0.56	0	0	0	0	Poison	0
+themoonitself.PokeWorld	PW_Muk	Muk	0	-	mp	0.75	0	0	0	0	Poison	0
+themoonitself.PokeWorld	PW_Shellder	Shellder	0	-	mp	0.19	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Cloyster	Cloyster	0	-	mp	0.94	0	0	0	0	Water,Ice	0
+themoonitself.PokeWorld	PW_Gastly	Gastly	0	-	mp	0.81	0	0	0	0	Ghost,Poison	0
+themoonitself.PokeWorld	PW_Haunter	Haunter	0	-	mp	1.00	0	0	0	0	Ghost,Poison	0
+themoonitself.PokeWorld	PW_Gengar	Gengar	0	-	mp	0.94	0	0	0	0	Ghost,Poison	0
+themoonitself.PokeWorld	PW_Onix	Onix	0	-	mp	5.50	0	0	0	0	Rock,Ground	0
+themoonitself.PokeWorld	PW_Drowzee	Drowzee	0	-	mp	0.62	0	0	0	0	Psychic	0
+themoonitself.PokeWorld	PW_Hypno	Hypno	0	-	mp	1.00	0	0	0	0	Psychic	0
+themoonitself.PokeWorld	PW_Krabby	Krabby	0	-	mp	0.25	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Kingler	Kingler	0	-	mp	0.81	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Voltorb	Voltorb	0	-	mp	0.31	0	0	0	0	Electric	0
+themoonitself.PokeWorld	PW_Electrode	Electrode	0	-	mp	0.75	0	0	0	0	Electric	0
+themoonitself.PokeWorld	PW_Exeggcute	Exeggcute	0	-	mp	0.25	0	0	0	0	Grass,Psychic	0
+themoonitself.PokeWorld	PW_Exeggutor	Exeggutor	0	-	mp	1.25	0	0	0	0	Grass,Psychic	0
+themoonitself.PokeWorld	PW_Cubone	Cubone	0	-	mp	0.25	0	0	0	0	Ground	0
+themoonitself.PokeWorld	PW_Marowak	Marowak	0	-	mp	0.62	0	0	0	0	Ground	0
+themoonitself.PokeWorld	PW_Hitmonlee	Hitmonlee	0	-	mp	0.94	0	0	0	0	Fighting	0
+themoonitself.PokeWorld	PW_Hitmonchan	Hitmonchan	0	-	mp	0.87	0	0	0	0	Fighting	0
+themoonitself.PokeWorld	PW_Lickitung	Lickitung	0	-	mp	0.75	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Koffing	Koffing	0	-	mp	0.37	0	0	0	0	Poison	0
+themoonitself.PokeWorld	PW_Weezing	Weezing	0	-	mp	0.75	0	0	0	0	Poison	0
+themoonitself.PokeWorld	PW_Rhyhorn	Rhyhorn	0	-	mp	0.62	0	0	0	0	Ground,Rock	0
+themoonitself.PokeWorld	PW_Rhydon	Rhydon	0	-	mp	1.19	0	0	0	0	Ground,Rock	0
+themoonitself.PokeWorld	PW_Chansey	Chansey	0	-	mp	0.69	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Tangela	Tangela	0	-	mp	0.62	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Kangaskhan	Kangaskhan	0	-	mp	1.38	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Horsea	Horsea	0	-	mp	0.25	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Seadra	Seadra	0	-	mp	0.75	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Goldeen	Goldeen	0	-	mp	0.37	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Seaking	Seaking	0	-	mp	0.81	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Staryu	Staryu	0	-	mp	0.50	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Starmie	Starmie	0	-	mp	0.69	0	0	0	0	Water,Psychic	0
+themoonitself.PokeWorld	PW_MrMime	Mr. Mime	0	-	mp	0.81	0	0	0	0	Psychic,Fairy	0
+themoonitself.PokeWorld	PW_Scyther	Scyther	0	-	mp	0.94	0	0	0	0	Bug,Flying	0
+themoonitself.PokeWorld	PW_Jynx	Jynx	0	-	mp	0.87	0	0	0	0	Ice,Psychic	0
+themoonitself.PokeWorld	PW_Electabuzz	Electabuzz	0	-	mp	0.69	0	0	0	0	Electric	0
+themoonitself.PokeWorld	PW_Magmar	Magmar	0	-	mp	0.81	0	0	0	0	Fire	0
+themoonitself.PokeWorld	PW_Pinsir	Pinsir	0	-	mp	0.94	0	0	0	0	Bug	0
+themoonitself.PokeWorld	PW_Tauros	Tauros	0	-	mp	0.87	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Magikarp	Magikarp	0	-	mp	0.56	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Gyarados	Gyarados	0	-	mp	4.06	0	0	0	0	Water,Flying	0
+themoonitself.PokeWorld	PW_Lapras	Lapras	0	-	mp	1.56	0	0	0	0	Water,Ice	0
+themoonitself.PokeWorld	PW_Ditto	Ditto	0	-	mp	0.19	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Eevee	Eevee	0	-	mp	0.19	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Vaporeon	Vaporeon	0	-	mp	0.62	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Jolteon	Jolteon	0	-	mp	0.50	0	0	0	0	Electric	0
+themoonitself.PokeWorld	PW_Flareon	Flareon	0	-	mp	0.56	0	0	0	0	Fire	0
+themoonitself.PokeWorld	PW_Porygon	Porygon	0	-	mp	0.50	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Omanyte	Omanyte	0	-	mp	0.25	0	0	0	0	Rock,Water	0
+themoonitself.PokeWorld	PW_Omastar	Omastar	0	-	mp	0.62	0	0	0	0	Rock,Water	0
+themoonitself.PokeWorld	PW_Kabuto	Kabuto	0	-	mp	0.31	0	0	0	0	Rock,Water	0
+themoonitself.PokeWorld	PW_Kabutops	Kabutops	0	-	mp	0.81	0	0	0	0	Rock,Water	0
+themoonitself.PokeWorld	PW_Aerodactyl	Aerodactyl	0	-	mp	1.12	0	0	0	0	Rock,Flying	0
+themoonitself.PokeWorld	PW_Snorlax	Snorlax	0	-	mp	1.31	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Articuno	Articuno	0	-	mp	1.06	0	0	0	0	Ice,Flying	1
+themoonitself.PokeWorld	PW_Zapdos	Zapdos	0	-	mp	1.00	0	0	0	0	Electric,Flying	1
+themoonitself.PokeWorld	PW_Moltres	Moltres	0	-	mp	1.25	0	0	0	0	Fire,Flying	1
+themoonitself.PokeWorld	PW_Dratini	Dratini	0	-	mp	0.62	0	0	0	0	Dragon	0
+themoonitself.PokeWorld	PW_Dragonair	Dragonair	0	-	mp	1.19	0	0	0	0	Dragon	0
+themoonitself.PokeWorld	PW_Dragonite	Dragonite	0	-	mp	1.38	0	0	0	0	Dragon,Flying	0
+themoonitself.PokeWorld	PW_Mewtwo	Mewtwo	0	-	mp	1.25	0	0	0	0	Psychic	1
+themoonitself.PokeWorld	PW_Mew	Mew	0	-	mp	0.25	0	0	0	0	Psychic	1
+themoonitself.PokeWorld	PW_Turtwig	Turtwig	0	-	mp	0.25	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Grotle	Grotle	0	-	mp	0.69	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Torterra	Torterra	0	-	mp	1.38	0	0	0	0	Grass,Ground	0
+themoonitself.PokeWorld	PW_Chimchar	Chimchar	0	-	mp	0.31	0	0	0	0	Fire	0
+themoonitself.PokeWorld	PW_Monferno	Monferno	0	-	mp	0.56	0	0	0	0	Fire,Fighting	0
+themoonitself.PokeWorld	PW_Infernape	Infernape	0	-	mp	0.75	0	0	0	0	Fire,Fighting	0
+themoonitself.PokeWorld	PW_Piplup	Piplup	0	-	mp	0.25	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Prinplup	Prinplup	0	-	mp	0.50	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Empoleon	Empoleon	0	-	mp	1.06	0	0	0	0	Water,Steel	0
+themoonitself.PokeWorld	PW_Starly	Starly	0	-	mp	0.19	0	0	0	0	Normal,Flying	0
+themoonitself.PokeWorld	PW_Staravia	Staravia	0	-	mp	0.37	0	0	0	0	Normal,Flying	0
+themoonitself.PokeWorld	PW_Staraptor	Staraptor	0	-	mp	0.75	0	0	0	0	Normal,Flying	0
+themoonitself.PokeWorld	PW_Bidoof	Bidoof	0	-	mp	0.31	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Bibarel	Bibarel	0	-	mp	0.62	0	0	0	0	Normal,Water	0
+themoonitself.PokeWorld	PW_Kricketot	Kricketot	0	-	mp	0.19	0	0	0	0	Bug	0
+themoonitself.PokeWorld	PW_Kricketune	Kricketune	0	-	mp	0.62	0	0	0	0	Bug	0
+themoonitself.PokeWorld	PW_Shinx	Shinx	0	-	mp	0.31	0	0	0	0	Electric	0
+themoonitself.PokeWorld	PW_Luxio	Luxio	0	-	mp	0.56	0	0	0	0	Electric	0
+themoonitself.PokeWorld	PW_Luxray	Luxray	0	-	mp	0.87	0	0	0	0	Electric	0
+themoonitself.PokeWorld	PW_Budew	Budew	0	-	mp	0.12	0	0	0	0	Grass,Poison	0
+themoonitself.PokeWorld	PW_Roserade	Roserade	0	-	mp	0.56	0	0	0	0	Grass,Poison	0
+themoonitself.PokeWorld	PW_Cranidos	Cranidos	0	-	mp	0.56	0	0	0	0	Rock	0
+themoonitself.PokeWorld	PW_Rampardos	Rampardos	0	-	mp	1.00	0	0	0	0	Rock	0
+themoonitself.PokeWorld	PW_Shieldon	Shieldon	0	-	mp	0.31	0	0	0	0	Rock,Steel	0
+themoonitself.PokeWorld	PW_Bastiodon	Bastiodon	0	-	mp	0.81	0	0	0	0	Rock,Steel	0
+themoonitself.PokeWorld	PW_Burmy	Burmy	0	-	mp	0.12	0	0	0	0	Bug	0
+themoonitself.PokeWorld	PW_Wormadam	Wormadam	0	-	mp	0.31	0	0	0	0	Bug,Grass	0
+themoonitself.PokeWorld	PW_Mothim	Mothim	0	-	mp	0.56	0	0	0	0	Bug,Flying	0
+themoonitself.PokeWorld	PW_Combee	Combee	0	-	mp	0.19	0	0	0	0	Bug,Flying	0
+themoonitself.PokeWorld	PW_Vespiquen	Vespiquen	0	-	mp	0.75	0	0	0	0	Bug,Flying	0
+themoonitself.PokeWorld	PW_Pachirisu	Pachirisu	0	-	mp	0.25	0	0	0	0	Electric	0
+themoonitself.PokeWorld	PW_Buizel	Buizel	0	-	mp	0.44	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Floatzel	Floatzel	0	-	mp	0.69	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Cherubi	Cherubi	0	-	mp	0.25	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Cherrim	Cherrim	0	-	mp	0.31	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Shellos	Shellos	0	-	mp	0.19	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Gastrodon	Gastrodon	0	-	mp	0.56	0	0	0	0	Water,Ground	0
+themoonitself.PokeWorld	PW_Ambipom	Ambipom	0	-	mp	0.75	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Drifloon	Drifloon	0	-	mp	0.25	0	0	0	0	Ghost,Flying	0
+themoonitself.PokeWorld	PW_Drifblim	Drifblim	0	-	mp	0.75	0	0	0	0	Ghost,Flying	0
+themoonitself.PokeWorld	PW_Buneary	Buneary	0	-	mp	0.25	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Lopunny	Lopunny	0	-	mp	0.75	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Mismagius	Mismagius	0	-	mp	0.56	0	0	0	0	Ghost	0
+themoonitself.PokeWorld	PW_Honchkrow	Honchkrow	0	-	mp	0.56	0	0	0	0	Dark,Flying	0
+themoonitself.PokeWorld	PW_Glameow	Glameow	0	-	mp	0.31	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Purugly	Purugly	0	-	mp	0.62	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Chingling	Chingling	0	-	mp	0.12	0	0	0	0	Psychic	0
+themoonitself.PokeWorld	PW_Stunky	Stunky	0	-	mp	0.25	0	0	0	0	Poison,Dark	0
+themoonitself.PokeWorld	PW_Skuntank	Skuntank	0	-	mp	0.62	0	0	0	0	Poison,Dark	0
+themoonitself.PokeWorld	PW_Bronzor	Bronzor	0	-	mp	0.31	0	0	0	0	Steel,Psychic	0
+themoonitself.PokeWorld	PW_Bronzong	Bronzong	0	-	mp	0.81	0	0	0	0	Steel,Psychic	0
+themoonitself.PokeWorld	PW_Bonsly	Bonsly	0	-	mp	0.31	0	0	0	0	Rock	0
+themoonitself.PokeWorld	PW_MimeJr	Mime Jr.	0	-	mp	0.37	0	0	0	0	Psychic,Fairy	0
+themoonitself.PokeWorld	PW_Happiny	Happiny	0	-	mp	0.37	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Chatot	Chatot	0	-	mp	0.31	0	0	0	0	Normal,Flying	0
+themoonitself.PokeWorld	PW_Spiritomb	Spiritomb	0	-	mp	0.62	0	0	0	0	Ghost,Dark	0
+themoonitself.PokeWorld	PW_Gible	Gible	0	-	mp	0.44	0	0	0	0	Dragon,Ground	0
+themoonitself.PokeWorld	PW_Gabite	Gabite	0	-	mp	0.87	0	0	0	0	Dragon,Ground	0
+themoonitself.PokeWorld	PW_Garchomp	Garchomp	0	-	mp	1.19	0	0	0	0	Dragon,Ground	0
+themoonitself.PokeWorld	PW_Munchlax	Munchlax	0	-	mp	0.37	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Riolu	Riolu	0	-	mp	0.44	0	0	0	0	Fighting	0
+themoonitself.PokeWorld	PW_Lucario	Lucario	0	-	mp	0.75	0	0	0	0	Fighting,Steel	0
+themoonitself.PokeWorld	PW_Hippopotas	Hippopotas	0	-	mp	0.50	0	0	0	0	Ground	0
+themoonitself.PokeWorld	PW_Hippowdon	Hippowdon	0	-	mp	1.25	0	0	0	0	Ground	0
+themoonitself.PokeWorld	PW_Skorupi	Skorupi	0	-	mp	0.50	0	0	0	0	Poison,Bug	0
+themoonitself.PokeWorld	PW_Drapion	Drapion	0	-	mp	0.81	0	0	0	0	Poison,Dark	0
+themoonitself.PokeWorld	PW_Croagunk	Croagunk	0	-	mp	0.44	0	0	0	0	Poison,Fighting	0
+themoonitself.PokeWorld	PW_Toxicroak	Toxicroak	0	-	mp	0.81	0	0	0	0	Poison,Fighting	0
+themoonitself.PokeWorld	PW_Carnivine	Carnivine	0	-	mp	0.87	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Finneon	Finneon	0	-	mp	0.25	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Lumineon	Lumineon	0	-	mp	0.75	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Mantyke	Mantyke	0	-	mp	0.62	0	0	0	0	Water,Flying	0
+themoonitself.PokeWorld	PW_Snover	Snover	0	-	mp	0.62	0	0	0	0	Grass,Ice	0
+themoonitself.PokeWorld	PW_Abomasnow	Abomasnow	0	-	mp	1.38	0	0	0	0	Grass,Ice	0
+themoonitself.PokeWorld	PW_Weavile	Weavile	0	-	mp	0.69	0	0	0	0	Dark,Ice	0
+themoonitself.PokeWorld	PW_Magnezone	Magnezone	0	-	mp	0.75	0	0	0	0	Electric,Steel	0
+themoonitself.PokeWorld	PW_Lickilicky	Lickilicky	0	-	mp	1.06	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Rhyperior	Rhyperior	0	-	mp	1.50	0	0	0	0	Ground,Rock	0
+themoonitself.PokeWorld	PW_Tangrowth	Tangrowth	0	-	mp	1.25	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Electivire	Electivire	0	-	mp	1.12	0	0	0	0	Electric	0
+themoonitself.PokeWorld	PW_Magmortar	Magmortar	0	-	mp	1.00	0	0	0	0	Fire	0
+themoonitself.PokeWorld	PW_Togekiss	Togekiss	0	-	mp	0.94	0	0	0	0	Fairy,Flying	0
+themoonitself.PokeWorld	PW_Yanmega	Yanmega	0	-	mp	1.19	0	0	0	0	Bug,Flying	0
+themoonitself.PokeWorld	PW_Leafeon	Leafeon	0	-	mp	0.62	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Glaceon	Glaceon	0	-	mp	0.50	0	0	0	0	Ice	0
+themoonitself.PokeWorld	PW_Gliscor	Gliscor	0	-	mp	1.25	0	0	0	0	Ground,Flying	0
+themoonitself.PokeWorld	PW_Mamoswine	Mamoswine	0	-	mp	1.56	0	0	0	0	Ice,Ground	0
+themoonitself.PokeWorld	PW_PorygonZ	Porygon-Z	0	-	mp	0.56	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Gallade	Gallade	0	-	mp	1.00	0	0	0	0	Psychic,Fighting	0
+themoonitself.PokeWorld	PW_Probopass	Probopass	0	-	mp	0.87	0	0	0	0	Rock,Steel	0
+themoonitself.PokeWorld	PW_Dusknoir	Dusknoir	0	-	mp	1.38	0	0	0	0	Ghost	0
+themoonitself.PokeWorld	PW_Froslass	Froslass	0	-	mp	0.81	0	0	0	0	Ice,Ghost	0
+themoonitself.PokeWorld	PW_Rotom	Rotom	0	-	mp	0.19	0	0	0	0	Electric,Ghost	0
+themoonitself.PokeWorld	PW_Uxie	Uxie	0	-	mp	0.19	0	0	0	0	Psychic	1
+themoonitself.PokeWorld	PW_Mesprit	Mesprit	0	-	mp	0.19	0	0	0	0	Psychic	1
+themoonitself.PokeWorld	PW_Azelf	Azelf	0	-	mp	0.19	0	0	0	0	Psychic	1
+themoonitself.PokeWorld	PW_Dialga	Dialga	0	-	mp	3.38	0	0	0	0	Steel,Dragon	1
+themoonitself.PokeWorld	PW_Palkia	Palkia	0	-	mp	2.62	0	0	0	0	Water,Dragon	1
+themoonitself.PokeWorld	PW_Heatran	Heatran	0	-	mp	1.06	0	0	0	0	Fire,Steel	1
+themoonitself.PokeWorld	PW_Regigigas	Regigigas	0	-	mp	2.31	0	0	0	0	Normal	1
+themoonitself.PokeWorld	PW_Giratina	Giratina	0	-	mp	2.81	0	0	0	0	Ghost,Dragon	1
+themoonitself.PokeWorld	PW_Cresselia	Cresselia	0	-	mp	0.94	0	0	0	0	Psychic	1
+themoonitself.PokeWorld	PW_Phione	Phione	0	-	mp	0.25	0	0	0	0	Water	1
+themoonitself.PokeWorld	PW_Manaphy	Manaphy	0	-	mp	0.19	0	0	0	0	Water	1
+themoonitself.PokeWorld	PW_Darkrai	Darkrai	0	-	mp	0.94	0	0	0	0	Dark	1
+themoonitself.PokeWorld	PW_Shaymin	Shaymin	0	-	mp	0.12	0	0	0	0	Grass	1
+themoonitself.PokeWorld	PW_Arceus	Arceus	0	-	mp	2.00	0	0	0	0	Normal	1
+themoonitself.PokeWorld	PW_Rowlet	Rowlet	0	-	mp	0.19	0	0	0	0	Grass,Flying	0
+themoonitself.PokeWorld	PW_Dartrix	Dartrix	0	-	mp	0.44	0	0	0	0	Grass,Flying	0
+themoonitself.PokeWorld	PW_Decidueye	Decidueye	0	-	mp	1.00	0	0	0	0	Grass,Ghost	0
+themoonitself.PokeWorld	PW_Litten	Litten	0	-	mp	0.25	0	0	0	0	Fire	0
+themoonitself.PokeWorld	PW_Torracat	Torracat	0	-	mp	0.44	0	0	0	0	Fire	0
+themoonitself.PokeWorld	PW_Incineroar	Incineroar	0	-	mp	1.12	0	0	0	0	Fire,Dark	0
+themoonitself.PokeWorld	PW_Popplio	Popplio	0	-	mp	0.25	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Brionne	Brionne	0	-	mp	0.37	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Primarina	Primarina	0	-	mp	1.12	0	0	0	0	Water,Fairy	0
+themoonitself.PokeWorld	PW_Pikipek	Pikipek	0	-	mp	0.19	0	0	0	0	Normal,Flying	0
+themoonitself.PokeWorld	PW_Trumbeak	Trumbeak	0	-	mp	0.37	0	0	0	0	Normal,Flying	0
+themoonitself.PokeWorld	PW_Toucannon	Toucannon	0	-	mp	0.69	0	0	0	0	Normal,Flying	0
+themoonitself.PokeWorld	PW_Yungoos	Yungoos	0	-	mp	0.25	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Gumshoos	Gumshoos	0	-	mp	0.44	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Grubbin	Grubbin	0	-	mp	0.25	0	0	0	0	Bug	0
+themoonitself.PokeWorld	PW_Charjabug	Charjabug	0	-	mp	0.31	0	0	0	0	Bug,Electric	0
+themoonitself.PokeWorld	PW_Vikavolt	Vikavolt	0	-	mp	0.94	0	0	0	0	Bug,Electric	0
+themoonitself.PokeWorld	PW_Crabrawler	Crabrawler	0	-	mp	0.37	0	0	0	0	Fighting	0
+themoonitself.PokeWorld	PW_Crabominable	Crabominable	0	-	mp	1.06	0	0	0	0	Fighting,Ice	0
+themoonitself.PokeWorld	PW_Oricorio	Oricorio	0	-	mp	0.37	0	0	0	0	Fire,Flying	0
+themoonitself.PokeWorld	PW_Cutiefly	Cutiefly	0	-	mp	0.06	0	0	0	0	Bug,Fairy	0
+themoonitself.PokeWorld	PW_Ribombee	Ribombee	0	-	mp	0.12	0	0	0	0	Bug,Fairy	0
+themoonitself.PokeWorld	PW_Rockruff	Rockruff	0	-	mp	0.31	0	0	0	0	Rock	0
+themoonitself.PokeWorld	PW_Lycanroc	Lycanroc	0	-	mp	0.50	0	0	0	0	Rock	0
+themoonitself.PokeWorld	PW_Wishiwashi	Wishiwashi	0	-	mp	0.12	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Mareanie	Mareanie	0	-	mp	0.25	0	0	0	0	Poison,Water	0
+themoonitself.PokeWorld	PW_Toxapex	Toxapex	0	-	mp	0.44	0	0	0	0	Poison,Water	0
+themoonitself.PokeWorld	PW_Mudbray	Mudbray	0	-	mp	0.62	0	0	0	0	Ground	0
+themoonitself.PokeWorld	PW_Mudsdale	Mudsdale	0	-	mp	1.56	0	0	0	0	Ground	0
+themoonitself.PokeWorld	PW_Dewpider	Dewpider	0	-	mp	0.19	0	0	0	0	Water,Bug	0
+themoonitself.PokeWorld	PW_Araquanid	Araquanid	0	-	mp	1.12	0	0	0	0	Water,Bug	0
+themoonitself.PokeWorld	PW_Fomantis	Fomantis	0	-	mp	0.19	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Lurantis	Lurantis	0	-	mp	0.56	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Morelull	Morelull	0	-	mp	0.12	0	0	0	0	Grass,Fairy	0
+themoonitself.PokeWorld	PW_Shiinotic	Shiinotic	0	-	mp	0.62	0	0	0	0	Grass,Fairy	0
+themoonitself.PokeWorld	PW_Salandit	Salandit	0	-	mp	0.37	0	0	0	0	Poison,Fire	0
+themoonitself.PokeWorld	PW_Salazzle	Salazzle	0	-	mp	0.75	0	0	0	0	Poison,Fire	0
+themoonitself.PokeWorld	PW_Stufful	Stufful	0	-	mp	0.31	0	0	0	0	Normal,Fighting	0
+themoonitself.PokeWorld	PW_Bewear	Bewear	0	-	mp	1.31	0	0	0	0	Normal,Fighting	0
+themoonitself.PokeWorld	PW_Bounsweet	Bounsweet	0	-	mp	0.19	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Steenee	Steenee	0	-	mp	0.44	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Tsareena	Tsareena	0	-	mp	0.75	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Comfey	Comfey	0	-	mp	0.06	0	0	0	0	Fairy	0
+themoonitself.PokeWorld	PW_Oranguru	Oranguru	0	-	mp	0.94	0	0	0	0	Normal,Psychic	0
+themoonitself.PokeWorld	PW_Passimian	Passimian	0	-	mp	1.25	0	0	0	0	Fighting	0
+themoonitself.PokeWorld	PW_Wimpod	Wimpod	0	-	mp	0.31	0	0	0	0	Bug,Water	0
+themoonitself.PokeWorld	PW_Golisopod	Golisopod	0	-	mp	1.25	0	0	0	0	Bug,Water	0
+themoonitself.PokeWorld	PW_Sandygast	Sandygast	0	-	mp	0.31	0	0	0	0	Ghost,Ground	0
+themoonitself.PokeWorld	PW_Palossand	Palossand	0	-	mp	0.81	0	0	0	0	Ghost,Ground	0
+themoonitself.PokeWorld	PW_Pyukumuku	Pyukumuku	0	-	mp	0.19	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_TypeNull	Type: Null	0	-	mp	1.19	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Silvally	Silvally	0	-	mp	1.44	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Minior	Minior	0	-	mp	0.19	0	0	0	0	Rock,Flying	0
+themoonitself.PokeWorld	PW_Komala	Komala	0	-	mp	0.25	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Turtonator	Turtonator	0	-	mp	1.25	0	0	0	0	Fire,Dragon	0
+themoonitself.PokeWorld	PW_Togedemaru	Togedemaru	0	-	mp	0.19	0	0	0	0	Electric,Steel	0
+themoonitself.PokeWorld	PW_Mimikyu	Mimikyu	0	-	mp	0.12	0	0	0	0	Ghost,Fairy	0
+themoonitself.PokeWorld	PW_Bruxish	Bruxish	0	-	mp	0.56	0	0	0	0	Water,Psychic	0
+themoonitself.PokeWorld	PW_Drampa	Drampa	0	-	mp	1.88	0	0	0	0	Normal,Dragon	0
+themoonitself.PokeWorld	PW_Dhelmise	Dhelmise	0	-	mp	2.44	0	0	0	0	Ghost,Grass	0
+themoonitself.PokeWorld	PW_JangmoO	Jangmo-o	0	-	mp	0.37	0	0	0	0	Dragon	0
+themoonitself.PokeWorld	PW_HakamoO	Hakamo-o	0	-	mp	0.75	0	0	0	0	Dragon,Fighting	0
+themoonitself.PokeWorld	PW_KommoO	Kommo-o	0	-	mp	1.00	0	0	0	0	Dragon,Fighting	0
+themoonitself.PokeWorld	PW_TapuKoko	Tapu Koko	0	-	mp	1.12	0	0	0	0	Electric,Fairy	1
+themoonitself.PokeWorld	PW_TapuLele	Tapu Lele	0	-	mp	0.75	0	0	0	0	Psychic,Fairy	1
+themoonitself.PokeWorld	PW_TapuBulu	Tapu Bulu	0	-	mp	1.19	0	0	0	0	Grass,Fairy	1
+themoonitself.PokeWorld	PW_TapuFini	Tapu Fini	0	-	mp	0.81	0	0	0	0	Water,Fairy	1
+themoonitself.PokeWorld	PW_Cosmog	Cosmog	0	-	mp	0.12	0	0	0	0	Psychic	1
+themoonitself.PokeWorld	PW_Cosmoem	Cosmoem	0	-	mp	0.06	0	0	0	0	Psychic	1
+themoonitself.PokeWorld	PW_Solgaleo	Solgaleo	0	-	mp	2.12	0	0	0	0	Psychic,Steel	1
+themoonitself.PokeWorld	PW_Lunala	Lunala	0	-	mp	2.50	0	0	0	0	Psychic,Ghost	1
+themoonitself.PokeWorld	PW_Nihilego	Nihilego	0	-	mp	0.75	0	0	0	0	Rock,Poison	1
+themoonitself.PokeWorld	PW_Buzzwole	Buzzwole	0	-	mp	1.50	0	0	0	0	Bug,Fighting	1
+themoonitself.PokeWorld	PW_Pheromosa	Pheromosa	0	-	mp	1.12	0	0	0	0	Bug,Fighting	1
+themoonitself.PokeWorld	PW_Xurkitree	Xurkitree	0	-	mp	2.37	0	0	0	0	Electric	1
+themoonitself.PokeWorld	PW_Celesteela	Celesteela	0	-	mp	5.75	0	0	0	0	Steel,Flying	1
+themoonitself.PokeWorld	PW_Kartana	Kartana	0	-	mp	0.19	0	0	0	0	Grass,Steel	1
+themoonitself.PokeWorld	PW_Guzzlord	Guzzlord	0	-	mp	3.44	0	0	0	0	Dark,Dragon	1
+themoonitself.PokeWorld	PW_Necrozma	Necrozma	0	-	mp	1.50	0	0	0	0	Psychic	1
+themoonitself.PokeWorld	PW_Magearna	Magearna	0	-	mp	0.62	0	0	0	0	Steel,Fairy	1
+themoonitself.PokeWorld	PW_Marshadow	Marshadow	0	-	mp	0.44	0	0	0	0	Fighting,Ghost	1
+themoonitself.PokeWorld	PW_Poipole	Poipole	0	-	mp	0.37	0	0	0	0	Poison	1
+themoonitself.PokeWorld	PW_Naganadel	Naganadel	0	-	mp	2.25	0	0	0	0	Poison,Dragon	1
+themoonitself.PokeWorld	PW_Stakataka	Stakataka	0	-	mp	3.44	0	0	0	0	Rock,Steel	1
+themoonitself.PokeWorld	PW_Blacephalon	Blacephalon	0	-	mp	1.12	0	0	0	0	Fire,Ghost	1
+themoonitself.PokeWorld	PW_Zeraora	Zeraora	0	-	mp	0.94	0	0	0	0	Electric	1
+themoonitself.PokeWorld	PW_Meltan	Meltan	0	-	mp	0.12	0	0	0	0	Steel	1
+themoonitself.PokeWorld	PW_Melmetal	Melmetal	0	-	mp	1.56	0	0	0	0	Steel	1
+themoonitself.PokeWorld	PW_Treecko	Treecko	0	-	mp	0.31	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Grovyle	Grovyle	0	-	mp	0.56	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Sceptile	Sceptile	0	-	mp	1.06	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Torchic	Torchic	0	-	mp	0.25	0	0	0	0	Fire	0
+themoonitself.PokeWorld	PW_Combusken	Combusken	0	-	mp	0.56	0	0	0	0	Fire,Fighting	0
+themoonitself.PokeWorld	PW_Blaziken	Blaziken	0	-	mp	1.19	0	0	0	0	Fire,Fighting	0
+themoonitself.PokeWorld	PW_Mudkip	Mudkip	0	-	mp	0.25	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Marshtomp	Marshtomp	0	-	mp	0.44	0	0	0	0	Water,Ground	0
+themoonitself.PokeWorld	PW_Swampert	Swampert	0	-	mp	0.94	0	0	0	0	Water,Ground	0
+themoonitself.PokeWorld	PW_Poochyena	Poochyena	0	-	mp	0.31	0	0	0	0	Dark	0
+themoonitself.PokeWorld	PW_Mightyena	Mightyena	0	-	mp	0.62	0	0	0	0	Dark	0
+themoonitself.PokeWorld	PW_Zigzagoon	Zigzagoon	0	-	mp	0.25	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Linoone	Linoone	0	-	mp	0.31	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Wurmple	Wurmple	0	-	mp	0.19	0	0	0	0	Bug	0
+themoonitself.PokeWorld	PW_Silcoon	Silcoon	0	-	mp	0.37	0	0	0	0	Bug	0
+themoonitself.PokeWorld	PW_Beautifly	Beautifly	0	-	mp	0.62	0	0	0	0	Bug,Flying	0
+themoonitself.PokeWorld	PW_Cascoon	Cascoon	0	-	mp	0.44	0	0	0	0	Bug	0
+themoonitself.PokeWorld	PW_Dustox	Dustox	0	-	mp	0.75	0	0	0	0	Bug,Poison	0
+themoonitself.PokeWorld	PW_Lotad	Lotad	0	-	mp	0.31	0	0	0	0	Water,Grass	0
+themoonitself.PokeWorld	PW_Lombre	Lombre	0	-	mp	0.75	0	0	0	0	Water,Grass	0
+themoonitself.PokeWorld	PW_Ludicolo	Ludicolo	0	-	mp	0.94	0	0	0	0	Water,Grass	0
+themoonitself.PokeWorld	PW_Seedot	Seedot	0	-	mp	0.31	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Nuzleaf	Nuzleaf	0	-	mp	0.62	0	0	0	0	Grass,Dark	0
+themoonitself.PokeWorld	PW_Shiftry	Shiftry	0	-	mp	0.81	0	0	0	0	Grass,Dark	0
+themoonitself.PokeWorld	PW_Taillow	Taillow	0	-	mp	0.19	0	0	0	0	Normal,Flying	0
+themoonitself.PokeWorld	PW_Swellow	Swellow	0	-	mp	0.44	0	0	0	0	Normal,Flying	0
+themoonitself.PokeWorld	PW_Wingull	Wingull	0	-	mp	0.37	0	0	0	0	Water,Flying	0
+themoonitself.PokeWorld	PW_Pelipper	Pelipper	0	-	mp	0.75	0	0	0	0	Water,Flying	0
+themoonitself.PokeWorld	PW_Ralts	Ralts	0	-	mp	0.25	0	0	0	0	Psychic,Fairy	0
+themoonitself.PokeWorld	PW_Kirlia	Kirlia	0	-	mp	0.50	0	0	0	0	Psychic,Fairy	0
+themoonitself.PokeWorld	PW_Gardevoir	Gardevoir	0	-	mp	1.00	0	0	0	0	Psychic,Fairy	0
+themoonitself.PokeWorld	PW_Surskit	Surskit	0	-	mp	0.31	0	0	0	0	Bug,Water	0
+themoonitself.PokeWorld	PW_Masquerain	Masquerain	0	-	mp	0.50	0	0	0	0	Bug,Flying	0
+themoonitself.PokeWorld	PW_Shroomish	Shroomish	0	-	mp	0.25	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Breloom	Breloom	0	-	mp	0.75	0	0	0	0	Grass,Fighting	0
+themoonitself.PokeWorld	PW_Slakoth	Slakoth	0	-	mp	0.50	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Vigoroth	Vigoroth	0	-	mp	0.87	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Slaking	Slaking	0	-	mp	1.25	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Nincada	Nincada	0	-	mp	0.31	0	0	0	0	Bug,Ground	0
+themoonitself.PokeWorld	PW_Ninjask	Ninjask	0	-	mp	0.50	0	0	0	0	Bug,Flying	0
+themoonitself.PokeWorld	PW_Shedinja	Shedinja	0	-	mp	0.50	0	0	0	0	Bug,Ghost	0
+themoonitself.PokeWorld	PW_Whismur	Whismur	0	-	mp	0.37	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Loudred	Loudred	0	-	mp	0.62	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Exploud	Exploud	0	-	mp	0.94	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Makuhita	Makuhita	0	-	mp	0.62	0	0	0	0	Fighting	0
+themoonitself.PokeWorld	PW_Hariyama	Hariyama	0	-	mp	1.44	0	0	0	0	Fighting	0
+themoonitself.PokeWorld	PW_Azurill	Azurill	0	-	mp	0.12	0	0	0	0	Normal,Fairy	0
+themoonitself.PokeWorld	PW_Nosepass	Nosepass	0	-	mp	0.62	0	0	0	0	Rock	0
+themoonitself.PokeWorld	PW_Skitty	Skitty	0	-	mp	0.37	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Delcatty	Delcatty	0	-	mp	0.69	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Sableye	Sableye	0	-	mp	0.31	0	0	0	0	Dark,Ghost	0
+themoonitself.PokeWorld	PW_Mawile	Mawile	0	-	mp	0.37	0	0	0	0	Steel,Fairy	0
+themoonitself.PokeWorld	PW_Aron	Aron	0	-	mp	0.25	0	0	0	0	Steel,Rock	0
+themoonitself.PokeWorld	PW_Lairon	Lairon	0	-	mp	0.56	0	0	0	0	Steel,Rock	0
+themoonitself.PokeWorld	PW_Aggron	Aggron	0	-	mp	1.31	0	0	0	0	Steel,Rock	0
+themoonitself.PokeWorld	PW_Meditite	Meditite	0	-	mp	0.37	0	0	0	0	Fighting,Psychic	0
+themoonitself.PokeWorld	PW_Medicham	Medicham	0	-	mp	0.81	0	0	0	0	Fighting,Psychic	0
+themoonitself.PokeWorld	PW_Electrike	Electrike	0	-	mp	0.37	0	0	0	0	Electric	0
+themoonitself.PokeWorld	PW_Manectric	Manectric	0	-	mp	0.94	0	0	0	0	Electric	0
+themoonitself.PokeWorld	PW_Plusle	Plusle	0	-	mp	0.25	0	0	0	0	Electric	0
+themoonitself.PokeWorld	PW_Minun	Minun	0	-	mp	0.25	0	0	0	0	Electric	0
+themoonitself.PokeWorld	PW_Volbeat	Volbeat	0	-	mp	0.44	0	0	0	0	Bug	0
+themoonitself.PokeWorld	PW_Illumise	Illumise	0	-	mp	0.37	0	0	0	0	Bug	0
+themoonitself.PokeWorld	PW_Roselia	Roselia	0	-	mp	0.19	0	0	0	0	Grass,Poison	0
+themoonitself.PokeWorld	PW_Gulpin	Gulpin	0	-	mp	0.25	0	0	0	0	Poison	0
+themoonitself.PokeWorld	PW_Swalot	Swalot	0	-	mp	1.06	0	0	0	0	Poison	0
+themoonitself.PokeWorld	PW_Carvanha	Carvanha	0	-	mp	0.50	0	0	0	0	Water,Dark	0
+themoonitself.PokeWorld	PW_Sharpedo	Sharpedo	0	-	mp	1.12	0	0	0	0	Water,Dark	0
+themoonitself.PokeWorld	PW_Wailmer	Wailmer	0	-	mp	1.25	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Wailord	Wailord	0	-	mp	9.06	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Numel	Numel	0	-	mp	0.44	0	0	0	0	Fire,Ground	0
+themoonitself.PokeWorld	PW_Camerupt	Camerupt	0	-	mp	1.19	0	0	0	0	Fire,Ground	0
+themoonitself.PokeWorld	PW_Torkoal	Torkoal	0	-	mp	0.31	0	0	0	0	Fire	0
+themoonitself.PokeWorld	PW_Spoink	Spoink	0	-	mp	0.44	0	0	0	0	Psychic	0
+themoonitself.PokeWorld	PW_Grumpig	Grumpig	0	-	mp	0.56	0	0	0	0	Psychic	0
+themoonitself.PokeWorld	PW_Spinda	Spinda	0	-	mp	0.69	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Trapinch	Trapinch	0	-	mp	0.44	0	0	0	0	Ground	0
+themoonitself.PokeWorld	PW_Vibrava	Vibrava	0	-	mp	0.69	0	0	0	0	Ground,Dragon	0
+themoonitself.PokeWorld	PW_Flygon	Flygon	0	-	mp	1.25	0	0	0	0	Ground,Dragon	0
+themoonitself.PokeWorld	PW_Cacnea	Cacnea	0	-	mp	0.25	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Cacturne	Cacturne	0	-	mp	0.81	0	0	0	0	Grass,Dark	0
+themoonitself.PokeWorld	PW_Swablu	Swablu	0	-	mp	0.25	0	0	0	0	Normal,Flying	0
+themoonitself.PokeWorld	PW_Altaria	Altaria	0	-	mp	0.69	0	0	0	0	Dragon,Flying	0
+themoonitself.PokeWorld	PW_Zangoose	Zangoose	0	-	mp	0.81	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Seviper	Seviper	0	-	mp	0.81	0	0	0	0	Poison	0
+themoonitself.PokeWorld	PW_Lunatone	Lunatone	0	-	mp	0.62	0	0	0	0	Rock,Psychic	0
+themoonitself.PokeWorld	PW_Solrock	Solrock	0	-	mp	0.75	0	0	0	0	Rock,Psychic	0
+themoonitself.PokeWorld	PW_Barboach	Barboach	0	-	mp	0.25	0	0	0	0	Water,Ground	0
+themoonitself.PokeWorld	PW_Whiscash	Whiscash	0	-	mp	0.56	0	0	0	0	Water,Ground	0
+themoonitself.PokeWorld	PW_Corphish	Corphish	0	-	mp	0.37	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Crawdaunt	Crawdaunt	0	-	mp	0.69	0	0	0	0	Water,Dark	0
+themoonitself.PokeWorld	PW_Baltoy	Baltoy	0	-	mp	0.31	0	0	0	0	Ground,Psychic	0
+themoonitself.PokeWorld	PW_Claydol	Claydol	0	-	mp	0.94	0	0	0	0	Ground,Psychic	0
+themoonitself.PokeWorld	PW_Lileep	Lileep	0	-	mp	0.62	0	0	0	0	Rock,Grass	0
+themoonitself.PokeWorld	PW_Cradily	Cradily	0	-	mp	0.94	0	0	0	0	Rock,Grass	0
+themoonitself.PokeWorld	PW_Anorith	Anorith	0	-	mp	0.44	0	0	0	0	Rock,Bug	0
+themoonitself.PokeWorld	PW_Armaldo	Armaldo	0	-	mp	0.94	0	0	0	0	Rock,Bug	0
+themoonitself.PokeWorld	PW_Feebas	Feebas	0	-	mp	0.37	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Milotic	Milotic	0	-	mp	3.88	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Castform	Castform	0	-	mp	0.19	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Kecleon	Kecleon	0	-	mp	0.62	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Shuppet	Shuppet	0	-	mp	0.37	0	0	0	0	Ghost	0
+themoonitself.PokeWorld	PW_Banette	Banette	0	-	mp	0.69	0	0	0	0	Ghost	0
+themoonitself.PokeWorld	PW_Duskull	Duskull	0	-	mp	0.50	0	0	0	0	Ghost	0
+themoonitself.PokeWorld	PW_Dusclops	Dusclops	0	-	mp	1.00	0	0	0	0	Ghost	0
+themoonitself.PokeWorld	PW_Tropius	Tropius	0	-	mp	1.25	0	0	0	0	Grass,Flying	0
+themoonitself.PokeWorld	PW_Chimecho	Chimecho	0	-	mp	0.37	0	0	0	0	Psychic	0
+themoonitself.PokeWorld	PW_Absol	Absol	0	-	mp	0.75	0	0	0	0	Dark	0
+themoonitself.PokeWorld	PW_Wynaut	Wynaut	0	-	mp	0.37	0	0	0	0	Psychic	0
+themoonitself.PokeWorld	PW_Snorunt	Snorunt	0	-	mp	0.44	0	0	0	0	Ice	0
+themoonitself.PokeWorld	PW_Glalie	Glalie	0	-	mp	0.94	0	0	0	0	Ice	0
+themoonitself.PokeWorld	PW_Spheal	Spheal	0	-	mp	0.50	0	0	0	0	Ice,Water	0
+themoonitself.PokeWorld	PW_Sealeo	Sealeo	0	-	mp	0.69	0	0	0	0	Ice,Water	0
+themoonitself.PokeWorld	PW_Walrein	Walrein	0	-	mp	0.87	0	0	0	0	Ice,Water	0
+themoonitself.PokeWorld	PW_Clamperl	Clamperl	0	-	mp	0.25	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Huntail	Huntail	0	-	mp	1.06	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Gorebyss	Gorebyss	0	-	mp	1.12	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Relicanth	Relicanth	0	-	mp	0.62	0	0	0	0	Water,Rock	0
+themoonitself.PokeWorld	PW_Luvdisc	Luvdisc	0	-	mp	0.37	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Bagon	Bagon	0	-	mp	0.37	0	0	0	0	Dragon	0
+themoonitself.PokeWorld	PW_Shelgon	Shelgon	0	-	mp	0.69	0	0	0	0	Dragon	0
+themoonitself.PokeWorld	PW_Salamence	Salamence	0	-	mp	0.94	0	0	0	0	Dragon,Flying	0
+themoonitself.PokeWorld	PW_Beldum	Beldum	0	-	mp	0.37	0	0	0	0	Steel,Psychic	0
+themoonitself.PokeWorld	PW_Metang	Metang	0	-	mp	0.75	0	0	0	0	Steel,Psychic	0
+themoonitself.PokeWorld	PW_Metagross	Metagross	0	-	mp	1.00	0	0	0	0	Steel,Psychic	0
+themoonitself.PokeWorld	PW_Regirock	Regirock	0	-	mp	1.06	0	0	0	0	Rock	1
+themoonitself.PokeWorld	PW_Regice	Regice	0	-	mp	1.12	0	0	0	0	Ice	1
+themoonitself.PokeWorld	PW_Registeel	Registeel	0	-	mp	1.19	0	0	0	0	Steel	1
+themoonitself.PokeWorld	PW_Latias	Latias	0	-	mp	0.87	0	0	0	0	Dragon,Psychic	1
+themoonitself.PokeWorld	PW_Latios	Latios	0	-	mp	1.25	0	0	0	0	Dragon,Psychic	1
+themoonitself.PokeWorld	PW_Kyogre	Kyogre	0	-	mp	2.81	0	0	0	0	Water	1
+themoonitself.PokeWorld	PW_Groudon	Groudon	0	-	mp	2.19	0	0	0	0	Ground	1
+themoonitself.PokeWorld	PW_Rayquaza	Rayquaza	0	-	mp	4.38	0	0	0	0	Dragon,Flying	1
+themoonitself.PokeWorld	PW_Jirachi	Jirachi	0	-	mp	0.19	0	0	0	0	Steel,Psychic	1
+themoonitself.PokeWorld	PW_Deoxys	Deoxys	0	-	mp	1.06	0	0	0	0	Psychic	1
+themoonitself.PokeWorld	PW_Victini	Victini	0	-	mp	0.25	0	0	0	0	Psychic,Fire	1
+themoonitself.PokeWorld	PW_Snivy	Snivy	0	-	mp	0.37	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Servine	Servine	0	-	mp	0.50	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Serperior	Serperior	0	-	mp	2.06	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Tepig	Tepig	0	-	mp	0.31	0	0	0	0	Fire	0
+themoonitself.PokeWorld	PW_Pignite	Pignite	0	-	mp	0.62	0	0	0	0	Fire,Fighting	0
+themoonitself.PokeWorld	PW_Emboar	Emboar	0	-	mp	1.00	0	0	0	0	Fire,Fighting	0
+themoonitself.PokeWorld	PW_Oshawott	Oshawott	0	-	mp	0.31	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Dewott	Dewott	0	-	mp	0.50	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Samurott	Samurott	0	-	mp	0.94	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Patrat	Patrat	0	-	mp	0.31	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Watchog	Watchog	0	-	mp	0.69	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Lillipup	Lillipup	0	-	mp	0.25	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Herdier	Herdier	0	-	mp	0.56	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Stoutland	Stoutland	0	-	mp	0.75	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Purrloin	Purrloin	0	-	mp	0.25	0	0	0	0	Dark	0
+themoonitself.PokeWorld	PW_Liepard	Liepard	0	-	mp	0.69	0	0	0	0	Dark	0
+themoonitself.PokeWorld	PW_Pansage	Pansage	0	-	mp	0.37	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Simisage	Simisage	0	-	mp	0.69	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Pansear	Pansear	0	-	mp	0.37	0	0	0	0	Fire	0
+themoonitself.PokeWorld	PW_Simisear	Simisear	0	-	mp	0.62	0	0	0	0	Fire	0
+themoonitself.PokeWorld	PW_Panpour	Panpour	0	-	mp	0.37	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Simipour	Simipour	0	-	mp	0.62	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Munna	Munna	0	-	mp	0.37	0	0	0	0	Psychic	0
+themoonitself.PokeWorld	PW_Musharna	Musharna	0	-	mp	0.69	0	0	0	0	Psychic	0
+themoonitself.PokeWorld	PW_Pidove	Pidove	0	-	mp	0.19	0	0	0	0	Normal,Flying	0
+themoonitself.PokeWorld	PW_Tranquill	Tranquill	0	-	mp	0.37	0	0	0	0	Normal,Flying	0
+themoonitself.PokeWorld	PW_Unfezant	Unfezant	0	-	mp	0.75	0	0	0	0	Normal,Flying	0
+themoonitself.PokeWorld	PW_Blitzle	Blitzle	0	-	mp	0.50	0	0	0	0	Electric	0
+themoonitself.PokeWorld	PW_Zebstrika	Zebstrika	0	-	mp	1.00	0	0	0	0	Electric	0
+themoonitself.PokeWorld	PW_Roggenrola	Roggenrola	0	-	mp	0.25	0	0	0	0	Rock	0
+themoonitself.PokeWorld	PW_Boldore	Boldore	0	-	mp	0.56	0	0	0	0	Rock	0
+themoonitself.PokeWorld	PW_Gigalith	Gigalith	0	-	mp	1.06	0	0	0	0	Rock	0
+themoonitself.PokeWorld	PW_Woobat	Woobat	0	-	mp	0.25	0	0	0	0	Psychic,Flying	0
+themoonitself.PokeWorld	PW_Swoobat	Swoobat	0	-	mp	0.56	0	0	0	0	Psychic,Flying	0
+themoonitself.PokeWorld	PW_Drilbur	Drilbur	0	-	mp	0.19	0	0	0	0	Ground	0
+themoonitself.PokeWorld	PW_Excadrill	Excadrill	0	-	mp	0.44	0	0	0	0	Ground,Steel	0
+themoonitself.PokeWorld	PW_Audino	Audino	0	-	mp	0.69	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Timburr	Timburr	0	-	mp	0.37	0	0	0	0	Fighting	0
+themoonitself.PokeWorld	PW_Gurdurr	Gurdurr	0	-	mp	0.75	0	0	0	0	Fighting	0
+themoonitself.PokeWorld	PW_Conkeldurr	Conkeldurr	0	-	mp	0.87	0	0	0	0	Fighting	0
+themoonitself.PokeWorld	PW_Tympole	Tympole	0	-	mp	0.31	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Palpitoad	Palpitoad	0	-	mp	0.50	0	0	0	0	Water,Ground	0
+themoonitself.PokeWorld	PW_Seismitoad	Seismitoad	0	-	mp	0.94	0	0	0	0	Water,Ground	0
+themoonitself.PokeWorld	PW_Throh	Throh	0	-	mp	0.81	0	0	0	0	Fighting	0
+themoonitself.PokeWorld	PW_Sawk	Sawk	0	-	mp	0.87	0	0	0	0	Fighting	0
+themoonitself.PokeWorld	PW_Sewaddle	Sewaddle	0	-	mp	0.19	0	0	0	0	Bug,Grass	0
+themoonitself.PokeWorld	PW_Swadloon	Swadloon	0	-	mp	0.31	0	0	0	0	Bug,Grass	0
+themoonitself.PokeWorld	PW_Leavanny	Leavanny	0	-	mp	0.75	0	0	0	0	Bug,Grass	0
+themoonitself.PokeWorld	PW_Venipede	Venipede	0	-	mp	0.25	0	0	0	0	Bug,Poison	0
+themoonitself.PokeWorld	PW_Whirlipede	Whirlipede	0	-	mp	0.75	0	0	0	0	Bug,Poison	0
+themoonitself.PokeWorld	PW_Scolipede	Scolipede	0	-	mp	1.56	0	0	0	0	Bug,Poison	0
+themoonitself.PokeWorld	PW_Cottonee	Cottonee	0	-	mp	0.19	0	0	0	0	Grass,Fairy	0
+themoonitself.PokeWorld	PW_Whimsicott	Whimsicott	0	-	mp	0.44	0	0	0	0	Grass,Fairy	0
+themoonitself.PokeWorld	PW_Petilil	Petilil	0	-	mp	0.31	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Lilligant	Lilligant	0	-	mp	0.69	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Basculin	Basculin	0	-	mp	0.62	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Sandile	Sandile	0	-	mp	0.44	0	0	0	0	Ground,Dark	0
+themoonitself.PokeWorld	PW_Krokorok	Krokorok	0	-	mp	0.62	0	0	0	0	Ground,Dark	0
+themoonitself.PokeWorld	PW_Krookodile	Krookodile	0	-	mp	0.94	0	0	0	0	Ground,Dark	0
+themoonitself.PokeWorld	PW_Darumaka	Darumaka	0	-	mp	0.37	0	0	0	0	Fire	0
+themoonitself.PokeWorld	PW_Darmanitan	Darmanitan	0	-	mp	0.81	0	0	0	0	Fire	0
+themoonitself.PokeWorld	PW_Maractus	Maractus	0	-	mp	0.62	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Dwebble	Dwebble	0	-	mp	0.19	0	0	0	0	Bug,Rock	0
+themoonitself.PokeWorld	PW_Crustle	Crustle	0	-	mp	0.87	0	0	0	0	Bug,Rock	0
+themoonitself.PokeWorld	PW_Scraggy	Scraggy	0	-	mp	0.37	0	0	0	0	Dark,Fighting	0
+themoonitself.PokeWorld	PW_Scrafty	Scrafty	0	-	mp	0.69	0	0	0	0	Dark,Fighting	0
+themoonitself.PokeWorld	PW_Sigilyph	Sigilyph	0	-	mp	0.87	0	0	0	0	Psychic,Flying	0
+themoonitself.PokeWorld	PW_Yamask	Yamask	0	-	mp	0.31	0	0	0	0	Ghost	0
+themoonitself.PokeWorld	PW_Cofagrigus	Cofagrigus	0	-	mp	1.06	0	0	0	0	Ghost	0
+themoonitself.PokeWorld	PW_Tirtouga	Tirtouga	0	-	mp	0.44	0	0	0	0	Water,Rock	0
+themoonitself.PokeWorld	PW_Carracosta	Carracosta	0	-	mp	0.75	0	0	0	0	Water,Rock	0
+themoonitself.PokeWorld	PW_Archen	Archen	0	-	mp	0.31	0	0	0	0	Rock,Flying	0
+themoonitself.PokeWorld	PW_Archeops	Archeops	0	-	mp	0.87	0	0	0	0	Rock,Flying	0
+themoonitself.PokeWorld	PW_Trubbish	Trubbish	0	-	mp	0.37	0	0	0	0	Poison	0
+themoonitself.PokeWorld	PW_Garbodor	Garbodor	0	-	mp	1.19	0	0	0	0	Poison	0
+themoonitself.PokeWorld	PW_Zorua	Zorua	0	-	mp	0.44	0	0	0	0	Dark	0
+themoonitself.PokeWorld	PW_Zoroark	Zoroark	0	-	mp	1.00	0	0	0	0	Dark	0
+themoonitself.PokeWorld	PW_Minccino	Minccino	0	-	mp	0.25	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Cinccino	Cinccino	0	-	mp	0.31	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Gothita	Gothita	0	-	mp	0.25	0	0	0	0	Psychic	0
+themoonitself.PokeWorld	PW_Gothorita	Gothorita	0	-	mp	0.44	0	0	0	0	Psychic	0
+themoonitself.PokeWorld	PW_Gothitelle	Gothitelle	0	-	mp	0.94	0	0	0	0	Psychic	0
+themoonitself.PokeWorld	PW_Solosis	Solosis	0	-	mp	0.19	0	0	0	0	Psychic	0
+themoonitself.PokeWorld	PW_Duosion	Duosion	0	-	mp	0.37	0	0	0	0	Psychic	0
+themoonitself.PokeWorld	PW_Reuniclus	Reuniclus	0	-	mp	0.62	0	0	0	0	Psychic	0
+themoonitself.PokeWorld	PW_Ducklett	Ducklett	0	-	mp	0.31	0	0	0	0	Water,Flying	0
+themoonitself.PokeWorld	PW_Swanna	Swanna	0	-	mp	0.81	0	0	0	0	Water,Flying	0
+themoonitself.PokeWorld	PW_Vanillite	Vanillite	0	-	mp	0.25	0	0	0	0	Ice	0
+themoonitself.PokeWorld	PW_Vanillish	Vanillish	0	-	mp	0.69	0	0	0	0	Ice	0
+themoonitself.PokeWorld	PW_Vanilluxe	Vanilluxe	0	-	mp	0.81	0	0	0	0	Ice	0
+themoonitself.PokeWorld	PW_Deerling	Deerling	0	-	mp	0.37	0	0	0	0	Normal,Grass	0
+themoonitself.PokeWorld	PW_Sawsbuck	Sawsbuck	0	-	mp	1.19	0	0	0	0	Normal,Grass	0
+themoonitself.PokeWorld	PW_Emolga	Emolga	0	-	mp	0.25	0	0	0	0	Electric,Flying	0
+themoonitself.PokeWorld	PW_Karrablast	Karrablast	0	-	mp	0.31	0	0	0	0	Bug	0
+themoonitself.PokeWorld	PW_Escavalier	Escavalier	0	-	mp	0.62	0	0	0	0	Bug,Steel	0
+themoonitself.PokeWorld	PW_Foongus	Foongus	0	-	mp	0.12	0	0	0	0	Grass,Poison	0
+themoonitself.PokeWorld	PW_Amoonguss	Amoonguss	0	-	mp	0.37	0	0	0	0	Grass,Poison	0
+themoonitself.PokeWorld	PW_Frillish	Frillish	0	-	mp	0.75	0	0	0	0	Water,Ghost	0
+themoonitself.PokeWorld	PW_Jellicent	Jellicent	0	-	mp	1.38	0	0	0	0	Water,Ghost	0
+themoonitself.PokeWorld	PW_Alomomola	Alomomola	0	-	mp	0.75	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Joltik	Joltik	0	-	mp	0.06	0	0	0	0	Bug,Electric	0
+themoonitself.PokeWorld	PW_Galvantula	Galvantula	0	-	mp	0.50	0	0	0	0	Bug,Electric	0
+themoonitself.PokeWorld	PW_Ferroseed	Ferroseed	0	-	mp	0.37	0	0	0	0	Grass,Steel	0
+themoonitself.PokeWorld	PW_Ferrothorn	Ferrothorn	0	-	mp	0.62	0	0	0	0	Grass,Steel	0
+themoonitself.PokeWorld	PW_Klink	Klink	0	-	mp	0.19	0	0	0	0	Steel	0
+themoonitself.PokeWorld	PW_Klang	Klang	0	-	mp	0.37	0	0	0	0	Steel	0
+themoonitself.PokeWorld	PW_Klinklang	Klinklang	0	-	mp	0.37	0	0	0	0	Steel	0
+themoonitself.PokeWorld	PW_Tynamo	Tynamo	0	-	mp	0.12	0	0	0	0	Electric	0
+themoonitself.PokeWorld	PW_Eelektrik	Eelektrik	0	-	mp	0.75	0	0	0	0	Electric	0
+themoonitself.PokeWorld	PW_Eelektross	Eelektross	0	-	mp	1.31	0	0	0	0	Electric	0
+themoonitself.PokeWorld	PW_Elgyem	Elgyem	0	-	mp	0.31	0	0	0	0	Psychic	0
+themoonitself.PokeWorld	PW_Beheeyem	Beheeyem	0	-	mp	0.62	0	0	0	0	Psychic	0
+themoonitself.PokeWorld	PW_Litwick	Litwick	0	-	mp	0.19	0	0	0	0	Ghost,Fire	0
+themoonitself.PokeWorld	PW_Lampent	Lampent	0	-	mp	0.37	0	0	0	0	Ghost,Fire	0
+themoonitself.PokeWorld	PW_Chandelure	Chandelure	0	-	mp	0.62	0	0	0	0	Ghost,Fire	0
+themoonitself.PokeWorld	PW_Axew	Axew	0	-	mp	0.37	0	0	0	0	Dragon	0
+themoonitself.PokeWorld	PW_Fraxure	Fraxure	0	-	mp	0.62	0	0	0	0	Dragon	0
+themoonitself.PokeWorld	PW_Haxorus	Haxorus	0	-	mp	1.12	0	0	0	0	Dragon	0
+themoonitself.PokeWorld	PW_Cubchoo	Cubchoo	0	-	mp	0.31	0	0	0	0	Ice	0
+themoonitself.PokeWorld	PW_Beartic	Beartic	0	-	mp	1.62	0	0	0	0	Ice	0
+themoonitself.PokeWorld	PW_Cryogonal	Cryogonal	0	-	mp	0.69	0	0	0	0	Ice	0
+themoonitself.PokeWorld	PW_Shelmet	Shelmet	0	-	mp	0.25	0	0	0	0	Bug	0
+themoonitself.PokeWorld	PW_Accelgor	Accelgor	0	-	mp	0.50	0	0	0	0	Bug	0
+themoonitself.PokeWorld	PW_Stunfisk	Stunfisk	0	-	mp	0.44	0	0	0	0	Ground,Electric	0
+themoonitself.PokeWorld	PW_Mienfoo	Mienfoo	0	-	mp	0.56	0	0	0	0	Fighting	0
+themoonitself.PokeWorld	PW_Mienshao	Mienshao	0	-	mp	0.87	0	0	0	0	Fighting	0
+themoonitself.PokeWorld	PW_Druddigon	Druddigon	0	-	mp	1.00	0	0	0	0	Dragon	0
+themoonitself.PokeWorld	PW_Golett	Golett	0	-	mp	0.62	0	0	0	0	Ground,Ghost	0
+themoonitself.PokeWorld	PW_Golurk	Golurk	0	-	mp	1.75	0	0	0	0	Ground,Ghost	0
+themoonitself.PokeWorld	PW_Pawniard	Pawniard	0	-	mp	0.31	0	0	0	0	Dark,Steel	0
+themoonitself.PokeWorld	PW_Bisharp	Bisharp	0	-	mp	1.00	0	0	0	0	Dark,Steel	0
+themoonitself.PokeWorld	PW_Bouffalant	Bouffalant	0	-	mp	1.00	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Rufflet	Rufflet	0	-	mp	0.31	0	0	0	0	Normal,Flying	0
+themoonitself.PokeWorld	PW_Braviary	Braviary	0	-	mp	0.94	0	0	0	0	Normal,Flying	0
+themoonitself.PokeWorld	PW_Vullaby	Vullaby	0	-	mp	0.31	0	0	0	0	Dark,Flying	0
+themoonitself.PokeWorld	PW_Mandibuzz	Mandibuzz	0	-	mp	0.75	0	0	0	0	Dark,Flying	0
+themoonitself.PokeWorld	PW_Heatmor	Heatmor	0	-	mp	0.87	0	0	0	0	Fire	0
+themoonitself.PokeWorld	PW_Durant	Durant	0	-	mp	0.19	0	0	0	0	Bug,Steel	0
+themoonitself.PokeWorld	PW_Deino	Deino	0	-	mp	0.50	0	0	0	0	Dark,Dragon	0
+themoonitself.PokeWorld	PW_Zweilous	Zweilous	0	-	mp	0.87	0	0	0	0	Dark,Dragon	0
+themoonitself.PokeWorld	PW_Hydreigon	Hydreigon	0	-	mp	1.12	0	0	0	0	Dark,Dragon	0
+themoonitself.PokeWorld	PW_Larvesta	Larvesta	0	-	mp	0.69	0	0	0	0	Bug,Fire	0
+themoonitself.PokeWorld	PW_Volcarona	Volcarona	0	-	mp	1.00	0	0	0	0	Bug,Fire	0
+themoonitself.PokeWorld	PW_Cobalion	Cobalion	0	-	mp	1.31	0	0	0	0	Steel,Fighting	1
+themoonitself.PokeWorld	PW_Terrakion	Terrakion	0	-	mp	1.19	0	0	0	0	Rock,Fighting	1
+themoonitself.PokeWorld	PW_Virizion	Virizion	0	-	mp	1.25	0	0	0	0	Grass,Fighting	1
+themoonitself.PokeWorld	PW_Tornadus	Tornadus	0	-	mp	0.94	0	0	0	0	Flying	1
+themoonitself.PokeWorld	PW_Thundurus	Thundurus	0	-	mp	0.94	0	0	0	0	Electric,Flying	1
+themoonitself.PokeWorld	PW_Reshiram	Reshiram	0	-	mp	2.00	0	0	0	0	Dragon,Fire	1
+themoonitself.PokeWorld	PW_Zekrom	Zekrom	0	-	mp	1.81	0	0	0	0	Dragon,Electric	1
+themoonitself.PokeWorld	PW_Landorus	Landorus	0	-	mp	0.94	0	0	0	0	Ground,Flying	1
+themoonitself.PokeWorld	PW_Kyurem	Kyurem	0	-	mp	1.88	0	0	0	0	Dragon,Ice	1
+themoonitself.PokeWorld	PW_Keldeo	Keldeo	0	-	mp	0.87	0	0	0	0	Water,Fighting	1
+themoonitself.PokeWorld	PW_Meloetta	Meloetta	0	-	mp	0.37	0	0	0	0	Normal,Psychic	1
+themoonitself.PokeWorld	PW_Genesect	Genesect	0	-	mp	0.94	0	0	0	0	Bug,Steel	1
+themoonitself.PokeWorld	PW_Chikorita	Chikorita	0	-	mp	0.56	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Bayleef	Bayleef	0	-	mp	0.75	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Meganium	Meganium	0	-	mp	1.12	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Cyndaquil	Cyndaquil	0	-	mp	0.31	0	0	0	0	Fire	0
+themoonitself.PokeWorld	PW_Quilava	Quilava	0	-	mp	0.56	0	0	0	0	Fire	0
+themoonitself.PokeWorld	PW_Typhlosion	Typhlosion	0	-	mp	1.06	0	0	0	0	Fire	0
+themoonitself.PokeWorld	PW_Totodile	Totodile	0	-	mp	0.37	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Croconaw	Croconaw	0	-	mp	0.69	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Feraligatr	Feraligatr	0	-	mp	1.44	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Sentret	Sentret	0	-	mp	0.50	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Furret	Furret	0	-	mp	1.12	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Hoothoot	Hoothoot	0	-	mp	0.44	0	0	0	0	Normal,Flying	0
+themoonitself.PokeWorld	PW_Noctowl	Noctowl	0	-	mp	1.00	0	0	0	0	Normal,Flying	0
+themoonitself.PokeWorld	PW_Ledyba	Ledyba	0	-	mp	0.62	0	0	0	0	Bug,Flying	0
+themoonitself.PokeWorld	PW_Ledian	Ledian	0	-	mp	0.87	0	0	0	0	Bug,Flying	0
+themoonitself.PokeWorld	PW_Spinarak	Spinarak	0	-	mp	0.31	0	0	0	0	Bug,Poison	0
+themoonitself.PokeWorld	PW_Ariados	Ariados	0	-	mp	0.69	0	0	0	0	Bug,Poison	0
+themoonitself.PokeWorld	PW_Crobat	Crobat	0	-	mp	1.12	0	0	0	0	Poison,Flying	0
+themoonitself.PokeWorld	PW_Chinchou	Chinchou	0	-	mp	0.31	0	0	0	0	Water,Electric	0
+themoonitself.PokeWorld	PW_Lanturn	Lanturn	0	-	mp	0.75	0	0	0	0	Water,Electric	0
+themoonitself.PokeWorld	PW_Pichu	Pichu	0	-	mp	0.19	0	0	0	0	Electric	0
+themoonitself.PokeWorld	PW_Cleffa	Cleffa	0	-	mp	0.19	0	0	0	0	Fairy	0
+themoonitself.PokeWorld	PW_Igglybuff	Igglybuff	0	-	mp	0.19	0	0	0	0	Normal,Fairy	0
+themoonitself.PokeWorld	PW_Togepi	Togepi	0	-	mp	0.19	0	0	0	0	Fairy	0
+themoonitself.PokeWorld	PW_Togetic	Togetic	0	-	mp	0.37	0	0	0	0	Fairy,Flying	0
+themoonitself.PokeWorld	PW_Natu	Natu	0	-	mp	0.12	0	0	0	0	Psychic,Flying	0
+themoonitself.PokeWorld	PW_Xatu	Xatu	0	-	mp	0.94	0	0	0	0	Psychic,Flying	0
+themoonitself.PokeWorld	PW_Mareep	Mareep	0	-	mp	0.37	0	0	0	0	Electric	0
+themoonitself.PokeWorld	PW_Flaaffy	Flaaffy	0	-	mp	0.50	0	0	0	0	Electric	0
+themoonitself.PokeWorld	PW_Ampharos	Ampharos	0	-	mp	0.87	0	0	0	0	Electric	0
+themoonitself.PokeWorld	PW_Bellossom	Bellossom	0	-	mp	0.25	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Marill	Marill	0	-	mp	0.25	0	0	0	0	Water,Fairy	0
+themoonitself.PokeWorld	PW_Azumarill	Azumarill	0	-	mp	0.50	0	0	0	0	Water,Fairy	0
+themoonitself.PokeWorld	PW_Sudowoodo	Sudowoodo	0	-	mp	0.75	0	0	0	0	Rock	0
+themoonitself.PokeWorld	PW_Politoed	Politoed	0	-	mp	0.69	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Hoppip	Hoppip	0	-	mp	0.25	0	0	0	0	Grass,Flying	0
+themoonitself.PokeWorld	PW_Skiploom	Skiploom	0	-	mp	0.37	0	0	0	0	Grass,Flying	0
+themoonitself.PokeWorld	PW_Jumpluff	Jumpluff	0	-	mp	0.50	0	0	0	0	Grass,Flying	0
+themoonitself.PokeWorld	PW_Aipom	Aipom	0	-	mp	0.50	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Sunkern	Sunkern	0	-	mp	0.19	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Sunflora	Sunflora	0	-	mp	0.50	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Yanma	Yanma	0	-	mp	0.75	0	0	0	0	Bug,Flying	0
+themoonitself.PokeWorld	PW_Wooper	Wooper	0	-	mp	0.25	0	0	0	0	Water,Ground	0
+themoonitself.PokeWorld	PW_Quagsire	Quagsire	0	-	mp	0.87	0	0	0	0	Water,Ground	0
+themoonitself.PokeWorld	PW_Espeon	Espeon	0	-	mp	0.56	0	0	0	0	Psychic	0
+themoonitself.PokeWorld	PW_Umbreon	Umbreon	0	-	mp	0.62	0	0	0	0	Dark	0
+themoonitself.PokeWorld	PW_Murkrow	Murkrow	0	-	mp	0.31	0	0	0	0	Dark,Flying	0
+themoonitself.PokeWorld	PW_Slowking	Slowking	0	-	mp	1.25	0	0	0	0	Water,Psychic	0
+themoonitself.PokeWorld	PW_Misdreavus	Misdreavus	0	-	mp	0.44	0	0	0	0	Ghost	0
+themoonitself.PokeWorld	PW_Unown	Unown	0	-	mp	0.31	0	0	0	0	Psychic	0
+themoonitself.PokeWorld	PW_Wobbuffet	Wobbuffet	0	-	mp	0.81	0	0	0	0	Psychic	0
+themoonitself.PokeWorld	PW_Girafarig	Girafarig	0	-	mp	0.94	0	0	0	0	Normal,Psychic	0
+themoonitself.PokeWorld	PW_Pineco	Pineco	0	-	mp	0.37	0	0	0	0	Bug	0
+themoonitself.PokeWorld	PW_Forretress	Forretress	0	-	mp	0.75	0	0	0	0	Bug,Steel	0
+themoonitself.PokeWorld	PW_Dunsparce	Dunsparce	0	-	mp	0.94	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Gligar	Gligar	0	-	mp	0.69	0	0	0	0	Ground,Flying	0
+themoonitself.PokeWorld	PW_Steelix	Steelix	0	-	mp	5.75	0	0	0	0	Steel,Ground	0
+themoonitself.PokeWorld	PW_Snubbull	Snubbull	0	-	mp	0.37	0	0	0	0	Fairy	0
+themoonitself.PokeWorld	PW_Granbull	Granbull	0	-	mp	0.87	0	0	0	0	Fairy	0
+themoonitself.PokeWorld	PW_Qwilfish	Qwilfish	0	-	mp	0.31	0	0	0	0	Water,Poison	0
+themoonitself.PokeWorld	PW_Scizor	Scizor	0	-	mp	1.12	0	0	0	0	Bug,Steel	0
+themoonitself.PokeWorld	PW_Shuckle	Shuckle	0	-	mp	0.37	0	0	0	0	Bug,Rock	0
+themoonitself.PokeWorld	PW_Heracross	Heracross	0	-	mp	0.94	0	0	0	0	Bug,Fighting	0
+themoonitself.PokeWorld	PW_Sneasel	Sneasel	0	-	mp	0.56	0	0	0	0	Dark,Ice	0
+themoonitself.PokeWorld	PW_Teddiursa	Teddiursa	0	-	mp	0.37	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Ursaring	Ursaring	0	-	mp	1.12	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Slugma	Slugma	0	-	mp	0.44	0	0	0	0	Fire	0
+themoonitself.PokeWorld	PW_Magcargo	Magcargo	0	-	mp	0.50	0	0	0	0	Fire,Rock	0
+themoonitself.PokeWorld	PW_Swinub	Swinub	0	-	mp	0.25	0	0	0	0	Ice,Ground	0
+themoonitself.PokeWorld	PW_Piloswine	Piloswine	0	-	mp	0.69	0	0	0	0	Ice,Ground	0
+themoonitself.PokeWorld	PW_Corsola	Corsola	0	-	mp	0.37	0	0	0	0	Water,Rock	0
+themoonitself.PokeWorld	PW_Remoraid	Remoraid	0	-	mp	0.37	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Octillery	Octillery	0	-	mp	0.56	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Delibird	Delibird	0	-	mp	0.56	0	0	0	0	Ice,Flying	0
+themoonitself.PokeWorld	PW_Mantine	Mantine	0	-	mp	1.31	0	0	0	0	Water,Flying	0
+themoonitself.PokeWorld	PW_Skarmory	Skarmory	0	-	mp	1.06	0	0	0	0	Steel,Flying	0
+themoonitself.PokeWorld	PW_Houndour	Houndour	0	-	mp	0.37	0	0	0	0	Dark,Fire	0
+themoonitself.PokeWorld	PW_Houndoom	Houndoom	0	-	mp	0.87	0	0	0	0	Dark,Fire	0
+themoonitself.PokeWorld	PW_Kingdra	Kingdra	0	-	mp	1.12	0	0	0	0	Water,Dragon	0
+themoonitself.PokeWorld	PW_Phanpy	Phanpy	0	-	mp	0.31	0	0	0	0	Ground	0
+themoonitself.PokeWorld	PW_Donphan	Donphan	0	-	mp	0.69	0	0	0	0	Ground	0
+themoonitself.PokeWorld	PW_Porygon2_	Porygon2	0	-	mp	0.37	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Stantler	Stantler	0	-	mp	0.87	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Smeargle	Smeargle	0	-	mp	0.75	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Tyrogue	Tyrogue	0	-	mp	0.44	0	0	0	0	Fighting	0
+themoonitself.PokeWorld	PW_Hitmontop	Hitmontop	0	-	mp	0.87	0	0	0	0	Fighting	0
+themoonitself.PokeWorld	PW_Smoochum	Smoochum	0	-	mp	0.25	0	0	0	0	Ice,Psychic	0
+themoonitself.PokeWorld	PW_Elekid	Elekid	0	-	mp	0.37	0	0	0	0	Electric	0
+themoonitself.PokeWorld	PW_Magby	Magby	0	-	mp	0.44	0	0	0	0	Fire	0
+themoonitself.PokeWorld	PW_Miltank	Miltank	0	-	mp	0.75	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Blissey	Blissey	0	-	mp	0.94	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Raikou	Raikou	0	-	mp	1.19	0	0	0	0	Electric	1
+themoonitself.PokeWorld	PW_Entei	Entei	0	-	mp	1.31	0	0	0	0	Fire	1
+themoonitself.PokeWorld	PW_Suicune	Suicune	0	-	mp	1.25	0	0	0	0	Water	1
+themoonitself.PokeWorld	PW_Larvitar	Larvitar	0	-	mp	0.37	0	0	0	0	Rock,Ground	0
+themoonitself.PokeWorld	PW_Pupitar	Pupitar	0	-	mp	0.75	0	0	0	0	Rock,Ground	0
+themoonitself.PokeWorld	PW_Tyranitar	Tyranitar	0	-	mp	1.25	0	0	0	0	Rock,Dark	0
+themoonitself.PokeWorld	PW_Lugia	Lugia	0	-	mp	3.25	0	0	0	0	Psychic,Flying	1
+themoonitself.PokeWorld	PW_HoOh	Ho-Oh	0	-	mp	2.37	0	0	0	0	Fire,Flying	1
+themoonitself.PokeWorld	PW_Celebi	Celebi	0	-	mp	0.37	0	0	0	0	Psychic,Grass	1
+themoonitself.PokeWorld	PW_Chespin	Chespin	0	-	mp	0.25	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Quilladin	Quilladin	0	-	mp	0.44	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Chesnaught	Chesnaught	0	-	mp	1.00	0	0	0	0	Grass,Fighting	0
+themoonitself.PokeWorld	PW_Fennekin	Fennekin	0	-	mp	0.25	0	0	0	0	Fire	0
+themoonitself.PokeWorld	PW_Braixen	Braixen	0	-	mp	0.62	0	0	0	0	Fire	0
+themoonitself.PokeWorld	PW_Delphox	Delphox	0	-	mp	0.94	0	0	0	0	Fire,Psychic	0
+themoonitself.PokeWorld	PW_Froakie	Froakie	0	-	mp	0.19	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Frogadier	Frogadier	0	-	mp	0.37	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Greninja	Greninja	0	-	mp	0.94	0	0	0	0	Water,Dark	0
+themoonitself.PokeWorld	PW_Bunnelby	Bunnelby	0	-	mp	0.25	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Diggersby	Diggersby	0	-	mp	0.62	0	0	0	0	Normal,Ground	0
+themoonitself.PokeWorld	PW_Fletchling	Fletchling	0	-	mp	0.19	0	0	0	0	Normal,Flying	0
+themoonitself.PokeWorld	PW_Fletchinder	Fletchinder	0	-	mp	0.44	0	0	0	0	Fire,Flying	0
+themoonitself.PokeWorld	PW_Talonflame	Talonflame	0	-	mp	0.75	0	0	0	0	Fire,Flying	0
+themoonitself.PokeWorld	PW_Scatterbug	Scatterbug	0	-	mp	0.19	0	0	0	0	Bug	0
+themoonitself.PokeWorld	PW_Spewpa	Spewpa	0	-	mp	0.19	0	0	0	0	Bug	0
+themoonitself.PokeWorld	PW_Vivillon	Vivillon	0	-	mp	0.75	0	0	0	0	Bug,Flying	0
+themoonitself.PokeWorld	PW_Litleo	Litleo	0	-	mp	0.37	0	0	0	0	Fire,Normal	0
+themoonitself.PokeWorld	PW_Pyroar	Pyroar	0	-	mp	0.94	0	0	0	0	Fire,Normal	0
+themoonitself.PokeWorld	PW_Flabebe	Flabébé	0	-	mp	0.06	0	0	0	0	Fairy	0
+themoonitself.PokeWorld	PW_Floette	Floette	0	-	mp	0.12	0	0	0	0	Fairy	0
+themoonitself.PokeWorld	PW_Florges	Florges	0	-	mp	0.69	0	0	0	0	Fairy	0
+themoonitself.PokeWorld	PW_Skiddo	Skiddo	0	-	mp	0.56	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Gogoat	Gogoat	0	-	mp	1.06	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Pancham	Pancham	0	-	mp	0.37	0	0	0	0	Fighting	0
+themoonitself.PokeWorld	PW_Pangoro	Pangoro	0	-	mp	1.31	0	0	0	0	Fighting,Dark	0
+themoonitself.PokeWorld	PW_Furfrou	Furfrou	0	-	mp	0.75	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Espurr	Espurr	0	-	mp	0.19	0	0	0	0	Psychic	0
+themoonitself.PokeWorld	PW_Meowstic	Meowstic	0	-	mp	0.37	0	0	0	0	Psychic	0
+themoonitself.PokeWorld	PW_Honedge	Honedge	0	-	mp	0.50	0	0	0	0	Steel,Ghost	0
+themoonitself.PokeWorld	PW_Doublade	Doublade	0	-	mp	0.50	0	0	0	0	Steel,Ghost	0
+themoonitself.PokeWorld	PW_Aegislash	Aegislash	0	-	mp	1.06	0	0	0	0	Steel,Ghost	0
+themoonitself.PokeWorld	PW_Spritzee	Spritzee	0	-	mp	0.12	0	0	0	0	Fairy	0
+themoonitself.PokeWorld	PW_Aromatisse	Aromatisse	0	-	mp	0.50	0	0	0	0	Fairy	0
+themoonitself.PokeWorld	PW_Swirlix	Swirlix	0	-	mp	0.25	0	0	0	0	Fairy	0
+themoonitself.PokeWorld	PW_Slurpuff	Slurpuff	0	-	mp	0.50	0	0	0	0	Fairy	0
+themoonitself.PokeWorld	PW_Inkay	Inkay	0	-	mp	0.25	0	0	0	0	Dark,Psychic	0
+themoonitself.PokeWorld	PW_Malamar	Malamar	0	-	mp	0.94	0	0	0	0	Dark,Psychic	0
+themoonitself.PokeWorld	PW_Binacle	Binacle	0	-	mp	0.31	0	0	0	0	Rock,Water	0
+themoonitself.PokeWorld	PW_Barbaracle	Barbaracle	0	-	mp	0.81	0	0	0	0	Rock,Water	0
+themoonitself.PokeWorld	PW_Skrelp	Skrelp	0	-	mp	0.31	0	0	0	0	Poison,Water	0
+themoonitself.PokeWorld	PW_Dragalge	Dragalge	0	-	mp	1.12	0	0	0	0	Poison,Dragon	0
+themoonitself.PokeWorld	PW_Clauncher	Clauncher	0	-	mp	0.31	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Clawitzer	Clawitzer	0	-	mp	0.81	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Helioptile	Helioptile	0	-	mp	0.31	0	0	0	0	Electric,Normal	0
+themoonitself.PokeWorld	PW_Heliolisk	Heliolisk	0	-	mp	0.62	0	0	0	0	Electric,Normal	0
+themoonitself.PokeWorld	PW_Tyrunt	Tyrunt	0	-	mp	0.50	0	0	0	0	Rock,Dragon	0
+themoonitself.PokeWorld	PW_Tyrantrum	Tyrantrum	0	-	mp	1.56	0	0	0	0	Rock,Dragon	0
+themoonitself.PokeWorld	PW_Amaura	Amaura	0	-	mp	0.81	0	0	0	0	Rock,Ice	0
+themoonitself.PokeWorld	PW_Aurorus	Aurorus	0	-	mp	1.69	0	0	0	0	Rock,Ice	0
+themoonitself.PokeWorld	PW_Sylveon	Sylveon	0	-	mp	0.62	0	0	0	0	Fairy	0
+themoonitself.PokeWorld	PW_Hawlucha	Hawlucha	0	-	mp	0.50	0	0	0	0	Fighting,Flying	0
+themoonitself.PokeWorld	PW_Dedenne	Dedenne	0	-	mp	0.12	0	0	0	0	Electric,Fairy	0
+themoonitself.PokeWorld	PW_Carbink	Carbink	0	-	mp	0.19	0	0	0	0	Rock,Fairy	0
+themoonitself.PokeWorld	PW_Goomy	Goomy	0	-	mp	0.19	0	0	0	0	Dragon	0
+themoonitself.PokeWorld	PW_Sliggoo	Sliggoo	0	-	mp	0.50	0	0	0	0	Dragon	0
+themoonitself.PokeWorld	PW_Goodra	Goodra	0	-	mp	1.25	0	0	0	0	Dragon	0
+themoonitself.PokeWorld	PW_Klefki	Klefki	0	-	mp	0.12	0	0	0	0	Steel,Fairy	0
+themoonitself.PokeWorld	PW_Phantump	Phantump	0	-	mp	0.25	0	0	0	0	Ghost,Grass	0
+themoonitself.PokeWorld	PW_Trevenant	Trevenant	0	-	mp	0.94	0	0	0	0	Ghost,Grass	0
+themoonitself.PokeWorld	PW_Pumpkaboo	Pumpkaboo	0	-	mp	0.25	0	0	0	0	Ghost,Grass	0
+themoonitself.PokeWorld	PW_Gourgeist	Gourgeist	0	-	mp	0.56	0	0	0	0	Ghost,Grass	0
+themoonitself.PokeWorld	PW_Bergmite	Bergmite	0	-	mp	0.62	0	0	0	0	Ice	0
+themoonitself.PokeWorld	PW_Avalugg	Avalugg	0	-	mp	1.25	0	0	0	0	Ice	0
+themoonitself.PokeWorld	PW_Noibat	Noibat	0	-	mp	0.31	0	0	0	0	Flying,Dragon	0
+themoonitself.PokeWorld	PW_Noivern	Noivern	0	-	mp	0.94	0	0	0	0	Flying,Dragon	0
+themoonitself.PokeWorld	PW_Xerneas	Xerneas	0	-	mp	1.88	0	0	0	0	Fairy	1
+themoonitself.PokeWorld	PW_Yveltal	Yveltal	0	-	mp	3.62	0	0	0	0	Dark,Flying	1
+themoonitself.PokeWorld	PW_Zygarde	Zygarde	0	-	mp	3.12	0	0	0	0	Dragon,Ground	1
+themoonitself.PokeWorld	PW_Diancie	Diancie	0	-	mp	0.44	0	0	0	0	Rock,Fairy	1
+themoonitself.PokeWorld	PW_Hoopa	Hoopa	0	-	mp	0.31	0	0	0	0	Psychic,Ghost	1
+themoonitself.PokeWorld	PW_Volcanion	Volcanion	0	-	mp	1.06	0	0	0	0	Fire,Water	1
+themoonitself.PokeWorld	PW_Grookey	Grookey	0	-	mp	0.19	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Thwackey	Thwackey	0	-	mp	0.44	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Rillaboom	Rillaboom	0	-	mp	1.31	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Scorbunny	Scorbunny	0	-	mp	0.19	0	0	0	0	Fire	0
+themoonitself.PokeWorld	PW_Raboot	Raboot	0	-	mp	0.37	0	0	0	0	Fire	0
+themoonitself.PokeWorld	PW_Cinderace	Cinderace	0	-	mp	0.87	0	0	0	0	Fire	0
+themoonitself.PokeWorld	PW_Sobble	Sobble	0	-	mp	0.19	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Drizzile	Drizzile	0	-	mp	0.44	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Inteleon	Inteleon	0	-	mp	1.19	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Skwovet	Skwovet	0	-	mp	0.19	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Greedent	Greedent	0	-	mp	0.37	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Rookidee	Rookidee	0	-	mp	0.12	0	0	0	0	Flying	0
+themoonitself.PokeWorld	PW_Corvisquire	Corvisquire	0	-	mp	0.50	0	0	0	0	Flying	0
+themoonitself.PokeWorld	PW_Corviknight	Corviknight	0	-	mp	1.38	0	0	0	0	Flying,Steel	0
+themoonitself.PokeWorld	PW_Blipbug	Blipbug	0	-	mp	0.25	0	0	0	0	Bug	0
+themoonitself.PokeWorld	PW_Dottler	Dottler	0	-	mp	0.25	0	0	0	0	Bug,Psychic	0
+themoonitself.PokeWorld	PW_Orbeetle	Orbeetle	0	-	mp	0.25	0	0	0	0	Bug,Psychic	0
+themoonitself.PokeWorld	PW_Nickit	Nickit	0	-	mp	0.37	0	0	0	0	Dark	0
+themoonitself.PokeWorld	PW_Thievul	Thievul	0	-	mp	0.75	0	0	0	0	Dark	0
+themoonitself.PokeWorld	PW_Gossifleur	Gossifleur	0	-	mp	0.25	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Eldegoss	Eldegoss	0	-	mp	0.31	0	0	0	0	Grass	0
+themoonitself.PokeWorld	PW_Wooloo	Wooloo	0	-	mp	0.37	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Dubwool	Dubwool	0	-	mp	0.81	0	0	0	0	Normal	0
+themoonitself.PokeWorld	PW_Chewtle	Chewtle	0	-	mp	0.19	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Drednaw	Drednaw	0	-	mp	0.62	0	0	0	0	Water,Rock	0
+themoonitself.PokeWorld	PW_Yamper	Yamper	0	-	mp	0.19	0	0	0	0	Electric	0
+themoonitself.PokeWorld	PW_Boltund	Boltund	0	-	mp	0.62	0	0	0	0	Electric	0
+themoonitself.PokeWorld	PW_Rolycoly	Rolycoly	0	-	mp	0.19	0	0	0	0	Rock	0
+themoonitself.PokeWorld	PW_Carkol	Carkol	0	-	mp	0.69	0	0	0	0	Rock,Fire	0
+themoonitself.PokeWorld	PW_Coalossal	Coalossal	0	-	mp	1.75	0	0	0	0	Rock,Fire	0
+themoonitself.PokeWorld	PW_Applin	Applin	0	-	mp	0.12	0	0	0	0	Grass,Dragon	0
+themoonitself.PokeWorld	PW_Flapple	Flapple	0	-	mp	0.19	0	0	0	0	Grass,Dragon	0
+themoonitself.PokeWorld	PW_Appletun	Appletun	0	-	mp	0.25	0	0	0	0	Grass,Dragon	0
+themoonitself.PokeWorld	PW_Silicobra	Silicobra	0	-	mp	1.38	0	0	0	0	Ground	0
+themoonitself.PokeWorld	PW_Sandaconda	Sandaconda	0	-	mp	2.37	0	0	0	0	Ground	0
+themoonitself.PokeWorld	PW_Cramorant	Cramorant	0	-	mp	0.50	0	0	0	0	Flying,Water	0
+themoonitself.PokeWorld	PW_Arrokuda	Arrokuda	0	-	mp	0.31	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Barraskewda	Barraskewda	0	-	mp	0.81	0	0	0	0	Water	0
+themoonitself.PokeWorld	PW_Toxel	Toxel	0	-	mp	0.25	0	0	0	0	Electric,Poison	0
+themoonitself.PokeWorld	PW_Toxtricity	Toxtricity	0	-	mp	1.00	0	0	0	0	Electric,Poison	0
+themoonitself.PokeWorld	PW_Sizzlipede	Sizzlipede	0	-	mp	0.44	0	0	0	0	Fire,Bug	0
+themoonitself.PokeWorld	PW_Centiskorch	Centiskorch	0	-	mp	1.88	0	0	0	0	Fire,Bug	0
+themoonitself.PokeWorld	PW_Clobbopus	Clobbopus	0	-	mp	0.37	0	0	0	0	Fighting	0
+themoonitself.PokeWorld	PW_Grapploct	Grapploct	0	-	mp	1.00	0	0	0	0	Fighting	0
+themoonitself.PokeWorld	PW_Sinistea	Sinistea	0	-	mp	0.06	0	0	0	0	Ghost	0
+themoonitself.PokeWorld	PW_Polteageist	Polteageist	0	-	mp	0.12	0	0	0	0	Ghost	0
+themoonitself.PokeWorld	PW_Hatenna	Hatenna	0	-	mp	0.25	0	0	0	0	Psychic	0
+themoonitself.PokeWorld	PW_Hattrem	Hattrem	0	-	mp	0.37	0	0	0	0	Psychic	0
+themoonitself.PokeWorld	PW_Hatterene	Hatterene	0	-	mp	1.31	0	0	0	0	Psychic,Fairy	0
+themoonitself.PokeWorld	PW_Impidimp	Impidimp	0	-	mp	0.25	0	0	0	0	Dark,Fairy	0
+themoonitself.PokeWorld	PW_Morgrem	Morgrem	0	-	mp	0.50	0	0	0	0	Dark,Fairy	0
+themoonitself.PokeWorld	PW_Grimmsnarl	Grimmsnarl	0	-	mp	0.94	0	0	0	0	Dark,Fairy	0
+themoonitself.PokeWorld	PW_Obstagoon	Obstagoon	0	-	mp	1.00	0	0	0	0	Dark,Normal	0
+themoonitself.PokeWorld	PW_Perrserker	Perrserker	0	-	mp	0.50	0	0	0	0	Steel	0
+themoonitself.PokeWorld	PW_Cursola	Cursola	0	-	mp	0.62	0	0	0	0	Ghost	0
+themoonitself.PokeWorld	PW_Sirfetchd	Sirfetch'd	0	-	mp	0.50	0	0	0	0	Fighting	0
+themoonitself.PokeWorld	PW_MrRime	Mr. Rime	0	-	mp	0.94	0	0	0	0	Ice,Psychic	0
+themoonitself.PokeWorld	PW_Runerigus	Runerigus	0	-	mp	1.00	0	0	0	0	Ground,Ghost	0
+themoonitself.PokeWorld	PW_Milcery	Milcery	0	-	mp	0.12	0	0	0	0	Fairy	0
+themoonitself.PokeWorld	PW_Alcremie	Alcremie	0	-	mp	0.19	0	0	0	0	Fairy	0
+themoonitself.PokeWorld	PW_Falinks	Falinks	0	-	mp	1.88	0	0	0	0	Fighting	0
+themoonitself.PokeWorld	PW_Pincurchin	Pincurchin	0	-	mp	0.19	0	0	0	0	Electric	0
+themoonitself.PokeWorld	PW_Snom	Snom	0	-	mp	0.19	0	0	0	0	Ice,Bug	0
+themoonitself.PokeWorld	PW_Frosmoth	Frosmoth	0	-	mp	0.81	0	0	0	0	Ice,Bug	0
+themoonitself.PokeWorld	PW_Stonjourner	Stonjourner	0	-	mp	1.56	0	0	0	0	Rock	0
+themoonitself.PokeWorld	PW_Eiscue	Eiscue	0	-	mp	0.87	0	0	0	0	Ice	0
+themoonitself.PokeWorld	PW_Indeedee	Indeedee	0	-	mp	0.56	0	0	0	0	Psychic,Normal	0
+themoonitself.PokeWorld	PW_Morpeko	Morpeko	0	-	mp	0.19	0	0	0	0	Electric,Dark	0
+themoonitself.PokeWorld	PW_Cufant	Cufant	0	-	mp	0.75	0	0	0	0	Steel	0
+themoonitself.PokeWorld	PW_Copperajah	Copperajah	0	-	mp	1.88	0	0	0	0	Steel	0
+themoonitself.PokeWorld	PW_Dracozolt	Dracozolt	0	-	mp	1.12	0	0	0	0	Electric,Dragon	0
+themoonitself.PokeWorld	PW_Arctozolt	Arctozolt	0	-	mp	1.44	0	0	0	0	Electric,Ice	0
+themoonitself.PokeWorld	PW_Dracovish	Dracovish	0	-	mp	1.44	0	0	0	0	Water,Dragon	0
+themoonitself.PokeWorld	PW_Arctovish	Arctovish	0	-	mp	1.25	0	0	0	0	Water,Ice	0
+themoonitself.PokeWorld	PW_Duraludon	Duraludon	0	-	mp	1.12	0	0	0	0	Steel,Dragon	0
+themoonitself.PokeWorld	PW_Dreepy	Dreepy	0	-	mp	0.31	0	0	0	0	Dragon,Ghost	0
+themoonitself.PokeWorld	PW_Drakloak	Drakloak	0	-	mp	0.87	0	0	0	0	Dragon,Ghost	0
+themoonitself.PokeWorld	PW_Dragapult	Dragapult	0	-	mp	1.88	0	0	0	0	Dragon,Ghost	0
+themoonitself.PokeWorld	PW_Zacian	Zacian	0	-	mp	1.75	0	0	0	0	Fairy	1
+themoonitself.PokeWorld	PW_Zamazenta	Zamazenta	0	-	mp	1.81	0	0	0	0	Fighting	1
+themoonitself.PokeWorld	PW_Eternatus	Eternatus	0	-	mp	12.50	0	0	0	0	Poison,Dragon	1
+themoonitself.PokeWorld	PW_Kubfu	Kubfu	0	-	mp	0.37	0	0	0	0	Fighting	1
+themoonitself.PokeWorld	PW_Urshifu	Urshifu	0	-	mp	1.19	0	0	0	0	Fighting,Dark	1
+themoonitself.PokeWorld	PW_Zarude	Zarude	0	-	mp	1.12	0	0	0	0	Dark,Grass	1
+themoonitself.PokeWorld	PW_Regieleki	Regieleki	0	-	mp	0.75	0	0	0	0	Electric	1
+themoonitself.PokeWorld	PW_Regidrago	Regidrago	0	-	mp	1.31	0	0	0	0	Dragon	1
+themoonitself.PokeWorld	PW_Glastrier	Glastrier	0	-	mp	1.37	0	0	0	0	Ice	1
+themoonitself.PokeWorld	PW_Spectrier	Spectrier	0	-	mp	1.24	0	0	0	0	Ghost	1
+themoonitself.PokeWorld	PW_Calyrex	Calyrex	0	-	mp	0.69	0	0	0	0	Psychic,Grass	1
+Ezfi.MontereyBayAquariumAnimals	Boneworm	bone-eating worm	0	-	-	3	0	0	0	0	-	0
+Ezfi.MontereyBayAquariumAnimals	SeaOtter	sea otter	0	-	mp	0.4	1	0	0	0	-	0
+Mlie.ReGrowthExtinctAnimals	RG_SabertoothTiger	smilodon	1	1.2	m	1.2	1	0	0	0	-	0
+Mlie.ReGrowthExtinctAnimals	RG_TerrorBird	terror bird	1	3.2	mp	2	1	0	0	0	-	0
+vanillaquestsexpanded.ancients	VQEA_Spliceling	spliceling	0	-	n	2	0	0	0	0	-	0
+vanillaquestsexpanded.ancients	VQEA_Splicehulk	splicehulk	0	-	n	3	0	0	0	0	-	0
+vanillaquestsexpanded.ancients	VQEA_Splicefiend	splicefiend	0	-	n	4	0	0	0	0	-	0
+vanillaquestsexpanded.ancients	VQEA_Splicetoot	splicetoot	0	-	n	0.8	0	0	0	0	-	0
+vanillaexpanded.gravship2	VGE_Exopede	exopede	0	-	mp	1	1	0	1	0	-	0
+vanillaexpanded.gravship2	VGE_Exohive	moving exohive	0	-	mp	3	1	0	1	0	-	0
+vanillaexpanded.gravship2	VGE_Exoworm	exoworm	0	-	mp	0.2	1	0	1	0	-	0
+vanillaexpanded.gravship2	VFEI2_Nullipede	nullipede	0	-	mp	4.8	1	0	1	0	-	0
+vanillaexpanded.gravship2	VGE_ExowormKnot	exoworm knot	0	-	mp	4	0	0	1	0	-	0
+vanillaexpanded.gravship2	VGE_Exoleech	exoleech	0	-	mp	1.35	1	0	1	0	-	0
+Local.ReGrowth2.Wastelands	RG_Toxirrel	toxirrel	0	-	p	0.15	1	0	0	0	-	0
+Local.ReGrowth2.Wastelands	RG_Toxbeaver	toxbeaver	0	-	mp	0.40	1	0	0	0	-	0

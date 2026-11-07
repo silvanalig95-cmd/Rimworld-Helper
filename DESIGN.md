@@ -1055,6 +1055,113 @@ once-a-day rate of everything said on screen) and write in their journals. The r
 - **Ticking**: in the animals' hour and day (`AnimalLife`, the council's people pass) and, for the fight, on the fight
   sides' 250-tick look (`Sched.RareFightSides`): no new slot.
 
+### The colony's animals hunting for themselves (the player's request, 7 November 2026)
+
+The player's husky starved: the game never lets a tame animal hunt unless its kind is flagged a predator, and then only
+as `JobGiver_GetFood`'s last resort (`FoodUtility.TryFindBestFoodSourceFor` falls to `BestPawnToHuntForPredator` when no
+food at all is found, by the game's prey rules: combat power and size against the hunter's). A husky isn't flagged, can't
+graze, and its area ("Animals") left out the stores. The player: "can you make animals hunt if they would do in reality,
+and your judgement for fictive species, and that they hunt what they would normally would, or hunt things below them in
+the food chain, not above". The pure rules are `Animals/HuntMath.cs` (`HuntTests`, which judge every animal of the base
+game, the DLCs and the player's 29 animal mods from their own defs, `Tools/Tests/HuntKinds.txt`); the game's side is
+`Animals/PetHunts.cs`, `PetHuntsPatches.cs` and `PetHuntsDebug.cs`.
+
+- **Who hunts** (`HuntMath.Judge`), in this order: a dryad, a kind that eats nothing and one whose diet has no meat (it
+  couldn't eat its kill) never; a Pokémon by its species in the table, else by its type, a legendary never; any other kind
+  by its defName in the table, else by a word of its name (the last word first: a red fox is a fox, a sabertooth squirrel
+  a squirrel), else by the rule. Each entry gives a step and a reason, and whether the kind hunts in packs, takes insects
+  or takes venomous prey.
+  | Who | Step | Why |
+  |---|---|---|
+  | dogs (husky, labrador, terrier, retriever, shepherd, corgi, beagle, the hounds, dingo, dhole...) | by size, in packs | they chase down and kill small game; the game doesn't flag them |
+  | lapdogs (pug, French bulldog, shih-tzu, chihuahua...) | prey | bred for company, they barely hunt |
+  | wolves, hyenas, coyotes, jackals, the African wild dog | by size, in packs | |
+  | foxes, the thylacine, weasels, ferrets, martens, badgers, wolverines | by size | |
+  | the mongoose | hunter | takes snakes too |
+  | house cats (whatever their size: a Maine coon too) | small hunter | they keep the mice and birds down |
+  | wild cats (lynx, caracal, serval, ocelot) | by size | |
+  | big cats, smilodons; lions (in prides) | apex | |
+  | bears (the panda aside) | apex | |
+  | birds of prey (eagle, hawk, falcon, owl) | by size | carrion birds (vultures, condors) are prey |
+  | snakes; crocodiles; monitors | by size; apex; by size | |
+  | raptors (in packs) and the hunting dinosaurs | by size | |
+  | fish eaters (penguins, seals, otters, herons), lizards and tortoises, apes and monkeys, rooters (pigs, boars, raccoons, rats), grazers, browsers, fowl, small grazers | prey | the game's flag on a mod's twist (a vampire deer) still stands over a prey word |
+  | Megafauna's giant penguin and walrus kin; Alpha Animals' plasmorph (a snail) and frostmite (a scavenger) | prey | the game flags them, but they fished, dug or scavenged |
+  | Megafauna's meganeura | small hunter | a giant dragonfly |
+  | A RimWorld of Magic's minions, demons, elementals, sentinels and golems | prey | summoned or made: they don't feed themselves (over the game's flag) |
+
+  **The rule** for every kind the table doesn't name (most of Alpha Animals, ReGrowth, Vanilla Genetics Expanded's hybrids,
+  Odyssey's and any later mod's): no meat, no hunt; the game's predator flag, or a meat-only diet with teeth or claws, a
+  hunter by its size (under 0.7 a small hunter, under 1.6 a hunter, else apex); an omnivore the game doesn't flag doesn't.
+  **Pokémon** by species: the canines (Growlithe, Houndour, Poochyena, Rockruff, Lillipup, Electrike, Yamper, Riolu...,
+  in packs), foxes (Vulpix, Zorua, Nickit, Fennekin), cats (Meowth, Glameow, Skitty, Purrloin, Litten... small hunters),
+  lions (Shinx, Litleo, in prides), Sneasel and Weavile (packs), the mongooses (Zangoose, Yungoos: snakes too), bears,
+  birds of prey (Pidgeotto, Fearow, Noctowl, Staraptor, Braviary, Talonflame, Decidueye, Corviknight...), snakes (Ekans,
+  Seviper), crocodiles (Sandile, Totodile lines), the hunting dragons (Gible, Bagon, Deino, Axew, Trapinch lines,
+  Druddigon), the fossil hunters (Tyrunt, Aerodactyl, Archen, Kabutops, Tyranitar), the hunting bugs (Scyther, Spinarak,
+  Galvantula, Skorupi, Sizzlipede, Venipede lines), Pawniard's packs, Heatmor (it eats Durant); a Pokémon the table
+  doesn't name hunts only when it is a Dark type of 0.4 or more or a Dragon type of 1 or more (by its size), and the Dark
+  and Dragon kinds that don't hunt are named as prey (Dratini's line, Altaria, Goomy's line, the apple dragons, the
+  fighters, the sea hunters, the tricksters, Stunky, the vultures). Over the player's game: 16 of the base game's and the
+  DLCs' 71 animals hunt, 194 of the other mods' 575, and 119 of PokéWorld's 898 species.
+- **What it takes** (`HuntMath.WhyNotPrey`): only a wild animal (no faction, no host), never a person, anyone's tame or
+  penned animal, one of Rimfolk's stories (`PackAlphas.Storied`: a named alpha or its pack, a beast nemesis, also one that
+  fled, the beast that stays, a legend, anything named), a sacred one, a legendary, one with a group (a herd crossing: a
+  stampede waiting), one marked for taming, a manhunter or one in any mental state, one that bursts, splits or vanishes
+  when it dies (a boomrat); never an insect or a venomous animal unless its kind's entry says so; only a lower step; no
+  bigger than its limit (its size times 0.8, or 1.2 for two of a pack kind together; the game's own maxPreyBodySize where
+  its kind has one; a small hunter 0.4 at most, a hunter 1.25, 1.6 in a pack; small game 0.4 for a fed one); and, unless
+  the prey is down already, less of a fight than 0.6 of its own (the game's combat power times health times size; 1 in a
+  pack) and unlikely to turn on it: the game's revenge chance against it in melee (three times the kind's, with PokéWorld's
+  level factor) at most 0.1 for prey a third of its size or more, 0.35 for smaller. Then inside its allowed area, not
+  forbidden, reachable, within 120 cells (30 for a fed one), the best by the game's own prey score (`GetPreyScoreFor`).
+  For example: a husky takes hares, squirrels and foxes, never a deer alone (two huskies may take an ibex), never a wolf or
+  a cobra; a cat takes rats, squirrels and hares, not a wild hen or a fox; a wolf alone takes hares and foxes, two wolves an
+  ibex or a gazelle, never an elk or a caribou (its herd would turn); a grizzly takes a deer, never an elk alone or a wolf
+  (wolves turn on what hurts them); an Arcanine takes a Rattata or a Pidgey but leaves a Growlithe (it would fight back) and
+  a Houndoom (its equal); a Growlithe takes a hare but leaves a Rattata near its own size.
+- **When** (`HuntMath.WhyNot`): hungry (past its kind's wish to eat, as the game's food search asks, within that node's
+  bounds) with nothing the game's food search found inside its area: `Patch_PetHuntsHungry` (a postfix on
+  `JobGiver_GetFood.TryGiveJob`) gives it the game's own `PredatorHunt` (kill, then eat) on the prey above, with one free
+  of its pack kind beside it joining; the game's own hunt for a flagged predator is replaced by the same choice (none when
+  the rules allow nothing), and food the game found always stands. An animal that looked and found nothing doesn't look
+  again for 600 ticks. Fed, a hunter idle in its area sets out about once in four days (1 in 96 an hour, a day and a half
+  apart at least, one a map an hour, the people's hour of `CouncilGameComponent`), for small game only; a third of the time,
+  with its person up on the map and in reach, it carries the kill to them (`Rimfolk_PetBringsKill`,
+  `JobDriver_PetBringsKill`: the game's chase and blows as `JobDriver_PredatorHunt`'s, then the body taken up, carried and
+  set down at their feet; their thought "a present from my animal", +3 for 2 days, the pet's present event's). Never with
+  the setting off or its "May hunt" off, young, away, downed, drafted, following its master into work or a fight (the game's
+  `ShouldFollowMaster`), roped or penned, with a group, in a mental state, ill enough for bed, under 0.6 of its health,
+  without an attack, or with danger on the map; a hunt under way is given up when one of those comes up, or when its hunter
+  has strayed 6 cells or more outside its area (the wild's short pass, every 250 ticks, `BeastBook.Rare`: no new slot).
+- **Harm.** The hunt is the game's own fight, so prey fighting back can hurt a pet now and then, as it does the game's wild
+  hunters; the choice of prey (smaller, much weaker, unlikely to turn on it, never venomous) keeps that small. Rimfolk rolls
+  nothing of its own here, so the shared budget (`Harm/HarmBudgetMath.cs`) doesn't count it, as it doesn't count the game's
+  own predators, raids or the colony's hunters: none of it goes through `Harm`. A hunter hurt to under 0.6 of its health
+  breaks off the chase.
+- **Seen.** At the kill, someone in view says a word (`Council_Pool_SeeHunt`, through `AnimalTempers.Remark`: the shared
+  once-a-day rate of things said on screen; tagged eat or carry, hungry or sport, small or big, pack, body, Pokémon), and the
+  animal's card says what it caught; the carried kill gets its person's word to it (`Council_Pool_PetBringsKill`). No letter
+  and no message. Fresh carcasses (`Alert_FreshCarcass`) leave a kill alone while a colony animal is eating it.
+- **The alert** (`Alert_NoFoodInReach`, the game's alert list): one of the colony's animals hungry (Hungry or worse), not
+  fed by someone in bed or downed, not penned or hitched (the game has its own alerts for those), not with a group, with
+  nothing the game's food search finds in its area (reservations ignored) and no hunt to go on (its kind doesn't hunt, it
+  is kept or young, the setting is off, it can't now, or there is nothing it may take in reach), on two looks in a row.
+  It names each (twelve at most, then "and N more"), says why (food it eats lies outside its area; the food inside it is
+  forbidden; there is nothing it eats on the map, with what it eats) and how to put it right (the area Unrestricted or
+  wider; unforbid; a stockpile of what it eats inside its area). A click selects them. Its bonded person says so aloud
+  once (`Council_Pool_SayPetNoFood`), within six hours while they are up on the map being looked at, not again within 12.
+- **Control.** The setting "Pets hunt for themselves" (`petsHunt`, What's on, on by default; off, the game's own rules
+  stand untouched), "An animal with no food in reach" (`noFoodAlert`, Alerts, on), and on each animal whose kind hunts a
+  "May hunt" button (`Patch_PetHuntsGizmo`, a `Command_Toggle` on `Pawn.GetGizmos`, the game's hunt icon). Off, it never
+  hunts, the game's own last-resort hunt included.
+- **Saved**: only the ids kept home (`AnimalBook.keptHome`, 200 at most, let go when the animal dies or leaves). The hunts
+  under way, the waits and the alert's looks are not: a hunt running at a save goes on as the game's own job.
+- **Softly.** Every kind by its def and words, nothing required; PokéWorld by its species and types
+  (`PokeWorldLink.TypesOf`, `PokeWorldLegends`) and its own revenge patch; Hunt for Me's trained hunts for the colony are
+  its own jobs and stay its own (this is the animal feeding itself); a mod that gives a hungry animal another food job
+  (foraging, fishing) wins, since food found always stands.
+
 ### What the colony's people want, strive for and are known for: the fourth round (6 November 2026)
 
 The player's request ("do another big content update to existing mechanics"), the part about the colony's own people:

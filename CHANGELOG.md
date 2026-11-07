@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Pets that hunt by nature, and an alert for a hungry one
+
+*7 November 2026, version 0.156.0*
+
+- Your animals now hunt when their kind would in reality: dogs including huskies, cats, foxes, wolves, bears, big cats, birds of prey, snakes and crocodiles, and the hunters among your mods' animals and the Pokémon, judged species by species. Lapdogs, grazers, fowl and the gentle ones don't.
+- They take only what sits below them in the food chain and what they could really take: a husky takes hares, squirrels and foxes, two huskies an ibex, a cat rats and squirrels, a bear a deer, never anything that would fight back hard, a manhunter, anyone's tame animal, or a creature from the colony's own stories.
+- A hungry hunter with nothing to eat in its area goes hunting and eats its kill; a fed one now and then catches small game, and sometimes carries it home to its person. They stay inside their allowed area and never hunt in danger, while drafted, penned, young or hurt.
+- A new alert names any animal that is hungry with nothing it may eat in reach and can't hunt, and says why: the food is outside its area, forbidden, or there is nothing it eats, with how to fix it. The person bonded to it says so once.
+- New settings Pets hunt for themselves and An animal with no food in reach, and a May hunt button on each hunting animal to keep one at home.
+
 ## Sickness that spreads, and the cold, in the shared budget
 
 *7 November 2026, version 0.155.0*

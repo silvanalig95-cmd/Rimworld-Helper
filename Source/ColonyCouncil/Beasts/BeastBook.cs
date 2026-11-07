@@ -129,6 +129,9 @@ namespace ColonyCouncil
             Safe("manhunters' alpha", () => PackAlphas.WatchThreats(this, now));
             Safe("beast nemeses", () => BeastNemeses.Rare(this, now));
             Safe("herds", () => GreatHerds.Rare(this, now));
+            // The colony's animals hunting the wild (Animals/PetHunts.cs): the hunts under way kept to the rules, and the
+            // hungry ones with nothing in reach looked at for their alert.
+            Safe("pets hunting", () => PetHunts.Rare(now));
         }
 
         private void Hourly(int now)

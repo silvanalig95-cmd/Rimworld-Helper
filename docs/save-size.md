@@ -7,7 +7,7 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 572; modelled: 572; growing without end: 0.
+Saved collections found: 573; modelled: 573; growing without end: 0.
 Rimfolk's part of the save, roughly: **2,474 KB** after a year, **2,935 KB** after two, **3,146 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
@@ -326,6 +326,7 @@ Rimfolk's part of the save, roughly: **2,474 KB** after a year, **2,935 KB** aft
 | `Setbacks/SetbackTracker.cs:grantWho` | 20 days | window | 10 | 10 | 10 | 0.4 |
 | `Social/Autonomy.cs:plans` | plans until built | cap | 10 | 10 | 10 | 0.4 |
 | `CouncilGameComponent.cs:beasts` | one per colony: the beast that stays on its land (its known ids have rows of their own) | fixed | 1 | 1 | 1 | 0.4 |
+| `Animals/AnimalBook.cs:keptHome` | ids of the animals kept from hunting, AnimalNatureMath.MaxKeptHome at most, let go when one dies or leaves | cap | 3 | 6 | 15 | 0.4 |
 | `Beasts/BeastBook.cs:noted` | beast nemeses already given their scars and oath (ids), BeastsMath.MaxNoted newest | cap | 3 | 6 | 15 | 0.4 |
 | `Building/BuildProjects.cs:patients` | the most laid up at once, one a day, BuildAheadTracker.PatientDays at most | fixed | 15 | 15 | 15 | 0.4 |
 | `Fields/FieldWeather.cs:byWeather` | per home map: the growing zones set to sow By the weather, while the zone stands | while | 15 | 15 | 15 | 0.4 |

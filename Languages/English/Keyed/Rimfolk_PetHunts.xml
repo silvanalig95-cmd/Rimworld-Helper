@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The colony's animals hunting for themselves (Animals/PetHunts.cs): the setting, the button, the card and the alert. -->
+  <CC_Settings_PetsHunt>Pets hunt for themselves</CC_Settings_PetsHunt>
+  <CC_Settings_PetsHunt_Tip>The colony's animals whose kind hunts in real life (dogs, cats, foxes, wolves, bears, big cats, birds of prey, snakes, crocodiles; for other kinds by what they are, Pokémon by their species and type) go after wild prey below them in the food chain when they are hungry and nothing they may eat lies inside their allowed area. Now and then a fed one goes after small game, as a cat keeps the mice down, and sometimes carries the kill to its person. They take only wild animals smaller and weaker than themselves that are unlikely to turn on them, never anyone's animals, insects, venomous ones or the beasts of the colony's stories, and they stay inside their area. Never while drafted, following their master, roped or penned, young, hurt or ill, or with danger on the map. The fight is the game's own, so prey fighting back can hurt them now and then. Each such animal has a "May hunt" button to keep it at home. Off, the game's own rules stand: only animals it counts as predators hunt, and only when nothing at all is left to eat.</CC_Settings_PetsHunt_Tip>
+  <CC_SetNote_PetsHunt>Hungry hunters with nothing to eat in their area go hunting, and fed ones catch small game now and then.</CC_SetNote_PetsHunt>
+
+  <CC_PetHunt_Gizmo>May hunt</CC_PetHunt_Gizmo>
+  <CC_PetHunt_GizmoDesc>On: {PET_nameDef} hunts wild prey below {PET_objective} in the food chain when hungry with nothing to eat inside {PET_possessive} area, and now and then goes after small game. Off: {PET_pronoun} stays at home and never hunts.</CC_PetHunt_GizmoDesc>
+
+  <CC_PetHunt_Did_Caught>caught {THING}</CC_PetHunt_Did_Caught>
+  <CC_PetHunt_Did_Brought>brought {THING} to {PAWN_nameDef}</CC_PetHunt_Did_Brought>
+
+  <!-- The alert. -->
+  <CC_Settings_NoFoodAlert>An animal with no food in reach</CC_Settings_NoFoodAlert>
+  <CC_Settings_NoFoodAlert_Tip>An alert while one of the colony's animals is hungry, has nothing it may eat inside its allowed area and can't hunt for it (or may not). It names each one, says why (the area leaves out where the food is, the food inside it is forbidden, or there is nothing it eats on the map) and how to put it right, and a click selects them. Its bonded person says so once when it starts. Penned and hitched animals have the game's own alerts.</CC_Settings_NoFoodAlert_Tip>
+  <CC_SetNote_NoFoodAlert>An alert, with why and what to do, while an animal of the colony is hungry with nothing in reach.</CC_SetNote_NoFoodAlert>
+  <CC_NoFood_Alert>Animal with no food in reach</CC_NoFood_Alert>
+  <CC_NoFood_AlertMany>Animals with no food in reach ({0})</CC_NoFood_AlertMany>
+  <CC_NoFood_AlertWhat>These animals of the colony are hungry, have nothing they may eat inside their allowed area, and can't hunt for it. A click on the alert selects them.</CC_NoFood_AlertWhat>
+  <CC_NoFood_Line>{NAME}: {WHY}, and {HUNT}.</CC_NoFood_Line>
+  <CC_NoFood_Why_Area>the food it eats lies outside its allowed area</CC_NoFood_Why_Area>
+  <CC_NoFood_Why_Forbidden>the food it eats inside its area is forbidden</CC_NoFood_Why_Forbidden>
+  <CC_NoFood_Why_None>there is nothing it eats ({FOOD}) on the map</CC_NoFood_Why_None>
+  <CC_NoFood_Hunt_setting>pets don't hunt for themselves (the setting is off)</CC_NoFood_Hunt_setting>
+  <CC_NoFood_Hunt_kind>its kind doesn't hunt</CC_NoFood_Hunt_kind>
+  <CC_NoFood_Hunt_kept>it is kept from hunting (its "May hunt" is off)</CC_NoFood_Hunt_kept>
+  <CC_NoFood_Hunt_young>it is too young to hunt</CC_NoFood_Hunt_young>
+  <CC_NoFood_Hunt_prey>there is nothing inside its area it could hunt</CC_NoFood_Hunt_prey>
+  <CC_NoFood_Hunt_unable>it can't hunt just now</CC_NoFood_Hunt_unable>
+  <CC_NoFood_Fix_Area>Food outside the area: set the animal's area to Unrestricted on the Animals tab, or widen it to take in where the food is.</CC_NoFood_Fix_Area>
+  <CC_NoFood_Fix_Forbidden>Forbidden food: unforbid the food inside its area.</CC_NoFood_Fix_Forbidden>
+  <CC_NoFood_Fix_None>Nothing to eat: put a stockpile of what it eats inside its area, or set its area to Unrestricted so it can graze or hunt further off.</CC_NoFood_Fix_None>
+  <CC_NoFood_More>and {0} more</CC_NoFood_More>
+  <CC_NoFood_Eats_Kibble>kibble</CC_NoFood_Eats_Kibble>
+  <CC_NoFood_Eats_Meat>raw meat</CC_NoFood_Eats_Meat>
+  <CC_NoFood_Eats_Hay>hay or grass</CC_NoFood_Eats_Hay>
+  <CC_NoFood_Eats_Veg>vegetables or berries</CC_NoFood_Eats_Veg>
+  <CC_NoFood_Eats_Meals>meals</CC_NoFood_Eats_Meals>
+  <CC_NoFood_Eats_Any>its food</CC_NoFood_Eats_Any>
+  <CC_NoFood_Or>or</CC_NoFood_Or>
+
+</LanguageData>

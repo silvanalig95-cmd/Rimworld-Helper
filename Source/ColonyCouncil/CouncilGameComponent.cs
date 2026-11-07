@@ -567,6 +567,8 @@ namespace ColonyCouncil
             Safe("interplay", () => Interplay.Hourly(this));
             if (PokeWorldLink.Active) Safe("pokeworld", () => PokeWorldLink.Hourly(this));
             Safe("animal life", () => AnimalLife.Hourly(this));
+            // A fed hunter of the colony's out after small game now and then (Animals/PetHunts.cs).
+            Safe("pets hunting", PetHunts.Hourly);
             Safe("autonomy", () => autonomy.Hourly(this));
             Safe("who is home", NoteWhoIsHome);
             // Which home is whose (the last home each lived on for a day), and a home founded or lost (Lean/Homes.cs).

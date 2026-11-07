@@ -179,9 +179,9 @@ public static class AnimalNatureTests
 
         // Kept by id, never by reference (the handler aside).
         C(Regex.Matches(book, @"Scribe_References\.Look").Count == 1 && book.Contains("Scribe_References.Look(ref handler"), "the book keeps animals by id; only the handler by reference");
-        C(Regex.Matches(book, @"Scribe_Collections\.Look").Count == 3, "three collections saved: temperaments, ties, gone");
+        C(Regex.Matches(book, @"Scribe_Collections\.Look").Count == 4, "four collections saved: temperaments, ties, gone, and those kept from hunting (Animals/PetHunts.cs)");
         string estimate = File.ReadAllText(Path.Combine(root, "Tools", "save_estimate.py"));
-        foreach (var col in new[] { "marks", "ties", "gone" })
+        foreach (var col in new[] { "marks", "ties", "gone", "keptHome" })
             C(estimate.Contains("\"Animals/AnimalBook.cs:" + col + "\""), $"the save estimate models AnimalBook's {col}");
 
         // The hooks.
