@@ -2293,10 +2293,16 @@ Rimfolk reads these mods by name while the game runs: with one missing, its part
   two or three of a friendly people with their Pokémon at their heels: they trade, teach training to whoever asks, and
   put on a friendly contest with the colony's best Pokémon as a show at their fire (the higher level likelier to win,
   never surely, nobody hurt), and when they come back like any remembered camp, the next contest is a rematch. What
-  Pokémon **sound like** is a setting: by default each species calls with the voice of a base-game animal picked by
-  its body, types and size (insects click, birds cluck, quack or honk, bats squeak, big beasts roar, the stones, gases,
-  ice, shells and fish take a tortoise's voice; only animals that call when grown), never more often than PokéWorld had
-  it; or their own cries a third as often; or as PokéWorld has them. Rimfolk only reads the mod, by name (checked
+  Pokémon **sound like** is a setting: by default each species calls with the voice of an animal picked by its body,
+  types and size. Another mod's animal lends it where it is nearer to what the species is and has a call of its own
+  (Alpha Animals' bumbledrone for the winged bugs, its aves for the bigger birds, its needlepost for the plant ones and
+  its ocular jelly for the tentacled ones; Vanilla Animals Expanded's zebra for the zebras and its crocodile for the big
+  water beasts; ReGrowth's rimclaw and arctic drak for the big dragons; a coyote, a lion, a rattlesnake, a velociraptor
+  or a wildebeest shared with the base game's for variety); otherwise a base-game animal does (insects click, birds
+  cluck, quack or honk, bats squeak, big beasts roar, the stones, gases, ice, shells and fish take a tortoise's voice;
+  only animals that call when grown). Without those mods every species sounds as before, and the same species always
+  the same. It never calls more often than PokéWorld had it; or their own cries a third as often; or as PokéWorld has
+  them. Rimfolk only reads the mod, by name (checked
   against PokéWorld Updated for 1.6, its 898 species and eight generations); what a version lacks is skipped and said
   once in the log. Five Almanac pages explain it.
 - **Giddy-Up 2:** a hunter, a restless soul or an animal lover may wish for a mount of their own.

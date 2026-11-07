@@ -6,6 +6,54 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- PokéWorld's voices from the player's modded animals (7 November 2026). The player's words: "regarding pokemon voices,
+  can you review all the mods in my list for other animals that you can use as reference for the sounds? with possible
+  vanilla fallbacks. find out the mod numbers and tell me what i need to upload." They uploaded each installed mod's
+  About.xml and its Defs files with animals or sounds (the collector, `scratchpad/animalsounds/Collect-AnimalSounds.ps1`).
+  No round yet: About.xml, What's new and CHANGELOG untouched (the lead's, when merging). No Sched slot, no saved
+  collection, no new Harmony patch.
+  - What the data showed (read for 1.7: the 1.7 folder, else the newest older one, then Common and the root;
+    `ParentName` resolved within and across the mods): of 31 active mods with animals, 66 real animals have grown ones
+    with a call of their own, listed in `docs/player-animals.tsv` (Alpha Animals 43, Vanilla Animals Expanded 8 and its
+    Endangered 3 and Waste 2, ReGrowth 2 4, ReGrowth: Boiling 1, Vanilla Genetics Expanded 5 reusing Alpha Animals').
+    The rest reuse the base game's calls: all of Megafauna's, Dinosauria's eight callers the thrumbo's, VFE Insectoids 2
+    the game's insects, most of Vanilla Genetics Expanded's hybrids. The demigryphs call only as chicks (Pawn_Chick_Call)
+    and Dinosauria's hunters have no sounds, so neither lends a voice.
+  - The rule (`PokeWorldSoundsMath.Voices(body, size, types)`): groups of def names, best first, the last always the one
+    base-game animal `Voice` names (unchanged). `Pick(voices, calls, species)` takes the first group with a loaded animal
+    whose grown ones call, among those the one `Stable(defName)` (FNV-1a) points to, so the same species takes the same
+    voice while the same mods are loaded. Modded first only where it is nearer to what the species is: winged bugs
+    `AA_Bumbledrone` (Combee too), non-water birds from 0.6 and bird heads `AA_MeadowAve`, tentacles `AA_OcularJelly`,
+    plant heads and plant tentacles `AA_Needlepost`, big pawed plants `AA_Wildpawn`, electric hooved (the zebras)
+    `AEXP_Zebra` then `AEXP_Quagga`, big two-legged water beasts `AEXP_Crocodile`, big two-legged dragons `RG_Rimclaw` or
+    `RG_ArcticDrak`. Shared with the base animal for variety: Cobra or `AEXP_Rattlesnake` (poison and ground snakes),
+    Iguana or `RG_Velociraptor` (small two-legged dragons), Wolf_Timber or `AEXP_Coyote` (middling fierce or tough
+    pawed), Warg, `AEXP_Lion` or `AA_ArcticLion` (big fierce pawed), Muffalo or `AEXP_Wildebeest` (big tough hooved).
+    Left out on purpose: the hyena (a laugh) and the Tasmanian devil (a screech), the hybrids of human meat, the
+    eldritch eyes and slugs, RoM's and VPE's summoned and undead, Ancients' splicers, the dryads, the mechs, and the
+    penguin and the crabs' shrimp (no type tells a penguin from a duck or a turtle; a shrimp isn't plainly nearer a crab
+    than the megascarab's clicks).
+  - The game's side (`PokeWorldSounds.VoiceOf`): the names looked up among `Candidates()` (grown callers, not Pokémon,
+    mechanoids, dryads or people), else the nearest as before; in dev mode the voices from other mods in use and how many
+    species each are said once a session. The class and the setting's tooltips say it.
+  - With the player's list: 146 of 898 species take a modded voice. Alpha Animals 97 (needlepost 31, meadow ave 23,
+    bumbledrone 23, ocular jelly 12, wildpawn 5, arctic lion 3), Vanilla Animals Expanded 34 (coyote 12, wildebeest 9,
+    crocodile 5, lion 3, rattlesnake 3, zebra 2), ReGrowth 2 15 (arctic drak 9, rimclaw 3, velociraptor 3).
+  - Tests (`PokeWorldSoundsTests`; the math was linked already): over every body, size band and pair of types
+    the last group is the base animal `Voice` names and a grown caller, with only base-game animals every species sounds
+    as before, every modded name is in `docs/player-animals.tsv`, several mods are drawn on, the left-out ones are never
+    named; samples (Pidgeot, Dodrio, Swanna, Beedrill, Combee, Crobat, Caterpie, Tentacruel, Carnivine, Sunkern, Venusaur,
+    Blastoise, Zebstrika with and without VAE, Garchomp, and Pikachu, Geodude, Magikarp and Charizard unchanged), FNV-1a's
+    known values, variety among equals, the same species the same each time, a missing animal never taken.
+  - The list (`scratchpad/pwreview/pwlist2`, which now links this worktree's math and reads `docs/player-animals.tsv`;
+    `scratchpad/pwlist/list.tsv` has a base column) and the page (`scratchpad/pwmod/makedata2.py` into
+    `scratchpad/pwvoices`: the modded voices as a tally of their own, each row's mod and its base fallback, a "Revised
+    again" note) were regenerated, not republished. The report for the player: `scratchpad/animalzip/animal-mods-report.md`.
+  - Docs: the Almanac's PokéWorld page (the sound point, prose only), README, `docs/player-modlist.md` ("Animals with a
+    call of their own").
+  - Not verifiable here: how each modded call sounds and whether it suits the species, by ear; the mods' LoadFolders.xml
+    weren't uploaded (the 1.7 folders were inferred), nor patches that might change these animals' sounds; the dev log
+    line in the game.
 - 0.140.0, A RimWorld of Magic under Harmony 3 (7 November 2026, the player's startup log and "help me fix it"). The log:
   `[ARimWorldOfMagic][ERR] Failed to apply Harmony patches for Torann.ARimworldOfMagic`, "Unrelated classes cannot
   describe the same non-null object ... supplied Verse.WeatherWorker, requested RimWorld.WeatherManager". Not a game

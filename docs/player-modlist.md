@@ -56,6 +56,15 @@ sets), Rimsenal's hair, the VE ideology icons and symbols, the Sophian style, VE
 Parks, More Floors, the VRE xenotypes' genes, and Alpha Genes. A new people's look is built from these (each softly:
 only when loaded), with the base game's and DLCs' as the fallback.
 
+## Animals with a call of their own
+
+The player uploaded the animal and sound defs of every installed mod (7 November 2026). Of the active ones, 66 real
+animals have grown ones with a call of their own rather than the base game's again: Alpha Animals (43), ReGrowth 2 (4),
+ReGrowth: Boiling (1), Vanilla Animals Expanded (8) and its Endangered (3) and Waste (2) packs, and Vanilla Genetics
+Expanded (5, all reusing Alpha Animals' calls). They are listed in `docs/player-animals.tsv`, which PokéWorld's voices
+(`PokeWorldSoundsMath.Voices`) and their tests read. Megafauna, Dinosauria, VFE Insectoids 2 and the rest reuse the base
+game's calls; the demigryphs and Dinosauria's hunters have no grown call at all.
+
 ## Worth knowing
 
 - Two facial animation mods are active (`nals.facialanimation` and `andromeda.facialanimation`). If faces look

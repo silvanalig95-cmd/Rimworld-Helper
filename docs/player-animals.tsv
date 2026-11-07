@@ -1,0 +1,70 @@
+# The animals of the player's active mods whose grown ones have a call of their own (RimWorld 1.7, the uploaded defs,
+# 7 November 2026): what PokeWorldSoundsMath.Voices may name besides the base game. Real animals only (no mechanoids,
+# dryads, summoned constructs or undead). The many others call with the base game's sounds again and are left out.
+defName	label	mod	packageId	workshop	body	size	call
+AA_Agaripawn	agaripawn	Alpha Animals	sarg.alphaanimals	1541721856	QuadrupedAnimalWithPaws	1.4	AA_Wildpawn_Call
+AA_Animalisk	animalisk	Alpha Animals	sarg.alphaanimals	1541721856	AA_Arachnid	1	Pawn_Feralisk_Call
+AA_ArcticLion	arctic lion	Alpha Animals	sarg.alphaanimals	1541721856	QuadrupedAnimalWithPawsAndTail	2	AA_ArcticLion_Call
+AA_Atispec	atispec	Alpha Animals	sarg.alphaanimals	1541721856	AA_Atispec	7	AA_Atispec_Call
+AA_Blizzarisk	blizzarisk	Alpha Animals	sarg.alphaanimals	1541721856	AA_Arachnid	2	Pawn_Feralisk_Call
+AA_BlizzariskClutchMother	blizzarisk clutch mother	Alpha Animals	sarg.alphaanimals	1541721856	AA_Arachnid	3	Pawn_Feralisk_Call
+AA_BloodShrimp	blood shrimp	Alpha Animals	sarg.alphaanimals	1541721856	AA_SnakeWithTwoLimbs	1	Pawn_RaptorShrimp_Call
+AA_Bobeene	bobeene	Alpha Animals	sarg.alphaanimals	1541721856	QuadrupedAnimalWithHooves	2.1	AA_Bobeene_Call
+AA_Bumbledrone	bumbledrone	Alpha Animals	sarg.alphaanimals	1541721856	AA_Wasp	0.79	AA_Wasp
+AA_BumbledroneHierophant	bumbledrone hierophant	Alpha Animals	sarg.alphaanimals	1541721856	AA_Wasp	0.79	AA_Wasp
+AA_BumbledroneQueen	bumbledrone queen	Alpha Animals	sarg.alphaanimals	1541721856	AA_Wasp	0.79	AA_Wasp
+AA_Cinderlisk	cinderlisk	Alpha Animals	sarg.alphaanimals	1541721856	AA_Arachnid	2.5	Pawn_Feralisk_Call
+AA_CrepuscularBeetle	Crepuscular Beetle	Alpha Animals	sarg.alphaanimals	1541721856	BeetleLikeWithClaw	3	Pawn_Terramorph_Call
+AA_DesertAve	desert ave	Alpha Animals	sarg.alphaanimals	1541721856	Bird	1	AA_MeadowAve_Call
+AA_Dunealisk	dunealisk	Alpha Animals	sarg.alphaanimals	1541721856	AA_Arachnid	2	Pawn_Feralisk_Call
+AA_DunealiskClutchMother	dunealisk clutch mother	Alpha Animals	sarg.alphaanimals	1541721856	AA_Arachnid	3	Pawn_Feralisk_Call
+AA_Feralisk	feralisk	Alpha Animals	sarg.alphaanimals	1541721856	AA_Arachnid	1	Pawn_Feralisk_Call
+AA_FeraliskClutchMother	feralisk clutch mother	Alpha Animals	sarg.alphaanimals	1541721856	AA_Arachnid	3	Pawn_Feralisk_Call
+AA_FireWasp	fire wasp	Alpha Animals	sarg.alphaanimals	1541721856	AA_Wasp	0.79	AA_Wasp
+AA_FrostAve	frost ave	Alpha Animals	sarg.alphaanimals	1541721856	Bird	1.3	AA_MeadowAve_Call
+AA_FrostboundBehemoth	frostbound behemoth	Alpha Animals	sarg.alphaanimals	1541721856	AA_WormWithArmor	3	Pawn_Terramorph_Call
+AA_Frostmite	frostmite	Alpha Animals	sarg.alphaanimals	1541721856	BeetleLikeWithClaw	0.5	Pawn_Frostmite_Call
+AA_GiantCrownedSilkie	giant crowned silkie	Alpha Animals	sarg.alphaanimals	1541721856	Bird	1.1	AA_MeadowAve_Call
+AA_Junglelisk	junglelisk	Alpha Animals	sarg.alphaanimals	1541721856	AA_Arachnid	1	Pawn_Feralisk_Call
+AA_MammothWorm	mammoth worm	Alpha Animals	sarg.alphaanimals	1541721856	AA_WormWithArmorAndTusks	3	Pawn_Terramorph_Call
+AA_MammothWorm_Temporary	summoned mammoth worm	Alpha Animals	sarg.alphaanimals	1541721856	AA_WormWithArmorAndTusks	3	Pawn_Terramorph_Call
+AA_MeadowAve	meadow ave	Alpha Animals	sarg.alphaanimals	1541721856	Bird	1.2	AA_MeadowAve_Call
+AA_Needlepost	needlepost	Alpha Animals	sarg.alphaanimals	1541721856	AA_SentientPlant	0.79	Pawn_Needlepost_Call
+AA_Needleroll	needleroll	Alpha Animals	sarg.alphaanimals	1541721856	AA_SentientPlant	0.15	Pawn_Needlepost_Call
+AA_NightAve	night ave	Alpha Animals	sarg.alphaanimals	1541721856	Bird	1.1	AA_MeadowAve_Call
+AA_OcularCactus	ocular cactus	Alpha Animals	sarg.alphaanimals	1541721856	AA_SentientPlant	0.15	Pawn_Needlepost_Call
+AA_OcularJelly	ocular jelly	Alpha Animals	sarg.alphaanimals	1541721856	AA_OcularJellyBody	0.5	AA_OcularJelly_Call
+AA_OcularOriginator	ocular originator	Alpha Animals	sarg.alphaanimals	1541721856	AA_GooBody	5	Pawn_TetraSlug_Call
+AA_RaptorShrimp	raptor shrimp	Alpha Animals	sarg.alphaanimals	1541721856	AA_SnakeWithTwoLimbs	1.4	Pawn_RaptorShrimp_Call
+AA_RedSpore	red spore	Alpha Animals	sarg.alphaanimals	1541721856	AA_RedSporeBody	2	AA_OcularJelly_Call
+AA_RoyalAve	royal ave	Alpha Animals	sarg.alphaanimals	1541721856	Bird	1.1	AA_MeadowAve_Call
+AA_SandLion	sand lion	Alpha Animals	sarg.alphaanimals	1541721856	QuadrupedAnimalWithPawsAndTail	2	AA_ArcticLion_Call
+AA_SandProwler	sand prowler	Alpha Animals	sarg.alphaanimals	1541721856	QuadrupedAnimalWithPawsAndTail	2	AA_ArcticLion_Call
+AA_TeratogenicOriginator	teratogenic originator	Alpha Animals	sarg.alphaanimals	1541721856	AA_GooBody	5	Pawn_TetraSlug_Call
+AA_TetraSlug	tetra slug	Alpha Animals	sarg.alphaanimals	1541721856	AA_ArmouredSlug	5	Pawn_TetraSlug_Call
+AA_UnblinkingEye	unblinking eye	Alpha Animals	sarg.alphaanimals	1541721856	AA_EyeBody	7	AA_Atispec_Call
+AA_Wildpawn	wildpawn	Alpha Animals	sarg.alphaanimals	1541721856	QuadrupedAnimalWithPaws	1.4	AA_Wildpawn_Call
+AA_Wildpod	wildpod	Alpha Animals	sarg.alphaanimals	1541721856	QuadrupedAnimalWithPaws	4	AA_Wildpawn_Call
+RG_ArcticDrak	arctic drak	ReGrowth 2	ReGrowth.BOTR.Core	2260097569	RG_TheropodWithClaws	2.2	RG_VelocTheropod_Call
+RG_Rimclaw	rimclaw	ReGrowth 2	ReGrowth.BOTR.Core	2260097569	RG_HumanoidWithHornsAndClaws	1	RG_Pawn_Rimclaw_Call
+RG_Velociraptor	velociraptor	ReGrowth 2	ReGrowth.BOTR.Core	2260097569	RG_TheropodWithClaws	0.75	RG_VelocTheropod_Call
+RG_WoollyStegosaurus	woolly stegosaurus	ReGrowth 2	ReGrowth.BOTR.Core	2260097569	RG_SauropodWithTailSpikes	4	RG_StegoSauropod_Call
+RG_Owlbeast	owlbeast	ReGrowth: Boiling	ReGrowth.BOTR.BoilingForest	2981924439	QuadrupedAnimalWithPaws	2.15	RG_Pawn_Owlbeast_Call
+AEXP_ArcticCoyote	arctic coyote	Vanilla Animals Expanded	VanillaExpanded.VanillaAnimalsExpanded	2871933948	QuadrupedAnimalWithPawsAndTail	0.76	AEXP_Pawn_ArcticCoyote_Call
+AEXP_Coyote	coyote	Vanilla Animals Expanded	VanillaExpanded.VanillaAnimalsExpanded	2871933948	QuadrupedAnimalWithPawsAndTail	0.76	AEXP_Pawn_Coyote_Call
+AEXP_Crocodile	crocodile	Vanilla Animals Expanded	VanillaExpanded.VanillaAnimalsExpanded	2871933948	QuadrupedAnimalWithClawsTailAndJowl	1.6	AEXP_Pawn_Crocodile_Call
+AEXP_Hyena	hyena	Vanilla Animals Expanded	VanillaExpanded.VanillaAnimalsExpanded	2871933948	QuadrupedAnimalWithPawsAndTail	0.76	AEXP_Pawn_Hyena_Call
+AEXP_Lion	lion	Vanilla Animals Expanded	VanillaExpanded.VanillaAnimalsExpanded	2871933948	QuadrupedAnimalWithPawsAndTail	1.65	AEXP_Pawn_Lion_Call
+AEXP_Rattlesnake	rattlesnake	Vanilla Animals Expanded	VanillaExpanded.VanillaAnimalsExpanded	2871933948	Snake	0.25	AEXP_Pawn_Rattlesnake_Call
+AEXP_Wildebeest	wildebeest	Vanilla Animals Expanded	VanillaExpanded.VanillaAnimalsExpanded	2871933948	QuadrupedAnimalWithHooves	2.2	AEXP_Pawn_Wildebeest_Call
+AEXP_Zebra	zebra	Vanilla Animals Expanded	VanillaExpanded.VanillaAnimalsExpanded	2871933948	QuadrupedAnimalWithHooves	2	AEXP_Pawn_Zebra_Call
+AEXP_Quagga	quagga	Vanilla Animals Expanded — Endangered	VanillaExpanded.VAEEndAndExt	2366589898	QuadrupedAnimalWithHooves	2	AEXP_Pawn_Quagga_Call
+AEXP_RockhopperPenguin	rockhopper penguin	Vanilla Animals Expanded — Endangered	VanillaExpanded.VAEEndAndExt	2366589898	Bird	0.4	AEXP_Pawn_Rockhopper_Call
+AEXP_TasmanianDevil	tasmanian devil	Vanilla Animals Expanded — Endangered	VanillaExpanded.VAEEndAndExt	2366589898	QuadrupedAnimalWithPawsAndTail	0.75	AEXP_TasmanianDevil_Call
+VAEWaste_Pestigator	pestigator	Vanilla Animals Expanded — Waste Animals	VanillaExpanded.VAEWaste	2962126499	VAEWaste_LargeLizardlike	3	VAEWaste_Pawn_Pestigator_Call
+VAEWaste_Toxlion	toxlion	Vanilla Animals Expanded — Waste Animals	VanillaExpanded.VAEWaste	2962126499	QuadrupedAnimalWithPawsAndTail	1.65	VAEWaste_Pawn_Toxlion_Call
+GR_Boomalisk	boomalisk	Vanilla Genetics Expanded	VanillaExpanded.VGeneticsE	2801160906	AA_Arachnid	2	Pawn_Feralisk_Call
+GR_Hurseman	hurseman	Vanilla Genetics Expanded	VanillaExpanded.VGeneticsE	2801160906	QuadrupedAnimalWithHooves	2.4	GR_Pawn_Ape_Call
+GR_Needlechicken	needlechicken	Vanilla Genetics Expanded	VanillaExpanded.VGeneticsE	2801160906	AA_SentientPlant	0.25	Pawn_Needlepost_Call
+GR_ParagonHumanoid	humanoid paragon	Vanilla Genetics Expanded	VanillaExpanded.VGeneticsE	2801160906	GR_GreatApe	2.3	GR_Pawn_Ape_Call
+GR_WolfShrimp	wolf shrimp	Vanilla Genetics Expanded	VanillaExpanded.VGeneticsE	2801160906	AA_SnakeWithTwoLimbs	2	Pawn_RaptorShrimp_Call

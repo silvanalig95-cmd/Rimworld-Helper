@@ -37,11 +37,12 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// The pure rules behind <see cref="PokeWorldSounds"/>. Each species borrows the voice of one of the base game's animals,
-    /// picked by its body plan's family (<see cref="FamilyOf"/>), its types and its size (<see cref="Voice"/>). It never
-    /// calls more often than PokéWorld had it (<see cref="Slower"/>). The game's own animals are always there, so the
-    /// same species always sounds the same, and the full list can be made from PokéWorld's files alone. Where a named
-    /// animal is missing, the nearest one of the same family and size is used instead (<see cref="Distance"/>).
+    /// The pure rules behind <see cref="PokeWorldSounds"/>. Each species borrows the voice of an animal picked by its body
+    /// plan's family (<see cref="FamilyOf"/>), its types and its size: one of the base game's (<see cref="Voice"/>), or,
+    /// where another mod's animal fits it better and is loaded, that one (<see cref="Voices"/>, <see cref="Pick"/>). It
+    /// never calls more often than PokéWorld had it (<see cref="Slower"/>). The same species sounds the same every time
+    /// the same mods are loaded, and with none of the other mods the voice is the base game's, as before. Where no named
+    /// animal is there at all, the nearest one of the same family and size is used instead (<see cref="Distance"/>).
     /// </summary>
     public static class PokeWorldSoundsMath
     {
@@ -152,6 +153,118 @@ namespace ColonyCouncil
             "LabradorRetriever", "Megascarab", "Megasloth", "Megaspider", "Monkey", "Muffalo", "Pig", "Raccoon", "Rat", "Rhinoceros", "Sheep", "Snowhare",
             "Spelopede", "Squirrel", "Thrumbo", "Tortoise", "Warg", "WildBoar", "Wolf_Arctic", "Wolf_Timber", "Yak", "YorkshireTerrier"
         };
+
+        /// <summary>
+        /// The voices a species may borrow, best first. Each group holds animals that fit it as well as each other
+        /// (<see cref="Pick"/> chooses among the ones loaded by the species' name), and the last group is the base-game
+        /// animal <see cref="Voice"/> names, so with none of the other mods the voice is the same as before. Another mod's
+        /// animal is named only where it is nearer to what the species is than the base game's, and only one whose grown
+        /// ones have a call of their own, not one of the base game's calls again (checked on the player's mod list, 7
+        /// November 2026: many modded animals reuse the game's calls, Megafauna's and Dinosauria's among them, and the
+        /// demigryphs have no grown call). From Alpha Animals: the bumbledrone, a wasp, for the winged bugs; the meadow
+        /// ave, a great flightless bird, for the bigger birds that aren't water birds (those keep the goose) and the bird
+        /// heads; the ocular jelly for the tentacled ones; the needlepost, a cactus, for the plant heads and plant
+        /// tentacles; the wildpawn, a plant beast, for the big pawed plant ones. From Vanilla Animals Expanded: the zebra
+        /// for the electric hooved ones (Blitzle and Zebstrika are zebras), its Endangered pack's quagga after it; the
+        /// crocodile for the big two-legged water beasts. From ReGrowth: the rimclaw and the arctic drak for the big
+        /// two-legged dragons. And where a modded animal fits as well as the base game's, the species share them for
+        /// variety: the cobra and the rattlesnake for the poison and ground snakes, the iguana and the velociraptor for
+        /// the small two-legged dragons, the timber wolf and the coyote for the middling fierce or tough pawed ones, the
+        /// warg and a lion (Vanilla Animals Expanded's, or Alpha Animals' arctic one) for the big fierce ones, the muffalo
+        /// and the wildebeest for the big tough hooved ones. Never one that screams like a person or sounds like a machine.
+        /// </summary>
+        public static List<string[]> Voices(string body, float size, ICollection<string> types)
+        {
+            var family = FamilyOf(body);
+            var voices = new List<string[]>(Modded(family, body, size, types)) { new[] { Voice(family, size, types) } };
+            return voices;
+        }
+
+        // The other mods' animals (their def names), each with a call of its own.
+        private static readonly string[] Wasp = { "AA_Bumbledrone" }, Ave = { "AA_MeadowAve" }, Jelly = { "AA_OcularJelly" }, Plant = { "AA_Needlepost" },
+            PlantBeast = { "AA_Wildpawn" }, Zebra = { "AEXP_Zebra" }, Quagga = { "AEXP_Quagga" }, Crocodile = { "AEXP_Crocodile" };
+
+        private static IEnumerable<string[]> Modded(BodyFamily family, string body, float size, ICollection<string> types)
+        {
+            bool water = Any(types, "Water"), fierce = Any(types, "Fire", "Dark", "Dragon"), tough = Any(types, "Normal", "Fighting", "Ground", "Rock", "Steel");
+            bool uncanny = Any(types, "Psychic", "Electric", "Ice", "Fairy", "Ghost"), grass = Any(types, "Grass"), dragon = Any(types, "Dragon");
+            switch (family)
+            {
+                case BodyFamily.Insect:
+                    if (Any(types, "Bug") && (body ?? "").IndexOf("wing", StringComparison.OrdinalIgnoreCase) >= 0) yield return Wasp;
+                    break;
+                case BodyFamily.Bird:
+                    if (size >= Small && !water) yield return Ave;
+                    break;
+                case BodyFamily.Snake:
+                    if (size < Large && Any(types, "Poison", "Ground") && !water && !Any(types, "Bug")) yield return new[] { "Cobra", "AEXP_Rattlesnake" };
+                    break;
+                case BodyFamily.Tentacle:
+                    if (size < Giant) yield return grass ? Plant : Jelly;
+                    break;
+                case BodyFamily.Hooved:
+                    if (size >= Giant) break;
+                    if (Any(types, "Electric"))
+                    {
+                        yield return Zebra;
+                        yield return Quagga;
+                    }
+                    else if (size >= Small && tough || size >= Large) yield return new[] { "Muffalo", "AEXP_Wildebeest" };
+                    break;
+                case BodyFamily.Paws:
+                    if (size >= Giant || size < Small) break;
+                    if (size >= Medium && grass && !fierce && !uncanny) yield return PlantBeast;
+                    else if (size >= Medium && size < Large && (fierce || uncanny)) yield return new[] { "Warg", "AEXP_Lion", "AA_ArcticLion" };
+                    else if (size < Medium && !(grass && !fierce) && (fierce || tough)) yield return new[] { "Wolf_Timber", "AEXP_Coyote" };
+                    break;
+                case BodyFamily.Biped:
+                    if (size >= Large) break;
+                    if (size >= Medium && dragon) yield return new[] { "RG_Rimclaw", "RG_ArcticDrak" };
+                    else if (size >= Medium && water && !fierce && !tough && !uncanny) yield return Crocodile;
+                    else if (size < Medium && dragon && !water) yield return new[] { "Iguana", "RG_Velociraptor" };
+                    break;
+                case BodyFamily.WingedBeast:
+                case BodyFamily.Fish:
+                    break;
+                default:
+                    if (Any(types, "Bug") && Any(types, "Flying")) yield return Wasp;
+                    else if (grass) yield return Plant;
+                    else if (Any(types, "Flying") && size >= Small && !Any(types, Quiet)) yield return Ave;
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// The voice a species takes: from the first group of <paramref name="voices"/> with an animal that <paramref name="calls"/>
+        /// (loaded, its grown ones calling), the one its name points to among them, so the same species always takes the same
+        /// one while the same mods are loaded. Null when none calls.
+        /// </summary>
+        public static string Pick(IEnumerable<string[]> voices, Func<string, bool> calls, string species)
+        {
+            if (voices == null || calls == null) return null;
+            foreach (var group in voices)
+            {
+                var callers = group?.Where(n => !string.IsNullOrEmpty(n) && calls(n)).ToList();
+                if (callers == null || callers.Count == 0) continue;
+                return callers[(int)(Stable(species) % (uint)callers.Count)];
+            }
+            return null;
+        }
+
+        /// <summary>A number from a name that is the same every time and on every machine (FNV-1a over its characters).</summary>
+        public static uint Stable(string name)
+        {
+            uint h = 2166136261;
+            foreach (char c in name ?? "")
+            {
+                h ^= c;
+                h *= 16777619;
+            }
+            return h;
+        }
+
+        /// <summary>Whether a def name is one of the base game's animals the rule names (else another mod's).</summary>
+        public static bool IsBase(string name) => Array.IndexOf(GrownCallers, name) >= 0;
 
         /// <summary>
         /// How far an animal is from a Pokémon, lower being nearer, for when the animal <see cref="Voice"/> names is missing:
