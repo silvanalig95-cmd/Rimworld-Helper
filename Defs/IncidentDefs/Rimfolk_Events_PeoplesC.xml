@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Release C's peoples at the gate (Source/ColonyCouncil/Peoples/PeoplesCallers.cs; docs/design/peoples.md, "Release C"),
+    each only from a people of its calling at peace with the colony, so none come in a world without one.
+    - A night's shelter: at dusk a band of pilgrims of the fellowship asks to sleep the night. Taken in, each sleeps in a
+      warm corner indoors and the band goes on at first light, its eldest blessing the gate; one night in ten someone
+      who sat up with them catches a pilgrim's cough. Or they stay the night outside the gate, or the gate stays shut.
+    - The society's copyist: a scholar of the learned society asks to copy the colony's records (a tribal colony's
+      stories, written down) at its table, and leaves a book of the archive's in return, or teaches the colony's best
+      reader while at it.
+    - The river folk's catch (Odyssey's fish): a boat-trader brings a basket of fish of the colony's own waters to the
+      gate, for silver or for food from the stores.
+    - The enclave's lander: an industrial or spacer colony hears from the enclave's factor by radio; bidden, the factor,
+      the marshals and the goods come down by drop pod by the gate and trade, as a caravan does.
+  -->
+
+  <!-- ===================== A night's shelter ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_PilgrimShelter</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>pilgrims asking shelter</label>
+    <workerClass>ColonyCouncil.HappeningWorker_PilgrimShelter</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>25</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>16~72</ages>
+        <count>3~5</count>
+        <answerDays>0.2</answerDays>
+        <journal>Rimfolk_Journal_Evt_PilgrimShelter</journal>
+        <titles>
+          <li>Pilgrims at dusk</li>
+          <li>A night's shelter</li>
+          <li>The road to {PLACE}</li>
+        </titles>
+        <texts>
+          <li>At dusk {COUNT} pilgrims of {FACTION} came up the road and stopped at the gate, footsore and grey with dust. {X_nameDef}, the eldest, asks a night's shelter for the band. They are walking to the shrine at {PLACE} and will go on at first light.</li>
+          <li>[cold] {COUNT} pilgrims of {FACTION} are standing at the gate in the cold, capes pulled tight, as the light goes. Their eldest, {X_nameDef}, asks whether they might sleep the night somewhere out of the wind before they go on to {PLACE}.</li>
+          <li>[rain] {COUNT} pilgrims of {FACTION} came in out of the rain at dusk, wet through. {X_nameDef}, who leads them, asks for a dry corner for the night and nothing more; they will be on the road to {PLACE} at first light.</li>
+          <li>[lowtech] A band of {COUNT} pilgrims of {FACTION} is at the gate with their staffs and shell badges, as the sun goes down. {X_nameDef}, their eldest, asks the colony's leave to sleep the night under its roof, as the fellowship asks at any door on the way to {PLACE}.</li>
+          <li>[!lowtech] {COUNT} pilgrims of {FACTION} walked up to the gate as the lamps came on, carrying everything they own in their packs. {X_nameDef}, their eldest, asks for a night's shelter on the way to the shrine at {PLACE}.</li>
+          <li>[their:grateful] {COUNT} pilgrims of {FACTION} came to the gate at dusk on purpose: the fellowship speaks of the colony as a good door on the road. {X_nameDef}, the eldest, asks for a night's shelter before they go on to {PLACE}.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Take them in for the night</label>
+            <outcome>The pilgrims were given a warm corner each indoors for the night, and {A_nameDef} sat up with {X_nameDef} until late, hearing about the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>an evening with the pilgrims</label><to>Stranger</to><hours>17~23</hours><sit>true</sit><sitBy>Fire</sitBy></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
+            </effects>
+            <ways><openness>2</openness><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Let them stay the night outside the gate</label>
+            <outcome>The pilgrims stayed the night outside the gate with their packs, and the colony left them be.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+            <ways><openness>-1</openness></ways>
+          </li>
+          <li>
+            <label>Keep the gate shut</label>
+            <outcome>The gate stays shut. The pilgrims bow to it anyway and go on down the dark road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_ShutTheGate</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+            </effects>
+            <ways><mercy>-2</mercy><openness>-2</openness></ways>
+          </li>
+        </options>
+        <lines>
+          <li>[bless] Peace on this house and everyone in it, and thank you.</li>
+          <li>[bless] May this house never lack a light in the window.</li>
+          <li>[bless] We will speak of your door at every shrine on the way.</li>
+          <li>[bless] Go well, and keep your door as open as it was last night.</li>
+          <li>[cough] One of those pilgrims coughed all night, and now so do I.</li>
+          <li>[cough] I sat too close to the one with the cough, it seems.</li>
+        </lines>
+      </li>
+      <li Class="ColonyCouncil.HappeningLivingText">
+        <done>
+          <li>[in,!cough] The pilgrims of {FACTION} went on at first light, and {X_nameDef} blessed the gate as they passed. The colony is glad it took them in.</li>
+          <li>[in,!cough] At first light the pilgrims rolled up their capes and went on toward {FACTION}'s shrine, {X_nameDef} blessing the house from the gate.</li>
+          <li>[in,cough] The pilgrims went on at first light with {X_nameDef}'s blessing on the gate, and left a cough behind: {A_nameDef}, who sat up with them, has it now.</li>
+          <li>[out] The pilgrims who stayed the night outside the gate went on at first light, with {X_nameDef}'s thanks.</li>
+        </done>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The society's copyist ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_ScholarCopyist</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the society's copyist</label>
+    <workerClass>ColonyCouncil.HappeningWorker_ScholarCopyist</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>24~70</ages>
+        <stayHours>10~14</stayHours>
+        <answerDays>0.5</answerDays>
+        <journal>Rimfolk_Journal_Evt_ScholarCopyist</journal>
+        <colonist>
+          <bestAt>Intellectual</bestAt>
+        </colonist>
+        <titles>
+          <li>The society's copyist</li>
+          <li>A copy for the archive</li>
+        </titles>
+        <texts>
+          <li>[tribal] {X_nameDef}, a scholar of {FACTION}, has walked a long way with ink, a reed pen and a roll of blank pages. The society writes down the stories of every people it can find, and asks to sit at the colony's fire today and write down the colony's, with {A_nameDef} to tell them.\n\nA {THING} from the archive at {PLACE} would be left in return.</li>
+          <li>[medieval] {X_nameDef}, a copyist of {FACTION}, is at the gate with a writing case and a satchel of blank paper. The society keeps a copy of every town's records in its archive at {PLACE}, and asks leave to copy the colony's at its table today, with {A_nameDef} to explain them.\n\nThe society would leave a {THING} from the archive in return.</li>
+          <li>[industrial|spacer] {X_nameDef}, a fellow of {FACTION}, has come with a case of paper and a camera for documents. The society keeps a copy of the records of every settlement in the region at its archive at {PLACE}, and asks to spend the day copying the colony's chronicle at its table, with {A_nameDef} to go through it.\n\nIn return the society would leave the colony a {THING} from the archive.</li>
+          <li>[their:grateful] {FACTION} think well of the colony, and {X_nameDef}, one of their copyists, has come to ask a favour of it: to copy the colony's records at its table for the archive at {PLACE}, and leave a {THING} in thanks.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let {X_objective} copy the records, with {A_nameDef} to help</label>
+            <outcome>{X_nameDef} spent the day at the colony's table copying the records, {A_nameDef} beside {X_objective} to explain what the pages left out, and left a {THING} from the society's archive in thanks.</outcome>
+            <outcomes>
+              <li>[tribal] {X_nameDef} sat at the colony's fire through the day writing down the stories {A_nameDef} told, and left a {THING} from the society's archive in thanks.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the records with {X_nameDef}</label><to>Stranger</to><hours>9~16</hours><sit>true</sit><duration>2~3</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Goods" />
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Rimfolk_Evt_RecordsKept</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
+            </effects>
+            <ways><openness>2</openness><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Let {X_objective} copy them, and teach {A_nameDef} the society's ways</label>
+            <outcome>{X_nameDef} copied the records with {A_nameDef} at {X_possessive} elbow, and spent the afternoon showing {A_objective} how the society keeps its own. There's no book for it, but {A_nameDef} came away with a great deal.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Intellectual</skill><duration>2~3</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Rimfolk_Evt_RecordsKept</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
+            </effects>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>The colony's records are its own</label>
+            <outcome>{X_nameDef} closes the writing case without a word of complaint and goes back down the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+            <ways><openness>-2</openness></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <visitor>true</visitor>
+        <visitAt>gathering</visitAt>
+        <people>calling:scholars</people>
+        <visitorSkill>Intellectual</visitorSkill>
+        <visitorLevel>10~16</visitorLevel>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The river folk's catch ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_RiverCatch</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a boat-trader's catch</label>
+    <workerClass>ColonyCouncil.HappeningWorker_RiverCatch</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>20</minRefireDays>
+    <earliestDay>6</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>16~65</ages>
+        <count>1~2</count>
+        <amount>20~40</amount>
+        <stayHours>5~8</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The morning's catch</li>
+          <li>A basket from the river</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a boat-trader of {FACTION}, has come up from the river with a basket of {THING} on {X_possessive} back, caught at dawn below the landing at {PLACE}: {COUNT} of them, still cold from the water. The river folk would take a silver apiece, or food from the colony's stores for them.</li>
+          <li>[winter] {X_nameDef} of {FACTION} has walked up from the river with {COUNT} {THING} taken through the ice at {PLACE}, packed in snow in a basket. A silver apiece, {X_nameDef} says, or food from the stores, since the winter is long.</li>
+          <li>[their:grateful] The river folk of {FACTION} remember the colony kindly, and {X_nameDef} has brought it the first look at the catch: {COUNT} {THING}, fresh from the water at {PLACE}, for a silver apiece or a share of the stores.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Buy the catch ({COUNT} silver)</label>
+            <outcome>{X_nameDef} counted the {THING} out at the gate and the silver into {X_possessive} own pouch, and went back down to the river.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Goods" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Trade food from the stores for it</label>
+            <outcome>The colony's food went down to the river in {X_nameDef}'s basket, and the {THING} came up to the stores in its place.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><factor>0.6</factor><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Goods" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not today</label>
+            <outcome>{X_nameDef} shoulders the basket again and goes on to the next gate up the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <visitor>true</visitor>
+        <people>calling:fishers</people>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The enclave's lander ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_EnclaveLander</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the enclave's lander</label>
+    <workerClass>ColonyCouncil.HappeningWorker_EnclaveLander</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>12</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>0.25</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The enclave's lander</li>
+          <li>Goods from above</li>
+        </titles>
+        <texts>
+          <li>[industrial] A call came over the radio from a lander of {FACTION}, passing over on its way to the market at {PLACE}. The enclave's factor asks leave to come down by the colony's gate with goods and {COUNT} marshals, and trade there, if the colony has a mind to.</li>
+          <li>[spacer] {FACTION}'s factor hailed the colony over the comms: their lander is passing overhead with a hold full of goods for the market at {PLACE}, and could come down by the gate with the factor and {COUNT} marshals to trade there.</li>
+          <li>[beacon] The colony's trade beacon has picked up a lander of {FACTION} on its way to {PLACE}. The enclave's factor asks leave to come down beside it with goods and {COUNT} marshals, and trade at the gate.</li>
+          <li>[their:grateful] {FACTION} count the colony among their good customers, and their factor has called down from a lander passing over: there are goods aboard the colony might like, and the factor would come down by the gate with {COUNT} marshals to trade.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Bid them come down</label>
+            <outcome>The factor's thanks came back over the air, and drop pods are coming down by the gate: the factor, {COUNT} marshals and the goods. They will trade at the gate as a caravan does, and walk off when they are done.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_EnclaveLanding" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Not today</label>
+            <outcome>The lander goes on to {PLACE} without stopping.</outcome>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

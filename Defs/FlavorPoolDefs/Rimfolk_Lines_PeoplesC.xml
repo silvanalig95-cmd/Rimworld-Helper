@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Release C's peoples in their own words (Source/ColonyCouncil/Peoples/), in the same two pools as release A's
+    (Rimfolk_Lines_Peoples.xml), by the tag their people give every line: their:pilgrims for the pilgrim fellowship,
+    their:scholars for the learned society, their:brokers for the spacer enclave, their:fishers for the river folk.
+    - Rimfolk_Pool_NeighbourWrites: their answer to the colony's letter or call. Help is promised only in a warm or
+      cordial answer and comes by their own messengers (the fellowship's palmers, the society's copyists, the enclave's
+      runners, the river folk's boatmen); a refusal says why in their ways.
+    - Rimfolk_CourierLines: their messengers at the colony's gate. One sentence each.
+    And the journals of the colonists at their two callers' answers (Defs/IncidentDefs/Rimfolk_Events_PeoplesC.xml).
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_NeighbourWrites_PeoplesC</defName>
+    <pool>Rimfolk_Pool_NeighbourWrites</pool>
+    <lines>
+      <plain>
+        <li>[greetings,warm,their:pilgrims] Your letter was read aloud at the shrine tonight, {WRITER}, and every pilgrim in the hostel said a word for your colony.</li>
+        <li>[greetings,cordial,their:pilgrims] The fellowship has your letter. Any pilgrim of ours who passes your gate will ask after you by name.</li>
+        <li>[greetings,cool,their:pilgrims] The fellowship has your letter. The road is long, and there is time yet to know one another.</li>
+        <li>[news,warm,their:pilgrims] Half the region walks past our shrines in a year, {WRITER}, and tells us everything at supper. Here is the best of it.</li>
+        <li>[news,cordial,their:pilgrims] Pilgrims come to us from every road, and they talk. This is what the hostel has heard.</li>
+        <li>[help,warm,their:pilgrims] The fellowship owns little, but what it has is shared. What you asked for is coming with our palmers.</li>
+        <li>[help,cordial,their:pilgrims] We are poor in everything but company, but we will send what we can. It is coming.</li>
+        <li>[help,refusal,their:pilgrims] The hostel feeds more mouths this season than it can, {WRITER}. There is nothing left to send, and we are sorry for it.</li>
+        <li>[invitation,warm,their:pilgrims] A pilgrim never turns from an open door. We will come, and bring a blessing.</li>
+        <li>[greetings,warm,their:scholars] Your letter has been read, copied and filed in the archive, {WRITER}, which is the highest honour the society knows.</li>
+        <li>[greetings,cordial,their:scholars] The society thanks you for your letter. A copy of it is in the archive now, with your colony's other records.</li>
+        <li>[greetings,cool,their:scholars] The society has your letter. We keep everything, even letters from colonies we know little of.</li>
+        <li>[news,warm,their:scholars] The archive hears from every town that writes anything down, {WRITER}. Here is what the season's letters say.</li>
+        <li>[news,cordial,their:scholars] Our copyists go everywhere and forget nothing. This is what they brought back.</li>
+        <li>[help,warm,their:scholars] The society does not lend from its stores as a rule, but it does for friends of the archive. It is coming with our copyists.</li>
+        <li>[help,cordial,their:scholars] It is irregular, and the provost will want it noted, but the society can spare it. It is coming.</li>
+        <li>[help,refusal,their:scholars] The archive's money has gone on paper and the roof this year, {WRITER}. We have nothing to send.</li>
+        <li>[invitation,warm,their:scholars] A fellow of the society will come with a notebook, and stay as long as anyone will talk.</li>
+        <li>[greetings,warm,their:brokers] Your message reached the exchange, {WRITER}, and the chair has marked your colony as a preferred account.</li>
+        <li>[greetings,cordial,their:brokers] The enclave acknowledges your message. Your colony is on the factors' route.</li>
+        <li>[greetings,cool,their:brokers] The enclave has your message. Trade with us, and the terms will improve.</li>
+        <li>[news,warm,their:brokers] Prices, routes and rumours from orbit, {WRITER}, as the exchange has them this week.</li>
+        <li>[news,cordial,their:brokers] The ships above see more than the towns below. Here is what the enclave's factors know.</li>
+        <li>[help,warm,their:brokers] The enclave does not give credit lightly, but your account is good. What you asked for is coming with our runners.</li>
+        <li>[help,cordial,their:brokers] Consider it an advance against future trade. It is on its way.</li>
+        <li>[help,refusal,their:brokers] The exchange cannot extend credit this quarter, {WRITER}. The ledgers do not allow it.</li>
+        <li>[invitation,warm,their:brokers] A factor will come down for it, and bring samples.</li>
+        <li>[greetings,warm,their:fishers] Your words came downriver with the boats, {WRITER}, and the whole landing heard them over the fish stew.</li>
+        <li>[greetings,cordial,their:fishers] The river folk have your words. Any boat of ours will put in for your people.</li>
+        <li>[greetings,cool,their:fishers] We have your words. The river will tell us whether to trust them.</li>
+        <li>[news,warm,their:fishers] Everyone talks on a ferry, {WRITER}, and we carry everyone. Here is what we heard.</li>
+        <li>[news,cordial,their:fishers] Everything comes down the river in the end, the news with it. Here is what the boats brought.</li>
+        <li>[help,warm,their:fishers] The river was kind this season, and we share what it gives. It is coming up with our boatmen.</li>
+        <li>[help,warm,food,their:fishers] The racks are full and the smokehouse fuller. Some of it is coming to you with our boatmen.</li>
+        <li>[help,refusal,their:fishers] The water was low and the fish few this season, {WRITER}. We have nothing to send.</li>
+        <li>[invitation,warm,their:fishers] We will come up from the landing, and bring a basket from the river.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_CourierLines_PeoplesC</defName>
+    <pool>Rimfolk_CourierLines</pool>
+    <lines>
+      <plain>
+        <li>[arrive,their:pilgrims] Peace on this house, I walked here from the shrine.</li>
+        <li>[leave,their:pilgrims] The road is long, so I had better be on it.</li>
+        <li>[arrive,their:scholars] A letter from the archive, copied twice in case.</li>
+        <li>[leave,their:scholars] The archive will want to know I got here.</li>
+        <li>[arrive,their:brokers] Message from the exchange, carried by hand for you.</li>
+        <li>[deliver,silver,their:brokers] Enclave credit, settled in silver as agreed.</li>
+        <li>[leave,their:brokers] My pickup won't wait, so I'll be going.</li>
+        <li>[arrive,their:fishers] Up from the landing with word from the river master.</li>
+        <li>[collect,food,their:fishers] The landing will eat well on this.</li>
+        <li>[leave,their:fishers] The boat's tied up below, and the river's rising.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- The journal of the colonist who sat up with a band of pilgrims of the fellowship (Defs/IncidentDefs/Rimfolk_Events_PeoplesC.xml):
+       taken in for the night (opt0), left outside the gate (opt1), or the gate kept shut (opt2). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Evt_PilgrimShelter</defName>
+    <lines>
+      <plain>
+        <li>[opt0] Pilgrims came to the gate at dusk and we took them in. I sat up with their eldest, who has walked to more shrines than I can count.</li>
+        <li>[opt0] We gave a band of pilgrims a corner each for the night. They talk about the road the way other people talk about home.</li>
+        <li>[opt1] Pilgrims asked to sleep under our roof tonight. They are outside the gate instead, and I can see their shapes from the wall.</li>
+        <li>[opt2] We kept the gate shut on a band of pilgrims. They bowed to it anyway.</li>
+      </plain>
+      <warm><li>[opt0] {X_nameDef}, the eldest of the pilgrims, asked my name before bed so the fellowship could pray for me by it.</li></warm>
+      <gloomy><li>[opt2] Pilgrims at the gate tonight, and we sent them on. I keep thinking about the dark road.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The journal of the colonist who sat with the learned society's copyist (Defs/IncidentDefs/Rimfolk_Events_PeoplesC.xml):
+       the records copied for a book (opt0), copied with a lesson (opt1), or kept back (opt2). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Evt_ScholarCopyist</defName>
+    <lines>
+      <plain>
+        <li>[opt0] A copyist of the learned society spent the day copying our records, and asked me about every page. We have a {THING} from their archive for it.</li>
+        <li>[opt0] Our records are in an archive now, in somebody else's careful hand. Strange to think of strangers reading what we did.</li>
+        <li>[opt1] {X_nameDef} copied our records and showed me how the society keeps its own. I have ideas about ours now.</li>
+        <li>[opt2] A scholar wanted to copy our records. We said no. They are ours.</li>
+      </plain>
+      <warm><li>[opt0] {X_nameDef} said our records are better kept than most. I did not know we kept them that well.</li></warm>
+      <cold><li>[opt0] A book in exchange for copying some pages. A fair trade.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Talk with release C's peoples (Source/ColonyCouncil/Peoples/; the facts service's their:pilgrims, their:scholars,
+    their:brokers and their:fishers, from the people's calling), as Rimfolk_OutsiderTalks_NewPeoples.xml is for release A's;
+    the format is in Rimfolk_OutsiderTalks_Greetings.xml's header. The pilgrim fellowship in its own voice (the road, the
+    open door, the shrine), the learned society in its (the archive, the question, the reader), the spacer enclave in its
+    (the price, the ships above, the pad), the river folk in theirs (the catch, the ferry, the landing).
+  -->
+
+  <!-- ================= The pilgrim fellowship ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesC_PilgrimsRoad</defName>
+    <topic>road</topic>
+    <uses>chat,home</uses>
+    <when>their:pilgrims</when>
+    <lines>
+      <li>[us] Where are you walking to?</li>
+      <li>[them] The shrine at the spring, and then the one after that.</li>
+      <li>[us] And when you reach the last one?</li>
+      <li>[them] There is no last one, which is rather the point.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesC_PilgrimsDoor</defName>
+    <topic>faith</topic>
+    <uses>chat,know</uses>
+    <when>their:pilgrims</when>
+    <lines>
+      <li>[them] We ask for shelter at every door we pass.</li>
+      <li>[us] And if the door stays shut?</li>
+      <li>[them] Then we bless it anyway and sleep under a hedge.</li>
+      <li>[them,likesus] Yours opened, though, and the fellowship remembers.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesC_PilgrimsHostel</defName>
+    <topic>town</topic>
+    <uses>home</uses>
+    <when>their:pilgrims,town</when>
+    <lines>
+      <li>[us] What is it like at {TOWN}?</li>
+      <li>[them] A shrine, a hostel and too few beds, and somebody always singing.</li>
+      <li>[us] Who keeps it?</li>
+      <li>[them] The hosteller, who has never once turned a pilgrim away.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The learned society ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesC_ScholarsArchive</defName>
+    <topic>town</topic>
+    <uses>home</uses>
+    <when>their:scholars,town</when>
+    <lines>
+      <li>[us] What do you keep at {TOWN}?</li>
+      <li>[them] Letters, ledgers, maps and histories, everything anyone wrote down.</li>
+      <li>[us] Why all of it?</li>
+      <li>[them] Because nobody knows yet which of it will matter.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesC_ScholarsQuestion</defName>
+    <topic>work</topic>
+    <uses>chat,know</uses>
+    <when>their:scholars</when>
+    <lines>
+      <li>[them] May I ask you something for the archive?</li>
+      <li>[us] That depends on the question.</li>
+      <li>[them] What does your colony remember that nobody wrote down?</li>
+      <li>[us] More than you would think.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesC_ScholarsReader</defName>
+    <topic>work</topic>
+    <uses>know</uses>
+    <when>their:scholars,us:best:Intellectual</when>
+    <lines>
+      <li>[them] You read, don't you? It shows in how you look at a page.</li>
+      <li>[us] When I get the time.</li>
+      <li>[them] Come to the archive, and you will never have enough of it again.</li>
+      <li>[us] That sounds like a warning.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The spacer enclave ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesC_EnclavePrice</defName>
+    <topic>trade</topic>
+    <uses>chat,know</uses>
+    <when>their:brokers</when>
+    <lines>
+      <li>[them] Everything has a price, you know, even this conversation.</li>
+      <li>[us] And what does it cost?</li>
+      <li>[them,likesus] For you, nothing, your account is in good standing.</li>
+      <li>[them,!likesus] We will put it on your account.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesC_EnclaveSky</defName>
+    <topic>land</topic>
+    <uses>chat,home</uses>
+    <when>their:brokers</when>
+    <lines>
+      <li>[us] Have you been up there, to the ships?</li>
+      <li>[them] Most of us were born nearer the ships than the ground.</li>
+      <li>[us] What's it like?</li>
+      <li>[them] Cold, quiet and very expensive.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesC_EnclavePad</defName>
+    <topic>town</topic>
+    <uses>home</uses>
+    <when>their:brokers,town</when>
+    <lines>
+      <li>[us] What is {TOWN} like?</li>
+      <li>[them] A landing pad, a market round it, and a lot of people in a hurry.</li>
+      <li>[us] Do the ships come down there?</li>
+      <li>[them] Their landers do, when the price is right.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The river folk ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesC_RiverFish</defName>
+    <topic>work</topic>
+    <uses>chat,home</uses>
+    <when>their:fishers</when>
+    <lines>
+      <li>[us] Was the river good to you this week?</li>
+      <li>[them,summer] Fat fish and low water, so yes.</li>
+      <li>[them,winter] We cut holes in the ice for what we get.</li>
+      <li>[them] The river gives what it gives, and we take no more.</li>
+      <li>[us] Wise.</li>
+      <li>[them] Hungry, mostly, but wise too.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesC_RiverFerry</defName>
+    <topic>road</topic>
+    <uses>chat,know</uses>
+    <when>their:fishers</when>
+    <lines>
+      <li>[them] If your people ever need to cross the river, ask for our ferry.</li>
+      <li>[us] What does it cost?</li>
+      <li>[them] Depends on the weather, and on how much you complain.</li>
+      <li>[us] I'll keep quiet, then.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesC_RiverLanding</defName>
+    <topic>town</topic>
+    <uses>home</uses>
+    <when>their:fishers,town</when>
+    <lines>
+      <li>[us] What is it like at {TOWN}?</li>
+      <li>[them] Boats on the bank, fish on the racks and smoke from the smokehouse.</li>
+      <li>[us] It sounds busy.</li>
+      <li>[them] Only when the fish run, and then everyone is busy.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

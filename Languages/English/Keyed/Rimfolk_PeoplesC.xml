@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    Release C's peoples at the gate (Source/ColonyCouncil/Peoples/PeoplesCallers.cs): the harm record's word for a
+    pilgrim's cough caught in the night, and the enclave's lander in an answer's impact.
+  -->
+
+  <CC_PeoplesC_CoughWhy>a pilgrim's cough</CC_PeoplesC_CoughWhy>
+  <CC_PeoplesC_LanderGone>The enclave is no longer at peace with the colony.</CC_PeoplesC_LanderGone>
+  <CC_PeoplesC_Impact_Lander>{0}'s factor, {1} marshals and their goods come down by drop pod by the gate, trade there as a caravan does, and walk off when they are done.</CC_PeoplesC_Impact_Lander>
+  <CC_PeoplesC_Impact_LanderBrief>a lander by the gate</CC_PeoplesC_Impact_LanderBrief>
+
+</LanguageData>

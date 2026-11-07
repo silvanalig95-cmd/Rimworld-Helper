@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The asks of release C's peoples (Source/ColonyCouncil/Peoples/; docs/design/peoples.md, "Release C"), in the
+    delivery missions' framework, only from a people of their calling (MissionPeople.only: none come in a world without
+    one) and in one draw with every other mission (MissionPool). In a holy year (a world event of the faith running: a
+    great pilgrimage, a holy year, a prophet on the roads) the pilgrim fellowship's hostel asks for food for the crowds
+    on the road; in the spring and the summer the river folk ask for timber for the boats or cloth for the nets. Their
+    carts come to the colony's gate for it, as the order's do for its medicine.
+  -->
+
+  <!-- ===================== Food for the pilgrims' hostel ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_HostelBread</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>food for the hostel</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionDelivery</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Food for {PLACE}</li>
+          <li>The hostel is full</li>
+        </titles>
+        <texts>
+          <li>[holy] A palmer of {FACTION} has walked from the hostel at {PLACE} with a letter from {DEAD}, its hosteller. The faith's holy year has filled the road with pilgrims, every bed is taken twice over, and the hostel's stores are nearly bare. The fellowship asks the colony for food by a set day, and will pay what it can, which is more than it can spare.</li>
+          <li>[holy,host] {HOST} of {PLACE} writes for {FACTION}: pilgrims are sleeping in the shrine's court for want of beds, and {DEAD}, the hosteller, is feeding them from the seed corn. The fellowship asks the colony for food by a set day, at a fair price.</li>
+          <li>[holy,their:friend] The pilgrims of {FACTION} have asked for {FRIEND_nameDef} by name. Their hostel at {PLACE} is overflowing with the year's pilgrims, and {DEAD}, who keeps it, would rather owe the colony than anyone.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>The palmer went back to {PLACE} to tell {DEAD} the food is coming.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will stretch the stores and turn some pilgrims away.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionPeople">
+        <only>pilgrims</only>
+        <whileKind>faith</whileKind>
+      </li>
+      <li Class="ColonyCouncil.MissionDelivery">
+        <kind>hostelbread</kind>
+        <restDays>60</restDays>
+        <rating>2</rating>
+        <days>6~9</days>
+        <rewardFactor>1.5</rewardFactor>
+        <goodwill>12</goodwill>
+        <penalty>6</penalty>
+        <person>35~70</person>
+        <variants>
+          <li>
+            <tag>holy</tag>
+            <goals>
+              <li><what>rawfood</what><count>80~160</count></li>
+            </goals>
+          </li>
+        </variants>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>{FACTION} are asking for {ITEM}, in the colony's stockpiles by the day the Quests tab shows, when the fellowship's carts come.\n\nAll of it fetches {COUNT} silver, a good deal over its worth. At least half, and they'll take what there is at its plain worth. Less, and the hostel turns pilgrims away, and the fellowship remembers it.</li>
+        </terms>
+        <accepted>
+          <li>The colony will have food ready for the hostel at {PLACE}: {ITEM}, in the stockpiles for {FACTION}'s carts.</li>
+        </accepted>
+        <ready>
+          <li>The food for {PLACE} is set aside, and {FACTION}'s carts are on their way for it.</li>
+        </ready>
+        <reminder>
+          <li>{FACTION}'s carts come soon for the food, and the stockpiles are still short: {ITEM}.</li>
+          <li>[holy] The hostel at {PLACE} is waiting on the colony's food, and the stockpiles are still short: {ITEM}.</li>
+        </reminder>
+        <doneTitles>
+          <li>[delivered] Food for {PLACE}</li>
+          <li>[partial] Part of the food for {PLACE}</li>
+        </doneTitles>
+        <done>
+          <li>[delivered] The food is ready, and {FACTION}'s carts are coming for it with {ITEM} silver and {DEAD}'s blessing. Nobody will be turned from the hostel at {PLACE} this year.</li>
+          <li>[delivered] {FACTION}'s carts are coming for the colony's food, to take it straight to the hostel at {PLACE}, with {ITEM} silver for it.</li>
+          <li>[partial] Only part of the food is ready. {FACTION}'s carts are coming for what there is, with its plain worth, {ITEM} silver.</li>
+        </done>
+        <failTitles>
+          <li>[missed] No food for {PLACE}</li>
+          <li>[cancelled] The fellowship's ask is off</li>
+        </failTitles>
+        <fail>
+          <li>[missed] There was far too little food ready for {FACTION}'s carts to be worth the road. The hostel at {PLACE} will turn pilgrims away, and {DEAD} knows who said they would help.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} have broken with the colony, and their carts will not come.</li>
+          <li>The hostel at {PLACE} is gone, and nobody is left there to send for the food.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Timber and cloth for the river folk ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_RiverBoats</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>boats and nets for the landing</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionDelivery</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The landing at {PLACE}</li>
+          <li>Boats and nets</li>
+        </titles>
+        <texts>
+          <li>[boats] A boatman of {FACTION} has come up from the landing at {PLACE} with word from {DEAD}, its landing master. The ice took two of their boats when it went out this spring, and the ferry can't run short-handed. The river folk ask the colony for timber by a set day, and will pay well for it.</li>
+          <li>[nets] {DEAD}, who keeps the landing at {PLACE}, sends a boatman of {FACTION} to the colony: the summer's fish are running and half the nets are rotten. The river folk ask for cloth to make new ones by a set day, at a good price.</li>
+          <li>[boats,their:friend] The river folk of {FACTION} have asked for {FRIEND_nameDef} by name. Their landing at {PLACE} lost boats to the ice, and {DEAD}, its landing master, would rather buy the colony's timber than anyone's.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>The boatman went back down to {PLACE} to tell {DEAD} the colony will have it ready.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will patch what they have, and find the rest downriver.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionPeople">
+        <only>fishers</only>
+      </li>
+      <li Class="ColonyCouncil.MissionDelivery">
+        <kind>riverboats</kind>
+        <restDays>60</restDays>
+        <rating>2</rating>
+        <days>6~9</days>
+        <rewardFactor>1.5</rewardFactor>
+        <goodwill>12</goodwill>
+        <penalty>6</penalty>
+        <person>30~65</person>
+        <variants>
+          <li>
+            <tag>boats</tag>
+            <seasons>
+              <li>Spring</li>
+            </seasons>
+            <goals>
+              <li><what>WoodLog</what><count>120~220</count></li>
+            </goals>
+          </li>
+          <li>
+            <tag>nets</tag>
+            <seasons>
+              <li>Summer</li>
+              <li>PermanentSummer</li>
+            </seasons>
+            <goals>
+              <li><what>textiles</what><count>50~100</count></li>
+            </goals>
+          </li>
+        </variants>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>{FACTION} are asking for {ITEM}, in the colony's stockpiles by the day the Quests tab shows, when the river folk's carts come up from the landing.\n\nAll of it fetches {COUNT} silver, well over its worth. At least half, and they'll take what there is at its plain worth. Less, and the landing goes short, and the river folk remember it.</li>
+        </terms>
+        <accepted>
+          <li>The colony will have {ITEM} ready for the landing at {PLACE}, in the stockpiles for {FACTION}'s carts.</li>
+        </accepted>
+        <ready>
+          <li>The goods for {PLACE} are set aside, and {FACTION}'s carts are on their way up from the river for them.</li>
+        </ready>
+        <reminder>
+          <li>{FACTION}'s carts come soon from the landing, and the stockpiles are still short: {ITEM}.</li>
+        </reminder>
+        <doneTitles>
+          <li>[delivered] Goods for {PLACE}</li>
+          <li>[partial] Part of the goods for {PLACE}</li>
+        </doneTitles>
+        <done>
+          <li>[delivered,boats] The timber is ready, and {FACTION}'s carts are coming for it with {ITEM} silver. The ferry at {PLACE} will be running again before long.</li>
+          <li>[delivered,nets] The cloth is ready, and {FACTION}'s carts are coming for it with {ITEM} silver. {DEAD} says the new nets will have the colony's name knotted into them.</li>
+          <li>[delivered] {FACTION}'s carts are coming up from the river for the colony's goods, with {ITEM} silver for them.</li>
+          <li>[partial] Only part of it is ready. {FACTION}'s carts are coming for what there is, with its plain worth, {ITEM} silver.</li>
+        </done>
+        <failTitles>
+          <li>[missed] Nothing for {PLACE}</li>
+          <li>[cancelled] The river folk's ask is off</li>
+        </failTitles>
+        <fail>
+          <li>[missed] There was far too little ready for {FACTION}'s carts to be worth the road. The landing at {PLACE} will make do, and {DEAD} knows who said they would help.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} have broken with the colony, and their carts will not come.</li>
+          <li>The landing at {PLACE} is gone, and nobody is left there to send for the goods.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>
