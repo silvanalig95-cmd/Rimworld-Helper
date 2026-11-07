@@ -158,7 +158,7 @@ public static class HarmTwoTests
             C(!kv.Value.Contains("—"), $"{kv.Key}: no em dashes");
         }
         C(camp.Contains("Harm.Fight(a, x") && camp.Contains("Harm.Roll(HarmTwoMath.CampBrawlChance") && camp.Contains("Outsiders.QuietBrawl") && camp.Contains("LoseGoodwill(")
-          && camp.Contains("Leave(\"brawl\")"), "the camp's brawl: the game's fight under the cap, a brawl their people don't take for an attack, goodwill once, the camp packs up");
+          && camp.Contains("Leave(colony ? \"brawl\""), "the camp's brawl: the game's fight under the cap, a brawl their people don't take for an attack, goodwill once, the camp packs up");
         C(camp.Contains("RimfolkPatches.On") && camp.Contains("MapFacts.ThreatOn(map)") && camp.Contains("!p.DevelopmentalStage.Juvenile()"), "the colony's side only with the deeper hooks; never in danger; never a child");
         C(Code("Camps/CampLife.cs").Contains("BrawlHour();") && Code("Camps/Camp.cs").Contains("ExposeBrawl();"), "watched in the camp's hour, saved with the camp");
         C(Code("Diplomacy/FeastBouts.cs").Contains("quiet = true") && Code("Outsiders/OutsiderOutcomes.cs").Contains("if (!b.quiet) BrawlOver(b);"), "a quiet brawl's end is the camp's to tell");
@@ -185,7 +185,7 @@ public static class HarmTwoTests
         C(effects.Contains("HuntsBite.Marked(turning)") && groups.Contains("HuntsBite.Marked(turning)"), "a head that can turn is remembered once marked");
         C(carry.Contains("!a.RaceProps.predator") && carry.Contains("public static bool Huntable("), "safe game as before; a hunt under way keeps its head that can turn");
         C(Code("Decrees/DecreeWork.cs").Contains("using (HuntsBite.SafeOnly())") && hunt.Contains("safeOnly == 0"), "the hunting season's morning game keeps to safe game");
-        C(sab.Contains("Harm.Fight(other, rival") && sab.Contains("Harm.Roll(chance)") && sab.Contains("HarmTwoMath.FoundOutChance") && sab.Contains("Together.When(") && sab.Contains("Together.WhenInCompany("),
+        C(sab.Contains("Harm.Fight(other, rival") && sab.Contains("Harm.Roll(chance)") && sab.Contains("HarmTwoMath.FoundOut(") && sab.Contains("Together.When(") && sab.Contains("Together.WhenInCompany("),
             "sabotage: the scale, found out half the time by a witness or by word going round, had out face to face under the cap");
         C(sab.Contains("DoBreakdown()") && sab.Contains("listerBuildingsRepairable.Notify_BuildingTookDamage"), "a machine jammed by the game's own breakdown, a bench the game's builders mend");
         C(hust.Contains("Harm.Fight(rival, heckler") && hust.Contains("Harm.Roll(chance)") && hust.Contains("Council_Decree_Manners") && hust.Contains("Peacemaker"),
@@ -270,6 +270,13 @@ public static class HarmTwoTests
         C(model.Contains("\"Harm/Harm.cs:turning\"") && model.Contains("\"Harm/Harm.cs:sick\""), "each with a save model");
         C(File.ReadAllText(Path.Combine(root, "Defs", "Misc", "Rimfolk_HarmTwo.xml")).Contains("ColonyCouncil.JobDriver_Sabotage"), "the rival's job at the bench");
         C(File.ReadAllText(Path.Combine(root, "DESIGN.md")).Contains("### A camp's quarrel that becomes a brawl (2.4.1"), "DESIGN.md has the seven");
+        // The balance model's harm mode (Tools/Balance/HarmSim.cs) compiles these rules in as they are, with its own copy of the ages.
+        string shim = File.ReadAllText(Path.Combine(root, "Tools", "Balance", "WorldAgeShim.cs"));
+        var shimAges = Regex.Match(shim, @"enum WorldAge\s*\{([^}]*)\}").Groups[1].Value.Split(',').Select(s => s.Trim()).Where(s => s.Length > 0).ToList();
+        C(shimAges.SequenceEqual(Enum.GetNames(typeof(WorldAge))), "the balance model's ages are the ledger's, in order");
+        string balance = File.ReadAllText(Path.Combine(root, "Tools", "Balance", "Balance.csproj"));
+        C(balance.Contains("Harm/HarmMath.cs") && balance.Contains("Harm/HarmTwoMath.cs") && File.ReadAllText(Path.Combine(root, "Tools", "Balance", "Program.cs")).Contains("HarmSim.Run(args)"),
+            "the balance model's harm mode reads the very rules");
         string review = File.ReadAllText(Path.Combine(root, "docs", "harm-review-proposals.md"));
         C(Regex.Matches(review, @"\*Built \(harm, parts 2 and 3").Count == 7, "the review marks the seven built");
         return n;
