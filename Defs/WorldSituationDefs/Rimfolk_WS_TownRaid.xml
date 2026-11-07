@@ -16,7 +16,7 @@
     <defName>Rimfolk_WS_TownRaid</defName>
     <label>a raid on a town the colony was</label>
     <workerClass>ColonyCouncil.SituationWorker_TownRaid</workerClass>
-    <weight>2</weight>
+    <weight>4</weight>
     <earliestDay>0</earliestDay>
     <cooldownDays>60</cooldownDays>
     <durationDays>12~15</durationDays>
@@ -70,8 +70,6 @@
             <outcome>{PLACE} will hold out for the colony's fighters. Form their caravan for the town: two grown colonists or more, by caravan, or by pods or shuttle where the colony has them.</outcome>
             <hideIf><li>noMap</li></hideIf>
             <flags><li>sending</li></flags>
-            <help>2</help>
-            <deed>sent fighters to {PLACE}</deed>
             <ways><generosity>2</generosity><mercy>1</mercy></ways>
           </li>
           <li>

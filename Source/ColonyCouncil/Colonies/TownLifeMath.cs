@@ -42,10 +42,13 @@ namespace ColonyCouncil
             return basePoints * (0.7f + 0.6f * Clamp(prosperity, 0f, 100f) / 100f);
         }
 
-        /// <summary>The raiders come 0.75 to 1.5 times as strong as the town's defenders: they came because they thought they could win.</summary>
+        /// <summary>
+        /// The raiders come 0.75 to 1.5 times as strong as the game's own defenders of such a town (before its fortune): they
+        /// came because they thought they could win, so a struggling town meets them weaker and a flourishing one stronger.
+        /// </summary>
         public const float RaidLow = 0.75f, RaidHigh = 1.5f;
 
-        public static float RaidPoints(float defend, float roll) => Math.Max(0f, defend) * (RaidLow + (RaidHigh - RaidLow) * Clamp(roll, 0f, 1f));
+        public static float RaidPoints(float townPoints, float roll) => Math.Max(0f, townPoints) * (RaidLow + (RaidHigh - RaidLow) * Clamp(roll, 0f, 1f));
 
         /// <summary>The raiders' strength to the town's, by the game's measure of points.</summary>
         public static float Ratio(float raid, float defend) => defend <= 0f ? 9f : Math.Max(0f, raid) / defend;

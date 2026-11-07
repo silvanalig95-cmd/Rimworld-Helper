@@ -35,7 +35,7 @@ public static class TownLifeTests
             "a struggling town stands with 0.7 of them, a flourishing one with 1.3");
         C(TownLifeMath.DefendPoints(1000f, 10f) < TownLifeMath.DefendPoints(1000f, 60f), "the poorer, the fewer");
         C(Math.Abs(TownLifeMath.RaidPoints(1000f, 0f) - 750f) < 0.01f && Math.Abs(TownLifeMath.RaidPoints(1000f, 1f) - 1500f) < 0.01f,
-            "raiders 0.75 to 1.5 of the town's strength");
+            "raiders 0.75 to 1.5 of the game's own defenders of such a town");
         C(TownLifeMath.Ratio(1500f, 1000f) == 1.5f && TownLifeMath.Ratio(10f, 0f) == 9f, "their strength to the town's");
         C(Math.Abs(TownLifeMath.HoldChance(1000f, 1000f) - 0.5f) < 0.001f, "even sides, an even chance");
         C(TownLifeMath.HoldChance(100000f, 1f) == 0.1f && TownLifeMath.HoldChance(1f, 100000f) == 0.9f, "never surely either way");
@@ -76,16 +76,25 @@ public static class TownLifeTests
         C(TownLifeMath.FormerDeathChance(TownRaidEnd.Sacked, 9f) <= 0.4f && TownLifeMath.FormerDeathChance(TownRaidEnd.Hurt, 9f) <= 0.15f, "a raid's chance has a ceiling");
         C(TownLifeMath.FormerDeathChance(TownRaidEnd.Hurt, 1.1f) < TownLifeMath.FormerDeathChance(TownRaidEnd.Sacked, 1.1f), "a town hurt loses fewer than one sacked");
         // The rate over a year's raids: the raids a town meets alone, held about half the time, take a former colonist rarely.
-        var r2 = new Random(11);
-        int deaths = 0, raids = 4000;
-        for (int i = 0; i < raids; i++)
+        int Deaths(float fortune, out int sacked)
         {
-            float defend = TownLifeMath.DefendPoints(1150f + 450f * (float)r2.NextDouble(), 50f);
-            float raiders = TownLifeMath.RaidPoints(defend, (float)r2.NextDouble());
-            var e = TownLifeMath.Alone(raiders, defend, (float)r2.NextDouble());
-            if (r2.NextDouble() < TownLifeMath.FormerDeathChance(e, TownLifeMath.Ratio(raiders, defend))) deaths++;
+            var r2 = new Random(11);
+            int deaths = 0;
+            sacked = 0;
+            for (int i = 0; i < 4000; i++)
+            {
+                float town = 1150f + 450f * (float)r2.NextDouble();
+                float defend = TownLifeMath.DefendPoints(town, fortune), raiders = TownLifeMath.RaidPoints(town, (float)r2.NextDouble());
+                var e = TownLifeMath.Alone(raiders, defend, (float)r2.NextDouble());
+                if (e == TownRaidEnd.Sacked) sacked++;
+                if (r2.NextDouble() < TownLifeMath.FormerDeathChance(e, TownLifeMath.Ratio(raiders, defend))) deaths++;
+            }
+            return deaths;
         }
-        C(deaths / (float)raids > 0.03f && deaths / (float)raids < 0.15f, $"an unanswered raid takes one of the colony's former people about one time in {raids / Math.Max(1, deaths)}");
+        int steady = Deaths(50f, out int sackedSteady), poor = Deaths(10f, out int sackedPoor), rich = Deaths(90f, out int sackedRich);
+        C(steady / 4000f > 0.03f && steady / 4000f < 0.15f, $"an unanswered raid on a steady town takes one of the colony's former people about one time in {4000 / Math.Max(1, steady)}");
+        C(sackedPoor > sackedSteady && sackedSteady > sackedRich && poor > steady && steady > rich,
+            $"a struggling town is sacked more often ({sackedPoor / 40f:0}%, steady {sackedSteady / 40f:0}%, flourishing {sackedRich / 40f:0}%), and loses more of its people");
 
         C(TownLifeMath.CallMeans(WorldAge.Tribal) == "runner" && TownLifeMath.CallMeans(WorldAge.Medieval) == "rider" && TownLifeMath.CallMeans(WorldAge.Industrial) == "radio"
           && TownLifeMath.CallMeans(WorldAge.Spacer) == "comms", "the town calls by its own means, every age");
@@ -177,7 +186,8 @@ public static class TownLifeTests
         C(life.Contains("RiseFallMath.Struggling(t.prosperity, t.lowSince, RiseFall.Blows(rec.people, now), -1, now)"), "hard times by the region's own rule");
         C(life.Contains("RiseFall.MakeRuin(town, ledgerTown, false)") && life.Contains("people.temporary = true") && life.Contains("people.defeated = true"),
             "given up: the region's ruin, and with no other town the people is no more");
-        C(Regex.IsMatch(life, @"if \(last\)\s*\{\s*people\.leader = null;"), "its leader steps aside first, so the game makes no stranger to lead it");
+        C(life.Contains("if (last) people.leader = null;") && life.IndexOf("people.temporary = true", StringComparison.Ordinal) > life.IndexOf("RiseFall.MakeRuin(town", StringComparison.Ordinal),
+            "its leader steps aside first, so the game makes no stranger to lead it; made temporary only once its ruin stands");
         C(life.Contains("GetNaturalGoodwillOffset") && life.Contains("-(r.cooledWrongs + r.cooledHead)"), "the colony's wrongs and a cool head in its natural goodwill");
         C(Code("World/Region/NewTowns.cs").Contains("&& !HandOverPeoples.IsOurs(f)"), "15B: Rimfolk's own new towns are never this people's");
         string wm = Code("Integrations/World/WorldMechanics.cs");

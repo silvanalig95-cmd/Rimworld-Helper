@@ -119,9 +119,10 @@ namespace ColonyCouncil
             if (s.ctx.other == null) s.flags.Add("nohead");
             if (!RimfolkPatches.On) s.flags.Add("noMap");
             var t = WorldLedger.TownRecord(rec.key);
-            float defend = TownLifeMath.DefendPoints(Rand.Range(TownLifeMath.DefendMin, TownLifeMath.DefendMax), t != null && t.Seeded ? t.prosperity : -1f);
-            s.SetNum("defend", Mathf.RoundToInt(defend));
-            s.SetNum("raid", Mathf.RoundToInt(TownLifeMath.RaidPoints(defend, Rand.Value)));
+            // The raiders come by what a town of its kind can stand against; how many of its people stand there is its fortune's.
+            float kind = Rand.Range(TownLifeMath.DefendMin, TownLifeMath.DefendMax);
+            s.SetNum("defend", Mathf.RoundToInt(TownLifeMath.DefendPoints(kind, t != null && t.Seeded ? t.prosperity : -1f)));
+            s.SetNum("raid", Mathf.RoundToInt(TownLifeMath.RaidPoints(kind, Rand.Value)));
             return true;
         }
 
@@ -288,10 +289,12 @@ namespace ColonyCouncil
                         s.SetNum("f" + p.thingIDNumber, 1);
                 s.SetNum("fight", 1);
                 s.SetNum("since", Find.TickManager.TicksGame);
+                // The colony's part, from when its fighters are there (an answer alone sends nobody).
+                s.help += 2;
+                s.deeds.Add("CC_TownLife_Deed".Translate(TownsAfter.TownName(rec).Named("TOWN")).Resolve());
                 Count(s, rec, map);
                 Current.Game.CurrentMap = map;
                 string townName = TownsAfter.TownName(rec);
-                var form = Ages.Form(AgeFeature.Back, Ages.Ours, rec.age);
                 string text = "CC_TownLife_FightText".Translate(townName.Named("TOWN"), (rec.people?.Name ?? "?").Named("PEOPLE"), s.ctx.enemy.Name.Named("ENEMY"),
                     Foundings.Names(colony).Named("NAMES"), (rec.colonyName ?? townName).Named("COLONY")).Resolve();
                 var formers = rec.formers.Where(p => p != null && p.Spawned && p.Map == map).ToList();

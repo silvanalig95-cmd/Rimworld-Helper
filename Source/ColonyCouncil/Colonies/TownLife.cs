@@ -146,7 +146,7 @@ namespace ColonyCouncil
             int wrongs = 0, head = 0;
             if (On && rec.end == TownEnd.None && Find.FactionManager.AllFactionsListForReading.Contains(rec.people))
             {
-                float memory = FactionMemory.On ? FactionMemory.Instance?.Sum(rec.people, DeedSide.Wrong) ?? 0f : 0f;
+                float memory = FactionMemory.On ? FactionMemory.Instance?.Sum(rec.people, DeedSide.Wrong, true) ?? 0f : 0f;
                 int grudges = WorldLedger.LiveTies(Tie.Kind.Grudge).Count(t => t.from == Refs.Of(rec.people));
                 wrongs = TownLifeMath.WrongsPart(memory, grudges);
                 var n = TownLetters.HeadOf(rec);
@@ -314,15 +314,17 @@ namespace ColonyCouncil
             rec.askOpen = false;
             WorldLedger.FormerChanged();
             // With no other town, the people is no more: its leader steps aside first, so the game makes no stranger to lead it.
-            if (last)
-            {
-                people.leader = null;
-                people.temporary = true;
-            }
+            if (last) people.leader = null;
             var ledgerTown = WorldLedger.TownRecord(rec.key);
             var ruin = RiseFall.MakeRuin(town, ledgerTown, false);
             NotableBook.Instance?.TownGoneOver(rec.key);
-            if (last) people.defeated = true;
+            // Made temporary only once its ruin (in its colour) stands, so the game lets the people go when the ruin and its
+            // people are gone, never before.
+            if (last)
+            {
+                people.defeated = true;
+                people.temporary = true;
+            }
             // They come to the gate.
             var spawned = new List<Pawn>();
             foreach (var p in come)
