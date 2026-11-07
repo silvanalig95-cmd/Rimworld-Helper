@@ -48,7 +48,7 @@ namespace ColonyCouncil
         private static readonly string[] Serious = { "Council_Ail_Tuberculosis", "Council_Ail_Cholera", "Council_Ail_Measles", "Flu" };
 
         /// <summary>The catching thing the patient has that shows, and whether it is the serious kind; null for none.</summary>
-        private static Hediff CatchingOf(Pawn patient, out bool serious)
+        public static Hediff CatchingOf(Pawn patient, out bool serious)
         {
             serious = false;
             var hs = patient.health.hediffSet.hediffs;
@@ -91,10 +91,10 @@ namespace ColonyCouncil
         }
 
         /// <summary>Someone already has something of theirs waiting to show.</summary>
-        private static bool Waiting(Pawn p) => HarmBook.Instance?.waiting.Any(x => x != null && x.what == HarmWaiting.Caught && x.pawn == p) ?? false;
+        public static bool Waiting(Pawn p) => HarmBook.Instance?.waiting.Any(x => x != null && x.what == HarmWaiting.Caught && x.pawn == p) ?? false;
 
         /// <summary>A head cold is the mildest (children may catch it); the rest are grown-ups' hurts.</summary>
-        private static HurtClass ClassOf(HediffDef def) => def?.defName == "Council_Ail_HeadCold" ? HurtClass.Mild : HurtClass.Injury;
+        public static HurtClass ClassOf(HediffDef def) => def?.defName == "Council_Ail_HeadCold" ? HurtClass.Mild : HurtClass.Injury;
 
         // ================= Showing =================
 
@@ -126,7 +126,8 @@ namespace ColonyCouncil
                     HarmFour.TellHurt(p, "CC_HarmFour_GuestCough", p.Named("PAWN"), (x.name ?? "").Named("OTHER"), illness.Named("ILLNESS"), (note ?? "").Named("NOTE"));
                     break;
                 default:
-                    HarmFour.Say(p, "Rimfolk_Pool_CaughtIt");
+                    // Harm, part 5's carriers say and tell their own (Harm/Carriers.cs).
+                    if (!Carriers.TellCaught(x, p, illness, note)) HarmFour.Say(p, "Rimfolk_Pool_CaughtIt");
                     break;
             }
             return true;
@@ -164,7 +165,15 @@ namespace ColonyCouncil
         public static bool CoughHour(HarmWaiting x, int now)
         {
             var g = x.pawn;
-            if (g == null || g.Dead || !g.Spawned || g.Map == null || !g.Map.IsPlayerHome)
+            bool gone = g == null || g.Dead || !g.Spawned || g.Map == null || !g.Map.IsPlayerHome;
+            // Harm, part 5's carriers: one seen to (the camp's sick one tended) or well again passes nothing on.
+            if (!gone && Carriers.Stopped(x))
+            {
+                near.Remove(g.thingIDNumber);
+                return true;
+            }
+            // A carrier with a window (one of the colony working on with it, the camp's first days) passes it on when it closes.
+            if (gone || x.due > 0 && now >= x.due)
             {
                 Caught(x, now);
                 near.Remove(x.pawn?.thingIDNumber ?? -1);
@@ -175,7 +184,7 @@ namespace ColonyCouncil
             if (RestUtility.Awake(g))
                 foreach (var c in g.Map.mapPawns.FreeColonistsSpawned)
                 {
-                    if (!RestUtility.Awake(c) || !c.Position.InHorDistOf(g.Position, HarmFourMath.CoughRange)) continue;
+                    if (c == g || !RestUtility.Awake(c) || !c.Position.InHorDistOf(g.Position, HarmFourMath.CoughRange)) continue;
                     any = true;
                     hours[c] = (hours.TryGetValue(c, out int h) ? h : 0) + 1;
                     if (hours[c] > x.count || x.other == c)
@@ -185,7 +194,7 @@ namespace ColonyCouncil
                     }
                 }
             // together: a cough among those near them, said to nobody in particular.
-            if (any && Rand.Chance(0.3f)) HarmFour.Say(g, "Rimfolk_Pool_GuestCough");
+            if (any && Rand.Chance(0.3f)) HarmFour.Say(g, Carriers.CoughPool(x));
             return false;
         }
 
@@ -194,12 +203,15 @@ namespace ColonyCouncil
             var c = x.other;
             if (c == null || c.Dead || !HarmFour.Ours(c)) return;
             if (!Rand.Chance(HarmFourMath.GuestCoughCatch(x.count, DecreeWork.ContagionFactorFor(c)))) return;
-            var def = HarmFour.Child(c) || !Rand.Chance(HarmFourMath.ChestColdShare) ? HarmFour.Def("Council_Ail_HeadCold") : HarmFour.Def("Council_Ail_ChestCold");
+            // A guest's cough is a cold; part 5's carriers pass on what they have (Harm/Carriers.cs).
+            bool guest = x.kind == HarmKinds.GuestCough.key;
+            var def = !guest ? Carriers.Passed(x, c)
+                : HarmFour.Child(c) || !Rand.Chance(HarmFourMath.ChestColdShare) ? HarmFour.Def("Council_Ail_HeadCold") : HarmFour.Def("Council_Ail_ChestCold");
             if (def == null || c.health.hediffSet.HasHediff(def) || Waiting(c)) return;
             HarmFour.Wait(new HarmWaiting
             {
-                what = HarmWaiting.Caught, kind = HarmKinds.GuestCough.key, pawn = c, def = def, name = x.name,
-                due = now + (int)(HarmFourMath.GuestCoughDays * HarmMath.DayTicks)
+                what = HarmWaiting.Caught, kind = guest ? HarmKinds.GuestCough.key : x.kind, pawn = c, def = def, name = x.name,
+                due = now + (guest ? (int)(HarmFourMath.GuestCoughDays * HarmMath.DayTicks) : Carriers.OnsetTicks(x))
             });
         }
 

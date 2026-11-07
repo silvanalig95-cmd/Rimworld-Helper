@@ -3753,7 +3753,7 @@ may. Where a choice brings the risk, its card or its answer says so first.
 
 **One shared budget.** All of Rimfolk's kinds of hurt share one budget: together they come about as often as the kinds
 built before it did, however many there are now (at 100%, about half a hurt a colonist-year in an average colony, a
-third in a careful one and three fifths in a careless one, beside a raid's wound or two). Each kind comes about half as often as it would alone, a kind that came lately waits its turn for
+third in a careful one and three fifths in a careless one, beside a raid's wound or two). Each kind comes a little under half as often as it would alone, a kind that came lately waits its turn for
 up to thirty days while the others come a little more often, and switching a system off takes its kinds out of the
 budget, leaving the rest as they were. The setting and the storyteller scale all of it as before, and prevention still
 counts: a careful colony meets fewer of them than a careless one.
@@ -3802,6 +3802,26 @@ counts: a careful colony meets fewer of them than a careless one.
 - **Games with real contests:** a games day gets a bout or two and a footrace near the gathering; now and then a blow
   lands for real or a runner turns an ankle on rough ground (a child only scrapes a knee; a paved yard is safe). By the
   colony's means: wrestling and a race, staves, boxing and a three-legged race, a spacer's sim tourney.
+- **Sickness that spreads:** a petition to rest when ill or for a quarantine let go unheeded while a cold goes round
+  sends the sick to work on, and whoever works nearest them catches it (the decree page says so under the petition);
+  during a plague in the region, one group in four of visitors or traders from the sick towns, or a courier, may carry
+  it to whoever trades or talks with them longest (shut the gate when the neighbours ask, or keep the quarantine; their
+  raised flu and plague come a little less often for it); a camp's sick one may pass the fever to whoever sits longest
+  at their fire, unless the colony's doctor sees to them; one hospital patient in 20 brings tuberculosis or cholera,
+  named in the letter, and whoever sleeps in the same room may catch it (give them a room of their own); one travelling
+  healer's batch in eight has turned, and a few of those dosed are queasy or sore-armed next morning, unless a doctor of
+  the colony with Medicine 8 looks it over first; worms left untended three days may become the game's gut worms, and
+  insect bites left a day in a malaria country its malaria (sleeves and a bed indoors help); with Dubs Bad Hygiene's
+  thirst, untreated water may bring the stomach bug, only while that mod's own water illnesses are off.
+- **The weather and the cold:** travellers kept waiting at the gate past the hour in a hard frost, and watchers on the
+  walls, may get frostnip or chilblains (warm clothes, two on watch; the letter and the watch's answer say so), and a
+  lone watcher outside the walls may draw a hungry predator; one who stands in the rain or loves the snow catches a
+  chest cold or frostnip a third more often (a coat or a hood helps); one shaken by a nightmare may walk in their sleep
+  out into the yard on a later night (a bolted door or a roommate keeps them in) and come to frostbitten or bruised;
+  someone at the height of restlessness walks out alone at dusk about once a season, and beyond the walls a hungry
+  predator may find them (a friend goes along when free); fishing below freezing ends in a slip into the water now and
+  then, and the game's own hypothermia until they're warm. A field sown by the weather whose forecast missed a frost says
+  so in its note.
 
 No mood is added on top of a hurt: it brings the game's pain and its own wound or illness, and the doctors tend it.
 

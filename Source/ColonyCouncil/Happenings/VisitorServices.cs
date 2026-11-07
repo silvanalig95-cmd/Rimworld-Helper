@@ -508,6 +508,8 @@ namespace ColonyCouncil
             if (t == null || patient == null || patient.Dead) return;
             var set = patient.health?.hediffSet;
             if (t.hediff != null && set != null && !set.HasHediff(t.hediff)) patient.health.AddHediff(t.hediff);
+            // Harm, part 5: a dose from a bad batch (Harm/Carriers.cs).
+            Carriers.Dosed(by, patient);
             t.pawns.Remove(patient);
             t.done++;
         }

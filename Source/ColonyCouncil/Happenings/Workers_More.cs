@@ -204,8 +204,14 @@ namespace ColonyCouncil
             // setting off, or the doctor gone, everyone has it at once.
             var who = ctx.map.mapPawns.FreeColonistsSpawned.Where(p => p.health?.hediffSet?.HasHediff(hediff) == false).ToList();
             outcome = base.Resolved(ctx, option, risk, byDefault, outcome);
+            // Harm, part 5: now and then a bad batch, unless the colony's doctor looks it over (Harm/Carriers.cs).
+            Carriers.Batch(ctx.stranger, ctx.a, hediff == CouncilDefOf.Council_HerbalTonic);
             if (VisitorServices.Dose(ctx.map, ctx.stranger, who, hediff, ctx.Format(outcome))) return "";
-            foreach (var p in who) p.health.AddHediff(hediff);
+            foreach (var p in who)
+            {
+                p.health.AddHediff(hediff);
+                Carriers.Dosed(ctx.stranger, p);
+            }
             return outcome;
         }
     }

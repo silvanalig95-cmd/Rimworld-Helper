@@ -196,6 +196,21 @@ namespace ColonyCouncil
                 case "guestNightHospitality": return RimfolkPatches.On && Quarrels.HospitalityLoaded;
                 case "rematch": return Outsiders.On && (Outsiders.DuelOn || Outsiders.SparOn);
                 case "games": return ColonyCalendar.On && PlayOuts.On;
+                // Harm, part 5: each under its own system; the links between two systems behind "Systems talk to each other".
+                case "sickWorkOn": return AilmentTracker.On && s.decreeRequests && Interplay.On;
+                case "gateSickness": return s.worldSituations && Interplay.On;
+                case "campFever": return CampTracker.Enabled;
+                case "courierSick": return Couriers.On && s.worldSituations && Interplay.On;
+                case "patientIll": return HealthTracker.ReputationOn && AilmentTracker.SeriousOn;
+                case "badBatch": return true;
+                case "smallThings": return AilmentTracker.On;
+                case "dirtyWater": return AilmentTracker.On && Untended.DirtyWaterReady;
+                case "gateCold": return JourneyBook.On && AilmentTracker.On && Interplay.On;
+                case "nightWatch": return PlayOuts.On && AilmentTracker.On && Interplay.On;
+                case "weatherLovers": return s.quirks && AilmentTracker.On && Interplay.On;
+                case "sleepwalk": return s.dreams;
+                case "restlessWalk": return Heart.On;
+                case "coldWater": return ColdHurts.FishingLoaded;
                 // The decrees, Rimfolk's events (dangers on the map, the hail) and the peoples' callers are always in the game.
                 default: return true;
             }
@@ -544,6 +559,7 @@ namespace ColonyCouncil
             DrillBouts.Reset();
             Sabotage.Reset();
             HarmFour.Reset();
+            HarmFive.Reset();
             Harm.BudgetChanged();
         }
 
@@ -616,10 +632,13 @@ namespace ColonyCouncil
                     Sabotage.Hourly(this, now);
                     // Harm, part 4: what was caught showing, the waiting walks and visits, the hourly looks.
                     HarmFour.Hourly(this, now);
+                    // Harm, part 5: the carriers at the gate, the patient's ward.
+                    HarmFive.Hourly(this, now);
                     if (Sched.FirstHourOfDay(now)) Prune(now);
                 }
                 WorkHurts.Slice(slice, now);
                 HarmFour.Slice(this, slice, now);
+                HarmFive.Slice(this, slice, now);
             }
             catch (Exception e)
             {

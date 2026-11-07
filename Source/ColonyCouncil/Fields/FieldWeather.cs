@@ -50,6 +50,13 @@ namespace ColonyCouncil
         [Unsaved] private List<FrostStep> openKept;
         [Unsaved] private int openVersion = -1, openTick = -1;
         [Unsaved] private int keptAbs;
+        /// <summary>
+        /// The forecast can be wrong (harm, part 5, 4.4.2; hurts nobody, outside the budget): a field set to sow by the
+        /// weather, by zone ID, the last tick its outlook said a crop sown now would pay; and the frosts that took such a
+        /// field all the same, colder than the forecast had it (the tick and how cold), for the field's note a few days.
+        /// </summary>
+        [Unsaved] private readonly Dictionary<int, int> promised = new Dictionary<int, int>();
+        [Unsaved] private readonly Dictionary<int, (int tick, float temp)> missed = new Dictionary<int, (int, float)>();
         [Unsaved] private float[] keptBase, keptGlow;
         [Unsaved] private bool[] keptRest;
 
@@ -134,6 +141,7 @@ namespace ColonyCouncil
         private void Hour(int tick)
         {
             NoteStray();
+            Missed(tick);
             FeedChecks();
             bool sow = SowOn && byWeather.Count > 0, frostOn = FrostOn;
             if (!sow && !frostOn)
@@ -167,6 +175,47 @@ namespace ColonyCouncil
             }
             strayDay = day;
             dayStray = dev;
+        }
+
+        /// <summary>
+        /// The hour's look for a forecast that missed: a field sown by the weather that its outlook said would pay (within
+        /// a season) whose crop is frosted now, the air below the plants' own cold limit where the last forecast for this
+        /// hour had it at the limit and the frost margin above. The game's own frost takes the plants, as it always did;
+        /// the field's note says the forecast missed.
+        /// </summary>
+        private void Missed(int tick)
+        {
+            if (!SowOn || last?.temp == null || promised.Count == 0) return;
+            float actual = map.mapTemperature.OutdoorTemp;
+            if (actual > NoFrostAbove) return;
+            int h = (tick - refreshedTick) / GenDate.TicksPerHour;
+            if (h < 0 || h >= last.temp.Length) return;
+            float forecast = last.temp[h];
+            foreach (var kv in promised.ToList())
+            {
+                if (tick - kv.Value > HarmFiveMath.PromiseKeepDays * GenDate.TicksPerDay || tick < kv.Value)
+                {
+                    promised.Remove(kv.Key);
+                    continue;
+                }
+                if (missed.TryGetValue(kv.Key, out var m) && tick - m.tick < HarmFiveMath.MissedNoteDays * GenDate.TicksPerDay) continue;
+                if (!(ZoneOf(kv.Key) is Zone_Growing z) || !IsByWeather(z) || !(z.GetPlantDefToGrow() is ThingDef crop)) continue;
+                foreach (var c in z.Cells)
+                {
+                    var plant = c.GetPlant(map);
+                    if (plant?.def != crop || c.Roofed(map) || !HarmFiveMath.ForecastMissed(forecast, actual, LimitOf(plant), last.frostMargin)) continue;
+                    missed[kv.Key] = (tick, actual);
+                    break;
+                }
+            }
+        }
+
+        /// <summary>Dev mode: the selected field's note says the forecast missed, as if a frost colder than reckoned came now.</summary>
+        public string DebugMissed(Zone_Growing z)
+        {
+            if (z == null) return "no field.";
+            missed[z.ID] = (Find.TickManager.TicksGame, map.mapTemperature.OutdoorTemp);
+            return z.label + "'s note now says the forecast missed (for five days).";
         }
 
         /// <summary>The frost checks waiting on this map hear the hour's temperature.</summary>
@@ -239,6 +288,7 @@ namespace ColonyCouncil
                 if (o == null) continue;
                 outlooks[z.ID] = o;
                 if (!o.math.sow) paused.Add(z);
+                else promised[z.ID] = refreshedTick;
             }
             frost = frostOn ? FrostSteps(zones, ahead) : new List<FrostStep>();
             Tell();
@@ -685,6 +735,14 @@ namespace ColonyCouncil
                     lines.Add("CC_Fields_Inspect_Frost".Translate(WhenWords(fs.pick.lowHour, last).Named("WHEN"), fs.pick.harvest.Count.Named("N"),
                         Plural(fs.crop, fs.pick.harvest.Count).Named("CROPS")).Resolve());
                 else if (youngOnly.TryGetValue(z.ID, out var young)) lines.Add(young);
+            }
+            // The forecast that missed (harm, part 5): said for a few days, never a number of how sure it was.
+            if (missed.TryGetValue(z.ID, out var miss))
+            {
+                int ago = Find.TickManager.TicksGame - miss.tick;
+                if (ago >= 0 && ago < HarmFiveMath.MissedNoteDays * GenDate.TicksPerDay)
+                    lines.Add("CC_HarmFive_ForecastMissed".Translate(GenDate.DateShortStringAt(Find.TickManager.TicksAbs - ago, Find.WorldGrid.LongLatOf(map.Tile)).Named("DATE"),
+                        Temp(miss.temp).Named("TEMP")).Resolve());
             }
             if (lines.Count == 0) return text;
             string add = string.Join("\n", lines);

@@ -10,7 +10,8 @@ namespace ColonyCouncil
     /// Word of the colony's hospital has got about (its name, HealthTracker.HospitalLevel): someone who is unwell comes to
     /// ask for its doctor. From the camp on the map when there is one (they've watched the colony's doctor at work), else
     /// a traveller of a friendly people who heard of it on the road. They come with something small and catching or an
-    /// everyday hurt, never anything that could kill them, and they leave when their stay is up whatever the answer.
+    /// everyday hurt, and they leave when their stay is up whatever the answer. One in 20 brings something worse as well
+    /// (harm, part 5, 3.2.2: tuberculosis or cholera, Harm/Carriers.cs), which the letter names in place of the small thing.
     /// </summary>
     public class HappeningWorker_HospitalPatient : HappeningWorker_Visitors
     {
@@ -63,7 +64,31 @@ namespace ColonyCouncil
             }
             if (ctx.stranger == null) return false;
             ctx.tale = Ail(ctx.stranger);
+            // Harm, part 5: one patient in 20 brings something worse, named in the letter in place of the small thing.
+            var worse = Carriers.PatientWorse(ctx.stranger);
+            if (worse != null && Worse(ctx.stranger, worse))
+            {
+                ctx.tale = Carriers.WorseTale(worse);
+                Carriers.PatientCarries(ctx.stranger, worse);
+            }
             return true;
+        }
+
+        /// <summary>Gives them the catching serious illness they bring (Harm/Carriers.cs), at its first stage.</summary>
+        private static bool Worse(Pawn p, HediffDef def)
+        {
+            try
+            {
+                var h = HediffMaker.MakeHediff(def, p);
+                h.Severity = Math.Max(0.05f, def.initialSeverity);
+                p.health.AddHediff(h);
+                return p.health.hediffSet.HasHediff(def);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("hospital patient's worse illness", e);
+                return false;
+            }
         }
 
         /// <summary>Gives them something small to come about, and names it.</summary>

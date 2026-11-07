@@ -481,7 +481,8 @@ namespace ColonyCouncil
             JourneyBook.Touch();
             string list = string.Join("\n", problems.Select(x => "  - " + x));
             string key = AnyNotReady(plan) ? "CC_Journey_AskText" : "CC_Journey_AskTextDanger";
-            var letter = LetterMaker.MakeLetter("CC_Journey_AskTitle".Translate(), key.Translate(When(plan), plan.Dest, list).Resolve(), JourneyDefOf.Rimfolk_JourneyLetter,
+            // In a hard frost, the letter names what a long wait at the gate can bring (Harm/ColdHurts.cs).
+            var letter = LetterMaker.MakeLetter("CC_Journey_AskTitle".Translate(), key.Translate(When(plan), plan.Dest, list).Resolve() + ColdHurts.GateLetterLine(plan), JourneyDefOf.Rimfolk_JourneyLetter,
                 new LookTargets(plan.travellers.Where(p => p != null && p.Spawned)));
             if (letter is ChoiceLetter_Journey jl) jl.planId = plan.id;
             Tell.Ask(letter);

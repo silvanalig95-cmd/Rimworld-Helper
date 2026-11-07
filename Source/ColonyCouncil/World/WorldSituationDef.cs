@@ -217,6 +217,14 @@ namespace ColonyCouncil
         public string whileFlag;
         /// <summary>Not once this flag is set.</summary>
         public string unlessFlag;
+        /// <summary>
+        /// The factor instead while the carriers at the gate are on (harm, part 5, Harm/Carriers.cs): a plague's travellers
+        /// and couriers bring part of its raised sickness themselves, so the incident is raised less. 0: always the factor.
+        /// </summary>
+        public float withCarriers;
+
+        /// <summary>The factor now: <see cref="withCarriers"/> while the carriers at the gate are on, else <see cref="factor"/>.</summary>
+        public float Factor => withCarriers > 0f && Carriers.GateOn ? withCarriers : factor;
 
         [Unsaved] private bool parsed;
         [Unsaved] private HappeningGroup? groupValue;

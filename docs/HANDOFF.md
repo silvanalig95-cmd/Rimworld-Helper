@@ -12,6 +12,107 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- Harm, part 5: sickness that spreads, the weather and the cold (7 November 2026, the first of three batches of the review's
+  other 69 after the player's "all suggestions please", on the shared budget so they add variety and not more hurts in all).
+  Not released: no What's new round, About.xml and CHANGELOG untouched (the lead does that at the merge). Fourteen kinds
+  (1.2.5, 2.3.1, 2.4.2, 2.7.2, 3.2.2, 2.2.4, 3.2.3, 4.9.3, 3.1.2, 4.2.2, 3.11.3, 3.12.1, 3.3.3, 4.9.2) and the forecast that
+  can be wrong (4.4.2), which hurts nobody and stays outside the budget. `Harm/HarmFiveMath.cs` (the rates, `HarmFiveTests`,
+  "harm five: "; linked in Tests.csproj and Balance.csproj), `Harm/HarmFive.cs` (the hub on the harm book's hour and slices,
+  `DilemmaEffect_HarmRisk` for a risk named on an answer's sheet), `Carriers.cs`, `Untended.cs`, `ColdHurts.cs`,
+  `NightWalks.cs` (with `JobDriver_HarmWalk`), `HarmFiveDebug.cs`; `Defs/Misc/Rimfolk_HarmFive.xml` (the jobs
+  `Rimfolk_Sleepwalk`, `Rimfolk_RestlessWalk`), `Defs/FlavorPoolDefs/Rimfolk_HarmFive_Lines.xml` (22 pools, in
+  `ImmersionTests.SpokenPools`), Keyed `Rimfolk_HarmFive.xml`. DESIGN.md "Harm, part 5" (a table of the fifteen) and "The
+  rates" redone; README "Hurts from everyday life" two bullets; the Almanac's ailments page (prose only, no keyword
+  changed); the review marks each built with what differs, and its Summary.
+  - Registry (`HarmKinds`, founding false, base rates from the model at 4000 runs): sickWorkOn 0.020, gateSickness 0.0085,
+    campFever 0.0034, courierSick 0.0026, patientIll 0.0016, badBatch 0.007, smallThings 0.008, dirtyWater 0.05 (by hand:
+    the model's game hasn't Dubs Bad Hygiene's thirst, as PokéWorld's spar), gateCold 0.0018, nightWatch 0.009,
+    weatherLovers 0.0005, sleepwalk 0.024, restlessWalk 0.0035, coldWater 0.028; each a system of its own in `Harm.SystemOn`
+    (the two-system links behind `Interplay.On`). 48 kinds now; each passes at about 44% of its own rate.
+  - The fourteen (rate on its own, prevention; seen): (1.2.5) a petition to rest when ill or for a quarantine lapsing while
+    one of the colony up and about has something catching: they work on a day (`Catching.CoughHour`'s rule, now shared by
+    every carrier), whoever was nearest them most catches the same a day after; named under the petition on the decree
+    page. (2.3.1) a visitors' or traders' group (`LordJob_VisitColony`, `LordJob_TradeWithColony`) of a people a plague lies
+    over (`Carriers.PlagueOver`, as sickness brought home reads it) carries it one in four, the trader by preference; the
+    flu, the plague one in four, two or three days after they go; the plague's "shut the gate" or the quarantine decree
+    keeps them out; `Council_WS_Plague`'s raised flu 1.5 to 1.35 and plague 2.5 to 2.3 make room while the carriers are
+    on (`SituationModifier.withCarriers`); named under keeping the gate open. (2.7.2) a courier of such a people, the same, from `CourierTracker`'s spawn. (2.4.2) the camp's sick one
+    (`Camp.FallIll`) catching one sickness in five for three days: a chest cold, the flu one in four; the doctor's tend (the
+    camp's ask, its sheet says so) stops it. (3.2.2) one hospital patient in 20 brings tuberculosis or cholera (given in
+    `HospitalPatient.Cast`, the letter's {TALE} names it, every answer's sheet too); a night asleep in their room 1 in 4.
+    (2.2.4) one paid healer's visit in eight a bad batch, caught by a doctor of Medicine 8 (a word); one dosed in three the
+    next morning: the stomach bug (tonic) or a sore arm (shot); named under paying. (3.2.3) worms untended three days 1 in
+    20 the game's gut worms in their place; bites untended a day in a malaria country 1 in 20 the game's malaria (sleeves,
+    a bed indoors half each). (4.9.3) Dubs Bad Hygiene's thirst ("DBHThirst") rising 0.15 in an hour is a drink; no
+    treatment building of the mod's at home: the stomach bug one such day in 600, only while the mod's own water illnesses
+    read off from its settings by name (unreadable: on, so nothing at all). (3.1.2) a traveller waiting at the gate past
+    the hour in a hard frost (-5 °C) colder than comfortable: 1 in 20 each two hours, frostnip or chilblains; the letter
+    says so in a frost. (4.2.2) the night watch on the walls (the patrol vigil): the same, half with two on watch; a lone
+    watcher outside the walls (`NightWalks.OutsideWalls`: the map's edge without a closed door) with a hungry wild
+    predator in reach: 1 watch in 6 its hunt; named under the watch's answer. (3.11.3) the rain lover's two hours in rain:
+    a chest cold 1 day in 150; the snow lover's three in bitter falling snow: frostnip 1 in 75; a coat or a hood halves.
+    (3.12.1) one nightmare in 15 that left them shaken walks them out to the yard on a later night's small hours; a bolted
+    door or a roommate keeps them in; frostnip in the cold, else a stumble half the time; led back. (3.3.3) restlessness
+    their strongest feeling at 1.6 its threshold: one dusk in 15 a walk to the edge of the ground (a night watch
+    look-out), a friend along when free; alone outside the walls, 1 in 4 a hungry predator. (4.9.2) an hour fishing (the
+    game's or Vanilla Fishing Expanded's) below freezing 1 in 200, twice in a hard frost: the game's hypothermia at
+    shivering, a dash for the nearest fire.
+  - The forecast (4.4.2): `FieldWeather.Missed` each hour: a field set by the weather whose outlook said it would pay
+    (within a season, `promised`) frosted beyond the last forecast (`HarmFiveMath.ForecastMissed`): its note says so five
+    days. Unsaved, no message, nothing new lost (the game's own frost).
+  - Predators: a wild one, hungry (food 60% or less), within 45 cells, that would take them as prey
+    (`FoodUtility.IsAcceptablePreyFor`) and can reach them; `JobDefOf.PredatorHunt` with `killIncappedTarget` false; the
+    cap counts it (`Harm.Note`); the game's own warning tells it.
+  - Messages only for an illness caught (naming whom from); a stumble, a sore arm, a slip into the water seen only
+    (`HarmFour.Mote`, a line). Nothing saved anew: the carriers, the ward, the batch and a dose wait in `HarmBook.waiting`
+    (`HarmWaiting` "cough" with its kind, "ward", "batch", "dose"; `HarmFour.Due` and `HarmWaiting.Lapsed` hand unknown ones
+    to `HarmFive`). No Sched slot. Hooks, one line each: Decrees (the lapse), DecreePanel (the petition's line), CourierTracker,
+    CampStory (the fever, the ask's line), HospitalPatient, Workers_More and VisitorServices (the batch, each dose),
+    JourneyRun (the letter), PlayOutGroupEffects (the watch's line), FieldWeather; `Catching.CatchingOf`, `ClassOf`,
+    `Waiting` and `SickHome.TilesTo` opened for it. Defs: the plague's factors and its open gate's risk, the healer's pay
+    option, the hospital's three answers.
+  - Rates (`Tools/Balance -- --harm --runs 4000`), hurts a colonist-year, before (every kind up to 0.149.0), every kind on
+    without the budget, with it (and 0.153.0's with it, part 4 alone): 6 well run 0.339, 0.669, 0.307 (0.311); 6 average
+    0.453, 0.983, 0.454 (0.452); 6 neglectful 0.560, 1.356, 0.629 (0.618); 12 well run 0.290, 0.538, 0.242 (0.245); 12
+    average 0.395, 0.812, 0.367 (0.368); 12 neglectful 0.504, 1.149, 0.526 (0.519). The average colony of six holds; no
+    kind flagged a quarter off. Part 5 alone would add 0.12 a colonist-year; within the budget it brings 0.055. Variety: a
+    kind again within thirty days 0.19 to 0.14 a colony-year; the commonest kind 17.4% to 16.6%. The heart the same. (At
+    1500 runs the average six read 0.448 and 0.460: noise; at 4000, 0.453 and 0.454.)
+  - Try in the game (dev mode, Debug actions, Rimfolk, "Harm five: ..."; none of it could be run here):
+    1. "the sick work on (one of ours with a cold)...": they cough at whoever is near for a day; a day after, the one
+       nearest them most has the same, the message naming them. In play: let a rest-when-ill petition lapse while
+       someone has a head cold. The decree page's petition line names the risk.
+    2. "a visitor or trader carries the plague...": their cough lines; trade with them an hour; two or three days after
+       they go, the flu (or plague) and its message. In play: during a region plague, keep the gate open (its sheet line).
+    3. "the next courier arrives sick": with couriers on, the next courier's party; unload beside them.
+    4. "the camp's sick one is catching": sit someone by them an hour; or answer the camp's ask with the doctor (its
+       sheet's new line) and nothing passes.
+    5. "the next hospital patient brings something worse": the letter's tale ("a deep cough that sounds like
+       tuberculosis"), the answers' line; put them in a guest bed in a colonist's room for a night.
+    6. "the next healer's batch is bad": pay the travelling doctor; with a colony doctor of Medicine 8, their word and
+       nothing; under it, next morning a few queasy (tonic) or with a sore arm (shot).
+    7. "the next worms or bites looked at grow": someone with untended worms or insect bites: gut worms in their place, or
+       malaria, and the message.
+    8. "dirty water (what Dubs Bad Hygiene reads as)": logs whether thirst is there and its own illnesses read on or off.
+    9. "the next cold wait at the gate bites": plan a journey, leave someone unready, wait at the gate.
+    10. "the next hour on the night watch bites", "a predator comes for the next one out alone": answer with a night watch
+        on the walls (one watcher, no walls, a wolf or cougar on the map): frostnip, or the game's own hunt and warning.
+    11. "a weather lover's next hour in it": someone with "stands in the rain" or "loves the snow" outdoors in it.
+    12. "sleepwalk now...": the walk to the yard in the small hours, the stumble or frostnip, someone leading them back,
+        the bed after; with a bolted door or a roommate, their line and no walk.
+    13. "a restless walk now...": out to the edge of the ground, a friend along if one is free; alone outside the walls
+        with a hungry predator about, the hunt.
+    14. "the next fisher slips in": the splash, the words, hypothermia at shivering, the dash for a fire.
+    15. "the forecast missed (the field under the mouse)": the field's note. In play: a field by the weather caught by a
+        cold snap that came after the forecast.
+    16. Hurts from everyday life at 0%: none of it; "Harm four: the shared budget (log)" lists the fourteen with passes.
+  - Riskiest: the predator's hunt started on a colonist (`PredatorHunt`, killIncapped off; the game's own letter; a
+    hungry bear could still maul someone badly before it's driven off); the two walk jobs ending themselves from a toil
+    (`SitDown`, `EndCurrentJob` inside their own init, as the games race does); Dubs Bad Hygiene read by name (its thirst,
+    its treatment buildings by defName, its settings by field names: likely to read "on" and do nothing); the patient's
+    illness given in `Cast` (if an event's context is cast and thrown away, a ward waits three days for nobody); the
+    plague's factors now read `SituationModifier.Factor` (1.35 and 2.3 while the carriers are on, the old 1.5 and 2.5
+    without them, the hourly cache catching a settings change within the hour); fishing jobs found by name.
 - 0.153.0, harm, part 4: the shared budget and fifteen more of the review (7 November 2026, the player's answer to "do more harm
   proposals raise how often colonists get hurt, or only the variety?": "yes, a shared budget please, and go ahead with the
   suggestions"; since then "all suggestions please", so the other 69 unbuilt proposals follow in later pieces on this

@@ -83,12 +83,30 @@ namespace ColonyCouncil
         public static readonly HarmKind Rematch = new HarmKind("rematch", "the rematch (2.8.1)", "rematch", 0.0042f, false);
         public static readonly HarmKind Games = new HarmKind("games", "games with real contests (4.1.1)", "games", 0.027f, false);
 
+        // ---------------- Harm, part 5 (sickness that spreads, the weather and the cold, 7 November 2026) ----------------
+
+        public static readonly HarmKind SickWorkOn = new HarmKind("sickWorkOn", "the sick work on (1.2.5)", "sickWorkOn", 0.020f, false);
+        public static readonly HarmKind GateSickness = new HarmKind("gateSickness", "the sickness at the gate (2.3.1)", "gateSickness", 0.0085f, false);
+        public static readonly HarmKind CampFever = new HarmKind("campFever", "the fever at their fire (2.4.2)", "campFever", 0.0034f, false);
+        public static readonly HarmKind CourierSick = new HarmKind("courierSick", "a courier who arrives sick (2.7.2)", "courierSick", 0.0026f, false);
+        public static readonly HarmKind PatientIll = new HarmKind("patientIll", "the patient who brings something worse (3.2.2)", "patientIll", 0.0016f, false);
+        public static readonly HarmKind BadBatch = new HarmKind("badBatch", "the hedge healer's bad batch (2.2.4)", "badBatch", 0.007f, false);
+        public static readonly HarmKind SmallThings = new HarmKind("smallThings", "small things that grow (3.2.3)", "smallThings", 0.008f, false);
+        public static readonly HarmKind DirtyWater = new HarmKind("dirtyWater", "dirty water (4.9.3)", "dirtyWater", 0.05f, false);
+        public static readonly HarmKind GateCold = new HarmKind("gateCold", "waiting at the gate in the cold (3.1.2)", "gateCold", 0.0018f, false);
+        public static readonly HarmKind NightWatch = new HarmKind("nightWatch", "the night watch in the cold (4.2.2)", "nightWatch", 0.009f, false);
+        public static readonly HarmKind WeatherLovers = new HarmKind("weatherLovers", "weather lovers (3.11.3)", "weatherLovers", 0.0005f, false);
+        public static readonly HarmKind Sleepwalk = new HarmKind("sleepwalk", "sleepwalking after a nightmare (3.12.1)", "sleepwalk", 0.024f, false);
+        public static readonly HarmKind RestlessWalk = new HarmKind("restlessWalk", "a restless walk at dusk (3.3.3)", "restlessWalk", 0.0035f, false);
+        public static readonly HarmKind ColdWater = new HarmKind("coldWater", "a slip into cold water (4.9.2)", "coldWater", 0.028f, false);
+
         /// <summary>Every kind, in the order they were built.</summary>
         public static readonly HarmKind[] All =
         {
             Drills, TiredHands, WorkedThrough, Dangers, LandAilments, CampBrawl, SickHome, ChampionBout, HuntTurn, Sabotage, Hustings, Frayed, Stampede,
             FeastBout, FeastSour, PilgrimCough, SchemeFight, PokemonSpar,
-            Physician, GuestCough, Hail, ColdNight, Felling, FailedBuild, HotBench, Rut, HerdLesson, Saddle, GroupBrawl, SoreLoser, GuestNight, GuestNightHospitality, Rematch, Games
+            Physician, GuestCough, Hail, ColdNight, Felling, FailedBuild, HotBench, Rut, HerdLesson, Saddle, GroupBrawl, SoreLoser, GuestNight, GuestNightHospitality, Rematch, Games,
+            SickWorkOn, GateSickness, CampFever, CourierSick, PatientIll, BadBatch, SmallThings, DirtyWater, GateCold, NightWatch, WeatherLovers, Sleepwalk, RestlessWalk, ColdWater
         };
 
         public static HarmKind Of(string key)
