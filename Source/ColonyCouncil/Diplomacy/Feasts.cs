@@ -1279,22 +1279,19 @@ namespace ColonyCouncil
             foreach (var g in p.guests.Where(g => g.state == GuestState.Here))
             {
                 var x = g.Party.Where(o => o != null && o.Spawned && Together.Able(o) && !o.DevelopmentalStage.Juvenile()).InRandomOrder().FirstOrDefault();
-                if (x == null || !FeastMath.SourNight(Outsiders.Temper(x), false, Rand.Value, HarmScale)) continue;
+                if (x == null || !FeastMath.SourNight(Outsiders.Temper(x), false, Rand.Value, Harm.ScaleFor(HarmKinds.FeastSour))) continue;
                 var c = map.mapPawns.FreeColonistsSpawned.Where(o => Together.Able(o) && !o.DevelopmentalStage.Juvenile() && o.Position.InHorDistOf(x.Position, 12f)
                                                                  && !o.WorkTagIsDisabled(WorkTags.Violent) && MayBeHurt(o) && SocialLog.Near(o, x))
                     .OrderBy(o => o.Position.DistanceToSquared(x.Position)).FirstOrDefault();
                 if (c == null) continue;
                 if (!Outsiders.FeastBrawl(c, x)) continue;
-                Harm.Note(c, "a guest's night gone sour");
+                Harm.Note(c, HarmKinds.FeastSour);
                 g.sour = true;
                 // together: the two came to words where they stood; the fight is the game's own on the map.
                 Tell.Message(NewsKind.World, Importance.Important, map, FeastWords.T("CC_Feast_Msg_Sour", x.Named("GUEST"), c.Named("PAWN")), new LookTargets(x),
                     MessageTypeDefOf.NegativeEvent);
             }
         }
-
-        /// <summary>The "Hurts from everyday life" scale (Harm/Harm.cs): the setting times the storyteller's lean.</summary>
-        public static float HarmScale => Harm.Scale;
 
         /// <summary>
         /// Under the harm rule's shared cap (Harm.May for a bout: a grown-up, not downed, in a sickbed, pregnant or already

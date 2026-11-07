@@ -21,7 +21,7 @@ namespace ColonyCouncil
         public static float Factor(Pawn p)
         {
             if (!On || p == null || !Heart.Eligible(p)) return 1f;
-            return HarmTwoMath.FrayedFactor(Heart.BandOf(p), Harm.Scale);
+            return HarmTwoMath.FrayedFactor(Heart.BandOf(p), Harm.ScaleFor(HarmKinds.Frayed));
         }
 
         /// <summary>The moment's factor: the more frayed of the two.</summary>
@@ -56,8 +56,8 @@ namespace ColonyCouncil
             try
             {
                 if (a == null || b == null) return;
-                Harm.Note(a, "frayed tempers");
-                Harm.Note(b, "frayed tempers");
+                Harm.Note(a, HarmKinds.Frayed);
+                Harm.Note(b, HarmKinds.Frayed);
                 // The one worn down the more is named.
                 var who = Factor(b) > Factor(a) ? b : a;
                 var other = who == a ? b : a;

@@ -224,7 +224,7 @@ public static class PeoplesCTests
         string callers = Read("Peoples", "PeoplesCallers.cs"), towns = Read("Peoples", "PeopleTowns.cs"), arising = Read("Peoples", "Arising.cs");
         C(callers.Contains("VisitorServices.Lodge(ctx.map, p, false)") && callers.Contains("LivingEvents.Schedule(LivingEvents.Shelter")
           && Read("Happenings", "Workers_Living.cs").Contains("case Shelter: HappeningWorker_PilgrimShelter.Morning(m); break;"), "each pilgrim sleeps in a warm corner indoors; the morning comes as a memo");
-        C(callers.Contains("Harm.Roll(host, PeoplesMath.CoughChance, HurtClass.Mild)") && callers.Contains("Harm.Ail(host, cold"), "the cough through the harm setting's cap and scale");
+        C(callers.Contains("Harm.Roll(host, HarmKinds.PilgrimCough, PeoplesMath.CoughChance, HurtClass.Mild)") && callers.Contains("Harm.Ail(host, cold"), "the cough through the harm setting's cap and scale");
         C(callers.Contains("DropPodUtility.DropThingsNear(spot, map") && callers.Contains("new LordJob_VisitColony(f, chill,") && callers.Contains("PeoplesMath.LanderAge((int)Ages.Ours)"),
             "the lander by drop pod, trading from the factor's pack under the game's own visitors' lord, for a later age");
         C(towns.Contains("LayDocks(map, Cells(map, grid, marks, \"dock\"))") && towns.Contains("TerrainDefOf.Bridge") && towns.Contains("PeoplesMath.DockSpot(water, bad, used.Count)"),

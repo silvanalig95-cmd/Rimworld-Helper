@@ -86,7 +86,7 @@ namespace ColonyCouncil
         public static Hediff_Injury Wound(Pawn p, HurtKind kind, HurtWhere where, float low, float high, string key)
         {
             if (p == null || !p.Spawned) return null;
-            var h = Harm.Injure(p, kind, where, low, high, key, HurtClass.Injury);
+            var h = Harm.Injure(p, kind, where, low, high, HarmKinds.Dangers, HurtClass.Injury);
             if (h == null) return null;
             string text = TextVariants.Vary(key).Translate(p.Named("PAWN"), (h.Part?.Label ?? "").Named("PART")).Resolve();
             Tell.Message(NewsKind.Health, Importance.Important, p.Map, text, new LookTargets(p), MessageTypeDefOf.NegativeHealthEvent);
@@ -171,7 +171,7 @@ namespace ColonyCouncil
             foreach (var p in map.mapPawns.FreeColonistsSpawned)
             {
                 if (p.CurJobDef != JobDefOf.Mine || p.CurJob.targetA.Cell.DistanceTo(k.cell) > 3.9f) continue;
-                if (Rand.Chance(Harm.Chance(VarietyThreeMath.DigOnChance))) Rockfall(k, p);
+                if (Rand.Chance(Harm.Chance(HarmKinds.Dangers, VarietyThreeMath.DigOnChance))) Rockfall(k, p);
                 return true;
             }
             return now > k.until;
@@ -291,7 +291,7 @@ namespace ColonyCouncil
             {
                 FilthMaker.TryMakeFilth(k.cell, map, ThingDefOf.Filth_Ash, 1);
                 Pause(p, 180);
-                if (Rand.Chance(Harm.Chance(VarietyThreeMath.StampBurnChance))
+                if (Rand.Chance(Harm.Chance(HarmKinds.Dangers, VarietyThreeMath.StampBurnChance))
                     && Wound(p, HurtKind.Burn, Rand.Bool ? HurtWhere.Hand : HurtWhere.Foot, VarietyThreeMath.StampBurnLow, VarietyThreeMath.StampBurnHigh, "CC_Danger_StampBurn") != null)
                     Say(k, p, "hurt");
                 else
@@ -336,7 +336,7 @@ namespace ColonyCouncil
             {
                 if (shell != null && !shell.Destroyed) return now > k.until;
                 var p = k.pawn;
-                if (p != null && p.Spawned && Rand.Chance(Harm.Chance(VarietyThreeMath.BlastStoneChance))
+                if (p != null && p.Spawned && Rand.Chance(Harm.Chance(HarmKinds.Dangers, VarietyThreeMath.BlastStoneChance))
                     && Wound(p, HurtKind.Cut, Rand.Bool ? HurtWhere.Arm : HurtWhere.Any, VarietyThreeMath.BlastStoneLow, VarietyThreeMath.BlastStoneHigh, "CC_Danger_BlastStone") != null)
                     Say(k, p, "hurt");
                 else Say(k, p, "gone");
@@ -456,7 +456,7 @@ namespace ColonyCouncil
         {
             if (p == null) return;
             if (p.Spawned) FleckMaker.ThrowMicroSparks(p.DrawPos, p.Map);
-            if (Rand.Chance(Harm.Chance(chance)) && Wound(p, HurtKind.Burn, Rand.Bool ? HurtWhere.Hand : HurtWhere.Arm, VarietyThreeMath.ScrapBurnLow, VarietyThreeMath.ScrapBurnHigh, "CC_Danger_ScrapBurn") != null)
+            if (Rand.Chance(Harm.Chance(HarmKinds.Dangers, chance)) && Wound(p, HurtKind.Burn, Rand.Bool ? HurtWhere.Hand : HurtWhere.Arm, VarietyThreeMath.ScrapBurnLow, VarietyThreeMath.ScrapBurnHigh, "CC_Danger_ScrapBurn") != null)
                 Say(k, p, "hurt");
         }
 
@@ -474,7 +474,7 @@ namespace ColonyCouncil
             foreach (var p in map.mapPawns.FreeColonistsSpawned)
             {
                 if (!k.cells.Contains(p.Position) || !p.pather.Moving || k.pawns.Contains(p)) continue;
-                if (Rand.Chance(Harm.Chance(VarietyThreeMath.GroundGiveChance)))
+                if (Rand.Chance(Harm.Chance(HarmKinds.Dangers, VarietyThreeMath.GroundGiveChance)))
                 {
                     Give(k, p);
                     return true;

@@ -1,0 +1,238 @@
+using System;
+using System.Collections.Generic;
+
+namespace ColonyCouncil
+{
+    /// <summary>
+    /// One kind of hurt from everyday life, as the shared budget knows it (HarmBudgetMath): registered once, in
+    /// <see cref="HarmKinds"/>, with the system it sits under and its base rate. Every roll and every hurt through the harm
+    /// service names its kind (Harm/Harm.cs).
+    /// </summary>
+    public sealed class HarmKind
+    {
+        /// <summary>Saved (the budget's memory of when each kind last came): never changed once a kind has shipped.</summary>
+        public readonly string key;
+        /// <summary>For the balance model's report and the dev tools.</summary>
+        public readonly string label;
+        /// <summary>The system it sits under: Harm.SystemOn tells whether that system is on in this game (its setting, its mod).</summary>
+        public readonly string system;
+        /// <summary>
+        /// Its base rate: hurts the shared cap counts per colonist-year, at 100%, the usual storyteller, in an average colony
+        /// of six, coming on its own (no budget). The balance model's harm mode measures it (Tools/Balance -- --harm).
+        /// </summary>
+        public readonly float weight;
+        /// <summary>Built before the budget (0.106.0 to 0.149.0): their base rates together are the budget's size.</summary>
+        public readonly bool founding;
+
+        public HarmKind(string key, string label, string system, float weight, bool founding)
+        {
+            this.key = key;
+            this.label = label;
+            this.system = system;
+            this.weight = weight;
+            this.founding = founding;
+        }
+
+        public override string ToString() => key;
+    }
+
+    /// <summary>
+    /// Every kind of Rimfolk-made hurt, registered once. A later kind is one line here (its key, its label, its system and
+    /// its base rate from the balance model, founding false) and one case in Harm.SystemOn when its system is new; it then
+    /// takes its turn within the budget, which it shares with whatever kinds are switched on.
+    /// </summary>
+    public static class HarmKinds
+    {
+        // ---------------- Built before the budget: their total is the budget ----------------
+
+        public static readonly HarmKind Drills = new HarmKind("drills", "drills that bruise (1.2.1)", "drills", 0.036f, true);
+        public static readonly HarmKind TiredHands = new HarmKind("tiredHands", "tired hands (1.2.2)", "decrees", 0.0385f, true);
+        public static readonly HarmKind WorkedThrough = new HarmKind("workedThrough", "working through it (3.2.1)", "ailments", 0.005f, true);
+        public static readonly HarmKind Dangers = new HarmKind("dangers", "dangers on the map", "dangers", 0.020f, true);
+        public static readonly HarmKind LandAilments = new HarmKind("landAilments", "ailments of the land and the work", "ailments", 0.178f, true);
+        public static readonly HarmKind CampBrawl = new HarmKind("campBrawl", "a camp's brawl (2.4.1)", "camps", 0.0083f, true);
+        public static readonly HarmKind SickHome = new HarmKind("sickHome", "sickness brought home (3.1.1)", "journeys", 0.0006f, true);
+        public static readonly HarmKind ChampionBout = new HarmKind("championBout", "the champion's bout (2.2.1)", "champion", 0.0003f, true);
+        public static readonly HarmKind HuntTurn = new HarmKind("huntTurn", "hunts that turn (2.1.1)", "hunts", 0.087f, true);
+        public static readonly HarmKind Sabotage = new HarmKind("sabotage", "a rival's sabotage (3.5.1)", "rivals", 0.018f, true);
+        public static readonly HarmKind Hustings = new HarmKind("hustings", "the hustings' blows (1.4.1)", "elections", 0.0055f, true);
+        public static readonly HarmKind Frayed = new HarmKind("frayed", "frayed tempers (3.3.1)", "heart", 0.0017f, true);
+        public static readonly HarmKind Stampede = new HarmKind("stampede", "a stampede (great herds)", "herds", 0.020f, true);
+        public static readonly HarmKind FeastBout = new HarmKind("feastBout", "a feast's wrestling", "feasts", 0.0034f, true);
+        public static readonly HarmKind FeastSour = new HarmKind("feastSour", "a guest's night gone sour at a feast", "feasts", 0.019f, true);
+        public static readonly HarmKind PilgrimCough = new HarmKind("pilgrimCough", "a pilgrim's cough", "peoples", 0.0037f, true);
+        public static readonly HarmKind SchemeFight = new HarmKind("schemeFight", "a scheme's fight", "schemes", 0.017f, true);
+        public static readonly HarmKind PokemonSpar = new HarmKind("pokemonSpar", "a Pokémon's spar", "pokemon", 0.003f, true);
+
+        // ---------------- Harm, part 4 (the fifteen the player took, 7 November 2026): turns within the budget ----------------
+
+        public static readonly HarmKind Physician = new HarmKind("physician", "the physician catches what they tend (1.1.1)", "physician", 0.0098f, false);
+        public static readonly HarmKind GuestCough = new HarmKind("guestCough", "the guest's cough (2.5.2)", "guestCough", 0.024f, false);
+        public static readonly HarmKind Hail = new HarmKind("hail", "caught in the hail (2.2.3)", "hail", 0.040f, false);
+        public static readonly HarmKind ColdNight = new HarmKind("coldNight", "a cold night for the frail (1.2.3)", "coldNight", 0.020f, false);
+        public static readonly HarmKind Felling = new HarmKind("felling", "a felling mishap (4.3.1)", "felling", 0.018f, false);
+        public static readonly HarmKind FailedBuild = new HarmKind("failedBuild", "a failed build that hurts (3.4.1)", "failedBuild", 0.059f, false);
+        public static readonly HarmKind HotBench = new HarmKind("hotBench", "burned at the bench (4.7.2)", "hotBench", 0.0125f, false);
+        public static readonly HarmKind Rut = new HarmKind("rut", "the rut in the pens (4.5.3)", "rut", 0.0167f, false);
+        public static readonly HarmKind HerdLesson = new HarmKind("herdLesson", "the herdmaster's lesson (4.5.1)", "herdLesson", 0.0068f, false);
+        public static readonly HarmKind Saddle = new HarmKind("saddle", "a fall from the saddle (4.9.1)", "saddle", 0.049f, false);
+        public static readonly HarmKind GroupBrawl = new HarmKind("groupBrawl", "the groups come to blows (3.6.1)", "groups", 0.068f, false);
+        public static readonly HarmKind SoreLoser = new HarmKind("soreLoser", "the sore loser (1.4.2)", "elections", 0.0038f, false);
+        public static readonly HarmKind GuestNight = new HarmKind("guestNight", "a guest's night goes sour (2.5.1)", "guestNight", 0.021f, false);
+        public static readonly HarmKind GuestNightHospitality = new HarmKind("guestNightHospitality", "a guest's night goes sour, Hospitality's guests (2.5.1)", "guestNightHospitality", 0.083f, false);
+        public static readonly HarmKind Rematch = new HarmKind("rematch", "the rematch (2.8.1)", "rematch", 0.0042f, false);
+        public static readonly HarmKind Games = new HarmKind("games", "games with real contests (4.1.1)", "games", 0.027f, false);
+
+        /// <summary>Every kind, in the order they were built.</summary>
+        public static readonly HarmKind[] All =
+        {
+            Drills, TiredHands, WorkedThrough, Dangers, LandAilments, CampBrawl, SickHome, ChampionBout, HuntTurn, Sabotage, Hustings, Frayed, Stampede,
+            FeastBout, FeastSour, PilgrimCough, SchemeFight, PokemonSpar,
+            Physician, GuestCough, Hail, ColdNight, Felling, FailedBuild, HotBench, Rut, HerdLesson, Saddle, GroupBrawl, SoreLoser, GuestNight, GuestNightHospitality, Rematch, Games
+        };
+
+        public static HarmKind Of(string key)
+        {
+            if (key == null) return null;
+            for (int i = 0; i < All.Length; i++)
+                if (All[i].key == key) return All[i];
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// The shared budget of hurts from everyday life (the player's choice, 7 November 2026: "yes, a shared budget please").
+    /// Rimfolk's everyday hurts together stay at what the kinds built before it came to (their base rates summed), however
+    /// many kinds come after: each kind's chance is multiplied by its pass, and the passes share the budget out among the
+    /// kinds switched on, by their base rates. A kind that came lately passes less often than one that hasn't, and the rest
+    /// a little more, so the mix varies and the commonest kind doesn't eat the budget. The pass knows nothing of the setting
+    /// or the storyteller: "Hurts from everyday life" and the storyteller's lean scale every kind exactly as before, and the
+    /// shared cap and its exclusions stand as they were (HarmMath.Bar).
+    /// <list type="bullet">
+    /// <item>The budget: the founding kinds switched on, their base rates together (<see cref="Budget"/>).</item>
+    /// <item>Variety (<see cref="Variety"/>): a kind just come weighs 0.4 of its rate, back to all of it over fifteen days
+    /// (a quadrum) since it last hurt someone.</item>
+    /// <item>The pass (<see cref="Passes"/>): its variety times the budget over the kinds on, each its base rate times its
+    /// variety; so the kinds' base rates times their passes always add up to the budget. Never more than twice a kind's
+    /// own rate.</item>
+    /// </list>
+    /// Pure, so Tools/Tests and Tools/Balance read the same rules; the game's side is Harm.PassOf (Harm/Harm.cs).
+    /// </summary>
+    public static class HarmBudgetMath
+    {
+        public const int DayTicks = HarmMath.DayTicks;
+
+        /// <summary>Days over which a kind that came gets back its whole share: a quadrum.</summary>
+        public const float VarietyDays = 30f;
+
+        /// <summary>A kind just come weighs this much less (0.6 less: 0.4 of its rate), easing off over <see cref="VarietyDays"/>.</summary>
+        public const float VarietyDip = 0.75f;
+
+        /// <summary>No kind passes at more than twice its own rate, however many others rest.</summary>
+        public const float MaxPass = 2f;
+
+        /// <summary>A kind that never came, or came long ago.</summary>
+        public const float LongAgo = 9999f;
+
+        /// <summary>
+        /// How much a kind weighs now by when it last came: 0.4 the day it came, rising evenly to 1 over fifteen days;
+        /// 1 for one that never came (or a time from a save played on: <paramref name="daysSince"/> below nothing).
+        /// </summary>
+        public static float Variety(float daysSince)
+        {
+            if (daysSince < 0f || daysSince >= VarietyDays) return 1f;
+            return 1f - VarietyDip * (1f - daysSince / VarietyDays);
+        }
+
+        /// <summary>Days since a kind last came, from its tick (int.MinValue: never), for <see cref="Variety"/>.</summary>
+        public static float DaysSince(int lastTick, int now)
+        {
+            if (lastTick == HarmMath.Never || lastTick > now) return LongAgo;
+            return (now - lastTick) / (float)DayTicks;
+        }
+
+        /// <summary>The kind's memory can go: it has its whole share back.</summary>
+        public static bool Forgotten(int lastTick, int now) => DaysSince(lastTick, now) >= VarietyDays;
+
+        /// <summary>The budget: the founding kinds among those on, their base rates together.</summary>
+        public static float Budget(IList<HarmKind> on)
+        {
+            float b = 0f;
+            if (on == null) return b;
+            for (int i = 0; i < on.Count; i++)
+                if (on[i] != null && on[i].founding)
+                    b += Math.Max(0f, on[i].weight);
+            return b;
+        }
+
+        /// <summary>The kinds on, their base rates together: what they would come to with no budget.</summary>
+        public static float Unbudgeted(IList<HarmKind> on)
+        {
+            float w = 0f;
+            if (on == null) return w;
+            for (int i = 0; i < on.Count; i++)
+                if (on[i] != null)
+                    w += Math.Max(0f, on[i].weight);
+            return w;
+        }
+
+        /// <summary>
+        /// Every kind's pass now (into <paramref name="pass"/>, beside <paramref name="on"/>): its variety times the budget
+        /// over the kinds on weighed by their variety, never more than <see cref="MaxPass"/>. With no new kinds on and none
+        /// come lately, every pass is 1: the hurts as they were.
+        /// </summary>
+        public static void Passes(IList<HarmKind> on, IList<float> daysSince, float[] pass)
+        {
+            if (on == null || pass == null) return;
+            float budget = 0f, shared = 0f;
+            for (int i = 0; i < on.Count; i++)
+            {
+                var k = on[i];
+                if (k == null) continue;
+                float w = Math.Max(0f, k.weight);
+                if (k.founding) budget += w;
+                shared += w * Variety(i < daysSince.Count ? daysSince[i] : LongAgo);
+            }
+            for (int i = 0; i < on.Count && i < pass.Length; i++)
+                pass[i] = PassFor(Variety(i < daysSince.Count ? daysSince[i] : LongAgo), budget, shared);
+        }
+
+        /// <summary>One kind's pass by its variety, the budget, and the kinds on weighed by their variety.</summary>
+        public static float PassFor(float variety, float budget, float shared)
+        {
+            if (shared <= 0f || budget <= 0f) return 1f;
+            return HarmMath.Clamp(variety * budget / shared, 0f, MaxPass);
+        }
+
+        /// <summary>One kind's pass among those on (it needn't be one of them: a kind asked for while its system is off).</summary>
+        public static float Pass(HarmKind kind, IList<HarmKind> on, IList<float> daysSince)
+        {
+            if (kind == null || on == null) return 1f;
+            float budget = 0f, shared = 0f, mine = LongAgo;
+            for (int i = 0; i < on.Count; i++)
+            {
+                var k = on[i];
+                if (k == null) continue;
+                float d = i < daysSince.Count ? daysSince[i] : LongAgo;
+                float w = Math.Max(0f, k.weight);
+                if (k.founding) budget += w;
+                shared += w * Variety(d);
+                if (k == kind) mine = d;
+            }
+            return PassFor(Variety(mine), budget, shared);
+        }
+
+        /// <summary>What the kinds on come to with their passes now (for the tests and the docs): the budget, while no pass reaches its ceiling.</summary>
+        public static float Expected(IList<HarmKind> on, IList<float> daysSince)
+        {
+            if (on == null) return 0f;
+            var pass = new float[on.Count];
+            Passes(on, daysSince, pass);
+            float t = 0f;
+            for (int i = 0; i < on.Count; i++)
+                if (on[i] != null)
+                    t += Math.Max(0f, on[i].weight) * pass[i];
+            return t;
+        }
+    }
+}

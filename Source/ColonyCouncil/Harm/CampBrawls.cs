@@ -127,7 +127,7 @@ namespace ColonyCouncil
                 var pm = ColonyState.For(map)?.offices?.Peacemaker;
                 bool peacemaker = pm != null && pm.Spawned && pm.Map == map;
                 float frayed = ours.Count == 0 ? 1f : ours.Max(FrayedTempers.Factor);
-                if (!Harm.Roll(HarmTwoMath.CampBrawlChance(peacemaker, frayed))) return;
+                if (!Harm.Roll(HarmKinds.CampBrawl, HarmTwoMath.CampBrawlChance(peacemaker, frayed))) return;
                 BeginBrawl(ours, theirs);
             }
             catch (Exception e)
@@ -224,7 +224,7 @@ namespace ColonyCouncil
             }
             // together: the two at the camp's fire, within talking range of each other (Together.Can, checked by whoever chose them).
             CampBrawls.Say(x, first ? "Rimfolk_Pool_CampQuarrel" : "Rimfolk_Pool_CampBrawlJoin", a, KinMemory.Ours(a) ? "colony" : "theirs");
-            if (!Harm.Fight(a, x, "a camp's quarrel"))
+            if (!Harm.Fight(a, x, HarmKinds.CampBrawl))
             {
                 if (bout != null) Outsiders.ForgetBrawl(bout);
                 return false;

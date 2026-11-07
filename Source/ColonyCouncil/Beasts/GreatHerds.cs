@@ -394,7 +394,7 @@ namespace ColonyCouncil
                     if (BeastsMath.SegmentDistSq(a.x, a.z, b.x, b.z, p.Position.x, p.Position.z) > reach) continue;
                     // Once a stampede: it went past them, knocking them down or not.
                     w.passed.Add(p);
-                    if (!Harm.May(p) || !Rand.Chance(Harm.Chance(BeastsMath.TrampleChance(r.BodySize, p.BodySize)))) continue;
+                    if (!Harm.May(p) || !Rand.Chance(Harm.Chance(HarmKinds.Stampede, BeastsMath.TrampleChance(r.BodySize, p.BodySize)))) continue;
                     Knock(r, p, map, w);
                     if (w.trampled >= BeastsMath.MaxTrampled) break;
                 }
@@ -413,7 +413,7 @@ namespace ColonyCouncil
             {
                 float dmg = BeastsMath.TrampleDamage(r.BodySize, Rand.Value);
                 p.TakeDamage(new DamageInfo(DamageDefOf.Blunt, dmg, 0f, (p.Position - r.Position).AngleFlat, r));
-                Harm.Note(p, "CC_Herd_TrampledWhy".Translate(r.KindLabel.Named("ONE")).Resolve());
+                Harm.Note(p, HarmKinds.Stampede);
                 w.trampled++;
                 if (p.Faction == Faction.OfPlayer || p.HostFaction == Faction.OfPlayer)
                     Tell.Message(NewsKind.Land, Importance.Important, map, "CC_Herd_Trampled".Translate(p.Named("PAWN"), r.KindLabel.Named("ONE")).Resolve(), new LookTargets(p),

@@ -182,7 +182,7 @@ public static class FeastTests
         C(Code("PlayOut/PlayGuests.cs").Contains("case Feast:") && feasts.Contains("guests = PlayGuests.Feast"), "the feast is a gathering with the guests at the table");
         C(Code("Diplomacy/FeastBouts.cs").Contains("public static OutsiderBout FeastBout") && Code("Diplomacy/FeastContests.cs").Contains("FeastMath.HardBlow(Rand.Value, Feasts.MayBeHurt(c) && Feasts.MayBeHurt(x)"),
             "wrestling by the outsiders' own bouts, the real blow at the design's rate under the shared cap");
-        C(feasts.Contains("if (!sour.Add(p.id) || !RimfolkPatches.On) return;") && feasts.Contains("FeastMath.SourNight(Outsiders.Temper(x), false, Rand.Value, HarmScale)"),
+        C(feasts.Contains("if (!sour.Add(p.id) || !RimfolkPatches.On) return;") && feasts.Contains("FeastMath.SourNight(Outsiders.Temper(x), false, Rand.Value, Harm.ScaleFor(HarmKinds.FeastSour))"),
             "a night gone sour only with the deeper hooks (a brawl isn't an attack), at the design's rate");
         C(Regex.IsMatch(Code("Diplomacy/FeastContests.cs"), @"case ContestKind\.Race:[\s\S]*?Pregnant") && Code("Diplomacy/FeastContests.cs").Contains("!p.DevelopmentalStage.Juvenile() && !p.WorkTagIsDisabled(WorkTags.Violent)"),
             "children run races only; nobody with child runs or wrestles");

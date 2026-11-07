@@ -179,8 +179,8 @@ public static class VarietyDangersTests
         C(!dngCode.Contains("health.AddHediff") && !Regex.IsMatch(dngCode, @"\bp\.TakeDamage\(") && Regex.Matches(dngCode, @"Harm\.Injure\(").Count == 1,
             "every hurt is the harm service's wound, in one place");
         foreach (var c in new[] { "DigOnChance", "StampBurnChance", "BlastStoneChance", "ScrapSparkLeft", "ScrapSparkBreak", "GroundGiveChance" })
-            C(Regex.IsMatch(dngCode, @"Harm\.Chance\(VarietyThreeMath\." + c + @"\)|Spark\(k, \w+, VarietyThreeMath\." + c + @"\)"), $"{c}: on the harm service's scale");
-        C(dngCode.Contains("Rand.Chance(Harm.Chance(chance))"), "a spark's chance is on the scale too");
+            C(Regex.IsMatch(dngCode, @"Harm\.Chance\(HarmKinds\.Dangers, VarietyThreeMath\." + c + @"\)|Spark\(k, \w+, VarietyThreeMath\." + c + @"\)"), $"{c}: on the harm service's scale");
+        C(dngCode.Contains("Rand.Chance(Harm.Chance(HarmKinds.Dangers, chance))"), "a spark's chance is on the scale too");
         foreach (Match m in Regex.Matches(dngCode, @"Wound\([^;]*?""(CC_Danger_\w+)""\)"))
         {
             string key = m.Groups[1].Value;

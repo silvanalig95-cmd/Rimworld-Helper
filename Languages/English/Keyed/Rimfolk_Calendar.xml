@@ -26,10 +26,10 @@
   <CC_Cal_Way_Feast_Desc>a party at the gathering spot for anyone free to come, or a better supper when no gathering is possible.</CC_Cal_Way_Feast_Desc>
   <CC_Cal_Way_Remembrance_Desc>a quiet hour: a small, bittersweet mood for those who knew the one remembered (for a day you name, for everyone).</CC_Cal_Way_Remembrance_Desc>
   <CC_Cal_Way_Rest_Desc>the rest of the day's work hours become recreation, and the schedule goes back the next day. The industrious work anyway.</CC_Cal_Way_Rest_Desc>
-  <CC_Cal_Way_Games_Desc>an afternoon of games: some recreation and a small lift for everyone at home.</CC_Cal_Way_Games_Desc>
+  <CC_Cal_Way_Games_Desc>an afternoon of games, with a race and a bout or two: some recreation and a small lift for everyone at home, and now and then a bruise or a turned ankle.</CC_Cal_Way_Games_Desc>
   <CC_Cal_Way_Personal_Desc>a message, a small lift for them, and good wishes from their friends.</CC_Cal_Way_Personal_Desc>
   <CC_Cal_Way_Feast_Letter>If the council keeps it, the colony holds a feast: a party at the gathering spot for anyone free to come.</CC_Cal_Way_Feast_Letter>
-  <CC_Cal_Way_Games_Letter>If the council keeps it, the colony takes the afternoon for games. Everyone at home gets some recreation and a small lift.</CC_Cal_Way_Games_Letter>
+  <CC_Cal_Way_Games_Letter>If the council keeps it, the colony takes the afternoon for games, with contests: a race and a bout or two. Everyone at home gets some recreation and a small lift, and now and then someone comes away with a bruise or a turned ankle.</CC_Cal_Way_Games_Letter>
   <CC_Cal_Way_Rest_Letter>If the council keeps it, nobody works for the rest of the day: work hours turn to recreation until midnight, and the schedule goes back tomorrow. The industrious will work anyway.</CC_Cal_Way_Rest_Letter>
   <CC_Cal_Way_Remembrance_Letter>{0} will keep a quiet hour for it today.</CC_Cal_Way_Remembrance_Letter>
   <CC_Cal_Way_RemembranceAll_Letter>The colony keeps a quiet hour today.</CC_Cal_Way_RemembranceAll_Letter>

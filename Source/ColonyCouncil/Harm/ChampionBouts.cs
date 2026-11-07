@@ -47,7 +47,7 @@ namespace ColonyCouncil
             if (a == null || x == null || !a.Spawned || !x.Spawned || a.Map != x.Map) return false;
             try
             {
-                bool hard = Harm.May(a, HurtClass.Bout) && Harm.May(x, HurtClass.Bout) && (DebugHard || Harm.Roll(HarmTwoMath.ChampionBlowChance));
+                bool hard = Harm.May(a, HurtClass.Bout) && Harm.May(x, HurtClass.Bout) && (DebugHard || Harm.Roll(HarmKinds.ChampionBout, HarmTwoMath.ChampionBlowChance));
                 DebugHard = false;
                 var bout = Outsiders.ChampionBout(a, x, hard);
                 if (bout == null) return false;
@@ -80,7 +80,12 @@ namespace ColonyCouncil
                 return;
             }
             bool won = b.winner == a || b.winner != x && HappeningWorker_Champion.SkillWins(a, x, v.skill);
-            if (b.hurt != null) BlowWord(b, a, x);
+            if (b.hurt != null)
+            {
+                // The spar counted the blow for the cap; its kind takes its rest within the shared budget.
+                Harm.Note(b.hurt, HarmKinds.ChampionBout);
+                BlowWord(b, a, x);
+            }
             HappeningWorker_Champion.Decide(v, comp, won, b);
         }
 

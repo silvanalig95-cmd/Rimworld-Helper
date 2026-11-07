@@ -551,7 +551,11 @@ namespace ColonyCouncil
                     var spots = new List<PlaySpot> { PlaySpot.Rec, PlaySpot.Outdoors, PlaySpot.Gather, PlaySpot.Dining };
                     if (at != null) spots.Insert(0, PlaySpot.Place);
                     if (PlayDay(d, map, home, PlayKind.Gathering, CalendarDefOf.Council_Cal_GamesDay, null, spots, at, together))
+                    {
+                        // Its contests come once the gathering is under way (Harm/GamesDay.cs).
+                        GamesDay.Kept(map, together ?? d.label);
                         return true;
+                    }
                     foreach (var p in home)
                     {
                         p.needs?.joy?.GainJoy(0.15f, JoyKindDefOf.Social);

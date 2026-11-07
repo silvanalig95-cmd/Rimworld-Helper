@@ -53,7 +53,6 @@
   <CC_Herd_Stampede_fire>The {KIND} caught the smell of fire, and the whole herd of {COUNT} has broken into a stampede.</CC_Herd_Stampede_fire>
   <CC_Herd_StampedeWay>Keep clear of their way: the big ones knock down anyone they run into.</CC_Herd_StampedeWay>
   <CC_Herd_StampedeChronicle>A herd of {KIND} stampeded across the colony's land.</CC_Herd_StampedeChronicle>
-  <CC_Herd_TrampledWhy>knocked down by a stampeding {ONE}</CC_Herd_TrampledWhy>
   <CC_Herd_Trampled>{PAWN_nameDef} was knocked down by a stampeding {ONE}.</CC_Herd_Trampled>
   <CC_Herd_Crops>The stampeding {KIND} flattened {COUNT} plants in the fields.</CC_Herd_Crops>
 

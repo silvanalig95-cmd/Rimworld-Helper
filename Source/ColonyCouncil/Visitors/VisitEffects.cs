@@ -144,6 +144,8 @@ namespace ColonyCouncil
         {
             if (!Visitors.On || VisitorTracker.Instance?.WaitingFor(ctx) == null) return;
             sheet.Play((inside ? "CC_Impact_StayInside" : "CC_Impact_Stay").Translate(nights, ("CC_Impact_VisitSpot_" + spot).Translate().Resolve()).Resolve(), "CC_Impact_StayBrief".Translate(nights).Resolve());
+            // A bed for the night can end in a quarrel after supper (Harm/Quarrels.cs).
+            if (inside) Quarrels.Describe(sheet);
         }
 
         public int nights = 1;

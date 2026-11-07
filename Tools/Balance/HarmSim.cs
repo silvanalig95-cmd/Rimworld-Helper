@@ -1,18 +1,24 @@
 // Hurts from everyday life over a colony-year (Harm/, DESIGN.md "Harm from everyday life"). Printed, nothing written:
 //   dotnet run -c Release --project Tools/Balance -- --harm [--runs N] [--seed S]
 //
-// How often each of Rimfolk's sources hurts one of the colony, through the shared cap (one Rimfolk-made hurt in three
-// days each), beside the game's own everyday hurts; the fights Rimfolk starts; and what the hurts and the fights add to
-// the heart's strain and its mood. What a source does once it comes (one bout in 25 landing for real, the game's own
-// revenge chance, one journey in six bringing a sickness home, a frayed temper's factor) is the mod's own arithmetic,
-// compiled in as it is (Harm/HarmMath.cs, Harm/HarmTwoMath.cs, Heart/HeartMath.cs). How often a colony meets each (a
-// drills decree, a camp at high tension, a lone boar among a hunt's game, a journey to a sick town, a bitter rivalry) is
-// the table below, each an estimate that says where it comes from. "Before" is the same colonies with harm, parts 2 and 3
-// left out: part 1's hurts run the same code on 0.131.0 (HarmMath.cs is unchanged since). The heart is played hour by hour
-// as the colony-year plays it (HeartSim.cs, the style's own life), each hurt its pain (as a raid's wound is) and each
-// fight an hour of combat and a bruise's pain besides; every source draws from its own generator, so the lives and part
-// 1's hurts are the same with and without parts 2 and 3. Grown-ups only (the cap keeps children from all but the
-// mildest), the usual setting and storyteller (the harm scale 1).
+// How often each kind of Rimfolk's hurts (Harm/HarmBudgetMath.cs, HarmKinds) hurts one of the colony, through the shared
+// cap (one Rimfolk-made hurt in three days each), beside the game's own everyday hurts; the fights Rimfolk starts; and
+// what the hurts and the fights add to the heart's strain and its mood. What a kind does once it comes (one bout in 25
+// landing for real, the game's own revenge chance, one journey in six bringing a sickness home, a frayed temper's factor,
+// a tending's one in 40) is the mod's own arithmetic, compiled in as it is (Harm/HarmMath.cs, HarmTwoMath.cs,
+// HarmFourMath.cs, HarmBudgetMath.cs, Heart/HeartMath.cs, Beasts/BeastsMath.cs). How often a colony meets each (a drills
+// decree, a camp at high tension, a journey to a sick town, a tree felled by an unskilled cutter, a hailstorm) is the
+// table below, each an estimate that says where it comes from.
+//
+// Three runs of the same colonies, every kind drawing from its own generator so the lives are the same in all three:
+//   before:     the kinds built before the shared budget (0.106.0 to 0.149.0), each at its own rate, as the game has them now;
+//   no budget:  every kind on, the fifteen of harm part 4 too, each at its own rate (what they would add without the budget);
+//   the budget: every kind on, each at its rate times its pass (HarmBudgetMath.Passes: the budget shared out, a kind that
+//               came lately passing less often).
+// The budget's line holds the total at the "before" line's within noise. Each kind's base rate in the registry is its
+// "no budget" rate in the average colony of six (printed under it, for a later kind's builder to copy). Grown-ups only
+// (the cap keeps children from all but the mildest), the usual setting and storyteller (the harm scale 1); Alpha Skills,
+// Giddy-Up and Hospitality loaded (their kinds on), PokéWorld not (its Pokémon spar off, as in most games).
 
 using ColonyCouncil;
 
@@ -22,7 +28,16 @@ namespace Balance
     {
         private const int Days = HeartState.Days;
 
-        /// <summary>A play style's exposure to each source over a colony-year of 60 days (estimates; where each comes from is beside it).</summary>
+        private enum Mode
+        {
+            Before,
+            NoBudget,
+            Budget,
+            /// <summary>The budget with its variety left out (every kind weighed as if it never came): what the variety does.</summary>
+            BudgetPlain
+        }
+
+        /// <summary>A play style's exposure to each kind over a colony-year of 60 days (estimates; where each comes from is beside it).</summary>
         private sealed class Exposure
         {
             public string key;
@@ -46,6 +61,32 @@ namespace Balance
             public float hunts;
             /// <summary>Rimfolk's own sharp words with a fight's chance a colony of six meets in a year (a near fight, an answer's fight at its chance), and hard words with an outsider.</summary>
             public float sharpWords, hardWords;
+            // ---- Built since (0.134.0 to 0.149.0), now in the budget ----
+            /// <summary>Feasts with guests a colony-year (diplomacy's feasts: a guest people's visit most years in a colony that hosts).</summary>
+            public float feasts;
+            // ---- Harm, part 4 ----
+            /// <summary>Tendings of a catching ailment a colonist-year (the catching clock's everyday ailment every 60 days, two or three tendings a case, the flu now and then); a sterile room; a quarantine or rest-when-ill decree; a doctor past two tendings of the sick in a day.</summary>
+            public float tendings, sterile, sickDecree, tired;
+            /// <summary>Visits of Rimfolk's visitors a colony-year, and the share staying the night inside.</summary>
+            public float visits, stayInside;
+            /// <summary>Hours a colonist stays out in a falling hailstorm, by how quickly they are called in.</summary>
+            public float hailHours;
+            /// <summary>Days of the banked fires decree a colony-year (winter), and the share of a frail one's nights in a cold bedroom (no heater kept up).</summary>
+            public float bankedDays, coldRoom;
+            /// <summary>Trees felled a colonist-year by cutters under Plants 5.</summary>
+            public float unskilledTrees;
+            /// <summary>Constructions failed on heavy work (a wall, big furniture, a bridge) a colonist-year.</summary>
+            public float heavyFails;
+            /// <summary>Hours a colonist spends in a pen near a rutting male each rut (the herdmaster's work, or someone else's).</summary>
+            public float penHours;
+            /// <summary>Dismounts a colonist-year by riders short of Animals 6 on a mount not trained to obey.</summary>
+            public float greenRides;
+            /// <summary>A colony with two groups bitter with each other, and digs between them at a table a colony-year then.</summary>
+            public float bitterGroups, digs;
+            /// <summary>Hospitality's guest nights a colony-year (a guest group in the guest beds most weeks).</summary>
+            public float hospitalityNights;
+            /// <summary>The calendar's games day kept with a gathering a colony-year.</summary>
+            public float gamesDays;
         }
 
         private static readonly Exposure[] Exposures =
@@ -53,17 +94,23 @@ namespace Balance
             new Exposure
             {
                 key = "well", drillDays = 3f, workDays = 5f, lowRest = 0.05f, strains = 0.12f, workedThrough = 0.15f, dangers = 0.4f, dangerHurt = 0.2f, landAilments = 0.12f,
-                campHigh = 0.04f, campFeud = 0.03f, journeys = 1.5f, medicine = 0.8f, quarantine = 0.15f, hunts = 1.2f, sharpWords = 1f, hardWords = 0.5f
+                campHigh = 0.04f, campFeud = 0.03f, journeys = 1.5f, medicine = 0.8f, quarantine = 0.15f, hunts = 1.2f, sharpWords = 1f, hardWords = 0.5f, feasts = 0.8f,
+                tendings = 0.7f, sterile = 0.4f, sickDecree = 0.3f, tired = 0.1f, visits = 4f, stayInside = 0.3f, hailHours = 0.1f, bankedDays = 3f, coldRoom = 0.2f,
+                unskilledTrees = 3f, heavyFails = 0.3f, penHours = 1f, greenRides = 1f, bitterGroups = 0.1f, digs = 5f, hospitalityNights = 5f, gamesDays = 0.8f
             },
             new Exposure
             {
                 key = "avg", drillDays = 5f, workDays = 10f, lowRest = 0.15f, strains = 0.15f, workedThrough = 0.35f, dangers = 0.4f, dangerHurt = 0.3f, landAilments = 0.18f,
-                campHigh = 0.12f, campFeud = 0.05f, journeys = 1.5f, medicine = 0.5f, quarantine = 0.05f, hunts = 1.5f, sharpWords = 1.5f, hardWords = 0.6f
+                campHigh = 0.12f, campFeud = 0.05f, journeys = 1.5f, medicine = 0.5f, quarantine = 0.05f, hunts = 1.5f, sharpWords = 1.5f, hardWords = 0.6f, feasts = 0.6f,
+                tendings = 0.8f, sterile = 0.2f, sickDecree = 0.1f, tired = 0.25f, visits = 4f, stayInside = 0.35f, hailHours = 0.3f, bankedDays = 5f, coldRoom = 0.5f,
+                unskilledTrees = 6f, heavyFails = 0.6f, penHours = 1.7f, greenRides = 2.5f, bitterGroups = 0.25f, digs = 6f, hospitalityNights = 6f, gamesDays = 0.8f
             },
             new Exposure
             {
                 key = "neglect", drillDays = 5f, workDays = 15f, lowRest = 0.35f, strains = 0.2f, workedThrough = 0.6f, dangers = 0.4f, dangerHurt = 0.45f, landAilments = 0.25f,
-                campHigh = 0.25f, campFeud = 0.08f, journeys = 1f, medicine = 0.2f, quarantine = 0f, hunts = 1.2f, sharpWords = 2.5f, hardWords = 0.6f
+                campHigh = 0.25f, campFeud = 0.08f, journeys = 1f, medicine = 0.2f, quarantine = 0f, hunts = 1.2f, sharpWords = 2.5f, hardWords = 0.6f, feasts = 0.3f,
+                tendings = 1f, sterile = 0.05f, sickDecree = 0f, tired = 0.5f, visits = 4f, stayInside = 0.35f, hailHours = 0.6f, bankedDays = 8f, coldRoom = 0.8f,
+                unskilledTrees = 10f, heavyFails = 1f, penHours = 2.5f, greenRides = 5f, bitterGroups = 0.45f, digs = 7f, hospitalityNights = 6f, gamesDays = 0.6f
             }
         };
 
@@ -116,19 +163,54 @@ namespace Balance
         private const int Heckles = 2;
         /// <summary>A sharp word's own chance of blows (a near fight's one in four, an answer's 0.2 to 0.5), and hard words with an outsider's.</summary>
         private const float SharpChance = 0.3f, HardChance = 0.2f;
+        // ---- Built since (in the budget) ----
+        /// <summary>The game's own herd migrations and Rimfolk's great herds stampeding a colony-year (BeastSim's 1.5), of a kind big enough to knock someone down, and one of the colony out in its way.</summary>
+        private const float Stampedes = 1.5f, BigKind = 0.7f, InTheWay = 1f / 30f;
+        /// <summary>A feast's wrestling bouts, its guest parties staying the night, and a guest's fighting temper (-1 to 3).</summary>
+        private const int FeastBoutsMin = 1, FeastBoutsMax = 2, FeastPartiesMin = 1, FeastPartiesMax = 3;
+        /// <summary>The pilgrims' night in the colony a colony-year (a people of release C at peace nearby, one of their bands passing; rare).</summary>
+        private const float PilgrimNights = 0.2f;
+        /// <summary>The cough caught by the one who sat up with them (PeoplesMath.CoughChance; the tests hold the two the same).</summary>
+        private const float PilgrimCough = 0.1f;
+        /// <summary>A home with a people bearing a grudge or a notable that cold within reach, and its schemes' fights a year then (SchemeSim: 0.16 to 0.21).</summary>
+        private const float Schemer = 0.3f, SchemeFights = 0.18f;
+        // ---- Harm, part 4 ----
+        /// <summary>Of the catching tendings, the serious kind (tuberculosis, cholera, measles, the flu).</summary>
+        private const float SeriousShare = 0.15f;
+        /// <summary>A coughing guest: someone of the colony an hour near them, and the quarantine decree then.</summary>
+        private const float CoughNear = 0.8f, CoughQuarantine = 0.05f;
+        /// <summary>Hailstorms a colony-year (Council_Evt_Hail: spring to autumn, 30 days apart at least, among the nature events), and a helmet worn.</summary>
+        private const float Hailstorms = 0.5f, Helmets = 0.2f;
+        /// <summary>A hard frost on a banked fires night, and a frail one of the colony (old, a small child, frail or convalescent).</summary>
+        private const float HardFrostNights = 0.4f, Frail = 0.15f;
+        /// <summary>The colony's means: tribal, medieval, industrial, spacer, a quarter each.</summary>
+        private static readonly WorldAge[] AgesAll = { WorldAge.Tribal, WorldAge.Medieval, WorldAge.Industrial, WorldAge.Spacer };
+        /// <summary>A heavy failure that is a wall or a bridge (the foot's crush), and the cap's room.</summary>
+        private const float WallShare = 0.6f;
+        /// <summary>A colony keeping a male of a herd's grazers penned with females (cows, sheep, muffalo, deer), and the herdmaster doing the pen's work themselves.</summary>
+        private const float PennedMales = 0.5f;
+        /// <summary>The herdmaster's lessons a colony-year (about once a week while there's a keen learner), and the share with a nervous animal handled beside the learner.</summary>
+        private const float Lessons = 5f, NervousHandled = 0.4f;
+        /// <summary>A herdmaster in office (offices on, five colonists or more).</summary>
+        private const float Herdmaster = 0.6f;
+        /// <summary>A colonist with Alpha Skills' drunken passion in cooking or crafting, and their drinks before hot work a year (at most one in eight hours, most work stretches).</summary>
+        private const float DrunkenHot = 0.05f, HotDrinks = 25f;
+        /// <summary>Contested seats at the year's election, a close race among them, a loser hot-tempered or bitter, a gracious winner who shook hands at the count.</summary>
+        private const float Seats = 3f, Close = 0.4f, HotLoser = 0.3f, GraciousWinner = 0.4f;
+        /// <summary>A guest's fighting temper, a drink at supper, the warden of guests in office, the best-behavior decree.</summary>
+        private const float GuestDrink = 0.3f, Warden = 0.4f;
+        /// <summary>Outsiders beaten by one of the colony in a duel or by a bout's hard blow a colony-year; a later visit of their people within the year; the colonist taking the rematch; a hurt in it (first blood, or a bout's blow).</summary>
+        private const float Beaten = 0.5f, Revisit = 0.7f, Takes = 0.6f, RematchHurts = 0.45f;
+        /// <summary>A games day's race on rough ground (most yards aren't paved), its runners and the bout pairs.</summary>
+        private const float RoughCourse = 0.7f;
 
         // ---- The game's own, beside them ----
 
         /// <summary>A raid's wound for a colonist at home (HeartSim's model: in it four times in five, hurt one time in three of those).</summary>
         private const float RaidWound = 0.8f * 0.3f;
 
-        private static readonly string[] PartOne = { "drills (1.2.1)", "tired hands (1.2.2)", "working through it (3.2.1)", "dangers on the map", "ailments of the land and the work" };
-
-        private static readonly string[] PartTwo =
-        {
-            "a camp's brawl (2.4.1)", "sickness brought home (3.1.1)", "the champion's bout (2.2.1)", "hunts that turn (2.1.1)", "a rival's sabotage (3.5.1)",
-            "the hustings' blows (1.4.1)", "frayed tempers (3.3.1)"
-        };
+        /// <summary>The kinds the model has, in the registry's order (PokéWorld's spar left out: the model's game hasn't the mod).</summary>
+        private static readonly HarmKind[] Modelled = HarmKinds.All.Where(k => k != HarmKinds.PokemonSpar).ToArray();
 
         private sealed class Person
         {
@@ -141,7 +223,8 @@ namespace Balance
         {
             public int runs, colonists;
             public readonly Dictionary<string, double> hurts = new Dictionary<string, double>(), barred = new Dictionary<string, double>(), fights = new Dictionary<string, double>();
-            public double wounds, hours, episodes, mood, raidWounds;
+            public double wounds, hours, episodes, mood, raidWounds, passSum, passDays, repeats;
+            public readonly Dictionary<string, double> passes = new Dictionary<string, double>();
             public readonly double[] bands = new double[4];
         }
 
@@ -150,10 +233,10 @@ namespace Balance
             public Exposure x;
             public HeartLife life;
             public int n, hour, lastColonyEpisode = -999999;
-            public bool after;
+            public Mode mode;
             public List<Person> people;
             public Tally t;
-            /// <summary>Each source's own generator: the lives and part 1 draw the same with parts 2 and 3 on or off.</summary>
+            /// <summary>Each source's own generator: the lives and each kind draw the same in every mode.</summary>
             public Dictionary<string, Random> rngs;
             /// <summary>The day's events, by hour.</summary>
             public readonly List<(int hour, Action act)> today = new List<(int, Action)>();
@@ -163,15 +246,21 @@ namespace Balance
             public bool campBrawled;
             // Bitter rivalries one way (the rival, the other, petty, at the same work) and the colony's peacemaker in office.
             public List<(Person rival, Person other, bool petty, bool same)> rivals = new List<(Person, Person, bool, bool)>();
-            public bool peacemaker;
+            public bool peacemaker, herdmaster, penned, bitterGroups;
+            public WorldAge age;
             public int electionDay;
-            // Sicknesses carried home: who, and the day it shows (a lapse past three more days held back).
-            public List<(Person p, int day)> onsets = new List<(Person, int)>();
+            // Sicknesses carried home or caught: who, the day it shows, the kind (a lapse past three more days held back).
+            public List<(Person p, int day, HarmKind kind)> onsets = new List<(Person, int, HarmKind)>();
+            // The shared budget: each kind's last hurt (in the year's hours) and the passes now.
+            public readonly Dictionary<HarmKind, int> last = new Dictionary<HarmKind, int>();
+            public readonly float[] pass = new float[Modelled.Length];
+            public readonly float[] since = new float[Modelled.Length];
+            public bool passDirty = true;
         }
 
         public static void Run(string[] args)
         {
-            int runs = 400, seed = 1;
+            int runs = 1500, seed = 1;
             for (int i = 0; i < args.Length; i++)
             {
                 if (args[i] == "--runs") runs = int.Parse(args[++i]);
@@ -179,24 +268,46 @@ namespace Balance
             }
             Console.WriteLine($"Hurts from everyday life: a colony-year ({Days} days), {runs} runs each, the setting at 100% and the usual storyteller (harm scale 1).");
             Console.WriteLine("Hurts are what the shared cap counts (a wound, an ailment, a fight's two, a bout's real blow, a hunt's game turning on its hunter),");
-            Console.WriteLine($"per colonist-year; the cap holds one back if they had one in the last {HarmMath.GapDays:0} days. \"Before\": parts 2 and 3 left out (as on 0.131.0).");
+            Console.WriteLine($"per colonist-year; the cap holds one back if they had one in the last {HarmMath.GapDays:0} days. \"before\": the kinds built before the shared");
+            Console.WriteLine("budget, each at its own rate (the game as it was); \"no budget\": every kind on, harm part 4's fifteen too, each at its own rate;");
+            Console.WriteLine("\"budget\": every kind on, each at its rate times its pass within the shared budget (a kind that came lately passing less often).");
             Console.WriteLine();
+            var registry = new Dictionary<string, double>();
             foreach (var x in Exposures)
                 foreach (int n in new[] { 6, 12 })
                 {
-                    var before = Play(x, n, false, runs, seed);
-                    var after = Play(x, n, true, runs, seed);
-                    Report(x, n, before, after);
+                    var before = Play(x, n, Mode.Before, runs, seed);
+                    var none = Play(x, n, Mode.NoBudget, runs, seed);
+                    var budget = Play(x, n, Mode.Budget, runs, seed);
+                    Report(x, n, before, none, budget);
+                    if (x.key == "avg" && n == 6) VarietyReport(budget, Play(x, n, Mode.BudgetPlain, runs, seed));
+                    if (x.key == "avg" && n == 6)
+                        foreach (var k in Modelled)
+                        {
+                            // Its own rate before the shared cap holds any back: what it brings, the kinds beside it left out.
+                            var at = k.founding ? before : none;
+                            registry[k.key] = (at.hurts.GetValueOrDefault(k.label) + at.barred.GetValueOrDefault(k.label)) / at.colonists;
+                        }
                 }
+            Console.WriteLine("== The registry's base rates (HarmKinds, weight) beside the model's own (an average colony of six, each kind at its own rate, before the cap):");
+            foreach (var k in Modelled)
+            {
+                double m = registry.GetValueOrDefault(k.key);
+                string flag = Math.Abs(m - k.weight) > Math.Max(0.002, 0.25 * Math.Max(m, k.weight)) ? "   <- update the registry" : "";
+                Console.WriteLine($"   {k.label,-48} registry {k.weight,6:0.0000}  model {m,6:0.0000}{flag}");
+            }
+            Console.WriteLine($"   the budget (the founding kinds the model has): {HarmBudgetMath.Budget(Modelled):0.000}; every kind on, without it: {HarmBudgetMath.Unbudgeted(Modelled):0.000};");
+            Console.WriteLine($"   so each kind passes at about {HarmBudgetMath.Budget(Modelled) / HarmBudgetMath.Unbudgeted(Modelled):P0} of its own rate, less just after it came and more while others rest.");
+            Console.WriteLine();
         }
 
-        private static Tally Play(Exposure x, int n, bool after, int runs, int seed)
+        private static Tally Play(Exposure x, int n, Mode mode, int runs, int seed)
         {
             var t = new Tally();
             var life = HeartState.For(x.key);
             for (int r = 0; r < runs; r++)
             {
-                var y = new Year { x = x, life = life, n = n, after = after, t = t, rngs = new Dictionary<string, Random>() };
+                var y = new Year { x = x, life = life, n = n, mode = mode, t = t, rngs = new Dictionary<string, Random>() };
                 int baseSeed = seed * 7919 + r * 31 + n;
                 Random Rng(string name)
                 {
@@ -222,6 +333,12 @@ namespace Balance
                         y.rivals.Add((y.people[a], y.people[b], setup.NextDouble() < Petty, same));
                         y.rivals.Add((y.people[b], y.people[a], setup.NextDouble() < Petty, same));
                     }
+                // Part 4's colony, drawn apart so the rest of the setup is the same as before.
+                var four = Rng("four setup");
+                y.herdmaster = four.NextDouble() < Herdmaster;
+                y.penned = four.NextDouble() < PennedMales;
+                y.bitterGroups = four.NextDouble() < x.bitterGroups;
+                y.age = AgesAll[four.Next(AgesAll.Length)];
                 y.rngs["life"] = lifeRng;
                 Rng("pain");
                 PlayYear(y, Rng);
@@ -250,10 +367,20 @@ namespace Balance
                 foreach (var p in y.people) p.heart.StartDay(life, lifeRng, day, raid, raidHour, death, deathHour);
                 if (raid) y.t.raidWounds += y.n * RaidWound;
                 y.today.Clear();
+                y.passDirty = true;
                 PartOneDay(y, day, rng);
-                // Parts 2 and 3 draw on their own, and the day's frayed tempers roll in both (only "after" lets the strain count).
+                // The day's frayed tempers roll in every mode (only after "before" does the strain count).
                 Frayed(y, rng);
-                if (y.after) PartTwoDay(y, day, rng);
+                PartTwoDay(y, day, rng);
+                SinceDay(y, day, rng);
+                if (y.mode != Mode.Before) PartFourDay(y, day, rng);
+                Onsets(y, day, rng);
+                if (y.mode == Mode.Budget || y.mode == Mode.BudgetPlain)
+                {
+                    Passes(y);
+                    for (int i = 0; i < Modelled.Length; i++) y.t.passes[Modelled[i].key] = y.t.passes.GetValueOrDefault(Modelled[i].key) + y.pass[i];
+                    y.t.passDays++;
+                }
                 for (int h = 0; h < 24; h++)
                 {
                     foreach (var e in y.today.Where(e => e.hour == h).ToList()) e.act();
@@ -270,6 +397,29 @@ namespace Balance
             }
         }
 
+        // ---------------- The shared budget ----------------
+
+        /// <summary>The kind's pass now: 1 before the budget and without it; else HarmBudgetMath's share for it.</summary>
+        private static float P(Year y, HarmKind k)
+        {
+            if (y.mode != Mode.Budget && y.mode != Mode.BudgetPlain) return 1f;
+            Passes(y);
+            int i = Array.IndexOf(Modelled, k);
+            return i >= 0 ? y.pass[i] : 1f;
+        }
+
+        private static void Passes(Year y)
+        {
+            if (!y.passDirty) return;
+            y.passDirty = false;
+            for (int i = 0; i < Modelled.Length; i++)
+                y.since[i] = y.mode != Mode.BudgetPlain && y.last.TryGetValue(Modelled[i], out int at) ? (y.hour - at) / 24f : HarmBudgetMath.LongAgo;
+            HarmBudgetMath.Passes(Modelled, y.since, y.pass);
+        }
+
+        /// <summary>A kind's chance of coming, with its pass: whether it comes.</summary>
+        private static bool Comes(Year y, HarmKind k, Random g, double chance) => g.NextDouble() < chance * P(y, k);
+
         // ---------------- The hurt, through the cap ----------------
 
         private static void Add(Dictionary<string, double> d, string key, double v = 1) => d[key] = d.GetValueOrDefault(key) + v;
@@ -277,16 +427,25 @@ namespace Balance
         /// <summary>The cap lets them be hurt now (one in three days).</summary>
         private static bool May(Year y, Person p) => y.hour - p.lastHurt >= HarmMath.GapDays * 24;
 
-        /// <summary>A Rimfolk-made hurt (counted for the cap), its pain on the heart when it wounds; false when the cap held it back.</summary>
-        private static bool Hurt(Year y, Person p, string source, Random g, bool wounds = true)
+        private static void Came(Year y, HarmKind k)
         {
+            if (y.last.TryGetValue(k, out int before) && y.hour - before < HarmBudgetMath.VarietyDays * 24) y.t.repeats++;
+            y.last[k] = y.hour;
+            y.passDirty = true;
+        }
+
+        /// <summary>A Rimfolk-made hurt (counted for the cap and its kind's turn), its pain on the heart when it wounds; false when the cap held it back.</summary>
+        private static bool Hurt(Year y, Person p, HarmKind k, bool wounds = true)
+        {
+            if (p == null) return false;
             if (!May(y, p))
             {
-                Add(y.t.barred, source);
+                Add(y.t.barred, k.label);
                 return false;
             }
             p.lastHurt = y.hour;
-            Add(y.t.hurts, source);
+            Add(y.t.hurts, k.label);
+            Came(y, k);
             if (wounds)
             {
                 y.t.wounds++;
@@ -295,22 +454,25 @@ namespace Balance
             return true;
         }
 
-        /// <summary>A fight between two: an hour of combat and a bruise's pain for each; under the cap when it is Rimfolk's (both counted), or plain.</summary>
-        private static bool Fight(Year y, Person a, Person b, string source, Random g, bool capped)
+        /// <summary>A fight between two: an hour of combat and a bruise's pain for each; under the cap when it is a kind's (both counted), or plain.</summary>
+        private static bool Fight(Year y, Person a, Person b, HarmKind k, string plain = null)
         {
+            bool capped = k != null;
+            string label = k?.label ?? plain;
             if (capped && (!May(y, a) || b != null && !May(y, b)))
             {
-                Add(y.t.barred, source);
+                Add(y.t.barred, label, b != null ? 2 : 1);
                 return false;
             }
-            Add(y.t.fights, source);
+            Add(y.t.fights, label);
+            if (capped) Came(y, k);
             foreach (var p in new[] { a, b })
             {
                 if (p == null) continue;
                 if (capped)
                 {
                     p.lastHurt = y.hour;
-                    Add(y.t.hurts, source);
+                    Add(y.t.hurts, label);
                 }
                 p.heart.Build(StrainSource.Combat, 4f, "fights");
                 p.heart.Build(StrainSource.Pain, 1f + (float)y.rngs["pain"].NextDouble() * 2f, "fights");
@@ -324,7 +486,7 @@ namespace Balance
             return pool.Count == 0 ? null : pool[g.Next(pool.Count)];
         }
 
-        private static float Factor(Person p) => p == null ? 1f : HarmTwoMath.FrayedFactor(HeartMath.BandFor(p.heart.strain), 1f);
+        private static float Factor(Year y, Person p) => p == null ? 1f : HarmTwoMath.FrayedFactor(HeartMath.BandFor(p.heart.strain), P(y, HarmKinds.Frayed));
 
         // ---------------- Part 1 (0.106.0) ----------------
 
@@ -339,9 +501,9 @@ namespace Balance
                 int pairs = muster ? (HarmMath.MusterEvening(day) ? 1 : 0) : HarmMath.DrillPairs((int)(y.n * 0.7f), false);
                 for (int i = 0; i < pairs; i++)
                 {
-                    if (gd.NextDouble() >= HarmMath.DrillBlow(marshal)) continue;
+                    if (!Comes(y, HarmKinds.Drills, gd, HarmMath.DrillBlow(marshal))) continue;
                     var p = Any(y, gd);
-                    y.today.Add((18, () => Hurt(y, p, PartOne[0], gd)));
+                    y.today.Add((18, () => Hurt(y, p, HarmKinds.Drills)));
                 }
             }
             // Tired hands: a long day at the work a work decree drives, one roll each (half of them work such a day).
@@ -351,25 +513,25 @@ namespace Balance
                 {
                     if (gw.NextDouble() >= 0.5) continue;
                     bool low = gw.NextDouble() < x.lowRest;
-                    if (gw.NextDouble() < HarmMath.TiredHands(1, low, p.tough, false)) y.today.Add((15, () => Hurt(y, p, PartOne[1], gw)));
+                    if (Comes(y, HarmKinds.TiredHands, gw, HarmMath.TiredHands(1, low, p.tough, false))) y.today.Add((15, () => Hurt(y, p, HarmKinds.TiredHands)));
                 }
             // Working through it: a strain or a sprain worked hard through untended turns worse one time in ten.
             var gt = rng("through");
             foreach (var p in y.people)
-                if (gt.NextDouble() < x.strains / Days * x.workedThrough && gt.NextDouble() < HarmMath.WorkedThroughChance)
-                    y.today.Add((14, () => Hurt(y, p, PartOne[2], gt)));
+                if (gt.NextDouble() < x.strains / Days * x.workedThrough && Comes(y, HarmKinds.WorkedThrough, gt, HarmMath.WorkedThroughChance))
+                    y.today.Add((14, () => Hurt(y, p, HarmKinds.WorkedThrough)));
             // Dangers on the map: one of Rimfolk's events, its hurt by the answer.
             var gm = rng("dangers");
-            if (gm.NextDouble() < x.dangers / Days && gm.NextDouble() < x.dangerHurt)
+            if (gm.NextDouble() < x.dangers / Days && Comes(y, HarmKinds.Dangers, gm, x.dangerHurt))
             {
                 var p = Any(y, gm);
-                y.today.Add((12, () => Hurt(y, p, PartOne[3], gm)));
+                y.today.Add((12, () => Hurt(y, p, HarmKinds.Dangers)));
             }
             // The ailments of the land and the work that are Rimfolk-made hurts (they ask the cap before they come).
             var ga = rng("ailments");
             foreach (var p in y.people)
-                if (ga.NextDouble() < x.landAilments / Days)
-                    y.today.Add((10, () => Hurt(y, p, PartOne[4], ga)));
+                if (Comes(y, HarmKinds.LandAilments, ga, x.landAilments / Days))
+                    y.today.Add((10, () => Hurt(y, p, HarmKinds.LandAilments)));
         }
 
         // ---------------- Frayed tempers (3.3.1) ----------------
@@ -383,26 +545,26 @@ namespace Balance
                 var a = Any(y, g);
                 var b = Any(y, g, a);
                 float roll = (float)g.NextDouble();
-                y.today.Add((13, () => Words(y, a, b, roll, SharpChance, g)));
+                y.today.Add((13, () => Words(y, a, b, roll, SharpChance)));
             }
             if (g.NextDouble() < y.x.hardWords / Days)
             {
                 var c = Any(y, g);
                 float roll = (float)g.NextDouble();
-                y.today.Add((16, () => Words(y, c, null, roll, HardChance, g)));
+                y.today.Add((16, () => Words(y, c, null, roll, HardChance)));
             }
         }
 
-        private static void Words(Year y, Person a, Person b, float roll, float chance, Random g)
+        private static void Words(Year y, Person a, Person b, float roll, float chance)
         {
-            float factor = y.after ? HarmTwoMath.Frayed(Factor(a), Factor(b)) : 1f;
+            float factor = HarmTwoMath.Frayed(Factor(y, a), Factor(y, b));
             if (!HarmTwoMath.FrayedRoll(roll, chance, factor, out bool frayed)) return;
             if (!frayed)
             {
-                Fight(y, a, b, "Rimfolk's moments, as before", g, false);
+                Fight(y, a, b, null, "Rimfolk's moments, as before");
                 return;
             }
-            Fight(y, a, b, PartTwo[6], g, true);
+            Fight(y, a, b, HarmKinds.Frayed);
         }
 
         // ---------------- Parts 2 and 3 ----------------
@@ -444,27 +606,11 @@ namespace Balance
                 int travellers = gs.Next(TravellersMin, TravellersMax + 1);
                 var who = y.people.OrderBy(_ => gs.Next()).Take(travellers).ToList();
                 int back = day + gs.Next(3, 9);
-                if (gs.NextDouble() < chance)
+                if (Comes(y, HarmKinds.SickHome, gs, chance))
                 {
                     var p = who[gs.Next(who.Count)];
-                    y.onsets.Add((p, back + (int)(HarmTwoMath.OnsetTicks((float)gs.NextDouble()) / HarmTwoMath.DayTicks)));
+                    y.onsets.Add((p, back + (int)(HarmTwoMath.OnsetTicks((float)gs.NextDouble()) / HarmTwoMath.DayTicks), HarmKinds.SickHome));
                 }
-            }
-            foreach (var o in y.onsets.Where(o => o.day <= day).ToList())
-            {
-                if (day - o.day > HarmTwoMath.OnsetGraceDays)
-                {
-                    y.onsets.Remove(o);
-                    continue;
-                }
-                var p = o.p;
-                y.today.Add((9, () =>
-                {
-                    if (!y.onsets.Contains(o)) return;
-                    if (!May(y, p)) return;
-                    y.onsets.Remove(o);
-                    Hurt(y, p, PartTwo[1], gs);
-                }));
             }
 
             // The champion's bout: one bout in 25 lands a real blow, on either of the two.
@@ -475,14 +621,15 @@ namespace Balance
                 y.today.Add((15, () =>
                 {
                     if (!May(y, p)) return;
-                    if (gb.NextDouble() >= HarmTwoMath.ChampionBlowChance) return;
-                    if (gb.NextDouble() < 0.5) Hurt(y, p, PartTwo[2], gb);
+                    if (!Comes(y, HarmKinds.ChampionBout, gb, HarmTwoMath.ChampionBlowChance)) return;
+                    if (gb.NextDouble() < 0.5) Hurt(y, p, HarmKinds.ChampionBout);
                 }));
             }
 
             // Hunts that turn: a lone beast that can turn among the game, the game's own chance with each hit.
             var gh = rng("hunt");
-            if (gh.NextDouble() < (x.hunts + HuntingDay) / Days && gh.NextDouble() < LoneTurner)
+            // Its turn within the budget is one roll a hunt, at the marking (HuntsBite.Marked).
+            if (gh.NextDouble() < (x.hunts + HuntingDay) / Days && gh.NextDouble() < LoneTurner && gh.NextDouble() < P(y, HarmKinds.HuntTurn))
             {
                 var p = Any(y, gh);
                 y.today.Add((10, () =>
@@ -490,7 +637,7 @@ namespace Balance
                     // Never on a hunter the cap keeps from a hurt (their own shot at it not counted as fighting).
                     if (!May(y, p))
                     {
-                        Add(y.t.barred, PartTwo[3]);
+                        Add(y.t.barred, HarmKinds.HuntTurn.label);
                         return;
                     }
                     float revenge = Math.Min(1f, (RevengeMin + (float)gh.NextDouble() * (RevengeMax - RevengeMin)) * RangeFactor);
@@ -500,7 +647,7 @@ namespace Balance
                     for (int i = 0; i < hits && !turned; i++) turned = gh.NextDouble() < each;
                     if (!turned) return;
                     Add(y.t.fights, "a hunt's game turning on its hunter");
-                    Hurt(y, p, PartTwo[3], gh, gh.NextDouble() < TurnedWounds);
+                    Hurt(y, p, HarmKinds.HuntTurn, gh.NextDouble() < TurnedWounds);
                 }));
             }
 
@@ -509,14 +656,14 @@ namespace Balance
             foreach (var (rival, other, petty, same) in y.rivals)
             {
                 float chance = HarmTwoMath.SabotageChance(60f, petty, same, y.peacemaker);
-                if (chance <= 0f || gr.NextDouble() >= chance) continue;
+                if (chance <= 0f || !Comes(y, HarmKinds.Sabotage, gr, chance)) continue;
                 if (gr.NextDouble() >= Bench * Acts) continue;
                 bool seen = gr.NextDouble() < Witness;
                 if (gr.NextDouble() >= HarmTwoMath.FoundOut(seen)) continue;
                 if (gr.NextDouble() >= Confronts) continue;
                 y.today.Add((17, () =>
                 {
-                    if (!Fight(y, other, rival, PartTwo[4], gr, true)) Add(y.t.fights, "a sabotage had out in words");
+                    if (!Fight(y, other, rival, HarmKinds.Sabotage)) Add(y.t.fights, "a sabotage had out in words");
                 }));
             }
 
@@ -533,8 +680,8 @@ namespace Balance
                     bool calm = gu.NextDouble() < CalmCandidates, manners = gu.NextDouble() < Manners, pm = gu.NextDouble() < Peacemaker;
                     y.today.Add((19, () =>
                     {
-                        float chance = HarmTwoMath.HustingsBrawl(pm, manners, calm, HarmTwoMath.Frayed(Factor(a), Factor(b)));
-                        if (gu.NextDouble() < chance) Fight(y, a, b, PartTwo[5], gu, true);
+                        float chance = HarmTwoMath.HustingsBrawl(pm, manners, calm, HarmTwoMath.Frayed(Factor(y, a), Factor(y, b)));
+                        if (Comes(y, HarmKinds.Hustings, gu, chance)) Fight(y, a, b, HarmKinds.Hustings);
                     }));
                 }
             }
@@ -547,8 +694,8 @@ namespace Balance
             bool colony = g.NextDouble() < ColonyAtFire;
             var at = colony ? y.people.Where(p => May(y, p)).OrderBy(_ => g.Next()).ToList() : new List<Person>();
             if (colony && at.Count == 0) colony = false;
-            float frayed = colony ? at.Take(1 + y.people.Count(_ => g.NextDouble() < OthersAtFire)).Max(Factor) : 1f;
-            if (g.NextDouble() >= HarmTwoMath.CampBrawlChance(y.peacemaker, frayed)) return;
+            float frayed = colony ? at.Take(1 + y.people.Count(_ => g.NextDouble() < OthersAtFire)).Max(p => Factor(y, p)) : 1f;
+            if (!Comes(y, HarmKinds.CampBrawl, g, HarmTwoMath.CampBrawlChance(y.peacemaker, frayed))) return;
             y.campBrawled = true;
             if (!colony)
             {
@@ -559,37 +706,300 @@ namespace Balance
             int others = y.people.Count(p => p != first && May(y, p) && g.NextDouble() < OthersAtFire);
             int join = HarmTwoMath.JoinPairs(others, g.Next(TheirsFreeMin, TheirsFreeMax + 1));
             foreach (var p in new[] { first }.Concat(at.Skip(1).Take(join)))
-                Fight(y, p, null, PartTwo[0], g, true);
+                Fight(y, p, null, HarmKinds.CampBrawl);
+        }
+
+        // ---------------- Built since (0.134.0 to 0.149.0) ----------------
+
+        private static void SinceDay(Year y, int day, Func<string, Random> rng)
+        {
+            var x = y.x;
+            // A stampede: a herd of a big kind spooked, someone of the colony out in its way, knocked down by the game's chance.
+            var gp = rng("stampede");
+            if (gp.NextDouble() < Stampedes / Days && gp.NextDouble() < BigKind)
+            {
+                int down = 0;
+                foreach (var p in y.people)
+                {
+                    if (down >= BeastsMath.MaxTrampled || gp.NextDouble() >= InTheWay) continue;
+                    if (!Comes(y, HarmKinds.Stampede, gp, BeastsMath.TrampleChance(2.4f, 1f))) continue;
+                    var who = p;
+                    down++;
+                    y.today.Add((11, () => Hurt(y, who, HarmKinds.Stampede)));
+                }
+            }
+            // A feast with guests: its wrestling (one in 25 a hard blow, on either of the two) and its guests' night (a sour night with one of ours).
+            var gf = rng("feast");
+            if (gf.NextDouble() < x.feasts / Days)
+            {
+                int bouts = gf.Next(FeastBoutsMin, FeastBoutsMax + 1);
+                for (int i = 0; i < bouts; i++)
+                {
+                    var p = Any(y, gf);
+                    if (Comes(y, HarmKinds.FeastBout, gf, FeastMath.HardBlowChance) && gf.NextDouble() < 0.5) y.today.Add((15, () => Hurt(y, p, HarmKinds.FeastBout)));
+                }
+                int parties = gf.Next(FeastPartiesMin, FeastPartiesMax + 1);
+                for (int i = 0; i < parties; i++)
+                {
+                    var p = Any(y, gf);
+                    if (Comes(y, HarmKinds.FeastSour, gf, FeastMath.SourNightChance(gf.Next(-1, 4), false))) y.today.Add((21, () => Hurt(y, p, HarmKinds.FeastSour, false)));
+                }
+            }
+            // The pilgrims' night: the one who sat up with them may catch their cough.
+            var gi = rng("pilgrims");
+            if (gi.NextDouble() < PilgrimNights / Days && Comes(y, HarmKinds.PilgrimCough, gi, PilgrimCough))
+            {
+                var p = Any(y, gi);
+                y.today.Add((7, () => Hurt(y, p, HarmKinds.PilgrimCough)));
+            }
+            // A scheme's fight: a lie in a hot temper's ear, had out with another of the colony.
+            var gm = rng("schemes");
+            if (gm.NextDouble() < Schemer * SchemeFights / Days * P(y, HarmKinds.SchemeFight))
+            {
+                var a = Any(y, gm);
+                var b = Any(y, gm, a);
+                y.today.Add((14, () => Fight(y, a, b, HarmKinds.SchemeFight)));
+            }
+        }
+
+        // ---------------- Harm, part 4 ----------------
+
+        private static void PartFourDay(Year y, int day, Func<string, Random> rng)
+        {
+            var x = y.x;
+            // The physician catches what they tend: a tending of a catching ailment, the doctor's chance, showing a day or two after.
+            var gd = rng("physician");
+            if (gd.NextDouble() < x.tendings * y.n / Days)
+            {
+                bool serious = gd.NextDouble() < SeriousShare;
+                float chance = HarmFourMath.PhysicianChance(serious, gd.NextDouble() < Modern, gd.NextDouble() < x.sterile, gd.NextDouble() < x.sickDecree,
+                    gd.NextDouble() < x.tired ? 3 : 1);
+                var doctor = Any(y, gd);
+                if (Comes(y, HarmKinds.Physician, gd, chance)) y.onsets.Add((doctor, day + 1 + gd.Next(0, 2), HarmKinds.Physician));
+            }
+            // The guest's cough: a visit in 20 coughs; whoever sat with them longest catches it a day after they go.
+            var gc = rng("cough");
+            if (gc.NextDouble() < x.visits / Days && Comes(y, HarmKinds.GuestCough, gc, HarmFourMath.GuestCoughVisit)
+                && gc.NextDouble() < CoughNear * (gc.NextDouble() < CoughQuarantine ? 0.25 : 1))
+                y.onsets.Add((Any(y, gc), day + 2, HarmKinds.GuestCough));
+            // Caught in the hail: each colonist's hours out under it, a stone's chance each 250 ticks, two a storm at most.
+            var gh = rng("hail");
+            if (gh.NextDouble() < Hailstorms / Days)
+            {
+                int bruised = 0;
+                foreach (var p in y.people)
+                {
+                    if (gh.NextDouble() < Helmets) continue;
+                    double ticks = gh.NextDouble() * 2 * x.hailHours * 10;
+                    for (int k = 0; k < (int)Math.Round(ticks) && bruised < HarmFourMath.HailMaxPerStorm; k++)
+                    {
+                        if (!Comes(y, HarmKinds.Hail, gh, HarmFourMath.HailChance(false, false))) continue;
+                        bruised++;
+                        var who = p;
+                        y.today.Add((13, () => Hurt(y, who, HarmKinds.Hail)));
+                        break;
+                    }
+                }
+            }
+            // A cold night for the frail: banked fires in a hard frost, a frail one in a cold bedroom, one night in seven.
+            var gn = rng("cold");
+            if (gn.NextDouble() < x.bankedDays / Days && gn.NextDouble() < HardFrostNights)
+                foreach (var p in y.people)
+                    if (gn.NextDouble() < Frail && gn.NextDouble() < x.coldRoom && Comes(y, HarmKinds.ColdNight, gn, HarmFourMath.ColdNightChance))
+                    {
+                        var who = p;
+                        y.today.Add((7, () => Hurt(y, who, HarmKinds.ColdNight)));
+                    }
+            // A felling mishap: a tree felled by an unskilled cutter, one in 300 by the colony's means.
+            var gf = rng("felling");
+            foreach (var p in y.people)
+                if (gf.NextDouble() < x.unskilledTrees / Days && Comes(y, HarmKinds.Felling, gf, HarmFourMath.Felling(0, y.age)))
+                {
+                    var who = p;
+                    y.today.Add((11, () => Hurt(y, who, HarmKinds.Felling)));
+                }
+            // A failed build that hurts: a heavy construction failing on its builder, one in ten.
+            var gb = rng("build");
+            foreach (var p in y.people)
+                if (gb.NextDouble() < x.heavyFails / Days && Comes(y, HarmKinds.FailedBuild, gb, HarmFourMath.FailedBuild(gb.NextDouble() < WallShare ? HeavyBuild.Wall : HeavyBuild.Furniture)))
+                {
+                    var who = p;
+                    y.today.Add((12, () => Hurt(y, who, HarmKinds.FailedBuild)));
+                }
+            // Burned at the bench: a drink before hot work, one in 100 (Alpha Skills' drunken passion, few have it).
+            var gw = rng("hot bench");
+            foreach (var p in y.people)
+                if (gw.NextDouble() < DrunkenHot * HotDrinks / Days && Comes(y, HarmKinds.HotBench, gw, HarmFourMath.HotBenchChance))
+                {
+                    var who = p;
+                    y.today.Add((10, () => Hurt(y, who, HarmKinds.HotBench)));
+                }
+            // The rut in the pens: autumn's fifteen days, hours in a rutting male's pen, one charge in twenty hours, half landing.
+            var gr = rng("rut");
+            if (y.penned && day >= 30 && day < 45)
+                foreach (var p in y.people)
+                {
+                    double hours = x.penHours / 15.0;
+                    float charge = HarmFourMath.RutCharge(y.herdmaster && gr.NextDouble() < 0.3, 5);
+                    if (gr.NextDouble() < hours * charge * P(y, HarmKinds.Rut) && gr.NextDouble() < HarmFourMath.RutLands)
+                    {
+                        var who = p;
+                        y.today.Add((9, () => Hurt(y, who, HarmKinds.Rut)));
+                    }
+                }
+            // The herdmaster's lesson: a nervous animal handled beside the learner, one lesson in 30.
+            var gl = rng("lesson");
+            if (y.herdmaster && gl.NextDouble() < Lessons / Days && gl.NextDouble() < NervousHandled && Comes(y, HarmKinds.HerdLesson, gl, HarmFourMath.LessonKickChance))
+            {
+                var p = Any(y, gl);
+                y.today.Add((10, () => Hurt(y, p, HarmKinds.HerdLesson)));
+            }
+            // A fall from the saddle: a dismount by a rider short of Animals 6 on a green mount, one in 50 (Giddy-Up).
+            var gs = rng("saddle");
+            foreach (var p in y.people)
+                if (gs.NextDouble() < x.greenRides / Days && Comes(y, HarmKinds.Saddle, gs, HarmFourMath.SaddleThrow(3, false)))
+                {
+                    var who = p;
+                    y.today.Add((16, () => Hurt(y, who, HarmKinds.Saddle)));
+                }
+            // The groups come to blows: a dig at a table between two bitter groups, one in eight, others joining.
+            var gg = rng("groups");
+            if (y.bitterGroups && gg.NextDouble() < x.digs / Days
+                && Comes(y, HarmKinds.GroupBrawl, gg, HarmFourMath.GroupBrawl(70f, true, y.peacemaker, gg.NextDouble() < 0.2)))
+            {
+                var a = Any(y, gg);
+                var b = Any(y, gg, a);
+                int join = HarmFourMath.GroupJoins(gg.Next(0, 3), gg.Next(0, 3));
+                y.today.Add((19, () =>
+                {
+                    if (!Fight(y, a, b, HarmKinds.GroupBrawl)) return;
+                    for (int i = 0; i < join; i++)
+                    {
+                        var c = Any(y, gg, a);
+                        var d = Any(y, gg, c);
+                        Fight(y, c, d, HarmKinds.GroupBrawl);
+                    }
+                }));
+            }
+            // The sore loser: a close race's hot or bitter loser, one in ten (half for a gracious winner), blows half the time.
+            var go = rng("sore");
+            if (day == y.electionDay && go.NextDouble() < HustingsHeld)
+                for (int s = 0; s < (int)Seats; s++)
+                {
+                    float chance = HarmFourMath.SoreLoser(go.NextDouble() < Close, go.NextDouble() < HotLoser, false, go.NextDouble() < GraciousWinner);
+                    if (!Comes(y, HarmKinds.SoreLoser, go, chance) || go.NextDouble() >= HarmFourMath.SoreBlows) continue;
+                    var a = Any(y, go);
+                    var b = Any(y, go, a);
+                    y.today.Add((18, () => Fight(y, a, b, HarmKinds.SoreLoser)));
+                }
+            // A guest's night goes sour: Rimfolk's visitors staying inside, and Hospitality's guest nights, one in 15 by temper.
+            var gq = rng("guest night");
+            foreach (var (nights, kind) in new[] { (x.visits * x.stayInside, HarmKinds.GuestNight), (x.hospitalityNights, HarmKinds.GuestNightHospitality) })
+            {
+                if (gq.NextDouble() >= nights / Days) continue;
+                float chance = HarmFourMath.GuestNight(gq.Next(-1, 4), gq.NextDouble() < GuestDrink, gq.NextDouble() < Warden, gq.NextDouble() < Manners, false);
+                var p = Any(y, gq);
+                var k = kind;
+                if (Comes(y, k, gq, chance)) y.today.Add((21, () => Hurt(y, p, k, false)));
+            }
+            // The rematch: one beaten in three holds it; their people back within the year; the colonist takes it; a hurt in it.
+            var gm = rng("rematch");
+            if (gm.NextDouble() < Beaten / Days && Comes(y, HarmKinds.Rematch, gm, HarmFourMath.RematchChance)
+                && gm.NextDouble() < Revisit && gm.NextDouble() < Takes && gm.NextDouble() < RematchHurts)
+            {
+                var p = Any(y, gm);
+                int at = day + gm.Next(3, 30);
+                y.onsets.Add((p, at, HarmKinds.Rematch));
+            }
+            // Games with real contests: the bouts' real blows and the race's turned ankles.
+            var gt = rng("games");
+            if (gt.NextDouble() < x.gamesDays / Days)
+            {
+                var order = y.people.OrderBy(_ => gt.Next()).ToList();
+                int pairs = Math.Min(HarmFourMath.GamesPairs, order.Count / 2);
+                for (int i = 0; i < pairs; i++)
+                    if (Comes(y, HarmKinds.Games, gt, HarmFourMath.GamesBlowChance))
+                    {
+                        var who = order[2 * i + gt.Next(2)];
+                        y.today.Add((15, () => Hurt(y, who, HarmKinds.Games)));
+                    }
+                bool rough = gt.NextDouble() < RoughCourse;
+                foreach (var runner in order.Skip(2 * pairs).Take(HarmFourMath.GamesRunners))
+                    if (Comes(y, HarmKinds.Games, gt, HarmFourMath.RaceSprain(rough, y.age)))
+                    {
+                        var who = runner;
+                        y.today.Add((16, () => Hurt(y, who, HarmKinds.Games)));
+                    }
+            }
+        }
+
+        /// <summary>Sicknesses, and the rematch's day, waiting to show: each comes the first morning the cap lets it, or passes after three days.</summary>
+        private static void Onsets(Year y, int day, Func<string, Random> rng)
+        {
+            foreach (var o in y.onsets.Where(o => o.day <= day).ToList())
+            {
+                if (day - o.day > HarmTwoMath.OnsetGraceDays)
+                {
+                    y.onsets.Remove(o);
+                    continue;
+                }
+                var p = o.p;
+                y.today.Add((9, () =>
+                {
+                    if (!y.onsets.Contains(o)) return;
+                    if (!May(y, p)) return;
+                    y.onsets.Remove(o);
+                    Hurt(y, p, o.kind);
+                }));
+            }
         }
 
         // ---------------- The report ----------------
 
-        private static void Report(Exposure x, int n, Tally before, Tally after)
+        /// <summary>The variety's work in the average colony of six: the commonest kinds' shares and a kind coming again within fifteen days, with and without it.</summary>
+        private static void VarietyReport(Tally with, Tally plain)
         {
-            double cy = after.colonists, by = before.colonists, years = after.runs;
+            double tw = with.hurts.Values.Sum(), tp = plain.hurts.Values.Sum();
+            Console.WriteLine("   the variety (the average colony of six, the budget with it and without it):");
+            Console.WriteLine($"     in all {tw / with.colonists:0.000} and {tp / plain.colonists:0.000} a colonist-year; a kind coming again within {HarmBudgetMath.VarietyDays:0} days of its last "
+                              + $"{with.repeats / with.runs:0.00} and {plain.repeats / plain.runs:0.00} times a colony-year");
+            foreach (var k in new[] { HarmKinds.LandAilments, HarmKinds.HuntTurn, HarmKinds.GuestNightHospitality, HarmKinds.FailedBuild })
+                Console.WriteLine($"     {k.label}: {with.hurts.GetValueOrDefault(k.label) / tw:P1} of the hurts with it, {plain.hurts.GetValueOrDefault(k.label) / tp:P1} without");
+            Console.WriteLine();
+        }
+
+        private static void Report(Exposure x, int n, Tally before, Tally none, Tally budget)
+        {
+            double by = before.colonists, ny = none.colonists, cy = budget.colonists, years = budget.runs;
             string name = HeartState.For(x.key).name;
             Console.WriteLine($"== {name}, {n} colonists");
-            Console.WriteLine($"   {"source",-36} {"before",8} {"after",8} {"held back",10} {"a colony-year",14}   (hurts per colonist-year; the last, after, for the whole colony)");
-            double tb = 0, ta = 0;
-            foreach (var s in PartOne.Concat(PartTwo))
+            Console.WriteLine($"   {"kind",-48} {"before",8} {"no budget",10} {"budget",8} {"its pass",9} {"held back",10} {"a colony-year",14}");
+            double tb = 0, tn = 0, ta = 0, newTn = 0, newTa = 0;
+            foreach (var k in Modelled)
             {
-                double b = before.hurts.GetValueOrDefault(s) / by, a = after.hurts.GetValueOrDefault(s) / cy, held = after.barred.GetValueOrDefault(s) / cy;
+                double b = before.hurts.GetValueOrDefault(k.label) / by, u = none.hurts.GetValueOrDefault(k.label) / ny, a = budget.hurts.GetValueOrDefault(k.label) / cy;
+                double held = budget.barred.GetValueOrDefault(k.label) / cy, pass = budget.passDays > 0 ? budget.passes.GetValueOrDefault(k.key) / budget.passDays : 1;
                 tb += b;
+                tn += u;
                 ta += a;
-                Console.WriteLine($"   {s,-36} {b,8:0.000} {a,8:0.000} {held,10:0.000} {after.hurts.GetValueOrDefault(s) / years,14:0.000}");
+                if (!k.founding)
+                {
+                    newTn += u;
+                    newTa += a;
+                }
+                Console.WriteLine($"   {k.label,-48} {b,8:0.000} {u,10:0.000} {a,8:0.000} {pass,9:0.00} {held,10:0.000} {budget.hurts.GetValueOrDefault(k.label) / years,14:0.000}");
             }
-            double partTwo = PartTwo.Sum(s => after.hurts.GetValueOrDefault(s)) / cy;
-            Console.WriteLine($"   {"in all",-36} {tb,8:0.000} {ta,8:0.000}   (parts 2 and 3 {partTwo:0.000}, {partTwo / Math.Max(1e-9, ta):P0} of it; wounds that hurt {after.wounds / cy:0.000})");
-            Console.WriteLine($"   the game's own beside it: a raid's wound {after.raidWounds / cy:0.00} a colonist-year (HeartSim's raids), a food poisoning 0.3 to 1 (two meals a day,");
+            Console.WriteLine($"   {"in all",-48} {tb,8:0.000} {tn,10:0.000} {ta,8:0.000}   (budget/before {ta / Math.Max(1e-9, tb):0.000}; part 4's fifteen {newTn:0.000} -> {newTa:0.000})");
+            Console.WriteLine($"   the game's own beside it: a raid's wound {budget.raidWounds / cy:0.00} a colonist-year (HeartSim's raids), a food poisoning 0.3 to 1 (two meals a day,");
             Console.WriteLine("   a middling cook), the storyteller's diseases a few a colony-year.");
             Console.Write("   fights a colony-year:");
-            foreach (var k in after.fights.Keys.Union(before.fights.Keys).OrderBy(k => k))
-                Console.Write($" {k} {before.fights.GetValueOrDefault(k) / before.runs:0.00} -> {after.fights.GetValueOrDefault(k) / years:0.00};");
+            foreach (var k in budget.fights.Keys.Union(before.fights.Keys).OrderBy(k => k))
+                Console.Write($" {k} {before.fights.GetValueOrDefault(k) / before.runs:0.00} -> {budget.fights.GetValueOrDefault(k) / years:0.00};");
             Console.WriteLine();
             string Bands(Tally t) => $"strained {t.bands[1] / t.hours:P1}, worn {t.bands[2] / t.hours:P1}, near breaking {t.bands[3] / t.hours:P1}; "
                                      + $"episodes {t.episodes / t.colonists:0.000} a colonist-year; strain's mood {t.mood / t.hours:0.00}";
-            Console.WriteLine("   heart before: " + Bands(before));
-            Console.WriteLine("   heart after:  " + Bands(after));
+            Console.WriteLine("   heart before:     " + Bands(before));
+            Console.WriteLine("   heart, budget:    " + Bands(budget));
             Console.WriteLine();
         }
     }

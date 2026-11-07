@@ -2265,25 +2265,68 @@ of work (1.2.1, 1.2.2, 3.2.1, below); the other seven of the top ten are built o
 | Call | What it does |
 |---|---|
 | `Harm.On`, `Harm.Setting`, `Harm.Lean`, `Harm.Scale` | the setting above nothing; its value; the storyteller's lean; the two together |
-| `Harm.Chance(baseChance)`, `Harm.Roll(baseChance)` | a base rate after the scale, and one roll of it (no cap) |
-| `Harm.Roll(pawn, baseChance, cls)` | the cap for that pawn and class, then the scaled roll |
+| `Harm.PassOf(kind)`, `Harm.ScaleFor(kind)` | a kind's pass within the shared budget now (below); the scale times it, for a chance the game works out itself |
+| `Harm.Chance(kind, baseChance)`, `Harm.Roll(kind, baseChance)` | a kind's base rate after the scale and its pass, and one roll of it (no cap) |
+| `Harm.Roll(pawn, kind, baseChance, cls)` | the cap for that pawn and class, then the kind's roll |
 | `Harm.May(pawn, cls)`, `Harm.Bar(pawn, cls)` | whether the cap lets them take a hurt of that class now, and if not why (`HurtBar`) |
-| `Harm.Injure(pawn, kind, where, low, high, why, cls)` | one of the game's wounds (`HurtKind`) on a part (`HurtWhere`), sized low to high, under the cap; returns it or null |
-| `Harm.Ail(pawn, hediffDef, severity, why, cls, replaces)` | a hediff (an ailment, the game's flu) under the cap, optionally in place of another; returns it or null |
-| `Harm.Fight(a, b, why)` | the game's social fight between two grown-ups the cap lets fight, recorded for both |
-| `Harm.Note(pawn, why)` | a hurt that came another way (a bout's hard blow, a brawl), counted for the cap |
+| `Harm.Injure(pawn, wound, where, low, high, kind, cls)` | one of the game's wounds (`HurtKind`) on a part (`HurtWhere`), sized low to high, under the cap; returns it or null |
+| `Harm.Ail(pawn, hediffDef, severity, kind, cls, replaces)` | a hediff (an ailment, the game's flu) under the cap, optionally in place of another; returns it or null |
+| `Harm.Fight(a, b, kind)` | the game's social fight between two grown-ups the cap lets fight, recorded for both |
+| `Harm.Note(pawn, kind)` | a hurt that came another way (a bout's hard blow, a brawl), counted for the cap (`kind` null: the cap only) |
+| `Harm.SystemOn(system)`, `Harm.BudgetReport()` | whether a kind's system is on in this game; the budget for the dev tools |
 | `Harm.DaysSince(pawn)`, `Harm.Pregnant(pawn)`, `Harm.Fighting(pawn, now)` | the cap's parts, for a caller's own checks |
 | `Harm.DecreeLine(decreeDef)` | the decree's line for its card and letter, or null |
 
-`HurtClass`: `Mild` (children may), `Injury`, `Bout`, `Fight` (grown-ups only). The caller rolls its own base rate
+`HurtClass`: `Mild` (children may), `Injury`, `Bout`, `Fight` (grown-ups only). Every roll and every hurt names its
+kind (`HarmKinds`, below). The caller rolls its own base rate
 through `Harm.Roll`, gives the hurt through `Injure`, `Ail` or `Fight` (each checks the cap again and records it), says
 it on the map (a bubble through `Speech.Say` or `CouncilGameComponent.Speak`, one sentence) and tells it through
 `Tell.Message` at `Importance.Important` (harm is never held back) in two wordings or more (`TextVariants.Vary`). A hurt the caller can't give through the service (the outsiders' practice
 bout, a feast's wrestling and sour night) is counted with `Harm.Note`; the feasts read `Harm.Scale` and `Harm.May` through
 `Feasts.HarmScale` and `Feasts.MayBeHurt`.
 
-`HarmBook` (a game component) holds the saved part (`lastHurt`; `drillDay`, a home's last evening drill) and runs the
-hour (Sched `RareHarm` 53): one tenth of the colonists each 250 ticks, the first slice also the colony's part.
+`HarmBook` (a game component) holds the saved part (`lastHurt`; `drillDay`, a home's last evening drill; `kindLast`, the
+budget's memory; `waiting`, part 4's hurts still to come; `turning` and `calm`, the hunts' game) and runs the hour (Sched
+`RareHarm` 67): one tenth of the colonists each 250 ticks, the first slice also the colony's part.
+
+### The shared budget (7 November 2026)
+
+The player asked whether more kinds of hurt make colonists hurt more often or only more variously, and chose: "yes, a
+shared budget please". Rimfolk's everyday hurts, every one that goes through the service (the beasts' stampede, the
+feasts', the schemes' and the pilgrims' included), together stay at what the kinds built before the budget came to, and
+new kinds take turns within it instead of adding to it. The pure rules are `Harm/HarmBudgetMath.cs` (`HarmBudgetTests`);
+the game's side is `Harm.PassOf`.
+
+- **Each kind registered once** (`HarmKinds`): a key (saved), a label, the system it sits under (`Harm.SystemOn`: its
+  setting, and for a soft integration its mod) and its base rate (hurts per colonist-year in an average colony of six at
+  100% and the usual storyteller, coming on its own, before the cap: the balance model measures it). The 18 kinds built
+  before the budget are its founding ones; harm part 4's are not (the guest's night is two kinds, Rimfolk's visitors and
+  Hospitality's guests, so a game without Hospitality keeps none of the budget for it).
+- **The budget** is the founding kinds that are on, their base rates together (about 0.46 a colonist-year).
+- **The pass**: a kind's chance is its base rate times the setting and the storyteller's lean (as before) times its
+  pass, its variety times the budget over the kinds on weighed by their variety (`HarmBudgetMath.Passes`). So the kinds'
+  base rates times their passes always come to the budget: with only the founding kinds on and none come lately, every
+  pass is 1 (the hurts as they were); with all of part 4 on, each passes at about half its rate. No kind passes at more
+  than twice its own rate.
+- **Variety** (`HarmBudgetMath.Variety`): a kind that has just hurt someone weighs a quarter of its rate, back to all of
+  it evenly over thirty days (two quadrums), so it passes less often for a while and the others a little more; the mix
+  varies instead of the commonest kind coming again and again. Its memory is `HarmBook.kindLast` (a kind's last tick,
+  pruned past thirty days: a handful of entries).
+- **The same as before in everything else.** The pass knows nothing of the setting or the storyteller, so "Hurts from
+  everyday life" and the lean scale every kind exactly as they did; the cap and its exclusions (downed, a sickbed,
+  pregnant, fighting, babies never, children only the mildest) are untouched, and nothing here kills outright. A system
+  switched off takes its kinds out of the budget, leaving the rest as they would be without it. Prevention still counts:
+  a well-run colony meets fewer of the new kinds and its total falls a little below its old one, a neglectful one rises a
+  little (the rates below).
+- **One roll an occasion.** The pass multiplies the chance of the occasion's hurt, once: a hunt's head that can turn takes
+  its turn when the hunt marks it (`HuntsBite.Marked`; not up, it stays calm under its hunters, `HarmBook.calm`), not on
+  each shot, so the budget's share is the hunt's; the ailments of the land and the work, which never had the setting's
+  scale, take the pass alone (`AilmentTracker.Lean`).
+- **A later kind plugs in** with one line in `HarmKinds` (its key, label, system and base rate from the balance model,
+  `founding` false, added to `All`), a case in `Harm.SystemOn` if its system is new, its rolls and hurts naming it, and its
+  source in the balance model's harm mode (`Tools/Balance/HarmSim.cs`, `PartFourDay` shows the pattern). The budget shares
+  itself among however many kinds are on (about 95 once the review is built: each then at about a fifth of its own rate).
+  The model prints each kind's measured base rate beside the registry's, flagging any a quarter off.
 
 ### Drills that bruise (1.2.1, decrees)
 
@@ -2550,31 +2593,74 @@ Only the part of a fight the strain made (`HarmTwoMath.FrayedRoll`: a roll betwe
 goes through the cap for both and is told with the strain named (`CC_HarmTwo_Frayed`); the rest is the fight it was. The
 heart's page says it in the band's own words. An answer whose fight comes with its risk is the risk's roll, not leaned.
 
+### Harm, part 4: the fifteen the player took (7 November 2026)
+
+The player's "go ahead with the suggestions": fifteen more of the review, each under its system's setting and the shared
+budget, the pure rules in `Harm/HarmFourMath.cs` (`HarmFourTests`), the hub `Harm/HarmFour.cs` on the harm book's hour
+and slices (no new Sched slot), the waiting hurts saved in `HarmBook.waiting` (`HarmWaiting`: a sickness caught, a
+coughing guest, a sore loser's walk, a rematch owed, a games day's contests). Messages only where the game gives one for
+the same hurt (an illness caught, an animal turning on its handler); the rest are seen on the map, in the hit, a puff of
+dust or smoke, the line they say and a few words over them (`HarmFour.Mote`), and on their health tab. The pools are in
+`Rimfolk_HarmFour_Lines.xml`, the words in `Rimfolk_HarmFour.xml`; dev mode's "Harm four: ..." (`Harm/HarmFourDebug.cs`)
+brings each about past its rate, never past the cap, and logs the budget.
+
+| Kind (review) | Where | Rate (its own) | Prevention | Seen |
+|---|---|---|---|---|
+| The physician catches what they tend (1.1.1) | `Catching.cs`, the game's tending | 1 tending in 40 of a head cold, chest cold, stomach bug or pinkeye; 1 in 400 of tuberculosis, cholera, measles or the flu | gloves and masks (industrial, spacer) half, a sterile room a quarter, the quarantine or rest-when-ill decree half; a third tending of the sick in a day half again | a day or two later, the ailment's message, the doctor's note, a line |
+| The guest's cough (2.5.2) | `Catching.cs`, Rimfolk's visitors | 1 visit in 20; the one who sat longest with them catches it | a guest room of their own (fewer hours near), the quarantine decree | the guest's cough said now and then; a day after they go, the illness |
+| Caught in the hail (2.2.3) | `Mishaps.cs`, the hailstorm | 1 in 30 each 250 ticks out under it, 2 a storm at most, a bruise of 1 to 3 (children may) | called in, a roof, a helmet | the stone's ping, a line, a few words |
+| A cold night for the frail (1.2.3) | `Catching.cs`, banked fires | 1 such night in 7: a hard frost, 3 hours asleep below comfort, the old, small children, the frail or convalescent | a heater kept up in their room, ending the decree; named on its card | a head cold in the morning, their line, the doctor's word |
+| A felling mishap (4.3.1) | `Mishaps.cs`, a tree chopped | 1 tree in 300 under Plants 5 (stone axe x1.5, steel x0.75, spacer x0.5), a bruise or a crack on the leg | skilled cutters | dust where it fell, down on the ground, a line |
+| A failed build that hurts (3.4.1) | `Mishaps.cs`, a failed construction | 1 failure in 10 on a wall, furniture of 2 cells or 20 kg, a bridge | skilled builders on heavy work | dust, the builder holding an arm, a line |
+| Burned at the bench (4.7.2) | `Mishaps.cs`, Alpha Skills' drink | 1 drink in 100 before cooking or smithing | the switch "A drink before hot work" | the job dropped, a line, a few words |
+| The rut in the pens (4.5.3) | `AnimalHurts.cs`, the pens in autumn | 1 charge in 20 hours near a rutting male in his pen, half landing | keep out of the pens in the rut, leave it to the herdmaster (never charged), a handler of Animals 10 half | his charge, the dust, a line, a message |
+| The herdmaster's lesson (4.5.1) | `AnimalHurts.cs`, the lesson played out | 1 lesson in 30 with a nervous animal handled beside the learner | a calm animal for the lesson | the kick or bite, the herdmaster's calming word, a message |
+| A fall from the saddle (4.9.1) | `AnimalHurts.cs`, Giddy-Up | 1 dismount in 50 under Animals 6 on a mount not trained to obey | riders of Animals 6, obedience training | the mount bucks, the rider on the ground, a line |
+| The groups come to blows (3.6.1) | `Quarrels.cs`, a dig at the other lot | 1 dig in 8 at a table between groups at 60 or more, up to 2 more pairs joining | the peacemaker, shared meals | the game's fights, both groups' names over it |
+| The sore loser (1.4.2) | `Quarrels.cs`, the count | 1 close loss in 10 among the hot-tempered or bitter, blows half the time | a gracious winner's handshake at the count, a calm loser | the walk over 1 to 3 days on, the words, a fight |
+| A guest's night goes sour (2.5.1) | `Quarrels.cs`, a guest with a bed | 1 night in 15 by temper (a drink x1.5) | the warden of guests, the best-behavior decree, no drink; named under the answer | the outsiders' fistfight; a visitor goes on at first light |
+| The rematch (2.8.1) | `Quarrels.cs`, a bout's end | 1 beaten in 3 holds it, asked for on a later visit within the year | a good word or a gift to their people; named in the duel's terms | the challenger asks by name, a duel to first blood or a bout |
+| Games with real contests (4.1.1) | `GamesDay.cs`, a games day's gathering | 1 bout in 25, 1 runner in 8 on rough ground: about 1 hurt in 2 games days | a paved yard (no sprains), keeping the day otherwise | the contests near the gathering, a line, a few words |
+
+The ages: the physician's gloves and masks from the industrial age; a felling's axe by the means; the groups as clans,
+factions, shifts or departments; the games as wrestling and a race, staves, boxing and a three-legged race, or a spacer's
+sim tourney with a wrenched wrist and no race; the rest the same in every age. Hooks in other systems (one line each):
+`Health/HealthPatches.cs` (the tending), `Happenings/Workers_Nature.cs` (the hail's look, its count saved),
+`Calendar/CalendarKeeping.cs` (a games day kept), `Social/Groups/GroupMoments.cs` (the dig),
+`Offices/OfficesElection.cs` (the count, the handshake), `Outsiders/OutsiderOutcomes.cs` (a bout's end, a good word, a
+gift), `Visitors/VisitEffects.cs` (the bed's line), `Integrations/BeforeWork.cs` (the hot work), `Harm/DrillBouts.cs` (a
+games bout is a drill bout with `games`). Two new Harmony patches: `Patch_FellingMishap` (a postfix on
+`Plant.PlantCollected`) and `Patch_FailedBuildHurts` (a prefix and postfix on `Frame.FailConstruction`). The hail's letter,
+its condition and the Almanac said nobody would be hurt; they say what happens now.
+
 ### The rates (the balance model's harm mode)
 
-`dotnet run -c Release --project Tools/Balance -- --harm` plays a colony-year (60 days, 400 runs) of each style and
-size with every source of hurts from everyday life through the shared cap, the heart played hour by hour with each hurt's
-pain and each fight's hour of combat. What a source does once it comes is the mod's arithmetic (`HarmMath`, `HarmTwoMath`,
-`HeartMath`, compiled in); how often a colony meets it is the mode's own table, each an estimate that says where it
-comes from. "Before" leaves parts 2 and 3 out, which is what 0.131.0 does (part 1's code is unchanged). Hurts the cap
-counts, per colonist-year, before and after:
+`dotnet run -c Release --project Tools/Balance -- --harm` plays a colony-year (60 days, 1500 runs by default) of each
+style and size with every kind of hurt from everyday life through the shared cap, the heart played hour by hour with each
+hurt's pain and each fight's hour of combat. What a kind does once it comes is the mod's arithmetic (`HarmMath`,
+`HarmTwoMath`, `HarmFourMath`, `HarmBudgetMath`, `HeartMath`, `BeastsMath`, compiled in); how often a colony meets it is
+the mode's own table, each an estimate that says where it comes from. Three runs of the same colonies: "before" (the
+kinds built before the budget, each at its own rate), "no budget" (every kind on, part 4's fifteen too, each at its own
+rate), "budget" (every kind on, each at its pass). Alpha Skills, Giddy-Up and Hospitality loaded; PokéWorld not. Hurts
+the cap counts, per colonist-year (4000 runs):
 
-| | 6, well run | 6, average | 6, neglectful | 12, average |
-|---|---|---|---|---|
-| Part 1 (drills, tired hands, working through it, dangers, the land's and the work's ailments) | 0.17 | 0.27 | 0.38 | 0.27 |
-| With parts 2 and 3 | 0.26 | 0.38 | 0.50 | 0.36 |
-| The game's own beside them: a raid's wound (the heart's model) | 1.4 | 1.7 | 2.0 | 1.7 |
+| | 6, well run | 6, average | 6, neglectful | 12, well run | 12, average | 12, neglectful |
+|---|---|---|---|---|---|---|
+| Before (every kind built up to 0.149.0) | 0.339 | 0.453 | 0.560 | 0.290 | 0.395 | 0.504 |
+| Every kind on, no budget | 0.606 | 0.876 | 1.190 | 0.483 | 0.725 | 1.014 |
+| Every kind on, the budget | 0.311 | 0.452 | 0.618 | 0.245 | 0.368 | 0.519 |
+| The game's own beside them: a raid's wound | 1.4 | 1.7 | 2.0 | 1.4 | 1.7 | 2.0 |
 
-Of the seven, a colony of six (average) meets in a year: a hunt's beast turning about 0.46 times (the game's own revenge
-chance, so the same as a player's own boar hunt), a camp's brawl with the colony 0.06 (0.11 neglectful), a sabotage come
-to blows 0.04 (0.24 with twelve, where bitter rivalries are more), the hustings' blows 0.01 to 0.03, frayed tempers'
-fights 0.005 (0.06 to 0.09 neglectful, beside 0.9 to 1.7 fights of Rimfolk's moments as before), the champion's real blow
-and a sickness brought home a few in a thousand colony-years (both need their rare road: a fighting challenge, a night at
-a sick town). Rimfolk's hurts together stay a fifth to a quarter of a raid's wounds, below a middling cook's food
-poisonings (0.3 to 1 a colonist-year), and about a third more than part 1 alone. The heart: the time strained, worn and
-near breaking, the heart's days off and the strain's mood are the same before and after to a tenth of a point in every
-style. The colony-year report (`docs/balance-report.md`'s model, 60 runs) gives the same summary to the byte on 0.131.0
-and on this tree: none of it changes a mood.
+The average colony of six, on which the base rates are measured, keeps its total (0.453 before, 0.452 after). Elsewhere
+the budget keeps prevention's meaning: a well-run colony prevents more of the new kinds and ends a little below its old
+total (8% with six, 15% with twelve), a neglectful one a little above (10% with six, 3% with twelve), and a colony of
+twelve meets fewer of the new kinds per head (a storm bruises two at most, a games day has two bouts). Each kind passes at
+about half its own rate. Part 4's fifteen would add 0.43 a colonist-year on their own; within the budget they bring 0.23,
+and the founding kinds give up as much. The variety: a kind coming again within thirty days of its last falls from 0.22
+to 0.16 times a colony-year (the average colony of six), the commonest kind (the ailments of the land and the work) from
+19.6% of the hurts to 18.7%, the total the same. The heart's strain, its days off and the strain's mood are the same
+before and after to a tenth. The beasts' summary (`BeastSim.cs`) still prints after it; their stampede is a kind in the
+budget now, their nemesis's return the game's own attack outside it.
 
 ## How the systems talk to each other
 

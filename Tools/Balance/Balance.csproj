@@ -36,6 +36,10 @@
     <!-- Hurts from everyday life (HarmSim.cs, with &#45;&#45;harm): the shared cap and every source's rate. -->
     <Compile Include="../../Source/ColonyCouncil/Harm/HarmMath.cs" Link="Linked/HarmMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Harm/HarmTwoMath.cs" Link="Linked/HarmTwoMath.cs" />
+    <!-- The shared budget and harm part 4's fifteen (HarmSim.cs): the kinds, their passes, their rates; a feast's blow and sour night. -->
+    <Compile Include="../../Source/ColonyCouncil/Harm/HarmBudgetMath.cs" Link="Linked/HarmBudgetMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Harm/HarmFourMath.cs" Link="Linked/HarmFourMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Diplomacy/FeastMath.cs" Link="Linked/FeastMath.cs" />
     <!-- Schemes against the colony (SchemeSim.cs, with &#45;&#45;schemes): the day's chance, the acts, who catches them. -->
     <Compile Include="../../Source/ColonyCouncil/Diplomacy/SchemeMath.cs" Link="Linked/SchemeMath.cs" />
     <!-- The wild's alphas and bosses (BeastSim.cs, after the everyday hurts with &#45;&#45;harm): the stampedes' and the beast nemeses' rates. -->

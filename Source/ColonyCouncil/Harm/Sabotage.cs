@@ -136,7 +136,7 @@ namespace ColonyCouncil
                     bool same = CraftOf(rival) == craft;
                     var pm = ColonyState.For(rival.Map)?.offices?.Peacemaker;
                     float chance = HarmTwoMath.SabotageChance(t.strength, Petty(rival), same, pm != null);
-                    if (!Harm.Roll(chance)) continue;
+                    if (!Harm.Roll(HarmKinds.Sabotage, chance)) continue;
                     intents.Add(new Intent { rival = rival, other = other, bench = bench, until = now + (int)(HarmTwoMath.IntentDays * GenDate.TicksPerDay) });
                 }
             }
@@ -244,7 +244,7 @@ namespace ColonyCouncil
                     // together: the two face to face (Together.When); the words name what was done to the bench.
                     Say(other, "Rimfolk_Pool_SabotageConfront", rival, null, "form:" + form.ToLowerInvariant());
                     CouncilGameComponent.Instance?.social.Bump(other, rival, TieKind.Rivals, HarmTwoMath.SabotageRivalry, "CC_HarmTwo_TieNote_Sabotage".Translate());
-                    bool fight = Harm.Fight(other, rival, "a sabotage found out");
+                    bool fight = Harm.Fight(other, rival, HarmKinds.Sabotage);
                     string how = witness != null ? "CC_HarmTwo_SabotageFound_Seen".Translate(witness.Named("WITNESS")).Resolve() : "CC_HarmTwo_SabotageFound_Word".Translate().Resolve();
                     string text = TextVariants.Vary(fight ? "CC_HarmTwo_SabotageFight" : "CC_HarmTwo_SabotageWords")
                         .Translate(other.Named("OTHER"), rival.Named("PAWN"), what.Named("WHAT"), how.Named("HOW")).Resolve();

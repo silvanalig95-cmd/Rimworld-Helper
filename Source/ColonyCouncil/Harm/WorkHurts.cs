@@ -164,7 +164,7 @@ namespace ColonyCouncil
             bool lowRest = (p.needs?.rest?.CurLevel ?? 1f) < HarmMath.LowRest;
             bool spacer = Ages.Ours == WorldAge.Spacer;
             float chance = HarmMath.TiredHands(driving, lowRest, Tough(p), spacer);
-            if (!Harm.Roll(p, chance, HurtClass.Injury)) return;
+            if (!Harm.Roll(p, HarmKinds.TiredHands, chance, HurtClass.Injury)) return;
             Slip(p, work, which, spacer);
         }
 
@@ -180,7 +180,7 @@ namespace ColonyCouncil
         private static void Slip(Pawn p, WorkHurtKind work, DecreeDef decree, bool spacer)
         {
             HarmMath.WorkSlip(work, Ages.Ours, out var kind, out var where);
-            var h = Harm.Injure(p, kind, where, HarmMath.WorkLowFor(spacer), HarmMath.WorkHighFor(spacer), "tired hands: " + decree.defName);
+            var h = Harm.Injure(p, kind, where, HarmMath.WorkLowFor(spacer), HarmMath.WorkHighFor(spacer), HarmKinds.TiredHands);
             if (h == null) return;
             Stop(p, false);
             Say(p, "Rimfolk_Pool_WorkSlip", work.ToString().ToLowerInvariant(), kind.ToString().ToLowerInvariant());
@@ -212,7 +212,7 @@ namespace ColonyCouncil
             if (found == null) return;
             // Told to bed while ill or hurt: the council already sent them to rest.
             if (sickBay != null && DecreeTracker.InForceFor(p, sickBay)) return;
-            if (!Harm.Roll(p, HarmMath.WorkedThroughChance, HurtClass.Injury)) return;
+            if (!Harm.Roll(p, HarmKinds.WorkedThrough, HarmMath.WorkedThroughChance, HurtClass.Injury)) return;
             if (found.def == strainedBack) TornBack(p, found);
             else AnkleGives(p, found);
         }
@@ -220,7 +220,7 @@ namespace ColonyCouncil
         private static void TornBack(Pawn p, Hediff strained)
         {
             if (tornBack == null) return;
-            var torn = Harm.Ail(p, tornBack, Rand.Range(0.55f, 0.8f), "worked through a strained back", HurtClass.Injury, strained);
+            var torn = Harm.Ail(p, tornBack, Rand.Range(0.55f, 0.8f), HarmKinds.WorkedThrough, HurtClass.Injury, strained);
             if (torn == null) return;
             Stop(p, true);
             Say(p, "Rimfolk_Pool_WorkedThrough", "back");
@@ -235,12 +235,12 @@ namespace ColonyCouncil
         {
             bool crack = Rand.Chance(HarmMath.CrackShare);
             var h = crack
-                ? Harm.Injure(p, HurtKind.Crack, HurtWhere.Leg, HarmMath.FallCrackLow, HarmMath.FallCrackHigh, "worked through a sprained ankle")
+                ? Harm.Injure(p, HurtKind.Crack, HurtWhere.Leg, HarmMath.FallCrackLow, HarmMath.FallCrackHigh, HarmKinds.WorkedThrough)
                 : null;
             if (h == null)
             {
                 crack = false;
-                h = Harm.Injure(p, HurtKind.Bruise, HurtWhere.Leg, HarmMath.FallBruiseLow, HarmMath.FallBruiseHigh, "worked through a sprained ankle");
+                h = Harm.Injure(p, HurtKind.Bruise, HurtWhere.Leg, HarmMath.FallBruiseLow, HarmMath.FallBruiseHigh, HarmKinds.WorkedThrough);
             }
             if (h == null) return;
             Stop(p, true);

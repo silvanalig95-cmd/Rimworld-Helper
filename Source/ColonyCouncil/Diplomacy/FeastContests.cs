@@ -624,8 +624,8 @@ namespace ColonyCouncil
                 r.hits[x] = (r.hits.TryGetValue(x, out int hx) ? hx : 0) + Outsiders.Landed(r.bout, x);
                 if (Outsiders.HardBlowOn(r.bout, x) && p.GuestOf(x) is FeastGuest g) g.hurt = true;
                 // The hard blow counts toward the shared cap (Harm/Harm.cs), whoever it fell on.
-                if (Outsiders.HardBlowOn(r.bout, c)) Harm.Note(c, "a feast's wrestling");
-                if (Outsiders.HardBlowOn(r.bout, x)) Harm.Note(x, "a feast's wrestling");
+                if (Outsiders.HardBlowOn(r.bout, c)) Harm.Note(c, HarmKinds.FeastBout);
+                if (Outsiders.HardBlowOn(r.bout, x)) Harm.Note(x, HarmKinds.FeastBout);
                 r.bout = null;
                 r.pause = now + 300;
             }
@@ -636,7 +636,7 @@ namespace ColonyCouncil
                 var (c, x) = r.pairs[r.index];
                 if (c.Spawned && x.Spawned && Ready(c) && Ready(x) && !c.Drafted)
                 {
-                    bool hard = FeastMath.HardBlow(Rand.Value, Feasts.MayBeHurt(c) && Feasts.MayBeHurt(x), Feasts.HarmScale);
+                    bool hard = FeastMath.HardBlow(Rand.Value, Feasts.MayBeHurt(c) && Feasts.MayBeHurt(x), Harm.ScaleFor(HarmKinds.FeastBout));
                     r.bout = Outsiders.FeastBout(c, x, r.spot, hard);
                     if (r.bout != null) return null;
                 }

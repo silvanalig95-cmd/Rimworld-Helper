@@ -199,6 +199,8 @@ namespace ColonyCouncil
             var tone = OutsiderMath.Tone(Input(c, x, OutsiderAct.GoodWord), Rand.Value);
             bool yes = to != null && OutsiderMath.WillPutInWord(ofColony, ofColonist) && tone <= TalkTone.Plain;
             Remember(c, x, OutsiderAct.GoodWord, yes ? Note(OutsiderAct.GoodWord, c, to.Name) : null, OutsiderMath.RegardShift(tone) * 0.5f, OutsiderMath.WarmthShift(tone) * 0.5f);
+            // A good word settles a grudge their people held over a duel or a bout (Harm/Quarrels.cs, the rematch).
+            if (yes) Quarrels.Eased(c, x);
             if (!yes)
             {
                 // together: asked and answered face to face, in a bubble only.
@@ -705,6 +707,8 @@ namespace ColonyCouncil
             // together: handed over face to face; a gift after several on one visit leaves no memory of its own.
             if (share >= OutsiderTalkMath.GiftMemoryFloor) Memory(x, OutsiderDefOf.Rimfolk_OutsiderGift, c, share >= 0.5f ? OutsiderMath.GiftStage(g.fit) : 1);
             Remember(c, x, OutsiderAct.Gift, Note(OutsiderAct.Gift, c, what), warmth * 0.5f, warmth);
+            // A gift settles a grudge their people held over a duel or a bout (Harm/Quarrels.cs, the rematch).
+            Quarrels.Eased(c, x);
             if (f != null)
             {
                 FactionMemory.Note(f, "gaveGift", x.LabelShort);
@@ -1028,7 +1032,7 @@ namespace ColonyCouncil
                     bout.hardAt = -1;
                     bout.hurt = defender;
                     // Counted toward the shared cap of hurts from everyday life (Harm/Harm.cs).
-                    Harm.Note(defender, "a practice bout's hard blow");
+                    Harm.Note(defender, null);
                 }
                 // Nobody's weapon and no instigator: practice, not an attack their people would count.
                 var dinfo = new DamageInfo(DamageDefOf.Blunt, OutsiderMath.SparDamage(Rand.Value, hard), 0f, -1f, null, null, null, DamageInfo.SourceCategory.ThingOrUnknown, null, false);
@@ -1162,6 +1166,8 @@ namespace ColonyCouncil
             {
                 if (bout.kind == BoutKind.Spar) SparOver(bout);
                 else if (bout.kind == BoutKind.Duel) DuelOver(bout);
+                // One beaten may hold it, and come back for a rematch (Harm/Quarrels.cs).
+                Quarrels.BoutOver(bout);
             }
             catch (Exception e)
             {

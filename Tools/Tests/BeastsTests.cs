@@ -162,7 +162,7 @@ public static class BeastsTests
         C(Code("Aspirations/Aspirations.cs").Contains("BeastNemeses.Sworn(p)"), "one sworn against a beast may take up settling the score");
         C(!beastCode.Contains(".AllWildAnimals") && !beastCode.Contains("CommonalityOfAnimal") && beastCode.Contains("BiomeAnimals.Of("),
             "the land's animals are read through the safe helper (Animals/BiomeAnimals.cs), never the game's lookup");
-        C(beastCode.Contains("Harm.May(p)") && beastCode.Contains("Harm.Chance(") && beastCode.Contains("Harm.Note(p"), "a stampede's blow is held to the everyday hurts' scale and shared cap");
+        C(beastCode.Contains("Harm.May(p)") && beastCode.Contains("Harm.Chance(HarmKinds.Stampede, ") && beastCode.Contains("Harm.Note(p"), "a stampede's blow is held to the everyday hurts' scale and shared cap");
         C(Regex.Matches(beastCode, "BeastBook\\.Up\\(").Count >= 10, "only a beast up and about is named, flees, comes back or leads");
         C(beastCode.Contains("Speech.Say(") && !beastCode.Contains("MoteMaker.ThrowText("), "words are said aloud through speech, and nothing else floats over a head");
         C(!Regex.IsMatch(beastCode, "\\[HarmonyPatch"), "no Harmony patch of its own");

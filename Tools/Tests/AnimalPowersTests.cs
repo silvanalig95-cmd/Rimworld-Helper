@@ -158,7 +158,7 @@ public static class AnimalPowersTests
         C(fam.Contains("ModsConfig.IsActive(MagicGolems.PackageId)"), "familiars only with the mod");
         C(sacred.Contains("ModsConfig.IdeologyActive") && sacred.Contains("VeneratedAnimals") && sacred.Contains("IsVeneratedAnimal"), "the sacred kinds are Ideology's venerated animals");
         C(Read("Animals/AnimalDilemmas.cs").Split("SacredAnimals.HeldSacred").Length - 1 == 2, "the council's cull counts and marks no sacred animal");
-        C(types.Contains("Harm.Roll(pawn, AnimalPowersMath.SparBlowChance, HurtClass.Bout)") && types.Contains("Harm.Injure(pawn, HurtKind.Bruise")
+        C(types.Contains("Harm.Roll(pawn, HarmKinds.PokemonSpar, AnimalPowersMath.SparBlowChance, HurtClass.Bout)") && types.Contains("Harm.Injure(pawn, HurtKind.Bruise")
           && types.Contains("Importance.Important"), "the spar's blow under the harm cap, told as harm is");
         C(types.Contains("GenTemperature.PushHeat") && types.Contains("UsesOutdoorTemperature") && types.Contains("AddEnergy") && types.Contains("DamageDefOf.Extinguish")
           && types.Contains("plant.Growth +="), "each effect is the game's own: heat, a battery's energy, a fire put out, a crop's growth");

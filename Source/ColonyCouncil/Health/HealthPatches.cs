@@ -20,6 +20,8 @@ namespace ColonyCouncil
             try
             {
                 HealthTracker.Instance?.Notify_Tended(doctor, patient);
+                // The physician may catch what they tend (Harm/Catching.cs).
+                Catching.Tended(doctor, patient);
             }
             catch (Exception e)
             {

@@ -26,6 +26,8 @@ namespace ColonyCouncil
         public bool over;
         /// <summary>The militia's muster rather than the drills decree.</summary>
         public bool muster;
+        /// <summary>A games day's bout (Harm/GamesDay.cs) rather than a drill: its words, its form by the age, its kind.</summary>
+        public bool games;
 
         public bool Has(Pawn p) => p != null && (p == a || p == b);
 
@@ -138,7 +140,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>Two places side by side in the open near the yard, clear of the other pairs.</summary>
-        private static bool Places(Map map, IntVec3 center, Pawn a, Pawn b, List<IntVec3> taken, out IntVec3 ra, out IntVec3 rb)
+        internal static bool Places(Map map, IntVec3 center, Pawn a, Pawn b, List<IntVec3> taken, out IntVec3 ra, out IntVec3 rb)
         {
             ra = rb = IntVec3.Invalid;
             foreach (var c in GenRadial.RadialCellsAround(center, 9f, true))
@@ -159,11 +161,11 @@ namespace ColonyCouncil
         private static bool Clear(IntVec3 c, Map map, Pawn p) =>
             c.InBounds(map) && c.GetEdifice(map) == null && c.GetFirstPawn(map) == null && !(c.GetTerrain(map)?.IsWater ?? false) && PlaySpots.Ok(c, map, p);
 
-        private static bool Begin(Map map, Pawn a, Pawn b, IntVec3 ra, IntVec3 rb, bool marshal, bool muster)
+        internal static bool Begin(Map map, Pawn a, Pawn b, IntVec3 ra, IntVec3 rb, bool marshal, bool muster, bool games = false)
         {
-            var bout = new DrillBout { a = a, b = b, map = map, ring = ra, start = Now, muster = muster };
+            var bout = new DrillBout { a = a, b = b, map = map, ring = ra, start = Now, muster = muster, games = games };
             // The one real blow, decided at the start: one bout in 25 (half with a marshal), on one of them who may take it.
-            if (Harm.Roll(HarmMath.DrillBlow(marshal)))
+            if (games ? Harm.Roll(HarmKinds.Games, HarmFourMath.GamesBlowChance) : Harm.Roll(HarmKinds.Drills, HarmMath.DrillBlow(marshal)))
             {
                 var can = new List<Pawn>();
                 if (Harm.May(a, HurtClass.Bout)) can.Add(a);
@@ -239,11 +241,29 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>A games day's real blow, by the colony's means: a wrestler's bruise, a stave's on the arm, a boxer's, a sim tourney's wrenched wrist.</summary>
+        public static void GamesBlowOf(WorldAge age, out HurtKind kind, out HurtWhere where)
+        {
+            kind = HurtKind.Bruise;
+            switch (age)
+            {
+                case WorldAge.Tribal: where = HurtWhere.Any; return;
+                case WorldAge.Medieval: where = HurtWhere.Arm; return;
+                case WorldAge.Industrial: where = Rand.Bool ? HurtWhere.Torso : HurtWhere.Arm; return;
+                default: where = HurtWhere.Hand; return;
+            }
+        }
+
         private static void RealBlow(DrillBout bout, Pawn attacker, Pawn defender)
         {
             var age = Ages.Ours;
-            BlowOf(age, out var kind, out var where);
-            var h = Harm.Injure(defender, kind, where, HarmMath.DrillLow, HarmMath.DrillHigh, bout.muster ? "militia muster" : "drills", HurtClass.Bout);
+            HurtKind kind;
+            HurtWhere where;
+            if (bout.games) GamesBlowOf(age, out kind, out where);
+            else BlowOf(age, out kind, out where);
+            bool wrist = bout.games && age == WorldAge.Spacer;
+            var h = Harm.Injure(defender, kind, where, wrist ? HarmFourMath.WristLow : HarmMath.DrillLow, wrist ? HarmFourMath.WristHigh : HarmMath.DrillHigh,
+                bout.games ? HarmKinds.Games : HarmKinds.Drills, HurtClass.Bout);
             if (h == null)
             {
                 SoundDefOf.Pawn_Melee_Punch_HitPawn?.PlayOneShot(new TargetInfo(defender.Position, defender.Map));
@@ -251,6 +271,15 @@ namespace ColonyCouncil
             }
             SoundDefOf.Pawn_Melee_Punch_HitPawn?.PlayOneShot(new TargetInfo(defender.Position, defender.Map));
             bout.hurt = defender;
+            if (bout.games)
+            {
+                // together: the two are at their bout, side by side; a games day's hurt is seen there, with no message.
+                Say(defender, "Rimfolk_Pool_GamesHit", attacker, wrist ? "wrist" : kind.ToString().ToLowerInvariant());
+                Say(attacker, "Rimfolk_Pool_GamesSorry", defender);
+                HarmFour.Mote(defender, wrist ? "CC_HarmFour_Mote_Wrist" : "CC_HarmFour_Mote_GamesBlow");
+                End(bout, false);
+                return;
+            }
             // together: the two are at their bout, side by side; each says their word to the other.
             Say(defender, "Rimfolk_Pool_DrillHit", attacker, kind.ToString().ToLowerInvariant());
             Say(attacker, "Rimfolk_Pool_DrillSorry", defender);
@@ -271,7 +300,7 @@ namespace ColonyCouncil
             // together: the pair finish side by side at their bout.
             if (a == null || b == null || !Together.Can(a, b)) return;
             var speaker = Rand.Chance(0.5f) ? a : b;
-            Say(speaker, "Rimfolk_Pool_DrillEnd", bout.Other(speaker));
+            Say(speaker, bout.games ? "Rimfolk_Pool_GamesEnd" : "Rimfolk_Pool_DrillEnd", bout.Other(speaker));
         }
 
         private static readonly Color SayColor = new Color(0.95f, 0.85f, 0.7f);
@@ -311,7 +340,8 @@ namespace ColonyCouncil
 
         public override bool TryMakePreToilReservations(bool errorOnFailed) => true;
 
-        public override string GetReport() => Partner != null ? "CC_Harm_Report_Drill".Translate(Partner.Named("OTHER")).Resolve() : base.GetReport();
+        public override string GetReport() =>
+            Partner != null ? ((Bout?.games ?? false) ? "CC_HarmFour_Report_Games" : "CC_Harm_Report_Drill").Translate(Partner.Named("OTHER")).Resolve() : base.GetReport();
 
         public override void ExposeData()
         {
@@ -351,7 +381,7 @@ namespace ColonyCouncil
             salute.initAction = () =>
             {
                 // together: the two face each other at their places.
-                if (Lead && Partner != null) DrillWords.Begin(pawn, Partner);
+                if (Lead && Partner != null) DrillWords.Begin(pawn, Partner, Bout?.games ?? false);
             };
             salute.tickIntervalAction = delta =>
             {
@@ -396,11 +426,11 @@ namespace ColonyCouncil
     /// <summary>The words at a bout's start, by the colony's means (the pools' lines are tagged by age).</summary>
     public static class DrillWords
     {
-        public static void Begin(Pawn a, Pawn b)
+        public static void Begin(Pawn a, Pawn b, bool games = false)
         {
             try
             {
-                string line = Flavor.FromPool("Rimfolk_Pool_DrillBegin", a);
+                string line = Flavor.FromPool(games ? "Rimfolk_Pool_GamesBegin" : "Rimfolk_Pool_DrillBegin", a);
                 if (line.NullOrEmpty()) return;
                 // together: the pair face each other at their places when the first of them says it.
                 Speech.Say(a, line.Formatted(a.Named("PAWN"), b.Named("OTHER")).Resolve(), b, new Color(0.95f, 0.85f, 0.7f));

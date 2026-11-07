@@ -298,14 +298,17 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The serious illnesses given through the harm service's cap lean with the storyteller's disease setting, as the
-        /// catching clock does (AilmentCauseMath.DiseaseLean); every other one is as it was.
+        /// The ailments given through the harm service's cap take their turn within its shared budget (Harm.PassOf: the
+        /// land's and the work's ailments are one kind there); the serious ones among them also lean with the storyteller's
+        /// disease setting, as the catching clock does (AilmentCauseMath.DiseaseLean). Every other one is as it was.
         /// </summary>
         private static float Lean(HediffCompProperties_Ailment info)
         {
-            if (!info.capped || !info.serious) return 1f;
+            if (!info.capped) return 1f;
+            float pass = Harm.PassOf(HarmKinds.LandAilments);
+            if (!info.serious) return pass;
             float interval = Find.Storyteller?.difficulty?.diseaseIntervalFactor ?? 1f;
-            return DebugSettings.enableRandomDiseases ? AilmentCauseMath.DiseaseLean(interval, Difficulty.DiseaseIntervalFactorCutoff) : 0f;
+            return pass * (DebugSettings.enableRandomDiseases ? AilmentCauseMath.DiseaseLean(interval, Difficulty.DiseaseIntervalFactorCutoff) : 0f);
         }
 
         /// <summary>A cause that's likelier for someone who already has something (typhus for someone with lice).</summary>
@@ -456,7 +459,7 @@ namespace ColonyCouncil
             {
                 // Through the harm service, which checks the cap again and counts it.
                 bool race = def.CompProps<HediffCompProperties_Immunizable>() != null;
-                h = Harm.Ail(p, def, race ? def.initialSeverity : info.startSeverity.RandomInRange, "ailment: " + def.defName, info.hurt);
+                h = Harm.Ail(p, def, race ? def.initialSeverity : info.startSeverity.RandomInRange, HarmKinds.LandAilments, info.hurt);
                 if (h == null) return;
             }
             else

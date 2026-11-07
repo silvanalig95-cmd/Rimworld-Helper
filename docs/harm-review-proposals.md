@@ -24,7 +24,12 @@ likelier (3.3.1); (10) working through it, a sprain or a bad back worked on unti
 **The player's pick (6 November 2026):** "my top ten, then more". Built so far (harm, part 1): the shared rules below, as
 one service every hurt goes through (`Harm/Harm.cs`, DESIGN.md "Harm from everyday life"), and 1.2.1, 1.2.2 and 3.2.1;
 (harm, parts 2 and 3, 7 November 2026) the other seven of the ten, 2.4.1, 3.1.1, 2.2.1, 2.1.1, 3.5.1, 1.4.1 and 3.3.1,
-each marked built below with what differs. The balance model's harm mode (`Tools/Balance -- --harm`) has their rates.
+each marked built below with what differs; (harm, part 4, 7 November 2026, the player's "yes, a shared budget please, and
+go ahead with the suggestions") the shared budget every hurt now shares (`Harm/HarmBudgetMath.cs`, DESIGN.md "The shared
+budget") and fifteen more: 1.1.1, 2.5.2, 2.2.3, 1.2.3, 4.3.1, 3.4.1, 4.7.2, 4.5.3, 4.5.1, 4.9.1, 3.6.1, 1.4.2, 2.5.1, 2.8.1
+and 4.1.1, each marked built below with what differs. With the budget, every rate below is a kind's own: the kinds share
+the total the first ones came to, each at about half its own rate now. The balance model's harm mode
+(`Tools/Balance -- --harm`) has their rates.
 
 ## How to read it
 
@@ -76,6 +81,12 @@ stories (`Council_Arc_LostSeatEarly`, `Council_Arc_WeightOfOffice`). Nothing phy
    second doctor sharing the rounds. *Rate:* about one in 40 tendings for the everyday kind, a tenth of that for the
    serious. *Seen:* the doctor at the bedside, a cough a day or two later, someone else tending the doctor. *Ages:*
    herbs and boiled cloths before industry; gloves and masks halve it from the industrial age, sterile tiles quarter it.
+   *Built (harm, part 4, 7 November 2026):* `Harm/Catching.cs`, on the game's tending (the deeper hooks). The catching
+   everyday ones are the head cold, the chest cold, the stomach bug and pinkeye; the serious ones tuberculosis, cholera,
+   measles and the game's flu (lice and typhus stay with the bedroom's own spreading). "A clean sickroom" is the game's
+   sterile tiles (a room whose infection factor is 0.7 or less), quartering it; "a second doctor sharing the rounds"
+   works through a doctor's third tending of the sick in a day taking half again. With the everyday ailments (the
+   serious ones need theirs too). It shows a day or two later with the ailment's own message and the doctor's note.
 2. **The peacemaker's sit-down goes wrong.** When the peacemaker sits a bitter pair down (`Offices.cs`, the peacemaker's
    day), two hot tempers may come to blows instead, and the peacemaker stepping between them can take a punch. Adds a
    cost to sitting the worst pair down too soon. *Prevent:* yes: a peacemaker with good Social (the chance falls with
@@ -119,6 +130,12 @@ decree.
    3% a day). Adds a real trade between fuel and the old. *Prevent:* yes: a heater kept up in the sickroom and the elders'
    rooms, ending the decree in a cold snap. *Rate:* one chill per cold week of the decree, only for the frail. *Seen:*
    the elder huddled in blankets, a cough, the doctor's word.
+   *Built (harm, part 4, 7 November 2026):* `Harm/Catching.cs`, under the banked fires decree (its card names it): a
+   hard frost is a night at -5 °C or colder; the frail are the old, small children, the frail, the starving or chilled
+   (the ailments' own reading) and the convalescent; three hours asleep in a bedroom below their comfortable warmth make
+   a cold night, and one in seven of those gives a head cold in the morning, whose road to pneumonia for the frail is
+   the ailments' own. "One chill per cold week" is read per frail sleeper. With the everyday ailments and "Systems talk
+   to each other".
 4. **Open gates, and who walks in.** While the gate stands open, now and then a stranger takes advantage: a thief at the
    stores, or a drunk who picks a fight in the yard. Adds a reason the nervous hate the decree. *Prevent:* partly: the
    warden of guests, someone on watch, the on-guard decree beside it. *Rate:* at most one such stranger per open-gates
@@ -168,6 +185,10 @@ and trust. Nothing physical.
 2. **The sore loser.** A hot-tempered or bitter candidate who lost a close race may pick a fight with the winner in the
    days after. *Prevent:* yes: a gracious winner (a handshake played out at the count), a calm loser. *Rate:* one loss
    in 10 among the hot-tempered. *Seen:* the loser walking over, words, sometimes blows; a deed for gossip.
+   *Built (harm, part 4, 7 November 2026):* `Harm/Quarrels.cs`, from the count: a close race is a vote in it or a fifth
+   of the votes; hot-tempered is a fighting temper of 2 or more, bitter an opinion of the winner of -20 or less; a
+   gracious winner (kind, or Social 8 or more) shakes the runner-up's hand at the count (a new line there), halving it.
+   One to three days after, the loser goes to find the winner: words, and blows half the time.
 
 **Pick:** 1. The hustings are already a gathering on the map; a fight there is a story the whole colony sees.
 
@@ -248,6 +269,11 @@ crops, never people (DESIGN.md, Layer 5); the neighbors' events say "none ends i
    the work party bringing the ripe crops in. *Prevent:* yes: call them in at the first stones; a roofed walk. *Rate:*
    only those still out; one or two bruises a storm. *Seen:* workers running for cover, one limping in. *Ages:* a helmet
    or a hard hat turns it.
+   *Built (harm, part 4, 7 November 2026):* `Harm/Mishaps.cs`, in the hailstorm's own look: each 250 ticks out under the
+   falling hail, one chance in 30 (about a third of an hour out), two a storm at most; a bruise of 1 to 3, the mildest
+   (children may take it); a helmet is worn headgear over the top of the head with blunt armour. The hailstorm's letter
+   and its condition say so now (they said nobody would be hurt). Seen in the stone's ping and the line said; no
+   message.
 4. **The hedge healer's bad batch.** A visiting healer's tonic may be a bad batch: a stomach bug for a few who took it,
    unless the colony's own doctor (Medicine 8 or more) looked it over first. *Prevent:* yes: the doctor's look, or
    declining. *Rate:* one visit in 8. *Seen:* the healer going round with the cup, a few queasy the next morning.
@@ -319,9 +345,20 @@ the goodwill rule) already exists.
    quarrel with a colonist, and the outsiders' fistfight rule follows. Adds a cost to hospitality and work for the warden.
    *Prevent:* yes: the warden of guests, no drink served, the best-behavior decree. *Rate:* one guest's night in 15.
    *Seen:* supper, a sharp word, a fistfight, the guest leaving at first light with a bruise.
+   *Built (harm, part 4, 7 November 2026):* `Harm/Quarrels.cs`: a guest given a bed for the night is one of Rimfolk's
+   visitors staying inside, and with Hospitality one of its guests in the colony's guest beds (each its own kind in the
+   budget, so a game without Hospitality keeps none of it for theirs). After supper (seven to eleven), once a night a
+   group: one night in 15 by the guest's temper as a feast's guest, half again after a drink, half with the warden of
+   guests, half under the best-behavior decree; the outsiders' own fistfight (never a war). A visitor goes on at first
+   light. Named under the answer that gives the bed.
 2. **The guest's cough.** A visitor brings a catching everyday ailment, and one colonist who spent time with them catches
    it. *Prevent:* yes: a guest bed in a room of its own, the quarantine decree. *Rate:* one visit in 20. *Seen:* a
    coughing guest, one colonist sick a day later.
+   *Built (harm, part 4, 7 November 2026):* `Harm/Catching.cs`, for Rimfolk's visitors (the game's own traders and
+   visitors are left alone): one visit in 20, the guest coughing now and then while they stay; whoever of the colony
+   spent the most hours within four cells of them catches a head cold (a grown-up a chest cold one time in four) a day
+   after they go. A guest bed in a room of their own keeps those hours down; the quarantine decree by its own factor on
+   spreading. With the visitors, the everyday ailments and "Systems talk to each other".
 3. **The barber's nick.** The barber's razor leaves a small nick now and then (a cut of 1), more with a poor barber.
    *Prevent:* not preventable, beyond declining the barber. *Rate:* one cut in 30. *Seen:* a dab of blood and a laugh.
    *Ages:* a flint blade, a razor, clippers that never nick (spacer: nothing).
@@ -371,6 +408,12 @@ the game's own fight (`Outsiders/OutsiderOutcomes.cs`; Almanac, "Bouts, hard wor
    colonist by name. Adds a thread between visits. *Prevent:* yes: a gracious word after the win, a gift. *Rate:* one
    lost duel in 3 brings a rematch within a year. *Seen:* the challenger at the gate asking for them by name. *Ages:* by
    the people's ways.
+   *Built (harm, part 4, 7 November 2026):* `Harm/Quarrels.cs`: one in three of those beaten by one of the colony in a
+   duel, or who took a practice bout's hard blow from them, holds it; on a later visit within the year (sixty days),
+   they or one of their people ask for the colonist by name, and the colonist takes it by their nature (a hot or proud
+   temper, or the better fighter) or turns it down. A duel to first blood where the people's ways know duels, else a
+   bout, by the outsiders' own rules. A good word or a gift to anyone of their people settles it. Named in the duel's
+   terms and the settings' notes.
 2. **A fistfight that draws a crowd.** When hard words come to blows, others of both sides nearby may join, up to four.
    *Prevent:* partly: the warden near, few hot tempers about. *Rate:* one fistfight in 5. *Seen:* the brawl, broken up
    by the marshal.
@@ -492,6 +535,10 @@ without a coat (`Setbacks/SetbackNuisances.cs`). All moods.
    bridge) bruises the builder one time in 10. *Prevent:* yes: skilled builders on heavy work. *Rate:* one failure in 10,
    a few a year with poor builders. *Seen:* the frame coming down, the builder stepping back holding an arm. *Ages:*
    timber and stone, then steel.
+   *Built (harm, part 4, 7 November 2026):* `Harm/Mishaps.cs` (a postfix on the game's FailConstruction): heavy is a
+   one-cell wall, furniture of two cells or more or of 20 kg or more, or a bridge; a bruise of 3 to 6 on the arm, a wall
+   or a bridge crushing a foot one time in five. With "Life's ups and downs" and the deeper hooks. No message: the
+   game's own "construction failed" shows, and the builder's line.
 2. **The makeshift spot's burn.** Cooking at a campfire or butchering at a spot when a proper bench could be built
    carries a small chance of a burn or a cut. *Prevent:* yes: build the bench. *Rate:* one bill in 200. *Seen:* the cook
    pulling a hand back. *Ages:* never in a colony that can't build better yet, as the setback already rules.
@@ -531,6 +578,11 @@ what a group does against someone is small (-1 to -3).
    peacemaker, a habit the two groups keep together. *Rate:* once or twice a year where two groups are bitter. *Seen:*
    the dig, the brawl, both groups' names after. *Ages:* clans at the fire, factions in the hall, the night shift against
    the day shift, departments.
+   *Built (harm, part 4, 7 November 2026):* `Harm/Quarrels.cs`, on the groups' "a dig at the other lot" moment: bitter
+   is a rivalry of 60 or more; a table is a dining or rec room both are in, or one gathering; one such dig in eight
+   comes to blows (half with the peacemaker in office, half under the shared meals decree), up to two more pairs of the
+   two groups within nine cells joining. "A habit the two groups keep together" is left out: the groups' habits are each
+   group's own. Both groups' names show over the brawl in the age's words; the game's own fight messages tell the rest.
 2. **Brave to a fault.** A group with that way, or the bold ones, sometimes eggs a member into a dare: a swim in a cold
    river, crossing thin ice, wrestling the strongest. A sprain or a chill. *Prevent:* partly: a cautious anchor talks them
    out of it. *Rate:* once a season for such a group. *Seen:* the dare said aloud, the attempt, a laugh or a limp.
@@ -649,6 +701,11 @@ evening of faith (`Calendar/CalendarKeeping.cs`); a feast's dish may burn and ri
    small injury per two games days. *Seen:* the contests, the cheering, the limp. *Ages:* wrestling and races (tribal),
    blunt staves and a melee (medieval), boxing and a three-legged race (industrial), a sim tourney with nothing to fear
    but a sprained wrist (spacer).
+   *Built (harm, part 4, 7 November 2026):* `Harm/GamesDay.cs`: a games day kept with a gathering gets up to two bouts
+   (the drills' own bout, grown-ups who can fight) and a footrace for up to four (children too), fourteen cells out and
+   back near the gathering. "A tug of war" is left out, as it would hurt nobody. One bout in 25 lands a blow; one runner
+   in eight turns an ankle on rough ground (the everyday sprained ankle; a child's scraped knee). A spacer colony's sim
+   tourney has no race, its blow a wrenched wrist. Named in the day's letter and its way's description.
 2. **The bonfire's spark.** On a dry, windy summer night, a bonfire laid in the open can throw a spark into dry grass (the
    game's own fire), and someone near can be singed. *Prevent:* yes: a cleared spot, a firebreak. *Rate:* one bonfire in
    20 in dry wind, never in rain or snow. *Seen:* the spark, the grass catching, everyone beating it out.
@@ -685,6 +742,12 @@ carries the game's own risks and the work ailments, and the two below belong to 
    the tree comes down the wrong way, a bruise or a cracked leg. *Prevent:* partly: skilled planters on felling; the
    automation marks near trees first. *Rate:* one tree in 300 for a cutter under Plants 5. *Seen:* the tree falling the
    wrong way, the cutter scrambling. *Ages:* a stone axe more often, a steel one less.
+   *Built (harm, part 4, 7 November 2026):* `Harm/Mishaps.cs` (a postfix on the game's PlantCollected for a tree
+   chopped): one tree in 300 for a cutter under Plants 5, by the colony's means (a stone axe half again, a steel one
+   three quarters, a spacer's tools half); a bruise of 3 to 6 on a leg, a crack of 2 to 4 one time in four. "The
+   automation marks near trees first" is left out: the automations stay harmless, and the mishap is the work's, whoever
+   ordered it. With the everyday ailments and the deeper hooks. Seen in the dust where it fell and the cutter down on
+   the ground; no message, as the game gives none for such a wound.
 2. **Taking down hurts too.** Taking down a wall or a door (the take-down orders, or the player's) can drop stone or
    timber on the worker, at the failed build's rate (3.4.1). *Prevent:* partly: skilled builders. *Rate:* one wall in
    100 taken down by someone under Construction 5. *Seen:* the wall coming apart, the worker jumping back.
@@ -719,6 +782,11 @@ food left out, kept close, hunted, tamed or driven off (`Animals/ResidentBeast.c
 1. **The herdmaster's lesson.** When the herdmaster takes a learner along (milking, shearing, training), a nervous animal
    may kick or bite the learner, at the game's training-revenge chance, halved with the herdmaster there. *Prevent:*
    partly: a good herdmaster. *Rate:* one lesson in 30. *Seen:* the animal lashing out, the herdmaster calming it.
+   *Built (harm, part 4, 7 November 2026):* `Harm/AnimalHurts.cs`, on the herdmaster's lesson that already plays out on
+   the map (`Animals/AnimalHerdmaster.cs`): once in the lesson, when the herdmaster handles a nervous animal (wildness
+   0.4 or more, or timid by its nature) with the learner within four cells, one lesson in 30 (the herdmaster always
+   being there, the halving is in that rate); a kick's bruise from a big animal, a bite from a small one, a small bruise
+   for a child; the herdmaster's calming word. Told as an animal's revenge is.
 2. **The fed wolf grows bold.** A resident predator the colony leaves food out for grows bold: after some days it may go
    for someone alone near the stores at night (the game's own predator hunt, one animal). *Prevent:* yes: keep close,
    drive it off or tame it; never with grazing animals. *Rate:* one fed predator in 4 over a season. *Seen:* the wolf at
@@ -726,6 +794,12 @@ food left out, kept close, hunted, tamed or driven off (`Animals/ResidentBeast.c
 3. **The rut in the pens.** In the rut, the colony's own males (bulls, rams, stags) can charge whoever enters their pen.
    *Prevent:* yes: keep the pens shut in the rut; leave it to the herdmaster. *Rate:* one charge per rut per pen of such
    animals. *Seen:* the bull lowering its head.
+   *Built (harm, part 4, 7 November 2026):* `Harm/AnimalHurts.cs`. The game has no rut, so the rut is autumn by the
+   land's seasons (the third quadrum where there are none); the males are found by what they are (a grown male of a
+   herd's grazers, a body of 0.9 or more, never a predator) penned with a female of their kind; "whoever enters their
+   pen" is one of the colony within six cells of him in his own pen. "One charge per rut per pen" is one charge in
+   twenty such hours, half of them landing (a bruise of 4 to 8, a crack one time in five), the rest jumping clear; never
+   the herdmaster, half for a handler of Animals 10 or more. Told as the game tells an animal turning on its handler.
 
 **Pick:** 2. The resident beast's "leave food out" answer is the most tempting; a consequence makes it a real dilemma.
 
@@ -756,6 +830,10 @@ surgery, hunting, animals), never for addicts (`Integrations/BeforeWork.cs`); to
 2. **Burned at the bench.** A drink before smithing or cooking (allowed today) carries a small chance of a burn or a
    cut. *Prevent:* yes: a new switch, no drink before hot work. *Rate:* one in 100 drinks before hot work. *Seen:* the
    hiss at the forge or the stove.
+   *Built (harm, part 4, 7 November 2026):* `Harm/Mishaps.cs` with `Integrations/BeforeWork.cs`, with Alpha Skills: the
+   new switch is "A drink before hot work" (on by default, under the drink before work, its tooltip naming the risk).
+   The burn (2 to 5 on a hand) or, at the stove, a knife's cut one time in three, comes in the first hour at the stove
+   or the forge within four hours of the drink. No message.
 3. **The toast's second round.** With strong drink in plenty (Vanilla Brewing Expanded), a toast pours a second round
    for those who want it, and rivals at the table quarrel likelier (4.1.3). *Prevent:* yes: stock, a toast with tea.
    *Rate:* a second round at one toast in 3. *Seen:* the second cups raised, a quarrel.
@@ -782,6 +860,10 @@ Vanilla Fishing Expanded in wishes.
 1. **A fall from the saddle.** With Giddy-Up, a rider with low Animals skill on a newly tamed mount can be thrown when
    dismounting (a bruise), during the mount's first days with them. *Prevent:* yes: riders with Animals 6 or more.
    *Rate:* one ride in 50 in the first days. *Seen:* the mount bucking at the gate.
+   *Built (harm, part 4, 7 November 2026):* `Harm/AnimalHurts.cs`, with Giddy-Up only (its mount's job "Mounted", read
+   by name; nothing at all without it): "the mount's first days with them" is a mount not yet trained in obedience (the
+   game's own training), so training it prevents it as well as a rider of Animals 6; the throw comes as they get down (a
+   look every 250 ticks sees the ride end): a bruise of 2 to 5. No message.
 2. **A slip into cold water.** With Vanilla Fishing Expanded, fishing below freezing can end with a slip into the water:
    soaked, and the game's own hypothermia if not warmed. *Prevent:* yes: no fishing in a hard frost. *Rate:* one in 200
    hours of cold fishing. *Seen:* the splash, the dash for the fire.

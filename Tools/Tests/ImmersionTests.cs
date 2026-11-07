@@ -67,6 +67,15 @@ public static class ImmersionTests
         "Rimfolk_Pool_CampQuarrel", "Rimfolk_Pool_CampBrawlJoin", "Rimfolk_Pool_ChampionBegin", "Rimfolk_Pool_ChampionSorry", "Rimfolk_Pool_ChampionSneer",
         "Rimfolk_Pool_ChampionTook", "Rimfolk_Pool_GameTurns", "Rimfolk_Pool_SickHome", "Rimfolk_Pool_SabotageSeen", "Rimfolk_Pool_SabotageTold",
         "Rimfolk_Pool_SabotageWord", "Rimfolk_Pool_SabotageConfront", "Rimfolk_Pool_HustingsShove", "Rimfolk_Pool_HustingsOrder",
+        // Harm, part 4: a sickness caught, a coughing guest, a cold night and the doctor's word, a hailstone, a felling, a build
+        // come down, a burn at the bench, the rut, a lesson's kick and the herdmaster's calm, a rider thrown, the groups' brawl,
+        // a sore loser and the winner, a gracious winner, a rematch asked and answered, a games day's contests and race.
+        "Rimfolk_Pool_CaughtIt", "Rimfolk_Pool_GuestCough", "Rimfolk_Pool_ColdNight", "Rimfolk_Pool_ColdNightDoctor", "Rimfolk_Pool_HailHit",
+        "Rimfolk_Pool_FellingMishap", "Rimfolk_Pool_BuildFell", "Rimfolk_Pool_HotBench", "Rimfolk_Pool_RutClear", "Rimfolk_Pool_RutCharged",
+        "Rimfolk_Pool_LessonKicked", "Rimfolk_Pool_HerdCalms", "Rimfolk_Pool_Thrown", "Rimfolk_Pool_GroupBrawl", "Rimfolk_Pool_GroupBrawlJoin",
+        "Rimfolk_Pool_SoreLoser", "Rimfolk_Pool_SoreLoserReply", "Rimfolk_Pool_GraciousWinner", "Rimfolk_Pool_RematchAsk", "Rimfolk_Pool_RematchYes",
+        "Rimfolk_Pool_RematchNo", "Rimfolk_Pool_GamesCall", "Rimfolk_Pool_GamesBegin", "Rimfolk_Pool_GamesHit", "Rimfolk_Pool_GamesSorry",
+        "Rimfolk_Pool_GamesEnd", "Rimfolk_Pool_RaceGo", "Rimfolk_Pool_RaceTurned", "Rimfolk_Pool_RaceWon",
         // Schemes against the colony (Diplomacy/Schemes.cs): a shout at one of theirs caught at it, their word as they go,
         // a lie in a hot temper's ear, the hot temper having it out.
         "Rimfolk_Pool_SchemeCaught", "Rimfolk_Pool_SchemeCaughtGoes", "Rimfolk_Pool_SchemeWhisper", "Rimfolk_Pool_SchemeProvoked",
