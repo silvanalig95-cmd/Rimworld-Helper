@@ -31,11 +31,14 @@ newest round's highlights (the setting "A letter after each update" turns it off
 **Or: download a ZIP and run the installer.**
 1. Download this repository as a ZIP (green **Code** button → **Download ZIP**; pick the branch you want in the
    branch menu first) and extract it anywhere, for example in Downloads.
-2. Close RimWorld, then double-click **`Install Rimfolk.bat`** in the extracted folder. It removes the old version
-   from `C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Rimworld Helper` and copies the mod's
-   files there (only what the game needs: `About`, `1.6`, `Defs`, `Languages`, `Patches`, `Textures`). If Windows asks for
-   administrator rights, say yes. To install somewhere else, open the file in Notepad and change `MODS` and
-   `FOLDER` at the top.
+2. Close RimWorld, then double-click **`Install Rimfolk.bat`** in the extracted folder. It finds RimWorld by itself
+   on any computer, whatever the user name: through Steam (every Steam library, on any drive), the installed
+   programs (Steam or GOG) and the usual game folders. With more than one RimWorld it asks which one; with none found
+   it asks for the folder (or drag the RimWorld folder onto the file). It removes the old version from that
+   RimWorld's `Mods\Rimworld Helper` and copies the mod's files there (only what the game needs: `About`, `1.6`,
+   `Defs`, `Languages`, `Patches`, `Textures`). If Windows asks for administrator rights, say yes. It stops without
+   changing anything if another copy of Rimfolk is already in `Mods`. To always install into one place, open the
+   file in Notepad and set `MODS` at the top.
 3. Start RimWorld, open **Mods**, enable **Rimfolk** and restart. Repeat steps 1 and 2 to update.
 
 On a Mac, move the extracted folder into `Mods` yourself (right-click RimWorld.app → Show Package Contents →

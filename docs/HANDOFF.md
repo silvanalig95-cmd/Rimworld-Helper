@@ -6,6 +6,18 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- `Install Rimfolk.bat` finds RimWorld by itself (7 November 2026, the player's question: installing on another computer
+  with another user name and Steam folder). Steam from the registry (`SteamPath`, `InstallPath`) and every library in
+  its `libraryfolders.vdf` (new and old format), the installed programs' `InstallLocation` (Steam's "Steam App 294100",
+  GOG's installer) and GOG Galaxy's `Games\*\path`, then the usual folders on every drive; a folder counts when it has
+  `RimWorldWin64.exe`, once however it was found. Several: a numbered choice; none: asks for the folder. A folder,
+  its Mods folder or the exe dropped on the file is used directly; `MODS` set at the top skips the search. New stops:
+  the download is itself in that Mods folder, or another folder there holds Rimfolk's package id. The elevated
+  relaunch carries the Mods folder (`"<Mods>" /elevated`, quotes and apostrophes escaped for PowerShell) and won't ask
+  twice. Tested under Wine in 16 cases (scripts in the session's scratchpad, not kept): Wine's own `robocopy`, `for /d`
+  with a quoted pattern, `find /i` and `if exist "X:\"` don't work, so the script uses `dir /b /ad`, `find` without
+  `/i` and no drive-root check, which work on both; the copy step (robocopy, unchanged) and the PowerShell
+  elevation weren't run (no Windows here). No round of its own: not part of the mod.
 - 0.135.0, PokéWorld reviewed against PokéWorld Updated (7 November 2026). The player's words: "for pokemon, please ensure to
   review the sounds and integrations of all pokemon, if not already one." Against the player's version, PokéWorld
   Updated [1.6] [ALPHA] (`themoonitself.pokeworld`, workshop 3540803945, 898 species of eight generations), its files
