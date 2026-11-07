@@ -42,7 +42,8 @@ namespace ColonyCouncil
     /// A people the colony became (Rimfolk's own, Colonies/HandOverPeoples.cs) keeps its own heads: while it is being
     /// made the game makes no stranger to lead it (the head leads); when its head dies or is lost, the head's second leads
     /// (HandOvers.NextLeader), so the game's own letter of the new leader names them. With nobody of theirs left, the
-    /// game makes its own as for any people.
+    /// game makes its own as for any people. A people arising during play (Peoples/Arising.cs) gets no leader while the
+    /// game makes it either: its leader comes once its faith is set, or is the one who gathered it.
     /// </summary>
     [HarmonyPatch(typeof(Faction), nameof(Faction.TryGenerateNewLeader))]
     public static class Patch_HandOverLeader
@@ -51,6 +52,12 @@ namespace ColonyCouncil
         {
             try
             {
+                if (Arising.Making && Peoples.IsOurs(__instance))
+                {
+                    __instance.leader = null;
+                    __result = false;
+                    return false;
+                }
                 if (!HandOverPeoples.IsOurs(__instance)) return true;
                 if (HandOverPeoples.Making)
                 {

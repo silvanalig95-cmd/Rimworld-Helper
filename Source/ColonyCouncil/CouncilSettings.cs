@@ -179,6 +179,12 @@ namespace ColonyCouncil
         /// </summary>
         public float raidersCamps = 1f;
         /// <summary>
+        /// The region: new peoples arise during play (0 to 2, 1 by default): survivors of a fallen town, a league of
+        /// prospering towns, a band of those the council sent away, faithful who broke away (Peoples/Arising.cs). At 1 one
+        /// arises every 40 days at most, at 2 every 20; 0: none.
+        /// </summary>
+        public float newPeoples = 1f;
+        /// <summary>
         /// The region: friends who trade with a far colony may open a trading post a few days off, a real town of theirs
         /// (World/Region/TradingPost.cs). Off: none opens, and those standing are left as ordinary towns of theirs.
         /// </summary>
@@ -641,6 +647,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref regionChange, "regionChange", true);
             Scribe_Values.Look(ref remoteTravellers, "remoteTravellers", 1f);
             Scribe_Values.Look(ref raidersCamps, "raidersCamps", 1f);
+            Scribe_Values.Look(ref newPeoples, "newPeoples", 1f);
             Scribe_Values.Look(ref tradingPosts, "tradingPosts", true);
             Scribe_Values.Look(ref hamlets, "hamlets", true);
             Scribe_Values.Look(ref smallTownMaps, "smallTownMaps", true);
