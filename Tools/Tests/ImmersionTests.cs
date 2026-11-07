@@ -67,6 +67,9 @@ public static class ImmersionTests
         "Rimfolk_Pool_CampQuarrel", "Rimfolk_Pool_CampBrawlJoin", "Rimfolk_Pool_ChampionBegin", "Rimfolk_Pool_ChampionSorry", "Rimfolk_Pool_ChampionSneer",
         "Rimfolk_Pool_ChampionTook", "Rimfolk_Pool_GameTurns", "Rimfolk_Pool_SickHome", "Rimfolk_Pool_SabotageSeen", "Rimfolk_Pool_SabotageTold",
         "Rimfolk_Pool_SabotageWord", "Rimfolk_Pool_SabotageConfront", "Rimfolk_Pool_HustingsShove", "Rimfolk_Pool_HustingsOrder",
+        // Schemes against the colony (Diplomacy/Schemes.cs): a shout at one of theirs caught at it, their word as they go,
+        // a lie in a hot temper's ear, the hot temper having it out.
+        "Rimfolk_Pool_SchemeCaught", "Rimfolk_Pool_SchemeCaughtGoes", "Rimfolk_Pool_SchemeWhisper", "Rimfolk_Pool_SchemeProvoked",
         // Travellers at the gate, waiting, setting off, and those at home seeing them off (Journeys/JourneyRun.cs).
         "Rimfolk_Pool_JourneySays",
         // Banishment by the council (Social/Banishment.cs): the council's word face to face and the answer, someone sent away

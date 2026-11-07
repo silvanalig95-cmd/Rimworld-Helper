@@ -105,7 +105,7 @@ namespace ColonyCouncil
             new NatureRule(NatureAct.TruceWithFoe, PersonaAxis.Pride, 1, 0f, always: true)
         };
 
-        /// <summary>The acts wired to where they happen in release 2d.2: every one but the dark scheme (release 2c.3's schemes are not built yet).</summary>
+        /// <summary>The acts wired to where they happen in release 2d.2: every one but the dark scheme (the colony's own schemes are not built: 2c.3 built theirs only).</summary>
         public static bool Wired(NatureAct a) => a != NatureAct.DarkScheme;
 
         /// <summary>How far past the threshold a value lies, 0 to 1, on the given end of the side.</summary>

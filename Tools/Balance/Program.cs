@@ -14,6 +14,8 @@
 // Hurts from everyday life by source, the fights Rimfolk starts and what they add to strain, before and after harm parts
 // 2 and 3 (HarmSim.cs, printed, nothing written):
 //   dotnet run -c Release --project Tools/Balance -- --harm [--runs N] [--seed S]
+// Schemes against the colony over a home's year, by whether a grudge or a cold notable is in reach (SchemeSim.cs, printed):
+//   dotnet run -c Release --project Tools/Balance -- --schemes [--runs N] [--seed S]
 
 using System.Globalization;
 using System.Text.Json;
@@ -45,6 +47,11 @@ if (args.Contains("--scenes"))
 if (args.Contains("--harm"))
 {
     HarmSim.Run(args);
+    return;
+}
+if (args.Contains("--schemes"))
+{
+    SchemeSim.Run(args);
     return;
 }
 

@@ -85,7 +85,7 @@ public static class NatureTests
         foreach (NatureAct a in Enum.GetValues(typeof(NatureAct))) C(NatureMath.Rules.Any(r => r.act == a), $"{a} goes against someone's nature");
         C(Enum.GetValues(typeof(NatureAct)).Cast<NatureAct>().Count(a => !NatureMath.Wired(a)) == 1 && !NatureMath.Wired(NatureAct.DarkScheme), "every act wired but the dark scheme");
         string all = string.Concat(Directory.GetFiles(src, "*.cs", SearchOption.AllDirectories).Where(f => !f.EndsWith("NatureMath.cs")).Select(File.ReadAllText));
-        C(!all.Contains("NatureAct.DarkScheme"), "the dark scheme waits for schemes (release 2c.3) and the player's harm pick");
+        C(!all.Contains("NatureAct.DarkScheme"), "the dark scheme waits for the colony's own schemes (release 2c.3 built theirs only) and the player's harm pick");
         C(NatureMath.Felt(NatureAct.SworeFealty, Of(PersonaAxis.Pride, 29f)) == 0f && NatureMath.Felt(NatureAct.SworeFealty, Of(PersonaAxis.Pride, 31f)) > 0f,
             "an oath: the proud, from where pride shows");
         C(Math.Abs(NatureMath.Strain(NatureAct.SworeFealty, Of(PersonaAxis.Pride, 31f)) - NatureMath.MaxStrain * NatureMath.Floor) < 0.01f

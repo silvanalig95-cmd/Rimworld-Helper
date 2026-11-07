@@ -206,23 +206,23 @@ namespace ColonyCouncil
             return t == null ? "the ledger has no room for another scheme." : null;
         }
 
-        /// <summary>An act the home offers now, by the colony's means.</summary>
+        /// <summary>An act the home offers, by the colony's means: what it has, whatever the hour (its people asleep, a machine off).</summary>
         private static SchemeAct PickAct(Map home)
         {
             bool machine = SchemeMath.MachineAge(Ages.Ours) && Machines(home).Any();
             bool theft = SchemeMath.TheftOrder(Ages.Ours).Any(k => Loot(home, k).Any());
-            bool fight = Hot(home).Any();
+            bool fight = HotAtHome(home);
             return SchemeMath.Pick(machine, theft, fight, Harm.On ? Harm.Scale : 0f, Rand.Value);
         }
 
-        /// <summary>The act can be done at this home at all (a machine, a small valuable, a hot temper; a smear always).</summary>
+        /// <summary>The act can be done at this home at all (a machine, a small valuable, a hot temper with someone to set against; a smear always).</summary>
         private static bool Possible(SchemeAct act, Map home)
         {
             switch (act)
             {
                 case SchemeAct.Machine: return SchemeMath.MachineAge(Ages.Ours) && Machines(home).Any();
                 case SchemeAct.Theft: return SchemeMath.TheftOrder(Ages.Ours).Any(k => Loot(home, k).Any());
-                case SchemeAct.Fight: return Harm.On && Hot(home).Any();
+                case SchemeAct.Fight: return Harm.On && HotAtHome(home);
                 default: return true;
             }
         }
@@ -280,17 +280,18 @@ namespace ColonyCouncil
             if (!On) return;
             var f = PeopleOf(t);
             if (f == null || Diplomacy.Hostile(f)) return;
+            var agents = Agents(home, f);
+            if (agents.Count == 0) return;
             var act = SchemeMath.ActOf(t.terms.key);
             if (!Possible(act, home))
             {
+                // What it meant to do is gone from the colony (its one machine sold, the stores emptied): another act.
                 act = PickAct(home);
                 t.terms.key = act.ToString();
                 WorldLedger.Touch(t);
             }
             if (!anyHour && !SchemeMath.Hour(act, GenLocalDate.HourOfDay(home))) return;
             if (PlayOuts.WhyNotNow(home, false) != null) return;
-            var agents = Agents(home, f);
-            if (agents.Count == 0) return;
             Begin(t, act, home, agents, now);
         }
 
@@ -417,13 +418,12 @@ namespace ColonyCouncil
                 .OrderByDescending(b => spacer && b.def == ThingDefOf.CommsConsole ? 1 : 0).ThenByDescending(b => b.MarketValue).ToList();
         }
 
+        /// <summary>A machine the game can break down (CompBreakdownable), not broken now; powered or not (the game's breakdown needs no power).</summary>
         private static bool Breakable(Building b)
         {
             if (b == null || !b.Spawned || b.IsBurning()) return false;
             var comp = b.TryGetComp<CompBreakdownable>();
-            if (comp == null || comp.BrokenDown) return false;
-            var power = b.TryGetComp<CompPowerTrader>();
-            return power == null || power.PowerOn;
+            return comp != null && !comp.BrokenDown;
         }
 
         /// <summary>Small valuables of a kind in the colony's stockpiles and shelves.</summary>
@@ -458,6 +458,13 @@ namespace ColonyCouncil
         private static IEnumerable<Pawn> Hot(Map home) =>
             Grown(home).Where(p => Outsiders.Temper(p) >= SchemeMath.HotTemper).OrderByDescending(Outsiders.Temper);
 
+        /// <summary>The home has a hot temper among its grown-ups and someone else grown up, awake or asleep now.</summary>
+        private static bool HotAtHome(Map home)
+        {
+            var grown = home.mapPawns.FreeColonistsSpawned.Where(p => !p.DevelopmentalStage.Juvenile() && !p.WorkTagIsDisabled(WorkTags.Violent)).ToList();
+            return grown.Count >= 2 && grown.Any(p => Outsiders.Temper(p) >= SchemeMath.HotTemper);
+        }
+
         private static IEnumerable<Pawn> Grown(Map home) =>
             home.mapPawns.FreeColonistsSpawned.Where(p => !p.DevelopmentalStage.Juvenile() && Together.Able(p) && !p.InBed() && PlayOuts.CanJoin(p)
                                                           && !p.WorkTagIsDisabled(WorkTags.Violent));
@@ -474,7 +481,7 @@ namespace ColonyCouncil
                                                            && r.Role != null && r.Role != RoomRoleDefOf.None && r.CellCount >= 6 && !people.Contains(r)).ToList();
             foreach (var r in rooms.InRandomOrder().Take(6))
             {
-                var cells = r.Cells.Where(c => c.Standable(home) && home.areaManager.Home[c]).ToList();
+                var cells = r.Cells.Where(c => c.Standable(home) && home.areaManager.Home[c] && c.GetFirstPawn(home) == null).ToList();
                 if (cells.Count > 0) return cells.RandomElement();
             }
             return IntVec3.Invalid;
@@ -741,8 +748,11 @@ namespace ColonyCouncil
                     WorldLedger.Set(t, Tie.State.Kept);
                     return;
                 default:
+                    int lands = SchemeMath.SmearLands(Now, Rand.Value);
                     t.terms.count = SchemeMath.Carried;
-                    t.terms.days = SchemeMath.SmearLands(Now, Rand.Value) / (float)SchemeMath.DayTicks;
+                    t.terms.days = lands / (float)SchemeMath.DayTicks;
+                    // Carried home, it is told round whatever the season's end: the tie lasts till then.
+                    if (t.until != Tie.Never && t.until < lands + 2 * SchemeMath.HourTicks) t.until = lands + 2 * SchemeMath.HourTicks;
                     WorldLedger.Touch(t);
                     return;
             }
