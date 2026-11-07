@@ -64,7 +64,7 @@ namespace ColonyCouncil
                 var seen = new HashSet<ThingDef>();
                 var candidates = new List<PawnKindDef>();
                 var roaming = pokemon ? new HashSet<ThingDef>(PokeWorldLink.Roaming()) : null;
-                if (map.Biome != null) candidates.AddRange(map.Biome.AllWildAnimals.Where(k => roaming == null || roaming.Contains(k.race)));
+                candidates.AddRange(BiomeAnimals.Of(map.Biome).Where(k => roaming == null || roaming.Contains(k.race)));
                 foreach (var a in map.mapPawns.AllPawnsSpawned)
                     if (a.Faction == null && a.RaceProps != null && a.RaceProps.Animal && !map.fogGrid.IsFogged(a.Position) && a.kindDef != null) candidates.Add(a.kindDef);
                 float handler = pokemon ? 0f : BestHandler(map);
@@ -268,8 +268,8 @@ namespace ColonyCouncil
 
         /// <summary>A pack animal this land has that the colony could tame (one of its wild kinds).</summary>
         private static PawnKindDef LandKind(Map map) =>
-            map?.Biome?.AllWildAnimals.Where(k => k?.RaceProps != null && k.RaceProps.packAnimal && k.RaceProps.trainability != null && !PokeWorldLink.IsPokemon(k)
-                                                  && k.race.GetStatValueAbstract(StatDefOf.Wildness) < 0.85f)
+            BiomeAnimals.Of(map?.Biome).Where(k => k?.RaceProps != null && k.RaceProps.packAnimal && k.RaceProps.trainability != null && !PokeWorldLink.IsPokemon(k)
+                                                   && k.race.GetStatValueAbstract(StatDefOf.Wildness) < 0.85f)
                 .OrderBy(k => k.race.GetStatValueAbstract(StatDefOf.Wildness)).FirstOrDefault();
 
         private static bool Hauler(Pawn p) => p.workSettings != null && !p.WorkTypeIsDisabled(WorkTypeDefOf.Hauling) && p.workSettings.WorkIsActive(WorkTypeDefOf.Hauling)

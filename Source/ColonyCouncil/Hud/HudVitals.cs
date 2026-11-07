@@ -23,9 +23,17 @@ namespace ColonyCouncil
         public const int MedicinePerColonist = 2;
 
         private int seasonHour = -1;
+        private Map seasonMap;
         private Season nextSeason;
         private int seasonDays = -1;
         private float seasonTemp;
+
+        // The colonists' own comfort ranges, dressed as they are (the game's, which its cold and hot moods use), taken
+        // once a rare tick; and the human comfort range the scale is set around.
+        private int comfortTick = -1;
+        private Map comfortMap;
+        private readonly System.Collections.Generic.List<FloatRange> comfort = new System.Collections.Generic.List<FloatRange>();
+        private static float humanMin = float.NaN, humanMax = float.NaN;
 
         public HudVitals() : base(HudLayout.Vitals)
         {
@@ -103,14 +111,27 @@ namespace ColonyCouncil
             Add(PartPower, HudIcons.Power ?? Icons.Warning, HudKit.T("CC_Pnl_Power"), value, HudRank.Power(watts, stored), tip, null);
         }
 
+        /// <summary>
+        /// The outdoor temperature, its value coloured by where it sits on the scale (HudRank.Band, around the game's
+        /// human comfort range), the row orange or red as before; the tooltip names the band and says how the colonists on
+        /// the map, dressed as they are, would find it.
+        /// </summary>
         private void Temperature(Map map)
         {
             float t = map.mapTemperature.OutdoorTemp;
-            int hour = (Find.TickManager?.TicksGame ?? 0) / GenDate.TicksPerHour;
-            if (hour != seasonHour)
+            int ticks = Find.TickManager?.TicksGame ?? 0;
+            int hour = ticks / GenDate.TicksPerHour;
+            if (hour != seasonHour || map != seasonMap)
             {
                 seasonHour = hour;
+                seasonMap = map;
                 NextSeason(map);
+            }
+            if (ticks / Sched.RareTicks != comfortTick || map != comfortMap)
+            {
+                comfortTick = ticks / Sched.RareTicks;
+                comfortMap = map;
+                Comfort(map);
             }
             string text = HudKit.T("CC_Pnl_Outside");
             string seasonLine = null;
@@ -119,14 +140,74 @@ namespace ColonyCouncil
                 seasonLine = "CC_Pnl_SeasonIn".Translate(SeasonUtility.LabelCap(nextSeason), seasonDays).Resolve();
                 text = seasonLine;
             }
-            string tip = "CC_Pnl_TempTip".Translate(t.ToStringTemperature("F0")).Resolve();
+            HumanComfort();
+            var band = HudRank.Band(t, humanMin, humanMax);
+            string tip = "CC_Pnl_TempTip".Translate(t.ToStringTemperature("F0"), HudKit.T("CC_Pnl_TempBand_" + band)).Resolve();
+            string colonists = ColonistsComfort(t);
+            if (colonists != null) tip += "\n" + colonists;
             if (seasonLine != null) tip += "\n" + "CC_Pnl_SeasonTip".Translate(SeasonUtility.Label(nextSeason), seasonDays, seasonTemp.ToStringTemperature("F0")).Resolve();
-            Add(PartTemperature, HudIcons.Temperature ?? Icons.World, text, t.ToStringTemperature("F0"), HudRank.Temperature(t), Tip(tip, HudKit.T("CC_Pnl_ClickOverlay")),
+            var line = Add(PartTemperature, HudIcons.Temperature ?? Icons.World, text, t.ToStringTemperature("F0"), HudRank.Temperature(t), Tip(tip, HudKit.T("CC_Pnl_ClickOverlay")),
                 () =>
                 {
                     var ps = Find.PlaySettings;
                     if (ps != null) ps.showTemperatureOverlay = !ps.showTemperatureOverlay;
                 });
+            line.valueColor = HudKit.TemperatureColor(band);
+        }
+
+        /// <summary>The human comfort range from the game (the Human def's own, which its warm-clothes alert uses too), once; else the base game's.</summary>
+        private static void HumanComfort()
+        {
+            if (!float.IsNaN(humanMin)) return;
+            humanMin = HudRank.HumanComfyMin;
+            humanMax = HudRank.HumanComfyMax;
+            try
+            {
+                var human = ThingDefOf.Human;
+                if (human == null) return;
+                humanMin = human.GetStatValueAbstract(StatDefOf.ComfyTemperatureMin);
+                humanMax = human.GetStatValueAbstract(StatDefOf.ComfyTemperatureMax);
+            }
+            catch (Exception e)
+            {
+                humanMin = HudRank.HumanComfyMin;
+                humanMax = HudRank.HumanComfyMax;
+                CouncilLog.ErrorOnce("vitals: the human comfort range", e);
+            }
+        }
+
+        /// <summary>Each free colonist's comfort range on the map, dressed as they are.</summary>
+        private void Comfort(Map map)
+        {
+            comfort.Clear();
+            try
+            {
+                foreach (var p in map.mapPawns.FreeColonistsSpawned)
+                    if (p?.RaceProps?.Humanlike == true)
+                        comfort.Add(p.ComfortableTemperatureRange());
+            }
+            catch (Exception e)
+            {
+                comfort.Clear();
+                CouncilLog.ErrorOnce("vitals: the colonists' comfort", e);
+            }
+        }
+
+        /// <summary>"Too cold for 2 of the 6 colonists on the map, dressed as they are.", or comfortable for them all; null with nobody there.</summary>
+        private string ColonistsComfort(float t)
+        {
+            int all = comfort.Count, cold = 0, hot = 0;
+            if (all == 0) return null;
+            foreach (var r in comfort)
+            {
+                if (t < r.min) cold++;
+                else if (t > r.max) hot++;
+            }
+            if (cold == 0 && hot == 0) return HudKit.T("CC_Pnl_TempComfy");
+            string s = null;
+            if (cold > 0) s = cold == all ? HudKit.T("CC_Pnl_TempColdAll") : "CC_Pnl_TempColdSome".Translate(cold, all).Resolve();
+            if (hot > 0) s = (s == null ? "" : s + "\n") + (hot == all ? HudKit.T("CC_Pnl_TempHotAll") : "CC_Pnl_TempHotSome".Translate(hot, all).Resolve());
+            return s;
         }
 
         /// <summary>When the season changes next at the map's latitude, and the average temperature then (once an hour).</summary>

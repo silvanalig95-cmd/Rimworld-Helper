@@ -383,6 +383,8 @@ var dynamic = new Dictionary<string, string[]>
     ["CC_Match_Wrong_"] = new[] { "None", "Killed", "Executed", "Imprisoned", "Enslaved", "Sold", "Banished" },
     // Lucky things (Quirks/LuckyItems.cs): how each past owner's time with it ended.
     ["CC_Lucky_Desc_"] = new[] { "Faded", "Died", "Gone" },
+    // The vitals' outdoor temperature (Hud/HudVitals.cs): TemperatureBand's names.
+    ["CC_Pnl_TempBand_"] = new[] { "DeadlyCold", "Freezing", "Cold", "Chilly", "Cool", "Comfortable", "Warm", "Hot", "VeryHot", "DeadlyHeat" },
 };
 // Each feeling's name, adjective, description and effects (FeelingDef key).
 foreach (var (file, doc) in docs)

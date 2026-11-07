@@ -15,6 +15,21 @@ namespace ColonyCouncil
         Life = 3
     }
 
+    /// <summary>Where the outdoor temperature sits on the vitals' scale, coldest first (see <see cref="HudRank.Band"/>).</summary>
+    public enum TemperatureBand
+    {
+        DeadlyCold,
+        Freezing,
+        Cold,
+        Chilly,
+        Cool,
+        Comfortable,
+        Warm,
+        Hot,
+        VeryHot,
+        DeadlyHeat
+    }
+
     /// <summary>
     /// One ranking for everything the on-screen panels and the hover card show, so they agree with each other: urgency
     /// times impact, in three tiers that never overlap. Life and limb first (bleeding, a dangerous condition, starving,
@@ -146,13 +161,56 @@ namespace ColonyCouncil
             return daysLeft < 1f ? Within(200f, 40f, 1f - daysLeft) : 20f;
         }
 
+        /// <summary>The outdoor temperature's lines (Celsius): at or under deadly cold and at or over deadly heat red, at or under hard frost and at or over fierce heat orange.</summary>
+        public const float DeadlyCold = -30f, HardFrost = -15f, FierceHeat = 40f, DeadlyHeat = 50f;
+
+        /// <summary>The base game's human comfort range (Celsius), for when the game can't be asked.</summary>
+        public const float HumanComfyMin = 16f, HumanComfyMax = 26f;
+
+        /// <summary>How far outside the comfort range is still safe, as the game counts it (GenTemperature.SafeTemperatureRange).</summary>
+        public const float SafeMargin = 10f;
+
         /// <summary>The outdoor temperature: hard frost or fierce heat is orange, deadly cold or heat red (Celsius).</summary>
         public static float Temperature(float celsius)
         {
-            if (celsius <= -30f || celsius >= 50f) return 310f;
-            if (celsius <= -15f || celsius >= 40f) return 210f;
+            if (celsius <= DeadlyCold || celsius >= DeadlyHeat) return 310f;
+            if (celsius <= HardFrost || celsius >= FierceHeat) return 210f;
             return 10f;
         }
+
+        /// <summary>
+        /// Where the outdoor temperature sits on the vitals' scale (Celsius), around a comfort range (the game's human one):
+        /// deadly cold and freezing at the red and orange lines above; cold under 0; chilly under the safe line (ten under
+        /// the comfort range, where the cold harms someone not dressed for it); cool under the range; comfortable in it;
+        /// warm up to the safe line above it; hot under fierce heat; very hot under deadly heat. A comfort range a mod has
+        /// moved far can't put the lines out of order: each is kept between its neighbours.
+        /// </summary>
+        public static TemperatureBand Band(float celsius, float comfyMin, float comfyMax)
+        {
+            if (float.IsNaN(celsius)) return TemperatureBand.Comfortable;
+            if (float.IsNaN(comfyMin) || float.IsNaN(comfyMax))
+            {
+                comfyMin = HumanComfyMin;
+                comfyMax = HumanComfyMax;
+            }
+            float chillyTop = Clamp(comfyMin - SafeMargin, 0f, FierceHeat);
+            float coolTop = Clamp(comfyMin, chillyTop, FierceHeat);
+            float comfyTop = Clamp(comfyMax, coolTop, FierceHeat);
+            float warmTop = Clamp(comfyMax + SafeMargin, comfyTop, FierceHeat);
+            // The red and orange lines first, so the band always agrees with the row's colour (Temperature above).
+            if (celsius <= DeadlyCold) return TemperatureBand.DeadlyCold;
+            if (celsius <= HardFrost) return TemperatureBand.Freezing;
+            if (celsius >= DeadlyHeat) return TemperatureBand.DeadlyHeat;
+            if (celsius >= FierceHeat) return TemperatureBand.VeryHot;
+            if (celsius < 0f) return TemperatureBand.Cold;
+            if (celsius < chillyTop) return TemperatureBand.Chilly;
+            if (celsius < coolTop) return TemperatureBand.Cool;
+            if (celsius <= comfyTop) return TemperatureBand.Comfortable;
+            if (celsius <= warmTop) return TemperatureBand.Warm;
+            return TemperatureBand.Hot;
+        }
+
+        private static float Clamp(float v, float lo, float hi) => v < lo ? lo : v > hi ? hi : v;
 
         /// <summary>No research project chosen while there's something to research: worth knowing.</summary>
         public static float Research(bool hasProject, bool anyAvailable) => !hasProject && anyAvailable ? 150f : 10f;

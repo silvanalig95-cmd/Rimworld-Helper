@@ -6,6 +6,44 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- A land whose wild animals the game can't read (7 November 2026, the player's startup log: `[Giddy-Up] An error occured
+  calling AllWildAnimals`, "An item with the same key has already been added. Key: RG_Dodo", and the same for
+  RG_Thrinaxodon, ReGrowth's extinct animals, most likely added to one land by two mods). `BiomeDef.CommonalityOfAnimal`
+  fills its dictionary with `Add` from the land's own `wildAnimals` and every race's `wildBiomes` naming it (and
+  `AllWildAnimals` asks the pollution and coastal lists the same way, each their own dictionary, with Biotech and
+  Odyssey): a repeat, a record whose animal's def is missing (null) or a pawn kind without a race throws, and the
+  dictionary stays half filled after the first throw, so later answers come back short without a word (Giddy-Up's
+  startup call is enough). `Animals/BiomeAnimals.cs`: `Of(biome)`, `Commonality(biome, kind)`, `LivesIn`; each land's
+  lists read once (`FieldRefAccess` on the three private lists, in both 1.6 and 1.7); where nothing in them would throw,
+  the game's own answer every time (the list read whole inside the try), as before; where something would, or the
+  game's answer throws anyway, the answer from the lists, repeats merged to their mean (the game's own rule for a plant
+  listed twice), missing defs left out, in the kinds' own order, and one `WarnOnce` naming the land and what is wrong.
+  Pure part `Animals/BiomeAnimalsMath.cs` (`Merge`, `Names`, `Problem`). All 16 readings go through it: CampLook,
+  CampKindsLand3, AnimalWishes2 (twice), AnimalGoals, Workers_Variety3, Workers_NewEvents, Workers_Storyteller_Land
+  (twice), Workers_Living (twice), Workers_Challenges, VisitorHunt, Visitors, PokeWorld (its startup look at every land,
+  which switched the whole integration off when one land threw), Workers_MissionNeighbours4 (now one set, not the list
+  per kind); the three try/catches around the old calls went. Tests: `BiomeAnimalsTests` (the merge, the log's line,
+  and that nothing else in Source reads the game's two members). Not run in the game: the player's land itself (which
+  one it is is in the warning). The game's own wild-animal spawning in that land still runs on its half-filled
+  dictionary; mending the land's list for everyone would be a separate, harder change.
+- The vitals' outdoor temperature in colour (7 November 2026, the player's request: "could the temperature counter also be
+  color coded so i quickly see how the temperature is overall"). `HudRank.Band(celsius, comfyMin, comfyMax)`, ten bands
+  (`TemperatureBand`): deadly cold at -30 °C and under, freezing to -15, cold under 0, chilly under the comfort range's
+  safe line (ten under it, the game's `SafeTemperatureRange`), cool under the range, comfortable in it, warm to ten over
+  it, hot under 40, very hot under 50, deadly heat; the red and orange lines are `HudRank.Temperature`'s own, now
+  constants, so the row's orange and red (kept) always match the band. The range is the Human def's
+  `ComfyTemperatureMin`/`Max` (16 and 26 in the base game, the line the game's warm-clothes alert uses), not the
+  colonists': theirs as dressed would call -20 °C comfortable in parkas and hide the weather, and theirs undressed would
+  need the apparel taken out by hand. `HudKit.TemperatureColor`: deep blue, blue, sky blue, cyan, blue-green, then the
+  interface's Warm green, a yellow-green, yellow, its Soon orange and Sour red (the row's own), each at least 4.9 to 1
+  on the dark look over a dark map. `HudLine.valueColor` colours the value in the full and compact rows. The tooltip:
+  "Outdoors now: 4 °C, chilly." and how the colonists on the map find it dressed as they are (the game's
+  `ComfortableTemperatureRange`, once a rare tick): "Comfortable for your colonists on the map, ..." or "Too cold for 2
+  of the 6 colonists on the map, ...". Fixed on the way: the next season was kept for an hour after moving to another
+  home's map. Almanac (the vitals' point, keywords unchanged) and README follow. Tests: `HudTemperatureTests`
+  (the bands, order and agreement for odd comfort ranges, the colours' contrast and order, the words); the
+  DefValidator knows the band keys. Not seen in the game: the colours themselves on the three looks; under the clear
+  look over snow they read poorly, as the row's orange and red and even white already do.
 - 0.140.0, A RimWorld of Magic under Harmony 3 (7 November 2026, the player's startup log and "help me fix it"). The log:
   `[ARimWorldOfMagic][ERR] Failed to apply Harmony patches for Torann.ARimworldOfMagic`, "Unrelated classes cannot
   describe the same non-null object ... supplied Verse.WeatherWorker, requested RimWorld.WeatherManager". Not a game

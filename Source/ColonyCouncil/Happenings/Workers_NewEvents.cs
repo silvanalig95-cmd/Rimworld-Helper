@@ -180,7 +180,7 @@ namespace ColonyCouncil
             {
                 var k = a?.kindDef;
                 if (k == null || list.Contains(k) || !a.RaceProps.FenceBlocked || a.RaceProps.predator) continue;
-                if (map.Biome.CommonalityOfAnimal(k) <= 0f || !map.mapTemperature.SeasonAndOutdoorTemperatureAcceptableFor(k.race, 0f)) continue;
+                if (!BiomeAnimals.LivesIn(map.Biome, k) || !map.mapTemperature.SeasonAndOutdoorTemperatureAcceptableFor(k.race, 0f)) continue;
                 list.Add(k);
             }
             return list;

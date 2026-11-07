@@ -143,6 +143,20 @@ namespace ColonyCouncil
         public static Color MoodColor(float now, float minor, float major, float extreme) =>
             now < extreme ? BarWorst : now < major ? BarBad : now < minor ? BarLow : BarOk;
 
+        // The outdoor temperature's scale, coldest first (HudRank.Band): deep blue, blue, sky blue and cyan for the cold, a
+        // blue-green for cool, then the interface's own green where people are comfortable, a yellow-green, yellow, the
+        // interface's orange and its red, the same orange and red a row turns when the temperature matters. Each is light
+        // enough for the panels' dark looks (at least 4.9 to 1 on the dark look over a dark map; over snow under the clear
+        // look they read less well, as the row's own orange and red do), and the tooltip names the band beside it.
+        private static readonly Color[] TemperatureScale =
+        {
+            new Color(0.46f, 0.48f, 0.97f), new Color(0.33f, 0.62f, 0.96f), new Color(0.39f, 0.76f, 0.98f), new Color(0.42f, 0.9f, 0.95f), new Color(0.4f, 0.93f, 0.78f),
+            UiKit.Warm, new Color(0.82f, 0.91f, 0.43f), new Color(0.98f, 0.82f, 0.24f), UiKit.Soon, UiKit.Sour
+        };
+
+        /// <summary>The colour of a temperature's band on the vitals' scale.</summary>
+        public static Color TemperatureColor(TemperatureBand band) => TemperatureScale[Mathf.Clamp((int)band, 0, TemperatureScale.Length - 1)];
+
         // ---------------- The mood bar ----------------
 
         /// <summary>

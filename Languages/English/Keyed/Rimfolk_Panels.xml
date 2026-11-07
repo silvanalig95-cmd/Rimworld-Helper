@@ -79,7 +79,23 @@
   <CC_Pnl_PowerTip>The grid makes {0} W more than it uses (less, when the number is negative). {1} Wd stored in batteries.</CC_Pnl_PowerTip>
   <CC_Pnl_Outside>Outside</CC_Pnl_Outside>
   <CC_Pnl_SeasonIn>{0} in {1} days</CC_Pnl_SeasonIn>
-  <CC_Pnl_TempTip>Outdoors now: {0}.</CC_Pnl_TempTip>
+  <CC_Pnl_TempTip>Outdoors now: {0}, {1}.</CC_Pnl_TempTip>
+  <!-- Where the outdoor temperature sits on the scale, coldest first (HudRank.Band); the colour of the value follows it. -->
+  <CC_Pnl_TempBand_DeadlyCold>deadly cold</CC_Pnl_TempBand_DeadlyCold>
+  <CC_Pnl_TempBand_Freezing>freezing</CC_Pnl_TempBand_Freezing>
+  <CC_Pnl_TempBand_Cold>cold</CC_Pnl_TempBand_Cold>
+  <CC_Pnl_TempBand_Chilly>chilly</CC_Pnl_TempBand_Chilly>
+  <CC_Pnl_TempBand_Cool>cool</CC_Pnl_TempBand_Cool>
+  <CC_Pnl_TempBand_Comfortable>comfortable</CC_Pnl_TempBand_Comfortable>
+  <CC_Pnl_TempBand_Warm>warm</CC_Pnl_TempBand_Warm>
+  <CC_Pnl_TempBand_Hot>hot</CC_Pnl_TempBand_Hot>
+  <CC_Pnl_TempBand_VeryHot>very hot</CC_Pnl_TempBand_VeryHot>
+  <CC_Pnl_TempBand_DeadlyHeat>deadly heat</CC_Pnl_TempBand_DeadlyHeat>
+  <CC_Pnl_TempComfy>Comfortable for your colonists on the map, dressed as they are.</CC_Pnl_TempComfy>
+  <CC_Pnl_TempColdAll>Too cold for your colonists on the map, dressed as they are.</CC_Pnl_TempColdAll>
+  <CC_Pnl_TempColdSome>Too cold for {0} of the {1} colonists on the map, dressed as they are.</CC_Pnl_TempColdSome>
+  <CC_Pnl_TempHotAll>Too hot for your colonists on the map, dressed as they are.</CC_Pnl_TempHotAll>
+  <CC_Pnl_TempHotSome>Too hot for {0} of the {1} colonists on the map, dressed as they are.</CC_Pnl_TempHotSome>
   <CC_Pnl_SeasonTip>{0} begins in {1} days, averaging {2}.</CC_Pnl_SeasonTip>
   <CC_Pnl_ClickOverlay>Click to show or hide the temperature overlay.</CC_Pnl_ClickOverlay>
   <CC_Pnl_Raid>Since the last raid</CC_Pnl_Raid>

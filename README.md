@@ -3371,7 +3371,11 @@ panel, it gets the click and the tooltip:
   one point an in-game hour, kept with the save. Hover for the values at a point.
 - **Colony vitals**: days of food (orange under 10, red under 4, the advisor's line; both in the settings), medicine
   (the advisor's two per colonist), the power grid's balance, the temperature outside and the next season, days since
-  the last raid, the research under way. Clicks go to the advisor, the temperature overlay, the defenses, the research tab.
+  the last raid, the research under way. The temperature's value is coloured by where it sits, from deep blue in deadly
+  cold through cyan and the green where people are comfortable (16 to 26 °C, the game's own human range) to yellow,
+  orange and red in deadly heat; its tooltip names the band and says whether the colonists on the map, dressed as they
+  are, would be too cold or too hot outside. Clicks go to the advisor, the temperature overlay, the defenses, the
+  research tab.
 - **Council at a glance**: the plan's next step; what waits on you, read from This week's Needs you, so it shows what
   This week and the council button count: open wishes and whose has waited longest, petitions, promises at risk,
   letters waiting for your answer, and the other asks of the region and the peoples, each line with its count and

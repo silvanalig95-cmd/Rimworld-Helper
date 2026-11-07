@@ -407,7 +407,8 @@ namespace ColonyCouncil
                 .Where(k => k?.race?.race != null && k.RaceProps.Animal && !k.RaceProps.predator && (map == null || map.mapTemperature.SeasonAndOutdoorTemperatureAcceptableFor(k.race, 0f)))
                 .ToList();
             if (ok.NullOrEmpty()) return null;
-            var local = map?.Biome == null ? ok : ok.Where(k => map.Biome.AllWildAnimals.Contains(k) || map.Biome.IsPackAnimalAllowed(k.race)).ToList();
+            var wild = map?.Biome == null ? null : new HashSet<PawnKindDef>(BiomeAnimals.Of(map.Biome));
+            var local = wild == null ? ok : ok.Where(k => wild.Contains(k) || map.Biome.IsPackAnimalAllowed(k.race)).ToList();
             return (local.Count > 0 ? local : ok).RandomElement();
         }
     }

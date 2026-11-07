@@ -24,9 +24,17 @@ namespace ColonyCouncil
         /// link (link ink, the dotted line, a preview after a pause).
         /// </summary>
         public ThingRef thing;
+        /// <summary>
+        /// The value's own colour, whatever the line's level (the outdoor temperature's band on its scale); null draws the
+        /// value white, or orange or red when the line matters.
+        /// </summary>
+        public Color? valueColor;
 
         public HudLevel Level => HudRank.LevelOf(score);
         public Color Color => HudKit.ColorOf(score, quiet);
+
+        /// <summary>The colour the value is drawn in.</summary>
+        public Color ValueColor => valueColor ?? (Level >= HudLevel.Soon ? Color : UnityEngine.Color.white);
     }
 
     /// <summary>
@@ -114,12 +122,13 @@ namespace ColonyCouncil
                 x += icon + Mathf.Round(5f * s);
                 if (compact)
                 {
-                    HudKit.Label(new Rect(x, row.y, row.xMax - x - 2f, rh), l.value ?? l.text, level >= HudLevel.Soon ? c : Color.white, GameFont.Tiny);
+                    HudKit.Label(new Rect(x, row.y, row.xMax - x - 2f, rh), l.value ?? l.text, l.value != null ? l.ValueColor : level >= HudLevel.Soon ? c : Color.white,
+                        GameFont.Tiny);
                 }
                 else
                 {
                     float vw = l.value.NullOrEmpty() ? 0f : Mathf.Min(HudKit.Width(l.value, main) + 4f, row.width * 0.45f);
-                    if (vw > 0f) HudKit.Label(new Rect(row.xMax - vw - 2f, row.y, vw, rh), l.value, level >= HudLevel.Soon ? c : Color.white, main, TextAnchor.MiddleRight);
+                    if (vw > 0f) HudKit.Label(new Rect(row.xMax - vw - 2f, row.y, vw, rh), l.value, l.ValueColor, main, TextAnchor.MiddleRight);
                     var tr = new Rect(x, row.y, Mathf.Max(0f, row.xMax - vw - 6f - x), rh);
                     if (!l.thing.IsNone && level < HudLevel.Soon) LinkWords(tr, l.text, l.thing, main);
                     else HudKit.Label(tr, l.text, level >= HudLevel.Soon ? c : l.quiet, main);

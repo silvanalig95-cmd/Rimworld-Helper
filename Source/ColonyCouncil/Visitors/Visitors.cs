@@ -224,19 +224,7 @@ namespace ColonyCouncil
             if (Fits(first)) return first;
             var opts = Livestock.Select(n => DefDatabase<PawnKindDef>.GetNamedSilentFail(n)).Where(Fits).ToList();
             if (opts.Count == 0) return null;
-            return opts.RandomElementByWeight(k =>
-            {
-                float w = 1f;
-                try
-                {
-                    if (biome != null && biome.CommonalityOfAnimal(k) > 0f) w *= 4f;
-                }
-                catch (Exception e)
-                {
-                    CouncilLog.ErrorOnce("visitor livestock", e);
-                }
-                return w;
-            });
+            return opts.RandomElementByWeight(k => BiomeAnimals.LivesIn(biome, k) ? 4f : 1f);
         }
 
         // ---------------- Where ----------------

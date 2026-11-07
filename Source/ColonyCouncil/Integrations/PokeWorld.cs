@@ -138,7 +138,7 @@ namespace ColonyCouncil
             foreach (var biome in DefDatabase<BiomeDef>.AllDefsListForReading)
             {
                 if (biome == null) continue;
-                foreach (var k in biome.AllWildAnimals)
+                foreach (var k in BiomeAnimals.Of(biome))
                     if (k?.race != null && species.TryGetValue(k.race, out var s)) s.wild = true;
             }
             if (!species.Values.Any(s => s.wild))
