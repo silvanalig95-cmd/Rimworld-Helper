@@ -2,7 +2,7 @@
 <Defs>
 
   <!-- Rimfolk's scenarios: games that start with stakes already in play. Each uses Rimfolk's scenario parts
-       (Defs/Misc/Council_ScenParts.xml): a sworn enemy, a debt, deserters, two feuding families, a reputation, a
+       (Defs/Misc/Council_ScenParts.xml): a sworn enemy, a debt, deserters, two feuding watches, a reputation, a
        secret. A few seconds in, a letter says how things stand. Fights they promise come as long as the storyteller
        sends threats at all, even with Rimfolk's world-event battles switched off: they're what the scenario is for. -->
 
@@ -340,9 +340,9 @@
   <ScenarioDef ParentName="ScenarioBase">
     <defName>Council_Scenario_BadBlood</defName>
     <label>Bad Blood</label>
-    <description>Two families, one valley, and three generations of bad blood. When the colony ship broke apart, the only pods that launched carried the last of two clans who haven't shared a meal in living memory. Now they'll have to share everything.\n\nEach family keeps its own name and sticks by its own. Expect cold shoulders, harsh words, rivalries, and a council where every vote is a family vote.\n\nNo one is coming to attack you; the trouble is all at home. The grudge fades over a month or two, faster if the families find reasons to work together.</description>
+    <description>Two watches, one valley, and a feud as old as the voyage. The colony ship's port and starboard watches fell out years ago over a death in the engine room, and they haven't shared a meal since. When the ship broke apart, the only pods that launched carried the last of both. Now they'll have to share everything.\n\nEach watch sticks by its own. Expect cold shoulders, harsh words, rivalries, and a council where every vote goes by watch.\n\nNo one is coming to attack you; the trouble is all at home. The grudge fades over a month or two, faster if the two watches find reasons to work together.</description>
     <scenario>
-      <summary>Six survivors from two feuding families, forced to build one colony together. No extra fights, just drama. (Rimfolk · gentle)</summary>
+      <summary>Six survivors from the two feuding watches of a colony ship, forced to build one colony together. No extra fights, just drama. (Rimfolk · gentle)</summary>
       <playerFaction>
         <def>PlayerFaction</def>
         <factionDef>PlayerColony</factionDef>
@@ -426,7 +426,7 @@
 
         <li Class="ScenPart_GameStartDialog">
           <def>GameStartDialog</def>
-          <text>The pods are open. Two families climb out, take one look at each other, and start unpacking on opposite sides of the clearing.\n\nThe first wall will have to go somewhere, and both families are watching to see whose side it ends up on.</text>
+          <text>The pods are open. Two watches climb out, take one look at each other, and start unpacking on opposite sides of the clearing.\n\nThe first wall will have to go somewhere, and both watches are waiting to see whose side it ends up on.</text>
           <closeSound>GameStartSting</closeSound>
         </li>
       </parts>

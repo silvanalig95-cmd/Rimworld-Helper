@@ -75,7 +75,7 @@
   <CC_ScenStart_Whole_Hooks>What shapes starting people ({WHAT}): it needs Rimfolk's deeper game hooks, which are off.</CC_ScenStart_Whole_Hooks>
   <CC_ScenStart_Unknown>{LABEL}: another mod's part, which Rimfolk doesn't know, so it isn't carried.</CC_ScenStart_Unknown>
   <CC_ScenStart_PeopleUnknown>Their people part is another mod's: the newcomers come as a new game's group, one to six of them.</CC_ScenStart_PeopleUnknown>
-  <CC_ScenStart_Never_Families>Two families who never got on: a feud along family lines never comes, since the colony is the family.</CC_ScenStart_Never_Families>
+  <CC_ScenStart_Never_Families>Two feuding watches of a colony ship: their feud began aboard, so it only starts a new game.</CC_ScenStart_Never_Families>
 
   <!-- The newcomers' window -->
   <CC_ScenStart_WindowLine>A start as {SCENARIO} has it: its people, its count and what shapes them.</CC_ScenStart_WindowLine>

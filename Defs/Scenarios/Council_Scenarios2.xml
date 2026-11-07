@@ -119,7 +119,7 @@
 
         <li Class="ScenPart_GameStartDialog">
           <def>GameStartDialog</def>
-          <text>The cart lies on its side with one wheel in the air, and the costumes are drying on a bush. The muffalo has started eating the scenery.\n\nIt's a long way to the next town, and nobody is in a hurry to walk it. Somebody suggests building a stage first, and a house second. Somebody else suggests the other way round. The first argument of the new colony has begun.</text>
+          <text>The cart is past mending: it lost its last wheel a mile back, and all that's left of it is a pile of wood and a bolt of costume cloth. The muffalo has started eating the scenery.\n\nIt's a long way to the next town, and nobody is in a hurry to walk it. Somebody suggests building a stage first, and a house second. Somebody else suggests the other way round. The first argument of the new colony has begun.</text>
           <closeSound>GameStartSting</closeSound>
         </li>
 

@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Bad Blood between two watches
+
+*7 November 2026, version 0.139.0*
+
+- Bad Blood's six survivors are now the last of a colony ship's port and starboard watches, who fell out over a death in the engine room, instead of two feuding families. Everyone keeps their own name, and anyone already related stands on the same side.
+- Shipmates of one watch like each other more and the other watch less, and the grudge still fades over a month or two, faster when the two watches work together. The scenario part in the editor is now called two feuding watches.
+- The Players' Cart's opening words now match the map: the broken cart is a pile of wood and a bolt of costume cloth, not a cart lying on its side.
+
 ## New peoples arise during play
 
 *7 November 2026, version 0.138.0*

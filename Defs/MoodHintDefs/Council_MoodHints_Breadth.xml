@@ -110,7 +110,7 @@
       <li>Council_Scen_HuntOver</li>
       <li>Council_Scen_DebtPaid</li>
     </thoughts>
-    <fix>A feeling the colony started the game with, and slow to fade. Between feuding families, shared work, shared meals and a common enemy build better opinions in the meantime.</fix>
+    <fix>A feeling the colony started the game with, and slow to fade. Between feuding watches, shared work, shared meals and a common enemy build better opinions in the meantime.</fix>
     <act>Shared work brings them round</act>
     <actionable>false</actionable>
     <keep>Something the colony started the game with, and it lasts for months. The bonds it began can grow into lasting friendships; the Bonds page shows them.</keep>

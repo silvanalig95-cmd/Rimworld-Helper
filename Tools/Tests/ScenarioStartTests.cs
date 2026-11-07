@@ -142,7 +142,7 @@ public static class ScenarioStartTests
             var rim = types.Where(t => t.StartsWith(R)).ToList();
             C(rim.All(t => ScenarioStartMath.Carry(t) == ScenCarry.Rimfolk || t == R + "ScenPart_CouncilFamilies"), $"{name}: Rimfolk's own parts come ({rim.Count})");
             if (name == "Council_Scenario_BadBlood")
-                C(rim.Contains(R + "ScenPart_CouncilFamilies") && ScenarioStartMath.Carry(R + "ScenPart_CouncilFamilies") == ScenCarry.Never, "Bad Blood: its two families are listed as never carried");
+                C(rim.Contains(R + "ScenPart_CouncilFamilies") && ScenarioStartMath.Carry(R + "ScenPart_CouncilFamilies") == ScenCarry.Never, "Bad Blood: its two watches are listed as never carried");
         }
     }
 
@@ -235,7 +235,7 @@ public static class ScenarioStartTests
         foreach (int f in new[] { ScenarioStartMath.FromDef, ScenarioStartMath.ThisGame, ScenarioStartMath.Local, ScenarioStartMath.Workshop })
             C(keyed.ContainsKey("CC_ScenStart_From_" + f), "the list's group named: " + f);
         C(keyed["CC_ScenStart_ListLine"].Contains("new game") && keyed["CC_ScenStart_NewGame"].Contains("new game"), "a whole new scenario on its own page: a new game, said plainly");
-        C(keyed["CC_ScenStart_Never_Families"].Contains("family lines"), "the families' feud said for what it is");
+        C(keyed["CC_ScenStart_Never_Families"].Contains("watches") && keyed["CC_ScenStart_Never_Families"].Contains("new game"), "the watches' feud said for what it is: it only starts a new game");
         var almanac = XDocument.Load(Path.Combine(root, "Defs", "AlmanacArticleDefs", "Almanac_ScenarioStart.xml")).Root!.Elements().First();
         C(almanac.Element("label")?.Value == "a scenario's start" && !almanac.ToString().Contains("—") && !almanac.ToString().Contains("!"), "the Almanac page, a page of its own");
         C(almanac.ToString().Contains("new game") && almanac.ToString().Contains("family lines"), "the Almanac page says where a whole new scenario belongs, and why the families never come");

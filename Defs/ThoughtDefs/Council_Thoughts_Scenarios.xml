@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <!-- Thoughts from Rimfolk's scenarios: two families who never got on, a tyrant in the cellar, a hunt that ended,
+  <!-- Thoughts from Rimfolk's scenarios: two watches of a colony ship who never got on, a tyrant in the cellar, a hunt that ended,
        a debt paid. The opinions fade over their last third, like any memory. -->
 
   <ThoughtDef>
@@ -10,7 +10,7 @@
     <durationDays>90</durationDays>
     <stackLimit>100</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>family</label><description>We've shared a table since long before we came out here, and we'll go on sharing one.</description><baseOpinionOffset>20</baseOpinionOffset></li></stages>
+    <stages><li><label>my watch</label><description>We stood the same watch for years before we came out here, and we'll go on standing by each other.</description><baseOpinionOffset>20</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -19,7 +19,7 @@
     <durationDays>45</durationDays>
     <stackLimit>100</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>bad blood between our families</label><description>Their family and mine go back a long way, and none of it is good. Sharing a roof with them doesn't change that.</description><baseOpinionOffset>-20</baseOpinionOffset></li></stages>
+    <stages><li><label>bad blood between our watches</label><description>Their watch and mine go back a long way, and none of it is good. Sharing a roof with them doesn't change that.</description><baseOpinionOffset>-20</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>

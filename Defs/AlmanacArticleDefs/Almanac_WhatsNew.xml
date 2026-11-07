@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.139.0</version>
+        <date>7 November 2026</date>
+        <title>Bad Blood between two watches</title>
+        <points>
+          <li>Bad Blood's six survivors are now the last of a colony ship's port and starboard watches, who fell out over a death in the engine room, instead of two feuding families. Everyone keeps their own name, and anyone already related stands on the same side.</li>
+          <li>Shipmates of one watch like each other more and the other watch less, and the grudge still fades over a month or two, faster when the two watches work together. The scenario part in the editor is now called two feuding watches.</li>
+          <li>The Players' Cart's opening words now match the map: the broken cart is a pile of wood and a bolt of costume cloth, not a cart lying on its side.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.138.0</version>
         <date>7 November 2026</date>
         <title>New peoples arise during play</title>

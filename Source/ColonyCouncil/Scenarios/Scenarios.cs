@@ -384,8 +384,9 @@ namespace ColonyCouncil
     // ===================== Two families =====================
 
     /// <summary>
-    /// The colonists are two families who have never got on: each takes one surname, family stands by family, and
-    /// there's bad blood across the line (it fades in a couple of months, if nothing feeds it).
+    /// The colonists are the last of two watches of a colony ship who have never got on (Bad Blood): each watch stands
+    /// by its own, and there's bad blood across the line (it fades in a couple of months, if nothing feeds it). People
+    /// already related stay on the same side. A feud between crewmates, never along family lines: nobody's name changes.
     /// </summary>
     public class ScenPart_CouncilFamilies : ScenPart_Council
     {
@@ -412,43 +413,16 @@ namespace ColonyCouncil
             var b = new List<Pawn>();
             foreach (var g in groups.OrderByDescending(g => g.Count)) (a.Count <= b.Count ? a : b).AddRange(g);
             if (a.Count == 0 || b.Count == 0) return;
-            string nameA = Surname(a, null) ?? NewSurname(a[0], null);
-            string nameB = Surname(b, nameA) ?? NewSurname(b[0], nameA);
-            Rename(a, nameA);
-            Rename(b, nameB);
             foreach (var x in people)
             foreach (var y in people)
             {
                 if (x == y) continue;
-                bool kin = a.Contains(x) == a.Contains(y);
-                x.needs.mood.thoughts.memories.TryGainMemory(kin ? CouncilDefOf.Council_Scen_Kin : CouncilDefOf.Council_Scen_Feud, y);
+                bool same = a.Contains(x) == a.Contains(y);
+                x.needs.mood.thoughts.memories.TryGainMemory(same ? CouncilDefOf.Council_Scen_Kin : CouncilDefOf.Council_Scen_Feud, y);
             }
-            string line = "CC_Scen_Families".Translate((nameA ?? "?").Named("NAMEA"), ScenarioSetup.Names(a).Named("FAMILYA"),
-                (nameB ?? "?").Named("NAMEB"), ScenarioSetup.Names(b).Named("FAMILYB")).Resolve();
+            string line = "CC_Scen_Families".Translate(ScenarioSetup.Names(a).Named("WATCHA"), ScenarioSetup.Names(b).Named("WATCHB")).Resolve();
             ctx.lines.Add(line);
             ctx.comp.AddChronicle(new ChronicleEntry(ChronicleKind.Bond, line));
-        }
-
-        /// <summary>The family's name: one of theirs, different from the other family's.</summary>
-        private static string Surname(List<Pawn> family, string not) =>
-            family.Select(p => (p.Name as NameTriple)?.Last).Where(n => !n.NullOrEmpty() && n != not).RandomElementWithFallback();
-
-        /// <summary>A fresh surname when nobody in the family has one of their own to give.</summary>
-        private static string NewSurname(Pawn p, string not)
-        {
-            for (int i = 0; i < 10; i++)
-            {
-                string last = (PawnBioAndNameGenerator.GeneratePawnName(p) as NameTriple)?.Last;
-                if (!last.NullOrEmpty() && last != not) return last;
-            }
-            return null;
-        }
-
-        private static void Rename(List<Pawn> family, string last)
-        {
-            if (last.NullOrEmpty()) return;
-            foreach (var p in family)
-                if (p.Name is NameTriple n && n.Last != last) p.Name = new NameTriple(n.First, n.Nick, last);
         }
 
         public override string Summary(Scenario scen) => "CC_ScenPart_Families".Translate();

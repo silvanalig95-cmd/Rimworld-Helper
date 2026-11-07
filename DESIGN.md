@@ -461,7 +461,7 @@ that come from inside it. They can stand on their own, but most reach into the r
 ### Scenarios with stakes
 Rimfolk's scenarios use the same machinery to start a game with stakes in play: a nemesis from day one, a debt
 that comes due as a Rimfolk event, a "hunt" (a promised raid that comes back every few weeks while the one leading it
-lives), deserters whose old unit finds them, two families seeded with kin and feud opinions, a starting reputation,
+lives), deserters whose old unit finds them, two feuding watches of a colony ship seeded with shipmate and feud opinions, a starting reputation,
 a scenario-only secret. Everything is set up once, a few seconds into the game, and kept in Rimfolk's own save data
 (the scenario parts hold no state). The one exception to the battle switch: fights a scenario promises ignore the
 Rimfolk-event battles setting, because the player picked the scenario for them, but they still need a storyteller
@@ -3148,7 +3148,7 @@ kit, their arrival, Rimfolk's parts at the new colony), `ScenarioStartWindow.cs`
   world conditions, incidents switched off, the whole game's events (quests and incidents made at the start, the
   monolith, the pursuing mechanoids), the opening words. Another mod's part, even one built on the game's, is listed as
   not carried; with the deeper game hooks off, so are the parts that shape people through them. Never: Bad Blood's
-  families (`ScenPart_CouncilFamilies`), a feud along family lines.
+  watches (`ScenPart_CouncilFamilies`), a feud that began aboard their ship.
 - **The people.** `Dialog_Newcomers` reads the people part's fields into its own start data (`ScenarioStarts.InitData`:
   the count, the left-behind kind, the required kinds, xenotypes and mutants, the allowed life stages, the required
   skills; never its `PostIdeoChosen`), makes each place's request as the part's own `GenerateStartingPawns` would (its

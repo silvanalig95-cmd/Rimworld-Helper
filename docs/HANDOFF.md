@@ -6,6 +6,14 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 0.139.0, Bad Blood between two watches (7 November 2026, the player's yes to reworking it under the rule that the colony
+  is the family, and to the Players' Cart's words). `ScenPart_CouncilFamilies` (class, def and thought defNames kept for
+  saves) makes the colonists the port and starboard watches of a colony ship: the same split (relatives stay together,
+  sides by size), the same `Council_Scen_Kin` (now "my watch") and `Council_Scen_Feud` ("bad blood between our
+  watches") opinions, and no surnames given (the old `Surname`/`Rename` are gone). Still never carried into a fresh
+  start (`CC_ScenStart_Never_Families` says why: the feud began aboard). The scenario's words, the editor label, the
+  Almanac, the mood hint, README and DESIGN.md follow. The Players' Cart's opening words name what is on the map (the
+  scattered wood, the cloth) instead of a cart on its side.
 - The installer, second pass (7 November 2026, the player's report: RimWorld at `E:\Programme\Steam\steamapps\common\RimWorld`
   wasn't found, typed or looked for; "it's RimWorld.exe not 64"). 1.7's program is `RimWorld.exe`; the installer knew
   only `RimWorldWin64.exe`, so every check failed. A folder now counts as RimWorld's with `RimWorld*.exe` or

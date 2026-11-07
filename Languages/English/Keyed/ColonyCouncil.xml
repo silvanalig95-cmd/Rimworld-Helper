@@ -2060,7 +2060,7 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Scen_Debt_loan>The colony owes {FACTION} {AMOUNT} silver, the price of everything it landed with. They'll want it in about {DAYS} days.</CC_Scen_Debt_loan>
   <CC_Scen_Debt_heist>The {AMOUNT} silver in the colony's packs belongs to {FOE}, by any reasonable account. {FACTION} will come asking for it in about {DAYS} days.</CC_Scen_Debt_heist>
   <CC_Scen_Deserters>{NAMES} deserted from {FACTION}. Their old unit still has their names, and is still looking.</CC_Scen_Deserters>
-  <CC_Scen_Families>The {NAMEA} family: {FAMILYA}. The {NAMEB} family: {FAMILYB}. The two families have never gotten along.</CC_Scen_Families>
+  <CC_Scen_Families>The port watch: {WATCHA}. The starboard watch: {WATCHB}. The two watches have never gotten along.</CC_Scen_Families>
   <CC_Scen_SecretHint>Not everyone here is telling the whole truth.</CC_Scen_SecretHint>
   <CC_Scen_WaysWhy>how the colony began ({0})</CC_Scen_WaysWhy>
 
@@ -2131,7 +2131,7 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_ScenPart_DueDays>Due after {0} days</CC_ScenPart_DueDays>
   <CC_ScenPart_Deserters>Rimfolk: {0} of the colonists deserted from a hostile army, which is still looking for them.</CC_ScenPart_Deserters>
   <CC_ScenPart_Count>How many</CC_ScenPart_Count>
-  <CC_ScenPart_Families>Rimfolk: the colonists are two families who have never gotten along.</CC_ScenPart_Families>
+  <CC_ScenPart_Families>Rimfolk: the colonists are the two watches of a colony ship, who have never gotten along.</CC_ScenPart_Families>
   <CC_ScenPart_Ways>Rimfolk: the colony starts out with a reputation ({0}).</CC_ScenPart_Ways>
   <CC_ScenPart_Secret>Rimfolk: someone is keeping a secret ({0}).</CC_ScenPart_Secret>
   <CC_ScenPart_PickSecret>Pick a secret</CC_ScenPart_PickSecret>

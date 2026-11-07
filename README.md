@@ -1946,7 +1946,7 @@ its kit, what it lays about the start and its animals come with them; they arriv
 in its gravship when the old colony is left behind); and Rimfolk's own parts (a council already seated, the old days, a
 sworn enemy, a debt, deserters, a secret, a grant of land...) are set up for that colony once they are there. What
 changes the whole game (the scenario's own people, its research, rules for every map, world conditions, incidents
-switched off) is listed as not carried, and Bad Blood's two quarrelling families never come: the colony is the family.
+switched off) is listed as not carried, and Bad Blood's two feuding watches never come: their feud only starts a new game.
 Free with the old colony left behind; with it kept, their passage covers the kit too. A whole new scenario on its own
 page is what a new game is for.
 
@@ -3236,8 +3236,9 @@ something already in motion, and a few seconds in, a letter says how things stan
   the mutiny.
 - **Deserters** (moderate). Five well-armed, badly fed soldiers who walked away from a war, knowing how to rig IEDs. In a month or so their
   old unit comes for one of them: hand them over, buy their freedom, or fight.
-- **Bad Blood** (gentle fights, social drama). Six survivors from two families who have never got on. Each family
-  takes one name, stands by its own, and doesn't think much of the other (the grudge fades over a month or two).
+- **Bad Blood** (gentle fights, social drama). Six survivors from the port and starboard watches of a colony ship,
+  who have never got on. Each watch stands by its own and doesn't think much of the other (the grudge fades over a
+  month or two).
 - **Borrowed Time** (moderate). The best start money can buy, bought with a 3,000-silver loan due in about a month
   and a half, batteries and solar panels researched. Refusing to pay brings the collectors twice.
 - **The Fallen Tyrant** (challenging). Five servants who drugged their warlord at a feast (they know brewing). The warlord starts as your
@@ -3257,7 +3258,7 @@ something already in motion, and a few seconds in, a letter says how things stan
 
 The pieces are **scenario parts** you can add to any scenario in the scenario editor: *a sworn enemy* (who hunts,
 was robbed by, betrayed or held the colonists in chains, can start as your prisoner, and attacks a set number of
-times or until they fall), *a debt*, *deserters*, *two feuding families*, *a bond from the start* (a couple, old
+times or until they fall), *a debt*, *deserters*, *two feuding watches*, *a bond from the start* (a couple, old
 friends, or a master and apprentice), *an event around a set day* (someone from the past, a visitor, a great
 beast...), *a reputation*, *a secret* (one the whole company can share), *a council already formed*, *days the colony
 keeps*, *a life goal from before*, *beholden to a people*, *children in the colony's care* and *a world event set in

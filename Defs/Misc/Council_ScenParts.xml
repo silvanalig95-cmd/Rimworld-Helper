@@ -39,7 +39,7 @@
 
   <ScenPartDef>
     <defName>Council_ScenFamilies</defName>
-    <label>Rimfolk: two feuding families</label>
+    <label>Rimfolk: two feuding watches</label>
     <category>Misc</category>
     <scenPartClass>ColonyCouncil.ScenPart_CouncilFamilies</scenPartClass>
     <selectionWeight>0</selectionWeight>
