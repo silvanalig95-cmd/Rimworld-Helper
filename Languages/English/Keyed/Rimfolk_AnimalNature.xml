@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The animals' natures (Source/ColonyCouncil/Animals/AnimalTempers.cs, AnimalBonds.cs, AnimalVoices.cs). -->
+
+  <!-- Settings -->
+  <CC_Settings_AnimalTempers>Animals' temperaments</CC_Settings_AnimalTempers>
+  <CC_Settings_AnimalTempers_Tip>Every named or bonded animal has a temperament: brave, timid, greedy, gentle, proud, mischievous, loyal, lazy or curious, leaning by its kind (a dog loyal, a cat proud, a muffalo gentle, a Pokémon by its types). It shows on the animal's card and in small things it does on the map: the brave one stands between its person and an attacker, the timid one bolts from the shooting, the greedy one sneaks food from the stores or a table, the gentle one nuzzles someone sick or low, the proud one shoulders in when its person works with another animal, the mischievous one gets into the crops or knocks things off a shelf, the loyal one waits at the door while its person is away, the lazy one naps by the fire, the curious one follows visitors about. Never a letter or a message. How often is on How much happens.</CC_Settings_AnimalTempers_Tip>
+  <CC_SetNote_AnimalTempers>Each named or bonded animal's temperament on its card, and in what it does on the map now and then.</CC_SetNote_AnimalTempers>
+  <CC_Settings_AnimalMoments>Animals' temperaments on the map</CC_Settings_AnimalMoments>
+  <CC_Settings_AnimalMoments_Tip>How often the colony's named and bonded animals show their temperaments on the map. At 100% the greedy and the mischievous every five days or so each, the gentle, proud, lazy and curious every three, the brave and the timid when there is something to be brave or timid about (once a fight each), the loyal one at the door about twice a day while its person is away; one such moment an hour on a map at most. 0%: none, while their cards still say what they are.</CC_Settings_AnimalMoments_Tip>
+  <CC_SetNote_AnimalMoments>How often a temperament shows on the map: the greedy one at the stores, the loyal one at the door.</CC_SetNote_AnimalMoments>
+  <CC_Settings_AnimalBonds>Friendships and grief among animals</CC_Settings_AnimalBonds>
+  <CC_Settings_AnimalBonds_Tip>Two of the colony's named or bonded animals that sleep side by side three nights become friends: they fall in together by day with a nuzzle and lie down beside each other at night. Two of different kinds may fall out (a cat and a dog far likelier) and hiss and chase now and then; nobody is hurt. A bonded animal whose person died goes to lie on their grave every few days for two months; a friend of an animal that died misses it for a month. One sold, given away or released that meets its old handler again comes over to them. All of it shows on the map, on the animals' cards and in what colonists say and write; never a letter or a message.</CC_Settings_AnimalBonds_Tip>
+  <CC_SetNote_AnimalBonds>Animals that sleep together, feud, grieve at a grave, or know their old handler again.</CC_SetNote_AnimalBonds>
+  <CC_Settings_SpeakingAnimals>Animals speak</CC_Settings_SpeakingAnimals>
+  <CC_Settings_SpeakingAnimals_Tip>A fantasy part, rare: some animals speak. A psychic-type Pokémon to its trainer, in the mind (PokéWorld); a druid's or a ranger's bonded animal (A RimWorld of Magic); a strong psycaster's bonded animal (psylink level three or more); Vanilla Genetics Expanded's humanoid hybrids; and in a tribe, or a colony whose faith holds animals to be people, a bonded animal speaks in its person's dreams. A speaking animal says a line to its person now and then in its own voice, warns of raiders or a predator near it, and has a word at council meetings and on the council's questions about its person, without a vote. Never a letter or a message for its talk. Auto, the default: on only while PokéWorld or A RimWorld of Magic is loaded, or someone in the colony has a psylink; otherwise off.</CC_Settings_SpeakingAnimals_Tip>
+  <CC_SpeakingAnimals_Auto>Auto</CC_SpeakingAnimals_Auto>
+  <CC_SpeakingAnimals_Auto_Tip>Only while PokéWorld or A RimWorld of Magic is loaded, or someone in the colony has a psylink.</CC_SpeakingAnimals_Auto_Tip>
+  <CC_SpeakingAnimals_On>On</CC_SpeakingAnimals_On>
+  <CC_SpeakingAnimals_On_Tip>Always, whatever mods are loaded.</CC_SpeakingAnimals_On_Tip>
+  <CC_SpeakingAnimals_Off>Off</CC_SpeakingAnimals_Off>
+  <CC_SpeakingAnimals_Off_Tip>No animal speaks.</CC_SpeakingAnimals_Off_Tip>
+  <CC_SetNote_SpeakingAnimals_Auto>Animals speak only with PokéWorld, A RimWorld of Magic or a psylink in the colony.</CC_SetNote_SpeakingAnimals_Auto>
+  <CC_SetNote_SpeakingAnimals_On>Some animals always speak: psychic Pokémon, a druid's, a psycaster's, a hybrid, a tribe's in dreams.</CC_SetNote_SpeakingAnimals_On>
+  <CC_SetNote_SpeakingAnimals_Off>No animal speaks.</CC_SetNote_SpeakingAnimals_Off>
+
+  <!-- Temperaments -->
+  <CC_Temper_Brave>brave</CC_Temper_Brave>
+  <CC_Temper_Timid>timid</CC_Temper_Timid>
+  <CC_Temper_Greedy>greedy</CC_Temper_Greedy>
+  <CC_Temper_Gentle>gentle</CC_Temper_Gentle>
+  <CC_Temper_Proud>proud</CC_Temper_Proud>
+  <CC_Temper_Mischievous>mischievous</CC_Temper_Mischievous>
+  <CC_Temper_Loyal>loyal</CC_Temper_Loyal>
+  <CC_Temper_Lazy>lazy</CC_Temper_Lazy>
+  <CC_Temper_Curious>curious</CC_Temper_Curious>
+  <CC_Temper_Inspect>Temperament: {TEMPER}</CC_Temper_Inspect>
+  <CC_Temper_Lately>Lately: {WHAT}</CC_Temper_Lately>
+
+  <!-- What it did lately, on its card -->
+  <CC_TemperDid_BravePredator>stood between {PAWN_nameDef} and {OTHER_nameDef}</CC_TemperDid_BravePredator>
+  <CC_TemperDid_BraveFight>stood its ground between {PAWN_nameDef} and {OTHER_nameDef} in the fight</CC_TemperDid_BraveFight>
+  <CC_TemperDid_TimidStranger>shied away from {OTHER_nameDef}</CC_TemperDid_TimidStranger>
+  <CC_TemperDid_TimidFight>bolted from the shooting</CC_TemperDid_TimidFight>
+  <CC_TemperDid_GreedyTable>sneaked {THING} off a table</CC_TemperDid_GreedyTable>
+  <CC_TemperDid_GreedyStores>sneaked {THING} from the stores</CC_TemperDid_GreedyStores>
+  <CC_TemperDid_GentleNuzzle>went to nuzzle {PAWN_nameDef}</CC_TemperDid_GentleNuzzle>
+  <CC_TemperDid_GentleBed>lay down by {PAWN_nameDef}'s bed</CC_TemperDid_GentleBed>
+  <CC_TemperDid_ProudShoulder>shouldered in while {PAWN_nameDef} saw to {OTHER_nameDef}</CC_TemperDid_ProudShoulder>
+  <CC_TemperDid_ProudShowOff>showed itself off to {OTHER_nameDef}</CC_TemperDid_ProudShowOff>
+  <CC_TemperDid_MischiefCrop>got into the field and ate a {THING}</CC_TemperDid_MischiefCrop>
+  <CC_TemperDid_MischiefShelf>knocked {THING} off a shelf</CC_TemperDid_MischiefShelf>
+  <CC_TemperDid_LoyalDoor>waited at the door for {PAWN_nameDef}</CC_TemperDid_LoyalDoor>
+  <CC_TemperDid_LoyalBed>waited by {PAWN_nameDef}'s bed</CC_TemperDid_LoyalBed>
+  <CC_TemperDid_LoyalHome>ran to {PAWN_nameDef}, home again</CC_TemperDid_LoyalHome>
+  <CC_TemperDid_Lazy_fire>took a nap by the fire</CC_TemperDid_Lazy_fire>
+  <CC_TemperDid_Lazy_shade>took a nap in the shade</CC_TemperDid_Lazy_shade>
+  <CC_TemperDid_Lazy_sun>took a nap in the sun</CC_TemperDid_Lazy_sun>
+  <CC_TemperDid_CuriousGuest>followed {OTHER_nameDef} about</CC_TemperDid_CuriousGuest>
+  <CC_TemperDid_CuriousWork>watched {PAWN_nameDef} at work</CC_TemperDid_CuriousWork>
+  <CC_BondDid_Friends>became friends with {OTHER_nameDef}</CC_BondDid_Friends>
+  <CC_BondDid_Rivals>fell out with {OTHER_nameDef}</CC_BondDid_Rivals>
+  <CC_BondDid_SleptBeside>lay down to sleep beside {OTHER_nameDef}</CC_BondDid_SleptBeside>
+  <CC_BondDid_FollowedFriend>went about with {OTHER_nameDef}</CC_BondDid_FollowedFriend>
+  <CC_BondDid_Chased>chased {OTHER_nameDef} off</CC_BondDid_Chased>
+  <CC_BondDid_ChasedOff>was chased off by {OTHER_nameDef}</CC_BondDid_ChasedOff>
+  <CC_BondDid_Grave>lay on {OTHER}'s grave</CC_BondDid_Grave>
+  <CC_VoiceDid_Spoke>spoke to {PAWN_nameDef}</CC_VoiceDid_Spoke>
+  <CC_VoiceDid_WarnedRaid>warned of the raiders</CC_VoiceDid_WarnedRaid>
+  <CC_VoiceDid_WarnedPredator>warned of {OTHER_nameDef}</CC_VoiceDid_WarnedPredator>
+  <CC_VoiceDid_Meeting>had its word at the council meeting beside {PAWN_nameDef}</CC_VoiceDid_Meeting>
+  <CC_VoiceDid_Dilemma>had its word on the council's question</CC_VoiceDid_Dilemma>
+
+  <!-- Friends and rivals in the log -->
+  <CC_BondLog_Nuzzle>{PET_nameDef} nuzzles {OTHER_nameDef}.</CC_BondLog_Nuzzle>
+  <CC_BondLog_KnowsYou>{PET_nameDef} knows {OTHER_nameDef} again and comes to their side.</CC_BondLog_KnowsYou>
+  <CC_BondLog_Hiss_cat>{PET_nameDef} hisses at {OTHER_nameDef}.</CC_BondLog_Hiss_cat>
+  <CC_BondLog_Hiss_dog>{PET_nameDef} growls at {OTHER_nameDef}.</CC_BondLog_Hiss_dog>
+  <CC_BondLog_Hiss_horse>{PET_nameDef} stamps and snorts at {OTHER_nameDef}.</CC_BondLog_Hiss_horse>
+  <CC_BondLog_Hiss_bird>{PET_nameDef} squawks at {OTHER_nameDef}.</CC_BondLog_Hiss_bird>
+  <CC_BondLog_Hiss_pokemon>{PET_nameDef} glares at {OTHER_nameDef} and squares up.</CC_BondLog_Hiss_pokemon>
+  <CC_BondLog_Hiss_beast>{PET_nameDef} bares its teeth at {OTHER_nameDef}.</CC_BondLog_Hiss_beast>
+
+  <!-- The card -->
+  <CC_Bond_Inspect_Friends>sleeps beside {NAMES}</CC_Bond_Inspect_Friends>
+  <CC_Bond_Inspect_Rivals>at odds with {NAMES}</CC_Bond_Inspect_Rivals>
+  <CC_Bond_Inspect_GraveOf>Grieving for {OTHER_nameDef}: goes to lie on the grave.</CC_Bond_Inspect_GraveOf>
+  <CC_Bond_Inspect_Grieves>Grieving for {OTHER_nameDef}.</CC_Bond_Inspect_Grieves>
+  <CC_Bond_Inspect_Misses>Misses {OTHER}.</CC_Bond_Inspect_Misses>
+  <CC_Voice_Inspect_Mind>Speaks to {PAWN_nameDef} in the mind.</CC_Voice_Inspect_Mind>
+  <CC_Voice_Inspect_Commune>Speaks with {PAWN_nameDef}, who communes with it.</CC_Voice_Inspect_Commune>
+  <CC_Voice_Inspect_Psylink>{PAWN_nameDef} hears it through the psylink.</CC_Voice_Inspect_Psylink>
+  <CC_Voice_Inspect_Hybrid>Speaks, as its making allows; mostly to {PAWN_nameDef}.</CC_Voice_Inspect_Hybrid>
+  <CC_Voice_Inspect_HybridAnyone>Speaks, as its making allows, to whoever is near.</CC_Voice_Inspect_HybridAnyone>
+  <CC_Voice_Inspect_Spirit>A spirit animal: it speaks to {PAWN_nameDef} in dreams.</CC_Voice_Inspect_Spirit>
+  <CC_Voice_DilemmaWord>{PET_nameDef}, at {PAWN_nameDef}'s side, has a word: "{LINE}"</CC_Voice_DilemmaWord>
+
+  <!-- Where a danger is, from where the animal stands -->
+  <CC_Compass_north>to the north</CC_Compass_north>
+  <CC_Compass_northeast>to the northeast</CC_Compass_northeast>
+  <CC_Compass_east>to the east</CC_Compass_east>
+  <CC_Compass_southeast>to the southeast</CC_Compass_southeast>
+  <CC_Compass_south>to the south</CC_Compass_south>
+  <CC_Compass_southwest>to the southwest</CC_Compass_southwest>
+  <CC_Compass_west>to the west</CC_Compass_west>
+  <CC_Compass_northwest>to the northwest</CC_Compass_northwest>
+  <CC_Compass_here>right here</CC_Compass_here>
+
+  <!-- What it is doing, in its report -->
+  <CC_AnimalJob_Stand>standing its ground for {OTHER}.</CC_AnimalJob_Stand>
+  <CC_AnimalJob_LieBy>lying by {OTHER}.</CC_AnimalJob_LieBy>
+  <CC_AnimalJob_ShowOff>showing off to {OTHER}.</CC_AnimalJob_ShowOff>
+  <CC_AnimalJob_WaitDoor>waiting at the door for {OTHER}.</CC_AnimalJob_WaitDoor>
+  <CC_AnimalJob_Watch>watching {OTHER}.</CC_AnimalJob_Watch>
+  <CC_AnimalJob_Vigil>lying on {OTHER}'s grave.</CC_AnimalJob_Vigil>
+
+</LanguageData>

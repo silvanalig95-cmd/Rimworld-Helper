@@ -1323,6 +1323,9 @@ namespace ColonyCouncil
             string tradition = IsTradition(ctx.def)
                 ? "\n\n" + "CC_Tradition_Note".Translate(ctx.def.traditionLabel, ctx.Format(ctx.def.options[ctx.def.traditionOption].label)).Resolve()
                 : "";
+            // A speaking animal of someone the question is about, or the animal it is about, has a word (Animals/AnimalVoices.cs).
+            string word = AnimalVoices.DilemmaWord(ctx);
+            if (!word.NullOrEmpty()) tradition += "\n\n" + word;
             var letter = (ChoiceLetter_Dilemma)LetterMaker.MakeLetter("CC_Dilemma_Title".Translate(ctx.def.LabelCap), ctx.Format(ctx.text) + tradition + "\n\n" + "CC_Dilemma_Deadline".Translate(TextUtil.DaysString(Mathf.RoundToInt(ctx.def.answerDays * GenDate.TicksPerDay)), ctx.Format(ctx.def.options[ctx.def.defaultOption].label)), letterDef, look);
             letter.ctx = ctx;
             letter.StartTimeout(Mathf.RoundToInt(ctx.def.answerDays * GenDate.TicksPerDay));

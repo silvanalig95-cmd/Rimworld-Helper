@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The animals' natures on the map (Source/ColonyCouncil/Animals/AnimalTempers.cs, AnimalBonds.cs): an animal walks to a
+    cell and stays a while facing something (JobDriver_AnimalLinger: standing, lying down, or holding its ground in a
+    fight), or knocks a few light things off a shelf (JobDriver_AnimalKnockOver). Each is ended by a danger breaking out,
+    except the stand, which is for danger.
+  -->
+
+  <JobDef>
+    <defName>Rimfolk_AnimalStand</defName>
+    <driverClass>ColonyCouncil.JobDriver_AnimalLinger</driverClass>
+    <reportString>standing its ground.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Never</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.AnimalLingerExtension">
+        <stand>true</stand>
+        <report>CC_AnimalJob_Stand</report>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_AnimalLieBy</defName>
+    <driverClass>ColonyCouncil.JobDriver_AnimalLinger</driverClass>
+    <reportString>lying by TargetB.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.AnimalLingerExtension">
+        <lie>true</lie>
+        <report>CC_AnimalJob_LieBy</report>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_AnimalShowOff</defName>
+    <driverClass>ColonyCouncil.JobDriver_AnimalLinger</driverClass>
+    <reportString>showing off to TargetB.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.AnimalLingerExtension">
+        <report>CC_AnimalJob_ShowOff</report>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_AnimalWaitDoor</defName>
+    <driverClass>ColonyCouncil.JobDriver_AnimalLinger</driverClass>
+    <reportString>waiting at the door.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.AnimalLingerExtension">
+        <report>CC_AnimalJob_WaitDoor</report>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_AnimalWatch</defName>
+    <driverClass>ColonyCouncil.JobDriver_AnimalLinger</driverClass>
+    <reportString>watching TargetB.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.AnimalLingerExtension">
+        <report>CC_AnimalJob_Watch</report>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_AnimalVigil</defName>
+    <driverClass>ColonyCouncil.JobDriver_AnimalLinger</driverClass>
+    <reportString>lying on a grave.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.AnimalLingerExtension">
+        <lie>true</lie>
+        <report>CC_AnimalJob_Vigil</report>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_AnimalKnockOver</defName>
+    <driverClass>ColonyCouncil.JobDriver_AnimalKnockOver</driverClass>
+    <reportString>nosing at TargetA.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+</Defs>

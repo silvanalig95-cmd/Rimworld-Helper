@@ -982,6 +982,79 @@ game's records, a share of time from record snapshots every ten days, calm days,
   journal line by tone, the chronicle, "Traits gained and lost" (page section 25) and a line in each side's tooltip
   for what went into a trait. Setting "Traits can change", under social life.
 
+### The animals' natures (the player's picks, 7 November 2026)
+
+The player chose three from a brainstorm: temperaments (A1), friendships, rivalries and grief among animals (A3, "do it
+a way where i don't have any more pop ups for this appearing") and animals that speak (B, rare and behind a setting).
+None of it sends a letter or a message: it shows on the map, on the animal's card (`Patch_AnimalNatureInspect`, one
+line under its inspect text, rebuilt every 250 ticks at most) and in what the colonists say (`Speech.Say`, the shared
+once-a-day rate of everything said on screen) and write in their journals. The rules are pure in
+`Animals/AnimalNatureMath.cs` (tests: `AnimalNatureTests`).
+
+- **Who.** Every named or bonded animal of the colony has a temperament; friendships and feuds are the companions'
+  (bonded, or not livestock: a herd the herdmaster names would otherwise pair off in every barn); grief is any named
+  or bonded animal's.
+- **Temperaments** (`Animals/AnimalTempers.cs`): brave, timid, greedy, gentle, proud, mischievous, loyal, lazy, curious.
+  Given once from the animal's id and its kind's lean (`AnimalNatureMath.Weights`: its family read from its words, a
+  dog loyal, a cat proud, a muffalo gentle, a thrumbo gentle and proud; predators brave and proud; the big gentle, the
+  small timid; the most teachable loyal; a Pokémon's types: fire brave and proud, ghost mischievous, psychic proud and
+  curious...), then kept. Each moment is something the animal does, by the game's own jobs or two of Rimfolk's
+  (`JobDriver_AnimalLinger`: walk to a cell and stay, standing, lying, or holding its ground; `JobDriver_AnimalKnockOver`):
+  | Temperament | What it does | Every |
+  |---|---|---|
+  | brave | stands between its person and the nearest attacker and fights what comes at it there (the fight's look); out of a fight, between its person and a wild predator near them | 2 days, when there is one; once a fight |
+  | timid | bolts from the shooting within 20 cells (the fight's look); shies away from a stranger within 8 | 2 days; once a fight |
+  | greedy | eats a meal or 3 to 6 of what it eats from the stores or off a table, within 30 cells | 5 days |
+  | gentle | the game's nuzzle for someone sick, hurt or low; lies down by a patient asleep in a sickbed | 3 days |
+  | proud | follows its person close while they milk, tend or train another animal; stands before a visitor | 3 days |
+  | mischievous | a grazer eats a crop in a growing zone; else noses a light stack off a shelf onto the floor beside it | 5 days |
+  | loyal | waits at the door to the outside (or by the bed) while its person is away; the game's nuzzle on their homecoming | about twice a day while away |
+  | lazy | naps (the game's lying down, asleep) by a fire or heater below 8°C, under a roof above 30°C, else in the sun | 3 days |
+  | curious | follows a visitor about; watches someone building, mining, repairing or at a bench | 3 days |
+
+  Days at the setting's 100% (`animalMoments`, How much happens, 0 to 200%, light touch 50%, story-rich 150%; the
+  hour's chance `HourChance`, half again as likely in view), a gap of two fifths of that after each, one moment an
+  hour on a map, none in danger; the fight's look (three in five each 250 ticks at 100%) once in eight hours each.
+- **Friends and rivals** (`Animals/AnimalBonds.cs`): two companions asleep within 1.9 cells on three nights (a night
+  counted once, the small hours with the evening before) are friends, two at most each; by day one follows the other
+  a while (`FollowClose`) with a heart and a nuzzle in the log (`SocialLog.Add`, only when they are close and in
+  sight), about every day and a half; at bedtime a tired one lies down beside its sleeping friend. Two of different
+  kinds about each other by day (within 6 cells) roll once a day (`RivalChance`: one day in 250, ten times that for a
+  cat and a dog, more for two hunters and for the proud, the greedy and the mischievous, less for the gentle; never
+  friends or the same kind), one rival each; rivals in sight hiss, growl, snort or squawk at each other in the log
+  (by voice), one flees and the other chases a moment, about every two days. Nobody is hurt (no `Harm` here). Not seen
+  together 40 days, they drift apart.
+- **Grief**: a bonded animal whose person died and lies in a grave on the map (the body's own time of death) goes to
+  lie on the grave (`Rimfolk_AnimalVigil`) about every two and a half days for 60 days, about every eight until 120;
+  whoever mourns the dead most (partner, kin, the warmest) may say so and write it, once in twelve days. A friend of
+  an animal that died misses it 30 days (its card) and goes to its grave if it has one.
+- **Old animals**: one of the colony's named or bonded animals that leaves alive (the pets' watch: sold, given,
+  released, gone wild) is kept with the person it was last seen with; meeting them again on any map 2 to 120 days
+  later, within 30 cells, it trots over and stays at their side a while with a heart, once in ten days; the handler
+  says something, and writes the first meeting down.
+- **Speaking animals** (`Animals/AnimalVoices.cs`), a fantasy part, the setting "Animals speak" (`speakingAnimals`:
+  Auto, the default, on only while PokéWorld or A RimWorld of Magic is loaded or someone of the colony has a psylink,
+  looked at hourly; On; Off). Who, softly by mod and by age: a psychic-type Pokémon (`PokeWorldLink.TypesOf`) to its
+  trainer, in the mind; a druid's or a ranger's bonded animal (A RimWorld of Magic's class traits by name); a bonded
+  animal of a psycaster of psylink level three or more (Royalty); Vanilla Genetics Expanded's humanoid hybrids, read by
+  their comp's name (`CompProperties_HumanoidHybrid`: their own defs give them conversation with the colony; the
+  manbear, manwolf, manchicken and the rest), aloud to their person or whoever is with them; in a tribe (the colony's
+  age neolithic or below) or for a colonist whose faith has Ideology's animal personhood, a bonded animal is a spirit
+  animal that speaks only in their dreams (`DreamAbout.SpiritAnimal`, `Council_Dream_SpiritAnimal`). What it does: a
+  line in its own voice (`Council_Pool_AnimalVoice`, tagged by voice, temperament, gift and a Pokémon's types) to its
+  person when the two are together and in view (a chance in five each hour, a day apart at least); a warning over its head of
+  raiders in a fight or a predator about within 45 cells (an angry beast, one hunting, or one near its own size), with
+  the compass word for where, once a day for the same danger and half a day apart for predators; at a council meeting
+  its person sits in, it comes to the table at their heels and has one line, its person's side or its own, written
+  with the meeting's remarks, and never votes; on half the council's questions about its person or itself, a word in
+  the question's letter, said over its head too when its person is beside it.
+- **Saved** (`AnimalBook`, a GameComponent: an older save gets an empty one): temperaments by id (300, let go 120
+  days unseen; a PokéWorld evolution carries its own over with its ties), pairs and ties by id with names (80, pairs
+  first to go), animals gone with their handler by reference (30, forgotten after 120 days or when the handler dies).
+  What it did lately, the waits, the homecomings watched and the animals let speak by a dev action are not saved.
+- **Ticking**: in the animals' hour and day (`AnimalLife`, the council's people pass) and, for the fight, on the fight
+  sides' 250-tick look (`Sched.RareFightSides`): no new slot.
+
 ### What the colony's people want, strive for and are known for: the fourth round (6 November 2026)
 
 The player's request ("do another big content update to existing mechanics"), the part about the colony's own people:
@@ -6345,7 +6418,7 @@ chains, nemeses, camps, play-outs, the fights pass and the worn-out episode read
 | 1203 | World situations | per running situation (at most two); a new one rolls now and then |
 | 1311 | Colony calendar | the home map: snow, the day's first look (harvest, deaths, rest day), talk, a day coming round |
 | 1427 | Setbacks: the lasting ones (a wish still waiting, a decree dragging on, a sick friend, quiet days...), crops lost, rain on gatherings, noisy nights, long hauls, waiting for a doctor, guests eating from low stores, a day's mishaps turned to jokes; outshone, cooled friendships and hard weeks in the first hour of the day | per colonist (their wish, decrees, those close to them who are ill or away), per home map (gatherings, sleepers and who is at loud work nearby, hauls, beds), per skill once a day |
-| 1544 | Council: nemeses, pets, the links between systems (pets and grief, the marshal after a fight, a fear faced), moments waiting for two to be together, PokeWorld, autonomy, who is home, which home is whose (a day on a home makes it someone's last home; a home founded or lost is told; Lean/Homes.cs), everyday pressures, what was done with outsiders (good words carried home, favours brought, bonds fading; Outsiders/) | per colony animal on home maps, per spawned colonist (a plan or a job now and then), per colonist (meals, work, their home: one lookup), per home map (crowded rooms, half-built frames) |
+| 1544 | Council: nemeses, pets, the links between systems (pets and grief, the marshal after a fight, a fear faced), moments waiting for two to be together, PokeWorld, the animals' natures (a temperament's moment, friends and rivals, a grave, an old animal back, a speaking animal's line; Animals/), autonomy, who is home, which home is whose (a day on a home makes it someone's last home; a home founded or lost is told; Lean/Homes.cs), everyday pressures, what was done with outsiders (good words carried home, favours brought, bonds fading; Outsiders/) | per colony animal on home maps, per spawned colonist (a plan or a job now and then), per colonist (meals, work, their home: one lookup), per home map (crowded rooms, half-built frames) |
 | 1660 | Reputation and gossip (only with "Personalities and social life"): in a fight, rescues under way and the brave's company; otherwise who idles while the rest work and who tends whom; in the first hour of the day, the day's idling and tending made deeds, the names that formed or faded told, the dead and departed let go | per spawned colonist on home maps (a job look; a sight check only for the idle, the brave and their side) |
 | 1777 | Personal stories | per story under way; new stories in the first hour of the day |
 | 1903 | Groups (with "Personalities and social life" and the social web on): work sampled, habits kept together | per colonist on a home map (their job); per group (its members up and about, together, doing its habit) |
@@ -6376,7 +6449,7 @@ chains, nemeses, camps, play-outs, the fights pass and the worn-out episode read
 | 173 | The food policy on the road (Journeys/RoadFood.cs; once an hour, at tick 173 of the hour, and on the first pass after a load; only while one is chosen or someone is on it): the colony's people in caravans onto it, those home again back to their own | per player caravan, per colonist in it; per traveller on it |
 | 173 | A journey planned ahead (Journeys/JourneyRun.cs; only while there is one): the stage its hour has reached (a day before, the travellers' timetables shifted; the last hours begun), each traveller's next step, the hour itself and the question when someone isn't ready | per traveller: free for a step, the step's job; at the hour, each one ready or not |
 | 199 | The council window's memory: the day's trust sample, the dilemmas and answers it watches | per colonist once a day |
-| 187 | Who stands beside whom in a fight at home (only while one is on; Social/FightSides.cs), so only they remember it together and become comrades; who carries, tends or stands over someone down | per fighting colonist pair on that map (close, then the same room or in sight) |
+| 187 | Who stands beside whom in a fight at home (only while one is on; Social/FightSides.cs), so only they remember it together and become comrades; who carries, tends or stands over someone down; and the colony's animals in it (Animals/AnimalTempers.cs, AnimalVoices.cs): a brave one goes to stand by its person, a timid one bolts from the shooting, a speaking one warns of the raiders | per fighting colonist pair on that map (close, then the same room or in sight); per named or bonded animal there that is brave, timid or speaks |
 | 221 | Ailments: one tenth of the colonists (by ID), each once an hour; the slice at tick 2471 also carries the colony's part | the colony's serious illnesses counted (every colonist's hediffs, as before every hour's rolls), then per colonist in the slice: circumstances sampled, each ailment's counted causes rolled; diet and sweets on the first look of the day |
 | 211 | A neighbour's letter being written, a call under way or the comms console ringing (World/NeighbourLetters.cs; only while there is one) | per letter or call under way: the writer still at it, someone free to answer |
 | 83 | Colonists starting a talk with an outsider near them (Outsiders/OutsiderTalk.cs; on each home map with outsiders on it, whichever map is in view, with the setting on) | per home map, per free outsider: a free colonist near, the pair's and the visit's waits, then a small chance by both natures; one talk at most a home |
@@ -6503,6 +6576,7 @@ on a map, in the world or in a caravan), so such a record is let go when the gam
 | Legacy | heirlooms until the heir dies or is discarded, or the thing is lost; children waiting to come of age: known pawns only; came of age: 6 days |
 | Nemeses | 30 that have ended |
 | Pets | animals known: the dead get their farewell, the discarded are dropped |
+| The animals' natures | by id, never by reference: temperaments 300 (unseen 120 days let go), pairs, friends and rivals 80 (pairs first; apart 40 days, or a friend missed 30 days, let go), animals gone alive 30 with their handler (120 days, or the handler dead) |
 | Autonomy | who acted when: the last 2 days, not the dead; plans until built |
 | Rimfolk's events | raids until they come; the departed 2 years (unless asked about); memos 3 years (children's 10), used ones a day; quests already told of: those the game still keeps; the event timer, one per home (a home lost takes its own) |
 | Homes | one entry per colonist who has been on a home (the last home they lived on), forgotten once they're dead, discarded or no longer the colony's; the stored seat; the homes at the last look |

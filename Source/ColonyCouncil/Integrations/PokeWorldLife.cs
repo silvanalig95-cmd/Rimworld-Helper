@@ -233,7 +233,11 @@ namespace ColonyCouncil
                     try
                     {
                         if (before.pawn != p && AnimalMath.Evolved(before.kind, kv.Value.kind, before.pawn != null && !before.pawn.Dead && before.pawn.Destroyed))
+                        {
+                            // Its temperament, friends and rivals go with it into its new body (Animals/AnimalBook.cs).
+                            AnimalBook.Instance?.Carry(before.pawn, p);
                             Evolved(comp, p, before.kindLabel);
+                        }
                         else if (before.pawn == p)
                         {
                             int m = AnimalMath.MilestonePassed(before.level, kv.Value.level);

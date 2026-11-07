@@ -306,6 +306,9 @@ namespace ColonyCouncil
             // Now and then a confided secret sits too close to the surface (Interplay/).
             if (Interplay.MeetingSecret(this, here)) return;
 
+            // A speaking animal at its person's side has its one word, and no vote (Animals/AnimalVoices.cs).
+            if (AnimalVoices.MeetingWord(this, here)) return;
+
             // And then everyone has opinions, about the ideas that have been put to the meeting (made in person or read
             // out): mostly ones whose proposer is sitting there to hear it.
             var put = pitches.Where(p => p.spoken || p.readOut).ToList();

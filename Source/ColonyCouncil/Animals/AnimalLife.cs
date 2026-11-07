@@ -49,6 +49,10 @@ namespace ColonyCouncil
             Safe("animals: on screen", OnScreen);
             // Each colony's own beast.
             foreach (var m in Homes.All) Safe("animals: the beast seen", () => comp.BeastOf(m)?.Hourly(comp));
+            // Their natures (Animals/AnimalTempers.cs, AnimalBonds.cs, AnimalVoices.cs): temperaments, bonds, and those that speak.
+            Safe("animals: temperaments", AnimalTempers.Hourly);
+            Safe("animals: friends, rivals and grief", AnimalBonds.Hourly);
+            Safe("animals: those that speak", AnimalVoices.Hourly);
         }
 
         public static void Daily(CouncilGameComponent comp)
@@ -58,6 +62,8 @@ namespace ColonyCouncil
             // Each colony's own herd and beast, in the order the homes were founded.
             foreach (var m in Homes.All) Safe("animals: the herd's year", () => comp.HerdOf(m)?.Daily(comp));
             foreach (var m in Homes.All) Safe("animals: the beast that stays", () => comp.BeastOf(m)?.Daily(comp));
+            // The animals' natures kept: who is still the colony's, pairs and ties let go, those gone too long forgotten.
+            Safe("animals: their natures kept", () => AnimalBook.Instance?.Daily());
         }
 
         // ---------------- Births ----------------
