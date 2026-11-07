@@ -74,7 +74,8 @@ namespace ColonyCouncil
         }
 
         /// <summary>Done with: its first season over, its names looked at, its election called.</summary>
-        private static bool Over(ColonyMerge m, int now) => m.namesLooked && m.electionAt < 0 && !ManyColoniesMath.QuietSeason(now, m.mergedAt);
+        private static bool Over(ColonyMerge m, int now) =>
+            !ManyColoniesMath.QuietSeason(now, m.mergedAt) && ((m.namesLooked || !S.epithets) && m.electionAt < 0 || now - m.mergedAt > 2 * ManyColoniesMath.SeasonTicks);
 
         /// <summary>A merge not yet made: where its people live a day, and whether it is one; made at the first evening there.</summary>
         private static void Look(Homes h, ColonyMerge m, int now)

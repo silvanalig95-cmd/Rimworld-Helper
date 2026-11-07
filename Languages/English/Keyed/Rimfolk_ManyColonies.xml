@@ -35,6 +35,9 @@
   <CC_Many_ScopeEveryoneTip>This page shows everyone from every colony. Click to see only the people of {PLACE}, the colony in view.</CC_Many_ScopeEveryoneTip>
   <CC_Many_HudCouncil>{PANEL}: {PLACE}</CC_Many_HudCouncil>
 
+  <!-- This week -->
+  <CC_Many_WeekColoniesTip>Where it stands, as the colony's card says. Click to see the colonies on the region map.</CC_Many_WeekColoniesTip>
+
   <!-- The setting -->
   <CC_Settings_ManyMerge>Two councils become one</CC_Settings_ManyMerge>
   <CC_Settings_ManyMerge_Tip>When a colony's home is given up or handed over and its people come to live at another home that has people and a council of its own, once they have lived a day there the two councils become one: the traditions only they kept join the colony's at half their strength (one both kept keeps the stronger), the council is chosen again within the season when they are a third or more of the grown-ups, the names they were known by are looked at again in the next naming (the better keeps one both had, and no rival comes of a name taken over in the first season), their old colony's founding day is kept as a day to remember while some of them live there, and on the first evening the colony sits down to a meal together to welcome them. Off: a moving officer still steps down and the old council is kept thirty days, and nothing more.</CC_Settings_ManyMerge_Tip>

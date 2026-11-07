@@ -23,6 +23,11 @@
 > kit, arrival and animals and Rimfolk's own parts for the new colony alone, with the decision 3A. See "The order to
 > build it in", item 3, for what differs.
 
+> **Release 4, many colonies in play, is built** (7 November 2026): two councils become one when a colony's people come
+> to live at another home (12A), each colony its own character (13A), neighbours with faces and world events near every
+> home (14A), the pages following the colony in view, and the small ones of 3d. See "The order to build it in", item 4,
+> for what differs.
+
 > **Release 5, the town's life, is built** (7 November 2026): the raid on the town and the call for help on its map,
 > hard times and the town asking to come back (refused twice, its people at the gate), turning against the colony,
 > Faction Territories' pace for its new towns (15B), and a former colonist's death only from a real hardship, told by
@@ -703,6 +708,50 @@ colonies at once after. Each release plays as before with its settings off and o
      its own kind of map, and its opening words. No setting of its own: the choice is made in the founding window.
 4. **Many colonies in play** (section 3's rest): merging councils, the pages following the colony in view, notables
    near every home, world events across homes, the character per colony (if chosen), the small ones. Needs 1.
+
+   **Built (release 4, 7 November 2026; `Source/ColonyCouncil/Colonies/ManyColoniesMath.cs`, `Merges.cs`, `HomesMerge.cs`,
+   `ManyColoniesDebug.cs`, `Character/ColonyCharacters.cs`, `Calendar/CalendarMerge.cs`, `UI/ColonyView.cs`; DESIGN.md
+   "Many colonies in play").** 3b, 3c and 3d with the decisions 12A, 13A and 14A. With one colony nothing runs, no roll is
+   added and the save is as it was. What differs from section 3:
+   - *When two councils become one*: only when a colony's home is lost (given up or handed over) and its people come to
+     live at a home with grown-ups of its own while the old council is still kept (thirty days). Release 1's founding
+     always makes a new home, so a founding party joining an existing home never arises; a fresh start's party with the
+     old colony handed over in the same act is their founding, not a merge (`IsMerge`, a colony founded from theirs within
+     the season); a home of theirs alone is their colony moved, 7a's carried council. Its people are those whose last
+     home it was and those who moved from it within those thirty days (`HomeTie.prev`, kept only with more than one home).
+     It comes once the first of them has lived a day at the home most of them live at, waiting while others of theirs are
+     still on the road or a fight is on the map, three days after the loss at most.
+   - *Traditions* are the calendar's (the dilemmas' customs have been calendar days since 0.115.0), matched by the day's id;
+     half its strength is half its years kept and half its weight, still a tradition; their founding day and anyone's own
+     day are not traditions to merge. The calendar's own `TryAdd` keeps them inside its cap.
+   - *The election* is the council's own (on the map, or the instant vote), called three days after the merge, unless
+     one is under way or was held since.
+   - *Names*: the better by the name's own count, the colony's holder on a tie, told in a line of news; whoever lost it
+     writes it in their journal when it was the name they were known by. In the first season a name taken over in the
+     colony makes no rival and no mood of a name lost.
+   - *The welcome* is the feast engine's meal for everyone at home (17 to 23, so the first evening), its host the speaker,
+     the greeting the host's cup; no mood of its own (the meal's and the cup's are the game's and the feast's). Without
+     play-outs the greeting alone, in a bubble. One letter says what merged, the meal only when it was set going.
+   - *Old hands and newcomers* keep apart only by the groups' own pace: once merged they are one colony's people, so the
+     groups' rule that people of two colonies form no group no longer holds them apart.
+   - *The character*: also a colony that moves (the old one abandoned once the new stands) takes all of its character with
+     its council. Word among the peoples (the goodwill a generous or open colony earns) is the seat's ways' only, and
+     renown's part of the colony's name is told by the seat's name only, so neither rises with more homes. "Walled" needs
+     the calendar's walls-up line, 80 wall sections, at that home. A name's change in the chronicle names the colony.
+   - *Notables*: further homes on the ground only (a home in orbit has no neighbours), their nearest two towns within twice
+     the region's reach and not the seat's already.
+   - *World events*: placed near a home on the ground picked by its people (`Homes.People`); the rolls and the rhythm are
+     the seat's as before with one home on the ground.
+   - *The pages*: a chip "This colony" beside the colony chip turns to "Every colony" for the session; the People view's
+     five pages and the Chronicle follow, and on the region window the Faces (the people known by name, the colony in
+     view's neighbours) and Here and away's who is here and who is away. The peoples' own cards stay every people's (a
+     people is the colony's as a whole), and what is coming, the letters on the road, the missions and the marriages stay
+     the colony's as a whole. Every staffed town has its card's Who, and a people's card lists their towns in the colony
+     in view's reach. The council panel's bar names the colony, and its trust is its people's.
+   - *This week* lists a founding and a hand-over under way where they stand, as their colony's card has it (release 1's
+     and 2a's "left for release 4").
+   - *Setting*: one, "Two councils become one" (Many colonies); the rest needs none.
+   - *Tests*: `Tools/Tests/ManyColoniesTests.cs` ("many colonies: "), beside `ManyHomesTests`.
 5. **The town's life**: the raid and the call for help on its map, hard times and the town asking to come back,
    turning against the colony, Faction Territories' pace for its new towns. Needs 2 and stage 1's rise and fall and
    raiders' camps.
