@@ -6,6 +6,18 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 0.142.0, Hospitality's guest groups fit the guest beds (7 November 2026, the player: "why do 4-5 people visitor groups
+  stay in my colony if i only have one reserved visitor bed?" and "please correct this"). Hospitality's
+  `IncidentWorker_VisitorGroup.GetGroupSize` is a Gaussian around 1 + years played (up to 6), clamped to its own min
+  and max group size settings; its only bed rule is `refuseGuestsUntilWeHaveBeds` (none at all). Read from its source
+  (OrionFive/Hospitality). `Integrations/GuestGroupBeds.cs`: `Patch_GuestGroupFitsBeds`, a postfix on its non-virtual
+  `GetPawnsToSpawn(IncidentParms)` (every visitor group kind, the spacer ones too, goes through it), cuts the list to
+  the free guest bed places (`Building_GuestBed` by class name, slots less claimed owners); `GuestGroupBedsMath.Size`:
+  no guest bed at all leaves Hospitality's rule, every one taken sends nobody (its `SpawnGroup` gives up on an empty
+  list, as when nobody is valid), a size asked outright (`pawnCount`) is left alone. Pawns left out are world pawns
+  already. Setting `guestGroupsFitBeds` (Your other mods, Hospitality, on, behind the deeper hooks). Tests
+  `GuestGroupBedsTests` ("guest groups and guest beds: "). Not run in the game: Hospitality's dialogs when a group
+  shrinks (the ask comes before the spawn, so it names no number).
 - 0.141.0, a land whose wild animals the game can't read (7 November 2026, the player's startup log: `[Giddy-Up] An error occured
   calling AllWildAnimals`, "An item with the same key has already been added. Key: RG_Dodo", and the same for
   RG_Thrinaxodon, ReGrowth's extinct animals, most likely added to one land by two mods). `BiomeDef.CommonalityOfAnimal`

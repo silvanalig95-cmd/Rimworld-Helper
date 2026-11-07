@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Guest groups that fit your guest beds
+
+*7 November 2026, version 0.142.0*
+
+- With Hospitality, a group of guests is now never bigger than the guest beds free on the map, so nobody in it sleeps on the floor. Hospitality chooses a group's size from its own settings and the years played, not from your beds.
+- While every guest bed is taken by guests already staying, no new group comes until one is free. With no guest bed at all, Hospitality's own rule stands: it asks first, and can refuse guests until there are beds.
+- A new setting on the Hospitality section of Your other mods, Guest groups fit your guest beds, turns it off.
+
 ## The temperature at a glance, and a land's animals read safely
 
 *7 November 2026, version 0.141.0*

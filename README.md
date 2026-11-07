@@ -2198,7 +2198,9 @@ Each of these switches itself on only when its mod is there, and only asks for w
   the council to stay (taken in Hospitality's own way, as its join request does), and an unhappy one may bring a
   complaint. With no guest bed in the colony, a kind or sociable colonist may wish for one, most often while visitors
   are here; once there is one, they may wish for a guest room worth the name, with a guest room plan to build it.
-  A guest bed never counts as a free bed for a colonist. A guest joins of their own will only when they would
+  A guest bed never counts as a free bed for a colonist. A group of guests is never bigger than the guest beds free
+  on the map (Hospitality sizes groups by its own settings, not your beds), and with every guest bed taken no new group
+  comes until one is free (setting "Guest groups fit your guest beds"). A guest joins of their own will only when they would
   (setting "Guests join only when they would"): a reason to stay (love or family here, hard times at home, a very
   good stay, the colony's faith), a free bed, a room of their own for the greedy, jealous and titled, four days of
   food, and what their passions and nature want of a home: a passionate cook a decent kitchen, a grower fields to

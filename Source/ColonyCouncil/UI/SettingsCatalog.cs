@@ -599,6 +599,7 @@ namespace ColonyCouncil
             Mod(Toggle("guestWill", "CC_Settings_GuestWill", "CC_SetNote_GuestWill", "deepHooks"), HospitalityId);
             Mod(Toggle("guestStories", "CC_Settings_GuestStories", "CC_SetNote_GuestStories"), HospitalityId);
             Mod(Toggle("guestCheck", "CC_Settings_GuestCheck", "CC_SetNote_GuestCheck", "deepHooks"), HospitalityId);
+            Mod(Toggle("guestGroupsFitBeds", "CC_Settings_GuestGroupsFitBeds", "CC_SetNote_GuestGroupsFitBeds", "deepHooks"), HospitalityId);
             Section("CC_SetSec_Mod_RimMarket");
             Mod(Toggle("marketStallWindow", "CC_Settings_MarketStallWindow", "CC_SetNote_MarketStallWindow", "deepHooks"), RimMarketId);
             Mod(Toggle("marketStallShips", "CC_Settings_MarketStallShips", "CC_SetNote_MarketStallShips", "deepHooks"), RimMarketId);
