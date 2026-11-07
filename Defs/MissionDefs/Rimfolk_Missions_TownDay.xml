@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- A town the colony was keeps the colony's founding day and the day of the hand-over, and invites the colony to one of
+       them a year at most (Source/ColonyCouncil/Missions/TownDayMission.cs, Colonies/TownsAfter.cs): the invitation's
+       own journey to their town and stay at their table (Workers_MissionRemembered.cs), its words its own. Never drawn by
+       the storyteller (base chance 0): only the town's day sends it, for that town's people. Texts may use {FACTION},
+       {PLACE} (their town), {DEAD} (the colony it was), {HOST} (the town's head as the ledger knows them), {TALE} (the
+       caravan's travel time there), {COUNT} (the gift); in terms and accepted lines {DAYS} the time; in endings {ITEM}
+       what was given. Lines are tagged with the variant: founding (the colony's founding day) or handover (the day it
+       was handed over), and for endings how it ended. -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_TownDay</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a town's day</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionTownDay</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>50</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>3</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>[founding] {DEAD}'s day at {PLACE}</li>
+          <li>[handover] The hand-over remembered at {PLACE}</li>
+          <li>An invitation from {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[founding] {FACTION} keep the day {DEAD} was founded, as the colony kept it when {PLACE} was its home, and this year they want the colony's people at the table for it. The invitation came from {HOST}, with a line at the bottom: the old seats are still there.</li>
+          <li>[founding,their:lowtech] A runner from {PLACE} brought word: {FACTION} light the fire on the day {DEAD} was founded, as the colony did, and they ask the colony's people to sit at it with them this year.</li>
+          <li>[handover] It is a year again since {DEAD} was handed over and {PLACE} became the town of {FACTION}, and they mark the day with a meal. {HOST} asks the colony's people to come and sit with the ones who stayed.</li>
+          <li>[handover,their:hightech] The message from {PLACE} is short: the anniversary of the hand-over, a dinner in the old common room, the colony's people invited. {HOST} signed it.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the invitation</label>
+            <outcome>Places will be set for the colony's guests at {PLACE}.</outcome>
+          </li>
+          <li>
+            <label>Decline with thanks</label>
+            <outcome>{FACTION} are sorry, and say they will keep the day all the same.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>At least two of the colony's people at {PLACE} by caravan within {DAYS} of the colony agreeing (it's about {TALE} away), staying for the day, about half a day at the town. The caravan only needs to reach the town and wait there.\n\nThe guests go home with a gift worth about {COUNT} silver, and {FACTION} will remember who came. If no one does, they'll notice that too.</li>
+        </terms>
+        <accepted>
+          <li>The colony will send guests to {PLACE}. Form a caravan of at least two and send it there within {DAYS}.</li>
+          <li>[founding] The colony will keep {DEAD}'s day at {PLACE}. Send a caravan of at least two there within {DAYS}.</li>
+        </accepted>
+        <ready>
+          <li>The colony's guests have reached {PLACE} and been given the old seats at the table. Keep the caravan there until the day is over.</li>
+          <li>[handover] The colony's guests have reached {PLACE}, and the ones who stayed came out to meet them. Keep the caravan there until the meal is over.</li>
+        </ready>
+        <reminder>
+          <li>The day at {PLACE} is coming, and the colony's guests haven't arrived.</li>
+        </reminder>
+        <doneTitles>
+          <li>[attended] Guests at {PLACE}</li>
+          <li>[brief] A short visit to {PLACE}</li>
+        </doneTitles>
+        <done>
+          <li>[attended,founding] The colony's guests kept {DEAD}'s day at {PLACE} with {FACTION}, at the tables the colony built, and came home with gifts: {ITEM}.</li>
+          <li>[attended,handover] The colony's guests sat with the ones who stayed at {PLACE} and remembered the day {DEAD} was handed over. {FACTION} sent them home with gifts: {ITEM}.</li>
+          <li>[attended] The colony's guests were made welcome at {PLACE} and came home with gifts: {ITEM}.</li>
+          <li>[brief] The colony's guests reached {PLACE} but didn't stay to the end. {FACTION} were glad they came at all.</li>
+        </done>
+        <failTitles>
+          <li>[absent] No guests at {PLACE}</li>
+          <li>[cancelled] The invitation</li>
+        </failTitles>
+        <fail>
+          <li>[absent] {FACTION} kept the day at {PLACE} without the colony, with places set for its guests until late.</li>
+        </fail>
+        <cancelled>
+          <li>The invitation to {PLACE} no longer stands.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

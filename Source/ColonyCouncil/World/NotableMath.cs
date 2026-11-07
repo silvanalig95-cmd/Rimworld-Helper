@@ -59,7 +59,9 @@ namespace ColonyCouncil
         /// </summary>
         Task,
         /// <summary>Asking to swear fealty to their people, their terms by their ways (Diplomacy/FealtyLetters.cs, release 2c.2).</summary>
-        Fealty
+        Fealty,
+        /// <summary>Asking a town the colony was for it back, to be the colony's home again (Colonies/TownTakeBack.cs, stage 3 release 2b): to its head only.</summary>
+        TakeBack
     }
 
     /// <summary>How the words go: a letter carried by hand, or a call over a comms console.</summary>

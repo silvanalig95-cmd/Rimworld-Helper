@@ -16,8 +16,10 @@ namespace ColonyCouncil
     /// Its fortune, founding and founder are on its <see cref="LedgerTown"/> (kind <see cref="TownKind.Former"/>), its
     /// head and second among the notables. Written only once a colony is handed over.
     /// <para>
-    /// release 2b: the kept layout (the colony as it was left, placed when the town's map is made), the town's letters and
-    /// days, homecomings and moving there, and taking it back (peacefully or by force, which ends the bond) are added here.
+    /// Release 2b (Colonies/TownsAfter.cs, TownLayout.cs): the kept layout (the colony as it was left, placed when the
+    /// town's map is made), the town's fortune at the hand-over, its head's last letter, the last homecoming asked from it
+    /// and the last invitation to its days, the colony's letter asking it back and their yes, and how it stopped being its
+    /// people's (taken back by their word, beaten by force, settled again).
     /// </para>
     /// </summary>
     public class LedgerFormer : IExposable
@@ -35,11 +37,27 @@ namespace ColonyCouncil
         public Pawn second;
         /// <summary>The colony's former people who stayed (kept in the world with KeepFor.Former).</summary>
         public List<Pawn> formers = new List<Pawn>();
-        /// <summary>The home those who went went to, when they went to one (for the town's letters, release 2b).</summary>
+        /// <summary>The home those who went went to, when they went to one (for the town's letters).</summary>
         public int wentTo = HomesMath.None;
-        /// <summary>The bond in goodwill is over (a war between them; a taking by force in release 2b), and when.</summary>
+        /// <summary>The bond in goodwill is over (a war between them, or a taking by force), and when.</summary>
         public bool bondEnded;
         public int bondEndedAt = -1;
+        /// <summary>The town's tile (its id on the surface), to know what stands there once its settlement is gone.</summary>
+        public int tile = -1;
+        /// <summary>The colony as it was left (Colonies/TownLayout.cs), placed when the town's map is made; null when none was kept.</summary>
+        public LedgerLayout layout;
+        /// <summary>The town's fortune at the hand-over: how much it has grown since weighs on the colony's letter asking it back.</summary>
+        public float seed = -1f;
+        /// <summary>Its head's last letter, the last homecoming asked from it, and its last invitation to one of its days.</summary>
+        public int lastLetter = -1, lastHomecoming = -1, lastInvite = -1;
+        /// <summary>The colony's last letter asking for it back; their yes, and when it reaches the colony (it can be taken back from then).</summary>
+        public int askedAt = -1;
+        public bool agreed;
+        public int agreedAt = -1;
+        public bool agreedTold;
+        /// <summary>How it stopped being its people's (taken back by their word, beaten by force, settled again), and when.</summary>
+        public TownEnd end;
+        public int endedAt = -1;
 
         /// <summary>The town still stands as the people's: the settlement there, of the people it became.</summary>
         public bool Standing
@@ -74,6 +92,8 @@ namespace ColonyCouncil
             {
                 formers.RemoveAll(p => p == null || p.Discarded);
                 if (second != null && second.Discarded) second = null;
+                // A people the game let go (taken back, its last town gone): no reference left that can't be found on load.
+                if (people != null && Find.FactionManager != null && !Find.FactionManager.AllFactionsListForReading.Contains(people)) people = null;
             }
             Scribe_Values.Look(ref key, "key", HomesMath.None);
             Scribe_References.Look(ref people, "people");
@@ -87,6 +107,18 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref wentTo, "wentTo", HomesMath.None);
             Scribe_Values.Look(ref bondEnded, "bondEnded");
             Scribe_Values.Look(ref bondEndedAt, "bondEndedAt", -1);
+            Scribe_Values.Look(ref tile, "tile", -1);
+            Scribe_Deep.Look(ref layout, "layout");
+            Scribe_Values.Look(ref seed, "seed", -1f);
+            Scribe_Values.Look(ref lastLetter, "lastLetter", -1);
+            Scribe_Values.Look(ref lastHomecoming, "lastHomecoming", -1);
+            Scribe_Values.Look(ref lastInvite, "lastInvite", -1);
+            Scribe_Values.Look(ref askedAt, "askedAt", -1);
+            Scribe_Values.Look(ref agreed, "agreed");
+            Scribe_Values.Look(ref agreedAt, "agreedAt", -1);
+            Scribe_Values.Look(ref agreedTold, "agreedTold");
+            Scribe_Values.Look(ref end, "end");
+            Scribe_Values.Look(ref endedAt, "endedAt", -1);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 formers ??= new List<Pawn>();

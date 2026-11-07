@@ -42,7 +42,9 @@ namespace ColonyCouncil
         /// <summary>A call for newcomers: the word is how the colony sends it (an advertisement by radio), the rite how they come (off the road with their papers). Stage 3.</summary>
         Call,
         /// <summary>A colony handed over: the word is what changes hands (the keys handed over), the rite how it is done (a charter read before the hall). Stage 3.</summary>
-        HandOver
+        HandOver,
+        /// <summary>A town the colony was coming back to it: the word is the colony's (the charter returned, oaths renewed), the rite the town's way of it (the old charter read again). Stage 3.</summary>
+        Back
     }
 
     /// <summary>
@@ -64,7 +66,7 @@ namespace ColonyCouncil
             AgeFeature.Favor, AgeFeature.Pact, AgeFeature.Feast, AgeFeature.Marriage, AgeFeature.Ward, AgeFeature.Ransom, AgeFeature.Fealty,
             AgeFeature.Renown, AgeFeature.Schemes, AgeFeature.Founding, AgeFeature.Post, AgeFeature.Hamlet, AgeFeature.Oath,
             AgeFeature.Truce, AgeFeature.Hostage, AgeFeature.Envoy, AgeFeature.Levy, AgeFeature.Seat, AgeFeature.Party, AgeFeature.Call,
-            AgeFeature.HandOver
+            AgeFeature.HandOver, AgeFeature.Back
         };
 
         /// <summary>An age as lines are tagged: tribal, medieval, industrial, spacer (Flavor.AddEraTags, LineTags).</summary>

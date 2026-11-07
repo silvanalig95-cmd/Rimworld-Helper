@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The Almanac page on the town a colony was, after the hand-over (Source/ColonyCouncil/Colonies/: TownAfterMath.cs,
+       TownLayout.cs, TownsAfter.cs, TownTakeBack.cs, TownAfterPatches.cs, TownAfterFacts.cs; Missions/TownDayMission.cs;
+       Social/MovingOnTown.cs; docs/design/stage3-many-colonies.md, section 2, release 2b; DESIGN.md "The town afterwards"). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_TownAfter</defName>
+    <label>the town afterwards</label>
+    <category>Council</category>
+    <order>16</order>
+    <summary>A town the colony was keeps the colony's layout for its map, writes now and then, sends its trader, invites the colony to its days and lets its people come home. The colony can ask for it back by letter, or take it by force.</summary>
+    <tip>A town in hard times is readier to come back: write to its head while its fortune is low, soon after the hand-over, and before it grows.</tip>
+    <description>Once a colony is handed over (see "a town of our own"), the town goes on as a people of its own. What it does afterwards is on the setting "The town's life" in Many colonies; its map and taking it back are always on.</description>
+    <sections>
+      <li>
+        <heading>Its map</heading>
+        <points>
+          <li>At the hand-over Rimfolk keeps the colony's layout over its home area and 6 cells around it: every building of the colony's by its origin with its stuff and its turn, the floors and bridges, the roofs it built, and where rock was mined. Not its goods, plants, filth or art's stories.</li>
+          <li>A mid-game base takes about 10 KB in the save; a layout never takes more than 64 KB (past that, the roofs go first, then the floors).</li>
+          <li>When the game makes the town's map (an attack, a fight there), it stands down its own base for that map and places the layout instead, with the town's notables at home in their own beds and the game's own defenders of that people. A thing the game no longer has (a mod removed) is left out.</li>
+          <li>Without Rimfolk, or for a town handed over before the layout was kept, the game makes its ordinary base.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Its life</heading>
+        <points>
+          <li>Its head writes now and then, a season apart at least: news of the town, the colony's days remembered, someone of its former people asking after their own in the colony. The letter comes by the town's means: a runner, a rider, a courier, or comms.</li>
+          <li>When a trader caravan of theirs comes, the town's trader comes as the one who trades.</li>
+          <li>It keeps the colony's founding day and the day of the hand-over, and invites the colony to one of them a year at most: at least two of the colony's people by caravan, staying for the day, for a gift and a good memory.</li>
+          <li>One of its former people (never the head) may ask to come home when their spouse, child or close friend is in the colony, or when their town is in hard times: once a season from each town at most. Welcomed, they walk in from the side of the map that faces the town, and the one they came home to goes to meet them.</li>
+          <li>A colonist with a spouse, child or close friend in the town may ask the council to go and live there. Going, they join the town's people.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Taking it back</heading>
+        <points>
+          <li>By letter: "Ask for it back" on the town's card writes to its head, once a year at most, while the game's colony limit allows one more home (raised by one at most, as for a fresh start). The answer weighs the head's regard of the colony, their people's goodwill, the town's fortune (a struggling town is readier), the years since and how much it has grown; a no says why.</li>
+          <li>A yes reaches the colony with their answer: take it back from the letter or the town's card. The settlement is the colony's again, its map made as the colony left it, its former colonists walk out of their rooms as colonists, and up to 3 of its other people choose to come with it. A people with no town left is no longer a people of its own.</li>
+          <li>By force, as the game allows: attack it (its map is the colony's layout, its people defending it), beat it, and settle it with the game's own Settle button. The bond ends, and its people and every people of the same faith remember a heavy wrong.</li>
+        </points>
+      </li>
+    </sections>
+    <keywords><li>town afterwards</li><li>kept layout</li><li>take it back</li><li>taken back</li><li>homecoming</li><li>town's day</li><li>ask for it back</li></keywords>
+    <seeAlso><li>Council_Alm_C_HandOver</li><li>Council_Alm_C_FreshStart</li><li>Council_Alm_C_Region</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

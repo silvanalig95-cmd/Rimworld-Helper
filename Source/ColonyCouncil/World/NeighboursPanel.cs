@@ -359,8 +359,9 @@ namespace ColonyCouncil
             y += 24f;
             foreach (LetterPurpose p in Enum.GetValues(typeof(LetterPurpose)))
             {
-                // A purpose no longer written (the council's business, retired) is never offered.
-                if (NotableMath.Retired(p)) continue;
+                // A purpose no longer written (the council's business, retired) is never offered, nor asking for a town back of
+                // anyone but the head of a town the colony was (Colonies/TownTakeBack.cs).
+                if (NotableMath.Retired(p) || TownLetters.Owns(p) && !TownLetters.Shows(to)) continue;
                 string why = whyNot.TryGetValue(p, out var w) ? w : null;
                 var row = new Rect(inRect.x + 10f, y, 220f, 24f);
                 if (Widgets.RadioButtonLabeled(row, ("CC_Letter_PurposeCap_" + p).Translate(), purpose == p, why != null) && why == null)

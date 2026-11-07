@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.128.0</version>
+        <date>7 November 2026</date>
+        <title>The town afterwards</title>
+        <points>
+          <li>A colony handed over keeps its layout: when the game makes the town's map again, it is your colony as you left it, its walls, doors, furniture, floors and roofs, with its notables at home in their beds.</li>
+          <li>The town's head writes about once a season, by a messenger at your gate or over comms, with its news and the colony's days remembered. When its trader caravan comes, the town's own trader is the one who trades.</li>
+          <li>About once a year the town invites you to its founding day or the anniversary of the hand-over.</li>
+          <li>A former colonist may ask to come home when someone close to them is in your colony or their town is in hard times, and walks in from the town's side to be met. A colonist with someone close in the town may ask to go and live there.</li>
+          <li>Ask for the town back by letter: its head weighs your standing, its fortune and the years since. Taken back, its former colonists walk out of their rooms as your colonists again, and a few of its people may come too.</li>
+          <li>Or take it by force as the game allows: the bond ends, and its people and every people of the same faith remember it as a heavy wrong.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.127.0</version>
         <date>6 November 2026</date>
         <title>Handing a colony over</title>

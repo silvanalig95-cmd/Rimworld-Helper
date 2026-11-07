@@ -150,8 +150,8 @@ namespace ColonyCouncil
 
     /// <summary>
     /// The bond in goodwill (the player's decision 8A): "once of [colony]", +30 natural goodwill while one of the
-    /// colony's former people heads the town, +15 after, gone after a war between them (release 2b: or a taking by
-    /// force). The game's own drift and same-faith situation do the rest.
+    /// colony's former people heads the town, +15 after, gone after a war between them or a taking by force
+    /// (Colonies/TownTakeBack.cs). The game's own drift and same-faith situation do the rest.
     /// </summary>
     public class GoodwillSituationWorker_OnceOf : GoodwillSituationWorker
     {

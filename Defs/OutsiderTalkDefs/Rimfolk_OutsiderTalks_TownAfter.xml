@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- A town the colony was (Source/ColonyCouncil/Colonies/TownsAfter.cs, the facts in Colonies/TownAfterFacts.cs): one
+       of the colony's own who stayed when it was handed over (them:former), and anyone of that town (town:former), with
+       {OLDCOLONY} the colony it was, {TOWN} the town it is, {YEARSSINCE} the years since the hand-over in words. The
+       colonist may have come to the colony after the hand-over, so "we" in a colonist's line is the colony as it is now,
+       never "we who were there". The format is described at the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <!-- ================= One of the colony's own, who stayed ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Former_OldDays</defName>
+    <topic>former</topic>
+    <uses>home,chat,know</uses>
+    <when>them:former</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[them] I was one of the colony's own, back when {TOWN} was {OLDCOLONY}.</li>
+      <li>[us] What was it like?</li>
+      <li>[them,town:struggling|town:poor] Better fed than we are now, and loud at supper.</li>
+      <li>[them] Busy, and loud at supper, and I would not trade a day of it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Former_Years</defName>
+    <topic>former</topic>
+    <uses>home,chat</uses>
+    <when>them:former</when>
+    <lines>
+      <li>[us] How long is it now since the hand-over?</li>
+      <li>[them] {YEARSSINCE}, and the place still feels like {OLDCOLONY} to me.</li>
+      <li>[us] Do they still call it that?</li>
+      <li>[them,their:lowtech] The old ones do, by the fire, when the young ones are asleep.</li>
+      <li>[them] Only the ones who were there, and we are fewer every year.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Former_Kin</defName>
+    <topic>former</topic>
+    <uses>chat,home</uses>
+    <when>them:former,kin:you</when>
+    <weight>1.6</weight>
+    <lines>
+      <li>[them] I think about you every day out at {TOWN}, you know.</li>
+      <li>[us] I think about you too.</li>
+      <li>[them] Living in two places is hard, however right it was for the town.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Former_Ways</defName>
+    <topic>former</topic>
+    <uses>chat,know</uses>
+    <when>them:former</when>
+    <lines>
+      <li>[us] Do you still do things the way the colony did?</li>
+      <li>[them,their:tribal] We keep the old fire as it was kept, and we still sit the same way around it.</li>
+      <li>[them,their:medieval] Aye, the meeting in the hall in the evening, and the charter read on its day.</li>
+      <li>[them,their:spacer] Mostly, though the administration has added a few procedures of its own.</li>
+      <li>[them] Mostly, though we have picked up a few habits of our own since.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Anyone of the town ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Former_TownFolk</defName>
+    <topic>former</topic>
+    <uses>home,chat,know</uses>
+    <when>town:former,!them:former</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] You're from {TOWN}?</li>
+      <li>[them,their:medieval] Aye, and it was {OLDCOLONY} once, your colony's, before it was ours.</li>
+      <li>[them] That's right, the town that used to be {OLDCOLONY}.</li>
+      <li>[us] How do they remember us there?</li>
+      <li>[them,tone:warm|tone:good] Kindly, the old ones speak of your people as old friends.</li>
+      <li>[them] As the ones who built the place, mostly.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Former_Hard</defName>
+    <topic>former</topic>
+    <uses>home,chat</uses>
+    <when>town:former,town:struggling|town:poor</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] It has been hard at {TOWN} lately.</li>
+      <li>[us] If the colony can help, write to us.</li>
+      <li>[them] We might, and it is good to know the door is open.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Former_Doing</defName>
+    <topic>former</topic>
+    <uses>home,chat</uses>
+    <when>town:former,town:thriving|town:flourishing</when>
+    <lines>
+      <li>[them] {TOWN} is doing well, you would hardly know it for {OLDCOLONY}.</li>
+      <li>[us] Good, it deserves to.</li>
+      <li>[them,them:former] It does, and you lot gave it a good start.</li>
+      <li>[them] Your people gave it a good start, so the old ones say.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

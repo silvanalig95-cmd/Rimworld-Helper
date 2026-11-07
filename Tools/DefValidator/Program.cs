@@ -506,7 +506,9 @@ wishPh.UnionWith(new[]
     "HAMLET", "HAMLETWORD", "HAMLETPEOPLE",
     // What stands near the colony and what their town has been through (World/Region/RegionNearFacts.cs): a raiders' camp
     // (its kind, its people), a ruin (its old name, its people), a town of theirs given up lately, the event at their town.
-    "RAIDCAMP", "RAIDCAMPPEOPLE", "RUINNAME", "RUINPEOPLE", "GIVENUP", "TOWNSITUATION"
+    "RAIDCAMP", "RAIDCAMPPEOPLE", "RUINNAME", "RUINPEOPLE", "GIVENUP", "TOWNSITUATION",
+    // A town the colony was (Colonies/TownAfterFacts.cs): the colony it was, and the years since the hand-over in words.
+    "OLDCOLONY", "YEARSSINCE"
 });
 // Rimfolk's events about a people (FactScene.Event): what their people remember of the colony, in words.
 wishPh.UnionWith(new[] { "DEED", "WRONG", "DEEDNAME", "WRONGNAME" });

@@ -11,11 +11,13 @@ namespace ColonyCouncil
     /// standing, "The newcomers are on their way: who are they?" (the game's own window for new people); and someone
     /// sent or kept against their wish asking to move to the other colony. Each does nothing once what it asks about is
     /// gone (the caravan moved on, the founding over, the person moved). A hand-over's too (Colonies/HandOvers.cs): the
-    /// meeting's vote told, go ahead or call it off; and those who go ready to leave, their caravan to form.
+    /// meeting's vote told, go ahead or call it off; and those who go ready to leave, their caravan to form. And a town the
+    /// colony was (Colonies/TownsAfter.cs, TownTakeBack.cs): their yes to the colony's letter, take it back now or later;
+    /// one of its former people asking to come home, welcome them or not now.
     /// </summary>
     public class ChoiceLetter_Founding : ChoiceLetter
     {
-        public const int Settle = 0, Newcomers = 1, Move = 2, HandOverVote = 3, HandOverCaravan = 4;
+        public const int Settle = 0, Newcomers = 1, Move = 2, HandOverVote = 3, HandOverCaravan = 4, TakeBack = 5, Homecoming = 6;
 
         public int ask;
         public int founding = -1;
@@ -23,8 +25,13 @@ namespace ColonyCouncil
         public int caravan = -1;
         public Pawn pawn;
         public int fromHome = HomesMath.None, toHome = HomesMath.None;
+        /// <summary>A town the colony was (its key), and for a homecoming the one of the colony's they come home to.</summary>
+        public int town = -1;
+        public Pawn kin;
 
         private FoundingPlan Plan => Foundings.Of(founding);
+
+        private LedgerFormer Town => WorldLedger.FormerOf(town);
 
         private HandOverPlan HandOverPlan => HandOvers.Of(handOver);
 
@@ -53,6 +60,11 @@ namespace ColonyCouncil
                         var c2 = HandOverPlan;
                         var m = c2 != null ? Homes.MapOf(c2.home) : null;
                         return c2 != null && c2.stage == HandOverStage.Leaving && m != null && c2.going.Any(x => x != null && !x.Dead && x.Spawned && x.Map == m);
+                    case TakeBack:
+                        var t = Town;
+                        return t != null && t.agreed && t.Standing && t.end == TownEnd.None;
+                    case Homecoming:
+                        return TownsAfter.HomecomingWhyNot(Town, pawn, kin) == null;
                     default:
                         return pawn != null && !pawn.Dead && Homes.MapOf(toHome) != null && Homes.MapOf(fromHome) != null && pawn.MapHeld == Homes.MapOf(fromHome);
                 }
@@ -126,6 +138,41 @@ namespace ColonyCouncil
                         };
                         yield return Option_Postpone;
                         break;
+                    case TakeBack:
+                    {
+                        var take = new DiaOption("CC_TownAfter_Choice_Take".Translate((TownsAfter.TownName(Town)).Named("TOWN")).Resolve())
+                        {
+                            action = () =>
+                            {
+                                var t = Town;
+                                Find.LetterStack.RemoveLetter(this);
+                                TownTakeBack.Ask(t);
+                            },
+                            resolveTree = true
+                        };
+                        string why = TownTakeBack.WhyNot(Town);
+                        if (why != null) take.Disable(why);
+                        yield return Answers.Recorded(take, this, "founding", Town?.people);
+                        yield return Option_Postpone;
+                        break;
+                    }
+                    case Homecoming:
+                        yield return Answers.Recorded(new DiaOption("CC_TownAfter_Choice_Welcome".Translate(pawn.Named("PAWN")).Resolve())
+                        {
+                            action = () =>
+                            {
+                                var t = Town;
+                                Find.LetterStack.RemoveLetter(this);
+                                TownsAfter.Homecoming(t, pawn, kin);
+                            },
+                            resolveTree = true
+                        }, this, "founding", Town?.people, pawn);
+                        yield return Answers.Recorded(new DiaOption("CC_TownAfter_Choice_NotNow".Translate())
+                        {
+                            action = () => Find.LetterStack.RemoveLetter(this),
+                            resolveTree = true
+                        }, this, "founding", Town?.people, pawn, minor: true);
+                        break;
                     case Newcomers:
                         yield return new DiaOption("CC_Found_Choice_Choose".Translate())
                         {
@@ -177,6 +224,8 @@ namespace ColonyCouncil
             Scribe_References.Look(ref pawn, "pawn");
             Scribe_Values.Look(ref fromHome, "fromHome", HomesMath.None);
             Scribe_Values.Look(ref toHome, "toHome", HomesMath.None);
+            Scribe_Values.Look(ref town, "town", -1);
+            Scribe_References.Look(ref kin, "kin");
         }
     }
 
@@ -253,6 +302,45 @@ namespace ColonyCouncil
             l.ask = ChoiceLetter_Founding.HandOverCaravan;
             l.handOver = plan.id;
             Tell.Ask(l, home);
+        }
+
+        /// <summary>Their yes to the colony's letter has reached the colony: take the town back now (a long event), or later from its card.</summary>
+        public static void AskTakeBack(LedgerFormer rec)
+        {
+            string town = TownsAfter.TownName(rec);
+            var head = rec.people?.leader;
+            var form = Ages.Form(AgeFeature.Back, Ages.Ours, rec.age);
+            string text = "CC_TownAfter_AskBackText".Translate((head?.LabelShort ?? "?").Named("HEAD"), town.Named("TOWN"), (rec.people?.Name ?? "?").Named("PEOPLE"),
+                form.word.Named("FORM")).Resolve();
+            var formers = rec.formers.Where(p => TownLayouts.FreeAtHome(p, rec.people)).ToList();
+            if (formers.Count > 0) text += " " + "CC_TownAfter_AskBackFormers".Translate(Foundings.Names(formers).Named("NAMES")).Resolve();
+            var settlement = rec.Town;
+            if (!Find.WorldObjects.Settlements.Any(o => o != null && o != settlement && o.Faction == rec.people))
+                text += "\n\n" + "CC_TownAfter_AskBackLast".Translate((rec.people?.Name ?? "?").Named("PEOPLE")).Resolve();
+            if (rec.layout == null) text += "\n\n" + "CC_TownAfter_AskBackNoLayout".Translate(town.Named("TOWN")).Resolve();
+            text += "\n\n" + "CC_TownAfter_AskBackWhen".Translate().Resolve();
+            var l = Make("CC_TownAfter_AskBackLabel".Translate(town.Named("TOWN")).Resolve(), text, TownsAfter.Look(rec));
+            if (l == null) return;
+            l.ask = ChoiceLetter_Founding.TakeBack;
+            l.town = rec.key;
+            Tell.Ask(l, Homes.Seat);
+        }
+
+        /// <summary>One of its former people asks to come home (their spouse or child here, a close friend, or their town in hard times).</summary>
+        public static void AskHomecoming(LedgerFormer rec, Pawn p, Pawn kin, bool close, bool hard)
+        {
+            string town = TownsAfter.TownName(rec);
+            string why = close ? "CC_TownAfter_HomeWhy_Kin" : kin != null ? "CC_TownAfter_HomeWhy_Friend" : "CC_TownAfter_HomeWhy_Hard";
+            string text = "CC_TownAfter_HomeText".Translate(p.Named("PAWN"), town.Named("TOWN")).Resolve() + " "
+                          + why.Translate(p.Named("PAWN"), (kin?.LabelShort ?? "").Named("KIN"), (kin != null ? Family.Relation(p, kin) : "").Named("RELATION"), town.Named("TOWN")).Resolve()
+                          + "\n\n" + "CC_TownAfter_HomeAsk".Translate(p.Named("PAWN")).Resolve();
+            var l = Make("CC_TownAfter_HomeLabel".Translate(p.Named("PAWN")).Resolve(), text, TownsAfter.Look(rec));
+            if (l == null) return;
+            l.ask = ChoiceLetter_Founding.Homecoming;
+            l.town = rec.key;
+            l.pawn = p;
+            l.kin = kin;
+            Tell.Ask(l, TownsAfter.HomeFor(kin));
         }
 
         /// <summary>A hand-over is done or called off: its letters go.</summary>

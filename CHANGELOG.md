@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The town afterwards
+
+*7 November 2026, version 0.128.0*
+
+- A colony handed over keeps its layout: when the game makes the town's map again, it is your colony as you left it, its walls, doors, furniture, floors and roofs, with its notables at home in their beds.
+- The town's head writes about once a season, by a messenger at your gate or over comms, with its news and the colony's days remembered. When its trader caravan comes, the town's own trader is the one who trades.
+- About once a year the town invites you to its founding day or the anniversary of the hand-over.
+- A former colonist may ask to come home when someone close to them is in your colony or their town is in hard times, and walks in from the town's side to be met. A colonist with someone close in the town may ask to go and live there.
+- Ask for the town back by letter: its head weighs your standing, its fortune and the years since. Taken back, its former colonists walk out of their rooms as your colonists again, and a few of its people may come too.
+- Or take it by force as the game allows: the bond ends, and its people and every people of the same faith remember it as a heavy wrong.
+
 ## Handing a colony over
 
 *6 November 2026, version 0.127.0*

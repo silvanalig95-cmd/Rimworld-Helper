@@ -87,8 +87,8 @@ public static class WorldMechanicsTests
             }
             C(words.Distinct().Count() == 4 && rites.Distinct().Count() == 4, $"{f}'s four ages each have a word and a rite of their own");
         }
-        C(AgesMath.Features.Length == 21 && AgesMath.Features.Distinct().Count() == 21 && Enum.GetValues(typeof(AgeFeature)).Length == 21,
-            "nine features, as ROADMAP's table has (council tasks dropped, 5 November 2026), the region's founding, trading post, hamlet and oath, stage 2's truce, hostage, envoy and levy, and stage 3's seat, founding party, call for newcomers and hand-over");
+        C(AgesMath.Features.Length == 22 && AgesMath.Features.Distinct().Count() == 22 && Enum.GetValues(typeof(AgeFeature)).Length == 22,
+            "nine features, as ROADMAP's table has (council tasks dropped, 5 November 2026), the region's founding, trading post, hamlet and oath, stage 2's truce, hostage, envoy and levy, and stage 3's seat, founding party, call for newcomers, hand-over and coming back");
         var extra = keyed.Keys.Where(k => k.StartsWith("CC_Form_") && !expected.Contains(k)).ToList();
         C(extra.Count == 0, "no form key outside the table: " + string.Join(", ", extra));
         C(AgesMath.WordKey(AgeFeature.Favor, WorldAge.Tribal) == "CC_Form_Favor_Tribal" && AgesMath.RiteKey(AgeFeature.Fealty, WorldAge.Spacer) == "CC_Form_Fealty_Spacer_Rite",

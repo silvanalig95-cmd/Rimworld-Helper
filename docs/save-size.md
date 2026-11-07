@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 538; modelled: 538; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,406 KB** after a year, **2,848 KB** after two, **3,029 KB** after five.
+Saved collections found: 541; modelled: 541; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,410 KB** after a year, **2,855 KB** after two, **3,047 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -32,7 +32,7 @@ Rimfolk's part of the save, roughly: **2,406 KB** after a year, **2,848 KB** aft
 | `Aspirations/Aspirations.cs:all` | goals of the dead and departed end; finished ones of the dead kept 3 years | known | 55 | 60 | 75 | 25.6 |
 | `World/Ledger/LedgerPersons.cs:persons` | every notable, anyone a tie names and anyone kept in the world; the rest go at the day's tidy (LedgerMath.KeepPerson) | fixed | 145 | 145 | 145 | 25.5 |
 | `Social/SocialWeb.cs:ties` | ties of the dead dropped daily, of the gone faded out | pairs | 57 | 57 | 57 | 22.3 |
-| `Dilemmas/Dilemmas.cs:lastTick` | one per dilemma def | defs | 241 | 241 | 241 | 21.2 |
+| `Dilemmas/Dilemmas.cs:lastTick` | one per dilemma def | defs | 242 | 242 | 242 | 21.3 |
 | `Ailments/AilmentTracker.cs:last` | last ailments 120 days, known pawns only | window | 120 | 240 | 240 | 21.1 |
 | `Calendar/ColonyCalendar.cs:days` | 12 the colony's, 8 the player's, traditions and the founding, the customs kept | cap | 12 | 24 | 36 | 21.1 |
 | `World/Ledger/LedgerPersons.cs:townRecords` | the towns in detail within the region map's reach (RegionMath.MaxTownsPerHome a home, one home here), the towns the notables live in, and a gone town for two years (RegionMath.KeepTown); each with its fortune and founding | fixed | 54 | 54 | 54 | 20.0 |
@@ -41,6 +41,7 @@ Rimfolk's part of the save, roughly: **2,406 KB** after a year, **2,848 KB** aft
 | `Dreams/Dreams.cs:recent` | 80 recent dreams | cap | 80 | 80 | 80 | 19.5 |
 | `Outsiders/OutsiderBook.cs:pairs` | OutsiderBook.MaxPairs pairs, the longest quiet go first; the gone dropped after 30 days | fixed | 60 | 60 | 60 | 19.3 |
 | `Standing.cs:log` | 8 lines per colonist | colonists | 160 | 160 | 160 | 18.8 |
+| `Colonies/TownLayout.cs:table` | per town the colony was: its kept layout, the grids deflated and the def names (64 KB at most a town); none for a town handed over before release 2b | cap | 0 | 1 | 2 | 18.5 |
 | `Arcs/ArcTracker.cs:past` | ArcTracker.MaxPast | cap | 18 | 36 | 90 | 17.6 |
 | `Pressures/Pressures.cs:people` | one per colonist, the gone dropped daily | colonists | 20 | 20 | 20 | 17.6 |
 | `Setbacks/SetbackTracker.cs:last` | 20 days | window | 200 | 200 | 200 | 17.6 |
@@ -82,7 +83,7 @@ Rimfolk's part of the save, roughly: **2,406 KB** after a year, **2,848 KB** aft
 | `Building/ColonyUse.cs:days` | the record of use: one entry a day per thing used, bench product and bench hand, today and UseLog.WindowDays before it | window | 280 | 280 | 280 | 6.8 |
 | `World/WorldSituations.cs:lastEnded` | one per situation def | defs | 76 | 76 | 76 | 6.7 |
 | `Dreams/Dreams.cs:seen` | dream counts of known pawns | known | 55 | 60 | 75 | 6.6 |
-| `Dilemmas/Dilemmas.cs:traditionCount` | per tradition, an older save's until its customs go on the calendar (the first hour) | defs | 72 | 72 | 72 | 6.4 |
+| `Dilemmas/Dilemmas.cs:traditionCount` | per tradition, an older save's until its customs go on the calendar (the first hour) | defs | 73 | 73 | 73 | 6.4 |
 | `Dilemmas/AnswerShifts.cs:shifts` | a colonist's hours or work changed by an answer, a night to a heat wave long, at most AnswerShifts.MaxShifts at once | cap | 18 | 36 | 40 | 6.2 |
 | `Epithets/Epithets.cs:holders` | one per title | defs | 71 | 71 | 71 | 6.2 |
 | `Health/HealthTracker.cs:healers` | known pawns only | known | 22 | 24 | 30 | 5.9 |
@@ -470,6 +471,8 @@ Rimfolk's part of the save, roughly: **2,406 KB** after a year, **2,848 KB** aft
 | `Colonies/HomesHandOver.cs:keptAgainst` | per hand-over: those kept against their wish (counted under handOvers) | while | 4 | 4 | 4 | (in its record) |
 | `Colonies/HomesHandOver.cs:sentAgainst` | per hand-over: those sent against their wish (counted under handOvers) | while | 4 | 4 | 4 | (in its record) |
 | `Colonies/HomesHandOver.cs:staying` | per hand-over: who stays (counted under handOvers) | while | 12 | 12 | 12 | (in its record) |
+| `Colonies/TownLayout.cs:beds` | per kept layout: the beds of those who stayed (counted under formerRecords) | while | 12 | 12 | 12 | (in its record) |
+| `Colonies/TownLayout.cs:sleepers` | per kept layout: who sleeps in each (counted under formerRecords) | while | 12 | 12 | 12 | (in its record) |
 | `CouncilSettings.cs:barPutAway` | the mod's settings file, not the save: the bottom bar's buttons put away, one name each | settings | 40 | 40 | 40 | (settings file) |
 | `CouncilSettings.cs:councilPageState` | the mod's settings file, not the save | settings | 30 | 30 | 30 | (settings file) |
 | `CouncilSettings.cs:hudPanels` | the mod's settings file, not the save: one per panel | settings | 8 | 8 | 8 | (settings file) |

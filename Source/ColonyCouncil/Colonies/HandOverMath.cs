@@ -313,7 +313,7 @@ namespace ColonyCouncil
         /// <summary>The bond by its state: gone after a war or a taking by force, else +30 while a former colonist heads them, +15 after.</summary>
         public static int Bond(bool ended, bool formerHeads) => ended ? 0 : formerHeads ? BondHeld : BondAfter;
 
-        /// <summary>The bond ends with a war between them (the people hostile to the colony) or a town taken by force (release 2b).</summary>
+        /// <summary>The bond ends with a war between them (the people hostile to the colony) or a town taken by force (Colonies/TownTakeBack.cs).</summary>
         public static bool BondEnds(bool hostile, bool takenByForce) => hostile || takenByForce;
 
         // ---------------- The meeting and the ceremony on the map ----------------
@@ -349,7 +349,7 @@ namespace ColonyCouncil
             return best;
         }
 
-        // release 2b: the kept layout's encoding and size cap (LayoutMath), the take-back answer, the homecoming's chance
-        // and caps (FormerMath) come here, beside these.
+        // Release 2b's rules (the kept layout's encoding and size cap, the take-back answer, the homecoming's chance and
+        // caps, the town's days) are Colonies/TownAfterMath.cs: LayoutMath and FormerMath.
     }
 }

@@ -1950,6 +1950,22 @@ them), and the bond "once of" the colony keeps their goodwill up (30, or 15 once
 war). A save holding such a town needs Rimfolk from then on, which the window says. Setting: Many colonies (Handing
 over).
 
+### The town afterwards
+Rimfolk keeps the colony's layout at the hand-over (its buildings, floors and roofs, and where rock was mined; not its
+goods, plants or filth), so when the town's map is made again, for an attack or a fight there, it is the colony as you
+left it, with the town's notables at home in their own beds and its people defending it. The town's head writes now
+and then (a season apart at least) in the voice of someone who was the colony's own, with its news and the colony's
+days remembered; a trader caravan of theirs brings the town's trader; it keeps the colony's founding day and the day of
+the hand-over and invites the colony to one of them a year at most; one of its former people may ask to come home
+when their spouse, child or close friend is in the colony or the town is in hard times (once a season from each town
+at most; they walk in from the town's side), and a colonist with someone of their own there may ask the council to go
+and live there. **Ask for it back** on the town's card writes to its head (once a year at most): the answer weighs
+their regard, their goodwill, the town's fortune (a struggling town is readier), the years since and how much it has
+grown. Agreed, take it back from the letter or the card: the settlement is yours again, its map made as you left it,
+its former colonists walk out of their rooms as colonists and up to three of its other people choose to come. Or take
+it by force, as the game allows: attack, beat and settle it with the game's Settle button; the bond ends, and its
+people and every people of its faith remember a heavy wrong. Setting: Many colonies (The town's life).
+
 ### Another landing site
 Don't like the map? For the first three days of a new game, **Choose another landing site** in the game's menu (Esc),
 or on the colony's card, sets the same colony down on a new map: a new map of the same place or another place on the
