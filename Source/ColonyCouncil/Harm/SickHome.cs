@@ -208,8 +208,7 @@ namespace ColonyCouncil
             string text = TextVariants.Vary("CC_HarmTwo_SickHome").Translate(p.Named("PAWN"), ill.Named("ILLNESS"), (x.townName ?? "?").Named("TOWN"), why.Named("WHY")).Resolve();
             string note = AilmentTracker.DoctorsNote(def);
             if (!note.NullOrEmpty()) text += " " + note;
-            ColonyCouncil.Tell.Letter(NewsKind.Health, Importance.Important, p.Map, "CC_HarmTwo_SickHomeLabel".Translate(p.Named("PAWN"), ill.Named("ILLNESS")).Resolve(), text,
-                LetterDefOf.NegativeEvent, new LookTargets(p));
+            ColonyCouncil.Tell.Letter(NewsKind.Health, Importance.Important, p.Map, ill.CapitalizeFirst() + ": " + p.LabelShortCap, text, LetterDefOf.NegativeEvent, new LookTargets(p));
         }
 
         /// <summary>The day's pruning: stays long past (the road home taken without them coming home), the dead.</summary>

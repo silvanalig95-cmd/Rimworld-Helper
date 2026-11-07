@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Harm, parts 2 and 3 (Source/ColonyCouncil/Harm/): a camp's brawl, sickness brought home, the champion's bout, hunts
+       that bite back, a rival's sabotage, the hustings' blows, frayed tempers. -->
+
+  <!-- ===================== Frayed tempers (FrayedTempers.cs) ===================== -->
+
+  <CC_HarmTwo_FrayedBand>A sharp word comes to blows more easily.</CC_HarmTwo_FrayedBand>
+  <CC_HarmTwo_Frayed>{PAWN_nameDef} has been {BAND} for a while, and a sharp word with {OTHER_nameDef} came to blows.</CC_HarmTwo_Frayed>
+  <CC_HarmTwo_Frayed_2>Days of strain have left {PAWN_nameDef} {BAND}, and this time the words with {OTHER_nameDef} ended in a fight.</CC_HarmTwo_Frayed_2>
+
+  <!-- ===================== A camp's quarrel that becomes a brawl (CampBrawls.cs) ===================== -->
+
+  <CC_Impact_CampQuarrel>The quarrel may come to blows at their fire in the evenings, and if it does the camp packs up early</CC_Impact_CampQuarrel>
+  <CC_Impact_CampQuarrelBrief>may come to blows at the camp</CC_Impact_CampQuarrelBrief>
+  <CC_HarmTwo_CampBrawl>Raised voices at the {NAME}'s fire turned into a brawl: {A_nameDef} and {X_nameDef} came to blows on the colony's land.</CC_HarmTwo_CampBrawl>
+  <CC_HarmTwo_CampBrawl_2>The quarrel at the {NAME}'s fire boiled over, and {A_nameDef} and {X_nameDef} of the {FACTION} are fighting.</CC_HarmTwo_CampBrawl_2>
+  <CC_HarmTwo_CampBrawlTheirs>The quarrel among the {NAME} came to blows at their fire: {X_nameDef} and {THING} are fighting.</CC_HarmTwo_CampBrawlTheirs>
+  <CC_HarmTwo_CampBrawlTheirs_2>Raised voices at the {NAME}'s fire, and then fists: {X_nameDef} and {THING} of the {FACTION} have come to blows.</CC_HarmTwo_CampBrawlTheirs_2>
+  <CC_HarmTwo_CampBrawlJoined>Others at the fire joined in: {WHO}.</CC_HarmTwo_CampBrawlJoined>
+  <CC_Camp_End_brawl>After the brawl at their fire, the {NAME} from {FACTION} packed up their camp {PLACE} early and left. Their people will remember it as a fistfight on the colony's land.</CC_Camp_End_brawl>
+
+  <!-- ===================== The champion's bout (ChampionBouts.cs) ===================== -->
+
+  <CC_HarmTwo_BoutForm_Tribal>wrestling and stick-fighting</CC_HarmTwo_BoutForm_Tribal>
+  <CC_HarmTwo_BoutForm_Medieval>a bout with quarterstaves and blunted swords</CC_HarmTwo_BoutForm_Medieval>
+  <CC_HarmTwo_BoutForm_Industrial>boxing</CC_HarmTwo_BoutForm_Industrial>
+  <CC_HarmTwo_BoutForm_Spacer>a stun-baton bout</CC_HarmTwo_BoutForm_Spacer>
+  <CC_Impact_ChampionBout>A bout on the map before the colony, and now and then a blow lands for real on {0} or the champion</CC_Impact_ChampionBout>
+  <CC_Impact_ChampionBoutBrief>a blow may land for real</CC_Impact_ChampionBoutBrief>
+  <CC_HarmTwo_ChampionBlow>One blow in the bout landed for real, and {HURT_nameDef} took it from {OTHER_nameDef}.</CC_HarmTwo_ChampionBlow>
+  <CC_HarmTwo_ChampionBlow_2>{HURT_nameDef} came out of the bout with {OTHER_nameDef} properly hurt by a blow that wasn't pulled.</CC_HarmTwo_ChampionBlow_2>
+
+  <!-- ===================== Hunts that can bite back (HuntsBite.cs) ===================== -->
+
+  <CC_Impact_HuntTurn>The {KIND} among the game may turn on its hunters, as the game has it</CC_Impact_HuntTurn>
+  <CC_Impact_HuntTurnBrief>the {KIND} may turn on its hunters</CC_Impact_HuntTurnBrief>
+  <CC_HarmTwo_HuntTurnNote>The {KIND} may turn on its hunters.</CC_HarmTwo_HuntTurnNote>
+  <CC_HarmTwo_HuntTurnCalendar>A lone {KIND} is among the day's game, and it may turn on its hunters.</CC_HarmTwo_HuntTurnCalendar>
+  <CC_HarmTwo_HuntTurned>The {KIND} {PAWN_nameDef} was hunting has turned on {PAWN_objective}.</CC_HarmTwo_HuntTurned>
+  <CC_HarmTwo_HuntTurned_2>Hit but not down, the {KIND} has turned and is coming for {PAWN_nameDef}.</CC_HarmTwo_HuntTurned_2>
+
+  <!-- ===================== Sickness brought home (SickHome.cs) ===================== -->
+
+  <CC_HarmTwo_SickHome>{PAWN_nameDef} has fallen ill a few days after coming home from {TOWN}: {ILLNESS}. {WHY}</CC_HarmTwo_SickHome>
+  <CC_HarmTwo_SickHome_2>{PAWN_nameDef} brought more than goods home from {TOWN}, and is ill with it now: {ILLNESS}. {WHY}</CC_HarmTwo_SickHome_2>
+  <CC_HarmTwo_SickHome_Plague>A plague was going round {TOWN} while the caravan stayed there.</CC_HarmTwo_SickHome_Plague>
+  <CC_HarmTwo_SickHome_Famine>{TOWN} was going hungry while the caravan stayed there, and the sickness that follows short rations and bad water was about.</CC_HarmTwo_SickHome_Famine>
+
+  <!-- ===================== A rival's sabotage, found out (Sabotage.cs) ===================== -->
+
+  <CC_HarmTwo_Report_Sabotage>tampering with {BENCH}.</CC_HarmTwo_Report_Sabotage>
+  <CC_HarmTwo_Sabotage_What_Tribal>the charm {OTHER_nameDef} keeps on {OTHER_possessive} {BENCH} taken and {OTHER_possessive} tools knocked about</CC_HarmTwo_Sabotage_What_Tribal>
+  <CC_HarmTwo_Sabotage_What_Medieval>a tool broken at {OTHER_nameDef}'s {BENCH}</CC_HarmTwo_Sabotage_What_Medieval>
+  <CC_HarmTwo_Sabotage_What_Industrial>{OTHER_nameDef}'s {BENCH} jammed</CC_HarmTwo_Sabotage_What_Industrial>
+  <CC_HarmTwo_Sabotage_What_Spacer>the program of {OTHER_nameDef}'s {BENCH} tampered with</CC_HarmTwo_Sabotage_What_Spacer>
+  <CC_HarmTwo_SabotageUnknown>Someone has been at {OTHER_nameDef}'s work: {WHAT}. Nobody saw who.</CC_HarmTwo_SabotageUnknown>
+  <CC_HarmTwo_SabotageUnknown_2>{OTHER_nameDef} will find {OTHER_possessive} work spoiled: {WHAT}. Whoever did it wasn't seen.</CC_HarmTwo_SabotageUnknown_2>
+  <CC_HarmTwo_SabotageFound_Seen>{WITNESS_nameDef} saw it done</CC_HarmTwo_SabotageFound_Seen>
+  <CC_HarmTwo_SabotageFound_Word>word of it got round</CC_HarmTwo_SabotageFound_Word>
+  <CC_HarmTwo_SabotageFight>{OTHER_nameDef} found out who was behind {WHAT} ({HOW}), went to have it out with {PAWN_nameDef}, and it came to blows.</CC_HarmTwo_SabotageFight>
+  <CC_HarmTwo_SabotageFight_2>It was {PAWN_nameDef} behind {WHAT}, and {HOW}. {OTHER_nameDef} has gone for {PAWN_objective}, fists first.</CC_HarmTwo_SabotageFight_2>
+  <CC_HarmTwo_SabotageWords>{OTHER_nameDef} found out who was behind {WHAT} ({HOW}), and had hard words with {PAWN_nameDef} over it.</CC_HarmTwo_SabotageWords>
+  <CC_HarmTwo_SabotageWords_2>It was {PAWN_nameDef} behind {WHAT}, and {HOW}. {OTHER_nameDef} said so to {PAWN_possessive} face.</CC_HarmTwo_SabotageWords_2>
+  <CC_HarmTwo_TieNote_Sabotage>spoiled the other's work</CC_HarmTwo_TieNote_Sabotage>
+
+  <!-- ===================== Hustings that come to blows (HustingsBrawls.cs) ===================== -->
+
+  <CC_HarmTwo_HustingsBrawl>At the hustings, {PAWN_nameDef} heckled {SPEAKER_nameDef}, and {OTHER_nameDef}, an old rival backing {SPEAKER_nameDef}, answered with fists.</CC_HarmTwo_HustingsBrawl>
+  <CC_HarmTwo_HustingsBrawl_2>A heckle at {SPEAKER_nameDef}'s speech went too far: {OTHER_nameDef} and {PAWN_nameDef} have come to blows in front of the hustings.</CC_HarmTwo_HustingsBrawl_2>
+
+</LanguageData>

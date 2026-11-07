@@ -252,7 +252,7 @@ namespace ColonyCouncil
                 if (line.NullOrEmpty()) return;
                 var args = new List<NamedArgument> { p.Named("PAWN") };
                 if (to != null) args.Add(to.Named("OTHER"));
-                if (about != null) args.Add(about.Named("RIVAL"));
+                if (about != null) args.Add(about.Named("ABOUT"));
                 // together: a line to the other, shown only while the two are together (Speech.Say checks it).
                 Speech.Say(p, line.Formatted(args.ToArray()).Resolve(), to, SayColor);
             }
