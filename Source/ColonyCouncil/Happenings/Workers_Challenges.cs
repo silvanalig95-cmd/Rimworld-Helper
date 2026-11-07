@@ -156,6 +156,7 @@ namespace ColonyCouncil
             var a = v.a;
             var x = v.x;
             if (a == null || x == null || a.Dead || x.Dead || v.skill == null) return;
+            // together: decided once the two met for it (Contest, through Together.When), or at the bout's end at the ring.
             v.done = true;
             var ctx = new HappeningContext { incident = v.incident, map = v.map, a = a, stranger = x, skill = v.skill, count = v.stake, contest = true };
             // A bout is named as the challenger's people fight it (wrestling, staves, boxing, the baton).

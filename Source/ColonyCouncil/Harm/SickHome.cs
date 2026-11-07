@@ -202,6 +202,7 @@ namespace ColonyCouncil
         {
             string ill = AilmentTracker.NameOf(def) ?? def.label;
             string tag = x.kind == SickTown.Plague ? "plague" : "famine";
+            // apart: a word over their own head, to nobody, as it shows.
             string line = Flavor.FromPool("Rimfolk_Pool_SickHome", p, null, null, tag);
             if (!line.NullOrEmpty()) Speech.Say(p, line.Formatted(p.Named("PAWN")).Resolve(), null, SayColor);
             string why = (x.kind == SickTown.Plague ? "CC_HarmTwo_SickHome_Plague" : "CC_HarmTwo_SickHome_Famine").Translate((x.townName ?? "?").Named("TOWN")).Resolve();

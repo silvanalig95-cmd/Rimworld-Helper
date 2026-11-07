@@ -127,6 +127,7 @@ namespace ColonyCouncil
                 HarmBook.Instance?.NotTurning(animal);
                 if (hunter == null || !KinMemory.Ours(hunter)) return;
                 Harm.Note(hunter, "a hunt's game turned");
+                // apart: a word over the hunter's own head, to nobody, as the game turns on them.
                 string line = Flavor.FromPool("Rimfolk_Pool_GameTurns", hunter);
                 if (!line.NullOrEmpty()) Speech.Say(hunter, line.Formatted(hunter.Named("PAWN")).Resolve(), null, SayColor);
                 string text = TextVariants.Vary("CC_HarmTwo_HuntTurned").Translate(hunter.Named("PAWN"), animal.KindLabel.Named("KIND")).Resolve();

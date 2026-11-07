@@ -176,6 +176,8 @@ namespace ColonyCouncil
                 else
                 {
                     bench.HitPoints = HarmTwoMath.BenchHitPoints(bench.HitPoints, bench.MaxHitPoints);
+                    // The game's builders see it needs mending, as after any damage.
+                    map.listerBuildingsRepairable.Notify_BuildingTookDamage(bench);
                     FleckMaker.ThrowDustPuffThick(bench.TrueCenter(), map, 1.2f, new Color(0.6f, 0.55f, 0.5f));
                 }
                 string form = HarmTwoMath.SabotageForm(age);
