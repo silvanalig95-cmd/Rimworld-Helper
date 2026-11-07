@@ -370,17 +370,17 @@ namespace ColonyCouncil
             var f = Make(def, c, out var detail);
             if (f == null) return null;
             var town = NewTowns.MakeTown(f, tile, TownName(c, f));
+            // Kept even without its town (a town the game wouldn't make), so the cause gives no second people.
+            book.Add(new ArisenPeople
+            {
+                people = f, kind = c.kind, cause = c.key, tick = Now, parent = c.parent, parentName = c.parent?.Name,
+                from = c.kind == ArisingMath.League ? ArisingWords.Towns(c.towns) : c.name
+            });
             if (town == null) return f;
             Safe("the town's faces", () =>
             {
                 RegionFaces.Founded(town, f.leader, c.kind == ArisingMath.Refugees ? "refugees" : null);
                 RiseFall.NoteFounded(town);
-            });
-            int now = Now;
-            book.Add(new ArisenPeople
-            {
-                people = f, kind = c.kind, cause = c.key, tick = now, parent = c.parent, parentName = c.parent?.Name,
-                from = c.kind == ArisingMath.League ? ArisingWords.Towns(c.towns) : c.name
             });
             Safe("the letter", () => ArisingWords.Tell(c, f, town, detail));
             if (Prefs.DevMode)

@@ -284,8 +284,8 @@ namespace ColonyCouncil
             new[] { 0.66f, 0.78f, 0.32f }, // lichen
             new[] { 0.36f, 0.42f, 0.50f }, // slate
             new[] { 0.90f, 0.46f, 0.12f }, // saffron
-            new[] { 0.52f, 0.38f, 0.24f }, // umber
-            new[] { 0.42f, 0.74f, 0.84f }  // sky
+            new[] { 0.16f, 0.36f, 0.22f }, // pine
+            new[] { 0.72f, 0.62f, 0.88f }  // lavender
         };
 
         /// <summary>The palette's colour farthest from every colour the world's peoples have (the first on a tie).</summary>

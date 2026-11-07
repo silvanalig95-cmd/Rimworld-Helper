@@ -10,7 +10,7 @@
     <category>Council</category>
     <order>16</order>
     <summary>Rimfolk adds three peoples of peaceful callings to the world: a road league of caravan masters and waystation keepers, an order of hospitallers who keep sickhouses, and nomad herders who follow the grass with great herds. Each has its own gear, colours, faith, towns and words, and turns up in Rimfolk's camps, asks, callers and letters in its own way.</summary>
-    <tip>They are among the world's peoples when a new world is made, once each, at the game's usual chances; remove them in the world's faction list like any other people. A save made before they were there doesn't have them.</tip>
+    <tip>They are among the world's peoples when a new world is made, once each, at the game's usual chances; remove them in the world's faction list like any other people. A save made before they were there meets them when one arises during play.</tip>
     <description>All three are mostly peaceful. They defend their towns, and they raid only when the colony has turned them hostile, by the game's own rules, and less often than other peoples then. Their notables have titles of their own, their messengers words of their own, and their towns a plan of their own when the land suits it.</description>
     <sections>
       <li>
@@ -38,6 +38,18 @@
           <li>Their letters, their messengers at the gate and the talk with them are in their own voice, as each people's age is in its own.</li>
           <li>A town of theirs, when its map is made, is laid out to their plan: the league's walled yard with stalls and a storehouse, the order's long ward of sixteen beds and its cloister, the herders' round houses and two great pens with their herd in them. Where the land is too wet or rough for it, the game makes its own base.</li>
         </points>
+      </li>
+      <li>
+        <heading>Peoples that arise during play</heading>
+        <text>Now and then a new people comes into being from what happened in the region, in any age, and in a save made before these peoples were there. Each takes the ways of one of the three by its age, a name and an emblem colour of its own, and a town a few days from what made it. A letter tells it, and their card and their towns' cards say where they came from.</text>
+        <table>
+          <li>What happened | Who they are | How they feel at first</li>
+          <li>A town within reach fell in a fight | Its survivors, settled near its ruin: herders in a tribal world, a sickhouse in a medieval one, carriers on the road after that | Cool if the colony's own people took the town; else by the colony's goodwill with their old people</li>
+          <li>Three prospering towns (62 or more) of two peoples or more, near each other and at peace | Their merchants as a road league, or among tribes their herders as one folk | By their towns' peoples' goodwill with the colony, and warm toward those peoples</li>
+          <li>One the council sent away, 15 days or more after | A band gathered round them, with them at its head: herders in a tribal or medieval colony, carriers and guards after that | Cool if they went with a grudge; warmer for each of the colony who stood by them, cooler for each who was glad to see them go</li>
+          <li>A war of words over a faith has ended (Ideology) | Faithful who broke away, with a creed of their own (their old faith with one teaching dropped or added): a sickhouse, or among tribes their herds | Warm if the colony kept a fair table in the debate; cool toward the people they left</li>
+        </table>
+        <after>At the setting's 100% one arises every 40 days at most and one of the same cause every 90, none before the world's 15th day, and six at most stand at once. Two fallen towns in five leave survivors who settle, half of those sent away gather a band, and half the wars of words leave faithful who break away. None is an enemy or an ally on its first day. The setting is New peoples arise, on How much happens; 0% switches it off.</after>
       </li>
     </sections>
     <keywords><li>road league</li><li>hospitaller order</li><li>herding folk</li><li>waystation</li><li>sickhouse</li><li>winter grazing</li></keywords>
