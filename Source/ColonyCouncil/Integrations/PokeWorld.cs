@@ -28,11 +28,11 @@ namespace ColonyCouncil
     public static class PokeWorldLink
     {
         /// <summary>
-        /// Package ids of the versions we know: the original (1.4) and eth0net's update (1.5). The 1.6 port may use
-        /// either or one of its own; the mod is found by its classes and races anyway, and its real id is added to the
-        /// Almanac pages at startup.
+        /// Package ids of the versions we know: the original (1.4), eth0net's update (1.5) and PokéWorld Updated for
+        /// 1.6 (themoonitself's, the player's since 7 November 2026). The mod is found by its classes and races anyway,
+        /// and its real id is added to the Almanac pages at startup.
         /// </summary>
-        public static readonly string[] KnownPackageIds = { "gargamiel.pokeworld", "eth0net.pokeworld" };
+        public static readonly string[] KnownPackageIds = { "gargamiel.pokeworld", "eth0net.pokeworld", "themoonitself.pokeworld" };
 
         public const string JournalPool = "Council_Journal_PW_NewSpecies";
 

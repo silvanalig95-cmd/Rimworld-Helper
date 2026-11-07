@@ -17,11 +17,12 @@
     <mods>
       <li>gargamiel.pokeworld</li>
       <li>eth0net.pokeworld</li>
+      <li>themoonitself.pokeworld</li>
     </mods>
     <approximate>true</approximate>
     <summary>Pokémon as animals: caught with Poké Balls, raised through levels and evolutions</summary>
     <tip>We gave up trying to tame the Eevee by hand once we had an Apricorn belt.</tip>
-    <description>PokéWorld adds the 493 Pokémon of the first four generations as animals. They live in the wild beside RimWorld's animals or in their place, as the mod's settings decide, and they can't be tamed the usual way: a colonist wearing a Poké Ball belt throws balls at one until a ball holds. A caught Pokémon follows the colonist it's assigned to and fights for them, gains levels, learns moves and evolves. The Pokédex tab records every species you have seen and caught, and miners sometimes dig up evolution stones and fossils that can be brought back to life.</description>
+    <description>PokéWorld adds the Pokémon as animals: the 493 of the first four generations in the original, and 898 of eight generations in PokéWorld Updated for 1.6. They live in the wild beside RimWorld's animals or in their place, as the mod's settings decide, and they can't be tamed the usual way: a colonist wearing a Poké Ball belt throws balls at one until a ball holds. A caught Pokémon follows the colonist it's assigned to and fights for them, gains levels, learns moves and evolves. The Pokédex tab records every species you have seen and caught, and miners sometimes dig up evolution stones and fossils that can be brought back to life.</description>
     <sections>
       <li>
         <heading>The version in your list</heading>
