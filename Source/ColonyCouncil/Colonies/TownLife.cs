@@ -411,10 +411,12 @@ namespace ColonyCouncil
             var ws = WorldSituations.Instance;
             var town = rec.Town;
             if (ws == null || town == null) return;
-            int since = Math.Max(rec.hardshipSeen, rec.handedAt);
+            int since = Math.Max(rec.hardshipSeen, rec.handedAt), latest = since;
             foreach (var r in ws.history.ToList())
             {
-                if (r == null || r.endTick <= since || r.ending == WorldSituations.Quietly) continue;
+                if (r == null || r.endTick <= since) continue;
+                latest = Math.Max(latest, r.endTick);
+                if (r.ending == WorldSituations.Quietly) continue;
                 var d = DefDatabase<WorldSituationDef>.GetNamedSilentFail(r.defName ?? "");
                 int hardship = TownLifeMath.HardshipKind(d?.kind);
                 if (hardship == TownLifeMath.NoHardship || d?.bad != true) continue;
@@ -423,9 +425,10 @@ namespace ColonyCouncil
                 if (!TownLifeMath.HardshipReaches(r.faction == rec.people, tiles)) continue;
                 Reckon(rec, r, hardship, now);
             }
-            if (rec.hardshipSeen != now)
+            // Each world event reckoned once: the last ending looked at.
+            if (latest > rec.hardshipSeen)
             {
-                rec.hardshipSeen = now;
+                rec.hardshipSeen = latest;
                 WorldLedger.FormerChanged();
             }
         }

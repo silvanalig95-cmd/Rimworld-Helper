@@ -181,10 +181,14 @@ namespace ColonyCouncil
         {
             var rec = RecOf(s);
             if (s.Num("fight") == 1) return Watch(s, rec);
-            // The map being made (a long event): wait for it.
-            if (s.Num("fight") == 2) return null;
-            if (!StillPossible(s)) return GoneEnding(s);
             int now = Now;
+            // The map being made (a long event): wait for it, an hour at most (a long event never run starts over).
+            if (s.Num("fight") == 2)
+            {
+                if (now - s.Num("making") < GenDate.TicksPerHour) return null;
+                s.SetNum("fight", 0);
+            }
+            if (!StillPossible(s)) return GoneEnding(s);
             if (s.Has("refused") && s.Num("raidAt") > 0 && now >= s.Num("raidAt")) return Alone(s, rec);
             if (!s.Has("sending")) return null;
             var town = rec.Town;
@@ -239,6 +243,7 @@ namespace ColonyCouncil
         private void Begin(WorldSituation s, LedgerFormer rec, Caravan c)
         {
             s.SetNum("fight", 2);
+            s.SetNum("making", Now);
             int id = s.id, key = rec.key, caravan = c.ID;
             LongEventHandler.QueueLongEvent(() => MakeFight(id, key, caravan), "GeneratingMapForNewEncounter", false, null);
         }
@@ -249,7 +254,7 @@ namespace ColonyCouncil
             var rec = WorldLedger.FormerOf(key);
             var c = Find.WorldObjects.Caravans.FirstOrDefault(x => x.ID == caravanId);
             var town = rec?.Town;
-            if (s == null || s.ended) return;
+            if (s == null || s.ended || s.Num("fight") != 2) return;
             try
             {
                 if (town == null || c == null || c.Destroyed || town.HasMap || s.ctx.enemy == null)
