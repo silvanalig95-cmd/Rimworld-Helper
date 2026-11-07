@@ -305,8 +305,11 @@ namespace ColonyCouncil
             {
                 ctx.faction = People(s, ctx.map);
                 if (ctx.faction == null) return false;
-                // A visitor who waits at the edge for the answer is never a guest who's here already.
-                MakeGroup(ctx, ext, Mathf.Max(1, ext.count.RandomInRange), ext.ages, null, !s.waits);
+                // A visitor who waits at the edge for the answer is never a guest who's here already; nor is one of Rimfolk's
+                // peoples by its calling (the order's hospitaller, the league's outrider), whom a guest of another people
+                // here would stand in for under that people's name.
+                bool ofCalling = s.people != null && s.people.StartsWith("calling:", StringComparison.Ordinal);
+                MakeGroup(ctx, ext, Mathf.Max(1, ext.count.RandomInRange), ext.ages, null, !s.waits && !ofCalling);
                 if (ctx.stranger == null) return false;
                 if (s.visitorSkill != null && !Strangers.IsHospitalityGuest(ctx.stranger)) StorytellerEvents.Skilled(ctx.stranger, s.visitorSkill, s.visitorLevel);
             }

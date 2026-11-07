@@ -502,3 +502,6 @@ Rimfolk_WS_SonRiders [end:refused] a refusal, told
 
 # Defs/DilemmaDefs/Rimfolk_Dilemmas_Fealty.xml
 Rimfolk_DlmFealty_Swear [option 0] already real, the event's own code: the speaker walks out to the gate and swears face to face (JobDriver_FealtyOath)
+
+# Defs/IncidentDefs/Rimfolk_Events_PeoplesC.xml
+Rimfolk_Evt_EnclaveLander [option 0] already real, the event's own code: the trade party comes down by drop pod and trades under the game's own visitors' lord, which walks them off when they are done (EnclaveLanding.Land)

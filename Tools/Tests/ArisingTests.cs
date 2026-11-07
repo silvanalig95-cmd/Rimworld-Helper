@@ -96,7 +96,7 @@ public static class ArisingTests
         }
         foreach (var kind in ArisingMath.Kinds)
             for (int age = 0; age <= 3; age++)
-                C(Of(kind, age) != null && ArisingMath.Callings(kind).Contains(Of(kind, age)), $"{kind} in the age {age}: one of release A's templates of a fitting calling");
+                C(Of(kind, age) != null && ArisingMath.Callings(kind).Contains(Of(kind, age)), $"{kind} in the age {age}: one of release A's templates of a fitting calling (release C's in PeoplesCTests)");
         C(Of("refugees", 0) == "herders" && Of("refugees", 1) == "healers" && Of("refugees", 2) == "traders" && Of("refugees", 3) == "traders",
             "survivors take to the herds, a sickhouse or the road, by their age");
         C(Of("league", 0) == "herders" && Of("league", 1) == "traders" && Of("league", 2) == "traders", "a league of tribes is a herding folk, of towns a road league");
@@ -140,9 +140,13 @@ public static class ArisingTests
         var theirs = new[]
         {
             new[] { 0.16f, 0.50f, 0.54f }, new[] { 0.36f, 0.74f, 0.76f }, new[] { 0.26f, 0.62f, 0.65f }, new[] { 0.84f, 0.82f, 0.74f }, new[] { 0.97f, 0.95f, 0.88f },
-            new[] { 0.90f, 0.88f, 0.81f }, new[] { 0.66f, 0.36f, 0.20f }, new[] { 0.88f, 0.58f, 0.34f }, new[] { 0.77f, 0.47f, 0.27f }
+            new[] { 0.90f, 0.88f, 0.81f }, new[] { 0.66f, 0.36f, 0.20f }, new[] { 0.88f, 0.58f, 0.34f }, new[] { 0.77f, 0.47f, 0.27f },
+            // Release C's (sage, claret, pale cyan, kingfisher blue).
+            new[] { 0.46f, 0.52f, 0.40f }, new[] { 0.68f, 0.74f, 0.62f }, new[] { 0.57f, 0.63f, 0.51f }, new[] { 0.48f, 0.12f, 0.26f }, new[] { 0.64f, 0.24f, 0.40f },
+            new[] { 0.56f, 0.18f, 0.33f }, new[] { 0.50f, 0.74f, 0.82f }, new[] { 0.76f, 0.92f, 0.96f }, new[] { 0.63f, 0.83f, 0.89f }, new[] { 0.06f, 0.36f, 0.60f },
+            new[] { 0.16f, 0.54f, 0.80f }, new[] { 0.11f, 0.45f, 0.70f }
         };
-        C(apart && ArisingMath.Palette.All(p => theirs.All(t => D(p, t) > 0.02f)), "they stand apart from each other and from the three peoples' own");
+        C(apart && ArisingMath.Palette.All(p => theirs.All(t => D(p, t) > 0.02f)), "they stand apart from each other and from the seven peoples' own");
         C(ArisingMath.Colour(new List<float[]>()) == 0 && ArisingMath.Colour(new List<float[]> { ArisingMath.Palette[0] }) != 0, "a colour nobody has");
         var taken = ArisingMath.Palette.Take(11).ToList();
         C(ArisingMath.Colour(taken) == 11, "the one left when the rest are taken");

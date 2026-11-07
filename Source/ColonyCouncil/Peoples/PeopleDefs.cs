@@ -32,6 +32,18 @@ namespace ColonyCouncil
         /// <summary>The beasts in their towns' pens, and how many.</summary>
         public List<PawnKindDef> herd;
         public IntRange herdCount = IntRange.Zero;
+        /// <summary>
+        /// The ages (0 tribal to 3 spacer) a people of this template arises in during play (Peoples/Arising.cs), when it
+        /// is wider than its own: the river folk "0~2", the pilgrims and the scholars "1~3". Unset: its own age.
+        /// </summary>
+        public IntRange ariseAges = new IntRange(-1, -1);
+        /// <summary>Their towns stand by a river where the world has one (the river folk's landings), and its docks reach into the water.</summary>
+        public bool byWater;
+        /// <summary>Fresh fish of the land's own waters in their towns' stores, this many (Odyssey's fish; none without it).</summary>
+        public IntRange fish = IntRange.Zero;
+
+        /// <summary>The ages a people of this template arises in, for its def's own age (PeoplesMath.AgeSpan).</summary>
+        public void AriseSpan(int own, out int lo, out int hi) => PeoplesMath.AgeSpan(own, ariseAges.min, ariseAges.max, out lo, out hi);
 
         public override IEnumerable<string> ConfigErrors()
         {
@@ -39,6 +51,7 @@ namespace ColonyCouncil
             if (!PeoplesMath.IsCalling(calling)) yield return "a people's calling is one of " + string.Join(", ", PeoplesMath.Callings) + ", not '" + calling + "'";
             if (head.NullOrEmpty() || courier.NullOrEmpty() || couriers.NullOrEmpty() || townWord.NullOrEmpty()) yield return "a people needs its head's title, its town's word and its messengers' word";
             if (caravanWeight <= 0f) yield return "caravanWeight must be above 0";
+            if (ariseAges.min > ariseAges.max || ariseAges.max > 3) yield return "ariseAges is a span of the ages 0 (tribal) to 3 (spacer)";
         }
     }
 
@@ -87,7 +100,7 @@ namespace ColonyCouncil
         public Rot4 rot = Rot4.North;
         public TerrainDef floor;
         public bool roof;
-        /// <summary>"store", "pen" or "plant:DEFNAME" (PlanKey.mark).</summary>
+        /// <summary>"store", "pen", "plant:DEFNAME" or "dock" (a jetty over the water where the river runs, a landing of planks on dry ground: PlanKey.mark).</summary>
         public string mark;
     }
 }

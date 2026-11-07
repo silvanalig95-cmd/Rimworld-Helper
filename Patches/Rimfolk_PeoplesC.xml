@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+  <!--
+    Release C's peoples in Rimfolk's existing world events and visitors (Source/ColonyCouncil/Peoples/; docs/design/
+    peoples.md, "Release C"), as release A's are in Patches/Rimfolk_Peoples.xml. Each patches one of Rimfolk's own defs and
+    is conditional, so it never fails: with the def gone, nothing happens. A preference never shuts another people out:
+    without a people of the calling, everything comes as before.
+
+    - World events that prefer a calling (SituationFactionNeed.calling: five times as likely as another people): a great
+      pilgrimage, a holy year and a prophet on the roads the pilgrim fellowship's; an old vault opened and the comet the
+      learned society's; busy orbital lanes and a ship come down the spacer enclave's; the flood downriver and the ice
+      road the river folk's.
+    - Visitors that prefer a calling (HappeningExtension.prefers, read by the events' own workers): hungry pilgrims,
+      pilgrims to the colony's relic and pilgrims to its anima tree the fellowship's; a travelling scholar and a book
+      swapper the learned society's.
+  -->
+
+  <!-- ===================== The pilgrim fellowship's world events ===================== -->
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_Pilgrimage"]/faction</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_Pilgrimage"]/faction</xpath>
+      <value>
+        <calling>pilgrims</calling>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_HolyYear"]/faction</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_HolyYear"]/faction</xpath>
+      <value>
+        <calling>pilgrims</calling>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_Prophet"]/faction</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_Prophet"]/faction</xpath>
+      <value>
+        <calling>pilgrims</calling>
+      </value>
+    </match>
+  </Operation>
+
+  <!-- ===================== The learned society's world events ===================== -->
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_Vault"]/faction</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_Vault"]/faction</xpath>
+      <value>
+        <calling>scholars</calling>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_Comet"]/faction</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_Comet"]/faction</xpath>
+      <value>
+        <calling>scholars</calling>
+      </value>
+    </match>
+  </Operation>
+
+  <!-- ===================== The spacer enclave's world events ===================== -->
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_OrbitalLanes"]/faction</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_OrbitalLanes"]/faction</xpath>
+      <value>
+        <calling>brokers</calling>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_ShipDown"]/faction</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_ShipDown"]/faction</xpath>
+      <value>
+        <calling>brokers</calling>
+      </value>
+    </match>
+  </Operation>
+
+  <!-- ===================== The river folk's world events ===================== -->
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_Flood"]/faction</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_Flood"]/faction</xpath>
+      <value>
+        <calling>fishers</calling>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_IceRoad"]/faction</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_IceRoad"]/faction</xpath>
+      <value>
+        <calling>fishers</calling>
+      </value>
+    </match>
+  </Operation>
+
+  <!-- ===================== Visitors the fellowship and the society send likeliest ===================== -->
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/IncidentDef[defName="Council_Evt_Pilgrims"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/IncidentDef[defName="Council_Evt_Pilgrims"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]</xpath>
+      <value>
+        <prefers>pilgrims</prefers>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/IncidentDef[defName="Rimfolk_Evt_RelicPilgrims"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/IncidentDef[defName="Rimfolk_Evt_RelicPilgrims"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]</xpath>
+      <value>
+        <prefers>pilgrims</prefers>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/IncidentDef[defName="Rimfolk_Evt_AnimaPilgrims"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/IncidentDef[defName="Rimfolk_Evt_AnimaPilgrims"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]</xpath>
+      <value>
+        <prefers>pilgrims</prefers>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/IncidentDef[defName="Council_Evt_Scholar"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/IncidentDef[defName="Council_Evt_Scholar"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]</xpath>
+      <value>
+        <prefers>scholars</prefers>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/IncidentDef[defName="Rimfolk_Evt_BookSwapper"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/IncidentDef[defName="Rimfolk_Evt_BookSwapper"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]</xpath>
+      <value>
+        <prefers>scholars</prefers>
+      </value>
+    </match>
+  </Operation>
+
+</Patch>

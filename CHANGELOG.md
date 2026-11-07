@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Four more peaceful peoples
+
+*7 November 2026, version 0.143.0*
+
+- Four new peoples join a new world, none of them a natural enemy: a pilgrim fellowship of shrines and hostels, a learned society with its reading halls, a spacer enclave trading round a landing pad, and river folk who fish from their docks. Each has its own look, gear, faith (with Ideology), titles, emblem and town plan.
+- River folk towns stand at a river where their docks reach the water. At the start of a game a landing set away from a river moves to one close by, or keeps dry ground with plank docks.
+- At dusk a few pilgrims may ask for a night's shelter. Taken in, they sleep in a warm corner and bless the gate at first light; now and then the one who sat up with them catches a cold.
+- The society's copyist comes to a colony with a gathering place, copies its records or writes down a tribe's stories, and leaves a textbook or schematic, or teaches the best reader.
+- With Odyssey a boat-trader brings fish from the map's own waters. An industrial or spacer colony can bid the enclave's factor and marshals land by drop pod and trade from their packs for half a day.
+- New missions: food for the pilgrims' hostel in a holy year, and timber or net cloth for the river folk. Several world events, visitor events and camps now favour the four, and peoples that arise during play can become one of them.
+- Fixed: with Hospitality, a guest of any people could stand in for a caller of a particular people, so the league's outrider could bring another people's caravan.
+
 ## Guests who walk past, and two fixes from your game
 
 *7 November 2026, version 0.142.1*

@@ -3202,6 +3202,24 @@ looks at their town on the world map, and their card says where they came from. 
 cause every 90, six standing at once. Setting: *New peoples arise* (0% switches it off). The Almanac has a page, *new
 peoples that arise*.
 
+**Four more peoples.** A new world also has four more peaceful peoples, once each: a **pilgrim fellowship** of wandering
+faithful who keep hostels at the shrines (medieval, capes dyed sage, wide cone hats), a **learned society** that keeps an
+archive and trades in books (industrial, claret coats), a **spacer enclave** of brokers between the towns and the ships
+above (spacer, pale cyan, its marshals in recon armour), and **river folk** who fish and run the ferries (medieval,
+kingfisher blue; their landings stand by a river, and a new world moves a landing to one in reach). Each has its emblem,
+faith, names and a town laid out to its own plan: a shrine's court and a hostel of bedrolls, an archive with a reading
+hall and stacks, a market round a landing pad, a landing whose docks are laid as a jetty where they reach the water.
+At dusk a band of pilgrims may ask for a night's shelter: taken in, they sleep in warm corners indoors and go on at
+first light with a blessing on the gate, and now and then someone who sat up with them catches a pilgrim's cough. A
+copyist of the society asks to copy the colony's records and leaves a book or teaches its best reader; for an industrial
+or later colony the enclave's factor asks by radio to come down, and comes by drop pod with goods and marshals to trade
+at the gate; a boat-trader of the river folk brings a catch of the colony's own waters (Odyssey). The fellowship's
+hostel asks for food in a holy year, the river folk for timber or net cloth; hungry pilgrims, relic pilgrims, travelling
+scholars, the great pilgrimage, the comet, busy orbital lanes and the flood downriver come from them likeliest. New
+peoples that arise may take their ways: survivors by a river become river folk, a band led by a learned one a school, a
+league of spacer-age towns an enclave, faithful who broke away pilgrims. The Almanac has a page, *pilgrims, scholars,
+the enclave and the river folk*.
+
 ## Scenarios with stakes
 Seventeen scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Each starts the game with
 something already in motion, and a few seconds in, a letter says how things stand.

@@ -6,14 +6,14 @@
     "Release B"): survivors of a fallen town, a league of prospering towns, a band of one the council sent away, faithful
     who broke away from their faith. The letter opens with the colony's means of hearing it ({MEANS}: CC_Form_Founding_*);
     {WHERE} is which way and how far, {RITE} the founding's rite by the new people's age, {TOWNWORD} what their town is
-    (a waystation, a sickhouse, a camp), {AGO} "40 days ago" or "lately". The calling's line says how they live, which is
+    (a waystation, a sickhouse, a camp, a hostel, an archive, a market, a landing), {AGO} "40 days ago" or "lately". The calling's line says how they live, which is
     what their town and their people show on the map.
   -->
 
   <!-- Settings -->
   <CC_Settings_NewPeoples>New peoples arise</CC_Settings_NewPeoples>
   <CC_SetNote_NewPeoples>Now and then a new people comes into being from what happened in the region, with a town of its own a few days off.</CC_SetNote_NewPeoples>
-  <CC_Settings_NewPeoples_Tip>How often a new people arises from what happened in the region: the survivors of a town that fell in a fight settle together (two fallen towns in five), merchants or herders of three prospering towns of two peoples or more band together as a league, one the council sent away gathers a band and leads it (half of them), and with Ideology faithful break away after a war of words over their faith (half the time). Each takes the ways of the road league, the hospitaller order or the herding folk, by its age; a name and an emblem colour of its own; a town a few days from what made it; and goodwill by what happened, never an enemy or an ally on its first day. A letter tells it. At 100% (the default) one arises every 40 days at most and one of the same cause every 90, none before the world's 15th day, and six at most stand at once. 200% halves the waits; 0% switches it off.</CC_Settings_NewPeoples_Tip>
+  <CC_Settings_NewPeoples_Tip>How often a new people arises from what happened in the region: the survivors of a town that fell in a fight settle together (two fallen towns in five), merchants or herders of three prospering towns of two peoples or more band together as a league, one the council sent away gathers a band and leads it (half of them), and with Ideology faithful break away after a war of words over their faith (half the time). Each takes the ways of one of Rimfolk's peoples by its age and its place: survivors may take to the river as river folk where one runs near, a band led by a learned one may keep a school as scholars, a league of spacer-age towns trades as an enclave, and faithful who broke away may walk the roads as pilgrims. Each has a name and an emblem colour of its own; a town a few days from what made it; and goodwill by what happened, never an enemy or an ally on its first day. A letter tells it. At 100% (the default) one arises every 40 days at most and one of the same cause every 90, none before the world's 15th day, and six at most stand at once. 200% halves the waits; 0% switches it off.</CC_Settings_NewPeoples_Tip>
 
   <!-- ================= Survivors of a fallen town ================= -->
   <CC_Arise_refugees_Title>{NAME}: the survivors of {TOWN}</CC_Arise_refugees_Title>
@@ -23,6 +23,7 @@
   <CC_Arise_refugees_herders>They saved what beasts they could, and they keep to the open grass with them rather than build walls again.</CC_Arise_refugees_herders>
   <CC_Arise_refugees_healers>They began by tending their own wounded, and they keep a sickhouse now for anyone who comes to its door.</CC_Arise_refugees_healers>
   <CC_Arise_refugees_traders>With their fields lost, they carry goods between the towns, and they keep a waystation on the road.</CC_Arise_refugees_traders>
+  <CC_Arise_refugees_fishers>They took to the river near the ruin, and they live by its fish and its ferry now, from a landing on the bank.</CC_Arise_refugees_fishers>
   <CC_Arise_refugees_Cool>They are wary of the colony, as their old people were.</CC_Arise_refugees_Cool>
   <CC_Arise_refugees_CoolOurs>They remember who burned {TOWN}, and they are cool toward the colony.</CC_Arise_refugees_CoolOurs>
   <CC_Arise_refugees_Warm>They have heard the colony was a friend to {PEOPLE}, and they would be glad of its friendship too.</CC_Arise_refugees_Warm>
@@ -32,6 +33,7 @@
   <CC_Arise_league_Title>{NAME}: a league of the region's towns</CC_Arise_league_Title>
   <CC_Arise_league_traders>{MEANS}: the merchants of {TOWNS} have banded together as one league, {NAME}, to keep the roads between their towns open and their caravans guarded.</CC_Arise_league_traders>
   <CC_Arise_league_herders>{MEANS}: herders from the camps of {TOWNS} have joined their herds and their grazing as one folk, {NAME}.</CC_Arise_league_herders>
+  <CC_Arise_league_brokers>{MEANS}: the merchants of {TOWNS} have banded together as an enclave of brokers, {NAME}, trading between the towns below and the ships above from a market round a landing pad.</CC_Arise_league_brokers>
   <CC_Arise_league_Cool>Their towns have no love for the colony, and neither have they.</CC_Arise_league_Cool>
   <CC_Arise_league_Warm>They know the colony's name from their towns, and they would be glad to see its traders.</CC_Arise_league_Warm>
   <CC_Arise_league_Plain>They have yet to make up their minds about the colony.</CC_Arise_league_Plain>
@@ -41,6 +43,8 @@
   <CC_Arise_exiles>{MEANS}: {PAWN_nameDef}, {WORD} by the council {AGO}, did not go far. Others with nowhere to go have gathered round {PAWN_objective}, and they go by a name of their own now: {NAME}, with {PAWN_nameDef} at their head.</CC_Arise_exiles>
   <CC_Arise_exiles_herders>They keep a few beasts on the grazing there, and they take in whoever else has been turned out.</CC_Arise_exiles_herders>
   <CC_Arise_exiles_traders>They hire out on the roads as carriers and guards, and they keep a waystation of their own.</CC_Arise_exiles_traders>
+  <CC_Arise_exiles_fishers>They keep boats on the river there, fishing and ferrying from a landing of their own, and take in whoever else has been turned out.</CC_Arise_exiles_fishers>
+  <CC_Arise_exiles_scholars>{PAWN_nameDef} has them reading and copying, and they keep an archive of their own, open to anyone who can read.</CC_Arise_exiles_scholars>
   <CC_Arise_exiles_Cool>Those who have met {PAWN_nameDef} on the road say {PAWN_pronoun} has not forgiven the colony.</CC_Arise_exiles_Cool>
   <CC_Arise_exiles_CoolGlad>{PAWN_nameDef} has not forgotten who was glad to see {PAWN_objective} go, they say.</CC_Arise_exiles_CoolGlad>
   <CC_Arise_exiles_Warm>{PAWN_nameDef} bears the colony no grudge, they say.</CC_Arise_exiles_Warm>
@@ -55,6 +59,7 @@
   <CC_Arise_splinter_added>They keep {FAITH}, and they hold to a {MEME} teaching besides.</CC_Arise_splinter_added>
   <CC_Arise_splinter_healers>They have taken vows, and they keep a sickhouse, as they say the faith first asked of its people.</CC_Arise_splinter_healers>
   <CC_Arise_splinter_herders>They took their herds with them, and they keep to the open grass, apart from the old camps.</CC_Arise_splinter_herders>
+  <CC_Arise_splinter_pilgrims>They walk the roads between the faith's old shrines, as they say its first believers did, and keep a hostel for those on the road.</CC_Arise_splinter_pilgrims>
   <CC_Arise_splinter_Parent>{PEOPLE} call them heretics, and there is no love lost between the two.</CC_Arise_splinter_Parent>
   <CC_Arise_splinter_Warm>They remember the colony's fair table in the debate, and they think well of it.</CC_Arise_splinter_Warm>
   <CC_Arise_splinter_Plain>They have no quarrel with the colony.</CC_Arise_splinter_Plain>
@@ -71,14 +76,22 @@
   <CC_Arise_Name_refugees_healers_2>Hospitallers of {WHAT}</CC_Arise_Name_refugees_healers_2>
   <CC_Arise_Name_refugees_traders>{WHAT} Carriers</CC_Arise_Name_refugees_traders>
   <CC_Arise_Name_refugees_traders_2>{WHAT} Road Company</CC_Arise_Name_refugees_traders_2>
+  <CC_Arise_Name_refugees_fishers>{WHAT} River Folk</CC_Arise_Name_refugees_fishers>
+  <CC_Arise_Name_refugees_fishers_2>Boatmen of {WHAT}</CC_Arise_Name_refugees_fishers_2>
   <CC_Arise_Name_league_traders>{WHAT} League</CC_Arise_Name_league_traders>
   <CC_Arise_Name_league_traders_2>League of {WHAT}</CC_Arise_Name_league_traders_2>
   <CC_Arise_Name_league_herders>{WHAT} Drove</CC_Arise_Name_league_herders>
   <CC_Arise_Name_league_herders_2>Herds of {WHAT}</CC_Arise_Name_league_herders_2>
+  <CC_Arise_Name_league_brokers>{WHAT} Exchange</CC_Arise_Name_league_brokers>
+  <CC_Arise_Name_league_brokers_2>{WHAT} Enclave</CC_Arise_Name_league_brokers_2>
   <CC_Arise_Name_exiles_herders>{WHAT}'s Folk</CC_Arise_Name_exiles_herders>
   <CC_Arise_Name_exiles_herders_2>{WHAT}'s Fold</CC_Arise_Name_exiles_herders_2>
   <CC_Arise_Name_exiles_traders>{WHAT}'s Company</CC_Arise_Name_exiles_traders>
   <CC_Arise_Name_exiles_traders_2>{WHAT}'s Riders</CC_Arise_Name_exiles_traders_2>
+  <CC_Arise_Name_exiles_fishers>{WHAT}'s Boatmen</CC_Arise_Name_exiles_fishers>
+  <CC_Arise_Name_exiles_fishers_2>{WHAT}'s Ferry</CC_Arise_Name_exiles_fishers_2>
+  <CC_Arise_Name_exiles_scholars>{WHAT}'s School</CC_Arise_Name_exiles_scholars>
+  <CC_Arise_Name_exiles_scholars_2>{WHAT}'s Readers</CC_Arise_Name_exiles_scholars_2>
   <CC_Arise_TownName_Refugees>New {TOWN}</CC_Arise_TownName_Refugees>
 
   <!-- ================= The history, and their cards ({FROM}: what they came from) ================= -->

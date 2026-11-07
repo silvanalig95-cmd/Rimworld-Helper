@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Feelings from release C's peoples at the gate (Defs/IncidentDefs/Rimfolk_Events_PeoplesC.xml): the morning after the
+       colony sheltered a band of pilgrims for the night, and the day the learned society copied the colony's records for
+       its archive. Each a feeling rather than a mood, as the colony's other glad moments are. -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_Evt_ShelteredPilgrims</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>sheltered pilgrims</label><description>A band of pilgrims slept under our roof last night, and their eldest blessed the gate as they went on this morning. It was a good thing to do.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Fellowship</li></feelings><felt>3</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Evt_RecordsKept</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>our story in the archive</label><description>The learned society has copied our records for its archive. Whatever becomes of us, someone will be able to read what we did here.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Pride</li></feelings><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+</Defs>

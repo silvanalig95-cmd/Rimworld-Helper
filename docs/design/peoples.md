@@ -5,9 +5,11 @@ player's words, 7 November 2026: "we can start with a few factions and see how i
 those. reuse and create at your own discretion. they should also be able to arise during play so that i will see new
 factions in an existing run", and "use all dlc and mods to your availability".
 
-Two releases. **Release A** (7 November 2026): three peoples of peaceful callings the world lacked, made when a new world
-is made. **Release B** (7 November 2026, below): peoples that arise during play, so an existing save sees new ones,
-built on release A's templates and code.
+Three releases. **Release A** (7 November 2026): three peoples of peaceful callings the world lacked, made when a new
+world is made. **Release B** (7 November 2026, below): peoples that arise during play, so an existing save sees new
+ones, built on release A's templates and code. **Release C** (7 November 2026, below): four more peaceful peoples, the
+pilgrims, the scholars, the spacer enclave and the river folk, which release B's peoples that arise may also take the
+ways of.
 
 ## What was built (release A)
 
@@ -226,6 +228,135 @@ and doesn't come to the gate asking to be let in (`HappeningWorker_Prodigal`): t
 
 Fixed on the way: the dev action "a people of a template now, near this home" could put its town three or four tiles
 from the home, where the game takes goodwill every quadrum (`Peoples.Make` now uses `Arising.TryTownTile`).
+
+## What was built (release C: four more peoples)
+
+Four more peaceful peoples, each a new FactionDef on release A's template, distinct from release A's road league
+(traders), hospitaller order (healers) and herding folk, from each other, and from the peoples the player's mods bring
+(no mod among the 303 has a pilgrim, scholarly or river people; Odyssey's Traders Guild trades from orbit, the enclave
+lives on the ground and comes down to the colony's gate). The player's words: "yes, i'd be interested in some
+non-hostile faction variety", and "go ahead on all the new factions also". Code in `Source/ColonyCouncil/Peoples/`:
+`PeoplesCallers.cs` (their callers and the lander), new pure rules in `PeoplesMath.cs` and `ArisingMath.cs`
+(`Tools/Tests/PeoplesCTests.cs`, "peoples, release C: "), the plans' docks and the rivers in `PeopleTowns.cs`. Defs in
+`Defs/PeopleDefs/Rimfolk_People_Pilgrims.xml`, `_Scholars.xml`, `_Enclave.xml`, `_RiverFolk.xml`,
+`Rimfolk_TownPlans_PeoplesC.xml`; their callers in `Defs/IncidentDefs/Rimfolk_Events_PeoplesC.xml`, their asks in
+`Defs/MissionDefs/Rimfolk_Missions_PeoplesC.xml`, their words in `Defs/FlavorPoolDefs/Rimfolk_Lines_PeoplesC.xml` and
+`Defs/OutsiderTalkDefs/Rimfolk_OutsiderTalks_PeoplesC.xml`, the patch in `Patches/Rimfolk_PeoplesC.xml`. The Almanac has
+a page of their own, *pilgrims, scholars, the enclave and the river folk*.
+
+| | The pilgrim fellowship | The learned society | The spacer enclave | The river folk |
+|---|---|---|---|---|
+| defName | `Rimfolk_Pilgrims` | `Rimfolk_Scholars` | `Rimfolk_Enclave` | `Rimfolk_RiverFolk` |
+| Calling | pilgrims | scholars | brokers | fishers |
+| Age | Medieval (tribal parent) | Industrial (outlander parent) | Spacer (outlander parent) | Medieval (tribal parent) |
+| Arises in (release B) | medieval to spacer | medieval to spacer | spacer | tribal to industrial |
+| Look | capes dyed sage over plain clothes, wide cone hats (Ideology) | collar shirts and jackets dyed claret; the provost's cape and beret (Royalty) | collar shirts and jackets in pale cyan, a few bionics; the factor's ruffled shirt (Royalty) | kingfisher blue, knit caps, floppy hats (Ideology); the river master's cape |
+| Weapons | clubs and knives; wardens' spears, short and recurve bows | revolvers; proctors' guns in flak vests | marshals in recon armour with charge rifles and the game's advanced guns | knives; river wardens' spears, recurve bows |
+| Leader | keeper of the shrines | provost | chair of the exchange | river master |
+| Town head, heir, envoy, trader | hosteller, under-hosteller, palmer, chandler | archivist, under-archivist, society fellow, bookseller | pad master, second pad master, enclave factor, factor | landing master, second at the landing, boatman, boat-trader |
+| Messengers | palmers | copyists | runners | boatmen |
+| Towns | few (0.5): a shrine and its hostel | few (0.45): archives | fewest (0.3): markets round a landing pad | landings (0.7) by a river |
+| Caravans | a chandler's string, 0.6 as likely as another's | a bookseller's caravan of books, schematics and techprints (Royalty) | 0.7 (its trade comes down by lander); components, plasteel, glitterworld medicine, implants, genepacks (Biotech) | 1.2; fish (Odyssey), timber, cloth, food |
+| Raids | 0.2 | 0.2 | 0.15 | 0.3 |
+| Faith (Ideology) | The Pilgrim's Way: proselytizer (and VE Memes' nomad); embodied, abstract or Buddhist origin; Buddhist style | The Open Book: individualist (and Alpha Memes' monastic); ideological or abstract; Islamic style | The Exchange: transhumanist (and VE Memes' trader); ideological or archist; techist style | The River's Keeping: nature primacy (and Alpha Memes' water primacy); animist or embodied; totemic style |
+| Kinds (Biotech) | hussar, genie, neanderthal, impid, pigskin (a few each) | genie, highmate | hussar, genie, highmate, starjack (Odyssey) | neanderthal, pigskin, yttakin |
+| Colours | sage | claret | pale cyan | kingfisher blue |
+
+**Their towns' maps** (`Rimfolk_TownPlans_PeoplesC.xml`): the pilgrims' **shrine and hostel** (31 by 21): a flagstone
+court ringed by columns, flower beds and the shrine's flame between two lamps, then the hostel: a dormitory of twelve
+bedrolls, a refectory of four tables, the hosteller's room, a storehouse. The scholars' **archive** (33 by 21): a reading
+hall with nine bookcases and three pairs of reading tables, the stacks (the store) between rows of small bookcases, a
+yard with a fire, the fellows' house, and the scriptorium with its research bench. The enclave's **landing-pad market**
+(35 by 23): a concrete pad in a ring of paved tiles with its centre marked, a paved square of ten stalls round the
+orbital trade beacon, the factors' house with a comms console, a storehouse of shelves. The river folk's **landing** (33
+by 22): three houses and the landing master's hall, a smokehouse, an open shed of fish racks, a boat shed on posts, a
+yard fire and willows, and docks four cells deep along its south and east sides. A new plan mark, `dock`: a dock cell is
+neither a building nor a floor in the plan; the landing's spot is looked for wider (nine rings of five cells round the
+middle), the rest of the plan held to the usual 6% of bad ground, and taken where most docks are water
+(`PeoplesMath.DockSpot`, the nearest the middle on a tie); `PeopleTowns.LayDocks` lays the game's bridge over water a
+bridge can stand in and planks on dry ground, and leaves deep water as it is. With no water in reach of the map's
+middle, the landing stands on dry ground with a landing of planks.
+
+**A river where the world has one** (`PeopleExtension.byWater`): as a new game starts (`ArisingBook.StartedNewGame`,
+`PeopleTowns.ToTheRivers`), each landing the game put where no river runs moves to a tile a river runs through within
+twelve tiles, by `Arising.TryTownTile` (valid for a town, clear of the colony's homes, on no other people's land); when
+none will take it (a world with no rivers near, or rivers switched off), it stays where it is, a landing on a lake or a
+stream too small for the world map, and its map is laid as above. A river folk people that arises (or the dev tools'
+people of a template) is made on a river tile; with none in reach the cause takes its own ways instead.
+
+**Theirs at the gate** (`Peoples/PeoplesCallers.cs`; `Rimfolk_Events_PeoplesC.xml`):
+
+- *A night's shelter* (`HappeningWorker_PilgrimShelter`, from four in the afternoon to ten at night): a band of three to
+  five pilgrims asks for a night's shelter. Taken in, each sleeps the night in a warm corner indoors
+  (`VisitorServices.Lodge`) while the colonist who answered sits up with their eldest; at first light (a memo of the
+  living events, `LivingEvents.Shelter`) the band goes on, the eldest says a blessing over the gate, the colony is glad
+  of it (`Rimfolk_Evt_ShelteredPilgrims`, a feeling of fellowship), and one night in ten (`PeoplesMath.CoughChance`,
+  through the harm setting's cap and scale) the one who sat up with them has caught a pilgrim's cough (the everyday head
+  cold), which they say and the morning's word tells. Let stay outside the gate, they go on in the morning with thanks.
+  Or the gate stays shut.
+- *The society's copyist* (`HappeningWorker_ScholarCopyist`, a data event of the setting's kind, only where the colony
+  gathers somewhere): a copyist asks to copy the colony's records (a tribal colony's stories, written down) with the
+  colony's best reader to explain them; they leave a book of the archive's (a textbook for a tribal or medieval colony,
+  a schematic after) by `DilemmaEffect_Goods`, or teach the reader instead (`DilemmaEffect_Lesson`); the colony is proud
+  its story is kept (`Rimfolk_Evt_RecordsKept`).
+- *A boat-trader's catch* (`HappeningWorker_RiverCatch`, with Odyssey's fish: the map's own fresh-water kind first): a
+  basket of fish at the gate (more for a richer colony), for a silver apiece or food from the stores, carried out and
+  handed over.
+- *The enclave's lander* (`HappeningWorker_EnclaveLander`, an industrial or spacer colony only, by radio or the comms, or
+  the colony's trade beacon): bidden, `DilemmaEffect_EnclaveLanding` drops the factor with one of the enclave's caravan
+  stocks in its own pack, two to four marshals by the colony's wealth and any beasts for sale, by drop pod at the colony's
+  trade drop spot; they trade from the factor's pack under the game's visitors' lord (`LordJob_VisitColony`, as the
+  game's visiting traders do: a caravan's lord sells only from pack beasts) for ten to fourteen hours, then walk off. A
+  tribal or medieval colony meets the enclave's caravans on foot instead, as it meets the Empire's.
+
+**Their asks** (`Rimfolk_Missions_PeoplesC.xml`, deliveries, `MissionPeople.only`): the fellowship's hostel asks for
+food in a holy year (`whileKind` `faith`: a great pilgrimage, a holy year or a prophet on the roads running), the river
+folk for timber for the boats in the spring and cloth for the nets in the summer.
+
+**By patch** (`Patches/Rimfolk_PeoplesC.xml`, conditional): world events that prefer a calling, the great pilgrimage,
+the holy year and the prophet on the roads the pilgrims; the old vault opened and the comet the scholars; busy orbital
+lanes and a ship come down the enclave; the flood downriver and the ice road the river folk. Visitors whose own worker
+picks their people now read `HappeningExtension.prefers` (`Peoples.Weigh`): hungry pilgrims, pilgrims to the relic and
+pilgrims to the anima tree the fellowship; a travelling scholar and a book swapper the society. Camps they favour: the
+pilgrims, the procession, the penitents and the mourners (the fellowship); the scholars, the surveyors, the teacher and
+the monolith's watchers (the society); far merchants, stranded spacers, salvagers and market folk (the enclave);
+fishers, woodcutters and harvest hands (the river folk).
+
+**Release B's peoples that arise may take their ways.** Each template's span of ages (`PeopleExtension.ariseAges`,
+`PeoplesMath.AgeSpan`) and a cause's lean (`ArisingMath.Leans`, `Lean`, `Wanted`): the cause's own callings as before
+(a league of the spacer age now an enclave of brokers, faithful who broke away in an industrial or spacer world
+pilgrims), and two leans: survivors near a river, on their fated half (`SaltRiver`), river folk in any age; a band
+whose leader is learned (Intellectual 10 or more) scholars, but among the tribes, and else near a river river folk. A
+river folk lean is only kept when a river tile in reach will take their town (`Arising.TileFor`); otherwise the cause
+takes its own ways. Their words: how they live (`CC_Arise_refugees_fishers`, `_exiles_fishers`, `_exiles_scholars`,
+`_splinter_pilgrims`), the league's opening as an enclave (`CC_Arise_league_brokers`), their names. Release B's pace,
+causes and caps are unchanged.
+
+**Saved**: nothing new. The pilgrims' morning is a memo of the living events, an existing collection; the lander's
+party and the lodgers are the game's own lords and Rimfolk's existing visitor services.
+
+**Softness**
+
+| Missing | What happens |
+|---|---|
+| Ideology | No fixed faiths or styles; no cone or floppy hats. |
+| Royalty | No techprints in the society's and the enclave's stock; no beret for the provost, no ruffled shirt for the factor. |
+| Biotech | Humans only; no genepacks with the enclave. |
+| Odyssey | No fish: none in the river folk's stock or racks, and the boat-trader's catch never comes; no starjacks with the enclave. |
+| Anomaly | No tomes in the society's stock. |
+| VE Memes | The fellowship's and the enclave's faiths have only the game's meme. |
+| Alpha Memes | The society's and the river folk's faiths have only the game's meme. |
+| Hospitality | Nothing changes: a caller of a calling is never one of its guests standing in. |
+| A world with no river near a landing | The landing stays where the game put it, on dry ground with its planks. |
+| A colony with no place it gathers | No copyist (they work where the colony gathers). |
+| A tribal or medieval colony | No lander: the enclave's caravans come on foot. |
+| The deeper game hooks (setting) | The game's own bases for their towns, and their caravans at the game's even chance. |
+| Ailments (setting) or the harm setting at 0 | No pilgrim's cough. |
+
+Not used: Royalty's shuttle for the lander (its leaving by shuttle couldn't be tried here; drop pods are the base
+game's), VE Fishing's and other mods' fish (their defNames couldn't be checked; Odyssey's are read from the biome),
+Vanilla Races Expanded's xenotypes, and a ferry on the colony's journeys (the world map's crossings would need a hook
+into the game's caravan paths, too much to finish well).
 
 ## What could come next
 

@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The spacer enclave (docs/design/peoples.md, "Release C"; DESIGN.md "Rimfolk's peoples"; Source/ColonyCouncil/Peoples/):
+    high-tech brokers who live on the planet between its towns and the ships above, buying from the one and selling to
+    the other. Spacer, on the game's outlander parent: plain clothes and jackets dyed pale cyan, marshals in recon armour
+    with charge rifles, a few bionics. Very few towns (settlementGenerationWeight 0.3), each a market round a landing pad
+    (TownPlanDef Rimfolk_Plan_LandingMarket). Their caravans walk with pack beasts as the Empire's do, less often than
+    another people's (caravanWeight 0.7); for an industrial or spacer colony their factor asks by radio for leave to come
+    down by the gate with goods, and comes by drop pod when bidden (Rimfolk_Evt_EnclaveLander). Busy orbital lanes and a
+    ship come down come from them likeliest (Patches/Rimfolk_PeoplesC.xml). They defend their markets and raid only when
+    the colony has turned them hostile (raidCommonalityFromPointsCurve 0.15: few, and well armed). Listed once among the
+    world's peoples when a world is made, never required. Faith (Ideology): a fixed creed of the body improved (VE Memes'
+    trader where loaded), the techist style. Kind of people (Biotech): hussars, genies and highmates among them, and
+    Odyssey's starjacks.
+  -->
+
+  <FactionDef ParentName="OutlanderFactionBase">
+    <defName>Rimfolk_Enclave</defName>
+    <label>spacer enclave</label>
+    <description>An enclave of brokers who live between the planet's towns and the ships above it, buying from the one and selling to the other. They keep a few markets round their landing pads and come down by drop pod wherever there is trade to be had, with goods most towns have only heard of.\n\nThey are polite, exact and very well armed, and their marshals wear the armour of another world. Each market is run by its pad master, and the enclave by the chair of the exchange.</description>
+    <pawnSingular>broker</pawnSingular>
+    <pawnsPlural>brokers</pawnsPlural>
+    <leaderTitle>chair of the exchange</leaderTitle>
+    <techLevel>Spacer</techLevel>
+    <basicMemberKind>Rimfolk_Enclave_Hand</basicMemberKind>
+    <factionNameMaker>Rimfolk_Namer_Enclave</factionNameMaker>
+    <settlementNameMaker>Rimfolk_Namer_EnclaveTown</settlementNameMaker>
+    <factionIconPath>ColonyCouncil/Peoples/Enclave</factionIconPath>
+    <settlementTexturePath>ColonyCouncil/Peoples/EnclaveTown</settlementTexturePath>
+    <colorSpectrum>
+      <li>(0.50, 0.74, 0.82)</li>
+      <li>(0.76, 0.92, 0.96)</li>
+    </colorSpectrum>
+    <hidden>false</hidden>
+    <naturalEnemy>false</naturalEnemy>
+    <permanentEnemy>false</permanentEnemy>
+    <canSiege>false</canSiege>
+    <requiredCountAtGameStart>0</requiredCountAtGameStart>
+    <startingCountAtWorldCreation>1</startingCountAtWorldCreation>
+    <maxConfigurableAtWorldCreation>9999</maxConfigurableAtWorldCreation>
+    <configurationListOrderPriority>17</configurationListOrderPriority>
+    <settlementGenerationWeight>0.3</settlementGenerationWeight>
+    <backstoryFilters Inherit="False">
+      <li>
+        <categories>
+          <li>Offworld</li>
+        </categories>
+        <commonality>0.6</commonality>
+      </li>
+      <li>
+        <categories>
+          <li>Outlander</li>
+        </categories>
+        <commonality>0.4</commonality>
+      </li>
+    </backstoryFilters>
+    <raidCommonalityFromPointsCurve Inherit="False">
+      <points>
+        <li>(0, 0.15)</li>
+      </points>
+    </raidCommonalityFromPointsCurve>
+    <xenotypeSet Inherit="False">
+      <xenotypeChances>
+        <Hussar MayRequire="Ludeon.RimWorld.Biotech">0.03</Hussar>
+        <Genie MayRequire="Ludeon.RimWorld.Biotech">0.04</Genie>
+        <Highmate MayRequire="Ludeon.RimWorld.Biotech">0.04</Highmate>
+        <Starjack MayRequire="Ludeon.RimWorld.Biotech,Ludeon.RimWorld.Odyssey">0.03</Starjack>
+      </xenotypeChances>
+    </xenotypeSet>
+    <fixedIdeo>true</fixedIdeo>
+    <ideoName>The Exchange</ideoName>
+    <ideoDescription>Everything has a price, and a fair price is the closest thing to justice the stars allow. The body is a tool to be kept sharp and made better, a bargain once struck is kept to the last digit, and the ships above and the towns below are both the enclave's to serve.</ideoDescription>
+    <forcedMemes>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Transhumanist</li>
+      <li MayRequire="VanillaExpanded.VMemesE">VME_Trader</li>
+    </forcedMemes>
+    <structureMemeWeights Inherit="False">
+      <Structure_Ideological MayRequire="Ludeon.RimWorld.Ideology">3</Structure_Ideological>
+      <Structure_Archist MayRequire="Ludeon.RimWorld.Ideology">1</Structure_Archist>
+    </structureMemeWeights>
+    <styles>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Techist</li>
+    </styles>
+    <caravanTraderKinds Inherit="False">
+      <li>Rimfolk_Caravan_Enclave_Goods</li>
+      <li>Rimfolk_Caravan_Enclave_Exotic</li>
+    </caravanTraderKinds>
+    <visitorTraderKinds Inherit="False">
+      <li>Rimfolk_Visitor_Enclave</li>
+    </visitorTraderKinds>
+    <baseTraderKinds Inherit="False">
+      <li>Rimfolk_Base_Enclave</li>
+    </baseTraderKinds>
+    <pawnGroupMakers Inherit="False">
+      <li>
+        <!-- A fight: the enclave's marshals, and hired guns -->
+        <kindDef>Combat</kindDef>
+        <options>
+          <Rimfolk_Enclave_Marshal>10</Rimfolk_Enclave_Marshal>
+          <Mercenary_Gunner>4</Mercenary_Gunner>
+          <Rimfolk_Enclave_Hand>2</Rimfolk_Enclave_Hand>
+        </options>
+      </li>
+      <li>
+        <kindDef>Peaceful</kindDef>
+        <options>
+          <Rimfolk_Enclave_Hand>20</Rimfolk_Enclave_Hand>
+          <Villager_Child MayRequire="Ludeon.RimWorld.Biotech">3</Villager_Child>
+          <Rimfolk_Enclave_Marshal>6</Rimfolk_Enclave_Marshal>
+          <Rimfolk_Enclave_Factor>3</Rimfolk_Enclave_Factor>
+        </options>
+      </li>
+      <li>
+        <!-- A caravan on the ground: a factor, pack beasts for the crates, marshals; the lander takes the factor and marshals only -->
+        <kindDef>Trader</kindDef>
+        <traders>
+          <Rimfolk_Enclave_Factor>1</Rimfolk_Enclave_Factor>
+        </traders>
+        <carriers>
+          <Muffalo>5</Muffalo>
+          <Dromedary>4</Dromedary>
+          <Horse>3</Horse>
+          <Alpaca>2</Alpaca>
+        </carriers>
+        <guards>
+          <Rimfolk_Enclave_Marshal>10</Rimfolk_Enclave_Marshal>
+          <Mercenary_Gunner>3</Mercenary_Gunner>
+        </guards>
+      </li>
+      <li>
+        <kindDef>Settlement</kindDef>
+        <options>
+          <Rimfolk_Enclave_Marshal>10</Rimfolk_Enclave_Marshal>
+          <Mercenary_Gunner>4</Mercenary_Gunner>
+          <Rimfolk_Enclave_Hand>8</Rimfolk_Enclave_Hand>
+          <Rimfolk_Enclave_Factor>2</Rimfolk_Enclave_Factor>
+        </options>
+      </li>
+    </pawnGroupMakers>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleExtension">
+        <calling>brokers</calling>
+        <townWord>market</townWord>
+        <townWords>markets</townWords>
+        <head>pad master</head>
+        <heir>second pad master</heir>
+        <envoy>enclave factor</envoy>
+        <trader>factor</trader>
+        <courier>runner</courier>
+        <couriers>runners</couriers>
+        <caravanWeight>0.7</caravanWeight>
+        <camps>
+          <li>Council_Camp_FarMerchants</li>
+          <li>Rimfolk_Camp_Spacers</li>
+          <li>Rimfolk_Camp_Salvagers</li>
+          <li>Council_Camp_Market</li>
+        </camps>
+        <plan>Rimfolk_Plan_LandingMarket</plan>
+        <townGoods>
+          <ComponentIndustrial>8~16</ComponentIndustrial>
+          <ComponentSpacer>1~3</ComponentSpacer>
+          <Plasteel>40~100</Plasteel>
+          <MedicineIndustrial>6~12</MedicineIndustrial>
+          <Chocolate>20~40</Chocolate>
+          <Silver>300~700</Silver>
+        </townGoods>
+      </li>
+    </modExtensions>
+  </FactionDef>
+
+  <!-- ===================== Their people ===================== -->
+
+  <PawnKindDef Name="Rimfolk_EnclaveKindBase" Abstract="True">
+    <race>Human</race>
+    <defaultFactionDef>Rimfolk_Enclave</defaultFactionDef>
+    <chemicalAddictionChance>0.04</chemicalAddictionChance>
+    <backstoryCryptosleepCommonality>0.08</backstoryCryptosleepCommonality>
+    <invNutrition>2.55</invNutrition>
+    <invFoodDef>MealSurvivalPack</invFoodDef>
+    <apparelColor>(0.66, 0.84, 0.90)</apparelColor>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li>IndustrialAdvanced</li>
+    </apparelTags>
+    <apparelRequired>
+      <li>Apparel_CollarShirt</li>
+    </apparelRequired>
+    <techHediffsMoney>200~1200</techHediffsMoney>
+    <techHediffsTags>
+      <li>Simple</li>
+      <li>Advanced</li>
+    </techHediffsTags>
+    <techHediffsChance>0.15</techHediffsChance>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_EnclaveKindBase">
+    <defName>Rimfolk_Enclave_Hand</defName>
+    <label>enclave hand</label>
+    <combatPower>45</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.8~1.6</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_Jacket</li>
+    </apparelRequired>
+    <weaponTags>
+      <li>SimpleGun</li>
+    </weaponTags>
+    <weaponMoney>150~300</weaponMoney>
+    <apparelMoney>400~700</apparelMoney>
+    <apparelAllowHeadgearChance>0.2</apparelAllowHeadgearChance>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>12~20</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_EnclaveKindBase">
+    <defName>Rimfolk_Enclave_Marshal</defName>
+    <label>enclave marshal</label>
+    <combatPower>130</combatPower>
+    <itemQuality>Good</itemQuality>
+    <gearHealthRange>0.9~2</gearHealthRange>
+    <apparelTags Inherit="False">
+      <li>SpacerMilitary</li>
+      <li>IndustrialMilitaryAdvanced</li>
+      <li>IndustrialBasic</li>
+    </apparelTags>
+    <apparelRequired Inherit="False">
+      <li>Apparel_ArmorRecon</li>
+      <li>Apparel_ArmorHelmetRecon</li>
+    </apparelRequired>
+    <apparelMoney>2500~3500</apparelMoney>
+    <weaponTags>
+      <li>SpacerGun</li>
+      <li>IndustrialGunAdvanced</li>
+    </weaponTags>
+    <weaponMoney>900~1500</weaponMoney>
+    <techHediffsMoney>1000~2500</techHediffsMoney>
+    <techHediffsChance>0.4</techHediffsChance>
+    <requiredWorkTags>Violent</requiredWorkTags>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>22~32</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_EnclaveKindBase">
+    <defName>Rimfolk_Enclave_Factor</defName>
+    <label>enclave factor</label>
+    <trader>true</trader>
+    <combatPower>50</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Good</itemQuality>
+    <gearHealthRange>1~1</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_Jacket</li>
+      <li MayRequire="Ludeon.RimWorld.Royalty">Apparel_ShirtRuffle</li>
+    </apparelRequired>
+    <apparelMoney>900~1400</apparelMoney>
+    <weaponTags>
+      <li>SimpleGun</li>
+    </weaponTags>
+    <weaponMoney>250~350</weaponMoney>
+    <skills>
+      <li>
+        <skill>Social</skill>
+        <range>8~15</range>
+      </li>
+    </skills>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>14~22</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_EnclaveKindBase">
+    <defName>Rimfolk_Enclave_Chair</defName>
+    <label>chair of the exchange</label>
+    <combatPower>60</combatPower>
+    <factionLeader>true</factionLeader>
+    <minGenerationAge>35</minGenerationAge>
+    <isFighter>false</isFighter>
+    <itemQuality>Excellent</itemQuality>
+    <gearHealthRange>1~1</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_Cape</li>
+    </apparelRequired>
+    <apparelMoney>1500~2500</apparelMoney>
+    <weaponTags>
+      <li>SimpleGun</li>
+    </weaponTags>
+    <weaponMoney>300~400</weaponMoney>
+    <techHediffsMoney>1500~3000</techHediffsMoney>
+    <techHediffsChance>0.5</techHediffsChance>
+    <skills>
+      <li>
+        <skill>Social</skill>
+        <range>10~17</range>
+      </li>
+    </skills>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>10~16</initialResistanceRange>
+  </PawnKindDef>
+
+  <!-- ===================== Their traders: goods from above ===================== -->
+
+  <TraderKindDef>
+    <defName>Rimfolk_Caravan_Enclave_Goods</defName>
+    <label>enclave trade party</label>
+    <commonality>2</commonality>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>1200~2000</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentIndustrial</thingDef>
+        <countRange>15~30</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentSpacer</thingDef>
+        <countRange>2~5</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Plasteel</thingDef>
+        <countRange>60~160</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Gold</thingDef>
+        <countRange>20~60</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineIndustrial</thingDef>
+        <countRange>10~20</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineUltratech</thingDef>
+        <countRange>2~6</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Neutroamine</thingDef>
+        <countRange>60~140</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MealSurvivalPack</thingDef>
+        <countRange>20~40</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Chocolate</thingDef>
+        <countRange>20~40</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Schematic</thingDef>
+        <countRange>0~1</countRange>
+      </li>
+      <li Class="StockGenerator_Tag">
+        <tradeTag>TechHediff</tradeTag>
+        <thingDefCountRange>1~2</thingDefCountRange>
+        <countRange>1~1</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponRanged</tradeTag>
+        <countRange>2~3</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>Clothing</tradeTag>
+        <countRange>3~4</countRange>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>Drugs</categoryDef>
+        <thingDefCountRange>1~2</thingDefCountRange>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>MusicalInstrument</tag></li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>ExoticBuilding</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Caravan_Enclave_Exotic</defName>
+    <label>enclave exotic goods</label>
+    <commonality>1</commonality>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>1500~2500</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentSpacer</thingDef>
+        <countRange>3~6</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Plasteel</thingDef>
+        <countRange>80~200</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineUltratech</thingDef>
+        <countRange>4~10</countRange>
+      </li>
+      <li Class="StockGenerator_Techprints">
+        <countChances>
+          <li>
+            <count>1</count>
+            <chance>1</chance>
+          </li>
+        </countChances>
+      </li>
+      <li Class="StockGenerator_Tag">
+        <tradeTag>TechHediff</tradeTag>
+        <thingDefCountRange>2~4</thingDefCountRange>
+        <countRange>1~1</countRange>
+      </li>
+      <li Class="StockGenerator_Tag">
+        <tradeTag>ExoticMisc</tradeTag>
+        <thingDefCountRange>2~3</thingDefCountRange>
+        <countRange>1~2</countRange>
+        <excludedThingDefs>
+          <li>ComponentSpacer</li>
+          <li>MedicineUltratech</li>
+          <li MayRequire="Ludeon.RimWorld.Anomaly">Apparel_DisruptorFlarePack</li>
+        </excludedThingDefs>
+      </li>
+      <li Class="StockGenerator_Tag">
+        <tradeTag>Television</tradeTag>
+        <thingDefCountRange>0~1</thingDefCountRange>
+        <countRange>1~1</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>Art</tradeTag>
+        <countRange>1~3</countRange>
+      </li>
+      <li MayRequire="Ludeon.RimWorld.Biotech" Class="StockGenerator_SingleDef">
+        <thingDef>Genepack</thingDef>
+        <countRange>1~3</countRange>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>ExoticBuilding</tag></li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>ImplantEmpireCommon</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Visitor_Enclave</defName>
+    <label>enclave broker</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>400~800</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentIndustrial</thingDef>
+        <countRange>3~8</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineIndustrial</thingDef>
+        <countRange>3~6</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MealSurvivalPack</thingDef>
+        <countRange>6~12</countRange>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Base_Enclave</defName>
+    <label>pad market</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>2000~3500</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentIndustrial</thingDef>
+        <countRange>25~45</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentSpacer</thingDef>
+        <countRange>4~8</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Plasteel</thingDef>
+        <countRange>150~350</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Gold</thingDef>
+        <countRange>40~100</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineIndustrial</thingDef>
+        <countRange>15~30</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineUltratech</thingDef>
+        <countRange>5~12</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Neutroamine</thingDef>
+        <countRange>100~250</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MealSurvivalPack</thingDef>
+        <countRange>30~60</countRange>
+      </li>
+      <li Class="StockGenerator_Techprints">
+        <countChances>
+          <li>
+            <count>2</count>
+            <chance>0.5</chance>
+          </li>
+          <li>
+            <count>3</count>
+            <chance>0.5</chance>
+          </li>
+        </countChances>
+      </li>
+      <li Class="StockGenerator_Tag">
+        <tradeTag>TechHediff</tradeTag>
+        <thingDefCountRange>2~4</thingDefCountRange>
+        <countRange>1~1</countRange>
+      </li>
+      <li Class="StockGenerator_Tag">
+        <tradeTag>ExoticMisc</tradeTag>
+        <thingDefCountRange>2~3</thingDefCountRange>
+        <countRange>1~2</countRange>
+        <excludedThingDefs>
+          <li>ComponentSpacer</li>
+          <li>MedicineUltratech</li>
+          <li MayRequire="Ludeon.RimWorld.Anomaly">Apparel_DisruptorFlarePack</li>
+        </excludedThingDefs>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponRanged</tradeTag>
+        <countRange>3~5</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>Clothing</tradeTag>
+        <countRange>4~6</countRange>
+      </li>
+      <li Class="StockGenerator_Tag">
+        <tradeTag>Television</tradeTag>
+        <thingDefCountRange>1~2</thingDefCountRange>
+        <countRange>1~1</countRange>
+      </li>
+      <li MayRequire="Ludeon.RimWorld.Biotech" Class="StockGenerator_SingleDef">
+        <thingDef>Genepack</thingDef>
+        <countRange>2~4</countRange>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>ExoticBuilding</tag></li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>ImplantEmpireCommon</tag></li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>MusicalInstrument</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <!-- ===================== Their names ===================== -->
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_Enclave</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->[PlaceOutlander] Exchange</li>
+        <li>r_name(p=2)->The [padThing] Enclave</li>
+        <li>r_name->[PlaceOutlander] Enclave</li>
+        <li>r_name->Brokers of [PlaceOutlander]</li>
+        <li>r_name->The [padThing] Exchange</li>
+        <li>padThing->High Lane</li>
+        <li>padThing->Orbit</li>
+        <li>padThing->Bright Pad</li>
+        <li>padThing->Far Ship</li>
+        <li>padThing->Fair Price</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_EnclaveTown</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->[PlaceOutlander] Pad</li>
+        <li>r_name(p=2)->[PlaceOutlander] Landing Field</li>
+        <li>r_name->[PlaceOutlander] Port</li>
+        <li>r_name->[PlaceOutlander] Market</li>
+        <li>r_name->Pad [padNumber]</li>
+        <li>padNumber->One</li>
+        <li>padNumber->Four</li>
+        <li>padNumber->Seven</li>
+        <li>padNumber->Nine</li>
+        <li>padNumber->Twelve</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The Almanac page on release C's peoples (Source/ColonyCouncil/Peoples/; Defs/PeopleDefs/; docs/design/peoples.md,
+       "Release C"; DESIGN.md "Rimfolk's peoples"), beside release A's (Almanac_Peoples.xml). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_PeoplesC</defName>
+    <label>pilgrims, scholars, the enclave and the river folk</label>
+    <category>Council</category>
+    <order>16</order>
+    <summary>Four more peoples of peaceful callings: a fellowship of pilgrims who walk between the shrines and keep hostels, a learned society that keeps an archive and trades in books, a spacer enclave of brokers between the towns and the ships above, and river folk who fish and run the ferries. Each has its own gear, colours, faith, towns and words, and comes to the colony's gate in its own way.</summary>
+    <tip>They are among the world's peoples when a new world is made, once each, at the game's usual chances; remove them in the world's faction list like any other people. A save made before them meets them when one of them arises during play.</tip>
+    <description>All four are mostly peaceful. They defend their towns, and they raid only when the colony has turned them hostile, by the game's own rules, and seldom then. Their notables have titles of their own, their messengers words of their own, and their towns a plan of their own when the land suits it.</description>
+    <sections>
+      <li>
+        <heading>Who they are</heading>
+        <table>
+          <li>People | Lives by | Age | On the map | Their towns</li>
+          <li>The pilgrim fellowship | Walking between holy places | Medieval | Capes dyed sage, wide cone hats; wardens of the way with spears and short bows | Few: a shrine's court with its flame, and a hostel of bedrolls</li>
+          <li>The learned society | Books and what is known | Industrial | Collar shirts and jackets dyed claret; proctors in flak with rifles | Few: archives with a reading hall and stacks</li>
+          <li>The spacer enclave | Trade between the towns and the ships above | Spacer | Pale cyan clothes; marshals in recon armour with charge rifles | Fewest: a market round a landing pad</li>
+          <li>The river folk | Fishing and the ferries | Medieval | Kingfisher blue, knit caps and floppy hats; river wardens with fishing spears and bows | Landings on a river bank, with docks out over the water</li>
+        </table>
+        <after>With Ideology each keeps a faith of its own (the pilgrim's way, the open book, the exchange, the river's keeping) and its own style; with Biotech each has a share of other kinds of people. With Vanilla Ideology Expanded's memes or Alpha Memes their faiths take a meme of nomads, of the monastic life, of trade or of water too.</after>
+      </li>
+      <li>
+        <heading>What each brings</heading>
+        <points>
+          <li>The pilgrim fellowship: at dusk a band of three to five of them may ask the colony for a night's shelter. Taken in, each sleeps in a warm corner indoors and they go on at first light, their eldest blessing the gate, and the colony is glad of it; one night in ten one of them has brought a cough in off the road, and the one who sat up with them catches it. In a holy year their hostel asks the colony for food. Hungry pilgrims, pilgrims to a relic or an anima tree, the great pilgrimage, the holy year and the prophet on the roads come from them likeliest, and their pilgrims, processions, penitents and mourners camp more often.</li>
+          <li>The learned society: one of their copyists may ask to copy the colony's records for their archive where the colony gathers (a tribal colony's stories, written down), and leave a book in return or teach the colony's best reader while at it. Their caravans carry books, schematics and techprints. A travelling scholar, a book swapper, an old vault opened and the comet come from them likeliest, and their scholars, surveyors and teachers camp more often.</li>
+          <li>The spacer enclave: when the colony is industrial or later, their factor may call by radio to ask leave to come down by the gate. Bidden, the factor, two to four marshals and the goods come down by drop pod, trade at the gate, and walk off when they are done. Busy orbital lanes and a ship come down come from them likeliest.</li>
+          <li>The river folk: a boat-trader may bring a catch of the colony's own waters to the gate, for silver or for food from the stores (with Odyssey, whose fish they are). In the spring they ask for timber for the boats, in the summer cloth for the nets. The flood downriver and the ice road come from them likeliest, and their fishers camp more often.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Their towns, and new peoples like them</heading>
+        <points>
+          <li>The river folk's landings stand by a river where the world has one: as a new world starts, a landing the game put where no river runs moves to one within twelve tiles, and with none it stays, its map laid on dry ground. Their landing's map is placed where most of its docks reach the water, and the docks are laid as a jetty over it; with Odyssey its racks hold fish of that water.</li>
+          <li>The pilgrims' shrine and hostel, the society's archive and the enclave's market are laid out to their plans when a town's map is made, as release A's are; where the land is too wet or rough for it, the game makes its own base.</li>
+          <li>New peoples that arise during play may take their ways: survivors by a river, and half of them, may become river folk; a band led by a learned one, scholars; a league of spacer-age towns, an enclave; faithful who broke away in an industrial or spacer world, pilgrims. The pace stays as it was.</li>
+        </points>
+      </li>
+    </sections>
+    <keywords><li>pilgrim fellowship</li><li>learned society</li><li>spacer enclave</li><li>river folk</li><li>hostel</li><li>river landing</li></keywords>
+    <seeAlso><li>Council_Alm_C_Peoples</li><li>Council_Alm_C_NewPeoples</li><li>Council_Alm_C_Callers</li><li>Council_Alm_C_Camps</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

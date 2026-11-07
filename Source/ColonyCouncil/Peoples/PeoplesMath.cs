@@ -38,8 +38,15 @@ namespace ColonyCouncil
         /// <summary>The road league's, the hospitaller order's and the herding folk's callings (PeopleExtension.calling).</summary>
         public const string Traders = "traders", Healers = "healers", Herders = "herders";
 
+        /// <summary>
+        /// Release C's: the pilgrim fellowship's (wandering faithful who keep hostels at the shrines), the learned society's
+        /// (scholars who keep an archive), the spacer enclave's (brokers between the towns and the ships above), the river
+        /// folk's (fishers and ferry people).
+        /// </summary>
+        public const string Pilgrims = "pilgrims", Scholars = "scholars", Brokers = "brokers", Fishers = "fishers";
+
         /// <summary>Every calling Rimfolk's words know. Release B's peoples take one of these.</summary>
-        public static readonly string[] Callings = { Traders, Healers, Herders };
+        public static readonly string[] Callings = { Traders, Healers, Herders, Pilgrims, Scholars, Brokers, Fishers };
 
         public static bool IsCalling(string calling) => calling != null && Array.IndexOf(Callings, calling) >= 0;
 
@@ -96,6 +103,78 @@ namespace ColonyCouncil
 
         /// <summary>A plague year: a sickness among the region's running world events (the kind the order asks for medicine in).</summary>
         public static bool PlagueYear(IEnumerable<string> runningKinds) => runningKinds != null && runningKinds.Any(k => k == "sickness");
+
+        /// <summary>A holy year: a world event of the faith among the region's (a great pilgrimage, a holy year, a prophet on the roads).</summary>
+        public static bool HolyYear(IEnumerable<string> runningKinds) => runningKinds != null && runningKinds.Any(k => k == "faith");
+
+        // ================= The ages a template arises in =================
+
+        /// <summary>
+        /// The ages (0 tribal to 3 spacer) a people of this template may arise in: its own age, or the span its template
+        /// gives (the river folk from the tribes to the industrial towns; the pilgrims and the scholars from the medieval
+        /// towns on). A span that is unset or upside down is the template's own age.
+        /// </summary>
+        public static void AgeSpan(int own, int min, int max, out int lo, out int hi)
+        {
+            if (min < 0 || max < 0 || max < min)
+            {
+                lo = hi = own;
+                return;
+            }
+            lo = Math.Max(0, Math.Min(3, min));
+            hi = Math.Max(lo, Math.Min(3, max));
+        }
+
+        /// <summary>How many ages a cause's age lies outside a template's span: 0 within it.</summary>
+        public static int AgeDistance(int age, int lo, int hi) => age < lo ? lo - age : age > hi ? age - hi : 0;
+
+        // ================= The pilgrims' night =================
+
+        /// <summary>A band of pilgrims asks for a night's shelter at dusk: from this hour to this one.</summary>
+        public const int ShelterFrom = 16, ShelterTo = 22;
+
+        public static bool ShelterHour(int hour) => hour >= ShelterFrom && hour <= ShelterTo;
+
+        /// <summary>A band of three to five, the eldest speaking for them.</summary>
+        public const int BandMin = 3, BandMax = 5;
+
+        /// <summary>
+        /// One night in ten a pilgrim on the road has brought a cough in with them, and the colonist who sat up with the
+        /// band catches it (before the harm setting's scale): about the chance of a night's lodging among strangers.
+        /// </summary>
+        public const float CoughChance = 0.1f;
+
+        /// <summary>Hours from <paramref name="hour"/> to first light (VisitorServices.Dawn), the night the band stays.</summary>
+        public static int HoursToLight(int hour, int dawn) => hour < dawn ? dawn - hour : 24 - hour + dawn;
+
+        // ================= The enclave's lander =================
+
+        /// <summary>The enclave's factor comes down with two to four of its marshals as guards.</summary>
+        public const int LanderGuardsMin = 2, LanderGuardsMax = 4;
+
+        /// <summary>Guards for a lander by the colony's wealth factor (0.6 to 2: a richer colony sees more of them).</summary>
+        public static int LanderGuards(float wealthFactor)
+        {
+            if (float.IsNaN(wealthFactor)) wealthFactor = 1f;
+            float f = Math.Max(0f, Math.Min(1f, (wealthFactor - 0.6f) / 1.4f));
+            return LanderGuardsMin + (int)Math.Round(f * (LanderGuardsMax - LanderGuardsMin));
+        }
+
+        /// <summary>The lander is for a colony of the industrial age or later (2 or 3), which knows what comes down out of the sky.</summary>
+        public static bool LanderAge(int colonyAge) => colonyAge >= 2;
+
+        // ================= The river folk's landing =================
+
+        /// <summary>A river landing counts as by the water when at least this share of its docks stands in water.</summary>
+        public const float DockWater = 0.25f;
+
+        public static bool ByWater(int dockWater, int dockCells) => dockCells > 0 && dockWater > 0 && dockWater >= Math.Ceiling(dockCells * DockWater);
+
+        /// <summary>
+        /// What a spot is worth for a plan with docks: -1 when the rest of the plan's ground won't take it (more than a
+        /// little bad ground off the docks); else how many of its docks stand in water (the more, the better).
+        /// </summary>
+        public static int DockSpot(int dockWater, int otherBad, int otherCells) => LandFits(otherBad, otherCells) ? Math.Max(0, dockWater) : -1;
 
         // ================= Their towns =================
 

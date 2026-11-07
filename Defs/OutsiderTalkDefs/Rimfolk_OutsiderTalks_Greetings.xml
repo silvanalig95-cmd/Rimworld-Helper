@@ -65,8 +65,10 @@
       their people: their:tribal their:medieval their:industrial their:spacer their:lowtech their:hightech
         their:empire their:noble their:leader their:rough (a rough outlander union or a fierce tribe, friendly enough
         now) their:ally (allied with the colony) samefaith otherfaith; their:sameage their:behind their:ahead (their
-        age beside the colony's: the same, an earlier one, a later one); their:traders their:healers their:herders (one
-        of Rimfolk's own peoples, by its calling: the road league, the hospitaller order, the herding folk)
+        age beside the colony's: the same, an earlier one, a later one); their:traders their:healers their:herders
+        their:pilgrims their:scholars their:brokers their:fishers (one of Rimfolk's own peoples, by its calling: the
+        road league, the hospitaller order, the herding folk, the pilgrim fellowship, the learned society, the spacer
+        enclave, the river folk)
       their town: town town:near town:far; home:desert home:frozen home:jungle home:swamp home:forest home:plains
         home:mountains home:hills home:coast home:cold home:hot home:mild; town:head town:notable town:newhead
         town:headdied town:loss town:ill town:letter (a letter under way) town:wrote (one in 20 days) town:site
