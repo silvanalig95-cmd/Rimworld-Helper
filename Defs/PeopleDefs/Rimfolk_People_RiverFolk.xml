@@ -12,17 +12,20 @@
     than another people's (caravanWeight 1.2), with their catch in the stock where the game has fish (Odyssey). A
     boat-trader of theirs brings a catch to the colony's gate (Rimfolk_Evt_RiverCatch, Odyssey); after a hard winter or a
     flood they ask for timber for the boats or cloth for the nets (Rimfolk_Mission_RiverBoats); the flood downriver and
-    the ice road come from them likeliest (Patches/Rimfolk_PeoplesC.xml). They defend their landings and raid only when
+    the ice road come from them likeliest (Patches/Rimfolk_PeoplesC.xml); boatmen of theirs ask to dry and mend their nets
+    on the colony's bank (Rimfolk_Evt_RiverNets). Their founding (the description): Wenna Reed's boats, the only ones
+    on the water the night the dam broke; a knot in the net for everyone pulled out. What they honour, fear and say is
+    in their template (on their card). They defend their landings and raid only when
     the colony has turned them hostile (raidCommonalityFromPointsCurve 0.3). Listed once among the world's peoples when a
     world is made, never required. Faith (Ideology): a fixed creed of the river that feeds them (Alpha Memes' water
-    primacy where loaded), the totemic style. Kind of people (Biotech): about four in five baseliners; neanderthals,
+    primacy, VE Memes' egalitarian where loaded), the totemic style. Kind of people (Biotech): about four in five baseliners; neanderthals,
     pigskins, yttakin, Stagz Merfolk's coastal merren, Alpha Genes' nereids, Vanilla Races Expanded's poluxkin and gauranlenkin.
   -->
 
   <FactionDef ParentName="TribeBase">
     <defName>Rimfolk_RiverFolk</defName>
     <label>river folk</label>
-    <description>Fishers, ferry people and boat-traders who live along the rivers and know every ford, eddy and shoal of them. Their landings stand where the water is kindest, with docks and fish racks and boats drawn up on the bank, and they carry people and goods across for a price that depends on the weather.\n\nThey are easygoing until someone fouls their water or cheats a ferry, and their river wardens fish with spears that serve for other things. Each landing is kept by its landing master, and the folk by the river master.</description>
+    <description>Fishers, ferry people and boat-traders who live along the rivers and know every ford, eddy and shoal of them. Their landings stand where the water is kindest, with docks and fish racks and boats drawn up on the bank, and they carry people and goods across for a price that depends on the weather.\n\nTheir ways began the night the dam broke upriver and the valley towns drowned. The ferrywoman Wenna Reed and her boats were the only ones on the water when it came, and for three days they pulled people off rooftops and carried them to the high bank; those they carried stayed with them. The river folk count their families from that flood, tie a knot in the net for everyone pulled from the water, and on its night carry any stranger across for nothing.\n\nThey talk about the water the way other people talk about family. They are easygoing until someone fouls their water or cheats a ferry, and their river wardens fish with spears that serve for other things. Each landing is kept by its landing master, and the folk by the river master.</description>
     <pawnSingular>river dweller</pawnSingular>
     <pawnsPlural>river folk</pawnsPlural>
     <leaderTitle>river master</leaderTitle>
@@ -80,10 +83,12 @@
     </xenotypeSet>
     <fixedIdeo>true</fixedIdeo>
     <ideoName>The River's Keeping</ideoName>
-    <ideoDescription>The river feeds whoever keeps it clean. Take what the water gives and no more, carry the stranger across as the river carried our mothers, and never foul the water another drinks downstream. Everything comes down to the river in the end, and the river takes it to the sea.</ideoDescription>
+    <ideoDescription>The river feeds whoever keeps it clean. Take what the water gives and no more, carry the stranger across as the river carried our mothers, and never foul the water another drinks downstream. Everything comes down to the river in the end, and the river takes it to the sea. Whoever is in the water is pulled out first and asked their name after, as Wenna Reed's boats did the night of the flood.</ideoDescription>
     <forcedMemes>
       <li MayRequire="Ludeon.RimWorld.Ideology">NaturePrimacy</li>
       <li MayRequire="sarg.alphamemes">AM_WaterPrimacy</li>
+      <!-- Whoever is in the water pulled out first: Vanilla Ideology Expanded's egalitarian. -->
+      <li MayRequire="VanillaExpanded.VMemesE">VME_Egalitarian</li>
     </forcedMemes>
     <structureMemeWeights Inherit="False">
       <Structure_Animist MayRequire="Ludeon.RimWorld.Ideology">4</Structure_Animist>
@@ -179,6 +184,14 @@
           <li>Rimfolk_Camp_HarvestHands</li>
         </camps>
         <plan>Rimfolk_Plan_RiverLanding</plan>
+        <honours>clean water, the stranger carried across and the catch shared</honours>
+        <fears>fouled water, a cheat at the ferry and the river rising</fears>
+        <sayings>
+          <li>Take what the water gives and no more.</li>
+          <li>Everything comes down to the river in the end.</li>
+          <li>Carry the stranger across.</li>
+          <li>Never foul the water another drinks.</li>
+        </sayings>
         <townGoods>
           <WoodLog>120~240</WoodLog>
           <Cloth>40~90</Cloth>
@@ -613,6 +626,8 @@
         <li>riverThing->Seven Fords</li>
         <li>riverThing->Reeds</li>
         <li>riverThing->Brown Water</li>
+        <li>riverThing->Knotted Net</li>
+        <li>riverThing->High Bank</li>
       </rulesStrings>
     </rulePack>
   </RulePackDef>

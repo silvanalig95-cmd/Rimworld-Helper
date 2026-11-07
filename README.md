@@ -3412,6 +3412,28 @@ age: A RimWorld of Magic's priests among the hospitallers, paladins among the wa
 the river folk and the herders, arcanists with the scholars; psylinks (Royalty) in the enclave and the society, on Vanilla
 Psycasts Expanded's paths when it is loaded. Pawns already in a game keep what they have; new ones come dressed this way.
 
+**Where their ways began.** Each of the seven keeps a founding story (in its description on the faction page), a few
+sayings, and what it honours and fears, shown on its card: the league's Edda Vane, who took nine waymasters' wagons
+through Harrow Ford under their flags and began the Waystone Book of good ink and red; the order's Aldith, who nursed a
+fever town alone through a winter and hung its last lamp over the sickhouse door for anyone ("we were spared, and so we
+owe"); the herders' Tamsa, who walked the last forty head through the dry year to grass and back, which is why herders
+count every beast at dusk; the pilgrims' Old Brannoc, the nearly blind preacher who blessed every door he passed; the
+society's Ilse Varro, who carried eleven books out of the burning archive at Hesk; the enclave's Ines Okoro, purser of a
+downed ore hauler who sold its cargo one bargain at a time; the river folk's Wenna Reed, whose boats pulled people off the
+rooftops the night the dam broke. Their letters (now also in grief and in thanks for a warning), messengers, visitors and
+talk speak from it, each in its own manner. And each has a touchpoint of its own: when someone is down with a fever, a
+hospitaller comes to go from bed to bed through the night, the colony's doctor alongside if it likes; after a good winter's
+grazing the herders' elder leaves a young beast of the herd at the gate; in the winter a league caravan asks for winter
+quarters by the colony, trades all the while, stands with the colony against raiders if asked, and after a good stay
+leaves a carved waystone at the gate; on the fellowship's walking day a long file of pilgrims stops to pray at the
+colony's graves; once a year a fellow of the society holds the night of the fire's disputation where the colony
+gathers; in any age the enclave offers salvage from above, dropped by pod by the trade spot; and boatmen of the river
+folk dry and mend their nets on the colony's bank for the day and leave fish or net cloth for it. A herb-gatherer, a
+patrol after robbers, a lost traveller, a travelling teacher and a tourist come from them likeliest. Their faiths take a
+meme more from Vanilla Ideology Expanded where it is loaded (the lamp's light, the elders, the waymasters' republic, the
+enclave's machines, the river folk's equal shares), and a new people that arises in their ways carries their signature
+in its name (*Lamp of Ashford*, *Barr's Waystone*, *Last Herd of Ashford*).
+
 ## Scenarios with stakes
 Seventeen scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Each starts the game with
 something already in motion, and a few seconds in, a letter says how things stand.

@@ -12,6 +12,73 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- The seven peoples brought to the level of the eight new ones (7 November 2026, the player's request on
+  `docs/design/peoples-next.md`: "love all these factions, go ahead! also update existing factions to this level"; an
+  explicit request, no proposal round; this is that request's second half, the eight themselves follow). Not released: no
+  What's new round, About.xml and CHANGELOG untouched (the lead does that at the merge). `docs/design/peoples.md` "Their
+  stories, sayings and touchpoints" (the founding, sayings, honour and fear of each in a table, their voices, the
+  touchpoints with what is seen on the map, the faiths, the names, the softness); DESIGN.md "Rimfolk's peoples", its last
+  bullet; README "Where their ways began."; the Almanac's two peoples' pages a section each, *Where their ways began*, and
+  the new touchpoints in *What each brings* (keywords unchanged). Code: `Peoples/PeoplesLore.cs` (the card's lines, the
+  workers, the salvage's effect), `Peoples/PeoplesLoreMath.cs` (pure, linked into the tests), `PeopleExtension.honours`,
+  `fears`, `sayings`; `CampGift.young` and `maxTension` (`Camps/CampLookDefs.cs`, `CampLook.cs`: `Earned`, `GiveYoung`, no
+  farewell walk to the gate without its gift); `FactsMath.RegionTags` gains `them:camp:LeagueWinter`. Tests:
+  `PeoplesLoreTests` ("peoples' lore: "), ImmersionTests registers `Rimfolk_Pool_PlayDisputation` and the three new
+  journals. Nothing saved, no clock, nothing hurts anyone (no Harm calls: none of the touchpoints can hurt, so none is on
+  the shared budget). Merged 0.153.0 (harm part 4) first.
+  - Lore: each faction's description has a founding paragraph (the league's Edda Vane at Harrow Ford and the Waystone
+    Book; the order's Aldith, the last lamp and the Book of the Spared; the herders' Tamsa and the count at dusk; the
+    pilgrims' Old Brannoc and the shells; the society's Ilse Varro and the night of the fire at Hesk; the enclave's Ines
+    Okoro and the hauler's manifest; the river folk's Wenna Reed and the knotted nets) and a line of their manner; each
+    creed a line of it. Their card (`PeopleLore`, CardSlot.Story) says what they honour and fear and one saying.
+  - Voices (`Defs/FlavorPoolDefs/Rimfolk_Lines_PeoplesLore.xml`, `Defs/OutsiderTalkDefs/Rimfolk_OutsiderTalks_PeoplesLore.xml`):
+    letters of grief and of thanks for a warning for all seven, more messengers' lines, their visitors at every moment of
+    a visit, their words face to face, three talk pieces each (the founding told as the story of their ways, so a people
+    that arose in them can tell it), the disputation's words.
+  - Touchpoints (`Defs/IncidentDefs/Rimfolk_Events_PeoplesLore.xml`, `Defs/CampDefs/Rimfolk_CampKinds_PeoplesLore.xml`):
+    the order's night nurse (`Rimfolk_Evt_OrderNurse`: a fever, from bed to bed by `VisitorServices.Dose`, hediff
+    `Rimfolk_OrderNursed` in `Defs/Misc/Rimfolk_PeoplesLore_Misc.xml`, a doctor's lesson and medicine back as an option);
+    the herders' young beast at the gate after a good winter's grazing; the league's winter quarters
+    (`Rimfolk_Camp_LeagueWinter`); the pilgrims' Long Walk (`Rimfolk_Evt_LongWalk`, spring and summer, at the graves); the
+    society's night of the fire (`Rimfolk_Evt_Disputation`, once a year); the enclave's salvage (`Rimfolk_Evt_EnclaveSalvage`,
+    any age); the river folk's nets on the bank (`Rimfolk_Evt_RiverNets`). `Patches/Rimfolk_PeoplesLore.xml`: a
+    herb-gatherer, a patrol, a lost traveller, a teacher and a tourist prefer the order, the league, the pilgrims, the
+    society and the enclave, each with a text in their voice.
+  - Faiths (all `MayRequire`, checked against the memes' exclusion tags read from Vanilla Ideology Expanded - Memes' and
+    Alpha Memes' 1.6 defs, four memes at most): the order + VME light, the herders + VME elders, the league + VME
+    republic, the enclave + VME progressive, the river folk + VME egalitarian; the pilgrims may take VME omnism and the
+    society VME agnosticism as their structure.
+  - Names: a third form of every arising name (`CC_Arise_Name_*_3`: *Lamp of Ashford*, *Ashford Waystone*, *Barr's
+    Handcart*...), a second form of how seven kinds of them live (`CC_Arise_*_2`), the templates' name rules with their
+    founding's words; the order's *Bell* became *Ward* (no "Quiet Bell" before that people exists).
+  - Try in the game (none of it could be run here; Dev mode, Debug actions, Rimfolk's events by name, or the game's
+    incident list):
+    1. Open the Peoples page and a card of each of the seven (and of a people that arose): a line "They honour ..., and
+       they fear ...", and "A saying of theirs: ..."; the faction page's description with the founding in its middle.
+    2. Give a colonist the flu (dev: add hediff), fire `Rimfolk_Evt_OrderNurse`: a hospitaller in ivory walks in; let them
+       in and watch them walk to each fevered bed (four at most), "nursed by the order" on each one's health tab, the
+       outcome told when the last is seen to; the second answer with the doctor following at their side.
+    3. Fire `Rimfolk_Evt_LongWalk` with and without a grave: six to nine pilgrims at the graves (or by the gate), the
+       graves' answer greyed without one; walk out with them, and give food (a colonist carries it out to the eldest).
+    4. Fire `Rimfolk_Evt_Disputation`: the gathering that evening where the colony gathers, the fellow among them, the
+       disputation's lines over heads.
+    5. Fire `Rimfolk_Evt_EnclaveSalvage` in a tribal start (a runner at the gate) and an industrial one (radio): buy it,
+       watch the drop pods come down by the trade spot, check their goods against the letter (steel, cloth, components,
+       medicine; plasteel and chemfuel later), and the silver go to the runner or a courier.
+    6. On a map with water, fire `Rimfolk_Evt_RiverNets`: two or three boatmen on the bank by the water, fish (Odyssey) or
+       net cloth set down there, the crafter's lesson.
+    7. In winter, "Peoples: one of their camps here now" for the league (or wait for it): `Rimfolk_Camp_LeagueWinter`
+       camps, trades, takes the wardens' ask and the Waystone Book; let it leave in peace and see the caravan master lay a
+       crated waystone at the gate. The herders' winter herd: at a good stay's end the elder walks to the gate and a young
+       beast of the herd stands there, the colony's; after a bad stay (raise its unease) no walk.
+    8. With Vanilla Ideology Expanded - Memes, a new world: the seven's faiths with their new memes, and no "conflicting
+       memes" error in the log.
+  - Riskiest: the young beast's generation (a juvenile of a modded herd animal with odd life stages; the calendar's day
+    holds a pawn's id among its things); the hospitaller's rounds on a sleeping patient (the dose waits until they wake,
+    twelve hours at most); the salvage's counts by `BaseMarketValue` with a market mod changing prices; the bank cell
+    (dry ground next to any water, which may be a marsh or a moat); the forced memes' generation with every mod (the
+    game adds forced memes without checking them, so a conflict would only show as odd precepts, hence the exclusion
+    check in the test).
 - 0.153.0, harm, part 4: the shared budget and fifteen more of the review (7 November 2026, the player's answer to "do more harm
   proposals raise how often colonists get hurt, or only the variety?": "yes, a shared budget please, and go ahead with the
   suggestions"; since then "all suggestions please", so the other 69 unbuilt proposals follow in later pieces on this

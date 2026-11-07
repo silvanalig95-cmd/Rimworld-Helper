@@ -9,17 +9,21 @@
     (TownPlanDef Rimfolk_Plan_LandingMarket). Their caravans walk with pack beasts as the Empire's do, less often than
     another people's (caravanWeight 0.7); for an industrial or spacer colony their factor asks by radio for leave to come
     down by the gate with goods, and comes by drop pod when bidden (Rimfolk_Evt_EnclaveLander). Busy orbital lanes and a
-    ship come down come from them likeliest (Patches/Rimfolk_PeoplesC.xml). They defend their markets and raid only when
+    ship come down come from them likeliest (Patches/Rimfolk_PeoplesC.xml). Their factor offers salvage from above for a
+    share of its worth, dropped by pod at the colony's trade spot (Rimfolk_Evt_EnclaveSalvage), in every age. Their
+    founding (the description): Ines Okoro, purser of a downed ore hauler, who sold its cargo, passage and debts one
+    bargain at a time; the hauler's manifest. What they honour, fear and say is in their template (on their card). They
+    defend their markets and raid only when
     the colony has turned them hostile (raidCommonalityFromPointsCurve 0.15: few, and well armed). Listed once among the
     world's peoples when a world is made, never required. Faith (Ideology): a fixed creed of the body improved (VE Memes'
-    trader where loaded), the techist style. Kind of people (Biotech): seven in ten baseliners; hussars, genies,
+    trader and progressive where loaded), the techist style. Kind of people (Biotech): seven in ten baseliners; hussars, genies,
     highmates, Odyssey's starjacks, Vanilla Races Expanded's archons and androids, the Avaloi and Alpha Genes' lapis.
   -->
 
   <FactionDef ParentName="OutlanderFactionBase">
     <defName>Rimfolk_Enclave</defName>
     <label>spacer enclave</label>
-    <description>An enclave of brokers who live between the planet's towns and the ships above it, buying from the one and selling to the other. They keep a few markets round their landing pads and come down by drop pod wherever there is trade to be had, with goods most towns have only heard of.\n\nThey are polite, exact and very well armed, and their marshals wear the armour of another world. Each market is run by its pad master, and the enclave by the chair of the exchange.</description>
+    <description>An enclave of brokers who live between the planet's towns and the ships above it, buying from the one and selling to the other. They keep a few markets round their landing pads and come down by drop pod wherever there is trade to be had, with goods most towns have only heard of.\n\nTheir ways began with the crew of an ore hauler that came down with a dead drive and no way back up. Rather than sell the hull for scrap, its purser, Ines Okoro, sold its cargo, its passage and its debts to whoever would buy, one bargain at a time, until the crew owned a landing pad and a radio and the ships above were calling them. The exchange still keeps the hauler's manifest, every bargain the enclave has struck written in it, and on the night the ledger is read aloud the chair is called the purser.\n\nThey say "noted" where others would say thank you, and they never name a price they will not keep. They are polite, exact and very well armed, and their marshals wear the armour of another world. Each market is run by its pad master, and the enclave by the chair of the exchange.</description>
     <pawnSingular>broker</pawnSingular>
     <pawnsPlural>brokers</pawnsPlural>
     <leaderTitle>chair of the exchange</leaderTitle>
@@ -75,10 +79,12 @@
     </xenotypeSet>
     <fixedIdeo>true</fixedIdeo>
     <ideoName>The Exchange</ideoName>
-    <ideoDescription>Everything has a price, and a fair price is the closest thing to justice the stars allow. The body is a tool to be kept sharp and made better, a bargain once struck is kept to the last digit, and the ships above and the towns below are both the enclave's to serve.</ideoDescription>
+    <ideoDescription>Everything has a price, and a fair price is the closest thing to justice the stars allow. The body is a tool to be kept sharp and made better, a bargain once struck is kept to the last digit, and the ships above and the towns below are both the enclave's to serve. What a machine can do, a machine should do: Okoro's crew had no hands to spare, and the enclave still has none.</ideoDescription>
     <forcedMemes>
       <li MayRequire="Ludeon.RimWorld.Ideology">Transhumanist</li>
       <li MayRequire="VanillaExpanded.VMemesE">VME_Trader</li>
+      <!-- No hands to spare since Okoro's crew: Vanilla Ideology Expanded's progressive. -->
+      <li MayRequire="VanillaExpanded.VMemesE">VME_Progressive</li>
     </forcedMemes>
     <structureMemeWeights Inherit="False">
       <Structure_Ideological MayRequire="Ludeon.RimWorld.Ideology">3</Structure_Ideological>
@@ -162,6 +168,14 @@
           <li>Council_Camp_Market</li>
         </camps>
         <plan>Rimfolk_Plan_LandingMarket</plan>
+        <honours>the kept bargain, the exact figure and the body made better</honours>
+        <fears>the default, the debt nobody pays and being stranded</fears>
+        <sayings>
+          <li>A bargain struck is kept to the last digit.</li>
+          <li>Everything has a price, and a fair one exists.</li>
+          <li>Nobody is stranded who has something to sell.</li>
+          <li>Terms first, then talk.</li>
+        </sayings>
         <townGoods>
           <ComponentIndustrial>8~16</ComponentIndustrial>
           <ComponentSpacer>1~3</ComponentSpacer>
@@ -699,6 +713,8 @@
         <li>padThing->Bright Pad</li>
         <li>padThing->Far Ship</li>
         <li>padThing->Fair Price</li>
+        <li>padThing->Manifest</li>
+        <li>padThing->Last Digit</li>
       </rulesStrings>
     </rulePack>
   </RulePackDef>

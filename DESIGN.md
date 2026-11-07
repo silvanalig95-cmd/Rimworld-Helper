@@ -4955,6 +4955,22 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
   or a psylink, with Vanilla Psycasts Expanded a path by name) given by `Patch_PeopleGifts`, a postfix on the game's
   `GenerateNewPawnInternal` (fresh pawns only, the deeper game hooks on); `PeoplesGearMath` (one roll against the shares,
   never more than 60% of a kind, the psylink's levels, the class's setting). Pawns already in a game keep theirs.
+- **Their stories, sayings and touchpoints** (`Tools/Tests/PeoplesLoreTests.cs`, "peoples' lore: "; docs/design/
+  peoples.md, the section of that name). A founding story in each faction's description (its middle paragraph), and
+  `PeopleExtension.honours`, `fears`, `sayings` shown on the people's card (`PeopleLore`, a lines section in the card's
+  story slot; a saying picked by the faction's id, so it reads the same). Their voices in the existing pools by
+  `their:CALLING` (letters' condolences and warnings, messengers, `Rimfolk_VisitorLines`, `Rimfolk_Pool_OutsiderSays`),
+  three talk pieces each, `Rimfolk_Pool_PlayDisputation`. Touchpoints, each only from a people of its calling:
+  `HappeningWorker_OrderNurse` (a fever: the hospitaller goes from bed to bed by `VisitorServices.Dose` with
+  `Rimfolk_OrderNursed`), `HappeningWorker_LongWalk` (a file of pilgrims at the graves, a walk together or food carried
+  out), `Rimfolk_Evt_Disputation` (data only: an evening gathering with the fellow as guest), `HappeningWorker_EnclaveSalvage`
+  and `DilemmaEffect_EnclaveSalvage` (salvage by drop pod at the trade spot, by `PeoplesLoreMath.SalvageGoods` of the
+  colony's age; a runner on foot for a colony without radio), `HappeningWorker_RiverNets` (boatmen on the dry bank by the
+  water), the league's camp `Rimfolk_Camp_LeagueWinter` (winter, trading, guards if asked, the Waystone Book) and the
+  winter herd's young beast. A camp's gift (`CampGift`) may now be `young` (a young beast of the camp's own grazing kinds,
+  the colony's, handed over at the gate on the farewell walk) and kept for a good stay (`maxTension`: no walk to the gate
+  without it). Faiths gain a soft meme or structure each where thin, checked against the memes' exclusion tags. Arising
+  names gain a third form carrying their ways. Nothing saved, no clock, nobody hurt.
 
 ### The colony's animals with powers
 

@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The seven peoples in their own voices, brought to the level of the new ones (docs/design/peoples.md, "Their stories,
+    sayings and touchpoints"; Source/ColonyCouncil/Peoples/), by the tag their people give every line (their:healers the
+    hospitaller order, their:herders the herding folk, their:traders the road league, their:pilgrims the pilgrim
+    fellowship, their:scholars the learned society, their:brokers the spacer enclave, their:fishers the river folk). Each
+    speaks from its founding story and its sayings: the order of the spared and the lamp, the herders of the count at dusk
+    and the grass, the league of the waystone and good ink, the pilgrims of the open door and the shells, the society of
+    the copied page and the night of the fire, the enclave of the kept bargain and the manifest, the river folk of the
+    water and the stranger carried across. The same pools as release A's and C's (Rimfolk_Lines_Peoples.xml,
+    Rimfolk_Lines_PeoplesC.xml), and more of them:
+    - Rimfolk_Pool_NeighbourWrites: their letters, now also their condolences and their thanks for a warning.
+    - Rimfolk_CourierLines: their messengers at the gate. One sentence each.
+    - Rimfolk_VisitorLines (Visitors/VisitorWords.cs): their visitors arriving, waiting, staying, passing and leaving.
+    - Rimfolk_Pool_OutsiderSays (Outsiders/): what one of them says doing something with a colonist face to face.
+    - Rimfolk_Pool_PlayDisputation: what is said at the society's night of the fire (Rimfolk_Evt_Disputation).
+    And the journals of the colonists at their new touchpoints (Defs/IncidentDefs/Rimfolk_Events_PeoplesLore.xml).
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_NeighbourWrites_PeoplesLore</defName>
+    <pool>Rimfolk_Pool_NeighbourWrites</pool>
+    <lines>
+      <plain>
+        <!-- The hospitaller order: the spared, the lamp, the ward -->
+        <li>[greetings,warm,their:healers] Your letter was read by the lamp at the door tonight, {WRITER}. We were spared, and so we owe, and the order counts your colony among those it owes.</li>
+        <li>[greetings,cordial,their:healers] The order thanks you for your letter, {WRITER}. Your colony's name is written beside the lamp, with the others the sickhouse keeps in its thoughts.</li>
+        <li>[condolences,warm,their:healers] We have written your dead into the last pages of the Book of the Spared, {WRITER}, where the order keeps those it could not save. They are not forgotten here.</li>
+        <li>[condolences,cordial,their:healers] The order grieves with you, {WRITER}. Keep a lamp lit for them a while; it helps more than people think.</li>
+        <li>[warning,warm,their:healers] Your warning came to the ward in good time, {WRITER}. We have moved the sick to the inner rooms and doubled the night watch, and the order will not forget it.</li>
+        <li>[warning,cordial,their:healers] Thank you for the warning, {WRITER}. The guards are on the walls, and the lamp stays lit whatever comes.</li>
+        <li>[news,warm,their:healers] Fevers travel faster than news, {WRITER}, and the ward hears of both. Here is what came through our door this season.</li>
+        <li>[invitation,cordial,their:healers] If the sick can spare one of us, one of us will come, {WRITER}. Keep the lamp lit and we will find your gate.</li>
+        <!-- The herding folk: the count at dusk, the pot, the grass -->
+        <li>[greetings,warm,their:herders] Your words came to the fire at dusk, {WRITER}, after the count, which is the best time for words. The elders say your colony may eat from our pot.</li>
+        <li>[condolences,warm,their:herders] The elders counted your dead with ours at dusk, {WRITER}, one by one, so that the grass will know them. A herder never leaves anyone behind on the road.</li>
+        <li>[condolences,cordial,their:herders] We are sorry for your loss, {WRITER}. The camp will sing for them when it moves on.</li>
+        <li>[warning,warm,their:herders] Your rider found us before the trouble did, {WRITER}. The herd is in the far valley with every head counted, and the elders will not forget it.</li>
+        <li>[warning,cordial,their:herders] We heard your warning, {WRITER}. The herd is moving, and the archers ride its edges.</li>
+        <li>[invitation,cordial,their:herders] When the grass brings us your way, we will stop at your gate, {WRITER}. The grass will tell when.</li>
+        <!-- The road league: the waystone, good ink, every crate home -->
+        <li>[greetings,warm,their:traders] Your colony is in the Waystone Book in good ink, {WRITER}, and the waymasters drank to it. Every caravan of ours on your road knows your gate.</li>
+        <li>[greetings,cool,their:traders] The league has your letter. The book has room for your name in good ink or in red, and which is up to you.</li>
+        <li>[condolences,warm,their:traders] The league is sorry for your loss, {WRITER}. We carry our dead home on the road, every one, and we would help you carry yours.</li>
+        <li>[condolences,cordial,their:traders] Hard news, {WRITER}, and the league is sorry for it. The road is lonelier without them.</li>
+        <li>[warning,warm,their:traders] Your warning reached the waystation ahead of the trouble, {WRITER}. The caravans are holding, every crate is safe, and the league owes you for it.</li>
+        <li>[warning,cordial,their:traders] Noted and passed down the road, {WRITER}. The wardens are riding out.</li>
+        <!-- The pilgrim fellowship: the open door, the shells, the shrine -->
+        <li>[greetings,warm,their:pilgrims] Your name is among the doors that opened, {WRITER}, and the fellowship says it at every shrine. Peace on your house.</li>
+        <li>[condolences,warm,their:pilgrims] We said your dead's names at the shrine this morning, {WRITER}, and will say them again at the next. Nobody walks the last road alone.</li>
+        <li>[condolences,cordial,their:pilgrims] The fellowship mourns with you, {WRITER}. A pilgrim will stop to pray at your graves when the road passes them.</li>
+        <li>[warning,warm,their:pilgrims] Your warning turned our bands off the bad road, {WRITER}, and every one of them will bless your door for it.</li>
+        <li>[warning,cordial,their:pilgrims] We have your warning, {WRITER}. The bands will take the long way round.</li>
+        <!-- The learned society: the copied page, the night of the fire -->
+        <li>[greetings,warm,their:scholars] Your letter has been read, copied twice and filed, {WRITER}, as Ilse Varro asked of us. Strictly speaking that is the highest honour the society has, and you have it.</li>
+        <li>[condolences,warm,their:scholars] We have written your dead into the archive, {WRITER}, with everything your letter said of them. Nothing known should be lost, and they will not be.</li>
+        <li>[condolences,cordial,their:scholars] The society is sorry for your loss, {WRITER}. If you would write down who they were, we will keep it.</li>
+        <li>[warning,warm,their:scholars] Your warning reached the archive in time, {WRITER}. The oldest books are in the cellar and the proctors are on the roof, and we have noted who warned us.</li>
+        <li>[warning,cordial,their:scholars] The society has your warning, {WRITER}, and has filed it. The proctors are on watch.</li>
+        <!-- The spacer enclave: the manifest, the kept bargain -->
+        <li>[greetings,warm,their:brokers] Your message is in the manifest, {WRITER}, beside every bargain the enclave has kept. That is where we keep our friends.</li>
+        <li>[condolences,warm,their:brokers] The exchange stopped for an hour when your message came, {WRITER}, which it does for nobody. The enclave is sorry for your loss.</li>
+        <li>[condolences,cordial,their:brokers] Your loss is noted, {WRITER}, and regretted.</li>
+        <li>[warning,warm,their:brokers] Your warning reached the exchange in time to move the cargo, {WRITER}. Noted, and owed.</li>
+        <li>[warning,cordial,their:brokers] Warning received and logged, {WRITER}. The marshals are on the pad.</li>
+        <!-- The river folk: the water, the stranger carried across -->
+        <li>[greetings,warm,their:fishers] Your words came down with the current, {WRITER}, and the landing heard them over the stew. Any boat of ours will carry your people across.</li>
+        <li>[condolences,warm,their:fishers] We set a light on the water for your dead, {WRITER}, and let the river carry it down to the sea. Everything comes down to the river in the end.</li>
+        <li>[condolences,cordial,their:fishers] The landing is sorry for your loss, {WRITER}. The river takes everyone to the sea in the end, and it is gentle about it.</li>
+        <li>[warning,warm,their:fishers] Your warning came down the river ahead of the trouble, {WRITER}. The boats are pulled up and the landing is ready, and we owe you a crossing.</li>
+        <li>[warning,cordial,their:fishers] We have your warning, {WRITER}. The boats will keep to the far bank.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_CourierLines_PeoplesLore</defName>
+    <pool>Rimfolk_CourierLines</pool>
+    <lines>
+      <plain>
+        <li>[arrive,their:healers] I followed the lamps from the sickhouse to your gate.</li>
+        <li>[deliver,their:healers] From the order, and freely given, as everything of ours is.</li>
+        <li>[leave,their:healers] Keep a lamp lit, and the order will always find you.</li>
+        <li>[arrive,their:herders] I rode in after the count, and every head was there.</li>
+        <li>[leave,their:herders] I must be back before dusk, the count waits for nobody.</li>
+        <li>[arrive,their:traders] Signed for at the waystone, and here in good time.</li>
+        <li>[deliver,their:traders] Every crate home, and this one's yours.</li>
+        <li>[arrive,their:pilgrims] The road brought me to your gate, and peace on it.</li>
+        <li>[deliver,their:pilgrims] Freely given, as the fellowship gives everything.</li>
+        <li>[arrive,their:scholars] Copied twice, carried once, and here at last.</li>
+        <li>[deliver,their:scholars] From the archive, and noted in the ledger.</li>
+        <li>[arrive,their:brokers] Delivered by hand, on time, as agreed.</li>
+        <li>[collect,their:brokers] Collected in full, and noted in the manifest.</li>
+        <li>[arrive,their:fishers] Up from the water, and dry for once.</li>
+        <li>[deliver,their:fishers] Carried across for a friend, as the river folk do.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_VisitorLines_PeoplesLore</defName>
+    <pool>Rimfolk_VisitorLines</pool>
+    <lines>
+      <plain>
+        <li>[arrive,their:healers] Peace on this house, is anyone here unwell?</li>
+        <li>[wait,their:healers] I'll wait, the ward taught me patience if nothing else.</li>
+        <li>[stay,their:healers] A roof and a lamp, that's all a hospitaller asks.</li>
+        <li>[leave,their:healers] Keep the lamp lit, and send for us if a fever comes.</li>
+        <li>[pass,their:healers] Back to the ward, the beds won't empty themselves.</li>
+        <li>[arrive,their:herders] Your grass looks good from the road.</li>
+        <li>[wait,their:herders] The grass will tell, so I'll wait and see.</li>
+        <li>[stay,their:herders] A guest eats from the same pot, so I won't refuse your supper.</li>
+        <li>[leave,their:herders] Back to the herd before dusk, they'll want counting.</li>
+        <li>[pass,their:herders,animals] Easy now, we're only passing through.</li>
+        <li>[arrive,their:traders] Fair dealing here, I hope, the book says so.</li>
+        <li>[wait,their:traders] Take your time, though the road won't.</li>
+        <li>[stay,their:traders] A word given at the waystone stands, so you'll have no trouble from us.</li>
+        <li>[leave,their:traders] The road won't wait, so neither will I.</li>
+        <li>[pass,their:traders] Good ink on this gate, keep moving.</li>
+        <li>[arrive,their:pilgrims] Peace on this house, and on everyone in it.</li>
+        <li>[wait,their:pilgrims] Every door is a shrine to someone, so I'll wait by yours.</li>
+        <li>[stay,their:pilgrims] An open door, and I'll bless it in the morning.</li>
+        <li>[leave,their:pilgrims] Walk on and bless what you pass, so your gate gets a blessing.</li>
+        <li>[pass,their:pilgrims] There is no last shrine, so on we go.</li>
+        <li>[arrive,their:scholars] Strictly speaking I'm early, which is a first.</li>
+        <li>[wait,their:scholars] I'll wait, I brought a book.</li>
+        <li>[stay,their:scholars] Any corner with a lamp to read by will do.</li>
+        <li>[leave,their:scholars] I'll write all this down before I forget a word of it.</li>
+        <li>[pass,their:scholars] Nothing known should be lost, so on to the next archive.</li>
+        <li>[arrive,their:brokers] Terms first, then talk, if that suits.</li>
+        <li>[wait,their:brokers] Waiting is billed at no charge, this once.</li>
+        <li>[stay,their:brokers] Adequate accommodation, noted with thanks.</li>
+        <li>[leave,their:brokers] Noted, and the account is in good standing.</li>
+        <li>[pass,their:brokers] Nobody is stranded who has something to sell.</li>
+        <li>[arrive,their:fishers] Is the water clean here, or should I ask?</li>
+        <li>[wait,their:fishers] No hurry, the river isn't going anywhere.</li>
+        <li>[stay,their:fishers] A dry floor, that's a treat for river folk.</li>
+        <li>[leave,their:fishers] Back to the water, the river's calling.</li>
+        <li>[pass,their:fishers] Everything comes down to the river in the end, us too.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_OutsiderSays_PeoplesLore</defName>
+    <pool>Rimfolk_Pool_OutsiderSays</pool>
+    <lines>
+      <plain>
+        <li>[chat,them,their:healers] We were spared, and so we owe, that's all the order really is.</li>
+        <li>[endwarm,them,their:healers] If you're ever sick, send for us, and we'll come at a run.</li>
+        <li>[faithtalk,them,their:healers] Aldith never asked anyone whose side they were on, and nor do we.</li>
+        <li>[chat,them,their:herders] Count them at dusk, my grandmother said, and I always have.</li>
+        <li>[endwarm,them,their:herders] You'd make a fair herder, if you could stand the walking.</li>
+        <li>[faithtalk,them,their:herders] Tamsa walked forty head through the dry year, and we still walk where she walked.</li>
+        <li>[chat,them,their:traders] Good ink or red ink, the book only has the two.</li>
+        <li>[endwarm,them,their:traders] I'll put in a good word at the next waystation, and they'll write it down.</li>
+        <li>[faithtalk,them,their:traders] Edda Vane took nine wagons through Harrow Ford, and nobody fired.</li>
+        <li>[chat,them,their:pilgrims] I have a shell for every shrine, and room on the string for more.</li>
+        <li>[endwarm,them,their:pilgrims] Your name goes with me to the next shrine, I promise you.</li>
+        <li>[faithtalk,them,their:pilgrims] Old Brannoc prayed at every people's shrine and never asked whose it was.</li>
+        <li>[chat,them,their:scholars] Ask the question nobody will, that's the first thing they teach us.</li>
+        <li>[endwarm,them,their:scholars] This is going in my notes, and my notes go in the archive.</li>
+        <li>[faithtalk,them,their:scholars] Ilse Varro saved eleven books from the fire, and we've argued about the rest ever since.</li>
+        <li>[chat,them,their:brokers] A bargain struck is kept to the last digit, or it was never a bargain.</li>
+        <li>[endwarm,them,their:brokers] Noted, and that means more from us than you'd think.</li>
+        <li>[faithtalk,them,their:brokers] Okoro sold a dead ship one bargain at a time, and we never stopped selling.</li>
+        <li>[chat,them,their:fishers] Take what the water gives and no more, and it'll keep giving.</li>
+        <li>[endwarm,them,their:fishers] If you're ever on the water, ask any river boat to carry you across.</li>
+        <li>[faithtalk,them,their:fishers] Wenna Reed's boats pulled people off the rooftops for three days, and we count from that.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- What is said over heads at the learned society's night of the fire (Rimfolk_Evt_Disputation's gathering): the fellow
+       and the colony arguing over what was lost when the archive at Hesk burned, and whether it matters. One sentence each. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_PlayDisputation</defName>
+    <lines>
+      <plain>
+        <li>Strictly speaking, that's two questions.</li>
+        <li>How would we know it was lost if nobody wrote down that it existed?</li>
+        <li>I'll argue the other side, just to see if yours holds.</li>
+        <li>Eleven books saved, and we still argue about the twelfth.</li>
+        <li>Somebody write that down before we forget who said it.</li>
+        <li>I concede the point, and only that point.</li>
+        <li>That's a good question, and nobody here can answer it.</li>
+        <li>Copy it twice and argue about it once, that's the rule.</li>
+        <li>What we never wrote down, we lose, and that's the whole argument.</li>
+      </plain>
+      <cheerful>
+        <li>Nobody's winning, and that's the best part of it.</li>
+      </cheerful>
+      <blunt>
+        <li>That's wrong, and I can say why.</li>
+      </blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The journal of the fevered colonist the order's hospitaller saw to (Rimfolk_Evt_OrderNurse): seen to freely (opt0),
+       with the colony's doctor at the hospitaller's side (opt1), or sent away (opt2). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Evt_OrderNurse</defName>
+    <lines>
+      <plain>
+        <li>[opt0] A hospitaller of the order sat with my {TALE} last night. Every time I woke there was a cool cloth and someone awake.</li>
+        <li>[opt0] The order sent someone for the fever. We were spared, and so we owe, they said, and wouldn't take a thing for it.</li>
+        <li>[opt1] {X_nameDef} saw to me with our own doctor at the elbow, asking questions all night. I think I got better out of politeness.</li>
+        <li>[opt2] The order sent a hospitaller for my {TALE} and we said we'd manage. We're managing.</li>
+      </plain>
+      <warm><li>[opt0] I don't know {X_nameDef}'s people at all, and {X_pronoun} sat up all night with my fever anyway.</li></warm>
+      <gloomy><li>[opt2] Burning up, and we sent the order's nurse back down the road.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The journal of the colonist the pilgrims' Long Walk passed (Rimfolk_Evt_LongWalk): walked out to the graves with them
+       (opt0), saw them off to the road (opt1), gave them food (opt2), or watched from the wall (opt3). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Evt_LongWalk</defName>
+    <lines>
+      <plain>
+        <li>[opt0] The fellowship's Long Walk came by, and we stood at our graves with them while their eldest said the old words.</li>
+        <li>[opt1] We walked the pilgrims back to the road, singing what we could of their song, and waved them on.</li>
+        <li>[opt2] Pilgrims on their walking day, a long file of them. We gave them food for the road and they blessed the gate twice.</li>
+        <li>[opt3] A long file of pilgrims stopped to pray here today. I watched them from the wall.</li>
+        <li>[opt0] Every one of the pilgrims had a string of shells, one for each shrine. Our graves are a shrine to someone now, I suppose.</li>
+      </plain>
+      <warm><li>[opt0] Strangers praying over our dead as if they were their own. I didn't expect it to move me.</li></warm>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The journal of the colonist who argued at the learned society's night of the fire (Rimfolk_Evt_Disputation): the
+       disputation held (opt0), a quiet hour instead (opt1), or not tonight (opt2). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Evt_Disputation</defName>
+    <lines>
+      <plain>
+        <li>[opt0] Argued with a fellow of the learned society half the night about books that burned before I was born. I think I lost, and I'd do it again.</li>
+        <li>[opt0] The night of the fire, they call it. Everyone gathered round and I had to argue the colony's side.</li>
+        <li>[opt1] Spent an hour with {X_nameDef} of the society, who asked the question nobody else would and wrote down every answer.</li>
+        <li>[opt2] A scholar wanted to hold some kind of disputation here tonight. We had work in the morning.</li>
+        <li>[opt1] The scholar said strictly speaking I'd asked two questions. I had, and both were good ones, apparently.</li>
+      </plain>
+      <cheerful><li>[opt0] Nobody won the argument tonight and nobody wanted it to end. Good night.</li></cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

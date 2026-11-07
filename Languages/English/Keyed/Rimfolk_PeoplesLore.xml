@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    The seven peoples brought to the level of the new ones (Source/ColonyCouncil/Peoples/PeoplesLore.cs): what they honour
+    and fear and one of their sayings on their card ({HONOURS}, {FEARS} and {SAYING} are their template's own words), and
+    the enclave's salvage in an answer's impact and its message as the pods come down.
+  -->
+
+  <CC_PeoplesLore_Card_Both>They honour {HONOURS}, and they fear {FEARS}.</CC_PeoplesLore_Card_Both>
+  <CC_PeoplesLore_Card_Honour>They honour {HONOURS}.</CC_PeoplesLore_Card_Honour>
+  <CC_PeoplesLore_Card_Fear>They fear {FEARS}.</CC_PeoplesLore_Card_Fear>
+  <CC_PeoplesLore_Card_Saying>A saying of theirs: {SAYING}</CC_PeoplesLore_Card_Saying>
+
+  <CC_PeoplesLore_SalvageGone>The enclave is no longer at peace with the colony.</CC_PeoplesLore_SalvageGone>
+  <CC_PeoplesLore_Impact_Salvage>{0}'s salvage comes down by drop pod by the colony's trade spot.</CC_PeoplesLore_Impact_Salvage>
+  <CC_PeoplesLore_Impact_SalvageBrief>salvage by drop pod</CC_PeoplesLore_Impact_SalvageBrief>
+  <CC_PeoplesLore_SalvageFalls>{0}'s salvage is coming down by drop pod by the colony's trade spot.</CC_PeoplesLore_SalvageFalls>
+
+</LanguageData>

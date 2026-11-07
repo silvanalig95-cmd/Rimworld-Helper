@@ -9,7 +9,9 @@
     the camp and eats from the hay they brought when the grass is under snow. The other peoples' camps are the existing
     kinds, likelier from them (PeopleExtension.camps: the league's market folk, salt caravans, far merchants and road
     wardens; the order's healers, herb-gatherers, pilgrims and penitents; the herders' drovers, shearers and
-    beast-catchers).
+    beast-catchers). After a winter's grazing that went well (the camp's unease under 40) the camp elder walks to the
+    colony's gate as they go and hands over a young beast of the herd, the colony's from then on: a herder never leaves a
+    beast behind on the road, but one given for good grass is not left behind (CampGift.young, maxTension).
   -->
 
   <ColonyCouncil.CampKindDef>
@@ -77,6 +79,23 @@
       <li><kinds><li>Muffalo</li><li>Yak</li><li>Sheep</li><li>Goat</li><li>Cow</li><li>Dromedary</li><li>Horse</li></kinds><count>3~4</count><at>pasture</at></li>
       <li><kinds><li>Husky</li><li>LabradorRetriever</li></kinds><count>1~1</count><follow>true</follow><named>true</named></li>
     </animals>
+    <!-- Their thanks for the grazing: a young beast of the herd's own kind, handed over at the gate as they go. -->
+    <leaveBehind>
+      <li>
+        <key>young</key>
+        <at>gate</at>
+        <young>true</young>
+        <maxTension>40</maxTension>
+        <dayName>the herders' young beast</dayName>
+        <named>the young beast</named>
+        <defs><li>Sheep</li><li>Goat</li><li>Yak</li><li>Muffalo</li><li>Cow</li></defs>
+      </li>
+    </leaveBehind>
+    <farewellWalk>
+      <to>gate</to>
+      <who>leader</who>
+      <gift>young</gift>
+    </farewellWalk>
     <titles>
       <li>A herd to winter</li>
       <li>{FACTION} ask for winter grazing</li>
@@ -102,6 +121,8 @@
       <li>The herders of {FACTION} have gathered the herd and gone back up toward the high pastures. The far ground is grazed short and well dunged, which the colony's growers will thank them for.</li>
       <li>{FACTION}'s winter camp {PLACE} is empty. The herd went out at first light, the dog working the stragglers, and the bells were still heard an hour later.</li>
       <li>The herders moved their herd on with the weather, and left a stack of good hay behind for the colony's own beasts.</li>
+      <li>[left:young] {FACTION}'s herders gathered the herd and went back toward the high pastures, and {X_nameDef} stopped at the colony's gate on the way to hand over a young beast of the herd, for the grass. It is the colony's now.</li>
+      <li>[left:young] The winter camp {PLACE} is empty. {X_nameDef} counted the herd one last time at the gate, came out one short on purpose, and left the colony a young beast of it in thanks for the grazing.</li>
     </farewell>
     <lines>
       <li>Count them again, slowly.</li>
@@ -119,6 +140,8 @@
       <li>[herd] That one's lame, have a look.</li>
       <li>[herd] Fat enough to see the spring.</li>
       <li>[herd] Steady, I'm only counting.</li>
+      <li>[gift] For the grass, and you'll count this one at dusk now.</li>
+      <li>[gift] Never leave a beast on the road, so we leave this one with you.</li>
     </momentLines>
     <helpTexts>
       <li>[milk] {X_nameDef} saw to one of the herd {PLACE} and carried what it gave over to the edge of the herders' camp for the colony: {COUNT} {THING}.</li>

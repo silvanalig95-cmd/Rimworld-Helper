@@ -10,10 +10,13 @@
     another people's (caravanWeight 0.6). At dusk a band of them asks the colony for a night's shelter
     (Rimfolk_Evt_PilgrimShelter); in a holy year their hostel asks for food for the road (Rimfolk_Mission_HostelBread);
     hungry pilgrims, pilgrims to a relic or an anima tree, the great pilgrimage, the holy year and the prophet on the roads
-    come from them likeliest (Patches/Rimfolk_PeoplesC.xml). They defend their hostels and raid only when the colony has
+    come from them likeliest (Patches/Rimfolk_PeoplesC.xml); on their walking day a long file of them stops to pray at the
+    colony's graves or its gate (Rimfolk_Evt_LongWalk). Their founding (the description): Old Brannoc, the nearly blind
+    preacher who walked to every shrine he had heard of; a shell for every shrine reached. What they honour, fear and say
+    is in their template (on their card). They defend their hostels and raid only when the colony has
     turned them hostile (raidCommonalityFromPointsCurve 0.2). Listed once among the world's peoples when a world is made,
-    never required. Faith (Ideology): a fixed creed of the road and of carrying the faith (VE Memes' nomad where loaded),
-    the Buddhist style. Kind of people (Biotech): every kind walks with them, a few of each, three in
+    never required. Faith (Ideology): a fixed creed of the road and of carrying the faith (VE Memes' nomad where loaded,
+    its omnism among the structures it may take), the Buddhist style. Kind of people (Biotech): every kind walks with them, a few of each, three in
     four baseliners: the game's, Vanilla Races Expanded's anima and gauranlen tree folk, the Avaloi, Alpha Genes' forsaken, wood
     elves.
   -->
@@ -21,7 +24,7 @@
   <FactionDef ParentName="TribeBase">
     <defName>Rimfolk_Pilgrims</defName>
     <label>pilgrim fellowship</label>
-    <description>A fellowship of wandering faithful who walk the long roads between holy places: old shrines, the graves of the good, springs and stones the faith remembers. They keep a hostel at each shrine for anyone on the road, and wherever they come to a door at dusk they ask for a night's shelter.\n\nThe wardens of the way walk with every band, with spear and bow, but the fellowship is quick to bless and slow to anger. Each hostel is kept by its hosteller, and the fellowship by the keeper of the shrines.</description>
+    <description>A fellowship of wandering faithful who walk the long roads between holy places: old shrines, the graves of the good, springs and stones the faith remembers. They keep a hostel at each shrine for anyone on the road, and wherever they come to a door at dusk they ask for a night's shelter.\n\nTheir ways began with a preacher called Old Brannoc, turned out of his town for praying at the wrong shrine, who set out to walk to every holy place he had ever heard of with a boy to lead him, for he was nearly blind. They asked for shelter at every door they came to at dusk and blessed it in the morning whether it had opened or not, and the band that walked home behind them was the first fellowship. A pilgrim still carries a shell for every shrine reached, and the fellowship keeps the names of the doors that opened.\n\nThey say "peace on this house" at every gate they pass, whether it opens or not. The wardens of the way walk with every band, with spear and bow, but the fellowship is quick to bless and slow to anger. Each hostel is kept by its hosteller, and the fellowship by the keeper of the shrines.</description>
     <pawnSingular>pilgrim</pawnSingular>
     <pawnsPlural>pilgrims</pawnsPlural>
     <leaderTitle>keeper of the shrines</leaderTitle>
@@ -84,7 +87,7 @@
     </xenotypeSet>
     <fixedIdeo>true</fixedIdeo>
     <ideoName>The Pilgrim's Way</ideoName>
-    <ideoDescription>The faith is carried on foot. A pilgrim walks from shrine to shrine as those before walked, asks for shelter at any door and blesses the house that gives it, and keeps a hostel open for whoever walks the road behind. What is holy is not kept behind walls: it is visited, and told of on the way.</ideoDescription>
+    <ideoDescription>The faith is carried on foot. A pilgrim walks from shrine to shrine as those before walked, asks for shelter at any door and blesses the house that gives it, and keeps a hostel open for whoever walks the road behind. What is holy is not kept behind walls: it is visited, and told of on the way. Old Brannoc prayed at every people's shrines and never asked whose they were, and nor does the fellowship.</ideoDescription>
     <forcedMemes>
       <li MayRequire="Ludeon.RimWorld.Ideology">Proselytizer</li>
       <li MayRequire="VanillaExpanded.VMemesE">VME_Nomad</li>
@@ -93,6 +96,8 @@
       <Structure_TheistEmbodied MayRequire="Ludeon.RimWorld.Ideology">2</Structure_TheistEmbodied>
       <Structure_TheistAbstract MayRequire="Ludeon.RimWorld.Ideology">2</Structure_TheistAbstract>
       <Structure_OriginBuddhist MayRequire="Ludeon.RimWorld.Ideology">1</Structure_OriginBuddhist>
+      <!-- Every people's shrines, Old Brannoc's way: Vanilla Ideology Expanded's omnism. -->
+      <VME_Structure_Omnism MayRequire="VanillaExpanded.VMemesE">1</VME_Structure_Omnism>
     </structureMemeWeights>
     <styles>
       <li MayRequire="Ludeon.RimWorld.Ideology">Buddhist</li>
@@ -170,6 +175,14 @@
           <li>Council_Camp_Mourners</li>
         </camps>
         <plan>Rimfolk_Plan_ShrineHostel</plan>
+        <honours>the open door, the footsore and the old shrines</honours>
+        <fears>the shut door, a shrine forgotten and sitting still too long</fears>
+        <sayings>
+          <li>Peace on this house.</li>
+          <li>Every door is a shrine to someone.</li>
+          <li>Walk on, and bless what you pass.</li>
+          <li>There is no last shrine.</li>
+        </sayings>
         <townGoods>
           <Pemmican>60~120</Pemmican>
           <MedicineHerbal>8~16</MedicineHerbal>
@@ -591,6 +604,8 @@
         <li>wayThing->Staff</li>
         <li>wayThing->Spring</li>
         <li>wayThing->Lamp on the Hill</li>
+        <li>wayThing->Shell</li>
+        <li>wayThing->Blessed Door</li>
         <li>wayVirtue->Patient</li>
         <li>wayVirtue->Footsore</li>
         <li>wayVirtue->Blessed</li>

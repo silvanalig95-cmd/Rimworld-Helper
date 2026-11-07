@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The hospitaller order's care for the fevered (Defs/IncidentDefs/Rimfolk_Events_PeoplesLore.xml, the order's night
+       nurse; Source/ColonyCouncil/Peoples/PeoplesLore.cs): given at each bedside as the hospitaller goes from bed to bed
+       (VisitorServices.Dose). The body fights the fever off a little faster for a day and a half, as the herbalist's tonic
+       does for a month. -->
+
+  <HediffDef>
+    <defName>Rimfolk_OrderNursed</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>nursed by the order</label>
+    <description>A hospitaller of the order sat with this fever: cool cloths, a bitter tea and someone awake through the night. For a day and a half the body fights the sickness off a little faster.</description>
+    <defaultLabelColor>(0.95, 0.92, 0.80)</defaultLabelColor>
+    <isBad>false</isBad>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>90000~90000</disappearsAfterTicks>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <statOffsets>
+          <ImmunityGainSpeed>0.2</ImmunityGainSpeed>
+        </statOffsets>
+      </li>
+    </stages>
+  </HediffDef>
+
+</Defs>

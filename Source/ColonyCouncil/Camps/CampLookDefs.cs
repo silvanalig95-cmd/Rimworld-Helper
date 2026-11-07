@@ -111,6 +111,14 @@ namespace ColonyCouncil
         /// </summary>
         [MustTranslate] public string dayName;
         [MustTranslate] public string named;
+        /// <summary>
+        /// A young beast of their own herd's kind instead of a thing (the herders' thanks for the winter grazing): weaned and
+        /// not yet grown, the colony's from the moment it is handed over at the gate. Of the camp's own grazing beasts' kinds
+        /// (never the dog), else of <see cref="defs"/> read as PawnKindDef names.
+        /// </summary>
+        public bool young;
+        /// <summary>Only after a stay that went well: the camp's unease below this when they go (PeoplesLoreMath.LeavesYoung). 0: always.</summary>
+        public float maxTension;
 
         public IEnumerable<ThingDef> Defs => defs?.Select(n => DefDatabase<ThingDef>.GetNamedSilentFail(n)).Where(d => d != null) ?? Enumerable.Empty<ThingDef>();
     }

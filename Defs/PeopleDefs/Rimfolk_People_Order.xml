@@ -8,10 +8,14 @@
     kit of ivory plate, lay archers with bows (their kinds, below). Their towns are
     sickhouses round an herb garden (TownPlanDef Rimfolk_Plan_Sickhouse). In a plague year they ask the colony for medicine
     (Rimfolk_Mission_OrderMedicine), they lend a healer to a colony with its sick (Rimfolk_Evt_OrderHealer), and their
-    sickhouse sees to the colony's travellers who lodge there. They defend their sickhouses and raid only when the colony
+    sickhouse sees to the colony's travellers who lodge there; when the colony has a fever, a hospitaller comes to go from
+    bed to bed (Rimfolk_Evt_OrderNurse). Their founding (the description): Aldith, who nursed a fever town alone through a
+    winter and hung its last lamp over the sickhouse door; every sickhouse keeps a lamp lit and the Book of the Spared.
+    What they honour, fear and say is in their template (PeopleExtension.honours, fears, sayings: on their card). They
+    defend their sickhouses and raid only when the colony
     has turned them hostile (raidCommonalityFromPointsCurve 0.25). Listed once among the world's peoples when a world is
     made, never required. Faith (Ideology): a fixed creed of penance and of the body kept whole (VE Memes' healthcare
-    where loaded), the Christian style's gothic halls. Kind of people (Biotech): about four in five
+    and light, the lamp over the door, where loaded), the Christian style's gothic halls. Kind of people (Biotech): about four in five
     baseliners; genies, highmates, pigskins, neanderthals, Vanilla Races Expanded's lowmates, Alpha Genes' drakonori and
     high elves.
   -->
@@ -19,7 +23,7 @@
   <FactionDef ParentName="TribeBase">
     <defName>Rimfolk_Order</defName>
     <label>hospitaller order</label>
-    <description>An order of healers who keep sickhouses where the roads are worst and take in whoever comes to their door, friend or stranger. They live plainly, work the herb gardens and the wards, and send their almoners out with medicine and their postulants with letters.\n\nThey keep sworn guards in plate and lay archers on their walls, for the sick are not safe in a hard land, but they are slow to anger. Each sickhouse is kept by a prior or prioress.</description>
+    <description>An order of healers who keep sickhouses where the roads are worst and take in whoever comes to their door, friend or stranger. They live plainly, work the herb gardens and the wards, and send their almoners out with medicine and their postulants with letters.\n\nTheir ways began in the fever years, with a carter's daughter named Aldith who stayed behind in a town everyone else had fled and nursed its dying alone through the winter. In the spring she hung the town's last lamp over the sickhouse door and opened it to anyone who came, raiders included, and those she had nursed through stayed and took her vows. Every sickhouse keeps a lamp lit over its door for her, and the Book of the Spared: the name of everyone who walked out of its wards alive.\n\nThey say "we were spared, and so we owe," and they mean it: a hospitaller is patient, plain-spoken and very hard to shift. They keep sworn guards in plate and lay archers on their walls, for the sick are not safe in a hard land, but they are slow to anger. Each sickhouse is kept by a prior or prioress.</description>
     <pawnSingular>hospitaller</pawnSingular>
     <pawnsPlural>hospitallers</pawnsPlural>
     <leaderTitle>prior</leaderTitle>
@@ -78,11 +82,13 @@
     </xenotypeSet>
     <fixedIdeo>true</fixedIdeo>
     <ideoName>The Open Hand</ideoName>
-    <ideoDescription>We were spared, and so we owe. The sick at the door are tended before the question of who they are, the body is kept whole and clean, and what the order has is held for whoever needs it next. A hospitaller's hand is open: it gives, and it is not raised first.</ideoDescription>
+    <ideoDescription>We were spared, and so we owe. The sick at the door are tended before the question of who they are, the body is kept whole and clean, and what the order has is held for whoever needs it next. The lamp Aldith hung over the first sickhouse door is kept lit in every one, so that anyone on the road at night can find it. A hospitaller's hand is open: it gives, and it is not raised first.</ideoDescription>
     <forcedMemes>
       <li MayRequire="Ludeon.RimWorld.Ideology">Guilty</li>
       <li MayRequire="Ludeon.RimWorld.Ideology">FleshPurity</li>
       <li MayRequire="VanillaExpanded.VMemesE">VME_Healthcare</li>
+      <!-- The lamp over every sickhouse door: Vanilla Ideology Expanded's light. -->
+      <li MayRequire="VanillaExpanded.VMemesE">VME_Light</li>
     </forcedMemes>
     <structureMemeWeights Inherit="False">
       <Structure_TheistAbstract MayRequire="Ludeon.RimWorld.Ideology">3</Structure_TheistAbstract>
@@ -166,6 +172,14 @@
           <li>Council_Camp_Penitents</li>
         </camps>
         <plan>Rimfolk_Plan_Sickhouse</plan>
+        <honours>the spared, clean hands and the night watch</honours>
+        <fears>the fever's return and a door shut on the sick</fears>
+        <sayings>
+          <li>We were spared, and so we owe.</li>
+          <li>Nobody on a sickbed is anyone's enemy.</li>
+          <li>Keep the lamp lit.</li>
+          <li>A hand that heals is not raised first.</li>
+        </sayings>
         <townGoods>
           <MedicineHerbal>20~40</MedicineHerbal>
           <MedicineIndustrial>4~10</MedicineIndustrial>
@@ -656,6 +670,8 @@
         <li>r_name->Hospital of [PlaceOutlander]</li>
         <li>r_name->The [orderVirtue] [orderThing]</li>
         <li>r_name->Order of the Open Hand</li>
+        <li>r_name->Order of the Spared</li>
+        <li>r_name->Keepers of the Last Lamp</li>
         <li>orderVirtue->Quiet</li>
         <li>orderVirtue->Mended</li>
         <li>orderVirtue->Patient</li>
@@ -667,7 +683,7 @@
         <li>orderThing->Hand</li>
         <li>orderThing->Hearth</li>
         <li>orderThing->Well</li>
-        <li>orderThing->Bell</li>
+        <li>orderThing->Ward</li>
         <li>orderThing->Lantern</li>
       </rulesStrings>
     </rulePack>
@@ -685,6 +701,7 @@
         <li>r_name->[PlaceOutlander] Spring</li>
         <li>r_name->[townVirtue] House</li>
         <li>r_name->[townVirtue] Lamp</li>
+        <li>r_name->[PlaceOutlander] Lamp House</li>
         <li>townVirtue->Quiet</li>
         <li>townVirtue->Mercy</li>
         <li>townVirtue->Patience</li>

@@ -41,6 +41,13 @@ namespace ColonyCouncil
         public bool byWater;
         /// <summary>Fresh fish of the land's own waters in their towns' stores, this many (Odyssey's fish; none without it).</summary>
         public IntRange fish = IntRange.Zero;
+        /// <summary>
+        /// What they honour and what they fear, in a few plain words each ("the spared, clean hands and the night watch"), and
+        /// their sayings (one sentence each): shown on their card (Peoples/PeoplesLore.cs) and the voice their lines are
+        /// written in. Their founding story is their faction's description.
+        /// </summary>
+        [MustTranslate] public string honours, fears;
+        [MustTranslate] public List<string> sayings;
 
         /// <summary>The ages a people of this template arises in, for its def's own age (PeoplesMath.AgeSpan).</summary>
         public void AriseSpan(int own, out int lo, out int hi) => PeoplesMath.AgeSpan(own, ariseAges.min, ariseAges.max, out lo, out hi);
@@ -52,6 +59,7 @@ namespace ColonyCouncil
             if (head.NullOrEmpty() || courier.NullOrEmpty() || couriers.NullOrEmpty() || townWord.NullOrEmpty()) yield return "a people needs its head's title, its town's word and its messengers' word";
             if (caravanWeight <= 0f) yield return "caravanWeight must be above 0";
             if (ariseAges.min > ariseAges.max || ariseAges.max > 3) yield return "ariseAges is a span of the ages 0 (tribal) to 3 (spacer)";
+            if (sayings != null && sayings.Any(s => s.NullOrEmpty())) yield return "a people's saying is a sentence, not empty";
         }
     }
 

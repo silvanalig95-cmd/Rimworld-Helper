@@ -9,17 +9,20 @@
     and stacks (TownPlanDef Rimfolk_Plan_Archive); a bookseller's caravan of books, schematics and techprints (Royalty),
     no more often than another people's. A copyist of theirs asks to copy the colony's records for the archive
     (Rimfolk_Evt_ScholarCopyist); a travelling scholar, a book swapper, the old vault opened and the comet come from them
-    likeliest (Patches/Rimfolk_PeoplesC.xml). They defend their archives and raid only when the colony has turned them
+    likeliest (Patches/Rimfolk_PeoplesC.xml); once a year a fellow holds the night of the fire's disputation at the colony's
+    gathering place (Rimfolk_Evt_Disputation). Their founding (the description): Ilse Varro, who carried eleven books
+    and a ledger out of the burning archive at Hesk and copied them for the rest of her life. What they honour, fear and
+    say is in their template (on their card). They defend their archives and raid only when the colony has turned them
     hostile (raidCommonalityFromPointsCurve 0.2). Listed once among the world's peoples when a world is made, never
-    required. Faith (Ideology): a fixed creed of the self and of inquiry (Alpha Memes' monastic life where loaded), the
-    Islamic style's arched halls. Kind of people (Biotech): three in four baseliners; genies above all,
+    required. Faith (Ideology): a fixed creed of the self and of inquiry (Alpha Memes' monastic life where loaded, VE Memes'
+    agnosticism among the structures it may take), the Islamic style's arched halls. Kind of people (Biotech): three in four baseliners; genies above all,
     highmates, high elves, the Avaloi, Alpha Genes' forsaken and Vanilla Races Expanded's archons.
   -->
 
   <FactionDef ParentName="OutlanderFactionBase">
     <defName>Rimfolk_Scholars</defName>
     <label>learned society</label>
-    <description>A society of scholars, copyists and booksellers who keep an archive of everything written down in the region: histories, ledgers, letters, plans of machines and lists of the stars. They buy books, sell copies, and send their copyists to any town that keeps records of its own.\n\nThey would rather argue than fight, but their proctors keep rifles for the archive's sake. Each archive is kept by its archivist, and the society by its provost.</description>
+    <description>A society of scholars, copyists and booksellers who keep an archive of everything written down in the region: histories, ledgers, letters, plans of machines and lists of the stars. They buy books, sell copies, and send their copyists to any town that keeps records of its own.\n\nTheir ways began the night the old archive at Hesk burned. A clerk named Ilse Varro carried out what she could in a handcart, eleven books and a ledger, and spent the rest of her life copying them for any town that would trade her a meal for a copy; the society is the people who learned to read from her pages. Every year on the night of the fire the fellows argue until dawn about what the archive held that nobody saved, and a scholar's first oath is to copy one thing that would otherwise be lost.\n\nThey are precise, digressive and fond of the word "strictly," and they never leave a question unasked. They would rather argue than fight, but their proctors keep rifles for the archive's sake. Each archive is kept by its archivist, and the society by its provost.</description>
     <pawnSingular>scholar</pawnSingular>
     <pawnsPlural>scholars</pawnsPlural>
     <leaderTitle>provost</leaderTitle>
@@ -59,7 +62,7 @@
     </xenotypeSet>
     <fixedIdeo>true</fixedIdeo>
     <ideoName>The Open Book</ideoName>
-    <ideoDescription>Nothing known should be lost. A scholar reads what was written, copies what is failing, and asks the question nobody else will; whatever can be written down is kept, and whatever is kept is lent. Each mind finds its own way to the truth, and the archive remembers all of them.</ideoDescription>
+    <ideoDescription>Nothing known should be lost. A scholar reads what was written, copies what is failing, and asks the question nobody else will; whatever can be written down is kept, and whatever is kept is lent. Each mind finds its own way to the truth, and the archive remembers all of them. What cannot be known is said so plainly, and argued over all the same, every year on the night of the fire.</ideoDescription>
     <forcedMemes>
       <li MayRequire="Ludeon.RimWorld.Ideology">Individualist</li>
       <li MayRequire="sarg.alphamemes">AM_Monastic</li>
@@ -67,6 +70,8 @@
     <structureMemeWeights Inherit="False">
       <Structure_Ideological MayRequire="Ludeon.RimWorld.Ideology">4</Structure_Ideological>
       <Structure_TheistAbstract MayRequire="Ludeon.RimWorld.Ideology">1</Structure_TheistAbstract>
+      <!-- What cannot be known said plainly: Vanilla Ideology Expanded's agnosticism. -->
+      <VME_Structure_Agnosticism MayRequire="VanillaExpanded.VMemesE">1</VME_Structure_Agnosticism>
     </structureMemeWeights>
     <styles>
       <li MayRequire="Ludeon.RimWorld.Ideology">Islamic</li>
@@ -145,6 +150,14 @@
           <li>Rimfolk_Camp_Watchers</li>
         </camps>
         <plan>Rimfolk_Plan_Archive</plan>
+        <honours>the copied page, a good question and a patient reader</honours>
+        <fears>fire, the lost book and the closed mind</fears>
+        <sayings>
+          <li>Nothing known should be lost.</li>
+          <li>Copy it twice.</li>
+          <li>Ask the question nobody will.</li>
+          <li>Strictly speaking, that is two questions.</li>
+        </sayings>
         <townGoods>
           <TextBook>3~6</TextBook>
           <Novel>2~4</Novel>
@@ -622,6 +635,8 @@
         <li>bookThing->Long Shelf</li>
         <li>bookThing->Inkwell</li>
         <li>bookThing->Copied Page</li>
+        <li>bookThing->Handcart</li>
+        <li>bookThing->Eleven Books</li>
       </rulesStrings>
     </rulePack>
   </RulePackDef>

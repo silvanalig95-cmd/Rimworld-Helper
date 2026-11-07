@@ -149,7 +149,10 @@ public static class ImmersionTests
         "Rimfolk_Pool_PW_SayWarm", "Rimfolk_Pool_PW_SayCool", "Rimfolk_Pool_PW_SayGrowth", "Rimfolk_Pool_PW_SayBattery", "Rimfolk_Pool_PW_SayCalm",
         "Rimfolk_Pool_PW_SayDouse", "Rimfolk_Pool_PW_SaySparBegin", "Rimfolk_Pool_PW_SaySparBlow", "Rimfolk_Pool_Fam_Begin", "Rimfolk_Pool_Fam_Bound",
         "Rimfolk_Pool_Fam_Died", "Rimfolk_Pool_Omen_Name", "Rimfolk_Pool_Omen_Talk", "Rimfolk_Pool_Omen_Died", "Rimfolk_Pool_Sacred_Fell",
-        "Rimfolk_Pool_Sacred_Hunt"
+        "Rimfolk_Pool_Sacred_Hunt",
+        // The seven peoples brought to the level of the new ones (Peoples/PeoplesLore.cs): what is said at the learned
+        // society's night of the fire (their letters, messengers, visitors and talk are in the pools above).
+        "Rimfolk_Pool_PlayDisputation"
     };
 
     /// <summary>Spoken pools said so rarely (a record broken, a lightning rod struck) that a handful of lines is enough.</summary>
@@ -177,7 +180,9 @@ public static class ImmersionTests
         // Banishment by the council: the last entry of one sent away, and one who loved them (Social/Banishment.cs).
         "Rimfolk_Journal_Banished", "Rimfolk_Journal_BanishedKin",
         // A familiar bound and lost, an omen born (Animals/AnimalPowers.cs).
-        "Rimfolk_Journal_Fam_Bound", "Rimfolk_Journal_Fam_Died", "Rimfolk_Journal_Omen_Born"
+        "Rimfolk_Journal_Fam_Bound", "Rimfolk_Journal_Fam_Died", "Rimfolk_Journal_Omen_Born",
+        // The seven peoples' touchpoints: the order's night nurse, the pilgrims' Long Walk, the society's night of the fire.
+        "Rimfolk_Journal_Evt_OrderNurse", "Rimfolk_Journal_Evt_LongWalk", "Rimfolk_Journal_Evt_Disputation"
     };
 
     private static readonly string[] Prefixes = { "Council_Setback_", "Council_Friction_", "Council_Nuisance_", "Council_Arc_" };

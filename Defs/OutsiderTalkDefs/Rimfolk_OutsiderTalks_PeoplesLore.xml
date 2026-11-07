@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Talk with the seven peoples about where their ways began, what they honour and what they fear (docs/design/
+    peoples.md, "Their stories, sayings and touchpoints"; the facts service's their:CALLING tags), beside the pieces of
+    Rimfolk_OutsiderTalks_NewPeoples.xml and _PeoplesC.xml; the format is in Rimfolk_OutsiderTalks_Greetings.xml's header.
+    A founding is told as the story of their ways (the first prior, the first herd girl), so a people that arose and
+    took those ways can tell it too. Each in its own voice: the order of the spared and the lamp, the herders of the
+    count and the grass, the league of the waystone and good ink, the pilgrims of the open door, the society of the
+    copied page, the enclave of the kept bargain, the river folk of the water.
+  -->
+
+  <!-- ================= The hospitaller order ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesLore_OrderLamp</defName>
+    <topic>faith</topic>
+    <uses>chat,know</uses>
+    <when>their:healers</when>
+    <lines>
+      <li>[us] Why does every sickhouse of yours keep a lamp over the door?</li>
+      <li>[them] For Aldith, who nursed a fever town alone through a whole winter.</li>
+      <li>[us] What happened in the spring?</li>
+      <li>[them] She hung the town's last lamp over the sickhouse door and let in anyone who came.</li>
+      <li>[us] Anyone at all?</li>
+      <li>[them] Raiders too, which is why the order has never asked since.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesLore_OrderSpared</defName>
+    <topic>honour</topic>
+    <uses>know</uses>
+    <when>their:healers</when>
+    <lines>
+      <li>[them] We keep a book of everyone who walked out of our wards alive.</li>
+      <li>[us] Why keep the names?</li>
+      <li>[them] We were spared, and so we owe, and they're who we owe it to.</li>
+      <li>[us] It must be a long book by now.</li>
+      <li>[them] Long, and never long enough.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesLore_OrderFear</defName>
+    <topic>hardship</topic>
+    <uses>chat</uses>
+    <when>their:healers</when>
+    <lines>
+      <li>[us] What does a hospitaller fear?</li>
+      <li>[them] The fever coming back, and a door shut on someone sick.</li>
+      <li>[us] Not raiders?</li>
+      <li>[them] Raiders get sick too, and we take them in when they do.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The herding folk ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesLore_HerdersTamsa</defName>
+    <topic>faith</topic>
+    <uses>chat,know</uses>
+    <when>their:herders</when>
+    <lines>
+      <li>[us] Why do your people never stay in one place?</li>
+      <li>[them] In the year the wells failed, a herd girl named Tamsa walked the last forty head north.</li>
+      <li>[us] Where to?</li>
+      <li>[them] To grass nobody believed in, and she brought every one of them home alive.</li>
+      <li>[us] And you've followed the grass ever since.</li>
+      <li>[them] The camps that followed her never stopped, so neither do we.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesLore_HerdersPot</defName>
+    <topic>honour</topic>
+    <uses>know</uses>
+    <when>their:herders</when>
+    <lines>
+      <li>[them] A guest at our fire eats from the same pot as the elders.</li>
+      <li>[us] Even a stranger?</li>
+      <li>[them,likesus] A stranger once, and a friend after, as you are.</li>
+      <li>[them,!likesus] Especially a stranger, that's how they stop being one.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesLore_HerdersTell</defName>
+    <topic>land</topic>
+    <uses>chat</uses>
+    <when>their:herders</when>
+    <lines>
+      <li>[us] Will it be a hard winter, do you think?</li>
+      <li>[them] The grass will tell.</li>
+      <li>[us] And what is the grass saying?</li>
+      <li>[them,winter] That we came down from the high ground just in time.</li>
+      <li>[them,!winter] That it's too early to say, which is what it always says.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The road league ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesLore_LeagueFord</defName>
+    <topic>road</topic>
+    <uses>chat,know</uses>
+    <when>their:traders</when>
+    <lines>
+      <li>[us] How did the league begin?</li>
+      <li>[them] At Harrow Ford, where the road belonged to whoever had the most rifles.</li>
+      <li>[us] What changed?</li>
+      <li>[them] Edda Vane asked every waymaster on the road for one guard and one wagon.</li>
+      <li>[us] And they gave them?</li>
+      <li>[them] Nine flags went through that ford together, and nobody fired.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesLore_LeagueInk</defName>
+    <topic>trade</topic>
+    <uses>know</uses>
+    <when>their:traders</when>
+    <lines>
+      <li>[us] What do you mean by good ink?</li>
+      <li>[them] The Waystone Book writes fair dealers in black and robbers in red.</li>
+      <li>[us] Which are we?</li>
+      <li>[them,likesus] Good ink, and thick of it.</li>
+      <li>[them,!likesus] Neither yet, and the page is waiting.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesLore_LeagueWord</defName>
+    <topic>honour</topic>
+    <uses>chat</uses>
+    <when>their:traders</when>
+    <lines>
+      <li>[them] A word given at a waystone stands, whatever it costs.</li>
+      <li>[us] And if it costs too much?</li>
+      <li>[them] Then you shouldn't have given it, and you pay anyway.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The pilgrim fellowship ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesLore_PilgrimsBrannoc</defName>
+    <topic>faith</topic>
+    <uses>chat,know</uses>
+    <when>their:pilgrims</when>
+    <lines>
+      <li>[us] Who was the first pilgrim of your fellowship?</li>
+      <li>[them] Old Brannoc, a nearly blind preacher with a boy to lead him.</li>
+      <li>[us] Where did they go?</li>
+      <li>[them] To every holy place he had ever heard of, whoever's it was.</li>
+      <li>[us] And the doors on the way?</li>
+      <li>[them] He blessed every one of them, whether it opened or not.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesLore_PilgrimsShells</defName>
+    <topic>road</topic>
+    <uses>know</uses>
+    <when>their:pilgrims</when>
+    <lines>
+      <li>[us] What are all the shells on your belt?</li>
+      <li>[them] One for every shrine I've reached.</li>
+      <li>[us] That's a lot of shrines.</li>
+      <li>[them,old] And a lot of years, and room on the string for one more.</li>
+      <li>[them,!old] Not yet, but there is no last shrine.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesLore_PilgrimsStill</defName>
+    <topic>hardship</topic>
+    <uses>chat</uses>
+    <when>their:pilgrims</when>
+    <lines>
+      <li>[us] What does a pilgrim fear?</li>
+      <li>[them] A shut door, a shrine nobody visits, and sitting still too long.</li>
+      <li>[us] Sitting still?</li>
+      <li>[them] The faith is carried on foot, so a pilgrim who stops is carrying nothing.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The learned society ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesLore_ScholarsFire</defName>
+    <topic>faith</topic>
+    <uses>chat,know</uses>
+    <when>their:scholars</when>
+    <lines>
+      <li>[us] How did the society begin?</li>
+      <li>[them] The night the old archive at Hesk burned.</li>
+      <li>[us] What was saved?</li>
+      <li>[them] Eleven books and a ledger, in a clerk's handcart.</li>
+      <li>[us] Only that?</li>
+      <li>[them] Ilse Varro copied them for the rest of her life, and we learned to read from her pages.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesLore_ScholarsOath</defName>
+    <topic>work</topic>
+    <uses>know</uses>
+    <when>their:scholars</when>
+    <lines>
+      <li>[them] A scholar's first oath is to copy one thing that would otherwise be lost.</li>
+      <li>[us] What did you copy?</li>
+      <li>[them] A farmer's almanac nobody else wanted, and I'm prouder of it than anything since.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesLore_ScholarsStrictly</defName>
+    <topic>small</topic>
+    <uses>chat</uses>
+    <when>their:scholars</when>
+    <lines>
+      <li>[us] Is it true your people never stop asking questions?</li>
+      <li>[them] Strictly speaking, that's two questions.</li>
+      <li>[us] You see what I mean.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The spacer enclave ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesLore_EnclaveHauler</defName>
+    <topic>faith</topic>
+    <uses>chat,know</uses>
+    <when>their:brokers</when>
+    <lines>
+      <li>[us] How did the enclave come to be here?</li>
+      <li>[them] An ore hauler came down with a dead drive and no way back up.</li>
+      <li>[us] And the crew stayed?</li>
+      <li>[them] Its purser, Ines Okoro, sold the cargo, the passage and the debts, one bargain at a time.</li>
+      <li>[us] Until?</li>
+      <li>[them] Until the ships above were calling us, and they still do.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesLore_EnclaveDigit</defName>
+    <topic>trade</topic>
+    <uses>know</uses>
+    <when>their:brokers</when>
+    <lines>
+      <li>[them] Every bargain the enclave has struck is in the hauler's old manifest.</li>
+      <li>[us] Even the bad ones?</li>
+      <li>[them] Especially those, kept to the last digit like the rest.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesLore_EnclaveStranded</defName>
+    <topic>hardship</topic>
+    <uses>chat</uses>
+    <when>their:brokers</when>
+    <lines>
+      <li>[us] What does a broker fear?</li>
+      <li>[them] A debt nobody pays, and being stranded.</li>
+      <li>[us] You were stranded once.</li>
+      <li>[them] Nobody is stranded who has something to sell, and Okoro always did.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The river folk ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesLore_RiverFlood</defName>
+    <topic>faith</topic>
+    <uses>chat,know</uses>
+    <when>their:fishers</when>
+    <lines>
+      <li>[us] Where do the river folk come from?</li>
+      <li>[them] From the night the dam broke and the valley towns drowned.</li>
+      <li>[us] How did anyone live through that?</li>
+      <li>[them] Wenna Reed's boats were on the water, and they pulled people off the roofs for three days.</li>
+      <li>[us] And those they pulled out?</li>
+      <li>[them] Stayed with the boats, and we count our families from them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesLore_RiverKnots</defName>
+    <topic>work</topic>
+    <uses>know</uses>
+    <when>their:fishers</when>
+    <lines>
+      <li>[us] Why are there so many knots in your nets?</li>
+      <li>[them] A knot for everyone ever pulled from the water by river folk.</li>
+      <li>[us] That's a heavy net.</li>
+      <li>[them] Heavy and lucky, the heavier the luckier.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesLore_RiverClean</defName>
+    <topic>honour</topic>
+    <uses>chat</uses>
+    <when>their:fishers</when>
+    <lines>
+      <li>[them] Never foul the water another drinks downstream.</li>
+      <li>[us] Is that a saying or a rule?</li>
+      <li>[them] On the river it's both, and the river folk keep it either way.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

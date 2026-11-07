@@ -9,8 +9,11 @@
     defend their waystations and raid only when the colony has turned them hostile, at the game's own rules (and rarely then:
     raidCommonalityFromPointsCurve 0.35). Listed once among the world's peoples when a world is made, never required.
     Gear from the game's tags and the mods' (their kinds, below): a coat dyed the league's teal on every wayfarer, the
-    teal duster in its guards' one kit. Faith (Ideology): a fixed creed of the collective and of trade (VE Memes' trader where loaded), the
-    rustic style. Kind of people (Biotech): seven in ten baseliners; hussars on guard,
+    teal duster in its guards' one kit. When the snow closes the roads a caravan of theirs asks to winter by the colony's
+    wall (Rimfolk_Camp_LeagueWinter), and after a stay that went well leaves a waystone at the gate. Their founding (the
+    description): Edda Vane, who took nine waymasters' wagons through Harrow Ford under their flags; the Waystone Book.
+    What they honour, fear and say is in their template (on their card). Faith (Ideology): a fixed creed of the
+    collective and of trade (VE Memes' trader and republic where loaded), the rustic style. Kind of people (Biotech): seven in ten baseliners; hussars on guard,
     genies keeping the books, highmates, dirtmoles, neanderthals, starjacks (Odyssey), boglegs, stoneborn, Vanilla Races
     Expanded's uhlans and androids.
   -->
@@ -18,7 +21,7 @@
   <FactionDef ParentName="OutlanderFactionBase">
     <defName>Rimfolk_League</defName>
     <label>road league</label>
-    <description>A league of caravan masters, carters and waystation keepers who live by the roads between other peoples' towns. They keep few towns of their own, only walled waystations where the roads meet, and send their caravans everywhere, well stocked and well guarded.\n\nThey deal fairly, keep their word and expect the same, and they remember who robbed them. Their towns are run by waymasters, and the league by a warden of the roads.</description>
+    <description>A league of caravan masters, carters and waystation keepers who live by the roads between other peoples' towns. They keep few towns of their own, only walled waystations where the roads meet, and send their caravans everywhere, well stocked and well guarded.\n\nTheir ways began at Harrow Ford, where the road belonged to whoever had the most rifles. A carter named Edda Vane lost three wagons and a brother there in one summer, and instead of hiring more guns she rode to every waymaster on the road and asked each for one guard and one wagon; the first caravan of the league went through the ford under nine flags, and nobody fired. The league still keeps the Waystone Book, where every fair dealer on the roads is written in good ink and every robber in red, and a word given at a waystone is never broken.\n\nThey talk prices the way other people talk weather, and a wayfarer's highest praise is "good ink." They deal fairly, keep their word and expect the same, and they remember who robbed them. Their towns are run by waymasters, and the league by a warden of the roads.</description>
     <pawnSingular>wayfarer</pawnSingular>
     <pawnsPlural>wayfarers</pawnsPlural>
     <leaderTitle>warden of the roads</leaderTitle>
@@ -62,10 +65,12 @@
     </xenotypeSet>
     <fixedIdeo>true</fixedIdeo>
     <ideoName>The Long Road</ideoName>
-    <ideoDescription>The road belongs to everyone who keeps it. A wayfarer pays the toll, keeps the word given at the waystone, and brings the caravan home with every crate it set out with. Whatever is earned on the road is shared at its end, and a debt is carried until it is paid.</ideoDescription>
+    <ideoDescription>The road belongs to everyone who keeps it. A wayfarer pays the toll, keeps the word given at the waystone, and brings the caravan home with every crate it set out with. Whatever is earned on the road is shared at its end, and a debt is carried until it is paid. No one waymaster rules the road: the league is the waymasters together, as it was the day nine of them sent a wagon each through Harrow Ford.</ideoDescription>
     <forcedMemes>
       <li MayRequire="Ludeon.RimWorld.Ideology">Collectivist</li>
       <li MayRequire="VanillaExpanded.VMemesE">VME_Trader</li>
+      <!-- The waymasters together, as at Harrow Ford: Vanilla Ideology Expanded's republic. -->
+      <li MayRequire="VanillaExpanded.VMemesE">VME_Republic</li>
     </forcedMemes>
     <structureMemeWeights Inherit="False">
       <Structure_Ideological MayRequire="Ludeon.RimWorld.Ideology">3</Structure_Ideological>
@@ -180,6 +185,14 @@
           <li>Council_Camp_Wardens</li>
         </camps>
         <plan>Rimfolk_Plan_Waystation</plan>
+        <honours>the word given at a waystone, a fair price and a caravan home whole</honours>
+        <fears>the robber, the broken word and a road nobody keeps</fears>
+        <sayings>
+          <li>Every crate home.</li>
+          <li>A word given at the waystone stands.</li>
+          <li>Good ink or red ink.</li>
+          <li>The road won't wait.</li>
+        </sayings>
         <townGoods>
           <Cloth>80~160</Cloth>
           <Steel>60~140</Steel>
@@ -819,6 +832,8 @@
         <li>r_name->The Waymark League</li>
         <li>r_name->[PlaceOutlander] Waymark</li>
         <li>r_name->The Long Road League</li>
+        <li>r_name->League of the Nine Flags</li>
+        <li>r_name->The Waystone League</li>
       </rulesStrings>
     </rulePack>
   </RulePackDef>

@@ -639,6 +639,14 @@ namespace ColonyCouncil
             if (w == null || walkDone) return false;
             if (walkUntil < 0)
             {
+                // A walk to the gate only to leave a gift they won't leave after this stay (the herders' young beast after a
+                // stay that went badly): no walk.
+                var gateGift = w.to == "gate" ? kind.leaveBehind?.FirstOrDefault(g => g?.key != null && g.key == w.gift) : null;
+                if (gateGift != null && !Earned(gateGift))
+                {
+                    walkDone = true;
+                    return false;
+                }
                 // A round of the sick waits for morning (for up to half a day past their time); a walk to the gate goes when it goes.
                 int hour = GenLocalDate.HourOfDay(map);
                 if (w.to == "sick" && (hour < 6 || hour >= 20) && Now - untilTick < CampLookMath.TicksPerDay / 2) return true;
@@ -774,9 +782,9 @@ namespace ColonyCouncil
         {
             walkDone = true;
             var gift = kind.leaveBehind?.FirstOrDefault(g => g?.key != null && g.key == kind.farewellWalk?.gift);
-            if (gift == null || w == null || !w.Position.InHorDistOf(cell, 2.5f)) return;
+            if (gift == null || w == null || !w.Position.InHorDistOf(cell, 2.5f) || !Earned(gift)) return;
             var placed = new List<Thing>();
-            if (!Place(gift, cell, w, placed)) return;
+            if (gift.young ? !GiveYoung(gift, cell, placed) : !Place(gift, cell, w, placed)) return;
             leftKey = gift.key;
             SayMoment(w, "gift");
             // A day on the colony's calendar: the day they stayed and left this behind (Calendar/CalendarLived.cs).
@@ -794,7 +802,7 @@ namespace ColonyCouncil
             if (kind.leaveBehind.NullOrEmpty()) return;
             foreach (var g in kind.leaveBehind)
             {
-                if (g == null || g.at == "gate") continue;
+                if (g == null || g.at == "gate" || !Earned(g)) continue;
                 var at = g.at == "spot" && taskSpot.IsValid ? taskSpot : fire;
                 var placed = new List<Thing>();
                 if (!Place(g, at, Here.FirstOrDefault(), placed)) continue;
@@ -846,6 +854,40 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("camp gift " + g.key, e);
             }
             return false;
+        }
+
+        /// <summary>A gift kept for a stay that went well (CampGift.maxTension): their unease below it as they go; any stay without one.</summary>
+        private bool Earned(CampGift g) => g == null || g.maxTension <= 0f || PeoplesLoreMath.LeavesYoung(tension, g.maxTension);
+
+        /// <summary>
+        /// A young beast of their herd handed over at the gate (the herders' thanks for the grazing): of one of the kinds
+        /// grazing with the camp (never its dog), else of the gift's own kinds, weaned and not yet grown, the colony's. It
+        /// stands beside the walker. False when none of those kinds can be made or stand here.
+        /// </summary>
+        private bool GiveYoung(CampGift g, IntVec3 at, List<Thing> placed)
+        {
+            if (map == null || !at.IsValid) return false;
+            try
+            {
+                var kinds = herd.Where(a => a != null && !a.Dead && a.kindDef?.RaceProps?.Animal == true && GroupOf(a)?.follow != true).Select(a => a.kindDef).Distinct().ToList();
+                if (kinds.Count == 0 && g.defs != null)
+                    kinds = g.defs.Select(n => DefDatabase<PawnKindDef>.GetNamedSilentFail(n)).Where(k => k?.RaceProps?.Animal == true).ToList();
+                var kind = kinds.Where(k => map.mapTemperature.SeasonAndOutdoorTemperatureAcceptableFor(k.race, 0f)).RandomElementWithFallback() ?? kinds.RandomElementWithFallback();
+                if (kind == null) return false;
+                float age = kind.RaceProps.lifeExpectancy * Rand.Range(PeoplesLoreMath.YoungFrom, PeoplesLoreMath.YoungTo);
+                var beast = PawnGenerator.GeneratePawn(new PawnGenerationRequest(kind, Faction.OfPlayer, PawnGenerationContext.NonPlayer, forceGenerateNewPawn: true,
+                    fixedBiologicalAge: age, fixedChronologicalAge: age));
+                if (beast == null) return false;
+                GenSpawn.Spawn(beast, CellFinder.RandomClosewalkCellNear(at, map, 2), map);
+                // Told in the farewell ([left:KEY]), as their other gifts are.
+                placed?.Add(beast);
+                return true;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("camp young beast " + g.key, e);
+                return false;
+            }
         }
 
         /// <summary>A work of art of theirs: of the listed material, of middling quality, made by <paramref name="maker"/>, under one of the gift's titles.</summary>
