@@ -417,6 +417,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {NeighboursFourTests.Run(root, Check)} things about the fourth round of neighbours (fourteen requests, seven callers at the gate, five callers told more ways, one draw for every mission).");
         Console.WriteLine($"Checked {TogetherFourTests.Run(root, Check)} things about new moments of life together (between colonists, shared memories, the sick as a topic, group habits, dreams, back to it).");
         Console.WriteLine($"Checked {PokeWorldSoundsTests.Run(root, Check)} things about what PokéWorld's Pokémon sound like (a base-game animal's voice by body, type and size, never more often, the setting).");
+        Console.WriteLine($"Checked {PokeWorldReviewTests.Run(root, Check)} things about PokéWorld reviewed against PokéWorld Updated (the wild ones, the slider, eight generations, every name read, the log, the shiny shown).");
         Console.WriteLine($"Checked {FreshCarcassTests.Run(root, Check)} things about the alert for fresh carcasses lying out (fresh, seen, unstored, nobody on it, an hour after).");
         Console.WriteLine($"Checked {YearFourTests.Run(root, Check)} things about the council and the colony's year, fourth round (ten questions, four customs, five decrees, seven advisor checks).");
         Console.WriteLine($"Checked {LandingTests.Run(root, Check)} things about choosing another landing site (when it is offered, who comes, the starting kit followed and never counted larger, the map's size and seed, the same settlement, the words).");

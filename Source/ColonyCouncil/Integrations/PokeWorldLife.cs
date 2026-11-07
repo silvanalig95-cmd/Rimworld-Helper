@@ -25,8 +25,8 @@ namespace ColonyCouncil
     /// </list>
     /// What is read: the comp's levelTracker.level, friendshipTracker.friendship and shinyTracker.isShiny fields, and the
     /// PokedexManager world component (TotalCaught, or its pokedex dictionary). The original mod, eth0net's 1.5 update and
-    /// ports of it share these names; anything that can't be read is skipped quietly after one warning in the log. Nothing
-    /// is saved: after a load the first hour only looks.
+    /// PokéWorld Updated for 1.6 (checked 7 November 2026) share these names; anything that can't be read is skipped after
+    /// one warning in the log. Nothing is saved: after a load the first hour only looks.
     /// </summary>
     public static class PokeWorldLife
     {
@@ -109,8 +109,24 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>Makes a wild Pokémon shiny (the rumour come true); false when PokéWorld's shiny flag can't be reached.</summary>
-        public static bool SetShiny(Pawn p) => p != null && Write(p, "shinyTracker", "isShiny", true);
+        /// <summary>
+        /// Makes a wild Pokémon shiny (the rumour come true); false when PokéWorld's shiny flag can't be reached. PokéWorld
+        /// picks the shiny colours when the pawn's graphics are made, so a spawned one has them made again (as its own
+        /// debug action does); its sparkle and its letter follow from the flag.
+        /// </summary>
+        public static bool SetShiny(Pawn p)
+        {
+            if (p == null || !Write(p, "shinyTracker", "isShiny", true)) return false;
+            try
+            {
+                if (p.Spawned) p.Drawer?.renderer?.SetAllGraphicsDirty();
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("PokéWorld: showing a shiny", e);
+            }
+            return true;
+        }
 
         /// <summary>The rare one a sighting brought (its own story, Council_Evt_PW_RareSighting): not the beast that stays.</summary>
         public static bool IsRareOne(Pawn p) => p != null && rareOne == p;
@@ -127,21 +143,30 @@ namespace ColonyCouncil
 
         private static bool dexFailed;
 
-        /// <summary>Species the colony has caught, as PokéWorld's Pokédex counts them; -1 when it can't be read.</summary>
+        /// <summary>
+        /// Species the colony has caught, as PokéWorld's Pokédex counts them (its TotalCaught(), by Pokédex number; else its
+        /// private "pokedex" dictionary, whose values are a kind's state in the original and an entry with a "caught" flag
+        /// in PokéWorld Updated); -1 when it can't be read, said once in the log.
+        /// </summary>
         public static int Caught()
         {
             if (!PokeWorldLink.Active || dexFailed || Find.World?.components == null) return -1;
             try
             {
-                var dex = Find.World.components.FirstOrDefault(c => c != null && c.GetType().Name == "PokedexManager");
+                var dex = PokeWorldLink.Pokedex();
                 if (dex == null) return -1;
                 var total = dex.GetType().GetMethod("TotalCaught", BindingFlags.Public | BindingFlags.Instance, null, Type.EmptyTypes, null);
                 if (total != null && total.ReturnType == typeof(int)) return (int)total.Invoke(dex, null);
                 var f = dex.GetType().GetField("pokedex", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
-                if (!(f?.GetValue(dex) is IDictionary entries)) return -1;
+                if (!(f?.GetValue(dex) is IDictionary entries))
+                {
+                    dexFailed = true;
+                    CouncilLog.WarnOnce("PokéWorld: couldn't count its Pokédex, so the Pokédex life goal and the council's Pokédex project don't come.");
+                    return -1;
+                }
                 int n = 0;
                 foreach (DictionaryEntry e in entries)
-                    if (e.Value?.ToString() == "Caught") n++;
+                    if (e.Value?.ToString() == "Caught" || (e.Value?.GetType().GetProperty("caught", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(e.Value) is bool b && b)) n++;
                 return n;
             }
             catch (Exception e)
@@ -571,8 +596,8 @@ namespace ColonyCouncil
     // ===================== A rare sighting =====================
 
     /// <summary>
-    /// PokéWorld: a rare Pokémon (PokéWorld's own rarity 6 to 9, never a legendary or a fossil, of a generation switched
-    /// on) has been seen on the colony's land, and will move on in a couple of days. Ones the colony hasn't caught come
+    /// PokéWorld: a rare Pokémon (PokéWorld's own rarity 6 to 9, one that lives wild in some land, never a legendary or a
+    /// fossil, of a generation switched on) has been seen on the colony's land, and will move on in a couple of days. Ones the colony hasn't caught come
     /// first. The colony may go and look at it, send its best trainer after it, or let it pass; catching it is the
     /// player's own (a ball belt), and is news when it happens.
     /// </summary>

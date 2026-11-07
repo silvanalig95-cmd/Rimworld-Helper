@@ -109,10 +109,10 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>A trainer at the gate with word of a shiny Pokémon ({TALE}: its species) seen in the region.</summary>
+    /// <summary>A trainer at the gate with word of a shiny Pokémon ({TALE}: its species, one that roams and can be shiny) seen in the region.</summary>
     public class HappeningWorker_ShinyRumour : HappeningWorker_Visitors
     {
-        private static IEnumerable<ThingDef> Species() => PokeWorldLink.Roaming();
+        private static IEnumerable<ThingDef> Species() => PokeWorldLink.Roaming().Where(PokeWorldLink.CanShine);
 
         protected override bool CanHappen(Map map, HappeningExtension ext) =>
             PokeWorldLink.Active && PokeWorldLink.PokemonShare() > 0f && Species().Any() && (CouncilGameComponent.Instance?.BeastOf(map)?.rumourUntil ?? -1) < Find.TickManager.TicksGame && base.CanHappen(map, ext);

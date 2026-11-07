@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using RimWorld;
+using RimWorld.Planet;
 using UnityEngine;
 using Verse;
 
@@ -11,14 +12,18 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// PokéWorld (Pokémon as animals), read by name. Nothing here references its assembly. A Pokémon is a race whose
-    /// comps include one of a class named CompPokemon; its generation and attributes are read from that comp's
-    /// properties, the spawn slider and the generation switches from PokeWorld.PokeWorldSettings, and the PC storage is
-    /// a world component named StorageSystem. All of it is looked up once at startup: with no Pokémon races loaded,
-    /// <see cref="Active"/> is false and every method here returns at once, as if this file didn't exist.
+    /// comps include one of a class named CompPokemon; its generation, rarity, types, attributes and shiny chance are read
+    /// from that comp's properties, the spawn slider and the generation switches from PokeWorld.PokeWorldSettings (its
+    /// GenerationAllowed, else the allowGen fields: eight generations in PokéWorld Updated), the PC storage is a world
+    /// component named StorageSystem and the Pokédex one named PokedexManager. Checked against PokéWorld Updated for 1.6
+    /// (themoonitself.pokeworld, 898 species) on 7 November 2026. All of it is looked up once at startup: with no Pokémon
+    /// races loaded, <see cref="Active"/> is false and every method here returns at once, as if this file didn't exist.
+    /// Any name that can't be read is said once in the log, with what Rimfolk does without it.
     ///
     /// What it does with them:
     /// - Rimfolk's own animal events pick their animals the way PokéWorld's spawner does (<see cref="WildKinds"/>, and
-    ///   <see cref="Allows"/> for a kind already chosen).
+    ///   <see cref="Allows"/> for a kind already chosen): only species that live wild in some land (the spawner picks
+    ///   from the land's own wild animals, so never a legendary, a fossil, a baby or the few it keeps out of the wild).
     /// - A Pokémon in the PC still counts as one of the colony's animals for wishes and goals that count animals
     ///   (<see cref="OwnedAnimalCount"/>).
     /// - Someone who catches a species the colony never had gets a journal line and a small memory (<see cref="Hourly"/>).
@@ -47,6 +52,10 @@ namespace ColonyCouncil
             public int generation;
             /// <summary>A legendary or fossil Pokémon: never picked for one of Rimfolk's events.</summary>
             public bool rare;
+            /// <summary>It lives wild in some land (a biome's wild animals), as PokéWorld's spawner picks them.</summary>
+            public bool wild;
+            /// <summary>PokéWorld can make one shiny (its shiny chance above nothing, or unread).</summary>
+            public bool canShine = true;
             /// <summary>PokéWorld's own rarity, 1 (common) to 10 (legendary); 0 when unread.</summary>
             public int rarity;
             /// <summary>Its types by def name (Grass, Poison...), for what it sounds like (PokeWorldSounds); empty when unread.</summary>
@@ -59,8 +68,11 @@ namespace ColonyCouncil
 
         private static FieldInfo selectedField, minField, maxField;
         private static readonly Dictionary<int, FieldInfo> generationFields = new Dictionary<int, FieldInfo>();
+        /// <summary>PokeWorldSettings.GenerationAllowed(int), what its own spawner asks; null when it has none.</summary>
+        private static MethodInfo generationAllowed;
+        private static int highestGeneration;
         private static object settingsInstance;
-        private static Type storageType;
+        private static Type storageType, pokedexType;
         private static bool readFailed;
 
         static PokeWorldLink()
@@ -83,16 +95,20 @@ namespace ColonyCouncil
         {
             ThingDef first = null;
             Type compClass = null;
+            bool attributesRead = false;
             foreach (var d in DefDatabase<ThingDef>.AllDefsListForReading)
             {
                 if (d?.race == null || d.comps == null) continue;
                 foreach (var c in d.comps)
                 {
                     if (c?.compClass == null || !NamedIn(c.compClass, "CompPokemon")) continue;
+                    var attributes = ReadNames(c, "attributes");
+                    attributesRead |= HasField(c, "attributes");
+                    float? shine = ReadFloatField(c, "shinyChance");
                     species[d] = new Species
                     {
-                        generation = ReadInt(c, "generation"), rarity = ReadInt(c, "rarity"), rare = HasAttribute(c, "Legendary") || HasAttribute(c, "Fossil"),
-                        types = ReadNames(c, "types")
+                        generation = ReadInt(c, "generation"), rarity = ReadInt(c, "rarity"), rare = attributes.Contains("Legendary") || attributes.Contains("Fossil"),
+                        types = ReadNames(c, "types"), canShine = shine == null || shine.Value > 0f
                     };
                     if (first == null)
                     {
@@ -117,6 +133,33 @@ namespace ColonyCouncil
             foreach (var r in DefDatabase<RecipeDef>.AllDefsListForReading)
                 if (r?.ProducedThingDef != null && beltDefs.Contains(r.ProducedThingDef)) beltRecipes.Add(r);
 
+            // What its spawner picks from: the land's own wild animals. Legendaries, fossils, babies (hatched, or the baby
+            // that wanders in to join) and the few it keeps out of the wild (Porygon, Unown, Spiritomb...) are in no land's list.
+            foreach (var biome in DefDatabase<BiomeDef>.AllDefsListForReading)
+            {
+                if (biome == null) continue;
+                foreach (var k in biome.AllWildAnimals)
+                    if (k?.race != null && species.TryGetValue(k.race, out var s)) s.wild = true;
+            }
+            if (!species.Values.Any(s => s.wild))
+            {
+                foreach (var s in species.Values) s.wild = true;
+                CouncilLog.WarnOnce("PokéWorld: none of its Pokémon live wild in any land's list, so Rimfolk counts every one that isn't a legendary or a fossil as wild.");
+            }
+            highestGeneration = species.Values.Max(s => s.generation);
+            if (highestGeneration <= 0)
+                CouncilLog.WarnOnce("PokéWorld: couldn't read its Pokémon's generations, so its generation switches can't keep any out of Rimfolk's events.");
+            if (species.Values.All(s => s.rarity <= 0))
+                CouncilLog.WarnOnce("PokéWorld: couldn't read its Pokémon's rarity, so Rimfolk's rare sightings won't come.");
+            if (species.Values.All(s => s.types.Count == 0))
+                CouncilLog.WarnOnce("PokéWorld: couldn't read its Pokémon's types, so the animal each one sounds like is picked by its body and size alone.");
+            if (!attributesRead)
+            {
+                // Without the attributes, PokéWorld's top rarity (10) marks the legendaries.
+                foreach (var s in species.Values) s.rare |= s.rarity >= 10;
+                CouncilLog.WarnOnce("PokéWorld: couldn't read its Pokémon's attributes; Rimfolk keeps those of the top rarity out of its events as legendaries.");
+            }
+
             var asm = compClass?.Assembly;
             var settingsType = GenTypes.GetTypeInAnyAssembly("PokeWorld.PokeWorldSettings") ?? TypeNamed(asm, "PokeWorldSettings");
             if (settingsType != null)
@@ -124,7 +167,9 @@ namespace ColonyCouncil
                 selectedField = Field(settingsType, "selectedPokemonFrequency");
                 minField = Field(settingsType, "minFrequency");
                 maxField = Field(settingsType, "maxFrequency");
-                for (int gen = 1; gen <= 9; gen++)
+                var allowed = settingsType.GetMethod("GenerationAllowed", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static, null, new[] { typeof(int) }, null);
+                if (allowed != null && allowed.ReturnType == typeof(bool)) generationAllowed = allowed;
+                for (int gen = 1; gen <= Math.Max(9, highestGeneration); gen++)
                 {
                     var f = Field(settingsType, "allowGen" + gen);
                     if (f != null && f.FieldType == typeof(bool)) generationFields[gen] = f;
@@ -133,17 +178,29 @@ namespace ColonyCouncil
                     settingsInstance = SettingsOf(settingsType);
             }
             storageType = GenTypes.GetTypeInAnyAssembly("PokeWorld.StorageSystem") ?? TypeNamed(asm, "StorageSystem");
+            pokedexType = GenTypes.GetTypeInAnyAssembly("PokeWorld.PokedexManager") ?? TypeNamed(asm, "PokedexManager");
 
             if (PokemonShare() < 0f)
                 CouncilLog.WarnOnce("PokéWorld: couldn't read its wild Pokémon frequency setting, so Rimfolk's animal events pick from every animal of the land.");
             else if (minField == null || maxField == null)
                 CouncilLog.WarnOnce("PokéWorld: couldn't read the range of its wild Pokémon frequency slider; Rimfolk assumes 0 to 8, as in the original mod.");
+            if (generationAllowed == null && generationFields.Count == 0)
+                CouncilLog.WarnOnce("PokéWorld: couldn't read its generation switches, so Rimfolk's animal events let every generation in.");
+            else if (generationAllowed == null && highestGeneration > 0 && !generationFields.ContainsKey(highestGeneration))
+                CouncilLog.WarnOnce("PokéWorld: found no switch for generation " + highestGeneration + "; Rimfolk lets a generation without a switch in.");
+            if (storageType == null)
+                CouncilLog.WarnOnce("PokéWorld: couldn't find its PC storage, so Pokémon put away in the PC don't count among the colony's animals for Rimfolk.");
+            if (pokedexType == null)
+                CouncilLog.WarnOnce("PokéWorld: couldn't find its Pokédex, so the Pokédex goals don't come and a species caught before may be greeted as new once.");
             if (beltDefs.Count == 0)
                 CouncilLog.WarnOnce("PokéWorld: no Poké Ball belts were recognized, so Rimfolk won't ask anyone to catch a Pokémon.");
             ShowAlmanacPages();
             if (Prefs.DevMode)
-                Log.Message("[Rimfolk] PokéWorld found (" + (ModPack?.Name ?? "?") + "): " + species.Count + " species, " + beltDefs.Count + " ball belts, slider "
-                            + (PokemonShare() < 0f ? "unreadable" : PokemonShare().ToStringPercent()) + ", PC storage " + (storageType != null ? "found" : "not found") + ".");
+                Log.Message("[Rimfolk] PokéWorld found (" + (ModPack?.Name ?? "?") + "): " + species.Count + " species (" + species.Values.Count(s => s.wild && !s.rare) + " roam the wild, "
+                            + species.Values.Count(s => s.rare) + " legendaries and fossils), generations 1 to " + highestGeneration + " ("
+                            + (generationAllowed != null ? "its own check" : generationFields.Count + " switches") + "), " + beltDefs.Count + " ball belts, slider "
+                            + (PokemonShare() < 0f ? "unreadable" : PokemonShare().ToStringPercent()) + ", PC storage " + (storageType != null ? "found" : "not found")
+                            + ", Pokédex " + (pokedexType != null ? "found" : "not found") + ".");
         }
 
         /// <summary>The type, or one of its base classes, is called <paramref name="name"/> (in any namespace, so a port that moved it still counts).</summary>
@@ -204,20 +261,20 @@ namespace ColonyCouncil
         /// <summary>A Pokémon's types by name (Grass, Poison...): empty for anything else or when unread.</summary>
         public static List<string> TypesOf(ThingDef race) => Active && race != null && species.TryGetValue(race, out var sp) ? sp.types : new List<string>();
 
-        private static bool HasAttribute(object props, string attribute)
+        private static bool HasField(object props, string field) => props.GetType().GetField(field, BindingFlags.Public | BindingFlags.Instance) != null;
+
+        /// <summary>A number field of the comp's properties, or null when it has none.</summary>
+        private static float? ReadFloatField(object props, string field)
         {
             try
             {
-                var f = props.GetType().GetField("attributes", BindingFlags.Public | BindingFlags.Instance);
-                if (!(f?.GetValue(props) is IEnumerable list)) return false;
-                foreach (var a in list)
-                    if (a != null && a.ToString() == attribute) return true;
+                var f = props.GetType().GetField(field, BindingFlags.Public | BindingFlags.Instance);
+                return f != null ? Convert.ToSingle(f.GetValue(props)) : (float?)null;
             }
             catch
             {
-                // Unreadable: treat it as an ordinary Pokémon.
+                return null;
             }
-            return false;
         }
 
         /// <summary>The settings object, for a version that keeps its settings on the instance instead of in static fields.</summary>
@@ -288,18 +345,37 @@ namespace ColonyCouncil
             if (!Active) return 0f;
             float? selected = ReadFloat(selectedField);
             if (selected == null) return -1f;
-            float min = ReadFloat(minField) ?? 0f, max = ReadFloat(maxField) ?? 8f;
-            if (max <= min) return -1f;
-            return Mathf.Clamp01((selected.Value - min) / (max - min));
+            return AnimalMath.SliderShare(selected.Value, ReadFloat(minField) ?? 0f, ReadFloat(maxField) ?? 8f);
         }
 
-        /// <summary>The generation switches as they stand now (index = generation); a generation we can't read is allowed.</summary>
+        /// <summary>
+        /// The generation switches as they stand now (index = generation, every generation PokéWorld's species have):
+        /// its own GenerationAllowed when it has one, as its spawner asks, else its allowGen fields; one we can't read is allowed.
+        /// </summary>
         private static bool[] AllowedGenerations()
         {
-            var allowed = new bool[10];
+            var allowed = new bool[Math.Max(10, highestGeneration + 1)];
             for (int gen = 0; gen < allowed.Length; gen++)
-                allowed[gen] = !generationFields.TryGetValue(gen, out var f) || !(Read(f) is bool on) || on;
+                allowed[gen] = GenerationOn(gen);
             return allowed;
+        }
+
+        private static bool GenerationOn(int gen)
+        {
+            if (generationAllowed != null)
+            {
+                try
+                {
+                    return (bool)generationAllowed.Invoke(null, new object[] { gen });
+                }
+                catch (Exception e)
+                {
+                    // Its fields then, from here on.
+                    CouncilLog.ErrorOnce("PokéWorld generation switches", e);
+                    generationAllowed = null;
+                }
+            }
+            return !generationFields.TryGetValue(gen, out var f) || !(Read(f) is bool on) || on;
         }
 
         // ===================== Who is a Pokémon =====================
@@ -319,16 +395,23 @@ namespace ColonyCouncil
         /// <summary>A species rare enough to be talked about (PokéWorld's rarity 6 to 9), but not a legendary or a fossil.</summary>
         public static bool Rare(ThingDef race) => Active && race != null && species.TryGetValue(race, out var s) && !s.rare && AnimalMath.RareSighting(s.rarity);
 
+        /// <summary>PokéWorld can make one of this species shiny (all but a few legendaries); true when its chance can't be read.</summary>
+        public static bool CanShine(ThingDef race) => Active && race != null && species.TryGetValue(race, out var s) && s.canShine;
+
+        /// <summary>A species that may turn up wild: it lives wild in some land, and isn't a legendary or a fossil.</summary>
+        private static bool Roams(Species s, bool[] allowed) =>
+            AnimalMath.PokemonRoams(s.rare, s.wild) && (s.generation < 0 || s.generation >= allowed.Length || allowed[s.generation]);
+
         /// <summary>
-        /// The species that may turn up wild for Rimfolk now: not a legendary or a fossil, of a generation switched on,
-        /// and only while the spawn slider lets any Pokémon in at all.
+        /// The species that may turn up wild for Rimfolk now: living wild in some land, not a legendary or a fossil, of a
+        /// generation switched on, and only while the spawn slider lets any Pokémon in at all.
         /// </summary>
         public static IEnumerable<ThingDef> Roaming()
         {
             if (!Active || PokemonShare() == 0f) yield break;
             var allowed = AllowedGenerations();
             foreach (var kv in species)
-                if (!kv.Value.rare && (kv.Value.generation < 0 || kv.Value.generation >= allowed.Length || allowed[kv.Value.generation])) yield return kv.Key;
+                if (Roams(kv.Value, allowed)) yield return kv.Key;
         }
 
         /// <summary>Ball belts on this map, kept or worn.</summary>
@@ -361,9 +444,9 @@ namespace ColonyCouncil
         /// <summary>
         /// The animal kinds one of Rimfolk's events may pick from, as PokéWorld's spawner would have them: at the
         /// slider's maximum only Pokémon, at its minimum no Pokémon, in between this pick is Pokémon with the slider's
-        /// chance (falling back to the other side when that side has nothing that fits). Pokémon of a generation
-        /// switched off, legendaries and fossils are never picked. Without PokéWorld, or with its slider unreadable,
-        /// the kinds come back unchanged.
+        /// chance (falling back to the other side when that side has nothing that fits, as its spawner does). Only
+        /// Pokémon that live wild in some land, of a generation switched on: never a legendary, a fossil, a baby or one
+        /// it keeps out of the wild. Without PokéWorld, or with its slider unreadable, the kinds come back unchanged.
         /// </summary>
         public static IEnumerable<PawnKindDef> WildKinds(IEnumerable<PawnKindDef> kinds)
         {
@@ -377,7 +460,7 @@ namespace ColonyCouncil
             {
                 if (k?.race == null) continue;
                 if (!species.TryGetValue(k.race, out var s)) others.Add(k);
-                else if (!s.rare && (s.generation < 0 || s.generation >= allowed.Length || allowed[s.generation])) pokemon.Add(k);
+                else if (Roams(s, allowed)) pokemon.Add(k);
             }
             if (share >= 1f) return pokemon;
             if (share <= 0f) return others;
@@ -544,20 +627,45 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>Species PokéWorld's Pokédex marks as caught (its private "pokedex" dictionary); skipped quietly if unreadable.</summary>
+        /// <summary>PokéWorld's Pokédex, the world component named PokedexManager; null without one.</summary>
+        public static WorldComponent Pokedex()
+        {
+            if (!Active || Find.World?.components == null) return null;
+            foreach (var c in Find.World.components)
+                if (c != null && (pokedexType != null ? pokedexType.IsInstanceOfType(c) : c.GetType().Name == "PokedexManager")) return c;
+            return null;
+        }
+
+        /// <summary>
+        /// Species PokéWorld's Pokédex marks as caught: its IsPokemonCaught(kind) (PokéWorld Updated keeps the Pokédex by
+        /// number, each entry with its kinds), else the original's private "pokedex" dictionary of kinds. Said once in the
+        /// log when neither can be read: then a species caught long ago may be greeted as new once.
+        /// </summary>
         private static void AddPokedexCaught()
         {
+            var dex = Pokedex();
+            if (dex == null) return;
             try
             {
-                var dex = Find.World?.components?.FirstOrDefault(c => c != null && c.GetType().Name == "PokedexManager");
-                var f = dex?.GetType().GetField("pokedex", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
-                if (!(f?.GetValue(dex) is IDictionary entries)) return;
-                foreach (DictionaryEntry e in entries)
-                    if (e.Key is PawnKindDef k && k.race != null && e.Value?.ToString() == "Caught") knownSpecies.Add(k.race);
+                var isCaught = dex.GetType().GetMethod("IsPokemonCaught", BindingFlags.Public | BindingFlags.Instance, null, new[] { typeof(PawnKindDef) }, null);
+                if (isCaught != null && isCaught.ReturnType == typeof(bool))
+                {
+                    foreach (var k in DefDatabase<PawnKindDef>.AllDefsListForReading)
+                        if (k?.race != null && species.ContainsKey(k.race) && !knownSpecies.Contains(k.race) && (bool)isCaught.Invoke(dex, new object[] { k })) knownSpecies.Add(k.race);
+                    return;
+                }
+                var f = dex.GetType().GetField("pokedex", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+                if (f?.GetValue(dex) is IDictionary entries)
+                {
+                    foreach (DictionaryEntry e in entries)
+                        if (e.Key is PawnKindDef k && k.race != null && e.Value?.ToString() == "Caught") knownSpecies.Add(k.race);
+                    return;
+                }
+                CouncilLog.WarnOnce("PokéWorld: couldn't read which species its Pokédex has caught; a species caught long ago may be greeted as new once.");
             }
-            catch
+            catch (Exception e)
             {
-                // A changed Pokédex only means a species caught long ago may be greeted as new once.
+                CouncilLog.ErrorOnce("PokéWorld: reading the Pokédex's caught species", e);
             }
         }
 
