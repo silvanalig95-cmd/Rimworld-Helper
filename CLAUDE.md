@@ -13,6 +13,10 @@ Work in progress and the next steps are in `docs/HANDOFF.md`: read it first.
 - Harm is part of the game (the player's rule since 3 November 2026): features may hurt pawns (injuries, illness, attacks, fights) when it's flavourful or makes the game more interesting, at a rate comparable to the game's own chance of something bad happening; never gratuitous, always from something that happens on the map, and shown.
 - Every age, not only the medieval one (the player's rule since 4 November 2026): nothing is switched off for not being medieval; each feature takes the form of the age, by the colony's own tech level (its means) and the other people's ways (the rites). The Empire keeps its own titles and honour.
 - The colony is the family (the player's rule since 5 November 2026): this is never a dynastic game. Mechanics revolve around the colony and its people, not houses, dynasties or family lines; everyday family life (names, suppers, kin's moments) stays as flavour with no mechanics tied to it. Council tasks and the keeper of secrets were dropped the same day.
+- Draw from the full mod pool (the player's rule, repeated 7 November 2026: "always draw from the full mod pool ... for
+  weapons, apparell, items, gear, xenotypes etc."): content that picks things (weapons, apparel, items, gear, xenotypes
+  and races, animals, magic and abilities) uses everything in the player's mod list that fits (`docs/player-modlist.md`),
+  softly (`MayRequire` or by name in code), with a vanilla fallback; never only the base game when the mods offer more.
 - Bug fixes come before features. No filler.
 - New wishes and features are proposed as a list first; the player's own explicit requests can go straight ahead.
 - Answers play out on the map; no countdowns in text. Speech goes through `Speech.Say` / `Together`.
