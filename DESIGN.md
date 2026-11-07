@@ -2102,6 +2102,54 @@ texts in `Defs/MissionDefs/Rimfolk_Missions_Neighbours4*.xml`, `Defs/IncidentDef
 - **More ways to tell the callers** that had one (`LetterVariantsDef`): the barber, the animal doctor, the undertakers, a
   captive's kin and the art collector, by the season, the age and what they find, with an ending for each answer.
 
+### The right-click's things, done by themselves (the player's request, 7 November 2026)
+
+"I'm not really using the right click conversation options, so please integrate them to be done automatically by pawns
+when there is a good moment, while still having the gameplay impact and limits in mind." The pure rules in
+`Outsiders/OutsiderAutoMath.cs` (`OutsiderAutoTests`), the look in `Outsiders/OutsiderAuto.cs`.
+
+- **The same way as the right-click.** A colonist who does one by themselves goes through `Outsiders.WhyNot` (the menu's
+  own reasons: willing, the waits, patience, the thing's own conditions), never one `OutsiderTalk.Repeat` would answer
+  with "you asked me that already", and the same jobs (`Outsiders.StartTalk` and `StartGift` with `byThemselves`), so the
+  scene (`OutsiderTalk.Begin`: patience spent, the ask noted), the outcome (`Outsiders.Talked`) and the record
+  (`Remember`: the pair's waits, the bond, a notable's regard) are the menu's. What differs: the job is not the player's
+  order (`playerForced` false, `StartJob` rather than `TryTakeOrderedJob`), so the game may call them away, a turning away
+  is said in bubbles only, the meal, lesson or bout that follows is theirs too, and the outcome's everyday messages stay
+  unsaid (`Talked(..., byThemselves)`, `StillTold`: a new friend, sweethearts, lovers and someone who stays are still
+  told; an injury's message is the bout's own). A letter handed over keeps its message: it was ordered.
+- **Which things** (`OutsiderAutoMath.Tier`, the setting `outsiderAuto`: off, free ones only, within limits by default).
+  Free: news of home, getting to know them, a good word at home, faith with the same faith (always closer). Within
+  limits: a meal when the colonist's food is at 45% or less with meals to spare (the guest's portion counted against
+  the budget), a drink at leisure as `Beliefs.MindsDrug` and a teetotaler allow, a gift that suits them (the first of
+  their visit, from three times as much, never medicine, weapons, clothes, silver, gold or a hard drug, as much as the
+  budget left buys and at least 20 silver), a lesson in a skill the colonist has a passion for, a practice bout between
+  two keen on it (accepted at 50% or more, one a day, both clear of `Harm.May`'s cap), courting someone already a
+  sweetheart at a 50% chance or more, neither with another partner. The player's alone: a chat (`OutsiderTalk`'s talks
+  of their own are one), a letter (written in the player's words), something brought (one ask per people stands at a
+  time and the thing is the player's pick), an invitation to stay, courting someone new, faith with another faith, hard
+  words, a duel, and the diplomacy acts.
+- **The moment.** Every fourth of the outsiders' 250-tick looks (`Sched.RareOutsiderTalk`, no slot of its own), on each
+  home with `StoryDanger.None` and no `MapFacts.ThreatOn`: outsiders of another faction, grown, able to talk, not busy
+  (`Outsiders.Busy`), leaving, travelling in or through (a travel duty or toil), trading, in a scene or already sought by
+  one of the colony's jobs; colonists grown, able to talk, of no lord, idle, wandering or at a recreation job (or in
+  their recreation time), free by `PlayOuts.CanJoin` and `Interruptible`, not `NeedsPress`, not one who began one in the
+  last six hours. A moment is taken at 35% a look.
+- **The pace** (`PaceAllows`): 5 a day across the colony, 2 a day with one outsider, two hours between any two, four with
+  the same outsider, an hour after a talk of their own with them, and never their last patience (`PatienceKept`); a
+  colonist who asked them something in the last six hours leaves the next ask to someone else, so it is never pushy. The
+  stores: `Budget`, a four-hundredth of the home's wealth a day, 30 to 250 silver.
+- **The choice** (`Worth`, `WhoScore`, `Score`): each allowed thing with each of the six nearest free colonists, by what
+  it would bring now (a good word 6 and more, getting to know them 4 or 7 near friendship, courting 5, news 4 or 1 with
+  their news heard lately, faith 3, a lesson 3 and the passion, a meal 4, a drink 3, a gift 2 or 4 with a cool people,
+  a bout 3) twice over, and who suits it (Social, their regard and knowing, the speaker or steward with a notable or for
+  a good word, the warden of guests, the chaplain for faith, the learner's passion, the fighter, the hungrier, less for
+  the shy, the walk, whoever did the last one and each they did today). The best six are checked in full; the first
+  that passes begins. Three outsiders are weighed a look at most, in a shuffled order.
+- **Saved**: no new collection. The book's day, count, spending, last start and bout day (`OutsiderBook.autoDay` ...
+  `autoBoutDay`), and on each visit the day's count and the last start (`OutsiderVisit.autos`, `autoDay`, `autoLast`).
+  Who began one lately is the session's, as for the talks of their own.
+- **No new Harmony patch, no new letter, no new line**: the words are the menu's own, in the forms of their people's age.
+
 ## Harm from everyday life
 
 The player's harm rule (3 November 2026) lets Rimfolk hurt its people when it is flavourful or makes the game more
@@ -6404,7 +6452,7 @@ chains, nemeses, camps, play-outs, the fights pass and the worn-out episode read
 | 187 | Who stands beside whom in a fight at home (only while one is on; Social/FightSides.cs), so only they remember it together and become comrades; who carries, tends or stands over someone down | per fighting colonist pair on that map (close, then the same room or in sight) |
 | 221 | Ailments: one tenth of the colonists (by ID), each once an hour; the slice at tick 2471 also carries the colony's part | the colony's serious illnesses counted (every colonist's hediffs, as before every hour's rolls), then per colonist in the slice: circumstances sampled, each ailment's counted causes rolled; diet and sweets on the first look of the day |
 | 211 | A neighbour's letter being written, a call under way or the comms console ringing (World/NeighbourLetters.cs; only while there is one) | per letter or call under way: the writer still at it, someone free to answer |
-| 83 | Colonists starting a talk with an outsider near them (Outsiders/OutsiderTalk.cs; on each home map with outsiders on it, whichever map is in view, with the setting on) | per home map, per free outsider: a free colonist near, the pair's and the visit's waits, then a small chance by both natures; one talk at most a home |
+| 83 | Colonists starting a talk with an outsider near them (Outsiders/OutsiderTalk.cs; on each home map with outsiders on it, whichever map is in view, with the setting on); every fourth look, the right-click's things done by themselves (Outsiders/OutsiderAuto.cs, with its setting on) | per home map, per free outsider: a free colonist near, the pair's and the visit's waits, then a small chance by both natures; one talk at most a home. By themselves: the day's pace first, then per home with no danger, per free outsider (three weighed at most) the pace with them, the six nearest free colonists times the things allowed (cheap facts), the best six checked by the menu's own reasons and the stores; one at most a look |
 | 241 | A meal or a drink shared with an outsider, a bout or a brawl with one (Outsiders/; only while there is one) | per meal: both still eating; per bout: still at it, its end by its terms; per brawl: still fighting |
 | 233 | Defense lines watch a raid (only while hostile people or mechanoids are on a home map that has lines) | per raider: in front of or behind each line, how it got behind; colonists newly downed near a line; the raid's lessons once it's over |
 

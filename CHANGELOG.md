@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Colonists talk with visitors by themselves
+
+*7 November 2026, version 0.145.0*
+
+- Colonists now do many of the right-click Talk with things on their own when there is a quiet moment: someone idle or at leisure near a visitor who is free asks about their home, gets to know them, puts in a good word for the colony or, with the same faith, talks faith.
+- Within a small daily budget of the stores they also share a meal or a drink, give a fitting gift, teach a skill they love, have a practice bout, or carry on a courtship already begun. They never start a courtship, and a bout keeps to the everyday-hurts setting.
+- Letters, asks for next time, invitations to stay, hard words, duels and every kind of diplomacy stay yours alone, as does chat, which already happens by itself.
+- It goes through the same checks as your own clicks and shares their patience and records. The speaker or steward, the warden of guests and the chaplain step forward where it suits them, and a visitor's last bit of patience is always left for you.
+- It stays unhurried: five a day at most across the colony, two with any one visitor, hours apart, and only when there is no danger. Everyday answers show in bubbles only; a new friend, sweethearts, someone staying or an injury are still told.
+- A new setting under Neighbours and letters, The right-click's things, done by themselves, chooses Off, Free ones only, or Within limits (the default).
+
 ## Pokémon voices from your other animal mods
 
 *7 November 2026, version 0.144.0*

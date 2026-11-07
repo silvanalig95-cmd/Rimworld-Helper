@@ -33,6 +33,12 @@ namespace ColonyCouncil
 
         private int Extra => job.count / 100;
 
+        /// <summary>
+        /// The colonist's own idea at a good moment (OutsiderAuto.cs), not the player's order: a turning away is said in
+        /// bubbles only, and what comes of it brings fewer messages. A letter handed over keeps its own (it was ordered).
+        /// </summary>
+        private bool ByThemselves => !job.playerForced && Act != OutsiderAct.Letter;
+
         public override bool TryMakePreToilReservations(bool errorOnFailed) => true;
 
         public override string GetReport() =>
@@ -64,8 +70,8 @@ namespace ColonyCouncil
                 if (why != null)
                 {
                     Outsiders.Say(x, tired != null ? "enough" : "notnow", pawn);
-                    // together: the colonist walked over and was turned away face to face.
-                    Messages.Message("CC_Out_Msg_NotNow".Translate(x.Named("OTHER"), why.Named("WHY")).Resolve(), x, MessageTypeDefOf.RejectInput, false);
+                    // together: the colonist walked over and was turned away face to face (by themselves, the bubble says it).
+                    if (!ByThemselves) Messages.Message("CC_Out_Msg_NotNow".Translate(x.Named("OTHER"), why.Named("WHY")).Resolve(), x, MessageTypeDefOf.RejectInput, false);
                     EndJobWith(JobCondition.Incompletable);
                     return;
                 }
@@ -101,7 +107,7 @@ namespace ColonyCouncil
                 try
                 {
                     // together: the talk job brought the two face to face.
-                    next = Outsiders.Talked(pawn, Other, Act, Extra, job.thingDefToCarry);
+                    next = Outsiders.Talked(pawn, Other, Act, Extra, job.thingDefToCarry, ByThemselves);
                 }
                 catch (Exception e)
                 {
@@ -204,7 +210,8 @@ namespace ColonyCouncil
                 if (why != null || !Outsiders.Hold(x, pawn, OutsiderMath.TalkTicks(OutsiderAct.Gift) + 300))
                 {
                     Outsiders.Say(x, "notnow", pawn);
-                    if (why != null)
+                    // A gift the colonist brought by themselves (OutsiderAuto.cs): the bubble says it.
+                    if (why != null && job.playerForced)
                         // together: the colonist walked over and was turned away face to face.
                         Messages.Message("CC_Out_Msg_NotNow".Translate(x.Named("OTHER"), why.Named("WHY")).Resolve(), x, MessageTypeDefOf.RejectInput, false);
                     EndJobWith(JobCondition.Incompletable);

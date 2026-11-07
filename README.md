@@ -2949,6 +2949,23 @@ asked). Each brings something: greetings answered warmly a token gift in the mes
 faring; condolences taken to heart are remembered by their people; a warning heeded warmly becomes a debt of honour
 the colony can call in; help, a visit, news, a pact or a truce as before. Letters already on the road keep their day.
 
+**Talking with outsiders, and doing it by themselves.** With a colonist selected, right-click someone from outside the
+colony for "Talk with...": news of their home, a meal or a drink, a gift, a good word at home, a lesson, something
+brought next time, an invitation to stay, getting to know them, courting, faith, a practice bout, hard words, a duel,
+and the favours, pacts, matches and exchanges of the bonds with other peoples (the Almanac's *neighbours and letters*
+has it all). Colonists also do the everyday ones by themselves at a good moment, a colonist idle or at leisure near
+someone free and not on their way, with no danger on the map. News, getting to know them, a good word and faith with
+someone of the same faith cost nothing. A meal when the colonist would eat soon anyway, a drink at leisure as their drug
+policy allows, a gift that suits them from plenty, a lesson in a skill they have a passion for, a practice bout between
+two keen on it and courting someone already their sweetheart spend a little or risk a little, so they come only when
+clearly worth it and within a day's budget of the stores (a four-hundredth of the colony's wealth, 30 to 250 silver).
+Whoever suits it does it (the better talker, the one they get on with, the speaker or the steward with someone of rank,
+the warden of guests, the chaplain), never the same colonist over and over. It plays out as when you order it, every
+wait and the outsider's patience count the same for both, and they never take an outsider's last patience, which is
+left for you: at most 5 a day, 2 a day with one outsider, with fewer messages (a new friend, sweethearts, lovers and an
+injury are still told). The rest stays yours. Setting: *The right-click's things, done by themselves* (off, free ones
+only, within limits).
+
 ### The region
 The towns within the region map's reach of each home (the nearest 40) are known in detail. Each has a **fortune**,
 from struggling to flourishing, that the world's events move (a plague 20 down at its town and 10 at its people's
@@ -3926,7 +3943,8 @@ The pages:
   called in; pacts and truces, with pacts of fealty, the colony sworn to a stronger neighbor or keeping vassals of
   its own, and truces keeping raids away under them; ransom, envoys, feasts with guests, marriage alliances, wards and
   hostages, colony renown, against their nature); neighbours and letters (notables, letters, talking with outsiders,
-  sparring, insults, duels, their chatter); then the tools: journeys, many colonies (fresh starts, and newcomers for
+  sparring, insults, duels, their chatter, the right-click's things done by themselves: off, free ones only or within
+  limits); then the tools: journeys, many colonies (fresh starts, and newcomers for
   them, and handing a colony over), the weather (weather that changes like weather,
   its pull on the temperature, the forecast, rain washing the yard), personal touches, **material counts in build
   menus** and build priorities on blueprints, reserved slots on shelves and drinks and smokes kept out of the freezer,

@@ -418,6 +418,9 @@ namespace ColonyCouncil
             Toggle("outsiderProvoke", "CC_Settings_OutsiderProvoke", "CC_SetNote_OutsiderProvoke", "outsiderTalk,deepHooks");
             Toggle("outsiderDuels", "CC_Settings_OutsiderDuels", "CC_SetNote_OutsiderDuels", "outsiderTalk,deepHooks");
             Toggle("outsiderChatter", "CC_Settings_OutsiderChatter", "CC_SetNote_OutsiderChatter", "outsiderTalk");
+            // The right-click's things done by the colonists themselves at a good moment (Outsiders/OutsiderAuto.cs).
+            Choice("outsiderAuto", "CC_Settings_OutsiderAuto", "CC_Settings_OutsiderAuto_Tip", "CC_OutsiderAuto_", "CC_SetNote_OutsiderAuto_",
+                new[] { "Off", "FreeOnly", "WithinLimits" }, "outsiderTalk");
             Section("CC_SetSec_Journeys");
             Toggle("journeys", "CC_Settings_Journeys", "CC_SetNote_Journeys");
             Toggle("journeyShiftSleep", "CC_Settings_JourneySleep", "CC_SetNote_JourneySleep", "journeys");

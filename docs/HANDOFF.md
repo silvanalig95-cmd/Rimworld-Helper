@@ -6,6 +6,97 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 0.145.0, the right-click's things, done by themselves (7 November 2026, the player's request: "i'm noticing that i'm not really
+  using the right click conversation options, so please integrate them to be done automatically by pawns when there is a
+  good moment, while still having the gameplay impact and limits in mind"; explicit, no proposal round). No What's new
+  round yet, About.xml and CHANGELOG.md untouched: the lead's when merging. `Outsiders/OutsiderAutoMath.cs` (pure,
+  `OutsiderAutoTests`, linked in Tests.csproj), `Outsiders/OutsiderAuto.cs` (the look), `Outsiders/OutsiderAutoDebug.cs`
+  (two dev actions); the setting `outsiderAuto` (What's on, Neighbours and letters, under talking with outsiders: Off,
+  Free ones only, Within limits by default); the Almanac's *neighbours and letters* a section "By themselves, at a good
+  moment" (keywords unchanged); README a paragraph ("Talking with outsiders, and doing it by themselves.", after the
+  letters') and its settings line; DESIGN.md "The right-click's things, done by themselves" (after the callers at the
+  gate) and the Ticking row 83. No new Harmony patch, no Sched slot (every fourth `RareOutsiderTalk` look), no new saved
+  collection.
+  - The same way as the right-click: `Outsiders.WhyNot` (willing, the waits, patience, each thing's own conditions),
+    never what `OutsiderTalk.Repeat` would answer with "you asked me that already", and the same jobs
+    (`Outsiders.StartTalk` and `StartGift` with `byThemselves`), so the scene, the patience spent, the ask noted, the
+    outcome and the pair's record are the menu's, and the player's right-click and theirs count against the same waits
+    and patience. Only not an order: `StartJob` with `playerForced` false (`JobDriver_OutsiderTalk.ByThemselves`), so the
+    game may call them away, a turning away is said in bubbles only, the meal, lesson or bout after it is theirs too
+    (`playerForced = !byThemselvesNow`), and the everyday messages stay unsaid (`Talked(..., byThemselves)`,
+    `StillTold`). A letter handed over keeps its message (it was ordered).
+  - Each option, and why:
+    - Chat: the player's here: the talks of their own (`OutsiderTalk`, its own setting) already are one; an ordered chat on
+      top would double the bubbles.
+    - Ask about their home: free. One patience, news into the town's Heard lately; worth less with their town's news
+      heard in the last two days.
+    - Share a meal: within limits. Two meals from the stores: only when the colonist's food is at 45% or less (they'd eat
+      soon anyway), with 2 meals to spare beyond one for each colonist; the guest's portion counts against the budget.
+    - Share a drink: within limits. Two drinks and the drug policy: at leisure (recreation at 50% or less, or recreation
+      time), as `Beliefs.MindsDrug` allows (the policy for recreation, faith, an addiction), never a teetotaler, 4 in the
+      stores; both drinks count against the budget.
+    - Give a gift: within limits. Goods for goodwill: only something that suits them, the first gift of their visit
+      (later ones count for less anyway), from three times as much in the stores, never medicine, weapons, clothes,
+      silver, gold or a hard drug, as much as the day's budget left buys and at least 20 silver's worth.
+    - Put in a good word: free. Nothing spent, a lasting gain with their town's head; the speaker or the steward first.
+      Its "promised" message is dropped; the word landing at home is still told.
+    - Carry a letter home: the player's. The letter's purpose and words are the player's (its handing over was already
+      done by the writer by themselves).
+    - Teach for an hour: within limits. An hour of the colonist's time and their people a little owed ("taught", at most
+      1.6 off their regard): only in a skill the colonist has a passion for, the keenest learner first.
+    - Bring something next time: the player's. One ask stands for each people at a time, so one made by themselves
+      would take the player's, and what they bring is the player's pick.
+    - Invite to stay: the player's. Someone joins and their people lose goodwill.
+    - Get to know them: free. The bond over visits, most when the two are close to becoming friends; a new friend is
+      still told.
+    - Court them: within limits, and only carrying on: never a courtship begun by themselves, only with someone already a
+      sweetheart (the player began it), at a 50% chance or more, neither with another partner; sweethearts and lovers
+      still told, a rebuff's memories the game's own.
+    - Talk faith: free with the same faith (always closer, the game's certainty up a little for both); with another faith
+      the player's (it can harden both and sour the bond).
+    - Practice bout: within limits. Bruises and the 4% to 8% hard blow: only between two keen on it (a passion for melee
+      or a fighting temper), taken up at 50% or more, one a day, both clear of `Harm.May` (everyday hurts at 0% stops it);
+      the injury's message is the bout's own and stays.
+    - Hard words, a duel: the player's. Pointed, goodwill at stake, a real fight.
+    - Ask a favour, speak of a pact, speak for a match, offer an exchange: the player's. Diplomacy whose ask the player
+      picks.
+  - The pace (`PaceAllows`): 5 a day across the colony (the book's day, `OutsiderAutoMath.Day`), 2 a day with one
+    outsider, two hours between any two, four with the same outsider, an hour after a talk of their own with them, and
+    never the outsider's last patience (`PatienceKept`): that one is left for the player. A colonist who asked them
+    something in the last six hours leaves the next ask to someone else, so it is never pushy; a colonist begins one at
+    most once in six hours. The stores: a four-hundredth of the home's wealth a day, 30 to 250 silver (`Budget`).
+  - The moment: every 1,000 ticks, each home with no danger and no `MapFacts.ThreatOn`; outsiders of another faction,
+    grown, able to talk, not busy, leaving, travelling in or through (a travel duty or toil), trading, in a scene or
+    already sought; colonists grown, of no lord, idle, wandering or at a recreation job (or in recreation time), free by
+    `PlayOuts.CanJoin` and `Interruptible`, not `NeedsPress`. Taken at 35% a look; three outsiders weighed at most.
+  - Who and what (`Worth`, `WhoScore`, `Score`): each allowed thing with each of the six nearest free colonists; a good
+    word first, getting to know them first when close to friends, then courting, news, faith, a lesson, a meal, a drink,
+    a gift, a bout; the right one by Social, their regard and knowing, the speaker or the steward with a notable or for a
+    good word, the warden of guests, the chaplain for faith, the keenest learner, the fighter, the hungrier, less for the
+    shy, a long walk, whoever did the last one and each they did today. The best six are checked in full.
+  - Saved: no collection. `OutsiderBook.autoDay`, `autoToday`, `autoSpent`, `autoLast`, `autoBoutDay`;
+    `OutsiderVisit.autos`, `autoDay`, `autoLast`. Who began one lately is the session's, as for the talks of their own.
+  - Not mapped: haggling and a healer for a hurt visitor were examples in the request with no such option in the menu
+    (trade is the game's window, tending is the game's work).
+  - Try in the game (none of it could be run here):
+    1. With visitors or a trader caravan at peace on a home, dev mode, Debug actions, Rimfolk, "Outsiders: what they'd
+       do by themselves now": the log has the day's count and budget, each outsider free or why not, each thing with
+       each free colonist (worth, who, score), and the first that would begin, or why none.
+    2. "Outsiders: one by themselves now (no pace)": a colonist walks over and it plays out in bubbles as when ordered;
+       right-click the outsider after: their patience is lower and the thing is "asked already" or waiting.
+    3. Leave a caravan a day with colonists at leisure: a few things happen (5 a day at most, 2 with one outsider), never
+       while they trade, walk in or leave, during a raid, or with a colonist at work or eating; the menu never reads
+       "has had enough" from theirs alone.
+    4. A meal (a hungry colonist, meals in the stores), a drink (recreation time, beer allowed by the drug policy), a gift
+       (a drinker with plenty of beer), a lesson (an outsider far better at a skill the colonist has a passion for), a
+       bout (a colonist with a passion for melee, everyday hurts on); a sweetheart made by right-click courted on its own
+       on a later visit.
+    5. Settings: Free ones only (no meals, drinks, gifts, lessons, bouts or courting), Off (nothing; the talks of their own
+       as their own setting has them).
+  - Riskiest: a talk job started not as an order from the component's tick (their recreation interrupted; whether the
+    game's think tree pulls them away on the walk); the travel reading of other mods' visitors' lords; the pace in a long
+    stay (Hospitality guests, camps); gifts from a modded stockpile; a colony fed by paste dispensers (only stored meals
+    count, so no shared meal).
 - 0.144.0, PokéWorld's voices from the player's modded animals (7 November 2026). The player's words: "regarding pokemon voices,
   can you review all the mods in my list for other animals that you can use as reference for the sounds? with possible
   vanilla fallbacks. find out the mod numbers and tell me what i need to upload." They uploaded each installed mod's

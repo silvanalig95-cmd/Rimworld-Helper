@@ -74,6 +74,7 @@ namespace ColonyCouncil
             meals.Clear();
             bouts.Clear();
             OutsiderTalk.Reset();
+            OutsiderAuto.Reset();
         }
 
         // ---------------- Who is an outsider ----------------
@@ -457,25 +458,34 @@ namespace ColonyCouncil
 
         // ---------------- Starting ----------------
 
-        /// <summary>The colonist walks over to talk about <paramref name="act"/> (with <paramref name="extra"/>: duel terms; <paramref name="thing"/>: what to bring).</summary>
-        public static void StartTalk(Pawn c, Pawn x, OutsiderAct act, int extra = 0, ThingDef thing = null)
+        /// <summary>
+        /// The colonist walks over to talk about <paramref name="act"/> (with <paramref name="extra"/>: duel terms;
+        /// <paramref name="thing"/>: what to bring): the player's order, or with <paramref name="byThemselves"/> the
+        /// colonist's own idea at a good moment (OutsiderAuto.cs), a job of their own the game may call them away from,
+        /// which says less (the talk job's <c>playerForced</c> tells the two apart). True when they set off.
+        /// </summary>
+        public static bool StartTalk(Pawn c, Pawn x, OutsiderAct act, int extra = 0, ThingDef thing = null, bool byThemselves = false)
         {
-            if (c?.jobs == null || x == null) return;
+            if (c?.jobs == null || x == null) return false;
             var job = JobMaker.MakeJob(OutsiderDefOf.Council_OutsiderTalk, x);
             job.count = (int)act + 100 * extra;
             job.thingDefToCarry = thing;
             job.locomotionUrgency = act == OutsiderAct.Provoke ? LocomotionUrgency.Jog : LocomotionUrgency.Walk;
-            c.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+            if (!byThemselves) return c.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+            c.jobs.StartJob(job, JobCondition.InterruptForced, null, false, true);
+            return c.CurJob == job;
         }
 
-        /// <summary>The colonist fetches the gift from the stores and hands it over.</summary>
-        public static void StartGift(Pawn c, Pawn x, Thing thing, int count)
+        /// <summary>The colonist fetches the gift from the stores and hands it over (by the player's order, or by themselves as for a talk).</summary>
+        public static bool StartGift(Pawn c, Pawn x, Thing thing, int count, bool byThemselves = false)
         {
-            if (c?.jobs == null || x == null || thing == null) return;
+            if (c?.jobs == null || x == null || thing == null) return false;
             var job = JobMaker.MakeJob(OutsiderDefOf.Council_OutsiderGift, x, thing);
             job.count = Mathf.Max(1, count);
             job.haulMode = HaulMode.ToCellNonStorage;
-            c.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+            if (!byThemselves) return c.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+            c.jobs.StartJob(job, JobCondition.InterruptForced, null, false, true);
+            return c.CurJob == job;
         }
 
         /// <summary>

@@ -75,6 +75,7 @@
     <Compile Include="../../Source/ColonyCouncil/World/NotableMath.cs" Link="NotableMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Outsiders/OutsiderMath.cs" Link="OutsiderMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Outsiders/OutsiderTalkMath.cs" Link="OutsiderTalkMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Outsiders/OutsiderAutoMath.cs" Link="OutsiderAutoMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Text/Fill.cs" Link="Fill.cs" />
     <Compile Include="../../Source/ColonyCouncil/Text/Facts/FactSet.cs" Link="FactSet.cs" />
     <Compile Include="../../Source/ColonyCouncil/Text/Facts/FactsMath.cs" Link="FactsMath.cs" />
