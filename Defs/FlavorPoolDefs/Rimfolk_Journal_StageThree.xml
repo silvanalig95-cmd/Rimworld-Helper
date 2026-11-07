@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Stage 3's content pass (7 November 2026): the colonists' journals in the days of a fresh start, a hand-over and the
+    newcomers' arrival.
+    - Days (Source/ColonyCouncil/Lives/EverydayJournal.cs, a JournalDayDef each): the everyday entry, now and then, about
+      something on their mind that day, when it is one of these: sent or kept against their wish at a founding or a
+      hand-over (Rimfolk_Uprooted: the same words fit both, the place they are not is "the other place"), parted from
+      someone close who lives in the other place now (Rimfolk_Parted, {OTHER}), the first night at a new colony
+      (Rimfolk_FirstNight; a fire is not always lit, so no line says one was). The entry goes by the hour it happened.
+    - The newcomers' first entry (Source/ColonyCouncil/Colonies/Foundings.cs, FirstWords: in place of the first entry
+      Journal.Daily writes, which is in the voice of someone joining people already there): founding (nobody of the
+      colony on the land before them) or joining (a founding party there first); how they came, walked, pods or gravship;
+      scenario (a scenario's start); mechanitor (they have a mechlink); tribalborn (they grew up in a tribe). With the
+      writer's own tags (the season, the hour, the weather, their age, the colony's age).
+  -->
+
+  <ColonyCouncil.JournalDayDef>
+    <defName>Rimfolk_JDay_Uprooted</defName>
+    <key>Uprooted</key>
+    <weight>1.2</weight>
+    <thoughts><li>Rimfolk_Uprooted</li></thoughts>
+  </ColonyCouncil.JournalDayDef>
+
+  <ColonyCouncil.JournalDayDef>
+    <defName>Rimfolk_JDay_Parted</defName>
+    <key>Parted</key>
+    <weight>1.2</weight>
+    <social>true</social>
+    <thoughts><li>Rimfolk_Parted</li></thoughts>
+  </ColonyCouncil.JournalDayDef>
+
+  <ColonyCouncil.JournalDayDef>
+    <defName>Rimfolk_JDay_FirstNight</defName>
+    <key>FirstNight</key>
+    <weight>1.5</weight>
+    <thoughts><li>Rimfolk_FirstNight</li></thoughts>
+  </ColonyCouncil.JournalDayDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Uprooted</defName>
+    <lines>
+      <plain>
+        <li>I keep thinking about the other place, the one I'm not living in.</li>
+        <li>Nobody asked me twice where I wanted to be. I'd have answered differently.</li>
+        <li>Did my work today and kept quiet about where I'd rather be.</li>
+        <li>It's not a bad place. It's just not the one I'd have chosen.</li>
+        <li>Somebody asked how I was settling. I said fine.</li>
+        <li>[night] Couldn't sleep. Lay there going over how it was decided without me.</li>
+        <li>[lowmood] I'm tired of pretending I don't mind.</li>
+        <li>[work:Growing] Worked the fields today. Good soil, and my heart wasn't in it.</li>
+        <li>I'll get over it. Everyone says so, anyway.</li>
+        <li>[old] At my age you'd think I'd get to choose where I live.</li>
+        <li>[teen] Nobody listens to what I want. Nothing new there.</li>
+        <li>They say it passes. I hope they're right.</li>
+        <li>[trait:Kind] I don't blame anyone. I only wish it had gone the other way.</li>
+        <li>[trait:Abrasive] I'd tell them exactly what I think of it, if it would change anything.</li>
+      </plain>
+      <warm>
+        <li>The people here are kind about it, which almost makes it worse.</li>
+      </warm>
+      <blunt>
+        <li>Wrong place. Get on with it.</li>
+      </blunt>
+      <cheerful>
+        <li>Not where I wanted to be, but I'll find something to like about it.</li>
+      </cheerful>
+      <gloomy>
+        <li>Every road out of here goes to the place I wanted.</li>
+      </gloomy>
+      <cold>
+        <li>My wishes were noted and set aside. I have noted that too.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_Parted</defName>
+    <lines>
+      <plain>
+        <li>Turned to tell {OTHER_nameDef} something today, and {OTHER_nameDef} wasn't there.</li>
+        <li>Missed {OTHER_nameDef} at supper.</li>
+        <li>I wonder what {OTHER_nameDef} is doing right now.</li>
+        <li>Saved up a story for {OTHER_nameDef} today. No idea when I'll get to tell it.</li>
+        <li>We live in two places now, and the one person I'd talk to is in the other.</li>
+        <li>[night] Couldn't sleep. Thought about {OTHER_nameDef} instead.</li>
+        <li>It's quieter without {OTHER_nameDef}. I didn't think I'd notice so much.</li>
+        <li>[lowmood] Everything's harder without {OTHER_nameDef} around to grumble at.</li>
+        <li>I should send word to {OTHER_nameDef}. I keep meaning to.</li>
+        <li>[winter] Cold days make me miss {OTHER_nameDef} more.</li>
+      </plain>
+      <warm>
+        <li>I hope they're looking after {OTHER_nameDef} as well as {OTHER_nameDef} looked after me.</li>
+      </warm>
+      <blunt>
+        <li>Miss {OTHER_nameDef}. That's all.</li>
+      </blunt>
+      <cheerful>
+        <li>{OTHER_nameDef} would have laughed at today. I'm saving it up.</li>
+      </cheerful>
+      <gloomy>
+        <li>Two places apart might as well be two worlds, some days.</li>
+      </gloomy>
+      <cold>
+        <li>{OTHER_nameDef} is elsewhere now. I am adjusting.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Day_FirstNight</defName>
+    <lines>
+      <plain>
+        <li>First night at the new place. Everyone stayed up later than they should have.</li>
+        <li>We were all together on the first night here. I'll remember that.</li>
+        <li>Slept badly the first night, and didn't mind.</li>
+        <li>The first night here felt like the start of something.</li>
+        <li>Somebody said a few words the first night, and for once nobody interrupted.</li>
+        <li>[!newcomer] I thought I'd miss the old place more on the first night. I was too tired to.</li>
+        <li>[newcomer] My first night here, among people I barely know, and it felt right.</li>
+        <li>[lowtech] We sat out late the first night, under a sky none of us had slept under before.</li>
+        <li>[!lowtech] First night here. Unpacked what we could and slept where we dropped.</li>
+        <li>[old] I've had a lot of first nights. This was a good one.</li>
+        <li>[child] Nobody sent me to bed early on the first night.</li>
+        <li>[winter] A cold first night, all of us bundled up against it.</li>
+      </plain>
+      <warm>
+        <li>I looked round at them all on the first night and thought, these are my people now.</li>
+      </warm>
+      <blunt>
+        <li>First night done. Now the work.</li>
+      </blunt>
+      <cheerful>
+        <li>Best first night anywhere, and I've had a few!</li>
+      </cheerful>
+      <gloomy>
+        <li>First night, and I was already counting what we don't have.</li>
+      </gloomy>
+      <cold>
+        <li>First night passed without trouble. Adequate.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_NewcomerFirst</defName>
+    <lines>
+      <plain>
+        <li>[founding] There's nobody here but us, and a lot of land that doesn't know our names yet.</li>
+        <li>[founding,!gravship] No walls, no roof, nobody to show us where anything is. We'll have to be the ones who know.</li>
+        <li>[founding] We're the first. Whatever this place becomes, it starts with the handful of us.</li>
+        <li>[founding,walked] We walked in off the edge of the land and stopped where it looked good enough. That's a colony now, apparently.</li>
+        <li>[founding,walked,rain] Walked in through the rain to a place with nothing on it. We'll start on a roof tomorrow.</li>
+        <li>[founding,small] Just a few of us. I counted twice to be sure.</li>
+        <li>[founding,night] First night here, in the dark, and the dark goes on a long way.</li>
+        <li>[founding,old] At my age I should be sitting by someone else's fire, not starting a new one.</li>
+        <li>[founding,winter,!gravship] Winter, and a bare piece of land. Somebody had better know how to build.</li>
+        <li>[joining] The ones who came first are still settling in themselves, and they say there's room for me.</li>
+        <li>[joining] A new colony, and I'm one of the first to join it. That has to count for something.</li>
+        <li>[joining] The founders look as new to the place as I am, which helps.</li>
+        <li>[joining,walked] Walked in from the edge with my pack and found the place half begun.</li>
+        <li>[pods] Came down in a pod. My ears are still ringing.</li>
+        <li>[pods] Nobody tells you how loud a landing is.</li>
+        <li>[pods,founding] Came down in pods, all of us, onto land none of us had seen before.</li>
+        <li>[pods,joining] The pod set me down near the others' camp, which was a better landing than I'd expected.</li>
+        <li>[gravship] The ship's down, and the deck is quiet under my feet for the first time in a while.</li>
+        <li>[gravship] We came down with the ship, and the ship is the colony now.</li>
+        <li>[walked] Walked a long way to get here. My feet are done for, but I'm here.</li>
+        <li>[walked,joining] Walked in on foot with what I could carry, which wasn't much.</li>
+        <li>[mechanitor] The mechlink hums at the back of my head, the same as anywhere. Good to know some things travel.</li>
+        <li>[mechanitor,founding] A bare patch of land, and the mechlink already working out what could be built on it.</li>
+        <li>[tribalborn] The land smells different here. I'll learn it.</li>
+        <li>[tribalborn,founding] I asked the land for leave to stay. It hasn't said no.</li>
+        <li>[child] Everything's new here, even the grown-ups.</li>
+        <li>[teen] Everyone keeps asking what I can do. I'm not sure yet.</li>
+      </plain>
+      <warm>
+        <li>[founding] I like the people I came with. That's a better start than most.</li>
+        <li>[joining] They were glad to see me, and I was glad to be seen.</li>
+      </warm>
+      <blunt>
+        <li>[founding] Bare land. Lots of work. Start tomorrow.</li>
+        <li>[joining] New colony, new faces, same work.</li>
+      </blunt>
+      <cheerful>
+        <li>[founding] A whole place nobody's lived in yet, and it's ours!</li>
+        <li>[joining] I'm in at the start of something!</li>
+      </cheerful>
+      <gloomy>
+        <li>[founding] Nothing here but us and whatever's out there watching.</li>
+        <li>[joining] They're new at this too. I hope one of us knows what we're doing.</li>
+      </gloomy>
+      <cold>
+        <li>[founding] Shelter none, stores thin, people adequate.</li>
+        <li>[joining] The founders are thinly spread. I'll be useful.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

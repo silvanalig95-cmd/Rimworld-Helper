@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Stage 3's content pass (7 November 2026): more words for the founders and the colonies that part and join, joined to
+    the pools of Rimfolk_FreshStart.xml, Rimfolk_HandOver.xml and Rimfolk_ManyColonies.xml at startup, and more for the
+    founders' own talk about the colony they founded (Rimfolk_Talk_Lines_Together.xml, Rimfolk_Mem_Founding). Every line
+    one sentence said over one head, with the tags its draw sets, the colony's age by its own means.
+    - The first night (Rimfolk_Pool_FirstNight): [fire] only with a fire burning at the gathering, [speaker] the one who
+      leads it, [newcomer] one who came as a newcomer (they never lived at the old colony), [!newcomer] one who did.
+    - Setting out (Rimfolk_Pool_FoundingSays): [leave] one of the party, [seeoff] those at home seeing them off.
+    - The welcome's meal (Rimfolk_Pool_MergeWelcome): said by anyone at the table, those who came and those already there,
+      so a line without [speaker] fits either; [speaker] lines are the host's. The speaker's greeting with the cup
+      (Rimfolk_Pool_MergeGreeting): {OLD} the colony they came from, {PLACE} the home they came to.
+    - The hand-over (Rimfolk_Pool_HandOverMeeting, _HandOver, _HandOverGive, _HandOverTake, _HandOverFarewell): the
+      meeting's chair and the ceremony's head are [speaker]; a ceremony line without it is said by anyone there, going or
+      staying; the token by the one who hands it over and the head who takes it; farewells [going] and [staying].
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_FirstNight_StageThree</defName>
+    <pool>Rimfolk_Pool_FirstNight</pool>
+    <lines>
+      <plain>
+        <li>[fire] Move up, there's room on this side of the fire.</li>
+        <li>[fire,cold] Get closer to the fire, the night's turned cold.</li>
+        <li>[fire,lowtech] We'll want a proper hearth before long, but this will do tonight.</li>
+        <li>[!fire] No fire tonight, but we're all here, and that's the main thing.</li>
+        <li>[rain] Rain on the first night, of all nights.</li>
+        <li>[snow] Snow on our first night here, that's one to tell later.</li>
+        <li>[clear,night] Look at the stars, the same ones as ever, and they still look new from here.</li>
+        <li>[clear] A clear sky for the first night, I'll take that as a good sign.</li>
+        <li>[winter] Whoever picked winter for this owes us all a warm bed.</li>
+        <li>[summer] At least the nights are warm for now.</li>
+        <li>[fall] We'll want the stores in before the frost.</li>
+        <li>[spring] Spring's a good time to start anything, even a colony.</li>
+        <li>[!newcomer] I keep reaching for things that are back at the old place.</li>
+        <li>[!newcomer] Funny, I already miss the noise of the old place.</li>
+        <li>[!newcomer] The old place had its faults, but I knew where everything was.</li>
+        <li>[newcomer] A few days ago I'd never heard of this place.</li>
+        <li>[newcomer] So this is what we answered the call for.</li>
+        <li>[newcomer] I came a long way for this, and I'm not sorry.</li>
+        <li>[old] I'm too old to be starting over, and here I am, starting over.</li>
+        <li>[teen] I'm going to remember tonight for the rest of my life.</li>
+        <li>[child,fire] Can we sleep by the fire tonight?</li>
+        <li>[child,night] It's very dark out there.</li>
+        <li>[hurt] I'll be more use tomorrow, I promise.</li>
+        <li>[small] Just us, then, and a lot of empty land.</li>
+        <li>[large] There are more of us than I expected, which is good news.</li>
+        <li>[highmood] I don't think I've ever felt this hopeful.</li>
+        <li>[lowmood] Ask me tomorrow whether this was a good idea.</li>
+        <li>[tribal] The ground here sleeps differently, I can feel it.</li>
+        <li>[medieval] We'll need a well, a wall and a roof, in that order.</li>
+        <li>[industrial] Tomorrow I'll take stock of everything we brought.</li>
+        <li>[spacer] Strange to sleep on ground we haven't surveyed yet.</li>
+        <li>[speaker] We start at first light, so get some sleep tonight.</li>
+        <li>[speaker,!newcomer] We didn't come out here to be comfortable, we came to build something.</li>
+        <li>[speaker,newcomer] Some of us are strangers tonight, and that won't last long.</li>
+        <li>[speaker] Whatever this place becomes, tonight is where it started.</li>
+        <li>[speaker,fire] Look into the fire a moment, all of you, and remember tonight.</li>
+        <li>[speaker,tribal] The spirits of this land don't know us yet, so let's give them something good to see.</li>
+        <li>[speaker,medieval] We have a name, a patch of ground and each other, and that's charter enough for tonight.</li>
+        <li>[speaker,industrial] First thing tomorrow, we mark out where everything goes.</li>
+        <li>[speaker,spacer] Tomorrow we survey, tonight we rest.</li>
+      </plain>
+      <blunt>
+        <li>Eat, sleep, and we'll argue about walls in the morning.</li>
+      </blunt>
+      <cheerful>
+        <li>Our own place, our own sky, and our own mistakes to make!</li>
+      </cheerful>
+      <gloomy>
+        <li>Every new place looks kind on the first night.</li>
+      </gloomy>
+      <cold>
+        <li>Sleep in shifts, we don't know who else is out there.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_FoundingSays_StageThree</defName>
+    <pool>Rimfolk_Pool_FoundingSays</pool>
+    <lines>
+      <plain>
+        <li>[leave] We'll send word the day we have a roof over us.</li>
+        <li>[leave] The road's long, so let's not stand about.</li>
+        <li>[leave] One more look, and then I'm not looking back.</li>
+        <li>[leave] I've packed everything I own, and it still doesn't feel like enough.</li>
+        <li>[leave,old] I didn't think I'd be setting out again at my age.</li>
+        <li>[leave,child] Is it far?</li>
+        <li>[leave,teen] I can't believe we're really going.</li>
+        <li>[leave,winter] Cold day for a long road.</li>
+        <li>[leave,rain] Wet start, but it's a start.</li>
+        <li>[leave,morning] An early start, and a long way to go.</li>
+        <li>[leave,tribal] The land ahead doesn't know us yet, but it will.</li>
+        <li>[leave,medieval] We go with the council's blessing, which will have to do for a roof tonight.</li>
+        <li>[leave,industrial] Everything's loaded, checked, and checked again.</li>
+        <li>[leave,spacer] Route plotted and supplies logged, so there's no reason to wait.</li>
+        <li>[seeoff] Mind how you go, the road won't mind it for you.</li>
+        <li>[seeoff] Don't forget us once you're settled.</li>
+        <li>[seeoff] Supper's going to be quiet tonight.</li>
+        <li>[seeoff] Take care of each other out there.</li>
+        <li>[seeoff] Go well, all of you.</li>
+        <li>[seeoff,!tribal] Write when you get there, or send someone with the news.</li>
+        <li>[seeoff,child] When can I come and see it?</li>
+        <li>[seeoff,old] I'm too old for that road, but I'm glad you're not.</li>
+        <li>[seeoff,lowtech] Walk safe, and may the land be kind to you.</li>
+        <li>[seeoff,winter] Keep your feet dry and your fires lit.</li>
+        <li>[seeoff,rain] You picked a wet day for it.</li>
+      </plain>
+      <blunt>
+        <li>[leave] Right, we're off.</li>
+      </blunt>
+      <cheerful>
+        <li>[leave] New place, new start, let's go!</li>
+        <li>[seeoff] Go on, and make us jealous.</li>
+      </cheerful>
+      <gloomy>
+        <li>[leave] I hope we're not making a mistake.</li>
+      </gloomy>
+      <cold>
+        <li>[leave] We have what we need, so let's move.</li>
+        <li>[seeoff] Go, then, and do it properly.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_MergeWelcome_StageThree</defName>
+    <pool>Rimfolk_Pool_MergeWelcome</pool>
+    <lines>
+      <plain>
+        <li>I'll never remember all the new names by tomorrow.</li>
+        <li>Somebody pass the bread down to the far end.</li>
+        <li>It's a full table tonight, and that's how I like it.</li>
+        <li>I keep looking up and seeing faces I don't know yet.</li>
+        <li>[eating] This tastes better with more people round it.</li>
+        <li>Tomorrow we'll sort out who sleeps where, tonight we eat.</li>
+        <li>Two councils' worth of opinions at one table, this should be lively.</li>
+        <li>I'll trade you stories of the old place for stories of this one.</li>
+        <li>[child] There are so many people at supper now.</li>
+        <li>[old] I like a table this full.</li>
+        <li>[winter] It's good to have more of us for the winter.</li>
+        <li>[summer] Long evenings ahead, and plenty of time to get to know each other.</li>
+        <li>[lowtech] More mouths and more hands, and that's a fair trade.</li>
+        <li>[speaker] There's a place at this table for every one of you, tonight and after.</li>
+        <li>[speaker] Sit anywhere, there's no old side and new side at this table.</li>
+        <li>[speaker] Tonight we eat, and tomorrow we work the rest out together.</li>
+      </plain>
+      <blunt>
+        <li>Eat first, talk after.</li>
+      </blunt>
+      <cheerful>
+        <li>A full table and a full pot, what more could anyone want?</li>
+        <li>I love a crowded supper!</li>
+      </cheerful>
+      <gloomy>
+        <li>It'll take more than one supper to make one colony of us.</li>
+      </gloomy>
+      <cold>
+        <li>More mouths to feed, then.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_MergeGreeting_StageThree</defName>
+    <pool>Rimfolk_Pool_MergeGreeting</pool>
+    <lines>
+      <plain>
+        <li>[speaker] To {OLD}, which we'll remember, and to {PLACE}, which is all of ours now.</li>
+        <li>[speaker] Raise your cups to the people of {OLD}, and welcome home.</li>
+        <li>[speaker] Tonight {PLACE} grows, and it's the better for it.</li>
+        <li>[speaker] To everyone who came here from {OLD}: sit down, eat, and stay.</li>
+        <li>[speaker] {OLD} lives on at this table, in every one of you.</li>
+        <li>[speaker,lowtech] The fires of {OLD} and {PLACE} burn as one from tonight.</li>
+        <li>[speaker,tribal] Two bands, one fire, and may the spirits see it.</li>
+        <li>[speaker,medieval] Let it be said that on this night {OLD} and {PLACE} became one.</li>
+        <li>[speaker,industrial] Two settlements, one table, one council, so welcome, all of you.</li>
+        <li>[speaker,spacer] Two colonies on one roster from tonight, and welcome to {PLACE}.</li>
+        <li>[speaker,winter] Come in from the cold, people of {OLD}, to the warmest table we have.</li>
+        <li>[speaker] There are no guests at this table tonight, only the people of {PLACE}.</li>
+      </plain>
+      <warm>
+        <li>[speaker] I've looked forward to this supper, so welcome, all of you.</li>
+      </warm>
+      <cheerful>
+        <li>[speaker] To {OLD} and {PLACE}, and to the longest table we've ever needed!</li>
+      </cheerful>
+      <cold>
+        <li>[speaker] You are of {PLACE} now, and we expect the best of you.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_HandOverMeeting_StageThree</defName>
+    <pool>Rimfolk_Pool_HandOverMeeting</pool>
+    <lines>
+      <plain>
+        <li>[speaker] Let's go round the table, and everyone gets their say.</li>
+        <li>[speaker] Nobody is being sent anywhere tonight, we're only deciding.</li>
+        <li>[speaker] Think of the ones who would stay, and whether they want this.</li>
+        <li>If they want to run it themselves, maybe they've earned it.</li>
+        <li>I'd want to know who would lead it before I vote.</li>
+        <li>Either way the place stays standing, it just stops being ours to run.</li>
+        <li>I'd rather hand it over than leave it to fall down.</li>
+        <li>[tribal] The elders would say a fire must have its keepers.</li>
+        <li>[medieval] A free town with our own people in it would make a good neighbor.</li>
+        <li>[industrial] The numbers say it can stand on its own, if the people want it.</li>
+        <li>[spacer] The systems can run without us, the question is whether the people should.</li>
+        <li>[old] At my age you don't rush a choice like this.</li>
+        <li>[lowmood] I'm not ready to vote on this, but I suppose I have to.</li>
+        <li>[trusting] If the council thinks it's time, I'm listening.</li>
+        <li>[doubtful] I want to hear how this is good for the ones who stay, not just the rest of us.</li>
+      </plain>
+      <warm>
+        <li>Whatever happens, I'd like us to part as friends.</li>
+      </warm>
+      <blunt>
+        <li>Vote, and stop talking in circles.</li>
+      </blunt>
+      <cheerful>
+        <li>Our own people running their own town, I like the sound of that.</li>
+      </cheerful>
+      <gloomy>
+        <li>It feels like the end of something, however we vote.</li>
+      </gloomy>
+      <cold>
+        <li>Feelings aside, can it stand on its own or not?</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_HandOver_StageThree</defName>
+    <pool>Rimfolk_Pool_HandOver</pool>
+    <lines>
+      <plain>
+        <li>[speaker] We'll keep the walls up and the gate open, for you most of all.</li>
+        <li>[speaker] Those of you who go, go knowing this place stands behind you.</li>
+        <li>[speaker] I'll lead it as well as I know how.</li>
+        <li>[speaker,tribal] The fire will be kept, and the stories with it.</li>
+        <li>[speaker,medieval] This hall has a new master and the same old roof.</li>
+        <li>[speaker,industrial] The township opens for business tomorrow morning.</li>
+        <li>[speaker,spacer] The new administration is in place, and the channel to you stays open.</li>
+        <li>This is the last time we'll all stand here as one colony.</li>
+        <li>Look around, it'll be a while before we're all in one place again.</li>
+        <li>Whatever we're called after today, we started out together.</li>
+        <li>[lowtech] The old ones will tell this day to the young ones, you'll see.</li>
+        <li>[!tribal] Somebody should be writing this down.</li>
+        <li>[old] I never thought I'd see this place stand on its own.</li>
+        <li>[child] Will we still see each other?</li>
+        <li>[teen] So it's a town now?</li>
+      </plain>
+      <warm>
+        <li>We're still the same people, whatever we call it now.</li>
+      </warm>
+      <cheerful>
+        <li>A town of our own people, imagine that.</li>
+      </cheerful>
+      <gloomy>
+        <li>Tomorrow I'll keep looking for faces that aren't here.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_HandOverGive_StageThree</defName>
+    <pool>Rimfolk_Pool_HandOverGive</pool>
+    <lines>
+      <plain>
+        <li>Take good care of it, it took a lot of work.</li>
+        <li>I know you'll do better with it than we would have.</li>
+        <li>Don't let anyone tell you how we'd have done it.</li>
+        <li>[tribal] Keep the totem where the fire can see it.</li>
+        <li>[medieval] The keys, and the charter, and every promise in it.</li>
+        <li>[industrial] Here are the papers, all signed, and the keys.</li>
+        <li>[spacer] Access transferred, and every code is yours.</li>
+      </plain>
+      <warm>
+        <li>Be good to it, and to them.</li>
+      </warm>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_HandOverTake_StageThree</defName>
+    <pool>Rimfolk_Pool_HandOverTake</pool>
+    <lines>
+      <plain>
+        <li>I'll keep it safe, and the people with it.</li>
+        <li>It's heavier than it looks.</li>
+        <li>I won't let you down.</li>
+        <li>[tribal] The totem stays, and so does the fire.</li>
+        <li>[medieval] I'll have the charter read out on this day every year.</li>
+        <li>[industrial] Signed and received, and thank you for everything.</li>
+        <li>[spacer] Codes accepted, and you'll always have a way back in.</li>
+        <li>[old] I'm old for this, but I'll manage.</li>
+      </plain>
+      <warm>
+        <li>Thank you for trusting me with all of it.</li>
+      </warm>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_HandOverFarewell_StageThree</defName>
+    <pool>Rimfolk_Pool_HandOverFarewell</pool>
+    <lines>
+      <plain>
+        <li>[going] I'll think of you every time I sit down to eat.</li>
+        <li>[going] Don't forget me while I'm gone.</li>
+        <li>[going] I'll send word from the road.</li>
+        <li>[going] I'll come back to visit, I promise.</li>
+        <li>[going,old] At my age every goodbye feels like the last one.</li>
+        <li>[going,child] Will you come and see me?</li>
+        <li>[staying] Send word, or I'll come and find you.</li>
+        <li>[staying] It won't feel right, you not being here.</li>
+        <li>[staying] I'll look after things here, don't worry.</li>
+        <li>[staying] Come back when you can, this town owes you that.</li>
+        <li>[staying,old] Don't leave it too long before you visit, I'm not getting younger.</li>
+        <li>[staying,child] Will you come back?</li>
+        <li>[staying] Take care of yourself out there.</li>
+      </plain>
+      <cheerful>
+        <li>[going] I'll be back to brag about the new place, you'll see.</li>
+        <li>[staying] Go on, have an adventure for both of us.</li>
+      </cheerful>
+      <cold>
+        <li>[going] Goodbye, then.</li>
+        <li>[staying] Go well.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== The founders' own talk about the colony they founded ===================== -->
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_Founding_Open_StageThree</defName>
+    <memory>Rimfolk_Mem_Founding</memory>
+    <turn>Open</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>I keep thinking about the day we set out for {LABEL}.</li>
+        <li>Remember the first morning at {LABEL}, everyone wondering where to start?</li>
+        <li>[first] We've never really talked about founding {LABEL}, have we?</li>
+        <li>[friends] I'm glad you were one of the founders of {LABEL}.</li>
+        <li>[lowtech] Remember marking out where the first walls of {LABEL} would go?</li>
+        <li>[!lowtech] Remember sorting the kit at {LABEL}, trying to work out what we'd forgotten?</li>
+        <li>[old] I didn't think I had another fresh start in me, and then came {LABEL}.</li>
+        <li>Sometimes I try to see {LABEL} the way it looked on the first day.</li>
+      </plain>
+      <warm>
+        <li>Founding {LABEL} with you is one of the best things I've done.</li>
+      </warm>
+      <blunt>
+        <li>We built {LABEL}, nobody handed it to us.</li>
+      </blunt>
+      <cheerful>
+        <li>{LABEL} was a wild idea, and it worked!</li>
+      </cheerful>
+      <gloomy>
+        <li>I still can't decide if founding {LABEL} was brave or foolish.</li>
+      </gloomy>
+      <cold>
+        <li>Founding {LABEL} was the sound decision, whatever anyone says.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_Founding_Reply_StageThree</defName>
+    <memory>Rimfolk_Mem_Founding</memory>
+    <turn>Reply</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>I remember the quiet more than anything.</li>
+        <li>We argued about everything at the start.</li>
+        <li>I remember being so tired.</li>
+        <li>[lowtech] The first fire, and everyone too tired to talk.</li>
+        <li>[!lowtech] I remember counting the supplies every night.</li>
+        <li>I'd do it again, I think.</li>
+        <li>[first] I didn't know you thought about it too.</li>
+        <li>We had more hope than sense back then.</li>
+      </plain>
+      <warm>
+        <li>It was worth it, all of it, because you were there.</li>
+      </warm>
+      <blunt>
+        <li>We did the work, that's what I remember.</li>
+      </blunt>
+      <cheerful>
+        <li>Best thing any of us ever did.</li>
+      </cheerful>
+      <gloomy>
+        <li>I remember being sure it would fail.</li>
+      </gloomy>
+      <cold>
+        <li>I remember it was necessary.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_Founding_Close_StageThree</defName>
+    <memory>Rimfolk_Mem_Founding</memory>
+    <turn>Close</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>Here's to the founders of {LABEL}.</li>
+        <li>We should tell the newer ones about it some time.</li>
+        <li>It was a good start, whatever came after.</li>
+        <li>Let's not leave it so long before we talk about it again.</li>
+        <li>I'm glad we did it.</li>
+      </plain>
+      <warm>
+        <li>I'm glad it was you.</li>
+      </warm>
+      <blunt>
+        <li>Right, back to work.</li>
+      </blunt>
+      <gloomy>
+        <li>Funny how long ago it feels.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+</Defs>

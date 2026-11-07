@@ -876,8 +876,39 @@ namespace ColonyCouncil
                 new LookTargets(came));
             History.Add(FoundingMath.KindFounded + ":newcomers", came.Select(p => new HistoryActor(Refs.Of(p), HistoryRole.Did)).ToList(), Refs.Colony(map), HistoryMath.Everyday,
                 "CC_Found_NewcomersHistory".Translate(Names(came).Named("NAMES"), Homes.Name(map).Named("PLACE")).Resolve());
+            FirstWords(came, founding, "walked", false);
             CameraJumper.TryJump(came[0]);
         }
+
+        /// <summary>
+        /// Each newcomer's first journal entry as they come (Rimfolk_Journal_NewcomerFirst), in place of the one the day's
+        /// journal pass writes, which is in the voice of someone joining people already there: founding (nobody of the
+        /// colony on the land before them) or joining, how they came (walked, pods, gravship), a scenario's start, and
+        /// whether they are a mechanitor or grew up in a tribe.
+        /// </summary>
+        internal static void FirstWords(List<Pawn> came, bool founding, string how, bool scenario)
+        {
+            var journals = CouncilGameComponent.Instance?.journals;
+            if (journals == null || came == null) return;
+            foreach (var p in came)
+            {
+                try
+                {
+                    if (p == null || p.Dead || !p.RaceProps.Humanlike || p.DevelopmentalStage.Baby() || journals.For(p) != null) continue;
+                    var tags = new List<string> { founding ? "founding" : "joining", how };
+                    if (scenario) tags.Add("scenario");
+                    if (ModsConfig.BiotechActive && MechanitorUtility.IsMechanitor(p)) tags.Add("mechanitor");
+                    if (p.story?.Childhood?.spawnCategories?.Contains("Tribal") == true) tags.Add("tribalborn");
+                    journals.WriteTagged(p, NewcomerFirstPool, tags.ToArray());
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("founding: a newcomer's first words", e);
+                }
+            }
+        }
+
+        public const string NewcomerFirstPool = "Rimfolk_Journal_NewcomerFirst";
 
         /// <summary>The silver and food a passage costs, from the stores: the food first, by its market value, then the silver (FoundingMath.Pay).</summary>
         public static bool CanPay(Map map, int price, out int silver, out float food)
