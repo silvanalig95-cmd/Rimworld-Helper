@@ -40,5 +40,6 @@
     <Compile Include="../../Source/ColonyCouncil/Diplomacy/SchemeMath.cs" Link="Linked/SchemeMath.cs" />
     <!-- The wild's alphas and bosses (BeastSim.cs, after the everyday hurts with &#45;&#45;harm): the stampedes' and the beast nemeses' rates. -->
     <Compile Include="../../Source/ColonyCouncil/Beasts/BeastsMath.cs" Link="Linked/BeastsMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Hauling/HaulMath.cs" Link="Linked/HaulMath.cs" />
   </ItemGroup>
 </Project>
