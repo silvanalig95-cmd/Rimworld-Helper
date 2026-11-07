@@ -97,7 +97,7 @@ namespace ColonyCouncil
         private static List<PawnKindDef> KindsOf(FactionDef def) =>
             DefDatabase<PawnKindDef>.AllDefsListForReading.Where(k => k.defaultFactionDef == def && k.race != null).OrderBy(k => k.defName).ToList();
 
-        /// <summary>What a new pawn of one of these kinds came with: kind of people, clothes and their colours, weapon, what they carry, a class or a psylink.</summary>
+        /// <summary>What a new pawn of one of these kinds came with: kind of people, clothes and their colours, weapon, what they carry, a class, a psylink or genes put in.</summary>
         private static string Describe(Pawn p)
         {
             var sb = new StringBuilder("    " + p.kindDef.label + ": " + (p.genes?.Xenotype?.label ?? "baseliner"));
@@ -110,6 +110,9 @@ namespace ColonyCouncil
             if (!classes.NullOrEmpty()) sb.Append("; class " + string.Join(", ", classes));
             var link = p.GetMainPsylinkSource();
             if (link != null) sb.Append("; psylink " + link.level + (p.abilities != null ? " (" + string.Join(", ", p.abilities.AllAbilitiesForReading.Select(a => a.def.label)) + ")" : ""));
+            // A baseliner's xenogenes are the ones put in (another kind of people's may be its own).
+            var xenogenes = p.genes != null && p.genes.Xenotype == XenotypeDefOf.Baseliner ? p.genes.Xenogenes : null;
+            if (!xenogenes.NullOrEmpty()) sb.Append("; genes put in " + string.Join(", ", xenogenes.Select(g => g.def.label)));
             return sb.ToString();
         }
 

@@ -392,8 +392,8 @@ everyone else varying freely around the signature):
 | Herding folk | russet on caps and wraps (tail cap, broadwrap, war veil, headdress) and the coat over the hides | herd wardens: war veil, Tribals' war wraps | hides, kilts, ponchos and pelt coats of every make |
 | Road league | teal on the coat (any cut) and the duster | caravan guards: teal duster, cowboy hat, flak vest; outriders: the same with flak trousers, grenade belts | coat of any cut, the rest travelling clothes and hats |
 | Pilgrim fellowship | sage on the travelling cloak (cape, robe, mantle) | wardens of the way: helmet, sage cape, padding; archers: sage cape, quiver | cloak, cone hat, packs and banners, plain clothes of any colour |
-| Learned society | claret on the coat or gown and the proctors' jacket | proctors: flak vest under the claret jacket | gown or coat of any cut over a collar shirt |
-| Spacer enclave | pale cyan on the coat and the marshals' armour | marshals: one issue of recon armour and helmet in pale cyan, a charge weapon | coat of any cut, industrial clothes, tool belts and packs, the chair's psychic finery |
+| Learned society | claret on the coat or gown and the proctors' jacket | proctors: flak vest under the claret jacket, a military cap (Hats and Rags) | gown or coat of any cut over a collar shirt |
+| Spacer enclave | pale cyan on the coat and the marshals' armour | marshals: one issue of recon armour and helmet in pale cyan over Rimsenal's spacer bodysuit, a charge weapon | coat of any cut, industrial clothes, tool belts and packs, the chair's psychic finery |
 | River folk | kingfisher blue on hats (floppy hat, tuque) and the coat | river wardens: blue tuque, plain clothes, padding | hides and plain clothes, slings and nets |
 
 **What they draw on**, each only when loaded: Vanilla Apparel Expanded (ponchos, kilts, pelt coats, suit jackets and lab
@@ -402,30 +402,34 @@ Vanilla Armour Expanded (gambesons, quilted vests, mail, light plate), Vanilla F
 tabards, chaperons, caps, the plague mask, padded armour, heater shields; war bows, pikes, flails), Tribals (war wraps),
 Settlers (bandanas, sombreros, vests); Vanilla Weapons Expanded and its Frontier (the league's revolvers and rifles),
 Non-Lethal (the proctors' tasers and stun batons), Grenades (the outriders' belts), Tribal (slings, clubs), Coilguns and
-Laser through the game's own tags. Rimsenal, Advanced Armaments, Variety Coats and the rest join where they add to the
-game's tags (no source was at hand to name their pieces). The base game alone dresses and arms every kind: robes, capes,
+Laser through the game's own tags; since the check against the player's own mods (below) also Vanilla Ideology Expanded -
+Hats and Rags, Melee Animation's lassos, Rimsenal's unisuits, data glasses, bodysuits and smart rifles, Classical's
+javelins, and Rimsenal's and Advanced Armaments' other guns under the game's tags. The base game alone dresses and arms every kind: robes, capes,
 hoods, plate and helmets, tribalwear and parkas, dusters, jackets and flak, recon armour; knives, clubs, maces, swords,
 spears and bows, revolvers, the game's guns and charge rifles.
 
 **What they carry**: the order's herbs and clean cloth (now and then a kit of industrial medicine), the herders' hay or
 hides, the league's beer, cloth or a little silver, the pilgrims' book of the road or herbs, the scholars' textbooks,
-novels and schematics, the enclave's components, chemfuel or medicine, the river folk's net cloth, herbs or timber.
+novels and schematics, the enclave's components, chemfuel or medicine, the river folk's net cloth, herbs or timber; with
+the player's mods also salves, candles, butter, fish sauce, a medicinal quill, wine, maps, wool and river fish.
 
 **Their kinds of people** (`xenotypeSet`, its parent's left out; each entry `MayRequire` Biotech and its mod; about three
 in four baseliners with every mod, more without):
 
 | People | The mix (in hundredths) | Why |
 |---|---|---|
-| Hospitaller order (22) | genie 6, highmate 4, pigskin 2, neanderthal 2; lowmate 3 (VRE Highmate), drakonori 2 (Alpha Genes), high elf 3 (Elves) | thinkers and gentle carers, and those the order nursed through |
-| Herding folk (29) | yttakin 6, neanderthal 4, pigskin 3; animusen 4 (Alpha Genes), boarskin 3 (VRE Pigskin), venator 3, wood elf 4, saurid 2 (VRE Saurid) | hardy, furred, at home with beasts and on the open grass |
-| Road league (29) | hussar 4, genie 4, highmate 3, dirtmole 2, neanderthal 2, starjack 2 (Odyssey); bogleg 5, stoneborn 3, uhlan 2 (VRE Hussar), android 2 (VRE Android) | the road brings every kind: boglegs' silver tongues, stoneborn craftsfolk, guards |
-| Pilgrim fellowship (25) | hussar, genie, neanderthal, impid, pigskin, yttakin, highmate 2 each; animakin 3, gauranlenkin 2 (VRE Phytokin), avaloi 2, forsaken 2 (Alpha Genes), wood elf 2 | pilgrims from everywhere, the tree folk drawn to holy places |
-| Learned society (24) | genie 10, highmate 3; high elf 4, avaloi 3, forsaken 2, archon 2 (VRE Archon) | the learned, the psychically gifted, the last of an old empire's lines |
-| Spacer enclave (28) | hussar 3, genie 5, highmate 5, starjack 4; archon 3, avaloi 3, android 3, lapis 2 (Alpha Genes) | transhumanist spacers: the made and the improved |
-| River folk (21) | neanderthal 3, pigskin 2, yttakin 2; coastal merren 5 (Stagz Merfolk), nereid 4 (Alpha Genes), poluxkin 3, gauranlenkin 2 (VRE Phytokin) | people of the water, and plant folk who keep it clean |
+| Hospitaller order (24) | genie 6, highmate 4, pigskin 2, neanderthal 2; lowmate 3 (VRE Highmate), drakonori 2 (Alpha Genes), high elf 3 (Elves), orangutan 2 (Awakened Apes) | thinkers and gentle carers, and those the order nursed through |
+| Herding folk (31) | yttakin 6, neanderthal 4, pigskin 3; animusen 4 (Alpha Genes), boarskin 3 (VRE Pigskin), venator 3, wood elf 4, saurid 2 (VRE Saurid), gorilla 2 (Awakened Apes) | hardy, furred, at home with beasts and on the open grass |
+| Road league (31) | hussar 4, genie 4, highmate 3, dirtmole 2, neanderthal 2, starjack 2 (Odyssey); bogleg 5, stoneborn 3, uhlan 2 (VRE Hussar), android 2 (VRE Android), bonobo 2 (Awakened Apes) | the road brings every kind: boglegs' silver tongues, stoneborn craftsfolk, guards, bonobos at the bargaining table |
+| Pilgrim fellowship (27) | hussar, genie, neanderthal, impid, pigskin, yttakin, highmate 2 each; animakin 3, gauranlenkin 2 (VRE Phytokin), avaloi 2, forsaken 2 (Alpha Genes), wood elf 2, gorilla 2 (Awakened Apes) | pilgrims from everywhere, the tree folk drawn to holy places |
+| Learned society (26) | genie 10, highmate 3; high elf 4, avaloi 3, forsaken 2, archon 2 (VRE Archon), orangutan 2 (Awakened Apes) | the learned, the psychically gifted, the last of an old empire's lines |
+| Spacer enclave (31) | hussar 3, genie 5, highmate 5, starjack 4; archon 3, avaloi 3, android 3, lapis 2 (Alpha Genes), Åskbarn 2 and Uredd 1 (Rimsenal Askbarn) | transhumanist spacers: the made and the improved |
+| River folk (22) | neanderthal 3, pigskin 2, yttakin 2; coastal merren 5 and abyssal merren 1 (Stagz Merfolk), nereid 4 (Alpha Genes), poluxkin 3, gauranlenkin 2 (VRE Phytokin) | people of the water, and plant folk who keep it clean |
 
-The player's race mods are all xenotypes (Elves Continued, Stagz Merfolk, the Stoneborn, Avaloi, Boglegs and Venators),
-so no extra pawn kinds were needed; Vanilla Genetics Expanded has no people.
+The player's race mods are all xenotypes (Elves Continued, Stagz Merfolk, the Stoneborn, Avaloi, Boglegs, Venators,
+Awakened Apes, Rimsenal Askbarn, Fairycore, Korg, Paws of Interest; the catalogue's only humanlike race besides the
+human is A RimWorld of Magic's spirit), so no extra pawn kinds were needed; Vanilla Genetics Expanded has no people.
+Fairycore's fairies were left out (exclusively female, and a pawn kind can't keep its men from the share).
 
 **Their gifts** (`PeopleKindExtension` on a kind: a list of gifts, each a share of the kind; at most one a pawn, the
 shares together never more than 60%; `Peoples/PeopleGifts.cs`, a postfix on the game's `GenerateNewPawnInternal`, so
@@ -440,13 +444,18 @@ only freshly made pawns of these kinds, with the deeper game hooks on; `PeoplesG
   wanderer 4% and minstrel 3%, wardens paladin 10%, archers ranger 6%, the keeper priest 30%; fellows arcanist 3% and
   enchanter 2%, scholars arcanist 5% and chronomancer 3%, the provost arcanist 12% and chronomancer 8%; enclave hands
   technomancer 4%, marshals psionic 5%; river ferry hands druid 3%, wardens ranger 5%, archers ranger 8%, the river master
-  druid 30%.
+  druid 30%. Since the check against the player's own mods: lay archers ranger 4%, herd wardens gladiator 4%, league
+  wayfarers wayfarer 3% and minstrel 2%, pilgrims monk 3%.
 - A psylink (Royalty), the game's own way with no letter (each level a psycast of its level); with Vanilla Psycasts
   Expanded, whose psylinks give points instead, one of the kind's paths it can follow and a few of its powers in order,
   as that mod's own pawn generation does (read by name). Scholars 5% (1 to 2 levels, chronopath or empath), the provost
   20% (1 to 3); enclave hands 3% (1, skipmaster or empath), marshals 6% (1 to 2, protector or warlord), factors 20% (1 to
   2, skipmaster, empath or harmonist), the chair 45% (2 to 4, harmonist, empath or skipmaster). None for the medieval and
   tribal peoples, whose magic is A RimWorld of Magic's.
+- Genes put in (Biotech), for the peoples whose age has the means (`PeoplesGearMath.GenesFit`: industrial and later): a
+  baseliner of no custom xenotype given them as xenogenes by name, none that conflicts with a gene it has (the other kinds
+  of people keep their genome whole). Scholars quick study 4%; enclave hands strong immunity 4%, marshals fast wound
+  healing 4%, factors attractive 4%, the chair Alpha Genes' extraordinary lifespan 10%.
 
 No letter, nothing saved, nothing on a clock. Dev actions (Debug actions, Rimfolk): "Peoples: their gear, kinds of
 people and gifts (log)..." (four new pawns of each kind of a people, described in the log and not kept) and "Peoples: one
@@ -466,12 +475,53 @@ Tests: `Tools/Tests/PeoplesGearTests.cs`.
 | Vanilla Psycasts Expanded | Psylinks with the game's own random psycasts. |
 | Vanilla Factions Expanded - Medieval 2 | No mantles, tabards, heater shields, caps, chaperons, plague masks, war bows or pikes. |
 | The VE apparel, armour, accessories and weapons sets | Their pieces and weapons are missing from the choices; nobody goes without. |
+| Vanilla Ideology Expanded - Hats and Rags | No beads, mitres, skullcaps, wide hats, fezzes or military caps: no prior wears a mitre and the keeper wears the cone hat, the proctors their own hats. |
+| Rimsenal, Melee Animation, Alpha Crafts, Alpha Animals, Awakened Apes | No unisuits, data glasses, spacer bodysuits (the marshals' collar shirt instead) or smart rifles; no lassos; no salves, candles, butter or fish sauce; no apes. |
 | The deeper game hooks (setting) | No gifts; the gear is unchanged (it is the defs'). |
 
-Not used: Rimsenal's, Advanced Armaments' and Variety Coats' pieces by name (no source at hand), Vanilla Apparel
+Not used: Vanilla Apparel
 Expanded's spectacles (never generated: their commonality is 0), Vanilla Expanded Framework's shield generation by tag
 (the order's guards are given their shield as part of the kit instead), Vanilla Races Expanded's sanguophages, lycans and
 insectors (not for peaceful folk), Alpha Genes' wretches, helixans, hivelings and mind devourers.
+
+**Checked against the player's own mods (7 November 2026).** The player: "full mod list to be considered everywhere, and
+now first for the faction gear, items, clothing, abilities etc." The first pass was read from the mods' public 1.6
+sources; this one from the player's own files, the catalogue `docs/player-mods/` (its active rows, the mods in their list
+and save). The catalogue itself was wrong first: `Tools/mod_pool.py` read every version folder of a mod, so 1.4 and 1.5
+defs stood for 1.6 ones (Vanilla Weapons Expanded's bows and guns with their old tags, Rimsenal's retired guns); it now
+reads only what 1.7 loads (a mod's `LoadFolders.xml` for 1.7 with its `IfModActive`, else root, `Common` and the newest
+version folder), in load order, an inactive mod's def never standing for an active one's, and it records each piece's
+`generateCommonality`. Every name the peoples used was in the player's active mods; what was wrong was what the game
+picks with them:
+- Vanilla Psycasts Expanded's eltex cape carries the game's `Cape` tag and is as likely as the plain cape in a tag
+  choice (which ignores a kind's money), so a quarter of the pilgrims, their chandlers and keeper and the scholars'
+  provost would have worn an 800-silver psychic cape without the people's colour. The plain cape has Rimfolk's own tag,
+  `Rimfolk_Cape`, and they choose that.
+- Royalty's `RoyalTier2` (the league master's and the enclave factor's finery) is also Rimsenal's close combat armour,
+  Vanilla Armour Expanded's marine boots and gloves, and A RimWorld of Magic's and the elves' robes and cloaks (rare by the
+  game's weights, about one piece in a hundred): they take `Rimfolk_Finery` instead, on the beret, the ladies' and top
+  hats, the formal shirt, the royal vest and the corset.
+- Vanilla Apparel Expanded - Accessories' `VAEA_Utility_Industrial` gave enclave hands explosive belts, mini turret
+  packs and battle banners, and its `VAEA_Utility_Neolithic` gave pilgrims quivers: a hand (and now a league wayfarer)
+  keeps out the soldiers' belts, packs and banners, a pilgrim the quiver (`apparelDisallowTags`).
+- `Patches/Rimfolk_PeoplesGear.xml` puts Rimfolk's tags on those pieces and on Vanilla Ideology Expanded - Hats and Rags'
+  hats and beads, which carry no tag at all and so were never worn by anyone the game makes; a patch whose piece is
+  missing does nothing.
+What was added, from the player's active mods (every age and calling, soldiers' kits still one kit): Hats and Rags'
+prayer beads (the order, the pilgrims), a bishop's mitre for the keeper of the shrines and now and then a prior, skullcaps for hospitallers and
+scholars, headscarves (and Ideology's headwrap) for lay servants and way archers, the wide hat of the road for way
+archers and chandlers, the fez for league wayfarers and factors, a military cap in the proctors' kit; Melee Animation's
+lassos for herders, drovers, the herd elder and the league's outriders; Accessories' ammo packs for the league's guards and
+outriders, packs, tool belts and medic bags for wayfarers; Rimsenal's unisuits and data glasses for enclave hands and data
+glasses for factors, its spacer bodysuit under the marshals' armour and its smart rifles in their hands (Rimsenal's and
+Advanced Armaments' other guns already come in under the game's `Gun`, `SpacerGun` and `IndustrialGunAdvanced`);
+Vanilla Factions Expanded - Classical's javelins for herd archers and river fishers, Medieval 2's arbalests for the lay
+archers; to carry, Alpha Crafts' aloe salve, candles, butter and fish sauce, Alpha Animals' medicinal cactipine quill,
+Medieval 2's wine, Odyssey's maps, muskox wool and river fish. "Variety Coats" in the player's list is Animal Variety
+Coats, animal fur textures: nothing to wear. Tests: `PeoplesGearTests` loads the catalogue's tables and fails on any row
+of `Tools/Tests/PeopleGear.txt` (now built from the catalogue) or any name of the peoples the active rows don't have, on
+a signature choice that lands on another mod's piece (97% at least on the people's own, weighted as the game picks), and
+on another calling's or age's armour among what a kind's tags give (half a hundredth at most).
 
 ## Their stories, sayings and touchpoints
 

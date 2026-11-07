@@ -18,7 +18,7 @@
     never required. Faith (Ideology): a fixed creed of the road and of carrying the faith (VE Memes' nomad where loaded,
     its omnism among the structures it may take), the Buddhist style. Kind of people (Biotech): every kind walks with them, a few of each, three in
     four baseliners: the game's, Vanilla Races Expanded's anima and gauranlen tree folk, the Avaloi, Alpha Genes' forsaken, wood
-    elves.
+    elves, Awakened Apes' gentle gorillas.
   -->
 
   <FactionDef ParentName="TribeBase">
@@ -83,6 +83,7 @@
         <DV_Avaloi MayRequire="Ludeon.RimWorld.Biotech,det.avaloi">0.02</DV_Avaloi>
         <AG_Forsaken MayRequire="Ludeon.RimWorld.Biotech,sarg.alphagenes">0.02</AG_Forsaken>
         <DevDesigner_XenotypeWoodElves MayRequire="Ludeon.RimWorld.Biotech,DevDesigner.Elves.Continued">0.02</DevDesigner_XenotypeWoodElves>
+        <Gorilla MayRequire="Ludeon.RimWorld.Biotech,OnlyMonkey.AwakenedApes">0.02</Gorilla>
       </xenotypeChances>
     </xenotypeSet>
     <fixedIdeo>true</fixedIdeo>
@@ -199,13 +200,17 @@
 
   <!--
     How alike they look (docs/design/peoples.md "Their gear, their kinds of people and their gifts"): pilgrims come from
-    everywhere and vary freely around their signature, a travelling cloak dyed sage, whether a cape, a robe or (Vanilla
-    Factions Expanded - Medieval 2) a mantle, worn old or new; the fellowship's wide cone hats (Ideology) on its pilgrims
-    and keeper, hoods and caps (Medieval 2) on the rest or none. The wardens of the way are its guards and wear one kit:
-    a helmet, the sage cape, padding (Vanilla Armour Expanded), with spears, pikes (Medieval 2) and the game's axes; its
-    archers a quiver (Vanilla Apparel Expanded - Accessories). Pilgrims carry a book of the road or herbs. A few are A
-    RimWorld of Magic's priests (the keeper), wanderers and minstrels (pilgrims), paladins (wardens) or rangers (archers).
-    Without any mod: capes, robes and hoods, the game's shirts and trousers, helmets, clubs, knives, spears and bows.
+    everywhere and vary freely around their signature, a travelling cloak dyed sage, whether the plain cape, a robe or
+    (Vanilla Factions Expanded - Medieval 2) a mantle, worn old or new (never Vanilla Psycasts Expanded's eltex cape, which
+    shares the game's cape tag); the fellowship's wide cone hats (Ideology) on its pilgrims, its keeper in a bishop's mitre
+    (Vanilla Ideology Expanded - Hats and Rags; without it the cone hat), hoods and caps (Medieval 2), the wide hat of the
+    road and headscarves (Hats and Rags, Ideology's headwrap) on the rest or none, prayer beads (Hats and Rags), packs and
+    banners (Vanilla Apparel Expanded - Accessories). The wardens of the way are its guards and wear one kit: a helmet,
+    the sage cape, padding (Vanilla Armour Expanded), with spears, pikes (Medieval 2) and the game's axes; its archers a
+    quiver (Accessories). Pilgrims carry a book of the road or herbs, with Odyssey now and then a map, with Alpha Crafts
+    candles for the shrines. A few are A RimWorld of Magic's priests (the keeper), wanderers, minstrels and monks
+    (pilgrims), paladins (wardens) or rangers (archers). Without any mod: capes, robes and hoods, the game's shirts and
+    trousers, helmets, clubs, knives, spears and bows.
   -->
   <PawnKindDef Name="Rimfolk_PilgrimsKindBase" Abstract="True">
     <race>Human</race>
@@ -231,10 +236,10 @@
     <itemQuality>Poor</itemQuality>
     <gearHealthRange>0.4~1.4</gearHealthRange>
     <specificApparelRequirements>
-      <!-- The travelling cloak: a cape, a robe or a mantle. -->
+      <!-- The travelling cloak: the plain cape (Rimfolk's own tag on it), a robe or a mantle. -->
       <li>
         <alternateTagChoices>
-          <li><tag>Cape</tag><chance>1</chance></li>
+          <li><tag>Rimfolk_Cape</tag><chance>1</chance></li>
           <li><tag>Robe</tag><chance>1</chance></li>
           <li MayRequire="OskarPotocki.VFE.Medieval2"><tag>VFEM2_Medieval</tag><chance>1</chance></li>
         </alternateTagChoices>
@@ -247,18 +252,25 @@
     </apparelRequired>
     <apparelTags>
       <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Neolithic</li>
+      <li>Rimfolk_Beads</li>
     </apparelTags>
+    <!-- A pack or a banner of the road, never an archer's quiver. -->
+    <apparelDisallowTags>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Quiver</li>
+    </apparelDisallowTags>
     <apparelMoney>200~420</apparelMoney>
     <weaponTags>
       <li>NeolithicMeleeBasic</li>
     </weaponTags>
     <weaponMoney>30~80</weaponMoney>
-    <!-- A book of the road, or herbs. -->
+    <!-- A book of the road, or herbs; with Odyssey now and then a map, with Alpha Crafts candles for the shrines. -->
     <inventoryOptions>
       <skipChance>0.5</skipChance>
       <subOptionsChooseOne>
         <li><thingDef>Novel</thingDef><countRange>1~1</countRange></li>
         <li><thingDef>MedicineHerbal</thingDef><countRange>1~2</countRange><choiceChance>2</choiceChance></li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey"><thingDef>Map</thingDef><countRange>1~1</countRange><choiceChance>0.3</choiceChance></li>
+        <li MayRequire="sarg.alphacrafts"><thingDef>AC_ScentedCandle</thingDef><countRange>1~2</countRange></li>
       </subOptionsChooseOne>
     </inventoryOptions>
     <initialWillRange>1~3</initialWillRange>
@@ -268,6 +280,7 @@
         <gifts>
           <li><trait>TM_Wanderer</trait><chance>0.04</chance></li>
           <li><trait>TM_Bard</trait><chance>0.03</chance></li>
+          <li><trait>TM_Monk</trait><chance>0.03</chance></li>
         </gifts>
       </li>
     </modExtensions>
@@ -329,6 +342,8 @@
     <apparelTags>
       <li>BestowerHood</li>
       <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Cap</li>
+      <li>Rimfolk_WideHat</li>
+      <li>Rimfolk_Headscarf</li>
       <li MayRequire="VanillaExpanded.VARME">MedievalArmorBasic</li>
     </apparelTags>
     <apparelAllowHeadgearChance>0.6</apparelAllowHeadgearChance>
@@ -361,7 +376,7 @@
     <specificApparelRequirements>
       <li>
         <alternateTagChoices>
-          <li><tag>Cape</tag><chance>1</chance></li>
+          <li><tag>Rimfolk_Cape</tag><chance>1</chance></li>
           <li><tag>Robe</tag><chance>1</chance></li>
           <li MayRequire="OskarPotocki.VFE.Medieval2"><tag>VFEM2_Medieval</tag><chance>1</chance></li>
         </alternateTagChoices>
@@ -375,6 +390,8 @@
       <li>BestowerHood</li>
       <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Trader</li>
       <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Cap</li>
+      <li>Rimfolk_WideHat</li>
+      <li>Rimfolk_Beads</li>
     </apparelTags>
     <apparelAllowHeadgearChance>0.7</apparelAllowHeadgearChance>
     <apparelMoney>250~420</apparelMoney>
@@ -405,8 +422,15 @@
       <li>
         <alternateTagChoices>
           <li><tag>Robe</tag><chance>1</chance></li>
-          <li><tag>Cape</tag><chance>1</chance></li>
+          <li><tag>Rimfolk_Cape</tag><chance>1</chance></li>
           <li MayRequire="Ludeon.RimWorld.Royalty"><tag>RoyalRobe</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+      <!-- The keeper's bishop's mitre (Hats and Rags); without it, the fellowship's cone hat, which the game then leaves out
+           when the mitre is there (both cover the head). -->
+      <li>
+        <alternateTagChoices>
+          <li><tag>Rimfolk_Mitre</tag><chance>1</chance></li>
         </alternateTagChoices>
       </li>
     </specificApparelRequirements>
@@ -415,6 +439,9 @@
       <li>Apparel_CollarShirt</li>
       <li>Apparel_Pants</li>
     </apparelRequired>
+    <apparelTags>
+      <li>Rimfolk_Beads</li>
+    </apparelTags>
     <apparelMoney>400~700</apparelMoney>
     <weaponTags>
       <li>NeolithicMeleeBasic</li>
@@ -429,6 +456,7 @@
     <inventoryOptions>
       <subOptionsTakeAll>
         <li><thingDef>Novel</thingDef><countRange>1~1</countRange></li>
+        <li MayRequire="sarg.alphacrafts"><thingDef>AC_ScentedCandle</thingDef><countRange>1~3</countRange></li>
       </subOptionsTakeAll>
     </inventoryOptions>
     <initialWillRange>3~5</initialWillRange>

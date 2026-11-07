@@ -6,8 +6,8 @@ namespace ColonyCouncil
     /// <summary>
     /// The pure rules of the gifts some of Rimfolk's peoples' people are born or trained to (Peoples/PeopleGifts.cs;
     /// docs/design/peoples.md "Their gear, their kinds of people and their gifts"): at most one each, by one roll against the
-    /// kind's shares, which never add up to all of them; the psylink's levels; and which of A RimWorld of Magic's settings
-    /// switches each of its classes on. Linked into the tests (Tools/Tests/PeoplesGearTests.cs).
+    /// kind's shares, which never add up to all of them; the psylink's levels; which of A RimWorld of Magic's settings
+    /// switches each of its classes on; and which ages may have genes put in. Linked into the tests (Tools/Tests/PeoplesGearTests.cs).
     /// </summary>
     public static class PeoplesGearMath
     {
@@ -47,6 +47,16 @@ namespace ColonyCouncil
             }
             return sum <= MaxShare + 0.0001f;
         }
+
+        /// <summary>How many kinds of gift one gift names (a class, a psylink, genes): a sound gift names exactly one.</summary>
+        public static int GiftKinds(bool trait, bool psylink, bool genes) => (trait ? 1 : 0) + (psylink ? 1 : 0) + (genes ? 1 : 0);
+
+        /// <summary>
+        /// Whether a people of this age (its FactionDef's techLevel) has the means to put genes in: industrial and later.
+        /// Tribal and medieval peoples' gifts are A RimWorld of Magic's; their kinds of people are their xenotypes.
+        /// </summary>
+        public static bool GenesFit(string techLevel) =>
+            techLevel == "Industrial" || techLevel == "Spacer" || techLevel == "Ultra" || techLevel == "Archotech";
 
         /// <summary>The psylink's level for a roll in [0, 1): <paramref name="min"/> to <paramref name="max"/>, at least 1 and at most the game's 6.</summary>
         public static int Levels(int min, int max, float roll)

@@ -118,7 +118,6 @@ WordOfJoy	ludeon.rimworld.royalty	yes	AbilityDef	word of joy	WordOf
 WordOfLove	ludeon.rimworld.royalty	yes	AbilityDef	word of love	WordOf
 WordOfSerenity	ludeon.rimworld.royalty	yes	AbilityDef	word of serenity	WordOf
 WordOfTrust	ludeon.rimworld.royalty	yes	AbilityDef	word of trust	WordOf
-Outland_Spell_SoulTrap	neronix17.outland.core	no	AbilityDef	soul trap	VFECore.Abilities.Ability_Blank
 Ascension	neronix17.outland.genetics	no	AbilityCategoryDef		
 Outland_AscendOther	neronix17.outland.genetics	no	AbilityDef	ascend other	Ascension
 Outland_AscendSelf	neronix17.outland.genetics	no	AbilityDef	ascend self	Ascension
@@ -131,8 +130,7 @@ Outland_Resurrect	neronix17.outland.genetics	no	AbilityDef	resurrect	Sanguophage
 Outland_ShortFlight	neronix17.outland.genetics	no	AbilityDef	short flight	
 Outland_SymbioticImplantation	neronix17.outland.genetics	no	AbilityDef	symbiotic implantation	
 Outland_ToxicSpray	neronix17.outland.genetics	no	AbilityDef	toxic spray	
-Outland_Spell_FleetingMovement	neronix17.outland.motzcoalition	no	AbilityDef	fleeting movement	OutlandMotz.Ability_FleetingMovement
-Outland_Spell_AscendGoblinoid	neronix17.outland.redburnpact	no	AbilityDef	ascend goblinoid	RedburnPact.Ability_AscendPawn
+ApePoopThrow	onlymonkey.awakenedapes	yes	AbilityDef	throw feces	
 VEF_ControlledBlinking	oskarpotocki.vanillafactionsexpanded.core	yes	AbilityDef	controlled blinking	
 VEF_ControlledDetonation	oskarpotocki.vanillafactionsexpanded.core	yes	AbilityDef	controlled detonation	
 VEF_ControlledInvisibility	oskarpotocki.vanillafactionsexpanded.core	yes	AbilityDef	controlled invisibility	
@@ -317,8 +315,6 @@ AI_ToxicBreath	sarg.alphaimplants	yes	AbilityDef	toxic breath
 AI_TrispikeLaunch	sarg.alphaimplants	yes	AbilityDef	spike launch	
 AI_Web	sarg.alphaimplants	yes	AbilityDef	web	
 AI_WispFire	sarg.alphaimplants	yes	AbilityDef	wisp fire	
-AMVPE_EMPBlast	sarg.alphamechs	yes	AbilityDef	emp blast	VFECore.Abilities.Ability_ShootProjectile
-AMVPE_MechSkip	sarg.alphamechs	yes	AbilityDef	mech skip	VanillaPsycastsExpanded.Skipmaster.Ability_Teleport
 AM_Detonate	sarg.alphamechs	yes	AbilityDef	detonate	
 AM_LongjumpMech	sarg.alphamechs	yes	AbilityDef	enhanced mech longjump	
 AM_MechConversion	sarg.alphamechs	yes	AbilityDef	mech IFF scrambler	
@@ -329,7 +325,7 @@ AM_WarcasketAbilityMechBlacklistDef	sarg.alphamechs	yes	WarcasketAbilityMechBlac
 AM_AnalyzeCreature	sarg.alphamemes	yes	AbilityDef	analyze creature	
 AM_ArchitectFinishBuilding	sarg.alphamemes	yes	AbilityGroupDef		
 AM_ArchitectStone	sarg.alphamemes	yes	AbilityGroupDef		
-AM_ChangeStyle	sarg.alphamemes	yes	AbilityDef	change style	
+AM_ChangeStyle	sarg.alphamemes	yes	AbilityGroupDef		
 AM_ChangeStyleRadius	sarg.alphamemes	yes	AbilityDef	change style on area	
 AM_ChangeStyleRandom	sarg.alphamemes	yes	AbilityDef	change style, random	
 AM_ChangeStyle_AllMap	sarg.alphamemes	yes	AbilityDef	change style, map-wide	
@@ -1046,8 +1042,8 @@ VME_TameInsectoid	vanillaexpanded.vmemese	yes	AbilityDef	tame insectoid
 VME_ThrowParty	vanillaexpanded.vmemese	yes	AbilityDef	throw party	
 VME_Trader	vanillaexpanded.vmemese	yes	AbilityGroupDef		
 VME_WorkCommand	vanillaexpanded.vmemese	yes	AbilityDef	work command	
-VPEH_BloodRite	vanillaexpanded.vpe.hemosage	yes	AbilityDef	blood rite	VFECore.Abilities.Ability_Blank
-VPEH_BloodShard	vanillaexpanded.vpe.hemosage	yes	AbilityDef	blood shard	VFECore.Abilities.Ability_ShootProjectile
+VPEH_BloodRite	vanillaexpanded.vpe.hemosage	yes	AbilityDef	blood rite	VEF.Abilities.Ability_Blank
+VPEH_BloodShard	vanillaexpanded.vpe.hemosage	yes	AbilityDef	blood shard	VEF.Abilities.Ability_ShootProjectile
 VPEH_BloodSpew	vanillaexpanded.vpe.hemosage	yes	AbilityDef	blood spew	VPEHemosage.Ability_BloodSpew
 VPEH_Bloodfocus	vanillaexpanded.vpe.hemosage	yes	AbilityDef	blood focus	VPEHemosage.Ability_Bloodfocus
 VPEH_Bloodstorm	vanillaexpanded.vpe.hemosage	yes	AbilityDef	bloodstorm	VPEHemosage.Ability_Bloodstorm
@@ -1059,146 +1055,146 @@ VPEH_WordofOffering	vanillaexpanded.vpe.hemosage	yes	AbilityDef	word of offering
 VPEP_Ascension	vanillaexpanded.vpe.puppeteer	yes	AbilityDef	ascension	VPEPuppeteer.Ability_Ascension
 VPEP_BrainCut	vanillaexpanded.vpe.puppeteer	yes	AbilityDef	brain cut	VPEPuppeteer.Ability_BrainCut
 VPEP_BrainLeech	vanillaexpanded.vpe.puppeteer	yes	AbilityDef	brain leech	VPEPuppeteer.Ability_BrainLeech
-VPEP_Degrade	vanillaexpanded.vpe.puppeteer	yes	AbilityDef	degrade	VFECore.Abilities.Ability_ShootProjectile
+VPEP_Degrade	vanillaexpanded.vpe.puppeteer	yes	AbilityDef	degrade	VEF.Abilities.Ability_ShootProjectile
 VPEP_MindJump	vanillaexpanded.vpe.puppeteer	yes	AbilityDef	mind jump	VPEPuppeteer.Ability_MindJump
 VPEP_MindSplit	vanillaexpanded.vpe.puppeteer	yes	AbilityDef	mind split	VPEPuppeteer.Ability_MindSplit
 VPEP_Puppet	vanillaexpanded.vpe.puppeteer	yes	AbilityDef	puppet	VPEPuppeteer.Ability_Puppet
 VPEP_PuppetSwarm	vanillaexpanded.vpe.puppeteer	yes	AbilityDef	puppet swarm	VPEPuppeteer.Ability_PuppetSwarm
-VPEP_Subjugation	vanillaexpanded.vpe.puppeteer	yes	AbilityDef	subjugation	VFECore.Abilities.Ability_Blank
+VPEP_Subjugation	vanillaexpanded.vpe.puppeteer	yes	AbilityDef	subjugation	VEF.Abilities.Ability_Blank
 VPEP_SummonPuppet	vanillaexpanded.vpe.puppeteer	yes	AbilityDef	summon puppet	VPEPuppeteer.Ability_SummonPuppet
-VPE_AdrenalineRush	vanillaexpanded.vpsycastse	yes	AbilityDef	adrenaline rush	VFECore.Abilities.Ability_Blank
-VPE_Age	vanillaexpanded.vpsycastse	yes	AbilityDef	age	VFECore.Abilities.Ability_Blank
+VPE_AdrenalineRush	vanillaexpanded.vpsycastse	yes	AbilityDef	adrenaline rush	VEF.Abilities.Ability_Blank
+VPE_Age	vanillaexpanded.vpsycastse	yes	AbilityDef	age	VEF.Abilities.Ability_Blank
 VPE_AggressiveHeatDump	vanillaexpanded.vpsycastse	yes	AbilityDef	aggressive heat dump	VanillaPsycastsExpanded.Ability_AggressiveHeatDump
-VPE_AnimalAllies	vanillaexpanded.vpsycastse	yes	AbilityDef	animal allies	VFECore.Abilities.Ability_Blank
+VPE_AnimalAllies	vanillaexpanded.vpsycastse	yes	AbilityDef	animal allies	VEF.Abilities.Ability_Blank
 VPE_Assassinate	vanillaexpanded.vpsycastse	yes	AbilityDef	assassinate	VanillaPsycastsExpanded.Nightstalker.Ability_Assassinate
-VPE_BallLightning	vanillaexpanded.vpsycastse	yes	AbilityDef	ball lightning	VFECore.Abilities.Ability_ShootProjectile
-VPE_Beckon	vanillaexpanded.vpsycastse	yes	AbilityDef	beckon	VFECore.Abilities.Ability_Blank
+VPE_BallLightning	vanillaexpanded.vpsycastse	yes	AbilityDef	ball lightning	VEF.Abilities.Ability_ShootProjectile
+VPE_Beckon	vanillaexpanded.vpsycastse	yes	AbilityDef	beckon	VEF.Abilities.Ability_Blank
 VPE_BendProbability	vanillaexpanded.vpsycastse	yes	AbilityDef	bend probability	VanillaPsycastsExpanded.Harmonist.Ability_RandomEvent
-VPE_Berserk	vanillaexpanded.vpsycastse	yes	AbilityDef	berserk	VFECore.Abilities.Ability_Blank
+VPE_Berserk	vanillaexpanded.vpsycastse	yes	AbilityDef	berserk	VEF.Abilities.Ability_Blank
 VPE_BerserkPulse	vanillaexpanded.vpsycastse	yes	AbilityDef	berserk pulse	VanillaPsycastsExpanded.Ability_BerserkPulse
-VPE_BladeFocus	vanillaexpanded.vpsycastse	yes	AbilityDef	blade focus	VFECore.Abilities.Ability_Blank
-VPE_BlindingPulse	vanillaexpanded.vpsycastse	yes	AbilityDef	blinding pulse	VFECore.Abilities.Ability_Blank
-VPE_Bliss	vanillaexpanded.vpsycastse	yes	AbilityDef	bliss	VFECore.Abilities.Ability_Blank
-VPE_Blizzard	vanillaexpanded.vpsycastse	yes	AbilityDef	blizzard	VFECore.Abilities.Ability_Blank
-VPE_Bolt	vanillaexpanded.vpsycastse	yes	AbilityDef	bolt	VFECore.Abilities.Ability_ShootProjectile
-VPE_BrambleMaze	vanillaexpanded.vpsycastse	yes	AbilityDef	bramble maze	VFECore.Abilities.Ability_Spawn
-VPE_BreatheFlame	vanillaexpanded.vpsycastse	yes	AbilityDef	breathe flame	VFECore.Abilities.Ability_ShootProjectile
-VPE_Burden	vanillaexpanded.vpsycastse	yes	AbilityDef	burden	VFECore.Abilities.Ability_Blank
+VPE_BladeFocus	vanillaexpanded.vpsycastse	yes	AbilityDef	blade focus	VEF.Abilities.Ability_Blank
+VPE_BlindingPulse	vanillaexpanded.vpsycastse	yes	AbilityDef	blinding pulse	VEF.Abilities.Ability_Blank
+VPE_Bliss	vanillaexpanded.vpsycastse	yes	AbilityDef	bliss	VEF.Abilities.Ability_Blank
+VPE_Blizzard	vanillaexpanded.vpsycastse	yes	AbilityDef	blizzard	VEF.Abilities.Ability_Blank
+VPE_Bolt	vanillaexpanded.vpsycastse	yes	AbilityDef	bolt	VEF.Abilities.Ability_ShootProjectile
+VPE_BrambleMaze	vanillaexpanded.vpsycastse	yes	AbilityDef	bramble maze	VEF.Abilities.Ability_Spawn
+VPE_BreatheFlame	vanillaexpanded.vpsycastse	yes	AbilityDef	breathe flame	VEF.Abilities.Ability_ShootProjectile
+VPE_Burden	vanillaexpanded.vpsycastse	yes	AbilityDef	burden	VEF.Abilities.Ability_Blank
 VPE_ChainBolt	vanillaexpanded.vpsycastse	yes	AbilityDef	chain bolt	VanillaPsycastsExpanded.Staticlord.Ability_ChainBolt
 VPE_ChaosSkip	vanillaexpanded.vpsycastse	yes	AbilityDef	chaos skip	VanillaPsycastsExpanded.Skipmaster.Ability_Teleport
 VPE_Chunkskip	vanillaexpanded.vpsycastse	yes	AbilityDef	chunk skip	VanillaPsycastsExpanded.Skipmaster.Ability_Chunkskip
-VPE_ColdZone	vanillaexpanded.vpsycastse	yes	AbilityDef	cold zone	VFECore.Abilities.Ability_Blank
+VPE_ColdZone	vanillaexpanded.vpsycastse	yes	AbilityDef	cold zone	VEF.Abilities.Ability_Blank
 VPE_ConjureHeatPearls	vanillaexpanded.vpsycastse	yes	AbilityDef	conjure heat pearls	VanillaPsycastsExpanded.Technomancer.Ability_ConjureHeatPearls
 VPE_ConsumeBodies	vanillaexpanded.vpsycastse	yes	AbilityDef	consume bodies	VanillaPsycastsExpanded.Ability_ConsumeBodies
-VPE_ControlledFrenzy	vanillaexpanded.vpsycastse	yes	AbilityDef	controlled frenzy	VFECore.Abilities.Ability_Blank
+VPE_ControlledFrenzy	vanillaexpanded.vpsycastse	yes	AbilityDef	controlled frenzy	VEF.Abilities.Ability_Blank
 VPE_Corpsetalk	vanillaexpanded.vpsycastse	yes	AbilityDef	corpsetalk	VanillaPsycastsExpanded.Ability_Corpsetalk
 VPE_CraftPsyRing	vanillaexpanded.vpsycastse	yes	AbilityDef	craft psyring	VanillaPsycastsExpanded.Technomancer.Ability_Psyring
 VPE_CraftTimeskip	vanillaexpanded.vpsycastse	yes	AbilityDef	craft timeskip	VanillaPsycastsExpanded.Chronopath.Ability_Finish
-VPE_CropBurst	vanillaexpanded.vpsycastse	yes	AbilityDef	crop burst	VFECore.Abilities.Ability_Spawn
-VPE_Darkness	vanillaexpanded.vpsycastse	yes	AbilityDef	darkness	VFECore.Abilities.Ability_Spawn
-VPE_Darkvision	vanillaexpanded.vpsycastse	yes	AbilityDef	darkvision	VFECore.Abilities.Ability_Blank
-VPE_Deathshield	vanillaexpanded.vpsycastse	yes	AbilityDef	deathshield	VFECore.Abilities.Ability_Blank
-VPE_Decoy	vanillaexpanded.vpsycastse	yes	AbilityDef	decoy	VFECore.Abilities.Ability_Spawn
+VPE_CropBurst	vanillaexpanded.vpsycastse	yes	AbilityDef	crop burst	VEF.Abilities.Ability_Spawn
+VPE_Darkness	vanillaexpanded.vpsycastse	yes	AbilityDef	darkness	VEF.Abilities.Ability_Spawn
+VPE_Darkvision	vanillaexpanded.vpsycastse	yes	AbilityDef	darkvision	VEF.Abilities.Ability_Blank
+VPE_Deathshield	vanillaexpanded.vpsycastse	yes	AbilityDef	deathshield	VEF.Abilities.Ability_Blank
+VPE_Decoy	vanillaexpanded.vpsycastse	yes	AbilityDef	decoy	VEF.Abilities.Ability_Spawn
 VPE_DrainPsyessence	vanillaexpanded.vpsycastse	yes	AbilityDef	drain psyessence	VanillaPsycastsExpanded.Ability_DrainPsyessence
-VPE_Eclipse	vanillaexpanded.vpsycastse	yes	AbilityDef	eclipse	VFECore.Abilities.Ability_Blank
+VPE_Eclipse	vanillaexpanded.vpsycastse	yes	AbilityDef	eclipse	VEF.Abilities.Ability_Blank
 VPE_EnchantQuality	vanillaexpanded.vpsycastse	yes	AbilityDef	enchant quality	VanillaPsycastsExpanded.Technomancer.Ability_IncreaseQuality
-VPE_EnergyDump	vanillaexpanded.vpsycastse	yes	AbilityDef	energy dump	VFECore.Abilities.Ability_Blank
+VPE_EnergyDump	vanillaexpanded.vpsycastse	yes	AbilityDef	energy dump	VEF.Abilities.Ability_Blank
 VPE_Enthrall	vanillaexpanded.vpsycastse	yes	AbilityDef	enthrall	VanillaPsycastsExpanded.Ability_SpawnSkeleton
 VPE_EssenceTransfer	vanillaexpanded.vpsycastse	yes	AbilityDef	essence transfer	VanillaPsycastsExpanded.Wildspeaker.Ability_EssenceTransfer
-VPE_Explosion	vanillaexpanded.vpsycastse	yes	AbilityDef	explosion	VFECore.Abilities.Ability_Explode
-VPE_EyeBlast	vanillaexpanded.vpsycastse	yes	AbilityDef	eye blast	VFECore.Abilities.Ability_ShootProjectile
+VPE_Explosion	vanillaexpanded.vpsycastse	yes	AbilityDef	explosion	VEF.Abilities.Ability_Explode
+VPE_EyeBlast	vanillaexpanded.vpsycastse	yes	AbilityDef	eye blast	VEF.Abilities.Ability_ShootProjectile
 VPE_Farskip	vanillaexpanded.vpsycastse	yes	AbilityDef	farskip	VanillaPsycastsExpanded.Skipmaster.Ability_WorldTeleport
-VPE_FireBeam	vanillaexpanded.vpsycastse	yes	AbilityDef	fire beam	VFECore.Abilities.Ability_OrbitalStrike
-VPE_FireShield	vanillaexpanded.vpsycastse	yes	AbilityDef	fire shield	VFECore.Abilities.Ability_Blank
-VPE_FiringFocus	vanillaexpanded.vpsycastse	yes	AbilityDef	firing focus	VFECore.Abilities.Ability_Blank
+VPE_FireBeam	vanillaexpanded.vpsycastse	yes	AbilityDef	fire beam	VEF.Abilities.Ability_OrbitalStrike
+VPE_FireShield	vanillaexpanded.vpsycastse	yes	AbilityDef	fire shield	VEF.Abilities.Ability_Blank
+VPE_FiringFocus	vanillaexpanded.vpsycastse	yes	AbilityDef	firing focus	VEF.Abilities.Ability_Blank
 VPE_FlameTornado	vanillaexpanded.vpsycastse	yes	AbilityDef	fire tornado	VanillaPsycastsExpanded.Conflagrator.Ability_FireTornado
-VPE_Flameball	vanillaexpanded.vpsycastse	yes	AbilityDef	flameball	VFECore.Abilities.Ability_ShootProjectile
+VPE_Flameball	vanillaexpanded.vpsycastse	yes	AbilityDef	flameball	VEF.Abilities.Ability_ShootProjectile
 VPE_Flashstorm	vanillaexpanded.vpsycastse	yes	AbilityDef	flashstorm	VanillaPsycastsExpanded.Staticlord.Ability_Flashstorm
-VPE_Focus	vanillaexpanded.vpsycastse	yes	AbilityDef	focus	VFECore.Abilities.Ability_Blank
+VPE_Focus	vanillaexpanded.vpsycastse	yes	AbilityDef	focus	VEF.Abilities.Ability_Blank
 VPE_FrostRay	vanillaexpanded.vpsycastse	yes	AbilityDef	frost ray	VanillaPsycastsExpanded.Ability_FrostRay
-VPE_Ghostwalk	vanillaexpanded.vpsycastse	yes	AbilityDef	ghostwalk	VFECore.Abilities.Ability_Blank
+VPE_Ghostwalk	vanillaexpanded.vpsycastse	yes	AbilityDef	ghostwalk	VEF.Abilities.Ability_Blank
 VPE_GroupLink	vanillaexpanded.vpsycastse	yes	AbilityDef	group link	VanillaPsycastsExpanded.Ability_GroupLink
 VPE_GuardianSkipbarrier	vanillaexpanded.vpsycastse	yes	AbilityDef	guardian skipbarrier	VanillaPsycastsExpanded.Ability_GuardianSkipBarrier
-VPE_GuidedShot	vanillaexpanded.vpsycastse	yes	AbilityDef	guided shot	VFECore.Abilities.Ability_Blank
+VPE_GuidedShot	vanillaexpanded.vpsycastse	yes	AbilityDef	guided shot	VEF.Abilities.Ability_Blank
 VPE_Haywire	vanillaexpanded.vpsycastse	yes	AbilityDef	haywire	VanillaPsycastsExpanded.Technomancer.Ability_AffectMechs
 VPE_HealthSwap	vanillaexpanded.vpsycastse	yes	AbilityDef	health swap	VanillaPsycastsExpanded.Harmonist.Ability_HealthSwap
 VPE_HeatFocus	vanillaexpanded.vpsycastse	yes	AbilityDef	heat focus	VanillaPsycastsExpanded.Harmonist.Ability_HeatFocus
 VPE_Hurricane	vanillaexpanded.vpsycastse	yes	AbilityDef	hurricane	VanillaPsycastsExpanded.Staticlord.Ability_Hurricane
 VPE_IceBlock	vanillaexpanded.vpsycastse	yes	AbilityDef	ice block	VanillaPsycastsExpanded.Ability_IceBlock
 VPE_IceBreath	vanillaexpanded.vpsycastse	yes	AbilityDef	breathe ice	VanillaPsycastsExpanded.Ability_IceBreath
-VPE_IceCrystal	vanillaexpanded.vpsycastse	yes	AbilityDef	ice crystal	VFECore.Abilities.Ability_SpawnBuilding
-VPE_IceShield	vanillaexpanded.vpsycastse	yes	AbilityDef	ice shield	VFECore.Abilities.Ability_Blank
-VPE_IceSpike	vanillaexpanded.vpsycastse	yes	AbilityDef	ice spike	VFECore.Abilities.Ability_ShootProjectile
+VPE_IceCrystal	vanillaexpanded.vpsycastse	yes	AbilityDef	ice crystal	VEF.Abilities.Ability_SpawnBuilding
+VPE_IceShield	vanillaexpanded.vpsycastse	yes	AbilityDef	ice shield	VEF.Abilities.Ability_Blank
+VPE_IceSpike	vanillaexpanded.vpsycastse	yes	AbilityDef	ice spike	VEF.Abilities.Ability_ShootProjectile
 VPE_IceWall	vanillaexpanded.vpsycastse	yes	AbilityDef	ice wall	VanillaPsycastsExpanded.Ability_IceWall
-VPE_IntensifyShadows	vanillaexpanded.vpsycastse	yes	AbilityDef	intensify shadows	VFECore.Abilities.Ability_Blank
-VPE_Invisibility	vanillaexpanded.vpsycastse	yes	AbilityDef	invisibility	VFECore.Abilities.Ability_Blank
+VPE_IntensifyShadows	vanillaexpanded.vpsycastse	yes	AbilityDef	intensify shadows	VEF.Abilities.Ability_Blank
+VPE_Invisibility	vanillaexpanded.vpsycastse	yes	AbilityDef	invisibility	VEF.Abilities.Ability_Blank
 VPE_Killskip	vanillaexpanded.vpsycastse	yes	AbilityDef	killskip	VanillaPsycastsExpanded.Ability_Killskip
-VPE_Liferot	vanillaexpanded.vpsycastse	yes	AbilityDef	liferot	VFECore.Abilities.Ability_Blank
+VPE_Liferot	vanillaexpanded.vpsycastse	yes	AbilityDef	liferot	VEF.Abilities.Ability_Blank
 VPE_LocationSwap	vanillaexpanded.vpsycastse	yes	AbilityDef	location swap	VanillaPsycastsExpanded.Harmonist.Ability_LocationSwap
 VPE_LuckTransfer	vanillaexpanded.vpsycastse	yes	AbilityDef	luck transfer	VanillaPsycastsExpanded.Harmonist.Ability_LuckTransfer
-VPE_ManhunterPulse	vanillaexpanded.vpsycastse	yes	AbilityDef	manhunter pulse	VFECore.Abilities.Ability_Blank
-VPE_MassBeckon	vanillaexpanded.vpsycastse	yes	AbilityDef	mass beckon	VFECore.Abilities.Ability_Blank
+VPE_ManhunterPulse	vanillaexpanded.vpsycastse	yes	AbilityDef	manhunter pulse	VEF.Abilities.Ability_Blank
+VPE_MassBeckon	vanillaexpanded.vpsycastse	yes	AbilityDef	mass beckon	VEF.Abilities.Ability_Blank
 VPE_MassChaosSkip	vanillaexpanded.vpsycastse	yes	AbilityDef	mass chaos skip	VanillaPsycastsExpanded.Skipmaster.Ability_Teleport
 VPE_MassHallucination	vanillaexpanded.vpsycastse	yes	AbilityDef	mass hallucination	VanillaPsycastsExpanded.Ability_PsychicComa
 VPE_Mend	vanillaexpanded.vpsycastse	yes	AbilityDef	mend	VanillaPsycastsExpanded.Technomancer.Ability_Mend
-VPE_MeteorShower	vanillaexpanded.vpsycastse	yes	AbilityDef	meteor shower	VFECore.Abilities.Ability_Skyfallers
-VPE_MindBreak	vanillaexpanded.vpsycastse	yes	AbilityDef	mind break	VFECore.Abilities.Ability_Blank
-VPE_MindWipe	vanillaexpanded.vpsycastse	yes	AbilityDef	mind wipe	VFECore.Abilities.Ability_Blank
-VPE_Mindcontrol	vanillaexpanded.vpsycastse	yes	AbilityDef	mind control	VFECore.Abilities.Ability_Blank
+VPE_MeteorShower	vanillaexpanded.vpsycastse	yes	AbilityDef	meteor shower	VEF.Abilities.Ability_Skyfallers
+VPE_MindBreak	vanillaexpanded.vpsycastse	yes	AbilityDef	mind break	VEF.Abilities.Ability_Blank
+VPE_MindWipe	vanillaexpanded.vpsycastse	yes	AbilityDef	mind wipe	VEF.Abilities.Ability_Blank
+VPE_Mindcontrol	vanillaexpanded.vpsycastse	yes	AbilityDef	mind control	VEF.Abilities.Ability_Blank
 VPE_NeuralHeatDetonation	vanillaexpanded.vpsycastse	yes	AbilityDef	neural heat detonation	VanillaPsycastsExpanded.Ability_NeuralHeatDetonation
-VPE_NeuralHeatDump	vanillaexpanded.vpsycastse	yes	AbilityDef	neural heat dump	VFECore.Abilities.Ability_Blank
-VPE_Neuroquake	vanillaexpanded.vpsycastse	yes	AbilityDef	neuroquake	VFECore.Abilities.Ability_Blank
+VPE_NeuralHeatDump	vanillaexpanded.vpsycastse	yes	AbilityDef	neural heat dump	VEF.Abilities.Ability_Blank
+VPE_Neuroquake	vanillaexpanded.vpsycastse	yes	AbilityDef	neuroquake	VEF.Abilities.Ability_Blank
 VPE_Nightstep	vanillaexpanded.vpsycastse	yes	AbilityDef	nightstep	VanillaPsycastsExpanded.Nightstalker.Ability_WorldTeleportNight
-VPE_Obscure	vanillaexpanded.vpsycastse	yes	AbilityDef	obscure	VFECore.Abilities.Ability_Blank
-VPE_Overshield	vanillaexpanded.vpsycastse	yes	AbilityDef	overshield	VFECore.Abilities.Ability_Blank
-VPE_Painblock	vanillaexpanded.vpsycastse	yes	AbilityDef	painblock	VFECore.Abilities.Ability_Blank
+VPE_Obscure	vanillaexpanded.vpsycastse	yes	AbilityDef	obscure	VEF.Abilities.Ability_Blank
+VPE_Overshield	vanillaexpanded.vpsycastse	yes	AbilityDef	overshield	VEF.Abilities.Ability_Blank
+VPE_Painblock	vanillaexpanded.vpsycastse	yes	AbilityDef	painblock	VEF.Abilities.Ability_Blank
 VPE_ParalysisPulse	vanillaexpanded.vpsycastse	yes	AbilityDef	paralysis pulse	VanillaPsycastsExpanded.Ability_ParalysisPulse
 VPE_PlantTimeskip	vanillaexpanded.vpsycastse	yes	AbilityDef	plant timeskip	VanillaPsycastsExpanded.Chronopath.Ability_MaturePlants
 VPE_Power	vanillaexpanded.vpsycastse	yes	AbilityDef	power	VanillaPsycastsExpanded.Technomancer.Ability_Power
 VPE_PowerLeap	vanillaexpanded.vpsycastse	yes	AbilityDef	power leap	VanillaPsycastsExpanded.Ability_PowerLeap
-VPE_PsychicDrone	vanillaexpanded.vpsycastse	yes	AbilityDef	psychic drone	VFECore.Abilities.Ability_Blank
-VPE_PsychicGuidance	vanillaexpanded.vpsycastse	yes	AbilityDef	psychic guidance	VFECore.Abilities.Ability_Blank
+VPE_PsychicDrone	vanillaexpanded.vpsycastse	yes	AbilityDef	psychic drone	VEF.Abilities.Ability_Blank
+VPE_PsychicGuidance	vanillaexpanded.vpsycastse	yes	AbilityDef	psychic guidance	VEF.Abilities.Ability_Blank
 VPE_PsychicShock	vanillaexpanded.vpsycastse	yes	AbilityDef	psychic shock	VanillaPsycastsExpanded.Ability_PsychicShock
-VPE_QuenchFlames	vanillaexpanded.vpsycastse	yes	AbilityDef	extinguish flames	VFECore.Abilities.Ability_Explode
-VPE_RaidPause	vanillaexpanded.vpsycastse	yes	AbilityDef	raid pause	VFECore.Abilities.Ability_Blank
+VPE_QuenchFlames	vanillaexpanded.vpsycastse	yes	AbilityDef	extinguish flames	VEF.Abilities.Ability_Explode
+VPE_RaidPause	vanillaexpanded.vpsycastse	yes	AbilityDef	raid pause	VEF.Abilities.Ability_Blank
 VPE_Recharge	vanillaexpanded.vpsycastse	yes	AbilityDef	recharge	VanillaPsycastsExpanded.Staticlord.Ability_Recharge
-VPE_RegrowLimbs	vanillaexpanded.vpsycastse	yes	AbilityDef	regrow limbs	VFECore.Abilities.Ability_Blank
+VPE_RegrowLimbs	vanillaexpanded.vpsycastse	yes	AbilityDef	regrow limbs	VEF.Abilities.Ability_Blank
 VPE_Resurrect	vanillaexpanded.vpsycastse	yes	AbilityDef	resurrect	VanillaPsycastsExpanded.Ability_Resurrect
 VPE_ReunionFarskip	vanillaexpanded.vpsycastse	yes	AbilityDef	reunion farskip	VanillaPsycastsExpanded.Ability_ReunionFarskip
 VPE_ReverseEngineer	vanillaexpanded.vpsycastse	yes	AbilityDef	reverse engineer	VanillaPsycastsExpanded.Technomancer.Ability_ReverseEngineer
 VPE_RockConstruct	vanillaexpanded.vpsycastse	yes	AbilityDef	rock construct	VanillaPsycastsExpanded.Technomancer.Ability_Construct_Rock
 VPE_SeasonTimeskip	vanillaexpanded.vpsycastse	yes	AbilityDef	season timeskip	VanillaPsycastsExpanded.Chronopath.Ability_AdvanceSeason
-VPE_SelfExplosion	vanillaexpanded.vpsycastse	yes	AbilityDef	self explosion	VFECore.Abilities.Ability_Explode
-VPE_ShadowFocus	vanillaexpanded.vpsycastse	yes	AbilityDef	shadowfocus	VFECore.Abilities.Ability_Blank
+VPE_SelfExplosion	vanillaexpanded.vpsycastse	yes	AbilityDef	self explosion	VEF.Abilities.Ability_Explode
+VPE_ShadowFocus	vanillaexpanded.vpsycastse	yes	AbilityDef	shadowfocus	VEF.Abilities.Ability_Blank
 VPE_Shadowskip	vanillaexpanded.vpsycastse	yes	AbilityDef	shadowskip	VanillaPsycastsExpanded.Nightstalker.Ability_TeleportDark
-VPE_ShieldAnimals	vanillaexpanded.vpsycastse	yes	AbilityDef	shield animals	VFECore.Abilities.Ability_Blank
+VPE_ShieldAnimals	vanillaexpanded.vpsycastse	yes	AbilityDef	shield animals	VEF.Abilities.Ability_Blank
 VPE_Shrineshield	vanillaexpanded.vpsycastse	yes	AbilityDef	shrineshield	VanillaPsycastsExpanded.Wildspeaker.Ability_ShrineShield
 VPE_SkillRoll	vanillaexpanded.vpsycastse	yes	AbilityDef	skillroll	VanillaPsycastsExpanded.Harmonist.Ability_Skillroll
 VPE_Skip	vanillaexpanded.vpsycastse	yes	AbilityDef	skip	VanillaPsycastsExpanded.Skipmaster.Ability_Teleport
 VPE_Skipdoor	vanillaexpanded.vpsycastse	yes	AbilityDef	skipdoor	VanillaPsycastsExpanded.Skipmaster.Ability_Skipdoor
-VPE_Skipshield	vanillaexpanded.vpsycastse	yes	AbilityDef	skipshield	VFECore.Abilities.Ability_Spawn
+VPE_Skipshield	vanillaexpanded.vpsycastse	yes	AbilityDef	skipshield	VEF.Abilities.Ability_Spawn
 VPE_Smokepop	vanillaexpanded.vpsycastse	yes	AbilityDef	smokepop	VanillaPsycastsExpanded.Skipmaster.Ability_Smokepop
 VPE_SnapFreeze	vanillaexpanded.vpsycastse	yes	AbilityDef	snap freeze	VanillaPsycastsExpanded.Ability_SnapFreeze
-VPE_SolarPinhole	vanillaexpanded.vpsycastse	yes	AbilityDef	solar pinhole	VFECore.Abilities.Ability_Spawn
-VPE_SootheFemale	vanillaexpanded.vpsycastse	yes	AbilityDef	psychic sooth (female)	VFECore.Abilities.Ability_Blank
-VPE_SootheMale	vanillaexpanded.vpsycastse	yes	AbilityDef	psychic sooth (male)	VFECore.Abilities.Ability_Blank
-VPE_SpeedBoost	vanillaexpanded.vpsycastse	yes	AbilityDef	speedboost	VFECore.Abilities.Ability_Blank
-VPE_Stabilize	vanillaexpanded.vpsycastse	yes	AbilityDef	stabilize	VFECore.Abilities.Ability_Blank
-VPE_StaticAura	vanillaexpanded.vpsycastse	yes	AbilityDef	static aura	VFECore.Abilities.Ability_Blank
-VPE_StaticPulse	vanillaexpanded.vpsycastse	yes	AbilityDef	static pulse	VFECore.Abilities.Ability_Explode
+VPE_SolarPinhole	vanillaexpanded.vpsycastse	yes	AbilityDef	solar pinhole	VEF.Abilities.Ability_Spawn
+VPE_SootheFemale	vanillaexpanded.vpsycastse	yes	AbilityDef	psychic sooth (female)	VEF.Abilities.Ability_Blank
+VPE_SootheMale	vanillaexpanded.vpsycastse	yes	AbilityDef	psychic sooth (male)	VEF.Abilities.Ability_Blank
+VPE_SpeedBoost	vanillaexpanded.vpsycastse	yes	AbilityDef	speedboost	VEF.Abilities.Ability_Blank
+VPE_Stabilize	vanillaexpanded.vpsycastse	yes	AbilityDef	stabilize	VEF.Abilities.Ability_Blank
+VPE_StaticAura	vanillaexpanded.vpsycastse	yes	AbilityDef	static aura	VEF.Abilities.Ability_Blank
+VPE_StaticPulse	vanillaexpanded.vpsycastse	yes	AbilityDef	static pulse	VEF.Abilities.Ability_Explode
 VPE_StealVitality	vanillaexpanded.vpsycastse	yes	AbilityDef	steal vitality	VanillaPsycastsExpanded.Ability_StealVitality
 VPE_SteelConstruct	vanillaexpanded.vpsycastse	yes	AbilityDef	steel construct	VanillaPsycastsExpanded.Technomancer.Ability_Construct_Steel
-VPE_Stun	vanillaexpanded.vpsycastse	yes	AbilityDef	stun	VFECore.Abilities.Ability_Blank
+VPE_Stun	vanillaexpanded.vpsycastse	yes	AbilityDef	stun	VEF.Abilities.Ability_Blank
 VPE_SummonPack	vanillaexpanded.vpsycastse	yes	AbilityDef	summon pack	VanillaPsycastsExpanded.Wildspeaker.Ability_SummonPack
 VPE_Thunderbolt	vanillaexpanded.vpsycastse	yes	AbilityDef	thunderbolt	VanillaPsycastsExpanded.Staticlord.Ability_Thunderbolt
-VPE_TimeReversal	vanillaexpanded.vpsycastse	yes	AbilityDef	time reversal	VFECore.Abilities.Ability_Blank
+VPE_TimeReversal	vanillaexpanded.vpsycastse	yes	AbilityDef	time reversal	VEF.Abilities.Ability_Blank
 VPE_TimeSphere	vanillaexpanded.vpsycastse	yes	AbilityDef	time sphere	VanillaPsycastsExpanded.Chronopath.Ability_TimeSphere
 VPE_Timequake	vanillaexpanded.vpsycastse	yes	AbilityDef	timequake	VanillaPsycastsExpanded.Chronopath.Ability_TimeQuake
 VPE_TimeskipMeditation	vanillaexpanded.vpsycastse	yes	AbilityDef	timeskip meditation	VanillaPsycastsExpanded.Chronopath.Ability_Meditate
 VPE_Transmutation	vanillaexpanded.vpsycastse	yes	AbilityDef	transmutation	VanillaPsycastsExpanded.Harmonist.Ability_TransmuteItem
 VPE_TransmuteStone	vanillaexpanded.vpsycastse	yes	AbilityDef	transmute stone	VanillaPsycastsExpanded.Harmonist.Ability_TransmuteStone
-VPE_TreeSprout	vanillaexpanded.vpsycastse	yes	AbilityDef	tree sprout	VFECore.Abilities.Ability_Spawn
-VPE_Vortex	vanillaexpanded.vpsycastse	yes	AbilityDef	vortex	VFECore.Abilities.Ability_SpawnBuilding
+VPE_TreeSprout	vanillaexpanded.vpsycastse	yes	AbilityDef	tree sprout	VEF.Abilities.Ability_Spawn
+VPE_Vortex	vanillaexpanded.vpsycastse	yes	AbilityDef	vortex	VEF.Abilities.Ability_SpawnBuilding
 VPE_Wallraise	vanillaexpanded.vpsycastse	yes	AbilityDef	wall raise	VanillaPsycastsExpanded.Skipmaster.Ability_Wallraise
 VPE_Waterskip	vanillaexpanded.vpsycastse	yes	AbilityDef	waterskip	VanillaPsycastsExpanded.Skipmaster.Ability_Waterskip
 VPE_WordofAlliance	vanillaexpanded.vpsycastse	yes	AbilityDef	word of alliance	VanillaPsycastsExpanded.Ability_GoodwillImpact
@@ -1230,7 +1226,7 @@ VQEA_Levitation	vanillaquestsexpanded.ancients	yes	AbilityDef	levitation
 VQEA_MatterPhasing	vanillaquestsexpanded.ancients	yes	AbilityDef	matter phasing	
 VQE_CraftAnARCComponent	vanillaquestsexpanded.generator	yes	AbilityDef	Craft an ARC component	
 VPEA_Shortskip	vanillaracesexpanded.archon	yes	AbilityDef	shortskip	VREArchon.Ability_Shortskip
-VREA_PsychicLance	vanillaracesexpanded.archon	yes	AbilityDef	psychic lance	VFECore.Abilities.Ability_ShootProjectile
+VREA_PsychicLance	vanillaracesexpanded.archon	yes	AbilityDef	psychic lance	VEF.Abilities.Ability_ShootProjectile
 VREA_PsychicThrow	vanillaracesexpanded.archon	yes	AbilityDef	psychic throw	VREArchon.Ability_PsychicThrow
 VREA_PsychicWarp	vanillaracesexpanded.archon	yes	AbilityDef	psychic warp	VREArchon.Ability_PsychicThrow
 VRE_LeapjumpLegs	vanillaracesexpanded.archon	yes	AbilityDef	leapjump	

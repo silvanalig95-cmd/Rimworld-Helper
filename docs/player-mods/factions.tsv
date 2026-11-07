@@ -29,13 +29,13 @@ BotchJob_ProfanedPlayerFaction	botchjob.profaned	no	Profaned Cursebearers	Mediev
 DankPyon_BrigandFaction	dankpyon.medieval.overhaul	no	brigands	Medieval	true	true	
 DankPyon_Forest_Faction	dankpyon.medieval.overhaul	no	the forest	Animal	true	true	
 DankPyon_Hornets	dankpyon.medieval.overhaul	no	hornets	Animal	true	true	
-DankPyon_LoneWolf	dankpyon.medieval.overhaul	no	New Kingdom	Medieval			DankPyon_HedgeKnight
+DankPyon_LoneWolf	dankpyon.medieval.overhaul	no	New Lone Adventure	Medieval			DankPyon_HedgeKnight
 DankPyon_MercenaryCompany	dankpyon.medieval.overhaul	no	New Mercenary Company	Medieval			DankPyon_PlayerMercenary
 DankPyon_NobleHouseCivil	dankpyon.medieval.overhaul	no	civil noble house	Medieval			
 DankPyon_NobleHouseCivil2	dankpyon.medieval.overhaul	no	civil noble house	Medieval			
 DankPyon_NobleHouseFierce	dankpyon.medieval.overhaul	no	fierce noble house	Medieval			
-DankPyon_NobleHouseSavage	dankpyon.medieval.overhaul	no	savage noble house	Medieval		true	
-DankPyon_PlayerKingdom	dankpyon.medieval.overhaul	no	New Kingdom	Medieval			DankPyon_Subject
+DankPyon_NobleHouseSavage	dankpyon.medieval.overhaul	no	cruel noble house	Medieval			
+DankPyon_PlayerKingdom	dankpyon.medieval.overhaul	no	New Tavern	Medieval			DankPyon_Subject
 DankPyon_ShadowSect	dankpyon.medieval.overhaul	no	Cultists	Medieval	true	true	
 DankPyon_SnakeCave_Faction	dankpyon.medieval.overhaul	no	cave snakes	Animal	true	true	
 DankPyon_UlrikFaction	dankpyon.medieval.overhaul	no	knights of ulrik	Medieval	true	false	
@@ -88,19 +88,7 @@ Maal_Car_Nomad	maal.gravcamp	yes	Roaming Convoy	Industrial			Maal_Pawn_Car_Nomad
 Maal_Nomad	maal.gravcamp	yes	Nomadic Band	Neolithic			Maal_Pawn_Nomad
 Maal_Nomad_Market	maal.gravcamp	yes	Trading Caravan	Neolithic			Maal_Pawn_Nomad
 Crusaders	mlie.crusadersfaction	no	Soldiers of God	Spacer	false		
-Outland_Empire	neronix17.outland.eastbornempire	no	eastborn empire	Medieval			
-Outland_PlayerEmpire	neronix17.outland.eastbornempire	no	Eastborn Empire	Medieval			Outland_ImperialCitizen
-Outland_MotzCoalition	neronix17.outland.motzcoalition	no	motz coalition	Medieval			
-Outland_MotzPlayerColony	neronix17.outland.motzcoalition	no	Motz Colony	Industrial			Outland_Motz
-Outland_MotzPlayerTribe	neronix17.outland.motzcoalition	no	Motz Tribe	Medieval			Outland_MotzTribal
-Outland_GoblinoidPlayerColony	neronix17.outland.redburnpact	no	Goblinoid Colony	Industrial			Outland_Goblin
-Outland_GoblinoidPlayerTribe	neronix17.outland.redburnpact	no	Goblinoid Tribe	Medieval			Outland_GoblinTribal
-Outland_RedburnPact	neronix17.outland.redburnpact	no	redburn pact	Medieval			
-Outland_PlayerVathun	neronix17.outland.vathunnobles	no	vathun nobles	Medieval			Outland_VathunPeasant_Player
-Outland_VathunNobles	neronix17.outland.vathunnobles	no	vathun nobles	Medieval			
-RM_FactionOne	ogam.rimedieval	no	Outlanders Covenant	Industrial			
-RM_FactionThree	ogam.rimedieval	no	Adventurers guild	Industrial			
-RM_FactionTwo	ogam.rimedieval	no	Raiders Empire	Industrial			
+SettlementApeRepublic	onlymonkey.awakenedapes	yes	ape republic	Neolithic		true	
 SettlerCivil	oskarpotocki.vanillafactionsexpanded.settlersmodule	yes	civil settlers	Industrial			
 SettlerRough	oskarpotocki.vanillafactionsexpanded.settlersmodule	yes	rough settlers	Industrial			
 SettlerSavage	oskarpotocki.vanillafactionsexpanded.settlersmodule	yes	bandits	Industrial		true	
@@ -131,8 +119,8 @@ pphhyy_Demigryph_DemigryphKnights	pphhyy.demigryphsmod	yes	Demigryph Knight Chap
 FPC	rimsenal.federation	yes	Federation Peacekeeper Corps	Spacer		true	
 Feral	rimsenal.feral	yes	feral band	Industrial		true	
 PlayerSpacerColony	rimsenal.spacer	yes	New Colonists	Spacer			SpacerColonist
-SpacerCivil	rimsenal.spacer	yes	glitterworld spacer expedition	Spacer			
-SpacerRough	rimsenal.spacer	yes	urbworld spacer expedition	Spacer			
+SpacerCivil	rimsenal.spacer	yes	spacer frontier expedition	Spacer			
+SpacerRough	rimsenal.spacer	yes	megacorp exploitation division	Spacer			
 AA_BlackHive	sarg.alphaanimals	yes	black hive	Animal	true	true	
 AG_OutlanderCivilUnion	sarg.alphagenes	yes	civil xenohuman union	Industrial			
 AG_XenohumanPirates	sarg.alphagenes	yes	xenohuman pirate gang	Spacer		true	

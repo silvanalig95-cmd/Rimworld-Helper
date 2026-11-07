@@ -1,37 +1,24 @@
 defName	mod	active	label	displayCategory	biostatMet	biostatCpx
 Furskin	andromeda.facialanimation	yes	furskin	Miscellaneous	-1	1
-Stagz_Aquatic	arquebus.stagzmerfolk	yes	aquatic	Miscellaneous	4	2
-Stagz_BodyFin	arquebus.stagzmerfolk	yes	pelvic fins	Miscellaneous	0	1
-Stagz_Charming	arquebus.stagzmerfolk	yes	charming	Ability	-2	1
+Stagz_Aquatic	arquebus.stagzmerfolk	yes	aquatic	Miscellaneous	4	1
+Stagz_BodyFin	arquebus.stagzmerfolk	yes	pelvic fins	Cosmetic	0	0
+Stagz_Charming	arquebus.stagzmerfolk	yes	charming	Archite		3
 Stagz_ColoredFinEars	arquebus.stagzmerfolk	yes	colored fin ears	Cosmetic		0
 Stagz_FinEars	arquebus.stagzmerfolk	yes	fin ears	Cosmetic		0
 Stagz_Fishtail	arquebus.stagzmerfolk	yes	fishtail	Miscellaneous	-1	1
-Stagz_Gene_Tail_Fish_Black	arquebus.stagzmerfolk	yes	fishtail (black)	Miscellaneous	-2	2
-Stagz_Gene_Tail_Fish_Cyan	arquebus.stagzmerfolk	yes	fishtail (cyan)	Miscellaneous	-2	2
-Stagz_Gene_Tail_Fish_Magenta	arquebus.stagzmerfolk	yes	fishtail (magenta)	Miscellaneous	-2	2
-Stagz_Gene_Tail_Fish_Orange	arquebus.stagzmerfolk	yes	fishtail (orange)	Miscellaneous	-2	2
-Stagz_Gene_Tail_Fish_Random	arquebus.stagzmerfolk	yes	fishtail (random color)	Miscellaneous	-2	2
-Stagz_Gene_Tail_Fish_Salmon	arquebus.stagzmerfolk	yes	fishtail (salmon)	Miscellaneous	-2	2
-Stagz_Gene_Tail_Fish_Teal	arquebus.stagzmerfolk	yes	fishtail (teal)	Miscellaneous	-2	2
-Stagz_Gene_Tail_Fish_White	arquebus.stagzmerfolk	yes	fishtail (white)	Miscellaneous	-2	2
-Stagz_KeenReflexes	arquebus.stagzmerfolk	yes	keen reflexes	Archite	-5	2
-Stagz_MerfolkAdaptation	arquebus.stagzmerfolk	yes	underwater adaptation	Archite		3
 Stagz_Nimbleness	arquebus.stagzmerfolk	yes	naturally nimble	Miscellaneous	-1	1
 Stagz_RainVeil	arquebus.stagzmerfolk	yes	rain veil	Miscellaneous	-1	1
-Stagz_Raincaller	arquebus.stagzmerfolk	yes	raincaller	Archite	-5	3
+Stagz_Raincaller	arquebus.stagzmerfolk	yes	raincaller	Archite		3
 Stagz_SirenSong	arquebus.stagzmerfolk	yes	siren song	Ability	-2	1
-Stagz_SwiftSwim	arquebus.stagzmerfolk	yes	swift swim	Movement	-1	1
-Stagz_WebbedHands	arquebus.stagzmerfolk	yes	webbed hands	Miscellaneous	1	1
-BotchJob_Cursebearer	botchjob.profaned	no	cursebearer	Miscellaneous		3
+BotchJob_Cursebearer	botchjob.profaned	no	cursebearer	Miscellaneous		8
 BotchJob_DaylightAversion	botchjob.profaned	no	aversion to daylight	ResistanceAndWeakness	5	5
-BotchJob_DecomposingBody	botchjob.profaned	no	decomposing body	Miscellaneous	3	3
-BotchJob_RottingFlesh	botchjob.profaned	no	rotting flesh	Miscellaneous	0	1
-BotchJob_RottingFleshFA	botchjob.profaned	no	rotting flesh head	Cosmetic		0
+BotchJob_DecomposingBody	botchjob.profaned	no	decomposing body	Miscellaneous	5	4
+BotchJob_RottingFlesh	botchjob.profaned	no	rotting flesh	Miscellaneous	3	1
 BotchJob_SkeletalBody	botchjob.profaned	no	skeletal form	Miscellaneous	3	1
 BotchJob_UndeadHeatWeakness	botchjob.profaned	no	fire vulnerability	ResistanceAndWeakness	4	2
 BotchJob_UndeadPainlessness	botchjob.profaned	no	undead painlessness	Pain	0	2
-BotchJob_UndeadPsysiology	botchjob.profaned	no	undead psysiology	Miscellaneous	-8	5
-BotchJob_UnnaturalColdResistance	botchjob.profaned	no	unnatural cold resistance	Temperature	-4	2
+BotchJob_UndeadPsysiology	botchjob.profaned	no	undead psysiology	Miscellaneous	-9	5
+BotchJob_UnnaturalColdResistance	botchjob.profaned	no	unnatural cold resistance	ResistanceAndWeakness	-5	5
 DV_AvaloiHairColors	det.avaloi	yes	bright hair colors			
 DV_Coral_Antlers	det.avaloi	yes	coral antlers	Miscellaneous		0
 DV_Coral_Beards	det.avaloi	yes	coral fans	Miscellaneous		0
@@ -73,7 +60,6 @@ DV_FacePlating	det.venators	yes	facial plating	Cosmetic		1
 DV_Farsighted	det.venators	yes	farsighted	Miscellaneous	-2	1
 DV_HunterInstincts	det.venators	yes	hunter instincts	Miscellaneous	-1	
 DV_ParalyzingFangs	det.venators	yes	paralyzing fangs	Ability	-1	1
-Skin_BlueGray	det.venators	yes	dusty blue skin	Cosmetic_Skin		0
 Skin_BrownGray	det.venators	yes	dusty brown skin	Cosmetic_Skin		0
 Skin_PurpleGray	det.venators	yes	dusty purple skin	Cosmetic_Skin		0
 Skin_RedGray	det.venators	yes	dusty red skin	Cosmetic_Skin		0
@@ -271,10 +257,6 @@ XenogermReimplanter	ludeon.rimworld.biotech	yes	gene implanter	Archite		3
 MoveSpeed_Space	ludeon.rimworld.odyssey	yes	low gravity adapted		1	1
 VacuumResistance_Partial	ludeon.rimworld.odyssey	yes	vacuum resistant	ResistanceAndWeakness	-1	1
 VacuumResistance_Total	ludeon.rimworld.odyssey	yes	breathless	Archite		3
-Outland_ArcaneAffinity_LargeDecrease	neronix17.outland.core	no	strong arcane aversion	Outland_ArcaneGenes	2	
-Outland_ArcaneAffinity_LargeIncrease	neronix17.outland.core	no	strong arcane affinity	Outland_ArcaneGenes	-2	
-Outland_ArcaneAffinity_SmallDecrease	neronix17.outland.core	no	weak arcane aversion	Outland_ArcaneGenes	1	
-Outland_ArcaneAffinity_SmallIncrease	neronix17.outland.core	no	weak arcane affinity	Outland_ArcaneGenes	-1	
 Outland_AcceleratedAgeing	neronix17.outland.genetics	no	accelerated ageing	Miscellaneous	3	2
 Outland_AcceleratedMaturation	neronix17.outland.genetics	no	accelerated maturation	Miscellaneous	0	2
 Outland_AcceleratedPregnancy	neronix17.outland.genetics	no	accelerated pregnancy	Reproduction	-1	
@@ -320,9 +302,9 @@ Outland_Back_FeathersBlack	neronix17.outland.genetics	no	back feathers (black)	C
 Outland_Back_FeathersWhite	neronix17.outland.genetics	no	back feathers (white)	Cosmetic		0
 Outland_BaldFemale	neronix17.outland.genetics	no	no hair (female only)	Cosmetic		0
 Outland_BaldMale	neronix17.outland.genetics	no	no hair (male only)	Cosmetic		0
-Outland_Beak_Hooked	neronix17.outland.genetics	no	beak (hooked)	Outland_FacialFeatures		0
-Outland_Beak_PointedBeak	neronix17.outland.genetics	no	beak (pointed)	Outland_FacialFeatures		0
-Outland_Beak_ShortBeak	neronix17.outland.genetics	no	beak (short)	Outland_FacialFeatures		0
+Outland_Beak_Hooked	neronix17.outland.genetics	no	beak (hooked)	Outland_Teeth		0
+Outland_Beak_PointedBeak	neronix17.outland.genetics	no	beak (pointed)	Outland_Teeth		0
+Outland_Beak_ShortBeak	neronix17.outland.genetics	no	beak (short)	Outland_Teeth		0
 Outland_Beard_FurryOnly	neronix17.outland.genetics	no	only furry beards	Cosmetic		0
 Outland_Blood_Black	neronix17.outland.genetics	no	black blood	Outland_Blood		1
 Outland_Blood_Blue	neronix17.outland.genetics	no	blue blood	Outland_Blood		1
@@ -408,7 +390,6 @@ Outland_EggLayer	neronix17.outland.genetics	no	egg layer	Reproduction	0
 Outland_ElvenEars	neronix17.outland.genetics	no	ears (elven)	Outland_Ears		0
 Outland_Empathic	neronix17.outland.genetics	no	empathic	Miscellaneous	0	
 Outland_Evasive	neronix17.outland.genetics	no	evasive	Miscellaneous	-1	1
-Outland_ExtremeMetabolism	neronix17.outland.genetics	no	+3 metabolism	Outland_Metabolism	3	1
 Outland_EyeVisual_Recessed	neronix17.outland.genetics	no	recessed eyes	Outland_FacialFeatures		0
 Outland_Eye_Blue	neronix17.outland.genetics	no	blue eyes	Outland_Eyes		0
 Outland_Eye_Brown	neronix17.outland.genetics	no	brown eyes	Outland_Eyes		0
@@ -424,7 +405,6 @@ Outland_Eye_White	neronix17.outland.genetics	no	white eyes	Outland_Eyes		0
 Outland_Eye_Yellow	neronix17.outland.genetics	no	yellow eyes	Outland_Eyes		0
 Outland_FaceTendrils	neronix17.outland.genetics	no	facial tendrils	Outland_FacialFeatures		0
 Outland_FamiliarScent	neronix17.outland.genetics	no	familiar scent	Miscellaneous		
-Outland_FelineFur	neronix17.outland.genetics	no	feline fur	Miscellaneous	0	1
 Outland_FelineHead	neronix17.outland.genetics	no	feline head	Cosmetic		0
 Outland_FeyAgeing	neronix17.outland.genetics	no	fey ageing	Miscellaneous	-3	2
 Outland_FeybarkHead	neronix17.outland.genetics	no	feybark head	Cosmetic		0
@@ -433,7 +413,6 @@ Outland_FragileHealing	neronix17.outland.genetics	no	fragile healing	Healing	2
 Outland_FreezingSpray	neronix17.outland.genetics	no	freezing spray	Ability	-2	
 Outland_Furbody	neronix17.outland.genetics	no	furbody	Miscellaneous	-1	1
 Outland_GreaterGoblinoidHead	neronix17.outland.genetics	no	greater goblinoid head	Cosmetic		0
-Outland_HairColor_Aqua	neronix17.outland.genetics	no	aqua hair	Cosmetic_Hair		0
 Outland_HairColor_BrightAzure	neronix17.outland.genetics	no	bright azure hair	Cosmetic_Hair		0
 Outland_HairColor_BrightBlue	neronix17.outland.genetics	no	bright blue hair	Cosmetic_Hair		0
 Outland_HairColor_BrightGreen	neronix17.outland.genetics	no	bright green hair	Cosmetic_Hair		0
@@ -458,16 +437,6 @@ Outland_HairColor_DarkRed	neronix17.outland.genetics	no	dark red hair	Cosmetic_H
 Outland_HairColor_DarkSage	neronix17.outland.genetics	no	dark sage hair	Cosmetic_Hair		0
 Outland_HairColor_DarkViridian	neronix17.outland.genetics	no	dark viridian hair	Cosmetic_Hair		0
 Outland_HairColor_DarkYellow	neronix17.outland.genetics	no	dark yellow hair	Cosmetic_Hair		0
-Outland_HairColor_Indigo	neronix17.outland.genetics	no	indigo hair	Cosmetic_Hair		0
-Outland_HairColor_Lime	neronix17.outland.genetics	no	lime hair	Cosmetic_Hair		0
-Outland_HairColor_PastelBlue	neronix17.outland.genetics	no	pastel blue hair	Cosmetic_Hair		0
-Outland_HairColor_PastelGreen	neronix17.outland.genetics	no	faded green hair	Cosmetic_Hair		0
-Outland_HairColor_PastelOrange	neronix17.outland.genetics	no	pastel orange hair	Cosmetic_Hair		0
-Outland_HairColor_PastelPink	neronix17.outland.genetics	no	pastel pink hair	Cosmetic_Hair		0
-Outland_HairColor_Seafoam	neronix17.outland.genetics	no	seafoam hair	Cosmetic_Hair		0
-Outland_HairColor_SkyBlue	neronix17.outland.genetics	no	sky blue hair	Cosmetic_Hair		0
-Outland_HairColor_Violet	neronix17.outland.genetics	no	violet hair	Cosmetic_Hair		0
-Outland_HairColor_Yellow	neronix17.outland.genetics	no	yellow hair	Cosmetic_Hair		0
 Outland_Hands_BurningTalons	neronix17.outland.genetics	no	hands (burning talons)	Outland_HandsAndFeet	-2	1
 Outland_Hands_CrabClaw	neronix17.outland.genetics	no	hands (crab claw)	Outland_HandsAndFeet	1	1
 Outland_Hands_FreezingTalons	neronix17.outland.genetics	no	hands (freezing talons)	Outland_HandsAndFeet	-2	1
@@ -524,7 +493,6 @@ Outland_Headbone_TwoProng	neronix17.outland.genetics	no	horns (two prong)	Cosmet
 Outland_Headbone_Zilla	neronix17.outland.genetics	no	horns (zilla)	Cosmetic		0
 Outland_Headbone_ZillaEx	neronix17.outland.genetics	no	horns (zilla ex)	Cosmetic		0
 Outland_HeatImmune	neronix17.outland.genetics	no	heat immunity	Temperature	-4	
-Outland_HighMetabolism	neronix17.outland.genetics	no	+2 metabolism	Outland_Metabolism	2	1
 Outland_HoovedFeet	neronix17.outland.genetics	no	feet (hoof)	Outland_HandsAndFeet	-1	1
 Outland_InsectBody	neronix17.outland.genetics	no	insect body	Miscellaneous	-1	1
 Outland_InsectHead	neronix17.outland.genetics	no	insect head	Cosmetic		0
@@ -583,22 +551,9 @@ Outland_RidgedSkin	neronix17.outland.genetics	no	ridged skin	Miscellaneous	0	1
 Outland_ScaleSkin	neronix17.outland.genetics	no	scaleskin	Miscellaneous	-1	1
 Outland_Scalebody	neronix17.outland.genetics	no	scalebody	Miscellaneous	-1	1
 Outland_ShortFlight	neronix17.outland.genetics	no	short flight	Ability	-2	
-Outland_Skin_Auburn	neronix17.outland.genetics	no	auburn skin	Cosmetic_Skin		0
 Outland_Skin_Azure	neronix17.outland.genetics	no	azure skin	Cosmetic_Skin		0
-Outland_Skin_BlueDeep	neronix17.outland.genetics	no	deep blue skin	Cosmetic_Skin		0
-Outland_Skin_BlueIce	neronix17.outland.genetics	no	ice blue skin	Cosmetic_Skin		0
-Outland_Skin_BluePastel	neronix17.outland.genetics	no	pastel blue skin	Cosmetic_Skin		0
-Outland_Skin_BlueSky	neronix17.outland.genetics	no	sky blue skin	Cosmetic_Skin		0
-Outland_Skin_BlueSubtle	neronix17.outland.genetics	no	subtle blue skin	Cosmetic_Skin		0
 Outland_Skin_Brown	neronix17.outland.genetics	no	brown skin	Cosmetic_Skin		0
-Outland_Skin_BrownFaded	neronix17.outland.genetics	no	faded brown skin	Cosmetic_Skin		0
-Outland_Skin_BrownSubtle	neronix17.outland.genetics	no	subtle brown skin	Cosmetic_Skin		0
-Outland_Skin_BrownWood	neronix17.outland.genetics	no	wood brown skin	Cosmetic_Skin		0
-Outland_Skin_Burgundy	neronix17.outland.genetics	no	burgundy skin	Cosmetic_Skin		0
 Outland_Skin_Copper	neronix17.outland.genetics	no	copper skin	Cosmetic_Skin		0
-Outland_Skin_Cream	neronix17.outland.genetics	no	cream skin	Cosmetic_Skin		0
-Outland_Skin_DarkBrown	neronix17.outland.genetics	no	dark brown skin	Cosmetic_Skin		0
-Outland_Skin_DarkMauve	neronix17.outland.genetics	no	dark mauve skin	Cosmetic_Skin		0
 Outland_Skin_DeepAzure	neronix17.outland.genetics	no	deep azure skin	Cosmetic_Skin		0
 Outland_Skin_DeepBlue	neronix17.outland.genetics	no	deep blue skin	Cosmetic_Skin		0
 Outland_Skin_DeepBrown	neronix17.outland.genetics	no	deep brown skin	Cosmetic_Skin		0
@@ -610,36 +565,12 @@ Outland_Skin_DeepPink	neronix17.outland.genetics	no	deep pink skin	Cosmetic_Skin
 Outland_Skin_DeepPurple	neronix17.outland.genetics	no	deep purple skin	Cosmetic_Skin		0
 Outland_Skin_DeepSage	neronix17.outland.genetics	no	deep sage skin	Cosmetic_Skin		0
 Outland_Skin_DeepViridian	neronix17.outland.genetics	no	deep viridian skin	Cosmetic_Skin		0
-Outland_Skin_DirtBrown	neronix17.outland.genetics	no	dirt brown skin	Cosmetic_Skin		0
-Outland_Skin_Dusk	neronix17.outland.genetics	no	dusk skin	Cosmetic_Skin		0
 Outland_Skin_Gold	neronix17.outland.genetics	no	gold skin	Cosmetic_Skin		0
-Outland_Skin_Golden	neronix17.outland.genetics	no	pale golden skin	Cosmetic_Skin		0
 Outland_Skin_Granite	neronix17.outland.genetics	no	granite skin	Cosmetic_Skin		0
-Outland_Skin_Grape	neronix17.outland.genetics	no	grape skin	Cosmetic_Skin		0
-Outland_Skin_GreenDeep	neronix17.outland.genetics	no	deep green skin	Cosmetic_Skin		0
-Outland_Skin_GreenFaded	neronix17.outland.genetics	no	faded green skin	Cosmetic_Skin		0
-Outland_Skin_GreenForest	neronix17.outland.genetics	no	forest green skin	Cosmetic_Skin		0
-Outland_Skin_GreenMarsh	neronix17.outland.genetics	no	marsh green skin	Cosmetic_Skin		0
-Outland_Skin_GreenMuddy	neronix17.outland.genetics	no	muddy green skin	Cosmetic_Skin		0
-Outland_Skin_GreenPastel	neronix17.outland.genetics	no	pastel green skin	Cosmetic_Skin		0
-Outland_Skin_GreenPine	neronix17.outland.genetics	no	pine green skin	Cosmetic_Skin		0
-Outland_Skin_GreenSwamp	neronix17.outland.genetics	no	swamp green skin	Cosmetic_Skin		0
-Outland_Skin_Indigo	neronix17.outland.genetics	no	indigo skin	Cosmetic_Skin		0
-Outland_Skin_IndigoLight	neronix17.outland.genetics	no	light indigo skin	Cosmetic_Skin		0
-Outland_Skin_LightBrown	neronix17.outland.genetics	no	light brown skin	Cosmetic_Skin		0
 Outland_Skin_Lime	neronix17.outland.genetics	no	lime skin	Cosmetic_Skin		0
-Outland_Skin_LimePale	neronix17.outland.genetics	no	pale lime skin	Cosmetic_Skin		0
 Outland_Skin_Limestone	neronix17.outland.genetics	no	limestone skin	Cosmetic_Skin		0
 Outland_Skin_Magenta	neronix17.outland.genetics	no	magenta skin	Cosmetic_Skin		0
-Outland_Skin_MagentaSubtle	neronix17.outland.genetics	no	subtle magenta skin	Cosmetic_Skin		0
 Outland_Skin_Marble	neronix17.outland.genetics	no	marble skin	Cosmetic_Skin		0
-Outland_Skin_Marine	neronix17.outland.genetics	no	marine skin	Cosmetic_Skin		0
-Outland_Skin_Moss	neronix17.outland.genetics	no	moss skin	Cosmetic_Skin		0
-Outland_Skin_MossBright	neronix17.outland.genetics	no	bright moss skin	Cosmetic_Skin		0
-Outland_Skin_Mustard	neronix17.outland.genetics	no	mustard skin	Cosmetic_Skin		0
-Outland_Skin_Olive	neronix17.outland.genetics	no	olive skin	Cosmetic_Skin		0
-Outland_Skin_OliveDark	neronix17.outland.genetics	no	dark olive skin	Cosmetic_Skin		0
-Outland_Skin_OrangePastel	neronix17.outland.genetics	no	pastel orange skin	Cosmetic_Skin		0
 Outland_Skin_PaleAzure	neronix17.outland.genetics	no	pale azure skin	Cosmetic_Skin		0
 Outland_Skin_PaleBlue	neronix17.outland.genetics	no	pale blue skin	Cosmetic_Skin		0
 Outland_Skin_PaleBrown	neronix17.outland.genetics	no	pale brown skin	Cosmetic_Skin		0
@@ -651,24 +582,13 @@ Outland_Skin_PalePink	neronix17.outland.genetics	no	pale pink skin	Cosmetic_Skin
 Outland_Skin_PalePurple	neronix17.outland.genetics	no	pale purple skin	Cosmetic_Skin		0
 Outland_Skin_PaleSage	neronix17.outland.genetics	no	pale sage skin	Cosmetic_Skin		0
 Outland_Skin_PaleViridian	neronix17.outland.genetics	no	pale viridian skin	Cosmetic_Skin		0
-Outland_Skin_Pink	neronix17.outland.genetics	no	pastel pink skin	Cosmetic_Skin		0
-Outland_Skin_Plum	neronix17.outland.genetics	no	plum skin	Cosmetic_Skin		0
-Outland_Skin_PurpleDeep	neronix17.outland.genetics	no	deep purple skin	Cosmetic_Skin		0
-Outland_Skin_PurpleMuted	neronix17.outland.genetics	no	muted purple skin	Cosmetic_Skin		0
-Outland_Skin_PurpleSubtle	neronix17.outland.genetics	no	subtle purple skin	Cosmetic_Skin		0
+Outland_Skin_Pink	neronix17.outland.genetics	no	pink skin	Cosmetic_Skin		0
 Outland_Skin_Red	neronix17.outland.genetics	no	red skin	Cosmetic_Skin		0
-Outland_Skin_RedPastel	neronix17.outland.genetics	no	pastel red skin	Cosmetic_Skin		0
-Outland_Skin_RedSubtle	neronix17.outland.genetics	no	subtle red skin	Cosmetic_Skin		0
 Outland_Skin_Sage	neronix17.outland.genetics	no	sage skin	Cosmetic_Skin		0
 Outland_Skin_Sandstone	neronix17.outland.genetics	no	sandstone skin	Cosmetic_Skin		0
-Outland_Skin_Scarlet	neronix17.outland.genetics	no	scarlet skin	Cosmetic_Skin		0
 Outland_Skin_Silver	neronix17.outland.genetics	no	silver skin	Cosmetic_Skin		0
-Outland_Skin_Teal	neronix17.outland.genetics	no	teal skin	Cosmetic_Skin		0
-Outland_Skin_UmberBurnt	neronix17.outland.genetics	no	burnt umber skin	Cosmetic_Skin		0
 Outland_Skin_Viridian	neronix17.outland.genetics	no	viridian skin	Cosmetic_Skin		0
-Outland_Skin_ViridianSubtle	neronix17.outland.genetics	no	subtle viridian skin	Cosmetic_Skin		0
 Outland_Skin_Yellow	neronix17.outland.genetics	no	yellow skin	Cosmetic_Skin		0
-Outland_Skin_YellowPastel	neronix17.outland.genetics	no	pastel yellow skin	Cosmetic_Skin		0
 Outland_Submissive	neronix17.outland.genetics	no	submissive	Miscellaneous	-2	1
 Outland_SvelteHead	neronix17.outland.genetics	no	svelte head	Cosmetic		0
 Outland_SymbioticImplantation	neronix17.outland.genetics	no	symbiotic implantation	Reproduction	-2	
@@ -809,6 +729,44 @@ PoI_Vaporeon_Collar	nialation.pawsofinterest	yes	Vaporeon Collar	PoI_MainGenes		
 PoI_Vaporeon_Ears	nialation.pawsofinterest	yes	Vaporeon Ears	PoI_MainGenes		0
 PoI_Vaporeon_Head	nialation.pawsofinterest	yes	Vaporeon Head	PoI_MainGenes		0
 PoI_Vaporeon_Tail	nialation.pawsofinterest	yes	Vaporeon Tail	PoI_MainGenes		0
+ApeVolatility	onlymonkey.awakenedapes	yes	ape volatility	Violence	2	1
+BananaSkinColor	onlymonkey.awakenedapes	yes	Banana Skin	Cosmetic_Skin		0
+BonoboSize	onlymonkey.awakenedapes	yes	Bonobo size	Miscellaneous	0	1
+BonoboSpecies	onlymonkey.awakenedapes	yes	bonobo genetics	Archite	0	0
+ChimpHead	onlymonkey.awakenedapes	yes	ChimpHead	Miscellaneous		1
+ChimpSkin	onlymonkey.awakenedapes	yes	Chimp Skin	Cosmetic_Skin		0
+ChimpSpecies	onlymonkey.awakenedapes	yes	chimpanzee genetics	Archite	0	0
+DV_Aggression_Hotheaded	onlymonkey.awakenedapes	yes	hotheaded	Violence	1	
+DV_DodgeChance_High	onlymonkey.awakenedapes	yes	deft		-1	
+DV_DodgeChance_Low	onlymonkey.awakenedapes	yes	lumbering		1	
+DV_MeleeAffinity	onlymonkey.awakenedapes	yes	melee affinity		2	
+DV_Melee_Fast	onlymonkey.awakenedapes	yes	fast hitter	Miscellaneous	-1	1
+DV_Pushover	onlymonkey.awakenedapes	yes	pushover	Miscellaneous	+1	1
+FilthyPrimate	onlymonkey.awakenedapes	yes	filthy primate	Miscellaneous	2	1
+Gene_AnxiousSleeper	onlymonkey.awakenedapes	yes	anxious efficiency	Miscellaneous	0	2
+Gene_Compassionate	onlymonkey.awakenedapes	yes	compassionate nature	Miscellaneous	-1	1
+Gene_Psychopath	onlymonkey.awakenedapes	yes	emotionless predator	Violence	2	2
+Gene_QuickSleeper	onlymonkey.awakenedapes	yes	efficient sleep	Miscellaneous	-2	1
+Gene_VeryNeurotic	onlymonkey.awakenedapes	yes	extreme anxiety	Violence	2	1
+GorillaHead	onlymonkey.awakenedapes	yes	GorillaHead	Miscellaneous		1
+GorillaSize	onlymonkey.awakenedapes	yes	Gorilla size	Miscellaneous	0	1
+GorillaSpecies	onlymonkey.awakenedapes	yes	gorilla genetics	Archite	0	0
+MonkeySkin	onlymonkey.awakenedapes	yes	Monkey Skin	Cosmetic_Skin		0
+MonkeySpecies	onlymonkey.awakenedapes	yes	monkey genetics	Archite	0	0
+MonkeyTail_Skin	onlymonkey.awakenedapes	yes	monkey tail	Cosmetic	-1	1
+NaturalHauler	onlymonkey.awakenedapes	yes	natural hauler	Miscellaneous	-1	1
+OranGutanSkin	onlymonkey.awakenedapes	yes	OranGutan Skin	Cosmetic_Skin		0
+OrangutanHead	onlymonkey.awakenedapes	yes	OrangutanHead	Miscellaneous		1
+OrangutanSize	onlymonkey.awakenedapes	yes	Orangutan size	Miscellaneous	0	1
+OrangutanSpecies	onlymonkey.awakenedapes	yes	orangutan genetics	Archite	0	0
+Pain_verypain	onlymonkey.awakenedapes	yes	Very severe pain	Pain	5	
+PrimalNature	onlymonkey.awakenedapes	yes	primal nature	Miscellaneous	4	2
+PrimateStrength	onlymonkey.awakenedapes	yes	primate strength	Violence	-1	1
+RimWorldMonkeySize	onlymonkey.awakenedapes	yes	Rimworld Monkey size	Miscellaneous	0	1
+SocialPeacemaker	onlymonkey.awakenedapes	yes	social peacemaker	Miscellaneous	-2	2
+ToolMaster	onlymonkey.awakenedapes	yes	tool master	Miscellaneous	-2	2
+VoiceApe	onlymonkey.awakenedapes	yes	Ape Voice	Cosmetic		0
+fragilityBalloon	onlymonkey.awakenedapes	yes	Fragility of the balloon	Pain	5	
 BladedTail	rimsenal.askbarn	yes	bladed tail	Miscellaneous		0
 EMPRoar	rimsenal.askbarn	yes	thundering roar	Ability	-2	
 EMPSurge	rimsenal.askbarn	yes	lightning surge	Ability	-2	
@@ -823,6 +781,7 @@ Race_Gene_AmberEyes	rimsenal.askbarn	yes	amber eyes	Cosmetic		0
 Race_Gene_BEA	rimsenal.askbarn	yes	blade ear appendages	Cosmetic		0
 Race_Gene_GlowingWhiteEyes	rimsenal.askbarn	yes	glowing white eyes	Cosmetic		0
 Race_Gene_PEA	rimsenal.askbarn	yes	pointy ear appendages	Cosmetic		0
+Skin_BlueGray	rimsenal.askbarn	yes	blue gray skin	Cosmetic_Skin		0
 Skin_OceanGray	rimsenal.askbarn	yes	ocean gray skin	Cosmetic_Skin		0
 SpikedTail	rimsenal.askbarn	yes	spiked tail	Miscellaneous		0
 AG_AcidFangs	sarg.alphagenes	yes	acid fangs	Cosmetic	-2	1
@@ -1099,8 +1058,6 @@ AG_RockVoice	sarg.alphagenes	yes	rock voice	Cosmetic		0
 AG_RockyBody	sarg.alphagenes	yes	rocky body	AG_Cosmetic_Bodies		3
 AG_RotStinkProducer	sarg.alphagenes	yes	rot stink producer	AG_SpecialEffectsCategory		2
 AG_Rowdy	sarg.alphagenes	yes	rowdy	Violence	1	
-AG_RoxHorns	sarg.alphagenes	yes	rox horns	AG_Cosmetic_Horns		0
-AG_RoxPelt	sarg.alphagenes	yes	rox pelt	Miscellaneous	-1	1
 AG_RoyalJellyFlesh	sarg.alphagenes	yes	royal jelly flesh	AG_MeatType	-1	1
 AG_RoyalJellyProduction	sarg.alphagenes	yes	royal jelly production	AG_SpecialEffectsCategory	-1	2
 AG_ScalyBody	sarg.alphagenes	yes	scaly body	AG_Cosmetic_Bodies	-1	3

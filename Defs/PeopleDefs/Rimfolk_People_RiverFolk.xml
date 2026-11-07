@@ -19,7 +19,8 @@
     the colony has turned them hostile (raidCommonalityFromPointsCurve 0.3). Listed once among the world's peoples when a
     world is made, never required. Faith (Ideology): a fixed creed of the river that feeds them (Alpha Memes' water
     primacy, VE Memes' egalitarian where loaded), the totemic style. Kind of people (Biotech): about four in five baseliners; neanderthals,
-    pigskins, yttakin, Stagz Merfolk's coastal merren, Alpha Genes' nereids, Vanilla Races Expanded's poluxkin and gauranlenkin.
+    pigskins, yttakin, Stagz Merfolk's coastal merren and now and then one of their abyssal elders come up the river, Alpha
+    Genes' nereids, Vanilla Races Expanded's poluxkin and gauranlenkin.
   -->
 
   <FactionDef ParentName="TribeBase">
@@ -79,6 +80,7 @@
         <AG_Nereid MayRequire="Ludeon.RimWorld.Biotech,sarg.alphagenes">0.04</AG_Nereid>
         <VRE_Poluxkin MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.phytokin">0.03</VRE_Poluxkin>
         <VRE_Gauranlenkin MayRequire="Ludeon.RimWorld.Biotech,Ludeon.RimWorld.Ideology,vanillaracesexpanded.phytokin">0.02</VRE_Gauranlenkin>
+        <Stagz_Merfolk_Abyssal MayRequire="Ludeon.RimWorld.Biotech,Arquebus.StagzMerfolk">0.01</Stagz_Merfolk_Abyssal>
       </xenotypeChances>
     </xenotypeSet>
     <fixedIdeo>true</fixedIdeo>
@@ -215,7 +217,9 @@
     Expanded's kilts, ponchos and pelt coats, in their own colours. Their river wardens are their militia and wear one
     kit: the blue tuque, plain clothes, padding where Vanilla Armour Expanded has it, the fishing spear and the game's
     spears and axes; their archers a quiver (Vanilla Apparel Expanded - Accessories). Slings and throwing stones (Vanilla
-    Weapons Expanded - Tribal and its base set) for the fishers. They carry net cloth, herbs or timber. A few are A
+    Weapons Expanded - Tribal and its base set, Rimsenal's blowguns) and with Vanilla Factions Expanded - Classical fish
+    javelins for the fishers. They carry net cloth, herbs or timber, the fishers with Odyssey a catch of river fish, with
+    Alpha Crafts a jar of fish sauce. A few are A
     RimWorld of Magic's druids (their river master, now and then a ferry hand) or rangers (wardens and archers). Without
     any mod: tribalwear, parkas, trousers, tuques, the cape, the game's knives, clubs, spears and bows.
   -->
@@ -253,15 +257,20 @@
     <weaponTags>
       <li>MedievalMeleeBasic</li>
       <li>NeolithicRangedBasic</li>
+      <li MayRequire="OskarPotocki.VFE.Classical">ClassicalRangedJavelin</li>
     </weaponTags>
     <weaponMoney>40~100</weaponMoney>
     <apparelMoney>120~280</apparelMoney>
-    <!-- Net cloth, or a few herbs. -->
+    <!-- Net cloth, or a few herbs; with Odyssey the day's catch, with Alpha Crafts a jar of fish sauce. -->
     <inventoryOptions>
       <skipChance>0.5</skipChance>
       <subOptionsChooseOne>
         <li><thingDef>Cloth</thingDef><countRange>4~10</countRange><choiceChance>2</choiceChance></li>
         <li><thingDef>MedicineHerbal</thingDef><countRange>1~1</countRange></li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey"><thingDef>Fish_Salmon</thingDef><countRange>4~10</countRange></li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey"><thingDef>Fish_Bass</thingDef><countRange>4~10</countRange></li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey"><thingDef>Fish_Catfish</thingDef><countRange>2~5</countRange></li>
+        <li MayRequire="sarg.alphacrafts"><thingDef>AC_FishSauce</thingDef><countRange>2~5</countRange></li>
       </subOptionsChooseOne>
     </inventoryOptions>
     <initialWillRange>1~3</initialWillRange>

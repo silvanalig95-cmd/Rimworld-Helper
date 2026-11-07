@@ -15,7 +15,7 @@
     What they honour, fear and say is in their template (on their card). Faith (Ideology): a fixed creed of the
     collective and of trade (VE Memes' trader and republic where loaded), the rustic style. Kind of people (Biotech): seven in ten baseliners; hussars on guard,
     genies keeping the books, highmates, dirtmoles, neanderthals, starjacks (Odyssey), boglegs, stoneborn, Vanilla Races
-    Expanded's uhlans and androids.
+    Expanded's uhlans and androids, Awakened Apes' bonobos at the bargaining table.
   -->
 
   <FactionDef ParentName="OutlanderFactionBase">
@@ -61,6 +61,7 @@
         <Stoneborn MayRequire="Ludeon.RimWorld.Biotech,det.stoneborn">0.03</Stoneborn>
         <VREH_Uhlan MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.hussar">0.02</VREH_Uhlan>
         <VREA_AndroidAwakened MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.android">0.02</VREA_AndroidAwakened>
+        <Bonobo MayRequire="Ludeon.RimWorld.Biotech,OnlyMonkey.AwakenedApes">0.02</Bonobo>
       </xenotypeChances>
     </xenotypeSet>
     <fixedIdeo>true</fixedIdeo>
@@ -218,12 +219,16 @@
     wayfarers, factors and master vary freely around their signature, an outer coat dyed teal of whatever cut (a duster,
     a jacket, Vanilla Apparel Expanded's suit jackets and coats), and dress below it as travelling folk do: the game's
     industrial clothes and the mods' (Vanilla Apparel Expanded's boots, scarves and hats, Vanilla Factions Expanded -
-    Settlers' bandanas, sombreros and vests), the factor's bowler, the master's top hat (Royalty). Their caravan guards
-    and outriders are hired soldiers in the league's one kit: the teal duster, a cowboy hat and a flak vest (the outriders
-    in a helmet and flak trousers too, with Vanilla Weapons Expanded - Grenades' belts), the game's guns and Vanilla
-    Weapons Expanded - Frontier's revolvers, lever-action shotguns and rolling-block rifles. Wayfarers carry beer, cloth
-    or a little silver to trade. A few are A RimWorld of Magic's sharpshooters (outriders), gladiators (guards) or a
-    commander (the league master). Without any mod: dusters, jackets, the game's shirts, trousers and hats, its guns.
+    Settlers' bandanas, sombreros and vests, a fez from Vanilla Ideology Expanded - Hats and Rags), a pack, a tool belt or a
+    medic's bag (Vanilla Apparel Expanded - Accessories, never its soldiers' belts), the factor's bowler, the master's top
+    hat and Royalty's finery. Their caravan guards and outriders are hired soldiers in the league's one kit: the teal duster,
+    a cowboy hat and a flak vest (the outriders in a helmet and flak trousers too, with Vanilla Weapons Expanded - Grenades'
+    belts and a lasso with Melee Animation), an ammo pack (Accessories), the game's guns and the mods' under its tags
+    (Vanilla Weapons Expanded and its Quickdraw, Rimsenal's, Advanced Armaments') and Vanilla Weapons Expanded - Frontier's
+    revolvers, lever-action shotguns and rolling-block rifles. Wayfarers carry beer, cloth or a little silver to trade,
+    with Medieval 2 a bottle of wine, with Odyssey now and then a map. A few are A RimWorld of Magic's wayfarers and bards
+    (wayfarers), sharpshooters (outriders), gladiators (guards) or a commander (the league master). Without any mod:
+    dusters, jackets, the game's shirts, trousers and hats, its guns.
   -->
   <PawnKindDef Name="Rimfolk_LeagueKindBase" Abstract="True">
     <race>Human</race>
@@ -260,7 +265,17 @@
       <li>IndustrialAdvanced</li>
       <li>Western</li>
       <li MayRequire="OskarPotocki.VanillaFactionsExpanded.SettlersModule">Outlander</li>
+      <li>Rimfolk_Fez</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Industrial</li>
     </apparelTags>
+    <!-- A pack, a tool belt or a medic's bag, never a soldier's belt, ammo pack or battle banner. -->
+    <apparelDisallowTags>
+      <li>IndustrialMilitaryBasic</li>
+      <li>IndustrialMilitaryAdvanced</li>
+      <li>BeltDefensePop</li>
+      <li>MedievalMilitary</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_AmmoPack</li>
+    </apparelDisallowTags>
     <apparelAllowHeadgearChance>0.6</apparelAllowHeadgearChance>
     <apparelMoney>300~650</apparelMoney>
     <weaponTags>
@@ -268,17 +283,27 @@
       <li MayRequire="VanillaExpanded.VWEFT">FrontierGunSimple</li>
     </weaponTags>
     <weaponMoney>100~280</weaponMoney>
-    <!-- Something of their own to trade on the road. -->
+    <!-- Something of their own to trade on the road; with Medieval 2 a bottle of wine, with Odyssey now and then a map. -->
     <inventoryOptions>
       <skipChance>0.4</skipChance>
       <subOptionsChooseOne>
         <li><thingDef>Beer</thingDef><countRange>1~3</countRange></li>
         <li><thingDef>Cloth</thingDef><countRange>6~15</countRange></li>
         <li><thingDef>Silver</thingDef><countRange>8~30</countRange></li>
+        <li MayRequire="OskarPotocki.VFE.Medieval2"><thingDef>VFEM2_Wine</thingDef><countRange>1~2</countRange></li>
+        <li MayRequire="Ludeon.RimWorld.Odyssey"><thingDef>Map</thingDef><countRange>1~1</countRange><choiceChance>0.3</choiceChance></li>
       </subOptionsChooseOne>
     </inventoryOptions>
     <initialWillRange>1~3</initialWillRange>
     <initialResistanceRange>10~17</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>TM_Wayfarer</trait><chance>0.03</chance></li>
+          <li><trait>TM_Bard</trait><chance>0.02</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimfolk_LeagueKindBase">
@@ -297,6 +322,7 @@
       <li>IndustrialMilitaryBasic</li>
       <li>IndustrialBasic</li>
       <li>BeltDefensePop</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_AmmoPack</li>
     </apparelTags>
     <apparelMoney>450~750</apparelMoney>
     <weaponTags>
@@ -334,6 +360,8 @@
       <li>IndustrialMilitaryAdvanced</li>
       <li>BeltDefensePop</li>
       <li MayRequire="VanillaExpanded.VWEG">GrenadeDestructiveBelt</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_AmmoPack</li>
+      <li MayRequire="co.uk.epicguru.meleeanimation">Lasso</li>
     </apparelTags>
     <apparelMoney>900~1500</apparelMoney>
     <weaponTags>
@@ -378,6 +406,8 @@
     <apparelTags>
       <li>IndustrialBasic</li>
       <li>IndustrialAdvanced</li>
+      <li MayRequire="OskarPotocki.VanillaFactionsExpanded.SettlersModule">Outlander</li>
+      <li>Rimfolk_Fez</li>
     </apparelTags>
     <apparelMoney>600~950</apparelMoney>
     <weaponTags>
@@ -420,7 +450,7 @@
     <apparelTags>
       <li>IndustrialBasic</li>
       <li>IndustrialAdvanced</li>
-      <li MayRequire="Ludeon.RimWorld.Royalty">RoyalTier2</li>
+      <li MayRequire="Ludeon.RimWorld.Royalty">Rimfolk_Finery</li>
     </apparelTags>
     <apparelMoney>1000~1600</apparelMoney>
     <weaponTags>

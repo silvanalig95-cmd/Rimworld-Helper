@@ -15,9 +15,10 @@ namespace ColonyCouncil
     /// (<see cref="PeopleKindExtension"/>; nobody else's pawns, and no pawn already in a game). A share of the kind, never
     /// all, has at most one: a class of A RimWorld of Magic, by its trait's name (the hospitallers' priests, the wardens'
     /// paladins, the river folk's druids and rangers), only when the mod has that class switched on and doesn't keep
-    /// the people from it in its own settings; or a psylink of a few levels (Royalty: the game's own random psycasts of
-    /// each level; with Vanilla Psycasts Expanded, one of the kind's paths and a few of its powers, read by name). No
-    /// letter, nothing saved, nothing on a clock. Without a mod, its gift is simply never given.
+    /// the people from it in its own settings; a psylink of a few levels (Royalty: the game's own random psycasts of
+    /// each level; with Vanilla Psycasts Expanded, one of the kind's paths and a few of its powers, read by name); or a
+    /// gene or two put in (Biotech: a baseliner of the scholars or the enclave given them as xenogenes, by name, the game's
+    /// or a mod's). No letter, nothing saved, nothing on a clock. Without a mod, its gift is simply never given.
     /// </summary>
     public static class PeopleGifts
     {
@@ -31,6 +32,32 @@ namespace ColonyCouncil
             var gift = ext.gifts[i];
             if (!gift.trait.NullOrEmpty()) GiveClass(p, gift.trait);
             else if (gift.psylink.max > 0) GivePsylink(p, gift);
+            else if (!gift.genes.NullOrEmpty()) GiveGenes(p, gift.genes);
+        }
+
+        // ================= Genes put in =================
+
+        /// <summary>
+        /// A baseliner's xenogenes, as a gene clinic of their people would put them in: only a baseliner of no custom
+        /// xenotype (the other kinds of people keep their own genome whole), each gene only when it is in the game, the
+        /// pawn hasn't it and nothing it has conflicts with it.
+        /// </summary>
+        private static void GiveGenes(Pawn p, List<string> names)
+        {
+            if (!ModsConfig.BiotechActive || p.genes == null || p.genes.Xenotype != XenotypeDefOf.Baseliner || p.genes.UniqueXenotype) return;
+            foreach (string name in names)
+            {
+                var def = DefDatabase<GeneDef>.GetNamedSilentFail(name);
+                if (def == null || p.genes.GenesListForReading.Any(g => g?.def != null && g.def.ConflictsWith(def))) continue;
+                try
+                {
+                    p.genes.AddGene(def, true);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("peoples' gifts: a gene", e);
+                }
+            }
         }
 
         // ================= A RimWorld of Magic =================

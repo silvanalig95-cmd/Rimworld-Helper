@@ -16,7 +16,8 @@
     hostile (raidCommonalityFromPointsCurve 0.2). Listed once among the world's peoples when a world is made, never
     required. Faith (Ideology): a fixed creed of the self and of inquiry (Alpha Memes' monastic life where loaded, VE Memes'
     agnosticism among the structures it may take), the Islamic style's arched halls. Kind of people (Biotech): three in four baseliners; genies above all,
-    highmates, high elves, the Avaloi, Alpha Genes' forsaken and Vanilla Races Expanded's archons.
+    highmates, high elves, the Avaloi, Alpha Genes' forsaken, Vanilla Races Expanded's archons and Awakened Apes' orangutans
+    (researchers by nature).
   -->
 
   <FactionDef ParentName="OutlanderFactionBase">
@@ -58,6 +59,7 @@
         <DV_Avaloi MayRequire="Ludeon.RimWorld.Biotech,det.avaloi">0.03</DV_Avaloi>
         <AG_Forsaken MayRequire="Ludeon.RimWorld.Biotech,sarg.alphagenes">0.02</AG_Forsaken>
         <VRE_Archon MayRequire="Ludeon.RimWorld.Biotech,Ludeon.RimWorld.Royalty,vanillaracesexpanded.archon">0.02</VRE_Archon>
+        <Orangutan MayRequire="Ludeon.RimWorld.Biotech,OnlyMonkey.AwakenedApes">0.02</Orangutan>
       </xenotypeChances>
     </xenotypeSet>
     <fixedIdeo>true</fixedIdeo>
@@ -176,12 +178,16 @@
   <!--
     How alike they look (docs/design/peoples.md "Their gear, their kinds of people and their gifts"): scholars vary freely
     around their signature, an outer coat or academic gown dyed claret (a robe, a jacket, a duster, Vanilla Apparel
-    Expanded's suit jackets and lab coats) over a collar shirt, the rest the game's industrial clothes and the mods'
-    (Vanilla Apparel Expanded's scarves, berets, boots), the bookseller's bowler, the provost's beret (Royalty). The archive's proctors are its guards and wear one kit: a flak vest under the
-    claret jacket, the game's guns and Vanilla Weapons Expanded - Non-Lethal's tasers, dart guns and stun batons. They
-    carry books: textbooks, novels, schematics. A few are A RimWorld of Magic's arcanists, enchanters or chronomancers, and
-    a few have a psylink (Royalty; with Vanilla Psycasts Expanded, a chronopath's or an empath's path). Without any mod:
-    robes, jackets and dusters, the game's shirts, trousers and hats, a flak vest and its guns.
+    Expanded's suit jackets and lab coats; the provost's the plain cape, never Vanilla Psycasts Expanded's eltex cape) over
+    a collar shirt, the rest the game's industrial clothes and the mods' (Vanilla Apparel Expanded's scarves, glasses,
+    berets, boots, the Avaloi's trilense glasses), a skullcap or brimless hat at the desk (Vanilla Ideology Expanded - Hats
+    and Rags), the bookseller's bowler, the provost's beret (Royalty). The archive's proctors are its guards and wear one
+    kit: a flak vest under the claret jacket, a military cap with Hats and Rags, the game's guns and the mods' under its
+    tags and Vanilla Weapons Expanded - Non-Lethal's tasers, dart guns and stun batons. They carry books: textbooks,
+    novels, schematics, with Odyssey now and then a map. A few are A RimWorld of Magic's arcanists, enchanters or
+    chronomancers, a few have a psylink (Royalty; with Vanilla Psycasts Expanded, a chronopath's or an empath's path), and
+    a few scholars had the quick study gene put in (Biotech). Without any mod: robes, jackets and dusters, the game's
+    shirts, trousers and hats, a flak vest and its guns.
   -->
   <PawnKindDef Name="Rimfolk_ScholarsKindBase" Abstract="True">
     <race>Human</race>
@@ -221,6 +227,7 @@
     <apparelTags>
       <li>IndustrialBasic</li>
       <li>IndustrialAdvanced</li>
+      <li>Rimfolk_Skullcap</li>
     </apparelTags>
     <apparelAllowHeadgearChance>0.3</apparelAllowHeadgearChance>
     <apparelMoney>250~500</apparelMoney>
@@ -272,6 +279,7 @@
     <apparelTags>
       <li>IndustrialBasic</li>
       <li>IndustrialAdvanced</li>
+      <li>Rimfolk_Skullcap</li>
     </apparelTags>
     <apparelAllowHeadgearChance>0.4</apparelAllowHeadgearChance>
     <apparelMoney>300~550</apparelMoney>
@@ -293,6 +301,7 @@
           <subOptionsChooseOne>
             <li><thingDef>Novel</thingDef><countRange>1~1</countRange></li>
             <li><thingDef>Schematic</thingDef><countRange>1~1</countRange></li>
+            <li MayRequire="Ludeon.RimWorld.Odyssey"><thingDef>Map</thingDef><countRange>1~1</countRange><choiceChance>0.3</choiceChance></li>
           </subOptionsChooseOne>
         </li>
       </subOptionsTakeAll>
@@ -312,6 +321,12 @@
             </paths>
             <chance>0.05</chance>
           </li>
+          <li>
+            <genes>
+              <li>Learning_Fast</li>
+            </genes>
+            <chance>0.04</chance>
+          </li>
         </gifts>
       </li>
     </modExtensions>
@@ -323,12 +338,19 @@
     <combatPower>70</combatPower>
     <itemQuality>Normal</itemQuality>
     <gearHealthRange>0.7~1.8</gearHealthRange>
-    <!-- The proctors' kit: a flak vest under the claret jacket. -->
+    <!-- The proctors' kit: a flak vest under the claret jacket, and with Hats and Rags a military cap. -->
     <apparelRequired>
       <li>Apparel_CollarShirt</li>
       <li>Apparel_FlakVest</li>
       <li>Apparel_Jacket</li>
     </apparelRequired>
+    <specificApparelRequirements>
+      <li>
+        <alternateTagChoices>
+          <li><tag>Rimfolk_MilitaryCap</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+    </specificApparelRequirements>
     <apparelTags>
       <li>IndustrialMilitaryBasic</li>
       <li>IndustrialBasic</li>
@@ -402,7 +424,7 @@
         <color>(0.56, 0.18, 0.32)</color>
         <alternateTagChoices>
           <li><tag>Robe</tag><chance>1</chance></li>
-          <li><tag>Cape</tag><chance>1</chance></li>
+          <li><tag>Rimfolk_Cape</tag><chance>1</chance></li>
           <li MayRequire="Ludeon.RimWorld.Royalty"><tag>RoyalRobe</tag><chance>1</chance></li>
         </alternateTagChoices>
       </li>

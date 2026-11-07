@@ -128,11 +128,6 @@ RT_Composed	sierra.rt.generaltraits	no	composed
 RT_ConstantlyBemused	sierra.rt.generaltraits	no	constantly bemused
 RT_Coordinated	sierra.rt.generaltraits	no	coordinated
 RT_Craven	sierra.rt.generaltraits	no	craven
-RT_DemoCommon	sierra.rt.generaltraits	no	<color=#00ff00>Trait Demo: Common</color>
-RT_DemoEpic	sierra.rt.generaltraits	no	<color=#d4af37>Trait Demo: Epic</color>
-RT_DemoLegendary	sierra.rt.generaltraits	no	<color=#e0115f>Trait Demo: Legendary</color>
-RT_DemoRare	sierra.rt.generaltraits	no	<color=#9f40ff>Trait Demo: Rare</color>
-RT_DemoUncommon	sierra.rt.generaltraits	no	<color=#1f75fe>Trait Demo: Uncommon</color>
 RT_EasilyAmused	sierra.rt.generaltraits	no	easily amused
 RT_Efficient	sierra.rt.generaltraits	no	efficient
 RT_Energetic	sierra.rt.generaltraits	no	energetic
@@ -204,38 +199,6 @@ RT_TalentTailor	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Tailor</colo
 RT_TalentTrader	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Trader</color>
 RT_TalentVeterinarian	sierra.rt.medievaltalents	no	<color=#2C82FF>Talent: Veterinarian</color>
 RT_TalentWeaponsMaster	sierra.rt.medievaltalents	no	<color=#2C82FF>Talent: Weapons Master</color>
-TalentAdventurer	sierra.rt.medievaltalents	no	<color=#7f00ff>Talent: Adventurer</color>
-TalentArchitect	sierra.rt.medievaltalents	no	<color=#7f00ff>Talent: Architect</color>
-TalentArmourer	sierra.rt.medievaltalents	no	<color=#1f75fe>Talent: Armourer</color>
-TalentArtist	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Artist</color>
-TalentBowman	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Bowman</color>
-TalentBuilder	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Builder</color>
-TalentButcher	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Butcher</color>
-TalentChef	sierra.rt.medievaltalents	no	<color=#7f00ff>Talent: Chef</color>
-TalentCook	sierra.rt.medievaltalents	no	<color=#1f75fe>Talent: Cook</color>
-TalentCopycat	sierra.rt.medievaltalents	no	Talent: Copycat
-TalentEngineer	sierra.rt.medievaltalents	no	<color=#1f75fe>Talent: Engineer</color>
-TalentFarmer	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Farmer</color>
-TalentGroundskeeper	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Groundskeeper</color>
-TalentHerbalist	sierra.rt.medievaltalents	no	<color=#1f75fe>Talent: Herbalist</color>
-TalentHerder	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Herder</color>
-TalentHero	sierra.rt.medievaltalents	no	<color=#d4af37>Talent: Hero</color>
-TalentHunter	sierra.rt.medievaltalents	no	<color=#1f75fe>Talent: Hunter</color>
-TalentJackOfAllTrades	sierra.rt.medievaltalents	no	<color=#d4af37>Talent: Jack-of-all-trades</color>
-TalentKitchenhand	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Kitchenhand</color>
-TalentMiner	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Miner</color>
-TalentNoTalent	sierra.rt.medievaltalents	no	<color=#ff6fff>No Talent</color>
-TalentPhilosopher	sierra.rt.medievaltalents	no	<color=#7f00ff>Talent: Philosopher</color>
-TalentPhysician	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Physician</color>
-TalentRecruiter	sierra.rt.medievaltalents	no	<color=#d4af37>Talent: Recruiter</color>
-TalentScholar	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Scholar</color>
-TalentScout	sierra.rt.medievaltalents	no	<color=#e0115f>Talent: Scout</color>
-TalentSmith	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Smith</color>
-TalentSurgeon	sierra.rt.medievaltalents	no	<color=#7f00ff>Talent: Surgeon</color>
-TalentSwordsman	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Swordsman</color>
-TalentTailor	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Tailor</color>
-TalentTrader	sierra.rt.medievaltalents	no	<color=#00ff00>Talent: Trader</color>
-TalentWeaponsMaster	sierra.rt.medievaltalents	no	<color=#1f75fe>Talent: Weapons Master</color>
 Rimfolk_AnimalFriend	silvanalig.colonycouncil	yes	animal friend
 Rimfolk_BornCook	silvanalig.colonycouncil	yes	born cook
 Rimfolk_GreenThumb	silvanalig.colonycouncil	yes	green thumb
@@ -254,7 +217,6 @@ Druid	torann.arimworldofmagic	yes	Druid
 Enchanter	torann.arimworldofmagic	yes	Enchanter
 Faceless	torann.arimworldofmagic	yes	Faceless
 Geomancer	torann.arimworldofmagic	yes	Geomancer
-Gifted	torann.arimworldofmagic	yes	magically gifted
 Gladiator	torann.arimworldofmagic	yes	Gladiator
 HeartOfFrost	torann.arimworldofmagic	yes	Ice mage
 InnerFire	torann.arimworldofmagic	yes	Fire mage

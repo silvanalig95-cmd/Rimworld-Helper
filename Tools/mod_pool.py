@@ -81,11 +81,54 @@ def save_mods(path):
 SUPPORTED = ("1.6", "1.7")
 
 
-def def_files(root, folders, skip=()):
-    """(packageId, path) of every def file: the game's own, then each mod's Defs folders."""
+def _child(base, name):
+    """base/name, matching the name's case as Windows does (LoadFolders.xml may write "mods/odyssey" for "Mods/Odyssey")."""
+    for part in [p for p in name.replace("\\", "/").split("/") if p]:
+        p = os.path.join(base, part)
+        if not os.path.exists(p) and os.path.isdir(base):
+            p = next((os.path.join(base, x) for x in os.listdir(base) if x.lower() == part.lower()), p)
+        base = p
+    return base
+
+
+def load_folders(moddir, active):
+    """The folders of a mod that RimWorld 1.7 loads for this mod list: those its LoadFolders.xml names for 1.7 (else for
+    the newest version before it), each with its IfModActive (any of), IfModActiveAll and IfModNotActive (none of) kept;
+    else its root, Common and its newest version folder up to 1.7. A mod's folders for older versions are never read, and
+    a mod folder kept for a mod the player hasn't enabled neither (their defs would otherwise stand for the mod's own)."""
+    def on(ids):
+        return [x.strip().lower() in active for x in (ids or "").split(",") if x.strip()]
+    lf = parse(_child(moddir, "LoadFolders.xml")) if os.path.exists(_child(moddir, "LoadFolders.xml")) else None
+    if lf is not None:
+        best, best_v = None, (0, 0)
+        for node in lf:
+            m = re.match(r"^v(\d+)\.(\d+)$", node.tag if isinstance(node.tag, str) else "")
+            if m and best_v <= (int(m.group(1)), int(m.group(2))) <= (1, 7):
+                best, best_v = node, (int(m.group(1)), int(m.group(2)))
+        if best is not None:
+            out = []
+            for li in best.findall("li"):
+                a, al, no = li.attrib.get("IfModActive"), li.attrib.get("IfModActiveAll"), li.attrib.get("IfModNotActive")
+                if (a and not any(on(a))) or (al and not all(on(al))) or (no and any(on(no))):
+                    continue
+                out.append((li.text or "").strip().strip("/\\"))
+            if out:
+                return out
+    newest, newest_v = None, (0, 0)
+    for d in os.listdir(moddir):
+        m = re.match(r"^v?(\d+)\.(\d+)$", d)
+        if m and os.path.isdir(os.path.join(moddir, d)) and newest_v <= (int(m.group(1)), int(m.group(2))) <= (1, 7):
+            newest, newest_v = d, (int(m.group(1)), int(m.group(2)))
+    return ["", "Common"] + ([newest] if newest else [])
+
+
+def def_files(root, folders, skip=(), active=()):
+    """(packageId, path) of every def file: the game's own, then each mod's Defs folders in the folders 1.7 loads, in the
+    player's load order (the mods not in their list after it), so that a later def of the same name wins as in the game."""
     data = os.path.join(root, "Data")
+    order = {p: i for i, p in enumerate(active)}
     if os.path.isdir(data):
-        for d in sorted(os.listdir(data)):
+        for d in sorted(os.listdir(data), key=lambda d: (list(DLC).index(d) if d in DLC else len(DLC), d)):
             pid = DLC.get(d, "ludeon.rimworld." + d.lower())
             for dp, _, fs in os.walk(os.path.join(data, d)):
                 if "Defs" not in dp.replace("\\", "/").split("/"):
@@ -95,16 +138,17 @@ def def_files(root, folders, skip=()):
                         yield pid, os.path.join(dp, f)
     mods = os.path.join(root, "Mods")
     if os.path.isdir(mods):
-        for d in sorted(os.listdir(mods)):
+        for d in sorted(os.listdir(mods), key=lambda d: (order.get(folders.get(d, (d.lower(),))[0], len(order)), d)):
             if d in skip:
                 continue
             pid = folders.get(d, (d.lower(), d))[0]
-            for dp, _, fs in os.walk(os.path.join(mods, d)):
-                if "Defs" not in dp.replace("\\", "/").split("/"):
-                    continue
-                for f in sorted(fs):
-                    if f.lower().endswith(".xml"):
-                        yield pid, os.path.join(dp, f)
+            moddir = os.path.join(mods, d)
+            for folder in load_folders(moddir, set(active)):
+                for dp, dirs, fs in os.walk(_child(_child(moddir, folder), "Defs")):
+                    dirs.sort()
+                    for f in sorted(fs):
+                        if f.lower().endswith(".xml"):
+                            yield pid, os.path.join(dp, f)
 
 
 def parse(path):
@@ -166,23 +210,35 @@ def main(root, out, save=None):
     in_save = save_mods(save)
     versions = {d: versions_of(root, d) for d in folders}
     old_only = {d for d, v in versions.items() if v and not any(x in SUPPORTED for x in v)}
-    named = {}   # (tag, Name) -> element, for inheritance
+    named = {}   # (tag, Name) -> [(pid, element)], for inheritance
     defs = []    # (pid, element)
-    for pid, path in def_files(root, folders, old_only):
+    owner = {}   # id(element) -> pid
+    for pid, path in def_files(root, folders, old_only, active):
         r = parse(path)
         if r is None:
             continue
         for e in list(r):
             if not isinstance(e.tag, str):
                 continue
+            owner[id(e)] = pid
             n = e.attrib.get("Name")
             if n:
-                named[(e.tag, n)] = e
-                named[("*", n)] = e
+                named.setdefault((e.tag, n), []).append((pid, e))
+                named.setdefault(("*", n), []).append((pid, e))
             if e.attrib.get("Abstract", "").lower() == "true":
                 continue
             if e.find("defName") is not None:
                 defs.append((pid, e))
+
+    def parent_of(e, p):
+        """The parent the game takes: its own mod's of that name, else the last of a mod in the list, else the last."""
+        for key in ((e.tag, p), ("*", p)):
+            cands = named.get(key)
+            if cands:
+                mine = [x for q, x in cands if q == owner.get(id(e))]
+                on = [x for q, x in cands if q in active_set or q.startswith("ludeon.")]
+                return (mine or on or [x for _, x in cands])[-1]
+        return None
 
     cache = {}
 
@@ -192,9 +248,7 @@ def main(root, out, save=None):
             return cache[key]
         p = e.attrib.get("ParentName")
         if p and depth < 30:
-            parent = named.get((e.tag, p))
-            if parent is None:
-                parent = named.get(("*", p))
+            parent = parent_of(e, p)
             r = merge(resolved(parent, depth + 1), e) if parent is not None else e
         else:
             r = e
@@ -204,7 +258,13 @@ def main(root, out, save=None):
     os.makedirs(out, exist_ok=True)
     tables = {k: [] for k in ["apparel", "weapons", "items", "races", "xenotypes", "genes", "traits", "abilities",
                               "pawnkinds", "factions", "memes"]}
-    last = {}
+    class Last(dict):
+        """The last def of a name wins, as in the game; one of a mod not in the player's list never replaces one that is."""
+        def __setitem__(self, key, row):
+            if key not in self or self[key][2] != "yes" or row[2] == "yes":
+                super().__setitem__(key, row)
+
+    last = Last()
     for pid, e in defs:
         d = resolved(e)
         dn = text(d, "defName")
@@ -218,14 +278,15 @@ def main(root, out, save=None):
             trade = ",".join(lis(d, "tradeTags"))
             if d.find("apparel") is not None:
                 row = [dn, pid, on, label, tech, ",".join(lis(d, "apparel/tags")), ",".join(lis(d, "apparel/layers")),
-                       ",".join(lis(d, "apparel/bodyPartGroups")), ",".join(lis(d, "stuffCategories")), value, trade]
+                       ",".join(lis(d, "apparel/bodyPartGroups")), ",".join(lis(d, "stuffCategories")), value, trade,
+                       text(d, "generateCommonality")]
                 last[("apparel", dn)] = row
             elif d.find("weaponTags") is not None or "Weapon" in cats:
                 kind = "ranged" if d.find("verbs") is not None and any(
                     text(v, "verbClass").endswith("Shoot") or "Shoot" in text(v, "verbClass") or "Launch" in text(v, "verbClass")
                     for v in d.find("verbs").findall("li")) else "melee"
                 row = [dn, pid, on, label, tech, ",".join(lis(d, "weaponTags")), kind, ",".join(lis(d, "stuffCategories")),
-                       value, trade]
+                       value, trade, text(d, "generateCommonality")]
                 last[("weapons", dn)] = row
             elif d.find("race") is not None:
                 race = d.find("race")
@@ -261,8 +322,10 @@ def main(root, out, save=None):
     for (k, _), row in last.items():
         tables[k].append(row)
     heads = {
-        "apparel": ["defName", "mod", "active", "label", "techLevel", "tags", "layers", "bodyPartGroups", "stuff", "marketValue", "tradeTags"],
-        "weapons": ["defName", "mod", "active", "label", "techLevel", "weaponTags", "kind", "stuff", "marketValue", "tradeTags"],
+        "apparel": ["defName", "mod", "active", "label", "techLevel", "tags", "layers", "bodyPartGroups", "stuff", "marketValue", "tradeTags",
+                    "commonality"],
+        "weapons": ["defName", "mod", "active", "label", "techLevel", "weaponTags", "kind", "stuff", "marketValue", "tradeTags",
+                    "commonality"],
         "items": ["defName", "mod", "active", "label", "techLevel", "thingCategories", "tradeTags", "marketValue"],
         "races": ["defName", "mod", "active", "label", "kind", "bodySize", "foodType", "predator", "herdAnimal", "maxPreyBodySize"],
         "xenotypes": ["defName", "mod", "active", "label", "inheritable", "genes", "description"],
