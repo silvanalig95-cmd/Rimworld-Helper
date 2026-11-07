@@ -297,8 +297,11 @@ namespace ColonyCouncil
             {
                 // A part with nothing to say (the age filter over every age).
             }
-            return part.Label;
+            return LabelOf(part);
         }
+
+        /// <summary>A part's name: its def's label, else its class's.</summary>
+        private static string LabelOf(ScenPart part) => part?.def != null ? part.Label : part?.GetType().Name ?? "?";
 
         private static string Entries(IEnumerable<ScenPart> parts, string tag)
         {
@@ -374,7 +377,7 @@ namespace ColonyCouncil
                 string what = w == ScenWhole.Faction ? FactionOfPart((ScenPart_PlayerFaction)parts[0])?.label ?? "?" : string.Join(", ", parts.Select(p => Summary(p, s)).Distinct().Take(3));
                 not.Add(("CC_ScenStart_Whole_" + w).Translate(what.Named("WHAT")).Resolve());
             }
-            foreach (var p in st.Of(ScenCarry.Unknown)) not.Add("CC_ScenStart_Unknown".Translate(p.part.Label.Named("LABEL")).Resolve());
+            foreach (var p in st.Of(ScenCarry.Unknown)) not.Add("CC_ScenStart_Unknown".Translate(LabelOf(p.part).Named("LABEL")).Resolve());
             if (st.people == null && st.parts.Any(p => p.part is ScenPart_ConfigPage)) not.Add("CC_ScenStart_PeopleUnknown".Translate().Resolve());
             foreach (var p in st.Of(ScenCarry.Never)) never.Add("CC_ScenStart_Never_Families".Translate().Resolve());
             return (carried, not, never);
