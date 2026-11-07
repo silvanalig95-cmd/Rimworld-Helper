@@ -43,6 +43,7 @@ namespace ColonyCouncil
             ("election", ChronicleKind.Council, "ChoiceLetter_Election"),
             ("raidersCamp", ChronicleKind.World, "ChoiceLetter_RaidersCamp"),
             ("hamlet", ChronicleKind.World, "ChoiceLetter_Hamlet"),
+            ("townLife", ChronicleKind.World, "ChoiceLetter_TownLife"),
             ("journey", ChronicleKind.World, "ChoiceLetter_Journey"),
             ("callToArms", ChronicleKind.World, "ChoiceLetter_CallToArms"),
             ("envoy", ChronicleKind.World, "ChoiceLetter_EnvoyOffer"),

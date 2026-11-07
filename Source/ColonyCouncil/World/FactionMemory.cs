@@ -234,6 +234,8 @@ namespace ColonyCouncil
             // to its people, and to every people of the same faith.
             ["townTaken"] = K(DeedSide.Wrong, 45),
             ["townTakenFaith"] = K(DeedSide.Wrong, 20),
+            // Its raiders beaten off with the colony's fighters on its walls (Colonies/TownRaid.cs, release 5).
+            ["townDefended"] = K(DeedSide.Favor, 18),
             ["polluted"] = K(DeedSide.Wrong, 6, 15f, 20),
             ["questFailed"] = K(DeedSide.Wrong, 8),
             ["missionFailed"] = K(DeedSide.Wrong, 6),

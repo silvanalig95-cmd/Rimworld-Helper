@@ -12,7 +12,7 @@
     <order>16</order>
     <summary>A town the colony was keeps the colony's layout for its map, writes now and then, sends its trader, invites the colony to its days and lets its people come home. The colony can ask for it back by letter, or take it by force.</summary>
     <tip>A town in hard times is readier to come back: write to its head while its fortune is low, soon after the hand-over, and before it grows.</tip>
-    <description>Once a colony is handed over (see "a town of our own"), the town goes on as a people of its own. What it does afterwards is on the setting "The town's life" in Many colonies; its map and taking it back are always on.</description>
+    <description>Once a colony is handed over (see "a town of our own"), the town goes on as a people of its own. What it does afterwards is on the setting "The town's life" in Many colonies; its map and taking it back are always on. Its raids, its hard times, its cooling toward the colony and its growth are on a page of their own, "the town's life".</description>
     <sections>
       <li>
         <heading>Its map</heading>

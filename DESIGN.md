@@ -3296,6 +3296,83 @@ the records on `LedgerFormer` (World/Ledger/LedgerFormers.cs). No schedule slot:
 - **Dev tools.** Debug actions "Town after: ..." (`Colonies/TownAfterDebug.cs`): the head's letter, a homecoming asked,
   its day's invitation, their yes to the colony's letter, the question about moving there, and the kept layout's size.
 
+#### The town's life (stage 3, release 5)
+
+A town the colony was in its own life (docs/design/stage3-many-colonies.md, section 2, "The bad side", "Taking it back"
+and "Its growth"; the player's decisions 11B and 15B of 6 November 2026). Pure rules in `Colonies/TownLifeMath.cs`
+(`Tools/Tests/TownLifeTests.cs`, prefix "town life: "); the game's side in `Colonies/TownRaid.cs` (the raid, a world
+event of its own), `TownLife.cs` (the hour and the day: hard times, the gate, the goodwill, the hardships, growth),
+`TownLifeLetters.cs` (its questions, `ChoiceLetter_TownLife`), `TownLifePatches.cs` (the game's hooks) and
+`TownLifeDebug.cs`; the records on `LedgerFormer` (values only). No schedule slot: `TownsAfter.Hourly` and `Daily` call
+in, the raid rides the world events' own hour. Setting: "The town's life" (with handing over); off, none of it.
+- **Raided** (`Rimfolk_WS_TownRaid`, `SituationWorker_TownRaid`, weight 4, kind `townraid`, a fight of its own): one of
+  the world events of their usual rhythm, so it adds none to the year; it can be drawn only while a town the colony was
+  stands at peace with the colony, its map closed, its people at the heart of no other world event, and a people at war
+  with both (and able to field a band) exists, the nearer its towns the likelier. The points: its defenders the game's
+  own for a town (1,150 to 1,600) by its fortune (0.7 at nothing, 1.3 at 100, `TownLifeMath.DefendPoints`), the raiders
+  0.75 to 1.5 of the game's own before the fortune (so a struggling town meets them weaker). The start letter is the news by the town's means (`CallMeans`: a runner, a rider, the radio,
+  comms, by its age at the hand-over); within hours the beat `call` (the runner or rider at the gate,
+  `VisitEffect_AtGate` with `requires`) asks: send fighters, or send word that the colony cannot come (the default).
+  - *Sent*: the caravan window opens on the home the letter came to. The town holds out for a caravan of two grown
+    colonists or more (`TownLifeMath.Answers`) five days, and on while one is on the road to it; within a tile, its map
+    is made in a long event as the game makes a map it attacks (`GetOrGenerateMap` at the layout's size, the kept layout
+    and its notables at home, the defenders at the raid's own points through `TownLayouts.DefendPoints`), the game's
+    detection countdown reset, the caravan in at an edge with its colonists drafted, the raiders made as their people
+    fight and in at the farthest of eight entry cells under `LordJob_AssaultColony` (no kidnapping, no stealing, they
+    may flee), a threat letter naming those who came and the former colonists on the walls. Watched hourly
+    (`TownLifeMath.OnMap`): every raider down, dead or fled, defended (+12 goodwill, the faction memory's
+    `townDefended`, 18; the colony's part in the letter); nobody of the town or the colony standing, sacked (`fell`); the
+    map closed with both up (the colony left), by those left standing. Raiders still there then go.
+    `Patch_TownRaidNotDefeated` (a prefix on `SettlementDefeatUtility.CheckDefeated`) stands the game's defeat down for a
+    town of Rimfolk's peoples the colony was, not at war with the colony, whose map is open: the game counts a town
+    defeated when nobody of its people is a threat to the colony, which a friendly town never is.
+  - *Not sent* (refused, or sent and never came: -4 or -8 goodwill and the memory's `refused` or `letDown`): within half
+    a day to a day and a half, the game's measure of the two sides' points (`TownLifeMath.Alone`: held on its share of
+    the points, 0.1 to 0.9; else hurt, or sacked with raiders a quarter the stronger).
+  - *What it costs* (any ending): fortune 0 / 3 / 12 / 25 (on its own record, the raid named as the cause), its trade
+    stock less 0 / 10 / 35 / 70% a stack, up to one or two of its notables who were never the colony's (off the map), and
+    by 11B one former colonist at most, never its head, only in a raid it lost alone (`FormerDeathChance`: 0.1 to 0.4
+    sacked by the raiders' strength, 0.03 to 0.15 hurt: one unanswered raid in about 13 on a steady town, 6 on a struggling
+    one, 40 on a flourishing one) or seen dead in the fight on
+    its map; the ending's letter names them (`{DEAD}`, `{ITEM}` for its other dead). History `colony:formerDied`.
+  - Without the deeper hooks (`noMap`), no map of it is made and "Send fighters" is not offered.
+- **Hard times.** Struggling by the region's own rule (`RiseFallMath.Struggling`, `RiseFall.Blows`), goodwill 60 or more,
+  at peace, past its first season and a season since its last ask, not refused twice (`TownLifeMath.AsksBack`): its head
+  asks to come back under the colony (`ChoiceLetter_TownLife`, ask Back, by the town's means, its fortune and its former
+  colonists named; "take it back" by `AgeFeature.Back`). Their yes stands from then (`agreed`), so "Take it back" is on
+  the letter and the town's card (2b's `TownTakeBack.Make`); "Not now", or ten days unanswered, is a refusal (the
+  memory's `refused`). Refused twice, two to five days later, by day and with no fight at home: the town is given up
+  (`RiseFall.MakeRuin`, the region's own ruin in its people's colour, the town's notables let go, `colony:townGivenUp`, a
+  milestone); its former colonists free at home first, then up to three of its other people who would join
+  (`TownTakeBack.Joiners`, `TownLifeMath.Gate`, eight at most), walk in from the side of the map facing the town to the
+  gate (`LordJob_VisitColony`, two days); ask Gate: take them all in, only the colony's own, or send them on. The region
+  never gives a people's seat up (`RiseFallMath.MayGiveUp`); only the town's own people give it up, and with no other
+  town the people is no more: its leader steps aside, it is made temporary and defeated (the game lets it go once its
+  ruin and its people are gone). `TownTakeBack.Watch` leaves a town given up alone (`TownEnd.GivenUp`).
+- **Turning against the colony.** `Rimfolk_TownCooled` (`GoodwillSituationWorker_TownCooled`, "wronged by [colony]" or
+  "a head who thinks little of [colony]"): the town's natural goodwill less half a point a point of the colony's
+  unsettled wrongs they remember (40 at most: the faction memory, a broken pact or truce among them), 10 a live grudge
+  of the ledger from them (30 at most), and 0.4 a point of a head's regard under nothing (30 at most), worked out each
+  day; the game's own drift follows (outside 50 of it, 10 points each 50 days) and its changes toward it are larger. A new
+  head (the second leading after the head) who thinks little of the colony is told (`CoolHead`, -10). At war: the
+  game's storyteller raids with the people's own raiders; `Patch_TownRaidFormers` (a postfix on
+  `IncidentWorker_RaidEnemy.GetLetterText`) names a former colonist the game redressed into them; the raiders' camps can
+  pick the people by their own rule (nothing kept out).
+- **Its growth (15B).** Only with Faction Territories, at that mod's own pace (about one town every 30 days a people):
+  the existing hooks on its expansion (`WorldMechanics.Founded`, `Built`) tell the colony of a town of theirs begun and
+  finished, wherever it lies, and the history keeps it (`colony:townGrew`). Rimfolk's own new towns and ruins settled
+  again (`NewTowns.CanFound`) are never these peoples'.
+- **11B, the region's hardships.** Each day, a world event of kind sickness (plague) or hunger or drought (famine), bad,
+  ended since the last look and after the hand-over, of the town's people or within 20 tiles of it: each former colonist
+  free at home (not its head), the eldest first, at 6% a plague or 4% a famine, half again in a struggling town, twice
+  from 65, half where the colony helped that people through it, 25% at most, one death at most; a letter names them and
+  what took them, by the town's means.
+- **Saves.** Values on `LedgerFormer` only (`askedBackAt`, `askOpen`, `refusals`, `gateAt`, `gateCame`, `cooledWrongs`,
+  `cooledHead`, `headSeen`, `hardshipSeen`); the raid's state on its world event's numbers and flags (who of the
+  colony's former people was on the map by id). No new collection.
+- **Dev tools.** Debug actions "Town life: ..." (`Colonies/TownLifeDebug.cs`): a raid on it now, its hard times now (its
+  ask), its people at the gate now, a plague's reckoning now, its people at war with the colony, what cools it.
+
 ### The world ledger
 
 One way to name anything out in the world, one record for every tie between two parties, and one place to ask about a

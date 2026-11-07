@@ -66,6 +66,8 @@ namespace ColonyCouncil
                     Safe("their yes", () => FoundingLetters.AskTakeBack(rec));
                 }
             }
+            // Release 5: its people at the colony's gate (Colonies/TownLife.cs).
+            TownLife.Hourly(now);
         }
 
         // ================= The day =================
@@ -89,6 +91,8 @@ namespace ColonyCouncil
                 Safe("a homecoming", () => Homecomings(rec, now));
                 Safe("its days", () => Days(rec, now));
             }
+            // Release 5: its goodwill, its hard times and the region's hardships (Colonies/TownLife.cs).
+            TownLife.Daily(now);
         }
 
         // ================= Words =================
@@ -305,7 +309,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>A cell at the map's edge on the side the town lies, reachable, else null (the game's own entry cell).</summary>
-        private static IntVec3? EdgeToward(Map home, Settlement town)
+        internal static IntVec3? EdgeToward(Map home, Settlement town)
         {
             if (home == null || town == null || town.Tile.Layer != home.Tile.Layer) return null;
             try

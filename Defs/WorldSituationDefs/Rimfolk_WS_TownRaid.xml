@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- A raid on a town the colony was (Source/ColonyCouncil/Colonies/TownRaid.cs; docs/design/stage3-many-colonies.md,
+       section 2, "The bad side"; release 5). One of the world events of the usual rhythm, only while a town the colony
+       handed over stands at peace with it and a people at war with both can field a band. {PLACE} is the town, {FACTION}
+       its people, {ENEMY} the raiders, {OTHER} its head (the people's leader; [nohead] when there is none), {TITLE} the
+       head's title, {TALE} which way and how far, {X} the runner or rider at the gate. Flags: how the town calls by its own
+       means at the hand-over (runner, rider, radio, comms); noMap without the deeper hooks (the colony isn't asked to send
+       anyone: no map of the town is made); sending, refused, nobodyCame by the answer; seen when the fight was on the
+       town's map; died ({DEAD}, the colony's former people killed, diedMany for more than one) and others ({ITEM}, its
+       other people lost) for the endings. The code reckons how it ends: by the fight on the town's map, else by the game's
+       measure of the two sides' points. -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_TownRaid</defName>
+    <label>a raid on a town the colony was</label>
+    <workerClass>ColonyCouncil.SituationWorker_TownRaid</workerClass>
+    <weight>4</weight>
+    <earliestDay>0</earliestDay>
+    <cooldownDays>60</cooldownDays>
+    <durationDays>12~15</durationDays>
+    <kind>townraid</kind>
+    <bad>true</bad>
+    <battle>true</battle>
+    <titles>
+      <li>A raid on {PLACE}</li>
+      <li>Raiders at {PLACE}</li>
+    </titles>
+    <texts>
+      <li>[runner,!nohead] A runner from {PLACE}, {TALE}, is on the way to the colony with word from {OTHER_nameDef}: a war band of {ENEMY} is camped in the woods above the town, and more of them come in every night.\n\n{PLACE} was the colony once. Its people mean to keep it.</li>
+      <li>[runner,nohead] A runner from {PLACE}, {TALE}, is on the way to the colony: a war band of {ENEMY} is camped above the town, and its people are piling stones in the gaps of the old fence.\n\n{PLACE} was the colony once. Its people mean to keep it.</li>
+      <li>[rider,!nohead] A rider is coming hard from {PLACE}, {TALE}, with word from the {TITLE}, {OTHER_nameDef}: raiders of {ENEMY} are on the roads around the town, and it has shut its gates.\n\n{PLACE} was the colony once, and the hall the colony built is its keep now.</li>
+      <li>[rider,nohead] A rider is coming hard from {PLACE}, {TALE}: raiders of {ENEMY} are on the roads around the town, and it has shut its gates.\n\n{PLACE} was the colony once, and the hall the colony built is its keep now.</li>
+      <li>[radio,!nohead] The radio carries a call from {PLACE}, {TALE}: {OTHER_nameDef}, its {TITLE}, says raiders of {ENEMY} are gathering outside the town in trucks and on foot.\n\n{PLACE} was the colony once, and its walls are the colony's walls.</li>
+      <li>[radio,nohead] The radio carries a call from {PLACE}, {TALE}: raiders of {ENEMY} are gathering outside the town in trucks and on foot.\n\n{PLACE} was the colony once, and its walls are the colony's walls.</li>
+      <li>[comms,!nohead] A comms call from {PLACE}, {TALE}: {OTHER_nameDef}, its {TITLE}, reports a strike group of {ENEMY} closing on the settlement.\n\n{PLACE} was the colony once. Its defences are the ones the colony built.</li>
+      <li>[comms,nohead] A comms call from {PLACE}, {TALE}: a strike group of {ENEMY} is closing on the settlement.\n\n{PLACE} was the colony once. Its defences are the ones the colony built.</li>
+    </texts>
+    <summaries>
+      <li>{PLACE} holds its gate against {ENEMY} as long as it can. Fighters the colony sends by caravan are waited for, and fight on the town's own ground.</li>
+    </summaries>
+    <beats>
+      <li>
+        <key>call</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>runner</what><young>true</young><requires>runner</requires></li>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>rider</what><pack>true</pack><requires>rider</requires></li>
+        </effects>
+        <day>0.05~0.15</day>
+        <answerDays>1</answerDays>
+        <threat>true</threat>
+        <titles>
+          <li>{PLACE} asks for help</li>
+        </titles>
+        <texts>
+          <li>[runner,!nohead] {OTHER_nameDef}'s runner is at the colony, out of breath: {PLACE} is holding its fence against {ENEMY}, and asks whether the colony it was will send fighters.\n\nThe town will hold out as long as it can.</li>
+          <li>[runner,nohead] A runner from {PLACE} is at the colony, out of breath: the town is holding its fence against {ENEMY}, and asks whether the colony it was will send fighters.\n\nThe town will hold out as long as it can.</li>
+          <li>[rider,!nohead] The rider from {PLACE} brings the {TITLE}'s own words: {OTHER_nameDef} asks the colony to send fighters against {ENEMY}, for the sake of the town it was.\n\nThe town will hold its gates as long as it can.</li>
+          <li>[rider,nohead] The rider from {PLACE} asks the colony to send fighters against {ENEMY}, for the sake of the town it was.\n\nThe town will hold its gates as long as it can.</li>
+          <li>[radio,!nohead] {OTHER_nameDef} comes back on the radio: {PLACE} can hold its walls against {ENEMY} for a while, and asks whether the colony will send fighters.\n\nThe town will hold out as long as it can.</li>
+          <li>[radio,nohead] The radio again: {PLACE} can hold its walls against {ENEMY} for a while, and asks whether the colony will send fighters.\n\nThe town will hold out as long as it can.</li>
+          <li>[comms,!nohead] {OTHER_nameDef} asks over comms for a strike team from the colony: {PLACE}'s defences can hold {ENEMY} off for a while, not for good.\n\nThe settlement will hold out as long as it can.</li>
+          <li>[comms,nohead] The call from {PLACE} asks for a strike team from the colony: its defences can hold {ENEMY} off for a while, not for good.\n\nThe settlement will hold out as long as it can.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Send fighters to {PLACE}</label>
+            <outcome>{PLACE} will hold out for the colony's fighters. Form their caravan for the town: two grown colonists or more, by caravan, or by pods or shuttle where the colony has them.</outcome>
+            <hideIf><li>noMap</li></hideIf>
+            <flags><li>sending</li></flags>
+            <ways><generosity>2</generosity><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Send word that the colony cannot come</label>
+            <outcome>{PLACE} has the colony's answer, and readies itself alone.</outcome>
+            <outcomes>
+              <li>[runner] The runner sets off back to {PLACE} with the colony's answer.</li>
+              <li>[rider] The rider turns for {PLACE} with the colony's answer.</li>
+              <li>[radio] The colony answers over the radio that it cannot come. {PLACE} readies itself alone.</li>
+              <li>[comms] The colony answers over comms that it cannot come. {PLACE} readies itself alone.</li>
+            </outcomes>
+            <flags><li>refused</li></flags>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>defended</key>
+        <timeout>false</timeout>
+        <helped>true</helped>
+        <titles>
+          <li>{PLACE} stands</li>
+        </titles>
+        <texts>
+          <li>[!died] The raiders of {ENEMY} are gone from {PLACE}. The colony's fighters stood on the old walls beside the town's own people, and the town has not forgotten whose walls they were.\n\n{FACTION} will remember it.</li>
+          <li>[died] The raiders of {ENEMY} are gone from {PLACE}, but not without a price: {DEAD}, one of the colony's own once, fell beside the colony's fighters.\n\n{FACTION} will remember who came when they called.</li>
+        </texts>
+      </li>
+      <li>
+        <key>fell</key>
+        <timeout>false</timeout>
+        <titles>
+          <li>{PLACE} sacked</li>
+        </titles>
+        <texts>
+          <li>[!died] The raiders of {ENEMY} broke into {PLACE} while the colony's fighters were still in the fight, and took what they could. The town still stands, poorer than it was.</li>
+          <li>[died] The raiders of {ENEMY} broke into {PLACE} while the colony's fighters were still in the fight, and took what they could. {DEAD}, one of the colony's own once, died in the fight.\n\nThe town still stands, poorer than it was.</li>
+        </texts>
+      </li>
+      <li>
+        <key>held</key>
+        <titles>
+          <li>{PLACE} holds</li>
+        </titles>
+        <texts>
+          <li>[refused] {PLACE} held without the colony. {ENEMY} tried the walls for a night and a day and went off after easier towns.\n\nIts people are tired, and short of a little of everything.</li>
+          <li>[nobodyCame] The colony's fighters never came, but {PLACE} held. {ENEMY} tried the walls and went off after easier towns.\n\nIts people waited for the colony, and noticed when it did not come.</li>
+          <li>[seen] The colony's fighters left before the end, and {PLACE} held without them. {ENEMY} have gone off after easier towns.</li>
+          <li>[!refused,!nobodyCame,!seen] {PLACE} held. {ENEMY} tried the walls and went off after easier towns.</li>
+        </texts>
+      </li>
+      <li>
+        <key>hurt</key>
+        <timeout>false</timeout>
+        <titles>
+          <li>{PLACE} hurt</li>
+        </titles>
+        <texts>
+          <li>[!died,!others] {ENEMY} were beaten back at the gate of {PLACE}, but not before they burned its outer fields and took what they found there. The town has lost goods and fortune.</li>
+          <li>[!died,others] {ENEMY} were beaten back at the gate of {PLACE}, but not before they burned its outer fields. Among the town's dead is {ITEM}.\n\nThe town has lost goods and fortune.</li>
+          <li>[died,!others] {ENEMY} were beaten back at the gate of {PLACE}. {DEAD}, one of the colony's own once, was killed holding it.\n\nThe town has lost goods and fortune.</li>
+          <li>[died,others] {ENEMY} were beaten back at the gate of {PLACE}. {DEAD}, one of the colony's own once, was killed holding it, and so was {ITEM}.\n\nThe town has lost goods and fortune.</li>
+        </texts>
+      </li>
+      <li>
+        <key>sacked</key>
+        <timeout>false</timeout>
+        <titles>
+          <li>{PLACE} sacked</li>
+        </titles>
+        <texts>
+          <li>[!died,!others] {ENEMY} broke into {PLACE} and took most of what it had. The town still stands, but it will be a long time before it stands as it did.</li>
+          <li>[!died,others] {ENEMY} broke into {PLACE} and took most of what it had. Among the town's dead is {ITEM}.\n\nThe town still stands, but it will be a long time before it stands as it did.</li>
+          <li>[died,!others] {ENEMY} broke into {PLACE} and took most of what it had. {DEAD}, one of the colony's own once, was killed in the raid.\n\nThe town still stands, but it will be a long time before it stands as it did.</li>
+          <li>[died,others] {ENEMY} broke into {PLACE} and took most of what it had. {DEAD}, one of the colony's own once, was killed in the raid, and so was {ITEM}.\n\nThe town still stands, but it will be a long time before it stands as it did.</li>
+        </texts>
+      </li>
+      <li>
+        <key>gone</key>
+        <timeout>false</timeout>
+        <titles>
+          <li>The raid on {PLACE}</li>
+        </titles>
+        <texts>
+          <li>Word from {PLACE} has stopped. Whatever came of the raid, the town is not what it was when it called the colony.</li>
+        </texts>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+</Defs>

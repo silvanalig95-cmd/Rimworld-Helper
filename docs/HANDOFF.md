@@ -6,6 +6,68 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 0.130.0, stage 3 release 5: the town's life (7 November 2026). The player's decisions 11B and 15B; `docs/design/
+  stage3-many-colonies.md`, section 2's "The bad side", "Taking it back" ("Peacefully, the town asks") and "Its growth",
+  now marked built with what differs (item 5); DESIGN.md "The town's life" (under "A town of our own", after "The town
+  afterwards"); an Almanac page of its own (`Almanac_TownLife.xml`, "the town's life"; 2b's page a prose change); README
+  a section; the setting "The town's life" covers it (its tip a prose change). No round of its own: About.xml, What's new
+  and CHANGELOG untouched. Pure rules in `Colonies/TownLifeMath.cs` (`TownLifeTests`, prefix "town life: "). Built in
+  `Source/ColonyCouncil/Colonies/` (`TownRaid.cs`, `TownLife.cs`, `TownLifeLetters.cs`, `TownLifePatches.cs`,
+  `TownLifeDebug.cs`), `Defs/WorldSituationDefs/Rimfolk_WS_TownRaid.xml`, `Defs/Misc/Rimfolk_TownLife.xml`; small seams in
+  `TownsAfter` (the hour and day call in), `TownLayout.AtHome` (`DefendPoints`), `TownTakeBack.Watch` (`TownEnd.GivenUp`,
+  `Joiners` internal), `LedgerFormer` (values only), `WorldMechanics.Founded`/`Built`, `NewTowns.CanFound`,
+  `RiseFall.Blows` (internal), `AnswerMath` ("townLife"), `FactionMemory` (`townDefended`), `Tools/Balance/Defs.cs`.
+  - Raided: `Rimfolk_WS_TownRaid` (`SituationWorker_TownRaid`, weight 4, kind `townraid`, battle), drawn only while a town
+    the colony was stands at peace, its map closed, and a people at war with both can field a band. The news by the
+    town's means (runner, rider, radio, comms by its age), then the call (a runner or rider at the gate): send fighters
+    (the caravan window opens; the town holds out 5 days and on while a caravan of 2 grown colonists or more is on the
+    road) or not (the default). Within a tile: its map made in a long event (`GetOrGenerateMap`, the kept layout and its
+    notables, defenders at the raid's own points), the detection countdown reset, the caravan in at an edge drafted, the
+    raiders in at the far edge under `LordJob_AssaultColony`; watched hourly (`TownLifeMath.OnMap`). Unanswered: the two
+    sides' points (`Alone`). Costs: fortune, trade stock, up to 2 notables never the colony's, and by 11B one former
+    colonist at most (never its head) only in a raid lost alone, or seen dead on its map; the ending's letter names them.
+    `Patch_TownRaidNotDefeated` (prefix on `SettlementDefeatUtility.CheckDefeated`) keeps the game from "defeating" a
+    town at peace on its own map. No deeper hooks: no map, no "Send fighters".
+  - Hard times: `RiseFallMath.Struggling` with goodwill 60 or more, a season apart: the head asks to come back
+    (`ChoiceLetter_TownLife` ask Back; their yes stands, so 2b's take-back works from the letter and the card); "Not now"
+    or 10 days unanswered is a refusal. Refused twice: 2 to 5 days later, by day, the town is the region's ruin
+    (`RiseFall.MakeRuin`), its former colonists free at home and up to 3 joiners walk in from the town's side to the gate
+    (`LordJob_VisitColony`, 2 days; ask Gate: all, only the colony's own, send on); with no other town its leader steps
+    aside and the people is made temporary and defeated.
+  - Turning against: `Rimfolk_TownCooled` (natural goodwill less the colony's open wrongs, grudges and a cool head's
+    regard, worked out daily on the record); a new head who thinks little of the colony is told; at war, the game's own
+    raids, and `Patch_TownRaidFormers` (postfix on `IncidentWorker_RaidEnemy.GetLetterText`) names a former colonist the
+    game redressed into them.
+  - Growth (15B): Faction Territories' own pace, told through `WorldMechanics.Founded`/`Built`; `NewTowns.CanFound`
+    excludes these peoples (Rimfolk's own towns and resettled ruins). 11B hardships: a plague or famine of its people or
+    within 20 tiles, ended since the last look, may take one former colonist (6% or 4% each), told by letter.
+  - Rates: world events a year unchanged (the balance model leaves the raid out: the sim's colony has none; the before
+    and after runs give the same 1.0 to 1.2 a year); an unanswered raid takes a former colonist about 1 in 13 on a steady
+    town (1 in 6 struggling, 1 in 40 flourishing); six former colonists through a plague, one dies about 35% of the time.
+  - Dev tools: Debug actions, Rimfolk, "Town life: ..." (`Colonies/TownLifeDebug.cs`), each for a town from a menu.
+  - Try in the game with dev tools (none of it could be run here; a town needs 2a's hand-over first):
+    1. "Town life: a raid on it now": the news letter by the town's means, then within hours the call (a runner or a
+       rider walks to the gate for a tribal or medieval town). Send fighters: the caravan window; form one of two grown
+       colonists for the town. On arrival: the loading screen, the town's map as the colony left it, its notables and
+       defenders on it, the colony's fighters drafted at one edge and the raiders at the far one; the threat letter.
+       Fight it out: the ending letter ("stands", or "sacked"), anyone of the colony's former people who died named;
+       the town still there, not "defeated", no "detected" letter after a day; leave by Reform caravan, the map closes.
+    2. The same, answering "cannot come": within a day or so the ending by points (held, hurt or sacked), fortune and
+       trade stock lower, a former colonist named if one died.
+    3. "Town life: its hard times now": the head's ask; "Not now" twice (or "its people at the gate now"): the town a
+       ruin on the world map, its former colonists walking in from its side to the gate, the letter's three answers;
+       take them in (colonists again, the history's homecoming), or send them on.
+    4. "Town life: what cools it", then wrong the people (attack its caravan with dev tools) and look again: "wronged
+       by" among its goodwill situations; "its people at war with the colony", then the game's Raid incident with them:
+       a former colonist among the raiders is named in the letter.
+    5. "Town life: a plague's reckoning now": maybe a letter naming one of the colony's former people (rolls are real).
+    6. With Faction Territories: wait for its expansion (or its own dev action) on the town's people: the news lines.
+    7. Save and load mid-raid (the call open, the caravan on the road, the fight on the map) and with people at the gate.
+  - Riskiest: the defeat-check prefix (every settlement with a map passes it); a friendly town's map open while the
+    colony fights there (the game's own systems that assume a town's map is an attack: Reform caravan, detection,
+    goodwill hits from stray shots); the raiders' assault lord against a non-player town (they seek the nearest enemy);
+    the people made temporary and defeated with its ruin still in its colour (the game removes it only once the ruin and
+    its pawns are gone); killing world pawns off the map (`DieOffscreen`) and the game's relation thoughts that follow.
 - 0.129.0, stage 3 release 3: a scenario's start (7 November 2026). The player's decision 3A; `docs/design/stage3-many-colonies.md`,
   section 1's "A scenario's start", now marked built with what differs (item 3); DESIGN.md "A scenario's start" (under
   "A fresh start"); an Almanac page of its own (`Almanac_ScenarioStart.xml`, "a scenario's start"; the fresh start's

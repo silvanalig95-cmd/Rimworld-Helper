@@ -633,6 +633,9 @@ namespace Balance
 
         private void Situation(XElement el)
         {
+            // A raid on a town the colony was (Colonies/TownRaid.cs) can come only once a colony is handed over: the model's
+            // colony has none, so it is not among the world events it can draw.
+            if (Get(el, "workerClass") == "ColonyCouncil.SituationWorker_TownRaid") return;
             var s = new SituationInfo { name = Get(el, "defName") };
             (s.durMin, s.durMax) = Range(Get(el, "durationDays"), 15f, 25f);
             var beats = Find(el, "beats");

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The Almanac page on a town the colony was in its own life (Source/ColonyCouncil/Colonies/: TownLifeMath.cs,
+       TownLife.cs, TownRaid.cs, TownLifeLetters.cs, TownLifePatches.cs; Defs/WorldSituationDefs/Rimfolk_WS_TownRaid.xml;
+       docs/design/stage3-many-colonies.md, section 2, release 5; DESIGN.md "The town's life"). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_TownLife</defName>
+    <label>the town's life</label>
+    <category>Council</category>
+    <order>16</order>
+    <summary>A town the colony was can be raided and ask for help, fall on hard times and ask to come back, turn cool or hostile to the colony, and grow with Faction Territories. One of the colony's former people dies only where the player sees it or in a real hardship of the town, told by name.</summary>
+    <tip>When the town calls for help, a caravan of two fighters or more that reaches it fights on the town's own ground, the colony as it was left, beside its people. Left alone, it holds or falls by the two sides' strength.</tip>
+    <description>Once a colony is handed over (see "a town of our own" and "the town afterwards"), its town lives a life of its own. All of it is on the setting "The town's life" in Many colonies, with handing over.</description>
+    <sections>
+      <li>
+        <heading>A raid on it</heading>
+        <points>
+          <li>A world event of the usual rhythm, never one more a year: a people at war with both the town and the colony raids it. Its head's runner, rider, radio or comms, by the town's own means, asks the colony for help.</li>
+          <li>Send fighters: form a caravan of two grown colonists or more for the town (on foot, with pack animals, or by pods or shuttle where the colony has them). The town holds out for them 5 days, and on while they are on the road. There, its map is made as the colony left it, its people on their walls, the raiders coming in at the far side: a real fight. Every raider down or fled, it stands, and remembers it.</li>
+          <li>Not sent, or never came: it holds or falls by the two sides' strength, as the game measures it. Held, it loses a little; hurt or sacked, its fortune, its goods and some of its other people. One of the colony's former people may die only in a raid it lost, named in the letter.</li>
+          <li>Without the deeper hooks no map of the town is made, and the colony is not asked to send anyone.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Hard times</heading>
+        <points>
+          <li>Struggling long (as the region reckons it: under 15 for a month, or two hard blows under 25) and with goodwill 60 or more, its head asks to come back under the colony, a season apart at most. Take it back from the letter or the town's card, as with the colony's own letter.</li>
+          <li>A no, or the question left 10 days, is a refusal, and the town remembers it. Refused twice, its people give the town up: a ruin on the map. Its former colonists first, and up to 3 of its other people, come to the colony's gate asking to come home: take them all in, only the colony's own, or send them on. With no other town, its people is no more.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Turning against the colony</heading>
+        <points>
+          <li>The colony's wrongs they remember (the faction memory's, the ledger's grudges, a broken pact or truce) and a head who thinks little of the colony lower the town's natural goodwill, shown among its people's goodwill as "wronged by" the colony; the game's own drift does the rest. A new head who thinks little of the colony is told.</li>
+          <li>At war, it raids the colony when the storyteller sends its raids, with its own people's raiders; one of the colony's former people among them is named in the raid's letter. A raiders' camp of theirs can come by the camps' own rule.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Its growth and its losses</heading>
+        <points>
+          <li>With Faction Territories, the town's people build new towns at that mod's own pace, about one every 30 days, and each is told. Without it the town stays one town: Rimfolk's own new towns are never this people's.</li>
+          <li>A plague or a famine of its people, or within 20 tiles of the town, may take one of the colony's former people there when it ends: 6% each in a plague, 4% in a famine, more in a struggling town or past 65, half where the colony helped; one at most, told by letter with their name.</li>
+        </points>
+      </li>
+    </sections>
+    <keywords><li>town's life</li><li>raid on the town</li><li>town asks to come back</li><li>people at the gate</li><li>wronged by the colony</li></keywords>
+    <seeAlso><li>Council_Alm_C_TownAfter</li><li>Council_Alm_C_HandOver</li><li>Council_Alm_C_Region</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

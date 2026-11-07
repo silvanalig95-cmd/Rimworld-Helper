@@ -352,6 +352,8 @@ namespace ColonyCouncil
         /// </summary>
         public static void Founded(Faction people, PlanetTile tile, int site = -1, int started = -1, int completes = -1)
         {
+            // A town the colony was growing at the mod's own pace (release 5, 15B), told wherever it lies.
+            TownLife.Founded(people, tile);
             if (people == null || !tile.Valid || !WorldMath.Records(InReach(tile), false)) return;
             Write(WorldMath.Founded, new List<HistoryActor> { new HistoryActor(Refs.Of(people), HistoryRole.Did) }, Refs.Of(tile), false);
             RegionFaces.Begun(people, tile, site, started, completes);
@@ -363,6 +365,7 @@ namespace ColonyCouncil
         /// </summary>
         public static void Built(Faction people, Settlement town, int site = -1)
         {
+            TownLife.Built(people, town);
             if (people == null || town == null || !WorldMath.Records(InReach(town.Tile), false)) return;
             var actors = new List<HistoryActor> { new HistoryActor(Refs.Of(people), HistoryRole.Did), new HistoryActor(Refs.Of(town.Tile), HistoryRole.About) };
             var founder = RegionFaces.FounderAt(site, town.Tile);

@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The old town's own life
+
+*7 November 2026, version 0.130.0*
+
+- A town your colony was can be raided. Its head's runner, rider, radio or comms asks for help, and fighters you send join its defenders on the town's own map, your old colony as you left it, in a real fight.
+- Unanswered, the raid is held off, hurts the town or sacks it by the two sides' strength. The town loses fortune and goods, and the letter names whoever was lost. Defended, it remembers that you came.
+- In long hard times the town's head asks to come back under your colony. Refused twice, the town is given up as a ruin and its people walk to your gate, your former colonists first, asking to be taken in.
+- A town you wrong cools toward you, and so does one whose new head thinks little of your colony. At war, its raids may bring a former colonist among the raiders, and the letter names them.
+- With Faction Territories, the town founds new towns at that mod's own pace.
+- Your former colonists die only from a real hardship of their town, a raid or a plague or famine near it, and a letter names them.
+
 ## A scenario's start for a new colony
 
 *7 November 2026, version 0.129.0*

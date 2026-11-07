@@ -23,6 +23,11 @@
 > kit, arrival and animals and Rimfolk's own parts for the new colony alone, with the decision 3A. See "The order to
 > build it in", item 3, for what differs.
 
+> **Release 5, the town's life, is built** (7 November 2026): the raid on the town and the call for help on its map,
+> hard times and the town asking to come back (refused twice, its people at the gate), turning against the colony,
+> Faction Territories' pace for its new towns (15B), and a former colonist's death only from a real hardship, told by
+> name (11B). See "The order to build it in", item 5, for what differs.
+
 > Revised 6 November 2026: the colony is the family (the town a colony becomes is bound to it as a colony, its next
 > head chosen by office or standing, no houses, nothing handed down; a colonist's own ties stay personal); council
 > tasks and the keeper of secrets gone; renown the colony's and each colonist's own; banishment where it touches; the
@@ -701,6 +706,42 @@ colonies at once after. Each release plays as before with its settings off and o
 5. **The town's life**: the raid and the call for help on its map, hard times and the town asking to come back,
    turning against the colony, Faction Territories' pace for its new towns. Needs 2 and stage 1's rise and fall and
    raiders' camps.
+
+   **Built (release 5, 7 November 2026; `Source/ColonyCouncil/Colonies/TownLifeMath.cs`, `TownLife.cs`, `TownRaid.cs`,
+   `TownLifeLetters.cs`, `TownLifePatches.cs`, `TownLifeDebug.cs`; DESIGN.md "The town's life").** The raid and the fight
+   on its map, hard times and its ask to come back, its people at the gate, turning against the colony, growth at
+   Faction Territories' pace (15B) and 11B. What differs from section 2:
+   - *The raid* is a world event of its own (`Rimfolk_WS_TownRaid`, weight 4, a fight of its own, so only with
+     world-event battles on), drawn from the world events' usual rhythm: it never adds an event to the year. Its raiders
+     are a people at war with both the town and the colony, so the colony's fighters can fight them. The town holds out
+     five days for the colony's caravan (two grown colonists or more; pods and a shuttle land as a caravan, so they count),
+     and on while it is on the road. Vehicles and a gravship are not offered by name.
+   - *The fight* is on the town's own map (the kept layout, its notables and its defenders at the raid's own points), the
+     raiders in at the far edge: the game's defeat check stands down for a town at peace with the colony there, since the
+     game counts any town defeated when nobody of its people is a threat to the colony. Without the deeper hooks no map
+     is made and the colony isn't asked to send anyone.
+   - *Unanswered*, the game's measure of the two sides' points decides: held, hurt or sacked, with its fortune, a share of
+     its trade stock and up to two of its notables who were never the colony's (its other people the colony knows by
+     name; the rest are not counted); a former colonist may die (one at most, never its head) only in a raid it lost,
+     where the design had "of old age by the notables' rule": the player's decision 11B ruled that out.
+   - *Hard times*: "long struggling" is the region's own rule (`RiseFallMath.Struggling`); the town's ask is a letter by
+     its means, its yes standing until the colony answers (ten days unanswered is a no); refused twice, the town is given
+     up two to five days later as the region's own ruin, its former colonists and up to three others at the colony's gate
+     (take them all in, only the colony's own, or send them on); with no other town, the people is made temporary and
+     defeated, as when it is taken back. "Under a war it can't win" is not a reason of its own: a war's blows are among
+     the region's.
+   - *Turning against*: one goodwill situation of its own ("wronged by [colony]"), the colony's open wrongs in the faction
+     memory, the ledger's live grudges and a head's low regard, beside the bond; the game's drift does the rest. A broken
+     pact counts through the memory's own wrong for it. A new head who thinks little of the colony is told in the news.
+   - *Hostile raids* are the game's own (its storyteller and the people's def): Rimfolk only names a former colonist the
+     game redressed into them, in the raid's letter. The raiders' camps needed no change to pick the people.
+   - *Growth (15B)*: only with Faction Territories, at its own pace through the existing hooks, told in the news and the
+     history; Rimfolk's own new towns and ruins settled again are never these peoples' (without the mod the town stays one
+     town).
+   - *11B*: a death comes only in a fight on a map the player sees, a raid the town lost, or a plague or famine of its
+     people or within 20 tiles (6% or 4% each when it ends, more if struggling or old, less where the colony helped; one at
+     most), each told by letter with the name.
+   - *Setting*: none new; "The town's life" covers it.
 
 Beside them, the content pass (wave 16): letters, talk, news and journals for the towns the colony was, the founders
 and the newcomers in every age's form; the Almanac pages "A new start", "A town of our own", "Many colonies".

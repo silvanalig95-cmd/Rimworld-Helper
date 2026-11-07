@@ -1979,6 +1979,20 @@ its former colonists walk out of their rooms as colonists and up to three of its
 it by force, as the game allows: attack, beat and settle it with the game's Settle button; the bond ends, and its
 people and every people of its faith remember a heavy wrong. Setting: Many colonies (The town's life).
 
+### The town's life
+A town the colony was lives a life of its own. **Raided**: one of the world events can be a raid on it by a people at
+war with both, and its head's runner, rider, radio or comms (by the town's own means) asks for help. Form a caravan of
+two fighters or more for it (pods and a shuttle land as one) and the town holds out for them; there, its map is made
+as you left it, its people on their walls and the raiders coming in at the far side, and it is a real fight. Left
+alone, it holds or falls by the two sides' strength, losing fortune, goods and some of its people. **Hard times**:
+long struggling, with goodwill 60 or more, it asks to come back under the colony (take it back from the letter or its
+card); refused twice, its people give it up, and its former colonists, with up to three others, come to your gate
+asking to come home. **Turning against you**: the colony's wrongs they remember and a head who thinks little of you
+lower its natural goodwill ("wronged by" the colony among its goodwill); at war, it raids you with its own people's
+raiders, and a former colonist among them is named in the letter. **Growing**: with Faction Territories, at that mod's
+own pace. One of your former colonists dies only in a fight you see, in a raid the town lost, or in a plague or famine
+of its people or nearby, and the letter names them. Setting: Many colonies (The town's life).
+
 ### Another landing site
 Don't like the map? For the first three days of a new game, **Choose another landing site** in the game's menu (Esc),
 or on the colony's card, sets the same colony down on a new map: a new map of the same place or another place on the
