@@ -508,13 +508,12 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>What their people give at a match, by their ways: a tribe's goods, the middle ages' and the Empire's gold, silver for the rest.</summary>
-        public static ThingDef GiftDef(Faction f)
-        {
-            if (Ages.IsEmpire(f) || Ages.Of(f) == WorldAge.Medieval) return ThingDefOf.Gold;
-            if (Ages.Of(f) == WorldAge.Tribal) return DefDatabase<ThingDef>.GetNamedSilentFail("Jade") ?? DefDatabase<ThingDef>.GetNamedSilentFail("Pemmican") ?? ThingDefOf.Silver;
-            return ThingDefOf.Silver;
-        }
+        /// <summary>
+        /// What their people give at a match, by their ways (Things/ThingRoles.cs, a gift): mostly a tribe's jade or stone,
+        /// the middle ages' and the Empire's gold, silver for the rest, now and then a fine drink of theirs (a mod's wine or
+        /// spirits), never one most of the colony's people would mind; the base game's own when nothing fits.
+        /// </summary>
+        public static ThingDef GiftDef(Faction f, Map home) => ThingRoles.From(ThingRole.Gift, f, home) ?? ThingDefOf.Silver;
 
         /// <summary>
         /// The gifts carried both ways at the gate: theirs by their ways, set down by their porters, and the colony's silver
@@ -525,7 +524,7 @@ namespace ColonyCouncil
             try
             {
                 int value = MatchMath.GiftValue(Fortune(p.town));
-                var def = GiftDef(p.people);
+                var def = GiftDef(p.people, map);
                 int count = MatchMath.GiftCount(value, def.BaseMarketValue);
                 var theirs = Couriers.Make(def, count);
                 int ours = Mathf.Min(value, PlayCarry.Have(map, "silver", ThingDefOf.Silver));

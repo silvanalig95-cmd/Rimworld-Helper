@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.162.0</version>
+        <date>7 November 2026</date>
+        <title>Your mods' things in Rimfolk's gifts, feasts and finds</title>
+        <points>
+          <li>Where Rimfolk picks a thing for you or from you, it now chooses from everything your game and your mods have, by what the thing is for: a drink for a toast, a soft drink for the dry, a feast's dish, food for the road, a crop, medicine, something precious, a carving, a gift or a blade.</li>
+          <li>Each people gives what fits its age and ways: a tribe's jade or pemmican, a medieval town's gold or wine, an industrial people's packaged food, a spacer's glitterworld medicine, and your brewing, cooking and art mods' own among them.</li>
+          <li>Wedding and match gifts, the town's seasonal gift, the prospectors' finds, a tribe's ransom, a favour's goods, a help letter's food and medicine, an envoy's parting gift, a guest's provisions and what an outsider brings next time all draw from this.</li>
+          <li>Carvings and keepsakes, and the blade a fallen star becomes, are ones your colony knows how to make; a wedding or funeral mission can ask for drinks, and your own wine or mead counts.</li>
+          <li>Never anything special, from a quest, or made of a person (corpse rum and cannibal dishes included), and nothing most of your colony's beliefs would mind.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.161.0</version>
         <date>7 November 2026</date>
         <title>Mishaps of work, animals and festivals, in the shared budget</title>

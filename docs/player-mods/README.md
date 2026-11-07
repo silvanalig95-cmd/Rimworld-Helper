@@ -27,8 +27,8 @@ listed).
 |---|---|---|
 | mods.tsv | every mod subscribed | name, folder, active, load order, in the uploaded save, supported versions, catalogued |
 | apparel.tsv | clothing and armour | label, techLevel, apparel tags, layers, body part groups, stuff, market value, trade tags, how often the game picks it (`generateCommonality`, blank for 1) |
-| weapons.tsv | weapons | label, techLevel, weapon tags, ranged or melee, stuff, market value, trade tags, how often the game picks it |
-| items.tsv | everything else that is an item | label, techLevel, thing categories, trade tags, market value |
+| weapons.tsv | weapons | label, techLevel, weapon tags, ranged or melee, stuff, market value, trade tags, how often the game picks it, tradeability, comps, `madeTech`, the tools' capacities (cut, stab, blunt) |
+| items.tsv | everything else that is an item | label, techLevel, thing categories, trade tags, market value, and what Rimfolk's things by role read (Things/ThingRoles.cs): category, stack limit, tradeability, food preferability and type, drug category, meat's source, nutrition, chemical, teetotaler, days to rot, comps, stuff kinds and beauty, medical potency, what it is made of, size, designation, minified, `madeTech`, work to make, terror |
 | races.tsv | humanlike races, animals | label, kind, body size, food type, predator, herd animal, max prey size |
 | xenotypes.tsv | xenotypes | label, inheritable, gene count, description |
 | genes.tsv | genes | label, display category, metabolism, complexity |
@@ -37,5 +37,9 @@ listed).
 | pawnkinds.tsv | pawn kinds | label, race, faction, combat power, apparel tags, weapon tags |
 | factions.tsv | factions | label, techLevel, hidden, permanent enemy, basic member kind |
 | memes.tsv | Ideology memes | label, category, exclusion tags |
+
+`madeTech` is the age of the easiest way the player's active mods make or grow the thing: the tech level of the
+research its recipes (or recipe maker, or a sown crop) need, `Undefined` for one that needs none, blank when nothing
+makes it (a fermenting barrel's or a mod's processor's product, a ruined grill).
 
 The uploaded files themselves stay out of the repository (they are other modders' work and about 470 MB unpacked).

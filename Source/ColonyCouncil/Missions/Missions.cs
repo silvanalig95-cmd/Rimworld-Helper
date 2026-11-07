@@ -620,7 +620,7 @@ namespace ColonyCouncil
 
         /// <summary>A goal that counts many kinds of thing rather than one def.</summary>
         public static bool IsGroup(string what) =>
-            what == "meals" || what == "blocks" || what == "textiles" || what == "rawfood" || what == "medicine";
+            what == "meals" || what == "blocks" || what == "textiles" || what == "rawfood" || what == "medicine" || what == "drinks";
 
         private static bool Fits(Thing t, string what)
         {
@@ -644,6 +644,9 @@ namespace ColonyCouncil
                 }
                 case "medicine":
                     return d.IsMedicine;
+                case "drinks":
+                    // Any drink for the dancing (Things/ThingRoles.cs): beer, a mod's wine, mead or spirits, its tea or coffee.
+                    return ThingRoles.Fits(ThingRole.Drink, d) || ThingRoles.Fits(ThingRole.SoftDrink, d);
                 case "blocks":
                     return d.thingCategories != null && d.thingCategories.Contains(ThingCategoryDefOf.StoneBlocks);
                 case "textiles":
@@ -685,6 +688,7 @@ namespace ColonyCouncil
                 case "textiles": return 2f;
                 case "rawfood": return 1.5f;
                 case "medicine": return 15f;
+                case "drinks": return 12f;
             }
             return DefDatabase<ThingDef>.GetNamedSilentFail(what)?.BaseMarketValue ?? 1f;
         }
@@ -706,6 +710,7 @@ namespace ColonyCouncil
                 case "textiles": return "CC_Mission_Need_Textiles".Translate(g.count);
                 case "rawfood": return "CC_Mission_Need_RawFood".Translate(g.count);
                 case "medicine": return "CC_Mission_Need_Medicine".Translate(g.count);
+                case "drinks": return "CC_Mission_Need_Drinks".Translate(g.count);
             }
             var def = DefDatabase<ThingDef>.GetNamedSilentFail(g.what);
             return "CC_Mission_Need_Thing".Translate(g.count, def?.label ?? g.what);
@@ -721,6 +726,7 @@ namespace ColonyCouncil
                 case "textiles":
                 case "rawfood":
                 case "medicine":
+                case "drinks":
                     return ("CC_Mission_Goal_" + g.what).Translate();
             }
             return DefDatabase<ThingDef>.GetNamedSilentFail(g.what)?.LabelCap ?? g.what;

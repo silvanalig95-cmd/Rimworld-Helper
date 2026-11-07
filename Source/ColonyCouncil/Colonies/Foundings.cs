@@ -326,7 +326,8 @@ namespace ColonyCouncil
         /// <summary>
         /// The founding kit's own lines (the planner keeps them as the player's): what raises the first shelter by the
         /// colony's means, wood for a tribe or a medieval colony, steel and components for industry and beyond, and
-        /// medicine for the first season, each as much as the stores hold.
+        /// medicine for the first season (the kind the stores hold most of, a mod's as well as the game's), each as much as
+        /// the stores hold.
         /// </summary>
         private static List<JourneyLine> Kit(Map home, int people)
         {
@@ -342,8 +343,7 @@ namespace ColonyCouncil
             Add(ThingDefOf.WoodLog, wood, "other");
             Add(ThingDefOf.Steel, steel, "other");
             Add(ThingDefOf.ComponentIndustrial, components, "other");
-            var meds = new[] { ThingDefOf.MedicineIndustrial, ThingDefOf.MedicineHerbal, ThingDefOf.MedicineUltratech }.Where(d => d != null)
-                .OrderByDescending(d => JourneyPack.InStores(home, d)).FirstOrDefault();
+            var meds = ThingRoles.Candidates(ThingRole.Medicine, WorldAge.Spacer).OrderByDescending(d => JourneyPack.InStores(home, d)).FirstOrDefault();
             Add(meds, FoundingMath.KitMedicine(people), "medicine");
             return lines;
         }

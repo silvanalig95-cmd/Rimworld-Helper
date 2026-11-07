@@ -94,6 +94,9 @@ namespace ColonyCouncil
                 case "rawfood":
                 case "medicine":
                     break;
+                case "drinks":
+                    if (!Avail.ResearchDone("Brewing") && !Avail.ColonyHas(map, Avail.IsFermenter) && Missions.Count(map, "drinks") < 10) return false;
+                    break;
                 case "blocks":
                     if (!Avail.ResearchDone("Stonecutting") && Missions.Count(map, "blocks") < 20) return false;
                     break;

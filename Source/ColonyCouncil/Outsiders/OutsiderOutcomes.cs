@@ -316,7 +316,11 @@ namespace ColonyCouncil
 
         // ---------------- A favour: something brought next time ----------------
 
-        /// <summary>What their people could bring: what anyone of their era trades, nothing the colony couldn't have.</summary>
+        /// <summary>
+        /// What their people could bring: what anyone of their era trades, nothing the colony couldn't have. Their medicine,
+        /// food that keeps and drink are of their own age (Things/ThingRoles.cs: a mod's as well as the game's, the same
+        /// each time for one people), no drink most of the colony would mind.
+        /// </summary>
         public static List<ThingDef> BringChoices(Pawn x)
         {
             var list = new List<ThingDef>();
@@ -328,12 +332,17 @@ namespace ColonyCouncil
                 var d = DefDatabase<ThingDef>.GetNamedSilentFail(name);
                 if (d != null && tech >= minTech && !list.Contains(d)) list.Add(d);
             }
-            Add("MedicineHerbal", 0);
-            Add("Pemmican", 0);
+            void Theirs(ThingRole role)
+            {
+                var d = ThingRoles.From(role, f, x.MapHeld, ThingRoles.Seed("bring", role.ToString(), f));
+                if (d != null && !list.Contains(d)) list.Add(d);
+            }
+            Theirs(ThingRole.Medicine);
+            Theirs(ThingRole.Provisions);
             Add("Cloth", 0);
             Add("Leather_Plain", 0);
             Add("WoodLog", 0);
-            Add("Beer", 0);
+            Theirs(ThingRole.Drink);
             Add("Steel", OutsiderMath.Medieval);
             Add("MedicineIndustrial", NotableMath.Industrial);
             Add("ComponentIndustrial", NotableMath.Industrial);

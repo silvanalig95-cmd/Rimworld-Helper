@@ -162,14 +162,17 @@ namespace ColonyCouncil
         public static bool EatingOurs(Pawn p) => p.CurJobDef == JobDefOf.Ingest && p.jobs.curDriver is JobDriver_Ingest d && !d.EatingFromInventory;
 
         /// <summary>
-        /// What they carry to eat, topped up to last the stay at a full appetite (pemmican, which keeps): what they eat on
-        /// a day the colony has nothing for them.
+        /// What they carry to eat, topped up to last the stay at a full appetite: food that keeps of their people's age,
+        /// one they will eat (Things/ThingRoles.cs: pemmican, a survival meal, a mod's cheese), the same each time for
+        /// them: what they eat on a day the colony has nothing for them.
         /// </summary>
         public static void Provision(Pawn p, float days)
         {
             var need = p?.needs?.food;
             var inv = p?.inventory?.innerContainer;
-            var def = ThingDefOf.Pemmican;
+            var def = p == null ? null
+                : ThingRoles.From(ThingRole.Provisions, p.Faction, null, ThingRoles.Seed("guest provisions", p), d => FoodUtility.WillEat(p, d, p, false, false))
+                  ?? ThingDefOf.Pemmican;
             if (need == null || inv == null || def == null || days <= 0f) return;
             float want = need.FoodFallPerTickAssumingCategory(HungerCategory.Fed, false) * GenDate.TicksPerDay * days;
             float have = 0f;

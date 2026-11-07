@@ -522,13 +522,17 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The goods' kind for their people: the first listed that exists and isn't beyond them (tribal folk hang out tribalwear).</summary>
+        /// <summary>
+        /// The goods' kind for their people: the first listed that exists and isn't beyond them (tribal folk hang out
+        /// tribalwear). One listed as a kind ("@Produce", "@Medicine": Things/ThingRoles.cs) is one of their age's, the
+        /// game's or the player's mods'.
+        /// </summary>
         private ThingDef GoodsDef(CampGoods g)
         {
             var tech = faction?.def?.techLevel ?? TechLevel.Undefined;
             foreach (var n in g?.defs ?? new List<string>())
             {
-                var d = DefDatabase<ThingDef>.GetNamedSilentFail(n);
+                var d = ThingRolesMath.TryParse(n, out var role) ? ThingRoles.From(role, faction, null, ThingRoles.Seed("camp goods", n, faction, map)) : DefDatabase<ThingDef>.GetNamedSilentFail(n);
                 if (d == null || d.category != ThingCategory.Item) continue;
                 if (tech != TechLevel.Undefined && d.techLevel != TechLevel.Undefined && d.techLevel > tech) continue;
                 return d;
@@ -542,7 +546,8 @@ namespace ColonyCouncil
 
         public bool IsProp(Thing t) => t != null && props.Contains(t);
 
-        public CampGoods GoodsOf(Thing t) => t == null ? null : kind?.campGoods?.FirstOrDefault(g => g?.defs != null && g.defs.Contains(t.def.defName));
+        public CampGoods GoodsOf(Thing t) => t == null ? null : kind?.campGoods?.FirstOrDefault(g => g?.defs != null
+            && (g.defs.Contains(t.def.defName) || g.defs.Any(n => ThingRolesMath.TryParse(n, out var r) && ThingRoles.Fits(r, t.def))));
 
         /// <summary>Goods left for the colony when they pack up in peace (the hermit's woodpile, with the hut): anyone's now.</summary>
         private void LeaveGoods()

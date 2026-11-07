@@ -426,9 +426,10 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Some of the camp's own goods set out for the colony at the spot nearest it (or <paramref name="at"/>): meat,
-        /// wood, leather, food, whatever they found digging (silver, jade, gold), silver from their trader's purse (no more
-        /// than it holds), or a thing by name. What they're short of comes as <paramref name="fallback"/> when given.
-        /// Returns how many.
+        /// wood, leather, food, whatever they found digging (a precious metal or stone of theirs, as much as
+        /// <paramref name="count"/> silver is worth: Things/ThingRoles.cs), silver from their trader's purse (no more than
+        /// it holds), or a thing by name. What they're short of comes as <paramref name="fallback"/> when given. Returns how
+        /// many.
         /// </summary>
         public int GiveGoods(string what, int count, string fallback, IntVec3? at = null)
         {
@@ -436,12 +437,8 @@ namespace ColonyCouncil
             int given = 0;
             if (what == "found")
             {
-                var jade = DefDatabase<ThingDef>.GetNamedSilentFail("Jade");
-                var gold = DefDatabase<ThingDef>.GetNamedSilentFail("Gold");
-                float roll = Rand.Value;
-                var def = roll < 0.2f && gold != null ? gold : roll < 0.45f && jade != null ? jade : ThingDefOf.Silver;
-                int n = def == ThingDefOf.Silver ? count : Mathf.Max(2, count / 6);
-                return Place(def, n, at);
+                var def = ThingRoles.From(ThingRole.Precious, faction) ?? ThingDefOf.Silver;
+                return Place(def, ThingRoles.CountFor(count, def, 2), at);
             }
             if (what == "silver")
             {

@@ -210,7 +210,7 @@
       <li><pack>true</pack><kinds><li>Donkey</li><li>Alpaca</li><li>Muffalo</li></kinds><count>1~1</count><at>picket</at></li>
     </animals>
     <campGoods>
-      <li><defs><li>MedicineHerbal</li></defs><count>3~5</count><at>stall</at></li>
+      <li><defs><li>@Medicine</li><li>MedicineHerbal</li></defs><count>3~5</count><at>stall</at></li>
     </campGoods>
     <titles>
       <li>Herb-gatherers come</li>
