@@ -309,8 +309,10 @@ namespace ColonyCouncil
                         all.Remove(n);
                         return;
                     }
-                    // The fight is over and it's still out there, calm again: it gets a name.
-                    if (!x.InMentalState && !comp.social.BattleOn(x.Map) && !MapFacts.ThreatOn(x.Map)) Escaped(comp, n, now);
+                    // The fight is over and it's still out there, calm again: it gets a name. Not while it lies downed (the
+                    // player's report, 7 November 2026: the letter came while it lay there dying): a downed beast is out of its
+                    // rage but hasn't gone anywhere; if it dies it was never a nemesis, if it gets up and wanders off it is.
+                    if (!x.Downed && !x.InMentalState && !comp.social.BattleOn(x.Map) && !MapFacts.ThreatOn(x.Map)) Escaped(comp, n, now);
                 }
                 // Off every map (fled, carried off, or the caravan's battlefield was left behind): they got away.
                 else if (!x.Spawned && now - n.tick < GenDate.TicksPerDay * 2) Escaped(comp, n, now);

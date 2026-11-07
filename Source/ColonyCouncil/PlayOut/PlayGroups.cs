@@ -737,11 +737,14 @@ namespace ColonyCouncil
             var def = carried.def;
             bool given = false;
             // An animal is fed by setting the food down in front of it, and it eats (a wild beast at the edge of the trees).
+            // What it leaves is marked as not the stores' any more, so no hauler carries it back in and no courier takes it
+            // (the player's report, 7 November 2026); the animal can still come back to it.
             if (to != null && !to.Dead && to.Spawned && to.RaceProps != null && !to.RaceProps.Humanlike)
             {
                 if (carrier.carryTracker.TryDropCarriedThing(carrier.Position, ThingPlaceMode.Near, out var dropped) && dropped != null)
                 {
                     given = true;
+                    if (dropped.def.HasComp(typeof(CompForbiddable))) dropped.SetForbidden(true, false);
                     Feed(to, dropped);
                 }
             }

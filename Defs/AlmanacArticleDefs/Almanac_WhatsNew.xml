@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.142.1</version>
+        <date>7 November 2026</date>
+        <title>Guests who walk past, and two fixes from your game</title>
+        <points>
+          <li>With Hospitality, half of the guest groups now fit the free guest beds exactly and the others bring one or two more, who sleep where they can. A new setting, Extra guests a group may bring, sets how many (2, or 0 for none).</li>
+          <li>The rest of a group no longer stays away: they walk past, coming in at the edge and crossing the map like any travellers, with one message saying so. With every guest bed taken, the whole group walks past.</li>
+          <li>A wild animal that struck someone down is no longer named the colony's nemesis while it lies downed and dying. It gets its name only once it is up and calm again.</li>
+          <li>Food left out for the beast that stays is now carried out to the animal and set down in front of it, as the answer says. A courier no longer comes to the gate for it, and what the animal leaves is not hauled back in.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.142.0</version>
         <date>7 November 2026</date>
         <title>Guest groups that fit your guest beds</title>

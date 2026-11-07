@@ -424,6 +424,8 @@ namespace ColonyCouncil
         public bool guestCheck = true;
         /// <summary>With Hospitality: a guest group is no bigger than the free guest beds (Integrations/GuestGroupBeds.cs).</summary>
         public bool guestGroupsFitBeds = true;
+        /// <summary>How many guests beyond the free guest beds a group may now and then bring (Integrations/GuestGroupBeds.cs).</summary>
+        public int guestBedsExtra = 2;
         /// <summary>With Move the Patient: patients take the best free medical bed, and a lighter case is moved to another bed for someone worse off (Integrations/MedicalTriage.cs).</summary>
         public bool medicalTriage = true;
         /// <summary>What PokéWorld's Pokémon sound like (Integrations/PokeWorldSounds.cs): the nearest animal's calls, their own a third as often, or their own.</summary>
@@ -774,6 +776,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref guestStories, "guestStories", true);
             Scribe_Values.Look(ref guestCheck, "guestCheck", true);
             Scribe_Values.Look(ref guestGroupsFitBeds, "guestGroupsFitBeds", true);
+            Scribe_Values.Look(ref guestBedsExtra, "guestBedsExtra", 2);
             Scribe_Values.Look(ref medicalTriage, "medicalTriage", true);
             Scribe_Values.Look(ref pokemonSounds, "pokemonSounds", PokemonSounds.Creatures);
             Scribe_Values.Look(ref freshCarcassAlert, "freshCarcassAlert", true);

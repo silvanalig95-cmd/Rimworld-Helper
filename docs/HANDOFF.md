@@ -6,6 +6,21 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 0.142.1, guests walk past, and two of the player's reports (7 November 2026). (1) The player: "i don't mind if
+  sometimes one or two too many visitors arrive, but not like four" and "otherwise they should just walk by basically".
+  `GuestGroupBedsMath.Extra(roll, most)`: half the groups 0, else 1..most (setting `guestBedsExtra`, slider 0-4, 2);
+  `Size(wanted, places, free, extra)`. `GuestGroupBeds.WalkPast`: the pawns cut from the list (free world pawns of a
+  non-hostile faction) are spawned near `parms.spawnCenter` and given the game's `LordJob_TravelAndExit` to
+  `RCellFinder.TryFindTravelDestFrom` (as `IncidentWorker_TravelerGroup`), one message `CC_GuestsWalkPast(One)`, no
+  letter. With size 0 Hospitality's `SpawnGroup` still returns false (its incident queue refills itself). (2) "got
+  this event even though the nemesis animal was downed and waiting to die": `Nemeses.Update` named a beast once
+  `!InMentalState`, and being downed ends the manhunter state; it now waits for `!x.Downed`. (3) "i selected the option
+  to give it meat, and that was picked up by a courier": `DilemmaEffect_CarryOut.Fill` kept only humanlike strangers as
+  `p.other`, so the resident beast's food went to the gate and `Couriers.Await` called a courier, who took it.
+  `Receiver(x)` now takes an animal not the colony's too (`PlayGroups.HandOver` already fed animals: food set down in
+  front of it, an Ingest job), never a courier for one (`IsBeast`), and the food set down is forbidden so haulers and
+  couriers leave it (wild animals ignore forbidding). Tests: `GuestGroupBedsTests`, new `FieldReportTests`. Not run in
+  the game: the walk-past crossing (the vanilla travellers' lord), and the carrier walking up to a wild Pokémon.
 - 0.142.0, Hospitality's guest groups fit the guest beds (7 November 2026, the player: "why do 4-5 people visitor groups
   stay in my colony if i only have one reserved visitor bed?" and "please correct this"). Hospitality's
   `IncidentWorker_VisitorGroup.GetGroupSize` is a Gaussian around 1 + years played (up to 6), clamped to its own min

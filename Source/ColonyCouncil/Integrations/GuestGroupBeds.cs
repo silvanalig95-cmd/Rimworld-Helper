@@ -5,6 +5,8 @@ using System.Reflection;
 using HarmonyLib;
 using RimWorld;
 using Verse;
+using RimWorld.Planet;
+using Verse.AI.Group;
 
 namespace ColonyCouncil
 {
@@ -13,9 +15,13 @@ namespace ColonyCouncil
     /// reserved visitor bed?" Hospitality sizes a guest group from its own settings and the years played
     /// (IncidentWorker_VisitorGroup.GetGroupSize), never from the guest beds; its only bed rule is to refuse guests until
     /// there is a guest bed at all. With the setting "Guest groups fit your guest beds" (on), a group of its random size
-    /// is cut to the free guest bed places on the map (GuestGroupBedsMath.Size): the ones left out never set off, and with
-    /// every guest bed taken no new group comes until one is free (Hospitality's own spawn then gives up, as it does when
-    /// nobody is left to send). A size asked for outright (a quest's, a debug action's) is left alone.
+    /// is cut to the free guest bed places on the map, now and then with one or two more ("Extra guests a group may bring",
+    /// 2 by default; GuestGroupBedsMath.Size and Extra), as the player asked: "i don't mind if sometimes one or two too
+    /// many visitors arrive, but not like four". The ones left out walk past instead ("otherwise they should just walk by
+    /// basically"): they come in where the group would have, cross the map like the game's own travellers and leave by
+    /// the far side, with one message saying so (no letter). With every guest bed taken and no extra this time, the whole
+    /// group walks past, and Hospitality's own spawn finds nobody left to send. A size asked for outright (a quest's, a
+    /// debug action's) is left alone.
     /// </summary>
     public static class GuestGroupBeds
     {
@@ -36,6 +42,45 @@ namespace ColonyCouncil
             }
             return (places, free);
         }
+
+        /// <summary>
+        /// The guests left out walk past: they come in where the group would have and cross the map to its far side, as
+        /// the game's own travellers do (IncidentWorker_TravelerGroup), with one message. Only pawns waiting in the world
+        /// (the group's own, not yet sent); never throws on one that can't come.
+        /// </summary>
+        public static void WalkPast(List<Pawn> passers, IncidentParms parms, Map map)
+        {
+            var faction = parms?.faction;
+            if (passers == null || passers.Count == 0 || map == null || faction == null || faction == Faction.OfPlayer || faction.HostileTo(Faction.OfPlayer)) return;
+            if (!parms.spawnCenter.IsValid || !parms.spawnCenter.InBounds(map)) return;
+            if (!RCellFinder.TryFindTravelDestFrom(parms.spawnCenter, map, out var dest)) return;
+            var walking = new List<Pawn>();
+            foreach (var p in passers)
+            {
+                if (p == null || p.Dead || p.Destroyed || p.Spawned || p.RaceProps?.IsMechanoid == true || p.Faction != faction) continue;
+                if (Find.WorldPawns.GetSituation(p) != WorldPawnSituation.Free) continue;
+                try
+                {
+                    GenSpawn.Spawn(p, CellFinder.RandomClosewalkCellNear(parms.spawnCenter, map, 5), map);
+                    walking.Add(p);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("a guest walking past", e);
+                    if (p.Spawned)
+                    {
+                        p.DeSpawn();
+                        p.DestroyOrPassToWorld();
+                    }
+                }
+            }
+            if (walking.Count == 0) return;
+            LordMaker.MakeNewLord(faction, new LordJob_TravelAndExit(dest), map, walking);
+            string text = walking.Count == 1
+                ? "CC_GuestsWalkPastOne".Translate(walking[0].Named("PAWN"), faction.Name.Named("FACTION")).Resolve()
+                : "CC_GuestsWalkPast".Translate(walking.Count, faction.Name.Named("FACTION")).Resolve();
+            Notify.Message(text, new LookTargets(walking[0]), MessageTypeDefOf.NeutralEvent, Importance.Notable);
+        }
     }
 
     /// <summary>Hospitality's guests to send, cut to the free guest beds (Integrations/GuestGroupBeds.cs).</summary>
@@ -54,15 +99,18 @@ namespace ColonyCouncil
             {
                 var group = __result.ToList();
                 var (places, free) = GuestGroupBeds.Places(map);
-                int size = GuestGroupBedsMath.Size(group.Count, places, free);
+                int extra = GuestGroupBedsMath.Extra(Rand.Value, ColonyCouncilMod.Settings?.guestBedsExtra ?? 2);
+                int size = GuestGroupBedsMath.Size(group.Count, places, free, extra);
                 if (size >= group.Count)
                 {
                     __result = group;
                     return;
                 }
                 if (Prefs.DevMode)
-                    Log.Message("[Rimfolk] Hospitality's guest group of " + group.Count + " cut to " + size + " (" + free + " of " + places + " guest bed places free).");
+                    Log.Message("[Rimfolk] Hospitality's guest group of " + group.Count + " cut to " + size + " (" + free + " of " + places + " guest bed places free, "
+                                + extra + " more allowed this time); the rest walk past.");
                 __result = group.Take(size).ToList();
+                GuestGroupBeds.WalkPast(group.Skip(size).ToList(), __0, map);
             }
             catch (Exception e)
             {

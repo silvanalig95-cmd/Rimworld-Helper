@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Guests who walk past, and two fixes from your game
+
+*7 November 2026, version 0.142.1*
+
+- With Hospitality, half of the guest groups now fit the free guest beds exactly and the others bring one or two more, who sleep where they can. A new setting, Extra guests a group may bring, sets how many (2, or 0 for none).
+- The rest of a group no longer stays away: they walk past, coming in at the edge and crossing the map like any travellers, with one message saying so. With every guest bed taken, the whole group walks past.
+- A wild animal that struck someone down is no longer named the colony's nemesis while it lies downed and dying. It gets its name only once it is up and calm again.
+- Food left out for the beast that stays is now carried out to the animal and set down in front of it, as the answer says. A courier no longer comes to the gate for it, and what the animal leaves is not hauled back in.
+
 ## Guest groups that fit your guest beds
 
 *7 November 2026, version 0.142.0*

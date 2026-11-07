@@ -334,7 +334,7 @@ namespace ColonyCouncil
             var x = toGroup ? (ctx as HappeningContext)?.group.FirstOrDefault(g => g != null && g.Spawned && g.Map == map) : ctx.stranger;
             string dest = to == PlaySpot.Camp ? DilemmaImpact.Spot(PlaySpot.Camp, ctx)
                 : to == PlaySpot.Person ? DilemmaImpact.Spot(PlaySpot.Person, ctx, PlayOuts.Who(whom, ctx))
-                : x != null && !x.Dead && (x.RaceProps?.Humanlike ?? false) && x.Faction != Faction.OfPlayer ? x.LabelShort
+                : Receiver(x) != null ? x.LabelShort
                 : DilemmaImpact.Spot(PlaySpot.Gate, ctx);
             string text = "CC_Impact_Carry".Translate(by, dest, DilemmaImpact.When(hours)).Resolve();
             if (eat) text += "CC_Impact_CarryEat".Translate().Resolve();
@@ -374,6 +374,16 @@ namespace ColonyCouncil
 
         protected override PlayKind Kind => PlayKind.Carry;
 
+        /// <summary>
+        /// Who it is carried to: a stranger of another people, or an animal not the colony's (a wild beast fed where it
+        /// stands: PlayGroups.HandOver sets the food down in front of it). Else nobody, and it goes to the gate.
+        /// </summary>
+        public static Pawn Receiver(Pawn x) =>
+            x != null && !x.Dead && x.Faction != Faction.OfPlayer && ((x.RaceProps?.Humanlike ?? false) || IsBeast(x)) ? x : null;
+
+        /// <summary>An animal not the colony's (a wild beast, a Pokémon): fed in person, never through a courier.</summary>
+        public static bool IsBeast(Pawn x) => x != null && x.RaceProps != null && x.RaceProps.Animal && !x.RaceProps.Humanlike && x.Faction != Faction.OfPlayer;
+
         private ThingDef Def(DilemmaContext ctx) => PlayCarry.DefOf(what, ctx?.thing);
 
         private int Need(DilemmaContext ctx) =>
@@ -410,7 +420,9 @@ namespace ColonyCouncil
             }
             // Carried out to the gate (no visitor here to take it): someone of the people it's for comes and waits
             // there to receive it (Couriers/). Nobody can come: the errand goes to the gate as before.
-            if (p.to != PlaySpot.Camp && p.to != PlaySpot.Person && (p.to == PlaySpot.Gate || p.other == null))
+            // Never for food left out for an animal (the beast that stays): it is carried to the animal and set down in front
+            // of it, not to the gate (the player's report, 7 November 2026: a courier came and took the meat).
+            if (p.to != PlaySpot.Camp && p.to != PlaySpot.Person && (p.to == PlaySpot.Gate || p.other == null) && !IsBeast(ctx.stranger))
             {
                 try
                 {
@@ -455,7 +467,7 @@ namespace ColonyCouncil
             else
             {
                 var x = toGroup ? (ctx as HappeningContext)?.group.FirstOrDefault(g => g != null && g.Spawned && g.Map == ctx.map) : ctx.stranger;
-                p.other = x != null && !x.Dead && x.Faction != Faction.OfPlayer && (x.RaceProps?.Humanlike ?? false) ? x : null;
+                p.other = Receiver(x);
             }
             p.strangersEat = eat;
             p.strangersNight = night;
