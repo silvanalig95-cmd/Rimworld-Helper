@@ -78,6 +78,8 @@
   <CC_Clock_Pass_RareWelcome>The welcome letter and the letter after an update</CC_Clock_Pass_RareWelcome>
   <CC_Clock_Pass_RareHealth>Health stories: a tenth of the colonists</CC_Clock_Pass_RareHealth>
   <CC_Clock_Pass_RareFightSides>Who stands beside whom in a fight</CC_Clock_Pass_RareFightSides>
+  <CC_Clock_Pass_RareBeasts>The wild's alphas and bosses: an alpha fallen, a hurt beast turning to run, a herd spooked or passing</CC_Clock_Pass_RareBeasts>
+  <CC_Clock_Pass_Beasts>The wild's alphas and bosses: the hour's threats, packs following in, oaths and returns; the day's packs and herds</CC_Clock_Pass_Beasts>
   <CC_Clock_Pass_RareAilments>Ailments: a tenth of the colonists</CC_Clock_Pass_RareAilments>
   <CC_Clock_Pass_RareDefenseLines>Defense lines watch a raid</CC_Clock_Pass_RareDefenseLines>
 

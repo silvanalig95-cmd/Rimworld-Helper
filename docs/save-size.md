@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 550; modelled: 550; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,413 KB** after a year, **2,859 KB** after two, **3,054 KB** after five.
+Saved collections found: 556; modelled: 556; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,416 KB** after a year, **2,864 KB** after two, **3,065 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -64,7 +64,7 @@ Rimfolk's part of the save, roughly: **2,413 KB** after a year, **2,859 KB** aft
 | `Happenings/Happenings.cs:memos` | memos 3 years (children's 10), used ones a day | window | 18 | 36 | 54 | 10.5 |
 | `Standing.cs:asked` | per colonist, one per wish def asked for | colonists | 300 | 300 | 300 | 10.3 |
 | `CouncilGameComponent.cs:nextSteps` | the colony's next steps: the plan, at most 8 proposals, done ones for 5 days, let-go ones for 15 (Building/NextSteps.cs) | fixed | 40 | 40 | 40 | 10.2 |
-| `Epithets/Epithets.cs:holdsSaved` | how each held name holds (NameMath.Pack: since, a challenger and their season, the last holder), one per name held | defs | 71 | 71 | 71 | 9.7 |
+| `Epithets/Epithets.cs:holdsSaved` | how each held name holds (NameMath.Pack: since, a challenger and their season, the last holder), one per name held | defs | 74 | 74 | 74 | 10.1 |
 | `Colonies/LandingRecord.cs:kit` | the starting kit's stacks (a reference, the def and stuff, how many are the kit's, where it came from), a few dozen in a crashlanding; split loads merge back on the stockpile and used-up stacks are let go; only for the first 3 days | while | 60 | 60 | 60 | 9.4 |
 | `Building/Suggest/SameRules.cs:markedDefs` | with the above: which order | fixed | 300 | 300 | 300 | 8.8 |
 | `Hud/HudComponent.cs:stock` | the inventory panel's stock: one packed line (about 120 items) every six hours per home map, the last five; only while that panel is on | cap | 5 | 5 | 5 | 8.8 |
@@ -79,13 +79,14 @@ Rimfolk's part of the save, roughly: **2,413 KB** after a year, **2,859 KB** aft
 | `Journal.cs:griefSeen` | cleared at 500 | cap | 30 | 60 | 150 | 7.3 |
 | `World/WorldSituations.cs:history` | 40 past | cap | 6 | 12 | 30 | 7.3 |
 | `Building/Suggest/Suggestions.cs:declinedTitles` | with the above: the words they had | fixed | 80 | 80 | 80 | 7.0 |
+| `World/WorldSituations.cs:lastEnded` | one per situation def | defs | 78 | 78 | 78 | 6.9 |
 | `Building/ColonyUse.cs:amounts` | with the above: how much | window | 280 | 280 | 280 | 6.8 |
 | `Building/ColonyUse.cs:days` | the record of use: one entry a day per thing used, bench product and bench hand, today and UseLog.WindowDays before it | window | 280 | 280 | 280 | 6.8 |
-| `World/WorldSituations.cs:lastEnded` | one per situation def | defs | 77 | 77 | 77 | 6.8 |
 | `Dreams/Dreams.cs:seen` | dream counts of known pawns | known | 55 | 60 | 75 | 6.6 |
+| `Beasts/BeastBook.cs:alphas` | packs led by an alpha: one a home a month at most (the setting at 200%: two), BeastsMath.MaxAlphaRecords kept | cap | 4 | 7 | 16 | 6.6 |
+| `Epithets/Epithets.cs:holders` | one per title | defs | 74 | 74 | 74 | 6.5 |
 | `Dilemmas/Dilemmas.cs:traditionCount` | per tradition, an older save's until its customs go on the calendar (the first hour) | defs | 73 | 73 | 73 | 6.4 |
 | `Dilemmas/AnswerShifts.cs:shifts` | a colonist's hours or work changed by an answer, a night to a heat wave long, at most AnswerShifts.MaxShifts at once | cap | 18 | 36 | 40 | 6.2 |
-| `Epithets/Epithets.cs:holders` | one per title | defs | 71 | 71 | 71 | 6.2 |
 | `Health/HealthTracker.cs:healers` | known pawns only | known | 22 | 24 | 30 | 5.9 |
 | `Missions/StoriesComponent.cs:chains` | chains 120 days after they end | window | 6 | 12 | 12 | 5.9 |
 | `Outsiders/OutsiderBook.cs:visits` | OutsiderBook.MaxVisits outsiders met lately, let go 3 days after they leave | fixed | 30 | 30 | 30 | 5.9 |
@@ -201,7 +202,9 @@ Rimfolk's part of the save, roughly: **2,413 KB** after a year, **2,859 KB** aft
 | `Happenings/Happenings.cs:regulars` | visitors the colony keeps up with, five at most (RegularMath.KeepMax), forgotten after half a year away | fixed | 5 | 5 | 5 | 1.5 |
 | `Happenings/Happenings.cs:seenQuests` | quests the game still keeps | fixed | 60 | 60 | 60 | 1.5 |
 | `Health/HealthTracker.cs:cases` | cases while the patient lives | cap | 2 | 4 | 5 | 1.5 |
+| `Beasts/BeastBook.cs:flights` | beast nemeses that fled hurt: one while it is away or back, dropped when its nemesis ends, BeastsMath.MaxFlights at most | cap | 2 | 4 | 9 | 1.4 |
 | `World/Notables.cs:losses` | deaths among the neighbours the colony knows of, 30 days, 12 at most | fixed | 12 | 12 | 12 | 1.4 |
+| `Beasts/BeastBook.cs:oaths` | oaths sworn against a beast that killed or maimed: a few a year, BeastsMath.MaxOaths kept, the ended going first | cap | 1 | 2 | 6 | 1.3 |
 | `Diplomacy/DiplomacyBook.cs:vassals` | per home: the hamlet sworn and the towns under its protection, FealtyMath.MaxVassals at most, each dropped once released, broken or gone | cap | 1 | 2 | 3 | 1.2 |
 | `World/Region/FollowUps.cs:waiting` | follow-ups waiting at a home: FollowUpsMath.MaxWaiting at most, each gone when it starts or 240 days after what it follows | cap | 1 | 1 | 3 | 1.2 |
 | `Ambitions/CouncilMeeting.cs:remarks` | while a meeting is called | while | 10 | 10 | 10 | 1.2 |
@@ -313,6 +316,7 @@ Rimfolk's part of the save, roughly: **2,413 KB** after a year, **2,859 KB** aft
 | `Setbacks/SetbackTracker.cs:grantWho` | 20 days | window | 10 | 10 | 10 | 0.4 |
 | `Social/Autonomy.cs:plans` | plans until built | cap | 10 | 10 | 10 | 0.4 |
 | `CouncilGameComponent.cs:beasts` | one per colony: the beast that stays on its land (its known ids have rows of their own) | fixed | 1 | 1 | 1 | 0.4 |
+| `Beasts/BeastBook.cs:noted` | beast nemeses already given their scars and oath (ids), BeastsMath.MaxNoted newest | cap | 3 | 6 | 15 | 0.4 |
 | `Building/BuildProjects.cs:patients` | the most laid up at once, one a day, BuildAheadTracker.PatientDays at most | fixed | 15 | 15 | 15 | 0.4 |
 | `Fields/FieldWeather.cs:byWeather` | per home map: the growing zones set to sow By the weather, while the zone stands | while | 15 | 15 | 15 | 0.4 |
 | `Fields/FieldWeather.cs:strays` | FieldWeatherMath.StrayDays: how much colder than the land's reckoning each of the last days got, per home map | fixed | 15 | 15 | 15 | 0.4 |
@@ -370,6 +374,7 @@ Rimfolk's part of the save, roughly: **2,413 KB** after a year, **2,859 KB** aft
 | `Heart/HeartData.cs:goodRecent` | per heart: one per source of the good side | fixed | 7 | 7 | 7 | 0.2 |
 | `Heart/HeartData.cs:goodToday` | per heart: one per source of the good side | fixed | 7 | 7 | 7 | 0.2 |
 | `Annals.cs:died` | the year in progress | yearly | 4 | 4 | 4 | 0.2 |
+| `Beasts/BeastBook.cs:homes` | one per colony (one home in the model): its last alphas, the threat looked at, its great herd's season | fixed | 1 | 1 | 1 | 0.2 |
 | `Calendar/CalendarDay.cs:knew` | per day on the calendar | fixed | 4 | 4 | 4 | 0.2 |
 | `Camps/CampLook.cs:walkSeen` | colonists the farewell round looked in on (the walk's count), while the camp stays | while | 4 | 4 | 4 | 0.2 |
 | `ColonyState.cs:colonies` | one council per colony (one home in the model; a second doubles the council's rows), a lost home's kept 30 days (ColonyStateMath.KeepLostDays), then let go | fixed | 1 | 1 | 1 | 0.2 |
@@ -457,6 +462,7 @@ Rimfolk's part of the save, roughly: **2,413 KB** after a year, **2,859 KB** aft
 | `Outsiders/OutsiderBook.cs:oldWords` | an older save's good words, read on load and moved into the world ledger (Promise ties); never saved again | fixed | 0 | 0 | 0 | 0.0 |
 | `UI/WeekMemory.cs:pinnedPawns` | colonists pinned before following: read from an older save only, then followed; never written | fixed | 0 | 0 | 0 | 0.0 |
 | `Arcs/Arc.cs:told` | per story (counted under active and past) | fixed | 6 | 6 | 6 | (in its record) |
+| `Beasts/PackAlphas.cs:pack` | per alpha: its pack as it was named, those gone from the world let go when saving (counted under alphas) | fixed | 6 | 6 | 6 | (in its record) |
 | `Building/Ahead.cs:cells` | per step (counted under done): the cells a field step's check looks at, AheadMath.MaxCellsAStep at most | fixed | 80 | 80 | 80 | (in its record) |
 | `Building/Automations.cs:things` | per action (counted under actions): the bench, the things ordered down, the blueprints, the trees | fixed | 8 | 8 | 8 | (in its record) |
 | `Building/BuildAhead.cs:pieceCells` | per room step (counted under done): where its blueprints went, one room's footprint at most | fixed | 120 | 120 | 120 | (in its record) |

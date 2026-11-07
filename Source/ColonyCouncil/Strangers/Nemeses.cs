@@ -306,11 +306,13 @@ namespace ColonyCouncil
                 {
                     if (!x.Spawned)
                     {
-                        all.Remove(n);
+                        // Ran off the land hurt (Beasts/BeastNemeses.cs): it got away, and comes back another day.
+                        if (BeastNemeses.Fled(x)) Escaped(comp, n, now);
+                        else all.Remove(n);
                         return;
                     }
-                    // The fight is over and it's still out there, calm again: it gets a name.
-                    if (!x.InMentalState && !comp.social.BattleOn(x.Map) && !MapFacts.ThreatOn(x.Map)) Escaped(comp, n, now);
+                    // The fight is over and it's still out there, up and calm again: it gets a name (never while it lies downed).
+                    if (!x.Downed && !x.InMentalState && !comp.social.BattleOn(x.Map) && !MapFacts.ThreatOn(x.Map)) Escaped(comp, n, now);
                 }
                 // Off every map (fled, carried off, or the caravan's battlefield was left behind): they got away.
                 else if (!x.Spawned && now - n.tick < GenDate.TicksPerDay * 2) Escaped(comp, n, now);

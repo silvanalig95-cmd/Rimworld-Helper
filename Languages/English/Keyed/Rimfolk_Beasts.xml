@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The wild's alphas and bosses (Source/ColonyCouncil/Beasts/). -->
+
+  <!-- ===================== Settings (How much happens) ===================== -->
+  <CC_Settings_PackAlphas>Pack alphas</CC_Settings_PackAlphas>
+  <CC_SetNote_PackAlphas>A wild pack on the land may run behind a named alpha: kill it and they scatter, tame it and they follow.</CC_SetNote_PackAlphas>
+  <CC_Settings_PackAlphas_Tip>How often a pack of hunting animals is led by an alpha: three or more of one kind together on the colony's land (wolves, wargs, the raptors and great cats of other mods). The biggest in its prime leads; someone of the colony names it, its name shows on the map, and it carries the pack alpha's mark (a little harder to hurt and harder-hitting, more meat and hide). The news tells of it; a letter comes only when its pack threatens the colony. Brought down, its pack scatters for the edges and its hunter is called Packbreaker; tamed, its pack walks in to it one by one over the next days. At 100% (the default) a pack on the land is led by one a day in four, one a home at a time and a month apart, and three packs of the game's manhunters in ten run behind one (15 days apart). 200% halves the waits and doubles the chances; 0% switches it off.</CC_Settings_PackAlphas_Tip>
+  <CC_Settings_BeastNemeses>Beast nemeses come back</CC_Settings_BeastNemeses>
+  <CC_SetNote_BeastNemeses>A beast that maimed or killed bears scars, flees hurt and comes back; someone close may swear against it.</CC_SetNote_BeastNemeses>
+  <CC_Settings_BeastNemeses_Tip>On top of Rimfolk's nemeses: a wild animal that killed or maimed one of the colony bears the scars of it, and someone close to the one it hurt (a partner, kin, a close friend) may swear to bring it down (three times in five at 100%): their life goal "settle the score" can follow, and their fury when it is near. Any beast nemesis badly hurt (under 45% of its health) and still on its feet turns and runs for the edge, and comes back 6 to 16 days later at 100%, twice at most: prowling the land, or one time in three for blood, with a letter. A downed animal never runs or comes back. 200% halves the waits and makes the oath certain; 0% leaves the nemeses as they were. Needs Nemeses on.</CC_Settings_BeastNemeses_Tip>
+  <CC_Settings_RegionLegends>Legends of the region</CC_Settings_RegionLegends>
+  <CC_SetNote_RegionLegends>A huge beast roams the region: the towns talk of it, and a caravan can find it on its ground.</CC_SetNote_RegionLegends>
+  <CC_Settings_RegionLegends_Tip>How often a legend roams the region: one of the dozen biggest animals loaded that could live there (with PokéWorld, a legendary Pokémon once PokéWorld itself has opened its legendaries). The towns talk of it, a friendly town may put a price on it, and its ground is a site 4 to 12 tiles off that moves every five to nine days as it is seen; a caravan that goes there finds it, old, scarred and hard to bring down, calm until provoked. Brought down, a trophy from it lies beside the body, its hunter is called Giant-Slayer and the colony sings of it at a fire; befriended (tamed or caught), its new master is called Beast-Speaker. At 100% (the default) 150 days pass between one legend's end and the next, none before the world's 40th day; it lasts 30 to 45 days. 200% halves the wait; 0% switches it off. Needs World events on.</CC_Settings_RegionLegends_Tip>
+  <CC_Settings_GreatHerds>Great herds</CC_Settings_GreatHerds>
+  <CC_SetNote_GreatHerds>Great herds cross the land in spring and fall; a shot or a fire near a herd can set it stampeding.</CC_SetNote_GreatHerds>
+  <CC_Settings_GreatHerds_Tip>How often a great herd crosses the colony's land: six to twenty-four head of one herd animal (the land's own likelier, bigger ones likelier), in spring and in fall, six seasons in ten at 100%, with a letter and the council's question about the hunt when it can come. Any herd crossing for an edge (the game's own migrations too) can be spooked by what really happens near it: one of it hurt (six times in ten), a shot flying past (one in four) or a fire close by (one in two). It then sprints away for the edge, and for its first hour a big runner can knock down someone smaller in its way (a blunt blow, by the everyday hurts' setting and their shared cap, three in a stampede at most) and flatten up to twelve plants of the fields. Up to three of the colony at nothing pressing stop to watch a herd of six or more go by. 200% doubles the chances, as far as certain; 0% switches the great herds and stampedes off.</CC_Settings_GreatHerds_Tip>
+
+  <!-- ===================== Pack alphas ===================== -->
+  <CC_Alpha_Led>A pack of {COUNT} {KIND} on the land runs behind a scarred old {ONE}, bigger than the rest. {PAWN_nameDef} has taken to calling it {NAME}.</CC_Alpha_Led>
+  <CC_Alpha_LedChronicle>A pack of {KIND} came onto the land behind an alpha the colony calls {NAME}.</CC_Alpha_LedChronicle>
+  <CC_Alpha_ThreatTitle>{NAME}'s pack</CC_Alpha_ThreatTitle>
+  <CC_Alpha_LedManhunters>The {KIND} coming for the colony run behind a leader, a scarred {ONE} bigger than any of them, and {PAWN_nameDef} already has a name for it: {NAME}.\n\nBring {NAME} down and the rest of the pack will scatter.</CC_Alpha_LedManhunters>
+  <CC_Alpha_Hunting>{NAME}'s pack of {KIND} is on the hunt, and {PREY_nameDef} is what it is after.\n\nBring {NAME} down and the rest of the pack will scatter.</CC_Alpha_Hunting>
+  <CC_Alpha_Manhunting>{NAME}'s pack of {KIND} has turned on the colony.\n\nBring {NAME} down and the rest of the pack will scatter.</CC_Alpha_Manhunting>
+  <CC_Alpha_Gone>{NAME}'s pack of {KIND} has moved off the land.</CC_Alpha_Gone>
+  <CC_Alpha_FellTitle>{NAME} is dead</CC_Alpha_FellTitle>
+  <CC_Alpha_SlainBy>{SLAYER_nameDef} brought down {NAME}, the alpha of the {KIND}.</CC_Alpha_SlainBy>
+  <CC_Alpha_Died>{NAME}, the alpha of the {KIND}, is dead.</CC_Alpha_Died>
+  <CC_Alpha_Scatter>The rest of its pack scatters for the edges of the land.</CC_Alpha_Scatter>
+  <CC_Cause_Alpha>{NAME}, a pack's alpha.</CC_Cause_Alpha>
+  <CC_Alpha_Tamed>{NAME}, the scarred alpha of the {KIND}, is the colony's now.</CC_Alpha_Tamed>
+  <CC_Alpha_TamedPack>Its old pack still knows it: over the next days they may come in after {NAME}, one by one.</CC_Alpha_TamedPack>
+  <CC_Alpha_Followed>A {ONE} of {NAME}'s old pack has walked in to it, and stays with the colony.</CC_Alpha_Followed>
+
+  <!-- ===================== Beast nemeses ===================== -->
+  <CC_BeastNem_FledAgain>{X_nameDef} has run off into the wild again, badly hurt.</CC_BeastNem_FledAgain>
+  <CC_BeastNem_BloodTitle>{X_nameDef} is back</CC_BeastNem_BloodTitle>
+  <CC_BeastNem_Blood>{X_nameDef}, the animal that {DEED}, has come back to the colony's land, and it has come for blood.</CC_BeastNem_Blood>
+  <CC_BeastNem_Sworn>{PAWN_nameDef} has sworn to bring down {X_nameDef}, the animal that {DEED}.</CC_BeastNem_Sworn>
+  <CC_BeastNem_Fury>{X_nameDef} is near, and {PAWN_nameDef} remembers the oath.</CC_BeastNem_Fury>
+  <CC_BeastNem_OathKept>{PAWN_nameDef} has kept the oath: {X} is dead, brought down by {PAWN_possessive} own hand, for {VICTIM}.</CC_BeastNem_OathKept>
+  <CC_BeastNem_OathOthers>{X} is dead. {PAWN_nameDef} swore to bring it down for {VICTIM}, and it is down.</CC_BeastNem_OathOthers>
+
+  <!-- ===================== Great herds ===================== -->
+  <CC_Herd_Title>The great herd: {KIND}</CC_Herd_Title>
+  <CC_Herd_TextSpring>A great herd of {COUNT} {KIND} is crossing the colony's land on its way to the summer grazing, as the herds do in spring. The ground shakes under them while they pass.\n\nA shot, a wound or a fire close to them may set them running, and anyone in their way could be knocked down.</CC_Herd_TextSpring>
+  <CC_Herd_TextFall>A great herd of {COUNT} {KIND} is crossing the colony's land on its way to the winter grazing, as the herds do in fall. The ground shakes under them while they pass.\n\nA shot, a wound or a fire close to them may set them running, and anyone in their way could be knocked down.</CC_Herd_TextFall>
+  <CC_Herd_Chronicle>A great herd of {COUNT} {KIND} crossed the colony's land.</CC_Herd_Chronicle>
+  <CC_Herd_Stampede_hurt>One of the {KIND} was hurt, and the whole herd of {COUNT} has broken into a stampede.</CC_Herd_Stampede_hurt>
+  <CC_Herd_Stampede_shot>A shot flew close to the {KIND}, and the whole herd of {COUNT} has broken into a stampede.</CC_Herd_Stampede_shot>
+  <CC_Herd_Stampede_fire>The {KIND} caught the smell of fire, and the whole herd of {COUNT} has broken into a stampede.</CC_Herd_Stampede_fire>
+  <CC_Herd_StampedeWay>Keep clear of their way: the big ones knock down anyone they run into.</CC_Herd_StampedeWay>
+  <CC_Herd_StampedeChronicle>A herd of {KIND} stampeded across the colony's land.</CC_Herd_StampedeChronicle>
+  <CC_Herd_TrampledWhy>knocked down by a stampeding {ONE}</CC_Herd_TrampledWhy>
+  <CC_Herd_Trampled>{PAWN_nameDef} was knocked down by a stampeding {ONE}.</CC_Herd_Trampled>
+  <CC_Herd_Crops>The stampeding {KIND} flattened {COUNT} plants in the fields.</CC_Herd_Crops>
+
+  <!-- ===================== A legend of the region ===================== -->
+  <CC_Legend_SiteLabel>{NAME}'s ground</CC_Legend_SiteLabel>
+  <CC_Legend_StillOut>{NAME} is still out on its ground, and its ground is marked on the world map again.</CC_Legend_StillOut>
+  <CC_Legend_Seen>Hunters from {PLACE} saw {NAME} to the {DIR}, on new ground now marked on the world map.</CC_Legend_Seen>
+  <CC_Legend_SeenRoad>Travelers on the road saw {NAME} to the {DIR}, on new ground now marked on the world map.</CC_Legend_SeenRoad>
+  <CC_Legend_TrophyPart>its {THING}</CC_Legend_TrophyPart>
+  <CC_Legend_TrophyHide>its hide</CC_Legend_TrophyHide>
+  <CC_Legend_Arrived>The tracks are fresh: {NAME} is here, out in the open.</CC_Legend_Arrived>
+  <CC_Legend_ArrivedGone>The tracks are a day old: {NAME} has moved on from here.</CC_Legend_ArrivedGone>
+
+</LanguageData>

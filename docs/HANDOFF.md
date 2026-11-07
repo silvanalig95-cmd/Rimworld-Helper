@@ -6,6 +6,96 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- Alphas, legends and great herds (7 November 2026, the player's pick "D, alphas and bosses" from a brainstorm: built
+  without a proposal round; no release round yet, the lead writes it at the merge). `Source/ColonyCouncil/Beasts/` (new
+  files only), DESIGN.md "Alphas, nemeses, legends and great herds", README "Alphas, legends and great herds", an Almanac
+  page of its own (`Almanac_Beasts.xml`, *alphas, legends and great herds*; no existing page's keywords touched). Animals
+  are picked by what they are (size, predator, herd animal, migration; never insects, dryads or entities), never by a
+  list, so the player's Megafauna, Dinosauria, Alpha Animals and VAE herds count as much as the base game's.
+  - Pack alphas (`PackAlphas.cs`): three or more of one hunting kind within 14 cells, wild and calm, get an alpha a day
+    in four (one a home at a time, 30 days apart); three packs of the game's manhunters in ten run behind one (15 days
+    apart, looked at once a big threat). The biggest in its prime, named by someone of the colony (`Rimfolk_Pool_AlphaNames`,
+    a `NameSingle` the game draws on the map), `Rimfolk_PackAlpha` (incoming 0.85, melee 1.15, meat and leather 1.25).
+    The news for a plain pack; a letter only when the pack threatens the colony (manhunting, or a `PredatorHunt` on one
+    of the colony's people or animals). Killed: its pack scatters (each out of any mental state, its own exit group),
+    its slayer gets *Packbreaker* (`Bestow`, one holder a colony), a memory and a journal line. Tamed: its pack walks in
+    to it one at a time over the next days (`DoRecruit` within 7 cells, six at most, the alpha's master theirs).
+  - Animal nemeses (`BeastNemeses.cs`, on `Strangers/Nemeses.cs`): a beast nemesis up on a home map under 45% health
+    runs for the edge (any mental state ended), is kept in the world, and comes back 6 to 16 days later, twice at most,
+    one time in three in the game's `Manhunter` state with a letter; one that killed or maimed gets `Rimfolk_BeastScars`
+    (a mark only) and, three times in five, the closest of those close to the one it hurt swears to bring it down (a
+    vendetta's closeness: partner, kin, a bond of 30, an opinion of 60): a word said aloud, a message, a journal line,
+    the spark for *settle the score* (whose `CanHave` now counts an oath), `Rimfolk_BeastOathFury` while it is on their
+    map, and how the oath ended (kept, someone else's hand, tamed, vanished). Nemeses.cs: a beast that ran off
+    unannounced is named as got away (`BeastNemeses.Fled`) instead of dropped, and the coordinator's downed rule
+    (`!x.Downed`) is in the naming check here too; nothing of this part names, flees or brings back a downed animal.
+  - Legends of the region (`RegionLegend.cs`, world event `Rimfolk_WS_Legend`, kind `legend`, `LegendWorker`): one of the
+    dozen biggest animals loaded (2.5 body or more) comfortable within ten degrees of the home tile's warmth, or with
+    PokéWorld a legendary once its own `LegendaryQuestsTracker` has a condition met (read by reflection,
+    `PokeWorldLegends`). Made old with `Council_Legendary`, named from `Rimfolk_Pool_LegendNames`, held by the event; its
+    ground a faction-less `Site` (`Rimfolk_LegendGround`, GenericSite and the Manhunters expanding icon, no detection raids,
+    not an attack) 4 to 12 tiles off, moving 2 to 4 tiles every five to nine days with a message (not while a caravan of
+    the colony is on it or bound for it). A caravan's arrival makes the map with the beast on it (`GenStep_LegendGround`,
+    linked to the site part). A friendly town's bounty beat (paid from afar by `WorldEffect_Silver` on "slain"). Endings:
+    slain (trophy beside the body: its butcher products, else a quarter of its leather; *Giant-Slayer*; a bonfire with
+    music at home, `Rimfolk_Pool_LegendSong`), befriended (*Beast-Speaker*), fell, gone, moved (the timeout). 150 days
+    between two at 100%, none before day 40, 30 to 45 days long.
+  - Great herds (`GreatHerds.cs`): each spring and fall six times in ten, on day 2 to 12 of the season, 6 to 24 head of a
+    herd animal (the land's own three times likelier, bigger likelier) walk in and out as the game's migration does, with
+    a letter and the council's herd-crossing question fired when it can come (`Rimfolk_Evt_HerdCrossing`). Every exit
+    group of four or more wild animals of one kind on a home map (the game's migrations too) can be spooked: one of it
+    hurt or shot dead (60%), a projectile within 9 cells (25%), a fire within 7 (50%, once). The stampede sprints for the
+    edge away from it; for 1.2 hours a runner of 1.2 body or more knocks down someone (humanlike, by `Harm.May` and
+    `Harm.Chance`, three at most) within 1.3 cells of its way since the last look (a blunt 6 to 16 from it, a message for
+    the colony's own and guests) and flattens up to twelve growing-zone plants. A herd of six or more in view: up to
+    three at ease stop to watch (`Rimfolk_WatchHerd`, 1,200 ticks, resuming their job; `Rimfolk_Herd_Watched`).
+  - Clock: `Sched.RareBeasts` (193, in `RareOffsets`), `Pass.RareBeasts` and its hour `Pass.Beasts` on the same tick, the day
+    in the hour's first hour; the clock's names in `Rimfolk_Clock.xml`, DESIGN's ticking table row. No Harmony patch.
+  - Settings (How much happens, each 0 to 200% with a note and a tooltip): *Pack alphas* (`packAlphas`), *Beast nemeses
+    come back* (`beastNemeses`, needs Nemeses), *Legends of the region* (`regionLegends`, needs World events), *Great herds*
+    (`greatHerds`); presets 50% and 125%. `SettingsTests` lists the four.
+  - Saved (`BeastBook`, a new GameComponent: an older save gets an empty one): `alphas` (16, each its `pack` by
+    reference), `flights` (12), `oaths` (20), `homes` (one a colony), `noted` (40), the legend's last start and end. All
+    modelled in `Tools/save_estimate.py`.
+  - Harm (`Tools/Balance -- . --harm`, new `BeastSim.cs` after the everyday hurts): about 0.019 hurts a colonist-year from
+    stampedes and 0.007 from beasts back for blood, 0.025 in all, beside a raid's 1.4 to 2.0. An alpha adds none of its
+    own (its pack's danger is the game's; its fall ends the fight); a legend hurts only those who go to it.
+  - The land's animals (`GreatHerds.LandAnimals`, the herds' kind weight) are read from `BiomeDef.wildAnimals` directly by
+    reflection, never `AllWildAnimals` or `CommonalityOfAnimal`: the one place to switch to the shared helper at the
+    merge. The legend's kinds don't read biomes at all.
+  - Tests: `BeastsTests` ("beasts: ", `Beasts/BeastsMath.cs` linked); `ImmersionTests` lists the four spoken pools.
+  - Try in the game (none of it could be run here; Dev mode, Debug actions, Rimfolk, "Beasts: ..."):
+    1. "a pack led by an alpha now (wild)" on a home map (a wolf pack walks in if none is there): the news line, the alpha's
+       name on the map, the pack alpha hediff on its health tab. Draft someone and shoot it: the pack scatters for the
+       edges, the slayer's *Packbreaker* news and memory.
+    2. "manhunters led by an alpha now": the threat letter naming it; kill the alpha first, and the rest come to their
+       senses and run.
+    3. Another alpha, then "the alpha tamed now (its pack follows)" and "the alpha's pack follows in now": one at a time
+       walks up to the alpha and is the colony's (its master the alpha's).
+    4. "a beast nemesis here now (it maimed someone)": the nemesis on the Story tab, its scars, and (when the victim has a
+       partner, kin or a close friend at home) the oath's line over the sworn one's head and their journal. "the beast nemesis here flees now": it runs; off the map, the
+       nemeses' "slunk off" letter; "the beast nemesis away comes back now": it walks in at the edge (one time in three
+       with the "come for blood" letter and manhunting); the sworn one's fury when they share the map; kill it with the
+       sworn one for "kept the oath".
+    5. "a legend of the region now": the world event's letter and its ground on the world map; "the legend moves on now
+       (a sighting)": a new site and its message. Send a caravan to the site: the arrival letter and the beast on the map,
+       calm. Or "the legend walks onto this map now" to try the endings at home: kill it (the ending letter, the trophy
+       beside the body, *Giant-Slayer*, the bonfire with its song in the evening, a bounty's courier if it was taken up)
+       or tame it (*Beast-Speaker*).
+    6. "a great herd crosses here now": the letter by the season, the council's herd question if a hunter is at home,
+       colonists stopping to watch (the job's report "watching the herd go by"). Shoot one of it, or "the herd here
+       stampedes now": the stampede message, the herd sprinting away, anyone humanlike in the way knocked down (with
+       everyday hurts on), plants flattened in a field in its path, the news of them afterwards.
+    7. "what stands now (log)": the settings, alphas, flights, oaths, the season's herd, the legend's candidates (the
+       player's Megafauna titans and Dinosauria giants should lead the list), PokéWorld's legendaries open or not.
+    8. Settings, How much happens: each of the four at 0% (none) and 200%.
+  - Riskiest: the legend's site (a SitePartDef with Core's texture paths and a GenStep linked to it, a faction-less site
+    the caravan enters and leaves; that its map is made, the beast placed, and the site made again after the caravan
+    leaves were not seen in the game); a stampede's lord change mid-walk and the runners' sprint; the pack walking in with
+    a re-given Goto job against the animals' own think tree; PokéWorld's legendaries read by reflection (its tracker and
+    comp fields by name, unchecked against the player's version); a resident beast (`ResidentBeast`) may also take up an
+    alpha as the beast the colony watches (both stories would run; not excluded, to leave that file alone).
+
 - 0.140.0, A RimWorld of Magic under Harmony 3 (7 November 2026, the player's startup log and "help me fix it"). The log:
   `[ARimWorldOfMagic][ERR] Failed to apply Harmony patches for Torann.ARimworldOfMagic`, "Unrelated classes cannot
   describe the same non-null object ... supplied Verse.WeatherWorker, requested RimWorld.WeatherManager". Not a game

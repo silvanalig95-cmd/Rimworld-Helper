@@ -120,7 +120,16 @@ namespace ColonyCouncil
         /// drill, the day's pruning). Nothing while the setting is at nothing.
         /// </summary>
         public const int RareHarm = 67;
-        public static readonly int[] RareOffsets = { RareWorldKeep, RarePlanQueue, RareHeart, RareCamp, RareMissions, RareWelcome, RareAilments, RareHealth, RareDefenseLines, RareFightSides, RareSmoke, RareBuildPriority, RareWeather, RareHarm };
+
+        /// <summary>
+        /// The wild's alphas and bosses (Beasts/BeastBook.cs): an alpha fallen and its pack scattering, a hurt beast nemesis
+        /// turning to run, a herd crossing spooked into a stampede and its runners' way, someone stopping to watch it pass;
+        /// each home map's herds and those few beasts only, nothing when none is there. Its hour rides on the same tick
+        /// (tick 193 of the hour: alphas' threats and their packs following in, beast nemeses' oaths and returns), and the
+        /// day in the first hour of the day (packs led by an alpha, the season's great herd).
+        /// </summary>
+        public const int RareBeasts = 193;
+        public static readonly int[] RareOffsets = { RareWorldKeep, RarePlanQueue, RareHeart, RareCamp, RareMissions, RareWelcome, RareAilments, RareHealth, RareDefenseLines, RareFightSides, RareSmoke, RareBuildPriority, RareWeather, RareHarm, RareBeasts };
 
         /// <summary>Passes on the 250-tick cycle that only run while something is waiting (the news of the evening, an answer playing out, the council window's memory).</summary>
         public const int RareNews = 167;

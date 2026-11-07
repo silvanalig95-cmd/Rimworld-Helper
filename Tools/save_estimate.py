@@ -671,6 +671,19 @@ MODEL = {
     "Peoples/ArisingBook.cs:arisen": ("cap", (const("Peoples/ArisingMath.cs", "MaxRecords", 24), 0.05), 320,
                                       "peoples that arose during play: one record each, one every 20 days at the most (the setting at 200%), ArisingMath.MaxRecords kept"),
     "Happenings/Workers_Chains2.cs:flags": ("fixed", 4, 40, "per story chain (counted under chains)"),
+    # The wild's alphas and bosses (Beasts/BeastBook.cs): packs led by an alpha (one a home at a time, a month apart at the
+    # setting's 100%, a fortnight for the game's manhunters; BeastsMath.MaxAlphaRecords kept, the ended going first), beast
+    # nemeses that fled and the oaths against them (a few a year at most, capped), each home's part, the nemeses noted.
+    "Beasts/BeastBook.cs:alphas": ("cap", (const("Beasts/BeastsMath.cs", "MaxAlphaRecords", 16), 0.06), 420,
+                                   "packs led by an alpha: one a home a month at most (the setting at 200%: two), BeastsMath.MaxAlphaRecords kept"),
+    "Beasts/PackAlphas.cs:pack": ("fixed", 6, P, "per alpha: its pack as it was named, those gone from the world let go when saving (counted under alphas)"),
+    "Beasts/BeastBook.cs:flights": ("cap", (const("Beasts/BeastsMath.cs", "MaxFlights", 12), 0.03), 160,
+                                    "beast nemeses that fled hurt: one while it is away or back, dropped when its nemesis ends, BeastsMath.MaxFlights at most"),
+    "Beasts/BeastBook.cs:oaths": ("cap", (const("Beasts/BeastsMath.cs", "MaxOaths", 20), 0.02), 220,
+                                  "oaths sworn against a beast that killed or maimed: a few a year, BeastsMath.MaxOaths kept, the ended going first"),
+    "Beasts/BeastBook.cs:homes": ("fixed", 1, 160, "one per colony (one home in the model): its last alphas, the threat looked at, its great herd's season"),
+    "Beasts/BeastBook.cs:noted": ("cap", (const("Beasts/BeastsMath.cs", "MaxNoted", 40), 0.05), V,
+                                  "beast nemeses already given their scars and oath (ids), BeastsMath.MaxNoted newest"),
     # Answers playing out
     "PlayOut/PlayOutLord.cs:guests": ("while", 8, P, "while the gathering lasts: guests from outside the colony"),
     "PlayOut/PlayOutLord.cs:lines": ("while", 6, 120, "while the gathering lasts"),

@@ -365,7 +365,8 @@ namespace ColonyCouncil
                 case "graduated": return ColonyCouncilMod.Settings.socialWeb && p.skills != null && p.skills.skills.Any(s => s.Level >= 10 && People.Passionate(s));
                 case "omen": return ColonyCouncilMod.Settings.dreams && ColonyCouncilMod.Settings.dreamOmens;
                 case "avenged": return ColonyCouncilMod.Settings.vendettas && comp.vendettas.Of(p).Any();
-                case "nemesis": return ColonyCouncilMod.Settings.nemeses && comp.nemeses.Of(p).Any(n => !n.ended);
+                // Their own nemesis, or a beast they swore to bring down for someone it killed or maimed (Beasts/BeastNemeses.cs).
+                case "nemesis": return ColonyCouncilMod.Settings.nemeses && (comp.nemeses.Of(p).Any(n => !n.ended) || BeastNemeses.Sworn(p));
                 case "stranger": return ColonyCouncilMod.Settings.strangers;
                 case "pitched": return ColonyCouncilMod.Settings.enableAmbitions && !p.DevelopmentalStage.Juvenile();
                 default: return true;

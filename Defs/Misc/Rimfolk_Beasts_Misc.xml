@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The wild's alphas and bosses (Source/ColonyCouncil/Beasts/): stopping to watch a herd go by, and a legend's ground on
+       the world map (a site with no people of its own, its map made with the legend on it). -->
+
+  <JobDef>
+    <defName>Rimfolk_WatchHerd</defName>
+    <driverClass>ColonyCouncil.JobDriver_WatchHerd</driverClass>
+    <reportString>watching the herd go by.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <SitePartDef>
+    <defName>Rimfolk_LegendGround</defName>
+    <label>a legend's ground</label>
+    <description>Where the beast of the region's stories has been seen lately. Its tracks are fresh, and it is there.</description>
+    <workerClass>ColonyCouncil.SitePartWorker_LegendGround</workerClass>
+    <siteTexture>World/WorldObjects/Sites/GenericSite</siteTexture>
+    <expandingIconTexture>World/WorldObjects/Expanding/Sites/Manhunters</expandingIconTexture>
+    <arrivedLetterDef>NeutralEvent</arrivedLetterDef>
+    <wantsThreatPoints>false</wantsThreatPoints>
+    <disallowsAutomaticDetectionTimerStart>true</disallowsAutomaticDetectionTimerStart>
+    <considerEnteringAsAttack>false</considerEnteringAsAttack>
+  </SitePartDef>
+
+  <GenStepDef>
+    <defName>Rimfolk_LegendGround</defName>
+    <linkWithSite>Rimfolk_LegendGround</linkWithSite>
+    <order>1600</order>
+    <genStep Class="ColonyCouncil.GenStep_LegendGround" />
+  </GenStepDef>
+
+</Defs>

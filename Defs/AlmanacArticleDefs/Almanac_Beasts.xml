@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The Almanac page on the wild's alphas and bosses (Source/ColonyCouncil/Beasts/; DESIGN.md "Alphas, nemeses, legends
+       and great herds"). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Beasts</defName>
+    <label>alphas, legends and great herds</label>
+    <category>Council</category>
+    <order>13</order>
+    <summary>The wild has its leaders and its giants. A pack on the colony's land may run behind a named alpha, a beast that maimed or killed one of the colony flees hurt and comes back, a legend of the region roams the world map where a caravan can find it, and in spring and fall great herds cross the land and can be spooked into a stampede.</summary>
+    <tip>Each part has its own rate on How much happens (Pack alphas, Beast nemeses come back, Legends of the region, Great herds), from 0% to 200%. A downed or dying animal is never named, never flees and never comes back: only once it is up again.</tip>
+    <description>The animals are picked by what they are (their size, whether they hunt, whether they live in herds), never from a list, so the base game's wolves and muffalo count as much as Megafauna's titans, Dinosauria's raptors and giants, Alpha Animals' behemoths and Vanilla Animals Expanded's herds. Harm comes only from what happens on the map and is shown where it happens: a stampede's blow, a returning beast's attack, the game's own fights.</description>
+    <sections>
+      <li>
+        <heading>Pack alphas</heading>
+        <points>
+          <li>Three or more of one hunting kind together on the land are a pack. A day in four, one may turn out to be led by an alpha: the biggest in its prime, named by someone of the colony, its name shown on the map.</li>
+          <li>The alpha's mark makes it a little harder to hurt (85% of a blow) and harder-hitting (115%), with a quarter more meat and hide.</li>
+          <li>One home has one alpha at a time, a month apart; three packs of the game's manhunters in ten run behind one, 15 days apart.</li>
+          <li>The news tells of a plain pack; a letter comes only when an alpha-led pack threatens the colony, manhunting or hunting one of its people or animals.</li>
+          <li>Brought down, its pack scatters for the edges (manhunters come to their senses first) and its hunter is called Packbreaker (one at a time in a colony). Tamed, its pack walks in to it one by one over the next days, six at most.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Beast nemeses</heading>
+        <points>
+          <li>A wild animal that maims or kills one of the colony and gets away is a nemesis, as before; now it bears the scars of that day.</li>
+          <li>Any beast nemesis under 45% of its health and still on its feet turns and runs for the edge, and comes back 6 to 16 days later, twice at most: prowling the land, or one time in three for blood, with a letter.</li>
+          <li>Someone close to the one it hurt (a partner, kin, a bond of 30, an opinion of 60) swears to bring it down three times in five: a word said aloud, the life goal "settle the score" within reach, a sworn fury while it is on their map.</li>
+          <li>How the oath ends is remembered: kept by their own hand, someone else's, tamed, or gone.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Legends of the region</heading>
+        <points>
+          <li>A world event: one of the dozen biggest animals loaded that could live in the region (with PokéWorld, a legendary Pokémon once PokéWorld itself has opened its legendaries).</li>
+          <li>The towns talk of it, and a friendly town may put a price on it, paid by their courier the day it falls.</li>
+          <li>Its ground is a site 4 to 12 tiles off on the world map that moves every five to nine days as it is seen, unless a caravan of the colony is on its way. A caravan that goes finds it there: old, scarred and hard to bring down, calm until provoked.</li>
+          <li>Brought down: a trophy from it beside the body, its hunter called Giant-Slayer, a fire and a song at home. Befriended, tamed or caught: its new master called Beast-Speaker. Each name is held by one of the colony at a time.</li>
+          <li>150 days pass between one legend's end and the next, none before the world's 40th day; one lasts 30 to 45 days.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Great herds</heading>
+        <points>
+          <li>In spring and in fall, six seasons in ten, six to twenty-four head of one herd animal cross the land as the game's own migration does, with a letter and the council's question about the hunt when it can come.</li>
+          <li>Any herd crossing for an edge, the game's own migrations too, can be spooked: one of it hurt or shot dead (six times in ten), a shot flying past (one in four), a fire close by (one in two).</li>
+          <li>A stampede sprints away for the edge. In its first hour a big runner can knock down someone smaller in its way, by the everyday hurts' setting and their shared cap, three in a stampede at most, and flatten up to twelve plants of the fields.</li>
+          <li>Up to three of the colony at nothing pressing stop to watch a herd of six or more go by.</li>
+        </points>
+      </li>
+    </sections>
+    <keywords><li>pack alpha</li><li>alpha</li><li>beast nemesis</li><li>legend of the region</li><li>great herd</li><li>stampede</li><li>migration</li></keywords>
+    <seeAlso><li>Council_Alm_C_Animals</li><li>Council_Alm_C_Strangers</li><li>Council_Alm_C_WorldSituations</li><li>Council_Alm_C_Region</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>
