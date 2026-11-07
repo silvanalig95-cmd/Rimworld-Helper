@@ -183,14 +183,17 @@ namespace ColonyCouncil
         /// <summary>
         /// The callings a cause takes only when it leans to them (<see cref="Lean"/>): survivors near a river turn to the
         /// river as fishers and ferry people; a band of the banished led by a learned one keeps a school of its own, or near
-        /// a river takes to the boats.
+        /// a river takes to the boats. Release D's: survivors who stayed to bury their town's dead keep the dead of
+        /// everyone after (the Quiet Bell's ways), or, in the industrial and spacer ages, put what was left on wheels and
+        /// never stop (the Wheel's); a band led by one good with beasts walks the region with them as tamers, by one good
+        /// with a bow or a rifle hunts the great beasts as wardens.
         /// </summary>
         public static string[] Leans(string kind)
         {
             switch (kind)
             {
-                case Refugees: return new[] { PeoplesMath.Fishers };
-                case Exiles: return new[] { PeoplesMath.Scholars, PeoplesMath.Fishers };
+                case Refugees: return new[] { PeoplesMath.Fishers, PeoplesMath.Sextons, PeoplesMath.Salvagers };
+                case Exiles: return new[] { PeoplesMath.Scholars, PeoplesMath.Fishers, PeoplesMath.Tamers, PeoplesMath.Hunters };
                 default: return new string[0];
             }
         }
@@ -217,10 +220,42 @@ namespace ColonyCouncil
         /// What a cause leans to, or null: a band led by a learned one (Intellectual <see cref="LearnedLevel"/> or more) to
         /// scholars; a cause near a river (one its town could stand by), on its fated half, to the river as fishers.
         /// </summary>
-        public static string Lean(string kind, bool nearRiver, bool riverFated, int leaderLearning)
+        public static string Lean(string kind, bool nearRiver, bool riverFated, int leaderLearning) =>
+            Lean(kind, nearRiver, riverFated, leaderLearning, 0, 0, false, false, 0);
+
+        /// <summary>Survivors who keep the dead (the Quiet Bell's ways), on their fated quarter: <see cref="SaltBell"/>.</summary>
+        public const float BellChance = 0.25f;
+
+        /// <summary>Survivors of the industrial or spacer age who take to the wheels (the Wheel's ways), on their fated third: <see cref="SaltWheel"/>.</summary>
+        public const float WheelChance = 0.33f;
+
+        public const int SaltBell = 505, SaltWheel = 606;
+
+        /// <summary>A band's leader this good with beasts (Animals) leads tamers; this good a shot (Shooting) leads wardens.</summary>
+        public const int TamerLevel = 10, HunterLevel = 10;
+
+        /// <summary>
+        /// What a cause leans to, every lean weighed, or null. A band of the banished: led by a learned one, scholars; by
+        /// one good with beasts (Animals <see cref="TamerLevel"/>), tamers; by a good shot (Shooting
+        /// <see cref="HunterLevel"/>), wardens of the crossroads; else near a river on its fated half, fishers. Survivors
+        /// of a fallen town: near a river on their fated half, fishers; else on their fated quarter they stay to bury its
+        /// dead and keep everyone's after (sextons); else, in the industrial or spacer age (<paramref name="age"/> 2 or
+        /// 3), on their fated third they put what was left on wheels (salvagers).
+        /// </summary>
+        public static string Lean(string kind, bool nearRiver, bool riverFated, int leaderLearning, int leaderAnimals, int leaderShooting, bool bellFated, bool wheelFated, int age)
         {
-            if (kind == Exiles && leaderLearning >= LearnedLevel) return PeoplesMath.Scholars;
+            if (kind == Exiles)
+            {
+                if (leaderLearning >= LearnedLevel) return PeoplesMath.Scholars;
+                if (leaderAnimals >= TamerLevel) return PeoplesMath.Tamers;
+                if (leaderShooting >= HunterLevel) return PeoplesMath.Hunters;
+            }
             if (nearRiver && riverFated && Array.IndexOf(Leans(kind), PeoplesMath.Fishers) >= 0) return PeoplesMath.Fishers;
+            if (kind == Refugees)
+            {
+                if (bellFated) return PeoplesMath.Sextons;
+                if (wheelFated && age >= 2) return PeoplesMath.Salvagers;
+            }
             return null;
         }
 

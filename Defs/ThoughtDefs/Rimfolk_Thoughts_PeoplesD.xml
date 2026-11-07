@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Feelings from release D's peoples at the gate (Defs/IncidentDefs/Rimfolk_Events_PeoplesD.xml): a lantern lit at the
+       gate for one a beast took, a funeral the Quiet Bell led, a tamer of the Circuit beaten fairly, a stray brought home
+       by a ranger. Each a feeling rather than a mood, as the colony's other moments are. -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_Evt_LanternLit</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>a lantern at the gate</label><description>A Warden lit a lantern at our gate for the one the beast took, and stood the first night of it with us. It will burn until the beast is dead, they say.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Resolve</li></feelings><felt>3</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Evt_BellFuneral</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the bell rung for them</label><description>A bell-keeper of the Quiet Bell came and led the funeral, and rang once over the grave. It was quieter than I thought a funeral could be, and better.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Relief</li></feelings><felt>3</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Evt_BeatTamer</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>beat a tamer of the Circuit</label><description>A tamer of the Circuit challenged me to a bout with their companion, and I won it fairly. They tied a token on their sash for it and thanked me, as if I had done them the honour.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Pride</li></feelings><felt>4</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <!-- The Wardens' lantern drive (Defs/MissionDefs/Rimfolk_Missions_PeoplesD.xml): for those who went. -->
+  <ThoughtDef>
+    <defName>Rimfolk_Mission_RodeWithWardens</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>out with the Wardens</label><description>A day and a half in the treeline with the Lantern Wardens, driving out a beast that had been taking people on their roads. They put out the lantern at the crossroads when it was done, and wrote our names in the book.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.08</joy><felt>3</felt><feelings><li>Pride</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Evt_StrayHome</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>a stray brought home</label><description>A ranger of the Circuit walked one of our animals home to the gate after it strayed. I had given up on it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Relief</li></feelings><felt>4</felt></li></modExtensions>
+  </ThoughtDef>
+
+</Defs>

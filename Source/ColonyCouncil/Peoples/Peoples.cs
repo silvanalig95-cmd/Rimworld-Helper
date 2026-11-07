@@ -59,6 +59,24 @@ namespace ColonyCouncil
         /// <summary>Any of Rimfolk's peoples in this world.</summary>
         public static bool AnyInWorld => Find.FactionManager != null && Find.FactionManager.AllFactionsListForReading.Any(f => f != null && !f.defeated && IsOurs(f));
 
+        /// <summary>
+        /// The age a people of Rimfolk's lives in (0 tribal to 3 spacer): its template's own; one that arose (release B)
+        /// keeps the age of what it came from (survivors and faithful who broke away their old people's, a band of the
+        /// banished the colony's), within the ages its template arises in (PeoplesDMath.PeopleAge). Any other people: its own.
+        /// </summary>
+        public static int AgeOf(Faction f)
+        {
+            if (f?.def == null) return (int)Ages.Ours;
+            int own = (int)LedgerMath.AgeOf((int)f.def.techLevel);
+            var ext = Of(f);
+            if (ext == null) return own;
+            ext.AriseSpan(own, out int lo, out int hi);
+            var r = ArisingBook.Instance?.Of(f);
+            if (r == null) return own;
+            int parent = r.parent?.def != null ? (int)LedgerMath.AgeOf((int)r.parent.def.techLevel) : -1;
+            return PeoplesDMath.PeopleAge(r.kind, parent, (int)Ages.Ours, own, lo, hi);
+        }
+
         // ================= Words =================
 
         /// <summary>The tag a people gives Rimfolk's lines ("their:healers"), added to <paramref name="tags"/> when it is one of Rimfolk's.</summary>

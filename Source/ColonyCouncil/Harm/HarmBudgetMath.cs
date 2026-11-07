@@ -100,13 +100,18 @@ namespace ColonyCouncil
         public static readonly HarmKind RestlessWalk = new HarmKind("restlessWalk", "a restless walk at dusk (3.3.3)", "restlessWalk", 0.0035f, false);
         public static readonly HarmKind ColdWater = new HarmKind("coldWater", "a slip into cold water (4.9.2)", "coldWater", 0.028f, false);
 
+        // The peoples, release D (Peoples/PeoplesD2.cs): a tamer's friendly bout by the Fighting-type spar's rules, the
+        // companion's blow one bout in 25 (Tools/Balance/HarmSim.cs, TamerBouts).
+        public static readonly HarmKind TamerBout = new HarmKind("tamerBout", "a tamer's bout (peoples)", "peoples", 0.009f, false);
+
         /// <summary>Every kind, in the order they were built.</summary>
         public static readonly HarmKind[] All =
         {
             Drills, TiredHands, WorkedThrough, Dangers, LandAilments, CampBrawl, SickHome, ChampionBout, HuntTurn, Sabotage, Hustings, Frayed, Stampede,
             FeastBout, FeastSour, PilgrimCough, SchemeFight, PokemonSpar,
             Physician, GuestCough, Hail, ColdNight, Felling, FailedBuild, HotBench, Rut, HerdLesson, Saddle, GroupBrawl, SoreLoser, GuestNight, GuestNightHospitality, Rematch, Games,
-            SickWorkOn, GateSickness, CampFever, CourierSick, PatientIll, BadBatch, SmallThings, DirtyWater, GateCold, NightWatch, WeatherLovers, Sleepwalk, RestlessWalk, ColdWater
+            SickWorkOn, GateSickness, CampFever, CourierSick, PatientIll, BadBatch, SmallThings, DirtyWater, GateCold, NightWatch, WeatherLovers, Sleepwalk, RestlessWalk, ColdWater,
+            TamerBout
         };
 
         public static HarmKind Of(string key)

@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The Lantern Wardens (docs/design/peoples-next.md, the first of the eight; docs/design/peoples.md, "Release D";
+    Source/ColonyCouncil/Peoples/PeoplesD.cs): beast-hunters of the crossroads, who follow the region's great beasts from
+    lantern to lantern and keep a book of every creature run down. Medieval, on the game's tribal parent; they arise in
+    every age (ariseAges 0~3), and a people of their ways in the industrial or spacer age hunts with guns
+    (PeopleKindExtension.ageArms). No uniform: furs, oiled leather and whatever the last hunt paid for, around a hood dyed
+    lantern red with its cord (their signature); their towns are palisaded lodges with a trophy hall, kennels and a
+    lantern post on every road out (Rimfolk_Plan_WardensLodge). At the gate: a lantern hunt when a pack alpha, a beast
+    nemesis or a legend of the region is on the colony's land (Rimfolk_Evt_WardensHunt), their pelt-buyer
+    (Rimfolk_Evt_PeltBuyer), and a lantern lit at the colony's gate for one of the colony a beast has taken
+    (Rimfolk_Evt_WardensLantern); their lodge asks for the colony's best shots for a drive (Rimfolk_Mission_WardensDrive).
+    Their founding (the description): Tobin Garrow, the shepherd who hung his brother's lantern at the crossroads and
+    kept it lit eleven years. They raid only when the colony has turned them hostile. Faith (Ideology): people before
+    beasts, and the light kept lit (VE Memes' light). Kinds of people: the Venators among them, yttakin, saurids, wood
+    elves and the Alpha Genes' animusen, three in four baseliners.
+  -->
+
+  <FactionDef ParentName="TribeBase">
+    <defName>Rimfolk_Wardens</defName>
+    <label>lantern wardens</label>
+    <description>Beast-hunters who follow the region's great beasts from crossroads to crossroads: the alphas that lead packs, the beasts that have taken someone, the old giants the region tells stories about. Where a Warden's lantern burns at a crossroads, someone was taken there, and the Wardens have come to settle it. They keep a book of every creature they have run down, with empty pages for the ones still loose.\n\nTheir ways began with a shepherd called Tobin Garrow, whose village was emptied in one night by something out of the treeline. He hung his dead brother's lantern at the crossroads below the village and swore to keep it lit until the beast was dead, and it took him eleven years. Those who walked with him in the last of them were the first Wardens. Every Warden still carries a soot-blackened lantern at the belt and ties a knot in the red cord on the sleeve for every beast felled.\n\nThey are blunt, patient and short with words, and they talk about beasts the way other people talk about weather. They hunt alongside anyone who asks and buy pelts at the book's rate. Each lodge is kept by its keeper of the book, and the Wardens by their lantern-master.</description>
+    <pawnSingular>warden</pawnSingular>
+    <pawnsPlural>wardens</pawnsPlural>
+    <leaderTitle>lantern-master</leaderTitle>
+    <techLevel>Medieval</techLevel>
+    <basicMemberKind>Rimfolk_Wardens_Warden</basicMemberKind>
+    <factionNameMaker>Rimfolk_Namer_Wardens</factionNameMaker>
+    <settlementNameMaker>Rimfolk_Namer_WardensTown</settlementNameMaker>
+    <factionIconPath>ColonyCouncil/Peoples/Wardens</factionIconPath>
+    <settlementTexturePath>ColonyCouncil/Peoples/WardensTown</settlementTexturePath>
+    <colorSpectrum>
+      <li>(0.58, 0.13, 0.09)</li>
+      <li>(0.80, 0.26, 0.16)</li>
+    </colorSpectrum>
+    <hidden>false</hidden>
+    <naturalEnemy>false</naturalEnemy>
+    <permanentEnemy>false</permanentEnemy>
+    <canSiege>false</canSiege>
+    <requiredCountAtGameStart>0</requiredCountAtGameStart>
+    <startingCountAtWorldCreation>1</startingCountAtWorldCreation>
+    <maxConfigurableAtWorldCreation>9999</maxConfigurableAtWorldCreation>
+    <configurationListOrderPriority>39</configurationListOrderPriority>
+    <settlementGenerationWeight>0.5</settlementGenerationWeight>
+    <allowedCultures Inherit="False">
+      <li>Rustican</li>
+    </allowedCultures>
+    <backstoryFilters Inherit="False">
+      <li>
+        <categories>
+          <li>Tribal</li>
+        </categories>
+        <commonality>0.5</commonality>
+      </li>
+      <li>
+        <categories>
+          <li>Outlander</li>
+        </categories>
+        <commonality>0.5</commonality>
+      </li>
+    </backstoryFilters>
+    <raidCommonalityFromPointsCurve Inherit="False">
+      <points>
+        <li>(0, 0.3)</li>
+      </points>
+    </raidCommonalityFromPointsCurve>
+    <xenotypeSet Inherit="False">
+      <xenotypeChances>
+        <Yttakin MayRequire="Ludeon.RimWorld.Biotech">0.04</Yttakin>
+        <Neanderthal MayRequire="Ludeon.RimWorld.Biotech">0.03</Neanderthal>
+        <Hussar MayRequire="Ludeon.RimWorld.Biotech">0.02</Hussar>
+        <DV_Venator MayRequire="Ludeon.RimWorld.Biotech,det.venators">0.05</DV_Venator>
+        <VRESaurids_Saurid MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.saurid">0.02</VRESaurids_Saurid>
+        <DevDesigner_XenotypeWoodElves MayRequire="Ludeon.RimWorld.Biotech,DevDesigner.Elves.Continued">0.02</DevDesigner_XenotypeWoodElves>
+        <AG_Animusen MayRequire="Ludeon.RimWorld.Biotech,sarg.alphagenes">0.02</AG_Animusen>
+      </xenotypeChances>
+    </xenotypeSet>
+    <fixedIdeo>true</fixedIdeo>
+    <ideoName>The Lit Crossroads</ideoName>
+    <ideoDescription>A beast that takes a person answers for it. People come before beasts, and a Warden puts themselves between the two wherever a lantern is lit; every beast that took someone has a page in the book, and a page is not closed until its ending is written. The light is kept, because the dark is where things wait. Tobin Garrow kept his brother's lantern lit for eleven years, and a Warden who lights one keeps it lit until it is done.</ideoDescription>
+    <forcedMemes>
+      <li MayRequire="Ludeon.RimWorld.Ideology">HumanPrimacy</li>
+      <!-- The lantern kept lit at the crossroads: Vanilla Ideology Expanded's light. -->
+      <li MayRequire="VanillaExpanded.VMemesE">VME_Light</li>
+    </forcedMemes>
+    <structureMemeWeights Inherit="False">
+      <Structure_TheistAbstract MayRequire="Ludeon.RimWorld.Ideology">2</Structure_TheistAbstract>
+      <Structure_Animist MayRequire="Ludeon.RimWorld.Ideology">1</Structure_Animist>
+      <Structure_Ideological MayRequire="Ludeon.RimWorld.Ideology">1</Structure_Ideological>
+    </structureMemeWeights>
+    <styles>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Rustic</li>
+    </styles>
+    <caravanTraderKinds Inherit="False">
+      <li>Rimfolk_Caravan_Wardens</li>
+    </caravanTraderKinds>
+    <visitorTraderKinds Inherit="False">
+      <li>Rimfolk_Visitor_Wardens</li>
+    </visitorTraderKinds>
+    <baseTraderKinds Inherit="False">
+      <li>Rimfolk_Base_Wardens</li>
+    </baseTraderKinds>
+    <pawnGroupMakers Inherit="False">
+      <li>
+        <!-- A fight: trackers with bows and crossbows, boar-spears in front -->
+        <kindDef>Combat</kindDef>
+        <options>
+          <Rimfolk_Wardens_Tracker>10</Rimfolk_Wardens_Tracker>
+          <Rimfolk_Wardens_Spear>9</Rimfolk_Wardens_Spear>
+          <Rimfolk_Wardens_Warden>4</Rimfolk_Wardens_Warden>
+        </options>
+      </li>
+      <li>
+        <kindDef>Peaceful</kindDef>
+        <options>
+          <Rimfolk_Wardens_Warden>20</Rimfolk_Wardens_Warden>
+          <Rimfolk_Wardens_Tracker>5</Rimfolk_Wardens_Tracker>
+          <Villager_Child MayRequire="Ludeon.RimWorld.Biotech">2</Villager_Child>
+        </options>
+      </li>
+      <li>
+        <!-- The pelt-buyer's string: hides, meat and hunting gear on pack beasts -->
+        <kindDef>Trader</kindDef>
+        <traders>
+          <Rimfolk_Wardens_PeltBuyer>1</Rimfolk_Wardens_PeltBuyer>
+        </traders>
+        <carriers>
+          <Donkey>4</Donkey>
+          <Horse>3</Horse>
+          <Muffalo>2</Muffalo>
+        </carriers>
+        <guards>
+          <Rimfolk_Wardens_Tracker>7</Rimfolk_Wardens_Tracker>
+          <Rimfolk_Wardens_Spear>6</Rimfolk_Wardens_Spear>
+        </guards>
+      </li>
+      <li>
+        <kindDef>Settlement</kindDef>
+        <options>
+          <Rimfolk_Wardens_Warden>10</Rimfolk_Wardens_Warden>
+          <Rimfolk_Wardens_Tracker>9</Rimfolk_Wardens_Tracker>
+          <Rimfolk_Wardens_Spear>8</Rimfolk_Wardens_Spear>
+          <Rimfolk_Wardens_PeltBuyer>2</Rimfolk_Wardens_PeltBuyer>
+        </options>
+      </li>
+    </pawnGroupMakers>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleExtension">
+        <calling>hunters</calling>
+        <townWord>lodge</townWord>
+        <townWords>lodges</townWords>
+        <head>keeper of the book</head>
+        <heir>under-keeper</heir>
+        <envoy>tracker</envoy>
+        <trader>pelt-buyer</trader>
+        <courier>lantern-runner</courier>
+        <couriers>lantern-runners</couriers>
+        <caravanWeight>0.8</caravanWeight>
+        <camps>
+          <li>Council_Camp_Hunters</li>
+          <li>Council_Camp_Wardens</li>
+          <li>Rimfolk_Camp_Catchers</li>
+        </camps>
+        <plan>Rimfolk_Plan_WardensLodge</plan>
+        <honours>the lantern kept lit, the book's last line and a steady hand at the crossroads</honours>
+        <fears>the beast that gets away, a dark crossroads and the empty page</fears>
+        <sayings>
+          <li>Where a lantern burns, someone was taken.</li>
+          <li>Keep it lit until it is done.</li>
+          <li>A beast that takes a person answers for it.</li>
+          <li>Every page of the book gets its ending.</li>
+          <li>Count the knots, not the years.</li>
+        </sayings>
+        <townGoods>
+          <Pemmican>60~120</Pemmican>
+          <Leather_Plain>40~90</Leather_Plain>
+          <MedicineHerbal>6~12</MedicineHerbal>
+          <WoodLog>80~160</WoodLog>
+          <Beer>8~20</Beer>
+        </townGoods>
+        <herd>
+          <li>Husky</li>
+          <li>LabradorRetriever</li>
+        </herd>
+        <herdCount>4~7</herdCount>
+        <ariseAges>0~3</ariseAges>
+      </li>
+    </modExtensions>
+  </FactionDef>
+
+  <!-- ===================== Their people ===================== -->
+
+  <!--
+    How alike they look (docs/design/peoples.md, "Release D"): no uniform. Every Warden wears a hood dyed lantern red, its
+    cord knotted for every beast felled (a hood, or with Vanilla Factions Expanded - Medieval 2 a chaperon or cap, in the
+    same red); everything else is furs and oiled leather of every make, whatever the last hunt paid for (the game's
+    tribalwear, parkas and pelts; Vanilla Apparel Expanded's pelt coats and ponchos; Vanilla Armour Expanded's gambesons
+    and quilted vests; Tribals' war wraps). Their fighters share nothing but the hood, as the design has it: trackers
+    with bows, crossbows (Vanilla Weapons Expanded, Medieval 2's arbalest) and a quiver; boar-spears with spears and
+    pikes. A few are A RimWorld of Magic's rangers and snipers; the lantern-master may be a Wildspeaker (Vanilla Psycasts
+    Expanded) or a ranger. In the industrial and spacer ages (a people of their ways that arose there) the trackers hunt
+    with rifles. They carry pemmican, herbs or a spare hide. Without any mod: hoods, tribalwear and parkas, spears, clubs,
+    bows and great bows.
+  -->
+  <PawnKindDef Name="Rimfolk_WardensKindBase" Abstract="True">
+    <race>Human</race>
+    <defaultFactionDef>Rimfolk_Wardens</defaultFactionDef>
+    <chemicalAddictionChance>0.04</chemicalAddictionChance>
+    <invNutrition>2.55</invNutrition>
+    <invFoodDef>Pemmican</invFoodDef>
+    <maxGenerationAge>70</maxGenerationAge>
+    <specificApparelRequirements>
+      <!-- Lantern red on the hood, whichever it is. -->
+      <li><apparelDef>Apparel_HatHood</apparelDef><color>(0.72, 0.18, 0.12)</color></li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2"><apparelDef>VFEM2_Apparel_Chaperon</apparelDef><color>(0.72, 0.18, 0.12)</color></li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2"><apparelDef>VFEM2_Apparel_Cap</apparelDef><color>(0.72, 0.18, 0.12)</color></li>
+    </specificApparelRequirements>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_WardensKindBase">
+    <defName>Rimfolk_Wardens_Warden</defName>
+    <label>warden</label>
+    <combatPower>50</combatPower>
+    <itemQuality>Poor</itemQuality>
+    <gearHealthRange>0.4~1.4</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_HatHood</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>Neolithic</li>
+      <li MayRequire="VanillaExpanded.VARME">MedievalArmorBasic</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Neolithic</li>
+    </apparelTags>
+    <apparelMoney>260~520</apparelMoney>
+    <weaponTags>
+      <li>NeolithicMeleeAdvanced</li>
+      <li>NeolithicRangedDecent</li>
+    </weaponTags>
+    <weaponMoney>90~220</weaponMoney>
+    <!-- Pemmican for the road, herbs, or a spare hide. -->
+    <inventoryOptions>
+      <skipChance>0.45</skipChance>
+      <subOptionsChooseOne>
+        <li><thingDef>MedicineHerbal</thingDef><countRange>1~2</countRange><choiceChance>2</choiceChance></li>
+        <li><thingDef>Leather_Plain</thingDef><countRange>8~20</countRange></li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>12~20</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Ranger</trait><chance>0.03</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_WardensKindBase">
+    <defName>Rimfolk_Wardens_Tracker</defName>
+    <label>tracker</label>
+    <combatPower>55</combatPower>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.6~1.6</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_HatHood</li>
+    </apparelRequired>
+    <specificApparelRequirements>
+      <li MayRequire="VanillaExpanded.VAEAccessories">
+        <alternateTagChoices>
+          <li><tag>VAEA_Quiver</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+    </specificApparelRequirements>
+    <apparelTags>
+      <li>Neolithic</li>
+    </apparelTags>
+    <apparelMoney>220~460</apparelMoney>
+    <weaponTags>
+      <li>NeolithicRangedDecent</li>
+      <li>NeolithicRangedHeavy</li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Arbalest</li>
+    </weaponTags>
+    <weaponMoney>80~240</weaponMoney>
+    <requiredWorkTags>Violent</requiredWorkTags>
+    <inventoryOptions>
+      <skipChance>0.6</skipChance>
+      <subOptionsChooseOne>
+        <li><thingDef>Pemmican</thingDef><countRange>4~8</countRange></li>
+        <li><thingDef>MedicineHerbal</thingDef><countRange>1~1</countRange></li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>14~22</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Ranger</trait><chance>0.08</chance></li>
+          <li><trait>TM_Sniper</trait><chance>0.03</chance></li>
+        </gifts>
+        <!-- Hunting rifles in the industrial and spacer ages (a people of their ways that arose there). -->
+        <ageArms>
+          <li>
+            <ages>2~3</ages>
+            <weaponTags>
+              <li>Gun</li>
+            </weaponTags>
+          </li>
+        </ageArms>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_WardensKindBase">
+    <defName>Rimfolk_Wardens_Spear</defName>
+    <label>spear-warden</label>
+    <combatPower>65</combatPower>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.7~1.6</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_HatHood</li>
+      <li>Apparel_BasicShirt</li>
+      <li>Apparel_Pants</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>Neolithic</li>
+      <li MayRequire="VanillaExpanded.VARME">MedievalArmorBasic</li>
+      <li MayRequire="VanillaExpanded.VARME">MedievalArmorDecent</li>
+    </apparelTags>
+    <apparelMoney>300~600</apparelMoney>
+    <weaponTags>
+      <li>NeolithicMeleeAdvanced</li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Pike</li>
+    </weaponTags>
+    <weaponMoney>120~240</weaponMoney>
+    <requiredWorkTags>Violent</requiredWorkTags>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>14~22</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>TM_Wayfarer</trait><chance>0.04</chance></li>
+          <li><trait>Gladiator</trait><chance>0.03</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_WardensKindBase">
+    <defName>Rimfolk_Wardens_PeltBuyer</defName>
+    <label>pelt-buyer</label>
+    <trader>true</trader>
+    <combatPower>40</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.8~1.3</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_HatHood</li>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>Neolithic</li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Trader</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Neolithic</li>
+    </apparelTags>
+    <apparelMoney>260~480</apparelMoney>
+    <weaponTags>
+      <li>NeolithicMeleeBasic</li>
+    </weaponTags>
+    <weaponMoney>40~90</weaponMoney>
+    <skills>
+      <li>
+        <skill>Social</skill>
+        <range>5~12</range>
+      </li>
+    </skills>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>10~16</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_WardensKindBase">
+    <defName>Rimfolk_Wardens_Master</defName>
+    <label>lantern-master</label>
+    <combatPower>80</combatPower>
+    <factionLeader>true</factionLeader>
+    <minGenerationAge>45</minGenerationAge>
+    <itemQuality>Good</itemQuality>
+    <gearHealthRange>0.8~1.2</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_HatHood</li>
+      <li>Apparel_Parka</li>
+      <li>Apparel_Pants</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>Neolithic</li>
+      <li MayRequire="VanillaExpanded.VARME">MedievalArmorBasic</li>
+    </apparelTags>
+    <apparelMoney>500~900</apparelMoney>
+    <weaponTags>
+      <li>NeolithicRangedHeavy</li>
+      <li>NeolithicMeleeAdvanced</li>
+    </weaponTags>
+    <weaponMoney>120~260</weaponMoney>
+    <skills>
+      <li>
+        <skill>Social</skill>
+        <range>6~13</range>
+      </li>
+    </skills>
+    <inventoryOptions>
+      <subOptionsTakeAll>
+        <li><thingDef>MedicineHerbal</thingDef><countRange>2~3</countRange></li>
+      </subOptionsTakeAll>
+    </inventoryOptions>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>14~20</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Ranger</trait><chance>0.25</chance></li>
+          <!-- An old tracker who hears the beasts: Vanilla Psycasts Expanded's Wildspeaker (else the game's psycasts). -->
+          <li>
+            <psylink>1~2</psylink>
+            <paths>
+              <li>VPE_Wildspeaker</li>
+            </paths>
+            <chance>0.15</chance>
+          </li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <!-- ===================== Their traders: the pelt-buyer's string ===================== -->
+
+  <TraderKindDef>
+    <defName>Rimfolk_Caravan_Wardens</defName>
+    <label>pelt-buyer's string</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>500~1000</countRange>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>Leathers</categoryDef>
+        <thingDefCountRange>2~4</thingDefCountRange>
+        <totalPriceRange>300~700</totalPriceRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Pemmican</thingDef>
+        <countRange>60~140</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineHerbal</thingDef>
+        <countRange>6~14</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponRanged</tradeTag>
+        <countRange>2~4</countRange>
+        <maxTechLevelGenerate>Medieval</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponMelee</tradeTag>
+        <countRange>1~3</countRange>
+        <maxTechLevelGenerate>Medieval</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_Animals">
+        <maxWildness>0.40</maxWildness>
+        <tradeTagsSell>
+          <li>AnimalPet</li>
+        </tradeTagsSell>
+        <tradeTagsBuy>
+          <li>AnimalPet</li>
+        </tradeTagsBuy>
+        <kindCountRange>1~1</kindCountRange>
+        <countRange>1~2</countRange>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Visitor_Wardens</defName>
+    <label>wardens on the road</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>150~350</countRange>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>Leathers</categoryDef>
+        <thingDefCountRange>1~2</thingDefCountRange>
+        <totalPriceRange>100~250</totalPriceRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Pemmican</thingDef>
+        <countRange>20~50</countRange>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Base_Wardens</defName>
+    <label>lodge</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>800~1400</countRange>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>Leathers</categoryDef>
+        <thingDefCountRange>3~5</thingDefCountRange>
+        <totalPriceRange>500~1100</totalPriceRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Pemmican</thingDef>
+        <countRange>120~240</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineHerbal</thingDef>
+        <countRange>10~20</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>WoodLog</thingDef>
+        <countRange>150~300</countRange>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>MeatRaw</categoryDef>
+        <thingDefCountRange>2~3</thingDefCountRange>
+        <totalPriceRange>200~500</totalPriceRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponRanged</tradeTag>
+        <countRange>3~5</countRange>
+        <maxTechLevelGenerate>Medieval</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>BasicClothing</tradeTag>
+        <countRange>3~5</countRange>
+        <maxTechLevelGenerate>Medieval</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_Animals">
+        <maxWildness>0.40</maxWildness>
+        <tradeTagsSell>
+          <li>AnimalPet</li>
+        </tradeTagsSell>
+        <tradeTagsBuy>
+          <li>AnimalPet</li>
+        </tradeTagsBuy>
+        <kindCountRange>1~2</kindCountRange>
+        <countRange>1~3</countRange>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <!-- ===================== Their names ===================== -->
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_Wardens</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->Wardens of the [lanternThing]</li>
+        <li>r_name(p=2)->[PlaceOutlander] Lanterns</li>
+        <li>r_name->The [lanternVirtue] Lantern</li>
+        <li>r_name->Lantern Wardens of [PlaceOutlander]</li>
+        <li>r_name->Keepers of the [lanternThing]</li>
+        <li>lanternThing->Crossroads</li>
+        <li>lanternThing->Red Cord</li>
+        <li>lanternThing->Book</li>
+        <li>lanternThing->Treeline</li>
+        <li>lanternThing->Eleven Years</li>
+        <li>lanternThing->Last Page</li>
+        <li>lanternThing->Brother's Lantern</li>
+        <li>lanternVirtue->Unsleeping</li>
+        <li>lanternVirtue->Patient</li>
+        <li>lanternVirtue->Sooted</li>
+        <li>lanternVirtue->Steady</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_WardensTown</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->[PlaceOutlander] Lodge</li>
+        <li>r_name(p=2)->[PlaceOutlander] Crossroads</li>
+        <li>r_name->[lodgeWord] of [PlaceOutlander]</li>
+        <li>r_name->[lodgeVirtue] Lantern</li>
+        <li>lodgeWord->Lodge</li>
+        <li>lodgeWord->Kennels</li>
+        <li>lodgeWord->Lantern Post</li>
+        <li>lodgeVirtue->Garrow's</li>
+        <li>lodgeVirtue->Treeline</li>
+        <li>lodgeVirtue->Red Cord</li>
+        <li>lodgeVirtue->Long Watch</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>

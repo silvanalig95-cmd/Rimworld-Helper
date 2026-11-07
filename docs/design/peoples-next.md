@@ -162,5 +162,6 @@ each that play out on the map, a signature in the gear rework's sense, and magic
 
 1. The gear rework of the seven (running when this was written).
 2. The seven brought to this level.
-3. New peoples, first four: the Lantern Wardens, the Quiet Bell, the Circuit of Tamers, the Wheel.
+3. New peoples, first four: the Lantern Wardens, the Quiet Bell, the Circuit of Tamers, the Wheel (built: release D,
+   `docs/design/peoples.md`, with what was left out and why).
 4. New peoples, second four: the Stormglass Conclave, the Mossborn, the Ashen Banner, the Kiln Guild.

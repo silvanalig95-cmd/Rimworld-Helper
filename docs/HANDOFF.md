@@ -12,6 +12,73 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.157.0, new peoples, release D: the Lantern Wardens, the Quiet Bell, the Circuit of Tamers and the Wheel (7 November 2026, the
+  first four of `docs/design/peoples-next.md`; the player's words "love all these factions, go ahead!", an explicit
+  request, no proposal round). Not released: no What's new round, About.xml and CHANGELOG untouched (the lead does that at
+  the merge). Built only from the player's active mods (`docs/player-mods/`, merged from `claude/gifted-noether-32w12b`
+  with 0.155.0 and 0.156.0 before the final checks). `docs/design/peoples.md` "What was built (release D: ...)" (the four
+  in a table with founding, sayings, honour and fear, titles, faiths and kinds of people; how alike they look role by
+  role; gifts; every age; the plans; the Wheel's moving towns; every touchpoint with what is seen on the map; the asks,
+  the patch, the leans, the harm, the softness, what was left out); DESIGN.md "Rimfolk's peoples", a release D bullet;
+  README "Four more: the Wardens, the Bell, the Circuit and the Wheel."; the Almanac's page `Council_Alm_C_PeoplesD`
+  (new keywords only); `docs/design/peoples-next.md` marks step 3 built.
+  - Code: `Peoples/PeoplesD.cs` (helpers: `Gather`, `Say`, `GateSpot`, `Divide`, `JobDriver_PeoplesWork`; the Wardens'
+    hunt, pelt-buyer and lantern; the Bell's bell for the dead, funeral and void signs), `Peoples/PeoplesD2.cs` (the
+    tamer's bout and `JobDriver_TamerBout`, the egg trade, the stray; the Wheel's fixer, scrap, wreck), `Peoples/WheelTowns.cs`
+    (from `RegionBook.Daily`), `Peoples/PeoplesDMath.cs` (pure, linked in Tests.csproj). Every age: `Peoples.AgeOf`,
+    `PeopleKindExtension.ageArms` (`PeopleAgeArms`: ages, weapon tags, money; `AgeArms.Arm` in `PeopleGifts.Give`),
+    `PeopleGift.ages`. Callings `hunters`, `sextons`, `tamers`, `salvagers` (`PeoplesMath.Callings` is eleven long);
+    `ArisingMath.Leans` and a nine-argument `Lean` (the four-argument one delegates). `HappeningTracker`: `Notify_Killed`
+    tells the Wardens' hunt, `VisitsHour` dispatches `wardenHunt` and `tamerBout`. `Workers_Callers.cs`: the undertakers'
+    `People(ext)` and the vet's people weigh `prefers`; `Workers_Variety.cs`: the tinker's `People`, `Mender`.
+    `PlayCarry.Scrap` (slag in the stores or home area, worn-out or tainted clothes and weapons in the stores).
+  - Defs: `Defs/PeopleDefs/Rimfolk_People_Wardens.xml`, `_QuietBell.xml`, `_Tamers.xml`, `_Wheel.xml`,
+    `Rimfolk_TownPlans_PeoplesD.xml`; `Defs/IncidentDefs/Rimfolk_Events_PeoplesD.xml` (twelve callers),
+    `Defs/MissionDefs/Rimfolk_Missions_PeoplesD.xml` (four asks), `Defs/FlavorPoolDefs/Rimfolk_Lines_PeoplesD.xml` (their
+    voices in every pool, `Rimfolk_Pool_PlayBellFuneral` in `ImmersionTests.SpokenPools`, four journals),
+    `Defs/OutsiderTalkDefs/Rimfolk_OutsiderTalks_PeoplesD.xml`, `Defs/ThoughtDefs/Rimfolk_Thoughts_PeoplesD.xml`,
+    `Defs/Misc/Rimfolk_PeoplesD_Misc.xml` (jobs `Rimfolk_PeoplesD_Skin`, `Rimfolk_PeoplesD_Strip`, `Rimfolk_TamerBout`), `Patches/Rimfolk_PeoplesD.xml`,
+    Keyed `Rimfolk_PeoplesD.xml` and the arising keys. Emblems and town icons in `Tools/make_emblems.py` (22 glyphs, the
+    older PNGs unchanged).
+  - Harm: one new kind, `HarmKinds.TamerBout` (0.009; `Tools/Balance/HarmSim.cs` models 0.0097), appended after part 5's
+    in `Harm/HarmBudgetMath.cs` (the one line in `Harm/` this piece touched); `HarmBudgetTests` counts it.
+  - Tests: `PeoplesDTests` ("peoples, release D: ", 202 checks); `PeoplesTests`, `PeoplesGearTests`, `PeoplesLoreTests` and
+    `PeoplesCTests` run over all eleven (callings, plans, sizes, files, founders, memes' exclusion tags, the two psylink
+    exceptions); `NeighboursFourTests` counts release D's missions with the peoples' since.
+  - Saved: nothing new (the hunt and the bout are visits of the happenings' tracker; the Wheel's moves are the world's own
+    tiles). No Sched slot.
+  - Try in the game (none of it could be run here; dev mode; Debug actions, Rimfolk, "Peoples: ...", and the game's
+    "Execute incident" for the callers by defName):
+    1. A new world: the four in the faction list once each. In a save from before them, "Peoples: a people of a template
+       now, near this home..." makes one of each; "Peoples: Rimfolk's peoples in this world" lists them.
+    2. "Peoples: one of each of their kinds here now, as visitors..." for each of the four: the Wardens' red hoods over
+       furs, spears and bows; the Bell's grey habits and the gravewardens' one kit of cape and helmet; the Circuit's violet
+       sash on varied clothes and the ring-wardens' kit; the Wheel's brass coats, tool belts and the guards' jacket and
+       flak. "Peoples: their gear, kinds of people and gifts (log)..." for the mix and the gifts.
+    3. "Peoples: lay a town's plan at the mouse..." with *wardens' lodge*, *grave-garden*, *bout-ring* and *Wheel's yard*; then attack or visit one of their towns to see it laid for real.
+    4. The Wardens: spawn a pack with an alpha (the Beasts dev actions) or a legend, fire `Rimfolk_Evt_WardensHunt`, answer
+       "together": the Wardens run at it, the colony's best shot hunts it; when it dies one Warden skins it for two hours
+       (a bar), the leather goes in their pack and the meat lies there; let it flee instead and they walk home. Fire
+       `Rimfolk_Evt_PeltBuyer` with 20 or more leathers stored; `Rimfolk_Evt_WardensLantern` after a beast nemesis has killed
+       a colonist (towards evening only): the lantern at the gate at dusk, the vigil by it.
+    5. The Bell: after a raid with bodies lying out, `Rimfolk_Evt_BellForTheDead` (graves beyond the wall, goodwill messages
+       from the raiders' peoples); `Rimfolk_Evt_BellFuneral` with a colonist buried in the last six days (the gathering at
+       the grave, the funeral's lines); with Anomaly's void awake, `Rimfolk_Evt_BellVoidSigns` towards evening.
+    6. The Circuit: `Rimfolk_Evt_TamerBout` (with PokéWorld, a Fighting type at heel): the bout at the gate, swings each
+       way, the egg handed over on a win; with the harm setting on, one bout in 25 a bruise, its message.
+       `Rimfolk_Evt_EggTrade` with a fertile egg stored; `Rimfolk_Evt_TamerStray` after one of the colony's animals went
+       wild or was left behind (it is led to the gate).
+    7. The Wheel: `Rimfolk_Evt_WheelScrap` with slag or worn-out clothes stored (carried out to the runner);
+       `Rimfolk_Evt_WheelWreck` with a mechanoid's wreck near the colony (stripped for three hours, half the parts left);
+       `Rimfolk_Evt_WheelMending`. On the world map a Wheel town moves on its day of the month (the news says where); none
+       moves while the colony has a caravan bound for it.
+    8. A people that arises in their ways: "Peoples: a new people arises now (testing)..." for survivors of a fallen town
+       and for one sent away with a leader of Animals or Shooting 10.
+  - Not done or not verified: Vehicle Framework convoys, Giddy-Up by name, the Wheel's small mechs (the mechanitors wear the
+    headset only), nets for the Wardens. Riskiest, untried in the game: the Wardens under the game's assault-things lord on
+    a beast (and the skinning job over it), the bout's job on a visitor's companion, the stray's faction set and set back,
+    a settlement's tile changed in place, a kind's weapon swapped as it is made (`AgeArms`), PokéWorld's Fighting types
+    read through `PokeWorldLink`.
 - 0.156.0, pets hunt for themselves, and an alert for an animal with no food in reach (7 November 2026). The player's report: their
   husky Yuma was starving (the game never lets an animal it doesn't flag a predator hunt, tame animals hunt only as the
   food search's last resort, huskies can't graze, and the dog's area "Animals" left out the stores); their request, an

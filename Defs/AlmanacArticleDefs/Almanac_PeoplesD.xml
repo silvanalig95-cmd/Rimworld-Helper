@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The Almanac page on release D's peoples (Source/ColonyCouncil/Peoples/; Defs/PeopleDefs/; docs/design/peoples.md,
+       "Release D"; DESIGN.md "Rimfolk's peoples"), beside release A's (Almanac_Peoples.xml) and C's (Almanac_PeoplesC.xml). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_PeoplesD</defName>
+    <label>wardens, the Bell, the Circuit and the Wheel</label>
+    <category>Council</category>
+    <order>16</order>
+    <summary>Four more peoples, none of them anyone's enemy by nature: the Lantern Wardens who hunt the region's great beasts, the Quiet Bell who keep the dead of every people, the Circuit of Tamers who walk the region with their companions, and the Wheel, a salvage town that never stops moving. Each has its own founding, gear, faith, towns and words, and comes to the colony's gate in its own ways.</summary>
+    <tip>They are among the world's peoples when a new world is made, once each, at the game's usual chances; remove them in the world's faction list like any other people. A save made before them meets them when one of them arises during play.</tip>
+    <description>All four defend their towns and raid only when the colony has turned them hostile, by the game's own rules, and seldom then. Their notables have titles of their own, their messengers words of their own, and their towns a plan of their own when the land suits it. They arise in every age: a people of their ways that arose among an industrial town's survivors carries that age's weapons.</description>
+    <sections>
+      <li>
+        <heading>Who they are</heading>
+        <table>
+          <li>People | Lives by | Age | On the map | Their towns</li>
+          <li>The Lantern Wardens | Hunting the great beasts | Medieval | Furs and oiled leather of every make under a hood dyed lantern red; trackers with bows and crossbows, spear-wardens with boar-spears | Palisaded lodges with a trophy hall, kennels and a lantern post on every road out</li>
+          <li>The Quiet Bell | Keeping the dead of every people | Medieval | Bell-keepers in one grey habit and veil; sextons and gravewardens plainly and differently, in grey hoods or the gravewardens' grey cape and helmet | Walled grave-gardens with an ossuary, a bell tower and a quiet hostel</li>
+          <li>The Circuit of Tamers | Taming beasts and friendly bouts | Industrial | Travelling clothes of every make with a violet sash of tokens; ring-wardens in one kit of jacket and helmet | Bout-rings, a hatchery and stables for every kind</li>
+          <li>The Wheel | Salvage, mending and the road | Industrial | Patched coats of every cut in old brass with the cog on the shoulder, tool belts; yard guards in one kit of brass jacket and flak | A yard inside a ring of carts, laid out as if leaving tomorrow; it moves on every month or so</li>
+        </table>
+        <after>With Ideology each keeps a faith of its own (the lit crossroads, the quiet ground, the freely given bond, the turning wheel) and its own style; with Biotech each has a share of other kinds of people. With Vanilla Ideology Expanded's memes their faiths take its light, its exalted priesthood, its nomads and its scrappers too.</after>
+      </li>
+      <li>
+        <heading>Where their ways began</heading>
+        <text>Each keeps a founding story, a few sayings, and what it honours and fears, shown on their card and spoken in their letters, messengers, visitors and talk.</text>
+        <points>
+          <li>The Lantern Wardens began with Tobin Garrow, a shepherd whose village was emptied in one night by something out of the treeline. He hung his dead brother's lantern at the crossroads and kept it lit until the beast was dead, which took eleven years. A Warden still ties a knot in a red cord for every beast felled, and keeps a book with a page for each.</li>
+          <li>The Quiet Bell began after the long war, when nobody would bury the raiders in the fields and what came up out of them taught the region why that matters. A widow named Ysolde Marr buried them one by one with a cracked chapel bell, ringing once over every grave, friend or foe.</li>
+          <li>The Circuit of Tamers began with Nessa Pell, a herder girl who found an egg in a falling star's crater, raised what hatched, and walked the region with it for forty years, challenging every keeper of beasts she met. Their highest honour is to be beaten fairly by a stranger.</li>
+          <li>The Wheel began the night its valley burned, when the wheelwright Mab Wainwright put her house on her cart and drove out ahead of the fire with the others behind her. Nobody has ever voted to stop.</li>
+        </points>
+      </li>
+      <li>
+        <heading>What they wear, carry and know</heading>
+        <text>No two of them look alike: each people wears its colour on a piece or two, its soldiers one kit where it has soldiers, and its civilians whatever their age and calling would, from the game, the DLCs and the mods loaded. A few have a gift (A RimWorld of Magic's classes, a psylink).</text>
+        <points>
+          <li>The Lantern Wardens: no uniform at all but the red hood; trackers with bows, great bows and crossbows (Vanilla Weapons Expanded, Medieval 2's arbalest) and quivers, spear-wardens with spears and pikes. A few are rangers or snipers of A RimWorld of Magic; the lantern-master may be a Wildspeaker of Vanilla Psycasts Expanded. In the industrial and spacer ages their trackers hunt with guns. They carry pemmican, herbs or a spare hide.</li>
+          <li>The Quiet Bell: the bell-keepers' grey habit (a robe, or Medieval 2's mantle) and veil, a few of them priests of A RimWorld of Magic; sextons with spades (Vanilla Weapons Expanded's shovel) and clubs, now and then a geomancer; gravewardens in grey cape and helmet with maces and hammers, a few paladins, and in the industrial and spacer ages firebombs or an incinerator (Anomaly) for what will not stay down. They carry linen for shrouds.</li>
+          <li>The Circuit of Tamers: the violet sash (Biotech's sash and bandolier) over travelling clothes; every tamer good with beasts, a few druids or summoners of A RimWorld of Magic, and in the spacer age a few Wildspeakers. Their rangers carry rifles, or bows in the tribal and medieval ages; hounds and wolves fight beside them. They carry kibble and hay.</li>
+          <li>The Wheel: coats of any cut in old brass, tool belts and packs (Vanilla Apparel Expanded - Accessories), scrap-built guns (Vanilla Weapons Expanded - Makeshift) and wrenches; a mechanitor or two with Biotech's mechlink and headset; technomancers of A RimWorld of Magic now and then. In the tribal and medieval ages their guards carry hammers and maces, in the spacer age salvaged lasers. They carry components, steel and chemfuel.</li>
+          <li>Their kinds of people (Biotech) are a real mix and still mostly baseliners: Venators, yttakin, saurids and wood elves with the Wardens; dirtmoles, fungoids, stoneborn and dark elves with the Bell; animusen, saurids and animakin with the Circuit; wasters, dirtmoles, androids, boglegs and starjacks with the Wheel.</li>
+        </points>
+      </li>
+      <li>
+        <heading>What each brings</heading>
+        <points>
+          <li>The Lantern Wardens: when a pack's alpha, a beast nemesis or a legend of the region is on the colony's land, two or three Wardens may come to hunt it, alone or beside the colony's best shot; when it falls, one of them skins it where it lies, the hide going into their book and the meat left for the colony. Their pelt-buyer buys the colony's pelts at a little over their worth, and a tracker may teach someone to read a trail. When a beast has taken one of the colony, a Warden comes to light a lantern at the gate for them through the night, and those who loved them may stand it with the Warden. Their lodge may ask for two good shots for a drive.</li>
+          <li>The Quiet Bell: after a fight, with the enemy's dead still lying out, bell-keepers come to bury them beyond the wall or carry them off, the Bell's words said over each, and the raiders' own people think a little better of the colony for it. A bell-keeper may lead the funeral of one of the colony at their grave. With Anomaly, when the void is awake, an old bell-keeper may warn that the ground is listening and stand at the gate with a lamp, or the colony may keep a watch on its walls. In a plague year their grave-gardens ask for linen for shrouds. The undertakers come from them likeliest.</li>
+          <li>The Circuit of Tamers: a roaming tamer may challenge the colony's best hand with beasts to a friendly bout with their companion (a Fighting type with PokéWorld, else a beast of the land): practice blows each way by the Fighting-type spar's rules, the winner by skill with beasts and hands, and one bout in 25 a bruise. Beaten fairly, the tamer hands over an egg of their hatchery. An egg-trader swaps or sells eggs of a kind the colony doesn't keep. A ranger may bring home one of the colony's animals that strayed. They may ask the colony to raise a young beast of their stables for a season. The animal doctor comes from them likeliest.</li>
+          <li>The Wheel: their fixer mends the colony's worn clothes and weapons for silver, one piece at a time; scrap-runners buy slag and broken things, carried out to their cart, for silver or a piece they mended back to new; a mechanoid's wreck near the colony brings them at a run to strip it for parts, half for the colony, or bought whole. Their yard may ask for steel or parts for a broken axle. The travelling tinker comes from them likeliest.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Their towns, and new peoples like them</heading>
+        <points>
+          <li>The Wardens' lodge, the Bell's grave-garden, the Circuit's ring and the Wheel's yard are laid out to their plans when a town's map is made; where the land is too wet or rough for it, the game makes its own base.</li>
+          <li>The Wheel's towns move on: every month or so each rolls a few tiles to new ground, never while the colony has a map of it, a caravan bound for it or an open quest about it, and the news says where.</li>
+          <li>New peoples that arise during play may take their ways: survivors of a fallen town who stay to bury its dead (a quarter of them) keep the Bell's ways, and in the industrial and spacer ages a third of the rest put what is left on wheels as the Wheel does; a band of the banished led by one good with beasts walks the region as tamers, by a good shot as wardens.</li>
+        </points>
+      </li>
+    </sections>
+    <keywords><li>lantern wardens</li><li>quiet bell</li><li>circuit of tamers</li><li>the wheel</li><li>friendly bout</li><li>grave-garden</li></keywords>
+    <seeAlso><li>Council_Alm_C_PeoplesC</li><li>Council_Alm_C_Peoples</li><li>Council_Alm_C_NewPeoples</li><li>Council_Alm_C_Callers</li><li>Council_Alm_C_Camps</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

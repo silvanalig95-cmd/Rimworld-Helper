@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Four new peoples: Wardens, the Quiet Bell, Tamers and the Wheel
+
+*7 November 2026, version 0.157.0*
+
+- The Lantern Wardens, beast-hunters of the crossroads, in furs and lantern-red hoods: when a legend, a beast nemesis or a pack alpha is on your land they come to hunt it, and your best shot can hunt beside them. Their pelt-buyer pays well for hides, and when a beast has killed one of yours a Warden keeps a lantern burning at your gate through the night.
+- The Quiet Bell, keepers of the dead, in grey habits: after a raid they bury or carry off the enemy's dead, which their peoples remember kindly; they can lead a funeral for your own dead; and with Anomaly they warn at dusk when the ground is listening.
+- The Circuit of Tamers, travelling with their companions (Pokémon with PokéWorld): a tamer may challenge your best handler to a friendly bout and give an egg when beaten fairly, egg-traders swap and sell, and a ranger brings back an animal of yours that strayed.
+- The Wheel, a rolling salvage town whose towns really move: their fixer mends your gear, scrap-runners buy slag and broken things, and a mechanoid wreck near you brings them to strip it with you.
+- Each has its own look and signature, gear, kinds of people and gifts from your enabled mods, a faith, a town, missions and their own voice, in every age; peoples that arise during play can become one of them.
+
 ## Pets that hunt by nature, and an alert for a hungry one
 
 *7 November 2026, version 0.156.0*

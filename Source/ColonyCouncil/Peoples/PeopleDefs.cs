@@ -74,11 +74,25 @@ namespace ColonyCouncil
     {
         public List<PeopleGift> gifts;
 
+        /// <summary>
+        /// What a kind carries in another age than its people's own (release D: the Wardens' hunting rifles in the
+        /// industrial age, the Quiet Bell's flamers for what will not stay down): the first set whose ages hold the age
+        /// its people lives in (Peoples.AgeOf: a people that arose keeps the age it came from) takes the place of the
+        /// weapon the game gave it, from these weapon tags within the kind's means. A people in its own age keeps the
+        /// game's choice.
+        /// </summary>
+        public List<PeopleAgeArms> ageArms;
+
         public override IEnumerable<string> ConfigErrors()
         {
             foreach (var e in base.ConfigErrors()) yield return e;
-            if (gifts.NullOrEmpty()) yield return "a people's kind with gifts names at least one";
-            else if (!PeoplesGearMath.Sound(gifts.Select(g => g?.chance ?? 0f).ToList()))
+            if (gifts.NullOrEmpty() && ageArms.NullOrEmpty()) yield return "a people's kind with gifts names at least one, or arms for another age";
+            // A set's tags may all be a mod's (MayRequire) and so none without it: the set then arms nobody, no error.
+            if (ageArms != null)
+                foreach (var a in ageArms.Where(a => a != null))
+                    if (a.weaponTags == null || PeoplesDMath.AnyAge(a.ages.min, a.ages.max) || a.ages.max > 3) yield return "arms for another age name its ages (0 to 3) and their weapon tags";
+            if (gifts.NullOrEmpty()) yield break;
+            if (!PeoplesGearMath.Sound(gifts.Select(g => g?.chance ?? 0f).ToList()))
                 yield return "each gift's chance is above 0, and together no more than " + PeoplesGearMath.MaxShare;
             if (gifts != null)
                 foreach (var g in gifts.Where(g => g != null))
@@ -100,6 +114,18 @@ namespace ColonyCouncil
         public List<string> paths;
         /// <summary>The share of the kind given this, 0 to 1.</summary>
         public float chance;
+        /// <summary>Only in these ages of its people (0 tribal to 3 spacer: the tamers' Wildspeakers in the spacer age); unset, every age.</summary>
+        public IntRange ages = new IntRange(-1, -1);
+    }
+
+    /// <summary>Arms for another age (<see cref="PeopleKindExtension.ageArms"/>): the ages, and the weapon tags they choose from.</summary>
+    public class PeopleAgeArms
+    {
+        public IntRange ages = new IntRange(-1, -1);
+        public List<string> weaponTags;
+
+        /// <summary>The most a weapon of this set may be worth; unset, the kind's own weapon budget and a quarter more.</summary>
+        public float money = -1f;
     }
 
     /// <summary>

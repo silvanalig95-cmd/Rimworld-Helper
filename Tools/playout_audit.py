@@ -150,6 +150,15 @@ PLAY = {
     "DilemmaEffect_KinTalk": "talk at the door",
     "DilemmaEffect_BarberCuts": "haircuts",
     "DilemmaEffect_VetRounds": "animals tended",
+    # Release D's peoples at the gate (Peoples/PeoplesD.cs, PeoplesD2.cs): the Wardens' hunt and the skinning after it,
+    # a tamer's friendly bout, an egg-trader's eggs set down at the gate, a stray handed over there, a mended piece
+    # handed over, a wreck stripped where it lies.
+    "DilemmaEffect_WardensHunt": "a hunt beside them",
+    "DilemmaEffect_TamerBout": "a friendly bout",
+    "DilemmaEffect_TamerEgg": "eggs handed over",
+    "DilemmaEffect_StrayBack": "a stray handed over",
+    "DilemmaEffect_WheelRefurbished": "handed over",
+    "DilemmaEffect_WheelStrip": "a wreck stripped",
 }
 
 # Words that say people do something together, or go somewhere on the map. Deliberately wide: the list is read by hand.

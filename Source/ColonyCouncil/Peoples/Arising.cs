@@ -174,7 +174,9 @@ namespace ColonyCouncil
                 {
                     kind = ArisingMath.Refugees, key = key, age = Ages.Of(r.people), near = ruin.Tile, minTiles = 2, maxTiles = 6, home = home, tiles = tiles,
                     parent = r.people, name = r.name, ruin = ruin, byColony = r.byColony, since = r.since,
-                    lean = ArisingMath.Lean(ArisingMath.Refugees, true, ArisingMath.Fated(r.town, ArisingMath.SaltRiver, ArisingMath.RiverChance), 0)
+                    lean = ArisingMath.Lean(ArisingMath.Refugees, true, ArisingMath.Fated(r.town, ArisingMath.SaltRiver, ArisingMath.RiverChance), 0, 0, 0,
+                        ArisingMath.Fated(r.town, ArisingMath.SaltBell, ArisingMath.BellChance), ArisingMath.Fated(r.town, ArisingMath.SaltWheel, ArisingMath.WheelChance),
+                        (int)Ages.Of(r.people))
                 };
             }
             return null;
@@ -252,7 +254,8 @@ namespace ColonyCouncil
                 {
                     kind = ArisingMath.Exiles, key = key, age = Ages.Ours, near = home.Tile, minTiles = RiseFall.GoodwillTiles + 2, maxTiles = RiseFall.GoodwillTiles + 9, home = home, tiles = 0f,
                     exile = r.pawn, record = r, name = r.Name, since = r.banishedTick,
-                    lean = ArisingMath.Lean(ArisingMath.Exiles, true, ArisingMath.Fated(r.id, ArisingMath.SaltRiver, ArisingMath.RiverChance), Learning(r.pawn))
+                    lean = ArisingMath.Lean(ArisingMath.Exiles, true, ArisingMath.Fated(r.id, ArisingMath.SaltRiver, ArisingMath.RiverChance), Learning(r.pawn),
+                        Skill(r.pawn, SkillDefOf.Animals), Skill(r.pawn, SkillDefOf.Shooting), false, false, (int)Ages.Ours)
                 };
                 Feelings(cause, home);
                 return cause;
@@ -261,9 +264,12 @@ namespace ColonyCouncil
         }
 
         /// <summary>How learned the one sent away is (their Intellectual skill; 0 when they have none to speak of).</summary>
-        private static int Learning(Pawn p)
+        private static int Learning(Pawn p) => Skill(p, SkillDefOf.Intellectual);
+
+        /// <summary>The one sent away's level at a skill (0 when they can't do it): how good with beasts, how good a shot.</summary>
+        private static int Skill(Pawn p, SkillDef skill)
         {
-            var r = p?.skills?.GetSkill(SkillDefOf.Intellectual);
+            var r = skill == null ? null : p?.skills?.GetSkill(skill);
             return r == null || r.TotallyDisabled ? 0 : r.Level;
         }
 

@@ -163,7 +163,9 @@ public static class ImmersionTests
         "Rimfolk_Pool_Sacred_Hunt",
         // The seven peoples brought to the level of the new ones (Peoples/PeoplesLore.cs): what is said at the learned
         // society's night of the fire (their letters, messengers, visitors and talk are in the pools above).
-        "Rimfolk_Pool_PlayDisputation"
+        "Rimfolk_Pool_PlayDisputation",
+        // Release D's peoples (Peoples/PeoplesD.cs): what is said at a funeral the Quiet Bell leads.
+        "Rimfolk_Pool_PlayBellFuneral"
     };
 
     /// <summary>Spoken pools said so rarely (a record broken, a lightning rod struck) that a handful of lines is enough.</summary>

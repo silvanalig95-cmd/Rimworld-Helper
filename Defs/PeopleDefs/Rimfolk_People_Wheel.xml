@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The Wheel (docs/design/peoples-next.md, the fourth of the eight; docs/design/peoples.md, "Release D";
+    Source/ColonyCouncil/Peoples/PeoplesD.cs, WheelTowns.cs): the rolling salvage town, circling the region once every few
+    years, buying what others throw away and selling it back better. Industrial, on the game's outlander parent; they
+    arise in every age (ariseAges 0~3): in the tribal and medieval ages their yard guards carry hammers and maces, in the
+    spacer age salvaged lasers (Vanilla Weapons Expanded - Laser) (ageArms). Patched coats, every piece mended
+    differently, weathered to the colour of old brass (their signature: the coat of any cut in old brass, the brass cog
+    on its shoulder); tool belts (Vanilla Apparel Expanded - Accessories); a mechanitor or two with Biotech's mechlink and
+    headset. Their towns are workshop yards and scrap heaps laid out as if leaving tomorrow (Rimfolk_Plan_WheelYard), and
+    a Wheel town moves on a few tiles every month or so, as no other people's does (Peoples/WheelTowns.cs). Their
+    caravans are the region's most frequent (caravanWeight 2): pack beasts for their carts; with Giddy-Up its own rules
+    mount their riders. At the gate: a fixer mends the colony's worn clothes and weapons for silver
+    (Rimfolk_Evt_WheelMending); scrap-runners buy slag and broken things and sell a refurbished piece (Rimfolk_Evt_WheelScrap);
+    a wrecked mechanoid near the colony brings them at a run (Rimfolk_Evt_WheelWreck). Their ask: parts for a broken axle
+    (Rimfolk_Mission_WheelAxle). The travelling tinker and the scrap-pickers' camp come from them likeliest. Their
+    founding: Mab Wainwright, who put her house on her cart the night the valley burned and never took it off. Faith
+    (Ideology): the town as one (collectivist), salvage (VE Memes' scrapper) and the road (VE Memes' nomad). Kinds of
+    people: wasters, dirtmoles, genies, starjacks (Odyssey), VRE's androids, stoneborn, boglegs and Alpha Genes' lapis,
+    three in four baseliners.
+  -->
+
+  <FactionDef ParentName="OutlanderFactionBase">
+    <defName>Rimfolk_Wheel</defName>
+    <label>Wheel</label>
+    <description>A town on wheels and runners that circles the region once every few years, buying what others throw away and selling it back better. Wherever the Wheel stops there is welding by night and haggling by day, and by the time anyone gets used to it, it has moved on. They pay for scrap, mend what can be mended and rebuild what cannot.\n\nTheir ways began the night their valley burned. A wheelwright called Mab Wainwright put her house on her cart, her neighbours' children in the house and her tools on top, and drove out ahead of the fire; the others followed with whatever they could lift. Nobody has ever voted to stop. A Wheel hand still stitches a brass cog to the shoulder of the coat, and every coat is patched a dozen ways, because nothing on the Wheel is thrown away.\n\nThey talk fast, haggle hard and laugh about everything but fire. They will sell anything but the Wheel. Each yard is run by its yard boss, and the Wheel by its wheelwright, who alone says when it turns.</description>
+    <pawnSingular>wheel hand</pawnSingular>
+    <pawnsPlural>wheel hands</pawnsPlural>
+    <leaderTitle>wheelwright</leaderTitle>
+    <techLevel>Industrial</techLevel>
+    <basicMemberKind>Rimfolk_Wheel_Hand</basicMemberKind>
+    <factionNameMaker>Rimfolk_Namer_Wheel</factionNameMaker>
+    <settlementNameMaker>Rimfolk_Namer_WheelTown</settlementNameMaker>
+    <factionIconPath>ColonyCouncil/Peoples/Wheel</factionIconPath>
+    <settlementTexturePath>ColonyCouncil/Peoples/WheelTown</settlementTexturePath>
+    <colorSpectrum>
+      <li>(0.52, 0.44, 0.18)</li>
+      <li>(0.72, 0.62, 0.30)</li>
+    </colorSpectrum>
+    <hidden>false</hidden>
+    <naturalEnemy>false</naturalEnemy>
+    <permanentEnemy>false</permanentEnemy>
+    <canSiege>false</canSiege>
+    <requiredCountAtGameStart>0</requiredCountAtGameStart>
+    <startingCountAtWorldCreation>1</startingCountAtWorldCreation>
+    <maxConfigurableAtWorldCreation>9999</maxConfigurableAtWorldCreation>
+    <configurationListOrderPriority>19</configurationListOrderPriority>
+    <settlementGenerationWeight>0.35</settlementGenerationWeight>
+    <raidCommonalityFromPointsCurve Inherit="False">
+      <points>
+        <li>(0, 0.3)</li>
+      </points>
+    </raidCommonalityFromPointsCurve>
+    <xenotypeSet Inherit="False">
+      <xenotypeChances>
+        <Waster MayRequire="Ludeon.RimWorld.Biotech">0.04</Waster>
+        <Dirtmole MayRequire="Ludeon.RimWorld.Biotech">0.03</Dirtmole>
+        <Genie MayRequire="Ludeon.RimWorld.Biotech">0.03</Genie>
+        <Hussar MayRequire="Ludeon.RimWorld.Biotech">0.02</Hussar>
+        <Starjack MayRequire="Ludeon.RimWorld.Biotech,Ludeon.RimWorld.Odyssey">0.02</Starjack>
+        <VREA_AndroidAwakened MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.android">0.02</VREA_AndroidAwakened>
+        <Stoneborn MayRequire="Ludeon.RimWorld.Biotech,det.stoneborn">0.02</Stoneborn>
+        <DV_Bogleg MayRequire="Ludeon.RimWorld.Biotech,det.boglegs">0.02</DV_Bogleg>
+        <AG_Lapis MayRequire="Ludeon.RimWorld.Biotech,sarg.alphagenes">0.02</AG_Lapis>
+      </xenotypeChances>
+    </xenotypeSet>
+    <fixedIdeo>true</fixedIdeo>
+    <ideoName>The Turning Wheel</ideoName>
+    <ideoDescription>Nothing is broken, only waiting. What others throw away is bought, mended and sold back better, and nothing on the Wheel is wasted, least of all a person. The Wheel is everyone on it together: what one yard earns the whole town eats, and no one hand stops it turning. The road is home, because standing still is how the fire catches you. Mab Wainwright drove out ahead of the flames with her house on her cart, and nobody has ever voted to stop.</ideoDescription>
+    <forcedMemes>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Collectivist</li>
+      <!-- Salvage bought and sold back better: Vanilla Ideology Expanded's scrapper. -->
+      <li MayRequire="VanillaExpanded.VMemesE">VME_Scrapper</li>
+      <!-- Nobody ever voted to stop: Vanilla Ideology Expanded's nomad. -->
+      <li MayRequire="VanillaExpanded.VMemesE">VME_Nomad</li>
+    </forcedMemes>
+    <structureMemeWeights Inherit="False">
+      <Structure_Ideological MayRequire="Ludeon.RimWorld.Ideology">3</Structure_Ideological>
+      <Structure_TheistAbstract MayRequire="Ludeon.RimWorld.Ideology">1</Structure_TheistAbstract>
+      <Structure_Archist MayRequire="Ludeon.RimWorld.Ideology">1</Structure_Archist>
+    </structureMemeWeights>
+    <styles>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Techist</li>
+    </styles>
+    <caravanTraderKinds Inherit="False">
+      <li>Rimfolk_Caravan_Wheel</li>
+    </caravanTraderKinds>
+    <visitorTraderKinds Inherit="False">
+      <li>Rimfolk_Visitor_Wheel</li>
+    </visitorTraderKinds>
+    <baseTraderKinds Inherit="False">
+      <li>Rimfolk_Base_Wheel</li>
+    </baseTraderKinds>
+    <pawnGroupMakers Inherit="False">
+      <li>
+        <!-- A fight: the yard guards with scrap-built guns, hands with wrenches and pistols -->
+        <kindDef>Combat</kindDef>
+        <options>
+          <Rimfolk_Wheel_Guard>12</Rimfolk_Wheel_Guard>
+          <Rimfolk_Wheel_Hand>5</Rimfolk_Wheel_Hand>
+          <Rimfolk_Wheel_Mechanitor MayRequire="Ludeon.RimWorld.Biotech">1</Rimfolk_Wheel_Mechanitor>
+        </options>
+      </li>
+      <li>
+        <kindDef>Peaceful</kindDef>
+        <options>
+          <Rimfolk_Wheel_Hand>20</Rimfolk_Wheel_Hand>
+          <Rimfolk_Wheel_Guard>4</Rimfolk_Wheel_Guard>
+          <Rimfolk_Wheel_Mechanitor MayRequire="Ludeon.RimWorld.Biotech">2</Rimfolk_Wheel_Mechanitor>
+          <Villager_Child MayRequire="Ludeon.RimWorld.Biotech">3</Villager_Child>
+        </options>
+      </li>
+      <li>
+        <!-- The Wheel's wagons: refurbished gear, parts and fuel, on pack beasts for carts -->
+        <kindDef>Trader</kindDef>
+        <traders>
+          <Rimfolk_Wheel_Fixer>1</Rimfolk_Wheel_Fixer>
+        </traders>
+        <carriers>
+          <Muffalo>4</Muffalo>
+          <Dromedary>3</Dromedary>
+          <Horse>3</Horse>
+          <Yak>1</Yak>
+        </carriers>
+        <guards>
+          <Rimfolk_Wheel_Guard>8</Rimfolk_Wheel_Guard>
+          <Rimfolk_Wheel_Hand>4</Rimfolk_Wheel_Hand>
+        </guards>
+      </li>
+      <li>
+        <kindDef>Settlement</kindDef>
+        <options>
+          <Rimfolk_Wheel_Hand>10</Rimfolk_Wheel_Hand>
+          <Rimfolk_Wheel_Guard>10</Rimfolk_Wheel_Guard>
+          <Rimfolk_Wheel_Mechanitor MayRequire="Ludeon.RimWorld.Biotech">2</Rimfolk_Wheel_Mechanitor>
+          <Rimfolk_Wheel_Fixer>2</Rimfolk_Wheel_Fixer>
+        </options>
+      </li>
+    </pawnGroupMakers>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleExtension">
+        <calling>salvagers</calling>
+        <townWord>yard</townWord>
+        <townWords>yards</townWords>
+        <head>yard boss</head>
+        <heir>second boss</heir>
+        <envoy>fixer</envoy>
+        <trader>scrap-runner</trader>
+        <courier>scrap-runner</courier>
+        <couriers>scrap-runners</couriers>
+        <caravanWeight>2</caravanWeight>
+        <camps>
+          <li>Rimfolk_Camp_Salvagers</li>
+          <li>Council_Camp_Smith</li>
+          <li>Council_Camp_Prospectors</li>
+        </camps>
+        <plan>Rimfolk_Plan_WheelYard</plan>
+        <honours>a thing well mended, the road ahead and a fair swap</honours>
+        <fears>standing still, the fire behind them and the vote to stop</fears>
+        <sayings>
+          <li>We have not stopped moving since.</li>
+          <li>Nothing is broken, only waiting.</li>
+          <li>Mend it tonight, we leave tomorrow.</li>
+          <li>If it rolls, it comes with us.</li>
+          <li>Buy it cheap, sell it better.</li>
+        </sayings>
+        <townGoods>
+          <Steel>80~180</Steel>
+          <ComponentIndustrial>4~10</ComponentIndustrial>
+          <Chemfuel>30~80</Chemfuel>
+          <ChunkSlagSteel>4~8</ChunkSlagSteel>
+          <Cloth>30~70</Cloth>
+        </townGoods>
+        <herd>
+          <li>Muffalo</li>
+          <li>Horse</li>
+        </herd>
+        <herdCount>4~8</herdCount>
+        <ariseAges>0~3</ariseAges>
+      </li>
+    </modExtensions>
+  </FactionDef>
+
+  <!-- ===================== Their people ===================== -->
+
+  <!--
+    How alike they look (docs/design/peoples.md, "Release D"): every piece mended differently. A Wheel hand's coat is of
+    any cut (the game's dusters, jackets and parkas; Vanilla Apparel Expanded's builder's and military jackets), patched
+    and weathered to the colour of old brass, the cog on its shoulder; under it whatever the scrap gave (the game's and
+    Vanilla Apparel Expanded's work clothes, hard hats, gloves), and tool belts and packs (Vanilla Apparel Expanded -
+    Accessories). The yard guards share one kit: the brass jacket and a flak vest, with scrap-built guns (Vanilla Weapons
+    Expanded - Makeshift) or the game's own; in the tribal and medieval ages hammers and maces, in the spacer age salvaged
+    lasers (Vanilla Weapons Expanded - Laser). A mechanitor or two (Biotech) wear the airwire headset over a mechlink.
+    Wrenches and pistols for the hands (Vanilla Weapons Expanded's tools). A few are A RimWorld of Magic's
+    technomancers, the wheelwright most of all. They carry components, steel or chemfuel. Without any mod: the game's
+    coats and work clothes, revolvers, autopistols, rifles and knives.
+  -->
+  <PawnKindDef Name="Rimfolk_WheelKindBase" Abstract="True">
+    <race>Human</race>
+    <defaultFactionDef>Rimfolk_Wheel</defaultFactionDef>
+    <chemicalAddictionChance>0.05</chemicalAddictionChance>
+    <backstoryCryptosleepCommonality>0.02</backstoryCryptosleepCommonality>
+    <invNutrition>2.55</invNutrition>
+    <specificApparelRequirements>
+      <!-- Old brass on the jacket and the duster, whoever wears one. -->
+      <li><apparelDef>Apparel_Jacket</apparelDef><color>(0.62, 0.52, 0.24)</color></li>
+      <li><apparelDef>Apparel_Duster</apparelDef><color>(0.62, 0.52, 0.24)</color></li>
+    </specificApparelRequirements>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_WheelKindBase">
+    <defName>Rimfolk_Wheel_Hand</defName>
+    <label>wheel hand</label>
+    <combatPower>45</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Poor</itemQuality>
+    <gearHealthRange>0.4~1.2</gearHealthRange>
+    <specificApparelRequirements>
+      <!-- The Wheel's old brass coat, of any cut. -->
+      <li>
+        <apparelLayer>Shell</apparelLayer>
+        <bodyPartGroup>Torso</bodyPartGroup>
+        <color>(0.62, 0.52, 0.24)</color>
+        <alternateTagChoices>
+          <li><tag>IndustrialAdvanced</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+    </specificApparelRequirements>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Industrial</li>
+    </apparelTags>
+    <apparelAllowHeadgearChance>0.6</apparelAllowHeadgearChance>
+    <apparelMoney>250~520</apparelMoney>
+    <weaponTags>
+      <li>SimpleGun</li>
+      <li>MedievalMeleeBasic</li>
+      <li MayRequire="VanillaExpanded.VWE">ToolDecent</li>
+      <li MayRequire="VanillaExpanded.VWEMS">MakeshiftGun</li>
+    </weaponTags>
+    <weaponMoney>60~180</weaponMoney>
+    <!-- Parts, steel or fuel: something to sell at the next stop. -->
+    <inventoryOptions>
+      <skipChance>0.4</skipChance>
+      <subOptionsChooseOne>
+        <li><thingDef>ComponentIndustrial</thingDef><countRange>1~2</countRange></li>
+        <li><thingDef>Steel</thingDef><countRange>10~25</countRange><choiceChance>2</choiceChance></li>
+        <li><thingDef>Chemfuel</thingDef><countRange>5~12</countRange></li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <initialWillRange>1~3</initialWillRange>
+    <initialResistanceRange>10~17</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Technomancer</trait><chance>0.04</chance></li>
+          <li><trait>Enchanter</trait><chance>0.02</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_WheelKindBase">
+    <defName>Rimfolk_Wheel_Guard</defName>
+    <label>yard guard</label>
+    <combatPower>65</combatPower>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.6~1.5</gearHealthRange>
+    <!-- The yard guards' kit: the brass jacket over a flak vest. -->
+    <apparelRequired>
+      <li>Apparel_Jacket</li>
+      <li>Apparel_FlakVest</li>
+      <li>Apparel_Pants</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialMilitaryBasic</li>
+      <li>IndustrialBasic</li>
+    </apparelTags>
+    <apparelMoney>450~750</apparelMoney>
+    <weaponTags>
+      <li>Gun</li>
+      <li MayRequire="VanillaExpanded.VWEMS">MakeshiftGun</li>
+    </weaponTags>
+    <weaponMoney>200~400</weaponMoney>
+    <requiredWorkTags>Violent</requiredWorkTags>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>14~22</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Gladiator</trait><chance>0.03</chance></li>
+          <li><trait>TM_Sniper</trait><chance>0.02</chance></li>
+        </gifts>
+        <!-- Hammers and maces in the tribal and medieval ages; salvaged lasers in the spacer age. -->
+        <ageArms>
+          <li>
+            <ages>0~1</ages>
+            <weaponTags>
+              <li>NeolithicMeleeAdvanced</li>
+              <li>MedievalMeleeDecent</li>
+            </weaponTags>
+          </li>
+          <li>
+            <ages>3~3</ages>
+            <!-- Vanilla Weapons Expanded - Laser prices its salvaged lasers at 1,500 to 2,000 silver. -->
+            <money>2000</money>
+            <weaponTags>
+              <li MayRequire="VanillaExpanded.VWEL">SalvagedLaserGun</li>
+            </weaponTags>
+          </li>
+        </ageArms>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_WheelKindBase">
+    <defName>Rimfolk_Wheel_Mechanitor</defName>
+    <label>mechanitor</label>
+    <combatPower>70</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.7~1.3</gearHealthRange>
+    <specificApparelRequirements>
+      <li>
+        <apparelLayer>Shell</apparelLayer>
+        <bodyPartGroup>Torso</bodyPartGroup>
+        <color>(0.62, 0.52, 0.24)</color>
+        <alternateTagChoices>
+          <li><tag>IndustrialAdvanced</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+    </specificApparelRequirements>
+    <apparelRequired>
+      <li MayRequire="Ludeon.RimWorld.Biotech">Apparel_AirwireHeadset</li>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+    </apparelTags>
+    <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
+    <apparelMoney>400~800</apparelMoney>
+    <weaponTags>
+      <li>Autopistol</li>
+      <li>SimpleGun</li>
+    </weaponTags>
+    <weaponMoney>120~300</weaponMoney>
+    <techHediffsMoney>0~0</techHediffsMoney>
+    <techHediffsRequired>
+      <li MayRequire="Ludeon.RimWorld.Biotech">Mechlink</li>
+    </techHediffsRequired>
+    <inventoryOptions>
+      <subOptionsTakeAll>
+        <li><thingDef>ComponentIndustrial</thingDef><countRange>1~3</countRange></li>
+      </subOptionsTakeAll>
+    </inventoryOptions>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>12~18</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Technomancer</trait><chance>0.05</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_WheelKindBase">
+    <defName>Rimfolk_Wheel_Fixer</defName>
+    <label>fixer</label>
+    <trader>true</trader>
+    <combatPower>40</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.7~1.2</gearHealthRange>
+    <specificApparelRequirements>
+      <li>
+        <apparelLayer>Shell</apparelLayer>
+        <bodyPartGroup>Torso</bodyPartGroup>
+        <color>(0.62, 0.52, 0.24)</color>
+        <alternateTagChoices>
+          <li><tag>IndustrialAdvanced</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+    </specificApparelRequirements>
+    <apparelRequired>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li>IndustrialAdvanced</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Industrial</li>
+    </apparelTags>
+    <apparelMoney>300~600</apparelMoney>
+    <weaponTags>
+      <li>SimpleGun</li>
+    </weaponTags>
+    <weaponMoney>80~200</weaponMoney>
+    <skills>
+      <li>
+        <skill>Social</skill>
+        <range>5~12</range>
+      </li>
+      <li>
+        <skill>Crafting</skill>
+        <range>8~14</range>
+      </li>
+    </skills>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>10~16</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_WheelKindBase">
+    <defName>Rimfolk_Wheel_Wheelwright</defName>
+    <label>wheelwright</label>
+    <combatPower>60</combatPower>
+    <factionLeader>true</factionLeader>
+    <minGenerationAge>45</minGenerationAge>
+    <itemQuality>Good</itemQuality>
+    <gearHealthRange>0.8~1.1</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_Duster</li>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialAdvanced</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Industrial</li>
+    </apparelTags>
+    <apparelMoney>500~900</apparelMoney>
+    <weaponTags>
+      <li>SimpleGun</li>
+    </weaponTags>
+    <weaponMoney>150~300</weaponMoney>
+    <skills>
+      <li>
+        <skill>Crafting</skill>
+        <range>10~16</range>
+      </li>
+      <li>
+        <skill>Social</skill>
+        <range>6~13</range>
+      </li>
+    </skills>
+    <inventoryOptions>
+      <subOptionsTakeAll>
+        <li><thingDef>ComponentIndustrial</thingDef><countRange>2~4</countRange></li>
+      </subOptionsTakeAll>
+    </inventoryOptions>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>12~18</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Technomancer</trait><chance>0.2</chance></li>
+          <li><trait>TM_Commander</trait><chance>0.08</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <!-- ===================== Their traders: the Wheel's wagons ===================== -->
+
+  <TraderKindDef>
+    <defName>Rimfolk_Caravan_Wheel</defName>
+    <label>Wheel's wagons</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>600~1200</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentIndustrial</thingDef>
+        <countRange>6~16</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Steel</thingDef>
+        <countRange>150~400</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Chemfuel</thingDef>
+        <countRange>40~120</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponRanged</tradeTag>
+        <countRange>3~6</countRange>
+        <maxTechLevelGenerate>Industrial</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponMelee</tradeTag>
+        <countRange>1~3</countRange>
+        <maxTechLevelGenerate>Industrial</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>BasicClothing</tradeTag>
+        <countRange>3~6</countRange>
+        <maxTechLevelGenerate>Industrial</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>Armor</tradeTag>
+        <countRange>1~3</countRange>
+        <maxTechLevelGenerate>Industrial</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Visitor_Wheel</defName>
+    <label>scrap-runners</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>150~400</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentIndustrial</thingDef>
+        <countRange>2~5</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Steel</thingDef>
+        <countRange>40~120</countRange>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Base_Wheel</defName>
+    <label>yard</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>900~1600</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentIndustrial</thingDef>
+        <countRange>10~24</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Steel</thingDef>
+        <countRange>250~600</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Chemfuel</thingDef>
+        <countRange>80~200</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Plasteel</thingDef>
+        <countRange>10~40</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponRanged</tradeTag>
+        <countRange>4~8</countRange>
+        <maxTechLevelGenerate>Industrial</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>BasicClothing</tradeTag>
+        <countRange>4~8</countRange>
+        <maxTechLevelGenerate>Industrial</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>Armor</tradeTag>
+        <countRange>2~4</countRange>
+        <maxTechLevelGenerate>Industrial</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_Animals">
+        <maxWildness>0.50</maxWildness>
+        <tradeTagsSell>
+          <li>AnimalFarm</li>
+        </tradeTagsSell>
+        <tradeTagsBuy>
+          <li>AnimalFarm</li>
+        </tradeTagsBuy>
+        <kindCountRange>1~1</kindCountRange>
+        <countRange>1~3</countRange>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <!-- ===================== Their names ===================== -->
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_Wheel</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->The Wheel of [PlaceOutlander]</li>
+        <li>r_name(p=2)->The [wheelVirtue] Wheel</li>
+        <li>r_name->[PlaceOutlander] Wagons</li>
+        <li>r_name->Riders of the [wheelThing]</li>
+        <li>r_name->The [wheelThing] Yards</li>
+        <li>wheelThing->Brass Cog</li>
+        <li>wheelThing->Burned Valley</li>
+        <li>wheelThing->Long Circle</li>
+        <li>wheelThing->Turning Wheel</li>
+        <li>wheelThing->Patched Coat</li>
+        <li>wheelThing->Cart</li>
+        <li>wheelVirtue->Rolling</li>
+        <li>wheelVirtue->Restless</li>
+        <li>wheelVirtue->Mended</li>
+        <li>wheelVirtue->Unstopping</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_WheelTown</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->[PlaceOutlander] Yard</li>
+        <li>r_name(p=2)->[PlaceOutlander] Stop</li>
+        <li>r_name->[yardWord] of [PlaceOutlander]</li>
+        <li>r_name->[yardVirtue] Yard</li>
+        <li>yardWord->Scrapyard</li>
+        <li>yardWord->Wagon Circle</li>
+        <li>yardWord->Last Stop</li>
+        <li>yardVirtue->Wainwright's</li>
+        <li>yardVirtue->Tomorrow's</li>
+        <li>yardVirtue->Brass</li>
+        <li>yardVirtue->Rolling</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>

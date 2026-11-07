@@ -18,6 +18,22 @@ namespace ColonyCouncil
     {
         public const string Coat = "coat";
 
+        /// <summary>
+        /// Scrap the Wheel's runners buy (Peoples/PeoplesD2.cs): slag lying in the colony's stores or on its home ground, and
+        /// clothes and weapons in the stores too far gone to wear (PeoplesDMath.Broken), the slag first.
+        /// </summary>
+        public const string Scrap = "scrap";
+
+        public static bool IsScrap(Thing t, Map map)
+        {
+            if (t == null || !t.Spawned || t.IsForbidden(Faction.OfPlayer) || t.Map != map) return false;
+            if (t.def == ThingDefOf.ChunkSlagSteel) return t.IsInAnyStorage() || map.areaManager.Home[t.Position];
+            if (!(t.def.IsApparel || t.def.IsWeapon) || !t.def.useHitPoints || t.MaxHitPoints <= 0 || !t.IsInAnyStorage()) return false;
+            var code = t.TryGetComp<CompBiocodable>();
+            if (code != null && code.Biocoded) return false;
+            return PeoplesDMath.Broken((float)t.HitPoints / t.MaxHitPoints, t is Apparel a && a.WornByCorpse);
+        }
+
         /// <summary>The kinds of an errand that carries one of each ("meals+coat"), in the order they go; null for one kind.</summary>
         public static string[] Parts(string what) => what != null && what.IndexOf('+') >= 0 ? what.Split('+') : null;
 
@@ -33,6 +49,7 @@ namespace ColonyCouncil
                 case "medicine":
                 case "meals":
                 case Coat:
+                case Scrap:
                     return null;
             }
             return what.NullOrEmpty() ? fallback : DefDatabase<ThingDef>.GetNamedSilentFail(what);
@@ -92,6 +109,10 @@ namespace ColonyCouncil
                 case Coat:
                     return map.listerThings.ThingsInGroup(ThingRequestGroup.Apparel).Where(IsCoat)
                         .OrderBy(t => t is Apparel a && a.WornByCorpse ? 1 : 0).ThenBy(t => t.MarketValue);
+                case Scrap:
+                    return map.listerThings.ThingsOfDef(ThingDefOf.ChunkSlagSteel).Concat(map.listerThings.ThingsInGroup(ThingRequestGroup.Apparel))
+                        .Concat(map.listerThings.ThingsInGroup(ThingRequestGroup.Weapon)).Where(t => IsScrap(t, map)).Distinct()
+                        .OrderBy(t => t.def == ThingDefOf.ChunkSlagSteel ? 0 : 1);
             }
             def = def ?? DefOf(what, null);
             if (def == null) return Enumerable.Empty<Thing>();
@@ -174,6 +195,7 @@ namespace ColonyCouncil
                 case "medicine": return "CC_Dilemma_Medicine".Translate();
                 case "meals": return "CC_Play_Meals".Translate();
                 case Coat: return "CC_Play_Coat".Translate();
+                case Scrap: return "CC_PeoplesD_Scrap".Translate();
             }
             return (def ?? DefOf(what, null))?.label ?? what ?? "";
         }

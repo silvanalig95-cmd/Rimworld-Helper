@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Release D's peoples in their own words (Source/ColonyCouncil/Peoples/PeoplesD.cs; docs/design/peoples.md, "Release
+    D"), in the pools the other seven speak in, by the tag their people give every line: their:hunters the Lantern
+    Wardens, their:sextons the Quiet Bell, their:tamers the Circuit of Tamers, their:salvagers the Wheel. Each in its own
+    manner: the Wardens blunt and patient, talking of beasts as weather; the Bell soft, few-worded and kind; the Circuit
+    cheerful, competitive and generous in defeat; the Wheel fast, haggling and laughing about everything but fire.
+    - Rimfolk_Pool_NeighbourWrites: their answer to the colony's letter or call, and their grief with it and thanks for a
+      warning. Help is promised only in a warm or cordial answer, and comes by their own messengers.
+    - Rimfolk_CourierLines: their messengers at the colony's gate. One sentence each.
+    - Rimfolk_VisitorLines: their visitors at every moment of a visit (arrive, wait, stay, pass, leave). One sentence each.
+    - Rimfolk_Pool_OutsiderSays: their words face to face: a chat, a warm parting, their faith.
+    And the words at a funeral the Bell leads (Rimfolk_Pool_PlayBellFuneral), and the journals of the colonists at four
+    of their touchpoints (Defs/IncidentDefs/Rimfolk_Events_PeoplesD.xml).
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_NeighbourWrites_PeoplesD</defName>
+    <pool>Rimfolk_Pool_NeighbourWrites</pool>
+    <lines>
+      <plain>
+        <!-- The Lantern Wardens: the lantern, the book, the beasts -->
+        <li>[greetings,warm,their:hunters] Your letter was read at the lantern post tonight, {WRITER}. The colony has a good page in our book, and it stays open.</li>
+        <li>[greetings,cordial,their:hunters] The lodge has your letter, {WRITER}. If a beast comes onto your land, a Warden will hear of it.</li>
+        <li>[greetings,cool,their:hunters] We have your letter. The book will say what kind of neighbour you are, in time.</li>
+        <li>[news,warm,their:hunters] Every lodge hears where the beasts are moving, {WRITER}, and where people are. Here is what the lanterns tell us this season.</li>
+        <li>[news,cordial,their:hunters] Our trackers see the roads before anyone. This is what they saw.</li>
+        <li>[help,warm,their:hunters] What you asked for is coming with a lantern-runner, {WRITER}. The Wardens keep what they promise until it is done.</li>
+        <li>[help,cordial,their:hunters] The lodge can spare it, and it is on the road with our runner.</li>
+        <li>[help,refusal,their:hunters] The lodge has three lanterns lit on its roads this season, {WRITER}, and nothing left to send. We are sorry for it.</li>
+        <li>[invitation,warm,their:hunters] A Warden will come, and keep a lantern lit at your gate while they stay.</li>
+        <li>[condolences,warm,their:hunters] We have lit a lantern at the lodge for your dead, {WRITER}, and it burns tonight beside our own.</li>
+        <li>[condolences,cordial,their:hunters] The Wardens are sorry for your loss, {WRITER}. Where a lantern burns, someone was taken, and we have lit one.</li>
+        <li>[warning,warm,their:hunters] Your warning reached the lodge before the trouble did, {WRITER}. The trackers are in and the gate is barred, and the book will remember who told us.</li>
+        <li>[warning,cordial,their:hunters] We have your warning, {WRITER}. The lanterns on the roads will burn all night.</li>
+        <!-- The Quiet Bell: the bell, the ground, everyone's dead -->
+        <li>[greetings,warm,their:sextons] Your letter was read aloud in the grave-garden at evening, {WRITER}, and the first bell rang once for your colony's health.</li>
+        <li>[greetings,cordial,their:sextons] The Bell has your letter, {WRITER}, and keeps it with the others, quietly.</li>
+        <li>[greetings,cool,their:sextons] We have your letter. The Bell rings for everyone, in the end.</li>
+        <li>[news,warm,their:sextons] The dead come to us from every road, {WRITER}, and so does the news of how they died. Here is what the grave-gardens heard.</li>
+        <li>[news,cordial,their:sextons] The ground hears a great deal, and so do those who dig it. This is the season's word.</li>
+        <li>[help,warm,their:sextons] The Bell has little, but what it has is given. What you asked for is coming with a bell-carrier.</li>
+        <li>[help,cordial,their:sextons] We can spare it, quietly, and it is on the road.</li>
+        <li>[help,refusal,their:sextons] The grave-gardens are full this season, {WRITER}, and everything we have goes into the ground. There is nothing to send.</li>
+        <li>[invitation,warm,their:sextons] A bell-keeper will come, and say a word at your gate for the living.</li>
+        <li>[condolences,warm,their:sextons] We rang for your dead this evening, {WRITER}, once each, as for our own. Everyone is owed a bell.</li>
+        <li>[condolences,cordial,their:sextons] The Bell is sorry for your loss, {WRITER}. The ground keeps what it is given, gently.</li>
+        <li>[warning,warm,their:sextons] Your warning came in time, {WRITER}. The grave-gardens are shut and the bell is ready, and the Bell owes you more than a letter.</li>
+        <li>[warning,cordial,their:sextons] We have your warning, {WRITER}. We will listen to the ground tonight.</li>
+        <!-- The Circuit of Tamers: the sash, the ring, the bond -->
+        <li>[greetings,warm,their:tamers] Your letter got read out at the ring tonight, {WRITER}, between bouts, and everybody cheered.</li>
+        <li>[greetings,cordial,their:tamers] The Circuit has your letter, {WRITER}. Any tamer on the road will stop by and say hello.</li>
+        <li>[greetings,cool,their:tamers] We have your letter. Come and meet us in the ring sometime, and we will see.</li>
+        <li>[news,warm,their:tamers] Tamers walk every road in the region, {WRITER}, and talk at every ring. Here is the best of what they brought in.</li>
+        <li>[news,cordial,their:tamers] The rings hear everything, mostly between bouts. This is what they heard.</li>
+        <li>[help,warm,their:tamers] Of course, {WRITER}, and gladly. What you asked for is coming with a beast-rider.</li>
+        <li>[help,cordial,their:tamers] The ring can spare it, and a rider is bringing it.</li>
+        <li>[help,refusal,their:tamers] The stables ate everything we had this season, {WRITER}, and then asked for more. We have nothing to send.</li>
+        <li>[invitation,warm,their:tamers] A tamer will come, and bring a companion who wants to meet yours.</li>
+        <li>[condolences,warm,their:tamers] We tied a black token on every sash at the ring for your dead, {WRITER}, and our beasts stood quiet for them.</li>
+        <li>[condolences,cordial,their:tamers] The Circuit is sorry for your loss, {WRITER}. Win their trust and they will win your battles, and your dead won many.</li>
+        <li>[warning,warm,their:tamers] Your warning came in time, {WRITER}. The stables are shut and the beasts are in, and the Circuit owes you a bout and more.</li>
+        <li>[warning,cordial,their:tamers] We have your warning, {WRITER}. The rangers will bring everyone in tonight.</li>
+        <!-- The Wheel: the road, scrap, the fire behind -->
+        <li>[greetings,warm,their:salvagers] Your letter caught up with the Wheel two stops on, {WRITER}, and the whole yard read it over supper.</li>
+        <li>[greetings,cordial,their:salvagers] The Wheel has your letter, {WRITER}. Next time we come round, we will stop.</li>
+        <li>[greetings,cool,their:salvagers] We have your letter. Trade with us once, and we will talk properly.</li>
+        <li>[news,warm,their:salvagers] The Wheel sees the whole region every few years, {WRITER}, and buys its rubbish. Here is what the rubbish says.</li>
+        <li>[news,cordial,their:salvagers] Every stop has gossip, and we pick it up with the scrap. This is the season's.</li>
+        <li>[help,warm,their:salvagers] Nothing is broken, only waiting, {WRITER}, and what you need is coming with a scrap-runner.</li>
+        <li>[help,cordial,their:salvagers] Call it a loan against the next swap, and it is on its way.</li>
+        <li>[help,refusal,their:salvagers] The Wheel is stuck on a broken axle this season, {WRITER}, and everything we have is holding it together. We have nothing to send.</li>
+        <li>[invitation,warm,their:salvagers] A fixer will come, with tools, and mend whatever you leave lying about.</li>
+        <li>[condolences,warm,their:salvagers] The Wheel stopped for a whole hour for your dead, {WRITER}, which it never does. We are sorry.</li>
+        <li>[condolences,cordial,their:salvagers] The Wheel is sorry for your loss, {WRITER}. We carry our own dead with us until the next good ground, and we know what it costs.</li>
+        <li>[warning,warm,their:salvagers] Your warning caught the Wheel before the trouble did, {WRITER}, and we turned in time. We owe you, and the Wheel pays its debts.</li>
+        <li>[warning,cordial,their:salvagers] We have your warning, {WRITER}. The yard will be rolling by morning.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_CourierLines_PeoplesD</defName>
+    <pool>Rimfolk_CourierLines</pool>
+    <lines>
+      <plain>
+        <li>[arrive,their:hunters] Word from the lodge, and the roads are clear behind me.</li>
+        <li>[leave,their:hunters] My lantern needs filling before dark, so I'll be off.</li>
+        <li>[deliver,their:hunters] From the lodge, and counted twice like a pelt.</li>
+        <li>[arrive,their:sextons] Peace on the living here, I bring the Bell's word.</li>
+        <li>[leave,their:sextons] The bell rings at evening, and I should be there.</li>
+        <li>[deliver,their:sextons] From the grave-garden, given quietly.</li>
+        <li>[arrive,their:tamers] Hello from the ring, and my beast says hello too.</li>
+        <li>[leave,their:tamers] Off to the next ring, there's a bout I can't miss.</li>
+        <li>[deliver,their:tamers] From the Circuit, with a token for luck.</li>
+        <li>[arrive,their:salvagers] Message from the yard, and the Wheel's two stops on already.</li>
+        <li>[leave,their:salvagers] Got to catch the Wheel before it rolls again.</li>
+        <li>[collect,their:salvagers] The yard will make good use of this, nothing wasted.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_VisitorLines_PeoplesD</defName>
+    <pool>Rimfolk_VisitorLines</pool>
+    <lines>
+      <plain>
+        <li>[arrive,their:hunters] Any beasts about, or is it quiet here?</li>
+        <li>[wait,their:hunters] I've waited longer in a cold blind, take your time.</li>
+        <li>[stay,their:hunters] A roof over the lantern for once, that's a kindness.</li>
+        <li>[leave,their:hunters] Keep it lit until it is done, and send word if anything comes.</li>
+        <li>[pass,their:hunters] Every page of the book gets its ending, sooner or later.</li>
+        <li>[arrive,their:sextons] Peace on the living here.</li>
+        <li>[wait,their:sextons] The dead are patient, so I can be too.</li>
+        <li>[stay,their:sextons] A quiet house, I like it.</li>
+        <li>[leave,their:sextons] Ring once for friend and foe alike, and you'll sleep well.</li>
+        <li>[pass,their:sextons] The ground keeps what it is given, so give it gently.</li>
+        <li>[arrive,their:tamers] Nice place, do you keep any beasts?</li>
+        <li>[wait,their:tamers] My companion's fine waiting, it's me that gets restless.</li>
+        <li>[stay,their:tamers] A good stable, I can tell from here.</li>
+        <li>[leave,their:tamers] Next time, a bout, and I won't take no for an answer.</li>
+        <li>[pass,their:tamers] A bond is not a leash, remember that with yours.</li>
+        <li>[arrive,their:salvagers] Anything broken round here, or anything for sale?</li>
+        <li>[wait,their:salvagers] No hurry, the Wheel's slow on the hills.</li>
+        <li>[stay,their:salvagers] A floor that doesn't roll, I'd forgotten what that's like.</li>
+        <li>[leave,their:salvagers] We leave tomorrow, we always leave tomorrow.</li>
+        <li>[pass,their:salvagers] Nothing is broken, only waiting.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_OutsiderSays_PeoplesD</defName>
+    <pool>Rimfolk_Pool_OutsiderSays</pool>
+    <lines>
+      <plain>
+        <li>[chat,them,their:hunters] A beast that takes a person answers for it, that's the whole of what we do.</li>
+        <li>[endwarm,them,their:hunters] If a beast ever comes for yours, light a lantern at the crossroads and we'll see it.</li>
+        <li>[faithtalk,them,their:hunters] Garrow kept his brother's lantern lit eleven years, and we keep ours until it's done.</li>
+        <li>[chat,them,their:sextons] Everyone is owed a bell, even the ones nobody liked.</li>
+        <li>[endwarm,them,their:sextons] When your time comes, the Bell will ring for you, I promise.</li>
+        <li>[faithtalk,them,their:sextons] Ysolde Marr rang a cracked bell over every grave in the long field, and we ring it still.</li>
+        <li>[chat,them,their:tamers] Win their trust and they will win your battles, it's that simple.</li>
+        <li>[endwarm,them,their:tamers] Come to the ring sometime, I'd love to lose to you.</li>
+        <li>[faithtalk,them,their:tamers] Pell walked forty years with what hatched from a star's egg, and every bond is hers.</li>
+        <li>[chat,them,their:salvagers] Buy it cheap, sell it better, and never stop moving.</li>
+        <li>[endwarm,them,their:salvagers] When the Wheel comes round again, I'll save you the good scrap.</li>
+        <li>[faithtalk,them,their:salvagers] Wainwright drove out ahead of the fire, and nobody has voted to stop since.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- What is said over heads at a funeral the Quiet Bell leads (Rimfolk_Evt_BellFuneral's vigil at the grave): the
+       bell-keeper's old words and the colony's own. One sentence each. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_PlayBellFuneral</defName>
+    <lines>
+      <plain>
+        <li>Quiet now, you are home.</li>
+        <li>Everyone is owed a bell, and this one is yours.</li>
+        <li>The ground keeps what it is given, so we give it gently.</li>
+        <li>Ring once, and let them go.</li>
+        <li>We will remember the good of them out loud, now.</li>
+        <li>Nobody is buried alone while the Bell is there.</li>
+        <li>I keep thinking they'll walk in from the fields.</li>
+        <li>Bury them deep, and listen, and then go home and live.</li>
+      </plain>
+      <gloomy>
+        <li>It was too soon, whatever the bell says.</li>
+      </gloomy>
+      <warm>
+        <li>They would have laughed at all of us standing here so solemn.</li>
+      </warm>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The journal of the colonist the Wardens' hunt asked for (Rimfolk_Evt_WardensHunt): hunted beside them (opt0), let
+       them hunt alone (opt1), or sent them away (opt2). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Evt_WardensHunt</defName>
+    <lines>
+      <plain>
+        <li>[opt0] I went after {BEAST} with the Lantern Wardens today. They move like people who have done it a hundred times, because they have.</li>
+        <li>[opt0] The Wardens keep a book of every beast they've run down. {BEAST} had a page in it before any of us knew its name.</li>
+        <li>[opt1] Wardens came for {BEAST} and we let them hunt it alone. I watched from the wall with my heart going.</li>
+        <li>[opt2] Wardens came to hunt {BEAST} on our land and we sent them away. I hope that was right.</li>
+      </plain>
+      <cold><li>[opt0] A hunt is a hunt. They know theirs.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The journal of the colonist closest to the one a beast took (Rimfolk_Evt_WardensLantern): the lantern lit and its
+       first night stood (opt0), lit by the Warden (opt1), or no lantern (opt2). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Evt_WardensLantern</defName>
+    <lines>
+      <plain>
+        <li>[opt0] A Warden lit a lantern at the gate for {DEAD} and we stood the first night of it together. It will burn until {BEAST} is dead, the Warden says.</li>
+        <li>[opt1] There's a lantern at our gate now for {DEAD}. I keep looking at it.</li>
+        <li>[opt2] A Warden wanted to light a lantern for {DEAD}. I couldn't bear it, not yet.</li>
+      </plain>
+      <warm><li>[opt0] A stranger came all that way to keep a light burning for {DEAD}. I didn't know people still did that.</li></warm>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The journal of the colonist closest to the dead at a funeral the Bell led (Rimfolk_Evt_BellFuneral): the funeral
+       (opt0), the bell alone (opt1), or their own way (opt2). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Evt_BellFuneral</defName>
+    <lines>
+      <plain>
+        <li>[opt0] A bell-keeper of the Quiet Bell led {DEAD}'s funeral today, and said the Bell's words at the end. I don't think I breathed until it was quiet again.</li>
+        <li>[opt1] I stood at {DEAD}'s grave with a bell-keeper while the bell was rung. Just the two of us and one note.</li>
+        <li>[opt2] The Quiet Bell came for {DEAD}'s funeral and we wanted it to be ours. They understood.</li>
+      </plain>
+      <gloomy><li>[opt0] One bell, and then quiet, and then everyone went back to work.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The journal of the colonist a tamer of the Circuit challenged (Rimfolk_Evt_TamerBout): the bout taken (opt0), the
+       companion shown off instead (opt1), or not today (opt2). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Evt_TamerBout</defName>
+    <lines>
+      <plain>
+        <li>[opt0] A tamer of the Circuit challenged me to a bout with {BEAST}. Whatever happened after, I'll remember the look on its face when I squared up.</li>
+        <li>[opt0] The Circuit say a bond is not a leash. Watching {X_nameDef} with {BEAST}, I believe them.</li>
+        <li>[opt1] I sat with a tamer while {BEAST} showed off everything it knew. Some of it I'm going to try on ours.</li>
+        <li>[opt2] A tamer wanted a bout and we said not today. {X_nameDef} laughed and said the challenge stands.</li>
+      </plain>
+      <cheerful><li>[opt0] Best fun I've had in a season, win or lose.</li></cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

@@ -20,7 +20,9 @@ public static class PeoplesLoreTests
     private static readonly Dictionary<string, string> Founders = new()
     {
         ["healers"] = "Aldith", ["herders"] = "Tamsa", ["traders"] = "Edda Vane", ["pilgrims"] = "Old Brannoc", ["scholars"] = "Ilse Varro",
-        ["brokers"] = "Ines Okoro", ["fishers"] = "Wenna Reed"
+        ["brokers"] = "Ines Okoro", ["fishers"] = "Wenna Reed",
+        // Release D's.
+        ["hunters"] = "Tobin Garrow", ["sextons"] = "Ysolde Marr", ["tamers"] = "Nessa Pell", ["salvagers"] = "Mab Wainwright"
     };
 
     /// <summary>
@@ -38,7 +40,10 @@ public static class PeoplesLoreTests
         ["VME_Trader"] = Array.Empty<string>(), ["VME_Republic"] = new[] { "VME_LeaderPrecepts" }, ["VME_Progressive"] = Array.Empty<string>(),
         ["VME_Egalitarian"] = new[] { "GroupRelation", "VME_Proselytism", "GenderSupremacy", "VME_CollectivistVsEgalitarian", "VME_IndustrialistVsEgalitarian" },
         ["AM_Monastic"] = new[] { "AM_Ascetic", "VME_AsceticVsHedonism", "AM_AsceticVsHighLife", "VME_AsceticVsSweetTeeth", "VME_AsceticVsPartyLife" },
-        ["AM_WaterPrimacy"] = Array.Empty<string>()
+        ["AM_WaterPrimacy"] = Array.Empty<string>(),
+        // Release D's.
+        ["HumanPrimacy"] = new[] { "Primacy" }, ["AnimalPersonhood"] = new[] { "AnimalTreatment" }, ["VME_ExaltedPriesthood"] = Array.Empty<string>(),
+        ["VME_Scrapper"] = Array.Empty<string>()
     };
 
     private static string ModOf(string meme) =>
@@ -90,7 +95,7 @@ public static class PeoplesLoreTests
         XElement Ext(XElement d, string cls) => d.Element("modExtensions")?.Elements("li").FirstOrDefault(li => li.Attribute("Class")?.Value == "ColonyCouncil." + cls);
         var factions = Directory.GetFiles(Path.Combine(root, "Defs", "PeopleDefs"), "Rimfolk_People_*.xml").SelectMany(f => XDocument.Load(f).Root!.Elements("FactionDef"))
             .ToDictionary(f => Ext(f, "PeopleExtension")!.Element("calling")!.Value);
-        C(factions.Count == 7 && Founders.Keys.All(factions.ContainsKey), "seven peoples, each with a founding");
+        C(factions.Count == 11 && Founders.Keys.All(factions.ContainsKey), "eleven peoples, each with a founding");
         string Body(string line) => Regex.Replace(line, @"^\[[^\]]*\]\s*", "").Trim();
         foreach (var (calling, f) in factions)
         {
@@ -110,13 +115,18 @@ public static class PeoplesLoreTests
 
         // ================= Their voices =================
 
+        // The seven's voices are in the lore's files, release D's four in their own.
         var lines = XDocument.Load(Path.Combine(root, "Defs", "FlavorPoolDefs", "Rimfolk_Lines_PeoplesLore.xml")).Root!;
-        IEnumerable<string> Pool(string pool) => lines.Elements("ColonyCouncil.FlavorExtensionDef").Where(e => e.Element("pool")!.Value == pool).SelectMany(e => e.Descendants("li")).Select(li => li.Value);
-        var talks = XDocument.Load(Path.Combine(root, "Defs", "OutsiderTalkDefs", "Rimfolk_OutsiderTalks_PeoplesLore.xml")).Root!.Elements("ColonyCouncil.OutsiderTalkDef").ToList();
-        var lore = new[] { "Rimfolk_Lines_PeoplesLore.xml", "Rimfolk_Lines_Peoples.xml", "Rimfolk_Lines_PeoplesC.xml" }
+        var linesD = XDocument.Load(Path.Combine(root, "Defs", "FlavorPoolDefs", "Rimfolk_Lines_PeoplesD.xml")).Root!;
+        IEnumerable<string> Pool(string pool) => new[] { lines, linesD }.SelectMany(d => d.Elements("ColonyCouncil.FlavorExtensionDef")).Where(e => e.Element("pool")!.Value == pool)
+            .SelectMany(e => e.Descendants("li")).Select(li => li.Value);
+        var talks = new[] { "Rimfolk_OutsiderTalks_PeoplesLore.xml", "Rimfolk_OutsiderTalks_PeoplesD.xml" }
+            .SelectMany(x => XDocument.Load(Path.Combine(root, "Defs", "OutsiderTalkDefs", x)).Root!.Elements("ColonyCouncil.OutsiderTalkDef")).ToList();
+        var lore = new[] { "Rimfolk_Lines_PeoplesLore.xml", "Rimfolk_Lines_Peoples.xml", "Rimfolk_Lines_PeoplesC.xml", "Rimfolk_Lines_PeoplesD.xml" }
             .Select(x => Path.Combine(root, "Defs", "FlavorPoolDefs", x))
             .Concat(new[] { Path.Combine(root, "Defs", "OutsiderTalkDefs", "Rimfolk_OutsiderTalks_PeoplesLore.xml"), Path.Combine(root, "Defs", "IncidentDefs", "Rimfolk_Events_PeoplesLore.xml"),
-                Path.Combine(root, "Defs", "CampDefs", "Rimfolk_CampKinds_PeoplesLore.xml"), Path.Combine(root, "Defs", "CampDefs", "Rimfolk_CampKinds_Peoples.xml") })
+                Path.Combine(root, "Defs", "CampDefs", "Rimfolk_CampKinds_PeoplesLore.xml"), Path.Combine(root, "Defs", "CampDefs", "Rimfolk_CampKinds_Peoples.xml"),
+                Path.Combine(root, "Defs", "OutsiderTalkDefs", "Rimfolk_OutsiderTalks_PeoplesD.xml"), Path.Combine(root, "Defs", "IncidentDefs", "Rimfolk_Events_PeoplesD.xml") })
             .Select(File.ReadAllText).Aggregate((a, b) => a + "\n" + b).ToLowerInvariant().Replace("&apos;", "'");
         foreach (var (calling, f) in factions)
         {
@@ -240,7 +250,7 @@ public static class PeoplesLoreTests
         // ================= Their pages and the design =================
 
         string Page(string file) => string.Join("\n", XDocument.Load(Path.Combine(root, "Defs", "AlmanacArticleDefs", file)).Descendants().Where(e => !e.HasElements).Select(e => e.Value));
-        string pages = Page("Almanac_Peoples.xml") + Page("Almanac_PeoplesC.xml");
+        string pages = Page("Almanac_Peoples.xml") + Page("Almanac_PeoplesC.xml") + Page("Almanac_PeoplesD.xml");
         string design = File.ReadAllText(Path.Combine(root, "docs", "design", "peoples.md"));
         C(Founders.Values.All(pages.Contains) && Founders.Values.All(design.Contains), "every founding on the Almanac's pages and in the design");
         C(pages.Contains("Where their ways began") && pages.Contains("bed to bed") && pages.Contains("winter quarters") && pages.Contains("walking day") && pages.Contains("night of the fire")

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Release D's peoples at the gate (Source/ColonyCouncil/Peoples/PeoplesD.cs, PeoplesD2.cs, WheelTowns.cs). -->
+
+  <!-- The Lantern Wardens -->
+  <CC_PeoplesD_BeastGone>{0} is no longer on the colony's land.</CC_PeoplesD_BeastGone>
+  <CC_PeoplesD_NoHunter>Nobody at home can hunt it now.</CC_PeoplesD_NoHunter>
+  <CC_PeoplesD_HuntSet>Wardens of {0} have gone after {1}.</CC_PeoplesD_HuntSet>
+  <CC_PeoplesD_HuntGivenUp>The Wardens of {0} have given up the hunt for {1} and are walking home; its page in their book stays open.</CC_PeoplesD_HuntGivenUp>
+  <CC_PeoplesD_Skinned>{PAWN_nameDef} of the Wardens skinned {BEAST} where it fell: the hide goes into their book, and {KEPT} is left there for the colony.</CC_PeoplesD_Skinned>
+  <CC_PeoplesD_Nothing>nothing</CC_PeoplesD_Nothing>
+  <CC_PeoplesD_Impact_HuntTogether>The Wardens and {1} go after {0} at once; if it falls, a Warden skins it there, the hide theirs and the meat the colony's.</CC_PeoplesD_Impact_HuntTogether>
+  <CC_PeoplesD_Impact_HuntAlone>The Wardens go after {0} at once; if it falls, one of them skins it there, the hide theirs and the meat the colony's.</CC_PeoplesD_Impact_HuntAlone>
+  <CC_PeoplesD_Impact_HuntBrief>The hunt for {0}</CC_PeoplesD_Impact_HuntBrief>
+
+  <!-- The Quiet Bell -->
+  <CC_PeoplesD_BellRung>{0} heard that the bell-keepers of {1} rang for their dead at the colony.</CC_PeoplesD_BellRung>
+  <CC_PeoplesD_GraveGone>{0}'s grave is gone.</CC_PeoplesD_GraveGone>
+
+  <!-- The Circuit of Tamers -->
+  <CC_PeoplesD_NoBout>Nobody can take the bout now.</CC_PeoplesD_NoBout>
+  <CC_PeoplesD_Impact_Bout>{0} spars with {1} by the Fighting-type spar's rules, practice blows each way, the bout's winner by {0}'s way with beasts and hands.</CC_PeoplesD_Impact_Bout>
+  <CC_PeoplesD_Impact_BoutBrief>A friendly bout</CC_PeoplesD_Impact_BoutBrief>
+  <CC_PeoplesD_Impact_BoutRisk>Now and then the companion's blow lands: {0} may take a bruise.</CC_PeoplesD_Impact_BoutRisk>
+  <CC_PeoplesD_Impact_BoutRiskBrief>A bruise, maybe</CC_PeoplesD_Impact_BoutRiskBrief>
+  <CC_PeoplesD_BoutWon>{PAWN_nameDef} beat {PET} fairly in a friendly bout. {TAMER} tied a token on the sash for it and handed over an egg of the Circuit's hatchery.</CC_PeoplesD_BoutWon>
+  <CC_PeoplesD_BoutLost>{PET} had the better of {PAWN_nameDef} in a friendly bout, and {TAMER} says the next one is {PAWN_nameDef}'s to win.</CC_PeoplesD_BoutLost>
+  <CC_PeoplesD_BoutBlow>{PET}'s blow landed in the bout: {PAWN_nameDef} has a bruised {PART}.</CC_PeoplesD_BoutBlow>
+  <CC_PeoplesD_NoEgg>The colony has no fertile egg of its own in its stores to swap.</CC_PeoplesD_NoEgg>
+  <CC_PeoplesD_EggCarried>an egg for the egg-trader</CC_PeoplesD_EggCarried>
+  <CC_PeoplesD_StrayGone>{0} is no longer at the gate.</CC_PeoplesD_StrayGone>
+  <CC_PeoplesD_Impact_StrayBack>{0} is the colony's again, there at the gate where the ranger hands over the lead.</CC_PeoplesD_Impact_StrayBack>
+  <CC_PeoplesD_Impact_StrayBackBrief>A stray home</CC_PeoplesD_Impact_StrayBackBrief>
+  <CC_PeoplesD_StrayHome>{PET_nameDef} is home: {RANGER} of the Circuit handed over the lead at the gate.</CC_PeoplesD_StrayHome>
+
+  <!-- The Wheel -->
+  <CC_PeoplesD_Scrap>scrap</CC_PeoplesD_Scrap>
+  <CC_PeoplesD_ScrapSlag>{0} chunks of slag and {1} broken clothes and weapons</CC_PeoplesD_ScrapSlag>
+  <CC_PeoplesD_ScrapBroken>{0} clothes and weapons too far gone to wear</CC_PeoplesD_ScrapBroken>
+  <CC_PeoplesD_NoPiece>The Wheel has nothing mended of the colony's kind to trade.</CC_PeoplesD_NoPiece>
+  <CC_PeoplesD_ScrapGone>The scrap is no longer lying about.</CC_PeoplesD_ScrapGone>
+  <CC_PeoplesD_WreckGone>The wreck is gone.</CC_PeoplesD_WreckGone>
+  <CC_PeoplesD_Impact_StripShare>The Wheel's runners strip the {0} where it lies for three hours, and half of each part is left there for the colony.</CC_PeoplesD_Impact_StripShare>
+  <CC_PeoplesD_Impact_StripSold>The Wheel's runners strip the {0} where it lies for three hours and take every part.</CC_PeoplesD_Impact_StripSold>
+  <CC_PeoplesD_Impact_StripBrief>The wreck stripped</CC_PeoplesD_Impact_StripBrief>
+  <CC_PeoplesD_Stripped>{PAWN_nameDef} of the Wheel stripped the {WRECK}: half the parts went into the Wheel's packs, and {KEPT} is left there for the colony.</CC_PeoplesD_Stripped>
+  <CC_PeoplesD_StrippedSold>{PAWN_nameDef} of the Wheel stripped the {WRECK} the colony sold them, and the parts went into the Wheel's packs.</CC_PeoplesD_StrippedSold>
+  <CC_PeoplesD_WheelMoved>The Wheel's yard {0} has moved on to new ground, as {1} always do.</CC_PeoplesD_WheelMoved>
+
+</LanguageData>

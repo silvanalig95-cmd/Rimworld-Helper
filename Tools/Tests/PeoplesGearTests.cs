@@ -139,7 +139,7 @@ public static class PeoplesGearTests
                 weaponMax = Max(k.Element("weaponMoney")?.Value ?? "")
             });
         }
-        C(kinds.Count >= 35 && factions.Count == 7 && kinds.All(k => factions.Any(f => Dn(f) == k.faction)), $"every kind of the seven peoples read ({kinds.Count})");
+        C(kinds.Count >= 55 && factions.Count == 11 && kinds.All(k => factions.Any(f => Dn(f) == k.faction)), $"every kind of the eleven peoples read ({kinds.Count})");
 
         // ================= No fixed colour on everything; one signature colour a people =================
 
@@ -171,12 +171,14 @@ public static class PeoplesGearTests
                 C(viaFilter || viaRequired || viaChoice, $"{k.name}: wears its people's colour on a piece of its own");
             }
         }
-        C(colours.Values.Distinct().Count() == 7, "seven peoples, seven colours");
+        C(colours.Values.Distinct().Count() == 11, "eleven peoples, eleven colours");
 
         // ================= Every name soft and real =================
 
         var coreThings = new HashSet<string> { "MedicineHerbal", "MedicineIndustrial", "Cloth", "Hay", "Leather_Plain", "Beer", "Silver", "Novel", "TextBook", "Schematic",
-            "ComponentIndustrial", "Chemfuel", "WoodLog" };
+            "ComponentIndustrial", "Chemfuel", "WoodLog",
+            // Release D's: the Wardens' pemmican, the Circuit's kibble, the Wheel's steel.
+            "Pemmican", "Kibble", "Steel" };
         foreach (var k in kindEls)
         {
             string kn = Dn(k) == "" ? k.Attribute("Name")?.Value ?? "?" : Dn(k);
@@ -307,13 +309,20 @@ public static class PeoplesGearTests
         C(Gifted("Rimfolk_Order_Healer", "Priest") && Gifted("Rimfolk_Pilgrims_Warden", "Paladin") && Gifted("Rimfolk_RiverFolk_Master", "Druid")
           && Gifted("Rimfolk_Scholars_Don", "Arcanist") && Gifted("Rimfolk_Enclave_Chair", "VPE_Harmonist") && Gifted("Rimfolk_Herders_Archer", "Ranger"),
             "by calling, age and faith: hospitaller priests, warden paladins, river druids, scholar arcanists, an enclave of psycasters, herd rangers");
-        // Medieval and tribal peoples get no psylinks; the spacers and the learned do.
+        // Medieval and tribal peoples get no psylinks; the spacers and the learned do. Release D's design names two more: the
+        // Wardens' old tracker may be a Wildspeaker, and the Circuit has Wildspeakers in the spacer age (that gift of that age only).
         foreach (var f in factions)
         {
             string tech = f.Element("techLevel")!.Value;
             bool psy = kinds.Where(k => k.faction == Dn(f)).Any(k => k.def.Descendants("psylink").Any());
-            C(psy == (tech == "Industrial" && Dn(f) == "Rimfolk_Scholars" || tech == "Spacer"), $"{Dn(f)}: psylinks only where the age and calling have them");
+            C(psy == (tech == "Industrial" && Dn(f) == "Rimfolk_Scholars" || tech == "Spacer" || Dn(f) == "Rimfolk_Wardens" || Dn(f) == "Rimfolk_Tamers"),
+                $"{Dn(f)}: psylinks only where the age and calling have them");
         }
+        C(kindEls.Where(k => Dn(k).StartsWith("Rimfolk_Tamers_")).SelectMany(k => k.Descendants("psylink")).All(p => p.Parent!.Element("ages")?.Value == "3~3"),
+            "the Circuit's psylinks only in the spacer age");
+        C(kindEls.Where(k => Dn(k).StartsWith("Rimfolk_Wardens_")).Where(k => k.Descendants("psylink").Any()).Select(Dn).SequenceEqual(new[] { "Rimfolk_Wardens_Master" })
+          && kindEls.Where(k => Dn(k).StartsWith("Rimfolk_Wardens_")).SelectMany(k => k.Descendants("paths")).SelectMany(p => p.Elements("li")).All(p => p.Value == "VPE_Wildspeaker"),
+            "the Wardens' only psylink is their lantern-master's, a Wildspeaker's");
 
         // ================= The seams =================
 

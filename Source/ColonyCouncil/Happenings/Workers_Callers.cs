@@ -520,9 +520,16 @@ namespace ColonyCouncil
             base.CanHappen(map, ext) && !MapFacts.ThreatOn(map) && map.dangerWatcher.DangerRating == StoryDanger.None
             && Now - map.storyState.LastThreatBigTick > GenDate.TicksPerDay && Dead(map).Count >= CallerMath.MinDead;
 
+        /// <summary>
+        /// The people who come: any friendly one, a people of the calling the event prefers likeliest (the Quiet Bell's
+        /// sextons, by patch: Patches/Rimfolk_PeoplesD.xml); the Bell's own event comes only from the Bell
+        /// (Peoples/PeoplesD.cs).
+        /// </summary>
+        protected virtual Faction People(HappeningExtension ext) => Arrivals.Friendly(null, Peoples.Weigh(ext.prefers));
+
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {
-            ctx.faction = Arrivals.Friendly();
+            ctx.faction = People(ext);
             var dead = Dead(ctx.map);
             if (ctx.faction == null || dead.Count < CallerMath.MinDead) return false;
             MakeGroup(ctx, ext, ext.count.RandomInRange, ext.ages, null, false);
@@ -980,7 +987,8 @@ namespace ColonyCouncil
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {
-            ctx.faction = Arrivals.Friendly();
+            // Any friendly people; a people of the calling the event prefers likeliest (the Circuit of Tamers', by patch).
+            ctx.faction = Arrivals.Friendly(null, Peoples.Weigh(ext.prefers));
             if (ctx.faction == null) return false;
             var patients = Patients(ctx.map);
             var young = Trainee(ctx.map);

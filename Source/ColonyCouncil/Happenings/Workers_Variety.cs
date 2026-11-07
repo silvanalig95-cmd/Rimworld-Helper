@@ -342,12 +342,22 @@ namespace ColonyCouncil
     {
         private const int MaxItems = 30;
 
+        /// <summary>
+        /// The people the tinker comes from: any friendly one, a people of the calling the event prefers likeliest (the
+        /// Wheel's salvagers, by patch: Patches/Rimfolk_PeoplesD.xml); the Wheel's own fixer only from the Wheel
+        /// (Peoples/PeoplesD2.cs).
+        /// </summary>
+        protected virtual Faction People(HappeningExtension ext) => Arrivals.Friendly(null, Peoples.Weigh(ext.prefers));
+
+        /// <summary>Who comes to mend: the people's ordinary member (the Wheel's fixer, in its own event).</summary>
+        protected virtual PawnKindDef Mender(Faction f) => Arrivals.PersonKind(f);
+
         private static bool Worn(Thing t) =>
             t != null && !t.Destroyed && t.def.useHitPoints && t.def.stackLimit == 1 && (t.def.IsApparel || t.def.IsWeapon) && t.MaxHitPoints > 0
             && t.HitPoints < t.MaxHitPoints * 0.9f;
 
         /// <summary>Worn or damaged clothes and weapons in the stores and on the colonists at home, worst first.</summary>
-        private static List<Thing> Mendable(Map map)
+        protected static List<Thing> Mendable(Map map)
         {
             var list = new List<Thing>();
             foreach (var group in new[] { ThingRequestGroup.Apparel, ThingRequestGroup.Weapon })
@@ -377,11 +387,17 @@ namespace ColonyCouncil
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {
-            ctx.faction = Arrivals.Friendly();
+            ctx.faction = People(ext);
             if (ctx.faction == null) return false;
             var things = Mendable(ctx.map);
             if (things.Count < 4) return false;
-            MakeGroup(ctx, ext, 1, ext.ages);
+            var kind = Mender(ctx.faction);
+            if (kind == Arrivals.PersonKind(ctx.faction)) MakeGroup(ctx, ext, 1, ext.ages);
+            else
+            {
+                ctx.stranger = Arrivals.Make(kind, ctx.faction, ext.ages);
+                ctx.group.Clear();
+            }
             var r = ctx.stranger?.skills?.GetSkill(SkillDefOf.Crafting);
             if (r != null && !r.TotallyDisabled && r.Level < 8) r.Level = Rand.RangeInclusive(8, 14);
             ctx.variant = things.Count;

@@ -1,0 +1,632 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The Circuit of Tamers (docs/design/peoples-next.md, the third of the eight; docs/design/peoples.md, "Release D";
+    Source/ColonyCouncil/Peoples/PeoplesD.cs): beast-tamers who walk the region with their companions, challenging every
+    keeper of beasts they meet to a friendly bout; with PokéWorld their companions are Pokémon, without it the region's
+    beasts (and Vanilla Animals Expanded's where it has put them on the land). Industrial, on the game's outlander parent;
+    they arise in every age (ariseAges 0~3): in the tribal and medieval ages their rangers carry bows (ageArms), in the
+    spacer age a few are Wildspeakers (Vanilla Psycasts Expanded; PeopleGift.ages). Travelling clothes, freely varied,
+    around their signature: a braided sash in the Circuit's violet with a token for every bout won (Biotech's sash, and
+    its bandolier where one is worn). Their towns keep bout-rings, a hatchery and stables for every kind
+    (Rimfolk_Plan_BoutRing). At the gate: a tamer challenges the colony's best trainer to a friendly bout by the
+    Fighting-type spar's rules, a bruise one bout in 25 through the harm setting's budget (Rimfolk_Evt_TamerBout); an
+    egg-trader offers an egg of the Circuit's hatchery, swapped or sold (Rimfolk_Evt_EggTrade); a ranger brings home one
+    of the colony's animals that strayed (Rimfolk_Evt_TamerStray). Their ask: a young beast raised for their stables
+    (Rimfolk_Mission_TamersFoal). Their founding: Nessa Pell, the herder girl who found an egg in a meteor crater and
+    walked the region with what hatched for forty years. Original names only: nothing is borrowed from any game's trainer
+    ranks. Faith (Ideology): animals are people (animal personhood), each tamer their own champion (individualist), and
+    the road (VE Memes' nomad); the animalist style. Kinds of people: Alpha Genes' animusen, saurids, yttakin, VRE's
+    animakin, Venators and wood elves, three in four baseliners.
+  -->
+
+  <FactionDef ParentName="OutlanderFactionBase">
+    <defName>Rimfolk_Tamers</defName>
+    <label>circuit of tamers</label>
+    <description>Beast-tamers who walk the region with their companions and challenge every keeper of beasts they meet to a friendly bout. A tamer travels with one or two beasts that would follow them anywhere, and the Circuit's highest honour is to be beaten fairly by a stranger. Their towns keep bout-rings, a hatchery and stables for every kind.\n\nTheir ways began with a herder girl called Nessa Pell, who found an egg in the crater a falling star had made and raised what hatched from it. She walked the region with it for forty years, challenging every keeper of beasts she met, and the Circuit grew from those she beat and those who beat her. A tamer still wears a braided sash with a token tied on for every bout won, and Pell's own sash, they say, hangs in the oldest ring with no room left on it.\n\nThey are cheerful, competitive and generous in defeat, and they speak of their beasts as friends, never as property. A bond is not a leash, they say, and they mean it. Each ring is kept by its ring-keeper, and the Circuit by its circuit-holder.</description>
+    <pawnSingular>tamer</pawnSingular>
+    <pawnsPlural>tamers</pawnsPlural>
+    <leaderTitle>circuit-holder</leaderTitle>
+    <techLevel>Industrial</techLevel>
+    <basicMemberKind>Rimfolk_Tamers_Tamer</basicMemberKind>
+    <factionNameMaker>Rimfolk_Namer_Tamers</factionNameMaker>
+    <settlementNameMaker>Rimfolk_Namer_TamersTown</settlementNameMaker>
+    <factionIconPath>ColonyCouncil/Peoples/Tamers</factionIconPath>
+    <settlementTexturePath>ColonyCouncil/Peoples/TamersTown</settlementTexturePath>
+    <colorSpectrum>
+      <li>(0.40, 0.24, 0.58)</li>
+      <li>(0.58, 0.40, 0.76)</li>
+    </colorSpectrum>
+    <hidden>false</hidden>
+    <naturalEnemy>false</naturalEnemy>
+    <permanentEnemy>false</permanentEnemy>
+    <canSiege>false</canSiege>
+    <requiredCountAtGameStart>0</requiredCountAtGameStart>
+    <startingCountAtWorldCreation>1</startingCountAtWorldCreation>
+    <maxConfigurableAtWorldCreation>9999</maxConfigurableAtWorldCreation>
+    <configurationListOrderPriority>18</configurationListOrderPriority>
+    <settlementGenerationWeight>0.5</settlementGenerationWeight>
+    <raidCommonalityFromPointsCurve Inherit="False">
+      <points>
+        <li>(0, 0.25)</li>
+      </points>
+    </raidCommonalityFromPointsCurve>
+    <xenotypeSet Inherit="False">
+      <xenotypeChances>
+        <Yttakin MayRequire="Ludeon.RimWorld.Biotech">0.03</Yttakin>
+        <Hussar MayRequire="Ludeon.RimWorld.Biotech">0.02</Hussar>
+        <Highmate MayRequire="Ludeon.RimWorld.Biotech">0.02</Highmate>
+        <Pigskin MayRequire="Ludeon.RimWorld.Biotech">0.02</Pigskin>
+        <AG_Animusen MayRequire="Ludeon.RimWorld.Biotech,sarg.alphagenes">0.04</AG_Animusen>
+        <VRESaurids_Saurid MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.saurid">0.02</VRESaurids_Saurid>
+        <VRE_Animakin MayRequire="Ludeon.RimWorld.Biotech,Ludeon.RimWorld.Royalty,vanillaracesexpanded.phytokin">0.02</VRE_Animakin>
+        <DV_Venator MayRequire="Ludeon.RimWorld.Biotech,det.venators">0.02</DV_Venator>
+        <DevDesigner_XenotypeWoodElves MayRequire="Ludeon.RimWorld.Biotech,DevDesigner.Elves.Continued">0.02</DevDesigner_XenotypeWoodElves>
+      </xenotypeChances>
+    </xenotypeSet>
+    <fixedIdeo>true</fixedIdeo>
+    <ideoName>The Freely Given Bond</ideoName>
+    <ideoDescription>A bond is not a leash. A beast is a person of its own kind, owed its keep, its say and its friendship, and a tamer wins its trust or nothing at all; what is won is won together. Each tamer is their own champion and walks their own circuit, and the highest honour there is comes from a stranger who beats them fairly. Nessa Pell walked the region for forty years with what hatched from a star's egg, and the Circuit walks it still.</ideoDescription>
+    <forcedMemes>
+      <li MayRequire="Ludeon.RimWorld.Ideology">AnimalPersonhood</li>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Individualist</li>
+      <!-- Pell's forty years on the road: Vanilla Ideology Expanded's nomad. -->
+      <li MayRequire="VanillaExpanded.VMemesE">VME_Nomad</li>
+    </forcedMemes>
+    <structureMemeWeights Inherit="False">
+      <Structure_Animist MayRequire="Ludeon.RimWorld.Ideology">3</Structure_Animist>
+      <Structure_TheistEmbodied MayRequire="Ludeon.RimWorld.Ideology">1</Structure_TheistEmbodied>
+      <Structure_Ideological MayRequire="Ludeon.RimWorld.Ideology">1</Structure_Ideological>
+    </structureMemeWeights>
+    <styles>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Animalist</li>
+    </styles>
+    <caravanTraderKinds Inherit="False">
+      <li>Rimfolk_Caravan_Tamers</li>
+    </caravanTraderKinds>
+    <visitorTraderKinds Inherit="False">
+      <li>Rimfolk_Visitor_Tamers</li>
+    </visitorTraderKinds>
+    <baseTraderKinds Inherit="False">
+      <li>Rimfolk_Base_Tamers</li>
+    </baseTraderKinds>
+    <pawnGroupMakers Inherit="False">
+      <li>
+        <!-- A fight: ring-wardens and rangers, and the beasts that fight beside them -->
+        <kindDef>Combat</kindDef>
+        <options>
+          <Rimfolk_Tamers_Ringwarden>10</Rimfolk_Tamers_Ringwarden>
+          <Rimfolk_Tamers_Ranger>10</Rimfolk_Tamers_Ranger>
+          <Rimfolk_Tamers_Tamer>3</Rimfolk_Tamers_Tamer>
+          <Husky>3</Husky>
+          <Wolf_Timber>2</Wolf_Timber>
+        </options>
+      </li>
+      <li>
+        <kindDef>Peaceful</kindDef>
+        <options>
+          <Rimfolk_Tamers_Tamer>20</Rimfolk_Tamers_Tamer>
+          <Rimfolk_Tamers_Ranger>4</Rimfolk_Tamers_Ranger>
+          <Villager_Child MayRequire="Ludeon.RimWorld.Biotech">3</Villager_Child>
+        </options>
+      </li>
+      <li>
+        <!-- The egg-trader's string: beasts for sale, eggs, feed, and the pack beasts that carry it -->
+        <kindDef>Trader</kindDef>
+        <traders>
+          <Rimfolk_Tamers_EggTrader>1</Rimfolk_Tamers_EggTrader>
+        </traders>
+        <carriers>
+          <Muffalo>4</Muffalo>
+          <Horse>3</Horse>
+          <Dromedary>2</Dromedary>
+          <Alpaca>2</Alpaca>
+        </carriers>
+        <guards>
+          <Rimfolk_Tamers_Ringwarden>6</Rimfolk_Tamers_Ringwarden>
+          <Rimfolk_Tamers_Ranger>5</Rimfolk_Tamers_Ranger>
+        </guards>
+      </li>
+      <li>
+        <kindDef>Settlement</kindDef>
+        <options>
+          <Rimfolk_Tamers_Tamer>8</Rimfolk_Tamers_Tamer>
+          <Rimfolk_Tamers_Ringwarden>10</Rimfolk_Tamers_Ringwarden>
+          <Rimfolk_Tamers_Ranger>6</Rimfolk_Tamers_Ranger>
+          <Rimfolk_Tamers_EggTrader>2</Rimfolk_Tamers_EggTrader>
+          <Husky>3</Husky>
+        </options>
+      </li>
+    </pawnGroupMakers>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleExtension">
+        <calling>tamers</calling>
+        <townWord>ring</townWord>
+        <townWords>rings</townWords>
+        <head>ring-keeper</head>
+        <heir>second of the ring</heir>
+        <envoy>roaming tamer</envoy>
+        <trader>egg-trader</trader>
+        <courier>beast-rider</courier>
+        <couriers>beast-riders</couriers>
+        <caravanWeight>1</caravanWeight>
+        <camps>
+          <li>Council_Camp_Trainers</li>
+          <li>Rimfolk_Camp_BeastShow</li>
+          <li>Rimfolk_Camp_Catchers</li>
+        </camps>
+        <plan>Rimfolk_Plan_BoutRing</plan>
+        <honours>the bond freely given, a fair bout and the stranger who beats them</honours>
+        <fears>the leash, a beast ill-used and a bout won by a trick</fears>
+        <sayings>
+          <li>A bond is not a leash.</li>
+          <li>Win their trust and they will win your battles.</li>
+          <li>To be beaten fairly is an honour.</li>
+          <li>Every egg is a road not walked yet.</li>
+          <li>Never fight beside a beast you have not fed.</li>
+        </sayings>
+        <townGoods>
+          <Kibble>60~140</Kibble>
+          <Hay>100~220</Hay>
+          <MedicineHerbal>6~14</MedicineHerbal>
+          <Pemmican>40~90</Pemmican>
+        </townGoods>
+        <herd>
+          <li>Horse</li>
+          <li>Muffalo</li>
+          <li>Alpaca</li>
+          <li>Husky</li>
+          <li>Chicken</li>
+        </herd>
+        <herdCount>8~14</herdCount>
+        <ariseAges>0~3</ariseAges>
+      </li>
+    </modExtensions>
+  </FactionDef>
+
+  <!-- ===================== Their people ===================== -->
+
+  <!--
+    How alike they look (docs/design/peoples.md, "Release D"): travelling clothes of every make, freely varied (the
+    game's and Vanilla Apparel Expanded's shirts, jackets and hats, Settlers' bandanas and vests, packs), around the
+    Circuit's sash in violet (Biotech's sash, and its bandolier where one is worn), a token on it for every bout won.
+    The ring-wardens who keep order at the bout-rings are their only guards, and share one kit: a jacket, a helmet and
+    the sash. Light weapons: revolvers, pistols and knives; rifles for the rangers. Each tamer is good with beasts, and a
+    few are A RimWorld of Magic's druids, summoners or rangers; in the spacer age a few are Wildspeakers (Vanilla
+    Psycasts Expanded). In the tribal and medieval ages their rangers carry bows. They carry kibble, hay or herbs for
+    their beasts. Without any mod: the game's shirts, trousers, jackets, dusters and hats, revolvers and knives.
+  -->
+  <PawnKindDef Name="Rimfolk_TamersKindBase" Abstract="True">
+    <race>Human</race>
+    <defaultFactionDef>Rimfolk_Tamers</defaultFactionDef>
+    <chemicalAddictionChance>0.04</chemicalAddictionChance>
+    <backstoryCryptosleepCommonality>0.01</backstoryCryptosleepCommonality>
+    <invNutrition>2.55</invNutrition>
+    <specificApparelRequirements>
+      <!-- The Circuit's violet on the sash, and on a bandolier where one is worn. -->
+      <li MayRequire="Ludeon.RimWorld.Biotech"><apparelDef>Apparel_Sash</apparelDef><color>(0.50, 0.32, 0.68)</color></li>
+      <li MayRequire="Ludeon.RimWorld.Biotech"><apparelDef>Apparel_Bandolier</apparelDef><color>(0.50, 0.32, 0.68)</color></li>
+    </specificApparelRequirements>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_TamersKindBase">
+    <defName>Rimfolk_Tamers_Tamer</defName>
+    <label>roaming tamer</label>
+    <combatPower>40</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.5~1.5</gearHealthRange>
+    <apparelRequired>
+      <li MayRequire="Ludeon.RimWorld.Biotech">Apparel_Sash</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li>Western</li>
+      <li MayRequire="OskarPotocki.VanillaFactionsExpanded.SettlersModule">Outlander</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Industrial</li>
+    </apparelTags>
+    <apparelAllowHeadgearChance>0.6</apparelAllowHeadgearChance>
+    <apparelMoney>250~550</apparelMoney>
+    <weaponTags>
+      <li>SimpleGun</li>
+      <li>MedievalMeleeBasic</li>
+    </weaponTags>
+    <weaponMoney>60~180</weaponMoney>
+    <skills>
+      <li>
+        <skill>Animals</skill>
+        <range>6~14</range>
+      </li>
+    </skills>
+    <!-- Something for their beasts. -->
+    <inventoryOptions>
+      <skipChance>0.4</skipChance>
+      <subOptionsChooseOne>
+        <li><thingDef>Kibble</thingDef><countRange>10~25</countRange><choiceChance>2</choiceChance></li>
+        <li><thingDef>Hay</thingDef><countRange>10~20</countRange></li>
+        <li><thingDef>MedicineHerbal</thingDef><countRange>1~2</countRange></li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <initialWillRange>1~3</initialWillRange>
+    <initialResistanceRange>10~16</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Druid</trait><chance>0.04</chance></li>
+          <li><trait>Summoner</trait><chance>0.02</chance></li>
+          <!-- In the spacer age, a few hear the beasts: Vanilla Psycasts Expanded's Wildspeaker. -->
+          <li>
+            <psylink>1~2</psylink>
+            <paths>
+              <li>VPE_Wildspeaker</li>
+            </paths>
+            <chance>0.06</chance>
+            <ages>3~3</ages>
+          </li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_TamersKindBase">
+    <defName>Rimfolk_Tamers_Ranger</defName>
+    <label>ranger</label>
+    <combatPower>60</combatPower>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.6~1.6</gearHealthRange>
+    <apparelRequired>
+      <li MayRequire="Ludeon.RimWorld.Biotech">Apparel_Sash</li>
+      <li>Apparel_Pants</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li>IndustrialAdvanced</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Industrial</li>
+    </apparelTags>
+    <apparelAllowHeadgearChance>0.5</apparelAllowHeadgearChance>
+    <apparelMoney>300~600</apparelMoney>
+    <weaponTags>
+      <li>Gun</li>
+      <li>SimpleGun</li>
+    </weaponTags>
+    <weaponMoney>150~320</weaponMoney>
+    <skills>
+      <li>
+        <skill>Animals</skill>
+        <range>5~12</range>
+      </li>
+    </skills>
+    <requiredWorkTags>Violent</requiredWorkTags>
+    <inventoryOptions>
+      <skipChance>0.5</skipChance>
+      <subOptionsChooseOne>
+        <li><thingDef>Kibble</thingDef><countRange>10~20</countRange></li>
+        <li><thingDef>MedicineHerbal</thingDef><countRange>1~2</countRange></li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>14~20</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Ranger</trait><chance>0.06</chance></li>
+        </gifts>
+        <!-- Bows in the tribal and medieval ages (a people of their ways that arose there). -->
+        <ageArms>
+          <li>
+            <ages>0~1</ages>
+            <weaponTags>
+              <li>NeolithicRangedBasic</li>
+              <li>NeolithicRangedDecent</li>
+            </weaponTags>
+          </li>
+        </ageArms>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_TamersKindBase">
+    <defName>Rimfolk_Tamers_Ringwarden</defName>
+    <label>ring-warden</label>
+    <combatPower>65</combatPower>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.7~1.6</gearHealthRange>
+    <!-- The ring-wardens' kit: a jacket and a helmet over the sash. -->
+    <apparelRequired>
+      <li MayRequire="Ludeon.RimWorld.Biotech">Apparel_Sash</li>
+      <li>Apparel_Jacket</li>
+      <li>Apparel_SimpleHelmet</li>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialMilitaryBasic</li>
+    </apparelTags>
+    <apparelMoney>400~700</apparelMoney>
+    <weaponTags>
+      <li>Gun</li>
+      <li>SimpleGun</li>
+    </weaponTags>
+    <weaponMoney>180~360</weaponMoney>
+    <requiredWorkTags>Violent</requiredWorkTags>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>14~22</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Gladiator</trait><chance>0.03</chance></li>
+        </gifts>
+        <ageArms>
+          <li>
+            <ages>0~1</ages>
+            <weaponTags>
+              <li>NeolithicMeleeAdvanced</li>
+              <li>NeolithicRangedDecent</li>
+            </weaponTags>
+          </li>
+        </ageArms>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_TamersKindBase">
+    <defName>Rimfolk_Tamers_EggTrader</defName>
+    <label>egg-trader</label>
+    <trader>true</trader>
+    <combatPower>35</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.8~1.3</gearHealthRange>
+    <apparelRequired>
+      <li MayRequire="Ludeon.RimWorld.Biotech">Apparel_Sash</li>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialAdvanced</li>
+      <li>Western</li>
+    </apparelTags>
+    <apparelMoney>300~550</apparelMoney>
+    <weaponTags>
+      <li>SimpleGun</li>
+    </weaponTags>
+    <weaponMoney>60~150</weaponMoney>
+    <skills>
+      <li>
+        <skill>Social</skill>
+        <range>5~12</range>
+      </li>
+      <li>
+        <skill>Animals</skill>
+        <range>6~12</range>
+      </li>
+    </skills>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>10~16</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_TamersKindBase">
+    <defName>Rimfolk_Tamers_Holder</defName>
+    <label>circuit-holder</label>
+    <combatPower>70</combatPower>
+    <factionLeader>true</factionLeader>
+    <minGenerationAge>40</minGenerationAge>
+    <itemQuality>Good</itemQuality>
+    <gearHealthRange>1~1</gearHealthRange>
+    <apparelRequired>
+      <li MayRequire="Ludeon.RimWorld.Biotech">Apparel_Sash</li>
+      <li>Apparel_Duster</li>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialAdvanced</li>
+      <li>Western</li>
+    </apparelTags>
+    <apparelMoney>500~900</apparelMoney>
+    <weaponTags>
+      <li>SimpleGun</li>
+    </weaponTags>
+    <weaponMoney>120~260</weaponMoney>
+    <skills>
+      <li>
+        <skill>Animals</skill>
+        <range>12~18</range>
+      </li>
+      <li>
+        <skill>Social</skill>
+        <range>6~13</range>
+      </li>
+    </skills>
+    <inventoryOptions>
+      <subOptionsTakeAll>
+        <li><thingDef>Kibble</thingDef><countRange>10~20</countRange></li>
+      </subOptionsTakeAll>
+    </inventoryOptions>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>12~18</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Druid</trait><chance>0.25</chance></li>
+          <li>
+            <psylink>2~3</psylink>
+            <paths>
+              <li>VPE_Wildspeaker</li>
+            </paths>
+            <chance>0.3</chance>
+            <ages>3~3</ages>
+          </li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <!-- ===================== Their traders: the egg-trader's string ===================== -->
+
+  <TraderKindDef>
+    <defName>Rimfolk_Caravan_Tamers</defName>
+    <label>egg-trader's string</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>500~1000</countRange>
+      </li>
+      <li Class="StockGenerator_Animals">
+        <maxWildness>0.65</maxWildness>
+        <tradeTagsSell>
+          <li>AnimalFarm</li>
+          <li>AnimalPet</li>
+        </tradeTagsSell>
+        <tradeTagsBuy>
+          <li>AnimalFarm</li>
+          <li>AnimalPet</li>
+          <li>AnimalUncommon</li>
+        </tradeTagsBuy>
+        <kindCountRange>2~3</kindCountRange>
+        <countRange>2~5</countRange>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>EggsFertilized</categoryDef>
+        <thingDefCountRange>1~2</thingDefCountRange>
+        <totalPriceRange>60~180</totalPriceRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Kibble</thingDef>
+        <countRange>60~160</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Hay</thingDef>
+        <countRange>80~200</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineHerbal</thingDef>
+        <countRange>6~14</countRange>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Visitor_Tamers</defName>
+    <label>tamers on the road</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>150~350</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Kibble</thingDef>
+        <countRange>20~50</countRange>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>EggsFertilized</categoryDef>
+        <thingDefCountRange>1~1</thingDefCountRange>
+        <totalPriceRange>30~80</totalPriceRange>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Base_Tamers</defName>
+    <label>ring</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>800~1400</countRange>
+      </li>
+      <li Class="StockGenerator_Animals">
+        <maxWildness>0.70</maxWildness>
+        <tradeTagsSell>
+          <li>AnimalFarm</li>
+          <li>AnimalPet</li>
+          <li>AnimalUncommon</li>
+        </tradeTagsSell>
+        <tradeTagsBuy>
+          <li>AnimalFarm</li>
+          <li>AnimalPet</li>
+          <li>AnimalUncommon</li>
+          <li>AnimalExotic</li>
+        </tradeTagsBuy>
+        <kindCountRange>3~4</kindCountRange>
+        <countRange>2~6</countRange>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>EggsFertilized</categoryDef>
+        <thingDefCountRange>2~3</thingDefCountRange>
+        <totalPriceRange>100~300</totalPriceRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Kibble</thingDef>
+        <countRange>120~260</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Hay</thingDef>
+        <countRange>150~300</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineHerbal</thingDef>
+        <countRange>10~20</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>BasicClothing</tradeTag>
+        <countRange>3~5</countRange>
+        <maxTechLevelGenerate>Industrial</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+    </stockGenerators>
+  </TraderKindDef>
+
+  <!-- ===================== Their names ===================== -->
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_Tamers</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->Circuit of [PlaceOutlander]</li>
+        <li>r_name(p=2)->The [ringVirtue] Circuit</li>
+        <li>r_name->Tamers of the [ringThing]</li>
+        <li>r_name->[PlaceOutlander] Ring</li>
+        <li>r_name->The Circuit of the [ringThing]</li>
+        <li>ringThing->Star's Egg</li>
+        <li>ringThing->Braided Sash</li>
+        <li>ringThing->Open Hand</li>
+        <li>ringThing->Crater</li>
+        <li>ringThing->Forty Years</li>
+        <li>ringThing->Long Road</li>
+        <li>ringVirtue->Fair</li>
+        <li>ringVirtue->Wandering</li>
+        <li>ringVirtue->Friendly</li>
+        <li>ringVirtue->Unbeaten</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_TamersTown</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->[PlaceOutlander] Ring</li>
+        <li>r_name(p=2)->[PlaceOutlander] Stables</li>
+        <li>r_name->[ringWord] of [PlaceOutlander]</li>
+        <li>r_name->[ringPlace] Ring</li>
+        <li>ringWord->Hatchery</li>
+        <li>ringWord->Bout-ring</li>
+        <li>ringWord->Stables</li>
+        <li>ringPlace->Pell's</li>
+        <li>ringPlace->Crater</li>
+        <li>ringPlace->Oldest</li>
+        <li>ringPlace->Starfall</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>

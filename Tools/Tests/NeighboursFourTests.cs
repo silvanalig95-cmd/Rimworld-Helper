@@ -61,7 +61,7 @@ public static class NeighboursFourTests
         var missionFiles = Directory.GetFiles(Path.Combine(root, "Defs", "MissionDefs"), "*.xml");
         var ours = new[] { "Rimfolk_Missions_Neighbours4.xml", "Rimfolk_Missions_Neighbours4_Goods.xml" };
         // The asks of Rimfolk's own peoples since (Peoples/), which take a share of the same draw (Tools/Tests/PeoplesTests.cs).
-        var since = new[] { "Rimfolk_Missions_Peoples.xml", "Rimfolk_Missions_PeoplesC.xml" };
+        var since = new[] { "Rimfolk_Missions_Peoples.xml", "Rimfolk_Missions_PeoplesC.xml", "Rimfolk_Missions_PeoplesD.xml" };
         float before = 0f, after = 0f;
         foreach (var f in missionFiles)
             foreach (var d in XDocument.Load(f).Root!.Elements("IncidentDef"))

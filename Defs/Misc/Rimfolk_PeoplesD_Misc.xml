@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Release D's peoples at the colony's gate (Source/ColonyCouncil/Peoples/PeoplesD.cs, PeoplesD2.cs): the jobs their
+       touchpoints are seen doing on the map. A Warden skinning the beast they hunted where it fell; one of the Wheel's
+       runners stripping a mechanoid's wreck for parts; the colony's trainer in a tamer's friendly bout with their
+       companion, by the Fighting-type spar's rules (Defs/Misc/Rimfolk_AnimalPowers.xml has the spar's own). -->
+
+  <JobDef>
+    <defName>Rimfolk_PeoplesD_Skin</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeoplesWork</driverClass>
+    <reportString>skinning TargetA for the Wardens' book.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PeoplesD_Strip</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeoplesWork</driverClass>
+    <reportString>stripping TargetA for parts.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_TamerBout</defName>
+    <driverClass>ColonyCouncil.JobDriver_TamerBout</driverClass>
+    <reportString>in a friendly bout with TargetA.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+</Defs>

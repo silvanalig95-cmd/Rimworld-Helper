@@ -45,8 +45,15 @@ namespace ColonyCouncil
         /// </summary>
         public const string Pilgrims = "pilgrims", Scholars = "scholars", Brokers = "brokers", Fishers = "fishers";
 
+        /// <summary>
+        /// Release D's (docs/design/peoples-next.md, the first four): the Lantern Wardens' (beast-hunters of the
+        /// crossroads), the Quiet Bell's (keepers of the dead, whose sextons ring for everyone), the Circuit of Tamers'
+        /// (beast-tamers who keep bout-rings), the Wheel's (the rolling salvage town).
+        /// </summary>
+        public const string Hunters = "hunters", Sextons = "sextons", Tamers = "tamers", Salvagers = "salvagers";
+
         /// <summary>Every calling Rimfolk's words know. Release B's peoples take one of these.</summary>
-        public static readonly string[] Callings = { Traders, Healers, Herders, Pilgrims, Scholars, Brokers, Fishers };
+        public static readonly string[] Callings = { Traders, Healers, Herders, Pilgrims, Scholars, Brokers, Fishers, Hunters, Sextons, Tamers, Salvagers };
 
         public static bool IsCalling(string calling) => calling != null && Array.IndexOf(Callings, calling) >= 0;
 

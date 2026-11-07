@@ -202,6 +202,8 @@ namespace ColonyCouncil
             if (RiseFall.On) Safe("rise and fall", () => RiseFall.Daily(this, now));
             // New peoples that arise from what happened in the region (Peoples/Arising.cs), one a day at most.
             if (Arising.On) Safe("new peoples", () => Arising.Daily(now));
+            // The Wheel's towns, which move on every month or so (Peoples/WheelTowns.cs).
+            if (RimfolkPatches.On) Safe("the Wheel's towns", () => WheelTowns.Daily(now));
             Safe("trading posts", () => TradingPosts.Daily(this, now));
             Safe("follow-ups", () => FollowUps.Daily(this, now));
             Safe("hamlets", () => Hamlets.Daily(this, now));

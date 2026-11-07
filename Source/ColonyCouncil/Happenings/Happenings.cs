@@ -981,6 +981,9 @@ namespace ColonyCouncil
                         case "grave": keep = HappeningWorker_GraveVisitors.Hour(v, comp, now); break;
                         case "contest": keep = HappeningWorker_Champion.Hour(v, comp, now); break;
                         case HappeningWorker_TableGame.Kind: keep = HappeningWorker_TableGame.Hour(v, comp, now); break;
+                        // Release D's peoples (Peoples/PeoplesD.cs, PeoplesD2.cs): the Wardens' watch on their beast, a tamer's bout.
+                        case HappeningWorker_WardensHunt.Kind: keep = HappeningWorker_WardensHunt.Hour(v, comp, now); break;
+                        case HappeningWorker_TamerBout.Kind: keep = HappeningWorker_TamerBout.Hour(v, comp, now); break;
                         default: keep = false; break;
                     }
                 }
@@ -1055,6 +1058,8 @@ namespace ColonyCouncil
             if (note.beast) HappeningWorker_GreatBeast.Slain(this, victim, dinfo);
             if (note.wild && !note.beast) HappeningWorker_Orphan.Killed(this, victim, dinfo, note.cell);
             if (note.prisonerOf != null) Grudges.Add(note.prisonerOf, note.name, Now);
+            // A beast the Lantern Wardens were after (Peoples/PeoplesD.cs): they gather at the carcass to skin it.
+            if (victim.RaceProps?.Animal == true) HappeningWorker_WardensHunt.Killed(victim);
         }
 
         // ---------------- Memos for later events ----------------

@@ -23,6 +23,15 @@ Release C:
   - the river folk: a fish leaping over two waves (emblem); a house on posts over the water with a boat drawn up
     beside it (town).
 
+Release D:
+  - the Lantern Wardens: a lantern with its flame, hung from a ring, its cord knotted below (emblem); a palisade's gate
+    between two lantern posts (town);
+  - the Quiet Bell: a bell on its cord with its clapper (emblem); a bell tower over the wall of a grave-garden, a grave's
+    marker before it (town);
+  - the Circuit of Tamers: an egg under a falling star, in the ring of a bout (emblem); a fenced ring before the stable's
+    roof (town);
+  - the Wheel: a spoked cart wheel with a cog's teeth round its rim (emblem); a house on a cart, its wheels under it (town).
+
 A new people's glyphs: a function for each and a line in GLYPHS.
 
 Usage (from the repository root):
@@ -38,7 +47,7 @@ import sys
 from PIL import Image, ImageDraw, ImageFont
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from make_icons import arc, bezier, circle, ellipse, grow, line, minus, over, poly, rect, union  # noqa: E402
+from make_icons import arc, bezier, circle, ellipse, grow, line, minus, over, poly, rect, star, union  # noqa: E402
 
 S = 512  # drawing size (4x)
 OUT = 128  # texture size
@@ -391,6 +400,176 @@ def g_riverfolk_town():
     return over(boat, m, 10)
 
 
+# ---------------------------------------------------------------- release D: the Lantern Wardens
+
+def g_wardens():
+    """A lantern with its flame, hung from a ring, its cord knotted below."""
+    m = new()
+    # The ring it hangs from, and its cap.
+    ImageDraw.Draw(m).ellipse([216, 20, 296, 100], outline=ON, width=22)
+    poly(m, [(176, 150), (336, 150), (306, 104), (206, 104)])
+    rect(m, 160, 146, 352, 176, r=10)
+    # The glass: a frame of four posts with the flame in it.
+    body = new()
+    rect(body, 168, 176, 344, 380, r=14)
+    rect(body, 196, 196, 316, 360, r=8, fill=OFF)
+    flame = new()
+    poly(flame, teardrop(256, 214, 348, 40))
+    poly(flame, teardrop(256, 262, 344, 18), fill=OFF)
+    m = union(m, body, flame)
+    rect(m, 156, 380, 356, 408, r=10)                # the base
+    # The cord, knotted below.
+    line(m, [(256, 408), (256, 470)], 16)
+    for y in (430, 462):
+        circle(m, 256, y, 20)
+    return m
+
+
+def g_wardens_town():
+    """A palisade's gate between two lantern posts."""
+    m = new()
+    # The palisade: pointed logs.
+    for x in range(60, 460, 44):
+        if 196 <= x <= 300:
+            continue
+        rect(m, x, 210, x + 36, 440)
+        poly(m, [(x, 212), (x + 18, 176), (x + 36, 212)])
+    # The gate: an arch of logs over the opening.
+    rect(m, 196, 160, 316, 186, r=6)
+    rect(m, 196, 186, 214, 440); rect(m, 298, 186, 316, 440)
+    rect(m, 224, 300, 288, 440, fill=ON)
+    rect(m, 236, 312, 276, 440, fill=OFF)
+    # Lantern posts either side.
+    for x in (30, 482):
+        line(m, [(x, 440), (x, 120)], 16, caps=False)
+        rect(m, x - 22, 120, x + 22, 170, r=6)
+        rect(m, x - 12, 130, x + 12, 160, r=4, fill=OFF)
+        circle(m, x, 146, 8)
+    rect(m, 10, 440, 502, 470)
+    return m
+
+
+# ---------------------------------------------------------------- the Quiet Bell
+
+def g_quietbell():
+    """A bell on its cord, its clapper below."""
+    m = new()
+    ImageDraw.Draw(m).ellipse([222, 18, 290, 86], outline=ON, width=20)   # the cord's loop
+    rect(m, 236, 80, 276, 120)
+    # The bell: a rounded crown flaring to the lip.
+    pts = bezier((256, 110), (150, 110), (156, 260), (110, 360), 20) + [(80, 380), (432, 380)] + bezier((402, 360), (356, 260), (362, 110), (256, 110), 20)
+    poly(m, pts)
+    rect(m, 70, 372, 442, 404, r=14)               # the lip
+    # A band round its waist.
+    line(m, [(150, 280), (362, 280)], 12, fill=OFF, caps=False)
+    circle(m, 256, 452, 36)                         # the clapper
+    rect(m, 248, 404, 264, 420)
+    return m
+
+
+def g_quietbell_town():
+    """A bell tower over the wall of a grave-garden, a grave's marker before it."""
+    m = new()
+    rect(m, 20, 330, 492, 360)                      # the garden wall's coping
+    rect(m, 36, 360, 476, 470)                      # the wall
+    # The tower: a tall square with an open belfry and a pointed roof.
+    rect(m, 196, 150, 316, 360)
+    rect(m, 220, 176, 292, 250, r=6, fill=OFF)
+    poly(m, [(180, 154), (256, 50), (332, 154)])
+    # The bell in the belfry.
+    bell = new()
+    poly(bell, [(256, 190), (236, 196), (230, 236), (282, 236), (276, 196)])
+    m = union(m, bell)
+    rect(m, 236, 280, 276, 360, fill=OFF)           # the tower's door
+    # A grave's marker before the wall: a rounded stone.
+    marker = new()
+    rect(marker, 76, 250, 140, 330, r=26)
+    line(marker, [(108, 266), (108, 312)], 10, fill=OFF, caps=False)
+    line(marker, [(90, 282), (126, 282)], 10, fill=OFF, caps=False)
+    return over(marker, m, 10)
+
+
+# ---------------------------------------------------------------- the Circuit of Tamers
+
+def g_tamers():
+    """An egg under a falling star, in the ring of a bout."""
+    m = new()
+    ImageDraw.Draw(m).ellipse([36, 60, 476, 500], outline=ON, width=26)   # the ring
+    egg = new()
+    ellipse(egg, 176, 190, 336, 420)
+    ellipse(egg, 186, 150, 326, 360)
+    # The crack across it.
+    line(egg, [(196, 300), (226, 280), (246, 304), (270, 276), (296, 300), (320, 282)], 12, fill=OFF)
+    m = over(egg, m, 14)
+    # The falling star above, its trail behind it.
+    star_m = new()
+    poly(star_m, star(330, 96, 52, 22))
+    line(star_m, [(300, 120), (180, 40)], 14)
+    line(star_m, [(318, 138), (232, 92)], 10)
+    return over(star_m, m, 12)
+
+
+def g_tamers_town():
+    """A fenced ring before the stable's roof."""
+    m = new()
+    # The stable behind: a long low roof and its doors.
+    poly(m, [(40, 220), (256, 100), (472, 220)])
+    rect(m, 70, 220, 442, 330)
+    for x in (120, 226, 332):
+        rect(m, x, 250, x + 60, 330, fill=OFF)
+    # The ring's fence in front.
+    fence = new()
+    rect(fence, 20, 360, 492, 380)
+    rect(fence, 20, 420, 492, 440)
+    for x in range(30, 492, 64):
+        rect(fence, x, 340, x + 22, 470)
+    return over(fence, m, 10)
+
+
+# ---------------------------------------------------------------- the Wheel
+
+def g_wheel():
+    """A spoked cart wheel with a cog's teeth round its rim."""
+    m = new()
+    # The teeth.
+    for i in range(12):
+        a = math.radians(i * 30)
+        corners = []
+        for (r, da) in ((182, -0.13), (236, -0.09), (236, 0.09), (182, 0.13)):
+            corners.append((256 + r * math.cos(a + da), 256 + r * math.sin(a + da)))
+        poly(m, corners)
+    circle(m, 256, 256, 196)
+    circle(m, 256, 256, 150, fill=OFF)
+    # The spokes and the hub.
+    for i in range(6):
+        a = math.radians(i * 60 + 30)
+        line(m, [(256, 256), (256 + 156 * math.cos(a), 256 + 156 * math.sin(a))], 26)
+    circle(m, 256, 256, 52)
+    circle(m, 256, 256, 18, fill=OFF)
+    return m
+
+
+def g_wheel_town():
+    """A house on a cart, its wheels under it."""
+    m = new()
+    rect(m, 120, 170, 400, 330)                     # the house
+    poly(m, [(96, 180), (260, 70), (424, 180)])     # its roof
+    rect(m, 300, 110, 330, 170)                     # its chimney
+    rect(m, 160, 210, 220, 270, fill=OFF)           # a window
+    rect(m, 270, 240, 330, 330, fill=OFF)           # the door
+    rect(m, 60, 330, 470, 362)                      # the cart's bed
+    line(m, [(470, 346), (506, 410)], 16)          # the shaft
+    wheels = new()
+    for cx in (150, 372):
+        circle(wheels, cx, 410, 70)
+        circle(wheels, cx, 410, 44, fill=OFF)
+        circle(wheels, cx, 410, 14)
+        for i in range(4):
+            a = math.radians(i * 45)
+            line(wheels, [(cx - 44 * math.cos(a), 410 - 44 * math.sin(a)), (cx + 44 * math.cos(a), 410 + 44 * math.sin(a))], 8, caps=False)
+    return over(wheels, m, 10)
+
+
 GLYPHS = [
     ("League", g_league), ("LeagueTown", g_league_town),
     ("Order", g_order), ("OrderTown", g_order_town),
@@ -399,11 +578,16 @@ GLYPHS = [
     ("Scholars", g_scholars), ("ScholarsTown", g_scholars_town),
     ("Enclave", g_enclave), ("EnclaveTown", g_enclave_town),
     ("RiverFolk", g_riverfolk), ("RiverFolkTown", g_riverfolk_town),
+    ("Wardens", g_wardens), ("WardensTown", g_wardens_town),
+    ("QuietBell", g_quietbell), ("QuietBellTown", g_quietbell_town),
+    ("Tamers", g_tamers), ("TamersTown", g_tamers_town),
+    ("Wheel", g_wheel), ("WheelTown", g_wheel_town),
 ]
 
 # The peoples' colours (the middle of each colorSpectrum in Defs/PeopleDefs/), for the preview.
 TINTS = {"League": (66, 158, 166), "Order": (234, 228, 210), "Herders": (196, 118, 66), "Pilgrims": (145, 161, 130),
-         "Scholars": (143, 46, 84), "Enclave": (161, 212, 227), "RiverFolk": (28, 115, 179)}
+         "Scholars": (143, 46, 84), "Enclave": (161, 212, 227), "RiverFolk": (28, 115, 179),
+         "Wardens": (176, 50, 32), "QuietBell": (105, 105, 115), "Tamers": (125, 82, 170), "Wheel": (158, 135, 61)}
 
 
 def to_texture(mask):

@@ -28,6 +28,10 @@
   <CC_Arise_refugees_traders_2>With their fields lost, they carry goods between the towns from a waystation on the road, and they mean to be written in good ink by every town they deal with.</CC_Arise_refugees_traders_2>
   <CC_Arise_refugees_fishers>They took to the river near the ruin, and they live by its fish and its ferry now, from a landing on the bank.</CC_Arise_refugees_fishers>
   <CC_Arise_refugees_fishers_2>They took to the river near the ruin, and they live by its fish and its ferry now, from a landing on the bank, pulling whoever is in the water out first.</CC_Arise_refugees_fishers_2>
+  <CC_Arise_refugees_sextons>They stayed to bury the town's dead, every one, friend and foe, and they keep a grave-garden by the ruin now with a bell, for the dead of anyone who will bring them.</CC_Arise_refugees_sextons>
+  <CC_Arise_refugees_sextons_2>They buried the town's dead one by one and rang once over every grave, as the Quiet Bell does, and they keep a grave-garden by the ruin now for everyone's.</CC_Arise_refugees_sextons_2>
+  <CC_Arise_refugees_salvagers>They put what was left of the town on wheels and runners and drove it out of the ruin, and they have not stopped since: a yard on the move, buying what others throw away.</CC_Arise_refugees_salvagers>
+  <CC_Arise_refugees_salvagers_2>They loaded what the fire left onto carts and rolled away from the ruin, a brass cog stitched to every shoulder, and nobody among them has voted to stop.</CC_Arise_refugees_salvagers_2>
   <CC_Arise_refugees_Cool>They are wary of the colony, as their old people were.</CC_Arise_refugees_Cool>
   <CC_Arise_refugees_CoolOurs>They remember who burned {TOWN}, and they are cool toward the colony.</CC_Arise_refugees_CoolOurs>
   <CC_Arise_refugees_Warm>They have heard the colony was a friend to {PEOPLE}, and they would be glad of its friendship too.</CC_Arise_refugees_Warm>
@@ -51,6 +55,10 @@
   <CC_Arise_exiles_fishers>They keep boats on the river there, fishing and ferrying from a landing of their own, and take in whoever else has been turned out.</CC_Arise_exiles_fishers>
   <CC_Arise_exiles_scholars>{PAWN_nameDef} has them reading and copying, and they keep an archive of their own, open to anyone who can read.</CC_Arise_exiles_scholars>
   <CC_Arise_exiles_scholars_2>{PAWN_nameDef} has them copying whatever they can find before it is lost, and they keep an archive of their own, open to anyone who can read.</CC_Arise_exiles_scholars_2>
+  <CC_Arise_exiles_tamers>{PAWN_nameDef} has a way with beasts, and they walk the region with companions of their own now, challenging every keeper of beasts they meet to a friendly bout.</CC_Arise_exiles_tamers>
+  <CC_Arise_exiles_tamers_2>{PAWN_nameDef} taught them that a bond is not a leash, and they keep bout-rings and stables now, a token on their sashes for every bout won fairly.</CC_Arise_exiles_tamers_2>
+  <CC_Arise_exiles_hunters>{PAWN_nameDef} is a fine shot, and they follow the region's great beasts now, lighting a lantern at every crossroads where one took someone.</CC_Arise_exiles_hunters>
+  <CC_Arise_exiles_hunters_2>{PAWN_nameDef} taught them to track and to keep a book of every beast run down, and they keep lanterns lit at the crossroads until each page has its ending.</CC_Arise_exiles_hunters_2>
   <CC_Arise_exiles_Cool>Those who have met {PAWN_nameDef} on the road say {PAWN_pronoun} has not forgiven the colony.</CC_Arise_exiles_Cool>
   <CC_Arise_exiles_CoolGlad>{PAWN_nameDef} has not forgotten who was glad to see {PAWN_objective} go, they say.</CC_Arise_exiles_CoolGlad>
   <CC_Arise_exiles_Warm>{PAWN_nameDef} bears the colony no grudge, they say.</CC_Arise_exiles_Warm>
@@ -91,6 +99,12 @@
   <CC_Arise_Name_refugees_fishers>{WHAT} River Folk</CC_Arise_Name_refugees_fishers>
   <CC_Arise_Name_refugees_fishers_2>Boatmen of {WHAT}</CC_Arise_Name_refugees_fishers_2>
   <CC_Arise_Name_refugees_fishers_3>{WHAT} High Bank</CC_Arise_Name_refugees_fishers_3>
+  <CC_Arise_Name_refugees_sextons>{WHAT} Bell-keepers</CC_Arise_Name_refugees_sextons>
+  <CC_Arise_Name_refugees_sextons_2>The Bell of {WHAT}</CC_Arise_Name_refugees_sextons_2>
+  <CC_Arise_Name_refugees_sextons_3>{WHAT} Quiet Ground</CC_Arise_Name_refugees_sextons_3>
+  <CC_Arise_Name_refugees_salvagers>The {WHAT} Wheel</CC_Arise_Name_refugees_salvagers>
+  <CC_Arise_Name_refugees_salvagers_2>{WHAT} Wagons</CC_Arise_Name_refugees_salvagers_2>
+  <CC_Arise_Name_refugees_salvagers_3>{WHAT} Brass Cog</CC_Arise_Name_refugees_salvagers_3>
   <CC_Arise_Name_league_traders>{WHAT} League</CC_Arise_Name_league_traders>
   <CC_Arise_Name_league_traders_2>League of {WHAT}</CC_Arise_Name_league_traders_2>
   <CC_Arise_Name_league_traders_3>Flags of {WHAT}</CC_Arise_Name_league_traders_3>
@@ -112,6 +126,12 @@
   <CC_Arise_Name_exiles_scholars>{WHAT}'s School</CC_Arise_Name_exiles_scholars>
   <CC_Arise_Name_exiles_scholars_2>{WHAT}'s Readers</CC_Arise_Name_exiles_scholars_2>
   <CC_Arise_Name_exiles_scholars_3>{WHAT}'s Handcart</CC_Arise_Name_exiles_scholars_3>
+  <CC_Arise_Name_exiles_tamers>{WHAT}'s Circuit</CC_Arise_Name_exiles_tamers>
+  <CC_Arise_Name_exiles_tamers_2>{WHAT}'s Tamers</CC_Arise_Name_exiles_tamers_2>
+  <CC_Arise_Name_exiles_tamers_3>{WHAT}'s Sash</CC_Arise_Name_exiles_tamers_3>
+  <CC_Arise_Name_exiles_hunters>{WHAT}'s Wardens</CC_Arise_Name_exiles_hunters>
+  <CC_Arise_Name_exiles_hunters_2>{WHAT}'s Lanterns</CC_Arise_Name_exiles_hunters_2>
+  <CC_Arise_Name_exiles_hunters_3>{WHAT}'s Lantern</CC_Arise_Name_exiles_hunters_3>
   <CC_Arise_TownName_Refugees>New {TOWN}</CC_Arise_TownName_Refugees>
 
   <!-- ================= The history, and their cards ({FROM}: what they came from) ================= -->

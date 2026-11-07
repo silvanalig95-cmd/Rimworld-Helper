@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+  <!--
+    Release D's peoples in more of Rimfolk's existing events (Source/ColonyCouncil/Peoples/; docs/design/peoples.md,
+    "Release D"), as release A's and C's are in Patches/Rimfolk_Peoples.xml and _PeoplesC.xml. Each patches one of
+    Rimfolk's own defs and is conditional, so it never fails: with the def gone, nothing happens. A preference never shuts
+    another people out: without a people of the calling, everything comes as before.
+    - World events that prefer a calling (SituationFactionNeed.calling: five times as likely as another people): the old
+      beast the region talks of, the Lantern Wardens'; a people in mourning, the Quiet Bell's; a great fair, the Circuit's
+      (their bout-rings at it); iron scarce, the Wheel's (its yards buy every scrap of it).
+    - Callers that prefer a calling (HappeningExtension.prefers, read by the events' own workers): the undertakers, the
+      Quiet Bell's; the travelling tinker, the Wheel's; the animal doctor, the Circuit's. Each with a text in that
+      people's own voice ([their:CALLING]), said only when they are the ones who came.
+  -->
+
+  <!-- ===================== World events ===================== -->
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_OldBeast"]/faction</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_OldBeast"]/faction</xpath>
+      <value>
+        <calling>hunters</calling>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_Mourning"]/faction</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_Mourning"]/faction</xpath>
+      <value>
+        <calling>sextons</calling>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_Fair"]/faction</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_Fair"]/faction</xpath>
+      <value>
+        <calling>tamers</calling>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_IronScarce"]/faction</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_IronScarce"]/faction</xpath>
+      <value>
+        <calling>salvagers</calling>
+      </value>
+    </match>
+  </Operation>
+
+  <!-- ===================== The undertakers: the Quiet Bell's ===================== -->
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/IncidentDef[defName="Rimfolk_Evt_Undertakers"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/IncidentDef[defName="Rimfolk_Evt_Undertakers"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]</xpath>
+      <value>
+        <prefers>sextons</prefers>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/IncidentDef[defName="Rimfolk_Evt_Undertakers"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]/texts</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/IncidentDef[defName="Rimfolk_Evt_Undertakers"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]/texts</xpath>
+      <value>
+        <li>[their:sextons,!nobeast] Bell-keepers of {FACTION} in grey habits have come to the gate with spades and a small bronze bell, {X_nameDef} at their head. Everyone is owed a bell, {X_nameDef} says, even the ones who came over the wall: a grave for each beyond it for {COUNT} silver, toward the grave-garden's upkeep, or the dead carried home to the Bell on their beast for nothing, if they may keep what the raiders carried.</li>
+      </value>
+    </match>
+  </Operation>
+
+  <!-- ===================== The travelling tinker: the Wheel's ===================== -->
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/IncidentDef[defName="Council_Evt_Tinker"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/IncidentDef[defName="Council_Evt_Tinker"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]</xpath>
+      <value>
+        <prefers>salvagers</prefers>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/IncidentDef[defName="Council_Evt_Tinker"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]/texts</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/IncidentDef[defName="Council_Evt_Tinker"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]/texts</xpath>
+      <value>
+        <li>[their:salvagers] {X_nameDef} has dropped off the back of one of the Wheel's carts at the gate, a brass cog on the shoulder and a bag of tools. The Wheel's yard is two stops on, {X_nameDef} says, but nothing is broken, only waiting: {COUNT} silver, and everything the colony wears or fights with is sound by morning.</li>
+      </value>
+    </match>
+  </Operation>
+
+  <!-- ===================== The animal doctor: the Circuit's ===================== -->
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/IncidentDef[defName="Rimfolk_Evt_Vet"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/IncidentDef[defName="Rimfolk_Evt_Vet"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]</xpath>
+      <value>
+        <prefers>tamers</prefers>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/IncidentDef[defName="Rimfolk_Evt_Vet"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]/texts</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/IncidentDef[defName="Rimfolk_Evt_Vet"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]/texts</xpath>
+      <value>
+        <li>[their:tamers,hurt,young] {X_nameDef}, who keeps the beasts healthy at the Circuit's ring, is at the gate with a bag of salves and a violet sash, and has been watching the colony's animals over the fence. A bond is not a leash, {X_nameDef} says, but a sore paw is a sore paw: {TALE} seen to and {PET_nameDef} worked a while, for {COUNT} silver or the feed, or the tending alone for a corner to sleep in.</li>
+        <li>[their:tamers,hurt,!young] {X_nameDef}, who keeps the beasts healthy at the Circuit's ring, is at the gate with a bag of salves and a violet sash. A bond is not a leash, {X_nameDef} says, but a sore paw is a sore paw: {TALE} seen to with the ring's own medicine, for {COUNT} silver or the feed, or for a corner to sleep in.</li>
+      </value>
+    </match>
+  </Operation>
+
+</Patch>

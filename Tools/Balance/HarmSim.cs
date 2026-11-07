@@ -202,6 +202,11 @@ namespace Balance
         private const float PilgrimNights = 0.2f;
         /// <summary>The cough caught by the one who sat up with them (PeoplesMath.CoughChance; the tests hold the two the same).</summary>
         private const float PilgrimCough = 0.1f;
+        /// <summary>
+        /// A tamer's bouts taken a colony-year (a Circuit of Tamers at peace nearby: Rimfolk_Evt_TamerBout, a month apart at
+        /// least, most taken), and the companion's blow (PeoplesDMath.BoutBlowChance; the tests hold the two the same).
+        /// </summary>
+        private const float TamerBouts = 1.4f, TamerBlow = 1f / 25f;
         /// <summary>A home with a people bearing a grudge or a notable that cold within reach, and its schemes' fights a year then (SchemeSim: 0.16 to 0.21).</summary>
         private const float Schemer = 0.3f, SchemeFights = 0.18f;
         // ---- Harm, part 4 ----
@@ -968,6 +973,13 @@ namespace Balance
                 var p = Any(y, gm);
                 int at = day + gm.Next(3, 30);
                 y.onsets.Add((p, at, HarmKinds.Rematch));
+            }
+            // A tamer's bout (the peoples, release D): the colony's best hand with beasts, the companion's blow one bout in 25.
+            var gtb = rng("tamer bout");
+            if (gtb.NextDouble() < TamerBouts / Days && Comes(y, HarmKinds.TamerBout, gtb, TamerBlow))
+            {
+                var p = Any(y, gtb);
+                y.today.Add((13, () => Hurt(y, p, HarmKinds.TamerBout)));
             }
             // Games with real contests: the bouts' real blows and the race's turned ankles.
             var gt = rng("games");

@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Talk with release D's peoples (docs/design/peoples.md, "Release D"; the facts service's their:CALLING tags): how their
+    ways began, what they honour, what they fear, and their work, beside the pieces of Rimfolk_OutsiderTalks_PeoplesLore.xml;
+    the format is in Rimfolk_OutsiderTalks_Greetings.xml's header. A founding is told as the story of their ways (the
+    first Warden, the first bell), so a people that arose and took those ways can tell it too. Each in its own voice: the
+    Wardens of the lantern and the book, the Bell of the ground and the bell, the Circuit of the bond and the ring, the
+    Wheel of the road and the fire behind it.
+  -->
+
+  <!-- ================= The Lantern Wardens ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesD_WardensGarrow</defName>
+    <topic>faith</topic>
+    <uses>chat,know</uses>
+    <when>their:hunters</when>
+    <lines>
+      <li>[us] Why do the Wardens carry lanterns in broad daylight?</li>
+      <li>[them] For Tobin Garrow, a shepherd whose village was emptied in one night.</li>
+      <li>[us] What emptied it?</li>
+      <li>[them] Something out of the treeline, so he lit his dead brother's lantern at the crossroads.</li>
+      <li>[us] For how long?</li>
+      <li>[them] Eleven years, until it was dead, and those who walked with him were the first of us.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesD_WardensBook</defName>
+    <topic>honour</topic>
+    <uses>know</uses>
+    <when>their:hunters</when>
+    <lines>
+      <li>[them] Every lodge keeps a book, with a page for every beast we've run down.</li>
+      <li>[us] And the empty pages?</li>
+      <li>[them] Those are for the ones still loose, and every page of the book gets its ending.</li>
+      <li>[us] What's on the cord on your sleeve?</li>
+      <li>[them] A knot for every beast felled, and you count the knots, not the years.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesD_WardensFear</defName>
+    <topic>hardship</topic>
+    <uses>chat</uses>
+    <when>their:hunters</when>
+    <lines>
+      <li>[us] What does a Warden fear?</li>
+      <li>[them] The beast that gets away, and a crossroads with no light at it.</li>
+      <li>[us] Not dying on a hunt?</li>
+      <li>[them] Dying with an empty page behind me, that's worse.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesD_WardensWork</defName>
+    <topic>work</topic>
+    <uses>chat</uses>
+    <when>their:hunters</when>
+    <lines>
+      <li>[us] Do you hunt everything that moves?</li>
+      <li>[them] Only the ones that take people, and the pelts pay for the lantern oil.</li>
+      <li>[us] How do you tell which ones?</li>
+      <li>[them] Follow the lanterns, a beast that takes a person answers for it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The Quiet Bell ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesD_BellMarr</defName>
+    <topic>faith</topic>
+    <uses>chat,know</uses>
+    <when>their:sextons</when>
+    <lines>
+      <li>[us] Why does the Bell bury even raiders?</li>
+      <li>[them] Nobody would bury the raiders after the long war, and what came up taught us better.</li>
+      <li>[us] Who started it?</li>
+      <li>[them] A widow called Ysolde Marr, with a spade and a cracked chapel bell.</li>
+      <li>[us] What did she do with the bell?</li>
+      <li>[them] Rang it once over every grave, friend or foe, until the ground was quiet.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesD_BellOwed</defName>
+    <topic>honour</topic>
+    <uses>know</uses>
+    <when>their:sextons</when>
+    <lines>
+      <li>[them] Everyone is owed a bell.</li>
+      <li>[us] Even the ones who came over our wall?</li>
+      <li>[them] Those most of all, and those who did the killing owe the burying.</li>
+      <li>[us] That's a hard thing to ask.</li>
+      <li>[them] The ground doesn't ask, it only keeps what it is given.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesD_BellFear</defName>
+    <topic>hardship</topic>
+    <uses>chat</uses>
+    <when>their:sextons</when>
+    <lines>
+      <li>[us] Does anything frighten the Bell?</li>
+      <li>[them] The unburied dead, and a field that stirs at night.</li>
+      <li>[us] Stirs?</li>
+      <li>[them] Bury them deep, and listen, and you won't have to find out.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesD_BellWork</defName>
+    <topic>work</topic>
+    <uses>chat</uses>
+    <when>their:sextons</when>
+    <lines>
+      <li>[us] Isn't it grim work, digging all day?</li>
+      <li>[them] It's quiet work, and somebody ought to do it kindly.</li>
+      <li>[us] Do you ever get used to it?</li>
+      <li>[them] You get used to the digging, never to the bell.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The Circuit of Tamers ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesD_TamersPell</defName>
+    <topic>faith</topic>
+    <uses>chat,know</uses>
+    <when>their:tamers</when>
+    <lines>
+      <li>[us] How did the Circuit start?</li>
+      <li>[them] A herder girl called Nessa Pell found an egg in the crater a falling star had made.</li>
+      <li>[us] What hatched?</li>
+      <li>[them] Nobody agrees, but she walked forty years with it and challenged every tamer she met.</li>
+      <li>[us] And she won?</li>
+      <li>[them] Mostly, and the Circuit grew from those she beat and those who beat her.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesD_TamersSash</defName>
+    <topic>honour</topic>
+    <uses>know</uses>
+    <when>their:tamers</when>
+    <lines>
+      <li>[them] Every token on this sash is a bout I won fairly.</li>
+      <li>[us] What's the highest honour a tamer can have?</li>
+      <li>[them] To be beaten fairly by a stranger, believe it or not.</li>
+      <li>[us] Why would you want to lose?</li>
+      <li>[them] Because then there's someone better on the road, and I get to learn from them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesD_TamersFear</defName>
+    <topic>hardship</topic>
+    <uses>chat</uses>
+    <when>their:tamers</when>
+    <lines>
+      <li>[us] What does a tamer hate most?</li>
+      <li>[them] A leash, and a beast ill-used by someone who calls that training.</li>
+      <li>[us] And losing?</li>
+      <li>[them] Losing's fine, a bout won by a trick is what I can't stand.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesD_TamersBond</defName>
+    <topic>work</topic>
+    <uses>chat</uses>
+    <when>their:tamers</when>
+    <lines>
+      <li>[us] How do you train them to fight like that?</li>
+      <li>[them] You don't train them, you win their trust and they win your battles.</li>
+      <li>[us] That sounds slower.</li>
+      <li>[them] A bond is not a leash, and it lasts a great deal longer.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The Wheel ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesD_WheelWainwright</defName>
+    <topic>faith</topic>
+    <uses>chat,know</uses>
+    <when>their:salvagers</when>
+    <lines>
+      <li>[us] Why does the Wheel never stop?</li>
+      <li>[them] The night our valley burned, Mab Wainwright put her house on her cart and drove out.</li>
+      <li>[us] And everyone followed?</li>
+      <li>[them] With whatever they could lift, and nobody has ever voted to stop.</li>
+      <li>[us] Has anyone tried?</li>
+      <li>[them] Every few years someone stands up, and by then we've already moved on.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesD_WheelMended</defName>
+    <topic>honour</topic>
+    <uses>know</uses>
+    <when>their:salvagers</when>
+    <lines>
+      <li>[them] Nothing is broken, only waiting.</li>
+      <li>[us] Waiting for what?</li>
+      <li>[them] For somebody who can be bothered to mend it, and that's us.</li>
+      <li>[us] Why the brass cog on every shoulder?</li>
+      <li>[them] Because nothing on the Wheel is thrown away, least of all a person.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesD_WheelFear</defName>
+    <topic>hardship</topic>
+    <uses>chat</uses>
+    <when>their:salvagers</when>
+    <lines>
+      <li>[us] What's the Wheel afraid of?</li>
+      <li>[them] Standing still, and the fire behind us.</li>
+      <li>[us] Isn't the fire long out?</li>
+      <li>[them] That's what people say right before it catches them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesD_WheelTrade</defName>
+    <topic>trade</topic>
+    <uses>chat</uses>
+    <when>their:salvagers</when>
+    <lines>
+      <li>[us] Who buys rubbish?</li>
+      <li>[them] We do, and then we sell it back to you better.</li>
+      <li>[us] That can't be much of a living.</li>
+      <li>[them] Buy it cheap, sell it better, and you'd be surprised.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

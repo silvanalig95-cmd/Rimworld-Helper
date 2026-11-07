@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The Quiet Bell (docs/design/peoples-next.md, the second of the eight; docs/design/peoples.md, "Release D";
+    Source/ColonyCouncil/Peoples/PeoplesD.cs): keepers of the dead of every people, friend or foe, who listen to the ground
+    for what should not stir. Medieval, on the game's tribal parent; they arise in every age (ariseAges 0~3), and a
+    people of their ways in the industrial or spacer age carries flamers for what will not stay down (ageArms). Their
+    bell-keepers share an undyed grey habit and veil (the habit's rule: one habit, its cut free); their sextons and
+    gravewardens dress plainly and differently around a grey hood or cape. Their towns are walled grave-gardens with an
+    ossuary, a bell tower and a quiet hostel (Rimfolk_Plan_GraveGarden). At the gate: after a raid they take the enemy's
+    dead off the colony's hands and ring for them, which the raiders' people remember (Rimfolk_Evt_BellForTheDead); a
+    bell-keeper leads the funeral of one of the colony (Rimfolk_Evt_BellFuneral); with Anomaly, a bell-keeper warns that
+    the ground is stirring before the void acts (Rimfolk_Evt_BellVoidSigns). Their grave-gardens ask for linen for
+    shrouds in a plague year (Rimfolk_Mission_BellShrouds), and the undertakers come from them likeliest. Their founding:
+    Ysolde Marr, who buried the raiders nobody would after the long war and rang a cracked bell over every grave. Faith
+    (Ideology): guilt for the unburied, and the bell-keepers as a priesthood (VE Memes' exalted priesthood); the morbid
+    style. Kinds of people: dirtmoles who dig, fungoids of the grave-gardens, stoneborn carvers of the ossuaries,
+    forsaken and dark elves, three in four baseliners.
+  -->
+
+  <FactionDef ParentName="TribeBase">
+    <defName>Rimfolk_QuietBell</defName>
+    <label>Quiet Bell</label>
+    <description>Keepers of the dead of every people, friend or foe. Wherever the dead lie unburied the Quiet Bell comes with spades and a small bronze bell, and every one of them is given a grave and rung for, whoever they were and whoever killed them. Between the burying they listen to the ground, for what should not stir.\n\nTheir ways began after the long war, when nobody would bury the raiders who fell in the fields, and what came up out of those fields taught the region why that matters. A widow named Ysolde Marr took a spade and a cracked chapel bell out to the fields and buried them one by one, ringing once over every grave, friend or foe, until the ground was quiet. Those who came out to help her are the first of the Bell. Every bell-keeper still carries a small bronze bell on a cord, rung once for every one of the dead.\n\nThey speak softly, little and kindly, and nothing about the dead frightens them. Their gravewardens are there for what will not stay down. Each grave-garden is kept by its sexton, and the Bell by the first bell.</description>
+    <pawnSingular>bell-keeper</pawnSingular>
+    <pawnsPlural>bell-keepers</pawnsPlural>
+    <leaderTitle>first bell</leaderTitle>
+    <techLevel>Medieval</techLevel>
+    <basicMemberKind>Rimfolk_QuietBell_Keeper</basicMemberKind>
+    <factionNameMaker>Rimfolk_Namer_QuietBell</factionNameMaker>
+    <settlementNameMaker>Rimfolk_Namer_QuietBellTown</settlementNameMaker>
+    <factionIconPath>ColonyCouncil/Peoples/QuietBell</factionIconPath>
+    <settlementTexturePath>ColonyCouncil/Peoples/QuietBellTown</settlementTexturePath>
+    <colorSpectrum>
+      <li>(0.32, 0.32, 0.36)</li>
+      <li>(0.50, 0.50, 0.54)</li>
+    </colorSpectrum>
+    <hidden>false</hidden>
+    <naturalEnemy>false</naturalEnemy>
+    <permanentEnemy>false</permanentEnemy>
+    <canSiege>false</canSiege>
+    <requiredCountAtGameStart>0</requiredCountAtGameStart>
+    <startingCountAtWorldCreation>1</startingCountAtWorldCreation>
+    <maxConfigurableAtWorldCreation>9999</maxConfigurableAtWorldCreation>
+    <configurationListOrderPriority>40</configurationListOrderPriority>
+    <settlementGenerationWeight>0.4</settlementGenerationWeight>
+    <allowedCultures Inherit="False">
+      <li>Rustican</li>
+    </allowedCultures>
+    <backstoryFilters Inherit="False">
+      <li>
+        <categories>
+          <li>Outlander</li>
+        </categories>
+        <commonality>0.6</commonality>
+      </li>
+      <li>
+        <categories>
+          <li>Tribal</li>
+        </categories>
+        <commonality>0.4</commonality>
+      </li>
+    </backstoryFilters>
+    <raidCommonalityFromPointsCurve Inherit="False">
+      <points>
+        <li>(0, 0.15)</li>
+      </points>
+    </raidCommonalityFromPointsCurve>
+    <xenotypeSet Inherit="False">
+      <xenotypeChances>
+        <Dirtmole MayRequire="Ludeon.RimWorld.Biotech">0.04</Dirtmole>
+        <Neanderthal MayRequire="Ludeon.RimWorld.Biotech">0.02</Neanderthal>
+        <Genie MayRequire="Ludeon.RimWorld.Biotech">0.02</Genie>
+        <VRE_Fungoid MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.fungoid">0.03</VRE_Fungoid>
+        <AG_Forsaken MayRequire="Ludeon.RimWorld.Biotech,sarg.alphagenes">0.02</AG_Forsaken>
+        <DevDesigner_XenotypeDarkElves MayRequire="Ludeon.RimWorld.Biotech,DevDesigner.Elves.Continued">0.02</DevDesigner_XenotypeDarkElves>
+        <Stoneborn MayRequire="Ludeon.RimWorld.Biotech,det.stoneborn">0.03</Stoneborn>
+      </xenotypeChances>
+    </xenotypeSet>
+    <fixedIdeo>true</fixedIdeo>
+    <ideoName>The Quiet Ground</ideoName>
+    <ideoDescription>Everyone is owed a bell. The dead of every people are given a grave and rung for once, friend and foe alike, because the ground keeps what it is given and gives back what it is not. Those who did the killing owe the burying most of all. The bell-keepers keep the rites and listen to the ground, and they are heard before anyone. Ysolde Marr buried the raiders nobody else would and rang her cracked bell over every grave until the fields were quiet, and the Bell has been ringing since.</ideoDescription>
+    <forcedMemes>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Guilty</li>
+      <!-- The bell-keepers who keep the rites and are heard first: Vanilla Ideology Expanded's exalted priesthood. -->
+      <li MayRequire="VanillaExpanded.VMemesE">VME_ExaltedPriesthood</li>
+    </forcedMemes>
+    <structureMemeWeights Inherit="False">
+      <Structure_TheistAbstract MayRequire="Ludeon.RimWorld.Ideology">3</Structure_TheistAbstract>
+      <Structure_OriginChristian MayRequire="Ludeon.RimWorld.Ideology">1</Structure_OriginChristian>
+      <Structure_Ideological MayRequire="Ludeon.RimWorld.Ideology">1</Structure_Ideological>
+    </structureMemeWeights>
+    <styles>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Morbid</li>
+    </styles>
+    <caravanTraderKinds Inherit="False">
+      <li>Rimfolk_Caravan_QuietBell</li>
+    </caravanTraderKinds>
+    <visitorTraderKinds Inherit="False">
+      <li>Rimfolk_Visitor_QuietBell</li>
+    </visitorTraderKinds>
+    <baseTraderKinds Inherit="False">
+      <li>Rimfolk_Base_QuietBell</li>
+    </baseTraderKinds>
+    <pawnGroupMakers Inherit="False">
+      <li>
+        <!-- A fight: the gravewardens, the sextons with their spades behind -->
+        <kindDef>Combat</kindDef>
+        <options>
+          <Rimfolk_QuietBell_Gravewarden>12</Rimfolk_QuietBell_Gravewarden>
+          <Rimfolk_QuietBell_Sexton>4</Rimfolk_QuietBell_Sexton>
+          <Rimfolk_QuietBell_Keeper>2</Rimfolk_QuietBell_Keeper>
+        </options>
+      </li>
+      <li>
+        <kindDef>Peaceful</kindDef>
+        <options>
+          <Rimfolk_QuietBell_Keeper>16</Rimfolk_QuietBell_Keeper>
+          <Rimfolk_QuietBell_Sexton>10</Rimfolk_QuietBell_Sexton>
+          <Villager_Child MayRequire="Ludeon.RimWorld.Biotech">2</Villager_Child>
+        </options>
+      </li>
+      <li>
+        <!-- The tollkeeper's cart: linen, candles of tallow, stone and herbs -->
+        <kindDef>Trader</kindDef>
+        <traders>
+          <Rimfolk_QuietBell_Tollkeeper>1</Rimfolk_QuietBell_Tollkeeper>
+        </traders>
+        <carriers>
+          <Donkey>4</Donkey>
+          <Muffalo>2</Muffalo>
+          <Horse>2</Horse>
+        </carriers>
+        <guards>
+          <Rimfolk_QuietBell_Gravewarden>8</Rimfolk_QuietBell_Gravewarden>
+          <Rimfolk_QuietBell_Sexton>4</Rimfolk_QuietBell_Sexton>
+        </guards>
+      </li>
+      <li>
+        <kindDef>Settlement</kindDef>
+        <options>
+          <Rimfolk_QuietBell_Keeper>8</Rimfolk_QuietBell_Keeper>
+          <Rimfolk_QuietBell_Sexton>8</Rimfolk_QuietBell_Sexton>
+          <Rimfolk_QuietBell_Gravewarden>10</Rimfolk_QuietBell_Gravewarden>
+          <Rimfolk_QuietBell_Tollkeeper>2</Rimfolk_QuietBell_Tollkeeper>
+        </options>
+      </li>
+    </pawnGroupMakers>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleExtension">
+        <calling>sextons</calling>
+        <townWord>grave-garden</townWord>
+        <townWords>grave-gardens</townWords>
+        <head>sexton</head>
+        <heir>under-sexton</heir>
+        <envoy>gravewarden</envoy>
+        <trader>tollkeeper</trader>
+        <courier>bell-carrier</courier>
+        <couriers>bell-carriers</couriers>
+        <caravanWeight>0.5</caravanWeight>
+        <camps>
+          <li>Council_Camp_Mourners</li>
+          <li>Council_Camp_Penitents</li>
+          <li>Council_Camp_Procession</li>
+        </camps>
+        <plan>Rimfolk_Plan_GraveGarden</plan>
+        <honours>a grave for everyone, the bell rung in time and quiet ground</honours>
+        <fears>the unburied dead, a field that stirs and the bell left silent</fears>
+        <sayings>
+          <li>Everyone is owed a bell.</li>
+          <li>Ring once for friend and foe alike.</li>
+          <li>The ground keeps what it is given.</li>
+          <li>Bury them deep, and listen.</li>
+          <li>Quiet now, you are home.</li>
+        </sayings>
+        <townGoods>
+          <Cloth>60~140</Cloth>
+          <MedicineHerbal>8~16</MedicineHerbal>
+          <Pemmican>40~90</Pemmican>
+          <WoodLog>80~160</WoodLog>
+        </townGoods>
+        <ariseAges>0~3</ariseAges>
+      </li>
+    </modExtensions>
+  </FactionDef>
+
+  <!-- ===================== Their people ===================== -->
+
+  <!--
+    How alike they look (docs/design/peoples.md, "Release D"): the bell-keepers' habit is the order's own, an undyed grey
+    robe (or with Vanilla Factions Expanded - Medieval 2 a mantle) and a grey veil, worn old or new; its cut and its age
+    free. The sextons, who dig, dress plainly and differently around a grey hood: shirts and trousers, packs (Vanilla
+    Apparel Expanded - Accessories), caps (Medieval 2); spades (Vanilla Weapons Expanded's shovel), clubs and knives.
+    The gravewardens, their guards, share one kit: a helmet and the grey cape over padding (Vanilla Armour Expanded's
+    gambesons and quilted vests), with maces, hammers and axes; in the industrial and spacer ages a flamer or a firebomb
+    for what will not stay down. A few bell-keepers are A RimWorld of Magic's priests (the first bell most of all), a
+    few gravewardens paladins, now and then a sexton a geomancer. They carry linen for shrouds or herbs. Without any mod:
+    robes, hoods, capes and helmets, shirts and trousers; clubs, knives, spears and maces.
+  -->
+  <PawnKindDef Name="Rimfolk_QuietBellKindBase" Abstract="True">
+    <race>Human</race>
+    <defaultFactionDef>Rimfolk_QuietBell</defaultFactionDef>
+    <chemicalAddictionChance>0.02</chemicalAddictionChance>
+    <invNutrition>2.55</invNutrition>
+    <invFoodDef>Pemmican</invFoodDef>
+    <maxGenerationAge>80</maxGenerationAge>
+    <specificApparelRequirements>
+      <!-- Undyed grey on the habit, the veil and the cape. -->
+      <li><apparelDef>Apparel_Robe</apparelDef><color>(0.42, 0.42, 0.45)</color></li>
+      <li><apparelDef>Apparel_HatHood</apparelDef><color>(0.42, 0.42, 0.45)</color></li>
+      <li><apparelDef>Apparel_Cape</apparelDef><color>(0.42, 0.42, 0.45)</color></li>
+      <li MayRequire="Ludeon.RimWorld.Royalty"><apparelDef>Apparel_RobeRoyal</apparelDef><color>(0.42, 0.42, 0.45)</color></li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2"><apparelDef>VFEM2_Apparel_Mantle</apparelDef><color>(0.42, 0.42, 0.45)</color></li>
+    </specificApparelRequirements>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_QuietBellKindBase">
+    <defName>Rimfolk_QuietBell_Keeper</defName>
+    <label>bell-keeper</label>
+    <combatPower>30</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Poor</itemQuality>
+    <gearHealthRange>0.4~1.3</gearHealthRange>
+    <specificApparelRequirements>
+      <!-- The habit: a robe, or a mantle. -->
+      <li>
+        <alternateTagChoices>
+          <li><tag>Robe</tag><chance>2</chance></li>
+          <li MayRequire="OskarPotocki.VFE.Medieval2"><tag>VFEM2_Medieval</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+    </specificApparelRequirements>
+    <apparelRequired>
+      <li>Apparel_HatHood</li>
+      <li>Apparel_BasicShirt</li>
+      <li>Apparel_Pants</li>
+    </apparelRequired>
+    <apparelTags>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Neolithic</li>
+    </apparelTags>
+    <apparelMoney>200~420</apparelMoney>
+    <weaponTags>
+      <li>NeolithicMeleeBasic</li>
+    </weaponTags>
+    <weaponMoney>30~80</weaponMoney>
+    <!-- Linen for a shroud, or herbs. -->
+    <inventoryOptions>
+      <skipChance>0.45</skipChance>
+      <subOptionsChooseOne>
+        <li><thingDef>Cloth</thingDef><countRange>4~10</countRange><choiceChance>2</choiceChance></li>
+        <li><thingDef>MedicineHerbal</thingDef><countRange>1~2</countRange></li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>8~14</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Priest</trait><chance>0.12</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_QuietBellKindBase">
+    <defName>Rimfolk_QuietBell_Sexton</defName>
+    <label>sexton</label>
+    <combatPower>40</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Poor</itemQuality>
+    <gearHealthRange>0.4~1.4</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_HatHood</li>
+      <li>Apparel_BasicShirt</li>
+      <li>Apparel_Pants</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>Neolithic</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Neolithic</li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Cap</li>
+    </apparelTags>
+    <apparelAllowHeadgearChance>0.7</apparelAllowHeadgearChance>
+    <apparelMoney>200~400</apparelMoney>
+    <weaponTags>
+      <li>NeolithicMeleeBasic</li>
+      <li MayRequire="VanillaExpanded.VWE">ToolDecent</li>
+    </weaponTags>
+    <weaponMoney>40~120</weaponMoney>
+    <inventoryOptions>
+      <skipChance>0.5</skipChance>
+      <subOptionsChooseOne>
+        <li><thingDef>Cloth</thingDef><countRange>6~12</countRange></li>
+        <li><thingDef>WoodLog</thingDef><countRange>4~8</countRange></li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <initialWillRange>1~3</initialWillRange>
+    <initialResistanceRange>10~16</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Geomancer</trait><chance>0.03</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_QuietBellKindBase">
+    <defName>Rimfolk_QuietBell_Gravewarden</defName>
+    <label>gravewarden</label>
+    <combatPower>65</combatPower>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.7~1.6</gearHealthRange>
+    <!-- The gravewardens' kit: a helmet and the grey cape over plain clothes. -->
+    <apparelRequired>
+      <li>Apparel_SimpleHelmet</li>
+      <li>Apparel_Cape</li>
+      <li>Apparel_BasicShirt</li>
+      <li>Apparel_Pants</li>
+    </apparelRequired>
+    <apparelTags>
+      <li MayRequire="VanillaExpanded.VARME">MedievalArmorBasic</li>
+      <li MayRequire="VanillaExpanded.VARME">MedievalArmorDecent</li>
+      <li>MedievalMilitary</li>
+    </apparelTags>
+    <apparelMoney>320~600</apparelMoney>
+    <weaponTags>
+      <li>NeolithicMeleeAdvanced</li>
+      <li>MedievalMeleeDecent</li>
+    </weaponTags>
+    <weaponMoney>120~450</weaponMoney>
+    <requiredWorkTags>Violent</requiredWorkTags>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>14~22</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Paladin</trait><chance>0.08</chance></li>
+        </gifts>
+        <!-- For what will not stay down: a flamer or a firebomb in the industrial and spacer ages. -->
+        <ageArms>
+          <li>
+            <ages>2~3</ages>
+            <weaponTags>
+              <li MayRequire="Ludeon.RimWorld.Anomaly">Flamethrower</li>
+              <li>GrenadeFlame</li>
+            </weaponTags>
+          </li>
+        </ageArms>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_QuietBellKindBase">
+    <defName>Rimfolk_QuietBell_Tollkeeper</defName>
+    <label>tollkeeper</label>
+    <trader>true</trader>
+    <combatPower>30</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.8~1.2</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_HatHood</li>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>Cape</li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Trader</li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Medieval</li>
+    </apparelTags>
+    <apparelMoney>250~450</apparelMoney>
+    <weaponTags>
+      <li>NeolithicMeleeBasic</li>
+    </weaponTags>
+    <weaponMoney>30~70</weaponMoney>
+    <skills>
+      <li>
+        <skill>Social</skill>
+        <range>5~12</range>
+      </li>
+    </skills>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>8~14</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_QuietBellKindBase">
+    <defName>Rimfolk_QuietBell_FirstBell</defName>
+    <label>first bell</label>
+    <combatPower>40</combatPower>
+    <factionLeader>true</factionLeader>
+    <minGenerationAge>50</minGenerationAge>
+    <isFighter>false</isFighter>
+    <itemQuality>Good</itemQuality>
+    <gearHealthRange>1~1</gearHealthRange>
+    <specificApparelRequirements>
+      <li>
+        <alternateTagChoices>
+          <li><tag>Robe</tag><chance>2</chance></li>
+          <li MayRequire="Ludeon.RimWorld.Royalty"><tag>RoyalRobe</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+    </specificApparelRequirements>
+    <apparelRequired>
+      <li>Apparel_HatHood</li>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>Cape</li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Medieval</li>
+    </apparelTags>
+    <apparelMoney>400~700</apparelMoney>
+    <weaponTags>
+      <li>NeolithicMeleeBasic</li>
+    </weaponTags>
+    <weaponMoney>30~80</weaponMoney>
+    <skills>
+      <li>
+        <skill>Social</skill>
+        <range>8~15</range>
+      </li>
+    </skills>
+    <inventoryOptions>
+      <subOptionsTakeAll>
+        <li><thingDef>Cloth</thingDef><countRange>6~10</countRange></li>
+      </subOptionsTakeAll>
+    </inventoryOptions>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>8~12</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Priest</trait><chance>0.35</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <!-- ===================== Their traders: the tollkeeper's cart ===================== -->
+
+  <TraderKindDef>
+    <defName>Rimfolk_Caravan_QuietBell</defName>
+    <label>tollkeeper's cart</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>300~700</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Cloth</thingDef>
+        <countRange>80~180</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineHerbal</thingDef>
+        <countRange>8~18</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Pemmican</thingDef>
+        <countRange>40~100</countRange>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>StoneBlocks</categoryDef>
+        <thingDefCountRange>1~2</thingDefCountRange>
+        <totalPriceRange>100~250</totalPriceRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>BasicClothing</tradeTag>
+        <countRange>2~4</countRange>
+        <maxTechLevelGenerate>Medieval</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Visitor_QuietBell</defName>
+    <label>bell-keepers on the road</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>80~200</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Cloth</thingDef>
+        <countRange>20~50</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineHerbal</thingDef>
+        <countRange>3~8</countRange>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Base_QuietBell</defName>
+    <label>grave-garden</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>600~1100</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Cloth</thingDef>
+        <countRange>120~260</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineHerbal</thingDef>
+        <countRange>15~30</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Pemmican</thingDef>
+        <countRange>80~160</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>WoodLog</thingDef>
+        <countRange>150~300</countRange>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>StoneBlocks</categoryDef>
+        <thingDefCountRange>2~3</thingDefCountRange>
+        <totalPriceRange>200~500</totalPriceRange>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>FoodRaw</categoryDef>
+        <thingDefCountRange>2~3</thingDefCountRange>
+        <totalPriceRange>150~400</totalPriceRange>
+        <excludedCategories>
+          <li>EggsFertilized</li>
+        </excludedCategories>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>BasicClothing</tradeTag>
+        <countRange>3~5</countRange>
+        <maxTechLevelGenerate>Medieval</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <!-- ===================== Their names ===================== -->
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_QuietBell</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->The Bell of [PlaceOutlander]</li>
+        <li>r_name(p=2)->Keepers of the [bellThing]</li>
+        <li>r_name->The [bellVirtue] Bell</li>
+        <li>r_name->[PlaceOutlander] Bell-keepers</li>
+        <li>r_name->Ringers of the [bellThing]</li>
+        <li>bellThing->Quiet Ground</li>
+        <li>bellThing->Long Field</li>
+        <li>bellThing->Cracked Bell</li>
+        <li>bellThing->Last Grave</li>
+        <li>bellThing->Grey Habit</li>
+        <li>bellThing->Unburied</li>
+        <li>bellVirtue->Cracked</li>
+        <li>bellVirtue->Patient</li>
+        <li>bellVirtue->Mourning</li>
+        <li>bellVirtue->Listening</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_QuietBellTown</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->[PlaceOutlander] Garden</li>
+        <li>r_name(p=2)->[PlaceOutlander] Ossuary</li>
+        <li>r_name->[gardenWord] of [PlaceOutlander]</li>
+        <li>r_name->[gardenVirtue] Bell</li>
+        <li>gardenWord->Bell Tower</li>
+        <li>gardenWord->Grave-garden</li>
+        <li>gardenWord->Long Field</li>
+        <li>gardenVirtue->Marr's</li>
+        <li>gardenVirtue->Quiet</li>
+        <li>gardenVirtue->Evening</li>
+        <li>gardenVirtue->Ashen</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>

@@ -517,3 +517,12 @@ Rimfolk_WS_Legend [rumour] a rumour of the legend far off, told
 Rimfolk_WS_Legend [end:befriended] told: the taming or the catch already happened on the legend's ground
 Rimfolk_WS_Legend [end:gone] its tracks far away, told
 Rimfolk_WS_Legend [end:moved] another people's hunters far away, told
+# Defs/IncidentDefs/Rimfolk_Events_PeoplesD.xml
+Rimfolk_Evt_WardensHunt [option 2] a refusal: the Wardens are sent home from the gate (SendAway)
+Rimfolk_Evt_WardensLantern [option 2] a refusal: the Warden is sent home from the gate (SendAway)
+Rimfolk_Evt_BellForTheDead [option 2] a refusal: the bell-keepers are sent home from the gate (SendAway); the dead are the colony's to see to
+Rimfolk_Evt_BellFuneral [option 2] a refusal: the bell-keeper goes from the grave (SendAway); the colony mourns as it would
+Rimfolk_Evt_WheelScrap [option 2] a refusal: the scrap-runner is sent home from the gate (SendAway)
+# Defs/MissionDefs/Rimfolk_Missions_PeoplesD.xml
+Rimfolk_Mission_BellShrouds [option 1] a refusal: the burying is the Bell's, far away
+Rimfolk_Mission_WheelAxle [option 1] a refusal: the mending is the Wheel's, far away

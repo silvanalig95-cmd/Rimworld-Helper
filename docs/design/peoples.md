@@ -5,14 +5,15 @@ player's words, 7 November 2026: "we can start with a few factions and see how i
 those. reuse and create at your own discretion. they should also be able to arise during play so that i will see new
 factions in an existing run", and "use all dlc and mods to your availability".
 
-Three releases. **Release A** (7 November 2026): three peoples of peaceful callings the world lacked, made when a new
+Four releases. **Release A** (7 November 2026): three peoples of peaceful callings the world lacked, made when a new
 world is made. **Release B** (7 November 2026, below): peoples that arise during play, so an existing save sees new
 ones, built on release A's templates and code. **Release C** (7 November 2026, below): four more peaceful peoples, the
 pilgrims, the scholars, the spacer enclave and the river folk, which release B's peoples that arise may also take the
 ways of. Their gear, kinds of people and gifts were reworked after (7 November 2026, "Their gear, their kinds of people
 and their gifts", below): the tables' looks of each release are as first built. Then all seven were brought to the level
 of the eight new peoples of `docs/design/peoples-next.md`: a founding story, sayings, what they honour and fear, a fuller
-voice and a touchpoint each ("Their stories, sayings and touchpoints", below).
+voice and a touchpoint each ("Their stories, sayings and touchpoints", below). **Release D** (7 November 2026, below):
+the first four of those eight, the Lantern Wardens, the Quiet Bell, the Circuit of Tamers and the Wheel.
 
 ## What was built (release A)
 
@@ -563,6 +564,197 @@ waystone are the camps' existing farewell walk and gifts.
 | No water near the colony | No nets on the bank. |
 | Answers play out on the map (setting) off | The order's care is given at once; the walks, the gathering and the lessons are the play-outs' own fallbacks. |
 | Camps (setting) off | No winter quarters and no young beast. |
+
+## What was built (release D: the Lantern Wardens, the Quiet Bell, the Circuit of Tamers and the Wheel)
+
+The first four of the eight peoples of `docs/design/peoples-next.md` (the player's words, 7 November 2026: "love all
+these factions, go ahead!"; an explicit request, no proposal round), each at the level the seven were brought to: a
+founding story, sayings, what they honour and fear, their own titles, messengers, gear by role, faith, town plan, voice,
+touchpoints at the gate that play out on the map, an ask, a patch on the callers that should come from them, names for
+peoples that arise in their ways and an Almanac page. Built only from the player's active mods (`docs/player-mods/`, the
+rows with `active` yes; every def name and tag checked there), always softly, with the base game's fallback. Code in
+`Source/ColonyCouncil/Peoples/`: `PeoplesD.cs` (helpers, the Wardens, the Bell), `PeoplesD2.cs` (the Circuit, the
+Wheel), `WheelTowns.cs` (the Wheel's towns that move), `PeoplesDMath.cs` (pure, linked into the tests:
+`Tools/Tests/PeoplesDTests.cs`, "peoples, release D: "); `PeopleKindExtension.ageArms` and `PeopleGift.ages`
+(`PeopleDefs.cs`, `PeopleGifts.cs`: `AgeArms`), `Peoples.AgeOf`. Defs: `Defs/PeopleDefs/Rimfolk_People_Wardens.xml`,
+`_QuietBell.xml`, `_Tamers.xml`, `_Wheel.xml`, `Rimfolk_TownPlans_PeoplesD.xml`; `Defs/IncidentDefs/Rimfolk_Events_PeoplesD.xml`,
+`Defs/MissionDefs/Rimfolk_Missions_PeoplesD.xml`, `Defs/FlavorPoolDefs/Rimfolk_Lines_PeoplesD.xml`,
+`Defs/OutsiderTalkDefs/Rimfolk_OutsiderTalks_PeoplesD.xml`, `Defs/ThoughtDefs/Rimfolk_Thoughts_PeoplesD.xml`,
+`Defs/Misc/Rimfolk_PeoplesD_Misc.xml` (the jobs), `Patches/Rimfolk_PeoplesD.xml`, Keyed `Rimfolk_PeoplesD.xml`; the
+Almanac's page *wardens, the Bell, the Circuit and the Wheel*.
+
+| | The Lantern Wardens | The Quiet Bell | The Circuit of Tamers | The Wheel |
+|---|---|---|---|---|
+| defName | `Rimfolk_Wardens` | `Rimfolk_QuietBell` | `Rimfolk_Tamers` | `Rimfolk_Wheel` |
+| Calling | hunters | sextons | tamers | salvagers |
+| Age | Medieval (tribal parent) | Medieval (tribal parent) | Industrial (outlander parent) | Industrial (outlander parent) |
+| Arises in (release B) | every age | every age | every age | every age |
+| Founding | Tobin Garrow, a shepherd whose village was emptied in one night, hung his dead brother's lantern at the crossroads and kept it lit eleven years, until the beast was dead | after the long war nobody would bury the raiders; the widow Ysolde Marr buried them one by one and rang a cracked chapel bell over every grave | the herder girl Nessa Pell found an egg in a falling star's crater and walked the region with what hatched for forty years, challenging every keeper of beasts | the night the valley burned, the wheelwright Mab Wainwright put her house on her cart and drove out ahead of the fire; nobody has voted to stop |
+| Sayings | Where a lantern burns, someone was taken. Keep it lit until it is done. Every page of the book gets its ending. | Everyone is owed a bell. Ring once for friend and foe alike. Quiet now, you are home. | A bond is not a leash. To be beaten fairly is an honour. Every egg is a road not walked yet. | Nothing is broken, only waiting. Mend it tonight, we leave tomorrow. Buy it cheap, sell it better. |
+| They honour / fear | the lantern kept lit, the book's last line and a steady hand / the beast that gets away, a dark crossroads, the empty page | a grave for everyone, the bell rung in time, quiet ground / the unburied dead, a field that stirs, the bell left silent | the bond freely given, a fair bout, the stranger who beats them / the leash, a beast ill-used, a bout won by a trick | a thing well mended, the road ahead, a fair swap / standing still, the fire behind them, the vote to stop |
+| Signature | a hood dyed lantern red (the game's hood) | the bell-keepers' grey habit and veil | a sash in the Circuit's violet (Biotech's sash; its bandolier where worn) | a coat of any cut in old brass |
+| Leader, head, heir, envoy, trader | lantern-master, keeper of the book, under-keeper, tracker, pelt-buyer | first bell, sexton, under-sexton, gravewarden, tollkeeper | circuit-holder, ring-keeper, second of the ring, roaming tamer, egg-trader | wheelwright, yard boss, second boss, fixer, scrap-runner |
+| Messengers | lantern-runners | bell-carriers | beast-riders | scrap-runners |
+| Towns | 0.5: palisaded lodges | 0.4: grave-gardens | 0.5: rings | 0.35: yards, which move |
+| Caravans | 0.8 | 0.5 | 1 | 2, the region's most |
+| Raids | 0.3 | 0.15 | 0.25 | 0.3 |
+| Faith (Ideology) | The Lit Crossroads: human primacy (and VE Memes' light); abstract, animist or ideological; rustic | The Quiet Ground: guilty (and VE Memes' exalted priesthood); abstract, Christian origin or ideological; morbid | The Freely Given Bond: animal personhood, individualist (and VE Memes' nomad); animist, embodied or ideological; animalist | The Turning Wheel: collectivist (and VE Memes' scrapper and nomad); ideological, abstract or archist; techist |
+| Kinds (Biotech, a quarter or so) | Venators, yttakin, neanderthals, hussars, saurids, wood elves, animusen | dirtmoles, fungoids, stoneborn, forsaken, dark elves, neanderthals, genies | animusen, yttakin, saurids, animakin, Venators, wood elves, hussars, highmates, pigskins | wasters, dirtmoles, genies, hussars, starjacks (Odyssey), androids, stoneborn, boglegs, lapis |
+| Colour | lantern red | undyed grey | violet | old brass |
+
+**How alike they look, role by role** (the design's rule: uniform only where it makes sense). The Wardens wear no
+uniform: wardens, trackers and the lantern-master in furs, tribal wear and Vanilla Apparel Expanded's utility pieces;
+spear-wardens in a shirt and trousers under medieval armour of any make; the pelt-buyer in a collar shirt with a trader's
+coat (Medieval 2); all under the red hood. Trackers carry bows, great bows and crossbows (Vanilla Weapons Expanded,
+Medieval 2's arbalest), spear-wardens spears and pikes (Medieval 2), wardens a spear or a bow; they carry pemmican,
+herbal medicine or a plain hide. The Bell's bell-keepers share one grey habit (hood, shirt and trousers dyed grey, the
+cut free) and carry linen and herbs; sextons dress plainly in grey hoods with spades (Vanilla Weapons Expanded's
+shovel) or clubs and carry linen and wood; the gravewardens are the Bell's one kit (a grey cape and simple helmet over
+shirt and trousers, medieval armour, maces and hammers); the tollkeeper and the first bell wear a cape (with Medieval 2
+its mantle). The Circuit's roaming tamers dress freely (western, outlander and industrial clothes) under the sash and
+carry kibble, hay and herbs; rangers in the sash and trousers with guns; ring-wardens their one kit (jacket, simple
+helmet, collar shirt and trousers); the egg-trader and the circuit-holder in collar shirts, the holder in a duster. The
+Wheel's hands wear whatever the scrap gave around the brass coat, with tool belts and packs (Vanilla Apparel Expanded -
+Accessories), wrenches and revolvers (Vanilla Weapons Expanded's tools, Makeshift's scrap guns) and carry components,
+steel or chemfuel; yard guards their one kit (jacket, flak vest, trousers, the game's guns or scrap-built ones); the
+mechanitor in Biotech's airwire headset; the fixer and the wheelwright in shirts and a duster.
+
+**Gifts** (`PeopleKindExtension.gifts`, A RimWorld of Magic by its trait's name, psylinks with Vanilla Psycasts
+Expanded's paths): the Wardens' rangers and snipers (the lantern-master a ranger one in four, and the only Warden with a
+psylink: a Wildspeaker's path, 15%); the Bell's priests (the first bell one in three), a sexton geomancer now and then,
+gravewarden paladins; the Circuit's druids and summoners, and in the spacer age only (`PeopleGift.ages` 3~3) a few
+Wildspeakers (the holder 30%); the Wheel's technomancers and an enchanter, the wheelwright a technomancer one in five
+and a commander. No gift over 35% of a kind.
+
+**Every age** (the player's rule). A people of one of Rimfolk's templates lives in its template's age unless it arose
+(release B) from something of another: survivors and faithful who broke away keep the age of the people they came
+from, a band of the banished the colony's, within the span its template arises in (`Peoples.AgeOf`,
+`PeoplesDMath.PeopleAge`). New: `PeopleKindExtension.ageArms`, a kit's weapon for other ages (`ages`, `weaponTags`,
+`money`: the most it may cost, else the kind's budget and a quarter), given as a pawn is made (`AgeArms.Arm`, the
+weapon's own stuff and quality): the Wardens' trackers take guns in the industrial and spacer ages, the Bell's
+gravewardens molotovs and (Anomaly) an incinerator, the Circuit's rangers and ring-wardens bows and spears in the tribal
+and medieval ages, the Wheel's yard guards spears and maces in the tribal and medieval ages and (Vanilla Weapons
+Expanded - Laser) salvaged lasers in the spacer age. A set whose tags are all a missing mod's arms nobody. And
+`PeopleGift.ages`: a gift only in those ages. Their touchpoints speak by the colony's means (`lowtech`,
+`industrial|spacer` texts).
+
+**Their towns' maps** (`Rimfolk_TownPlans_PeoplesD.xml`, laid like the others'). The Wardens' **lodge** (35 by 22): a
+palisade, the trophy hall with its long tables, five beds, the store, a butcher's spot and a hide-scraper's spot
+(crafting) by the fire, kennels with sleeping spots in a pen, torches at every way out. The Bell's **grave-garden** (35
+by 24): eighteen graves on flagstones among rose beds inside the wall, the ossuary with four sarcophagi under the bell
+tower's column, a quiet hostel of five beds, the store. The Circuit's **ring** (37 by 24): a ring of packed earth inside
+a fence with six gates, torches round it, the hatchery's six animal boxes, four beds, the store, and stables (a pen of
+146 cells) for every kind. The Wheel's **yard** (37 by 22): a ring of fences, the workshop (a fueled smithy, a machining
+table, a tailor's bench), a bunkhouse of eight bedrolls, an open yard of scrap (the store), a small pen for the draught
+beasts: laid out as if leaving tomorrow.
+
+**The Wheel's towns move** (`WheelTowns.Daily`, from the region's day, the deeper game hooks on): each of the Wheel's
+towns on its own day of every 30 (`PeoplesDMath.MoveDay`, by its id) moves two to five tiles by `Arising.TryTownTile`
+(land a town can stand on, clear of the colony's homes and of other peoples' land), never while the colony has a map
+of it, a caravan on or bound for its tile, or an ongoing quest that looks at it; the news (`CC_PeoplesD_WheelMoved`,
+Flavor) with the town on the world map, and the region's towns refreshed. A town that can't move stays.
+
+**Theirs at the gate** (`Rimfolk_Events_PeoplesD.xml`; each only from a people of that calling at peace with the
+colony, each with three answers, the last always to send them on):
+
+- *The lantern hunt* (`HappeningWorker_WardensHunt`): when a legend of the region, a beast nemesis or a pack's alpha is
+  on the colony's land, wild and on its feet (the legend first: `PeoplesDMath.QuarryRank`), two or three Wardens come.
+  Beside the colony's best shot (`DilemmaEffect_WardensHunt` `together`): the shot is given the game's hunt on the beast
+  when they carry a hunting weapon, the Wardens go for it under the game's assault-things lord, the shot learns from
+  them; or the Wardens alone. When it falls (`Happenings.Notify_Killed`), the Wardens gather at the carcass, one skins it
+  where it lies for two hours (`JobDriver_PeoplesWork`, a progress bar), and the game's butchering of it is split: the
+  leather into the Warden's pack for their book, the meat and the rest left there for the colony (`PeoplesD.Divide`;
+  `CC_PeoplesD_Skinned`); then they go. If it leaves the land, or two days pass, they go home.
+- *The pelt-buyer* (`HappeningWorker_PeltBuyer`): with twenty pelts or more in the colony's stores, a pelt-buyer and a
+  tracker buy up to sixty at 1.2 times their worth (`PeltPrice`), carried out to them and paid in silver, the tracker
+  teaching the colony's best hand with beasts to read a trail if asked (a lesson).
+- *A lantern at the crossroads* (`HappeningWorker_WardensLantern`): within thirty days of a beast nemesis killing one of
+  the colony, a Warden comes towards evening; lit with them, the lantern stands at the gate from dusk through the night,
+  and those who were close to the dead stand its first hours there (a vigil); or the Warden alone stands by it until
+  first light. If the beast is dead already, the Warden says the page has its ending.
+- *A bell for the dead* (`HappeningWorker_BellForTheDead`, the undertakers' worker): after a fight with the enemy's dead
+  still lying out, three or four bell-keepers bury them in graves beyond the wall or carry them off on their beast, the
+  Bell's words said; either way `DilemmaEffect_BellForTheDead` tells up to three of the dead's peoples (not a permanent
+  enemy), each gaining goodwill by how many of theirs were seen to (`GoodwillFor`: 6 for one, 10 at most), each with a
+  message.
+- *The Bell's funeral* (`HappeningWorker_BellFuneral`): for one of the colony who died within six days and lies in a
+  grave, a bell-keeper waits by the grave; the colony gathers there in the evening (a vigil at the grave with the funeral's own words,
+  `Rimfolk_Pool_PlayBellFuneral`), or one colonist stands a while with the bell-keeper.
+- *The ground is listening* (`HappeningWorker_BellVoidSigns`, Anomaly only, the void awake and no big threat for eight
+  days): towards evening an old bell-keeper warns at the gate; lamps at the colony's doors and a watch on the walls
+  until first light (a patrol), or the bell-keeper alone at the gate with a lamp until first light.
+- *A friendly bout* (`HappeningWorker_TamerBout`): a roaming tamer with their companion (with PokéWorld a Fighting type
+  that is no legend, else a trainable beast of the land of half to two and a half a man's size, else a husky, a timber
+  wolf or a retriever) challenges the
+  colony's best hand with beasts. Taken (`DilemmaEffect_TamerBout`), the two meet at the gate and spar by the
+  Fighting-type spar's rules (`JobDriver_TamerBout`: practice swings each way for 900 to 1500 ticks, melee practice,
+  the companion held to the bout by PokéWorld's own stay job where it has one); the winner by the colonist's way with
+  beasts and hands (`WinChance`, a fifth for someone green, four in five at most); beaten fairly, the tamer ties a token
+  on the sash and hands over an egg of the Circuit's hatchery, and the colony is proud of it; one bout in 25 the
+  companion's blow lands (a bruise of 3 to 6 through the harm setting, below). Or an hour with the tamer and the
+  companion, a lesson in beasts.
+- *The egg-trader* (`HappeningWorker_EggTrade`): an egg of a kind the colony doesn't keep, swapped for one of the
+  colony's fertile eggs (carried out) or bought for silver at half again its worth.
+- *A stray home* (`HappeningWorker_TamerStray`): one of the colony's animals that went wild or was lost within four
+  months, found in the world, is walked to the gate on a lead; handed back (its master again if it has one), with a
+  tenth of its worth for the ranger's trouble if the colony likes; or the ranger keeps it.
+- *The fixer* (`HappeningWorker_WheelMending`, the travelling tinker's worker under the Wheel's name): mends worn
+  clothes and weapons for silver, one piece at a time, or teaches.
+- *The scrap-runners* (`HappeningWorker_WheelScrap`): with six pieces or more of scrap (slag in the stores or the home
+  area, worn-out or dead men's clothes and weapons in the stores), they buy up to thirty, carried out to their cart, for
+  silver (`ScrapPrice`) or for a piece of the colony's age they mended back to new (good quality).
+- *The wreck* (`HappeningWorker_WheelWreck`): a mechanoid's wreck near the colony brings them at a run; stripped where it
+  lies for three hours (`DilemmaEffect_WheelStrip`), half of each part left for the colony and half into their packs;
+  or sold whole for three fifths of its parts' worth.
+
+**Their asks** (`Rimfolk_Missions_PeoplesD.xml`, each only theirs): the Wardens' drive (two good shots for a few days,
+`MissionHands`), the Bell's linen for shrouds in a plague year (`whileKind` sickness), the Circuit's young beast raised a
+season (`MissionBeast`), the Wheel's steel or components for a broken axle.
+
+**By patch** (`Patches/Rimfolk_PeoplesD.xml`, conditional): world events that prefer a calling (the old beast the
+Wardens, the mourning the Bell, the fair the Circuit, the iron scarce the Wheel); the undertakers prefer the Bell, the
+travelling tinker the Wheel, the animal doctor the Circuit, each with a text in their voice when they are the ones who
+came (`Undertakers.People`, `Tinker.People` and the vet's people read `HappeningExtension.prefers` now).
+
+**Release B's peoples that arise may take their ways** (`ArisingMath.Leans`, `Lean`): survivors of a fallen town, after
+the river (half of those by one), on their fated quarter (`SaltBell`) stay to bury its dead and keep the Bell's ways; in
+the industrial and spacer ages, on their fated third (`SaltWheel`), they put what is left on wheels; a band of the
+banished whose leader is learned keeps a school as before, else one good with beasts (Animals 10) walks as tamers, else a
+good shot (Shooting 10) hunts as wardens. Their words: `CC_Arise_refugees_sextons`, `_refugees_salvagers`,
+`_exiles_tamers`, `_exiles_hunters` (each two ways), their three names (*Ashford Bell-keepers*, *The Ashford Wheel*,
+*Barr's Circuit*, *Barr's Lantern*).
+
+**Harm.** One touchpoint can hurt: the bout's bruise, `HarmKinds.TamerBout` (0.009 a colony-year, the harm model's
+0.0097: `Tools/Balance/HarmSim.cs`), through `Harm.Roll` and `Harm.Injure` (`HurtClass.Bout`), on the shared budget and
+the harm setting, shown on the answer (`Harm.On`) and told when it lands. Nothing else of theirs hurts anyone: the hunt
+is the game's own fight with the beast.
+
+**Saved**: nothing new. The hunt and the bout are visits of the happenings' tracker (an existing collection,
+dispatched hourly by kind); the stray's faction is set back if the visit is cut short; the Wheel's town moves are the
+world's own tiles.
+
+**Softness**
+
+| Missing | What happens |
+|---|---|
+| Ideology | No fixed faiths or styles. |
+| Biotech | Humans only; no sash (a tamer's signature is then the violet of the rest), no mechanitor's headset. |
+| Royalty | No psylinks; no animakin. |
+| Anomaly | No void's signs; the gravewardens of a later age carry molotovs only. |
+| Odyssey | No starjacks with the Wheel. |
+| A RimWorld of Magic | No classes. |
+| Vanilla Psycasts Expanded | Psylinks on the game's own way. |
+| Vanilla Weapons Expanded (and Makeshift, Laser), Medieval 2, Vanilla Apparel Expanded - Accessories | The game's own bows, spears, clubs, guns, hoods and capes; no salvaged lasers for a spacer-age Wheel (its guards keep their guns). |
+| PokéWorld | The tamer's companion is a beast of the land; no Pokémon egg. |
+| The beasts' alphas, nemeses and legends off (Beasts settings) | No lantern hunt; no lantern without a beast nemesis. |
+| The harm setting at 0 | The bout never bruises, and the answer doesn't say it may. |
+| Answers play out on the map (setting) off | The skinning and stripping are done at once; the vigils and lanterns are the play-outs' own fallbacks. |
+| The deeper game hooks (setting) | The game's own bases for their towns; the Wheel's towns stay put; no age arms or gifts. |
+
+Not used: Vehicle Framework (a convoy needs its own vehicles' defs and pathing on the world map; not done), Giddy-Up
+(its own rules mount riders where it is loaded; nothing named), the design's small mechs for the Wheel's mechanitors
+(a mechanitor's mechs need their own group maker; they wear the headset and carry components only), Rimsenal (not in
+the player's active mods), nets for the Wardens (no net weapon among the active mods).
 
 ## What could come next
 

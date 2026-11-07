@@ -24,9 +24,13 @@ namespace ColonyCouncil
         public static void Give(Pawn p)
         {
             var ext = p?.kindDef?.GetModExtension<PeopleKindExtension>();
-            if (ext?.gifts == null || p.story?.traits == null || p.health?.hediffSet == null || p.Dead || p.RaceProps?.Humanlike != true) return;
+            if (ext == null || ext.gifts == null && ext.ageArms == null || p.story?.traits == null || p.health?.hediffSet == null || p.Dead || p.RaceProps?.Humanlike != true) return;
             if (!p.DevelopmentalStage.Adult() || p.IsMutant) return;
-            int i = PeoplesGearMath.Pick(ext.gifts.Select(g => g?.chance ?? 0f).ToList(), Rand.Value);
+            int age = Peoples.AgeOf(p.Faction);
+            if (!ext.ageArms.NullOrEmpty()) AgeArms.Arm(p, ext.ageArms, age);
+            if (ext.gifts.NullOrEmpty()) return;
+            // A gift of another age (the tamers' Wildspeakers in the spacer age) is no share of this one.
+            int i = PeoplesGearMath.Pick(ext.gifts.Select(g => g != null && PeoplesDMath.AgeFits(age, g.ages.min, g.ages.max) ? g.chance : 0f).ToList(), Rand.Value);
             if (i < 0 || ext.gifts[i] == null) return;
             var gift = ext.gifts[i];
             if (!gift.trait.NullOrEmpty()) GiveClass(p, gift.trait);
@@ -172,6 +176,35 @@ namespace ColonyCouncil
                 if ((int)points.GetValue(implant) <= 0) levelUp.Invoke(implant, new object[] { 1, false });
                 points.SetValue(implant, (int)points.GetValue(implant) - 1);
             }
+        }
+    }
+
+    /// <summary>
+    /// The arms of another age (<see cref="PeopleKindExtension.ageArms"/>): a people of the Wardens' ways that arose among
+    /// the survivors of an industrial town hunts with rifles, not crossbows; the Quiet Bell of that age carries a flamer
+    /// for what will not stay down. The first set whose ages hold the people's own takes the place of the weapon the
+    /// game gave, one of its tags' weapons (any mod's under the same tags) within the kind's means, of a quality the
+    /// kind's own would be. No set fits: the game's choice stays. Nothing when no weapon of those tags is loaded.
+    /// </summary>
+    public static class AgeArms
+    {
+        public static void Arm(Pawn p, List<PeopleAgeArms> sets, int age)
+        {
+            if (p?.equipment == null || sets.NullOrEmpty() || p.WorkTagIsDisabled(WorkTags.Violent)) return;
+            var set = sets.FirstOrDefault(a => a != null && !a.weaponTags.NullOrEmpty() && PeoplesDMath.AgeFits(age, a.ages.min, a.ages.max));
+            if (set == null) return;
+            float means = set.money > 0f ? set.money : Math.Max(p.kindDef.weaponMoney.max, 150f) * 1.25f;
+            var choices = DefDatabase<ThingDef>.AllDefsListForReading.Where(d => d != null && d.IsWeapon && d.equipmentType == EquipmentType.Primary && !d.weaponTags.NullOrEmpty()
+                && d.weaponTags.Any(set.weaponTags.Contains) && d.BaseMarketValue <= means && d.tradeability != Tradeability.None
+                && d.GetCompProperties<CompProperties_Biocodable>() == null).ToList();
+            if (choices.Count == 0) return;
+            var def = choices.RandomElementByWeight(d => Math.Max(0.1f, d.generateCommonality));
+            ThingDef stuff = null;
+            if (def.MadeFromStuff && !GenStuff.TryRandomStuffByCommonalityFor(def, out stuff, p.Faction?.def?.techLevel ?? TechLevel.Undefined)) return;
+            if (!(ThingMaker.MakeThing(def, stuff) is ThingWithComps weapon)) return;
+            weapon.TryGetComp<CompQuality>()?.SetQuality(QualityUtility.GenerateQualityGeneratingPawn(p.kindDef, def), ArtGenerationContext.Outsider);
+            p.equipment.DestroyAllEquipment();
+            p.equipment.AddEquipment(weapon);
         }
     }
 

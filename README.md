@@ -3452,6 +3452,28 @@ meme more from Vanilla Ideology Expanded where it is loaded (the lamp's light, t
 enclave's machines, the river folk's equal shares), and a new people that arises in their ways carries their signature
 in its name (*Lamp of Ashford*, *Barr's Waystone*, *Last Herd of Ashford*).
 
+**Four more: the Wardens, the Bell, the Circuit and the Wheel.** A new world also has the **Lantern Wardens**, who hunt
+the region's great beasts from lantern to lantern (medieval, a hood dyed lantern red over whatever the last hunt paid
+for; palisaded lodges with a trophy hall and kennels); the **Quiet Bell**, who keep the dead of every people, friend or
+foe (medieval, grey habits, walled grave-gardens with an ossuary); the **Circuit of Tamers**, who walk the region with
+their companions and challenge every keeper of beasts to a friendly bout (industrial, a violet sash of tokens, bout-rings
+and a hatchery); and the **Wheel**, a salvage town that never stops moving (industrial, coats patched in old brass, a
+yard laid out as if leaving tomorrow, and every month or so it rolls a few tiles on). When a pack's alpha, a beast
+nemesis or a legend is on the colony's land, two or three Wardens may come to hunt it, beside the colony's best shot if
+it likes, and skin it where it falls: the hide for their book, the meat for the colony. Their pelt-buyer pays a little
+over the pelts' worth, and when a beast has taken one of the colony a Warden lights a lantern at the gate for the
+night. After a fight the Bell's bell-keepers bury the enemy's dead beyond the wall or carry them off, and the raiders'
+own people think better of the colony for it; a bell-keeper may lead a colonist's funeral at their grave, and with
+Anomaly warns at dusk when the ground is listening. A roaming tamer may challenge the colony's best hand with beasts to
+a bout with their companion (a Fighting type with PokéWorld) by the Fighting-type spar's rules: beaten fairly, they hand
+over an egg of their hatchery, and one bout in 25 their companion's blow lands. Their egg-trader swaps or sells eggs, and
+a ranger brings home a stray. The Wheel's fixer mends worn clothes and weapons, its scrap-runners buy slag and broken
+things or swap a piece mended back to new, and a mechanoid's wreck near the colony brings them at a run to strip it half
+and half. Each has its asks, faith, words and names, and the undertakers, the travelling tinker and the animal doctor
+come from them likeliest. They arise in every age with that age's weapons, and new peoples may take their ways:
+survivors who stay to bury their town's dead, a later town's survivors who put what is left on wheels, a band led by
+one good with beasts or by a good shot. The Almanac has a page, *wardens, the Bell, the Circuit and the Wheel*.
+
 ## Scenarios with stakes
 Seventeen scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Each starts the game with
 something already in motion, and a few seconds in, a letter says how things stand.

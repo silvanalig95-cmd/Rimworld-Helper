@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The asks of release D's peoples (Source/ColonyCouncil/Peoples/; docs/design/peoples.md, "Release D"), each in an
+    existing mission's framework, only from a people of their calling (MissionPeople.only: none come in a world without
+    one) and in one draw with every other mission (MissionPool).
+    - The Lantern Wardens ask for two of the colony's best shots for a lantern drive from their lodge (MissionHands: a
+      caravan of them at the lodge for a day and a half while the drive goes out).
+    - The Quiet Bell asks for linen for shrouds in a plague year (a delivery; their carts come for it).
+    - The Circuit of Tamers asks the colony to raise a young beast of their stables for a season (MissionBeast: their
+      ranger walks it in and comes back for it).
+    - The Wheel asks for steel and parts for a broken axle before the town can roll on (a delivery).
+  -->
+
+  <!-- ===================== The Wardens' lantern drive ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_WardensDrive</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a lantern drive</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionHands</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A lantern drive from {PLACE}</li>
+          <li>The Wardens need shots</li>
+        </titles>
+        <texts>
+          <li>[drive] A lantern-runner of {FACTION} has come from the lodge at {PLACE} with word from its keeper of the book: a beast has been taking sheep and a herd boy on the roads round {PLACE}, and the Wardens mean to drive it out of the treeline. They ask the colony for two of its best shots for a day and a half, and they pay in silver and in hides.</li>
+          <li>[drive,their:lowtech] A Warden with a red cord on the sleeve has walked from {PLACE} to ask the colony for two good shots. A lantern burns at the crossroads below the lodge, the runner says, and the Wardens will drive the beast out of the woods before it takes anyone else.</li>
+          <li>[drive,their:friend] The Wardens of {FACTION} have asked for {FRIEND_nameDef} by name. There is a lantern lit on the road to {PLACE}, and they want two of the colony's best shots for the drive.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Send shots to {PLACE}</label>
+            <outcome>The runner went back to the lodge to say the colony's shots are coming.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will drive the beast out with the bows they have.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionPeople">
+        <only>hunters</only>
+      </li>
+      <li Class="ColonyCouncil.MissionHands">
+        <kind>wardensdrive</kind>
+        <restDays>60</restDays>
+        <rating>2</rating>
+        <maxTravelDays>3</maxTravelDays>
+        <skill>Shooting</skill>
+        <minLevel>6</minLevel>
+        <work>Hunting</work>
+        <hands>2</hands>
+        <hours>36</hours>
+        <reward>150~280</reward>
+        <gift>120</gift>
+        <xp>1200</xp>
+        <thought>Rimfolk_Mission_RodeWithWardens</thought>
+        <deed>lentHands</deed>
+        <forms>
+          <li><tag>drive</tag></li>
+        </forms>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>At least two of the colony's good shots (Shooting 6 or more), at the Wardens' lodge at {PLACE} by caravan (about {TALE} away), staying about a day and a half while the drive goes out. The caravan only needs to reach the lodge and wait there.\n\nThey'll come home with about {COUNT} silver and a gift of the lodge's, and {FACTION} will write the colony in their book. Half the stay earns half the silver.</li>
+        </terms>
+        <accepted>
+          <li>The colony will send shots to {PLACE}. Form a caravan with at least two good shots, and send it to the lodge.</li>
+        </accepted>
+        <ready>
+          <li>The colony's shots have reached the lodge at {PLACE} and gone out with the Wardens before dawn. Keep the caravan there while the drive goes on.</li>
+        </ready>
+        <reminder>
+          <li>The lantern still burns at the crossroads below {PLACE}, and the colony's shots haven't come.</li>
+        </reminder>
+        <doneTitles>
+          <li>[worked] The drive from {PLACE}</li>
+          <li>[partial] Part of the drive from {PLACE}</li>
+        </doneTitles>
+        <done>
+          <li>[worked] The drive is over, the beast is out of the treeline, and the lantern at the crossroads is put out. The colony's shots are coming home with silver and a hide from the lodge, and their names are in the Wardens' book.</li>
+          <li>[partial] The colony's shots had to come home before the drive was done. {FACTION} paid them half and wrote down what they did.</li>
+        </done>
+        <failTitles>
+          <li>[missed] Nobody came to {PLACE}</li>
+        </failTitles>
+        <fail>
+          <li>[missed] No shots came from the colony, and the Wardens went out without them. {FACTION} know who said they would come.</li>
+        </fail>
+        <cancelled>
+          <li>The drive from {PLACE} no longer needs the colony: the lodge, or the friendship, is gone.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Shrouds for the grave-garden ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_BellShrouds</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>linen for the shrouds</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionDelivery</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Linen for {PLACE}</li>
+          <li>The Bell needs shrouds</li>
+        </titles>
+        <texts>
+          <li>[shrouds] A bell-carrier of {FACTION} has walked from the grave-garden at {PLACE} with a letter from {DEAD}, its sexton. The sickness in the region has filled the grave-garden faster than the Bell can weave, and everyone is owed a shroud as well as a bell. They ask the colony for cloth by a set day, and will pay what it is worth and more.</li>
+          <li>[shrouds,their:friend] The Quiet Bell has asked for {FRIEND_nameDef} by name. The sickness has come to the grave-garden at {PLACE}, and {DEAD}, who keeps it, would rather owe the colony than anyone.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>The bell-carrier went back to {PLACE} to tell {DEAD} the cloth is coming.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will bury the sickness's dead in what they have.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionPeople">
+        <only>sextons</only>
+        <whileKind>sickness</whileKind>
+      </li>
+      <li Class="ColonyCouncil.MissionDelivery">
+        <kind>bellshrouds</kind>
+        <restDays>60</restDays>
+        <rating>2</rating>
+        <days>6~9</days>
+        <rewardFactor>1.5</rewardFactor>
+        <goodwill>12</goodwill>
+        <penalty>6</penalty>
+        <person>40~75</person>
+        <variants>
+          <li>
+            <tag>shrouds</tag>
+            <goals>
+              <li><what>textiles</what><count>60~120</count></li>
+            </goals>
+          </li>
+        </variants>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>{FACTION} are asking for {ITEM}, in the colony's stockpiles by the day the Quests tab shows, when the Bell's carts come.\n\nAll of it fetches {COUNT} silver, well over its worth. At least half, and they'll take what there is at its plain worth. Less, and the grave-garden goes short, and the Bell remembers it.</li>
+        </terms>
+        <accepted>
+          <li>The colony will have {ITEM} ready for the grave-garden at {PLACE}, in the stockpiles for {FACTION}'s carts.</li>
+        </accepted>
+        <ready>
+          <li>The cloth for {PLACE} is set aside, and {FACTION}'s carts are on their way for it.</li>
+        </ready>
+        <reminder>
+          <li>{FACTION}'s carts come soon for the cloth, and the stockpiles are still short: {ITEM}.</li>
+        </reminder>
+        <doneTitles>
+          <li>[delivered] Linen for {PLACE}</li>
+          <li>[partial] Part of the linen for {PLACE}</li>
+        </doneTitles>
+        <done>
+          <li>[delivered] The cloth is ready, and {FACTION}'s carts are coming for it with {ITEM} silver. Everyone at {PLACE} will have a shroud as well as a bell, {DEAD} writes.</li>
+          <li>[partial] Only part of the cloth is ready. {FACTION}'s carts are coming for what there is, with its plain worth, {ITEM} silver.</li>
+        </done>
+        <failTitles>
+          <li>[missed] No linen for {PLACE}</li>
+          <li>[cancelled] The Bell's ask is off</li>
+        </failTitles>
+        <fail>
+          <li>[missed] There was far too little cloth ready for {FACTION}'s carts to be worth the road. The grave-garden at {PLACE} will make do, and {DEAD} knows who said they would help.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} have broken with the colony, and their carts will not come.</li>
+          <li>The grave-garden at {PLACE} is gone, and nobody is left there to send for the cloth.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A young beast of the Circuit's stables ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_TamersFoal</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a young beast of the Circuit's</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionBeast</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>90</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>{BEAST} needs a season away</li>
+          <li>A young {THING} from the Circuit</li>
+        </titles>
+        <texts>
+          <li>[foal] The ring at {PLACE} has more foals than stable this year, and {FACTION} want {BEAST}, a young {THING} of theirs, raised somewhere it will learn other people's ways. A bond is not a leash, their ranger says, and a young one grows best among strangers who are kind to it. They will pay for its keep.</li>
+          <li>[pup] {FACTION}'s ring-keeper at {PLACE} has picked {BEAST}, a {THING} pup, for a tamer's companion, and it needs a season among strangers first. Will the colony keep {BEAST}? Their ranger will bring it and fetch it, and they'll pay.</li>
+          <li>[calf] A young {THING} of the Circuit's stables at {PLACE}, {BEAST}, is too shy for the bout-rings, and {FACTION} think a quiet season at the colony would mend it. They ask the colony to raise it for them, and they'll pay.</li>
+          <li>[skill:Animals] The Circuit asked for {A_nameDef} by name: word of the colony's way with beasts has reached the ring at {PLACE}. {BEAST}, a young {THING}, needs raising for a season, and they'll pay.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Raise {BEAST} for them</label>
+            <outcome>The ranger went back to {PLACE} to fetch {BEAST}.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will find another home for {BEAST} this season.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionPeople">
+        <only>tamers</only>
+      </li>
+      <li Class="ColonyCouncil.MissionBeast">
+        <kind>circuitfoster</kind>
+        <restDays>90</restDays>
+        <rating>2</rating>
+        <days>12~18</days>
+        <reward>200~340</reward>
+        <goodwill>12</goodwill>
+        <penalty>8</penalty>
+        <thought>Rimfolk_Mission_RaisedBeast</thought>
+        <forms>
+          <li><tag>foal</tag><kinds><li>Horse</li><li>Donkey</li></kinds></li>
+          <li><tag>pup</tag><kinds><li>Husky</li><li>LabradorRetriever</li></kinds></li>
+          <li><tag>calf</tag><weight>0.7</weight><kinds><li>Muffalo</li><li>Alpaca</li><li>Dromedary</li></kinds></li>
+        </forms>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <names>
+          <li>Tumble</li>
+          <li>Sash</li>
+          <li>Crater</li>
+          <li>Pip</li>
+          <li>Ember</li>
+          <li>Token</li>
+          <li>Rally</li>
+          <li>Comet</li>
+        </names>
+        <terms>
+          <li>{FACTION}'s ranger walks {BEAST} in to the colony's gate and hands it over. From then it is the colony's to feed and keep until the ranger comes back at the end of the season the Quests tab shows.\n\nKept well (fed, not sick, no wound left untended), {BEAST} is worth {COUNT} silver to them; kept poorly, half. If {BEAST} dies or is lost, the Circuit will take it hard.</li>
+        </terms>
+        <accepted>
+          <li>The colony will raise {BEAST}. {FACTION}'s ranger is bringing the young {THING} to the gate.</li>
+        </accepted>
+        <ready>
+          <li>{FACTION}'s ranger handed {BEAST} over at the gate and went back up the road. The young {THING} is the colony's to keep well until they come for it.</li>
+        </ready>
+        <reminder>
+          <li>{FACTION}'s ranger will come back for {BEAST} soon.</li>
+        </reminder>
+        <doneTitles>
+          <li>[returned] {BEAST} goes home to the ring</li>
+          <li>[poorly] {BEAST} goes home thin</li>
+          <li>[bonded] {BEAST} stays</li>
+        </doneTitles>
+        <done>
+          <li>[returned] {BEAST} has grown bold and glossy at the colony, and {FACTION}'s ranger is on the road to lead the young {THING} home to the ring, with {ITEM} silver for its keep.</li>
+          <li>[poorly] {BEAST} has not done well at the colony, and {FACTION} have heard. Their ranger is coming to lead it home, with {ITEM} silver, half what was promised.</li>
+          <li>[bonded] {FACTION} sent word that {BEAST} follows {A_nameDef} everywhere now, and a bond is not a leash: the colony keeps {BEAST}, and the ring at {PLACE} counts it the best outcome of all.</li>
+        </done>
+        <failTitles>
+          <li>[died] {BEAST} is dead</li>
+          <li>[lost] {BEAST} is gone</li>
+        </failTitles>
+        <fail>
+          <li>[died] {BEAST}, the young {THING} {FACTION} trusted to the colony, is dead. The ring at {PLACE} took the news hard.</li>
+          <li>[lost] {BEAST} is no longer the colony's to give back. {FACTION} have sent word, and it is not a kind one.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} have broken with the colony. Whatever becomes of {BEAST} now is the colony's business.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Parts for the Wheel's axle ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_WheelAxle</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>parts for the Wheel</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionDelivery</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The Wheel is stuck at {PLACE}</li>
+          <li>Parts for a broken axle</li>
+        </titles>
+        <texts>
+          <li>[axle] A scrap-runner of {FACTION} has come from the yard at {PLACE} with a letter from {DEAD}, its yard boss: the great wagon's axle cracked on the last stretch, and the Wheel can't roll on until it is mended. They ask the colony for steel by a set day, and will pay well over its worth, because standing still is the one thing the Wheel can't afford.</li>
+          <li>[parts] {DEAD}, who runs the Wheel's yard at {PLACE}, sends a scrap-runner of {FACTION} to the colony: half the yard's engines want parts the Wheel hasn't got, and the town won't move without them. They ask for machine parts by a set day, at a good price.</li>
+          <li>[axle,their:friend] The Wheel has asked for {FRIEND_nameDef} by name. Its yard at {PLACE} is stuck on a cracked axle, and {DEAD} would rather buy the colony's steel than anyone's.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>The scrap-runner went back to {PLACE} at a jog to tell {DEAD} the colony will have it ready.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will mend the axle with what they have, and roll on late.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionPeople">
+        <only>salvagers</only>
+      </li>
+      <li Class="ColonyCouncil.MissionDelivery">
+        <kind>wheelaxle</kind>
+        <restDays>60</restDays>
+        <rating>2</rating>
+        <days>6~9</days>
+        <rewardFactor>1.5</rewardFactor>
+        <goodwill>12</goodwill>
+        <penalty>6</penalty>
+        <person>30~65</person>
+        <variants>
+          <li>
+            <tag>axle</tag>
+            <goals>
+              <li><what>Steel</what><count>80~160</count></li>
+            </goals>
+          </li>
+          <li>
+            <tag>parts</tag>
+            <goals>
+              <li><what>ComponentIndustrial</what><count>4~8</count></li>
+            </goals>
+          </li>
+        </variants>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>{FACTION} are asking for {ITEM}, in the colony's stockpiles by the day the Quests tab shows, when the Wheel's runners come for it.\n\nAll of it fetches {COUNT} silver, well over its worth. At least half, and they'll take what there is at its plain worth. Less, and the Wheel stays stuck, and it remembers who said they would help.</li>
+        </terms>
+        <accepted>
+          <li>The colony will have {ITEM} ready for the Wheel's yard at {PLACE}, in the stockpiles for {FACTION}'s runners.</li>
+        </accepted>
+        <ready>
+          <li>The goods for {PLACE} are set aside, and {FACTION}'s runners are on their way for them.</li>
+        </ready>
+        <reminder>
+          <li>{FACTION}'s runners come soon from the yard, and the stockpiles are still short: {ITEM}.</li>
+        </reminder>
+        <doneTitles>
+          <li>[delivered] Parts for {PLACE}</li>
+          <li>[partial] Part of the parts for {PLACE}</li>
+        </doneTitles>
+        <done>
+          <li>[delivered,axle] The steel is ready, and {FACTION}'s runners are coming for it with {ITEM} silver. The Wheel at {PLACE} will be rolling again before long.</li>
+          <li>[delivered] {FACTION}'s runners are coming for the colony's goods, with {ITEM} silver for them.</li>
+          <li>[partial] Only part of it is ready. {FACTION}'s runners are coming for what there is, with its plain worth, {ITEM} silver.</li>
+        </done>
+        <failTitles>
+          <li>[missed] Nothing for {PLACE}</li>
+          <li>[cancelled] The Wheel's ask is off</li>
+        </failTitles>
+        <fail>
+          <li>[missed] There was far too little ready for {FACTION}'s runners to be worth the road. The Wheel at {PLACE} will roll on late, and {DEAD} knows who said they would help.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} have broken with the colony, and their runners will not come.</li>
+          <li>The Wheel's yard at {PLACE} has rolled on or is gone, and nobody is left there to send for the goods.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

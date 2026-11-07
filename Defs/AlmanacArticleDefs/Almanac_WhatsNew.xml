@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.157.0</version>
+        <date>7 November 2026</date>
+        <title>Four new peoples: Wardens, the Quiet Bell, Tamers and the Wheel</title>
+        <points>
+          <li>The Lantern Wardens, beast-hunters of the crossroads, in furs and lantern-red hoods: when a legend, a beast nemesis or a pack alpha is on your land they come to hunt it, and your best shot can hunt beside them. Their pelt-buyer pays well for hides, and when a beast has killed one of yours a Warden keeps a lantern burning at your gate through the night.</li>
+          <li>The Quiet Bell, keepers of the dead, in grey habits: after a raid they bury or carry off the enemy's dead, which their peoples remember kindly; they can lead a funeral for your own dead; and with Anomaly they warn at dusk when the ground is listening.</li>
+          <li>The Circuit of Tamers, travelling with their companions (Pokémon with PokéWorld): a tamer may challenge your best handler to a friendly bout and give an egg when beaten fairly, egg-traders swap and sell, and a ranger brings back an animal of yours that strayed.</li>
+          <li>The Wheel, a rolling salvage town whose towns really move: their fixer mends your gear, scrap-runners buy slag and broken things, and a mechanoid wreck near you brings them to strip it with you.</li>
+          <li>Each has its own look and signature, gear, kinds of people and gifts from your enabled mods, a faith, a town, missions and their own voice, in every age; peoples that arise during play can become one of them.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.156.0</version>
         <date>7 November 2026</date>
         <title>Pets that hunt by nature, and an alert for a hungry one</title>

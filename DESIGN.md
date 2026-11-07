@@ -5127,6 +5127,28 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
   the colony's, handed over at the gate on the farewell walk) and kept for a good stay (`maxTension`: no walk to the gate
   without it). Faiths gain a soft meme or structure each where thin, checked against the memes' exclusion tags. Arising
   names gain a third form carrying their ways. Nothing saved, no clock, nobody hurt.
+- **Release D: the Lantern Wardens, the Quiet Bell, the Circuit of Tamers and the Wheel** (`Tools/Tests/PeoplesDTests.cs`,
+  "peoples, release D: "; docs/design/peoples.md, the section of that name; the first four of `docs/design/peoples-next.md`).
+  `Rimfolk_Wardens` (medieval, tribal parent, calling `hunters`), `Rimfolk_QuietBell` (medieval, tribal parent,
+  `sextons`), `Rimfolk_Tamers` (industrial, outlander parent, `tamers`), `Rimfolk_Wheel` (industrial, outlander parent,
+  `salvagers`), each arising in every age (`ariseAges` 0~3), drawn only from the player's active mods
+  (`docs/player-mods/`). Every age: `Peoples.AgeOf` (an arisen people keeps the age of what it came from,
+  `PeoplesDMath.PeopleAge`), `PeopleKindExtension.ageArms` (a kit's weapon tags for other ages and what it may cost,
+  `AgeArms.Arm` as a pawn is made) and `PeopleGift.ages`. Callers (`Peoples/PeoplesD.cs`, `PeoplesD2.cs`): the Wardens'
+  hunt on a legend, nemesis or alpha on the land (`HappeningWorker_WardensHunt`, `DilemmaEffect_WardensHunt`: the game's
+  assault-things lord, the colony's shot on the game's hunt; the kill seen in `HappeningTracker.Notify_Killed`, the
+  carcass skinned by `JobDriver_PeoplesWork` and its butchering split, `PeoplesD.Divide`; given up after two days, they
+  walk home), the pelt-buyer, a lantern for one a beast took; the Bell at the enemy's dead (a subclass of the
+  undertakers' worker, `DilemmaEffect_BellForTheDead`'s goodwill with the dead's peoples), its funeral at a fresh grave,
+  the void's signs (Anomaly); the tamer's bout (`JobDriver_TamerBout` by the Fighting-type spar's rules, `HarmKinds.TamerBout`
+  through `Harm.Roll`/`Injure`), eggs swapped or sold, a stray brought home; the Wheel's fixer (a subclass of the
+  tinker's worker), its scrap-runners (`PlayCarry.Scrap`), a mechanoid wreck stripped half and half (`StripJob`). The hunt
+  and the bout are visits of the happenings' tracker (`Visit` kinds `wardenHunt`, `tamerBout`). The Wheel's towns move
+  (`WheelTowns.Daily` from `RegionBook.Daily`: on each town's own day of 30, two to five tiles by `Arising.TryTownTile`,
+  never with a map, a caravan or a quest on it). Asks, the patch (four world events, the undertakers, the tinker and the
+  vet prefer them: `Undertakers.People`, `Tinker.People`), release B's leans (`ArisingMath.Lean`: survivors to the Bell on
+  a fated quarter, `SaltBell`, or in a later age to the Wheel on a fated third, `SaltWheel`; a band led by one good with
+  beasts to the Circuit, by a good shot to the Wardens). Nothing saved.
 
 ### The colony's animals with powers
 
