@@ -150,6 +150,9 @@ namespace ColonyCouncil
     /// <summary>Hospitality: so many guest beds in rooms indoors. Never pitched without Hospitality.</summary>
     public class Goal_GuestBeds : AmbitionGoal
     {
+        /// <summary>A room's or a place's goal: any building is its own work (harm, part 6: the last push).</summary>
+        public override bool OwnWork(Verse.ThingDef def) => def?.building != null;
+
         public int count = 3;
 
         private static int Count(Map map) => Guests.Beds(map).Count(b => b.GetRoom() is Room r && !r.PsychologicallyOutdoors);
@@ -165,6 +168,9 @@ namespace ColonyCouncil
     /// <summary>Hospitality: a room with a guest bed in it at least this impressive. Never pitched without Hospitality.</summary>
     public class Goal_GuestRoom : AmbitionGoal
     {
+        /// <summary>A room's or a place's goal: any building is its own work (harm, part 6: the last push).</summary>
+        public override bool OwnWork(Verse.ThingDef def) => def?.building != null;
+
         public float impressiveness = 50f;
 
         public override bool Possible(Map map)

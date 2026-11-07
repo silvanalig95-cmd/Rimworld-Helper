@@ -656,6 +656,7 @@ namespace ColonyCouncil
                 if (thought != null) CouncilGameComponent.GiveThought(p, thought);
             }
             KinMemory.Note(m.faction, "harvestHelp", hands.FirstOrDefault(), m.place, share < 1f ? 5 : 0);
+            AnswerHurts.HandsBack(hands, share, m.place);
         }
 
         public override string Status(Mission m)

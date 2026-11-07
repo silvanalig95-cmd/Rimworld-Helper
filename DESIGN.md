@@ -2786,35 +2786,92 @@ letter in a frost), `PlayOut/PlayOutGroupEffects.cs` (the watch's line); `Harm/C
 patient's answers). While the carriers at the gate are on, `Council_WS_Plague` raises the flu 1.35 times and the plague
 2.3 (the modifier's `withCarriers`; 1.5 and 2.5 with them off, as before): the carriers bring the rest.
 
+### Harm, part 6: the work's accidents, the animals, the contests and festivals (7 November 2026)
+
+The second of the three batches of the review's remaining proposals, after the player's "all suggestions please":
+twenty-three more kinds within the shared budget, each under its system's setting (a link between two systems behind
+"Systems talk to each other"), the pure rules in `Harm/HarmSixMath.cs` (`HarmSixTests`), the hub `Harm/HarmSix.cs` on the
+harm book's hour and slices (no new Sched slot). What waits is in `HarmBook.waiting` (`HarmWaiting` "fall", "hands",
+"coward": no new saved collection); the rest is session memory. Messages only where the game gives one for the same hurt
+(an ailment caught, an animal turning on someone); the rest is seen on the map, in the hit, a puff of dust or smoke, the
+line they say and a few words over them (`HarmFour.Mote`), and the fires, fights and predators that follow are the game's
+own. Nothing here makes a pet hunt or a pack or herd move: the colony's pets hunting (`Animals/PetHunts.cs`) and the wild's
+alphas and great herds (`Beasts/`) are left as they are. The pools are in `Rimfolk_HarmSix_Lines.xml`, the words in
+`Rimfolk_HarmSix.xml`, the four walks' jobs in `Defs/Misc/Rimfolk_HarmSix.xml` (`JobDriver_HarmWalk`); dev mode's
+"Harm six: ..." (`Harm/HarmSixDebug.cs`) brings each about past its rate, never past the cap.
+
+| Kind (review) | Where | Rate (its own) | Prevention | Seen |
+|---|---|---|---|---|
+| Hot and heavy answers (2.1.2) | `AnswerHurts.cs`, a gathering's fire laid, the pyre lit, the dead carried out, their graves dug | 1 play-out in 40 at the moment of the work | another answer; Cooking or Construction 8 half; named under the answer | a burn on a hand, or a load dropped on a foot; a line, a few words |
+| Back too soon, for real (2.1.3) | `AnswerHurts.cs`, the light-work answer's own risk | a third of the times they overdo it, the first hour within the day they're carrying something | keep them in bed, work from bed; named under the risk | the fall with the load, two more days in bed, helped back to it |
+| The project's last push (1.5.2) | `WorkSlips.cs`, a project's own building in its last three days | tired hands' rule: a long day 1 in 150, twice below 30% rest | no rush, rest; not on top of a work decree's own roll | tired hands' slip, a line |
+| Clumsy when worn (3.3.2) | `WorkSlips.cs`, the heart's two high bands | a long day at any work at half the tired-hands rate (one and a half with a decree) | the worn-out day off, easing the strain | tired hands' slip, a line |
+| The makeshift spot's burn (3.4.2) | `AnswerHurts.cs`, a bill's end | 1 bill in 200 cooked at a campfire or butchered at a spot while a proper bench could be built | build the bench | a burn at the fire, a cut at the spot, a line |
+| Taking down hurts too (4.3.2) | `AnswerHurts.cs`, `Patch_TakingDownHurts` | 1 wall or door in 100 under Construction 5 | skilled builders | dust, the worker down a moment, a bruise or a crushed foot |
+| Hurried hands at the harvest (4.4.1) | `WorkSlips.cs`, the harvest in a hurry | 1 hour in 200, twice after dark | harvest before dark, a grower of Plants 8 half | a sickle's cut by the age's tool, a line |
+| Carries more than they should (3.11.1) | `WorkSlips.cs`, the quirk's heavy day | the strained back half again (0.0025), 1 day in 150 a dropped load | rest | the strain's message, or the load on a foot |
+| Sharp habits (3.11.2) | `WorkSlips.cs`, the quirks' whittling and whetstone | 1 day in 10 at it, about once a season | not preventable | a nick, a laugh |
+| The second drink (4.7.1) | `WorkSlips.cs` with Alpha Skills' drink before work | after three days running, 1 day in 5 a second cup; then 1 stagger in 4 at the bench | the drug policy, the setting | the second cup at the stores, the game's own drunkenness, the slip |
+| The hands come home sore (2.6.3) | `AnswerHurts.cs`, the harvest mission's end | the work ailments' own for a day and a half, about 1 hand in 10 | send the tough (half) | the ailment as they walk in, its message naming the town |
+| The drovers' bull (2.4.3) | `WildHurts.cs`, a camp's herd | 1 hour in 30 among it, once a stay | keep away from the herd | the charge, a drover's word, the message |
+| The wild one too close (2.10.2) | `WildHurts.cs`, three encounters | the kind's taming revenge, about 1 in 20 | the nervous never step closer | a kick or a bite (rabies by the ailments' own roll), the animal fleeing |
+| Walks the fields at dawn (3.11.4) | `WildHurts.cs`, the job `Rimfolk_DawnWalk` | alone beyond the walls with a hungry predator in reach, 1 dawn in 8 | walls round the fields | the walk to the field's edge, the game's own hunt and warning |
+| The fed wolf grows bold (4.5.2) | `WildHurts.cs`, the beast that stays | fed three days on, 1 night in 40 with someone alone near the stores | keep close, drive it off, tame it; never a grazer; named under the answer | at the stores' door at dusk, then the game's own hunt |
+| A catch that fights back (4.6.1) | `WildHurts.cs`, PokéWorld | 1 try in 4 | a partner Pokémon at the trainer's side; named under the answer | PokéWorld's own fight with the trainer, or the partner |
+| The visitor at the stores turns (4.6.2) | `WildHurts.cs`, the job `Rimfolk_ShooVisitor`, PokéWorld | a fed Pokémon at the stores 1 dusk in 3, 1 shooing in 10 | keep the stores shut, catch it; named under the answer | the walk over to shoo it, a swipe, it runs |
+| The bonfire's spark (4.1.2) | `Contests.cs`, a bonfire | 1 dry, windy summer night in 20 | a cleared spot or a firebreak; never in rain or snow; named under the answer and in the calendar's way | the game's own fire in the grass, the nearest beating it out, a singe |
+| Musters at the line (4.2.1) | `Contests.cs`, the job `Rimfolk_MusterPost` | with the militia or "hold the way in", 1 evening in 4; 1 muster in 30 a mishap | a marshal of Shooting 10 half; named on the militia's card and the project | the call, each at a post, a bowstring, a powder burn, a graze, a cell's burn |
+| Fighters spar (4.8.2) | `Contests.cs`, A RimWorld of Magic's fighters, the drills' bout | 1 evening in 3, 1 bout in 25 a blow | only with consent | the bout, the blow, sorry |
+| Brave to a fault (3.6.2) | `Contests.cs`, a brave or bold group | about once a season a dare, 1 in 3 hurt | a cautious one at hand, half | the dare said, a cold swim (a chill) or a wrestle with the strongest (a sprain), a laugh |
+| A coward's name (3.7.2) | `Contests.cs`, from the name's news | once, the next fight at home | draft and hold them, the marshal's word | out of cover at the nearest enemy, the game's own fight |
+| Fury that forgets cover (3.8.2) | `Contests.cs`, a fight against the sworn people | once a battle, 1 in 3 | draft and hold them | out of cover toward them, the game's own fight |
+
+The ages: the drills' blow by the colony's means for the spar; the sickle's tool (a flint sickle, a scythe, shears, a
+cutter); the muster's mishap by the weapon (a bowstring's snap before industry, a powder burn or a ricochet's graze, a
+charge cell's burn); the muster's call by the age; the rest the same in every age. Changes outside: `HurtKind.Bite` and an
+`Injure` that names the animal (`Harm/Harm.cs`, `HarmMath.cs`), so a bite carries what the ailments' bite roll gives;
+`DrillBout.form` and `kind` for the spar and the dare's wrestle (`Harm/DrillBouts.cs`); `AmbitionGoal.OwnWork` and
+`AmbitionState.OwnWork` (`Ambitions/`, `Defense/DefenseGoals.cs`); `FieldWeather.FrostMarked`; `ColdHurts.ToTheFire`
+opened. Hooks in other systems (one line each): `PlayOut/PlayFire.cs` and `PlayDead.cs` (the fire and the pyre lit),
+`PlayOut/OnMapPlays.cs` and `PlayOutEffects.cs` (the answers' sheets), `Setbacks/SetbackHooks.cs` (a makeshift bill),
+`Missions/Workers_MissionRoad.cs` (the harvest's hands), `Integrations/BeforeWork.cs` (a drink before work),
+`Animals/ResidentBeast.cs` and `Integrations/PokeWorldCamp.cs` (the beast's answers), `Social/Gossip/ReputationTracker.cs`
+(a coward's name), `Harm/NightWalks.cs` (the walks' ends), `Harm/HarmFive.cs` (what waits). Defs: the back-too-soon risk's
+effect (`Council_Dilemmas_Health.xml`), `DilemmaEffect_TooClose` in three encounters (`Council_Encounters_Creatures.xml`),
+the "hold the way in" project's description, the militia's risk line and the calendar's bonfire way. One new Harmony
+patch: `Patch_TakingDownHurts` (a prefix and postfix on `JobDriver_Deconstruct.FinishedRemoving`).
+
 ### The rates (the balance model's harm mode)
 
 `dotnet run -c Release --project Tools/Balance -- --harm` plays a colony-year (60 days, 1500 runs by default) of each
 style and size with every kind of hurt from everyday life through the shared cap, the heart played hour by hour with each
 hurt's pain and each fight's hour of combat. What a kind does once it comes is the mod's arithmetic (`HarmMath`,
-`HarmTwoMath`, `HarmFourMath`, `HarmBudgetMath`, `HeartMath`, `BeastsMath`, compiled in); how often a colony meets it is
-the mode's own table, each an estimate that says where it comes from. Three runs of the same colonies: "before" (the
-kinds built before the budget, each at its own rate), "no budget" (every kind on, parts 4 and 5 too, each at its own
-rate), "budget" (every kind on, each at its pass). Alpha Skills, Giddy-Up, Hospitality and Odyssey's fishing loaded;
-PokéWorld and Dubs Bad Hygiene's thirst not. Hurts the cap counts, per colonist-year (4000 runs; harm, part 5):
+`HarmTwoMath`, `HarmFourMath`, `HarmFiveMath`, `HarmSixMath`, `HarmBudgetMath`, `HeartMath`, `BeastsMath`, compiled in);
+how often a colony meets it is the mode's own table, each an estimate that says where it comes from. Three runs of the
+same colonies: "before" (the kinds built before the budget, each at its own rate), "no budget" (every kind on, parts 4 to
+6 too, each at its own rate), "budget" (every kind on, each at its pass). Alpha Skills, Giddy-Up, Hospitality, Odyssey's
+fishing and A RimWorld of Magic loaded; PokéWorld and Dubs Bad Hygiene's thirst not (PokéWorld's catch and visitor at the
+stores have their base rates set by hand). Hurts the cap counts, per colonist-year (4000 runs; harm, part 6):
 
 | | 6, well run | 6, average | 6, neglectful | 12, well run | 12, average | 12, neglectful |
 |---|---|---|---|---|---|---|
 | Before (every kind built up to 0.149.0) | 0.339 | 0.453 | 0.560 | 0.290 | 0.395 | 0.504 |
-| Every kind on, no budget | 0.669 | 0.983 | 1.356 | 0.538 | 0.812 | 1.149 |
-| Every kind on, the budget | 0.307 | 0.454 | 0.629 | 0.242 | 0.367 | 0.526 |
+| Every kind on, no budget | 0.862 | 1.223 | 1.667 | 0.696 | 1.016 | 1.425 |
+| Every kind on, the budget | 0.318 | 0.456 | 0.630 | 0.251 | 0.370 | 0.528 |
+| With parts 4 and 5 (0.155.0 to 0.159.0), the budget | 0.309 | 0.455 | 0.627 | 0.242 | 0.366 | 0.523 |
 | With part 4 alone (0.153.0), the budget | 0.311 | 0.452 | 0.618 | 0.245 | 0.368 | 0.519 |
 | The game's own beside them: a raid's wound | 1.4 | 1.7 | 2.0 | 1.4 | 1.7 | 2.0 |
 
-The average colony of six, on which the base rates are measured, keeps its total (0.453 before, 0.454 after, with part 5's
-fourteen in: part 5 would add 0.12 a colonist-year on its own, and within the budget brings 0.055, the rest giving up as
-much; each kind now passes at about 44% of its own rate). Elsewhere
-the budget keeps prevention's meaning: a well-run colony prevents more of the new kinds and ends a little below its old
-total (9% with six, 17% with twelve), a neglectful one a little above (12% with six, 4% with twelve), and a colony of
-twelve meets fewer of the new kinds per head (a storm bruises two at most, a games day has two bouts). Each kind passes at
-a little under half its own rate. Part 4's fifteen would add 0.43 a colonist-year on their own; with part 5's beside them, the later kinds would add
-0.54 and within the budget bring 0.25, the founding kinds giving up as much. The variety: a kind coming again within thirty
-days of its last falls from 0.19 to 0.14 times a colony-year (the average colony of six), the commonest kind (the ailments
-of the land and the work) from 17.4% of the hurts to 16.6%, the total the same. The heart's strain, its days off and the strain's mood are the same
+The average colony of six, on which the base rates are measured, keeps its total (0.453 before, 0.456 after with part
+6's twenty-three in; 0.455 with parts 4 and 5 only: part 6 would add 0.23 a colonist-year on its own, and within the
+budget the later kinds bring 0.30 where they brought 0.26, the rest giving up as much; each kind now passes at about 35%
+of its own rate). Elsewhere the budget keeps prevention's meaning: a well-run colony prevents more of the new kinds and
+ends a little below its old total (6% with six, 13% with twelve), a neglectful one a little above (13% with six, 5% with
+twelve), and a colony of twelve meets fewer of the new kinds per head (a storm bruises two at most, a games day has two
+bouts). Parts 4 to 6 would add 0.79 a colonist-year on their own and within the budget bring 0.30, the founding kinds
+giving up as much. The variety: a kind coming again within thirty days of its last falls from 0.14 to 0.10 times a
+colony-year (the average colony of six), the commonest kind (the ailments of the land and the work) from 13.6% of the
+hurts to 13.1%, the total the same. The heart's strain, its days off and the strain's mood are the same
 before and after to a tenth. The beasts' summary (`BeastSim.cs`) still prints after it; their stampede is a kind in the
 budget now, their nemesis's return the game's own attack outside it.
 

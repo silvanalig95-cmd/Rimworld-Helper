@@ -237,6 +237,7 @@ namespace ColonyCouncil
                 {
                     var fire = PlayFire.Light(pawn.Map, job.GetTarget(TargetIndex.A).Cell, pawn);
                     lit = fire != null;
+                    if (lit) AnswerHurts.Lit(pawn, AnswerWork.Fire, job.GetTarget(TargetIndex.A).Cell);
                     // The wood goes into the fire.
                     if (lit && pawn.carryTracker?.CarriedThing != null) pawn.carryTracker.DestroyCarriedThing();
                 }

@@ -18,7 +18,7 @@ namespace ColonyCouncil
         Fight
     }
 
-    /// <summary>The kind of wound, as the game has it: its own injuries (Bruise, Cut, Burn, Crush, Crack, Scratch).</summary>
+    /// <summary>The kind of wound, as the game has it: its own injuries (Bruise, Cut, Burn, Crush, Crack, Scratch, Bite).</summary>
     public enum HurtKind
     {
         Bruise,
@@ -26,7 +26,9 @@ namespace ColonyCouncil
         Burn,
         Crush,
         Crack,
-        Scratch
+        Scratch,
+        /// <summary>An animal's bite (harm, part 6: the wild one too close), named for the animal that gave it.</summary>
+        Bite
     }
 
     /// <summary>Where on the body a hurt lands: a hand, an arm, a foot, a leg, the torso, or any of the arms, legs and torso.</summary>

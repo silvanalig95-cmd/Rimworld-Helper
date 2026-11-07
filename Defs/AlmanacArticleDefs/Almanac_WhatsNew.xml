@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.161.0</version>
+        <date>7 November 2026</date>
+        <title>Mishaps of work, animals and festivals, in the shared budget</title>
+        <points>
+          <li>Twenty-three more kinds of everyday mishap on the same budget, so the total stays where it was and each kind comes less often.</li>
+          <li>Work: a burn at a fire or pyre an answer lit, getting up too soon from a sprain, the last push of a council project, clumsiness when worn down, a makeshift spot's burn, a wall coming down on an unskilled worker, a sickle cut in a hurried harvest, a dropped load for one who carries too much, a whittler's nick, a second cup before work, and hands home sore from another people's harvest.</li>
+          <li>Animals: the drovers' bull, a wild animal stepped too close to in an encounter, a predator met on a dawn walk, a fed wolf grown bold at the stores, and with PokéWorld a wild Pokémon that fights back when caught or swipes when shooed from the stores.</li>
+          <li>Festivals and courage: a bonfire spark in dry grass on a windy night, a mishap at a muster on the line, sparring among A RimWorld of Magic's fighters, a brave group's dare, someone called a coward breaking cover to prove otherwise, and fury that forgets cover against the people they swore against.</li>
+          <li>As always the answers that bring a risk say so, care prevents most of it (skill, a marshal's word, a cleared spot, drafting), and the game's own fights, fires and hunts do the rest.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.160.0</version>
         <date>7 November 2026</date>
         <title>What work makes goes into the worker's pack</title>

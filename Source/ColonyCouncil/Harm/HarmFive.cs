@@ -78,7 +78,7 @@ namespace ColonyCouncil
                 case HarmWaiting.Ward: return Carriers.WardHour(x, now);
                 case HarmWaiting.Batch: return false;
                 case HarmWaiting.Dose: return Carriers.SoreArm(x, now);
-                default: return true;
+                default: return HarmSix.Due(x, now);
             }
         }
 
@@ -90,7 +90,7 @@ namespace ColonyCouncil
                 case HarmWaiting.Ward: return now - x.made > HarmFiveMath.WardKeepDays * HarmMath.DayTicks;
                 case HarmWaiting.Batch: return now - x.made > HarmFiveMath.BatchKeepDays * HarmMath.DayTicks;
                 case HarmWaiting.Dose: return HarmFourMath.OnsetLapsed(x.due, now);
-                default: return true;
+                default: return HarmSix.Lapsed(x, now);
             }
         }
 

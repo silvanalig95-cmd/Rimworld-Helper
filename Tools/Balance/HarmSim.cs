@@ -12,14 +12,14 @@
 //
 // Three runs of the same colonies, every kind drawing from its own generator so the lives are the same in all three:
 //   before:     the kinds built before the shared budget (0.106.0 to 0.149.0), each at its own rate, as the game has them now;
-//   no budget:  every kind on, harm parts 4 and 5 too, each at its own rate (what they would add without the budget);
+//   no budget:  every kind on, harm parts 4, 5 and 6 too, each at its own rate (what they would add without the budget);
 //   the budget: every kind on, each at its rate times its pass (HarmBudgetMath.Passes: the budget shared out, a kind that
 //               came lately passing less often).
 // The budget's line holds the total at the "before" line's within noise. Each kind's base rate in the registry is its
 // "no budget" rate in the average colony of six (printed under it, for a later kind's builder to copy). Grown-ups only
 // (the cap keeps children from all but the mildest), the usual setting and storyteller (the harm scale 1); Alpha Skills,
-// Giddy-Up, Hospitality and Odyssey's fishing loaded (their kinds on), PokéWorld and Dubs Bad Hygiene's thirst not (its
-// Pokémon spar and the dirty water off, as in most games).
+// Giddy-Up, Hospitality, Odyssey's fishing and A RimWorld of Magic loaded (their kinds on), PokéWorld and Dubs Bad Hygiene's
+// thirst not (its Pokémon spar, catch and visitor at the stores and the dirty water off, as in most games).
 
 using ColonyCouncil;
 
@@ -111,6 +111,27 @@ namespace Balance
             public float restlessDusks;
             /// <summary>Hours a colonist fishes below freezing a colony-year.</summary>
             public float coldFishing;
+            // ---- Harm, part 6 ----
+            /// <summary>Answers' hot or heavy work on the map a colony-year (a fire laid for a gathering, the pyre lit, the dead carried out, graves dug).</summary>
+            public float answerWorks;
+            /// <summary>Answers letting a convalescent back to light work a colony-year (the back-too-soon question, answered so).</summary>
+            public float tooSoon;
+            /// <summary>Long days at a project's own building in its last three days, a colony of six's year.</summary>
+            public float pushDays;
+            /// <summary>Bills cooked at a campfire or butchered at a spot while a proper bench could be built, a colony-year.</summary>
+            public float makeshiftBills;
+            /// <summary>Walls and doors taken down a colonist-year by someone under Construction 5.</summary>
+            public float takeDowns;
+            /// <summary>Hours of hurried harvesting by hand a colonist-year (the frost's all hands, a frost harvest, the harvest push), and the share after dark.</summary>
+            public float hurriedHours, hurriedDark;
+            /// <summary>Hours someone of the colony spends among a camp's herd a stay.</summary>
+            public float droverHours;
+            /// <summary>Resident predators fed by the colony's answer a colony-year.</summary>
+            public float fedPredators;
+            /// <summary>Of the bonfires, those with dry grass near the fire (not cleared round it).</summary>
+            public float dryGrass;
+            /// <summary>Colonists left undrafted in a fight (a coward's name or an avenger can break cover then).</summary>
+            public float undrafted;
         }
 
         private static readonly Exposure[] Exposures =
@@ -122,7 +143,9 @@ namespace Balance
                 tendings = 0.7f, sterile = 0.4f, sickDecree = 0.3f, tired = 0.1f, visits = 4f, stayInside = 0.3f, hailHours = 0.1f, bankedDays = 3f, coldRoom = 0.2f,
                 unskilledTrees = 3f, heavyFails = 0.3f, penHours = 1f, greenRides = 1f, bitterGroups = 0.1f, digs = 5f, hospitalityNights = 5f, gamesDays = 0.8f,
                 sickPetitions = 0.05f, gateShut = 0.5f, plagueQuarantine = 0.15f, campTended = 0.8f, lowDoctor = 0.4f, worms = 0.03f, wormsUntended = 0.2f, bitesUntended = 0.3f,
-                gateWaits = 0.15f, watches = 1f, unwalled = 0.3f, covered = 0.6f, shaken = 0.6f, restlessDusks = 0.03f, coldFishing = 3f
+                gateWaits = 0.15f, watches = 1f, unwalled = 0.3f, covered = 0.6f, shaken = 0.6f, restlessDusks = 0.03f, coldFishing = 3f,
+                answerWorks = 2f, tooSoon = 0.15f, pushDays = 2f, makeshiftBills = 3f, takeDowns = 1f, hurriedHours = 3f, hurriedDark = 0.2f, droverHours = 1f,
+                fedPredators = 0.05f, dryGrass = 0.4f, undrafted = 0.15f
             },
             new Exposure
             {
@@ -131,7 +154,9 @@ namespace Balance
                 tendings = 0.8f, sterile = 0.2f, sickDecree = 0.1f, tired = 0.25f, visits = 4f, stayInside = 0.35f, hailHours = 0.3f, bankedDays = 5f, coldRoom = 0.5f,
                 unskilledTrees = 6f, heavyFails = 0.6f, penHours = 1.7f, greenRides = 2.5f, bitterGroups = 0.25f, digs = 6f, hospitalityNights = 6f, gamesDays = 0.8f,
                 sickPetitions = 0.15f, gateShut = 0.25f, plagueQuarantine = 0.05f, campTended = 0.5f, lowDoctor = 0.6f, worms = 0.08f, wormsUntended = 0.5f, bitesUntended = 0.6f,
-                gateWaits = 0.25f, watches = 1.5f, unwalled = 0.6f, covered = 0.4f, shaken = 0.8f, restlessDusks = 0.06f, coldFishing = 4f
+                gateWaits = 0.25f, watches = 1.5f, unwalled = 0.6f, covered = 0.4f, shaken = 0.8f, restlessDusks = 0.06f, coldFishing = 4f,
+                answerWorks = 3f, tooSoon = 0.3f, pushDays = 4f, makeshiftBills = 10f, takeDowns = 2f, hurriedHours = 6f, hurriedDark = 0.3f, droverHours = 2f,
+                fedPredators = 0.09f, dryGrass = 0.7f, undrafted = 0.3f
             },
             new Exposure
             {
@@ -140,7 +165,9 @@ namespace Balance
                 tendings = 1f, sterile = 0.05f, sickDecree = 0f, tired = 0.5f, visits = 4f, stayInside = 0.35f, hailHours = 0.6f, bankedDays = 8f, coldRoom = 0.8f,
                 unskilledTrees = 10f, heavyFails = 1f, penHours = 2.5f, greenRides = 5f, bitterGroups = 0.45f, digs = 7f, hospitalityNights = 6f, gamesDays = 0.6f,
                 sickPetitions = 0.3f, gateShut = 0.1f, plagueQuarantine = 0f, campTended = 0.2f, lowDoctor = 0.8f, worms = 0.15f, wormsUntended = 0.8f, bitesUntended = 0.8f,
-                gateWaits = 0.35f, watches = 2f, unwalled = 0.8f, covered = 0.2f, shaken = 1.2f, restlessDusks = 0.12f, coldFishing = 6f
+                gateWaits = 0.35f, watches = 2f, unwalled = 0.8f, covered = 0.2f, shaken = 1.2f, restlessDusks = 0.12f, coldFishing = 6f,
+                answerWorks = 3f, tooSoon = 0.5f, pushDays = 6f, makeshiftBills = 25f, takeDowns = 4f, hurriedHours = 10f, hurriedDark = 0.5f, droverHours = 3f,
+                fedPredators = 0.12f, dryGrass = 0.9f, undrafted = 0.5f
             }
         };
 
@@ -265,14 +292,48 @@ namespace Balance
         private const float FriendAlong = 0.4f;
         /// <summary>Of cold fishing hours, those in a hard frost (twice the slips).</summary>
         private const float HardFrostFishing = 0.4f;
+        // ---- Harm, part 6 ----
+        /// <summary>Skilled hands at an answer's work (Cooking or Construction 8), half as often hurt.</summary>
+        private const float SkilledShare = 0.3f;
+        /// <summary>Of those let back too soon, the answer's own risk of overdoing it, and found carrying within the day.</summary>
+        private const float OverdoRisk = 0.3f, CarryingSoon = 0.8f;
+        /// <summary>Those with "carries more than they should", and their heavy days a colony-year.</summary>
+        private const float StrongShare = 0.03f, HeavyDays = 20f;
+        /// <summary>Those who are always whittling or sharpen every blade, and the days they sit down to it.</summary>
+        private const float SharpShare = 0.03f, WhittleDays = 12f;
+        /// <summary>Those with Alpha Skills' drunken passion at any work, their days with a drink before it, three running, the policy allowing a second, the stagger's hour at the bench.</summary>
+        private const float DrunkenAny = 0.08f, DrinkDays = 25f, StreakShare = 0.6f, PolicyAllows = 0.7f, AtBenchDrunk = 0.6f;
+        /// <summary>Hands come home from a town's harvest a colony-year (the mission a summer or autumn in most years, two or three hands).</summary>
+        private const float HandTrips = 0.5f;
+        /// <summary>Of the camps, those with a herd.</summary>
+        private const float HerdCamps = 0.5f;
+        /// <summary>Encounters stepping close to a wild animal a colony-year, and the game's taming-revenge chance of the kinds met (0 to 0.25).</summary>
+        private const float CloseEncounters = 1.5f, RevengeTop = 0.25f;
+        /// <summary>Those who walk the fields at dawn, their dawns out a colony-year, and alone there.</summary>
+        private const float DawnShare = 0.03f, DawnDays = 40f, DawnAlone = 0.7f;
+        /// <summary>A fed predator's nights with someone alone near the stores before its story ends (a season), and bold by then.</summary>
+        private const float BoldNights = 12f;
+        /// <summary>Bonfires a colony-year (answers' and the calendar's), on a summer night, dry and windy, someone within a step of where it caught.</summary>
+        private const float Bonfires = 0.8f, SummerNight = 0.25f, DryWind = 0.3f, StoodNear = 0.5f;
+        /// <summary>Days of the "hold the way in" project a colony-year, and a marshal of Shooting 10.</summary>
+        private const float ProjectDays = 3f, ShootingMarshal = 0.2f;
+        /// <summary>A colony with two of A RimWorld of Magic's fighters, and both free on a spar evening.</summary>
+        private const float FighterPair = 0.15f, BothFree = 0.5f;
+        /// <summary>A colony with a group brave to a fault or the bold ones, two of it free of an evening, a cautious one at hand.</summary>
+        private const float BraveGroup = 0.3f, TwoFree = 0.7f, CautiousNear = 0.3f;
+        /// <summary>A coward's name forming a colony-year, a fight at home within sixty days, the marshal at their side.</summary>
+        private const float CowardNames = 0.2f, FightSoon = 0.7f, MarshalNear = 0.2f;
+        /// <summary>Avengers with an open vendetta, and their sworn people's fights at home a year.</summary>
+        private const float Avengers = 0.3f, SwornFights = 0.5f;
 
         // ---- The game's own, beside them ----
 
         /// <summary>A raid's wound for a colonist at home (HeartSim's model: in it four times in five, hurt one time in three of those).</summary>
         private const float RaidWound = 0.8f * 0.3f;
 
-        /// <summary>The kinds the model has, in the registry's order (PokéWorld's spar and Dubs Bad Hygiene's dirty water left out: the model's game hasn't them).</summary>
-        private static readonly HarmKind[] Modelled = HarmKinds.All.Where(k => k != HarmKinds.PokemonSpar && k != HarmKinds.DirtyWater).ToArray();
+        /// <summary>The kinds the model has, in the registry's order (PokéWorld's spar, catch and visitor and Dubs Bad Hygiene's dirty water left out: the model's game hasn't them).</summary>
+        private static readonly HarmKind[] Modelled = HarmKinds.All
+            .Where(k => k != HarmKinds.PokemonSpar && k != HarmKinds.DirtyWater && k != HarmKinds.CatchFights && k != HarmKinds.StoresVisitor).ToArray();
 
         private sealed class Person
         {
@@ -437,6 +498,7 @@ namespace Balance
                 SinceDay(y, day, rng);
                 if (y.mode != Mode.Before) PartFourDay(y, day, rng);
                 if (y.mode != Mode.Before) PartFiveDay(y, day, rng);
+                if (y.mode != Mode.Before) PartSixDay(y, day, rng);
                 Onsets(y, day, rng);
                 if (y.mode == Mode.Budget || y.mode == Mode.BudgetPlain)
                 {
@@ -1141,6 +1203,185 @@ namespace Balance
             }
         }
 
+        // ---------------- Harm, part 6 ----------------
+
+        /// <summary>A colony-year's rate as a day's chance for one of the colony (scaled for its size from a colony of six's).</summary>
+        private static double PerDay(Year y, double perColonyYear) => perColonyYear * y.n / 6.0 / Days;
+
+        private static void PartSixDay(Year y, int day, Func<string, Random> rng)
+        {
+            var x = y.x;
+            // Hot and heavy answers: one roll a play-out, at the moment of the work.
+            var ga = rng("hot heavy");
+            if (ga.NextDouble() < PerDay(y, x.answerWorks) && Comes(y, HarmKinds.HotHeavy, ga, HarmSixMath.HotHeavy(ga.NextDouble() < SkilledShare)))
+            {
+                var p = Any(y, ga);
+                y.today.Add((19, () => Hurt(y, p, HarmKinds.HotHeavy)));
+            }
+            // Back too soon, for real: the answer's own risk of overdoing it, a third of those a fall with a load within the day.
+            var gb = rng("back too soon");
+            if (gb.NextDouble() < x.tooSoon / Days && gb.NextDouble() < OverdoRisk && gb.NextDouble() < CarryingSoon
+                && Comes(y, HarmKinds.BackTooSoon, gb, HarmSixMath.BackTooSoonChance))
+            {
+                var p = Any(y, gb);
+                y.today.Add((14, () => Hurt(y, p, HarmKinds.BackTooSoon)));
+            }
+            // The project's last push: a long day at its own building, tired hands' rule.
+            var gp = rng("project push");
+            if (gp.NextDouble() < PerDay(y, x.pushDays) && Comes(y, HarmKinds.ProjectPush, gp, HarmSixMath.ProjectPush(gp.NextDouble() < x.lowRest, false, y.age == WorldAge.Spacer)))
+            {
+                var p = Any(y, gp);
+                y.today.Add((15, () => Hurt(y, p, HarmKinds.ProjectPush)));
+            }
+            // Clumsy when worn: a long day at any work in the heart's two high bands, half the tired-hands rate.
+            var gc = rng("clumsy");
+            foreach (var p in y.people)
+            {
+                bool high = HeartMath.BandFor(p.heart.strain) >= StrainBand.Worn;
+                if (!high || gc.NextDouble() >= 0.7) continue;
+                if (!Comes(y, HarmKinds.ClumsyWorn, gc, HarmSixMath.Clumsy(true, gc.NextDouble() < x.lowRest, p.tough, y.age == WorldAge.Spacer))) continue;
+                var who = p;
+                y.today.Add((15, () => Hurt(y, who, HarmKinds.ClumsyWorn)));
+            }
+            // The makeshift spot's burn: a bill at a campfire or a butcher's spot while a bench could be built.
+            var gm = rng("makeshift");
+            if (gm.NextDouble() < PerDay(y, x.makeshiftBills) && Comes(y, HarmKinds.Makeshift, gm, HarmSixMath.Makeshift(true, true, true)))
+            {
+                var p = Any(y, gm);
+                y.today.Add((12, () => Hurt(y, p, HarmKinds.Makeshift)));
+            }
+            // Taking down hurts too: a wall or a door taken down by an unskilled hand, one in 100.
+            var gt = rng("taking down");
+            foreach (var p in y.people)
+                if (gt.NextDouble() < x.takeDowns / Days && Comes(y, HarmKinds.TakingDown, gt, HarmSixMath.TakingDown(true, 2)))
+                {
+                    var who = p;
+                    y.today.Add((11, () => Hurt(y, who, HarmKinds.TakingDown)));
+                }
+            // Hurried hands at the harvest: an hour harvesting in a hurry, one in 200, twice after dark.
+            var gh = rng("hurried harvest");
+            foreach (var p in y.people)
+                if (gh.NextDouble() < x.hurriedHours / Days && Comes(y, HarmKinds.HurriedHarvest, gh, HarmSixMath.Hurried(true, gh.NextDouble() < x.hurriedDark, gh.NextDouble() < 0.3 ? 9 : 4)))
+                {
+                    var who = p;
+                    y.today.Add((18, () => Hurt(y, who, HarmKinds.HurriedHarvest)));
+                }
+            // Carries more than they should: a heavy day's strain half again as likely, and a dropped load.
+            var gs = rng("strong back");
+            foreach (var p in y.people)
+            {
+                if (gs.NextDouble() >= StrongShare * HeavyDays / Days) continue;
+                if (!Comes(y, HarmKinds.StrongBack, gs, HarmSixMath.StrongBackStrain + HarmSixMath.StrongBackDrop)) continue;
+                var who = p;
+                y.today.Add((13, () => Hurt(y, who, HarmKinds.StrongBack)));
+            }
+            // Sharp habits: a day at the whittling or the whetstone, one nick in ten.
+            var gn = rng("sharp habits");
+            foreach (var p in y.people)
+                if (gn.NextDouble() < SharpShare * WhittleDays / Days && Comes(y, HarmKinds.SharpHabits, gn, HarmSixMath.NickChance))
+                {
+                    var who = p;
+                    y.today.Add((20, () => Hurt(y, who, HarmKinds.SharpHabits)));
+                }
+            // The second drink: three days running, one day in five a second cup (the policy allowing), one stagger in four at the bench.
+            var gd = rng("second drink");
+            foreach (var p in y.people)
+            {
+                if (gd.NextDouble() >= DrunkenAny * DrinkDays / Days || gd.NextDouble() >= StreakShare || gd.NextDouble() >= HarmSixMath.SecondCupChance
+                    || gd.NextDouble() >= PolicyAllows || gd.NextDouble() >= AtBenchDrunk) continue;
+                if (!Comes(y, HarmKinds.SecondDrink, gd, HarmSixMath.StaggerChance)) continue;
+                var who = p;
+                y.today.Add((10, () => Hurt(y, who, HarmKinds.SecondDrink)));
+            }
+            // The hands come home sore: what a day and a half in the fields gives, by the everyday ailments' rates.
+            var gw = rng("hands sore");
+            if (gw.NextDouble() < HandTrips / Days && Comes(y, HarmKinds.HandsSore, gw, HarmSixMath.HandsSore(1f, gw.NextDouble() < 0.07)))
+                y.onsets.Add((Any(y, gw), day + 2, HarmKinds.HandsSore));
+            // The drovers' bull: an hour among a camp's herd, one charge in 30, once a stay.
+            var gl = rng("drovers' bull");
+            if (gl.NextDouble() < CampsPerYear * HerdCamps / Days)
+            {
+                int hours = (int)Math.Round(x.droverHours * (0.5 + gl.NextDouble()));
+                for (int h = 0; h < hours; h++)
+                    if (Comes(y, HarmKinds.DroversBull, gl, HarmSixMath.DroversChance))
+                    {
+                        var p = Any(y, gl);
+                        y.today.Add((12 + h % 6, () => Hurt(y, p, HarmKinds.DroversBull)));
+                        break;
+                    }
+            }
+            // The wild one too close: an encounter close to a wild animal, by the game's taming-revenge chance for its kind.
+            var gx = rng("too close");
+            if (gx.NextDouble() < PerDay(y, CloseEncounters) && Comes(y, HarmKinds.TooClose, gx, HarmSixMath.TooClose((float)gx.NextDouble() * RevengeTop, gx.NextDouble() < 0.15)))
+            {
+                var p = Any(y, gx);
+                y.today.Add((10, () => Hurt(y, p, HarmKinds.TooClose)));
+            }
+            // Walks the fields at dawn: alone, beyond the walls, a hungry predator in reach, one dawn in eight.
+            var gk = rng("dawn walk");
+            foreach (var p in y.people)
+            {
+                if (gk.NextDouble() >= DawnShare * DawnDays / Days) continue;
+                float chance = HarmSixMath.DawnPredator(gk.NextDouble() < DawnAlone, gk.NextDouble() < x.unwalled, gk.NextDouble() < HungryPredator);
+                if (!Comes(y, HarmKinds.DawnWalk, gk, chance)) continue;
+                var who = p;
+                y.today.Add((6, () => Hurt(y, who, HarmKinds.DawnWalk)));
+            }
+            // The fed wolf grows bold: a night with someone alone near the stores, one in 40, over its season.
+            var gf = rng("bold wolf");
+            if (gf.NextDouble() < x.fedPredators * BoldNights / Days && Comes(y, HarmKinds.BoldWolf, gf, HarmSixMath.BoldNightChance))
+            {
+                var p = Any(y, gf);
+                y.today.Add((23, () => Hurt(y, p, HarmKinds.BoldWolf)));
+            }
+            // The bonfire's spark: a dry, windy summer night, dry grass near, one in 20, someone within a step singed.
+            var gi = rng("bonfire spark");
+            if (gi.NextDouble() < Bonfires / Days && gi.NextDouble() < SummerNight && gi.NextDouble() < DryWind && gi.NextDouble() < x.dryGrass
+                && Comes(y, HarmKinds.BonfireSpark, gi, HarmSixMath.SparkChance) && gi.NextDouble() < StoodNear)
+            {
+                var p = Any(y, gi);
+                y.today.Add((22, () => Hurt(y, p, HarmKinds.BonfireSpark)));
+            }
+            // Musters at the line: the militia's evening off its bouts (one in four), or the project's; one in 30 a mishap.
+            var gu = rng("line muster");
+            if (gu.NextDouble() < (x.drillDays * 0.5 + ProjectDays) / Days / 4.0 && Comes(y, HarmKinds.LineMuster, gu, HarmSixMath.Muster(gu.NextDouble() < ShootingMarshal)))
+            {
+                var p = Any(y, gu);
+                y.today.Add((18, () => Hurt(y, p, HarmKinds.LineMuster)));
+            }
+            // Fighters spar (A RimWorld of Magic): one evening in three, two fighters free, one bout in 25 a blow.
+            var gr = rng("magic spar");
+            if (gr.NextDouble() < FighterPair && HarmSixMath.SparDay(day) && gr.NextDouble() < BothFree && Comes(y, HarmKinds.MagicSpar, gr, HarmSixMath.SparBlowChance))
+            {
+                var p = Any(y, gr);
+                y.today.Add((18, () => Hurt(y, p, HarmKinds.MagicSpar)));
+            }
+            // Brave to a fault: a bold group's evening dare about once a season, half talked out by a cautious one at hand, one in three hurt.
+            var ge = rng("brave dare");
+            if (ge.NextDouble() < BraveGroup && ge.NextDouble() < HarmSixMath.DareChance && ge.NextDouble() < TwoFree
+                && !(ge.NextDouble() < CautiousNear && ge.NextDouble() < HarmSixMath.TalkedOut) && Comes(y, HarmKinds.BraveDare, ge, HarmSixMath.DareHurtChance))
+            {
+                var p = Any(y, ge);
+                y.today.Add((19, () => Hurt(y, p, HarmKinds.BraveDare)));
+            }
+            // A coward's name: the next fight, undrafted and with no marshal at their side, they break cover.
+            var go = rng("coward");
+            if (go.NextDouble() < PerDay(y, CowardNames) && go.NextDouble() < FightSoon && go.NextDouble() < x.undrafted && go.NextDouble() >= MarshalNear
+                && Comes(y, HarmKinds.CowardName, go, HarmSixMath.CowardChance))
+            {
+                var p = Any(y, go);
+                int at = day + go.Next(1, 30);
+                y.onsets.Add((p, at, HarmKinds.CowardName));
+            }
+            // Fury that forgets cover: a fight against the sworn people, an undrafted avenger, one in three.
+            var gv = rng("fury");
+            if (gv.NextDouble() < Avengers * SwornFights * y.n / 6.0 / Days && gv.NextDouble() < x.undrafted && Comes(y, HarmKinds.VendettaFury, gv, HarmSixMath.FuryChance))
+            {
+                var p = Any(y, gv);
+                y.today.Add((13, () => Hurt(y, p, HarmKinds.VendettaFury, false)));
+            }
+        }
+
         /// <summary>Sicknesses, and the rematch's day, waiting to show: each comes the first morning the cap lets it, or passes after three days.</summary>
         private static void Onsets(Year y, int day, Func<string, Random> rng)
         {
@@ -1197,7 +1438,7 @@ namespace Balance
                 }
                 Console.WriteLine($"   {k.label,-48} {b,8:0.000} {u,10:0.000} {a,8:0.000} {pass,9:0.00} {held,10:0.000} {budget.hurts.GetValueOrDefault(k.label) / years,14:0.000}");
             }
-            Console.WriteLine($"   {"in all",-48} {tb,8:0.000} {tn,10:0.000} {ta,8:0.000}   (budget/before {ta / Math.Max(1e-9, tb):0.000}; the later kinds, parts 4 and 5, {newTn:0.000} -> {newTa:0.000})");
+            Console.WriteLine($"   {"in all",-48} {tb,8:0.000} {tn,10:0.000} {ta,8:0.000}   (budget/before {ta / Math.Max(1e-9, tb):0.000}; the later kinds, parts 4 to 6, {newTn:0.000} -> {newTa:0.000})");
             Console.WriteLine($"   the game's own beside it: a raid's wound {budget.raidWounds / cy:0.00} a colonist-year (HeartSim's raids), a food poisoning 0.3 to 1 (two meals a day,");
             Console.WriteLine("   a middling cook), the storyteller's diseases a few a colony-year.");
             Console.Write("   fights a colony-year:");

@@ -85,6 +85,20 @@ public static class ImmersionTests
         "Rimfolk_Pool_ColdWatch", "Rimfolk_Pool_WatchPredator", "Rimfolk_Pool_WeatherLover", "Rimfolk_Pool_ColdWater", "Rimfolk_Pool_SleepwalkDoor",
         "Rimfolk_Pool_SleepwalkRoommate", "Rimfolk_Pool_SleepwalkWakes", "Rimfolk_Pool_SleepwalkHurt", "Rimfolk_Pool_SleepwalkLed", "Rimfolk_Pool_RestlessWalk",
         "Rimfolk_Pool_RestlessFriend", "Rimfolk_Pool_SomethingOut",
+        // Harm, part 6: an answer's hot or heavy work, a fall back too soon and the help back to bed, a makeshift spot, a wall
+        // taken down, the hands home sore, a slip in a project's last push or worn down, a sickle in a hurry, a strong back, a
+        // nick, the second cup and its stagger; the drovers' bull and their word, too close to a wild one, the dawn walk and a
+        // predator in it, the bold one seen and come, a catch with or without a partner, the visitor swiping or shooed; a spark
+        // singeing and the shout, the muster's call and mishap, a spar's start, blow, sorry and end, a dare's start, call,
+        // laugh, hurt and the one who talks them out, the marshal's word, a coward and an avenger breaking cover.
+        "Rimfolk_Pool_HotHeavy", "Rimfolk_Pool_BackTooSoon", "Rimfolk_Pool_HelpedToBed", "Rimfolk_Pool_Makeshift", "Rimfolk_Pool_TakeDown",
+        "Rimfolk_Pool_HandsSore", "Rimfolk_Pool_ProjectPush", "Rimfolk_Pool_Clumsy", "Rimfolk_Pool_Sickle", "Rimfolk_Pool_StrongBack", "Rimfolk_Pool_Nick",
+        "Rimfolk_Pool_SecondCup", "Rimfolk_Pool_Stagger", "Rimfolk_Pool_DroverCharge", "Rimfolk_Pool_DroverWord", "Rimfolk_Pool_TooClose", "Rimfolk_Pool_DawnWalk",
+        "Rimfolk_Pool_DawnPredator", "Rimfolk_Pool_BoldWolfSeen", "Rimfolk_Pool_BoldWolf", "Rimfolk_Pool_CatchPartner", "Rimfolk_Pool_CatchFights",
+        "Rimfolk_Pool_Swiped", "Rimfolk_Pool_Shoo", "Rimfolk_Pool_Singed", "Rimfolk_Pool_SparkCaught", "Rimfolk_Pool_MusterCall", "Rimfolk_Pool_MusterMishap",
+        "Rimfolk_Pool_SparBegin", "Rimfolk_Pool_SparHit", "Rimfolk_Pool_SparSorry", "Rimfolk_Pool_SparEnd", "Rimfolk_Pool_DareBegin", "Rimfolk_Pool_DareDone",
+        "Rimfolk_Pool_DareHurt", "Rimfolk_Pool_DareTalkedOut", "Rimfolk_Pool_DareCall", "Rimfolk_Pool_MarshalWord", "Rimfolk_Pool_CowardBreaks",
+        "Rimfolk_Pool_FuryBreaks",
         // Schemes against the colony (Diplomacy/Schemes.cs): a shout at one of theirs caught at it, their word as they go,
         // a lie in a hot temper's ear, the hot temper having it out.
         "Rimfolk_Pool_SchemeCaught", "Rimfolk_Pool_SchemeCaughtGoes", "Rimfolk_Pool_SchemeWhisper", "Rimfolk_Pool_SchemeProvoked",

@@ -435,6 +435,7 @@ namespace ColonyCouncil
                     // The wood goes on the pyre.
                     if (pawn.carryTracker?.CarriedThing != null) pawn.carryTracker.DestroyCarriedThing();
                     lit = OnMapTimed.Instance?.LightPyre(pawn.Map, job.GetTarget(TargetIndex.A).Cell, pawn) ?? false;
+                    if (lit) AnswerHurts.Lit(pawn, AnswerWork.Pyre, job.GetTarget(TargetIndex.A).Cell);
                 }
                 catch (Exception e)
                 {

@@ -211,6 +211,30 @@ namespace ColonyCouncil
                 case "sleepwalk": return s.dreams;
                 case "restlessWalk": return Heart.On;
                 case "coldWater": return ColdHurts.FishingLoaded;
+                // Harm, part 6: the work's accidents, the animals, the contests and festivals, each under its own system.
+                case "hotHeavy": return PlayOuts.On;
+                case "backTooSoon": return HealthTracker.ConvalescenceOn;
+                case "projectPush": return s.enableAmbitions;
+                case "clumsyWorn": return Heart.On;
+                case "makeshift": return Setbacks.On(SetbackGroup.Life) && RimfolkPatches.On;
+                case "takingDown": return AilmentTracker.On && RimfolkPatches.On;
+                case "hurriedHarvest": return AilmentTracker.On;
+                case "strongBack": return s.quirks && AilmentTracker.On && Interplay.On;
+                case "sharpHabits": return s.quirks && SmallHabits.On;
+                case "secondDrink": return WorkSlips.SecondDrinkOn;
+                case "handsSore": return AilmentTracker.On && Interplay.On;
+                case "droversBull": return CampTracker.Enabled;
+                case "tooClose": return s.strangers;
+                case "dawnWalk": return s.quirks;
+                case "boldWolf": return ResidentBeast.On;
+                case "pokemonCatch": return PokeWorldLink.Active && ResidentBeast.On && PlayOuts.On;
+                case "pokemonStores": return PokeWorldLink.Active && ResidentBeast.On;
+                case "bonfireSpark": return PlayOuts.On;
+                case "lineMuster": return PlayOuts.On;
+                case "magicSpar": return Contests.MagicLoaded && PlayOuts.On;
+                case "braveDare": return GroupLife.Active && PlayOuts.On;
+                case "cowardName": return Reputations.On;
+                case "vendettaFury": return s.vendettas;
                 // The decrees, Rimfolk's events (dangers on the map, the hail) and the peoples' callers are always in the game.
                 default: return true;
             }
@@ -347,6 +371,7 @@ namespace ColonyCouncil
                 case HurtKind.Burn: return DamageDefOf.Burn;
                 case HurtKind.Crush: return DamageDefOf.Crush;
                 case HurtKind.Scratch: return DamageDefOf.Scratch;
+                case HurtKind.Bite: return DamageDefOf.Bite;
                 default: return DamageDefOf.Blunt;
             }
         }
@@ -395,7 +420,7 @@ namespace ColonyCouncil
         /// part has left but one point. Shown as the game shows a hit (the red flash, blood for a cut or a crush). Returns
         /// the wound (or the one it merged into), or null when nothing was given.
         /// </summary>
-        public static Hediff_Injury Injure(Pawn p, HurtKind kind, HurtWhere where, float low, float high, HarmKind why, HurtClass c = HurtClass.Injury)
+        public static Hediff_Injury Injure(Pawn p, HurtKind kind, HurtWhere where, float low, float high, HarmKind why, HurtClass c = HurtClass.Injury, Pawn by = null)
         {
             try
             {
@@ -417,7 +442,8 @@ namespace ColonyCouncil
                 if (size < HarmMath.SmallestWound) return null;
                 var h = (Hediff_Injury)HediffMaker.MakeHediff(def, p, part);
                 h.Severity = size;
-                var dinfo = new DamageInfo(DamageOf(kind), size, 0f, -1f, null, part, null, DamageInfo.SourceCategory.ThingOrUnknown, null, false);
+                // An animal's bite or kick names the animal (a bite can then carry what bites carry, by the ailments' own roll).
+                var dinfo = new DamageInfo(DamageOf(kind), size, 0f, -1f, by, part, by?.def, DamageInfo.SourceCategory.ThingOrUnknown, null, false);
                 p.health.AddHediff(h, part, dinfo);
                 var given = p.health.hediffSet.hediffs.Contains(h) ? h
                     : p.health.hediffSet.hediffs.OfType<Hediff_Injury>().FirstOrDefault(x => x.def == def && x.Part == part);
@@ -426,7 +452,7 @@ namespace ColonyCouncil
                 if (p.Spawned)
                 {
                     p.Drawer?.Notify_DamageApplied(dinfo);
-                    if ((kind == HurtKind.Cut || kind == HurtKind.Crush || kind == HurtKind.Scratch) && p.RaceProps.BloodDef != null)
+                    if ((kind == HurtKind.Cut || kind == HurtKind.Crush || kind == HurtKind.Scratch || kind == HurtKind.Bite) && p.RaceProps.BloodDef != null)
                         FilthMaker.TryMakeFilth(p.Position, p.Map, p.RaceProps.BloodDef, p.LabelIndefinite());
                     else if (kind == HurtKind.Burn) FleckMaker.ThrowSmoke(p.DrawPos, p.Map, 0.6f);
                 }
@@ -560,6 +586,7 @@ namespace ColonyCouncil
             Sabotage.Reset();
             HarmFour.Reset();
             HarmFive.Reset();
+            HarmSix.Reset();
             Harm.BudgetChanged();
         }
 
@@ -634,11 +661,14 @@ namespace ColonyCouncil
                     HarmFour.Hourly(this, now);
                     // Harm, part 5: the carriers at the gate, the patient's ward.
                     HarmFive.Hourly(this, now);
+                    // Harm, part 6: the answers' work, the animals at the stores and in the herd, the evening's contests.
+                    HarmSix.Hourly(this, now);
                     if (Sched.FirstHourOfDay(now)) Prune(now);
                 }
                 WorkHurts.Slice(slice, now);
                 HarmFour.Slice(this, slice, now);
                 HarmFive.Slice(this, slice, now);
+                HarmSix.Slice(this, slice, now);
             }
             catch (Exception e)
             {

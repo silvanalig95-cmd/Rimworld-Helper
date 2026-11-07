@@ -418,6 +418,7 @@
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_GreatBeastClose</thought></li>
       <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Animals</skill><xp>600</xp></li>
       <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><inspiration>Inspired_Taming</inspiration><chance>0.2</chance></li>
+      <li Class="ColonyCouncil.DilemmaEffect_TooClose" />
     </effects>
     <journal>Council_Journal_EncC_Majestic</journal>
     <notable>true</notable>
@@ -598,6 +599,7 @@
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_FedWild</thought></li>
       <li Class="ColonyCouncil.DilemmaEffect_Recruit"><target>X</target><chance>0.12</chance></li>
+      <li Class="ColonyCouncil.DilemmaEffect_TooClose" />
     </effects>
     <journal>Council_Journal_EncC_SmallFriend</journal>
   </ColonyCouncil.EncounterDef>
@@ -624,6 +626,7 @@
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_WildTouchedNoses</thought></li>
       <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Animals</skill><xp>250</xp></li>
+      <li Class="ColonyCouncil.DilemmaEffect_TooClose" />
     </effects>
   </ColonyCouncil.EncounterDef>
 
