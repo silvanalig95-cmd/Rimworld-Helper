@@ -798,7 +798,7 @@ namespace ColonyCouncil
             var map = agent.Map;
             if (map == null) return;
             agent.GetLord()?.RemovePawn(agent);
-            LordMaker.MakeNewLord(f ?? agent.Faction, new LordJob_ExitMapBest(LocomotionUrgency.Jog, false, true), map, new List<Pawn> { agent });
+            LordMaker.MakeNewLord(agent.Faction ?? f, new LordJob_ExitMapBest(LocomotionUrgency.Jog, false, true), map, new List<Pawn> { agent });
         }
 
         /// <summary>A dog's barking wakes the nearest of the colony asleep.</summary>
@@ -836,6 +836,8 @@ namespace ColonyCouncil
             var t = took ?? target;
             if (t == null) return "";
             if (t is MinifiedThing m && m.InnerThing != null) return Find.ActiveLanguageWorker.WithIndefiniteArticle(m.InnerThing.def.label);
+            // Silver, gold and jade are counted as they are ("120 silver"); components as things ("3 components").
+            if (LootKind(t) == SchemeMath.Purse) return t.stackCount + " " + t.def.label;
             if (t.def.stackLimit > 1) return t.stackCount > 1 ? t.stackCount + " " + Find.ActiveLanguageWorker.Pluralize(t.def.label, t.stackCount) : Find.ActiveLanguageWorker.WithIndefiniteArticle(t.def.label);
             return Find.ActiveLanguageWorker.WithDefiniteArticle(t.def.label);
         }
