@@ -104,6 +104,11 @@ namespace ColonyCouncil
         public List<AnimalMark> marks = new List<AnimalMark>();
         public List<AnimalTie> ties = new List<AnimalTie>();
         public List<AnimalGone> gone = new List<AnimalGone>();
+        /// <summary>
+        /// The colony's animals the player keeps from hunting, by id (their "May hunt" off, Animals/PetHunts.cs): only those
+        /// switched off are kept, <see cref="AnimalNatureMath.MaxKeptHome"/> at most, let go when the animal dies or leaves.
+        /// </summary>
+        public List<int> keptHome = new List<int>();
 
         private static AnimalBook cached;
         private static Game cachedGame;
@@ -142,11 +147,13 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref marks, "marks", LookMode.Deep);
             Scribe_Collections.Look(ref ties, "ties", LookMode.Deep);
             Scribe_Collections.Look(ref gone, "gone", LookMode.Deep);
+            Scribe_Collections.Look(ref keptHome, "keptHome", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 marks ??= new List<AnimalMark>();
                 ties ??= new List<AnimalTie>();
                 gone ??= new List<AnimalGone>();
+                keptHome ??= new List<int>();
                 marks.RemoveAll(m => m == null);
                 ties.RemoveAll(t => t == null || t.a == t.b);
                 gone.RemoveAll(g => g == null);
@@ -267,6 +274,20 @@ namespace ColonyCouncil
             }
         }
 
+        // ---------------- Kept from hunting ----------------
+
+        /// <summary>The player switched its "May hunt" off.</summary>
+        public bool KeptHome(int id) => keptHome != null && keptHome.Contains(id);
+
+        public void SetKeptHome(int id, bool kept)
+        {
+            keptHome ??= new List<int>();
+            keptHome.Remove(id);
+            if (!kept) return;
+            keptHome.Add(id);
+            while (keptHome.Count > AnimalNatureMath.MaxKeptHome) keptHome.RemoveAt(0);
+        }
+
         // ---------------- Gone ----------------
 
         /// <summary>One of the colony's named or bonded animals left it alive: kept with its handler, for the day they meet again.</summary>
@@ -344,6 +365,8 @@ namespace ColonyCouncil
             }
 
             gone.RemoveAll(g => g.handler == null || g.handler.Dead || now - g.tick > AnimalNatureMath.RemembersDays * GenDate.TicksPerDay);
+            // Kept from hunting: let go once the animal has died or left the colony.
+            keptHome?.RemoveAll(id => dead.Contains(id) || left.Contains(id));
         }
 
         /// <summary>

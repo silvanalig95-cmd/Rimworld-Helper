@@ -117,6 +117,35 @@ Born, it is news and goes in the chronicle; its keeper (its mother's person, the
 
 From spring to autumn, with one of them on the land, the council may be asked to keep a day for the sacred animals: someone whose faith holds them so carries food out to one of them where it is, and everyone gathers near it for the afternoon (+3 for 3 days for all), or the food is left and the day goes on (+2 for the one who carried it), or not this year. Kept, it is one of the colony's customs: it goes on the calendar, its question comes round on that date each year, and kept three years running it is a tradition. The setting is "Sacred animals" (What's on).</text>
       </li>
+      <li>
+        <heading>Hunting for themselves</heading>
+        <text>The game lets a tame animal hunt only when its kind counts as a predator, and only when nothing at all is left to eat, so a dog kept out of the stores goes hungry. With "Pets hunt for themselves" on (What's on), an animal whose kind hunts in real life goes after wild prey below it in the food chain when it is hungry and nothing it may eat lies inside its allowed area. It uses the game's own hunt: it kills, then eats. Two or more of a pack kind (dogs, wolves, hyenas, lions, raptors) beside each other take something a little bigger together.
+
+Now and then, about once in four days, a fed one idle in its area goes after small game, as a cat keeps the mice down. A third of the time, with its person about, it carries the kill to them and sets it at their feet (+3 for 2 days, "a present from my animal"). Whoever sees a kill says a word, and its card says what it caught.
+
+It never hunts while drafted, following its master into work or a fight, roped or penned, with a group, young, under 60% of its health, ill enough for bed, or with danger on the map, and it gives up a chase that takes it 6 cells out of its area. The fight is the game's own, so prey fighting back can hurt it now and then, as it hurts the game's wild hunters; the prey it picks keeps that small. Each such animal has a "May hunt" button: off, it stays at home and never hunts, the game's own last resort included.</text>
+      </li>
+      <li>
+        <heading>Who hunts, and what</heading>
+        <table>
+          <li>Kind | Its place | It takes</li>
+          <li>Husky, labrador, terrier and the other dogs | a hunter (a small dog a small hunter), in packs | hares, squirrels, rats, foxes; two together an ibex</li>
+          <li>Pug, French bulldog, shih-tzu, chihuahua | prey: bred for company | nothing</li>
+          <li>Cat, any breed | a small hunter | rats, squirrels, hares, up to a quarter of a man's size</li>
+          <li>Fox, lynx, weasel, ferret | a small hunter | mice, rats, hares, small birds</li>
+          <li>Wolf, hyena, coyote | a hunter, in packs | hares and foxes alone; two wolves together an ibex or a gazelle</li>
+          <li>Bear, cougar, panther, lion, crocodile | apex | a cougar a gazelle or a goat; a bear a deer or a boar</li>
+          <li>Eagle, hawk, owl, snake, monitor | by its size | small game</li>
+          <li>Grazers, browsers, fowl, rooters, lizards, apes, fish eaters | prey | nothing</li>
+          <li>Pokémon | by species and type: canines, foxes, cats, birds of prey, snakes, crocodiles, the hunting dragons, fossils and bugs; an unnamed Dark type of some size or a big Dragon type | an Arcanine a Rattata or a Pidgey, a Growlithe a hare</li>
+          <li>Any other kind | the game's predator flag, or a meat-only diet with teeth or claws, by its size; else prey | as its place allows</li>
+        </table>
+        <after>It takes only wild animals lower than itself, at most four fifths of its size alone (six fifths with another of its kind), weaker and unlikely to turn on it. Never a person, anyone's tame or penned animal, an insect or a venomous animal (a mongoose takes snakes), a herd on the move, an animal marked for taming, a manhunter, one that bursts when it dies, a sacred or legendary one, or a beast of the colony's stories (a named alpha, a beast nemesis, the beast that stays, a legend). It hunts only inside its allowed area. The dev action "Pets hunting: why an animal hunts or not" writes its place and what it could take now to the log.</after>
+      </li>
+      <li>
+        <heading>No food in reach</heading>
+        <text>An alert, "Animal with no food in reach" (with the alerts, on by default), names the colony's animals that are hungry, have nothing they may eat inside their allowed area and can't hunt for it. It says why for each one: the food it eats lies outside its area, the food inside it is forbidden, or there is nothing it eats on the map; and why it can't hunt: its kind doesn't, its "May hunt" is off, it is too young, there is nothing it could hunt inside its area, or it can't just now. To put it right, set its area to Unrestricted on the Animals tab or widen it, unforbid the food, or put a stockpile of what it eats inside its area. A click selects them, and the one bonded to it says so aloud once. Penned and hitched animals have the game's own alerts.</text>
+      </li>
     </sections>
     <keywords><li>animal</li><li>pet</li><li>herd</li><li>livestock</li><li>barn</li><li>mount</li><li>ride</li><li>herdmaster</li><li>bond</li><li>cull</li><li>stray</li><li>orphan</li><li>lambing</li><li>shearing</li><li>foal</li><li>predator</li></keywords>
     <seeAlso><li>Council_Alm_C_Strangers</li><li>Council_Alm_C_Offices</li><li>Council_Alm_C_Calendar</li><li>Council_Alm_C_Arcs</li><li>Council_AlmMod_D_PokeWorldLife</li></seeAlso>

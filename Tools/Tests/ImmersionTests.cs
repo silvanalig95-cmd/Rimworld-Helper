@@ -109,6 +109,8 @@ public static class ImmersionTests
         "Council_Pool_Herd_SayNewborn", "Council_Pool_SayToAnimal", "Council_Pool_AnimalFollows",
         // The animals' natures (Animals/AnimalTempers.cs, AnimalBonds.cs, AnimalVoices.cs): what is said on seeing them, and their own words.
         "Council_Pool_SeeTemper", "Council_Pool_SeeAnimals", "Council_Pool_AnimalVoice",
+        // The colony's animals hunting (Animals/PetHunts.cs): a kill seen, a kill brought home, a hungry one with nothing in reach.
+        "Council_Pool_SeeHunt", "Council_Pool_PetBringsKill", "Council_Pool_SayPetNoFood",
         // A personal touch planned and built (Building/PersonalTouches.cs).
         "Council_Pool_Touch", "Council_Pool_TouchDone",
         // A faith evening stayed away from, couriers, peacemakers, a joke retold (Faith/, Couriers/, Interplay/, Social/).

@@ -395,6 +395,8 @@ namespace ColonyCouncil
             Toggle("animalBonds", "CC_Settings_AnimalBonds", "CC_SetNote_AnimalBonds", "petMoments");
             Choice("speakingAnimals", "CC_Settings_SpeakingAnimals", "CC_Settings_SpeakingAnimals_Tip", "CC_SpeakingAnimals_", "CC_SetNote_SpeakingAnimals_",
                 new[] { "Auto", "On", "Off" }, "petMoments");
+            // The colony's animals hunting for themselves (Animals/PetHunts.cs): not a part of the companions' life, so on its own.
+            Toggle("petsHunt", "CC_Settings_PetsHunt", "CC_SetNote_PetsHunt");
             Section("CC_Settings_WorldEventsHeader");
             Toggle("worldEvents", "CC_Settings_WorldEvents", "CC_SetNote_WorldEvents");
             Toggle("camps", "CC_Settings_Camps", "CC_SetNote_Camps", "worldEvents");
@@ -569,6 +571,7 @@ namespace ColonyCouncil
             Toggle("wishAlert", "CC_Settings_WishAlert", "CC_SetNote_WishAlert", "enableWishes");
             Toggle("defenseGateReminder", "CC_Settings_DefenseGateReminder", "CC_SetNote_DefenseGateReminder");
             Toggle("freshCarcassAlert", "CC_Settings_FreshCarcassAlert", "CC_SetNote_FreshCarcassAlert");
+            Toggle("noFoodAlert", "CC_Settings_NoFoodAlert", "CC_SetNote_NoFoodAlert");
             // Rimfolk's buttons and windows.
             Section("CC_SetSec_Buttons");
             Toggle("slowButtons", "CC_Settings_SlowButtons", "CC_SetNote_SlowButtons");

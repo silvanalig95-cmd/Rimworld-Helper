@@ -215,6 +215,7 @@
     <Compile Include="../../Source/ColonyCouncil/Social/TogetherFourMath.cs" Link="TogetherFourMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/PokeWorldSoundsMath.cs" Link="PokeWorldSoundsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Animals/FreshCarcassMath.cs" Link="FreshCarcassMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Animals/HuntMath.cs" Link="HuntMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Animals/BiomeAnimalsMath.cs" Link="BiomeAnimalsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/GuestGroupBedsMath.cs" Link="GuestGroupBedsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Dilemmas/YearFourMath.cs" Link="YearFourMath.cs" />

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The colony's animals hunting for themselves (Source/ColonyCouncil/Animals/PetHunts.cs). A hungry one, and a fed one
+    after small game whose kill it eats, use the game's own hunt (PredatorHunt). This is the other: a fed one's hunt whose
+    kill it carries to its person and sets down at their feet (JobDriver_PetBringsKill: the game's chase and blows, then
+    the body taken up and carried). Given up on danger or a call to arms; what it carried is set down where it stands.
+  -->
+
+  <JobDef>
+    <defName>Rimfolk_PetBringsKill</defName>
+    <driverClass>ColonyCouncil.JobDriver_PetBringsKill</driverClass>
+    <reportString>hunting TargetA to bring home.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>OnlyIfInstigatorNotJobTarget</checkOverrideOnDamage>
+    <neverFleeFromEnemies>true</neverFleeFromEnemies>
+  </JobDef>
+
+</Defs>

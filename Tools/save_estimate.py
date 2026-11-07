@@ -698,6 +698,10 @@ MODEL = {
                                    "pairs asleep side by side, friends and rivals, AnimalNatureMath.MaxTies at most, pairs first to go, ties let go when apart 40 days"),
     "Animals/AnimalBook.cs:gone": ("cap", (const("Animals/AnimalNatureMath.cs", "MaxGone", 30), 0.05), 260,
                                    "animals that left alive with their handler, AnimalNatureMath.MaxGone at most, oldest first, forgotten after 120 days"),
+    # The colony's animals the player keeps from hunting (Animals/PetHunts.cs): one id each, only those whose "May hunt" is
+    # off (a few at the most, a click each), let go when the animal dies or leaves, AnimalNatureMath.MaxKeptHome at most.
+    "Animals/AnimalBook.cs:keptHome": ("cap", (const("Animals/AnimalNatureMath.cs", "MaxKeptHome", 200), 0.05), 25,
+                                       "ids of the animals kept from hunting, AnimalNatureMath.MaxKeptHome at most, let go when one dies or leaves"),
     "Happenings/Workers_Chains2.cs:flags": ("fixed", 4, 40, "per story chain (counted under chains)"),
     # The wild's alphas and bosses (Beasts/BeastBook.cs): packs led by an alpha (one a home at a time, a month apart at the
     # setting's 100%, a fortnight for the game's manhunters; BeastsMath.MaxAlphaRecords kept, the ended going first), beast

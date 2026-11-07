@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The colony's animals hunting for themselves (Source/ColonyCouncil/Animals/PetHunts.cs). {PET} is the animal, {PAWN}
+    the one speaking, {THING} what it caught ("a hare", "an ibex"). Every line said over a head is one short sentence, and
+    every line carries its moment's tags, so none is said in another's place.
+  -->
+
+  <!-- ===================== A kill seen (PetHunts.Notify_Killed, through AnimalTempers.Remark) =====================
+       Tags: eat (it eats it where it fell) or carry (it will carry it to its person); hungry or sport (fed, out for small
+       game); small or big (the prey); pack (two or more of its kind together); body:beast, body:bird, body:other; pokemon.
+       Said by someone who sees it, often its person. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SeeHunt</defName>
+    <lines>
+      <plain>
+        <li>[eat,hungry] Good, {PET_nameDef} has found {PET_objective}self a meal.</li>
+        <li>[eat,hungry] {PET_nameDef} was hungry enough to go and catch {THING}.</li>
+        <li>[eat,hungry] Somebody should have fed {PET_nameDef}, but {THING} will do.</li>
+        <li>[eat,hungry] Look at {PET_nameDef} wolfing down {THING}, poor thing was starving.</li>
+        <li>[eat,sport,small] {PET_nameDef} caught {THING}, that's one less in the fields.</li>
+        <li>[eat,sport,small] There goes {THING}, {PET_nameDef} never misses.</li>
+        <li>[eat,sport,small] {PET_nameDef} doesn't even need it, {PET_pronoun} just likes the chase.</li>
+        <li>[eat,sport] {PET_nameDef} brought down {THING} all on {PET_possessive} own.</li>
+        <li>[eat,big] {PET_nameDef} took down {THING}, and it was no small thing.</li>
+        <li>[eat,pack] The two of them ran {THING} down together, like a proper pack.</li>
+        <li>[eat,pack] They hunted it as one, I didn't know they could do that.</li>
+        <li>[eat,body:bird] {PET_nameDef} dropped on {THING} out of nowhere.</li>
+        <li>[eat,pokemon] {PET_nameDef} caught {THING}, a Pokémon has to eat too.</li>
+        <li>[carry] {PET_nameDef} has caught {THING} and is carrying it off somewhere.</li>
+        <li>[carry] Where are you taking that, {PET_nameDef}?</li>
+        <li>[carry] {PET_nameDef} won't eat it, {PET_pronoun}'s taking it to someone.</li>
+        <li>[carry,small] {PET_nameDef} is trotting off with {THING} in {PET_possessive} jaws.</li>
+        <li>[carry,body:bird] {PET_nameDef} has {THING} in {PET_possessive} talons and is off with it.</li>
+      </plain>
+      <warm>
+        <li>[eat,hungry] Eat up, {PET_nameDef}, you earned that one.</li>
+        <li>[carry] Somebody is about to get a present from {PET_nameDef}.</li>
+      </warm>
+      <blunt>
+        <li>[eat] Nice catch.</li>
+        <li>[carry] That's going to someone's doorstep.</li>
+      </blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== The kill set down at its person's feet (PetHunts.BroughtHome) =====================
+       Tags: small or big (the prey); body:beast, body:bird, body:other; pokemon. Said by its person, to it. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_PetBringsKill</defName>
+    <lines>
+      <plain>
+        <li>[small] For me, {PET_nameDef}, you shouldn't have.</li>
+        <li>[small] Thank you, {PET_nameDef}, I'll put it in the pot.</li>
+        <li>[small] Is that {THING}, {PET_nameDef}, all for me?</li>
+        <li>[small] Good {PET_nameDef}, what a fine present.</li>
+        <li>[small] I'll take it to the kitchen, {PET_nameDef}, thank you.</li>
+        <li>[small] You caught it and you brought it home, clever {PET_nameDef}.</li>
+        <li>[big] You dragged {THING} all the way here, {PET_nameDef}?</li>
+        <li>[big] That's supper for half the colony, {PET_nameDef}.</li>
+        <li>[body:bird] You dropped {THING} right at my feet, {PET_nameDef}.</li>
+        <li>[pokemon] A present from my partner, thank you, {PET_nameDef}.</li>
+      </plain>
+      <warm>
+        <li>[small] You thought of me, {PET_nameDef}, didn't you.</li>
+        <li>[small] Come here, {PET_nameDef}, you're the best hunter we have.</li>
+      </warm>
+      <blunt>
+        <li>[small] Thanks, I suppose.</li>
+        <li>[big] Well, that's dinner.</li>
+      </blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Its bonded person, once, when it has nothing in reach (PetHunts.SayOwed) =====================
+       Tags: area (the food is outside its allowed area), forbidden (the food inside it is forbidden), none (nothing it eats
+       on the map); body:beast, body:bird, body:other; pokemon. Said aloud, to nobody in particular. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayPetNoFood</defName>
+    <lines>
+      <plain>
+        <li>[area] {PET_nameDef} is hungry, and the food is all where {PET_pronoun} isn't allowed.</li>
+        <li>[area] Who shut {PET_nameDef} out of the stores, {PET_pronoun} hasn't eaten all day.</li>
+        <li>[area] {PET_nameDef} can't get at the food from where we keep {PET_objective}.</li>
+        <li>[area] We need to let {PET_nameDef} out to the food, {PET_pronoun}'s going hungry.</li>
+        <li>[forbidden] All the food {PET_nameDef} could eat is forbidden, somebody fix that.</li>
+        <li>[forbidden] {PET_nameDef} is starving next to food nobody will let {PET_objective} touch.</li>
+        <li>[none] There's nothing here {PET_nameDef} can eat, and {PET_pronoun} is getting thin.</li>
+        <li>[none] We have nothing fit for {PET_nameDef} to eat, we need to lay something in.</li>
+        <li>[none] {PET_nameDef} keeps looking at me, and I have nothing to give {PET_objective}.</li>
+        <li>[none,pokemon] My partner is hungry and we have nothing {PET_nameDef} can eat.</li>
+      </plain>
+      <warm>
+        <li>[area|forbidden|none] Poor {PET_nameDef}, nobody has fed you today, have they.</li>
+      </warm>
+      <blunt>
+        <li>[area|forbidden|none] {PET_nameDef} needs feeding.</li>
+      </blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

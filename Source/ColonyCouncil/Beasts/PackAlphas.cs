@@ -109,6 +109,17 @@ namespace ColonyCouncil
             return p != null && book?.alphas != null && book.alphas.Any(r => r != null && r.Open && (r.alpha == p || (r.pack?.Contains(p) ?? false)));
         }
 
+        /// <summary>
+        /// A story already, for the colony's animals choosing their prey (Animals/PetHunts.cs): as <see cref="Taken"/> (an
+        /// alpha or of its pack, a nemesis, the beast the colony watches, a legend, named by anyone), or a beast nemesis that fled.
+        /// </summary>
+        public static bool Storied(Pawn p)
+        {
+            if (p == null) return false;
+            var book = BeastBook.Instance;
+            return book == null ? p.Name != null : Taken(book, p) || BeastNemeses.Fled(p);
+        }
+
         /// <summary>A story already: an alpha or of its pack, a nemesis, the beast the colony watches, a legend, named by anyone.</summary>
         private static bool Taken(BeastBook book, Pawn p)
         {

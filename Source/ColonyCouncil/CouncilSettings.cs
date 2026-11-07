@@ -139,6 +139,8 @@ namespace ColonyCouncil
         public bool animalBonds = true;
         /// <summary>Animals that speak (Animals/AnimalVoices.cs), a fantasy part: Auto only with PokéWorld, A RimWorld of Magic or a psylink in the colony.</summary>
         public AnimalSpeech speakingAnimals = AnimalSpeech.Auto;
+        /// <summary>The colony's animals whose kind hunts go after prey below them in the food chain when nothing they may eat is in reach, and now and then for small game (Animals/PetHunts.cs).</summary>
+        public bool petsHunt = true;
         public bool colonistMoments = true;
         /// <summary>Everyday frictions: small irritations between colonists, and with a messy or cramped home.</summary>
         public bool frictions = true;
@@ -478,6 +480,8 @@ namespace ColonyCouncil
         public bool familiars = true;
         /// <summary>An alert while an animal's fresh carcass lies out with nobody seeing to it (Animals/FreshCarcasses.cs).</summary>
         public bool freshCarcassAlert = true;
+        /// <summary>An alert while one of the colony's animals is hungry with nothing it may eat in reach and no hunt to go on (Animals/PetHuntsPatches.cs).</summary>
+        public bool noFoodAlert = true;
         /// <summary>The colony's next steps: a plan the council proposes to and keeps with the player (Building/NextSteps.cs).</summary>
         public bool nextSteps = true;
 
@@ -734,6 +738,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref animalMoments, "animalMoments", 1f);
             Scribe_Values.Look(ref animalBonds, "animalBonds", true);
             Scribe_Values.Look(ref speakingAnimals, "speakingAnimals", AnimalSpeech.Auto);
+            Scribe_Values.Look(ref petsHunt, "petsHunt", true);
             Scribe_Values.Look(ref colonistMoments, "colonistMoments", true);
             Scribe_Values.Look(ref frictions, "frictions", true);
             Scribe_Values.Look(ref autonomy, "autonomy", true);
@@ -900,6 +905,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref pokemonTypeDouse, "pokemonTypeDouse", true);
             Scribe_Values.Look(ref familiars, "familiars", true);
             Scribe_Values.Look(ref freshCarcassAlert, "freshCarcassAlert", true);
+            Scribe_Values.Look(ref noFoodAlert, "noFoodAlert", true);
             Scribe_Values.Look(ref nextSteps, "nextSteps", true);
             Scribe_Values.Look(ref planCutPlants, "planCutPlants", true);
             Scribe_Values.Look(ref planMineRock, "planMineRock", true);
