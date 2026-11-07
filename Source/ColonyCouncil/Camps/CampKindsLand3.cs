@@ -88,15 +88,7 @@ namespace ColonyCouncil
             if (a.ageTracker?.CurLifeStage?.reproductive != true || a.Name != null && !a.Name.Numerical) return false;
             if (a.Map.designationManager.DesignationOn(a) != null) return false;
             if (a.GetStatValue(StatDefOf.Wildness) >= CampLandMath.MaxWildness || !TameUtility.CanTame(a)) return false;
-            try
-            {
-                return a.Map.Biome != null && a.kindDef != null && a.Map.Biome.CommonalityOfAnimal(a.kindDef) > 0f;
-            }
-            catch (Exception e)
-            {
-                CouncilLog.ErrorOnce("camp land: a wild herd's beast", e);
-                return false;
-            }
+            return BiomeAnimals.LivesIn(a.Map.Biome, a.kindDef);
         }
 
         /// <summary>The wild beasts clear of the colony, by kind, the biggest herd first; only kinds with a herd's worth.</summary>

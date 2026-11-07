@@ -1489,7 +1489,7 @@ namespace ColonyCouncil
 
         /// <summary>Animals that live wild in some land (not summoned, not a hive's, not one an event brings).</summary>
         private static HashSet<PawnKindDef> WildSomewhere => wildSomewhere ??= new HashSet<PawnKindDef>(
-            DefDatabase<BiomeDef>.AllDefsListForReading.SelectMany(b => b.AllWildAnimals ?? Enumerable.Empty<PawnKindDef>()));
+            DefDatabase<BiomeDef>.AllDefsListForReading.SelectMany(BiomeAnimals.Of));
 
         private static IEnumerable<PawnKindDef> Kinds(Map map) =>
             PokeWorldLink.WildKinds(DefDatabase<PawnKindDef>.AllDefsListForReading.Where(k => k.race?.race != null && k.RaceProps.Animal && LivingEvents.FromMod(k.race, Mod) && WildSomewhere.Contains(k) && !k.RaceProps.Insect
@@ -1506,7 +1506,7 @@ namespace ColonyCouncil
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {
             var map = ctx.map;
-            var native = map.Biome?.AllWildAnimals?.ToList() ?? new List<PawnKindDef>();
+            var native = BiomeAnimals.Of(map.Biome).ToList();
             // Those that live in this land are much likelier.
             var kind = Kinds(map).RandomElementByWeightWithFallback(k => native.Contains(k) ? 3f : 1f);
             ctx.a = Handlers(map).OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Animals)?.Level ?? 0).FirstOrDefault();

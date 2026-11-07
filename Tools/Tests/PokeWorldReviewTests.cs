@@ -56,7 +56,7 @@ public static class PokeWorldReviewTests
         C(link.Contains("return (bool)generationAllowed.Invoke(null, new object[] { gen });"), "its own generation check is asked first, as its spawner asks it");
 
         // Roaming and the animal events: only species of some land's wild animals.
-        C(link.Contains("biome.AllWildAnimals") && link.Contains("s.wild = true"), "the wild ones are the ones some land lists");
+        C(link.Contains("BiomeAnimals.Of(biome)") && link.Contains("s.wild = true"), "the wild ones are the ones some land lists");
         C(link.Contains("AnimalMath.PokemonRoams(s.rare, s.wild)") && link.Contains("else if (Roams(s, allowed)) pokemon.Add(k);") && link.Contains("if (Roams(kv.Value, allowed)) yield return kv.Key;"),
             "the events and the roaming kinds use the same rule");
         C(camp.Contains("PokeWorldLink.Roaming().Where(PokeWorldLink.CanShine)"), "a shiny rumour names a species that roams and can be shiny");

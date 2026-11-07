@@ -55,7 +55,7 @@ namespace ColonyCouncil
             if (map?.Biome == null || p.WorkTypeIsDisabled(WorkTypeDefOf.Handling) || Done(p)) return false;
             var animals = p.skills?.GetSkill(SkillDefOf.Animals);
             if (animals == null || animals.TotallyDisabled || !People.Passionate(animals) || animals.Level < 6) return false;
-            return PokeWorldLink.WildKinds(map.Biome.AllWildAnimals.Where(AnimalFacts.MajesticKind))?.Any() == true;
+            return PokeWorldLink.WildKinds(BiomeAnimals.Of(map.Biome).Where(AnimalFacts.MajesticKind))?.Any() == true;
         }
 
         public override float Progress(Aspiration a)

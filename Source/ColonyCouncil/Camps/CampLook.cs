@@ -279,7 +279,7 @@ namespace ColonyCouncil
                             && (!k.RaceProps.packAnimal || biome == null || biome.IsPackAnimalAllowed(k.race))).ToList();
             if (opts.Count == 0) return null;
             if (g.follow) return opts[0];
-            return opts.RandomElementByWeight(k => biome != null && biome.CommonalityOfAnimal(k) > 0f ? 4f : 1f);
+            return opts.RandomElementByWeight(k => BiomeAnimals.LivesIn(biome, k) ? 4f : 1f);
         }
 
         /// <summary>Which of the kind's animal entries this animal of theirs belongs to.</summary>

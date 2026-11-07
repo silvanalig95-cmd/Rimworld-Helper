@@ -142,7 +142,7 @@ public static class VarietyDangersTests
         C(evtCode.Contains("CompAnimalPenMarker") && evtCode.Contains("PlaceBlueprintForBuild") && evtCode.Contains("DestroyMode.Vanish"),
             "the fence: one of the pen's own, and mended with the game's blueprint (no rebuild of the game's own behind it)");
         C(evtCode.Contains("Plant_Ambrosia") && evtCode.Contains("DesignationDefOf.HarvestPlant") && evtCode.Contains("CC_Impact_AmbrosiaPull"), "the ambrosia is the game's own, and its pull is named");
-        C(evtCode.Contains("CompProperties_Hatcher") && evtCode.Contains("hatcheeFaction = Faction.OfPlayer") && evtCode.Contains("AllWildAnimals"),
+        C(evtCode.Contains("CompProperties_Hatcher") && evtCode.Contains("hatcheeFaction = Faction.OfPlayer") && evtCode.Contains("BiomeAnimals.Of(map.Biome)"),
             "a clutch of a bird that lives on this land, hatched the game's way for the colony");
         C(!evtCode.Contains("Harm."), "the events hurt nobody of Rimfolk's own");
 

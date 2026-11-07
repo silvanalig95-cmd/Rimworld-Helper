@@ -43,15 +43,7 @@ namespace ColonyCouncil
             var race = a.RaceProps;
             if (!race.Animal || race.Insect || race.Dryad || race.IsMechanoid || race.IsAnomalyEntity) return false;
             var map = a.Map;
-            bool livesHere = false;
-            try
-            {
-                livesHere = map.Biome != null && a.kindDef != null && map.Biome.CommonalityOfAnimal(a.kindDef) > 0f;
-            }
-            catch (Exception e)
-            {
-                CouncilLog.ErrorOnce("game prey: the land's own beasts", e);
-            }
+            bool livesHere = BiomeAnimals.LivesIn(map.Biome, a.kindDef);
             bool marked = map.designationManager.DesignationOn(a) != null;
             bool tameOnce = a.Name != null && !a.Name.Numerical;
             float revenge = PawnUtility.GetManhunterOnDamageChance(a, hunter);

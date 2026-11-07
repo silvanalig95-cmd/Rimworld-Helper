@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The temperature at a glance, and a land's animals read safely
+
+*7 November 2026, version 0.141.0*
+
+- The panel's outdoor temperature is now coloured by how it feels: deep blue for deadly cold through blue, cyan and green for comfortable to yellow, orange and red for deadly heat. Its tip names the band and says how your colonists on the map, dressed as they are, find it.
+- When a mod lists the same wild animal twice in one land, the game can no longer read that land's animals. Rimfolk now reads them itself, merging the repeats, so its camps, wishes, goals, visitors and events and the PokéWorld link keep working there. The log names the land once.
+- The next-season line on the panel no longer stays on the previous home for a while after you switch maps.
+
 ## A RimWorld of Magic under Harmony 3
 
 *7 November 2026, version 0.140.0*

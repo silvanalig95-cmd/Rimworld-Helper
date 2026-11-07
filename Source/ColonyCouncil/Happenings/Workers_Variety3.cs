@@ -273,7 +273,7 @@ namespace ColonyCouncil
         /// <summary>A fertilized egg of a bird that lives wild on this land, by the game's own hatching.</summary>
         public static ThingDef EggOf(Map map)
         {
-            var wild = new HashSet<PawnKindDef>(map.Biome?.AllWildAnimals ?? Enumerable.Empty<PawnKindDef>());
+            var wild = new HashSet<PawnKindDef>(BiomeAnimals.Of(map.Biome));
             return DefDatabase<ThingDef>.AllDefsListForReading.Where(d => d.GetCompProperties<CompProperties_Hatcher>()?.hatcherPawn is PawnKindDef k && wild.Contains(k))
                 .RandomElementWithFallback();
         }
