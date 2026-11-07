@@ -5208,6 +5208,73 @@ when someone acts with their nature, marks for repeated acts): `Diplomacy/Nature
   heart's page about five days), 0.1 to 0.4 per cent of all strain built (15th of 17 sources), the main cause of no
   episode in the runs. Setting `diplomacyNature` ("Against their nature", Diplomacy, needs the heart).
 
+#### Schemes against the colony
+
+Release 2c.3, theirs only (docs/design/stage2-diplomacy.md, item 11; the player's decision 16: "only theirs"; the
+colony's own schemes, gentle and dark, are not built, so "Against their nature" still leaves its dark scheme unwired):
+`Diplomacy/Schemes.cs`, its rules pure and tested (`SchemeMath.cs`; `Tools/Tests/SchemesTests.cs`), measured with the
+balance model (`Tools/Balance -- --schemes`, `SchemeSim.cs`). Of the two tie kinds the base reserved, Scheme is now in use;
+Secret stays reserved (the envoy who learns a colonist's secret was left out with the Secret ties' code).
+
+- **Who schemes.** Per home: each people at peace with a town in the home's reach (`RegionTowns`) holding a grudge of 20
+  or more (`SchemeMath.Grudge`, as the raiders' camps read one: the wrongs it still holds, 15 a dead held, 20 a
+  vendetta), and each notable of the home's neighbours (`NotableBook.NearColony`) who thinks -40 or less of the colony
+  (`NotableBook.Opinion`). With none, nothing rolls and nothing changes.
+- **How often.** In diplomacy's day (`Schemes.Daily`, no Sched slot): a home with a schemer, no scheme of its own under
+  way and a season since its last began rolls 8% (times the setting): about 2.3 a year, one a season at most
+  (`SchemeMath.YearRate`). The design's "a roll every 15 days at 8% (about two a year)" can't be both: a roll every 15
+  days at 8% is a third of one a year, so the roll is daily with the season's wait, which gives the two a year the design
+  asks for and the design's performance notes put on the daily pass. The act is picked from what the home has, whatever
+  the hour: a machine that can break down (industrial and after), a small valuable in its stores, a hot temper (a
+  fighting temper of 2 or more) with another grown-up, each weighing one (a fight times the harm scale, so none with
+  hurts at nothing), a smear always.
+- **The tie.** `WorldLedger.AddTie(Scheme, schemer, colony, key: the act, until: a season, origin "theirs")`; given up
+  (ended) at its end by the ledger's own rules, kept once it worked, broken once found out; its key becomes the form it
+  took ("Console", "Purse", "Papers"), `goods` the thing's def, `about` the one caught. Unknown until found out:
+  `History.Tie` writes nothing for it (the History page shows the history), the people's card's tie lines and the facts
+  read only broken ones.
+- **Acted out** in diplomacy's hour (`Schemes.Hourly`) only while one of theirs is on the home's map (`Schemes.Agent`: a
+  grown-up of the game's visitors, `LordJob_VisitColony`, or a guard of their trader's caravan, never the trader nor a
+  Hospitality guest, up and about), at the act's hour (the night, eleven to four; a word by day, nine to eight), with no
+  danger and nobody of the colony awake within 6 cells of the place. A forced job, the agent back with their group after:
+  - *a machine*: the rival's sabotage job (`Rimfolk_Sabotage`, now at any building, from beside one with no place to
+    stand), the game's breakdown (`CompBreakdownable.DoBreakdown`, sparks), a spacer colony's comms console first;
+  - *a theft* (`Rimfolk_SchemeTake`): from a stockpile or shelf by the colony's age, a tribe's totem (a small minified
+    sculpture), a purse (silver, gold, jade), a tool (components), 60 to 180 silver's worth, into their pack (split off as
+    the act ends, so a job left over from before a load takes nothing);
+  - *a quarrel stirred up* (`Rimfolk_SchemeWord`): to the colony's hottest temper by day, a lie about the one they like
+    least (kin and lovers left out) said at their side; unheard, the hot temper goes to the other (`Together.When` with a
+    walk) and it is `Harm.Fight`, or hard words when the cap holds, with a message;
+  - *a smear* (`Rimfolk_SchemeLook`): a few seconds in an empty room of the colony's in the night; one to three days later
+    (the tie's count 1, the day in `days`, its end moved past it) every other people at peace in reach loses 3 goodwill,
+    never to hostility, and the news says it by their ways (other fires, other halls, the papers, the feeds, the court).
+- **Caught.** As the act ends (`Schemes.Done`, called by both jobs' last toil): at night each colonist awake within 12
+  cells in sight (half), each guard on duty within 20, drafted or under the on-guard decree (nine in ten), each dog of the
+  colony awake within 10 in sight or 5 through a wall (three in four); a whisper, whoever is in earshot (`Together.Hears`,
+  7 cells, two in five). Caught: a shout with nobody named (`Rimfolk_Pool_SchemeCaught`), or the dog's own call
+  (`Pawn_CallTracker.DoCall`) and the nearest sleeper woken; the thing dropped, the machine untouched, the lie unheeded;
+  their word as they go and a jog off the map (`LordJob_ExitMapBest`, the rest of theirs staying); the tie broken, the
+  history's `tie:scheme:theirs:broken` and `dip:foundout` (a milestone), the deed `schemedUs` (with the name of the one
+  caught), 5 goodwill never to hostility, a line in the notable's memory if one schemed, a letter. Not caught: nothing
+  told but the game's own (a machine broken down, something gone with them, the fight's message).
+- **Shown.** Facts `tie:scheme:theirs:broken` and `them:caught` (`FactsSchemes.cs`, in the ties' provider), for the
+  sixty days the ledger keeps a closed tie; the rows on Here and away ("Schemes found out", the Household page's place
+  for what was found out) and on the people's card on Peoples, each opening the tie's card, whose story reads the history
+  line. The words by both ages (`Rimfolk_Schemes.xml`: two wordings of each told message), four pools of one sentence
+  (`Rimfolk_Schemes_Lines.xml`), an Almanac page ("schemes against the colony"). Dev mode: Debug actions, Rimfolk,
+  "Schemes: ..." (`SchemesDebug.cs`).
+- **The game's code.** No Harmony patch: the game's breakdown, social fight, call, wake-up and exit are called as they
+  are; the jobs are forced on their pawn as the callers' and the feasts' are.
+- **Saved.** Only the ties (the ledger's bound; no new list); an act under way is forgotten at a load and comes again.
+  Setting `theirSchemes` ("Schemes against the colony", How much happens, 0 to 200%, 100%; half in Light touch, 125% in
+  Story-rich; needs answers on the map). Off, none begin and those under way run out by their terms.
+- **The rates** (`--schemes`, 4,000 home-years each): with a people with a grudge in reach all year, about 2.4 schemes
+  begin, 1.4 are acted out (0.7 with their people seldom here), 0.65 given up; caught one time in eight with nobody
+  keeping watch (a third with a dog and the guard kept); in a colony of six a machine broken 0.35 a year (beside the
+  game's own 2.6 for ten machines), something taken 0.3 to 0.5 (40 to 60 silver's worth), a fight stirred up 0.16 to
+  0.21 (0.03 to 0.07 hurts a colonist-year, beside 0.26 to 0.50 of harm's parts 1 to 3 and a raid's 1.4 to 2.0), a smear
+  0.3 to 0.5, about 5 goodwill lost in all. With no grudge and no notable that cold: nothing (0.132.0 had none of it).
+
 ### Rimfolk's windows
 
 The player's word (4 November 2026): few buttons on the bottom bar, each with its own window, and no master window.

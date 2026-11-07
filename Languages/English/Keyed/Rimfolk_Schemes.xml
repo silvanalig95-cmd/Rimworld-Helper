@@ -81,7 +81,7 @@
   <!-- ===================== The setting ===================== -->
 
   <CC_Settings_TheirSchemes>Schemes against the colony</CC_Settings_TheirSchemes>
-  <CC_SetNote_TheirSchemes>A people with a grudge, or a notable who thinks little of the colony, may send one of theirs to break a machine, steal, stir up a fight or gather tales in the night.</CC_SetNote_TheirSchemes>
+  <CC_SetNote_TheirSchemes>Those with a grudge may send one of theirs to break a machine, steal, stir up a fight or gather tales.</CC_SetNote_TheirSchemes>
   <CC_Settings_TheirSchemes_Tip>How often a scheme against the colony begins. At 100% (the default), a home with a people within reach that holds a grudge against it (and is at peace with it), or a notable who thinks -40 or less of it, has a chance of 8% each day once a season has passed since its last scheme began: about two a year, at most one a season. A scheme is acted out only while one of theirs is on the map (a visitor, or a guard of a trader's caravan) and is given up after a season. Caught by a colonist awake, a guard on duty or a dog, the one at it leaves at once and their people remember it. 200% doubles the chance; 0% switches schemes off. Needs answers on the map.</CC_Settings_TheirSchemes_Tip>
 
 </LanguageData>

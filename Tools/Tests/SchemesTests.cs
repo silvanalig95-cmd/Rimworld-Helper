@@ -55,13 +55,14 @@ public static class SchemesTests
         var rng = new Random(7);
         int begun = 0, crowded = 0;
         const int years = 5000;
-        int last = -1;
-        for (int day = 0; day < years * 60; day++)
+        long lastDay = -1;
+        for (long day = 0; day < years * 60L; day++)
         {
-            int now = day * D;
-            if (!SchemeMath.SeasonPassed(last, now) || rng.NextDouble() >= SchemeMath.Chance(1f)) continue;
-            if (last >= 0 && now - last < SchemeMath.SeasonTicks) crowded++;
-            last = now;
+            // The ticks since the last began, as the game counts them (a long run of days kept within an int's reach).
+            bool passed = lastDay < 0 ? SchemeMath.SeasonPassed(-1, 0) : SchemeMath.SeasonPassed(0, (int)Math.Min(day - lastDay, 1000) * D);
+            if (!passed || rng.NextDouble() >= SchemeMath.Chance(1f)) continue;
+            if (lastDay >= 0 && day - lastDay < SchemeMath.SeasonDays) crowded++;
+            lastDay = day;
             begun++;
         }
         float perYear = begun / (float)years;

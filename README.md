@@ -3135,6 +3135,20 @@ someone swore vengeance on on the avenger. The heart's page says what they did a
 oath to the Lenlia, against her pride; a quiet evening with friends would help"), the news tells it, the council's
 questions name it first, and an oath or the same act twice in a year may leave a mark. Setting: *Against their nature*.
 
+**Schemes against the colony.** A people at peace that holds a grudge against the colony, or a notable who thinks
+little of it, may scheme against a home, about twice a year and never more than once a season, but only while one of
+theirs is there: one of their visitors, or a guard of their trader's caravan. In the night they slip away to break a
+machine down (industrial and after; a spacer colony's comms console first), take something small and valuable from
+the stores (a tribe's carving, a purse of silver, gold or jade, a few components), or go through an empty room for
+tales to tell, which a day or so later cost the colony a little with every other people in reach (at their fires, in
+their halls, in the papers, on the feeds, at the Empire's court); by day one may whisper a lie in a hot temper's ear,
+and the hot temper goes after the one it was about (a fight under the shared cap of hurts from everyday life). Someone
+awake, a guard on duty or a dog may catch them at it: a shout or a bark, the thing dropped, and the one caught leaves
+at once; their people remember it and think a little less of the colony, a letter says who and what, and Here and away
+and their people's card list what was found out. Nothing is said of a scheme that works but what the game shows.
+Setting: *Schemes against the colony* (How much happens, 0 to 200%, 100%; half in Light touch, 125% in Story-rich).
+The Almanac has a page, *schemes against the colony*.
+
 **Towns rise and fall.** A town within reach that struggles long enough may be given up by its people: as a world
 event on that town (a family of theirs at the gate, what it leaves behind to salvage) or quietly in the news, and then
 it is a ruin on the map in its people's colour, named in its panel and inspect pane. Where a fight destroys a town
