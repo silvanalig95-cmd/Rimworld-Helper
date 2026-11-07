@@ -163,36 +163,89 @@ namespace ColonyCouncil
         // ================= The template =================
 
         /// <summary>
-        /// The callings a cause's people may take, the likeliest first: survivors take to the herds, a sickhouse or the
-        /// road; a league of merchants is a road league, of herders a herding folk; a band of the banished herds on the
-        /// margins or hires out on the roads; faithful who broke away keep a sickhouse or follow their herds.
+        /// The callings a cause's people take of its own, the likeliest first: survivors take to the herds, a sickhouse or
+        /// the road; a league of merchants is a road league, of herders a herding folk, of the spacer age's towns an enclave
+        /// of brokers; a band of the banished herds on the margins or hires out on the roads; faithful who broke away keep a
+        /// sickhouse, follow their herds, or set out on the roads between the faith's holy places as pilgrims.
         /// </summary>
-        public static string[] Callings(string kind)
+        private static string[] Own(string kind)
         {
             switch (kind)
             {
                 case Refugees: return new[] { PeoplesMath.Herders, PeoplesMath.Healers, PeoplesMath.Traders };
-                case League: return new[] { PeoplesMath.Traders, PeoplesMath.Herders };
+                case League: return new[] { PeoplesMath.Traders, PeoplesMath.Herders, PeoplesMath.Brokers };
                 case Exiles: return new[] { PeoplesMath.Herders, PeoplesMath.Traders };
-                case Splinter: return new[] { PeoplesMath.Healers, PeoplesMath.Herders };
+                case Splinter: return new[] { PeoplesMath.Healers, PeoplesMath.Herders, PeoplesMath.Pilgrims };
                 default: return new string[0];
             }
+        }
+
+        /// <summary>
+        /// The callings a cause takes only when it leans to them (<see cref="Lean"/>): survivors near a river turn to the
+        /// river as fishers and ferry people; a band of the banished led by a learned one keeps a school of its own, or near
+        /// a river takes to the boats.
+        /// </summary>
+        public static string[] Leans(string kind)
+        {
+            switch (kind)
+            {
+                case Refugees: return new[] { PeoplesMath.Fishers };
+                case Exiles: return new[] { PeoplesMath.Scholars, PeoplesMath.Fishers };
+                default: return new string[0];
+            }
+        }
+
+        /// <summary>Every calling a cause's people may take: its own, then those it takes when it leans to them.</summary>
+        public static string[] Callings(string kind) => Own(kind).Concat(Leans(kind)).ToArray();
+
+        /// <summary>The callings a cause looks among, the likeliest first: the one it leans to (when it may), then its own.</summary>
+        public static string[] Wanted(string kind, string lean)
+        {
+            var own = Own(kind);
+            return lean != null && Array.IndexOf(Leans(kind), lean) >= 0 ? new[] { lean }.Concat(own).ToArray() : own;
+        }
+
+        /// <summary>Half the causes near a river lean to it (survivors, a band): <see cref="SaltRiver"/> keeps the roll apart.</summary>
+        public const float RiverChance = 0.5f;
+
+        public const int SaltRiver = 404;
+
+        /// <summary>A band's leader this skilled with books (Intellectual) leads a band of scholars.</summary>
+        public const int LearnedLevel = 10;
+
+        /// <summary>
+        /// What a cause leans to, or null: a band led by a learned one (Intellectual <see cref="LearnedLevel"/> or more) to
+        /// scholars; a cause near a river (one its town could stand by), on its fated half, to the river as fishers.
+        /// </summary>
+        public static string Lean(string kind, bool nearRiver, bool riverFated, int leaderLearning)
+        {
+            if (kind == Exiles && leaderLearning >= LearnedLevel) return PeoplesMath.Scholars;
+            if (nearRiver && riverFated && Array.IndexOf(Leans(kind), PeoplesMath.Fishers) >= 0) return PeoplesMath.Fishers;
+            return null;
         }
 
         /// <summary>
         /// The template a cause's people takes (by index), for the cause's age (0 tribal to 3 spacer): among the templates
         /// of a calling the cause may take, the one nearest its age, the likelier calling on a tie. -1 for none.
         /// </summary>
-        public static int Template(string kind, int age, IList<string> callings, IList<int> ages)
+        public static int Template(string kind, int age, IList<string> callings, IList<int> ages) => Template(kind, age, callings, ages, ages, null);
+
+        /// <summary>
+        /// The template a cause's people takes (by index): among the templates of a calling it looks among
+        /// (<see cref="Wanted"/>, the one it leans to first), the one whose span of ages (<paramref name="from"/> to
+        /// <paramref name="to"/>, PeoplesMath.AgeSpan) lies nearest the cause's age, the likelier calling on a tie. -1 for
+        /// none.
+        /// </summary>
+        public static int Template(string kind, int age, IList<string> callings, IList<int> from, IList<int> to, string lean)
         {
-            if (callings == null || ages == null || callings.Count != ages.Count) return -1;
-            var wanted = Callings(kind);
+            if (callings == null || from == null || to == null || callings.Count != from.Count || callings.Count != to.Count) return -1;
+            var wanted = Wanted(kind, lean);
             int best = -1, bestScore = int.MaxValue;
             for (int i = 0; i < callings.Count; i++)
             {
                 int rank = Array.IndexOf(wanted, callings[i]);
                 if (rank < 0) continue;
-                int score = Math.Abs(ages[i] - age) * 10 + rank;
+                int score = PeoplesMath.AgeDistance(age, from[i], to[i]) * 10 + rank;
                 if (score >= bestScore) continue;
                 best = i;
                 bestScore = score;

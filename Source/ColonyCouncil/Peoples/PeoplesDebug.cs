@@ -103,8 +103,11 @@ namespace ColonyCouncil
                 {
                     var keys = plan.Words(plan.wallStuff?.FirstOrDefault(d => d != null));
                     PeoplesMath.Corner(at.x, at.z, plan.Width, plan.Height, map.Size.x, map.Size.z, out int x, out int z);
-                    var grid = PeoplesMath.Grid(plan.rows, keys, x, z, map.Size.x, map.Size.z, null);
+                    var marks = new Dictionary<string, List<int>>();
+                    var grid = PeoplesMath.Grid(plan.rows, keys, x, z, map.Size.x, map.Size.z, marks);
                     var rect = grid == null ? null : TownLayouts.Place(map, new LedgerLayout { grid = grid }, Faction.OfPlayer, true);
+                    // A landing's docks: a jetty where they reach into water, planks on dry ground.
+                    if (rect != null && marks.TryGetValue("dock", out var dock)) PeopleTowns.LayDocks(map, dock.Select(i => TownLayouts.CellOf(map, grid, i)).ToList());
                     Say(rect == null ? "the plan couldn't be laid." : plan.label + " laid at " + rect.Value + " (the colony's own, to look at; deconstruct it after).");
                 }));
             }

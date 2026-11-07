@@ -43,6 +43,11 @@ namespace ColonyCouncil
         public int since = -1;
         /// <summary>Dev mode: a stand-in cause, not one that happened (the words name it as if it had).</summary>
         public bool standIn;
+        /// <summary>
+        /// The calling the cause leans to (ArisingMath.Lean), or null: survivors near a river to the river folk's ways, a
+        /// band led by a learned one to the scholars'. A lean a town can't stand for (no river in reach) is let go.
+        /// </summary>
+        public string lean;
 
         /// <summary>The peoples whose land (Faction Territories) the town may stand on: the cause's own.</summary>
         public HashSet<Faction> Kin()
@@ -168,7 +173,8 @@ namespace ColonyCouncil
                 return new ArisingCause
                 {
                     kind = ArisingMath.Refugees, key = key, age = Ages.Of(r.people), near = ruin.Tile, minTiles = 2, maxTiles = 6, home = home, tiles = tiles,
-                    parent = r.people, name = r.name, ruin = ruin, byColony = r.byColony, since = r.since
+                    parent = r.people, name = r.name, ruin = ruin, byColony = r.byColony, since = r.since,
+                    lean = ArisingMath.Lean(ArisingMath.Refugees, true, ArisingMath.Fated(r.town, ArisingMath.SaltRiver, ArisingMath.RiverChance), 0)
                 };
             }
             return null;
@@ -245,12 +251,20 @@ namespace ColonyCouncil
                 var cause = new ArisingCause
                 {
                     kind = ArisingMath.Exiles, key = key, age = Ages.Ours, near = home.Tile, minTiles = RiseFall.GoodwillTiles + 2, maxTiles = RiseFall.GoodwillTiles + 9, home = home, tiles = 0f,
-                    exile = r.pawn, record = r, name = r.Name, since = r.banishedTick
+                    exile = r.pawn, record = r, name = r.Name, since = r.banishedTick,
+                    lean = ArisingMath.Lean(ArisingMath.Exiles, true, ArisingMath.Fated(r.id, ArisingMath.SaltRiver, ArisingMath.RiverChance), Learning(r.pawn))
                 };
                 Feelings(cause, home);
                 return cause;
             }
             return null;
+        }
+
+        /// <summary>How learned the one sent away is (their Intellectual skill; 0 when they have none to speak of).</summary>
+        private static int Learning(Pawn p)
+        {
+            var r = p?.skills?.GetSkill(SkillDefOf.Intellectual);
+            return r == null || r.TotallyDisabled ? 0 : r.Level;
         }
 
         /// <summary>Who at the home stood by the one sent away and who was glad to see them go, by what the colony thinks of them now; the friend they ask after.</summary>
@@ -348,12 +362,36 @@ namespace ColonyCouncil
 
         // ================= Arising =================
 
-        /// <summary>The template a cause takes by its age (ArisingMath.Template), or null when none of Rimfolk's fits.</summary>
-        public static FactionDef TemplateFor(ArisingCause c)
+        /// <summary>
+        /// The template a cause takes by its age and what it leans to (ArisingMath.Template, each template's span of ages:
+        /// PeopleExtension.ariseAges), or null when none of Rimfolk's fits.
+        /// </summary>
+        public static FactionDef TemplateFor(ArisingCause c) => TemplateFor(c, c?.lean);
+
+        private static FactionDef TemplateFor(ArisingCause c, string lean)
         {
+            if (c == null) return null;
             var defs = Peoples.Templates.ToList();
-            int i = ArisingMath.Template(c.kind, (int)c.age, defs.Select(d => Peoples.Of(d).calling).ToList(), defs.Select(d => (int)LedgerMath.AgeOf((int)d.techLevel)).ToList());
+            var from = new List<int>();
+            var to = new List<int>();
+            foreach (var d in defs)
+            {
+                Peoples.Of(d).AriseSpan((int)LedgerMath.AgeOf((int)d.techLevel), out int lo, out int hi);
+                from.Add(lo);
+                to.Add(hi);
+            }
+            int i = ArisingMath.Template(c.kind, (int)c.age, defs.Select(d => Peoples.Of(d).calling).ToList(), from, to, lean);
             return i < 0 ? null : defs[i];
+        }
+
+        /// <summary>
+        /// The town's tile for the template: a river folk's landing by a river in reach (none: false); any other on any
+        /// land that will take a town, a first look and a wider one.
+        /// </summary>
+        private static bool TileFor(ArisingCause c, FactionDef def, out PlanetTile tile)
+        {
+            bool river = Peoples.ByWater(def);
+            return TryTownTile(c.near, c.minTiles, c.maxTiles, c.Kin(), Score(c), out tile, river) || TryTownTile(c.near, c.maxTiles, c.maxTiles * 2, c.Kin(), Score(c), out tile, river);
         }
 
         /// <summary>
@@ -365,8 +403,14 @@ namespace ColonyCouncil
             var book = ArisingBook.Instance;
             var def = c != null ? TemplateFor(c) : null;
             if (book == null || def == null || book.Used(c.key)) return null;
-            if (!TryTownTile(c.near, c.minTiles, c.maxTiles, c.Kin(), Score(c), out var tile)
-                && !TryTownTile(c.near, c.maxTiles, c.maxTiles * 2, c.Kin(), Score(c), out tile)) return null;
+            if (!TileFor(c, def, out var tile))
+            {
+                // A lean the land can't stand for (no river in reach for a landing): the cause's own ways instead.
+                if (c.lean == null) return null;
+                c.lean = null;
+                def = TemplateFor(c);
+                if (def == null || !TileFor(c, def, out tile)) return null;
+            }
             var f = Make(def, c, out var detail);
             if (f == null) return null;
             var town = NewTowns.MakeTown(f, tile, TownName(c, f));
@@ -402,10 +446,11 @@ namespace ColonyCouncil
         /// A tile for a new people's town, <paramref name="min"/> to <paramref name="max"/> tiles' walk from
         /// <paramref name="root"/> on the world's surface: valid for a town, nothing else on it or next to a town being
         /// built, clear of the game's nearness rule around every home of the colony, on no people's land but
-        /// <paramref name="kin"/>'s (Faction Territories); picked by the biome's settlement weight (and
-        /// <paramref name="score"/>). Straight-line distances only inside the search.
+        /// <paramref name="kin"/>'s (Faction Territories); with <paramref name="river"/>, on a tile a river runs
+        /// through; picked by the biome's settlement weight (and <paramref name="score"/>). Straight-line distances only
+        /// inside the search.
         /// </summary>
-        public static bool TryTownTile(PlanetTile root, int min, int max, HashSet<Faction> kin, Func<PlanetTile, float> score, out PlanetTile tile)
+        public static bool TryTownTile(PlanetTile root, int min, int max, HashSet<Faction> kin, Func<PlanetTile, float> score, out PlanetTile tile, bool river = false)
         {
             tile = PlanetTile.Invalid;
             if (!root.Valid || Find.WorldGrid == null || root.Layer == null || !root.Layer.IsRootSurface) return false;
@@ -426,7 +471,7 @@ namespace ColonyCouncil
                     if (nearest < 0f || d < nearest) nearest = d;
                 }
                 if (!RiseFallMath.ClearOfHomes(nearest, goodwill) || sites.Any(s => grid.ApproxDistanceInTiles(s, t) <= 1.5f)) return false;
-                if (!TileFinder.IsValidTileForNewSettlement(t)) return false;
+                if (!TileFinder.IsValidTileForNewSettlement(t) || river && !Peoples.HasRiver(t)) return false;
                 var owner = WorldMechanics.TerritoryOwner(t);
                 if (owner != null && (kin == null || !kin.Contains(owner))) return false;
                 float w = RegionFortunes.BiomeWeight(t) * (score?.Invoke(t) ?? 1f);

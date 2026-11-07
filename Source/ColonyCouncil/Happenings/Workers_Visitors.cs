@@ -190,7 +190,7 @@ namespace ColonyCouncil
     {
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {
-            ctx.faction = Arrivals.Friendly();
+            ctx.faction = Arrivals.Friendly(null, Peoples.Weigh(ext.prefers));
             if (ctx.faction == null) return false;
             int n = ext.count.RandomInRange;
             MakeGroup(ctx, ext, n, ext.ages);
@@ -221,7 +221,7 @@ namespace ColonyCouncil
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {
-            ctx.faction = Arrivals.Friendly();
+            ctx.faction = Arrivals.Friendly(null, Peoples.Weigh(ext.prefers));
             var proj = Find.ResearchManager.GetProject(null);
             if (ctx.faction == null || proj == null) return false;
             ctx.tale = proj.label;

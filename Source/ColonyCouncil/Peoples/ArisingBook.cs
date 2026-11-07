@@ -77,6 +77,20 @@ namespace ColonyCouncil
             cachedGame = Current.Game;
         }
 
+        /// <summary>A new world: the river folk's towns the game put where no river runs move to one in reach (Peoples/PeopleTowns.cs).</summary>
+        public override void StartedNewGame()
+        {
+            base.StartedNewGame();
+            try
+            {
+                PeopleTowns.ToTheRivers();
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("peoples: the landings to the rivers", e);
+            }
+        }
+
         /// <summary>When the last people arose of any cause (<paramref name="kind"/> null) or of this one; -1 for none.</summary>
         public int LastAt(string kind = null)
         {

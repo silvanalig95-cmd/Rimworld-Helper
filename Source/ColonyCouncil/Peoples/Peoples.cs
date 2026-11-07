@@ -108,11 +108,39 @@ namespace ColonyCouncil
         /// <summary>The weight on a people for an ask, a caller or a world event that prefers a calling.</summary>
         public static float Preference(string calling, Faction f) => PeoplesMath.Preference(calling, CallingOf(f));
 
+        /// <summary>
+        /// The weight a visitor's people is picked by (Arrivals.Friendly) for an event that prefers a calling
+        /// (HappeningExtension.prefers: hungry pilgrims the pilgrims', a travelling scholar the scholars'), times
+        /// <paramref name="also"/> when the event weighs its people already; null when it prefers none.
+        /// </summary>
+        public static Func<Faction, float> Weigh(string calling, Func<Faction, float> also = null)
+        {
+            if (calling.NullOrEmpty()) return also;
+            if (also == null) return f => Preference(calling, f);
+            return f => also(f) * Preference(calling, f);
+        }
+
         /// <summary>Something only for a calling: a people of it (or anyone, when it names none).</summary>
         public static bool Fits(string only, Faction f) => PeoplesMath.Fits(only, CallingOf(f));
 
         /// <summary>A kind of camp only for a calling can come: a people of it is at peace with the colony.</summary>
         public static bool CanSend(CampKindDef kind) => kind == null || kind.calling.NullOrEmpty() || AnyAtPeace(kind.calling);
+
+        /// <summary>Their towns stand by a river where the world has one (the river folk's landings).</summary>
+        public static bool ByWater(FactionDef d) => Of(d)?.byWater ?? false;
+
+        /// <summary>A tile of the world's surface a river runs through.</summary>
+        public static bool HasRiver(PlanetTile t)
+        {
+            try
+            {
+                return t.Valid && Find.WorldGrid[t] is SurfaceTile st && !st.Rivers.NullOrEmpty();
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
         /// <summary>The hospitallers' sickhouse sees to the colony's travellers who lodge there (Harm/SickHome.cs).</summary>
         public static bool TendsLodgers(Faction f) => PeoplesMath.TendsLodgers(CallingOf(f));
@@ -158,8 +186,12 @@ namespace ColonyCouncil
             var f = Find.FactionManager.AllFactionsListForReading.FirstOrDefault(x => !before.Contains(x) && x.def == def);
             if (f == null) return null;
             var town = Find.WorldObjects.Settlements.FirstOrDefault(s => s.Faction == f);
-            if (town != null && near != null && Arising.TryTownTile(near.Tile, 3, 10, null, null, out var tile))
-                town.Tile = tile;
+            // The river folk's landing by a river in reach, where there is one.
+            if (town != null && near != null)
+            {
+                if (ByWater(def) && Arising.TryTownTile(near.Tile, 3, 10, null, null, out var landing, true)) town.Tile = landing;
+                else if (Arising.TryTownTile(near.Tile, 3, 10, null, null, out var tile)) town.Tile = tile;
+            }
             return f;
         }
 

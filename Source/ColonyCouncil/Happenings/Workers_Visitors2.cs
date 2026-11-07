@@ -86,7 +86,7 @@ namespace ColonyCouncil
             ctx.place = reliquary;
             ctx.tale = relic.LabelShort;
             ctx.placeName = ideo.name;
-            ctx.faction = People(f => f.ideos != null && f.ideos.Has(ideo) ? 6f : 1f);
+            ctx.faction = People(Peoples.Weigh(ext.prefers, f => f.ideos != null && f.ideos.Has(ideo) ? 6f : 1f));
             if (ctx.faction == null) return false;
             var grown = Grown(ctx.map);
             ctx.a = grown.Where(p => p.Ideo == ideo).OrderByDescending(p => p.ideo?.Certainty ?? 0f).FirstOrDefault() ?? grown.RandomElementWithFallback();
@@ -183,7 +183,7 @@ namespace ColonyCouncil
             var tree = VisitorWork2.AnimaTree(ctx.map);
             if (tree == null) return false;
             ctx.place = tree;
-            ctx.faction = People(f => Tribal(f) || Empire(f) ? 4f : 1f);
+            ctx.faction = People(Peoples.Weigh(ext.prefers, f => Tribal(f) || Empire(f) ? 4f : 1f));
             if (ctx.faction == null) return false;
             var grown = Grown(ctx.map);
             ctx.a = grown.Where(p => p.HasPsylink).RandomElementWithFallback() ?? grown.RandomElementWithFallback();
@@ -396,7 +396,7 @@ namespace ColonyCouncil
         {
             wanted = VisitorWork2.Books(ctx.map).RandomElementWithFallback();
             if (wanted == null) return false;
-            ctx.faction = People();
+            ctx.faction = People(Peoples.Weigh(ext.prefers));
             if (ctx.faction == null) return false;
             ctx.thing = wanted.def;
             ctx.tale = VisitorWork2.Title(wanted);

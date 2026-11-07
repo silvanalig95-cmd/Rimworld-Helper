@@ -107,8 +107,12 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The league's letter opens by its calling: the merchants' road league, the herders' folk.</summary>
-        public static string LeagueOpening(Faction f) => "CC_Arise_league_" + (Peoples.CallingOf(f) == PeoplesMath.Herders ? PeoplesMath.Herders : PeoplesMath.Traders);
+        /// <summary>The league's letter opens by its calling: the merchants' road league, the herders' folk, the spacer age's enclave.</summary>
+        public static string LeagueOpening(Faction f)
+        {
+            string key = "CC_Arise_league_" + (Peoples.CallingOf(f) ?? PeoplesMath.Traders);
+            return key.CanTranslate() ? key : "CC_Arise_league_" + PeoplesMath.Traders;
+        }
 
         private static void History(ArisingCause c, Faction f, Settlement town)
         {

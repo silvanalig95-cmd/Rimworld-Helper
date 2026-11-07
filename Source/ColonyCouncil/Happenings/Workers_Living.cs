@@ -41,6 +41,8 @@ namespace ColonyCouncil
         public const string Fair = "fair";
         public const string Guest = "guest";
         public const string Morning = "morning";
+        /// <summary>The pilgrims' morning after a night's shelter (Peoples/PeoplesCallers.cs): "in" for a night indoors, "out" by their fire at the gate.</summary>
+        public const string Shelter = "shelter";
 
         /// <summary>The event whose text tells each kind of memo.</summary>
         private static readonly Dictionary<string, string> Events = new Dictionary<string, string>
@@ -48,10 +50,10 @@ namespace ColonyCouncil
             { Buyer, "Council_Evt_RegularBuyer" }, { Eloped, "Council_Evt_LoversKin" }, { Kin, "Council_Evt_KinLetter" },
             { Unlucky, "Council_Evt_FortuneScare" }, { Quarrel, "Council_Evt_QuarrelRemembered" },
             { KinComing, "Council_Evt_KinLetter" }, { Market, "Council_Evt_FarMarket" }, { Fair, "Council_Evt_HarvestFair" },
-            { Guest, "Council_Evt_NotableGuest" }, { Morning, "Council_Evt_MidwinterGuest" }
+            { Guest, "Council_Evt_NotableGuest" }, { Morning, "Council_Evt_MidwinterGuest" }, { Shelter, "Rimfolk_Evt_PilgrimShelter" }
         };
 
-        private static readonly HashSet<string> PendingKinds = new HashSet<string> { KinComing, Market, Fair, Guest, Morning };
+        private static readonly HashSet<string> PendingKinds = new HashSet<string> { KinComing, Market, Fair, Guest, Morning, Shelter };
 
         /// <summary>How long a memory waits for its follow-up, in days, before it fades.</summary>
         private static readonly Dictionary<string, float> KeepDays = new Dictionary<string, float>
@@ -258,6 +260,7 @@ namespace ColonyCouncil
                 case Fair: HappeningWorker_HarvestFair.Results(m); break;
                 case Guest: HappeningWorker_NotableGuest.Arrive(m); break;
                 case Morning: HappeningWorker_MidwinterGuest.Morning(m); break;
+                case Shelter: HappeningWorker_PilgrimShelter.Morning(m); break;
             }
         }
 

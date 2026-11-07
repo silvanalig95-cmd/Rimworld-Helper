@@ -40,6 +40,12 @@ namespace ColonyCouncil
         public bool battle;
         /// <summary>Someone may join: rarer while the storyteller thinks the colony is big enough.</summary>
         public bool addsPeople;
+        /// <summary>
+        /// One of Rimfolk's peoples of this calling is five times as likely to be the visitors' people (Peoples/: hungry
+        /// pilgrims and pilgrims to a relic the pilgrim fellowship's, a travelling scholar and a book swapper the learned
+        /// society's), for the events whose own worker picks it; nobody is shut out.
+        /// </summary>
+        public string prefers;
         /// <summary>Only when one of these mods (or DLCs) is active, by package id.</summary>
         public List<string> mods;
         public List<string> colonyIs;
@@ -112,6 +118,7 @@ namespace ColonyCouncil
             foreach (var e in base.ConfigErrors()) yield return e;
             if (texts.NullOrEmpty()) yield return "world event has no texts";
             if (!options.NullOrEmpty() && (defaultOption < 0 || defaultOption >= options.Count)) yield return "defaultOption out of range";
+            if (!prefers.NullOrEmpty() && !PeoplesMath.IsCalling(prefers)) yield return "'" + prefers + "' is not a calling";
         }
     }
 
