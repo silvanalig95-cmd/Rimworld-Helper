@@ -10,7 +10,7 @@
   <ScenarioDef ParentName="ScenarioBase">
     <defName>Council_Scenario_PlayersCart</defName>
     <label>The Players' Cart</label>
-    <description>You were a company of players, four of you and a cart, taking the same three plays from town to town. The axle broke in the middle of nowhere, the muffalo sat down and refused to move, and somebody said, only half joking, that this would do.\n\nIn a week or two, other wandering folk will hear there's an audience out here: a player, a fiddler, music on the wind. Later a fair or a talent scout may come looking. No one here means you harm, and no one is coming to attack you. The only drama will be the kind you make yourselves.</description>
+    <description>You were a company of players, four of you and a cart, taking the same three plays from town to town. The axle broke in the middle of nowhere, the muffalo sat down and refused to move, and somebody said, only half joking, that this would do.\n\nIn a week or two, other wandering folk will hear there's an audience out here: a player, a fiddler, music on the wind. Later a fair or a talent scout may come looking. No one here means you harm, and no one is coming to attack you. The only drama will be the kind you make yourselves.\n\nYou know your stagecraft: advanced lights are researched from the start, and the harp too with Royalty.</description>
     <scenario>
       <summary>Four players, one broken cart and a stubborn muffalo, making a home where the road ran out. (Rimfolk · gentle)</summary>
       <playerFaction>
@@ -122,6 +122,15 @@
           <text>The cart lies on its side with one wheel in the air, and the costumes are drying on a bush. The muffalo has started eating the scenery.\n\nIt's a long way to the next town, and nobody is in a hurry to walk it. Somebody suggests building a stage first, and a house second. Somebody else suggests the other way round. The first argument of the new colony has begun.</text>
           <closeSound>GameStartSting</closeSound>
         </li>
+
+        <li Class="ScenPart_StartingResearch">
+          <def>StartingResearch</def>
+          <project>ColoredLights</project>
+        </li>
+        <li Class="ScenPart_StartingResearch" MayRequire="Ludeon.RimWorld.Royalty">
+          <def>StartingResearch</def>
+          <project>Harp</project>
+        </li>
       </parts>
     </scenario>
   </ScenarioDef>
@@ -131,7 +140,7 @@
   <ScenarioDef ParentName="ScenarioBase">
     <defName>Council_Scenario_QuietHouse</defName>
     <label>The Quiet House</label>
-    <description>Three members of a small contemplative order, sent out to found a new house far from the old one: a place of work, prayer and open doors, where anyone who comes hungry is fed.\n\nThe eldest has a lifetime of learning to pass on, and the youngest has a great deal to learn. Before long pilgrims and wandering holy folk will find their way here, and later a scribe or a scholar, or mourners looking for a place to grieve. No one is coming to attack you. Not everyone in the order is quite what they seem, though.</description>
+    <description>Three members of a small contemplative order, sent out to found a new house far from the old one: a place of work, prayer and open doors, where anyone who comes hungry is fed.\n\nThe eldest has a lifetime of learning to pass on, and the youngest has a great deal to learn. Before long pilgrims and wandering holy folk will find their way here, and later a scribe or a scholar, or mourners looking for a place to grieve. No one is coming to attack you. Not everyone in the order is quite what they seem, though.\n\nThe order has always brewed its own beer: beer brewing is researched from the start.</description>
     <scenario>
       <summary>Three members of a quiet order founding a new house, with open doors and a secret among them. (Rimfolk · gentle)</summary>
       <playerFaction>
@@ -248,7 +257,7 @@
   <ScenarioDef ParentName="ScenarioBase">
     <defName>Council_Scenario_Homestead</defName>
     <label>The Homestead</label>
-    <description>A married couple and the old friend who came with them, two cows, a few chickens and a wagonload of seed potatoes. The deed to this land cost everything you had, and it's yours now: every rock in it.\n\nWithin a few weeks someone from home will come to see how you're getting on, or a letter will. Once the first harvest is in, a fair or a regular buyer may turn up. No one is coming to attack you. The seasons will be hard enough.</description>
+    <description>A married couple and the old friend who came with them, two cows, a few chickens and a wagonload of seed potatoes. The deed to this land cost everything you had, and it's yours now: every rock in it.\n\nWithin a few weeks someone from home will come to see how you're getting on, or a letter will. Once the first harvest is in, a fair or a regular buyer may turn up. No one is coming to attack you. The seasons will be hard enough.\n\nYou know how to raise a windbreak and an orchard: tree sowing is researched from the start.</description>
     <scenario>
       <summary>A married couple, an old friend, some livestock and a field to clear: a family homestead. (Rimfolk · gentle)</summary>
       <playerFaction>
@@ -355,6 +364,11 @@
           <def>GameStartDialog</def>
           <text>The wagon creaks to a stop at the boundary stone. The cows look around, unimpressed. The chickens are already in the seed sacks.\n\nThere's a field to clear, a house to raise and a well to dig, and the potatoes have to be in the ground before they sprout in the sack. Somebody has to start somewhere.</text>
           <closeSound>GameStartSting</closeSound>
+        </li>
+
+        <li Class="ScenPart_StartingResearch">
+          <def>StartingResearch</def>
+          <project>TreeSowing</project>
         </li>
       </parts>
     </scenario>

@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.137.0</version>
+        <date>7 November 2026</date>
+        <title>Starting research that fits the story</title>
+        <points>
+          <li>Every Rimfolk scenario was checked for whether what it knows at the start fits its story, and each one that knows something of its own now says so at the end of its description. This applies to new games.</li>
+          <li>New know-how from the start: the Deserters can rig IEDs, the servants of The Fallen Tyrant brew beer, the master of Master and Apprentice brings smithing, The Lone Hunter makes pemmican, The Homestead plants trees, and The Players' Cart has advanced lights and, with Royalty, the harp.</li>
+          <li>The Land Grant's medieval holding now starts with the old country's whole know-how, stonecutting and complex clothing among it, and no longer with a tribe's psychoid tea.</li>
+          <li>The Elders' Fire and The Land Grant now say that they start without electricity and how much longer later ages' research takes for a tribe or a medieval holding. Borrowed Time names the batteries and solar panels its loan bought.</li>
+          <li>The Almanac's page on scenarios now has a row for all seventeen, with what each one starts knowing.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.136.0</version>
         <date>7 November 2026</date>
         <title>Three peaceful peoples</title>

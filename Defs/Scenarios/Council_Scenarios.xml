@@ -237,7 +237,7 @@
   <ScenarioDef ParentName="ScenarioBase">
     <defName>Council_Scenario_Deserters</defName>
     <label>Deserters</label>
-    <description>The war was going badly, the officers were worse, and one night five of you simply walked away from the front with your rifles and whatever you could carry.\n\nDesertion is a hanging offense where you come from, and your old unit still has your names. In a month or so they'll come asking for one of you, and the colony will have to hand that comrade over, buy their freedom, or fight. Later they may come for another.\n\nOut here, the only orders are your own.</description>
+    <description>The war was going badly, the officers were worse, and one night five of you simply walked away from the front with your rifles and whatever you could carry.\n\nDesertion is a hanging offense where you come from, and your old unit still has your names. In a month or so they'll come asking for one of you, and the colony will have to hand that comrade over, buy their freedom, or fight. Later they may come for another.\n\nOut here, the only orders are your own.\n\nThe war taught you how to rig a trap: IEDs are researched from the start.</description>
     <scenario>
       <summary>Five soldiers who walked away from a losing war, well armed and badly fed, with their old unit on their trail. (Rimfolk · moderate)</summary>
       <playerFaction>
@@ -325,6 +325,11 @@
           <def>GameStartDialog</def>
           <text>Three weeks of walking, and the guns behind you have finally gone quiet. This valley is as far from the front as your boots could carry you.\n\nNobody here knows your names. Your old unit still has them written down.</text>
           <closeSound>GameStartSting</closeSound>
+        </li>
+
+        <li Class="ScenPart_StartingResearch">
+          <def>StartingResearch</def>
+          <project>IEDs</project>
         </li>
       </parts>
     </scenario>
@@ -433,7 +438,7 @@
   <ScenarioDef ParentName="ScenarioBase">
     <defName>Council_Scenario_BorrowedTime</defName>
     <label>Borrowed Time</label>
-    <description>Everything you landed with was bought on credit: the gear, the supplies, the research files, the very pods you came down in. The lender was happy to oblige.\n\nIn about a month and a half they'll want 3,000 silver back. Pay it all, pay half and ask for more time (with interest), or refuse and face the people they send to collect, twice.\n\nIn return, you start with more than most colonies ever have.</description>
+    <description>Everything you landed with was bought on credit: the gear, the supplies, the research files, the very pods you came down in. The lender was happy to oblige.\n\nIn about a month and a half they'll want 3,000 silver back. Pay it all, pay half and ask for more time (with interest), or refuse and face the people they send to collect, twice.\n\nIn return, you start with more than most colonies ever have, down to the research files: batteries and solar panels are researched from the start.</description>
     <scenario>
       <summary>A rich start, bought with a 3,000-silver loan from people you really should pay back. (Rimfolk · moderate)</summary>
       <playerFaction>
@@ -549,7 +554,7 @@
   <ScenarioDef ParentName="ScenarioBase">
     <defName>Council_Scenario_FallenTyrant</defName>
     <label>The Fallen Tyrant</label>
-    <description>For years the warlord ruled this valley with a whip and a smile. Last night, at the feast, five of the servants poured the wine. This morning the warlord is sleeping it off in the dirt, and the valley is yours.\n\nYou have a few hours to find somewhere to keep a tyrant. In a week or so the warlord's loyalists will come to find out what happened, and twice more after that, a month or so apart, unless their master is dead or one of you by then.\n\nWhat to do with the prisoner is the colony's first real decision. Each of you has an opinion, and none of them are kind.</description>
+    <description>For years the warlord ruled this valley with a whip and a smile. Last night, at the feast, five of the servants poured the wine. This morning the warlord is sleeping it off in the dirt, and the valley is yours.\n\nYou have a few hours to find somewhere to keep a tyrant. In a week or so the warlord's loyalists will come to find out what happened, and twice more after that, a month or so apart, unless their master is dead or one of you by then.\n\nWhat to do with the prisoner is the colony's first real decision. Each of you has an opinion, and none of them are kind.\n\nYou brewed the warlord's drink as well as pouring it: beer brewing is researched from the start.</description>
     <scenario>
       <summary>Five former servants, one drugged tyrant, and the tyrant's loyalists on their way back. (Rimfolk · challenging)</summary>
       <playerFaction>
@@ -634,6 +639,11 @@
           <def>GameStartDialog</def>
           <text>The feast is over. The warlord is snoring in the dirt, the keys are in your hands, and there is no one left to give you orders.\n\nFind somewhere to lock the warlord up before the wine wears off.</text>
           <closeSound>GameStartSting</closeSound>
+        </li>
+
+        <li Class="ScenPart_StartingResearch">
+          <def>StartingResearch</def>
+          <project>Brewing</project>
         </li>
       </parts>
     </scenario>
@@ -746,7 +756,7 @@
   <ScenarioDef ParentName="ScenarioBase">
     <defName>Council_Scenario_MasterApprentice</defName>
     <label>Master and Apprentice</label>
-    <description>A master of a craft, and the apprentice who followed them to the edge of the world to learn it. The master has a lifetime of knowledge to pass on, and the apprentice has the patience to learn it, on good days.\n\nWord of a good workshop travels. In a week or two a traveling scholar or storyteller will stop by, and later someone else may come wanting to learn, or an old friend of the master's may turn up. No one is coming to attack you here. There is the work, and the slow satisfaction of getting better at it.</description>
+    <description>A master of a craft, and the apprentice who followed them to the edge of the world to learn it. The master has a lifetime of knowledge to pass on, and the apprentice has the patience to learn it, on good days.\n\nWord of a good workshop travels. In a week or two a traveling scholar or storyteller will stop by, and later someone else may come wanting to learn, or an old friend of the master's may turn up. No one is coming to attack you here. There is the work, and the slow satisfaction of getting better at it.\n\nThe workshop's know-how comes with the master: smithing is researched from the start.</description>
     <scenario>
       <summary>Two colonists, a master and an apprentice, building a workshop at the edge of the world. (Rimfolk · gentle)</summary>
       <playerFaction>
@@ -833,6 +843,11 @@
           <def>GameStartDialog</def>
           <text>The cart is unloaded, the tools are laid out, and the master is already explaining, for the third time, the right way to hold a hammer.\n\nThe apprentice nods, and makes a note, and wonders how long it will take before the master runs out of things to teach.</text>
           <closeSound>GameStartSting</closeSound>
+        </li>
+
+        <li Class="ScenPart_StartingResearch">
+          <def>StartingResearch</def>
+          <project>Smithing</project>
         </li>
       </parts>
     </scenario>
@@ -943,7 +958,7 @@
   <ScenarioDef ParentName="ScenarioBase">
     <defName>Council_Scenario_LoneHunter</defName>
     <label>The Lone Hunter</label>
-    <description>You've tracked it across three valleys, the great beast the hunters talk about around their fires, old and scarred and never brought down. Its trail leads here.\n\nIn a couple of weeks it will pass through this land. Hunt it if you dare, tame it if you can, or let it go by; it only fights if provoked. Meanwhile, word of a lone hunter living off the land gets around, and before long someone may come asking to join you.</description>
+    <description>You've tracked it across three valleys, the great beast the hunters talk about around their fires, old and scarred and never brought down. Its trail leads here.\n\nIn a couple of weeks it will pass through this land. Hunt it if you dare, tame it if you can, or let it go by; it only fights if provoked. Meanwhile, word of a lone hunter living off the land gets around, and before long someone may come asking to join you.\n\nYou live on pemmican on the trail, and know how to make it: pemmican is researched from the start.</description>
     <scenario>
       <summary>A lone hunter, a rifle, a dog, and a legend to track. (Rimfolk · gentle)</summary>
       <playerFaction>
@@ -1035,6 +1050,11 @@
           <def>GameStartDialog</def>
           <text>Fresh tracks in the mud, wider than your spread hand. It passed through here not long ago, and it will be back.\n\nUntil then, there's a camp to build.</text>
           <closeSound>GameStartSting</closeSound>
+        </li>
+
+        <li Class="ScenPart_StartingResearch">
+          <def>StartingResearch</def>
+          <project>Pemmican</project>
         </li>
       </parts>
     </scenario>

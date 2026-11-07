@@ -6,6 +6,29 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 0.137.0, the scenarios' starting research (7 November 2026, the player's request: "review the different research levels and
+  what kind of technologies are researched for each scenario, ... that it's a thematic fit. And if it has like a bigger
+  impact, also mention it in the description"). Defs and text only; no code. Checked against 1.6's research defs
+  (fetched Core, Royalty, Ideology) and its code: an industrial colony (`PlayerColony`, tag ClassicStart) starts with
+  electricity, air conditioning, nutrient paste, stonecutting, complex furniture, complex clothing and the passive
+  cooler; a tribe (TribalStart) with pemmican, the recurve bow, tree sowing, psychoid brewing and the passive cooler;
+  `ResearchProjectDef.CostFactor` makes research 1.5 times as long per age above the faction's own, up to industrial
+  (a tribe: medieval 1.5, industrial and spacer 2; a medieval holding: industrial and spacer 1.5);
+  `ResearchManager.FinishProject` finishes a project's prerequisites too. Rimfolk's age (`Avail.EffectiveTech`) is the
+  faction's or the highest age with two finished projects, so nothing here moves a colony's age.
+  - Added, each at the end of its parts list: Deserters IEDs, The Fallen Tyrant beer brewing, Master and Apprentice
+    smithing, The Lone Hunter pemmican, The Homestead tree sowing, The Players' Cart advanced lights and the harp
+    (Royalty, `MayRequire`). The Quiet House keeps its brewing, Borrowed Time its batteries and solar panels; the other
+    nine have the usual start, which fits them (offworld crews, a ship's families, locals of an industrial world).
+  - The Land Grant's holding (`Council_PlayerHolding`) has no starting research tags now (TribalStart brought psychoid
+    brewing); the scenario lists the old country's knowledge: smithing, long blades, stonecutting, complex furniture
+    and clothing, brewing, tree sowing, pemmican, the recurve bow, the passive cooler.
+  - Each description that knows something of its own ends with a line saying what; The Elders' Fire and The Land Grant
+    also say there is no electricity and how much longer later research takes. The Almanac's "scenarios with stakes"
+    table gained the five it lacked (Deserters, The Inheritance, Master and Apprentice, Runaway Hearts, The Lone
+    Hunter) and a research line per changed row; README's list the same.
+  - Left for the player: Bad Blood's feud along family lines (`ScenPart_CouncilFamilies`) against the rule that the
+    colony is the family; the Players' Cart's opening words describe a cart on its side that the map doesn't have.
 - 0.136.0, new peoples, release A (7 November 2026): the player's request of 7 November ("we can start with a few factions and see
   how it goes ... they should also be able to arise during play", that part release B; "use all dlc and mods to your
   availability"). `docs/design/peoples.md` (what was

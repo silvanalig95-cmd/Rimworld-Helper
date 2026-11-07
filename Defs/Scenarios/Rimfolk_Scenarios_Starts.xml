@@ -34,13 +34,8 @@
     <factionNameMaker>NamerFactionOutlander</factionNameMaker>
     <settlementNameMaker>NamerSettlementOutlander</settlementNameMaker>
     <allowedCultures><li>Rustican</li></allowedCultures>
-    <startingResearchTags>
-      <li>TribalStart</li>
-    </startingResearchTags>
-    <startingTechprintsResearchTags>
-      <li>TribalStart</li>
-      <li>TribalStartTechprints</li>
-    </startingTechprintsResearchTags>
+    <!-- No starting research of its own: The Land Grant lists the old country's knowledge (a tribe's start would bring
+         psychoid brewing, which isn't the holding's). -->
     <apparelStuffFilter>
       <thingDefs>
         <li>Cloth</li>
@@ -54,7 +49,7 @@
   <ScenarioDef ParentName="ScenarioBase">
     <defName>Council_Scenario_EldersFire</defName>
     <label>The Elders' Fire</label>
-    <description>Five of the tribe, sent out with fire carried in a clay pot to make a new camp where the hunting is better. The eldest walks at the front and sits by the fire at night, as the eldest always has, and the old days come with you: the Night of Embers and the Day of the Lost.\n\nSo does the feud. A neighboring people and the tribe have been killing each other's sons for longer than anyone remembers, and one of you has sworn to make them pay for a kinsman. Their war band will come, once in a few weeks and again later, unless the one who leads it falls first.</description>
+    <description>Five of the tribe, sent out with fire carried in a clay pot to make a new camp where the hunting is better. The eldest walks at the front and sits by the fire at night, as the eldest always has, and the old days come with you: the Night of Embers and the Day of the Lost.\n\nSo does the feud. A neighboring people and the tribe have been killing each other's sons for longer than anyone remembers, and one of you has sworn to make them pay for a kinsman. Their war band will come, once in a few weeks and again later, unless the one who leads it falls first.\n\nAs a tribe you start with the tribe's own knowledge (pemmican, the recurve bow, tree sowing, psychoid tea and the passive cooler) and no electricity. Learning is slower too: research takes half again as long for the medieval age, and twice as long from the industrial age on.</description>
     <scenario>
       <summary>Five of a tribe, an elder at the fire, the old days kept, and a blood feud that followed them. (Rimfolk · moderate)</summary>
       <playerFaction>
@@ -389,7 +384,7 @@
   <ScenarioDef ParentName="ScenarioBase">
     <defName>Council_Scenario_LandGrant</defName>
     <label>The Land Grant</label>
-    <description>The charter is sealed in wax and wrapped in oilcloth: this valley, from the river to the ridge, granted to the five of you to settle and work. It names a speaker, a marshal and a reeve, and they hold their seats from the day you arrive. You come as a medieval holding, with the smithing, the long blades and the brewing of the old country, and the rest still to learn.\n\nA grant is not a gift. The lord's people have written it down, and in time they will ask for something in return. The lord's reeve will come round before long to see what the land owes. Nobody is coming to attack you over it; the debt is the kind that is paid in goodwill, or remembered.</description>
+    <description>The charter is sealed in wax and wrapped in oilcloth: this valley, from the river to the ridge, granted to the five of you to settle and work. It names a speaker, a marshal and a reeve, and they hold their seats from the day you arrive. You come as a medieval holding, with the smithing, the long blades and the brewing of the old country, and the rest still to learn.\n\nA grant is not a gift. The lord's people have written it down, and in time they will ask for something in return. The lord's reeve will come round before long to see what the land owes. Nobody is coming to attack you over it; the debt is the kind that is paid in goodwill, or remembered.\n\nThe old country's knowledge is researched from the start: smithing, long blades, stonecutting, complex furniture and clothing, beer brewing, tree sowing, pemmican, the recurve bow and the passive cooler. There is no electricity yet, and research from the industrial age on takes half again as long.</description>
     <scenario>
       <summary>Five settlers on land granted by a lord, a council named in the charter, and a debt the lord's people will call in. (Rimfolk · moderate)</summary>
       <playerFaction>
@@ -536,6 +531,31 @@
           <def>GameStartDialog</def>
           <text>The speaker reads the charter aloud to the empty valley, all of it, down to the seal, because that is how it's done. The cows wander off halfway through.\n\nThe marshal walks the boundary with a sword that has never been drawn in anger. The reeve is already down on one knee in the dirt, crumbling it between two fingers and frowning.</text>
           <closeSound>GameStartSting</closeSound>
+        </li>
+
+        <li Class="ScenPart_StartingResearch">
+          <def>StartingResearch</def>
+          <project>Stonecutting</project>
+        </li>
+        <li Class="ScenPart_StartingResearch">
+          <def>StartingResearch</def>
+          <project>ComplexClothing</project>
+        </li>
+        <li Class="ScenPart_StartingResearch">
+          <def>StartingResearch</def>
+          <project>TreeSowing</project>
+        </li>
+        <li Class="ScenPart_StartingResearch">
+          <def>StartingResearch</def>
+          <project>Pemmican</project>
+        </li>
+        <li Class="ScenPart_StartingResearch">
+          <def>StartingResearch</def>
+          <project>RecurveBow</project>
+        </li>
+        <li Class="ScenPart_StartingResearch">
+          <def>StartingResearch</def>
+          <project>PassiveCooler</project>
         </li>
       </parts>
     </scenario>

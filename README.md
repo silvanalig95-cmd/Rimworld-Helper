@@ -3190,20 +3190,21 @@ something already in motion, and a few seconds in, a letter says how things stan
 - **The Inheritance.** One colonist and a dog in a valley left to them by a great-aunt. Within a week or two someone
   from their past finds them and asks to stay; a few weeks later someone else may follow.
 - **Master and Apprentice.** Two colonists: a master teaching the apprentice their best craft (a real mentorship
-  from day one). A travelling scholar visits in a week or two, and later someone else comes wanting to learn.
+  from day one), with smithing researched. A travelling scholar visits in a week or two, and later someone else comes wanting to learn.
 - **Runaway Hearts.** Two lovers who ran away together. In a couple of weeks an old flame of one of them turns
   up asking to stay; later, family may come looking.
-- **The Lone Hunter.** One hunter, a rifle and a dog, on the trail of a legendary beast that passes through in a
+- **The Lone Hunter.** One hunter, a rifle, a dog and the know-how for pemmican, on the trail of a legendary beast that passes through in a
   couple of weeks (hunt it, tame it, or let it go: it only fights if provoked). Someone may join them before that.
 
 **Gentle starts for a small company** (three or four colonists, no attacks of their own):
-- **The Players' Cart.** Four players, old friends, whose cart broke down for good, with a stubborn muffalo.
+- **The Players' Cart.** Four players, old friends, whose cart broke down for good, with a stubborn muffalo and
+  their stagecraft (advanced lights, and the harp with Royalty).
   Performers come to find an audience within a couple of weeks, and later a talent scout or a fair. One of the
   company travels under a borrowed name.
 - **The Quiet House.** Three of a quiet order founding a new house, a mentor and a novice among them, known from the
   start as merciful, generous and traditional. Pilgrims and wandering holy folk come soon, then a scribe, a scholar or
-  mourners. One of the three once broke a vow.
-- **The Homestead.** A married couple and an old friend, with two cows, chickens and seed potatoes. Family visits or
+  mourners. One of the three once broke a vow. The order brews its own beer (brewing researched).
+- **The Homestead.** A married couple and an old friend, with two cows, chickens, seed potatoes and tree sowing. Family visits or
   writes within the month, and a buyer or a fair comes after the first harvest.
 - **The Orphanage** (Biotech). Two carers and the three or four children they got out of a burning town, all fond of
   each other from the start; one carer has set their heart on seeing a child grown. A storyteller, players or a lost
@@ -3216,23 +3217,26 @@ something already in motion, and a few seconds in, a letter says how things stan
 - **Marooned** (moderate). A loyal few thrown off their ship by mutineers, whose pirate friends come three times,
   a month or so apart, starting in about three weeks (sooner over if the ringleader falls). One of them was in on
   the mutiny.
-- **Deserters** (moderate). Five well-armed, badly fed soldiers who walked away from a war. In a month or so their
+- **Deserters** (moderate). Five well-armed, badly fed soldiers who walked away from a war, knowing how to rig IEDs. In a month or so their
   old unit comes for one of them: hand them over, buy their freedom, or fight.
 - **Bad Blood** (gentle fights, social drama). Six survivors from two families who have never got on. Each family
   takes one name, stands by its own, and doesn't think much of the other (the grudge fades over a month or two).
 - **Borrowed Time** (moderate). The best start money can buy, bought with a 3,000-silver loan due in about a month
-  and a half. Refusing to pay brings the collectors twice.
-- **The Fallen Tyrant** (challenging). Five servants who drugged their warlord at a feast. The warlord starts as your
+  and a half, batteries and solar panels researched. Refusing to pay brings the collectors twice.
+- **The Fallen Tyrant** (challenging). Five servants who drugged their warlord at a feast (they know brewing). The warlord starts as your
   prisoner, out cold for a few hours (build a cell fast), and every colonist loathes them. Their loyalists come in
   a week or so, and twice more after that unless the warlord is dead or one of you by then.
 - **The Elders' Fire** (moderate). Five of a tribe: the eldest sits as the colony's elder from day one, two of the
   tribe's days are traditions from the first year, and a neighboring people's war band comes twice for an old feud.
-  One of you has sworn vengeance on them, and set their heart on it.
+  One of you has sworn vengeance on them, and set their heart on it. A tribe's start: no electricity, and later
+  ages' research takes longer (half again for the medieval age, twice from the industrial age on).
 - **What the Ship Carried** (moderate). Three survivors of a ship that broke up in orbit, sharing one secret only those
   who join later can learn, and only if one of the three lets it slip. The wreck comes down as a world event two or
   three weeks in.
 - **The Land Grant** (moderate). Five settlers of a medieval holding on land granted by a lord: a council named in
-  the charter, a reeve come for the tithe, and a debt the lord's people remember and later call in as a favour.
+  the charter, a reeve come for the tithe, and a debt the lord's people remember and later call in as a favour. The old country's
+  smithing, long blades, stonecutting and brewing are known; there's no electricity, and industrial research takes
+  half again as long.
 
 The pieces are **scenario parts** you can add to any scenario in the scenario editor: *a sworn enemy* (who hunts,
 was robbed by, betrayed or held the colonists in chains, can start as your prisoner, and attacks a set number of

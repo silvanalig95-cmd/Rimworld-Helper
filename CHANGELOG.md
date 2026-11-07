@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Starting research that fits the story
+
+*7 November 2026, version 0.137.0*
+
+- Every Rimfolk scenario was checked for whether what it knows at the start fits its story, and each one that knows something of its own now says so at the end of its description. This applies to new games.
+- New know-how from the start: the Deserters can rig IEDs, the servants of The Fallen Tyrant brew beer, the master of Master and Apprentice brings smithing, The Lone Hunter makes pemmican, The Homestead plants trees, and The Players' Cart has advanced lights and, with Royalty, the harp.
+- The Land Grant's medieval holding now starts with the old country's whole know-how, stonecutting and complex clothing among it, and no longer with a tribe's psychoid tea.
+- The Elders' Fire and The Land Grant now say that they start without electricity and how much longer later ages' research takes for a tribe or a medieval holding. Borrowed Time names the batteries and solar panels its loan bought.
+- The Almanac's page on scenarios now has a row for all seventeen, with what each one starts knowing.
+
 ## Three peaceful peoples
 
 *7 November 2026, version 0.136.0*
