@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Harm, part 4 (Source/ColonyCouncil/Harm/): the shared budget and the fifteen the player took. Messages only where the
+       game gives one for the same hurt (an illness caught, an animal turning on its handler); the rest is seen on the map
+       (a few words over them, their line, the hit). -->
+
+  <!-- ===================== The physician catches what they tend (Catching.cs) ===================== -->
+
+  <CC_HarmFour_Physician>{PAWN_nameDef} has come down with {ILLNESS}, caught while tending {OTHER}. {NOTE}</CC_HarmFour_Physician>
+  <CC_HarmFour_Physician_2>All those hours at {OTHER}'s bedside have left {PAWN_nameDef} with {ILLNESS} too. {NOTE}</CC_HarmFour_Physician_2>
+
+  <!-- ===================== The guest's cough (Catching.cs) ===================== -->
+
+  <CC_HarmFour_GuestCough>{PAWN_nameDef} has come down with {ILLNESS}, caught from {OTHER}, the guest with the cough. {NOTE}</CC_HarmFour_GuestCough>
+  <CC_HarmFour_GuestCough_2>{OTHER} left a cough behind, and {PAWN_nameDef}, who sat with them longest, has {ILLNESS} now. {NOTE}</CC_HarmFour_GuestCough_2>
+
+  <!-- ===================== A cold night for the frail (Catching.cs) ===================== -->
+
+  <CC_HarmFour_ColdNight>A night in a cold bedroom under banked fires has given {PAWN_nameDef} {ILLNESS}, and the frail don't shake that off easily. {NOTE}</CC_HarmFour_ColdNight>
+  <CC_HarmFour_ColdNight_2>{PAWN_nameDef} woke shivering after a bitter night with the fires banked low, and has {ILLNESS} now. {NOTE}</CC_HarmFour_ColdNight_2>
+
+  <!-- ===================== The rut and the herdmaster's lesson (AnimalHurts.cs) ===================== -->
+
+  <CC_HarmFour_Rut>{ANIMAL_nameDef}, in the rut, charged {PAWN_nameDef} in the pen and caught {PAWN_objective} on the {PART}.</CC_HarmFour_Rut>
+  <CC_HarmFour_Rut_2>{PAWN_nameDef} went into the pen in the rut, and {ANIMAL_nameDef} lowered his head and charged.</CC_HarmFour_Rut_2>
+  <CC_HarmFour_LessonKick>Learning the animals with {OTHER_nameDef}, {PAWN_nameDef} was kicked by a nervous {ANIMAL_labelShort}.</CC_HarmFour_LessonKick>
+  <CC_HarmFour_LessonKick_2>{ANIMAL_nameDef} took fright at the lesson and kicked out at {PAWN_nameDef}, while {OTHER_nameDef} calmed it.</CC_HarmFour_LessonKick_2>
+  <CC_HarmFour_LessonBite>Learning the animals with {OTHER_nameDef}, {PAWN_nameDef} was bitten by a nervous {ANIMAL_labelShort}.</CC_HarmFour_LessonBite>
+  <CC_HarmFour_LessonBite_2>{ANIMAL_nameDef} snapped at {PAWN_nameDef} during the lesson before {OTHER_nameDef} could calm it.</CC_HarmFour_LessonBite_2>
+
+  <!-- ===================== Seen over them, no message (Mishaps.cs, AnimalHurts.cs, Quarrels.cs, GamesDay.cs) ===================== -->
+
+  <CC_HarmFour_Mote_Hail>bruised by a hailstone</CC_HarmFour_Mote_Hail>
+  <CC_HarmFour_Mote_Felling>the tree came down the wrong way</CC_HarmFour_Mote_Felling>
+  <CC_HarmFour_Mote_Burn>burned at the work</CC_HarmFour_Mote_Burn>
+  <CC_HarmFour_Mote_Knife>cut by the knife</CC_HarmFour_Mote_Knife>
+  <CC_HarmFour_Mote_Thrown>thrown by {ANIMAL_labelShort}</CC_HarmFour_Mote_Thrown>
+  <CC_HarmFour_Mote_Groups_Tribal>the clans of {ONE} and {OTHER} at blows</CC_HarmFour_Mote_Groups_Tribal>
+  <CC_HarmFour_Mote_Groups_Medieval>the factions of {ONE} and {OTHER} at blows</CC_HarmFour_Mote_Groups_Medieval>
+  <CC_HarmFour_Mote_Groups_Industrial>{ONE} against {OTHER}, the shifts at blows</CC_HarmFour_Mote_Groups_Industrial>
+  <CC_HarmFour_Mote_Groups_Spacer>{ONE} against {OTHER}, the departments at blows</CC_HarmFour_Mote_Groups_Spacer>
+  <CC_HarmFour_Mote_GamesBlow>a blow that landed for real</CC_HarmFour_Mote_GamesBlow>
+  <CC_HarmFour_Mote_Wrist>a wrenched wrist</CC_HarmFour_Mote_Wrist>
+  <CC_HarmFour_Mote_Scrape>a scraped knee</CC_HarmFour_Mote_Scrape>
+  <CC_HarmFour_Mote_Ankle>a turned ankle</CC_HarmFour_Mote_Ankle>
+
+  <!-- ===================== Games with real contests (GamesDay.cs) ===================== -->
+
+  <CC_HarmFour_Report_Games>in a contest with {OTHER_nameDef}.</CC_HarmFour_Report_Games>
+  <CC_HarmFour_Report_Race>running in the games day's race.</CC_HarmFour_Report_Race>
+
+  <!-- ===================== A guest's night goes sour (Quarrels.cs) ===================== -->
+
+  <CC_Impact_GuestNight>A guest with a bed for the night may quarrel with one of ours after supper, and now and then it comes to a fistfight</CC_Impact_GuestNight>
+  <CC_Impact_GuestNightBrief>a guest may quarrel after supper</CC_Impact_GuestNightBrief>
+
+  <!-- ===================== Burned at the bench (Mishaps.cs) ===================== -->
+
+  <CC_Settings_DrinkBeforeHotWork>A drink before hot work</CC_Settings_DrinkBeforeHotWork>
+  <CC_Settings_DrinkBeforeHotWork_Tip>With Alpha Skills and a drink before work on: the drink may come before cooking and smithing too. Now and then (about one drink in a hundred before such work) it ends in a burn at the stove or the forge, or a cut from the knife. Off, a drink before work leaves the stove and the forge alone.</CC_Settings_DrinkBeforeHotWork_Tip>
+  <CC_SetNote_DrinkBeforeHotWork>Before cooking and smithing too, with a small chance of a burn at the work.</CC_SetNote_DrinkBeforeHotWork>
+
+</LanguageData>

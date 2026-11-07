@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Harm, part 4 (Source/ColonyCouncil/Harm/): a runner in a games day's footrace (GamesDay.cs). -->
+
+  <JobDef>
+    <defName>Rimfolk_GamesRace</defName>
+    <driverClass>ColonyCouncil.JobDriver_GamesRace</driverClass>
+    <reportString>running in the games day's race.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+</Defs>

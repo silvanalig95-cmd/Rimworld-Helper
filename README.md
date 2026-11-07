@@ -3751,6 +3751,13 @@ settings). Nobody takes more than one in three days, nobody while downed, in a s
 babies never, children only the mildest; nothing here kills outright, though the game's own fights and illnesses still
 may. Where a choice brings the risk, its card or its answer says so first.
 
+**One shared budget.** All of Rimfolk's kinds of hurt share one budget: together they come about as often as the kinds
+built before it did, however many there are now (at 100%, about half a hurt a colonist-year in an average colony, a
+third in a careful one and three fifths in a careless one, beside a raid's wound or two). Each kind comes about half as often as it would alone, a kind that came lately waits its turn for
+up to thirty days while the others come a little more often, and switching a system off takes its kinds out of the
+budget, leaving the rest as they were. The setting and the storyteller scale all of it as before, and prevention still
+counts: a careful colony meets fewer of them than a careless one.
+
 - **Work and drills:** a real blow in one drill bout in 25, a slip at the bench or under a load on a long day under a
   work decree, a strained back or a bad ankle worked hard through until it gives, and the dangers on the map.
 - **A camp's quarrel that becomes a brawl:** while a camp's tension runs high, or for three days after the old quarrel
@@ -3774,6 +3781,27 @@ may. Where a choice brings the risk, its card or its answer says so first.
   calm candidates each halve it.
 - **Frayed tempers:** someone worn down by strain comes to blows a quarter more easily over a sharp word, near
   breaking half again (never past a beer's worth); the heart's page says so. Easing the strain eases it.
+- **Sickness caught:** a doctor may catch what a patient has (one tending in 40 of a cold, a stomach bug or pinkeye, a
+  tenth of that for tuberculosis, cholera, measles or the flu; gloves and masks, a sterile room, the quarantine or
+  rest-when-ill decree and a second doctor sharing the rounds ease it); one visit in 20 brings a guest with a cough, and
+  whoever sat with them longest catches it after they go; under banked fires in a hard frost, the old, small children
+  and the convalescent may catch a chill in a cold bedroom (the decree's card says so; keep a heater going in their room).
+- **Weather and work:** a stone's bruise for someone still out in a hailstorm (call them in; a helmet turns it), a tree
+  that comes down the wrong way for a cutter under Plants 5 (a stone axe more often, a steel one less), a heavy build
+  (a wall, big furniture, a bridge) that fails and comes down on its builder one time in ten, and with Alpha Skills a
+  burn at the stove or the forge after a drink before the work (its own switch, "A drink before hot work").
+- **Animals:** a male in the autumn rut may charge someone in his pen (never the herdmaster), a nervous animal may kick
+  a learner at the herdmaster's lesson, and with Giddy-Up a rider short of Animals 6 may be thrown getting down from a
+  mount not yet trained to obey.
+- **Quarrels:** two groups bitter with each other may come to blows at the table, others of both joining (the
+  peacemaker and shared meals ease it); a hot-tempered or bitter loser of a close election may walk over to the winner
+  days later (less after a gracious handshake at the count); a guest with a bed for the night (with Hospitality, its
+  guests in the guest beds too) may quarrel with one of the colony after supper, the outsiders' own fistfight (the warden
+  of guests, no drink and the best-behavior decree ease it); someone beaten in a duel or a bout may come back on a later
+  visit and ask for a rematch by name (a good word or a gift settles it).
+- **Games with real contests:** a games day gets a bout or two and a footrace near the gathering; now and then a blow
+  lands for real or a runner turns an ankle on rough ground (a child only scrapes a knee; a paved yard is safe). By the
+  colony's means: wrestling and a race, staves, boxing and a three-legged race, a spacer's sim tourney.
 
 No mood is added on top of a hurt: it brings the game's pain and its own wound or illness, and the doctors tend it.
 

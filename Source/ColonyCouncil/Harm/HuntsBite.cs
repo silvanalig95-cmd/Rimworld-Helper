@@ -128,7 +128,11 @@ namespace ColonyCouncil
         public static void Marked(Pawn a)
         {
             if (a == null) return;
-            HarmBook.Instance?.Turning(a, Find.TickManager.TicksGame);
+            var book = HarmBook.Instance;
+            book?.Turning(a, Find.TickManager.TicksGame);
+            // Its turn within the shared budget is one roll a hunt (HarmBudgetMath): when it doesn't come up, this hunt's head
+            // stays calm under its hunters, as it does for a hunter the cap holds back.
+            if (!Rand.Chance(Harm.PassOf(HarmKinds.HuntTurn))) book?.Calm(a);
         }
 
         /// <summary>One of the hunts' game that can turn (marked by Rimfolk, still remembered).</summary>
@@ -143,7 +147,7 @@ namespace ColonyCouncil
             {
                 HarmBook.Instance?.NotTurning(animal);
                 if (hunter == null || !KinMemory.Ours(hunter)) return;
-                Harm.Note(hunter, "a hunt's game turned");
+                Harm.Note(hunter, HarmKinds.HuntTurn);
                 // apart: a word over the hunter's own head, to nobody, as the game turns on them.
                 string line = Flavor.FromPool("Rimfolk_Pool_GameTurns", hunter);
                 if (!line.NullOrEmpty()) Speech.Say(hunter, line.Formatted(hunter.Named("PAWN")).Resolve(), null, SayColor);
@@ -174,7 +178,7 @@ namespace ColonyCouncil
                 if (book == null || !book.AnyTurning || !book.IsTurning(pawn)) return;
                 var hunter = instigator as Pawn;
                 if (hunter != null && hunter.Drafted) return;
-                bool may = hunter == null || !KinMemory.Ours(hunter) || Harm.MayAtOwnAttack(hunter, HurtClass.Injury);
+                bool may = (hunter == null || !KinMemory.Ours(hunter) || Harm.MayAtOwnAttack(hunter, HurtClass.Injury)) && !book.IsCalm(pawn);
                 __result = HarmTwoMath.TurnChance(__result, Harm.Scale, may);
             }
             catch

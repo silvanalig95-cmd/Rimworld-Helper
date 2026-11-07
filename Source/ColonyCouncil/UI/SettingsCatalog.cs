@@ -660,6 +660,7 @@ namespace ColonyCouncil
             Mod(Toggle("marketGuestsShop", "CC_Settings_MarketGuestsShop", "CC_SetNote_MarketGuestsShop", "deepHooks"), RimMarketId, HospitalityId);
             Section("CC_SetSec_Mod_AlphaSkills");
             Mod(Toggle("drinkBeforeWork", "CC_Settings_DrinkBeforeWork", "CC_SetNote_DrinkBeforeWork", "deepHooks"), AlphaSkillsId);
+            Mod(Toggle("drinkBeforeHotWork", "CC_Settings_DrinkBeforeHotWork", "CC_SetNote_DrinkBeforeHotWork", "drinkBeforeWork"), AlphaSkillsId);
             Mod(Toggle("smokeBeforeWork", "CC_Settings_SmokeBeforeWork", "CC_SetNote_SmokeBeforeWork", "deepHooks"), AlphaSkillsId);
             Section("CC_SetSec_Mod_AlphaGenes");
             Mod(Toggle("coveredLooks", "CC_Settings_CoveredLooks", "CC_SetNote_CoveredLooks", "deepHooks"), AlphaGenesId);

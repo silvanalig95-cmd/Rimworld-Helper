@@ -126,6 +126,8 @@ namespace ColonyCouncil
                     Groups.Rivalry(a, b, out var ga, out var gb);
                     if (ga == null || gb == null || x.rivalry == 0f) return;
                     AddRivalry(ga, gb, x.rivalry);
+                    // Between two bitter groups at a table, a dig can come to blows (Harm/Quarrels.cs).
+                    Quarrels.Dig(a, b, ga, gb);
                     return;
                 }
                 case "welcome":

@@ -156,7 +156,7 @@ namespace ColonyCouncil
                 bool modern = Ages.Ours >= WorldAge.Industrial;
                 var quarantine = DefDatabase<DecreeDef>.GetNamedSilentFail("Council_Decree_Quarantine");
                 bool kept = quarantine != null && home.Any(x => DecreeTracker.InForceFor(x.pawn, quarantine));
-                if (!Harm.Roll(HarmTwoMath.SickHome(kind, hours, medicine, modern, kept))) continue;
+                if (!Harm.Roll(HarmKinds.SickHome, HarmTwoMath.SickHome(kind, hours, medicine, modern, kept))) continue;
                 var who = home.Where(x => Harm.May(x.pawn, HurtClass.Injury)).Select(x => x).RandomElementWithFallback();
                 var def = SicknessFor(kind, who?.pawn);
                 if (who == null || def == null) continue;
@@ -193,7 +193,7 @@ namespace ColonyCouncil
                 // At home and the cap letting them be hurt: it shows. Otherwise it waits (a sickbed, a hurt lately, still away).
                 if (!Home(p) || !Harm.May(p, HurtClass.Injury)) continue;
                 book.sick.Remove(x);
-                var h = Harm.Ail(p, def, Math.Max(0.05f, def.initialSeverity), "sickness brought home from " + x.townName, HurtClass.Injury);
+                var h = Harm.Ail(p, def, Math.Max(0.05f, def.initialSeverity), HarmKinds.SickHome, HurtClass.Injury);
                 if (h == null) continue;
                 Tell(p, def, x);
             }

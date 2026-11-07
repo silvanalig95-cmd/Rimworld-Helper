@@ -212,7 +212,7 @@ namespace ColonyCouncil
             bool machine = SchemeMath.MachineAge(Ages.Ours) && Machines(home).Any();
             bool theft = SchemeMath.TheftOrder(Ages.Ours).Any(k => Loot(home, k).Any());
             bool fight = HotAtHome(home);
-            return SchemeMath.Pick(machine, theft, fight, Harm.On ? Harm.Scale : 0f, Rand.Value);
+            return SchemeMath.Pick(machine, theft, fight, Harm.On ? Harm.ScaleFor(HarmKinds.SchemeFight) : 0f, Rand.Value);
         }
 
         /// <summary>The act can be done at this home at all (a machine, a small valuable, a hot temper with someone to set against; a smear always).</summary>
@@ -764,7 +764,7 @@ namespace ColonyCouncil
             if (hot == null || other == null || hot.Dead || other.Dead || hot.Map == null) return;
             // together: the two face to face (Together.When); the line names what was said of the other.
             Say(hot, "Rimfolk_Pool_SchemeProvoked", other);
-            bool fight = Harm.Fight(hot, other, "a quarrel a guest stirred up");
+            bool fight = Harm.Fight(hot, other, HarmKinds.SchemeFight);
             string text = TextVariants.Vary(fight ? "CC_Scheme_Fight" : "CC_Scheme_Words").Translate(hot.Named("PAWN"), other.Named("OTHER")).Resolve();
             Tell.Message(NewsKind.Colony, fight ? Importance.Important : Importance.Notable, hot.Map, text, new LookTargets(new[] { hot, other }), MessageTypeDefOf.NegativeEvent);
         }

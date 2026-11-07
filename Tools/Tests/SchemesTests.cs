@@ -166,7 +166,7 @@ public static class SchemesTests
         string Code(string rel) => File.ReadAllText(Path.Combine(src, rel));
         string sch = Code("Diplomacy/Schemes.cs"), dbg = Code("Diplomacy/SchemesDebug.cs"), facts = Code("Diplomacy/FactsSchemes.cs");
         C(!Regex.IsMatch(sch, @"TakeDamage\(|AddHediff\(|StartSocialFight\(") && sch.Contains("Harm.Fight(hot, other"), "nobody is hurt but through the harm service: the fight is its social fight, under the cap for both");
-        C(sch.Contains("Harm.On ? Harm.Scale : 0f") && sch.Contains("case SchemeAct.Fight: return Harm.On && HotAtHome(home);"), "a fight's share leans with the harm scale, none with hurts at nothing");
+        C(sch.Contains("Harm.On ? Harm.ScaleFor(HarmKinds.SchemeFight) : 0f") && sch.Contains("case SchemeAct.Fight: return Harm.On && HotAtHome(home);"), "a fight's share leans with the harm scale, none with hurts at nothing");
         C(!Regex.IsMatch(sch + dbg + facts, @"Sched\.(Rare|Hourly|Every|Slice)|GameComponentTick"), "no clock of its own (no new Sched slot): diplomacy's hour and day");
         string dip = Code("Diplomacy/Diplomacy.cs");
         C(dip.Contains("Safe(\"schemes\", () => Schemes.Hourly(now));") && dip.Contains("Safe(\"schemes' day\", () => Schemes.Daily(now));"), "the hour and the day ride on diplomacy's");

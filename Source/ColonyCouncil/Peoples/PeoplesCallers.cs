@@ -96,8 +96,8 @@ namespace ColonyCouncil
             if (indoors && AilmentTracker.On && host != null && !host.Dead && host.Spawned && host.Map == map && host.IsColonist)
             {
                 var cold = DefDatabase<HediffDef>.GetNamedSilentFail("Council_Ail_HeadCold");
-                if (cold != null && Harm.Roll(host, PeoplesMath.CoughChance, HurtClass.Mild)
-                    && Harm.Ail(host, cold, Mathf.Max(0.1f, cold.initialSeverity), "CC_PeoplesC_CoughWhy".Translate().Resolve(), HurtClass.Mild) != null)
+                if (cold != null && Harm.Roll(host, HarmKinds.PilgrimCough, PeoplesMath.CoughChance, HurtClass.Mild)
+                    && Harm.Ail(host, cold, Mathf.Max(0.1f, cold.initialSeverity), HarmKinds.PilgrimCough, HurtClass.Mild) != null)
                     coughing = host;
             }
             if (coughing != null) tags.Add("cough");

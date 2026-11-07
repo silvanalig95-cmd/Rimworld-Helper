@@ -24,8 +24,11 @@ namespace ColonyCouncil
     /// place of another (a strained back turned into a torn back).</item>
     /// <item><see cref="Fight"/>: the game's own social fight between two grown-ups, under the cap for both.</item>
     /// <item><see cref="Note"/>: a hurt that came another way (a bout's hard blow, a guest's brawl) counted for the cap.</item>
+    /// <item>The shared budget (<see cref="PassOf"/>, HarmBudgetMath.cs): every roll and every hurt names its kind
+    /// (<see cref="HarmKinds"/>). A kind's chance is its base rate times <see cref="Scale"/> times its pass, which shares the
+    /// budget of the kinds built before it among the kinds switched on, a kind that came lately passing less often.</item>
     /// </list>
-    /// Every one of these records the hurt for the cap (saved, <see cref="HarmBook"/>). The caller tells the player (a
+    /// Every one of these records the hurt for the cap and its kind for the budget (saved, <see cref="HarmBook"/>). The caller tells the player (a
     /// bubble through Speech, a message through Tell at Importance.Important, as harm always is) and names the risk
     /// before any choice that brings it (an impact line, a decree's card: <see cref="DecreeLine"/>). No mood is added on
     /// top of the game's pain.
@@ -60,16 +63,143 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>A base chance after the scale.</summary>
-        public static float Chance(float baseChance) => HarmMath.Chance(baseChance, Scale);
+        /// <summary>
+        /// The factor on a kind's rate: the setting, the storyteller's lean and the kind's pass within the shared budget.
+        /// For a chance the game works out itself (a hunted beast's revenge) or a rule that takes a scale.
+        /// </summary>
+        public static float ScaleFor(HarmKind kind) => Scale * PassOf(kind);
 
-        /// <summary>One roll of a base chance after the scale (no cap: see the overload with a pawn).</summary>
-        public static bool Roll(float baseChance) => Rand.Value < Chance(baseChance);
+        /// <summary>A kind's base chance after the scale and its pass.</summary>
+        public static float Chance(HarmKind kind, float baseChance) => HarmMath.Chance(baseChance, ScaleFor(kind));
 
-        /// <summary>One roll for someone: they may be hurt that way now (the cap), and the scaled chance comes up.</summary>
-        public static bool Roll(Pawn p, float baseChance, HurtClass c = HurtClass.Injury) => May(p, c) && Roll(baseChance);
+        /// <summary>One roll of a kind's base chance after the scale and its pass (no cap: see the overload with a pawn).</summary>
+        public static bool Roll(HarmKind kind, float baseChance) => Rand.Value < Chance(kind, baseChance);
+
+        /// <summary>One roll for someone: they may be hurt that way now (the cap), and the kind's chance comes up.</summary>
+        public static bool Roll(Pawn p, HarmKind kind, float baseChance, HurtClass c = HurtClass.Injury) => May(p, c) && Roll(kind, baseChance);
 
         private static int Now => Find.TickManager?.TicksGame ?? 0;
+
+        // ---------------- The shared budget ----------------
+
+        private static readonly float[] passes = new float[HarmKinds.All.Length];
+        private static readonly bool[] onNow = new bool[HarmKinds.All.Length];
+        private static readonly float[] daysNow = new float[HarmKinds.All.Length];
+        private static int passAt = int.MinValue;
+        private static Game passGame;
+        private static float budgetNow, sharedNow;
+
+        /// <summary>A kind came, or the settings changed: the passes are worked out again at the next roll.</summary>
+        public static void BudgetChanged() => passAt = int.MinValue;
+
+        /// <summary>
+        /// A kind's pass within the shared budget now (HarmBudgetMath): 1 with only the kinds built before it on and none
+        /// come lately; less once later kinds share it, and less again for a kind that came in the last fifteen days. It
+        /// doesn't depend on the setting or the storyteller, which <see cref="Scale"/> brings in. Worked out every 250
+        /// ticks, and again once a kind has come.
+        /// </summary>
+        public static float PassOf(HarmKind kind)
+        {
+            if (kind == null) return 1f;
+            int now = Now;
+            if (passGame != Current.Game || passAt == int.MinValue || now < passAt || now - passAt >= 250) Reckon(now);
+            int i = Array.IndexOf(HarmKinds.All, kind);
+            return i >= 0 ? passes[i] : 1f;
+        }
+
+        private static void Reckon(int now)
+        {
+            passGame = Current.Game;
+            passAt = now;
+            var book = HarmBook.Instance;
+            float budget = 0f, shared = 0f;
+            var all = HarmKinds.All;
+            for (int i = 0; i < all.Length; i++)
+            {
+                var k = all[i];
+                daysNow[i] = HarmBudgetMath.DaysSince(book?.LastOf(k) ?? HarmMath.Never, now);
+                onNow[i] = SystemOnSafe(k.system);
+                if (!onNow[i]) continue;
+                float w = Math.Max(0f, k.weight);
+                if (k.founding) budget += w;
+                shared += w * HarmBudgetMath.Variety(daysNow[i]);
+            }
+            budgetNow = budget;
+            sharedNow = shared;
+            for (int i = 0; i < all.Length; i++) passes[i] = HarmBudgetMath.PassFor(HarmBudgetMath.Variety(daysNow[i]), budget, shared);
+        }
+
+        /// <summary>For the dev tools: each kind, whether its system is on, days since it came, its pass; and the budget.</summary>
+        public static string BudgetReport()
+        {
+            PassOf(HarmKinds.Drills);
+            var sb = new System.Text.StringBuilder();
+            sb.Append("[Rimfolk] the shared budget of hurts from everyday life: ").Append(budgetNow.ToString("0.000"))
+                .Append(" a colonist-year at 100% (the kinds on, weighed by their variety: ").Append(sharedNow.ToString("0.000"))
+                .Append("); the setting and the storyteller's lean ").Append(Scale.ToString("0.00")).AppendLine(".");
+            var all = HarmKinds.All;
+            for (int i = 0; i < all.Length; i++)
+                sb.Append("  ").Append(all[i].label).Append(": ").Append(onNow[i] ? "on" : "off").Append(", base ").Append(all[i].weight.ToString("0.000"))
+                    .Append(daysNow[i] >= HarmBudgetMath.VarietyDays ? "" : ", came " + daysNow[i].ToString("0.0") + " days ago")
+                    .Append(", pass ").Append(passes[i].ToString("0.00")).AppendLine();
+            return sb.ToString();
+        }
+
+        private static bool SystemOnSafe(string system)
+        {
+            try
+            {
+                return SystemOn(system);
+            }
+            catch
+            {
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// Whether the system a kind sits under is on in this game: its setting, and for a soft integration, its mod. A
+        /// kind whose system is off takes no share of the budget, so the rest are left as they would be without it. A later
+        /// kind with a system of its own adds its case here.
+        /// </summary>
+        public static bool SystemOn(string system)
+        {
+            var s = S;
+            if (s == null) return true;
+            switch (system)
+            {
+                case "drills": return PlayOuts.On;
+                case "ailments": return AilmentTracker.On;
+                case "camps": return CampTracker.Enabled;
+                case "journeys": return JourneyBook.On;
+                case "champion": return Outsiders.SparOn;
+                case "hunts": return PlayOuts.On && RimfolkPatches.On;
+                case "rivals": return PlayOuts.On && s.socialWeb;
+                case "elections": return s.offices && s.electionEvent;
+                case "heart": return Heart.On;
+                case "herds": return GreatHerds.On;
+                case "feasts": return Feasts.On;
+                case "schemes": return Schemes.On;
+                case "pokemon": return PokeWorldLink.Active && s.pokemonTypeSpar;
+                // Harm, part 4.
+                case "physician": return AilmentTracker.On && RimfolkPatches.On;
+                case "guestCough": return Visitors.On && AilmentTracker.On && Interplay.On;
+                case "coldNight": return AilmentTracker.On && Interplay.On;
+                case "felling": return AilmentTracker.On && RimfolkPatches.On;
+                case "failedBuild": return Setbacks.On(SetbackGroup.Life) && RimfolkPatches.On;
+                case "hotBench": return HotBench.On;
+                case "rut": return AnimalLife.On;
+                case "herdLesson": return Interplay.On && s.offices && PlayOuts.On;
+                case "saddle": return AnimalLife.On && AnimalFacts.GiddyUp;
+                case "groups": return GroupLife.Active;
+                case "guestNight": return RimfolkPatches.On && Visitors.On;
+                case "guestNightHospitality": return RimfolkPatches.On && Quarrels.HospitalityLoaded;
+                case "rematch": return Outsiders.On && (Outsiders.DuelOn || Outsiders.SparOn);
+                case "games": return ColonyCalendar.On && PlayOuts.On;
+                // The decrees, Rimfolk's events (dangers on the map, the hail) and the peoples' callers are always in the game.
+                default: return true;
+            }
+        }
 
         // ---------------- The shared cap ----------------
 
@@ -109,11 +239,18 @@ namespace ColonyCouncil
             return (Now - last) / (float)GenDate.TicksPerDay;
         }
 
-        /// <summary>A hurt that came some other way (a bout's hard blow, a brawl), counted for the cap.</summary>
-        public static void Note(Pawn p, string why = null)
+        /// <summary>
+        /// A hurt that came some other way (a bout's hard blow, a brawl), counted for the cap and for its kind's turn in the
+        /// budget. <paramref name="kind"/> null: counted for the cap only (the outsiders' practice bout, whose one blow in
+        /// 25 is the game's own sparring rate and the anchor of all the rest).
+        /// </summary>
+        public static void Note(Pawn p, HarmKind kind)
         {
             if (p == null) return;
-            HarmBook.Instance?.Record(p, Now);
+            var book = HarmBook.Instance;
+            if (book == null) return;
+            book.Record(p, Now);
+            if (kind != null) book.Came(kind, Now);
         }
 
         /// <summary>
@@ -243,7 +380,7 @@ namespace ColonyCouncil
         /// part has left but one point. Shown as the game shows a hit (the red flash, blood for a cut or a crush). Returns
         /// the wound (or the one it merged into), or null when nothing was given.
         /// </summary>
-        public static Hediff_Injury Injure(Pawn p, HurtKind kind, HurtWhere where, float low, float high, string why, HurtClass c = HurtClass.Injury)
+        public static Hediff_Injury Injure(Pawn p, HurtKind kind, HurtWhere where, float low, float high, HarmKind why, HurtClass c = HurtClass.Injury)
         {
             try
             {
@@ -292,7 +429,7 @@ namespace ColonyCouncil
         /// <paramref name="replaces"/>, in place of that one (a strained back turned into a torn back). The caller tells it.
         /// Returns the hediff, or null when nothing was given.
         /// </summary>
-        public static Hediff Ail(Pawn p, HediffDef def, float severity, string why, HurtClass c = HurtClass.Injury, Hediff replaces = null)
+        public static Hediff Ail(Pawn p, HediffDef def, float severity, HarmKind why, HurtClass c = HurtClass.Injury, Hediff replaces = null)
         {
             try
             {
@@ -316,7 +453,7 @@ namespace ColonyCouncil
         /// The game's own social fight between two grown-ups who may both be hurt by one (the cap for both, neither unable
         /// to do violence), recorded for both. The game says so in its own message. Returns whether it began.
         /// </summary>
-        public static bool Fight(Pawn a, Pawn b, string why)
+        public static bool Fight(Pawn a, Pawn b, HarmKind why)
         {
             try
             {
@@ -344,6 +481,8 @@ namespace ColonyCouncil
             if (def == null || def.hurts == DecreeHurt.None || !On) return null;
             // The bouts are on the map: with answers kept off it, the drills stay practice alone.
             if ((def.hurts == DecreeHurt.Drills || def.hurts == DecreeHurt.Muster) && !PlayOuts.On) return null;
+            // The frail's chill comes with the everyday ailments and "Systems talk to each other".
+            if (def.hurts == DecreeHurt.ColdNights && !SystemOn(HarmKinds.ColdNight.system)) return null;
             return ("CC_Harm_Decree_" + def.hurts).Translate().Resolve();
         }
     }
@@ -363,9 +502,16 @@ namespace ColonyCouncil
         private Dictionary<int, int> drillDay = new Dictionary<int, int>();
         /// <summary>An animal's thingIDNumber: the tick a hunt marked it as game that can turn (HuntsBite.cs), pruned past six days.</summary>
         private Dictionary<int, int> turning = new Dictionary<int, int>();
+        /// <summary>Of those, the ones whose turn within the shared budget didn't come up this hunt: calm under its hunters (pruned with them).</summary>
+        private HashSet<int> calm = new HashSet<int>();
         /// <summary>Travellers' stays at sick towns, and the sickness one carries home until it shows (SickHome.cs).</summary>
         public List<SickStay> sick = new List<SickStay>();
-        private List<int> tmpKeys, tmpValues, tmpKeys2, tmpValues2, tmpKeys3, tmpValues3;
+        /// <summary>The shared budget's memory: a kind's key, the tick it last hurt someone (pruned past fifteen days, when it has its whole share back).</summary>
+        private Dictionary<string, int> kindLast = new Dictionary<string, int>();
+        /// <summary>Hurts from everyday life still to come (harm, part 4): a sickness caught and showing in a day or two, a sore loser, a rematch owed.</summary>
+        public List<HarmWaiting> waiting = new List<HarmWaiting>();
+        private List<int> tmpKeys, tmpValues, tmpKeys2, tmpValues2, tmpKeys3, tmpValues3, tmpValues4;
+        private List<string> tmpKinds;
 
         private static HarmBook cached;
         private static Game cachedGame;
@@ -397,6 +543,8 @@ namespace ColonyCouncil
             WorkHurts.Reset();
             DrillBouts.Reset();
             Sabotage.Reset();
+            HarmFour.Reset();
+            Harm.BudgetChanged();
         }
 
         public int Last(Pawn p) => p != null && lastHurt.TryGetValue(p.thingIDNumber, out int t) ? t : HarmMath.Never;
@@ -404,6 +552,17 @@ namespace ColonyCouncil
         public void Record(Pawn p, int now)
         {
             if (p != null) lastHurt[p.thingIDNumber] = now;
+        }
+
+        /// <summary>The tick a kind last hurt someone (HarmMath.Never: not in the last fifteen days).</summary>
+        public int LastOf(HarmKind kind) => kind != null && kindLast.TryGetValue(kind.key, out int t) ? t : HarmMath.Never;
+
+        /// <summary>A kind hurt someone: it rests a while within the budget (HarmBudgetMath.Variety).</summary>
+        public void Came(HarmKind kind, int now)
+        {
+            if (kind == null) return;
+            kindLast[kind.key] = now;
+            Harm.BudgetChanged();
         }
 
         /// <summary>The evening drill already called today at this home.</summary>
@@ -426,8 +585,18 @@ namespace ColonyCouncil
 
         public void NotTurning(Pawn a)
         {
-            if (a != null) turning.Remove(a.thingIDNumber);
+            if (a == null) return;
+            turning.Remove(a.thingIDNumber);
+            calm.Remove(a.thingIDNumber);
         }
+
+        /// <summary>A hunt's head that can turn whose turn within the budget didn't come up: it stays calm under its hunters.</summary>
+        public void Calm(Pawn a)
+        {
+            if (a != null) calm.Add(a.thingIDNumber);
+        }
+
+        public bool IsCalm(Pawn a) => a != null && calm.Count > 0 && calm.Contains(a.thingIDNumber);
 
         public override void GameComponentTick()
         {
@@ -445,9 +614,12 @@ namespace ColonyCouncil
                     // Sickness carried home from a sick town, and a rival's sabotage (harm, parts 2 and 3).
                     SickHome.Hourly(this, now);
                     Sabotage.Hourly(this, now);
+                    // Harm, part 4: what was caught showing, the waiting walks and visits, the hourly looks.
+                    HarmFour.Hourly(this, now);
                     if (Sched.FirstHourOfDay(now)) Prune(now);
                 }
                 WorkHurts.Slice(slice, now);
+                HarmFour.Slice(this, slice, now);
             }
             catch (Exception e)
             {
@@ -461,6 +633,9 @@ namespace ColonyCouncil
             var maps = new HashSet<int>(Find.Maps.Select(m => m.uniqueID));
             foreach (var k in drillDay.Keys.Where(k => !maps.Contains(k)).ToList()) drillDay.Remove(k);
             foreach (var k in turning.Where(kv => !HarmTwoMath.TurningKept(kv.Value, now)).Select(kv => kv.Key).ToList()) turning.Remove(k);
+            calm.RemoveWhere(k => !turning.ContainsKey(k));
+            foreach (var k in kindLast.Where(kv => HarmBudgetMath.Forgotten(kv.Value, now) || HarmKinds.Of(kv.Key) == null).Select(kv => kv.Key).ToList()) kindLast.Remove(k);
+            waiting.RemoveAll(x => x == null || x.Lapsed(now));
             SickHome.Prune(this, now);
         }
 
@@ -471,12 +646,20 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref lastHurt, "lastHurt", LookMode.Value, LookMode.Value, ref tmpKeys, ref tmpValues);
             Scribe_Collections.Look(ref drillDay, "drillDay", LookMode.Value, LookMode.Value, ref tmpKeys2, ref tmpValues2);
             Scribe_Collections.Look(ref turning, "turning", LookMode.Value, LookMode.Value, ref tmpKeys3, ref tmpValues3);
+            Scribe_Collections.Look(ref calm, "calm", LookMode.Value);
             Scribe_Collections.Look(ref sick, "sick", LookMode.Deep);
+            Scribe_Collections.Look(ref kindLast, "kindLast", LookMode.Value, LookMode.Value, ref tmpKinds, ref tmpValues4);
+            Scribe_Collections.Look(ref waiting, "waiting", LookMode.Deep);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
+                kindLast ??= new Dictionary<string, int>();
+                waiting ??= new List<HarmWaiting>();
+                waiting.RemoveAll(x => x == null || x.Broken);
+                Harm.BudgetChanged();
                 lastHurt ??= new Dictionary<int, int>();
                 drillDay ??= new Dictionary<int, int>();
                 turning ??= new Dictionary<int, int>();
+                calm ??= new HashSet<int>();
                 sick ??= new List<SickStay>();
                 sick.RemoveAll(x => x == null || x.pawn == null);
             }

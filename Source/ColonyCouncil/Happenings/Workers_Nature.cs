@@ -131,7 +131,8 @@ namespace ColonyCouncil
 
     /// <summary>
     /// Hail for a few hours: crops out in the open get knocked back (some young ones flattened), and anyone caught
-    /// outside grumbles. Nobody is hurt. Roofed fields and greenhouses are safe. The colony sees it coming: for the first
+    /// outside grumbles, and may take a stone's bruise (one or two a storm at most; a helmet turns it: Harm/Mishaps.cs,
+    /// under "Hurts from everyday life"). Roofed fields and greenhouses are safe. The colony sees it coming: for the first
     /// two hours the sky only warns of it (the one who knows the fields best says so, and a work party brings the ripe
     /// crops in, from the event's effects), then it comes. It rains with the hail while it's warm enough to rain, and
     /// when the hail ends a rain it brought hands back to the weather's own choice.
@@ -139,6 +140,8 @@ namespace ColonyCouncil
     public class GameCondition_Hail : GameCondition
     {
         private int hits;
+        /// <summary>Those of the colony a stone has bruised this storm (Harm/Mishaps.cs: one or two at most).</summary>
+        private int bruised;
         /// <summary>It was raining already when the hail began: that rain is the weather's own and carries on.</summary>
         private bool wasRaining;
         private bool warned;
@@ -258,6 +261,7 @@ namespace ColonyCouncil
                 foreach (var pawn in map.mapPawns.FreeColonistsSpawned)
                 {
                     if (pawn.Position.Roofed(map) || !pawn.Awake()) continue;
+                    if (Mishaps.HailStone(map, pawn, bruised)) bruised++;
                     if (pawn.needs?.mood?.thoughts?.memories?.GetFirstMemoryOfDef(CouncilDefOf.Council_Evt_Hail) != null) continue;
                     CouncilGameComponent.GiveThought(pawn, CouncilDefOf.Council_Evt_Hail);
                 }
@@ -268,6 +272,7 @@ namespace ColonyCouncil
         {
             base.ExposeData();
             Scribe_Values.Look(ref hits, "hits");
+            Scribe_Values.Look(ref bruised, "bruised");
             Scribe_Values.Look(ref wasRaining, "wasRaining");
             Scribe_Values.Look(ref warned, "warned");
         }

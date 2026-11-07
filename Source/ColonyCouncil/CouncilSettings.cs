@@ -438,6 +438,8 @@ namespace ColonyCouncil
         public bool faithTurretsHere = true;
         /// <summary>With Alpha Skills: a colonist with a drunken passion sometimes takes a drink before work that trains it (Integrations/BeforeWork.cs).</summary>
         public bool drinkBeforeWork = true;
+        /// <summary>The drink before work may come before hot work too (cooking, smithing), with its small chance of a burn (Harm/Mishaps.cs).</summary>
+        public bool drinkBeforeHotWork = true;
         /// <summary>With Alpha Skills: a colonist with a stoned passion sometimes smokes a joint before work that trains it (Integrations/BeforeWork.cs).</summary>
         public bool smokeBeforeWork = true;
         /// <summary>With RimMarket and Hospitality, guests may always reach the market's stalls to shop, whatever their guest area (Integrations/MarketGuests.cs).</summary>
@@ -878,6 +880,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref territoryNewsQuiet, "territoryNewsQuiet", true);
             Scribe_Values.Look(ref faithTurretsHere, "faithTurretsHere", true);
             Scribe_Values.Look(ref drinkBeforeWork, "drinkBeforeWork", true);
+            Scribe_Values.Look(ref drinkBeforeHotWork, "drinkBeforeHotWork", true);
             Scribe_Values.Look(ref smokeBeforeWork, "smokeBeforeWork", true);
             Scribe_Values.Look(ref marketGuestsShop, "marketGuestsShop", true);
             Scribe_Values.Look(ref marketCampersBuy, "marketCampersBuy", true);

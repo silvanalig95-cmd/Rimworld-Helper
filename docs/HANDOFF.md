@@ -12,6 +12,115 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.153.0, harm, part 4: the shared budget and fifteen more of the review (7 November 2026, the player's answer to "do more harm
+  proposals raise how often colonists get hurt, or only the variety?": "yes, a shared budget please, and go ahead with the
+  suggestions"; since then "all suggestions please", so the other 69 unbuilt proposals follow in later pieces on this
+  budget). Not released: no What's new round, About.xml and CHANGELOG untouched (the lead does that at the merge).
+  `Harm/HarmBudgetMath.cs` (the registry and the rules, `HarmBudgetTests`, "harm budget: "), `Harm/HarmFourMath.cs` (the
+  fifteen's rates, `HarmFourTests`, "harm four: "), both linked in Tests.csproj and Balance.csproj; `Harm/HarmFour.cs` (the
+  hub on the harm book's hour and slices), `Catching.cs`, `Mishaps.cs`, `AnimalHurts.cs`, `Quarrels.cs`, `GamesDay.cs`,
+  `HarmFourDebug.cs`; `Defs/Misc/Rimfolk_HarmFour.xml` (the race's job), `Defs/FlavorPoolDefs/Rimfolk_HarmFour_Lines.xml` (29
+  pools, in `ImmersionTests.SpokenPools`), Keyed `Rimfolk_HarmFour.xml`. DESIGN.md "The shared budget" and "Harm, part 4"
+  (with a table of the fifteen) and "The rates" redone; README "Hurts from everyday life"; the Almanac's ailments page
+  (prose only, no keyword changed) and the hail's Almanac line; the review marks each of the fifteen built with what
+  differs, and its Summary.
+  - The budget: every roll and every hurt through the service names its kind (`HarmKinds`: 34 now, each a key that is
+    saved, a label, its system and its base rate). The founding 18 (everything built up to 0.149.0: part 1, parts 2 and 3,
+    the stampede, the feasts' blow and sour night, the pilgrims' cough, the schemes' fight, the Pokémon spar) set the budget
+    (their base rates summed, about 0.46 a colonist-year); a kind's chance is its base rate times `Harm.Scale` (the setting
+    and the storyteller, untouched) times its pass, `HarmBudgetMath.Passes`: its variety times the budget over the kinds on
+    weighed by their variety, so the kinds on always come to the budget (ceiling twice a kind's own rate). Variety: a kind
+    that just hurt someone weighs a quarter of its rate, back to all of it evenly over thirty days (`HarmBook.kindLast`,
+    pruned). A system off (`Harm.SystemOn`: its setting, its mod) takes its kinds out of the budget. The service's API
+    changed: `Harm.Chance(kind, p)`, `Roll(kind, p)`, `Roll(pawn, kind, p, cls)`, `ScaleFor(kind)`, `PassOf(kind)`, and
+    `Injure/Ail/Fight/Note` take the kind where the unused `why` string was (`Note(p, null)` counts for the cap only: the
+    outsiders' practice bout, the anchor rate). Every caller updated (Dangers, the ailments, the feasts, the schemes, the
+    great herds, the Pokémon spar, `Peoples/PeoplesCallers.cs`'s cough: two lines there, and its test line). The ailments
+    of the land and the work never had the setting's scale and take the pass alone (`AilmentTracker.Lean`). A hunt's head
+    that can turn takes its pass once a hunt, at its marking (`HuntsBite.Marked`; not up, `HarmBook.calm`, it stays calm
+    under its hunters), since a pass on each shot's chance wasn't proportional.
+  - How a later kind plugs in: one line in `HarmKinds` (key, label, system, base rate, `founding` false, added to `All`), a
+    case in `Harm.SystemOn` if its system is new, its rolls and hurts naming it (`HarmBudgetTests` fails any call that
+    doesn't), and a source in `Tools/Balance/HarmSim.cs` (`PartFourDay` is the pattern; the run prints each kind's measured
+    base rate beside the registry's and flags any a quarter off, to copy in). With about 95 kinds, each passes at about a
+    fifth of its own rate.
+  - The fifteen (rate on its own, then prevention; seen): (1.1.1) a tending of a catching ailment, 1 in 40 (a tenth for
+    tuberculosis, cholera, measles, the flu), gloves and masks, a sterile room, the quarantine or rest-when-ill decree, a
+    second doctor; a day or two later with the ailment's message. (2.5.2) one visit in 20 of Rimfolk's visitors coughs;
+    whoever sat with them longest catches it a day after they go. (2.2.3) out in a falling hail, 1 in 30 each 250 ticks, 2
+    a storm, a bruise of 1 to 3 (children may), a helmet turns it; the hail's texts no longer say nobody is hurt. (1.2.3)
+    banked fires (`DecreeHurt.ColdNights`, on its card), a night at -5 °C or colder, three hours asleep below comfort, the
+    frail: a head cold one such night in seven. (4.3.1) a tree chopped by a cutter under Plants 5, 1 in 300 by the means.
+    (3.4.1) a failed heavy build, 1 in 10. (4.7.2) Alpha Skills' drink before cooking or smithing, 1 in 100; new setting
+    `drinkBeforeHotWork` ("A drink before hot work", Your other mods, Alpha Skills, on by default; off, no drink before hot
+    work). (4.5.3) the autumn rut: a grown male grazer of 0.9 body or more in his pen with a female of his kind, a charge in
+    20 hours near him, half landing; never the herdmaster. (4.5.1) the herdmaster's lesson, a nervous animal handled beside
+    the learner, 1 lesson in 30. (4.9.1) Giddy-Up (its job "Mounted", by name), a dismount under Animals 6 on a mount not
+    trained to obey, 1 in 50. (3.6.1) a dig at a table between groups at 60 or more, 1 in 8, two more pairs joining.
+    (1.4.2) a close race's hot or bitter loser, 1 in 10 (a gracious winner's handshake at the count halves it), 1 to 3 days
+    on, blows half the time. (2.5.1) a guest with a bed (Rimfolk's visitors inside; Hospitality's guests in guest beds, a
+    kind of its own), 1 night in 15 by temper, the outsiders' fistfight; named under the bed's answer. (2.8.1) one beaten in
+    a duel or by a bout's hard blow in 3 holds it, a rematch asked by name on a later visit within the year (a good word or
+    a gift settles it; named in the duel's terms). (4.1.1) a games day's two bouts and a footrace near its gathering, 1
+    bout in 25 and 1 runner in 8 on rough ground (a spacer's sim tourney: a wrenched wrist, no race); named in its letter.
+  - Messages only where the game gives one for the same hurt (an illness caught: the physician, the guest's cough, the cold
+    night; an animal turning on its handler: the rut, the lesson); the fights are the game's own with its message; the
+    rest are seen on the map (the hit, dust or smoke, the line, a few words over them: `HarmFour.Mote`, allowed in
+    TogetherTests' list of text over heads that isn't speech).
+  - Game code patched (new): `Patch_FellingMishap` (a prefix and postfix on `Plant.PlantCollected`, a tree chopped) and
+    `Patch_FailedBuildHurts` (a prefix and postfix on `Frame.FailConstruction`). One-line hooks in HealthPatches,
+    Workers_Nature (the hail's count saved, `bruised`), CalendarKeeping, GroupMoments, OfficesElection, OutsiderOutcomes,
+    VisitEffects, BeforeWork; `DrillBouts` has a games form. No Sched slot (the harm book's hour and slices).
+  - Saved: `HarmBook.kindLast`, `HarmBook.waiting` (`HarmWaiting`), `HarmBook.calm`, the hail's `bruised` (all in
+    `Tools/save_estimate.py`). Tests: `HarmBudgetTests`, `HarmFourTests`; the old harm tests' call texts updated (HarmTests,
+    HarmTwoTests, AnimalPowersTests, BeastsTests, FeastTests, PeoplesCTests, SchemesTests, VarietyDangersTests);
+    SettingsTests lists the new switch.
+  - Rates (`Tools/Balance -- --harm`, 4000 runs), hurts a colonist-year, before (every kind up to 0.149.0), every kind on
+    without the budget, with it: 6 well run 0.339, 0.606, 0.311; 6 average 0.453, 0.876, 0.452; 6 neglectful 0.560, 1.190,
+    0.618; 12 well run 0.290, 0.483, 0.245; 12 average 0.395, 0.725, 0.368; 12 neglectful 0.504, 1.014, 0.519. The
+    average colony of six (the base rates' anchor) holds; a well-run colony prevents more of the new kinds and ends a
+    little lower, a neglectful one a little higher. Each kind passes at about half its rate. Variety: a kind coming again
+    within thirty days 0.22 to 0.16 times a colony-year; the commonest kind's share 19.6% to 18.7%. The heart the same.
+  - Try in the game (dev mode, Debug actions, Rimfolk, "Harm four: ..."; none of it could be run here):
+    1. "the shared budget (log)": each kind, on or off, its base rate, days since it came, its pass (about 0.5 with every
+       mod's kind on; 1 for the founding kinds if part 4's systems are all off). Cause a hurt (below), log again: that
+       kind's pass drops to a quarter of the others', recovering over thirty days.
+    2. "a doctor catches what a patient has...": a colonist with a head cold; within the hour (the cap allowing) the best
+       doctor has it, the message naming the patient, the line over their head. In play: tend a coughing patient a few
+       times.
+    3. "a guest coughs...": a Rimfolk visitor (or any guest) says a cough line; sit someone by them an hour, let them go;
+       a day later that colonist's head cold and its message.
+    4. "a cold night for...": an elder under the banked fires decree in a frost; the next waking hour, the chill, the
+       doctor's word if one is near. The decree's card shows the cold-nights line.
+    5. "the next hailstone bruises": fire Rimfolk's hailstorm with someone outside: the ping, the bruise (health tab), the
+       line, the words over them; a colonist in a helmet or under a roof never.
+    6. "the next tree felled comes down the wrong way", "the next failed build hurts": chop a tree; fail a build (an
+       unskilled builder on a wall): dust, the cutter or builder down, the line, the wound.
+    7. With Alpha Skills: "a drink before hot work for..." then put them at the stove: a burn or a cut, the job dropped;
+       the setting off: no drink before cooking or smithing.
+    8. "a rutting male charges...": with a bull, ram or buck in a pen; the charge, the bruise, the message. In play, in
+       autumn, walk someone into his pen (not the herdmaster).
+    9. "the next herdmaster's lesson kicks": wait for (or start) a herdmaster's lesson with handling: the kick, the
+       calming word, the message.
+    10. With Giddy-Up: "the next dismount throws its rider": ride somewhere; on getting down, the buck, the fall.
+    11. "two rival groups here come to blows": two of rival groups in talking range: the shove line, the fight, joiners,
+        the groups' names over it. In play: a dig at supper between groups at 60.
+    12. "a sore loser walks over to...": the loser finds the winner, words, blows half the time. At a close count, a kind
+        or sociable winner's handshake line.
+    13. "tonight's guest with a bed sours": answer a visitor's letter with a bed for the night (its sheet's health line),
+        or with Hospitality guests in guest beds; after supper the fistfight; a visitor leaves at first light.
+    14. "a rematch owed to...": with an outsider at peace on the map, within the hour they ask by name; the colonist takes
+        it (a duel to first blood or a bout) or turns it down. In play: win a duel, let them go, wait for their people.
+    15. "the games' contests now" (or keep a games day with a gathering): two bouts and a race near the gathering, the
+        lines, "the next race's turn sprains" for the turned ankle; the day's letter names the contests.
+    16. The setting at 0%: none of it; save and load with something waiting (a caught sickness shows after the load).
+  - Riskiest: the API change touching every harm caller (built and checked by the tests' call scan, but every feature's
+    chance now sits at about half its old rate, by design); the race's job and the games bouts started on pawns inside the
+    games day's gathering lord (the lord takes them back after; not seen in the game); Giddy-Up's "Mounted" job read by
+    name (a version that names it otherwise means no throws, never an error); the rut and the pens (`AnimalPenUtility`,
+    pens' connected regions); the rematch's duel through the outsiders' private bout start (`Outsiders.Rematch` in a
+    partial class); the sore loser's walk and the rematch's ask through `Together.When` (unsaved: a reload while queued
+    asks again the next hour); Hospitality's guests read by their guest bed's class name.
 - 0.152.0, the peoples' gear, kinds of people and gifts (7 November 2026). The
   player's report: "could it be that the new factions pawns all wear just one single outfit per faction? ... the factions
   should try to draw from all kinds of mod and vanilla references for items, weapons, gear, clothing & armor, magic and

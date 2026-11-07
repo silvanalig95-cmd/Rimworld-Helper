@@ -68,7 +68,9 @@ namespace ColonyCouncil
         /// <summary>Militia drills: one pair at the evening's muster, most evenings.</summary>
         Muster,
         /// <summary>Long hours, a harvest push, a building season: a work injury now and then on a long day.</summary>
-        TiredHands
+        TiredHands,
+        /// <summary>Banked fires: in a hard frost, a chill for the frail in a cold bedroom (Harm/Catching.cs).</summary>
+        ColdNights
     }
 
     /// <summary>The work a long day's slip comes at (Harm/WorkHurts.cs), by the job's work type.</summary>

@@ -414,8 +414,8 @@ namespace ColonyCouncil
         public static void SparDone(Pawn pawn, Pawn mon)
         {
             if (pawn == null || mon == null || !pawn.Spawned || pawn.Dead) return;
-            if (!Harm.Roll(pawn, AnimalPowersMath.SparBlowChance, HurtClass.Bout)) return;
-            var wound = Harm.Injure(pawn, HurtKind.Bruise, HurtWhere.Any, AnimalPowersMath.SparLow, AnimalPowersMath.SparHigh, "a Pokémon's spar", HurtClass.Bout);
+            if (!Harm.Roll(pawn, HarmKinds.PokemonSpar, AnimalPowersMath.SparBlowChance, HurtClass.Bout)) return;
+            var wound = Harm.Injure(pawn, HurtKind.Bruise, HurtWhere.Any, AnimalPowersMath.SparLow, AnimalPowersMath.SparHigh, HarmKinds.PokemonSpar, HurtClass.Bout);
             if (wound == null) return;
             mon.Drawer?.Notify_MeleeAttackOn(pawn);
             if (Speech.On && pawn.Map == Find.CurrentMap)

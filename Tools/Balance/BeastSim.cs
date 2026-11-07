@@ -89,7 +89,7 @@ namespace Balance
                 Console.WriteLine($"   stampedes {stampedes / years:0.00} a colony-year (the game's own herds and the great ones), plants flattened {crops / years:0.0}");
                 Console.WriteLine($"   knocked down by a stampede {trampled / cy:0.000} a colonist-year ({trampled / years:0.000} for the colony)");
                 Console.WriteLine($"   a beast nemesis back {returns / years:0.00} a colony-year, wounds when it comes for blood {blood / cy:0.000} a colonist-year");
-                Console.WriteLine($"   in all {(trampled + blood) / cy:0.000} a colonist-year; beside it a raid's wound 1.4 to 2.0 and Rimfolk's everyday hurts 0.26 to 0.50.");
+                Console.WriteLine($"   in all {(trampled + blood) / cy:0.000} a colonist-year; beside it a raid's wound 1.4 to 2.0 and Rimfolk's everyday hurts 0.25 to 0.62 (the shared budget's; the stampede is one of its kinds).");
             }
             Console.WriteLine("   A pack's alpha adds no hurt of its own: its pack's danger is the game's, the alpha a little harder to hurt and harder-hitting");
             Console.WriteLine("   (0.85 and 1.15) on one of three to eight, and the pack scatters when it falls. A legend hurts only those who go to its ground.");

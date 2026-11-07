@@ -157,7 +157,7 @@ public static class HarmTests
         C(harm.Contains("HarmMath.SafeSeverity(") && harm.Contains("IncomingDamageFactor") && harm.Contains("Safe(x)"), "a wound by the body's own damage factor, on a part it can't kill");
         C(Regex.Matches(work + drill, @"Harm\.(Injure|Ail|Roll)\(").Count >= 5, "the work hurts and the drills go through the service");
         C(!Regex.IsMatch(work + drill, @"TakeDamage\(|AddHediff\("), "nothing in them hurts anyone but through the service");
-        C(Code("Diplomacy/Feasts.cs").Contains("public static float HarmScale => Harm.Scale") && Code("Diplomacy/Feasts.cs").Contains("Harm.May(p, HurtClass.Bout)"),
+        C(Code("Diplomacy/Feasts.cs").Contains("Harm.ScaleFor(HarmKinds.FeastSour)") && Code("Diplomacy/Feasts.cs").Contains("Harm.May(p, HurtClass.Bout)"),
             "the feasts' real blow and sour night under the same scale and cap");
         C(Code("Outsiders/OutsiderOutcomes.cs").Contains("Harm.Note(defender"), "a practice bout's hard blow counted toward the cap");
         C(drill.Contains("PlayOuts.On") && drill.Contains("!p.DevelopmentalStage.Juvenile()") && drill.Contains("HurtClass.Bout"), "the bouts on the map only, never children, under the cap as bouts");
@@ -169,7 +169,8 @@ public static class HarmTests
         C(HurtsOf("Council_Decree_Drills") == "Drills" && HurtsOf("Council_Decree_Militia") == "Muster", "the drills and the militia spar");
         C(HurtsOf("Council_Decree_LongHours") == "TiredHands" && HurtsOf("Council_Decree_Harvest") == "TiredHands" && HurtsOf("Council_Decree_Building") == "TiredHands",
             "long hours, a harvest push and a building season tire hands");
-        C(decrees.Count(d => d.Element("hurts") != null) == 5, "and no other decree");
+        C(HurtsOf("Council_Decree_BankedFires") == "ColdNights", "banked fires chill the frail in a hard frost (harm, part 4)");
+        C(decrees.Count(d => d.Element("hurts") != null) == 6, "and no other decree");
         var militia = decrees.First(d => d.Element("defName")?.Value == "Council_Decree_Militia");
         C(militia.Element("eras") == null && militia.ToString().Contains("[spacer]"), "the militia in every age, with a spacer form");
         C(Code("UI/DecreePanel.cs").Contains("Harm.DecreeLine(def)") && Code("CouncilDynamics.cs").Contains("Harm.DecreeLine(def)"), "named on the decree's card and in its letter");

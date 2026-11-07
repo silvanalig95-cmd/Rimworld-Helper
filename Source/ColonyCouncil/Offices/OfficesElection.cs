@@ -1203,6 +1203,11 @@ namespace ColonyCouncil
             // A loser who is there takes it well, unless it's in their nature to mind (they'll have their mood about it).
             var loser = sc.ranked.Skip(1).Select(kv => kv.Key).FirstOrDefault(p => here.Contains(p) && !Minds(p));
             if (loser != null) Say(loser, "Rimfolk_Pool_ElectionConcede", sc.winner, sc.race.office);
+            // A gracious winner of a close race shakes the runner-up's hand (Harm/Quarrels.cs: a sore loser less likely).
+            var second = sc.ranked.Count > 1 ? sc.ranked[1].Key : null;
+            if (second != null && here.Contains(second) && here.Contains(sc.winner) && Quarrels.Gracious(sc.winner)
+                && HarmFourMath.CloseRace(sc.ranked[0].Value, sc.ranked[1].Value, sc.counted))
+                Say(sc.winner, "Rimfolk_Pool_GraciousWinner", second, sc.race.office);
             e.raceStep++;
             e.callStep = 0;
         }
@@ -1231,6 +1236,8 @@ namespace ColonyCouncil
             // apart: the election's result, told in its letter.
             if (election != e) return;
             var count = CountOf(e);
+            // A close race's loser may hold it against the winner (Harm/Quarrels.cs, the sore loser).
+            Quarrels.Counted(count, atTable == null);
             var voters = Electorate(e.map);
             var round = new SeatingRound { voters = voters, byElection = e.byElection, open = Offices.Where(o => o.OpenFor(e.voterCount)).ToList() };
             // Who ran for which seat, and who campaigned for it: they wanted it (Offices.LostElection).

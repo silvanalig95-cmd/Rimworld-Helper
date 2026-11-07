@@ -157,20 +157,20 @@ public static class HarmTwoTests
             C(!Regex.IsMatch(kv.Value, @"Settings\?\.\w+") || kv.Value.Contains("Settings?.socialWeb"), $"{kv.Key}: no setting of its own");
             C(!kv.Value.Contains("—"), $"{kv.Key}: no em dashes");
         }
-        C(camp.Contains("Harm.Fight(a, x") && camp.Contains("Harm.Roll(HarmTwoMath.CampBrawlChance") && camp.Contains("Outsiders.QuietBrawl") && camp.Contains("LoseGoodwill(")
+        C(camp.Contains("Harm.Fight(a, x") && camp.Contains("Harm.Roll(HarmKinds.CampBrawl, HarmTwoMath.CampBrawlChance") && camp.Contains("Outsiders.QuietBrawl") && camp.Contains("LoseGoodwill(")
           && camp.Contains("Leave(colony ? \"brawl\""), "the camp's brawl: the game's fight under the cap, a brawl their people don't take for an attack, goodwill once, the camp packs up");
         C(camp.Contains("RimfolkPatches.On") && camp.Contains("MapFacts.ThreatOn(map)") && camp.Contains("!p.DevelopmentalStage.Juvenile()"), "the colony's side only with the deeper hooks; never in danger; never a child");
         C(Code("Camps/CampLife.cs").Contains("BrawlHour();") && Code("Camps/Camp.cs").Contains("ExposeBrawl();"), "watched in the camp's hour, saved with the camp");
         C(Code("Diplomacy/FeastBouts.cs").Contains("quiet = true") && Code("Outsiders/OutsiderOutcomes.cs").Contains("if (!b.quiet) BrawlOver(b);"), "a quiet brawl's end is the camp's to tell");
-        C(sick.Contains("Harm.Ail(p, def") && sick.Contains("Harm.Roll(HarmTwoMath.SickHome(") && sick.Contains("Harm.May(x.pawn, HurtClass.Injury)") && sick.Contains("Council_Decree_Quarantine")
+        C(sick.Contains("Harm.Ail(p, def") && sick.Contains("Harm.Roll(HarmKinds.SickHome, HarmTwoMath.SickHome(") && sick.Contains("Harm.May(x.pawn, HurtClass.Injury)") && sick.Contains("Council_Decree_Quarantine")
           && sick.Contains("IsMedicine") && sick.Contains("Council_WS_Murrain"), "sickness brought home: the scale, the cap, the quarantine, medicine packed, never the herds' sickness");
         C(sick.Contains("WorldSituations.Instance") && sick.Contains("HarmTwoMath.Reaches("), "only a town the region's world events really make sick");
-        C(champ.Contains("Harm.Roll(HarmTwoMath.ChampionBlowChance)") && champ.Contains("Harm.May(a, HurtClass.Bout) && Harm.May(x, HurtClass.Bout)") && champ.Contains("Outsiders.SparOn"),
+        C(champ.Contains("Harm.Roll(HarmKinds.ChampionBout, HarmTwoMath.ChampionBlowChance)") && champ.Contains("Harm.May(a, HurtClass.Bout) && Harm.May(x, HurtClass.Bout)") && champ.Contains("Outsiders.SparOn"),
             "the champion's bout: one in 25 under the scale and the cap for both, with the outsiders' sparring allowed");
-        C(Code("Outsiders/OutsiderOutcomes.cs").Contains("Harm.Note(defender, \"a practice bout's hard blow\")"), "its hard blow counted for the cap, as every spar's");
+        C(Code("Outsiders/OutsiderOutcomes.cs").Contains("Harm.Note(defender, null)"), "its hard blow counted for the cap, as every spar's");
         C(Code("Happenings/Workers_Challenges.cs").Contains("ChampionBouts.Begin(v, comp)") && Code("Happenings/Workers_Challenges.cs").Contains("CC_Impact_ChampionBout"),
             "a fighting challenge is a bout on the map, named before the choice");
-        C(hunt.Contains("[HarmonyPatch(typeof(PawnUtility), nameof(PawnUtility.GetManhunterOnDamageChance)") && hunt.Contains("HarmTwoMath.TurnChance(__result, Harm.Scale, may)")
+        C(hunt.Contains("[HarmonyPatch(typeof(PawnUtility), nameof(PawnUtility.GetManhunterOnDamageChance)") && hunt.Contains("HarmTwoMath.TurnChance(__result, Harm.Scale, may)") && hunt.Contains("book.IsCalm(pawn)")
           && hunt.Contains("Harm.Note(hunter"), "hunts: the game's own revenge chance through the scale and the cap, a turn counted for the cap");
         C(hunt.Contains("RimfolkPatches.On") && hunt.Contains("PlayOuts.On"), "only with answers on the map and the deeper hooks");
         C(hunt.Contains("Harm.MayAtOwnAttack(hunter") && !hunt.Contains("Harm.May(p, HurtClass.Injury)") && hunt.Contains("hunter.Drafted) return;"),
@@ -188,10 +188,10 @@ public static class HarmTwoTests
         C(effects.Contains("HuntsBite.Marked(turning)") && groups.Contains("HuntsBite.Marked(turning)"), "a head that can turn is remembered once marked");
         C(carry.Contains("!a.RaceProps.predator") && carry.Contains("public static bool Huntable("), "safe game as before; a hunt under way keeps its head that can turn");
         C(Code("Decrees/DecreeWork.cs").Contains("using (HuntsBite.SafeOnly())") && hunt.Contains("safeOnly == 0"), "the hunting season's morning game keeps to safe game");
-        C(sab.Contains("Harm.Fight(other, rival") && sab.Contains("Harm.Roll(chance)") && sab.Contains("HarmTwoMath.FoundOut(") && sab.Contains("Together.When(") && sab.Contains("Together.WhenInCompany("),
+        C(sab.Contains("Harm.Fight(other, rival") && sab.Contains("Harm.Roll(HarmKinds.Sabotage, chance)") && sab.Contains("HarmTwoMath.FoundOut(") && sab.Contains("Together.When(") && sab.Contains("Together.WhenInCompany("),
             "sabotage: the scale, found out half the time by a witness or by word going round, had out face to face under the cap");
         C(sab.Contains("DoBreakdown()") && sab.Contains("listerBuildingsRepairable.Notify_BuildingTookDamage"), "a machine jammed by the game's own breakdown, a bench the game's builders mend");
-        C(hust.Contains("Harm.Fight(rival, heckler") && hust.Contains("Harm.Roll(chance)") && hust.Contains("Council_Decree_Manners") && hust.Contains("Peacemaker"),
+        C(hust.Contains("Harm.Fight(rival, heckler") && hust.Contains("Harm.Roll(HarmKinds.Hustings, chance)") && hust.Contains("Council_Decree_Manners") && hust.Contains("Peacemaker"),
             "the hustings: the game's fight under the cap, the peacemaker and the best-behavior decree ease it");
         C(Code("Offices/OfficesElection.cs").Contains("if (BrawlPause(e, here)) return;") && Code("Offices/OfficesElection.cs").Contains("HeckleTurns(e, race, rec.pawn, who, fans, here)"),
             "the speeches wait round it, and only a heckle can turn");

@@ -47,10 +47,10 @@ namespace ColonyCouncil
                 bool polite = manners != null && DecreeTracker.InForceFor(heckler, manners);
                 bool calm = race.Candidates.All(c => !Hot(c));
                 float chance = HarmTwoMath.HustingsBrawl(peacemaker, polite, calm, FrayedTempers.Factor(rival, heckler));
-                if (!forced && !Harm.Roll(chance)) return;
+                if (!forced && !Harm.Roll(HarmKinds.Hustings, chance)) return;
                 // together: the supporter answers the heckle face to face at the hustings (Together.Can above).
                 Line(rival, "Rimfolk_Pool_HustingsShove", heckler);
-                if (!Harm.Fight(rival, heckler, "the hustings")) return;
+                if (!Harm.Fight(rival, heckler, HarmKinds.Hustings)) return;
                 e.brawlA = rival;
                 e.brawlB = heckler;
                 e.brawlOrdered = false;

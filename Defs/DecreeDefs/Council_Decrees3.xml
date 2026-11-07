@@ -151,6 +151,7 @@
     <thought>Council_Decree_BankedFires</thought>
     <defaultReaction>Dislike</defaultReaction>
     <fuelSaving>0.25</fuelSaving>
+    <hurts>ColdNights</hurts>
     <reactions>
       <li><trait>Ascetic</trait><reaction>Like</reaction></li>
       <li><trait>Greedy</trait><reaction>Like</reaction></li>

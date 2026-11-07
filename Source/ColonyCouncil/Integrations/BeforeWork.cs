@@ -40,6 +40,8 @@ namespace ColonyCouncil
         {
             public Job drug;
             public SkillDef skill;
+            /// <summary>Before hot work (the stove, the forge): a burn at it now and then (Harm/Mishaps.cs).</summary>
+            public bool hot;
         }
 
         internal bool looked, ready;
@@ -275,6 +277,8 @@ namespace ColonyCouncil
             foreach (var r in Rows)
             {
                 if (!r.On || !Ready(r)) continue;
+                // The setting "A drink before hot work" off: the stove and the forge are left alone (Harm/Mishaps.cs).
+                if (r == Drink && HotBench.Barred(work)) continue;
                 var skill = Trains(r, p, work);
                 if (skill == null) continue;
                 return Before(r, p, work, skill);
@@ -296,7 +300,7 @@ namespace ColonyCouncil
             var job = JobMaker.MakeJob(JobDefOf.Ingest, drug);
             job.count = 1;
             if (r.pending.Count > 50) r.pending.Clear();
-            r.pending[id] = new BeforeWorkRow.Pending { drug = job, skill = skill };
+            r.pending[id] = new BeforeWorkRow.Pending { drug = job, skill = skill, hot = r == Drink && HotBench.Hot(work) };
             return job;
         }
 
@@ -435,6 +439,7 @@ namespace ColonyCouncil
                 if (r.pending.Count == 0 || !r.pending.TryGetValue(p.thingIDNumber, out var had)) continue;
                 if (p.CurJob != had.drug) continue;
                 r.pending.Remove(p.thingIDNumber);
+                if (had.hot) Mishaps.DrankBeforeHotWork(p);
                 if (!Speech.On || !Rand.Chance(0.5f)) return;
                 string line = Flavor.FromPool(r.pool, p, null, null, had.skill?.defName.ToLowerInvariant());
                 if (!line.NullOrEmpty()) Speech.Say(p, line);

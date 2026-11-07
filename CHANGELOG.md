@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Fifteen new mishaps, and the same number of hurts in all
+
+*7 November 2026, version 0.153.0*
+
+- Rimfolk's everyday hurts now share one budget: however many kinds there are, together they come to about what they did before, so new kinds bring variety rather than more hurts. A kind that just hurt someone waits its turn for a while, so the mix keeps changing. "Hurts from everyday life" and the storyteller scale it as before.
+- Sickness that spreads: a doctor can catch what they tend (gloves, masks, a sterile room and a second doctor help), and a guest's cough can pass to whoever sat with them longest.
+- Weather and work: hail bruises anyone caught outside without a roof or helmet, the frail catch cold on frosty nights under banked fires, an unskilled cutter can be hurt felling a tree, a heavy build that fails can hurt its builder, and a drink before cooking or smithing can mean a burn (a new setting keeps drinks away from hot work).
+- Animals: in autumn a grown male in a pen with his females may charge whoever comes in, a nervous animal may kick during the herdmaster's lesson, and with Giddy-Up an unskilled rider on an untrained mount can be thrown.
+- Tempers: rival groups at a shared table can come to blows, a hot-tempered candidate who lost a close vote may pick a fight days later unless the winner offers a hand, a guest's night can go sour, and someone beaten in a bout or duel may come back for a rematch.
+- The games day now has real contests: two bouts and a footrace near the gathering, where now and then someone is hurt; a paved yard is safe.
+- Because the budget is shared, the earlier hurts now come about half as often as before.
+
 ## Rimfolk's peoples, each in their own colours and kinds
 
 *7 November 2026, version 0.152.0*
