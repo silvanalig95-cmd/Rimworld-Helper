@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.135.0</version>
+        <date>7 November 2026</date>
+        <title>PokéWorld Updated, checked</title>
+        <points>
+          <li>Everything Rimfolk reads from PokéWorld was checked against PokéWorld Updated for 1.6 with its 898 species, and all eight generation switches now count.</li>
+          <li>Rimfolk's sightings, strays, trainers and rumours only bring Pokémon that live wild in some land, as PokéWorld's own spawning does, so no more wild babies, Porygon or Unown.</li>
+          <li>A species caught long ago is no longer greeted as new after loading a save, since the Pokédex of the new version is read the way it keeps it.</li>
+          <li>A shiny from the shiny rumour now arrives in its shiny colours, and the rumour only names species that can be shiny.</li>
+          <li>With Pokémon sounding like creatures, each one now borrows only an animal that calls when grown: 103 species changed, such as bigger birds honking like geese and middling grass beasts grunting like capybaras.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.134.0</version>
         <date>7 November 2026</date>
         <title>Schemes against the colony</title>

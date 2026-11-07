@@ -44,7 +44,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The kinds this land has, or that are roaming the map now, that the colony could tame: Pokémon only, or none of
-        /// them, as <paramref name="pokemon"/> says. Worked out once a day.
+        /// them, as <paramref name="pokemon"/> says. Of the land's Pokémon, only those PokéWorld would let in now (a
+        /// generation switched on, the slider above none), so nobody longs for one that can't come. Worked out once a day.
         /// </summary>
         public static List<PawnKindDef> Kinds(Map map, bool pokemon)
         {
@@ -62,7 +63,8 @@ namespace ColonyCouncil
             {
                 var seen = new HashSet<ThingDef>();
                 var candidates = new List<PawnKindDef>();
-                if (map.Biome != null) candidates.AddRange(map.Biome.AllWildAnimals);
+                var roaming = pokemon ? new HashSet<ThingDef>(PokeWorldLink.Roaming()) : null;
+                if (map.Biome != null) candidates.AddRange(map.Biome.AllWildAnimals.Where(k => roaming == null || roaming.Contains(k.race)));
                 foreach (var a in map.mapPawns.AllPawnsSpawned)
                     if (a.Faction == null && a.RaceProps != null && a.RaceProps.Animal && !map.fogGrid.IsFogged(a.Position) && a.kindDef != null) candidates.Add(a.kindDef);
                 float handler = pokemon ? 0f : BestHandler(map);

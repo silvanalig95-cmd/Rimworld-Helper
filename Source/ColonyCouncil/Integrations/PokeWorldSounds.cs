@@ -21,6 +21,10 @@ namespace ColonyCouncil
     /// def data only, no hook: each species gets its own copies of its life stages with the borrowed sounds, and the
     /// originals are put back when the setting changes (applied at startup and when the settings window closes). Nothing
     /// is saved. With PokéWorld not loaded, nothing happens.
+    /// PokéWorld Updated (checked 7 November 2026) gives each of its 898 species one life stage whose call, angry, wounded
+    /// and death sounds are all its cry, and plays no cry of its own anywhere else: its other sounds are its moves', its
+    /// balls' and its menus', and a Pokémon caught or fished calls through the game's own call. So the life stages cover
+    /// every cry, and the moves and balls are left as they are.
     /// </summary>
     [StaticConstructorOnStartup]
     public static class PokeWorldSounds
@@ -68,6 +72,7 @@ namespace ColonyCouncil
                 {
                     var animals = Candidates();
                     int given = 0;
+                    standIns = 0;
                     foreach (var d in PokeWorldLink.AllSpecies)
                     {
                         var m = VoiceOf(d, animals);
@@ -77,7 +82,8 @@ namespace ColonyCouncil
                         given++;
                     }
                     if (Prefs.DevMode || given == 0)
-                        Log.Message("[Rimfolk] PokéWorld: " + given + " species sound like animals now, from " + animals.Count + " to choose from"
+                        Log.Message("[Rimfolk] PokéWorld: " + given + " of " + PokeWorldLink.SpeciesCount + " species sound like animals now, from " + animals.Count + " to choose from"
+                                    + (standIns > 0 ? ", " + standIns + " by the nearest animal since the one named for them is missing" : "")
                                     + (matches.Count > 0 ? " (" + matches.Take(5).Select(kv => kv.Key.label + " like a " + kv.Value.label).ToCommaList() + ")." : "."));
                 }
                 Applied = mode;
@@ -91,7 +97,11 @@ namespace ColonyCouncil
         /// <summary>The animal a species sounds like, or null (with PokéWorld's own sounds, or none found).</summary>
         public static ThingDef SoundsLike(ThingDef pokemon) => Applied == PokemonSounds.Creatures && pokemon != null && matches.TryGetValue(pokemon, out var m) ? m : null;
 
-        /// <summary>Animals with a voice of their own: not Pokémon, not mechanoids, dryads or the void's creatures.</summary>
+        /// <summary>
+        /// Animals whose grown ones call: not Pokémon, not mechanoids, dryads or the void's creatures. The game plays a call
+        /// from the animal's own stage onward (LifeStageUtility), so a grown turkey, emu or ostrich, whose chicks alone have
+        /// a call, is silent; one of those would lend a chick's cheep to a grown Pokémon, and isn't taken.
+        /// </summary>
         private static List<ThingDef> Candidates()
         {
             var list = new List<ThingDef>();
@@ -99,7 +109,7 @@ namespace ColonyCouncil
             {
                 var r = d.race;
                 if (r == null || !r.Animal || r.Humanlike || r.IsMechanoid || r.Dryad || PokeWorldLink.IsPokemon(d)) continue;
-                if (r.lifeStageAges.NullOrEmpty() || !r.lifeStageAges.Any(l => l?.soundCall != null)) continue;
+                if (r.lifeStageAges.NullOrEmpty() || r.lifeStageAges[r.lifeStageAges.Count - 1]?.soundCall == null) continue;
                 list.Add(d);
             }
             return list;
@@ -107,15 +117,20 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The animal a species sounds like: the base-game animal the rule names for its body, types and size, else the
-        /// nearest animal of the same family and size.
+        /// nearest animal of the same family and size (counted in <see cref="standIns"/>).
         /// </summary>
         private static ThingDef VoiceOf(ThingDef pokemon, List<ThingDef> animals)
         {
             var r = pokemon.race;
             string named = PokeWorldSoundsMath.Voice(PokeWorldSoundsMath.FamilyOf(r.body?.defName), r.baseBodySize, PokeWorldLink.TypesOf(pokemon));
             var voice = named != null ? DefDatabase<ThingDef>.GetNamedSilentFail(named) : null;
-            return voice != null && animals.Contains(voice) ? voice : Nearest(pokemon, animals);
+            if (voice != null && animals.Contains(voice)) return voice;
+            standIns++;
+            return Nearest(pokemon, animals);
         }
+
+        /// <summary>Species whose named animal was missing or silent when the voices were last given, so the nearest stood in.</summary>
+        private static int standIns;
 
         /// <summary>The nearest animal: the same body family and flesh, the nearest size; ties go to the def name, so it's the same each time.</summary>
         private static ThingDef Nearest(ThingDef pokemon, List<ThingDef> animals)
@@ -176,7 +191,10 @@ namespace ColonyCouncil
             matches[d] = animal;
         }
 
-        /// <summary>The sound at stage j, else the nearest younger stage's, else an older one's (as the game looks for one).</summary>
+        /// <summary>
+        /// The sound at stage j, else the nearest younger stage's, else an older one's. (The game itself looks from a pawn's
+        /// stage to the older ones only; the borrowed sound is set on each of the Pokémon's own stages, so it plays.)
+        /// </summary>
         private static SoundDef Nearest(List<LifeStageAge> stages, int j, Func<LifeStageAge, SoundDef> get)
         {
             if (j < 0 || stages.NullOrEmpty()) return null;

@@ -6,6 +6,57 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 0.135.0, PokéWorld reviewed against PokéWorld Updated (7 November 2026). The player's words: "for pokemon, please ensure to
+  review the sounds and integrations of all pokemon, if not already one." Against the player's version, PokéWorld
+  Updated [1.6] [ALPHA] (`themoonitself.pokeworld`, workshop 3540803945, 898 species of eight generations), its files
+  and its decompiled 1.6 assembly. No Sched slot, no saved collection. Tests `PokeWorldReviewTests` (prefix "pokeworld review: ") and `PokeWorldSoundsTests`.
+  - Every name read by reflection checked: the comp (`CompPokemon`; `generation`, `rarity`, `types`, `attributes`,
+    `shinyChance` on `CompProperties_Pokemon`), the settings (`PokeWorld.PokeWorldSettings`, static
+    `selectedPokemonFrequency`, `minFrequency`, `maxFrequency`, `allowGen1` to `allowGen8`, `GenerationAllowed(int)`),
+    `StorageSystem` (an `IThingHolder` world component of pawns), `PokedexManager`, `CompProperties_Pokeball` (the five
+    belts), the trackers (`levelTracker.level`, `friendshipTracker.friendship`, `shinyTracker.isShiny`). All still there.
+    What was wrong: the Pokédex is now kept by number (`Dictionary<int, PokedexEntry>`), so reading which species were
+    caught from its `pokedex` dictionary found nothing, quietly (a species caught long ago and let go was greeted as new
+    after a load); now `IsPokemonCaught(PawnKindDef)`, the old dictionary as the fallback. `TotalCaught()` still works.
+  - The generation switches: read for every generation its species have (it was 1 to 9 already), and its own
+    `GenerationAllowed` asked first, as its spawner asks it. Generations 5 to 8 count.
+  - Its spawner picks from the land's own wild animals (`map.Biome.AllWildAnimals`), whose lists hold 753 of the 898:
+    no legendary (90), fossil (25), baby (19) or "Particular" one (Porygon's line, Unown, Shedinja, Bronzor, Bronzong,
+    Spiritomb, Rotom, Minior, Mimikyu). Rimfolk's events and roaming kinds took any but legendaries and fossils, so a
+    rare sighting, a trainer's Pokémon, a shiny rumour or a stray could be a Porygon-Z or a Pichu in the wild. Now a
+    species roams only if some land lists it (`Species.wild`, `AnimalMath.PokemonRoams`); with no land listing any, all
+    count and the log says so. The slider share is `AnimalMath.SliderShare`, its `OkforPokemon` roll (unchanged).
+    The rarity scale is still 1 to 10, 10 the legendaries and Type: Null and Silvally (which do roam).
+  - A name that can't be read is said once in the log with what Rimfolk does without it: the generation switches, a
+    generation with no switch, the PC, the Pokédex (and its caught species, its count), the species' generations,
+    rarity, types and attributes (without attributes the top rarity marks the legendaries), no land listing any.
+  - Features: catching (a ball's catch calls the game's `DoRecruit`, so "animals tamed" goes up), the belts, the PC, the
+    levels, evolutions (still a new pawn with the old one's birth tick, the old one destroyed), friendship, the Pokédex
+    count, the camp and its contest, the wishes and goals, the beast that stays: work as they were. Fixed: a shiny made
+    by the rumour came onto the map in its plain colours (PokéWorld picks the colours when the graphics are made; now
+    `SetAllGraphicsDirty`, as its debug action does); a shiny rumour names only a species that can be shiny (Kubfu,
+    Urshifu, Zarude and Calyrex can't); the favourite animal wish only names a Pokémon of the land the settings let in;
+    the runaway mission's comment said a chance in between (it comes as without PokéWorld; the Almanac had it right).
+  - Sounds: PokéWorld plays no cry outside the life stages. Each species has one stage whose call, angry, wounded and
+    death sounds are its cry (`Pawn_<Name>_Call`, used nowhere else); its other sounds are moves' (`Moves/...`), balls'
+    and menus'; a fished or caught Pokémon calls through the game's own `DoCall`. So nothing more to quiet. The game
+    plays a call from a pawn's stage to the older ones (`LifeStageUtility`), and the base game's cougar, lynx and
+    panther have no call (a snarl), its foxes no sounds, its turkey, emu, cassowary and ostrich call only as chicks: 81
+    species named for them heard the nearest stand-in or a chick's cheep, so the published list was untrue for them;
+    22 heads of ice, water and birds chattered like monkeys or squeaked. 103 changed in all.
+    `Voice` now names only `PokeWorldSoundsMath.GrownCallers` (tested over every family, size and pair of types): bigger
+    birds and bird heads honk (goose), middling pawed ones grunt (grass, capybara) or bark, middling winged beasts growl
+    (warg), psychic two-legged ones keep the monkey the game gave them, heads of ice and water take the tortoise's
+    voice, a fierce big head growls. `Candidates` takes only an animal whose grown stage calls. 26 animals now, Tortoise
+    171, Monkey 164, Squirrel 70. The tests' samples changed with reasons (Growlithe small dog, Mewtwo monkey) and new
+    ones added. The list (`scratchpad/pwlist/list.tsv`, made by `scratchpad/pwreview/pwlist2`, which links this
+    worktree's `PokeWorldSoundsMath.cs`) and the page (`scratchpad/pwvoices/data.json`, `pokemon-voices.html`, a
+    "Revised" note added) were regenerated and the page republished at the same address.
+  - The Almanac (prose only): eight generation switches, only Pokémon that live wild somewhere in Rimfolk's events, the
+    voice sentence, the version line (its description says it wasn't tested thoroughly; the old "fishing is broken"
+    wasn't in it). README's paragraph, the setting's tooltip.
+  - Not verifiable here: whether PokéWorld's shiny textures load for every species the rumour picks (it adds "Shiny" to
+    the texture path), the borrowed voices by ear, and the dev log's counts in the game.
 - 0.134.0, schemes against the colony (7 November 2026): stage 2's 2c.3, theirs only (the player's decision 16), on 0.132.0; no
   round of its own (About.xml, What's new and CHANGELOG untouched). `docs/design/stage2-diplomacy.md` item 11 marked
   built with what differs (and the build order's item 9); DESIGN.md "Schemes against the colony" (after "Against their

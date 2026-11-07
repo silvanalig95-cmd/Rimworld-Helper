@@ -3,10 +3,11 @@
 
   <!--
     Almanac: PokéWorld. Written from the original mod's code (RimWorld 1.4), checked against eth0net's 1.5 update
-    (eth0net.PokeWorld, eight generations); the player runs the unofficial 1.6 port, "PokéWorld Updated [1.6]", whose
-    package id isn't known here. The pages list the known ids, and at startup Rimfolk adds the id of whichever mod
-    actually adds the Pokémon (Integrations/PokeWorld.cs), so they show with any version. The last page is what Rimfolk
-    does with the colony's Pokémon (Integrations/PokeWorldLife.cs).
+    (eth0net.PokeWorld, eight generations) and, on 7 November 2026, against the player's version, the unofficial 1.6
+    port "PokéWorld Updated [1.6] [ALPHA]" (themoonitself.pokeworld, 898 species, its code decompiled). The pages list
+    the known ids, and at startup Rimfolk adds the id of whichever mod actually adds the Pokémon
+    (Integrations/PokeWorld.cs), so they show with any version. The last page is what Rimfolk does with the colony's
+    Pokémon (Integrations/PokeWorldLife.cs).
   -->
 
   <ColonyCouncil.AlmanacArticleDef>
@@ -26,7 +27,7 @@
     <sections>
       <li>
         <heading>The version in your list</heading>
-        <text>The original PokéWorld was made for RimWorld 1.4 and stopped there. eth0net's "PokéWorld Updated" carried it to 1.5 and added the Pokémon of generations five to eight, and "PokéWorld Updated [1.6]", an unofficial alpha by another author, to 1.6. These pages follow the original mod's code, so a number, a button or a research project may be different in the port. The port's own description warns that fishing for Pokémon is broken for now and that Pokémon spawn rates in Odyssey's new biomes are placeholders.
+        <text>The original PokéWorld was made for RimWorld 1.4 and stopped there. eth0net's "PokéWorld Updated" carried it to 1.5 and added the Pokémon of generations five to eight, and "PokéWorld Updated [1.6]", an unofficial alpha by another author, to 1.6. These pages follow the original mod's code, checked against the 1.6 port's, so a number, a button or a research project may still be different in the port. The port's own description says most features work again but that it wasn't tested thoroughly; it also lets Pokémon live in Odyssey's new lands.
 
 Rimfolk finds the mod by its Pokémon rather than by its name, so it works with any of the three.</text>
       </li>
@@ -40,12 +41,12 @@ If you've had enough of Pokémon, set the wild Pokémon frequency slider in the 
         <heading>With Rimfolk</heading>
         <text>Rimfolk reads PokéWorld while the game runs and changes nothing in it. Pokémon count as animals everywhere Rimfolk looks at animals, so a named one can be a pet that fights beside its person, and a wild one that mauls a colonist can become a nemesis. A few things are made to fit:</text>
         <points>
-          <li>Rimfolk's own animal events follow the slider the way wild spawns do. At its maximum the great beast, the stray that follows someone home, the sign at dawn and the catch a pet brings back are always Pokémon, at its minimum never, and in between it's a chance each time. Generations you switched off, legendaries and fossils are never picked.</li>
+          <li>Rimfolk's own animal events follow the slider the way wild spawns do. At its maximum the great beast, the stray that follows someone home, the sign at dawn and the catch a pet brings back are always Pokémon, at its minimum never, and in between it's a chance each time. Generations you switched off, legendaries and fossils are never picked, and only Pokémon that live wild somewhere are: never a baby, nor Porygon, Unown, Spiritomb or the few others PokéWorld keeps out of the wild.</li>
           <li>The runaway mission and the strange creature from Alpha Animals need an ordinary animal, so with the slider at its maximum they don't come up.</li>
           <li>Catching counts as taming. A Pokémon caught with a ball joins the colony like a tamed animal, so it counts for the wish for a new animal and for the ambition to tame new animals, also while it waits in its ball or sits in the PC. That ambition only counts on a wild Pokémon when the colony has a ball belt or can make one.</li>
           <li>The game won't let anyone tame a Pokémon by hand, so the wish to tame a companion never names one. Instead, a colonist with a passion for animals may ask to catch a species the colony doesn't have yet, when one is on the map and the colony has a belt or can make one. Granted, it's worth +4 mood for 5 days.</li>
           <li>Whoever catches the colony's first of a species writes about it in their journal and gets +3 mood for 3 days.</li>
-          <li>What Pokémon sound like is a setting on Rimfolk's other mods' page. By default each species calls with the voice of one of the base game's animals, picked by its body, its types and its size: insects click like the game's insects, birds cluck, quack or honk, bats squeak like rats, small fire lizards hiss like an iguana, big beasts growl like a warg or a bear and the great ones roar like a thrumbo, and the stones, balls, gases and fish take the tortoise's voice. It never calls more often than PokéWorld had it. You can also keep their own cries a third as often, or exactly as PokéWorld has them.</li>
+          <li>What Pokémon sound like is a setting on Rimfolk's other mods' page. By default each species calls with the voice of one of the base game's animals, picked by its body, its types and its size: insects click like the game's insects, birds cluck, quack or honk, bats squeak like rats, small fire lizards hiss like an iguana, big beasts growl like a warg or a bear and the great ones roar like a thrumbo, and the stones, balls, gases, ice, shells and fish take the tortoise's voice. Only animals that call when grown lend their voice: never the cougar, which only snarls, the foxes, which are silent, or the turkey and the emu, whose chicks alone cheep. PokéWorld plays its cries nowhere else, so this covers all of them; its moves and balls keep their own sounds. It never calls more often than PokéWorld had it. You can also keep their own cries a third as often, or exactly as PokéWorld has them.</li>
           <li>Evolutions, levels, friendship, the Pokédex, rare sightings and the wishes, goals and stories of trainers: see "Pokémon in the colony's life".</li>
         </points>
       </li>
@@ -100,13 +101,13 @@ If you've had enough of Pokémon, set the wild Pokémon frequency slider in the 
       </li>
       <li>
         <heading>Generations and the other switches</heading>
-        <text>At the bottom of the settings are four switches, one for each generation (Gen. 1 to 4). A generation switched off doesn't turn up in the wild, in packs, herds, traders' stock or eggs for sale, and no Pokémon evolves into one of its species. At least one stays on: switch off all four and the first comes back. You may still meet one from a switched-off generation now and then, mostly through other mods' animal events.
+        <text>At the bottom of the settings are eight switches, one for each generation (Gen. 1 to 8; the original had Gen. 1 to 4). A generation switched off doesn't turn up in the wild, in packs, herds, traders' stock or eggs for sale, and no Pokémon evolves into one of its species. At least one stays on: switch off all eight and the first comes back. You may still meet one from a switched-off generation now and then, mostly through other mods' animal events.
 
 The switches between the slider and the generations allow or forbid Pokémon infestations and Pokémon as pack animals for trade caravans, and turn the sparkle around shiny Pokémon on or off (it causes desyncs in multiplayer).</text>
       </li>
       <li>
         <heading>With Rimfolk</heading>
-        <text>Rimfolk's own animal events read the same slider and switches, while the game runs, so a change in the settings applies to them at once.</text>
+        <text>Rimfolk's own animal events read the same slider and switches, while the game runs, so a change in the settings applies to them at once. Like PokéWorld's own wild spawns, they only take Pokémon that some land lists among its wild animals.</text>
       </li>
     </sections>
     <keywords>
@@ -309,11 +310,11 @@ As the Pokédex fills, quests open up that lead to legendary Pokémon. The one f
         <heading>Wild Pokémon</heading>
         <text>A wild Pokémon may watch someone at work, come and play with a child at the fence, or cross the land as a rare one passing; one shining in the wrong colours is a moment of its own. The colony's own may come and sit with their trainer.
 
-A rare Pokémon sighted is a Rimfolk event: one of PokéWorld's rare species (rarity 6 to 9, never a legendary or a fossil) of a generation you have switched on, one the colony hasn't caught first, comes onto the land and stays 2 or 3 days. Not before day 8, at most once in 30 days, and never with the slider at "No Pokémon". The council can send everyone out to see it, send its best trainer out to follow it and learn its ways (practice in handling), or let it pass (-1 for 2 days for the one who saw it). Catching it is yours to do with a ball belt; it's news when it's caught, or when it leaves.</text>
+A rare Pokémon sighted is a Rimfolk event: one of PokéWorld's rare species (rarity 6 to 9, never a legendary or a fossil) that lives wild somewhere, of a generation you have switched on, one the colony hasn't caught first, comes onto the land and stays 2 or 3 days. Not before day 8, at most once in 30 days, and never with the slider at "No Pokémon". The council can send everyone out to see it, send its best trainer out to follow it and learn its ways (practice in handling), or let it pass (-1 for 2 days for the one who saw it). Catching it is yours to do with a ball belt; it's news when it's caught, or when it leaves.</text>
       </li>
       <li>
         <heading>The version you run</heading>
-        <text>Rimfolk reads the level, the friendship, whether it's shiny and the Pokédex by their names in the mod's code. The original mod, eth0net's update for 1.5 and the 1.6 port share those names; if a version doesn't, that part is skipped and one line goes into the log.</text>
+        <text>Rimfolk reads the level, the friendship, whether it's shiny and the Pokédex by their names in the mod's code. The original mod, eth0net's update for 1.5 and the 1.6 port share those names (the port's were checked on 7 November 2026); if a version doesn't, that part is skipped and one line goes into the log saying what is done without it.</text>
       </li>
       <li>
         <heading>A Pokémon that keeps coming</heading>

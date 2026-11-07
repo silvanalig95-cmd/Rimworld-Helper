@@ -104,6 +104,21 @@ namespace ColonyCouncil
         public static bool RareSighting(int rarity) => rarity >= 6 && rarity <= 9;
 
         /// <summary>
+        /// A species that may turn up wild for one of Rimfolk's events, as PokéWorld's spawner picks them: one that lives wild
+        /// in some land (a land's wild animals; PokéWorld lists no legendary, fossil or baby, nor the few it keeps out of the
+        /// wild) and isn't a legendary or a fossil.
+        /// </summary>
+        public static bool PokemonRoams(bool legendaryOrFossil, bool wildInSomeLand) => !legendaryOrFossil && wildInSomeLand;
+
+        /// <summary>
+        /// The share of wild animals that are Pokémon, from PokéWorld's frequency slider: its spawner picks a Pokémon when
+        /// a roll between the slider's ends is at most the setting, so 0 at the minimum, 1 at the maximum; -1 when the ends
+        /// make no range.
+        /// </summary>
+        public static float SliderShare(float selected, float min, float max) =>
+            max <= min ? -1f : Math.Max(0f, Math.Min(1f, (selected - min) / (max - min)));
+
+        /// <summary>
         /// An evolution seen between two looks: the same animal (the same birth tick and the same trainer) under a new kind,
         /// and the old one gone without dying. Kinds are compared by name.
         /// </summary>

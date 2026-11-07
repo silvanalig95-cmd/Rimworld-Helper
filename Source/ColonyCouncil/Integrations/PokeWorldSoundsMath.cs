@@ -73,17 +73,26 @@ namespace ColonyCouncil
         private static bool Any(ICollection<string> types, params string[] names) =>
             types != null && names.Any(n => types.Any(t => string.Equals(t, n, StringComparison.OrdinalIgnoreCase)));
 
-        /// <summary>Types of the stones, gases, magnets and spirits: a head of one of these makes little sound.</summary>
-        private static readonly string[] Quiet = { "Rock", "Steel", "Electric", "Ghost", "Poison", "Psychic", "Ground" };
+        /// <summary>
+        /// Types of the stones, gases, magnets, spirits, ice and shells: a head of one of these makes little sound (water
+        /// and ice since 7 November 2026: the ice blocks, clams and sea horses chattered like monkeys or squeaked).
+        /// </summary>
+        private static readonly string[] Quiet = { "Rock", "Steel", "Electric", "Ghost", "Poison", "Psychic", "Ground", "Water", "Ice" };
 
         /// <summary>
         /// The base-game animal (its def name) a Pokémon borrows its voice from: by the family of its body, its types and its
-        /// size. Insects buzz and click like the game's insects, birds cluck, honk or boom by size (ducks and geese for
-        /// water birds), bats squeak like rats and winged dragons roar, snakes hiss like the cobra and the giant ones rumble,
-        /// fish and tentacles take the tortoise's voice (the great whales low like an elephant), hooved ones bleat, call
-        /// and low like goats, deer, horses and muffalo, pawed ones squeak, mew, yip, growl and roar by size and temper (the small grass and water ones grunt like a capybara),
-        /// two-legged ones chatter like monkeys (the small water ones quack, the small fire and dragon ones hiss like an iguana)
-        /// and growl or roar when big, the stones, balls and clouds take the tortoise's voice, and the other small heads with legs cheep like chicks or squeak.
+        /// size. Only animals whose grown ones call in the game are named: the cougar, the lynx and the panther have no
+        /// call of their own (only an angry snarl), the foxes have no sounds at all, and the turkey, the emu and the
+        /// ostrich call only as chicks (the game plays a grown one's call from its own stage, so they are silent grown,
+        /// and the chick's cheep would be lent). Insects buzz and click like the game's insects, small birds cluck (ducks for
+        /// small water birds) and the bigger ones honk like geese, bats squeak like rats and the bigger winged beasts and
+        /// dragons growl and roar, snakes hiss like the cobra and the giant ones rumble, fish and tentacles take the
+        /// tortoise's voice (the great whales low like an elephant), hooved ones bleat, call and low like goats, deer,
+        /// horses and muffalo, pawed ones squeak, mew, yip, bark, growl and roar by size and temper (the small grass and
+        /// water ones grunt like a capybara, the middling grass ones too), two-legged ones chatter like monkeys (the small
+        /// water ones quack, the small fire and dragon ones hiss like an iguana) and growl or roar when big, the stones,
+        /// balls, clouds, ice and shells take the tortoise's voice, the bird-headed ones cluck or honk, and the other heads
+        /// cheep like chicks, squeak, chatter or, the fierce big ones, growl.
         /// </summary>
         public static string Voice(BodyFamily family, float size, ICollection<string> types)
         {
@@ -94,10 +103,10 @@ namespace ColonyCouncil
                 case BodyFamily.Insect:
                     return size < Small ? "Megascarab" : size < Medium ? "Spelopede" : "Megaspider";
                 case BodyFamily.Bird:
-                    if (water) return size < Small ? "Duck" : "Goose";
-                    return size < Small ? "Chicken" : size < Medium ? "Turkey" : size < Large ? "Emu" : "Ostrich";
+                    if (size < Small) return water ? "Duck" : "Chicken";
+                    return "Goose";
                 case BodyFamily.WingedBeast:
-                    return size < Small ? "Rat" : size < Medium ? "Cougar" : size < Large ? "Warg" : "Thrumbo";
+                    return size < Small ? "Rat" : size < Large ? "Warg" : "Thrumbo";
                 case BodyFamily.Snake:
                     if (size < Large) return "Cobra";
                     return stony ? "Megasloth" : "Thrumbo";
@@ -111,24 +120,38 @@ namespace ColonyCouncil
                 case BodyFamily.Paws:
                     if (size >= Giant) return "Thrumbo";
                     if (size >= Large) return Any(types, "Ice") ? "Bear_Polar" : "Bear_Grizzly";
-                    if (size >= Medium) return fierce ? "Warg" : uncanny || Any(types, "Grass") ? "Cougar" : "Bear_Grizzly";
-                    if (size >= Small) return uncanny || Any(types, "Grass") ? "Lynx" : fierce || tough ? "Wolf_Timber" : "Husky";
+                    if (size >= Medium) return fierce || uncanny ? "Warg" : "Bear_Grizzly";
+                    if (size >= Small) return Any(types, "Grass") && !fierce ? "Capybara" : fierce || tough ? "Wolf_Timber" : "Husky";
                     if (Any(types, "Grass", "Water", "Poison", "Bug") && !fierce && !uncanny) return "Capybara";
-                    if (size >= Tiny) return uncanny ? "Cat" : fierce ? "Fox_Red" : "YorkshireTerrier";
-                    return fierce ? "Fox_Red" : "Squirrel";
+                    if (size >= Tiny) return uncanny ? "Cat" : "YorkshireTerrier";
+                    return fierce ? "YorkshireTerrier" : "Squirrel";
                 case BodyFamily.Biped:
                     if (size >= Large) return fierce || stony ? "Thrumbo" : "Bear_Grizzly";
-                    if (size >= Medium) return fierce ? "Warg" : tough ? "Bear_Grizzly" : uncanny ? "Cougar" : "Monkey";
+                    if (size >= Medium) return fierce ? "Warg" : tough ? "Bear_Grizzly" : "Monkey";
                     if (water) return "Duck";
                     if (fierce) return "Iguana";
                     if (size >= Small && Any(types, "Fighting", "Steel")) return "Wolf_Timber";
                     return size < Tiny && !tough ? "Squirrel" : "Monkey";
                 default:
                     if (Any(types, Quiet)) return "Tortoise";
-                    if (size >= Small) return "Monkey";
-                    return Any(types, "Fire", "Normal", "Flying") ? "Chicken" : "Squirrel";
+                    if (Any(types, "Flying")) return size < Small ? "Chicken" : "Goose";
+                    if (size >= Small) return fierce ? "Warg" : "Monkey";
+                    return Any(types, "Fire", "Normal") ? "Chicken" : "Squirrel";
             }
         }
+
+        /// <summary>
+        /// The base game's animals whose grown ones call (RimWorld 1.6's Core defs, read 7 November 2026): the only ones
+        /// <see cref="Voice"/> names. Missing here on purpose: the cougar, the lynx and the panther (an angry snarl only),
+        /// the foxes (no sounds), and the turkey, the emu, the cassowary and the ostrich (only their chicks call).
+        /// </summary>
+        public static readonly string[] GrownCallers =
+        {
+            "Alpaca", "Alphabeaver", "Bear_Grizzly", "Bear_Polar", "Bison", "Boomalope", "Boomrat", "Capybara", "Caribou", "Cat", "Chicken", "Chinchilla", "Cobra",
+            "Cow", "Deer", "Donkey", "Dromedary", "Duck", "Elephant", "Elk", "Gazelle", "Goat", "Goose", "GuineaPig", "Hare", "Horse", "Husky", "Ibex", "Iguana",
+            "LabradorRetriever", "Megascarab", "Megasloth", "Megaspider", "Monkey", "Muffalo", "Pig", "Raccoon", "Rat", "Rhinoceros", "Sheep", "Snowhare",
+            "Spelopede", "Squirrel", "Thrumbo", "Tortoise", "Warg", "WildBoar", "Wolf_Arctic", "Wolf_Timber", "Yak", "YorkshireTerrier"
+        };
 
         /// <summary>
         /// How far an animal is from a Pokémon, lower being nearer, for when the animal <see cref="Voice"/> names is missing:

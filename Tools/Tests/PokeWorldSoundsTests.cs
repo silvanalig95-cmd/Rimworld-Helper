@@ -52,14 +52,44 @@ public static class PokeWorldSoundsTests
         C(V("PW_FishPokemonWithPectoralCaudalDorsalFins", 0.56f, "Water") == "Tortoise" && V("PW_FishPokemonWithPectoralCaudalDorsalFins", 9.06f, "Water") == "Elephant",
             "Magikarp takes the tortoise's voice, Wailord lows like an elephant");
         C(V("PW_QuadrupedPokemonWithHoovesAndTail", 0.87f, "Normal") == "Muffalo" && V("PW_QuadrupedPokemonWithHoovesAndTail", 0.62f, "Fire") == "Deer", "Tauros lows, Ponyta calls like a deer");
-        C(V("PW_QuadrupedPokemonWithPaws", 1.19f, "Fire") == "Warg" && V("PW_QuadrupedPokemonWithPaws", 0.44f, "Fire") == "Fox_Red", "Arcanine growls, Growlithe yips");
-        C(V("PW_BipedPokemon", 1.31f, "Normal") == "Bear_Grizzly" && V("PW_BipedPokemonWithTail", 1.25f, "Psychic") == "Cougar", "Snorlax growls like a bear, Mewtwo like a cougar");
+        // 7 November 2026: the game's foxes have no sounds and its cougar and lynx no call, so Growlithe yips like a small
+        // dog (it was a fox), Mewtwo takes the monkey's voice the game already gave it (it was a cougar), and Ivysaur
+        // grunts like its Bulbasaur (it was a lynx).
+        C(V("PW_QuadrupedPokemonWithPaws", 1.19f, "Fire") == "Warg" && V("PW_QuadrupedPokemonWithPaws", 0.44f, "Fire") == "YorkshireTerrier", "Arcanine growls, Growlithe yips like a small dog");
+        C(V("PW_BipedPokemon", 1.31f, "Normal") == "Bear_Grizzly" && V("PW_BipedPokemonWithTail", 1.25f, "Psychic") == "Monkey", "Snorlax growls like a bear, Mewtwo takes the monkey's voice");
+        C(V("PW_QuadrupedPokemonWithPaws", 0.62f, "Grass", "Poison") == "Capybara" && V("PW_QuadrupedPokemonWithPaws", 1.25f, "Grass", "Poison") == "Bear_Grizzly",
+            "Ivysaur grunts like a capybara, Venusaur growls like a bear");
+        C(V("PW_QuadrupedPokemonWithPawsAndTail", 0.87f, "Electric") == "Husky" && V("PW_QuadrupedPokemonWithPaws", 1.19f, "Electric") == "Warg", "Luxray barks, Raikou growls");
+        C(V("PW_WingedPokemonWithJaw", 0.69f, "Ground", "Flying") == "Warg", "Gligar growls like its Gliscor (the cougar's place)");
+        // The bigger birds honk like geese: the game's turkey, emu and ostrich call only as chicks.
+        C(V("PW_WingedPokemonWithBeak", 0.94f, "Normal", "Flying") == "Goose" && V("PW_WingedPokemonWithBeak", 2.37f, "Fire", "Flying") == "Goose"
+          && V("PW_WingedPokemonWithBeak", 0.37f, "Water", "Flying") == "Duck", "Pidgeot and Ho-Oh honk, Wingull quacks");
+        // The heads of ice and water take the tortoise's voice with the stones; bird heads cluck or honk; a fierce big one growls.
+        C(V("PW_HeadPokemon", 0.25f, "Ice") == "Tortoise" && V("PW_HeadPokemonWithBody", 0.75f, "Water") == "Tortoise", "Vanillite and Seadra take the tortoise's voice");
+        C(V("PW_HeadPokemonWithBody", 1.12f, "Normal", "Flying") == "Goose" && V("PW_MultipleBodiedPokemon3Head", 1.12f, "Dark", "Dragon") == "Warg", "Dodrio honks, Hydreigon growls");
         C(V("PW_InsectPokemonWith6Legs", 0.19f, "Bug") == "Megascarab" && V("PW_InsectPokemonWithWingsAndLegs", 0.94f, "Bug", "Flying") == "Spelopede", "Caterpie and Scyther click like insects");
         C(V("PW_BipedPokemonWithTail", 0.5f, "Water") == "Duck" && V("PW_QuadrupedPokemonWithPaws", 0.44f, "Grass", "Poison") == "Capybara", "Psyduck quacks, Bulbasaur grunts");
         C(V("PW_HeadPokemonWithLegs", 0.25f, "Fire") == "Chicken", "Torchic cheeps");
         foreach (BodyFamily f in Enum.GetValues(typeof(BodyFamily)))
             foreach (var size in new[] { 0.1f, 0.4f, 0.8f, 1.2f, 2f, 5f })
                 C(!string.IsNullOrEmpty(PokeWorldSoundsMath.Voice(f, size, new string[0])), $"{f} at {size}: always some animal");
+
+        // Every voice the rule can name is a base-game animal whose grown ones call: every family, size band and pair of types.
+        string[] allTypes = { "Normal", "Fire", "Water", "Grass", "Electric", "Ice", "Fighting", "Poison", "Ground", "Flying", "Psychic", "Bug", "Rock", "Ghost", "Dragon", "Dark", "Steel", "Fairy" };
+        float[] sizes = { 0.05f, 0.2f, 0.3f, 0.45f, 0.6f, 0.8f, 1f, 1.3f, 1.6f, 2.5f, 3.5f, 9f };
+        var callers = new System.Collections.Generic.HashSet<string>(PokeWorldSoundsMath.GrownCallers);
+        var silent = new System.Collections.Generic.HashSet<string>();
+        foreach (BodyFamily f in Enum.GetValues(typeof(BodyFamily)))
+            foreach (var size in sizes)
+                for (int a = 0; a < allTypes.Length; a++)
+                    for (int b = a; b < allTypes.Length; b++)
+                    {
+                        string v = PokeWorldSoundsMath.Voice(f, size, a == b ? new[] { allTypes[a] } : new[] { allTypes[a], allTypes[b] });
+                        if (!callers.Contains(v)) silent.Add(v);
+                    }
+        C(silent.Count == 0, "the rule only names animals whose grown ones call" + (silent.Count > 0 ? " (not " + string.Join(", ", silent) + ")" : ""));
+        foreach (var quiet in new[] { "Cougar", "Lynx", "Panther", "Fox_Red", "Fox_Fennec", "Fox_Arctic", "Turkey", "Emu", "Cassowary", "Ostrich" })
+            C(!callers.Contains(quiet), quiet + " isn't among the animals that call grown");
 
         // Never more often than PokéWorld had it.
         C(PokeWorldSoundsMath.Slower(3000, 6000, 2000, 4000) == (3000, 6000) && PokeWorldSoundsMath.Slower(3000, 6000, 4000, 8000) == (4000, 8000),
@@ -89,6 +119,7 @@ public static class PokeWorldSoundsTests
             "PokéWorld is found by its Pokémon, and a change is applied at once");
         C(mod.Contains("PokeWorldSounds.Apply();"), "applied again when the settings window closes");
         C(code.Contains("r.Dryad") && code.Contains("r.IsMechanoid") && code.Contains("PokeWorldLink.IsPokemon(d)"), "never a mechanoid, a dryad or another Pokémon's voice");
+        C(code.Contains("r.lifeStageAges[r.lifeStageAges.Count - 1]?.soundCall == null) continue;"), "only an animal whose grown one calls lends its voice (never a chick's cheep)");
         C(code.Contains("PokeWorldSoundsMath.Voice(PokeWorldSoundsMath.FamilyOf(r.body?.defName), r.baseBodySize, PokeWorldLink.TypesOf(pokemon))")
           && code.Contains("PokeWorldSoundsMath.Slower(was.interval.min"), "the game uses the same rule, and the slower pace");
         C(code.Contains("r.lifeStageAges = kv.Value.stages;") && code.Contains("(LifeStageAge)Clone.Invoke(own[i], null)"),

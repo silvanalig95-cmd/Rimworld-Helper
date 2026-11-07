@@ -325,7 +325,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Farm animals that would be fine outdoors here right now, and that could be tamed at all. With PokéWorld's
-        /// slider at "only Pokémon" there are none (a Pokémon can't be tamed by hand); in between, it's a chance.
+        /// slider at "only Pokémon" there are none (a Pokémon can't be tamed by hand); in between they come as without it,
+        /// since a pick that falls to the Pokémon has none here and goes to the others, as PokéWorld's spawner does.
         /// </summary>
         private static IEnumerable<PawnKindDef> Candidates(Map map) => PokeWorldLink.WildKinds(FarmKinds(map));
 

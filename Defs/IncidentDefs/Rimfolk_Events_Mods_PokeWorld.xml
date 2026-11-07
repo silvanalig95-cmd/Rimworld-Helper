@@ -4,8 +4,8 @@
   <!--
     PokéWorld: a rare Pokémon seen on the colony's land (ColonyCouncil.HappeningWorker_PokemonSighting,
     Source/ColonyCouncil/Integrations/PokeWorldLife.cs). It only happens with the mod's Pokémon loaded and its spawn
-    slider above "No Pokémon"; the species is one of PokéWorld's rare ones (rarity 6 to 9, no legendaries or fossils) of a
-    generation switched on, one the colony hasn't caught first. It stays a couple of days. Catching it is the player's
+    slider above "No Pokémon"; the species is one of PokéWorld's rare ones (rarity 6 to 9, no legendaries or fossils)
+    that lives wild in some land, of a generation switched on, one the colony hasn't caught first. It stays a couple of days. Catching it is the player's
     own, with a ball belt; it's news when it happens. Tags: [new] (a species the colony doesn't have), [known], [trainer]
     (A trains a Pokémon), [shiny].
   -->
