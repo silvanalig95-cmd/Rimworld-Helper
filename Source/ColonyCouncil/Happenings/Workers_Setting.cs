@@ -63,6 +63,8 @@ namespace ColonyCouncil
         /// colony), calling:CALLING (one of Rimfolk's peoples of that calling: calling:healers, Peoples/), or any.
         /// </summary>
         public string people;
+        /// <summary>One of Rimfolk's peoples of this calling is five times as likely as another (a herder with a thirsty or sick herd: herders).</summary>
+        public string prefers;
 
         // ---- More of the cast ----
         /// <summary>{FACTION} (and {PLACE}, their nearest town): a people on good terms with the colony, when nobody comes from them.</summary>
@@ -222,15 +224,16 @@ namespace ColonyCouncil
 
         private static StrainBand Band(Pawn p) => Heart.On ? Heart.BandOf(p) : StrainBand.Steady;
 
-        /// <summary>The people a visitor comes from.</summary>
+        /// <summary>The people a visitor comes from (one of Rimfolk's peoples of <see cref="HappeningSetting.prefers"/> likelier).</summary>
         private static Faction People(HappeningSetting s, Map map)
         {
             var tech = Avail.EffectiveTech;
+            Func<Faction, float> prefer = s.prefers.NullOrEmpty() ? null : f => Peoples.Preference(s.prefers, f);
             switch (s.people)
             {
-                case "lowtech": return Arrivals.Friendly(f => f.def.techLevel <= TechLevel.Medieval);
-                case "hightech": return Arrivals.Friendly(f => f.def.techLevel >= TechLevel.Industrial);
-                case "own": return Arrivals.Friendly(f => Mathf.Abs((int)f.def.techLevel - (int)tech) <= 1);
+                case "lowtech": return Arrivals.Friendly(f => f.def.techLevel <= TechLevel.Medieval, prefer);
+                case "hightech": return Arrivals.Friendly(f => f.def.techLevel >= TechLevel.Industrial, prefer);
+                case "own": return Arrivals.Friendly(f => Mathf.Abs((int)f.def.techLevel - (int)tech) <= 1, prefer);
                 default:
                     // One of Rimfolk's peoples, by what it lives by (the order's healer, the league's outrider).
                     if (s.people != null && s.people.StartsWith("calling:", StringComparison.Ordinal))
@@ -240,7 +243,7 @@ namespace ColonyCouncil
                         bool caravan = s.Needs("caravan");
                         return Arrivals.Friendly(f => Peoples.CallingOf(f) == calling && (!caravan || Peoples.CaravanCanCome(f, map)));
                     }
-                    return Arrivals.Friendly();
+                    return Arrivals.Friendly(null, prefer);
             }
         }
 

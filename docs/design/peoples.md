@@ -90,6 +90,8 @@ step is the game's kind); where the land won't take the plan, its layout or the 
   own caravan turns aside to the colony when bidden; only when it can come now, the need `caravan`).
 - World events (`SituationFactionNeed.calling`, by patch): the drove roads and the great herds prefer the herders; a
   great caravan, a trading season, market days, the road in use, a wardens' post and a new road the league.
+- The animal callers (`HappeningSetting.prefers`, by patch): a herd that needs water, a sick herd and drovers on the
+  road to a fair come from the herders likeliest.
 - The game's caravans (`Patch_RiseFallCaravans`): each people's `caravanWeight` in the game's choice of whose comes.
 - Sickness brought home: a sickhouse of the order sees to the colony's lodgers as medicine in their packs would.
 - The hand-over's peoples never borrow these peoples' kinds (`HandOverPeoples.Lend`).
@@ -134,8 +136,8 @@ What release B can reuse:
   `factionIconPath` and `settlementTexturePath` name the files.
 - **The plan pipeline**: a `TownPlanDef` (checked by `PeoplesTests` for every plan in `Defs/PeopleDefs/`) named in the
   template.
-- **The asks and callers**: `MissionPeople` (`only`, `prefers`, `whileKind`) on any mission def, `calling:CALLING` on
-  any caller, `calling` on any camp kind or world event's people.
+- **The asks and callers**: `MissionPeople` (`only`, `prefers`, `whileKind`) on any mission def, `calling:CALLING` or
+  `prefers` on any caller, `calling` on any camp kind or world event's people.
 - **The dev actions**: "Peoples: a people of a template now, near this home (testing)", "Peoples: Rimfolk's peoples in
   this world", "Peoples: one of their camps here now", "Peoples: lay a town's plan at the mouse (testing)".
 

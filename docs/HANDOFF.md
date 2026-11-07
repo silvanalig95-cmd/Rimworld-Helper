@@ -34,7 +34,8 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
     (`Rimfolk_Evt_LeagueOutrider`, `calling:traders`, the need `caravan`: bidden, the league's own caravan comes), the
     herders' winter herd camp (`Rimfolk_Camp_WinterHerd`, `CampKindDef.calling`/`seasons`/`maxAnimals`, fall and
     winter). By patch (`Patches/Rimfolk_Peoples.xml`, conditional): eight world events prefer a calling
-    (`SituationFactionNeed.calling`), the healer lent and the fodder ask prefer one (`MissionPeople.prefers`). An ask
+    (`SituationFactionNeed.calling`), the healer lent and the fodder ask prefer one (`MissionPeople.prefers`), and three
+    callers the herders (`HappeningSetting.prefers`: a thirsty herd, a sick herd, drovers to a fair). An ask
     only theirs takes no share of the missions' draw without them (`MissionPool`, worked out daily).
   - Their towns (`Rimfolk_TownPlans.xml`, `TownPlanDef`; `Peoples/PeopleTowns.cs`): a plan read into the kept-layout
     grid and placed by `TownLayouts.Place` in the settlement step's prefix after a town the colony was, where at most 6%

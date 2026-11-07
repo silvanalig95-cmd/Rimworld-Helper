@@ -330,7 +330,7 @@ public static class PeoplesTests
             C(op.Attribute("Class")?.Value == "PatchOperationConditional" && m.Success && allDefs.Contains(m.Groups[1].Value), $"the patch reaches {m.Groups[1].Value}, conditionally");
         }
         C(patch.Descendants("calling").All(c => PeoplesMath.IsCalling(c.Value)) && patch.Descendants("prefers").All(c => PeoplesMath.IsCalling(c.Value))
-          && patch.Descendants("calling").Count() == 8 && patch.Descendants("prefers").Count() == 2, "the patch prefers callings Rimfolk knows: eight world events and two asks");
+          && patch.Descendants("calling").Count() == 8 && patch.Descendants("prefers").Count() == 5, "the patch prefers callings Rimfolk knows: eight world events, two asks and three callers");
 
         // ================= Their words =================
 
@@ -401,6 +401,7 @@ public static class PeoplesTests
           && Read("World", "NeighbourLetters.cs").Contains("Peoples.AddTags(n.faction, tags)") && Read("Couriers", "CourierWords.cs").Contains("Peoples.AddTags(f, tags)"),
             "talk, asks, letters and messengers know them by their calling");
         C(Read("Missions", "Workers_MissionNeighbours4.cs").Contains("MissionPeople.Weighed(d)"), "an ask of theirs takes no share of the draw in a world without them");
+        C(Read("Happenings", "Workers_Setting.cs").Contains("Peoples.Preference(s.prefers, f)"), "a caller's people by the calling it prefers");
         C(Read("Camps", "CampTracker.cs").Contains("Peoples.CampFactor(kind, x)") && Read("Camps", "CampTracker.cs").Contains("Peoples.CanSend(k)"),
             "favoured camps likelier from them; a camp only theirs only while they are at peace");
         return n;

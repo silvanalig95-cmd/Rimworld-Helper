@@ -11,6 +11,8 @@
       wardens' post and a new road the road league's.
     - Asks that prefer a calling (MissionPeople.prefers): a healer lent to a sickhouse, the hospitallers'; fodder for a
       herd, the herding folk's. Their own words for them, tagged their:healers and their:herders.
+    - Callers that prefer a calling (HappeningSetting.prefers): a herd that needs water, a sick herd, drovers on the
+      road to a fair, the herding folk's.
   -->
 
   <!-- ===================== The herding folk's world events ===================== -->
@@ -143,6 +145,38 @@
       <value>
         <li>[snow,their:herders] A rider of {FACTION} has come down from the winter camp at {PLACE}: the snow came early, the grass is under it, and the herd is eating the camp's hay faster than anyone counted on. {DEAD}, who keeps the herd, asks the colony for fodder by a set day, at a good price.</li>
         <li>[parched,their:herders] The grass round {FACTION}'s camp at {PLACE} has burned brown, and the herd is too big to move far on empty bellies. {DEAD} sends a rider to ask the colony for fodder by a set day, and will pay over its worth.</li>
+      </value>
+    </match>
+  </Operation>
+
+  <!-- ===================== Herders at the gate with their beasts ===================== -->
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/IncidentDef[defName="Council_Evt_ThirstyHerd"]/modExtensions/li[@Class="ColonyCouncil.HappeningSetting"]</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/IncidentDef[defName="Council_Evt_ThirstyHerd"]/modExtensions/li[@Class="ColonyCouncil.HappeningSetting"]</xpath>
+      <value>
+        <prefers>herders</prefers>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/IncidentDef[defName="Council_Evt_SickHerd"]/modExtensions/li[@Class="ColonyCouncil.HappeningSetting"]</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/IncidentDef[defName="Council_Evt_SickHerd"]/modExtensions/li[@Class="ColonyCouncil.HappeningSetting"]</xpath>
+      <value>
+        <prefers>herders</prefers>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/IncidentDef[defName="Rimfolk_Evt_Drovers"]/modExtensions/li[@Class="ColonyCouncil.HappeningSetting"]</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/IncidentDef[defName="Rimfolk_Evt_Drovers"]/modExtensions/li[@Class="ColonyCouncil.HappeningSetting"]</xpath>
+      <value>
+        <prefers>herders</prefers>
       </value>
     </match>
   </Operation>

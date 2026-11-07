@@ -42,6 +42,18 @@ def new():
     return Image.new("L", (S, S), 0)
 
 
+def rot_ellipse(cx, cy, rx, ry, deg, n=48):
+    """An ellipse's outline turned by deg (rx along the turned x axis), as points for a polygon."""
+    a = math.radians(deg)
+    c, s = math.cos(a), math.sin(a)
+    pts = []
+    for i in range(n):
+        t = 2 * math.pi * i / n
+        x, y = rx * math.cos(t), ry * math.sin(t)
+        pts.append((cx + x * c - y * s, cy + x * s + y * c))
+    return pts
+
+
 def teardrop(cx, top, bottom, half_width):
     """A flame: pointed at the top, round at the bottom."""
     r = half_width
@@ -146,18 +158,26 @@ def g_order_town():
 def g_herders():
     """A shepherd's crook across a herder's horn: the herd led, and called home."""
     horn = new()
-    # A curved horn, narrow at the tip on the upper left and swelling to a wide bell on the right: discs along a curve,
-    # each a little wider than the last.
-    path = bezier((72, 220), (110, 400), (300, 450), (420, 360), 60)
-    for i, (x, y) in enumerate(path):
-        t = i / (len(path) - 1)
-        circle(horn, x, y, 9 + 46 * t ** 1.4)
-    # The bell's mouth, open.
-    ellipse(horn, 396, 286, 474, 420)
-    ellipse(horn, 424, 318, 462, 390, fill=OFF)
-    # Two bands round the horn, cut in.
-    line(horn, [(196, 346), (228, 410)], 14, fill=OFF, caps=False)
-    line(horn, [(300, 360), (320, 438)], 14, fill=OFF, caps=False)
+    # A curved horn, narrow at the tip on the upper left and swelling evenly to its mouth on the right: discs along a
+    # curve, each a little wider than the last, so the horn is one smooth cone.
+    path = bezier((60, 196), (84, 420), (330, 476), (444, 316), 80)
+    radii = [10 + 52 * (i / (len(path) - 1)) ** 1.15 for i in range(len(path))]
+    for (x, y), r in zip(path, radii):
+        circle(horn, x, y, r)
+    # The mouth, open: an ellipse across the horn's end, its hollow cut in.
+    (x1, y1), (x0, y0) = path[-1], path[-4]
+    angle = math.degrees(math.atan2(y1 - y0, x1 - x0))
+    poly(horn, rot_ellipse(x1, y1, 22, radii[-1] + 4, angle))
+    poly(horn, rot_ellipse(x1 + 6, y1 - 4, 10, radii[-1] - 16, angle), fill=OFF)
+    # Two bands round the horn, cut in across it.
+    for at in (0.42, 0.66):
+        i = int(at * (len(path) - 1))
+        (bx, by), (ax, ay) = path[i], path[i - 2]
+        nx, ny = -(by - ay), bx - ax
+        length = math.hypot(nx, ny)
+        nx, ny = nx / length, ny / length
+        r = radii[i] + 4
+        line(horn, [(bx - nx * r, by - ny * r), (bx + nx * r, by + ny * r)], 12, fill=OFF, caps=False)
     crook = new()
     # The staff, and the hook curled over at its top.
     line(crook, [(316, 476), (316, 152)], 34)

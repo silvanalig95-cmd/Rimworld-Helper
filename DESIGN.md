@@ -4513,7 +4513,8 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
   penitents; the herders' drovers, shearers and catchers). A world event's people (`SituationFactionNeed.calling`) and
   an ask (`MissionPeople.prefers`) prefer a calling five times: by patch (`Patches/Rimfolk_Peoples.xml`), the drove
   roads and the great herds the herders, six road and trade events the league, a healer lent the order, fodder the
-  herders.
+  herders; a caller's people (`HappeningSetting.prefers`): a thirsty herd, a sick herd and drovers on the road to a fair
+  the herders.
 - **Theirs only.** `MissionPeople.only` and `whileKind`: the order's medicine for the sickhouse in a plague year (a
   delivery, their carts at the gate) and the league's factor to see home (the traveller's escort); an ask only theirs
   takes no share of the missions' draw while no people of its calling is at peace (`MissionPool`). `HappeningSetting`
