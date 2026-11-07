@@ -328,7 +328,7 @@ public static class FactsTests
     /// <summary>The tags only the new providers (ages beside ours, the ties, the history, the region) give.</summary>
     private static bool NewTag(string t) =>
         t.StartsWith("tie:") || t.StartsWith("town:lately") || t.StartsWith("them:lately") || t == "their:sameage" || t == "their:behind" || t == "their:ahead"
-        || FactsMath.RegionTags.Contains(t) || t.StartsWith("town:why:");
+        || FactsMath.RegionTags.Contains(t) || t.StartsWith("town:why:") || PeoplesMath.Tags.Contains(t);
 
     private static bool NewValue(string key) => FactsMath.TieKinds.Any(k => FactsMath.TieKey(k) == key) || FactsMath.RegionValues.Contains(key);
 
@@ -452,6 +452,8 @@ public static class FactsTests
         foreach (var v in FactsMath.RegionValues)
             if (r.NextDouble() < 0.5)
                 f.Value(v, Word(r));
+        // One of Rimfolk's own peoples, by its calling (Peoples/PeoplesMath.cs).
+        if (r.NextDouble() < 0.2) f.Tag(PeoplesMath.Tags[r.Next(PeoplesMath.Tags.Length)]);
     }
 
     private static readonly string[] Words =

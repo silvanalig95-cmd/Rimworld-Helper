@@ -135,7 +135,7 @@
         <options>
           <li>
             <label>See {DEAD} to {PLACE}</label>
-            <outcome>The road rider went to tell {DEAD} the colony will walk with {X_objective}.</outcome>
+            <outcome>The road rider is taking {DEAD} the colony's word: its caravan will see {X_objective} to {PLACE}.</outcome>
           </li>
           <li>
             <label>Decline</label>

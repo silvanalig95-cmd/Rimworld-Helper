@@ -231,6 +231,8 @@ public static class OutsiderTalkTests
         .Concat(Expand("them:", "young old hurt kind abrasive leader married widowed spousehere parent smallchild childhere outranks"))
         .Concat(Expand("us:", "young old hurt newcomer leader speaker noble married widowed spousehere parent smallchild childhere outranks doctor"))
         .Concat(Expand("their:", "tribal medieval industrial spacer lowtech hightech empire noble leader war peace friend rough ally sameage behind ahead"))
+        // One of Rimfolk's own peoples, by its calling (Peoples/PeoplesMath.cs): their:traders, their:healers, their:herders.
+        .Concat(PeoplesMath.Tags)
         .Concat(Expand("home:", "desert frozen jungle swamp forest plains mountains hills coast cold hot mild"))
         .Concat(Expand("town:", "near far head notable newhead headdied loss ill letter wrote site quest caravan visitors short:food short:medicine short:hands short:fuel"))
         .Concat(Expand("war:", "new long losing winning fought ourfoe ourfriend"))

@@ -11,8 +11,8 @@ namespace ColonyCouncil
     /// <summary>
     /// Dev mode: Rimfolk's peoples (Debug actions, "Rimfolk", "Peoples: ..."). Which of them this world has and how Rimfolk
     /// reads each; a people of a template made now with a town a few days from the home (for trying them in a save made
-    /// before they were there: release B brings them into a running game in earnest); a town's plan laid at the mouse, to
-    /// see it without attacking a town.
+    /// before they were there: release B brings them into a running game in earnest); one of the camps a people favours or
+    /// sends alone (the herders' winter herd) here now; a town's plan laid at the mouse, to see it without attacking a town.
     /// </summary>
     public static class PeoplesDebug
     {
@@ -57,6 +57,36 @@ namespace ColonyCouncil
                 }));
             }
             if (options.Count == 0) Say("no templates loaded.");
+            else Find.WindowStack.Add(new FloatMenu(options));
+        }
+
+        [DebugAction("Rimfolk", "Peoples: one of their camps here now...", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void DebugCamp()
+        {
+            var map = Find.CurrentMap;
+            var options = new List<FloatMenuOption>();
+            foreach (var f in Find.FactionManager.AllFactionsListForReading.Where(x => Peoples.IsOurs(x) && Arrivals.Usable(x)))
+            {
+                var people = f;
+                var kinds = (Peoples.Of(people).camps ?? new List<CampKindDef>()).Where(k => k != null).Distinct().ToList();
+                foreach (var kind in kinds)
+                {
+                    var k = kind;
+                    options.Add(new FloatMenuOption(people.Name + ": " + k.label, () =>
+                    {
+                        var tracker = CampTracker.Instance;
+                        if (tracker == null || !CampTracker.Enabled)
+                        {
+                            Say("camps are off.");
+                            return;
+                        }
+                        var why = new List<string>();
+                        var c = tracker.StartKind(map, k, people, why);
+                        Say(c != null ? k.label + " of " + people.Name + " on the way." : "no camp: " + string.Join("; ", why));
+                    }));
+                }
+            }
+            if (options.Count == 0) Say("none of Rimfolk's peoples is at peace with the colony.");
             else Find.WindowStack.Add(new FloatMenu(options));
         }
 

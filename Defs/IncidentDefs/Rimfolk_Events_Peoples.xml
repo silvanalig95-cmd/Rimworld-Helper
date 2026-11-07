@@ -30,7 +30,7 @@
         <ages>28~68</ages>
         <stayHours>10~16</stayHours>
         <answerDays>0.6</answerDays>
-        <journal>Council_Journal_Evt_Bonesetter</journal>
+        <journal>Rimfolk_Journal_Evt_OrderHealer</journal>
         <titles>
           <li>A hospitaller at the gate</li>
           <li>The order's round</li>
@@ -80,8 +80,8 @@
             <ways><generosity>1</generosity></ways>
           </li>
           <li>
-            <label>{A_nameDef} will mend on {A_possessive} own</label>
-            <outcome>{X_nameDef} leaves {A_nameDef} with some advice and a blessing, and goes on with the round.</outcome>
+            <label>Thank {X_objective}, but no</label>
+            <outcome>{X_nameDef} wishes {A_nameDef} well and goes on with the order's round.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>
@@ -130,7 +130,7 @@
         <options>
           <li>
             <label>Bid the caravan come</label>
-            <outcome>{X_nameDef} is going back to the road with the colony's word, and the league's caravan is turning aside for the colony's gate.</outcome>
+            <outcome>{X_nameDef} has the colony's word, and the league's caravan is turning aside for the colony's gate.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Incident"><incident>TraderCaravanArrival</incident><withFaction>true</withFaction></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
@@ -139,7 +139,7 @@
           </li>
           <li>
             <label>Not this time</label>
-            <outcome>{X_nameDef} touched a hand to {X_possessive} hat and walked back to the caravan, which keeps to the road.</outcome>
+            <outcome>{X_nameDef} touched a hand to {X_possessive} hat, and the league's caravan keeps on its way.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>

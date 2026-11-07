@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Rimfolk's own peoples in their own words (Source/ColonyCouncil/Peoples/), in two pools the game already draws on, by
+    the tag their people give every line (their:traders for the road league, their:healers for the hospitaller order,
+    their:herders for the herding folk):
+    - Rimfolk_Pool_NeighbourWrites (Rimfolk_Neighbours.xml): their answer to the colony's letter or call, by its purpose
+      and how they took it. Help is promised only in a warm or cordial answer and comes by their own messengers (the
+      league's road riders, the order's postulants, the herders' riders); a refusal says why in their ways.
+    - Rimfolk_CourierLines (Rimfolk_CourierLines.xml): their messengers at the colony's gate, by the moment and the goods.
+      One sentence each.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_NeighbourWrites_Peoples</defName>
+    <pool>Rimfolk_Pool_NeighbourWrites</pool>
+    <lines>
+      <plain>
+        <!-- The road league: the road, the book, the price -->
+        <li>[greetings,warm,their:traders] Your letter came up the road with the league's post, {WRITER}, and was read out at the waystation fire. You are on our roads as friends.</li>
+        <li>[greetings,cordial,their:traders] The league keeps a book of those who deal fairly, {WRITER}. Your colony's name is in it.</li>
+        <li>[greetings,cool,their:traders] The league has your letter. Trade with us, and we will know you better.</li>
+        <li>[news,warm,their:traders] Our caravans have been everywhere this season, {WRITER}, and the factors talk. Here is what the road says.</li>
+        <li>[news,cordial,their:traders] The roads hear everything, and the league hears the roads. What we know, you shall have.</li>
+        <li>[help,warm,their:traders] The league does not give without a price, as a rule, but it does for friends. What you asked for is coming with our road riders.</li>
+        <li>[help,cordial,their:traders] It is against the league's custom to give without a price, but the price can wait. It is coming.</li>
+        <li>[help,refusal,their:traders] The league's stores are spoken for this season, every crate of them. We are sorry for it.</li>
+        <li>[invitation,warm,their:traders] A league caravan never turns from a gate that is open to it. We will come.</li>
+        <!-- The hospitaller order: the ward, the sick, the open hand -->
+        <li>[greetings,warm,their:healers] Your letter was read in the ward tonight, {WRITER}, and the sick were glad of it. The order keeps your colony in its thoughts.</li>
+        <li>[greetings,cordial,their:healers] The order thanks you for your letter. Our door is open to your people, as it is to everyone's.</li>
+        <li>[greetings,cool,their:healers] The order has your letter. We tend all who come to us, whatever we think of their colony.</li>
+        <li>[news,cordial,their:healers] The sick bring news with them, more than they know. Here is what the ward has heard.</li>
+        <li>[help,warm,medicine,their:healers] The order does not sell what the sick need. What you asked for is on its way with our postulants, freely given.</li>
+        <li>[help,cordial,their:healers] We have little to spare, but the order gives what it can. It is coming.</li>
+        <li>[help,refusal,their:healers] Every bed is full and every jar is empty here, {WRITER}. The order has nothing to send, and grieves for it.</li>
+        <li>[invitation,warm,their:healers] A hospitaller may leave the ward for a day, and we will. Keep a chair by your fire.</li>
+        <!-- The herding folk: the grass, the herd, the fire -->
+        <li>[greetings,warm,their:herders] A rider brought your words to our fire, {WRITER}, and the elders were glad of them. The herd is fat and the grass is good.</li>
+        <li>[greetings,cordial,their:herders] We have your words. The herd moves on soon, but the camp will remember your colony.</li>
+        <li>[greetings,cool,their:herders] The elders heard your words. The grass will tell us whether they were true.</li>
+        <li>[news,cordial,their:herders] The herd goes everywhere, and so do we. This is what the grass and the roads have told us.</li>
+        <li>[help,warm,their:herders] A herder does not count what goes to a friend. It is coming with our riders.</li>
+        <li>[help,warm,food,their:herders] There is meat and milk enough in a good herd. Some of it is coming to you with our riders.</li>
+        <li>[help,refusal,their:herders] The winter was long and the herd is thin, {WRITER}. We have nothing to send this season.</li>
+        <li>[invitation,warm,their:herders] We will come when the herd is settled, and bring a gift from it.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_CourierLines_Peoples</defName>
+    <pool>Rimfolk_CourierLines</pool>
+    <lines>
+      <plain>
+        <li>[arrive,their:traders] League road post, signed for at every waystone on the way.</li>
+        <li>[arrive,their:healers] Peace on this house, the order sent me.</li>
+        <li>[arrive,their:herders] Our camp is two days back along the grass.</li>
+        <li>[deliver,silver,their:traders] League coin, and every piece of it good.</li>
+        <li>[deliver,medicine,their:healers] From the order's own stores, so use them well.</li>
+        <li>[receive,medicine,their:healers] The ward will have these by tomorrow.</li>
+        <li>[collect,food,their:herders] The camp will eat well on this.</li>
+        <li>[leave,their:traders] The road won't wait, and neither will the league.</li>
+        <li>[leave,their:healers] Back to the ward, they'll be wanting me there.</li>
+        <li>[leave,their:herders] Back to the herd before dark.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- The journal of a colonist the order's hospitaller saw to (Defs/IncidentDefs/Rimfolk_Events_Peoples.xml): the care
+       was free (opt0), medicine went back for their ward with the colony's doctor watching (opt1), or it was turned
+       down (opt2). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Evt_OrderHealer</defName>
+    <lines>
+      <plain>
+        <li>[opt0] A hospitaller of the order saw to my {TALE} today and wouldn't take a coin for it.</li>
+        <li>[opt0] The order's healer had clean hands and all the patience in the world. The {TALE} is better already.</li>
+        <li>[opt1] {X_nameDef} saw to my {TALE} with our doctor at the elbow the whole time, and we sent medicine back for their ward.</li>
+        <li>[opt2] A hospitaller offered to see to my {TALE} and I said no. I'm managing. Mostly.</li>
+      </plain>
+      <warm><li>[opt0] Someone from the order came all that way and saw I was hurting. I won't forget it.</li></warm>
+      <gloomy><li>[opt2] The {TALE} again. Sent the hospitaller away. Regretting it.</li></gloomy>
+      <cold><li>[opt1] The hospitaller's ways were slow but effective. Our doctor took notes.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

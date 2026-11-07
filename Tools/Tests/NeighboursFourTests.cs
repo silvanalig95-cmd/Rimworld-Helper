@@ -60,6 +60,8 @@ public static class NeighboursFourTests
 
         var missionFiles = Directory.GetFiles(Path.Combine(root, "Defs", "MissionDefs"), "*.xml");
         var ours = new[] { "Rimfolk_Missions_Neighbours4.xml", "Rimfolk_Missions_Neighbours4_Goods.xml" };
+        // The asks of Rimfolk's own peoples since (Peoples/), which take a share of the same draw (Tools/Tests/PeoplesTests.cs).
+        var since = new[] { "Rimfolk_Missions_Peoples.xml" };
         float before = 0f, after = 0f;
         foreach (var f in missionFiles)
             foreach (var d in XDocument.Load(f).Root!.Elements("IncidentDef"))
@@ -68,7 +70,7 @@ public static class NeighboursFourTests
                 if (!w.Contains("HappeningWorker_Mission")) continue;
                 float b = F((string)d.Element("baseChance"));
                 after += b;
-                if (!ours.Contains(Path.GetFileName(f))) before += b;
+                if (!ours.Contains(Path.GetFileName(f)) && !since.Contains(Path.GetFileName(f))) before += b;
             }
         C(Math.Abs(before - NeighboursFourMath.MissionPoolWeight) < 0.001f, $"the pool's weight is what the missions weighed before this round ({before:0.0})");
         C(Math.Abs(NeighboursFourMath.PoolFactor(after) * after - NeighboursFourMath.MissionPoolWeight) < 0.001f, $"with the new ones the missions still weigh {NeighboursFourMath.MissionPoolWeight} in all ({after:0.0} scaled)");

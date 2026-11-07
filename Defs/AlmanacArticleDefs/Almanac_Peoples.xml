@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The Almanac page on Rimfolk's own peoples (Source/ColonyCouncil/Peoples/; Defs/PeopleDefs/; docs/design/peoples.md;
+       DESIGN.md "Rimfolk's peoples"). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Peoples</defName>
+    <label>the road league, the hospitallers and the herders</label>
+    <category>Council</category>
+    <order>16</order>
+    <summary>Rimfolk adds three peoples of peaceful callings to the world: a road league of caravan masters and waystation keepers, an order of hospitallers who keep sickhouses, and nomad herders who follow the grass with great herds. Each has its own gear, colours, faith, towns and words, and turns up in Rimfolk's camps, asks, callers and letters in its own way.</summary>
+    <tip>They are among the world's peoples when a new world is made, once each, at the game's usual chances; remove them in the world's faction list like any other people. A save made before they were there doesn't have them.</tip>
+    <description>All three are mostly peaceful. They defend their towns, and they raid only when the colony has turned them hostile, by the game's own rules, and less often than other peoples then. Their notables have titles of their own, their messengers words of their own, and their towns a plan of their own when the land suits it.</description>
+    <sections>
+      <li>
+        <heading>Who they are</heading>
+        <table>
+          <li>People | Lives by | Age | On the map | Their towns</li>
+          <li>The road league | Trade on the roads | Industrial | Dusters dyed teal, cowboy hats, rifles; outriders in armour | Few: walled waystations where roads meet</li>
+          <li>The hospitaller order | Healing | Medieval | Ivory robes and hoods; sworn guards in plate, lay archers with bows | Sickhouses round an herb garden</li>
+          <li>The herding folk | Their herds | Tribal | Russet hides and fur caps; archers and spear-wardens | Camps of round houses and pens</li>
+        </table>
+        <after>With Ideology each keeps a faith of its own (a creed of the road, the open hand, the long grass) and its own style; with Biotech each has a share of other kinds of people (hussars and genies with the league, yttakin and pigskins with the herders). With Vanilla Ideology Expanded's memes their faiths take a meme of trade, of healthcare or of nomads too.</after>
+      </li>
+      <li>
+        <heading>What each brings</heading>
+        <points>
+          <li>The road league: when the game sends a trader caravan, the league's is three times as likely as another people's, with rich and varied stock and plenty of guards. Its market folk, salt caravans, far merchants and road wardens camp on the colony's land more often. An outrider may come ahead of a caravan to ask whether it should turn aside to the colony, and the league may ask the colony's caravan to walk one of its factors home with the season's silver.</li>
+          <li>The hospitaller order: its healers, herb-gatherers, pilgrims and penitents camp more often. One of its hospitallers may stop at the gate for a colonist with an everyday ailment and see to it for nothing; the colony may send medicine back for the sickhouse. In a plague year the order asks the colony for medicine by a set day, and a call for a healer to help at a sickhouse comes from the order likeliest. Travellers who lodge at one of its sickhouses come home tended, as if they had carried medicine.</li>
+          <li>The herding folk: their caravans walk a herd of eight to fourteen beasts for sale beside their pack animals, and come half again as often. Their drovers, shearers and beast-catchers camp more often, and in the fall and the winter they ask to graze a herd of up to a dozen head on the colony's land for the cold months. The drove roads and the great herds come for them likeliest, and the ask for fodder for a herd.</li>
+        </points>
+      </li>
+      <li>
+        <heading>How Rimfolk speaks of them</heading>
+        <points>
+          <li>Their towns' heads are waymasters, priors and prioresses, and camp elders; their traders are caravan masters, cellarers and drovers; their messengers are road riders, postulants and riders.</li>
+          <li>Their letters, their messengers at the gate and the talk with them are in their own voice, as each people's age is in its own.</li>
+          <li>A town of theirs, when its map is made, is laid out to their plan: the league's walled yard with stalls and a storehouse, the order's long ward of sixteen beds and its cloister, the herders' round houses and two great pens with their herd in them. Where the land is too wet or rough for it, the game makes its own base.</li>
+        </points>
+      </li>
+    </sections>
+    <keywords><li>road league</li><li>hospitaller order</li><li>herding folk</li><li>waystation</li><li>sickhouse</li><li>winter grazing</li></keywords>
+    <seeAlso><li>Council_Alm_C_Camps</li><li>Council_Alm_C_Callers</li><li>Council_Alm_C_Region</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

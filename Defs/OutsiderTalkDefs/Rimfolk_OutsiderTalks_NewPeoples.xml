@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Talk with one of Rimfolk's own peoples (Source/ColonyCouncil/Peoples/; the facts service's their:traders,
+    their:healers and their:herders, from the people's calling). The format is in Rimfolk_OutsiderTalks_Greetings.xml's
+    header. The road league in its own voice (prices, the road, the waystations, the league's book of fair dealers), the
+    hospitaller order in its own (the ward, the sick, the open door), the herding folk in theirs (the grass, the herd, the
+    camp that moves). Their age's own lines still come first where a piece is about something every people shares.
+  -->
+
+  <!-- ================= The road league ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Peoples_LeagueRoad</defName>
+    <topic>road</topic>
+    <uses>chat,home</uses>
+    <when>their:traders</when>
+    <lines>
+      <li>[us] Which road brought you here?</li>
+      <li>[them] The long one, past three waystations and a toll I won't name.</li>
+      <li>[us] Is it safe?</li>
+      <li>[them] Safe enough with guards, and the league keeps plenty of those.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Peoples_LeagueBook</defName>
+    <topic>trade</topic>
+    <uses>chat,know</uses>
+    <when>their:traders</when>
+    <lines>
+      <li>[them] The league keeps a book of everyone who deals fairly with it.</li>
+      <li>[us] Are we in it?</li>
+      <li>[them,likesus] You are, and in good ink.</li>
+      <li>[them,!likesus] Not yet, but there's room on the page.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Peoples_LeagueWaystation</defName>
+    <topic>town</topic>
+    <uses>home</uses>
+    <when>their:traders,town</when>
+    <lines>
+      <li>[us] What is it like at {TOWN}?</li>
+      <li>[them] A yard full of carts, beasts and strangers, and a waymaster who knows them all.</li>
+      <li>[us] It sounds busy.</li>
+      <li>[them] It's the road's own house, so it's always busy.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The hospitaller order ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Peoples_OrderWard</defName>
+    <topic>work</topic>
+    <uses>chat,home</uses>
+    <when>their:healers,town</when>
+    <lines>
+      <li>[us] What do you do at {TOWN}?</li>
+      <li>[them] I keep the ward, mostly: the beds, the linen and the night watch.</li>
+      <li>[us] That sounds like hard work.</li>
+      <li>[them] Someone has to sit up with the sick, and I would rather it was me.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Peoples_OrderDoctor</defName>
+    <topic>work</topic>
+    <uses>know</uses>
+    <when>their:healers,us:doctor</when>
+    <lines>
+      <li>[them] You're the one who doctors here, aren't you?</li>
+      <li>[us] I do what I can.</li>
+      <li>[them] Then come to the sickhouse one day and see how the order does it.</li>
+      <li>[us] I might, at that.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Peoples_OrderDoor</defName>
+    <topic>faith</topic>
+    <uses>chat,know</uses>
+    <when>their:healers</when>
+    <lines>
+      <li>[us] Why does the order take in anyone at all?</li>
+      <li>[them] Because the sick don't get to choose where they fall ill.</li>
+      <li>[us] Even your enemies?</li>
+      <li>[them] Someone lying on a sickbed is nobody's enemy.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The herding folk ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Peoples_HerdersGrass</defName>
+    <topic>land</topic>
+    <uses>chat,home</uses>
+    <when>their:herders</when>
+    <lines>
+      <li>[us] Where does the herd go next?</li>
+      <li>[them,winter] Down to the valleys, where the snow lies thin.</li>
+      <li>[them,summer] Up to the high grass, until the frost turns us back.</li>
+      <li>[them] Wherever the grass is, that's where the herd goes.</li>
+      <li>[us] And you go with it.</li>
+      <li>[them] We always have.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Peoples_HerdersCount</defName>
+    <topic>work</topic>
+    <uses>know</uses>
+    <when>their:herders,colony:animals</when>
+    <lines>
+      <li>[them] You keep beasts here, I saw them on the way in.</li>
+      <li>[us] A few.</li>
+      <li>[them] Count them at dusk, every night, and you'll never lose one.</li>
+      <li>[us] Every night?</li>
+      <li>[them] Every night, and twice when the wind's up.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_Peoples_HerdersCamp</defName>
+    <topic>town</topic>
+    <uses>home</uses>
+    <when>their:herders,town</when>
+    <lines>
+      <li>[us] Is {TOWN} far from here?</li>
+      <li>[them] It's wherever the camp was pitched last, and that changes.</li>
+      <li>[us] How do you find it again?</li>
+      <li>[them] Follow the bells, and the smoke from the roof rings.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>
