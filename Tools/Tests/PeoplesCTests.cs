@@ -225,8 +225,8 @@ public static class PeoplesCTests
         C(callers.Contains("VisitorServices.Lodge(ctx.map, p, false)") && callers.Contains("LivingEvents.Schedule(LivingEvents.Shelter")
           && Read("Happenings", "Workers_Living.cs").Contains("case Shelter: HappeningWorker_PilgrimShelter.Morning(m); break;"), "each pilgrim sleeps in a warm corner indoors; the morning comes as a memo");
         C(callers.Contains("Harm.Roll(host, PeoplesMath.CoughChance, HurtClass.Mild)") && callers.Contains("Harm.Ail(host, cold"), "the cough through the harm setting's cap and scale");
-        C(callers.Contains("DropPodUtility.DropThingsNear(spot, map") && callers.Contains("new LordJob_TradeWithColony(f, chill)") && callers.Contains("PeoplesMath.LanderAge((int)Ages.Ours)"),
-            "the lander by drop pod, trading under the game's own caravan lord, for a later age");
+        C(callers.Contains("DropPodUtility.DropThingsNear(spot, map") && callers.Contains("new LordJob_VisitColony(f, chill,") && callers.Contains("PeoplesMath.LanderAge((int)Ages.Ours)"),
+            "the lander by drop pod, trading from the factor's pack under the game's own visitors' lord, for a later age");
         C(towns.Contains("LayDocks(map, Cells(map, grid, marks, \"dock\"))") && towns.Contains("TerrainDefOf.Bridge") && towns.Contains("PeoplesMath.DockSpot(water, bad, used.Count)"),
             "a landing where its docks reach the water, a jetty laid over it");
         C(towns.Contains("public static void ToTheRivers()") && Read("Peoples", "ArisingBook.cs").Contains("PeopleTowns.ToTheRivers();"), "a new world's river folk move to a river as the game starts");
@@ -235,6 +235,10 @@ public static class PeoplesCTests
         C(Read("Happenings", "Workers_Visitors.cs").Split(new[] { "Peoples.Weigh(ext.prefers)" }, StringSplitOptions.None).Length == 3
           && Read("Happenings", "Workers_Visitors2.cs").Split(new[] { "Peoples.Weigh(ext.prefers" }, StringSplitOptions.None).Length == 4, "five visitor events weigh the calling they prefer");
         C(!Regex.IsMatch(callers + towns, @"Sched\.|Scribe_|ExposeData|\[HarmonyPatch"), "no clock, nothing saved, no Harmony patch of their own");
+        // Fixed on the way: a caller of a calling (the order's hospitaller, the league's outrider, the copyist, the boat-trader)
+        // was half the time a Hospitality guest of any people already here, under that people's name.
+        C(Read("Happenings", "Workers_Setting.cs").Contains("!s.waits && !ofCalling"), "a caller of a calling is never a guest of another people standing in");
+        C(callers.Contains("GatheringSpot(map) != null"), "the copyist comes only to a colony with a place it gathers");
         return n;
     }
 

@@ -8,12 +8,12 @@
       warm corner indoors and the band goes on at first light, its eldest blessing the gate; one night in ten someone
       who sat up with them catches a pilgrim's cough. Or they stay the night outside the gate, or the gate stays shut.
     - The society's copyist: a scholar of the learned society asks to copy the colony's records (a tribal colony's
-      stories, written down) at its table, and leaves a book of the archive's in return, or teaches the colony's best
+      stories, written down) where the colony gathers, and leaves a book of the archive's in return, or teaches the colony's best
       reader while at it.
     - The river folk's catch (Odyssey's fish): a boat-trader brings a basket of fish of the colony's own waters to the
       gate, for silver or for food from the stores.
     - The enclave's lander: an industrial or spacer colony hears from the enclave's factor by radio; bidden, the factor,
-      the marshals and the goods come down by drop pod by the gate and trade, as a caravan does.
+      the marshals and the goods come down by drop pod by the gate and trade there, as a visiting trader does.
   -->
 
   <!-- ===================== A night's shelter ===================== -->
@@ -120,18 +120,18 @@
           <li>A copy for the archive</li>
         </titles>
         <texts>
-          <li>[tribal] {X_nameDef}, a scholar of {FACTION}, has walked a long way with ink, a reed pen and a roll of blank pages. The society writes down the stories of every people it can find, and asks to sit at the colony's fire today and write down the colony's, with {A_nameDef} to tell them.\n\nA {THING} from the archive at {PLACE} would be left in return.</li>
-          <li>[medieval] {X_nameDef}, a copyist of {FACTION}, is at the gate with a writing case and a satchel of blank paper. The society keeps a copy of every town's records in its archive at {PLACE}, and asks leave to copy the colony's at its table today, with {A_nameDef} to explain them.\n\nThe society would leave a {THING} from the archive in return.</li>
-          <li>[industrial|spacer] {X_nameDef}, a fellow of {FACTION}, has come with a case of paper and a camera for documents. The society keeps a copy of the records of every settlement in the region at its archive at {PLACE}, and asks to spend the day copying the colony's chronicle at its table, with {A_nameDef} to go through it.\n\nIn return the society would leave the colony a {THING} from the archive.</li>
-          <li>[their:grateful] {FACTION} think well of the colony, and {X_nameDef}, one of their copyists, has come to ask a favour of it: to copy the colony's records at its table for the archive at {PLACE}, and leave a {THING} in thanks.</li>
+          <li>[tribal] {X_nameDef}, a scholar of {FACTION}, has walked a long way with ink, a reed pen and a roll of blank pages. The society writes down the stories of every people it can find, and asks to sit with the colony today and write down its stories, with {A_nameDef} to tell them.\n\nA {THING} from the archive at {PLACE} would be left in return.</li>
+          <li>[medieval] {X_nameDef}, a copyist of {FACTION}, is at the gate with a writing case and a satchel of blank paper. The society keeps a copy of every town's records in its archive at {PLACE}, and asks leave to copy the colony's today, with {A_nameDef} to explain them.\n\nThe society would leave a {THING} from the archive in return.</li>
+          <li>[industrial|spacer] {X_nameDef}, a fellow of {FACTION}, has come with a case of paper and a camera for documents. The society keeps a copy of the records of every settlement in the region at its archive at {PLACE}, and asks to spend the day copying the colony's chronicle, with {A_nameDef} to go through it.\n\nIn return the society would leave the colony a {THING} from the archive.</li>
+          <li>[their:grateful] {FACTION} think well of the colony, and {X_nameDef}, one of their copyists, has come to ask a favour of it: to copy the colony's records for the archive at {PLACE}, and leave a {THING} in thanks.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>Let {X_objective} copy the records, with {A_nameDef} to help</label>
-            <outcome>{X_nameDef} spent the day at the colony's table copying the records, {A_nameDef} beside {X_objective} to explain what the pages left out, and left a {THING} from the society's archive in thanks.</outcome>
+            <outcome>{X_nameDef} spent the day copying the colony's records where the colony gathers, {A_nameDef} beside {X_objective} to explain what the pages left out, and left a {THING} from the society's archive in thanks.</outcome>
             <outcomes>
-              <li>[tribal] {X_nameDef} sat at the colony's fire through the day writing down the stories {A_nameDef} told, and left a {THING} from the society's archive in thanks.</li>
+              <li>[tribal] {X_nameDef} sat with the colony through the day writing down the stories {A_nameDef} told, and left a {THING} from the society's archive in thanks.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the records with {X_nameDef}</label><to>Stranger</to><hours>9~16</hours><sit>true</sit><duration>2~3</duration></li>
@@ -265,7 +265,7 @@
         <options>
           <li>
             <label>Bid them come down</label>
-            <outcome>The factor's thanks came back over the air, and drop pods are coming down by the gate: the factor, {COUNT} marshals and the goods. They will trade at the gate as a caravan does, and walk off when they are done.</outcome>
+            <outcome>The factor's thanks came back over the air, and drop pods are coming down by the gate: the factor, {COUNT} marshals and the goods. They will trade at the gate, and walk off when they are done.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_EnclaveLanding" />
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>

@@ -125,7 +125,7 @@ namespace ColonyCouncil
 
     /// <summary>
     /// A scholar of the learned society asks to copy the colony's records for its archive (a data event: its setting
-    /// brings the scholar, who works the day at the colony's table). {THING} is the book they leave in return, one of the
+    /// brings the scholar, who works the day where the colony gathers: its party spot, its fire or its table). {THING} is the book they leave in return, one of the
     /// society's own of the colony's age: a textbook for a tribal or medieval colony, a schematic for a later one.
     /// </summary>
     public class HappeningWorker_ScholarCopyist : HappeningWorker_Setting
@@ -134,7 +134,8 @@ namespace ColonyCouncil
         public static ThingDef Book() =>
             DefDatabase<ThingDef>.GetNamedSilentFail(Avail.IsPreIndustrial ? "TextBook" : "Schematic") ?? DefDatabase<ThingDef>.GetNamedSilentFail("TextBook");
 
-        protected override bool CanHappen(Map map, HappeningExtension ext) => Book() != null && base.CanHappen(map, ext);
+        /// <summary>The society's book to leave, and a place where the colony gathers for the copyist to work (a party spot, a fire, a table).</summary>
+        protected override bool CanHappen(Map map, HappeningExtension ext) => Book() != null && GatheringSpot(map) != null && base.CanHappen(map, ext);
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {
@@ -179,7 +180,7 @@ namespace ColonyCouncil
     /// <summary>
     /// An industrial or spacer colony (one that knows what comes down out of the sky): the spacer enclave's factor asks by
     /// the colony's radio for leave to come down by the gate with goods. Bidden, they come down by drop pod
-    /// (DilemmaEffect_EnclaveLanding), trade at the gate as a caravan does, and walk off the map when they are done.
+    /// (DilemmaEffect_EnclaveLanding), trade at the gate as a visiting trader does, and walk off the map when they are done.
     /// </summary>
     public class HappeningWorker_EnclaveLander : IncidentWorker_Happening
     {
@@ -209,8 +210,9 @@ namespace ColonyCouncil
 
     /// <summary>
     /// The enclave's trade party comes down by drop pod by the colony's gate: its factor with the goods (one of the
-    /// enclave's caravan stocks), its marshals ({COUNT}) and any beasts for sale. They trade at a spot just outside the
-    /// colony, as the game's own caravans do (LordJob_TradeWithColony), and walk off the map when they are done.
+    /// enclave's caravan stocks), its marshals ({COUNT}) and any beasts for sale. They stay the day at a spot just outside
+    /// the colony and trade from the factor's own pack, as the game's visiting traders do (LordJob_VisitColony: a
+    /// caravan's lord sells only from its pack beasts), and walk off the map when they are done.
     /// </summary>
     public class DilemmaEffect_EnclaveLanding : DilemmaEffect
     {
@@ -250,6 +252,9 @@ namespace ColonyCouncil
         /// <summary>A people that can send a trade party this way: caravan stocks, and a trader of its own in its caravans.</summary>
         public static bool CanTrade(Faction f) =>
             f?.def != null && !f.def.caravanTraderKinds.NullOrEmpty() && Group(f)?.traders?.Any(o => o?.kind != null && o.kind.trader) == true;
+
+        /// <summary>How long the party stays at the gate to trade.</summary>
+        public static readonly FloatRange StayHours = new FloatRange(10f, 14f);
 
         /// <summary>
         /// The party made and dropped by the colony's trade drop spot: the factor holding the goods, <paramref name="guards"/>
@@ -292,7 +297,7 @@ namespace ColonyCouncil
             var spot = DropCellFinder.TradeDropSpot(map);
             DropPodUtility.DropThingsNear(spot, map, pawns.Cast<Thing>(), 110, false, false, false, false);
             if (!RCellFinder.TryFindRandomSpotJustOutsideColony(spot, map, out var chill)) chill = spot;
-            LordMaker.MakeNewLord(f, new LordJob_TradeWithColony(f, chill), map, pawns);
+            LordMaker.MakeNewLord(f, new LordJob_VisitColony(f, chill, Mathf.RoundToInt(StayHours.RandomInRange * GenDate.TicksPerHour)), map, pawns);
             if (Prefs.DevMode) Log.Message("[Rimfolk] " + f.Name + "'s lander: " + pawns.Count + " by drop pod at " + spot + ", " + kind.defName + ".");
             return true;
         }
