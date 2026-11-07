@@ -128,6 +128,13 @@ namespace ColonyCouncil
         public IntRange ages = new IntRange(-1, -1);
         public List<string> weaponTags;
 
+        /// <summary>
+        /// Release E's issued kit of that age (the Ashen Banner's flak and helmets in the industrial age, recon armour in the
+        /// spacer age): each piece worn in place of whatever it can't be worn with, in the kind's colour for it. A piece
+        /// of a missing mod (MayRequire) is simply not in the list.
+        /// </summary>
+        public List<ThingDef> apparel;
+
         /// <summary>The most a weapon of this set may be worth; unset, the kind's own weapon budget and a quarter more.</summary>
         public float money = -1f;
     }

@@ -255,7 +255,8 @@ namespace ColonyCouncil
                     kind = ArisingMath.Exiles, key = key, age = Ages.Ours, near = home.Tile, minTiles = RiseFall.GoodwillTiles + 2, maxTiles = RiseFall.GoodwillTiles + 9, home = home, tiles = 0f,
                     exile = r.pawn, record = r, name = r.Name, since = r.banishedTick,
                     lean = ArisingMath.Lean(ArisingMath.Exiles, true, ArisingMath.Fated(r.id, ArisingMath.SaltRiver, ArisingMath.RiverChance), Learning(r.pawn),
-                        Skill(r.pawn, SkillDefOf.Animals), Skill(r.pawn, SkillDefOf.Shooting), false, false, (int)Ages.Ours)
+                        Skill(r.pawn, SkillDefOf.Animals), Skill(r.pawn, SkillDefOf.Shooting), false, false, (int)Ages.Ours,
+                        Skill(r.pawn, SkillDefOf.Melee), Skill(r.pawn, SkillDefOf.Plants), Skill(r.pawn, SkillDefOf.Crafting), Psylink(r.pawn))
                 };
                 Feelings(cause, home);
                 return cause;
@@ -265,6 +266,19 @@ namespace ColonyCouncil
 
         /// <summary>How learned the one sent away is (their Intellectual skill; 0 when they have none to speak of).</summary>
         private static int Learning(Pawn p) => Skill(p, SkillDefOf.Intellectual);
+
+        /// <summary>The one sent away's psylink level (Royalty; 0 without one).</summary>
+        private static int Psylink(Pawn p)
+        {
+            try
+            {
+                return ModsConfig.RoyaltyActive && p != null ? p.GetPsylinkLevel() : 0;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
 
         /// <summary>The one sent away's level at a skill (0 when they can't do it): how good with beasts, how good a shot.</summary>
         private static int Skill(Pawn p, SkillDef skill)

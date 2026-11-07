@@ -346,9 +346,17 @@ namespace ColonyCouncil
             }
             Add(map.gameConditionManager);
             Add(map.gameConditionManager.Parent);
-            var raw = FieldWeatherMath.Forecast(baseTemp, offsets, left, null);
+            // What the game's queue holds for the map, from the hour it comes: the Stormglass Conclave's held cold or heat (Peoples/PeoplesE.cs).
+            var from = offsets.Select(_ => 0).ToList();
+            foreach (var (off, at, hrs) in GlassWatch.Ahead(map, hours))
+            {
+                offsets.Add(off);
+                left.Add(hrs);
+                from.Add(at);
+            }
+            var raw = FieldWeatherMath.Forecast(baseTemp, offsets, left, null, from);
             var push = WeatherDynamics.PushAhead(map, raw, f.glow);
-            f.temp = FieldWeatherMath.Forecast(baseTemp, offsets, left, push);
+            f.temp = FieldWeatherMath.Forecast(baseTemp, offsets, left, push, from);
             float actual = map.mapTemperature.OutdoorTemp;
             f.gap = FieldWeatherMath.Gap(f.temp[0], actual);
             if (f.gap > 0f && Prefs.DevMode && !gapTold)

@@ -1,0 +1,804 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Release E's four peoples at the colony's gate (Source/ColonyCouncil/Peoples/PeoplesE.cs, PeoplesE2.cs; docs/design/
+    peoples.md, "Release E"; docs/design/peoples-next.md), each only from a people of its calling at peace with the colony
+    (the Banner's deserter from any Banner still standing), so none come in a world without one. Every age: the words
+    take the colony's means, and every answer plays out on the map.
+    - The Stormglass Conclave: a season's watch on the colony's sky, every hard turn of the weather held back a day so a
+      vial-runner is at the gate with the warning first; a lightning rod set on the colony's highest roof, which takes the
+      strikes that would fall near it; a lesson at the glass for the colony's weather-reader.
+    - The Mossborn: saplings planted round the colony for the trees it felled; a sapling beside a fresh grave; with
+      Ideology, the colony's Gauranlen tree pruned and its bond the stronger.
+    - The Ashen Banner: a squad hired to camp by the colony for the season and fight for it, paid every five days or
+      gone; a deserter at dusk asking shelter; a fallen colonist's name read into the Roll at the grave.
+    - The Kiln Guild: a commission made at the colony's bench, the journeyman back for it paying by its
+      quality; a bid on the colony's finest masterwork.
+  -->
+
+  <!-- ===================== The Stormglass Conclave: a season's watch ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_GlassReading</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the glass-reader</label>
+    <workerClass>ColonyCouncil.HappeningWorker_GlassReading</workerClass>
+    <baseChance>1.2</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>25~60</ages>
+        <stayHours>10~14</stayHours>
+        <answerDays>0.4</answerDays>
+        <titles>
+          <li>A reader of the glass</li>
+          <li>The Conclave's watch</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a reader of {FACTION}, has come to the gate with a stormglass in a padded case at {X_possessive} hip: a sealed vial of clear water that clouds and feathers before the sky turns. The tower at {PLACE} reads the region's weather, {X_nameDef} says, and for {COUNT} silver the Conclave would watch the colony's sky for the season: whenever a cold snap, a heat wave or worse is on its way, a vial-runner will be at the gate with the warning before it comes. Or {X_pronoun} would read tonight's sky for the colony, for nothing.</li>
+          <li>[fields] {X_nameDef}, a reader of {FACTION}, has come to the gate with a stormglass at {X_possessive} hip. The colony sows by the weather, {X_nameDef} has heard, and the tower at {PLACE} reads the weather a long way off: for {COUNT} silver the Conclave would watch the colony's sky for the season, a vial-runner at the gate before every cold snap or heat wave, and the colony's fields would know of it from the hour the runner sets off. Or a reading of tonight's sky, freely given.</li>
+          <li>[lowtech] A reader of {FACTION} named {X_nameDef} has walked from the tower at {PLACE} with a glass vial wrapped in wool. The Conclave reads the sky, {X_nameDef} says, and for {COUNT} silver it would keep watch on the colony's for a season, a runner at the gate before every hard turn of the weather. Or a reading of tonight's sky, freely given.</li>
+          <li>[industrial|spacer] {X_nameDef} of {FACTION} is at the gate with a barometer, a notebook of pressure readings and a stormglass in a padded case. The tower at {PLACE} forecasts the region's weather, {X_nameDef} says: {COUNT} silver buys the colony a season of the Conclave's watch, a runner at the gate before every cold snap, heat wave or fallout. Or a free reading of tonight's sky.</li>
+          <li>[their:grateful] The Stormglass Conclave thinks well of the colony, and {X_nameDef} has come from {PLACE} to offer its watch on the colony's sky for the season, for {COUNT} silver, a runner at the gate before every hard turn of the weather. Or tonight's reading alone, as between friends.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Buy a season's watch ({COUNT} silver)</label>
+            <outcome>The silver is going out to {X_nameDef}, and the Conclave will watch the colony's sky for the season. {X_nameDef} has gone out to look at the colony's fields before the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><label>the fee for {X_nameDef}</label></li>
+              <li Class="ColonyCouncil.DilemmaEffect_GlassWatch" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Tonight's reading, {A_nameDef} with {X_objective}</label>
+            <outcome>{A_nameDef} is standing at the gate with {X_nameDef}, who is holding the glass up against the clouds and saying what each feather in it means.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>tonight's reading of the sky</label><to>Stranger</to><duration>1~1.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Plants</skill><xp>250</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>No, thank you</label>
+            <outcome>{X_nameDef} tucks the glass away and goes back to the road, looking up at the sky as {X_pronoun} goes.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[watch] A runner will be at your gate before the sky turns.</li>
+          <li>[watch] The glass will see it before you feel it.</li>
+          <li>[watch,fields] Show me the fields, so the warnings mean something.</li>
+          <li>[sky] Watch the glass, not the clouds, because the clouds lie.</li>
+          <li>[sky] Every sky is written down at the tower, and yours is now.</li>
+          <li>[thanks] The sky will do what it does, watched or not.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Stormglass Conclave: a rod on the roof ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_GlassRod</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a rod on the roof</label>
+    <workerClass>ColonyCouncil.HappeningWorker_GlassRod</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>22~50</ages>
+        <stayHours>10~14</stayHours>
+        <answerDays>0.4</answerDays>
+        <titles>
+          <li>A storm-walker with a rod</li>
+          <li>The Conclave's rod</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a storm-walker of {FACTION}, has come to the gate with a brass rod over one shoulder, as tall as {X_objective}, a sealed stormglass caged at its foot. The Conclave sets its rods on the highest roofs of the region to keep a record of the storms, {X_nameDef} says, and would set one over the colony's {TALE}. It draws the lightning that falls near it down onto itself, harmlessly, and the colony would read the weather by it as well as by a weather station.</li>
+          <li>[storm] {X_nameDef}, a storm-walker of {FACTION}, has come up the road with the storm, a brass rod over one shoulder and a stormglass caged at its foot. The Conclave keeps a record of every storm, and this one is overhead: {X_nameDef} would set the rod over the colony's {TALE} now, where it would take the lightning that falls near it, harmlessly, and read the weather as well as a weather station.</li>
+          <li>[lowtech] A storm-walker of {FACTION}, {X_nameDef}, has walked from {PLACE} with a brass rod and a caged glass vial. Lightning goes where it is called, {X_nameDef} says, and the Conclave's rods call it: set over the colony's {TALE}, this one would take the strikes that fall near it, and the glass at its foot reads the weather.</li>
+          <li>[industrial|spacer] {X_nameDef} of {FACTION} is at the gate with a lightning rod of the Conclave's: brass, grounded through a coil, a stormglass sealed at its foot for the tower's record. Set over the colony's {TALE}, it takes the strikes that would fall on the open ground near it, and reads the weather as well as any station.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Let them set it over the {TALE}</label>
+            <outcome>{X_nameDef} is carrying the rod in to the {TALE}, to set it up where the roof is highest.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_GlassRod" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Set it, and have {A_nameDef} learn how it is grounded</label>
+            <outcome>{X_nameDef} is setting the rod up in the {TALE}, with {A_nameDef} beside {X_objective} learning how it is grounded.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_GlassRod" />
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the rod set up</label><to>Stranger</to><duration>0.5~1</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Construction</skill><xp>300</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
+            </effects>
+            <ways><openness>1</openness><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>No rods on our roofs</label>
+            <outcome>{X_nameDef} shoulders the rod again and walks on toward the next roof.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[rod] Let it come down here, and nowhere else.</li>
+          <li>[rod] Brass to the sky, and the glass at its foot.</li>
+          <li>[rod,storm] Quickly now, it will not wait for us.</li>
+          <li>[thanks] The storms will find you all the same.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Stormglass Conclave: reading the glass ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_GlassLesson</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>reading the glass</label>
+    <workerClass>ColonyCouncil.HappeningWorker_GlassLesson</workerClass>
+    <baseChance>1</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>30~65</ages>
+        <answerDays>0.3</answerDays>
+        <titles>
+          <li>Reading the glass</li>
+          <li>A reader at dusk</li>
+        </titles>
+        <texts>
+          <li>Towards evening {X_nameDef}, a reader of {FACTION}, has come to the gate with a stormglass and a lamp. {X_pronoun} has heard that {A_nameDef} keeps the colony's eye on the weather, and the Conclave teaches anyone who will learn: an evening at the glass, the clouds read against it as the light goes, and for a season after {A_nameDef} would read the weather as a reader does.</li>
+          <li>[newreader] Towards evening {X_nameDef}, a reader of {FACTION}, has come to the gate with a stormglass and a lamp. {A_nameDef} has the best hands at the colony's fields, {X_nameDef} says, and hands that know the soil learn the sky quickly: an evening at the glass, and for a season {A_nameDef} would say what the weather will do, as a reader does.</li>
+          <li>[lowtech] {X_nameDef} of {FACTION} has come to the gate as the light goes, a glass vial wrapped in wool under one arm. The sky is read, not guessed, {X_nameDef} says, and {X_pronoun} would teach {A_nameDef} to read it tonight, the clouds against the glass, so that for a season the colony knows its weather.</li>
+          <li>[their:grateful] The Conclave thinks well of the colony, and {X_nameDef} has walked from {PLACE} at dusk to teach {A_nameDef} the glass: an evening at it, and a season of reading the weather after.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Teach {A_nameDef} to read the glass</label>
+            <outcome>{A_nameDef} is sitting with {X_nameDef} and the glass as the light goes, learning to read the one against the other.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>the glass</label><teacher>X</teacher><student>A</student><skill>Plants</skill><hours>17~23</hours><duration>1.5~2</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_GlassTaught" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>An hour at the gate with {X_objective}, watching the sky</label>
+            <outcome>{A_nameDef} is at the gate with {X_nameDef}, the two of them watching the sky go dark.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>an hour under the sky</label><to>Stranger</to><hours>17~23</hours><duration>1~1.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Plants</skill><xp>200</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not tonight</label>
+            <outcome>{X_nameDef} lifts the lamp in farewell and goes back down the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[glass] Watch how it feathers when the wind turns.</li>
+          <li>[glass] The glass clouds before the sky does, always.</li>
+          <li>[glass,newreader] Your hands know the soil, so your eyes can learn the sky.</li>
+          <li>[thanks] Keep an eye on the west, at least.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Mossborn: saplings for what was cleared ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_MossSaplings</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>saplings for the felled</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MossSaplings</workerClass>
+    <baseChance>1</baseChance>
+    <minRefireDays>20</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>20~55</ages>
+        <stayHours>10~14</stayHours>
+        <answerDays>0.4</answerDays>
+        <titles>
+          <li>A seed-carrier at the gate</li>
+          <li>Saplings for the felled</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a seed-carrier of {FACTION}, has come to the gate with a sack of saplings on {X_possessive} back, their roots balled in moss. The Mossborn keep a ledger of the trees round them, {X_nameDef} says, and the colony has felled {TALE} this season: every few trees felled owe the world a seedling, and {X_pronoun} has brought {COUNT} to plant on the open ground round the colony, out of its fields and its buildings.</li>
+          <li>[cleared] {X_nameDef}, a seed-carrier of {FACTION}, has come to the gate bent under a sack of saplings. The colony has felled {TALE} trees this season, and the Mossborn's ledger has noticed, {X_nameDef} says without heat: {X_pronoun} has brought {COUNT} seedlings to set in the open ground round the colony, out of its fields and its buildings, so the ledger squares a little.</li>
+          <li>[lowtech] A seed-carrier of {FACTION} named {X_nameDef} has walked from the grove at {PLACE} with saplings in a moss-lined sack. {TALE} trees have come down round the colony this season, and the Mossborn owe the world a seedling for every few: {COUNT} of them, to plant on the open ground round the colony if it will have them.</li>
+          <li>[their:grateful] The Mossborn think well of the colony, and {X_nameDef} has come from the grove at {PLACE} with {COUNT} saplings for the {TALE} trees it felled this season, to plant round it as between friends.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Let them plant the saplings</label>
+            <outcome>{X_nameDef} is setting the saplings in the open ground round the colony, one after another, a little water on each.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_MossPlant" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Plant them together, {A_nameDef} beside {X_objective}</label>
+            <outcome>{X_nameDef} and {A_nameDef} are planting the saplings round the colony, one after another.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_MossPlant" />
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the planting</label><to>Stranger</to><duration>2~3</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Plants</skill><xp>400</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>5</amount></li>
+            </effects>
+            <ways><openness>1</openness><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>The land is ours to clear</label>
+            <outcome>{X_nameDef} writes something in the ledger, shoulders the sack and goes.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+            <ways><openness>-1</openness></ways>
+          </li>
+        </options>
+        <lines>
+          <li>[plant] One for every few that fell, and the ledger squares.</li>
+          <li>[plant] Roots down, little one, and stay.</li>
+          <li>[plant,cleared] It will take more than a sack to make that right.</li>
+          <li>[refused] The ledger keeps, and so will the saplings.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Mossborn: a tree for the dead ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_MossGraveTree</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a tree for the dead</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MossGraveTree</workerClass>
+    <baseChance>1.5</baseChance>
+    <minRefireDays>15</minRefireDays>
+    <earliestDay>5</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>35~75</ages>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.3</answerDays>
+        <titles>
+          <li>A tree for {DEAD}</li>
+          <li>The grove-warden</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a grove-warden of {FACTION}, has come to {DEAD}'s grave with a sapling, its roots wrapped in wet moss. The Mossborn bury their dead under young trees, {X_nameDef} says, so that the one who died becomes the grove, and {X_pronoun} would plant one beside {DEAD}'s grave, with the colony gathered there if it likes.</li>
+          <li>[lowtech] A grove-warden of {FACTION} named {X_nameDef} has walked from {PLACE} with a sapling for {DEAD}. Under every grave of theirs a tree grows, {X_nameDef} says, so the dead become the grove and the grove remembers them, and {X_pronoun} would set one beside {DEAD}'s grave.</li>
+          <li>[industrial|spacer] {X_nameDef}, a grove-warden of {FACTION}, is waiting quietly by {DEAD}'s grave with a sapling in a sack of moss. The Mossborn plant a tree for each of their dead, {X_nameDef} says, and would plant one here for {DEAD}, the colony gathered or not, as it likes.</li>
+          <li>[their:grateful] The Mossborn remember the colony kindly, and {X_nameDef} came to {DEAD}'s grave the moment the grove at {PLACE} heard, with a sapling to plant beside it as for one of their own.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Plant it, the colony gathered</label>
+            <outcome>The colony is gathering at {DEAD}'s grave, where {X_nameDef} is setting the sapling into the ground beside it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_MossGraveTree" />
+              <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>the tree for {DEAD}</label><target>Colony</target><count>6</count><to>Grave</to><hours>8~20</hours><duration>1~1.5</duration><lines><li>Grow tall over them, and keep them.</li><li>They are the grove now, and the grove is long.</li><li>A root for every year they gave us.</li></lines></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Rimfolk_Evt_GraveTree</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
+            </effects>
+            <ways><tradition>2</tradition></ways>
+          </li>
+          <li>
+            <label>Let {X_nameDef} plant it, {A_nameDef} beside {X_objective}</label>
+            <outcome>{X_nameDef} is planting a sapling beside {DEAD}'s grave, with {A_nameDef} there.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_MossGraveTree" />
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the tree for {DEAD}</label><to>Stranger</to><duration>0.75~1</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Leave the grave as it is</label>
+            <outcome>{X_nameDef} lays a hand on the grave a moment, and goes.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[grove] Grow tall over them, and keep them.</li>
+          <li>[grove] They are the grove now, and the grove is long.</li>
+          <li>[refused] The ground will hold them all the same.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Mossborn: the colony's Gauranlen tree tended (Ideology) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_MossTreeTend</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the tree-connector's pruning</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MossTreeTend</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>25</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <mods>
+          <li>Ludeon.RimWorld.Ideology</li>
+        </mods>
+        <ages>25~65</ages>
+        <stayHours>10~14</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A tree-connector of the Mossborn</li>
+          <li>The Gauranlen tree pruned</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a tree-connector of {FACTION}, has come to the gate with pruning hooks and a pot of resin. The colony's Gauranlen tree is spoken of in the groves, {X_nameDef} says, and the Mossborn tend every tree that has taken a person's bond: an hour or so of pruning, and its bond with the one it knows would be the stronger. {X_pronoun} would like {A_nameDef} at {X_possessive} side while {X_pronoun} works, if the colony likes.</li>
+          <li>[lowtech] A tree-connector of {FACTION} named {X_nameDef} has walked from {PLACE} with hooks and resin for the colony's Gauranlen tree. A bonded tree is a guest of the whole grove, {X_nameDef} says, and {X_pronoun} would prune it, so its bond grows the stronger.</li>
+          <li>[their:grateful] The Mossborn think well of the colony, and {X_nameDef} has come from the grove at {PLACE} to tend its Gauranlen tree, an hour's pruning for the bond's sake.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Let them tend it, {A_nameDef} at their side</label>
+            <outcome>{X_nameDef} is pruning the Gauranlen tree with {A_nameDef} beside {X_objective}, a cut at a time, resin on each.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_MossTend" />
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the pruning</label><to>Stranger</to><duration>1~1.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Plants</skill><xp>400</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Let them tend it</label>
+            <outcome>{X_nameDef} is pruning the colony's Gauranlen tree, a cut at a time.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_MossTend" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>The tree is ours to keep</label>
+            <outcome>{X_nameDef} bows to the tree from the gate, and goes.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[tend] Easy now, I only take what you would drop.</li>
+          <li>[tend] A cut here, and it will reach further for you.</li>
+          <li>[refused] Tend it kindly, then, because it remembers.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Ashen Banner: a squad for the season ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_BannerHire</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the Banner's squad</label>
+    <workerClass>ColonyCouncil.HappeningWorker_BannerHire</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>20~50</ages>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.4</answerDays>
+        <titles>
+          <li>A squad of the Banner</li>
+          <li>Swords for hire at the gate</li>
+        </titles>
+        <texts>
+          <li>A sergeant of {FACTION}, {X_nameDef}, has come to the gate with a squad of the company, {TALE} in all, every one of them in the Banner's ash-grey. They are between contracts, {X_nameDef} says, and would hold the colony's walls for the season: camped by the colony, they take up arms against whatever comes at it while they are here. The wage is {COUNT} silver every five days, the first paid now; left unpaid, the company walks.</li>
+          <li>[raided] {X_nameDef}, a sergeant of {FACTION}, has marched a squad of {TALE} up to the gate. The colony was hit not long ago, {X_nameDef} has heard, and walls hold better with more on them: the squad would camp by the colony for the season and fight for it while they are here, for {COUNT} silver every five days, the first now. Unpaid, they strike camp and go.</li>
+          <li>[lowtech] {X_nameDef}, a sergeant of {FACTION}, has marched a squad of {TALE} up to the gate, the Banner's ash-grey on every one. The Banner fights for whoever pays and keeps its word to them, {X_nameDef} says, and would camp by the colony for the season to hold its walls: {COUNT} silver every five days, the first now. Unpaid, they strike camp and go.</li>
+          <li>[industrial|spacer] {X_nameDef} of {FACTION} has brought a squad of {TALE} to the gate, arms shouldered, the ash-grey of the Banner on every one. A season's contract, {X_nameDef} says: they camp by the colony and fight for it while they are here, for {COUNT} silver every five days, the first now. The Roll keeps every contract kept, and every one broken.</li>
+          <li>[their:grateful] The Ashen Banner thinks well of the colony, and {X_nameDef} has brought a squad of {TALE} to offer it first: a season camped by the colony, fighting for it, for {COUNT} silver every five days.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Hire them for the season ({COUNT} silver every five days)</label>
+            <outcome>The first wage is going out to {X_nameDef}, and the squad is making camp by the colony for the season.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><label>the first wage for {X_nameDef}</label></li>
+              <li Class="ColonyCouncil.DilemmaEffect_BannerHire" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
+            </effects>
+            <ways><openness>1</openness><generosity>-1</generosity></ways>
+          </li>
+          <li>
+            <label>No contract, but drill {B_nameDef} for an afternoon</label>
+            <outcome>{X_nameDef} is drilling {B_nameDef} at the gate, the squad looking on.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>the drill</label><teacher>X</teacher><student>B</student><skill>Melee</skill><duration>2~3</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>We hold our own walls</label>
+            <outcome>{X_nameDef} salutes, turns the squad about and marches them back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[hired] Paid on the day, and we hold on the day.</li>
+          <li>[hired] The Roll has your name now, so keep it clean.</li>
+          <li>[drill] Feet first, then the blade, always the feet.</li>
+          <li>[drill] Again, and slower, and again.</li>
+          <li>[refused] The road is long, and somebody always pays.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Ashen Banner: a deserter at dusk ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_BannerDeserter</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a deserter at dusk</label>
+    <workerClass>ColonyCouncil.HappeningWorker_BannerDeserter</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>20~40</ages>
+        <answerDays>0.3</answerDays>
+        <titles>
+          <li>A deserter at the gate</li>
+          <li>Struck from the Roll</li>
+        </titles>
+        <texts>
+          <li>As the light goes, someone is waiting at the gate who will not come closer: {X_nameDef}, who marched with {FACTION} until a few days ago. {X_pronoun} left the Banner on the road, {X_nameDef} says, and the Roll will have struck the name by now; {X_pronoun} asks shelter, a corner to sleep in tonight, or a place at the colony for good.</li>
+          <li>[theirfoe] As the light goes, {X_nameDef} is waiting at the gate, a soldier of {FACTION} until a few days ago. {X_pronoun} ran from the Banner, {X_nameDef} says, and knows the Banner is no friend of the colony's: {X_pronoun} asks shelter all the same, a corner for the night or a place for good.</li>
+          <li>[lowtech] {X_nameDef}, who carried a spear for {FACTION} until a few days ago, is at the gate with the dark coming on. {X_pronoun} left in the night, and the Roll has struck the name: a corner to sleep in tonight, {X_nameDef} asks, or a place at the colony, if it will have a soldier who ran.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Take {X_objective} in</label>
+            <outcome>{X_nameDef} is one of the colony now. Word will reach {FACTION} that the colony took in one they struck from the Roll.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Join" />
+              <li Class="ColonyCouncil.DilemmaEffect_BannerDeserter" />
+            </effects>
+            <ways><openness>1</openness><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>A night's lodging, and on the road at first light</label>
+            <outcome>{X_nameDef} has a warm corner for the night, and will be on the road at first light.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_NightLodging" />
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>The gate stays shut</label>
+            <outcome>{X_nameDef} nods as if expecting it, and walks off into the dark.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+            <ways><generosity>-1</generosity></ways>
+          </li>
+        </options>
+        <lines>
+          <li>[taken] I will not run from this one, I swear it.</li>
+          <li>[night] A roof tonight is more than I hoped for.</li>
+          <li>[refused] No, I would not open it either.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Ashen Banner: the Roll read at the grave ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_BannerRoll</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the Roll read at the grave</label>
+    <workerClass>ColonyCouncil.HappeningWorker_BannerRoll</workerClass>
+    <baseChance>1.2</baseChance>
+    <minRefireDays>20</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <stayHours>10~16</stayHours>
+        <answerDays>0.4</answerDays>
+        <journal>Rimfolk_Journal_Evt_BannerRoll</journal>
+        <titles>
+          <li>{DEAD}'s name on the Roll</li>
+          <li>The keeper of the Roll</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a keeper of the Roll of {FACTION}, has come to {DEAD}'s grave with a long book bound in ash-grey cloth. The Roll keeps the name of everyone who fell of their wounds holding a wall, of any people, {X_nameDef} says, and {DEAD}'s belongs in it: {X_pronoun} would read it into the Roll at the grave at dusk, with the colony gathered there to hear it. Or {X_pronoun} would stand a while at the grave with one of the colony.</li>
+          <li>[lowtech] A keeper of the Roll of {FACTION} named {X_nameDef} has walked from the fort at {PLACE} with the book under one arm. {DEAD} fell holding the colony's wall, {X_nameDef} has heard, and the Roll is the Banner's honour: every name of the fallen read into it aloud, at dusk, where they lie.</li>
+          <li>[industrial|spacer] {X_nameDef} of {FACTION} is waiting by {DEAD}'s grave with the Roll, a ledger of every name the Banner has carried home or buried, its own people's and strangers'. {DEAD} fell of their wounds holding a wall, {X_nameDef} says, and the Roll would have the name read into it at dusk, the colony gathered.</li>
+          <li>[their:grateful] The Ashen Banner thinks well of the colony, and {X_nameDef} has come from {PLACE} with the Roll the moment the fort heard of {DEAD}, to read the name into it at the grave as for one of their own.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Read the name into the Roll at dusk, the colony gathered</label>
+            <outcome>The colony will gather at {DEAD}'s grave at dusk, where {X_nameDef} will read the name into the Roll.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>{DEAD}'s name read into the Roll</label><target>Colony</target><count>8</count><to>Grave</to><pool>Rimfolk_Pool_PlayBannerRoll</pool><hours>17~20</hours><duration>1~1.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Rimfolk_Evt_NameOnRoll</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
+            </effects>
+            <ways><tradition>2</tradition></ways>
+          </li>
+          <li>
+            <label>Let {X_nameDef} stand a while at the grave, {A_nameDef} beside {X_objective}</label>
+            <outcome>{A_nameDef} is standing at {DEAD}'s grave with {X_nameDef} and the Roll.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the Roll at {DEAD}'s grave</label><to>Stranger</to><duration>0.75~1</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>We keep our own names</label>
+            <outcome>{X_nameDef} closes the book, salutes the grave, and goes.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[roll] Held the wall, and is written so.</li>
+          <li>[roll] Every name read, and none forgotten.</li>
+          <li>[thanks] Then I will read it on the road, quietly.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Kiln Guild: a commission ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_GuildCommission</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a guild commission</label>
+    <workerClass>ColonyCouncil.HappeningWorker_GuildCommission</workerClass>
+    <baseChance>1</baseChance>
+    <minRefireDays>25</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>22~45</ages>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>A journeyman of the guild</li>
+          <li>A commission for {B_nameDef}</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a journeyman of {FACTION}, has come to the gate with a token of burnt clay on a cord, the guild's mark. The guildhall at {PLACE} has heard of {B_nameDef}'s work, {X_nameDef} says, and commissions a {THING} of the colony's making, made at its own bench from what is in its stores. {X_pronoun} will come back for it when it is done and pay by its quality, as the guild does: about {COUNT} silver for a good one, more for better.</li>
+          <li>[art] {X_nameDef}, a journeyman of {FACTION}, has come to the gate with the guild's clay token on a cord. The guildhall at {PLACE} wants a {THING} from {B_nameDef}'s own hands, carved at the colony's table from what is in its stores, and {X_nameDef} will come back for it and pay by how fine it is: about {COUNT} silver for a good one, more for better.</li>
+          <li>[lowtech] A journeyman of {FACTION} named {X_nameDef} has walked from the guildhall at {PLACE} with a commission for {B_nameDef}: a {THING}, made at the colony's own bench. The guild pays for the work, not the hours, {X_nameDef} says, so the better it turns out the more it fetches, about {COUNT} silver for a good one.</li>
+          <li>[their:grateful] The Kiln Guild thinks well of the colony, and {X_nameDef} has come from {PLACE} with a commission for {B_nameDef}, a {THING}, paid by its quality when {X_nameDef} comes back for it: about {COUNT} silver for a good one.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Take the commission, {B_nameDef} making it</label>
+            <outcome>{B_nameDef} will make the {THING} at the bench from the stuff set apart for it, and {X_nameDef} will come back for it with the guild's silver.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_GuildCommission" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
+            </effects>
+            <ways><toil>1</toil><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>No commission, but let {B_nameDef} talk shop with {X_objective}</label>
+            <outcome>{B_nameDef} is at the gate with {X_nameDef}, the two of them going over the guild's marks and the colony's work.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>talk of the guild's work</label><to>Stranger</to><duration>1~1.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Crafting</skill><xp>250</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>We make for ourselves</label>
+            <outcome>{X_nameDef} tucks the clay token away and goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[commission] Put your mark on the base when it is done, small.</li>
+          <li>[commission] The guild pays for the work, not the hours.</li>
+          <li>[refused] The guildhall's door stays open to you.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Kiln Guild: the commission collected ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_GuildCollects</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the guild comes for the commission</label>
+    <workerClass>ColonyCouncil.HappeningWorker_GuildCollects</workerClass>
+    <baseChance>2</baseChance>
+    <minRefireDays>3</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <stayHours>8~14</stayHours>
+        <answerDays>0.75</answerDays>
+        <titles>
+          <li>{X_nameDef} comes for the commission</li>
+          <li>The guild's journeyman is back</li>
+        </titles>
+        <texts>
+          <li>[maker] {X_nameDef}, the journeyman of {FACTION}, is back at the gate for the {THING} {A_nameDef} made for the guild. It turned out {TALE}, and the guild pays by the work: {COUNT} silver for it.</li>
+          <li>[!maker] {X_nameDef}, the journeyman of {FACTION}, is back at the gate for the {THING} made at the colony's bench for the guild. It turned out {TALE}, and the guild pays by the work: {COUNT} silver for it.</li>
+          <li>[masterwork] {X_nameDef}, the journeyman of {FACTION}, is back for the {THING} the guild commissioned. It turned out {TALE}, and {X_nameDef} turns it in the light a long while before naming the price: {COUNT} silver, as the guild pays for work like this.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Hand it over for {COUNT} silver</label>
+            <outcome>The {THING} was carried out to {X_nameDef}, who looked it over a long while and paid the {COUNT} silver.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SellArt"><commission>true</commission></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Hand it over, and have {A_nameDef} hear what the guild sees in it</label>
+            <outcome>The {THING} is going out to {X_nameDef}, and {A_nameDef} is at the gate with {X_objective}, hearing what the guild saw in it and what it would do better.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SellArt"><commission>true</commission></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the guild's eye</label><to>Stranger</to><duration>1~1.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Crafting</skill><xp>400</xp></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Keep it after all</label>
+            <outcome>The colony kept the {THING}. {X_nameDef} marked it in the guild's book as a commission not kept, and went home with an empty pack.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_KeepCommission" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>-6</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+            <ways><openness>-1</openness><generosity>-1</generosity></ways>
+          </li>
+        </options>
+        <lines>
+          <li>[bought] Good work, and the guild will say so.</li>
+          <li>[bought] Marked and paid, as the guild does.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Kiln Guild: a bid on a masterwork ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_GuildBid</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a bid on a masterwork</label>
+    <workerClass>ColonyCouncil.HappeningWorker_GuildBid</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>25</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>40~70</ages>
+        <stayHours>14~20</stayHours>
+        <answerDays>0.75</answerDays>
+        <titles>
+          <li>The guild bids on "{TALE}"</li>
+          <li>A master-trader of the guild</li>
+        </titles>
+        <texts>
+          <li>[maker] {X_nameDef}, master-trader of {FACTION}, has come a long way on word of a masterwork at the colony, and has been to look at it: "{TALE}", the {THING} {A_nameDef} made. The guild buys the best work of the region for its hall at {PLACE}, and bids {COUNT} silver for it, well over what any trader would give.</li>
+          <li>[!maker] {X_nameDef}, master-trader of {FACTION}, heard of the colony's "{TALE}" on the road and has been to look at it. The guild keeps the finest work of the region in its hall at {PLACE}, and bids {COUNT} silver for the {THING}, well over its worth to a trader.</li>
+          <li>[legendary] {X_nameDef}, master-trader of {FACTION}, stood a long time before "{TALE}" without a word. Work like that comes along once in a guild's lifetime, {X_nameDef} says at last, and the hall at {PLACE} would give it a place of honour: {COUNT} silver for the {THING}, far more than any trader would give.</li>
+          <li>[lowtech] A master-trader of {FACTION}, {X_nameDef}, has walked from the guildhall at {PLACE} on a rumour of the colony's "{TALE}", and found it true. {COUNT} silver for the {THING}, {X_nameDef} offers, for the guild's hall.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Sell "{TALE}" for {COUNT} silver</label>
+            <outcome>The {THING} was carried out to {X_nameDef}, who paid the {COUNT} silver there and then and packed it in straw for the road.</outcome>
+            <outcomes>
+              <li>[standing] The {THING} was taken up from where it stood and carried out to {X_nameDef}, who paid the {COUNT} silver and packed it in straw for the road.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SellArt" />
+            </effects>
+            <ways><openness>1</openness><generosity>-1</generosity></ways>
+          </li>
+          <li>
+            <label>Keep it</label>
+            <outcome>{X_nameDef} took a last long look at "{TALE}". Word of it will reach the guildhall at {PLACE}, and the colony's work will be talked of there.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_ArtWord" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>Send them on</label>
+            <outcome>{X_nameDef} bows and goes, without another word about the piece.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[view] Look at the line of that, just there.</li>
+          <li>[view] The guild has nothing finer in the hall.</li>
+          <li>[bought] The hall will be proud of this one.</li>
+          <li>[kept] Keep it well, because it deserves keeping.</li>
+          <li>[refused] The guild will ask again, some year.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

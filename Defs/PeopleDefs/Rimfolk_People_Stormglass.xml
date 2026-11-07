@@ -1,0 +1,656 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The Stormglass Conclave (docs/design/peoples-next.md, the fifth of the eight; docs/design/peoples.md, "Release E";
+    Source/ColonyCouncil/Peoples/PeoplesE.cs): weather-seers who have written down every storm on their plateau for three
+    hundred years in a tower of glass vessels, and who hold that the weather is the planet thinking aloud. Industrial, on
+    the game's outlander parent; they arise in every age (ariseAges 0~3): in the tribal and medieval ages their
+    storm-walkers carry crossbows, in the spacer age charge rifles (ageArms). The order's coat is storm slate, of any cut,
+    hung with brass-capped vials (their signature); everything under it varies. Most of their readers are psycasters (a
+    psylink, with Vanilla Psycasts Expanded a Staticlord's or a Frostshaper's path), a few A RimWorld of Magic's
+    storm-born. Their towns are glass towers with rods on the roof and a weather garden (Rimfolk_Plan_GlassTower). At the
+    gate: a season's watch on the colony's sky for a fee, every cold snap, heat wave, fallout or haze the game sends held a
+    day and told first by their runner, and reckoned by the colony's fields by the weather (Rimfolk_Evt_GlassReading); a
+    stormglass rod set on the colony's roof that draws the lightning and keeps the forecasts right
+    (Rimfolk_Evt_GlassRod); a reader who teaches the colony's weather-reader to read the glass (Rimfolk_Evt_GlassLesson).
+    Their ask: an apprentice who stays a season to study the colony's sky (Rimfolk_Mission_GlassApprentice). Their
+    founding: Hesper Lyle, the glassblower who sealed a vial of every storm. Faith (Ideology): nature first, the sky read
+    (VE Memes' astrology) and the psychic tide (VE Memes' psychic focus). Kinds of people: genies, yttakin, highmates,
+    Rimsenal's Åskbarns and Uredde, avaloi, archons, high elves, three in four baseliners and more.
+  -->
+
+  <FactionDef ParentName="OutlanderFactionBase">
+    <defName>Rimfolk_Stormglass</defName>
+    <label>Stormglass Conclave</label>
+    <description>Weather-seers who keep a tower of glass vessels on a stormy plateau and have written down every storm that crossed it for three hundred years. They hold that the sky is the world thinking aloud and that the weather is the planet's psychic tide, and that a trained mind can feel a cold snap days before the frost comes. Some of them can.\n\nTheir ways began with a glassblower called Hesper Lyle, whose village lost its whole harvest to a hail that nobody saw coming. She sealed a vial of rain from every storm after that, wrote on its brass cap the day and what came after it, and set it on a shelf, and after thirty years she could read a frost in the glass a week before it fell. Those who learned it from her built the tower round her shelves. Every reader still carries a few of the brass-capped vials on the coat, and every one of them was filled by somebody's hand.\n\nThey speak quietly and exactly, about the sky as if it were a person, and they are rarely wrong and never sure. For a fee they will tell anyone what is coming. Each tower is kept by its keeper of the glass, and the Conclave by its first reader.</description>
+    <pawnSingular>reader</pawnSingular>
+    <pawnsPlural>readers</pawnsPlural>
+    <leaderTitle>first reader</leaderTitle>
+    <techLevel>Industrial</techLevel>
+    <basicMemberKind>Rimfolk_Stormglass_Reader</basicMemberKind>
+    <factionNameMaker>Rimfolk_Namer_Stormglass</factionNameMaker>
+    <settlementNameMaker>Rimfolk_Namer_StormglassTown</settlementNameMaker>
+    <factionIconPath>ColonyCouncil/Peoples/Stormglass</factionIconPath>
+    <settlementTexturePath>ColonyCouncil/Peoples/StormglassTown</settlementTexturePath>
+    <colorSpectrum>
+      <li>(0.22, 0.28, 0.42)</li>
+      <li>(0.36, 0.44, 0.60)</li>
+    </colorSpectrum>
+    <hidden>false</hidden>
+    <naturalEnemy>false</naturalEnemy>
+    <permanentEnemy>false</permanentEnemy>
+    <canSiege>false</canSiege>
+    <requiredCountAtGameStart>0</requiredCountAtGameStart>
+    <startingCountAtWorldCreation>1</startingCountAtWorldCreation>
+    <maxConfigurableAtWorldCreation>9999</maxConfigurableAtWorldCreation>
+    <configurationListOrderPriority>21</configurationListOrderPriority>
+    <settlementGenerationWeight>0.35</settlementGenerationWeight>
+    <raidCommonalityFromPointsCurve Inherit="False">
+      <points>
+        <li>(0, 0.2)</li>
+      </points>
+    </raidCommonalityFromPointsCurve>
+    <xenotypeSet Inherit="False">
+      <xenotypeChances>
+        <Genie MayRequire="Ludeon.RimWorld.Biotech">0.03</Genie>
+        <Yttakin MayRequire="Ludeon.RimWorld.Biotech">0.03</Yttakin>
+        <Highmate MayRequire="Ludeon.RimWorld.Biotech">0.02</Highmate>
+        <Askbarn MayRequire="Ludeon.RimWorld.Biotech,rimsenal.askbarn">0.04</Askbarn>
+        <Uredd MayRequire="Ludeon.RimWorld.Biotech,rimsenal.askbarn">0.02</Uredd>
+        <DV_Avaloi MayRequire="Ludeon.RimWorld.Biotech,det.avaloi">0.03</DV_Avaloi>
+        <VRE_Archon MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.archon">0.02</VRE_Archon>
+        <DevDesigner_XenotypeHighElves MayRequire="Ludeon.RimWorld.Biotech,DevDesigner.Elves.Continued">0.02</DevDesigner_XenotypeHighElves>
+      </xenotypeChances>
+    </xenotypeSet>
+    <fixedIdeo>true</fixedIdeo>
+    <ideoName>The Read Sky</ideoName>
+    <ideoDescription>The sky is the world thinking aloud, and a patient mind can learn its hand. Every storm is written down and every vial kept, because the planet repeats itself to those who listen; what the sky has done it will do again, and the frost that killed a harvest once is not let to kill another. The world comes first and the people who read it second, and a reader who is sure is a reader who has stopped listening. Hesper Lyle sealed a vial of every storm for thirty years until the glass spoke back, and the tower still fills one for each.</ideoDescription>
+    <forcedMemes>
+      <li MayRequire="Ludeon.RimWorld.Ideology">NaturePrimacy</li>
+      <!-- The sky read for what it says: Vanilla Ideology Expanded's astrology. -->
+      <li MayRequire="VanillaExpanded.VMemesE">VME_Astrology</li>
+      <!-- The readers who have watched the sky longest heard first, as Hesper Lyle took thirty years to read it: Vanilla
+           Ideology Expanded's elders (its psychic focus needs Royalty as well, so not that). -->
+      <li MayRequire="VanillaExpanded.VMemesE">VME_Elders</li>
+    </forcedMemes>
+    <structureMemeWeights Inherit="False">
+      <Structure_Animist MayRequire="Ludeon.RimWorld.Ideology">3</Structure_Animist>
+      <Structure_TheistAbstract MayRequire="Ludeon.RimWorld.Ideology">1</Structure_TheistAbstract>
+      <VME_Structure_Esotericism MayRequire="VanillaExpanded.VMemesE">1</VME_Structure_Esotericism>
+    </structureMemeWeights>
+    <styles>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Islamic</li>
+    </styles>
+    <caravanTraderKinds Inherit="False">
+      <li>Rimfolk_Caravan_Stormglass</li>
+    </caravanTraderKinds>
+    <visitorTraderKinds Inherit="False">
+      <li>Rimfolk_Visitor_Stormglass</li>
+    </visitorTraderKinds>
+    <baseTraderKinds Inherit="False">
+      <li>Rimfolk_Base_Stormglass</li>
+    </baseTraderKinds>
+    <pawnGroupMakers Inherit="False">
+      <li>
+        <!-- A fight: the storm-walkers, the readers behind them -->
+        <kindDef>Combat</kindDef>
+        <options>
+          <Rimfolk_Stormglass_Walker>12</Rimfolk_Stormglass_Walker>
+          <Rimfolk_Stormglass_Reader>4</Rimfolk_Stormglass_Reader>
+        </options>
+      </li>
+      <li>
+        <kindDef>Peaceful</kindDef>
+        <options>
+          <Rimfolk_Stormglass_Reader>18</Rimfolk_Stormglass_Reader>
+          <Rimfolk_Stormglass_Apprentice>6</Rimfolk_Stormglass_Apprentice>
+          <Rimfolk_Stormglass_Walker>4</Rimfolk_Stormglass_Walker>
+          <Villager_Child MayRequire="Ludeon.RimWorld.Biotech">2</Villager_Child>
+        </options>
+      </li>
+      <li>
+        <!-- The vial-seller's string: forecasts, warm clothes, medicine for the cold, and glass -->
+        <kindDef>Trader</kindDef>
+        <traders>
+          <Rimfolk_Stormglass_VialSeller>1</Rimfolk_Stormglass_VialSeller>
+        </traders>
+        <carriers>
+          <Muffalo>3</Muffalo>
+          <Yak>3</Yak>
+          <Alpaca>2</Alpaca>
+        </carriers>
+        <guards>
+          <Rimfolk_Stormglass_Walker>8</Rimfolk_Stormglass_Walker>
+          <Rimfolk_Stormglass_Reader>2</Rimfolk_Stormglass_Reader>
+        </guards>
+      </li>
+      <li>
+        <kindDef>Settlement</kindDef>
+        <options>
+          <Rimfolk_Stormglass_Reader>10</Rimfolk_Stormglass_Reader>
+          <Rimfolk_Stormglass_Walker>10</Rimfolk_Stormglass_Walker>
+          <Rimfolk_Stormglass_Apprentice>4</Rimfolk_Stormglass_Apprentice>
+          <Rimfolk_Stormglass_VialSeller>2</Rimfolk_Stormglass_VialSeller>
+        </options>
+      </li>
+    </pawnGroupMakers>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleExtension">
+        <calling>seers</calling>
+        <townWord>tower</townWord>
+        <townWords>towers</townWords>
+        <head>keeper of the glass</head>
+        <heir>second keeper</heir>
+        <envoy>storm-walker</envoy>
+        <trader>vial-seller</trader>
+        <courier>vial-runner</courier>
+        <couriers>vial-runners</couriers>
+        <caravanWeight>0.7</caravanWeight>
+        <camps>
+          <li>Rimfolk_Camp_Watchers</li>
+          <li>Council_Camp_Surveyors</li>
+          <li>Council_Camp_Hermit</li>
+        </camps>
+        <plan>Rimfolk_Plan_GlassTower</plan>
+        <honours>the vial kept, the storm written down and a forecast that comes true</honours>
+        <fears>the hail nobody saw coming, a broken glass and a reader who is sure</fears>
+        <sayings>
+          <li>The sky is the world thinking aloud.</li>
+          <li>Every storm is written down.</li>
+          <li>Never wrong, never sure.</li>
+          <li>The glass speaks to those who wait.</li>
+          <li>What the sky has done, it will do again.</li>
+        </sayings>
+        <townGoods>
+          <ComponentIndustrial>4~8</ComponentIndustrial>
+          <Steel>50~120</Steel>
+          <MedicineHerbal>6~12</MedicineHerbal>
+          <Cloth>40~90</Cloth>
+          <Chemfuel>20~50</Chemfuel>
+        </townGoods>
+        <ariseAges>0~3</ariseAges>
+      </li>
+    </modExtensions>
+  </FactionDef>
+
+  <!-- ===================== Their people ===================== -->
+
+  <!--
+    How alike they look (docs/design/peoples.md, "Release E"): the order's coat, not its cut. Every reader wears a coat of
+    any cut in storm slate (the game's dusters, jackets and parkas; Vanilla Apparel Expanded's coats), hung with
+    brass-capped vials; under it whatever they like (the game's and Vanilla Apparel Expanded's clothes, hats and caps;
+    Vanilla Apparel Expanded - Accessories' packs and tool belts, never the soldiers' belts). The storm-walkers who see
+    the readers through the storms share one kit: the slate duster over a flak vest, a helmet and the game's rifles; in
+    the tribal and medieval ages crossbows (Vanilla Weapons Expanded, Medieval 2's arbalest), in the spacer age charge
+    rifles. The first reader may wear Royalty's psychic finery. Most of the readers are psycasters (Royalty's psylink;
+    with Vanilla Psycasts Expanded a Staticlord's or a Frostshaper's path), a few A RimWorld of Magic's storm-born or
+    frost-hearted. They carry herbs for the cold, a book of the storms or warm cloth. Without any mod: the game's coats
+    and clothes, revolvers, rifles and knives.
+  -->
+  <PawnKindDef Name="Rimfolk_StormglassKindBase" Abstract="True">
+    <race>Human</race>
+    <defaultFactionDef>Rimfolk_Stormglass</defaultFactionDef>
+    <chemicalAddictionChance>0.02</chemicalAddictionChance>
+    <backstoryCryptosleepCommonality>0.02</backstoryCryptosleepCommonality>
+    <invNutrition>2.55</invNutrition>
+    <specificApparelRequirements>
+      <!-- Storm slate on the duster and the jacket, whoever wears one. -->
+      <li><apparelDef>Apparel_Duster</apparelDef><color>(0.28, 0.34, 0.50)</color></li>
+      <li><apparelDef>Apparel_Jacket</apparelDef><color>(0.28, 0.34, 0.50)</color></li>
+    </specificApparelRequirements>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_StormglassKindBase">
+    <defName>Rimfolk_Stormglass_Reader</defName>
+    <label>reader</label>
+    <combatPower>45</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.6~1.3</gearHealthRange>
+    <specificApparelRequirements>
+      <!-- The order's coat in storm slate, of any cut. -->
+      <li>
+        <apparelLayer>Shell</apparelLayer>
+        <bodyPartGroup>Torso</bodyPartGroup>
+        <color>(0.28, 0.34, 0.50)</color>
+        <alternateTagChoices>
+          <li><tag>IndustrialAdvanced</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+    </specificApparelRequirements>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Industrial</li>
+      <li>Rimfolk_WideHat</li>
+    </apparelTags>
+    <!-- No soldiers' belts, turret packs or banners on a reader. -->
+    <apparelDisallowTags>
+      <li>IndustrialMilitaryBasic</li>
+      <li>IndustrialMilitaryAdvanced</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_AmmoPack</li>
+      <li>MedievalMilitary</li>
+    </apparelDisallowTags>
+    <apparelAllowHeadgearChance>0.6</apparelAllowHeadgearChance>
+    <apparelMoney>260~520</apparelMoney>
+    <weaponTags>
+      <li>SimpleGun</li>
+      <li>MedievalMeleeBasic</li>
+    </weaponTags>
+    <weaponMoney>60~180</weaponMoney>
+    <!-- Herbs for the cold, a book of the storms, or warm cloth. -->
+    <inventoryOptions>
+      <skipChance>0.45</skipChance>
+      <subOptionsChooseOne>
+        <li><thingDef>MedicineHerbal</thingDef><countRange>1~2</countRange><choiceChance>2</choiceChance></li>
+        <li><thingDef>TextBook</thingDef><countRange>1~1</countRange></li>
+        <li><thingDef>Cloth</thingDef><countRange>10~20</countRange></li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>12~20</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <!-- Most readers feel the weather coming: a psylink, with Vanilla Psycasts Expanded a Staticlord's or a Frostshaper's path. -->
+          <li>
+            <psylink>1~2</psylink>
+            <paths>
+              <li>VPE_Staticlord</li>
+              <li>VPE_Frostshaper</li>
+            </paths>
+            <chance>0.35</chance>
+          </li>
+          <li><trait>StormBorn</trait><chance>0.05</chance></li>
+          <li><trait>HeartOfFrost</trait><chance>0.03</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_StormglassKindBase">
+    <defName>Rimfolk_Stormglass_Walker</defName>
+    <label>storm-walker</label>
+    <combatPower>65</combatPower>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.6~1.5</gearHealthRange>
+    <!-- The storm-walkers' kit: the slate duster over a flak vest, a helmet. -->
+    <apparelRequired>
+      <li>Apparel_Duster</li>
+      <li>Apparel_FlakVest</li>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialMilitaryBasic</li>
+      <li>IndustrialBasic</li>
+    </apparelTags>
+    <apparelMoney>500~800</apparelMoney>
+    <weaponTags>
+      <li>Gun</li>
+    </weaponTags>
+    <weaponMoney>200~420</weaponMoney>
+    <requiredWorkTags>Violent</requiredWorkTags>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>14~22</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li>
+            <psylink>1~1</psylink>
+            <paths>
+              <li>VPE_Staticlord</li>
+            </paths>
+            <chance>0.1</chance>
+          </li>
+          <li><trait>StormBorn</trait><chance>0.05</chance></li>
+          <li><trait>TM_Sniper</trait><chance>0.03</chance></li>
+        </gifts>
+        <!-- Crossbows in the tribal and medieval ages; charge rifles in the spacer age. -->
+        <ageArms>
+          <li>
+            <ages>0~1</ages>
+            <weaponTags>
+              <li>NeolithicRangedHeavy</li>
+              <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Arbalest</li>
+            </weaponTags>
+          </li>
+          <li>
+            <ages>3~3</ages>
+            <money>1600</money>
+            <weaponTags>
+              <li>SpacerGun</li>
+            </weaponTags>
+          </li>
+        </ageArms>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_StormglassKindBase">
+    <defName>Rimfolk_Stormglass_Apprentice</defName>
+    <label>glass apprentice</label>
+    <combatPower>35</combatPower>
+    <isFighter>false</isFighter>
+    <minGenerationAge>16</minGenerationAge>
+    <maxGenerationAge>26</maxGenerationAge>
+    <itemQuality>Poor</itemQuality>
+    <gearHealthRange>0.5~1.2</gearHealthRange>
+    <specificApparelRequirements>
+      <li>
+        <apparelLayer>Shell</apparelLayer>
+        <bodyPartGroup>Torso</bodyPartGroup>
+        <color>(0.28, 0.34, 0.50)</color>
+        <alternateTagChoices>
+          <li><tag>IndustrialAdvanced</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+    </specificApparelRequirements>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li>Western</li>
+    </apparelTags>
+    <apparelDisallowTags>
+      <li>IndustrialMilitaryBasic</li>
+      <li>IndustrialMilitaryAdvanced</li>
+    </apparelDisallowTags>
+    <apparelMoney>200~380</apparelMoney>
+    <weaponTags>
+      <li>MedievalMeleeBasic</li>
+      <li>SimpleGun</li>
+    </weaponTags>
+    <weaponMoney>40~140</weaponMoney>
+    <inventoryOptions>
+      <skipChance>0.5</skipChance>
+      <subOptionsChooseOne>
+        <li><thingDef>TextBook</thingDef><countRange>1~1</countRange></li>
+        <li><thingDef>MedicineHerbal</thingDef><countRange>1~1</countRange></li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <initialWillRange>1~3</initialWillRange>
+    <initialResistanceRange>8~14</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li>
+            <psylink>1~1</psylink>
+            <paths>
+              <li>VPE_Frostshaper</li>
+              <li>VPE_Staticlord</li>
+            </paths>
+            <chance>0.15</chance>
+          </li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_StormglassKindBase">
+    <defName>Rimfolk_Stormglass_VialSeller</defName>
+    <label>vial-seller</label>
+    <trader>true</trader>
+    <combatPower>40</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.8~1.3</gearHealthRange>
+    <specificApparelRequirements>
+      <li>
+        <apparelLayer>Shell</apparelLayer>
+        <bodyPartGroup>Torso</bodyPartGroup>
+        <color>(0.28, 0.34, 0.50)</color>
+        <alternateTagChoices>
+          <li><tag>IndustrialAdvanced</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+    </specificApparelRequirements>
+    <apparelRequired>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li>Rimfolk_WideHat</li>
+    </apparelTags>
+    <apparelMoney>300~560</apparelMoney>
+    <weaponTags>
+      <li>SimpleGun</li>
+    </weaponTags>
+    <weaponMoney>80~160</weaponMoney>
+    <skills>
+      <li>
+        <skill>Social</skill>
+        <range>5~12</range>
+      </li>
+    </skills>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>10~16</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li>
+            <psylink>1~1</psylink>
+            <paths>
+              <li>VPE_Frostshaper</li>
+            </paths>
+            <chance>0.08</chance>
+          </li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_StormglassKindBase">
+    <defName>Rimfolk_Stormglass_FirstReader</defName>
+    <label>first reader</label>
+    <combatPower>90</combatPower>
+    <factionLeader>true</factionLeader>
+    <minGenerationAge>50</minGenerationAge>
+    <itemQuality>Good</itemQuality>
+    <gearHealthRange>0.8~1.2</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_Duster</li>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li MayRequire="Ludeon.RimWorld.Royalty">Psychic</li>
+    </apparelTags>
+    <apparelMoney>700~1400</apparelMoney>
+    <weaponTags>
+      <li>SimpleGun</li>
+    </weaponTags>
+    <weaponMoney>100~200</weaponMoney>
+    <skills>
+      <li>
+        <skill>Social</skill>
+        <range>6~13</range>
+      </li>
+    </skills>
+    <inventoryOptions>
+      <subOptionsTakeAll>
+        <li><thingDef>TextBook</thingDef><countRange>1~1</countRange></li>
+      </subOptionsTakeAll>
+    </inventoryOptions>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>16~24</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li>
+            <psylink>2~4</psylink>
+            <paths>
+              <li>VPE_Staticlord</li>
+              <li>VPE_Frostshaper</li>
+            </paths>
+            <chance>0.45</chance>
+          </li>
+          <li><trait>StormBorn</trait><chance>0.1</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <!-- ===================== Their traders: the vial-seller's string ===================== -->
+
+  <TraderKindDef>
+    <defName>Rimfolk_Caravan_Stormglass</defName>
+    <label>vial-seller's string</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>600~1100</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineHerbal</thingDef>
+        <countRange>8~16</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineIndustrial</thingDef>
+        <countRange>2~6</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>TextBook</thingDef>
+        <countRange>1~3</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentIndustrial</thingDef>
+        <countRange>3~8</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Cloth</thingDef>
+        <countRange>60~140</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>BasicClothing</tradeTag>
+        <countRange>3~5</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponRanged</tradeTag>
+        <countRange>1~2</countRange>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuySingleDef"><thingDef>TextBook</thingDef></li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Visitor_Stormglass</defName>
+    <label>readers on the road</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>150~350</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineHerbal</thingDef>
+        <countRange>3~8</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>TextBook</thingDef>
+        <countRange>1~1</countRange>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Base_Stormglass</defName>
+    <label>glass tower</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>900~1600</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineHerbal</thingDef>
+        <countRange>10~20</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineIndustrial</thingDef>
+        <countRange>4~10</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>TextBook</thingDef>
+        <countRange>2~4</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentIndustrial</thingDef>
+        <countRange>5~12</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Steel</thingDef>
+        <countRange>100~250</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Cloth</thingDef>
+        <countRange>80~200</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>BasicClothing</tradeTag>
+        <countRange>4~6</countRange>
+      </li>
+      <li Class="StockGenerator_Tag">
+        <tradeTag>Art</tradeTag>
+        <thingDefCountRange>1~2</thingDefCountRange>
+        <countRange>1~1</countRange>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuySingleDef"><thingDef>TextBook</thingDef></li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <!-- ===================== Their names ===================== -->
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_Stormglass</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->The [glassThing] Conclave</li>
+        <li>r_name(p=2)->Readers of [PlaceOutlander]</li>
+        <li>r_name->Conclave of the [glassThing]</li>
+        <li>r_name->The [glassVirtue] Glass</li>
+        <li>r_name->Keepers of the [glassThing]</li>
+        <li>glassThing->Stormglass</li>
+        <li>glassThing->Brass Cap</li>
+        <li>glassThing->Hundred Vials</li>
+        <li>glassThing->Plateau</li>
+        <li>glassThing->Long Record</li>
+        <li>glassThing->First Frost</li>
+        <li>glassThing->Sealed Rain</li>
+        <li>glassVirtue->Patient</li>
+        <li>glassVirtue->Listening</li>
+        <li>glassVirtue->Clouded</li>
+        <li>glassVirtue->Clear</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_StormglassTown</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->[PlaceOutlander] Tower</li>
+        <li>r_name(p=2)->[PlaceOutlander] Glass</li>
+        <li>r_name->[towerWord] of [PlaceOutlander]</li>
+        <li>r_name->[towerVirtue] Tower</li>
+        <li>towerWord->Glasshouse</li>
+        <li>towerWord->Weather Garden</li>
+        <li>towerWord->Rod Hill</li>
+        <li>towerVirtue->Lyle's</li>
+        <li>towerVirtue->Hailstone</li>
+        <li>towerVirtue->Brass Cap</li>
+        <li>towerVirtue->High Wind</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>

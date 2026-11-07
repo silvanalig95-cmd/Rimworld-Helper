@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The Kiln Guild (docs/design/peoples-next.md, the eighth of the eight; docs/design/peoples.md, "Release E";
+    Source/ColonyCouncil/Peoples/PeoplesE2.cs): masons, glassblowers, smiths and carvers bound by guild marks cut into
+    everything they make, whose towns are the region's finest work and whose apprentices spend a wander-year among other
+    peoples. Medieval, on the game's tribal parent with the outlanders' stories; they arise in every age (ariseAges 0~3),
+    and their guild guards carry the fine blade of the age as a display (ageArms: an ikwa among the tribes, the longsword,
+    Melee Weapons For All Post-Medieval Tech Levels' industrial longsword, Royalty's and the mods' ultratech blades in the
+    spacer age). Their signature is the guild's ochre: on the leather apron (Vanilla Apparel Expanded) and the work shirt
+    under it, on the guards' cape; everything else is work clothes of every make, hammers and tools. A few are A
+    RimWorld of Magic's enchanters and geomancers, a technomancer in the later ages. Their towns are kilns, forges, a
+    market of masterworks and a carved guildhall (Rimfolk_Plan_Guildhall). At the gate: a journeyman commissions a piece
+    from the colony's best maker, paid by its quality when it is collected (Rimfolk_Evt_GuildCommission,
+    Rimfolk_Evt_GuildCollects); a master-trader bids on the colony's masterwork (Rimfolk_Evt_GuildBid). Their ask: a
+    wander-year apprentice who stays to learn at the colony's best maker's bench and leaves a piece of guild work
+    (Rimfolk_Mission_WanderYear). The art collector comes from them likeliest. Their founding: Oswin Kell, the mason who
+    cut his mark into every stone of the bridge at Hardwater. Faith (Ideology): spreading their work (proselytizer), VE
+    Memes' craft culture and Alpha Memes' artist. Kinds of people: stoneborn, dirtmoles, genies, orangutans, lapis and
+    boglegs, four in five baseliners.
+  -->
+
+  <FactionDef ParentName="TribeBase">
+    <defName>Rimfolk_KilnGuild</defName>
+    <label>Kiln Guild</label>
+    <description>Masons, glassblowers, smiths and carvers bound by the guild marks they cut into everything they make. Their towns are the finest work in the region, built to be looked at, and their apprentices spend a wander-year living among other peoples, to learn and to leave a little guild work behind. Anyone can stack stone, they say; the guild builds things people come to look at.\n\nTheir ways began with a mason called Oswin Kell, who rebuilt the bridge at Hardwater after the flood three times and cut his mark into every stone of it, so that the next flood would know whom to blame. The fourth bridge still stands. Those who worked beside him swore to mark everything they made and to make it well enough to be proud of the mark, and they were the first guild. A guild hand still wears the mark branded on a bracer, and the ochre of the first kilns on the apron.\n\nThey are proud, warm and blunt, quick to praise good work and quicker to say when it is bad. They will pay well for a well-made thing, from anyone. Each guildhall is kept by its kiln-warden, and the guild by its guildmaster.</description>
+    <pawnSingular>guild hand</pawnSingular>
+    <pawnsPlural>guild hands</pawnsPlural>
+    <leaderTitle>guildmaster</leaderTitle>
+    <techLevel>Medieval</techLevel>
+    <basicMemberKind>Rimfolk_KilnGuild_Journeyman</basicMemberKind>
+    <factionNameMaker>Rimfolk_Namer_KilnGuild</factionNameMaker>
+    <settlementNameMaker>Rimfolk_Namer_KilnGuildTown</settlementNameMaker>
+    <factionIconPath>ColonyCouncil/Peoples/KilnGuild</factionIconPath>
+    <settlementTexturePath>ColonyCouncil/Peoples/KilnGuildTown</settlementTexturePath>
+    <colorSpectrum>
+      <li>(0.74, 0.54, 0.12)</li>
+      <li>(0.94, 0.76, 0.28)</li>
+    </colorSpectrum>
+    <hidden>false</hidden>
+    <naturalEnemy>false</naturalEnemy>
+    <permanentEnemy>false</permanentEnemy>
+    <canSiege>false</canSiege>
+    <requiredCountAtGameStart>0</requiredCountAtGameStart>
+    <startingCountAtWorldCreation>1</startingCountAtWorldCreation>
+    <maxConfigurableAtWorldCreation>9999</maxConfigurableAtWorldCreation>
+    <configurationListOrderPriority>43</configurationListOrderPriority>
+    <settlementGenerationWeight>0.45</settlementGenerationWeight>
+    <allowedCultures Inherit="False">
+      <li>Rustican</li>
+    </allowedCultures>
+    <backstoryFilters Inherit="False">
+      <li>
+        <categories>
+          <li>Outlander</li>
+        </categories>
+        <commonality>0.7</commonality>
+      </li>
+      <li>
+        <categories>
+          <li>Tribal</li>
+        </categories>
+        <commonality>0.3</commonality>
+      </li>
+    </backstoryFilters>
+    <raidCommonalityFromPointsCurve Inherit="False">
+      <points>
+        <li>(0, 0.2)</li>
+      </points>
+    </raidCommonalityFromPointsCurve>
+    <xenotypeSet Inherit="False">
+      <xenotypeChances>
+        <Dirtmole MayRequire="Ludeon.RimWorld.Biotech">0.03</Dirtmole>
+        <Genie MayRequire="Ludeon.RimWorld.Biotech">0.03</Genie>
+        <Stoneborn MayRequire="Ludeon.RimWorld.Biotech,det.stoneborn">0.04</Stoneborn>
+        <Orangutan MayRequire="Ludeon.RimWorld.Biotech,onlymonkey.awakenedapes">0.03</Orangutan>
+        <AG_Lapis MayRequire="Ludeon.RimWorld.Biotech,sarg.alphagenes">0.02</AG_Lapis>
+        <DV_Bogleg MayRequire="Ludeon.RimWorld.Biotech,det.boglegs">0.02</DV_Bogleg>
+      </xenotypeChances>
+    </xenotypeSet>
+    <fixedIdeo>true</fixedIdeo>
+    <ideoName>The Mark</ideoName>
+    <ideoDescription>A thing made well is a prayer that stays standing, and whoever makes it puts their mark on it and answers for it. The craft is the faith: work is honoured above rank, the master teaches and the journeyman learns, and an apprentice's wander-year among strangers carries the guild's work into every town that will have it. Bad work is a lie told in stone. Oswin Kell cut his mark into every stone of the bridge at Hardwater, three bridges and three floods, and the fourth bridge with his mark on it is still standing.</ideoDescription>
+    <forcedMemes>
+      <!-- The guild's work carried into every town on the wander-year. -->
+      <li MayRequire="Ludeon.RimWorld.Ideology">Proselytizer</li>
+      <!-- The craft above rank: Vanilla Ideology Expanded's craft culture. -->
+      <li MayRequire="VanillaExpanded.VMemesE">VME_CraftCulture</li>
+      <!-- Things made to be looked at: Alpha Memes' artist. -->
+      <li MayRequire="sarg.alphamemes">AM_Artist</li>
+    </forcedMemes>
+    <structureMemeWeights Inherit="False">
+      <Structure_Ideological MayRequire="Ludeon.RimWorld.Ideology">2</Structure_Ideological>
+      <Structure_TheistAbstract MayRequire="Ludeon.RimWorld.Ideology">1</Structure_TheistAbstract>
+      <VME_Structure_Corporate MayRequire="VanillaExpanded.VMemesE">1</VME_Structure_Corporate>
+    </structureMemeWeights>
+    <styles>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Hindu</li>
+    </styles>
+    <caravanTraderKinds Inherit="False">
+      <li>Rimfolk_Caravan_KilnGuild</li>
+    </caravanTraderKinds>
+    <visitorTraderKinds Inherit="False">
+      <li>Rimfolk_Visitor_KilnGuild</li>
+    </visitorTraderKinds>
+    <baseTraderKinds Inherit="False">
+      <li>Rimfolk_Base_KilnGuild</li>
+    </baseTraderKinds>
+    <pawnGroupMakers Inherit="False">
+      <li>
+        <!-- A fight: the guild guards with their fine blades, journeymen with hammers -->
+        <kindDef>Combat</kindDef>
+        <options>
+          <Rimfolk_KilnGuild_Guard>12</Rimfolk_KilnGuild_Guard>
+          <Rimfolk_KilnGuild_Journeyman>5</Rimfolk_KilnGuild_Journeyman>
+        </options>
+      </li>
+      <li>
+        <kindDef>Peaceful</kindDef>
+        <options>
+          <Rimfolk_KilnGuild_Journeyman>16</Rimfolk_KilnGuild_Journeyman>
+          <Rimfolk_KilnGuild_Apprentice>6</Rimfolk_KilnGuild_Apprentice>
+          <Rimfolk_KilnGuild_Guard>3</Rimfolk_KilnGuild_Guard>
+          <Villager_Child MayRequire="Ludeon.RimWorld.Biotech">2</Villager_Child>
+        </options>
+      </li>
+      <li>
+        <!-- The master-trader's wagons: fine work, stone, steel and glass -->
+        <kindDef>Trader</kindDef>
+        <traders>
+          <Rimfolk_KilnGuild_MasterTrader>1</Rimfolk_KilnGuild_MasterTrader>
+        </traders>
+        <carriers>
+          <Muffalo>3</Muffalo>
+          <Donkey>3</Donkey>
+          <Horse>2</Horse>
+        </carriers>
+        <guards>
+          <Rimfolk_KilnGuild_Guard>7</Rimfolk_KilnGuild_Guard>
+          <Rimfolk_KilnGuild_Journeyman>2</Rimfolk_KilnGuild_Journeyman>
+        </guards>
+      </li>
+      <li>
+        <kindDef>Settlement</kindDef>
+        <options>
+          <Rimfolk_KilnGuild_Journeyman>10</Rimfolk_KilnGuild_Journeyman>
+          <Rimfolk_KilnGuild_Guard>9</Rimfolk_KilnGuild_Guard>
+          <Rimfolk_KilnGuild_Apprentice>4</Rimfolk_KilnGuild_Apprentice>
+          <Rimfolk_KilnGuild_MasterTrader>2</Rimfolk_KilnGuild_MasterTrader>
+        </options>
+      </li>
+    </pawnGroupMakers>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleExtension">
+        <calling>artisans</calling>
+        <townWord>guildhall</townWord>
+        <townWords>guildhalls</townWords>
+        <head>kiln-warden</head>
+        <heir>second warden</heir>
+        <envoy>journeyman</envoy>
+        <trader>master-trader</trader>
+        <courier>guild runner</courier>
+        <couriers>guild runners</couriers>
+        <caravanWeight>1.2</caravanWeight>
+        <camps>
+          <li>Council_Camp_Smith</li>
+          <li>Rimfolk_Camp_Stonecutters</li>
+          <li>Council_Camp_Market</li>
+        </camps>
+        <plan>Rimfolk_Plan_Guildhall</plan>
+        <honours>the mark cut true, a masterwork and a journeyman who comes back better</honours>
+        <fears>work that lies, a cold kiln and a mark on a thing nobody wanted</fears>
+        <sayings>
+          <li>Anyone can stack stone.</li>
+          <li>We build things people come to look at.</li>
+          <li>Mark it, and answer for it.</li>
+          <li>Bad work is a lie told in stone.</li>
+          <li>Leave a little guild work behind.</li>
+        </sayings>
+        <townGoods>
+          <BlocksGranite>60~140</BlocksGranite>
+          <Steel>60~140</Steel>
+          <WoodLog>60~140</WoodLog>
+          <Cloth>30~60</Cloth>
+          <Beer>8~16</Beer>
+        </townGoods>
+        <ariseAges>0~3</ariseAges>
+      </li>
+    </modExtensions>
+  </FactionDef>
+
+  <!-- ===================== Their people ===================== -->
+
+  <!--
+    How alike they look (docs/design/peoples.md, "Release E"): varied work clothes around the guild's ochre. Every guild
+    hand wears the work shirt in ochre and, with Vanilla Apparel Expanded, the leather apron over it in ochre too (the
+    guild mark is branded on a bracer beneath); everything else is their own: caps, skullcaps and headscarves (Medieval 2,
+    Vanilla Ideology Expanded - Hats and Rags), parkas, packs (Accessories), padding for the kiln's heat (Vanilla Armour
+    Expanded). Hammers, maces and tools (the game's and Vanilla Weapons Expanded's). The guild guards are its one kit: an
+    ochre cape over padding and a helmet, and a fine blade carried as a display: the longsword in the medieval age, an
+    ikwa among the tribes, Melee Weapons For All Post-Medieval Tech Levels' industrial longsword in the industrial age
+    (by Rimfolk's own tag, Patches/Rimfolk_PeoplesE.xml), an ultratech blade in the spacer age (Royalty, Vanilla Weapons
+    Expanded - Laser, Vanilla Factions Expanded - Empire). A few are A RimWorld of Magic's enchanters and geomancers, and in
+    the industrial and spacer ages its technomancers. They carry steel, stone blocks or cloth for the work. Without any
+    mod: the game's shirts, trousers, parkas, capes and helmets, maces, knives and longswords.
+  -->
+  <PawnKindDef Name="Rimfolk_KilnGuildKindBase" Abstract="True">
+    <race>Human</race>
+    <defaultFactionDef>Rimfolk_KilnGuild</defaultFactionDef>
+    <chemicalAddictionChance>0.03</chemicalAddictionChance>
+    <invNutrition>2.55</invNutrition>
+    <maxGenerationAge>72</maxGenerationAge>
+    <specificApparelRequirements>
+      <!-- The guild's ochre on the work shirt, the apron and the guards' cape. -->
+      <li><apparelDef>Apparel_BasicShirt</apparelDef><color>(0.86, 0.66, 0.18)</color></li>
+      <li><apparelDef>Apparel_Cape</apparelDef><color>(0.86, 0.66, 0.18)</color></li>
+      <li MayRequire="VanillaExpanded.VAPPE"><apparelDef>VAE_Apparel_Apron</apparelDef><color>(0.86, 0.66, 0.18)</color></li>
+    </specificApparelRequirements>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_KilnGuildKindBase">
+    <defName>Rimfolk_KilnGuild_Journeyman</defName>
+    <label>journeyman</label>
+    <combatPower>45</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.4~1.3</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_BasicShirt</li>
+      <li>Apparel_Pants</li>
+      <li MayRequire="VanillaExpanded.VAPPE">VAE_Apparel_Apron</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>Neolithic</li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Cap</li>
+      <li>Rimfolk_Skullcap</li>
+      <li>Rimfolk_Headscarf</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Neolithic</li>
+    </apparelTags>
+    <apparelDisallowTags>
+      <li>MedievalMilitary</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Quiver</li>
+    </apparelDisallowTags>
+    <apparelAllowHeadgearChance>0.6</apparelAllowHeadgearChance>
+    <apparelMoney>220~460</apparelMoney>
+    <weaponTags>
+      <li>MedievalMeleeDecent</li>
+      <li>MedievalMeleeBasic</li>
+      <li MayRequire="VanillaExpanded.VWE">ToolDecent</li>
+    </weaponTags>
+    <weaponMoney>60~180</weaponMoney>
+    <!-- Steel, stone or cloth for the work in hand. -->
+    <inventoryOptions>
+      <skipChance>0.4</skipChance>
+      <subOptionsChooseOne>
+        <li><thingDef>Steel</thingDef><countRange>10~25</countRange><choiceChance>2</choiceChance></li>
+        <li><thingDef>BlocksGranite</thingDef><countRange>10~20</countRange></li>
+        <li><thingDef>Cloth</thingDef><countRange>10~20</countRange></li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>10~18</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Enchanter</trait><chance>0.03</chance></li>
+          <li><trait>Geomancer</trait><chance>0.03</chance></li>
+          <li><trait>Technomancer</trait><chance>0.03</chance><ages>2~3</ages></li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_KilnGuildKindBase">
+    <defName>Rimfolk_KilnGuild_Guard</defName>
+    <label>guild guard</label>
+    <combatPower>70</combatPower>
+    <itemQuality>Good</itemQuality>
+    <gearHealthRange>0.8~1.5</gearHealthRange>
+    <!-- The guild guards' kit: the ochre cape over padding, a helmet, a fine blade for display. -->
+    <apparelRequired>
+      <li>Apparel_Cape</li>
+      <li>Apparel_SimpleHelmet</li>
+      <li>Apparel_BasicShirt</li>
+      <li>Apparel_Pants</li>
+    </apparelRequired>
+    <apparelTags>
+      <li MayRequire="VanillaExpanded.VARME">MedievalArmorBasic</li>
+      <li MayRequire="VanillaExpanded.VARME">MedievalArmorDecent</li>
+    </apparelTags>
+    <apparelMoney>600~1100</apparelMoney>
+    <weaponTags>
+      <li>LongSword</li>
+      <li>MedievalMeleeAdvanced</li>
+    </weaponTags>
+    <weaponMoney>180~400</weaponMoney>
+    <requiredWorkTags>Violent</requiredWorkTags>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>16~24</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Gladiator</trait><chance>0.03</chance></li>
+          <li><trait>Enchanter</trait><chance>0.02</chance></li>
+        </gifts>
+        <!-- The fine blade of the age, carried for show. -->
+        <ageArms>
+          <li>
+            <ages>0~0</ages>
+            <weaponTags>
+              <li>NeolithicMeleeDecent</li>
+            </weaponTags>
+          </li>
+          <li>
+            <ages>2~2</ages>
+            <money>900</money>
+            <weaponTags>
+              <li MayRequire="bamba.allbambamelee.tiered">Rimfolk_FineBlade</li>
+            </weaponTags>
+          </li>
+          <li>
+            <ages>3~3</ages>
+            <money>2600</money>
+            <weaponTags>
+              <li MayRequire="Ludeon.RimWorld.Royalty">UltratechMelee</li>
+              <li MayRequire="bamba.allbambamelee.tiered">Rimfolk_FineBlade</li>
+            </weaponTags>
+          </li>
+        </ageArms>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_KilnGuildKindBase">
+    <defName>Rimfolk_KilnGuild_Apprentice</defName>
+    <label>wander-year apprentice</label>
+    <combatPower>35</combatPower>
+    <isFighter>false</isFighter>
+    <minGenerationAge>16</minGenerationAge>
+    <maxGenerationAge>25</maxGenerationAge>
+    <itemQuality>Poor</itemQuality>
+    <gearHealthRange>0.4~1.2</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_BasicShirt</li>
+      <li>Apparel_Pants</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>Neolithic</li>
+      <li>Rimfolk_Headscarf</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Neolithic</li>
+    </apparelTags>
+    <apparelDisallowTags>
+      <li>MedievalMilitary</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Quiver</li>
+    </apparelDisallowTags>
+    <apparelMoney>160~320</apparelMoney>
+    <weaponTags>
+      <li>MedievalMeleeBasic</li>
+      <li>NeolithicMeleeBasic</li>
+    </weaponTags>
+    <weaponMoney>30~90</weaponMoney>
+    <inventoryOptions>
+      <skipChance>0.5</skipChance>
+      <subOptionsChooseOne>
+        <li><thingDef>Steel</thingDef><countRange>5~12</countRange></li>
+        <li><thingDef>Cloth</thingDef><countRange>5~12</countRange></li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <initialWillRange>1~3</initialWillRange>
+    <initialResistanceRange>8~14</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Geomancer</trait><chance>0.03</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_KilnGuildKindBase">
+    <defName>Rimfolk_KilnGuild_MasterTrader</defName>
+    <label>master-trader</label>
+    <trader>true</trader>
+    <combatPower>45</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Good</itemQuality>
+    <gearHealthRange>0.9~1.3</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+      <li>Apparel_Cape</li>
+    </apparelRequired>
+    <apparelTags>
+      <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Trader</li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Cap</li>
+      <li>Rimfolk_Beads</li>
+    </apparelTags>
+    <apparelAllowHeadgearChance>0.7</apparelAllowHeadgearChance>
+    <apparelMoney>400~750</apparelMoney>
+    <weaponTags>
+      <li>MedievalMeleeBasic</li>
+    </weaponTags>
+    <weaponMoney>60~140</weaponMoney>
+    <skills>
+      <li>
+        <skill>Social</skill>
+        <range>5~12</range>
+      </li>
+    </skills>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>12~18</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_KilnGuildKindBase">
+    <defName>Rimfolk_KilnGuild_Guildmaster</defName>
+    <label>guildmaster</label>
+    <combatPower>80</combatPower>
+    <factionLeader>true</factionLeader>
+    <minGenerationAge>45</minGenerationAge>
+    <itemQuality>Excellent</itemQuality>
+    <gearHealthRange>0.9~1.2</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_BasicShirt</li>
+      <li>Apparel_Pants</li>
+      <li>Apparel_Cape</li>
+      <li MayRequire="VanillaExpanded.VAPPE">VAE_Apparel_Apron</li>
+    </apparelRequired>
+    <apparelTags>
+      <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Cap</li>
+      <li>Rimfolk_Beads</li>
+    </apparelTags>
+    <apparelMoney>700~1300</apparelMoney>
+    <weaponTags>
+      <li>MedievalMeleeDecent</li>
+      <li>MedievalMeleeAdvanced</li>
+    </weaponTags>
+    <weaponMoney>150~350</weaponMoney>
+    <skills>
+      <li>
+        <skill>Social</skill>
+        <range>6~13</range>
+      </li>
+    </skills>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>16~24</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Enchanter</trait><chance>0.2</chance></li>
+          <li><trait>Geomancer</trait><chance>0.1</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <!-- ===================== Their traders: the master-trader's wagons ===================== -->
+
+  <TraderKindDef>
+    <defName>Rimfolk_Caravan_KilnGuild</defName>
+    <label>master-trader's wagons</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>800~1500</countRange>
+      </li>
+      <li Class="StockGenerator_Tag">
+        <tradeTag>Art</tradeTag>
+        <thingDefCountRange>2~3</thingDefCountRange>
+        <countRange>1~2</countRange>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>StoneBlocks</categoryDef>
+        <thingDefCountRange>2~3</thingDefCountRange>
+        <totalPriceRange>200~500</totalPriceRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Steel</thingDef>
+        <countRange>80~200</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponMelee</tradeTag>
+        <countRange>2~4</countRange>
+        <maxTechLevelGenerate>Medieval</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>Armor</tradeTag>
+        <countRange>1~2</countRange>
+        <maxTechLevelGenerate>Medieval</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>BasicClothing</tradeTag>
+        <countRange>2~4</countRange>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>WeaponMelee</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Visitor_KilnGuild</defName>
+    <label>journeymen on the road</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>200~450</countRange>
+      </li>
+      <li Class="StockGenerator_Tag">
+        <tradeTag>Art</tradeTag>
+        <thingDefCountRange>1~1</thingDefCountRange>
+        <countRange>1~1</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Steel</thingDef>
+        <countRange>20~60</countRange>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Base_KilnGuild</defName>
+    <label>guildhall</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>1200~2000</countRange>
+      </li>
+      <li Class="StockGenerator_Tag">
+        <tradeTag>Art</tradeTag>
+        <thingDefCountRange>2~4</thingDefCountRange>
+        <countRange>1~2</countRange>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>StoneBlocks</categoryDef>
+        <thingDefCountRange>2~4</thingDefCountRange>
+        <totalPriceRange>300~800</totalPriceRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Steel</thingDef>
+        <countRange>150~350</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>WoodLog</thingDef>
+        <countRange>100~250</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponMelee</tradeTag>
+        <countRange>3~6</countRange>
+        <maxTechLevelGenerate>Medieval</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>Armor</tradeTag>
+        <countRange>2~4</countRange>
+        <maxTechLevelGenerate>Medieval</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>WeaponMelee</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <!-- ===================== Their names ===================== -->
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_KilnGuild</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->The Guild of the [kilnThing]</li>
+        <li>r_name(p=2)->[PlaceOutlander] Guild</li>
+        <li>r_name->The [kilnVirtue] Kiln</li>
+        <li>r_name->Makers of the [kilnThing]</li>
+        <li>kilnThing->Mark</li>
+        <li>kilnThing->Fourth Bridge</li>
+        <li>kilnThing->Ochre Apron</li>
+        <li>kilnThing->Long Fire</li>
+        <li>kilnThing->True Stone</li>
+        <li>kilnThing->Wander-Year</li>
+        <li>kilnVirtue->Hardwater</li>
+        <li>kilnVirtue->Banked</li>
+        <li>kilnVirtue->Marked</li>
+        <li>kilnVirtue->Patient</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_KilnGuildTown</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->[PlaceOutlander] Guildhall</li>
+        <li>r_name(p=2)->[PlaceOutlander] Kilns</li>
+        <li>r_name->[guildWord] of [PlaceOutlander]</li>
+        <li>r_name->[guildVirtue] Kilns</li>
+        <li>guildWord->Masterworks</li>
+        <li>guildWord->Forge Yard</li>
+        <li>guildWord->Carved Hall</li>
+        <li>guildVirtue->Kell's</li>
+        <li>guildVirtue->Hardwater</li>
+        <li>guildVirtue->Ochre</li>
+        <li>guildVirtue->Fourth Bridge</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- The Ashen Banner's squad hired for the season (Source/ColonyCouncil/Peoples/PeoplesE2.cs, Camps/CampContract.cs;
+       Defs/IncidentDefs/Rimfolk_Events_PeoplesE.xml, Rimfolk_Evt_BannerHire): a camp of theirs by the colony that takes
+       up arms against whatever comes at it while it stands (fights: never on its own, only hired), one of them on watch
+       at the colony's gate by day, by turns. On the fifth and the tenth day the wage is asked by letter; paid, the silver
+       is carried out to their fire and they stay; turned down or let go, they strike camp and walk, and the Banner hears
+       of it. At the season's end the contract is kept, and they go. -->
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_CampStandWatch</defName>
+    <reportString>keeping watch for the colony.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>2500</ticks></li>
+    </modExtensions>
+  </JobDef>
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_BannerSquad</defName>
+    <label>Banner's squad</label>
+    <calling>mercenaries</calling>
+    <fights>true</fights>
+    <work>contract</work>
+    <weight>0</weight>
+    <people>3~5</people>
+    <days>15~15</days>
+    <ages>20~50</ages>
+    <huntsPerDay>0.2</huntsPerDay>
+    <chopsPerDay>0.2</chopsPerDay>
+    <armedHunters>false</armedHunters>
+    <hireChance>0</hireChance>
+    <joinChance>0.02</joinChance>
+    <helpChance>0</helpChance>
+    <pride>0.5</pride>
+    <breakTerms>0.02</breakTerms>
+    <tensionPerDay>0.3</tensionPerDay>
+    <canPay>false</canPay>
+    <extendChance>0</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+    </structures>
+    <asks>
+      <li>
+        <key>wage</key>
+        <theyAsk>true</theyAsk>
+        <once>false</once>
+        <price>wage</price>
+        <needs>wageDue</needs>
+        <label>Pay the squad's wage ({COUNT} silver)</label>
+        <refuseLabel>Let them go unpaid</refuseLabel>
+        <tension>-2</tension>
+        <deed>traded</deed>
+        <askTexts>
+          <li>{X_nameDef} has come up from the Banner's camp with the paymaster's book under one arm. Five days are up, and the squad's wage is due: {COUNT} silver. Paid, they hold the wall the next five days; unpaid, they strike camp and go, as the Banner always does.</li>
+          <li>[lowtech] {X_nameDef} is at the gate with the Banner's book open at the colony's page. Five days held, {X_nameDef} says, and {COUNT} silver owed for them. No pay, no wall.</li>
+          <li>{X_nameDef} of the Banner's squad has the contract out at the gate, and a finger on the line that says five days. The wage is {COUNT} silver, {X_nameDef} says plainly, and the squad stays for it or goes without it.</li>
+        </askTexts>
+        <tip>{COUNT} silver is carried out to the squad's fire. Turned down, or left unanswered, the squad strikes camp and walks, and the Banner hears of it.</tip>
+        <outcomes>
+          <li>{A_nameDef} carried {COUNT} silver out to the Banner's fire, and {X_nameDef} counted it twice and wrote it in the book.</li>
+          <li>The wage is going out to the squad's fire. {X_nameDef} will count it there, in front of everyone, as the Banner does.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} closed the book without a word, and the squad began to strike camp.</li>
+          <li>No pay, no wall: {X_nameDef} said it once, and the squad is packing.</li>
+        </refused>
+        <refuseTension>0</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_BannerWage" />
+        </effects>
+      </li>
+      <li>
+        <key>drill</key>
+        <once>false</once>
+        <label>Have them drill {A_nameDef}</label>
+        <tip>{A_nameDef} spends a few hours at the squad's fire being drilled by one of them. Practice in melee.</tip>
+        <skill>Melee</skill>
+        <warm>2</warm>
+        <tension>-2</tension>
+        <outcomes>
+          <li>{A_nameDef} has gone over to the squad's fire, where {X_nameDef} is drilling {A_objective} with a practice blade, feet first.</li>
+          <li>{X_nameDef} is putting {A_nameDef} through the Banner's drill by the camp, slowly, and then again.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Melee</skill><duration>2~3</duration></li>
+        </effects>
+      </li>
+    </asks>
+    <titles>
+      <li>The Banner makes camp</li>
+      <li>A squad of {FACTION} for the season</li>
+    </titles>
+    <texts>
+      <li>The squad of {FACTION} has made camp {PLACE} for the season. While it stands they take up arms against whatever comes at the colony, and one of them keeps watch at the gate by day. Their wage is asked every five days.</li>
+    </texts>
+    <settled>
+      <li>The Banner's squad has its fire going {PLACE}, weapons stacked within reach and a sentry who never quite sits down.</li>
+      <li>The squad {PLACE} has its camp up in a straight line, bedrolls squared, the ash-grey hung out to dry.</li>
+      <li>Smoke rises from the Banner's camp {PLACE}, and someone there is reading the Roll aloud to the others.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the Banner's squad camped {PLACE}, came to the gate with {X_possessive} pack on. The contract is the company's, {X_nameDef} says, but a wall worth holding is worth staying for; is there a place here?</li>
+    </joinTexts>
+    <farewell>
+      <li>The Banner's squad struck camp {PLACE} at the season's end and marched off in step. The contract was kept to its last day, and the Roll will say so.</li>
+      <li>[carried] The squad of {FACTION} kept the contract to its last day and went, carrying their dead with them. Every name will be read into the Roll.</li>
+      <li>The squad's camp {PLACE} is empty, the fire raked out and the ground squared. {X_nameDef} saluted at the gate: paid to the day, held to the day.</li>
+    </farewell>
+    <lines>
+      <li>Paid to the day, held to the day.</li>
+      <li>Who's on watch?</li>
+      <li>Keep your blade dry.</li>
+      <li>The wall is the work.</li>
+      <li>Every name on the Roll.</li>
+      <li>[oldfoe] That's for the Roll.</li>
+    </lines>
+    <momentLines>
+      <li>[watch] My turn on the gate.</li>
+      <li>[watch] Nothing on the road yet.</li>
+      <li>[kill] Down, and stay down.</li>
+      <li>[butcher] Meat's meat.</li>
+    </momentLines>
+  </ColonyCouncil.CampKindDef>
+</Defs>

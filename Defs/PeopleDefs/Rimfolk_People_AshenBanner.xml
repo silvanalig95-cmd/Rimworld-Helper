@@ -1,0 +1,712 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The Ashen Banner (docs/design/peoples-next.md, the seventh of the eight; docs/design/peoples.md, "Release E";
+    Source/ColonyCouncil/Peoples/PeoplesE2.cs): a free company that outlived its war, its king and its kingdom, and kept the
+    Roll, every name lost under the banner, read aloud once a year. Neither friend nor enemy; for hire; they keep a contract
+    better than most keep their word. Medieval, on the game's tribal parent, with the outlanders' stories; they arise in
+    every age (ariseAges 0~3) and take the issued kit of the age they live in (ageArms: weapons and armour): spears and
+    war tribalwear among the tribes, pikes, crossbows and plate in the medieval age, rifles, flak and helmets in the
+    industrial age, charge rifles and recon armour in the spacer age. The clearest uniform: the company's ash-grey tabard
+    (Vanilla Factions Expanded - Medieval 2) over matching issued armour dyed the same ash, the game's plate in the medieval
+    age; only scars, wear and a few personal trophies tell them apart. Officers (sergeants, the captain) leave the plate for a
+    cape and add a black sash (Biotech). A few are A RimWorld of Magic's commanders, gladiators and rangers. Their towns
+    are barracks forts with a drill yard and the hall of the Roll (Rimfolk_Plan_BannerFort). At the gate: a squad hired for
+    a season, who camp by the colony and take up arms against whatever comes, paid every five days or gone
+    (Rimfolk_Evt_BannerHire); a deserter asking shelter (Rimfolk_Evt_BannerDeserter); the Roll read at the colony's gate
+    for those of the colony who fell fighting (Rimfolk_Evt_BannerRoll). Their ask: a doctor for their wounded after a
+    contract (Rimfolk_Mission_BannerWounded). Their founding: Corra Mallin, the quartermaster who would not let the company
+    scatter unpaid. Faith (Ideology): loyalty, the company as one, and Alpha Memes' bulwark. They raid only when the colony
+    has turned them hostile. Kinds of people: hussars, neanderthals, uhlans, boarskins, venators, Uredde, gorillas and
+    Korgs, four in five baseliners.
+  -->
+
+  <FactionDef ParentName="TribeBase">
+    <defName>Rimfolk_AshenBanner</defName>
+    <label>Ashen Banner</label>
+    <description>A free company for hire, neither friend nor enemy to anyone, that holds walls and fights battles for whoever pays and keeps a contract better than most people keep their word. They fought once for a king nobody remembers; the war, the king and the kingdom are gone, and the company is still here.\n\nTheir ways began the winter after that war, with the company's quartermaster, Corra Mallin, who would not let five hundred soldiers scatter unpaid into the hills. She sold every banner but one, burned grey in the last battle, and hired the company to the first town that would pay. Those who stayed with her began the Roll, the name of everyone lost under that banner, and it is read aloud once a year on the night of the last battle. A soldier of the Banner still wears its ash-grey tabard, and officers a black sash for the dead.\n\nThey are dry, plain-spoken and exact about money, and they do not boast. They will hold any wall for a season, and if the pay stops they walk. Each fort is kept by its keeper of the Roll, and the Banner by its captain.</description>
+    <pawnSingular>soldier of the Banner</pawnSingular>
+    <pawnsPlural>soldiers of the Banner</pawnsPlural>
+    <leaderTitle>captain of the Banner</leaderTitle>
+    <techLevel>Medieval</techLevel>
+    <basicMemberKind>Rimfolk_AshenBanner_Soldier</basicMemberKind>
+    <factionNameMaker>Rimfolk_Namer_AshenBanner</factionNameMaker>
+    <settlementNameMaker>Rimfolk_Namer_AshenBannerTown</settlementNameMaker>
+    <factionIconPath>ColonyCouncil/Peoples/AshenBanner</factionIconPath>
+    <settlementTexturePath>ColonyCouncil/Peoples/AshenBannerTown</settlementTexturePath>
+    <colorSpectrum>
+      <li>(0.52, 0.50, 0.47)</li>
+      <li>(0.70, 0.68, 0.64)</li>
+    </colorSpectrum>
+    <hidden>false</hidden>
+    <naturalEnemy>false</naturalEnemy>
+    <permanentEnemy>false</permanentEnemy>
+    <canSiege>false</canSiege>
+    <requiredCountAtGameStart>0</requiredCountAtGameStart>
+    <startingCountAtWorldCreation>1</startingCountAtWorldCreation>
+    <maxConfigurableAtWorldCreation>9999</maxConfigurableAtWorldCreation>
+    <configurationListOrderPriority>42</configurationListOrderPriority>
+    <settlementGenerationWeight>0.4</settlementGenerationWeight>
+    <allowedCultures Inherit="False">
+      <li>Rustican</li>
+    </allowedCultures>
+    <backstoryFilters Inherit="False">
+      <li>
+        <categories>
+          <li>Outlander</li>
+        </categories>
+        <commonality>0.75</commonality>
+      </li>
+      <li>
+        <categories>
+          <li>Tribal</li>
+        </categories>
+        <commonality>0.25</commonality>
+      </li>
+    </backstoryFilters>
+    <raidCommonalityFromPointsCurve Inherit="False">
+      <points>
+        <li>(0, 0.4)</li>
+      </points>
+    </raidCommonalityFromPointsCurve>
+    <xenotypeSet Inherit="False">
+      <xenotypeChances>
+        <Hussar MayRequire="Ludeon.RimWorld.Biotech">0.04</Hussar>
+        <Neanderthal MayRequire="Ludeon.RimWorld.Biotech">0.03</Neanderthal>
+        <VREH_Uhlan MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.hussar">0.02</VREH_Uhlan>
+        <VRE_Boarskin MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.pigskin">0.02</VRE_Boarskin>
+        <DV_Venator MayRequire="Ludeon.RimWorld.Biotech,det.venators">0.02</DV_Venator>
+        <Uredd MayRequire="Ludeon.RimWorld.Biotech,rimsenal.askbarn">0.02</Uredd>
+        <Gorilla MayRequire="Ludeon.RimWorld.Biotech,onlymonkey.awakenedapes">0.02</Gorilla>
+        <Korg MayRequire="Ludeon.RimWorld.Biotech,sovereign.kork">0.02</Korg>
+      </xenotypeChances>
+    </xenotypeSet>
+    <fixedIdeo>true</fixedIdeo>
+    <ideoName>The Roll</ideoName>
+    <ideoDescription>A contract is kept to its last day, and the company is everyone under the banner together: what one earns all eat, and nobody is left on a field. Those who fall are not forgotten; every name is written on the Roll and read aloud on the night of the last battle, so that the company remembers what it cost. A wall held is the whole of the work. Corra Mallin sold every banner but the one that burned and kept five hundred soldiers together when the king was dead, and the first name on the Roll is the one she wrote that winter.</ideoDescription>
+    <forcedMemes>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Loyalist</li>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Collectivist</li>
+      <!-- The wall held for whoever pays: Alpha Memes' bulwark. -->
+      <li MayRequire="sarg.alphamemes">AM_Bulwark</li>
+    </forcedMemes>
+    <structureMemeWeights Inherit="False">
+      <Structure_Ideological MayRequire="Ludeon.RimWorld.Ideology">3</Structure_Ideological>
+      <Structure_TheistAbstract MayRequire="Ludeon.RimWorld.Ideology">1</Structure_TheistAbstract>
+      <VME_Structure_Authoritarianism MayRequire="VanillaExpanded.VMemesE">1</VME_Structure_Authoritarianism>
+    </structureMemeWeights>
+    <styles>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Spikecore</li>
+    </styles>
+    <caravanTraderKinds Inherit="False">
+      <li>Rimfolk_Caravan_AshenBanner</li>
+    </caravanTraderKinds>
+    <visitorTraderKinds Inherit="False">
+      <li>Rimfolk_Visitor_AshenBanner</li>
+    </visitorTraderKinds>
+    <baseTraderKinds Inherit="False">
+      <li>Rimfolk_Base_AshenBanner</li>
+    </baseTraderKinds>
+    <pawnGroupMakers Inherit="False">
+      <li>
+        <!-- A fight: the line, the shot behind it, a sergeant -->
+        <kindDef>Combat</kindDef>
+        <options>
+          <Rimfolk_AshenBanner_Soldier>10</Rimfolk_AshenBanner_Soldier>
+          <Rimfolk_AshenBanner_Shot>8</Rimfolk_AshenBanner_Shot>
+          <Rimfolk_AshenBanner_Sergeant>2</Rimfolk_AshenBanner_Sergeant>
+        </options>
+      </li>
+      <li>
+        <kindDef>Peaceful</kindDef>
+        <options>
+          <Rimfolk_AshenBanner_Soldier>14</Rimfolk_AshenBanner_Soldier>
+          <Rimfolk_AshenBanner_Shot>6</Rimfolk_AshenBanner_Shot>
+          <Rimfolk_AshenBanner_Sergeant>2</Rimfolk_AshenBanner_Sergeant>
+          <Villager_Child MayRequire="Ludeon.RimWorld.Biotech">1</Villager_Child>
+        </options>
+      </li>
+      <li>
+        <!-- The paymaster's train: provisions, steel, arms and the company's spare kit -->
+        <kindDef>Trader</kindDef>
+        <traders>
+          <Rimfolk_AshenBanner_Paymaster>1</Rimfolk_AshenBanner_Paymaster>
+        </traders>
+        <carriers>
+          <Horse>3</Horse>
+          <Muffalo>3</Muffalo>
+          <Donkey>2</Donkey>
+        </carriers>
+        <guards>
+          <Rimfolk_AshenBanner_Soldier>6</Rimfolk_AshenBanner_Soldier>
+          <Rimfolk_AshenBanner_Shot>5</Rimfolk_AshenBanner_Shot>
+          <Rimfolk_AshenBanner_Sergeant>1</Rimfolk_AshenBanner_Sergeant>
+        </guards>
+      </li>
+      <li>
+        <kindDef>Settlement</kindDef>
+        <options>
+          <Rimfolk_AshenBanner_Soldier>10</Rimfolk_AshenBanner_Soldier>
+          <Rimfolk_AshenBanner_Shot>8</Rimfolk_AshenBanner_Shot>
+          <Rimfolk_AshenBanner_Sergeant>3</Rimfolk_AshenBanner_Sergeant>
+          <Rimfolk_AshenBanner_Paymaster>2</Rimfolk_AshenBanner_Paymaster>
+        </options>
+      </li>
+    </pawnGroupMakers>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleExtension">
+        <calling>mercenaries</calling>
+        <townWord>fort</townWord>
+        <townWords>forts</townWords>
+        <head>keeper of the Roll</head>
+        <heir>under-keeper</heir>
+        <envoy>sergeant</envoy>
+        <trader>paymaster</trader>
+        <courier>banner-runner</courier>
+        <couriers>banner-runners</couriers>
+        <caravanWeight>0.6</caravanWeight>
+        <camps>
+          <li>Council_Camp_Deserters</li>
+          <li>Rimfolk_Camp_Wounded</li>
+          <li>Council_Camp_Wardens</li>
+        </camps>
+        <plan>Rimfolk_Plan_BannerFort</plan>
+        <honours>a contract kept to its last day, a wall held and every name on the Roll</honours>
+        <fears>a contract broken, a name left off the Roll and a field nobody came back from</fears>
+        <sayings>
+          <li>Paid to the day, held to the day.</li>
+          <li>Every name on the Roll.</li>
+          <li>Nobody is left on the field.</li>
+          <li>The wall is the work.</li>
+          <li>No pay, no wall.</li>
+        </sayings>
+        <townGoods>
+          <Steel>60~140</Steel>
+          <Pemmican>60~120</Pemmican>
+          <MedicineHerbal>8~16</MedicineHerbal>
+          <WoodLog>80~160</WoodLog>
+          <Beer>10~20</Beer>
+        </townGoods>
+        <herd>
+          <li>Horse</li>
+        </herd>
+        <herdCount>3~6</herdCount>
+        <ariseAges>0~3</ariseAges>
+      </li>
+    </modExtensions>
+  </FactionDef>
+
+  <!-- ===================== Their people ===================== -->
+
+  <!--
+    How alike they look (docs/design/peoples.md, "Release E"): the clearest uniform of any people. Every soldier of the
+    Banner wears the company's issued kit, dyed ash grey: the game's plate and helmet in the medieval age, under the ash
+    tabard where Vanilla Factions Expanded - Medieval 2 is loaded; only what is under it, gloves and boots and a banner,
+    differ (the game's medieval military pieces, Vanilla Armour Expanded's), and wear and quality. The line carry the
+    company's polearms (the game's spears, Medieval 2's pikes), the shot its crossbows (Vanilla Weapons Expanded,
+    Medieval 2's arbalest), the sergeants swords. In another age the issue changes with it (PeopleKindExtension.ageArms:
+    the kit's armour and weapons both): war tribalwear and spears among the tribes (Vanilla Factions Expanded -
+    Tribals), flak, helmets and the company's rifles in the industrial age, recon armour and charge rifles in the spacer
+    age, the new pieces dyed the same ash. Officers wear a cape in place of the plate and a black sash (Biotech). A few
+    are A RimWorld of Magic's commanders, gladiators, paladins and rangers; in the industrial and spacer ages a super
+    soldier now and then. They carry pemmican or herbs. Without any mod: the game's plate, helmets, capes, spears, bows
+    and swords.
+  -->
+  <PawnKindDef Name="Rimfolk_AshenBannerKindBase" Abstract="True">
+    <race>Human</race>
+    <defaultFactionDef>Rimfolk_AshenBanner</defaultFactionDef>
+    <chemicalAddictionChance>0.06</chemicalAddictionChance>
+    <invNutrition>2.55</invNutrition>
+    <invFoodDef>Pemmican</invFoodDef>
+    <maxGenerationAge>60</maxGenerationAge>
+    <specificApparelRequirements>
+      <!-- Ash grey on the issued kit of every age, whichever piece is worn; black on the officers' sash. -->
+      <li><apparelDef>Apparel_PlateArmor</apparelDef><color>(0.62, 0.60, 0.57)</color></li>
+      <li><apparelDef>Apparel_Cape</apparelDef><color>(0.62, 0.60, 0.57)</color></li>
+      <li><apparelDef>Apparel_FlakVest</apparelDef><color>(0.62, 0.60, 0.57)</color></li>
+      <li><apparelDef>Apparel_ArmorRecon</apparelDef><color>(0.62, 0.60, 0.57)</color></li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2"><apparelDef>VFEM2_Apparel_Tabard</apparelDef><color>(0.62, 0.60, 0.57)</color></li>
+      <li MayRequire="OskarPotocki.VFE.Tribals"><apparelDef>VFET_Apparel_TribalWar</apparelDef><color>(0.62, 0.60, 0.57)</color></li>
+      <li MayRequire="Ludeon.RimWorld.Biotech"><apparelDef>Apparel_Sash</apparelDef><color>(0.12, 0.12, 0.12)</color></li>
+    </specificApparelRequirements>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_AshenBannerKindBase">
+    <defName>Rimfolk_AshenBanner_Soldier</defName>
+    <label>soldier of the Banner</label>
+    <combatPower>85</combatPower>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.5~1.8</gearHealthRange>
+    <!-- The issue: plate and helmet in ash, the ash tabard over them with Medieval 2. -->
+    <apparelRequired>
+      <li>Apparel_PlateArmor</li>
+      <li>Apparel_SimpleHelmet</li>
+      <li>Apparel_BasicShirt</li>
+      <li>Apparel_Pants</li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Apparel_Tabard</li>
+    </apparelRequired>
+    <!-- Their own only what is under it: gloves, boots, a banner. -->
+    <apparelTags>
+      <li>MedievalMilitary</li>
+    </apparelTags>
+    <apparelMoney>1100~2000</apparelMoney>
+    <weaponTags>
+      <li>Spear</li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Pike</li>
+    </weaponTags>
+    <weaponMoney>130~300</weaponMoney>
+    <requiredWorkTags>Violent</requiredWorkTags>
+    <inventoryOptions>
+      <skipChance>0.5</skipChance>
+      <subOptionsChooseOne>
+        <li><thingDef>Pemmican</thingDef><countRange>4~8</countRange><choiceChance>2</choiceChance></li>
+        <li><thingDef>MedicineHerbal</thingDef><countRange>1~1</countRange></li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>18~28</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Gladiator</trait><chance>0.04</chance></li>
+          <li><trait>Paladin</trait><chance>0.02</chance></li>
+          <li><trait>TM_SuperSoldier</trait><chance>0.03</chance><ages>2~3</ages></li>
+        </gifts>
+        <!-- The issue of another age, armour and weapon together. -->
+        <ageArms>
+          <li>
+            <ages>0~0</ages>
+            <weaponTags>
+              <li>NeolithicMeleeAdvanced</li>
+            </weaponTags>
+            <apparel>
+              <li MayRequire="OskarPotocki.VFE.Tribals">VFET_Apparel_TribalWar</li>
+            </apparel>
+          </li>
+          <li>
+            <ages>2~2</ages>
+            <money>700</money>
+            <weaponTags>
+              <li>AssaultRifle</li>
+            </weaponTags>
+            <apparel>
+              <li>Apparel_FlakVest</li>
+              <li>Apparel_FlakPants</li>
+              <li>Apparel_AdvancedHelmet</li>
+            </apparel>
+          </li>
+          <li>
+            <ages>3~3</ages>
+            <money>1600</money>
+            <weaponTags>
+              <li>SpacerGun</li>
+            </weaponTags>
+            <apparel>
+              <li>Apparel_ArmorRecon</li>
+              <li>Apparel_ArmorHelmetRecon</li>
+            </apparel>
+          </li>
+        </ageArms>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_AshenBannerKindBase">
+    <defName>Rimfolk_AshenBanner_Shot</defName>
+    <label>shot of the Banner</label>
+    <combatPower>80</combatPower>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.5~1.8</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_PlateArmor</li>
+      <li>Apparel_SimpleHelmet</li>
+      <li>Apparel_BasicShirt</li>
+      <li>Apparel_Pants</li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Apparel_Tabard</li>
+    </apparelRequired>
+    <specificApparelRequirements>
+      <li MayRequire="VanillaExpanded.VAEAccessories">
+        <alternateTagChoices>
+          <li><tag>VAEA_Quiver</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+    </specificApparelRequirements>
+    <apparelTags>
+      <li>MedievalMilitary</li>
+    </apparelTags>
+    <apparelMoney>1100~2000</apparelMoney>
+    <weaponTags>
+      <li>NeolithicRangedHeavy</li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Arbalest</li>
+    </weaponTags>
+    <weaponMoney>100~260</weaponMoney>
+    <requiredWorkTags>Violent</requiredWorkTags>
+    <inventoryOptions>
+      <skipChance>0.5</skipChance>
+      <subOptionsChooseOne>
+        <li><thingDef>Pemmican</thingDef><countRange>4~8</countRange></li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>16~26</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Ranger</trait><chance>0.04</chance></li>
+          <li><trait>TM_Sniper</trait><chance>0.03</chance></li>
+        </gifts>
+        <ageArms>
+          <li>
+            <ages>0~0</ages>
+            <weaponTags>
+              <li>NeolithicRangedDecent</li>
+            </weaponTags>
+            <apparel>
+              <li MayRequire="OskarPotocki.VFE.Tribals">VFET_Apparel_TribalWar</li>
+            </apparel>
+          </li>
+          <li>
+            <ages>2~2</ages>
+            <money>700</money>
+            <weaponTags>
+              <li>AssaultRifle</li>
+            </weaponTags>
+            <apparel>
+              <li>Apparel_FlakVest</li>
+              <li>Apparel_FlakPants</li>
+              <li>Apparel_AdvancedHelmet</li>
+            </apparel>
+          </li>
+          <li>
+            <ages>3~3</ages>
+            <money>1600</money>
+            <weaponTags>
+              <li>SpacerGun</li>
+            </weaponTags>
+            <apparel>
+              <li>Apparel_ArmorRecon</li>
+              <li>Apparel_ArmorHelmetRecon</li>
+            </apparel>
+          </li>
+        </ageArms>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_AshenBannerKindBase">
+    <defName>Rimfolk_AshenBanner_Sergeant</defName>
+    <label>sergeant</label>
+    <combatPower>95</combatPower>
+    <itemQuality>Good</itemQuality>
+    <gearHealthRange>0.6~1.6</gearHealthRange>
+    <!-- An officer: the ash cape in place of the plate, the black sash, the tabard over both with Medieval 2. -->
+    <apparelRequired>
+      <li>Apparel_Cape</li>
+      <li>Apparel_SimpleHelmet</li>
+      <li>Apparel_BasicShirt</li>
+      <li>Apparel_Pants</li>
+      <li MayRequire="Ludeon.RimWorld.Biotech">Apparel_Sash</li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Apparel_Tabard</li>
+    </apparelRequired>
+    <apparelTags>
+      <li MayRequire="VanillaExpanded.VARME">MedievalArmorBasic</li>
+      <li MayRequire="VanillaExpanded.VARME">MedievalArmorDecent</li>
+    </apparelTags>
+    <apparelMoney>900~1600</apparelMoney>
+    <weaponTags>
+      <li>MedievalMeleeAdvanced</li>
+      <li>MedievalMeleeDecent</li>
+    </weaponTags>
+    <weaponMoney>180~400</weaponMoney>
+    <requiredWorkTags>Violent</requiredWorkTags>
+    <skills>
+      <li>
+        <skill>Social</skill>
+        <range>4~10</range>
+      </li>
+    </skills>
+    <initialWillRange>3~6</initialWillRange>
+    <initialResistanceRange>20~30</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>TM_Commander</trait><chance>0.1</chance></li>
+          <li><trait>Paladin</trait><chance>0.04</chance></li>
+        </gifts>
+        <!-- The officers keep their cape and sash in every age: only the helmet and the weapon change. -->
+        <ageArms>
+          <li>
+            <ages>0~0</ages>
+            <weaponTags>
+              <li>NeolithicMeleeAdvanced</li>
+            </weaponTags>
+          </li>
+          <li>
+            <ages>2~2</ages>
+            <money>700</money>
+            <weaponTags>
+              <li>AssaultRifle</li>
+            </weaponTags>
+            <apparel>
+              <li>Apparel_AdvancedHelmet</li>
+            </apparel>
+          </li>
+          <li>
+            <ages>3~3</ages>
+            <money>1600</money>
+            <weaponTags>
+              <li>SpacerGun</li>
+            </weaponTags>
+            <apparel>
+              <li>Apparel_ArmorHelmetRecon</li>
+            </apparel>
+          </li>
+        </ageArms>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_AshenBannerKindBase">
+    <defName>Rimfolk_AshenBanner_Paymaster</defName>
+    <label>paymaster</label>
+    <trader>true</trader>
+    <combatPower>45</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.8~1.3</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_Cape</li>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Apparel_Tabard</li>
+    </apparelRequired>
+    <apparelTags>
+      <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Trader</li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Cap</li>
+      <li MayRequire="VanillaExpanded.VARME">MedievalArmorBasic</li>
+    </apparelTags>
+    <apparelMoney>400~700</apparelMoney>
+    <weaponTags>
+      <li>MedievalMeleeBasic</li>
+    </weaponTags>
+    <weaponMoney>60~140</weaponMoney>
+    <skills>
+      <li>
+        <skill>Social</skill>
+        <range>5~12</range>
+      </li>
+    </skills>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>12~20</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_AshenBannerKindBase">
+    <defName>Rimfolk_AshenBanner_Captain</defName>
+    <label>captain of the Banner</label>
+    <combatPower>120</combatPower>
+    <factionLeader>true</factionLeader>
+    <minGenerationAge>40</minGenerationAge>
+    <itemQuality>Good</itemQuality>
+    <gearHealthRange>0.8~1.4</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_Cape</li>
+      <li>Apparel_SimpleHelmet</li>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+      <li MayRequire="Ludeon.RimWorld.Biotech">Apparel_Sash</li>
+      <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Apparel_Tabard</li>
+    </apparelRequired>
+    <apparelTags>
+      <li MayRequire="VanillaExpanded.VARME">MedievalArmorDecent</li>
+    </apparelTags>
+    <apparelMoney>1200~2200</apparelMoney>
+    <weaponTags>
+      <li>MedievalMeleeAdvanced</li>
+    </weaponTags>
+    <weaponMoney>200~500</weaponMoney>
+    <skills>
+      <li>
+        <skill>Social</skill>
+        <range>6~13</range>
+      </li>
+    </skills>
+    <initialWillRange>4~6</initialWillRange>
+    <initialResistanceRange>22~32</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>TM_Commander</trait><chance>0.3</chance></li>
+          <li><trait>Gladiator</trait><chance>0.05</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <!-- ===================== Their traders: the paymaster's train ===================== -->
+
+  <TraderKindDef>
+    <defName>Rimfolk_Caravan_AshenBanner</defName>
+    <label>paymaster's train</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>700~1300</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Pemmican</thingDef>
+        <countRange>60~140</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineHerbal</thingDef>
+        <countRange>8~16</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Steel</thingDef>
+        <countRange>60~160</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponMelee</tradeTag>
+        <countRange>2~4</countRange>
+        <maxTechLevelGenerate>Medieval</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponRanged</tradeTag>
+        <countRange>2~3</countRange>
+        <maxTechLevelGenerate>Medieval</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>Armor</tradeTag>
+        <countRange>1~3</countRange>
+        <maxTechLevelGenerate>Medieval</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_Animals">
+        <maxWildness>0.35</maxWildness>
+        <tradeTagsSell>
+          <li>AnimalFarm</li>
+        </tradeTagsSell>
+        <tradeTagsBuy>
+          <li>AnimalFarm</li>
+        </tradeTagsBuy>
+        <kindCountRange>1~1</kindCountRange>
+        <countRange>1~2</countRange>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Visitor_AshenBanner</defName>
+    <label>soldiers between contracts</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>150~350</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Pemmican</thingDef>
+        <countRange>20~50</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponMelee</tradeTag>
+        <countRange>1~2</countRange>
+        <maxTechLevelGenerate>Medieval</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Base_AshenBanner</defName>
+    <label>barracks fort</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>900~1600</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Pemmican</thingDef>
+        <countRange>120~240</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineHerbal</thingDef>
+        <countRange>10~20</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Steel</thingDef>
+        <countRange>100~250</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Beer</thingDef>
+        <countRange>10~30</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponMelee</tradeTag>
+        <countRange>3~5</countRange>
+        <maxTechLevelGenerate>Medieval</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponRanged</tradeTag>
+        <countRange>2~4</countRange>
+        <maxTechLevelGenerate>Medieval</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>Armor</tradeTag>
+        <countRange>2~4</countRange>
+        <maxTechLevelGenerate>Medieval</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <!-- ===================== Their names ===================== -->
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_AshenBanner</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->The [bannerVirtue] Banner</li>
+        <li>r_name(p=2)->Company of the [bannerThing]</li>
+        <li>r_name->The [PlaceOutlander] Company</li>
+        <li>r_name->Keepers of the [bannerThing]</li>
+        <li>bannerThing->Roll</li>
+        <li>bannerThing->Last Battle</li>
+        <li>bannerThing->Burned Flag</li>
+        <li>bannerThing->Long Winter</li>
+        <li>bannerThing->Grey Tabard</li>
+        <li>bannerVirtue->Ashen</li>
+        <li>bannerVirtue->Grey</li>
+        <li>bannerVirtue->Unpaid</li>
+        <li>bannerVirtue->Last</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_AshenBannerTown</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->[PlaceOutlander] Fort</li>
+        <li>r_name(p=2)->[PlaceOutlander] Barracks</li>
+        <li>r_name->[fortWord] of [PlaceOutlander]</li>
+        <li>r_name->[fortVirtue] Fort</li>
+        <li>fortWord->Drill Yard</li>
+        <li>fortWord->Hall of the Roll</li>
+        <li>fortWord->Muster</li>
+        <li>fortVirtue->Mallin's</li>
+        <li>fortVirtue->Ashen</li>
+        <li>fortVirtue->Last Battle</li>
+        <li>fortVirtue->Paid</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>

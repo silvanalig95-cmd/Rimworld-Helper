@@ -52,8 +52,19 @@ namespace ColonyCouncil
         /// </summary>
         public const string Hunters = "hunters", Sextons = "sextons", Tamers = "tamers", Salvagers = "salvagers";
 
+        /// <summary>
+        /// Release E's (docs/design/peoples-next.md, the second four): the Stormglass Conclave's (weather-seers who read the
+        /// sky from a tower of glass), the Mossborn's (grove-keepers who collect a seedling for every tree felled), the
+        /// Ashen Banner's (a free company for hire that keeps the roll of its dead), the Kiln Guild's (artisans who mark
+        /// everything they make).
+        /// </summary>
+        public const string Seers = "seers", Grovekeepers = "grovekeepers", Mercenaries = "mercenaries", Artisans = "artisans";
+
         /// <summary>Every calling Rimfolk's words know. Release B's peoples take one of these.</summary>
-        public static readonly string[] Callings = { Traders, Healers, Herders, Pilgrims, Scholars, Brokers, Fishers, Hunters, Sextons, Tamers, Salvagers };
+        public static readonly string[] Callings =
+        {
+            Traders, Healers, Herders, Pilgrims, Scholars, Brokers, Fishers, Hunters, Sextons, Tamers, Salvagers, Seers, Grovekeepers, Mercenaries, Artisans
+        };
 
         public static bool IsCalling(string calling) => calling != null && Array.IndexOf(Callings, calling) >= 0;
 

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Release E's peoples at the gate (Source/ColonyCouncil/Peoples/PeoplesE.cs, PeoplesE2.cs; Camps/CampContract.cs). -->
+
+  <!-- The Stormglass Conclave -->
+  <CC_PeoplesE_Impact_Watch>The Conclave watches the colony's sky for {0} days: each cold snap, heat wave, fallout or other hard turn of the sky the storyteller sends waits a day, and a vial-runner comes to the gate with the warning first.</CC_PeoplesE_Impact_Watch>
+  <CC_PeoplesE_Impact_WatchBrief>A season's watch</CC_PeoplesE_Impact_WatchBrief>
+  <CC_PeoplesE_GlassHeldLabel>{0} foreseen</CC_PeoplesE_GlassHeldLabel>
+  <CC_PeoplesE_GlassHeld>{RUNNER}, a {WORD} of {FACTION}, is on the way to the gate with the Conclave's warning: the glass has seen a hard turn of the colony's sky coming, not today but soon: {CONDITION}.</CC_PeoplesE_GlassHeld>
+  <CC_PeoplesE_GlassHeldWord>Word has come from {FACTION}: the Conclave's glass has seen a hard turn of the colony's sky coming, not today but soon: {CONDITION}.</CC_PeoplesE_GlassHeldWord>
+  <CC_PeoplesE_GlassHeldFields>The colony's fields that sow by the weather have reckoned it in already.</CC_PeoplesE_GlassHeldFields>
+  <CC_PeoplesE_GlassRunnerNoun>vial-runner</CC_PeoplesE_GlassRunnerNoun>
+  <CC_PeoplesE_GlassRunnerSays>{0} on the way, the glass says, so bring in what you can.</CC_PeoplesE_GlassRunnerSays>
+  <CC_PeoplesE_RodRoom>hall</CC_PeoplesE_RodRoom>
+  <CC_PeoplesE_RodNoRoof>The roof the rod was meant for is gone.</CC_PeoplesE_RodNoRoof>
+  <CC_PeoplesE_Impact_Rod>The storm-walker sets the rod up in the {0}: lightning that falls on the open ground within {1} cells of it strikes the rod instead, harmlessly, and the colony reads its weather as by a weather station.</CC_PeoplesE_Impact_Rod>
+  <CC_PeoplesE_Impact_RodBrief>The rod set up</CC_PeoplesE_Impact_RodBrief>
+  <CC_PeoplesE_RodSet>{PAWN} has set up the Conclave's rod under the colony's highest roof. The lightning that falls near it will strike the rod now.</CC_PeoplesE_RodSet>
+  <CC_PeoplesE_RodStruck>Lightning struck the Conclave's rod, and nothing caught fire.</CC_PeoplesE_RodStruck>
+  <CC_PeoplesE_NoReader>Nobody at home can learn the glass now.</CC_PeoplesE_NoReader>
+  <CC_PeoplesE_Impact_Taught>{0} reads the weather as the Conclave does for a season: the forecasts are nearer the truth.</CC_PeoplesE_Impact_Taught>
+  <CC_PeoplesE_Impact_TaughtBrief>Reads the glass</CC_PeoplesE_Impact_TaughtBrief>
+  <CC_PeoplesE_ApprenticeSays>Every star where the book says it should be, and one that isn't.</CC_PeoplesE_ApprenticeSays>
+  <CC_PeoplesE_Apprentice_Coming>{0} is on the road from the Conclave's tower.</CC_PeoplesE_Apprentice_Coming>
+  <CC_PeoplesE_Apprentice_Staying>{0} is studying the colony's sky. Clear nights watched: {1}.</CC_PeoplesE_Apprentice_Staying>
+
+  <!-- The Mossborn -->
+  <CC_PeoplesE_NoSoil>There's no open soil round the colony for saplings.</CC_PeoplesE_NoSoil>
+  <CC_PeoplesE_Impact_Saplings>{0} saplings planted on open soil round the colony, out of its fields and buildings, one after another.</CC_PeoplesE_Impact_Saplings>
+  <CC_PeoplesE_Impact_SaplingsBrief>Saplings planted</CC_PeoplesE_Impact_SaplingsBrief>
+  <CC_PeoplesE_SaplingsPlanted>{PAWN} of the Mossborn has planted the saplings round the colony.</CC_PeoplesE_SaplingsPlanted>
+  <CC_PeoplesE_GraveTreeGone>{0}'s grave has no open soil beside it now.</CC_PeoplesE_GraveTreeGone>
+  <CC_PeoplesE_Impact_GraveTree>A grove-warden plants a sapling beside {0}'s grave, a tree of the land's own.</CC_PeoplesE_Impact_GraveTree>
+  <CC_PeoplesE_Impact_GraveTreeBrief>A tree for the grave</CC_PeoplesE_Impact_GraveTreeBrief>
+  <CC_PeoplesE_GraveTreePlanted>{PAWN} of the Mossborn planted a sapling beside the grave.</CC_PeoplesE_GraveTreePlanted>
+  <CC_PeoplesE_TreeGone>The Gauranlen tree is gone.</CC_PeoplesE_TreeGone>
+  <CC_PeoplesE_Impact_Tend>The tree-connector prunes the Gauranlen tree a while: its bond grows {0}% stronger.</CC_PeoplesE_Impact_Tend>
+  <CC_PeoplesE_Impact_TendBrief>The tree tended</CC_PeoplesE_Impact_TendBrief>
+  <CC_PeoplesE_TreeTended>{PAWN} of the Mossborn pruned the Gauranlen tree, and its bond with {CONNECTOR} is the stronger for it.</CC_PeoplesE_TreeTended>
+  <CC_PeoplesE_LedgerWarm>{FACTION} have reckoned the colony's trees for the season, {FELLED} felled and {PLANTED} planted, and think better of it for the planting.</CC_PeoplesE_LedgerWarm>
+  <CC_PeoplesE_LedgerCool>{FACTION} have reckoned the colony's trees for the season, {FELLED} felled and {PLANTED} planted, and think less of it for the axe.</CC_PeoplesE_LedgerCool>
+
+  <!-- The Ashen Banner -->
+  <CC_PeoplesE_NoCamp>The squad has no ground to camp on now.</CC_PeoplesE_NoCamp>
+  <CC_PeoplesE_NoFighter>Nobody at home can take the drill now.</CC_PeoplesE_NoFighter>
+  <CC_PeoplesE_Impact_Hire>A squad of {0} makes camp by the colony for {1} days and takes up arms against whatever comes at it. Every {2} days its wage of {3} silver is asked by letter; unpaid, the squad walks.</CC_PeoplesE_Impact_Hire>
+  <CC_PeoplesE_Impact_HireBrief>The Banner's squad</CC_PeoplesE_Impact_HireBrief>
+  <CC_PeoplesE_Impact_HireGuard>The squad fights for the colony while its camp stands</CC_PeoplesE_Impact_HireGuard>
+  <CC_PeoplesE_Impact_HireGuardBrief>Swords on the wall</CC_PeoplesE_Impact_HireGuardBrief>
+  <CC_PeoplesE_WageNotDue>No wage is due yet.</CC_PeoplesE_WageNotDue>
+  <CC_Camp_End_unpaid>The {NAME} from {FACTION} went unpaid, so they struck their camp {PLACE} and walked, as the Banner always does. The Roll will remember the contract broken.</CC_Camp_End_unpaid>
+  <CC_PeoplesE_DeserterHeard>{0} heard that the colony took in {1}, whom the Banner struck from the Roll.</CC_PeoplesE_DeserterHeard>
+  <CC_PeoplesE_Impact_Night>{0} sleeps in a warm corner tonight and is on the road at first light.</CC_PeoplesE_Impact_Night>
+  <CC_PeoplesE_Impact_NightBrief>A night's lodging</CC_PeoplesE_Impact_NightBrief>
+
+  <!-- The Kiln Guild -->
+  <CC_PeoplesE_NoMaker>{0} can't work at the bench now.</CC_PeoplesE_NoMaker>
+  <CC_PeoplesE_NoBench>The colony has no bench to make the {0} at.</CC_PeoplesE_NoBench>
+  <CC_PeoplesE_Impact_Commission>{PAWN_nameDef} makes the {THING} at the bench from the stuff set apart for it; {OTHER_nameDef} comes back for it and pays by its quality</CC_PeoplesE_Impact_Commission>
+  <CC_PeoplesE_Commission_Label>the guild's commission for {OTHER_nameDef}</CC_PeoplesE_Commission_Label>
+  <CC_PeoplesE_WanderSays>A good bench, and a better teacher.</CC_PeoplesE_WanderSays>
+  <CC_PeoplesE_Wander_Coming>{0} is on the road from the guildhall.</CC_PeoplesE_Wander_Coming>
+  <CC_PeoplesE_Wander_Staying>{0} is at the colony on the wander-year. Days at the bench: {1}.</CC_PeoplesE_Wander_Staying>
+  <CC_PeoplesE_Wander_NoPiece>a small sculpture</CC_PeoplesE_Wander_NoPiece>
+
+</LanguageData>

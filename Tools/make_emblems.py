@@ -32,6 +32,15 @@ Release D:
     roof (town);
   - the Wheel: a spoked cart wheel with a cog's teeth round its rim (emblem); a house on a cart, its wheels under it (town).
 
+Release E:
+  - the Stormglass Conclave: a stormglass vial with its brass cap, a lightning bolt across it (emblem); a tall tower of
+    glass with a rod on its roof (town);
+  - the Mossborn: a sapling growing from a stump, an acorn at its foot (emblem); a hall among three trees (town);
+  - the Ashen Banner: a swallow-tailed banner on its pole over two crossed spears (emblem); a crenellated fort with a
+    banner over its gate tower (town);
+  - the Kiln Guild: a beehive kiln with its fire mouth and a flame from its chimney, a guild mark above (emblem); a
+    guildhall's front with its arched door between two smoking kilns (town).
+
 A new people's glyphs: a function for each and a line in GLYPHS.
 
 Usage (from the repository root):
@@ -47,7 +56,7 @@ import sys
 from PIL import Image, ImageDraw, ImageFont
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from make_icons import arc, bezier, circle, ellipse, grow, line, minus, over, poly, rect, star, union  # noqa: E402
+from make_icons import arc, bezier, circle, ellipse, grow, leaf, line, minus, over, poly, rect, star, union  # noqa: E402
 
 S = 512  # drawing size (4x)
 OUT = 128  # texture size
@@ -570,6 +579,162 @@ def g_wheel_town():
     return over(wheels, m, 10)
 
 
+# ---------------------------------------------------------------- the Stormglass Conclave
+
+def g_stormglass():
+    """A stormglass vial with its brass cap, a lightning bolt across it."""
+    m = new()
+    # The vial: a tall rounded flask, its neck and cap.
+    rect(m, 176, 140, 336, 470, r=70)
+    rect(m, 206, 166, 306, 444, r=46, fill=OFF)
+    rect(m, 214, 92, 298, 148)                      # the neck
+    rect(m, 196, 50, 316, 100, r=10)                # the brass cap
+    # The feathers in the glass.
+    for y in (250, 310, 370):
+        line(m, [(226, y), (256, y - 26), (286, y)], 12)
+    bolt = new()
+    poly(bolt, [(380, 40), (250, 250), (320, 250), (150, 480), (420, 210), (340, 210), (446, 40)])
+    return over(bolt, m, 14)
+
+
+def g_stormglass_town():
+    """A tall tower of glass with a rod on its roof."""
+    m = new()
+    rect(m, 40, 430, 472, 470)                      # the ground
+    rect(m, 176, 150, 336, 432)                     # the tower
+    for y in (176, 256, 336):
+        rect(m, 204, y, 240, y + 52, r=8, fill=OFF)  # its glass windows
+        rect(m, 272, y, 308, y + 52, r=8, fill=OFF)
+    poly(m, [(160, 156), (256, 80), (352, 156)])    # the roof
+    line(m, [(256, 90), (256, 18)], 14)             # the rod
+    circle(m, 256, 18, 14)
+    # A low house each side.
+    rect(m, 60, 330, 160, 432)
+    poly(m, [(50, 336), (110, 286), (170, 336)])
+    rect(m, 352, 350, 452, 432)
+    poly(m, [(342, 356), (402, 306), (462, 356)])
+    return m
+
+
+# ---------------------------------------------------------------- the Mossborn
+
+def g_mossborn():
+    """A sapling growing from a stump, an acorn at its foot."""
+    m = new()
+    # The stump, its cut face and roots.
+    rect(m, 150, 330, 362, 440, r=12)
+    ellipse(m, 150, 300, 362, 360)
+    ImageDraw.Draw(m).ellipse([196, 314, 316, 346], outline=OFF, width=10)
+    poly(m, [(150, 420), (90, 470), (180, 440)])
+    poly(m, [(362, 420), (422, 470), (332, 440)])
+    # The sapling from the stump.
+    tree = new()
+    line(tree, [(256, 320), (256, 150)], 22)
+    poly(tree, leaf((256, 210), (120, 110), 70, -10))
+    poly(tree, leaf((256, 180), (392, 80), 70, 10))
+    poly(tree, leaf((256, 160), (256, 30), 60))
+    m = over(tree, m, 12)
+    # The acorn at its foot.
+    acorn = new()
+    ellipse(acorn, 384, 392, 452, 476)
+    rect(acorn, 376, 376, 460, 410, r=18)
+    line(acorn, [(418, 378), (426, 352)], 10)
+    return over(acorn, m, 10)
+
+
+def g_mossborn_town():
+    """A hall among three trees."""
+    m = new()
+    rect(m, 20, 440, 492, 470)                      # the ground
+    # The hall: a long low roof, its door.
+    rect(m, 150, 330, 362, 440)
+    poly(m, [(120, 340), (256, 250), (392, 340)])
+    rect(m, 230, 370, 282, 440, r=20, fill=OFF)
+    trees = new()
+    for cx, top, r in ((86, 150, 70), (256, 40, 84), (426, 150, 70)):
+        rect(trees, cx - 12, top + r, cx + 12, 440)
+        circle(trees, cx, top + r, r)
+    trees = minus(trees, grow(m, 10))
+    return union(m, trees)
+
+
+# ---------------------------------------------------------------- the Ashen Banner
+
+def g_ashenbanner():
+    """A swallow-tailed banner on its pole over two crossed spears."""
+    m = new()
+    spears = new()
+    for (x0, y0, x1, y1) in ((80, 480, 420, 130), (432, 480, 92, 130)):
+        line(spears, [(x0, y0), (x1, y1)], 18)
+        # The spearhead: a leaf-shaped blade on from the shaft's end.
+        dx, dy = x1 - x0, y1 - y0
+        n = math.hypot(dx, dy)
+        dx, dy = dx / n, dy / n
+        poly(spears, leaf((x1 - dx * 10, y1 - dy * 10), (x1 + dx * 90, y1 + dy * 90), 46))
+    # The banner: its pole, its cloth with the swallow tail.
+    flag = new()
+    line(flag, [(256, 470), (256, 30)], 20)
+    circle(flag, 256, 30, 18)
+    poly(flag, [(266, 60), (400, 60), (350, 135), (400, 210), (266, 210)])
+    m = over(flag, spears, 14)
+    return m
+
+
+def g_ashenbanner_town():
+    """A crenellated fort with a banner over its gate tower."""
+    m = new()
+    rect(m, 40, 270, 472, 460)                      # the wall
+    for x in range(40, 472, 72):
+        rect(m, x, 236, x + 40, 272)                # its battlements
+    rect(m, 186, 150, 326, 460)                     # the gate tower
+    for x in (186, 246, 296):
+        rect(m, x, 118, x + 30, 152)
+    rect(m, 220, 330, 292, 460, r=36, fill=OFF)     # the gate
+    rect(m, 224, 190, 288, 240, fill=OFF)           # a window over it
+    flag = new()
+    line(flag, [(256, 120), (256, 20)], 12, caps=False)
+    poly(flag, [(262, 24), (380, 24), (346, 58), (380, 92), (262, 92)])
+    return union(m, flag)
+
+
+# ---------------------------------------------------------------- the Kiln Guild
+
+def g_kilnguild():
+    """A beehive kiln with its fire mouth and a flame from its chimney, a guild mark above."""
+    m = new()
+    # The kiln: a dome on a low base, its arched fire mouth.
+    ImageDraw.Draw(m).pieslice([80, 170, 432, 590], 180, 360, fill=ON)
+    rect(m, 60, 370, 452, 460)
+    rect(m, 206, 300, 306, 460, r=48, fill=OFF)
+    poly(m, teardrop(256, 330, 440, 30))           # the fire in it
+    rect(m, 220, 120, 292, 200)                     # the chimney
+    # The flame from the chimney.
+    flame = new()
+    poly(flame, teardrop(256, 18, 112, 34))
+    m = over(flame, m, 8)
+    # The courses of brick round the dome.
+    arc(m, 256, 380, 112, 196, 344, 12, fill=OFF)
+    arc(m, 256, 380, 160, 192, 348, 12, fill=OFF)
+    return m
+
+
+def g_kilnguild_town():
+    """A guildhall's front with its arched door between two smoking kilns."""
+    m = new()
+    rect(m, 20, 440, 492, 470)                      # the ground
+    rect(m, 150, 200, 362, 440)                     # the hall
+    poly(m, [(130, 210), (256, 110), (382, 210)])   # its pediment
+    rect(m, 214, 320, 298, 440, r=42, fill=OFF)     # the arched door
+    circle(m, 256, 250, 26, fill=OFF)               # a round window
+    kilns = new()
+    for cx in (70, 442):
+        ImageDraw.Draw(kilns).pieslice([cx - 60, 300, cx + 60, 540], 180, 360, fill=ON)
+        rect(kilns, cx - 60, 420, cx + 60, 440)
+        rect(kilns, cx - 14, 260, cx + 14, 310)
+        line(kilns, [(cx, 250), (cx - 16, 200), (cx + 6, 150), (cx - 10, 100)], 12)
+    return over(kilns, m, 10)
+
+
 GLYPHS = [
     ("League", g_league), ("LeagueTown", g_league_town),
     ("Order", g_order), ("OrderTown", g_order_town),
@@ -582,12 +747,17 @@ GLYPHS = [
     ("QuietBell", g_quietbell), ("QuietBellTown", g_quietbell_town),
     ("Tamers", g_tamers), ("TamersTown", g_tamers_town),
     ("Wheel", g_wheel), ("WheelTown", g_wheel_town),
+    ("Stormglass", g_stormglass), ("StormglassTown", g_stormglass_town),
+    ("Mossborn", g_mossborn), ("MossbornTown", g_mossborn_town),
+    ("AshenBanner", g_ashenbanner), ("AshenBannerTown", g_ashenbanner_town),
+    ("KilnGuild", g_kilnguild), ("KilnGuildTown", g_kilnguild_town),
 ]
 
 # The peoples' colours (the middle of each colorSpectrum in Defs/PeopleDefs/), for the preview.
 TINTS = {"League": (66, 158, 166), "Order": (234, 228, 210), "Herders": (196, 118, 66), "Pilgrims": (145, 161, 130),
          "Scholars": (143, 46, 84), "Enclave": (161, 212, 227), "RiverFolk": (28, 115, 179),
-         "Wardens": (176, 50, 32), "QuietBell": (105, 105, 115), "Tamers": (125, 82, 170), "Wheel": (158, 135, 61)}
+         "Wardens": (176, 50, 32), "QuietBell": (105, 105, 115), "Tamers": (125, 82, 170), "Wheel": (158, 135, 61),
+         "Stormglass": (74, 92, 130), "Mossborn": (79, 115, 48), "AshenBanner": (156, 151, 144), "KilnGuild": (214, 166, 51)}
 
 
 def to_texture(mask):

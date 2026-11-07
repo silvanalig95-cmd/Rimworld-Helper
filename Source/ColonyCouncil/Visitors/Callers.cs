@@ -1204,14 +1204,19 @@ namespace ColonyCouncil
             return c;
         }
 
-        /// <summary>A finished commission whose collector can come for it now on this map, or null.</summary>
-        public static Commission Due(Map map)
+        /// <summary>
+        /// A finished commission whose collector can come for it now on this map, or null: the art collector's
+        /// (<paramref name="which"/> unset: all but the Kiln Guild's, which their own master-trader comes for), or those
+        /// <paramref name="which"/> picks (Peoples/PeoplesE2.cs).
+        /// </summary>
+        public static Commission Due(Map map, Func<Commission, bool> which = null)
         {
             var self = Instance;
             if (self == null || map == null) return null;
             int now = Now;
             foreach (var c in self.commissions)
             {
+                if (which != null ? !which(c) : HappeningWorker_GuildCollects.Guilds(c)) continue;
                 if (c.made == null || c.made.Destroyed || c.made.MapHeld != map || c.madeTick < 0) continue;
                 if (now - c.madeTick < CallerMath.CommissionReturnDays * GenDate.TicksPerDay) continue;
                 var x = c.collector;
