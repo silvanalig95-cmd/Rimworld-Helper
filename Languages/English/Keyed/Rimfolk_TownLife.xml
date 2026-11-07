@@ -17,16 +17,16 @@
   <!-- The fight on the town's map -->
   <CC_TownLife_FightLabel>The fight at {TOWN}</CC_TownLife_FightLabel>
   <CC_TownLife_FightText>The colony's fighters have reached {TOWN}: {NAMES}. {ENEMY} are coming in at the far side of the town, and {PEOPLE} are on their walls.\n\nIt is their town now, and the colony's fighters fight beside its people, not over them. Every raider down or gone, and {TOWN} stands.</CC_TownLife_FightText>
-  <CC_TownLife_FightFormers>Among the town's defenders are {NAMES}, who stayed when {TOWN} was handed over.</CC_TownLife_FightFormers>
+  <CC_TownLife_FightFormers>The colony's former people at {TOWN} are among its defenders: {NAMES}.</CC_TownLife_FightFormers>
   <CC_TownLife_Deed>stood with {TOWN} against its raiders</CC_TownLife_Deed>
   <CC_TownLife_FightLayout>The town is {COLONY} as the colony left it: the same walls, the same doors, the same rooms.</CC_TownLife_FightLayout>
 
   <!-- A former colonist's death, told by name -->
-  <CC_TownLife_DiedHistory>{PAWN}, who stayed at {TOWN} when it was handed over, died there.</CC_TownLife_DiedHistory>
+  <CC_TownLife_DiedHistory>{PAWN}, one of the colony's own once, died at {TOWN}.</CC_TownLife_DiedHistory>
   <CC_TownLife_Of_Plague>of {WHAT}</CC_TownLife_Of_Plague>
   <CC_TownLife_Of_Famine>in the hunger of {WHAT}</CC_TownLife_Of_Famine>
   <CC_TownLife_HardshipLabel>{PAWN} of {TOWN}</CC_TownLife_HardshipLabel>
-  <CC_TownLife_HardshipText>Word from {TOWN} by {MEANS}: {PAWN}, who stayed when {COLONY} was handed over, has died {WHAT}.\n\n{TOWN} mourns them.</CC_TownLife_HardshipText>
+  <CC_TownLife_HardshipText>Word from {TOWN} by {MEANS}: {PAWN}, one of the colony's own once, has died {WHAT}.\n\n{TOWN}, the town {COLONY} was, mourns them.</CC_TownLife_HardshipText>
   <CC_TownLife_HardshipHelped>What the colony sent {TOWN} in that time is remembered there; without it, more would have died.</CC_TownLife_HardshipHelped>
 
   <!-- Turning against the colony -->
@@ -47,7 +47,7 @@
   <!-- Refused twice: its people at the gate -->
   <CC_TownLife_GateLabel>{TOWN} given up</CC_TownLife_GateLabel>
   <CC_TownLife_GateText>{PEOPLE} have given up {TOWN}. The town {COLONY} was stands empty, a ruin on the map.</CC_TownLife_GateText>
-  <CC_TownLife_GateFormers>{NAMES}, who stayed when it was handed over, are coming to the colony's gate to ask to come home to {COLONY}.</CC_TownLife_GateFormers>
+  <CC_TownLife_GateFormers>The colony's former people from {COLONY} are coming to the colony's gate to ask to come home: {NAMES}.</CC_TownLife_GateFormers>
   <CC_TownLife_GateOthers>Of the rest of {PEOPLE}, {NAMES} would rather join the colony than go elsewhere, and are coming to the gate.</CC_TownLife_GateOthers>
   <CC_TownLife_GateLast>{TOWN} was all {PEOPLE} had. They are no longer a people of their own.</CC_TownLife_GateLast>
   <CC_TownLife_GateNotLast>The rest of {PEOPLE} have gone on to their other towns.</CC_TownLife_GateNotLast>
@@ -65,8 +65,8 @@
   <CC_TownLife_GrewHistory>{PEOPLE} of {TOWN} founded {NEWTOWN}.</CC_TownLife_GrewHistory>
 
   <!-- A raid of theirs on the colony, at war -->
-  <CC_TownLife_RaidFormer>Among the raiders is {NAMES}, who stayed at {TOWN} when {COLONY} was handed over.</CC_TownLife_RaidFormer>
-  <CC_TownLife_RaidFormers>Among the raiders are {NAMES}, who stayed at {TOWN} when {COLONY} was handed over.</CC_TownLife_RaidFormers>
+  <CC_TownLife_RaidFormer>Among the raiders is {NAMES}, one of the colony's own once, who lived at {TOWN}, the town {COLONY} was.</CC_TownLife_RaidFormer>
+  <CC_TownLife_RaidFormers>Among the raiders are {NAMES}, the colony's own once, who lived at {TOWN}, the town {COLONY} was.</CC_TownLife_RaidFormers>
 
   <!-- The faction memory -->
   <CC_Memory_Deed_townDefended>stood on their walls when raiders came to the town the colony was</CC_Memory_Deed_townDefended>

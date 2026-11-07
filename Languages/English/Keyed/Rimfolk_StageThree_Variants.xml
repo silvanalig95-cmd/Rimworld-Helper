@@ -33,8 +33,8 @@
   <CC_TownLife_AskBackText_3>By {MEANS} from {TOWN}: times are hard there, and {HEAD} asks, for {PEOPLE}, whether the colony would take {TOWN} back as {COLONY} once more.</CC_TownLife_AskBackText_3>
   <CC_TownLife_GateText_2>{TOWN} is given up: {PEOPLE} could not hold on there, and the town that was {COLONY} is a ruin now.</CC_TownLife_GateText_2>
   <CC_TownLife_GateText_3>{PEOPLE} have left {TOWN}, and the place that was {COLONY} stands empty, a ruin on the map.</CC_TownLife_GateText_3>
-  <CC_TownLife_HardshipText_2>{TOWN} sends word by {MEANS}: {PAWN} has died {WHAT}. {PAWN} was one of the colony's own, and stayed when {COLONY} was handed over.\n\n{TOWN} mourns them.</CC_TownLife_HardshipText_2>
-  <CC_TownLife_HardshipText_3>By {MEANS}, sad news from {TOWN}: {PAWN}, who stayed when {COLONY} was handed over, has died {WHAT}.\n\n{TOWN} mourns them.</CC_TownLife_HardshipText_3>
+  <CC_TownLife_HardshipText_2>{TOWN} sends word by {MEANS}: {PAWN} has died {WHAT}. {PAWN} was one of the colony's own, and lived on at the town {COLONY} was.\n\n{TOWN} mourns them.</CC_TownLife_HardshipText_2>
+  <CC_TownLife_HardshipText_3>By {MEANS}, sad news from {TOWN}, the town {COLONY} was: {PAWN}, the colony's own once, has died {WHAT}.\n\n{TOWN} mourns them.</CC_TownLife_HardshipText_3>
   <CC_TownLife_CoolHead_2>{TOWN} has a new {TITLE}, {HEAD}, who thinks little of the colony. While {HEAD} leads, the town will be cooler to it.</CC_TownLife_CoolHead_2>
   <CC_TownLife_CoolHead_3>{HEAD} is {TITLE} of {TOWN} now, and no friend of the colony's. The town will be cooler to the colony while they lead it.</CC_TownLife_CoolHead_3>
   <CC_TownLife_FightText_2>{NAMES} have reached {TOWN} for the colony. {ENEMY} are coming in at the far side, and {PEOPLE} are holding their walls.\n\nIt is their town now: the colony's fighters fight beside its people, not over them. Every raider down or gone, and {TOWN} stands.</CC_TownLife_FightText_2>
@@ -46,7 +46,7 @@
   <CC_Found_NewcomersText_2>Answering {CALL}, {NAMES} have come to {PLACE}. They walk in from the edge of the land with what they brought.</CC_Found_NewcomersText_2>
   <CC_Found_NewcomersText_3>{NAMES} are here, answering {CALL}, and walk in to {PLACE} from the edge of the land with what they brought.</CC_Found_NewcomersText_3>
   <CC_Found_NewcomersFoundText_2>Answering {CALL} from {MOTHER}, {NAMES} have come to found {PLACE}. They walk in from the edge of the land with what they brought.</CC_Found_NewcomersFoundText_2>
-  <CC_Found_NewcomersFoundText_3>{PLACE} will be founded by {NAMES}, who answered {CALL} from {MOTHER}. They walk in from the edge of the land with what they brought.</CC_Found_NewcomersFoundText_3>
+  <CC_Found_NewcomersFoundText_3>{NAMES} answered {CALL} from {MOTHER}, and {PLACE} is theirs to found. They walk in from the edge of the land with what they brought.</CC_Found_NewcomersFoundText_3>
   <CC_HandOver_LetterText_2>{HOME} stands on its own now, the town of the {PEOPLE}, with {HEAD} as its {TITLE}. Those who stayed: {NAMES}.</CC_HandOver_LetterText_2>
   <CC_HandOver_LetterText_3>The colony has handed {HOME} over: it is the town of the {PEOPLE} now, the colony's former people, led by {HEAD} as {TITLE}. Those who stayed: {NAMES}.</CC_HandOver_LetterText_3>
   <CC_TownAfter_BackText_2>By the word of {HEAD} and {PEOPLE}, {TOWN} is the colony's home again: {FORM}.</CC_TownAfter_BackText_2>

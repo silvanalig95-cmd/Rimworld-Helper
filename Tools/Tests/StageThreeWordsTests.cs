@@ -117,6 +117,24 @@ public static class StageThreeWordsTests
               .All(l => ShippedOwn(l)), "the first night speaks of a fire only with one burning at the gathering");
         C(All("Rimfolk_Pool_FirstNight").Where(l => Regex.IsMatch(LineTags.Parse(l).text, @"\bold place\b")).All(l => l.StartsWith("[") && l.Substring(0, l.IndexOf(']')).Contains("!newcomer")),
             "the old place only in the mouth of one who lived there (!newcomer)");
+        // What every attendee of a gathering shares (its season, its hour, the meal, the council's trust) has none or two
+        // lines and more: a tagged line wins most picks (ToneLines.Pick), so one line for it would be everyone's.
+        foreach (var pool in new[] { "Rimfolk_Pool_FirstNight", "Rimfolk_Pool_MergeWelcome", "Rimfolk_Pool_HandOverMeeting", "Rimfolk_Pool_HandOver" })
+            foreach (var t in new[] { "spring", "summer", "fall", "winter", "morning", "day", "evening", "night", "eating", "trusting", "doubtful" })
+            {
+                int k = All(pool).Count(l => Pos(l, t));
+                C(k == 0 || k >= 2, $"{pool}: [{t}] has {k} lines, none or two and more");
+            }
+        // This pass's own words have no exclamation marks (the shipped lines keep theirs).
+        foreach (var f in new[] { "FlavorPoolDefs/Rimfolk_StageThree_Founders.xml", "FlavorPoolDefs/Rimfolk_StageThree_Town.xml", "FlavorPoolDefs/Rimfolk_Journal_StageThree.xml",
+                     "OutsiderTalkDefs/Rimfolk_OutsiderTalks_StageThree.xml" })
+        {
+            string path = Path.Combine(root, "Defs", f);
+            C(File.Exists(path), $"{f} is there");
+            if (!File.Exists(path)) continue;
+            foreach (var li in XDocument.Load(path).Descendants("li"))
+                C(!LineTags.Parse(li.Value).text.Contains('!') && !li.Value.Contains('—'), $"{f}: no exclamation marks or dashes: '{li.Value}'");
+        }
         foreach (var age in new[] { "tribal", "medieval", "industrial", "spacer" })
         {
             C(All("Rimfolk_Pool_FirstNight").Count(l => Has(l, age)) >= 2, $"the first night in the {age} age's own words");

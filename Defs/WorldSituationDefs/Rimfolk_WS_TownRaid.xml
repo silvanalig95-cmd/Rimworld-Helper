@@ -125,7 +125,7 @@
           <li>[died] The raiders of {ENEMY} are gone from {PLACE}, but not without a price: {DEAD}, one of the colony's own once, fell beside the colony's fighters.\n\n{FACTION} will remember who came when they called.</li>
           <li>[!died] {PLACE} stands. The raiders of {ENEMY} are dead or fled, and the colony's fighters can rest inside the walls the colony built.\n\n{FACTION} will remember who came.</li>
           <li>[!died,theirLowtech] {ENEMY} are beaten at {PLACE}, and the town's people and the colony's fought them side by side at the old walls.\n\n{FACTION} will tell of it at their fire for a long time.</li>
-          <li>[died,!diedMany] {PLACE} stands, and {ENEMY} are beaten. {DEAD}, who stayed at {PLACE} when it was handed over, did not live to see it.\n\n{FACTION} will remember who came when they called.</li>
+          <li>[died,!diedMany] {PLACE} stands, and {ENEMY} are beaten. {DEAD}, who was the colony's own once, did not live to see it.\n\n{FACTION} will remember who came when they called.</li>
           <li>[died,diedMany] The raiders of {ENEMY} are gone from {PLACE}, at a hard price: {DEAD}, who were the colony's own once, fell beside the colony's fighters.\n\n{FACTION} will remember who came when they called.</li>
         </texts>
       </li>
@@ -174,7 +174,7 @@
           <li>[died,others] {ENEMY} were beaten back at the gate of {PLACE}. {DEAD}, one of the colony's own once, was killed holding it, and so was {ITEM}.\n\nThe town has lost goods and fortune.</li>
           <li>[!died,!others] {PLACE} drove {ENEMY} off, at a cost: stores lost, fields trampled and a long clearing-up ahead.\n\nThe town has lost goods and fortune.</li>
           <li>[!died,others] {PLACE} drove {ENEMY} off, but {ITEM} did not live to see it.\n\nThe town has lost goods and fortune.</li>
-          <li>[died,!diedMany,!others] {PLACE} drove {ENEMY} off, but {DEAD}, who stayed there when it was handed over, was killed at the gate.\n\nThe town has lost goods and fortune.</li>
+          <li>[died,!diedMany,!others] {PLACE} drove {ENEMY} off, but {DEAD}, once one of the colony's own, was killed at the gate.\n\nThe town has lost goods and fortune.</li>
           <li>[died,diedMany,!others] {ENEMY} were beaten back at the gate of {PLACE}. {DEAD}, all of them the colony's own once, were killed holding it.\n\nThe town has lost goods and fortune.</li>
           <li>[died,diedMany,others] {ENEMY} were beaten back at the gate of {PLACE}. {DEAD}, all of them the colony's own once, were killed holding it, with {ITEM} beside them.\n\nThe town has lost goods and fortune.</li>
         </texts>
@@ -192,7 +192,7 @@
           <li>[died,others] {ENEMY} broke into {PLACE} and took most of what it had. {DEAD}, one of the colony's own once, was killed in the raid, and so was {ITEM}.\n\nThe town still stands, but it will be a long time before it stands as it did.</li>
           <li>[!died,!others] {PLACE} was sacked by {ENEMY}. Its people are still there, picking through what was left.\n\nIt will be a long time before the town stands as it did.</li>
           <li>[!died,others] {ENEMY} sacked {PLACE}, and {ITEM} died in the raid.\n\nThe town still stands, but it will be a long time before it stands as it did.</li>
-          <li>[died,!others] {ENEMY} sacked {PLACE}. {DEAD}, who stayed there when it was handed over, is among the dead.\n\nThe town still stands, but it will be a long time before it stands as it did.</li>
+          <li>[died,!others] {ENEMY} sacked {PLACE}. {DEAD}, who was the colony's own once, is among the dead.\n\nThe town still stands, but it will be a long time before it stands as it did.</li>
         </texts>
       </li>
       <li>

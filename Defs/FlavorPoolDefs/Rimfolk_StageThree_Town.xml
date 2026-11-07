@@ -167,8 +167,8 @@
         <li>[back] I'm back, so where do I sleep?</li>
       </blunt>
       <cheerful>
-        <li>[welcome] You're home, you're really home!</li>
-        <li>[back] Home at last, and starving!</li>
+        <li>[welcome] You're home, you're really home.</li>
+        <li>[back] Home at last, and starving.</li>
       </cheerful>
       <gloomy>
         <li>[welcome] I was afraid you'd never come.</li>

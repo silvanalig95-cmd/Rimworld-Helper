@@ -37,8 +37,8 @@
     <lines>
       <li>[them] I'm {OUTSIDER}, of {TOWN} now, and one of the colony's own once, as you may know.</li>
       <li>[us] Then you're welcome here twice over.</li>
-      <li>[them,their:tribal] I sat at {OLDCOLONY}'s fire before it was {TOWN}'s.</li>
-      <li>[them] I lived at {OLDCOLONY} before it was handed over.</li>
+      <li>[them,their:tribal] I sat at the colony's fires before I sat at {TOWN}'s.</li>
+      <li>[them] I was the colony's before I was {TOWN}'s.</li>
       <li>[us] Then come in, and tell me what you remember of it.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
@@ -140,11 +140,11 @@
     <uses>chat,know</uses>
     <when>them:former</when>
     <lines>
-      <li>[us] Do you ever wish you'd gone with the others?</li>
+      <li>[us] Do you ever wish you were back with the colony?</li>
       <li>[them,kin:you] Some days, when I think of you.</li>
-      <li>[them,!kin:you] Some days, but somebody had to stay and keep the place.</li>
+      <li>[them,!kin:you] Some days, but {TOWN} needs every pair of hands it has.</li>
       <li>[us] And the other days?</li>
-      <li>[them] The other days {TOWN} is home, and I'm glad I stayed.</li>
+      <li>[them] The other days {TOWN} is home, and I'm glad to be there.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 
@@ -154,10 +154,9 @@
     <uses>home,chat</uses>
     <when>them:former</when>
     <lines>
-      <li>[them] I still sleep in the room I had when {TOWN} was {OLDCOLONY}.</li>
-      <li>[us] Has it changed much?</li>
-      <li>[them,town:thriving|town:flourishing] New shutters, and a neighbor on every side now.</li>
-      <li>[them] Not much, the same walls and the same draft under the door.</li>
+      <li>[us] Do you sleep in one of the rooms {OLDCOLONY} built?</li>
+      <li>[them,town:thriving|town:flourishing] I do, with new shutters, and a neighbor on every side now.</li>
+      <li>[them] I do, the same walls and the same draft under the door.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 
@@ -217,7 +216,7 @@
     <uses>chat,home</uses>
     <when>them:former,their:tribal</when>
     <lines>
-      <li>[them] I still keep the place by the fire that I had in the colony's days.</li>
+      <li>[them] There's a place by the fire at {TOWN} kept for the colony's own, and I sit in it.</li>
       <li>[us] Nobody's taken it?</li>
       <li>[them] Nobody would dare, the elders saw to that.</li>
     </lines>
@@ -269,7 +268,7 @@
     <weight>1.2</weight>
     <lines>
       <li>[us] How do you find leading {TOWN}?</li>
-      <li>[them,them:former] Harder than sitting on the colony's council ever was.</li>
+      <li>[them,them:former] Harder than anything the colony ever asked of me.</li>
       <li>[them] Harder than it looks from outside, and it looks hard.</li>
       <li>[us] You'll manage.</li>
       <li>[them,their:lowtech] The elders say I will, and they are seldom wrong.</li>

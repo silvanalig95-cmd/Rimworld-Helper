@@ -34,6 +34,18 @@
         <li>[summer] At least the nights are warm for now.</li>
         <li>[fall] We'll want the stores in before the frost.</li>
         <li>[spring] Spring's a good time to start anything, even a colony.</li>
+        <li>[summer] A warm night for it, we could sleep under the sky if we had to.</li>
+        <li>[winter] Keep close tonight, it's a long winter night out here.</li>
+        <li>[spring] Soft ground, so the digging should go easy tomorrow.</li>
+        <li>[fall] Short days ahead, so we'd best make every one of them count.</li>
+        <li>[evening] The light's going, and we're still unpacking.</li>
+        <li>[evening] Have a good look round before the light goes, this is ours now.</li>
+        <li>[night] It's late, and nobody wants to be the first to sleep.</li>
+        <li>[rain] Wet ground and wet blankets, and still I'm glad we came.</li>
+        <li>[snow] Snow on the first night, so now we know what we're in for.</li>
+        <li>[cold] Bundle up, it's a cold one for a first night.</li>
+        <li>[old] I've seen a few first nights, and this one feels right.</li>
+        <li>[teen] I can't believe we actually did it.</li>
         <li>[!newcomer] I keep reaching for things that are back at the old place.</li>
         <li>[!newcomer] Funny, I already miss the noise of the old place.</li>
         <li>[!newcomer] The old place had its faults, but I knew where everything was.</li>
@@ -67,7 +79,7 @@
         <li>Eat, sleep, and we'll argue about walls in the morning.</li>
       </blunt>
       <cheerful>
-        <li>Our own place, our own sky, and our own mistakes to make!</li>
+        <li>Our own place, our own sky, and our own mistakes to make.</li>
       </cheerful>
       <gloomy>
         <li>Every new place looks kind on the first night.</li>
@@ -97,6 +109,10 @@
         <li>[leave,medieval] We go with the council's blessing, which will have to do for a roof tonight.</li>
         <li>[leave,industrial] Everything's loaded, checked, and checked again.</li>
         <li>[leave,spacer] Route plotted and supplies logged, so there's no reason to wait.</li>
+        <li>[leave,morning] If we go now, we'll have the whole day on the road.</li>
+        <li>[leave,summer] Good weather for the road, at least.</li>
+        <li>[leave,fall] We'll want a roof up before the frost comes.</li>
+        <li>[leave,spring] Spring's the time for setting out, everyone says so.</li>
         <li>[seeoff] Mind how you go, the road won't mind it for you.</li>
         <li>[seeoff] Don't forget us once you're settled.</li>
         <li>[seeoff] Supper's going to be quiet tonight.</li>
@@ -108,12 +124,14 @@
         <li>[seeoff,lowtech] Walk safe, and may the land be kind to you.</li>
         <li>[seeoff,winter] Keep your feet dry and your fires lit.</li>
         <li>[seeoff,rain] You picked a wet day for it.</li>
+        <li>[seeoff,morning] I got up early to see you off, so don't make me regret it.</li>
+        <li>[seeoff,summer] Long days for walking, so make good use of them.</li>
       </plain>
       <blunt>
         <li>[leave] Right, we're off.</li>
       </blunt>
       <cheerful>
-        <li>[leave] New place, new start, let's go!</li>
+        <li>[leave] New place, new start, so let's go.</li>
         <li>[seeoff] Go on, and make us jealous.</li>
       </cheerful>
       <gloomy>
@@ -138,12 +156,42 @@
         <li>[eating] This tastes better with more people round it.</li>
         <li>Tomorrow we'll sort out who sleeps where, tonight we eat.</li>
         <li>Two councils' worth of opinions at one table, this should be lively.</li>
-        <li>I'll trade you stories of the old place for stories of this one.</li>
+        <li>Stories of the old place for stories of this one, that's a fair trade tonight.</li>
         <li>[child] There are so many people at supper now.</li>
         <li>[old] I like a table this full.</li>
         <li>[winter] It's good to have more of us for the winter.</li>
         <li>[summer] Long evenings ahead, and plenty of time to get to know each other.</li>
         <li>[lowtech] More mouths and more hands, and that's a fair trade.</li>
+        <li>[summer] There'll be work in the fields for all these hands tomorrow.</li>
+        <li>[summer] A warm evening and a full table, I couldn't ask for more.</li>
+        <li>[winter] More of us round the table, and the room's warmer for it.</li>
+        <li>[winter] The stores will have to stretch now, and I'm glad of the company.</li>
+        <li>[spring] Planting's coming, and look at all the hands we've got for it.</li>
+        <li>[spring] New faces in spring, like everything else round here.</li>
+        <li>[spring] A spring supper with new faces, that's a good start to the year.</li>
+        <li>[fall] Just in time, there's a harvest to bring in.</li>
+        <li>[fall] The harvest will go round more of us this year, and that's all right.</li>
+        <li>[fall] The nights are drawing in, and the table's full, so that's good timing.</li>
+        <li>[fall] A fall supper with this many, the stores had better hold.</li>
+        <li>[fall] Good to be all together before the cold sets in.</li>
+        <li>[summer] Warm nights like this are made for long suppers.</li>
+        <li>[summer] Plenty of light left, so nobody has to rush off.</li>
+        <li>[winter] A full table is the best thing about winter.</li>
+        <li>[winter] Squeeze up, there's always room for one more in winter.</li>
+        <li>[spring] Spring's the right time for new beginnings, and here we all are.</li>
+        <li>[spring] More hands for the planting, I'm already counting them.</li>
+        <li>[eating] Whoever cooked this, thank you, it's a good first supper together.</li>
+        <li>[eating] Pass that down when you've had some, there's a lot of us tonight.</li>
+        <li>[eating] Eat slowly, there's a lot of talking to do tonight.</li>
+        <li>[old] At my age, a full table is the best thing there is.</li>
+        <li>[evening] A long evening ahead, and a lot of names to learn.</li>
+        <li>[evening] I hope nobody had plans for this evening.</li>
+        <li>[evening] Good evening for it, with all of us home at last.</li>
+        <li>[night] Late for supper, but nobody's in a hurry to leave.</li>
+        <li>[night] It's getting late, and I've still not met half of you.</li>
+        <li>[night] Nobody's going to bed while there's still talk at this table.</li>
+        <li>[child] Can I sit with the new ones?</li>
+        <li>[old] I'll remember the faces, if not the names.</li>
         <li>[speaker] There's a place at this table for every one of you, tonight and after.</li>
         <li>[speaker] Sit anywhere, there's no old side and new side at this table.</li>
         <li>[speaker] Tonight we eat, and tomorrow we work the rest out together.</li>
@@ -153,7 +201,7 @@
       </blunt>
       <cheerful>
         <li>A full table and a full pot, what more could anyone want?</li>
-        <li>I love a crowded supper!</li>
+        <li>Nothing beats a crowded supper.</li>
       </cheerful>
       <gloomy>
         <li>It'll take more than one supper to make one colony of us.</li>
@@ -186,7 +234,7 @@
         <li>[speaker] I've looked forward to this supper, so welcome, all of you.</li>
       </warm>
       <cheerful>
-        <li>[speaker] To {OLD} and {PLACE}, and to the longest table we've ever needed!</li>
+        <li>[speaker] To {OLD} and {PLACE}, and to the longest table we've ever needed.</li>
       </cheerful>
       <cold>
         <li>[speaker] You are of {PLACE} now, and we expect the best of you.</li>
@@ -214,6 +262,28 @@
         <li>[lowmood] I'm not ready to vote on this, but I suppose I have to.</li>
         <li>[trusting] If the council thinks it's time, I'm listening.</li>
         <li>[doubtful] I want to hear how this is good for the ones who stay, not just the rest of us.</li>
+        <li>[trusting] I've trusted the council this far, and I'll trust it on this.</li>
+        <li>[trusting] Whatever we decide, I know it's been thought through.</li>
+        <li>[doubtful] I'll believe it's for the best when I hear who it's best for.</li>
+        <li>[doubtful] It sounds decided already, and we're only here to nod.</li>
+        <li>[lowmood] I can't think straight about any of this tonight.</li>
+        <li>[lowmood] Whichever way it goes, I don't think I'll feel better for it.</li>
+        <li>[old] Ask the young ones, they're the ones who'll live with it longest.</li>
+        <li>[old] I've sat through a lot of meetings, and few like this one.</li>
+        <li>[evening] We could be here past dark with this one.</li>
+        <li>[evening] Let's not still be at this when the lamps go out.</li>
+        <li>[night] It's late, and I'd rather decide this with a clear head.</li>
+        <li>[night] Half the colony's yawning, so let's get to the vote.</li>
+        <li>[night] We'll still be talking about this at midnight, I can tell.</li>
+        <li>[evening] Get comfortable, this one won't be quick.</li>
+        <li>[evening] Light enough to see each other's faces, and that's all this needs.</li>
+        <li>[night] Whatever we decide tonight, let's sleep on it before the day comes.</li>
+        <li>[trusting] The council's been right before, so I'll hear it out.</li>
+        <li>[trusting] If the council says it can stand on its own, I believe it.</li>
+        <li>[trusting] I'll vote the way my heart says and trust the rest to the council.</li>
+        <li>[doubtful] Every time the council says trust us, something changes.</li>
+        <li>[doubtful] Who decided this was even a question?</li>
+        <li>[doubtful] I'll vote, but I want everyone to remember who asked for this.</li>
       </plain>
       <warm>
         <li>Whatever happens, I'd like us to part as friends.</li>
@@ -253,6 +323,18 @@
         <li>[old] I never thought I'd see this place stand on its own.</li>
         <li>[child] Will we still see each other?</li>
         <li>[teen] So it's a town now?</li>
+        <li>[child] Why is everyone so quiet?</li>
+        <li>[child] Is it still our home if it's a town?</li>
+        <li>[old] My knees won't take many more days like this, but I wanted to be here for it.</li>
+        <li>[old] I hope I live to see what they make of it.</li>
+        <li>[teen] Everyone's acting like it's a funeral.</li>
+        <li>[teen] I'll remember today when I'm old, I suppose.</li>
+        <li>[teen] Nobody asked me, but I think it's the right thing.</li>
+        <li>[teen] It's strange, everyone's here and it already feels emptier.</li>
+        <li>[child] Do we still get to play with the ones who are going?</li>
+        <li>[child] Why is everybody hugging?</li>
+        <li>[old] I've seen worse days than this, and better ones too.</li>
+        <li>[old] Let the young ones cry, I'll do mine later.</li>
       </plain>
       <warm>
         <li>We're still the same people, whatever we call it now.</li>
@@ -298,6 +380,7 @@
         <li>[industrial] Signed and received, and thank you for everything.</li>
         <li>[spacer] Codes accepted, and you'll always have a way back in.</li>
         <li>[old] I'm old for this, but I'll manage.</li>
+        <li>[old] I'll keep it as long as these old hands can.</li>
       </plain>
       <warm>
         <li>Thank you for trusting me with all of it.</li>
@@ -360,7 +443,7 @@
         <li>We built {LABEL}, nobody handed it to us.</li>
       </blunt>
       <cheerful>
-        <li>{LABEL} was a wild idea, and it worked!</li>
+        <li>{LABEL} was a wild idea, and it worked.</li>
       </cheerful>
       <gloomy>
         <li>I still can't decide if founding {LABEL} was brave or foolish.</li>
