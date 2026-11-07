@@ -69,8 +69,8 @@ namespace ColonyCouncil
             {
                 shownView = ColonyView.Version;
                 shownFrom = dip;
-                here = dip?.here.Where(r => ColonyView.ShowsHome(r.home)).ToList() ?? new List<DipRow>();
-                away = dip?.away.Where(r => ColonyView.ShowsHome(r.home)).ToList() ?? new List<DipRow>();
+                here = dip != null ? dip.here.Where(r => ColonyView.ShowsHome(r.home)).ToList() : new List<DipRow>();
+                away = dip != null ? dip.away.Where(r => ColonyView.ShowsHome(r.home)).ToList() : new List<DipRow>();
             }
             float top = UiKit.ViewHeader(rect, Icons.Away ?? Icons.Visitor, "CC_Tab_HereAndAway".Translate(), "CC_Away_Line".Translate(), stat, null, 0f, null,
                 head ??= new ViewHeadModel { article = PagesMath.ArticleOf(RegionView.HereAndAway) });

@@ -484,6 +484,7 @@ namespace ColonyCouncil
                     Write(defName, into, p);
                     if (hold != null) holds[KeyOf(defName, into)] = hold;
                 }
+                // apart: the naming round's news of who keeps a name two colonies had, said once, as any name given is.
                 News.Post("CC_Many_NameKept".Translate(keeper.Named("PAWN"), def.label.Named("TITLE"), place.Named("PLACE"), other.Named("OTHER")).Resolve(),
                     new LookTargets(keeper, other), NewsKind.People, MessageTypeDefOf.NeutralEvent, Importance.Flavor);
                 if (wasTheirs) Lost(def, other, comp);

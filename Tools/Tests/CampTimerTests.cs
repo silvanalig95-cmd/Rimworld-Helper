@@ -32,7 +32,7 @@ public static class CampTimerTests
         C(ColonyCouncil.CampStoryMath.ArrivalFit(12, -1, -1) == 1f, "no hours of its own: any hour alike");
         C(ColonyCouncil.CampStoryMath.ArrivalFit(6, 4, 9) > 1f && ColonyCouncil.CampStoryMath.ArrivalFit(14, 4, 9) > 0f && ColonyCouncil.CampStoryMath.ArrivalFit(14, 4, 9) < 1f,
             "likelier in its hours, still possible outside");
-        C(tracker.Contains("k.WeightNow() * k.HourFit(hourNow)"), "the kind is picked by the hour");
+        C(tracker.Contains("k.WeightNow(map) * k.HourFit(hourNow)"), "the kind is picked by the hour");
         // Every kind that keeps hours keeps sensible ones.
         foreach (var f in Directory.GetFiles(Path.Combine(root, "Defs", "CampDefs"), "*.xml"))
             foreach (Match m in Regex.Matches(File.ReadAllText(f), @"<arrives>(\d+)~(\d+)</arrives>"))
