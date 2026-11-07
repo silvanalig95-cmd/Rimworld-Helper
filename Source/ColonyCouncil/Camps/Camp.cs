@@ -95,7 +95,7 @@ namespace ColonyCouncil
         public List<int> felledTicks = new List<int>();
         /// <summary>The camp's own goods on the map, by thing id: only these are ever theirs to use.</summary>
         public List<int> owned = new List<int>();
-        /// <summary>Why it ended (time, asked, forced, raid, weather, hunger, crowded, fallout, harmed, arrest, fight, brawl, empty).</summary>
+        /// <summary>Why it ended (time, asked, forced, raid, weather, hunger, crowded, fallout, harmed, arrest, fight, brawl, brawlTheirs, empty).</summary>
         public string ending;
         public bool told;
 

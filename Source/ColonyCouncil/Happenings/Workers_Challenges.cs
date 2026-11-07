@@ -167,8 +167,12 @@ namespace ColonyCouncil
             string what = bout != null ? ChampionBouts.FormWord(x.Faction) : ctx.SkillText;
             var ext = v.Ext;
             using var _cause = Causes.Push("CC_Cause_Challenge".Translate(what).Resolve());
-            Arrivals.Say(a, (won ? "CC_Evt_Contest_Won" : "CC_Evt_Contest_Lost").Translate().Resolve());
-            Arrivals.Say(x, (won ? "CC_Evt_Contest_Lost" : "CC_Evt_Contest_Won").Translate().Resolve());
+            // A bout's winner and loser have had their say at the ring (Outsiders.SparOver).
+            if (bout == null)
+            {
+                Arrivals.Say(a, (won ? "CC_Evt_Contest_Won" : "CC_Evt_Contest_Lost").Translate().Resolve());
+                Arrivals.Say(x, (won ? "CC_Evt_Contest_Lost" : "CC_Evt_Contest_Won").Translate().Resolve());
+            }
             if (won)
             {
                 CouncilGameComponent.GiveThought(a, CouncilDefOf.Council_Evt_WonChallenge);

@@ -70,7 +70,8 @@ namespace ColonyCouncil
             if (b == null || b.off || a == null || x == null || a.Dead || x.Dead)
             {
                 v.done = true;
-                Tell.Minor(NewsKind.World, null, v.map, "CC_Evt_ContestOff".Translate().Resolve(), null, MessageTypeDefOf.NeutralEvent);
+                // A bout that never came to anything has said so already (Outsiders.SparOver).
+                if (b == null || !b.off) Tell.Minor(NewsKind.World, null, v.map, "CC_Evt_ContestOff".Translate().Resolve(), null, MessageTypeDefOf.NeutralEvent);
                 if (x != null && !x.Dead) Arrivals.SendAway(new[] { x });
                 return;
             }

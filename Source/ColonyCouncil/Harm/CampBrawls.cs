@@ -235,7 +235,8 @@ namespace ColonyCouncil
                 KinMemory.Note(faction, "brawled", c, x?.LabelShort);
                 LoseGoodwill(-HarmTwoMath.CampBrawlGoodwill);
             }
-            if (Settled && !Hostile) Leave("brawl");
+            // A brawl among themselves sends them on too, with nothing held against the colony.
+            if (Settled && !Hostile) Leave(colony ? "brawl" : "brawlTheirs");
         }
     }
 }

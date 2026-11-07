@@ -159,7 +159,8 @@ namespace ColonyCouncil
 
     /// <summary>
     /// The game's own revenge chance for one of the hunts' game that can turn (Harm/HuntsBite.cs): times the harm scale,
-    /// and nothing for a hunter the harm cap keeps from a hurt. Every other animal is the game's alone.
+    /// and nothing for a hunter the harm cap keeps from a hurt (their own shot at it not counted as already fighting). A
+    /// colonist the player drafted to shoot it has the game's own chance. Every other animal is the game's alone.
     /// </summary>
     [HarmonyPatch(typeof(PawnUtility), nameof(PawnUtility.GetManhunterOnDamageChance), typeof(Pawn), typeof(Thing), typeof(float))]
     public static class Patch_HuntTurnChance
@@ -171,7 +172,9 @@ namespace ColonyCouncil
             {
                 var book = HarmBook.Instance;
                 if (book == null || !book.AnyTurning || !book.IsTurning(pawn)) return;
-                bool may = !(instigator is Pawn p) || !KinMemory.Ours(p) || Harm.May(p, HurtClass.Injury);
+                var hunter = instigator as Pawn;
+                if (hunter != null && hunter.Drafted) return;
+                bool may = hunter == null || !KinMemory.Ours(hunter) || Harm.MayAtOwnAttack(hunter, HurtClass.Injury);
                 __result = HarmTwoMath.TurnChance(__result, Harm.Scale, may);
             }
             catch

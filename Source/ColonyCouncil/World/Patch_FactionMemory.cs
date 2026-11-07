@@ -229,6 +229,8 @@ namespace ColonyCouncil
                 case "fallout":
                     FactionMemory.Note(f, "campSour", c.place);
                     return;
+                // A brawl with the colony is remembered as one already (Harm/CampBrawls.cs), not as a stay.
+                case "brawl":
                 case "empty":
                     return;
             }

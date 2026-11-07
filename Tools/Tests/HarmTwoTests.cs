@@ -102,7 +102,11 @@ public static class HarmTwoTests
         C(HarmTwoMath.SabotageHour(8) && HarmTwoMath.SabotageHour(19) && !HarmTwoMath.SabotageHour(7) && !HarmTwoMath.SabotageHour(20), "by day");
         C(HarmTwoMath.BenchHitPoints(100, 100) == 75 && HarmTwoMath.BenchHitPoints(40, 100) == 34 && HarmTwoMath.BenchHitPoints(20, 100) == 20 && HarmTwoMath.BenchHitPoints(5, 0) == 5,
             "a bench takes a quarter of its hit points, never below a third, never more than it had");
-        C(HarmTwoMath.SabotageForm(WorldAge.Tribal) == "Tribal" && HarmTwoMath.SabotageForm(WorldAge.Spacer) == "Spacer", "by the colony's means");
+        C(HarmTwoMath.SabotageForm(WorldAge.Tribal, false) == "Tribal" && HarmTwoMath.SabotageForm(WorldAge.Medieval, false) == "Medieval"
+          && HarmTwoMath.SabotageForm(WorldAge.Industrial, true) == "Industrial" && HarmTwoMath.SabotageForm(WorldAge.Spacer, true) == "Spacer", "by the colony's means");
+        C(HarmTwoMath.SabotageForm(WorldAge.Industrial, false) == "Medieval" && HarmTwoMath.SabotageForm(WorldAge.Spacer, false) == "Medieval",
+            "a machine jammed only where there was one: a bench with none is knocked about, a tool broken");
+        C(HarmTwoMath.FoundOut(true) == 1f && Near(HarmTwoMath.FoundOut(false), 0.5f), "someone who saw it always tells; with nobody, word goes round half the time");
 
         // ================= Hustings that come to blows (1.4.1) =================
 
@@ -169,6 +173,12 @@ public static class HarmTwoTests
         C(hunt.Contains("[HarmonyPatch(typeof(PawnUtility), nameof(PawnUtility.GetManhunterOnDamageChance)") && hunt.Contains("HarmTwoMath.TurnChance(__result, Harm.Scale, may)")
           && hunt.Contains("Harm.Note(hunter"), "hunts: the game's own revenge chance through the scale and the cap, a turn counted for the cap");
         C(hunt.Contains("RimfolkPatches.On") && hunt.Contains("PlayOuts.On"), "only with answers on the map and the deeper hooks");
+        C(hunt.Contains("Harm.MayAtOwnAttack(hunter") && !hunt.Contains("Harm.May(p, HurtClass.Injury)") && hunt.Contains("hunter.Drafted) return;"),
+            "the hunter's own shot at it isn't 'already fighting' (or the game could never turn); one the player drafted has the game's own chance");
+        string harmSrc = Code("Harm/Harm.cs");
+        C(harmSrc.Contains("public static bool MayAtOwnAttack(") && harmSrc.Contains("ownAttack && mind.lastAttackTargetTick"), "the cap leaves out only their own attack");
+        C(sab.Contains("HarmTwoMath.FoundOut(witness != null)") && sab.Contains("HarmTwoMath.SabotageForm(age, jammed)") && sab.Contains("\"form:\" + form"),
+            "a sabotage: a witness tells, and the words and the confrontation name what was really done");
         string effects = Code("PlayOut/PlayOutEffects.cs"), groups = Code("PlayOut/PlayOutGroupEffects.cs"), carry = Code("PlayOut/PlayCarry.cs");
         C(effects.Contains("HuntsBite.Describe(sheet") && groups.Contains("HuntsBite.Describe(sheet") && Code("Calendar/CalendarKeeping.cs").Contains("HuntsBite.CalendarLine(map)"),
             "named before the choice: the answer's sheet, the hunting party's, the calendar's letter");
@@ -207,9 +217,13 @@ public static class HarmTwoTests
         foreach (WorldAge age in Enum.GetValues(typeof(WorldAge)))
         {
             C(keyed.ContainsKey("CC_HarmTwo_BoutForm_" + HarmTwoMath.BoutForm(age)), $"the champion's bout has its {age} form");
-            C(keyed.ContainsKey("CC_HarmTwo_Sabotage_What_" + HarmTwoMath.SabotageForm(age)), $"a sabotage has its {age} words");
+            C(keyed.ContainsKey("CC_HarmTwo_Sabotage_What_" + HarmTwoMath.SabotageForm(age, age >= WorldAge.Industrial)), $"a sabotage has its {age} words");
         }
-        C(keyed.ContainsKey("CC_Camp_End_brawl"), "the camp's ending after a brawl has its words");
+        C(keyed.ContainsKey("CC_Camp_End_brawl") && keyed.ContainsKey("CC_Camp_End_brawlTheirs"), "the camp's ending after a brawl has its words, with the colony and among themselves");
+        C(camp.Contains("Leave(colony ? \"brawl\" : \"brawlTheirs\")") && Code("World/Patch_FactionMemory.cs").Contains("case \"brawl\":"),
+            "a brawl among themselves holds nothing against the colony; one with it is remembered as the brawl, not as a stay");
+        C(!keyed.Where(kv => kv.Key.StartsWith("CC_HarmTwo_Camp")).Any(kv => kv.Value.Contains("{NAME}'s") || kv.Value.Contains("the {FACTION}")),
+            "a camp's name and its people's read right (no 'the pilgrims's fire', no 'the the')");
         // Every key the new code asks for is there.
         var allKeys = new HashSet<string>();
         foreach (var file in Directory.GetFiles(Path.Combine(root, "Languages", "English", "Keyed"), "*.xml"))

@@ -189,8 +189,11 @@ namespace ColonyCouncil
             return SabotageDaily * (sameWork ? 1f : 0.5f) * (peacemaker ? 0.5f : 1f);
         }
 
-        /// <summary>Found out half the time: by a witness at once, or by word going round.</summary>
+        /// <summary>With nobody to see it, found out half the time, by word going round.</summary>
         public const float FoundOutChance = 0.5f;
+
+        /// <summary>Found out: always when someone saw it done, half the time when nobody did.</summary>
+        public static float FoundOut(bool witness) => witness ? 1f : FoundOutChance;
 
         /// <summary>By day, the other well away from their bench.</summary>
         public const int SabotageFrom = 8, SabotageTo = 20;
@@ -213,8 +216,15 @@ namespace ColonyCouncil
             return Math.Max(Math.Min(hp, floor), hp - (int)Math.Round(max * BenchDamage));
         }
 
-        /// <summary>What it is by the colony's means: a charm taken (tribal), a tool broken (medieval), a machine jammed (industrial), a program tampered with (spacer).</summary>
-        public static string SabotageForm(WorldAge ours) => BoutForm(ours);
+        /// <summary>
+        /// What it is by the colony's means and what was done: a charm taken (tribal), a tool broken (medieval, and a bench
+        /// with no machine to jam in a later age), a machine jammed (industrial), a program tampered with (spacer).
+        /// </summary>
+        public static string SabotageForm(WorldAge ours, bool jammed)
+        {
+            if (jammed) return ours == WorldAge.Spacer ? "Spacer" : "Industrial";
+            return ours == WorldAge.Tribal ? "Tribal" : "Medieval";
+        }
 
         /// <summary>The intent lasts a day: the act waits for an hour the bench is free and the other away.</summary>
         public const float IntentDays = 1f;

@@ -200,7 +200,8 @@
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
-  <!-- The one whose work was spoiled, to the rival, having it out. -->
+  <!-- The one whose work was spoiled, to the rival, having it out ([form:...] what was done: a charm taken, a tool
+       broken, a machine jammed, a program tampered with). -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Rimfolk_Pool_SabotageConfront</defName>
     <lines>
@@ -210,10 +211,10 @@
         <li>Touch my work again and see what happens.</li>
         <li>You think I wouldn't find out?</li>
         <li>That was low, even for you.</li>
-        <li>[tribal] You took my charm, and you'll give it back.</li>
-        <li>[medieval] You broke my tools, you coward.</li>
-        <li>[industrial] You jammed my machine, didn't you?</li>
-        <li>[spacer] You were in my bench's program.</li>
+        <li>[form:tribal] You took my charm, and you'll give it back.</li>
+        <li>[form:medieval] You broke my tools, you coward.</li>
+        <li>[form:industrial] You jammed my machine, didn't you?</li>
+        <li>[form:spacer] You were in my bench's program.</li>
       </plain>
       <cold><li>We settle this now.</li></cold>
     </lines>

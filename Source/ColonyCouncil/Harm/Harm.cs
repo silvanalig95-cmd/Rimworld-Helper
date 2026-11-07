@@ -86,6 +86,21 @@ namespace ColonyCouncil
                 HarmBook.Instance?.Last(p) ?? HarmMath.Never, now, c);
         }
 
+        /// <summary>
+        /// The cap for someone whose own attack brings the hurt about (a hunter's shot at game that can turn,
+        /// Harm/HuntsBite.cs): that shot in the last hour doesn't count as already fighting; drafted, a fight or a rage, a
+        /// melee threat or a hurt in the last hour still do.
+        /// </summary>
+        public static bool MayAtOwnAttack(Pawn p, HurtClass c = HurtClass.Injury)
+        {
+            if (p?.health?.hediffSet == null || p.Dead || p.RaceProps == null || !p.RaceProps.Humanlike) return false;
+            int now = Now;
+            var stage = p.DevelopmentalStage;
+            bool fighting = Fighting(p, now, false);
+            return HarmMath.Bar(Scale, stage.Baby(), stage.Juvenile() && !stage.Baby(), p.Downed, Sickbed(p), Pregnant(p), fighting,
+                HarmBook.Instance?.Last(p) ?? HarmMath.Never, now, c) == HurtBar.None;
+        }
+
         /// <summary>Days since their last Rimfolk-made hurt (a large number when there was none).</summary>
         public static float DaysSince(Pawn p)
         {
@@ -135,18 +150,21 @@ namespace ColonyCouncil
         }
 
         /// <summary>Already fighting: drafted, in a fight or a rage, at an attack, or hurt or attacking in the last hour.</summary>
-        public static bool Fighting(Pawn p, int now)
+        public static bool Fighting(Pawn p, int now) => Fighting(p, now, true);
+
+        /// <summary>The same; without <paramref name="ownAttack"/>, their own attack in the last hour (a hunter's shot) left out.</summary>
+        private static bool Fighting(Pawn p, int now, bool ownAttack)
         {
             if (p.Drafted) return true;
             var ms = p.MentalStateDef;
             if (ms != null && (ms == MentalStateDefOf.SocialFighting || ms.IsAggro)) return true;
             var d = p.CurJobDef;
-            if (d == JobDefOf.AttackMelee || d == JobDefOf.AttackStatic) return true;
+            if (d == JobDefOf.AttackMelee || ownAttack && d == JobDefOf.AttackStatic) return true;
             var mind = p.mindState;
             if (mind == null) return false;
             if (mind.meleeThreat != null) return true;
             if (mind.lastHarmTick > 0 && now - mind.lastHarmTick < HarmMath.FreshHarmTicks) return true;
-            return mind.lastAttackTargetTick > 0 && now - mind.lastAttackTargetTick < HarmMath.FreshHarmTicks;
+            return ownAttack && mind.lastAttackTargetTick > 0 && now - mind.lastAttackTargetTick < HarmMath.FreshHarmTicks;
         }
 
         // ---------------- Wounds ----------------

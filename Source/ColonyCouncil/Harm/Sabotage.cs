@@ -180,13 +180,15 @@ namespace ColonyCouncil
                     map.listerBuildingsRepairable.Notify_BuildingTookDamage(bench);
                     FleckMaker.ThrowDustPuffThick(bench.TrueCenter(), map, 1.2f, new Color(0.6f, 0.55f, 0.5f));
                 }
-                string form = HarmTwoMath.SabotageForm(age);
+                // The words say what was done: a machine jammed only where there was one, the bench knocked about otherwise.
+                string form = HarmTwoMath.SabotageForm(age, jammed);
                 string what = ("CC_HarmTwo_Sabotage_What_" + form).Translate(i.other.Named("OTHER"), bench.LabelShort.Named("BENCH")).Resolve();
                 var witness = map.mapPawns.FreeColonistsSpawned
                     .Where(w => w != rival && w != i.other && Together.Able(w) && w.Position.InHorDistOf(bench.Position, HarmTwoMath.WitnessRange)
                                 && GenSight.LineOfSight(w.Position, bench.Position, map))
                     .OrderBy(w => w.Position.DistanceToSquared(bench.Position)).FirstOrDefault();
-                if (!Rand.Chance(HarmTwoMath.FoundOutChance))
+                // Someone who saw it always tells; with nobody, word goes round half the time.
+                if (!Rand.Chance(HarmTwoMath.FoundOut(witness != null)))
                 {
                     // Nobody tells: the bench's state is the news, and nobody is named for it.
                     Tell.Message(NewsKind.Colony, Importance.Notable, map, TextVariants.Vary("CC_HarmTwo_SabotageUnknown").Translate(what.Named("WHAT"), i.other.Named("OTHER")).Resolve(),
@@ -202,7 +204,7 @@ namespace ColonyCouncil
                     {
                         // together: the witness tells the other face to face (Together.When).
                         Say(witness, "Rimfolk_Pool_SabotageTold", i.other, rival);
-                        Confront(i.other, rival, what, witness);
+                        Confront(i.other, rival, what, witness, form);
                     }, HarmTwoMath.GossipHours, 0f);
                     return;
                 }
@@ -210,7 +212,7 @@ namespace ColonyCouncil
                 {
                     // together: whoever is with the other says what's being said (Together.WhenInCompany).
                     Say(with, "Rimfolk_Pool_SabotageWord", i.other, rival);
-                    Confront(i.other, rival, what, null);
+                    Confront(i.other, rival, what, null, form);
                 }, HarmTwoMath.GossipHours, rival);
             }
             catch (Exception e)
@@ -220,15 +222,15 @@ namespace ColonyCouncil
         }
 
         /// <summary>The other knows now: they go to have it out with the rival, and it comes to blows (the cap for both), or to words.</summary>
-        private static void Confront(Pawn other, Pawn rival, string what, Pawn witness)
+        private static void Confront(Pawn other, Pawn rival, string what, Pawn witness, string form)
         {
             if (other == null || rival == null || other.Dead || rival.Dead) return;
             Together.When("sabotage confront|" + other.thingIDNumber + "|" + rival.thingIDNumber, other, rival, () =>
             {
                 try
                 {
-                    // together: the two face to face (Together.When).
-                    Say(other, "Rimfolk_Pool_SabotageConfront", rival);
+                    // together: the two face to face (Together.When); the words name what was done to the bench.
+                    Say(other, "Rimfolk_Pool_SabotageConfront", rival, null, "form:" + form.ToLowerInvariant());
                     CouncilGameComponent.Instance?.social.Bump(other, rival, TieKind.Rivals, HarmTwoMath.SabotageRivalry, "CC_HarmTwo_TieNote_Sabotage".Translate());
                     bool fight = Harm.Fight(other, rival, "a sabotage found out");
                     string how = witness != null ? "CC_HarmTwo_SabotageFound_Seen".Translate(witness.Named("WITNESS")).Resolve() : "CC_HarmTwo_SabotageFound_Word".Translate().Resolve();
@@ -245,12 +247,12 @@ namespace ColonyCouncil
 
         private static readonly Color SayColor = new Color(1f, 0.75f, 0.6f);
 
-        private static void Say(Pawn p, string pool, Pawn to, Pawn about = null)
+        private static void Say(Pawn p, string pool, Pawn to, Pawn about = null, string tag = null)
         {
             try
             {
                 if (p == null) return;
-                string line = Flavor.FromPool(pool, p);
+                string line = Flavor.FromPool(pool, p, null, null, tag);
                 if (line.NullOrEmpty()) return;
                 var args = new List<NamedArgument> { p.Named("PAWN") };
                 if (to != null) args.Add(to.Named("OTHER"));

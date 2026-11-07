@@ -14,12 +14,13 @@
 
   <CC_Impact_CampQuarrel>The quarrel may come to blows at their fire in the evenings, and if it does the camp packs up early</CC_Impact_CampQuarrel>
   <CC_Impact_CampQuarrelBrief>may come to blows at the camp</CC_Impact_CampQuarrelBrief>
-  <CC_HarmTwo_CampBrawl>Raised voices at the {NAME}'s fire turned into a brawl: {A_nameDef} and {X_nameDef} came to blows on the colony's land.</CC_HarmTwo_CampBrawl>
-  <CC_HarmTwo_CampBrawl_2>The quarrel at the {NAME}'s fire boiled over, and {A_nameDef} and {X_nameDef} of the {FACTION} are fighting.</CC_HarmTwo_CampBrawl_2>
+  <CC_HarmTwo_CampBrawl>Raised voices at the fire of the {NAME} turned into a brawl: {A_nameDef} and {X_nameDef} came to blows on the colony's land.</CC_HarmTwo_CampBrawl>
+  <CC_HarmTwo_CampBrawl_2>The quarrel at the fire of the {NAME} boiled over, and {A_nameDef} is fighting {X_nameDef} of {FACTION}.</CC_HarmTwo_CampBrawl_2>
   <CC_HarmTwo_CampBrawlTheirs>The quarrel among the {NAME} came to blows at their fire: {X_nameDef} and {THING} are fighting.</CC_HarmTwo_CampBrawlTheirs>
-  <CC_HarmTwo_CampBrawlTheirs_2>Raised voices at the {NAME}'s fire, and then fists: {X_nameDef} and {THING} of the {FACTION} have come to blows.</CC_HarmTwo_CampBrawlTheirs_2>
+  <CC_HarmTwo_CampBrawlTheirs_2>Raised voices at the fire of the {NAME}, and then fists: {X_nameDef} and {THING} of {FACTION} have come to blows.</CC_HarmTwo_CampBrawlTheirs_2>
   <CC_HarmTwo_CampBrawlJoined>Others at the fire joined in: {WHO}.</CC_HarmTwo_CampBrawlJoined>
   <CC_Camp_End_brawl>After the brawl at their fire, the {NAME} from {FACTION} packed up their camp {PLACE} early and left. Their people will remember it as a fistfight on the colony's land.</CC_Camp_End_brawl>
+  <CC_Camp_End_brawlTheirs>After a brawl among themselves at their fire, the {NAME} from {FACTION} packed up their camp {PLACE} early and left.</CC_Camp_End_brawlTheirs>
 
   <!-- ===================== The champion's bout (ChampionBouts.cs) ===================== -->
 
