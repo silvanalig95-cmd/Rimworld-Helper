@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Feelings from the seven peoples' own touchpoints (Defs/IncidentDefs/Rimfolk_Events_PeoplesLore.xml): walking out
+       with the pilgrims on their Long Walk, and the night the learned society argued at the colony's fire. Each a feeling
+       rather than a mood, as the colony's other glad moments are. The order's care for the fevered is a hediff
+       (Defs/Misc/Rimfolk_PeoplesLore_Misc.xml). -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_Evt_WalkedWithPilgrims</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>walked with the pilgrims</label><description>The fellowship's Long Walk came past, and we walked a way of it with them, singing what we could of the song. It felt like being part of something very old.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Fellowship</li></feelings><felt>3</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Evt_NightOfTheFire</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the night of the fire</label><description>A fellow of the learned society held their night of the fire here, arguing until late about books that burned before any of us were born. Nobody won, and everybody wanted to keep going.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Curiosity</li></feelings><felt>3</felt></li></modExtensions>
+  </ThoughtDef>
+
+</Defs>

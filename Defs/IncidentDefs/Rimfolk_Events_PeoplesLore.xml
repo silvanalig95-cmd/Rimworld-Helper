@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The seven peoples' own touchpoints at the colony's gate (Source/ColonyCouncil/Peoples/PeoplesLore.cs; docs/design/
+    peoples.md, "Their stories, sayings and touchpoints"), each from their founding story and only from a people of its
+    calling at peace with the colony, so none come in a world without one. Every age: the words take the colony's means.
+    - The order's night nurse: a colonist is down with a fever (an illness the body fights off), and a hospitaller comes
+      to go from bed to bed with the order's care, the colony's doctor at their side if the colony likes, and stays the
+      night. The order keeps a lamp lit for whoever is sick, as Aldith did.
+    - The Long Walk: on the fellowship's walking day a long file of pilgrims stops to pray at the colony's graves (or at
+      its gate), as Old Brannoc prayed at every door; the colony may walk out with them, give them food for the road, or
+      watch them pass.
+    - The night of the fire: once a year the learned society argues until dawn about what was lost when the archive at Hesk
+      burned, and a fellow holds the disputation where the colony gathers, the colony's best mind arguing the other side.
+    - The enclave's salvage: the enclave's factor offers goods from above it won't lift back to orbit, for two in five of
+      their worth, dropped by pod by the colony's trade spot; word comes by radio, or by a runner on foot to a colony with
+      none.
+    - Nets on the bank: boatmen of the river folk ask to dry and mend their nets on the colony's bank for the day, and
+      leave fish of the colony's waters (Odyssey) or net cloth for it; the colony's crafter may learn their knots.
+    The road league's winter quarters and the herders' young beast at the gate are camps (Defs/CampDefs/).
+  -->
+
+  <!-- ===================== The order's night nurse ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_OrderNurse</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the order's night nurse</label>
+    <workerClass>ColonyCouncil.HappeningWorker_OrderNurse</workerClass>
+    <baseChance>0.9</baseChance>
+    <minRefireDays>25</minRefireDays>
+    <earliestDay>6</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>24~66</ages>
+        <stayHours>14~20</stayHours>
+        <answerDays>0.3</answerDays>
+        <journal>Rimfolk_Journal_Evt_OrderNurse</journal>
+        <titles>
+          <li>The order's night nurse</li>
+          <li>A hospitaller for the fever</li>
+          <li>[many] A lamp at the gate</li>
+        </titles>
+        <texts>
+          <li>Word that {A_nameDef} is down with {TALE} reached the order's sickhouse at {PLACE}, and {X_nameDef}, a hospitaller of {FACTION}, has come to the gate to see to {A_objective}. {X_nameDef} would go from bed to bed tonight with the order's care and stay until morning, and asks nothing for it.\n\nWe were spared, and so we owe, {X_nameDef} says, as every hospitaller does.</li>
+          <li>[many] {A_nameDef} is down with {TALE}, and {A_pronoun} is not the only one in the colony with a fever. {X_nameDef}, a hospitaller of {FACTION}, came up the road at a fast walk the moment the sickhouse at {PLACE} heard, and asks to be let in to go from bed to bed tonight.\n\nThe order keeps its lamp lit for whoever is sick, {X_nameDef} says, and the colony's sick are sick.</li>
+          <li>[lowtech] {X_nameDef}, a hospitaller of {FACTION}, has walked up to the gate with willow bark, honey and clean linen in a satchel, having heard that {A_nameDef} lies burning with {TALE}. The order would see to every fevered bed in the colony tonight, freely, as Aldith did in the fever years.</li>
+          <li>[!lowtech] {X_nameDef}, a hospitaller of {FACTION}, has come to the gate having heard of {A_nameDef}'s {TALE}. The colony's medicine is good, {X_nameDef} says politely, but a fever wants someone to look in on it all night, and the order would do that for nothing.</li>
+          <li>[their:grateful] The order remembers the colony kindly, and the moment the sickhouse at {PLACE} heard that {A_nameDef} was down with {TALE}, it sent {X_nameDef} to the gate to see to the colony's fevered tonight.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Let {X_objective} go from bed to bed</label>
+            <outcome>{X_nameDef} is going from bed to bed with cool cloths and a bitter tea, the order's way, the sickest first, and will stay the night in case anyone wakes.</outcome>
+            <outcomes>
+              <li>[lowtech] {X_nameDef} is going from bed to bed with willow-bark tea and wet linen, the sickest first, and will stay by the colony's fire until morning.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Evt_HealerSawMe</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
+            </effects>
+            <ways><mercy>1</mercy><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Let {X_objective} see to them with our doctor alongside, and send medicine back (2)</label>
+            <outcome>{X_nameDef} is going from bed to bed with {B_nameDef} at {X_possessive} elbow, and two doses of the colony's medicine are going back with {FACTION} for the sickhouse at {PLACE}. {B_nameDef} expects to learn more about fevers in one night than in a season.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Others</target><skill>Medicine</skill><minLevel>0</minLevel><asB>true</asB></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>B</student><skill>Medicine</skill><duration>2~3</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>medicine</what><count>2</count><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Medicine</skill><xp>600</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Evt_HealerSawMe</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
+            </effects>
+            <ways><generosity>1</generosity><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Thank {X_objective}, but the colony will manage</label>
+            <outcome>{X_nameDef} wishes the fevered a quick turn and goes back down the road to the sickhouse.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+            <ways><openness>-1</openness></ways>
+          </li>
+        </options>
+        <lines>
+          <li>[nurse] Keep the lamp lit, I'll be up and down all night.</li>
+          <li>[nurse] Fevers break toward morning, mostly, and I'll be here when this one does.</li>
+          <li>[nurse] Nobody on a sickbed is anyone's enemy, and nobody on one is alone tonight.</li>
+          <li>[nurse] We were spared, and so we owe, so show me the first bed.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The pilgrims' Long Walk ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_LongWalk</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the Long Walk</label>
+    <workerClass>ColonyCouncil.HappeningWorker_LongWalk</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <seasons>
+          <li>Spring</li>
+          <li>Summer</li>
+        </seasons>
+        <ages>14~78</ages>
+        <count>6~9</count>
+        <stayHours>4~7</stayHours>
+        <answerDays>0.25</answerDays>
+        <journal>Rimfolk_Journal_Evt_LongWalk</journal>
+        <titles>
+          <li>The Long Walk</li>
+          <li>The fellowship's walking day</li>
+          <li>Pilgrims on the road to {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[grave] A long file of pilgrims of {FACTION} is coming along the road, {COUNT} of them, singing, with {X_nameDef} at their head and a string of shells at {X_possessive} belt, one for every shrine {X_pronoun} has reached. It is the fellowship's walking day, when they pray at the graves of every house on the road as Old Brannoc did, and they have turned in to pray at the colony's.\n\nWhen they have, they will go on toward {PLACE}.</li>
+          <li>[!grave] A long file of pilgrims of {FACTION} is coming along the road, {COUNT} of them, singing, with {X_nameDef} at their head and a string of shells at {X_possessive} belt, one for every shrine {X_pronoun} has reached. It is the fellowship's walking day, when they bless the gate of every house on the road as Old Brannoc did, and they have stopped at the colony's.\n\nWhen they have, they will go on toward {PLACE}.</li>
+          <li>[grave,lowtech] {COUNT} pilgrims of {FACTION} have come off the road with their staffs and their shells, singing an old walking song, and {X_nameDef}, who leads them, asks leave to pray at the colony's graves. It is the Long Walk, the fellowship's walking day, and they pray for the dead of every house they pass on the way to {PLACE}.</li>
+          <li>[grave,!lowtech] {COUNT} pilgrims of {FACTION} are walking the road past the colony with packs and walking poles and a song nobody has sung in years, and {X_nameDef}, who leads them, asks leave to pray at the colony's graves. It is the Long Walk, and the fellowship prays for the dead of every house it passes on the way to {PLACE}.</li>
+          <li>[their:grateful] The fellowship speaks of the colony's door at every shrine, and on its walking day {COUNT} of its pilgrims have come out of their way to it, {X_nameDef} at their head, to pray and to bless the house before they go on to {PLACE}.</li>
+        </texts>
+        <defaultOption>3</defaultOption>
+        <options>
+          <li>
+            <label>Walk out to the graves with them</label>
+            <outcome>Those who could be spared walked out to the colony's graves with the pilgrims and stood with them while {X_nameDef} said the old words over every one.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>the Long Walk</label><to>Grave</to><hours>8~19</hours><duration>1~1.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Rimfolk_Evt_WalkedWithPilgrims</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>5</amount></li>
+            </effects>
+            <ways><tradition>1</tradition><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Walk with them to the road and see them off</label>
+            <outcome>Those who could be spared walked the pilgrims back out to the road, singing what they could of the song, and saw them off toward {PLACE}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>seeing off the Long Walk</label><to>Gate</to><hours>8~19</hours><duration>1~1.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Rimfolk_Evt_WalkedWithPilgrims</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Give them food for the road (15)</label>
+            <outcome>Food for the road is being carried out to the pilgrims, and {X_nameDef} has blessed the gate twice over for it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the pilgrims' road</label><what>rawfood</what><count>15</count><to>Stranger</to></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Watch them from the wall</label>
+            <outcome>The colony watches from the wall while the pilgrims pray, and they will go on along the road to {PLACE} when they are done.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>1</amount></li>
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[walk] Peace on this house, and on everyone who sleeps under it.</li>
+          <li>[walk] Walk on, and bless what you pass, that is all the Way asks of anyone.</li>
+          <li>[walk,grave] We pray for your dead as we would for ours, every one of them.</li>
+          <li>[walk] There is no last shrine, so there is always another road.</li>
+        </lines>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <visitor>true</visitor>
+        <visitAt>grave</visitAt>
+        <people>calling:pilgrims</people>
+        <optionNeeds>
+          <li><option>0</option><need>grave</need><reason>The colony has no graves for them to pray at.</reason></li>
+        </optionNeeds>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The night of the fire ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_Disputation</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the night of the fire</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>26~70</ages>
+        <stayHours>14~18</stayHours>
+        <answerDays>0.4</answerDays>
+        <journal>Rimfolk_Journal_Evt_Disputation</journal>
+        <colonist>
+          <bestAt>Intellectual</bestAt>
+        </colonist>
+        <titles>
+          <li>The night of the fire</li>
+          <li>A disputation at the colony</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a fellow of {FACTION}, has come up the road with a satchel of notes and the look of someone who expects not to sleep. Tonight is the society's night of the fire, when every archive argues until dawn about what was lost when the old archive at Hesk burned, and a fellow on the road holds the disputation wherever the night finds them. {X_nameDef} asks to hold it where the colony gathers, with {A_nameDef} to argue the other side.</li>
+          <li>[tribal] {X_nameDef}, a fellow of {FACTION}, has walked a long way to the colony with a bundle of written pages and a question. Once a year the society argues until dawn about the stories that were lost when an old house of books burned, and tonight is that night; {X_nameDef} asks to hold the argument at the colony's fire, with {A_nameDef} to answer for the colony's own stories.</li>
+          <li>[industrial|spacer] {X_nameDef}, a fellow of {FACTION}, is at the gate with a case of notes and a thermos. It is the night of the fire, when the society argues until dawn over what the archive at Hesk held that nobody saved, and {X_nameDef} would hold the disputation where the colony gathers tonight, with {A_nameDef} arguing against {X_objective}, if the colony will have it.</li>
+          <li>[their:grateful] The society thinks well of the colony, and {X_nameDef}, one of its fellows, has come on purpose to hold the night of the fire's disputation where the colony gathers, with {A_nameDef} to argue the other side, as between friends of the archive.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Hold the disputation tonight, {A_nameDef} arguing for the colony</label>
+            <outcome>The colony will gather tonight to hear {X_nameDef} and {A_nameDef} argue over what was lost at Hesk and whether it matters, and the society will write down who said what.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the night of the fire</label><guests>stranger</guests><guestCount>1</guestCount><pool>Rimfolk_Pool_PlayDisputation</pool><spots><li>Gather</li><li>Fire</li><li>Dining</li><li>Rec</li></spots><hours>18~23</hours><duration>2~3</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Intellectual</skill><xp>500</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Rimfolk_Evt_NightOfTheFire</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>5</amount></li>
+            </effects>
+            <ways><openness>2</openness><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>A quiet hour with {A_nameDef} instead</label>
+            <outcome>{X_nameDef} sat with {A_nameDef} for an hour instead, asking the question nobody else would and writing down every answer.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>an hour with {X_nameDef}</label><to>Stranger</to><sit>true</sit><duration>1~1.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Intellectual</skill><xp>300</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Not tonight</label>
+            <outcome>{X_nameDef} notes it, politely, and goes on to argue with somebody else.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+            <ways><openness>-1</openness></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <visitor>true</visitor>
+        <visitAt>gathering</visitAt>
+        <people>calling:scholars</people>
+        <visitorSkill>Intellectual</visitorSkill>
+        <visitorLevel>11~17</visitorLevel>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The enclave's salvage ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_EnclaveSalvage</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the enclave's salvage</label>
+    <workerClass>ColonyCouncil.HappeningWorker_EnclaveSalvage</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>20~50</ages>
+        <stayHours>6~10</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Salvage from above</li>
+          <li>The enclave's salvage</li>
+        </titles>
+        <texts>
+          <li>[runner] {X_nameDef}, a runner of {FACTION}, has walked up to the gate in clothes nobody here could have made, with an offer from the factor at {PLACE}: a load of goods from above that the enclave won't carry back up, steel, cloth, machine parts and medicine. For {COUNT} silver, about two in five of what it is worth, the enclave would drop it out of the sky by the colony's gate.</li>
+          <li>[industrial,!beacon] A call came over the radio from {FACTION}'s factor at {PLACE}: the enclave has salvage from above that isn't worth lifting back to orbit, steel, plasteel, parts, chemfuel and medicine, and would drop it by pod by the colony's gate for {COUNT} silver, about two in five of what it is worth. Terms first, then talk, the factor says.</li>
+          <li>[spacer,!beacon] {FACTION}'s factor hailed the colony over the comms with an exact offer: salvage from above, steel, plasteel, parts and chemfuel the market at {PLACE} won't lift back to orbit, dropped by pod by the gate for {COUNT} silver, two in five of its worth.</li>
+          <li>[beacon] The colony's trade beacon picked up {FACTION}'s factor at {PLACE} with an offer: salvage from above the enclave won't lift back to orbit, dropped by pod beside the beacon for {COUNT} silver, about two in five of its worth.</li>
+          <li>[their:grateful,!runner] {FACTION} count the colony among their preferred accounts, and their factor called first with the salvage from above the market at {PLACE} won't lift back to orbit: dropped by pod by the gate for {COUNT} silver, two in five of its worth.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Buy the salvage ({COUNT} silver)</label>
+            <outcome>The factor said "noted," and the salvage is coming down by drop pod by the colony's trade spot; the silver goes to the enclave's runner.</outcome>
+            <outcomes>
+              <li>[runner] {X_nameDef} said "noted," counted the silver into a pouch, and pointed at the sky, where the drop pods are already coming down by the gate.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EnclaveSalvage" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Not today</label>
+            <outcome>The factor said "noted," and the salvage will go to another buyer.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Nets on the bank ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_RiverNets</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>nets on the bank</label>
+    <workerClass>ColonyCouncil.HappeningWorker_RiverNets</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <seasons>
+          <li>Spring</li>
+          <li>Summer</li>
+          <li>Fall</li>
+        </seasons>
+        <ages>16~65</ages>
+        <count>2~3</count>
+        <amount>10~20</amount>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <colonist>
+          <bestAt>Crafting</bestAt>
+        </colonist>
+        <titles>
+          <li>Nets on the bank</li>
+          <li>Boatmen at the water</li>
+        </titles>
+        <texts>
+          <li>[fish] Boatmen of {FACTION} have come up from the river with their nets over their shoulders, wet and torn, and {X_nameDef} asks whether they might spread them on the colony's bank to dry and mend them today, as the river folk do wherever a bank is good. They would leave {COUNT} {THING} of the morning's catch for it.</li>
+          <li>[!fish] Boatmen of {FACTION} have come up from the river with their nets over their shoulders, wet and torn, and {X_nameDef} asks whether they might spread them on the colony's bank to dry and mend them today. They would leave {COUNT} lengths of good net cloth for it.</li>
+          <li>[fish,tribal] Boatmen of {FACTION} have come along the water with nets of twisted fibre heaped over their shoulders, and {X_nameDef}, who leads them, asks for the colony's bank to dry and mend them on today. Every knot in a river net is someone pulled from the water, {X_nameDef} says, and theirs have a great many. They would leave {COUNT} {THING} for it.</li>
+          <li>[fish,industrial|spacer] Boatmen of {FACTION} have come up from the river with nylon nets over their shoulders and a box of twine, and {X_nameDef} asks to spread them on the colony's bank to dry and mend them for the day. They would leave {COUNT} {THING} from the catch for the use of it.</li>
+          <li>[their:grateful] The river folk of {FACTION} remember the colony kindly, and {X_nameDef}'s boatmen have come up to dry and mend their nets on its bank today rather than anyone else's. They would leave {COUNT} {THING} for it, as between friends.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Let them, and send {A_nameDef} to learn their knots</label>
+            <outcome>The boatmen spread their nets along the colony's bank, and {A_nameDef} sat with {X_nameDef} through the mending learning knots nobody here has a name for. {X_nameDef} has set the {THING} down by the water for the colony.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Crafting</skill><duration>2~3</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Goods" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Let them use the bank</label>
+            <outcome>The boatmen spread their nets along the colony's bank to dry and set about mending them, and {X_nameDef} set the {THING} down for the colony.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Goods" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Not on our bank</label>
+            <outcome>{X_nameDef} shoulders the nets again without complaint and goes off to find another bank downstream.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+            <ways><openness>-1</openness></ways>
+          </li>
+        </options>
+        <lines>
+          <li>[nets] Never foul the water another drinks, and the river will be kind to you.</li>
+          <li>[nets] A knot for everyone pulled out, and this net has a lot of knots.</li>
+          <li>[nets] Take what the water gives and no more, that's the whole of it.</li>
+          <li>[refused] The river goes on whether we stop or not.</li>
+          <li>[refused] Plenty of bank downstream, and no hard feelings.</li>
+        </lines>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <visitor>true</visitor>
+        <people>calling:fishers</people>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

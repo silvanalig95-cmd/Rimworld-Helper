@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Rimfolk's seven peoples, with their stories told
+
+*7 November 2026, version 0.154.0*
+
+- Each of Rimfolk's seven peoples now has a founding story, the things they honour and fear, and sayings of their own, shown on their card and heard in their talk: the league's Waystone Book, the order's lamp over the sickhouse door, the herders counting their beasts at dusk, the pilgrims' shells, the society's night of the fire, the enclave's manifest and the river folk's knots in the net.
+- The road league may winter by your colony: a caravan camps out of the snow for a week or so with a trading table, can stand guard with you against raiders, and leaves a carved waystone after a good stay.
+- When a colonist has a fever, the hospitaller order may send a night nurse who goes bed to bed, helping the sick fight it off a little faster, and your doctor can learn at their side.
+- After a good winter stay, the herders' elder gives the colony a young beast of the herd. The pilgrims' Long Walk passes in spring and summer to pray at your graves. The learned society holds its night of the fire, a debate your best mind learns from.
+- The spacer enclave offers salvage dropped from above at a good price, suited to your colony's age, by radio or by runner. The river folk set their nets on your bank for a day and can teach your best crafter their knots.
+- All seven speak with more of their own voice in letters, messages and talk, their faiths gain fitting memes from Vanilla Expanded Memes where it is loaded, and peoples that arise from them carry their names and ways.
+
 ## Fifteen new mishaps, and the same number of hurts in all
 
 *7 November 2026, version 0.153.0*

@@ -231,6 +231,7 @@
     <Compile Include="../../Source/ColonyCouncil/Peoples/PeoplesMath.cs" Link="PeoplesMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Peoples/ArisingMath.cs" Link="ArisingMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Peoples/PeoplesGearMath.cs" Link="PeoplesGearMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Peoples/PeoplesLoreMath.cs" Link="PeoplesLoreMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Hauling/HaulMath.cs" Link="HaulMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Animals/AnimalNatureMath.cs" Link="AnimalNatureMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Beasts/BeastsMath.cs" Link="BeastsMath.cs" />

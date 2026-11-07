@@ -10,7 +10,9 @@ world is made. **Release B** (7 November 2026, below): peoples that arise during
 ones, built on release A's templates and code. **Release C** (7 November 2026, below): four more peaceful peoples, the
 pilgrims, the scholars, the spacer enclave and the river folk, which release B's peoples that arise may also take the
 ways of. Their gear, kinds of people and gifts were reworked after (7 November 2026, "Their gear, their kinds of people
-and their gifts", below): the tables' looks of each release are as first built.
+and their gifts", below): the tables' looks of each release are as first built. Then all seven were brought to the level
+of the eight new peoples of `docs/design/peoples-next.md`: a founding story, sayings, what they honour and fear, a fuller
+voice and a touchpoint each ("Their stories, sayings and touchpoints", below).
 
 ## What was built (release A)
 
@@ -471,6 +473,97 @@ Expanded's spectacles (never generated: their commonality is 0), Vanilla Expande
 (the order's guards are given their shield as part of the kit instead), Vanilla Races Expanded's sanguophages, lycans and
 insectors (not for peaceful folk), Alpha Genes' wretches, helixans, hivelings and mind devourers.
 
+## Their stories, sayings and touchpoints
+
+The player's words on the eight new peoples of `docs/design/peoples-next.md` (7 November 2026): "love all these
+factions, go ahead! also update existing factions to this level" (an explicit request: no proposal round). The seven
+keep their callings, titles, towns, gear and events, and gain what the eight have: a founding story, sayings, what they
+honour and fear, a fuller voice, a touchpoint of their own at the gate, a faith checked against the lore, and names for
+peoples that arise in their ways that carry their signature. Code in `Source/ColonyCouncil/Peoples/`: `PeoplesLore.cs`
+(their card, the new workers and the salvage's effect), `PeoplesLoreMath.cs` (pure, tested: `Tools/Tests/
+PeoplesLoreTests.cs`, "peoples' lore: "); a camp's gift may now be a young beast and kept for a good stay
+(`CampGift.young`, `maxTension` in `Camps/CampLookDefs.cs`, `CampLook.cs`). Defs: the founding in each faction's
+description, `honours`, `fears` and `sayings` in its `PeopleExtension`, `Defs/IncidentDefs/Rimfolk_Events_PeoplesLore.xml`,
+`Defs/CampDefs/Rimfolk_CampKinds_PeoplesLore.xml` (and the winter herd's gift in `Rimfolk_CampKinds_Peoples.xml`),
+`Defs/FlavorPoolDefs/Rimfolk_Lines_PeoplesLore.xml`, `Defs/OutsiderTalkDefs/Rimfolk_OutsiderTalks_PeoplesLore.xml`,
+`Defs/ThoughtDefs/Rimfolk_Thoughts_PeoplesLore.xml`, `Defs/Misc/Rimfolk_PeoplesLore_Misc.xml`, `Patches/
+Rimfolk_PeoplesLore.xml`, Keyed `Rimfolk_PeoplesLore.xml`; the Almanac's two pages a section each, *Where their ways
+began* (keywords unchanged).
+
+| | Founding (the middle of their description) | Sayings | They honour | They fear |
+|---|---|---|---|---|
+| Road league | At Harrow Ford, where the road belonged to whoever had the most rifles, the carter Edda Vane asked every waymaster for one guard and one wagon and took them through under nine flags; nobody fired. The Waystone Book: fair dealers in good ink, robbers in red. | Every crate home. A word given at the waystone stands. Good ink or red ink. The road won't wait. | the word given at a waystone, a fair price and a caravan home whole | the robber, the broken word and a road nobody keeps |
+| Hospitaller order | Aldith, a carter's daughter, nursed a fever town alone through a winter and in the spring hung its last lamp over the sickhouse door for anyone, raiders included; those she nursed took her vows. Every sickhouse keeps a lamp lit and the Book of the Spared. | We were spared, and so we owe. Nobody on a sickbed is anyone's enemy. Keep the lamp lit. A hand that heals is not raised first. | the spared, clean hands and the night watch | the fever's return and a door shut on the sick |
+| Herding folk | In the year the wells failed, the herd girl Tamsa walked the last forty head through two hundred miles of dust to grass nobody believed in and brought every one home; the camps that followed her never stopped moving. Herders count every beast at dusk because she did. | Count them at dusk. Never leave a beast on the road. A guest eats from the same pot. The grass will tell. | the count at dusk, a guest at the fire and good grass | the dry year, the thief and a fence across the old drove roads |
+| Pilgrim fellowship | Old Brannoc, a nearly blind preacher turned out for praying at the wrong shrine, walked with a boy to every holy place he had heard of and blessed every door at dusk, open or shut. A shell for every shrine reached; the names of the doors that opened. | Peace on this house. Every door is a shrine to someone. Walk on, and bless what you pass. There is no last shrine. | the open door, the footsore and the old shrines | the shut door, a shrine forgotten and sitting still too long |
+| Learned society | The night the archive at Hesk burned, the clerk Ilse Varro carried out eleven books and a ledger in a handcart and copied them for the rest of her life. The night of the fire, argued until dawn every year; a scholar's first oath is to copy one thing that would be lost. | Nothing known should be lost. Copy it twice. Ask the question nobody will. Strictly speaking, that is two questions. | the copied page, a good question and a patient reader | fire, the lost book and the closed mind |
+| Spacer enclave | An ore hauler came down with a dead drive; its purser Ines Okoro sold its cargo, passage and debts one bargain at a time until the crew owned a pad and the ships above called them. The hauler's manifest holds every bargain since. | A bargain struck is kept to the last digit. Everything has a price, and a fair one exists. Nobody is stranded who has something to sell. Terms first, then talk. | the kept bargain, the exact figure and the body made better | the default, the debt nobody pays and being stranded |
+| River folk | The night the dam broke, the ferrywoman Wenna Reed's boats pulled people off the rooftops for three days; those they carried stayed. A knot in the net for everyone pulled from the water; on its night any stranger is carried across for nothing. | Take what the water gives and no more. Everything comes down to the river in the end. Carry the stranger across. Never foul the water another drinks. | clean water, the stranger carried across and the catch shared | fouled water, a cheat at the ferry and the river rising |
+
+**Their card** (`PeopleLore`, a section of the people's card in its story slot): "They honour ..., and they fear ...", and
+one of their sayings, the same one each time for a people (`PeoplesLoreMath.Saying` by its id). A people that arose in
+their ways (release B) shows its template's, as it keeps their ways. A founding is told everywhere as the story of their
+ways (the first prior, the first herd girl), so a people that took those ways can tell it too.
+
+**Their voices** (`Rimfolk_Lines_PeoplesLore.xml`): each people's letters now also grieve with the colony and thank it for
+a warning (`condolences`, `warning` in `Rimfolk_Pool_NeighbourWrites`), two or three more messengers' lines, their visitors'
+words at every moment of a visit (`Rimfolk_VisitorLines`: arrive, wait, stay, pass, leave), their words face to face
+(`Rimfolk_Pool_OutsiderSays`: a chat, a warm parting, their faith), three new pieces of talk each (how their ways began,
+what they honour, what they fear: `Rimfolk_OutsiderTalks_PeoplesLore.xml`), and the society's night of the fire's words
+(`Rimfolk_Pool_PlayDisputation`, checked in ImmersionTests). Their faction descriptions and creeds tell their founding; the
+speech is plain and in each one's own manner (the order patient, the herders few-worded, the league in prices and ink,
+the pilgrims in blessings, the society precise, the enclave dry and exact, the river folk easy).
+
+**Their touchpoints** (each only from a people of its calling at peace with the colony; every age by the colony's means):
+
+| People | Touchpoint | What is seen on the map |
+|---|---|---|
+| Hospitaller order | *The order's night nurse* (`Rimfolk_Evt_OrderNurse`, `HappeningWorker_OrderNurse`): a colonist is down with a fever (an illness the body fights off, not an everyday ailment) | A hospitaller (their healing kind, Medicine 10 to 16) walks to the gate; let in, they go from bed to bed (`VisitorServices.Dose`) to the fevered, four at most, the sickest first, giving the order's care (`Rimfolk_OrderNursed`: immunity gained a fifth faster for a day and a half) and stay the night; the colony's doctor may follow at their side learning (a lesson), and two doses of medicine go back with them for the sickhouse. Or sent back down the road. |
+| Herding folk | *A young beast at the gate* (the winter herd camp): after a winter's grazing that went well (the camp's unease under 40) | The camp elder walks to the colony's gate as they go and hands over a young beast of the herd's own kind, the colony's (a farewell walk; `CampGift.young`), told in the farewell. After a bad stay, no walk. |
+| Road league | *Winter quarters* (`Rimfolk_Camp_LeagueWinter`, winter only, `calling` traders) | A caravan out of the snow camps for six to ten days with its pack beasts, crates, beer and a trading table, trading all the while (the game's own trading); asked, its wardens stand with the colony if raiders come (`DilemmaEffect_CampGuards`) and the colony is written in the Waystone Book (a visit at their table); an evening at their fire; after a good stay the caravan master leaves a carved waystone in its crate at the gate. |
+| Pilgrim fellowship | *The Long Walk* (`Rimfolk_Evt_LongWalk`, spring and summer) | A file of six to nine pilgrims comes to pray at the colony's graves (or its gate without any); the colony may walk out to the graves with them or see them off to the road (a walk together), give them food for the road (carried out to them), or watch from the wall; the eldest says a blessing as the colony answers. |
+| Learned society | *The night of the fire* (`Rimfolk_Evt_Disputation`, once a year at most) | A fellow comes where the colony gathers; that evening the colony gathers there with the fellow as its guest and argues over what was lost at Hesk (its own words over heads), the colony's best mind learning from it; or an hour at a table together. |
+| Spacer enclave | *Salvage from above* (`Rimfolk_Evt_EnclaveSalvage`, any age) | The factor's offer by radio or comms, or by a runner on foot to a tribal or medieval colony: salvage worth 600 silver at the colony's usual wealth (0.6 to 2 times) for two in five of it; bought, drop pods come down by the trade spot with steel and what the age can use (cloth, components, medicine; plasteel and chemfuel; a spacer component), and the silver goes to the runner or a courier of theirs. |
+| River folk | *Nets on the bank* (`Rimfolk_Evt_RiverNets`, not in winter, only with water near the colony) | Two or three boatmen settle on the dry bank by the water nearest the colony for the day; they leave fish of the colony's own waters (Odyssey) or net cloth, and the colony's best crafter may sit with them learning their knots (a lesson). |
+
+Callers that prefer them, by patch (`Patches/Rimfolk_PeoplesLore.xml`, conditional; `HappeningSetting.prefers`), each with
+a text in that people's voice: a herb-gatherer the order's, a neighbour's patrol after robbers the league's, a traveller on
+the wrong road the pilgrims', a travelling teacher the society's, a tourist the enclave's. Nothing of these touchpoints
+hurts anyone, so none draws on the harm budget; the pilgrims' cough is release C's, through it.
+
+**Their faiths** (Ideology; every meme `MayRequire` its mod, no two sharing an exclusion tag by the memes' own 1.6 defs,
+four at most): the order adds Vanilla Ideology Expanded's *light* (the lamp over every door); the herders its *elders*
+(the elders heard before anyone); the league its *republic* (the waymasters together, as at Harrow Ford); the enclave its
+*progressive* (no hands to spare since Okoro's crew); the river folk its *egalitarian* (whoever is in the water pulled out
+first). The pilgrims may take its *omnism* as their structure (every people's shrines), the society its *agnosticism*
+(what cannot be known said plainly). Each creed's description adds a line of its founding.
+
+**Peoples that arise in their ways** (release B): a third form of every name, carrying the ways they took (*Lamp of
+Ashford*, *Ashford Waystone*, *Last Herd of Ashford*, *Ashford High Bank*, *Flags of Brightwater*, *Brightwater Long
+Grass*, *Brightwater Manifest*, *Barr's Herd*, *Barr's Waystone*, *Barr's Landing*, *Barr's Handcart*), a second form of
+how they live for the survivors of every calling, the learned band, the pilgrims who broke away and the enclave's league
+(the herders' count at dusk, the sickhouse's lamps at its gate, good ink, pulling whoever is in the water out first, a
+shell for every shrine, copying what would be lost, keeping a bargain to the last digit), each what their town and people
+show. The templates' own name rules gain their founding's words (the Order of the Spared, the Forty Head, the League of
+the Nine Flags, the Shell, the Handcart, the Manifest, the Knotted Net); the order's *Bell* became *Ward*, so no people of
+it is ever named the Quiet Bell.
+
+**Saved**: nothing new. The hospitaller's rounds are the visitors' service's existing tasks; the young beast and the
+waystone are the camps' existing farewell walk and gifts.
+
+**Softness**
+
+| Missing | What happens |
+|---|---|
+| Ideology | No faiths; the rest as before. |
+| Vanilla Ideology Expanded - Memes | Their faiths have only their earlier memes; no omnism or agnosticism. |
+| Odyssey | Net cloth instead of fish on the bank. |
+| A colony with no fever | No night nurse. |
+| A colony with no graves | The Long Walk stops at the gate, and the graves' answer is greyed out. |
+| No water near the colony | No nets on the bank. |
+| Answers play out on the map (setting) off | The order's care is given at once; the walks, the gathering and the lessons are the play-outs' own fallbacks. |
+| Camps (setting) off | No winter quarters and no young beast. |
+
 ## What could come next
 
 - Their own world events: a league's toll war, an order's plague year with the colony's help asked by name, a great
@@ -478,5 +571,4 @@ insectors (not for peaceful folk), Alpha Genes' wretches, helixans, hivelings an
 - A league trading post in the colony's region (Rimfolk's trading posts) and the league's book of fair dealers shown on
   the Peoples page.
 - A visitor of the order who stays a season at the colony's hospital.
-- The herders' winter herd leaving a calf or a lamb as thanks.
 - Their notables' own small stories (a waymaster's caravan lost, a prior's illness).

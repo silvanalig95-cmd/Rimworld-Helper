@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The road league's winter quarters (Source/ColonyCouncil/Peoples/PeoplesLore.cs; docs/design/peoples.md, "Their
+    stories, sayings and touchpoints"): only from a people whose calling is trade (CampKindDef.calling), only in the
+    winter (CampKindDef.seasons), when the snow closes the roads and a league caravan would sooner sit the weather out by
+    a friendly wall than on the road. A long stay, trading from the camp all the while (the game's own trading), their
+    road wardens on watch; asked, they stand with the colony when raiders come (DilemmaEffect_CampGuards), and they write
+    the colony into the Waystone Book. After a stay that went well (the camp's unease under 40) the caravan master walks
+    to the colony's gate as they go and leaves a carved waystone in its crate, the mark the league puts on a friend's gate
+    (CampGift.maxTension). Their words are the league's own: every crate home, a word given at the waystone, good ink.
+  -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_LeagueWinter</defName>
+    <label>league winter quarters</label>
+    <arrives>10~16</arrives>
+    <minTech>Neolithic</minTech>
+    <calling>traders</calling>
+    <seasons>
+      <li>Winter</li>
+      <li>PermanentWinter</li>
+    </seasons>
+    <weight>1.2</weight>
+    <people>4~7</people>
+    <days>6~10</days>
+    <ages>18~62</ages>
+    <chopsPerDay>0.5</chopsPerDay>
+    <trader>true</trader>
+    <task>Council_CampKeepStall</task>
+    <taskAt>stall</taskAt>
+    <hireChance>0.25</hireChance>
+    <joinChance>0.02</joinChance>
+    <helpChance>0.25</helpChance>
+    <help>
+      <li>goods</li>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>RawFood</li>
+      <li>Feed</li>
+    </buys>
+    <pride>0.3</pride>
+    <breakTerms>0.05</breakTerms>
+    <tensionPerDay>0.7</tensionPerDay>
+    <extendChance>0.35</extendChance>
+    <situationKinds>
+      <li>trade</li>
+      <li>road</li>
+      <li>weather</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>stall</role><defs><li>Table1x2c</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>3</count></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+    </structures>
+    <!-- Their pack beasts (their own caravans' kind where the land allows) tethered by the stash, with the crates and the
+         fodder beside them; porters carry goods between the beasts and the stall all day. -->
+    <animals>
+      <li><pack>true</pack><kinds><li>Muffalo</li><li>Horse</li><li>Dromedary</li><li>Yak</li><li>Alpaca</li></kinds><count>2~3</count><at>picket</at></li>
+    </animals>
+    <campGoods>
+      <li><defs><li>Cloth</li></defs><count>40~70</count><at>picket</at><carryTo>stall</carryTo></li>
+      <li><defs><li>Beer</li></defs><count>10~20</count><at>fire</at></li>
+      <li><defs><li>Hay</li></defs><count>40~60</count><at>picket</at></li>
+    </campGoods>
+    <leaveBehind>
+      <li>
+        <key>waystone</key>
+        <at>gate</at>
+        <maxTension>40</maxTension>
+        <dayName>the league's waystone</dayName>
+        <named>the waystone</named>
+        <defs><li>SculptureSmall</li></defs>
+        <stuff><li>BlocksGranite</li><li>BlocksLimestone</li><li>BlocksSandstone</li><li>BlocksSlate</li><li>BlocksMarble</li><li>WoodLog</li></stuff>
+        <minified>true</minified>
+        <titles>
+          <li>A waystone for a friendly gate</li>
+          <li>Good ink</li>
+          <li>The league's mark</li>
+        </titles>
+      </li>
+    </leaveBehind>
+    <farewellWalk>
+      <to>gate</to>
+      <who>leader</who>
+      <gift>waystone</gift>
+    </farewellWalk>
+    <titles>
+      <li>The league asks to winter here</li>
+      <li>{FACTION} in winter quarters</li>
+      <li>[snow] A caravan out of the snow</li>
+    </titles>
+    <texts>
+      <li>The snow has closed the roads ahead of a caravan of {FACTION}, and {X_nameDef}, its caravan master, has turned it toward the colony's smoke. The league would sooner sit the weather out by a friendly wall than on the road, {X_pronoun} told {A_nameDef}, and asks for winter quarters {PLACE}, trading from the camp until the roads open.</li>
+      <li>[snow] A league caravan of {FACTION} came in out of the snow at a crawl, its beasts white to the knees. {X_nameDef}, the caravan master, asked {A_nameDef} whether they might winter {PLACE}: every crate home, the league says, and the crates will not get home through this.</li>
+      <li>[lowtech] A long string of laden beasts has come down the frozen road behind {X_nameDef}, a caravan master of {FACTION}, and stopped at the colony. The road won't wait, {X_nameDef} says, but the snow says it has to, and the league would winter {PLACE} and trade there until the thaw.</li>
+      <li>[!lowtech] A league convoy of {FACTION} has pulled off the snowbound road near the colony, chains on its wheels and frost on its canvas, and {X_nameDef}, who runs it, asks {A_nameDef} for winter quarters {PLACE} until the roads are clear. They will trade while they wait, and keep their wardens on watch.</li>
+      <li>[their:grateful] The league writes the colony in good ink, and {X_nameDef}, a caravan master of {FACTION}, has brought the caravan straight to it rather than winter anywhere else. {X_nameDef} asks {A_nameDef} for quarters {PLACE} until the roads open, as between friends.</li>
+      <li>[ws:road] With the roads as busy as they are this year and the snow on top of it, {FACTION}'s caravan has given up on the next waystation. {X_nameDef} asks {A_nameDef} for winter quarters {PLACE}.</li>
+    </texts>
+    <settled>
+      <li>The league's caravan of {FACTION} has gone into winter quarters {PLACE}: the crates stacked into a windbreak, a fire that never goes out, and a trading table already set up with the season's goods.</li>
+      <li>{FACTION}'s winter camp is up {PLACE}, the beasts blanketed by the stash and a road warden walking the edge of it, and the caravan master's ledger open on the trading table.</li>
+      <li>The league caravan has settled in {PLACE} to wait for the roads. Beer by the fire, cloth on the table, and every crate counted twice before dark.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the league's drivers, has seen every road in the region and says none of them leads anywhere better than the colony. {X_pronoun} asks whether the colony could use someone who keeps a fair ledger.</li>
+      <li>{X_nameDef} from the league's winter camp {PLACE} has spent more evenings at the colony's fire than at the caravan's. Tonight {X_pronoun} asked whether {X_pronoun} might stay when the roads open.</li>
+    </joinTexts>
+    <farewell>
+      <li>[left:waystone] The league's caravan loaded up as the roads opened, and {X_nameDef} stopped at the colony's gate on the way out to leave a carved waystone in its crate, the mark the league puts on a friend's gate. The colony is in the Waystone Book now, in good ink.</li>
+      <li>[left:waystone] {FACTION}'s winter quarters {PLACE} are empty. On the way past, {X_nameDef} set a crated waystone down by the colony's gate: every league caravan that sees it standing will know the gate is a friend's.</li>
+      <li>The league's caravan went out at first light, chains rattling and bells on the lead beast, with every crate it came with and a few more. {X_nameDef} promised to stop again next winter.</li>
+      <li>{FACTION}'s caravan left its winter quarters {PLACE} as soon as the road would take it. The road won't wait, they say, and it didn't.</li>
+    </farewell>
+    <lines>
+      <li>Every crate home, and every crate counted.</li>
+      <li>The road won't wait, but the snow says it has to.</li>
+      <li>Good ink for this lot, they've kept their word.</li>
+      <li>Who's on watch tonight?</li>
+      <li>Fair price, and I'll shake on it.</li>
+      <li>Beer's for after the count.</li>
+      <li>Three days of snow, then the pass opens.</li>
+      <li>[!lowtech] Check the chains before you sleep.</li>
+      <li>A word given at the waystone stands.</li>
+      <li>Blanket the beasts, it's going to bite tonight.</li>
+    </lines>
+    <momentLines>
+      <li>[carry] Mind the crate, it's counted.</li>
+      <li>[carry] Last one for the table, then beer.</li>
+      <li>[carry] Heavier than the ledger says.</li>
+      <li>[gift] Stand it where the road can see it.</li>
+      <li>[gift] Good ink, and now a good stone to go with it.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[goods] {X_nameDef} set aside a few things from the caravan's crates for the colony and carried them to the edge of the winter camp, by way of thanks for the wall: {THING}.</li>
+      <li>[goods] The league's caravan had more than it would carry over the pass, and {X_nameDef} left some of it at the edge of the camp for the colony rather than sell it cheap: {THING}.</li>
+      <li>[tales] {A_nameDef} sat up at the league's winter fire while {X_nameDef} told the story of Harrow Ford and the nine flags, and of every robber the league has written in red since.</li>
+      <li>[tales] The drivers had a road for every story and a story for every road, and {A_nameDef} came back from their fire knowing which waystations water their beer.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>evening</key>
+        <label>Spend an evening at their fire</label>
+        <tip>The colony goes over to the league's winter fire this evening for beer and the road's news. Recreation for whoever comes; the caravan warms to the colony.</tip>
+        <needs>evening</needs>
+        <tension>-6</tension>
+        <outcomes>
+          <li>The colony is going over to the league's fire this evening. {X_nameDef} says the beer is after the count, and the count is nearly done.</li>
+          <li>Whoever isn't on watch is going to the caravan's fire tonight, and the drivers are already arguing about who tells Harrow Ford.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>an evening at the league's fire</label><spots><li>Camp</li><li>Outdoors</li></spots><hours>17~22</hours><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.08</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>wardens</key>
+        <label>Ask their road wardens to stand with the colony if raiders come</label>
+        <tip>The league remembers who robbed it and guards what it keeps. From now on their wardens take up arms against whatever threatens the colony while the winter camp stands.</tip>
+        <minDays>1</minDays>
+        <tension>-3</tension>
+        <warm>2</warm>
+        <deed>aid</deed>
+        <outcomes>
+          <li>{X_nameDef} gave {A_nameDef} the league's word at the colony's gate: if raiders come while the caravan is wintering here, its wardens will be on the wall.</li>
+          <li>{X_nameDef} looked at the colony's wall and at the caravan's crates, and said a wall that keeps the crates safe is the league's wall too, for the winter.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampGuards" />
+        </effects>
+      </li>
+      <li>
+        <key>book</key>
+        <label>Ask to be written in the Waystone Book</label>
+        <tip>{A_nameDef} sits with the caravan master over the league's book of fair dealers, and the colony is written in it in good ink. The league's people think better of the colony.</tip>
+        <minDays>2</minDays>
+        <tension>-4</tension>
+        <deed>traded</deed>
+        <outcomes>
+          <li>{A_nameDef} sat with {X_nameDef} over the Waystone Book while the colony's name went into it in good ink, with every trade of the winter written beside it.</li>
+          <li>{X_nameDef} opened the Waystone Book on the trading table, wrote the colony in good ink and had {A_nameDef} sign beside it, as the league does.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><sit>true</sit><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>4</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>stores</key>
+        <label>Buy a share of their winter stores ({COUNT} silver)</label>
+        <tip>Preserved fare the caravan laid in for the winter, at the league's price: one of the drivers carries it over to the colony's gate.</tip>
+        <silver>90</silver>
+        <deed>traded</deed>
+        <outcomes>
+          <li>{X_nameDef} counted out sacks of preserved fare for the colony and the silver into the caravan's chest, both twice, and sent a driver over with the sacks.</li>
+          <li>{X_nameDef} sold the colony a hard month's fare at a fair price, wrote it in the ledger and had a driver carry it to the gate.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampBrings"><thing>Pemmican</thing><count>50</count></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+</Defs>

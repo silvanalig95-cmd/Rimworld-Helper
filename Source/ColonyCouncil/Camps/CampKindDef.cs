@@ -231,7 +231,8 @@ namespace ColonyCouncil
             if (animals != null && animals.Sum(a => a?.count.max ?? 0) > CampLookMath.MaxAnimals) yield return "camp kind brings more than " + CampLookMath.MaxAnimals + " animals";
             if (animals != null && animals.Any(a => a == null || (a.kinds.NullOrEmpty() && !a.pack))) yield return "camp animals need kinds (or pack)";
             if (campGoods != null && campGoods.Any(g => g == null || g.defs.NullOrEmpty())) yield return "camp goods need defs";
-            if (leaveBehind != null && leaveBehind.Any(g => g == null || g.key.NullOrEmpty() || (g.defs.NullOrEmpty() && !g.wildTrees))) yield return "camp gifts need a key and defs (or wildTrees)";
+            if (leaveBehind != null && leaveBehind.Any(g => g == null || g.key.NullOrEmpty() || (g.defs.NullOrEmpty() && !g.wildTrees && !g.young))) yield return "camp gifts need a key and defs (or wildTrees, or young)";
+            if (leaveBehind != null && leaveBehind.Any(g => g != null && g.young && (g.at != "gate" || animals.NullOrEmpty()))) yield return "a young beast is handed over at the gate, from a camp that brings animals";
             if (farewellWalk != null && farewellWalk.to != "sick" && farewellWalk.to != "gate") yield return "farewellWalk.to must be sick or gate";
             if (farewellWalk?.gift != null && (leaveBehind == null || !leaveBehind.Any(g => g?.key == farewellWalk.gift))) yield return "farewellWalk.gift names no leaveBehind entry";
             if (buys != null)
