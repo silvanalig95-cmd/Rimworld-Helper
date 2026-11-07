@@ -712,6 +712,13 @@ MODEL = {
     "Beasts/BeastBook.cs:homes": ("fixed", 1, 160, "one per colony (one home in the model): its last alphas, the threat looked at, its great herd's season"),
     "Beasts/BeastBook.cs:noted": ("cap", (const("Beasts/BeastsMath.cs", "MaxNoted", 40), 0.05), V,
                                   "beast nemeses already given their scars and oath (ids), BeastsMath.MaxNoted newest"),
+    # The colony's own trade record (Trade/TradeRecord.cs): a good (a thing and its stuff) a log, each with its newest few
+    # lines; a busy colony meets a new kind of good most days it trades, so the cap fills within a year or two. A good's
+    # size is its lines' too (five short lines of about 85 bytes each, their names one letter long).
+    "Trade/TradeRecord.cs:goods": ("cap", (const("Trade/TradeMarketMath.cs", "MaxGoods", 50), 0.8), 80 + 85 * const("Trade/TradeMarketMath.cs", "MaxLinesPerGood", 5),
+                                   "goods the colony sold or bought, TradeMarketMath.MaxGoods at most, the one traded longest ago going first"),
+    "Trade/TradeRecord.cs:lines": ("fixed", const("Trade/TradeMarketMath.cs", "MaxLinesPerGood", 5), 85,
+                                   "per good: its newest trades, TradeMarketMath.MaxLinesPerGood at most (counted under goods)"),
     # Answers playing out
     "PlayOut/PlayOutLord.cs:guests": ("while", 8, P, "while the gathering lasts: guests from outside the colony"),
     "PlayOut/PlayOutLord.cs:lines": ("while", 6, 120, "while the gathering lasts"),

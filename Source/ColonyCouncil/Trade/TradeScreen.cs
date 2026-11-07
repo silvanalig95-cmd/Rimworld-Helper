@@ -17,8 +17,9 @@ namespace ColonyCouncil
     /// good worth selling, worth buying or kept (Trade/TradeAdvice.cs says why), a button that fills the suggested basket
     /// within the silver both sides have and one that takes it back out, the silver each side has after the trade under
     /// its silver, and the days of food after it at the foot of a trade at home (a caravan's own food days are the
-    /// game's, at the top). Nothing is traded but by the game's Accept. Each part has its setting; the marks, the
-    /// buttons and the readouts are deeper game hooks.
+    /// game's, at the top). A good's market and the colony's own last prices are in a card on its prices and in the
+    /// Market window (Trade/TradeMarket.cs). Nothing is traded but by the game's Accept. Each part has its setting; the
+    /// marks, the buttons, the readouts and the market card are deeper game hooks.
     /// <para>
     /// Other mods: Vanilla Trading Expanded draws nothing on this screen (its windows are on its trading terminal), so
     /// its market and contracts are read into the advice and its banks shown at the foot. Trade Helper widens this screen
@@ -385,21 +386,35 @@ namespace ColonyCouncil
         public static List<TransferableSorterDef> Menu()
         {
             var all = DefDatabase<TransferableSorterDef>.AllDefsListForReading;
-            if (!RimfolkPatches.On || TradeScreen.SortsOn && TradeScreen.Trading) return all;
+            if (!RimfolkPatches.On) return all;
+            // On the trade screen: all of them, the price change only with Vanilla Trading Expanded's history to sort by.
+            if (TradeScreen.SortsOn && TradeScreen.Trading)
+                return TradeMarket.History ? all : all.Where(d => d?.comparerClass != typeof(TransferableComparer_PriceChange)).ToList();
             return all.Where(d => d?.comparerClass == null || !typeof(TransferableComparer_Rimfolk).IsAssignableFrom(d.comparerClass)).ToList();
         }
     }
 
-    /// <summary>A row's mark, drawn where the game draws its own small icons for a row (a bond, a pregnancy).</summary>
+    /// <summary>
+    /// A row's mark and the trend line of a good whose market value moved (Trade/TradeMarket.cs), drawn where the game
+    /// draws its own small icons for a row (a bond, a pregnancy); on the silver row, the Market button.
+    /// </summary>
     [HarmonyPatch(typeof(TransferableUIUtility), nameof(TransferableUIUtility.DoExtraIcons))]
     public static class Patch_TradeRowMark
     {
         public static void Postfix(Transferable trad, Rect rect, ref float curX)
         {
-            if (!(trad is Tradeable t) || !TradeScreen.MarksOn) return;
+            if (!(trad is Tradeable t)) return;
+            bool marks = TradeScreen.MarksOn, market = TradeMarket.On;
+            if (!marks && !market) return;
             try
             {
-                TradeScreen.DrawMark(t, rect, ref curX);
+                if (t.IsCurrency)
+                {
+                    if (market) TradeMarket.DrawMarketButton(rect, ref curX);
+                    return;
+                }
+                if (marks) TradeScreen.DrawMark(t, rect, ref curX);
+                if (market) TradeMarket.DrawTrendMark(t, rect, ref curX);
             }
             catch (Exception e)
             {

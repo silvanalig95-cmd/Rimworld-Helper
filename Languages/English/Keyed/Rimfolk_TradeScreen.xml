@@ -18,10 +18,19 @@
   <CC_Settings_TradeReadouts>Silver and food after the trade</CC_Settings_TradeReadouts>
   <CC_Settings_TradeReadouts_Tip>Under the silver row, what each side has after the trade, in red when it runs short. At the foot of a trade at home, how many days the colony's food lasts now and after the trade (a caravan's own days of food and its mass after the trade are the game's, at the top). With Vanilla Trading Expanded, the silver the colony keeps in its banks. With Trade Helper loaded the silver after the trade is left out, since its lists of what is bought and sold already say what the trade comes to. Needs the deeper game hooks.</CC_Settings_TradeReadouts_Tip>
   <CC_SetNote_TradeReadouts>The trade screen shows each side's silver after the trade, and the colony's days of food.</CC_SetNote_TradeReadouts>
+  <CC_Settings_TradeMarket>Market card and window</CC_Settings_TradeMarket>
+  <CC_Settings_TradeMarket_Tip>Point at either price of a good on the trade screen for a card beside the mouse, on the other side from the game's own price tooltip. With Vanilla Trading Expanded it shows the good's market value now against its usual worth and against its average of the last 30 days, its change over the last 7 and 30 days, its lowest and highest of the last 60 days with a drawn line of them, the news that last moved it, and what this trade is likely to do to its price by Vanilla Trading Expanded's own rule for the colony's trades. With the colony's trade record on, the last price the colony got and paid a piece for it, to whom and how long ago, and the best of the last 15 days. A good whose market value moved notably (a tenth in 7 days, or a fifth in 30) gets a small line beside its name, its card on it. A Market button on the silver row opens a window of the trade's goods, sortable, the biggest movers first. Needs the deeper game hooks.</CC_Settings_TradeMarket_Tip>
+  <CC_SetNote_TradeMarket>A card on a good's prices with its market and the colony's last prices, and a Market window.</CC_SetNote_TradeMarket>
+  <CC_Settings_TradeRecord>The colony's trade record</CC_Settings_TradeRecord>
+  <CC_Settings_TradeRecord_Tip>When a trade goes through, what the colony sold and bought, to whom and at what price a piece, is noted: the last 5 trades of each good and 50 goods, the good traded longest ago going first. Silver trades only, never gifts, people or animals. The market card and the Market window show it, with or without Vanilla Trading Expanded. Needs the deeper game hooks.</CC_Settings_TradeRecord_Tip>
+  <CC_SetNote_TradeRecord>The colony notes what it sold and bought, to whom and for how much a piece.</CC_SetNote_TradeRecord>
   <CC_SetSec_Mod_Vte>Vanilla Trading Expanded</CC_SetSec_Mod_Vte>
   <CC_Settings_TradeVte>Its market and contracts on the trade screen</CC_Settings_TradeVte>
   <CC_Settings_TradeVte_Tip>With Vanilla Trading Expanded, which draws nothing on the trade screen itself: its world market's price of each good against the good's usual worth counts in the best-deal sort and the marks (a good in demand fetches a good price, one in surplus is a bargain) and is named in a mark's tooltip; the goods a contract on its terminal asks of the colony are kept, and worth buying where this trader's price leaves the reward well ahead; the colony's own contracts are worth buying here when the trader asks less than they offer; and the silver in its banks shows at the foot. Read only: nothing of it is changed.</CC_Settings_TradeVte_Tip>
   <CC_SetNote_TradeVte>With Vanilla Trading Expanded: its prices, contracts and banks count on the trade screen.</CC_SetNote_TradeVte>
+  <CC_Settings_TradeVteHistory>Its price history on the trade screen</CC_Settings_TradeVteHistory>
+  <CC_Settings_TradeVteHistory_Tip>Vanilla Trading Expanded keeps one price a day of every good its market trades, and moves them with its news, the colony's own trades and a slow drift back toward the usual. With this on, the trade screen reads that history: the market part of the card and of the Market window, the small trend line beside a good whose price moved, a "price change" sort in the Sort by menus (the biggest moves first), what this trade is likely to do to the price (by its own rule: every three days, a chance by the market worth the colony traded of a good, down for a sale and up for a purchase), and reasons more in the marks' tooltips (a sale at the highest of 60 days, a buy at the lowest, a price falling or rising fast). Read only: nothing of it is changed.</CC_Settings_TradeVteHistory_Tip>
+  <CC_SetNote_TradeVteHistory>With Vanilla Trading Expanded: its price history, trends and news on the trade screen.</CC_SetNote_TradeVteHistory>
 
   <!-- The marks: the first line, then why. -->
   <CC_Trade_Head_Sell>Worth selling: {COUNT}.</CC_Trade_Head_Sell>
@@ -82,5 +91,98 @@
   <CC_Trade_FoodAfterTip>How many days the colony's food lasts, now and after this trade: the meals and raw food its people eat (raw food counted as the meals it cooks into), at {NEED} nutrition a day.</CC_Trade_FoodAfterTip>
   <CC_Trade_Banks>In the banks: {0} silver</CC_Trade_Banks>
   <CC_Trade_BanksTip>Silver the colony keeps in Vanilla Trading Expanded's banks. It can't pay for this trade; the trading terminal moves it.\n\n{LIST}</CC_Trade_BanksTip>
+
+  <!-- The market card on a good's prices and its trend line (Trade/TradeMarket.cs). -->
+  <CC_Trade_Card_Market>On Vanilla Trading Expanded's market</CC_Trade_Card_Market>
+  <CC_Trade_Card_Record>The colony's own trades</CC_Trade_Card_Record>
+  <CC_Trade_Card_Chart>Its market value over the last {DAYS} days and now; the faint line is its usual worth.</CC_Trade_Card_Chart>
+  <CC_Trade_Mkt_Now>Its market value now is {NOW}, {HOW}.</CC_Trade_Mkt_Now>
+  <CC_Trade_Mkt_NowStuff>Its market value now is {HOW}.</CC_Trade_Mkt_NowStuff>
+  <CC_Trade_Mkt_UsualAbove>{PCT}% above its usual {USUAL}</CC_Trade_Mkt_UsualAbove>
+  <CC_Trade_Mkt_UsualBelow>{PCT}% under its usual {USUAL}</CC_Trade_Mkt_UsualBelow>
+  <CC_Trade_Mkt_UsualSame>about its usual {USUAL}</CC_Trade_Mkt_UsualSame>
+  <CC_Trade_Mkt_UsualAboveStuff>{PCT}% above its usual worth</CC_Trade_Mkt_UsualAboveStuff>
+  <CC_Trade_Mkt_UsualBelowStuff>{PCT}% under its usual worth</CC_Trade_Mkt_UsualBelowStuff>
+  <CC_Trade_Mkt_UsualSameStuff>about its usual worth</CC_Trade_Mkt_UsualSameStuff>
+  <CC_Trade_Mkt_Young>Vanilla Trading Expanded has kept its price for a day so far, too short to say where it is going.</CC_Trade_Mkt_Young>
+  <CC_Trade_Mkt_AvgAbove>That is {PCT}% above its average of the last {DAYS} days.</CC_Trade_Mkt_AvgAbove>
+  <CC_Trade_Mkt_AvgBelow>That is {PCT}% under its average of the last {DAYS} days.</CC_Trade_Mkt_AvgBelow>
+  <CC_Trade_Mkt_AvgSame>That is about its average of the last {DAYS} days.</CC_Trade_Mkt_AvgSame>
+  <CC_Trade_Mkt_Trend>Over the last {DAYS} days: {HOW}.</CC_Trade_Mkt_Trend>
+  <CC_Trade_Mkt_Up>up {PCT}%</CC_Trade_Mkt_Up>
+  <CC_Trade_Mkt_Down>down {PCT}%</CC_Trade_Mkt_Down>
+  <CC_Trade_Mkt_Steady>steady</CC_Trade_Mkt_Steady>
+  <CC_Trade_Mkt_Range>Its lowest and highest of the last {DAYS} days: {LOW} and {HIGH}.</CC_Trade_Mkt_Range>
+  <CC_Trade_Mkt_RangeStuff>Its lowest and highest of the last {DAYS} days: {LOW} and {HIGH} of its usual worth.</CC_Trade_Mkt_RangeStuff>
+  <CC_Trade_Mkt_AtHigh>It is at its highest of those {DAYS} days.</CC_Trade_Mkt_AtHigh>
+  <CC_Trade_Mkt_AtLow>It is at its lowest of those {DAYS} days.</CC_Trade_Mkt_AtLow>
+  <CC_Trade_Mkt_NewsUp>News {AGO} sent it up: {TEXT}</CC_Trade_Mkt_NewsUp>
+  <CC_Trade_Mkt_NewsDown>News {AGO} sent it down: {TEXT}</CC_Trade_Mkt_NewsDown>
+
+  <!-- What this trade is likely to do to the price, by Vanilla Trading Expanded's own rule for the colony's trades. -->
+  <CC_Trade_Impact>{DOING} {CHANCE} its market value {WAY} in the days ahead.</CC_Trade_Impact>
+  <CC_Trade_Impact_Selling>Selling this many</CC_Trade_Impact_Selling>
+  <CC_Trade_Impact_Buying>Buying this many</CC_Trade_Impact_Buying>
+  <CC_Trade_Impact_LatelySold>What the colony sold of it lately</CC_Trade_Impact_LatelySold>
+  <CC_Trade_Impact_LatelyBought>What the colony bought of it lately</CC_Trade_Impact_LatelyBought>
+  <CC_Trade_Impact_May>may push</CC_Trade_Impact_May>
+  <CC_Trade_Impact_Likely>will likely push</CC_Trade_Impact_Likely>
+  <CC_Trade_Impact_Sure>will almost surely push</CC_Trade_Impact_Sure>
+  <CC_Trade_Impact_Down>down</CC_Trade_Impact_Down>
+  <CC_Trade_Impact_Up>up</CC_Trade_Impact_Up>
+  <CC_Trade_Impact_DownSharp>down sharply</CC_Trade_Impact_DownSharp>
+  <CC_Trade_Impact_UpSharp>up sharply</CC_Trade_Impact_UpSharp>
+  <CC_Trade_Impact_Evens>This trade evens out what the colony traded of it lately, so its market value is unlikely to move.</CC_Trade_Impact_Evens>
+  <CC_Trade_Impact_EvensSome>This trade evens out some of it.</CC_Trade_Impact_EvensSome>
+
+  <!-- The market's reasons more in a mark's tooltip. -->
+  <CC_Trade_Hint_HighSellNow>On the market it is at its highest of the last {DAYS} days: a good time to sell.</CC_Trade_Hint_HighSellNow>
+  <CC_Trade_Hint_FallingSellSooner>Its market value fell {PCT}% over the last {DAYS} days: held, it may fetch less later.</CC_Trade_Hint_FallingSellSooner>
+  <CC_Trade_Hint_LowSellCanWait>On the market it is at its lowest of the last {DAYS} days: if the sale can wait, a later trader may pay more.</CC_Trade_Hint_LowSellCanWait>
+  <CC_Trade_Hint_LowBuyNow>On the market it is at its lowest of the last {DAYS} days: a good time to buy.</CC_Trade_Hint_LowBuyNow>
+  <CC_Trade_Hint_RisingBuySooner>Its market value rose {PCT}% over the last {DAYS} days: later it may cost more.</CC_Trade_Hint_RisingBuySooner>
+  <CC_Trade_Hint_HighBuyCanWait>On the market it is at its highest of the last {DAYS} days: what can wait may cost less from a later trader.</CC_Trade_Hint_HighBuyCanWait>
+
+  <!-- The colony's own trade record (Trade/TradeRecord.cs). -->
+  <CC_Trade_Rec_Sold>Last sold: {COUNT} at {PRICE} each to {WHO}, {AGO}.</CC_Trade_Rec_Sold>
+  <CC_Trade_Rec_Bought>Last bought: {COUNT} at {PRICE} each from {WHO}, {AGO}.</CC_Trade_Rec_Bought>
+  <CC_Trade_Rec_CountQuality>{COUNT} of {QUALITY} quality</CC_Trade_Rec_CountQuality>
+  <CC_Trade_Rec_BestSold>The best price it fetched in the last {DAYS} days: {PRICE} each, from {WHO}.</CC_Trade_Rec_BestSold>
+  <CC_Trade_Rec_BestBought>The least the colony paid in the last {DAYS} days: {PRICE} each, to {WHO}.</CC_Trade_Rec_BestBought>
+  <CC_Trade_Rec_Someone>a trader</CC_Trade_Rec_Someone>
+  <CC_Trade_Ago_Today>today</CC_Trade_Ago_Today>
+  <CC_Trade_Ago_Yesterday>yesterday</CC_Trade_Ago_Yesterday>
+  <CC_Trade_Ago_Days>{0} days ago</CC_Trade_Ago_Days>
+
+  <!-- The Market button on the silver row and its window (Trade/Window_TradeMarket.cs). -->
+  <CC_Trade_MarketButton>Market</CC_Trade_MarketButton>
+  <CC_Trade_MarketButtonTip>The goods of this trade on Vanilla Trading Expanded's market: against their usual worth, their change over the last 7 and 30 days, a line of their last 60 days, and the colony's own last prices, the biggest movers first.</CC_Trade_MarketButtonTip>
+  <CC_Trade_MarketButtonTipNoVte>The goods of this trade with the colony's own last prices for them: what it last got and paid a piece, and the best of the last 15 days, the goods traded most lately first.</CC_Trade_MarketButtonTipNoVte>
+  <CC_Trade_Market_Title>The market</CC_Trade_Market_Title>
+  <CC_Trade_Market_TitleNoVte>The colony's trade record</CC_Trade_Market_TitleNoVte>
+  <CC_Trade_Market_Col_Good>Good</CC_Trade_Market_Col_Good>
+  <CC_Trade_Market_Col_GoodTip>The goods of this trade, the colony's and the trader's. Point at one for its card.</CC_Trade_Market_Col_GoodTip>
+  <CC_Trade_Market_Col_Usual>Against usual</CC_Trade_Market_Col_Usual>
+  <CC_Trade_Market_Col_UsualTip>Its market value now against its usual worth.</CC_Trade_Market_Col_UsualTip>
+  <CC_Trade_Market_Col_Week>7 days</CC_Trade_Market_Col_Week>
+  <CC_Trade_Market_Col_WeekTip>The change of its market value over the last 7 days.</CC_Trade_Market_Col_WeekTip>
+  <CC_Trade_Market_Col_Month>30 days</CC_Trade_Market_Col_Month>
+  <CC_Trade_Market_Col_MonthTip>The change of its market value over the last 30 days.</CC_Trade_Market_Col_MonthTip>
+  <CC_Trade_Market_Col_Line>60 days</CC_Trade_Market_Col_Line>
+  <CC_Trade_Market_Col_LineTip>Its market value over the last 60 days and now. Sorted by this, the biggest moves come first, up or down.</CC_Trade_Market_Col_LineTip>
+  <CC_Trade_Market_Col_LastSold>Last sold</CC_Trade_Market_Col_LastSold>
+  <CC_Trade_Market_Col_LastSoldTip>The price a piece the colony last got for it.</CC_Trade_Market_Col_LastSoldTip>
+  <CC_Trade_Market_Col_LastBought>Last bought</CC_Trade_Market_Col_LastBought>
+  <CC_Trade_Market_Col_LastBoughtTip>The price a piece the colony last paid for it.</CC_Trade_Market_Col_LastBoughtTip>
+  <CC_Trade_Market_Col_BestSold>Best sale, 15 days</CC_Trade_Market_Col_BestSold>
+  <CC_Trade_Market_Col_BestSoldTip>The best price a piece the colony got for it in the last 15 days.</CC_Trade_Market_Col_BestSoldTip>
+  <CC_Trade_Market_Col_BestBought>Cheapest, 15 days</CC_Trade_Market_Col_BestBought>
+  <CC_Trade_Market_Col_BestBoughtTip>The least the colony paid a piece for it in the last 15 days.</CC_Trade_Market_Col_BestBoughtTip>
+  <CC_Trade_Market_SortBy>Click to sort by this.</CC_Trade_Market_SortBy>
+  <CC_Trade_Market_Sorted>Sorted by this. Click again for the other way round.</CC_Trade_Market_Sorted>
+  <CC_Trade_Market_ChangeTip>The change over the last {DAYS} days.</CC_Trade_Market_ChangeTip>
+  <CC_Trade_Market_Empty>This trade has no goods to show.</CC_Trade_Market_Empty>
+  <CC_Trade_Market_Foot>Market values are Vanilla Trading Expanded's, read only, against the game's usual worth. The colony's prices are what its negotiators got and paid a piece.</CC_Trade_Market_Foot>
+  <CC_Trade_Market_FootNoVte>The colony's prices are what its negotiators got and paid a piece, for the last few trades of each good.</CC_Trade_Market_FootNoVte>
 
 </LanguageData>

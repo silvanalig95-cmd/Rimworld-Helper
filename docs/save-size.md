@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 567; modelled: 567; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,448 KB** after a year, **2,908 KB** after two, **3,118 KB** after five.
+Saved collections found: 569; modelled: 569; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,471 KB** after a year, **2,932 KB** after two, **3,143 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -32,6 +32,7 @@ Rimfolk's part of the save, roughly: **2,448 KB** after a year, **2,908 KB** aft
 | `Animals/AnimalBook.cs:ties` | pairs asleep side by side, friends and rivals, AnimalNatureMath.MaxTies at most, pairs first to go, ties let go when apart 40 days | cap | 60 | 80 | 80 | 25.8 |
 | `Aspirations/Aspirations.cs:all` | goals of the dead and departed end; finished ones of the dead kept 3 years | known | 55 | 60 | 75 | 25.6 |
 | `World/Ledger/LedgerPersons.cs:persons` | every notable, anyone a tie names and anyone kept in the world; the rest go at the day's tidy (LedgerMath.KeepPerson) | fixed | 145 | 145 | 145 | 25.5 |
+| `Trade/TradeRecord.cs:goods` | goods the colony sold or bought, TradeMarketMath.MaxGoods at most, the one traded longest ago going first | cap | 48 | 50 | 50 | 24.7 |
 | `Social/SocialWeb.cs:ties` | ties of the dead dropped daily, of the gone faded out | pairs | 57 | 57 | 57 | 22.3 |
 | `Dilemmas/Dilemmas.cs:lastTick` | one per dilemma def | defs | 243 | 243 | 243 | 21.4 |
 | `Ailments/AilmentTracker.cs:last` | last ailments 120 days, known pawns only | window | 120 | 240 | 240 | 21.1 |
@@ -562,6 +563,7 @@ Rimfolk's part of the save, roughly: **2,448 KB** after a year, **2,908 KB** aft
 | `Social/Groups/SocialGroup.cs:rivals` | per group: rivalries with groups still there (counted under groups) | fixed | 3 | 3 | 3 | (in its record) |
 | `Social/Groups/SocialGroup.cs:views` | per group: 3 views (counted under groups) | fixed | 3 | 3 | 3 | (in its record) |
 | `Social/SocialWeb.cs:history` | per tie (counted under ties) | fixed | 10 | 10 | 10 | (in its record) |
+| `Trade/TradeRecord.cs:lines` | per good: its newest trades, TradeMarketMath.MaxLinesPerGood at most (counted under goods) | fixed | 5 | 5 | 5 | (in its record) |
 | `UI/DilemmaLog.cs:plays` | per dilemma record (counted under dilemmas) | fixed | 4 | 4 | 4 | (in its record) |
 | `Wishes/Kept.cs:things` | per watch (counted under watches) | fixed | 2 | 2 | 2 | (in its record) |
 | `Wishes/Wish.cs:coSigners` | per open wish (counted under wishes) | fixed | 2 | 2 | 2 | (in its record) |

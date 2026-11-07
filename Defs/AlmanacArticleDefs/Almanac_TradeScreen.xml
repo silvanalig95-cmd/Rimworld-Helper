@@ -9,8 +9,8 @@
     <label>the trade screen</label>
     <category>Council</category>
     <order>23</order>
-    <summary>The game's trade screen, quicker to read: sorts by the trade price, a mark beside what is worth selling, worth buying or kept with why, a button that fills the suggested basket, and what each side has after the trade. Nothing is traded until you press the game's own Accept.</summary>
-    <tip>Each part has its own switch under What's on, Trade screen. The marks, the buttons and the readouts are deeper game hooks; the sorts are the game's own kind of sort and work without them.</tip>
+    <summary>The game's trade screen, quicker to read: sorts by the trade price, a mark beside what is worth selling, worth buying or kept with why, a button that fills the suggested basket, what each side has after the trade, and on a good's prices its market and the colony's own last prices. Nothing is traded until you press the game's own Accept.</summary>
+    <tip>Each part has its own switch under What's on, Trade screen. The marks, the buttons, the readouts, the market card and the trade record are deeper game hooks; the sorts are the game's own kind of sort and work without them.</tip>
     <description>It works the same for every trade: a trader on the map, a caravan at a town, a ship called on the comms console. The advice comes from what Rimfolk already knows of the colony: the plan ahead's stock targets and food days, its shopping list, the blueprints, the journey being packed, the colonists' wishes, the drug policies and the research under way. Only what the colony has and can use counts as a need, so a tribe is told a tribe's needs.</description>
     <sections>
       <li>
@@ -49,9 +49,21 @@
         </points>
       </li>
       <li>
+        <heading>Market prices and the colony's record</heading>
+        <points>
+          <li>Point at either price of a good for its card, beside the mouse on the other side from the game's own price tooltip: the colony's own last prices for it (what it last got and paid a piece, to whom and how long ago, and the best of the last 15 days), and with Vanilla Trading Expanded its market.</li>
+          <li>The colony's trade record notes each silver trade as it goes through: what was sold and bought, to whom and at what price a piece. It keeps the last 5 trades of each good and 50 goods, the good traded longest ago going first; gifts, people and animals are left out.</li>
+          <li>Vanilla Trading Expanded keeps one price a day of every good its market trades. The card shows the market value now against its usual worth and against its average of the last 30 days, its change over the last 7 and 30 days, its lowest and highest of the last 60 days with a drawn line of them, and the news that last moved it.</li>
+          <li>A good whose market value moved notably (a tenth up or down in 7 days, or a fifth in 30) has a small line beside its name, green rising and red falling, its card on it. The price change sort in the Sort by menus puts the biggest moves first, up or down; it is offered only with Vanilla Trading Expanded.</li>
+          <li>Vanilla Trading Expanded moves a price by the colony's own trades too: every three days, with a chance of the market worth the colony traded of a good over 1,000 silver (certain from 1,000), down for a sale and up for a purchase. The card and the mark's tooltip say in words whether this trade is likely to move it and which way; a trade against what the colony traded of it lately evens it out.</li>
+          <li>The marks' tooltips gain the market's reasons: a sale at the highest of 60 days, or of a good falling fast, is better made now; so is a buy at the lowest of 60 days, or of a good rising fast. At the other end, what can wait may do better with a later trader. Reasons only: the marks themselves are the colony's needs.</li>
+          <li>The Market button on the silver row opens a window of the trade's goods: against usual, 7 days, 30 days, a line of 60 days, last sold and last bought, each column sorted by a click, the biggest movers first. Without Vanilla Trading Expanded it shows the colony's record alone, with the best of the last 15 days, the goods traded most lately first.</li>
+        </points>
+      </li>
+      <li>
         <heading>With Vanilla Trading Expanded or Trade Helper</heading>
         <points>
-          <li>Vanilla Trading Expanded draws nothing on the trade screen. Its world market's price against a good's usual worth counts in the best deal and the marks, so a good in demand fetches a good price and one in surplus is a bargain, and the tooltip names it. A contract on its terminal keeps the goods it asks for, and makes them worth buying where this trader's price leaves the reward a fifth ahead; the colony's own contracts are worth buying here when the trader asks less than they offer. The silver in its banks shows at the foot. Its own setting is on the page of your other mods.</li>
+          <li>Vanilla Trading Expanded draws nothing on the trade screen. Its world market's price against a good's usual worth counts in the best deal and the marks, so a good in demand fetches a good price and one in surplus is a bargain, and the tooltip names it. A contract on its terminal keeps the goods it asks for, and makes them worth buying where this trader's price leaves the reward a fifth ahead; the colony's own contracts are worth buying here when the trader asks less than they offer. The silver in its banks shows at the foot. Its own settings are on the page of your other mods: its market and contracts, and its price history (the market part of the card and the window, the trend line, the price change sort, what a trade does to the price, the marks' reasons).</li>
           <li>Trade Helper widens the screen for a side panel of its own (a wish list, and lists of what is bought and sold). Rimfolk draws nothing there; with it loaded the silver after the trade is left to its lists.</li>
         </points>
       </li>

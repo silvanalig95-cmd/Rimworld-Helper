@@ -12,6 +12,48 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.151.0, price history and the colony's trade record, on 0.150.0's trade screen (7 November 2026, the player's request: "does
+  vanilla trading expanded influence price developments? could you in that case have things like price history, price
+  compared to market price and other helpful and informative data"; built without a proposal round; no What's new
+  round, About.xml or CHANGELOG yet, left for the merge). New: `Trade/TradeMarketMath.cs` (pure, linked into the
+  tests), `Trade/TradeMarket.cs`, `Trade/TradeRecord.cs`, `Trade/Window_TradeMarket.cs`; changed: `Integrations/
+  VanillaTrading.cs`, `Trade/TradeAdvice.cs`, `TradeScreen.cs`, `TradeSorts.cs`, `Epithets/CouncilRecords.cs`, the sorts'
+  defs, Keyed `Rimfolk_TradeScreen.xml`, the Almanac page *the trade screen* (a section "Market prices and the colony's
+  record"; keywords unchanged), README "The trade screen", DESIGN.md "Price history and the colony's record". Test:
+  `TradeMarketTests` (and `TradeScreenTests` for six sorts).
+  - VTE does move prices: its own trades rule (every three days, a chance of the market worth the colony traded of a
+    good over 1,000 silver, down for a sale, up for a purchase), its news, a slow daily drift back to vanilla; and it
+    keeps one price a day of each good. Read by name: `priceHistoryRecorders` and each one's `records`,
+    `thingsAffectedBySoldPurchasedMarketValue`, the private `allNews` with `AffectedThingDefs()`, `priceImpact`,
+    `priceImpactStartTick`, `text`, and `VanillaTradingExpandedMod.settings.playerTransactionImpactMultiplier`. The
+    vanilla value through VTE's `outputOnlyVanilla` in one place (`VanillaTrading.Usual`), set back in a `finally`.
+    Nothing of VTE is changed.
+  - The card: an immediate window beside the mouse on either price of a row (left of it, the game's price tooltip on the
+    right), after the tooltip's pause: with VTE the market value now against usual and the 30 days' average, the 7 and
+    30 days' change, the 60 days' low and high (shares of the usual for a thing made of stuff), a drawn line with the
+    usual as a faint line, the news that last moved it, and in words what this trade (or what was traded lately) is
+    likely to do to the price; always the colony's last sale and purchase (to whom, how long ago) and the best of the
+    last 15 days. A 28 by 14 trend line in the row's icons where the price moved a tenth in 7 days or a fifth in 30.
+    The Market button on the silver row (drawn with its icons, a fallback after the row) opens `Window_TradeMarket`,
+    every column sortable, the biggest movers first (without VTE the record alone, the goods traded most lately first).
+    A sixth sort, *price change* (`Rimfolk_PriceChange`), offered only with VTE's history. The marks' tooltips gain the
+    market's reasons (`MarketHint`: a sale at a 60-day high or of a good falling fast, a buy at a 60-day low or rising
+    fast, and the other ends) for rows already marked; marks and counts are unchanged.
+  - The record (`TradeBook`, a new GameComponent; an older save gets an empty one): taken in a new prefix on the existing
+    `Patch_Traded` (TradeDeal.TryExecute, the negotiator's count) and written in its postfix when the trade went
+    through. Nothing recorded goods before (the faction memory notes a trade's worth and a sold captive). Silver only,
+    no gifts, people or animals; rows of one good, way and quality merged; 5 lines a good (a thing and its stuff), 50
+    goods, the oldest traded going first; about 25 KB at the cap, modelled in `Tools/save_estimate.py`.
+  - Settings: What's on, Trade screen: *Market card and window* (`tradeMarket`) and *The colony's trade record*
+    (`tradeRecord`), both on, deeper hooks; Your other mods, Vanilla Trading Expanded: *Its price history on the trade
+    screen* (`tradeVteHistory`, on, needs `tradeVte`). No letters or messages.
+  - To try in the game: with VTE, open a trade, rest the mouse on a good's trader price and read the card left of the
+    game's tooltip (compare its numbers with VTE's trading terminal, Market prices, chart icon); look for a small green or
+    red line beside goods VTE moved lately; pick "price change" in a Sort by menu and check it is missing from the
+    caravan forming window; set 600 steel to sell and see the card and the mark's tooltip say it will likely push the
+    price down; press Market on the silver row, sort each column twice. Sell something, open the next trade and see
+    "Last sold" in its card and the Market window. Without VTE (or its history setting off) the card shows the record
+    only and the sort is gone. With Trade Helper, check the Market button and the card don't cover its panel.
 - 0.150.0, the trade screen (7 November 2026, the player's request:
   "can you please optimize the trade screen ui? things like sorting by price, recommended trades etc. i also just
   installed vanilla trading expanded so integrate that as well"; built without a proposal round). `Source/ColonyCouncil/

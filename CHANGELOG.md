@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Price history and the colony's trade record
+
+*7 November 2026, version 0.151.0*
+
+- Hover a price on the trade screen for a market card: with Vanilla Trading Expanded, the price now against the usual one and against its 30-day average, its change over 7 and 30 days, its 60-day low and high, a drawn 60-day line, and the latest news that moved it.
+- The card also says in words whether this trade is likely to push the price up or down in the days ahead, by Vanilla Trading Expanded's own rule, and when it evens out what was traded lately.
+- Rimfolk now keeps the colony's own trade record: the last few sales and purchases of each good, at what price a piece, with whom and how long ago. The card shows the last sale, the last purchase and the best of the last fifteen days, with or without Vanilla Trading Expanded.
+- A small green or red line in a row marks a good whose price has moved notably, and a new sort in the Sort by menus puts the biggest movers first.
+- A Market button on the silver row opens a window of the goods this trader and the colony deal in, with every column sortable and the biggest movers first.
+- The marks' tooltips now add when a price makes it better to sell or buy now, or to wait. New settings: Market card and window, The colony's trade record, and Vanilla Trading Expanded's price history.
+
 ## A better trade screen
 
 *7 November 2026, version 0.150.0*
