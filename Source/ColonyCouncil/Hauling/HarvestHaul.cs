@@ -9,7 +9,8 @@ namespace ColonyCouncil
     /// <summary>
     /// Harvest and haul, folded in from the player's own Harvest and Haul (1.2.0): pawns put what their own work drops
     /// into their inventory while they work (harvesting, chopping and cutting plants, also to clear a cell for sowing or
-    /// building; mining; deep drilling; shearing and milking; deconstructing and removing floors; fishing), keep at the
+    /// building; mining; deep drilling; shearing and milking; deconstructing and removing floors; fishing; and since the
+    /// player's request of 7 November 2026 everything else work makes, WorkProducts.cs), keep at the
     /// same kind of work while there is room, and take it to storage themselves: when something no longer fits (and the
     /// load is worth the trip), when they turn to other work, eat, sleep, relax or idle, or after the hours the setting
     /// allows. What else a deconstruction leaves is hauled by the same pawn right after. Delivering is part of the work,
@@ -255,16 +256,19 @@ namespace ColonyCouncil
             return pawn.CanReserve(t);
         }
 
-        private static void AddWorkSkills(Pawn pawn, HaulLoad load, SkillDef fallback)
+        /// <summary>The skills and the work giver of the pawn's job, which make the load's kind of work.</summary>
+        internal static void AddWorkSkills(Pawn pawn, HaulLoad load, SkillDef fallback)
         {
-            var skills = pawn.CurJob?.workGiverDef?.workType?.relevantSkills;
+            var giver = pawn.CurJob?.workGiverDef;
+            var skills = giver?.workType?.relevantSkills;
             if (skills != null && skills.Count > 0)
                 for (int i = 0; i < skills.Count; i++)
                     load.AddSkill(skills[i]);
             else load.AddSkill(fallback);
+            load.AddGiver(giver);
         }
 
-        private static void MarkFull(Pawn pawn, HaulLoad load, Thing leftover)
+        internal static void MarkFull(Pawn pawn, HaulLoad load, Thing leftover)
         {
             if (leftover != null) load.leftover = leftover;
             if (!load.full) Carrying.Debug($"{pawn.LabelShort} is full ({load.Mass:0.#} kg collected).");
@@ -336,7 +340,7 @@ namespace ColonyCouncil
             // Never in place of what the player ordered.
             if (next.FromQueue || job.playerForced) return false;
             if (job.def == HaulDefOf.Rimfolk_CarryToStorage || HaulLinks.IsPuahUnload(job)) return false;
-            bool held = HaulMath.HoldExpired(load.startedTick, Find.TickManager.TicksGame, S?.haulMaxHours ?? 8f);
+            bool held = HaulMath.HoldExpired(load.startedTick, Find.TickManager.TicksGame, HaulMath.HoldHours(S?.haulMaxHours ?? 8f, WorkProducts.HasMeals(load)));
             // Still on a material run and building on: what must go to storage waits for the run's end, one trip back.
             if (Carrying.StillBuilding(pawn, load, job)) return (load.full && WorthATrip(load)) || held;
             // Keep at the same kind of work while there is room; deliver when full (and it's worth it), held too long, or told to go now.
@@ -346,10 +350,13 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The next job uses a skill of the work that made the load: harvesting then sowing, one cell mined after another,
-        /// one cow milked after another, deconstructing then building. Mods that split the work types are covered too.
+        /// one cow milked after another, deconstructing then building, one meal cooked after another. Mods that split the
+        /// work types are covered too. Work no skill names is the same work when the same work giver gives it: one egg box
+        /// or barrel emptied after another.
         /// </summary>
         public static bool SameKindOfWork(Job job, HaulLoad load)
         {
+            if (job.workGiverDef != null && load.givers.Contains(job.workGiverDef)) return true;
             var skills = job.workGiverDef?.workType?.relevantSkills;
             if (skills != null)
                 for (int i = 0; i < skills.Count; i++)

@@ -11,8 +11,8 @@ namespace ColonyCouncil
     /// the storage cell with it still in the inventory, take it out there, place it with the game's hauling steps, so
     /// stockpiles, shelves and storage mods work as usual). First it picks up the things on the way it was given (the
     /// job's first target queue), then the stack that didn't fit if it still lies close by, carried in the hands, then
-    /// the inventory. It delivers only what is owed and never what the pawn keeps; a stack no storage takes is set down
-    /// where the pawn stands for the haulers. Pick Up And Haul's unloading, when that mod has stacks to unload, comes next.
+    /// the inventory. It delivers only what is owed and never what the pawn keeps, a bill's product to the stockpile the
+    /// bill picked while it still takes it; a stack no storage takes is set down where the pawn stands for the haulers. Pick Up And Haul's unloading, when that mod has stacks to unload, comes next.
     /// From the player's Harvest and Haul (its delivery job), with the things on the way and the kept amounts added.
     /// </summary>
     public class JobDriver_CarryToStorage : JobDriver
@@ -244,8 +244,7 @@ namespace ColonyCouncil
                 }
                 count = Mathf.Min(count, thing.stackCount);
                 int carryable = Mathf.Min(count, pawn.carryTracker.AvailableStackSpace(def));
-                if (carryable > 0 && StoreUtility.TryFindBestBetterStoreCellFor(thing, pawn, map, StoragePriority.Unstored, pawn.Faction, out IntVec3 cell)
-                    && pawn.Reserve(cell, job, errorOnFailed: false))
+                if (carryable > 0 && Carrying.StoreCellFor(pawn, thing, load, out IntVec3 cell) && pawn.Reserve(cell, job, errorOnFailed: false))
                 {
                     job.SetTarget(ItemInd, thing);
                     job.SetTarget(CellInd, cell);

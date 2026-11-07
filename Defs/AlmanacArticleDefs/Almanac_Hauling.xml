@@ -9,9 +9,9 @@
     <label>carrying and hauling</label>
     <category>Council</category>
     <order>23</order>
-    <summary>Pawns take what their own work drops to storage themselves, and a pawn fetching building material from far away brings enough for the whole build at once. Harvest and Haul is built in now.</summary>
-    <tip>Put a stockpile for the harvest near the fields and another near the mine: the shorter the trip, the more it pays. If you have Harvest and Haul on its own, it can be removed now.</tip>
-    <description>Three things keep pawns from walking back and forth with one handful: what their own work drops goes into their inventory and to storage with them (the player's Harvest and Haul, now part of Rimfolk); material fetched from far away comes for every frame and blueprint of the build at once; and on a long walk to storage, loose things lying near the way come along. Everything uses the game's own storage search and hauling steps, so stockpiles, shelves, fridges and storage mods work as usual. The settings are under What's on, Carrying and hauling.</description>
+    <summary>Pawns take what their own work drops or makes to storage themselves, from the fields to the benches and barrels, and a pawn fetching building material from far away brings enough for the whole build at once. Harvest and Haul is built in now.</summary>
+    <tip>Put a stockpile for the harvest near the fields and another near the mine: the shorter the trip, the more it pays. If you have Harvest and Haul on its own, remove it: only then do benches, barrels and the rest fill pockets too.</tip>
+    <description>Three things keep pawns from walking back and forth with one handful: what their own work drops or makes goes into their inventory and to storage with them (the player's Harvest and Haul, now part of Rimfolk, and since then every bench, barrel and producer); material fetched from far away comes for every frame and blueprint of the build at once; and on a long walk to storage, loose things lying near the way come along. Everything uses the game's own storage search and hauling steps, so stockpiles, shelves, fridges and storage mods work as usual. The settings are under What's on, Carrying and hauling.</description>
     <sections>
       <li>
         <heading>What pawns pocket from their own work</heading>
@@ -21,6 +21,25 @@
           <li>A full pawn stops work for a trip only with at least 5 kg collected, so one in heavy armour doesn't walk to storage after every plant. The inventory fills to 100% of what it can carry unless the setting says less; the stack that didn't fit is carried in the hands on the trip.</li>
           <li>What else a building leaves when it is taken down (chunks, fuel, its contents) is hauled by the same pawn right after.</li>
           <li>Delivering is part of the work: a pawn who can't haul still brings in what it produced. Drafting, fights, emergencies, medical rest, urgent hunger or exhaustion, rituals, caravans and your orders come first. Colony mechanoids that can carry take part too, unless the setting says no.</li>
+        </points>
+      </li>
+      <li>
+        <heading>What benches, barrels and other work make</heading>
+        <points>
+          <li>Bills: what a bill makes at any bench (crafting, cooking, butchering, smelting, stonecutting, tailoring, drugs, refining, and the benches mods add) goes into the worker's inventory when the bill takes its products to the best stockpile or to one you picked. The picked stockpile is remembered and the products go there with the next trip. What doesn't fit is carried there in the hands, as before.</li>
+          <li>A "do until" bill counts what is in a pocket on its way to storage, so it doesn't make more meanwhile.</li>
+          <li>Production buildings: beer from a fermenting barrel, eggs from an egg box, bioferrite from a harvester or an entity, and the products of the mods' barrels, presses, processors, beehouses and apiaries go into the pocket instead of the hands, and the pawn goes on to the next barrel or box while there is room.</li>
+          <li>Any other work job that makes something beside the pawn: a skull extracted, and what the mods' work makes. A fishing mod's catch goes by the fishing switch.</li>
+          <li>Each has its own switch, as the sources above do.</li>
+        </points>
+      </li>
+      <li>
+        <heading>What stays where it is</heading>
+        <points>
+          <li>A bill set to drop its products on the floor keeps them at the bench, and a bill or other work you ordered yourself (taking a mechanoid apart, removing a mechlink) works as before.</li>
+          <li>Meals go into the cook's pocket only while nobody hungry would be left without a meal in reach. A pocket with meals goes to storage after two hours at most, and at once when someone gets hungry with nothing else to eat.</li>
+          <li>Never medicine, weapons, wastepacks, fertilized eggs or what the weather ruins, nor a long project's masterpiece, a xenogerm, a genepack or a mechlink: they go the game's way.</li>
+          <li>Never what a pawn drops on purpose, what a hauler is carrying, a bill's ingredients or a corpse.</li>
         </points>
       </li>
       <li>
@@ -57,7 +76,7 @@
       <li>
         <heading>If you have Harvest and Haul on its own</heading>
         <points>
-          <li>While it is loaded, Rimfolk's copy of it stands down completely and the standalone mod's settings apply; the log says so once at startup. Long material runs and things on the way still work beside it.</li>
+          <li>While it is loaded, Rimfolk's copy of it stands down completely and the standalone mod's settings apply; the log says so once at startup. Long material runs and things on the way still work beside it, but benches, barrels and the other work fill no pockets until it is gone.</li>
           <li>It can be removed now. The first time Rimfolk starts without it, it reads that mod's settings into its own; in a save, what pawns still carry for it is taken over and goes to storage. The game may write one line about the missing mod's class when such a save loads.</li>
         </points>
       </li>

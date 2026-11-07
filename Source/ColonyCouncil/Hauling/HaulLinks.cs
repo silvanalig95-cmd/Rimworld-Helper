@@ -56,7 +56,7 @@ namespace ColonyCouncil
                 {
                     Log.Message("[Rimfolk] Harvest and Haul is loaded on its own. Rimfolk has it built in now (Mod settings, Rimfolk, What's on, Carrying and hauling), "
                                 + "so Rimfolk's copy stands down while the standalone mod is loaded. The standalone mod can be removed now; Rimfolk reads its settings once it is gone, "
-                                + "and takes over what pawns still carry for it in a save.");
+                                + "and takes over what pawns still carry for it in a save. Only then do bills, production buildings and other work fill pockets too.");
                     return;
                 }
                 ImportStandaloneSettings();

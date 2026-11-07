@@ -7,7 +7,7 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 573; modelled: 573; growing without end: 0.
+Saved collections found: 575; modelled: 575; growing without end: 0.
 Rimfolk's part of the save, roughly: **2,474 KB** after a year, **2,935 KB** after two, **3,146 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
@@ -521,6 +521,8 @@ Rimfolk's part of the save, roughly: **2,474 KB** after a year, **2,935 KB** aft
 | `Faith/FaithPeople.cs:leanings` | per colonist: the ideoligions they're drawn to, the strongest 6 at most, faded ones forgotten daily (counted under people) | fixed | 6 | 6 | 6 | (in its record) |
 | `Faith/FaithPeople.cs:notes` | per colonist: the newest faith moments, 120 days at most (counted under people) | fixed | 5 | 5 | 5 | (in its record) |
 | `Happenings/Workers_Chains2.cs:flags` | per story chain (counted under chains) | fixed | 4 | 4 | 4 | (in its record) |
+| `Hauling/HaulBook.cs:givers` | per load: the work givers of the work that made it, one or two (counted under loads) | fixed | 2 | 2 | 2 | (in its record) |
+| `Hauling/HaulBook.cs:into` | per load: a kind a bill sent to a picked stockpile and a cell of it, kept only while that kind is owed (counted under loads) | fixed | 1 | 1 | 1 | (in its record) |
 | `Hauling/HaulBook.cs:owed` | per load: the kinds owed to storage, a few (counted under loads) | fixed | 4 | 4 | 4 | (in its record) |
 | `Hauling/HaulBook.cs:run` | per load: a material run's one or two materials (counted under loads) | fixed | 2 | 2 | 2 | (in its record) |
 | `Hauling/HaulBook.cs:skills` | per load: the skills of the work that made it (counted under loads) | fixed | 2 | 2 | 2 | (in its record) |

@@ -3173,6 +3173,82 @@ words in `Languages/English/Keyed/Rimfolk_Hauling.xml`, the Almanac's page `Coun
   other builders (it may hold them back a while when a runner is stuck: an hour at most), and the hand-over to Pick Up
   And Haul (its comp read by name).
 
+### Everything else work makes (the player's request, 7 November 2026)
+
+"They should always take any 'produced' item or resource into their inventory when they have space, to later store
+it, for any possible item creating or harvesting interaction in the game and mods" (explicit: no proposal round). The
+code is `Hauling/WorkProducts.cs` and its hooks `Hauling/WorkProductPatches.cs`; the pure rules are in `HaulMath.cs`
+("Everything else work makes", `HaulTests`). Delivery is harvest and haul's own: the same kind of work by skill or by
+work giver, full and worth a trip, the longest hold, before needs, never instead of rest, Pick Up And Haul's unloading.
+
+- **Bills** (`WorkProducts.PocketBill`). The game's last toil of a bill (`Toils_Recipe.FinishRecipeAndStartStoringProduct`)
+  makes the products (`GenRecipe.MakeRecipeProducts`), counts them for the worker's records
+  (`RecordsUtility.Notify_BillDone`) and then places them by the bill's store mode: drop on floor near the worker, or
+  the first product in the hands to the best stockpile or the picked one (`HaulAIUtility.HaulToCellStorageJob`) and the
+  rest near the worker, or on the floor when no cell takes it. Rimfolk wraps that toil's init action to know the
+  worker is finishing (`WorkProducts.finishing`), and in a postfix on `Notify_BillDone` (last, so other mods counting
+  see every product) takes the products off the list before the game places them: only for a bill taking them to a
+  stockpile (`HaulMath.BillPockets`: best or picked; never drop on floor, a mod's own store mode, a bill the player
+  ordered, surgery (`Bill_Medical`) or a building's own production (`Bill_Autonomous`, the mech gestators), nor a project
+  of 10,000 work or more, whose first product the game names in a tale), only kinds that may go in, only what a store
+  cell takes (in the picked stockpile for that mode), and only as many as fit; a partly fitting stack is split. The game
+  then places or carries the rest its own way, so "too heavy to carry" is as before. The quests that count what is made
+  (`QuestManager.Notify_ThingsProduced`) are told of what went in, before it goes in (merged into a stack already
+  carried, the piece is gone). A picked stockpile is remembered by one of its cells per kind (`HaulLoad.into`); the
+  delivery finds a cell in that slot group or its storage group (`Carrying.StoreCellFor`), else the best storage (where
+  the game's haulers would take it anyway), and such a kind never goes through Pick Up And Haul's unloading, which knows
+  only the best. A "do until" bill would make more while the products ride in a pocket (the game counts the hands,
+  `RecipeWorkerCounter.GetCarriedCount`, not inventories): postfixes on `RecipeWorkerCounter.CountProducts` and the stone
+  block and butchering counters add what pawns owe to storage of it (`WorkProducts.CarriedFor`, by the bill's own
+  `CountValidThing`; with "count equipped" the game counts inventories itself; with a stockpile to count in, only what
+  goes there).
+- **Everything else, one generic catch** (no hook per mod). Three hooks set whose job runs a toil or a tick
+  (`JobDriver.TryActuallyStartNextToil`, `DriverTick`, `DriverTickInterval`: prefixes and finalizers that put the one
+  before back; `[ThreadStatic]`, so other threads see none). While one is set, an item made (`ThingMaker.MakeThing`) or
+  dropped out of a building's container (`GenDrop.TryDropSpawn`, the egg box's eggs) is noted for that job; a part split
+  off a stack (`Thing.SplitOff`: a hauler's handful) and anything dropped out of a pawn's hands or inventory, a corpse or
+  anything else is never one. Only for a work job (a work giver gave it), not ordered, of a pawn that carries, and not a
+  job one of the sources of their own covers (plants and sowing, mining, the deep drill, shearing and milking, taking
+  down and floors, Odyssey's fishing, bills, Rimfolk's delivery, Pick Up And Haul's unloading) nor building work. Two
+  moments take it: the carry step (the material run's hook on `Toils_Haul.StartCarryThing` adds a pre-init action)
+  about to put such a thing in the hands while one of the job's targets is a storage cell takes it into the inventory
+  instead, whole or not at all, and ends the job there (`EndJobWith(Succeeded)`: the preInit loop stops when the toils
+  are cleared); and the job's end (a prefix on `Pawn_JobTracker.CleanupCurrentJob`, before the game drops what the hands
+  hold) takes what still lies loose within 4 cells of the pawn and some storage takes, as far as it fits, the first that
+  doesn't fit carried in the hands on the delivery. Not while drafted, downed or in a mental state, nor for a job that
+  errored. At most 40 things a job; the note goes with the job.
+- **Families and settings** (What's on, Carrying and hauling; each needs "Pawns carry what their work drops"):
+  `haulBills` (bills), `haulBuildings` (a job whose first target is a building: the fermenting barrel, the egg box,
+  Anomaly's bioferrite harvester and the entity on its holding platform, the mods' barrels, presses, processors,
+  beehouses and apiaries), `haulOtherWork` (any other work job: a skull extracted for Ideology, the mods' work; taking
+  a mechanoid apart and removing a mechlink are orders, so they go as before), and a mod's fishing job by its name
+  (`HaulMath.FishingName`) under the existing `haulFishing`.
+- **What stays where it is** (`WorkProducts.PocketableDef`, `Allowed`): medicine (the doctors' to reach), weapons (Simple
+  Sidearms, in the player's list, reads a weapon in the inventory as a sidearm), what dissolves (`CompDissolution`:
+  wastepacks), what the weather ruins or hatches (`CompTemperatureRuinable`, `CompHatcher`: fertilized eggs, wort),
+  Biotech's xenogerms, genepacks, embryos, ova and mechlinks (used where they lie), corpses, minified things and chunks
+  (by their setting). Meals (`HaulMath.MealsToPocket`): all while nobody is hungry, else only past what the hungry need
+  and the meals in reach don't cover (a working paste dispenser feeds all); a load with meals is held two hours at most
+  (`HaulMath.HoldHours`), and the book's pass sends it at once while someone is hungry and the meals in reach don't feed
+  them all (`HaulMath.MealsWanted`). The same work for a load is also the same work giver (`HaulLoad.givers`): emptying
+  egg boxes and barrels is hauling work, which no skill names.
+- **The player's mods** (`docs/player-mods/`, the raw defs, and the sources read where they were to hand): the Vanilla
+  Expanded Framework's item processors (`IP_RemoveProduct`, Vanilla Brewing and Cooking Expanded's barrels and presses,
+  VFE Settlers and Classical), its pipe processors (`PS_PickUpProcessor`), Medieval 2's apiary
+  (`VFEM2_TakeHoneyOutOfApiary`) and the Processor Framework's emptying (`EmptyProcessor`) make the product, place it
+  and carry it to a storage cell with the game's carry step, as the fermenting barrel does; the Processor Framework's
+  last product of an emptied processor is left on the ground (its job ends first), and the job's end takes it. VEF's
+  draining of a marked tank (`PS_DrainFromMarkedStorage`) and Anomaly's bioferrite extraction leave it beside the pawn.
+  Alpha Bees' beehouses, Tabula Rasa's producers, Rimefeller's autoclave, Dubs Bad Hygiene's emptied latrines and septic
+  tanks and the other mods' producers are caught the same way if their work makes an item as these do; their code
+  wasn't to hand. Vanilla Fishing Expanded's and PokéWorld's fishing go by the fishing switch.
+- **Saved**: two lists more in each load (`givers`, `into`, modelled in `Tools/save_estimate.py`), emptied with the load.
+  The notes of what a job made aren't saved: a job loaded mid-way goes the game's way. No Sched slot, no new pass.
+- **Not checked here**: none of it could be run in the game. The riskiest parts are the three hooks on the job driver's
+  hot paths (a prefix and a finalizer each, nothing else), the job ended from the carry step's pre-init action, the
+  products taken off the game's list in `Notify_BillDone` (a mod reading the list after it sees fewer), and interplay
+  with Common Sense and Gastronomy (a restaurant waits up to two hours for meals in a cook's pocket).
+
 ## The trade screen (the player's request, 7 November 2026)
 
 "Can you please optimize the trade screen ui? things like sorting by price, recommended trades etc. i also just
