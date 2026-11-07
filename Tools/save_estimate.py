@@ -510,6 +510,9 @@ MODEL = {
     "Colonies/HomesFounding.cs:party": ("while", 8, P, "per founding: who goes from the colony (counted under foundings)"),
     "Colonies/HomesFounding.cs:sentAgainst": ("while", 4, P, "per founding: those sent against their wish (counted under foundings)"),
     "Colonies/HomesFounding.cs:keptAgainst": ("while", 4, P, "per founding: those kept against their wish (counted under foundings)"),
+    "Colonies/HomesFounding.cs:scenarioPeople": ("while", 6, P, "per founding with a scenario's start: its people at the new colony (the newcomers and the children in "
+                                                 "their care, ScenarioStartMath.MaxPeople at most and the scenario's wards), written only from their arrival "
+                                                 "until Rimfolk's own parts are set up, an hour once they are there or a day at most (counted under foundings)"),
     "Colonies/HomesFounding.cs:asks": ("while", 6, 120, "those sent or kept against their wish who may ask once to move, for the season after a founding "
                                        f"(FoundingMath.AskMoveToDays, {const('Colonies/FoundingMath.cs', 'AskMoveToDays', 15):.0f} days)"),
     # A colony handed over (Colonies/HomesHandOver.cs, on the homes' component): written only while one is under way (the

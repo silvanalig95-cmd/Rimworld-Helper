@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The Almanac page on a scenario's start for a new colony (Source/ColonyCouncil/Colonies/: ScenarioStartMath.cs,
+       ScenarioStarts.cs, ScenarioStartWindow.cs, ScenarioStartPatches.cs, NewcomersWindow.cs;
+       docs/design/stage3-many-colonies.md, section 1, "A scenario's start", release 3; DESIGN.md "A scenario's start"). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_ScenarioStart</defName>
+    <label>a scenario's start</label>
+    <category>Council</category>
+    <order>16</order>
+    <summary>Found a new colony as any loaded scenario begins: its people, what shapes them, its kit, its arrival, its animals and Rimfolk's own parts come for that colony alone. What changes the whole game stays as it is.</summary>
+    <tip>Leave the old colony behind, abandoned or handed over at the same time, and the newcomers come free with the whole kit; a gravship start then brings its gravship.</tip>
+    <description>In the founding window, with newcomers called, choose their start: new people as a new game's group, as before, or a scenario's start. The list holds every scenario loaded: the game's and its expansions', Rimfolk's seventeen, other mods', this game's own, and your own and the workshop's that the game already holds. For each it says what comes for the new colony alone, what isn't carried because it changes the whole game, and what never comes. Then the newcomers' window opens with that scenario's rules for its people, and they arrive its way.
+
+The new colony's people are the colony's own people, in the same world: its research, its storyteller, the world's conditions and every other people stay as they are. A whole new scenario, on its own page, is what a new game is for.</description>
+    <sections>
+      <li>
+        <heading>What comes, for that colony alone</heading>
+        <points>
+          <li>Its people: the scenario's count, chosen from its candidates (those coming at the top, those left behind under them, an arrow on each to swap), its required kinds, xenotypes or mutants, the ages it allows and the skills someone must have. They are read from its people part as the game's own page would set them, and the window holds Confirm back, in the game's own words, until the chosen make the start. Those left behind are let go.</li>
+          <li>What shapes starting people: forced traits and hediffs, an age range, starting naked or with a need's level set, and no possessions, each through the game's own hooks while the window is open. With the deeper game hooks off these aren't carried, and the list says so.</li>
+          <li>Its kit, as the scenario defines it, and what it lays about the start, near where they arrive or anywhere on the land; its starting animals and mechs, bonded to the newcomers as at a new game; and the children in its care (the orphanage).</li>
+          <li>Its arrival: on foot from the edge of the land with the kit; in drop pods, a pod each and the kit shared, near the middle of a new colony's land or near the colony's people when some go there first, crashed together as at the game's own start; or in its gravship (Odyssey), set down near the middle of the land with the kit on its shelves, only when the old colony is left behind and nobody of the colony is there before them, else on foot.</li>
+          <li>Rimfolk's own parts, on that colony's council, calendar and people, once its people are on the map (out of their pods) or a day after they came: a council already seated, the days a people brought, a goal from before, a reputation (the colony's one character for now), a sworn enemy, a bond, a secret, a world event set in motion, children in the colony's care, a debt, deserters. A grant of land is that colony's own tie, without the warm start: the people's goodwill stays the whole colony's. One letter tells how things stand there.</li>
+        </points>
+      </li>
+      <li>
+        <heading>What doesn't</heading>
+        <text>Not carried, and listed plainly in the window: what changes the whole game. The scenario's own people (the newcomers join the colony's people), its starting research, rules for every map, its own kind of map, world conditions, incidents switched off, the whole game's events (a monolith, quests made at the start) and its opening words. A part of another mod's that Rimfolk doesn't know is listed as not carried. Never carried: Bad Blood's two quarrelling families, a feud along family lines, since the colony is the family.</text>
+      </li>
+      <li>
+        <heading>The passage</heading>
+        <text>Free when the old colony is abandoned or handed over at the same time, kit and all. With the old colony kept, newcomers come at most once a year as always, and their passage covers the scenario's kit too: each newcomer about what they bring (at least 150 silver's worth), each child in their care 150, and the kit's own worth. It is named before you choose, and the window holds back when the stores can't pay.</text>
+      </li>
+      <li>
+        <heading>Kept until they come</heading>
+        <text>The founding keeps the scenario by name until the newcomers are chosen, so with a party going first they come later by the scenario's rules. If it isn't loaded any more by then, they come as a new game's group, and the window says so.</text>
+      </li>
+    </sections>
+    <keywords><li>scenario's start</li><li>scenario start</li><li>start as a scenario</li><li>left behind</li><li>gravship start</li><li>scenario kit</li></keywords>
+    <seeAlso><li>Council_Alm_C_FreshStart</li><li>Council_Alm_C_Scenarios</li><li>Council_Alm_C_HandOver</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

@@ -148,6 +148,97 @@ public static class ScenarioStartTests
 
     private static void Seams(Action<bool, string> C)
     {
+        string root = Root();
+        if (root == null) return;
+        string Code(string rel) => File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", rel));
+
+        // ---------------- Rimfolk's own parts, every one known ----------------
+
+        string scen = Code("Scenarios/Scenarios.cs") + Code("Scenarios/ScenarioParts.cs");
+        var parts = Regex.Matches(scen, @"class (ScenPart_Council\w+) : ScenPart_Council\b").Select(m => m.Groups[1].Value).ToList();
+        C(parts.Count == 14, $"Rimfolk's fourteen parts found ({parts.Count})");
+        foreach (var p in parts) C(ScenarioStartMath.Carry(R + p) != ScenCarry.Unknown, "Rimfolk's part is one the start knows: " + p);
+        C(scen.Contains("(ctx.scenario ?? Find.Scenario)?.name"), "a reputation's reason names the scenario it came from");
+        C(scen.Contains("if (ctx.warmStart && f.PlayerGoodwill < goodwill)"), "the Beholden's warm start only when the context has one");
+        C(scen.Contains("scenario = Find.Scenario };"), "the game's own start sets its scenario, with its warm start");
+
+        // ---------------- The people, never through PostIdeoChosen ----------------
+
+        string starts = Code("Colonies/ScenarioStarts.cs");
+        string window = Code("Colonies/NewcomersWindow.cs");
+        C(!(starts + window).Contains(".PostIdeoChosen("), "the people part's PostIdeoChosen is never called (it would clear the custom xenotypes and the drug policy)");
+        C(starts.Contains("d.startingPawnsRequired = k.kindCounts.Where(") && starts.Contains("d.startingXenotypesRequired = x.xenotypeCounts.Where(")
+          && starts.Contains("d.startingMutantsRequired = m.mutantCounts.Where(") && starts.Contains("d.allowedDevelopmentalStages = c.allowedDevelopmentalStages")
+          && starts.Contains("d.startingSkillsRequired = c.requiredSkills"), "the start data set from the people part's own fields");
+        C(starts.Contains("StartingPawnUtility.SetGenerationRequest(i, r)") && starts.Contains("StartingPawnUtility.WorkTypeRequirementsSatisfied()") && starts.Contains("tries <= 20"),
+            "each place's request shaped and the people tried again as the game's own part does");
+        C(starts.Contains("\"SelectedCharactersMustInclude\"") && starts.Contains("\"SelectedCharacterMustBeCapableOf\"") && starts.Contains("\"SelectedCharactersMustBeOfAllowedDevelopmentalStages\""),
+            "Confirm held back in the game's own words for its own page's checks");
+        C(starts.Contains("PawnUtility.TryDestroyStartingColonistFamily(p)") && starts.Contains("PawnDiscardDecideMode.Discard"),
+            "those left behind let go, their families only when none of the chosen is kin");
+        C(Regex.IsMatch(starts, @"static\s+List<Entry>\s+Loaded\(\)") && !starts.Contains("ScenarioFiles.RecacheData") && !starts.Contains("ScenarioLister."),
+            "the loaded scenarios listed without reading the disk mid-game");
+
+        // ---------------- The pawn hooks, only while the window is open ----------------
+
+        string patches = Code("Colonies/ScenarioStartPatches.cs");
+        foreach (var hook in new[] { "Notify_NewPawnGenerating", "Notify_PawnGenerated", "AllowPlayerStartingPawn" })
+            C(patches.Contains($"[HarmonyPatch(typeof(Scenario), nameof(Scenario.{hook}))]"), "the shaping parts reach the newcomers through the game's own hook: " + hook);
+        C(Regex.Matches(patches, @"ScenarioStarts\.Shaping == null \|\| (context|req\.Context) != PawnGenerationContext\.PlayerStarter \|\| !RimfolkPatches\.On \|\| !ScenarioStarts\.ShapingLive").Count == 3,
+            "only a starting colonist made while the window is open, with the deeper hooks on; anyone else goes to the game's own scenario");
+        C(starts.Contains("Current.ProgramState == ProgramState.Playing && Current.Game?.InitData != null") && starts.Contains("Shaping = null;"),
+            "the scenario let go as soon as the window's start data is gone (a new game never routed)");
+        int close = window.IndexOf("public override void PostClose()", StringComparison.Ordinal);
+        C(close > 0 && window.IndexOf("ScenarioStarts.Shaping = null;", close, StringComparison.Ordinal) > 0 && window.IndexOf("Current.Game.InitData = null;", close, StringComparison.Ordinal) > 0,
+            "however the window closes, the scenario shapes nobody else and the start data is cleared");
+        C(window.Contains("if (start.hooks) ScenarioStarts.Shaping = scen;"), "the hooks routed only when all three are applied");
+
+        // ---------------- The kit, made as they are chosen ----------------
+
+        int confirm = window.IndexOf("private void Confirm(int price)", StringComparison.Ordinal);
+        int letGo = window.IndexOf("ScenarioStarts.LetGoLeftBehind(chosen)", confirm, StringComparison.Ordinal);
+        int kit = window.IndexOf("ScenarioStarts.MakeKit(", confirm, StringComparison.Ordinal);
+        int clear = window.IndexOf("Pawns.Clear();", confirm, StringComparison.Ordinal);
+        C(confirm > 0 && letGo > confirm && kit > letGo && clear > kit, "the kit made while the start data holds the chosen alone (animals bond to them as at a new game)");
+        C(starts.Contains(".PlayerStartingThings()") && starts.Contains("PawnUtility.GiveAllStartingPlayerPawnsThought(ThoughtDefOf.CrashedTogether)"),
+            "the kit is the scenario's own PlayerStartingThings; pods bring the game's own crashed together");
+        C(starts.Contains("ScenarioStartMath.Arrival(st.method, ModsConfig.OdysseyActive, mapForThem, oldLeftBehind)") && starts.Contains("founding && Gravship(map, came, kit, out at)"),
+            "the gravship only by the rule, and only on a map made for them");
+        C(starts.Contains("GenStep_ReserveGravshipArea.SetStartSpot(") && starts.Contains("GravshipPlacementUtility.ClearAreaForGravship(") && starts.Contains("SketchResolverDefOf.Gravship"),
+            "the gravship made and set down as the game's own start does");
+
+        // ---------------- Rimfolk's own parts at the new colony ----------------
+
+        C(starts.Contains("ScenarioStartMath.Carry(p.GetType().FullName) == ScenCarry.Rimfolk") && starts.Contains("warmStart = ScenarioStartMath.WarmStart(false)"),
+            "Rimfolk's own parts set up for that colony, Bad Blood's families never, the Beholden without its warm start");
+        C(starts.Contains("ScenarioStartMath.SetupDue(here.Count, came.Count, Now - plan.scenarioArrived)"), "set up once they are there, or a day after they came");
+        string foundings = Code("Colonies/Foundings.cs");
+        C(foundings.Contains("if (plan.scenarioPeople.Count > 0) ScenarioStarts.SetUpWhenHere(plan, map);") && foundings.Contains("newcomersDone && plan.scenarioPeople.Count == 0"),
+            "in the founding's own hour, and the founding kept until it is done");
+        C(!starts.Contains("Sched.") && !Regex.IsMatch(starts, @"\bvoid Tick\("), "no schedule slot and nothing per tick");
+        string home = Code("Colonies/HomesFounding.cs");
+        C(home.Contains("if (Scribe.mode != LoadSaveMode.Saving || scenarioPeople.Count > 0)"), "the scenario's people saved only while they wait");
+        string saves = File.ReadAllText(Path.Combine(root, "Tools", "save_estimate.py"));
+        C(saves.Contains("Colonies/HomesFounding.cs:scenarioPeople"), "the scenario's people have their model in the save estimate");
+
+        // ---------------- The words ----------------
+
+        var keyed = XDocument.Load(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_ScenarioStart.xml")).Root!.Elements().ToDictionary(e => e.Name.LocalName, e => e.Value);
+        C(keyed.Values.All(v => !v.Contains("—") && !v.Contains("!")), "no em dashes and no exclamation marks");
+        C(keyed.Values.All(v => !Regex.IsMatch(v, @"\{DAYS\}|\bin \d+ (days?|hours?)\b|\bdays? (left|more)\b")), "no countdowns");
+        foreach (var w in Enum.GetValues(typeof(ScenWhole)).Cast<ScenWhole>().Where(w => w != ScenWhole.None))
+            C(keyed.ContainsKey("CC_ScenStart_Whole_" + w) && keyed.ContainsKey("CC_ScenStart_BriefWhole_" + w), "what changes the whole game said: " + w);
+        foreach (var a in Enum.GetValues(typeof(StartArrival)).Cast<StartArrival>())
+            C(keyed.ContainsKey("CC_ScenStart_Arrive_" + a) && keyed.ContainsKey("CC_ScenStart_Came_" + a), "the arrival said, before and as it happened: " + a);
+        foreach (var c in new[] { ScenCarry.People, ScenCarry.Shaping, ScenCarry.Kit, ScenCarry.Animals, ScenCarry.Arrival, ScenCarry.Rimfolk })
+            C(keyed.ContainsKey("CC_ScenStart_Brief_" + c), "what is carried said in the founding window: " + c);
+        foreach (int f in new[] { ScenarioStartMath.FromDef, ScenarioStartMath.ThisGame, ScenarioStartMath.Local, ScenarioStartMath.Workshop })
+            C(keyed.ContainsKey("CC_ScenStart_From_" + f), "the list's group named: " + f);
+        C(keyed["CC_ScenStart_ListLine"].Contains("new game") && keyed["CC_ScenStart_NewGame"].Contains("new game"), "a whole new scenario on its own page: a new game, said plainly");
+        C(keyed["CC_ScenStart_Never_Families"].Contains("family lines"), "the families' feud said for what it is");
+        var almanac = XDocument.Load(Path.Combine(root, "Defs", "AlmanacArticleDefs", "Almanac_ScenarioStart.xml")).Root!.Elements().First();
+        C(almanac.Element("label")?.Value == "a scenario's start" && !almanac.ToString().Contains("—") && !almanac.ToString().Contains("!"), "the Almanac page, a page of its own");
+        C(almanac.ToString().Contains("new game") && almanac.ToString().Contains("family lines"), "the Almanac page says where a whole new scenario belongs, and why the families never come");
     }
 
     private static string Root()
