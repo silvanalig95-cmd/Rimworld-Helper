@@ -23,8 +23,25 @@ namespace ColonyCouncil
     /// </summary>
     public static class HuntsBite
     {
-        /// <summary>Hurts from everyday life on, answers on the map, and the deeper hooks that scale and cap the game's own chance.</summary>
-        public static bool On => Harm.On && PlayOuts.On && RimfolkPatches.On;
+        /// <summary>
+        /// Hurts from everyday life on, answers on the map, and the deeper hooks that scale and cap the game's own chance;
+        /// never inside a decree's morning work (the hunting season keeps to safe game).
+        /// </summary>
+        public static bool On => Harm.On && PlayOuts.On && RimfolkPatches.On && safeOnly == 0;
+
+        private static int safeOnly;
+
+        private sealed class SafeScope : IDisposable
+        {
+            public void Dispose() => safeOnly = Math.Max(0, safeOnly - 1);
+        }
+
+        /// <summary>While it lasts, hunts take safe game only (a decree's morning work).</summary>
+        public static IDisposable SafeOnly()
+        {
+            safeOnly++;
+            return new SafeScope();
+        }
 
         /// <summary>
         /// Game that can turn and that a hunt may take now: wild, up and about, seen, a revenge chance above the safe game's

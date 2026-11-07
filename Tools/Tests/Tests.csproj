@@ -218,5 +218,6 @@
     <Compile Include="../../Source/ColonyCouncil/Colonies/ScenarioStartMath.cs" Link="ScenarioStartMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Colonies/TownLifeMath.cs" Link="TownLifeMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Colonies/ManyColoniesMath.cs" Link="ManyColoniesMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Harm/HarmTwoMath.cs" Link="HarmTwoMath.cs" />
   </ItemGroup>
 </Project>

@@ -560,7 +560,9 @@ namespace ColonyCouncil
         {
             var a = map.mapPawns.FreeColonistsSpawned.Where(p => PlayOuts.OurPerson(p) && (t == null || t.Ours(p))).RandomElementWithFallback();
             if (a == null) return;
-            PlayOuts.Run(def.daily, new DilemmaContext { map = map, a = a, why = def.LabelCap }, "decree daily " + def.defName);
+            // The hunting season's morning game keeps to safe game, as its card says (Harm/HuntsBite.cs).
+            using (HuntsBite.SafeOnly())
+                PlayOuts.Run(def.daily, new DilemmaContext { map = map, a = a, why = def.LabelCap }, "decree daily " + def.defName);
         }
 
         // ---------------- Every faith its evening ----------------

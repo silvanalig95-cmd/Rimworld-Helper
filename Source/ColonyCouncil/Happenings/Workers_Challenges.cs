@@ -137,6 +137,10 @@ namespace ColonyCouncil
             var a = v.a;
             var x = v.x;
             if (a == null || x == null || a.Dead || x.Dead || v.skill == null) return;
+            // Facing a challenger in front of everyone goes against a timid champion's nature (Diplomacy/Nature.cs).
+            string what = ChampionBouts.On && ChampionBouts.IsBout(v.skill) ? ChampionBouts.FormWord(x.Faction) : new HappeningContext { skill = v.skill, contest = true }.SkillText;
+            using (Causes.Push("CC_Cause_Challenge".Translate(what).Resolve()))
+                Nature.Felt(a, NatureAct.AcceptedChallenge, x.Faction, x.LabelShort);
             // A fighting challenge is a bout on the map; its end decides the contest (Harm/ChampionBouts.cs).
             if (ChampionBouts.Begin(v, comp)) return;
             Decide(v, comp, SkillWins(a, x, v.skill), null);
@@ -163,8 +167,6 @@ namespace ColonyCouncil
             string what = bout != null ? ChampionBouts.FormWord(x.Faction) : ctx.SkillText;
             var ext = v.Ext;
             using var _cause = Causes.Push("CC_Cause_Challenge".Translate(what).Resolve());
-            // Facing a challenger in front of everyone goes against a timid champion's nature (Diplomacy/Nature.cs).
-            Nature.Felt(a, NatureAct.AcceptedChallenge, x.Faction, x.LabelShort);
             Arrivals.Say(a, (won ? "CC_Evt_Contest_Won" : "CC_Evt_Contest_Lost").Translate().Resolve());
             Arrivals.Say(x, (won ? "CC_Evt_Contest_Lost" : "CC_Evt_Contest_Won").Translate().Resolve());
             if (won)
