@@ -43,4 +43,12 @@
     <comparerClass>ColonyCouncil.TransferableComparer_Suggested</comparerClass>
   </TransferableSorterDef>
 
+  <!-- Only offered with Vanilla Trading Expanded's price history (Patch_TradeSortMenu leaves it out otherwise). -->
+  <TransferableSorterDef>
+    <defName>Rimfolk_PriceChange</defName>
+    <label>price change</label>
+    <description>The change of its price on Vanilla Trading Expanded's market over the last 7 or 30 days, the biggest moves first, up or down.</description>
+    <comparerClass>ColonyCouncil.TransferableComparer_PriceChange</comparerClass>
+  </TransferableSorterDef>
+
 </Defs>

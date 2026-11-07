@@ -2968,6 +2968,41 @@ made quicker to read without taking it over (`Source/ColonyCouncil/Trade/`):
   columns, never in that panel, and with it loaded leaves out the silver after the trade.
 - No letters, messages or saved state: the basket's memory lives with the open trade.
 
+### Price history and the colony's record (the player's request, 7 November 2026)
+
+"Does vanilla trading expanded influence price developments? could you in that case have things like price history,
+price compared to market price and other helpful and informative data." It does, three ways: the colony's own trades
+(every three days, a chance of the market worth traded of a good over 1,000 silver, down for a sale, up for a
+purchase, by 1% to 10% and more past 1,000 silver), its news, and a slow daily drift back toward the vanilla value. It
+also keeps one price a day of every good it trades (`PriceHistoryAutoRecorder.records`). Rimfolk reads that, adds no
+economic mechanic, and keeps one small record of its own:
+
+- **Read, not modelled** (`Integrations/VanillaTrading.cs`, by name): `priceHistoryRecorders` and each one's `records`,
+  `thingsAffectedBySoldPurchasedMarketValue` (the colony's trades VTE hasn't reckoned yet), the private `allNews` and
+  each news' `AffectedThingDefs()`, `priceImpact` and `priceImpactStartTick`, and the setting
+  `playerTransactionImpactMultiplier`. The vanilla value goes through VTE's own `outputOnlyVanilla` switch, set back in a
+  `finally` in one place. "So many days ago" is the price that many records back, as VTE's terminal reads it.
+- **The rules are pure** (`Trade/TradeMarketMath.cs`, tested): against the usual and the 30 days' average; the change
+  over 7 and 30 days (over what there is when the history is shorter); the 60 days' high and low, "at" one within 2%
+  where ten days or more spread a tenth; a notable move a tenth in a week (3 days at least) or a fifth in a month (10
+  days at least). VTE's rule for the colony's trades becomes words only: "may" from a chance of a tenth, "likely" from
+  two in five, "almost surely" from four in five, "sharply" from three of its steps; a trade against what was traded
+  lately "evens it out", and where the earlier trades still outweigh it they are named instead.
+- **Where it shows.** A card (an immediate window, Super layer) beside the mouse on either price of a row, on the left
+  so the game's own price tooltip keeps the right, after the tooltip's own pause; a 28 by 14 line in the row's icons for
+  a notable move only (`Patch_TradeRowMark`); the Market window from a button in the silver row's empty name area (drawn
+  with the row's icons so the silver's own tooltip stops short of it, with a fallback after the row); a sixth sort,
+  `Rimfolk_PriceChange`, left out of the menu without VTE's history and, like the rest, out of the caravan and transport
+  pod windows. The marks' tooltips gain the market's reasons (`MarketHint`) for a sale or buy already marked, never a
+  mark of their own. Nothing is drawn in Trade Helper's side panel.
+- **The colony's record** (`Trade/TradeRecord.cs`, `TradeBook`, saved): taken in a prefix on the game's
+  `TradeDeal.TryExecute` (the hook `Epithets/CouncilRecords.cs` already had for the negotiator's count; the counts are
+  gone after it) and written in its postfix only if the trade went through. Nothing in Rimfolk recorded goods or prices
+  before: the faction memory notes a trade's total worth and a sold captive, nothing a piece. Silver trades only, never
+  gifts, people or animals; rows of one good, way and quality merged at the average price; the last 5 lines of a good
+  (a thing and its stuff), 50 goods, the one traded longest ago going first; about 25 KB at the cap
+  (`Tools/save_estimate.py`). Works without VTE.
+
 ## Algorithms, not AI
 
 **All logic is plain rules and weights.** It's deterministic, needs no API key, works

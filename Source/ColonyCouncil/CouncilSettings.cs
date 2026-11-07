@@ -525,8 +525,14 @@ namespace ColonyCouncil
         public bool tradeBasket = true;
         /// <summary>The silver each side has after the trade, and the days of food after a trade at home.</summary>
         public bool tradeReadouts = true;
+        /// <summary>The market card on a good's prices, the trend mark beside a good whose price moved, and the Market window on the silver row (Trade/TradeMarket.cs).</summary>
+        public bool tradeMarket = true;
+        /// <summary>The colony's own record of what it sold and bought, to whom and at what price a piece (Trade/TradeRecord.cs).</summary>
+        public bool tradeRecord = true;
         /// <summary>With Vanilla Trading Expanded: its market, contracts and banks in the advice and the readouts (Integrations/VanillaTrading.cs).</summary>
         public bool tradeVte = true;
+        /// <summary>With Vanilla Trading Expanded: its price history, trends and news, and what a trade does to its prices, on the trade screen.</summary>
+        public bool tradeVteHistory = true;
         /// <summary>A "Reserved slots" button on the colony's shelves: a slot kept for each kind picked (Building/ShelfReserves.cs).</summary>
         public bool shelfReserves = true;
         /// <summary>A drink, smoke or snack had at a table or outside, not standing in a freezer or store room (Building/ChewSpots.cs).</summary>
@@ -924,6 +930,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref tradeBasket, "tradeBasket", true);
             Scribe_Values.Look(ref tradeReadouts, "tradeReadouts", true);
             Scribe_Values.Look(ref tradeVte, "tradeVte", true);
+            Scribe_Values.Look(ref tradeMarket, "tradeMarket", true);
+            Scribe_Values.Look(ref tradeRecord, "tradeRecord", true);
+            Scribe_Values.Look(ref tradeVteHistory, "tradeVteHistory", true);
             Scribe_Values.Look(ref shelfReserves, "shelfReserves", true);
             Scribe_Values.Look(ref chewOutOfStores, "chewOutOfStores", true);
             Scribe_Values.Look(ref haulOwnWork, "haulOwnWork", true);

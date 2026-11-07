@@ -161,8 +161,11 @@ public static class TradeScreenTests
         string advice = File.ReadAllText(Path.Combine(src, "Trade", "TradeAdvice.cs"));
         string sorts = File.ReadAllText(Path.Combine(src, "Trade", "TradeSorts.cs"));
         string vte = File.ReadAllText(Path.Combine(src, "Integrations", "VanillaTrading.cs"));
+        // The market card, its window and the colony's trade record (TradeMarketTests checks them in full).
+        string market = File.ReadAllText(Path.Combine(src, "Trade", "TradeMarket.cs")) + File.ReadAllText(Path.Combine(src, "Trade", "Window_TradeMarket.cs"))
+                        + File.ReadAllText(Path.Combine(src, "Trade", "TradeRecord.cs"));
         var defs = XDocument.Load(Path.Combine(root, "Defs", "Misc", "Rimfolk_TradeSorts.xml")).Root!.Elements("TransferableSorterDef").ToList();
-        C(defs.Count == 5, "five sorts, each a def of the game's own kind");
+        C(defs.Count == 6, "six sorts (the price change with Vanilla Trading Expanded), each a def of the game's own kind");
         foreach (var d in defs)
         {
             string cls = d.Element("comparerClass")?.Value ?? "";
@@ -176,7 +179,7 @@ public static class TradeScreenTests
         foreach (var hook in new[] { "Patch_TradeSortMenu", "Patch_TradeRowMark", "Patch_TradeSilverAfter", "Patch_TradeFoot" })
             C(Regex.IsMatch(screen, @"\[HarmonyPatch\([^\]]*\)\]\s*public static class " + hook), $"{hook} is a Harmony patch class of its own");
         C(screen.Contains("RimfolkPatches.On && (S?.tradeMarks") && screen.Contains("RimfolkPatches.On && (S?.tradeBasket") && screen.Contains("RimfolkPatches.On && (S?.tradeReadouts")
-          && screen.Contains("if (!RimfolkPatches.On ||"), "every hook stands down with the deeper game hooks");
+          && screen.Contains("if (!RimfolkPatches.On) return all;"), "every hook stands down with the deeper game hooks");
         C(screen.Contains("SilverAfterOn => ReadoutsOn && Silver && !TradeHelper") && screen.Contains("\"timmyliang.tradehelper\""),
             "with Trade Helper loaded the silver after the trade is left to its lists");
         C(!screen.Contains("Messages.Message") && !screen.Contains("LetterStack") && !advice.Contains("Messages.Message") && !advice.Contains("LetterStack"),
@@ -190,14 +193,14 @@ public static class TradeScreenTests
 
         // Every key the screen says exists, with no em dash or exclamation mark.
         var keyed = XDocument.Load(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_TradeScreen.xml")).Root!.Elements().ToDictionary(e => e.Name.LocalName, e => e.Value);
-        var used = Regex.Matches(screen + advice + vte, "\"(CC_Trade_[A-Za-z_]+|CC_Settings_Trade[A-Za-z_]*|CC_SetNote_Trade[A-Za-z]*)\"").Select(m => m.Groups[1].Value).Distinct().ToList();
+        var used = Regex.Matches(screen + advice + vte + market, "\"(CC_Trade_[A-Za-z_]+|CC_Settings_Trade[A-Za-z_]*|CC_SetNote_Trade[A-Za-z]*)\"").Select(m => m.Groups[1].Value).Distinct().ToList();
         C(used.Count >= 40, $"found the screen's words ({used.Count})");
         foreach (var k in used) C(keyed.ContainsKey(k), $"{k} exists");
         foreach (var kv in keyed)
         {
             C(!kv.Value.Contains('\u2014') && !kv.Value.Contains('!'), $"{kv.Key} has no em dash or exclamation mark");
             foreach (Match m in Regex.Matches(kv.Value, @"\{([A-Z]+)\}"))
-                C(Regex.IsMatch(screen + advice, "\"" + kv.Key + "\"[^;]*\"" + m.Groups[1].Value + "\"", RegexOptions.Singleline)
+                C(Regex.IsMatch(screen + advice + market, "\"" + kv.Key + "\"[^;]*\"" + m.Groups[1].Value + "\"", RegexOptions.Singleline)
                   || kv.Key.StartsWith("CC_Trade_Why_FoodShort") && Regex.IsMatch(advice, "\"" + m.Groups[1].Value + "\""),
                     $"{kv.Key}'s {{{m.Groups[1].Value}}} is given");
         }

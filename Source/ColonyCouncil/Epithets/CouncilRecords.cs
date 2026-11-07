@@ -41,14 +41,19 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// A trade went through: one more deal for whoever negotiated it (a name for the colony's best trader). Only counts;
-    /// the trade itself is the game's own.
+    /// A trade went through: one more deal for whoever negotiated it (a name for the colony's best trader), and what was
+    /// sold and bought, at what price a piece, in the colony's trade record (Trade/TradeRecord.cs: taken before the game
+    /// carries the trade out, since its counts are gone after, and written only if it went through). Only counts and
+    /// notes; the trade itself is the game's own.
     /// </summary>
     [HarmonyPatch(typeof(TradeDeal), nameof(TradeDeal.TryExecute))]
     public static class Patch_Traded
     {
+        public static void Prefix() => TradeRecord.Take();
+
         public static void Postfix(bool __result, ref bool actuallyTraded)
         {
+            TradeRecord.Write(__result && actuallyTraded);
             if (!RimfolkPatches.On || !__result || !actuallyTraded) return;
             var negotiator = TradeSession.playerNegotiator;
             if (negotiator == null || negotiator.Faction != Faction.OfPlayer || TradeSession.giftMode) return;

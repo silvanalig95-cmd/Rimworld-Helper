@@ -27,6 +27,8 @@ namespace ColonyCouncil
         public readonly List<string> lines = new List<string>();
         public readonly List<string> aside = new List<string>();
         public string price, world;
+        /// <summary>With Vanilla Trading Expanded's history: the market's reason for the sale or buy (at its 60-day high or low, a fast move), or null.</summary>
+        public string trend;
 
         /// <summary>The better of its two deals, for the "best deal" sort.</summary>
         public float Deal => Mathf.Max(canSell ? sellDeal : 0f, canBuy ? buyDeal : 0f);
@@ -738,6 +740,8 @@ namespace ColonyCouncil
                     n.price = W("CC_Trade_Price_Sell", Usual(n.sellDeal, true).Named("HOW"));
                 else if (n.mark == TradeMark.Buy)
                     n.price = W("CC_Trade_Price_Buy", Usual(n.buyDeal, false).Named("HOW"));
+                // Where its market price stands and goes, as a reason more for the sale or the buy (never a mark of its own).
+                if (n.mark == TradeMark.Sell || n.mark == TradeMark.Buy) n.trend = TradeMarket.HintLine(t.ThingDef, n.mark == TradeMark.Sell);
             }
         }
 
@@ -762,6 +766,13 @@ namespace ColonyCouncil
             if (n.setAside > 0 && t != null && t.CountToTransfer < 0 && n.have + t.CountToTransfer < n.setAside) parts.Add(W("CC_Trade_KeepWarn"));
             if (!n.price.NullOrEmpty()) parts.Add(n.price);
             if (!n.world.NullOrEmpty()) parts.Add(n.world);
+            if (!n.trend.NullOrEmpty()) parts.Add(n.trend);
+            // What this trade is likely to do to its market price (Vanilla Trading Expanded's rule), as the counts stand now.
+            if (t != null && t.CountToTransfer != 0 && TradeMarket.History)
+            {
+                string impact = TradeMarket.ImpactLine(t.ThingDef);
+                if (!impact.NullOrEmpty()) parts.Add(impact);
+            }
             return string.Join("\n\n", parts);
         }
     }

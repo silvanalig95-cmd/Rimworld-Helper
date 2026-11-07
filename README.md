@@ -2036,6 +2036,19 @@ read (settings: **What's on, Trade screen**, each part its own switch). Nothing 
   rows you set yourself stay as they are. **Clear suggested** takes it back out.
 - **What the trade leaves:** under each side's silver, what it has after the trade; at the foot of a trade at home, the
   days the colony's food lasts now and after it (a caravan's are the game's own, at the top, with its mass).
+- **The market card:** point at either price of a good for a card beside the mouse (on the other side from the game's
+  own price tooltip) with the colony's own last prices for it: what it last got and paid a piece, to whom and how long
+  ago, and the best of the last 15 days. **The colony's trade record** notes every silver trade as it goes through, the
+  last 5 trades of each good and 50 goods (never gifts, people or animals).
+- **With Vanilla Trading Expanded's price history** (it keeps one price a day of every good its market trades), the card
+  adds the market value now against its usual worth and its average of the last 30 days, its change over 7 and 30 days,
+  its lowest and highest of 60 days with a drawn line, the news that last moved it, and in words whether this trade is
+  likely to move the price by its own rule for the colony's trades (a chance by the market worth traded, every three
+  days, down for a sale and up for a purchase). A good that moved notably (a tenth in 7 days, a fifth in 30) has a small
+  line beside its name; a **price change** sort puts the biggest moves first; the marks' tooltips gain the market's
+  reasons (a sale at a 60-day high, a buy at a 60-day low, a price falling or rising fast).
+- **Market**, a button on the silver row, opens a window of the trade's goods: against usual, 7 and 30 days, a line of
+  60 days, last sold and last bought, each column sortable, the biggest movers first (without VTE, the record alone).
 
 ### A fresh start in the same world
 **Found a new colony** on a colony's card (the region map's Ours lens) picks a place on the game's world map, with

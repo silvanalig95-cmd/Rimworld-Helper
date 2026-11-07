@@ -9,7 +9,8 @@ namespace ColonyCouncil
     /// Rimfolk's sorts in the game's two "Sort by" menus of the trade screen (Defs/Misc/Rimfolk_TradeSorts.xml): each a
     /// TransferableSorterDef with one of these comparers, so the game's own menus offer them and nothing is patched to
     /// sort. The highest first: what the trader pays, what it asks (each for this negotiator, as the price columns
-    /// show it), the price a kilo, the best deal against the usual price, and Rimfolk's suggestions first. A row without
+    /// show it), the price a kilo, the best deal against the usual price, Rimfolk's suggestions first, and with Vanilla
+    /// Trading Expanded the price change on its market (the biggest moves first). A row without
     /// that side (nothing of it to sell, or the trader has none) goes last. The menus are shared with the caravan and
     /// transport pod windows, which have no prices: there these sort as the game's market value does, and with the
     /// deeper game hooks they are taken out of those menus (Trade/TradeScreen.cs).
@@ -77,5 +78,19 @@ namespace ColonyCouncil
     public class TransferableComparer_Suggested : TransferableComparer_Rimfolk
     {
         protected override float Key(Tradeable t, TradeNote n) => n == null ? 0f : TradeAdviceMath.SortScore(n.mark, n.priority);
+    }
+
+    /// <summary>
+    /// The price change on Vanilla Trading Expanded's market, the biggest moves first (up or down, over the last 7 or 30
+    /// days, the row's trend line saying which way); a good it keeps no history of goes last. Only offered with VTE.
+    /// </summary>
+    public class TransferableComparer_PriceChange : TransferableComparer_Rimfolk
+    {
+        protected override float Key(Tradeable t, TradeNote n)
+        {
+            var v = TradeMarket.Known(t.ThingDef);
+            float move = v != null ? TradeMarketMath.MoveScore(v.stats) : -1f;
+            return move < 0f ? float.MinValue : move;
+        }
     }
 }

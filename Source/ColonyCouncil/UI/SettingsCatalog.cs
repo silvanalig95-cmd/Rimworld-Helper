@@ -520,13 +520,16 @@ namespace ColonyCouncil
             Toggle("fieldsByWeather", "CC_Settings_FieldsByWeather", "CC_SetNote_FieldsByWeather", "deepHooks");
             Toggle("frostHarvestSuggest", "CC_Settings_FrostHarvest", "CC_SetNote_FrostHarvest");
             Toggle("frostHarvestAuto", "CC_Settings_FrostHarvestAuto", "CC_SetNote_FrostHarvestAuto", "frostHarvestSuggest");
-            // The trade screen (Trade/): sorts by price, the marks and the basket from what the colony needs, the readouts.
+            // The trade screen (Trade/): sorts by price, the marks and the basket from what the colony needs, the readouts,
+            // the market card and window, and the colony's own trade record.
             Section("CC_SetSec_TradeScreen");
             NoteUnder("CC_SetSec_TradeScreen_Note");
             Toggle("tradeSorts", "CC_Settings_TradeSorts", "CC_SetNote_TradeSorts");
             Toggle("tradeMarks", "CC_Settings_TradeMarks", "CC_SetNote_TradeMarks", "deepHooks");
             Toggle("tradeBasket", "CC_Settings_TradeBasket", "CC_SetNote_TradeBasket", "deepHooks");
             Toggle("tradeReadouts", "CC_Settings_TradeReadouts", "CC_SetNote_TradeReadouts", "deepHooks");
+            Toggle("tradeMarket", "CC_Settings_TradeMarket", "CC_SetNote_TradeMarket", "deepHooks");
+            Toggle("tradeRecord", "CC_Settings_TradeRecord", "CC_SetNote_TradeRecord", "deepHooks");
             // The deeper game hooks, this colony's era, a check of what's working and a full reset.
             Section("CC_SetSec_Hooks");
             Toggle("deepHooks", "CC_Settings_DeepHooks", "CC_SetNote_DeepHooks");
@@ -680,6 +683,7 @@ namespace ColonyCouncil
             Mod(Toggle("pokemonTypeDouse", "CC_Settings_PokemonTypeDouse", "CC_SetNote_PokemonTypeDouse", "pokemonTypes"), PokeWorldId);
             Section("CC_SetSec_Mod_Vte");
             Mod(Toggle("tradeVte", "CC_Settings_TradeVte", "CC_SetNote_TradeVte"), VteId);
+            Mod(Toggle("tradeVteHistory", "CC_Settings_TradeVteHistory", "CC_SetNote_TradeVteHistory", "tradeVte"), VteId);
             // Any mod's faith precept against turrets (TurretFaith.cs reads the precept, not one mod): always shown.
             Section("CC_SetSec_Mod_Faiths");
             Toggle("faithTurretsHere", "CC_Settings_FaithTurretsHere", "CC_SetNote_FaithTurretsHere", "deepHooks");
