@@ -359,6 +359,9 @@ namespace ColonyCouncil
             Toggle("ailments", "CC_Settings_Ailments", "CC_SetNote_Ailments");
             Toggle("convalescence", "CC_Settings_Convalescence", "CC_SetNote_Convalescence");
             Toggle("healerReputations", "CC_Settings_HealerReputations", "CC_SetNote_HealerReputations");
+            Toggle("medicineByNeed", "CC_Settings_MedicineByNeed", "CC_SetNote_MedicineByNeed", "deepHooks");
+            Choice("harmlessMedicine", "CC_Settings_HarmlessMedicine", "CC_Settings_HarmlessMedicine_Tip", "CC_HarmlessMed_", "CC_SetNote_HarmlessMed_",
+                new[] { "None", "Herbal" }, "medicineByNeed");
             Section("CC_Settings_Bonds");
             Toggle("socialWeb", "CC_Settings_SocialWeb", "CC_SetNote_SocialWeb");
             Toggle("socialEvents", "CC_Settings_SocialEvents", "CC_SetNote_SocialEvents", "socialWeb");

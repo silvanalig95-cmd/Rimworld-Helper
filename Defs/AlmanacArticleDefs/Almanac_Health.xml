@@ -254,6 +254,16 @@ Blood on the floor lowers a room's cleanliness and beauty. Clean it out of the h
         <heading>Infections</heading>
         <text>A resting colonist with normal immunity gain, treated right away, needs at least 15% average tend quality to survive an infection. Infections need tending about every 12 hours. On a tribal start, herbal medicine handles infections if the tends come on time, so keep the healroot field big enough to keep up.</text>
       </li>
+      <li>
+        <heading>Medicine by what is treated (Rimfolk)</heading>
+        <text>With Rimfolk, the medicine each wound or illness gets follows what it is. The patient's medical care setting is only the ceiling: Rimfolk never uses better than it allows, only less.</text>
+        <points>
+          <li>Harmless, bandaged without medicine: a wound that neither bleeds (under 10% of the blood a day) nor is likely to get infected (under 3%). A bruise, a crack, the smallest scratch.</li>
+          <li>Minor, herbal medicine at most: a wound that bleeds a little or can get infected, such as a cut, a bite, a small burn or frostbite, and Rimfolk's everyday ailments.</li>
+          <li>Serious, the best the medical care allows: bleeding of 40% a day or more, a wound on a vital part or an organ, a deep wound (half the part's health, or 12 points on a wound that can go bad), a fresh stump, anything threatening a life, an infection, and every other illness and lasting condition. Someone bleeding out gets it for every wound that bleeds.</li>
+        </points>
+        <after>The serious are tended first, and what gets less is tended apart, so the plague gets glitterworld medicine and the scratches herbal, in separate tendings; a scratch tended along with a gunshot costs no more medicine. The doctor fetches only as much as the tendings that use it. Each condition's tooltip on the health tab says what it gets and why. With Smart Medicine, Rimfolk fills in its choice for each injury where you set none, and Smart Medicine does the treating; a choice you set by hand stands. "Medicine by what is treated" is on the What's on page of the settings, and "Harmless wounds get" can give them herbal at most instead.</after>
+      </li>
     </sections>
     <keywords>
       <li>medical care</li>

@@ -125,6 +125,7 @@
     <Compile Include="../../Source/ColonyCouncil/Integrations/GuestWillMath.cs" Link="GuestWillMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/DrinkBeforeWorkMath.cs" Link="DrinkBeforeWorkMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/MedicalTriageMath.cs" Link="MedicalTriageMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Health/MedicineChoiceMath.cs" Link="MedicineChoiceMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Fields/FieldWeatherMath.cs" Link="FieldWeatherMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Setbacks/SetbackMath.cs" Link="SetbackMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Lean/Sched.cs" Link="Sched.cs" />

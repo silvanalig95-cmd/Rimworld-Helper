@@ -344,6 +344,14 @@ namespace ColonyCouncil
         public bool convalescence = true;
         /// <summary>Doctors' and midwives' reputations: names, the colony's trust, the weight of losses (Health/).</summary>
         public bool healerReputations = true;
+        /// <summary>
+        /// Medicine by what is treated (Health/MedicineChoice.cs): the serious get the best the medical care setting allows,
+        /// minor wounds and everyday ailments herbal at most, harmless wounds none; with Smart Medicine, its per-injury
+        /// choice filled in where the player set none.
+        /// </summary>
+        public bool medicineByNeed = true;
+        /// <summary>What harmless wounds (a bruise, a crack, the smallest scratch) get under medicine by what is treated.</summary>
+        public HarmlessMedicine harmlessMedicine = HarmlessMedicine.None;
         /// <summary>On-screen buttons for half and quarter speed, and where they sit (fractions of the screen; -1 = default).</summary>
         public bool slowButtons = true;
         public bool moodInsight = true;
@@ -825,6 +833,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref everydayHurts, "everydayHurts", 1f);
             Scribe_Values.Look(ref convalescence, "convalescence", true);
             Scribe_Values.Look(ref healerReputations, "healerReputations", true);
+            Scribe_Values.Look(ref medicineByNeed, "medicineByNeed", true);
+            Scribe_Values.Look(ref harmlessMedicine, "harmlessMedicine", HarmlessMedicine.None);
             Scribe_Values.Look(ref slowButtons, "slowButtons", true);
             Scribe_Values.Look(ref moodInsight, "moodInsight", true);
             Scribe_Values.Look(ref deepHooks, "deepHooks", true);

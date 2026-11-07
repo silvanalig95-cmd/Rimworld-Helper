@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Medicine by what is treated (Source/ColonyCouncil/Health/MedicineChoice.cs): the settings. -->
+  <CC_Settings_MedicineByNeed>Medicine by what is treated</CC_Settings_MedicineByNeed>
+  <CC_Settings_MedicineByNeed_Tip>The medicine each wound or illness gets follows what it is. The patient's medical care stays the ceiling: this only ever uses less. Harmless wounds that neither bleed nor can get infected (a bruise, a crack, the smallest scratch) get no medicine, only bandaging (or herbal at most, below). Minor wounds that bleed a little or can get infected (a cut, a bite, a small burn) and everyday ailments get herbal medicine at most. Heavy bleeding, a wound on a vital part or an organ, a deep wound, a fresh stump, and every other illness, infection and lasting condition get the best the medical care allows, and a patient bleeding out gets it for every wound that bleeds. The serious are tended first, and what gets less is tended apart, so a doctor never spends the best medicine on scratches because the patient is allowed it. Each condition's tooltip on the health tab says what it gets and why. With Smart Medicine, its choice for each injury (a right click on it) is filled in where you set none, and Smart Medicine does the treating; anything you set by hand stands. Needs the deeper game hooks.</CC_Settings_MedicineByNeed_Tip>
+  <CC_SetNote_MedicineByNeed>Each wound gets the medicine it needs, up to the patient's medical care: none for a bruise, the best for the serious.</CC_SetNote_MedicineByNeed>
+
+  <CC_Settings_HarmlessMedicine>Harmless wounds get</CC_Settings_HarmlessMedicine>
+  <CC_Settings_HarmlessMedicine_Tip>What a wound that neither bleeds nor can get infected gets (a bruise, a crack, the smallest scratch): no medicine, only bandaging, or herbal medicine at most, as a minor wound does. Never more than the patient's medical care.</CC_Settings_HarmlessMedicine_Tip>
+  <CC_HarmlessMed_None>No medicine</CC_HarmlessMed_None>
+  <CC_HarmlessMed_None_Tip>A bruise, a crack or the smallest scratch is bandaged without medicine.</CC_HarmlessMed_None_Tip>
+  <CC_HarmlessMed_Herbal>Herbal at most</CC_HarmlessMed_Herbal>
+  <CC_HarmlessMed_Herbal_Tip>A bruise, a crack or the smallest scratch gets herbal medicine at most, as a minor wound does.</CC_HarmlessMed_Herbal_Tip>
+  <CC_SetNote_HarmlessMed_None>Harmless wounds are bandaged without medicine.</CC_SetNote_HarmlessMed_None>
+  <CC_SetNote_HarmlessMed_Herbal>Harmless wounds get herbal medicine at most.</CC_SetNote_HarmlessMed_Herbal>
+
+  <!-- The line under a condition's tooltip on the health tab: WHAT is the medicine it gets, WHY the reason. -->
+  <CC_Med_Line>{WHAT}: {WHY}.</CC_Med_Line>
+  <CC_Med_Line_ByHand>{CARE}, as you set it with Smart Medicine.</CC_Med_Line_ByHand>
+  <CC_Med_Care_Best>medicine up to {PAWN_nameDef}'s medical care ({CARE})</CC_Med_Care_Best>
+  <CC_Med_Care_Setting>{CARE}, as {PAWN_nameDef}'s medical care is set</CC_Med_Care_Setting>
+  <CC_Med_Care_None>no medicine, only bandaging</CC_Med_Care_None>
+  <CC_Med_Care_Herbal>herbal medicine at most</CC_Med_Care_Herbal>
+
+  <!-- Why, by the kind (MedicineChoiceMath.Why). PART is the body part it is on. -->
+  <CC_Med_Why_CouncilAnswer>the council chose the best medicine for {PAWN_objective}</CC_Med_Why_CouncilAnswer>
+  <CC_Med_Why_LifeThreatening>it threatens {PAWN_possessive} life</CC_Med_Why_LifeThreatening>
+  <CC_Med_Why_BleedingOut>{PAWN_pronoun} is bleeding out</CC_Med_Why_BleedingOut>
+  <CC_Med_Why_BleedsHeavily>it bleeds heavily</CC_Med_Why_BleedsHeavily>
+  <CC_Med_Why_VitalPart>it is on the {PART}, which {PAWN_pronoun} can't live without</CC_Med_Why_VitalPart>
+  <CC_Med_Why_Organ>it is inside, on the {PART}</CC_Med_Why_Organ>
+  <CC_Med_Why_Deep>a deep wound</CC_Med_Why_Deep>
+  <CC_Med_Why_Infection>an infection, which the medicine fights</CC_Med_Why_Infection>
+  <CC_Med_Why_SeriousIllness>a serious illness</CC_Med_Why_SeriousIllness>
+  <CC_Med_Why_Chronic>a lasting condition the medicine eases</CC_Med_Why_Chronic>
+  <CC_Med_Why_Lethal>an illness that can kill</CC_Med_Why_Lethal>
+  <CC_Med_Why_Illness>an illness the medicine works on</CC_Med_Why_Illness>
+  <CC_Med_Why_EverydayAilment>an everyday ailment, nothing that threatens {PAWN_objective}</CC_Med_Why_EverydayAilment>
+  <CC_Med_Why_Bleeds>it bleeds a little</CC_Med_Why_Bleeds>
+  <CC_Med_Why_MayInfect>it can get infected</CC_Med_Why_MayInfect>
+  <CC_Med_Why_Clean>it neither bleeds nor can get infected</CC_Med_Why_Clean>
+  <CC_Med_Why_Small>it barely bleeds and is unlikely to go bad</CC_Med_Why_Small>
+
+</LanguageData>
