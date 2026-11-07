@@ -182,7 +182,8 @@ namespace ColonyCouncil
                 Interplay.AddMemoryTags(tags, f);
                 // And of single colonists: their:friend, their:freedbyA, their:tendedbyA (World/KinMemory.cs).
                 KinMemory.AddTags(tags, f, a);
-                var character = CouncilGameComponent.Instance?.character;
+                // The colony of the one it is about (each colony its own character; the seat's for none).
+                var character = a != null && a.IsColonist ? CharacterTracker.Of(a) : CouncilGameComponent.Instance?.character;
                 if (character != null)
                     foreach (var t in CharacterTracker.TagNames)
                         if (character.Is(t)) tags.Add("colony:" + t);

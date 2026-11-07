@@ -254,7 +254,7 @@ namespace ColonyCouncil
                 && Lands.Fits(map, d.lands)
                 && ConditionOn(map, d.conditions)
                 && ModContent.Fits(d, map)
-                && ((d.colonyIs.NullOrEmpty() && d.colonyIsNot.NullOrEmpty()) || comp.character.Fits(d.colonyIs, d.colonyIsNot))).ToList();
+                && ((d.colonyIs.NullOrEmpty() && d.colonyIsNot.NullOrEmpty()) || (CharacterTracker.For(map)?.Fits(d.colonyIs, d.colonyIsNot) ?? false))).ToList();
             foreach (var def in pool.InRandomOrder().OrderByDescending(d => d.weight * Rand.Value))
             {
                 Pawn a = null, x = null;
@@ -350,7 +350,7 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("encounter effect " + def.defName, ex);
                 }
             }
-            comp.character.Shift(def.ways, text);
+            CharacterTracker.For(map)?.Shift(def.ways, text);
             Deeds.Encounter(def, a, x);
             // An entity is met where its holding platform stands.
             News.Post(text, new LookTargets(a, x.Spawned ? x : x.SpawnedParentOrMe), NewsKind.World, MessageTypeDefOf.SilentInput, def.notable ? Importance.Notable : Importance.Flavor);

@@ -32,7 +32,7 @@ namespace ColonyCouncil
             if (!def.mods.NullOrEmpty() && !def.mods.Any(m => ModsConfig.IsActive(m) || People.ModActive(m))) return false;
             if (!def.notWithMods.NullOrEmpty() && def.notWithMods.Any(m => ModsConfig.IsActive(m) || People.ModActive(m))) return false;
             if (def.battle && !IncidentWorker_Happening.FightsPossible) return false;
-            if ((!def.colonyIs.NullOrEmpty() || !def.colonyIsNot.NullOrEmpty()) && !(CouncilGameComponent.Instance?.character.Fits(def.colonyIs, def.colonyIsNot) ?? false)) return false;
+            if ((!def.colonyIs.NullOrEmpty() || !def.colonyIsNot.NullOrEmpty()) && !(CharacterTracker.For(map)?.Fits(def.colonyIs, def.colonyIsNot) ?? false)) return false;
             var colonists = IncidentWorker_Happening.Colonists(map);
             if (colonists.Count < Mathf.Max(1, def.minColonists)) return false;
             if (def.colonist != null && !colonists.Any(p => def.colonist.Allows(p, null))) return false;
@@ -402,7 +402,7 @@ namespace ColonyCouncil
             Interplay.AddMemoryTags(tags, s.ctx.faction);
             KinMemory.AddTags(tags, s.ctx.faction, s.ctx.a);
             // What the colony is known for, as letters' lines ask for it: colony:Merciful, colony:Hospitable (Character/).
-            var character = CouncilGameComponent.Instance?.character;
+            var character = CharacterTracker.For(s.ctx.map);
             if (character != null)
                 foreach (var t in CharacterTracker.TagNames)
                     if (character.Is(t)) tags.Add("colony:" + t);

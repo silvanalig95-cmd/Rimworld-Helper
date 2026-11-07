@@ -268,7 +268,7 @@ namespace ColonyCouncil
             while (pool.Count > 0)
             {
                 // A trading post near the home draws robbers to the road (World/Region/TradingPost.cs).
-                var def = pool.RandomElementByWeight(d => Weight(d) * TradingPosts.EventFactor(d, map));
+                var def = pool.RandomElementByWeight(d => Weight(d, map) * TradingPosts.EventFactor(d, map));
                 pool.Remove(def);
                 var s = Start(def, map);
                 if (s != null) return s;
@@ -277,10 +277,11 @@ namespace ColonyCouncil
         }
 
         /// <summary>Ones that ran recently (or never) weigh a little less (or more), for variety over a long game.</summary>
-        private float Weight(WorldSituationDef d)
+        private float Weight(WorldSituationDef d, Map map = null)
         {
             float w = Mathf.Max(0.01f, d.weight);
-            var ch = d.drawnBy.NullOrEmpty() ? null : CouncilGameComponent.Instance?.character;
+            // What the home it is placed near is known for (each colony its own character).
+            var ch = d.drawnBy.NullOrEmpty() ? null : CharacterTracker.For(map);
             if (ch != null && d.drawnBy.Any(ch.Is)) w *= 2f;
             int times = history.Count(r => r.defName == d.defName);
             return w / (1f + times * 0.5f);
@@ -551,7 +552,7 @@ namespace ColonyCouncil
                 // The risk's words when it came true, else the plain ones, picked among their variants by the situation's tags.
                 string outcome = DilemmaChoices.Outcome(o.outcome, o.outcomes, o.riskOutcome, o.riskOutcomes, risk, worker.Tags(s));
                 outcome = worker.Chosen(s, ctx, beat, i, risk, byDefault, outcome);
-                comp?.character.Shift(byDefault ? o.ways?.Scaled(0.5f) : o.ways, "CC_Ways_Why_Event".Translate(s.def.label, ctx.Format(o.label)).Resolve());
+                if (comp != null) CharacterTracker.For(ctx.map)?.Shift(byDefault ? o.ways?.Scaled(0.5f) : o.ways, "CC_Ways_Why_Event".Translate(s.def.label, ctx.Format(o.label)).Resolve());
                 Setbacks.Notify_Answer(ctx, o.ways, byDefault, risk, s.def.label, ctx.Format(o.label));
                 string told = WorldSituationWorker.Sentences(ctx.Format(outcome));
                 // What the answer set going on the map (still being collected here) tells its outcome when it's over.

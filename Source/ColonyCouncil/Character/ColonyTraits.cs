@@ -112,25 +112,62 @@ namespace ColonyCouncil
         /// Something that counts toward a trait happened (a camp hosted, a ritual of the faith held): it is added to
         /// today's tally, and folded into the traits that count it at the end of the day.
         /// </summary>
-        public static void Tally(string key, float amount = 1f)
+        public static void Tally(string key, float amount = 1f, Map map = null)
         {
             if (key.NullOrEmpty() || amount == 0f) return;
-            var t = CouncilGameComponent.Instance?.character?.traits;
+            // The colony where it happened (each colony its own character, decision 13A); the seat's for no home.
+            var t = (map != null ? CharacterTracker.For(map) : CouncilGameComponent.Instance?.character)?.traits;
             if (t == null) return;
             t.today[key] = (t.today.TryGetValue(key, out float n) ? n : 0f) + amount;
         }
 
-        /// <summary>A trait read from a standing count: the count today.</summary>
-        public static float Level(string level)
+        /// <summary>A trait read from a standing count: the count today, of the colony of <paramref name="map"/> (the seat's for none).</summary>
+        public static float Level(string level, Map map = null)
         {
             switch (level)
             {
                 case "calendar":
-                    // The colony's character is one for the game: the seat's calendar.
-                    var days = ColonyCalendar.On ? ColonyCalendar.Seat?.days : null;
+                    // Each colony's own calendar (the seat's for a map that isn't a home).
+                    var days = ColonyCalendar.On ? (map != null ? ColonyCalendar.For(map) : ColonyCalendar.Seat)?.days : null;
                     return days == null ? 0f : ColonyTraitMath.CalendarLevel(days.Where(d => d != null).Select(d => (d.Personal, d.keptYears, d.tradition)));
                 default: return 0f;
             }
+        }
+
+        private static Func<ThingDef, bool> wallPred;
+
+        /// <summary>A colony's home has walls enough to be called walled (ManyColoniesMath.MayBeWalled: the calendar's walls-up line).</summary>
+        public static bool HasWalls(Map map)
+        {
+            if (map == null) return false;
+            try
+            {
+                wallPred ??= RoomTemplateDef.RolePredicate("wall");
+                return wallPred != null && ManyColoniesMath.MayBeWalled(Avail.ColonyCount(map, wallPred));
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("colony traits: the walls", e);
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// A colony founded from another starts with half its mother's (decision 13A): half of each rate; a name it keeps only
+        /// where half still holds it by the usual rule, and "walled" never on land with no walls.
+        /// </summary>
+        public static ColonyTraits HalfOf(ColonyTraits mother, bool walls)
+        {
+            var t = new ColonyTraits();
+            if (mother == null) return t;
+            foreach (var kv in mother.rates) t.rates[kv.Key] = ManyColoniesMath.FoundedValue(kv.Value);
+            foreach (var name in mother.known)
+            {
+                var d = DefDatabase<ColonyTraitDef>.GetNamedSilentFail(name);
+                if (d == null || name == ManyColoniesMath.WalledTrait && !walls) continue;
+                if (ColonyTraitMath.Known(true, t.Rate(d), d.knownAt, LoseShare)) t.known.Add(name);
+            }
+            return t;
         }
 
         /// <summary>How the colony's old hands lean on this way, from what it has grown into (see <see cref="ColonyTraitDef.lean"/>).</summary>
@@ -167,16 +204,22 @@ namespace ColonyCouncil
         public bool HasTag(string tag) => !tag.NullOrEmpty() && known.Count > 0 && Known.Any(d => d.tag == tag || d.defName == tag);
 
         /// <summary>Once a day: what everyone did since yesterday, by record, folded into each trait's average.</summary>
-        public void Daily(CouncilGameComponent comp)
+        public void Daily(CouncilGameComponent comp, CharacterTracker of = null)
         {
             var defs = All.ToList();
             var tallied = today;
             today = new Dictionary<string, float>();
             if (defs.Count == 0) return;
-            var colonists = PawnsFinder.AllMaps_FreeColonists.Where(p => p.records != null && p.RaceProps.Humanlike && !p.IsQuestLodger() && !p.IsSlave).ToList();
+            // Each colony's own people (decision 13A); with one colony, everyone, as always.
+            bool several = ColonyState.Several;
+            var home = several ? of?.Map : null;
+            var colonists = PawnsFinder.AllMaps_FreeColonists.Where(p => p.records != null && p.RaceProps.Humanlike && !p.IsQuestLodger() && !p.IsSlave
+                                                                          && (home == null || Homes.Of(p) == home)).ToList();
             if (colonists.Count == 0) return;
             days++;
-            DailyTallies(tallied);
+            DailyTallies(tallied, home);
+            letterMap = home;
+            walledOk = home == null || HasWalls(home);
             var recordsUsed = defs.SelectMany(d => d.records).Where(r => r?.record != null).Select(r => r.record).Distinct().ToList();
             var delta = new Dictionary<RecordDef, float>();
             var seen = new HashSet<string>();
@@ -198,7 +241,7 @@ namespace ColonyCouncil
             foreach (var def in defs)
             {
                 float rate;
-                if (!def.level.NullOrEmpty()) rate = Level(def.level);
+                if (!def.level.NullOrEmpty()) rate = Level(def.level, home);
                 else
                 {
                     float amount = 0f;
@@ -218,7 +261,7 @@ namespace ColonyCouncil
         /// The tallies counted once a day rather than as they happen: guests staying (Hospitality's, a night each), and
         /// a chaplain in the seat or a moral guide in the faith's role (Ideology).
         /// </summary>
-        private static void DailyTallies(Dictionary<string, float> tallied)
+        private static void DailyTallies(Dictionary<string, float> tallied, Map home)
         {
             void Add(string key, float n)
             {
@@ -226,16 +269,18 @@ namespace ColonyCouncil
             }
             try
             {
+                // With more than one colony, each counts its own guests, chaplain and moral guide (home); with one, as always.
                 int guests = 0;
                 foreach (var map in Find.Maps)
-                    if (map.IsPlayerHome)
+                    if (map.IsPlayerHome && (home == null || map == home))
                         guests += Strangers.On(map, StrangerKind.Visitor).Count(Strangers.IsHospitalityGuest);
                 Add("guestNight", guests);
                 var comp = CouncilGameComponent.Instance;
                 if (ModsConfig.IdeologyActive && comp != null)
                 {
-                    if (ColonyCouncilMod.Settings.offices && comp.offices.Filled("Council_Office_Chaplain")) Add("chaplainDay", 1f);
-                    if (PawnsFinder.AllMaps_FreeColonists.Any(NameRecords.IsMoralGuide)) Add("guideDay", 1f);
+                    var offices = home != null ? ColonyState.For(home)?.offices : comp.offices;
+                    if (ColonyCouncilMod.Settings.offices && (offices?.Filled("Council_Office_Chaplain") ?? false)) Add("chaplainDay", 1f);
+                    if (PawnsFinder.AllMaps_FreeColonists.Any(p => NameRecords.IsMoralGuide(p) && (home == null || Homes.Of(p) == home))) Add("guideDay", 1f);
                 }
             }
             catch (Exception e)
@@ -244,24 +289,38 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>The day's colony (its letters name the settlement with more than one), and whether it has walls enough to be called walled.</summary>
+        [Unsaved] private Map letterMap;
+        [Unsaved] private bool walledOk = true;
+
         private void Check(CouncilGameComponent comp, ColonyTraitDef def, float rate, int colonists)
         {
             bool isKnown = IsKnown(def);
-            if (!isKnown && ColonyTraitMath.Known(false, rate, def.knownAt, LoseShare) && colonists >= 3 && days >= 15)
+            // "Walled" is never said of a colony with no walls (decision 13A): kept from it, and let go once the walls are gone.
+            bool needsWalls = def.defName == ManyColoniesMath.WalledTrait && !walledOk;
+            if (isKnown && needsWalls)
+            {
+                known.Remove(def.defName);
+                string gone = def.lost.NullOrEmpty() ? "CC_Ways_TraitFading".Translate(def.label).Resolve() : def.lost;
+                Tell.Minor(NewsKind.Colony, Importance.Notable, letterMap, gone, LookTargets.Invalid, MessageTypeDefOf.NeutralEvent);
+                return;
+            }
+            if (!isKnown && !needsWalls && ColonyTraitMath.Known(false, rate, def.knownAt, LoseShare) && colonists >= 3 && days >= 15)
             {
                 known.Add(def.defName);
                 string text = def.earned.NullOrEmpty() ? def.description : def.earned;
                 string label = "CC_Ways_TraitLabel".Translate(def.label.CapitalizeFirst()).Resolve();
                 // Those who love the work take pride in it; a name with no one skill behind it is simply the colony's.
                 if (def.skill != null) text += "\n\n" + "CC_Ways_TraitPride".Translate(def.skill.label).Resolve();
-                Tell.Letter(NewsKind.Colony, Importance.Notable, null, label, text, LetterDefOf.PositiveEvent);
+                Tell.Letter(NewsKind.Colony, Importance.Notable, letterMap, label, text, LetterDefOf.PositiveEvent);
                 // The chronicle's sentence is the colony's one name's, at the end of the day (ColonyName.Look).
             }
             else if (isKnown && !ColonyTraitMath.Known(true, rate, def.knownAt, LoseShare))
             {
                 known.Remove(def.defName);
                 string text = def.lost.NullOrEmpty() ? "CC_Ways_TraitFading".Translate(def.label).Resolve() : def.lost;
-                News.Post(text, LookTargets.Invalid, NewsKind.Colony, MessageTypeDefOf.NeutralEvent, Importance.Notable);
+                if (letterMap != null) Tell.Minor(NewsKind.Colony, Importance.Notable, letterMap, text, LookTargets.Invalid, MessageTypeDefOf.NeutralEvent);
+                else News.Post(text, LookTargets.Invalid, NewsKind.Colony, MessageTypeDefOf.NeutralEvent, Importance.Notable);
             }
         }
 
@@ -304,8 +363,10 @@ namespace ColonyCouncil
         {
             var s = ColonyCouncilMod.Settings;
             var comp = CouncilGameComponent.Instance;
-            if (comp?.character == null || !s.colonyCharacter || !s.MoodEffects || !p.IsColonist || p.IsQuestLodger() || !People.HasInnerLife(p)) return ThoughtState.Inactive;
-            return comp.character.traits.PrideOf(p).Count > 0 ? ThoughtState.ActiveAtStage(0) : ThoughtState.Inactive;
+            if (comp == null || !s.colonyCharacter || !s.MoodEffects || !p.IsColonist || p.IsQuestLodger() || !People.HasInnerLife(p)) return ThoughtState.Inactive;
+            // What their own colony is known for (each colony its own character, decision 13A).
+            var traits = CharacterTracker.Of(p)?.traits;
+            return traits != null && traits.PrideOf(p).Count > 0 ? ThoughtState.ActiveAtStage(0) : ThoughtState.Inactive;
         }
     }
 
@@ -318,7 +379,7 @@ namespace ColonyCouncil
         {
             get
             {
-                var traits = CouncilGameComponent.Instance?.character?.traits.PrideOf(pawn);
+                var traits = CharacterTracker.Of(pawn)?.traits?.PrideOf(pawn);
                 string what = traits == null || traits.Count == 0 ? null : "CC_Ways_TraitWhy".Translate(TextUtil.JoinAnd(traits.Select(t => t.label).ToList())).Resolve();
                 return Causes.Append(base.Description, what);
             }

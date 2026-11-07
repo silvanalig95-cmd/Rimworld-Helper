@@ -209,6 +209,7 @@ namespace ColonyCouncil
             ColonyBook.Lost(herds, lost, null);
             ColonyBook.Lost(beasts, lost, null);
             encounters?.HomesLost(lost);
+            CharactersLost(lost);
         }
 
         /// <summary>Once a day: a home that came back is ours again, and councils of homes lost long enough ago are let go.</summary>

@@ -140,11 +140,12 @@ namespace ColonyCouncil
             Arrivals.Visit(new List<Pawn> { ctx.stranger }, ctx.map, ctx.faction, null, ext.stayHours.RandomInRange) != null;
 
         /// <summary>How the colony comes across: merciful, generous and open make good copy; harsh, thrifty and guarded don't.</summary>
-        private static int Reputation()
+        private static int Reputation(Map map)
         {
             var comp = CouncilGameComponent.Instance;
             if (comp == null || !ColonyCouncilMod.Settings.colonyCharacter) return 0;
-            var ch = comp.character;
+            var ch = CharacterTracker.For(map);
+            if (ch == null) return 0;
             float score = ch.Value(Way.Mercy) + ch.Value(Way.Generosity) + ch.Value(Way.Openness);
             return score > 25f ? 1 : score < -25f ? -1 : 0;
         }
@@ -153,8 +154,8 @@ namespace ColonyCouncil
         {
             if (option == 0 && !byDefault)
             {
-                int rep = Reputation();
-                string known = ColonyName.CalledWords();
+                int rep = Reputation(ctx.map);
+                string known = ColonyName.CalledWords(ctx.map);
                 // The answer's own words first ("X writes it all down"), then what the piece says.
                 string article = (rep > 0 ? "CC_Evt_Article_Good" : rep < 0 ? "CC_Evt_Article_Bad" : "CC_Evt_Article_Plain")
                     .Translate(ctx.stranger?.LabelShort ?? "?", known ?? "CC_Evt_Article_Unknown".Translate().ToString()).Resolve();

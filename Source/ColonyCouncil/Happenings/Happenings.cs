@@ -572,7 +572,7 @@ namespace ColonyCouncil
             // colony's own decrees count for its own home, by the event's target (IncidentWorker_Happening.ChanceFactorNow).
             if (ext != null && ext.group == HappeningGroup.Visitors && !ColonyState.Several) f *= DecreeWork.VisitorFactor(null);
             // What the colony is known for draws those who come for it (Immersion/VisitorNotices.cs).
-            f *= DrawnFactor(ext);
+            f *= DrawnFactor(ext, null);
             return f;
         }
 
@@ -769,7 +769,7 @@ namespace ColonyCouncil
             if (ext.group == HappeningGroup.Visitors) w *= DecreeWork.VisitorFactor(map);
             // A remote home draws more visitors (World/Region/TravelLand.cs): up to 60% more at the most remote.
             if (remote && ext.group == HappeningGroup.Visitors) w *= TravelLand.VisitorFactor(map);
-            w *= DrawnFactor(ext);
+            w *= DrawnFactor(ext, map);
             // A town struggling in this home's reach asks for help more often (World/Region/RiseFallEffects.cs).
             w *= RiseFallEffects.EventFactor(d, map);
             // A colony (or one of its people by name) known for something draws the world's events of its kind (Diplomacy/Renown.cs).
@@ -778,10 +778,11 @@ namespace ColonyCouncil
         }
 
         /// <summary>Two and a half times as likely while the colony is known for something the event comes for (HappeningExtension.drawnBy).</summary>
-        public static float DrawnFactor(HappeningExtension ext)
+        public static float DrawnFactor(HappeningExtension ext, Map map)
         {
             if (ext?.drawnBy == null || ext.drawnBy.Count == 0) return 1f;
-            var ch = CouncilGameComponent.Instance?.character;
+            // What the home it would come to is known for (each colony its own character; the seat's for none).
+            var ch = CharacterTracker.For(map);
             if (ch == null) return 1f;
             foreach (var tag in ext.drawnBy)
                 if (ch.Is(tag)) return 2.5f;
@@ -834,7 +835,7 @@ namespace ColonyCouncil
                 // A cold answer to a visitor the colony keeps up with loosens the thread (Happenings/Regulars.cs).
                 if (!byDefault) Regulars.Answered(ctx, option);
                 ctx.plays = null;
-                comp?.character.Shift(byDefault ? option.ways?.Scaled(0.5f) : option.ways, "CC_Ways_Why_Event".Translate(ctx.incident.label, ctx.Format(option.label)).Resolve());
+                if (comp != null) CharacterTracker.For(ctx.map)?.Shift(byDefault ? option.ways?.Scaled(0.5f) : option.ways, "CC_Ways_Why_Event".Translate(ctx.incident.label, ctx.Format(option.label)).Resolve());
                 Setbacks.Notify_Answer(ctx, option.ways, byDefault, risk, ctx.incident.label, ctx.Format(option.label));
                 string told = ctx.Format(outcome);
                 // What the answer set going on the map tells its outcome when it's over; until then, only when it will be.

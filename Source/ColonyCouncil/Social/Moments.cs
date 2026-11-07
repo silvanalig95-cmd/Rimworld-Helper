@@ -283,7 +283,8 @@ namespace ColonyCouncil
             }
             if (!x.ways.NullOrEmpty())
             {
-                var ch = CouncilGameComponent.Instance?.character;
+                // Their own colony's ways (each colony its own character).
+                var ch = CharacterTracker.Of(a);
                 if (ch == null || !ColonyCouncilMod.Settings.colonyCharacter) return false;
                 float ma = ch.Approval(a), mb = ch.Approval(b);
                 float line = ThoughtWorker_ColonyWays.Mild;

@@ -245,10 +245,11 @@ namespace ColonyCouncil
         private static PaneSection Ways(CouncilGameComponent comp, Pawn p)
         {
             var settings = ColonyCouncilMod.Settings;
-            var ch = comp.character;
+            // Their own colony's ways (each colony its own character, decision 13A).
+            var ch = CharacterTracker.Of(p);
             if (!settings.colonyCharacter || ch == null || !p.IsColonist || p.IsQuestLodger() || !People.HasInnerLife(p) || p.DevelopmentalStage.Baby()) return null;
             // What the colony is called, as one list (its ways and what its work made it: Character/ColonyName.cs).
-            string known = ColonyName.CalledWords();
+            string known = ColonyName.CalledWords(ColonyState.Several ? Homes.Of(p) : null);
             if (known == null) return null;
             var s = new PaneSection { key = "ways", header = "CC_Culture_Ways".Translate(), icon = Icons.Ways };
             var reasons = new List<string>();

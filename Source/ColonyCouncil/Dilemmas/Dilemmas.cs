@@ -342,7 +342,7 @@ namespace ColonyCouncil
         /// <summary>The time and circumstances are right (season, a recent raid, grief).</summary>
         public virtual bool CanHappenNow(Map map)
         {
-            if ((!def.colonyIs.NullOrEmpty() || !def.colonyIsNot.NullOrEmpty()) && !(CouncilGameComponent.Instance?.character.Fits(def.colonyIs, def.colonyIsNot) ?? false)) return false;
+            if ((!def.colonyIs.NullOrEmpty() || !def.colonyIsNot.NullOrEmpty()) && !(CharacterTracker.For(map)?.Fits(def.colonyIs, def.colonyIsNot) ?? false)) return false;
             if (!def.seasons.NullOrEmpty() && !def.seasons.Contains(GenLocalDate.Season(map))) return false;
             if (def.withinDaysOfThreat > 0f)
             {
@@ -1363,7 +1363,7 @@ namespace ColonyCouncil
             outcomeTags.UnionWith(customTags);
             string outcome = DilemmaChoices.Outcome(option, risk, outcomeTags);
             // An answer nobody gave says less about the colony than one the council chose.
-            comp?.character.Shift(byDefault ? option.ways?.Scaled(0.5f) : option.ways, "CC_Ways_Why_Dilemma".Translate(ctx.def.label, ctx.Format(option.label)).Resolve());
+            if (comp != null) CharacterTracker.For(ctx.map)?.Shift(byDefault ? option.ways?.Scaled(0.5f) : option.ways, "CC_Ways_Why_Dilemma".Translate(ctx.def.label, ctx.Format(option.label)).Resolve());
             Setbacks.Notify_Answer(ctx, option.ways, byDefault, risk, ctx.def.label, ctx.Format(option.label));
             string told = ctx.Format(outcome);
             // Written down for Council → Dilemmas, with what it set going on the map (UI/DilemmaLog.cs), and in the history's
@@ -1417,7 +1417,7 @@ namespace ColonyCouncil
                     foreach (var p in colonists) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_TraditionKept);
                     comp.annals.Notify_Tradition(label, true);
                     VisualTouches.Tradition(colonists, label);
-                    Interplay.Notify_CouncilTradition(label, 1);
+                    Interplay.Notify_CouncilTradition(label, 1, map);
                 }
                 else if (result == CalendarMath.KeepResult.Born)
                 {
@@ -1427,7 +1427,7 @@ namespace ColonyCouncil
                         "CC_Tradition_BornText".Translate(label).Resolve(), LetterDefOf.PositiveEvent);
                     comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Chronicle_TraditionBorn".Translate(label).Resolve(), null));
                     comp.annals.Notify_TraditionBorn(label);
-                    Interplay.Notify_CouncilTradition(label, 2);
+                    Interplay.Notify_CouncilTradition(label, 2, map);
                     foreach (var p in colonists.InRandomOrder().Take(2))
                         comp.journals.Write(p, "Council_Journal_TraditionBorn", null, label.Named("TRADITION"));
                 }
@@ -1449,7 +1449,7 @@ namespace ColonyCouncil
             }
             comp.annals.Notify_Tradition(label, false);
             bool lapsed = passed == CalendarMath.PassResult.Lapsed;
-            Interplay.Notify_CouncilTradition(label, lapsed ? -2 : -1);
+            Interplay.Notify_CouncilTradition(label, lapsed ? -2 : -1, map);
             if (lapsed)
             {
                 cal?.LetCustomGo(day, map, true);

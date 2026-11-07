@@ -617,7 +617,8 @@ namespace ColonyCouncil
             needs.Remove(def);
             SyncHediffs();
             comp.Notify_DecreeEnacted(def, colony);
-            comp.character?.Shift(def.ways, "CC_Ways_Why_Decree".Translate(def.label).Resolve());
+            // The decreeing colony's own ways (each colony its own character).
+            (colony?.Map != null ? CharacterTracker.For(colony.Map) : comp.character)?.Shift(def.ways, "CC_Ways_Why_Decree".Translate(def.label).Resolve());
             if (fatigue > 0) Backlash(def, fatigue, force, unrest, understood, comp);
             var req = RequestFor(def);
             var asker = req?.pawn != null && !req.pawn.Dead ? req.pawn : null;

@@ -28,12 +28,15 @@ namespace ColonyCouncil
                 UiKit.EmptyState(rect, Icons.Ways, "CC_Ways_Off".Translate());
                 return;
             }
-            var ch = comp.character;
-            // The card, built at most once a second while it shows.
-            if (card == null || Time.realtimeSinceStartup - cardAt > 1f || Time.realtimeSinceStartup < cardAt)
+            // The colony in view's own ways (each colony its own character, decision 13A).
+            var home = ColonyState.Several ? ColonyView.Current?.Map : null;
+            var ch = home != null ? CharacterTracker.For(home) ?? comp.character : comp.character;
+            // The card, built at most once a second while it shows (and again when the colony in view changes).
+            if (card == null || cardFor != ch || Time.realtimeSinceStartup - cardAt > 1f || Time.realtimeSinceStartup < cardAt)
             {
                 cardAt = Time.realtimeSinceStartup;
-                card = ColonyName.Lines();
+                cardFor = ch;
+                card = ColonyName.Lines(home);
             }
             float top = UiKit.PageHeader(rect, Icons.Ways, "CC_Name_PageTitle".Translate(), "CC_Name_PageSub".Translate());
             var outRect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
@@ -92,9 +95,13 @@ namespace ColonyCouncil
             public string reasons;
         }
 
+        private static CharacterTracker cardFor;
+
         private static List<Rating> Rated(CharacterTracker ch)
         {
-            var pawns = PawnsFinder.AllMaps_FreeColonists.Where(p => !p.IsQuestLodger() && People.HasInnerLife(p) && !p.DevelopmentalStage.Baby()).Distinct();
+            // Those of the colony whose ways these are (everyone, with one colony).
+            var home = ColonyState.Several ? ch.Map : null;
+            var pawns = PawnsFinder.AllMaps_FreeColonists.Where(p => !p.IsQuestLodger() && People.HasInnerLife(p) && !p.DevelopmentalStage.Baby() && (home == null || Homes.Of(p) == home)).Distinct();
             var list = new List<Rating>();
             foreach (var p in pawns)
             {

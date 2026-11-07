@@ -80,7 +80,7 @@ namespace ColonyCouncil
                 if (line.NullOrEmpty()) continue;
                 said.Add(mark);
                 // Known for it, in time: the tally the traits famed for its hall, artful, keepers of the dead and walled count.
-                ColonyTraits.Tally("seen:" + theme);
+                ColonyTraits.Tally("seen:" + theme, 1f, map);
                 var faction = Strangers.FactionOf(g);
                 return line.Formatted(g.Named("PAWN"), (faction?.Name ?? "").Named("FACTION")).Resolve();
             }
@@ -90,7 +90,8 @@ namespace ColonyCouncil
         /// <summary>For the World page: what the colony is known for among what travellers notice, or null.</summary>
         public static string KnownLine()
         {
-            var ch = CouncilGameComponent.Instance?.character;
+            // The colony in view's own name (each colony its own character).
+            var ch = CharacterTracker.InView;
             if (ch == null) return null;
             var bits = new List<string>();
             foreach (var tag in new[] { "FamedHall", "Artful", "Hallowed", "Walled" })

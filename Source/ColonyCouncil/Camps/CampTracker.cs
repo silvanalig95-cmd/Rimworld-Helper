@@ -424,7 +424,7 @@ namespace ColonyCouncil
             if (map == null || !map.IsPlayerHome) return ("nohome", null, null);
             if (GenDate.DaysPassed < 20) return ("early", (20 - GenDate.DaysPassed).ToString(), null);
             // A colony known for its hospitality hears from the road sooner (ColonyTraitDef.campGap).
-            float gap = 15f * (CouncilGameComponent.Instance?.character?.traits?.CampGap ?? 1f);
+            float gap = 15f * (CharacterTracker.For(map)?.traits?.CampGap ?? 1f);
             // And a remote home sooner still: the rest after a camp up to 30% shorter (World/Region/TravelLand.cs).
             gap *= TravelLand.GapFactor(map);
             if (CampStoryMath.InGap(Now, home.lastEndedTick, gap))
@@ -490,7 +490,7 @@ namespace ColonyCouncil
             for (int tries = 0; tries < 6; tries++)
             {
                 // A refugee family comes more often while a town in reach struggles, and is likeliest of its people (World/Region/RiseFallEffects.cs).
-                var kind = kinds.RandomElementByWeight(k => k.WeightNow() * k.HourFit(hourNow) * TravelLand.SeekWeight(k, map, land) * RiseFallEffects.CampFactor(k, map));
+                var kind = kinds.RandomElementByWeight(k => k.WeightNow(map) * k.HourFit(hourNow) * TravelLand.SeekWeight(k, map, land) * RiseFallEffects.CampFactor(k, map));
                 // Peoples the colony did good turns for camp here more often, those with grudges less (Interplay/).
                 var f = Arrivals.Friendly(x => kind.FitsFaction(x), x => Interplay.CampWeight(x) * RiseFallEffects.CampPeople(kind, map, x));
                 if (f == null)

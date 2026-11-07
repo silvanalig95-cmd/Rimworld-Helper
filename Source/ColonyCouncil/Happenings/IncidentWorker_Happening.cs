@@ -89,7 +89,7 @@ namespace ColonyCouncil
             if (ext.battle && !(forScenario ? ScenarioBattlesAllowed(map) : BattlesAllowed(map))) return false;
             if (!ext.mods.NullOrEmpty() && !ext.mods.Any(m => ModsConfig.IsActive(m) || People.ModActive(m))) return false;
             if (!ext.seasons.NullOrEmpty() && !ext.seasons.Contains(GenLocalDate.Season(map))) return false;
-            if ((!ext.colonyIs.NullOrEmpty() || !ext.colonyIsNot.NullOrEmpty()) && !(CouncilGameComponent.Instance?.character.Fits(ext.colonyIs, ext.colonyIsNot) ?? false)) return false;
+            if ((!ext.colonyIs.NullOrEmpty() || !ext.colonyIsNot.NullOrEmpty()) && !(CharacterTracker.For(map)?.Fits(ext.colonyIs, ext.colonyIsNot) ?? false)) return false;
             if (Colonists(map).Count < Mathf.Max(1, ext.minColonists)) return false;
             return true;
         }
@@ -367,7 +367,7 @@ namespace ColonyCouncil
         {
             var comp = CouncilGameComponent.Instance;
             if (comp == null) return;
-            if (ext.ways != null) comp.character.Shift(ext.ways, label);
+            if (ext.ways != null) CharacterTracker.For(ctx.map)?.Shift(ext.ways, label);
             if (ext.notable) comp.AddChronicle(new ChronicleEntry(ChronicleKind.World, label + ": " + Flavor.Strip(FirstSentence(ctx.text)), ctx.a));
             Journal(ctx, ext);
         }

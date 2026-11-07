@@ -496,6 +496,9 @@ namespace ColonyCouncil
                     plan.keepOld = false;
                 }
                 WorldLedger.NoteColony(map, Now, plan.from, plan.fromName);
+                // Each colony its own character (decision 13A): one founded by people of another starts with half its
+                // mother's; newcomers alone start fresh (Character/ColonyCharacters.cs).
+                CouncilGameComponent.Instance?.CharacterFounded(map, plan.from, plan.party.Count(p => p != null && !p.Dead));
                 var founders = map.mapPawns.FreeColonists.Where(p => plan.party.Contains(p)).ToList();
                 if (founders.Count == 0) founders = plan.party.Where(p => p != null && !p.Dead).ToList();
                 var actors = founders.Select(p => new HistoryActor(Refs.Of(p), HistoryRole.Did)).ToList();
@@ -703,6 +706,8 @@ namespace ColonyCouncil
                 // The council goes with its people to the new home (7a's rule, as a gravship landing carries it).
                 var comp = CouncilGameComponent.Instance;
                 if (comp != null) FoundingMath.CarryCouncil(comp.colonies, plan.from, plan.home);
+                // And its character with it: the colony moved, its ways and what its work made it go too.
+                comp?.CharacterCarried(plan.from, plan.home);
                 parent.Abandon(false);
                 Find.GameEnder.CheckOrUpdateGameOver();
                 var ruin = Find.WorldObjects.AllWorldObjects.FirstOrDefault(o => o != null && o.Tile == tile && o.def == WorldObjectDefOf.AbandonedSettlement);

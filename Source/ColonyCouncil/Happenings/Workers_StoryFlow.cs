@@ -170,7 +170,7 @@ namespace ColonyCouncil
             }
             if (f.colonyFlags)
             {
-                var character = CouncilGameComponent.Instance?.character;
+                var character = CharacterTracker.For(map);
                 if (character != null)
                     foreach (var t in CharacterTracker.TagNames)
                         if (character.Is(t))

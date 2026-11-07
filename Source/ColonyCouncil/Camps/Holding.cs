@@ -55,8 +55,7 @@ namespace ColonyCouncil
             if (!beats.Contains("parting")) beats.Add("parting");
             tracker.MakeHolding(this);
             FactionMemory.Note(faction, "sheltered", place, 12);
-            var comp = CouncilGameComponent.Instance;
-            comp?.character.Shift(new WayShift { openness = 3f, generosity = 1f }, HoldingName);
+            CharacterTracker.For(map)?.Shift(new WayShift { openness = 3f, generosity = 1f }, HoldingName);
             foreach (var c in map != null ? IncidentWorker_Happening.Colonists(map) : new List<Pawn>()) CouncilGameComponent.GiveThought(c, CampDefOf.Council_Camp_GoodNeighbors);
             Tell(Text("CC_Holding_SettledTitle"), Text("CC_Holding_Settled") + "\n\n" + Text("CC_Holding_Facts"), LetterDefOf.PositiveEvent, true, leader);
             return Text("CC_Holding_SettledReply");

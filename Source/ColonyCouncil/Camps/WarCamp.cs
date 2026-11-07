@@ -306,8 +306,7 @@ namespace ColonyCouncil
                 }
                 else if (!b.holdBack) FactionMemory.Note(b.faction, "aid", b.enemy?.Name, b.Fell > 0 ? 16 : 12);
                 foreach (var c in IncidentWorker_Happening.Colonists(b.map)) CouncilGameComponent.GiveThought(c, CampDefOf.Council_Camp_StoodWithUs);
-                var comp = CouncilGameComponent.Instance;
-                comp?.character.Shift(new WayShift { openness = 1f }, "CC_WarCamp_Chronicle".Translate(b.faction.Name).Resolve());
+                CharacterTracker.For(b.map)?.Shift(new WayShift { openness = 1f }, "CC_WarCamp_Chronicle".Translate(b.faction.Name).Resolve());
             }
             catch (Exception e)
             {

@@ -197,10 +197,10 @@ namespace ColonyCouncil
         /// (DilemmaTracker.Tradition): the colony is that much more traditional, or restless. <paramref name="step"/>:
         /// 2 founded, 1 kept, -1 broken, -2 lapsed.
         /// </summary>
-        public static void Notify_CouncilTradition(string label, int step)
+        public static void Notify_CouncilTradition(string label, int step, Map map = null)
         {
             if (!On || !S.colonyCharacter || step == 0) return;
-            Comp?.character?.Shift(new WayShift { tradition = step }, "CC_Interplay_Ways_Tradition".Translate(label ?? "?").Resolve());
+            (map != null ? CharacterTracker.For(map) : Comp?.character)?.Shift(new WayShift { tradition = step }, "CC_Interplay_Ways_Tradition".Translate(label ?? "?").Resolve());
         }
 
         /// <summary>
@@ -208,14 +208,14 @@ namespace ColonyCouncil
         /// the colony more traditional): how it is kept says something too. A feast every year makes the colony a little
         /// more generous, a day of rest a little more easygoing.
         /// </summary>
-        public static void Notify_DayTradition(CalendarDay d, bool founded)
+        public static void Notify_DayTradition(CalendarDay d, bool founded, Map map = null)
         {
             if (!On || d == null || !S.colonyCharacter) return;
             float size = founded ? 1f : 0.5f;
             WayShift shift = null;
             if (d.way == DayWay.Feast) shift = new WayShift { generosity = size };
             else if (d.way == DayWay.Rest) shift = new WayShift { toil = -size };
-            if (shift != null) Comp?.character?.Shift(shift, "CC_Cal_Way_Why".Translate(d.label ?? "?").Resolve());
+            if (shift != null) (map != null ? CharacterTracker.For(map) : Comp?.character)?.Shift(shift, "CC_Cal_Way_Why".Translate(d.label ?? "?").Resolve());
         }
 
         /// <summary>
@@ -227,7 +227,8 @@ namespace ColonyCouncil
         public static float WayAffinity(Pawn p, Way w, float nature)
         {
             if (!On || p == null || !S.colonyCharacter) return nature;
-            var character = Comp?.character;
+            // Their own colony's name (each colony its own character).
+            var character = CharacterTracker.Of(p);
             if (character == null) return nature;
             int tier = character.Tier(w);
             // What the colony has grown into leans its old hands too: good hosts mind a door shut on strangers.
