@@ -12,6 +12,14 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.154.1, food for an animal never goes to a courier (7 November 2026, the player: "events/dilemmas where you provide
+  food to an animal shouldn't have some courier pick up the food, that makes no sense"). 0.142.1 counted only animals
+  not the colony's as an errand's receiver, but the orphaned young's "Take it in and raise it by hand"
+  (`Council_Evt_OrphanedYoung`) recruits the animal before `DilemmaEffect_FeedBeast`, so the colony's own young one had
+  no receiver, the errand went to the gate and `Couriers.Await` (with no people named, any friendly people's courier)
+  sent someone for it. `DilemmaEffect_CarryOut.IsBeast` is now any animal, `Receiver` any animal or a stranger of
+  another people, and `PlayGroups.StartCarry` walks to the colony's own animal too; the food set down is forbidden only
+  for an animal not the colony's (the colony's own heeds forbidding). Tests: `FieldReportTests`.
 - 0.154.0, the seven peoples brought to the level of the eight new ones (7 November 2026, the player's request on
   `docs/design/peoples-next.md`: "love all these factions, go ahead! also update existing factions to this level"; an
   explicit request, no proposal round; this is that request's second half, the eight themselves follow). Not released: no

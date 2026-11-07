@@ -379,10 +379,14 @@ namespace ColonyCouncil
         /// stands: PlayGroups.HandOver sets the food down in front of it). Else nobody, and it goes to the gate.
         /// </summary>
         public static Pawn Receiver(Pawn x) =>
-            x != null && !x.Dead && x.Faction != Faction.OfPlayer && ((x.RaceProps?.Humanlike ?? false) || IsBeast(x)) ? x : null;
+            x != null && !x.Dead && (((x.RaceProps?.Humanlike ?? false) && x.Faction != Faction.OfPlayer) || IsBeast(x)) ? x : null;
 
-        /// <summary>An animal not the colony's (a wild beast, a Pokémon): fed in person, never through a courier.</summary>
-        public static bool IsBeast(Pawn x) => x != null && x.RaceProps != null && x.RaceProps.Animal && !x.RaceProps.Humanlike && x.Faction != Faction.OfPlayer;
+        /// <summary>
+        /// An animal, wild, another people's or the colony's own (a beast that stays, a Pokémon, an orphaned young one just
+        /// taken in): fed in person, the food set down in front of it, never through a courier (the player's report, 7
+        /// November 2026: "events/dilemmas where you provide food to an animal shouldn't have some courier pick up the food").
+        /// </summary>
+        public static bool IsBeast(Pawn x) => x != null && x.RaceProps != null && x.RaceProps.Animal && !x.RaceProps.Humanlike;
 
         private ThingDef Def(DilemmaContext ctx) => PlayCarry.DefOf(what, ctx?.thing);
 

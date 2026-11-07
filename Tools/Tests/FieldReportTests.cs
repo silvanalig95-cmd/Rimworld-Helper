@@ -22,7 +22,16 @@ public static class FieldReportTests
 
         string carry = File.ReadAllText(Path.Combine(root, "Source/ColonyCouncil/PlayOut/PlayOutGroupEffects.cs"));
         C(carry.Contains("p.other = Receiver(x);"), "an errand's receiver can be an animal");
-        C(carry.Contains("((x.RaceProps?.Humanlike ?? false) || IsBeast(x))"), "a stranger of another people or an animal not the colony's");
+        C(carry.Contains("(((x.RaceProps?.Humanlike ?? false) && x.Faction != Faction.OfPlayer) || IsBeast(x))"), "a stranger of another people, or any animal");
+        // "events/dilemmas where you provide food to an animal shouldn't have some courier pick up the food": the orphaned
+        // young one is the colony's by the time its food is carried out, so the colony's own animals count too.
+        C(carry.Contains("public static bool IsBeast(Pawn x) => x != null && x.RaceProps != null && x.RaceProps.Animal && !x.RaceProps.Humanlike;"),
+            "every animal is fed in person, the colony's own included");
+        string groupsCode = File.ReadAllText(Path.Combine(root, "Source/ColonyCouncil/PlayOut/PlayGroups.cs"));
+        C(groupsCode.Contains("|| DilemmaEffect_CarryOut.IsBeast(x))"), "the carrier walks to the colony's own animal too, not the gate");
+        string orphan = File.ReadAllText(Path.Combine(root, "Defs/IncidentDefs/Rimfolk_Events_New.xml"));
+        int raise = orphan.IndexOf("DilemmaEffect_Recruit");
+        C(raise > 0 && orphan.IndexOf("DilemmaEffect_FeedBeast", raise) > raise, "the orphaned young: taken in first, then fed (the case the player met)");
         C(carry.Contains("&& !IsBeast(ctx.stranger))"), "food for an animal never calls a courier to the gate");
         C(carry.Contains(": Receiver(x) != null ? x.LabelShort"), "the answer says it is carried to the animal");
         string groups = File.ReadAllText(Path.Combine(root, "Source/ColonyCouncil/PlayOut/PlayGroups.cs"));

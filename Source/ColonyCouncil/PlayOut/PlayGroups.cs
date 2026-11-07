@@ -357,7 +357,9 @@ namespace ColonyCouncil
             // Someone of the people it's for may be waiting at the gate for it (Couriers/), or on their way there.
             bool coming = false;
             var courier = p.to != PlaySpot.Camp ? Couriers.ReceiverFor(p, out coming) : null;
-            if (p.to != PlaySpot.Gate && p.to != PlaySpot.Camp && x != null && !x.Dead && x.Spawned && x.Map == p.map && (x.Faction != Faction.OfPlayer || p.to == PlaySpot.Person)
+            // An animal is fed where it is, the colony's own too (an orphaned young one just taken in).
+            if (p.to != PlaySpot.Gate && p.to != PlaySpot.Camp && x != null && !x.Dead && x.Spawned && x.Map == p.map
+                && (x.Faction != Faction.OfPlayer || p.to == PlaySpot.Person || DilemmaEffect_CarryOut.IsBeast(x))
                 && carrier.CanReach(x, PathEndMode.Touch, Danger.Some))
             {
                 to = x;
@@ -744,7 +746,8 @@ namespace ColonyCouncil
                 if (carrier.carryTracker.TryDropCarriedThing(carrier.Position, ThingPlaceMode.Near, out var dropped) && dropped != null)
                 {
                     given = true;
-                    if (dropped.def.HasComp(typeof(CompForbiddable))) dropped.SetForbidden(true, false);
+                    // Not for the colony's own animal: it heeds the colony's forbidding, and what it leaves is the stores' anyway.
+                    if (to.Faction != Faction.OfPlayer && dropped.def.HasComp(typeof(CompForbiddable))) dropped.SetForbidden(true, false);
                     Feed(to, dropped);
                 }
             }

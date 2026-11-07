@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Food for an animal goes to the animal
+
+*7 November 2026, version 0.154.1*
+
+- Fixed: when an answer gives food to an animal, a courier could still come to the gate and take it, for instance after taking in an orphaned young animal to raise by hand. The food is now always carried out and set down in front of the animal, whether it is wild, another people's or the colony's own.
+- Food left for a wild animal stays put for it; food set down for the colony's own animal can still be hauled back to the stores if it doesn't eat it all.
+
 ## Rimfolk's seven peoples, with their stories told
 
 *7 November 2026, version 0.154.0*
