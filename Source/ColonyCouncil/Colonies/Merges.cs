@@ -167,7 +167,7 @@ namespace ColonyCouncil
             actors.Add(new HistoryActor(Ref.Colony(m.from), HistoryRole.About));
             string history = "CC_Many_MergedHistory".Translate(old.Named("OLD"), place.Named("PLACE")).Resolve();
             History.Add(FoundingMath.KindMerged, actors, Refs.Colony(map), HistoryMath.Milestone, history);
-            string text = "CC_Many_MergedText".Translate(old.Named("OLD"), place.Named("PLACE"), Foundings.Names(newcomers).Named("NAMES")).Resolve();
+            string text = TextVariants.Vary("CC_Many_MergedText").Translate(old.Named("OLD"), place.Named("PLACE"), Foundings.Names(newcomers).Named("NAMES")).Resolve();
             if (lines.Count > 0) text += "\n\n" + string.Join(" ", lines);
             Tell.Letter(NewsKind.Colony, Importance.Important, map, "CC_Many_MergedLabel".Translate(old.Named("OLD"), place.Named("PLACE")).Resolve(), text,
                 LetterDefOf.PositiveEvent, new LookTargets(newcomers.Where(p => p.Spawned && p.Map == map)));

@@ -319,7 +319,7 @@ namespace ColonyCouncil
             var cameFormers = came.Where(formers.Contains).ToList();
             var cameJoiners = came.Where(joiners.Contains).ToList();
             var form = Ages.Form(AgeFeature.Back, Ages.Ours, rec.age);
-            string text = "CC_TownAfter_BackText".Translate(townName.Named("TOWN"), (rec.people?.Name ?? "?").Named("PEOPLE"), (oldHead?.LabelShort ?? "?").Named("HEAD"),
+            string text = TextVariants.Vary("CC_TownAfter_BackText").Translate(townName.Named("TOWN"), (rec.people?.Name ?? "?").Named("PEOPLE"), (oldHead?.LabelShort ?? "?").Named("HEAD"),
                 form.word.Named("FORM")).Resolve();
             if (cameFormers.Count > 0) text += "\n\n" + "CC_TownAfter_BackFormers".Translate(Foundings.Names(cameFormers).Named("NAMES")).Resolve();
             if (cameJoiners.Count > 0) text += "\n\n" + "CC_TownAfter_BackJoiners".Translate(Foundings.Names(cameJoiners).Named("NAMES"), (rec.people?.Name ?? "?").Named("PEOPLE")).Resolve();

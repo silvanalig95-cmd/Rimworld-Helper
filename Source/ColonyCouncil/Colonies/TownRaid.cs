@@ -303,7 +303,7 @@ namespace ColonyCouncil
                 Count(s, rec, map);
                 Current.Game.CurrentMap = map;
                 string townName = TownsAfter.TownName(rec);
-                string text = "CC_TownLife_FightText".Translate(townName.Named("TOWN"), (rec.people?.Name ?? "?").Named("PEOPLE"), s.ctx.enemy.Name.Named("ENEMY"),
+                string text = TextVariants.Vary("CC_TownLife_FightText").Translate(townName.Named("TOWN"), (rec.people?.Name ?? "?").Named("PEOPLE"), s.ctx.enemy.Name.Named("ENEMY"),
                     Foundings.Names(colony).Named("NAMES"), (rec.colonyName ?? townName).Named("COLONY")).Resolve();
                 var formers = rec.formers.Where(p => p != null && p.Spawned && p.Map == map).ToList();
                 if (formers.Count > 0) text += "\n\n" + "CC_TownLife_FightFormers".Translate(Foundings.Names(formers).Named("NAMES"), townName.Named("TOWN")).Resolve();

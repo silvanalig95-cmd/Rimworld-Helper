@@ -509,7 +509,7 @@ namespace ColonyCouncil
                 History.Add(FoundingMath.KindFounded, actors, Refs.Colony(map), HistoryMath.Milestone,
                     (founders.Count > 0 ? "CC_Found_History" : "CC_Found_HistoryNewcomers").Translate(name.Named("PLACE"), who.Named("NAMES"), (plan.fromName ?? "?").Named("MOTHER")).Resolve());
                 bool seat = plan.makeSeat && plan.keepOld && ColonySeat.Move(map, true);
-                string text = "CC_Found_LetterText".Translate(name.Named("PLACE"), who.Named("NAMES"), (plan.fromName ?? "?").Named("MOTHER"),
+                string text = TextVariants.Vary("CC_Found_LetterText").Translate(name.Named("PLACE"), who.Named("NAMES"), (plan.fromName ?? "?").Named("MOTHER"),
                     Ages.Form(AgeFeature.Party, Ages.Of(map), Ages.Of(map)).word.Named("PARTY")).Resolve();
                 text += " " + OldColonyLine(plan, map, seat);
                 if (plan.makeSeat && plan.keepOld && !seat) text += " " + "CC_Found_SeatNotYet".Translate(ColonySeat.WhyNot(map).Named("WHY")).Resolve();
@@ -867,7 +867,7 @@ namespace ColonyCouncil
             if (came.Count == 0) return;
             FloodFillerFog.FloodUnfog(cell, map);
             string call = Ages.Form(AgeFeature.Call, Ages.Of(map), Ages.Of(map)).word;
-            string text = (founding ? "CC_Found_NewcomersFoundText" : "CC_Found_NewcomersText").Translate(Names(came).Named("NAMES"), Homes.Name(map).Named("PLACE"), call.Named("CALL"),
+            string text = TextVariants.Vary(founding ? "CC_Found_NewcomersFoundText" : "CC_Found_NewcomersText").Translate(Names(came).Named("NAMES"), Homes.Name(map).Named("PLACE"), call.Named("CALL"),
                 (plan.fromName ?? "?").Named("MOTHER")).Resolve();
             if (founding) text += " " + OldColonyLine(plan, map, plan.seatMoved);
             if (price > 0) text += " " + "CC_Found_NewcomersPaid".Translate(price.Named("SILVER"), (plan.fromName ?? "?").Named("MOTHER")).Resolve();

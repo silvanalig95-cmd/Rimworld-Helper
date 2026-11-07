@@ -897,7 +897,7 @@ namespace ColonyCouncil
                 "CC_HandOver_History".Translate(colonyName.Named("HOME"), people.Name.Named("PEOPLE"), (head?.LabelShort ?? "?").Named("HEAD")).Resolve());
             // The letter, pointing at the town.
             string title = people.LeaderTitle;
-            string text = "CC_HandOver_LetterText".Translate(colonyName.Named("HOME"), people.Name.Named("PEOPLE"), (head?.LabelShort ?? "?").Named("HEAD"), title.Named("TITLE"),
+            string text = TextVariants.Vary("CC_HandOver_LetterText").Translate(colonyName.Named("HOME"), people.Name.Named("PEOPLE"), (head?.LabelShort ?? "?").Named("HEAD"), title.Named("TITLE"),
                 Foundings.Names(free).Named("NAMES")).Resolve();
             if (plan.tokenGiven) text += " " + "CC_HandOver_LetterToken".Translate(Form(plan).word.Named("FORM")).Resolve();
             if (second != null) text += " " + "CC_HandOver_LetterSecond".Translate(second.LabelShort.Named("SECOND"), SecondTitle(plan.age).Named("TITLE")).Resolve();
