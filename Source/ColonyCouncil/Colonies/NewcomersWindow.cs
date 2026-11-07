@@ -18,7 +18,7 @@ namespace ColonyCouncil
     /// year), and Confirm is held back when the stores can't pay. The game's start data exists only while it is open and
     /// is cleared when it closes, by the X too: the people not chosen are let go as the game's window lets them go.
     /// <para>
-    /// A scenario's start (release 3, Colonies/ScenarioStarts.cs): the chosen scenario's people part shapes them for the
+    /// Release 3, a scenario's start (Colonies/ScenarioStarts.cs): the chosen scenario's people part shapes them for the
     /// new colony alone, read from its fields (its count and the candidates to choose them from, required kinds,
     /// xenotypes and mutants, ages and skills; never through its PostIdeoChosen), its shaping parts reach them through
     /// their own pawn hooks while the window is open, the count is the scenario's (those left behind are let go), the
@@ -275,31 +275,31 @@ namespace ColonyCouncil
                     y += 26f;
                 }
                 var row = new Rect(0f, y, inner.width, PawnEntryHeight).ContractedBy(4f);
-                DoPawnRow(row, i);
-                if (Pawns.Count > count)
+                y += PawnEntryHeight;
+                // The arrow's click is taken first, so it is its own and not the row's; it is drawn over the row after.
+                bool swaps = Pawns.Count > count;
+                var arrow = new Rect(row.xMax - 20f, row.yMax - 20f, 16f, 16f);
+                if (swaps && Widgets.ButtonInvisible(arrow))
                 {
-                    var arrow = new Rect(row.xMax - 18f, row.yMax - 18f, 16f, 16f);
                     if (i < count)
                     {
-                        TooltipHandler.TipRegion(arrow, "CC_ScenStart_LeaveTip".Translate());
-                        if (Widgets.ButtonImage(arrow, TexButton.ReorderDown))
-                        {
-                            Swap(i, count);
-                            curPawnIndex = count;
-                        }
+                        Swap(i, count);
+                        curPawnIndex = i;
                     }
                     else
                     {
-                        TooltipHandler.TipRegion(arrow, "CC_ScenStart_TakeTip".Translate());
-                        if (Widgets.ButtonImage(arrow, TexButton.ReorderUp))
-                        {
-                            int with = curPawnIndex < count ? curPawnIndex : count - 1;
-                            Swap(i, with);
-                            curPawnIndex = with;
-                        }
+                        int with = curPawnIndex < count ? curPawnIndex : count - 1;
+                        Swap(i, with);
+                        curPawnIndex = with;
                     }
+                    continue;
                 }
-                y += PawnEntryHeight;
+                DoPawnRow(row, i);
+                if (!swaps) continue;
+                GUI.color = Mouse.IsOver(arrow) ? GenUI.MouseoverColor : Color.white;
+                GUI.DrawTexture(arrow, i < count ? TexButton.ReorderDown : TexButton.ReorderUp);
+                GUI.color = Color.white;
+                TooltipHandler.TipRegion(arrow, (i < count ? "CC_ScenStart_LeaveTip" : "CC_ScenStart_TakeTip").Translate());
             }
             Widgets.EndScrollView();
         }

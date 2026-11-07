@@ -734,8 +734,8 @@ namespace ColonyCouncil
         private static IntVec3 Walk(Map map, List<Pawn> came, ScenarioKit kit)
         {
             var cell = Foundings.EdgeCell(map);
-            foreach (var p in came) GenSpawn.Spawn(p, CellFinder.RandomClosewalkCellNear(cell, map, 3), map);
-            foreach (var t in kit.things)
+            foreach (var p in came.Where(p => !p.Spawned)) GenSpawn.Spawn(p, CellFinder.RandomClosewalkCellNear(cell, map, 3), map);
+            foreach (var t in kit.things.Where(t => !t.Spawned && t.holdingOwner == null && !t.Destroyed))
             {
                 var at = CellFinder.RandomClosewalkCellNear(cell, map, 4);
                 if (t is Pawn pawn)
@@ -743,7 +743,8 @@ namespace ColonyCouncil
                     GenSpawn.Spawn(pawn, at, map);
                     continue;
                 }
-                if (GenPlace.TryPlaceThing(t, at, map, ThingPlaceMode.Near)) t.SetForbidden(true, false);
+                t.SetForbidden(true, false);
+                GenPlace.TryPlaceThing(t, at, map, ThingPlaceMode.Near);
             }
             return cell;
         }
@@ -759,7 +760,8 @@ namespace ColonyCouncil
             FloodFillerFog.FloodUnfog(spot, map);
             var groups = came.Select(p => new List<Thing> { p }).ToList();
             for (int i = 0; i < kit.things.Count; i++) groups[i % groups.Count].Add(kit.things[i]);
-            DropPodUtility.DropThingGroupsNear(spot, map, groups, LandingMath.PodOpenDelay, false, true, true, true, false);
+            // On a new colony's land as the game's crash: slag left, roofs punched; near the colony's people, neither.
+            DropPodUtility.DropThingGroupsNear(spot, map, groups, LandingMath.PodOpenDelay, false, founding, founding, true, false);
             return spot;
         }
 
@@ -803,7 +805,8 @@ namespace ColonyCouncil
                 foreach (var t in kit.things.Where(t => !(t is Pawn)))
                 {
                     var cell = shelves.Count > 0 ? shelves.RandomElement().OccupiedRect().RandomCell : rect.Cells.Where(Deck).RandomElementWithFallback(spot);
-                    if (GenPlace.TryPlaceThing(t, cell, map, ThingPlaceMode.Near)) t.SetForbidden(true, false);
+                    t.SetForbidden(true, false);
+                    GenPlace.TryPlaceThing(t, cell, map, ThingPlaceMode.Near);
                 }
                 foreach (var b in spawned)
                 {
@@ -847,7 +850,8 @@ namespace ColonyCouncil
                 IntVec3 where;
                 if (near) where = CellFinder.RandomClosewalkCellNear(at, map, LandingMath.NearRadius, c => c.Standable(map));
                 else if (!CellFinderLoose.TryFindRandomNotEdgeCellWith(5, c => c.Standable(map), map, out where)) where = at;
-                if (GenPlace.TryPlaceThing(thing, where, map, ThingPlaceMode.Near)) thing.SetForbidden(true, false);
+                thing.SetForbidden(true, false);
+                GenPlace.TryPlaceThing(thing, where, map, ThingPlaceMode.Near);
             }
             catch (Exception e)
             {
