@@ -392,6 +392,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {FamilyYearsTests.Run(Check)} things about families across the years (years asleep, generations in the line, ages the wrong way round, remarks).");
         Console.WriteLine($"Checked {StallCounterTests.Run(Check)} things about RimMarket's sales table, Rimfolk's way (prices as RimMarket keeps them, counts, how a price sells).");
         Console.WriteLine($"Checked {VisitorTradeTests.Run(root, Check)} things about visitors and campers buying at the colony's stalls, and the drovers' milk.");
+        Console.WriteLine($"Checked {TradeScreenTests.Run(root, Check)} things about the trade screen (the reserve kept of each good, food by days, the worse spares, the price against the usual, the order of the suggestions, the basket within both sides' silver, the sorts' defs, the hooks, Vanilla Trading Expanded and Trade Helper, the words).");
         Console.WriteLine($"Checked {CallerTests.Run(root, Check)} things about visitors who come to do something (prices, cuts, their jobs and lines).");
         Console.WriteLine($"Checked {SetbackTests.Run(root, Check)} things about setbacks (when they come, how big, their settings and hints).");
         Console.WriteLine($"Checked {GoodLifeTests.Run(root, Check)} things about good things growing ordinary and the quiet troubles (the take-back, the line, the chance, the defs).");
