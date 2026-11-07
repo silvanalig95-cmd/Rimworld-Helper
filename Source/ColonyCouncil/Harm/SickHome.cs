@@ -80,7 +80,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>How far the world event lies from the town, in tiles (-1 when it has no place on this layer).</summary>
-        private static float TilesTo(WorldSituation w, Settlement s)
+        internal static float TilesTo(WorldSituation w, Settlement s)
         {
             try
             {

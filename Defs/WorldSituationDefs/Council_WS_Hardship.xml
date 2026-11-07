@@ -44,8 +44,10 @@
       <li>{FACTION}'s caravans stop coming, and people take to the roads, some of them sick. {FACTION} will ask the colony for medicine, and the colony's own people are likelier to fall ill. Help given now will be remembered.</li>
     </summaries>
     <modifiers>
-      <li><incident>Disease_Plague</incident><factor>2.5</factor></li>
-      <li><incident>Disease_Flu</incident><factor>1.5</factor></li>
+      <!-- With the carriers at the gate on (harm, part 5, Harm/Carriers.cs), raised a little less: the rest of it comes with
+           a traveller or a courier, who leave it with whoever traded or talked with them closest. -->
+      <li><incident>Disease_Plague</incident><factor>2.5</factor><withCarriers>2.3</withCarriers></li>
+      <li><incident>Disease_Flu</incident><factor>1.5</factor><withCarriers>1.35</withCarriers></li>
       <li><incident>Disease_Malaria</incident><factor>1.3</factor></li>
       <li><incident>WandererJoin</incident><factor>1.5</factor></li>
       <li><incident>TraderCaravanArrival</incident><factor>0.6</factor></li>
@@ -94,6 +96,9 @@
           <li>
             <label>Keep the gate open</label>
             <outcome>The rider shrugs and goes on to the next farm. The colony's gate stays open, to traders and to whatever they bring with them.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_HarmRisk"><risk>gateSickness</risk></li>
+            </effects>
             <flags><li>openGate</li></flags>
             <ways><openness>1</openness></ways>
           </li>

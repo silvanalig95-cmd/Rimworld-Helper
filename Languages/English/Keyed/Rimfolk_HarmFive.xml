@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Harm, part 5 (Source/ColonyCouncil/Harm/): sickness that spreads, the weather and the cold. Messages only where the
+       game gives one for the same hurt (an illness caught); the rest is seen on the map (a few words over them, their
+       line, the hit, the game's own predator's warning). -->
+
+  <!-- ===================== Sickness that spreads (Carriers.cs) ===================== -->
+
+  <CC_HarmFive_SickWorkOn>{PAWN_nameDef} has come down with {ILLNESS}, caught from {OTHER}, who worked on sick after the petition to rest was let go. {NOTE}</CC_HarmFive_SickWorkOn>
+  <CC_HarmFive_SickWorkOn_2>{OTHER} kept working with it, and {PAWN_nameDef}, who worked beside {OTHER} longest, has {ILLNESS} now. {NOTE}</CC_HarmFive_SickWorkOn_2>
+  <CC_HarmFive_GateSick>{PAWN_nameDef} has come down with {ILLNESS}, caught from {OTHER}, who came to the gate from the sick towns. {NOTE}</CC_HarmFive_GateSick>
+  <CC_HarmFive_GateSick_2>The plague in the region came to the gate with {OTHER}, and {PAWN_nameDef}, who was nearest them longest, has {ILLNESS}. {NOTE}</CC_HarmFive_GateSick_2>
+  <CC_HarmFive_CourierSick>{PAWN_nameDef} has come down with {ILLNESS}, caught from {OTHER}, the courier from the sick towns. {NOTE}</CC_HarmFive_CourierSick>
+  <CC_HarmFive_CourierSick_2>{OTHER} brought the region's sickness along with the goods, and {PAWN_nameDef}, who unloaded beside {OTHER}, has {ILLNESS}. {NOTE}</CC_HarmFive_CourierSick_2>
+  <CC_HarmFive_CampFever>{PAWN_nameDef} has come down with {ILLNESS}, caught at the camp's fire from {OTHER}, who lay ill there. {NOTE}</CC_HarmFive_CampFever>
+  <CC_HarmFive_CampFever_2>All those evenings at the camp's fire beside {OTHER} have left {PAWN_nameDef} with {ILLNESS}. {NOTE}</CC_HarmFive_CampFever_2>
+  <CC_HarmFive_PatientIll>{PAWN_nameDef} has come down with {ILLNESS}, caught from {OTHER}, the patient who slept in the same room. {NOTE}</CC_HarmFive_PatientIll>
+  <CC_HarmFive_PatientIll_2>{OTHER} came for the doctor and left {ILLNESS} behind: {PAWN_nameDef} shared the room with {OTHER} and has it now. {NOTE}</CC_HarmFive_PatientIll_2>
+  <CC_HarmFive_BadBatch>{PAWN_nameDef} woke queasy with {ILLNESS}: the dose from {OTHER}'s case was a bad batch. {NOTE}</CC_HarmFive_BadBatch>
+  <CC_HarmFive_BadBatch_2>{OTHER}'s tonic had turned in the bottle, and {PAWN_nameDef} has {ILLNESS} this morning for it. {NOTE}</CC_HarmFive_BadBatch_2>
+  <CC_HarmFive_PetitionLapse>Let go unheeded while something catching goes round, the sick work on, and it reaches one more of the colony.</CC_HarmFive_PetitionLapse>
+  <CC_HarmFive_PatientTale_TB>deep cough that sounds like tuberculosis</CC_HarmFive_PatientTale_TB>
+  <CC_HarmFive_PatientTale_Cholera>stomach sickness that looks like cholera</CC_HarmFive_PatientTale_Cholera>
+  <CC_HarmFive_Mote_SoreArm>a sore arm</CC_HarmFive_Mote_SoreArm>
+
+  <CC_Impact_GateSickness>Travelers from the sick towns may carry it in, to whoever trades or talks with them longest</CC_Impact_GateSickness>
+  <CC_Impact_GateSicknessBrief>travelers may carry it in</CC_Impact_GateSicknessBrief>
+  <CC_Impact_CampFeverStops>Seen to, {0}'s fever won't pass to whoever sits at their fire</CC_Impact_CampFeverStops>
+  <CC_Impact_CampFeverStopsBrief>the fever won't spread</CC_Impact_CampFeverStopsBrief>
+  <CC_Impact_PatientIll>{0} carries something catching, and whoever of ours sleeps in the same room may catch it</CC_Impact_PatientIll>
+  <CC_Impact_PatientIllBrief>a room of their own keeps it from us</CC_Impact_PatientIllBrief>
+  <CC_Impact_BadBatch>Now and then a healer's batch has turned, and a few who take it are the worse for it next morning</CC_Impact_BadBatch>
+  <CC_Impact_BadBatchBrief>a bad batch now and then</CC_Impact_BadBatchBrief>
+  <CC_Impact_BatchLooked>{0} looks the batch over first, and a bad one would be caught</CC_Impact_BatchLooked>
+  <CC_Impact_BatchLookedBrief>{0} looks it over first</CC_Impact_BatchLookedBrief>
+
+  <!-- ===================== Small things that grow, dirty water (Untended.cs) ===================== -->
+
+  <CC_HarmFive_GutWorms>The worms {PAWN_nameDef} was left to carry have taken hold, and it is {ILLNESS} now, which needs a doctor.</CC_HarmFive_GutWorms>
+  <CC_HarmFive_GutWorms_2>Nobody saw to {PAWN_nameDef}'s worms, and they have grown into {ILLNESS}.</CC_HarmFive_GutWorms_2>
+  <CC_HarmFive_Malaria>One of the bites {PAWN_nameDef} was left with carried {ILLNESS}: this is a malaria country.</CC_HarmFive_Malaria>
+  <CC_HarmFive_Malaria_2>{PAWN_nameDef}'s untended bites have turned into a shaking fever: {ILLNESS}.</CC_HarmFive_Malaria_2>
+  <CC_HarmFive_DirtyWater>{PAWN_nameDef} has {ILLNESS} from the untreated water. {NOTE}</CC_HarmFive_DirtyWater>
+  <CC_HarmFive_DirtyWater_2>The water here is drunk as it comes, and {PAWN_nameDef} has {ILLNESS} for it. {NOTE}</CC_HarmFive_DirtyWater_2>
+
+  <!-- ===================== The weather and the cold (ColdHurts.cs) ===================== -->
+
+  <CC_HarmFive_GateCold>Hours waiting at the gate in the frost have given {PAWN_nameDef} {ILLNESS}. {NOTE}</CC_HarmFive_GateCold>
+  <CC_HarmFive_GateCold_2>{PAWN_nameDef} stood at the gate in the bitter cold waiting for the others, and has {ILLNESS} for it. {NOTE}</CC_HarmFive_GateCold_2>
+  <CC_HarmFive_GateColdLetter>It is a hard frost out at the gate, and a long wait there in it can bring frostnip or chilblains to those standing in it.</CC_HarmFive_GateColdLetter>
+  <CC_HarmFive_WatchCold>A night on the walls in the frost has given {PAWN_nameDef} {ILLNESS}. {NOTE}</CC_HarmFive_WatchCold>
+  <CC_HarmFive_WatchCold_2>{PAWN_nameDef} kept the watch through a bitter night and has {ILLNESS} for it. {NOTE}</CC_HarmFive_WatchCold_2>
+  <CC_HarmFive_RainLover>{PAWN_nameDef} stood out in the rain again, soaked through, and has {ILLNESS} for it. {NOTE}</CC_HarmFive_RainLover>
+  <CC_HarmFive_RainLover_2>All that standing in the rain has caught up with {PAWN_nameDef}: {ILLNESS}. {NOTE}</CC_HarmFive_RainLover_2>
+  <CC_HarmFive_SnowLover>{PAWN_nameDef} stayed out in the falling snow far too long in the bitter cold, and has {ILLNESS}. {NOTE}</CC_HarmFive_SnowLover>
+  <CC_HarmFive_SnowLover_2>The snow {PAWN_nameDef} loves so much has nipped {PAWN_possessive} fingers and cheeks: {ILLNESS}. {NOTE}</CC_HarmFive_SnowLover_2>
+  <CC_HarmFive_Mote_Splash>into the icy water</CC_HarmFive_Mote_Splash>
+  <CC_Impact_WatchCold>A long watch in this frost can bring frostnip to one without warm clothes, and one alone outside the walls may draw a predator</CC_Impact_WatchCold>
+  <CC_Impact_WatchColdBrief>the frost and the dark</CC_Impact_WatchColdBrief>
+
+  <!-- ===================== Night walks (NightWalks.cs) ===================== -->
+
+  <CC_HarmFive_SleepwalkFrost>{PAWN_nameDef} walked out into the frost in {PAWN_possessive} sleep and has {ILLNESS} for it. {NOTE}</CC_HarmFive_SleepwalkFrost>
+  <CC_HarmFive_SleepwalkFrost_2>A sleepwalk across the frozen yard has left {PAWN_nameDef} with {ILLNESS}. {NOTE}</CC_HarmFive_SleepwalkFrost_2>
+  <CC_HarmFive_Mote_Stumble>stumbled in the dark</CC_HarmFive_Mote_Stumble>
+
+  <!-- ===================== The forecast can be wrong (Fields/FieldWeather.cs) ===================== -->
+
+  <CC_HarmFive_ForecastMissed>The forecast missed: on {DATE} a frost of {TEMP}, colder than the land's reckoning, caught the crop this field was sown for.</CC_HarmFive_ForecastMissed>
+
+</LanguageData>

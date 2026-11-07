@@ -51,8 +51,10 @@ public static class HarmBudgetTests
         C(all.Select(k => k.key).Distinct().Count() == all.Length && all.Select(k => k.label).Distinct().Count() == all.Length, "every kind registered once, by its own key and label");
         C(all.All(k => k.weight > 0f && k.weight < 0.25f && !k.system.NullOrEmptyText()), "every kind has its base rate and its system");
         var founding = all.Where(k => k.founding).ToList();
-        var four = all.Where(k => !k.founding).ToList();
-        C(founding.Count == 18 && four.Count == 16, $"the kinds built before the budget ({founding.Count}) and harm part 4's ({four.Count}: the fifteen, a guest's night in two)");
+        var laterKinds = all.Where(k => !k.founding).ToList();
+        var four = laterKinds.Where(k => Array.IndexOf(all, k) < Array.IndexOf(all, HarmKinds.SickWorkOn)).ToList();
+        C(founding.Count == 18 && four.Count == 16 && laterKinds.Count == 30,
+            $"the kinds built before the budget ({founding.Count}), harm part 4's ({four.Count}: the fifteen, a guest's night in two) and part 5's ({laterKinds.Count - four.Count})");
         foreach (var id in new[] { "1.1.1", "2.5.2", "2.2.3", "1.2.3", "4.3.1", "3.4.1", "4.7.2", "4.5.3", "4.5.1", "4.9.1", "3.6.1", "1.4.2", "2.5.1", "2.8.1", "4.1.1" })
             C(four.Any(k => k.label.Contains("(" + id + ")")), $"the proposal {id} is a kind of part 4");
         foreach (var id in new[] { "1.2.1", "1.2.2", "3.2.1", "2.4.1", "3.1.1", "2.2.1", "2.1.1", "3.5.1", "1.4.1", "3.3.1" })

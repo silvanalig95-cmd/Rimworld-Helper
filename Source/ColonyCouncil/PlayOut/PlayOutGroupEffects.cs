@@ -181,6 +181,8 @@ namespace ColonyCouncil
             string how = untilDawn ? "CC_Impact_UntilDawn".Translate().Resolve() : DilemmaImpact.Hours(new FloatRange(PlayOutMath.CapHours(duration.min, true), PlayOutMath.CapHours(duration.max, true)));
             string names = n >= who.Count ? WhoOf(ctx, who) : n.ToString();
             sheet.Play((patrol && o == null ? "CC_Impact_Patrol" : "CC_Impact_Vigil").Translate(label, names, place, DilemmaImpact.When(hours), how).Resolve(), label);
+            // A watch on the walls in a frost: what it can bring (Harm/ColdHurts.cs).
+            if (patrol && o == null) ColdHurts.DescribeWatch(sheet, ctx?.map);
         }
 
         public PlaySpot to = PlaySpot.Grave;

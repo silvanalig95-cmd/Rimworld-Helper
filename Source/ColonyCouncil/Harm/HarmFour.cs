@@ -17,6 +17,9 @@ namespace ColonyCouncil
     {
         public const string Caught = "caught", Cough = "cough", Sore = "sore", Rematch = "rematch", Games = "games";
 
+        /// <summary>Harm, part 5 (Harm/HarmFive.cs): a patient carrying something worse, a healer's bad batch, a dose from it.</summary>
+        public const string Ward = "ward", Batch = "batch", Dose = "dose";
+
         public string what;
         /// <summary>The HarmKind's key it comes under.</summary>
         public string kind;
@@ -49,8 +52,8 @@ namespace ColonyCouncil
                 case Sore: return now - due > HarmFourMath.SoreKeepDays * HarmMath.DayTicks;
                 case Rematch: return !HarmFourMath.RematchKept(made, now);
                 case Games: return now - made > HarmFourMath.GamesKeepHours * HarmMath.HourTicks;
-                case Cough: return now - made > 6 * HarmMath.DayTicks;
-                default: return true;
+                case Cough: return now - made > HarmFive.CoughKeepDays(this) * HarmMath.DayTicks;
+                default: return HarmFive.Lapsed(this, now);
             }
         }
 
@@ -129,7 +132,7 @@ namespace ColonyCouncil
                 case HarmWaiting.Sore: return now >= x.due && Quarrels.SoreHour(x, now);
                 case HarmWaiting.Rematch: return Quarrels.RematchHour(x, now);
                 case HarmWaiting.Games: return GamesDay.Hour(x, now);
-                default: return true;
+                default: return HarmFive.Due(x, now);
             }
         }
 

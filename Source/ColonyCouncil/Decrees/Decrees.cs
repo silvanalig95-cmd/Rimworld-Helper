@@ -815,7 +815,11 @@ namespace ColonyCouncil
                 requests.Remove(r);
                 if (r.def == null || r.pawn == null || r.pawn.Dead) continue;
                 if (!r.repeal && !IsActive(r.def))
+                {
                     comp.standings.Change(r.pawn, -2f, "CC_Log_DecreeIgnored".Translate(r.def.label));
+                    // Harm, part 5: a petition to rest when ill or for a quarantine let lapse, and the sick work on.
+                    Carriers.PetitionLapsed(r.def, r.pawn);
+                }
                 else if (r.repeal && IsActive(r.def))
                     comp.standings.Change(r.pawn, -2f, "CC_Log_RepealIgnored".Translate(r.def.label));
             }

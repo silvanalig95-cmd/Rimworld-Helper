@@ -5,7 +5,8 @@
     The hospital's name draws the sick (Source/ColonyCouncil/Health/HospitalPatient.cs): once the colony's hospital is
     well spoken of (HealthTracker.HospitalLevel), someone unwell comes to ask for its doctor, from the camp on the map
     ([camp]) or from the road, twice as often once it is known across the region ([renowned], else [known]). {A} is the
-    colony's best doctor, {X} the patient, {TALE} what ails them (a cold, a sprain: never anything that could kill).
+    colony's best doctor, {X} the patient, {TALE} what ails them (a cold, a sprain; one in 20 brings tuberculosis or
+    cholera as well, harm part 5, and {TALE} names that instead: Harm/Carriers.cs).
     Seeing them counts toward the hospital's name, and their people remember the doctor by name.
   -->
 
@@ -59,6 +60,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Medicine</skill><xp>300</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>tended</kind><about>x</about></li>
+              <li Class="ColonyCouncil.DilemmaEffect_HarmRisk"><risk>patientIll</risk></li>
             </effects>
             <ways><mercy>1</mercy><openness>1</openness></ways>
           </li>
@@ -71,6 +73,7 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>medicine</what><count>1</count><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_HarmRisk"><risk>patientIll</risk></li>
             </effects>
             <ways><generosity>1</generosity></ways>
           </li>
@@ -80,6 +83,9 @@
             <outcomes>
               <li>[trait:Kind] {A_nameDef} hated having only words to give, and said so, but they were good words: what to do for the {TALE}, and what to watch for. The medicine stays on the shelf.</li>
             </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_HarmRisk"><risk>patientIll</risk></li>
+            </effects>
             <ways><mercy>-1</mercy></ways>
           </li>
         </options>

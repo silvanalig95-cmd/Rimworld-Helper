@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Harm, part 5 (Source/ColonyCouncil/Harm/NightWalks.cs): a walk in the sleep after a nightmare, and a restless walk
+       out alone at dusk. Both go out to their place, stay a while and end; neither starts in danger. -->
+
+  <JobDef>
+    <defName>Rimfolk_Sleepwalk</defName>
+    <driverClass>ColonyCouncil.JobDriver_HarmWalk</driverClass>
+    <reportString>walking in their sleep.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_RestlessWalk</defName>
+    <driverClass>ColonyCouncil.JobDriver_HarmWalk</driverClass>
+    <reportString>walking out alone at dusk.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+</Defs>

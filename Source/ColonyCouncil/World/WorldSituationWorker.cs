@@ -359,7 +359,7 @@ namespace ColonyCouncil
         {
             float f = 1f;
             foreach (var m in def.modifiers)
-                if (m.Matches(incident, ext) && m.Applies(s)) f *= m.factor;
+                if (m.Matches(incident, ext) && m.Applies(s)) f *= m.Factor;
             return f;
         }
 

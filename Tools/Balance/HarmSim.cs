@@ -12,13 +12,14 @@
 //
 // Three runs of the same colonies, every kind drawing from its own generator so the lives are the same in all three:
 //   before:     the kinds built before the shared budget (0.106.0 to 0.149.0), each at its own rate, as the game has them now;
-//   no budget:  every kind on, the fifteen of harm part 4 too, each at its own rate (what they would add without the budget);
+//   no budget:  every kind on, harm parts 4 and 5 too, each at its own rate (what they would add without the budget);
 //   the budget: every kind on, each at its rate times its pass (HarmBudgetMath.Passes: the budget shared out, a kind that
 //               came lately passing less often).
 // The budget's line holds the total at the "before" line's within noise. Each kind's base rate in the registry is its
 // "no budget" rate in the average colony of six (printed under it, for a later kind's builder to copy). Grown-ups only
 // (the cap keeps children from all but the mildest), the usual setting and storyteller (the harm scale 1); Alpha Skills,
-// Giddy-Up and Hospitality loaded (their kinds on), PokéWorld not (its Pokémon spar off, as in most games).
+// Giddy-Up, Hospitality and Odyssey's fishing loaded (their kinds on), PokéWorld and Dubs Bad Hygiene's thirst not (its
+// Pokémon spar and the dirty water off, as in most games).
 
 using ColonyCouncil;
 
@@ -87,6 +88,29 @@ namespace Balance
             public float hospitalityNights;
             /// <summary>The calendar's games day kept with a gathering a colony-year.</summary>
             public float gamesDays;
+            // ---- Harm, part 5 ----
+            /// <summary>Petitions to rest when ill or for a quarantine let lapse a colony-year while one of the colony works on with something catching.</summary>
+            public float sickPetitions;
+            /// <summary>The plague's gate shut at the world event's asking, and the quarantine decree then.</summary>
+            public float gateShut, plagueQuarantine;
+            /// <summary>The camp's sick one seen to by the colony's doctor (the camp's ask) in time.</summary>
+            public float campTended;
+            /// <summary>The colony's best doctor short of Medicine 8 (a healer's bad batch not caught).</summary>
+            public float lowDoctor;
+            /// <summary>Worms a colonist-year (raw meat or fish eaten), and the share left untended three days; insect bites left a day untended.</summary>
+            public float worms, wormsUntended, bitesUntended;
+            /// <summary>Journeys whose travellers wait at the gate past the hour (someone not ready), of the colony-year's.</summary>
+            public float gateWaits;
+            /// <summary>Night watches on the walls a colony-year, and the share of lone watchers outside the walls (no wall round the colony's ground).</summary>
+            public float watches, unwalled;
+            /// <summary>A weather lover's coat or hood.</summary>
+            public float covered;
+            /// <summary>Nightmares that leave someone shaken a colonist-year.</summary>
+            public float shaken;
+            /// <summary>Dusks a colonist spends at the height of restlessness, of the year's.</summary>
+            public float restlessDusks;
+            /// <summary>Hours a colonist fishes below freezing a colony-year.</summary>
+            public float coldFishing;
         }
 
         private static readonly Exposure[] Exposures =
@@ -96,21 +120,27 @@ namespace Balance
                 key = "well", drillDays = 3f, workDays = 5f, lowRest = 0.05f, strains = 0.12f, workedThrough = 0.15f, dangers = 0.4f, dangerHurt = 0.2f, landAilments = 0.12f,
                 campHigh = 0.04f, campFeud = 0.03f, journeys = 1.5f, medicine = 0.8f, quarantine = 0.15f, hunts = 1.2f, sharpWords = 1f, hardWords = 0.5f, feasts = 0.8f,
                 tendings = 0.7f, sterile = 0.4f, sickDecree = 0.3f, tired = 0.1f, visits = 4f, stayInside = 0.3f, hailHours = 0.1f, bankedDays = 3f, coldRoom = 0.2f,
-                unskilledTrees = 3f, heavyFails = 0.3f, penHours = 1f, greenRides = 1f, bitterGroups = 0.1f, digs = 5f, hospitalityNights = 5f, gamesDays = 0.8f
+                unskilledTrees = 3f, heavyFails = 0.3f, penHours = 1f, greenRides = 1f, bitterGroups = 0.1f, digs = 5f, hospitalityNights = 5f, gamesDays = 0.8f,
+                sickPetitions = 0.05f, gateShut = 0.5f, plagueQuarantine = 0.15f, campTended = 0.8f, lowDoctor = 0.4f, worms = 0.03f, wormsUntended = 0.2f, bitesUntended = 0.3f,
+                gateWaits = 0.15f, watches = 1f, unwalled = 0.3f, covered = 0.6f, shaken = 0.6f, restlessDusks = 0.03f, coldFishing = 3f
             },
             new Exposure
             {
                 key = "avg", drillDays = 5f, workDays = 10f, lowRest = 0.15f, strains = 0.15f, workedThrough = 0.35f, dangers = 0.4f, dangerHurt = 0.3f, landAilments = 0.18f,
                 campHigh = 0.12f, campFeud = 0.05f, journeys = 1.5f, medicine = 0.5f, quarantine = 0.05f, hunts = 1.5f, sharpWords = 1.5f, hardWords = 0.6f, feasts = 0.6f,
                 tendings = 0.8f, sterile = 0.2f, sickDecree = 0.1f, tired = 0.25f, visits = 4f, stayInside = 0.35f, hailHours = 0.3f, bankedDays = 5f, coldRoom = 0.5f,
-                unskilledTrees = 6f, heavyFails = 0.6f, penHours = 1.7f, greenRides = 2.5f, bitterGroups = 0.25f, digs = 6f, hospitalityNights = 6f, gamesDays = 0.8f
+                unskilledTrees = 6f, heavyFails = 0.6f, penHours = 1.7f, greenRides = 2.5f, bitterGroups = 0.25f, digs = 6f, hospitalityNights = 6f, gamesDays = 0.8f,
+                sickPetitions = 0.15f, gateShut = 0.25f, plagueQuarantine = 0.05f, campTended = 0.5f, lowDoctor = 0.6f, worms = 0.08f, wormsUntended = 0.5f, bitesUntended = 0.6f,
+                gateWaits = 0.25f, watches = 1.5f, unwalled = 0.6f, covered = 0.4f, shaken = 0.8f, restlessDusks = 0.06f, coldFishing = 4f
             },
             new Exposure
             {
                 key = "neglect", drillDays = 5f, workDays = 15f, lowRest = 0.35f, strains = 0.2f, workedThrough = 0.6f, dangers = 0.4f, dangerHurt = 0.45f, landAilments = 0.25f,
                 campHigh = 0.25f, campFeud = 0.08f, journeys = 1f, medicine = 0.2f, quarantine = 0f, hunts = 1.2f, sharpWords = 2.5f, hardWords = 0.6f, feasts = 0.3f,
                 tendings = 1f, sterile = 0.05f, sickDecree = 0f, tired = 0.5f, visits = 4f, stayInside = 0.35f, hailHours = 0.6f, bankedDays = 8f, coldRoom = 0.8f,
-                unskilledTrees = 10f, heavyFails = 1f, penHours = 2.5f, greenRides = 5f, bitterGroups = 0.45f, digs = 7f, hospitalityNights = 6f, gamesDays = 0.6f
+                unskilledTrees = 10f, heavyFails = 1f, penHours = 2.5f, greenRides = 5f, bitterGroups = 0.45f, digs = 7f, hospitalityNights = 6f, gamesDays = 0.6f,
+                sickPetitions = 0.3f, gateShut = 0.1f, plagueQuarantine = 0f, campTended = 0.2f, lowDoctor = 0.8f, worms = 0.15f, wormsUntended = 0.8f, bitesUntended = 0.8f,
+                gateWaits = 0.35f, watches = 2f, unwalled = 0.8f, covered = 0.2f, shaken = 1.2f, restlessDusks = 0.12f, coldFishing = 6f
             }
         };
 
@@ -203,14 +233,41 @@ namespace Balance
         private const float Beaten = 0.5f, Revisit = 0.7f, Takes = 0.6f, RematchHurts = 0.45f;
         /// <summary>A games day's race on rough ground (most yards aren't paved), its runners and the bout pairs.</summary>
         private const float RoughCourse = 0.7f;
+        // ---- Harm, part 5 ----
+        /// <summary>Visitors' and traders' groups at the gate a colony-year (the game's and Rimfolk's), and the share whose people a plague lies over (SickTown's region, plague kind only).</summary>
+        private const float GateGroups = 6f, GroupPlague = 0.06f;
+        /// <summary>Couriers to the colony a colony-year (goods that come and go), and of a people under a plague.</summary>
+        private const float CourierTrips = 3f, CourierPlague = 0.06f;
+        /// <summary>Someone of the colony an hour near a carrier at the gate (the one who trades), a courier (who unloads), at the camp's fire in its first three days.</summary>
+        private const float NearGate = 0.85f, NearCourier = 0.6f, NearCamp = 0.5f;
+        /// <summary>A camp's trouble that is one of theirs falling ill.</summary>
+        private const float CampSickShare = 0.3f;
+        /// <summary>Hospital patients a colony-year, and a colonist asleep in the same room as one for a night.</summary>
+        private const float Patients = 0.5f, SharedRoom = 0.2f;
+        /// <summary>The travelling healer's visit a colony-year, and the colony paying for the doses.</summary>
+        private const float HealerVisits = 0.5f, HealerPaid = 0.5f;
+        /// <summary>A malaria country, and insect bites a colonist-year there; sleeves or a bed indoors.</summary>
+        private const float MalariaLand = 0.25f, Bites = 1f, Netted = 0.6f;
+        /// <summary>A hard frost when a journey waits at the gate past the hour, and the cold hours of it (two to four).</summary>
+        private const float GateFrost = 0.15f;
+        /// <summary>A night watch in a hard frost, its watchers (one to three), and a hungry predator in reach of a lone one.</summary>
+        private const float WatchFrost = 0.2f, HungryPredator = 0.15f;
+        /// <summary>Those who stand in the rain and those who love the snow, and their days out in it a colony-year (rain; falling snow in bitter cold).</summary>
+        private const float RainLovers = 0.02f, SnowLovers = 0.01f, RainDays = 8f, SnowDays = 3f;
+        /// <summary>A sleepwalk kept in (a bolted door, a roommate), and a cold night out (frostnip) of the rest.</summary>
+        private const float KeptIn = 0.3f, ColdNightOut = 0.25f;
+        /// <summary>A friend free to go along on a restless walk.</summary>
+        private const float FriendAlong = 0.4f;
+        /// <summary>Of cold fishing hours, those in a hard frost (twice the slips).</summary>
+        private const float HardFrostFishing = 0.4f;
 
         // ---- The game's own, beside them ----
 
         /// <summary>A raid's wound for a colonist at home (HeartSim's model: in it four times in five, hurt one time in three of those).</summary>
         private const float RaidWound = 0.8f * 0.3f;
 
-        /// <summary>The kinds the model has, in the registry's order (PokéWorld's spar left out: the model's game hasn't the mod).</summary>
-        private static readonly HarmKind[] Modelled = HarmKinds.All.Where(k => k != HarmKinds.PokemonSpar).ToArray();
+        /// <summary>The kinds the model has, in the registry's order (PokéWorld's spar and Dubs Bad Hygiene's dirty water left out: the model's game hasn't them).</summary>
+        private static readonly HarmKind[] Modelled = HarmKinds.All.Where(k => k != HarmKinds.PokemonSpar && k != HarmKinds.DirtyWater).ToArray();
 
         private sealed class Person
         {
@@ -269,7 +326,7 @@ namespace Balance
             Console.WriteLine($"Hurts from everyday life: a colony-year ({Days} days), {runs} runs each, the setting at 100% and the usual storyteller (harm scale 1).");
             Console.WriteLine("Hurts are what the shared cap counts (a wound, an ailment, a fight's two, a bout's real blow, a hunt's game turning on its hunter),");
             Console.WriteLine($"per colonist-year; the cap holds one back if they had one in the last {HarmMath.GapDays:0} days. \"before\": the kinds built before the shared");
-            Console.WriteLine("budget, each at its own rate (the game as it was); \"no budget\": every kind on, harm part 4's fifteen too, each at its own rate;");
+            Console.WriteLine("budget, each at its own rate (the game as it was); \"no budget\": every kind on, harm parts 4 and 5 too, each at its own rate;");
             Console.WriteLine("\"budget\": every kind on, each at its rate times its pass within the shared budget (a kind that came lately passing less often).");
             Console.WriteLine();
             var registry = new Dictionary<string, double>();
@@ -374,6 +431,7 @@ namespace Balance
                 PartTwoDay(y, day, rng);
                 SinceDay(y, day, rng);
                 if (y.mode != Mode.Before) PartFourDay(y, day, rng);
+                if (y.mode != Mode.Before) PartFiveDay(y, day, rng);
                 Onsets(y, day, rng);
                 if (y.mode == Mode.Budget || y.mode == Mode.BudgetPlain)
                 {
@@ -933,6 +991,144 @@ namespace Balance
             }
         }
 
+        // ---------------- Harm, part 5 ----------------
+
+        private static void PartFiveDay(Year y, int day, Func<string, Random> rng)
+        {
+            var x = y.x;
+            // The sick work on: a petition to rest lapses while one of the colony works on with something catching.
+            var gw = rng("sick worker");
+            if (gw.NextDouble() < x.sickPetitions / Days && Comes(y, HarmKinds.SickWorkOn, gw, HarmFiveMath.CarrierChance(CarrierKind.SickWorker, false, false))
+                && gw.NextDouble() < NearGate)
+                y.onsets.Add((Any(y, gw), day + 2, HarmKinds.SickWorkOn));
+            // The sickness at the gate: a group of a people under a plague, one in four carrying it (none with the gate shut or the quarantine).
+            var gg = rng("gate sickness");
+            if (gg.NextDouble() < GateGroups * GroupPlague / Days)
+            {
+                float chance = HarmFiveMath.CarrierChance(CarrierKind.Gate, gg.NextDouble() < x.gateShut, gg.NextDouble() < x.plagueQuarantine);
+                if (Comes(y, HarmKinds.GateSickness, gg, chance) && gg.NextDouble() < NearGate)
+                    y.onsets.Add((Any(y, gg), day + 3, HarmKinds.GateSickness));
+            }
+            // A courier who arrives sick: the same rule, the courier unloading beside one of the colony.
+            var gc = rng("courier sick");
+            if (gc.NextDouble() < CourierTrips * CourierPlague / Days)
+            {
+                float chance = HarmFiveMath.CarrierChance(CarrierKind.Courier, gc.NextDouble() < x.gateShut, gc.NextDouble() < x.plagueQuarantine);
+                if (Comes(y, HarmKinds.CourierSick, gc, chance) && gc.NextDouble() < NearCourier)
+                    y.onsets.Add((Any(y, gc), day + 3, HarmKinds.CourierSick));
+            }
+            // The fever at their fire: a camp's sick one, one in five catching, unless seen to; someone at their fire an hour.
+            var gf = rng("camp fever");
+            if (gf.NextDouble() < CampsPerYear * CampSickShare / Days && Comes(y, HarmKinds.CampFever, gf, HarmFiveMath.CarrierChance(CarrierKind.Camp, false, false))
+                && gf.NextDouble() >= x.campTended && gf.NextDouble() < NearCamp)
+                y.onsets.Add((Any(y, gf), day + 4, HarmKinds.CampFever));
+            // The patient who brings something worse: one in 20, a night in the same room, one in four.
+            var gp = rng("patient");
+            if (gp.NextDouble() < Patients / Days && Comes(y, HarmKinds.PatientIll, gp, HarmFiveMath.PatientCarrierChance))
+                foreach (var p in y.people)
+                    if (gp.NextDouble() < SharedRoom && gp.NextDouble() < HarmFiveMath.WardCatch(HarmFiveMath.WardHours, 1f))
+                        y.onsets.Add((p, day + 2, HarmKinds.PatientIll));
+            // The hedge healer's bad batch: one paid visit in eight, uncaught by a doctor short of Medicine 8, one dosed in three.
+            var gb = rng("bad batch");
+            if (gb.NextDouble() < HealerVisits * HealerPaid / Days && Comes(y, HarmKinds.BadBatch, gb, HarmFiveMath.BadBatchChance)
+                && HarmFiveMath.BatchBad(true, gb.NextDouble() < x.lowDoctor ? 5 : 10))
+                foreach (var p in y.people)
+                    if (gb.NextDouble() < HarmFiveMath.BadBatchSick)
+                        y.onsets.Add((p, day + 1, HarmKinds.BadBatch));
+            // Small things that grow: worms left three days, bites a day in a malaria country.
+            var gs = rng("small things");
+            foreach (var p in y.people)
+            {
+                if (gs.NextDouble() < x.worms / Days && gs.NextDouble() < x.wormsUntended && Comes(y, HarmKinds.SmallThings, gs, HarmFiveMath.SmallThingsChance))
+                {
+                    var who = p;
+                    y.today.Add((8, () => Hurt(y, who, HarmKinds.SmallThings)));
+                }
+                bool netted = gs.NextDouble() < Netted;
+                if (gs.NextDouble() < MalariaLand && gs.NextDouble() < Bites / Days && gs.NextDouble() < x.bitesUntended
+                    && Comes(y, HarmKinds.SmallThings, gs, HarmFiveMath.BitesGrow(true, netted, false)))
+                {
+                    var who = p;
+                    y.today.Add((8, () => Hurt(y, who, HarmKinds.SmallThings)));
+                }
+            }
+            // Waiting at the gate in the cold: a journey's wait past the hour in a hard frost, a roll each two cold hours a traveller.
+            var gq = rng("gate cold");
+            if (gq.NextDouble() < x.journeys * x.gateWaits / Days && gq.NextDouble() < GateFrost)
+            {
+                int travellers = gq.Next(TravellersMin, TravellersMax + 1), hours = gq.Next(2, 5);
+                foreach (var p in y.people.OrderBy(_ => gq.Next()).Take(travellers))
+                    for (int h = 1; h <= hours; h++)
+                        if (HarmFiveMath.ColdRoll(h) && Comes(y, HarmKinds.GateCold, gq, HarmFiveMath.GateCold(true, true)))
+                        {
+                            var who = p;
+                            y.today.Add((9, () => Hurt(y, who, HarmKinds.GateCold)));
+                            break;
+                        }
+            }
+            // The night watch in the cold: a watch's frost (half with two or more), and a lone watcher outside the walls drawing a predator.
+            var gn = rng("night watch");
+            if (gn.NextDouble() < x.watches / Days)
+            {
+                int watchers = gn.Next(1, 4);
+                bool frost = gn.NextDouble() < WatchFrost;
+                foreach (var p in y.people.OrderBy(_ => gn.Next()).Take(watchers))
+                {
+                    var who = p;
+                    if (frost)
+                        for (int h = 1; h <= 6; h++)
+                            if (HarmFiveMath.ColdRoll(h) && Comes(y, HarmKinds.NightWatch, gn, HarmFiveMath.WatchCold(true, watchers)))
+                            {
+                                y.today.Add((2, () => Hurt(y, who, HarmKinds.NightWatch)));
+                                break;
+                            }
+                    if (Comes(y, HarmKinds.NightWatch, gn, HarmFiveMath.WatchPredator(watchers, gn.NextDouble() < x.unwalled, gn.NextDouble() < HungryPredator)))
+                        y.today.Add((1, () => Hurt(y, who, HarmKinds.NightWatch)));
+                }
+            }
+            // Weather lovers: a rain lover's day in the rain, a snow lover's in falling snow in bitter cold.
+            var gl = rng("weather lovers");
+            foreach (var p in y.people)
+            {
+                bool rain = gl.NextDouble() < RainLovers, snow = !rain && gl.NextDouble() < SnowLovers;
+                if (!rain && !snow || gl.NextDouble() >= (rain ? RainDays : SnowDays) / Days) continue;
+                float chance = HarmFiveMath.WeatherLover(rain, rain ? HarmFiveMath.RainLoverHours : HarmFiveMath.SnowLoverHours, gl.NextDouble() < x.covered);
+                if (!Comes(y, HarmKinds.WeatherLovers, gl, chance)) continue;
+                var who = p;
+                y.today.Add((15, () => Hurt(y, who, HarmKinds.WeatherLovers)));
+            }
+            // Sleepwalking after a nightmare: one shaken in 15 walks; kept in by a bolt or a roommate, else frostnip in the cold or a stumble half the time.
+            var gk = rng("sleepwalk");
+            foreach (var p in y.people)
+            {
+                if (gk.NextDouble() >= x.shaken / Days || !Comes(y, HarmKinds.Sleepwalk, gk, HarmFiveMath.SleepwalkChance) || gk.NextDouble() < KeptIn) continue;
+                bool cold = gk.NextDouble() < ColdNightOut;
+                if (HarmFiveMath.SleepwalkEnds(cold ? -5f : 5f, cold, (float)gk.NextDouble()) == 0) continue;
+                var who = p;
+                y.today.Add((2, () => Hurt(y, who, HarmKinds.Sleepwalk)));
+            }
+            // A restless walk at dusk: about once a season at the height of restlessness; alone and beyond the walls, a hungry predator one walk in four.
+            var gr = rng("restless");
+            foreach (var p in y.people)
+            {
+                if (gr.NextDouble() >= x.restlessDusks || gr.NextDouble() >= HarmFiveMath.RestlessWalkChance) continue;
+                float chance = HarmFiveMath.RestlessPredator(gr.NextDouble() >= FriendAlong, gr.NextDouble() < x.unwalled, gr.NextDouble() < HungryPredator);
+                if (!Comes(y, HarmKinds.RestlessWalk, gr, chance)) continue;
+                var who = p;
+                y.today.Add((19, () => Hurt(y, who, HarmKinds.RestlessWalk)));
+            }
+            // A slip into cold water: an hour fishing below freezing, one in 200 (twice in a hard frost).
+            var gx = rng("cold water");
+            foreach (var p in y.people)
+            {
+                if (gx.NextDouble() >= x.coldFishing / Days) continue;
+                float chance = HarmFiveMath.ColdWater(gx.NextDouble() < HardFrostFishing ? -8f : -2f);
+                if (!Comes(y, HarmKinds.ColdWater, gx, chance)) continue;
+                var who = p;
+                y.today.Add((11, () => Hurt(y, who, HarmKinds.ColdWater)));
+            }
+        }
+
         /// <summary>Sicknesses, and the rematch's day, waiting to show: each comes the first morning the cap lets it, or passes after three days.</summary>
         private static void Onsets(Year y, int day, Func<string, Random> rng)
         {
@@ -989,7 +1185,7 @@ namespace Balance
                 }
                 Console.WriteLine($"   {k.label,-48} {b,8:0.000} {u,10:0.000} {a,8:0.000} {pass,9:0.00} {held,10:0.000} {budget.hurts.GetValueOrDefault(k.label) / years,14:0.000}");
             }
-            Console.WriteLine($"   {"in all",-48} {tb,8:0.000} {tn,10:0.000} {ta,8:0.000}   (budget/before {ta / Math.Max(1e-9, tb):0.000}; part 4's fifteen {newTn:0.000} -> {newTa:0.000})");
+            Console.WriteLine($"   {"in all",-48} {tb,8:0.000} {tn,10:0.000} {ta,8:0.000}   (budget/before {ta / Math.Max(1e-9, tb):0.000}; the later kinds, parts 4 and 5, {newTn:0.000} -> {newTa:0.000})");
             Console.WriteLine($"   the game's own beside it: a raid's wound {budget.raidWounds / cy:0.00} a colonist-year (HeartSim's raids), a food poisoning 0.3 to 1 (two meals a day,");
             Console.WriteLine("   a middling cook), the storyteller's diseases a few a colony-year.");
             Console.Write("   fights a colony-year:");

@@ -2286,7 +2286,7 @@ bout, a feast's wrestling and sour night) is counted with `Harm.Note`; the feast
 `Feasts.HarmScale` and `Feasts.MayBeHurt`.
 
 `HarmBook` (a game component) holds the saved part (`lastHurt`; `drillDay`, a home's last evening drill; `kindLast`, the
-budget's memory; `waiting`, part 4's hurts still to come; `turning` and `calm`, the hunts' game) and runs the hour (Sched
+budget's memory; `waiting`, parts 4 and 5's hurts still to come; `turning` and `calm`, the hunts' game) and runs the hour (Sched
 `RareHarm` 67): one tenth of the colonists each 250 ticks, the first slice also the colony's part.
 
 ### The shared budget (7 November 2026)
@@ -2300,8 +2300,8 @@ the game's side is `Harm.PassOf`.
 - **Each kind registered once** (`HarmKinds`): a key (saved), a label, the system it sits under (`Harm.SystemOn`: its
   setting, and for a soft integration its mod) and its base rate (hurts per colonist-year in an average colony of six at
   100% and the usual storyteller, coming on its own, before the cap: the balance model measures it). The 18 kinds built
-  before the budget are its founding ones; harm part 4's are not (the guest's night is two kinds, Rimfolk's visitors and
-  Hospitality's guests, so a game without Hospitality keeps none of the budget for it).
+  before the budget are its founding ones; harm part 4's and part 5's are not (the guest's night is two kinds, Rimfolk's
+  visitors and Hospitality's guests, so a game without Hospitality keeps none of the budget for it).
 - **The budget** is the founding kinds that are on, their base rates together (about 0.46 a colonist-year).
 - **The pass**: a kind's chance is its base rate times the setting and the storyteller's lean (as before) times its
   pass, its variety times the budget over the kinds on weighed by their variety (`HarmBudgetMath.Passes`). So the kinds'
@@ -2633,6 +2633,52 @@ games bout is a drill bout with `games`). Two new Harmony patches: `Patch_Fellin
 `Plant.PlantCollected`) and `Patch_FailedBuildHurts` (a prefix and postfix on `Frame.FailConstruction`). The hail's letter,
 its condition and the Almanac said nobody would be hurt; they say what happens now.
 
+### Harm, part 5: sickness that spreads, the weather and the cold (7 November 2026)
+
+The first of three batches of the review's other 69 proposals, after the player's "all suggestions please": fourteen more
+kinds within the shared budget, each under its system's setting (a link between two systems behind "Systems talk to each
+other"), the pure rules in `Harm/HarmFiveMath.cs` (`HarmFiveTests`), the hub `Harm/HarmFive.cs` on the harm book's hour
+and slices (no new Sched slot); and the forecast that can be wrong (4.4.2), which hurts nobody and stays outside the
+budget, in the fields' own code. Every sickness carried in is the guest's cough's rule (part 4, `Catching.CoughHour`, now
+shared): someone carries it, and whoever of the colony spent the most hours near them (both awake, within four cells)
+catches it a day or a few after, unless a decree keeps the sick apart; the patient's is a night in the same room. The
+carriers, the patient's ward and the healer's batch wait in `HarmBook.waiting` (`HarmWaiting` "cough", "ward", "batch",
+"dose": no new saved collection). Messages only where the game gives one for the same hurt (an illness caught, naming
+whom it came from); a stumble, a sore arm and a slip into the water are seen on the map; a predator comes by the game's own
+hunt with the game's own warning. The pools are in `Rimfolk_HarmFive_Lines.xml`, the words in `Rimfolk_HarmFive.xml`; dev
+mode's "Harm five: ..." (`Harm/HarmFiveDebug.cs`) brings each about past its rate, never past the cap.
+
+| Kind (review) | Where | Rate (its own) | Prevention | Seen |
+|---|---|---|---|---|
+| The sick work on (1.2.5) | `Carriers.cs`, a petition's lapse | a lapsed petition to rest when ill or for a quarantine, while one of the colony up and about has something catching: one more case | heed the petition; named under it on the decree page | the sick one's cough at whoever is near, the petitioner's line, the case a day later |
+| The sickness at the gate (2.3.1) | `Carriers.cs`, visitors' and traders' groups | 1 group in 4 of a people a plague lies over: the flu, the plague 1 time in 4; the plague's raised flu and plague a little lower for it | the plague's "shut the gate", the quarantine decree, few near the trader; named under keeping the gate open | the carrier's cough; two or three days after they go, the illness and whom it came from |
+| The fever at their fire (2.4.2) | `Carriers.cs`, the camp's sick one | 1 camp sickness in 5, its first three days: a chest cold, the flu 1 time in 4 (a child a head cold) | the colony's doctor seeing to them (the camp's ask, named on it), keeping away | the sick one's lines by the fire, the illness a day later |
+| A courier who arrives sick (2.7.2) | `Carriers.cs`, a courier's party | 1 courier in 4 of a people under a plague | the quarantine decree, the goods left at the gate | as the gate's |
+| The patient who brings something worse (3.2.2) | `Carriers.cs`, `HospitalPatient.cs` | 1 patient in 20 brings tuberculosis or cholera; a night in their room 1 in 4 | a ward or room of their own, the quarantine decree; named in the letter and on every answer | the letter's cough, the case in the shared room a day or two later |
+| The hedge healer's bad batch (2.2.4) | `Carriers.cs`, the healer's paid doses | 1 visit in 8; of those dosed, 1 in 3 the next morning | a doctor of Medicine 8 looks it over (a word, nothing more); declining; named under paying | the stomach bug (a tonic) or a sore arm (a shot) |
+| Small things that grow (3.2.3) | `Untended.cs`, each colonist's hour | worms untended 3 days, 1 in 20 the game's gut worms; bites untended a day in a malaria country, 1 in 20 its malaria | cooked meat, a tending; sleeves and a bed indoors half each | the illness and its message |
+| Dirty water (4.9.3) | `Untended.cs`, Dubs Bad Hygiene by name | a day drinking untreated water: the stomach bug 1 in 600, only while the mod's own illnesses read off | water treatment | the bug, the message naming the water |
+| Waiting at the gate in the cold (3.1.2) | `ColdHurts.cs`, a journey's wait | every 2 hours waiting past the hour in a hard frost, colder than comfortable: 1 in 20 frostnip or chilblains | answer the letter, warm clothes; named in the letter in a frost | the line at the gate, the ailment's message |
+| The night watch in the cold (4.2.2) | `ColdHurts.cs`, the watch on the walls | the same cold rule, half with two on watch; a lone watcher outside the walls, 1 watch in 6 a hungry predator in reach | warm clothes, a warm look-out, two on watch, walls; named under the watch | the line, the ailment's message; the predator's hunt, the game's warning |
+| Weather lovers (3.11.3) | `ColdHurts.cs`, the two quirks | a rain lover's 2 hours in the rain: a chest cold 1 day in 150; a snow lover's 3 in bitter falling snow: frostnip 1 in 75 | a coat, a hood (half) | their line, the ailment's message |
+| Sleepwalking after a nightmare (3.12.1) | `NightWalks.cs`, the job `Rimfolk_Sleepwalk` | 1 nightmare in 15 that left them shaken, a later night's small hours; frostnip in the cold, a stumble half the time | the bolted door (the sleepwalker's answer), a roommate | the walk across the yard, the line, someone leading them back |
+| A restless walk at dusk (3.3.3) | `NightWalks.cs`, the job `Rimfolk_RestlessWalk` | restlessness at its height: 1 dusk in 15 out to the edge of the ground; alone outside the walls, 1 walk in 4 a hungry predator | a friend along, walls round the ground | the walk out, the line, the game's own hunt and warning |
+| A slip into cold water (4.9.2) | `ColdHurts.cs`, the game's or Vanilla Fishing Expanded's fishing | 1 hour in 200 fishing below freezing, twice in a hard frost: the game's hypothermia at shivering | no fishing in a frost | the splash, a few words, the dash for a fire |
+| The forecast can be wrong (4.4.2) | `Fields/FieldWeather.cs`, outside the budget | as often as a frost beats the forecast on a field it said would pay | not preventable | the field's note for five days; the game's own frost |
+
+The ages: the bad batch is a bitter tonic's stomach bug before industry and a shot's sore arm after; the rest are the same in
+every age (a spacer trader's mask is left out). A predator found for a lone walker or watcher is a wild one, hungry (its
+food at 60% or less), within 45 cells, that would take them as prey by the game's own reckoning and can reach them; its hunt
+stops once they are down (`killIncappedTarget` false), the cap counts it as their hurt, and the colony can drive it off.
+"Outside the walls" is the map's edge reachable from where they stand without passing a closed door. Hooks in other systems
+(one line each): `Decrees/Decrees.cs` (the lapse) and `UI/DecreePanel.cs` (the petition's line), `Couriers/CourierTracker.cs`
+(a courier's party), `Camps/CampStory.cs` (the fever, the ask's line), `Health/HospitalPatient.cs` (the worse illness and the
+letter's tale), `Happenings/Workers_More.cs` and `VisitorServices.cs` (the batch, each dose), `Journeys/JourneyRun.cs` (the
+letter in a frost), `PlayOut/PlayOutGroupEffects.cs` (the watch's line); `Harm/Catching.cs`'s cough is shared, and
+`DilemmaEffect_HarmRisk` names a risk on an answer's sheet in the defs (the plague's open gate, the healer's pay, the
+patient's answers). While the carriers at the gate are on, `Council_WS_Plague` raises the flu 1.35 times and the plague
+2.3 (the modifier's `withCarriers`; 1.5 and 2.5 with them off, as before): the carriers bring the rest.
+
 ### The rates (the balance model's harm mode)
 
 `dotnet run -c Release --project Tools/Balance -- --harm` plays a colony-year (60 days, 1500 runs by default) of each
@@ -2640,25 +2686,28 @@ style and size with every kind of hurt from everyday life through the shared cap
 hurt's pain and each fight's hour of combat. What a kind does once it comes is the mod's arithmetic (`HarmMath`,
 `HarmTwoMath`, `HarmFourMath`, `HarmBudgetMath`, `HeartMath`, `BeastsMath`, compiled in); how often a colony meets it is
 the mode's own table, each an estimate that says where it comes from. Three runs of the same colonies: "before" (the
-kinds built before the budget, each at its own rate), "no budget" (every kind on, part 4's fifteen too, each at its own
-rate), "budget" (every kind on, each at its pass). Alpha Skills, Giddy-Up and Hospitality loaded; PokéWorld not. Hurts
-the cap counts, per colonist-year (4000 runs):
+kinds built before the budget, each at its own rate), "no budget" (every kind on, parts 4 and 5 too, each at its own
+rate), "budget" (every kind on, each at its pass). Alpha Skills, Giddy-Up, Hospitality and Odyssey's fishing loaded;
+PokéWorld and Dubs Bad Hygiene's thirst not. Hurts the cap counts, per colonist-year (4000 runs; harm, part 5):
 
 | | 6, well run | 6, average | 6, neglectful | 12, well run | 12, average | 12, neglectful |
 |---|---|---|---|---|---|---|
 | Before (every kind built up to 0.149.0) | 0.339 | 0.453 | 0.560 | 0.290 | 0.395 | 0.504 |
-| Every kind on, no budget | 0.606 | 0.876 | 1.190 | 0.483 | 0.725 | 1.014 |
-| Every kind on, the budget | 0.311 | 0.452 | 0.618 | 0.245 | 0.368 | 0.519 |
+| Every kind on, no budget | 0.669 | 0.983 | 1.356 | 0.538 | 0.812 | 1.149 |
+| Every kind on, the budget | 0.307 | 0.454 | 0.629 | 0.242 | 0.367 | 0.526 |
+| With part 4 alone (0.153.0), the budget | 0.311 | 0.452 | 0.618 | 0.245 | 0.368 | 0.519 |
 | The game's own beside them: a raid's wound | 1.4 | 1.7 | 2.0 | 1.4 | 1.7 | 2.0 |
 
-The average colony of six, on which the base rates are measured, keeps its total (0.453 before, 0.452 after). Elsewhere
+The average colony of six, on which the base rates are measured, keeps its total (0.453 before, 0.454 after, with part 5's
+fourteen in: part 5 would add 0.12 a colonist-year on its own, and within the budget brings 0.055, the rest giving up as
+much; each kind now passes at about 44% of its own rate). Elsewhere
 the budget keeps prevention's meaning: a well-run colony prevents more of the new kinds and ends a little below its old
-total (8% with six, 15% with twelve), a neglectful one a little above (10% with six, 3% with twelve), and a colony of
+total (9% with six, 17% with twelve), a neglectful one a little above (12% with six, 4% with twelve), and a colony of
 twelve meets fewer of the new kinds per head (a storm bruises two at most, a games day has two bouts). Each kind passes at
-about half its own rate. Part 4's fifteen would add 0.43 a colonist-year on their own; within the budget they bring 0.23,
-and the founding kinds give up as much. The variety: a kind coming again within thirty days of its last falls from 0.22
-to 0.16 times a colony-year (the average colony of six), the commonest kind (the ailments of the land and the work) from
-19.6% of the hurts to 18.7%, the total the same. The heart's strain, its days off and the strain's mood are the same
+a little under half its own rate. Part 4's fifteen would add 0.43 a colonist-year on their own; with part 5's beside them, the later kinds would add
+0.54 and within the budget bring 0.25, the founding kinds giving up as much. The variety: a kind coming again within thirty
+days of its last falls from 0.19 to 0.14 times a colony-year (the average colony of six), the commonest kind (the ailments
+of the land and the work) from 17.4% of the hurts to 16.6%, the total the same. The heart's strain, its days off and the strain's mood are the same
 before and after to a tenth. The beasts' summary (`BeastSim.cs`) still prints after it; their stampede is a kind in the
 budget now, their nemesis's return the game's own attack outside it.
 

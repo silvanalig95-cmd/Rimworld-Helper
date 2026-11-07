@@ -39,6 +39,8 @@
     <!-- The shared budget and harm part 4's fifteen (HarmSim.cs): the kinds, their passes, their rates; a feast's blow and sour night. -->
     <Compile Include="../../Source/ColonyCouncil/Harm/HarmBudgetMath.cs" Link="Linked/HarmBudgetMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Harm/HarmFourMath.cs" Link="Linked/HarmFourMath.cs" />
+    <!-- Harm part 5 (sickness that spreads, the weather and the cold): its rates, for the same model. -->
+    <Compile Include="../../Source/ColonyCouncil/Harm/HarmFiveMath.cs" Link="Linked/HarmFiveMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Diplomacy/FeastMath.cs" Link="Linked/FeastMath.cs" />
     <!-- Schemes against the colony (SchemeSim.cs, with &#45;&#45;schemes): the day's chance, the acts, who catches them. -->
     <Compile Include="../../Source/ColonyCouncil/Diplomacy/SchemeMath.cs" Link="Linked/SchemeMath.cs" />

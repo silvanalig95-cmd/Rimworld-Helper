@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Sickness that spreads, and the cold, in the shared budget
+
+*7 November 2026, version 0.155.0*
+
+- Fourteen more kinds of everyday mishap, sharing the same budget, so the total stays where it was and each kind comes less often.
+- Sickness can spread: a sick colonist who keeps working after a petition to rest was ignored, a visitor or courier from a plague-struck people, a camp's fever at their fire, an outside patient who brings something worse, or a hedge healer's bad batch. The quarantine decree, shutting the gate in a plague, sending your doctor and a room of their own guard against them, and the answers say so.
+- Small things can grow: untended worms or insect bites in a malaria country can turn into the real illness. Sleeves and sleeping indoors help.
+- The cold: waiting long at the gate in a frost, a lone night watch in the cold, a weather lover out in the rain or snow, a sleepwalker after a nightmare, a restless walk alone at dusk, and a slip into icy water while fishing. Warm clothes, company, a bolted door and walls keep them safe.
+- With Dubs Bad Hygiene, drinking untreated water can bring the stomach bug when the mod's own water illnesses are off.
+- A field sown by the weather that a frost beyond the forecast still killed now says so on the field.
+
 ## A sick colonist's full pack goes to storage
 
 *7 November 2026, version 0.154.2*

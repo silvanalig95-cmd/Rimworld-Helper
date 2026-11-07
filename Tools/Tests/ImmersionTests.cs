@@ -76,6 +76,15 @@ public static class ImmersionTests
         "Rimfolk_Pool_SoreLoser", "Rimfolk_Pool_SoreLoserReply", "Rimfolk_Pool_GraciousWinner", "Rimfolk_Pool_RematchAsk", "Rimfolk_Pool_RematchYes",
         "Rimfolk_Pool_RematchNo", "Rimfolk_Pool_GamesCall", "Rimfolk_Pool_GamesBegin", "Rimfolk_Pool_GamesHit", "Rimfolk_Pool_GamesSorry",
         "Rimfolk_Pool_GamesEnd", "Rimfolk_Pool_RaceGo", "Rimfolk_Pool_RaceTurned", "Rimfolk_Pool_RaceWon",
+        // Harm, part 5: the sick at work and the petitioner, a carrier's cough at the gate and at the camp's fire, a sickness
+        // caught from them, the doctor's look at a bad batch, a sore arm, small things grown, dirty water, the cold at the gate
+        // and on the watch, a predator in the dark, weather lovers, a slip into the water, a sleepwalk kept in, woken, out
+        // and led back, a restless walk alone or with a friend.
+        "Rimfolk_Pool_SickWorksOn", "Rimfolk_Pool_PetitionUnheeded", "Rimfolk_Pool_GateCough", "Rimfolk_Pool_CampFever", "Rimfolk_Pool_CaughtFive",
+        "Rimfolk_Pool_BatchSpotted", "Rimfolk_Pool_SoreArm", "Rimfolk_Pool_SmallThings", "Rimfolk_Pool_DirtyWater", "Rimfolk_Pool_ColdWait",
+        "Rimfolk_Pool_ColdWatch", "Rimfolk_Pool_WatchPredator", "Rimfolk_Pool_WeatherLover", "Rimfolk_Pool_ColdWater", "Rimfolk_Pool_SleepwalkDoor",
+        "Rimfolk_Pool_SleepwalkRoommate", "Rimfolk_Pool_SleepwalkWakes", "Rimfolk_Pool_SleepwalkHurt", "Rimfolk_Pool_SleepwalkLed", "Rimfolk_Pool_RestlessWalk",
+        "Rimfolk_Pool_RestlessFriend", "Rimfolk_Pool_SomethingOut",
         // Schemes against the colony (Diplomacy/Schemes.cs): a shout at one of theirs caught at it, their word as they go,
         // a lie in a hot temper's ear, the hot temper having it out.
         "Rimfolk_Pool_SchemeCaught", "Rimfolk_Pool_SchemeCaughtGoes", "Rimfolk_Pool_SchemeWhisper", "Rimfolk_Pool_SchemeProvoked",

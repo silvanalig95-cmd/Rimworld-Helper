@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Harm, part 5 (Source/ColonyCouncil/Harm/): said over a head, one short sentence each. Lines tagged with what happened
+    ([workedOn], [atGate], [campFire], [sharedRoom], [badBatch], [gutWorms], [malaria], [frostnip], [chilblains], [rainLover], [snowLover], [frostbit],
+    [stumbled]) come for that and nothing else; untagged lines come for any.
+  -->
+
+  <!-- ===================== Sickness that spreads (Carriers.cs) ===================== -->
+
+  <!-- One of the colony working on with something catching after the petition to rest lapsed, to whoever is about. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SickWorksOn</defName>
+    <lines>
+      <plain>
+        <li>Don't mind me, I'm well enough to work.</li>
+        <li>It's only a sniffle, and the work won't do itself.</li>
+        <li>Pass the bread, and sorry about the cough.</li>
+        <li>Nobody said I could lie down, so here I am.</li>
+        <li>I'll rest when the council says I may.</li>
+        <li>Keep back a step, this cold is a nasty one.</li>
+      </plain>
+      <gloomy><li>Sick or not, the work wants doing.</li></gloomy>
+      <blunt><li>I'm ill and I'm working, so stand back.</li></blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The one who petitioned to rest when ill or for a quarantine, as the petition lapses unheeded, to nobody. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_PetitionUnheeded</defName>
+    <lines>
+      <plain>
+        <li>I asked for the sick to rest, and nobody listened.</li>
+        <li>Mark my words, it'll go round the whole colony now.</li>
+        <li>So the sick keep working, and the rest of us catch it.</li>
+        <li>Nobody heeded the petition, and the coughing goes on.</li>
+        <li>We'll all be sniffling by the end of the week.</li>
+        <li>I said they should rest, and I'll say it again.</li>
+      </plain>
+      <blunt><li>Ignored, then, and we'll pay for it.</li></blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A visitor, trader or courier from the sick towns, coughing among those near them. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GateCough</defName>
+    <lines>
+      <plain>
+        <li>Forgive the cough, half the road has it.</li>
+        <li>It's going round the towns, but I feel well enough.</li>
+        <li>Everyone back home is coughing, so don't mind me.</li>
+        <li>Excuse me, it's been a long road from the sick country.</li>
+        <li>I'm sure it's nothing, just the damp in my chest.</li>
+        <li>They're burning smoke fires all along the road, you know.</li>
+      </plain>
+      <gloomy><li>Half my town is in bed with it, and I may be next.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The camp's sick one lying by their fire, to those sitting there. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_CampFever</defName>
+    <lines>
+      <plain>
+        <li>Sit a little further off, I'm burning up.</li>
+        <li>Thank you for keeping me company by the fire.</li>
+        <li>This fever won't let go of me.</li>
+        <li>Could you hand me the water, my head is pounding.</li>
+        <li>I'm sorry to be such poor company tonight.</li>
+        <li>My people say I'll be up by tomorrow, they always say that.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Someone of the colony as a sickness caught from a carrier shows. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_CaughtFive</defName>
+    <lines>
+      <plain>
+        <li>I knew that cough would find its way to me.</li>
+        <li>I've caught it, haven't I.</li>
+        <li>[workedOn] Working beside the sick, what did I expect.</li>
+        <li>[workedOn] If they'd let the sick rest, I'd be well now.</li>
+        <li>[atGate] That trader left more than goods at the gate.</li>
+        <li>[atGate] I stood too close to the travelers from the sick towns.</li>
+        <li>[campFire] All those evenings at the camp's fire, and now this.</li>
+        <li>[campFire] I should have kept away from their fire while they were sick.</li>
+        <li>[sharedRoom] Sharing a room with the patient was a mistake.</li>
+        <li>[sharedRoom] That cough in the next bed was worse than it sounded.</li>
+        <li>[badBatch] That tonic tasted wrong going down.</li>
+        <li>[badBatch] Never again do I take a dose from a stranger's case.</li>
+      </plain>
+      <gloomy><li>Of course it came to me.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The colony's doctor, looking over the travelling healer's batch and finding it has turned. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_BatchSpotted</defName>
+    <lines>
+      <plain>
+        <li>This batch has turned, so mix a fresh one before anyone drinks it.</li>
+        <li>Smell that, it's gone off in the bottle.</li>
+        <li>Not this lot, it's cloudy where it should be clear.</li>
+        <li>I wouldn't give this to a goat, let's start again.</li>
+        <li>Your batch is spoiled, friend, and I'm glad I looked.</li>
+        <li>Throw that one out, it'll turn every stomach in the colony.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A sore arm the morning after a shot from a bad batch. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SoreArm</defName>
+    <lines>
+      <plain>
+        <li>My arm aches where that shot went in.</li>
+        <li>I can hardly lift my arm this morning.</li>
+        <li>Whatever was in that needle, my arm didn't like it.</li>
+        <li>My arm is swollen up like a sausage.</li>
+        <li>That doctor's shot has left me stiff and sore.</li>
+        <li>I'll be favoring this arm for a day or two.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Small things that grow, dirty water (Untended.cs) ===================== -->
+
+  <!-- Worms grown into the game's gut worms, bites into its malaria. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SmallThings</defName>
+    <lines>
+      <plain>
+        <li>I should have had that seen to days ago.</li>
+        <li>It was only a small thing, and now look at me.</li>
+        <li>[gutWorms] These worms have dug themselves in deep.</li>
+        <li>[gutWorms] I'm hungry all the time and thinner every day.</li>
+        <li>[gutWorms] Next time I'll let the cook have the meat first.</li>
+        <li>[malaria] One of those bites had a fever in it.</li>
+        <li>[malaria] I'm shaking and burning at once.</li>
+        <li>[malaria] I should have slept under a net.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The stomach bug from untreated water. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_DirtyWater</defName>
+    <lines>
+      <plain>
+        <li>Something in that water didn't agree with me.</li>
+        <li>I should have boiled it first.</li>
+        <li>That water tasted of the pipes, and now my stomach knows it.</li>
+        <li>Never drink from the tap without a filter, they said.</li>
+        <li>My insides are churning like a millrace.</li>
+        <li>We need clean water, and I'm the proof.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== The weather and the cold (ColdHurts.cs) ===================== -->
+
+  <!-- A traveller kept waiting at the gate in the frost, as the frostnip or the chilblains shows. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_ColdWait</defName>
+    <lines>
+      <plain>
+        <li>I can't feel my fingers, how long are we waiting.</li>
+        <li>Standing still in this cold is the worst of it.</li>
+        <li>If they don't come soon, I'm going back to the fire.</li>
+        <li>[frostnip] My cheeks have gone white with the cold.</li>
+        <li>[frostnip] My fingertips are numb from waiting out here.</li>
+        <li>[chilblains] My toes are itching and swollen from the cold.</li>
+        <li>[chilblains] The cold has got into my feet and won't leave.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A watcher on the walls in the frost. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_ColdWatch</defName>
+    <lines>
+      <plain>
+        <li>This watch is colder than any I remember.</li>
+        <li>I'll stamp my feet and keep my eyes on the dark.</li>
+        <li>Nothing moves out there but the frost.</li>
+        <li>[frostnip] My nose has gone numb up here.</li>
+        <li>[frostnip] I can't feel my fingers on the rail.</li>
+        <li>[chilblains] My feet are burning and itching from the cold.</li>
+        <li>[chilblains] The cold has got into my toes on this watch.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A lone watcher, as a predator comes out of the dark for them. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_WatchPredator</defName>
+    <lines>
+      <plain>
+        <li>There's something moving out there, and it's coming this way.</li>
+        <li>Eyes in the dark, and they're on me.</li>
+        <li>Wake up, there's a beast out past the wall.</li>
+        <li>I hear it circling in the dark.</li>
+        <li>That isn't the wind, something is out there.</li>
+        <li>Help, there's an animal coming at me.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A weather lover as the chest cold or the frostnip shows. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_WeatherLover</defName>
+    <lines>
+      <plain>
+        <li>It was worth it, mostly.</li>
+        <li>I'd do it again, cold or no cold.</li>
+        <li>[rainLover] All that rain has gone straight to my chest.</li>
+        <li>[rainLover] I stood out in the rain one time too many.</li>
+        <li>[rainLover] Next time I'll wear a coat to stand in the rain.</li>
+        <li>[snowLover] I stayed out in the snow until I couldn't feel my face.</li>
+        <li>[snowLover] The snow was beautiful, and now my fingers sting.</li>
+        <li>[snowLover] Maybe a hood next time I go out to watch it fall.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A slip into the icy water while fishing. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_ColdWater</defName>
+    <lines>
+      <plain>
+        <li>The bank gave way and I went straight in.</li>
+        <li>That water is colder than death.</li>
+        <li>I'm soaked through, I need a fire now.</li>
+        <li>My teeth won't stop chattering.</li>
+        <li>So much for the fish, I'm the one who got caught.</li>
+        <li>The ice was thinner than it looked.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Night walks (NightWalks.cs) ===================== -->
+
+  <!-- A sleepwalker at their own bolted door, to nobody. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SleepwalkDoor</defName>
+    <lines>
+      <plain>
+        <li>The door won't open, so back to bed I go.</li>
+        <li>Who bolted my door, and why am I standing here.</li>
+        <li>I must have been walking again, good thing the door held.</li>
+        <li>Locked in, and just as well.</li>
+        <li>I woke with my hand on the bolt again.</li>
+        <li>The door kept me in, so the bolt was a good idea.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A roommate waking a sleepwalker who is getting up, to them. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SleepwalkRoommate</defName>
+    <lines>
+      <plain>
+        <li>Back to bed, you're walking in your sleep again.</li>
+        <li>Shh, lie down, it was only a dream.</li>
+        <li>You were halfway to the door with your eyes shut.</li>
+        <li>Wake up a moment, then go back to sleep.</li>
+        <li>Not again, back under the blankets with you.</li>
+        <li>You're sleepwalking, come on, back to bed.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A sleepwalker waking out in the yard, unhurt. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SleepwalkWakes</defName>
+    <lines>
+      <plain>
+        <li>Why am I out in the yard in my nightclothes.</li>
+        <li>I was dreaming, and now I'm standing outside.</li>
+        <li>How did I get out here.</li>
+        <li>Not again, I've been walking in my sleep.</li>
+        <li>I don't remember getting out of bed.</li>
+        <li>The last thing I remember is that awful dream.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A sleepwalker hurt out in the yard: [frostbit] the cold, [stumbled] a fall in the dark. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SleepwalkHurt</defName>
+    <lines>
+      <plain>
+        <li>I woke up outside and I'm hurt.</li>
+        <li>That dream walked me straight out of bed.</li>
+        <li>[frostbit] I woke out in the frost with no boots on.</li>
+        <li>[frostbit] My feet are white with cold, how long was I out here.</li>
+        <li>[frostbit] I sleepwalked into the snow in my nightclothes.</li>
+        <li>[stumbled] I tripped over something in the dark and woke on the ground.</li>
+        <li>[stumbled] I walked into the fence in my sleep.</li>
+        <li>[stumbled] I woke up flat on my back in the yard.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Someone of the colony leading a sleepwalker back to bed, to them. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SleepwalkLed</defName>
+    <lines>
+      <plain>
+        <li>Come on, back to bed, you're walking in your sleep.</li>
+        <li>Easy now, I've got you, let's get you inside.</li>
+        <li>You'll catch your death out here, back in with you.</li>
+        <li>It's only a dream, come back to bed.</li>
+        <li>Take my arm, the door's this way.</li>
+        <li>You were out in the yard again, let's go in.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Someone at the height of restlessness, setting out alone at dusk, to nobody. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_RestlessWalk</defName>
+    <lines>
+      <plain>
+        <li>I need to walk, I can't sit still another minute.</li>
+        <li>Just to the edge of the fields and back.</li>
+        <li>The walls are closing in, I'm going out.</li>
+        <li>I'll walk until my head is quiet.</li>
+        <li>Don't wait up, I need some air.</li>
+        <li>Same work, same walls, same faces, I need to get out.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A friend going along on the restless walk, to them. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_RestlessFriend</defName>
+    <lines>
+      <plain>
+        <li>Not on your own at this hour, I'll come with you.</li>
+        <li>Wait, I'll walk with you.</li>
+        <li>Two of us out there is safer than one.</li>
+        <li>I could use a walk too, let's go together.</li>
+        <li>You're not going out in the dark alone.</li>
+        <li>Mind if I keep you company out there.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A lone walker at nightfall, as a predator comes for them. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SomethingOut</defName>
+    <lines>
+      <plain>
+        <li>Something's out there in the dark, and it's watching me.</li>
+        <li>I should never have come out here alone.</li>
+        <li>That rustle wasn't the wind.</li>
+        <li>There are eyes in the grass, and they're coming closer.</li>
+        <li>Back, back, I need to get back to the others.</li>
+        <li>Help, something is hunting me.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

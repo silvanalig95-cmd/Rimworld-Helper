@@ -27,8 +27,11 @@ one service every hurt goes through (`Harm/Harm.cs`, DESIGN.md "Harm from everyd
 each marked built below with what differs; (harm, part 4, 7 November 2026, the player's "yes, a shared budget please, and
 go ahead with the suggestions") the shared budget every hurt now shares (`Harm/HarmBudgetMath.cs`, DESIGN.md "The shared
 budget") and fifteen more: 1.1.1, 2.5.2, 2.2.3, 1.2.3, 4.3.1, 3.4.1, 4.7.2, 4.5.3, 4.5.1, 4.9.1, 3.6.1, 1.4.2, 2.5.1, 2.8.1
-and 4.1.1, each marked built below with what differs. With the budget, every rate below is a kind's own: the kinds share
-the total the first ones came to, each at about half its own rate now. The balance model's harm mode
+and 4.1.1, each marked built below with what differs; (harm, part 5, 7 November 2026, the first of three batches of the
+other 69 after the player's "all suggestions please") sickness that spreads, the weather and the cold: 1.2.5, 2.3.1, 2.4.2,
+2.7.2, 3.2.2, 2.2.4, 3.2.3, 4.9.3, 3.1.2, 4.2.2, 3.11.3, 3.12.1, 3.3.3 and 4.9.2 as kinds of the budget, and 4.4.2, which
+hurts nobody, outside it. With the budget, every rate below is a kind's own: the kinds share the total the first ones came
+to, each at a little under half its own rate now. The balance model's harm mode
 (`Tools/Balance -- --harm`) has their rates.
 
 ## How to read it
@@ -145,6 +148,13 @@ decree.
    and the council lets the petition lapse, the sick keep working and the ailment reaches one more person than it would.
    Adds weight to petitions. *Prevent:* yes: heed the petition. *Rate:* only while such an ailment runs; one more case.
    *Seen:* the coughing colonist at the shared table, the next one sneezing a day later, the petitioner's line.
+   *Built (harm, part 5, 7 November 2026):* `Harm/Carriers.cs`, from the petition's lapse in the decrees' daily look:
+   only a petition to rest when ill or for a quarantine, and only while one of the colony up and about (not in bed) has
+   a catching ailment that shows (the physician's list: a head cold, a chest cold, a stomach bug, pinkeye; tuberculosis,
+   cholera, measles, the flu). The sick one works on a day, coughing now and then at whoever is near, and whoever of the
+   colony spent the most hours within four cells of them catches the same a day after, by the guest's cough's rule: that
+   is the one more case. Got well first, it passes nothing. The decree page names it under the petition; the petitioner
+   says a line as it lapses. With the everyday ailments, petitions and "Systems talk to each other".
 
 **Pick:** 1 and 2. Both make the council's orders cost something physical, are seen every day the decree holds, and the
 player controls them entirely.
@@ -278,6 +288,12 @@ crops, never people (DESIGN.md, Layer 5); the neighbors' events say "none ends i
    unless the colony's own doctor (Medicine 8 or more) looked it over first. *Prevent:* yes: the doctor's look, or
    declining. *Rate:* one visit in 8. *Seen:* the healer going round with the cup, a few queasy the next morning.
    *Ages:* a bitter tonic before industry; a shot after, whose bad batch is a sore arm and a day's fever.
+   *Built (harm, part 5, 7 November 2026):* `Harm/Carriers.cs`, from the travelling healer's paid doses (the inoculation
+   event, on the map or all at once): one paid visit in eight the batch is bad, and the colony's best doctor at home
+   with Medicine 8 or more looks it over first, says so, and nothing comes of it. Bad, one in three of those dosed is
+   the worse for it ten to sixteen hours later: the stomach bug from a bitter tonic before industry (with the everyday
+   ailments), a sore arm from a shot after (a bruise of 1 to 2 where it went in, no message). "A day's fever" is left
+   out: the game has no fever that short. Named under paying.
 
 **Pick:** 1, and 2 second. The champion's bout reuses the outsiders' sparring code as it stands; the gambler gives the
 neighbors' events their first fight, and a cheap one.
@@ -295,6 +311,16 @@ colony meets.
    quarantine decree or the event's "shut the gate" answer; one person meeting the trader. *Rate:* the plague event's
    own extra chance, now given a carrier. *Seen:* a coughing trader, the colonist who haggled with them falling ill.
    *Ages:* the same everywhere; a spacer trader may come masked.
+   *Built (harm, part 5, 7 November 2026):* `Harm/Carriers.cs`, on the harm book's hour: a group of visitors or traders
+   at a home (the game's own, or Rimfolk's visitors) of a people a plague lies over (its own world event's people, or
+   one of their towns within twenty tiles of it, as sickness brought home reads it) carries it one time in four, the
+   trader by preference; whoever of the colony spent the most hours near them (an hour or more within four cells: the
+   one who traded) falls ill two or three days after they go, with the game's flu or, one time in four, its plague. The
+   world event's own "shut the gate" answer or the quarantine decree keeps them out; "one person meeting the trader" is
+   the closest-one rule itself. While the carriers are on, the plague's raised flu and plague come a little less often to
+   make room (1.5 to 1.35, 2.5 to 2.3; as before with them off), so the total stays. Named under keeping the gate open. The carrier only coughs (lines, no hediff: the
+   game's traders are left as they are); the spacer's mask is left out. With world events and "Systems talk to each
+   other".
 2. **Hungry hands in the fields.** In a famine or after locusts, strangers come by night for the fields or the stores;
    a colonist who meets them may be struck before they flee. *Prevent:* yes: a night watch, lights, alms or famine bread
    given out (fed, they don't come). *Rate:* once or twice in a famine. *Seen:* figures in the field at night, a
@@ -328,6 +354,11 @@ them can take a fever that stays theirs (`Camps/CampStory.cs`); a war party figh
    everyday ailment, or the game's flu). *Prevent:* yes: send the colony's doctor (an ask already), keep away while
    they're sick. *Rate:* one camp sickness in 5 passes to one colonist. *Seen:* colonists at the fire, a cough two days
    later.
+   *Built (harm, part 5, 7 November 2026):* `Harm/Carriers.cs`, from the camp's own trouble (one of theirs lying ill
+   with the flu, `Camps/CampStory.cs`): one camp sickness in five is catching for its first three days; whoever of the
+   colony sat longest by them (an hour or more within four cells) catches a chest cold, or the game's flu one time in
+   four (a child a head cold), a day after. The colony's doctor seeing to them (the camp's own ask, whose sheet says so
+   now) stops it, as does keeping away. With the camps.
 3. **The drovers' bull.** A colonist who wanders among the drovers' herd or a camp's pack beasts can be charged by a
    startled animal (a bruise, rarely a crack). *Prevent:* yes: children and the curious kept from the herd. *Rate:* rare,
    one camp stay in 15 with a herd. *Seen:* the herd, a charge, the drover's dog barking.
@@ -396,6 +427,10 @@ danger and leave if hurt.
    limping to the gate. *Ages:* by the people's own means: a runner, a rider, a held-up delivery man.
 2. **A courier who arrives sick.** During a regional sickness, a courier may bring it (as 2.3.1, the same carrier rule).
    *Prevent:* yes: the quarantine decree; the goods left at the gate. *Rate:* as 2.3.1. *Seen:* a coughing courier.
+   *Built (harm, part 5, 7 November 2026):* `Harm/Carriers.cs`, as a courier's party comes onto the map: a courier of a
+   people under a plague, one in four, the same carrier rule. The quarantine decree turns them back; the goods left at
+   the gate are a courier unloading there with nobody of the colony near for an hour. No choice brings it, so no sheet
+   names it. With the couriers, world events and "Systems talk to each other".
 
 **Pick:** 1. The harm already exists in text; this moves it onto the map, which is what the rule asks.
 
@@ -475,6 +510,11 @@ ankle) and the game's own caravan dangers apply. A loved one's caravan in troubl
 2. **Waiting at the gate in the cold.** When someone isn't ready and the others wait at the gate, a long wait in a hard
    frost gives frostnip or chilblains. *Prevent:* yes: answer the letter (go without them, or put it off), warm clothes.
    *Rate:* the cold ailments' rate for hours outdoors. *Seen:* the travelers stamping at the gate.
+   *Built (harm, part 5, 7 November 2026):* `Harm/ColdHurts.cs`: a traveller waiting at the gate once the hour has
+   passed and someone isn't ready (the letter asked, or they waited an hour), outdoors in a hard frost (-5 °C or colder)
+   and colder than comfortable with what they wear: every two such hours, one chance in 20 of frostnip (in bitter cold)
+   or chilblains. "The cold ailments' rate" is read as the frostnip's own, doubled for standing still. The asking letter
+   says so in a frost. With journeys, the everyday ailments and "Systems talk to each other".
 
 **Pick:** 1. Journeys happen off the map; the homecoming is where their harm can honestly show.
 
@@ -496,9 +536,21 @@ the end of a long life (`Health/LastSeason.cs`).
    (tuberculosis, cholera) that can pass to whoever sleeps in the same room. *Prevent:* yes: a separate ward, the
    quarantine decree, turning them away. *Rate:* one patient in 20. *Seen:* the patient's cough, the doctor's word, a
    case in the ward days later.
+   *Built (harm, part 5, 7 November 2026):* `Harm/Carriers.cs` and `Health/HospitalPatient.cs`: one patient in 20 comes
+   with tuberculosis (two in three) or cholera besides, at its first stage, named in the letter in place of the small
+   thing ("a deep cough that sounds like tuberculosis") and on every answer's sheet. A night asleep in the same room
+   (three hours) passes it to one of the colony one time in four, less under the quarantine decree, showing a day or two
+   later. Turning them away isn't one of the event's answers (they stay their hours whatever it is), so a ward or a room
+   of their own is the prevention. The hospital's rule that patients never bring anything that could kill them gives way
+   for this one in 20. With the hospital's name and the serious illnesses.
 3. **Small things that grow.** Worms from raw meat left untended for long become the game's gut worms; insect bites in a
    malaria country can carry the game's malaria. *Prevent:* yes: cooked meat, a tending, nets and sleeves. *Rate:* one in
    20 left untended. *Seen:* the ailment's turn named in the message.
+   *Built (harm, part 5, 7 November 2026):* `Harm/Untended.cs`, on each colonist's hour: worms untended three days
+   become the game's gut worms one time in 20, in their place; insect bites untended a day in a malaria country (a land
+   the game's malaria comes to) carry the game's malaria one time in 20, half with sleeves (clothes over the arms), half
+   for one who sleeps indoors (the "nets"). Each is looked at in the one hour it turns that old, so nothing needs
+   remembering. With the everyday ailments.
 
 **Pick:** 1. It turns the commonest everyday ailments into a choice about work, which is where the player feels them.
 
@@ -522,6 +574,13 @@ heart's safety rule: it never patches mood, the mental breaker or the game's bre
 3. **A restless walk at dusk.** Someone with the restless feeling at its height walks out alone at dusk, and beyond the
    walls at night the game's predators may find them. *Prevent:* partly: a friend goes along (the walk becomes company);
    walls. *Rate:* rare, once a season for a restless colonist. *Seen:* the walk out past the gate, sometimes a predator.
+   *Built (harm, part 5, 7 November 2026):* `Harm/NightWalks.cs` and the job `Rimfolk_RestlessWalk`: "at its height" is
+   restlessness as their strongest feeling at 1.6 times its threshold; at dusk (five to eight) in their free time, one
+   dusk in 15 (about once a season), they walk out to the edge of the colony's ground (one of the night watch's
+   look-outs) and stay an hour as night falls. A friend up and free beside them (opinion 20 or more both ways) goes
+   along. Alone and outside the walls (the map's edge reachable without a closed door), a hungry wild predator in reach
+   that would take them as prey comes one walk in four, by the game's own hunt, which stops once they are down; the game
+   warns of it. Walls round the colony's ground keep the look-outs inside them. With the heart.
 
 **Pick:** 1. It gives strain a visible edge without touching the mood number, and the factor is already the one the
 drink before work uses.
@@ -655,6 +714,11 @@ fear faced, the new leg, getting clean).
    preventable. *Rate:* once a season. *Seen:* whittling at the fire, a nick, a laugh.
 3. **Weather lovers.** Stands in the rain, or loves the snow: the chest cold or frostnip a third likelier. *Prevent:*
    partly: a coat or a hood. *Rate:* the ailment's rate times 1.33. *Seen:* standing in the rain, face up.
+   *Built (harm, part 5, 7 November 2026):* `Harm/ColdHurts.cs`: one who stands in the rain (the quirk) out two hours of
+   a day in it gets a chest cold one day in 150 (a child a head cold); one who loves the snow, out three hours of a day
+   in falling snow in bitter cold, frostnip one in 75. "A third likelier" is read against the chest cold's share of the
+   catching clock and the frostnip's 0.04. A coat (a shell over the body) or a hood halves it. With the quirks, the
+   everyday ailments and "Systems talk to each other".
 4. **Walks the fields at dawn.** In a land with predators, the dawn walk can meet one. *Prevent:* partly: walls round
    the fields. *Rate:* rare, the game's own predators. *Seen:* the walk, the predator at the field's edge.
 
@@ -668,6 +732,13 @@ fear faced, the new leg, getting clean).
    frostnip, or a stumble. *Prevent:* yes: a bolted door at night (an on-map answer already), a roommate who wakes them.
    *Rate:* one nightmare in 15. *Seen:* the sleepwalker crossing the yard in their nightclothes, someone leading them
    back.
+   *Built (harm, part 5, 7 November 2026):* `Harm/NightWalks.cs` and the job `Rimfolk_Sleepwalk`: Rimfolk's nightmares
+   leave someone shaken on waking, so the walk comes on a later night while they are still shaken: one nightmare in 15,
+   in the small hours (eleven to four) asleep in bed. The door bolted for the night (the sleepwalker's own answer) keeps
+   them in, with a line at the door; anyone else asleep in the bedroom wakes and settles them. Otherwise they walk out
+   to the yard, stand a while and come to: frostnip when it is freezing out and they are colder than comfortable, else a
+   stumble half the time (a bruise of 1 to 3, the mildest); whoever of the colony is up and near leads them back, and
+   they go back to bed. With the dreams.
 2. **The soldier's nightmare.** Someone with a soldier's or outlaw's past, woken from a nightmare of battle, may strike
    out at whoever woke them. *Prevent:* yes: a bedroom of their own. *Rate:* one such nightmare in 20 in a shared room.
    *Seen:* the shout in the night, the roommate holding a cheek.
@@ -727,6 +798,11 @@ night watch on the walls is an on-map answer that tires the watcher (`Council_Dl
 2. **The night watch in the cold.** A watcher on the walls in a hard frost without warm clothes gets frostnip or
    chilblains, and a lone watcher outside the walls may draw a predator. *Prevent:* yes: warm clothes, a heated guard
    post, two on watch. *Rate:* the cold ailments' rate. *Seen:* the watcher stamping on the wall, a cough in the morning.
+   *Built (harm, part 5, 7 November 2026):* `Harm/ColdHurts.cs`, on the night watch on the walls (the answers whose
+   watch is kept on the move): the gate's cold rule, half with two or more on watch (a heated guard post is a look-out
+   warm enough). A lone watcher at a look-out outside the walls with a hungry wild predator in reach that would take
+   them as prey draws it one watch in six, by the game's own hunt, which stops once they are down. Named under the
+   watch's answer in a frost. With answers on the map, the everyday ailments and "Systems talk to each other".
 
 **Pick:** 2. It is cheap (the watch and the ailments exist) and preventable by plain care.
 
@@ -767,6 +843,12 @@ ailments (chilblains, frostnip, sunburn).
    Adds honest uncertainty to a helper that today is never wrong. *Prevent:* not preventable. *Rate:* as often as the
    game's own cold snaps beat the reckoning, a few times a year in cold lands. *Seen:* frosted plants in a field the
    zone said would pay.
+   *Built (harm, part 5, 7 November 2026, outside the budget):* `Fields/FieldWeather.cs`. It hurts nobody, so it is no
+   kind of the budget and has no part in harm's setting; it sits under fields by the weather. A field set to sow by the
+   weather whose outlook said a crop would pay (within a season) and whose crop is frosted now, the air below the
+   plants' own cold limit where the last forecast for this hour had it at the limit and the frost margin above, says so
+   for five days in its note: the forecast missed, on that date, a frost of that much, colder than the land's reckoning.
+   The game's own frost takes the plants, as it always did; nothing new is lost. The note isn't saved.
 
 Its counterpart is not a harm: with no warm clothes in the colony, the automatic frost harvest waits for daylight and the
 suggestion says why, so the default stays safe while the rest of the year gets sharper.
@@ -867,9 +949,20 @@ Vanilla Fishing Expanded in wishes.
 2. **A slip into cold water.** With Vanilla Fishing Expanded, fishing below freezing can end with a slip into the water:
    soaked, and the game's own hypothermia if not warmed. *Prevent:* yes: no fishing in a hard frost. *Rate:* one in 200
    hours of cold fishing. *Seen:* the splash, the dash for the fire.
+   *Built (harm, part 5, 7 November 2026):* `Harm/ColdHurts.cs`, with the game's own fishing (Odyssey) or Vanilla
+   Fishing Expanded's (the fishing work or a fishing job, by name): an hour fishing by the water below freezing, one in
+   200, twice in a hard frost: the game's own hypothermia at its shivering stage, which goes once they are warm, and
+   they make for the nearest burning fire or heater. "Soaked" is that hypothermia: the game has no wet hediff. The
+   splash and a few words; no message.
 3. **Dirty water.** With Dubs Bad Hygiene, drinking from untreated water makes the stomach bug likelier, only when that
    mod's own illnesses are off (so nothing is counted twice). *Prevent:* yes: a water treatment. *Rate:* as a food
    poisoning. *Seen:* the bug, the message naming the water.
+   *Built (harm, part 5, 7 November 2026):* `Harm/Untended.cs`, read by name: Dubs Bad Hygiene's thirst need; a drink is
+   the need rising by 0.15 within an hour; untreated is a home with none of the mod's buildings named for water
+   treatment or filtering. One such day in 600 brings the stomach bug (a food poisoning's chance read once a day rather
+   than for each drink, so it doesn't outgrow the other kinds). The mod's own illnesses are read from its settings by
+   name (any named for diseases or contamination); when none can be read they count as on and dirty water stays off, so
+   nothing is counted twice. Nothing at all without the mod, or with its thirst off (its own default).
 
 **Pick:** 1. Mounts are wished for already, and the first rides are the natural place for a small risk.
 

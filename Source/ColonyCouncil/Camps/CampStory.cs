@@ -163,6 +163,8 @@ namespace ColonyCouncil
                 return false;
             }
             sick = who;
+            // Harm, part 5: one camp sickness in five is catching at their fire (Harm/Carriers.cs).
+            Carriers.CampFell(who);
             return true;
         }
 
@@ -270,6 +272,7 @@ namespace ColonyCouncil
             if (sick == null || sick.Dead || ctx?.a == null) return;
             sheet.Play("CC_Impact_TendAtCamp".Translate(ctx.a.LabelShort, sick.LabelShort).Resolve(), "CC_Impact_TendBrief".Translate(sick.LabelShort).Resolve());
             sheet.Goods(-1, "CC_Dilemma_Medicine".Translate().Resolve(), 1, "medicine");
+            Carriers.DescribeCampTend(sheet, sick);
         }
 
         public override string Unavailable(DilemmaContext ctx)
