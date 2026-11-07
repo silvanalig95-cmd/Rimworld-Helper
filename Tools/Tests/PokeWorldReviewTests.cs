@@ -81,7 +81,7 @@ public static class PokeWorldReviewTests
 
         // The Almanac counts PokéWorld Updated's eight generations.
         string alm = File.ReadAllText(Path.Combine(root, "Defs", "AlmanacArticleDefs", "Almanac_Mods_PokeWorld.xml"));
-        C(alm.Contains("eight switches, one for each generation (Gen. 1 to 8") && !alm.Contains("Gen. 1 to 4"), "the Almanac's generation switches are eight");
+        C(alm.Contains("eight switches, one for each generation (Gen. 1 to 8") && !alm.Contains("four switches") && alm.Contains("switch off all eight"), "the Almanac's generation switches are eight");
         C(alm.Contains("898 of eight generations"), "and its species 898");
         return n;
     }
