@@ -6,7 +6,11 @@ rem Use it on a copy downloaded from GitHub (Code > Download ZIP, then unzip it 
 rem It finds RimWorld by itself, on any computer: through Steam (its own folder and every Steam library it lists, on
 rem any drive), the game's entry among the installed programs (Steam or GOG), and the usual game folders on every
 rem drive. With more than one RimWorld it asks which one; with none found it asks for the folder. You can also drag
-rem the RimWorld folder (or its Mods folder) onto this file.
+rem the RimWorld folder (or its Mods folder) onto this file. A folder counts as RimWorld's when it has the game's program
+rem (RimWorld.exe, or RimWorldWin64.exe before 1.7) or the game's own Data\Core folder.
+rem Each computer remembers where it installed last (in the registry: HKEY_CURRENT_USER\Software\Rimfolk, ModsFolder),
+rem so a new download installs to the same place without looking. Dropping another folder on this file changes it;
+rem to forget it, run: reg delete "HKCU\Software\Rimfolk" /f
 rem It removes the old version from the mod folder first, then copies the mod's files over: About, 1.6, Defs,
 rem Languages, Textures (and 1.7, Patches, Sounds or LoadFolders.xml if there are any). Source code, tools and notes
 rem stay behind. Your mod settings and saves are kept elsewhere by RimWorld and are not touched.
@@ -27,12 +31,15 @@ title Install Rimfolk
 echo Rimfolk installer
 echo.
 
-rem ---- Where RimWorld's Mods folder is: set above, dropped on this file, found, or asked for. ----
+rem ---- Where RimWorld's Mods folder is: set above, dropped on this file, remembered, found, or asked for. ----
+set "REMEMBERED="
 if defined ELEVATED set "MODS=%~1"
 if defined MODS goto found
 if not "%~1"=="" call :given "%~1"
 if defined MODS goto found
 if not "%~1"=="" echo "%~1" is not a RimWorld folder or its Mods folder, so the installer looks for RimWorld itself.
+call :remembered
+if defined MODS goto found
 echo Looking for RimWorld...
 set "COUNT=0"
 call :findSteam
@@ -58,7 +65,7 @@ goto pick
 
 :askFolder
 echo RimWorld wasn't found on this computer.
-echo Paste the address of your RimWorld folder (the one with RimWorldWin64.exe in it) or of its Mods folder, then
+echo Paste the address of your RimWorld folder (the one with RimWorld.exe in it) or of its Mods folder, then
 echo press Enter. In Steam: right-click RimWorld, Manage, Browse local files, then copy the address bar of that window.
 :askAgain
 set "GIVEN="
@@ -68,7 +75,7 @@ set "GIVEN=%GIVEN:"=%"
 if not defined GIVEN goto stopped
 call :given "%GIVEN%"
 if defined MODS goto found
-echo There is no RimWorldWin64.exe in that folder, and it isn't RimWorld's Mods folder. Please try again.
+echo That isn't RimWorld's folder (no RimWorld.exe or Data\Core in it) or its Mods folder. Please try again.
 goto askAgain
 
 :found
@@ -77,6 +84,7 @@ for %%I in ("%MODS%") do set "MODS=%%~fI"
 set "TARGET=%MODS%\%FOLDER%"
 for %%I in ("%SOURCE%\..") do set "SOURCEPARENT=%%~fI"
 
+if defined REMEMBERED echo This computer installed Rimfolk here last time. To use another RimWorld, drag its folder onto this file.
 echo   from: "%SOURCE%"
 echo   to:   "%TARGET%"
 echo.
@@ -92,7 +100,10 @@ set "OTHER="
 for /f "delims=" %%D in ('dir /b /ad "%MODS%" 2^>nul') do call :otherCopy "%MODS%\%%D"
 if defined OTHER goto otherCopyFound
 
-tasklist /fi "imagename eq RimWorldWin64.exe" 2>nul | find /i "RimWorldWin64.exe" >nul
+rem ---- Remember this Mods folder on this computer, for the next download. ----
+reg add "HKCU\Software\Rimfolk" /v ModsFolder /t REG_SZ /d "%MODS%" /f >nul 2>nul
+
+tasklist /fi "imagename eq RimWorld*" 2>nul | find /i "RimWorld" >nul
 if not errorlevel 1 goto gameRunning
 
 rem ---- Program Files may need administrator rights: ask for them if a test file can't be written. ----
@@ -174,12 +185,13 @@ for %%P in ("Program Files (x86)\Steam" "Program Files\Steam" "Steam" "SteamLibr
 for %%P in ("GOG Games\RimWorld" "Program Files (x86)\GOG Galaxy\Games\RimWorld" "Program Files\GOG Galaxy\Games\RimWorld" "Games\RimWorld" "RimWorld") do call :add "%1:\%%~P"
 exit /b 0
 
-rem A RimWorld folder (it has RimWorldWin64.exe) joins the list once, however it was found.
+rem A RimWorld folder joins the list once, however it was found.
 :add
 set "P=%~1"
 if not defined P exit /b 0
 if "%P:~-1%"=="\" set "P=%P:~0,-1%"
-if not exist "%P%\RimWorldWin64.exe" exit /b 0
+call :isRimWorld "%P%"
+if not defined RW exit /b 0
 for %%I in ("%P%") do set "P=%%~fI"
 set "SAME="
 for /l %%N in (1,1,%COUNT%) do call :sameAs %%N
@@ -193,17 +205,38 @@ call set "C=%%CAND%1%%"
 if /i "%C%"=="%P%" set "SAME=1"
 exit /b 0
 
-rem A folder dropped on this file or typed in: RimWorld's own folder or its Mods folder (or RimWorldWin64.exe itself).
+rem A folder dropped on this file or typed in: RimWorld's own folder or its Mods folder (or the game's program itself).
 :given
 set "G=%~1"
 if not defined G exit /b 0
-if /i "%~nx1"=="RimWorldWin64.exe" if exist "%~1" set "G=%~dp1"
+if /i "%~x1"==".exe" if exist "%~1" set "G=%~dp1"
 if "%G:~-1%"=="\" set "G=%G:~0,-1%"
-if not exist "%G%\RimWorldWin64.exe" goto givenMods
+call :isRimWorld "%G%"
+if not defined RW goto givenMods
 set "MODS=%G%\Mods"
 exit /b 0
 :givenMods
-if exist "%G%\..\RimWorldWin64.exe" if exist "%G%\" set "MODS=%G%"
+call :isRimWorld "%G%\.."
+if defined RW if exist "%G%\" set "MODS=%G%"
+exit /b 0
+
+rem RimWorld's own folder: the game's program (RimWorld.exe, or RimWorldWin64.exe before 1.7) or its Data\Core.
+:isRimWorld
+set "RW="
+if exist "%~1\RimWorld*.exe" set "RW=1"
+if exist "%~1\Data\Core\About\About.xml" set "RW=1"
+exit /b 0
+
+rem The Mods folder this computer installed into last time, if it is still RimWorld's.
+:remembered
+set "R="
+for /f "tokens=2,*" %%A in ('reg query "HKCU\Software\Rimfolk" /v ModsFolder 2^>nul ^| find "REG_SZ"') do set "R=%%B"
+if not defined R exit /b 0
+if not exist "%R%\" exit /b 0
+call :isRimWorld "%R%\.."
+if not defined RW exit /b 0
+set "MODS=%R%"
+set "REMEMBERED=1"
 exit /b 0
 
 rem Another folder in Mods holding Rimfolk (its package id in About.xml): two copies would clash.
@@ -248,7 +281,7 @@ goto fail
 echo RimWorld's Mods folder wasn't found at:
 echo   "%MODS%"
 echo If MODS is set at the top of this file, correct it or empty it to let the installer find RimWorld.
-echo Otherwise make a folder named Mods next to RimWorldWin64.exe, and try again.
+echo Otherwise make a folder named Mods next to RimWorld.exe, and try again.
 goto fail
 
 :badFolder

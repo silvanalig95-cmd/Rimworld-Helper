@@ -6,6 +6,15 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- The installer, second pass (7 November 2026, the player's report: RimWorld at `E:\Programme\Steam\steamapps\common\RimWorld`
+  wasn't found, typed or looked for; "it's RimWorld.exe not 64"). 1.7's program is `RimWorld.exe`; the installer knew
+  only `RimWorldWin64.exe`, so every check failed. A folder now counts as RimWorld's with `RimWorld*.exe` or
+  `Data\Core\About\About.xml` (`:isRimWorld`); the running-game check is `imagename eq RimWorld*`; any `.exe` dropped
+  stands for its folder. New: each computer remembers its Mods folder (`HKCU\Software\Rimfolk`, `ModsFolder`, written
+  once the safety checks pass, before asking for rights), used first unless `MODS` is set or a folder is dropped (which
+  replaces it), and only while it is still RimWorld's; else the search as before. Wine, 21 cases (the 1.7 layout, the
+  player's own path through Steam's registry and typed, `Data\Core` alone, the old program name, the memory used, gone
+  and replaced).
 - 0.138.0, new peoples, release B: peoples that arise during play (7 November 2026). The player's words: "they should also be able to arise during play so that i will see new factions in
   an existing run", and "i'd be interested in some non-hostile faction variety" (an explicit request: no proposal
   round). `docs/design/peoples.md` "What was built (release B)" (the four causes in a table, the pace, the making, the

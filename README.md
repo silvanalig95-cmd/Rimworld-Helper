@@ -37,8 +37,11 @@ newest round's highlights (the setting "A letter after each update" turns it off
    it asks for the folder (or drag the RimWorld folder onto the file). It removes the old version from that
    RimWorld's `Mods\Rimworld Helper` and copies the mod's files there (only what the game needs: `About`, `1.6`,
    `Defs`, `Languages`, `Patches`, `Textures`). If Windows asks for administrator rights, say yes. It stops without
-   changing anything if another copy of Rimfolk is already in `Mods`. To always install into one place, open the
-   file in Notepad and set `MODS` at the top.
+   changing anything if another copy of Rimfolk is already in `Mods`. RimWorld's folder is the one with `RimWorld.exe`
+   (`RimWorldWin64.exe` before 1.7) or the game's `Data\Core` in it. Each computer remembers where it installed last
+   (in the registry, `HKEY_CURRENT_USER\Software\Rimfolk`), so the next download goes to the same place without
+   looking; drag another RimWorld folder onto the file to change it. To always install into one place, open the file
+   in Notepad and set `MODS` at the top.
 3. Start RimWorld, open **Mods**, enable **Rimfolk** and restart. Repeat steps 1 and 2 to update.
 
 On a Mac, move the extracted folder into `Mods` yourself (right-click RimWorld.app → Show Package Contents →
