@@ -123,6 +123,7 @@
   <CC_Found_Abandoning>{MOTHER} will be abandoned once everyone who goes has left it.</CC_Found_Abandoning>
   <CC_Found_OldGone>{MOTHER} was left behind, abandoned as the game abandons a home.</CC_Found_OldGone>
   <CC_Found_SeatNotYet>The seat stays where it is for now: {WHY}</CC_Found_SeatNotYet>
+  <CC_Found_LetterTitled>The titles {NAMES} hold of {EMPIRE} go with them to {PLACE}, and so does the honor of them.</CC_Found_LetterTitled>
   <CC_Found_NewcomersComing>The newcomers called are on their way: you'll be asked who they are.</CC_Found_NewcomersComing>
   <CC_Found_History>{PLACE} was founded by {NAMES}, from {MOTHER}.</CC_Found_History>
   <CC_Found_HistoryNewcomers>{PLACE} was founded by newcomers answering the call of {MOTHER}.</CC_Found_HistoryNewcomers>

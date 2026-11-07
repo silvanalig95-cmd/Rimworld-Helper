@@ -512,6 +512,8 @@ namespace ColonyCouncil
                 string text = TextVariants.Vary("CC_Found_LetterText").Translate(name.Named("PLACE"), who.Named("NAMES"), (plan.fromName ?? "?").Named("MOTHER"),
                     Ages.Form(AgeFeature.Party, Ages.Of(map), Ages.Of(map)).word.Named("PARTY")).Resolve();
                 text += " " + OldColonyLine(plan, map, seat);
+                string titled = TitledLine(founders, name);
+                if (titled != null) text += " " + titled;
                 if (plan.makeSeat && plan.keepOld && !seat) text += " " + "CC_Found_SeatNotYet".Translate(ColonySeat.WhyNot(map).Named("WHY")).Resolve();
                 if (plan.newcomers && !plan.newcomersChosen) text += " " + "CC_Found_NewcomersComing".Translate().Resolve();
                 plan.seatMoved = seat;
@@ -530,6 +532,19 @@ namespace ColonyCouncil
             }
             LensModel.Dirty();
             Cards.Dirty();
+        }
+
+        /// <summary>
+        /// The Empire keeps its own titles and honor: founders who hold a title of its keep it at the new colony, in a
+        /// sentence naming them and the people whose titles they are, or null when none of them holds one.
+        /// </summary>
+        internal static string TitledLine(List<Pawn> founders, string place)
+        {
+            if (!ModsConfig.RoyaltyActive || founders == null) return null;
+            var titled = founders.Where(p => p?.royalty?.MostSeniorTitle?.def != null && p.royalty.MostSeniorTitle.faction != null).ToList();
+            if (titled.Count == 0) return null;
+            return "CC_Found_LetterTitled".Translate(Names(titled).Named("NAMES"), place.Named("PLACE"),
+                titled[0].royalty.MostSeniorTitle.faction.Name.Named("EMPIRE")).Resolve();
         }
 
         /// <summary>What becomes of the old colony, in a sentence: kept (with the seat here or not), or abandoned once those who go have left.</summary>

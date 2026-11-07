@@ -457,6 +457,17 @@ namespace ColonyCouncil
             return Key(e, onMap);
         }
 
+        /// <summary>
+        /// The colony's former people who died there, named when the ending's line has no word for them (a town that held
+        /// after the colony's fighters left): one or many, the ending's letter names everyone who died (s.ctx.dead).
+        /// </summary>
+        public override string EndingNote(WorldSituation s, SituationEnding ending, string text)
+        {
+            string dead = s?.ctx?.dead;
+            if (s == null || !s.Has("died") || dead.NullOrEmpty() || text != null && text.Contains(dead)) return null;
+            return "CC_TownLife_RaidDeadNote".Translate(dead.Named("DEAD")).Resolve();
+        }
+
         /// <summary>The ending told: defended, sacked with the colony's fighters there (fell) or without, hurt, held.</summary>
         private static string Key(TownRaidEnd e, bool onMap)
         {

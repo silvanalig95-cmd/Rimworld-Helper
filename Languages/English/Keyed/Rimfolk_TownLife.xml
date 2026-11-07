@@ -17,6 +17,7 @@
   <!-- The fight on the town's map -->
   <CC_TownLife_FightLabel>The fight at {TOWN}</CC_TownLife_FightLabel>
   <CC_TownLife_FightText>The colony's fighters have reached {TOWN}: {NAMES}. {ENEMY} are coming in at the far side of the town, and {PEOPLE} are on their walls.\n\nIt is their town now, and the colony's fighters fight beside its people, not over them. Every raider down or gone, and {TOWN} stands.</CC_TownLife_FightText>
+  <CC_TownLife_RaidDeadNote>The colony's former people there lost {DEAD} in the fighting.</CC_TownLife_RaidDeadNote>
   <CC_TownLife_FightFormers>The colony's former people at {TOWN} are among its defenders: {NAMES}.</CC_TownLife_FightFormers>
   <CC_TownLife_Deed>stood with {TOWN} against its raiders</CC_TownLife_Deed>
   <CC_TownLife_FightLayout>The town is {COLONY} as the colony left it: the same walls, the same doors, the same rooms.</CC_TownLife_FightLayout>

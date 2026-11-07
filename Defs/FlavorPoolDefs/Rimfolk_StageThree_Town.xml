@@ -11,8 +11,9 @@
       spacer: said only while the colony is of that age too), and the facts of an event about their people: what they
       remember of the colony (deed:KIND, deed:good, deed:bad), the ties (tie:pact:trade, tie:pact:defence), their town
       lately (town:lately:colony:formerDied, town:lately:colony:homecoming), a new town of theirs ({NEWTOWN} with
-      region:newtown:theirs), a friend of theirs in the colony ({FRIEND} with their:friend). A tribal town's word is carried
-      by heart, so a line that speaks of writing asks !tribal.
+      region:newtown:theirs), a friend of theirs in the colony ({FRIEND} with their:friend), and the colony's own news
+      lately (colony:founded with {MOTHERCOLONY}, colony:handedover with {HANDEDOVER}, colony:tookback with {TOOKBACK}).
+      A tribal town's word is carried by heart, so a line that speaks of writing asks !tribal.
     - Their answer when the colony asks for the town back (Rimfolk_Pool_NeighbourWrites, takeback): warm, cordial or cool
       when they agree, refusal when they won't; theirLowtech or theirHightech by their ways; letter or call by how it came.
     - The homecoming (Rimfolk_Pool_TownHomecoming): welcome, said by the colonist; back, said by the one come home. The
@@ -95,6 +96,13 @@
         <li>[town:lately:colony:homecoming] One of ours went home to the colony lately, and {TOWN} feels the gap.</li>
         <li>[town:lately:colony:homecoming,former] One of us went home to the colony not long ago, and I find I envy them a little.</li>
         <li>[region:newtown:theirs] Some of our people have gone to settle {NEWTOWN}, and {TOWN} is quieter for it.</li>
+        <!-- The colony's own news lately (colony:founded, colony:handedover, colony:tookback: Colonies/TownAfterFacts.cs) -->
+        <li>[colony:founded] We hear the colony has a new home, founded from {MOTHERCOLONY}. {TOWN} wishes it well.</li>
+        <li>[colony:founded,former] A new home founded from {MOTHERCOLONY}, I hear. May its first season be an easy one.</li>
+        <li>[colony:handedover] We hear {HANDEDOVER} is a town of its own now, as {TOWN} is. Its people will find their feet, as we did.</li>
+        <li>[colony:handedover,former] So the colony has handed {HANDEDOVER} over too. I hope its people do as well by it as we have tried to do by {TOWN}.</li>
+        <li>[colony:tookback] We hear {TOOKBACK} has gone back to the colony. There was talk of nothing else here for days.</li>
+        <li>[colony:tookback,former] {TOOKBACK} is the colony's again, I hear. I will not pretend it did not set us all thinking.</li>
         <!-- Any head, any time -->
         <li>Remember us to anyone at {COLONY} who still asks after {TOWN}.</li>
         <li>If the colony is ever short of something we have, ask, and we will see what can be spared.</li>

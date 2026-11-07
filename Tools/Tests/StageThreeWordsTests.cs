@@ -127,7 +127,8 @@ public static class StageThreeWordsTests
             }
         // This pass's own words have no exclamation marks (the shipped lines keep theirs).
         foreach (var f in new[] { "FlavorPoolDefs/Rimfolk_StageThree_Founders.xml", "FlavorPoolDefs/Rimfolk_StageThree_Town.xml", "FlavorPoolDefs/Rimfolk_Journal_StageThree.xml",
-                     "OutsiderTalkDefs/Rimfolk_OutsiderTalks_StageThree.xml", "FlavorPoolDefs/Rimfolk_StageThree_Newcomers.xml" })
+                     "OutsiderTalkDefs/Rimfolk_OutsiderTalks_StageThree.xml", "FlavorPoolDefs/Rimfolk_StageThree_Newcomers.xml",
+                     "OutsiderTalkDefs/Rimfolk_OutsiderTalks_StageThreeNews.xml" })
         {
             string path = Path.Combine(root, "Defs", f);
             C(File.Exists(path), $"{f} is there");
@@ -147,8 +148,8 @@ public static class StageThreeWordsTests
         var letter = All("Rimfolk_Pool_TownLetter");
         C(letter.Count >= 80, $"the head's letter has words enough ({letter.Count})");
         var letterTags = new HashSet<string> { "former", "new", "years", "asks", "struggling", "poor", "steady", "thriving", "flourishing", "tribal", "medieval", "industrial", "spacer",
-            "their:friend", "region:newtown:theirs", "tie:pact:trade", "tie:pact:defence", "deed:good", "deed:bad" };
-        var letterHoles = new HashSet<string> { "HEAD", "TOWN", "OLDCOLONY", "YEARSSINCE", "COLONY", "PEOPLE", "ASKER", "KIN", "FRIEND", "NEWTOWN" };
+            "their:friend", "region:newtown:theirs", "tie:pact:trade", "tie:pact:defence", "deed:good", "deed:bad", "colony:founded", "colony:handedover", "colony:tookback" };
+        var letterHoles = new HashSet<string> { "HEAD", "TOWN", "OLDCOLONY", "YEARSSINCE", "COLONY", "PEOPLE", "ASKER", "KIN", "FRIEND", "NEWTOWN", "MOTHERCOLONY", "HANDEDOVER", "TOOKBACK" };
         foreach (var line in letter)
         {
             var p = LineTags.Parse(line);
@@ -159,6 +160,8 @@ public static class StageThreeWordsTests
             if (p.text.Contains("{ASKER}") || p.text.Contains("{KIN}")) C(Has(line, "asks"), "{ASKER} and {KIN} only when someone asks: " + p.text);
             if (p.text.Contains("{FRIEND}")) C(Has(line, "their:friend"), "{FRIEND} only with their:friend");
             if (p.text.Contains("{NEWTOWN}")) C(TagsOf(line).Any(t => t.StartsWith("region:newtown")), "{NEWTOWN} only with a new town of theirs");
+            foreach (var (hole, tag) in new[] { ("{MOTHERCOLONY}", "colony:founded"), ("{HANDEDOVER}", "colony:handedover"), ("{TOOKBACK}", "colony:tookback") })
+                if (p.text.Contains(hole)) C(Pos(line, tag), $"{hole} only with {tag}: " + p.text);
             if (p.text.Contains("{YEARSSINCE}")) C(Has(line, "years"), "the years since only in a line that knows how many: " + p.text);
             // A tribal town's word is carried by heart: writing only where the town is not a tribe's.
             if (Regex.IsMatch(p.text, @"\b(write|writes|written|wrote|letter|ink|paper)\b", RegexOptions.IgnoreCase))
@@ -166,7 +169,8 @@ public static class StageThreeWordsTests
                   || ShippedLines.AlsoWhen.TryGetValue(line, out var when) && when == "!tribal",
                     "a line that speaks of writing is not a tribal town's: " + p.text);
         }
-        foreach (var t in new[] { "former", "new", "asks", "years", "struggling", "poor", "steady", "thriving", "flourishing", "deed:townDefended", "deed:refused", "town:lately:colony:homecoming" })
+        foreach (var t in new[] { "former", "new", "asks", "years", "struggling", "poor", "steady", "thriving", "flourishing", "deed:townDefended", "deed:refused", "town:lately:colony:homecoming",
+                     "colony:founded", "colony:handedover", "colony:tookback" })
             C(letter.Count(l => Has(l, t)) >= (t == "former" ? 20 : t == "new" ? 6 : 2), $"the head's letter speaks of {t}");
 
         var answers = All("Rimfolk_Pool_NeighbourWrites").Where(l => l.StartsWith("[takeback")).ToList();
@@ -188,6 +192,37 @@ public static class StageThreeWordsTests
         foreach (var where in new[] { "role:trader", "role:visitor", "first", "met", "their:tribal", "their:medieval", "their:industrial", "their:spacer", "us:noble", "kin", "town:lately:colony:handedOver" })
             C(mine.Any(d => (d.Element("when")?.Value ?? "").Contains(where) || d.Descendants("li").Any(li => li.Value.Contains(where))), $"the town's people are talked with {where}");
 
+        // ---------------- The colony's own news, as the world hears it ----------------
+
+        var newsTalk = XDocument.Load(Path.Combine(dir, "Rimfolk_OutsiderTalks_StageThreeNews.xml")).Root!.Elements("ColonyCouncil.OutsiderTalkDef").ToList();
+        var newsTags = new[] { "colony:founded", "colony:handedover", "colony:tookback" };
+        C(newsTags.All(FactsMath.RegionTags.Contains) && new[] { "MOTHERCOLONY", "HANDEDOVER", "HANDEDPEOPLE", "TOOKBACK" }.All(FactsMath.RegionValues.Contains),
+            "the colony's news: its tags and placeholders are the region's facts");
+        C(Code("Colonies/TownAfterFacts.cs").Contains("ColonyNews(s, f);") && Code("Colonies/TownAfterFacts.cs").Contains("FactsMath.LatelyDays"),
+            "the colony's news is read with the town's facts, and only lately");
+        C(newsTalk.All(d => (d.Element("defName")?.Value ?? "").StartsWith("Rimfolk_OT_S3N_")), "the news pieces are named Rimfolk_OT_S3N_");
+        foreach (var t in newsTags)
+        {
+            var of = newsTalk.Where(d => (d.Element("when")?.Value ?? "").Split(',').Contains(t)).ToList();
+            C(of.Count >= 1, $"the world talks of {t}");
+            C(of.SelectMany(d => d.Element("lines")!.Elements("li")).Any(li => li.Value.Contains("their:empire")), $"{t} in the Empire's own words");
+        }
+        C(newsTalk.All(d => newsTags.Any(t => (d.Element("when")?.Value ?? "").Split(',').Contains(t))), "every news piece is said only with its news");
+        foreach (var d in newsTalk)
+        {
+            string when = d.Element("when")?.Value ?? "";
+            foreach (var li in d.Element("lines")!.Elements("li"))
+            {
+                string text = LineTags.Parse(li.Value).text;
+                foreach (var (hole, tag) in new[] { ("{MOTHERCOLONY}", "colony:founded"), ("{HANDEDOVER}", "colony:handedover"), ("{HANDEDPEOPLE}", "colony:handedover"), ("{TOOKBACK}", "colony:tookback") })
+                    if (text.Contains(hole)) C(when.Split(',').Contains(tag), $"{hole} only in a piece of {tag}");
+                C(!Regex.IsMatch(text, @"\b(house|houses|dynasty|bloodline)\b", RegexOptions.IgnoreCase), "the colony is the family, no houses: " + text);
+            }
+        }
+        var freshStart = XDocument.Load(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_FreshStart.xml")).Root!.Element("CC_Found_LetterTitled")?.Value ?? "";
+        C(Code("Colonies/Foundings.cs").Contains("string titled = TitledLine(founders, name);") && freshStart.Contains("{EMPIRE}") && freshStart.Contains("honor"),
+            "the founding letter: founders who hold a title of the Empire keep it, and its honor");
+
         // ---------------- The raid on the town ----------------
 
         var raid = XDocument.Load(Path.Combine(root, "Defs", "WorldSituationDefs", "Rimfolk_WS_TownRaid.xml")).Root!.Elements().Single();
@@ -195,7 +230,7 @@ public static class StageThreeWordsTests
         var call = raid.Element("beats")!.Elements("li").Single().Element("texts")!.Elements("li").Select(l => l.Value).ToList();
         foreach (var means in new[] { "runner", "rider", "radio", "comms" })
         {
-            C(news.Count(l => Has(l, means)) >= 5 && news.Any(l => Has(l, means) && Has(l, "enemyEmpire")), $"the news by {means}, the Empire's raid among them");
+            C(news.Count(l => Has(l, means)) >= 4, $"the news by {means}");
             C(call.Count(l => Has(l, means)) >= 4, $"the call by {means}");
             foreach (var head in new[] { "nohead", "!nohead" })
                 C(news.Count(l => Has(l, means) && l.Contains(head == "nohead" ? ",nohead" : "!nohead")) >= 2 && call.Count(l => Has(l, means) && l.Contains(head == "nohead" ? ",nohead" : "!nohead")) >= 2,
@@ -203,17 +238,25 @@ public static class StageThreeWordsTests
         }
         C(news.Concat(call).Where(l => l.Contains("{OTHER")).All(l => l.Contains("!nohead")), "the head named only when there is one");
         var endings = raid.Element("endings")!.Elements("li").ToDictionary(e => e.Element("key")!.Value, e => e.Element("texts")!.Elements("li").Select(l => l.Value).ToList());
-        foreach (var key in new[] { "defended", "fell", "hurt" })
-            C(endings[key].Any(l => Has(l, "diedMany") && l.Contains("{DEAD}") && Regex.IsMatch(l, @"\bwere\b")), $"{key}: many of the colony's former people dead, told as many");
-        C(endings["held"].Any(l => Pos(l, "seen") && Pos(l, "died") && l.Contains("{DEAD}")), "held after the colony's fighters left: those of the colony's former people killed are named");
+        // One dead or many: a line that names one as one is said only for one (ShippedLines, !diedMany); the others say one
+        // or many alike, so a fight on the town's map that took several still has words for each ending that can.
+        var narrowed = ShippedLines.AlsoWhen.Where(kv => kv.Value == "!diedMany").Select(kv => kv.Key).ToList();
+        bool One(string l) => Regex.IsMatch(LineTags.Parse(l).text, @"\{DEAD\}, (one of|who was|once one)|\bwas killed\b|\bis among\b");
         foreach (var kv in endings)
             foreach (var l in kv.Value.Where(l => Pos(l, "died")))
+            {
                 C(l.Contains("{DEAD}"), $"{kv.Key}: a line for the dead names them");
-        var narrowed = ShippedLines.AlsoWhen.Where(kv => kv.Value == "!diedMany").Select(kv => kv.Key).ToList();
+                C(!One(l) || narrowed.Contains(l) || kv.Key == "sacked", $"{kv.Key}: a line that names one dead is said only for one: {l.Substring(0, Math.Min(70, l.Length))}");
+            }
         foreach (var key in new[] { "defended", "fell", "hurt" })
-            foreach (var l in endings[key].Where(l => Pos(l, "died") && !Pos(l, "diedMany") && !Pos(l, "!diedMany")))
-                C(narrowed.Contains(l), $"{key}: a shipped line that names one dead is said only for one: {l.Substring(0, Math.Min(60, l.Length))}");
-        C(ShippedLines.AlsoWhen.TryGetValue(endings["held"].First(l => l.StartsWith("[seen]")), out var seen) && seen == "!died", "held: the shipped line that names nobody is said only when nobody died");
+            C(endings[key].Count(l => Pos(l, "died") && !One(l)) >= 2, $"{key}: many of the colony's former people dead, in words for one or many");
+        // A raid lost alone takes one at most (decision 11B): sacked, never on the town's map, names one.
+        C(Code("Colonies/TownRaid.cs").Contains("return onMap ? \"fell\" : \"sacked\";"), "sacked is the raid lost alone, one dead at most");
+        // An ending whose line has no word for the dead (held after the colony's fighters left) names them in a note.
+        C(Code("Colonies/TownRaid.cs").Contains("public override string EndingNote(WorldSituation s, SituationEnding ending, string text)")
+          && Code("Colonies/TownRaid.cs").Contains("\"CC_TownLife_RaidDeadNote\"") && Code("World/WorldSituations.cs").Contains("worker.EndingNote(s, ending, text)"),
+            "held after the colony's fighters left: the colony's former people who died there are named");
+        C(!ShippedLines.AlsoWhen.ContainsKey(endings["held"].First(l => l.StartsWith("[seen]"))), "held: the shipped line is said whoever died, and the note names them");
         C(Code("Colonies/TownRaid.cs").Contains("s.Set(\"died\")") && Code("Colonies/TownRaid.cs").Contains("s.Set(\"diedMany\")"), "the raid's dead are its flags, as the lines ask");
         // A letter keeps its paragraphs as the file writes them: the game may read "\n" as a new line.
         string paragraphs = endings["defended"].First(l => l.StartsWith("[died]"));

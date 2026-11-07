@@ -629,6 +629,8 @@ namespace ColonyCouncil
                         }
                         string label = worker.Line(ending.titles, s) ?? s.Label;
                         string text = worker.Line(ending.texts, s) ?? "";
+                        string note = worker.EndingNote(s, ending, text);
+                        if (!note.NullOrEmpty()) text += (text.Length > 0 ? "\n\n" : "") + note;
                         if (s.deeds.Count > 0) text += "\n\n" + "CC_WS_YourPart".Translate(TextUtil.JoinAnd(s.deeds.Distinct().ToList())).Resolve();
                         var look = new LookTargets(new[] { s.ctx.stranger, s.ctx.other }.Where(p => p != null && p.Spawned));
                         Tell.Letter(NewsKind.World, Importance.Notable, null, label, text, ending.letter ?? WorldSituationDefOf.Council_WorldNews, look);

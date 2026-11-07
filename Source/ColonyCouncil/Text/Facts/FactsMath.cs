@@ -63,8 +63,9 @@ namespace ColonyCouncil
             "town:post", "town:post:warned", "their:post", "region:post",
             // Hamlets (World/Region/HamletFacts.cs): their town is the colony's hamlet (and has sworn fealty), theirs near the colony, another people's.
             "town:hamlet", "town:hamlet:sworn", "their:hamlet", "region:hamlet",
-            // A town the colony was (Colonies/TownAfterFacts.cs): their town is one, the one spoken to was one of the colony's own.
-            "town:former", "them:former",
+            // A town the colony was (Colonies/TownAfterFacts.cs): their town is one, the one spoken to was one of the colony's own;
+            // and the colony's own news of many colonies lately: this home founded from another, a home handed over, a town back.
+            "town:former", "them:former", "colony:founded", "colony:handedover", "colony:tookback",
             // What stands near the colony and what their town has been through (World/Region/RegionNearFacts.cs): a raiders' camp the colony
             // knows of (at war with theirs), a ruin within reach (theirs, another people's, a fight's), what brought a traveller
             // (TravelMath.Reasons), their town on its own people's old walls or another's, a town of theirs given up lately, a world event at their town.
@@ -102,8 +103,9 @@ namespace ColonyCouncil
             // A raiders' camp near (its kind, its people), a ruin near (its old name, its people), what a traveller came for, a town of theirs given up
             // lately, the world event at their town (World/Region/RegionNearFacts.cs).
             "RAIDCAMP", "RAIDCAMPPEOPLE", "RUINNAME", "RUINPEOPLE", "SEEK", "GIVENUP", "TOWNSITUATION",
-            // A town the colony was (Colonies/TownAfterFacts.cs): the colony it was, the years since the hand-over in words.
-            "OLDCOLONY", "YEARSSINCE" };
+            // A town the colony was (Colonies/TownAfterFacts.cs): the colony it was, the years since the hand-over in words; this
+            // home's mother, the colony handed over lately and the people it became, the town come back lately.
+            "OLDCOLONY", "YEARSSINCE", "MOTHERCOLONY", "HANDEDOVER", "HANDEDPEOPLE", "TOOKBACK" };
 
         /// <summary>A new town's newness: current over its first year, the more so in its first weeks.</summary>
         public static float NewTownHeat(float days) => Fresh(days, 60f, 2f);

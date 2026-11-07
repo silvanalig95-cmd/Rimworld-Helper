@@ -93,13 +93,12 @@ namespace ColonyCouncil
             ["Mind, we all take a turn at the dishes here."] = "speaker",
             ["I hope they don't miss the old place too much."] = "speaker",
             // A raid on a town the colony was (Rimfolk_WS_TownRaid.xml): a fight on its map can take more than one of the
-            // colony's former people ([diedMany], said as many now), and one that ended after the colony's fighters left names
-            // them too ([seen,died]).
+            // colony's former people ([diedMany]), and these four name one; the ending's other [died] lines say one or many,
+            // and its note names them under a line with no word for them (SituationWorker_TownRaid.EndingNote).
             ["[died] The raiders of {ENEMY} are gone from {PLACE}, but not without a price: {DEAD}, one of the colony's own once, fell beside the colony's fighters.\\n\\n{FACTION} will remember who came when they called."] = "!diedMany",
             ["[died] The raiders of {ENEMY} broke into {PLACE} while the colony's fighters were still in the fight, and took what they could. {DEAD}, one of the colony's own once, died in the fight.\\n\\nThe town still stands, poorer than it was."] = "!diedMany",
             ["[died,!others] {ENEMY} were beaten back at the gate of {PLACE}. {DEAD}, one of the colony's own once, was killed holding it.\\n\\nThe town has lost goods and fortune."] = "!diedMany",
             ["[died,others] {ENEMY} were beaten back at the gate of {PLACE}. {DEAD}, one of the colony's own once, was killed holding it, and so was {ITEM}.\\n\\nThe town has lost goods and fortune."] = "!diedMany",
-            ["[seen] The colony's fighters left before the end, and {PLACE} held without them. {ENEMY} have gone off after easier towns."] = "!died",
             // The head's letter from a town the colony was (Rimfolk_TownAfter.xml): a tribal town's word is carried by heart
             // (its intro says so), so the lines that speak of writing are another age's.
             ["Write when you can. Letters from {COLONY} are read out at supper, every word of them."] = "!tribal",
