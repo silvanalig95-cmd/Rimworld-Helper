@@ -3175,7 +3175,7 @@ the records on `LedgerFormer` (World/Ledger/LedgerFormers.cs). No schedule slot:
   Placing (`TownLayouts.Place`): the rock gone is cleared (its hewn ground left), the foundations set, the floors, the
   edifices and what lies under them spawned through the game's own `Sketch` (with its placement rules, wiping plants and
   chunks, forcing the ground under a building where it must), the built roofs set; a def or stuff the game no longer has
-  is left out. Then its people (`AtHome`): its notables free in the world at home (their own beds where the layout knows
+  is left out; the roofs the cleared rock had the game mark to fall are unmarked where the colony's walls hold them. Then its people (`AtHome`): its notables free in the world at home (their own beds where the layout knows
   them, else a roofed cell), and the game's own settlement group of that people (`PawnGroupKindDefOf.Settlement`, the
   points the game gives a town less what the notables bring), all under `LordJob_DefendBase` at its middle. On a map of
   another size the layout keeps its place, moved in to fit. Without Rimfolk, deep hooks off, or a town handed over

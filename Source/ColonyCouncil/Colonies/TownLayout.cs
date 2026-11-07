@@ -382,6 +382,16 @@ namespace ColonyCouncil
                         var c = Cell(lx, lz);
                         if (!c.Roofed(map)) map.roofGrid.SetRoof(c, RoofDefOf.RoofConstructed);
                     }
+            // The rock taken away had the game mark the roofs it held to fall; the colony's own walls hold them now, as
+            // they did when it was left, so only a roof nothing holds still falls.
+            try
+            {
+                map.roofCollapseBuffer.CellsMarkedToCollapse.RemoveAll(c => rect.Contains(c) && RoofCollapseUtility.WithinRangeOfRoofHolder(c, map));
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("town after: the roofs the colony's walls hold", e);
+            }
             return rect;
         }
 

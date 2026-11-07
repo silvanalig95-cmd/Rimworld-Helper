@@ -270,6 +270,8 @@ public static class TownAfterTests
             "its people: the game's settlement group under its defend-the-town lord, the notables at home in their own beds");
         C(layout.Contains("b.Faction == Faction.OfPlayer") && layout.Contains("d.building.isNaturalRock") && layout.Contains("b is Frame"),
             "only the colony's own buildings kept: not the land's rock, not a frame");
+        C(layout.Contains("roofCollapseBuffer.CellsMarkedToCollapse.RemoveAll(") && layout.Contains("RoofCollapseUtility.WithinRangeOfRoofHolder(c, map)"),
+            "the rock cleared doesn't bring down roofs the colony's own walls hold (nobody crushed at home)");
         C(!layout.Contains("listerThings.AllThings"), "items, plants and filth are never kept");
         string ho = Code("Colonies/HandOvers.cs");
         int capture = ho.IndexOf("TownLayouts.Capture(home, free)", StringComparison.Ordinal), made = ho.IndexOf("people = HandOverPeoples.Make(", StringComparison.Ordinal);

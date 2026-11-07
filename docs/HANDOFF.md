@@ -76,7 +76,9 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
     6. Save and load at each step: the log for "Could not resolve reference" (a people let go), and a 2a save with a
        town and no layout (the game's base, the rest works).
   - Riskiest: the settlement step's prefix (every settlement map passes one type check; a layout placed during map
-    generation, then the game's later steps, ruins and plants, on top of it); `Sketch` with wipe on a regenerated map
+    generation, then the game's later steps, ruins and plants, on top of it); the rock cleared under a mountain roof
+    (the game marks the roofs it held to fall; `Place` unmarks those the colony's walls hold again, so check a base dug
+    into a mountain for a roof collapse letter); `Sketch` with wipe on a regenerated map
     (fog, interaction cells, affordances; anything refused is simply missing); spawning world pawns into the defend lord
     during map generation; the trader prefix (a notable pawn reused as a caravan's trader, its `wantsToTradeWithColony`
     reset in the day); the take-back's faction made temporary and defeated mid-game with its world pawns' faction set
