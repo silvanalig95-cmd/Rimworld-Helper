@@ -138,7 +138,9 @@ namespace ColonyCouncil
             return rec != null && rec.Standing && rec.end == TownEnd.None && !rec.people.HostileTo(Faction.OfPlayer);
         }
 
-        protected override string GoneEnding(WorldSituation s) => def.Ending("gone") != null && s.ctx.faction != null ? "gone" : WorldSituations.Quietly;
+        /// <summary>The town no longer the people's, or at war with the colony: "gone"; taken back by the colony meanwhile, it ends quietly (the colony's own now).</summary>
+        protected override string GoneEnding(WorldSituation s) =>
+            RecOf(s)?.end == TownEnd.TakenBack || def.Ending("gone") == null || s.ctx.faction == null ? WorldSituations.Quietly : "gone";
 
         // ================= The answer =================
 
@@ -212,8 +214,9 @@ namespace ColonyCouncil
         {
             var rec = RecOf(s);
             string key;
-            if (rec == null || !StillPossible(s)) key = "gone";
-            else if (s.Num("fight") == 1)
+            // No longer theirs: its "gone" letter; the colony's own again, quietly (no ending is the quiet end).
+            if (rec == null || !StillPossible(s)) return def.Ending(GoneEnding(s));
+            if (s.Num("fight") == 1)
             {
                 var e = TownLifeMath.OnMap(s.Num("raidersUp"), s.Num("townUp"), s.Num("colonyUp"), true);
                 key = Finish(s, rec, e == TownRaidEnd.None ? TownRaidEnd.Hurt : e, true);
