@@ -42,6 +42,9 @@ namespace ColonyCouncil
                 if (key == HomesMath.None || h.merges.Any(m => m != null && m.from == key && !m.Merged)) continue;
                 var people = h.PeopleOfLost(key, now);
                 if (people.Count == 0) continue;
+                // Only with another home of people of its own (a gravship's new home, or a colony that moved, is theirs alone).
+                var set = new HashSet<Pawn>(people);
+                if (!Homes.All.Any(m => Homes.People(m).Any(p => !set.Contains(p) && p.DevelopmentalStage.Adult()))) continue;
                 var rec = WorldLedger.ColonyRecord(key);
                 string name = rec?.name;
                 if (name.NullOrEmpty()) name = Find.WorldObjects.AllWorldObjects.FirstOrDefault(o => o != null && o.ID == key)?.LabelCap ?? "?";

@@ -72,6 +72,12 @@ namespace ColonyCouncil
         /// </summary>
         private void NoteMove(HomeTie t, int before, int now)
         {
+            // Past the thirty days a council is kept, where they lived before tells nothing more: let go, so the save is as it was.
+            if (t.prev != HomesMath.None && !ManyColoniesMath.CameFrom(t.prev, t.movedAt, t.prev, now))
+            {
+                t.prev = HomesMath.None;
+                t.movedAt = -1;
+            }
             if (!ManyColoniesMath.Moved(before, t.last)) return;
             if (all.Count <= 1 && !merges.Any(m => m != null && m.from == before && !m.Merged)) return;
             t.prev = before;

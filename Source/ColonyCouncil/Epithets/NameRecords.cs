@@ -99,7 +99,7 @@ namespace ColonyCouncil
             var leader = job.Organizer ?? job.assignments?.FirstAssignedPawn("organizer");
             if (leader != null && leader.IsColonist) CouncilRecords.Add(leader, RitualsLed);
             // The colony where it was held (each colony its own character).
-            ColonyTraits.Tally("ritual", 1f, job.Map);
+            ColonyTraits.Tally("ritual", 1f, job.lord?.Map);
         }
     }
 
