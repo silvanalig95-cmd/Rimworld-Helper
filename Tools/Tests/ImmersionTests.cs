@@ -72,6 +72,9 @@ public static class ImmersionTests
         "Rimfolk_Pool_SchemeCaught", "Rimfolk_Pool_SchemeCaughtGoes", "Rimfolk_Pool_SchemeWhisper", "Rimfolk_Pool_SchemeProvoked",
         // Travellers at the gate, waiting, setting off, and those at home seeing them off (Journeys/JourneyRun.cs).
         "Rimfolk_Pool_JourneySays",
+        // The wild's alphas and bosses (Beasts/): someone seeing a pack's alpha, swearing against a beast, watching a herd go
+        // by, and the song of a legend's fall at the fire.
+        "Rimfolk_Pool_AlphaSighting", "Rimfolk_Pool_BeastOath", "Rimfolk_Pool_HerdPasses", "Rimfolk_Pool_LegendSong",
         // Banishment by the council (Social/Banishment.cs): the council's word face to face and the answer, someone sent away
         // told and answering, their last words as they go.
         "Rimfolk_Pool_BanishWord", "Rimfolk_Pool_BanishWordReply", "Rimfolk_Pool_BanishTell", "Rimfolk_Pool_BanishReply", "Rimfolk_Pool_BanishLast",

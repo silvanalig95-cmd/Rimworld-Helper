@@ -197,6 +197,16 @@ namespace ColonyCouncil
         /// </summary>
         public float newPeoples = 1f;
         /// <summary>
+        /// The wild's alphas and bosses (Beasts/), each 0 to 2, 1 by default: a wild pack led by a named alpha (one a home
+        /// at a time, a month apart at 1), a beast nemesis that flees hurt and comes back and the one who swears to bring it
+        /// down, a legend of the region (150 days between two at 1), and the great herds of spring and fall with their
+        /// stampedes. 0 switches a part off.
+        /// </summary>
+        public float packAlphas = 1f;
+        public float beastNemeses = 1f;
+        public float regionLegends = 1f;
+        public float greatHerds = 1f;
+        /// <summary>
         /// The region: friends who trade with a far colony may open a trading post a few days off, a real town of theirs
         /// (World/Region/TradingPost.cs). Off: none opens, and those standing are left as ordinary towns of theirs.
         /// </summary>
@@ -729,6 +739,10 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref remoteTravellers, "remoteTravellers", 1f);
             Scribe_Values.Look(ref raidersCamps, "raidersCamps", 1f);
             Scribe_Values.Look(ref newPeoples, "newPeoples", 1f);
+            Scribe_Values.Look(ref packAlphas, "packAlphas", 1f);
+            Scribe_Values.Look(ref beastNemeses, "beastNemeses", 1f);
+            Scribe_Values.Look(ref regionLegends, "regionLegends", 1f);
+            Scribe_Values.Look(ref greatHerds, "greatHerds", 1f);
             Scribe_Values.Look(ref tradingPosts, "tradingPosts", true);
             Scribe_Values.Look(ref hamlets, "hamlets", true);
             Scribe_Values.Look(ref smallTownMaps, "smallTownMaps", true);

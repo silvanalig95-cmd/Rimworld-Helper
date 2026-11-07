@@ -112,6 +112,8 @@ namespace ColonyCouncil
         {
             if (a?.RaceProps == null || !a.RaceProps.Animal || a.Faction != null || a.Dead || a.Downed || !a.Spawned || a.InMentalState) return false;
             if (map != null && map.fogGrid.IsFogged(a.Position)) return false;
+            // A pack's alpha or one of its pack is its own story already (Beasts/PackAlphas.cs), as is a beast nemesis.
+            if (PackAlphas.InPack(a) || CouncilGameComponent.Instance?.nemeses?.For(a) != null) return false;
             if (PokeWorldLink.IsPokemon(a)) return PokeWorldLink.PokemonShare() > 0f && !PokeWorldLife.IsRareOne(a) && HerdStoryMath.PokemonFits(a.RaceProps.baseBodySize);
             return HerdStoryMath.BeastFits(a.RaceProps.baseBodySize, a.RaceProps.predator, a.RaceProps.Insect, Strangers.IsMajestic(a));
         }

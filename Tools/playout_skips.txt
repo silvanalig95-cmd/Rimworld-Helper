@@ -507,3 +507,10 @@ Rimfolk_DlmFealty_Swear [option 0] already real, the event's own code: the speak
 Rimfolk_Evt_EnclaveLander [option 0] already real, the event's own code: the trade party comes down by drop pod and trades under the game's own visitors' lord, which walks them off when they are done (EnclaveLanding.Land)
 # Defs/DilemmaDefs/Rimfolk_Dilemmas_SacredDay.xml
 Rimfolk_Dilemma_SacredDay [option 1] the food is carried out to the sacred animal and left (DilemmaEffect_FeedBeast, a CarryOut to the stranger)
+# Defs/WorldSituationDefs/Rimfolk_WS_Legend.xml
+Rimfolk_WS_Legend [bounty/0] a word sent back to the town; the hunt is the colony's own caravan to the legend's ground, where it really is
+Rimfolk_WS_Legend [bounty/1] another people's hunters, far away
+Rimfolk_WS_Legend [rumour] a rumour of the legend far off, told
+Rimfolk_WS_Legend [end:befriended] told: the taming or the catch already happened on the legend's ground
+Rimfolk_WS_Legend [end:gone] its tracks far away, told
+Rimfolk_WS_Legend [end:moved] another people's hunters far away, told

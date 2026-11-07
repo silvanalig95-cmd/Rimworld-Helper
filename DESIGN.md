@@ -4848,6 +4848,113 @@ powers: "). No Harmony patch, no letter: news, the chronicle, journals, moods, g
 - **Dev actions** (Debug actions, "Rimfolk", "Animal powers: ..."): what each part sees now (the log), the Pokémon types'
   pass now, a spar, a binding begun now, a familiar's death, an animal born under a sign, the sacred animals' day asked.
 
+### Alphas, nemeses, legends and great herds
+
+The wild's alphas and bosses (the player's pick "D, alphas and bosses", 7 November 2026: built without a proposal
+round). `Source/ColonyCouncil/Beasts/`, the pure rules in `BeastsMath.cs` (`Tools/Tests/BeastsTests.cs`, "beasts: "),
+the words in `Languages/English/Keyed/Rimfolk_Beasts.xml`, the lines in `Defs/FlavorPoolDefs/Rimfolk_Pools_Beasts.xml`.
+Animals are picked by what they are (`RaceProperties`: size, predator, herd animal, migration, insect, dryad, entity),
+never by name; the land's own animals are read from each biome's own records (`BiomeDef.wildAnimals`, read once per
+look in `GreatHerds.LandAnimals`), never `AllWildAnimals` or `CommonalityOfAnimal`, which a biome listing an animal
+twice breaks. Each part has a rate on How much happens (`packAlphas`, `beastNemeses`, `regionLegends`, `greatHerds`,
+0 to 200%: `BeastsMath.Rate`, `Gap` and `Chance`); presets at 50% and 125%. No Harmony patch of its own.
+
+- **Pack alphas** (`PackAlphas.cs`). A pack is three or more of one hunting kind (`BeastsMath.PackKind`) within 14
+  cells of each other, wild, up, seen and in no mental state (`FindPack`), none of it a story already (named, a
+  nemesis, the beast the colony watches, a world event's). The day (`Daily`): with no alpha open at the home and 30 days
+  since its last (`AlphaGapDays`), a quarter of the days a pack is there it gets one (`AlphaDayChance`). A big threat
+  just come (`storyState.LastThreatBigTick`, looked at once within two hours, `WatchThreats`): a pack of the game's own
+  manhunters gets one three times in ten (`ManhunterAlphaChance`, 15 days apart). The alpha is the best by
+  `AlphaScore` (size, its prime, a male a little first), named from `Rimfolk_Pool_AlphaNames` in the voice of someone
+  of the colony who sees it (a `NameSingle`, so the game draws it on the map), with `Rimfolk_PackAlpha` (incoming damage
+  0.85, melee 1.15, meat and leather 1.25). The news for a plain pack (`CC_Alpha_Led`), a letter for manhunters
+  (`CC_Alpha_LedManhunters`); a later letter once, when the pack threatens the colony (`Threatens`: manhunting, or a
+  `PredatorHunt` job on one of the colony's people or animals). Every 250 ticks (`Rare`): dead, it is told (a letter if
+  a threat letter went out, else the news), its pack scatters (`Scatter`: each of it up and wild, with manhunters every
+  manhunter of its kind on the map, out of any mental state, each its own `LordJob_ExitMapNear` from where it stands),
+  and its slayer (`BeastBook.Slayer`, the wounds' combat log) gets `Rimfolk_Alpha_Slain`, a journal line and the name
+  `Rimfolk_Epithet_Packbreaker` (`EpithetTracker.Bestow`); tamed, its pack follows (`Follow`): from half a day after,
+  one at a time (`FollowAfterDays`, then 0.6 to 1 day apart), the next of it on the map (or back from the world at the
+  edge) walks to it (a Goto job re-given while it isn't there) and is the colony's within 7 cells
+  (`InteractionWorker_RecruitAttempt.DoRecruit`, the alpha's master its own), six at most, one not in within two days
+  passed over. Gone off the land, the news (flavor). Saved: `BeastBook.alphas` (`PackAlpha`, its pack by reference,
+  `MaxAlphaRecords` 16, the ended first).
+- **Animal nemeses** (`BeastNemeses.cs`), on the nemeses' own (`Strangers/Nemeses.cs`). Every 250 ticks a beast nemesis
+  (announced or still being fought) up on a home map under 45% of its health (`BeastsMath.Flees`; never downed, dead or
+  owned) leaves any mental state and runs for the nearest edge (its own `LordJob_ExitMapNear`, jogging); off the map it
+  is kept in the world (`ForcefullyKeptPawns`) and comes back 6 to 16 days later at 100% (`ReturnDays`), twice at most
+  (`MayReturn`), once healed to 60% and when the map has no threat on and none came in the last half day, at an entry cell; one time in three
+  (`ForBlood`) it starts the game's own `Manhunter` state there, with a letter (`CC_BeastNem_Blood`); the nemeses tell
+  the rest (`Returned`). Nemeses.cs names one that ran off unannounced as got away (`BeastNemeses.Fled`) instead of
+  forgetting it, and never names a beast lying downed (`!x.Downed`). The hour (`Named`): a beast nemesis newly named
+  (up, or away) that killed or maimed (`Grave`) gets `Rimfolk_BeastScars` (a mark, no stats), and three times in five
+  (`OathChance`) the closest of those close to the one it hurt (`Close`: a partner or kin, a bond of 30 not a rivalry,
+  an opinion of 60; grown, able to fight, not sworn already) swears (`Swear`): a line said aloud (`Rimfolk_Pool_BeastOath`),
+  a message, the chronicle, a journal line, the spark "nemesis" for "settle the score", whose `CanHave` now counts an
+  open oath (`BeastNemeses.Sworn`). While the beast is up on the sworn one's map, `Rimfolk_BeastOathFury` once a day.
+  The oath ends (`Oaths`): kept (their own hand: `Rimfolk_Beast_OathKept`, the goal's counter), someone else's
+  (`Rimfolk_Beast_OathOthers`, the counter too), tamed, vanished, or lapsed (the sworn one dead or gone); each a journal
+  line. Saved: `BeastBook.flights` (`BeastFlight`, `MaxFlights` 12), `oaths` (`BeastOath`, `MaxOaths` 20), `noted`
+  (`MaxNoted` 40).
+- **Legends of the region** (`RegionLegend.cs`), the world event `Rimfolk_WS_Legend` (kind `legend`) with `LegendWorker`.
+  Can start (`CanHappen`) when `BeastsMath.LegendDue` (the world's 40th day, 150 days after the last one ended at 100%,
+  `BeastBook.legendEnded`) and a kind fits (`Kinds`: of each race its first animal kind, the dozen biggest beasts of 2.5
+  or more whose comfortable warmth is within ten degrees of the home tile's, `LegendFits`; with PokéWorld its
+  legendaries, read from its comps' attributes, once its own `LegendaryQuestsTracker` has a condition met:
+  `PokeWorldLegends`). `Cast`: the kind by `LegendWeight` (its size squared), the beast made old (`AgeMin` to `AgeMax` of
+  its years) with `Council_Legendary`, named from `Rimfolk_Pool_LegendNames` (a legendary Pokémon keeps its species'
+  name), held by the event (`WorldSituation.Hold`); its ground's tile (`GroundTile`: land a settlement could stand on,
+  nothing on it, 4 to 12 tiles off, within reach of the home, hills and woods first); a friendly people's nearest town
+  for {PLACE} (flag `town`). `Begin`: its ground, a `Site` with no faction of the part `Rimfolk_LegendGround`
+  (`SitePartWorker_LegendGround`: its name, the arrival letter's part looking at it; no detection raids, not an attack),
+  labelled "{NAME}'s ground"; the start letter looks at it. The bounty beat (requires `town`) sets `bounty` and its
+  {COUNT}, paid on the "slain" ending by `WorldEffect_Silver` from afar. `Daily`: every five to nine days its ground
+  moves 2 to 4 tiles (`MoveMinTiles` to `MoveMaxTiles`), unless the site has a map or a caravan of the colony is on it
+  or bound for it; a message with the direction looks at the new site. A caravan's arrival makes the map with the beast
+  on it (`GenStep_LegendGround`, linked to the site part: a standable open cell near the middle, unfogged). `Hourly`:
+  dead by a colonist's hand, "slain" ({B} the slayer, {ITEM} the trophy's words); dead otherwise, "fell"; the colony's
+  (tamed, or caught), "befriended" ({B} its master); lost or someone else's, "gone"; back in the world with no ground and
+  up again (the caravan left it there), its ground made again near the last, with a message. Time runs out: "moved".
+  `Ended`: `BeastBook.legendEnded`, the site removed unless it has a map, for "slain" the trophy beside the body (its
+  butcher products, horns or tusks, else a quarter of its leather, 10 to 60) and the name
+  `Rimfolk_Epithet_GiantSlayer`, for "befriended" `Rimfolk_Epithet_BeastSpeaker`; journal lines. The "slain" ending
+  sings of it at home (`DilemmaEffect_Bonfire` with music, `Rimfolk_Pool_LegendSong`) and gives `Rimfolk_Legend_Slayer`
+  and `Rimfolk_Legend_Fell`; "befriended" `Rimfolk_Legend_Befriended` and `Rimfolk_Legend_Awe`.
+- **Great herds** (`GreatHerds.cs`). The day: each new season (year and season, `BeastHome.herdSeason`) decides its
+  great herd, spring and fall (`Migrates`) six times in ten at 100% (`SeasonChance`), on day 2 to 12 of it
+  (`PlannedDay`); put off a day while a threat is on. `Start`: a herd kind (`HerdKind`: a herd animal that can migrate,
+  never a predator, an insect or a dryad, 0.9 body or more, fit for the season's weather; a Pokémon only as
+  `PokeWorldLink.Allows`), the land's own three times likelier (`HerdKindWeight`), `GreatCount` head (6 to 24, fewer the
+  bigger, 60 bodies at most), spawned near an entry cell and walked to the farthest reachable edge
+  (`LordJob_ExitMapNear`, walking), as `IncidentWorker_HerdMigration` does; a letter by the season and the hunting
+  season (`Rimfolk_Evt_HerdCrossing` fired when its worker can, the council's own question). Every 250 ticks, each home
+  map's groups of `LordJob_ExitMapNear` with four or more wild animals of one kind (the game's migrations too) are
+  watched (unsaved `HerdWatch`): spooked (`Spooked`) by one of it hurt in the last 250 ticks (`lastHarmTick`) or found
+  dead since the last look, a projectile within 9 cells, or a fire within 7 (once a herd), at `SpookChance` times the
+  rate, it stampedes (`Stampede`: those not in a mental state, a new group sprinting for the edge cell nearest the
+  point across the map from what spooked it, from the nearest humanlike drafted, hunting or fighting within 40 cells
+  of the hurt one, a projectile's launcher, or the fire), told at once (`Tell.Message`, threat). For 1.2 hours
+  (`StampedeHours`) each runner of 1.2 body or more knocks down someone smaller than half again its size whose cell lies
+  within 1.3 of its way since the last look (`SegmentDistSq`; once a stampede for each, three at most): only with
+  everyday hurts on, `Harm.May` and `Harm.Chance(TrampleChance)`, a blunt blow (`TrampleDamage`, 6 to 16 by its size)
+  from the runner, `Harm.Note`, and for one of the colony or its guests a message; and plants of growing zones on its
+  way, a fifth of them, twelve at most (`Plant.Destroy`), told in the news once it is over. A herd of six or more in
+  view and no threat on (once a herd, looked at hourly): up to three of the colony within 32 cells with sight of it and
+  at ease (no job, wandering, waiting, at leisure, hauling or cleaning, not ordered, in no group) take
+  `Rimfolk_WatchHerd` (`JobDriver_WatchHerd`: face the nearest of it, 1,200 ticks, resuming what they were at), one says
+  so (`Rimfolk_Pool_HerdPasses`), each gets `Rimfolk_Herd_Watched`. Saved: each home's season and the alphas' times in
+  `BeastBook.homes` (`BeastHome`).
+- **The clock** (`BeastBook`, a GameComponent; an older save gets an empty one): every 250 ticks at `Sched.RareBeasts`
+  (193: `PackAlphas.Rare`, `WatchThreats`, `BeastNemeses.Rare`, `GreatHerds.Rare`, each cheap with nothing there), its
+  hour on the same tick (`Pass.Beasts`: alphas' threats and sightings, nemeses' returns, oaths), its day in the first hour
+  of the day (alphas and herds per home, the nemeses' flights pruned, the caps).
+- **Harm** (`Tools/Balance --harm`, `BeastSim.cs`): about 0.019 hurts a colonist-year from stampedes and 0.007 from beasts
+  come back for blood at 100%, 0.025 in all, beside a raid's 1.4 to 2.0 and Rimfolk's everyday hurts' 0.26 to 0.50. An
+  alpha adds none of its own; a legend hurts only those who go to its ground.
+- **Dev mode** (`BeastsDebug.cs`, "Beasts: ..."): a wild pack led by an alpha, manhunters led by one, the alpha tamed,
+  its pack in now, a beast nemesis made here (maimed, sworn against), it flees now, back now; a legend now, it moves, it
+  walks onto this map; a great herd now, the herd stampedes; what stands now in the log.
+
 ### Letters that arrive in days and bring something (the player's decision 12, 6 November 2026)
 
 In the player's save Stace wrote three letters to notables in 18 days; each leg took 12 to 14 days (the towns are over
@@ -6671,6 +6778,7 @@ chains, nemeses, camps, play-outs, the fights pass and the worn-out episode read
 | 173 | A journey planned ahead (Journeys/JourneyRun.cs; only while there is one): the stage its hour has reached (a day before, the travellers' timetables shifted; the last hours begun), each traveller's next step, the hour itself and the question when someone isn't ready | per traveller: free for a step, the step's job; at the hour, each one ready or not |
 | 199 | The council window's memory: the day's trust sample, the dilemmas and answers it watches | per colonist once a day |
 | 187 | Who stands beside whom in a fight at home (only while one is on; Social/FightSides.cs), so only they remember it together and become comrades; who carries, tends or stands over someone down; and the colony's animals in it (Animals/AnimalTempers.cs, AnimalVoices.cs): a brave one goes to stand by its person, a timid one bolts from the shooting, a speaking one warns of the raiders | per fighting colonist pair on that map (close, then the same room or in sight); per named or bonded animal there that is brave, timid or speaks |
+| 193 | The wild's alphas and bosses (Beasts/BeastBook.cs; each part by its rate): an alpha fallen (its pack scattered) or tamed (its pack walking in), a big threat looked at for a manhunters' alpha, a beast nemesis badly hurt turning to run, one fled off the map kept, a sworn one's fury, each home map's herds crossing for an edge spooked into a stampede, its runners' way, those who stop to watch; its hour on the same tick of the hour (alphas' threats and sightings, beast nemeses' returns and oaths), its day in the first hour of the day (packs led by an alpha, the season's great herd) | per open alpha and its pack, per beast nemesis on a home map, per home map's exit groups of four or more wild animals; a stampede's runners against the map's pawns for an hour |
 | 221 | Ailments: one tenth of the colonists (by ID), each once an hour; the slice at tick 2471 also carries the colony's part | the colony's serious illnesses counted (every colonist's hediffs, as before every hour's rolls), then per colonist in the slice: circumstances sampled, each ailment's counted causes rolled; diet and sweets on the first look of the day |
 | 227 | The colony's animals with powers (Animals/AnimalPowers.cs; nothing without PokéWorld, A RimWorld of Magic, Ideology or the omens' setting): the colony's typed Pokémon at home (warmth, crops, a battery, a calming, a fire), each familiar near its mage, a binding waiting; on the hour's first pass the typed Pokémon counted, newborns under a sign, omens' fates, sacred animals fallen and hunts marked; in the first hour of the day a mage's own choice | per typed Pokémon of the colony (a room, 25 cells, 9 cells, the colonists within 6, the fires); per familiar and binding; hourly per colony animal (a birth check) and per fresh corpse |
 | 211 | A neighbour's letter being written, a call under way or the comms console ringing (World/NeighbourLetters.cs; only while there is one) | per letter or call under way: the writer still at it, someone free to answer |

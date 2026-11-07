@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- The wild's alphas and bosses (Source/ColonyCouncil/Beasts/): names for a pack's alpha and a legend of the region,
+       what is said on seeing an alpha, swearing against a beast, watching a herd go by and singing of a legend's fall, and
+       what goes into the journals. Spoken lines are one sentence. -->
+
+  <!-- A pack's alpha, named by someone of the colony. Tags: [big] or [small] (its body), [manhunters] or [wild]. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_AlphaNames</defName>
+    <lines>
+      <plain>
+        <li>Greyback</li>
+        <li>Old Notch</li>
+        <li>Torn Ear</li>
+        <li>Scarmuzzle</li>
+        <li>Longtooth</li>
+        <li>the Old Grey</li>
+        <li>Ragged Coat</li>
+        <li>Split Lip</li>
+        <li>Ironjaw</li>
+        <li>Ashpelt</li>
+        <li>Broken Fang</li>
+        <li>Hollowbelly</li>
+        <li>Night-Runner</li>
+        <li>Burnt Tail</li>
+        <li>[big] the Big Grey</li>
+        <li>[big] Old Thunder</li>
+        <li>[big] Bonebreaker</li>
+        <li>[manhunters] Red Muzzle</li>
+        <li>[manhunters] the Butcher</li>
+        <li>[small] Little Knife</li>
+        <li>[small] Quickfoot</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A legend of the region. Tags: [predator] or [grazer]. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_LegendNames</defName>
+    <lines>
+      <plain>
+        <li>the Old King of the Hills</li>
+        <li>Stormhide</li>
+        <li>Greymother</li>
+        <li>the Grey Mountain</li>
+        <li>Mossback</li>
+        <li>the Walking Hill</li>
+        <li>Ironhide</li>
+        <li>Long-Shadow</li>
+        <li>the Ancient</li>
+        <li>Old Grandfather</li>
+        <li>the Wanderer</li>
+        <li>[predator] the Red Terror</li>
+        <li>[predator] Hungerjaw</li>
+        <li>[predator] the Night King</li>
+        <li>[grazer] the Meadow King</li>
+        <li>[grazer] Thunderhoof</li>
+        <li>[grazer] the Gentle Giant</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Someone of the colony in sight of a pack's alpha. {NAME} the alpha, {KIND} its kind. Tags: [calm] or [threat] (its pack
+       has threatened the colony), [child]. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_AlphaSighting</defName>
+    <lines>
+      <plain>
+        <li>[calm] That's {NAME} out there, the big one the rest follow.</li>
+        <li>[calm] {NAME}'s pack is on the move again, keep the animals close.</li>
+        <li>[threat] Watch {NAME}, the others go wherever it goes.</li>
+        <li>[threat] {NAME}'s leading them in, everyone get inside.</li>
+        <li>[child] Is that {NAME}, the big {KIND} everyone talks about?</li>
+        <li>There goes {NAME}, with its pack behind it.</li>
+        <li>Look at the size of {NAME} next to the others.</li>
+      </plain>
+      <warm><li>[calm] {NAME} looks after its own, you can see it.</li></warm>
+      <blunt><li>{NAME}'s out there, so nobody goes past the fields alone.</li></blunt>
+      <cheerful><li>[calm] {NAME} keeps a fine pack, I'll give it that.</li></cheerful>
+      <gloomy><li>{NAME} will have one of us someday if we're not careful.</li></gloomy>
+      <cold><li>Bring {NAME} down and the rest will run, remember that.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Someone close to one a beast killed or maimed, swearing to bring it down. {X} the beast, {VICTIM} the one it hurt.
+       Tags: [killed] or [maimed], [partner], [kin] or [friend]. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_BeastOath</defName>
+    <lines>
+      <plain>
+        <li>[killed] I'll bring {X_nameDef} down for {VICTIM}, whatever it takes.</li>
+        <li>[maimed] {X_nameDef} won't walk away from what it did to {VICTIM}.</li>
+        <li>[partner] For {VICTIM}, I'll find {X_nameDef} and finish it.</li>
+        <li>[kin,killed] {X_nameDef} took {VICTIM} from us, and I'll take it from the world.</li>
+        <li>[friend] {VICTIM} would do it for me, so I'll see {X_nameDef} dead.</li>
+        <li>Next time {X_nameDef} shows itself, I'll be waiting.</li>
+      </plain>
+      <warm><li>[killed] I'm doing this for {VICTIM}, not for me.</li></warm>
+      <blunt><li>{X_nameDef} is mine, nobody else touches it.</li></blunt>
+      <gloomy><li>[killed] It won't bring {VICTIM} back, but {X_nameDef} is going down.</li></gloomy>
+      <cold><li>{X_nameDef} has a debt, and I mean to collect it.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Someone of the colony stopping to watch a herd go by. {KIND} the herd's animals. Tags: [great] (a great herd of the
+       season) or [herd], [child]. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HerdPasses</defName>
+    <lines>
+      <plain>
+        <li>Look at all those {KIND}, the ground's shaking with them.</li>
+        <li>[great] The great herd's come through again, like the old stories say.</li>
+        <li>[great] I've never seen so many {KIND} in one place.</li>
+        <li>Stop a moment, the {KIND} are going by.</li>
+        <li>[child] There are so many of them, can we count them?</li>
+        <li>[child] Look, the {KIND} are walking right past us.</li>
+      </plain>
+      <warm><li>They're beautiful, all of them together like that.</li></warm>
+      <blunt><li>Nobody shoot near them unless you want a stampede.</li></blunt>
+      <cheerful><li>Best thing I've seen all season, those {KIND}.</li></cheerful>
+      <gloomy><li>One shot and they'd run us all down, you know.</li></gloomy>
+      <cold><li>Mark which way they go, we'll want that next year.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Sung and said around the fire at home after a legend of the region fell to one of the colony. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_LegendSong</defName>
+    <lines>
+      <plain>
+        <li>And down came the beast the whole region feared.</li>
+        <li>Sing it again, the part where it fell.</li>
+        <li>They'll be singing this one in every town by spring.</li>
+        <li>I'll never forget the sound it made coming down.</li>
+        <li>There's a verse for the tracks, a verse for the hunt, and one for the end.</li>
+        <li>To the hunter, and to the beast that made them famous.</li>
+      </plain>
+      <warm><li>Here's to it, it was a grand old beast.</li></warm>
+      <blunt><li>Hit it in the right place and even a legend falls.</li></blunt>
+      <cheerful><li>Louder, they can't hear us in the next valley.</li></cheerful>
+      <gloomy><li>Sad, in a way, there won't be another like it.</li></gloomy>
+      <cold><li>A good song, and a good hide besides.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Journals ===================== -->
+
+  <!-- The one who brought down a pack's alpha. {NAME} the alpha, {KIND} its kind. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_AlphaSlain</defName>
+    <lines>
+      <plain>
+        <li>I brought down {NAME} today, the {KIND} the whole pack ran behind. The rest scattered the moment it fell.</li>
+        <li>The pack's alpha is dead, and I'm the one who did it. I keep thinking about the way the others ran.</li>
+      </plain>
+      <warm><li>I took no joy in killing {NAME}. But the pack is gone from our land, and that's worth something.</li></warm>
+      <blunt><li>{NAME} is dead. Pack's gone. Good day's work.</li></blunt>
+      <gloomy><li>I killed {NAME}. Another pack will come, with another leader. They always do.</li></gloomy>
+      <cold><li>Removed the alpha. The pack lost its nerve, as expected.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- One who swore to bring a beast down. {X} the beast, {VICTIM} the one it hurt. Tags: [killed] or [maimed], [partner],
+       [kin] or [friend]. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_BeastOath</defName>
+    <lines>
+      <plain>
+        <li>[killed] I swore today that I'll bring down {X_nameDef} for what it did to {VICTIM}. I said it out loud, so now I have to.</li>
+        <li>[maimed] {VICTIM} will carry what {X_nameDef} did for the rest of their days. I've sworn that the beast won't.</li>
+        <li>I've made a promise I mean to keep: {X_nameDef} doesn't get to walk away.</li>
+      </plain>
+      <warm><li>[killed] I keep thinking about {VICTIM}. Swearing to bring {X_nameDef} down is the only thing that's helped.</li></warm>
+      <blunt><li>{X_nameDef} is mine. I've said so.</li></blunt>
+      <gloomy><li>Nothing I do to {X_nameDef} will undo it. I swore anyway.</li></gloomy>
+      <cold><li>I have sworn to kill {X_nameDef}. It is a simple enough task.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- How the oath ended. {NAME} the beast, {VICTIM} the one it hurt. Tags: [kept], [others] (someone else brought it down),
+       [tamed], [vanished]. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_BeastOathEnd</defName>
+    <lines>
+      <plain>
+        <li>[kept] I kept my word. {NAME} is dead, and I was the one who did it. I said {VICTIM}'s name when it fell.</li>
+        <li>[others] {NAME} is dead, though not by my hand. I thought I'd mind more. Mostly I'm just glad.</li>
+        <li>[tamed] The colony tamed {NAME}. The beast I swore to kill sleeps in our barn now, and I don't know what to do with that.</li>
+        <li>[vanished] Nobody has seen {NAME} in so long that I think it's gone for good. My oath goes with it, I suppose.</li>
+      </plain>
+      <warm><li>[kept] It's done. I hope {VICTIM} would have wanted it this way.</li></warm>
+      <blunt><li>[kept] {NAME} is dead. Oath kept.</li></blunt>
+      <gloomy><li>[others] Someone else got to {NAME} first. It's over, and somehow it doesn't feel like it.</li></gloomy>
+      <cold><li>[kept] The matter of {NAME} is closed.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The one who brought down a legend of the region. {NAME} the legend. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_LegendSlain</defName>
+    <lines>
+      <plain>
+        <li>I brought down {NAME} today. Every town in the region has a story about that beast, and now they'll have one about me.</li>
+        <li>My hands are still shaking. {NAME} is dead, and I did it.</li>
+      </plain>
+      <warm><li>{NAME} was magnificent. I'm proud, and a little sorry, both at once.</li></warm>
+      <blunt><li>Brought down {NAME}. Biggest thing I've ever hunted.</li></blunt>
+      <gloomy><li>There won't be another {NAME}. I'm the one who made sure of that.</li></gloomy>
+      <cold><li>{NAME} is dead. The stories made it bigger than it was, but not by much.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The one who befriended a legend of the region. {NAME} the legend. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_LegendBefriended</defName>
+    <lines>
+      <plain>
+        <li>{NAME} let me come close today, and then it let me lead it. I still can't believe it.</li>
+        <li>Everyone wanted {NAME} dead. It's ours now, and it eats out of my hand.</li>
+      </plain>
+      <warm><li>{NAME} is gentle with me. I don't think anyone would believe how gentle.</li></warm>
+      <blunt><li>Won over {NAME}. Took patience.</li></blunt>
+      <gloomy><li>{NAME} is ours now. I hope we deserve it.</li></gloomy>
+      <cold><li>{NAME} has accepted me. A useful animal, and a famous one.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

@@ -1270,7 +1270,8 @@ Colonists meet everyone else on the map, too:
   fled may ride with the next raid from their people; a wild animal that mauled someone gets a name and keeps
   prowling. The victim dreads it or burns for it, may make settling the score their life goal, and feels it
   when the nemesis is captured or finally brought down. One who gets away has a parting word and one who comes back
-  shouts something across the field (a beast leaves signs); the story can also end with them joining, collared,
+  shouts something across the field (a beast leaves signs; a beast badly hurt runs for the edge and comes back another
+  day, see "Alphas, legends and great herds"); the story can also end with them joining, collared,
   tamed, let go from the cells, dying out in the world or vanishing. The one they hurt dreams of them, a fight at home
   can leave bad nights, two personal stories grow out of it (a fear faced, and the fear laid to rest once they're in the
   cells or gone), and the day a nemesis first came back goes on the calendar beside the day one fell.
@@ -1378,6 +1379,39 @@ The Overview page's card **The herd and the land** shows who leads the herd, of 
 the old leader is in its last season, the beast the colony watches and what it has made of it, a shiny rumour on the
 wind (with PokéWorld) and the neighbours settled for good. The Almanac page "the colony's animals" has the numbers, and
 "the animals' natures" those of the temperaments, friendships, grief and the animals that speak.
+
+### Alphas, legends and great herds
+The wild has its leaders and its giants. Rimfolk picks them by what they are (their size, whether they hunt, whether
+they live in herds), never from a list, so the base game's wolves and muffalo count as much as Megafauna's titans,
+Dinosauria's raptors and giants, Alpha Animals' behemoths and Vanilla Animals Expanded's herds:
+- **Pack alphas.** Three or more of one hunting kind together on the colony's land are a pack, and now and then one
+  runs behind an alpha: the biggest in its prime, named by someone of the colony and shown by its name on the map, a
+  little harder to hurt and harder-hitting than the rest, with more meat and hide. The news tells of it; a letter
+  comes only when its pack threatens the colony (manhunting, or hunting one of its people or animals), and three
+  packs of the game's manhunters in ten run behind one. Bring it down and the pack scatters for the edges, and its
+  hunter is called *Packbreaker*; tame it and its old pack walks in to it one by one over the next days.
+- **Beast nemeses come back.** A wild animal that maimed or killed one of the colony bears the scars of it. Any beast
+  nemesis badly hurt and still on its feet turns and runs for the edge, and comes back another day (twice at most):
+  prowling the land, or one time in three for blood, with a letter. Someone close to the one it hurt (a partner,
+  kin, a close friend) may swear to bring it down: a word said aloud, *settle the score* as a life goal within
+  reach, a sworn fury while it is near, and how the oath ended in their journal. A downed or dying animal is never
+  named, never flees and never comes back.
+- **Legends of the region.** Now and then a world event: one huge beast, of the dozen biggest animals loaded that
+  could live in the region (with PokéWorld, a legendary Pokémon once PokéWorld itself has opened its legendaries),
+  roams the region. The towns talk of it, a friendly town may put a price on it, and its ground is a site on the
+  world map that moves as it is seen. A caravan that goes there finds it, really there, old and scarred and calm until
+  provoked. Brought down, a trophy from it lies beside the body, its hunter is called *Giant-Slayer* and the colony
+  sings of it around a fire at home; befriended (tamed or caught), its new master is called *Beast-Speaker*.
+- **Great herds.** In spring and fall a great herd of one herd animal may cross the land as the game's own migration
+  does, bigger, with a letter and the council's question about the hunt. Any herd crossing (the game's own too) can
+  be spooked by what really happens near it: one of it hurt or shot dead, a shot flying past, a fire close by. Then
+  it stampedes for the edge away from it, and in its first hour a big runner can knock down someone smaller in its
+  way (by the everyday hurts' setting and their shared cap) and flatten a few plants of the fields. While a big herd
+  passes, a few of the colony at nothing pressing stop to watch it go by.
+
+Each part has its own rate on How much happens (*Pack alphas*, *Beast nemeses come back*, *Legends of the region*,
+*Great herds*, 0% to 200%). Together they add about 0.025 hurts a colonist-year at 100%, beside a raid's 1.4 to 2.0
+(`Tools/Balance --harm`). The Almanac page *alphas, legends and great herds* has the numbers.
 
 ### Offices and elections
 Five council seats: **speaker** (chairs meetings, everyone's trust rises a little each day), **marshal** (drills
@@ -3947,23 +3981,23 @@ Everything scrolls, and on a small screen at a big interface scale the window sh
 **Presets**, under the page list. One click shows the list of what would change, and nothing changes until you
 apply it. Each sets only the values listed here and leaves everything else as you set it; between them they reach
 every rate on How much happens and every knob on How hard:
-- **Light touch**: Rimfolk in the background. How much happens: a wish about every 4 days (3 open at most), a
-  dilemma about every 15 days, a meeting every 20, rare personal stories, one gathering of the colony's own a week;
-  moments at 75%, encounters, social events, dreams and the outsiders' chatter at 50%; Rimfolk's events half as
-  likely (every 8 days on its own timer), world events about every 75 days, half the travellers a remote home draws
-  and half the raiders' camps. How hard: gentle stakes and everyday pressures, strain builds at 75%, wishes and
-  ambitions with 125% of the time, the heart's good side on, no frictions, no colonist leaving or taking a day off, no
-  serious illnesses, ailments at 50%, everyday hurts at 50%, a scenario's fights at 75%, no fights from Rimfolk's
-  events, and no strain from diplomacy against someone's nature. How you're told: important messages only, 8 messages
-  and 3 letters a day at most, and new wishes as messages.
-- **Story-rich**: every part of the colony's life and its world switched on (the council's, people's lives, bonds,
-  the colony's story with answers and goods on the map, strangers, Rimfolk's events and camps, world events, the
-  region and the bonds with other peoples), the heart's good side, speech and visual touches; frequent personal
-  stories, a dilemma about every 5 days, three gatherings a week, moments, social events, dreams, encounters,
-  personal touches, travellers and the outsiders' chatter at about 150%, raiders' camps at 125%, Rimfolk's events at
-  150% (every 3 days on its own timer), world events about every 30 days, and a message for everything (16 messages
-  and 6 letters a day at most). It only ever switches on what is on by default. Moods, pressures and stakes are left
-  alone.
+- **Light touch**: Rimfolk in the background. How much happens: a wish about every 4 days (3 open at most), a dilemma
+  about every 15 days, a meeting every 20, rare personal stories, one gathering of the colony's own a week; moments at
+  75%, encounters, social events, dreams and the outsiders' chatter at 50%; Rimfolk's events half as likely (every 8
+  days on its own timer), world events about every 75 days, half the travellers a remote home draws, half the raiders'
+  camps, and pack alphas, beast nemeses' returns, legends and great herds at 50%. How hard: gentle stakes and everyday
+  pressures, strain builds at 75%, wishes and ambitions with 125% of the time, the heart's good side on, no frictions,
+  no colonist leaving or taking a day off, no serious illnesses, ailments at 50%, everyday hurts at 50%, a scenario's
+  fights at 75%, no fights from Rimfolk's events, and no strain from diplomacy against someone's nature. How you're
+  told: important messages only, 8 messages and 3 letters a day at most, and new wishes as messages.
+- **Story-rich**: every part of the colony's life and its world switched on (the council's, people's lives, bonds, the
+  colony's story with answers and goods on the map, strangers, Rimfolk's events and camps, world events, the region
+  and the bonds with other peoples), the heart's good side, speech and visual touches; frequent personal stories, a
+  dilemma about every 5 days, three gatherings a week, moments, social events, dreams, encounters, personal touches,
+  travellers and the outsiders' chatter at about 150%, raiders' camps, pack alphas, beast nemeses' returns, legends
+  and great herds at 125%, Rimfolk's events at 150% (every 3 days on its own timer), world events about every 30 days,
+  and a message for everything (16 messages and 6 letters a day at most). It only ever switches on what is on by
+  default. Moods, pressures and stakes are left alone.
 - **Demanding**: harder moods, more frictions and pressures, rarer rewards. Demanding stakes, downsides 85% stronger again and
   rewards at 70%, wishes and ambitions with 75% of the time, a short grace for what was given and is gone, demanding
   everyday pressures, frictions on and moments between colonists (frictions among them) at 125%, jealousy, leaving,

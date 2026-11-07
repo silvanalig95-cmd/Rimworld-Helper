@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The wild's alphas and bosses (Source/ColonyCouncil/Beasts/): an alpha brought down or tamed, a beast sworn against
+       brought down, a herd watched going by, a legend of the region brought down or befriended. -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Alpha_Slain</defName>
+    <durationDays>8</durationDays>
+    <stages>
+      <li>
+        <label>brought down the pack's alpha</label>
+        <description>The biggest of them, the one the rest ran behind. When it went down, the rest ran.</description>
+        <baseMoodEffect>6</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Alpha_Tamed</defName>
+    <durationDays>6</durationDays>
+    <stages>
+      <li>
+        <label>tamed the pack's alpha</label>
+        <description>It leads a pack, and it let me take it in.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Beast_OathKept</defName>
+    <durationDays>15</durationDays>
+    <stages>
+      <li>
+        <label>kept my oath</label>
+        <description>I swore I would bring it down for what it did, and I did.</description>
+        <baseMoodEffect>12</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Beast_OathOthers</defName>
+    <durationDays>6</durationDays>
+    <stages>
+      <li>
+        <label>the beast I swore against is dead</label>
+        <description>Not by my hand, but it is dead, and it won't hurt anyone again.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Herd_Watched</defName>
+    <durationDays>1</durationDays>
+    <stages>
+      <li>
+        <label>watched the herd go by</label>
+        <description>So many of them at once, and the ground shaking under them.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Legend_Slayer</defName>
+    <durationDays>20</durationDays>
+    <stages>
+      <li>
+        <label>brought down a legend</label>
+        <description>They told stories about it in every town in the region. Now they'll tell one about me.</description>
+        <baseMoodEffect>14</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Legend_Fell</defName>
+    <durationDays>6</durationDays>
+    <stages>
+      <li>
+        <label>the legend fell to one of us</label>
+        <description>The beast the whole region talked about, brought down by one of ours.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Legend_Befriended</defName>
+    <durationDays>15</durationDays>
+    <stages>
+      <li>
+        <label>befriended a legend</label>
+        <description>Every hunter in the region wanted it dead, and it came to me.</description>
+        <baseMoodEffect>12</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Legend_Awe</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>a legend is one of ours</label>
+        <description>The beast of the region's stories is ours now. I still can't quite believe it.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Pack alphas, beast nemeses, legends and great herds
+
+*7 November 2026, version 0.149.0*
+
+- A wild pack of hunters on your land can have an alpha, the biggest of it, named by a colonist and tougher than the rest; now and then one leads a manhunting pack. Kill it and the pack scatters, and the slayer is called Packbreaker; tame it and its pack walks in to it over the next days and joins you.
+- A beast that hurt one of yours now runs for the edge when badly hurt, and may come back healed days later, sometimes in a rage. The one closest to its victim may swear to bring it down, with a fury while it is near and the oath kept or let go in their journal.
+- Legends of the region: now and then the towns talk of a great beast, or with PokéWorld a legendary, on its own ground a few days off, which moves now and then. A friendly town may put a price on it. Send a caravan to hunt it or befriend it; a slayer is called Giant-Slayer and the colony lights a bonfire.
+- Great herds cross your land in spring and autumn, with a letter and the hunting season's question. A herd crossing can stampede when shot at, hurt or near a fire, flattening crops and now and then knocking someone down, within the everyday-hurts setting. Colonists with nothing pressing stop to watch a big herd go by.
+- A beast nemesis that runs off the land hurt is now remembered as having got away, instead of being forgotten. The beast that stays is never a pack's alpha or a nemesis, so one animal carries one story.
+- Four new sliders on How much happens set how often each comes, from never to twice as often.
+
 ## The animals' natures: temperaments, friendships and animals that speak
 
 *7 November 2026, version 0.148.0*

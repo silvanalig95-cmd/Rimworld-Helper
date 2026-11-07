@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Names earned against the wild's alphas and bosses (Source/ColonyCouncil/Beasts/; same rules as Council_Epithets.xml).
+       No record: each is given for the deed (EpithetTracker.Bestow), only when nobody living in the colony holds it, and
+       stays with its holder. -->
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Rimfolk_Epithet_Packbreaker</defName>
+    <label>Packbreaker</label>
+    <earned>{PAWN_nameDef} brought down the alpha a whole pack ran behind, and watched the rest of them scatter. The colony calls {PAWN_objective} Packbreaker now.</earned>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Rimfolk_Epithet_GiantSlayer</defName>
+    <label>Giant-Slayer</label>
+    <earned>The beast every town in the region told stories about fell to {PAWN_nameDef}. Up and down the road they call {PAWN_objective} the Giant-Slayer, and now so does the colony.</earned>
+  </ColonyCouncil.EpithetDef>
+
+  <ColonyCouncil.EpithetDef>
+    <defName>Rimfolk_Epithet_BeastSpeaker</defName>
+    <label>Beast-Speaker</label>
+    <earned>Hunters from every town went after the beast of the region's stories, and it came to {PAWN_nameDef} instead. The colony calls {PAWN_objective} the Beast-Speaker.</earned>
+  </ColonyCouncil.EpithetDef>
+
+</Defs>

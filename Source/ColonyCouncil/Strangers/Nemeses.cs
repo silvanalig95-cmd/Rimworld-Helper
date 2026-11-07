@@ -306,7 +306,9 @@ namespace ColonyCouncil
                 {
                     if (!x.Spawned)
                     {
-                        all.Remove(n);
+                        // Ran off the land hurt (Beasts/BeastNemeses.cs): it got away, and comes back another day.
+                        if (BeastNemeses.Fled(x)) Escaped(comp, n, now);
+                        else all.Remove(n);
                         return;
                     }
                     // The fight is over and it's still out there, calm again: it gets a name. Not while it lies downed (the

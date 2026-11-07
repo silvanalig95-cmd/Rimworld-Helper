@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The wild's alphas and bosses (Source/ColonyCouncil/Beasts/): the pack alpha's mark, a beast nemesis's scars, and the
+       fury of one sworn to bring a beast down. -->
+
+  <!-- A pack's alpha: the biggest of its pack, scarred from the fights that made it leader. A modest edge, no more. -->
+  <HediffDef>
+    <defName>Rimfolk_PackAlpha</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>pack alpha</label>
+    <description>The leader of its pack: bigger than the rest of its kind and scarred from every fight it won for the place. A little harder to hurt and harder-hitting than the others, and there is more of it to butcher. Bring it down and its pack scatters.</description>
+    <defaultLabelColor>(0.85, 0.7, 0.45)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li>
+        <statFactors>
+          <IncomingDamageFactor>0.85</IncomingDamageFactor>
+          <MeleeDamageFactor>1.15</MeleeDamageFactor>
+          <MeatAmount>1.25</MeatAmount>
+          <LeatherAmount>1.25</LeatherAmount>
+        </statFactors>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- A beast nemesis that killed or maimed one of the colony: the scars of that day. A mark, nothing more. -->
+  <HediffDef>
+    <defName>Rimfolk_BeastScars</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>old scars</label>
+    <description>Torn and healed over: the marks of the day it hurt one of the colony and got away. Anyone of the colony would know it again by them.</description>
+    <defaultLabelColor>(0.75, 0.55, 0.5)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+  </HediffDef>
+
+  <!-- One sworn to bring a beast down, on the same ground as it. -->
+  <HediffDef>
+    <defName>Rimfolk_BeastOathFury</defName>
+    <hediffClass>HediffWithComps</hediffClass>
+    <label>sworn fury</label>
+    <description>The beast they swore to bring down is near. Steady hands, no fear.</description>
+    <defaultLabelColor>(0.95, 0.45, 0.35)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>20000~30000</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <statOffsets>
+          <ShootingAccuracyPawn>0.03</ShootingAccuracyPawn>
+          <MeleeHitChance>0.08</MeleeHitChance>
+          <MentalBreakThreshold>-0.05</MentalBreakThreshold>
+        </statOffsets>
+        <painFactor>0.8</painFactor>
+      </li>
+    </stages>
+  </HediffDef>
+
+</Defs>

@@ -12,7 +12,7 @@
 // What reaches the player in a day, the old way and by the teller with the colony's pace (Telling.cs, printed):
 //   dotnet run -c Release --project Tools/Balance -- --tell [repo root] [--runs N] [--colonists N]
 // Hurts from everyday life by source, the fights Rimfolk starts and what they add to strain, before and after harm parts
-// 2 and 3 (HarmSim.cs, printed, nothing written):
+// 2 and 3 (HarmSim.cs), then what the wild's alphas and bosses add (BeastSim.cs), printed, nothing written:
 //   dotnet run -c Release --project Tools/Balance -- --harm [--runs N] [--seed S]
 // Schemes against the colony over a home's year, by whether a grudge or a cold notable is in reach (SchemeSim.cs, printed):
 //   dotnet run -c Release --project Tools/Balance -- --schemes [--runs N] [--seed S]
@@ -47,6 +47,7 @@ if (args.Contains("--scenes"))
 if (args.Contains("--harm"))
 {
     HarmSim.Run(args);
+    BeastSim.Run(args);
     return;
 }
 if (args.Contains("--schemes"))

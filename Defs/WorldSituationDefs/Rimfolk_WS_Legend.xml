@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- ===================== A legend of the region =====================
+       One huge beast ({X}, called {NAME}; its kind {BEAST}) of the biggest animals loaded, or with PokéWorld a legendary
+       Pokémon once PokéWorld allows its legendaries, roams the region. The towns talk of it ({PLACE}, {FACTION}: a friendly
+       people's nearest town, when there is one), they may put a price on it ({COUNT}), and its ground is a site on the
+       world map that moves as it is seen; a caravan that goes there finds it. It ends when it falls to the colony ({B}:
+       who brought it down; {ITEM}: the trophy beside the body), when it is befriended ({B}: its new master), when
+       something else kills it, or when it moves out of the region. The pace is its own setting (Legends of the region),
+       150 days between two at 100%. Code: Source/ColonyCouncil/Beasts/RegionLegend.cs. Tags: pokemon, predator, grazer,
+       tamable, titan (a body of five or more), town, nofaction, bounty, slayer, trophy. -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_Legend</defName>
+    <label>a legend of the region</label>
+    <workerClass>ColonyCouncil.LegendWorker</workerClass>
+    <weight>0.7</weight>
+    <earliestDay>40</earliestDay>
+    <cooldownDays>30</cooldownDays>
+    <durationDays>30~45</durationDays>
+    <kind>legend</kind>
+    <titles>
+      <li>A legend of the region: {NAME}</li>
+      <li>{NAME} is abroad</li>
+      <li>The tale of {NAME}</li>
+    </titles>
+    <texts>
+      <li>[!pokemon,town,lowtech] In {PLACE} they talk of nothing else: {NAME}, a {BEAST} older and bigger than any living hunter has seen, has come down into the region. Travelers swear to its tracks, a hand deep in hard ground, and the old hunters of {FACTION} are mending their spears.\n\nWhere it was last seen is marked on the world map.</li>
+      <li>[!pokemon,town,!lowtech] The traders' radio has carried one story all week: {NAME}, a {BEAST} bigger than any on record, is roaming the hills near {PLACE}. The hunters of {FACTION} have put out the word that they would like it gone, or at least kept away from their herds.\n\nWhere it was last seen is marked on the world map.</li>
+      <li>[!pokemon,nofaction] The travelers who stop at the colony all tell the same story: {NAME}, a {BEAST} older and bigger than any the region has seen, has come down out of the wild country. Nobody agrees on what it eats. Everybody agrees on its tracks.\n\nWhere it was last seen is marked on the world map.</li>
+      <li>[!pokemon,titan] Something the size of a hill has been walking the region's valleys. The hunters call it {NAME}: a {BEAST} so old that moss grows on its back, so big that the ground keeps the shape of where it lay.\n\nWhere it was last seen is marked on the world map.</li>
+      <li>[!pokemon,predator,town] {NAME}, a {BEAST} the hunters of {FACTION} have tracked for three winters, has come into the region. It took two of their herd beasts at {PLACE} and left a third alive, as if to make a point.\n\nWhere it was last seen is marked on the world map.</li>
+      <li>[pokemon] {NAME} has been seen in the region. The trainers who pass through speak of it in low voices: a legendary Pokémon, the kind the old stories are about, out in the open where anyone could find it.\n\nWhere it was last seen is marked on the world map.</li>
+    </texts>
+    <summaries>
+      <li>[!pokemon,tamable] {NAME} roams the region, and its ground on the world map moves as it is seen. A caravan that goes there finds it: old, scarred and hard to bring down, calm until provoked. A good handler could try to win it over instead.</li>
+      <li>[!pokemon,!tamable] {NAME} roams the region, and its ground on the world map moves as it is seen. A caravan that goes there finds it: old, scarred and hard to bring down, calm until provoked.</li>
+      <li>[pokemon] {NAME} roams the region, and its ground on the world map moves as it is seen. A caravan that goes there finds it, and a trainer could try to catch it.</li>
+    </summaries>
+    <beats>
+      <li>
+        <key>bounty</key>
+        <day>2~6</day>
+        <requires><li>town</li></requires>
+        <count>250~600</count>
+        <wealthScaled>true</wealthScaled>
+        <titles>
+          <li>{FACTION}'s price on {NAME}</li>
+        </titles>
+        <texts>
+          <li>[lowtech] Riders from {PLACE} have been round every steading within reach with the same word: {FACTION} will give {COUNT} silver to whoever brings {NAME} down.\n\n{A_nameDef} has already started looking over the colony's bows.</li>
+          <li>[!lowtech] {FACTION} have put a price on {NAME}: {COUNT} silver to whoever brings it down, paid by their courier the day it falls. The word came over the radio from {PLACE}.\n\n{A_nameDef} has already started looking over the colony's rifles.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>The colony's hunters will try</label>
+            <outcome>Word goes back to {PLACE}: the colony means to bring {NAME} down. The price will be paid when it falls, and only then.</outcome>
+            <flags><li>bounty</li></flags>
+            <help>1</help>
+            <deed>took up {FACTION}'s price on {NAME}</deed>
+          </li>
+          <li>
+            <label>Leave it to others</label>
+            <outcome>The colony leaves {NAME} to the hunters of {FACTION}.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>rumour</key>
+        <day>8~16</day>
+        <chance>0.7</chance>
+        <message>true</message>
+        <texts>
+          <li>[town] At {PLACE} they say {NAME} came close enough to the walls to be seen from the gate at dusk, and walked away again.</li>
+          <li>[nofaction] A traveler at the gate swears {NAME} looked straight at them across a river two days off, and went on drinking.</li>
+          <li>[pokemon] A trainer on the road says {NAME} let them come within a stone's throw before it was gone.</li>
+        </texts>
+      </li>
+    </beats>
+    <endings>
+      <!-- Brought down by one of the colony. -->
+      <li>
+        <key>slain</key>
+        <timeout>false</timeout>
+        <titles>
+          <li>{NAME} is dead</li>
+          <li>The fall of {NAME}</li>
+        </titles>
+        <texts>
+          <li>[trophy,bounty] {B_nameDef} brought {NAME} down. Every town in the region will have the story by the next market day, and {ITEM} lies beside the body for the colony to keep. {FACTION}'s courier is on the way with the {COUNT} silver.\n\nAt home there will be a fire, and a song about it.</li>
+          <li>[trophy,!bounty] {B_nameDef} brought {NAME} down. Every town in the region will have the story by the next market day, and {ITEM} lies beside the body for the colony to keep.\n\nAt home there will be a fire, and a song about it.</li>
+          <li>[!trophy,bounty] {B_nameDef} brought {NAME} down. Every town in the region will have the story by the next market day, and {FACTION}'s courier is on the way with the {COUNT} silver.\n\nAt home there will be a fire, and a song about it.</li>
+          <li>[!trophy,!bounty] {B_nameDef} brought {NAME} down. Every town in the region will have the story by the next market day.\n\nAt home there will be a fire, and a song about it.</li>
+        </texts>
+        <chronicle>{B_nameDef} brought down {NAME}, the legend of the region.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_ThoughtFor"><thought>Rimfolk_Legend_Slayer</thought><b>true</b></li>
+          <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Rimfolk_Legend_Fell</thought></li>
+          <li Class="ColonyCouncil.WorldEffect_Silver"><requires>bounty</requires><fromAfar>true</fromAfar></li>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount><requires>bounty</requires></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>the song of {NAME}'s fall</label><music>true</music><target>Colony</target><pool>Rimfolk_Pool_LegendSong</pool></li>
+        </effects>
+      </li>
+      <!-- Tamed, or caught. -->
+      <li>
+        <key>befriended</key>
+        <timeout>false</timeout>
+        <titles>
+          <li>{NAME} is the colony's</li>
+        </titles>
+        <texts>
+          <li>[!pokemon] {NAME}, the beast every hunter in the region wanted dead, is the colony's now: {B_nameDef} won it over. The towns will not believe it until they see it.</li>
+          <li>[pokemon] {B_nameDef} caught {NAME}. Trainers will come a long way to see it, and most of them will not believe it until they do.</li>
+        </texts>
+        <chronicle>{B_nameDef} befriended {NAME}, the legend of the region.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_ThoughtFor"><thought>Rimfolk_Legend_Befriended</thought><b>true</b></li>
+          <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Rimfolk_Legend_Awe</thought></li>
+        </effects>
+      </li>
+      <!-- Dead, but not by the colony's hand. -->
+      <li>
+        <key>fell</key>
+        <timeout>false</timeout>
+        <titles>
+          <li>{NAME} is dead</li>
+        </titles>
+        <texts>
+          <li>{NAME} is dead. Nobody of the colony brought it down, and the whole region is arguing about who did.</li>
+        </texts>
+        <chronicle>{NAME}, the legend of the region, died.</chronicle>
+      </li>
+      <!-- Lost from the world, or someone else's now. -->
+      <li>
+        <key>gone</key>
+        <timeout>false</timeout>
+        <titles>
+          <li>{NAME} is gone</li>
+        </titles>
+        <texts>
+          <li>Nobody has seen {NAME} for days. Its tracks lead out of the region, and the stories go with them.</li>
+        </texts>
+        <chronicle>{NAME}, the legend of the region, was seen no more.</chronicle>
+      </li>
+      <!-- Time runs out: it moves on. -->
+      <li>
+        <key>moved</key>
+        <titles>
+          <li>{NAME} has moved on</li>
+        </titles>
+        <texts>
+          <li>[town] The hunters of {FACTION} followed {NAME}'s tracks as far as the hills beyond {PLACE}, and there they turned back. It has left the region, and nobody can say whether it will come again.</li>
+          <li>[nofaction] The travelers have stopped telling of {NAME}. It has left the region by whatever way it came, and the stories go with it.</li>
+        </texts>
+        <chronicle>{NAME}, the legend of the region, moved on.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+</Defs>
