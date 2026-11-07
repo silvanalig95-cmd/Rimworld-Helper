@@ -1930,6 +1930,19 @@ people trust the council a little less. The Ours lens lists every colony however
 mood and strain, and the colonies of the past; with more than one colony, every view's header names the colony in view
 in a chip that goes to another. Settings: Many colonies (Fresh starts, Newcomers).
 
+### A scenario's start
+With newcomers called, the founding window asks their start: new people as a new game's group, or **a scenario's
+start**, chosen from every scenario loaded (the game's and its expansions', Rimfolk's seventeen, other mods', this
+game's own, your own), each with what it brings to the new colony alone. Its people come by its rules (its count,
+chosen from its candidates, its required kinds, xenotypes, ages and skills), shaped by its forced traits and hediffs;
+its kit, what it lays about the start and its animals come with them; they arrive its way (on foot, in drop pods, or
+in its gravship when the old colony is left behind); and Rimfolk's own parts (a council already seated, the old days, a
+sworn enemy, a debt, deserters, a secret, a grant of land...) are set up for that colony once they are there. What
+changes the whole game (the scenario's own people, its research, rules for every map, world conditions, incidents
+switched off) is listed as not carried, and Bad Blood's two quarrelling families never come: the colony is the family.
+Free with the old colony left behind; with it kept, their passage covers the kit too. A whole new scenario on its own
+page is what a new game is for.
+
 ### A town of our own
 **Hand it over** on a colony's card, or on its world buttons beside the game's Abandon, makes the place a town of its
 own people. Choose who stays and who goes (each grown-up's wish shown, as for a fresh start: **uprooted** and

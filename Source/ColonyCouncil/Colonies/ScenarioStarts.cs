@@ -681,7 +681,13 @@ namespace ColonyCouncil
             foreach (var p in came)
             {
                 if (Find.WorldPawns.Contains(p)) Find.WorldPawns.RemovePawn(p);
-                if (possessions != null && possessions.TryGetValue(p, out var things)) Foundings.GivePossessions(p, things);
+                // By pods or the gravship their possessions come with the kit, as the game's own start brings them.
+                if (kit.arrival != StartArrival.Standing && possessions != null && possessions.TryGetValue(p, out var things))
+                    foreach (var t in things)
+                    {
+                        var made = StartingPawnUtility.GenerateStartingPossession(t);
+                        if (made != null) kit.things.Add(made);
+                    }
             }
             foreach (var t in kit.things)
                 if (t.def.CanHaveFaction && t.Faction != Faction.OfPlayer)
@@ -696,7 +702,15 @@ namespace ColonyCouncil
             try
             {
                 if (how == StartArrival.Pods) at = Pods(map, came, kit, founding);
-                else if (how == StartArrival.Standing) at = Walk(map, came, kit);
+                else if (how == StartArrival.Standing)
+                {
+                    at = Walk(map, came, kit);
+                    // On foot they carry their possessions, as release 1's newcomers do.
+                    if (kit.arrival == StartArrival.Standing && possessions != null)
+                        foreach (var p in came)
+                            if (p.Spawned && possessions.TryGetValue(p, out var things))
+                                Foundings.GivePossessions(p, things);
+                }
             }
             catch (Exception e)
             {
@@ -822,8 +836,10 @@ namespace ColonyCouncil
                 if (thing.def.category == ThingCategory.Building)
                 {
                     var rot = thing.def.rotatable ? Rot4.Random : Rot4.North;
-                    if (near || !CellFinderLoose.TryFindRandomNotEdgeCellWith(5, c => GenSpawn.CanSpawnAt(thing.def, c, map, rot, false), map, out var cell))
-                        cell = CellFinder.RandomClosewalkCellNear(at, map, LandingMath.NearRadius);
+                    bool Fits(IntVec3 c) => GenSpawn.CanSpawnAt(thing.def, c, map, rot, false);
+                    bool found = near ? CellFinder.TryFindRandomCellNear(at, map, LandingMath.NearRadius, Fits, out var cell)
+                        : CellFinderLoose.TryFindRandomNotEdgeCellWith(5, Fits, map, out cell);
+                    if (!found) cell = CellFinder.RandomClosewalkCellNear(at, map, LandingMath.NearRadius);
                     GenSpawn.Spawn(thing, cell, map, rot, WipeMode.VanishOrMoveAside);
                     thing.SetForbidden(true, false);
                     return;

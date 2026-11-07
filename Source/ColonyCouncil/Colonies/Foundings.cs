@@ -838,7 +838,8 @@ namespace ColonyCouncil
             foreach (var t in things)
             {
                 if (!(StartingPawnUtility.GenerateStartingPossession(t) is ThingWithComps thing)) continue;
-                if (thing.HasComp<CompEquippable>()) p.equipment.AddEquipment(thing);
+                // A weapon in hand, unless they hold one already (then in their pack).
+                if (thing.HasComp<CompEquippable>() && p.equipment != null && p.equipment.Primary == null) p.equipment.AddEquipment(thing);
                 else if (thing is Apparel apparel) p.apparel.Wear(apparel);
                 else p.inventory.innerContainer.TryAdd(thing);
             }

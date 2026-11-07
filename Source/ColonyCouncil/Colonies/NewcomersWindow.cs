@@ -102,10 +102,24 @@ namespace ColonyCouncil
             generationIndex = 0;
             if (Fixed)
             {
-                ScenarioStarts.Generate(start);
+                try
+                {
+                    ScenarioStarts.Generate(start);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("newcomers: making the scenario's people", e);
+                }
                 generationIndex = Pawns.Count;
+                // Nobody could be made the scenario's way: a new game's group, with its other parts still carried.
+                if (Pawns.Count < Find.GameInitData.startingPawnCount)
+                {
+                    StartingPawnUtility.ClearAllStartingPawns();
+                    start.people = null;
+                    generationIndex = 0;
+                }
             }
-            else
+            if (!Fixed)
             {
                 Find.GameInitData.startingPawnCount = 3;
                 while (Pawns.Count < 3)

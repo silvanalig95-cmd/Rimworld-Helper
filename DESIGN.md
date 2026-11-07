@@ -2978,6 +2978,67 @@ window `NewcomersWindow.cs`, the questions `FoundingLetters.cs`, the seat `Colon
   new list is written only when it holds something), and the Ours lens's home row reads the same people as before in
   more words.
 
+#### A scenario's start (stage 3, release 3)
+
+Any loaded scenario can shape a new colony alone (docs/design/stage3-many-colonies.md, section 1, "A scenario's start";
+the player's decision 3A of 6 November 2026). Pure rules in `Colonies/ScenarioStartMath.cs` (`Tools/Tests/ScenarioStartTests.cs`,
+prefix "scenario start: "); the game's side in `Colonies/ScenarioStarts.cs` (reading a scenario, making its people and
+kit, their arrival, Rimfolk's parts at the new colony), `ScenarioStartWindow.cs` (the list), `ScenarioStartPatches.cs`
+(the pawn hooks), with seams in `NewcomersWindow.cs`, `FoundingWindow.cs`, `Foundings.cs` and `HomesFounding.cs`.
+- **The choice.** With newcomers called, the founding window asks their start: new people as a new game's group (as
+  before), or a scenario's start, chosen in `Dialog_ScenarioStart` from every scenario def loaded (the game's, its DLCs',
+  Rimfolk's seventeen, other mods'), this game's own when it is none of those, and the player's own and the workshop's
+  the game already holds (`ScenarioStarts.Loaded`; nothing read from the disk mid-game). For each: what comes for the
+  new colony alone, what isn't carried, what never comes, and that a whole new scenario on its own page is what a new
+  game is for. The founding plan keeps it by a key (`FoundingPlan.scenario`, `ScenarioStartMath.Key`: "def:", "game",
+  "file:", "workshop:"); not loaded any more when the newcomers are chosen, they come as a new game's group.
+- **What each part does** (`ScenarioStartMath.Carry`, by the part's class as the game names it). Carried: the people
+  (the four `ScenPart_ConfigPage_ConfigureStartingPawns*` parts), what shapes starting people (forced trait and hediff,
+  naked, a need's level, the age filter, no possessions), the kit (defined things, mechs, what it scatters near the start
+  or anywhere), the animals, the arrival, and Rimfolk's own thirteen. Not carried, listed by what they change: the
+  scenario's own people when it isn't the colony's kind, starting research, rules for every map, its own kind of map,
+  world conditions, incidents switched off, the whole game's events (quests and incidents made at the start, the
+  monolith, the pursuing mechanoids), the opening words. Another mod's part, even one built on the game's, is listed as
+  not carried; with the deeper game hooks off, so are the parts that shape people through them. Never: Bad Blood's
+  families (`ScenPart_CouncilFamilies`), a feud along family lines.
+- **The people.** `Dialog_Newcomers` reads the people part's fields into its own start data (`ScenarioStarts.InitData`:
+  the count, the left-behind kind, the required kinds, xenotypes and mutants, the allowed life stages, the required
+  skills; never its `PostIdeoChosen`), makes each place's request as the part's own `GenerateStartingPawns` would (its
+  kind, its xenotype with the part's kind overrides, its mutant), tries again up to twenty times until the work the
+  colony can't do without is covered, then adds the candidates to choose from (the scenario's count, 1 to 10, chosen
+  from its choice). Those coming are listed first, those left behind under them; an arrow swaps one, with the request
+  that made it. Confirm waits, in the game's own words, until the chosen meet the scenario's requirements
+  (`ScenarioStarts.WhyNot`, `ScenarioStartMath.RequiredMet`: at least as many of a kind, exactly as many of a xenotype
+  or mutant). Those left behind are let go (their families only when none of the chosen is kin).
+- **The pawn hooks.** While the window is open with a scenario's start (`ScenarioStarts.Shaping`, live only while the
+  game is in play and the window's start data is set), prefixes on `Scenario.Notify_NewPawnGenerating`,
+  `Notify_PawnGenerated` and `AllowPlayerStartingPawn` (`Patch_ScenarioStartShapeNew`, `Done`, `Allow`) send a starting
+  colonist being made to that scenario's shaping parts instead of the game's own; any other person, at any other time,
+  goes to the game's own scenario as always. A shaping part that waits for the map (hidden until then) is applied as
+  they are confirmed; no possessions clears what the game's roll gave them.
+- **The kit and the arrival.** Made as they are confirmed, while the start data holds the chosen alone
+  (`ScenarioStarts.MakeKit`): the scenario's own `PlayerStartingThings` (its things, mechs with an overseer and animals
+  bonded to the newcomers as at a new game, Rimfolk's children in its care), what it scatters made as the game's scatter
+  makes it. They arrive (`ScenarioStartMath.Arrival`): on foot from the edge of the land, the kit set down where they
+  come in; in drop pods, a pod each and the kit shared, near the middle of a new colony's land (the game's start spot) or
+  at the colony's drop spot when its party is there first, with the game's own "crashed together"; or in the gravship
+  (Odyssey), made and set down as the game's own start does (`SketchGen` with the gravship resolver,
+  `GenStep_ReserveGravshipArea.SetStartSpot`, `GravshipPlacementUtility.ClearAreaForGravship`, the people on its deck,
+  the kit on its shelves, its tanks full), only with the old colony left behind on a map made for them alone, else on
+  foot. What it scatters comes near where they arrive (20 cells) or anywhere. A letter tells it as it happened.
+- **Rimfolk's own parts** (`ScenarioStarts.SetUpWhenHere`, in the founding's hour): once the scenario's people are on
+  the map, or a day after they came, each of the scenario's Rimfolk parts is set up as at a new game but for that colony
+  (`ScenarioSetupContext` with that map, the newcomers and the children in their care, the scenario, and no warm start):
+  its council's seats, its calendar's days, a goal, the colony's reputation (its one character for now), a sworn enemy,
+  a bond, a secret, a world event, its wards, a debt, deserters; the Beholden's grant is a fealty tie from that colony,
+  without its goodwill raised. One letter says how things stand there.
+- **The passage (4A).** Free with the old colony left behind. Kept, release 1's passage for each newcomer, the least
+  passage for each child in the kit's care, and the kit's own worth by the game's market values (a random pet or mech at
+  its kinds' average), rounded to ten (`ScenarioStartMath.Passage`), named before the choice.
+- **Saves.** The plan keeps the key and the scenario's name; its people at the new colony (`scenarioPeople`) are written
+  only from their arrival until Rimfolk's parts are set up. No setting, no schedule slot, nothing per tick; with one
+  colony, or the start a new game's group, nothing changes.
+
 #### Another landing site (the player's request, 6 November 2026)
 
 "I don't like the map": in a new game's first days the colony can be set down on a new map without starting over.
