@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Pokémon voices from your other animal mods
+
+*7 November 2026, version 0.144.0*
+
+- With PokéWorld, a Pokémon can now take its voice from an animal of your other mods when that animal is nearer to what it is: Alpha Animals, Vanilla Animals Expanded and ReGrowth lend 146 of the species their calls.
+- Birds call like the meadow ave, winged bugs hum like the bumbledrone, plant Pokémon rustle like the needlepost, the big water beasts growl like the crocodile, the zebras call like a zebra and the big dragons roar like ReGrowth's rimclaw and arctic drake.
+- Where a base-game animal fits as well, the two are shared out between the species, so a snake, a wolf or a muffalo voice doesn't sound the same on every Pokémon. Each species keeps the same voice from game to game.
+- Without those mods every Pokémon sounds as it did before. Animals whose calls don't suit any Pokémon (a laughing hyena, an ape-like hybrid, summoned and undead creatures) are never used.
+
 ## Four more peaceful peoples
 
 *7 November 2026, version 0.143.0*

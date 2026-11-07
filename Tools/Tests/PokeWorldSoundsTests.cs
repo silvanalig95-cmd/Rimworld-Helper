@@ -1,10 +1,12 @@
 using System;
 using System.IO;
+using System.Linq;
 using ColonyCouncil;
 
 /// <summary>
-/// What PokéWorld's Pokémon sound like (the player's request, 6 November 2026): a base-game animal's voice by body family,
-/// types and size, checked on PokéWorld's own species, life stages matched first to first and last to last, never more often
+/// What PokéWorld's Pokémon sound like (the player's request, 6 November 2026): an animal's voice by body family, types and
+/// size, another mod's where it fits better (7 November 2026, checked on the player's mod list) and the base game's
+/// otherwise, checked on PokéWorld's own species, life stages matched first to first and last to last, never more often
 /// than PokéWorld had it, the rarer pace, and the setting wired in.
 /// </summary>
 public static class PokeWorldSoundsTests
@@ -91,6 +93,94 @@ public static class PokeWorldSoundsTests
         foreach (var quiet in new[] { "Cougar", "Lynx", "Panther", "Fox_Red", "Fox_Fennec", "Fox_Arctic", "Turkey", "Emu", "Cassowary", "Ostrich" })
             C(!callers.Contains(quiet), quiet + " isn't among the animals that call grown");
 
+        // Other mods' animals first where they fit better, the base game's last (7 November 2026, the player's mod list).
+        // docs/player-animals.tsv: the animals of the player's active mods whose grown ones have a call of their own.
+        var player = new System.Collections.Generic.Dictionary<string, string[]>();
+        foreach (var line in File.ReadAllLines(Path.Combine(root, "docs", "player-animals.tsv")))
+        {
+            if (line.Length == 0 || line.StartsWith("#") || line.StartsWith("defName\t")) continue;
+            var f = line.Split('\t');
+            if (f.Length >= 8) player[f[0]] = f;
+        }
+        C(player.Count >= 40 && player.ContainsKey("AA_MeadowAve") && player.ContainsKey("AEXP_Zebra"), "the player's modded animals are read (" + player.Count + ")");
+        string[] bodies =
+        {
+            "PW_InsectPokemonWith6Legs", "PW_InsectPokemonWithWingsAndLegs", "PW_WingedPokemonWithBeak", "PW_WingedPokemonWithJaw", "PW_SnakePokemon",
+            "PW_FishPokemonWithPectoralCaudalDorsalFins", "PW_TentaclePokemon", "PW_QuadrupedPokemonWithHoovesAndTail", "PW_QuadrupedPokemonWithPaws",
+            "PW_BipedPokemonWithTail", "PW_HeadPokemon", "PW_MultipleBodiedPokemon3Head", null
+        };
+        string[] names = { "PW_Bulbasaur", "PW_Pikachu", "PW_Eevee", "PW_Mew", "PW_Zarude" };
+        var named = new System.Collections.Generic.HashSet<string>();
+        string notBaseLast = null, changedWithout = null, notCalling = null;
+        foreach (var body in bodies)
+            foreach (var size in sizes)
+                for (int a = 0; a < allTypes.Length; a++)
+                    for (int b = a; b < allTypes.Length; b++)
+                    {
+                        var types = a == b ? new[] { allTypes[a] } : new[] { allTypes[a], allTypes[b] };
+                        string plain = PokeWorldSoundsMath.Voice(PokeWorldSoundsMath.FamilyOf(body), size, types);
+                        var voices = PokeWorldSoundsMath.Voices(body, size, types);
+                        var last = voices[voices.Count - 1];
+                        if (last.Length != 1 || last[0] != plain || !callers.Contains(last[0])) notBaseLast = body + " " + size + " " + string.Join("/", types);
+                        foreach (var g in voices)
+                            foreach (var v in g)
+                            {
+                                named.Add(v);
+                                if (!PokeWorldSoundsMath.IsBase(v) && !player.ContainsKey(v)) notCalling = v;
+                            }
+                        foreach (var s in names)
+                            if (PokeWorldSoundsMath.Pick(voices, callers.Contains, s) != plain) changedWithout = s + " as " + body + " " + size + " " + string.Join("/", types);
+                    }
+        C(notBaseLast == null, "the last choice is always the base-game animal the rule names, one whose grown ones call" + (notBaseLast != null ? " (not for " + notBaseLast + ")" : ""));
+        C(changedWithout == null, "with none of the other mods, every species sounds as before" + (changedWithout != null ? " (not " + changedWithout + ")" : ""));
+        C(notCalling == null, "every other mod's animal named is one of the player's whose grown ones have a call of their own" + (notCalling != null ? " (not " + notCalling + ")" : ""));
+        var modded = named.Where(v => !PokeWorldSoundsMath.IsBase(v)).ToList();
+        C(modded.Count >= 10 && modded.Select(v => player[v][3]).Distinct().Count() >= 3, "and they come from several of the player's mods (" + string.Join(", ", modded) + ")");
+        foreach (var never in new[] { "AEXP_TasmanianDevil", "AEXP_Hyena", "GR_Hurseman", "GR_ParagonHumanoid", "AA_Atispec", "AA_UnblinkingEye", "TM_DemonR", "TM_SkeletonR",
+                     "VPE_SteelConstruct", "VQEA_Splicefiend", "pphhyy_Demigryph", "TyrannosaurusRex", "WoollyMammoth" })
+            C(!named.Contains(never), never + " is never named (it screams like a person, sounds like a machine or is undead, or its grown ones have no call of their own)");
+
+        // With the player's mods: samples, the same species the same each time, and variety among equals.
+        var all = new System.Collections.Generic.HashSet<string>(PokeWorldSoundsMath.GrownCallers);
+        all.UnionWith(player.Keys);
+        string W(string species, string body, float size, params string[] types) => PokeWorldSoundsMath.Pick(PokeWorldSoundsMath.Voices(body, size, types), all.Contains, species);
+        C(W("PW_Pidgeot", "PW_WingedPokemonWithBeak", 0.94f, "Normal", "Flying") == "AA_MeadowAve" && W("PW_Dodrio", "PW_MultipleBodiedPokemon3Head", 1.12f, "Normal", "Flying") == "AA_MeadowAve"
+          && W("PW_Swanna", "PW_WingedPokemonWithBeak", 0.81f, "Water", "Flying") == "Goose", "Pidgeot and Dodrio cry like a meadow ave, Swanna still honks like a goose");
+        C(W("PW_Beedrill", "PW_InsectPokemonWithWingsAndLegs", 0.62f, "Bug", "Poison") == "AA_Bumbledrone" && W("PW_Combee", "PW_HeadPokemonWithBody", 0.19f, "Bug", "Flying") == "AA_Bumbledrone"
+          && W("PW_Crobat", "PW_InsectPokemonWithWingsAndLegs", 1.12f, "Poison", "Flying") == "Megaspider" && W("PW_Caterpie", "PW_InsectPokemonWith6Legs", 0.19f, "Bug") == "Megascarab",
+            "Beedrill and Combee buzz like a bumbledrone; Crobat (no bug) and Caterpie (no wings) keep the game's insects");
+        C(W("PW_Tentacruel", "PW_TentaclePokemon", 1f, "Water", "Poison") == "AA_OcularJelly" && W("PW_Carnivine", "PW_TentaclePokemon", 0.87f, "Grass") == "AA_Needlepost"
+          && W("PW_Sunkern", "PW_HeadPokemon", 0.19f, "Grass") == "AA_Needlepost" && W("PW_Venusaur", "PW_QuadrupedPokemonWithPaws", 1.25f, "Grass", "Poison") == "AA_Wildpawn",
+            "Tentacruel takes the ocular jelly's voice, Carnivine and Sunkern the needlepost's, Venusaur the wildpawn's");
+        C(W("PW_Blastoise", "PW_BipedPokemonWithTail", 1f, "Water") == "AEXP_Crocodile" && W("PW_Zebstrika", "PW_QuadrupedPokemonWithHoovesAndTail", 1f, "Electric") == "AEXP_Zebra",
+            "Blastoise growls like a crocodile, Zebstrika calls like a zebra");
+        var noVae = new System.Collections.Generic.HashSet<string>(all);
+        noVae.Remove("AEXP_Zebra");
+        C(PokeWorldSoundsMath.Pick(PokeWorldSoundsMath.Voices("PW_QuadrupedPokemonWithHoovesAndTail", 1f, new[] { "Electric" }), noVae.Contains, "PW_Zebstrika") == "AEXP_Quagga"
+          && PokeWorldSoundsMath.Pick(PokeWorldSoundsMath.Voices("PW_QuadrupedPokemonWithHoovesAndTail", 1f, new[] { "Electric" }), callers.Contains, "PW_Zebstrika") == "Horse",
+            "without Vanilla Animals Expanded the Endangered pack's quagga, without either the game's horse");
+        C(new[] { "RG_Rimclaw", "RG_ArcticDrak" }.Contains(W("PW_Garchomp", "PW_BipedPokemonWithTail", 1.19f, "Dragon", "Ground")), "Garchomp cries like a rimclaw or an arctic drak");
+        C(W("PW_Pikachu", "PW_QuadrupedPokemonWithPaws", 0.25f, "Electric") == "Squirrel" && W("PW_Geodude", "PW_HeadPokemonWithArms", 0.25f, "Rock", "Ground") == "Tortoise"
+          && W("PW_Magikarp", "PW_FishPokemonWithPectoralCaudalDorsalFins", 0.56f, "Water") == "Tortoise" && W("PW_Charizard", "PW_BipedPokemonWithTail", 1.06f, "Fire", "Flying") == "Warg",
+            "where no modded animal fits better the base game's stays: Pikachu, Geodude, Magikarp, Charizard");
+        C(PokeWorldSoundsMath.Stable("a") == 3826002220u && PokeWorldSoundsMath.Stable("PW_Pikachu") == 1373377016u && PokeWorldSoundsMath.Stable(null) == 2166136261u,
+            "the number from a name is the same on every machine (FNV-1a)");
+        var lions = new System.Collections.Generic.List<string[]> { new[] { "Warg", "AEXP_Lion", "AA_ArcticLion" }, new[] { "Warg" } };
+        var shared = new System.Collections.Generic.HashSet<string>();
+        bool steady = true;
+        for (int i = 0; i < 60; i++)
+        {
+            string s = "PW_Species" + i, v = PokeWorldSoundsMath.Pick(lions, all.Contains, s);
+            shared.Add(v);
+            steady &= v == PokeWorldSoundsMath.Pick(lions, all.Contains, s);
+        }
+        C(shared.SetEquals(new[] { "Warg", "AEXP_Lion", "AA_ArcticLion" }), "equals are shared out among the species");
+        C(steady, "and the same species always takes the same one");
+        var noLion = new System.Collections.Generic.HashSet<string>(all);
+        noLion.Remove("AEXP_Lion");
+        C(Enumerable.Range(0, 60).All(i => PokeWorldSoundsMath.Pick(lions, noLion.Contains, "PW_Species" + i) != "AEXP_Lion"), "an animal that isn't loaded is never taken");
+        C(PokeWorldSoundsMath.Pick(lions, n => false, "PW_Entei") == null && PokeWorldSoundsMath.Pick(null, all.Contains, "PW_Entei") == null, "with none loaded, none (the nearest animal stands in)");
+
         // Never more often than PokéWorld had it.
         C(PokeWorldSoundsMath.Slower(3000, 6000, 2000, 4000) == (3000, 6000) && PokeWorldSoundsMath.Slower(3000, 6000, 4000, 8000) == (4000, 8000),
             "the slower pace of the two");
@@ -120,8 +210,10 @@ public static class PokeWorldSoundsTests
         C(mod.Contains("PokeWorldSounds.Apply();"), "applied again when the settings window closes");
         C(code.Contains("r.Dryad") && code.Contains("r.IsMechanoid") && code.Contains("PokeWorldLink.IsPokemon(d)"), "never a mechanoid, a dryad or another Pokémon's voice");
         C(code.Contains("r.lifeStageAges[r.lifeStageAges.Count - 1]?.soundCall == null) continue;"), "only an animal whose grown one calls lends its voice (never a chick's cheep)");
-        C(code.Contains("PokeWorldSoundsMath.Voice(PokeWorldSoundsMath.FamilyOf(r.body?.defName), r.baseBodySize, PokeWorldLink.TypesOf(pokemon))")
-          && code.Contains("PokeWorldSoundsMath.Slower(was.interval.min"), "the game uses the same rule, and the slower pace");
+        C(code.Contains("PokeWorldSoundsMath.Voices(r.body?.defName, r.baseBodySize, PokeWorldLink.TypesOf(pokemon))")
+          && code.Contains("PokeWorldSoundsMath.Pick(voices, byName.ContainsKey, pokemon.defName)") && code.Contains("PokeWorldSoundsMath.Slower(was.interval.min"),
+            "the game uses the same rule, among the animals that call grown, and the slower pace");
+        C(code.Contains("if (Prefs.DevMode && !moddedLogged)") && code.Contains("!a.modContentPack.IsOfficialMod"), "the voices from other mods in use are said once in dev mode");
         C(code.Contains("r.lifeStageAges = kv.Value.stages;") && code.Contains("(LifeStageAge)Clone.Invoke(own[i], null)"),
             "each species gets copies of its life stages, and the originals come back");
         string keys = File.ReadAllText(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_Integrations_PokeWorld.xml"));

@@ -11,9 +11,10 @@ namespace ColonyCouncil
     /// What PokéWorld's Pokémon sound like (the player's request, 6 November 2026: "i love the pokeworld mod, but the
     /// constant pokemon screetches not ... replace them with other creature sounds from the base game or mods"). The
     /// setting "Pokémon sound like" (<see cref="CouncilSettings.pokemonSounds"/>, the other mods' page):
-    /// - <see cref="PokemonSounds.Creatures"/> (the default): each species borrows the calls of one of the base game's
-    ///   animals, picked by its body plan's family, its types and its size (<see cref="PokeWorldSoundsMath.Voice"/>; the
-    ///   nearest animal of the same family and size when that one is missing): its idle call, its angry call, its cries
+    /// - <see cref="PokemonSounds.Creatures"/> (the default): each species borrows the calls of an animal picked by its body
+    ///   plan's family, its types and its size: another mod's where one that fits it better is loaded and calls grown, else
+    ///   one of the base game's (<see cref="PokeWorldSoundsMath.Voices"/>, <see cref="PokeWorldSoundsMath.Pick"/>; the
+    ///   nearest animal of the same family and size when none of those is there): its idle call, its angry call, its cries
     ///   when wounded and dying and its attack sound. The pace between calls is the slower of PokéWorld's and the animal's.
     /// - <see cref="PokemonSounds.Rarer"/>: their own cries, a third as often.
     /// - <see cref="PokemonSounds.Own"/>: as PokéWorld has them.
@@ -71,11 +72,14 @@ namespace ColonyCouncil
                 else if (mode == PokemonSounds.Creatures)
                 {
                     var animals = Candidates();
+                    var byName = new Dictionary<string, ThingDef>();
+                    foreach (var a in animals)
+                        if (!byName.ContainsKey(a.defName)) byName[a.defName] = a;
                     int given = 0;
                     standIns = 0;
                     foreach (var d in PokeWorldLink.AllSpecies)
                     {
-                        var m = VoiceOf(d, animals);
+                        var m = VoiceOf(d, animals, byName);
                         if (m == null) continue;
                         Keep(d);
                         Borrow(d, m);
@@ -85,6 +89,15 @@ namespace ColonyCouncil
                         Log.Message("[Rimfolk] PokéWorld: " + given + " of " + PokeWorldLink.SpeciesCount + " species sound like animals now, from " + animals.Count + " to choose from"
                                     + (standIns > 0 ? ", " + standIns + " by the nearest animal since the one named for them is missing" : "")
                                     + (matches.Count > 0 ? " (" + matches.Take(5).Select(kv => kv.Key.label + " like a " + kv.Value.label).ToCommaList() + ")." : "."));
+                    if (Prefs.DevMode && !moddedLogged)
+                    {
+                        moddedLogged = true;
+                        var modded = matches.Values.Where(a => a.modContentPack != null && !a.modContentPack.IsOfficialMod).GroupBy(a => a).OrderByDescending(g => g.Count())
+                            .Select(g => g.Key.label + " (" + g.Key.modContentPack.Name + ") for " + g.Count()).ToList();
+                        Log.Message("[Rimfolk] PokéWorld: " + (modded.Count > 0
+                            ? "voices from other mods in use: " + modded.ToCommaList() + "."
+                            : "no voice from another mod in use, only the base game's."));
+                    }
                 }
                 Applied = mode;
             }
@@ -116,18 +129,22 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The animal a species sounds like: the base-game animal the rule names for its body, types and size, else the
-        /// nearest animal of the same family and size (counted in <see cref="standIns"/>).
+        /// The animal a species sounds like: the first the rule names for its body, types and size that is loaded and calls
+        /// grown (another mod's where it fits better, else the base game's), else the nearest animal of the same family and
+        /// size (counted in <see cref="standIns"/>).
         /// </summary>
-        private static ThingDef VoiceOf(ThingDef pokemon, List<ThingDef> animals)
+        private static ThingDef VoiceOf(ThingDef pokemon, List<ThingDef> animals, Dictionary<string, ThingDef> byName)
         {
             var r = pokemon.race;
-            string named = PokeWorldSoundsMath.Voice(PokeWorldSoundsMath.FamilyOf(r.body?.defName), r.baseBodySize, PokeWorldLink.TypesOf(pokemon));
-            var voice = named != null ? DefDatabase<ThingDef>.GetNamedSilentFail(named) : null;
-            if (voice != null && animals.Contains(voice)) return voice;
+            var voices = PokeWorldSoundsMath.Voices(r.body?.defName, r.baseBodySize, PokeWorldLink.TypesOf(pokemon));
+            string named = PokeWorldSoundsMath.Pick(voices, byName.ContainsKey, pokemon.defName);
+            if (named != null) return byName[named];
             standIns++;
             return Nearest(pokemon, animals);
         }
+
+        /// <summary>Whether the voices from other mods were said in the log already (once a session, in dev mode).</summary>
+        private static bool moddedLogged;
 
         /// <summary>Species whose named animal was missing or silent when the voices were last given, so the nearest stood in.</summary>
         private static int standIns;
