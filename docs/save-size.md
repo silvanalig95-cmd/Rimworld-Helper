@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 573; modelled: 573; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,474 KB** after a year, **2,935 KB** after two, **3,146 KB** after five.
+Saved collections found: 576; modelled: 576; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,477 KB** after a year, **2,938 KB** after two, **3,149 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -146,6 +146,7 @@ Rimfolk's part of the save, roughly: **2,474 KB** after a year, **2,935 KB** aft
 | `Health/HealthTracker.cs:lastDoctor` | tends 3 days | window | 30 | 30 | 30 | 2.6 |
 | `Health/HealthTracker.cs:lastTend` | tends 3 days | window | 30 | 30 | 30 | 2.6 |
 | `Health/HealthTracker.cs:visits` | 30 days | window | 30 | 30 | 30 | 2.6 |
+| `Health/MedicineChoice.cs:filled` | with Smart Medicine: the minor and harmless conditions still to be tended, pruned to the living at each save | fixed | 30 | 30 | 30 | 2.6 |
 | `Pressures/Pressures.cs:firstSeen` | plans while they stand | while | 30 | 30 | 30 | 2.6 |
 | `Pressures/Pressures.cs:lastProgress` | frames while they stand | while | 30 | 30 | 30 | 2.6 |
 | `Pressures/Pressures.cs:lastWork` | frames while they stand | while | 30 | 30 | 30 | 2.6 |
@@ -406,6 +407,7 @@ Rimfolk's part of the save, roughly: **2,474 KB** after a year, **2,935 KB** aft
 | `Pressures/Pressures.cs:workCounts` | per colonist | fixed | 6 | 6 | 6 | 0.1 |
 | `Character/Character.cs:tiers` | five ways | fixed | 5 | 5 | 5 | 0.1 |
 | `Character/Character.cs:values` | five ways | fixed | 5 | 5 | 5 | 0.1 |
+| `Health/MedicineChoice.cs:handsOff` | with Smart Medicine: Rimfolk's choices taken back to the default by hand, only the player's clicks | fixed | 5 | 5 | 5 | 0.1 |
 | `Ambitions/Ambitions.cs:options` | the meeting letter's options, while it waits | while | 3 | 3 | 3 | 0.1 |
 | `Ambitions/Ambitions.cs:proposers` | while the letter waits | while | 3 | 3 | 3 | 0.1 |
 | `Annals.cs:gone` | the year in progress | yearly | 3 | 3 | 3 | 0.1 |
@@ -451,6 +453,7 @@ Rimfolk's part of the save, roughly: **2,474 KB** after a year, **2,935 KB** aft
 | `Visitors/Callers.cs:plots` | per task: the undertakers' row of graves (CallerMath.MaxGraves at most), graves only | fixed | 2 | 2 | 2 | 0.1 |
 | `Calendar/CalendarKeeping.cs:withYears` | the year each of them comes round in, while the letter waits | while | 3 | 3 | 3 | 0.1 |
 | `Camps/CampStory.cs:beats` | the beats of the stay played (ask, trouble, parting), while the camp stays | while | 3 | 3 | 3 | 0.1 |
+| `Health/MedicineChoice.cs:bestByAnswer` | ids of patients the council gave the best medicine, let go once their care changes | cap | 1 | 1 | 3 | 0.1 |
 | `Setbacks/SetbackTracker.cs:ticks` | per sown field | fixed | 3 | 3 | 3 | 0.1 |
 | `Annals.cs:traditionsBorn` | the year in progress | yearly | 2 | 2 | 2 | 0.1 |
 | `Colonies/LandingRecord.cs:conditions` | the map conditions the scenario set at the start (a cold snap, a fallout), one per def, while the offer is open | while | 2 | 2 | 2 | 0.0 |

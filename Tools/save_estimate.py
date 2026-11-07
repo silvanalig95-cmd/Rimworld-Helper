@@ -702,6 +702,14 @@ MODEL = {
     # off (a few at the most, a click each), let go when the animal dies or leaves, AnimalNatureMath.MaxKeptHome at most.
     "Animals/AnimalBook.cs:keptHome": ("cap", (const("Animals/AnimalNatureMath.cs", "MaxKeptHome", 200), 0.05), 25,
                                        "ids of the animals kept from hunting, AnimalNatureMath.MaxKeptHome at most, let go when one dies or leaves"),
+    # Medicine by what is treated (Health/MedicineChoice.cs): the patients the council gave the best medicine (one id each,
+    # a dilemma's answer, let go once their care changes or they die, MaxBest at most); with Smart Medicine, the conditions
+    # whose per-injury choice Rimfolk filled in (only the minor and harmless still to be tended, pruned to the living at each
+    # save, MaxFilled at most) and those the player took back to the default (only their clicks, MaxHandsOff at most).
+    "Health/MedicineChoice.cs:bestByAnswer": ("cap", (const("Health/MedicineChoice.cs", "MaxBest", 40), 0.01), 25,
+                                              "ids of patients the council gave the best medicine, let go once their care changes"),
+    "Health/MedicineChoice.cs:filled": ("fixed", 30, 90, "with Smart Medicine: the minor and harmless conditions still to be tended, pruned to the living at each save"),
+    "Health/MedicineChoice.cs:handsOff": ("fixed", 5, 25, "with Smart Medicine: Rimfolk's choices taken back to the default by hand, only the player's clicks"),
     "Happenings/Workers_Chains2.cs:flags": ("fixed", 4, 40, "per story chain (counted under chains)"),
     # The wild's alphas and bosses (Beasts/BeastBook.cs): packs led by an alpha (one a home at a time, a month apart at the
     # setting's 100%, a fortnight for the game's manhunters; BeastsMath.MaxAlphaRecords kept, the ended going first), beast

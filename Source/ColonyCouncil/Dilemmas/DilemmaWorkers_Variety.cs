@@ -466,7 +466,8 @@ namespace ColonyCouncil
         public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
         {
             var best = Best(ctx?.map);
-            var who = Reached(ctx).Where(p => p.playerSettings != null && p.playerSettings.medCare != MedicalCareCategory.Best).ToList();
+            // With medicine by what is treated, someone already on the best gets it for every wound too (Health/MedicineChoice.cs).
+            var who = Reached(ctx).Where(p => p.playerSettings != null && (p.playerSettings.medCare != MedicalCareCategory.Best || MedicineChoice.SettingOn)).ToList();
             if (best == null || who.Count == 0) return;
             sheet.Add(ImpactKind.Goods, -1, "CC_Impact_MedCare".Translate(WhoOf(ctx, who), best.def.label).Resolve(), "CC_Impact_MedCareBrief".Translate(best.def.label).Resolve(), "medcare");
         }
@@ -475,7 +476,10 @@ namespace ColonyCouncil
         {
             foreach (var p in Targets(ctx))
             {
-                if (p.playerSettings == null || p.playerSettings.medCare == MedicalCareCategory.Best) continue;
+                if (p.playerSettings == null) continue;
+                // The best for every wound of theirs, not only the serious, while their care stays at the best.
+                MedicineChoice.GaveBest(p);
+                if (p.playerSettings.medCare == MedicalCareCategory.Best) continue;
                 p.playerSettings.medCare = MedicalCareCategory.Best;
                 Tell.Message(NewsKind.Health, Importance.Notable, null, "CC_DlmV_MedCare".Translate(p.LabelShort).Resolve(), p, MessageTypeDefOf.NeutralEvent);
             }

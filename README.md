@@ -3996,6 +3996,33 @@ to work too soon, family who want a say in an operation, a midwife's apprentice)
 What's on page: convalescence and sickbed visits, and doctors' and midwives' reputations (a third, with Move the
 Patient, below).
 
+**Medicine by what is treated.** The medicine each wound or illness gets follows what it is, and the patient's medical
+care setting is only the ceiling: Rimfolk never uses better than it allows, only less. A harmless wound, one that
+neither bleeds (under a tenth of the blood a day) nor is likely to get infected (under 3%), such as a bruise, a crack
+or the smallest scratch, is bandaged without medicine. A minor one that bleeds a little or can get infected (a cut, a
+bite, a small burn, frostbite) and Rimfolk's everyday ailments get herbal medicine at most. Heavy bleeding (40% of the
+blood a day or more), a wound on a vital part (the brain, the heart, a lung, the liver, a kidney, the stomach, the
+neck) or an organ, a deep wound (half the part's health, or 12 points on a wound that can go bad), a fresh stump,
+anything threatening a life now, an infection and every other illness and lasting condition get the best the medical
+care allows; someone bleeding out gets it for every wound that bleeds. The serious are tended first and what gets less
+is tended apart: the doctor fetches the medicine the first tending gets, and only as much as the tendings that use it,
+a tending whose wounds get less is done without it or the doctor goes for the lesser medicine first, and a tending of
+the serious that comes due while the scratches are being seen to sends the doctor back for the better medicine. So the
+plague gets glitterworld medicine and the scratches herbal, in separate tendings, while a scratch tended along with a
+gunshot costs no more medicine. In a caravan the medicine from the packs is the one the tending gets. Each condition's
+tooltip on the health tab says what it gets and why ("Herbal medicine at most: it can get infected."). The council's
+answer to give a doctor who is the patient the best medicine keeps everything of theirs on the best while their care
+stays at it. Switch "Medicine by what is treated" on the What's on page (on by default, needs the deeper game hooks),
+and "Harmless wounds get" (no medicine, or herbal at most).
+
+**With Smart Medicine** (Uuugggg's mod, continued by MemeGoddess), which lets you choose the medicine for each injury
+with a right click on the health tab, Rimfolk fills in that choice where you set none (no medicine for a bruise,
+herbal at most for a cut, nothing for the serious, which keep your default), and Smart Medicine does the treating: it
+sorts the lesser choices after the rest, fetches the medicine for each tending's highest choice and only as much as
+it needs. Smart Medicine's own icon shows each choice on the health tab. A choice you set, change or take back to the
+default by hand is never touched again, and Rimfolk's own follow the wound (a cut while its patient bleeds out, a
+medical care setting changed) and are taken out with the setting off.
+
 **With Move the Patient** (konstantynopolitaneczka's mod, and only with it), the best bed goes to whoever needs it
 most. The mod on its own keeps a reservation scheme: each patient gets the lowest-ranked medical bed that fits how
 badly they are hurt, the High and Critical beds stay free for worse cases, and a bed marked as a surgery bed is never
@@ -4211,9 +4238,10 @@ The pages:
   requests, offices and the election, the colony's character, whether Rimfolk's systems talk to each other); people's
   lives (feelings and strain, life goals, quirks, heirlooms, coming of age, colonists fixing what bothers them and
   placing small plans, dreams and omens, moments, the colony noticing what happens, small habits, everyday ailments,
-  convalescence and sickbed visits, doctors' and midwives' reputations); bonds (the social web and social events,
-  friendships that take time, chemistry, comrades, deeds remembered, seats and love's feelings, personalities and
-  social life, traits that change, ideoligions in the colony with Ideology, secrets, vendettas); the colony's story
+  convalescence and sickbed visits, doctors' and midwives' reputations, medicine by what is treated and what harmless
+  wounds get); bonds (the social web and social events, friendships that take time, chemistry, comrades, deeds
+  remembered, seats and love's feelings, personalities and social life, traits that change, ideoligions in the colony
+  with Ideology, secrets, vendettas); the colony's story
   (journals, names, anniversaries, annals, eulogies, the colony calendar, answers that play out on the map, goods and
   people that come and go by hand); strangers and creatures (encounters, nemeses and their return, pets, sacred
   animals with Ideology, omen animals, the animals' temperaments, friendships and grief among animals, and whether
@@ -4298,6 +4326,10 @@ page, so a new setting needs a row there, and that every field before the five p
   then the game's medical quality), and a lighter case is carried to another bed with its "Transfer to bed" for
   someone worse off or for an operation in the surgery bed (setting on the Your other mods page; see "Recovery, doctors
   and midwives").
+- **Smart Medicine** (the continued one by MemeGoddess, or Uuugggg's original): its choice of medicine for each injury
+  is filled in where you set none, by what the injury is (no medicine for a bruise, herbal at most for a cut, your
+  default for the serious), and Smart Medicine does the treating; a choice you set by hand stands (see "Recovery,
+  doctors and midwives").
 
 ## Status and feedback
 

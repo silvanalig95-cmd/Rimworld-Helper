@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Medicine by what is treated
+
+*7 November 2026, version 0.159.0*
+
+- Medicine now follows what is being treated, not only the colonist's medical care: a bruise, a rib crack or the tiniest scratch gets bandaging and no medicine, a cut, a bleeding scratch, a small burn or one of Rimfolk's everyday ailments gets herbal medicine at most, and a deep or bleeding wound, a wound on a vital part, an infection or an illness gets the best the colonist's medical care allows.
+- Different needs are tended apart: someone with the plague and a few scratches gets the good medicine for the plague and herbal for the scratches, so the doctor never spends glitterworld medicine on scratches. The serious is tended first.
+- Your medical care setting stays the ceiling; this only ever uses less, and anyone the setting allows care for is still tended. Each condition's tooltip on the health tab says which medicine it gets and why.
+- With Smart Medicine, Rimfolk fills in its per-condition choice wherever you set none, and leaves alone anything you set by hand. New settings: Medicine by what is treated, and what harmless wounds get (no medicine, or herbal at most).
+
 ## Rimfolk's peoples, dressed from your own mods
 
 *7 November 2026, version 0.158.0*

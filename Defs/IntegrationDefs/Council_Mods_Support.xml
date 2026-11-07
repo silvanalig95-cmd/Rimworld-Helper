@@ -382,6 +382,15 @@
   </ColonyCouncil.ModSupportDef>
 
   <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_SmartMedicine</defName>
+    <label>Smart Medicine</label>
+    <order>28</order>
+    <code>true</code>
+    <packageIds><li>memegoddess.smartmedicine</li><li>uuugggg.smartmedicine</li></packageIds>
+    <what>Medicine by what is treated fills in its choice for each injury where you set none (none for a bruise, herbal at most for a cut, the default for the serious), and Smart Medicine does the treating; a choice set by hand stands.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
     <defName>Council_Support_HarvestAndHaul</defName>
     <label>Harvest and Haul</label>
     <order>29</order>

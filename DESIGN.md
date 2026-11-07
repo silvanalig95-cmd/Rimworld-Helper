@@ -4654,6 +4654,99 @@ The setting `medicalTriage` (Your other mods, Move the Patient, shown while it i
 mode stands triage down: the player chose the nearest bed there. Nothing is saved: a load forgets a move under way
 (the carry itself is the game's and goes on) and who was moved lately.
 
+### Medicine by what is treated
+
+The player's request (7 November 2026): "can you make it so that medicine is always taken according to the injury? if
+it's just scratches or bruises i don't want proper or glitterworld medicine used if a pawn also has a more serious
+illness at the same time. sometimes i even want no medicine if the injury is not threatening". `Health/MedicineChoice.cs`
+(the game's side, the saved book `GameComponent_MedicineChoice`), its patches in `MedicineChoicePatches.cs`, its pure
+rule in `MedicineChoiceMath.cs` (Tools/Tests, `MedicineChoiceTests`), Smart Medicine read by name in
+`Integrations/SmartMedicine.cs`, dev actions in `MedicineChoiceDebug.cs`. The patient's medical care setting is the
+ceiling: the rule only ever chooses less (`CareFor`), and a patient with care is always tended.
+
+**The rule** (`MedicineChoiceMath.Judge`), from the game's own numbers: a wound's untended bleeding (its size times its
+kind's bleed rate, the part's and the race's factors, nothing on bone or a prosthetic, before any tending or a field
+medic's stabilizing, so a wound stays what it is), its infection chance as the game rolls it (the kind's chance, by its
+size from a tenth at 1 point to the whole at 12, a tenth for an animal, none on bone, a prosthetic, a permanent wound,
+for someone immune or regenerating, times the storyteller's factor for the colony's own; never the hidden roll itself),
+the part (a vital tag, an organ inside), the stage, the def.
+
+| Kind | What counts | Medicine |
+|---|---|---|
+| Serious | the council's answer gave them the best; a stage threatening life now; any illness, infection or lasting condition but Rimfolk's everyday ailments; bleeding while the patient would bleed to death within 18 hours (the game's urgent mark); bleeding 40% a day or more (every fresh stump but a small creature's); a vital part (brain, heart, lungs, liver, kidneys, stomach, neck); an organ; deep (half the part's health, or 12 points on a wound that can go bad) | the medical care itself |
+| Minor | Rimfolk's everyday ailments (not its serious illnesses, never one that can kill); a wound bleeding 10% a day or more; a wound with a 3% chance or more of turning infected | herbal at most |
+| Harmless | a wound that does neither: a bruise, a crack, the smallest scratch or crush | none, only bandaging (the setting: herbal at most) |
+
+Examples (the tests): a bruise, harmless; the smallest scratch (1 point, 6% a day, 1.5%), harmless; a small cut (2 on
+an arm, 12% a day), minor; a scratch that bleeds (4 on a hand), minor; a small burn (3, 7.9%), minor; a crush (5, 6.4%),
+minor; a gunshot in the torso (10, 60% a day), serious; a small cut on the neck (48% a day), serious; a cut on a lung,
+serious; a bruise on the brain, serious; a crack through most of the femur, serious; a large burn (14), serious; a lost
+arm's or finger's stump, serious; an infection, the flu, the plague, asthma, a carcinoma, serious; Rimfolk's head cold,
+minor, its tuberculosis, serious. Vanilla's scratches all bleed and can get infected, so they are minor (herbal at
+most), and its crushes are minor too once past the smallest.
+
+**Without Smart Medicine**, Rimfolk does it itself:
+
+- **The order.** A postfix on `Hediff.TendPriority` shifts the game's priority by kind (serious 0, minor -10, harmless
+  -20): the serious are tended first, the game's own order (bleeding first) within a kind. The game tends one condition
+  at a time, but with medicine a wound takes other wounds along up to 20 points (`GetOptimalHediffsToTendWithSingleTreatment`):
+  a tending's care is the most any of its conditions gets, so a scratch beside a gunshot rides along at no cost.
+- **The medicine fetched.** A postfix on `HealthAIUtility.FindBestMedicine`: when its pick is better than the first
+  tending gets, the game's own search runs again (the doctor's pockets, the stores, the pack animals) with the patient's
+  care lowered to that tending's for the length of the call, and put back; none when it gets no medicine. An illness
+  whose last tending runs out within the hour (`SoonTicks`) counts as well, so a job made for a bruise brings the
+  plague's medicine should the plague come due on the way (the bruise is then bandaged without it). A postfix on
+  `Medicine.GetMedicineCountToFullyHeal`: only the tendings that get the same care as the first (`SameMedicineCount`),
+  so no glitterworld medicine is carried for scratches; one at least while the game counts any (a job made before the
+  patient changed still reserves what it holds; the search itself finds none for a tending that gets none). The care is
+  remembered for the doctor and patient.
+- **At the tending.** A prefix on `TendUtility.DoTend`: a tending whose care doesn't allow the medicine in hand is done
+  without it (kept for the next). A postfix: the job ends after this tending, by the game's own `endAfterTendedOnce`,
+  when the next tending gets other medicine (`EndAfter`: better than it gets, or better than it was fetched for, as
+  when the plague comes due while the scratches are seen to; with none in hand, any it wasn't made for), so the next
+  job fetches the right medicine. Never a job the player ordered or a drafted doctor's (those only ever use less).
+- **Caravans.** A postfix on `CaravanInventoryUtility.TryGetBestMedicine`: the packs' best medicine the first tending
+  allows, or none.
+
+**With Smart Medicine** (`memegoddess.smartmedicine`, Uuugggg's mod continued; the original reads the same), which keeps
+a choice of medical care for each condition (`PriorityCareSettingsComp.hediffCare`, a dictionary from a hediff to a
+`MedicalCareCategory`, saved in the continued version, `PriorityCareComp`'s and unsaved in the original), set with a
+right click on the health tab, and does the treating by it: a condition with a lower choice sorts after the rest (its
+tend priority five a step from the patient's care), its search for medicine (its own `FindBestMedicine.Find`, which
+replaces the game's and is called straight from its `WorkGiver_Tend.JobOnThing` prefix) takes the highest choice of the
+first tending, its count (a transpiler on `GetMedicineCountToFullyHeal`) only the tendings at the highest choice, and the
+next tending looks again. Rimfolk's own patches above stand down, and Rimfolk fills that choice in where the player set
+none: the rule's care where it is less than the patient's (a serious condition keeps the default), right before each
+choice of medicine (prefixes on `WorkGiver_Tend.JobOnThing` and `FindBestMedicine` before Smart Medicine's own, by its
+Harmony id, and on `DoTend`) and when the health tab is drawn (Smart Medicine's own icon then shows it). What Rimfolk
+wrote is kept in the save by the condition's `loadID` with the care: a choice Rimfolk never wrote, or one changed by
+hand, is the player's and never touched; one taken back to the default stays the default (`handsOff`). Rimfolk's own
+follow the wound and the care setting and are taken out with the setting off. Smart Medicine's short-lived raise of a
+patient's care (`DefaultCareFix`, when a choice set by hand is above it) is read through. After a tending the same
+job end applies (with Smart Medicine tending with what is in hand, also when the next gets none). Smart Medicine's own
+"minimal medicine for non-urgent" settings still apply on top, as the player set them.
+
+**Other medical mods in the player's list.** Field Medic (its stabilizing with the medic bag multiplies a wound's bleed
+rate for a while: the rule reads the untended bleeding, so a stabilized wound stays what it is), VFE Medical (beds and
+facilities: the tend quality, not the medicine), Nice Health Tab (the health tab redrawn: the line is in the condition's
+own tooltip, `Hediff.GetTooltip`, which it shows as the game's does; with Smart Medicine its icons are Smart Medicine's
+own work there), Quality Surgeon (surgery, not tending), Medic Warcasket (its mechanite dressing is a job of its own: the
+tending prefix leaves any job but the game's own tend job alone): nothing to do but coexist.
+
+**Shown.** A postfix on `Hediff.GetTooltip`: each condition still to be tended says what it gets and why ("Herbal
+medicine at most: it can get infected.", "Medicine up to Ada's medical care (best quality medicine): it bleeds
+heavily.", "Doctor care, but no medicine, as Ada's medical care is set: ...", "Best quality medicine, as you set it with
+Smart Medicine."). No letters or messages.
+
+**The council's answer.** "The best medicine for" the doctor who is the patient (`DilemmaEffect_MedCare`) sets their care
+to the best, as before, and the book keeps their id: everything of theirs is serious while their care stays at the
+best, so the answer's words hold for a bruise too; their care changed by hand lets it go.
+
+The settings `medicineByNeed` (What's on, people's lives; on by default, needs the deeper hooks) and `harmlessMedicine`
+(no medicine or herbal at most, under it). Saved: `GameComponent_MedicineChoice.bestByAnswer` (40 at most),
+`filled` and `handsOff` (only with Smart Medicine; pruned to the living at each save, 600 and 200 at most; the original
+Smart Medicine's forgetting at a load clears `filled`). No Sched slot: everything rides on the game's own calls.
+
 ### Ages
 
 Every feature takes the form of the age (ROADMAP.md, "Every age, not only the medieval one"), and the ages are read in
