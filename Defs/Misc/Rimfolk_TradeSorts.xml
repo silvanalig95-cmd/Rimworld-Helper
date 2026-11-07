@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Rimfolk's sorts for the trade screen's two "Sort by" menus (Source/ColonyCouncil/Trade/TradeSorts.cs): the game lists
+    every TransferableSorterDef there, so these come after its own. Each puts the highest first; a row without that side
+    goes last. With the deeper game hooks they show only on the trade screen (the caravan and transport pod windows share
+    the menus and have no prices); without them they show there too and sort by market value.
+  -->
+
+  <TransferableSorterDef>
+    <defName>Rimfolk_TraderPays</defName>
+    <label>trader pays</label>
+    <description>What the trader pays for one, for this negotiator, the highest first.</description>
+    <comparerClass>ColonyCouncil.TransferableComparer_TraderPays</comparerClass>
+  </TransferableSorterDef>
+
+  <TransferableSorterDef>
+    <defName>Rimfolk_TraderAsks</defName>
+    <label>trader asks</label>
+    <description>What the trader asks for one, for this negotiator, the highest first.</description>
+    <comparerClass>ColonyCouncil.TransferableComparer_TraderAsks</comparerClass>
+  </TransferableSorterDef>
+
+  <TransferableSorterDef>
+    <defName>Rimfolk_PricePerKg</defName>
+    <label>price per kg</label>
+    <description>The trade price of a kilogram, the highest first: what the trader pays where the colony has some, else what it asks.</description>
+    <comparerClass>ColonyCouncil.TransferableComparer_PricePerKg</comparerClass>
+  </TransferableSorterDef>
+
+  <TransferableSorterDef>
+    <defName>Rimfolk_BestDeal</defName>
+    <label>best deal</label>
+    <description>The price against the usual, the best first: a sale above it, a purchase under it.</description>
+    <comparerClass>ColonyCouncil.TransferableComparer_BestDeal</comparerClass>
+  </TransferableSorterDef>
+
+  <TransferableSorterDef>
+    <defName>Rimfolk_Suggested</defName>
+    <label>suggested first</label>
+    <description>Rimfolk's suggestions first: what to buy, then what to sell, then what is kept.</description>
+    <comparerClass>ColonyCouncil.TransferableComparer_Suggested</comparerClass>
+  </TransferableSorterDef>
+
+</Defs>

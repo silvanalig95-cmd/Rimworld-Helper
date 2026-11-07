@@ -520,6 +520,13 @@ namespace ColonyCouncil
             Toggle("fieldsByWeather", "CC_Settings_FieldsByWeather", "CC_SetNote_FieldsByWeather", "deepHooks");
             Toggle("frostHarvestSuggest", "CC_Settings_FrostHarvest", "CC_SetNote_FrostHarvest");
             Toggle("frostHarvestAuto", "CC_Settings_FrostHarvestAuto", "CC_SetNote_FrostHarvestAuto", "frostHarvestSuggest");
+            // The trade screen (Trade/): sorts by price, the marks and the basket from what the colony needs, the readouts.
+            Section("CC_SetSec_TradeScreen");
+            NoteUnder("CC_SetSec_TradeScreen_Note");
+            Toggle("tradeSorts", "CC_Settings_TradeSorts", "CC_SetNote_TradeSorts");
+            Toggle("tradeMarks", "CC_Settings_TradeMarks", "CC_SetNote_TradeMarks", "deepHooks");
+            Toggle("tradeBasket", "CC_Settings_TradeBasket", "CC_SetNote_TradeBasket", "deepHooks");
+            Toggle("tradeReadouts", "CC_Settings_TradeReadouts", "CC_SetNote_TradeReadouts", "deepHooks");
             // The deeper game hooks, this colony's era, a check of what's working and a full reset.
             Section("CC_SetSec_Hooks");
             Toggle("deepHooks", "CC_Settings_DeepHooks", "CC_SetNote_DeepHooks");
@@ -671,6 +678,8 @@ namespace ColonyCouncil
             Mod(Toggle("pokemonTypeCalm", "CC_Settings_PokemonTypeCalm", "CC_SetNote_PokemonTypeCalm", "pokemonTypes"), PokeWorldId);
             Mod(Toggle("pokemonTypeSpar", "CC_Settings_PokemonTypeSpar", "CC_SetNote_PokemonTypeSpar", "pokemonTypes"), PokeWorldId);
             Mod(Toggle("pokemonTypeDouse", "CC_Settings_PokemonTypeDouse", "CC_SetNote_PokemonTypeDouse", "pokemonTypes"), PokeWorldId);
+            Section("CC_SetSec_Mod_Vte");
+            Mod(Toggle("tradeVte", "CC_Settings_TradeVte", "CC_SetNote_TradeVte"), VteId);
             // Any mod's faith precept against turrets (TurretFaith.cs reads the precept, not one mod): always shown.
             Section("CC_SetSec_Mod_Faiths");
             Toggle("faithTurretsHere", "CC_Settings_FaithTurretsHere", "CC_SetNote_FaithTurretsHere", "deepHooks");
@@ -681,7 +690,8 @@ namespace ColonyCouncil
 
         // The other mods' package ids, as their integrations check them (Integrations/), for the page that shows only those loaded.
         public const string HospitalityId = "orion.hospitality", RimMarketId = "forti.rimmarket", AlphaSkillsId = "sarg.alphaskills", AlphaGenesId = "sarg.alphagenes",
-            MagicId = "torann.arimworldofmagic", TerritoriesId = "jaeger972.factionterritories", MoveThePatientId = "konstantynopolitaneczka.movethepatient";
+            MagicId = "torann.arimworldofmagic", TerritoriesId = "jaeger972.factionterritories", MoveThePatientId = "konstantynopolitaneczka.movethepatient",
+            VteId = "vanillaexpanded.vanillatradingexpanded";
 
         /// <summary>
         /// PokéWorld's row: its versions have had several package ids, so it is found by its Pokémon instead
@@ -699,6 +709,7 @@ namespace ColonyCouncil
             [MagicId] = "CC_SetSec_Mod_Magic",
             [TerritoriesId] = "CC_SetSec_Mod_Territories",
             [MoveThePatientId] = "CC_SetSec_Mod_MoveThePatient",
+            [VteId] = "CC_SetSec_Mod_Vte",
             [PokeWorldId] = "CC_SetSec_Mod_PokeWorld"
         };
 

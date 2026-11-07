@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A better trade screen
+
+*7 November 2026, version 0.150.0*
+
+- The trade screen's two Sort by menus have five new choices: what the trader pays, what the trader asks, price per kg, the best deal (a price measured against the usual one for your negotiator), and suggested first.
+- Rows now carry a small mark with a tooltip saying why: worth selling (more than the colony needs and as much again, something nobody here can use, a worse spare, a good price), worth buying (food, medicine, feed or components running short, what your blueprints still lack, an open wish, a book or techprint for the current research, a bargain), or kept (set aside for a journey, a wish, a blueprint or drugs). Only goods the colony uses count, so a tribe gets a tribe's advice.
+- Fill suggested puts the marked goods into the trade within the silver both sides have, what the colony is short of first; Clear suggested takes them out again. Nothing changes until you press Accept, and rows you set yourself are left alone.
+- The silver row shows each side's silver after the trade, and a trade at home shows the days of food now and after it.
+- With Vanilla Trading Expanded, its market's rising and falling prices feed the marks and the best-deal sort and are named in the tooltip, the goods its contracts ask for are kept or marked worth buying when cheap, and your bank silver shows at the foot.
+- With Trade Helper, which already lists what is bought and sold, the silver-after line stands down. Each part has its own setting in a new Trade screen section of What's on.
+
 ## An animal's temperament in RimHUD
 
 *7 November 2026, version 0.149.1*

@@ -2014,6 +2014,29 @@ foot, bars for the load against the room, the caravan's own speed, and the food'
 RimMarket, what lies on the colony's stalls is listed beside the stores, the stores' taken first, and a traveller
 takes the rest out of the stall's stock in the last hours.
 
+### The trade screen
+The game's trade screen (a trader on the map, a caravan at a town, a ship called on the comms console) is quicker to
+read (settings: **What's on, Trade screen**, each part its own switch). Nothing is traded until you press its Accept.
+- **Sorting by price:** the two "Sort by" menus gain *trader pays*, *trader asks* (the prices for this negotiator, not
+  market value), *price per kg* (for a caravan's load), *best deal* (the price against the usual one: a trader usually
+  pays 60% of a thing's worth and asks 140%, moved by the negotiator; a fifth better is a good sale or a bargain) and
+  *suggested first*, each the highest first.
+- **Marks:** beside a good, a mark pointing down for worth selling, up for worth buying, or a pin for kept, with why in
+  its tooltip. The colony keeps the need of each good and as much again: what it used in a season (15 days) by its own
+  record, or a floor for its kind (50 a person of wood, metal and stone blocks, 25 of cloth and leather, 3 of components
+  and of medicine, 5 of gold and the like), food by the plan ahead's days (the winter ahead counted), and on top what is
+  set aside for the blueprints, a journey's packing, a promise, a gift for a wish, the drug policies or a contract.
+  Worth selling: what is beyond that, what no one here can use (clothes no one can wear, a weapon biocoded to someone
+  gone, a learned techprint, a drug for pleasure no policy allows), the worse of the spare weapons and clothes (one
+  spare a kind for every three people), and a good price on what is beyond the need. Worth buying: food short, medicine,
+  feed, what the blueprints and the shopping list lack, components where machines break down, a colonist's open wish, a
+  techprint or book for the research under way, a bargain on a stock that runs low. The pin turns red when the trade
+  sells into what is kept.
+- **Fill suggested** puts the marked goods into the trade within the silver both sides have, the most pressing first;
+  rows you set yourself stay as they are. **Clear suggested** takes it back out.
+- **What the trade leaves:** under each side's silver, what it has after the trade; at the foot of a trade at home, the
+  days the colony's food lasts now and after it (a caravan's are the game's own, at the top, with its mass).
+
 ### A fresh start in the same world
 **Found a new colony** on a colony's card (the region map's Ours lens) picks a place on the game's world map, with
 what Rimfolk knows of the tile under the cursor: whose land it is, the towns near it and how their peoples stand with
@@ -2281,6 +2304,12 @@ while that feature is off; nothing vanilla is changed or removed. A few things i
 - **Guests, prisoners and visitors** (Hospitality and the like) are left out of meetings, votes and council
   talk. Rimfolk's column in the Social tab is only for the colony's own people (colonists, prisoners, slaves), so a
   guest's Social tab stays the game's (and Hospitality's).
+- **Vanilla Trading Expanded:** it draws nothing on the trade screen itself, so its world market's prices count in
+  Rimfolk's best-deal sort and its marks (a good in demand fetches a good price, one in surplus is a bargain), the goods
+  its contracts ask for are kept (and worth buying where a trader's price leaves the reward well ahead), and the silver
+  in its banks shows at the foot of the screen. Read by name only; nothing of it is changed.
+- **Trade Helper:** its side panel (a wish list, the lists of what is bought and sold) is left as it is; Rimfolk draws
+  nothing there, and while it is loaded leaves the silver after the trade to its lists.
 - **Removing a mod mid-game:** room plans that used a material from that mod fall back to a default material,
   and people who vanished with it are quietly forgotten.
 
@@ -4065,7 +4094,8 @@ The pages:
   your own buildings, smooth stone; the planner shows the same switches), the council's **automations** (each its own
   switch, all off to begin with, with the materials budget and the daily caps), **Planning ahead** (the days of meals
   to keep cooked and of food to keep in store that the Making page's stock targets are worked out from, fields by
-  the weather and the frost harvest); at its foot the deeper game hooks, this colony's era (detected, pre-industrial
+  the weather and the frost harvest), the **trade screen** (the price sorts, the marks for what to sell, buy and keep,
+  the Fill suggested button, the silver and food after the trade); at its foot the deeper game hooks, this colony's era (detected, pre-industrial
   or industrial; set per colony, so it needs a loaded game), **Check what's on and working** (the same report as the
   dev action "Rimfolk: check myself"), and a full reset to the defaults (with the list of what changes; saved rooms
   are kept).
@@ -4093,7 +4123,7 @@ The pages:
   own setup leaves out after its refused healing-rain patch are applied one at a time, with the healing rain run by
   Rimfolk; familiars), PokéWorld (what Pokémon sound like; the Pokémon types at home and each of their six parts), Faction
   Territories and Vassalage (distant new settlements in the colony news), Move the Patient (the best bed first and
-  room made for the worse off), and a faith's precept against turrets from any mod minding only the turrets where
+  room made for the worse off), Vanilla Trading Expanded (its market, contracts and banks on the trade screen), and a faith's precept against turrets from any mod minding only the turrets where
   they are.
 
 Saved settings carry over unchanged: every setting keeps its name in the settings file, wherever its row now sits

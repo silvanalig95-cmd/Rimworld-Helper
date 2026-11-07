@@ -516,6 +516,17 @@ namespace ColonyCouncil
         public bool frostHarvestSuggest = true;
         /// <summary>The frost harvest is done by itself: the plants a coming frost would kill are marked for harvest as soon as the forecast shows it (Fields/FieldWeather.cs; the player's request).</summary>
         public bool frostHarvestAuto = true;
+        // ---- The trade screen (Trade/): each part its own switch ----
+        /// <summary>Rimfolk's sorts in the trade screen's two sort menus: what the trader pays and asks, the price a kilo, the best deal, the suggestions first (Trade/TradeSorts.cs).</summary>
+        public bool tradeSorts = true;
+        /// <summary>A mark beside each good worth selling, worth buying or kept, with why (Trade/TradeAdvice.cs).</summary>
+        public bool tradeMarks = true;
+        /// <summary>The buttons that fill the suggested basket within the silver both sides have, and take it back out.</summary>
+        public bool tradeBasket = true;
+        /// <summary>The silver each side has after the trade, and the days of food after a trade at home.</summary>
+        public bool tradeReadouts = true;
+        /// <summary>With Vanilla Trading Expanded: its market, contracts and banks in the advice and the readouts (Integrations/VanillaTrading.cs).</summary>
+        public bool tradeVte = true;
         /// <summary>A "Reserved slots" button on the colony's shelves: a slot kept for each kind picked (Building/ShelfReserves.cs).</summary>
         public bool shelfReserves = true;
         /// <summary>A drink, smoke or snack had at a table or outside, not standing in a freezer or store room (Building/ChewSpots.cs).</summary>
@@ -908,6 +919,11 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref fieldsByWeather, "fieldsByWeather", true);
             Scribe_Values.Look(ref frostHarvestSuggest, "frostHarvestSuggest", true);
             Scribe_Values.Look(ref frostHarvestAuto, "frostHarvestAuto", true);
+            Scribe_Values.Look(ref tradeSorts, "tradeSorts", true);
+            Scribe_Values.Look(ref tradeMarks, "tradeMarks", true);
+            Scribe_Values.Look(ref tradeBasket, "tradeBasket", true);
+            Scribe_Values.Look(ref tradeReadouts, "tradeReadouts", true);
+            Scribe_Values.Look(ref tradeVte, "tradeVte", true);
             Scribe_Values.Look(ref shelfReserves, "shelfReserves", true);
             Scribe_Values.Look(ref chewOutOfStores, "chewOutOfStores", true);
             Scribe_Values.Look(ref haulOwnWork, "haulOwnWork", true);

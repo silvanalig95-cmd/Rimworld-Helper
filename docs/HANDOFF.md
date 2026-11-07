@@ -12,6 +12,42 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.150.0, the trade screen (7 November 2026, the player's request:
+  "can you please optimize the trade screen ui? things like sorting by price, recommended trades etc. i also just
+  installed vanilla trading expanded so integrate that as well"; built without a proposal round). `Source/ColonyCouncil/
+  Trade/` (new), `Integrations/VanillaTrading.cs`, `Defs/Misc/Rimfolk_TradeSorts.xml`, Keyed `Rimfolk_TradeScreen.xml`, an
+  Almanac page of its own (`Almanac_TradeScreen.xml`, *the trade screen*), README "The trade screen", DESIGN.md "The
+  trade screen". Settings: What's on, Trade screen (`tradeSorts`, `tradeMarks`, `tradeBasket`, `tradeReadouts`, all on;
+  the last three deeper hooks) and Your other mods, Vanilla Trading Expanded (`tradeVte`). Nothing saved.
+  - Sorts: five `TransferableSorterDef`s in the game's own two menus (trader pays, trader asks, price per kg, best deal,
+    suggested first, the highest first); `Patch_TradeSortMenu` (a transpiler on the menu's def list) leaves them out of
+    the caravan and transport pod windows, which share the menus.
+  - Advice (`TradeAdvice.cs`, read once a trade opens; rules in `TradeAdviceMath`, linked into the tests): keep the need
+    and as much again (a season's use by `ColonyUse`, or 50 a person of wood, metal and stone blocks, 25 of cloth and
+    leather, 3 of components and of medicine, 5 of precious stuff), food by the plan ahead's days (10 at least, raw as
+    the meals it cooks into), weapons and clothes by spares (one a kind per three people), plus what is set aside
+    (`Making.BuildingWants`, the journey's packing, a promised or kept wish, the drug policies, a VTE contract, a
+    caravan's own food and medicine). Sell: the surplus, what no one can use, the worse spares, a good price (a fifth
+    above the usual) on what is beyond the need. Buy: food, medicine and feed short, the blueprints and the shopping
+    list, components where machines break down, a wish, a techprint or book for the research, a contract, a bargain (a
+    fifth under the usual) on a stock already kept. The usual price is the game's 60% and 140% of worth moved by the
+    negotiator and difficulty; with VTE the worth has its market's change divided out.
+  - The marks (`Patch_TradeRowMark`, a postfix on `TransferableUIUtility.DoExtraIcons`): pointing down, up, or a pin, the
+    pin red when the trade sells into what is kept. Fill suggested and Clear suggested at the foot left of Reset
+    (`Patch_TradeFoot`, a postfix on `Dialog_Trade.FillMainRect`; `TradeAdviceMath.Fill` within both sides' silver,
+    rows set by hand untouched). Silver after the trade in the silver row's empty price columns (`Patch_TradeSilverAfter`)
+    and food days after a trade at home at the foot right; a caravan's mass and food days are the game's own.
+  - VTE (read by name: its TradingManager's `priceModifiers`, `npcSubmittedContracts`, `playerSubmittedContracts`,
+    `banksByFaction`) patches nothing on the screen. Trade Helper's source isn't public (workshop item 2113372560, no
+    repository found): from its description and a reported stack trace it adds 300 pixels and a side panel drawn in a
+    `DoWindowContents` postfix (a wish list, lists of what is bought and sold, hover highlights). Rimfolk stays inside
+    the game's layout and leaves out its silver-after readout while Trade Helper is loaded. Test: `TradeScreenTests`.
+  - To try in the game: open a trade with a caravan visitor at home; pick "suggested first" in the first sort menu and
+    read the marks' tooltips (a stock of steel or wood far above 100 a person should be worth selling, food short before
+    winter worth buying); press Fill suggested, check the counts and the silver after under each side, then Clear
+    suggested; open the caravan forming window and see Rimfolk's sorts are not in its menu; with VTE, a good its market
+    lists far up should rise in "best deal" and its tooltip name the market; with Trade Helper, check its side panel and
+    Rimfolk's buttons do not overlap.
 - 0.149.1, a pet's temperament with RimHUD (7 November 2026, the player's screenshot of their husky Yuma with RimHUD's
   panel: "AS IT stands i don't see anything for my pet yet, is that correct?"). The animals' natures (0.148.0) show
   through a postfix on `Pawn.GetInspectString`, which RimHUD's panel replaces. New widget `RimHud_AnimalNature`

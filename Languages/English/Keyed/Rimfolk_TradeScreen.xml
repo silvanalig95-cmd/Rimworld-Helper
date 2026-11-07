@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The game's trade screen, quicker to read (Source/ColonyCouncil/Trade/, Integrations/VanillaTrading.cs). -->
+
+  <!-- The settings. -->
+  <CC_SetSec_TradeScreen>Trade screen</CC_SetSec_TradeScreen>
+  <CC_SetSec_TradeScreen_Note>The game's trade screen with price sorts, advice from what the colony needs, and what the trade leaves. It only suggests: nothing is traded until you press Accept.</CC_SetSec_TradeScreen_Note>
+  <CC_Settings_TradeSorts>Price sorts on the trade screen</CC_Settings_TradeSorts>
+  <CC_Settings_TradeSorts_Tip>Five more sorts in the trade screen's two "Sort by" menus, each the highest first: what the trader pays and what it asks (the trade prices for your negotiator, as the price columns show them, not the market value), the price per kg (for a caravan's load), the best deal (the price against the usual: a sale above it or a purchase under it, with Vanilla Trading Expanded's market counted), and Rimfolk's suggestions first. A good with nothing on that side goes last. With the deeper game hooks they show only on the trade screen; without them they also show in the caravan and transport pod windows, where they sort by market value. Trade Helper's side panel is left as it is.</CC_Settings_TradeSorts_Tip>
+  <CC_SetNote_TradeSorts>The trade screen sorts by what the trader pays or asks, by kg, by the best deal, or suggestions first.</CC_SetNote_TradeSorts>
+  <CC_Settings_TradeMarks>Marks for what to sell, buy and keep</CC_Settings_TradeMarks>
+  <CC_Settings_TradeMarks_Tip>A small mark beside a good on the trade screen, with why in its tooltip. Worth selling (a mark pointing down): what is beyond what the colony keeps, things no one here can use (clothes no one can wear, a weapon biocoded to someone gone, a techprint learned, a drug taken for pleasure that no drug policy allows), the worse of the spare weapons and clothes when better ones are stored, and a price a fifth above the usual on what is beyond the need. Worth buying (a mark pointing up): food short of the days the plan ahead keeps (the winter ahead counted), medicine, feed, what the blueprints and frames lack, the plan ahead's shopping list, components where machines break down, a colonist's open wish, a techprint or book for the research under way, and a price a fifth under the usual where a stock the colony keeps is low. Kept (a pin): what is set aside for the blueprints, a journey's packing, a promise, a gift for a wish, the drug policies or a contract; it turns red when the trade sells into it. What the colony keeps of a good: what it uses in a season by its record, or a floor for its kind (50 a person of wood, metal and stone blocks, 25 of cloth and leather, 3 of components and of medicine, 5 of gold and the like), and as much again, with what is set aside on top. Only what the colony has and can use counts. Trade Helper's wish list marks what you asked for; these marks are the colony's own, and the two show side by side. Needs the deeper game hooks.</CC_Settings_TradeMarks_Tip>
+  <CC_SetNote_TradeMarks>Goods worth selling, worth buying or kept carry a mark on the trade screen, with why.</CC_SetNote_TradeMarks>
+  <CC_Settings_TradeBasket>Fill suggested button</CC_Settings_TradeBasket>
+  <CC_Settings_TradeBasket_Tip>Two buttons at the foot of the trade screen. Fill suggested puts the marked goods into the trade within the silver both sides have: what the colony is short of first (food, medicine, feed, the plans' materials), then what it has more of than it keeps; rows you set yourself stay as they are and their silver counts first. You see the counts in the game's own columns and confirm with its Accept, or Clear suggested takes them back out. Not in gift mode, or where the trader deals in favor. Needs the deeper game hooks.</CC_Settings_TradeBasket_Tip>
+  <CC_SetNote_TradeBasket>A button puts the marked goods into the trade within both sides' silver; another takes them out.</CC_SetNote_TradeBasket>
+  <CC_Settings_TradeReadouts>Silver and food after the trade</CC_Settings_TradeReadouts>
+  <CC_Settings_TradeReadouts_Tip>Under the silver row, what each side has after the trade, in red when it runs short. At the foot of a trade at home, how many days the colony's food lasts now and after the trade (a caravan's own days of food and its mass after the trade are the game's, at the top). With Vanilla Trading Expanded, the silver the colony keeps in its banks. With Trade Helper loaded the silver after the trade is left out, since its lists of what is bought and sold already say what the trade comes to. Needs the deeper game hooks.</CC_Settings_TradeReadouts_Tip>
+  <CC_SetNote_TradeReadouts>The trade screen shows each side's silver after the trade, and the colony's days of food.</CC_SetNote_TradeReadouts>
+  <CC_SetSec_Mod_Vte>Vanilla Trading Expanded</CC_SetSec_Mod_Vte>
+  <CC_Settings_TradeVte>Its market and contracts on the trade screen</CC_Settings_TradeVte>
+  <CC_Settings_TradeVte_Tip>With Vanilla Trading Expanded, which draws nothing on the trade screen itself: its world market's price of each good against the good's usual worth counts in the best-deal sort and the marks (a good in demand fetches a good price, one in surplus is a bargain) and is named in a mark's tooltip; the goods a contract on its terminal asks of the colony are kept, and worth buying where this trader's price leaves the reward well ahead; the colony's own contracts are worth buying here when the trader asks less than they offer; and the silver in its banks shows at the foot. Read only: nothing of it is changed.</CC_Settings_TradeVte_Tip>
+  <CC_SetNote_TradeVte>With Vanilla Trading Expanded: its prices, contracts and banks count on the trade screen.</CC_SetNote_TradeVte>
+
+  <!-- The marks: the first line, then why. -->
+  <CC_Trade_Head_Sell>Worth selling: {COUNT}.</CC_Trade_Head_Sell>
+  <CC_Trade_Head_Buy>Worth buying: {COUNT}.</CC_Trade_Head_Buy>
+  <CC_Trade_Head_Keep>Kept for the colony's plans.</CC_Trade_Head_Keep>
+  <CC_Trade_Head_KeepSome>{COUNT} of the colony's {HAVE} are kept for its plans.</CC_Trade_Head_KeepSome>
+  <CC_Trade_Why_Surplus>The colony has {HAVE} and keeps {KEEP}: {NEED} for a season ({FROM}) and as much again in reserve, with anything set aside on top.</CC_Trade_Why_Surplus>
+  <CC_Trade_From_Floor>{EACH} for each of its {PEOPLE} people</CC_Trade_From_Floor>
+  <CC_Trade_From_Use>what it used lately, {USE} a day</CC_Trade_From_Use>
+  <CC_Trade_Why_GoodSale>The price is {PCT}% above the usual, so only the need is kept back: the colony has {HAVE} and needs {NEED} for a season ({FROM}).</CC_Trade_Why_GoodSale>
+  <CC_Trade_Why_Bargain>The price is {PCT}% under the usual, and the colony's stock is low: it keeps {KEEP} and has {HAVE}.</CC_Trade_Why_Bargain>
+  <CC_Trade_Why_Worse>Better ones of its kind are stored: the colony keeps the best {SPARES} as spares for its {PEOPLE} people, and this is not one of them.</CC_Trade_Why_Worse>
+  <CC_Trade_Why_CantWear>No one in the colony can wear it.</CC_Trade_Why_CantWear>
+  <CC_Trade_Why_Biocoded>It is biocoded to {PAWN}, so no one here can use it.</CC_Trade_Why_Biocoded>
+  <CC_Trade_Why_Learned>The colony has already learned all it teaches.</CC_Trade_Why_Learned>
+  <CC_Trade_Why_NoDrug>The colony's drug policies let no one take it.</CC_Trade_Why_NoDrug>
+  <CC_Trade_Why_FoodSurplus>The colony has {HAVE} days of food and keeps {KEEP}: {NEED} days as the plan ahead counts them, and as much again.</CC_Trade_Why_FoodSurplus>
+  <CC_Trade_Why_FeedSurplus>The animals fed from the stores have {HAVE} days of feed, and the colony keeps {KEEP}: {NEED} days and as much again.</CC_Trade_Why_FeedSurplus>
+  <CC_Trade_Why_FoodShort>The colony has {HAVE} days of food and needs {NEED}: the {RESERVE} days it keeps in store and the {WINTER} days ahead with nothing growing, {LEAST} at least.</CC_Trade_Why_FoodShort>
+  <CC_Trade_Why_FeedShort>The animals fed from the stores have {HAVE} days of feed, and the colony keeps {NEED}.</CC_Trade_Why_FeedShort>
+  <CC_Trade_Why_MedicineSurplus>The colony has {HAVE} medicine and keeps {KEEP}: {NEED} for what it needs and as much again in reserve.</CC_Trade_Why_MedicineSurplus>
+  <CC_Trade_Why_MedicineShort>The colony has {HAVE} medicine and needs {NEED}.</CC_Trade_Why_MedicineShort>
+  <CC_Trade_Why_BuildShort>The colony's blueprints and frames are {COUNT} short of it.</CC_Trade_Why_BuildShort>
+  <CC_Trade_Why_Shop>On the plan ahead's shopping list: {LIST}.</CC_Trade_Why_Shop>
+  <CC_Trade_Why_Repairs>{MACHINES} of the colony's machines break down now and then; it has {HAVE} components and keeps {NEED} for repairs.</CC_Trade_Why_Repairs>
+  <CC_Trade_Why_Contract>A contract on Vanilla Trading Expanded's terminal asks for {AMOUNT} for {REWARD} silver. The colony has {HAVE}, and the rest costs {COST} here.</CC_Trade_Why_Contract>
+  <CC_Trade_Why_OwnContract>The colony's own contract offers {REWARD} silver for {AMOUNT}; here they cost {COST}.</CC_Trade_Why_OwnContract>
+  <CC_Trade_Why_Wish>{PAWN} wishes for {WISH}.</CC_Trade_Why_Wish>
+  <CC_Trade_Why_Techprint>The research into {PROJECT} needs {LEFT} more of these.</CC_Trade_Why_Techprint>
+  <CC_Trade_Why_Book>Reading it helps the research into {PROJECT}.</CC_Trade_Why_Book>
+  <CC_Trade_Why_SetAside>Set aside: {LIST}.</CC_Trade_Why_SetAside>
+  <CC_Trade_Aside_Build>{COUNT} for the blueprints and frames</CC_Trade_Aside_Build>
+  <CC_Trade_Aside_Journey>{COUNT} packed for the journey to {PLACE}</CC_Trade_Aside_Journey>
+  <CC_Trade_Aside_JourneyNoPlace>{COUNT} packed for the journey</CC_Trade_Aside_JourneyNoPlace>
+  <CC_Trade_Aside_Drugs>{COUNT} for the drug policies</CC_Trade_Aside_Drugs>
+  <CC_Trade_Aside_Contract>{COUNT} for a contract worth {REWARD} silver</CC_Trade_Aside_Contract>
+  <CC_Trade_Aside_Promise>one promised to {PAWN}</CC_Trade_Aside_Promise>
+  <CC_Trade_Aside_Kept>one given to {PAWN} for a wish</CC_Trade_Aside_Kept>
+  <CC_Trade_Aside_Caravan>{COUNT} carried as the caravan's supplies</CC_Trade_Aside_Caravan>
+  <CC_Trade_KeepWarn>This trade sells some of what is set aside.</CC_Trade_KeepWarn>
+  <CC_Trade_Price_Sell>This trader pays {HOW}.</CC_Trade_Price_Sell>
+  <CC_Trade_Price_Buy>This trader asks {HOW}.</CC_Trade_Price_Buy>
+  <CC_Trade_Usual_Same>about the usual price</CC_Trade_Usual_Same>
+  <CC_Trade_Usual_Above>{PCT}% above the usual price</CC_Trade_Usual_Above>
+  <CC_Trade_Usual_Below>{PCT}% under the usual price</CC_Trade_Usual_Below>
+  <CC_Trade_World_Up>On Vanilla Trading Expanded's market it is worth {PCT}% more than usual just now.</CC_Trade_World_Up>
+  <CC_Trade_World_Down>On Vanilla Trading Expanded's market it is worth {PCT}% less than usual just now.</CC_Trade_World_Down>
+
+  <!-- The foot of the screen and the silver row. -->
+  <CC_Trade_Fill>Fill suggested</CC_Trade_Fill>
+  <CC_Trade_FillTip>Puts the marked goods into the trade, within the silver both sides have: what the colony is short of first, then what it has more of than it keeps. Rows you set yourself stay as they are. Nothing is traded until you press Accept.</CC_Trade_FillTip>
+  <CC_Trade_FillNone>Nothing is marked to buy or sell with this trader.</CC_Trade_FillNone>
+  <CC_Trade_Clear>Clear suggested</CC_Trade_Clear>
+  <CC_Trade_ClearTip>Takes the suggested goods back out of the trade, leaving what you set yourself.</CC_Trade_ClearTip>
+  <CC_Trade_SilverAfter>after: {0}</CC_Trade_SilverAfter>
+  <CC_Trade_SilverAfterTip>Silver after this trade: the colony {COLONY}, the trader {TRADER}.</CC_Trade_SilverAfterTip>
+  <CC_Trade_FoodAfter>Food {NOW} days, after {AFTER}</CC_Trade_FoodAfter>
+  <CC_Trade_FoodAfterTip>How many days the colony's food lasts, now and after this trade: the meals and raw food its people eat (raw food counted as the meals it cooks into), at {NEED} nutrition a day.</CC_Trade_FoodAfterTip>
+  <CC_Trade_Banks>In the banks: {0} silver</CC_Trade_Banks>
+  <CC_Trade_BanksTip>Silver the colony keeps in Vanilla Trading Expanded's banks. It can't pay for this trade; the trading terminal moves it.\n\n{LIST}</CC_Trade_BanksTip>
+
+</LanguageData>

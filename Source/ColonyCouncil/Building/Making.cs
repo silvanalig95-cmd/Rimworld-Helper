@@ -420,7 +420,20 @@ namespace ColonyCouncil
         /// <summary>What the colony's blueprints and frames still need beyond the stock, by material (the short amount).</summary>
         internal static Dictionary<ThingDef, int> BuildingNeeds(Map map, Func<ThingDef, int> have)
         {
+            var shortBy = new Dictionary<ThingDef, int>();
+            foreach (var kv in BuildingWants(map))
+            {
+                int s = MakingMath.Short(kv.Value, have(kv.Key));
+                if (s > 0) shortBy[kv.Key] = s;
+            }
+            return shortBy;
+        }
+
+        /// <summary>What the colony's blueprints and frames still need in all, by material (what the trade screen keeps for them, Trade/TradeAdvice.cs).</summary>
+        internal static Dictionary<ThingDef, int> BuildingWants(Map map)
+        {
             var need = new Dictionary<ThingDef, int>();
+            if (map == null) return need;
             var player = Faction.OfPlayerSilentFail;
             void Add(ThingDef d, int n)
             {
@@ -453,13 +466,7 @@ namespace ColonyCouncil
                     // A frame whose cost can't be read: not counted.
                 }
             }
-            var shortBy = new Dictionary<ThingDef, int>();
-            foreach (var kv in need)
-            {
-                int s = MakingMath.Short(kv.Value, have(kv.Key));
-                if (s > 0) shortBy[kv.Key] = s;
-            }
-            return shortBy;
+            return need;
         }
 
         /// <summary>

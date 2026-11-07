@@ -2931,6 +2931,43 @@ words in `Languages/English/Keyed/Rimfolk_Hauling.xml`, the Almanac's page `Coun
   other builders (it may hold them back a while when a runner is stuck: an hour at most), and the hand-over to Pick Up
   And Haul (its comp read by name).
 
+## The trade screen (the player's request, 7 November 2026)
+
+"Can you please optimize the trade screen ui? things like sorting by price, recommended trades etc. i also just
+installed vanilla trading expanded so integrate that as well." The game's own Dialog_Trade, for every kind of trade,
+made quicker to read without taking it over (`Source/ColonyCouncil/Trade/`):
+
+- **Sorts are defs, not patches.** The game lists every `TransferableSorterDef` in its two "Sort by" menus, so the five
+  new sorts are defs (`Defs/Misc/Rimfolk_TradeSorts.xml`) with comparers (`TradeSorts.cs`), the highest first: trader
+  pays, trader asks, price per kg, best deal, suggested first. The menus are shared with the caravan and transport pod
+  windows, which have no prices; a small transpiler on the menu's list (`Patch_TradeSortMenu`) leaves Rimfolk's sorts out
+  there, and without the deeper hooks they fall back on market value.
+- **The advice is read, not invented** (`TradeAdvice.cs`, once a trade opens): the plan ahead's stock rows, food days
+  and shopping list, the blueprints' materials (`Making.BuildingWants`), the record of use, the journey being packed,
+  wishes open, promised and kept, the drug policies, the research under way, and Vanilla Trading Expanded. Only what the
+  colony has and uses counts as a need, so every age gets its own advice; a bargain fills a stock the colony already
+  keeps, never a new one.
+- **The reserve, in one rule** (`TradeAdviceMath`, pure and tested): keep the need and as much again, the need being a
+  season's use by the record or a floor by kind and headcount, plus what is set aside. Food by days, weapons and
+  clothes by spares (one a kind for every three people). Only a surplus worth a word (a tenth of the stock, 40 silver)
+  is marked.
+- **The price against the usual,** not against market value alone: a trader usually pays 60% of a thing's worth and
+  asks 140%, moved by the negotiator and the difficulty, so 1 is "as usual" for any negotiator and a fifth better is a
+  good sale or a bargain. With Vanilla Trading Expanded the worth is the good's own (its market's change divided out),
+  so its demand and surplus show as good sales and bargains.
+- **The basket is suggest-only:** buys first (each need answered once, the cheapest for what it gives), paid by the
+  colony's silver and its sales; then sales as far as the trader's silver and the buys go; chosen again on what was sold
+  if the trader runs short. It sets counts with the game's own `AdjustTo` and nothing else; the game's Accept trades.
+- **Readouts only where the game has none:** silver after the trade in the price columns the silver row leaves empty,
+  food days after a trade at home; a caravan's mass and food days after the trade are already the game's.
+- **Other mods.** Vanilla Trading Expanded (read by name in `Integrations/VanillaTrading.cs`) patches no part of the
+  screen: it moves a good's market value, so every price already carries its market. Its contracts and banks are read
+  from its TradingManager; its switch for the vanilla value is set back at once, as its own windows do. Trade Helper's
+  source isn't public (its workshop page and a stack trace show a postfix on the dialog's DoWindowContents drawing a
+  side panel in 300 pixels it adds); Rimfolk draws inside the game's own layout, beside its buttons and in empty
+  columns, never in that panel, and with it loaded leaves out the silver after the trade.
+- No letters, messages or saved state: the basket's memory lives with the open trade.
+
 ## Algorithms, not AI
 
 **All logic is plain rules and weights.** It's deterministic, needs no API key, works
