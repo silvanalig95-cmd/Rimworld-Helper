@@ -287,7 +287,7 @@ namespace ColonyCouncil
                 for (int i = ws.history.Count - 1; i >= 0; i--)
                 {
                     var r = ws.history[i];
-                    if (r == null || r.defName != "Council_WS_HolyWar" || r.endTick < 0) continue;
+                    if (r == null || r.defName != "Council_WS_HolyWar" || r.endTick < 0 || r.ending == WorldSituations.Quietly) continue;
                     var f = r.faction;
                     if (f == null || f.defeated || f.IsPlayer || f.ideos?.PrimaryIdeo == null || f.HostileTo(Faction.OfPlayer)) continue;
                     string key = ArisingMath.Key(ArisingMath.Splinter, (long)r.startTick * 1000 + f.loadID % 1000);
@@ -300,7 +300,7 @@ namespace ColonyCouncil
                     if (home == null) continue;
                     var c = SplinterOf(f, town, home, tiles, key);
                     c.war = r;
-                    c.debate = r.Has("debate");
+                    c.debate = r.Has("debate") && !r.Has("debateFailed");
                     c.since = r.endTick;
                     return c;
                 }

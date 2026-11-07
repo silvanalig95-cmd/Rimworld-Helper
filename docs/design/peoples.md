@@ -221,6 +221,9 @@ pace and the rolls, from the cause the world has or a stand-in: a town in reach 
 away, a people with a faith as if it split), "Peoples: what could arise now" (the pace, each cause found or not, the
 template it would take, the peoples that arose, in the log).
 
+The one sent away, once at the head of their band, rides with no one else's raid (`BanishTracker.JoinArrivingRaid`)
+and doesn't come to the gate asking to be let in (`HappeningWorker_Prodigal`): the band would lose its head.
+
 Fixed on the way: the dev action "a people of a template now, near this home" could put its town three or four tiles
 from the home, where the game takes goodwill every quadrum (`Peoples.Make` now uses `Arising.TryTownTile`).
 

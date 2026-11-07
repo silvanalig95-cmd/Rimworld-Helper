@@ -197,7 +197,9 @@ public static class ArisingTests
         C(Read("Colonies", "HandOverPatches.cs").Contains("if (Arising.Making && Peoples.IsOurs(__instance))") && arising.Contains("f.TryGenerateNewLeader()"),
             "the game makes no leader while the people is made: one comes once its faith is set");
         C(arising.Contains("c.exile.SetFaction(f);") && arising.Contains("f.leader = c.exile;"), "the one sent away leads the band they gathered");
-        C(Read("Social", "Banishment.cs").Contains("x.Faction.leader == x"), "and rides with no one else's raid");
+        C(Read("Social", "Banishment.cs").Contains("x.Faction.leader == x") && Read("Happenings", "Workers_Past.cs").Contains("p.Faction?.leader != p"),
+            "and rides with no one else's raid, nor comes to the gate asking to be let in");
+        C(arising.Contains("r.ending == WorldSituations.Quietly") && arising.Contains("!r.Has(\"debateFailed\")"), "only a war of words that ran its course; a failed debate earns no warmth");
         C(arising.Contains("RiseFallMath.ClearOfHomes(nearest, goodwill)") && arising.Contains("TileFinder.IsValidTileForNewSettlement(t)") && arising.Contains("WorldMechanics.TerritoryOwner(t)"),
             "their town clear of the game's nearness rule round every home, on no other people's land");
         C(Read("Peoples", "Peoples.cs").Contains("Arising.TryTownTile(near.Tile, 3, 10, null, null, out var tile)"), "the dev tools' people made near a home keep clear of the nearness rule too");

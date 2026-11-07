@@ -61,7 +61,7 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
        free; goodwill -40 when the colony took it.
     3. The band: have the council banish someone (or use the stand-in), then the dev action: the one sent away is the
        new people's leader on the Factions tab; their goodwill by the grudge and who stood by them; a raid of another
-       people never brings them along after.
+       people never brings them along after, and they don't come to the gate asking to be let in (Council_Evt_Prodigal).
     4. The faithful (Ideology): the new creed on the Ideoligions page, its memes the old faith's with one dropped or
        added, and the letter's line saying which.
     5. The league: three towns at 62 or more (the region map's fortunes; the dev tools' world events can raise them),

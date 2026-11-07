@@ -4548,7 +4548,8 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
   (a few days off, clear of `RiseFallMath.ClearOfHomes`, on no land but its own peoples', `NewTowns.MakeTown`), the
   region's faces (`RegionFaces.Founded`) and the founding pace (`RiseFall.NoteFounded`), a letter
   (`Importance.Important`, the founding's means and rite), the history's `world:arose`, a line on the people's and the
-  towns' cards. The one sent away leads the band (`Faction.leader`) and rides with no one else's raid. Run by the
+  towns' cards. The one sent away leads the band (`Faction.leader`), rides with no one else's raid (`JoinArrivingRaid`) and
+  doesn't ask at the gate to come home (`HappeningWorker_Prodigal`). Run by the
   region's day (`RegionBook.Daily`), one a day at most; the pace `ArisingMath.PaceAllows` (40 days between any two, 90
   between two of a cause, none before day 15, six standing), scaled by the setting `newPeoples` (0 to 200%). Saved: the
   records in `ArisingBook` (one per people, `ArisingMath.MaxRecords`). The Almanac's page *new peoples that arise*.
