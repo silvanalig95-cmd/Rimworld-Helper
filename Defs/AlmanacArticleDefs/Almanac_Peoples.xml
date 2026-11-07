@@ -17,11 +17,21 @@
         <heading>Who they are</heading>
         <table>
           <li>People | Lives by | Age | On the map | Their towns</li>
-          <li>The road league | Trade on the roads | Industrial | Dusters dyed teal, cowboy hats, rifles; outriders in armour | Few: walled waystations where roads meet</li>
-          <li>The hospitaller order | Healing | Medieval | Ivory robes and hoods; sworn guards in plate, lay archers with bows | Sickhouses round an herb garden</li>
-          <li>The herding folk | Their herds | Tribal | Russet hides and fur caps; archers and spear-wardens | Camps of round houses and pens</li>
+          <li>The road league | Trade on the roads | Industrial | Coats dyed teal of every cut; guards in one kit of duster, hat and flak | Few: walled waystations where roads meet</li>
+          <li>The hospitaller order | Healing | Medieval | An ivory habit of any cut; sworn guards in ivory plate, lay archers | Sickhouses round an herb garden</li>
+          <li>The herding folk | Their herds | Tribal | Hides of every make, russet caps and coats; wardens in war veils | Camps of round houses and pens</li>
         </table>
         <after>With Ideology each keeps a faith of its own (a creed of the road, the open hand, the long grass) and its own style; with Biotech each has a share of other kinds of people (hussars and genies with the league, yttakin and pigskins with the herders). With Vanilla Ideology Expanded's memes their faiths take a meme of trade, of healthcare or of nomads too.</after>
+      </li>
+      <li>
+        <heading>What they wear, carry and know</heading>
+        <text>No two of them look alike, but each people is known by its colour on a piece or two. Their soldiers wear one kit, their civilians whatever their age and calling would, drawn from the game, the DLCs and the mods loaded (the Vanilla Expanded apparel, armour, accessories and weapons sets, Vanilla Factions Expanded's medieval, tribal and settlers' gear). With no mods at all the base game's gear dresses and arms every one of them. Pawns already in a game keep what they have; new ones come dressed this way.</text>
+        <points>
+          <li>The road league: wayfarers and factors in a teal coat of any cut over travelling clothes, with frontier revolvers and rifles where Vanilla Weapons Expanded's Frontier set is loaded; caravan guards and outriders in the league's kit of teal duster, cowboy hat and flak; wayfarers carry beer, cloth or a little silver. A few of the guards and outriders are sharpshooters or gladiators of A RimWorld of Magic, and now and then the league master is a commander.</li>
+          <li>The hospitaller order: the habit is shared but not its cut or its age, an ivory robe or mantle worn thin or new, with a hood, a cap or now and then a plague doctor's mask; the sworn guards in matching ivory plate and helmet, with Medieval 2 the order's ivory tabard and a heater shield; the lay archers in an ivory cape and helmet with a quiver. Hospitallers carry herbs and clean cloth. Some of the hospitallers and their prior are priests of A RimWorld of Magic, a few of the sworn guards paladins.</li>
+          <li>The herding folk: hides and wraps of every make, russet on their tail caps, wraps and coats; their herd wardens in war veils and war wraps; archers with quivers, herders with slings. Herders carry hay or hides. Their elder is often a druid, a few archers are rangers.</li>
+          <li>Their kinds of people (Biotech) are a real mix, and still mostly baseliners: genies, highmates, lowmates, drakonori and high elves among the hospitallers; yttakin, neanderthals, animusen, boarskins, venators, saurids and wood elves with the herders; hussars, genies, boglegs, stoneborn, uhlans, starjacks and a few androids on the league's roads, each where its mod is loaded.</li>
+        </points>
       </li>
       <li>
         <heading>What each brings</heading>

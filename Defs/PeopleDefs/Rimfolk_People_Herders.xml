@@ -3,16 +3,16 @@
 
   <!--
     The herding folk (docs/design/peoples.md; DESIGN.md "Rimfolk's peoples"; Source/ColonyCouncil/Peoples/): nomad herders
-    who follow the grass with great herds and keep only seasonal camps. Neolithic, on the game's tribal parent: hides and
-    fur caps dyed russet, archers and spear-wardens. Their caravans walk a herd of eight to fourteen beasts for sale along
+    who follow the grass with great herds and keep only seasonal camps. Neolithic, on the game's tribal parent: hides of
+    every make, their caps, wraps and coats dyed russet, archers and spear-wardens (their kinds, below). Their caravans walk a herd of eight to fourteen beasts for sale along
     with their pack animals (the game brings a caravan's animals for sale with it), and they come half again as often as
     another people's. Their camps are round houses round a fire with pens (TownPlanDef Rimfolk_Plan_HerdCamp, their herd in
     the pens). They bring their drovers and shearers to the colony's land more often, and in the fall and winter they ask
     to graze a herd there (Rimfolk_Camp_WinterHerd); the drove roads' world event comes for them likeliest. They defend
     their camps and raid only when the colony has turned them hostile (raidCommonalityFromPointsCurve 0.5). Listed once
     among the world's peoples when a world is made, never required. Faith (Ideology): a fixed creed of the herd (VE Memes'
-    nomad where loaded), the animalist style. Kind of people (Biotech): humans mostly, some yttakin, pigskins and
-    neanderthals, and Alpha Genes' animusen where loaded.
+    nomad where loaded), the animalist style. Kind of people (Biotech): seven in ten baseliners; yttakin, neanderthals,
+    pigskins, Alpha Genes' animusen, Vanilla Races Expanded's boarskins and saurids, venators and wood elves.
   -->
 
   <FactionDef ParentName="TribeBase">
@@ -46,12 +46,16 @@
         <li>(0, 0.5)</li>
       </points>
     </raidCommonalityFromPointsCurve>
-    <xenotypeSet>
+    <xenotypeSet Inherit="False">
       <xenotypeChances>
-        <Yttakin MayRequire="Ludeon.RimWorld.Biotech">0.05</Yttakin>
-        <Pigskin MayRequire="Ludeon.RimWorld.Biotech">0.03</Pigskin>
+        <Yttakin MayRequire="Ludeon.RimWorld.Biotech">0.06</Yttakin>
         <Neanderthal MayRequire="Ludeon.RimWorld.Biotech">0.04</Neanderthal>
-        <AG_Animusen MayRequire="Ludeon.RimWorld.Biotech,sarg.alphagenes">0.03</AG_Animusen>
+        <Pigskin MayRequire="Ludeon.RimWorld.Biotech">0.03</Pigskin>
+        <AG_Animusen MayRequire="Ludeon.RimWorld.Biotech,sarg.alphagenes">0.04</AG_Animusen>
+        <VRE_Boarskin MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.pigskin">0.03</VRE_Boarskin>
+        <DV_Venator MayRequire="Ludeon.RimWorld.Biotech,det.venators">0.03</DV_Venator>
+        <DevDesigner_XenotypeWoodElves MayRequire="Ludeon.RimWorld.Biotech,DevDesigner.Elves.Continued">0.04</DevDesigner_XenotypeWoodElves>
+        <VRESaurids_Saurid MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.saurid">0.02</VRESaurids_Saurid>
       </xenotypeChances>
     </xenotypeSet>
     <fixedIdeo>true</fixedIdeo>
@@ -183,6 +187,17 @@
 
   <!-- ===================== Their people ===================== -->
 
+  <!--
+    How alike they look (docs/design/peoples.md "Their gear, their kinds of people and their gifts"): herders vary freely
+    around their signature, russet on their caps and wraps (Ideology's tail caps and broadwraps, the war veil, the elder's
+    headdress) and on whatever coat or poncho they wear over the hides; under it, the game's tribal gear and the mods'
+    (Vanilla Apparel Expanded's kilts, ponchos and pelt coats, Vanilla Factions Expanded - Tribals' wraps) in their own
+    leathers and colours. Their herd wardens are their only fighters and wear one harness: the war veil, and Tribals' war
+    wraps where it is loaded. Archers carry a quiver (Vanilla Apparel Expanded - Accessories). Slings, clubs, spears and bows
+    of the game and the mods (Vanilla Weapons Expanded - Tribal's slings and clubs), under the game's neolithic tags. They
+    carry hay and hides. A few are A RimWorld of Magic's druids (their elder) or rangers (their archers). Without any mod:
+    tribalwear, parkas, the war veil and the headdress, the base game's clubs, spears, ikwas and bows.
+  -->
   <PawnKindDef Name="Rimfolk_HerdersKindBase" Abstract="True">
     <race>Human</race>
     <defaultFactionDef>Rimfolk_Herders</defaultFactionDef>
@@ -190,10 +205,19 @@
     <chemicalAddictionChance>0.04</chemicalAddictionChance>
     <invNutrition>2.55</invNutrition>
     <invFoodDef>Pemmican</invFoodDef>
-    <apparelColor>(0.70, 0.42, 0.24)</apparelColor>
     <apparelTags>
       <li>Neolithic</li>
     </apparelTags>
+    <specificApparelRequirements>
+      <!-- Russet on the caps and wraps and on the coat over the hides, whichever they wear. -->
+      <li><apparelDef>Apparel_WarVeil</apparelDef><color>(0.70, 0.42, 0.24)</color></li>
+      <li><apparelDef>Apparel_TribalHeaddress</apparelDef><color>(0.70, 0.42, 0.24)</color></li>
+      <li><apparelDef>Apparel_Parka</apparelDef><color>(0.70, 0.42, 0.24)</color></li>
+      <li MayRequire="Ludeon.RimWorld.Ideology"><apparelDef>Apparel_Tailcap</apparelDef><color>(0.70, 0.42, 0.24)</color></li>
+      <li MayRequire="Ludeon.RimWorld.Ideology"><apparelDef>Apparel_Broadwrap</apparelDef><color>(0.70, 0.42, 0.24)</color></li>
+      <li MayRequire="VanillaExpanded.VAPPE"><apparelDef>VAE_Apparel_TribalPoncho</apparelDef><color>(0.70, 0.42, 0.24)</color></li>
+      <li MayRequire="VanillaExpanded.VAPPE"><apparelDef>VAE_Apparel_PeltCoat</apparelDef><color>(0.70, 0.42, 0.24)</color></li>
+    </specificApparelRequirements>
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimfolk_HerdersKindBase">
@@ -206,19 +230,35 @@
     <apparelRequired>
       <li MayRequire="Ludeon.RimWorld.Ideology">Apparel_Tailcap</li>
     </apparelRequired>
-    <apparelMoney>150~300</apparelMoney>
+    <apparelMoney>150~320</apparelMoney>
     <weaponTags>
       <li>NeolithicMeleeBasic</li>
+      <li>NeolithicRangedBasic</li>
     </weaponTags>
-    <weaponMoney>50~100</weaponMoney>
+    <weaponMoney>40~110</weaponMoney>
     <skills>
       <li>
         <skill>Animals</skill>
         <range>6~14</range>
       </li>
     </skills>
+    <!-- Hay for the beasts, or a few hides. -->
+    <inventoryOptions>
+      <skipChance>0.5</skipChance>
+      <subOptionsChooseOne>
+        <li><thingDef>Hay</thingDef><countRange>6~14</countRange></li>
+        <li><thingDef>Leather_Plain</thingDef><countRange>4~10</countRange></li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
     <initialWillRange>1~3</initialWillRange>
     <initialResistanceRange>10~17</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Druid</trait><chance>0.03</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimfolk_HerdersKindBase">
@@ -230,17 +270,32 @@
     <apparelRequired>
       <li MayRequire="Ludeon.RimWorld.Ideology">Apparel_Broadwrap</li>
     </apparelRequired>
-    <apparelMoney>200~350</apparelMoney>
+    <specificApparelRequirements>
+      <li MayRequire="VanillaExpanded.VAEAccessories">
+        <alternateTagChoices>
+          <li><tag>VAEA_Quiver</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+    </specificApparelRequirements>
+    <apparelMoney>200~380</apparelMoney>
     <weaponTags>
       <li>NeolithicRangedDecent</li>
+      <li>NeolithicRangedBasic</li>
     </weaponTags>
-    <weaponMoney>100~150</weaponMoney>
+    <weaponMoney>80~160</weaponMoney>
     <disallowedTraits>
       <li>Brawler</li>
     </disallowedTraits>
     <requiredWorkTags>Violent</requiredWorkTags>
     <initialWillRange>1~3</initialWillRange>
     <initialResistanceRange>14~22</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Ranger</trait><chance>0.08</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimfolk_HerdersKindBase">
@@ -249,15 +304,17 @@
     <combatPower>60</combatPower>
     <itemQuality>Poor</itemQuality>
     <gearHealthRange>0.5~1.8</gearHealthRange>
+    <!-- The wardens' harness: the war veil, and Tribals' war wraps. -->
     <apparelRequired>
       <li>Apparel_WarVeil</li>
+      <li MayRequire="OskarPotocki.VFE.Tribals">VFET_Apparel_TribalWar</li>
     </apparelRequired>
-    <apparelMoney>200~350</apparelMoney>
+    <apparelMoney>200~380</apparelMoney>
     <weaponTags>
       <li>NeolithicMeleeAdvanced</li>
       <li>NeolithicMeleeDecent</li>
     </weaponTags>
-    <weaponMoney>150~200</weaponMoney>
+    <weaponMoney>150~220</weaponMoney>
     <requiredWorkTags>Violent</requiredWorkTags>
     <initialWillRange>2~4</initialWillRange>
     <initialResistanceRange>8~14</initialResistanceRange>
@@ -274,11 +331,12 @@
     <apparelRequired>
       <li MayRequire="Ludeon.RimWorld.Ideology">Apparel_Tailcap</li>
     </apparelRequired>
-    <apparelMoney>250~400</apparelMoney>
+    <apparelMoney>250~420</apparelMoney>
     <weaponTags>
       <li>NeolithicMeleeBasic</li>
+      <li>NeolithicRangedBasic</li>
     </weaponTags>
-    <weaponMoney>60~100</weaponMoney>
+    <weaponMoney>60~110</weaponMoney>
     <skills>
       <li>
         <skill>Animals</skill>
@@ -300,7 +358,7 @@
     <apparelRequired>
       <li>Apparel_TribalHeaddress</li>
     </apparelRequired>
-    <apparelMoney>300~500</apparelMoney>
+    <apparelMoney>300~550</apparelMoney>
     <weaponTags>
       <li>NeolithicRangedChief</li>
     </weaponTags>
@@ -313,6 +371,13 @@
     </skills>
     <initialWillRange>3~5</initialWillRange>
     <initialResistanceRange>8~12</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Druid</trait><chance>0.3</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
   </PawnKindDef>
 
   <!-- ===================== Their traders: beasts, wool and hides ===================== -->

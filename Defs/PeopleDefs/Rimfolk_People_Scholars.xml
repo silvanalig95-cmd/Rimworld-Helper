@@ -4,15 +4,16 @@
   <!--
     The learned society (docs/design/peoples.md, "Release C"; DESIGN.md "Rimfolk's peoples"; Source/ColonyCouncil/Peoples/):
     scholars, copyists and booksellers who keep an archive of everything written down in the region and trade in books
-    and knowledge. Industrial, on the game's outlander parent: collar shirts and jackets dyed claret, proctors in flak
-    with rifles to guard the archive. Few towns (settlementGenerationWeight 0.45), each an archive with its reading hall
+    and knowledge. Industrial, on the game's outlander parent: a coat or gown dyed claret over a collar shirt, proctors in one kit
+    of flak and the claret jacket to guard the archive (their kinds, below). Few towns (settlementGenerationWeight 0.45), each an archive with its reading hall
     and stacks (TownPlanDef Rimfolk_Plan_Archive); a bookseller's caravan of books, schematics and techprints (Royalty),
     no more often than another people's. A copyist of theirs asks to copy the colony's records for the archive
     (Rimfolk_Evt_ScholarCopyist); a travelling scholar, a book swapper, the old vault opened and the comet come from them
     likeliest (Patches/Rimfolk_PeoplesC.xml). They defend their archives and raid only when the colony has turned them
     hostile (raidCommonalityFromPointsCurve 0.2). Listed once among the world's peoples when a world is made, never
     required. Faith (Ideology): a fixed creed of the self and of inquiry (Alpha Memes' monastic life where loaded), the
-    Islamic style's arched halls. Kind of people (Biotech): humans mostly, genies among them.
+    Islamic style's arched halls. Kind of people (Biotech): three in four baseliners; genies above all,
+    highmates, high elves, the Avaloi, Alpha Genes' forsaken and Vanilla Races Expanded's archons.
   -->
 
   <FactionDef ParentName="OutlanderFactionBase">
@@ -48,8 +49,12 @@
     </raidCommonalityFromPointsCurve>
     <xenotypeSet Inherit="False">
       <xenotypeChances>
-        <Genie MayRequire="Ludeon.RimWorld.Biotech">0.08</Genie>
-        <Highmate MayRequire="Ludeon.RimWorld.Biotech">0.02</Highmate>
+        <Genie MayRequire="Ludeon.RimWorld.Biotech">0.1</Genie>
+        <Highmate MayRequire="Ludeon.RimWorld.Biotech">0.03</Highmate>
+        <DevDesigner_XenotypeHighElves MayRequire="Ludeon.RimWorld.Biotech,DevDesigner.Elves.Continued">0.04</DevDesigner_XenotypeHighElves>
+        <DV_Avaloi MayRequire="Ludeon.RimWorld.Biotech,det.avaloi">0.03</DV_Avaloi>
+        <AG_Forsaken MayRequire="Ludeon.RimWorld.Biotech,sarg.alphagenes">0.02</AG_Forsaken>
+        <VRE_Archon MayRequire="Ludeon.RimWorld.Biotech,Ludeon.RimWorld.Royalty,vanillaracesexpanded.archon">0.02</VRE_Archon>
       </xenotypeChances>
     </xenotypeSet>
     <fixedIdeo>true</fixedIdeo>
@@ -155,19 +160,27 @@
 
   <!-- ===================== Their people ===================== -->
 
+  <!--
+    How alike they look (docs/design/peoples.md "Their gear, their kinds of people and their gifts"): scholars vary freely
+    around their signature, an outer coat or academic gown dyed claret (a robe, a jacket, a duster, Vanilla Apparel
+    Expanded's suit jackets and lab coats) over a collar shirt, the rest the game's industrial clothes and the mods'
+    (Vanilla Apparel Expanded's scarves, berets, boots), the bookseller's bowler, the provost's beret (Royalty). The archive's proctors are its guards and wear one kit: a flak vest under the
+    claret jacket, the game's guns and Vanilla Weapons Expanded - Non-Lethal's tasers, dart guns and stun batons. They
+    carry books: textbooks, novels, schematics. A few are A RimWorld of Magic's arcanists, enchanters or chronomancers, and
+    a few have a psylink (Royalty; with Vanilla Psycasts Expanded, a chronopath's or an empath's path). Without any mod:
+    robes, jackets and dusters, the game's shirts, trousers and hats, a flak vest and its guns.
+  -->
   <PawnKindDef Name="Rimfolk_ScholarsKindBase" Abstract="True">
     <race>Human</race>
     <defaultFactionDef>Rimfolk_Scholars</defaultFactionDef>
     <chemicalAddictionChance>0.04</chemicalAddictionChance>
     <backstoryCryptosleepCommonality>0.02</backstoryCryptosleepCommonality>
     <invNutrition>2.55</invNutrition>
-    <apparelColor>(0.56, 0.18, 0.32)</apparelColor>
-    <apparelTags>
-      <li>IndustrialBasic</li>
-    </apparelTags>
-    <apparelRequired>
-      <li>Apparel_CollarShirt</li>
-    </apparelRequired>
+    <specificApparelRequirements>
+      <!-- Claret on the proctors' jackets and the provost's cape, whoever wears one. -->
+      <li><apparelDef>Apparel_Jacket</apparelDef><color>(0.56, 0.18, 0.32)</color></li>
+      <li><apparelDef>Apparel_Cape</apparelDef><color>(0.56, 0.18, 0.32)</color></li>
+    </specificApparelRequirements>
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimfolk_ScholarsKindBase">
@@ -177,17 +190,48 @@
     <isFighter>false</isFighter>
     <itemQuality>Normal</itemQuality>
     <gearHealthRange>0.7~1.5</gearHealthRange>
+    <specificApparelRequirements>
+      <!-- The society's claret: a gown or a coat. -->
+      <li>
+        <apparelLayer>Shell</apparelLayer>
+        <bodyPartGroup>Torso</bodyPartGroup>
+        <color>(0.56, 0.18, 0.32)</color>
+        <alternateTagChoices>
+          <li><tag>Robe</tag><chance>1</chance></li>
+          <li><tag>IndustrialAdvanced</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+    </specificApparelRequirements>
     <apparelRequired>
-      <li>Apparel_Jacket</li>
+      <li>Apparel_CollarShirt</li>
     </apparelRequired>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li>IndustrialAdvanced</li>
+    </apparelTags>
+    <apparelAllowHeadgearChance>0.3</apparelAllowHeadgearChance>
+    <apparelMoney>250~500</apparelMoney>
     <weaponTags>
       <li>SimpleGun</li>
     </weaponTags>
     <weaponMoney>80~200</weaponMoney>
-    <apparelMoney>250~450</apparelMoney>
-    <apparelAllowHeadgearChance>0.3</apparelAllowHeadgearChance>
+    <inventoryOptions>
+      <skipChance>0.5</skipChance>
+      <subOptionsChooseOne>
+        <li><thingDef>TextBook</thingDef><countRange>1~1</countRange></li>
+        <li><thingDef>Novel</thingDef><countRange>1~1</countRange></li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
     <initialWillRange>1~3</initialWillRange>
     <initialResistanceRange>10~16</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Arcanist</trait><chance>0.03</chance></li>
+          <li><trait>Enchanter</trait><chance>0.02</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimfolk_ScholarsKindBase">
@@ -198,25 +242,66 @@
     <minGenerationAge>28</minGenerationAge>
     <itemQuality>Normal</itemQuality>
     <gearHealthRange>0.8~1.4</gearHealthRange>
+    <specificApparelRequirements>
+      <li>
+        <apparelLayer>Shell</apparelLayer>
+        <bodyPartGroup>Torso</bodyPartGroup>
+        <color>(0.56, 0.18, 0.32)</color>
+        <alternateTagChoices>
+          <li><tag>Robe</tag><chance>1</chance></li>
+          <li><tag>IndustrialAdvanced</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+    </specificApparelRequirements>
     <apparelRequired>
-      <li>Apparel_Jacket</li>
+      <li>Apparel_CollarShirt</li>
     </apparelRequired>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li>IndustrialAdvanced</li>
+    </apparelTags>
+    <apparelAllowHeadgearChance>0.4</apparelAllowHeadgearChance>
+    <apparelMoney>300~550</apparelMoney>
     <weaponTags>
       <li>SimpleGun</li>
     </weaponTags>
     <weaponMoney>80~200</weaponMoney>
-    <apparelMoney>300~500</apparelMoney>
     <skills>
       <li>
         <skill>Intellectual</skill>
         <range>8~15</range>
       </li>
     </skills>
-    <fixedInventory>
-      <TextBook>1</TextBook>
-    </fixedInventory>
+    <inventoryOptions>
+      <subOptionsTakeAll>
+        <li><thingDef>TextBook</thingDef><countRange>1~1</countRange></li>
+        <li>
+          <skipChance>0.5</skipChance>
+          <subOptionsChooseOne>
+            <li><thingDef>Novel</thingDef><countRange>1~1</countRange></li>
+            <li><thingDef>Schematic</thingDef><countRange>1~1</countRange></li>
+          </subOptionsChooseOne>
+        </li>
+      </subOptionsTakeAll>
+    </inventoryOptions>
     <initialWillRange>2~4</initialWillRange>
     <initialResistanceRange>10~16</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Arcanist</trait><chance>0.05</chance></li>
+          <li><trait>Chronomancer</trait><chance>0.03</chance></li>
+          <li>
+            <psylink>1~2</psylink>
+            <paths>
+              <li>VPE_Chronopath</li>
+              <li>VPE_Empath</li>
+            </paths>
+            <chance>0.05</chance>
+          </li>
+        </gifts>
+      </li>
+    </modExtensions>
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimfolk_ScholarsKindBase">
@@ -225,16 +310,20 @@
     <combatPower>70</combatPower>
     <itemQuality>Normal</itemQuality>
     <gearHealthRange>0.7~1.8</gearHealthRange>
-    <apparelTags Inherit="False">
+    <!-- The proctors' kit: a flak vest under the claret jacket. -->
+    <apparelRequired>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_FlakVest</li>
+      <li>Apparel_Jacket</li>
+    </apparelRequired>
+    <apparelTags>
       <li>IndustrialMilitaryBasic</li>
       <li>IndustrialBasic</li>
     </apparelTags>
-    <apparelRequired>
-      <li>Apparel_FlakVest</li>
-    </apparelRequired>
     <apparelMoney>500~800</apparelMoney>
     <weaponTags>
       <li>Gun</li>
+      <li MayRequire="VanillaExpanded.VWENL">NonLethal</li>
     </weaponTags>
     <weaponMoney>250~500</weaponMoney>
     <requiredWorkTags>Violent</requiredWorkTags>
@@ -250,10 +339,24 @@
     <isFighter>false</isFighter>
     <itemQuality>Good</itemQuality>
     <gearHealthRange>1~1</gearHealthRange>
+    <specificApparelRequirements>
+      <li>
+        <apparelLayer>Shell</apparelLayer>
+        <bodyPartGroup>Torso</bodyPartGroup>
+        <color>(0.56, 0.18, 0.32)</color>
+        <alternateTagChoices>
+          <li><tag>IndustrialAdvanced</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+    </specificApparelRequirements>
     <apparelRequired>
-      <li>Apparel_Jacket</li>
+      <li>Apparel_CollarShirt</li>
       <li>Apparel_BowlerHat</li>
     </apparelRequired>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li>IndustrialAdvanced</li>
+    </apparelTags>
     <apparelMoney>400~700</apparelMoney>
     <weaponTags>
       <li>SimpleGun</li>
@@ -278,10 +381,27 @@
     <isFighter>false</isFighter>
     <itemQuality>Good</itemQuality>
     <gearHealthRange>1~1</gearHealthRange>
+    <!-- The provost's gown: a robe, a cape or a royal robe. -->
+    <specificApparelRequirements>
+      <li>
+        <apparelLayer>Shell</apparelLayer>
+        <bodyPartGroup>Torso</bodyPartGroup>
+        <color>(0.56, 0.18, 0.32)</color>
+        <alternateTagChoices>
+          <li><tag>Robe</tag><chance>1</chance></li>
+          <li><tag>Cape</tag><chance>1</chance></li>
+          <li MayRequire="Ludeon.RimWorld.Royalty"><tag>RoyalRobe</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+    </specificApparelRequirements>
     <apparelRequired>
-      <li>Apparel_Cape</li>
+      <li>Apparel_CollarShirt</li>
       <li MayRequire="Ludeon.RimWorld.Royalty">Apparel_Beret</li>
     </apparelRequired>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li>IndustrialAdvanced</li>
+    </apparelTags>
     <apparelMoney>700~1200</apparelMoney>
     <weaponTags>
       <li>SimpleGun</li>
@@ -293,8 +413,29 @@
         <range>10~17</range>
       </li>
     </skills>
+    <inventoryOptions>
+      <subOptionsTakeAll>
+        <li><thingDef>TextBook</thingDef><countRange>1~2</countRange></li>
+      </subOptionsTakeAll>
+    </inventoryOptions>
     <initialWillRange>3~5</initialWillRange>
     <initialResistanceRange>8~12</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Arcanist</trait><chance>0.12</chance></li>
+          <li><trait>Chronomancer</trait><chance>0.08</chance></li>
+          <li>
+            <psylink>1~3</psylink>
+            <paths>
+              <li>VPE_Chronopath</li>
+              <li>VPE_Empath</li>
+            </paths>
+            <chance>0.2</chance>
+          </li>
+        </gifts>
+      </li>
+    </modExtensions>
   </PawnKindDef>
 
   <!-- ===================== Their traders: books and what is known ===================== -->

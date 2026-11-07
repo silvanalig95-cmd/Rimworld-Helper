@@ -3396,6 +3396,22 @@ peoples that arise may take their ways: survivors by a river become river folk, 
 league of spacer-age towns an enclave, faithful who broke away pilgrims. The Almanac has a page, *pilgrims, scholars,
 the enclave and the river folk*.
 
+**What the peoples wear.** No two of Rimfolk's peoples' people look alike, and each people is still known at a glance by
+its colour on a piece or two: the order's ivory habit, the league's teal coat, the herders' russet caps and wraps, the
+pilgrims' sage cloak, the scholars' claret gown, the enclave's pale cyan, the river folk's kingfisher blue hats. Their
+soldiers wear one kit (the order's sworn guards in matching ivory plate, with Medieval 2 its tabard and a heater shield;
+the enclave's marshals in one issue of recon armour and charge rifle; the league's guards in its duster, hat and flak),
+varied only in wear, quality and small touches; a religious habit is shared, not its cut or its age; everyone else
+dresses as their age and calling would. They draw on the game, the DLCs and the mods loaded: the Vanilla Expanded
+apparel, armour, accessories and weapons sets (quivers for archers, frontier guns for the league, tasers for the archive's
+proctors), Vanilla Factions Expanded's medieval, tribal and settlers' gear; with none, the base game dresses and arms
+every one of them. They carry what their calling would: herbs and cloth, hay and hides, books, components. Their kinds of
+people are a real mix, still mostly baseliners: Biotech's own, Vanilla Races Expanded's, Alpha Genes', elves, merren, the
+Stoneborn, Avaloi, Boglegs and Venators, each where it fits and its mod is loaded. A few have a gift by their calling and
+age: A RimWorld of Magic's priests among the hospitallers, paladins among the wardens of the way, druids and rangers with
+the river folk and the herders, arcanists with the scholars; psylinks (Royalty) in the enclave and the society, on Vanilla
+Psycasts Expanded's paths when it is loaded. Pawns already in a game keep what they have; new ones come dressed this way.
+
 ## Scenarios with stakes
 Seventeen scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Each starts the game with
 something already in motion, and a few seconds in, a letter says how things stand.

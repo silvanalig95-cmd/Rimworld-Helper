@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Rimfolk's peoples, each in their own colours and kinds
+
+*7 November 2026, version 0.152.0*
+
+- Rimfolk's seven peoples no longer dress every member in one outfit and one colour. Each keeps a signature colour on one or two pieces (the order's ivory habit, the herders' russet wraps, the league's teal coats, the pilgrims' sage cloaks, the society's claret gowns, the enclave's pale cyan, the river folk's kingfisher blue), and everything else varies by person.
+- Fighters wear a common kit where that makes sense: the order's sworn guards in matching ivory plate, the league's caravan guards in teal dusters, the enclave's marshals in one issue of recon armour. Habits are shared but differ in cut and age; traders, pilgrims, herders, scholars and fishers dress freely.
+- Their clothes, armour, weapons and what they carry now draw on your mods (Vanilla Expanded apparel, armour, accessories and weapons, Vanilla Factions Expanded Medieval 2, Settlers and Tribals, and more), with the base game's gear when a mod is missing.
+- Each people is now a real mix of kinds, about a fifth to a third not baseliner: Biotech's xenotypes, Vanilla Races Expanded's, Alpha Genes', and the elves, merfolk, Avaloi, Boglegs, Stoneborn and Venators where they fit.
+- Some of them have gifts: A RimWorld of Magic's priests, paladins, druids, rangers, arcanists and others where their calling fits, and psycasters among the learned society and the spacer enclave, with Vanilla Psycasts Expanded's paths when it is loaded.
+- People already in your game keep what they wear; only newly arriving ones are dressed this way.
+
 ## Price history and the colony's trade record
 
 *7 November 2026, version 0.151.0*

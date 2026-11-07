@@ -56,6 +56,45 @@ namespace ColonyCouncil
     }
 
     /// <summary>
+    /// What a share of one of Rimfolk's peoples' pawn kinds is born or trained to, beyond their gear (Peoples/PeopleGifts.cs,
+    /// given as a new pawn of the kind is made, with the deeper game hooks on): a class of A RimWorld of Magic (a
+    /// hospitaller's priest, a warden's paladin, a river folk's druid), or a psylink (Royalty; with Vanilla Psycasts
+    /// Expanded, one of its paths). At most one gift a pawn; the shares never add up to the whole kind. Named by their
+    /// defNames, so a gift whose mod isn't loaded is simply never given. Pawns already in a game keep what they have.
+    /// </summary>
+    public class PeopleKindExtension : DefModExtension
+    {
+        public List<PeopleGift> gifts;
+
+        public override IEnumerable<string> ConfigErrors()
+        {
+            foreach (var e in base.ConfigErrors()) yield return e;
+            if (gifts.NullOrEmpty()) yield return "a people's kind with gifts names at least one";
+            else if (!PeoplesGearMath.Sound(gifts.Select(g => g?.chance ?? 0f).ToList()))
+                yield return "each gift's chance is above 0, and together no more than " + PeoplesGearMath.MaxShare;
+            if (gifts != null)
+                foreach (var g in gifts.Where(g => g != null))
+                {
+                    if (g.trait.NullOrEmpty() == (g.psylink.max <= 0)) yield return "a gift is either a class (trait) or a psylink (psylink levels), not both or neither";
+                    if (!g.trait.NullOrEmpty() && PeoplesGearMath.MagicSetting(g.trait) == null) yield return "'" + g.trait + "' isn't one of A RimWorld of Magic's classes Rimfolk gives";
+                }
+        }
+    }
+
+    /// <summary>One gift of a pawn kind (<see cref="PeopleKindExtension"/>).</summary>
+    public class PeopleGift
+    {
+        /// <summary>A RimWorld of Magic's class, its trait's defName (PeoplesGearMath.MagicClasses).</summary>
+        public string trait;
+        /// <summary>A psylink of these levels (Royalty), or none.</summary>
+        public IntRange psylink = IntRange.Zero;
+        /// <summary>With Vanilla Psycasts Expanded: the paths a psycaster of this kind follows (by defName), one taken.</summary>
+        public List<string> paths;
+        /// <summary>The share of the kind given this, 0 to 1.</summary>
+        public float chance;
+    }
+
+    /// <summary>
     /// A town's plan (Defs/PeopleDefs/Rimfolk_TownPlans.xml): rows of characters from the north, each character a key
     /// (a building, its material and turn, a floor, a roof, what the cell is for). Read into the kept-layout grid and placed
     /// by the same code that places a town the colony was (PeoplesMath.Grid, TownLayouts.Place). An underscore is the
