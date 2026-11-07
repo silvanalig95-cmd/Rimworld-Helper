@@ -212,6 +212,16 @@ namespace ColonyCouncil
         /// <summary>The biggest kind of animal a hunt goes after (a muffalo or an elk, not a thrumbo, a rhino or an elephant).</summary>
         public const float MaxGameSize = 2.5f;
 
+        /// <summary>Bonded to someone, or venerated by the colony's faith: never game.</summary>
+        public static bool Kept(Pawn a) => Bonded(a) || Venerated(a);
+
+        /// <summary>
+        /// Still game for a hunt under way: safe game, or the head that can turn the hunt marked (Harm/HuntsBite.cs) while
+        /// it's up and about and hasn't turned.
+        /// </summary>
+        public static bool Huntable(Pawn a, Map map) =>
+            Safe(a, map) || HuntsBite.IsTurning(a) && a.Spawned && a.Map == map && !a.Dead && !a.Downed && !a.InMentalState && a.Faction == null;
+
         private static bool Bonded(Pawn a)
         {
             var rels = a.relations?.DirectRelations;
@@ -236,8 +246,25 @@ namespace ColonyCouncil
         /// The game for a hunt: the event's own animal if it is one (and safe), else the kinds wanted first, else the best
         /// eating; never an animal marked for something else. With <paramref name="markedOnly"/>, only game already marked.
         /// </summary>
-        public static List<Pawn> ChooseGame(Map map, Pawn x, string kinds, int n, bool markedOnly)
+        public static List<Pawn> ChooseGame(Map map, Pawn x, string kinds, int n, bool markedOnly) => ChooseGame(map, x, kinds, n, markedOnly, false, out _);
+
+        /// <summary>
+        /// The same, and with <paramref name="mayTurn"/> (Harm/HuntsBite.cs) at most one head of game that can turn among
+        /// it (<paramref name="turning"/>), never for game already marked by someone else.
+        /// </summary>
+        public static List<Pawn> ChooseGame(Map map, Pawn x, string kinds, int n, bool markedOnly, bool mayTurn, out Pawn turning)
         {
+            turning = null;
+            if (mayTurn && !markedOnly && map != null && !(x != null && x.RaceProps != null && x.RaceProps.Animal))
+            {
+                var dm0 = map.designationManager;
+                var wanted0 = kinds.NullOrEmpty() ? null : kinds.Split('|').Select(k => k.Trim()).Where(k => k.Length > 0).ToList();
+                var ordered = map.mapPawns.AllPawnsSpawned.ToList()
+                    .Where(a => (dm0.DesignationOn(a) == null || dm0.DesignationOn(a, DesignationDefOf.Hunt) != null) && (Safe(a, map) || HuntsBite.MayTurn(a, map)))
+                    .OrderByDescending(a => wanted0 != null && wanted0.Contains(a.def.defName))
+                    .ThenByDescending(a => a.GetStatValue(StatDefOf.MeatAmount));
+                return HuntsBite.Pick(ordered, map, n, true, out turning);
+            }
             var result = new List<Pawn>();
             if (map == null) return result;
             var dm = map.designationManager;
@@ -285,7 +312,7 @@ namespace ColonyCouncil
             if (def == null || !(def.Worker is WorkGiver_Scanner sc) || p?.map == null) return null;
             if (sc.ShouldSkip(hunter, false)) return null;
             var dm = p.map.designationManager;
-            foreach (var a in p.game.Where(a => Safe(a, p.map) && dm.DesignationOn(a, DesignationDefOf.Hunt) != null)
+            foreach (var a in p.game.Where(a => Huntable(a, p.map) && dm.DesignationOn(a, DesignationDefOf.Hunt) != null)
                          .OrderBy(a => a.Position.DistanceToSquared(hunter.Position)))
             {
                 if (!sc.HasJobOnThing(hunter, a, false) || !hunter.CanReach(a, sc.PathEndMode, sc.MaxPathDanger(hunter))) continue;

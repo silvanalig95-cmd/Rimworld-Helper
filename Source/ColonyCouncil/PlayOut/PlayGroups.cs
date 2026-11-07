@@ -426,7 +426,7 @@ namespace ColonyCouncil
                 if (job != null) h.pawn.jobs.StartJob(job, JobCondition.InterruptForced, null, false, true);
             }
             if (p.hands.Any(h => OnIt(p, h.pawn))) return true;
-            p.waitReason = (p.game.Any(a => PlayHunt.Safe(a, p.map)) ? "CC_Play_Why_NoHunter" : "CC_Play_Why_GameGone").Translate();
+            p.waitReason = (p.game.Any(a => PlayHunt.Huntable(a, p.map)) ? "CC_Play_Why_NoHunter" : "CC_Play_Why_GameGone").Translate();
             return false;
         }
 
@@ -589,7 +589,7 @@ namespace ColonyCouncil
 
         private static void StepHunt(PlayOutTracker t, PlayOut p, int elapsed)
         {
-            int alive = p.game.Count(a => PlayHunt.Safe(a, p.map) && p.map.designationManager.DesignationOn(a, DesignationDefOf.Hunt) != null);
+            int alive = p.game.Count(a => PlayHunt.Huntable(a, p.map) && p.map.designationManager.DesignationOn(a, DesignationDefOf.Hunt) != null);
             bool over = PlayOutMath.HuntOver(alive, elapsed, p.durationTicks);
             foreach (var h in p.hands)
             {

@@ -262,6 +262,8 @@ namespace ColonyCouncil
             bool supper = AtSupper(d, map);
             string title = TitleOf(d, with);
             var parts = new List<string> { Opening(d, map, keeper, other, years), (supper ? "CC_Cal_Way_Supper_Letter" : "CC_Cal_Way_" + d.way + "_Letter").Translate().Resolve() };
+            // A hunting day's game may hold a head that can turn on its hunters (Harm/HuntsBite.cs): named before it's kept.
+            if (!supper && d.way == DayWay.Hunt) parts.Add(HuntsBite.CalendarLine(map));
             if (with.Count > 0) parts.Add((with.Count == 1 ? "CC_Cal_Together_Letter_One" : "CC_Cal_Together_Letter_Many").Translate(TextUtil.JoinAnd(with.Select(x => x.label).ToList()).CapitalizeFirst().Named("DAYS")).Resolve());
             parts.Add(StatusLine(d));
             if (faithRite != null) parts.Add("CC_Cal_Ritual_FaithDay".Translate(IdeoName(), faithRite.LabelCap).Resolve());
@@ -731,7 +733,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The hunters go out: with answers playing out, three head of good game on the map are marked for hunting (never a
-        /// predator, nothing likely to turn on them); those who can hunt get a day's practice and the fun of it
+        /// predator; with hurts from everyday life on, one head may be game that can turn, Harm/HuntsBite.cs, named in the
+        /// day's letter); those who can hunt get a day's practice and the fun of it
         /// (Council_Cal_HuntDay, no mood), and the rest something better than usual in the pot that evening. Nobody
         /// whose faith forbids the hunt is glad of it, and nobody who eats no meat is glad of the stew (Wishes/Beliefs.cs).
         /// </summary>

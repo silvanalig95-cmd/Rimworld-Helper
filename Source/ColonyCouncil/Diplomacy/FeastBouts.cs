@@ -81,6 +81,18 @@ namespace ColonyCouncil
             return bout;
         }
 
+        /// <summary>
+        /// A travelling champion's bout (Harm/ChampionBouts.cs): the feast's bout at a clear ring beside the colony's
+        /// champion, with the colony's people nearby called round to watch. Null when it can't begin.
+        /// </summary>
+        public static OutsiderBout ChampionBout(Pawn c, Pawn x, bool hard)
+        {
+            if (c?.Map == null || x == null) return null;
+            var bout = FeastBout(c, x, Ring(c, c.Map), hard);
+            if (bout != null) CallWitnesses(bout);
+            return bout;
+        }
+
         /// <summary>A brawl that never began after all.</summary>
         public static void ForgetBrawl(OutsiderBout bout) => bouts.Remove(bout);
 

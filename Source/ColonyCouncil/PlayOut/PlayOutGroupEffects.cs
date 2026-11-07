@@ -478,6 +478,12 @@ namespace ColonyCouncil
         {
             string what = ctx.stranger != null && ctx.stranger.RaceProps.Animal ? ctx.stranger.LabelShort : DilemmaImpact.Kinds(kinds, Math.Max(1, Math.Min(3, animals)));
             sheet.Play("CC_Impact_HuntParty".Translate(label, Math.Max(1, Math.Min(3, count)), what, DilemmaImpact.When(hours), DilemmaImpact.Hours(duration)).Resolve(), label);
+            // A head of game that can turn among it (Harm/HuntsBite.cs), when the party would take one now.
+            if (mark && HuntsBite.On && ctx?.map != null)
+            {
+                PlayHunt.ChooseGame(ctx.map, ctx.stranger, kinds, Math.Max(1, Math.Min(3, animals)), false, true, out var turning);
+                HuntsBite.Describe(sheet, turning);
+            }
         }
 
         public PlayWho who = PlayWho.None;
@@ -497,7 +503,7 @@ namespace ColonyCouncil
         protected override bool Fill(PlayOut p, DilemmaContext ctx)
         {
             var map = ctx.map;
-            var game = PlayHunt.ChooseGame(map, ctx.stranger, kinds, Math.Max(1, Math.Min(3, animals)), !mark);
+            var game = PlayHunt.ChooseGame(map, ctx.stranger, kinds, Math.Max(1, Math.Min(3, animals)), !mark, mark && HuntsBite.On, out var turning);
             if (game.Count == 0) return false;
             var hunters = ctx.Colonists.Where(PlayOuts.OurPerson).ToList();
             var first = PlayOuts.Who(who, ctx);
@@ -509,14 +515,15 @@ namespace ColonyCouncil
                 var dm = map.designationManager;
                 foreach (var a in game)
                     if (dm.DesignationOn(a, DesignationDefOf.Hunt) == null) dm.AddDesignation(new Designation(a, DesignationDefOf.Hunt));
+                if (turning != null) HuntsBite.Marked(turning);
             }
             p.game = game;
             p.invited = hunters;
             p.organizer = first;
             p.count = Math.Max(1, Math.Min(3, count));
             p.durationTicks = PlayOutMath.DurationTicks(PlayOutMath.CapHours(duration.RandomInRange, false));
-            Tell.Message(NewsKind.Land, Importance.Notable, null, "CC_Play_Hunt".Translate(TextUtil.JoinAnd(game.Select(a => a.LabelShort).ToList())).Resolve(), new LookTargets(game),
-                MessageTypeDefOf.NeutralEvent);
+            Tell.Message(NewsKind.Land, Importance.Notable, null, "CC_Play_Hunt".Translate(TextUtil.JoinAnd(game.Select(a => a.LabelShort).ToList())).Resolve() + HuntsBite.MarkedNote(turning),
+                new LookTargets(game), MessageTypeDefOf.NeutralEvent);
             return true;
         }
     }
