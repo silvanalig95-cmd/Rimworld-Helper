@@ -143,6 +143,18 @@ namespace ColonyCouncil
             if (rolled.Count > 400) rolled.Clear();
         }
 
+        /// <summary>Dev mode (Harm/HarmTwoDebug.cs): the rival means to do it today, whatever the rivalry's strength and the roll.</summary>
+        internal static string DebugIntent(Pawn rival, Pawn other)
+        {
+            if (!On || Job == null) return "needs hurts from everyday life, answers on the map and the social web.";
+            if (!Fit(rival) || !Fit(other) || rival.Map != other.Map) return "both need to be up and about on the same map.";
+            var bench = BenchOf(other, CraftOf(other));
+            if (bench == null) return other.LabelShort + " has no craft of 6 or more with a bench of bills for it.";
+            intents.RemoveAll(i => i.rival == rival);
+            intents.Add(new Intent { rival = rival, other = other, bench = bench, until = Now + (int)(HarmTwoMath.IntentDays * GenDate.TicksPerDay) });
+            return rival.LabelShort + " means to go to " + other.LabelShort + "'s " + bench.LabelShort + " today, by day, once " + other.LabelShort + " is well away from it.";
+        }
+
         private static bool Fit(Pawn p) =>
             p != null && p.Spawned && !p.Dead && PlayOuts.OurPerson(p) && p.IsColonist && !p.DevelopmentalStage.Juvenile() && Together.Able(p);
 

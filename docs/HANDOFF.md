@@ -6,6 +6,113 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- harm, parts 2 and 3 (7 November 2026): the rest of the player's "my top ten, then more" from
+  `docs/harm-review-proposals.md`, in the player's order: 2.4.1, 3.1.1, 2.2.1, 2.1.1, 3.5.1, 1.4.1, 3.3.1, each marked
+  built there with what differs (and the Summary's "Built so far"). DESIGN.md "Harm, parts 2 and 3: the rest of the top
+  ten", a section for each and "The rates" (under "Harm from everyday life", after "Dangers on the map"); README a section
+  "Hurts from everyday life" (before "Ailments and illnesses"); the Almanac in prose only (the ailments page's hurts from
+  everyday life, the visitors' contests, the calendar's hunt row, the play-outs' hunts, a camp's tension, the hustings,
+  grudges, the two upper strain bands' rows; no keyword changed). No round of its own: About.xml, What's new and
+  CHANGELOG untouched. Pure rules in `Harm/HarmTwoMath.cs` (`HarmTwoTests`, prefix "harm two: "; the math linked in
+  Tests.csproj). No setting of their own (each under its system's and "Hurts from everyday life"), no Sched slot (the
+  sick towns and the sabotage ride on `HarmBook`'s hour, the rest on their system's).
+  - (2.4.1) `Harm/CampBrawls.cs` (`Camp.BrawlHour` in the camp's hour): tension 70 or more, or three days after the old
+    quarrel answered badly (`DilemmaEffect_CampQuarrel` on `Rimfolk_DlmC_Feud`'s shouting and keeping out of it), an
+    evening's one chance in four at their fire (half with the peacemaker home, a frayed temper half again), once a stay;
+    one of the colony and one of theirs (the colony's side only with the deeper hooks: `Outsiders.QuietBrawl` keeps the
+    blows from counting as an attack; `bout.quiet` leaves its end to the camp), else two of their own; up to two more
+    pairs join; `Harm.Fight` each. Over: with the colony in it "brawled" noted and 6 goodwill (`LoseGoodwill`, never to
+    hostility), `Leave("brawl")`; among themselves `brawlTheirs` (neutral, nothing held). `Patch_FactionMemory.CampEnded`
+    doesn't also note a "brawl" camp as hosted.
+  - (3.1.1) `Harm/SickHome.cs` (`SickStay` in `HarmBook.sick`): hours a caravan stands at another people's town under a
+    plague or famine of the region's world events (its people's or within twenty tiles; never the murrain), each
+    traveller's; at the homecoming one roll a journey (one in six for eight hours or more, nothing under two; medicine
+    packed, industrial or spacer medicine, the quarantine decree each half; a famine half); two to four days later
+    `Harm.Ail`: flu, the plague one time in four, a famine's stomach bug; a letter naming the town.
+  - (2.2.1) `Harm/ChampionBouts.cs`: a Melee challenge is `Outsiders.ChampionBout` (the feast's bout at a ring, the
+    colony called to watch, `bout.after` deciding the contest through `HappeningWorker_Champion.Decide`); one in 25 a real
+    blow, decided at the start under the scale and the cap for both; the challenger's word; the letter's line; the
+    impact sheet's Health line. Needs `Outsiders.SparOn`.
+  - (2.1.1) `Harm/HuntsBite.cs`: `DilemmaEffect_Hunt.Game` and `PlayHunt.ChooseGame(..., mayTurn, out turning)` take at
+    most one lone head that can turn (never one somebody already marked), `HarmBook.turning` six days; two Harmony
+    patches (below); named in the sheets (`CC_Impact_HuntTurn`), the marking's message and the hunting day's letter
+    (`HuntsBite.CalendarLine`); `PlayHunt.Huntable` keeps it as game while the hunt lasts; `HuntsBite.SafeOnly` around
+    a decree's morning work (the hunting season keeps to safe game).
+  - (3.5.1) `Harm/Sabotage.cs`, the job `Rimfolk_Sabotage` (`Defs/Misc/Rimfolk_HarmTwo.xml`): bitter rivals (50 or more),
+    abrasive or jealous and not kind, one in 30 a day with the same best craft, half apart, half with the peacemaker in
+    office; the other's bench, by day, the other 15 cells away; a machine jammed (`CompBreakdownable.DoBreakdown`) where
+    there is one, else a quarter of its hit points (never below a third); a witness within 12 cells in sight always tells,
+    else word goes round half the time; had out face to face (`Together.When`): `Harm.Fight`, or words when the cap holds;
+    the rivalry 8 deeper. Nothing saved but the bench's state.
+  - (1.4.1) `Harm/HustingsBrawls.cs` (`OfficeTracker.HeckleTurns` from `React`, `BrawlPause` in the gathering's step):
+    the first heckle by a backer of another candidate with a rival of theirs among the speaker's supporters in talking
+    range, one in eight, halved by the peacemaker there, the manners decree, calm candidates; `Election.brawlRolled`.
+  - (3.3.1) `Harm/FrayedTempers.cs`: worn down ×1.25, near breaking ×1.5 (times the scale up to 1) in `DilemmaEffect_Fight`
+    with a chance below 1 (`HeldRisk.frayed` when held to a play-out), the outsiders' hard words, the camp's quarrel and the
+    hustings; only the strain's part goes through the cap (`HarmTwoMath.FrayedRoll`), told with the band named; the heart
+    page's band line (`HeartView.BandDesc`).
+  - The service: `Harm.MayAtOwnAttack(pawn, cls)` (the cap without their own attack in the last hour as "already
+    fighting"; `Harm.Fighting(p, now)` as before). Game code patched (new): `Patch_HuntTurnChance`, a postfix on
+    `PawnUtility.GetManhunterOnDamageChance(Pawn, Thing, float)` (only for a marked head: times `Harm.Scale`, nothing for
+    a hunter the cap holds back, the game's own for a drafted one), and `Patch_HuntTurned`, a prefix and postfix on
+    `Pawn_MindState.Notify_DamageTaken` (tells the turn). The rest is the game's own through calls: its social fight, its
+    spar damage, its breakdown, its revenge, its flu and plague; the outsiders' existing patches on
+    `Faction.Notify_MemberTookDamage` and `Lord.Notify_PawnDamaged` excuse the camp brawl's blows. ApiDiff: all patches OK
+    on 1.7.
+  - Found and fixed while finishing the WIP: the hunts' game could never turn (the game marks the hunter as attacking
+    with every shot, and the plain cap counted that as already fighting, so the chance was always nothing); a witness to
+    a sabotage could see it and nobody be told ("Nobody saw who"); an industrial colony's bench with no machine was said
+    to be jammed; a camp's brawl among themselves cost the colony nothing yet read as if it had, and a brawl camp was
+    remembered as a good stay; camp texts "the pilgrims's fire", "of the {FACTION}"; the champion's bout said its end
+    twice (the spar's lines and the contest's); a player's own hunt designation could be taken as the turning head.
+  - Saved: `HarmBook.turning`, `HarmBook.sick` (both in `Tools/save_estimate.py`), a camp's `quarrelSouredAt`, `brawled`,
+    `brawlAt`, `brawlDay`, `brawlNames`, `Election.brawlRolled`, `HeldRisk.frayed`. Tests: `HarmTwoTests`; the new
+    pools in `ImmersionTests.SpokenPools`.
+  - Rates (`Tools/Balance -- --harm`, new: `HarmSim.cs`, 400 runs; part 1's code is unchanged, so "before" with parts 2
+    and 3 left out is 0.131.0): hurts the cap counts per colonist-year, 6 colonists, before and after: well run 0.17 to
+    0.26, average 0.27 to 0.38, neglectful 0.38 to 0.50 (12 average 0.27 to 0.36); the game's own raid wounds 1.4 to 2.0,
+    a middling cook's food poisoning 0.3 to 1. A colony of six, average, a year: a hunt's beast turning 0.46 (the game's
+    own chance), a camp's brawl with the colony 0.06 (0.11 neglectful), a sabotage come to blows 0.04 (0.24 with twelve),
+    the hustings 0.01 to 0.03, frayed fights 0.005 (0.06 to 0.09 neglectful beside 0.9 to 1.7 of Rimfolk's moments' fights
+    as before), the champion's blow and a sickness brought home a few in a thousand. Strain bands, the heart's days off and
+    the strain's mood the same before and after to a tenth. The colony-year report (60 runs) gives the same summary to the
+    byte on 07d971d and on this tree.
+  - Dev tools: Debug actions, Rimfolk, "Harm two: ..." (`Harm/HarmTwoDebug.cs`): the camp's quarrel comes to blows now; the
+    next champion's bout lands a real blow; mark a lone beast that can turn for hunting; a sickness brought home shows...;
+    a rival spoils the other's work today...; the next heckle at the hustings comes to blows; frayed tempers on this map.
+  - Try in the game with dev tools (none of it could be run here):
+    1. A camp on the map, a colonist at their fire: "the camp's quarrel comes to blows now". The line at the fire, the
+       game's social fight, others joining, the message; when it's over the camp packs up, the ending letter names the
+       brawl, their people's goodwill down a little (never hostile), their page's memory "came to blows with one of theirs".
+       Without the colonist: two of theirs, a neutral letter. Answer the feud dilemma's shouting: its Health line; that
+       evening at the fire.
+    2. A champion's challenge at Melee (Rimfolk events, or wait for one) after "the next champion's bout lands a real
+       blow": accept (the sheet's Health line), the ring beside the champion, the colony coming to watch, the challenger's
+       opening line in their people's way, eight swings, the hard blow and its message, the challenger's word, the letter's
+       line; the contest and its stake go to the bout's winner (a draw by skill).
+    3. A lone boar, elk or muffalo: an answer with a hunt shows "the boar may turn on its hunters"; or "mark a lone beast".
+       The hunter's shot: often it turns (the game's revenge letter), the hunter's line, the message, the fight. Hurt the
+       hunter first (any Rimfolk hurt in three days): it doesn't turn. Draft a colonist to shoot it: the game's own chance.
+       Calendar's hunting day letter names it.
+    4. "A sickness brought home shows..." on a colonist: within the hour the flu (or plague), the line over their head, the
+       letter naming the town. For the real road: a caravan to a town under a plague in the region (world events), a
+       night stopped there, home: two to four days later, one journey in six.
+    5. Two rivals, one abrasive or jealous, the other with a craft bench of bills: "a rival spoils the other's work
+       today...". By day the rival walks to the bench (the job's report), a few seconds; the bench damaged (or a machine
+       broken down); a witness says so to them, then tells the other; the other walks over, the fight, the message. With
+       nobody near: half the time word through someone beside the other, else "Nobody saw who".
+    6. An election on the map with its hustings, after "the next heckle at the hustings comes to blows": the heckle, the
+       shove line, the fight, the speeches waiting, the chair's call to order, the hustings going on.
+    7. A colonist worn down (strain 55+): the heart page's band line "A sharp word comes to blows more easily."; a near
+       fight that comes to blows only because of the strain has a message naming it (the rest are the fights they were).
+       "frayed tempers on this map" logs each one's factor and whether the cap holds them back.
+    8. The setting at 0%: none of it; save and load mid-sickness (the onset waits), with a marked beast (six days kept).
+  - Riskiest: the two Harmony patches on the game's revenge (they touch only marked heads, but run on every damage to an
+    animal); the champion's contest now waiting on a bout (an unsaved bout lost to a load restarts the contest when the two
+    next meet); the camp brawl on the colony's side relying on the outsiders' bout list to keep the camp's lord and faction
+    from counting the blows (a mod that changes social fights could make a camp hostile); the sabotage's forced job at a
+    bench someone else may want (it reserves it a few seconds); the sick towns' hours counted only while a caravan stands
+    on the town's tile and isn't moving (a long trade visit counts, a pass-through doesn't).
 - 0.131.0, stage 3 release 4: many colonies in play (7 November 2026). The player's decisions 12A, 13A and 14A; `docs/design/
   stage3-many-colonies.md`, section 3's 3b, 3c and 3d, now marked built with what differs (item 4); DESIGN.md "Many
   colonies in play" (under "A town of our own", after "The town's life"; "Many homes"' "still one for the game" a prose

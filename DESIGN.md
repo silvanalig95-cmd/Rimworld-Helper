@@ -2320,7 +2320,8 @@ and `HarmBook.sick` (`SickStay`: travellers' stays at sick towns and a sickness 
 `Harm.MayAtOwnAttack(pawn, cls)`: the cap for someone whose own attack brings the hurt about (a hunter's shot), which
 leaves their attack in the last hour out of "already fighting" (the game sets it with every shot, so the plain cap would
 never let a hunted beast turn). The pools are in `Rimfolk_HarmTwo_Lines.xml` (in `ImmersionTests.SpokenPools`), the
-words in `Rimfolk_HarmTwo.xml`, each told message in two wordings.
+words in `Rimfolk_HarmTwo.xml`, each told message in two wordings. Dev mode: Debug actions, Rimfolk, "Harm two: ..."
+(`Harm/HarmTwoDebug.cs`), each bringing one of the seven about now past its rate, never past the cap.
 
 ### A camp's quarrel that becomes a brawl (2.4.1, camps)
 

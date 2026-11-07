@@ -212,6 +212,26 @@ namespace ColonyCouncil
             ColonyCouncil.Tell.Letter(NewsKind.Health, Importance.Important, p.Map, ill.CapitalizeFirst() + ": " + p.LabelShortCap, text, LetterDefOf.NegativeEvent, new LookTargets(p));
         }
 
+        /// <summary>
+        /// Dev mode (Harm/HarmTwoDebug.cs): as if they had come home from a night at the nearest other people's town under a
+        /// plague and the roll had come up: it shows within the hour, when the cap lets it.
+        /// </summary>
+        internal static string DebugOnset(Pawn p)
+        {
+            var book = HarmBook.Instance;
+            if (!On || book == null || p == null) return "hurts from everyday life are off.";
+            var town = Find.WorldObjects.Settlements.Where(s => s.Faction != null && !s.Faction.IsPlayer && s.Tile.Valid && p.Tile.Valid && s.Tile.Layer == p.Tile.Layer)
+                .OrderBy(s => Find.WorldGrid.ApproxDistanceInTiles(s.Tile, p.Tile)).FirstOrDefault();
+            var def = SicknessFor(SickTown.Plague, p);
+            if (def == null) return "no sickness to give.";
+            book.sick.Add(new SickStay
+            {
+                pawn = p, town = town?.ID ?? -1, townName = town?.Name ?? "a town on the road", kind = SickTown.Plague, hours = HarmTwoMath.NightHours, lastAt = Now,
+                due = Now, hediff = def.defName
+            });
+            return def.label + " shows on " + p.LabelShort + " within the hour" + (Harm.May(p, HurtClass.Injury) ? "." : ", once the cap lets it (" + Harm.Bar(p, HurtClass.Injury) + ").");
+        }
+
         /// <summary>The day's pruning: stays long past (the road home taken without them coming home), the dead.</summary>
         public static void Prune(HarmBook book, int now)
         {

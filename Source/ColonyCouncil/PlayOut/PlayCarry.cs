@@ -259,8 +259,10 @@ namespace ColonyCouncil
             {
                 var dm0 = map.designationManager;
                 var wanted0 = kinds.NullOrEmpty() ? null : kinds.Split('|').Select(k => k.Trim()).Where(k => k.Length > 0).ToList();
+                // Safe game already marked for hunting may join it; a head that can turn only if nobody has marked it yet.
                 var ordered = map.mapPawns.AllPawnsSpawned.ToList()
-                    .Where(a => (dm0.DesignationOn(a) == null || dm0.DesignationOn(a, DesignationDefOf.Hunt) != null) && (Safe(a, map) || HuntsBite.MayTurn(a, map)))
+                    .Where(a => Safe(a, map) && (dm0.DesignationOn(a) == null || dm0.DesignationOn(a, DesignationDefOf.Hunt) != null)
+                                || dm0.DesignationOn(a) == null && HuntsBite.MayTurn(a, map))
                     .OrderByDescending(a => wanted0 != null && wanted0.Contains(a.def.defName))
                     .ThenByDescending(a => a.GetStatValue(StatDefOf.MeatAmount));
                 return HuntsBite.Pick(ordered, map, n, true, out turning);

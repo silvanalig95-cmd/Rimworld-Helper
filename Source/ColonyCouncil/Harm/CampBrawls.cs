@@ -136,6 +136,22 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>Dev mode (Harm/HarmTwoDebug.cs): the quarrel comes to blows now, whatever the hour, the tension and the roll.</summary>
+        internal string DebugBrawl()
+        {
+            if (brawled || brawlAt >= 0) return "this camp has had its brawl this stay.";
+            if (phase != CampPhase.Living || map == null || Hostile) return "the camp isn't settled at peace on the map.";
+            var fire = FireCell;
+            var theirs = Here.Where(p => CampBrawls.Fit(p, fire, 30f)).ToList();
+            var ours = CampBrawls.ColonySide
+                ? IncidentWorker_Happening.Colonists(map).Where(p => PlayOuts.OurPerson(p) && CampBrawls.Fit(p, fire, 30f)).ToList()
+                : new List<Pawn>();
+            if (theirs.Count == 0 || ours.Count == 0 && theirs.Count < 2) return "nobody fit to come to blows near their fire (send a colonist over, or wait for the evening).";
+            brawlDay = GenDate.DaysPassed;
+            BeginBrawl(ours, theirs);
+            return brawlAt >= 0 ? "it came to blows." : "it didn't begin: nobody within talking range of someone of the other side.";
+        }
+
         private void BeginBrawl(List<Pawn> ours, List<Pawn> theirs)
         {
             brawlPairs = new List<BrawlPair>();

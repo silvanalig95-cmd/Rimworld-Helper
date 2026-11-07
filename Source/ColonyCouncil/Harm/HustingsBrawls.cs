@@ -19,6 +19,9 @@ namespace ColonyCouncil
     {
         private static readonly Color BrawlColor = new Color(1f, 0.75f, 0.6f);
 
+        /// <summary>Dev mode (Harm/HarmTwoDebug.cs): the next heckle at a hustings comes to blows, when the cap lets both fight.</summary>
+        internal static bool DebugHustingsBlows;
+
         /// <summary>A heckle was thrown at <paramref name="speaker"/>'s speech by <paramref name="heckler"/>: it may come to blows with a rival backing the speaker.</summary>
         private void HeckleTurns(Election e, ElectionRace race, Pawn speaker, Pawn heckler, List<Pawn> fans, List<Pawn> here)
         {
@@ -30,9 +33,13 @@ namespace ColonyCouncil
                 // A rival of the heckler's among the speaker's supporters, and the heckler backing another candidate.
                 var rival = fans.Where(f => f != heckler && social.Get(f, heckler, TieKind.Rivals) != null && Together.Can(f, heckler)).OrderByDescending(f => social.Strength(f, heckler, TieKind.Rivals))
                     .FirstOrDefault();
+                // Dev mode (Harm/HarmTwoDebug.cs): any of the speaker's supporters beside the heckler stands in for the rival.
+                bool forced = DebugHustingsBlows;
+                if (rival == null && forced) rival = fans.FirstOrDefault(f => f != heckler && Together.Can(f, heckler));
                 if (rival == null) return;
                 bool backsOther = race.Candidates.Any(c => c != speaker && Supporters(race, c).Contains(heckler));
-                if (!backsOther) return;
+                if (!backsOther && !forced) return;
+                DebugHustingsBlows = false;
                 e.brawlRolled = true;
                 var pm = Peacemaker;
                 bool peacemaker = pm != null && here.Contains(pm);
@@ -40,7 +47,7 @@ namespace ColonyCouncil
                 bool polite = manners != null && DecreeTracker.InForceFor(heckler, manners);
                 bool calm = race.Candidates.All(c => !Hot(c));
                 float chance = HarmTwoMath.HustingsBrawl(peacemaker, polite, calm, FrayedTempers.Factor(rival, heckler));
-                if (!Harm.Roll(chance)) return;
+                if (!forced && !Harm.Roll(chance)) return;
                 // together: the supporter answers the heckle face to face at the hustings (Together.Can above).
                 Line(rival, "Rimfolk_Pool_HustingsShove", heckler);
                 if (!Harm.Fight(rival, heckler, "the hustings")) return;

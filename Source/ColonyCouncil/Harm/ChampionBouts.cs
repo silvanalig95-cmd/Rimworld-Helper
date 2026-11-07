@@ -27,6 +27,9 @@ namespace ColonyCouncil
         /// <summary>The bout's name in the challenger's people's ways.</summary>
         public static string FormWord(Faction people) => ("CC_HarmTwo_BoutForm_" + HarmTwoMath.BoutForm(Ages.Of(people))).Translate().Resolve();
 
+        /// <summary>Dev mode (Harm/HarmTwoDebug.cs): the next champion's bout lands its real blow, when the cap lets both take one.</summary>
+        internal static bool DebugHard;
+
         /// <summary>A bout under way for this visit (the visit waits for it).</summary>
         public static bool Live(Visit v) => v?.bout != null && Outsiders.Known(v.bout) && !v.bout.over;
 
@@ -44,7 +47,8 @@ namespace ColonyCouncil
             if (a == null || x == null || !a.Spawned || !x.Spawned || a.Map != x.Map) return false;
             try
             {
-                bool hard = Harm.May(a, HurtClass.Bout) && Harm.May(x, HurtClass.Bout) && Harm.Roll(HarmTwoMath.ChampionBlowChance);
+                bool hard = Harm.May(a, HurtClass.Bout) && Harm.May(x, HurtClass.Bout) && (DebugHard || Harm.Roll(HarmTwoMath.ChampionBlowChance));
+                DebugHard = false;
                 var bout = Outsiders.ChampionBout(a, x, hard);
                 if (bout == null) return false;
                 v.bout = bout;

@@ -177,6 +177,9 @@ public static class HarmTwoTests
             "the hunter's own shot at it isn't 'already fighting' (or the game could never turn); one the player drafted has the game's own chance");
         string harmSrc = Code("Harm/Harm.cs");
         C(harmSrc.Contains("public static bool MayAtOwnAttack(") && harmSrc.Contains("ownAttack && mind.lastAttackTargetTick"), "the cap leaves out only their own attack");
+        string dev = Code("Harm/HarmTwoDebug.cs");
+        C(!Regex.IsMatch(dev, @"TakeDamage\(|AddHediff\(|StartSocialFight\(|Harm\.(Note|Injure|Ail|Fight)\(") && Regex.Matches(dev, @"\[DebugAction\(""Rimfolk"", ""Harm two: ").Count == 7,
+            "seven dev tools, each bringing one about through the feature itself, never past the cap");
         C(sab.Contains("HarmTwoMath.FoundOut(witness != null)") && sab.Contains("HarmTwoMath.SabotageForm(age, jammed)") && sab.Contains("\"form:\" + form"),
             "a sabotage: a witness tells, and the words and the confrontation name what was really done");
         string effects = Code("PlayOut/PlayOutEffects.cs"), groups = Code("PlayOut/PlayOutGroupEffects.cs"), carry = Code("PlayOut/PlayCarry.cs");
