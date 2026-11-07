@@ -794,7 +794,8 @@ namespace ColonyCouncil
             Safe("vendettas", () => vendettas.Daily(this));
             Safe("quirks", () => quirks.Daily(this));
             Safe("legacy", () => legacy.Daily(this));
-            Safe("character", () => character.Daily(this));
+            // Each colony's own character (Character/ColonyCharacters.cs).
+            CharactersDay();
             Safe("persona marks", () => PersonaMarks.Daily(this));
             Safe("trait changes", () => TraitChanges.Daily(this));
             Safe("fungus diet", () => FungusDiet.Daily(this));

@@ -120,6 +120,9 @@ namespace ColonyCouncil
             // With more than one colony, the colony in view in a chip at the end of the line, a click away from another (UI/ColonyView.cs).
             float chip = ColonyView.Chip(lineRight, rect.y + 30f, Mathf.Max(0f, (lineRight - x) * 0.45f));
             if (chip > 0f) lineRight -= chip + 8f;
+            // On a page that follows the colony in view, everyone from every colony a click away (UI/ColonyView.cs, 3c).
+            float scope = chip > 0f ? ColonyView.ScopeChip(lineRight, rect.y + 30f, Mathf.Max(0f, (lineRight - x) * 0.3f)) : 0f;
+            if (scope > 0f) lineRight -= scope + 6f;
             if (!subtitle.NullOrEmpty()) LabelFit(new Rect(x, rect.y + 29f, Mathf.Max(0f, lineRight - x), 22f), subtitle, Faint);
             bool modes = extras != null && extras.HasModes;
             float height = ViewHeadMath.Height(modes);

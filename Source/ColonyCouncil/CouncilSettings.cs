@@ -240,6 +240,8 @@ namespace ColonyCouncil
         public bool handOvers = true;
         /// <summary>Many colonies (Colonies/TownsAfter.cs): a town the colony was writes, sends its trader, invites the colony to its days and asks to send its people home.</summary>
         public bool townLife = true;
+        /// <summary>Many colonies (Colonies/Merges.cs): a colony's people come to live at another home, and the two councils become one.</summary>
+        public bool manyMerge = true;
         /// <summary>A journey shifts each traveller's night before, so they wake rested in time to set off.</summary>
         public bool journeyShiftSleep = true;
         /// <summary>Travellers change into clothes from the stores for the weather on the road.</summary>
@@ -658,6 +660,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref newcomers, "newcomers", true);
             Scribe_Values.Look(ref handOvers, "handOvers", true);
             Scribe_Values.Look(ref townLife, "townLife", true);
+            Scribe_Values.Look(ref manyMerge, "manyMerge", true);
             Scribe_Values.Look(ref journeyShiftSleep, "journeyShiftSleep", true);
             Scribe_Values.Look(ref journeyClothes, "journeyClothes", true);
             Scribe_Values.Look(ref journeyFreeHours, "journeyFreeHours", 4);

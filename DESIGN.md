@@ -2850,8 +2850,10 @@ over any `IColonyEntry`.
 - *Journeys*: one plan per home at most (`JourneyBook.PlanAt(map)`, `PlanOf(pawn)`), each setting off from its own home.
 - *News*: what was told with no map but is about a home goes through `Tell` with it, so it names the settlement.
 
-**Still one for the game**: the chronicle and the annals (one book, each colony named in it), the wishes' list, trust,
-the heart's episodes, the colony's character, the remembered camps that may come back, the world's news. The one faith
+**Still one for the game**: the chronicle and the annals (one book, each colony named in it, the Chronicle page filtered
+by the colony in view since release 4), the wishes' list, trust, the heart's episodes, the remembered camps that may come
+back, the world's news. The colony's character was one until stage 3's release 4 made it each colony's own (below, "Many
+colonies in play"). The one faith
 a decree names stays one for the game: the game keeps one faith per people (`Faction.OfPlayer.ideos`), not per map, so
 two colonies naming two faiths would pull the same people two ways. `comp.offices`, `decrees`, `ambitions` and
 `dilemmas` still read the seat's council where the colony as a whole is meant.
@@ -3372,6 +3374,78 @@ in, the raid rides the world events' own hour. Setting: "The town's life" (with 
   colony's former people was on the map by id). No new collection.
 - **Dev tools.** Debug actions "Town life: ..." (`Colonies/TownLifeDebug.cs`): a raid on it now, its hard times now (its
   ask), its people at the gate now, a plague's reckoning now, its people at war with the colony, what cools it.
+
+#### Many colonies in play (stage 3, release 4)
+
+Every system right with several homes (docs/design/stage3-many-colonies.md, section 3's 3b, 3c and 3d; the player's
+decisions 12A, 13A and 14A of 6 November 2026; 3a, the seat, came with release 1). Pure rules in
+`Colonies/ManyColoniesMath.cs` (`Tools/Tests/ManyColoniesTests.cs`, prefix "many colonies: "). With one colony none of it
+runs or writes anything: every rule answers as before, no roll is added, and the save is as it was.
+- **Two councils become one** (3b, 12A; `Colonies/Merges.cs`, `HomesMerge.cs`, `Calendar/CalendarMerge.cs`). A home lost
+  (`Homes.Changed`: given up, handed over) with another home left notes its people (`ColonyMerge`, on the homes'
+  component, written only while there is one): those whose last home it was, and those who moved from it within the
+  thirty days its council is kept (`HomeTie.prev`, `movedAt`, kept only with more than one home or a merge waiting). In
+  the council's hour (after the homes, no schedule slot) the home most of them have lived a day at is where they came
+  (`MergedInto`); a merge only where it has grown-ups of its own, the old council is still kept, and it wasn't founded
+  from theirs within the season (a fresh start's party with the old colony handed over in the same act is its founding,
+  not a merge; `IsMerge`); a home of theirs alone is their colony moved, 7a's carried council. It waits while some of them
+  are still on the road or a fight is on the map (three days at most). Then:
+  - *Traditions*: each tradition of their calendar (not its founding day, not someone's own day) by id against the
+    colony's (`Tradition`): only they kept it, it joins at half its strength (`Halve`: half its years kept, half its
+    weight; still a tradition, lapsing by the usual two years let pass), written down by the calendar's own `TryAdd`
+    (inside its cap of twelve); both kept it, the stronger stays (theirs taken when stronger by its standing).
+  - *The election*: with them a third or more of the grown-ups (`EarlyElection`), the council's own election
+    (`OfficeTracker.Call`) is called three days on, within the season, unless one is under way or was held since.
+  - *Names*: in the next naming round (`EpithetTracker.Daily`, `Merged`) each name under their colony's key: one the colony
+    had nobody for stays its holder's, held as long as it was; where both had a holder the better by the name's own count
+    keeps it (`NewcomerKeeps`, the colony's own on a tie), in a line of news; and for the merge's first season a name taken
+    over in the colony makes no rival (`QuietSeason`, `Merges.Quiet` in `Award`).
+  - *The calendar*: their old colony's founding day as a remembrance on its own date (`Notify_Merged`, id
+    `oldfounding|`, known by the newcomers), let go once none of them is of this colony (`KeepsOldFounding`; the
+    abandon's day of release 1 by the same rule).
+  - *The welcome*: the feast engine's meal (`PlayFeast.Stage`, the hours 17 to 23, so the first evening) for everyone at
+    home, hosted by the speaker (else the eldest of the colony's own), the speaker's greeting from
+    `Rimfolk_Pool_MergeGreeting` as the host's cup, the table's lines `Rimfolk_Pool_MergeWelcome`; with answers not
+    playing out, the greeting in a bubble. The milestone `colony:merged` and one letter saying what merged (the meal only
+    when it was set going). The record is let go once its names were looked at, its election called and its first season
+    over. Setting: "Two councils become one" (Many colonies); off, only 7a's rules.
+- **Each colony its own character** (3d, 13A; `Character/ColonyCharacters.cs`). `CharacterTracker` is one per colony in a
+  `ColonyBook` (`CouncilGameComponent.CharacterOf(map)`, `CharacterTracker.For`, `Of`, `InView`); `comp.character` is the
+  seat's, for what the colony as a whole has. Saved as before: the seat's as "character" (its home not written), the
+  others (with their home) as "characters" only when there are any; an old save's one character is the seat's. Every
+  reading asks the colony concerned: an answer's ways shift its question's colony (dilemmas, events, world events,
+  encounters, camps, decrees, the calendar's traditions, a wedding's), its tags and `colonyIs` its map's, a colonist's pride
+  or chafing their own colony's (`ThoughtWorker_ColonyWays`, `ColonyTrait`), the tallies where they happened (a visitor's
+  remark, a camp hosted, a ritual held), the work names from each colony's own people, guests and chaplain, the
+  calendar's long memory its own calendar. Letters and news of a way or a name name the settlement with more than one
+  colony; the chronicle's sentence of a name's change is kept under the colony (`History.About`). A colony founded by
+  people of another starts with half its mother's (`StartFrom`: half each way, half the work's rates, a name kept only
+  where half still holds it, `ColonyTraits.HalfOf`); newcomers alone fresh; a colony that moves (the old abandoned) takes
+  all of it (`CharacterCarried`, beside the council). "Walled" needs the calendar's walls-up line of wall sections
+  (`MayBeWalled`, 80) at that home, kept from a colony without and let go once they are gone. What stays one: word among
+  the peoples (the goodwill a generous or open colony earns) is the seat's ways' only (`CarriesWord`), and what the colony
+  is known for beyond its walls (renown) is one, told by the seat's name only (`TellsRenown`).
+- **The region near every home** (3d, 14A). `NotableBook.Refresh` staffs each further home's nearest two towns on the
+  ground within twice the region's reach, none the seat already has (`FurtherTowns`, `NearestTowns`), beside the seat's
+  four near, two dealt with and two new: eight more people a home at most (`NotableCap`), made by the existing rules, two
+  an hour. An acquaintance lives in their people's town nearest the colony of whoever met them (`ColonyOfMet`). World
+  events are placed near a home picked by its people (`WorldSituations.PlaceNear`, `PickHome`: each home on the ground
+  weighted by its people; one home, the seat without a roll); the two running slots stay two.
+- **What the player sees** (3c; `UI/ColonyView.cs`). The People view's Table, Moods, Bonds, Faiths and Renown, the
+  Chronicle, and the region window's Faces (Peoples) and Here and away follow the colony in view with more than one home
+  (`ColonyView.Shows`, `ShowsHome`, `ShowsLine`: a chronicle line placed at it, about one of its people, or of no colony),
+  and a chip beside the colony chip in their header, "This colony", turns to "Every colony" with a click for the session
+  (`ColonyView.Everyone`, `ScopeChip`; a page builds again at once when either moves, `ColonyView.Version`). The council
+  panel on the map names the colony (`HudPanel.HeaderLabel`) and its trust is its people's. The town cards' Who covers
+  every staffed town (`NotableBook.AllTowns`), a people's card lists their towns within the colony in view's reach, and
+  the faces and here and away keep to its neighbours (`NotableBook.NearColony`, `DipRow.home`).
+- **Small ones.** The frost alert looks at every home's fields, the one in view first, naming the other; an outsider's
+  town distance and kin among the colony are reckoned from the colony they are at (`Facts`); a favour's bearer is one of
+  their people at the colony of the one who asked; a courier's goods for an answer with no map are fetched at its
+  colonist's colony; growth needs count a quest's arrivals with no map at the home the quest points at, else the seat.
+- **Dev tools.** Debug actions "Many colonies: ..." (`Colonies/ManyColoniesDebug.cs`): two councils become one here now
+  (a home's people on this map as the newcomers), each colony's character, the towns near each home, where a world
+  event would be placed.
 
 ### The world ledger
 

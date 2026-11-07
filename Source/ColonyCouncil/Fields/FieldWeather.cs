@@ -869,6 +869,9 @@ namespace ColonyCouncil
             {
                 int n = top.pick.harvest.Count;
                 label = "CC_Fields_Alert".Translate(n.Named("N"), (n == 1 ? top.crop.label : Find.ActiveLanguageWorker.Pluralize(top.crop.label, n)).Named("CROPS")).Resolve();
+                // At another home than the one in view: its name, so the alert says where.
+                var at = top.zone?.Map;
+                if (at != null && at != Find.CurrentMap && ColonyState.Several) label = "CC_Many_FrostAt".Translate(label.Named("ALERT"), Homes.Name(at).Named("PLACE")).Resolve();
                 labelFor = top;
             }
             return label;
@@ -884,9 +887,24 @@ namespace ColonyCouncil
         {
             top = null;
             if (!FieldWeather.FrostOn) return false;
-            var map = Find.CurrentMap;
-            if (map == null || !map.IsPlayerHome) return false;
-            var open = FieldWeather.Of(map)?.Open();
+            // Every home's fields, the map in view first (ManyColoniesMath.FrostAt); with one colony, that one.
+            List<FieldWeather.FrostStep> open = null;
+            var inView = Find.CurrentMap;
+            if (inView != null && inView.IsPlayerHome) open = FieldWeather.Of(inView)?.Open();
+            if (open == null || open.Count == 0)
+            {
+                open = null;
+                var homes = Homes.All;
+                if (homes.Count > 1)
+                    foreach (var home in homes)
+                    {
+                        if (home == inView) continue;
+                        var o = FieldWeather.Of(home)?.Open();
+                        if (o == null || o.Count == 0) continue;
+                        open = o;
+                        break;
+                    }
+            }
             if (open == null || open.Count == 0) return false;
             top = open[0];
             culprits.Clear();

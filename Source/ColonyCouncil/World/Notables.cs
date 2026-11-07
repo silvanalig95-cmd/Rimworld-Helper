@@ -502,11 +502,68 @@ namespace ColonyCouncil
             return near;
         }
 
+        /// <summary>
+        /// Each further home on the ground has its nearest two towns staffed too (the player's decision 14A), beside the
+        /// seat's (<paramref name="seatTowns"/>): a second colony far away has neighbours with faces. None with one colony.
+        /// </summary>
+        public List<Settlement> FurtherTowns(Map seat, List<Settlement> seatTowns)
+        {
+            var list = new List<Settlement>();
+            var homes = Homes.All;
+            if (homes.Count <= 1) return list;
+            foreach (var home in homes)
+            {
+                if (home == seat || MapFacts.InVacuum(home)) continue;
+                var all = Find.WorldObjects.Settlements.Where(s => TownFits(s, home)).ToList();
+                if (all.Count == 0) continue;
+                var tiles = all.Select(s => LivingEvents.Distance(home.Tile, s.Tile)).ToList();
+                var taken = new HashSet<int>();
+                for (int i = 0; i < all.Count; i++)
+                    if (seatTowns.Contains(all[i]) || list.Contains(all[i]))
+                        taken.Add(i);
+                foreach (int i in ManyColoniesMath.NearestTowns(tiles, taken, NotableMath.ReachTiles)) list.Add(all[i]);
+            }
+            return list;
+        }
+
+        /// <summary>Every town staffed with notables: the seat's neighbours, then each further home's nearest two (decision 14A).</summary>
+        public List<Settlement> AllTowns(Map seat)
+        {
+            var towns = Towns(seat);
+            towns.AddRange(FurtherTowns(seat, towns));
+            return towns;
+        }
+
+        [Unsaved] private static readonly Dictionary<int, (float at, HashSet<int> ids)> near = new Dictionary<int, (float, HashSet<int>)>();
+
+        /// <summary>
+        /// A notable is one of this colony's neighbours (the pages that follow the colony in view, 3c): of a town within its
+        /// reach, or a face whoever of it met. Always, with one colony. The towns are worked out once a second a home.
+        /// </summary>
+        public bool NearColony(Notable n, Map home)
+        {
+            if (n == null || home == null || !ColonyState.Several) return true;
+            if (n.role == NotableRole.Acquaintance) return ColonyOfMet(n.metBy) == home;
+            int key = Homes.KeyOf(home);
+            float now = UnityEngine.Time.realtimeSinceStartup;
+            if (!near.TryGetValue(key, out var e) || now - e.at > 1f || now < e.at)
+            {
+                e = (now, new HashSet<int>(Towns(home).Select(s => s.ID)));
+                near[key] = e;
+            }
+            return e.ids.Contains(n.town);
+        }
+
+        /// <summary>The colony someone met belongs to (whoever of the colony met them), else the seat: where their people's town nearest them is.</summary>
+        private static Map ColonyOfMet(Pawn by) => by != null && ColonyState.Several && !by.Dead ? Homes.Of(by) ?? Home : Home;
+
         private void Refresh(int now)
         {
             var map = Home;
             if (map == null) return;
             var towns = Towns(map);
+            // The nearest two towns of every further home (decision 14A), after the seat's.
+            towns.AddRange(FurtherTowns(map, towns));
             var ids = new HashSet<int>(towns.Select(s => s.ID));
             // The gone are followed (the heir steps up), the faded let go.
             foreach (var n in notables.ToList()) Look(n, ids, now);
@@ -516,12 +573,12 @@ namespace ColonyCouncil
                 if (made >= NotableMath.MakePerHour) break;
                 made += Staff(s, now, NotableMath.MakePerHour - made);
             }
-            // Acquaintances live in their people's town nearest the colony.
+            // Acquaintances live in their people's town nearest their own colony (the colony of whoever met them, else the seat).
             foreach (var n in notables.Where(n => n.role == NotableRole.Acquaintance && n.Alive))
             {
                 var t = TownOf(n.town);
                 if (t != null && t.Faction == n.faction) continue;
-                var near = WorldSituationWorker.NearestTown(n.pawn.Faction ?? n.faction, map);
+                var near = WorldSituationWorker.NearestTown(n.pawn.Faction ?? n.faction, ColonyOfMet(n.metBy));
                 if (near == null) continue;
                 n.faction = near.Faction;
                 n.town = near.ID;
@@ -849,7 +906,8 @@ namespace ColonyCouncil
                 }
                 return;
             }
-            var map = Home;
+            // Their people's town nearest the colony of whoever met them (the seat's, with one colony).
+            var map = ColonyOfMet(by);
             var town = map != null ? WorldSituationWorker.NearestTown(p.Faction, map) : null;
             var n = Add(p, town, NotableRole.Acquaintance, false, met, by);
             n.faction = p.Faction;

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The Almanac page on many colonies in play (Source/ColonyCouncil/Colonies/: ManyColoniesMath.cs, Merges.cs,
+       HomesMerge.cs; Character/ColonyCharacters.cs; Calendar/CalendarMerge.cs; UI/ColonyView.cs;
+       docs/design/stage3-many-colonies.md, section 3, release 4; DESIGN.md "Many colonies in play"). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_ManyColonies</defName>
+    <label>many colonies</label>
+    <category>Council</category>
+    <order>16</order>
+    <summary>With more than one home, each colony has a character of its own, neighbours with faces near it and world events of its own region; two councils become one when a colony's people come to live at another home; and the pages show the colony in view, everyone a click away.</summary>
+    <tip>The chip that says "This colony" on the People pages, the Chronicle and the region's faces and here and away turns to "Every colony" with a click, for the session.</tip>
+    <description>Once the colony has a second home (see "a fresh start"), every system keeps to each colony's own. With one colony nothing on this page changes anything.</description>
+    <sections>
+      <li>
+        <heading>Two councils become one</heading>
+        <points>
+          <li>When a colony's home is given up or handed over and its people come to live at another home that has people and a council of its own, the two councils become one once they have lived a day there. A home of theirs alone is their colony moved: its council goes with them, as always.</li>
+          <li>Traditions: one only they kept joins the colony's at half its strength (half the years kept, half its weight) and lapses as any tradition does, two years let pass, unless the colony keeps it. One both kept keeps the stronger.</li>
+          <li>When they are a third or more of the grown-ups, the council is chosen again within the season, so they have a say. Their decrees ended with their council; an officer of theirs had already stepped down.</li>
+          <li>The names they were known by are looked at again in the next naming: one the colony had nobody for stays theirs; where both had someone known by it, the better at it keeps it. No rival comes of a name taken over in the first season.</li>
+          <li>Their old colony's founding day is kept as a day to remember while some of its people live there, inside the twelve days the calendar writes down.</li>
+          <li>On the first evening the colony sits down to a meal together to welcome them, and its speaker greets them as the cups go up. A milestone in the chronicle, and one letter that says what merged. The setting "Two councils become one" in Many colonies.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Each colony its own character</heading>
+        <points>
+          <li>The five ways and what a colony's work made it (green-fingered, builders, famed for its hall, walled, artful, keepers of the dead...) are each colony's own, from its own council's choices and its own people's work. A colonist's pride or chafing is with their own colony's ways.</li>
+          <li>A colony founded by people of another starts with half its mother's: half of each way, and of what its work made it only what half still holds. Newcomers alone start fresh. A colony that moves (the old one abandoned) takes all of its character with it.</li>
+          <li>"Walled" is never said of a colony with no walls: it needs 80 sections of wall, as the calendar counts the walls going up, and is let go once they are gone.</li>
+          <li>The colony as a whole has one name among the peoples: the seat's ways carry word (a generous or open colony's neighbours warm to it), and what it is known for beyond its walls (renown) is one for every home.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Neighbours near every home</heading>
+        <points>
+          <li>Beside the seat's four nearest towns, two it dealt with and two new, each further home on the ground gets its nearest two towns staffed with notables: their head, heir, envoy and trader, eight more people a home at most.</li>
+          <li>A face the colony met lives in their people's town nearest the colony of whoever met them.</li>
+          <li>World events are placed near any home, the home picked by its people: a home of twelve hears of the world near it three times as often as one of four. The two at a time stay two.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Switching between colonies</heading>
+        <points>
+          <li>The People view's table, moods, bonds, faiths and the people known by name follow the colony in view, and so does the Chronicle; the region's faces and here and away show its neighbours and its people. "This colony" on their header turns to "Every colony" with a click.</li>
+          <li>The council panel on the map names the colony whose council it shows. The colony chip in every view's header goes to another colony.</li>
+          <li>The frost alert looks at every home's fields, the one in view first, and names the other home.</li>
+          <li>A visitor's own town and their kin among the colony are reckoned from the colony they are at; a favour they promised is brought to the colony of the one who asked; an answer with no map of its own is fetched at its colonist's home.</li>
+        </points>
+      </li>
+    </sections>
+    <keywords><li>two councils become one</li><li>merged colony</li><li>colony in view</li><li>every colony</li><li>character per colony</li><li>neighbours near every home</li></keywords>
+    <seeAlso><li>Council_Alm_C_FreshStart</li><li>Council_Alm_C_HandOver</li><li>Council_Alm_C_Region</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

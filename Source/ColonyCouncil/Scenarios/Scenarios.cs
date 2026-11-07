@@ -469,7 +469,8 @@ namespace ColonyCouncil
         {
             var shift = new WayShift { mercy = mercy, generosity = generosity, tradition = tradition, openness = openness, toil = toil };
             if (!shift.Any) return;
-            ctx.comp.character.Shift(shift, "CC_Scen_WaysWhy".Translate((ctx.scenario ?? Find.Scenario)?.name ?? "").Resolve());
+            // The colony it starts (a scenario's start for a new colony is that colony's own: Colonies/ScenarioStarts.cs).
+            (ctx.map != null ? ctx.comp.CharacterOf(ctx.map) : ctx.comp.character).Shift(shift, "CC_Scen_WaysWhy".Translate((ctx.scenario ?? Find.Scenario)?.name ?? "").Resolve());
         }
 
         public override string Summary(Scenario scen)

@@ -115,6 +115,9 @@ namespace ColonyCouncil
         /// <summary>The panel's own buttons on its bar, right to left from <paramref name="right"/>; returns where they end.</summary>
         protected virtual float HeaderButtons(Rect bar, float right) => right;
 
+        /// <summary>The name on the panel's bar (the council panel names the colony in view, with more than one).</summary>
+        protected virtual string HeaderLabel => HudLayout.Label(id);
+
         /// <summary>
         /// A place worked out each frame while the player hasn't moved the panel (the alerts follow the letters, as the
         /// game's own list does); false to use the saved or shipped fractions.
@@ -608,7 +611,7 @@ namespace ColonyCouncil
                 GUI.DrawTexture(new Rect(bar.x + 3f, bar.y + 3f, bs - 2f, bs - 2f), TexButton.DragHash);
                 GUI.color = Color.white;
             }
-            HudKit.Label(new Rect(bar.x + bs + 5f, bar.y, Mathf.Max(0f, right - bar.x - bs - 7f), bar.height), HudLayout.Label(id), UiKit.HeaderColor,
+            HudKit.Label(new Rect(bar.x + bs + 5f, bar.y, Mathf.Max(0f, right - bar.x - bs - 7f), bar.height), HeaderLabel, UiKit.HeaderColor,
                 GameFont.Tiny);
             var ev = Event.current;
             if (!painting && ev.type == EventType.MouseDown && Mouse.IsOver(grip))

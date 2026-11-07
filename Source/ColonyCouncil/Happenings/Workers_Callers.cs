@@ -237,7 +237,7 @@ namespace ColonyCouncil
             if (ctx?.stranger != null) sheet.Add(ImpactKind.Other, 1, "CC_Impact_Caller_ArtWord".Translate(ctx.stranger.Named("OTHER")).Resolve(), "CC_Impact_Caller_ArtWordBrief".Translate().Resolve());
         }
 
-        public override void Apply(DilemmaContext ctx) => ColonyTraits.Tally("seen:art", amount);
+        public override void Apply(DilemmaContext ctx) => ColonyTraits.Tally("seen:art", amount, ctx?.map);
     }
 
     /// <summary>

@@ -140,7 +140,7 @@ namespace ColonyCouncil
         public bool fungusDietMade;
         /// <summary>The colony's era, set by hand in the mod settings or detected (Auto). Saved with each colony.</summary>
         public EraMode era = EraMode.Auto;
-        public CharacterTracker character = new CharacterTracker();
+        // The colony's character, one per colony: Character/ColonyCharacters.cs (character is the seat's).
         public int nextWishId = 1;
         /// <summary>Animals the colony has tamed, ever (Wishes/Tamings.cs).</summary>
         public int animalsTamed;
@@ -346,7 +346,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref era, "era", EraMode.Auto);
             if (Scribe.mode == LoadSaveMode.Saving) lastAtHome.RemoveAll(kv => kv.Key == null || kv.Key.Dead || kv.Key.Discarded);
             Scribe_Collections.Look(ref lastAtHome, "lastAtHome", LookMode.Reference, LookMode.Value, ref tmpHomePawns, ref tmpHomeTicks);
-            Scribe_Deep.Look(ref character, "character");
+            // Each colony's character: the seat's as "character", as always; the others' only when there are any.
+            ExposeCharacters();
             Scribe_Values.Look(ref nextWishId, "nextWishId", 1);
             Scribe_Values.Look(ref animalsTamed, "animalsTamed");
             Scribe_Values.Look(ref tamingsVersion, "tamingsVersion");
@@ -425,7 +426,6 @@ namespace ColonyCouncil
                 history.RemoveAll(h => h == null);
                 if (lastAtHome == null) lastAtHome = new Dictionary<Pawn, int>();
                 lastAtHome.RemoveAll(kv => kv.Key == null);
-                if (character == null) character = new CharacterTracker();
                 // A wish about a thing whose mod was removed can't be granted any more: let it go without a word.
                 wishes.RemoveAll(w => w == null || w.def == null || w.pawn == null || w.thingLost);
             }

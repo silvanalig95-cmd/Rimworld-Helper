@@ -89,6 +89,8 @@ namespace ColonyCouncil
             Inbox.Register("offers", InboxSection.Coming, 40f, Offers);
             Inbox.Register("posts", InboxSection.Coming, 50f, TradingPostPage.WeekRows);
             Inbox.Register("raiders", InboxSection.Coming, 60f, RaidersCampPage.WeekRows);
+            // A founding or a hand-over under way, where it stands, never with a timer (Colonies/ColonyCards.cs; stage 3, release 4).
+            Inbox.Register("colonies", InboxSection.Coming, 70f, ColonyCards.WeekRows);
             // How people are, as before; the mood balance at its foot.
             Inbox.Register("strain", InboxSection.People, 10f, Strain);
             Inbox.Register("health", InboxSection.People, 20f, Health);

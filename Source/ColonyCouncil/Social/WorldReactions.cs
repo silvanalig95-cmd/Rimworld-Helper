@@ -60,7 +60,7 @@ namespace ColonyCouncil
             foreach (var f in FriendsOf(a).Concat(FriendsOf(b)).Distinct().Where(f => f != a && f != b).Take(4))
                 comp.journals.Write(f, "Council_Journal_WeddingGuest", null, a.Named("A"), b.Named("B"));
             // A wedding is the oldest custom there is.
-            comp.character?.Shift(new WayShift { tradition = 2f }, text);
+            (a.IsColonist ? CharacterTracker.Of(a) : CharacterTracker.Of(b))?.Shift(new WayShift { tradition = 2f }, text);
         }
 
         public static void Birth(Pawn baby, Pawn mother, Pawn father)

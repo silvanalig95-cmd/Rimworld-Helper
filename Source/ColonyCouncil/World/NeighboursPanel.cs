@@ -70,7 +70,8 @@ namespace ColonyCouncil
             var book = NotableBook.Instance;
             var map = HappeningTracker.HomeMap();
             if (book == null || map == null) return list;
-            foreach (var s in book.Towns(map))
+            // Every town with notables: the seat's, and each further home's nearest two (decision 14A).
+            foreach (var s in book.AllTowns(map))
             {
                 var t = new Town { s = s, name = s.Name, link = ThingRefs.Link(s.Name, ThingRefs.Of(s)) };
                 foreach (var n in RowsOf(book, s.ID)) t.rows.Add(MakeRow(n));

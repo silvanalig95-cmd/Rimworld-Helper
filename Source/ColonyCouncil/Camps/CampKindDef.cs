@@ -153,10 +153,11 @@ namespace ColonyCouncil
         [MustTranslate] public List<string> momentLines;
 
         /// <summary>How likely this kind is to be the one that comes now.</summary>
-        public float WeightNow()
+        public float WeightNow(Map map = null)
         {
             float w = CampWords.Situation(this) != null ? weight * situationWeight : weight;
-            var ch = drawnBy.NullOrEmpty() ? null : CouncilGameComponent.Instance?.character;
+            // What the home it comes to is known for (each colony its own character).
+            var ch = drawnBy.NullOrEmpty() ? null : CharacterTracker.For(map);
             if (ch != null && drawnBy.Any(ch.Is)) w *= 2f;
             return w;
         }

@@ -41,9 +41,13 @@ namespace ColonyCouncil
         private static float builtAt = -1f;
         private static int builtVersion = -1;
 
+        /// <summary>The colony in view the lists were built for (UI/ColonyView.cs).</summary>
+        private static int builtView = -1;
+
         private static void BuildIfStale()
         {
-            if (builtVersion == NotableBook.Version && Time.realtimeSinceStartup - builtAt <= 2f && builtAt <= Time.realtimeSinceStartup) return;
+            if (builtVersion == NotableBook.Version && builtView == ColonyView.Version && Time.realtimeSinceStartup - builtAt <= 2f && builtAt <= Time.realtimeSinceStartup) return;
+            builtView = ColonyView.Version;
             try
             {
                 Build();
@@ -146,7 +150,9 @@ namespace ColonyCouncil
                 if (l.Open) under.Add(line);
                 else lately.Add(line);
             }
-            foreach (var n in book.notables.Where(x => x.Alive).OrderBy(x => x.townName ?? "").ThenBy(x => (int)x.role))
+            // The colony in view's neighbours with more than one colony (3c), everyone a click away (UI/ColonyView.cs).
+            var home = ColonyState.Several && !ColonyView.Everyone ? ColonyView.Current?.Map : null;
+            foreach (var n in book.notables.Where(x => x.Alive && (home == null || book.NearColony(x, home))).OrderBy(x => x.townName ?? "").ThenBy(x => (int)x.role))
             {
                 int op = NotableBook.Opinion(n);
                 string town = n.townName ?? n.faction?.Name ?? "";

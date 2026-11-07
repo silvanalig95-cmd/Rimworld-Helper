@@ -922,16 +922,16 @@ namespace ColonyCouncil
             if (result == CalendarMath.KeepResult.KeptTradition)
             {
                 comp?.annals.Notify_Tradition(d.label, true);
-                comp?.character?.Shift(new WayShift { tradition = 1f }, "CC_Cal_Way_Why".Translate(d.label).Resolve());
-                Interplay.Notify_DayTradition(d, false);
+                CharacterTracker.For(map)?.Shift(new WayShift { tradition = 1f }, "CC_Cal_Way_Why".Translate(d.label).Resolve());
+                Interplay.Notify_DayTradition(d, false, map);
                 return;
             }
             Tell.Letter(NewsKind.Colony, Importance.Notable, map, "CC_Tradition_BornTitle".Translate(d.label.CapitalizeFirst()).Resolve(), "CC_Tradition_BornText".Translate(d.label).Resolve(),
                 LetterDefOf.PositiveEvent);
             comp?.AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Chronicle_TraditionBorn".Translate(d.label).Resolve(), null));
             comp?.annals.Notify_TraditionBorn(d.label);
-            comp?.character?.Shift(new WayShift { tradition = 2f }, "CC_Cal_Way_Why".Translate(d.label).Resolve());
-            Interplay.Notify_DayTradition(d, true);
+            CharacterTracker.For(map)?.Shift(new WayShift { tradition = 2f }, "CC_Cal_Way_Why".Translate(d.label).Resolve());
+            Interplay.Notify_DayTradition(d, true, map);
             foreach (var p in home.Where(p => !p.DevelopmentalStage.Juvenile()).InRandomOrder().Take(2))
                 comp?.journals.Write(p, "Council_Journal_TraditionBorn", null, d.label.Named("TRADITION"));
         }

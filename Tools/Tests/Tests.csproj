@@ -217,5 +217,6 @@
     <Compile Include="../../Source/ColonyCouncil/Colonies/TownAfterMath.cs" Link="TownAfterMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Colonies/ScenarioStartMath.cs" Link="ScenarioStartMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Colonies/TownLifeMath.cs" Link="TownLifeMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Colonies/ManyColoniesMath.cs" Link="ManyColoniesMath.cs" />
   </ItemGroup>
 </Project>

@@ -6,6 +6,72 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 0.131.0, stage 3 release 4: many colonies in play (7 November 2026). The player's decisions 12A, 13A and 14A; `docs/design/
+  stage3-many-colonies.md`, section 3's 3b, 3c and 3d, now marked built with what differs (item 4); DESIGN.md "Many
+  colonies in play" (under "A town of our own", after "The town's life"; "Many homes"' "still one for the game" a prose
+  change); an Almanac page of its own (`Almanac_ManyColonies.xml`, "many colonies"); README a section, "Our ways" a prose
+  line. No round of its own: About.xml, What's new and CHANGELOG untouched. Pure rules in `Colonies/ManyColoniesMath.cs`
+  (`ManyColoniesTests`, prefix "many colonies: "). One setting, "Two councils become one" (`manyMerge`, Many colonies).
+  With one colony nothing runs, no roll is added and nothing new is saved.
+  - Two councils become one (12A; `Colonies/Merges.cs`, `HomesMerge.cs`, `Calendar/CalendarMerge.cs`): a home lost
+    (`Homes.Changed`) notes its people (`ColonyMerge` on the homes' component, written only while one waits or is in its
+    first season; `HomeTie.prev`/`movedAt`, written only with more than one home, for those who moved from it lately). In
+    the council's hour (`Homes.Look`, no slot): once one of them has lived a day at the home most of them live at, with
+    grown-ups of its own, the old council still kept and not a colony founded from theirs this season, and nobody of
+    theirs on the road nor a fight there (three days at most): traditions by id at half strength (`Halve`) or the stronger
+    kept, the council's own election three days on with them a third or more of the grown-ups, names in the next naming
+    round (`EpithetTracker.Merged`; `Merges.Quiet` keeps a name taken over in the first season from making a rival), the
+    old founding day as a remembrance known by them (`ColonyCalendar.Notify_Merged`, let go once none of them is of the
+    colony, `KeepsOldFounding`, also for release 1's abandon), the feast engine's meal with the speaker's greeting as the
+    cup (`Rimfolk_Pool_MergeWelcome`, `Rimfolk_Pool_MergeGreeting`), `colony:merged`, one letter.
+  - Each colony its own character (13A; `Character/ColonyCharacters.cs`): a `ColonyBook` of `CharacterTracker`s
+    (`CharacterOf(map)`, `For`, `Of`, `InView`; `comp.character` the seat's). Saved: the seat's as "character" without its
+    home, the others as "characters" only when there are any. Every shift, tag, `colonyIs`, mood and tally asks the colony
+    concerned; letters and the name's chronicle line name the colony with more than one. A colony founded with people of
+    its mother starts with half (`StartFrom`, `ColonyTraits.HalfOf`, walled kept only with walls); abandoning the old once
+    the new stands carries all of it (`CharacterCarried`). Walled needs 80 wall sections (`ColonyTraits.HasWalls`). Word
+    among the peoples only from the seat's ways (`CarriesWord`), renown's part of the name only in the seat's.
+  - Neighbours near every home (14A): `NotableBook.FurtherTowns` (each further home on the ground, its nearest two towns
+    within twice the reach, none the seat's), `AllTowns` (the town cards' Who), `ColonyOfMet` (an acquaintance's town
+    nearest the colony of whoever met them), `NearColony` (the faces' filter). World events: `WorldSituations.PlaceNear`
+    (`PickHome` by each home's people; one home on the ground, the seat without a roll), two at a time as before.
+  - The pages (3c; `UI/ColonyView.cs`): `Following`, `Shows`, `ShowsHome`, `ShowsLine`, `Everyone`, `Version`, `ScopeChip`
+    (the "This colony" chip beside the colony chip, `UiKit.ViewHeader`); the People view's Table, Moods, Bonds, Faiths,
+    Renown, the Chronicle, the region's Faces and Here and away (`DipRow.home`) follow the colony in view; the HUD council
+    panel's bar names it (`HudPanel.HeaderLabel`) and its trust is its people's; a people's card lists towns in reach of
+    the colony in view. This week lists a founding and a hand-over under way where they stand (`ColonyCards.WeekRows`).
+  - Small ones: the frost alert for every home (`CC_Many_FrostAt` names the other); an outsider's town distance and kin
+    from the colony they are at (`FactsPlace`, `FactsWho`); a favour's bearer at the colony of the one who asked; a
+    courier's goods for an answer with no map at its colonist's colony; growth needs' quest arrivals at the quest's home.
+  - Tests changed: `CampTimerTests`, `TravelTests` (`k.WeightNow(map)`), `OneNameTests` (the name functions take the
+    colony now). Save model: `HomesMerge.cs:merges`/`people`/`newcomers`, `ColonyCharacters.cs:others`/`rest`.
+  - Rates for one colony (`Tools/Balance`, 60 runs, before on 90e0526 and after on this tree): the same summary to the
+    byte; world events 0.9 to 1.2 a year in both. Notables and neighbour letters aren't in the sim: with one colony the
+    further towns are none and nothing else in their paths changed.
+  - Dev tools: Debug actions, Rimfolk, "Many colonies: ..." (`Colonies/ManyColoniesDebug.cs`).
+  - Try in the game with dev tools (none of it could be run here; a second home needs release 1's fresh start):
+    1. Two homes A and B, both with people. Hand A over (2a) with most of its people going to B, or Abandon A with its
+       people in a caravan to B. A day after the first of them reaches B: the letter "A joins B" (traditions joined by
+       name, the election line when they are a third or more, the names line, the founding day line, the meal line); that
+       evening the meal at B's table, the speaker raising the cup with the greeting; the Calendar shows "the founding of
+       A" at B; the chronicle's milestone. Or "Many colonies: two councils become one here now..." with some of A's people
+       on B's map.
+    2. Three days later: the council's election at B (the map's or the instant vote). The next morning's naming: a name
+       both had kept by the better, a line of news; a name taken over at B in that season makes no rival.
+    3. Found C from A with a party (release 1): C's Our ways page shows half of A's ways; A walled, C without walls: C not
+       walled. "Many colonies: each colony's character" lists both. An answer at C moves C's ways, not A's.
+    4. With two homes far apart: "Many colonies: the towns near each home" (C's nearest two towns get notables within a
+       few hours; their town cards show their people); "where a world event would be placed" by each home's people.
+    5. The People view and the Chronicle with B in view: only B's people and lines, "This colony" in the header; click it
+       for "Every colony"; switch colonies with the chip; the council panel's bar "Council: B".
+    6. A frost harvest open at the other home: the alert names it. This week: a founding under way and a hand-over listed.
+    7. Save and load with two homes (both characters, a merge waiting), and an old one-colony save (nothing new written).
+  - Riskiest: the character's save split (the seat's under "character" without its home, the others under "characters";
+    an old save of two homes gives the other a fresh character); `HomeTie.prev` and the merge's choice of where they came
+    with people arriving at several homes; the tradition copy (a day's `place` dropped, its `knew` widened); the per-colony
+    character's many readers (each by the map it is asked of; a reader with no map reads the seat's, as before); the
+    chronicle filter by a line's place (lines with no pawn are placed at the seat, so a seat's line shows only at the
+    seat until "Every colony").
 - 0.130.0, stage 3 release 5: the town's life (7 November 2026). The player's decisions 11B and 15B; `docs/design/
   stage3-many-colonies.md`, section 2's "The bad side", "Taking it back" ("Peacefully, the town asks") and "Its growth",
   now marked built with what differs (item 5); DESIGN.md "The town's life" (under "A town of our own", after "The town

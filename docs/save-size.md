@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 542; modelled: 542; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,410 KB** after a year, **2,856 KB** after two, **3,048 KB** after five.
+Saved collections found: 547; modelled: 547; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,411 KB** after a year, **2,856 KB** after two, **3,048 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -318,6 +318,7 @@ Rimfolk's part of the save, roughly: **2,410 KB** after a year, **2,856 KB** aft
 | `Annals.cs:goals` | the year in progress | yearly | 6 | 6 | 6 | 0.4 |
 | `Annals.cs:omens` | the year in progress | yearly | 6 | 6 | 6 | 0.4 |
 | `Building/Suggest/SameRules.cs:owners` | per store step: the stores whose priority or filter it changed | fixed | 12 | 12 | 12 | 0.4 |
+| `Colonies/HomesMerge.cs:merges` | a colony whose home was lost while its people come to live at another, then the merge's first season (at most 24, one per home lost; let go after the old council's 30 days if nobody of theirs settles) | while | 1 | 1 | 1 | 0.4 |
 | `Health/HealthTracker.cs:bedHours` | known pawns only, while laid up | colonists | 4 | 4 | 4 | 0.4 |
 | `Health/HealthTracker.cs:lastTrustLine` | 20 days | window | 4 | 4 | 4 | 0.4 |
 | `UI/WeekMemory.cs:following` | FollowMath.Max: what the player follows, only their clicks, as text forms ("p123", "t55") | fixed | 12 | 12 | 12 | 0.4 |
@@ -443,6 +444,7 @@ Rimfolk's part of the save, roughly: **2,410 KB** after a year, **2,856 KB** aft
 | `Lives/Legacy.cs:cameOfAgeTick` | 6 days | window | 0 | 0 | 0 | 0.0 |
 | `Lives/Legacy.cs:cameOfAge` | 6 days | window | 0 | 0 | 0 | 0.0 |
 | `Building/ShelfReserves.cs:kinds` | read from saves of 0.23.0 and 0.23.1 only, then kept as entries | while | 0 | 0 | 0 | 0.0 |
+| `Character/ColonyCharacters.cs:others` | one per home beside the seat, a lost home's kept 30 days (ColonyStateMath.KeepLostDays); none with one colony, as modelled here | fixed | 0 | 0 | 0 | 0.0 |
 | `CouncilGameComponent.cs:chronicle` | an older save's chronicle, read on load and taken into the history (the chronicle is its view); never saved again | fixed | 0 | 0 | 0 | 0.0 |
 | `CouncilGameComponent.cs:oldGuestKin` | an older save's guest kin, read on load and moved into the world ledger (Claim ties); never saved again | fixed | 0 | 0 | 0 | 0.0 |
 | `Epithets/Epithets.cs:laterFirstborn` | a colony settled later: its first child (none with one colony); a lost home's dropped | fixed | 0 | 0 | 0 | 0.0 |
@@ -464,6 +466,7 @@ Rimfolk's part of the save, roughly: **2,410 KB** after a year, **2,856 KB** aft
 | `Building/Suggest/SuggestUndos.cs:cells` | per step (counted under done): the cells a field step added or moved, AheadMath.MaxCellsAStep at most | fixed | 80 | 80 | 80 | (in its record) |
 | `Building/Suggest/SuggestUndos.cs:targets` | per step (counted under done): their old counts | fixed | 3 | 3 | 3 | (in its record) |
 | `Calendar/CalendarDay.cs:fallen` | per day on the calendar (counted under days) | fixed | 2 | 2 | 2 | (in its record) |
+| `Character/ColonyCharacters.cs:rest` | the same characters as they are read on load (counted under others) | fixed | 0 | 0 | 0 | (in its record) |
 | `Colonies/HomesFounding.cs:keptAgainst` | per founding: those kept against their wish (counted under foundings) | while | 4 | 4 | 4 | (in its record) |
 | `Colonies/HomesFounding.cs:party` | per founding: who goes from the colony (counted under foundings) | while | 8 | 8 | 8 | (in its record) |
 | `Colonies/HomesFounding.cs:scenarioPeople` | per founding with a scenario's start: its people at the new colony (the newcomers and the children in their care, ScenarioStartMath.MaxPeople at most and the scenario's wards), written only from their arrival until Rimfolk's own parts are set up, an hour once they are there or a day at most (counted under foundings) | while | 6 | 6 | 6 | (in its record) |
@@ -472,6 +475,8 @@ Rimfolk's part of the save, roughly: **2,410 KB** after a year, **2,856 KB** aft
 | `Colonies/HomesHandOver.cs:keptAgainst` | per hand-over: those kept against their wish (counted under handOvers) | while | 4 | 4 | 4 | (in its record) |
 | `Colonies/HomesHandOver.cs:sentAgainst` | per hand-over: those sent against their wish (counted under handOvers) | while | 4 | 4 | 4 | (in its record) |
 | `Colonies/HomesHandOver.cs:staying` | per hand-over: who stays (counted under handOvers) | while | 12 | 12 | 12 | (in its record) |
+| `Colonies/HomesMerge.cs:newcomers` | per merge: those of them who came (counted under merges) | while | 8 | 8 | 8 | (in its record) |
+| `Colonies/HomesMerge.cs:people` | per merge: the old colony's people as its home was lost (counted under merges) | while | 8 | 8 | 8 | (in its record) |
 | `Colonies/TownLayout.cs:beds` | per kept layout: the beds of those who stayed (counted under formerRecords) | while | 12 | 12 | 12 | (in its record) |
 | `Colonies/TownLayout.cs:sleepers` | per kept layout: who sleeps in each (counted under formerRecords) | while | 12 | 12 | 12 | (in its record) |
 | `CouncilSettings.cs:barPutAway` | the mod's settings file, not the save: the bottom bar's buttons put away, one name each | settings | 40 | 40 | 40 | (settings file) |

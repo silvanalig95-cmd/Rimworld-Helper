@@ -119,7 +119,7 @@ public static class TravelTests
         string happenings = File.ReadAllText(Path.Combine(src, "Happenings", "Happenings.cs"));
         C(timer.Contains("Rand.Chance(TravelLand.CampChance(map))"), "the camps' daily try reads its home's chance (per home, on the camps' own clock)");
         C(tracker.Contains("gap *= TravelLand.GapFactor(map)"), "the rest after a camp reads its home's remoteness");
-        C(tracker.Contains("k.WeightNow() * k.HourFit(hourNow) * TravelLand.SeekWeight(k, map, land)"), "the kind is picked by the hour and by what the land has");
+        C(tracker.Contains("k.WeightNow(map) * k.HourFit(hourNow) * TravelLand.SeekWeight(k, map, land)"), "the kind is picked by the hour and by what the land has");
         C(happenings.Contains("TravelLand.VisitorFactor(map)") && happenings.Contains("TravelLand.IntervalFactor(map, lastVisitorShare)"),
             "Rimfolk's timer weighs a remote home's visitors and cuts its wait by their share");
         foreach (var f in new[] { "TravelLand.cs", "FarNews.cs" })

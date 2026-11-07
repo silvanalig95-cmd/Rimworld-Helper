@@ -498,7 +498,8 @@ people call it (its ways and what its work made it, in one list) and how far its
 what, in one sentence ("People call the colony traditional, generous and walled; beyond its walls it is known for good
 doctors, its name talked about in the next town."), the deeds behind it, and a line for what each people remembers.
 Below it, where you stand, who is proud, who chafes, and what shaped it. When the name changes, the chronicle has one
-sentence for it.
+sentence for it. With more than one colony each has its own ways and names, and the page shows the colony in
+view's (see Many colonies in play).
 
 A colony also grows into what its people keep doing. A season of steady work earns it a name of its own:
 **green-fingered**, **builders**, **learned**, **craftsfolk**, **hunters** or **delvers**, counted from the
@@ -1992,6 +1993,22 @@ lower its natural goodwill ("wronged by" the colony among its goodwill); at war,
 raiders, and a former colonist among them is named in the letter. **Growing**: with Faction Territories, at that mod's
 own pace. One of your former colonists dies only in a fight you see, in a raid the town lost, or in a plague or famine
 of its people or nearby, and the letter names them. Setting: Many colonies (The town's life).
+
+### Many colonies in play
+With more than one home, each colony keeps to its own. **Two councils become one** when a colony's home is given up or
+handed over and its people come to live at another home that has people of its own: once they have lived a day there,
+the traditions only they kept join at half their strength (one both kept keeps the stronger), the council is chosen
+again within the season when they are a third or more of the grown-ups, the names they were known by are looked at
+again in the next naming (the better keeps one both colonies had, with no rival in the first season), their old
+colony's founding day is kept as a day to remember while some of them live there, and on the first evening the colony
+sits down to a meal together to welcome them, its speaker greeting them as the cups go up. **Each colony has its own
+character**: its own five ways and its own names for its work (green-fingered, builders, walled...), a colony founded
+from another starting with half its mother's and newcomers fresh, and "walled" never said of a colony with no walls;
+the seat's ways still carry word among the peoples, and the colony's renown stays one. **Neighbours near every home**:
+each further home's nearest two towns have notables with faces, letters and calls, and world events are placed near
+any home, picked by its people. The People view's pages, the Chronicle and the region's faces and here and away show
+the colony in view, with **Every colony** a click away on their header; the council panel names the colony; the frost
+alert looks at every home's fields. With one colony nothing changes. Setting: Many colonies (Two councils become one).
 
 ### Another landing site
 Don't like the map? For the first three days of a new game, **Choose another landing site** in the game's menu (Esc),

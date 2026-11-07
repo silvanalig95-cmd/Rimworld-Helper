@@ -515,6 +515,18 @@ MODEL = {
                                                  "until Rimfolk's own parts are set up, an hour once they are there or a day at most (counted under foundings)"),
     "Colonies/HomesFounding.cs:asks": ("while", 6, 120, "those sent or kept against their wish who may ask once to move, for the season after a founding "
                                        f"(FoundingMath.AskMoveToDays, {const('Colonies/FoundingMath.cs', 'AskMoveToDays', 15):.0f} days)"),
+    # Two councils become one (Colonies/HomesMerge.cs, on the homes' component, release 4): written only while a colony's home
+    # is lost with its people to come to another home, and through the merge's first season, so a save of one colony writes none.
+    "Colonies/HomesMerge.cs:merges": ("while", 1, 360, "a colony whose home was lost while its people come to live at another, then the merge's first season "
+                                      f"(at most {const('Colonies/ManyColoniesMath.cs', 'MaxMerges', 24):.0f}, one per home lost; let go after the old council's 30 days "
+                                      "if nobody of theirs settles)"),
+    "Colonies/HomesMerge.cs:people": ("while", 8, P, "per merge: the old colony's people as its home was lost (counted under merges)"),
+    "Colonies/HomesMerge.cs:newcomers": ("while", 8, P, "per merge: those of them who came (counted under merges)"),
+    # Each colony its own character (Character/ColonyCharacters.cs, release 4): the seat's is the one "character" a save always
+    # had; the others' (five ways, thirty changes, the traits' rates, under 2 KB a home) only with a home beside the seat.
+    "Character/ColonyCharacters.cs:others": ("fixed", 0, 1800, "one per home beside the seat, a lost home's kept 30 days (ColonyStateMath.KeepLostDays); "
+                                             "none with one colony, as modelled here"),
+    "Character/ColonyCharacters.cs:rest": ("fixed", 0, 1800, "the same characters as they are read on load (counted under others)"),
     # A colony handed over (Colonies/HomesHandOver.cs, on the homes' component): written only while one is under way (the
     # meeting, the day set, the ceremony, those who go leaving), one at a time, so a save with none writes nothing.
     "Colonies/HomesHandOver.cs:handOvers": ("while", 1, 640, "a hand-over under way, one at a time, let go once the town is made or it is called off "

@@ -324,18 +324,18 @@ public static class OneNameTests
         C(allCode["UI/RenownPage.cs"].Contains("KnownAs.Line(k)"), "People → Renown lists each by the one name");
 
         string cn = allCode["Character/ColonyName.cs"];
-        C(cn.Contains("CardSections.HomeLines(") && allCode["UI/WaysPanel.cs"].Contains("ColonyName.Lines()") && allCode["UI/OverviewPanel.cs"].Contains("ColonyName.Main()")
-          && allCode["UI/ITab_Pawn_Culture.cs"].Contains("ColonyName.CalledWords()"), "the colony's card: on Council → Ways, a home's card, the Overview and the Culture tab");
-        C(cn.Contains("RenownPanels.From(r)") && cn.Contains("Remembered()") && cn.Contains("Choices()"), "the card has the deeds behind it and what each people remembers");
+        C(cn.Contains("CardSections.HomeLines(") && allCode["UI/WaysPanel.cs"].Contains("ColonyName.Lines(") && allCode["UI/OverviewPanel.cs"].Contains("ColonyName.Main(")
+          && allCode["UI/ITab_Pawn_Culture.cs"].Contains("ColonyName.CalledWords("), "the colony's card: on Council → Ways, a home's card, the Overview and the Culture tab");
+        C(cn.Contains("RenownPanels.From(r)") && cn.Contains("Remembered()") && cn.Contains("Choices("), "the card has the deeds behind it and what each people remembers");
         string ch = allCode["Character/Character.cs"], tr = allCode["Character/ColonyTraits.cs"];
         C(!ch.Contains("AddChronicle(") && !tr.Contains("AddChronicle("), "the ways and the traits write no chronicle line of their own");
-        C(ch.Contains("ColonyName.Look(comp);") && ch.Contains("if (Check(comp)) ColonyName.Look(comp);"), "the colony's name is looked at after the ways move and at the end of the day");
+        C(ch.Contains("ColonyName.Look(comp, this);") && ch.Contains("if (Check(comp)) ColonyName.Look(comp, this);"), "the colony's name is looked at after the ways move and at the end of the day");
         C(ch.Contains("Scribe_Values.Look(ref nameKey, \"nameKey\");") && cn.Contains("if (ch.nameKey == null)"), "its name saved; an older save's first look tells nothing");
         C(allCode["Diplomacy/Renown.cs"].Contains("ColonyName.Settle();"), "renown's band moved is the one sentence, with what it is known for: not told twice");
         C(ch.Contains("\"CC_Name_Ways_Narrower\"") && keyed.TryGetValue("CC_Name_Ways_Narrower", out var narrower) && narrower.Contains("{0}"),
             "renowned to known: the news says the neighbors still call it that");
         foreach (var rel in new[] { "Happenings/Workers_Living.cs", "Happenings/Workers_More.cs" })
-            C(allCode[rel].Contains("ColonyName.CalledWords()") && !allCode[rel].Contains("character.Describe()"), $"{rel}: the colony called by its one list");
+            C(allCode[rel].Contains("ColonyName.CalledWords(") && !allCode[rel].Contains("character.Describe()"), $"{rel}: the colony called by its one list");
 
         return n;
     }

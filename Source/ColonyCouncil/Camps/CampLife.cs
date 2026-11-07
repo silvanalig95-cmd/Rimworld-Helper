@@ -1126,7 +1126,7 @@ namespace ColonyCouncil
             // What the colony's people lived through with them: memories, deeds, setbacks (Social/Talk/SharedTimes.cs).
             SharedTimes.CampEnded(this);
             // A camp that came, stayed its time and left on good terms counts toward a name for hospitality (Character/).
-            if (ColonyTraitMath.HostedWell(ending, arrivedTick >= 0)) ColonyTraits.Tally("campHosted", helps + gifts > 0 ? 1.5f : 1f);
+            if (ColonyTraitMath.HostedWell(ending, arrivedTick >= 0)) ColonyTraits.Tally("campHosted", helps + gifts > 0 ? 1.5f : 1f, map);
             CampTracker.Instance?.Ended(this);
         }
 
@@ -1240,8 +1240,9 @@ namespace ColonyCouncil
             // The colony's character: hosting strangers on its land, or not.
             if (comp != null)
             {
-                if (peaceful && ending != "asked" && DaysHere >= 2f) comp.character.Shift(new WayShift { openness = 2f }, Label);
-                if (ending == "forced") comp.character.Shift(new WayShift { mercy = -3f, openness = -2f }, Label);
+                var ch = CharacterTracker.For(map);
+                if (peaceful && ending != "asked" && DaysHere >= 2f) ch?.Shift(new WayShift { openness = 2f }, Label);
+                if (ending == "forced") ch?.Shift(new WayShift { mercy = -3f, openness = -2f }, Label);
             }
         }
 

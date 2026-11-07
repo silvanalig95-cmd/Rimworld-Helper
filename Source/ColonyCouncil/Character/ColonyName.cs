@@ -23,17 +23,21 @@ namespace ColonyCouncil
     {
         static ColonyName()
         {
-            CardSections.HomeLines(CardSlot.Now, 40f, h => Lines(), "CC_Name_CardHead", "colonyname");
+            // Each home's card has its own colony's name (each colony its own character, decision 13A).
+            CardSections.HomeLines(CardSlot.Now, 40f, h => Lines(h), "CC_Name_CardHead", "colonyname");
         }
 
         private static CouncilSettings S => ColonyCouncilMod.Settings;
 
         // ================= What it is called =================
 
+        /// <summary>The character a name is read from: the colony of <paramref name="map"/> (the seat's for none, as with one colony).</summary>
+        private static CharacterTracker Of(Map map) => map != null ? CharacterTracker.For(map) : CouncilGameComponent.Instance?.character;
+
         /// <summary>What the colony is called, as one list (its ways and what its work made it), or null with the colony's ways off.</summary>
-        public static List<ColonyNameMath.Called> Called()
+        public static List<ColonyNameMath.Called> Called(CharacterTracker ch = null)
         {
-            var ch = CouncilGameComponent.Instance?.character;
+            ch ??= CouncilGameComponent.Instance?.character;
             if (ch == null || S == null || !S.colonyCharacter) return null;
             var items = new List<ColonyNameMath.Called>();
             foreach (var w in CharacterTracker.All.OrderByDescending(w => Mathf.Abs(ch.Value(w))))
@@ -68,10 +72,10 @@ namespace ColonyCouncil
             return words.Count == 0 ? null : TextUtil.JoinAnd(words);
         }
 
-        /// <summary>"merciful, generous and walled": what the colony is called, strongest first, or null for nothing yet.</summary>
-        public static string CalledWords()
+        /// <summary>"merciful, generous and walled": what the colony of <paramref name="map"/> is called (the seat's for none), strongest first, or null for nothing yet.</summary>
+        public static string CalledWords(Map map = null)
         {
-            var called = Called();
+            var called = Called(Of(map));
             return called == null ? null : Words(called.Select(c => c.id));
         }
 
@@ -101,13 +105,21 @@ namespace ColonyCouncil
         private static KnownFor Held(RenownMath.Reading r)
         {
             if (r == null) return KnownFor.None;
+            // What it is known for beyond its walls is the colony's as a whole: the seat's name keeps it.
             string kept = ColonyNameMath.KnownForOf(CouncilGameComponent.Instance?.character?.nameKey);
             int told = kept != null && Enum.TryParse(kept, out KnownFor k) ? (int)k : 0;
             return (KnownFor)ColonyNameMath.HeldKind(told, r.byKind, RenownMath.KnownAt, RenownMath.KnownShare, (int)r.known);
         }
 
-        /// <summary>The colony's name as a key (ColonyNameMath.Key).</summary>
-        public static string Key() => ColonyNameMath.Key(Called(), KnownForPart());
+        /// <summary>
+        /// A colony's name as a key (ColonyNameMath.Key): what it is called, and for the seat what the colony is known for
+        /// beyond its walls (renown is the colony's as a whole, so only the seat's name tells a change of it).
+        /// </summary>
+        public static string Key(CharacterTracker ch = null)
+        {
+            ch ??= CouncilGameComponent.Instance?.character;
+            return ColonyNameMath.Key(Called(ch), ManyColoniesMath.TellsRenown(ch == null || ch.IsSeat) ? KnownForPart() : null);
+        }
 
         // ================= The card =================
 
@@ -115,11 +127,11 @@ namespace ColonyCouncil
         /// The card's first line: what the colony is known for and how far its name carries, in one sentence ("People call the
         /// colony merciful and walled; beyond its walls it is known for good doctors, its name talked about in the next town.").
         /// </summary>
-        public static string Main()
+        public static string Main(Map map = null)
         {
             try
             {
-                string called = CalledWords();
+                string called = CalledWords(map);
                 var r = Renowned(out _, out _);
                 string knownFor = r != null && r.band >= RenownBand.Town ? RenownWords.For(Held(r), Ages.Ours) : null;
                 string key = ColonyNameMath.CardKey(called != null, knownFor != null, r != null);
@@ -138,17 +150,17 @@ namespace ColonyCouncil
         /// the council's choices behind its ways) and what is held against it; what each people remembers, a line each; the
         /// notables who know its people; what it does.
         /// </summary>
-        public static List<string> Lines()
+        public static List<string> Lines(Map map = null)
         {
             var lines = new List<string>();
             try
             {
-                string main = Main();
+                string main = Main(map);
                 if (main != null) lines.Add(main);
                 var r = Renowned(out _, out _);
                 string from = RenownPanels.From(r);
                 if (from != null) lines.Add(from);
-                string choices = Choices();
+                string choices = Choices(Of(map));
                 if (choices != null) lines.Add("CC_Name_Card_Ways".Translate(choices.Named("WHATS")).Resolve());
                 string against = RenownPanels.Against(r);
                 if (against != null) lines.Add(against);
@@ -163,10 +175,9 @@ namespace ColonyCouncil
         }
 
         /// <summary>The council's latest choices behind the ways it is called (at most three, newest first), or null.</summary>
-        private static string Choices()
+        private static string Choices(CharacterTracker ch)
         {
-            var ch = CouncilGameComponent.Instance?.character;
-            var called = Called();
+            var called = Called(ch);
             if (ch == null || called == null) return null;
             var poles = called.Where(c => c.way).Select(c => Word(c.id)).Where(w => !w.NullOrEmpty()).ToList();
             if (poles.Count == 0) return null;
@@ -209,13 +220,13 @@ namespace ColonyCouncil
         /// look, one sentence in the chronicle, whatever moved it (a way, a trait, what it is known for beyond its walls). The
         /// first look (a new game, an older save) keeps the name as it is without a word.
         /// </summary>
-        public static void Look(CouncilGameComponent comp)
+        public static void Look(CouncilGameComponent comp, CharacterTracker ch = null)
         {
-            var ch = comp?.character;
-            if (ch == null) return;
+            ch ??= comp?.character;
+            if (ch == null || comp == null) return;
             try
             {
-                string now = Key();
+                string now = Key(ch);
                 if (ch.nameKey == null)
                 {
                     ch.nameKey = now;
@@ -225,7 +236,16 @@ namespace ColonyCouncil
                 ch.nameKey = ColonyNameMath.Merge(ch.nameKey, now);
                 if (change.Empty) return;
                 string line = Sentence(change);
-                if (!line.NullOrEmpty()) comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, line, null));
+                if (line.NullOrEmpty()) return;
+                // With more than one colony, the line names the colony and is kept under it (each its own name).
+                var map = ch.LetterMap;
+                if (map == null)
+                {
+                    comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, line, null));
+                    return;
+                }
+                using (History.About(null, Refs.Colony(map), null))
+                    comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Many_NameAt".Translate(Homes.Name(map).Named("PLACE"), line.Named("LINE")).Resolve(), null));
             }
             catch (Exception e)
             {
@@ -240,7 +260,7 @@ namespace ColonyCouncil
             if (ch == null) return;
             try
             {
-                string now = Key();
+                string now = Key(ch);
                 ch.nameKey = ch.nameKey == null ? now : ColonyNameMath.Merge(ch.nameKey, ColonyNameMath.Key(null, KnownForPart()));
             }
             catch (Exception e)

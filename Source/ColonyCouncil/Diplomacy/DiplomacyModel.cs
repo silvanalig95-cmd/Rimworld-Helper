@@ -27,6 +27,8 @@ namespace ColonyCouncil
         public object link;
         public DipAct act;
         public string tip;
+        /// <summary>The colony the row is of (the home a visitor is at, the colony of one of ours away), or none: for the pages that follow the colony in view.</summary>
+        public int home = HomesMath.None;
     }
 
     /// <summary>A people's card: its stance in words, its head, its ties with the colony in their age's words, what is under way, the acts that fit.</summary>
@@ -328,7 +330,7 @@ namespace ColonyCouncil
                     string text = f != null ? DipWords.P("CC_Dip_Here", p.Named("PAWN"), DipWords.People(f).Named("PEOPLE"), why.Named("WHY"))
                         : DipWords.P("CC_Dip_HereAlone", p.Named("PAWN"), why.Named("WHY"));
                     if (Homes.All.Count > 1) text = Homes.Name(map) + ": " + text;
-                    m.here.Add(new DipRow { text = text, link = p, color = UiKit.StrangerColor });
+                    m.here.Add(new DipRow { text = text, link = p, color = UiKit.StrangerColor, home = Homes.KeyOf(map) });
                 }
             }
             // Ours away: with a caravan, at another map, held by another people.
@@ -337,14 +339,14 @@ namespace ColonyCouncil
                 if (c == null || !c.IsPlayerControlled) continue;
                 foreach (var p in c.PawnsListForReading)
                     if (p != null && p.IsColonist && p.RaceProps.Humanlike && m.away.Count < MaxRows)
-                        m.away.Add(new DipRow { text = DipWords.P("CC_Dip_Away_Caravan", p.Named("PAWN"), c.Name.Named("CARAVAN")), link = c, color = UiKit.Info });
+                        m.away.Add(new DipRow { text = DipWords.P("CC_Dip_Away_Caravan", p.Named("PAWN"), c.Name.Named("CARAVAN")), link = c, color = UiKit.Info, home = Homes.KeyOf(Homes.Of(p)) });
             }
             foreach (var map in Find.Maps)
             {
                 if (map == null || map.IsPlayerHome) continue;
                 foreach (var p in map.mapPawns.FreeColonistsSpawned)
                     if (m.away.Count < MaxRows)
-                        m.away.Add(new DipRow { text = DipWords.P("CC_Dip_Away_Map", p.Named("PAWN"), (map.Parent?.LabelCap ?? "?").Named("PLACE")), link = p, color = UiKit.Info });
+                        m.away.Add(new DipRow { text = DipWords.P("CC_Dip_Away_Map", p.Named("PAWN"), (map.Parent?.LabelCap ?? "?").Named("PLACE")), link = p, color = UiKit.Info, home = Homes.KeyOf(Homes.Of(p)) });
             }
             foreach (var f in Find.FactionManager.AllFactionsListForReading)
                 foreach (var p in FavourCalls.Held(f))

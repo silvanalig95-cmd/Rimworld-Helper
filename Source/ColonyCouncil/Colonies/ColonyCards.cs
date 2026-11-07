@@ -164,6 +164,34 @@ namespace ColonyCouncil
             return "CC_Colonies_Founding".Translate(f.place.Named("PLACE"), who.Named("NAMES"), stage.Named("STAGE")).Resolve();
         }
 
+        /// <summary>
+        /// This week's Coming (UI/InboxProviders.cs): a founding under way and a hand-over under way, each where it stands, in
+        /// the line its colony's card has (no timer); a click opens the colonies on the region map's Ours lens.
+        /// </summary>
+        public static void WeekRows(List<WeekRow> rows)
+        {
+            var h = Homes.Instance;
+            if (h == null) return;
+            foreach (var f in h.foundings)
+            {
+                if (f == null || f.stage != FoundingStage.Going) continue;
+                rows.Add(new WeekRow
+                {
+                    icon = Icons.Colony, color = UiKit.Info, text = FoundingLine(f), tip = "CC_Many_WeekColoniesTip".Translate().Resolve(),
+                    click = WeekModel.Page("Map/Ours/List"), order = 0
+                });
+            }
+            foreach (var plan in h.handOvers)
+            {
+                if (plan == null) continue;
+                rows.Add(new WeekRow
+                {
+                    icon = Icons.Colony, color = UiKit.Info, text = HandOvers.Line(plan), tip = "CC_Many_WeekColoniesTip".Translate().Resolve(),
+                    click = WeekModel.Page("Map/Ours/List"), order = 0
+                });
+            }
+        }
+
         /// <summary>A colony of the past, in a line: founded when, and how and when it ended.</summary>
         public static string PastLine(LedgerColony c) =>
             ("CC_Colonies_Ended_" + c.end).Translate(FactionMemory.AgoText(c.founded).Named("FOUNDED"), FactionMemory.AgoText(c.endedAt).Named("ENDED")).Resolve();

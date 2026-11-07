@@ -104,7 +104,7 @@ namespace ColonyCouncil
         public static void Draw(Rect rect, CouncilGameComponent comp)
         {
             Load();
-            if (builtAt < 0f || Time.realtimeSinceStartup - builtAt > 1f) Build(comp);
+            if (builtAt < 0f || Time.realtimeSinceStartup - builtAt > 1f || builtView != ColonyView.Version) Build(comp);
 
             float chips = 0f;
             for (int i = 0; i < filterLabels.Length; i++) chips += UiKit.FilterChipWidth(filterLabels[i], i < filterCounts.Length ? filterCounts[i] : -1) + 4f;
@@ -304,9 +304,13 @@ namespace ColonyCouncil
 
         // ---------------- The rows ----------------
 
+        /// <summary>The colony in view the rows were built for (with more than one colony the table follows it, 3c).</summary>
+        private static int builtView = -1;
+
         private static void Build(CouncilGameComponent comp)
         {
             builtAt = Time.realtimeSinceStartup;
+            builtView = ColonyView.Version;
             if (headers == null)
             {
                 header = "CC_Table_Title".Translate();
@@ -334,7 +338,8 @@ namespace ColonyCouncil
             List<Pawn> colonists;
             try
             {
-                colonists = WeekModel.Colonists();
+                // The colony in view's own people with more than one colony, everyone a click away (UI/ColonyView.cs).
+                colonists = WeekModel.Colonists().Where(ColonyView.Shows).ToList();
             }
             catch (Exception e)
             {

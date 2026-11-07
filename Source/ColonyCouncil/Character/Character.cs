@@ -79,9 +79,10 @@ namespace ColonyCouncil
     /// <summary>
     /// The colony's character: what its council's choices, decrees and treatment of strangers have made it known
     /// for. Old deeds fade (about half in a year), so a colony can change its name. Colonists approve or chafe
-    /// by nature; visitors and some dilemmas react to the colony's reputation.
+    /// by nature; visitors and some dilemmas react to the colony's reputation. One per colony (Character/ColonyCharacters.cs,
+    /// the player's decision 13A): each home earns its own; the seat's is what the colony as a whole is known as.
     /// </summary>
-    public class CharacterTracker : IExposable
+    public partial class CharacterTracker : IExposable
     {
         /// <summary>Known for it at 25, renowned at 60 (and a little lower to lose it again).</summary>
         public const float Known = 25f;
@@ -159,7 +160,7 @@ namespace ColonyCouncil
         {
             if (!S.colonyCharacter || s == null || !s.Any) return;
             // The name as it stood before this, for a game or an older save not yet looked at (kept without a word).
-            if (nameKey == null) ColonyName.Look(CouncilGameComponent.Instance);
+            if (nameKey == null) ColonyName.Look(CouncilGameComponent.Instance, this);
             foreach (var w in All)
             {
                 float amt = s.Get(w);
@@ -174,27 +175,33 @@ namespace ColonyCouncil
             recent.Add(new CharacterEvent { what = why, shift = s.Summary(), tick = Find.TickManager.TicksGame });
             if (recent.Count > 30) recent.RemoveAt(0);
             var comp = CouncilGameComponent.Instance;
-            if (Check(comp)) ColonyName.Look(comp);
+            if (Check(comp)) ColonyName.Look(comp, this);
         }
 
+        /// <summary>
+        /// The colony's day (each colony's own, CouncilGameComponent.CharactersDay): its ways fade a little, a way gained or
+        /// lost is told, the seat's word gets around among the peoples, what its own people's work made it is counted, and a
+        /// change of its name is one sentence.
+        /// </summary>
         public void Daily(CouncilGameComponent comp)
         {
             if (!S.colonyCharacter) return;
-            if (nameKey == null) ColonyName.Look(comp);
+            if (nameKey == null) ColonyName.Look(comp, this);
             for (int i = 0; i < values.Count; i++) values[i] *= 0.988f;
             version++;
             Check(comp);
-            Word(comp);
+            // The colony as a whole has one name among the peoples: only the seat's ways carry word (ManyColoniesMath.CarriesWord).
+            if (ManyColoniesMath.CarriesWord(IsSeat)) Word(comp);
             try
             {
-                traits.Daily(comp);
+                traits.Daily(comp, this);
             }
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("colony traits", e);
             }
             // The day's changes to the colony's name, its ways and what the work made it, in one sentence.
-            ColonyName.Look(comp);
+            ColonyName.Look(comp, this);
         }
 
         private int TierFor(float v, int current)
@@ -231,18 +238,23 @@ namespace ColonyCouncil
                 {
                     string label = (Math.Abs(now) == 2 ? "CC_Ways_RenownedLabel" : "CC_Ways_KnownLabel").Translate(pole.CapitalizeFirst());
                     string text = (Math.Abs(now) == 2 ? "CC_Ways_Renowned" : "CC_Ways_Known").Translate(pole) + "\n\n" + ("CC_Ways_Meaning_" + w + (now > 0 ? "_Pos" : "_Neg")).Translate();
-                    Tell.Letter(NewsKind.Colony, Importance.Notable, null, label, text, LetterDefOf.NeutralEvent);
+                    // With more than one colony the letter names the settlement whose ways these are (Tell).
+                    Tell.Letter(NewsKind.Colony, Importance.Notable, LetterMap, label, text, LetterDefOf.NeutralEvent);
                 }
                 else
                 {
                     // Renowned to known: the neighbors still call it that, only not far and wide ("people have stopped calling
                     // the colony merciful" wasn't true of it).
                     string text = (now != 0 ? "CC_Name_Ways_Narrower" : "CC_Ways_Fading").Translate(pole).Resolve();
-                    News.Post(text, LookTargets.Invalid, NewsKind.Colony, MessageTypeDefOf.NeutralEvent, Importance.Notable);
+                    if (ColonyState.Several && LetterMap != null) Tell.Minor(NewsKind.Colony, Importance.Notable, LetterMap, text, LookTargets.Invalid, MessageTypeDefOf.NeutralEvent);
+                    else News.Post(text, LookTargets.Invalid, NewsKind.Colony, MessageTypeDefOf.NeutralEvent, Importance.Notable);
                 }
             }
             return moved;
         }
+
+        /// <summary>The home its letters are about: with one colony none (as always), else its own.</summary>
+        internal Map LetterMap => ColonyState.Several ? Map : null;
 
         /// <summary>Word gets around: a generous or open colony's neighbors warm to it a little; a thrifty or guarded one's cool.</summary>
         private void Word(CouncilGameComponent comp)
@@ -325,6 +337,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref lastWordTick, "lastWordTick", -999999);
             Scribe_Deep.Look(ref traits, "traits");
             Scribe_Values.Look(ref nameKey, "nameKey");
+            // Its colony: written only for a colony beside the seat (ColonyCharacters.cs).
+            ExposeHome();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (traits == null) traits = new ColonyTraits();
@@ -347,8 +361,11 @@ namespace ColonyCouncil
         {
             var s = ColonyCouncilMod.Settings;
             var comp = CouncilGameComponent.Instance;
-            if (comp?.character == null || !s.colonyCharacter || !s.MoodEffects || !p.IsColonist || p.IsQuestLodger() || !People.HasInnerLife(p) || p.DevelopmentalStage.Baby()) return ThoughtState.Inactive;
-            float a = comp.character.ApprovalKept(p);
+            if (comp == null || !s.colonyCharacter || !s.MoodEffects || !p.IsColonist || p.IsQuestLodger() || !People.HasInnerLife(p) || p.DevelopmentalStage.Baby()) return ThoughtState.Inactive;
+            // The ways of their own colony (each colony its own character, decision 13A).
+            var ch = CharacterTracker.Of(p);
+            if (ch == null) return ThoughtState.Inactive;
+            float a = ch.ApprovalKept(p);
             if (a >= Strong) return ThoughtState.ActiveAtStage(3);
             if (a >= Mild) return ThoughtState.ActiveAtStage(2);
             if (!s.Negatives) return ThoughtState.Inactive;
@@ -375,7 +392,7 @@ namespace ColonyCouncil
             get
             {
                 var reasons = new List<string>();
-                CouncilGameComponent.Instance?.character.Approval(pawn, reasons);
+                CharacterTracker.Of(pawn)?.Approval(pawn, reasons);
                 return reasons.Count > 0 ? string.Join("; ", reasons) + "." : null;
             }
         }

@@ -28,7 +28,14 @@ namespace ColonyCouncil
             public Caravan c;
             public ThingRef thing;
             public string link, line;
+            /// <summary>The colony its people are of (the first of them), for the colony in view.</summary>
+            public int home = HomesMath.None;
         }
+
+        // The rows of the colony in view (all of them with one colony), made again when it or the model changes.
+        private static List<DipRow> here = new List<DipRow>(), away = new List<DipRow>();
+        private static int shownView = -1;
+        private static DiplomacyModel shownFrom;
 
         private static List<Away> caravans = new List<Away>();
         private static List<string> others = new List<string>();
@@ -56,6 +63,15 @@ namespace ColonyCouncil
             }
             int letters = LettersPage.UnderWay;
             string stat = letters > 0 ? "CC_Neighbours_OnTheirWay".Translate(letters).Resolve() : caravans.Count > 0 ? "CC_JourneysPg_Stat".Translate(caravans.Count).Resolve() : null;
+            // Who is here and away of the colony in view with more than one colony, everyone a click away on the header (3c).
+            ColonyView.Following(true);
+            if (shownView != ColonyView.Version || shownFrom != dip)
+            {
+                shownView = ColonyView.Version;
+                shownFrom = dip;
+                here = dip != null ? dip.here.Where(r => ColonyView.ShowsHome(r.home)).ToList() : new List<DipRow>();
+                away = dip != null ? dip.away.Where(r => ColonyView.ShowsHome(r.home)).ToList() : new List<DipRow>();
+            }
             float top = UiKit.ViewHeader(rect, Icons.Away ?? Icons.Visitor, "CC_Tab_HereAndAway".Translate(), "CC_Away_Line".Translate(), stat, null, 0f, null,
                 head ??= new ViewHeadModel { article = PagesMath.ArticleOf(RegionView.HereAndAway) });
             var outRect = new Rect(rect.x, rect.y + top + 4f, rect.width, rect.height - top - 4f);
@@ -66,7 +82,7 @@ namespace ColonyCouncil
                 var comp = CouncilGameComponent.Instance;
                 float y = 0f, w = view.width;
                 // Who is here from outside, and a camp on the colony's land.
-                if (dip != null) y = DiplomacyPanels.Section(y, w, DipWords.P("CC_Dip_Here_Title"), dip.here, DipWords.P("CC_Dip_Here_None"), folds, "here");
+                if (dip != null) y = DiplomacyPanels.Section(y, w, DipWords.P("CC_Dip_Here_Title"), here, DipWords.P("CC_Dip_Here_None"), folds, "here");
                 y = CampPanel.Section(y, w);
                 y += 6f;
                 // What is on its way to the colony.
@@ -114,19 +130,21 @@ namespace ColonyCouncil
                 }
                 else line += " · " + "CC_JourneysPg_Resting".Translate().Resolve();
                 var thing = ThingRefs.Of(c);
-                caravans.Add(new Away { c = c, thing = thing, link = ThingRefs.Link(c.LabelCap, thing), line = line });
+                var first = c.PawnsListForReading.FirstOrDefault(p => p.IsColonist && p.RaceProps.Humanlike);
+                caravans.Add(new Away { c = c, thing = thing, link = ThingRefs.Link(c.LabelCap, thing), line = line, home = first != null ? Homes.KeyOf(Homes.Of(first)) : HomesMath.None });
             }
         }
 
         /// <summary>Who of the colony's is away: people away, the journey planned, the caravans out on the land, each opening its card.</summary>
         private static float AwaySection(float y, float w)
         {
-            int count = (dip?.away.Count ?? 0) + caravans.Count;
+            var shown = caravans.Where(a => ColonyView.ShowsHome(a.home)).ToList();
+            int count = away.Count + shown.Count;
             y += UiKit.SectionHeading(0f, y, w, "CC_Away_Ours".Translate(), count, folds, "away", out bool open);
             if (!open) return y + 4f;
-            if (dip != null && dip.away.Count > 0)
+            if (away.Count > 0)
             {
-                foreach (var r in dip.away) y += DiplomacyPanels.Row(8f, y, w - 8f, r);
+                foreach (var r in away) y += DiplomacyPanels.Row(8f, y, w - 8f, r);
                 y += 4f;
             }
             // The journey planned ahead from the colony in view (UI/JourneyDialog.cs), and the other colonies' plans.
@@ -136,11 +154,11 @@ namespace ColonyCouncil
                 y += JourneyPanel.Section(0f, y, w);
                 foreach (var o in others) y += UiKit.Paragraph(4f, y, w - 8f, o, UiKit.Faint) + 4f;
             }
-            if (caravans.Count == 0 && (dip == null || dip.away.Count == 0))
+            if (shown.Count == 0 && away.Count == 0)
                 return y + UiKit.Paragraph(4f, y, w - 4f, "CC_JourneysPg_NoneAway".Translate(), UiKit.Faint) + 10f;
-            for (int i = 0; i < caravans.Count; i++)
+            for (int i = 0; i < shown.Count; i++)
             {
-                var a = caravans[i];
+                var a = shown[i];
                 var r = new Rect(0f, y, w, 44f);
                 UiKit.Zebra(r, i);
                 Widgets.DrawHighlightIfMouseover(r);

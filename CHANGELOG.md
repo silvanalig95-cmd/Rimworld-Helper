@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Many colonies in play
+
+*7 November 2026, version 0.131.0*
+
+- When a colony's people come to live at another of your homes, the two councils become one: traditions only they kept join at half strength, an election comes soon if they are a third of the grown-ups, names are looked at again, and their old founding day becomes a remembrance.
+- The first evening there is a meal together with the speaker's greeting as the toast, and a letter says what merged.
+- Each colony earns its own character: its own ways and its own names such as green-fingered or walled, and walled only where there are walls. A colony founded from another starts with half of its mother's character.
+- Every home now has neighbours with faces: the nearest two towns of each further colony get their known people, and world events come near any of your homes.
+- The People pages, the Chronicle and the region's faces follow the colony in view, with one click to see every colony, and the council panel names the colony.
+- The frost alert covers every home, and This week lists a founding or a hand-over under way.
+
 ## The old town's own life
 
 *7 November 2026, version 0.130.0*

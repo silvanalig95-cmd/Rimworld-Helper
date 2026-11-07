@@ -112,7 +112,7 @@ namespace ColonyCouncil
             m.maxPeople = m.days.Count > 0 ? Mathf.Max(4f, m.days.Max(h => h.colonists) + 1f) : 4f;
             m.needs = Needs(map);
             m.coming = Coming(comp);
-            m.character = Character(comp);
+            m.character = Character(comp, map);
             m.lately = Lately(comp);
             m.weather = WeatherBook.Of(map)?.OverviewLines() ?? new List<string>();
             m.land = Land(comp, map);
@@ -323,11 +323,11 @@ namespace ColonyCouncil
             return list;
         }
 
-        private static List<string> Character(CouncilGameComponent comp)
+        private static List<string> Character(CouncilGameComponent comp, Map map)
         {
             if (!ColonyCouncilMod.Settings.colonyCharacter) return new List<string>();
-            // The colony's one name in its card's first line (Character/ColonyName.cs).
-            string known = ColonyName.Main();
+            // The colony's one name in its card's first line (Character/ColonyName.cs): the colony in view's own.
+            string known = ColonyName.Main(ColonyState.Several && Homes.IsHome(map) ? map : null);
             return new List<string> { known ?? "CC_Ways_NoName".Translate().ToString() };
         }
 

@@ -149,8 +149,9 @@ namespace ColonyCouncil
                         parent = a.mapParent;
                     }
                     if (pawns == null) continue;
-                    var at = parent?.Map;
-                    if (at != null ? at != map : map != Find.AnyPlayerHomeMap) continue;
+                    // Arrivals with no map of their own count at the quest's own home (where it points), else the seat.
+                    var at = parent?.Map ?? QuestHome(q);
+                    if (at != null ? at != map : map != (Homes.Seat ?? Find.AnyPlayerHomeMap)) continue;
                     foreach (var p in pawns)
                     {
                         try
@@ -166,6 +167,25 @@ namespace ColonyCouncil
                 }
             }
             return seen.Count;
+        }
+
+        /// <summary>The home a quest points at (its look targets), with more than one colony; else none (the seat counts them).</summary>
+        private static Map QuestHome(Quest q)
+        {
+            if (!ColonyState.Several || q == null) return null;
+            try
+            {
+                foreach (var t in q.QuestLookTargets)
+                {
+                    var m = t.Map ?? (t.WorldObject as RimWorld.Planet.MapParent)?.Map;
+                    if (m != null && Homes.IsHome(m)) return m;
+                }
+            }
+            catch (Exception)
+            {
+                // A quest of another mod's whose targets can't be read: counted at the seat.
+            }
+            return null;
         }
 
         // ---------------- Beds and seats ----------------
