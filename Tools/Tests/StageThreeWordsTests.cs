@@ -127,7 +127,7 @@ public static class StageThreeWordsTests
             }
         // This pass's own words have no exclamation marks (the shipped lines keep theirs).
         foreach (var f in new[] { "FlavorPoolDefs/Rimfolk_StageThree_Founders.xml", "FlavorPoolDefs/Rimfolk_StageThree_Town.xml", "FlavorPoolDefs/Rimfolk_Journal_StageThree.xml",
-                     "OutsiderTalkDefs/Rimfolk_OutsiderTalks_StageThree.xml" })
+                     "OutsiderTalkDefs/Rimfolk_OutsiderTalks_StageThree.xml", "FlavorPoolDefs/Rimfolk_StageThree_Newcomers.xml" })
         {
             string path = Path.Combine(root, "Defs", f);
             C(File.Exists(path), $"{f} is there");
@@ -252,13 +252,59 @@ public static class StageThreeWordsTests
         C(All("Council_Journal_Day_Uprooted").All(l => !Regex.IsMatch(LineTags.Parse(l).text, @"\b(sent (away|here|off)|kept (here|back|behind)|made to (stay|go))\b")) && All("Council_Journal_Day_Parted").All(l => !l.Contains("colony")),
             "uprooted and parted in words true either way: sent away or kept, at a founding or a hand-over");
         var first = All("Rimfolk_Journal_NewcomerFirst");
-        var firstTags = new HashSet<string>(moment) { "founding", "joining", "walked", "pods", "gravship", "scenario", "mechanitor", "tribalborn" };
-        C(first.Count >= 30, $"the newcomers' first entry ({first.Count})");
+        var firstTags = new HashSet<string>(moment) { "founding", "joining", "walked", "pods", "gravship", "scenario", "alone", "mechanitor", "tribalborn" };
+        C(first.Count >= 60, $"the newcomers' first entry ({first.Count})");
         foreach (var l in first)
             foreach (var t in TagsOf(l))
                 C(firstTags.Contains(t) || families.Any(f => t.StartsWith(f)), $"the newcomers' first entry: the tag '{t}' is one its draw sets");
-        foreach (var t in new[] { "founding", "joining", "walked", "pods", "gravship", "mechanitor", "tribalborn" })
-            C(first.Count(l => Has(l, t)) >= 2, $"the newcomers' first entry for {t}");
+        foreach (var t in new[] { "founding", "joining", "walked", "pods", "gravship", "scenario", "alone", "mechanitor", "tribalborn", "tribal", "medieval", "industrial", "spacer" })
+            C(first.Count(l => Pos(l, t)) >= 2, $"the newcomers' first entry for {t}");
+        C(first.Count(l => !l.StartsWith("[") || TagsOf(l).All(t => !new[] { "founding", "joining", "walked", "pods", "gravship", "scenario", "alone" }.Contains(t))) >= 8,
+            "the newcomers' first entry for anyone, however they came (where they came from, the moment, the writer)");
+        C(first.Where(l => Pos(l, "alone")).All(l => !Regex.IsMatch(LineTags.Parse(l).text, @"\b(we|us|our)\b", RegexOptions.IgnoreCase)), "alone, no line says we");
+        C(first.Where(l => !Pos(l, "joining") && Regex.IsMatch(LineTags.Parse(l).text, @"\b(we|we'll|we're|us|our|ours|others)\b", RegexOptions.IgnoreCase)).All(l => Pos(l, "!alone")),
+            "one who came alone to found a colony draws no line of company");
+        C(Code("Colonies/Foundings.cs").Contains("if (alone) tags.Add(\"alone\");"), "alone is the first entry's tag when one came");
+        foreach (var pool in new[] { "Council_Journal_Day_Uprooted", "Council_Journal_Day_Parted", "Council_Journal_Day_FirstNight" })
+            foreach (var age in new[] { "tribal", "medieval", "industrial", "spacer" })
+                C(All(pool).Any(l => Pos(l, age)), $"{pool} in the {age} age's own words");
+
+        // ---------------- The newcomers' first days ----------------
+
+        // Homesick, over the head: every newcomer feels it in their first days (FeelingWorker_Homesick), so it has words
+        // enough; a hard feeling, never bright, and about nobody in particular.
+        var homesick = All("Council_Pool_SayFeeling").Where(l => Has(l, "feeling:Homesick")).ToList();
+        C(homesick.Count >= 20, $"homesick, over the head ({homesick.Count})");
+        foreach (var l in homesick)
+        {
+            string body = LineTags.Parse(l).text;
+            C(FirstSentence(body) == body && body.Length <= 90 && !body.Contains('!') && !TagsOf(l).Any(t => t == "bright" || t == "about") && !body.Contains("{OTHER"),
+                $"homesick: '{body}' is one short sentence about home, hard and about nobody");
+        }
+        C(homesick.Count(l => Has(l, "newcomer")) >= 5, "homesick in the words of one new here");
+        foreach (var age in new[] { "tribal", "medieval", "industrial", "spacer" })
+            C(homesick.Any(l => Has(l, age)), $"homesick in the {age} age's own words");
+        C(Code("Heart/FeelingWorkers.cs").Contains("CC_Heart_Cause_NewHere"), "homesick is a newcomer's feeling");
+        // Their own voice in any talk: [newcomer] lines by how the talk goes, holding for a new game's first colonists too.
+        var any = defs.SelectMany(d => d.Elements("ColonyCouncil.TalkLinesDef")).Where(d => d.Element("topic") == null && d.Element("memory") == null).ToList();
+        foreach (var turn in new[] { "Open", "Reply", "Close", "Last" })
+        {
+            var mineNew = any.Where(d => d.Element("turn")?.Value == turn).SelectMany(d => d.Descendants("li")).Select(li => li.Value).Where(l => Has(l, "newcomer")).ToList();
+            C(mineNew.Count >= 3, $"a newcomer's own words in any talk: {turn} ({mineNew.Count})");
+            foreach (var l in mineNew)
+                C(!Regex.IsMatch(LineTags.Parse(l).text, @"\b(you've been here|you lot|all of you here|been here (for )?years)\b", RegexOptions.IgnoreCase),
+                    "a newcomer's words don't say the other has been here long: " + l);
+        }
+        // The old hands' talk about a newcomer, at a colony that has hardly begun.
+        var aboutNew = defs.SelectMany(d => d.Elements("ColonyCouncil.TalkLinesDef")).Where(d => d.Element("topic")?.Value == "Rimfolk_Topic_Newcomer").ToList();
+        foreach (var turn in new[] { "Open", "Reply", "Close" })
+            C(aboutNew.Where(d => d.Element("turn")?.Value == turn && d.Descendants("li").Any(li => li.Value == "Agree")).SelectMany(d => d.Element("lines")!.Descendants("li")).Count(li => Has(li.Value, "newcolony")) >= 3,
+                $"talk about a newcomer at a new colony: {turn}");
+        var tease = aboutNew.Where(d => d.Element("outcomes")!.Elements("li").Any(li => li.Value == "Tease")).SelectMany(d => d.Element("lines")!.Descendants("li")).Select(li => li.Value).ToList();
+        C(tease.Count >= 15, $"teasing about a newcomer ({tease.Count})");
+        C(tease.All(l => l.Contains("{OTHER}")), "a tease names the one teased");
+        C(Code("Social/Talk/TopicWorkers.cs").Contains("tags.Add(\"newcolony\")") && Code("Social/Talk/TopicWorkers.cs").Contains("Foundings.Settled(s.map)"),
+            "a new colony is the home's own settling, as the talk about its newcomers asks");
         C(first.Where(l => Regex.IsMatch(LineTags.Parse(l).text, @"\b(pod|pods|landing)\b")).All(l => Has(l, "pods")), "a landing only for those who came down in pods");
         C(first.Where(l => Regex.IsMatch(LineTags.Parse(l).text, @"\b(walked|walk)\b")).All(l => Has(l, "walked")), "a walk only for those who walked in");
         string foundings = Code("Colonies/Foundings.cs");

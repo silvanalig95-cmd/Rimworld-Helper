@@ -435,7 +435,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>When a home was made: its settlement's creation tick, else its map's.</summary>
-        private static int Settled(Map map) => map.Parent != null && map.Parent.creationGameTicks >= 0 ? map.Parent.creationGameTicks : map.generationTick;
+        internal static int Settled(Map map) => map.Parent != null && map.Parent.creationGameTicks >= 0 ? map.Parent.creationGameTicks : map.generationTick;
 
         private static float Distance(PlanetTile a, PlanetTile b)
         {
@@ -883,13 +883,14 @@ namespace ColonyCouncil
         /// <summary>
         /// Each newcomer's first journal entry as they come (Rimfolk_Journal_NewcomerFirst), in place of the one the day's
         /// journal pass writes, which is in the voice of someone joining people already there: founding (nobody of the
-        /// colony on the land before them) or joining, how they came (walked, pods, gravship), a scenario's start, and
-        /// whether they are a mechanitor or grew up in a tribe.
+        /// colony on the land before them) or joining, how they came (walked, pods, gravship), a scenario's start, alone (the
+        /// only one who came), and whether they are a mechanitor or grew up in a tribe.
         /// </summary>
         internal static void FirstWords(List<Pawn> came, bool founding, string how, bool scenario)
         {
             var journals = CouncilGameComponent.Instance?.journals;
             if (journals == null || came == null) return;
+            bool alone = came.Count(x => x != null && !x.Dead && x.RaceProps.Humanlike && !x.DevelopmentalStage.Baby()) == 1;
             foreach (var p in came)
             {
                 try
@@ -897,6 +898,7 @@ namespace ColonyCouncil
                     if (p == null || p.Dead || !p.RaceProps.Humanlike || p.DevelopmentalStage.Baby() || journals.For(p) != null) continue;
                     var tags = new List<string> { founding ? "founding" : "joining", how };
                     if (scenario) tags.Add("scenario");
+                    if (alone) tags.Add("alone");
                     if (ModsConfig.BiotechActive && MechanitorUtility.IsMechanitor(p)) tags.Add("mechanitor");
                     if (p.story?.Childhood?.spawnCategories?.Contains("Tribal") == true) tags.Add("tribalborn");
                     journals.WriteTagged(p, NewcomerFirstPool, tags.ToArray());

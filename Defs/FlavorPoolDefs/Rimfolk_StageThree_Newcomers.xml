@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Stage 3's content pass (7 November 2026): the newcomers' first days, who come by a fresh start's call, a scenario's
+    start or any other way (Source/ColonyCouncil/Colonies/Foundings.cs, ScenarioStarts.cs). Every line holds for anyone
+    in their first ten days ([newcomer]), a new game's first colonists among them, so none says the others have been
+    here long.
+    - Homesick (Council_Pool_SayFeeling, Immersion/StateSpeech.cs): the feeling every newcomer has in their first days
+      (Heart/FeelingWorkers.cs, FeelingWorker_Homesick), and anyone with close kin among another people. Said over the
+      head, one sentence; homesick is a hard feeling, never [bright]; [newcomer] only for one who is new here.
+    - Their own voice in any talk (Rimfolk_TL_Any_*, joined by Talk.BuildLines): [newcomer] is the speaker's own, by how
+      the talk goes ([agree], [debate], [argue]); {TOPIC} the topic in a few words.
+    - The old hands' talk about a newcomer (Rimfolk_Topic_Newcomer, TopicWorker_Newcomer): [for], [against], [mixed] and
+      the other's side, [arrived], [young]; [newcolony] at a home settled in the last fifteen days, where everyone is new
+      to the place and there is everything still to build. {SUBJECT} the newcomer, {OTHER} the one spoken to.
+  -->
+
+  <!-- ===================== Homesick, over the head ===================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_SayFeeling_Homesick_StageThree</defName>
+    <pool>Council_Pool_SayFeeling</pool>
+    <lines>
+      <plain>
+        <li>[feeling:Homesick] I keep listening for the sounds of the place I left.</li>
+        <li>[feeling:Homesick] Everything here is a little wrong, the way new places are.</li>
+        <li>[feeling:Homesick,newcomer] I keep reaching for things I left behind.</li>
+        <li>[feeling:Homesick,newcomer] I don't know anyone's habits yet, and nobody knows mine.</li>
+        <li>[feeling:Homesick,newcomer] They're kind here, it just isn't home yet.</li>
+        <li>[feeling:Homesick,newcomer,night] A new bed and new noises, and no sleep to speak of.</li>
+        <li>[feeling:Homesick,newcomer,eating] It's good food, it's just not the food I grew up on.</li>
+        <li>[feeling:Homesick,newcomer,working] I'm still learning how they like things done here.</li>
+        <li>[feeling:Homesick,lowtech] I miss the smell of the fires back home.</li>
+        <li>[feeling:Homesick,tribal] The land I was born on would know my name.</li>
+        <li>[feeling:Homesick,medieval] I'd give a lot for one more market day back home.</li>
+        <li>[feeling:Homesick,industrial] I keep thinking about the streets I grew up on.</li>
+        <li>[feeling:Homesick,spacer] I keep looking up, as if home were somewhere I could see.</li>
+        <li>[feeling:Homesick,rain] Rain like this always made home smell good.</li>
+        <li>[feeling:Homesick,winter] Winter always makes me think of home.</li>
+        <li>[feeling:Homesick,outside] The sky looks different from here, I swear it does.</li>
+        <li>[feeling:Homesick,old] At my age you carry home with you, and it gets heavy.</li>
+        <li>[feeling:Homesick,child] I miss my old bed.</li>
+        <li>[feeling:Homesick,teen] Nobody here knows the songs I know.</li>
+      </plain>
+      <warm>
+        <li>[feeling:Homesick] I hope they're all well, back where I came from.</li>
+      </warm>
+      <blunt>
+        <li>[feeling:Homesick] Miss home, can't be helped.</li>
+      </blunt>
+      <cheerful>
+        <li>[feeling:Homesick] Homesick, but I'll be fine once I've found the best seat at supper.</li>
+      </cheerful>
+      <gloomy>
+        <li>[feeling:Homesick] Some days I'd give anything to be back where I started.</li>
+      </gloomy>
+      <cold>
+        <li>[feeling:Homesick] Old attachments, and they'll pass.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Their own voice in any talk ===================== -->
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Any_Open_Newcomers</defName>
+    <turn>Open</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[newcomer] I'm still new here, so tell me how people see {TOPIC}.</li>
+        <li>[newcomer] Can I ask you about {TOPIC}, while I'm still finding my way?</li>
+        <li>[newcomer] Everyone here seems to have a view on {TOPIC} already.</li>
+        <li>[newcomer] Where I come from, we'd have had a lot to say about {TOPIC}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Any_Reply_Newcomers</defName>
+    <turn>Reply</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,newcomer] I've not been here long, but I'd say the same.</li>
+        <li>[agree,newcomer] Good, that's how we saw it where I come from too.</li>
+        <li>[debate,newcomer] I'm still learning how things work here, but I'm not sure about that.</li>
+        <li>[debate,newcomer] Back where I lived, we'd have argued that one all night.</li>
+        <li>[debate,newcomer] Give me a few more days here, and I'll tell you if you're right.</li>
+        <li>[argue,newcomer] I'm new here, not stupid.</li>
+        <li>[argue,newcomer] I've hardly unpacked, and you're already telling me how it is.</li>
+        <li>[debate,newcomer,tribal] Where I'm from, the elders would have something to say about that.</li>
+        <li>[debate,newcomer,medieval] In the town I came from, that would have been settled on market day.</li>
+        <li>[debate,newcomer,industrial] Where I'm from, there'd be a committee for that.</li>
+        <li>[debate,newcomer,spacer] Where I come from, there'd be a protocol for that.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Any_Close_Newcomers</defName>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,newcomer] Good, I'm glad somebody here sees it the way I do.</li>
+        <li>[debate,newcomer] I'll think it over, I'm still finding my feet here.</li>
+        <li>[argue,newcomer] Fine, I'll keep my opinions to myself until I've been here longer.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Any_Last_Newcomers</defName>
+    <turn>Last</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,newcomer] Glad to hear it, I'm still learning the ways here.</li>
+        <li>[debate,newcomer] We'll see, I'm still learning.</li>
+        <li>[argue,newcomer] And I thought this would be a friendly place.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <!-- ===================== The old hands' talk about a newcomer ===================== -->
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Newcomer_Open_StageThree</defName>
+    <topic>Rimfolk_Topic_Newcomer</topic>
+    <turn>Open</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[for,newcolony] {SUBJECT} came to a colony that's hardly begun, and hasn't complained once.</li>
+        <li>[for,newcolony] We need every pair of hands this early on, and {SUBJECT} has two good ones.</li>
+        <li>[against,newcolony] We've barely a roof up, and now there's {SUBJECT} to feed as well.</li>
+        <li>[against,newcolony] A new place draws all sorts, and I don't know yet what sort {SUBJECT} is.</li>
+        <li>[mixed,newcolony] We're all new to this place, really, {SUBJECT} just more than most.</li>
+        <li>[mixed,newcolony] {SUBJECT} is about as new here as the place itself.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Newcomer_Reply_StageThree</defName>
+    <topic>Rimfolk_Topic_Newcomer</topic>
+    <turn>Reply</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for,newcolony] A colony this young needs everyone it can get.</li>
+        <li>[agree,against,newcolony] This place is too new to carry anyone who won't pull their weight.</li>
+        <li>[agree,mixed,newcolony] We'll learn them the way we're learning this place, slowly.</li>
+        <li>[debate,for,newcolony] We're all strangers to this place yet, them no more than us.</li>
+        <li>[debate,against,newcolony] Everyone's welcome while there's building to do, it's after that I worry.</li>
+        <li>[argue,for,newcolony] We came out here to build something, and we can't do it alone.</li>
+        <li>[argue,against,newcolony] You'd let anyone in, and this place can't afford mistakes yet.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Newcomer_Close_StageThree</defName>
+    <topic>Rimfolk_Topic_Newcomer</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] Let's make sure they've got a proper bed, then.</li>
+        <li>[agree,against] We'll keep watch on them together, then.</li>
+        <li>[agree,mixed] We'll make up our minds when we know them better.</li>
+        <li>[debate,for] Give them a week and you'll see what I see.</li>
+        <li>[debate,against] Fine, but I'm not lending them my tools yet.</li>
+        <li>[debate,mixed] Let's ask them to sit with us at supper and see.</li>
+        <li>[argue,for] I'll show them round myself, then, since you won't.</li>
+        <li>[argue,against] Don't say I didn't warn you about them.</li>
+        <li>[argue,mixed] I'm not arguing about someone I've barely met.</li>
+        <li>[agree] They'll settle in, most do.</li>
+        <li>[debate] We'll know them better by the end of the season.</li>
+        <li>[argue] Talk to them yourself before you judge.</li>
+        <li>[agree,newcolony] Let's give them a part in building it, then.</li>
+        <li>[debate,newcolony] We'll know them once the first season here is done.</li>
+        <li>[argue,newcolony] There's too much to build here to fight over one newcomer.</li>
+      </plain>
+      <warm>
+        <li>[agree,for] I'll see they've got everything they need.</li>
+      </warm>
+      <cold>
+        <li>[debate] Their first season will tell us enough.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Newcomer_Tease_StageThree</defName>
+    <topic>Rimfolk_Topic_Newcomer</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otherfor] You've shown {SUBJECT} round all day, {OTHER}, are you charging?</li>
+        <li>[otherfor] You'd give {SUBJECT} your supper if they asked, {OTHER}.</li>
+        <li>[otherfor] You've told {SUBJECT} all our secrets already, haven't you, {OTHER}?</li>
+        <li>[otheragainst] You count the spoons every time {SUBJECT} leaves the room, {OTHER}.</li>
+        <li>[otheragainst] Still waiting for {SUBJECT} to turn out to be a raider, {OTHER}?</li>
+        <li>[otheragainst] You glare at {SUBJECT} as if they'd taken your seat at supper, {OTHER}.</li>
+        <li>Still trying to work out {SUBJECT}, {OTHER}?</li>
+        <li>[otheragainst,newcolony] You act as if you've lived here for years, {OTHER}, and we only just got here.</li>
+      </plain>
+      <cheerful>
+        <li>[otherfor] If {SUBJECT} stays, it'll be because you fed them, {OTHER}.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+</Defs>

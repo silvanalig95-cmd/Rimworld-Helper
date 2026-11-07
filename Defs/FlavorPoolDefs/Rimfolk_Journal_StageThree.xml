@@ -12,8 +12,8 @@
     - The newcomers' first entry (Source/ColonyCouncil/Colonies/Foundings.cs, FirstWords: in place of the first entry
       Journal.Daily writes, which is in the voice of someone joining people already there): founding (nobody of the
       colony on the land before them) or joining (a founding party there first); how they came, walked, pods or gravship;
-      scenario (a scenario's start); mechanitor (they have a mechlink); tribalborn (they grew up in a tribe). With the
-      writer's own tags (the season, the hour, the weather, their age, the colony's age).
+      scenario (a scenario's start); alone (the only one who came); mechanitor (they have a mechlink); tribalborn (they
+      grew up in a tribe). With the writer's own tags (the season, the hour, the weather, their age, the colony's age).
   -->
 
   <ColonyCouncil.JournalDayDef>
@@ -56,6 +56,10 @@
         <li>They say it passes. I hope they're right.</li>
         <li>[trait:Kind] I don't blame anyone. I only wish it had gone the other way.</li>
         <li>[trait:Abrasive] I'd tell them exactly what I think of it, if it would change anything.</li>
+        <li>[tribal] The elders say a person belongs where their people's fire is. I'd have chosen another fire.</li>
+        <li>[medieval] I'd have put my case to the council, if anyone had asked for cases.</li>
+        <li>[industrial] I'd file a complaint, if there were anyone to file it with.</li>
+        <li>[spacer] My preference was logged. That's all that happened to it.</li>
       </plain>
       <warm>
         <li>The people here are kind about it, which almost makes it worse.</li>
@@ -89,6 +93,10 @@
         <li>[lowmood] Everything's harder without {OTHER_nameDef} around to grumble at.</li>
         <li>I should send word to {OTHER_nameDef}. I keep meaning to.</li>
         <li>[winter] Cold days make me miss {OTHER_nameDef} more.</li>
+        <li>[tribal] I'll send word to {OTHER_nameDef} with the next one who walks that way.</li>
+        <li>[medieval] I should write to {OTHER_nameDef}, if anyone's riding that way.</li>
+        <li>[industrial] I should get a letter off to {OTHER_nameDef} this week.</li>
+        <li>[spacer] I should put a message through to {OTHER_nameDef}. I keep drafting it.</li>
       </plain>
       <warm>
         <li>I hope they're looking after {OTHER_nameDef} as well as {OTHER_nameDef} looked after me.</li>
@@ -124,6 +132,10 @@
         <li>[old] I've had a lot of first nights. This was a good one.</li>
         <li>[child] Nobody sent me to bed early on the first night.</li>
         <li>[winter] A cold first night, all of us bundled up against it.</li>
+        <li>[tribal] The spirits here don't know us yet. We'll give them time.</li>
+        <li>[medieval] We'll mark out the bounds tomorrow. Tonight it's open ground and a blanket.</li>
+        <li>[industrial] Tomorrow, the inventory. Tonight, sleep.</li>
+        <li>[spacer] No survey yet, no grid, nothing. Just us and the dark.</li>
       </plain>
       <warm>
         <li>I looked round at them all on the first night and thought, these are my people now.</li>
@@ -147,12 +159,12 @@
     <defName>Rimfolk_Journal_NewcomerFirst</defName>
     <lines>
       <plain>
-        <li>[founding] There's nobody here but us, and a lot of land that doesn't know our names yet.</li>
-        <li>[founding,!gravship] No walls, no roof, nobody to show us where anything is. We'll have to be the ones who know.</li>
-        <li>[founding] We're the first. Whatever this place becomes, it starts with the handful of us.</li>
-        <li>[founding,walked] We walked in off the edge of the land and stopped where it looked good enough. That's a colony now, apparently.</li>
-        <li>[founding,walked,rain] Walked in through the rain to a place with nothing on it. We'll start on a roof tomorrow.</li>
-        <li>[founding,small] Just a few of us. I counted twice to be sure.</li>
+        <li>[founding,!alone] There's nobody here but us, and a lot of land that doesn't know our names yet.</li>
+        <li>[founding,!gravship,!alone] No walls, no roof, nobody to show us where anything is. We'll have to be the ones who know.</li>
+        <li>[founding,!alone] We're the first. Whatever this place becomes, it starts with the handful of us.</li>
+        <li>[founding,walked,!alone] We walked in off the edge of the land and stopped where it looked good enough. That's a colony now, apparently.</li>
+        <li>[founding,walked,rain,!alone] Walked in through the rain to a place with nothing on it. We'll start on a roof tomorrow.</li>
+        <li>[founding,small,!alone] Just a few of us. I counted twice to be sure.</li>
         <li>[founding,night] First night here, in the dark, and the dark goes on a long way.</li>
         <li>[founding,old] At my age I should be sitting by someone else's fire, not starting a new one.</li>
         <li>[founding,winter,!gravship] Winter, and a bare piece of land. Somebody had better know how to build.</li>
@@ -162,10 +174,10 @@
         <li>[joining,walked] Walked in from the edge with my pack and found the place half begun.</li>
         <li>[pods] Came down in a pod. My ears are still ringing.</li>
         <li>[pods] Nobody tells you how loud a landing is.</li>
-        <li>[pods,founding] Came down in pods, all of us, onto land none of us had seen before.</li>
+        <li>[pods,founding,!alone] Came down in pods, all of us, onto land none of us had seen before.</li>
         <li>[pods,joining] The pod set me down near the others' camp, which was a better landing than I'd expected.</li>
         <li>[gravship] The ship's down, and the deck is quiet under my feet for the first time in a while.</li>
-        <li>[gravship] We came down with the ship, and the ship is the colony now.</li>
+        <li>[gravship,!alone] We came down with the ship, and the ship is the colony now.</li>
         <li>[walked] Walked a long way to get here. My feet are done for, but I'm here.</li>
         <li>[walked,joining] Walked in on foot with what I could carry, which wasn't much.</li>
         <li>[mechanitor] The mechlink hums at the back of my head, the same as anywhere. Good to know some things travel.</li>
@@ -174,9 +186,47 @@
         <li>[tribalborn,founding] I asked the land for leave to stay. It hasn't said no.</li>
         <li>[child] Everything's new here, even the grown-ups.</li>
         <li>[teen] Everyone keeps asking what I can do. I'm not sure yet.</li>
+        <li>[scenario,!alone] We didn't start the way most do, and I expect we'll be telling it for years.</li>
+        <li>[scenario,founding,!alone] Nobody planned this place for us. We'll have to plan it ourselves.</li>
+        <li>[scenario,pods] Pods again. I'm told this is how a lot of colonies start.</li>
+        <li>[scenario,walked,!alone] We walked in with what we were given, and not a thing more.</li>
+        <li>[scenario,joining,pods,!alone] We came down near the founders' camp, and they looked at us as if we'd fallen out of the sky. Which we had.</li>
+        <li>[scenario,gravship,!alone] The ship brought us here, and the ship will have to keep us a while yet.</li>
+        <li>[scenario,alone] Just me, then. I'll start with somewhere to sleep and see what comes after.</li>
+        <li>[founding,alone] There's nobody here but me. I keep talking out loud anyway.</li>
+        <li>[founding,alone] One person isn't much of a colony, but it's a start.</li>
+        <li>[joining,alone] I'm the only one who answered the call, it seems. I hope that's enough.</li>
+        <li>[tribal,walked,joining] Followed the word along the trade paths and found their camp at the end of it.</li>
+        <li>[tribal,founding,!alone] No hearth yet. Tonight we make the first one, and then this place is a home.</li>
+        <li>[medieval,walked] Heard the call at the market, tied up my bundle and came. Here I am.</li>
+        <li>[medieval,founding] No hall, no wall, no market. Just a patch of ground and a lot of work.</li>
+        <li>[industrial,walked] Saw the advertisement, packed a bag and came. My papers are in order, for whatever that's worth out here.</li>
+        <li>[industrial,founding] First job, take stock. Second job, everything else.</li>
+        <li>[spacer,walked] Answered the colonization call and walked the last of it on foot.</li>
+        <li>[spacer,founding,!alone] No survey, no beacon, nothing built. We'll have to be all of it.</li>
+        <li>I left a lot behind to come here. I'll try not to think about it too much.</li>
+        <li>Where I came from, nobody would believe I'd end up somewhere like this.</li>
+        <li>[lowtech] I can still smell the smoke of the place I left. It'll fade.</li>
+        <li>[!lowtech] I kept one thing from the place I came from. I'm not saying what.</li>
+        <li>[night] First night somewhere new. The sounds are all wrong, and I'll get used to them.</li>
+        <li>[rain,walked] It rained the whole way in. I'm choosing not to take that as a sign.</li>
+        <li>[snow,joining] Came in through the snow, and I've never been so glad to see other people.</li>
+        <li>[winter,founding,!alone] We came in winter, which tells you how much we wanted this.</li>
+        <li>[summer,walked] Walked in through the heat with everything I own on my back.</li>
+        <li>[spring] Spring's a good time to arrive anywhere. That's what I'm telling myself.</li>
+        <li>[fall] Came with the leaves coming down. I'd like a roof up before the snow comes too.</li>
+        <li>[old] I'm too old to be anyone's newcomer, and yet here I am.</li>
+        <li>[child,founding,!alone] I asked where we'll sleep, and nobody knew yet.</li>
+        <li>[trait:Kind,!alone] I hope the others are settling in all right. I'll ask them tomorrow.</li>
+        <li>[trait:Greedy] Lots of land and not much on it. I can work with that.</li>
+        <li>[trait:Ascetic] Not much here, which suits me fine.</li>
+        <li>[trait:Jealous,!alone] The others got the better places to sleep. Noted.</li>
+        <li>[trait:NightOwl] Everyone else is asleep, and I'm wide awake in a new place.</li>
+        <li>[trait:Recluse] Quiet out here. I could get used to it.</li>
+        <li>[trait:Gourmand] The first thing I want to know is who's cooking.</li>
       </plain>
       <warm>
-        <li>[founding] I like the people I came with. That's a better start than most.</li>
+        <li>[founding,!alone] I like the people I came with. That's a better start than most.</li>
         <li>[joining] They were glad to see me, and I was glad to be seen.</li>
       </warm>
       <blunt>
@@ -184,15 +234,15 @@
         <li>[joining] New colony, new faces, same work.</li>
       </blunt>
       <cheerful>
-        <li>[founding] A whole place nobody's lived in yet, and it's ours.</li>
+        <li>[founding,!alone] A whole place nobody's lived in yet, and it's ours.</li>
         <li>[joining] I'm in at the start of something, and I mean to make the most of it.</li>
       </cheerful>
       <gloomy>
-        <li>[founding] Nothing here but us and whatever's out there watching.</li>
+        <li>[founding,!alone] Nothing here but us and whatever's out there watching.</li>
         <li>[joining] They're new at this too. I hope one of us knows what we're doing.</li>
       </gloomy>
       <cold>
-        <li>[founding] Shelter none, stores thin, people adequate.</li>
+        <li>[founding,!alone] Shelter none, stores thin, people adequate.</li>
         <li>[joining] The founders are thinly spread. I'll be useful.</li>
       </cold>
     </lines>
