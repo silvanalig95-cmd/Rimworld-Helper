@@ -34,9 +34,13 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>A people that may found a town: standing, theirs a name for towns, not the player's, hidden or defeated.</summary>
+        /// <summary>
+        /// A people that may found a town: standing, theirs a name for towns, not the player's, hidden or defeated. Never a
+        /// people a colony became: its town grows only at Faction Territories' own pace (stage 3, the player's decision 15B).
+        /// </summary>
         private static bool CanFound(Faction f) =>
-            f != null && !f.IsPlayer && !f.Hidden && !f.defeated && !f.temporary && f.def != null && f.def.humanlikeFaction && f.def.settlementNameMaker != null;
+            f != null && !f.IsPlayer && !f.Hidden && !f.defeated && !f.temporary && f.def != null && f.def.humanlikeFaction && f.def.settlementNameMaker != null
+            && !HandOverPeoples.IsOurs(f);
 
         // ---------------- Settlers from a flourishing town ----------------
 
@@ -229,7 +233,7 @@ namespace ColonyCouncil
             foreach (var t in RiseFall.TownsInDetail())
             {
                 var f = t.Faction;
-                if (!CanFound(f) && f != r.people || f == null || player == null || f.HostileTo(player) || f.defeated) continue;
+                if (!CanFound(f) && (f != r.people || HandOverPeoples.IsOurs(f)) || f == null || player == null || f.HostileTo(player) || f.defeated) continue;
                 if (t.Tile.Layer != tile.Layer || Find.WorldGrid.ApproxDistanceInTiles(t.Tile, tile) > RiseFallMath.ResettleTiles) continue;
                 var rec = WorldLedger.TownRecord(t.ID);
                 if (rec == null || !rec.Seeded || rec.closing >= 0) continue;

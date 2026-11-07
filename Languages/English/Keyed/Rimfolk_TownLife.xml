@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    A town the colony was in its own life (Source/ColonyCouncil/Colonies/TownLife.cs, TownRaid.cs, TownLifeLetters.cs;
+    docs/design/stage3-many-colonies.md, section 2, release 5): the fight on its map when the colony sends fighters
+    against a raid, its hard times and its ask to come back, its people at the colony's gate once refused twice, its
+    goodwill cooling, its growth with Faction Territories, and a former colonist's death told by name. No countdowns.
+  -->
+
+  <!-- How word comes from the town, by its own age at the hand-over -->
+  <CC_TownLife_Means_runner>a runner</CC_TownLife_Means_runner>
+  <CC_TownLife_Means_rider>a rider</CC_TownLife_Means_rider>
+  <CC_TownLife_Means_radio>the radio</CC_TownLife_Means_radio>
+  <CC_TownLife_Means_comms>comms</CC_TownLife_Means_comms>
+
+  <!-- The fight on the town's map -->
+  <CC_TownLife_FightLabel>The fight at {TOWN}</CC_TownLife_FightLabel>
+  <CC_TownLife_FightText>The colony's fighters have reached {TOWN}: {NAMES}. {ENEMY} are coming in at the far side of the town, and {PEOPLE} are on their walls.\n\nIt is their town now, and the colony's fighters fight beside its people, not over them. Every raider down or gone, and {TOWN} stands.</CC_TownLife_FightText>
+  <CC_TownLife_FightFormers>Among the town's defenders are {NAMES}, who stayed when {TOWN} was handed over.</CC_TownLife_FightFormers>
+  <CC_TownLife_FightLayout>The town is {COLONY} as the colony left it: the same walls, the same doors, the same rooms.</CC_TownLife_FightLayout>
+
+  <!-- A former colonist's death, told by name -->
+  <CC_TownLife_DiedHistory>{PAWN}, who stayed at {TOWN} when it was handed over, died there.</CC_TownLife_DiedHistory>
+  <CC_TownLife_Of_Plague>of {WHAT}</CC_TownLife_Of_Plague>
+  <CC_TownLife_Of_Famine>in the hunger of {WHAT}</CC_TownLife_Of_Famine>
+  <CC_TownLife_HardshipLabel>{PAWN} of {TOWN}</CC_TownLife_HardshipLabel>
+  <CC_TownLife_HardshipText>Word from {TOWN} by {MEANS}: {PAWN}, who stayed when {COLONY} was handed over, has died {WHAT}.\n\n{TOWN} mourns them.</CC_TownLife_HardshipText>
+  <CC_TownLife_HardshipHelped>What the colony sent {TOWN} in that time is remembered there; without it, more would have died.</CC_TownLife_HardshipHelped>
+
+  <!-- Turning against the colony -->
+  <CC_TownLife_CooledWrongs>wronged by {COLONY}</CC_TownLife_CooledWrongs>
+  <CC_TownLife_CooledHead>a head who thinks little of {COLONY}</CC_TownLife_CooledHead>
+  <CC_TownLife_CoolHead>{HEAD} leads {TOWN} now as its {TITLE}, and has little good to say of {COLONY}. The town will be cooler to the colony while they lead it.</CC_TownLife_CoolHead>
+
+  <!-- Hard times: the town asks to come back -->
+  <CC_TownLife_AskBackLabel>{TOWN} asks to come back</CC_TownLife_AskBackLabel>
+  <CC_TownLife_AskBackText>Word from {TOWN} by {MEANS}: {HEAD} asks whether the colony would take its old town back. {PEOPLE} have had a hard time of it, and would rather be {COLONY}'s again than go on alone.</CC_TownLife_AskBackText>
+  <CC_TownLife_AskBackForm>Taken back, it is the colony's again by {FORM}: its map as the colony left it, its former colonists the colony's people again, and some of its other people with them.</CC_TownLife_AskBackForm>
+  <CC_TownLife_AskBackAgain>It is not the first time {TOWN} has asked. If the colony says no again, its people may not stay there much longer.</CC_TownLife_AskBackAgain>
+  <CC_TownLife_Choice_Take>Take {TOWN} back</CC_TownLife_Choice_Take>
+  <CC_TownLife_Choice_NotNow>Not now</CC_TownLife_Choice_NotNow>
+  <CC_TownLife_AskLapsed>{TOWN} had no answer from the colony, and took the silence as a no.</CC_TownLife_AskLapsed>
+  <CC_TownLife_Leaving>The people of {TOWN} are giving up the town {COLONY} was. Some of them are on the road to the colony.</CC_TownLife_Leaving>
+
+  <!-- Refused twice: its people at the gate -->
+  <CC_TownLife_GateLabel>{TOWN} given up</CC_TownLife_GateLabel>
+  <CC_TownLife_GateText>{PEOPLE} have given up {TOWN}. The town {COLONY} was stands empty, a ruin on the map.</CC_TownLife_GateText>
+  <CC_TownLife_GateFormers>{NAMES}, who stayed when it was handed over, are at the colony's gate asking to come home to {COLONY}.</CC_TownLife_GateFormers>
+  <CC_TownLife_GateOthers>With them are {NAMES} of {PEOPLE}, who would rather join the colony than go elsewhere.</CC_TownLife_GateOthers>
+  <CC_TownLife_GateLast>{TOWN} was all {PEOPLE} had. They are no longer a people of their own.</CC_TownLife_GateLast>
+  <CC_TownLife_GateNotLast>The rest of {PEOPLE} have gone on to their other towns.</CC_TownLife_GateNotLast>
+  <CC_TownLife_GateAsk>They are waiting at the gate for the colony's answer.</CC_TownLife_GateAsk>
+  <CC_TownLife_Choice_All>Take them all in</CC_TownLife_Choice_All>
+  <CC_TownLife_Choice_Ours>Take in only those who were {COLONY}'s</CC_TownLife_Choice_Ours>
+  <CC_TownLife_Choice_On>Send them on their way</CC_TownLife_Choice_On>
+  <CC_TownLife_GateIn>{NAMES} are the colony's people again, home from {TOWN}.</CC_TownLife_GateIn>
+  <CC_TownLife_GateOn>The people from {TOWN} have gone on their way.</CC_TownLife_GateOn>
+  <CC_TownLife_GivenUpHistory>{PEOPLE} gave up {TOWN}, the town the colony was, and some of them came to the colony's gate.</CC_TownLife_GivenUpHistory>
+
+  <!-- Its growth with Faction Territories -->
+  <CC_TownLife_Growing>{PEOPLE} of {TOWN}, the town {COLONY} was, have begun building a new town of their own.</CC_TownLife_Growing>
+  <CC_TownLife_Grew>{PEOPLE} have finished {NEWTOWN}, a new town of theirs grown from {TOWN}.</CC_TownLife_Grew>
+  <CC_TownLife_GrewHistory>{PEOPLE} of {TOWN} founded {NEWTOWN}.</CC_TownLife_GrewHistory>
+
+  <!-- A raid of theirs on the colony, at war -->
+  <CC_TownLife_RaidFormer>Among the raiders is {NAMES}, who stayed at {TOWN} when {COLONY} was handed over.</CC_TownLife_RaidFormer>
+  <CC_TownLife_RaidFormers>Among the raiders are {NAMES}, who stayed at {TOWN} when {COLONY} was handed over.</CC_TownLife_RaidFormers>
+
+  <!-- The faction memory -->
+  <CC_Memory_Deed_townDefended>stood on their walls when raiders came to the town the colony was</CC_Memory_Deed_townDefended>
+  <CC_Memory_Deed_townDefended_Name>stood with {NAME} when raiders came</CC_Memory_Deed_townDefended_Name>
+
+</LanguageData>

@@ -262,7 +262,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>Its other people who choose to join the colony: their regard of the colony's people, kin among them, the town's hard times; three at most.</summary>
-        private static List<Pawn> Joiners(LedgerFormer rec, Faction people, List<Pawn> formers)
+        internal static List<Pawn> Joiners(LedgerFormer rec, Faction people, List<Pawn> formers)
         {
             var list = new List<Pawn>();
             try
@@ -344,7 +344,8 @@ namespace ColonyCouncil
         /// </summary>
         public static void Watch(LedgerFormer rec, int now)
         {
-            if (rec == null || rec.end == TownEnd.TakenBack || rec.end == TownEnd.Settled) return;
+            // Given up by its own people (release 5): the region keeps the ruin, nobody beat it.
+            if (rec == null || rec.end == TownEnd.TakenBack || rec.end == TownEnd.Settled || rec.end == TownEnd.GivenUp) return;
             var s = rec.Town;
             bool stands = s != null && !s.Destroyed;
             if (stands && rec.tile < 0) rec.tile = s.Tile.tileId;

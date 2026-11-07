@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A town the colony was in its own life (Source/ColonyCouncil/Colonies/TownLife.cs, TownLifeLetters.cs; stage 3,
+    release 5). Its questions (in hard times, to come back under the colony; refused twice, its people at the gate) are a
+    letter kind of their own.
+  -->
+  <LetterDef>
+    <defName>Rimfolk_TownLifeLetter</defName>
+    <letterClass>ColonyCouncil.ChoiceLetter_TownLife</letterClass>
+    <color>(205, 190, 140)</color>
+    <flashColor>(230, 215, 165)</flashColor>
+    <flashInterval>90</flashInterval>
+    <arriveSound>LetterArrive</arriveSound>
+    <bounce>true</bounce>
+  </LetterDef>
+
+  <!--
+    Turning against the colony (ColonyCouncil.GoodwillSituationWorker_TownCooled): what the colony's wrongs they remember
+    (the faction memory, the ledger's grudges) and a head who thinks little of the colony take from the natural goodwill
+    of a people a colony became. The game's own drift does the rest. Shown among the people's goodwill situations as
+    "wronged by [colony]" or "a head who thinks little of [colony]".
+  -->
+  <GoodwillSituationDef>
+    <defName>Rimfolk_TownCooled</defName>
+    <label>wronged by the colony</label>
+    <workerClass>ColonyCouncil.GoodwillSituationWorker_TownCooled</workerClass>
+  </GoodwillSituationDef>
+
+</Defs>

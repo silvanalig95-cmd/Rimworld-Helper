@@ -276,13 +276,17 @@ namespace ColonyCouncil
         HandOver
     }
 
-    /// <summary>How a town the colony was stopped being its people's: taken back by the colony's letter, beaten by force, settled again after.</summary>
+    /// <summary>
+    /// How a town the colony was stopped being its people's: taken back by the colony's letter, beaten by force, settled
+    /// again after, or given up by its own people after the colony refused them twice (release 5, Colonies/TownLife.cs).
+    /// </summary>
     public enum TownEnd
     {
         None,
         TakenBack,
         Beaten,
-        Settled
+        Settled,
+        GivenUp
     }
 
     /// <summary>

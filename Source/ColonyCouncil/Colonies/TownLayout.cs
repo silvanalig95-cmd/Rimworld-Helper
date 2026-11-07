@@ -397,6 +397,9 @@ namespace ColonyCouncil
 
         // ================= Its people at home =================
 
+        /// <summary>While a raid on the town makes its map (Colonies/TownRaid.cs): the points its defenders stand with; else 0 (the game's own).</summary>
+        public static float DefendPoints;
+
         /// <summary>A pawn of the world, at home (free, or their people's leader at their seat; not in a caravan, not held), alive and of this people.</summary>
         public static bool FreeAtHome(Pawn p, Faction f)
         {
@@ -431,7 +434,8 @@ namespace ColonyCouncil
         private static void AtHome(Map map, LedgerFormer rec, CellRect rect, Faction f)
         {
             var lord = LordMaker.MakeNewLord(f, new LordJob_DefendBase(f, rect.CenterCell, 25000), map);
-            float points = SymbolResolver_Settlement.DefaultPawnsPoints.RandomInRange;
+            // A raid on the town (release 5, Colonies/TownRaid.cs): its defenders as the raid reckoned them, by its fortune.
+            float points = DefendPoints > 0f ? DefendPoints : SymbolResolver_Settlement.DefaultPawnsPoints.RandomInRange;
             var book = NotableBook.Instance;
             if (book != null)
                 foreach (var nb in book.notables.Where(x => x != null && x.town == rec.key && x.Alive).ToList())

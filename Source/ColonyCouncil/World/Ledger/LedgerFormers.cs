@@ -58,6 +58,20 @@ namespace ColonyCouncil
         /// <summary>How it stopped being its people's (taken back by their word, beaten by force, settled again), and when.</summary>
         public TownEnd end;
         public int endedAt = -1;
+        /// <summary>
+        /// Release 5 (Colonies/TownLife.cs): the town's own ask to come back under the colony (when, still open, how often
+        /// refused), when its people come to the colony's gate once refused twice, what the colony's wrongs and a cool head
+        /// take from its natural goodwill (worked out each day), the head last seen, and the last hardship reckoned.
+        /// </summary>
+        public int askedBackAt = -1;
+        public bool askOpen;
+        public int refusals;
+        public int gateAt = -1;
+        /// <summary>When its people came to the gate (the question waits while they do), or -1.</summary>
+        public int gateCame = -1;
+        public int cooledWrongs, cooledHead;
+        public int headSeen = -1;
+        public int hardshipSeen = -1;
 
         /// <summary>The town still stands as the people's: the settlement there, of the people it became.</summary>
         public bool Standing
@@ -119,6 +133,15 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref agreedTold, "agreedTold");
             Scribe_Values.Look(ref end, "end");
             Scribe_Values.Look(ref endedAt, "endedAt", -1);
+            Scribe_Values.Look(ref askedBackAt, "askedBackAt", -1);
+            Scribe_Values.Look(ref askOpen, "askOpen");
+            Scribe_Values.Look(ref refusals, "refusals");
+            Scribe_Values.Look(ref gateAt, "gateAt", -1);
+            Scribe_Values.Look(ref gateCame, "gateCame", -1);
+            Scribe_Values.Look(ref cooledWrongs, "cooledWrongs");
+            Scribe_Values.Look(ref cooledHead, "cooledHead");
+            Scribe_Values.Look(ref headSeen, "headSeen", -1);
+            Scribe_Values.Look(ref hardshipSeen, "hardshipSeen", -1);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 formers ??= new List<Pawn>();

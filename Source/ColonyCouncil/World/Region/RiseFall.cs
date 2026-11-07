@@ -168,7 +168,7 @@ namespace ColonyCouncil
         // ---------------- A town given up ----------------
 
         /// <summary>How many of a people's bad world events (ones that cost their towns' fortunes) began in the last RiseFallMath.BlowDays.</summary>
-        private static int Blows(Faction f, int now)
+        internal static int Blows(Faction f, int now)
         {
             var ws = WorldSituations.Instance;
             if (ws == null || f == null) return 0;
