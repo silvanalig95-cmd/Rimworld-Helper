@@ -6,6 +6,65 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- stage 3's content pass (7 November 2026). `docs/design/stage3-many-colonies.md`, "The order to build it in", the paragraph
+  after item 5 (letters, talk, news and journals for the towns the colony was, the founders and the newcomers in every
+  age's form); the Almanac pages it names were already there (releases 1 to 5). Text and variety only: no round of its
+  own (About.xml, What's new and CHANGELOG untouched), no setting, nothing new saved. Tests: `StageThreeWordsTests`
+  ("stage three words: "). In seven steps (WIP 1 to 7):
+  - The town the colony was (`Rimfolk_StageThree_Town.xml`, `Rimfolk_OutsiderTalks_StageThree.xml`): the head's letter 21
+    lines to 98 (former or new head, the years, the fortune, the age, what their people remember, the ties, their town
+    lately, and the colony's own news), the take-back answers 12 to 28, the homecoming 12 to 44, 28 pieces of talk with its
+    people (at the gate, in trade, on a visit, its head and heir, its days, its war, the age's own ways); the raid's news 8
+    to 16, its call 8 to 16, the answer's outcomes 4 to 8, the endings 17 to 37, titles 2 to 4; the town's days
+    (`Rimfolk_Missions_TownDay.xml`) and moving there (`Rimfolk_Dilemmas_TownKin.xml`) in more wordings.
+  - The founders (`Rimfolk_StageThree_Founders.xml`, joined to the release 1, 2a and 4 pools): the first night 16 to 72,
+    setting out 10 to 47, the merge's welcome 13 to 64 and its greeting 6 to 21, the hand-over's meeting 16 to 58,
+    ceremony 18 to 48, token 7 to 15 and 7 to 17, farewells 12 to 29, the founders' talk of the colony they founded 36 to
+    70. What every attendee of a gathering shares (its season, its hour, the meal, the council's trust) has none or two
+    lines and more, so the tagged pick (85% of picks) never falls on one line for everyone there.
+  - The newcomers (`Rimfolk_StageThree_Newcomers.xml`, `Rimfolk_Journal_StageThree.xml`): their first entry in place of the
+    day pass's (`Foundings.FirstWords`, 75 lines: founding or joining, walked, pods or gravship, a scenario's start, alone,
+    a mechanitor, tribe-born, by the colony's age, and for anyone however they came; a line of company is `!alone`);
+    homesick over the head (`Council_Pool_SayFeeling`, every newcomer's first days, 4 lines to 28); their own voice in any
+    talk (`[newcomer]` lines 2 to 23); the old hands' talk about them, 203 lines to 245, with `newcolony` (a home settled
+    in the last fifteen days, `TopicWorker_Newcomer`) for a colony that has hardly begun. The journals' days for the
+    uprooted, the parted and the first night (`JournalDayDef`s on the release 1 thoughts), each in every age's words.
+  - The colony's own news as the world hears it (`TownAfterFacts.ColonyNews`, `FactsMath.RegionTags`/`RegionValues`, the
+    validator's and OutsiderTalkTests' placeholder lists): `colony:founded` ({MOTHERCOLONY}), `colony:handedover`
+    ({HANDEDOVER}, {HANDEDPEOPLE}), `colony:tookback` ({TOOKBACK}), lately (30 days), never of their own town; six pieces
+    of talk (`Rimfolk_OutsiderTalks_StageThreeNews.xml`, the Empire's court and honor among them) and six lines of the
+    head's letter. Founders who hold a title of the Empire keep it, and its honor, in the founding letter
+    (`Foundings.TitledLine`, `CC_Found_LetterTitled`).
+  - The letters of many colonies in more wordings (`Rimfolk_StageThree_Variants.xml`, 34 fellows read through
+    `TextVariants.Vary`: the head's letter by its means, asking to come home, hard times, given up, a former colonist's
+    death, a cool new head, the fight on its map, a founding, newcomers walking in, a hand-over, a take-back, two councils
+    become one). History lines keep one wording.
+  - Fixed on the way: shipped lines said in the wrong voice narrowed (`ShippedLines.AlsoWhen`: the ceremony's lines in
+    the voice of those who stay its head's, the welcome's in the host's voice the host's, a tribal town's letter never
+    speaks of writing, a raid's ending that names one dead only for one); a shipped line with paragraphs found however
+    its new lines were read (`ShippedLines.ConditionOf`). The town's former people include those who moved there later
+    (`MovingOnTown`), so its dead, its defenders, its raiders and those at the gate are the colony's own once, not those
+    who stayed (`Rimfolk_TownLife.xml` keys rewritten). A raid that ended with the town holding after the colony's
+    fighters left named nobody who died on its map: `WorldSituationWorker.EndingNote` (a paragraph after the ending's
+    line), the raid's own naming its dead whenever the line has no word for them. The earlier steps' raid and mission
+    lines were rewritten into tag blocks and placeholders their lists had (textcheck), one or many dead said alike.
+  - Rates: no message, letter or staged scene added (the titled line and the dead note are paragraphs of existing letters,
+    the first entry replaces one, the talk and bubbles are drawn where they were). The journal's days can give an
+    everyday entry on a day that had none (journals only). The variety report's thinnest stage 3 pools, before and after
+    (eff10, the unlucky speaker): the head's letter 2.0 to 5.0, the token 3.0 to 7.0 each, the founders' talk's close 3.0
+    to 8.0 and reply 4.0 to 10.0, the raid's news 4.0 to 10.0 and its outcomes 2.0 to 5.0, the first night 5.0 to 7.5,
+    teasing about a newcomer 1.0 to 3.9; the meeting (6.0 to 4.6), the ceremony (7.0 to 5.6) and the welcome (7.0 to 5.7)
+    are lower because their lines now speak to the season, the hour, age and trust, each with three lines and more.
+  - Try in the game with dev tools: a fresh start with newcomers (the first journal entry; alone with one; by pods with a
+    scenario's start); their homesick bubbles and their talk in the first ten days; a visitor at the new colony within
+    thirty days (the founding's talk), and after a hand-over and a take-back; the founding letter with a titled founder
+    (Royalty); "Town life: a raid on it now", sending fighters, leaving before the end with someone of the town dead (the
+    note names them).
+  - Riskiest: `newcolony` reads the home's settlement creation tick (a taken-back town is old, a gravship's landing new);
+    `ColonyNews` runs with every talk's facts (one pass over the former towns); `EndingNote` is called for every world
+    event's ending (null for all but the town raid). Known and left: the shipped talk pieces `Rimfolk_OT_Former_OldDays`
+    and `_Years` say the one spoken to lived there before the hand-over, untrue for one who moved there later (no fact
+    tells the two apart).
 - 0.131.0, stage 3 release 4: many colonies in play (7 November 2026). The player's decisions 12A, 13A and 14A; `docs/design/
   stage3-many-colonies.md`, section 3's 3b, 3c and 3d, now marked built with what differs (item 4); DESIGN.md "Many
   colonies in play" (under "A town of our own", after "The town's life"; "Many homes"' "still one for the game" a prose

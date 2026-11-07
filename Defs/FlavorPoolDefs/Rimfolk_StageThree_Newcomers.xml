@@ -207,6 +207,9 @@
         <li>[otheragainst] Still waiting for {SUBJECT} to turn out to be a raider, {OTHER}?</li>
         <li>[otheragainst] You glare at {SUBJECT} as if they'd taken your seat at supper, {OTHER}.</li>
         <li>Still trying to work out {SUBJECT}, {OTHER}?</li>
+        <li>[othermixed] You still can't make up your mind about {SUBJECT}, can you, {OTHER}?</li>
+        <li>[othermixed] One day you like {SUBJECT}, the next you don't, {OTHER}.</li>
+        <li>[othermixed] You watch {SUBJECT} as if they were a puzzle, {OTHER}.</li>
         <li>[otheragainst,newcolony] You act as if you've lived here for years, {OTHER}, and we only just got here.</li>
       </plain>
       <cheerful>
