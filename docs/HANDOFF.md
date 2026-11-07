@@ -12,6 +12,80 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.160.0, everything work makes goes into the pocket: bills, production buildings and any other work (7 November 2026, the
+  player: "they should always take any 'produced' item or resource into their inventory when they have space, to later
+  store it, for any possible item creating or harvesting interaction in the game and mods"; explicit, no proposal
+  round; queued by 0.154.2). Not released: no What's new round, About.xml and CHANGELOG untouched, no version number
+  (the lead does that at the merge). DESIGN.md "Carrying and hauling", a subsection "Everything else work makes"; README
+  "Carrying and hauling" a bullet, and under Playing with other mods a sentence on Harvest and Haul and a bullet on the
+  production mods and Simple Sidearms; the
+  Almanac's `Council_Alm_C_Hauling` two sections (*What benches, barrels and other work make*, *What stays where it is*)
+  and Harvest and Haul's own page a paragraph (remove it to get this), no keyword changed.
+  - Code: `Hauling/WorkProducts.cs` (the bill path, the generic catch, what may go in, the meals rule, the bills' counts)
+    and `Hauling/WorkProductPatches.cs` (twelve `[HarmonyPatch]` classes, plain prefixes, postfixes and finalizers);
+    `HaulMath.cs` "Everything else work makes" (pure: `BillPockets`, `MealsToPocket`, `MealsWanted`, `HoldHours`,
+    `FamilyOf`, `FishingName`, `Carried`, the constants); `HaulLoad.givers` and `HaulLoad.into` (the same work by work
+    giver; a bill's picked stockpile by a cell of it), `Carrying.StoreCellFor` (the delivery to it, else the best),
+    `HandOver` keeps a picked stockpile's kind from Pick Up And Haul, `Carrying.Pass` sends meals at once while someone
+    is hungry, `HarvestHaul.SameKindOfWork` by work giver too, its hold two hours at most with meals, and
+    `Patch_HaulRunPickup` (the carry step's pre-init) now also calls `WorkProducts.AtCarry` for every target index.
+  - Bills: a wrap of `Toils_Recipe.FinishRecipeAndStartStoringProduct`'s init action marks the worker as finishing; a
+    postfix on `RecordsUtility.Notify_BillDone` (priority last) takes the products the rules let in off the game's list
+    into the inventory before the game places them, only for "take to best stockpile" or "take to a specific stockpile"
+    (remembered), never drop on floor, a mod's store mode, a bill the player ordered, `Bill_Medical`, `Bill_Autonomous`
+    or a project of 10,000 work or more (the game's tale needs the first product), only what a store cell takes and what
+    fits (a stack split); the game places or carries the rest its own way. The quests counting what is made are told of
+    what went in. `RecipeWorkerCounter.CountProducts` and the stone block and butchering counters count what pockets owe
+    to storage, so a "do until" bill doesn't overshoot.
+  - The generic catch: three hooks mark the actor (`JobDriver.TryActuallyStartNextToil`, `DriverTick`,
+    `DriverTickInterval`; `[ThreadStatic]`); while one is set, an item made (`ThingMaker.MakeThing`) or dropped out of a
+    building's container (`GenDrop.TryDropSpawn`: the egg box) is noted for the job, a split part (`Thing.SplitOff`) and
+    anything dropped out of a pawn's hands or inventory or a corpse never. Only for a work job (a work giver), not
+    ordered, of a pawn that carries; not a bill, not a job one of the sources of their own covers (plants, sowing,
+    mining, the deep drill, the animals' products, taking down, floors, Odyssey's fishing), not building work. The carry
+    step about to put such a thing in the hands for a storage cell takes it whole into the inventory and ends the job
+    (barrels, egg boxes, the bioferrite harvester, VEF's item and pipe processors, Medieval 2's apiary, the Processor
+    Framework: the sources read for those four mods); a prefix on `Pawn_JobTracker.CleanupCurrentJob` takes what the job
+    left loose within 4 cells (Anomaly's bioferrite extraction, Ideology's skulls, VEF's drained tanks, the mods' work).
+  - Settings (What's on, Carrying and hauling, each under "Pawns carry what their work drops"): `haulBills`,
+    `haulBuildings`, `haulOtherWork`, all on; a mod's fishing job by its name goes by `haulFishing`. With the standalone
+    Harvest and Haul loaded, all of it stands down with the rest (the bills' counts excepted, which count only what
+    Rimfolk owes); the settings' heading, the log line, README and both Almanac pages say to remove it to get this.
+  - What stays where it is: drop on floor and ordered work (taking a mechanoid apart, removing a mechlink are orders);
+    meals only past what the hungry need and the meals in reach don't cover (a working paste dispenser feeds all), two
+    hours at most in a pocket, at once when someone is hungry; never medicine, weapons (Simple Sidearms), wastepacks,
+    what the weather ruins or hatches (fertilized eggs, wort), xenogerms, genepacks, embryos, ova, mechlinks, corpses,
+    minified things, chunks unless switched on.
+  - Saved: two lists more per load (`givers`, `into`, modelled in `Tools/save_estimate.py`); the notes of what a job made
+    aren't saved. No Sched slot. Tests: `HaulTests` (260 checks now: the pure rules, the hooks and their standing
+    down, the docs, the player's mods named in the docs active in `docs/player-mods/mods.tsv`). ApiDiff: every new
+    target found on 1.7.
+  - Try in the game (none of it could be run here; remove the standalone Harvest and Haul first; dev mode and "Write
+    carrying decisions to the log" show each pocketing):
+    1. A cooking bill set to the best stockpile, nobody hungry: the cook keeps cooking with meals in the Gear tab, takes
+       them to the freezer within two hours or when done cooking. Make two colonists hungry with no meal lying anywhere:
+       the next meal stays on the stove's floor, and a cook already carrying meals goes to storage at once.
+    2. A bill "do until you have 10" of something light (cloth, simple meals): it stops at 10 with some still in the
+       pocket. A bill set to a specific stockpile: the products go there on the trip (also with Pick Up And Haul). A
+       bill set to drop on floor, and one ordered by right-click: as before.
+    3. Stonecutting: the first batch of blocks into the pocket, the second partly, the rest carried in the hands, then
+       one trip with all. Butchering: meat and leather pocketed; the butcher's "do until" counts them.
+    4. Fermenting barrels and egg boxes: the pawn empties one after another into its pocket ("taking ... to storage"
+       only when full, or when it turns to other work); a fertilized egg goes in the hands as before.
+    5. Vanilla Brewing Expanded's barrels, Vanilla Cooking Expanded's cheese press, Alpha Bees' beehouses, Medieval 2's
+       apiary: the same as the barrel (Gear tab), or tell me which of them still carries in the hands.
+    6. Anomaly: extract bioferrite from an entity, empty a bioferrite harvester: into the pocket. Ideology: extract a
+       skull. Vanilla Fishing Expanded: the catch goes into the fisher's pocket.
+    7. A crafter making a weapon: carried to storage in the hands (no Simple Sidearms surprise); medicine from a drug
+       lab: the same.
+    8. Settings: each of the three rows off brings back the game's way for its family; "Rimfolk: check myself" lists
+       the new hooks, and with the standalone loaded "Standing down on purpose" lists them too.
+  - Riskiest: the three hooks on the job driver's hot paths (only a prefix and a finalizer each); the job ended from the
+    carry step's pre-init action (the game's toil loop stops once the toils are cleared, read in the decompiled 1.6);
+    the products taken off the game's list in `Notify_BillDone` (a mod reading the list after sees fewer); Common Sense
+    and Better Workbench Management patching the bills' last toil (not read); Gastronomy's restaurants waiting up to two
+    hours for a cook's meals (its diners aren't counted as hungry colonists); Alpha Bees', Tabula Rasa's, Rimefeller's
+    and Dubs Bad Hygiene's producers (code not to hand: caught only if they make the item as the others do).
 - 0.159.0, medicine by what is treated (7 November 2026, the player's explicit request: "can you make it so that medicine is
   always taken according to the injury? if it's just scratches or bruises i don't want proper or glitterworld medicine
   used if a pawn also has a more serious illness at the same time. sometimes i even want no medicine if the injury is not

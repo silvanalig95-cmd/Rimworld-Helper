@@ -153,7 +153,9 @@ Leave Pick Up And Haul on too. Each mod tracks its own items, so they don't figh
         <heading>Built into Rimfolk now: it can be removed</heading>
         <text>Rimfolk carries Harvest and Haul itself now, under Carrying and hauling (the settings' What's on page), with the same sources, settings and defaults, and a long material run for far builds beside it. While this mod is loaded on its own, Rimfolk's copy stands down completely and this mod's settings apply; the log says so once at startup.
 
-It can be removed now. The first time Rimfolk starts without it, Rimfolk reads this mod's settings into its own, and in a save it takes over what pawns still carry for it, so nothing stays in a pocket. The game may write one line about the missing mod's class when such a save loads.</text>
+It can be removed now. The first time Rimfolk starts without it, Rimfolk reads this mod's settings into its own, and in a save it takes over what pawns still carry for it, so nothing stays in a pocket. The game may write one line about the missing mod's class when such a save loads.
+
+Rimfolk's copy goes further than this mod: what a bill makes at a bench, what a fermenting barrel, an egg box or a mod's processor or beehouse gives up, and what other work makes beside a pawn go into the pocket too. None of that happens while this mod is loaded, so remove it to get it.</text>
       </li>
     </sections>
     <keywords>

@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## What work makes goes into the worker's pack
+
+*7 November 2026, version 0.160.0*
+
+- Rimfolk's Harvest and Haul now takes what every kind of work makes into the worker's inventory while it fits, and stores it in one trip by the same rules as harvests: products of bills at any bench (crafting, cooking, butchering, smelting, tailoring, brewing and your mods' benches), barrels and egg boxes emptied, and other work that makes things, from the game, the DLCs and your mods' processors.
+- Bills keep their store mode: drop on floor stays at the bench, take to a specific stockpile goes to that stockpile on the trip back, and a do until X bill counts what rides in pockets. Bills and work you ordered yourself go the game's way.
+- Meals stay within reach of the hungry, and some things are never pocketed: medicine for the doctors, weapons (which Simple Sidearms would take for sidearms), wastepacks, things that spoil out of a freezer or hatch, genes, embryos and corpses.
+- Three new settings under Carrying and hauling switch bills, buildings and other work on or off. With the separate Harvest and Haul mod still loaded, Rimfolk stands back; remove it to get all of this.
+
 ## Medicine by what is treated
 
 *7 November 2026, version 0.159.0*

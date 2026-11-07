@@ -7,9 +7,10 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// What one pawn carries in its inventory for Rimfolk: what its own work dropped and is owed to storage (counts by
-    /// def, not things, so a harvest that merges with a stack the pawn already had is still told apart), the skills of
-    /// that work, and the building material it carries for a build area on a long material run.
+    /// What one pawn carries in its inventory for Rimfolk: what its own work dropped or made and is owed to storage
+    /// (counts by def, not things, so a harvest that merges with a stack the pawn already had is still told apart), the
+    /// skills and work givers of that work, the stockpile a bill picked for a kind, and the building material it carries
+    /// for a build area on a long material run.
     /// </summary>
     public class HaulLoad : IExposable
     {
@@ -17,6 +18,10 @@ namespace ColonyCouncil
         public Dictionary<ThingDef, int> owed = new Dictionary<ThingDef, int>();
         /// <summary>The skills of the work that produced the load: while the pawn keeps at work that uses one, it carries the load along.</summary>
         public List<SkillDef> skills = new List<SkillDef>();
+        /// <summary>The work givers of that work, for work no skill names (emptying egg boxes and barrels is hauling work): the same giver is the same work.</summary>
+        public List<WorkGiverDef> givers = new List<WorkGiverDef>();
+        /// <summary>A kind a bill sent to a stockpile the player picked: a cell of that stockpile, so the delivery goes there.</summary>
+        public Dictionary<ThingDef, IntVec3> into = new Dictionary<ThingDef, IntVec3>();
         public int startedTick = -1;
         /// <summary>Something didn't fit any more: stop working and deliver.</summary>
         public bool full;
@@ -77,10 +82,22 @@ namespace ColonyCouncil
             if (skill != null && !skills.Contains(skill)) skills.Add(skill);
         }
 
+        public void AddGiver(WorkGiverDef giver)
+        {
+            if (giver != null && !givers.Contains(giver)) givers.Add(giver);
+        }
+
+        /// <summary>The stockpile a bill picked for this kind, by one of its cells (Invalid when none was picked).</summary>
+        public IntVec3 IntoOf(ThingDef def) => def != null && into.TryGetValue(def, out var c) ? c : IntVec3.Invalid;
+
         public void Remove(ThingDef def, int count)
         {
             if (def == null || count <= 0 || !owed.TryGetValue(def, out int current)) return;
-            if (current <= count) owed.Remove(def);
+            if (current <= count)
+            {
+                owed.Remove(def);
+                into.Remove(def);
+            }
             else owed[def] = current - count;
             if (owed.Count == 0) Reset();
         }
@@ -151,7 +168,11 @@ namespace ColonyCouncil
                 else run[def] = r - fromRun;
                 excess -= fromRun;
                 if (excess <= 0) continue;
-                if (excess >= o) owed.Remove(def);
+                if (excess >= o)
+                {
+                    owed.Remove(def);
+                    into.Remove(def);
+                }
                 else owed[def] = o - excess;
             }
             tmpDefs.Clear();
@@ -165,12 +186,16 @@ namespace ColonyCouncil
             full = false;
             now = false;
             skills.Clear();
+            givers.Clear();
+            into.Clear();
         }
 
         public void ExposeData()
         {
             Scribe_Collections.Look(ref owed, "owed", LookMode.Def, LookMode.Value);
             Scribe_Collections.Look(ref skills, "skills", LookMode.Def);
+            Scribe_Collections.Look(ref givers, "givers", LookMode.Def);
+            Scribe_Collections.Look(ref into, "into", LookMode.Def, LookMode.Value);
             Scribe_Values.Look(ref startedTick, "startedTick", -1);
             Scribe_Values.Look(ref full, "full", false);
             Scribe_Values.Look(ref now, "now", false);
@@ -182,11 +207,15 @@ namespace ColonyCouncil
             {
                 owed ??= new Dictionary<ThingDef, int>();
                 skills ??= new List<SkillDef>();
+                givers ??= new List<WorkGiverDef>();
+                into ??= new Dictionary<ThingDef, IntVec3>();
                 run ??= new Dictionary<ThingDef, int>();
                 // Defs of a removed mod load as null.
                 owed.RemoveAll(kv => kv.Key == null || kv.Value <= 0);
                 run.RemoveAll(kv => kv.Key == null || kv.Value <= 0);
                 skills.RemoveAll(s => s == null);
+                givers.RemoveAll(g => g == null);
+                into.RemoveAll(kv => kv.Key == null || !owed.ContainsKey(kv.Key));
                 if (owed.Count == 0) Reset();
                 if (run.Count == 0) EndRun();
             }
@@ -221,6 +250,7 @@ namespace ColonyCouncil
         {
             instance = this;
             instanceGame = game;
+            WorkProducts.Reset();
             // Made while a save loads: the standalone mod's tracker may be in it, with what its pawns still carry.
             if (Scribe.mode == LoadSaveMode.LoadingVars && !HaulLinks.Standalone)
             {
@@ -249,6 +279,9 @@ namespace ColonyCouncil
         }
 
         public bool AnyLoads => loads.Count > 0;
+
+        /// <summary>Every pawn's load (for the bills' counts of what is on its way to storage).</summary>
+        public IEnumerable<KeyValuePair<Pawn, HaulLoad>> All => loads;
 
         /// <summary>The pawns on a run, for the other builders' cover.</summary>
         public IEnumerable<KeyValuePair<Pawn, HaulLoad>> Runners

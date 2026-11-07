@@ -1872,6 +1872,21 @@ Pawns don't walk to storage with one handful at a time (settings: **What's on, C
   the player's own **Harvest and Haul**, built into Rimfolk: with that mod loaded on its own, Rimfolk's copy stands
   down completely, and the standalone mod can be removed now (Rimfolk then reads its settings, and in a save takes over
   what pawns still carry for it).
+- **What benches, barrels and other work make** goes the same way, each with its own switch. **Bills** at any bench
+  (crafting, cooking, butchering, smelting, stonecutting, tailoring, drugs, refining, and the benches mods add): when
+  a bill takes its products to the best stockpile or to one you picked, they go into the worker's inventory, and a
+  picked stockpile is where they go on the next trip; what doesn't fit is carried there in the hands as before, and a
+  "do until" bill counts what is in a pocket. **Production buildings:** beer from a fermenting barrel, eggs from an
+  egg box, bioferrite from a harvester or an entity, and the products of the mods' barrels, presses, processors,
+  beehouses and apiaries go into the pocket instead of the hands, and the pawn empties the next one while there is
+  room. **Any other work job** that makes something beside the pawn: a skull extracted, what the mods' work makes (a
+  fishing mod's catch goes by the fishing switch). What stays where it is: a bill set to drop its products on the
+  floor keeps them at the bench; a bill or other work you order yourself (taking a mechanoid apart, removing a
+  mechlink) goes as before; meals go into a cook's pocket only while nobody hungry would be left without a meal in
+  reach, and go to storage within two hours, at once when someone gets hungry; medicine, weapons, wastepacks,
+  fertilized eggs, a long project's masterpiece, xenogerms, genepacks and mechlinks go the game's way. Never what a
+  pawn drops on purpose, what a hauler carries, a bill's ingredients or a corpse. With the standalone Harvest and Haul
+  still loaded none of this happens: remove it to get it.
 - **Long material runs:** a pawn fetching building material from 30 cells away or more (the setting; straight from the
   material to the frame) takes enough for every unfinished frame and blueprint round it that uses that material (half
   that distance, 8 to 15 cells), not only the one it builds: the hands take what they hold, the inventory the rest, as
@@ -2316,8 +2331,14 @@ while that feature is off; nothing vanilla is changed or removed. A few things i
   race's lifespan, so a 300-year-old elf isn't treated as elderly.
 - **Simple Sidearms:** an heirloom weapon carried as a sidearm still counts as carried.
 - **Harvest and Haul, Pick Up And Haul:** Harvest and Haul is built into Rimfolk now (Carrying and hauling); while the
-  standalone mod is loaded, Rimfolk's copy stands down, and it can be removed now. What Rimfolk's carrying and hauling
-  takes to storage goes through Pick Up And Haul's own unloading when that mod is there.
+  standalone mod is loaded, Rimfolk's copy stands down, and it can be removed now (remove it to have benches, barrels
+  and other work fill pockets too). What Rimfolk's carrying and hauling takes to storage goes through Pick Up And Haul's
+  own unloading when that mod is there, except a bill's products for a stockpile you picked, which Rimfolk takes there.
+- **Production mods:** the Vanilla Expanded processors (Vanilla Brewing Expanded's and Vanilla Cooking Expanded's barrels
+  and presses), the pipe processors, Alpha Bees' beehouses, Medieval 2's apiary, the Processor Framework, Vanilla
+  Fishing Expanded, Dubs Bad Hygiene where its work makes an item, and the rest of the mods' producers fill a working
+  pawn's pocket through one generic catch, with no hook of their own. **Simple Sidearms:** a weapon a crafter makes is
+  never pocketed, since that mod would read it as a sidearm.
 - **No mechanoids:** mechanoid dreams and goals only show up in games where mechanoids are around and hostile
   (Rimedieval's default, which turns them friendly, counts as none).
 - **Rimedieval:** events it removes stay removed (dream omens won't bring them back), and hidden buildings are

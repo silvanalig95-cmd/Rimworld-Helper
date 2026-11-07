@@ -479,6 +479,9 @@ namespace ColonyCouncil
             Toggle("haulDeconstruct", "CC_Settings_HaulDeconstruct", "CC_SetNote_HaulDeconstruct", "haulOwnWork,deepHooks");
             Toggle("haulLeftoversNow", "CC_Settings_HaulLeftoversNow", "CC_SetNote_HaulLeftoversNow", "haulOwnWork,deepHooks");
             Toggle("haulFishing", "CC_Settings_HaulFishing", "CC_SetNote_HaulFishing", "haulOwnWork,deepHooks");
+            Toggle("haulBills", "CC_Settings_HaulBills", "CC_SetNote_HaulBills", "haulOwnWork,deepHooks");
+            Toggle("haulBuildings", "CC_Settings_HaulBuildings", "CC_SetNote_HaulBuildings", "haulOwnWork,deepHooks");
+            Toggle("haulOtherWork", "CC_Settings_HaulOtherWork", "CC_SetNote_HaulOtherWork", "haulOwnWork,deepHooks");
             Toggle("haulChunks", "CC_Settings_HaulChunks", "CC_SetNote_HaulChunks", "haulOwnWork,deepHooks");
             Slider("haulMinTrip", "CC_Settings_HaulMinTrip", "CC_SetNote_HaulMinTrip", 0f, 30f, 0.5f, "0.#", "haulOwnWork,deepHooks");
             Slider("haulMaxHours", "CC_Settings_HaulMaxHours", "CC_SetNote_HaulMaxHours", 1f, 24f, 1f, "0", "haulOwnWork,deepHooks");
