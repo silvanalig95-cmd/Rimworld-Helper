@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    A scenario's start for a new colony (Source/ColonyCouncil/Colonies/ScenarioStarts.cs, ScenarioStartWindow.cs,
+    NewcomersWindow.cs, FoundingWindow.cs; docs/design/stage3-many-colonies.md, section 1, "A scenario's start", release 3):
+    the founding window's choice of start, the list of loaded scenarios with what each carries, the newcomers' window by
+    the scenario's rules, how they arrive, and Rimfolk's own parts set up at the new colony. No countdowns.
+  -->
+
+  <!-- The founding window: their start -->
+  <CC_ScenStart_Head>Their start</CC_ScenStart_Head>
+  <CC_ScenStart_AsGroup>New people as a new game's group</CC_ScenStart_AsGroup>
+  <CC_ScenStart_AsScenario>A scenario's start (choose one)</CC_ScenStart_AsScenario>
+  <CC_ScenStart_AsScenarioNamed>A scenario's start: {SCENARIO}</CC_ScenStart_AsScenarioNamed>
+  <CC_ScenStart_AsScenarioTip>Any loaded scenario can shape the new colony alone: its people, what shapes them, its kit, its arrival, its animals and Rimfolk's own parts. Click to choose one, or to change it.</CC_ScenStart_AsScenarioTip>
+  <CC_ScenStart_Brief>Carried for the new colony alone: {LIST}.</CC_ScenStart_Brief>
+  <CC_ScenStart_Brief_People>its people ({COUNT})</CC_ScenStart_Brief_People>
+  <CC_ScenStart_Brief_Shaping>what shapes them</CC_ScenStart_Brief_Shaping>
+  <CC_ScenStart_Brief_Kit>its kit</CC_ScenStart_Brief_Kit>
+  <CC_ScenStart_Brief_Animals>its animals</CC_ScenStart_Brief_Animals>
+  <CC_ScenStart_Brief_Arrival>its arrival</CC_ScenStart_Brief_Arrival>
+  <CC_ScenStart_Brief_Rimfolk>Rimfolk's own parts</CC_ScenStart_Brief_Rimfolk>
+  <CC_ScenStart_BriefNot>Not carried: {LIST}.</CC_ScenStart_BriefNot>
+  <CC_ScenStart_BriefWhole_Faction>its own people</CC_ScenStart_BriefWhole_Faction>
+  <CC_ScenStart_BriefWhole_Research>starting research</CC_ScenStart_BriefWhole_Research>
+  <CC_ScenStart_BriefWhole_Rules>rules for every map</CC_ScenStart_BriefWhole_Rules>
+  <CC_ScenStart_BriefWhole_Map>its own kind of map</CC_ScenStart_BriefWhole_Map>
+  <CC_ScenStart_BriefWhole_Conditions>world conditions</CC_ScenStart_BriefWhole_Conditions>
+  <CC_ScenStart_BriefWhole_IncidentsOff>incidents switched off</CC_ScenStart_BriefWhole_IncidentsOff>
+  <CC_ScenStart_BriefWhole_Events>the whole game's events</CC_ScenStart_BriefWhole_Events>
+  <CC_ScenStart_BriefWhole_Opening>the opening words</CC_ScenStart_BriefWhole_Opening>
+  <CC_ScenStart_BriefWhole_Hooks>what shapes people (the deeper game hooks are off)</CC_ScenStart_BriefWhole_Hooks>
+  <CC_ScenStart_BriefWhole_Other>the other parts its list names</CC_ScenStart_BriefWhole_Other>
+  <CC_ScenStart_KitPrice>With the old colony kept, their passage covers its kit too: about {SILVER} silver's worth more.</CC_ScenStart_KitPrice>
+
+  <!-- The list of scenarios -->
+  <CC_ScenStart_ListTitle>A scenario's start</CC_ScenStart_ListTitle>
+  <CC_ScenStart_ListLine>What each scenario brings to the new colony alone. A whole new scenario, on its own page, is what a new game is for.</CC_ScenStart_ListLine>
+  <CC_ScenStart_From_0>The game's, its expansions', Rimfolk's and other mods' scenarios</CC_ScenStart_From_0>
+  <CC_ScenStart_From_1>This game's own scenario</CC_ScenStart_From_1>
+  <CC_ScenStart_From_2>Your own scenarios</CC_ScenStart_From_2>
+  <CC_ScenStart_From_3>From the workshop</CC_ScenStart_From_3>
+  <CC_ScenStart_NoneLoaded>No scenario is loaded.</CC_ScenStart_NoneLoaded>
+  <CC_ScenStart_Carried>Carried, for the new colony alone</CC_ScenStart_Carried>
+  <CC_ScenStart_NotCarried>Not carried</CC_ScenStart_NotCarried>
+  <CC_ScenStart_Never>Never carried</CC_ScenStart_Never>
+  <CC_ScenStart_NewGame>The newcomers join the colony's own people in the same world: its research, its storyteller, the world's conditions and every other people stay as they are. For a whole new scenario on its own page, start a new game.</CC_ScenStart_NewGame>
+  <CC_ScenStart_Choose>Choose this start</CC_ScenStart_Choose>
+
+  <!-- What comes -->
+  <CC_ScenStart_People>Their people: {COUNT}</CC_ScenStart_People>
+  <CC_ScenStart_People_Choice>Their people: {COUNT}, chosen from {CHOICE}</CC_ScenStart_People_Choice>
+  <CC_ScenStart_People_Ages>only {AGES}</CC_ScenStart_People_Ages>
+  <CC_ScenStart_People_Skills>someone capable of {SKILLS}</CC_ScenStart_People_Skills>
+  <CC_ScenStart_Required>(required)</CC_ScenStart_Required>
+  <CC_ScenStart_Kit>Their kit: {LIST}.</CC_ScenStart_Kit>
+  <CC_ScenStart_Scattered>Laid about the land: {LIST}.</CC_ScenStart_Scattered>
+  <CC_ScenStart_Animals>Their animals: {LIST}.</CC_ScenStart_Animals>
+  <CC_ScenStart_Arrive_Standing>They walk in from the edge of the land, their kit with them.</CC_ScenStart_Arrive_Standing>
+  <CC_ScenStart_Arrive_Pods>They come down in drop pods, a pod each and the kit shared between them: near the middle of a new colony's land, or near the colony's people when some go there first.</CC_ScenStart_Arrive_Pods>
+  <CC_ScenStart_Arrive_Gravship>They come in their gravship, set down near the middle of the land with their kit on its shelves.</CC_ScenStart_Arrive_Gravship>
+  <CC_ScenStart_NoGravship>The gravship comes only with the old colony left behind and nobody of the colony there before them, so they walk in instead.</CC_ScenStart_NoGravship>
+  <CC_ScenStart_BeholdenCold>The grant is that colony's own tie, without the warm start: the people's goodwill stays the whole colony's.</CC_ScenStart_BeholdenCold>
+
+  <!-- What doesn't -->
+  <CC_ScenStart_Whole_Faction>Its own people ({WHAT}): the newcomers join the colony's people as it is.</CC_ScenStart_Whole_Faction>
+  <CC_ScenStart_Whole_Research>Starting research ({WHAT}): what the colony knows is the whole game's, and stays as it is.</CC_ScenStart_Whole_Research>
+  <CC_ScenStart_Whole_Rules>Rules for every map ({WHAT}): they would change the whole game.</CC_ScenStart_Whole_Rules>
+  <CC_ScenStart_Whole_Map>Its own kind of map ({WHAT}): the new colony's map is made the game's way for the place you picked.</CC_ScenStart_Whole_Map>
+  <CC_ScenStart_Whole_Conditions>World conditions ({WHAT}): they would change the whole world.</CC_ScenStart_Whole_Conditions>
+  <CC_ScenStart_Whole_IncidentsOff>Incidents switched off ({WHAT}): the storyteller stays the whole game's.</CC_ScenStart_Whole_IncidentsOff>
+  <CC_ScenStart_Whole_Events>The whole game's events ({WHAT}): they belong to a new game.</CC_ScenStart_Whole_Events>
+  <CC_ScenStart_Whole_Opening>The opening words: they belong to a new game.</CC_ScenStart_Whole_Opening>
+  <CC_ScenStart_Whole_Hooks>What shapes starting people ({WHAT}): it needs Rimfolk's deeper game hooks, which are off.</CC_ScenStart_Whole_Hooks>
+  <CC_ScenStart_Unknown>{LABEL}: another mod's part, which Rimfolk doesn't know, so it isn't carried.</CC_ScenStart_Unknown>
+  <CC_ScenStart_PeopleUnknown>Their people part is another mod's: the newcomers come as a new game's group, one to six of them.</CC_ScenStart_PeopleUnknown>
+  <CC_ScenStart_Never_Families>Two families who never got on: a feud along family lines never comes, since the colony is the family.</CC_ScenStart_Never_Families>
+
+  <!-- The newcomers' window -->
+  <CC_ScenStart_WindowLine>A start as {SCENARIO} has it: its people, its count and what shapes them.</CC_ScenStart_WindowLine>
+  <CC_ScenStart_Missing>{SCENARIO} isn't loaded any more, so the newcomers come as a new game's group.</CC_ScenStart_Missing>
+  <CC_ScenStart_LeftBehind>Left behind</CC_ScenStart_LeftBehind>
+  <CC_ScenStart_LeaveTip>Leave them behind: the first of those left behind comes instead.</CC_ScenStart_LeaveTip>
+  <CC_ScenStart_TakeTip>Take them: they come in place of the one in view, or of the last of those coming.</CC_ScenStart_TakeTip>
+
+  <!-- They arrive -->
+  <CC_ScenStart_FoundText>{NAMES} have come to found {PLACE}, answering {CALL} from {MOTHER}: a start as {SCENARIO} has it.</CC_ScenStart_FoundText>
+  <CC_ScenStart_ComeText>{NAMES} have come to {PLACE}, answering {CALL}: a start as {SCENARIO} has it.</CC_ScenStart_ComeText>
+  <CC_ScenStart_Came_Standing>They walked in from the edge of the land with their kit.</CC_ScenStart_Came_Standing>
+  <CC_ScenStart_Came_Pods>They come down in drop pods, with their kit shared between the pods.</CC_ScenStart_Came_Pods>
+  <CC_ScenStart_Came_Gravship>Their gravship stands near the middle of the land, their kit on its shelves.</CC_ScenStart_Came_Gravship>
+  <CC_ScenStart_NoGravshipLetter>The gravship start couldn't be given here, so they walked in.</CC_ScenStart_NoGravshipLetter>
+  <CC_ScenStart_History>{NAMES} came to {PLACE} as newcomers, a start as {SCENARIO} has it.</CC_ScenStart_History>
+
+  <!-- Rimfolk's own parts at the new colony -->
+  <CC_ScenStart_SetupLabel>How things stand at {PLACE}</CC_ScenStart_SetupLabel>
+  <CC_ScenStart_SetupIntro>{PLACE} didn't start with a clean slate: its newcomers came as {SCENARIO} has them.</CC_ScenStart_SetupIntro>
+
+</LanguageData>

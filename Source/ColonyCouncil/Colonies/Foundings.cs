@@ -36,7 +36,8 @@ namespace ColonyCouncil
     /// The hand-over (HandOver, Colonies/HandOvers.cs, release 2a): the old colony handed over instead of kept or
     /// abandoned, in the same act or later, uses the same who-goes list and this plan; in the same act it is the founding
     /// window's third choice, the plan waits with the hand-over until its ceremony, and the newcomers come free. Release 3: a scenario's start
-    /// parts shape the newcomers (Colonies/NewcomersWindow.cs). Release 4: the notables and world events near every home.
+    /// shapes the newcomers, their kit and arrival and Rimfolk's own parts at the new colony (Colonies/ScenarioStarts.cs). Release 4: the
+    /// notables and world events near every home.
     /// </para>
     /// </summary>
     public static class Foundings
@@ -529,7 +530,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>What becomes of the old colony, in a sentence: kept (with the seat here or not), or abandoned once those who go have left.</summary>
-        private static string OldColonyLine(FoundingPlan plan, Map map, bool seat) =>
+        internal static string OldColonyLine(FoundingPlan plan, Map map, bool seat) =>
             Homes.MapOf(plan.from) == null ? (plan.handOver ? "CC_HandOver_FoundOldGone" : "CC_Found_OldGone").Translate((plan.fromName ?? "?").Named("MOTHER")).Resolve()
             : plan.handOver ? "CC_HandOver_FoundHandingOver".Translate((plan.fromName ?? "?").Named("MOTHER")).Resolve()
             : plan.keepOld
@@ -604,6 +605,8 @@ namespace ColonyCouncil
                 FoundingLetters.AskNewcomers(plan, map);
             }
             if (!plan.firstNight) FirstNight(plan, map);
+            // A scenario's start (release 3): Rimfolk's own parts once its people are there (Colonies/ScenarioStarts.cs).
+            if (plan.scenarioPeople.Count > 0) ScenarioStarts.SetUpWhenHere(plan, map);
             // Handed over in the same act (HandOver): the hand-over makes the town once those who go have left (Colonies/HandOvers.cs).
             if (!plan.keepOld && !plan.abandoned && !plan.handOver) AbandonWhenLeft(plan);
             bool newcomersDone = !plan.newcomers || plan.newcomersChosen || !NewcomersOn || Now - plan.founded > 10 * GenDate.TicksPerDay;
@@ -614,7 +617,8 @@ namespace ColonyCouncil
                 FoundingLetters.RemoveNewcomerLetters(plan);
                 Tell.Minor(NewsKind.Colony, Importance.Notable, map, "CC_Found_NewcomersLapsed".Translate(Homes.Name(map).Named("PLACE")).Resolve(), new LookTargets(map.Parent));
             }
-            if (plan.firstNight && (plan.keepOld || plan.abandoned || plan.handOver && HandOvers.OfFounding(plan.id) == null) && newcomersDone) h?.foundings.Remove(plan);
+            if (plan.firstNight && (plan.keepOld || plan.abandoned || plan.handOver && HandOvers.OfFounding(plan.id) == null) && newcomersDone && plan.scenarioPeople.Count == 0)
+                h?.foundings.Remove(plan);
         }
 
         /// <summary>
@@ -766,9 +770,11 @@ namespace ColonyCouncil
         /// <summary>
         /// The newcomers chosen in the game's window for new people: their passage paid from the old colony's stores
         /// (named before the choice; free when the old colony is abandoned in the same act), then they walk in from the
-        /// edge of the new colony's map; with nobody going from the colony, the settlement and map are made first.
+        /// edge of the new colony's map; with nobody going from the colony, the settlement and map are made first. With a
+        /// scenario's start (<paramref name="kit"/>, release 3) they arrive the scenario's way with its kit
+        /// (Colonies/ScenarioStarts.cs).
         /// </summary>
-        public static void NewcomersCome(FoundingPlan plan, List<Pawn> pawns, Dictionary<Pawn, List<ThingDefCount>> possessions, int price)
+        public static void NewcomersCome(FoundingPlan plan, List<Pawn> pawns, Dictionary<Pawn, List<ThingDefCount>> possessions, int price, ScenarioKit kit = null)
         {
             if (plan == null || pawns == null || pawns.Count == 0) return;
             var h = Homes.Instance;
@@ -783,7 +789,7 @@ namespace ColonyCouncil
             var map = Homes.MapOf(plan.home);
             if (map != null)
             {
-                WalkIn(map, pawns, possessions, plan, price);
+                Arrive(map, pawns, possessions, plan, price, kit);
                 return;
             }
             // Nobody went from the colony: the settlement and its map made the game's way, then they walk in.
@@ -803,19 +809,45 @@ namespace ColonyCouncil
                 settlement.Notify_MyMapSettled(made);
                 Homes.Clear();
                 Founded(plan, made, false);
-                WalkIn(made, pawns, possessions, plan, price, true);
+                Arrive(made, pawns, possessions, plan, price, kit, true);
             }, "CC_Found_Newcomers_Long", true, GameAndMapInitExceptionHandlers.ErrorWhileGeneratingMap);
         }
 
-        /// <summary>The newcomers come in from the edge of the map together, with what they brought, as the game's own new wanderers do.</summary>
-        private static void WalkIn(Map map, List<Pawn> pawns, Dictionary<Pawn, List<ThingDefCount>> possessions, FoundingPlan plan, int price, bool founding = false)
+        /// <summary>The newcomers arrive: as a new game's group they walk in; with a scenario's start, its way (Colonies/ScenarioStarts.cs).</summary>
+        private static void Arrive(Map map, List<Pawn> pawns, Dictionary<Pawn, List<ThingDefCount>> possessions, FoundingPlan plan, int price, ScenarioKit kit, bool founding = false)
         {
-            // From an edge they can walk in from: toward the colony's people where they are, else toward the middle of the land.
+            if (kit == null) WalkIn(map, pawns, possessions, plan, price, founding);
+            else ScenarioStarts.Arrive(map, pawns, possessions, plan, price, kit, founding);
+        }
+
+        /// <summary>An edge they can walk in from: toward the colony's people where they are, else toward the middle of the land.</summary>
+        internal static IntVec3 EdgeCell(Map map)
+        {
             bool people = map.mapPawns.FreeColonistsSpawnedCount > 0;
             if (!CellFinder.TryFindRandomEdgeCellWith(c => c.Standable(map) && (people ? map.reachability.CanReachColony(c) : map.reachability.CanReach(c, map.Center, Verse.AI.PathEndMode.Touch,
                     TraverseMode.PassDoors, Danger.Deadly)), map, CellFinder.EdgeRoadChance_Neutral, out var cell)
                 && !CellFinder.TryFindRandomEdgeCellWith(c => c.Standable(map), map, CellFinder.EdgeRoadChance_Neutral, out cell))
                 cell = CellFinder.RandomEdgeCell(map);
+            return cell;
+        }
+
+        /// <summary>What a newcomer brought, on them as the game's own new wanderers carry it: a weapon in hand, clothes worn, the rest in their pack.</summary>
+        internal static void GivePossessions(Pawn p, List<ThingDefCount> things)
+        {
+            if (p == null || things == null) return;
+            foreach (var t in things)
+            {
+                if (!(StartingPawnUtility.GenerateStartingPossession(t) is ThingWithComps thing)) continue;
+                if (thing.HasComp<CompEquippable>()) p.equipment.AddEquipment(thing);
+                else if (thing is Apparel apparel) p.apparel.Wear(apparel);
+                else p.inventory.innerContainer.TryAdd(thing);
+            }
+        }
+
+        /// <summary>The newcomers come in from the edge of the map together, with what they brought, as the game's own new wanderers do.</summary>
+        private static void WalkIn(Map map, List<Pawn> pawns, Dictionary<Pawn, List<ThingDefCount>> possessions, FoundingPlan plan, int price, bool founding = false)
+        {
+            var cell = EdgeCell(map);
             var came = new List<Pawn>();
             foreach (var p in pawns)
             {
@@ -823,14 +855,7 @@ namespace ColonyCouncil
                 if (Find.WorldPawns.Contains(p)) Find.WorldPawns.RemovePawn(p);
                 var at = CellFinder.RandomClosewalkCellNear(cell, map, 3);
                 GenSpawn.Spawn(p, at, map);
-                if (possessions != null && possessions.TryGetValue(p, out var things))
-                    foreach (var t in things)
-                    {
-                        if (!(StartingPawnUtility.GenerateStartingPossession(t) is ThingWithComps thing)) continue;
-                        if (thing.HasComp<CompEquippable>()) p.equipment.AddEquipment(thing);
-                        else if (thing is Apparel apparel) p.apparel.Wear(apparel);
-                        else p.inventory.innerContainer.TryAdd(thing);
-                    }
+                if (possessions != null && possessions.TryGetValue(p, out var things)) GivePossessions(p, things);
                 came.Add(p);
             }
             if (came.Count == 0) return;

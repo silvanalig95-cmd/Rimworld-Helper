@@ -34,6 +34,10 @@ namespace ColonyCouncil
         /// <summary>The children in the colony's care (a wards part), and those who look after them.</summary>
         public List<Pawn> wards = new List<Pawn>();
         public List<Pawn> carers = new List<Pawn>();
+        /// <summary>The scenario the stakes come from: the game's own, or a scenario's start for a new colony (Colonies/ScenarioStarts.cs).</summary>
+        public Scenario scenario;
+        /// <summary>A new game's warm start (the Beholden's goodwill); a new colony's start in the same world has none, since goodwill is the whole colony's.</summary>
+        public bool warmStart = true;
 
         public List<Pawn> Adults => colonists.Where(p => !p.DevelopmentalStage.Juvenile()).ToList();
     }
@@ -54,7 +58,7 @@ namespace ColonyCouncil
             var colonists = IncidentWorker_Happening.Colonists(map).Where(p => !p.DevelopmentalStage.Baby()).ToList();
             if (colonists.Count == 0) return;
             comp.scenarioSetUp = true;
-            var ctx = new ScenarioSetupContext { comp = comp, map = map, colonists = colonists };
+            var ctx = new ScenarioSetupContext { comp = comp, map = map, colonists = colonists, scenario = Find.Scenario };
             foreach (var part in Find.Scenario.AllParts.OfType<ScenPart_Council>().ToList())
             {
                 try
@@ -465,7 +469,7 @@ namespace ColonyCouncil
         {
             var shift = new WayShift { mercy = mercy, generosity = generosity, tradition = tradition, openness = openness, toil = toil };
             if (!shift.Any) return;
-            ctx.comp.character.Shift(shift, "CC_Scen_WaysWhy".Translate(Find.Scenario?.name ?? "").Resolve());
+            ctx.comp.character.Shift(shift, "CC_Scen_WaysWhy".Translate((ctx.scenario ?? Find.Scenario)?.name ?? "").Resolve());
         }
 
         public override string Summary(Scenario scen)

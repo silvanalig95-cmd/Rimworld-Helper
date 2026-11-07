@@ -147,6 +147,9 @@ namespace ColonyCouncil
         private bool handOver;
         private bool makeSeat;
         private FoundingMeans means = FoundingMeans.Caravan;
+        /// <summary>A scenario's start for the newcomers (its key), or null for a new game's group; the chosen scenario as read for its line.</summary>
+        private string scenario;
+        private ScenarioStart startRead;
         private List<FounderRow> rows = new List<FounderRow>();
         private float rowsAt = -10f;
         private bool dirty = true;
@@ -343,6 +346,7 @@ namespace ColonyCouncil
                 }
                 else price = "CC_Found_NewcomersPrice".Translate(FoundingMath.MinPassage.Named("SILVER"), Homes.Name(from).Named("HOME")).Resolve();
                 y += UiKit.Paragraph(4f, y, w - 8f, price + " " + "CC_Found_NewcomersWhen".Translate().Resolve(), UiKit.Faint, GameFont.Tiny) + 8f;
+                if (newcomers) y = DrawStart(w, y);
             }
             // The old colony.
             y += UiKit.SectionTitle(0f, y, w, "CC_Found_OldHead".Translate(Homes.Name(from).Named("HOME")).Resolve(), Icons.Colony) + 2f;
@@ -405,6 +409,33 @@ namespace ColonyCouncil
             Widgets.EndScrollView();
         }
 
+        /// <summary>
+        /// The newcomers' start (release 3, Colonies/ScenarioStarts.cs): as a new game's group, as before, or a scenario's
+        /// start, chosen from the list of the loaded scenarios with what each carries; the chosen one's line under it.
+        /// </summary>
+        private float DrawStart(float w, float y)
+        {
+            UiKit.LabelFit(new Rect(4f, y, w - 8f, 22f), "CC_ScenStart_Head".Translate().Resolve(), Color.white, GameFont.Small);
+            y += 24f;
+            if (Widgets.RadioButtonLabeled(new Rect(24f, y, w - 28f, 24f), "CC_ScenStart_AsGroup".Translate(), scenario == null)) scenario = null;
+            y += 26f;
+            var scen = scenario != null ? ScenarioStarts.Resolve(scenario) : null;
+            if (scenario != null && scen == null) scenario = null;
+            string label = scen == null ? "CC_ScenStart_AsScenario".Translate().Resolve() : "CC_ScenStart_AsScenarioNamed".Translate(scen.name.Named("SCENARIO")).Resolve();
+            var box = new Rect(24f, y, w - 28f, 24f);
+            TooltipHandler.TipRegion(box, "CC_ScenStart_AsScenarioTip".Translate());
+            if (Widgets.RadioButtonLabeled(box, label, scen != null))
+                Find.WindowStack.Add(new Dialog_ScenarioStart(scenario, !keepOld, going.Count > 0, k => scenario = k));
+            y += 26f;
+            if (scen != null)
+            {
+                if (startRead?.scenario != scen || startRead.hooks != ScenarioStarts.HooksOn) startRead = ScenarioStarts.Read(scen, scenario);
+                string brief = ScenarioStarts.Brief(startRead, !keepOld, going.Count > 0, FoundingMath.Free(!keepOld));
+                y += UiKit.Paragraph(24f, y, w - 28f, brief, UiKit.Faint, GameFont.Tiny) + 8f;
+            }
+            return y;
+        }
+
         private void DrawBottom(Rect rect)
         {
             string why = WhyNot();
@@ -429,6 +460,7 @@ namespace ColonyCouncil
             {
                 from = Homes.KeyOf(from), tile = tile.tileId, layer = tile.Layer.LayerID, place = Place, means = FoundingMath.MeansOf(party.Count, means),
                 keepOld = keepOld, makeSeat = keepOld && makeSeat, newcomers = newcomers && NewcomersMayCome, party = party,
+                scenario = newcomers && NewcomersMayCome ? scenario : null, scenarioName = newcomers && scenario != null ? ScenarioStarts.Resolve(scenario)?.name : null,
                 sentAgainst = rows.Where(r => r.grown && going.Contains(r.pawn) && FoundingMath.AgainstWish(r.wish, true)).Select(r => r.pawn).ToList(),
                 keptAgainst = rows.Where(r => r.grown && !going.Contains(r.pawn) && FoundingMath.AgainstWish(r.wish, false)).Select(r => r.pawn).ToList()
             };
