@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A RimWorld of Magic under Harmony 3
+
+*7 November 2026, version 0.140.0*
+
+- With RimWorld 1.7's Harmony 3, A RimWorld of Magic's own setup stopped at its healing-rain patch, which Harmony 3 refuses, so most of its patches after that one were never applied and much of the mod didn't work. Rimfolk now applies the ones left out, one at a time, right after.
+- The healing rain itself runs through Rimfolk: the mod's own code, called the way it was meant to be, healing those out in the rain once a tick as before.
+- The log says what was applied, and when the mod is fixed or loads cleanly this does nothing at all.
+
 ## Bad Blood between two watches
 
 *7 November 2026, version 0.139.0*

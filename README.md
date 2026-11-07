@@ -3927,7 +3927,9 @@ The pages:
   Hospitality (guests joining only when they would, guests in the colony's stories, recruiting spelled out on the
   guest tab), RimMarket (Rimfolk's sales table, stall goods for trade ships, campers buying at the stalls, and with
   Hospitality guests always shopping), Alpha Skills (a drink or a smoke before work), **A covered face hides looks
-  (Alpha Genes)**, RimWorld of Magic (golems keep their energy, the mod's rules about needs hold), Faction
+  (Alpha Genes)**, RimWorld of Magic (golems keep their energy, the mod's rules about needs hold, and under Harmony 3 the patches its
+  own setup leaves out after its refused healing-rain patch are applied one at a time, with the healing rain run by
+  Rimfolk), Faction
   Territories and Vassalage (distant new settlements in the colony news), Move the Patient (the best bed first and
   room made for the worse off), and a faith's precept against turrets from any mod minding only the turrets where
   they are.

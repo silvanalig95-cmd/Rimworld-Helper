@@ -6,6 +6,27 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 0.140.0, A RimWorld of Magic under Harmony 3 (7 November 2026, the player's startup log and "help me fix it"). The log:
+  `[ARimWorldOfMagic][ERR] Failed to apply Harmony patches for Torann.ARimworldOfMagic`, "Unrelated classes cannot
+  describe the same non-null object ... supplied Verse.WeatherWorker, requested RimWorld.WeatherManager". Not a game
+  change (`WeatherWorker.WeatherTick(Map, float)` is the same in 1.6): RoM's `WeatherWorker_Patch.Postfix(WeatherManager
+  __instance, Map map)` (its 1.6 source, TorannD/RWoM `HarmonyPatches.cs` line 2241, the healing rain; the body reads
+  only the map) names the wrong instance type; Harmony 2 let it pass, Harmony 3.0 (rc.3 in the player's game) checks it.
+  HugsLib's `ModBase.ApplyHarmonyPatches` runs `PatchAll`, which stops at the first class that throws: 87 of the 144
+  `[HarmonyPatch]` classes in that file come after it (gizmos, `Pawn_NeedsTracker.ShouldHaveNeed`, damage, AI, jobs,
+  caravans...). The 62 manual patches in `TorannMagicMod`'s constructor (id `rimworld.torann.tmagic`) are fine.
+  `Integrations/HarmonyRescue.cs` (HarmonyLib only): the classes an id has applied (`GetAllPatchedMethods`, owners), the
+  attributed classes of the assemblies, and `ApplyMissing` one class at a time. `Integrations/MagicPatchRescue.cs`:
+  `Patch_MagicPatchRescue`, a postfix (`object __instance`) on HugsLib's `ModBase.ApplyHarmonyPatches` for RoM's
+  assemblies, under the mod's own id (`PackageIdPlayerFacing`), the broken class left out; `MagicPatchRescueLate` for
+  when HugsLib ran first; `Patch_MagicHealingRain` calls the mod's own postfix with `map.weatherManager` only when its
+  patch isn't on `WeatherTick` (`RainOurs`). Never throws into HugsLib (`TryRescue`, the work in a non-inlined method).
+  Not behind the deeper-hooks setting: it restores the mod's own behaviour. Checked outside the game against the real
+  Lib.Harmony 3.0.0-rc.3 (net8.0) with a stand-in of the mod (the same broken postfix between two working classes, one
+  with Prepare false) applied the HugsLib way: the same error, the class after it applied by the rescue, the rain
+  once a tick, a second rescue applying nothing (bench in the session's scratchpad, `harmony3check`, not kept). Not run
+  in the game: whether HugsLib's step comes after Rimfolk's hooks there (the log says it does; the late check covers
+  the other order).
 - 0.139.0, Bad Blood between two watches (7 November 2026, the player's yes to reworking it under the rule that the colony
   is the family, and to the Players' Cart's words). `ScenPart_CouncilFamilies` (class, def and thought defNames kept for
   saves) makes the colonists the port and starboard watches of a colony ship: the same split (relatives stay together,

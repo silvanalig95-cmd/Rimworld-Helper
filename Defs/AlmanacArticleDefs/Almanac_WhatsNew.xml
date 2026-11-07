@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.140.0</version>
+        <date>7 November 2026</date>
+        <title>A RimWorld of Magic under Harmony 3</title>
+        <points>
+          <li>With RimWorld 1.7's Harmony 3, A RimWorld of Magic's own setup stopped at its healing-rain patch, which Harmony 3 refuses, so most of its patches after that one were never applied and much of the mod didn't work. Rimfolk now applies the ones left out, one at a time, right after.</li>
+          <li>The healing rain itself runs through Rimfolk: the mod's own code, called the way it was meant to be, healing those out in the rain once a tick as before.</li>
+          <li>The log says what was applied, and when the mod is fixed or loads cleanly this does nothing at all.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.139.0</version>
         <date>7 November 2026</date>
         <title>Bad Blood between two watches</title>
