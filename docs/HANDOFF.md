@@ -64,9 +64,10 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
        people never brings them along after, and they don't come to the gate asking to be let in (Council_Evt_Prodigal).
     4. The faithful (Ideology): the new creed on the Ideoligions page, its memes the old faith's with one dropped or
        added, and the letter's line saying which.
-    5. The league: three towns at 62 or more (the region map's fortunes; the dev tools' world events can raise them),
-       then "what could arise now", then the dev action: the league's waystation between them, 50 goodwill with their
-       peoples.
+    5. The league: the dev action makes one from the most prosperous towns in reach whatever their fortune (the
+       league's waystation between them, 50 goodwill with their peoples); in play it needs three at 62 or more (each
+       town's fortune is on its panel on the region map; Rimfolk's world events move them); "what could arise now" lists
+       the towns it would take with their fortunes.
     6. Visit or attack a new people's town: their template's plan (waystation, sickhouse or camp); their caravans,
        camps and asks come as release A's do.
     7. Settings, How much happens: *New peoples arise* at 0% (none), 200% (half the waits).

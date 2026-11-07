@@ -113,7 +113,8 @@ namespace ColonyCouncil
         private static string Days(int tick, int now) => tick < 0 ? "never" : ((now - tick) / (float)GenDate.TicksPerDay).ToString("0.#") + " days ago";
 
         private static string Describe(ArisingCause c) =>
-            (c.name ?? ArisingWords.Towns(c.towns)) + (c.parent != null ? " of " + c.parent.Name : "") + ", " + c.age + (c.byColony ? ", taken by the colony" : "")
+            (c.name ?? string.Join(", ", c.towns.Select(t => t.Name + " (" + (WorldLedger.TownRecord(t.ID)?.prosperity ?? -1f).ToString("0") + ")")))
+            + (c.parent != null ? " of " + c.parent.Name : "") + ", " + c.age + (c.byColony ? ", taken by the colony" : "")
             + (c.exile != null ? ", stood by " + c.stoodBy + ", glad " + c.glad + (c.record?.grudge == true ? ", a grudge" : "") : "") + (c.debate ? ", a debate" : "");
     }
 }
