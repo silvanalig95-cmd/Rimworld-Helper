@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    Stage 3's content pass (7 November 2026): more wordings of the letters of many colonies, the numbered fellows of
+    keys read through TextVariants.Vary (Text/TextVariants.cs: CC_X, CC_X_2 ... CC_X_6, one picked at random among those
+    that exist), each with only the placeholders its key is given. The head's letter from a town the colony was, by the
+    town's means (Colonies/TownsAfter.cs); a former colonist asking to come home (FoundingLetters.cs); the town's hard
+    times, its people giving it up, a former colonist's death, a cool new head and the fight on its map
+    (TownLifeLetters.cs, TownLife.cs, TownRaid.cs); a colony founded, newcomers walking in, a colony handed over, taken
+    back and two councils become one (Foundings.cs, HandOvers.cs, TownTakeBack.cs, Merges.cs). History lines keep one
+    wording, so they read the same each time.
+  -->
+
+  <!-- ================= The head's letter, by the town's means ================= -->
+  <CC_TownAfter_LetterIntro_Tribal_2>{TOWN}'s messenger recited what {HEAD}, {TITLE} of the hearth there, had given them to say:</CC_TownAfter_LetterIntro_Tribal_2>
+  <CC_TownAfter_LetterIntro_Tribal_3>A messenger came in from {TOWN} with words learned by heart from {HEAD}, {TITLE} of the hearth:</CC_TownAfter_LetterIntro_Tribal_3>
+  <CC_TownAfter_LetterIntro_Medieval_2>A letter came from {TOWN} by their messenger, in the hand of {HEAD}, {TITLE} of the town:</CC_TownAfter_LetterIntro_Medieval_2>
+  <CC_TownAfter_LetterIntro_Medieval_3>{HEAD}, {TITLE} of {TOWN}, sent a letter by their messenger, folded and sealed in the old way:</CC_TownAfter_LetterIntro_Medieval_3>
+  <CC_TownAfter_LetterIntro_Industrial_2>A courier from {TOWN} handed over a letter from {HEAD}, {TITLE} of the township, typed and signed:</CC_TownAfter_LetterIntro_Industrial_2>
+  <CC_TownAfter_LetterIntro_Industrial_3>{HEAD}, {TITLE} of the township at {TOWN}, sent a letter by courier:</CC_TownAfter_LetterIntro_Industrial_3>
+  <CC_TownAfter_LetterIntro_Spacer_2>Comms logged a message from {TOWN}, signed by {HEAD}, {TITLE} of the colony there:</CC_TownAfter_LetterIntro_Spacer_2>
+  <CC_TownAfter_LetterIntro_Spacer_3>{HEAD}, {TITLE} at {TOWN}, sent a message over comms:</CC_TownAfter_LetterIntro_Spacer_3>
+  <CC_TownAfter_LetterIntro_Word_2>News reached the colony from {TOWN}, with a few words from {HEAD}, {TITLE} there:</CC_TownAfter_LetterIntro_Word_2>
+  <CC_TownAfter_LetterIntro_Word_3>From {TOWN}, by way of travelers on the road, came word from {HEAD}, {TITLE} there:</CC_TownAfter_LetterIntro_Word_3>
+
+  <!-- ================= Asking to come home ================= -->
+  <CC_TownAfter_HomeText_2>{PAWN_nameDef} of {TOWN}, once one of the colony's own, has sent word asking to come home to the colony.</CC_TownAfter_HomeText_2>
+  <CC_TownAfter_HomeText_3>Word has come from {TOWN}: {PAWN_nameDef}, who was one of the colony's own, wants to come home.</CC_TownAfter_HomeText_3>
+
+  <!-- ================= The town's life ================= -->
+  <CC_TownLife_AskBackText_2>{HEAD} has sent word from {TOWN} by {MEANS}: the town would come back to the colony, if the colony will have it. {PEOPLE} have had a hard time on their own, and would rather be {COLONY} again.</CC_TownLife_AskBackText_2>
+  <CC_TownLife_AskBackText_3>By {MEANS} from {TOWN}: times are hard there, and {HEAD} asks, for {PEOPLE}, whether the colony would take {TOWN} back as {COLONY} once more.</CC_TownLife_AskBackText_3>
+  <CC_TownLife_GateText_2>{TOWN} is given up: {PEOPLE} could not hold on there, and the town that was {COLONY} is a ruin now.</CC_TownLife_GateText_2>
+  <CC_TownLife_GateText_3>{PEOPLE} have left {TOWN}, and the place that was {COLONY} stands empty, a ruin on the map.</CC_TownLife_GateText_3>
+  <CC_TownLife_HardshipText_2>{TOWN} sends word by {MEANS}: {PAWN} has died {WHAT}. {PAWN} was one of the colony's own, and lived on at the town {COLONY} was.\n\n{TOWN} mourns them.</CC_TownLife_HardshipText_2>
+  <CC_TownLife_HardshipText_3>By {MEANS}, sad news from {TOWN}, the town {COLONY} was: {PAWN}, the colony's own once, has died {WHAT}.\n\n{TOWN} mourns them.</CC_TownLife_HardshipText_3>
+  <CC_TownLife_CoolHead_2>{TOWN} has a new {TITLE}, {HEAD}, who thinks little of the colony. While {HEAD} leads, the town will be cooler to it.</CC_TownLife_CoolHead_2>
+  <CC_TownLife_CoolHead_3>{HEAD} is {TITLE} of {TOWN} now, and no friend of the colony's. The town will be cooler to the colony while they lead it.</CC_TownLife_CoolHead_3>
+  <CC_TownLife_FightText_2>{NAMES} have reached {TOWN} for the colony. {ENEMY} are coming in at the far side, and {PEOPLE} are holding their walls.\n\nIt is their town now: the colony's fighters fight beside its people, not over them. Every raider down or gone, and {TOWN} stands.</CC_TownLife_FightText_2>
+  <CC_TownLife_FightText_3>The colony's fighters, {NAMES}, are at {TOWN}, with {PEOPLE} on the walls beside them and {ENEMY} coming in from the far side.\n\nThe town is its people's, and the colony's fighters are there to help, not to command. Every raider down or gone, and {TOWN} stands.</CC_TownLife_FightText_3>
+
+  <!-- ================= Foundings, hand-overs, take-backs and merges ================= -->
+  <CC_Found_LetterText_2>{NAMES} from {MOTHER} have founded {PLACE}: {PARTY}.</CC_Found_LetterText_2>
+  <CC_Found_LetterText_3>{PLACE} is a colony now, founded by {NAMES} from {MOTHER}: {PARTY}.</CC_Found_LetterText_3>
+  <CC_Found_NewcomersText_2>Answering {CALL}, {NAMES} have come to {PLACE}. They walk in from the edge of the land with what they brought.</CC_Found_NewcomersText_2>
+  <CC_Found_NewcomersText_3>{NAMES} are here, answering {CALL}, and walk in to {PLACE} from the edge of the land with what they brought.</CC_Found_NewcomersText_3>
+  <CC_Found_NewcomersFoundText_2>Answering {CALL} from {MOTHER}, {NAMES} have come to found {PLACE}. They walk in from the edge of the land with what they brought.</CC_Found_NewcomersFoundText_2>
+  <CC_Found_NewcomersFoundText_3>{NAMES} answered {CALL} from {MOTHER}, and {PLACE} is theirs to found. They walk in from the edge of the land with what they brought.</CC_Found_NewcomersFoundText_3>
+  <CC_HandOver_LetterText_2>{HOME} stands on its own now, the town of the {PEOPLE}, with {HEAD} as its {TITLE}. Those who stayed: {NAMES}.</CC_HandOver_LetterText_2>
+  <CC_HandOver_LetterText_3>The colony has handed {HOME} over: it is the town of the {PEOPLE} now, the colony's former people, led by {HEAD} as {TITLE}. Those who stayed: {NAMES}.</CC_HandOver_LetterText_3>
+  <CC_TownAfter_BackText_2>By the word of {HEAD} and {PEOPLE}, {TOWN} is the colony's home again: {FORM}.</CC_TownAfter_BackText_2>
+  <CC_TownAfter_BackText_3>{TOWN} has come back to the colony: {FORM}, as {HEAD} and {PEOPLE} agreed.</CC_TownAfter_BackText_3>
+  <CC_Many_MergedText_2>{NAMES}, the people of {OLD}, have lived a day at {PLACE}, and the two councils are one now.</CC_Many_MergedText_2>
+  <CC_Many_MergedText_3>A day after the people of {OLD} ({NAMES}) came to live at {PLACE}, its council and theirs are one.</CC_Many_MergedText_3>
+
+</LanguageData>

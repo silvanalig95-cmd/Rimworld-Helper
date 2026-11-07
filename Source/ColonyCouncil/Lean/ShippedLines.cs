@@ -69,7 +69,42 @@ namespace ColonyCouncil
             ["The penitents from {FACTION} went on at dawn, barefoot, without a word. Their camp {PLACE} is swept so clean it's hard to tell anyone was there."] = "morning",
             ["[left:seeds] The tree-singers left at dawn, singing, and stopped at the edge of the woods to bow to the trees. They left a ring of planted seeds where their fire had been."] = "morning",
             ["The minstrels from {FACTION} went on toward the next town at noon, still playing, with the drum keeping time for the walkers."] = "day",
-            ["The mourners from {FACTION} went on at first light, one of them carrying their dead and the others walking close around."] = "morning"
+            ["The mourners from {FACTION} went on at first light, one of them carrying their dead and the others walking close around."] = "morning",
+            // Stage 3's content pass (7 November 2026). The hand-over's ceremony (Rimfolk_HandOver.xml) is said by its head
+            // while they are at it, else by anyone there, going or staying (PlayOutLord: the organizer is [speaker]): the
+            // lines in the voice of those who stay only by the head.
+            ["Those who go are welcome back here whenever they come."] = "speaker",
+            ["We will keep the fields and the walls as you left them."] = "speaker",
+            ["Nobody here forgets who built this place."] = "speaker",
+            ["Send word when you have settled, and we will send ours."] = "speaker",
+            ["[tribal] We keep the fire, and you carry its embers with you."] = "speaker",
+            ["[medieval] We hold the keys now, and the gate stays open to you."] = "speaker",
+            ["[industrial] We will run the township as carefully as you ran the colony."] = "speaker",
+            ["[spacer] The charter is registered and the codes are ours from today."] = "speaker",
+            ["[spacer] The systems stay up, and your channel stays open."] = "speaker",
+            ["You are our people still, wherever you live."] = "speaker",
+            ["It is ours to run now, and we will run it."] = "speaker",
+            ["It will be quieter here without you."] = "speaker",
+            // The welcome's meal (Rimfolk_ManyColonies.xml) is eaten by both, those who came and those already there: the
+            // lines in the host's voice only by its host ([speaker]).
+            ["Tell us how you did things back home."] = "speaker",
+            ["You'll get used to the way the wind comes in here."] = "speaker",
+            ["I'm glad you came to us."] = "speaker",
+            ["Mind, we all take a turn at the dishes here."] = "speaker",
+            ["I hope they don't miss the old place too much."] = "speaker",
+            // A raid on a town the colony was (Rimfolk_WS_TownRaid.xml): a fight on its map can take more than one of the
+            // colony's former people ([diedMany]), and these four name one; the ending's other [died] lines say one or many,
+            // and its note names them under a line with no word for them (SituationWorker_TownRaid.EndingNote).
+            ["[died] The raiders of {ENEMY} are gone from {PLACE}, but not without a price: {DEAD}, one of the colony's own once, fell beside the colony's fighters.\\n\\n{FACTION} will remember who came when they called."] = "!diedMany",
+            ["[died] The raiders of {ENEMY} broke into {PLACE} while the colony's fighters were still in the fight, and took what they could. {DEAD}, one of the colony's own once, died in the fight.\\n\\nThe town still stands, poorer than it was."] = "!diedMany",
+            ["[died,!others] {ENEMY} were beaten back at the gate of {PLACE}. {DEAD}, one of the colony's own once, was killed holding it.\\n\\nThe town has lost goods and fortune."] = "!diedMany",
+            ["[died,others] {ENEMY} were beaten back at the gate of {PLACE}. {DEAD}, one of the colony's own once, was killed holding it, and so was {ITEM}.\\n\\nThe town has lost goods and fortune."] = "!diedMany",
+            // The head's letter from a town the colony was (Rimfolk_TownAfter.xml): a tribal town's word is carried by heart
+            // (its intro says so), so the lines that speak of writing are another age's.
+            ["Write when you can. Letters from {COLONY} are read out at supper, every word of them."] = "!tribal",
+            ["[flourishing] I never thought I would write this, but {TOWN} is doing better than {OLDCOLONY} ever did. You would hardly know the place."] = "!tribal",
+            ["[asks] {ASKER} asks after {KIN} every time a letter goes out, so: how is {KIN}?"] = "!tribal",
+            ["[asks,former] {ASKER} made me promise to write that {KIN} is missed here, more than {KIN} knows."] = "!tribal"
         };
 
         /// <summary>Shipped lines true in no case they are drawn for, never said again.</summary>
@@ -186,14 +221,16 @@ namespace ColonyCouncil
         public static LineTags.Parsed ConditionOf(string line)
         {
             if (line == null) return null;
-            if (Retired.Contains(line)) return Never;
+            // A line of a letter keeps its paragraphs as the file writes them ("\n"), whichever way it was read.
+            string written = line.IndexOf('\n') >= 0 ? line.Replace("\n", "\\n") : line;
+            if (Retired.Contains(line) || Retired.Contains(written)) return Never;
             if (parsed == null)
             {
                 var d = new Dictionary<string, LineTags.Parsed>(StringComparer.Ordinal);
                 foreach (var kv in AlsoWhen) d[kv.Key] = LineTags.Parse("[" + kv.Value + "] x");
                 parsed = d;
             }
-            return parsed.TryGetValue(line, out var p) ? p : null;
+            return parsed.TryGetValue(line, out var p) || parsed.TryGetValue(written, out p) ? p : null;
         }
 
         /// <summary>The condition of a retired line: never holds.</summary>

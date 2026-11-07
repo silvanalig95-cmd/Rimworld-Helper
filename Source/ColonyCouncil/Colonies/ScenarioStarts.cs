@@ -728,6 +728,7 @@ namespace ColonyCouncil
             foreach (var t in kit.anywhere) Scatter(t, map, at, false);
             FloodFillerFog.FloodUnfog(at, map);
             TellArrival(map, came, plan, price, kit, how, founding, at);
+            Foundings.FirstWords(came, founding, how == StartArrival.Pods ? "pods" : how == StartArrival.Gravship ? "gravship" : "walked", true);
             var people = came.Concat(kit.things.OfType<Pawn>().Where(p => p.RaceProps.Humanlike)).Distinct().ToList();
             plan.scenarioPeople = people;
             plan.scenarioArrived = Now;

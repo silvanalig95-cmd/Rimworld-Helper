@@ -303,7 +303,7 @@ namespace ColonyCouncil
                 Count(s, rec, map);
                 Current.Game.CurrentMap = map;
                 string townName = TownsAfter.TownName(rec);
-                string text = "CC_TownLife_FightText".Translate(townName.Named("TOWN"), (rec.people?.Name ?? "?").Named("PEOPLE"), s.ctx.enemy.Name.Named("ENEMY"),
+                string text = TextVariants.Vary("CC_TownLife_FightText").Translate(townName.Named("TOWN"), (rec.people?.Name ?? "?").Named("PEOPLE"), s.ctx.enemy.Name.Named("ENEMY"),
                     Foundings.Names(colony).Named("NAMES"), (rec.colonyName ?? townName).Named("COLONY")).Resolve();
                 var formers = rec.formers.Where(p => p != null && p.Spawned && p.Map == map).ToList();
                 if (formers.Count > 0) text += "\n\n" + "CC_TownLife_FightFormers".Translate(Foundings.Names(formers).Named("NAMES"), townName.Named("TOWN")).Resolve();
@@ -455,6 +455,17 @@ namespace ColonyCouncil
             if (onMap) Leave(s, rec);
             WorldLedger.FormerChanged();
             return Key(e, onMap);
+        }
+
+        /// <summary>
+        /// The colony's former people who died there, named when the ending's line has no word for them (a town that held
+        /// after the colony's fighters left): one or many, the ending's letter names everyone who died (s.ctx.dead).
+        /// </summary>
+        public override string EndingNote(WorldSituation s, SituationEnding ending, string text)
+        {
+            string dead = s?.ctx?.dead;
+            if (s == null || !s.Has("died") || dead.NullOrEmpty() || text != null && text.Contains(dead)) return null;
+            return "CC_TownLife_RaidDeadNote".Translate(dead.Named("DEAD")).Resolve();
         }
 
         /// <summary>The ending told: defended, sacked with the colony's fighters there (fell) or without, hurt, held.</summary>

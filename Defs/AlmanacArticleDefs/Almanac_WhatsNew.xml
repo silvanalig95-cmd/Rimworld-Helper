@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.133.0</version>
+        <date>7 November 2026</date>
+        <title>Words for many colonies</title>
+        <points>
+          <li>A town your colony was writes in many more ways: its head's letters, its answers when you ask for it back, its talk with your people, and its raid news, calls and endings, each in every age's words.</li>
+          <li>Founders have far more to say: the first night, setting out, the hand-over's meeting, ceremony and farewells, the welcome when two councils become one, and their talk about the colony they came from.</li>
+          <li>Newcomers now write a first journal entry of their own, grow homesick in their own voice, and are talked about by the old hands, with lines for a scenario's start such as arriving by pods.</li>
+          <li>Visitors talk about your colony's news: a new colony founded, one handed over or taken back. A founding letter remembers Empire titles carried to the new place.</li>
+          <li>A former colonist killed in a raid on their town is named in its ending even when the town held, and the town's letters no longer assume everyone there stayed at the hand-over.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.132.0</version>
         <date>7 November 2026</date>
         <title>Hurts from the colony's life, part two</title>

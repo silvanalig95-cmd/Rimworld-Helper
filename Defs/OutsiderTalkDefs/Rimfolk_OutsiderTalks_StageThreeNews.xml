@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Stage 3's content pass (7 November 2026): the colony's own news of many colonies as the world hears it, lately
+       (Source/ColonyCouncil/Colonies/TownAfterFacts.cs, ColonyNews): colony:founded when the home they are at was founded
+       from another of the colony's homes ({MOTHERCOLONY} its mother); colony:handedover when the colony handed a home
+       over to its own people and the outsider is of another people ({HANDEDOVER} the colony it was, {HANDEDPEOPLE} the
+       people it became); colony:tookback when a town the colony was came back to it by its people's word ({TOOKBACK}).
+       The colonist may be a founder, a newcomer or one who stayed behind, so [us] says only what is true of any of
+       them. Each people in its own voice, the Empire's nobles with their honor and titles. The format is described at
+       the top of Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3N_Founded</defName>
+    <topic>ourhomes</topic>
+    <uses>chat,know</uses>
+    <when>colony:founded</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] I hear this place is new, and that {MOTHERCOLONY} founded it.</li>
+      <li>[us] It is, and there's a lot still to do.</li>
+      <li>[them,their:empire] Then may the holding prove worthy of the honor of its founding.</li>
+      <li>[them,their:tribal] Then the spirits of this land are still learning your names.</li>
+      <li>[them,their:medieval] Then you'll want a good wall up before the winter, aye.</li>
+      <li>[them,their:hightech] Then you'll be building for a good while yet.</li>
+      <li>[them] Then good luck to you, the first year is the hardest.</li>
+      <li>[us] So everyone tells us.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3N_FoundedMet</defName>
+    <topic>ourhomes</topic>
+    <uses>chat</uses>
+    <when>colony:founded,met</when>
+    <lines>
+      <li>[them] So this is the colony's new place.</li>
+      <li>[us] It is, still more plans than walls.</li>
+      <li>[them,their:lowtech] It will grow, as a young fire does.</li>
+      <li>[them] It's coming along, I can see that.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3N_FoundedEmpire</defName>
+    <topic>ourhomes</topic>
+    <uses>chat</uses>
+    <when>colony:founded,their:empire</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] The court takes note of every new holding, and it will have noted yours.</li>
+      <li>[us] I hope it noted something good.</li>
+      <li>[them,us:noble] A noble of the Empire lives here, so it will be watching closely.</li>
+      <li>[them] It noted that you hold the land, and holding is the beginning of honor.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3N_HandedOver</defName>
+    <topic>ourhomes</topic>
+    <uses>chat</uses>
+    <when>colony:handedover</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] They say the colony gave {HANDEDOVER} to its own people.</li>
+      <li>[us] It did, it belongs to the {HANDEDPEOPLE} now.</li>
+      <li>[them,their:empire] A holding given away with no title asked for it, how unlike the court.</li>
+      <li>[them,their:tribal] A fire given away is still warm, the elders say.</li>
+      <li>[them,their:medieval] A free town, then, with its own charter, aye.</li>
+      <li>[them] Not many would give a whole town away.</li>
+      <li>[us] It was theirs as much as ours.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3N_HandedOverTrade</defName>
+    <topic>ourhomes</topic>
+    <uses>chat</uses>
+    <when>colony:handedover,role:trader</when>
+    <lines>
+      <li>[them] I'll be calling at {HANDEDOVER} on my way, now it trades on its own.</li>
+      <li>[us] Be fair with them, they're good people.</li>
+      <li>[them] I'm fair with everyone, it's good for business.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3N_TookBack</defName>
+    <topic>ourhomes</topic>
+    <uses>chat</uses>
+    <when>colony:tookback</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] I hear {TOOKBACK} is the colony's again.</li>
+      <li>[us] It is, by its own people's word.</li>
+      <li>[them,their:empire] A holding returned to those who first held it, the court would approve.</li>
+      <li>[them,their:medieval] Then the old charter's back in the hands that wrote it, aye.</li>
+      <li>[them,their:tribal] Two fires made one again, that is good to hear.</li>
+      <li>[them] Good, a place should be with the people who built it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

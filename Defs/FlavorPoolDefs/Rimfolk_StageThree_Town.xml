@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Stage 3's content pass (7 November 2026): more words for the town a colony was (Source/ColonyCouncil/Colonies/
+    TownsAfter.cs, TownTakeBack.cs), joined to the pools of Rimfolk_TownAfter.xml at startup. The same tags and
+    placeholders as there; every line said only on facts its draw sets.
+    - The head's letter (Rimfolk_Pool_TownLetter, picked in the plain voice): former or new (the head was one of the
+      colony's own, or not), years (a year or more since the hand-over; !years before), asks ({ASKER} asks after {KIN}),
+      the town's fortune (struggling poor steady thriving flourishing), its age at the hand-over (tribal medieval industrial
+      spacer: said only while the colony is of that age too), and the facts of an event about their people: what they
+      remember of the colony (deed:KIND, deed:good, deed:bad), the ties (tie:pact:trade, tie:pact:defence), their town
+      lately (town:lately:colony:formerDied, town:lately:colony:homecoming), a new town of theirs ({NEWTOWN} with
+      region:newtown:theirs), a friend of theirs in the colony ({FRIEND} with their:friend), and the colony's own news
+      lately (colony:founded with {MOTHERCOLONY}, colony:handedover with {HANDEDOVER}, colony:tookback with {TOOKBACK}).
+      A tribal town's word is carried by heart, so a line that speaks of writing asks !tribal.
+    - Their answer when the colony asks for the town back (Rimfolk_Pool_NeighbourWrites, takeback): warm, cordial or cool
+      when they agree, refusal when they won't; theirLowtech or theirHightech by their ways; letter or call by how it came.
+    - The homecoming (Rimfolk_Pool_TownHomecoming): welcome, said by the colonist; back, said by the one come home. The
+      colony's home they come to may not be the place they left, so nothing here speaks of their old room or bed.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_TownLetter_StageThree</defName>
+    <pool>Rimfolk_Pool_TownLetter</pool>
+    <lines>
+      <plain>
+        <!-- The colony's days remembered, by a head who was one of the colony's own -->
+        <li>[former] I still sit in the same place at the long table, and nobody here has asked me to move.</li>
+        <li>[former] Some evenings I walk through the old rooms and remember who slept where in {OLDCOLONY}'s days.</li>
+        <li>[former] The newer people here ask what {OLDCOLONY} was like, and I tell them it was much the same, only louder.</li>
+        <li>[former] I think of the colony's meetings often, and of how long we used to argue over small things.</li>
+        <li>[former] I find I run {TOWN} much the way the council ran {OLDCOLONY}, and I cannot tell whether that is good sense or habit.</li>
+        <li>[former] Tell the council I still wait for a vote before I decide anything, and that it drives people here to distraction.</li>
+        <li>[former,years] It is {YEARSSINCE} since the hand-over, and I still use the names we had for things in {OLDCOLONY}.</li>
+        <li>[former,years] {YEARSSINCE} now. I counted the days after the hand-over for a while, and then one day I found I had stopped.</li>
+        <li>[former,years] {YEARSSINCE} on, the newer faces at {TOWN} know {OLDCOLONY} only from what those of us who stayed tell them.</li>
+        <li>[former,!years] It is not a year since we handed {OLDCOLONY} over, and the place still feels as if it is waiting for the rest of you to come in.</li>
+        <li>[former,!years] We are still learning to run {TOWN} on our own. Every choice feels like one the council ought to be making.</li>
+        <li>[former,tribal] When the fire burns low at night, I still look round for the faces that went with you.</li>
+        <li>[former,tribal] The stories told at our fire have your names in them now, and the young hunters ask for those ones most.</li>
+        <li>[former,medieval] On market days I still look for the colony's people among the stalls.</li>
+        <li>[former,medieval] The old charter's seal sits on my table, and I use it more than I ever thought I would.</li>
+        <li>[former,industrial] I keep the colony's old ledgers in the office, and open them whenever I need to know how something was done.</li>
+        <li>[former,industrial] The township still works to the colony's old shifts, and nobody here has found a reason to change them.</li>
+        <li>[former,spacer] The administration's logs still carry {OLDCOLONY}'s designation at the head of every entry. I see no reason to change it.</li>
+        <li>[former,spacer] I review the colony's old records most evenings. There is a decision in there for nearly everything.</li>
+        <!-- A head of the town's own -->
+        <li>[new] I never knew {OLDCOLONY} as it was, but I work at its tables and sleep under its roofs, and I am grateful for both.</li>
+        <li>[new] I was not one of {OLDCOLONY}'s people, and I am told often enough what the colony would have done. I listen, mostly.</li>
+        <li>[new] I lead {TOWN} now, and I mean to keep the friendship {OLDCOLONY} left between us.</li>
+        <li>[new] Your people built well. We have kept it standing, and added to it a little where we had to.</li>
+        <li>[new] It is strange to lead a town built for someone else, but the walls fit us well enough.</li>
+        <li>[new] Forgive me if I use the wrong names for things. I learned them all after the colony left.</li>
+        <li>[new,years] I have led {TOWN} a while now, and still the first thing anyone asks a traveler is whether they came by way of {COLONY}.</li>
+        <!-- Someone of the town's former people asking after their own in the colony -->
+        <li>[asks,!tribal] {ASKER} thinks of {KIN} often and wanted it written down, so here it is.</li>
+        <li>[asks] {ASKER} wants {KIN} to know that the road between us runs both ways.</li>
+        <li>[asks] {ASKER} asked me to put in a word for {KIN}: come and see us when you can.</li>
+        <li>[asks,tribal] {ASKER} sends {KIN} a greeting in the old words, the ones the band used, and hopes {KIN} still knows them.</li>
+        <li>[asks,former] {ASKER} and I both think of {KIN} when we sit down to eat. Tell {KIN} that, from the two of us.</li>
+        <li>[asks,!tribal] {ASKER} will want an answer for {KIN}, so send one back with yours if you can.</li>
+        <!-- The town's own news, by its fortune -->
+        <li>[struggling,former] I have never been so careful with the stores, not even in {OLDCOLONY}'s leanest days.</li>
+        <li>[struggling] There is less on every plate than there was, and nobody here pretends otherwise.</li>
+        <li>[struggling] I would not say this to anyone else, but {TOWN} is in a bad way.</li>
+        <li>[struggling,former] I keep wondering what the colony's council would do with {TOWN} as it is now, and I do not like my answers.</li>
+        <li>[struggling] We have let the outer fields go to grass. There are not the hands to work them.</li>
+        <li>[poor] It has been a thin season, and the stores are lower than I would like going into the next.</li>
+        <li>[poor,former] We are managing, if only just, the way {OLDCOLONY} managed in its first days.</li>
+        <li>[poor] Nobody here is starving, but nobody is putting on weight either.</li>
+        <li>[steady] Nothing much to tell. The roofs hold, the stores are full enough, and the arguments are the usual ones.</li>
+        <li>[steady] A quiet season at {TOWN}, which is the best kind.</li>
+        <li>[steady,former] Life here is dull beside the colony's, and I mean that as good news.</li>
+        <li>[steady] The town is much as you left it, with a little more wear on the doorframes.</li>
+        <li>[thriving] We have more mouths than we had and enough to feed them, which is the right way round.</li>
+        <li>[thriving] Traders who used to pass {TOWN} by stop here now, and tell us we are a busy place.</li>
+        <li>[thriving,former] {OLDCOLONY} would hardly know itself, with all the coming and going.</li>
+        <li>[flourishing] {TOWN} has never done so well, and I wanted the colony to hear it from us first.</li>
+        <li>[flourishing,new] I am told {OLDCOLONY} was a good place. I hope you will think {TOWN} a better one, if you come to see it.</li>
+        <li>[flourishing] We are building again, and for once it is because we need the room.</li>
+        <!-- What their people remember of the colony, the ties between them, their town lately -->
+        <li>[deed:townDefended] People here still speak of the day the colony's fighters stood on our walls.</li>
+        <li>[deed:townDefended,former] When the raiders came, the colony came too. I have not forgotten it, and I will not.</li>
+        <li>[deed:refused] When we called on the colony, the answer was no. I will not pretend that has been forgotten here.</li>
+        <li>[deed:refused,former] I know the colony had its reasons for turning us down, but some here took it hard.</li>
+        <li>[deed:hardship] We remember who stood by us when the year was hard, and we say so at supper.</li>
+        <li>[deed:gift] The colony's gift is still talked about. People here do not forget a kindness.</li>
+        <li>[deed:traded] Your traders have dealt fairly with us, and that is noticed here.</li>
+        <li>[deed:mission] The colony kept its word to us, and people here count that for a great deal.</li>
+        <li>[deed:bad] Some in {TOWN} speak less warmly of the colony than they used to. I will not pretend otherwise.</li>
+        <li>[their:friend] {FRIEND} is well thought of here. Give {FRIEND} our greetings.</li>
+        <li>[tie:pact:trade] The trade pact holds, and our traders know the road to {COLONY} well by now.</li>
+        <li>[tie:pact:defence] The pact stands. If the colony calls, {TOWN} will come.</li>
+        <li>[town:lately:colony:formerDied] We lost one of the colony's own here not long ago. I thought you should hear it from me as well.</li>
+        <li>[town:lately:colony:homecoming] One of ours went home to the colony lately, and {TOWN} feels the gap.</li>
+        <li>[town:lately:colony:homecoming,former] One of us went home to the colony not long ago, and I find I envy them a little.</li>
+        <li>[region:newtown:theirs] Some of our people have gone to settle {NEWTOWN}, and {TOWN} is quieter for it.</li>
+        <!-- The colony's own news lately (colony:founded, colony:handedover, colony:tookback: Colonies/TownAfterFacts.cs) -->
+        <li>[colony:founded] We hear the colony has a new home, founded from {MOTHERCOLONY}. {TOWN} wishes it well.</li>
+        <li>[colony:founded,former] A new home founded from {MOTHERCOLONY}, I hear. May its first season be an easy one.</li>
+        <li>[colony:handedover] We hear {HANDEDOVER} is a town of its own now, as {TOWN} is. Its people will find their feet, as we did.</li>
+        <li>[colony:handedover,former] So the colony has handed {HANDEDOVER} over too. I hope its people do as well by it as we have tried to do by {TOWN}.</li>
+        <li>[colony:tookback] We hear {TOOKBACK} has gone back to the colony. There was talk of nothing else here for days.</li>
+        <li>[colony:tookback,former] {TOOKBACK} is the colony's again, I hear. I will not pretend it did not set us all thinking.</li>
+        <!-- Any head, any time -->
+        <li>Remember us to anyone at {COLONY} who still asks after {TOWN}.</li>
+        <li>If the colony is ever short of something we have, ask, and we will see what can be spared.</li>
+        <li>We hear news of {COLONY} from every traveler who passes, and we are always glad of it.</li>
+        <li>[spacer] Reply on this channel when it suits you. We keep it open.</li>
+        <li>[!tribal] There is not much more to say, so I will close here and send this on its way.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_NeighbourWrites_TakeBackMore</defName>
+    <pool>Rimfolk_Pool_NeighbourWrites</pool>
+    <lines>
+      <plain>
+        <li>[takeback,warm] Your letter was read out at supper, and nobody argued. Come home.</li>
+        <li>[takeback,warm] We kept the rooms as you left them, more or less. They are yours again.</li>
+        <li>[takeback,warm,theirLowtech] The elders sat with it a long while, and the answer is yes. Come back to your fire.</li>
+        <li>[takeback,warm,theirHightech] The vote was not close. Send word when your people are on their way.</li>
+        <li>[takeback,warm,letter] Yes, and gladly. I have kept this short so that it reaches you sooner.</li>
+        <li>[takeback,cordial] It is right that it goes back to the people who built it. We agree.</li>
+        <li>[takeback,cordial,theirLowtech] Our fire was lit from yours. It can burn under your roof again.</li>
+        <li>[takeback,cordial,call] We have talked it over, and the answer is yes. The place is ready when you are.</li>
+        <li>[takeback,cool] We agree, though not everyone here is happy about it.</li>
+        <li>[takeback,cool,theirLowtech] The elders say yes. Some of the young ones say otherwise, but the elders speak for the hearth.</li>
+        <li>[takeback,cool,call] Fine. We cannot keep it going alone, and you know it.</li>
+        <li>[takeback,refusal] We are grateful for what the colony gave us, and that is exactly why we mean to keep it.</li>
+        <li>[takeback,refusal,theirLowtech] The hearth is ours now. Come and sit at it as guests whenever you like.</li>
+        <li>[takeback,refusal,theirHightech] It was put to a vote, and it was not close. {TOWN} stays as it is.</li>
+        <li>[takeback,refusal,letter] I am sorry to send your letter back with a no, but the answer is no.</li>
+        <li>[takeback,refusal,call] Not now, and I think not ever. We have made it our own.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_TownHomecoming_StageThree</defName>
+    <pool>Rimfolk_Pool_TownHomecoming</pool>
+    <lines>
+      <plain>
+        <li>[welcome] Put your pack down, you're home now.</li>
+        <li>[welcome] We talked about you every time someone came up the road.</li>
+        <li>[welcome] Let me look at you properly.</li>
+        <li>[welcome] There's a lot to tell you, but eat something first.</li>
+        <li>[welcome] You look tired, and you look well, both at once.</li>
+        <li>[welcome,rain] Get in out of the rain, and then tell me everything.</li>
+        <li>[welcome,snow] You walked all that way in the snow, come and get warm.</li>
+        <li>[welcome,night] You came in late, but you came.</li>
+        <li>[welcome,old] I hoped I'd live to see you come home.</li>
+        <li>[welcome,child] Are you staying with us now?</li>
+        <li>[welcome,lowtech] Come and sit down, there's room on the bench.</li>
+        <li>[back] I'm home, wherever the colony is.</li>
+        <li>[back] The town was good to me, but this is where I belong.</li>
+        <li>[back] I always meant to come back.</li>
+        <li>[back] Tell me everything I missed.</li>
+        <li>[back] I'm not going anywhere for a while.</li>
+        <li>[back] I've thought about this moment the whole way here.</li>
+        <li>[back,rain] I'm soaked through, and I don't care at all.</li>
+        <li>[back,winter] The cold kept me walking faster.</li>
+        <li>[back,old] I wasn't sure these legs would get me here.</li>
+        <li>[back,lowtech] The path was longer than I remembered, or I'm slower.</li>
+        <li>[back,highmood] I can't stop smiling, so don't ask me to.</li>
+      </plain>
+      <warm>
+        <li>[welcome] I missed you more than I let anyone see.</li>
+        <li>[back] Seeing you is worth every step of the road.</li>
+      </warm>
+      <blunt>
+        <li>[welcome] About time.</li>
+        <li>[back] I'm back, so where do I sleep?</li>
+      </blunt>
+      <cheerful>
+        <li>[welcome] You're home, you're really home.</li>
+        <li>[back] Home at last, and starving.</li>
+      </cheerful>
+      <gloomy>
+        <li>[welcome] I was afraid you'd never come.</li>
+        <li>[back] I hope it isn't too late to come home.</li>
+      </gloomy>
+      <cold>
+        <li>[welcome] You're back, then.</li>
+        <li>[back] I've returned, and I mean to stay.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

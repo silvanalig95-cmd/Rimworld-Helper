@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Stage 3's content pass (7 November 2026): more talk with the people of a town the colony was (the facts in
+       Source/ColonyCouncil/Colonies/TownAfterFacts.cs). One of the colony's own who stayed when it was handed over
+       (them:former), anyone of that town (town:former); {OLDCOLONY} the colony it was, {TOWN} the town it is. At the gate,
+       in trade (role:trader), on a visit (role:visitor, role:guest, role:lodger), and the former colonists remembering their
+       old home in their own people's ways. The colonist may have come to the colony after the hand-over, and the two may
+       or may not have lived together, so nothing here says they did or didn't; "the colony" in a former colonist's mouth
+       is the colony as a whole. Their town lately (town:lately:colony:handedOver within thirty days of the hand-over,
+       :homecoming when one of its people came home, :formerDied when one of the colony's own died there) and what their
+       people remember (deed:townDefended, deed:refused) are read as they stand. The format is described at the top of
+       Rimfolk_OutsiderTalks_Greetings.xml. -->
+
+  <!-- ================= At the gate ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3_FormerGreetMet</defName>
+    <topic>greeting</topic>
+    <uses>chat,know</uses>
+    <when>them:former,met</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] {OUTSIDER}, it's good to see a face from {TOWN}.</li>
+      <li>[them,kin:you] And yours, more than you know.</li>
+      <li>[them] It's good to be at the colony's gate again, even as a visitor.</li>
+      <li>[us] You'll never be only a visitor here.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3_FormerGreetFirst</defName>
+    <topic>greeting</topic>
+    <uses>chat,know</uses>
+    <when>them:former,first</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] I'm {OUTSIDER}, of {TOWN} now, and one of the colony's own once, as you may know.</li>
+      <li>[us] Then you're welcome here twice over.</li>
+      <li>[them,their:tribal] I sat at the colony's fires before I sat at {TOWN}'s.</li>
+      <li>[them] I was the colony's before I was {TOWN}'s.</li>
+      <li>[us] Then come in, and tell me what you remember of it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3_TownFolkGreet</defName>
+    <topic>greeting</topic>
+    <uses>chat,know</uses>
+    <when>town:former,!them:former,first</when>
+    <lines>
+      <li>[them] I'm from {TOWN}, the town that used to be your colony.</li>
+      <li>[us] {OLDCOLONY}, as it was.</li>
+      <li>[them] The old ones there still call it that when they think nobody's listening.</li>
+      <li>[us] Then you're among friends here.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= In trade ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3_FormerTrade</defName>
+    <topic>trade</topic>
+    <uses>chat</uses>
+    <when>role:trader,town:former</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] {TOWN} sends its best, at a fair price for the colony it was.</li>
+      <li>[us] Fair is all we ask.</li>
+      <li>[them,them:former] I'd not cheat the colony, I was one of it.</li>
+      <li>[them] Good, or the old ones at home would have words with me.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3_FormerTradeHard</defName>
+    <topic>trade</topic>
+    <uses>chat</uses>
+    <when>role:trader,town:former,town:struggling|town:poor</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] Prices are higher than I'd like, but {TOWN} needs every coin this season.</li>
+      <li>[us] We understand, and we won't haggle hard.</li>
+      <li>[them] That's kindly meant, and they'll hear of it at home.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3_FormerTradeGood</defName>
+    <topic>trade</topic>
+    <uses>chat</uses>
+    <when>role:trader,town:former,town:thriving|town:flourishing</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] We've more to sell than we can carry these days.</li>
+      <li>[us] {TOWN} is doing well, then.</li>
+      <li>[them] Better than anyone thought on the day it was handed over.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= On a visit ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3_FormerVisit</defName>
+    <topic>former</topic>
+    <uses>chat,home</uses>
+    <when>them:former,role:visitor|role:guest|role:lodger</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] What brings you all the way from {TOWN}?</li>
+      <li>[them,kin:you] You do, if I'm honest.</li>
+      <li>[them,!kin:you] I wanted to see how the colony was getting on without me.</li>
+      <li>[us] And how is it?</li>
+      <li>[them] Well, which pleases me and stings a little.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The former colonists' own voices ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3_FormerMiss</defName>
+    <topic>former</topic>
+    <uses>chat</uses>
+    <when>them:former</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[them] Do you know what I miss most about the colony?</li>
+      <li>[us] Tell me.</li>
+      <li>[them,their:tribal] Being one band, all of us round one fire.</li>
+      <li>[them,their:medieval] The long evenings in the hall, with everyone talking at once.</li>
+      <li>[them,their:hightech] The way the whole place ran as if it had one mind.</li>
+      <li>[them] The noise at supper, every night, without fail.</li>
+      <li>[us] It's still noisy, if that helps.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3_FormerStayed</defName>
+    <topic>former</topic>
+    <uses>chat,know</uses>
+    <when>them:former</when>
+    <lines>
+      <li>[us] Do you ever wish you were back with the colony?</li>
+      <li>[them,kin:you] Some days, when I think of you.</li>
+      <li>[them,!kin:you] Some days, but {TOWN} needs every pair of hands it has.</li>
+      <li>[us] And the other days?</li>
+      <li>[them] The other days {TOWN} is home, and I'm glad to be there.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3_FormerRoom</defName>
+    <topic>former</topic>
+    <uses>home,chat</uses>
+    <when>them:former</when>
+    <lines>
+      <li>[us] Do you sleep in one of the rooms {OLDCOLONY} built?</li>
+      <li>[them,town:thriving|town:flourishing] I do, with new shutters, and a neighbor on every side now.</li>
+      <li>[them] I do, the same walls and the same draft under the door.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3_FormerAsksKin</defName>
+    <topic>former</topic>
+    <uses>chat</uses>
+    <when>them:former,kin,!kin:you</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] How is {KIN}, really, and not the polite answer?</li>
+      <li>[us] Well, and busy, and I'll say you asked.</li>
+      <li>[them] Tell {KIN} I'm well too, and that I think of them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3_FormerSpeaker</defName>
+    <topic>former</topic>
+    <uses>chat</uses>
+    <when>them:former,us:speaker</when>
+    <lines>
+      <li>[them] So you speak for the colony now.</li>
+      <li>[us] Somebody has to.</li>
+      <li>[them,role:head] I know the feeling, believe me.</li>
+      <li>[them] Then speak well of {TOWN} when you can.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3_FormerNewcomer</defName>
+    <topic>former</topic>
+    <uses>know</uses>
+    <when>them:former,us:newcomer</when>
+    <lines>
+      <li>[them] You're new to the colony, aren't you?</li>
+      <li>[us] I am, I've not been here long.</li>
+      <li>[them] Then make the most of them, they're good people.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3_FormerNoble</defName>
+    <topic>former</topic>
+    <uses>chat</uses>
+    <when>them:former,us:noble</when>
+    <lines>
+      <li>[them] They tell me you carry a title of the Empire's.</li>
+      <li>[us] I do, for whatever it's worth out here.</li>
+      <li>[them] At {TOWN} it's worth a story, at least.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3_FormerFire</defName>
+    <topic>former</topic>
+    <uses>chat,home</uses>
+    <when>them:former,their:tribal</when>
+    <lines>
+      <li>[them] There's a place by the fire at {TOWN} kept for the colony's own, and I sit in it.</li>
+      <li>[us] Nobody's taken it?</li>
+      <li>[them] Nobody would dare, the elders saw to that.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3_FormerHall</defName>
+    <topic>former</topic>
+    <uses>chat,home</uses>
+    <when>them:former,their:medieval</when>
+    <lines>
+      <li>[them] Aye, we still meet in the hall the colony built, on the same benches.</li>
+      <li>[us] It was always a good hall.</li>
+      <li>[them] It still is, and the benches are no softer.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3_FormerRota</defName>
+    <topic>former</topic>
+    <uses>chat,home</uses>
+    <when>them:former,their:industrial</when>
+    <lines>
+      <li>[them] The township still works to the colony's old rota, I keep a copy in my coat.</li>
+      <li>[us] Still?</li>
+      <li>[them] Still, and it still works, which is more than I can say for the radio.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3_FormerRoutines</defName>
+    <topic>former</topic>
+    <uses>chat,home</uses>
+    <when>them:former,their:spacer</when>
+    <lines>
+      <li>[them] The administration still runs the colony's old scheduling routines.</li>
+      <li>[us] Nobody's rewritten them?</li>
+      <li>[them] Nobody's found a reason, they were well made.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= Their town, and who leads it ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3_FormerHead</defName>
+    <topic>former</topic>
+    <uses>chat,know</uses>
+    <when>role:head,town:former</when>
+    <weight>1.2</weight>
+    <lines>
+      <li>[us] How do you find leading {TOWN}?</li>
+      <li>[them,them:former] Harder than anything the colony ever asked of me.</li>
+      <li>[them] Harder than it looks from outside, and it looks hard.</li>
+      <li>[us] You'll manage.</li>
+      <li>[them,their:lowtech] The elders say I will, and they are seldom wrong.</li>
+      <li>[them] Ask me again in a year.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3_FormerHeir</defName>
+    <topic>former</topic>
+    <uses>chat</uses>
+    <when>role:heir,town:former</when>
+    <lines>
+      <li>[us] They say you're next to lead {TOWN}.</li>
+      <li>[them,them:former] Strange, for someone who was only one of the colony's hands.</li>
+      <li>[them] So they say, and I'm in no hurry.</li>
+      <li>[us] Then don't be.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3_TownBuilt</defName>
+    <topic>former</topic>
+    <uses>home,know</uses>
+    <when>town:former,!them:former</when>
+    <lines>
+      <li>[us] Is the old colony much changed?</li>
+      <li>[them,town:thriving|town:flourishing] There are new roofs past the old walls now, it keeps growing.</li>
+      <li>[them,town:struggling|town:poor] Some rooms stand empty, with nobody to fill them.</li>
+      <li>[them] The same walls your people raised, mostly, with our patches on them.</li>
+      <li>[us] Good, keep them standing.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3_TownDays</defName>
+    <topic>former</topic>
+    <uses>home,know</uses>
+    <when>town:former</when>
+    <lines>
+      <li>[us] Does {TOWN} still keep the colony's days?</li>
+      <li>[them,their:lowtech] The founding day, with the fire lit and the old songs.</li>
+      <li>[them,their:hightech] The founding day and the day of the hand-over, both on the calendar.</li>
+      <li>[them] The founding day and the hand-over, both of them, every year.</li>
+      <li>[us] Then we'll come to one, one of these years.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3_FormerNewRun</defName>
+    <topic>former</topic>
+    <uses>chat,home</uses>
+    <when>them:former,town:lately:colony:handedOver</when>
+    <weight>1.4</weight>
+    <lines>
+      <li>[us] How are you finding it, running things yourselves?</li>
+      <li>[them] Strange, at every choice we look round for the council.</li>
+      <li>[us] You'll find your feet.</li>
+      <li>[them] We will, the place knows how to stand, the colony saw to that.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3_TownHomecomer</defName>
+    <topic>former</topic>
+    <uses>chat</uses>
+    <when>town:former,town:lately:colony:homecoming</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] One of ours came home to the colony lately, I hear.</li>
+      <li>[us] They did, and they're settling in.</li>
+      <li>[them] {TOWN} misses them, but it was the right thing.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3_TownLostOne</defName>
+    <topic>former</topic>
+    <uses>chat,home</uses>
+    <when>town:former,town:lately:colony:formerDied</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] We lost one of the colony's own at {TOWN} not long ago.</li>
+      <li>[us] I heard, and I'm sorry.</li>
+      <li>[them] {TOWN} will keep their name, the way the colony would have.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3_TownDefended</defName>
+    <topic>former</topic>
+    <uses>chat</uses>
+    <when>town:former,deed:townDefended</when>
+    <weight>1.3</weight>
+    <lines>
+      <li>[them] {TOWN} hasn't forgotten who stood on its walls.</li>
+      <li>[us] It was the colony's place too, once.</li>
+      <li>[them,them:former] It was, and you fought for it as if it still were.</li>
+      <li>[them] That's why they speak so well of you there.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3_TownRefused</defName>
+    <topic>former</topic>
+    <uses>chat</uses>
+    <when>town:former,deed:refused</when>
+    <lines>
+      <li>[them] When {TOWN} called on the colony, the answer was no.</li>
+      <li>[us] I know, and I'm sorry for it.</li>
+      <li>[them] It's past, but people there remember.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_S3_TownWar</defName>
+    <topic>war</topic>
+    <uses>home,chat</uses>
+    <when>town:former,their:war</when>
+    <lines>
+      <li>[us] Is {TOWN} safe, with the war on?</li>
+      <li>[them,war:losing] Safer than some, and the old walls are glad of every hand.</li>
+      <li>[them] So far, and the walls your people built are good ones.</li>
+      <li>[us] I hope they never have to prove it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

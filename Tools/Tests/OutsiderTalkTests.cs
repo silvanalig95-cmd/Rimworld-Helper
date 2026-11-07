@@ -302,8 +302,9 @@ public static class OutsiderTalkTests
         "HAMLET", "HAMLETWORD", "HAMLETPEOPLE",
         // What stands near the colony and what their town has been through (World/Region/RegionNearFacts.cs).
         "RAIDCAMP", "RAIDCAMPPEOPLE", "RUINNAME", "RUINPEOPLE", "SEEK", "GIVENUP", "TOWNSITUATION",
-        // A town the colony was (Colonies/TownAfterFacts.cs): the colony it was, the years since the hand-over.
-        "OLDCOLONY", "YEARSSINCE"
+        // A town the colony was (Colonies/TownAfterFacts.cs): the colony it was, the years since the hand-over; the colony's
+        // own news of many colonies (this home's mother, a home handed over and its people, a town come back).
+        "OLDCOLONY", "YEARSSINCE", "MOTHERCOLONY", "HANDEDOVER", "HANDEDPEOPLE", "TOOKBACK"
     };
 
     private static int Library(string root, Action<bool, string> C0)

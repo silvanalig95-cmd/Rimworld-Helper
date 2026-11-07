@@ -435,7 +435,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>When a home was made: its settlement's creation tick, else its map's.</summary>
-        private static int Settled(Map map) => map.Parent != null && map.Parent.creationGameTicks >= 0 ? map.Parent.creationGameTicks : map.generationTick;
+        internal static int Settled(Map map) => map.Parent != null && map.Parent.creationGameTicks >= 0 ? map.Parent.creationGameTicks : map.generationTick;
 
         private static float Distance(PlanetTile a, PlanetTile b)
         {
@@ -509,9 +509,11 @@ namespace ColonyCouncil
                 History.Add(FoundingMath.KindFounded, actors, Refs.Colony(map), HistoryMath.Milestone,
                     (founders.Count > 0 ? "CC_Found_History" : "CC_Found_HistoryNewcomers").Translate(name.Named("PLACE"), who.Named("NAMES"), (plan.fromName ?? "?").Named("MOTHER")).Resolve());
                 bool seat = plan.makeSeat && plan.keepOld && ColonySeat.Move(map, true);
-                string text = "CC_Found_LetterText".Translate(name.Named("PLACE"), who.Named("NAMES"), (plan.fromName ?? "?").Named("MOTHER"),
+                string text = TextVariants.Vary("CC_Found_LetterText").Translate(name.Named("PLACE"), who.Named("NAMES"), (plan.fromName ?? "?").Named("MOTHER"),
                     Ages.Form(AgeFeature.Party, Ages.Of(map), Ages.Of(map)).word.Named("PARTY")).Resolve();
                 text += " " + OldColonyLine(plan, map, seat);
+                string titled = TitledLine(founders, name);
+                if (titled != null) text += " " + titled;
                 if (plan.makeSeat && plan.keepOld && !seat) text += " " + "CC_Found_SeatNotYet".Translate(ColonySeat.WhyNot(map).Named("WHY")).Resolve();
                 if (plan.newcomers && !plan.newcomersChosen) text += " " + "CC_Found_NewcomersComing".Translate().Resolve();
                 plan.seatMoved = seat;
@@ -530,6 +532,19 @@ namespace ColonyCouncil
             }
             LensModel.Dirty();
             Cards.Dirty();
+        }
+
+        /// <summary>
+        /// The Empire keeps its own titles and honor: founders who hold a title of its keep it at the new colony, in a
+        /// sentence naming them and the people whose titles they are, or null when none of them holds one.
+        /// </summary>
+        internal static string TitledLine(List<Pawn> founders, string place)
+        {
+            if (!ModsConfig.RoyaltyActive || founders == null) return null;
+            var titled = founders.Where(p => p?.royalty?.MostSeniorTitle?.def != null && p.royalty.MostSeniorTitle.faction != null).ToList();
+            if (titled.Count == 0) return null;
+            return "CC_Found_LetterTitled".Translate(Names(titled).Named("NAMES"), place.Named("PLACE"),
+                titled[0].royalty.MostSeniorTitle.faction.Name.Named("EMPIRE")).Resolve();
         }
 
         /// <summary>What becomes of the old colony, in a sentence: kept (with the seat here or not), or abandoned once those who go have left.</summary>
@@ -867,7 +882,7 @@ namespace ColonyCouncil
             if (came.Count == 0) return;
             FloodFillerFog.FloodUnfog(cell, map);
             string call = Ages.Form(AgeFeature.Call, Ages.Of(map), Ages.Of(map)).word;
-            string text = (founding ? "CC_Found_NewcomersFoundText" : "CC_Found_NewcomersText").Translate(Names(came).Named("NAMES"), Homes.Name(map).Named("PLACE"), call.Named("CALL"),
+            string text = TextVariants.Vary(founding ? "CC_Found_NewcomersFoundText" : "CC_Found_NewcomersText").Translate(Names(came).Named("NAMES"), Homes.Name(map).Named("PLACE"), call.Named("CALL"),
                 (plan.fromName ?? "?").Named("MOTHER")).Resolve();
             if (founding) text += " " + OldColonyLine(plan, map, plan.seatMoved);
             if (price > 0) text += " " + "CC_Found_NewcomersPaid".Translate(price.Named("SILVER"), (plan.fromName ?? "?").Named("MOTHER")).Resolve();
@@ -876,8 +891,41 @@ namespace ColonyCouncil
                 new LookTargets(came));
             History.Add(FoundingMath.KindFounded + ":newcomers", came.Select(p => new HistoryActor(Refs.Of(p), HistoryRole.Did)).ToList(), Refs.Colony(map), HistoryMath.Everyday,
                 "CC_Found_NewcomersHistory".Translate(Names(came).Named("NAMES"), Homes.Name(map).Named("PLACE")).Resolve());
+            FirstWords(came, founding, "walked", false);
             CameraJumper.TryJump(came[0]);
         }
+
+        /// <summary>
+        /// Each newcomer's first journal entry as they come (Rimfolk_Journal_NewcomerFirst), in place of the one the day's
+        /// journal pass writes, which is in the voice of someone joining people already there: founding (nobody of the
+        /// colony on the land before them) or joining, how they came (walked, pods, gravship), a scenario's start, alone (the
+        /// only one who came), and whether they are a mechanitor or grew up in a tribe.
+        /// </summary>
+        internal static void FirstWords(List<Pawn> came, bool founding, string how, bool scenario)
+        {
+            var journals = CouncilGameComponent.Instance?.journals;
+            if (journals == null || came == null) return;
+            bool alone = came.Count(x => x != null && !x.Dead && x.RaceProps.Humanlike && !x.DevelopmentalStage.Baby()) == 1;
+            foreach (var p in came)
+            {
+                try
+                {
+                    if (p == null || p.Dead || !p.RaceProps.Humanlike || p.DevelopmentalStage.Baby() || journals.For(p) != null) continue;
+                    var tags = new List<string> { founding ? "founding" : "joining", how };
+                    if (scenario) tags.Add("scenario");
+                    if (alone) tags.Add("alone");
+                    if (ModsConfig.BiotechActive && MechanitorUtility.IsMechanitor(p)) tags.Add("mechanitor");
+                    if (p.story?.Childhood?.spawnCategories?.Contains("Tribal") == true) tags.Add("tribalborn");
+                    journals.WriteTagged(p, NewcomerFirstPool, tags.ToArray());
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("founding: a newcomer's first words", e);
+                }
+            }
+        }
+
+        public const string NewcomerFirstPool = "Rimfolk_Journal_NewcomerFirst";
 
         /// <summary>The silver and food a passage costs, from the stores: the food first, by its market value, then the silver (FoundingMath.Pay).</summary>
         public static bool CanPay(Map map, int price, out int silver, out float food)

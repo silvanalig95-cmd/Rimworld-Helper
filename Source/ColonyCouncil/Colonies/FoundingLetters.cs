@@ -331,7 +331,7 @@ namespace ColonyCouncil
         {
             string town = TownsAfter.TownName(rec);
             string why = close ? "CC_TownAfter_HomeWhy_Kin" : kin != null ? "CC_TownAfter_HomeWhy_Friend" : "CC_TownAfter_HomeWhy_Hard";
-            string text = "CC_TownAfter_HomeText".Translate(p.Named("PAWN"), town.Named("TOWN")).Resolve() + " "
+            string text = TextVariants.Vary("CC_TownAfter_HomeText").Translate(p.Named("PAWN"), town.Named("TOWN")).Resolve() + " "
                           + why.Translate(p.Named("PAWN"), (kin?.LabelShort ?? "").Named("KIN"), (kin != null ? Family.Relation(p, kin) : "").Named("RELATION"), town.Named("TOWN")).Resolve()
                           + "\n\n" + "CC_TownAfter_HomeAsk".Translate(p.Named("PAWN")).Resolve();
             var l = Make("CC_TownAfter_HomeLabel".Translate(p.Named("PAWN")).Resolve(), text, TownsAfter.Look(rec));

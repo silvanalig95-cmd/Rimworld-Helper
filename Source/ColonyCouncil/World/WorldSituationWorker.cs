@@ -349,6 +349,9 @@ namespace ColonyCouncil
         {
         }
 
+        /// <summary>A paragraph the ending's letter adds after its line, for what the line had no word for (null for none).</summary>
+        public virtual string EndingNote(WorldSituation s, SituationEnding ending, string text) => null;
+
         // ---------------- What it changes ----------------
 
         /// <summary>A factor on an event's storyteller weight while this runs (Rimfolk events have <paramref name="ext"/>).</summary>

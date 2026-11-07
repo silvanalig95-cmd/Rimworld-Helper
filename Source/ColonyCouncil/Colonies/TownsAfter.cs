@@ -162,7 +162,7 @@ namespace ColonyCouncil
             // nobody of theirs able to come, the word comes the old way.
             bool comms = rec.age == WorldAge.Spacer;
             bool messenger = !comms && Couriers.CanCarryMail(home, rec.people);
-            string intro = comms || messenger ? "CC_TownAfter_LetterIntro_" + rec.age : "CC_TownAfter_LetterIntro_Word";
+            string intro = TextVariants.Vary(comms || messenger ? "CC_TownAfter_LetterIntro_" + rec.age : "CC_TownAfter_LetterIntro_Word");
             string text = intro.Translate(head.LabelShort.Named("HEAD"), (title ?? "").Named("TITLE"), town.Name.Named("TOWN")).Resolve() + "\n\n\"" + Texts.Fill(line, values) + "\"";
             string fortune = RegionBook.FortunesOn ? RegionFortunes.Line(WorldLedger.TownRecord(rec.key)) : null;
             if (!fortune.NullOrEmpty()) text += "\n\n" + "CC_TownAfter_LetterFortune".Translate(town.Name.Named("TOWN"), fortune.UncapitalizeFirst().Named("FORTUNE")).Resolve();
@@ -170,7 +170,7 @@ namespace ColonyCouncil
             if (messenger && Couriers.MailAnswer(home, rec.people, new List<Thing>(), MailId, now, "CC_TownAfter_LetterBring".Translate(head.LabelShort.Named("HEAD")).Resolve(),
                     label, text, LetterDefOf.NeutralEvent, null, null) != null)
                 return;
-            if (messenger) text = "CC_TownAfter_LetterIntro_Word".Translate(head.LabelShort.Named("HEAD"), (title ?? "").Named("TITLE"), town.Name.Named("TOWN")).Resolve()
+            if (messenger) text = TextVariants.Vary("CC_TownAfter_LetterIntro_Word").Translate(head.LabelShort.Named("HEAD"), (title ?? "").Named("TITLE"), town.Name.Named("TOWN")).Resolve()
                                   + "\n\n\"" + Texts.Fill(line, values) + "\"" + (fortune.NullOrEmpty() ? "" : "\n\n" + "CC_TownAfter_LetterFortune"
                                       .Translate(town.Name.Named("TOWN"), fortune.UncapitalizeFirst().Named("FORTUNE")).Resolve());
             // apart: a letter from their town over comms, or word that came; nobody of theirs is here.

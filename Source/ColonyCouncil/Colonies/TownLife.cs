@@ -168,7 +168,7 @@ namespace ColonyCouncil
             rec.headSeen = leader.thingIDNumber;
             WorldLedger.FormerChanged();
             if (first || NotableBook.Opinion(n) > TownLifeMath.CoolHead) return;
-            Tell.Minor(NewsKind.World, Importance.Notable, Homes.Seat, "CC_TownLife_CoolHead".Translate(leader.LabelShort.Named("HEAD"), rec.people.LeaderTitle.Named("TITLE"),
+            Tell.Minor(NewsKind.World, Importance.Notable, Homes.Seat, TextVariants.Vary("CC_TownLife_CoolHead").Translate(leader.LabelShort.Named("HEAD"), rec.people.LeaderTitle.Named("TITLE"),
                 TownsAfter.TownName(rec).Named("TOWN"), (rec.colonyName ?? "?").Named("COLONY")).Resolve(), TownsAfter.Look(rec));
         }
 
@@ -447,7 +447,7 @@ namespace ColonyCouncil
             string town = TownsAfter.TownName(rec);
             string what = (hardship == TownLifeMath.Plague ? "CC_TownLife_Of_Plague" : "CC_TownLife_Of_Famine").Translate((r.label ?? "?").Named("WHAT")).Resolve();
             if (!WorldSituationWorker.DieOffscreen(p)) return;
-            string text = "CC_TownLife_HardshipText".Translate(p.LabelShort.Named("PAWN"), town.Named("TOWN"), what.Named("WHAT"), (rec.colonyName ?? town).Named("COLONY"),
+            string text = TextVariants.Vary("CC_TownLife_HardshipText").Translate(p.LabelShort.Named("PAWN"), town.Named("TOWN"), what.Named("WHAT"), (rec.colonyName ?? town).Named("COLONY"),
                 Means(rec).Named("MEANS")).Resolve();
             if (r.helped) text += "\n\n" + "CC_TownLife_HardshipHelped".Translate(town.Named("TOWN")).Resolve();
             Tell.Letter(NewsKind.World, Importance.Important, Homes.Seat, "CC_TownLife_HardshipLabel".Translate(p.LabelShort.Named("PAWN"), town.Named("TOWN")).Resolve(), text,

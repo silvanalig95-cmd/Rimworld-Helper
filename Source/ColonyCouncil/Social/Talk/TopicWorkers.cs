@@ -239,7 +239,13 @@ namespace ColonyCouncil
             if ((speaker.relations?.OpinionOf(subject.pawn) ?? 0) >= 25) tags.Add("likesthem");
             else if ((speaker.relations?.OpinionOf(subject.pawn) ?? 0) <= -15) tags.Add("dislikesthem");
             if (subject.pawn.DevelopmentalStage.Juvenile()) tags.Add("young");
+            // A newcomer at a home settled in the last fifteen days (a fresh start's newcomers, or someone joining a new
+            // game's first days): its lines can speak of a colony that has hardly begun (Rimfolk_StageThree_Newcomers.xml).
+            if (s.map != null && Find.TickManager.TicksGame - Foundings.Settled(s.map) < NewColonyDays * GenDate.TicksPerDay) tags.Add("newcolony");
         }
+
+        /// <summary>A home this many days settled or less is a new colony to the talk about its newcomers.</summary>
+        public const int NewColonyDays = 15;
     }
 
     /// <summary>Faith: it matters and they hold to it (for), or they doubt it (against). With Ideology, theirs against another's.</summary>

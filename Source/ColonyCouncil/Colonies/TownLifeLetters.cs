@@ -133,7 +133,7 @@ namespace ColonyCouncil
             string town = TownsAfter.TownName(rec);
             var head = rec.people?.leader;
             var form = Ages.Form(AgeFeature.Back, Ages.Ours, rec.age);
-            string text = "CC_TownLife_AskBackText".Translate((head?.LabelShort ?? "?").Named("HEAD"), town.Named("TOWN"), (rec.people?.Name ?? "?").Named("PEOPLE"),
+            string text = TextVariants.Vary("CC_TownLife_AskBackText").Translate((head?.LabelShort ?? "?").Named("HEAD"), town.Named("TOWN"), (rec.people?.Name ?? "?").Named("PEOPLE"),
                 TownLife.Means(rec).Named("MEANS"), (rec.colonyName ?? town).Named("COLONY")).Resolve();
             string fortune = RegionBook.FortunesOn ? RegionFortunes.Line(WorldLedger.TownRecord(rec.key)) : null;
             if (!fortune.NullOrEmpty()) text += " " + "CC_TownAfter_LetterFortune".Translate(town.Named("TOWN"), fortune.UncapitalizeFirst().Named("FORTUNE")).Resolve();
@@ -154,7 +154,7 @@ namespace ColonyCouncil
         {
             string town = TownsAfter.TownName(rec);
             string people = rec.people?.Name ?? "?";
-            string text = "CC_TownLife_GateText".Translate(town.Named("TOWN"), people.Named("PEOPLE"), (rec.colonyName ?? town).Named("COLONY")).Resolve();
+            string text = TextVariants.Vary("CC_TownLife_GateText").Translate(town.Named("TOWN"), people.Named("PEOPLE"), (rec.colonyName ?? town).Named("COLONY")).Resolve();
             var ours = came.Where(formers.Contains).ToList();
             var others = came.Where(p => !formers.Contains(p)).ToList();
             if (ours.Count > 0) text += "\n\n" + "CC_TownLife_GateFormers".Translate(Foundings.Names(ours).Named("NAMES"), (rec.colonyName ?? town).Named("COLONY")).Resolve();

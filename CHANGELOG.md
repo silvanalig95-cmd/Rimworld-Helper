@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Words for many colonies
+
+*7 November 2026, version 0.133.0*
+
+- A town your colony was writes in many more ways: its head's letters, its answers when you ask for it back, its talk with your people, and its raid news, calls and endings, each in every age's words.
+- Founders have far more to say: the first night, setting out, the hand-over's meeting, ceremony and farewells, the welcome when two councils become one, and their talk about the colony they came from.
+- Newcomers now write a first journal entry of their own, grow homesick in their own voice, and are talked about by the old hands, with lines for a scenario's start such as arriving by pods.
+- Visitors talk about your colony's news: a new colony founded, one handed over or taken back. A founding letter remembers Empire titles carried to the new place.
+- A former colonist killed in a raid on their town is named in its ending even when the town held, and the town's letters no longer assume everyone there stayed at the hand-over.
+
 ## Hurts from the colony's life, part two
 
 *7 November 2026, version 0.132.0*
