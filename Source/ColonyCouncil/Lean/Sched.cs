@@ -148,6 +148,12 @@ namespace ColonyCouncil
         public const int RareOutsiderTalk = 83;
         /// <summary>A journey planned (Journeys/): its last day and hours, each traveller's next step, the hour itself; only while there is one.</summary>
         public const int RareJourneys = 173;
+        /// <summary>
+        /// Carrying and hauling (Hauling/HaulBook.cs): material runs whose build area needs no more, and loads waiting to
+        /// go to storage when the job choice can't send them (the setting off, the standalone mod loaded), only while a
+        /// pawn carries something for Rimfolk.
+        /// </summary>
+        public const int RareHauling = 7;
 
         // ---------------- Other rhythms ----------------
 

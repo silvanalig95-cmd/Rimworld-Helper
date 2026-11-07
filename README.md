@@ -1768,6 +1768,30 @@ each one reads like "Steel wall    420 (+85 lying around), enough for 84". You c
 Colonists also sometimes add **personal touches**: a plant pot, an end table or a lamp planned for their own
 bedroom (a wall lamp on a wall, where the colony can build one and the room isn't large).
 
+### Carrying and hauling
+Pawns don't walk to storage with one handful at a time (settings: **What's on, Carrying and hauling**):
+- **What their own work drops** goes into their inventory and to storage with them: harvesting, chopping and cutting
+  plants (also a plant cut to clear a cell for sowing or building), mining, deep drilling, shearing and milking, taking
+  down buildings and floors, and fishing; stone and slag chunks only if you switch them on. A pawn keeps at the same
+  kind of work while there is room and delivers when something no longer fits (with at least 5 kg collected), when it
+  turns to other work, eats, sleeps or idles, or after 8 hours of the same work. What else a building leaves when it is
+  taken down is hauled by the same pawn right after. Delivering is part of the work, so a pawn who can't haul still
+  brings in what it produced; fights, emergencies, urgent needs, rituals, caravans and your orders come first. This is
+  the player's own **Harvest and Haul**, built into Rimfolk: with that mod loaded on its own, Rimfolk's copy stands
+  down completely, and the standalone mod can be removed now (Rimfolk then reads its settings, and in a save takes over
+  what pawns still carry for it).
+- **Long material runs:** a pawn fetching building material from 30 cells away or more (the setting; straight from the
+  material to the frame) takes enough for every unfinished frame and blueprint round it that uses that material (half
+  that distance, 8 to 15 cells), not only the one it builds: the hands take what they hold, the inventory the rest, as
+  far as its carrying weight allows. Its next deliveries come out of its inventory, and the other builders leave that
+  material to it while its stock holds all the build still needs. When nothing nearby needs it any more, or the run goes
+  unused for two hours, what is left goes to storage.
+- **Things on the way:** on a long walk to storage (or back to a far stockpile for material), loose things near the way
+  that belong in storage come along, six cells out of the way at most, for pawns whose hauling work is on.
+- Only what Rimfolk put in an inventory goes to storage: never the drugs a drug policy carries, the inventory stock,
+  the packed food a pawn wants or a caravan's packs. With **Pick Up And Haul**, what is wholly Rimfolk's goes through its
+  own unloading; Haul to Stack is left alone; Combat Extended's bulk and weight limits count.
+
 ### Taking cover with a drag
 With drafted colonists selected, hold **Ctrl and right-drag**: the cell you press is where they gather and the drag
 points at the enemy. Each colonist goes to the cell nearby with the most cover from that side that they can still
@@ -2163,6 +2187,9 @@ while that feature is off; nothing vanilla is changed or removed. A few things i
 - **Alien races (Humanoid Alien Races):** every humanlike race gets the Story and Culture tabs, and ages are read against the
   race's lifespan, so a 300-year-old elf isn't treated as elderly.
 - **Simple Sidearms:** an heirloom weapon carried as a sidearm still counts as carried.
+- **Harvest and Haul, Pick Up And Haul:** Harvest and Haul is built into Rimfolk now (Carrying and hauling); while the
+  standalone mod is loaded, Rimfolk's copy stands down, and it can be removed now. What Rimfolk's carrying and hauling
+  takes to storage goes through Pick Up And Haul's own unloading when that mod is there.
 - **No mechanoids:** mechanoid dreams and goals only show up in games where mechanoids are around and hostile
   (Rimedieval's default, which turns them friendly, counts as none).
 - **Rimedieval:** events it removes stay removed (dream omens won't bring them back), and hidden buildings are

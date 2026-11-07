@@ -132,6 +132,8 @@ namespace ColonyCouncil
             }
             foreach (var name in failed)
                 part.Add("Didn't apply: " + name + Target(name) + ". " + (RimfolkPatches.FailedWhy.TryGetValue(name, out var why) ? why : ""), UiKit.Bad);
+            foreach (var g in RimfolkPatches.StoodDown.GroupBy(kv => kv.Value))
+                part.Add("Standing down on purpose (" + g.Key + "): " + string.Join(", ", g.Select(kv => kv.Key)) + ".", UiKit.Faint);
             part.Add("Applied: " + string.Join(", ", applied.Select(n => n + Target(n))) + ".", UiKit.Faint);
 
             // What Harmony itself holds: the methods Rimfolk patches, and which other mods patch the same ones.

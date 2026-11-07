@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The Almanac page on carrying and hauling (Source/ColonyCouncil/Hauling/; DESIGN.md "Carrying and hauling"): the
+       player's Harvest and Haul built in, the long material run, things on the way. -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Hauling</defName>
+    <label>carrying and hauling</label>
+    <category>Council</category>
+    <order>23</order>
+    <summary>Pawns take what their own work drops to storage themselves, and a pawn fetching building material from far away brings enough for the whole build at once. Harvest and Haul is built in now.</summary>
+    <tip>Put a stockpile for the harvest near the fields and another near the mine: the shorter the trip, the more it pays. If you have Harvest and Haul on its own, it can be removed now.</tip>
+    <description>Three things keep pawns from walking back and forth with one handful: what their own work drops goes into their inventory and to storage with them (the player's Harvest and Haul, now part of Rimfolk); material fetched from far away comes for every frame and blueprint of the build at once; and on a long walk to storage, loose things lying near the way come along. Everything uses the game's own storage search and hauling steps, so stockpiles, shelves, fridges and storage mods work as usual. The settings are under What's on, Carrying and hauling.</description>
+    <sections>
+      <li>
+        <heading>What pawns pocket from their own work</heading>
+        <points>
+          <li>Harvesting, chopping and cutting plants, also a plant cut to clear a cell for sowing or for a building; mining; deep drilling; shearing and milking; taking down buildings and floors; fishing. Each has its own switch. Stone and slag chunks are off by default, since one fills most of an inventory.</li>
+          <li>A pawn keeps at the same kind of work while there is room (harvest then sow, mine cell after cell, milk one cow after another) and delivers when something no longer fits, when it turns to other work, eats, sleeps, relaxes or idles, or after 8 hours of the same work.</li>
+          <li>A full pawn stops work for a trip only with at least 5 kg collected, so one in heavy armour doesn't walk to storage after every plant. The inventory fills to 100% of what it can carry unless the setting says less; the stack that didn't fit is carried in the hands on the trip.</li>
+          <li>What else a building leaves when it is taken down (chunks, fuel, its contents) is hauled by the same pawn right after.</li>
+          <li>Delivering is part of the work: a pawn who can't haul still brings in what it produced. Drafting, fights, emergencies, medical rest, urgent hunger or exhaustion, rituals, caravans and your orders come first. Colony mechanoids that can carry take part too, unless the setting says no.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Long material runs</heading>
+        <points>
+          <li>When a pawn fetches material for a frame or blueprint from 30 cells away or more (straight from the material to the build: the shortest the walk can be), it takes enough for every unfinished frame and blueprint round it that uses that material, within half that distance (8 to 15 cells), not only for the one it builds.</li>
+          <li>Its hands take what they hold, as the game gives them; its inventory takes the rest, as far as its carrying weight allows, from the stack it stands at and the stacks within its reach.</li>
+          <li>Its next deliveries come out of its inventory. While its stock holds all the build still needs of that material, the other builders leave that material to it rather than walk to the stockpile.</li>
+          <li>When nothing nearby needs it any more, or the run goes unused for two hours, what is left goes to storage.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Things on the way</heading>
+        <points>
+          <li>On a long walk that ends at storage (taking a load there, or walking back to a far stockpile for material), loose things near the way that belong in storage come along: at most six cells out of the way, six things, and only what fits, on a walk of twelve cells or more.</li>
+          <li>Only for a pawn whose hauling work is on, and only what the game's haulers would carry themselves. Things picked up on the way to a stockpile go into storage before the material is taken; nothing is picked up on the way from the stockpile to the build.</li>
+        </points>
+      </li>
+      <li>
+        <heading>What stays in the pocket</heading>
+        <points>
+          <li>Only what Rimfolk put in an inventory goes to storage: never the drugs a pawn's drug policy carries, its inventory stock or the packed food it wants, and never anything of a caravan's packs.</li>
+          <li>A stack no storage takes is set down where the pawn stands, for the haulers.</li>
+        </points>
+      </li>
+      <li>
+        <heading>With other mods</heading>
+        <points>
+          <li>Pick Up And Haul: what goes to storage and is wholly Rimfolk's (a run's leftovers, a harvest, things on the way) goes through that mod's own unloading, so it all works as one.</li>
+          <li>Haul to Stack: storage is always found the game's way, so whatever it changes there applies.</li>
+          <li>Combat Extended: its bulk and weight limits count. Its loadouts may still drop what isn't in a pawn's loadout.</li>
+        </points>
+      </li>
+      <li>
+        <heading>If you have Harvest and Haul on its own</heading>
+        <points>
+          <li>While it is loaded, Rimfolk's copy of it stands down completely and the standalone mod's settings apply; the log says so once at startup. Long material runs and things on the way still work beside it.</li>
+          <li>It can be removed now. The first time Rimfolk starts without it, it reads that mod's settings into its own; in a save, what pawns still carry for it is taken over and goes to storage. The game may write one line about the missing mod's class when such a save loads.</li>
+        </points>
+      </li>
+    </sections>
+    <keywords><li>harvest and haul</li><li>material run</li><li>carrying</li><li>deliver</li><li>pocket</li><li>on the way</li></keywords>
+    <seeAlso><li>Council_AlmMod_F_HarvestAndHaul</li><li>Council_AlmMod_F_PickUpAndHaul</li><li>Council_Alm_5_13_Stockpiles</li><li>Council_Alm_C_Priorities</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

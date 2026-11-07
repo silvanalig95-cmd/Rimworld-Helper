@@ -6,6 +6,74 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- Carrying and hauling: Harvest and Haul built in, and the long material run (7 November 2026, the player's requests:
+  "when pawns go get materials on the map that are further away, they should always fill up their inventory with stuff
+  on the way ... then they should also store the hauled items eventually", and "hauling into rimfolk please, i'd anyways
+  want to integrate harvest and haul in here"; explicit, no proposal round). No What's new round or version yet: the
+  lead adds them. DESIGN.md "Carrying and hauling" has the whole of it; README "Carrying and hauling" and a bullet under
+  Playing with other mods; the Almanac's `Council_Alm_C_Hauling` (*carrying and hauling*) and a section on the
+  standalone mod's own page ("Built into Rimfolk now: it can be removed"; its keywords unchanged), the Pick Up And Haul
+  page's paragraph on it; two entries in the mods table (`Council_Support_HarvestAndHaul`, `_PickUpAndHaul`).
+  - Code: `Source/ColonyCouncil/Hauling/` (HaulMath pure, HaulBook, Carrying, HarvestHaul, MaterialRun, OnTheWay,
+    JobDriver_CarryToStorage, HaulLinks, HaulPatches), the job `Rimfolk_CarryToStorage` (`Defs/Misc/Rimfolk_Hauling.xml`),
+    the words in `Rimfolk_Hauling.xml`, the settings under What's on, Carrying and hauling (`CC_SetSec_Hauling`, the
+    `haul*` fields, `materialRun`, `materialRunDistance`, `haulOnTheWay`; `haulImported` not drawn). Twelve
+    `[HarmonyPatch]` classes, prefixes, postfixes and one finalizer, no transpiler: the standalone's ten (the job choice
+    `Pawn_JobTracker.TryFindAndStartJob`/`DetermineNextJob`, `JobGiver_DropUnusedInventory.Drop`, `Plant.PlantCollected`,
+    `Mineable.DestroyMined`, `CompDeepDrill.TryProducePortion`, `CompHasGatherableBodyResource.Gathered`,
+    `JobDriver_Deconstruct.FinishedRemoving`, `JobDriver_RemoveFloor.DoEffect`, `FishingUtility.GetCatchesFor`) and the
+    run's two (`Toils_Haul.StartCarryThing`, a pre-init action; `WorkGiver_ConstructDeliverResources.ResourceDeliverJobFor`,
+    a prefix and a postfix). ApiDiff: all found on 1.7 with their parameters. One saved collection (`HaulBook.loads`,
+    modelled), one 250-tick slot (`Sched.RareHauling` = 7, waiting, timed as `Pass.RareHauling`; LeanTests' and
+    HistoryTests' lists of the waiting slots carry it). Tests: `HaulTests` ("carrying and hauling: ", `HaulMath.cs` linked).
+  - Harvest and haul: the standalone 1.2.0's behaviour, sources, settings and defaults. Changed: no collecting into a pawn
+    holding a caravan's packs; a delivery never takes what the drug policy, inventory stock or packed food keeps (the
+    standalone took stocked medicine a doctor had partly used); a load the job choice can't send (setting or hooks off)
+    is queued for storage by the book's pass; quest lodgers left out; a hook standing down on purpose is listed as such
+    by "check myself" (`RimfolkPatches.StoodDown`, a class's `StandsDownWhy`), not as a failure.
+  - With the standalone loaded (`silvanalig95.harvestandhaul`, or `HarvestAndHaul.HarvestTracker` in an assembly): its
+    ten hooks aren't applied (Prepare), the log says once that it can be removed now, the settings' heading says so.
+    The run's two hooks and things on the way work beside it (nothing it patches). Once it is gone: its settings file
+    (`Mod_*_HarvestAndHaulMod.xml` in Config) is read once; a save's loads are read from the save as it loads
+    (`HaulMath.ReadStandaloneLoads`) and taken over at FinalizeInit, to storage at the next chance.
+  - The material run: far is the straight distance from the material to the frame (30 cells by default, 15 to 80): the
+    shortest the walk can be, free to work out while the game looks for work, never a run for a walk short in truth. The
+    build area: half that, 8 to 15 cells round the frame. At the stack, before the hands take theirs, the inventory takes
+    what the area still needs past the hands and the stock, from that stack and the stacks within reach; the next
+    deliveries come out of the stock (the game's own `HaulToContainer` with the inventory stack); the other builders get
+    no delivery of a material a runner's stock covers there (used within the hour); the run ends when the area needs none
+    or after two hours unused, and the rest goes to storage. Things on the way: on a walk of 12 cells or more to storage
+    (a delivery, or the walk back to a far stockpile, where they go into storage before the fetch), six cells out of the
+    way at most, six things, only for pawns whose hauling is on. With Pick Up And Haul, what is wholly Rimfolk's is
+    registered with its comp as it goes to storage and its own unloading takes it; without it, Rimfolk's job from the
+    game's unloading steps (the game's `UnloadEverything` would unload sidearms and kept things too).
+  - Try in the game (none of it could be run here):
+    1. With the standalone Harvest and Haul still on: the log's line at startup ("Harvest and Haul is loaded on its
+       own ... can be removed now"); Mod settings, Rimfolk, What's on, Carrying and hauling: the heading's note; "Rimfolk:
+       check myself", game hooks: "Standing down on purpose" with the ten. Harvest and haul works as before (the
+       standalone's).
+    2. Quit, remove the standalone, start: the log line "Read N settings of the standalone Harvest and Haul" if you had
+       changed any; load the save: one red line about `HarvestAndHaul.HarvestTracker` and "Took over what N pawns
+       carried"; those pawns take it to storage soon after.
+    3. Harvest a field, chop trees, mine a vein, milk a cow, take down a wall, fish: the pawn pockets it, keeps at it,
+       delivers ("taking ... to storage."); a doctor with stocked herbal medicine who harvests healroot keeps the stock.
+    4. The run: blueprints of walls or a floor 40 or more cells from the stockpile, one builder: at the stockpile it
+       takes more than one wall's worth (the Gear tab: the inventory holds the rest), its next deliveries start where it
+       stands, and it walks back only when its stock is gone; a second builder doesn't walk to the stockpile for the same
+       material while the first one's stock covers the build. When all are done, the rest goes to storage (Pick Up And
+       Haul's "unloading inventory." with that mod). Dev mode and the setting "Write carrying decisions to the log" show
+       each step.
+    5. Things on the way: drop a few stacks near the path between the build and a far stockpile, or near a pawn's way
+       to storage: it picks them up ("picking up ... on the way to storage.") and stores them; with its Hauling unticked
+       it doesn't.
+    6. Settings: each row's tooltip; Long material runs off (the game's own trips); the distance at 80 (no run for a
+       nearby stockpile); Pawns carry what their work drops off (what is carried still goes to storage).
+  - Riskiest: the take-over from a save (the standalone's XML read without its classes); the pre-init action on every
+    `StartCarryThing` (returns at once for any job but the game's delivery to a frame); the run's delivery job from the
+    inventory with frames and blueprints (the game supports an inventory thing for that job, not seen here with frames);
+    the cover holding other builders back while a runner is stuck (an hour at most); Pick Up And Haul's comp read by
+    name; things on the way taking the place of a far fetch (a loop is held off by the look's ten-second rest and the
+    storage check).
 - 0.140.0, A RimWorld of Magic under Harmony 3 (7 November 2026, the player's startup log and "help me fix it"). The log:
   `[ARimWorldOfMagic][ERR] Failed to apply Harmony patches for Torann.ARimworldOfMagic`, "Unrelated classes cannot
   describe the same non-null object ... supplied Verse.WeatherWorker, requested RimWorld.WeatherManager". Not a game

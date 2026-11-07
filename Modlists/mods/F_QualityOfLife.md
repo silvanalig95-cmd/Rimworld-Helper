@@ -112,7 +112,9 @@ Friendly Fire About.xml, Tabula Rasa and Outland About.xml), and Rimfolk's own c
   Search distance grows after a long trip. "Pick up and keep" for items a pawn should carry (field medicine).
 - In play: only player-owned humanlikes. Corpses need a stockpile that accepts corpses. Author: works with Allow Tool's
   Haul urgently and with Combat Extended. Makes Haul to Stack inert (see below).
-- Rimfolk today: nothing. Indirect: fewer items outside means fewer `AdvisorWorker_Deterioration` signals. Note that
+- Rimfolk today: Rimfolk's carrying and hauling (7 November 2026) hands what is wholly its own to this mod's unloading
+  (`CompHauledToInventory.RegisterHauledItem` and the `UnloadYourHauledInventory` job, by name) at the moment it goes to
+  storage. Indirect: fewer items outside means fewer `AdvisorWorker_Deterioration` signals. Note that
   `LegacyTracker.HeirloomCarriedBy` treats any heirloom *weapon* in a pawn's inventory as carried, so a hauler briefly
   carrying an heirloom weapon in their pockets would count; harmless edge case.
 - Hook ideas: none needed. If Rimfolk ever counts "carried items" (gear wishes, heirlooms) it should ignore inventory
@@ -151,7 +153,10 @@ Friendly Fire About.xml, Tabula Rasa and Outland About.xml), and Rimfolk's own c
   `JobGiver_DropUnusedInventory.Drop`). Compatible with PUAH by design. With Medieval Overhaul 1.6 (source checked):
   trees yield `DankPyon_RawWood`/`DankPyon_RawDarkWood` as their `harvestedThingDef`, and MO patches `Plant_Grass`,
   `Plant_TallGrass` to yield Hay and `Plant_Bush` to yield WoodLog, so clearing ground also collects hay and wood.
-- Rimfolk today: nothing. Indirect: less produce lying outside for `AdvisorWorker_Deterioration`.
+- Rimfolk today: built in (7 November 2026, `Source/ColonyCouncil/Hauling/`, DESIGN.md "Carrying and hauling"): the
+  same behaviour and settings as a Rimfolk system; while this mod is loaded on its own, Rimfolk's copy stands down
+  (none of its hooks applied) and the log says it can be removed; once removed, its settings file is read once and the
+  loads in a save are taken over. Indirect: less produce lying outside for `AdvisorWorker_Deterioration`.
 - Hook ideas (both mods are the user's, so a direct soft integration is realistic):
   - Rimfolk could read `HarvestTracker.Instance.GetLoad(p)` by reflection to avoid counting a grower's pockets as "their
     gear" anywhere Rimfolk inspects inventory (heirlooms already only look at weapons).

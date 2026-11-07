@@ -382,6 +382,24 @@
   </ColonyCouncil.ModSupportDef>
 
   <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_HarvestAndHaul</defName>
+    <label>Harvest and Haul</label>
+    <order>29</order>
+    <code>true</code>
+    <packageIds><li>silvanalig95.harvestandhaul</li></packageIds>
+    <what>Built into Rimfolk now (Carrying and hauling): while it is loaded on its own, Rimfolk's copy stands down. It can be removed; Rimfolk then reads its settings and takes over what pawns carry for it.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_PickUpAndHaul</defName>
+    <label>Pick Up And Haul</label>
+    <order>29</order>
+    <code>true</code>
+    <packageIds><li>mehni.pickupandhaul</li></packageIds>
+    <what>What Rimfolk's carrying and hauling takes to storage (a material run's leftovers, a harvest, things on the way) goes through its own unloading, so it all works as one.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
     <defName>Council_Support_ReGrowth</defName>
     <label>ReGrowth</label>
     <order>35</order>

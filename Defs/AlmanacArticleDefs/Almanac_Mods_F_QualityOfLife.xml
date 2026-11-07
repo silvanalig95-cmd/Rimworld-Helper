@@ -84,7 +84,7 @@ You can also order a colonist to pick up an item and keep it. They keep it on th
         <heading>Somewhere for everything</heading>
         <text>Give every kind of item a stockpile or shelf, corpses included, so loaded haulers always have somewhere to go. A corpse is too heavy for a pocket: it needs a stockpile that accepts corpses, such as a dumping zone.
 
-Keep Harvest and Haul on as well. Growers, miners and woodcutters bring in their own produce, and Pick Up And Haul handles everything else. Allow Tool's Haul urgently fits in too; the author says the two work well together.</text>
+Rimfolk's carrying and hauling works with it (Harvest and Haul, built in): growers, miners and woodcutters bring in their own produce, a builder fetching material from far away takes enough for the whole build, and what they take to storage goes through Pick Up And Haul's own unloading, so it all works as one. Pick Up And Haul handles everything else. Allow Tool's Haul urgently fits in too; the author says the two work well together.</text>
       </li>
       <li>
         <heading>Haul to Stack</heading>
@@ -148,6 +148,12 @@ Leave Pick Up And Haul on too. Each mod tracks its own items, so they don't figh
       <li>
         <heading>With Rimfolk</heading>
         <text>Produce that goes straight to storage isn't left out in the rain, so the advisor's "stacks deteriorating outside" warning comes up less often.</text>
+      </li>
+      <li>
+        <heading>Built into Rimfolk now: it can be removed</heading>
+        <text>Rimfolk carries Harvest and Haul itself now, under Carrying and hauling (the settings' What's on page), with the same sources, settings and defaults, and a long material run for far builds beside it. While this mod is loaded on its own, Rimfolk's copy stands down completely and this mod's settings apply; the log says so once at startup.
+
+It can be removed now. The first time Rimfolk starts without it, Rimfolk reads this mod's settings into its own, and in a save it takes over what pawns still carry for it, so nothing stays in a pocket. The game may write one line about the missing mod's class when such a save loads.</text>
       </li>
     </sections>
     <keywords>

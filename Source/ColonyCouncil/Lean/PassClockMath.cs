@@ -67,6 +67,7 @@ namespace ColonyCouncil
         RareWeekMemory,
         RareNeighbours,
         RareOutsiders,
+        RareHauling,
 
         // Other rhythms.
         PeopleLog,
@@ -164,6 +165,7 @@ namespace ColonyCouncil
             new PassInfo(Pass.RareWeekMemory, "CC_Clock_Pass_RareWeekMemory", nameof(Sched.RareWeekMemory), R, Sched.RareWeekMemory, true),
             new PassInfo(Pass.RareNeighbours, "CC_Clock_Pass_RareNeighbours", nameof(Sched.RareNeighbours), R, Sched.RareNeighbours, true),
             new PassInfo(Pass.RareOutsiders, "CC_Clock_Pass_RareOutsiders", nameof(Sched.RareOutsiders), R, Sched.RareOutsiders, true),
+            new PassInfo(Pass.RareHauling, "CC_Clock_Pass_RareHauling", nameof(Sched.RareHauling), R, Sched.RareHauling, true),
 
             new PassInfo(Pass.PeopleLog, "CC_Clock_Pass_PeopleLog", nameof(Sched.PeopleLog), Sched.PeopleLogPeriod, Sched.PeopleLog),
             new PassInfo(Pass.DailyWealth, "CC_Clock_Pass_DailyWealth", nameof(Sched.DailyWealth), D, Sched.DailyWealth),

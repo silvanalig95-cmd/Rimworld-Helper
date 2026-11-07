@@ -558,5 +558,7 @@ Console.WriteLine($"Checked {SchemesTests.Run(Check)} things about schemes again
 Console.WriteLine($"Checked {PeoplesTests.Run(Check)} things about Rimfolk's own peoples (the callings and their tags, the weights, the titles, the towns' plans by the game's footprint rule, the three defs and their softness, the asks, callers and camp, the patch, the words, the emblems, the seams).");
 Console.WriteLine($"Checked {ArisingTests.Run(Check)} things about peoples that arise during play (the four causes and when each is due, the pace and its setting, the league's towns, the template in every age, their goodwill, colour and name, the words, the region's day, the one book saved, the leader after the faith, the dev actions).");
 
+Console.WriteLine($"Checked {HaulTests.Run(Check)} things about carrying and hauling (what fits, worth a trip, the long material run and its build area, the others' cover, things on the way, what is kept, the standalone Harvest and Haul's settings and loads, the hooks that stand down, the job, the words).");
+
 Console.WriteLine(failures == 0 ? "All tests passed (template math, layout, strain, meetings, pressures, ailments, line memory, good times, tab sizes, calendar, personal stories, clock and caps, faction memory, answers on the map, setbacks, promises kept, what colonists say, the heart's needs, beliefs and diets, animals, other mods)." : failures + " failure(s).");
 return failures == 0 ? 0 : 1;
