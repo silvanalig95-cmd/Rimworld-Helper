@@ -128,7 +128,8 @@ namespace ColonyCouncil
             return placed.Contains(map.uniqueID);
         }
 
-        private static void NotePlaced(Map map)
+        /// <summary>This map was made from a plan (a town the colony was, or one of Rimfolk's peoples' towns: Peoples/PeopleTowns.cs): the power step stands down for it.</summary>
+        internal static void NotePlaced(Map map)
         {
             if (Current.Game != placedGame)
             {
@@ -272,7 +273,7 @@ namespace ColonyCouncil
             }
             try
             {
-                AtHome(map, rec, rect.Value, s.Faction);
+                AtHome(map, rec.key, rec.layout, rect.Value, s.Faction);
             }
             catch (Exception e)
             {
@@ -429,20 +430,21 @@ namespace ColonyCouncil
         /// <summary>
         /// The town's people on its map as it is made: the notables at home (their own beds where kept), and the game's
         /// own settlement group of that people (the points the game gives a town, less what the notables already bring),
-        /// all under the game's defend-the-town lord at the town's middle.
+        /// all under the game's defend-the-town lord at the town's middle. <paramref name="town"/> is the town's world
+        /// object id; <paramref name="layout"/> knows who sleeps where, when it was kept (none for a people's plan).
         /// </summary>
-        private static void AtHome(Map map, LedgerFormer rec, CellRect rect, Faction f)
+        internal static void AtHome(Map map, int town, LedgerLayout layout, CellRect rect, Faction f)
         {
             var lord = LordMaker.MakeNewLord(f, new LordJob_DefendBase(f, rect.CenterCell, 25000), map);
             // A raid on the town (release 5, Colonies/TownRaid.cs): its defenders as the raid reckoned them, by its fortune.
             float points = DefendPoints > 0f ? DefendPoints : SymbolResolver_Settlement.DefaultPawnsPoints.RandomInRange;
             var book = NotableBook.Instance;
             if (book != null)
-                foreach (var nb in book.notables.Where(x => x != null && x.town == rec.key && x.Alive).ToList())
+                foreach (var nb in book.notables.Where(x => x != null && x.town == town && x.Alive).ToList())
                 {
                     var p = nb.pawn;
                     if (!FreeAtHome(p, f)) continue;
-                    var cell = HomeCell(map, rec.layout, rect, p);
+                    var cell = HomeCell(map, layout, rect, p);
                     GenSpawn.Spawn(p, cell, map);
                     lord.AddPawn(p);
                     points -= p.kindDef?.combatPower ?? 0f;

@@ -16,7 +16,14 @@ namespace ColonyCouncil
         public const int MaxAnimals = 5;
 
         /// <summary>How many of a group come, given how many animals are already coming: never past the cap, never fewer than none.</summary>
-        public static int AnimalsFor(int wanted, int already) => Math.Max(0, Math.Min(wanted, MaxAnimals - Math.Max(0, already)));
+        public static int AnimalsFor(int wanted, int already) => AnimalsFor(wanted, already, MaxAnimals);
+
+        /// <summary>The same with a kind's own cap (the herding folk's winter herd: CampKindDef.maxAnimals), never past <see cref="MaxHerd"/>.</summary>
+        public static int AnimalsFor(int wanted, int already, int cap) =>
+            Math.Max(0, Math.Min(wanted, Math.Min(MaxHerd, Math.Max(0, cap)) - Math.Max(0, already)));
+
+        /// <summary>The most any camp brings, a herd come to graze the winter with its dog.</summary>
+        public const int MaxHerd = 14;
 
         /// <summary>
         /// Their animals are fed from the camp's own stores when this hungry, checked once an hour: well above where a

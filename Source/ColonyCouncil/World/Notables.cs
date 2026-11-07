@@ -1136,6 +1136,8 @@ namespace ColonyCouncil
                     if (n.pawn != null && Ages.IsEmpire(n.faction) && WorldMechanics.Title(n.pawn) is RoyalTitleView royal && !royal.label.NullOrEmpty()) return royal.label;
                     // A trading post's keeper by their age: trader, factor, manager, quartermaster (World/Region/TradingPost.cs).
                     if (TradingPosts.KeeperTitle(n) is string keeper) return keeper;
+                    // One of Rimfolk's peoples by its ways: the league's waymaster, the order's prior, the herders' camp elder (Peoples/).
+                    if (Peoples.Title(n.faction, "head", female) is string ways) return ways;
                     return ("CC_Notable_Title_Head_" + era + (female ? "_F" : "")).CanTranslate()
                         ? ("CC_Notable_Title_Head_" + era + (female ? "_F" : "")).Translate().Resolve()
                         : ("CC_Notable_Title_Head_" + era).Translate().Resolve();
@@ -1143,9 +1145,9 @@ namespace ColonyCouncil
                     // A town the colony was calls its head's second by the colony's age at the hand-over (Colonies/HandOvers.cs).
                     var former = WorldLedger.FormerOf(n.town);
                     if (former != null && former.people == n.faction) return HandOvers.SecondTitle(former.age);
-                    return "CC_Notable_Title_Heir".Translate().Resolve();
-                case NotableRole.Envoy: return ("CC_Notable_Title_Envoy_" + era).Translate().Resolve();
-                case NotableRole.Trader: return ("CC_Notable_Title_Trader_" + era).Translate().Resolve();
+                    return Peoples.Title(n.faction, "heir", female) ?? "CC_Notable_Title_Heir".Translate().Resolve();
+                case NotableRole.Envoy: return Peoples.Title(n.faction, "envoy", female) ?? ("CC_Notable_Title_Envoy_" + era).Translate().Resolve();
+                case NotableRole.Trader: return Peoples.Title(n.faction, "trader", female) ?? ("CC_Notable_Title_Trader_" + era).Translate().Resolve();
                 default: return ("CC_Notable_Title_Met_" + (n.met ?? "visitor")).CanTranslate() ? ("CC_Notable_Title_Met_" + n.met).Translate().Resolve() : "CC_Notable_Title_Met_visitor".Translate().Resolve();
             }
         }

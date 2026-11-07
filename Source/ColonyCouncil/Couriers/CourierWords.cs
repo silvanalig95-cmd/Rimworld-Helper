@@ -61,6 +61,8 @@ namespace ColonyCouncil
                 var lines = Lines?.lines;
                 if (lines == null) return;
                 if (f?.def != null) tags.Add(f.def.techLevel <= TechLevel.Medieval ? "theirLowtech" : "theirHightech");
+                // One of Rimfolk's peoples, by what it lives by (their:traders, their:healers, their:herders: Peoples/).
+                Peoples.AddTags(f, tags);
                 foreach (var t in Flavor.TagsFor(p)) tags.Add(t);
                 var tone = ToneUtility.ToneFor(p);
                 string line = Flavor.PickFresh(lines.For(tone), tags, lines.For(tone));
@@ -75,9 +77,10 @@ namespace ColonyCouncil
 
         // ---------------- Who they are ----------------
 
-        /// <summary>"runner", "porter", "courier": what the people of this tech level are called, one or more.</summary>
+        /// <summary>"runner", "porter", "courier": what the people of this tech level are called, one or more; one of Rimfolk's peoples' own word (the league's road riders, the order's postulants).</summary>
         private static string Noun(Faction f, bool plural)
         {
+            if (Peoples.Courier(f, plural) is string own) return own;
             var tech = f?.def?.techLevel ?? TechLevel.Industrial;
             string key = tech <= TechLevel.Neolithic ? "Runner" : tech == TechLevel.Medieval ? "Porter" : "Courier";
             return ("CC_Courier_" + key + (plural ? "s" : "")).Translate().Resolve();

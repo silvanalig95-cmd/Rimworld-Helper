@@ -217,7 +217,7 @@ namespace ColonyCouncil
                 if (g == null) continue;
                 try
                 {
-                    int n = CampLookMath.AnimalsFor(g.count.RandomInRange, list.Count);
+                    int n = CampLookMath.AnimalsFor(g.count.RandomInRange, list.Count, kind.maxAnimals);
                     if (n <= 0) continue;
                     var pk = AnimalKindFor(g, f, map);
                     if (pk == null) continue;

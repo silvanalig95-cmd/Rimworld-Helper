@@ -1,0 +1,739 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The road league (docs/design/peoples.md; DESIGN.md "Rimfolk's peoples"; Source/ColonyCouncil/Peoples/): caravan masters,
+    carters and waystation keepers who live by the roads between other peoples' towns. Industrial, on the game's outlander
+    parent: few towns of their own (settlementGenerationWeight 0.4), many caravans (PeopleExtension.caravanWeight 3: when the
+    game sends a trader caravan, theirs is three times as likely as another's), rich and varied stock, guards in plenty. They
+    defend their waystations and raid only when the colony has turned them hostile, at the game's own rules (and rarely then:
+    raidCommonalityFromPointsCurve 0.35). Listed once among the world's peoples when a world is made, never required.
+    Gear from the game's tags (and the loaded VE apparel and weapons sets that add to them), a duster on every back, dyed
+    the league's teal. Faith (Ideology): a fixed creed of the collective and of trade (VE Memes' trader where loaded), the
+    rustic style. Kind of people (Biotech): humans mostly, a few hussars on guard, genies keeping the books.
+  -->
+
+  <FactionDef ParentName="OutlanderFactionBase">
+    <defName>Rimfolk_League</defName>
+    <label>road league</label>
+    <description>A league of caravan masters, carters and waystation keepers who live by the roads between other peoples' towns. They keep few towns of their own, only walled waystations where the roads meet, and send their caravans everywhere, well stocked and well guarded.\n\nThey deal fairly, keep their word and expect the same, and they remember who robbed them. Their towns are run by waymasters, and the league by a warden of the roads.</description>
+    <pawnSingular>wayfarer</pawnSingular>
+    <pawnsPlural>wayfarers</pawnsPlural>
+    <leaderTitle>warden of the roads</leaderTitle>
+    <techLevel>Industrial</techLevel>
+    <basicMemberKind>Rimfolk_League_Wayfarer</basicMemberKind>
+    <factionNameMaker>Rimfolk_Namer_League</factionNameMaker>
+    <settlementNameMaker>Rimfolk_Namer_LeagueTown</settlementNameMaker>
+    <factionIconPath>ColonyCouncil/Peoples/League</factionIconPath>
+    <settlementTexturePath>ColonyCouncil/Peoples/LeagueTown</settlementTexturePath>
+    <colorSpectrum>
+      <li>(0.16, 0.50, 0.54)</li>
+      <li>(0.36, 0.74, 0.76)</li>
+    </colorSpectrum>
+    <hidden>false</hidden>
+    <naturalEnemy>false</naturalEnemy>
+    <permanentEnemy>false</permanentEnemy>
+    <canSiege>false</canSiege>
+    <requiredCountAtGameStart>0</requiredCountAtGameStart>
+    <startingCountAtWorldCreation>1</startingCountAtWorldCreation>
+    <maxConfigurableAtWorldCreation>9999</maxConfigurableAtWorldCreation>
+    <configurationListOrderPriority>15</configurationListOrderPriority>
+    <settlementGenerationWeight>0.4</settlementGenerationWeight>
+    <raidCommonalityFromPointsCurve Inherit="False">
+      <points>
+        <li>(0, 0.35)</li>
+      </points>
+    </raidCommonalityFromPointsCurve>
+    <xenotypeSet Inherit="False">
+      <xenotypeChances>
+        <Hussar MayRequire="Ludeon.RimWorld.Biotech">0.04</Hussar>
+        <Genie MayRequire="Ludeon.RimWorld.Biotech">0.04</Genie>
+        <Highmate MayRequire="Ludeon.RimWorld.Biotech">0.02</Highmate>
+        <Starjack MayRequire="Ludeon.RimWorld.Biotech,Ludeon.RimWorld.Odyssey">0.02</Starjack>
+      </xenotypeChances>
+    </xenotypeSet>
+    <fixedIdeo>true</fixedIdeo>
+    <ideoName>The Long Road</ideoName>
+    <ideoDescription>The road belongs to everyone who keeps it. A wayfarer pays the toll, keeps the word given at the waystone, and brings the caravan home with every crate it set out with. Whatever is earned on the road is shared at its end, and a debt is carried until it is paid.</ideoDescription>
+    <forcedMemes>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Collectivist</li>
+      <li MayRequire="VanillaExpanded.VMemesE">VME_Trader</li>
+    </forcedMemes>
+    <structureMemeWeights Inherit="False">
+      <Structure_Ideological MayRequire="Ludeon.RimWorld.Ideology">3</Structure_Ideological>
+      <Structure_TheistAbstract MayRequire="Ludeon.RimWorld.Ideology">1</Structure_TheistAbstract>
+    </structureMemeWeights>
+    <styles>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Rustic</li>
+    </styles>
+    <caravanTraderKinds Inherit="False">
+      <li>Rimfolk_Caravan_League_Goods</li>
+      <li>Rimfolk_Caravan_League_Far</li>
+    </caravanTraderKinds>
+    <visitorTraderKinds Inherit="False">
+      <li>Rimfolk_Visitor_League</li>
+    </visitorTraderKinds>
+    <baseTraderKinds Inherit="False">
+      <li>Rimfolk_Base_League</li>
+    </baseTraderKinds>
+    <pawnGroupMakers Inherit="False">
+      <li>
+        <!-- A fight: their guards and outriders, a hired gun or two -->
+        <kindDef>Combat</kindDef>
+        <options>
+          <Rimfolk_League_Guard>10</Rimfolk_League_Guard>
+          <Rimfolk_League_Outrider>5</Rimfolk_League_Outrider>
+          <Mercenary_Gunner>3</Mercenary_Gunner>
+          <Rimfolk_League_Wayfarer>2</Rimfolk_League_Wayfarer>
+        </options>
+      </li>
+      <li>
+        <kindDef>Peaceful</kindDef>
+        <options>
+          <Rimfolk_League_Wayfarer>20</Rimfolk_League_Wayfarer>
+          <Villager_Child MayRequire="Ludeon.RimWorld.Biotech">6</Villager_Child>
+          <Rimfolk_League_Guard>10</Rimfolk_League_Guard>
+          <Rimfolk_League_Factor>4</Rimfolk_League_Factor>
+        </options>
+      </li>
+      <li>
+        <!-- A caravan: their factor, pack beasts for the wares, and guards in plenty -->
+        <kindDef>Trader</kindDef>
+        <traders>
+          <Rimfolk_League_Factor>1</Rimfolk_League_Factor>
+        </traders>
+        <carriers>
+          <Muffalo>6</Muffalo>
+          <Dromedary>6</Dromedary>
+          <Horse>3</Horse>
+          <Alpaca>2</Alpaca>
+          <Elephant>2</Elephant>
+        </carriers>
+        <guards>
+          <Rimfolk_League_Guard>10</Rimfolk_League_Guard>
+          <Rimfolk_League_Outrider>4</Rimfolk_League_Outrider>
+          <Mercenary_Gunner>2</Mercenary_Gunner>
+        </guards>
+      </li>
+      <li>
+        <kindDef>Settlement</kindDef>
+        <options>
+          <Rimfolk_League_Guard>10</Rimfolk_League_Guard>
+          <Rimfolk_League_Outrider>5</Rimfolk_League_Outrider>
+          <Rimfolk_League_Wayfarer>8</Rimfolk_League_Wayfarer>
+          <Rimfolk_League_Factor>2</Rimfolk_League_Factor>
+        </options>
+      </li>
+      <li MayRequire="Ludeon.RimWorld.Ideology">
+        <kindDef>Miners</kindDef>
+        <commonality>1</commonality>
+        <options>
+          <Miner>1</Miner>
+        </options>
+      </li>
+      <li MayRequire="Ludeon.RimWorld.Ideology">
+        <kindDef>Hunters</kindDef>
+        <commonality>1</commonality>
+        <options>
+          <Hunter>1</Hunter>
+        </options>
+      </li>
+      <li MayRequire="Ludeon.RimWorld.Ideology">
+        <kindDef>Loggers</kindDef>
+        <commonality>1</commonality>
+        <options>
+          <Logger>1</Logger>
+        </options>
+      </li>
+      <li MayRequire="Ludeon.RimWorld.Ideology">
+        <kindDef>Farmers</kindDef>
+        <commonality>1</commonality>
+        <options>
+          <Farmer>1</Farmer>
+        </options>
+      </li>
+    </pawnGroupMakers>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleExtension">
+        <calling>traders</calling>
+        <townWord>waystation</townWord>
+        <townWords>waystations</townWords>
+        <head>waymaster</head>
+        <heir>second waymaster</heir>
+        <envoy>league factor</envoy>
+        <trader>caravan master</trader>
+        <courier>road rider</courier>
+        <couriers>road riders</couriers>
+        <caravanWeight>3</caravanWeight>
+        <camps>
+          <li>Council_Camp_Market</li>
+          <li>Council_Camp_SaltCaravan</li>
+          <li>Council_Camp_FarMerchants</li>
+          <li>Council_Camp_Wardens</li>
+        </camps>
+        <plan>Rimfolk_Plan_Waystation</plan>
+        <townGoods>
+          <Cloth>80~160</Cloth>
+          <Steel>60~140</Steel>
+          <ComponentIndustrial>4~10</ComponentIndustrial>
+          <MedicineIndustrial>3~8</MedicineIndustrial>
+          <Chocolate>10~30</Chocolate>
+          <Silver>150~400</Silver>
+        </townGoods>
+        <herd>
+          <li>Muffalo</li>
+          <li>Dromedary</li>
+          <li>Horse</li>
+        </herd>
+        <herdCount>3~6</herdCount>
+      </li>
+    </modExtensions>
+  </FactionDef>
+
+  <!-- ===================== Their people ===================== -->
+
+  <PawnKindDef Name="Rimfolk_LeagueKindBase" Abstract="True">
+    <race>Human</race>
+    <defaultFactionDef>Rimfolk_League</defaultFactionDef>
+    <chemicalAddictionChance>0.03</chemicalAddictionChance>
+    <backstoryCryptosleepCommonality>0.02</backstoryCryptosleepCommonality>
+    <invNutrition>2.55</invNutrition>
+    <apparelColor>(0.24, 0.58, 0.60)</apparelColor>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li>IndustrialAdvanced</li>
+    </apparelTags>
+    <apparelRequired>
+      <li>Apparel_Duster</li>
+    </apparelRequired>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_LeagueKindBase">
+    <defName>Rimfolk_League_Wayfarer</defName>
+    <label>wayfarer</label>
+    <combatPower>45</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.6~1.6</gearHealthRange>
+    <weaponTags>
+      <li>SimpleGun</li>
+    </weaponTags>
+    <weaponMoney>100~250</weaponMoney>
+    <apparelMoney>300~500</apparelMoney>
+    <apparelAllowHeadgearChance>0.5</apparelAllowHeadgearChance>
+    <initialWillRange>1~3</initialWillRange>
+    <initialResistanceRange>10~17</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_LeagueKindBase">
+    <defName>Rimfolk_League_Guard</defName>
+    <label>caravan guard</label>
+    <combatPower>65</combatPower>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.7~1.8</gearHealthRange>
+    <apparelTags Inherit="False">
+      <li>IndustrialMilitaryBasic</li>
+      <li>IndustrialBasic</li>
+      <li>BeltDefensePop</li>
+    </apparelTags>
+    <apparelRequired>
+      <li>Apparel_CowboyHat</li>
+    </apparelRequired>
+    <apparelMoney>450~700</apparelMoney>
+    <weaponTags>
+      <li>Gun</li>
+    </weaponTags>
+    <weaponMoney>250~450</weaponMoney>
+    <requiredWorkTags>Violent</requiredWorkTags>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>15~24</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_LeagueKindBase">
+    <defName>Rimfolk_League_Outrider</defName>
+    <label>outrider</label>
+    <combatPower>100</combatPower>
+    <itemQuality>Good</itemQuality>
+    <gearHealthRange>0.9~2</gearHealthRange>
+    <apparelTags Inherit="False">
+      <li>IndustrialMilitaryAdvanced</li>
+      <li>IndustrialMilitaryBasic</li>
+      <li>BeltDefensePop</li>
+    </apparelTags>
+    <apparelRequired>
+      <li>Apparel_CowboyHat</li>
+    </apparelRequired>
+    <apparelMoney>900~1500</apparelMoney>
+    <weaponTags>
+      <li>IndustrialGunAdvanced</li>
+      <li>Gun</li>
+    </weaponTags>
+    <weaponMoney>500~900</weaponMoney>
+    <requiredWorkTags>Violent</requiredWorkTags>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>20~30</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_LeagueKindBase">
+    <defName>Rimfolk_League_Factor</defName>
+    <label>factor</label>
+    <trader>true</trader>
+    <combatPower>50</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Good</itemQuality>
+    <gearHealthRange>1~1</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_BowlerHat</li>
+    </apparelRequired>
+    <apparelMoney>600~900</apparelMoney>
+    <weaponTags>
+      <li>SimpleGun</li>
+    </weaponTags>
+    <weaponMoney>200~200</weaponMoney>
+    <skills>
+      <li>
+        <skill>Social</skill>
+        <range>6~14</range>
+      </li>
+    </skills>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>12~20</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_LeagueKindBase">
+    <defName>Rimfolk_League_Master</defName>
+    <label>league master</label>
+    <combatPower>50</combatPower>
+    <factionLeader>true</factionLeader>
+    <minGenerationAge>35</minGenerationAge>
+    <isFighter>false</isFighter>
+    <itemQuality>Good</itemQuality>
+    <gearHealthRange>1~1</gearHealthRange>
+    <apparelRequired>
+      <li MayRequire="Ludeon.RimWorld.Royalty">Apparel_HatTop</li>
+    </apparelRequired>
+    <apparelMoney>1000~1600</apparelMoney>
+    <weaponTags>
+      <li>SimpleGun</li>
+    </weaponTags>
+    <weaponMoney>200~300</weaponMoney>
+    <skills>
+      <li>
+        <skill>Social</skill>
+        <range>8~16</range>
+      </li>
+    </skills>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>8~12</initialResistanceRange>
+  </PawnKindDef>
+
+  <!-- ===================== Their traders: rich and varied stock ===================== -->
+
+  <TraderKindDef>
+    <defName>Rimfolk_Caravan_League_Goods</defName>
+    <label>league caravan</label>
+    <commonality>2</commonality>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>1000~1600</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentIndustrial</thingDef>
+        <countRange>20~35</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Steel</thingDef>
+        <countRange>200~350</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Cloth</thingDef>
+        <countRange>200~350</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineIndustrial</thingDef>
+        <countRange>8~16</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineHerbal</thingDef>
+        <countRange>5~12</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Neutroamine</thingDef>
+        <countRange>40~90</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Beer</thingDef>
+        <countRange>20~45</countRange>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>Textiles</categoryDef>
+        <thingDefCountRange>3~4</thingDefCountRange>
+        <totalPriceRange>400~900</totalPriceRange>
+        <excludedThingDefs>
+          <li MayRequire="Ludeon.RimWorld.Anomaly">Leather_Dread</li>
+        </excludedThingDefs>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>FoodRaw</categoryDef>
+        <thingDefCountRange>3~4</thingDefCountRange>
+        <totalPriceRange>200~600</totalPriceRange>
+        <excludedCategories>
+          <li>EggsFertilized</li>
+        </excludedCategories>
+      </li>
+      <li Class="StockGenerator_MultiDef">
+        <thingDefs>
+          <li>Chocolate</li>
+          <li>Kibble</li>
+          <li>Pemmican</li>
+        </thingDefs>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>Drugs</categoryDef>
+        <thingDefCountRange>1~2</thingDefCountRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>TextBook</thingDef>
+        <countRange>0~2</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Novel</thingDef>
+        <countRange>1~2</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Schematic</thingDef>
+        <countRange>0~1</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponRanged</tradeTag>
+        <countRange>2~3</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>BasicClothing</tradeTag>
+        <countRange>8~8</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>Clothing</tradeTag>
+        <countRange>4~4</countRange>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>BuildingsFurniture</categoryDef>
+        <thingDefCountRange>3~4</thingDefCountRange>
+        <countRange>1~1</countRange>
+      </li>
+      <li Class="StockGenerator_Animals">
+        <maxWildness>0.70</maxWildness>
+        <tradeTagsSell>
+          <li>AnimalFarm</li>
+        </tradeTagsSell>
+        <tradeTagsBuy>
+          <li>AnimalExotic</li>
+        </tradeTagsBuy>
+        <kindCountRange>1~2</kindCountRange>
+        <countRange>3~5</countRange>
+        <createMatingPair>
+          <li>AnimalFarm</li>
+        </createMatingPair>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>MusicalInstrument</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Caravan_League_Far</defName>
+    <label>league far-road caravan</label>
+    <commonality>1</commonality>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>900~1400</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Gold</thingDef>
+        <countRange>30~70</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Jade</thingDef>
+        <countRange>30~80</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentIndustrial</thingDef>
+        <countRange>10~20</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentSpacer</thingDef>
+        <countRange>0~3</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Plasteel</thingDef>
+        <countRange>30~90</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineIndustrial</thingDef>
+        <countRange>6~12</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Chocolate</thingDef>
+        <countRange>20~50</countRange>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>Textiles</categoryDef>
+        <thingDefCountRange>2~3</thingDefCountRange>
+        <totalPriceRange>500~1100</totalPriceRange>
+        <excludedThingDefs>
+          <li MayRequire="Ludeon.RimWorld.Anomaly">Leather_Dread</li>
+        </excludedThingDefs>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>Drugs</categoryDef>
+        <thingDefCountRange>2~3</thingDefCountRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>TextBook</thingDef>
+        <countRange>1~2</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Novel</thingDef>
+        <countRange>1~2</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>Clothing</tradeTag>
+        <countRange>5~5</countRange>
+      </li>
+      <li Class="StockGenerator_Tag">
+        <tradeTag>Art</tradeTag>
+        <thingDefCountRange>2~3</thingDefCountRange>
+        <countRange>1~1</countRange>
+      </li>
+      <li Class="StockGenerator_Tag">
+        <tradeTag>ExoticMisc</tradeTag>
+        <thingDefCountRange>2~2</thingDefCountRange>
+        <countRange>1~1</countRange>
+        <excludedThingDefs>
+          <li>ComponentSpacer</li>
+          <li MayRequire="Ludeon.RimWorld.Anomaly">Apparel_DisruptorFlarePack</li>
+        </excludedThingDefs>
+      </li>
+      <li Class="StockGenerator_Tag">
+        <tradeTag>Television</tradeTag>
+        <thingDefCountRange>0~1</thingDefCountRange>
+        <countRange>1~1</countRange>
+      </li>
+      <li Class="StockGenerator_Animals">
+        <maxWildness>0.80</maxWildness>
+        <tradeTagsSell>
+          <li>AnimalUncommon</li>
+          <li>AnimalExotic</li>
+        </tradeTagsSell>
+        <tradeTagsBuy>
+          <li>AnimalFarm</li>
+        </tradeTagsBuy>
+        <kindCountRange>1~1</kindCountRange>
+        <countRange>1~2</countRange>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>MusicalInstrument</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Visitor_League</defName>
+    <label>league wayfarer</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>300~600</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineIndustrial</thingDef>
+        <countRange>2~5</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Cloth</thingDef>
+        <countRange>40~90</countRange>
+      </li>
+      <li Class="StockGenerator_MultiDef">
+        <thingDefs>
+          <li>Chocolate</li>
+          <li>Pemmican</li>
+        </thingDefs>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>Textiles</categoryDef>
+        <thingDefCountRange>1~2</thingDefCountRange>
+        <totalPriceRange>100~300</totalPriceRange>
+        <excludedThingDefs>
+          <li MayRequire="Ludeon.RimWorld.Anomaly">Leather_Dread</li>
+        </excludedThingDefs>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Novel</thingDef>
+        <countRange>0~1</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>BasicClothing</tradeTag>
+        <countRange>2~3</countRange>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Base_League</defName>
+    <label>waystation</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>1500~2500</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentIndustrial</thingDef>
+        <countRange>25~45</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Steel</thingDef>
+        <countRange>300~600</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Cloth</thingDef>
+        <countRange>300~600</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Gold</thingDef>
+        <countRange>10~40</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineIndustrial</thingDef>
+        <countRange>10~20</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Neutroamine</thingDef>
+        <countRange>60~140</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Beer</thingDef>
+        <countRange>30~60</countRange>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>Textiles</categoryDef>
+        <thingDefCountRange>4~5</thingDefCountRange>
+        <totalPriceRange>600~1300</totalPriceRange>
+        <excludedThingDefs>
+          <li MayRequire="Ludeon.RimWorld.Anomaly">Leather_Dread</li>
+        </excludedThingDefs>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>FoodRaw</categoryDef>
+        <thingDefCountRange>4~5</thingDefCountRange>
+        <totalPriceRange>300~800</totalPriceRange>
+        <excludedCategories>
+          <li>EggsFertilized</li>
+        </excludedCategories>
+      </li>
+      <li Class="StockGenerator_MultiDef">
+        <thingDefs>
+          <li>Chocolate</li>
+          <li>Kibble</li>
+          <li>Pemmican</li>
+        </thingDefs>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>Drugs</categoryDef>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>TextBook</thingDef>
+        <countRange>1~2</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Novel</thingDef>
+        <countRange>1~3</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Schematic</thingDef>
+        <countRange>0~2</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponRanged</tradeTag>
+        <countRange>3~5</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>BasicClothing</tradeTag>
+        <countRange>10~10</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>Clothing</tradeTag>
+        <countRange>5~5</countRange>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>BuildingsFurniture</categoryDef>
+        <thingDefCountRange>4~6</thingDefCountRange>
+        <countRange>1~1</countRange>
+      </li>
+      <li Class="StockGenerator_Tag">
+        <tradeTag>Art</tradeTag>
+        <thingDefCountRange>2~4</thingDefCountRange>
+        <countRange>1~1</countRange>
+      </li>
+      <li Class="StockGenerator_Animals">
+        <maxWildness>0.70</maxWildness>
+        <tradeTagsSell>
+          <li>AnimalFarm</li>
+        </tradeTagsSell>
+        <tradeTagsBuy>
+          <li>AnimalExotic</li>
+        </tradeTagsBuy>
+        <kindCountRange>2~3</kindCountRange>
+        <countRange>3~6</countRange>
+        <createMatingPair>
+          <li>AnimalFarm</li>
+        </createMatingPair>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>MusicalInstrument</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <!-- ===================== Their names ===================== -->
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_League</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->[PlaceOutlander] League</li>
+        <li>r_name(p=2)->League of [PlaceOutlander]</li>
+        <li>r_name->[PlaceOutlander] Road League</li>
+        <li>r_name->The [Direction] Road</li>
+        <li>r_name->The Waymark League</li>
+        <li>r_name->[PlaceOutlander] Waymark</li>
+        <li>r_name->The Long Road League</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_LeagueTown</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->[PlaceOutlander] Crossing</li>
+        <li>r_name(p=2)->[PlaceOutlander] Wells</li>
+        <li>r_name(p=2)->[PlaceOutlander] Halt</li>
+        <li>r_name->[PlaceOutlander] Gate</li>
+        <li>r_name->[PlaceOutlander] Post</li>
+        <li>r_name->[PlaceOutlander] Waystation</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>

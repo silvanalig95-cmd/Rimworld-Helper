@@ -454,7 +454,9 @@ namespace ColonyCouncil
             // What the land near the home has that draws travellers (World/Region/TravelLand.cs): a kind that seeks it
             // weighs more the more remote the home, and says it came for it; one that comes only for it needs it.
             var land = TravelLand.Read(map);
-            var kinds = DefDatabase<CampKindDef>.AllDefs.Where(k => k.FitsEra() && k.Possible && !k.fights && k.FitsMap(map) && (!k.seekOnly || TravelMath.AnyHolds(k.seeks, land.holds))).ToList();
+            // A kind of one season, or only from one of Rimfolk's peoples, comes then and while that people is at peace (Peoples/).
+            var kinds = DefDatabase<CampKindDef>.AllDefs.Where(k => k.FitsEra() && k.Possible && !k.fights && k.FitsMap(map) && k.FitsSeason(map) && Peoples.CanSend(k)
+                                                                    && (!k.seekOnly || TravelMath.AnyHolds(k.seeks, land.holds))).ToList();
             if (kinds.Count == 0)
             {
                 why?.Add("no kind of camp can come now");
@@ -491,8 +493,9 @@ namespace ColonyCouncil
             {
                 // A refugee family comes more often while a town in reach struggles, and is likeliest of its people (World/Region/RiseFallEffects.cs).
                 var kind = kinds.RandomElementByWeight(k => k.WeightNow(map) * k.HourFit(hourNow) * TravelLand.SeekWeight(k, map, land) * RiseFallEffects.CampFactor(k, map));
-                // Peoples the colony did good turns for camp here more often, those with grudges less (Interplay/).
-                var f = Arrivals.Friendly(x => kind.FitsFaction(x), x => Interplay.CampWeight(x) * RiseFallEffects.CampPeople(kind, map, x));
+                // Peoples the colony did good turns for camp here more often, those with grudges less (Interplay/), and a kind
+                // one of Rimfolk's peoples favours (their drovers, their healers on the road) likelier from them (Peoples/).
+                var f = Arrivals.Friendly(x => kind.FitsFaction(x), x => Interplay.CampWeight(x) * RiseFallEffects.CampPeople(kind, map, x) * Peoples.CampFactor(kind, x));
                 if (f == null)
                 {
                     why?.Add(kind.label + ": no friendly people for it");

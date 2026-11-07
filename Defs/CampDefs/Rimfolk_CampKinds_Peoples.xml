@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Camps of Rimfolk's own peoples (Source/ColonyCouncil/Peoples/; docs/design/peoples.md). The herding folk's winter
+    grazing: only from a people whose calling is herding (CampKindDef.calling), only in the fall and the winter
+    (CampKindDef.seasons), a long stay with a real herd (CampKindDef.maxAnimals 14: twelve head and the dog). Their asking
+    for leave to camp is the camp's own letter, the colony's answer its terms, as for every camp; the herd grazes beyond
+    the camp and eats from the hay they brought when the grass is under snow. The other peoples' camps are the existing
+    kinds, likelier from them (PeopleExtension.camps: the league's market folk, salt caravans, far merchants and road
+    wardens; the order's healers, herb-gatherers, pilgrims and penitents; the herders' drovers, shearers and
+    beast-catchers).
+  -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_WinterHerd</defName>
+    <label>winter herd</label>
+    <arrives>8~15</arrives>
+    <minTech>Neolithic</minTech>
+    <calling>herders</calling>
+    <seasons>
+      <li>Fall</li>
+      <li>Winter</li>
+      <li>PermanentWinter</li>
+    </seasons>
+    <weight>1.2</weight>
+    <maxAnimals>14</maxAnimals>
+    <people>4~6</people>
+    <days>8~13</days>
+    <ages>16~65</ages>
+    <chopsPerDay>0.5</chopsPerDay>
+    <task>Council_CampHerd</task>
+    <taskAt>herd</taskAt>
+    <hireChance>0.2</hireChance>
+    <joinChance>0.03</joinChance>
+    <helpChance>0.3</helpChance>
+    <help>
+      <li>milk</li>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Feed</li>
+      <li>RoadFood</li>
+      <li>Medicine</li>
+    </buys>
+    <pride>0.35</pride>
+    <breakTerms>0.08</breakTerms>
+    <tensionPerDay>0.8</tensionPerDay>
+    <extendChance>0.25</extendChance>
+    <situationKinds>
+      <li>drove</li>
+      <li>herds</li>
+      <li>weather</li>
+    </situationKinds>
+    <seeks>
+      <li>grazing</li>
+    </seeks>
+    <seekTexts>
+      <li>[seek:grazing] They came for {SEEK}: the high pastures are under snow, and the herd needs ground to see the winter out.</li>
+    </seekTexts>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>hut</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Leather_Plain</li><li>Cloth</li></stuff></li>
+      <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>3</count></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+    </structures>
+    <campGoods>
+      <li><defs><li>Hay</li></defs><count>60~100</count><at>pasture</at></li>
+      <li><defs><li>Hay</li></defs><count>40~70</count><at>picket</at></li>
+      <li><defs><li>WoolSheep</li><li>Leather_Plain</li></defs><count>20~40</count><at>wall</at></li>
+    </campGoods>
+    <!-- The herd grazes beyond the camp (beasts that suit the cold here, those that live wild on this land likelier), and
+         a dog keeps to a herder's heels. The beast the colony can buy is one of these. -->
+    <animals>
+      <li><kinds><li>Yak</li><li>Muffalo</li><li>Sheep</li><li>Goat</li><li>Cow</li><li>Alpaca</li></kinds><count>6~8</count><at>pasture</at></li>
+      <li><kinds><li>Muffalo</li><li>Yak</li><li>Sheep</li><li>Goat</li><li>Cow</li><li>Dromedary</li><li>Horse</li></kinds><count>3~4</count><at>pasture</at></li>
+      <li><kinds><li>Husky</li><li>LabradorRetriever</li></kinds><count>1~1</count><follow>true</follow><named>true</named></li>
+    </animals>
+    <titles>
+      <li>A herd to winter</li>
+      <li>{FACTION} ask for winter grazing</li>
+      <li>[snow] Herders out of the snow</li>
+    </titles>
+    <texts>
+      <li>{X_nameDef}, an elder of {FACTION}'s herders, has walked a great herd down from the high pastures ahead of the snow, and asks {A_nameDef} for leave to winter it {PLACE}. They have brought their own hay for the worst of it, {X_pronoun} says, and will keep the beasts off the colony's fields.</li>
+      <li>[snow] The snow has closed the passes behind {FACTION}'s herders, and their herd needs somewhere to see the winter out. {X_nameDef} asked {A_nameDef}, with the herd lowing beyond the ridge, whether the colony would let them graze {PLACE} until the thaw comes.</li>
+      <li>[their:grateful] {FACTION}'s herders remember the colony kindly, and {X_nameDef} has brought their winter herd straight to it and asks {A_nameDef} for the grazing {PLACE}, as between friends, with wool or silver for it.</li>
+      <li>[ws:drove] The drove roads are busy this year, and {FACTION}'s herders have turned off them with a herd too big to winter on the road. {X_nameDef} asks {A_nameDef} for winter grazing {PLACE}.</li>
+      <li>[fall] {FACTION}'s herders are bringing their herd down for the winter, and the colony's land lies on their way. {X_nameDef} asks {A_nameDef} whether they might stop {PLACE} for the cold months, with the beasts grazing past the ridge.</li>
+    </texts>
+    <settled>
+      <li>The herders of {FACTION} have made camp {PLACE}: a round house of logs, a fire, a windbreak, and their hay stacked where the herd can reach it. The beasts are out past the ridge already, nosing through the frost for grass.</li>
+      <li>{FACTION}'s winter camp is up {PLACE}, smoke rising from the round house's roof ring, and the herd is spread out over the far ground with a herder walking its edge.</li>
+      <li>The herders have settled in {PLACE} for the cold months, and their herd is grazing the colony's far ground. The bells can be heard from the gate.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, the youngest of the herders {PLACE}, says {X_pronoun} has followed the grass long enough and asks whether the colony could use someone who knows beasts.</li>
+      <li>{X_nameDef} from the herders' winter camp has been in the colony's barn most evenings, unasked. Tonight {X_pronoun} asked whether {X_pronoun} might stay when the herd moves on in spring.</li>
+    </joinTexts>
+    <farewell>
+      <li>The herders of {FACTION} have gathered the herd and gone back up toward the high pastures. The far ground is grazed short and well dunged, which the colony's growers will thank them for.</li>
+      <li>{FACTION}'s winter camp {PLACE} is empty. The herd went out at first light, the dog working the stragglers, and the bells were still heard an hour later.</li>
+      <li>The herders moved their herd on with the weather, and left a stack of good hay behind for the colony's own beasts.</li>
+    </farewell>
+    <lines>
+      <li>Count them again, slowly.</li>
+      <li>The grass is thin but it's there.</li>
+      <li>Keep them off the fields.</li>
+      <li>Snow before nightfall.</li>
+      <li>That one's carrying a calf.</li>
+      <li>Hay to the old ones first.</li>
+      <li>Easy, easy.</li>
+      <li>Bring the stragglers up.</li>
+    </lines>
+    <momentLines>
+      <li>[herd] All here, every head.</li>
+      <li>[herd] Dig for it, there's grass under there.</li>
+      <li>[herd] That one's lame, have a look.</li>
+      <li>[herd] Fat enough to see the spring.</li>
+      <li>[herd] Steady, I'm only counting.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[milk] {X_nameDef} saw to one of the herd {PLACE} and carried what it gave over to the edge of the herders' camp for the colony: {COUNT} {THING}.</li>
+      <li>[tales] {A_nameDef} sat at the herders' winter fire and heard about every pasture between here and the mountains, and which of them a wolf pack keeps. {A_nameDef} came back smelling of smoke and wool.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>beast</key>
+        <label>Buy a beast from the herd ({COUNT} silver)</label>
+        <tip>One of the herders' animals, at their price: young, sound and used to people. It suits the weather here.</tip>
+        <silver>180</silver>
+        <deed>traded</deed>
+        <outcomes>
+          <li>{X_nameDef} walks a young beast over the ridge on a rope and hands the rope to {A_nameDef}, with a long list of what it likes and what it doesn't.</li>
+          <li>{X_nameDef} picks a sound young beast out of the winter herd and walks it over, and {A_nameDef} is given its rope and its name.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_SpawnAnimal"><fromCamp>true</fromCamp><kinds><li>Cow</li><li>Goat</li><li>Sheep</li><li>Muffalo</li><li>Yak</li><li>Alpaca</li><li>Dromedary</li><li>Horse</li></kinds></li>
+        </effects>
+      </li>
+      <li>
+        <key>milk</key>
+        <label>Buy the herd's milk: {THING}</label>
+        <tip>A herder milks every beast of the herd that has milk to give and carries the milk to the colony's gate. Once it's set down there, the colony pays what it comes to at its worth, and a colonist takes the silver over to their camp.</tip>
+        <once>false</once>
+        <price>milk</price>
+        <needs>herdMilk</needs>
+        <tension>-3</tension>
+        <deed>traded</deed>
+        <outcomes>
+          <li>{X_nameDef} has sent a herder out to the herd with a pail, and the milk will be set down by the colony's gate.</li>
+          <li>One of the herders is going out among the beasts with a pail for the colony, and {X_nameDef} says the milk will be left by the gate.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampMilkSale" />
+        </effects>
+      </li>
+      <li>
+        <key>herding</key>
+        <label>Have {A_nameDef} learn herding from them</label>
+        <tip>{A_nameDef} spends some hours at the herders' side, learning how they keep a herd through the cold. Practice with animals.</tip>
+        <skill>Animals</skill>
+        <warm>2</warm>
+        <outcomes>
+          <li>{A_nameDef} is going out to the herd with {X_nameDef} for a while, to watch how the herders keep it fed in the snow.</li>
+          <li>{X_nameDef} has agreed to take {A_nameDef} out with the herd, and says the first lesson is learning to stand still.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Animals</skill><duration>2~3</duration></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+</Defs>

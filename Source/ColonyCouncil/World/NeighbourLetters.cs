@@ -1156,6 +1156,8 @@ namespace ColonyCouncil
             var said = l.purpose == LetterPurpose.Help ? NotableMath.HelpQuoteTone(tone, helpSent) : tone;
             var tags = new HashSet<string> { l.purpose.ToString().ToLowerInvariant(), said.ToString().ToLowerInvariant() };
             tags.Add(Traditional(n.faction) ? "theirLowtech" : "theirHightech");
+            // One of Rimfolk's peoples writes in its own way: their:traders, their:healers, their:herders (Peoples/).
+            Peoples.AddTags(n.faction, tags);
             tags.Add(l.channel == LetterChannel.Console ? "call" : "letter");
             if (l.hostile) tags.Add("war");
             if (l.help == "food") tags.Add("food");

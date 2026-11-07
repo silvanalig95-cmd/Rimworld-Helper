@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+  <!--
+    Rimfolk's own peoples in Rimfolk's existing world events and asks (Source/ColonyCouncil/Peoples/; docs/design/
+    peoples.md). Each patches one of Rimfolk's own defs and is conditional, so it never fails: with the def gone, nothing
+    happens. A preference never shuts another people out: without a people of the calling, everything comes as before.
+
+    - World events that prefer a calling (SituationFactionNeed.calling: five times as likely as another people): the drove
+      roads and the great herds the herding folk's; a great caravan, a trading season, market days, the road in use, a
+      wardens' post and a new road the road league's.
+    - Asks that prefer a calling (MissionPeople.prefers): a healer lent to a sickhouse, the hospitallers'; fodder for a
+      herd, the herding folk's. Their own words for them, tagged their:healers and their:herders.
+  -->
+
+  <!-- ===================== The herding folk's world events ===================== -->
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_Drovers"]/faction</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_Drovers"]/faction</xpath>
+      <value>
+        <calling>herders</calling>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_Migration"]/faction</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_Migration"]/faction</xpath>
+      <value>
+        <calling>herders</calling>
+      </value>
+    </match>
+  </Operation>
+
+  <!-- ===================== The road league's world events ===================== -->
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Rimfolk_WS_GreatCaravan"]/faction</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Rimfolk_WS_GreatCaravan"]/faction</xpath>
+      <value>
+        <calling>traders</calling>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_TradeBoom"]/faction</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_TradeBoom"]/faction</xpath>
+      <value>
+        <calling>traders</calling>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_MarketDays"]/faction</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_MarketDays"]/faction</xpath>
+      <value>
+        <calling>traders</calling>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_RoadTraffic"]/faction</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_RoadTraffic"]/faction</xpath>
+      <value>
+        <calling>traders</calling>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_Waystation"]/faction</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_Waystation"]/faction</xpath>
+      <value>
+        <calling>traders</calling>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_NewRoad"]/faction</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_NewRoad"]/faction</xpath>
+      <value>
+        <calling>traders</calling>
+      </value>
+    </match>
+  </Operation>
+
+  <!-- ===================== A healer lent to the hospitallers' sickhouse ===================== -->
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/IncidentDef[defName="Rimfolk_Mission_Healer"]/modExtensions</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/IncidentDef[defName="Rimfolk_Mission_Healer"]/modExtensions</xpath>
+      <value>
+        <li Class="ColonyCouncil.MissionPeople">
+          <prefers>healers</prefers>
+        </li>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/IncidentDef[defName="Rimfolk_Mission_Healer"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]/texts</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/IncidentDef[defName="Rimfolk_Mission_Healer"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]/texts</xpath>
+      <value>
+        <li>[fever,their:healers] A postulant of {FACTION} has walked from the sickhouse at {PLACE} with a letter. A fever is filling the ward past its beds, and two of their own hospitallers are lying in it. The order asks the colony to lend its healer for two days at the bedsides.</li>
+        <li>[flux,their:healers] Bad water has brought the flux into the order's sickhouse at {PLACE}, and {FACTION} have more sick than hands. Their postulant asks, quietly, whether the colony could spare its healer for two days.</li>
+      </value>
+    </match>
+  </Operation>
+
+  <!-- ===================== Fodder for the herding folk's herds ===================== -->
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/IncidentDef[defName="Rimfolk_Mission_Fodder"]/modExtensions</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/IncidentDef[defName="Rimfolk_Mission_Fodder"]/modExtensions</xpath>
+      <value>
+        <li Class="ColonyCouncil.MissionPeople">
+          <prefers>herders</prefers>
+        </li>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/IncidentDef[defName="Rimfolk_Mission_Fodder"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]/texts</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/IncidentDef[defName="Rimfolk_Mission_Fodder"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]/texts</xpath>
+      <value>
+        <li>[snow,their:herders] A rider of {FACTION} has come down from the winter camp at {PLACE}: the snow came early, the grass is under it, and the herd is eating the camp's hay faster than anyone counted on. {DEAD}, who keeps the herd, asks the colony for fodder by a set day, at a good price.</li>
+        <li>[parched,their:herders] The grass round {FACTION}'s camp at {PLACE} has burned brown, and the herd is too big to move far on empty bellies. {DEAD} sends a rider to ask the colony for fodder by a set day, and will pay over its worth.</li>
+      </value>
+    </match>
+  </Operation>
+
+</Patch>

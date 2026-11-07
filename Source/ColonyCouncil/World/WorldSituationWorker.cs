@@ -116,13 +116,13 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>One of the candidates: of the colony's own era by preference, and nearer ones more often.</summary>
+        /// <summary>One of the candidates: of the colony's own era by preference, nearer ones more often, and a people of the calling it names likelier (Peoples/).</summary>
         protected Faction PickFaction(SituationFactionNeed need, Faction first, Map map)
         {
             if (need == null) return null;
             var tech = Avail.EffectiveTech;
             return Candidates(need, first, map).RandomElementByWeightWithFallback(f =>
-                Arrivals.TechWeight(f, tech) * Mathf.Lerp(1.5f, 0.5f, Mathf.Clamp01(Distance(map, NearestTown(f, map)) / 40f)));
+                Arrivals.TechWeight(f, tech) * Mathf.Lerp(1.5f, 0.5f, Mathf.Clamp01(Distance(map, NearestTown(f, map)) / 40f)) * Peoples.Preference(need.calling, f));
         }
 
         /// <summary>
@@ -396,6 +396,8 @@ namespace ColonyCouncil
             if (s.ctx.enemy == null) tags.Add("noenemy");
             // The peoples' own era, for lines about how they live (a tribe has no radio, whatever the colony has).
             if (s.ctx.faction != null) tags.Add(s.ctx.faction.def.techLevel <= TechLevel.Medieval ? "theirLowtech" : "theirHightech");
+            // One of Rimfolk's peoples, by what it lives by: their:traders, their:healers, their:herders (Peoples/).
+            Peoples.AddTags(s.ctx.faction, tags);
             if (s.ctx.enemy != null) tags.Add(s.ctx.enemy.def.techLevel <= TechLevel.Medieval ? "enemyLowtech" : "enemyHightech");
             // The Empire keeps its own titles and honour: lines can speak of it as itself.
             if (Ages.IsEmpire(s.ctx.faction)) tags.Add("theirEmpire");

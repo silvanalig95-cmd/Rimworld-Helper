@@ -43,7 +43,8 @@ namespace ColonyCouncil
         /// What has to be there: camp (a camp on the map that will talk), grave (a colonist's grave), crops (a field
         /// under the sky), ailing (A has an everyday ailment), strained (A is worn down), meetings (the council meets),
         /// animals (the colony keeps tame animals: {PET}), herd (at least three head of livestock: {PET} is one of them),
-        /// power, research (a project in hand), children, prisoner.
+        /// power, research (a project in hand), children, prisoner; caravan (the visitor's people can send a trader
+        /// caravan now: one of Rimfolk's peoples, with people calling:CALLING).
         /// </summary>
         public List<string> needs;
 
@@ -57,7 +58,10 @@ namespace ColonyCouncil
         public IntRange visitorLevel = new IntRange(8, 14);
         /// <summary>The visitor cooks the feast an answer sets going, at the colony's own stove (PlayOut/PlayCook.cs).</summary>
         public bool visitorCooks;
-        /// <summary>The visitor's people: lowtech (tribal or medieval), hightech (industrial or later), own (within one era of the colony), or any.</summary>
+        /// <summary>
+        /// The visitor's people: lowtech (tribal or medieval), hightech (industrial or later), own (within one era of the
+        /// colony), calling:CALLING (one of Rimfolk's peoples of that calling: calling:healers, Peoples/), or any.
+        /// </summary>
         public string people;
 
         // ---- More of the cast ----
@@ -104,7 +108,7 @@ namespace ColonyCouncil
         {
             var s = Setting;
             if (!EraFits(s.era) || !LandFits(map, s) || !NeedsMet(map, s)) return false;
-            if (s.visitor && People(s) == null) return false;
+            if (s.visitor && People(s, map) == null) return false;
             if (s.neighbor && Neighbor() == null) return false;
             if (s.enemy && Raids.Enemy() == null) return false;
             if (!s.stray.NullOrEmpty() && StrayBeast.Kind(map, s.stray) == null) return false;
@@ -219,7 +223,7 @@ namespace ColonyCouncil
         private static StrainBand Band(Pawn p) => Heart.On ? Heart.BandOf(p) : StrainBand.Steady;
 
         /// <summary>The people a visitor comes from.</summary>
-        private static Faction People(HappeningSetting s)
+        private static Faction People(HappeningSetting s, Map map)
         {
             var tech = Avail.EffectiveTech;
             switch (s.people)
@@ -227,7 +231,16 @@ namespace ColonyCouncil
                 case "lowtech": return Arrivals.Friendly(f => f.def.techLevel <= TechLevel.Medieval);
                 case "hightech": return Arrivals.Friendly(f => f.def.techLevel >= TechLevel.Industrial);
                 case "own": return Arrivals.Friendly(f => Mathf.Abs((int)f.def.techLevel - (int)tech) <= 1);
-                default: return Arrivals.Friendly();
+                default:
+                    // One of Rimfolk's peoples, by what it lives by (the order's healer, the league's outrider).
+                    if (s.people != null && s.people.StartsWith("calling:", StringComparison.Ordinal))
+                    {
+                        string calling = s.people.Substring("calling:".Length);
+                        // One whose trader caravan can come now, when the answer brings it (the league's outrider: the need "caravan").
+                        bool caravan = s.Needs("caravan");
+                        return Arrivals.Friendly(f => Peoples.CallingOf(f) == calling && (!caravan || Peoples.CaravanCanCome(f, map)));
+                    }
+                    return Arrivals.Friendly();
             }
         }
 
@@ -287,7 +300,7 @@ namespace ColonyCouncil
             }
             else if (s.visitor)
             {
-                ctx.faction = People(s);
+                ctx.faction = People(s, ctx.map);
                 if (ctx.faction == null) return false;
                 // A visitor who waits at the edge for the answer is never a guest who's here already.
                 MakeGroup(ctx, ext, Mathf.Max(1, ext.count.RandomInRange), ext.ages, null, !s.waits);

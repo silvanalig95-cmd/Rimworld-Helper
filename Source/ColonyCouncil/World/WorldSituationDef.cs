@@ -197,6 +197,8 @@ namespace ColonyCouncil
         public bool friendlyToFirst;
         /// <summary>It can happen without one (the beats and lines that need them check for it).</summary>
         public bool optional;
+        /// <summary>A people of this calling, one of Rimfolk's own (Peoples/: the herding folk for the drove roads), is five times as likely as another.</summary>
+        public string calling;
     }
 
     /// <summary>

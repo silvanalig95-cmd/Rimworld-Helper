@@ -542,6 +542,8 @@ namespace ColonyCouncil
                     // Their people's ways by age, and the Empire apart (its own titles and honour).
                     tags.Add("their:" + Ages.Tag(Ages.Of(people)));
                     if (Ages.IsEmpire(people)) tags.Add("their:empire");
+                    // One of Rimfolk's peoples, by what it lives by: their:traders, their:healers, their:herders (Peoples/).
+                    Peoples.AddTags(people, tags);
                 }
                 // How well the two know each other: never talked (first), met before (met), on a visit since the last
                 // (returning), known (familiar enough).

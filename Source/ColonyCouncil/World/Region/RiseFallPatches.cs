@@ -68,14 +68,15 @@ namespace ColonyCouncil
     /// the home thrives or flourishes and 0.6 while it struggles (RiseFallMath.CaravanFactor), instead of all alike. Only
     /// when one of them weighs other than 1; a caravan whose people is already chosen (a quest's, another mod's) is left
     /// as it is, and the game picks as before when this finds none. A people's trading post near the home weighs half
-    /// again (World/Region/TradingPost.cs).
+    /// again (World/Region/TradingPost.cs), and one of Rimfolk's peoples weighs its own caravans' share (Peoples/: the
+    /// road league's three, many caravans).
     /// </summary>
     [HarmonyPatch(typeof(IncidentWorker_TraderCaravanArrival), "TryResolveParmsGeneral")]
     public static class Patch_RiseFallCaravans
     {
         public static void Prefix(IncidentWorker_TraderCaravanArrival __instance, IncidentParms parms)
         {
-            if (parms == null || parms.faction != null || !(parms.target is Map map) || !RimfolkPatches.On || !RiseFallEffects.On && !TradingPosts.LinksOn) return;
+            if (parms == null || parms.faction != null || !(parms.target is Map map) || !RimfolkPatches.On || !RiseFallEffects.On && !TradingPosts.LinksOn && !Peoples.AnyCaravanWeight) return;
             try
             {
                 var all = Find.FactionManager.AllFactionsListForReading;
@@ -85,7 +86,7 @@ namespace ColonyCouncil
                 foreach (var f in all)
                 {
                     if (f == null || !__instance.FactionCanBeGroupSource(f, parms)) continue;
-                    float w = RiseFallEffects.CaravanFactor(f, map) * TradingPosts.CaravanFactor(f, map);
+                    float w = RiseFallEffects.CaravanFactor(f, map) * TradingPosts.CaravanFactor(f, map) * Peoples.CaravanFactor(f);
                     if (w != 1f) any = true;
                     can.Add(f);
                     weights.Add(w);
