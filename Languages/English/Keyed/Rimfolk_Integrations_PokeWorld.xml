@@ -12,7 +12,7 @@
 
   <!-- What Pokémon sound like (Integrations/PokeWorldSounds.cs), the other mods' page. -->
   <CC_Settings_PokemonSounds>Pokémon sound like</CC_Settings_PokemonSounds>
-  <CC_Settings_PokemonSounds_Tip>The cries PokéWorld gives its Pokémon, or the calls of the game's own animals. Each species borrows the voice of one of the base game's animals, picked by its body, its types and its size: insects click, birds cluck or quack, bats squeak, big beasts growl or roar, and the stones, balls, gases and fish take a tortoise's voice. It never calls more often than PokéWorld had it.</CC_Settings_PokemonSounds_Tip>
+  <CC_Settings_PokemonSounds_Tip>The cries PokéWorld gives its Pokémon, or the calls of the game's own animals. Each species borrows the voice of one of the base game's animals, picked by its body, its types and its size: insects click, birds cluck, quack or honk, bats squeak, big beasts growl or roar, and the stones, balls, gases, ice, shells and fish take a tortoise's voice. It never calls more often than PokéWorld had it.</CC_Settings_PokemonSounds_Tip>
   <CC_PokemonSounds_Creatures>Animals</CC_PokemonSounds_Creatures>
   <CC_PokemonSounds_Creatures_Tip>Each species calls with the voice of a base-game animal picked by its body, types and size, never more often than before.</CC_PokemonSounds_Creatures_Tip>
   <CC_PokemonSounds_Rarer>Their own, rarer</CC_PokemonSounds_Rarer>
