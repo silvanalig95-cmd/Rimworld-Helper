@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A scenario's start for a new colony
+
+*7 November 2026, version 0.129.0*
+
+- When newcomers found a colony, their start can now be a scenario's: the game's, a DLC's, one of Rimfolk's seventeen or another mod's. A list shows for each what comes with the new colony and what doesn't.
+- The newcomers are made by that scenario's rules (its count, kinds, xenotypes, ages and skills), with its forced traits and conditions, its kit, its starting animals and its arrival: on foot, by drop pods, or by gravship when the old colony is left behind.
+- Rimfolk's own scenario parts shape that colony alone: its council's seats, its days, a goal, a foe, a debt or a grant, followed by one letter on how things stand.
+- What would change your whole game, such as starting research or rules for every map, is listed and not carried, and Bad Blood's feud between families is never carried. With the old colony kept, the scenario's kit is part of the newcomers' price.
+
 ## The town afterwards
 
 *7 November 2026, version 0.128.0*

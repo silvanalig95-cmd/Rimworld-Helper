@@ -19,6 +19,10 @@
 > order to build it in", item 2, for what differs. The raid on the town, hard times, turning against the colony,
 > Faction Territories' pace and 11B stay with release 5.
 
+> **Release 3, a scenario's start, is built** (7 November 2026): any loaded scenario's people, what shapes them, its
+> kit, arrival and animals and Rimfolk's own parts for the new colony alone, with the decision 3A. See "The order to
+> build it in", item 3, for what differs.
+
 > Revised 6 November 2026: the colony is the family (the town a colony becomes is bound to it as a colony, its next
 > head chosen by office or standing, no houses, nothing handed down; a colonist's own ties stay personal); council
 > tasks and the keeper of secrets gone; renown the colony's and each colonist's own; banishment where it touches; the
@@ -659,6 +663,39 @@ colonies at once after. Each release plays as before with its settings off and o
      back are always on with handing over.
 3. **A scenario's start** (section 1's scenario parts): any scenario's people, limits, kit, arrival and animals, and
    Rimfolk's own parts, for the new colony alone. Needs 1.
+
+   **Built (release 3, 7 November 2026; `Source/ColonyCouncil/Colonies/ScenarioStartMath.cs`, `ScenarioStarts.cs`,
+   `ScenarioStartWindow.cs`, `ScenarioStartPatches.cs`; DESIGN.md "A scenario's start").** The founding window's choice
+   of start (a new game's group, or a scenario's start from the list of loaded scenarios with what each carries), the
+   newcomers' window by the scenario's people part, its shaping parts through their pawn hooks, its kit, arrival and
+   animals, and Rimfolk's own parts on that colony, with the decision 3A. What differs from section 1:
+   - *The list* holds every scenario def loaded, this game's own when it is none of those, and the player's own and the
+     workshop's scenarios only as the game already holds them (nothing is read from the disk mid-game). A scenario that
+     isn't loaded any more by the time the newcomers are chosen gives a new game's group, said in the window.
+   - *The people*: the four people parts the game has (the plain one, kinds, xenotypes and Anomaly's mutants) are read
+     field by field; another mod's people part is listed as not carried and the newcomers come as a new game's group,
+     its other parts still carried. The count is the scenario's own (1 to 10, chosen from its choice, never 1 to 6 with
+     the plus); those left behind are let go, not kept as world pawns as a new game keeps them. The character card's
+     child option still follows the game's own scenario, and with the game's own scenario giving no possessions the
+     chosen scenario can't give them any.
+   - *The shaping parts* need the deeper game hooks (the scenario's three pawn hooks are routed while the window is
+     open); with them off they are listed as not carried. A part hidden until the map is made is applied as they are
+     confirmed.
+   - *The kit* is its `PlayerStartingThings` and also what the scenario lays about the start (its scatter parts), near
+     where they arrive or anywhere on the land, made as the game's scatter makes them.
+   - *The arrival*: standing is walking in from the edge of the land with the kit (a start spot mid-game would be people
+     appearing out of nothing); drop pods come down near the middle of a new colony's land, or at the colony's drop spot
+     when its party is there first; the gravship comes only with the old colony left behind and on a map made for the
+     newcomers alone (nobody of the colony there before them), else they walk in.
+   - *The price (4A)*: with the old colony kept the passage covers the scenario's kit too (its things, what it scatters,
+     its animals and mechs by the game's market values, each child in its care the least passage), since the kit is
+     made, not taken from the stores; free with the old colony left behind.
+   - *Rimfolk's parts* are set up once the newcomers are on the map (out of their pods), or a day after they came, on that
+     colony's council, calendar and people; a reputation moves the colony's one character (each colony's own is release
+     4's decision 13); the Beholden's grant is that colony's fealty tie and the people still remember it, without the warm
+     start's goodwill.
+   - *Not carried* also: the scenario's own people when it is another kind (the newcomers join the colony's people),
+     its own kind of map, and its opening words. No setting of its own: the choice is made in the founding window.
 4. **Many colonies in play** (section 3's rest): merging councils, the pages following the colony in view, notables
    near every home, world events across homes, the character per colony (if chosen), the small ones. Needs 1.
 5. **The town's life**: the raid and the call for help on its map, hard times and the town asking to come back,

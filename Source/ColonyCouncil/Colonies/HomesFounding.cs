@@ -50,6 +50,11 @@ namespace ColonyCouncil
         public bool moodsGiven, firstNight, abandoned, newcomersAsked;
         /// <summary>The seat moved here as it stood; someone of the party still on the old map was told of once.</summary>
         public bool seatMoved, waitTold;
+        /// <summary>A scenario's start for the newcomers (release 3, Colonies/ScenarioStarts.cs): the chosen scenario's key, or null for a new game's group; its name for the words.</summary>
+        public string scenario, scenarioName;
+        /// <summary>The scenario's people at the new colony (the newcomers and the children in their care), waiting for Rimfolk's own parts once they are there, and when they came.</summary>
+        public List<Pawn> scenarioPeople = new List<Pawn>();
+        public int scenarioArrived = -1;
 
         public PlanetTile Tile => tile < 0 ? PlanetTile.Invalid : new PlanetTile(tile, layer);
 
@@ -83,8 +88,18 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref newcomersAsked, "newcomersAsked");
             Scribe_Values.Look(ref seatMoved, "seatMoved");
             Scribe_Values.Look(ref waitTold, "waitTold");
+            Scribe_Values.Look(ref scenario, "scenario");
+            Scribe_Values.Look(ref scenarioName, "scenarioName");
+            if (Scribe.mode == LoadSaveMode.Saving) scenarioPeople.RemoveAll(p => p == null || p.Destroyed);
+            if (Scribe.mode != LoadSaveMode.Saving || scenarioPeople.Count > 0)
+            {
+                Scribe_Collections.Look(ref scenarioPeople, "scenarioPeople", LookMode.Reference);
+                Scribe_Values.Look(ref scenarioArrived, "scenarioArrived", -1);
+            }
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
+                scenarioPeople ??= new List<Pawn>();
+                scenarioPeople.RemoveAll(p => p == null);
                 party ??= new List<Pawn>();
                 party.RemoveAll(p => p == null);
                 sentAgainst ??= new List<Pawn>();

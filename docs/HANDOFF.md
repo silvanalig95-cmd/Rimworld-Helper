@@ -6,6 +6,75 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (5 November 2026)
 
+- 0.129.0, stage 3 release 3: a scenario's start (7 November 2026). The player's decision 3A; `docs/design/stage3-many-colonies.md`,
+  section 1's "A scenario's start", now marked built with what differs (item 3); DESIGN.md "A scenario's start" (under
+  "A fresh start"); an Almanac page of its own (`Almanac_ScenarioStart.xml`, "a scenario's start"; the fresh start's
+  page a prose line pointing at it); README a section. No round of its own: About.xml, What's new and CHANGELOG
+  untouched. Pure rules in `Colonies/ScenarioStartMath.cs` (`ScenarioStartTests`, prefix "scenario start: "). Built in
+  `Source/ColonyCouncil/Colonies/` (`ScenarioStarts.cs`, `ScenarioStartWindow.cs`, `ScenarioStartPatches.cs`; seams in
+  `NewcomersWindow.cs`, `FoundingWindow.cs`, `Foundings.cs`, `HomesFounding.cs`) and `Scenarios/` (the setup context's
+  scenario and warm start):
+  - The choice: with newcomers ticked, the founding window's "Their start": "New people as a new game's group" (as
+    before) or "A scenario's start", which opens `Dialog_ScenarioStart`: every scenario def loaded, this game's own
+    when it is none of them, and the player's own and the workshop's the game already holds (none read from the disk),
+    each with its summary, what is carried, not carried and never carried, and the line that a whole new scenario is a
+    new game's. The chosen one's short line under the choice (what comes, what doesn't, the kit's part of the passage).
+    Kept on the plan by a key (`FoundingPlan.scenario`, "def:", "game", "file:", "workshop:"), its name for the words.
+  - Which parts come (`ScenarioStartMath.Carry`, by the part's class): the people (the four `ConfigureStartingPawns*`),
+    what shapes them (forced trait and hediff, naked, a need's level, the age filter, no possessions), the kit (defined
+    things, mechs, both scatter parts), the animals, the arrival, Rimfolk's thirteen; not carried and listed: the
+    scenario's own people when another kind, starting research, rules for every map, its own map, world conditions,
+    incidents off, the whole game's events, the opening words, another mod's part, and the shaping parts with the
+    deeper hooks off; never: Bad Blood's families.
+  - The people (`Dialog_Newcomers` with a scenario): the start data set from the part's fields (`ScenarioStarts.InitData`,
+    never `PostIdeoChosen`), each place's request as its `GenerateStartingPawns` makes it (kind, xenotype with the
+    overrides, mutant), twenty tries for the needed work, then the candidates (count 1 to 10, from its choice): those
+    coming first, "Left behind" under them, an arrow on each to swap (the requests swapped too); no plus or delete;
+    Confirm held back in the game's own words (`WhyNot`); those left behind let go at Confirm.
+  - The pawn hooks: `Patch_ScenarioStartShapeNew`, `Done`, `Allow`, prefixes on `Scenario.Notify_NewPawnGenerating`,
+    `Notify_PawnGenerated`, `AllowPlayerStartingPawn`: only while `ScenarioStarts.Shaping` is set (the window, with all
+    three applied and deep hooks on) and the game in play with its start data set, and only for a starting colonist;
+    then the chosen scenario's shaping parts answer instead of the game's own.
+  - The kit (`MakeKit`, at Confirm while the start data holds the chosen alone): `PlayerStartingThings` (animals bonded,
+    mechs overseen, Rimfolk's wards), the scatter parts' things; a hidden shaping part applied; pods give the game's own
+    "crashed together". The arrival (`ScenarioStarts.Arrive`, from `Foundings.NewcomersCome`'s new `kit`): on foot from
+    the edge with the kit set down there; drop pods near the new colony's start spot (or the colony's drop spot with a
+    party there first); the gravship (sketch, `GenStep_ReserveGravshipArea.SetStartSpot`, `ClearAreaForGravship`, deck,
+    shelves, fuel, engine quiet) only with the old colony left behind on a map made for them; what it scatters near
+    them or anywhere; a letter (`CC_ScenStart_FoundText`/`ComeText` and how they came).
+  - Rimfolk's parts (`SetUpWhenHere`, in `Foundings.Standing`): once the newcomers and the children in their care are
+    on the map, or a day after they came (`FoundingPlan.scenarioPeople`, saved only meanwhile, modelled), each Rimfolk
+    part's own `Setup` with that map, them, the scenario and no warm start (the Beholden's goodwill left alone), Bad
+    Blood's families skipped; one letter "How things stand at X".
+  - The passage: free with the old colony left behind; kept, release 1's passage, the least passage for each ward, and
+    the kit's worth (`ScenarioStartMath.Passage`), named at the window's foot.
+  - Try in the game with dev tools (none of it could be run here; a second home needs the colony limit, which the
+    window raises):
+    1. Found a new colony, nobody going, the old colony abandoned, newcomers ticked: "A scenario's start", the list
+       (Crashlanded, the Lost Tribe, Naked Brutality, a DLC's, Rimfolk's, a mod's), each one's carried and not carried;
+       Bad Blood's "never"; choose Crashlanded: the window says "a start as Crashlanded has it", three of eight
+       candidates with "Left behind" and the arrows, no plus; Confirm: drop pods come down near the middle of the new
+       land, the kit shared between them, the scattered steel and wood near, the ship chunks anywhere, a pet; the letter.
+    2. Rimfolk's Hot Money the same way, walking in: the next hour (or once out of the pods), the letter "How things
+       stand at X" (the enemy, the debt, the secret, the reputation), the nemesis and the debt on the World page, the
+       debt's day coming to that colony. Elders' Fire: the eldest seated on the new colony's council, its two days on
+       its calendar. The Land Grant: the fealty tie from the new colony on the Ties page, the people's goodwill as it
+       was.
+    3. With the old colony kept: the passage at the foot, the kit's worth with it, Confirm held back when the stores
+       can't pay; a gravship scenario then says they walk in (and, with Odyssey, the old colony abandoned and nobody
+       going, the gravship stands on the new map with its people on deck and the kit on its shelves).
+    4. Biotech's Sanguophage (xenotypes) or a kinds scenario: the required ones, Confirm held back with the game's words
+       when one is left behind; a forced-trait scenario: the trait on every candidate and on a randomized one; the
+       game's own scenario's forced trait not on them.
+    5. A party going first and newcomers later: the letter, the window by the scenario's rules, drop pods near the
+       colony, Rimfolk's parts set up there.
+    6. Deep hooks off: the shaping parts listed as not carried. Save and load with the window's plan waiting and with the
+       newcomers still in their pods; the log for errors.
+  - Riskiest: the three prefixes run for every pawn the game makes (one static check unless the window is open); the
+    gravship set down after the map is made rather than during it; Rimfolk's parts set up mid-game on a second colony
+    (the nemesis, the debt and the events by that colony's memos); the people part's private and protected fields read
+    by name (all found on 1.6 and 1.7); a mod's scenario part that touches `Find.Scenario` itself while its kit is made.
+
 - 0.128.0, stage 3 release 2b: the town afterwards (6 November 2026). The player's decisions 7A and 10A; `docs/design/
   stage3-many-colonies.md`, section 2's "What it does afterwards", "Taking it back" and "Keeping the layout", now marked
   built with what differs (item 2); DESIGN.md "The town afterwards" (under "A town of our own"); an Almanac page of its

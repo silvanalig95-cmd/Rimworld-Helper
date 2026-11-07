@@ -7,7 +7,7 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 541; modelled: 541; growing without end: 0.
+Saved collections found: 542; modelled: 542; growing without end: 0.
 Rimfolk's part of the save, roughly: **2,410 KB** after a year, **2,855 KB** after two, **3,047 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
@@ -466,6 +466,7 @@ Rimfolk's part of the save, roughly: **2,410 KB** after a year, **2,855 KB** aft
 | `Calendar/CalendarDay.cs:fallen` | per day on the calendar (counted under days) | fixed | 2 | 2 | 2 | (in its record) |
 | `Colonies/HomesFounding.cs:keptAgainst` | per founding: those kept against their wish (counted under foundings) | while | 4 | 4 | 4 | (in its record) |
 | `Colonies/HomesFounding.cs:party` | per founding: who goes from the colony (counted under foundings) | while | 8 | 8 | 8 | (in its record) |
+| `Colonies/HomesFounding.cs:scenarioPeople` | per founding with a scenario's start: its people at the new colony (the newcomers and the children in their care, ScenarioStartMath.MaxPeople at most and the scenario's wards), written only from their arrival until Rimfolk's own parts are set up, an hour once they are there or a day at most (counted under foundings) | while | 6 | 6 | 6 | (in its record) |
 | `Colonies/HomesFounding.cs:sentAgainst` | per founding: those sent against their wish (counted under foundings) | while | 4 | 4 | 4 | (in its record) |
 | `Colonies/HomesHandOver.cs:going` | per hand-over: who goes (counted under handOvers) | while | 8 | 8 | 8 | (in its record) |
 | `Colonies/HomesHandOver.cs:keptAgainst` | per hand-over: those kept against their wish (counted under handOvers) | while | 4 | 4 | 4 | (in its record) |
