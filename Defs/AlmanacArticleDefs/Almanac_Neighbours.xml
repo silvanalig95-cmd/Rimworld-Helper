@@ -44,15 +44,15 @@ A colonist can write to any of them, or call them on a comms console. The writer
       </li>
       <li>
         <heading>Writing a letter</heading>
-        <text>In a town's card on the region map, or on the region window's Peoples under Faces, press Write by someone's name. Pick what for, who writes (the speaker unless you choose someone else) and how. One letter at a time to each person, twelve letters and calls open at most with the post (three without it), and a wait before writing to the same person for the same thing again.</text>
+        <text>In a town's card on the region map, on the region window's Peoples (a people's page, its People tab or "Do something with..."), or under Faces, press Write by someone's name. Pick what for, who writes (the speaker unless you choose someone else) and how. One letter at a time to each person, twelve letters and calls open at most with the post (three without it), and a wait before writing to the same person for the same thing again. The kind letters wait for a reason (the setting Letters by occasion, on): beside each the letter's window says why it fits now ("after the death of their mayor", "the stores are short of food"), and one with no reason is greyed with what would bring one.</text>
         <table>
           <li>What for | When | Wait</li>
-          <li>Greetings | Always | 6 days</li>
+          <li>Greetings | At the turn of the year (its last 3 days and first 7), or within 10 days of a gift the colony gave them; always, with Letters by occasion off | 6 days</li>
           <li>Condolences | A death among their notables in the last 30 days, or their people in hard times (a world event that falls on them) | 10 days, each loss once</li>
           <li>A warning | A hard time in the region, raiders at war with them who came at the colony in the last 30 days, or an enemy camp within 12 tiles of their town | 3 days, each threat once</li>
           <li>Asking for news | Always | 5 days</li>
-          <li>An invitation to visit | Not at war | 15 days</li>
-          <li>Asking for a little help (medicine or food) | Not at war, and they regard the colony at 25 or more | 20 days</li>
+          <li>An invitation to visit | Not at war, and the colony's feast with guests is planned, a day of its calendar kept with a feast, games, a bonfire, gifts or a custom comes within 7 days, or its guest beds (Hospitality's) stand empty with nobody from outside staying | 15 days</li>
+          <li>Asking for a little help (medicine or food) | Not at war, they regard the colony at 25 or more, and the colony is short: food for under 6 days, or less than one medicine a colonist | 20 days</li>
         </table>
         <after>The writer sits at one of the colony's tables, on a chair, for about an hour (else on any chair, else where they stand), between seven in the morning and ten at night, when nothing more pressing calls them; it is practice at Social. Only someone who can read and write writes (the game's own rule for reading books); a tribal colony gives a spoken message instead, said to the carrier at the gate. A writer who never finds the time in 3 days lets it go. The letter then goes in the mailbag at the gate (see The post). With the post off in the settings, a messenger of their people comes to the gate some hours later, by day, and waits; the writer carries the letter out, or after two hours anyone free does. Twice nobody comes out, and the letter is let go. A people at war with the colony is written to through a messenger of a people at peace with both, under a white flag.</after>
       </li>

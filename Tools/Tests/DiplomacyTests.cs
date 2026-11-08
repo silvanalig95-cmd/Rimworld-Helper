@@ -246,8 +246,8 @@ public static class DiplomacyTests
             "the new acts right after Invite, in the design's order");
         C(Code("Outsiders/OutsiderOutcomes.cs").Contains("DiplomacyActs.Talked(c, x, act)") && Code("Outsiders/Outsiders.cs").Contains("DiplomacyActs.WhyNot(c, x, act)"),
             "the right-click frame: shown, why not, answered face to face");
-        C(!dip["DiplomacyPanels.cs"].Contains("MainTabWindow_World.Register(") && Code("UI/Region/PeoplesView.cs").Contains("DiplomacyPanels.Owed(y, w, dip, folds)")
-          && Code("UI/Region/PeoplesView.cs").Contains("DiplomacyPanels.PeopleBody(") && Code("UI/Region/HereAndAwayView.cs").Contains("dip.here")
+        C(!dip["DiplomacyPanels.cs"].Contains("MainTabWindow_World.Register(") && Code("UI/Region/PeoplePage.cs").Contains("DiplomacyPanels.Owed(y, w, dip, folds)")
+          && Code("UI/Region/PeoplePage.cs").Contains("DiplomacyPanels.PeopleBody(") && Code("UI/Region/HereAndAwayView.cs").Contains("dip.here")
           && Code("UI/Region/HereAndAwayView.cs").Contains("dip.away") && Code("UI/Region/HereAndAwayView.cs").Contains("dip.houses")
           && dip["DiplomacyPanels.cs"].Contains("CardSections.Town(CardSlot.Ties, 10f, DrawTown, \"CC_Dip_TownHeader\""),
             "the panels in the region's views (the owed strip and each people's ties on Peoples; here, away and houses on Here and away), and the town's debts in its card's Ties");

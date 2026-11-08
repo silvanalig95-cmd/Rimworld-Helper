@@ -171,7 +171,7 @@ sections with a count that fold.
 | | **Council** (Offices and decrees, Ambition, Ways, Wishes, Dilemmas) | the Council section's five pages as modes |
 | | **Colony** (Overview, Calendar, Chronicle) | Priorities moves to Planning → Plan, where its cards are acted on and which already shares its "Not this" |
 | Region | **Map** (lenses Land, Stance and ties, Fortunes, Threats, Trade, Ours; Map or List) | Map; Neighbours' towns (the List under Stance); Trading posts (Trade); Raiders' camps (Threats); Hamlets (Ours); the camp and fights coming (Threats and This week) |
-| | **Peoples** (Peoples, Faces) | Peoples; stage 2's Diplomacy page; Neighbours' "who's out there" (Faces: notables, known faces, old foes, those who left) |
+| | **Peoples** (Peoples, Faces) | Peoples (since 8 November 2026 a list of peoples beside each one's page: below, "The Peoples view"); stage 2's Diplomacy page; Neighbours' "who's out there" (Faces: notables, known faces, old foes, those who left) |
 | | **Here and away** | Journeys (who of ours is away), Letters under way (messengers on the road), stage 2's Household page (who is here from outside, tasks, schemes) |
 | | **History** (scope: this colony, the region, the world) | World history; Events (world events running, as the strip at the top); letters lately (a filter) |
 | Defense | **Defenses** | as today |
@@ -299,6 +299,23 @@ A seventh lens comes only by replacing one: a lens is a new way of reading the w
 
 The same card opens from anywhere a town is named; "Show" on This week and the lists opens it on the map instead of
 the world view.
+
+### The Peoples view: a list beside a page (built 8 November 2026)
+
+Step A of `docs/design/diplomacy-screen.md` (the player: "the diplomacy screen could be better displayed", "i also want
+to quickly see and sort by who's closest"). The view's Peoples mode is a list on the left and the chosen people's page
+on the right, in this grammar: the list is a search, filter chips with counts (component 15), a sort as modes
+(component 2: Closest, the default, Regard, Name, Age), groups as folding section headings with counts (component 4:
+allies, at peace, at war), and rows (component 5, 40 high) with the people's icon, a state's dot and word (component 7),
+a meter and the nearest town's days in Tiny at the right; "All peoples" heads it, the web of who stands with whom (dots
+and lines, a legend in words) ends it. The page is a head (a name as a link, an age chip, a stance chip, the regard
+meter and a line of this season's trend), the five tabs as modes (Overview, Towns, People, Dealings, History), and the
+tab's sections. "Do something with..." on the Overview is card acts with their why-not (component 9) for one of three
+targets (the people, a town, a person), each act with one line of what it brings and one of how it travels and costs.
+Widths: the list 320 beside a page of 618 at the standard window, 200 with compact rows beside 346 with the drawer open,
+320 beside 888 in the large window; the web fixed at the list's foot at 1080 and in its scroll at 720
+(`PeoplesViewMath`). Faces stays the second mode. Choosing a people lights its towns on the map; the map's List has a
+"Closest first" chip. DESIGN.md, "The diplomacy screen: the peoples beside their page", has the whole of it.
 
 ### This week: one inbox
 

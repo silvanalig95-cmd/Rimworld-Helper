@@ -193,6 +193,17 @@ namespace ColonyCouncil
 
         // ---------------- A town ----------------
 
+        /// <summary>
+        /// Whether a town's reach is worked out and kept, rather than guessed from the straight distance while the paths wait
+        /// for their frames (the Peoples view asks again until it is).
+        /// </summary>
+        public static bool Kept(Map home, Settlement town)
+        {
+            if (home == null || town == null) return true;
+            int now = Now;
+            return infos.TryGetValue(Key(home.Tile, town.Tile), out var have) && now - have.at < KeepTicks && now >= have.at;
+        }
+
         /// <summary>Where a town lies for the colony's letters (cached a few hours; a couple of new ones a frame from a window).</summary>
         public static ReachInfo Of(Map home, Settlement town, bool ui = false)
         {

@@ -10,8 +10,9 @@ namespace ColonyCouncil
     /// <summary>
     /// Region → Map (docs/design/interface.md, "The region map as the hub"): the lens bar (Land, Stance and ties,
     /// Fortunes, Threats, Trade, Ours) and Map or List along the top, then the region map read through the lens
-    /// (UI/RegionMapView.cs) or the lens's List: its rows in groups, nearest first within each, every row opening its card
-    /// in the drawer, its names links, "Show" picking it on the map, and what came before at the foot. The lens's model
+    /// (UI/RegionMapView.cs) or the lens's List: its rows in groups, nearest first within each (or all in one, closest
+    /// first, with its chip), every row opening its card in the drawer, its names links, "Show" picking it on the map, and
+    /// what came before at the foot. The lens's model
     /// (LensModel) is built at most once a second; rows are laid out once per width and drawn only in sight.
     /// </summary>
     public static class MapView
@@ -57,11 +58,38 @@ namespace ColonyCouncil
 
         // ================= The List =================
 
-        /// <summary>A lens's List: its groups with their counts, each row a thing with its card one click away; what came before at the foot.</summary>
+        /// <summary>The List's rows all in one, closest first, made once for each model (the "Closest first" chip).</summary>
+        private static readonly List<LensRow> closest = new List<LensRow>();
+        private static readonly List<LensGroup> NoGroups = new List<LensGroup>();
+        private static LensModel closestFor;
+        private static string closestLabel, closestTip;
+
+        private static List<LensRow> Closest(LensModel m)
+        {
+            if (closestFor == m) return closest;
+            closestFor = m;
+            closest.Clear();
+            foreach (var g in m.groups) closest.AddRange(g.rows);
+            closest.Sort((a, b) => RegionViewsMath.CompareClosest(a.order, b.order));
+            return closest;
+        }
+
+        /// <summary>
+        /// A lens's List: its groups with their counts, or (the "Closest first" chip) all its rows in one, nearest first; each
+        /// row a thing with its card one click away; what came before at the foot.
+        /// </summary>
         public static void List(Rect rect, LensModel m)
         {
             Text.Font = GameFont.Small;
-            UiKit.LabelFit(new Rect(rect.x, rect.y, rect.width, 18f), m.line, UiKit.Faint, GameFont.Tiny);
+            closestLabel ??= "CC_Region_ClosestFirst".Translate();
+            closestTip ??= "CC_Region_ClosestFirst_Tip".Translate();
+            float cw = UiKit.FilterChipWidth(closestLabel);
+            if (UiKit.FilterChip(new Rect(rect.xMax - cw, rect.y, cw, 18f), closestLabel, RegionView.closest, closestTip))
+            {
+                RegionView.closest = !RegionView.closest;
+                scroll = Vector2.zero;
+            }
+            UiKit.LabelFit(new Rect(rect.x, rect.y, rect.width - cw - 8f, 18f), m.line, UiKit.Faint, GameFont.Tiny);
             var outRect = new Rect(rect.x, rect.y + 22f, rect.width, rect.height - 22f);
             if (m.rows == 0 && m.past.Count == 0)
             {
@@ -75,7 +103,18 @@ namespace ColonyCouncil
                 float y = 0f, w = view.width;
                 if (m.rows == 0) y += UiKit.EmptyState(0f, y, w, RegionView.LensIcons[(int)m.lens], m.empty, 70f);
                 int i = 0;
-                foreach (var g in m.groups)
+                if (RegionView.closest && m.rows > 0)
+                {
+                    foreach (var r in Closest(m))
+                    {
+                        // Only the rows in sight are drawn.
+                        if (y + RowH >= scroll.y && y <= scroll.y + outRect.height) Row(new Rect(0f, y, w, RowH), r, i);
+                        y += RowH;
+                        i++;
+                    }
+                    y += 10f;
+                }
+                foreach (var g in RegionView.closest && m.rows > 0 ? NoGroups : m.groups)
                 {
                     y += UiKit.SectionHeading(0f, y, w, g.title, g.rows.Count, folds, g.key, out bool open);
                     if (!open) continue;
