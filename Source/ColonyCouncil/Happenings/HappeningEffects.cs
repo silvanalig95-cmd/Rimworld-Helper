@@ -20,7 +20,9 @@ namespace ColonyCouncil
             if (x == null || ctx.map == null || Gone(ctx)) return;
             int more = withGroup ? (ctx as HappeningContext)?.group.Count(p => p != null && !p.Dead && p != x) ?? 0 : 0;
             string text = more > 0 ? "CC_Impact_JoinGroup".Translate(x.LabelShort, more).Resolve() : "CC_Impact_Join".Translate(x.LabelShort).Resolve();
-            sheet.Add(ImpactKind.People, 1, text, "CC_Impact_JoinBrief".Translate(x.LabelShort).Resolve(), "join|" + x.thingIDNumber);
+            var l = sheet.Add(ImpactKind.People, 1, text, "CC_Impact_JoinBrief".Translate(x.LabelShort).Resolve(), "join|" + x.thingIDNumber);
+            // For the flavour line: a person joining (an animal is only something good).
+            if (l != null && x.RaceProps.Humanlike) l.cue = FlavourCue.Joins;
         }
 
         public bool withGroup;
@@ -68,7 +70,11 @@ namespace ColonyCouncil
             if (forA && (ctx.a == null || ctx.a.Dead || !ctx.a.IsColonist)) return;
             var pts = points.max > 0f ? points : h?.Ext?.points ?? new FloatRange(0.5f, 0.7f);
             string share = ImpactMath.Number(pts.min * 100f) + (pts.max > pts.min + 0.001f ? "CC_Impact_To".Translate().Resolve() + ImpactMath.Number(pts.max * 100f) : "") + "%";
-            sheet.Add(ImpactKind.People, -1, "CC_Impact_Raid".Translate(f.Name, share).Resolve(), "CC_Impact_RaidBrief".Translate(f.Name).Resolve(), "raid|" + f.loadID);
+            var l = sheet.Add(ImpactKind.People, -1, "CC_Impact_Raid".Translate(f.Name, share).Resolve(), "CC_Impact_RaidBrief".Translate(f.Name).Resolve(), "raid|" + f.loadID);
+            if (l == null) return;
+            // For the flavour line: who would come.
+            l.cue = FlavourCue.Raid;
+            l.about = f.Name;
         }
 
         public FloatRange points = FloatRange.Zero;
@@ -232,7 +238,11 @@ namespace ColonyCouncil
         public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
         {
             var who = Reached(ctx).Where(p => !p.Dead && p.Faction == Faction.OfPlayer && p.RaceProps.Humanlike).ToList();
-            if (who.Count > 0) sheet.Add(ImpactKind.People, -1, "CC_Impact_Leave".Translate(WhoOf(ctx, who)).Resolve(), "CC_Impact_LeaveBrief".Translate(WhoOf(ctx, who)).Resolve());
+            if (who.Count == 0) return;
+            var l = sheet.Add(ImpactKind.People, -1, "CC_Impact_Leave".Translate(WhoOf(ctx, who)).Resolve(), "CC_Impact_LeaveBrief".Translate(WhoOf(ctx, who)).Resolve());
+            if (l == null) return;
+            l.cue = FlavourCue.Leaves;
+            l.who = WhoOf(ctx, who);
         }
 
         public override void Apply(DilemmaContext ctx)

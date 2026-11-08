@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Answers say how they would land, not what they change
+
+*8 November 2026, version 0.174.0*
+
+- Under each answer of a council question, an event or a world event there is now one short line in the story's own voice about how it would land, such as "Avila would take it hard; Guido would see the council kept faith." or "Guido won't like it; it may come to a scuffle between Guido and Avila.", in place of the list of spirits, trust and sizes.
+- The line never says the opposite of what happens, names who it touches, and keeps to the weightiest one or two things, a risk to someone always among them; the wording varies from letter to letter but stays the same each time a letter opens.
+- Hovering an answer still shows the plain hint of what it does, and the setting What each answer does keeps hints in words, exact numbers or nothing for anyone who prefers them.
+
 ## Your silver at a glance in the trade window
 
 *8 November 2026, version 0.173.1*

@@ -12,6 +12,55 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.174.0, the answers' flavour line (8 November 2026, the player's explicit request with a screenshot of a council
+  letter, its hints under each answer: "remove these exact effect restrictions again, or make them more subtle. more like
+  flavour writing rather than exact descriptions."). Not released: no version, no What's new round, About.xml and
+  CHANGELOG untouched (the lead does that at the merge). DESIGN.md "What each answer does: flavour under it, hints on
+  hover" has all of it; README's paragraph on what each answer does and the settings summary; the Almanac's dilemmas page
+  (*What each answer does*, prose only, keywords unchanged).
+  - What: a fourth way to show what each answer does, **Flavour**, the default for new and older settings. One short line
+    under each answer, how it would land, never naming spirits, trust, opinion, a size or any mechanic: the screenshot's
+    four answers now read "Guido and Avila would go about sour for a while; it may yet turn against Guido.", "Avila would
+    take it hard; Guido would see the council kept faith.", "Guido won't like it; it may come to a scuffle between Guido
+    and Avila." and "Guido would be stung to the quick; it would brighten the day for Avila." (the test prints them). It
+    says the heaviest thing and at most one more: someone who may be hurt always (a fight, a breakdown, an injury, an
+    attack), else a gamble at least 15% likely to go wrong, else the next heaviest about someone else; people by name who
+    feel it alike together ("Guido and Avila"); the many against one ("Some would call it fair; Guido won't."); people
+    before things; at most 90 characters. Hover: the hints in words, as before. Hints, Exact and Off stay as they were.
+    The Dilemmas page's answered list shows the flavour line it had, then the hints (answers given before: the hints).
+    Every letter that shows answers goes through `DilemmaImpact.Option`: dilemmas, Rimfolk's events, world events; the
+    camps' letters (`ChoiceLetter_Camp`) never showed impacts and still don't.
+  - Code: `Dilemmas/ImpactFlavourMath.cs` (pure, linked in Tests.csproj: `FlavourCue`, `FlavourKind`, `FlavourBeat`,
+    `Beats`, `Make`, `Seed`), `ImpactFlavourTests` ("answer flavour: ", 3,494 checks: every family's words clean and going
+    its way, the screenshot's four answers, what it chooses, every kind good and bad, 400 made-up answers against each
+    named person's own lines, the length, the same words each time and different words between a letter's answers, the
+    setting). `ImpactLine` gains `cue`, `with`, `when`, `together` (copied by `ImpactMath.Merge`); `HintWords` gains `Has`
+    and `Variants` (numbered keys); `ImpactShow.Flavour` first. Cues set where the topic doesn't say: the fight and the
+    grudge and bond lines (`Dilemmas.cs`), `DilemmaImpact.Tie`, the customs (`Tradition`), joining, leaving and an attack
+    later (`HappeningEffects.cs`, `HappeningEffects_Leave.cs`), banishment (`BanishDilemmas.cs`), a play-out's time and
+    gathering (`ForHint`). `DilemmaImpact.Option` takes the answer's place (`Dilemmas.cs`, `Happenings.cs`,
+    `WorldSituation.cs`) and `SeedOf(ctx)` (the def or incident, the situation, A, B, X and the letter's text); `Record`
+    gives the flavour line too. Keyed `Rimfolk_DilemmaImpact.xml`: 292 words in 54 families (`CC_ImpactFlavour_*`),
+    `{WOULD}`/`{WONT}`, the setting's tip and notes for four ways.
+  - Settings: `answerImpact` (the row "What each answer does": Flavour, Hints in words, Exact numbers, Off). The old
+    `impactShows` stays saved and in step (Flavour saved as Hints), listed as not drawn; a file without `answerImpact`
+    takes its Exact or Off, and its Hints (the old default) as Flavour.
+  - Saved: `DilemmaRecord.impactFlavour` (a string, at most 200 characters; `Tools/save_estimate.py`'s dilemmas model
+    1,300 to 1,400 bytes a record).
+  - Riskiest (none of it could be run here): how the line reads across the game's real letters (the weights were tuned
+    on the screenshot's dilemma and made-up answers; a dilemma whose lines are mostly in their own words, topic None,
+    says only "Some good would come of it" or "It would cost the colony something"); `CanTranslate` for the numbered
+    keys (a translation without them would show no flavour line, only the hover); the line drawn under the answer by the
+    same hook as the hints (`Patch_DiaOptionImpact`), so two lines of text should fit; an older settings file with Hints
+    chosen by hand reads as Flavour (Hints was the default, so it was never written).
+  - Try in the game (dev mode; none of it could be run here): 1. Council, Decrees, "Dev: dilemma now" until a dilemma
+    comes ("the quartermaster's friends" needs a quartermaster and a rival of theirs): each answer has one line of
+    flavour under it, no two the same; hover one for the hints in words. 2. Postpone the letter and open it again from
+    the letter stack: the same lines. 3. Debug actions, Execute incident, a Rimfolk event with a gamble (`Council_Evt_*`)
+    and a world event ("Start world event..."): a line under each answer, "a gamble" or "may come to blows" where one
+    goes wrong that way. 4. Answer a dilemma, open Council, Dilemmas: hover the answer given, the flavour line then the
+    hints. 5. Settings, How you're told, What each answer does: Hints in words, Exact numbers and Off as before; then
+    Flavour again.
 - 0.173.1, your silver at a glance in the trade window (8 November 2026, the player's screenshot: "here it must be easier
   to see how much silver i actually have and whether i can afford it, at first glance"). `Window_RimfolkTrade.Wallet`: a
   box of 112 at the top of the side panel (the side's best deals and summary below it): the colony's silver now and after

@@ -246,7 +246,13 @@ namespace ColonyCouncil
             if (a == null || ctx.map == null || a.Dead) return;
             string word = (ctx as BanishContext)?.word ?? BanishTracker.AgeWord();
             string by = ctx.b?.LabelShort ?? "?";
-            sheet.Add(ImpactKind.People, -1, "CC_Impact_Banish".Translate(a.LabelShort, by, word).Resolve(), "CC_Impact_BanishBrief".Translate(a.LabelShort).Resolve());
+            var gone = sheet.Add(ImpactKind.People, -1, "CC_Impact_Banish".Translate(a.LabelShort, by, word).Resolve(), "CC_Impact_BanishBrief".Translate(a.LabelShort).Resolve());
+            if (gone != null)
+            {
+                // For the flavour line: who would be gone.
+                gone.cue = FlavourCue.Leaves;
+                gone.who = a.LabelShort;
+            }
             var colony = BanishTracker.ColonyAt(ctx.map);
             var glad = new List<Pawn>();
             BanishTracker.Views(a, colony, null, null, glad);

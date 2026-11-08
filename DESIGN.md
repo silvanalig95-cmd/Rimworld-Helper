@@ -467,6 +467,43 @@ a scenario-only secret. Everything is set up once, a few seconds into the game, 
 Rimfolk-event battles setting, because the player picked the scenario for them, but they still need a storyteller
 that sends threats.
 
+### What each answer does: flavour under it, hints on hover (the player's request, 8 November 2026)
+
+Every answer of a dilemma, an event or a world event has a line under it (`DilemmaImpact.Option`, one place for all
+three, and the Dilemmas page's record). The player first asked for hints in words without numbers (0.54.1,
+`Dilemmas/ImpactHints.cs`); seeing them under a letter ("Guido's spirits fall noticeably and trust in the council a
+little; Guido thinks noticeably worse of Avila; a gamble: Guido's spirits fall greatly") they asked for them "more like
+flavour writing rather than exact descriptions". The setting `answerImpact` (the row "What each answer does") now has
+four ways: **Flavour** (the default), **Hints**, **Exact** and **Off**; the hints and the numbers stay as they were,
+and the flavour's hover is the hints.
+
+- **One line, how it would land.** `ImpactFlavourMath` (pure, tested in `ImpactFlavourTests`) reads the same
+  `ImpactLine`s as the hints and makes *beats*: each person's or group's spirits and trust on balance (by trust or by
+  mood, whichever weighs more; greatly is a family of its own; both ways at once for one person is mixed feelings),
+  how one comes to see another, a bond or rift, a fight, someone hurt or breaking down, an attack, the gamble (who it
+  would go badly for, that it may come to nothing, or plainly), goods from the stores or for them, what happens on the
+  map (a gathering, the work waiting), other peoples, a camp, the colony's ways, someone joining or leaving, a custom.
+  Each weighs by its size (a little 1, noticeably 2, greatly 3), how sure it is, and whether it singles someone out.
+- **What it says.** The heaviest beat, and at most one more: someone who may be hurt is always said (the harm rule's
+  "shown"), else a gamble at least 15% likely to go wrong, else the next heaviest about someone else (a small thing
+  beside a big one is left to the hover). People by name who feel it the same way are said together ("Guido and Avila
+  would take it badly"); a group going the other way from the one most touched is the many against one ("Some would
+  call it fair; Guido won't."), unless someone else by name goes that other way too. People come before things, the
+  gamble and harm last. About ninety characters at most; when two don't fit, the one that must be said.
+- **Never misleading.** Each family has a direction, and a beat is only said in its own direction's words; the tests
+  try every kind good and bad, check each family's words for the other side's words, and check four hundred made-up
+  answers against each named person's own lines.
+- **The words.** Nearly three hundred in Keyed, in some fifty families (`CC_ImpactFlavour_[family]_[n]`, `_Many_` for
+  a group where it reads differently), `{WOULD}`/`{WONT}` for "would" and "won't" or "may" and "may not". Which words
+  is picked from a number for the letter (`DilemmaImpact.SeedOf`: what and whom it is about and its text) and the
+  answer's place in it, so a letter reads the same each time it opens and its answers don't repeat each other.
+- **Cues.** Where a line's topic doesn't say what it is, the effect that describes it marks it (`ImpactLine.cue`, `with`):
+  the fight, the bonds and grudges, someone joining, leaving or banished, an attack later, a custom kept or broken; a
+  play-out's time of day and whether people gather for it (`when`, `together`).
+- **Settings.** `answerImpact` is new and saved under its own name; `impactShows`, the old choice, is kept in step so
+  an older settings file loads (its exact numbers and off carry over, its hints, the default then, become flavour), as
+  `showImpact` was before it.
+
 ## Layer 6: World events
 
 Rimfolk events happen to the colony; world events happen to the region, and last. A plague among the neighbors, a
