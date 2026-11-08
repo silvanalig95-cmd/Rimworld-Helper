@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The post: the mailbag at the gate, carriers going that way, the regular post by age, the colony's own rider, mail
+       coming in, the range until radio (Source/ColonyCouncil/Post/). -->
+
+  <CC_Settings_Post>The post: letters travel with someone</CC_Settings_Post>
+  <CC_Settings_Post_Tip>Letters written wait in a mailbag at the gate (a spot you place; without one, by the gate) until someone going their way takes them: the post rider, a trade caravan, visitors and guests leaving, a camp breaking up, pilgrims and travellers passing, a people's messengers, the colony's own caravan setting out. One of them walks to the mailbag for the letters on their way, and the letter is read once it gets there. A regular post comes by the colony's age: none for a tribe, a post rider on the road every week or two in the medieval age, a mail run every few days in the industrial, shuttles in the spacer. You can also send a letter with your own rider, who rides out to the town and brings the answer back. Mail for the colony comes the same way: whoever comes in sets it down at the mailbag, and a messenger is sent only when nobody has come for longer than is reasonable. Reach is the time on the road over the land: within the colony's range anyone going that way reaches them, further off only a relay through a nearer town, and some towns are out of reach until radio. A tribal colony gives spoken messages to the carrier instead of writing. Off, a messenger of their people comes to the gate for each letter, as before.</CC_Settings_Post_Tip>
+  <CC_SetNote_Post>Letters wait in the mailbag and go with whoever is going their way.</CC_SetNote_Post>
+  <CC_Settings_PostPace>The post's pace</CC_Settings_PostPace>
+  <CC_Settings_PostPace_Tip>How often the regular post comes: in the medieval age a rider every 7 to 14 days, in the industrial a mail run every 3 to 7, in the spacer a shuttle every 2 to 4, by default.</CC_Settings_PostPace_Tip>
+  <CC_PostPace_Seldom>Seldom</CC_PostPace_Seldom>
+  <CC_PostPace_Seldom_Tip>Half as long again between visits.</CC_PostPace_Seldom_Tip>
+  <CC_PostPace_Usual>As usual</CC_PostPace_Usual>
+  <CC_PostPace_Usual_Tip>A rider every week or two, a mail run every few days, a shuttle every two to four.</CC_PostPace_Usual_Tip>
+  <CC_PostPace_Often>Often</CC_PostPace_Often>
+  <CC_PostPace_Often_Tip>A little more than half as long between visits.</CC_PostPace_Often_Tip>
+  <CC_SetNote_PostPace_Seldom>The post comes seldom.</CC_SetNote_PostPace_Seldom>
+  <CC_SetNote_PostPace_Usual>The post comes at its usual pace.</CC_SetNote_PostPace_Usual>
+  <CC_SetNote_PostPace_Often>The post comes often.</CC_SetNote_PostPace_Often>
+
+  <!-- Who carries -->
+  <CC_Mail_SomePeople>a people of the region</CC_Mail_SomePeople>
+  <CC_Mail_Carrier_None>someone on the road</CC_Mail_Carrier_None>
+  <CC_Mail_Carrier_PostRider>the post of the {PEOPLE}</CC_Mail_Carrier_PostRider>
+  <CC_Mail_Carrier_Traders>the traders of the {PEOPLE}</CC_Mail_Carrier_Traders>
+  <CC_Mail_Carrier_Visitors>visitors of the {PEOPLE}</CC_Mail_Carrier_Visitors>
+  <CC_Mail_Carrier_Camp>a camp of the {PEOPLE}</CC_Mail_Carrier_Camp>
+  <CC_Mail_Carrier_Pilgrims>pilgrims of the {PEOPLE}</CC_Mail_Carrier_Pilgrims>
+  <CC_Mail_Carrier_Travellers>travellers of the {PEOPLE}</CC_Mail_Carrier_Travellers>
+  <CC_Mail_Carrier_Messengers>messengers of the {PEOPLE}</CC_Mail_Carrier_Messengers>
+  <CC_Mail_Carrier_OwnCaravan>{PAWN}'s caravan</CC_Mail_Carrier_OwnCaravan>
+  <CC_Mail_Carrier_OwnRider>the colony's own rider</CC_Mail_Carrier_OwnRider>
+  <CC_Mail_Carrier_Bearer>someone of their own people</CC_Mail_Carrier_Bearer>
+  <CC_Mail_Name_Medieval>post rider</CC_Mail_Name_Medieval>
+  <CC_Mail_Name_Industrial>mail run</CC_Mail_Name_Industrial>
+  <CC_Mail_Name_Spacer>post shuttle</CC_Mail_Name_Spacer>
+  <CC_Mail_Msg_Coming_Medieval>The post rider of the {PEOPLE} is coming up the road to the mailbag.</CC_Mail_Msg_Coming_Medieval>
+  <CC_Mail_Msg_Coming_Industrial>The mail run of the {PEOPLE} is coming up the road to the mailbag.</CC_Mail_Msg_Coming_Industrial>
+  <CC_Mail_Msg_Coming_Spacer>The post shuttle of the {PEOPLE} drops a courier by the mailbag.</CC_Mail_Msg_Coming_Spacer>
+
+  <!-- The mailbag -->
+  <CC_Mail_Msg_InBag>{PAWN} put the letter to {TO} in the mailbag at the gate. It will leave {LIKELY}.</CC_Mail_Msg_InBag>
+  <CC_Mail_Msg_AtGate>{PAWN}'s letter to {TO} waits by the gate (place a mailbag to keep the colony's letters in one spot). It will leave {LIKELY}.</CC_Mail_Msg_AtGate>
+  <CC_Mail_Msg_Spoken>{PAWN} has the words for {TO} ready, to give to whoever goes that way. They will go {LIKELY}.</CC_Mail_Msg_Spoken>
+  <CC_Mail_Msg_Taken>{CARRIER} took {PAWN}'s letter to {TO} with them.</CC_Mail_Msg_Taken>
+  <CC_Mail_Msg_TakenRelay>{CARRIER} took {PAWN}'s letter to {TO} with them, to be handed on at {RELAY}.</CC_Mail_Msg_TakenRelay>
+  <CC_Mail_Msg_Packed>{PAWN} took {COUNT} letters from the mailbag for the caravan's road.</CC_Mail_Msg_Packed>
+  <CC_Mail_Cancel_TakenBack>{PAWN}'s letter to {TO} was taken out of the mailbag again.</CC_Mail_Cancel_TakenBack>
+  <CC_Mail_Likely_OwnRider>with {PAWN}, the colony's own rider</CC_Mail_Likely_OwnRider>
+  <CC_Mail_Likely_Packed>with {PAWN}'s caravan as it sets out</CC_Mail_Likely_Packed>
+  <CC_Mail_Likely_Anyone>with whoever goes that way next</CC_Mail_Likely_Anyone>
+  <CC_Mail_Likely_War>with a go-between under a white flag</CC_Mail_Likely_War>
+  <CC_Mail_Likely_Cut>only with someone going to {TOWN} itself: it is out of reach until radio</CC_Mail_Likely_Cut>
+  <CC_Mail_Likely_Here>with {CARRIER} on the map now, when they go home</CC_Mail_Likely_Here>
+  <CC_Mail_Likely_Post>with the next {POST}</CC_Mail_Likely_Post>
+  <CC_Mail_Likely_Relay>with whoever goes {DIR} next, handed on at {RELAY}</CC_Mail_Likely_Relay>
+  <CC_Mail_Likely_Way>with whoever goes {DIR} next: traders, visitors or travellers</CC_Mail_Likely_Way>
+  <CC_Mail_Line>  - To {TO}, {PURPOSE}, written by {PAWN}: {LIKELY}.</CC_Mail_Line>
+  <CC_Mail_Line_Spoken>  - To {TO}, {PURPOSE}, {PAWN}'s words to be spoken: {LIKELY}.</CC_Mail_Line_Spoken>
+  <CC_Mail_Bag_Off>The post is off in the settings: a messenger comes for each letter.</CC_Mail_Bag_Off>
+  <CC_Mail_Bag_Other>Letters wait in the mailbag nearer the gate.</CC_Mail_Bag_Other>
+  <CC_Mail_Bag_Empty>No letters waiting.</CC_Mail_Bag_Empty>
+  <CC_Mail_Bag_Head>{COUNT} letters waiting:</CC_Mail_Bag_Head>
+  <CC_Mail_Bag_More>  ...and {COUNT} more.</CC_Mail_Bag_More>
+  <CC_Mail_Bag_Coming>Mail for the colony on its way in: {COUNT}.</CC_Mail_Bag_Coming>
+  <CC_Mail_Gizmo_Rider>Send with our rider</CC_Mail_Gizmo_Rider>
+  <CC_Mail_Gizmo_RiderDesc>Send a letter waiting here with one of the colony's own: they ride out to the town (on a colony animal if one is big enough to ride, else on foot), hand it over, and bring the answer home. They are away for the whole road there and back.</CC_Mail_Gizmo_RiderDesc>
+  <CC_Mail_Gizmo_Back>Take a letter back</CC_Mail_Gizmo_Back>
+  <CC_Mail_Gizmo_BackDesc>Take a letter out of the mailbag: it is not sent.</CC_Mail_Gizmo_BackDesc>
+  <CC_Mail_Gizmo_None>No letters waiting in the mailbag.</CC_Mail_Gizmo_None>
+  <CC_Mail_Gizmo_Letter>{PAWN}'s letter to {TO}</CC_Mail_Gizmo_Letter>
+  <CC_Mail_PickRider>{PAWN} (Animals {ANIMALS})</CC_Mail_PickRider>
+  <CC_Mail_PickRider_Title>Who rides to {TOWN} ({DAYS} there, mounted)?</CC_Mail_PickRider_Title>
+  <CC_Mail_PickRider_TitleFoot>Who goes to {TOWN} ({DAYS} there, on foot)?</CC_Mail_PickRider_TitleFoot>
+
+  <!-- Where a letter is -->
+  <CC_Mail_Status_Outbox>{PAWN}'s letter is in the mailbag, waiting for someone going that way.</CC_Mail_Status_Outbox>
+  <CC_Mail_Status_Spoken>{PAWN}'s words wait for someone going that way to carry them.</CC_Mail_Status_Spoken>
+  <CC_Mail_Status_Packed>{PAWN}'s letter is packed with {RIDER}'s caravan.</CC_Mail_Status_Packed>
+  <CC_Mail_Status_RiderReady>{RIDER} is getting ready to ride out with {PAWN}'s letter.</CC_Mail_Status_RiderReady>
+  <CC_Mail_Status_Riding>{RIDER} is riding to {NAME} with the letter.</CC_Mail_Status_Riding>
+  <CC_Mail_Status_Carried>{PAWN}'s letter is on the road to {NAME} with {CARRIER}.</CC_Mail_Status_Carried>
+  <CC_Mail_Status_CarriedRelay>{PAWN}'s letter is on the road with {CARRIER}, to be handed on at {RELAY}.</CC_Mail_Status_CarriedRelay>
+  <CC_Mail_Status_RiderBack>{RIDER} is bringing {NAME}'s answer home.</CC_Mail_Status_RiderBack>
+  <CC_Mail_Status_AnswerPost>{NAME} has answered; the answer comes with whoever is coming this way.</CC_Mail_Status_AnswerPost>
+
+  <!-- How to reach them now -->
+  <CC_Mail_Reach_Header>How to reach them</CC_Mail_Reach_Header>
+  <CC_Mail_Days_One>about a day</CC_Mail_Days_One>
+  <CC_Mail_Days_Many>about {DAYS} days</CC_Mail_Days_Many>
+  <CC_Mail_Reach_Radio>By radio: a call on the comms console reaches them at once.</CC_Mail_Reach_Radio>
+  <CC_Mail_Reach_Shuttle>By shuttle: the colony's letters reach them wherever they are.</CC_Mail_Reach_Shuttle>
+  <CC_Mail_Reach_Bearer>By {BEARER}, one of their own people, who is here now.</CC_Mail_Reach_Bearer>
+  <CC_Mail_Reach_War>At war with the colony: a go-between under a white flag comes to the gate for letters to them.</CC_Mail_Reach_War>
+  <CC_Mail_Reach_Cut>Out of reach until you have radio: too far or cut off by the land, so a letter waits for someone going to {TOWN} itself.</CC_Mail_Reach_Cut>
+  <CC_Mail_Reach_Camped>Within reach, {DAYS} on the road: with the {PEOPLE} on the map now, when they go home.</CC_Mail_Reach_Camped>
+  <CC_Mail_Reach_Relay>Far: by relay through {RELAY}, {DAYS} on the road.</CC_Mail_Reach_Relay>
+  <CC_Mail_Reach_Post>Within reach, {DAYS} on the road: by the next {POST}.</CC_Mail_Reach_Post>
+  <CC_Mail_Reach_Way>Within reach, {DAYS} on the road: by the next caravan or traveller going {DIR}.</CC_Mail_Reach_Way>
+  <CC_Mail_Reach_RadioLater>They have radio: with a working comms console, a call reaches them.</CC_Mail_Reach_RadioLater>
+  <CC_Mail_Reach_Rider>Or by your own rider, {DAYS} there.</CC_Mail_Reach_Rider>
+  <CC_Mail_Reach_RiderFoot>Or by one of your own on foot, {DAYS} there.</CC_Mail_Reach_RiderFoot>
+
+  <!-- The colony's own rider -->
+  <CC_Mail_Why_Off>The post is off in the settings.</CC_Mail_Why_Off>
+  <CC_Mail_Why_NoTown>Their town isn't known.</CC_Mail_Why_NoTown>
+  <CC_Mail_Why_RiderWar>The {PEOPLE} are at war with the colony: nobody of ours rides in among them.</CC_Mail_Why_RiderWar>
+  <CC_Mail_Why_NoRoad>There is no way over land to {TOWN}.</CC_Mail_Why_NoRoad>
+  <CC_Mail_Why_Alone>Someone has to stay at home.</CC_Mail_Why_Alone>
+  <CC_Mail_Why_NoRider>Nobody is free to ride out.</CC_Mail_Why_NoRider>
+  <CC_Mail_Msg_RiderReady>{PAWN} takes the letter from the mailbag and makes for the edge of the map with {MOUNT}, to ride to {TOWN}.</CC_Mail_Msg_RiderReady>
+  <CC_Mail_Msg_RiderReadyFoot>{PAWN} takes the letter from the mailbag and makes for the edge of the map, to walk to {TOWN}.</CC_Mail_Msg_RiderReadyFoot>
+  <CC_Mail_Msg_RiderOut>{PAWN} has set out for {TOWN} with the letter.</CC_Mail_Msg_RiderOut>
+  <CC_Mail_Msg_RiderHomeward>{PAWN} has the answer and has turned for home from {TOWN}.</CC_Mail_Msg_RiderHomeward>
+  <CC_Mail_Msg_RiderNoAnswer>{PAWN} is home from {TOWN}: they heard the letter out and sent nothing back.</CC_Mail_Msg_RiderNoAnswer>
+  <CC_Mail_Msg_RiderLost>{PAWN} never came home from the road to {TOWN}, and the letter is lost with them.</CC_Mail_Msg_RiderLost>
+  <CC_Mail_RiderBrought>{PAWN} brought this answer home by hand.</CC_Mail_RiderBrought>
+
+  <!-- Jobs -->
+  <CC_Mail_Report_Take>taking the letters going their way.</CC_Mail_Report_Take>
+  <CC_Mail_Report_Drop>setting down mail for the colony.</CC_Mail_Report_Drop>
+  <CC_Mail_Report_Speak>giving a message to {0}.</CC_Mail_Report_Speak>
+  <CC_Mail_Report_SetOut>setting out with a letter.</CC_Mail_Report_SetOut>
+
+  <!-- The letter's dialog -->
+  <CC_LetterDlg_ByPost>By the post</CC_LetterDlg_ByPost>
+  <CC_LetterDlg_BySpoken>A spoken message</CC_LetterDlg_BySpoken>
+  <CC_LetterDlg_ByRider>By our own rider</CC_LetterDlg_ByRider>
+  <CC_LetterDlg_WhoSpeaks>Whose words:</CC_LetterDlg_WhoSpeaks>
+  <CC_LetterDlg_PostNote>The writer sits down at a table for about an hour to write it, and it waits in the mailbag at the gate until someone going that way takes it. The answer comes back the same way.</CC_LetterDlg_PostNote>
+  <CC_LetterDlg_SpokenNote>A tribe sends no letters: when someone going that way comes for it, a colonist gives them the words at the gate, and they carry them. The answer comes back the same way.</CC_LetterDlg_SpokenNote>
+  <CC_LetterDlg_RiderNote>{PAWN} takes it from the mailbag once it is written and rides out to them, then brings the answer home. They are away for the whole road there and back.</CC_LetterDlg_RiderNote>
+
+</LanguageData>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The post (Source/ColonyCouncil/Post/): the mailbag at the gate, and the jobs of those who take and bring the mail. -->
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>Rimfolk_Mailbag</defName>
+    <label>mailbag</label>
+    <description>A post and a leather bag by the gate where the colony's letters wait for someone going their way: the post rider, traders, visitors leaving, a camp breaking up, the colony's own caravan or rider. Whoever comes in with mail for the colony sets it down here. Without one, letters wait by the gate all the same.</description>
+    <thingClass>ColonyCouncil.Building_Mailbag</thingClass>
+    <graphicData>
+      <texPath>Things/Building/Misc/CaravanPackingSpot</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <color>(196,154,98)</color>
+    </graphicData>
+    <altitudeLayer>FloorEmplacement</altitudeLayer>
+    <statBases>
+      <WorkToBuild>0</WorkToBuild>
+    </statBases>
+    <rotatable>false</rotatable>
+    <scatterableOnMapGen>false</scatterableOnMapGen>
+    <useHitPoints>false</useHitPoints>
+    <designationCategory>Misc</designationCategory>
+    <passability>Standable</passability>
+    <building>
+      <sowTag>SupportPlantsOnly</sowTag>
+      <canPlaceOverImpassablePlant>false</canPlaceOverImpassablePlant>
+      <ai_chillDestination>false</ai_chillDestination>
+      <isInert>true</isInert>
+      <isEdifice>false</isEdifice>
+    </building>
+    <placeWorkers>
+      <li>PlaceWorker_NeverAdjacentUnstandable</li>
+    </placeWorkers>
+    <tradeability>None</tradeability>
+  </ThingDef>
+
+  <JobDef>
+    <defName>Rimfolk_PostTake</defName>
+    <driverClass>ColonyCouncil.JobDriver_PostTake</driverClass>
+    <reportString>taking the letters from the mailbag.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PostDrop</defName>
+    <driverClass>ColonyCouncil.JobDriver_PostDrop</driverClass>
+    <reportString>setting down the mail.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PostSpeak</defName>
+    <driverClass>ColonyCouncil.JobDriver_PostSpeak</driverClass>
+    <reportString>giving a message to TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_RiderSetOut</defName>
+    <driverClass>ColonyCouncil.JobDriver_RiderSetOut</driverClass>
+    <reportString>setting out with a letter.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+</Defs>

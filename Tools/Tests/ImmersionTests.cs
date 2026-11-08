@@ -56,6 +56,8 @@ public static class ImmersionTests
         "Rimfolk_Pool_TriageRoom", "Rimfolk_Pool_TriageSurgery",
         // Writing to a neighbour, handing the letter over, and calls on the comms console (World/NeighbourLetters.cs).
         "Rimfolk_Pool_NeighbourSays",
+        // The post: carriers taking and bringing the mail, the post rider, spoken messages, the colony's own rider (Post/PostWords.cs).
+        "Rimfolk_Pool_PostSays",
         // A colonist and someone from outside the colony doing something together (Outsiders/Outsiders.cs).
         "Rimfolk_Pool_OutsiderSays",
         // Hurts from everyday life (Harm/): the evening drill's call, start, real blow, apology and end; a slip at work, a

@@ -173,6 +173,10 @@ namespace ColonyCouncil
         public bool notables = true;
         /// <summary>Letters to them by hand, and calls on a comms console, answered in their own way (World/NeighbourLetters.cs).</summary>
         public bool neighbourLetters = true;
+        /// <summary>The post (Post/): letters wait in a mailbag at the gate and go with whoever is going their way; a regular post by the age; the colony's own rider; mail coming in the same way; the range until radio.</summary>
+        public bool post = true;
+        /// <summary>How often the regular post comes (Post/PostRider.cs): seldom, as usual, often.</summary>
+        public PostPace postPace = PostPace.Usual;
         /// <summary>The region: each town within reach has a fortune that the world's events move, shown in its panel and its people's words (World/Region/).</summary>
         public bool regionFortunes = true;
         /// <summary>The region: a new town within reach has a founder, founding families and a reason, told in the news, its talk and a letter (World/Region/).</summary>
@@ -792,6 +796,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref factionMemory, "factionMemory", true);
             Scribe_Values.Look(ref notables, "notables", true);
             Scribe_Values.Look(ref neighbourLetters, "neighbourLetters", true);
+            Scribe_Values.Look(ref post, "post", true);
+            Scribe_Values.Look(ref postPace, "postPace", PostPace.Usual);
             Scribe_Values.Look(ref regionFortunes, "regionFortunes", true);
             Scribe_Values.Look(ref regionFaces, "regionFaces", true);
             Scribe_Values.Look(ref regionStock, "regionStock", true);

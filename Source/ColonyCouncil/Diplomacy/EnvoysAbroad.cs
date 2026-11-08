@@ -358,9 +358,11 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("envoys abroad: the town's news", e);
             }
             if (news.Length == 0) news = "\n\n" + RansomWords.P("CC_Envoy_Letter_Quiet", town.Name.Named("TOWN"));
-            Tell.Letter(NewsKind.World, Importance.Flavor, map, RansomWords.P("CC_Envoy_Letter_Label", p.Named("PAWN"), town.Name.Named("TOWN")),
-                RansomWords.T("CC_Envoy_Letter", p.Named("PAWN"), town.Name.Named("TOWN"), RansomWords.People(a.people).Named("PEOPLE"), here.Count.Named("COUNT")) + news,
-                LetterDefOf.NeutralEvent, new LookTargets(town), a.people);
+            string label = RansomWords.P("CC_Envoy_Letter_Label", p.Named("PAWN"), town.Name.Named("TOWN"));
+            string text = RansomWords.T("CC_Envoy_Letter", p.Named("PAWN"), town.Name.Named("TOWN"), RansomWords.People(a.people).Named("PEOPLE"), here.Count.Named("COUNT")) + news;
+            // A letter carried to the colony: with whoever comes its way, or a messenger after a while (Post/MailIn.cs).
+            if (!MailIn.FromAbroad(map, a.people, town, label, text, LetterDefOf.NeutralEvent))
+                Tell.Letter(NewsKind.World, Importance.Flavor, map, label, text, LetterDefOf.NeutralEvent, new LookTargets(town), a.people);
             Diplomacy.Dirty();
         }
 

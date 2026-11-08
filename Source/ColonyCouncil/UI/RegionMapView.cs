@@ -330,6 +330,8 @@ namespace ColonyCouncil
                 lines.Add(f.Name);
                 string st = RegionMap.StandingText(f);
                 if (!st.NullOrEmpty()) lines.Add(st);
+                // How the colony's letters reach the town now (Post/PostWords.cs): the diplomatic range until radio.
+                if (m.obj is Settlement town) lines.AddRange(PostRing.Tip(map.home, town));
             }
             string land = map.TileText(m.index, true);
             if (!land.NullOrEmpty()) lines.Add("\n" + land);
@@ -396,6 +398,8 @@ namespace ColonyCouncil
                 if (m.kind == RegionMarkKind.Colony) UiKit.RingDraw(r.ExpandedBy(5f), UiKit.Gold);
                 if (lens != null && lens.events.Contains(m.obj.ID)) UiKit.RingDraw(r.ExpandedBy(5f), UiKit.WorldColor);
                 else if (lens != null && lens.rings.TryGetValue(m.obj.ID, out var regard)) UiKit.RingDraw(r.ExpandedBy(4f), UiKit.WithAlpha(regard, 0.85f));
+                // The diplomatic range until radio (Post/PostReach.cs): a soft ring round a town far off (by relay) or out of reach.
+                if (m.obj is Settlement town && PostRing.Ring(map.home, town, out var reach)) UiKit.RingDraw(r.ExpandedBy(9f), reach);
                 if (m.obj == picked) UiKit.RingDraw(r.ExpandedBy(7f), Color.white);
                 else if (m == hoverMark) UiKit.RingDraw(r.ExpandedBy(5f), UiKit.WithAlpha(UiKit.Ink, 0.5f));
                 if (m.icon != null)

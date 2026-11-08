@@ -3233,6 +3233,34 @@ asked). Each brings something: greetings answered warmly a token gift in the mes
 faring; condolences taken to heart are remembered by their people; a warning heeded warmly becomes a debt of honour
 the colony can call in; help, a visit, news, a pact or a truce as before. Letters already on the road keep their day.
 
+**The post: letters travel with someone.** A letter written goes in the mailbag at the gate (a spot you place from the
+Misc tab; without one it waits by the gate), and its pane lists each letter, who wrote it and how it is likely to leave.
+Nobody appears out of nowhere for it: whoever is going that way takes it. A trade caravan leaving, visitors and guests
+going home, a camp breaking up, pilgrims and travellers passing, a people's messengers, your own caravan setting out:
+one of them walks to the mailbag for the letters on their way (their own people's towns, a town on the road to where
+they're going, or one in the direction they leave), and the letter is read once the road behind it is done. A regular
+post comes by the colony's age and its neighbours': none for a tribe, a post rider on the nearest road every week or two
+in the medieval age, mounted on their people's animals (with Giddy-Up they ride, otherwise they lead the beast), a mail run
+every few days in the industrial, a shuttle that drops a courier by pod in the spacer; its pace is a setting. For
+something urgent, send it with your own rider: a colonist takes it from the mailbag and rides out on a colony animal big
+enough to ride (or walks), a caravan of their own on the game's roads, and brings the answer home. Answers and the
+world's letters (a town's letter, your envoy's or ward's from abroad) come the same way: whoever comes in sets the bag
+down at the mailbag and the letter opens then; only when nobody has come for longer than is reasonable (half a day for
+urgent news, three days for business, a week or more for kind words) does a messenger of theirs bring it. What an answer
+sends in goods still comes with their messenger. A tribal colony gives spoken messages: a colonist says the words to the
+carrier at the gate. Writing takes someone who can read and write.
+
+**Diplomatic range until radio.** Reach is the time on the road over the land, not the distance: hills, mountains,
+swamp and ice slow it, roads and rivers speed it, and winter and snow count (the game's own caravan path). The colony's
+range is five days by runners, seven by riders and nine by vehicles, half again with a Signal Line mast near; a mount
+brings more towns within it. Within range the post, passing carriers and your rider reach; beyond it a letter is handed
+on through a nearer people's town on good terms (slower), or your own rider makes the long trip; some towns are out of
+reach until radio, and their letters wait for someone going there. A comms console calls peoples with radio (the
+industrial age on, or near the Signal Line's masts) at once, an aide taking a message when they can't come; shuttles
+end the range in the spacer age. Each town's card says how to reach them now and roughly how soon ("within reach, about
+two days on the road: by the next post rider", "far: by relay through Emberford, about seven days", "out of reach until
+you have radio"), and the region map rings the far and the out-of-reach towns.
+
 **Talking with outsiders, and doing it by themselves.** With a colonist selected, right-click someone from outside the
 colony for "Talk with...": news of their home, a meal or a drink, a gift, a good word at home, a lesson, something
 brought next time, an invitation to stay, getting to know them, courting, faith, a practice bout, hard words, a duel,
@@ -4486,7 +4514,7 @@ The pages:
   faces, rise and fall, trading posts, hamlets, small towns' maps); **bonds with other peoples** (favors owed and
   called in; pacts and truces, with pacts of fealty, the colony sworn to a stronger neighbor or keeping vassals of
   its own, and truces keeping raids away under them; ransom, envoys, feasts with guests, marriage alliances, wards and
-  hostages, colony renown, against their nature); neighbours and letters (notables, letters, talking with outsiders,
+  hostages, colony renown, against their nature); neighbours and letters (notables, letters, the post and its pace: Seldom, As usual or Often, talking with outsiders,
   sparring, insults, duels, their chatter, the right-click's things done by themselves: off, free ones only or within
   limits); then the tools: journeys, many colonies (fresh starts, and newcomers for
   them, and handing a colony over), the weather (weather that changes like weather,

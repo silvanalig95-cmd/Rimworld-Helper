@@ -39,7 +39,9 @@ Hurt, arrest or kill one of them and the deal holds only as far as it got: what 
       </li>
       <li>
         <heading>Doors and stockpiles</heading>
-        <text>Couriers open the colony's doors like any visitor at peace with it, and go only where the goods are. They don't wander into bedrooms or pick up anything else, and they never touch what someone else has claimed or what you have forbidden. A pack animal waits outside by the gate. Letters about a venture, a market or a fair come when the goods do, not before.</text>
+        <text>Couriers open the colony's doors like any visitor at peace with it, and go only where the goods are. They don't wander into bedrooms or pick up anything else, and they never touch what someone else has claimed or what you have forbidden. A pack animal waits outside by the gate. Letters about a venture, a market or a fair come when the goods do, not before.
+
+Letters to the neighbours no longer bring a messenger to the gate on demand: they wait in the mailbag and go with whoever is going that way (see "neighbours and letters"). A messenger of theirs still comes with what an answer sends in goods, for a letter to a people at war, and with mail for the colony nobody else brought in time. With the post off in the settings, a messenger comes for each letter as before.</text>
       </li>
     </sections>
     <keywords><li>courier</li><li>porter</li><li>runner</li><li>pack animal</li><li>delivery</li><li>gift</li><li>payment</li><li>sale</li><li>silver</li><li>on the map</li></keywords>

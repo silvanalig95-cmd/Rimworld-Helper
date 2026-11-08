@@ -126,6 +126,9 @@ namespace ColonyCouncil
         /// <summary>Where the letter is, in words (never a countdown).</summary>
         public static string StatusWords(NeighbourLetter l, Notable n)
         {
+            // The post's stages: in the mailbag, with the colony's rider, on the road with whoever took it (Post/PostWords.cs).
+            string post = PostWords.Status(l, n);
+            if (post != null) return post;
             // On the road, or its answer on the way back, by the colony's means (a runner, a rider, a courier, a courier by shuttle).
             if (l.channel == LetterChannel.Courier && l.bearer == null && l.bearerName.NullOrEmpty() && (l.stage == LetterStage.Travelling || l.stage == LetterStage.Answering && l.tripId >= 0))
                 return ("CC_LetterRoad_Status_" + l.stage + "_" + NeighbourLetters.Means).Translate(l.WriterName.Named("PAWN"), n.Name.Named("NAME")).Resolve();
@@ -258,7 +261,11 @@ namespace ColonyCouncil
         private float lookedAt = -1f;
         private Notable lookedFor;
         private LetterPurpose lookedPurpose;
-        private string byHand, byCall;
+        private string byHand, byCall, byRider;
+        /// <summary>The colony's own rider takes it (Post/OwnRiders.cs), and who.</summary>
+        private bool riderChosen;
+        private Pawn rider;
+        private List<string> reach = new List<string>();
         private readonly Dictionary<LetterPurpose, string> whyNot = new Dictionary<LetterPurpose, string>();
         private List<LetterTopic> topics = new List<LetterTopic>();
 
@@ -270,12 +277,14 @@ namespace ColonyCouncil
             lookedPurpose = purpose;
             byHand = NeighbourLetters.ChannelWhyNot(to, LetterChannel.Courier, map);
             byCall = NeighbourLetters.ChannelWhyNot(to, LetterChannel.Console, map);
+            byRider = byHand ?? OwnRiders.WhyNot(to, map);
+            reach = PostWords.ReachLines(map, NotableBook.TownOf(to.town));
             whyNot.Clear();
             foreach (LetterPurpose p in Enum.GetValues(typeof(LetterPurpose))) whyNot[p] = NeighbourLetters.WhyNot(to, p);
             topics = NeighbourLetters.Topics(to, purpose);
         }
 
-        public override Vector2 InitialSize => new Vector2(600f, 726f);
+        public override Vector2 InitialSize => new Vector2(600f, 790f);
 
         public Dialog_NeighbourLetter(Notable n)
         {
@@ -311,7 +320,7 @@ namespace ColonyCouncil
         {
             this.bearer = bearer;
             channel = LetterChannel.Courier;
-            if (by != null && NeighbourLetters.Writers(map).Contains(by)) writer = by;
+            if (by != null && NeighbourLetters.Writers(map, true).Contains(by)) writer = by;
         }
 
         public override void DoWindowContents(Rect inRect)
@@ -395,9 +404,9 @@ namespace ColonyCouncil
                 y += 30f;
             }
             // Who writes.
-            var writers = NeighbourLetters.Writers(map);
+            var writers = NeighbourLetters.Writers(map, true);
             if (writer == null || !writers.Contains(writer)) writer = NeighbourLetters.DefaultWriter(map);
-            Widgets.Label(new Rect(inRect.x, y + 2f, 120f, 24f), "CC_LetterDlg_Who".Translate());
+            Widgets.Label(new Rect(inRect.x, y + 2f, 120f, 24f), (NeighbourLetters.Spoken ? "CC_LetterDlg_WhoSpeaks" : "CC_LetterDlg_Who").Translate());
             if (Widgets.ButtonText(new Rect(inRect.x + 124f, y, 260f, 26f), writer != null ? WriterLabel(writer) : "-", true, true, writers.Count > 0))
                 Find.WindowStack.Add(new FloatMenu(writers.Select(p => new FloatMenuOption(WriterLabel(p), () => writer = p)).ToList()));
             y += 30f;
@@ -409,20 +418,51 @@ namespace ColonyCouncil
             }
             else
             {
-                if (Widgets.RadioButtonLabeled(new Rect(inRect.x + 124f, y, 200f, 24f), "CC_LetterDlg_ByHand".Translate(), channel == LetterChannel.Courier, byHand != null) && byHand == null)
+                // By hand (in the mailbag, or a spoken message in a tribal colony), by the colony's own rider, or by call.
+                string handLabel = (NeighbourLetters.Spoken ? "CC_LetterDlg_BySpoken" : PostBook.On ? "CC_LetterDlg_ByPost" : "CC_LetterDlg_ByHand").Translate();
+                if (Widgets.RadioButtonLabeled(new Rect(inRect.x + 124f, y, 200f, 24f), handLabel, channel == LetterChannel.Courier && !riderChosen, byHand != null) && byHand == null)
+                {
                     channel = LetterChannel.Courier;
+                    riderChosen = false;
+                }
                 if (byHand != null) TooltipHandler.TipRegion(new Rect(inRect.x + 124f, y, 200f, 24f), byHand);
                 if (Widgets.RadioButtonLabeled(new Rect(inRect.x + 340f, y, 200f, 24f), "CC_LetterDlg_ByCall".Translate(), channel == LetterChannel.Console, byCall != null) && byCall == null)
+                {
                     channel = LetterChannel.Console;
+                    riderChosen = false;
+                }
                 if (byCall != null) TooltipHandler.TipRegion(new Rect(inRect.x + 340f, y, 200f, 24f), byCall);
+                if (PostBook.On)
+                {
+                    y += 26f;
+                    var riderRect = new Rect(inRect.x + 124f, y, 200f, 24f);
+                    if (Widgets.RadioButtonLabeled(riderRect, "CC_LetterDlg_ByRider".Translate(), channel == LetterChannel.Courier && riderChosen, byRider != null) && byRider == null)
+                    {
+                        channel = LetterChannel.Courier;
+                        riderChosen = true;
+                    }
+                    if (byRider != null) TooltipHandler.TipRegion(riderRect, byRider);
+                    if (riderChosen)
+                    {
+                        var riders = OwnRiders.Candidates(map);
+                        if (rider == null || !riders.Contains(rider)) rider = riders.FirstOrDefault();
+                        if (Widgets.ButtonText(new Rect(inRect.x + 340f, y, 200f, 24f), rider?.LabelShort ?? "-", true, true, riders.Count > 1))
+                            Find.WindowStack.Add(new FloatMenu(riders.Select(p => new FloatMenuOption(p.LabelShort, () => rider = p)).ToList()));
+                    }
+                }
             }
             y += 26f;
             string channelWhy = bearer != null ? (bearer.Spawned && Outsiders.IsOutsider(bearer) ? null : "CC_LetterDlg_BearerGone".Translate(bearer.Named("BEARER")).Resolve())
-                : channel == LetterChannel.Courier ? byHand : byCall;
+                : channel == LetterChannel.Courier ? (riderChosen ? byRider ?? (rider == null ? "CC_Mail_Why_NoRider".Translate().Resolve() : null) : byHand) : byCall;
             string how = channelWhy ?? (bearer != null ? "CC_LetterDlg_BearerNote".Translate(bearer.Named("BEARER"), (to.faction?.Name ?? "").Named("FACTION")).Resolve()
+                : channel == LetterChannel.Courier && riderChosen
+                ? "CC_LetterDlg_RiderNote".Translate((rider?.LabelShort ?? "?").Named("PAWN")).Resolve()
                 : channel == LetterChannel.Courier
-                ? (NotableBook.Hostile(to) ? "CC_LetterDlg_WhiteFlag" : "CC_LetterDlg_HandNote").Translate(to.faction?.Name ?? "").Resolve()
+                ? (NotableBook.Hostile(to) ? "CC_LetterDlg_WhiteFlag" : PostBook.On ? (NeighbourLetters.Spoken ? "CC_LetterDlg_SpokenNote" : "CC_LetterDlg_PostNote") : "CC_LetterDlg_HandNote")
+                    .Translate(to.faction?.Name ?? "").Resolve()
                 : "CC_LetterDlg_CallNote".Translate().Resolve());
+            // How to reach them now (Post/PostWords.cs): by radio, the post, a relay, out of reach, and the colony's own rider.
+            if (channelWhy == null && bearer == null && reach.Count > 0) how += "\n" + string.Join(" ", reach);
             float hh = Text.CalcHeight(how, inRect.width - 124f);
             GUI.color = channelWhy != null ? UiKit.Warn : UiKit.Faint;
             Text.Font = GameFont.Tiny;
@@ -448,7 +488,7 @@ namespace ColonyCouncil
                 bool about = purpose == LetterPurpose.Condolences || purpose == LetterPurpose.Warning || DiplomacyLetters.Owns(purpose);
                 LetterTopic? topic = topics.Count > 0 && about ? topics[Mathf.Clamp(topicIndex, 0, topics.Count - 1)] : (LetterTopic?)null;
                 string asked = purpose == LetterPurpose.Help ? help : DiplomacyLetters.Owns(purpose) ? dipAsk : null;
-                if (NeighbourLetters.Send(to, purpose, channel, writer, topic, asked, bearer) != null) Close();
+                if (NeighbourLetters.Send(to, purpose, channel, writer, topic, asked, bearer, channel == LetterChannel.Courier && riderChosen ? rider : null) != null) Close();
             }
             if (Widgets.ButtonText(new Rect(inRect.xMax - 160f, inRect.yMax - 34f, 160f, 32f), "CC_LetterDlg_Cancel".Translate())) Close();
         }
