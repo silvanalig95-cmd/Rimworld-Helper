@@ -425,7 +425,11 @@ namespace ColonyCouncil
                 y += CaravanH + 8f;
             }
             float footY = h - FootH;
-            Side(new Rect(tableW + SideGap, TopH + 4f, side, footY - TopH - 10f));
+            // The colony's silver, before and after, and whether it can pay: at the top of the side, in large (the player:
+            // "it must be easier to see how much silver i actually have and whether i can afford it, at first glance").
+            float walletH = currency != null ? WalletH : 0f;
+            if (walletH > 0f) Wallet(new Rect(tableW + SideGap, TopH + 4f, side, walletH));
+            Side(new Rect(tableW + SideGap, TopH + 4f + walletH + (walletH > 0f ? 8f : 0f), side, footY - TopH - 10f - walletH - (walletH > 0f ? 8f : 0f)));
             float filterH = Filters(new Rect(0f, y, tableW, 0f), false);
             Filters(new Rect(0f, y, tableW, filterH), true);
             y += filterH + 4f;
@@ -1315,6 +1319,51 @@ namespace ColonyCouncil
                 Event.current.Use();
             }
             Silver(new Rect(cancel.xMax + 16f, r.y, r.xMax - cancel.xMax - 16f, r.height));
+        }
+
+        private const float WalletH = 112f;
+
+        /// <summary>
+        /// The colony's purse at a glance: its silver now, an arrow, its silver after this trade, both large; under them in
+        /// words and colour whether it can pay (green, or red with how much is missing), and the trader's purse
+        /// small below, orange when they can't pay all of what they owe. Lit when the game says the silver won't do.
+        /// </summary>
+        private void Wallet(Rect r)
+        {
+            bool shortOurs = colonyAfter < 0, shortTheirs = traderAfter < 0;
+            Widgets.DrawBoxSolidWithOutline(r, shortOurs ? new Color(0.45f, 0.12f, 0.1f, 0.35f) : UiKit.CardFill, shortOurs ? TradeScreen.WarnColor : UiKit.CardBorder, 1);
+            if (Time.time - Dialog_Trade.lastCurrencyFlashTime < 1f) GUI.DrawTexture(r, TransferableUIUtility.FlashTex);
+            var inner = r.ContractedBy(10f);
+            Text.Font = GameFont.Tiny;
+            GUI.color = UiKit.Faint;
+            Widgets.Label(new Rect(inner.x, inner.y, inner.width, 18f), W("CC_TradeWin_WalletTitle"));
+            Text.Font = GameFont.Medium;
+            float numY = inner.y + 18f;
+            string now = colonyNow.ToStringCached(), after = colonyAfter.ToStringCached();
+            GUI.color = Color.white;
+            float nowW = Text.CalcSize(now).x;
+            Widgets.Label(new Rect(inner.x, numY, nowW + 4f, 34f), now);
+            GUI.color = UiKit.Faint;
+            Widgets.Label(new Rect(inner.x + nowW + 8f, numY, 30f, 34f), "\u2192");
+            GUI.color = shortOurs ? TradeScreen.WarnColor : colonyAfter < colonyNow ? UiKit.Gold : UiKit.Good;
+            Widgets.Label(new Rect(inner.x + nowW + 38f, numY, inner.width - nowW - 38f, 34f), after);
+            Text.Font = GameFont.Small;
+            float lineY = numY + 34f;
+            int diff = colonyAfter - colonyNow;
+            string verdict = shortOurs ? W("CC_TradeWin_WalletShort", (-colonyAfter).Named("COUNT"))
+                : diff < 0 ? W("CC_TradeWin_WalletPay", (-diff).Named("COUNT"))
+                : diff > 0 ? W("CC_TradeWin_WalletGet", diff.Named("COUNT"))
+                : W("CC_TradeWin_WalletEven");
+            GUI.color = shortOurs ? TradeScreen.WarnColor : UiKit.Good;
+            Widgets.Label(new Rect(inner.x, lineY, inner.width, 22f), verdict);
+            Text.Font = GameFont.Tiny;
+            GUI.color = shortTheirs ? UiKit.Soon : UiKit.Faint;
+            Widgets.Label(new Rect(inner.x, lineY + 22f, inner.width, 18f),
+                shortTheirs ? W("CC_TradeWin_WalletTheirsShort", traderNow.ToStringCached().Named("NOW"), (-traderAfter).Named("COUNT"))
+                : W("CC_TradeWin_WalletTheirs", traderNow.ToStringCached().Named("NOW"), traderAfter.ToStringCached().Named("AFTER")));
+            GUI.color = Color.white;
+            Text.Font = GameFont.Small;
+            TooltipHandler.TipRegion(r, W("CC_TradeWin_SilverTip"));
         }
 
         /// <summary>Each side's silver now and after the trade, the colony's above, red where a side runs short; lit when the game says the silver won't do.</summary>

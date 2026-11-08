@@ -61,6 +61,12 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     goes wrong that way. 4. Answer a dilemma, open Council, Dilemmas: hover the answer given, the flavour line then the
     hints. 5. Settings, How you're told, What each answer does: Hints in words, Exact numbers and Off as before; then
     Flavour again.
+- 0.173.1, your silver at a glance in the trade window (8 November 2026, the player's screenshot: "here it must be easier
+  to see how much silver i actually have and whether i can afford it, at first glance"). `Window_RimfolkTrade.Wallet`: a
+  box of 112 at the top of the side panel (the side's best deals and summary below it): the colony's silver now and after
+  in Medium with an arrow, a line in Small, green "You can afford it: you pay N" / "You are paid N" or red "Not enough: N
+  short" (the box red-tinted), and the trader's purse in Tiny, orange when short; the game's currency flash lights it.
+  Keys `CC_TradeWin_Wallet*`. The small readout at the foot stays. To try: open a trade, buy more than the colony has.
 - 0.173.0, the diplomacy screen, step A: the peoples beside each one's page, and letters by occasion (8 November 2026, step A of
   `docs/design/diplomacy-screen.md` and points 10 and 11 of step 2 of `docs/design/post-and-letters.md`, approved by the
   player: "very good, all of it! i also want to quickly see and sort by who's closest"; their words before: "the diplomacy

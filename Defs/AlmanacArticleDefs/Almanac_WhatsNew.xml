@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.173.1</version>
+        <date>8 November 2026</date>
+        <title>Your silver at a glance in the trade window</title>
+        <points>
+          <li>The trade window shows your silver in large at the top of its side panel, now and after the trade with an arrow between, and says plainly whether you can afford it: green with what you pay or are paid, red with how much you are short.</li>
+          <li>Under it, smaller, the trader's silver and whether they can pay you all they owe; the whole box lights up as the game's own does when the silver won't do.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.173.0</version>
         <date>8 November 2026</date>
         <title>A new diplomacy screen, and letters written for a reason</title>

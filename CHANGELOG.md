@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Your silver at a glance in the trade window
+
+*8 November 2026, version 0.173.1*
+
+- The trade window shows your silver in large at the top of its side panel, now and after the trade with an arrow between, and says plainly whether you can afford it: green with what you pay or are paid, red with how much you are short.
+- Under it, smaller, the trader's silver and whether they can pay you all they owe; the whole box lights up as the game's own does when the silver won't do.
+
 ## A new diplomacy screen, and letters written for a reason
 
 *8 November 2026, version 0.173.0*
