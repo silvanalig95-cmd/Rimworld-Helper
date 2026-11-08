@@ -264,6 +264,13 @@ namespace ColonyCouncil
         /// <summary>How bad a hurt it is for the cap: Mild (children may get it) or Injury (grown-ups only).</summary>
         public HurtClass hurt = HurtClass.Injury;
         /// <summary>
+        /// Bed rest only when it makes sense (Health/BedRest.cs): the severity from which this ailment sends someone to bed,
+        /// in place of the general rule (an illness that can kill, a stage in strong pain or that leaves a capacity poor);
+        /// below it they keep working. 0 leaves it to the general rule. A serious illness from the stage it is really
+        /// underway, its first fever worked through; tuberculosis from its wasting.
+        /// </summary>
+        public float restFrom;
+        /// <summary>
         /// Its name in the colony's age, each tagged with the ages it's called so in ([tribal|medieval] pond itch,
         /// [industrial|spacer] swimmer's itch): the health tab, its message, letter and journal lines use it
         /// (<see cref="AilmentCauseMath.NameFor"/>). Without one, the def's label.
@@ -324,6 +331,8 @@ namespace ColonyCouncil
             if (serious && letterText.NullOrEmpty() && !(causes == null || causes.Count == 0)) yield return "a serious illness needs a letter";
             if (capped && serious && hurt == HurtClass.Mild) yield return "a serious illness is never mild enough for children";
             if (!names.NullOrEmpty() && !typeof(Hediff_Ailment).IsAssignableFrom(parentDef.hediffClass)) yield return "an ailment named by the age needs hediffClass ColonyCouncil.Hediff_Ailment";
+            if (restFrom < 0f) yield return "restFrom is a severity: 0 for the general rule, or the severity bed rest starts at";
+            if (restFrom > 0f && restFrom > parentDef.maxSeverity) yield return "restFrom above the ailment's highest severity never comes";
             if (causes != null)
                 foreach (var c in causes)
                     if (c != null && (c.trigger == AilmentTrigger.AfterIllness || c.trigger == AilmentTrigger.Healed) && c.after.NullOrEmpty())

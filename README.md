@@ -4198,6 +4198,26 @@ it needs. Smart Medicine's own icon shows each choice on the health tab. A choic
 default by hand is never touched again, and Rimfolk's own follow the wound (a cut while its patient bleeds out, a
 medical care setting changed) and are taken out with the setting off.
 
+**Bed rest only when it makes sense.** The game sends anyone to bed rest who has a tended wound still healing, however
+small, or an illness still building immunity, however mild, and keeps them there until it has passed: a tended scratch
+or a head cold can mean days in bed. Rimfolk keeps bed for what needs it: a serious wound while it heals (heavy
+bleeding, a vital part or an organ, a deep wound), wounds that together bring strong pain (15% and more, past the game's
+"minor pain") or leave a leg or the hands poor (70% or less), an illness that can kill until they are immune (the flu,
+the plague, malaria, an infection, the mods' killers), a stage of any illness in strong pain or that leaves
+consciousness, moving or breathing poor, and what the game makes urgent (down, an operation due, labor, bleeding). With
+anything else they keep working, and its pain, weakness and mood go on costing them: a sunburn, a cold, lice, bruises,
+small tended cuts, a sprain, a strained back. A cold, a fever's first days or a sprain has them sleep a little more at
+night, never all day (about two hours more at most). Small things to tend still bring them to bed to be tended and up
+again after; while no doctor is free they keep working rather than wait in bed. Rimfolk's serious illnesses that kill
+fast (cholera, meningitis, pneumonia) keep their bed from the first signs; the others from the stage they are really
+underway (typhus at its rash, tuberculosis once it wastes, scurvy at its worst), and a torn back, a migraine at its
+worst and a kidney stone passing have bed for their strong pain. Your own order to a medical bed ("rest until healed")
+and the council's rest when ill decree keep the game's rest. Each condition's tooltip on the health tab says whether it
+keeps them working or sends them to bed and why ("Keeps working, and sleeps a little more.", "Rests in bed until it
+heals: a deep wound."), and someone resting for a condition says which ("resting: flu."). With Smart Medicine, a
+condition you take off bed rest in its menu stays off. Switch "Bed rest only when it makes sense" on the What's on page
+(on by default, needs the deeper game hooks).
+
 **With Move the Patient** (konstantynopolitaneczka's mod, and only with it), the best bed goes to whoever needs it
 most. The mod on its own keeps a reservation scheme: each patient gets the lowest-ranked medical bed that fits how
 badly they are hurt, the High and Critical beds stay free for worse cases, and a bed marked as a surgery bed is never
@@ -4414,7 +4434,7 @@ The pages:
   lives (feelings and strain, life goals, quirks, heirlooms, coming of age, colonists fixing what bothers them and
   placing small plans, dreams and omens, moments, the colony noticing what happens, small habits, everyday ailments,
   convalescence and sickbed visits, doctors' and midwives' reputations, medicine by what is treated and what harmless
-  wounds get); bonds (the social web and social events, friendships that take time, chemistry, comrades, deeds
+  wounds get, bed rest only when it makes sense); bonds (the social web and social events, friendships that take time, chemistry, comrades, deeds
   remembered, seats and love's feelings, personalities and social life, traits that change, ideoligions in the colony
   with Ideology, secrets, vendettas); the colony's story
   (journals, names, anniversaries, annals, eulogies, the colony calendar, answers that play out on the map, goods and
@@ -4503,8 +4523,8 @@ page, so a new setting needs a row there, and that every field before the five p
   and midwives").
 - **Smart Medicine** (the continued one by MemeGoddess, or Uuugggg's original): its choice of medicine for each injury
   is filled in where you set none, by what the injury is (no medicine for a bruise, herbal at most for a cut, your
-  default for the serious), and Smart Medicine does the treating; a choice you set by hand stands (see "Recovery,
-  doctors and midwives").
+  default for the serious), and Smart Medicine does the treating; a choice you set by hand stands, and a condition you
+  take off bed rest in its menu stays off under Rimfolk's bed rest (see "Recovery, doctors and midwives").
 
 ## Status and feedback
 

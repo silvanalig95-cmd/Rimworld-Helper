@@ -362,6 +362,7 @@ namespace ColonyCouncil
             Toggle("medicineByNeed", "CC_Settings_MedicineByNeed", "CC_SetNote_MedicineByNeed", "deepHooks");
             Choice("harmlessMedicine", "CC_Settings_HarmlessMedicine", "CC_Settings_HarmlessMedicine_Tip", "CC_HarmlessMed_", "CC_SetNote_HarmlessMed_",
                 new[] { "None", "Herbal" }, "medicineByNeed");
+            Toggle("restByNeed", "CC_Settings_RestByNeed", "CC_SetNote_RestByNeed", "deepHooks");
             Section("CC_Settings_Bonds");
             Toggle("socialWeb", "CC_Settings_SocialWeb", "CC_SetNote_SocialWeb");
             Toggle("socialEvents", "CC_Settings_SocialEvents", "CC_SetNote_SocialEvents", "socialWeb");

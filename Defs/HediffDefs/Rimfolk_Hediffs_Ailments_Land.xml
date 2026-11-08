@@ -281,6 +281,7 @@
     <stages>
       <li>
         <label>fever and a sore</label>
+        <restFallFactor>1.1</restFallFactor>
         <painOffset>0.05</painOffset>
         <capMods><li><capacity>Consciousness</capacity><offset>-0.05</offset></li></capMods>
       </li>

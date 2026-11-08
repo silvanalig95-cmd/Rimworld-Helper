@@ -122,6 +122,16 @@ Quality also raises rest effectiveness: normal 100%, good 108%, excellent 114%, 
         <heading>Setting up the ward</heading>
         <text>Mark your hospital beds as medical so the wounded go straight to them, and put them in a clean, well-lit room near the main entrance, so nobody is carried across the base after a raid. Before you can build hospital beds, set ordinary beds to medical in a clean, lit room. The room still counts.</text>
       </li>
+      <li>
+        <heading>Who rests in bed (Rimfolk)</heading>
+        <text>The game puts anyone to bed rest who has a tended wound still healing or an illness still building immunity, however small, until it has passed. In bed a wound heals about half again as fast (8 a day on their feet, 12 lying down, more in a hospital bed and when tended) and immunity comes about a fifth faster. With Rimfolk's bed rest only when it makes sense, only what needs it goes to bed:</text>
+        <points>
+          <li>A serious wound while it heals: heavy bleeding, a vital part or an organ, a deep wound. Wounds that together bring strong pain (15% or more) or leave a leg or the hands poor (70% or less).</li>
+          <li>An illness that can kill, until immune: the flu, the plague, malaria, an infection, the mods' killers. A stage of any illness in strong pain, or one that takes 30% or more off consciousness, moving or breathing.</li>
+          <li>What the game makes urgent: down, an operation due, labor, bleeding, and anything to tend.</li>
+        </points>
+        <after>With anything else they keep working, and its pain, weakness and mood go on costing them: a sunburn, a cold, lice, bruises, small tended cuts, a sprain. A cold or a fever's first days has them sleep a little more at night, never all day. Small things to tend still bring them to a bed to be tended and up again after; while no doctor is free they keep working rather than wait. Your own "rest until healed" in a medical bed and the council's rest when ill decree keep the game's rest. Each condition's tooltip on the health tab says whether it keeps them working or sends them to bed and why. "Bed rest only when it makes sense" is on the What's on page of the settings.</after>
+      </li>
     </sections>
     <keywords>
       <li>hospital bed</li>

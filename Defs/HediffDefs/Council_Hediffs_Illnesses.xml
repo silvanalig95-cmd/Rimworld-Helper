@@ -34,6 +34,7 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <serious>true</serious>
         <key>Tetanus</key>
+        <restFrom>0.3</restFrom>
         <causes><li><trigger>Wound</trigger><hours>8</hours><chance>0.05</chance></li></causes>
         <cooldownDays>60</cooldownDays>
         <afterEffects>
@@ -74,6 +75,7 @@
       <li>
         <minSeverity>0.05</minSeverity>
         <label>lockjaw</label>
+        <restFallFactor>1.1</restFallFactor>
         <painOffset>0.1</painOffset>
         <capMods>
           <li><capacity>Eating</capacity><offset>-0.3</offset></li>
@@ -217,6 +219,7 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <serious>true</serious>
         <key>Tuberculosis</key>
+        <restFrom>0.6</restFrom>
         <cooldownDays>120</cooldownDays>
         <spreadPerHour>0.0015</spreadPerHour>
         <spreadWhileTended>0.3</spreadWhileTended>
@@ -317,6 +320,7 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <serious>true</serious>
         <key>Typhus</key>
+        <restFrom>0.3</restFrom>
         <causes><li><trigger>CrowdedDirty</trigger><hours>4</hours><chance>0.015</chance><boostHediff>Council_Ail_Lice</boostHediff><boost>3</boost></li></causes>
         <cooldownDays>60</cooldownDays>
         <spreadPerHour>0.003</spreadPerHour>
@@ -496,6 +500,7 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <serious>true</serious>
         <key>Scurvy</key>
+        <restFrom>0.75</restFrom>
         <causes><li><trigger>Diet</trigger><hours>20</hours><chance>0.25</chance></li></causes>
         <cooldownDays>30</cooldownDays>
         <letterText>{PAWN_nameDef} has scurvy. There hasn't been a fruit or a vegetable on {PAWN_nameDef}'s plate in weeks, and it shows: tiredness first, and soon sore gums and aching joints.\n\nIt worsens slowly as long as the diet stays the same, and can kill if left for many weeks. Fruit or vegetables, raw or in meals, will cure it within a couple of weeks.</letterText>
@@ -579,6 +584,7 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <serious>true</serious>
         <key>Glassblood</key>
+        <restFrom>0.3</restFrom>
         <causes><li><trigger>AncientWork</trigger><hours>2</hours><chance>0.025</chance></li></causes>
         <cooldownDays>60</cooldownDays>
         <childFactor>0.5</childFactor>
@@ -620,6 +626,7 @@
       <li>
         <minSeverity>0.05</minSeverity>
         <label>glittering fever</label>
+        <restFallFactor>1.15</restFallFactor>
         <painOffset>0.05</painOffset>
         <capMods>
           <li><capacity>Consciousness</capacity><offset>-0.08</offset></li>
@@ -771,6 +778,7 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <serious>true</serious>
         <key>Appendicitis</key>
+        <restFrom>0.25</restFrom>
         <once>true</once>
         <cooldownDays>60</cooldownDays>
         <afterEffects>
@@ -859,6 +867,7 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <serious>true</serious>
         <key>Rabies</key>
+        <restFrom>0.5</restFrom>
         <causes><li><trigger>AnimalBite</trigger><chance>0.03</chance></li></causes>
         <cooldownDays>60</cooldownDays>
         <startSeverity>0.13~0.17</startSeverity>
@@ -934,6 +943,7 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <serious>true</serious>
         <key>Measles</key>
+        <restFrom>0.6</restFrom>
         <childrenOnly>true</childrenOnly>
         <once>true</once>
         <cooldownDays>60</cooldownDays>
@@ -1082,6 +1092,7 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <serious>true</serious>
         <key>Shingles</key>
+        <restFrom>0.5</restFrom>
         <cooldownDays>120</cooldownDays>
         <startSeverity>0.5~0.7</startSeverity>
         <afterEffects>
@@ -1141,6 +1152,7 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <serious>true</serious>
         <key>HiveFever</key>
+        <restFrom>0.3</restFrom>
         <causes><li><trigger>InsectBite</trigger><chance>0.04</chance></li></causes>
         <cooldownDays>60</cooldownDays>
         <afterEffects>
@@ -1181,6 +1193,7 @@
       <li>
         <minSeverity>0.05</minSeverity>
         <label>swollen wound</label>
+        <restFallFactor>1.1</restFallFactor>
         <painOffset>0.08</painOffset>
         <capMods><li><capacity>Consciousness</capacity><offset>-0.03</offset></li></capMods>
       </li>
@@ -1227,6 +1240,7 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <serious>true</serious>
         <key>SwampFever</key>
+        <restFrom>0.3</restFrom>
         <biomes>
           <li>TemperateSwamp</li>
           <li>TropicalSwamp</li>

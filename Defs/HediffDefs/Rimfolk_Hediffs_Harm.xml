@@ -38,6 +38,7 @@
     <stages>
       <li>
         <label>mending</label>
+        <restFallFactor>1.1</restFallFactor>
         <painOffset>0.08</painOffset>
         <statFactors><CarryingCapacity>0.8</CarryingCapacity></statFactors>
         <capMods>
@@ -48,6 +49,7 @@
       <li>
         <minSeverity>0.35</minSeverity>
         <label>torn</label>
+        <restFallFactor>1.2</restFallFactor>
         <painOffset>0.18</painOffset>
         <statFactors><CarryingCapacity>0.5</CarryingCapacity></statFactors>
         <capMods>
