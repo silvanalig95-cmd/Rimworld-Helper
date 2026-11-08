@@ -53,7 +53,7 @@ public static class WorldMechanicsTests
             "Flavor's era tags ask Ages for the colony's age, lowtech as before");
         string ages = Code("Lean/Ages.cs");
         C(ages.Contains("public static WorldAge Ours => LedgerMath.AgeOf((int)Avail.EffectiveTech);"), "the colony's age is read from the tech Flavor always read");
-        C(ages.Contains("return LedgerMath.AgeOf((int)(people.def?.techLevel ?? TechLevel.Industrial));")
+        C(ages.Contains("return LedgerMath.AgeOf((int)(Peoples.TechOf(people, TechLevel.Industrial)));")
           && ages.Contains("public static bool IsEmpire(Faction people) => people?.def != null && people.def.HasRoyalTitles;"),
             "a people's age and the Empire read as the ledger's people view read them");
         string views = Code("World/Ledger/LedgerViews.cs");

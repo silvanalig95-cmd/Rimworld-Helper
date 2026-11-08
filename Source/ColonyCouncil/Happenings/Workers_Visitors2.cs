@@ -174,7 +174,7 @@ namespace ColonyCouncil
 
         protected override bool CanHappen(Map map, HappeningExtension ext) => ModsConfig.RoyaltyActive && VisitorWork2.AnimaTree(map) != null && base.CanHappen(map, ext);
 
-        private static bool Tribal(Faction f) => f?.def != null && f.def.techLevel <= TechLevel.Neolithic;
+        private static bool Tribal(Faction f) => f?.def != null && Peoples.TechOf(f) <= TechLevel.Neolithic;
 
         private static bool Empire(Faction f) => f?.def?.defName == "Empire";
 

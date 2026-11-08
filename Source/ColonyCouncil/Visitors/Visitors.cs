@@ -47,7 +47,7 @@ namespace ColonyCouncil
         {
             var kind = armed ? Couriers.PersonKind(f) : Arrivals.PersonKind(f);
             if (kind == null) return null;
-            if (!armed && Avail.IsPreIndustrial && f.def.techLevel > TechLevel.Medieval) kind = Arrivals.JoinerKind() ?? kind;
+            if (!armed && Avail.IsPreIndustrial && Peoples.TechOf(f) > TechLevel.Medieval) kind = Arrivals.JoinerKind() ?? kind;
             return kind;
         }
 
@@ -58,7 +58,7 @@ namespace ColonyCouncil
                 forceGenerateNewPawn: true, canGeneratePawnRelations: false, colonistRelationChanceFactor: 0f,
                 fixedGender: gender, fixedLastName: lastName, biologicalAgeRange: age,
                 developmentalStages: child ? DevelopmentalStage.Child : DevelopmentalStage.Adult,
-                dontGiveWeapon: child || !armed && Avail.IsPreIndustrial && f.def.techLevel > TechLevel.Medieval,
+                dontGiveWeapon: child || !armed && Avail.IsPreIndustrial && Peoples.TechOf(f) > TechLevel.Medieval,
                 forcedXenotype: genes?.CustomXenotype == null ? genes?.Xenotype : null,
                 forcedCustomXenotype: genes?.CustomXenotype);
             // Dressed for the weather they walked through.
@@ -157,7 +157,7 @@ namespace ColonyCouncil
             var list = new List<Pawn>();
             try
             {
-                if (t.pack && f.def.techLevel <= TechLevel.Medieval)
+                if (t.pack && Peoples.TechOf(f) <= TechLevel.Medieval)
                 {
                     var kind = Couriers.AnimalKind(f, map);
                     if (kind != null) Add(list, kind, f, null);

@@ -231,9 +231,9 @@ namespace ColonyCouncil
             Func<Faction, float> prefer = s.prefers.NullOrEmpty() ? null : f => Peoples.Preference(s.prefers, f);
             switch (s.people)
             {
-                case "lowtech": return Arrivals.Friendly(f => f.def.techLevel <= TechLevel.Medieval, prefer);
-                case "hightech": return Arrivals.Friendly(f => f.def.techLevel >= TechLevel.Industrial, prefer);
-                case "own": return Arrivals.Friendly(f => Mathf.Abs((int)f.def.techLevel - (int)tech) <= 1, prefer);
+                case "lowtech": return Arrivals.Friendly(f => Peoples.TechOf(f) <= TechLevel.Medieval, prefer);
+                case "hightech": return Arrivals.Friendly(f => Peoples.TechOf(f) >= TechLevel.Industrial, prefer);
+                case "own": return Arrivals.Friendly(f => Mathf.Abs((int)Peoples.TechOf(f) - (int)tech) <= 1, prefer);
                 default:
                     // One of Rimfolk's peoples, by what it lives by (the order's healer, the league's outrider).
                     if (s.people != null && s.people.StartsWith("calling:", StringComparison.Ordinal))

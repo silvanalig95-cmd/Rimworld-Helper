@@ -201,6 +201,12 @@ namespace ColonyCouncil
         /// </summary>
         public float newPeoples = 1f;
         /// <summary>
+        /// The region: Rimfolk's peoples' ages change over the years (Peoples/PeopleAges.cs): each rises toward the next age
+        /// at a pace of its ways, faster for the colony's trade, gifts of learning, teaching and alliance, and falls back an
+        /// age when cut off from the world. Off: every people lives in the age it began in, and nothing moves.
+        /// </summary>
+        public bool peopleAges = true;
+        /// <summary>
         /// The wild's alphas and bosses (Beasts/), each 0 to 2, 1 by default: a wild pack led by a named alpha (one a home
         /// at a time, a month apart at 1), a beast nemesis that flees hurt and comes back and the one who swears to bring it
         /// down, a legend of the region (150 days between two at 1), and the great herds of spring and fall with their
@@ -790,6 +796,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref remoteTravellers, "remoteTravellers", 1f);
             Scribe_Values.Look(ref raidersCamps, "raidersCamps", 1f);
             Scribe_Values.Look(ref newPeoples, "newPeoples", 1f);
+            Scribe_Values.Look(ref peopleAges, "peopleAges", true);
             Scribe_Values.Look(ref packAlphas, "packAlphas", 1f);
             Scribe_Values.Look(ref beastNemeses, "beastNemeses", 1f);
             Scribe_Values.Look(ref regionLegends, "regionLegends", 1f);

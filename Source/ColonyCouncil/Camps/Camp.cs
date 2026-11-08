@@ -261,7 +261,7 @@ namespace ColonyCouncil
         {
             if (enemy?.def == null) return;
             if (enemy == Faction.OfMechanoids) tags.Add("foe:mechs");
-            else tags.Add(enemy.def.techLevel <= TechLevel.Medieval ? "foe:lowtech" : "foe:hightech");
+            else tags.Add(Peoples.TechOf(enemy) <= TechLevel.Medieval ? "foe:lowtech" : "foe:hightech");
             if (faction != null && enemy.def.humanlikeFaction && faction.HostileTo(enemy)) tags.Add("oldfoe");
         }
 

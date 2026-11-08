@@ -53,7 +53,7 @@ namespace ColonyCouncil
                 var tags = new HashSet<string> { moment };
                 if (!t.what.NullOrEmpty()) tags.Add(t.what);
                 if (t.animals.Count > 0) tags.Add("animals");
-                if (p.Faction?.def != null) tags.Add(p.Faction.def.techLevel <= TechLevel.Medieval ? "theirLowtech" : "theirHightech");
+                if (p.Faction?.def != null) tags.Add(Peoples.TechOf(p.Faction) <= TechLevel.Medieval ? "theirLowtech" : "theirHightech");
                 // One of Rimfolk's peoples, by what it lives by: their:traders, their:healers, their:herders (Peoples/).
                 Peoples.AddTags(p.Faction, tags);
                 foreach (var tag in Flavor.TagsFor(p)) tags.Add(tag);

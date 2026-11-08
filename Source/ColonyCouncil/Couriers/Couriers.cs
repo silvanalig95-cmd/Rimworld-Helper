@@ -85,7 +85,7 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("courier town", e);
                 }
                 facs.Add(f);
-                cands.Add(new CourierCandidate { id = f.loadID, usable = true, tech = (int)f.def.techLevel, distance = dist });
+                cands.Add(new CourierCandidate { id = f.loadID, usable = true, tech = (int)Peoples.TechOf(f), distance = dist });
             }
             int i = CourierMath.ChooseFaction(cands, preferred?.loadID ?? -1, (int)Avail.EffectiveTech, Avail.IsPreIndustrial);
             return i < 0 ? null : facs[i];

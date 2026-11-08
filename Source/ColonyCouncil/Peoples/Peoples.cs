@@ -60,11 +60,23 @@ namespace ColonyCouncil
         public static bool AnyInWorld => Find.FactionManager != null && Find.FactionManager.AllFactionsListForReading.Any(f => f != null && !f.defeated && IsOurs(f));
 
         /// <summary>
-        /// The age a people of Rimfolk's lives in (0 tribal to 3 spacer): its template's own; one that arose (release B)
-        /// keeps the age of what it came from (survivors and faithful who broke away their old people's, a band of the
-        /// banished the colony's), within the ages its template arises in (PeoplesDMath.PeopleAge). Any other people: its own.
+        /// The age a people of Rimfolk's lives in now (0 tribal to 3 spacer): the age it began in (<see cref="BeganIn"/>),
+        /// as it has risen or fallen back since over the years (Peoples/PeopleAges.cs, with the setting on). Any other
+        /// people: its own.
         /// </summary>
         public static int AgeOf(Faction f)
+        {
+            if (f?.def == null) return (int)Ages.Ours;
+            int began = BeganIn(f);
+            return Of(f) == null ? began : PeopleAges.AgeOf(f, began);
+        }
+
+        /// <summary>
+        /// The age a people of Rimfolk's began in: its template's own; one that arose (release B) keeps the age of what it
+        /// came from (survivors and faithful who broke away their old people's, a band of the banished the colony's), within
+        /// the ages its template arises in (PeoplesDMath.PeopleAge). Any other people: its own.
+        /// </summary>
+        public static int BeganIn(Faction f)
         {
             if (f?.def == null) return (int)Ages.Ours;
             int own = (int)LedgerMath.AgeOf((int)f.def.techLevel);
@@ -76,6 +88,22 @@ namespace ColonyCouncil
             int parent = r.parent?.def != null ? (int)LedgerMath.AgeOf((int)r.parent.def.techLevel) : -1;
             return PeoplesDMath.PeopleAge(r.kind, parent, (int)Ages.Ours, own, lo, hi);
         }
+
+        /// <summary>
+        /// The tech level a people lives by now, for what Rimfolk asks of its ways and means (its words, its messengers, its
+        /// camps, its gear's stuff, its towns' stores): its def's own while its age is its def's, else its age's. Any other
+        /// people, and the game itself, keep the def's.
+        /// </summary>
+        public static TechLevel TechOf(Faction f)
+        {
+            if (f?.def == null) return TechLevel.Undefined;
+            if (Of(f) == null) return f.def.techLevel;
+            int age = AgeOf(f);
+            return age == (int)LedgerMath.AgeOf((int)f.def.techLevel) ? f.def.techLevel : (TechLevel)PeopleAgesMath.TechOfAge(age);
+        }
+
+        /// <summary>The same, or <paramref name="otherwise"/> for no people at all.</summary>
+        public static TechLevel TechOf(Faction f, TechLevel otherwise) => f?.def == null ? otherwise : TechOf(f);
 
         // ================= Words =================
 

@@ -846,7 +846,7 @@ namespace ColonyCouncil
 
         private static void ArmHunters(Camp c, List<Pawn> adults)
         {
-            bool low = Avail.IsPreIndustrial || c.faction.def.techLevel <= TechLevel.Medieval;
+            bool low = Avail.IsPreIndustrial || Peoples.TechOf(c.faction) <= TechLevel.Medieval;
             var def = (low ? null : DefDatabase<ThingDef>.GetNamedSilentFail("Gun_BoltActionRifle"))
                       ?? DefDatabase<ThingDef>.GetNamedSilentFail("Bow_Recurve") ?? DefDatabase<ThingDef>.GetNamedSilentFail("Bow_Short");
             if (def == null) return;

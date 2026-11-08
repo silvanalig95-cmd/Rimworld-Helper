@@ -142,6 +142,9 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleExtension">
         <calling>salvagers</calling>
+        <!-- Their age over the years (Peoples/PeopleAges.cs): they mend what others throw away, and a new age is only the next thing to take apart: to the spacer age. -->
+        <agePace>10</agePace>
+        <ageLimit>3</ageLimit>
         <townWord>yard</townWord>
         <townWords>yards</townWords>
         <head>yard boss</head>

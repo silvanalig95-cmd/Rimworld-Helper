@@ -255,7 +255,7 @@ namespace ColonyCouncil
                 string label = FightLabel(foe, map);
                 var tr = TalkTracker.Instance;
                 bool fallen = tr?.Recent("Rimfolk_Topic_Dead", 0.5f).Any(n => n.tag == "battle") ?? false;
-                string kind = foe == null ? "animals" : foe == Faction.OfMechanoids ? "mechs" : foe == Faction.OfInsects ? "insects" : foe.def.techLevel <= TechLevel.Neolithic ? "tribal" : "people";
+                string kind = foe == null ? "animals" : foe == Faction.OfMechanoids ? "mechs" : foe == Faction.OfInsects ? "insects" : Peoples.TechOf(foe) <= TechLevel.Neolithic ? "tribal" : "people";
                 tr?.Note("Rimfolk_Topic_Raid", label, -1, (fallen ? "fallen" : "won") + "," + kind);
                 // Only those who really stood together remember it together (a few each), not every pair who fought.
                 foreach (var (a, b) in StoodTogether(fighters)) FoughtTogether(a, b, label);

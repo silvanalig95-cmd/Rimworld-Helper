@@ -189,7 +189,7 @@ namespace ColonyCouncil
             {
                 var parms = new ThingSetMakerParams
                 {
-                    countRange = new IntRange(3, 10), techLevel = f.def.techLevel, makingFaction = f, totalMarketValueRange = new FloatRange(LootValue, LootValue)
+                    countRange = new IntRange(3, 10), techLevel = Peoples.TechOf(f), makingFaction = f, totalMarketValueRange = new FloatRange(LootValue, LootValue)
                 };
                 things.AddRange(maker.root.Generate(parms));
             }

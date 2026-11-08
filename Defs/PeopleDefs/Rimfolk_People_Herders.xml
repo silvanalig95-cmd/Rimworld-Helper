@@ -154,6 +154,9 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleExtension">
         <calling>herders</calling>
+        <!-- Their age over the years (Peoples/PeopleAges.cs): close to the land and the herd, they rise late, and no further than the industrial age. -->
+        <agePace>20</agePace>
+        <ageLimit>2</ageLimit>
         <townWord>camp</townWord>
         <townWords>camps</townWords>
         <head>camp elder</head>
@@ -318,6 +321,16 @@
         <gifts>
           <li><trait>Ranger</trait><chance>0.08</chance></li>
         </gifts>
+        <!-- Herders of the industrial age keep the herd with guns. -->
+        <ageArms>
+          <li>
+            <ages>2~2</ages>
+            <weaponTags>
+              <li>Gun</li>
+            </weaponTags>
+            <money>320</money>
+          </li>
+        </ageArms>
       </li>
     </modExtensions>
   </PawnKindDef>

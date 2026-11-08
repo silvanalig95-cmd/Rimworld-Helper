@@ -122,7 +122,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>Their offer comes by a call: the colony has a working comms console and their people call by machine.</summary>
-        public static bool ByCall(Faction f, Map home) => f?.def != null && NotableMath.Callable((int)f.def.techLevel) && NeighbourLetters.Console(home) != null;
+        public static bool ByCall(Faction f, Map home) => f?.def != null && NotableMath.Callable((int)Peoples.TechOf(f)) && NeighbourLetters.Console(home) != null;
 
         /// <summary>The colony's negotiator: its speaker, else whoever is best with people at home.</summary>
         public static Pawn Negotiator(Map home) => TruceParley.Speaker(home);
@@ -196,7 +196,7 @@ namespace ColonyCouncil
             {
                 bool notable = Notable(captive, f, out bool leader, out _);
                 o.price = RansomMath.Price(captive.MarketValue, leader, notable, Rand.Value);
-                if (RansomMath.InGoods((int)f.def.techLevel)) o.goods = TribeGoods(f, Rand.Value)?.defName;
+                if (RansomMath.InGoods((int)Peoples.TechOf(f))) o.goods = TribeGoods(f, Rand.Value)?.defName;
             }
             h.offers.Add(o);
             Diplomacy.Dirty();
@@ -822,7 +822,7 @@ namespace ColonyCouncil
             var by = messenger?.Faction;
             string text = RansomWords.T(by != null && by != f ? "CC_Ransom_Demand_GoBetween" : "CC_Ransom_Demand", (messenger?.LabelShort ?? "?").Named("WHO"),
                               RansomWords.People(f).Named("PEOPLE"), RansomWords.People(by).Named("ESCORT"), ours.Named("OURS"), o.price.Named("SILVER"), form.rite.Named("RITE"))
-                          + "\n\n" + RansomWords.P((int)f.def.techLevel < (int)TechLevel.Industrial ? "CC_Ransom_Demand_How" : "CC_Ransom_Demand_HowPod", ours.Named("OURS"),
+                          + "\n\n" + RansomWords.P((int)Peoples.TechOf(f) < (int)TechLevel.Industrial ? "CC_Ransom_Demand_How" : "CC_Ransom_Demand_HowPod", ours.Named("OURS"),
                               o.price.Named("SILVER"));
             var letter = LetterMaker.MakeLetter(RansomWords.P("CC_Ransom_Demand_Label", ours.Named("OURS")), text, def, messenger != null ? new LookTargets(messenger) : LookTargets.Invalid, f);
             if (letter is ChoiceLetter_RansomByHand l)
@@ -935,7 +935,7 @@ namespace ColonyCouncil
                 f.kidnapped.RemoveKidnappedPawn(p);
                 if (Find.WorldPawns.Contains(p)) Find.WorldPawns.RemovePawn(p);
                 IntVec3 at;
-                if ((int)f.def.techLevel < (int)TechLevel.Industrial)
+                if ((int)Peoples.TechOf(f) < (int)TechLevel.Industrial)
                 {
                     if (!CellFinder.TryFindRandomEdgeCellWith(c => c.Standable(map) && map.reachability.CanReachColony(c), map, CellFinder.EdgeRoadChance_Friendly, out at))
                         at = DropCellFinder.TradeDropSpot(map);
@@ -966,7 +966,7 @@ namespace ColonyCouncil
             }, Diplomacy.Colony(map), RansomWords.P("CC_Ransom_Hist_Ours", p.Named("OURS"), RansomWords.People(f).Named("PEOPLE"), o.price.Named("SILVER"), form.word.Named("WORD")), true);
             Drop(h, o, null);
             // apart: the colonist comes home on the map; the message looks at them.
-            Tell.Message(NewsKind.World, Importance.Important, map, RansomWords.P((int)f.def.techLevel < (int)TechLevel.Industrial ? "CC_Ransom_Msg_Home" : "CC_Ransom_Msg_HomePod",
+            Tell.Message(NewsKind.World, Importance.Important, map, RansomWords.P((int)Peoples.TechOf(f) < (int)TechLevel.Industrial ? "CC_Ransom_Msg_Home" : "CC_Ransom_Msg_HomePod",
                 p.Named("OURS"), RansomWords.People(f).Named("PEOPLE")), new LookTargets(p), MessageTypeDefOf.PositiveEvent);
         }
 

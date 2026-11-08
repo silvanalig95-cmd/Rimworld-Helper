@@ -580,7 +580,7 @@ namespace ColonyCouncil
             m.target = 2;
             float travel = MissionPeoples.TravelDays(map, town);
             m.tale = TextUtil.DaysString(Mathf.RoundToInt(Mathf.Max(0.3f, travel) * GenDate.TicksPerDay));
-            m.variant = m.faction.def.techLevel <= TechLevel.Medieval ? "sickles" : "machines";
+            m.variant = Peoples.TechOf(m.faction) <= TechLevel.Medieval ? "sickles" : "machines";
             m.days = Mathf.Ceil(travel * 2f + 4f);
             m.reward = StoryChains.Silver(map, 100f, 200f);
             m.goodwill = 10;

@@ -44,7 +44,7 @@ namespace ColonyCouncil
         public static WorldAge Of(Faction people)
         {
             if (people == null || people.IsPlayer) return Ours;
-            return LedgerMath.AgeOf((int)(people.def?.techLevel ?? TechLevel.Industrial));
+            return LedgerMath.AgeOf((int)(Peoples.TechOf(people, TechLevel.Industrial)));
         }
 
         /// <summary>A people of royal titles (the Empire): its own titles and honor, apart from the ages.</summary>

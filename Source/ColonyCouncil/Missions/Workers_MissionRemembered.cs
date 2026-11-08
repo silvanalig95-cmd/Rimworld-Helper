@@ -281,7 +281,7 @@ namespace ColonyCouncil
             {
                 var s = DefDatabase<SkillDef>.GetNamedSilentFail(n);
                 if (s == null) continue;
-                if (n == "Intellectual" && f.def.techLevel < TechLevel.Industrial) continue;
+                if (n == "Intellectual" && Peoples.TechOf(f) < TechLevel.Industrial) continue;
                 yield return s;
             }
         }
@@ -648,7 +648,7 @@ namespace ColonyCouncil
             float wealth = map.wealthWatcher.WealthTotal;
             m.target = wealth < 60000f ? 40 : wealth < 160000f ? 50 : 65;
             m.tale = StageOf(m.target);
-            m.variant = m.faction.def.techLevel <= TechLevel.Medieval ? "elder" : "official";
+            m.variant = Peoples.TechOf(m.faction) <= TechLevel.Medieval ? "elder" : "official";
             m.wait = Rand.Range(1.5f, 2.5f);
             m.days = m.wait + Rand.Range(2f, 3f);
             m.reward = StoryChains.Silver(map, 250f, 450f);

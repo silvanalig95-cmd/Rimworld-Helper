@@ -236,7 +236,7 @@ namespace ColonyCouncil
         }
 
         public bool FitsFaction(Faction f) =>
-            f != null && f.def.techLevel >= minTech && f.def.techLevel <= maxTech && (memes.NullOrEmpty() || CampWords.HasMeme(f, memes)) && Peoples.Fits(calling, f);
+            f != null && Peoples.TechOf(f) >= minTech && Peoples.TechOf(f) <= maxTech && (memes.NullOrEmpty() || CampWords.HasMeme(f, memes)) && Peoples.Fits(calling, f);
 
         /// <summary>The season at the home suits it (<see cref="seasons"/>).</summary>
         public bool FitsSeason(Map map) => seasons.NullOrEmpty() || map != null && seasons.Contains(GenLocalDate.Season(map));

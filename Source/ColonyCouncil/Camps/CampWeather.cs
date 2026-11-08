@@ -103,7 +103,7 @@ namespace ColonyCouncil
         {
             var added = new List<Apparel>();
             if (p?.apparel == null || p.RaceProps?.Humanlike != true || f == null) return added;
-            var tech = f.def.techLevel == TechLevel.Undefined ? TechLevel.Medieval : f.def.techLevel;
+            var tech = Peoples.TechOf(f) == TechLevel.Undefined ? TechLevel.Medieval : Peoples.TechOf(f);
             var body = p.RaceProps.body;
             for (int step = 0; step < 4; step++)
             {

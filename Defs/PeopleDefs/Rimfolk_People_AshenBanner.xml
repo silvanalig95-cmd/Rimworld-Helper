@@ -157,6 +157,9 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleExtension">
         <calling>mercenaries</calling>
+        <!-- Their age over the years (Peoples/PeopleAges.cs): a free company takes up whatever arms win, though it keeps its old drill: to the spacer age. -->
+        <agePace>11</agePace>
+        <ageLimit>3</ageLimit>
         <townWord>fort</townWord>
         <townWords>forts</townWords>
         <head>keeper of the Roll</head>

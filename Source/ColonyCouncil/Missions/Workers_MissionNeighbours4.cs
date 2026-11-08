@@ -57,7 +57,7 @@ namespace ColonyCouncil
 
         public bool Fits(Map map, Faction f) =>
             (seasons.NullOrEmpty() || map != null && seasons.Contains(GenLocalDate.Season(map))) && HappeningWorker_Setting.EraFits(era)
-            && (theirs.NullOrEmpty() || f == null || (theirs == "lowtech") == (f.def.techLevel <= TechLevel.Medieval));
+            && (theirs.NullOrEmpty() || f == null || (theirs == "lowtech") == (Peoples.TechOf(f) <= TechLevel.Medieval));
 
         public static MissionWay Pick(List<MissionWay> ways, Map map, Faction f) =>
             ways?.Where(w => w != null && w.Fits(map, f)).RandomElementByWeightWithFallback(w => Mathf.Max(0.01f, w.weight));

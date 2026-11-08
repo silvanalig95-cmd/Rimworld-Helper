@@ -25,7 +25,7 @@ namespace ColonyCouncil
                 if (map != null)
                 {
                     float tiles = LivingEvents.Distance(map.Tile, town.Tile);
-                    float days = NotableMath.TravelDays(tiles, (int)(p?.def?.techLevel ?? TechLevel.Industrial));
+                    float days = NotableMath.TravelDays(tiles, (int)(Peoples.TechOf(p, TechLevel.Industrial)));
                     if (days <= 1.2f) f.Tag("town:near");
                     else if (days >= 4f) f.Tag("town:far");
                 }

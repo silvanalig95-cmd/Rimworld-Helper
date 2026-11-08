@@ -154,6 +154,9 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleExtension">
         <calling>healers</calling>
+        <!-- Their age over the years (Peoples/PeopleAges.cs): they take every better medicine, but their faith keeps the flesh as it was made: no further than the industrial age. -->
+        <agePace>12</agePace>
+        <ageLimit>2</ageLimit>
         <townWord>sickhouse</townWord>
         <townWords>sickhouses</townWords>
         <head>prior</head>
@@ -377,6 +380,18 @@
         <gifts>
           <li><trait>Paladin</trait><chance>0.08</chance></li>
         </gifts>
+        <!-- In the industrial age the sworn guards keep the habit's tabard over a flak vest, with the age's guns. -->
+        <ageArms>
+          <li>
+            <ages>2~2</ages>
+            <weaponTags>
+              <li>Gun</li>
+            </weaponTags>
+            <apparel>
+              <li>Apparel_FlakVest</li>
+            </apparel>
+          </li>
+        </ageArms>
       </li>
     </modExtensions>
   </PawnKindDef>
@@ -418,6 +433,16 @@
         <gifts>
           <li><trait>Ranger</trait><chance>0.04</chance></li>
         </gifts>
+        <!-- Lay archers of the industrial age carry hunting guns. -->
+        <ageArms>
+          <li>
+            <ages>2~2</ages>
+            <weaponTags>
+              <li>Gun</li>
+            </weaponTags>
+            <money>320</money>
+          </li>
+        </ageArms>
       </li>
     </modExtensions>
   </PawnKindDef>

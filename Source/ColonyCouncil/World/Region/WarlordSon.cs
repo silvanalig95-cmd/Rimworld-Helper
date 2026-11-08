@@ -192,7 +192,7 @@ namespace ColonyCouncil
             }
             FollowUps.TakeFlags(s, f, false);
             // His father's people's ways (a tribe's band has no trucks), whoever he rides with now.
-            s.flags.Add(f.people.def.techLevel <= TechLevel.Medieval ? "hisLowtech" : "hisHightech");
+            s.flags.Add(Peoples.TechOf(f.people) <= TechLevel.Medieval ? "hisLowtech" : "hisHightech");
             var son = MakeSon(s, f, parent);
             if (son == null) return false;
             if (son.Faction != banner) son.SetFaction(banner);

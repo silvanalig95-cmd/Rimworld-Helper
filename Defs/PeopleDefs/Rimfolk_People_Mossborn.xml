@@ -138,6 +138,9 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleExtension">
         <calling>grovekeepers</calling>
+        <!-- Their age over the years (Peoples/PeopleAges.cs): the forest remembers every axe: the latest of all, and never past the medieval age. -->
+        <agePace>24</agePace>
+        <ageLimit>1</ageLimit>
         <townWord>grove</townWord>
         <townWords>groves</townWords>
         <head>grove-warden</head>

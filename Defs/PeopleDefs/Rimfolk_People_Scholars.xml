@@ -136,6 +136,9 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleExtension">
         <calling>scholars</calling>
+        <!-- Their age over the years (Peoples/PeopleAges.cs): nothing known should be lost, so the society takes up every new thing first and copies it twice: the soonest of all, to the spacer age. -->
+        <agePace>6.5</agePace>
+        <ageLimit>3</ageLimit>
         <townWord>archive</townWord>
         <townWords>archives</townWords>
         <head>archivist</head>
@@ -364,6 +367,26 @@
     <requiredWorkTags>Violent</requiredWorkTags>
     <initialWillRange>2~4</initialWillRange>
     <initialResistanceRange>15~24</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <!-- Proctors of a tribal or medieval society keep order with a mace; of the spacer age, with charge rifles. -->
+        <ageArms>
+          <li>
+            <ages>0~1</ages>
+            <weaponTags>
+              <li>MedievalMeleeDecent</li>
+              <li>NeolithicMeleeAdvanced</li>
+            </weaponTags>
+          </li>
+          <li>
+            <ages>3~3</ages>
+            <weaponTags>
+              <li>SpacerGun</li>
+            </weaponTags>
+          </li>
+        </ageArms>
+      </li>
+    </modExtensions>
   </PawnKindDef>
 
   <PawnKindDef ParentName="Rimfolk_ScholarsKindBase">

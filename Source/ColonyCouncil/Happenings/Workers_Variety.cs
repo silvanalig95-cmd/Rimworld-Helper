@@ -191,7 +191,7 @@ namespace ColonyCouncil
         private static bool Orderable(ThingDef d, Faction f) =>
             d != null && d != ThingDefOf.Silver && d.category == ThingCategory.Item && TradeabilityUtility.PlayerCanSell(d.tradeability) && !d.IsDrug && !d.IsCorpse
             && d.stackLimit >= 10 && d.BaseMarketValue >= 0.5f && d.BaseMarketValue <= 40f
-            && (f == null || (int)d.techLevel <= Mathf.Max((int)f.def.techLevel, (int)TechLevel.Medieval));
+            && (f == null || (int)d.techLevel <= Mathf.Max((int)Peoples.TechOf(f), (int)TechLevel.Medieval));
 
         private static IEnumerable<KeyValuePair<ThingDef, int>> Stock(Map map, Faction f) =>
             map.resourceCounter.AllCountedAmounts.Where(kv => kv.Value >= 10 && Orderable(kv.Key, f) && kv.Value * kv.Key.BaseMarketValue >= 40f).ToList();
