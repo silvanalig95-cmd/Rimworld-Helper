@@ -35,9 +35,9 @@
     <extendChance>0</extendChance>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
-      <li><role>wall</role><defs><li>DankPyon_TentWall</li><li>Wall</li></defs><stuff><li>Cloth</li><li>WoodLog</li></stuff><count>4</count></li>
     </structures>
+    <sleep>Hut</sleep>
+    <works><li>Chop</li><li>Mine</li><li>Gather</li><li>Hunt</li><li>Craft</li></works>
     <!-- Their carts' beasts, tethered by the stash, and the timber and seed for their first houses and fields. -->
     <animals>
       <li><pack>true</pack><kinds><li>Muffalo</li><li>Donkey</li><li>Dromedary</li><li>Yak</li></kinds><count>1~2</count><at>picket</at></li>

@@ -9,7 +9,9 @@ save, whether it is in that save's mod list. Only mods that support RimWorld 1.6
 supportedVersions) are catalogued, active or not; the rest are listed in mods.tsv as such and their defs left out:
 
   mods.tsv, apparel.tsv, weapons.tsv, items.tsv, races.tsv (humanlike races and animals), xenotypes.tsv, genes.tsv,
-  traits.tsv, abilities.tsv, pawnkinds.tsv, factions.tsv, memes.tsv, and defs.tsv.gz: every def of every type
+  traits.tsv, abilities.tsv, pawnkinds.tsv, factions.tsv, memes.tsv, buildings.tsv (beds, tents, fires, lights, tables,
+  seats, work spots and benches, walls, doors, fences, storage and spots, by what each is for), and defs.tsv.gz: every
+  def of every type
   (type, defName, mod, active), for checking any name Rimfolk refers to
 
 Patches are not applied (a patch that adds a tag to another mod's apparel isn't seen); defs are as their files write
@@ -244,6 +246,81 @@ def research_of(e):
 
 TECHS = ["Undefined", "Animal", "Neolithic", "Medieval", "Industrial", "Spacer", "Ultra", "Archotech"]
 
+DOOR_CLASS = re.compile(r"Door|Curtain|HayFlap|Archway|CastleGate", re.I)
+
+
+def building_roles(d, work):
+    """What a building is for, as a camp (Camps/CampBuildMath.cs) or anyone furnishing a place picks it: bed, bedroll,
+    tent, sleepingspot, doublebed, medical, animalbed; fire (a cooking fire), hearth, brazier, torch, lamp (a light that
+    needs power); table, seat; workspot (a work table that costs nothing), bench, with butcher, cook or craft for the
+    work done there; wall, door, fence; storage; spot (meditation, party), picket (a hitching spot). Blank when none."""
+    dn = text(d, "defName")
+    label = text(d, "label").lower()
+    name = (dn + " " + label).lower()
+    tc = text(d, "thingClass")
+    comps = comp_names(d)
+    b = d.find("building")
+    has_cost = d.find("costList") is not None and len(d.find("costList")) > 0 or bool(text(d, "costStuffCount"))
+    power = any(c in ("CompPowerTrader", "CompProperties_Power") for c in comps)
+    buildable = bool(text(d, "designationCategory"))
+    size = text(d, "size").replace(" ", "")
+    roles = []
+    if "Bed" in tc or "CompAssignableToPawn_Bed" in comps:
+        humanlike = text(b, "bed_humanlike", "true").lower() != "false" if b is not None else True
+        if not humanlike or "animal" in name:
+            roles.append("animalbed")
+        elif any(x in name for x in ("hospital", "operating", "medbay", "medical")) or (b is not None and text(b, "bed_defaultMedical").lower() == "true"):
+            roles.append("medical")
+        elif size in ("(1,1)",) or "crib" in name or "baby" in name:
+            roles.append("crib")
+        elif "CompProperties_Tent" in comps or " tent" in " " + label:
+            roles.append("tent")
+        elif "spot" in name and not has_cost:
+            roles.append("sleepingspot" if size != "(2,2)" else "doublebed")
+        elif "bedroll" in name:
+            roles.append("bedroll" if size != "(2,2)" else "doublebed")
+        elif size == "(2,2)":
+            roles.append("doublebed")
+        else:
+            roles.append("bed")
+        return roles
+    if not buildable:
+        return roles
+    glow = any(c in ("CompProperties_Glower", "CompGlower") or "Glower" in c for c in comps)
+    fuel = "CompProperties_Refuelable" in comps
+    if "WorkTable" in tc:
+        roles.append("workspot" if not has_cost else "bench")
+        if "cook" in work and glow and fuel and not power:
+            roles.insert(0, "fire")
+        return roles
+    if glow and power:
+        roles.append("lamp")
+    elif glow:
+        if "brazier" in name:
+            roles.append("brazier")
+        elif any(x in name for x in ("torch", "lamp", "candle", "lantern")):
+            roles.append("torch")
+        elif fuel and any(x in name for x in ("fire", "hearth")):
+            roles.append("hearth")
+    if text(d, "surfaceType") == "Eat":
+        roles.append("table")
+    if b is not None and text(b, "isSittable").lower() == "true":
+        roles.append("seat")
+    if DOOR_CLASS.search(tc) and "Button" not in tc and "Remote" not in tc:
+        roles.append("door")
+    elif text(d, "holdsRoof").lower() == "true" and text(d, "passability") == "Impassable" and "Wall" in lis(d, "graphicData/linkFlags") + lis(d, "building/linkFlags") or (
+            text(d, "holdsRoof").lower() == "true" and text(d, "passability") == "Impassable" and "wall" in name):
+        roles.append("wall")
+    elif "Fences" in lis(d, "graphicData/linkFlags") or "fence" in name and text(d, "passability") == "Impassable":
+        roles.append("fence")
+    if ("Storage" in tc or "Shelf" in tc) and not power:
+        roles.append("storage")
+    if "CompProperties_HitchingSpot" in comps or "hitching" in name:
+        roles.append("picket")
+    elif "spot" in name and not has_cost and not roles:
+        roles.append("spot")
+    return roles
+
 
 def main(root, out, save=None):
     folders, active = read_mods(root)
@@ -298,7 +375,7 @@ def main(root, out, save=None):
 
     os.makedirs(out, exist_ok=True)
     tables = {k: [] for k in ["apparel", "weapons", "items", "races", "xenotypes", "genes", "traits", "abilities",
-                              "pawnkinds", "factions", "memes"]}
+                              "pawnkinds", "factions", "memes", "buildings"]}
     class Last(dict):
         """The last def of a name wins, as in the game; one of a mod not in the player's list never replaces one that is."""
         def __setitem__(self, key, row):
@@ -338,6 +415,28 @@ def main(root, out, save=None):
             return max((TECHS.index(research_tech.get(r, "Undefined")) if research_tech.get(r, "Undefined") in TECHS else 0
                         for r in rs), default=0)
         return TECHS[min(need(rs) for rs in ways)]
+
+    def research_age(rs):
+        """The age of the research a building needs: the most advanced of its prerequisites (Undefined for none)."""
+        known = [research_tech.get(r) for r in rs]
+        return TECHS[max((TECHS.index(t) for t in known if t in TECHS), default=0)] if rs else "Undefined"
+
+    # The work done at a bench, from its recipes (its own list, and the recipes that name it as a user): butcher, cook,
+    # craft, art, medicine.
+    skill_word = {"Cooking": "cook", "Crafting": "craft", "Artistic": "art", "Medicine": "medicine"}
+    recipe_kind = {}
+    bench_work = {}
+    for pid, e in defs:
+        if e.tag.split(".")[-1] != "RecipeDef":
+            continue
+        d = resolved(e)
+        rn = text(d, "defName")
+        kind = "butcher" if "butcher" in rn.lower() else skill_word.get(text(d, "workSkill"), "")
+        if not kind:
+            continue
+        recipe_kind[rn] = kind
+        for u in lis(d, "recipeUsers"):
+            bench_work.setdefault(u, set()).add(kind)
 
     last = Last()
     for pid, e in defs:
@@ -387,6 +486,32 @@ def main(root, out, save=None):
                        text(d, "designationCategory"), text(d, "minifiedDef"), made_tech(dn), text(d, "statBases/WorkToMake"),
                        text(d, "statBases/TerrorSource")]
                 last[("items", dn)] = row
+            if text(d, "category") == "Building":
+                work = set(bench_work.get(dn, set())) | {recipe_kind[r] for r in lis(d, "recipes") if r in recipe_kind}
+                roles = building_roles(d, work)
+                if roles:
+                    cost = ";".join(f"{c.tag}:{(c.text or '').strip()}" for c in (list(d.find("costList")) if d.find("costList") is not None else []) if isinstance(c.tag, str))
+                    comps = comp_names(d)
+                    fuel = ""
+                    for li in (d.find("comps").findall("li") if d.find("comps") is not None else []):
+                        if li.attrib.get("Class", "").split(".")[-1] == "CompProperties_Refuelable":
+                            fuel = ",".join(lis(li, "fuelFilter/thingDefs")) or ",".join(lis(li, "fuelFilter/categories"))
+                    glow = ""
+                    heat = ""
+                    for li in (d.find("comps").findall("li") if d.find("comps") is not None else []):
+                        cls = li.attrib.get("Class", "").split(".")[-1]
+                        if "Glower" in cls and not glow:
+                            glow = text(li, "glowRadius")
+                        if "HeatPusher" in cls and not heat:
+                            heat = text(li, "heatPerSecond")
+                    research = research_of(d)
+                    row = [dn, pid, on, label, tech, ",".join(roles), text(d, "size").replace(" ", "") or "(1,1)",
+                           ",".join(lis(d, "stuffCategories")), text(d, "costStuffCount"), cost, ",".join(research),
+                           research_age(research), "yes" if text(d, "minifiedDef") else "", text(d, "designationCategory"),
+                           text(d, "thingClass"), "yes" if any(c in ("CompPowerTrader", "CompProperties_Power") for c in comps) else "",
+                           fuel, glow, heat, text(d, "holdsRoof"), text(d, "passability"), ",".join(sorted(work)),
+                           text(d, "statBases/WorkToBuild")]
+                    last[("buildings", dn)] = row
         elif tag == "XenotypeDef":
             last[("xenotypes", dn)] = [dn, pid, on, label, text(d, "inheritable"), str(len(lis(d, "genes"))),
                                        re.sub(r"\s+", " ", text(d, "description"))[:160]]
@@ -437,6 +562,9 @@ def main(root, out, save=None):
         "pawnkinds": ["defName", "mod", "active", "label", "race", "faction", "combatPower", "apparelTags", "weaponTags"],
         "factions": ["defName", "mod", "active", "label", "techLevel", "hidden", "permanentEnemy", "basicMemberKind"],
         "memes": ["defName", "mod", "active", "label", "category", "exclusionTags"],
+        "buildings": ["defName", "mod", "active", "label", "techLevel", "role", "size", "stuff", "stuffCount", "cost",
+                      "research", "researchTech", "minifiable", "designation", "thingClass", "power", "fuel", "glow",
+                      "heat", "holdsRoof", "passability", "work", "workToBuild"],
     }
     for k, rows in tables.items():
         rows.sort(key=lambda r: (r[1], r[0]))

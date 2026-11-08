@@ -62,9 +62,9 @@
     </situationKinds>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>VFEC_Tent</li><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
-      <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>3</count></li>
     </structures>
+    <sleep>Hut</sleep>
+    <works><li>Chop</li><li>Craft</li></works>
     <animals>
       <li><pack>true</pack><kinds><li>Donkey</li><li>Muffalo</li><li>Horse</li><li>Dromedary</li></kinds><count>1~1</count><at>picket</at></li>
     </animals>
@@ -84,9 +84,10 @@
       <li>[their:industrial] A logging crew of {FACTION} has come to the woods {PLACE} with a pack beast for the timber. {X_nameDef} asked {A_nameDef}, cap in hand, whether they might work the trees there for a few days. Timber is wanted down the road, and these are good trees.</li>
     </texts>
     <settled>
-      <li>The woodcutters' camp {PLACE} is up: a fire, and a windbreak of logs between it and the wind.</li>
+      <li>[shelter:hut] The woodcutters' camp {PLACE} is up: a fire, and a hut of logs between it and the wind.</li>
+      <li>The woodcutters' camp {PLACE} is up: a fire, and their axes laid out ready.</li>
       <li>The woodcutters from {FACTION} have made camp {PLACE}. The pack beast is tethered, and the crew are already looking over the trees.</li>
-      <li>At the woodcutters' camp {PLACE}, a windbreak of fresh logs stands between the fire and the wind.</li>
+      <li>[shelter:hut] At the woodcutters' camp {PLACE}, a hut of fresh logs stands by the fire.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, the youngest of the woodcutters {PLACE}, says {X_pronoun} has cut enough of other people's trees, and asks whether the colony could use a strong back and a good eye for timber.</li>
@@ -203,9 +204,10 @@
     </situationKinds>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
-      <li><role>stall</role><defs><li>Table1x2c</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>stall</role></li>
     </structures>
+    <sleep>Tents</sleep>
+    <works><li>Gather</li></works>
     <animals>
       <li><pack>true</pack><kinds><li>Donkey</li><li>Alpaca</li><li>Muffalo</li></kinds><count>1~1</count><at>picket</at></li>
     </animals>

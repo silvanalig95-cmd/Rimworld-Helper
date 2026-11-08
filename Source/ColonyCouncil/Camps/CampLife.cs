@@ -156,7 +156,15 @@ namespace ColonyCouncil
             WatchCarries();
             WatchDead();
             if (phase == CampPhase.Building) CheckBuilt();
+            else PlaceWaiting();
             WatchTrade();
+            // Packing up in their last hours (CampPack.cs): no new events, and once it's done they set off. A threat
+            // still sends them at once (Ends).
+            if (packingFor != null && !MapFacts.ThreatOn(map))
+            {
+                WatchPacking();
+                return;
+            }
             if (Ends()) return;
             CheckTension();
             if (!Settled) return;
@@ -171,6 +179,8 @@ namespace ColonyCouncil
             }
             StoryParting();
             Visitors();
+            // The evening by their fire: a word between two of them (CampDay.cs).
+            EveningTalk();
             // Travellers who came for something of the land's: their walk out to it, the news of far towns, a quarrel over a claim (CampSeekers.cs).
             SeekHourly();
             if (Rand.Chance(0.12f) && !kind.lines.NullOrEmpty())
@@ -232,12 +242,14 @@ namespace ColonyCouncil
             dayKey = day;
             dayHunts = dayChops = 0;
             bendBoundary = false;
-            huntsToday = Mathf.FloorToInt(kind.huntsPerDay) + (Rand.Chance(kind.huntsPerDay % 1f) ? 1 : 0);
-            chopsToday = Mathf.FloorToInt(kind.chopsPerDay) + (Rand.Chance(kind.chopsPerDay % 1f) ? 1 : 0);
+            // The day's work, by the kind's rates and callings and the hands they have (CampDayMath).
+            RollDay();
             if (termBoundary)
             {
                 huntsToday = Mathf.Min(huntsToday, 1);
                 chopsToday = Mathf.Min(chopsToday, 2);
+                minesToday = Mathf.Min(minesToday, 2);
+                gathersToday = Mathf.Min(gathersToday, 2);
             }
             eventHour = Rand.RangeInclusive(9, 18);
             if (holding) HoldingDay();
@@ -308,12 +320,15 @@ namespace ColonyCouncil
                 }
                 fuel.Refuel(fuel.Props.fuelCapacity * 0.6f);
             }
-            // A hut gets a roof once its walls stand.
-            var inside = CampSite.HutInside(plans).ToList();
-            if (inside.Count > 0 && plans.Where(p => p.role == "hut" || p.role == "door").All(p => p.dropped || p.Built(map, faction) != null)
-                && plans.Count(p => (p.role == "hut" || p.role == "door") && !p.dropped) >= 8)
-                foreach (var c in inside)
+            // A hut or a tent gets its roof once its walls and door stand all round (a room the game counts as one).
+            foreach (int room in CampSite.Rooms(plans).ToList())
+            {
+                // Its own walls, and those it shares with the next tent: every wall of the camp's shelters standing.
+                var walls = plans.Where(p => p.role == "hut" || p.role == "door").ToList();
+                if (walls.Count(p => p.room == room) < 7 || walls.Any(p => p.dropped || p.Built(map, faction) == null)) continue;
+                foreach (var c in CampSite.HutInside(plans, room))
                     if (c.InBounds(map) && !c.Roofed(map)) map.roofGrid.SetRoof(c, RoofDefOf.RoofConstructed);
+            }
         }
 
         private void WatchMembers()
@@ -412,20 +427,37 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>
+        /// A blueprint set down where the plan has it, as a player's builders would: over grass, bushes, trees and chunks
+        /// (cleared as they build); plain rock, or a plant no building goes over, cleared first (the plan waits); given up
+        /// only for what may never be touched (the colony's, an ore, water, someone else's building).
+        /// </summary>
         private void PlaceBlueprint(CampPlan p)
         {
             try
             {
-                // Still open ground when they get there: nothing built, zoned, planned or lying on it that isn't theirs.
-                bool ours = p.Rect.All(c => c.InBounds(map) && (c.GetFirstBuilding(map) == null) && !(map.areaManager.Home?[c] ?? false) && map.zoneManager.ZoneAt(c) == null
-                                            && !CampSite.Marked(c, map) && !c.GetThingList(map).Any(t => t.def.category == ThingCategory.Item && !Owns(t)));
-                if (!ours || !GenConstruct.CanPlaceBlueprintAt(p.def, p.cell, p.rot, map, false, null, null, p.stuff).Accepted)
+                var worst = CellFate.Free;
+                foreach (var c in p.Rect)
+                {
+                    var f = CampSite.FateAt(map, c, this);
+                    if (f > worst) worst = f;
+                }
+                if (worst == CellFate.Never)
                 {
                     p.dropped = true;
+                    p.waiting = false;
+                    return;
+                }
+                if (worst == CellFate.Mine || !GenConstruct.CanPlaceBlueprintAt(p.def, p.cell, p.rot, map, false, null, null, p.stuff).Accepted)
+                {
+                    // Rock to mine, or a tree no building can go over: cleared first. Anything else in the way is no cause to wait.
+                    if (worst == CellFate.Mine || worst == CellFate.Fell) p.waiting = true;
+                    else p.dropped = true;
                     return;
                 }
                 GenConstruct.PlaceBlueprintForBuild(p.def, p.cell, map, p.rot, faction, p.stuff);
                 p.placed = true;
+                p.waiting = false;
             }
             catch (Exception e)
             {
@@ -435,11 +467,35 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>Plans whose ground has been cleared since (rock mined, a tree felled): their blueprints go down now.</summary>
+        public void PlaceWaiting()
+        {
+            if (!Settled) return;
+            foreach (var p in plans.Where(x => x.waiting && !x.placed && !x.dropped).ToList())
+                if (p.Rect.All(c => c.InBounds(map) && c.GetFirstMineable(map) == null && !(c.GetPlant(map)?.def.plant?.IsTree ?? false))) PlaceBlueprint(p);
+        }
+
+        /// <summary>The thing in the way of a plan that waits for its ground: plain rock to mine, a tree to fell.</summary>
+        public Thing Blocking(CampPlan p)
+        {
+            foreach (var c in p.Rect)
+            {
+                if (!c.InBounds(map)) continue;
+                var rock = c.GetFirstMineable(map);
+                if (rock != null) return CampTake.PlainRock(rock.def) ? rock : null;
+                var plant = c.GetPlant(map);
+                if (plant != null && plant.def.plant.IsTree) return CampTake.May(plant, this) ? plant : null;
+            }
+            return null;
+        }
+
         /// <summary>All built (or given up on): the camp is up. Past the deadline, what isn't up is given up.</summary>
         private void CheckBuilt()
         {
+            PlaceWaiting();
             var left = Unfinished();
-            if (left.Count > 0 && Now < buildDeadline) return;
+            if ((left.Count > 0 || plans.Any(p => p.waiting && !p.dropped)) && Now < buildDeadline) return;
+            foreach (var p in plans.Where(p => p.waiting && !p.placed)) p.dropped = true;
             foreach (var t in left)
             {
                 if (t is Frame f && f.resourceContainer != null) f.resourceContainer.TryDropAll(stash, map, ThingPlaceMode.Near, (thing, n) => Own(thing), AtStash);
@@ -709,6 +765,7 @@ namespace ColonyCouncil
                 if (GenPlace.TryPlaceThing(t, stash, map, ThingPlaceMode.Near, out var put, null, AtStash)) Own(put);
             }
             skipShare = false;
+            beastsDressed++;
             SayMoment(butcher, "butcher", 0.5f);
             if (shared > 0) Note(Text("CC_Camp_Shared", null, null, shared), MessageTypeDefOf.PositiveEvent, Importance.Notable);
         }
@@ -754,21 +811,27 @@ namespace ColonyCouncil
             {
                 // Neighbours settled for good keep to their huts and hope; what they lose is counted after (Holding.cs).
                 if (holding) return false;
-                // A war party takes up arms again, as does a camp asked to stand guard; anyone else wants no part in the colony's fight.
-                if (kind.fights || guards)
+                // A war party takes up arms again, as does a camp asked to stand guard, and a people allied to the colony
+                // fights beside it; enemies come at their own camp, those of them with weapons defend it. Anyone else wants
+                // no part in the colony's fight.
+                bool ally = faction != null && !faction.IsPlayer && faction.PlayerRelationKind == FactionRelationKind.Ally;
+                bool defend = !kind.fights && !guards && !ally && EnemyNear(DefendRadius) && Here.Any(p => !p.Downed && !p.DevelopmentalStage.Juvenile() && p.equipment?.Primary != null && !p.WorkTagIsDisabled(WorkTags.Violent));
+                if (kind.fights || guards || ally || defend || fighting)
                 {
                     if (!fighting && LordAlive)
                     {
                         fighting = true;
+                        packingFor = null;
                         lord.ReceiveMemo(LordJob_Camp.MemoFight);
-                        Note(Text("CC_WarCamp_Again"), MessageTypeDefOf.NeutralEvent, Importance.Notable, now: true);
+                        string key = kind.fights || guards ? "CC_WarCamp_Again" : ally ? "CC_Camp_FightAlly" : "CC_Camp_FightDefend";
+                        Note(Text(key), MessageTypeDefOf.NeutralEvent, Importance.Notable, now: true);
                     }
                     return false;
                 }
                 Leave("raid", true);
                 return true;
             }
-            if (fighting && (kind.fights || guards) && !MapFacts.ThreatOn(map)) fighting = false;
+            if (fighting && !MapFacts.ThreatOn(map)) fighting = false;
             if (BadWeather() && (!holding || CampWeather.Hazard(map) != null))
             {
                 // Settled neighbours have shelter against the weather; only poisoned air or a sky on fire drives them off.
@@ -818,6 +881,17 @@ namespace ColonyCouncil
             return false;
         }
 
+        /// <summary>Enemies come this near their camp: they defend it rather than run through them.</summary>
+        public const float DefendRadius = 22f;
+
+        /// <summary>Any hostile to the colony (and so to them, at peace with it) up and about within <paramref name="radius"/> of their fire.</summary>
+        private bool EnemyNear(float radius)
+        {
+            foreach (var p in map.mapPawns.AllPawnsSpawned)
+                if (!p.Downed && !p.Dead && p.HostileTo(Faction.OfPlayer) && p.Position.InHorDistOf(center, radius) && (faction == null || p.HostileTo(faction))) return true;
+            return false;
+        }
+
         private bool BadWeather()
         {
             float temp = map.mapTemperature.OutdoorTemp;
@@ -837,6 +911,13 @@ namespace ColonyCouncil
         public void Leave(string reason, bool fast = false)
         {
             if (phase == CampPhase.Leaving || phase == CampPhase.Over || phase == CampPhase.Fighting) return;
+            // In their own time they pack first, on the map, in their last hours (CampPack.cs); in a hurry they just go.
+            if (!fast && !packed && CampPackMath.Orderly(reason))
+            {
+                if (packingFor != null) return;
+                if (StartPacking(reason)) return;
+            }
+            packingFor = null;
             bool wasSettled = Settled;
             phase = CampPhase.Leaving;
             ending = reason;
@@ -858,7 +939,7 @@ namespace ColonyCouncil
             }
             try
             {
-                if (wasSettled) PackUp(true);
+                if (wasSettled) PackUp(!fast && CampPackMath.Orderly(reason));
             }
             catch (Exception e)
             {
@@ -919,51 +1000,24 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// Packing: half-built things are taken down, what can be carried goes with them (bedrolls, their goods), and
-        /// the rest is put out and cleared away, or left for the colony when they mean it as a gift (a hermit's hut).
+        /// Going: half-built things are taken down; what they packed in their last hours is in their packs, and the rest
+        /// stands where it is, nobody's (CampPack.cs: their kind may take its own down or hand it to its employer); what the
+        /// stay leaves behind is set out; in their own time their goods go with them, in a hurry they stay where they lie.
         /// </summary>
-        private void PackUp(bool peaceful)
+        private void PackUp(bool orderly)
         {
             var carriers = Here.Where(p => p.inventory != null).ToList();
             foreach (var t in Unfinished())
                 if (!t.Destroyed) t.Destroy(DestroyMode.Vanish);
-            if (!peaceful) return;
             // Where the fire and their day's work stood, for what they leave there at the end of their stay.
             var fire = FireCell;
             var taskSpot = kind.taskAt != null ? plans.FirstOrDefault(p => p.role == kind.taskAt && !p.dropped)?.cell ?? IntVec3.Invalid : IntVec3.Invalid;
-            // A hut taken down loses its roof first: left without walls, the roof would fall in on whoever is below.
-            if (!kind.leaveBuildings)
-                foreach (var c in CampSite.HutInside(plans))
-                    if (c.InBounds(map) && map.roofGrid.RoofAt(c) == RoofDefOf.RoofConstructed) map.roofGrid.SetRoof(c, null);
-            foreach (var b in Buildings())
+            LeaveStanding(orderly, fire);
+            Leftovers(orderly, fire);
+            if (!orderly)
             {
-                if (b.Destroyed) continue;
-                try
-                {
-                    if (b.def.Minifiable && carriers.Count > 0)
-                    {
-                        // Off the map before it's packed, whether or not the game's own packing takes it off itself.
-                        if (b.Spawned) b.DeSpawn();
-                        var mini = MinifyUtility.MakeMinified(b);
-                        if (mini == null)
-                        {
-                            if (!b.Destroyed) b.Destroy();
-                        }
-                        else if (!carriers.RandomElement().inventory.innerContainer.TryAdd(mini) && !mini.Destroyed) mini.Destroy();
-                        continue;
-                    }
-                    if (kind.leaveBuildings)
-                    {
-                        // Nobody's now: harm to it is no longer an attack on them.
-                        if (LordAlive) lord.ownedBuildings.Remove(b);
-                        b.SetFaction(null);
-                    }
-                    else b.Destroy(DestroyMode.Vanish);
-                }
-                catch (Exception e)
-                {
-                    CouncilLog.ErrorOnce("camp packing " + b.def.defName, e);
-                }
+                AbandonGoods();
+                return;
             }
             // What they can't take is left for the colony (the hermit's woodpile, with the hut); the rest goes with them.
             LeaveGoods();
@@ -1156,6 +1210,9 @@ namespace ColonyCouncil
             string text = ending == "time" ? FarewellText() ?? Text(key) : Text(key);
             if (final && ending == "fight") text = Text("CC_Camp_End_fightOver");
             if (joined.Count > 0 && ending != "fight") text += "\n\n" + "CC_Camp_Stayed".Translate(TextUtil.JoinAnd(joined.Select(p => p.LabelShort).ToList())).Resolve();
+            // What still stands of their camp, and what they left behind (CampPack.cs), as it lies on the map.
+            string left = LeftWords();
+            if (!left.NullOrEmpty() && !(final && ending == "fight")) text += "\n\n" + left;
             bool bad = ending == "harmed" || ending == "arrest" || ending == "fight" || ending == "fallout" || ending == "forced" || ending == "brawl";
             Tell(Text("CC_Camp_EndTitle"), text, bad ? LetterDefOf.NegativeEvent : LetterDefOf.NeutralEvent, true, leader);
             try

@@ -29,9 +29,9 @@
     <extendChance>0.4</extendChance>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li></stuff></li>
-      <li><role>wall</role><defs><li>DankPyon_TentWall</li><li>Wall</li></defs><stuff><li>Cloth</li><li>WoodLog</li></stuff><count>3</count></li>
     </structures>
+    <sleep>Tents</sleep>
+    <works><li>Gather</li><li>Fish</li></works>
     <animals>
       <li><pokemon>true</pokemon><count>2~3</count><follow>true</follow><named>true</named></li>
     </animals>
@@ -87,7 +87,7 @@
       <li>{X_nameDef}, one of the trainers camped {PLACE}, came to the gate with {X_possessive} Pokémon and a question: would the colony have a trainer and a partner, for good?</li>
     </joinTexts>
     <farewell>
-      <li>The trainers of {FACTION} have struck their camp {PLACE} and gone on down the road, their Pokémon trotting behind. {X_nameDef} said they'd be back for a rematch.</li>
+      <li>The trainers of {FACTION} have packed up their camp {PLACE} and gone on down the road, their Pokémon trotting behind. {X_nameDef} said they'd be back for a rematch.</li>
       <li>The trainers' camp {PLACE} is empty this morning. They left early, {X_nameDef} said, to be at the next town by market day.</li>
     </farewell>
     <lines>

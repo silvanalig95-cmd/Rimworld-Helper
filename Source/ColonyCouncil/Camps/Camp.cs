@@ -235,7 +235,9 @@ namespace ColonyCouncil
             var tags = new HashSet<string>();
             Flavor.AddEraTags(tags);
             CampWords.AddTags(tags, kind, faction, map);
-            return Format(Flavor.Pick(lines, tags) ?? Flavor.PickText(lines), x, a);
+            // What they built to sleep in, so the words match what stands (CampTracker.ShelterOf): shelter:hut, huts, tents, tentbeds, ring.
+            if (plans != null && plans.Count > 0) tags.Add("shelter:" + CampTracker.ShelterOf(plans.Where(p => !p.dropped).ToList()));
+            return Format(Flavor.Pick(lines, tags) ?? Flavor.PickText(lines.Where(l => !l.Contains("[shelter:")).DefaultIfEmpty(lines[0]).ToList()), x, a);
         }
 
         /// <summary>
@@ -474,6 +476,8 @@ namespace ColonyCouncil
             ExposeSeek();
             // A quarrel come to blows (Harm/CampBrawls.cs).
             ExposeBrawl();
+            // The day's newer work and the packing up (CampDay.cs, CampPack.cs).
+            ExposeDay();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 asksMade ??= new List<string>();

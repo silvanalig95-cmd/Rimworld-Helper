@@ -165,6 +165,11 @@ namespace ColonyCouncil
         public static readonly HarmKind FirstSteps = new HarmKind("firstSteps", "first steps alone (3.10.3)", "firstSteps", 0.0014f, false);
         public static readonly HarmKind WorkingWrong = new HarmKind("workingWrong", "a working gone wrong (4.8.1)", "workingWrong", 0.0058f, false);
 
+        // ---------------- Camps that build and leave things behind (8 November 2026) ----------------
+
+        /// <summary>What a camp left behind: offal that draws a predator in, embers in dry grass (Camps/CampPack.cs), the game's own beast or fire.</summary>
+        public static readonly HarmKind CampLeft = new HarmKind("campLeft", "what a camp left behind (offal, embers)", "campLeft", 0.0015f, false);
+
         /// <summary>Every kind, in the order they were built.</summary>
         public static readonly HarmKind[] All =
         {
@@ -179,7 +184,8 @@ namespace ColonyCouncil
             SitDown, SpeakerWords, PassedOver, MeetingBoils, FriendsStand, SaidToFace, WrongedOne, ToldByFriend, LoveRivals, AltarWords, FeastFists, SecondRound,
             SoldierNight,
             OpenGates, GamblerTurns, BarberNick, RankEnemy, CrowdFight, PastFirstBlood, LetterChallenge, HeirGrudge, HatedTrader, GateZeal, HungryHands, CreekBrawl,
-            WorstNight, FirstSteps, WorkingWrong
+            WorstNight, FirstSteps, WorkingWrong,
+            CampLeft
         };
 
         public static HarmKind Of(string key)

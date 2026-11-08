@@ -208,7 +208,7 @@
   <CC_Camp_Diary_hazard>a hazard</CC_Camp_Diary_hazard>
   <CC_Camp_Diary_era>no camp fits the era</CC_Camp_Diary_era>
   <CC_Camp_Diary_nofriends>no friendly people</CC_Camp_Diary_nofriends>
-  <CC_Camp_Diary_noroom>no room on the map</CC_Camp_Diary_noroom>
+  <CC_Camp_Diary_noroom>nowhere far enough from the colony</CC_Camp_Diary_noroom>
   <CC_Camp_Why_off>Camps are switched off in the settings.</CC_Camp_Why_off>
   <CC_Camp_Why_here>One is here.</CC_Camp_Why_here>
   <CC_Camp_Why_nohome>There is no home to camp by.</CC_Camp_Why_nohome>
@@ -219,5 +219,49 @@
   <CC_Camp_Why_hazard>None comes while {0} lasts.</CC_Camp_Why_hazard>
   <CC_Camp_Why_era>No kind of camp fits the colony's era.</CC_Camp_Why_era>
   <CC_Camp_Why_nofriends>No friendly people could send one: make peace with a neighbour first.</CC_Camp_Why_nofriends>
-  <CC_Camp_Why_noroom>There is no room for a camp on the map: open ground some forty cells from the colony, outside the home area and any zone.</CC_Camp_Why_noroom>
+  <CC_Camp_Why_noroom>The colony's land reaches everywhere a camp could go: a camp keeps some forty cells from its home area and zones, on ground it can walk, clear and build on (open or wooded).</CC_Camp_Why_noroom>
+
+  <!-- Enemies on the land: a people allied to the colony fights beside it; enemies at their own camp, they defend it (Camps/CampLife.cs). -->
+  <CC_Camp_FightAlly>Enemies on the land: the {NAME} from {FACTION}, the colony's allies, take up their weapons beside it.</CC_Camp_FightAlly>
+  <CC_Camp_FightDefend>Enemies are at their camp {PLACE}: the {NAME} from {FACTION} take up their weapons to defend it.</CC_Camp_FightDefend>
+
+  <!-- How they will sleep, and the day's work round their camp, for the letter that brings them (Camps/CampSite.cs, CampDay.cs). -->
+  <CC_Camp_Facts_Shelter_hut>They will put up a hut for all of them, walls all round, a door and a roof.</CC_Camp_Facts_Shelter_hut>
+  <CC_Camp_Facts_Shelter_huts>They will put up small huts to sleep in, two to a room.</CC_Camp_Facts_Shelter_huts>
+  <CC_Camp_Facts_Shelter_tents>They will pitch tents to sleep in, two to a tent.</CC_Camp_Facts_Shelter_tents>
+  <CC_Camp_Facts_Shelter_tentbeds>They will pitch a tent each.</CC_Camp_Facts_Shelter_tentbeds>
+  <CC_Camp_Facts_Shelter_ring>They will sleep round their fire, a bed each.</CC_Camp_Facts_Shelter_ring>
+  <CC_Camp_Facts_Work>Round their camp they will {THING}.</CC_Camp_Facts_Work>
+  <CC_Camp_Work_Chop>cut wood</CC_Camp_Work_Chop>
+  <CC_Camp_Work_Hunt>hunt</CC_Camp_Work_Hunt>
+  <CC_Camp_Work_Fish>fish</CC_Camp_Work_Fish>
+  <CC_Camp_Work_Mine>mine plain rock</CC_Camp_Work_Mine>
+  <CC_Camp_Work_Gather>gather wild plants</CC_Camp_Work_Gather>
+  <CC_Camp_Work_Craft>make things at their crafting spot</CC_Camp_Work_Craft>
+  <CC_Camp_Work_Mend>mend their camp</CC_Camp_Work_Mend>
+
+  <!-- What still stands as they go, and what the stay left behind (Camps/CampPack.cs), in the leaving message. -->
+  <CC_CampLeft_Standing>Still standing where they camped, nobody's now: {THING}.</CC_CampLeft_Standing>
+  <CC_CampLeft_What_hut>their hut</CC_CampLeft_What_hut>
+  <CC_CampLeft_What_tents>their tents</CC_CampLeft_What_tents>
+  <CC_CampLeft_What_wall>a windbreak</CC_CampLeft_What_wall>
+  <CC_CampLeft_What_fire>the fire pit</CC_CampLeft_What_fire>
+  <CC_CampLeft_What_light>their lights</CC_CampLeft_What_light>
+  <CC_CampLeft_What_work>their work spots</CC_CampLeft_What_work>
+  <CC_CampLeft_What_picket>the hitching spot</CC_CampLeft_What_picket>
+  <CC_CampLeft_What_spot>their {THING}</CC_CampLeft_What_spot>
+  <CC_CampLeft_What_dining>a table and seats</CC_CampLeft_What_dining>
+  <CC_CampLeft_What_stash>a shelf</CC_CampLeft_What_stash>
+  <CC_CampLeft_What_stall>the stall</CC_CampLeft_What_stall>
+  <CC_CampLeft_What_beds>bedding they had no time to pack</CC_CampLeft_What_beds>
+  <CC_CampLeft_StandingColony>They left their post standing for the colony that hired them: {THING} are the colony's now.</CC_CampLeft_StandingColony>
+  <CC_CampLeft_Woodpile>They left a woodpile of the logs they cut by their old fire.</CC_CampLeft_Woodpile>
+  <CC_CampLeft_Hides>They left hides of their kills at the edge of their camp nearest the colony.</CC_CampLeft_Hides>
+  <CC_CampLeft_Cairn>They stacked the stone they cut into a cairn by their old fire.</CC_CampLeft_Cairn>
+  <CC_CampLeft_Gift>They left a gift at the edge of their camp nearest the colony.</CC_CampLeft_Gift>
+  <CC_CampLeft_Refuse>Their old fire is ringed with refuse.</CC_CampLeft_Refuse>
+  <CC_CampLeft_Offal>They left the offal of their butchering lying at their old camp.</CC_CampLeft_Offal>
+  <CC_CampLeft_Embers>Their fire was not quite out, and the dry grass by it has caught.</CC_CampLeft_Embers>
+  <CC_CampLeft_LameBeast>One of their beasts was too lame for the road, and they left it with the colony.</CC_CampLeft_LameBeast>
+  <CC_CampLeft_Drawn>{THING} has come onto the land, drawn by the offal at the old camp.</CC_CampLeft_Drawn>
 </LanguageData>

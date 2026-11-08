@@ -109,7 +109,9 @@ public static class HarmSevenTests
             C(HarmKinds.All.Count(k => !k.founding && k.label.Contains("(" + id + ")")) == 1, $"the proposal {id} is a kind of its own");
         foreach (var id in new[] { "2.10.1", "2.6.1", "2.7.1" })
             C(!HarmKinds.All.Any(k => k.label.Contains("(" + id + ")")), $"{id} hurts nobody of the colony and stays outside the budget");
-        var sevenKinds = HarmKinds.All.Skip(Array.IndexOf(HarmKinds.All, HarmKinds.SitDown)).ToList();
+        // Part 7's: from the sit-down to the working gone wrong (what a camp left comes after, Camps/CampPack.cs).
+        int sevenFrom = Array.IndexOf(HarmKinds.All, HarmKinds.SitDown);
+        var sevenKinds = HarmKinds.All.Skip(sevenFrom).Take(Array.IndexOf(HarmKinds.All, HarmKinds.WorkingWrong) - sevenFrom + 1).ToList();
         C(sevenKinds.Count == 28 && sevenKinds.All(k => !k.founding && k.weight > 0f && k.weight < 0.025f), "the twenty-eight come after the rest, none founding, each a small share");
 
         // ================= The mod's side =================

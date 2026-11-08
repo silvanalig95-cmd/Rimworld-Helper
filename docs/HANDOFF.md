@@ -12,6 +12,63 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.167.0, camps that build properly, keep a day and leave things behind (8 November 2026, the player's explicit request and bug
+  report with a screenshot of a war party of three with one bedroll and four lengths of log wall, and three follow-ups the
+  same day: fell the trees in the way, pack what they carry and leave their constructions standing, leave things behind
+  good or bad). Not released: no version, no What's new round, About.xml and CHANGELOG untouched. DESIGN.md "Camps that
+  build, keep a day and leave things behind" has all of it (the kits by age, how each kind sleeps, the layout, the site,
+  the day, the take rule, packing, the leftovers table); README's camp paragraph and "Camps built of your mods"; the
+  Almanac's camp page a new section "What they build, their day and what they leave" (prose only, keywords unchanged).
+  - What went wrong in the save: `CampStructure.count` defaulted to 1 and no kind set one on its bed, so every camp got one
+    bed; the "windbreak" was the cold layout's four log walls for a kind that built nothing else; a hut held one bed; a
+    site needed 80% standable open ground, so wooded spots were refused and a tree under a plan dropped it; the kinds
+    named Medieval Overhaul's and Outland's tent pieces, not enabled. The save's camp itself built what it planned (all
+    seven plans placed and standing, built about an hour and a half after arriving, its wood and cloth unpacked at the
+    stash).
+  - Code: `Camps/CampBuildMath.cs` (pure: a cell's fate, rooms, the whole layout, tables and lights by size, ages),
+    `CampTakeMath.cs` (pure: what they may take), `CampDayMath.cs` (pure: the hours, the work's order and rates),
+    `CampPackMath.cs` (pure: packing, what stays, what a stay leaves; linked in Tests and Balance), `CampKit.cs` (the
+    kits), `CampTake.cs` (the rule read off the map), `CampDay.cs` (the day's work: rock, plants, a catch, crafting,
+    mending; meals at the table, a bed each, the evening's talk), `CampPack.cs` (packing on the map, what stands, the
+    leftovers). `CampSite.cs` rewritten (cells, the site, the layout turned and set on the map, rooms' roofs by flood
+    from their beds); `CampLife.cs` (blueprints that wait for rock mined or a tree felled, roofs per room, packing before
+    leaving, the leaving message's lines, allies and defenders in a fight), `CampWork.cs` (the day, clearing, eating at
+    the table), `CampTracker.Make` (the layout by the faction and the stay; up to twelve), `CampEvent.cs` (the letter's
+    shelter and work lines), `CampLook.Spot` (beside the door, the windbreak's fire side). Defs:
+    `Defs/CampDefs/Rimfolk_CampKits.xml` (four kits, three jobs), every kind's structures rewritten (`sleep`, `works`,
+    `leaves`/`leavesWhy`, `leftovers`; the austere kinds' sleeping spots), their settled and leaving lines read against
+    what's built, `Defs/FlavorPoolDefs/Rimfolk_CampDay_Lines.xml` (two pools, in `ImmersionTests.SpokenPools`), Keyed in
+    `Rimfolk_Camps.xml`. Harm: `HarmKinds.CampLeft` ("what a camp left behind", system `campLeft`, 0.0015 from the model;
+    the average colony of six 0.459 a colonist-year with the budget, as before), modelled in `Tools/Balance/HarmSim.cs`.
+    Catalogue: `Tools/mod_pool.py` writes `docs/player-mods/buildings.tsv` (825 buildings, 443 active); rebuilt from the
+    player's files with the 8 November save, every other table byte for byte the same but `mods.tsv`'s inSave for Harvest
+    and Haul. Tests: `Tools/Tests/CampBuildTests.cs` (2587 checks: every kind's full layout at its smallest and largest on
+    open ground and on a map full of trees, rooms closed with one door, a bed each, the kits' pieces active rows of their
+    role and age, the take rule, the day, packing, leftovers); the harm registry tests count the new kind.
+  - Settings: none new (under "Camps"; the leftovers' predator and fire under "Hurts from everyday life").
+  - Saved: the plans' `room` and `waiting`, the day's counts, the stay's totals and the packing's ending and hour, no new
+    collection (`save_estimate.py`'s plans model now up to 90 a camp, members 12).
+  - Riskiest: `GenConstruct.PlaceBlueprintForBuild` for another faction over trees and chunks, and the game's own
+    `HandleBlockingThingJob` clearing them for non-colonists; `JobDefOf.Mine` and `Harvest` with `ignoreDesignations` for
+    camp pawns (the yield forbidden by the game, fetched as theirs); `MinifyUtility.MakeMinified` into a packer's
+    inventory; buildings left with no faction (doors open to everyone; the colony can claim them) and the Banner's post
+    handed over; roofs set by flood from each room's beds; `ClaimBedIfNonMedical` on a camp's bed; the crafting from a
+    work spot's recipes (`CountRequiredOfFor`, `GenerateQualityCreatedByPawn`); the offal's wild predator spawned at an
+    edge, and `FireUtility.TryStartFireIn` by an old fire; an allied camp's or a defending camp's hunt of the enemy.
+  - Try in the game (dev mode; none of it could be run here): 1. Start a camp (Debug actions, Execute incident,
+    Council_Evt_Camp, or "Peoples: one of
+    their camps here now..."): the letter says how they will sleep and what they'll do. 2. Watch them build: a bed each,
+    the hut's or tents' walls, door and roof (check "room" in the inspector: indoors, roofed), tables with seats, lights,
+    their spots; on a wooded spot they fell the trees first (logs to their stash), on rock they mine it. 3. Their day:
+    asleep in their own beds at night, at the table at noon and supper, out at work by day (trees, a hunt, the water,
+    plain rock, wild berries, their crafting spot), by the fire in the evening with a line now and then. Check they never
+    touch the colony's things, crops, animals or ore. 4. A raid at their camp: the armed defend it; an allied people's
+    camp fights beside you. 5. Their last hours: packing bedrolls and furniture one by one, then walking off; the hut,
+    fire pit and walls stay (nobody's: claim them); the leaving message names what stands and what was left (a woodpile,
+    hides, a cairn, a gift; or refuse, offal, embers, a lame beast). 6. A tree-singers', penitents' or deserters' camp
+    takes its walls down; the Banner's squad leaves its post to the colony. 7. "the shared budget (log)": what a camp left
+    behind listed with its pass.
+
 - 0.166.0, which exact things have the wrong style (8 November 2026, the player's explicit request after a colonist's
   "Non-Federal-style surroundings -4", Federalism with intense bigotry: "how do i even know what is having the 'wrong'
   style? I don't see it", then "i'd appreciate if you add notes about which exact items have the wrong style, so i can

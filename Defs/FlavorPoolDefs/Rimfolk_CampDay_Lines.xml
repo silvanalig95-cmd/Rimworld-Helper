@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A camper's day (Source/ColonyCouncil/Camps/CampDay.cs, CampPack.cs): said over a head, one short sentence each. Lines
+    tagged [their:tribal], [their:medieval], [their:industrial] or [their:spacer] come only from a camp of that age; the
+    work lines are tagged with the work and come for nothing else.
+  -->
+
+  <!-- The evening by their fire: one of them to another sitting there ({OTHER}). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_CampEvening</defName>
+    <lines>
+      <plain>
+        <li>Pass the pot, {OTHER_nameDef}, before it goes cold.</li>
+        <li>My back will remember today's work for a week.</li>
+        <li>That was a fair day's work, all told.</li>
+        <li>Tell the one about the river crossing again.</li>
+        <li>Another night like this and I could stay for good.</li>
+        <li>Keep the fire up, it'll be a cold one.</li>
+        <li>These people keep a quiet land, I'll say that for them.</li>
+        <li>Who's taking first watch tonight?</li>
+        <li>I'd trade a week's walking for a proper bath.</li>
+        <li>You snore, {OTHER_nameDef}, and everyone here knows it.</li>
+        <li>The stars are close tonight.</li>
+        <li>We'll be on the road again soon enough.</li>
+        <li>[their:tribal] The fire tells a good story tonight.</li>
+        <li>[their:tribal] My grandmother knew a song for nights like this.</li>
+        <li>[their:medieval] Our lord would not know what to do with a night this quiet.</li>
+        <li>[their:medieval] Mend that strap before it breaks on the road.</li>
+        <li>[their:industrial] Anyone have a smoke left?</li>
+        <li>[their:industrial] The radio said rain, and the radio is always wrong.</li>
+        <li>[their:spacer] You can see the old orbit lanes from here.</li>
+        <li>[their:spacer] Planets smell different at night.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Their day's work: [chop] felling, [craft] at their spot, [pack] packing up in their last hours. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_CampWork</defName>
+    <lines>
+      <plain>
+        <li>[chop] Stand clear, this one's coming down.</li>
+        <li>[chop] Good straight wood, this.</li>
+        <li>[chop] That'll keep the fire going a while.</li>
+        <li>[chop] Mind your feet, the trunk rolls.</li>
+        <li>[chop] One more and we've wood enough for tonight.</li>
+        <li>[chop] Easy now, let it fall where it wants to.</li>
+        <li>[craft] Nearly done, just the binding left.</li>
+        <li>[craft] Not my best work, but it'll do the job.</li>
+        <li>[craft] Hold this end for me, would you?</li>
+        <li>[craft] My father made these better, but he's not here.</li>
+        <li>[craft] That'll fetch a fair price at the next town.</li>
+        <li>[craft] Another one for the pack.</li>
+        <li>[pack] Roll the bedding tight, we've a long walk.</li>
+        <li>[pack] Leave the walls, someone here will want them.</li>
+        <li>[pack] Check under everything, we're not coming back for it.</li>
+        <li>[pack] Time to go, and I was getting used to this place.</li>
+        <li>[pack] Who's carrying the pots this time?</li>
+        <li>[pack] Put the fire out properly, mind.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+</Defs>

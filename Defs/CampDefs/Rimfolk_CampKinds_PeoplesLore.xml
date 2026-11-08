@@ -53,11 +53,10 @@
     </situationKinds>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
-      <li><role>stall</role><defs><li>Table1x2c</li></defs><stuff><li>WoodLog</li></stuff></li>
-      <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>3</count></li>
-      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+      <li><role>stall</role></li>
     </structures>
+    <sleep>Tents</sleep>
+    <works><li>Chop</li><li>Gather</li></works>
     <!-- Their pack beasts (their own caravans' kind where the land allows) tethered by the stash, with the crates and the
          fodder beside them; porters carry goods between the beasts and the stall all day. -->
     <animals>
@@ -104,8 +103,8 @@
       <li>[ws:road] With the roads as busy as they are this year and the snow on top of it, {FACTION}'s caravan has given up on the next waystation. {X_nameDef} asks {A_nameDef} for winter quarters {PLACE}.</li>
     </texts>
     <settled>
-      <li>The league's caravan of {FACTION} has gone into winter quarters {PLACE}: the crates stacked into a windbreak, a fire that never goes out, and a trading table already set up with the season's goods.</li>
-      <li>{FACTION}'s winter camp is up {PLACE}, the beasts blanketed by the stash and a road warden walking the edge of it, and the caravan master's ledger open on the trading table.</li>
+      <li>The league's caravan of {FACTION} has gone into winter quarters {PLACE}: the bales stacked by the picket, a fire that never goes out, and a trading table already set up with the season's goods.</li>
+      <li>{FACTION}'s winter camp is up {PLACE}, the beasts tied by the stash and a road warden walking the edge of it, and the caravan master's ledger open on the trading table.</li>
       <li>The league caravan has settled in {PLACE} to wait for the roads. Beer by the fire, cloth on the table, and every crate counted twice before dark.</li>
     </settled>
     <joinTexts>

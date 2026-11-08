@@ -200,6 +200,7 @@ namespace ColonyCouncil
                 case "sickWorkOn": return AilmentTracker.On && s.decreeRequests && Interplay.On;
                 case "gateSickness": return s.worldSituations && Interplay.On;
                 case "campFever": return CampTracker.Enabled;
+                case "campLeft": return CampTracker.Enabled;
                 case "courierSick": return Couriers.On && s.worldSituations && Interplay.On;
                 case "patientIll": return HealthTracker.ReputationOn && AilmentTracker.SeriousOn;
                 case "badBatch": return true;

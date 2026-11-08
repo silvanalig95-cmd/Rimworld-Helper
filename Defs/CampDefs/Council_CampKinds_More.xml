@@ -41,11 +41,10 @@
     </situationKinds>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>hut</role><defs><li>DankPyon_TentWall</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff><doors><li>Outland_TentDoor</li></doors></li>
-      <li><role>bed</role><defs><li>VFEC_Tent</li><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
-      <li><role>stall</role><defs><li>Table1x2c</li></defs><stuff><li>WoodLog</li></stuff></li>
-      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+      <li><role>stall</role></li>
     </structures>
+    <sleep>Tents</sleep>
+    <works><li>Gather</li></works>
     <titles>
       <li>Healers by the road</li>
       <li>[lowtech] Herb-healers on the road</li>
@@ -208,10 +207,12 @@
     </situationKinds>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <!-- They sleep on the ground: a sleeping place each, of their own ways, not their people's bedrolls. -->
       <li><role>bed</role><defs><li>SleepingSpot</li></defs></li>
       <li><role>spot</role><defs><li>MeditationSpot</li><li>PartySpot</li></defs></li>
-      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
     </structures>
+    <sleep>Ring</sleep>
+    <works><li>Gather</li></works>
     <titles>
       <li>A procession of the faithful</li>
       <li>[ideology] The faithful of {IDEO}</li>
@@ -357,11 +358,10 @@
     <extendChance>0.4</extendChance>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>hut</role><defs><li>DankPyon_TentWall</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff><doors><li>Outland_TentDoor</li></doors></li>
-      <li><role>bed</role><defs><li>VFEC_Tent</li><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
       <li><role>spot</role><defs><li>PartySpot</li></defs></li>
-      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
     </structures>
+    <sleep>Tents</sleep>
+    <works><li>Craft</li><li>Chop</li></works>
     <titles>
       <li>Traveling players</li>
       <li>[lowtech] Mummers come to play</li>
@@ -538,10 +538,9 @@
     </seekTexts>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>VFEC_Tent</li><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
-      <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>3</count></li>
-      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
     </structures>
+    <sleep>Tents</sleep>
+    <works><li>Mine</li><li>Chop</li></works>
     <titles>
       <li>The surveyors come</li>
       <li>[ws:road] Surveyors for the road</li>
@@ -553,7 +552,7 @@
       <li>[ws:rush] With the whole region talking about {SITUATION}, {FACTION} have sent surveyors to map the rock properly. {X_nameDef} asked {A_nameDef} for a few days' camp {PLACE}, and offered to share whatever they find under the colony's own ground.</li>
     </texts>
     <settled>
-      <li>The surveyors from {FACTION} have their camp up {PLACE}, with a windbreak against the weather and their instruments wrapped in oilcloth.</li>
+      <li>The surveyors from {FACTION} have their camp up {PLACE}, with shelter against the weather and their instruments wrapped in oilcloth.</li>
       <li>The surveyors' camp {PLACE} is up, with a torch to work their figures by at night and a line of stakes running off into the hills.</li>
       <li>At the surveyors' camp {PLACE}, maps are weighted down with stones and a long cord marked off in paces lies coiled by the fire.</li>
     </settled>

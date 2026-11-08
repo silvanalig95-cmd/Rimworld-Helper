@@ -517,7 +517,7 @@ namespace ColonyCouncil
                     setup.land = land;
                     return setup;
                 }
-                if (why != null && why.Count > 0 && why[why.Count - 1].EndsWith("doesn't fit at the spot")) return null;
+                if (why != null && why.Count > 0 && why[why.Count - 1].EndsWith(HemmedIn)) return null;
             }
             return null;
         }
@@ -582,6 +582,9 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>Why a camp couldn't be laid out at a spot (for the diary): the colony's land, water or overhead rock hem its fire and beds in.</summary>
+        public const string HemmedIn = ": the colony's land, water or rock hem in its fire and beds there";
+
         /// <summary>
         /// A camp of this kind and people at the spot: its stay, its layout for the weather, its people (those
         /// <paramref name="given"/>, else the remembered ones coming back, filled up with new ones), dressed for the
@@ -590,14 +593,14 @@ namespace ColonyCouncil
         public CampSetup Make(Map map, IntVec3 center, IntVec3 colony, CampKindDef kind, Faction f, bool hot, List<string> why, PastCamp past, List<Pawn> given = null)
         {
             var kept = given ?? past?.Living ?? new List<Pawn>();
-            int n = given != null ? given.Count : Mathf.Clamp(Mathf.Max(kind.people.RandomInRange, kept.Count), 1, 8);
+            int n = given != null ? given.Count : Mathf.Clamp(Mathf.Max(kind.people.RandomInRange, kept.Count), 1, 12);
             int stay = Mathf.RoundToInt(kind.days.RandomInRange * GenDate.TicksPerDay);
             var (low, high) = CampWeather.StayRange(map, stay);
             bool cold = CampWeatherMath.PitchForCold(low);
-            var plans = CampSite.Layout(map, center, kind, n, colony, out var stash, out var share, cold);
+            var plans = CampSite.Layout(map, ref center, kind, n, colony, out var stash, out var share, cold, f, stay / (float)GenDate.TicksPerDay);
             if (plans == null)
             {
-                why?.Add(kind.label + ": its camp doesn't fit at the spot");
+                why?.Add(kind.label + HemmedIn);
                 return null;
             }
             var pawns = given != null ? given.ToList() : MakePeople(kind, f, n, kept);
@@ -639,9 +642,20 @@ namespace ColonyCouncil
                 {
                     clothes = CampWeather.Clothes(dressed),
                     clothesForCold = dressed.Sum(a => a.GetStatValue(StatDefOf.Insulation_Cold)) >= dressed.Sum(a => a.GetStatValue(StatDefOf.Insulation_Heat)),
-                    cold = cold && CampSite.BedsClose(plans), windbreak = cold && plans.Any(x => x.role == "wall"), shade = hot && CampSite.Shaded(map, center)
+                    cold = cold && CampSite.BedsClose(plans), windbreak = cold && plans.Any(x => x.role == "wall"), shade = hot && CampSite.Shaded(map, center),
+                    shelter = ShelterOf(plans)
                 }
             };
+        }
+
+        /// <summary>How they will sleep, from the layout: "hut" (one room for all), "tents" (rooms of tent walls), "tentbeds" (a mod's tents), "ring" (round the fire).</summary>
+        public static string ShelterOf(List<CampPlan> plans)
+        {
+            int rooms = CampSite.Rooms(plans).Count();
+            if (rooms == 1 && plans.Count(p => p.role == "hutbed") > 2) return "hut";
+            if (rooms >= 1) return plans.Any(p => p.role == "hut" && p.def != null && p.def.MadeFromStuff && p.stuff != null && !p.stuff.IsWithinCategory(ThingCategoryDefOf.ResourcesRaw)) ? "tents" : rooms == 1 ? "hut" : "huts";
+            if (plans.Any(p => p.role == "bed" && CampSite.IsTent(p.def))) return "tentbeds";
+            return "ring";
         }
 
         private static List<Pawn> MakePeople(CampKindDef kind, Faction f, int n, List<Pawn> kept = null)

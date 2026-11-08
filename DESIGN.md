@@ -2421,6 +2421,118 @@ when there is a good moment, while still having the gameplay impact and limits i
   Who began one lately is the session's, as for the talks of their own.
 - **No new Harmony patch, no new letter, no new line**: the words are the menu's own, in the forms of their people's age.
 
+### Camps that build, keep a day and leave things behind (the player's request, 8 November 2026)
+
+The player's camp (a war party of three: a fire, one bedroll, a torch and four lengths of log wall, no room) and their
+words: "please review all the camps, ensure they actually construct something proper, they use all the available defs
+and also that the people making camp spend the time on the map in a way that makes sense ... there should be no fear of
+them contesting ressources ... as long as they don't mine my machinery or valuable metals/items". The follow-ups the same
+day: fell the trees in the way rather than give up a layout; pack what they carry and leave their constructions standing;
+leave things behind, good or bad, by the kind and the stay.
+
+**What went wrong.** `CampStructure.count` was 1 by default and no kind set a count on its bed: every camp of any size got
+one bed. The "windbreak" was a short line of four log walls a cold layout added when the kind built nothing else, and a
+hut held one bed. A site needed 80% open, standable ground, so a wooded spot was rejected and a tree under a plan dropped
+the building. The kinds named Medieval Overhaul's and Outland's tent pieces, which the player doesn't have enabled.
+
+- **The kit, by age** (`Camps/CampKit.cs`, `Defs/CampDefs/Rimfolk_CampKits.xml`, `CampKitDef`): one kit for each age (tribal,
+  medieval, industrial, spacer, by the people's tech level: `CampBuildMath.AgeOf`), each role (fire, bed, tent, hut and
+  door, tentwall and tentdoor, the windbreak's wall, table, seat, light, butcher, craft, stall, picket, stash) listing the
+  player's active mods' pieces first (`MayRequire`, from `docs/player-mods/buildings.tsv`'s active rows) and the game's
+  own last. The first that exists and whose research is within the people's age (`CampKit.Known`) is built, of the first
+  listed material it can be made of. A kind's own pieces for a role come first (a shrine's spot, the smith's forge, the
+  austere kinds' sleeping spots).
+  | Age | Sleep | Hut | Tent | Table, seat | Light |
+  |---|---|---|---|---|---|
+  | tribal | bedroll (leather) | VFE Architect's log wall, else a log wall; Doors Expanded's tribal curtain, else a door | VFE Classical's tent, else small log huts | Alpha Memes' crude wooden table, VFE's sitting cushion | torch lamp |
+  | medieval | bedroll (cloth) | VFE Architect's log wall; a wooden door | VFE Classical's tent, else VFE Medieval 2's cloth walls with a curtain (Doors Expanded, More Door Variants) | table, stool | torch lamp |
+  | industrial | bedroll (cloth, synthread) | log walls, a wooden door | the same | table, stool | VFE Settlers' chemlamp, else a torch |
+  | spacer | bedroll (synthread) | steel walls and door | the same, of synthread | steel table and stool | chemlamp, else a torch |
+  Every age: a campfire, a butcher's and a crafting spot, a caravan hitching spot for the picket, a shelf for the stash
+  (medieval on, its research), VFE Medieval 2's palisade as the medieval windbreak.
+- **How each kind sleeps** (`CampKindDef.sleep`, `CampSleepForm`): round the fire, a bed each (the war party, mourners,
+  pilgrims, the procession, penitents, drovers, tree-singers, deserters); one hut for all (settlers, refugees, the hermit,
+  the herders' winter camp, the wardens' post, woodcutters, harvest hands, watchers, stranded spacers, the wounded, the
+  Banner's squad); tents (hunters, prospectors, traders, the smith, healers, players, surveyors, fishers, salvagers, the
+  beast show, the league's winter caravan, trainers, the salt caravan, merchants from afar, the lone healer, minstrels,
+  scholars, herb gatherers, stonecutters, shearers, beast-catchers, the teacher): a mod's tent that is a bed (a tent each),
+  else tents of tent walls for two, sharing their side walls.
+- **The layout** (`Camps/CampBuildMath.cs`, pure, `CampBuildTests`): the fire at the middle with its ring kept free; the
+  shelter facing the fire (a hut's inside `RoomSize`: as wide as its beds, at least three, one row of beds to 6 and two
+  rows from 7, the doorway's column left free; a tent two wide; walls all round, one door, the inside roofed once every
+  wall stands: `Enclosed`, `Inside`); a bed for every sleeper the shelter doesn't hold, round the fire, the far side
+  first; a windbreak behind those beds on cold nights; the stash's corner; a table for every four (three at most) for a
+  stay of a day and a half or more, a seat on each long side (`TablesFor`); the butcher's spot for those who hunt, the
+  crafting spot for a stay of two days or more, the stall on the colony's side, the kind's spot, a light for a small
+  camp, two from six, three from ten (`LightsFor`), the picket by the stash for a camp with beasts. Each piece at the
+  first of a few fitting places with least to clear, all within ten cells of the fire.
+- **The site** (`CampSite.TryFind`, `Layout`): ground clear of the colony (its home area, zones, plans, things), open or
+  wooded; each cell's fate (`CampBuildMath.Fate`): free, cut (a bush), fell (a tree; the logs are theirs), haul (a chunk
+  or a cheap thing nobody owns), mine (plain rock with no overhead rock within eight cells), or never (the colony's, an
+  ore, water and soft ground, someone else's building, a sown or marked plant, anything of value, under the mountain).
+  The layout is tried at the spot and a few cells round it, every way round, the complete one with least to clear taken;
+  where no shelter fits, they sleep round the fire. A blueprint goes over grass, bushes, trees and chunks (the game's own
+  clearing); one over rock or a tree no building goes over waits (`CampPlan.waiting`) until they've mined or felled it;
+  only the never-cells drop a piece.
+- **The day** (`Camps/CampDay.cs`, `CampDayMath`): night from ten to six in their own beds (each claims one:
+  `Camp.BedFor`); a meal in the morning, at noon and at supper (at other hours only when starving), at
+  their table's seats, else by the fire (below 55% hungry, so no meal is half wasted); work from seven to noon and one to five, by the kind's callings
+  (`CampKindDef.works`) then what each is best at (`CampDayMath.Order`): wood (any wild tree outside the colony's reach,
+  a tree or two a day, the woodcutters more), the hunt (armed as the game arms hunters, the kind's rate), a catch where the
+  water has fish (Odyssey's or Vanilla Fishing Expanded's; the fishers' own trips besides), plain rock (stonecutters,
+  prospectors, the smith, surveyors, settlers, wardens, the Banner's squad), wild plants with food or medicine in them,
+  something simple made at their crafting spot from what's in their stash (a recipe the spot knows, within their age,
+  worth 200 or less; into their stash), mending their own buildings below 80%, hauling. Supper is cooked at their fire
+  from their own meat, what they gathered and their provisions. From seven in the evening they sit by the fire: a word
+  between two of them each hour (`Rimfolk_Pool_CampEvening`, by their age) with the game's chat, and with colonists who
+  come by as before. Enemies at their camp: those with weapons defend it; an allied people fights beside the colony; the
+  war party and a camp standing guard as before; anyone else goes.
+- **What they take** (`Camps/CampTakeMath.cs`, `CampTake.cs`, one rule asked by every felling, hunt, gathering, mining,
+  clearing and fetching): wild trees, wild beasts (the game's fair game, never one marked), wild plants, plain rock and
+  chunks, all clear of the colony. Never the colony's (buildings, machinery, furniture, stockpiled or forbidden things,
+  crops, animals, anything in its home area or zones), no mineable that isn't plain rock, decided by its yield (not a
+  resource lump, and a stone chunk or nothing, or worth no more than plain stone: so the mods' ores are covered), nothing
+  worth more than plain stone. Their own goods, and what their work left, are theirs. The prospectors' finds are their
+  dig's, made of nothing on the map, as before.
+- **Packing and what stays** (`Camps/CampPack.cs`, `CampPackMath`): going in their own time (the end of the stay, asked,
+  moved on, declined, hunger, crowding, unpaid, their own quarrel, the weather, neighbours gone in grief) they pack for
+  three hours (one for the weather or hunger; at night they sleep on and pack in the morning; settlers off with the
+  colony's caravan pack as they go): bedrolls, tents, tables, stools uninstalled one by one (`Rimfolk_CampPack`, a progress bar) and
+  carried in their packs; then the rest of their goods go with them. Constructions (walls, doors, huts and tents of
+  walls, the fire pit, the spots, the hitching spot, the torches) stay standing, nobody's (`CampLeaves.Standing`), fires
+  put out, roofs on. Three kinds say otherwise (`leaves`, `leavesWhy`): the tree-singers ("their ways leave nothing on the
+  land but the saplings they plant") and the penitents ("take up their few things and sweep the ground behind them")
+  take theirs down, as do deserters ("so that nobody can follow them"); the Banner's squad hands its post to the colony
+  that hired it (`Employer`). Driven off, fleeing or fighting, they leave what they can't carry. The leaving message says
+  what still stands.
+- **What a stay leaves** (`CampPackMath.Leaves`, each from what happened, each where it lies, named in the leaving
+  message; `CampKindDef.leftovers` narrows it: the tree-singers only a gift, deserters nothing):
+  | Leftover | When | Where |
+  |---|---|---|
+  | a woodpile | in their own time, not sour, 25 logs or more left at the stash: 4 in 5 | by the old fire, the colony's |
+  | hides | the same, 10 or more of their kills' hides: 2 in 5, 4 in 5 when warm | at their camp's edge nearest the colony |
+  | a cairn | the same, 4 or more chunks of the rock they mined: 3 in 5 | by the old fire |
+  | a gift | a warm stay (unease under 35, warmth 3 or more): a quarter and more with the warmth, 3 in 5 at most | a gift of their people's own (`ThingRoles` Gift) at the camp's edge |
+  | refuse | a sour stay (3 in 5), or a long crowded one (6 days and 6 people: 3 in 10) | filth and ash round the old fire |
+  | offal | 2 or more butchered and a hurried or sour going: half | blood and meat at the butcher's spot; half again (the budget) a predator of the land walks in |
+  | embers | hot and dry (26 degrees, no rain) and a hurried or sour going: a quarter | half again (the budget) the grass by the fire catches |
+  | a lame beast | a camp with beasts, in its own time: about a third | left with the colony, a bruised leg |
+  The predator and the fire are the game's own, through the shared budget (`HarmKinds.CampLeft`, "what a camp left
+  behind", system `campLeft` on with the camps; base rate 0.0015 a colonist-year from the balance model at 4000 runs,
+  its pass about 0.32; the average colony of six stays at 0.459 hurts a colonist-year with the budget).
+- **Words.** The letter that brings them says how they'll sleep (`CC_Camp_Facts_Shelter_*`) and the work they mean to do
+  (`CC_Camp_Facts_Work`); a camp's lines can ask for what it built (`[shelter:hut]`, `huts`, `tents`, `tentbeds`,
+  `ring`); every kind's settled and leaving lines were read against what's now built and done (windbreaks, bedrolls in
+  tents, a round house, a hermit's garden nobody made, a struck camp whose walls stand). No camp word says there was no
+  room; the diary and the why say the colony's land reaches everywhere a camp could go.
+- **Saved**: the plans' room and waiting; the day's new counts and the stay's totals, the packing's ending and hour
+  (`Camp.ExposeDay`, `ExposePack`): no new collection. The plans model in `Tools/save_estimate.py` holds up to 90 a camp.
+- **Performance**: one job-giver pass per pawn as before; the searches (rock, plants, a catch) each wait hours after
+  coming up empty; the layout is worked out once, when a camp is made, from a cell cache.
+- **Catalogue**: `Tools/mod_pool.py` writes `docs/player-mods/buildings.tsv` (every building by what it's for, its age,
+  stuff, cost, research and work); rebuilt from the player's files and the 8 November save, every other table came out
+  the same but `mods.tsv`'s inSave for Harvest and Haul (in the earlier save, not this one).
+
 ## Harm from everyday life
 
 The player's harm rule (3 November 2026) lets Rimfolk hurt its people when it is flavourful or makes the game more

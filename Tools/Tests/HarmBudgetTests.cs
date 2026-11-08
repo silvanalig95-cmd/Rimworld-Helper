@@ -57,9 +57,11 @@ public static class HarmBudgetTests
         var five = laterKinds.Where(k => Array.IndexOf(all, k) >= Array.IndexOf(all, HarmKinds.SickWorkOn) && Array.IndexOf(all, k) < tamer).ToList();
         int seven0 = Array.IndexOf(all, HarmKinds.SitDown);
         var six = laterKinds.Where(k => Array.IndexOf(all, k) > tamer && Array.IndexOf(all, k) < seven0).ToList();
-        var seven = laterKinds.Where(k => Array.IndexOf(all, k) >= seven0).ToList();
-        C(founding.Count == 18 && four.Count == 16 && five.Count == 14 && six.Count == 23 && seven.Count == 28 && laterKinds.Count == 82 && all.Last() == HarmKinds.WorkingWrong,
-            $"the kinds built before the budget ({founding.Count}), harm part 4's ({four.Count}: the fifteen, a guest's night in two), part 5's ({five.Count}), the tamers' bout (peoples, release D), part 6's ({six.Count}) and part 7's ({seven.Count})");
+        int camps0 = Array.IndexOf(all, HarmKinds.CampLeft);
+        var seven = laterKinds.Where(k => Array.IndexOf(all, k) >= seven0 && Array.IndexOf(all, k) < camps0).ToList();
+        var camps = laterKinds.Where(k => Array.IndexOf(all, k) >= camps0).ToList();
+        C(founding.Count == 18 && four.Count == 16 && five.Count == 14 && six.Count == 23 && seven.Count == 28 && camps.Count == 1 && laterKinds.Count == 83 && all.Last() == HarmKinds.CampLeft,
+            $"the kinds built before the budget ({founding.Count}), harm part 4's ({four.Count}: the fifteen, a guest's night in two), part 5's ({five.Count}), the tamers' bout (peoples, release D), part 6's ({six.Count}), part 7's ({seven.Count}) and what a camp left ({camps.Count})");
         foreach (var id in new[] { "1.1.1", "2.5.2", "2.2.3", "1.2.3", "4.3.1", "3.4.1", "4.7.2", "4.5.3", "4.5.1", "4.9.1", "3.6.1", "1.4.2", "2.5.1", "2.8.1", "4.1.1" })
             C(four.Any(k => k.label.Contains("(" + id + ")")), $"the proposal {id} is a kind of part 4");
         foreach (var id in new[] { "1.2.1", "1.2.2", "3.2.1", "2.4.1", "3.1.1", "2.2.1", "2.1.1", "3.5.1", "1.4.1", "3.3.1" })

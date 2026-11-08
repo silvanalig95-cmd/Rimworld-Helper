@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Camps that build properly, keep a day and leave things behind
+
+*8 November 2026, version 0.167.0*
+
+- A camp now builds for all its people: a bed for every sleeper, round the fire, in one hut or in tents that are real rooms with walls all round, a door and a roof, with tables and seats, lights, butcher and crafting spots, a hitching spot for their animals, all sized to how many came and how long they stay.
+- Each kind builds in its people's age from your enabled mods: leather bedrolls, Classical tents, log huts with a tribal curtain for a tribe; cloth tents from Medieval 2 and stools; chemlamps from Settlers in the industrial age; steel and synthread for spacers.
+- A wooded spot is a fine site: they fell the trees in the way, cut bushes, carry chunks aside and mine plain rock as your own builders would, and only give up a piece for what they may never touch.
+- Campers keep a day: sleep in their own beds, eat at their table from what they hunted, gathered and cooked, and work by their calling: wood, hunting, fishing with Odyssey or Vanilla Fishing Expanded, plain rock, wild plants, simple crafts and mending; evenings by the fire talking, and they defend their camp when enemies come close.
+- They take from the land freely but never anything of yours: no buildings, machinery, stores, crops, animals, home area or zones, no ore or anything worth more than plain stone, and never an animal you marked to take its body.
+- When they leave they pack their bedrolls, tents, tables and stools on the map over a few hours and leave walls, huts and the fire pit standing for anyone to use; a few kinds take theirs down for reasons of their own.
+- What they leave behind follows how the stay went: a woodpile, hides, a cairn or a gift after a good one; refuse, offal that draws a predator, embers in dry grass or a lame beast after a bad one, the hurts on the shared budget.
+
 ## A bleeding animal's body, and the wrong-style things named
 
 *8 November 2026, version 0.166.0*

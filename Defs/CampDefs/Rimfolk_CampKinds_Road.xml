@@ -81,10 +81,10 @@
     </seekTexts>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
-      <li><role>stall</role><defs><li>Table1x2c</li></defs><stuff><li>WoodLog</li></stuff></li>
-      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+      <li><role>stall</role></li>
     </structures>
+    <sleep>Tents</sleep>
+    <works><li>Chop</li></works>
     <!-- Their pack beasts (the kind their own caravans use, where this land allows it) tethered by the stash, with the
          bales and fodder unloaded beside them; porters carry bales between the beasts and the stall all day. -->
     <animals>
@@ -108,7 +108,7 @@
       <li>[winter] A caravan of {FACTION}, caught by the weather between towns, has turned off the road toward the colony's smoke. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} until the beasts are rested and the road is clear.</li>
     </texts>
     <settled>
-      <li>The caravan from {FACTION} has made camp {PLACE}, with the bales stacked into a wall against the wind and a kettle on the fire that never seems to come off.</li>
+      <li>The caravan from {FACTION} has made camp {PLACE}, with the bales stacked by the beasts and a kettle on the fire that never seems to come off.</li>
       <li>The caravan's camp is up {PLACE}, with its goods laid out on a table for anyone who wants to look, and a guard on the bales who doesn't seem to sleep.</li>
       <li>The caravan from {FACTION} has camped {PLACE}, the beasts unloaded and tethered by the stash, and the cloth already going over to the trading table one bolt at a time.</li>
     </settled>
@@ -273,10 +273,10 @@
     </seekTexts>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
-      <li><role>stall</role><defs><li>Table1x2c</li></defs><stuff><li>WoodLog</li></stuff></li>
-      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+      <li><role>stall</role></li>
     </structures>
+    <sleep>Tents</sleep>
+    <works><li>Chop</li></works>
     <titles>
       <li>Merchants from afar</li>
       <li>Strange goods on the road</li>
@@ -394,10 +394,9 @@
     </seekTexts>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Leather_Plain</li><li>Cloth</li></stuff></li>
-      <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>3</count></li>
-      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
     </structures>
+    <sleep>Ring</sleep>
+    <works><li>Chop</li><li>Gather</li></works>
     <!-- Part of their herd grazes beyond the camp (beasts that suit the weather here, those that live wild on this land
          likelier), and a dog keeps to a drover's heels. The beast the colony can buy is one of these. -->
     <animals>
@@ -417,7 +416,7 @@
     <settled>
       <li>The drovers from {FACTION} have made camp {PLACE}, with a rough fence for the dogs and a fire that smells of dung smoke. The herd can be heard beyond the ridge, lowing.</li>
       <li>The drovers' camp is up {PLACE}: a fire, a fence, a dog and not much else. Drovers travel light.</li>
-      <li>The drovers have made camp {PLACE}, behind a windbreak of logs, and the herd is out grazing beyond it with one of them never far behind.</li>
+      <li>The drovers have made camp {PLACE}, their beds round the fire, and the herd is out grazing beyond it with one of them never far behind.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, the youngest of the drovers {PLACE}, says {X_pronoun} has had enough of walking behind cows, and asks whether the colony could use someone who knows animals.</li>
@@ -594,9 +593,14 @@
     </seekTexts>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <!-- They sleep on the ground: a sleeping place each, of their own ways, not their people's bedrolls. -->
       <li><role>bed</role><defs><li>SleepingSpot</li></defs></li>
       <li><role>spot</role><defs><li>MeditationSpot</li><li>PartySpot</li></defs></li>
     </structures>
+    <sleep>Ring</sleep>
+    <leaves>NoTrace</leaves>
+    <leavesWhy>penitents take up their few things and sweep the ground behind them, so that nothing of their camp is left</leavesWhy>
+    <works><li>Gather</li></works>
     <titles>
       <li>Penitents on the road</li>
       <li>[ideology] Penitents of {IDEO}</li>
@@ -765,9 +769,15 @@
     </seekTexts>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <!-- They sleep on the ground: a sleeping place each, of their own ways, not their people's bedrolls. -->
       <li><role>bed</role><defs><li>SleepingSpot</li></defs></li>
       <li><role>spot</role><defs><li>MeditationSpot</li><li>PartySpot</li></defs></li>
     </structures>
+    <sleep>Ring</sleep>
+    <works><li>Gather</li></works>
+    <leaves>NoTrace</leaves>
+    <leavesWhy>their ways leave nothing on the land but the saplings they plant: walls and windbreaks come down when they go</leavesWhy>
+    <leftovers><li>Gift</li></leftovers>
     <titles>
       <li>Tree-singers</li>
       <li>Pilgrims of the green</li>
@@ -926,9 +936,10 @@
     </situationKinds>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
-      <li><role>stall</role><defs><li>Table1x2c</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>stall</role></li>
     </structures>
+    <sleep>Tents</sleep>
+    <works><li>Gather</li></works>
     <titles>
       <li>A traveling healer</li>
       <li>[lowtech] A wise-woman on the road</li>
@@ -943,7 +954,7 @@
     <settled>
       <li>The healer from {FACTION} has set up {PLACE}, with jars and bundles in rows on a folding table and a bench beside it for anyone who needs looking at.</li>
       <li>The healer from {FACTION} has had a kettle on the fire {PLACE} since first light, and a row of jars on the table that gets shorter every day.</li>
-      <li>The healer from {FACTION} has camped {PLACE}, with a bedroll by the fire and a table of remedies where anyone feeling poorly can come and sit.</li>
+      <li>The healer from {FACTION} has camped {PLACE}, with shelter for the night by the fire and a table of remedies where anyone feeling poorly can come and sit.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, the healer's apprentice, has learned all the road can teach, {X_pronoun} says, and the colony needs a healer more than the road does. {X_nameDef} asks to stay.</li>
@@ -1057,10 +1068,10 @@
     </situationKinds>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
       <li><role>spot</role><defs><li>PartySpot</li></defs></li>
-      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
     </structures>
+    <sleep>Tents</sleep>
+    <works><li>Craft</li><li>Chop</li></works>
     <titles>
       <li>Fiddles at dusk</li>
       <li>Music on the road</li>
@@ -1192,9 +1203,10 @@
     </situationKinds>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li></stuff></li>
-      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+      <li><role>light</role></li>
     </structures>
+    <sleep>Ring</sleep>
+    <works><li>Chop</li></works>
     <titles>
       <li>Mourners on the road</li>
       <li>Carrying their dead home</li>

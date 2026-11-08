@@ -266,7 +266,7 @@ public static class PeoplesETests
         C(contract.Contains("Request(ask)") && contract.Contains("BannerSquad.Unpaid(this)") && contract.Contains("Leave(\"unpaid\")") && contract.Contains("BannerSquad.Kept(this)")
           && Read("Camps", "CampAsks.cs").Contains("a?.price == ContractWagePrice ? ContractWage()") && Read("Camps", "CampKindsLand.cs").Contains("case \"contract\": return ContractJob(p);")
           && Read("Camps", "CampLife.cs").Contains("ending == \"unpaid\""), "unpaid they walk, kept they go content, the wage carried out as the ask's price, a sentry at the gate by day");
-        C(Read("Camps", "CampLife.cs").Contains("if (kind.fights || guards)"), "a camp that fights takes up arms when the colony is attacked");
+        C(Read("Camps", "CampLife.cs").Contains("if (kind.fights || guards || ally || defend || fighting)"), "a camp that fights takes up arms when the colony is attacked");
 
         // ================= The patch on Rimfolk's own defs =================
 

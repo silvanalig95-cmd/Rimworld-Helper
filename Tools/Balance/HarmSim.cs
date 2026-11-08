@@ -330,6 +330,12 @@ namespace Balance
         private const float HandTrips = 0.5f;
         /// <summary>Of the camps, those with a herd.</summary>
         private const float HerdCamps = 0.5f;
+        /// <summary>
+        /// Of the camps, those that leave offal or embers behind (CampPackMath.Leaves): a hunting camp (about a third) gone in
+        /// a hurry or sour (a fifth), half of them leaving offal; or hot, dry weather (a quarter) and the same going, a quarter
+        /// of them embers. And how often the beast or the fire catches one of the colony.
+        /// </summary>
+        private const float CampLeftShare = 0.35f * 0.2f * 0.5f + 0.25f * 0.2f * 0.25f, CampLeftHurts = 0.25f;
         /// <summary>Encounters stepping close to a wild animal a colony-year, and the game's taming-revenge chance of the kinds met (0 to 0.25).</summary>
         private const float CloseEncounters = 1.5f, RevengeTop = 0.25f;
         /// <summary>Those who walk the fields at dawn, their dawns out a colony-year, and alone there.</summary>
@@ -1389,6 +1395,14 @@ namespace Balance
                         y.today.Add((12 + h % 6, () => Hurt(y, p, HarmKinds.DroversBull)));
                         break;
                     }
+            }
+            // What a camp left behind (CampPackMath.Leaves): offal of a hunting camp gone in a hurry or sour that draws a
+            // predator in, or embers in dry grass; the game's own beast or fire catches one of the colony a time in four.
+            var gcl = rng("camp left");
+            if (gcl.NextDouble() < CampsPerYear * CampLeftShare / Days && Comes(y, HarmKinds.CampLeft, gcl, CampPackMath.OffalDrawChance) && gcl.NextDouble() < CampLeftHurts)
+            {
+                var p = Any(y, gcl);
+                y.today.Add((15, () => Hurt(y, p, HarmKinds.CampLeft)));
             }
             // The wild one too close: an encounter close to a wild animal, by the game's taming-revenge chance for its kind.
             var gx = rng("too close");

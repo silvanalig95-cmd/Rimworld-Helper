@@ -88,10 +88,10 @@
     </situationKinds>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>VFEC_Tent</li><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
-      <li><role>stall</role><defs><li>Table1x2c</li></defs><stuff><li>WoodLog</li></stuff></li>
-      <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>3</count></li>
+      <li><role>stall</role></li>
     </structures>
+    <sleep>Tents</sleep>
+    <works><li>Mine</li><li>Chop</li></works>
     <animals>
       <li><pack>true</pack><kinds><li>Donkey</li><li>Muffalo</li><li>Horse</li><li>Dromedary</li></kinds><count>1~1</count><at>picket</at></li>
     </animals>
@@ -109,7 +109,7 @@
       <li>[ws:build] Stonecutters of {FACTION} have come for the loose rock on the colony's land, with {SITUATION} wanting every block the region can cut. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and work it for a few days.</li>
     </texts>
     <settled>
-      <li>The stonecutters' camp {PLACE} is up: a fire, a bench for the work, and a windbreak of logs.</li>
+      <li>The stonecutters' camp {PLACE} is up: a fire, a table for the work, and shelter for the night.</li>
       <li>The stonecutters from {FACTION} have made camp {PLACE}. The pack beast is tethered, and their tools are laid out on the bench.</li>
       <li>At the stonecutters' camp {PLACE}, a bench stands ready by the fire with the mallets laid along it.</li>
     </settled>
@@ -241,9 +241,9 @@
     </situationKinds>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>VFEC_Tent</li><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
-      <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>2</count></li>
     </structures>
+    <sleep>Tents</sleep>
+    <works><li>Chop</li><li>Gather</li></works>
     <animals>
       <li><pack>true</pack><kinds><li>Donkey</li><li>Horse</li><li>Muffalo</li></kinds><count>1~1</count><at>picket</at></li>
       <li><follow>true</follow><named>true</named><kinds><li>Husky</li><li>LabradorRetriever</li></kinds><count>1~1</count></li>
@@ -263,7 +263,7 @@
       <li>[their:spacer] A contract shearing crew of {FACTION} has walked in with power clippers in their packs and a dog. {X_nameDef} asked {A_nameDef} whether the colony's flock wanted doing, and whether they might camp {PLACE} while they did it.</li>
     </texts>
     <settled>
-      <li>The shearers' camp {PLACE} is up: a fire, their bedrolls, and the blades laid out to be honed.</li>
+      <li>The shearers' camp {PLACE} is up: a fire, shelter for the night, and the blades laid out to be honed.</li>
       <li>The shearers from {FACTION} have made camp {PLACE}. Their dog has already found the warmest spot by the fire.</li>
     </settled>
     <joinTexts>
@@ -389,9 +389,9 @@
     </situationKinds>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>VFEC_Tent</li><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
-      <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>3</count></li>
     </structures>
+    <sleep>Tents</sleep>
+    <works><li>Chop</li><li>Gather</li></works>
     <animals>
       <li><pack>true</pack><kinds><li>Horse</li><li>Donkey</li><li>Dromedary</li></kinds><count>1~2</count><at>picket</at></li>
     </animals>
@@ -409,7 +409,7 @@
       <li>[ws:herds] With the great herds moving, beast-catchers of {FACTION} have come for the wild beasts on the colony's land. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and take a couple of them.</li>
     </texts>
     <settled>
-      <li>The beast-catchers' camp {PLACE} is up: a fire, a windbreak, and ropes coiled ready by the picket.</li>
+      <li>The beast-catchers' camp {PLACE} is up: a fire, shelter for the night, and ropes coiled ready by the picket.</li>
       <li>The beast-catchers from {FACTION} have made camp {PLACE}, and one of them is already watching the herd from the rise.</li>
     </settled>
     <joinTexts>
@@ -533,8 +533,9 @@
     <extendChance>0.3</extendChance>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>VFEC_Tent</li><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
     </structures>
+    <sleep>Tents</sleep>
+    <works><li>Gather</li></works>
     <animals>
       <li><pack>true</pack><kinds><li>Donkey</li><li>Alpaca</li><li>Horse</li></kinds><count>1~1</count><at>picket</at></li>
     </animals>
@@ -553,7 +554,7 @@
       <li>[their:spacer] A traveling tutor of {FACTION} has walked in with teaching slates and a pack beast. {X_nameDef} asked {A_nameDef} whether the colony's children were learning, and whether {X_pronoun} might camp {PLACE} for a few days.</li>
     </texts>
     <settled>
-      <li>The teacher's camp {PLACE} is up: a fire, a few bedrolls, and slates leaning against the packs.</li>
+      <li>The teacher's camp {PLACE} is up: a fire, a few beds under shelter, and slates leaning against the packs.</li>
       <li>The teacher from {FACTION} has made camp {PLACE}, and the pupils are already going over their letters by the fire.</li>
     </settled>
     <joinTexts>
@@ -671,9 +672,9 @@
     <situationWeight>5</situationWeight>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
-      <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>3</count></li>
     </structures>
+    <sleep>Hut</sleep>
+    <works><li>Gather</li></works>
     <titles>
       <li>Wounded fighters</li>
       <li>[ws:war] Wounded from {SITUATION}</li>
@@ -685,7 +686,8 @@
       <li>[their:hightech] A section of {FACTION}'s fighters has come in on foot with their wounded, field dressings on arms and legs. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} a few days before they push on home.</li>
     </texts>
     <settled>
-      <li>The fighters' camp {PLACE} is up: a fire, bedrolls in a row, and a windbreak of logs.</li>
+      <li>[shelter:hut] The fighters' camp {PLACE} is up: a fire, and a hut with their beds in a row.</li>
+      <li>The fighters' camp {PLACE} is up: a fire, their beds in a row, and someone always awake beside them.</li>
       <li>The fighters of {FACTION} have made camp {PLACE}, and the ones who can walk are seeing to the ones who can't.</li>
     </settled>
     <joinTexts>

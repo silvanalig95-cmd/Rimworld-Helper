@@ -103,18 +103,19 @@ namespace ColonyCouncil
                 if (w.cold) parts.Add(c.Text(w.windbreak ? "CC_Camp_Facts_PitchColdWind" : "CC_Camp_Facts_PitchCold"));
                 else if (w.windbreak) parts.Add(c.Text("CC_Camp_Facts_PitchWind"));
                 if (w.shade) parts.Add(c.Text("CC_Camp_Facts_PitchShade"));
+                // What they put up to sleep in, as the layout has it (CampSite.Layout).
+                if (!w.shelter.NullOrEmpty() && ("CC_Camp_Facts_Shelter_" + w.shelter).CanTranslate()) parts.Add(c.Text("CC_Camp_Facts_Shelter_" + w.shelter));
             }
-            var k = c.kind;
-            if (k.huntsPerDay > 0f && k.chopsPerDay > 0f) parts.Add(c.Text("CC_Camp_Facts_Both"));
-            else if (k.chopsPerDay > 0f) parts.Add(c.Text("CC_Camp_Facts_Wood"));
-            else if (k.huntsPerDay > 0f) parts.Add(c.Text("CC_Camp_Facts_Game"));
+            // The day's work they mean to do round their camp (CampWork.Day): their callings and the camp's common work.
+            string labour = c.WorkWords();
+            if (!labour.NullOrEmpty()) parts.Add(c.Text("CC_Camp_Facts_Work", null, null, 0, labour));
             if (c.trader != null) parts.Add(c.Text("CC_Camp_Facts_Trader", c.trader));
             // A land kind's own work (CampKindsLand.cs): where they fish, what they strip, the fields they'd reap.
             string work = c.LandFacts();
             if (work != null) parts.Add(work);
             string animals = c.AnimalsText();
             if (animals != null) parts.Add(c.Text("CC_Camp_Facts_Animals", null, null, 0, animals));
-            if (k.asks?.Any(x => x != null && !x.theyAsk) ?? false) parts.Add(c.Text("CC_CampAsk_Facts"));
+            if (c.kind.asks?.Any(x => x != null && !x.theyAsk) ?? false) parts.Add(c.Text("CC_CampAsk_Facts"));
             parts.Add(c.Text("CC_Camp_Facts_Talk"));
             return string.Join(" ", parts);
         }

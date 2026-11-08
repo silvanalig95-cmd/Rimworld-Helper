@@ -2602,9 +2602,11 @@ the mod's own def names (the tests hold the list):
 - **Room themes:** a hall theme of Medieval Overhaul's rustic furniture and floors, its royal furniture in the
   stately theme, and a garden theme with Alpha Props: Parks and Gardens' lawns and street lights. The layout tests
   check every room in both.
-- **Tents for camps:** camps pitch Vanilla Factions Expanded - Classical's one-person tents instead of bedrolls, and
-  hunters, traders, healers and players raise a tent of Medieval Overhaul's hide or cloth walls (with Outland's tent
-  flap for a door); refugees put up a cloth windbreak.
+- **Camps built of your mods:** the road folk who sleep in tents pitch Vanilla Factions Expanded - Classical's
+  one-person tents, or tents of Vanilla Factions Expanded - Medieval 2's cloth walls with Doors Expanded's or More Door
+  Variants' curtain for a door; tribal huts are of Vanilla Furniture Expanded - Architect's log walls, with Alpha Memes'
+  crude tables and Vanilla Furniture Expanded's sitting cushions; an industrial camp lights Vanilla Expanded Settlers'
+  chemlamps; a medieval windbreak is Vanilla Factions Expanded - Medieval 2's palisade. Without them, the game's own.
 - **Hospitality's guests in the newer systems:** a lonely colonist may keep a guest company (a small habit), guests
   near a toast raise their cups, a guest on screen now and then says a word about their stay, and This week lists who
   is staying and how it's going. Guests always stay in Hospitality's own lord: only colonists go to them.
@@ -2805,12 +2807,24 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   your water, the healers' apprentice wants practice on your sick, the players want an audience, the prospectors a test
   hole on your side, the traders a day's stall at your gate, the pilgrims to pray at your graves, the hermit, once, a
   dose of medicine. Granted, their own people walk into the colony to do it, a few hours in daylight, and what they
-  promised comes when it's done; refused, the camp minds. They build the camp themselves,
-  cook at their fire, hunt and fell trees around it (never near your home area), trade, sometimes help, and may ask
-  to join. Each kind looks the part on the map: the caravan's pack beasts tethered by the stash while porters carry
+  promised comes when it's done; refused, the camp minds. They build the camp themselves, a proper one for their people
+  and their stay, of their people's age: a bed for each of them, round the fire (a war party, mourners, pilgrims), in one
+  hut with walls all round, a door and a roof (settlers, refugees, the hermit, the wardens' post), or in tents (traders,
+  hunters, healers and the other road folk), and for a longer stay tables with a seat each, lights, a butcher's and a
+  crafting spot, a hitching spot for their beasts and a shelf for their goods. A wooded spot is as good as an open one:
+  they fell the trees in the way, carry chunks aside and mine plain rock, as your builders would. Their day: their own
+  beds at night, meals at their table, work from seven to five (cutting wood, hunting, fishing, mining plain rock,
+  gathering wild plants, making something at their spot, mending their camp) and the evening talking by the fire. They
+  take only what's wild and plain, never anything of yours (buildings, machinery, stockpiled or forbidden things, crops,
+  animals, your home area and zones), no ore and nothing worth more than plain stone. Enemies at their camp, those with
+  weapons defend it; an allied people fights beside you. They trade, sometimes help, and may ask to join. Going in their
+  own time, they pack their bedrolls, tents and furniture on the map in their last hours and leave their walls, huts and
+  fire pit standing, nobody's (the penitents, the tree-singers and deserters take theirs down; the Banner's squad leaves
+  its post to you); a good stay can leave a woodpile, hides, a cairn or a gift, a sour or hurried one refuse, offal that
+  draws a predator in, embers in dry grass or a lame beast. Each kind looks the part on the map: the caravan's pack beasts tethered by the stash while porters carry
   bales to the stall, the drovers' herd grazing beyond the camp with a dog at a drover's heels (real animals of their
   people, a handful at most, fed by the camp and leaving with it), hunters dressing each kill at their butchering
-  spot, the refugees' washing by the windbreak, the hermit's woodpile by the door. The smith may walk over and mend
+  spot, the refugees' washing by their hut's door, the hermit's woodpile by the door. The smith may walk over and mend
   one of your damaged doors or walls for nothing. When their stay ends, the healers go round your sick and hurt
   first, the mourners plant a sprig of green by your gate, the hermit leaves a carved bird by your door, the players
   leave their castle backdrop standing and the tree-singers a ring of saplings where their fire was, and the day goes

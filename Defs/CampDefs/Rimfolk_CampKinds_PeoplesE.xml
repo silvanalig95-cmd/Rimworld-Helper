@@ -38,9 +38,11 @@
     <extendChance>0</extendChance>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
-      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
     </structures>
+    <sleep>Hut</sleep>
+    <works><li>Chop</li><li>Hunt</li><li>Mine</li></works>
+    <leaves>Employer</leaves>
+    <leavesWhy>a squad hired by contract builds its post for the one who pays: when the contract ends the post is the colony's</leavesWhy>
     <asks>
       <li>
         <key>wage</key>
@@ -97,14 +99,15 @@
     </texts>
     <settled>
       <li>The Banner's squad has its fire going {PLACE}, weapons stacked within reach and a sentry who never quite sits down.</li>
-      <li>The squad {PLACE} has its camp up in a straight line, bedrolls squared, the ash-grey hung out to dry.</li>
+      <li>[shelter:hut] The squad {PLACE} has its post up: four walls in a straight line, beds squared inside, the ash-grey hung out to dry.</li>
+      <li>The squad {PLACE} has its camp up in a straight line, beds squared, the ash-grey hung out to dry.</li>
       <li>Smoke rises from the Banner's camp {PLACE}, and someone there is reading the Roll aloud to the others.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of the Banner's squad camped {PLACE}, came to the gate with {X_possessive} pack on. The contract is the company's, {X_nameDef} says, but a wall worth holding is worth staying for; is there a place here?</li>
     </joinTexts>
     <farewell>
-      <li>The Banner's squad struck camp {PLACE} at the season's end and marched off in step. The contract was kept to its last day, and the Roll will say so.</li>
+      <li>The Banner's squad packed its bedding {PLACE} at the season's end and marched off in step, leaving its post to the colony that hired it. The contract was kept to its last day, and the Roll will say so.</li>
       <li>[carried] The squad of {FACTION} kept the contract to its last day and went, carrying their dead with them. Every name will be read into the Roll.</li>
       <li>The squad's camp {PLACE} is empty, the fire raked out and the ground squared. {X_nameDef} saluted at the gate: paid to the day, held to the day.</li>
     </farewell>
