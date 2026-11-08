@@ -167,6 +167,10 @@ namespace ColonyCouncil
             string fortune = RegionBook.FortunesOn ? RegionFortunes.Line(WorldLedger.TownRecord(rec.key)) : null;
             if (!fortune.NullOrEmpty()) text += "\n\n" + "CC_TownAfter_LetterFortune".Translate(town.Name.Named("TOWN"), fortune.UncapitalizeFirst().Named("FORTUNE")).Resolve();
             string label = "CC_TownAfter_LetterLabel".Translate(head.LabelShort.Named("HEAD"), town.Name.Named("TOWN")).Resolve();
+            // A letter carried to the colony: with whoever comes its way (the post, traders, visitors), or their messenger after a while (Post/MailIn.cs).
+            if (messenger && MailIn.FromAbroad(home, rec.people, town, label, text, LetterDefOf.NeutralEvent,
+                    "CC_TownAfter_LetterBring".Translate(head.LabelShort.Named("HEAD")).Resolve()))
+                return;
             if (messenger && Couriers.MailAnswer(home, rec.people, new List<Thing>(), MailId, now, "CC_TownAfter_LetterBring".Translate(head.LabelShort.Named("HEAD")).Resolve(),
                     label, text, LetterDefOf.NeutralEvent, null, null) != null)
                 return;

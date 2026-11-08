@@ -17,6 +17,10 @@ beside them.
 
 ## Step 1: the post (how messages travel)
 
+*Built (8 November 2026), points 1 to 9, in `Source/ColonyCouncil/Post/` (DESIGN.md "The post: letters that travel with
+someone"; the handoff's entry has what was verified and what wasn't). Giddy-Up's riding is tried by its own "Mount" job
+by name and falls back to leading the beast; Vehicle Framework is not used (the mail run comes mounted or on foot).*
+
 1. **The outbox.** Letters written wait in a mailbag at the gate (a spot the colony places, with a plain fallback by the
    gate when it has none). Its inspect pane lists each letter and how it is likely to leave ("with the next rider on the
    east road", "with the traders camped by the river").

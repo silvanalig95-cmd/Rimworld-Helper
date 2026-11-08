@@ -418,9 +418,18 @@ namespace ColonyCouncil
         public override void GameComponentTick()
         {
             int now = Now;
-            if (letters.Count > 0 && Sched.Every(now, Sched.RareTicks, Sched.RareNeighbours) && NeighbourLetters.WantsRare(this))
-                using (PassClock.Time(Pass.RareNeighbours))
-                    Safe("rare", () => NeighbourLetters.Rare(this, now));
+            if (Sched.Every(now, Sched.RareTicks, Sched.RareNeighbours))
+            {
+                bool letterJobs = letters.Count > 0 && NeighbourLetters.WantsRare(this);
+                // The post's watch (Post/MailWatch.cs) rides on the letters' pass: outsiders leaving with the mail, mail coming in, the post rider.
+                bool post = MailWatch.Wants;
+                if (letterJobs || post)
+                    using (PassClock.Time(Pass.RareNeighbours))
+                    {
+                        if (letterJobs) Safe("rare", () => NeighbourLetters.Rare(this, now));
+                        if (post) Safe("post", () => MailWatch.Rare(now));
+                    }
+            }
             if (!Sched.Hourly(now, Sched.Neighbours)) return;
             using var clock = PassClock.Time(Pass.Neighbours);
             // Diplomacy's hour and day (Diplomacy/Diplomacy.cs): built on the neighbours and their letters, it rides on their pass.
@@ -436,6 +445,13 @@ namespace ColonyCouncil
             if (now / Sched.HourTicks % 6 == 0 || notables.Count == 0) Safe("towns", () => Refresh(now));
             if (Sched.FirstHourOfDay(now)) Safe("day", () => Daily(now));
             Safe("letters", () => NeighbourLetters.Hourly(this, now));
+            // The post's hour (Post/): mail waiting too long goes by messenger, the regular post's round, the colony's riders on the road.
+            Safe("post", () =>
+            {
+                MailIn.Hourly(now);
+                PostRider.Hourly(now);
+                OwnRiders.Hourly(now);
+            });
         }
 
         private static void Safe(string what, Action a)

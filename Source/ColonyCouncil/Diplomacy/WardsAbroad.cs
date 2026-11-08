@@ -389,10 +389,12 @@ namespace ColonyCouncil
             }
             var head = Head(town);
             string key = w.page ? "CC_Ward_Letter_Page" : "CC_Ward_Letter_" + Ages.Of(w.people);
-            Tell.Letter(NewsKind.World, Importance.Flavor, map, WardWords.P("CC_Ward_Letter_Label", p.Named("PAWN"), town.Name.Named("TOWN")),
-                WardWords.T(key, p.Named("PAWN"), town.Name.Named("TOWN"), WardWords.People(w.people).Named("PEOPLE"), WardWords.Skill(w.skill).Named("SKILL"),
-                    (head != null ? head.Name : WardWords.People(w.people)).Named("HEAD")),
-                LetterDefOf.NeutralEvent, new LookTargets(town), w.people);
+            string label = WardWords.P("CC_Ward_Letter_Label", p.Named("PAWN"), town.Name.Named("TOWN"));
+            string text = WardWords.T(key, p.Named("PAWN"), town.Name.Named("TOWN"), WardWords.People(w.people).Named("PEOPLE"), WardWords.Skill(w.skill).Named("SKILL"),
+                (head != null ? head.Name : WardWords.People(w.people)).Named("HEAD"));
+            // A letter carried to the colony: with whoever comes its way, or a messenger after a while (Post/MailIn.cs).
+            if (!MailIn.FromAbroad(map, w.people, town, label, text, LetterDefOf.NeutralEvent))
+                Tell.Letter(NewsKind.World, Importance.Flavor, map, label, text, LetterDefOf.NeutralEvent, new LookTargets(town), w.people);
             Diplomacy.Dirty();
         }
 

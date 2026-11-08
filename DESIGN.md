@@ -6436,6 +6436,115 @@ written. Now (`World/LetterMath.cs`, pure and tested in `LettersPetitionsTests`;
   so does an invitation not taken up, or one taken up with nobody free to travel. A truce, a ransom, an envoy, a ward, a
   match and an oath give their own reasons (`LetterMath.OwnReasons`) and get no second one.
 
+### The post: letters that travel with someone (the player's request, 8 November 2026)
+
+The player: "the couriers it feels a bit weird being able to ... send a letter to some civilization and then a courier
+just randomly appears out of nowhere ... It should be more opportunistic, I guess, dynamic", "visitors and other random
+characters should perhaps also be able to take letters when going their direction", and the same day "i should also have
+some sort of diplomatic range, right? until comms". Step 1 of `docs/design/post-and-letters.md`, in `Post/` (pure rules in
+`PostMath.cs`, `PostTests`, "the post: ", 245 checks). Under **The post: letters travel with someone** (`post`, the
+neighbours' section, on, needs the letters) and **The post's pace** (`postPace`: Seldom, As usual, Often).
+
+- **The outbox.** A letter written goes in the mailbag (`Rimfolk_Mailbag`, a spot of the Misc tab drawn with the game's
+  caravan packing spot's texture in leather brown, `Building_Mailbag`; the one nearest the gate counts; none placed, the
+  gate cell, `PlaySpots.GateCell`) as a neighbour letter in the new stage `Outbox` (`Outbox.Put`, from `Written`). Its pane
+  lists each letter (to whom, what for, by whom, how it is likely to leave: `PostWords.Likely`) and the mail coming in;
+  its buttons send one with the colony's own rider or take one back. The old "three under way, one each" becomes one to
+  each notable and `PostMath.MaxOpen` (12) open at once with the post: the outbox itself keeps letters from all leaving at
+  once (NotableMath.MaxOpen, 3, without it).
+- **Anyone going that way takes them** (`MailWatch`, every 250 ticks on the letters' own pass, `Sched.RareNeighbours`,
+  only while there is a letter waiting, mail in or the post rider on a map). Any lord of a people at peace with the colony
+  on a home map whose job goes about the road (`PostMath.CarriesMail`: not a raid, a war band, a siege, a gathering, a
+  ceremony) is a carrier: traders, visitors and Hospitality's guests (`LordJob_VisitColony` by name), a camp
+  (`LordJob_Camp`), pilgrims, travellers passing, a people's messengers and envoys (`PostMath.CarrierOf`, by the job's
+  name). When one turns to leave (`Outsiders.Leaving`: its lord's exit toil, an exit duty, a job that leaves the map), the
+  letters on their way are kept for one of them (not the trader, the nearest the mailbag), who walks there
+  (`Rimfolk_PostTake`, two and a half seconds with a bar) and takes them; a lone outsider walking off does the same. The
+  colony's own caravan forming (`LordJob_FormAndSendCaravan` while it gathers its goods) sends one of its people for the
+  letters the way it leaves (`ExitSpot`); they go once the caravan is out on the world, and back in the bag if it never
+  leaves. **On their way** (`PostMath.OnTheirWay`): their own people's towns; a town along the road to where they're
+  going (near their destination, or no further and within 35 degrees of the way there); else within 60 degrees of the
+  way they leave the map, read as a world heading from the map's middle to their exit cell (a map's north is the world's).
+  A town at the door (under two tiles) is on everyone's way. The post rider takes every letter to the peoples the post
+  serves (at peace, medieval or later) within range or by relay; a carrier by shuttle anything within reach.
+- **Arrival.** Taken, the letter is on the road (`Travelling`) for the land's own days by the carrier's means
+  (`PostReach.Days`, below), relayed when far, and read when it gets there (the old `Read`); the answer comes back over the
+  same days. Who took it and how is kept on the letter (`carrier`, `carrierName`, `carrierMeans`, `relayName`) and said on
+  the letters page and the cards.
+- **A regular post** (`PostRider`, on the neighbours' hour). The post's age is what the colony and the best of the region's
+  peoples at peace (a town within 40 tiles) share (`PostMath.PostAge`): none for a tribe; a post rider every 7 to 14 days in
+  the medieval age, a mail run every 3 to 7 in the industrial, a shuttle every 2 to 4 in the spacer, times 1.5 seldom or
+  0.6 often. It comes by day when the map is safe, from the nearest people of that age at peace: one of their lighter
+  caravan hands (`Couriers.PersonKind`), from a road at the edge when there is one, with a mount from their caravans'
+  beasts of body size 1.2 or more that the land and season allow, else a horse, else on foot; in the spacer age by drop
+  pod at the mailbag. With Giddy-Up 2 the rider is given its "Mount" job by name (only when that job's driver is in
+  Giddy-Up's namespace); otherwise, or if it doesn't take, they lead the beast. `LordJob_PostRider`: travel to the
+  mailbag, keep close to it while the mail is set down and the letters taken, half an hour, then ride on (four hours at
+  the most); hurt or their people turned hostile, they leave defending themselves.
+- **The colony's own rider** (`OwnRiders`). "By our own rider" in the letter's dialog (with who rides), or the mailbag's
+  button: the colonist takes the letter from the mailbag (`Rimfolk_RiderSetOut`), walks to the edge with the colony's
+  fastest animal big enough to ride following them (`FollowClose`), and sets out as a caravan of their own (with the mount
+  if it kept up) straight to the town, as the envoy abroad does. At the town the letter is read (`ReadByRider`) and the
+  answer, and what it sends, ride home in their pack after a few hours; it opens when they're back on the home's map, with
+  "brought this answer home by hand". The range doesn't bind a rider; the road's length does. The roads' dangers are the
+  game's own caravan events; nothing is rolled here. Turned back by the player, the letter is back in the bag; lost on the
+  road, the letter is lost with them (said).
+- **Mail comes in the same way** (`MailIn`, `PostBook.incoming`). An answer of words only (`things.Count == 0`, not to a
+  people at war) goes in the post from the day it reaches the region; so do the world's letters carried to the colony:
+  a town's letter (`Colonies/TownsAfter.cs`), the colony's envoy's (`Diplomacy/EnvoysAbroad.cs`) and ward's
+  (`Diplomacy/WardsAbroad.cs`) letters from abroad (`MailIn.FromAbroad`, timed by their people's means over the land). A
+  group of outsiders seen coming in (within eight hours of first being seen) brings the mail from their way, by the same
+  rule from the edge they came in by, or from their own people; the post rider brings all the post's; one of them walks it
+  to the mailbag (`Rimfolk_PostDrop`) and each letter opens as they set it down, looking at them. An invited guest brings
+  their own answer if it is still in the post. When nobody has come for longer than is reasonable for its kind
+  (`PostMath.MessengerWaitDays`: urgent, help, a warning, a truce, a ransom, half a day; business three days; ordinary
+  letters eight, twelve with a regular post), a messenger of the writer's people brings it (`Couriers.MailAnswer`, as
+  before; the letter then waits for that trip). Sixteen waiting at most: past it the oldest goes by messenger.
+- **The comms console** stays on demand, to peoples with radio: industrial and later by `Peoples.TechOf`, or a town within
+  30 tiles of a town of the Signal Line (by its def's name, `Rimfolk_SignalLine*`, softly: the people is built in
+  parallel) (`PostReach.Radio`). An aide takes a message as before; what a call promises in goods still comes by courier.
+- **Writing takes a writer.** Those who can write are grown, free and can read by the game's own rule (`BookUtility.CanReadEver`);
+  the writer sits at a table for about an hour as before. A tribal colony with the post gives a spoken message: no
+  writing, the letter waits in the outbox as words (`spoken`), and when a carrier comes for it they wait at the mailbag
+  up to an hour and a half while the speaker (or anyone free who can talk) walks over and says it (`Rimfolk_PostSpeak`,
+  ten seconds face to face, a line each).
+- **Diplomatic range until radio** (`PostReach`, `PostMath.RangeDays`, `Band`, `Relay`, `LegDays`, `TileDays`). Reach is the
+  world's own travel time: a walking caravan's ticks over the game's path (the layer's `Pather.FindPath` with no caravan, timed by
+  `CaravanArrivalTimeEstimator` at the default pace from now, as the route planner does: terrain, roads and rivers, the season
+  and snow, night rests), cached three hours of the game, at most two new paths a
+  frame from a window; then the carrier's means takes a share of it (on foot 0.8, mounted 0.5, a vehicle 0.3, half a day to
+  start) and a shuttle goes by the straight distance (two days at most). `TileDays` models the game's per-tile cost (and
+  stands in when the game's path can't be read). The range is five days by the colony's runners, seven by riders, nine by
+  vehicles (a tribe with an animal to ride counts as riders), half again with a Signal Line mast near, none for a spacer
+  colony's shuttles. Within it (`Near`) anyone going that way reaches them; beyond it (`Far`) a letter is handed on through
+  the relay with the fewest days in all (a town nearer than theirs of a people at peace, goodwill 20 or more, within range
+  of the colony and itself within range of the letter's town, a day at the relay), and a carrier takes it if the relay is
+  on their way; out of reach (`Cut`: no relay, or no way by land) it goes only with their own people or someone whose
+  road goes there. Letters by diplomacy's purposes follow it, being letters.
+- **How to reach them now** (`PostWords.ReachLines`, a town's card under Who, the letter's dialog, the region map's
+  tooltip): by radio; by shuttle; by someone of theirs here; at war, a go-between; within reach, about so many days on the
+  road, by the next post, with their people on the map, or by the next caravan or traveller going that way; far, by relay
+  through a town; out of reach until radio; and "or by your own rider, about so many days there". The region map draws a
+  soft ring round a town far off (amber) or out of reach (grey) (`PostRing`, the hook for the diplomacy screen).
+- **What moved to the outbox and what stayed.** Moved: every letter written to a notable by hand (all of
+  `NeighbourLetters`' purposes, the diplomacy ones included: favours, pacts, truces with a people at peace, ransoms,
+  envoys asked for, wards, matches, fealty, a town asked back); the answers of words only; a town's letter; the envoy's
+  and ward's letters home. Stayed: letters to a people at war (a go-between under a white flag still comes for them, and
+  their answers by messenger: a truce can't wait for travellers going into enemy land); answers that send goods (a token,
+  the help asked, a debt paid: goods, not mail, by their messenger as before); a call's goods; someone of theirs at the
+  colony carrying a letter home (Outsiders/, by hand); and the letters that tell what happened (a pact sworn or broken,
+  fealty, a ward's arrival or death, an envoy's arrival, feasts): those are the game telling the player at once, not
+  letters carried, and delaying them would let the map and the words disagree.
+- **Old saves.** A letter waiting for a messenger whose trip never came or was settled goes in the outbox on its next hour;
+  a messenger already coming takes it as before; letters on the road, and answers on their way by courier, come as they
+  were. New fields load empty (`postId` -1). The post turned off: the outbox's letters get a messenger each, and the mail
+  waiting goes by messenger.
+- **Saved.** `PostBook` (a game component): `incoming` (16 at most), `rounds` (one a home), `rides` (one a letter with the
+  colony's rider), modelled in `save_estimate.py`; the letter's new fields. Nothing has a tick of its own: the watch rides on
+  the letters' 250-tick pass, the rest on their hour.
+- **Dev actions** ("Rimfolk"): the post rider now; a visitor group leaves now with the mail; every town's reach and the
+  outbox (log); the mail waiting brought by a messenger now; the mail on the road here now.
+
 ### Diplomacy
 
 Stage 2's base and its first item, favours owed and called in (docs/design/stage2-diplomacy.md, release 2a.1):

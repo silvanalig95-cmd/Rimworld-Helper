@@ -35,6 +35,10 @@ namespace ColonyCouncil
         CallbackWait,
         /// <summary>The console is ringing.</summary>
         Ringing,
+        /// <summary>Written (or a message to be spoken): in the mailbag at the gate, waiting for someone going its way (Post/Outbox.cs).</summary>
+        Outbox,
+        /// <summary>With the colony's own rider, on the road there (Post/OwnRiders.cs).</summary>
+        Riding,
         Done,
         Cancelled
     }
@@ -81,6 +85,24 @@ namespace ColonyCouncil
         /// </summary>
         public bool owed;
 
+        // ---- The post (Post/): who took it and how, from the outbox ----
+
+        /// <summary>Who carried it away (the post rider, traders, visitors, the colony's caravan or rider...), how, and through which town it was relayed.</summary>
+        public PostCarrier carrier;
+        public string carrierName;
+        public LetterMeans carrierMeans;
+        public string relayName;
+        /// <summary>A tribal colony's spoken message: a colonist gives the words to the carrier at the gate.</summary>
+        public bool spoken;
+        /// <summary>It goes with the colony's own rider (<see cref="rider"/>).</summary>
+        public bool ownRider;
+        public Pawn rider;
+        /// <summary>The carrier it is kept for while they come for it, or the one of a forming caravan who has it in their pack (<see cref="packed"/>).</summary>
+        public Pawn packedBy;
+        public bool packed;
+        /// <summary>Its answer waiting in the post for a carrier (Post/MailIn.cs), or -1.</summary>
+        public int postId = -1;
+
         public bool Open => stage != LetterStage.Done && stage != LetterStage.Cancelled;
 
         public string WriterName => writer != null && !writer.Discarded ? writer.LabelShort : writerName ?? "?";
@@ -92,6 +114,8 @@ namespace ColonyCouncil
                 if (writer != null && writer.Discarded) writer = null;
                 if (other != null && other.Discarded) other = null;
                 if (bearer != null && bearer.Discarded) bearer = null;
+                if (rider != null && rider.Discarded) rider = null;
+                if (packedBy != null && packedBy.Discarded) packedBy = null;
                 if (map != null && !Find.Maps.Contains(map)) map = null;
             }
             Scribe_Values.Look(ref id, "id");
@@ -120,6 +144,16 @@ namespace ColonyCouncil
             Scribe_References.Look(ref bearer, "bearer");
             Scribe_Values.Look(ref bearerName, "bearerName");
             Scribe_Values.Look(ref owed, "owed");
+            Scribe_Values.Look(ref carrier, "carrier");
+            Scribe_Values.Look(ref carrierName, "carrierName");
+            Scribe_Values.Look(ref carrierMeans, "carrierMeans");
+            Scribe_Values.Look(ref relayName, "relayName");
+            Scribe_Values.Look(ref spoken, "spoken");
+            Scribe_Values.Look(ref ownRider, "ownRider");
+            Scribe_References.Look(ref rider, "rider");
+            Scribe_References.Look(ref packedBy, "packedBy");
+            Scribe_Values.Look(ref packed, "packed");
+            Scribe_Values.Look(ref postId, "postId", -1);
         }
     }
 
@@ -182,14 +216,39 @@ namespace ColonyCouncil
 
         // ---------------- What can be written, by whom, how ----------------
 
-        /// <summary>Those who can write or call: the colony's grown people at home.</summary>
-        public static List<Pawn> Writers(Map map) =>
-            map == null ? new List<Pawn>() : IncidentWorker_Happening.Colonists(map).Where(p => !p.DevelopmentalStage.Juvenile() && !p.IsSlave).ToList();
+        /// <summary>
+        /// The colony's grown, free people at home, who can call, answer the console or hand a letter over. With
+        /// <paramref name="pen"/>, those who can write one: able to read and write by the game's rules (its books:
+        /// BookUtility.CanReadEver); in a tribal colony, with the post, anyone grown who can speak gives a spoken message
+        /// instead (PostMath.CanWrite).
+        /// </summary>
+        public static List<Pawn> Writers(Map map, bool pen = false)
+        {
+            if (map == null) return new List<Pawn>();
+            bool spoken = Spoken;
+            return IncidentWorker_Happening.Colonists(map).Where(p => PostMath.CanWrite(!p.DevelopmentalStage.Juvenile(), !p.IsSlave, !pen || Reads(p),
+                p.health?.capacities?.CapableOf(PawnCapacityDefOf.Talking) ?? true, spoken && pen)).ToList();
+        }
+
+        /// <summary>A tribal colony with the post: its letters are spoken messages given to the carrier.</summary>
+        public static bool Spoken => PostBook.On && PostMath.Spoken(Ages.Ours);
+
+        private static bool Reads(Pawn p)
+        {
+            try
+            {
+                return BookUtility.CanReadEver(p);
+            }
+            catch
+            {
+                return true;
+            }
+        }
 
         /// <summary>Who writes unless the player picks someone else: the speaker, else the colony's best talker.</summary>
         public static Pawn DefaultWriter(Map map)
         {
-            var all = Writers(map);
+            var all = Writers(map, true);
             // The speaker of the colony writing.
             var speaker = ColonyState.For(map)?.offices?.Speaker;
             if (speaker != null && all.Contains(speaker)) return speaker;
@@ -227,8 +286,13 @@ namespace ColonyCouncil
         {
             if (map == null) return "CC_Letter_Why_NoHome".Translate();
             if (c == LetterChannel.Courier)
+            {
+                // With the post, letters wait in the outbox for whoever goes their way; a people at war still needs a go-between.
+                if (PostBook.On && !NotableBook.Hostile(n)) return null;
                 return Couriers.CanCarryMail(map, n.faction) ? null : "CC_Letter_Why_NoMessenger".Translate().Resolve();
-            if (!NotableMath.Callable(TechOf(n.faction))) return "CC_Letter_Why_NoMeans".Translate(n.faction?.Name ?? "").Resolve();
+            }
+            // Radio: a people of the industrial age or later, or one within reach of the Signal Line's masts (Post/PostReach.cs).
+            if (!PostReach.Radio(n.faction, NotableBook.TownOf(n.town))) return "CC_Letter_Why_NoMeans".Translate(n.faction?.Name ?? "").Resolve();
             if (!HasConsole(map)) return "CC_Letter_Why_NoConsole".Translate();
             if (Console(map) == null) return "CC_Letter_Why_DeadAir".Translate();
             return null;
@@ -239,7 +303,9 @@ namespace ColonyCouncil
         {
             if (n == null || !n.Alive) return "CC_Letter_Why_Gone".Translate();
             if (OpenTo(n) != null) return "CC_Letter_Why_OneAtATime".Translate();
-            if (OpenCount >= NotableMath.MaxOpen) return "CC_Letter_Why_TooMany".Translate(NotableMath.MaxOpen).Resolve();
+            // With the post the outbox keeps letters from leaving at once, so only a sane cap on letters open (PostMath.MaxOpen).
+            int max = PostBook.On ? PostMath.MaxOpen : NotableMath.MaxOpen;
+            if (OpenCount >= max) return "CC_Letter_Why_TooMany".Translate(max).Resolve();
             if (n.pawn.Spawned) return "CC_Letter_Why_Here".Translate(n.Name.Named("NAME")).Resolve();
             int last = n.Last(p);
             if (last >= 0 && Now - last < NotableMath.WaitDays(p) * GenDate.TicksPerDay) return "CC_Letter_Why_Lately".Translate();
@@ -377,7 +443,7 @@ namespace ColonyCouncil
         /// <paramref name="bearer"/> (someone of their people at the colony, Outsiders/), it goes by their hand instead
         /// of a messenger's, and the writer sits down to it at once if they're free.
         /// </summary>
-        public static NeighbourLetter Send(Notable n, LetterPurpose p, LetterChannel c, Pawn writer, LetterTopic? topic, string help, Pawn bearer = null)
+        public static NeighbourLetter Send(Notable n, LetterPurpose p, LetterChannel c, Pawn writer, LetterTopic? topic, string help, Pawn bearer = null, Pawn rider = null)
         {
             var book = Book;
             var map = writer?.MapHeld ?? HappeningTracker.HomeMap();
@@ -391,6 +457,15 @@ namespace ColonyCouncil
             };
             book.letters.Add(l);
             NotableBook.Changed();
+            if (rider != null && c == LetterChannel.Courier && bearer == null) OwnRiders.Send(l, rider);
+            // A tribal colony's spoken message: no writing, the words wait for a carrier at the gate (Post/).
+            if (c == LetterChannel.Courier && bearer == null && Spoken && !l.hostile)
+            {
+                l.spoken = true;
+                Outbox.Put(l, writer);
+                if (l.ownRider) OwnRiders.SetOut(l);
+                return l;
+            }
             // apart: the player's choice, said in a message; the writer sits down to it on their own later.
             if (bearer != null)
                 Notify.Message("CC_Letter_Msg_WillWriteFor".Translate(writer.Named("PAWN"), l.toName.Named("TO"), bearer.Named("BEARER")).Resolve(), new LookTargets(writer),
@@ -502,6 +577,13 @@ namespace ColonyCouncil
                     var trip = CourierTracker.Instance?.Get(l.tripId);
                     if (trip != null && !trip.settled) return;
                     if (trip != null && trip.received) return;
+                    // An older save's letter whose messenger never came (or the post turned on): it goes in the outbox.
+                    if (PostBook.On && !l.hostile && !NotableBook.Hostile(n))
+                    {
+                        l.tripId = -1;
+                        Outbox.Put(l, null);
+                        return;
+                    }
                     if (l.tripId >= 0) l.tries++;
                     if (l.tries >= NotableMath.MaxPickups)
                     {
@@ -516,11 +598,58 @@ namespace ColonyCouncil
                     Pickup(l, n);
                     return;
                 }
+                case LetterStage.Outbox:
+                    // A people now at war: a go-between under a white flag comes for it, the old way.
+                    if (NotableBook.Hostile(n) && !l.ownRider)
+                    {
+                        l.hostile = true;
+                        l.packedBy = null;
+                        l.packed = false;
+                        l.stage = LetterStage.AwaitMessenger;
+                        l.stageTick = now;
+                        Pickup(l, n);
+                        return;
+                    }
+                    // The rider chosen is gone: it waits for a carrier again; still there with no ride under way: they set out.
+                    if (l.ownRider && PostBook.Instance?.RideFor(l.id) == null)
+                    {
+                        if (l.rider == null || !KinMemory.Ours(l.rider) || l.rider.MapHeld != l.map || !OwnRiders.SetOut(l))
+                        {
+                            l.ownRider = false;
+                            l.rider = null;
+                        }
+                    }
+                    // The post turned off: a messenger comes for it, as before.
+                    if (!PostBook.On && !l.ownRider && !l.packed)
+                    {
+                        l.packedBy = null;
+                        l.stage = LetterStage.AwaitMessenger;
+                        l.stageTick = now;
+                        Pickup(l, n);
+                    }
+                    return;
+                case LetterStage.Riding:
+                    if (PostBook.Instance?.RideFor(l.id) == null)
+                    {
+                        l.stage = LetterStage.Outbox;
+                        l.ownRider = false;
+                        l.rider = null;
+                    }
+                    return;
                 case LetterStage.Travelling:
                     if (now >= l.due) Read(l, n, l.writer, now);
                     return;
                 case LetterStage.Answering:
                 {
+                    // The colony's own rider brings it, or it waits in the post for a carrier (Post/): they say when it's in.
+                    if (l.ownRider && PostBook.Instance?.RideFor(l.id) != null) return;
+                    if (l.postId >= 0 && PostBook.Instance?.Item(l.postId) != null) return;
+                    if (l.ownRider || l.postId >= 0)
+                    {
+                        Owed(l, n);
+                        Finish(l, n);
+                        return;
+                    }
                     if (l.tripId >= 0)
                     {
                         var trip = CourierTracker.Instance?.Get(l.tripId);
@@ -567,6 +696,45 @@ namespace ColonyCouncil
                     if (now - l.stageTick > NotableMath.RingTicks && !(l.map?.mapPawns.FreeColonistsSpawned.Any(c => c.CurJobDef == NotableDefOf.Council_AnswerCall) ?? false))
                         LeftWord(l, n, now);
                     return;
+            }
+        }
+
+        /// <summary>The answer is in (the post's carrier set it down, or the colony's rider is home with it): what it says they owe is owed from now.</summary>
+        public static void AnswerIn(int letterId)
+        {
+            var l = Get(letterId);
+            var n = l != null ? Book?.Get(l.notable) : null;
+            if (l == null || !l.Open) return;
+            l.postId = -1;
+            if (n != null) Owed(l, n);
+            if (l.stage == LetterStage.Answering) Finish(l, n);
+            else NotableBook.Changed();
+        }
+
+        /// <summary>The answer waited too long in the post: a messenger of theirs brings it after all (the courier trip it now waits for).</summary>
+        public static void MessengerFor(int letterId, int tripId)
+        {
+            var l = Get(letterId);
+            if (l == null) return;
+            l.postId = -1;
+            l.tripId = tripId;
+            NotableBook.Changed();
+        }
+
+        /// <summary>The colony's own rider is at their town with it (Post/OwnRiders.cs): read there, and answered at once.</summary>
+        public static void ReadByRider(NeighbourLetter l, Pawn rider)
+        {
+            var n = Book?.Get(l?.notable ?? -1);
+            if (l == null || n == null || !l.Open || l.stage != LetterStage.Riding) return;
+            try
+            {
+                var town = NotableBook.TownOf(n.town);
+                if (l.backDays <= 0f && town != null) l.backDays = PostReach.RiderDays(l.map, town, PostBook.Instance?.RideFor(l.id)?.mount != null);
+                Read(l, n, l.writer, Now);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("letter read by the rider", e);
             }
         }
 
@@ -672,6 +840,13 @@ namespace ColonyCouncil
                 return;
             }
             l.bearer = null;
+            // With the post: it goes in the mailbag at the gate, and leaves with whoever goes its way (Post/Outbox.cs).
+            if (PostBook.On && !l.hostile && !NotableBook.Hostile(n))
+            {
+                Outbox.Put(l, p);
+                if (l.ownRider) OwnRiders.SetOut(l);
+                return;
+            }
             Notify.Message("CC_Letter_Msg_Written".Translate(p.Named("PAWN"), l.toName.Named("TO")).Resolve(), new LookTargets(p), MessageTypeDefOf.NeutralEvent, Importance.Notable);
             Pickup(l, n);
             NotableBook.Changed();
@@ -911,6 +1086,15 @@ namespace ColonyCouncil
                 Finish(l, n);
                 return tone;
             }
+            if (tone == AnswerTone.Silence && l.ownRider)
+            {
+                // The colony's rider is heard out and comes home with nothing (Post/OwnRiders.cs).
+                OwnRiders.Answered(l, null, null, null, null, null);
+                l.stage = LetterStage.Answering;
+                l.stageTick = now;
+                NotableBook.Changed();
+                return tone;
+            }
             if (tone == AnswerTone.Silence)
             {
                 l.stage = LetterStage.Answering;
@@ -925,7 +1109,20 @@ namespace ColonyCouncil
             if (threat != null) text += "\n\n" + threat;
             var def = tone <= AnswerTone.Cordial ? LetterDefOf.PositiveEvent : LetterDefOf.NeutralEvent;
             string chronicle = "CC_Letter_Chronicle".Translate(l.WriterName.Named("PAWN"), n.Name.Named("NAME"), ToneWord(tone).Named("TONE")).Resolve();
-            if (l.channel == LetterChannel.Courier)
+            if (l.channel == LetterChannel.Courier && l.ownRider)
+            {
+                // Read at their town with the colony's rider there: the answer, and what it sends, ride home with them (Post/OwnRiders.cs).
+                OwnRiders.Answered(l, title, text, def, chronicle, things);
+                l.tripId = -1;
+            }
+            else if (l.channel == LetterChannel.Courier && things.Count == 0 && !l.hostile
+                     && (l.postId = MailIn.Add(l.map, n.faction, NotableBook.TownOf(n.town), title, text, def, chronicle, KinMemory.Ours(l.writer) ? l.writer : null, l.id,
+                         now + Mathf.RoundToInt(l.backDays * GenDate.TicksPerDay), PostMath.UrgencyOf(l.purpose), "CC_Letter_Label_Back".Translate(n.Name.Named("NAME")).Resolve())) >= 0)
+            {
+                // Words only: the answer comes with whoever is coming this way, or a messenger after a while (Post/MailIn.cs).
+                l.tripId = -1;
+            }
+            else if (l.channel == LetterChannel.Courier)
             {
                 string label = "CC_Letter_Label_Back".Translate(n.Name.Named("NAME")).Resolve();
                 int arrive = now + Mathf.RoundToInt(l.backDays * GenDate.TicksPerDay);
@@ -943,10 +1140,11 @@ namespace ColonyCouncil
             }
             else SendNow(l, title, text, def, chronicle, things);
             // Told at once (a call, or nobody to carry it): what it says they owe is owed at once.
-            if (l.tripId < 0) Owed(l, n);
+            bool carried = l.tripId >= 0 || l.postId >= 0 || l.ownRider;
+            if (!carried) Owed(l, n);
             if (visit == null || feast != null)
             {
-                l.stage = l.channel == LetterChannel.Courier && l.tripId >= 0 ? LetterStage.Answering : LetterStage.Done;
+                l.stage = l.channel == LetterChannel.Courier && carried ? LetterStage.Answering : LetterStage.Done;
             }
             l.stageTick = now;
             NotableBook.Changed();
@@ -1245,6 +1443,8 @@ namespace ColonyCouncil
             }
             l.stage = LetterStage.Guesting;
             l.stageTick = now;
+            // Their answer still in the post: the guest brings it themselves (Post/MailIn.cs).
+            if (l.postId >= 0) MailIn.Hand(l.postId, x);
             Notify.Message("CC_Letter_Msg_Guest".Translate(x.Named("NAME"), (n.townName ?? f.Name).Named("TOWN")).Resolve(), new LookTargets(x), MessageTypeDefOf.PositiveEvent, Importance.Notable);
             Say(x, "guest", n);
             NotableBook.Changed();

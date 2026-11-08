@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What is said over a head at the post's moments (Source/ColonyCouncil/Post/PostWords.cs, PostWords.Say). Every line has
+    its moment: take (an outsider taking the letters going their way from the mailbag), bring (one of a group walking in with
+    the colony's mail), drop (setting it down at the mailbag), rider (the post rider at the gate), rideon (the post rider
+    leaving), speak (a colonist giving a carrier a spoken message), heard (the carrier, once they have the words), setout
+    (the colony's own rider with the letter in hand), home (the colony's rider back with the answer). {NAME} is the one
+    written to, {TOWN} their town, where a letter is known. One sentence each.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_PostSays</defName>
+    <lines>
+      <plain>
+        <li>[take] These go my way, I'll see they get there.</li>
+        <li>[take] Letters for the road, I'll hand them on where I can.</li>
+        <li>[take] Our road passes close enough, I'll carry them.</li>
+        <li>[take] I'll keep them dry and out of sight.</li>
+        <li>[bring] I was given a letter for this place along the way.</li>
+        <li>[bring] Someone on the road asked me to bring this.</li>
+        <li>[bring] There's mail for you, I'll leave it by your gate.</li>
+        <li>[drop] Letters for the colony, as I was asked.</li>
+        <li>[drop] There, that's what I was carrying for you.</li>
+        <li>[drop] Set down safe and sound, that's my part done.</li>
+        <li>[rider] Post for the colony, and anything going out?</li>
+        <li>[rider] Mail on the road, who's got letters for me?</li>
+        <li>[rider] The post, as regular as I can make it.</li>
+        <li>[rideon] Right, on down the road.</li>
+        <li>[rideon] That's this stop done, the next one's waiting.</li>
+        <li>[rideon] Good day to you, I'll be by again.</li>
+        <li>[speak] Tell {NAME} this, word for word.</li>
+        <li>[speak] Here's what we want said, listen closely.</li>
+        <li>[speak] Say it just like this when you see them.</li>
+        <li>[heard] I'll say it just as you said it.</li>
+        <li>[heard] I have it, every word.</li>
+        <li>[heard] They'll hear it from me the way you put it.</li>
+        <li>[setout] I'll be back with their answer.</li>
+        <li>[setout] It goes in my own hands, then.</li>
+        <li>[setout] A long road, but it's ours to ride.</li>
+        <li>[home] Back, and I've brought their answer.</li>
+        <li>[home] I'm home, and they wrote back.</li>
+        <li>[home] Long road, but here's what they said.</li>
+      </plain>
+      <warm>
+        <li>[speak] Give them our warmest, and tell them this.</li>
+        <li>[home] It's good to be home, and they send their best.</li>
+      </warm>
+      <blunt>
+        <li>[speak] Just tell them this, plain as I say it.</li>
+        <li>[heard] Got it, no need to say it twice.</li>
+      </blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

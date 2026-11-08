@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The post: letters travel with someone
+
+*8 November 2026, version 0.171.0*
+
+- Letters you write now wait in a mailbag by the gate (a new spot under Misc, or the gate itself) until someone going that way takes them: traders, visitors and guests, camps breaking up, pilgrims, travellers, messengers or your own caravan, one of them stopping at the bag on the way out. No messenger appears from nowhere any more.
+- A post comes by the age: none for a tribe, a rider on one of their beasts every week or two in the medieval age, a mail run every few days in the industrial age, a shuttle for spacers. It brings your mail and takes what goes its way; how often is a setting.
+- For something that can't wait, send it with your own rider: a colonist sets out as a small caravan, delivers it, waits for the answer and brings it home. Letters coming to you arrive the same way, with whoever comes from that direction, and only if nobody comes for a while does a messenger bring them.
+- Writing takes a colonist who can read, and a tribe gives its words to the carrier aloud. Your comms console still calls peoples with radio at once.
+- Peoples now have a range: how far a letter can go is the real travel time over the land, slower over hills, swamps and snow and quicker on roads. Far towns are reached by relay through a friendly people's town, the furthest only by radio; each town's card says how and how soon, and the region map rings the far ones.
+
 ## A camp's farewell says what it means
 
 *8 November 2026, version 0.170.1*

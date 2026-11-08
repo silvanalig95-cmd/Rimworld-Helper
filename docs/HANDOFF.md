@@ -12,6 +12,80 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.171.0, the post: letters that travel with someone (8 November 2026, step 1 of `docs/design/post-and-letters.md`, approved by
+  the player: "this all sounds really good! visitors and other random characters should perhaps also be able to take
+  letters when going their direction", with their addition the same day: "i should also have some sort of diplomatic
+  range, right? until comms"). Not released: no version, no What's new round, About.xml and CHANGELOG untouched.
+  DESIGN.md "The post: letters that travel with someone" has all of it (who carries, the way, the post by age, the rider,
+  mail in, the console, writing, the range, what moved and what stayed, old saves); README two paragraphs after
+  "Letters to the neighbours arrive in days" and the settings summary; the Almanac's neighbours page two sections (*The
+  post: who takes the letters*, *How far letters reach*) and prose in three others, the couriers page a paragraph
+  (keywords unchanged); the design doc's step 1 marked built.
+  - What: a letter written goes in the mailbag at the gate (`Rimfolk_Mailbag`, a Misc spot; none placed, the gate cell),
+    its pane listing each letter and how it is likely to leave. Whoever leaves the map going its way takes it: any lord of
+    a people at peace whose job goes about the road (traders, visitors and Hospitality's guests, a camp, pilgrims,
+    travellers, messengers and envoys) turning to leave, a lone outsider walking off, the colony's own caravan forming;
+    one of them walks to the mailbag for it. On their way: their own people's towns, a town on the road to their
+    destination, or within 60 degrees of the way they leave. A regular post by the colony's and its neighbours' shared
+    age (none tribal, a rider every 7 to 14 days medieval, a mail run 3 to 7 industrial, a shuttle 2 to 4 spacer by drop
+    pod; the pace a setting), mounted on their people's caravan beasts or a horse, with Giddy-Up's "Mount" job by name,
+    else leading it. The colony's own rider (the letter's window or the mailbag's button) rides out as a caravan of one
+    with a colony animal big enough to ride and brings the answer home. Answers of words only and the world's carried
+    letters (a town's, the envoy's and the ward's from abroad) wait for whoever comes in from their way and open when set
+    down at the mailbag; a messenger only after half a day (urgent), three days (business), eight or twelve (ordinary).
+    Writing takes someone who can read (`BookUtility.CanReadEver`); a tribe gives spoken messages at the gate. The comms
+    console to peoples with radio (industrial on, or within 30 tiles of a Signal Line town, by its def's name). The range
+    until radio: the world's own travel time (the game's path and `CaravanArrivalTimeEstimator`: terrain, roads, rivers, season, snow) at the
+    carrier's means, five days by runners, seven riders, nine vehicles, half again with a mast, none for shuttles; far
+    towns by relay through a nearer town on good terms, out-of-reach towns only with someone going there. Each town's
+    card says how to reach them and roughly how soon; the region map rings far (amber) and out-of-reach (grey) towns.
+  - Moved to the outbox: every letter by hand of `NeighbourLetters` (the diplomacy purposes too), words-only answers,
+    TownsAfter's town letter, the envoy's and ward's letters home. Stayed: letters to a people at war (a go-between),
+    answers that send goods (their messenger), a call's goods, a bearer of their own people at the colony (Outsiders/),
+    and the letters that tell what happened (pacts, fealty, wards' arrivals and deaths, envoys, feasts: told at once).
+  - Code: `Post/PostMath.cs` (pure, linked in Tests.csproj; `PostTests`, "the post: ", 245 checks: the way, carriers by
+    their job's name, the land's cost, the range, the relay, the post by age and pace, the messenger's wait, the reach
+    line, the words, the seams), `PostBook.cs` (the saved book), `PostReach.cs` (travel days, range, relay, radio),
+    `Outbox.cs`, `MailWatch.cs` (the watch, riding on `Sched.RareNeighbours` in `World/Notables.cs`), `MailIn.cs`,
+    `PostRider.cs` (`LordJob_PostRider`, `LordToil_PostWork`), `OwnRiders.cs`, `PostJobs.cs` (`Rimfolk_PostTake`,
+    `_PostDrop`, `_PostSpeak`, `_RiderSetOut`), `Building_Mailbag.cs`, `PostWords.cs`, `PostRing.cs` (the region map's
+    ring and tooltip: the hook for the diplomacy screen), `PostDebug.cs` (with `PostCard`, the town card's lines).
+    `NeighbourLetters`: stages `Outbox` and `Riding`, the letter's carrier fields, `Writers` by reading, `Send` with a
+    rider, `Written` to the outbox, `Read` to the post or the rider, `AnswerIn`, `MessengerFor`, `ReadByRider`, the old
+    three under way lifted to `PostMath.MaxOpen` (12) with the post. `NeighboursPanel`: the dialog's "By the post" /
+    "A spoken message", "By our own rider" and the reach lines, the status words. Defs `Misc/Rimfolk_Post.xml`, pool
+    `FlavorPoolDefs/Rimfolk_Post.xml` (in ImmersionTests), Keyed `Rimfolk_Post.xml`.
+  - Settings: `post` ("The post: letters travel with someone", on, needs the letters), `postPace` (Seldom, As usual,
+    Often). Saved: `PostBook.incoming` (16), `rounds` (one a home), `rides`, the letter's new fields; modelled in
+    `save_estimate.py`. Old saves: a letter waiting for a messenger that never came goes in the outbox on its hour; a
+    messenger already coming takes it; letters on the road and answers by courier come as they were. The post off: the
+    outbox's letters get a messenger each, the mail waiting goes by messenger.
+  - Riskiest (none of it could be run here): the watch giving a forced job to someone of another mod's lord as they leave
+    (Hospitality's guests, a camp's exit; their lord gives the exit duty back after); the colony's caravan member sent to
+    the mailbag while the caravan gathers (`LordJob_FormAndSendCaravan`); Giddy-Up's "Mount" job given to an outsider
+    under Rimfolk's lord (by name, untested: if it misbehaves, the rider still leads); the spacer post's drop pod with
+    its lord made before the pod opens; the world's path found with no caravan and timed at the default pace (the route
+    planner's way; on an error the straight distance at a walk, logged once); the guess that a group seen near an edge came in from
+    there; the Signal Line by def name (`Rimfolk_SignalLine*`, a mast by a building name with Mast and Signal or Relay);
+    Vehicle Framework not used.
+  - Try in the game (dev mode; none of it could be run here): 1. Place a mailbag (Misc) by the gate; write greetings to
+    a notable from a town's card: the writer sits at a table, then "put the letter in the mailbag", and the mailbag's pane
+    lists it with "with whoever goes east next" (or the post, or their people on the map). 2. Debug actions, Rimfolk,
+    "Post: every town's reach and the outbox (log)": each town's tiles, walking days, ours, band and relay, and its
+    reach lines. 3. Execute a trader caravan or visitors of a people whose town lies that way (Debug actions, Execute
+    incident), then "Post: a visitor group leaves now with the mail...": one of them walks to the mailbag, takes it
+    ("took Ana's letter to Mayor Bell with them"), and goes; the letter's status says who carries it. 4. "Post: the mail on
+    the road is here now" and wait an hour: the answer is in the post (the bag's pane: "Mail for the colony on its way
+    in"); execute visitors from that way, or "Post: the post rider now" in a medieval or later world: the rider (mounted
+    with Giddy-Up, leading the beast without) rides to the mailbag, sets the mail down (the letter opens), takes the
+    letters going out, and rides on. 5. "Post: the mail waiting brought by a messenger now": the old messenger walks it
+    to the gate. 6. On the mailbag, "Send with our rider": pick a letter and a colonist; they take it, walk to the edge
+    with a horse or muffalo following, and a caravan of theirs heads for the town; at the town the answer is read, they
+    turn for home, and the letter opens when they're back ("brought this answer home by hand"). 7. A tribal colony
+    (Scenario: Tribal): the dialog says "A spoken message" and "Whose words"; when a carrier comes for it they wait at the
+    mailbag and a colonist walks over and says it. 8. Form a caravan heading out east with a letter east in the bag: one
+    of them fetches it while the goods are gathered. 9. On the region map, a town past the range has an amber ring and
+    its tooltip says "Far: by relay through ..."; a powered comms console and an industrial people: "By radio".
 - 0.170.1, a camp's farewell says what it means (8 November 2026, the player's report with their save: "there was a pop up
   about this camp wanting to leave, i selected an option where they leave but they are still on the map. is it scheduled
   or bugged?"). Scheduled, not bugged: the war party's goodbye letter came at dusk (tick 1707827), its stay ran to
