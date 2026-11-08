@@ -130,6 +130,41 @@ namespace ColonyCouncil
         public static readonly HarmKind CowardName = new HarmKind("cowardName", "a coward's name (3.7.2)", "cowardName", 0.0044f, false);
         public static readonly HarmKind VendettaFury = new HarmKind("vendettaFury", "fury that forgets cover (3.8.2)", "vendettaFury", 0.003f, false);
 
+        // ---------------- Harm, part 7 (tempers in the colony, visitors and outsiders, personal stories, 7 November 2026) ----------------
+        // The last of the review's proposals. Three of them hurt nobody of the colony and stay outside the budget: the
+        // nemesis seeking the one it hurt (2.10.1: the raid's or the beast's own attack, aimed), the lost child found hurt
+        // (2.6.1: a neighbour's child) and the courier set upon at the edge (2.7.1: their courier, in place of the cut on
+        // the road they always came in with).
+
+        public static readonly HarmKind SitDown = new HarmKind("sitDown", "the peacemaker's sit-down goes wrong (1.1.2)", "sitDown", 0.021f, false);
+        public static readonly HarmKind SpeakerWords = new HarmKind("speakerWords", "words with the speaker (1.3.1)", "speakerWords", 0.0035f, false);
+        public static readonly HarmKind PassedOver = new HarmKind("passedOver", "the thing that went to someone else (1.3.2)", "passedOver", 0.0054f, false);
+        public static readonly HarmKind MeetingBoils = new HarmKind("meetingBoils", "a meeting that boils over (1.5.1)", "meetingBoils", 0.0081f, false);
+        public static readonly HarmKind FriendsStand = new HarmKind("friendsStand", "friends stand by (3.5.2)", "friendsStand", 0.0145f, false);
+        public static readonly HarmKind SaidToFace = new HarmKind("saidToFace", "said to their face (3.7.1)", "saidToFace", 0.020f, false);
+        public static readonly HarmKind WrongedOne = new HarmKind("wrongedOne", "found out by the wronged one (3.9.1)", "wrongedOne", 0.0043f, false);
+        public static readonly HarmKind ToldByFriend = new HarmKind("toldByFriend", "told by the wrong friend (3.9.2)", "toldByFriend", 0.0056f, false);
+        public static readonly HarmKind LoveRivals = new HarmKind("loveRivals", "a rival in love comes to blows (3.10.1)", "loveRivals", 0.0138f, false);
+        public static readonly HarmKind AltarWords = new HarmKind("altarWords", "words at the altar (3.13.1)", "altarWords", 0.0031f, false);
+        public static readonly HarmKind FeastFists = new HarmKind("feastFists", "the feast that ends in a fistfight (4.1.3)", "feastFists", 0.0149f, false);
+        public static readonly HarmKind SecondRound = new HarmKind("secondRound", "the toast's second round (4.7.3)", "secondRound", 0.0052f, false);
+        public static readonly HarmKind SoldierNight = new HarmKind("soldierNight", "the soldier's nightmare (3.12.2)", "soldierNight", 0.0023f, false);
+        public static readonly HarmKind OpenGates = new HarmKind("openGates", "open gates, and who walks in (1.2.4)", "openGates", 0.018f, false);
+        public static readonly HarmKind GamblerTurns = new HarmKind("gamblerTurns", "the gambler's game turns (2.2.2)", "gamblerTurns", 0.0019f, false);
+        public static readonly HarmKind BarberNick = new HarmKind("barberNick", "the barber's nick (2.5.3)", "barberNick", 0.0105f, false);
+        public static readonly HarmKind RankEnemy = new HarmKind("rankEnemy", "the guest of rank's enemy (2.6.2)", "rankEnemy", 0.0005f, false);
+        public static readonly HarmKind CrowdFight = new HarmKind("crowdFight", "a fistfight that draws a crowd (2.8.2)", "crowdFight", 0.0018f, false);
+        public static readonly HarmKind PastFirstBlood = new HarmKind("pastFirstBlood", "first blood, not stopped (2.8.3)", "pastFirstBlood", 0.0003f, false);
+        public static readonly HarmKind LetterChallenge = new HarmKind("letterChallenge", "a challenge by letter (2.9.1)", "letterChallenge", 0.0014f, false);
+        public static readonly HarmKind HeirGrudge = new HarmKind("heirGrudge", "the heir's grudge (2.9.2)", "heirGrudge", 0.0008f, false);
+        public static readonly HarmKind HatedTrader = new HarmKind("hatedTrader", "a trader of the hated people (3.8.1)", "hatedTrader", 0.0035f, false);
+        public static readonly HarmKind GateZeal = new HarmKind("gateZeal", "zeal at the gate (3.13.2)", "gateZeal", 0.0026f, false);
+        public static readonly HarmKind HungryHands = new HarmKind("hungryHands", "hungry hands in the fields (2.3.2)", "hungryHands", 0.0039f, false);
+        public static readonly HarmKind CreekBrawl = new HarmKind("creekBrawl", "a brawl at the creek (2.3.3)", "creekBrawl", 0.0002f, false);
+        public static readonly HarmKind WorstNight = new HarmKind("worstNight", "the worst night, alone (3.10.2)", "worstNight", 0.0021f, false);
+        public static readonly HarmKind FirstSteps = new HarmKind("firstSteps", "first steps alone (3.10.3)", "firstSteps", 0.0014f, false);
+        public static readonly HarmKind WorkingWrong = new HarmKind("workingWrong", "a working gone wrong (4.8.1)", "workingWrong", 0.0058f, false);
+
         /// <summary>Every kind, in the order they were built.</summary>
         public static readonly HarmKind[] All =
         {
@@ -140,7 +175,11 @@ namespace ColonyCouncil
             TamerBout,
             HotHeavy, BackTooSoon, ProjectPush, ClumsyWorn, Makeshift, TakingDown, HurriedHarvest, StrongBack, SharpHabits, SecondDrink, HandsSore,
             DroversBull, TooClose, DawnWalk, BoldWolf, CatchFights, StoresVisitor,
-            BonfireSpark, LineMuster, MagicSpar, BraveDare, CowardName, VendettaFury
+            BonfireSpark, LineMuster, MagicSpar, BraveDare, CowardName, VendettaFury,
+            SitDown, SpeakerWords, PassedOver, MeetingBoils, FriendsStand, SaidToFace, WrongedOne, ToldByFriend, LoveRivals, AltarWords, FeastFists, SecondRound,
+            SoldierNight,
+            OpenGates, GamblerTurns, BarberNick, RankEnemy, CrowdFight, PastFirstBlood, LetterChallenge, HeirGrudge, HatedTrader, GateZeal, HungryHands, CreekBrawl,
+            WorstNight, FirstSteps, WorkingWrong
         };
 
         public static HarmKind Of(string key)

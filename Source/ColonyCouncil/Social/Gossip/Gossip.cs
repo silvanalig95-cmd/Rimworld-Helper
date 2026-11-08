@@ -352,6 +352,8 @@ namespace ColonyCouncil
             }
             else if (valence > 0)
                 CouncilGameComponent.Instance?.social?.Bump(subject, teller, TieKind.Friends, 1f, null, true);
+            // Harm, part 7: run down to their face, a hot-tempered subject may come to blows with the teller (Harm/Tempers.cs).
+            Tempers.SaidToFace(teller, subject, against);
         }
     }
 }

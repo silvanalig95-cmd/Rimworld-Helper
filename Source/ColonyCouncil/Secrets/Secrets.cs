@@ -31,6 +31,8 @@ namespace ColonyCouncil
         [MustTranslate] public string truthLowTech;
         /// <summary>A secret people will be glad to learn (a hidden kindness).</summary>
         public bool good;
+        /// <summary>It wronged the colony (its stores, its work, its people): let slip, the one who hears it may go to its owner (Harm/Tempers.cs).</summary>
+        public bool wrongsColony;
         /// <summary>A big one: a letter rather than a message.</summary>
         public bool major;
         /// <summary>What happens when it comes out: A is the owner, B whoever let it slip. Others' opinions mostly.</summary>
@@ -361,6 +363,8 @@ namespace ColonyCouncil
                       ?? "CC_Together_SecretSlipped".Translate(speaker.Named("LEAKER"), heard.Named("OTHER"), owner.Named("PAWN")).Resolve();
                 SocialLog.Add(speaker, heard, line);
                 Reveal(comp, s, speaker);
+                // Harm, part 7: one that wronged the colony brings the one who heard it to its owner (Harm/Tempers.cs).
+                Tempers.SecretHeard(s, speaker, heard, confession);
             }, hours, confession ? null : owner);
         }
 
@@ -419,6 +423,8 @@ namespace ColonyCouncil
                 CouncilGameComponent.GiveThought(owner, CouncilDefOf.Council_Secret_Betrayed, leaker);
                 comp.social.Weaken(owner, leaker, TieKind.Friends, 30f, "CC_TieNote_Betrayed".Translate());
                 comp.social.Bump(owner, leaker, TieKind.Rivals, 15f, "CC_TieNote_Betrayed".Translate());
+                // Harm, part 7: the keeper may go to the friend who told (Harm/Tempers.cs).
+                Tempers.Betrayed(owner, leaker);
             }
             // A confidence betrayed, and those who kept it, are talked of (Social/Gossip/).
             Deeds.SecretOut(s, leaker, confessed);

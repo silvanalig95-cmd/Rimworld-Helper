@@ -342,6 +342,8 @@ namespace ColonyCouncil
         {
             // together: called once the peacemaker and both of the pair are together (Peacemaking, through Together.When).
             if (Peacemaker != peacemaker || !comp.social.ties.Contains(pair)) return;
+            // Harm, part 7: the two hot tempers may come to blows instead (Harm/Tempers.cs); not mended this time.
+            if (Tempers.SitDown(peacemaker, pair.a, pair.b, pair.strength)) return;
             using var _cause = Causes.Push(OfficeNames.Key("CC_Cause_Peacemaker", peacemaker.LabelShort));
             comp.social.Weaken(pair.a, pair.b, TieKind.Rivals, 6f, "CC_TieNote_Peacemaker".Translate(peacemaker.LabelShort));
             CouncilRecords.Add(peacemaker, CouncilRecords.QuarrelsMended);

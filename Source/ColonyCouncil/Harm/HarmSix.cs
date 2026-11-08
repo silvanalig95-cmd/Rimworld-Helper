@@ -93,7 +93,7 @@ namespace ColonyCouncil
                 case Fall: return false;
                 case Coward: return false;
                 case Hands: return AnswerHurts.HandsHome(x, now);
-                default: return true;
+                default: return HarmSeven.Due(x, now);
             }
         }
 
@@ -105,7 +105,7 @@ namespace ColonyCouncil
                 case Fall: return now - x.made > HarmSixMath.BackTooSoonKeepDays * HarmMath.DayTicks;
                 case Hands: return now - x.made > HarmSixMath.HandsKeepDays * HarmMath.DayTicks;
                 case Coward: return now - x.made > HarmSixMath.CowardKeepDays * HarmMath.DayTicks;
-                default: return true;
+                default: return HarmSeven.Lapsed(x, now);
             }
         }
 
@@ -127,6 +127,7 @@ namespace ColonyCouncil
                 if (def == HarmSixDefOf.Rimfolk_DawnWalk) WildHurts.DawnArrived(p);
                 else if (def == HarmSixDefOf.Rimfolk_ShooVisitor) WildHurts.Shooed(p);
                 else if (def == HarmSixDefOf.Rimfolk_MusterPost) Contests.AtPost(p);
+                else HarmSeven.Arrived(p, def);
             }
             catch (Exception e)
             {
@@ -141,6 +142,7 @@ namespace ColonyCouncil
             {
                 if (def == HarmSixDefOf.Rimfolk_DareWalk) Contests.SwimDone(p);
                 else if (def == HarmSixDefOf.Rimfolk_MusterPost) Contests.PostDone(p);
+                else HarmSeven.Ended(p, def);
             }
             catch (Exception e)
             {

@@ -12,13 +12,13 @@
 //
 // Three runs of the same colonies, every kind drawing from its own generator so the lives are the same in all three:
 //   before:     the kinds built before the shared budget (0.106.0 to 0.149.0), each at its own rate, as the game has them now;
-//   no budget:  every kind on, harm parts 4, 5 and 6 too, each at its own rate (what they would add without the budget);
+//   no budget:  every kind on, harm parts 4 to 7 too, each at its own rate (what they would add without the budget);
 //   the budget: every kind on, each at its rate times its pass (HarmBudgetMath.Passes: the budget shared out, a kind that
 //               came lately passing less often).
 // The budget's line holds the total at the "before" line's within noise. Each kind's base rate in the registry is its
 // "no budget" rate in the average colony of six (printed under it, for a later kind's builder to copy). Grown-ups only
 // (the cap keeps children from all but the mildest), the usual setting and storyteller (the harm scale 1); Alpha Skills,
-// Giddy-Up, Hospitality, Odyssey's fishing and A RimWorld of Magic loaded (their kinds on), PokéWorld and Dubs Bad Hygiene's
+// Giddy-Up, Hospitality, Odyssey's fishing, A RimWorld of Magic and Vanilla Brewing Expanded loaded (their kinds on), PokéWorld and Dubs Bad Hygiene's
 // thirst not (its Pokémon spar, catch and visitor at the stores and the dirty water off, as in most games).
 
 using ColonyCouncil;
@@ -132,6 +132,23 @@ namespace Balance
             public float dryGrass;
             /// <summary>Colonists left undrafted in a fight (a coward's name or an avenger can break cover then).</summary>
             public float undrafted;
+            // ---- Harm, part 7 ----
+            /// <summary>Promises broken under demanding stakes a colony-year, and the share of those it was made to who are bitter.</summary>
+            public float brokenPromises, bitter;
+            /// <summary>Colonists feeling passed over by a wish granted to another a colony-year (the jealousy setting's own grumble).</summary>
+            public float passedOver;
+            /// <summary>Social fights a colony of six's year, the game's own and Rimfolk's (a near fight, an answer's, the quarrels), a friend may step into.</summary>
+            public float socialFights;
+            /// <summary>Gossip run down to its subject's face a colony-year (a hothead or a rival telling it with them there).</summary>
+            public float facedGossip;
+            /// <summary>Of a day's table quarrels and toasts, the share with drink poured.</summary>
+            public float tableDrink;
+            /// <summary>Of those with a soldier's or an outlaw's past, the share in a shared bedroom.</summary>
+            public float sharedRoom;
+            /// <summary>Open-gates decrees a colony-year (seven days each).</summary>
+            public float gatesDecrees;
+            /// <summary>Getting-clean stories a colony-year (a colonist in withdrawal with a friend), and of their worst nights, the friend not at their side.</summary>
+            public float gettingClean, aloneNight;
         }
 
         private static readonly Exposure[] Exposures =
@@ -145,7 +162,9 @@ namespace Balance
                 sickPetitions = 0.05f, gateShut = 0.5f, plagueQuarantine = 0.15f, campTended = 0.8f, lowDoctor = 0.4f, worms = 0.03f, wormsUntended = 0.2f, bitesUntended = 0.3f,
                 gateWaits = 0.15f, watches = 1f, unwalled = 0.3f, covered = 0.6f, shaken = 0.6f, restlessDusks = 0.03f, coldFishing = 3f,
                 answerWorks = 2f, tooSoon = 0.15f, pushDays = 2f, makeshiftBills = 3f, takeDowns = 1f, hurriedHours = 3f, hurriedDark = 0.2f, droverHours = 1f,
-                fedPredators = 0.05f, dryGrass = 0.4f, undrafted = 0.15f
+                fedPredators = 0.05f, dryGrass = 0.4f, undrafted = 0.15f,
+                brokenPromises = 0.3f, bitter = 0.15f, passedOver = 0.5f, socialFights = 1.2f, facedGossip = 1.5f, tableDrink = 0.25f, sharedRoom = 0.15f, gatesDecrees = 0.4f,
+                gettingClean = 0.08f, aloneNight = 0.15f
             },
             new Exposure
             {
@@ -156,7 +175,9 @@ namespace Balance
                 sickPetitions = 0.15f, gateShut = 0.25f, plagueQuarantine = 0.05f, campTended = 0.5f, lowDoctor = 0.6f, worms = 0.08f, wormsUntended = 0.5f, bitesUntended = 0.6f,
                 gateWaits = 0.25f, watches = 1.5f, unwalled = 0.6f, covered = 0.4f, shaken = 0.8f, restlessDusks = 0.06f, coldFishing = 4f,
                 answerWorks = 3f, tooSoon = 0.3f, pushDays = 4f, makeshiftBills = 10f, takeDowns = 2f, hurriedHours = 6f, hurriedDark = 0.3f, droverHours = 2f,
-                fedPredators = 0.09f, dryGrass = 0.7f, undrafted = 0.3f
+                fedPredators = 0.09f, dryGrass = 0.7f, undrafted = 0.3f,
+                brokenPromises = 1f, bitter = 0.3f, passedOver = 1f, socialFights = 2f, facedGossip = 2.5f, tableDrink = 0.4f, sharedRoom = 0.3f, gatesDecrees = 0.5f,
+                gettingClean = 0.15f, aloneNight = 0.3f
             },
             new Exposure
             {
@@ -167,7 +188,9 @@ namespace Balance
                 sickPetitions = 0.3f, gateShut = 0.1f, plagueQuarantine = 0f, campTended = 0.2f, lowDoctor = 0.8f, worms = 0.15f, wormsUntended = 0.8f, bitesUntended = 0.8f,
                 gateWaits = 0.35f, watches = 2f, unwalled = 0.8f, covered = 0.2f, shaken = 1.2f, restlessDusks = 0.12f, coldFishing = 6f,
                 answerWorks = 3f, tooSoon = 0.5f, pushDays = 6f, makeshiftBills = 25f, takeDowns = 4f, hurriedHours = 10f, hurriedDark = 0.5f, droverHours = 3f,
-                fedPredators = 0.12f, dryGrass = 0.9f, undrafted = 0.5f
+                fedPredators = 0.12f, dryGrass = 0.9f, undrafted = 0.5f,
+                brokenPromises = 2f, bitter = 0.5f, passedOver = 1.5f, socialFights = 3.5f, facedGossip = 3.5f, tableDrink = 0.5f, sharedRoom = 0.45f, gatesDecrees = 0.6f,
+                gettingClean = 0.25f, aloneNight = 0.5f
             }
         };
 
@@ -325,6 +348,62 @@ namespace Balance
         private const float CowardNames = 0.2f, FightSoon = 0.7f, MarshalNear = 0.2f;
         /// <summary>Avengers with an open vendetta, and their sworn people's fights at home a year.</summary>
         private const float Avengers = 0.3f, SwornFights = 0.5f;
+        // ---- Harm, part 7 ----
+        /// <summary>The peacemaker's sit-down: once a day one in seven (Offices.Peacemaking), the worst pair's rivalry (30 to 80) and the peacemaker's Social (3 to 12), a hot temper in the pair.</summary>
+        private const float SitDownDaily = 0.15f, HotPair = 0.4f;
+        /// <summary>A hot temper (a fighting temper of 2 or more) among the colony's grown-ups.</summary>
+        private const float HotShare = 0.25f;
+        /// <summary>The speaker's Social (talking a bitter one down a twentieth a level).</summary>
+        private const int SpeakerSocial = 8;
+        /// <summary>The jealous or abrasive among those passed over.</summary>
+        private const float JealousShare = 0.12f;
+        /// <summary>Council meetings a colony-year, with two rivals who both pitched and stayed, the peacemaker there, the chair's Social.</summary>
+        private const float Meetings = 4f, RivalPitches = 0.08f, PeacemakerAtTable = 0.3f;
+        private const int ChairSocial = 6;
+        /// <summary>A close friend of one of a fight's two within twelve cells.</summary>
+        private const float FriendNear = 0.5f;
+        /// <summary>A secret that wronged the colony let slip to one of ours a colony-year; a confidence betrayed by the friend it was told to.</summary>
+        private const float WrongingSlips = 0.06f, Betrayals = 0.15f;
+        /// <summary>"A rival in love" reaching the rivals' words a colony-year, the words said with the two still together.</summary>
+        private const float LoveStories = 0.25f, LoveTalked = 0.6f;
+        /// <summary>The one-faith decree a colony-year (Ideology in about half of games), with a devout of another faith at home on its evening.</summary>
+        private const float OneFaithDecrees = 0.08f, DevoutOther = 0.5f;
+        /// <summary>A day's table quarrels a colony-year (days kept with a gathering, rivals at the table, the setback's third).</summary>
+        private const float TableQuarrels = 0.4f;
+        /// <summary>Toasts a colony-year, strong drink in plenty (Vanilla Brewing Expanded, two cups each in stock), two rivals among the second round.</summary>
+        private const float Toasts = 3f, PlentyShare = 0.4f, RivalsAtToast = 0.15f;
+        /// <summary>Those with a soldier's or an outlaw's past (the backstory's words).</summary>
+        private const float SoldierShare = 0.2f;
+        /// <summary>Visitors at the gate during an open-gates decree, the warden in office, the on-guard decree beside it, a thief seen (and caught, fighting half the time).</summary>
+        private const float GatesVisited = 0.9f, OnGuardBeside = 0.1f, ThiefSeenShare = 0.6f;
+        /// <summary>The travelling gambler a colony-year, the colony letting anyone play.</summary>
+        private const float Gamblers = 0.25f, AnyonePlays = 0.45f;
+        /// <summary>The barber's visit a colony-year, the colonists who sit for a cut, a poor barber, a spacer's clippers.</summary>
+        private const float BarberVisits = 0.4f, SitForCut = 0.7f, PoorBarber = 0.4f, SpacerBarber = 0.25f;
+        /// <summary>A dignitary hosted a colony-year, the guest with a guard of their own, the colonist taking it, a hurt in a duel to first blood or a bout.</summary>
+        private const float Dignitaries = 0.15f, GuestGuard = 0.5f, TakesIt = 0.6f, ChallengeHurts = 0.45f;
+        /// <summary>Hard words come to blows (the hard words' own chance), the warden near, a pair to join.</summary>
+        private const float WordsToBlows = 0.25f, WardenNear = 0.2f, PairToJoin = 0.5f;
+        /// <summary>Duels to first blood a colony-year, a bloodthirsty fighter in one.</summary>
+        private const float FirstBloodDuels = 0.2f, Bloodthirsty = 0.12f;
+        /// <summary>Hard words with a notable themself, and duels won against a people whose ways know duels, a colony-year; apologised for in time.</summary>
+        private const float NotableSlights = 0.3f, DuelsWon = 0.1f, ApologisedShare = 0.15f;
+        /// <summary>A wronged head dying a colony-year, and their people's visits while the heir's grudge holds.</summary>
+        private const float WrongedHeadsDie = 0.04f, HeirVisits = 4f;
+        /// <summary>An avenger sworn against a people now at peace, and their visits a colony-year.</summary>
+        private const float HatedAtPeace = 0.05f, HatedVisits = 2f;
+        /// <summary>Visits of another faith (Ideology in half of games), a devout of ours at home, the outsiders' fistfight chance after the words.</summary>
+        private const float OtherFaithVisits = 0.3f, DevoutOurs = 0.5f, ZealFists = 0.25f;
+        /// <summary>A famine near the colony: its nights a colony-year; famine bread given out, a night watch, the fields lit; met by one of ours.</summary>
+        private const float FamineNights = 2.5f, FamineBread = 0.1f, NightWatchKept = 0.15f, FieldsLit = 0.3f, HungryMetShare = 0.4f;
+        /// <summary>A rush a colony-year with two parties of prospectors on the land at once, one of ours caught near, no marshal at hand.</summary>
+        private const float Rushes = 0.05f, CaughtNear = 0.25f, NoMarshal = 0.7f;
+        /// <summary>Of a worst night alone, the drug in reach (not forbidden or locked away).</summary>
+        private const float DrugInReach = 0.5f;
+        /// <summary>New legs fitted a colony-year, first steps alone by the gate.</summary>
+        private const float NewLegs = 0.04f, StepsAlone = 0.4f;
+        /// <summary>A fire, ice or storm mage in "the long discipline"'s practice, its days a colony-year, the teacher along.</summary>
+        private const float ElementMage = 0.1f, PracticeDays = 12f, TeacherAlong = 0.5f;
 
         // ---- The game's own, beside them ----
 
@@ -499,6 +578,7 @@ namespace Balance
                 if (y.mode != Mode.Before) PartFourDay(y, day, rng);
                 if (y.mode != Mode.Before) PartFiveDay(y, day, rng);
                 if (y.mode != Mode.Before) PartSixDay(y, day, rng);
+                if (y.mode != Mode.Before) PartSevenDay(y, day, rng);
                 Onsets(y, day, rng);
                 if (y.mode == Mode.Budget || y.mode == Mode.BudgetPlain)
                 {
@@ -1382,6 +1462,268 @@ namespace Balance
             }
         }
 
+        // ---------------- Harm, part 7 ----------------
+
+        private static Person Other(Year y, Random g, Person not) => Any(y, g, not);
+
+        /// <summary>Two of the colony at odds: a bitter rivalry when there is one, else any two.</summary>
+        private static (Person a, Person b) Pair(Year y, Random g)
+        {
+            if (y.rivals.Count > 0 && g.NextDouble() < 0.7)
+            {
+                var r = y.rivals[g.Next(y.rivals.Count)];
+                return (r.rival, r.other);
+            }
+            var a = Any(y, g);
+            return (a, Other(y, g, a));
+        }
+
+        private static void PartSevenDay(Year y, int day, Func<string, Random> rng)
+        {
+            var x = y.x;
+            // The peacemaker's sit-down: the worst pair sat down one day in seven, while there is a rivalry.
+            var gs = rng("sit down");
+            if (y.peacemaker && y.rivals.Count > 0 && gs.NextDouble() < SitDownDaily)
+            {
+                float strength = 30f + (float)gs.NextDouble() * 50f;
+                int social = 3 + gs.Next(10);
+                if (Comes(y, HarmKinds.SitDown, gs, HarmSevenMath.SitDown(strength, social, gs.NextDouble() < HotPair)))
+                {
+                    var (a, b) = Pair(y, gs);
+                    bool punch = gs.NextDouble() < HarmSevenMath.PeacemakerPunch;
+                    var pm = Any(y, gs);
+                    y.today.Add((19, () =>
+                    {
+                        if (Fight(y, a, b, HarmKinds.SitDown) && punch && pm != a && pm != b) Hurt(y, pm, HarmKinds.SitDown);
+                    }));
+                }
+            }
+            // Words with the speaker: a broken promise, bitter and hot-tempered, one in five; talked down by the speaker's Social.
+            var gw = rng("speaker");
+            if (gw.NextDouble() < PerDay(y, x.brokenPromises) && gw.NextDouble() < x.bitter && gw.NextDouble() < HotShare
+                && Comes(y, HarmKinds.SpeakerWords, gw, HarmSevenMath.SpeakerChance) && gw.NextDouble() >= HarmSevenMath.TalksDown(SpeakerSocial))
+            {
+                var a = Any(y, gw);
+                var sp = Other(y, gw, a);
+                y.today.Add((14, () => Fight(y, a, sp, HarmKinds.SpeakerWords)));
+            }
+            // The thing that went to someone else: the jealous or abrasive, two sharp words in the week at the game's own chance.
+            var gp = rng("passed over");
+            if (gp.NextDouble() < PerDay(y, x.passedOver) && gp.NextDouble() < JealousShare)
+            {
+                var a = Any(y, gp);
+                var b = Other(y, gp, a);
+                for (int i = 0; i < HarmSevenMath.PassedOverWords; i++)
+                    if (Comes(y, HarmKinds.PassedOver, gp, HarmSevenMath.PassedOverChance))
+                    {
+                        y.today.Add((12 + i, () => Fight(y, a, b, HarmKinds.PassedOver)));
+                        break;
+                    }
+            }
+            // A meeting that boils over: two rivals who both pitched, one in twelve.
+            var gm = rng("meeting");
+            if (gm.NextDouble() < Meetings / Days && gm.NextDouble() < RivalPitches
+                && Comes(y, HarmKinds.MeetingBoils, gm, HarmSevenMath.Meeting(true, gm.NextDouble() < PeacemakerAtTable, ChairSocial)))
+            {
+                var (a, b) = Pair(y, gm);
+                y.today.Add((17, () => Fight(y, a, b, HarmKinds.MeetingBoils)));
+            }
+            // Friends stand by: a social fight, a close friend near, one in six steps in, a blow one time in two.
+            var gf = rng("friends");
+            if (gf.NextDouble() < PerDay(y, x.socialFights) && gf.NextDouble() < FriendNear && Comes(y, HarmKinds.FriendsStand, gf, HarmSevenMath.FriendSteps)
+                && gf.NextDouble() < HarmSevenMath.FriendBlow)
+            {
+                var f = Any(y, gf);
+                y.today.Add((16, () => Hurt(y, f, HarmKinds.FriendsStand)));
+            }
+            // Said to their face: gossip run down to its subject's face, a hot-tempered subject, one in ten.
+            var gt = rng("to their face");
+            if (gt.NextDouble() < PerDay(y, x.facedGossip) && gt.NextDouble() < HotShare && Comes(y, HarmKinds.SaidToFace, gt, HarmSevenMath.FaceChance))
+            {
+                var (a, b) = Pair(y, gt);
+                y.today.Add((13, () => Fight(y, a, b, HarmKinds.SaidToFace)));
+            }
+            // Found out by the wronged one, and told by the wrong friend.
+            var gr = rng("secrets");
+            if (gr.NextDouble() < PerDay(y, WrongingSlips) && Comes(y, HarmKinds.WrongedOne, gr, HarmSevenMath.Wronged(true, false, y.peacemaker)))
+            {
+                var (a, b) = Pair(y, gr);
+                y.today.Add((15, () => Fight(y, a, b, HarmKinds.WrongedOne)));
+            }
+            if (gr.NextDouble() < PerDay(y, Betrayals) && Comes(y, HarmKinds.ToldByFriend, gr, HarmSevenMath.LeakChance) && gr.NextDouble() < HarmSevenMath.LeakBlows)
+            {
+                var a = Any(y, gr);
+                var b = Other(y, gr, a);
+                y.today.Add((15, () => Fight(y, a, b, HarmKinds.ToldByFriend)));
+            }
+            // A rival in love comes to blows: the rivals' words said together, one story in four.
+            var gl = rng("rivals in love");
+            if (gl.NextDouble() < PerDay(y, LoveStories) && gl.NextDouble() < LoveTalked && Comes(y, HarmKinds.LoveRivals, gl, HarmSevenMath.LoveRivalChance))
+            {
+                var a = Any(y, gl);
+                var b = Other(y, gl, a);
+                y.today.Add((18, () => Fight(y, a, b, HarmKinds.LoveRivals)));
+            }
+            // Words at the altar: once after the one-faith decree, one in three.
+            var ga = rng("altar");
+            if (ga.NextDouble() < OneFaithDecrees / Days && ga.NextDouble() < DevoutOther && Comes(y, HarmKinds.AltarWords, ga, HarmSevenMath.AltarChance))
+            {
+                var a = Any(y, ga);
+                var b = Other(y, ga, a);
+                y.today.Add((20, () => Fight(y, a, b, HarmKinds.AltarWords)));
+            }
+            // The feast that ends in a fistfight: a day's table quarrel with drink poured, one in four.
+            var gq = rng("feast fists");
+            if (gq.NextDouble() < TableQuarrels / Days && Comes(y, HarmKinds.FeastFists, gq, HarmSevenMath.FeastFists(gq.NextDouble() < x.tableDrink)))
+            {
+                var (a, b) = Pair(y, gq);
+                y.today.Add((21, () => Fight(y, a, b, HarmKinds.FeastFists)));
+            }
+            // The toast's second round: strong drink in plenty, one toast in three, two rivals who both took it, one in four.
+            var g2 = rng("second round");
+            if (g2.NextDouble() < Toasts / Days && g2.NextDouble() < PlentyShare && g2.NextDouble() < HarmSevenMath.SecondRoundChance && g2.NextDouble() < RivalsAtToast
+                && Comes(y, HarmKinds.SecondRound, g2, HarmSevenMath.SecondRoundFists))
+            {
+                var (a, b) = Pair(y, g2);
+                y.today.Add((21, () => Fight(y, a, b, HarmKinds.SecondRound)));
+            }
+            // The soldier's nightmare: a shaken one with a soldier's past in a shared room, one in twenty, the roommate struck.
+            var gn = rng("soldier");
+            foreach (var p in y.people)
+            {
+                if (gn.NextDouble() >= x.shaken / Days * SoldierShare * x.sharedRoom) continue;
+                if (!Comes(y, HarmKinds.SoldierNight, gn, HarmSevenMath.SoldierChance)) continue;
+                var mate = Other(y, gn, p);
+                y.today.Add((2, () => Hurt(y, mate, HarmKinds.SoldierNight)));
+            }
+            // Open gates: once a decree, about half the time, a thief seen and caught (half come to blows) or a drunk's fight.
+            var gg = rng("open gates");
+            if (gg.NextDouble() < x.gatesDecrees / Days && gg.NextDouble() < GatesVisited
+                && Comes(y, HarmKinds.OpenGates, gg, HarmSevenMath.Gates(gg.NextDouble() < Warden, gg.NextDouble() < OnGuardBeside)))
+            {
+                bool thief = HarmSevenMath.StrangerOf((float)gg.NextDouble()) == GateStranger.Thief;
+                if (!thief || gg.NextDouble() < ThiefSeenShare && gg.NextDouble() < HarmSevenMath.ThiefFights)
+                {
+                    var c = Any(y, gg);
+                    y.today.Add((15, () => Hurt(y, c, HarmKinds.OpenGates)));
+                }
+            }
+            // The gambler's game turns: anyone plays, one game in six a cheat caught, a hot-tempered loser.
+            var gb = rng("gambler");
+            if (gb.NextDouble() < Gamblers / Days && gb.NextDouble() < AnyonePlays && Comes(y, HarmKinds.GamblerTurns, gb, HarmSevenMath.GamblerChance)
+                && gb.NextDouble() < 1 - Math.Pow(1 - HotShare, 3))
+            {
+                var c = Any(y, gb);
+                y.today.Add((21, () => Hurt(y, c, HarmKinds.GamblerTurns)));
+            }
+            // The barber's nick: each who sits for a cut, one in thirty, twice for a poor barber, never a spacer's clippers.
+            var gc = rng("barber");
+            if (gc.NextDouble() < BarberVisits / Days)
+            {
+                bool poor = gc.NextDouble() < PoorBarber, spacer = gc.NextDouble() < SpacerBarber;
+                foreach (var p in y.people)
+                {
+                    if (gc.NextDouble() >= SitForCut || !Comes(y, HarmKinds.BarberNick, gc, HarmSevenMath.Barber(poor, spacer))) continue;
+                    var who = p;
+                    y.today.Add((11, () => Hurt(y, who, HarmKinds.BarberNick)));
+                }
+            }
+            // The guest of rank's enemy: one visit in six, no guard of their own, the colonist taking it, a hurt in it.
+            var gk = rng("rank enemy");
+            if (gk.NextDouble() < Dignitaries / Days && Comes(y, HarmKinds.RankEnemy, gk, HarmSevenMath.RankEnemyChance) && gk.NextDouble() >= GuestGuard
+                && gk.NextDouble() < TakesIt && gk.NextDouble() < ChallengeHurts)
+            {
+                var c = Any(y, gk);
+                y.today.Add((14, () => Hurt(y, c, HarmKinds.RankEnemy)));
+            }
+            // A fistfight that draws a crowd: hard words come to blows, one in five, a pair joins.
+            var gd = rng("crowd");
+            if (gd.NextDouble() < x.hardWords / Days * WordsToBlows && Comes(y, HarmKinds.CrowdFight, gd, HarmSevenMath.Crowd(gd.NextDouble() < WardenNear))
+                && gd.NextDouble() < PairToJoin)
+            {
+                var c = Any(y, gd);
+                y.today.Add((16, () => Hurt(y, c, HarmKinds.CrowdFight)));
+            }
+            // First blood, not stopped: a duel to first blood with a bloodthirsty fighter, one in twenty.
+            var gx = rng("first blood");
+            if (gx.NextDouble() < FirstBloodDuels / Days && gx.NextDouble() < Bloodthirsty && Comes(y, HarmKinds.PastFirstBlood, gx, HarmSevenMath.PastBloodChance))
+            {
+                var c = Any(y, gx);
+                y.today.Add((15, () => Hurt(y, c, HarmKinds.PastFirstBlood)));
+            }
+            // A challenge by letter: one slight in four held, not apologised for, taken, a hurt in the duel.
+            var gh = rng("letter challenge");
+            if (gh.NextDouble() < (x.hardWords * NotableSlights + DuelsWon) / Days && Comes(y, HarmKinds.LetterChallenge, gh, HarmSevenMath.ChallengeHold)
+                && gh.NextDouble() >= ApologisedShare && gh.NextDouble() < TakesIt && gh.NextDouble() < ChallengeHurts)
+            {
+                var c = Any(y, gh);
+                int at = day + 12 + gh.Next(25);
+                y.onsets.Add((c, at, HarmKinds.LetterChallenge));
+            }
+            // The heir's grudge: a wronged head dies, one heir in three, their visits a fistfight one in five.
+            var ge = rng("heir");
+            if (ge.NextDouble() < WrongedHeadsDie / Days && ge.NextDouble() < HarmSevenMath.HeirChance)
+                for (int i = 0; i < (int)HeirVisits; i++)
+                    if (Comes(y, HarmKinds.HeirGrudge, ge, HarmSevenMath.HeirVisitFight))
+                    {
+                        y.onsets.Add((Any(y, ge), day + 3 + ge.Next(40), HarmKinds.HeirGrudge));
+                        break;
+                    }
+            // A trader of the hated people: a vendetta against a people at peace, one visit in four.
+            var gv = rng("hated trader");
+            if (gv.NextDouble() < HatedAtPeace * HatedVisits / Days && Comes(y, HarmKinds.HatedTrader, gv, HarmSevenMath.HatedChance))
+            {
+                var c = Any(y, gv);
+                y.today.Add((13, () => Hurt(y, c, HarmKinds.HatedTrader)));
+            }
+            // Zeal at the gate: a visit of another faith, a devout of ours, hard words one in ten, the outsiders' fistfight after.
+            var gz = rng("zeal");
+            if (gz.NextDouble() < x.visits * OtherFaithVisits / Days && gz.NextDouble() < DevoutOurs
+                && Comes(y, HarmKinds.GateZeal, gz, HarmSevenMath.Zeal(gz.NextDouble() < Manners)) && gz.NextDouble() < ZealFists)
+            {
+                var c = Any(y, gz);
+                y.today.Add((12, () => Hurt(y, c, HarmKinds.GateZeal)));
+            }
+            // Hungry hands in the fields: a famine's night, one in fifteen, met by one of ours, struck half the time.
+            var gy = rng("hungry hands");
+            if (gy.NextDouble() < FamineNights / Days
+                && Comes(y, HarmKinds.HungryHands, gy, HarmSevenMath.Hungry(gy.NextDouble() < FamineBread, gy.NextDouble() < NightWatchKept, gy.NextDouble() < FieldsLit))
+                && gy.NextDouble() < HungryMetShare && gy.NextDouble() < HarmSevenMath.HungryStrike)
+            {
+                var c = Any(y, gy);
+                y.today.Add((23, () => Hurt(y, c, HarmKinds.HungryHands)));
+            }
+            // A brawl at the creek: two parties on the land in a rush, half the time, one of ours caught near, no marshal.
+            var gu = rng("creek");
+            if (gu.NextDouble() < Rushes / Days && Comes(y, HarmKinds.CreekBrawl, gu, HarmSevenMath.CreekChance) && gu.NextDouble() < CaughtNear && gu.NextDouble() < NoMarshal)
+            {
+                var c = Any(y, gu);
+                y.today.Add((16, () => Hurt(y, c, HarmKinds.CreekBrawl)));
+            }
+            // The worst night, alone: the friend not at their side, the drug in reach, half the time the binge.
+            var go = rng("worst night");
+            if (go.NextDouble() < x.gettingClean / Days && go.NextDouble() < x.aloneNight && go.NextDouble() < DrugInReach
+                && Comes(y, HarmKinds.WorstNight, go, HarmSevenMath.WorstNightChance))
+            {
+                var p = Any(y, go);
+                y.today.Add((23, () => Hurt(y, p, HarmKinds.WorstNight, false)));
+            }
+            // First steps alone: a new leg, by the gate without the friend, one in three a fall.
+            var gj = rng("first steps");
+            if (gj.NextDouble() < NewLegs / Days && gj.NextDouble() < StepsAlone && Comes(y, HarmKinds.FirstSteps, gj, HarmSevenMath.FirstStepsChance))
+            {
+                var p = Any(y, gj);
+                y.today.Add((11, () => Hurt(y, p, HarmKinds.FirstSteps)));
+            }
+            // A working gone wrong (A RimWorld of Magic): the dawn practice, one in 25, half with the teacher there.
+            var gi = rng("working");
+            if (gi.NextDouble() < ElementMage * PracticeDays / Days && Comes(y, HarmKinds.WorkingWrong, gi, HarmSevenMath.Working(WorkingSlip.Fire, gi.NextDouble() < TeacherAlong)))
+            {
+                var p = Any(y, gi);
+                y.today.Add((6, () => Hurt(y, p, HarmKinds.WorkingWrong)));
+            }
+        }
+
         /// <summary>Sicknesses, and the rematch's day, waiting to show: each comes the first morning the cap lets it, or passes after three days.</summary>
         private static void Onsets(Year y, int day, Func<string, Random> rng)
         {
@@ -1438,7 +1780,7 @@ namespace Balance
                 }
                 Console.WriteLine($"   {k.label,-48} {b,8:0.000} {u,10:0.000} {a,8:0.000} {pass,9:0.00} {held,10:0.000} {budget.hurts.GetValueOrDefault(k.label) / years,14:0.000}");
             }
-            Console.WriteLine($"   {"in all",-48} {tb,8:0.000} {tn,10:0.000} {ta,8:0.000}   (budget/before {ta / Math.Max(1e-9, tb):0.000}; the later kinds, parts 4 to 6, {newTn:0.000} -> {newTa:0.000})");
+            Console.WriteLine($"   {"in all",-48} {tb,8:0.000} {tn,10:0.000} {ta,8:0.000}   (budget/before {ta / Math.Max(1e-9, tb):0.000}; the later kinds, parts 4 to 7, {newTn:0.000} -> {newTa:0.000})");
             Console.WriteLine($"   the game's own beside it: a raid's wound {budget.raidWounds / cy:0.00} a colonist-year (HeartSim's raids), a food poisoning 0.3 to 1 (two meals a day,");
             Console.WriteLine("   a middling cook), the storyteller's diseases a few a colony-year.");
             Console.Write("   fights a colony-year:");

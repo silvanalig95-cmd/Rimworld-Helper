@@ -642,6 +642,8 @@ namespace ColonyCouncil
                     if (NotableMath.HeirSucceeds(n.role, heir != null))
                     {
                         heir.role = NotableRole.Head;
+                        // Harm, part 7: the one the colony wronged is followed by an heir who may carry it on (Harm/GateTroubles.cs).
+                        GateTroubles.HeirSucceeded(n, heir);
                         heir.Remember("CC_Notable_Note_Succeeded".Translate(n.Name.Named("NAME"), TitleOf(heir).Named("TITLE"), (heir.townName ?? "").Named("TOWN")).Resolve(), 0f);
                         if (n.notes.Count > 0 || heir.notes.Count > 0)
                             Notify.Message("CC_Notable_Msg_Succeeded".Translate(heir.Name.Named("NAME"), n.Name.Named("OLD"), TitleOf(heir).Named("TITLE"), (heir.townName ?? "").Named("TOWN")).Resolve(),

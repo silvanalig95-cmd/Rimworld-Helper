@@ -170,7 +170,8 @@ public static class HarmTests
         C(HurtsOf("Council_Decree_LongHours") == "TiredHands" && HurtsOf("Council_Decree_Harvest") == "TiredHands" && HurtsOf("Council_Decree_Building") == "TiredHands",
             "long hours, a harvest push and a building season tire hands");
         C(HurtsOf("Council_Decree_BankedFires") == "ColdNights", "banked fires chill the frail in a hard frost (harm, part 4)");
-        C(decrees.Count(d => d.Element("hurts") != null) == 6, "and no other decree");
+        C(HurtsOf("Council_Decree_OpenGates") == "Gates" && HurtsOf("Council_Decree_OneFaith") == "OneFaith", "open gates let a stranger in, one faith brings words at the altar (harm, part 7)");
+        C(decrees.Count(d => d.Element("hurts") != null) == 8, "and no other decree");
         var militia = decrees.First(d => d.Element("defName")?.Value == "Council_Decree_Militia");
         C(militia.Element("eras") == null && militia.ToString().Contains("[spacer]"), "the militia in every age, with a spacer form");
         C(Code("UI/DecreePanel.cs").Contains("Harm.DecreeLine(def)") && Code("CouncilDynamics.cs").Contains("Harm.DecreeLine(def)"), "named on the decree's card and in its letter");

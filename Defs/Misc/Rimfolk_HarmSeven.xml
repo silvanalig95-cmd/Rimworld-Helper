@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Harm, part 7 (Source/ColonyCouncil/Harm/Stories.cs, GateTroubles.cs): a mage's dawn practice out in the open (A
+       RimWorld of Magic's "long discipline"), and a stranger through the open gate looking over the colony's stores. Each
+       goes out to its place, stays a while and ends; none starts in danger. -->
+
+  <JobDef>
+    <defName>Rimfolk_PracticeWalk</defName>
+    <driverClass>ColonyCouncil.JobDriver_HarmWalk</driverClass>
+    <reportString>practising the art at first light.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_StoresSneak</defName>
+    <driverClass>ColonyCouncil.JobDriver_HarmWalk</driverClass>
+    <reportString>looking over the stores.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+</Defs>

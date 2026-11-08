@@ -507,6 +507,7 @@
     <thought>Council_Decree_OpenGates</thought>
     <defaultReaction>Neutral</defaultReaction>
     <visitorFactor>1.5</visitorFactor>
+    <hurts>Gates</hurts>
     <reactions>
       <li><passion>Social</passion><reaction>Like</reaction></li>
       <li><trait>Kind</trait><reaction>Like</reaction></li>

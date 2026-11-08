@@ -2,7 +2,8 @@
 
 The player asked on 4 November 2026 to "review the other mechanics … and apply this rule as well and add some that are
 also can be negative. Maybe preventable, maybe not preventable. It should be kind of everything should be possible."
-This is the list proposed first, as CLAUDE.md asks: nothing in it is built, and the player picks. It follows the harm
+This is the list proposed first, as CLAUDE.md asks; the player picked all of it, and every proposal is now built (marked
+under each, with what differs). It follows the harm
 rule (since 3 November 2026: hurts when flavorful or interesting, at the game's own rate, never gratuitous, always from
 something on the map, and shown) and the every-age rule (since 4 November 2026).
 
@@ -32,9 +33,14 @@ other 69 after the player's "all suggestions please") sickness that spreads, the
 2.7.2, 3.2.2, 2.2.4, 3.2.3, 4.9.3, 3.1.2, 4.2.2, 3.11.3, 3.12.1, 3.3.3 and 4.9.2 as kinds of the budget, and 4.4.2, which
 hurts nobody, outside it; (harm, part 6, 7 November 2026, the second of the three batches) the work's accidents, the
 animals and the contests and festivals: 2.1.2, 2.1.3, 1.5.2, 3.3.2, 3.4.2, 4.3.2, 4.4.1, 3.11.1, 3.11.2, 4.7.1, 2.6.3, 2.4.3,
-2.10.2, 3.11.4, 4.5.2, 4.6.1, 4.6.2, 4.1.2, 4.2.1, 4.8.2, 3.6.2, 3.7.2 and 3.8.2, each a kind of the budget. With the budget,
-every rate below is a kind's own: the kinds share the total the first ones came to, each at about a third of its own rate
-now. The balance model's harm mode (`Tools/Balance -- --harm`) has their rates.
+2.10.2, 3.11.4, 4.5.2, 4.6.1, 4.6.2, 4.1.2, 4.2.1, 4.8.2, 3.6.2, 3.7.2 and 3.8.2, each a kind of the budget; (harm, part 7,
+7 November 2026, the last of the three batches) tempers in the colony, visitors and outsiders, and personal stories: 1.1.2,
+1.3.1, 1.3.2, 1.5.1, 3.5.2, 3.7.1, 3.9.1, 3.9.2, 3.10.1, 3.13.1, 4.1.3, 4.7.3, 3.12.2, 1.2.4, 2.2.2, 2.5.3, 2.6.2, 2.8.2, 2.8.3,
+2.9.1, 2.9.2, 3.8.1, 3.13.2, 2.3.2, 2.3.3, 3.10.2, 3.10.3 and 4.8.1 as kinds of the budget, and 2.10.1, 2.6.1 and 2.7.1, which
+hurt nobody of the colony (the nemesis's aim, a neighbour's lost child, their courier), outside it. **The review is complete:
+all 94 proposals are built**, 90 of them kinds of the shared budget (100 kinds in all with the colony.s other everyday hurts) and 4.4.2, 2.10.1, 2.6.1
+and 2.7.1 outside it. With the budget, every rate below is a kind's own: the kinds share the total the first ones came to, each
+at a little under a third of its own rate now. The balance model's harm mode (`Tools/Balance -- --harm`) has their rates.
 
 ## How to read it
 
@@ -98,6 +104,13 @@ stories (`Council_Arc_LostSeatEarly`, `Council_Arc_WeightOfOffice`). Nothing phy
    skill), or waiting until the pair has cooled. *Rate:* one sit-down in 10 for the worst pairs, a couple a year in a
    colony with bitter rivals. *Seen:* the three at a table, raised voices, the game's social fight, the peacemaker
    pulling them apart.
+   *Built (harm, part 7, 7 November 2026):* `Harm/Tempers.cs`, in the peacemaker's own sit-down (`Offices.Mediate`, the
+   three together): one in ten at a rivalry of 70 (the worst pairs), nothing once it has cooled to 30, falling with the
+   peacemaker's Social (a quarter at 20), half without a hot temper between them (a fighting temper of 2). The more
+   hot-tempered of the two goes for the other, the game's social fight, and the rivalry isn't mended that time; the
+   peacemaker steps between them with a word and takes a punch (a bruise of 1 to 3 on an arm) one time in three. "A
+   couple a year" comes to about a third of a fight a year where the peacemaker sits bitter rivals down (the sit-down's
+   own pace, one day in seven). With the offices and the social web.
 
 **Pick:** 1. It turns the hospital's cleanliness and a second doctor into real choices, and reuses the ailments'
 spreading between roommates.
@@ -146,6 +159,14 @@ decree.
    warden of guests, someone on watch, the on-guard decree beside it. *Rate:* at most one such stranger per open-gates
    decree, about half the time. *Seen:* a stranger at the stores with a sack, chased off; a fistfight if caught. *Ages:*
    a wanderer from another clan (tribal), a cutpurse (medieval), a grifter (industrial), a spacer's con artist.
+   *Built (harm, part 7, 7 November 2026):* `Harm/GateTroubles.cs`, on the harm book's hour: while the open-gates decree
+   holds, the first visitors at a home have the decree's one roll: about half the time (half with the warden of guests
+   in office, half again under the on-guard decree) one of them takes advantage. A thief walks to the stores; seen by
+   one of the colony within fifteen cells, they're chased off and drop the sack, and caught it comes to blows half the
+   time; unseen, they make off with a small stack (food or a cheap raw thing). Or they drink from a bottle of their own
+   (the game's beer) and pick a fight with the nearest of ours in the yard. The fights are the outsiders' fistfight.
+   "Someone on watch" is the warden; the ages are in the words (a wanderer, a cutpurse, a grifter, a con artist). Named
+   on the decree's card (`DecreeHurt.Gates`). With the visitors and the deeper hooks.
 5. **The sick work on.** When someone petitions for rest when ill or a quarantine while a catching ailment goes round
    and the council lets the petition lapse, the sick keep working and the ailment reaches one more person than it would.
    Adds weight to petitions. *Prevent:* yes: heed the petition. *Rate:* only while such an ailment runs; one more case.
@@ -172,10 +193,21 @@ insulting spree for the abrasive, `MaybeSulk`); a wish's own lapse can start a m
    under gentle stakes. *Rate:* a fifth of broken promises among the bitter and hot-tempered, once or twice a year in a
    colony that breaks many. *Seen:* the walk over, the line said, a fight or a turned back. *Ages:* the chief at the fire,
    the lord in the hall, the chairman, the director (the speaker's word by age).
+   *Built (harm, part 7, 7 November 2026):* `Harm/Tempers.cs`, from a promise broken (`CouncilDynamics.Expire`), under
+   demanding stakes only: one whose trust has gone doubtful or bitter, with a hot temper, a fifth of the times. They go
+   to find the speaker within the day and say it to their face (by the age: the one who speaks for the fire, the hall,
+   the chair, the council's director), and the speaker talks them down a twentieth for each level of Social (three in
+   four at most), else the game's social fight. With the offices and wishes.
 2. **The thing that went to someone else.** A colonist whose wish (a room, a weapon, a seat, an animal) went to another
    may pick a fight with the one who has it, if jealous or abrasive. Adds a social edge to who gets what. *Prevent:* yes:
    grant both, or a word from the peacemaker. *Rate:* the game's own fight chance for a pair at -20 opinion, for a week.
    *Seen:* the passed-over one in the doorway of the room they wanted, a sharp word, sometimes blows.
+   *Built (harm, part 7, 7 November 2026):* `Harm/Tempers.cs`, from feeling passed over (the jealousy rule in
+   `CouncilDynamics.GrantRipples`: a request of their own waiting while another is favoured): the jealous or abrasive
+   hold it for a week, and the first two times they meet the one who has it (a day apart at least) a sharp word, each at
+   the game's own fight chance for an insult between a pair at -20 (its 0.04 times 1.6). The peacemaker in office finds
+   them within two days for a word, which settles it; granting both is the council's own doing. "In the doorway of the
+   room they wanted" is left to the words. With wishes and jealousy.
 
 **Pick:** 1. It turns the demanding stakes into a moment on the map rather than a mood, and needs only a walk and a fight.
 
@@ -211,6 +243,11 @@ checklists, and failing one costs trust and mood (`Ambitions/Ambitions.cs`, `Fai
 1. **A meeting that boils over.** When two rivals both pitch and one idea wins, the argument can become a shove at the
    table. *Prevent:* yes: the speaker's Social, the peacemaker. *Rate:* rarer than the hustings, once in a long while.
    *Seen:* chairs pushed back, the fight, the meeting decided by those who stay.
+   *Built (harm, part 7, 7 November 2026):* `Harm/Tempers.cs`, as the meeting is decided (`Ambitions.Conclude`, a
+   meeting gathered): two rivals (the social web's, or -20 either way) who both pitched and stayed, one idea winning:
+   one meeting in twelve the loser goes for the winner at the table, half with the peacemaker there, less with a chair
+   of good Social; "decided by those who stay" is its letter as it stands. The meeting's own talk still never starts the
+   game's insult. With the projects.
 2. **The project's last push.** In a project's last three days, work on its own blueprints counts as hard work: the
    tired-hands rule (1.2.2) applies there. Adds a cost to rushing the great hall. *Prevent:* yes: no rush, rest. *Rate:*
    as tired hands. *Seen:* as tired hands; the chronicle may name the hall "built with a bandaged hand". *Ages:* by the
@@ -297,6 +334,11 @@ crops, never people (DESIGN.md, Layer 5); the neighbors' events say "none ends i
    hot-tempered loser starting a fistfight with the gambler (the outsiders' fistfight rule: goodwill lost, never a war).
    *Prevent:* yes: "No gambling at the colony", or only the calm play. *Rate:* one game in 6. *Seen:* the table, the
    accusation, the fight, the gambler leaving early. *Ages:* knucklebones, dice, cards, a slate of odds.
+   *Built (harm, part 7, 7 November 2026):* `Harm/GateTroubles.cs` and `DilemmaEffect_GamblerTurns`, under "let anyone
+   who wants to play" (named on its sheet): the evening the gambler sits with some of the colony, one game in six a
+   cheat is caught; a loser of hot temper starts the outsiders' fistfight with the gambler, who goes on within the hour;
+   a calmer one only says so. The colony's best playing the one game, or no gambling, carry none of it. The ages are the
+   gambler's own (the event's knucklebones, cards and dice). With the deeper hooks.
 3. **Caught in the hail.** Anyone still outdoors when the hail starts takes a bruise (a blunt hit of 1 to 3), including
    the work party bringing the ripe crops in. *Prevent:* yes: call them in at the first stones; a roofed walk. *Rate:*
    only those still out; one or two bruises a storm. *Seen:* workers running for cover, one limping in. *Ages:* a helmet
@@ -347,9 +389,20 @@ colony meets.
    a colonist who meets them may be struck before they flee. *Prevent:* yes: a night watch, lights, alms or famine bread
    given out (fed, they don't come). *Rate:* once or twice in a famine. *Seen:* figures in the field at night, a
    struggle, a sack dropped.
+   *Built (harm, part 7, 7 November 2026):* `Harm/GateTroubles.cs`, on the harm book's hour: a famine (a world event of
+   hunger) within the region's reach of the colony, one night in fifteen (once or twice a famine) two or three hungry
+   strangers of the famine's people (else a people at peace), unarmed and carrying nothing, come into the fields (else
+   to the stores) for an hour or so; one of ours who comes within six cells of them is struck one time in two (a bruise
+   of 2 to 4) before they drop what they have and flee. Half with a night watch kept on the walls, half with the fields
+   lit; never while the famine bread decree is given out (the colony's alms). With world events.
 3. **A brawl at the creek.** Gold fever or a silver rush brings prospectors; two parties' quarrel on the colony's land
    becomes a brawl, and a colonist too near can be caught in it. *Prevent:* yes: keep away, send the marshal. *Rate:*
    once per rush, half the time. *Seen:* the prospectors' camp, the shouting, the fight.
+   *Built (harm, part 7, 7 November 2026):* `Harm/GateTroubles.cs`, on the harm book's hour: two parties of prospectors
+   on the colony's land at once (the silver rush's or the gold fever's visitors working the creeks), once a rush, half
+   the time their quarrel becomes a brawl between them (theirs, not the colony's); one of ours within four cells is
+   caught in it (a bruise of 2 to 5). The marshal at home and free goes over and breaks it up first. With world events
+   and the visitors.
 
 **Pick:** 1. It makes the plague's arrival visible and gives the existing quarantine a concrete payoff.
 
@@ -419,6 +472,9 @@ the goodwill rule) already exists.
 3. **The barber's nick.** The barber's razor leaves a small nick now and then (a cut of 1), more with a poor barber.
    *Prevent:* not preventable, beyond declining the barber. *Rate:* one cut in 30. *Seen:* a dab of blood and a laugh.
    *Ages:* a flint blade, a razor, clippers that never nick (spacer: nothing).
+   *Built (harm, part 7, 7 November 2026):* `Harm/GateTroubles.cs`, at each cut (`Callers.Cut`): one cut in thirty,
+   twice for a barber short of Artistic 6, a cut of 1 on the shoulder (nothing here lands on the head), the mildest
+   (children may), a sorry and a laugh; a barber of a spacer people never nicks. With answers on the map.
 
 **Pick:** 1. It gives visitors their first bad night in a form the game already handles.
 
@@ -430,11 +486,24 @@ of rank, refugees to see through. Failing costs goodwill and a setback; the road
 1. **The lost child, found hurt.** A child found only after the first night may have frostnip, a sprained ankle or a
    chill; found early, unhurt. Adds urgency the mission's deadline alone lacks. *Prevent:* yes: a search sent out early.
    *Rate:* by how late, about half of late finds. *Seen:* the child limping, carried home on a colonist's back.
+   *Built (harm, part 7, 7 November 2026, outside the budget):* `Harm/Stories.cs` (a neighbour's child, not the
+   colony's): as the lost one is found (`HappeningWorker_MissionLostChild.Check`), only after a night out (through the
+   next dawn), about half of them (times the setting and the storyteller's lean): frostnip in a frost, a chill (a head
+   cold) in the wet or cold, else a turned ankle; a child only the mildest (a scraped knee for the ankle). Said by the
+   child and the finder. "Carried home on a colonist's back" is left to the words: the child follows the finder home, as
+   the mission has it. A search sent out early prevents it.
 2. **The guest of rank's enemy.** A dignitary's visit can draw a rival of their house: a hothead at the gate who
    challenges the guest's guard or the colony's marshal to a duel by the people's ways (the outsiders' duel rule).
    *Prevent:* yes: refuse the challenge (a little regard lost), or the guest's own guard takes it. *Rate:* one visit in
    6. *Seen:* the challenger at the gate, the duel watched by the guest. *Ages:* a rival clansman (tribal), a knight's
    challenge (medieval), an agitator's fists (industrial), a disgraced officer (spacer).
+   *Built (harm, part 7, 7 November 2026):* `Harm/GateTroubles.cs`, on the harm book's hour: a dignitary's visit (the
+   hosting mission) has one roll: one in six, a hothead of their own people comes to the gate within the day ("a rival
+   of their house" is a rival of theirs: the colony keeps no houses). The guest's own guard, if their company has one
+   able to fight, takes the challenge (the two of them fight it out, nobody of the colony's); else they ask for the
+   colony's marshal, or its best fighter, who takes it by their nature (as a rematch is taken: a duel to first blood
+   where the people's ways know duels, else a bout, by the outsiders' own rules) or turns it down, their people a little
+   cooler for it. With the outsiders' bouts or duels.
 3. **The hands come home sore.** Hands back from a town's harvest bring what a day and a half in the fields would have
    given at home: a strained back, blisters, a sunburn. *Prevent:* partly: send the tough. *Rate:* the work ailments'
    own. *Seen:* the hands walking in, one limping.
@@ -456,6 +525,13 @@ danger and leave if hurt.
    hurt and the goods may be taken. Adds a short fight the player can choose to join. *Prevent:* yes: someone on watch,
    people sent out. *Rate:* half of today's waylaid messengers. *Seen:* the struggle at the map's edge, the courier
    limping to the gate. *Ages:* by the people's own means: a runner, a rider, a held-up delivery man.
+   *Built (harm, part 7, 7 November 2026, outside the budget):* `Harm/Stories.cs` (their courier, not the colony's): of
+   the messengers waylaid on a dangerous road (the letters' own chance), half (times the setting and the lean) come onto
+   the colony's land with two or three bandits of a people at war with the colony at their heels, instead of coming in
+   already hurt: with nobody of ours within twenty-five cells of where they come in, the courier's cut as before (3 to
+   6) and the letter's line; with someone near, the bandits run before they strike. The bandits run for the edge (the
+   game's own enemies, whom the colony can go after), and a message says what happened, as the game warns of enemies on
+   the land. "The goods may be taken" is left out: a messenger carries only the letter, which they keep.
 2. **A courier who arrives sick.** During a regional sickness, a courier may bring it (as 2.3.1, the same carrier rule).
    *Prevent:* yes: the quarantine decree; the goods left at the gate. *Rate:* as 2.3.1. *Seen:* a coughing courier.
    *Built (harm, part 5, 7 November 2026):* `Harm/Carriers.cs`, as a courier's party comes onto the map: a courier of a
@@ -483,10 +559,18 @@ the game's own fight (`Outsiders/OutsiderOutcomes.cs`; Almanac, "Bouts, hard wor
 2. **A fistfight that draws a crowd.** When hard words come to blows, others of both sides nearby may join, up to four.
    *Prevent:* partly: the warden near, few hot tempers about. *Rate:* one fistfight in 5. *Seen:* the brawl, broken up
    by the marshal.
+   *Built (harm, part 7, 7 November 2026):* `Harm/GateTroubles.cs`, as hard words come to blows (`Outsiders.Provoke`):
+   one fistfight in five (half with the warden of guests within twenty cells), others of both sides within ten cells
+   with a temper to them (a fighting temper of 1) join, one more pair (four in all); the marshal near breaks it up a
+   little after. With the outsiders and the deeper hooks.
 3. **First blood, not stopped.** A fighter with bloodlust doesn't always stop at first blood: one duel in 20 goes on
    until someone yields, and the onlookers pull them apart. *Prevent:* yes: choose the yield terms from the start, or
    don't duel a bloodthirsty one. *Rate:* one duel in 20 with bloodlust. *Seen:* the duel going on past the wound, the
    shout, the onlookers stepping in.
+   *Built (harm, part 7, 7 November 2026):* `Harm/GateTroubles.cs`, at the referee's look as first blood is drawn
+   (`Outsiders.Referee`): with a bloodthirsty fighter on either side, one duel in twenty goes on by the yield terms, the
+   colonist's further hurt counted for the cap, and an onlooker pulls them apart at its end. The yield terms from the
+   start, or not dueling the bloodthirsty, keep it to first blood. With the outsiders' duels.
 
 **Pick:** 1. The harm here is already at the game's rate; the rematch adds story rather than more blood.
 
@@ -499,9 +583,22 @@ notable are remembered (`World/NeighbourLetters.cs`). Letters themselves hurt no
    duels. *Prevent:* yes: an apology letter first, or refusing. *Rate:* rare, once or twice in a long game. *Seen:* the
    challenger at the gate, the duel. *Ages:* a runner with a challenge (tribal), a sealed challenge (medieval), a demand
    by radio (industrial), by comms (spacer).
+   *Built (harm, part 7, 7 November 2026):* `Harm/GateTroubles.cs`: hard words with a notable themself, or one of a
+   people's own beaten in a duel by one of ours ("whose kin lost a duel" is their people, as nothing here keeps kin),
+   where the people's ways know duels: one in four is held. Ten to thirty days on, the challenge comes as one of
+   Rimfolk's letters by their people's means (a runner, a sealed letter, the radio, comms); two to five days after it
+   the challenger comes to the gate unannounced and asks for the colonist by name, who takes it by their nature (the
+   outsiders' duel to first blood) or refuses, and the notable thinks less of them for it. A letter of greetings or
+   condolences to their people first, or a good word or a gift, settles it. With the neighbours' letters and the
+   outsiders' bouts or duels.
 2. **The heir's grudge.** When a notable the colony wronged dies, their heir carries it on: their caravans' guards are
    short with colonists, and hard words come easier. *Prevent:* yes: condolences and a gift to the heir. *Rate:* one heir
    in 3 of a wronged notable. *Seen:* the guards' words at the trade, a fistfight now and then.
+   *Built (harm, part 7, 7 November 2026):* `Harm/GateTroubles.cs`, at a town's succession (`NotableBook`'s look): a
+   head whose regard of the colony was at -20 or worse is gone and the heir steps up; one heir in three carries it on,
+   for four months. Each visit of their people meanwhile their guards are short with one of ours (a word), and one visit
+   in five it comes to the outsiders' fistfight. Condolences or greetings to their people, or a good word or a gift, end
+   it. With the notables and the deeper hooks.
 
 **Pick:** 1. It joins letters to the duels already on the map.
 
@@ -513,6 +610,13 @@ a nemesis is a raider or beast who struck down one of ours and got away, and com
 1. **The nemesis seeks the one they hurt.** A returning nemesis goes for the colonist it hurt before, if that one is in
    the fight, rather than the nearest. Adds a personal fight to an ordinary raid. *Prevent:* yes: keep that colonist
    behind cover. *Rate:* only with a nemesis in a raid. *Seen:* the nemesis pushing past others toward them, a taunt.
+   *Built (harm, part 7, 7 November 2026, outside the budget):* `Harm/Stories.cs`, every 250 ticks of a fight at home: a
+   nemesis on the land (a raider back with a raid, by the nemeses' own return, or a beast nemesis back,
+   `Beasts/BeastNemeses.cs`), hostile and up, with the one it hurt on the field: once a return it goes for them, a beast
+   or a blade straight at them, a gun or a bow to within range, with a taunt (or the words over the beast). Behind cover
+   (indoors under a roof, or cover between them blocking two fifths) it keeps to its own fighting. It makes no return of
+   its own and adds no hurt: the raid's and the beast's attack are the game's, only aimed, so it takes no share of the
+   budget; the setting and the lean still decide it. With the nemeses.
 2. **The wild one too close.** In a creature encounter, a colonist who steps closer may be bitten or kicked, at the
    game's taming-revenge chance; a bite can carry rabies by the serious tier's 3%. *Prevent:* partly: the cautious never
    step closer. *Rate:* one such encounter in 20. *Seen:* the colonist reaching out, the animal lashing out and fleeing.
@@ -671,6 +775,11 @@ answers can make rivals of two who fought (`HeldRisk`); frictions sting; the pea
    year a bitter rivalry of a petty nature, 0.04 fights a colony-year with six, 0.24 with twelve.
 2. **Friends stand by.** When one of a close pair is in a social fight, the friend may step in, to pull them apart or to
    help, and can take a blow. *Prevent:* not preventable. *Rate:* one fight in 6. *Seen:* the friend running over.
+   *Built (harm, part 7, 7 November 2026):* `Harm/Tempers.cs`, every 250 ticks: any social fight at a home, the game's
+   or Rimfolk's, has one look; a close friend of one of the two (a friendship of 45, or an opinion of 60) within twelve
+   cells, one fight in six, runs over; one time in two they take a blow (a bruise of 1 to 3, a child's the mildest), and
+   the two are pulled apart (their fight ends). "Or to help" is left out: the two already fighting are past the cap, so
+   the friend only pulls them apart. Not preventable. With the social web.
 
 **Pick:** 1. It makes rivalry do something on the map, and gives the later schemes a tested base.
 
@@ -709,6 +818,10 @@ thought, tags and moments; a hothead or a rival tells it with its subject there.
 1. **Said to their face.** When gossip is told with its subject in earshot, the subject may confront the teller, and with
    a hot temper it becomes a fight. *Prevent:* partly: discreet tellers. *Rate:* one such telling in 10. *Seen:* the
    subject turning round, the line, the fight.
+   *Built (harm, part 7, 7 November 2026):* `Harm/Tempers.cs`, from gossip told with its subject there
+   (`Gossip.InFront`, which only a hothead or a rival does: the discreet never tell it in front of them): run down to
+   their face, a subject of hot temper comes to blows with the teller one telling in ten, a moment after the words. With
+   the names.
 2. **A coward's name.** Someone whose name for courage has gone bad pushes forward in the next fight to prove otherwise,
    out of cover. *Prevent:* yes: draft and hold them; a word from the marshal beforehand. *Rate:* once after the name
    forms. *Seen:* the colonist breaking cover in a raid, a line said.
@@ -730,6 +843,10 @@ thought, tags and moments; a hothead or a rival tells it with its subject there.
    visitors come, and the avenger may pick a fight with one of them (the outsiders' fistfight, goodwill lost).
    *Prevent:* yes: send the avenger away during the visit, or the vendetta laid down (its story). *Rate:* one visit in 4.
    *Seen:* the avenger walking straight to the visitor.
+   *Built (harm, part 7, 7 November 2026):* `Harm/GateTroubles.cs`, on the harm book's hour: a vendetta open against a
+   people now at peace, each visit of theirs while the avenger is at home has one roll, one in four: the avenger walks
+   straight up to one of them, the outsiders' fistfight. The avenger away, or the vendetta laid down, keeps it from
+   coming. With the vendettas and the deeper hooks.
 2. **Fury that forgets cover.** In a fight against that people, the avenger sometimes breaks from cover toward them.
    *Prevent:* yes: draft and hold them. *Rate:* once a battle at most, one in 3. *Seen:* the run forward, a line said.
    *Built (harm, part 6, 7 November 2026):* `Harm/Contests.cs`, every 250 ticks of a fight at home against the people
@@ -745,9 +862,18 @@ thought, tags and moments; a hothead or a rival tells it with its subject there.
 1. **Found out by the wronged one.** Secrets that wronged someone in the colony (a theft, a lie, a betrayal), revealed
    with that person there, can bring them to blows. *Prevent:* yes: telling it oneself first (the "a secret told"
    story), the peacemaker. *Rate:* one such reveal in 4. *Seen:* the reveal, the line, the fight.
+   *Built (harm, part 7, 7 November 2026):* `Harm/Tempers.cs`, from a secret let slip in company
+   (`SecretTracker.SayInCompany`): "wronged someone in the colony" is a secret that wronged the colony itself, marked in
+   its def (`wrongsColony`: the stores thief, the borrowed cooking, the failed apprentice, the skimmed take, the mutiny,
+   the caravan's dice), and the wronged one is whoever of the colony heard it; one in four (half with the peacemaker in
+   office) they go to its owner within a day and a half, to blows. Never one the owner confessed: telling it oneself
+   first is the prevention. With the secrets.
 2. **Told by the wrong friend.** A secret confided that reaches the colony through the friend's gossip brings the keeper
    to the friend: hard words, sometimes blows. *Prevent:* not preventable, beyond whom one confides in. *Rate:* one such
    leak in 5. *Seen:* the keeper finding the friend, the line.
+   *Built (harm, part 7, 7 November 2026):* `Harm/Tempers.cs`, from a confidence betrayed (the confidant who told,
+   `SecretTracker.Reveal`): one leak in five, the keeper goes to find the friend: hard words, blows half the time, else
+   the friend's sorry. Not preventable. With the secrets.
 
 **Pick:** 1. It spreads the one fight the secrets have to the secrets where a fight makes sense.
 
@@ -758,12 +884,25 @@ fear faced, the new leg, getting clean).
 1. **A rival in love comes to blows.** In "a rival in love" (`Council_Arc_Suitors`), the stiff words between the two can
    become a fight, and the one they both like thinks less of the one who started it. *Prevent:* not preventable.
    *Rate:* one such story in 4. *Seen:* the stiff words turning into a shove, the one they love watching.
+   *Built (harm, part 7, 7 November 2026):* `Harm/Tempers.cs`, as "a rival in love" leaves its rival's stage
+   (`ArcWorker_Suitors.Settle`), its stiff words said within two hours and the two still together: one story in four the
+   more hot-tempered shoves the other (the game's social fight), and the one they both like thinks less of the one who
+   started it (`Rimfolk_Harm_StartedTheFight`: an opinion of -10 for ten days, no mood). With personal stories.
 2. **The worst night, alone.** In "getting clean" (`Rimfolk_Arc_GettingClean`), if the friend isn't there on the worst
    night, the colonist may go to the stores for the drug: the game's own binge, with its own overdose risk. *Prevent:*
    yes: the friend at their side (the story's step), the drug forbidden or locked away. *Rate:* half the time the friend
    is absent. *Seen:* the walk to the stores at night, the binge.
+   *Built (harm, part 7, 7 November 2026):* `Harm/Stories.cs`, in each colonist's hour: on "getting clean"'s worst night
+   (the stage of the vigil, eleven to two), the friend not within eight cells: half the time, a drug of their addiction
+   in reach (not forbidden, not locked away), the game's own binge begins, with its own overdose risk, and the story
+   ends in the slip as it always could. The friend at their side, or the drug kept from them, prevents it. With personal
+   stories.
 3. **First steps alone.** In "the new leg", someone who tries their first steps without the friend may fall. *Prevent:*
    yes: the friend's walk to the gate and back. *Rate:* one in 3 alone. *Seen:* the fall by the gate.
+   *Built (harm, part 7, 7 November 2026):* `Harm/Stories.cs`, in each colonist's hour: on "the new leg"'s first steps
+   (its first stage, nine to five), walking within ten cells of the gate without the friend at their side: one in three
+   a fall (a bruise of 2 to 4 on a leg), a moment on the ground, someone near helping them up. Once the friend has
+   walked at their side, nothing more. With personal stories.
 
 **Pick:** 1, and 2 second. Both stories already build to these moments; a bad end makes the good one mean something.
 
@@ -818,6 +957,11 @@ fear faced, the new leg, getting clean).
 2. **The soldier's nightmare.** Someone with a soldier's or outlaw's past, woken from a nightmare of battle, may strike
    out at whoever woke them. *Prevent:* yes: a bedroom of their own. *Rate:* one such nightmare in 20 in a shared room.
    *Seen:* the shout in the night, the roommate holding a cheek.
+   *Built (harm, part 7, 7 November 2026):* `Harm/Tempers.cs`, in each colonist's hour asleep in the small hours: a
+   nightmare that left them shaken (`Council_Dream_Shaken`), a soldier's or an outlaw's past (the backstory's words: a
+   soldier, a mercenary, a raider, an outlaw, a pirate, a gang's, a convict and the like) and someone else asleep in the
+   bedroom: one nightmare in twenty, seeded once, they wake swinging, a bruise of 1 to 3 on the roommate's arm (the
+   mildest; an arm, as nothing here lands on the head). A bedroom of their own prevents it. With the dreams.
 
 **Pick:** 1. Flavorful, rare and preventable with something the colony already has.
 
@@ -828,9 +972,18 @@ fear faced, the new leg, getting clean).
 1. **Words at the altar.** After the council names one faith the colony's, a devout of another may come to blows with a
    zealot of the named one at an evening of faith. *Prevent:* yes: "each its own corner" or "share the altar" instead.
    *Rate:* once after such a decree, one time in 3. *Seen:* the evening, the interruption, the fight.
+   *Built (harm, part 7, 7 November 2026):* `Harm/Tempers.cs`, on the harm book's hour: while the one-faith decree
+   holds, the first evening of its faith with a devout of another faith at home has the decree's one roll: one time in
+   three the devout comes up to the evening's speaker and comes to blows. Named on the decree's card
+   (`DecreeHurt.OneFaith`); the faith question's other answers (each its own corner, share the altar) don't bring it.
+   With faith in the colony and answers on the map.
 2. **Zeal at the gate.** A devout of the colony's faith may trade hard words with a visitor of a faith at odds, with the
    outsiders' fistfight rule after. *Prevent:* partly: the best-behavior decree. *Rate:* one such visit in 10. *Seen:*
    the words at the gate.
+   *Built (harm, part 7, 7 November 2026):* `Harm/GateTroubles.cs`, on the harm book's hour: a visiting group with one
+   of another faith, and a devout of ours of a different faith at home: one visit in ten (half under the best-behavior
+   decree) hard words, then the outsiders' own chance of a fistfight (the game's insult chance, their tempers), else the
+   visitor's cold reply. "A faith at odds" is any other faith. With faith in the colony and the deeper hooks.
 
 **Pick:** 1. It gives the strongest faith decision its bad side on the map.
 
@@ -865,6 +1018,9 @@ evening of faith (`Calendar/CalendarKeeping.cs`); a feast's dish may burn and ri
 3. **The feast that ends in a fistfight.** Rivals quarreling at the day's table come to blows when drink was poured.
    *Prevent:* yes: no drink for the day. *Rate:* one such quarrel in 4 with drink. *Seen:* the toast, the quarrel, the
    fight.
+   *Built (harm, part 7, 7 November 2026):* `Harm/Tempers.cs`, from the day's table quarrel (`SetbackTimes.Quarrel`):
+   with drink poured (one of the two has the game's alcohol in them), one quarrel in four, if they're still together; no
+   drink, no blows. With the calendar.
 
 **Pick:** 1. Games are the day with the least in it now; real contests give it stakes and stories.
 
@@ -1041,6 +1197,12 @@ surgery, hunting, animals), never for addicts (`Integrations/BeforeWork.cs`); to
 3. **The toast's second round.** With strong drink in plenty (Vanilla Brewing Expanded), a toast pours a second round
    for those who want it, and rivals at the table quarrel likelier (4.1.3). *Prevent:* yes: stock, a toast with tea.
    *Rate:* a second round at one toast in 3. *Seen:* the second cups raised, a quarrel.
+   *Built (harm, part 7, 7 November 2026):* `Harm/Tempers.cs`, from the toast's own look (`PlayOutLord`), with Vanilla
+   Brewing Expanded: once the first round is drunk, with strong drink in plenty (two cups of the colony's alcohol in
+   stock for each who drank), one toast in three pours a second for those who drank the first and may (their drug policy
+   for joy, their faith, never an addict); two rivals who both took it, still together within the hour, come to blows
+   one time in four, as a day's table does. Stock kept low, or a toast with tea, prevents it. The toast's own first
+   round (`Integrations/ToastDrinks.cs`) is left as it is, and no sheet names it: no answer chooses the toast's drink.
 
 **Pick:** 1. The rule's own example; it uses the game's stages as they are, and the drug policy already controls it.
 
@@ -1051,6 +1213,12 @@ surgery, hunting, animals), never for addicts (`Integrations/BeforeWork.cs`); to
 1. **A working gone wrong.** In "the long discipline", a mage's practice working can slip: a fire mage's burn, an ice
    mage's frostbite, a storm mage's shock (the game's own burn and frostbite), one in 25. *Prevent:* partly: the teacher
    present. *Rate:* one practice in 25. *Seen:* the flash, the yelp, the teacher's word.
+   *Built (harm, part 7, 7 November 2026):* `Harm/Stories.cs` and the job `Rimfolk_PracticeWalk`, with A RimWorld of
+   Magic: in "the long discipline"'s long practice (its second stage), a fire, ice or storm mage (its `InnerFire`,
+   `HeartOfFrost` and `StormBorn`) free at dawn walks out to practise in the open a while (the journal's own "before
+   dawn every day"), the teacher along to watch when free; one working in 25 slips, half with the teacher there: a burn
+   on the hand, the game's frostbite on the hand, a shock's burn up an arm; the teacher's word after. The game has no
+   practice to hang it on, so the dawn practice is Rimfolk's. With personal stories and the mod.
 2. **Fighters spar.** Fighter classes spar with the sparring rule between colonists. *Prevent:* yes: they spar only
    with consent. *Rate:* one bout in 25. *Seen:* the bout at the training dummy.
    *Built (harm, part 6, 7 November 2026):* `Harm/Contests.cs`, on the drills' own bout (`DrillBouts`, in a form of its

@@ -235,6 +235,36 @@ namespace ColonyCouncil
                 case "braveDare": return GroupLife.Active && PlayOuts.On;
                 case "cowardName": return Reputations.On;
                 case "vendettaFury": return s.vendettas;
+                // Harm, part 7: tempers, visitors and outsiders, personal stories, each under its own system; the outsiders'
+                // fistfights need the deeper hooks (so the blows aren't an attack on guests), as the guest's night does.
+                case "sitDown": return s.offices && s.socialWeb;
+                case "speakerWords": return s.offices && s.enableWishes && s.Harsh;
+                case "passedOver": return s.enableWishes && s.jealousy;
+                case "meetingBoils": return s.enableAmbitions;
+                case "friendsStand": return s.socialWeb;
+                case "saidToFace": return Reputations.On;
+                case "wrongedOne": return s.secrets;
+                case "toldByFriend": return s.secrets;
+                case "loveRivals": return ArcTracker.On;
+                case "altarWords": return FaithEvenings.On;
+                case "feastFists": return ColonyCalendar.On && Setbacks.On(SetbackGroup.Friction);
+                case "secondRound": return PlayOuts.On && Tempers.BrewingLoaded;
+                case "soldierNight": return s.dreams;
+                case "openGates": return RimfolkPatches.On && Visitors.On;
+                case "gamblerTurns": return RimfolkPatches.On;
+                case "barberNick": return PlayOuts.On;
+                case "rankEnemy": return Outsiders.DuelOn || Outsiders.SparOn;
+                case "crowdFight": return RimfolkPatches.On && Outsiders.On;
+                case "pastFirstBlood": return Outsiders.DuelOn;
+                case "letterChallenge": return NeighbourLetters.On && (Outsiders.DuelOn || Outsiders.SparOn);
+                case "heirGrudge": return NotableBook.On && RimfolkPatches.On;
+                case "hatedTrader": return s.vendettas && RimfolkPatches.On;
+                case "gateZeal": return Faiths.On && RimfolkPatches.On;
+                case "hungryHands": return s.worldSituations;
+                case "creekBrawl": return s.worldSituations && Visitors.On;
+                case "worstNight": return ArcTracker.On;
+                case "firstSteps": return ArcTracker.On;
+                case "workingWrong": return ArcTracker.On && Contests.MagicLoaded;
                 // The decrees, Rimfolk's events (dangers on the map, the hail) and the peoples' callers are always in the game.
                 default: return true;
             }
@@ -372,6 +402,7 @@ namespace ColonyCouncil
                 case HurtKind.Crush: return DamageDefOf.Crush;
                 case HurtKind.Scratch: return DamageDefOf.Scratch;
                 case HurtKind.Bite: return DamageDefOf.Bite;
+                case HurtKind.Frostbite: return DamageDefOf.Frostbite;
                 default: return DamageDefOf.Blunt;
             }
         }
@@ -524,6 +555,9 @@ namespace ColonyCouncil
             if ((def.hurts == DecreeHurt.Drills || def.hurts == DecreeHurt.Muster) && !PlayOuts.On) return null;
             // The frail's chill comes with the everyday ailments and "Systems talk to each other".
             if (def.hurts == DecreeHurt.ColdNights && !SystemOn(HarmKinds.ColdNight.system)) return null;
+            // Harm, part 7: a stranger through the open gate, words at the altar, each with its own system.
+            if (def.hurts == DecreeHurt.Gates && !SystemOn(HarmKinds.OpenGates.system)) return null;
+            if (def.hurts == DecreeHurt.OneFaith && !SystemOn(HarmKinds.AltarWords.system)) return null;
             return ("CC_Harm_Decree_" + def.hurts).Translate().Resolve();
         }
     }
@@ -587,6 +621,7 @@ namespace ColonyCouncil
             HarmFour.Reset();
             HarmFive.Reset();
             HarmSix.Reset();
+            HarmSeven.Reset();
             Harm.BudgetChanged();
         }
 
@@ -663,12 +698,15 @@ namespace ColonyCouncil
                     HarmFive.Hourly(this, now);
                     // Harm, part 6: the answers' work, the animals at the stores and in the herd, the evening's contests.
                     HarmSix.Hourly(this, now);
+                    // Harm, part 7: tempers, visitors and outsiders, personal stories.
+                    HarmSeven.Hourly(this, now);
                     if (Sched.FirstHourOfDay(now)) Prune(now);
                 }
                 WorkHurts.Slice(slice, now);
                 HarmFour.Slice(this, slice, now);
                 HarmFive.Slice(this, slice, now);
                 HarmSix.Slice(this, slice, now);
+                HarmSeven.Slice(this, slice, now);
             }
             catch (Exception e)
             {

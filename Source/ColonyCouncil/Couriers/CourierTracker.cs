@@ -383,8 +383,9 @@ namespace ColonyCouncil
             var party = new List<Pawn>(people);
             if (beast != null) party.Add(beast);
             foreach (var p in party) GenSpawn.Spawn(p, CellFinder.RandomClosewalkCellNear(entry, map, 3), map);
-            // A neighbour's messenger set upon on the road comes in hurt (World/NeighbourLetters.cs).
-            if (t.Mail && t.hurt) NeighbourLetters.Waylaid(t, people[0]);
+            // A neighbour's messenger set upon on the road comes in hurt (World/NeighbourLetters.cs), or, half the time, is
+            // set upon at the colony's own edge as they come on (harm, part 7: Harm/Stories.cs).
+            if (t.Mail && t.hurt && !Stories.SetUpon(t, people[0], map, entry)) NeighbourLetters.Waylaid(t, people[0]);
             // Harm, part 5: a courier of a people under a plague may bring it (Harm/Carriers.cs).
             Carriers.CourierCame(f, people, map);
             t.faction = f;

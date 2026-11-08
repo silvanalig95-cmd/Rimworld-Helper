@@ -109,6 +109,8 @@ namespace ColonyCouncil
 
         public override void Settle(Arc arc)
         {
+            // Harm, part 7: the rivals' stiff words may become a shove (Harm/Tempers.cs).
+            if (arc.stage == 1) Tempers.RivalsInLove(arc);
             if (arc.stage == arc.def.LastStage - 1) arc.tag = Outcome(arc);
         }
 

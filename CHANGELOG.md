@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Tempers, the gate and personal stories, the last of the shared budget
+
+*8 November 2026, version 0.164.0*
+
+- Twenty-eight more kinds of mishap on the same budget, so the total stays where it was and each kind comes less often; with them every proposal of the harm review is built.
+- Tempers: a peacemaker who steps between rivals and takes a punch, words with the speaker after a broken promise, a meeting that boils over, a friend who steps into a fight, gossip said to someone's face, a secret found out by the one it wronged, rivals in love, words at the altar under a one-faith decree, a feast's fistfight and a toast's second round.
+- At the gate: a thief or a drunk among visitors when the gates are open, a gambler caught cheating, a barber's slip, the enemy of a guest of rank, a fistfight that draws a crowd, a challenge sent by letter, an heir who carries on a grudge, zeal from another faith, hungry strangers in the fields in a famine and a brawl at the prospectors' creek.
+- Personal stories: a hard night alone with the drug in reach, a fall on first steps without a friend, a soldier's nightmare that wakes a roommate, and with A RimWorld of Magic a mage's dawn practice that burns, freezes or shocks.
+- Outside the budget, since they hurt none of yours: a nemesis goes for the one it hunts when they leave cover, a neighbour's lost child may be found hurt, and a courier on a dangerous road may be set upon by bandits at your edge, who run if one of yours is near.
+- The decrees that open the gates or keep one faith now say on their card what they risk, and the peacemaker, the warden, the marshal, a night watch and lit fields prevent most of it.
+
 ## Four more peoples: the Conclave, the Mossborn, the Banner and the guild
 
 *8 November 2026, version 0.163.0*

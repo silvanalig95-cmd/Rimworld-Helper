@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Harm, part 7 (Source/ColonyCouncil/Harm/): tempers in the colony, visitors and outsiders, personal stories. The
+       fights are the game's own and tell themselves in its own messages; the rest is seen on the map (a few words over
+       them, their line, the hit). A letter only where the proposal is itself a letter (a challenge by letter); a message
+       only where the game would warn of the same (enemies at the colony's edge). -->
+
+  <!-- ===================== Tempers in the colony (Tempers.cs) ===================== -->
+
+  <CC_HarmSeven_Mote_SitDown>the sit-down turns to blows</CC_HarmSeven_Mote_SitDown>
+  <CC_HarmSeven_Mote_Punch>caught a punch between them</CC_HarmSeven_Mote_Punch>
+  <CC_HarmSeven_Mote_Meeting>chairs pushed back</CC_HarmSeven_Mote_Meeting>
+  <CC_HarmSeven_Mote_FriendBlow>took a blow stepping in</CC_HarmSeven_Mote_FriendBlow>
+  <CC_HarmSeven_Mote_Altar>{ONE} against {OTHER}</CC_HarmSeven_Mote_Altar>
+  <CC_HarmSeven_Mote_Feast>words over the cups</CC_HarmSeven_Mote_Feast>
+  <CC_HarmSeven_Mote_Soldier>struck out in their sleep</CC_HarmSeven_Mote_Soldier>
+
+  <!-- ===================== Visitors and outsiders (GateTroubles.cs) ===================== -->
+
+  <CC_HarmSeven_Mote_Thief>a stranger at the stores</CC_HarmSeven_Mote_Thief>
+  <CC_HarmSeven_Mote_Caught>caught at the stores</CC_HarmSeven_Mote_Caught>
+  <CC_HarmSeven_Mote_SackDropped>the sack dropped</CC_HarmSeven_Mote_SackDropped>
+  <CC_HarmSeven_Mote_Nick>a nick from the barber</CC_HarmSeven_Mote_Nick>
+  <CC_HarmSeven_Mote_Crowd>others join in</CC_HarmSeven_Mote_Crowd>
+  <CC_HarmSeven_Mote_Creek>a brawl at the creek</CC_HarmSeven_Mote_Creek>
+  <CC_HarmSeven_Mote_CreekCaught>caught in their brawl</CC_HarmSeven_Mote_CreekCaught>
+  <CC_Impact_GamblerTurns>A cheat caught at the table could start a fistfight with a hot-tempered loser</CC_Impact_GamblerTurns>
+  <CC_Impact_GamblerTurnsBrief>a fistfight at the table</CC_Impact_GamblerTurnsBrief>
+  <CC_HarmSeven_ChallengeTitle>A challenge for {PAWN_nameDef}</CC_HarmSeven_ChallengeTitle>
+  <CC_HarmSeven_Challenge_Tribal>A runner of {FACTION} came to the gate and would not leave until {PAWN_nameDef} had heard the words of {NOTABLE} by heart: an insult is not forgotten among their people, and a champion is coming to settle it by their ways. {PAWN_nameDef} may meet them, or turn them away and be thought the less of for it.\n\nA letter of greetings to their people, or a good word or a gift for one of them before the champion comes, would settle it.</CC_HarmSeven_Challenge_Tribal>
+  <CC_HarmSeven_Challenge_Medieval>A sealed letter from {NOTABLE} of {FACTION} for {PAWN_nameDef}: a challenge, in a fine hand, to answer for what passed between them by the ways of their people, with a champion who will come to the colony's gate to settle it. {PAWN_nameDef} may meet them, or refuse and be thought the less of for it.\n\nA letter of greetings to their people, or a good word or a gift for one of them before the champion comes, would settle it.</CC_HarmSeven_Challenge_Medieval>
+  <CC_HarmSeven_Challenge_Industrial>A demand came over the radio from {NOTABLE} of {FACTION}, read out twice for {PAWN_nameDef}: what passed between them is to be settled in person, and someone is on the way to the colony to do it. {PAWN_nameDef} may meet them, or refuse and be thought the less of for it.\n\nA letter of greetings to their people, or a good word or a gift for one of them before they come, would settle it.</CC_HarmSeven_Challenge_Industrial>
+  <CC_HarmSeven_Challenge_Spacer>A message on the comms from {NOTABLE} of {FACTION}, addressed to {PAWN_nameDef} by name: a formal challenge over what passed between them, and a champion of theirs is coming to the colony to answer it. {PAWN_nameDef} may meet them, or refuse and be thought the less of for it.\n\nA letter of greetings to their people, or a good word or a gift for one of them before the champion comes, would settle it.</CC_HarmSeven_Challenge_Spacer>
+
+  <!-- ===================== Personal stories (Stories.cs) ===================== -->
+
+  <CC_HarmSeven_Mote_Seeks>after {VICTIM_nameDef}</CC_HarmSeven_Mote_Seeks>
+  <CC_HarmSeven_Mote_SeeksBeast>it knows {VICTIM_nameDef}</CC_HarmSeven_Mote_SeeksBeast>
+  <CC_HarmSeven_Mote_StepsFall>a fall on the new leg</CC_HarmSeven_Mote_StepsFall>
+  <CC_HarmSeven_Mote_Working_Fire>the flame came back</CC_HarmSeven_Mote_Working_Fire>
+  <CC_HarmSeven_Mote_Working_Ice>the cold bit back</CC_HarmSeven_Mote_Working_Ice>
+  <CC_HarmSeven_Mote_Working_Storm>the spark jumped</CC_HarmSeven_Mote_Working_Storm>
+  <CC_HarmSeven_Mote_Lost_frost>frostnipped from the night out</CC_HarmSeven_Mote_Lost_frost>
+  <CC_HarmSeven_Mote_Lost_chill>chilled from the night out</CC_HarmSeven_Mote_Lost_chill>
+  <CC_HarmSeven_Mote_Lost_ankle>a turned ankle in the dark</CC_HarmSeven_Mote_Lost_ankle>
+  <CC_HarmSeven_Mote_Lost_scrape>a scraped knee in the dark</CC_HarmSeven_Mote_Lost_scrape>
+  <CC_HarmSeven_Mote_Bandits>bandits at the edge</CC_HarmSeven_Mote_Bandits>
+  <CC_HarmSeven_SetUponMissed>Bandits of {BANDITS} went for {PAWN_nameDef}, a messenger of {FACTION}, at the edge of the colony's land, and ran off without landing a blow.</CC_HarmSeven_SetUponMissed>
+  <CC_HarmSeven_WorstNightReason>alone on the worst night</CC_HarmSeven_WorstNightReason>
+  <CC_HarmSeven_SetUpon>{PAWN_nameDef}, a messenger of {FACTION}, was set upon by bandits of {BANDITS} at the edge of the colony's land, cut, and is coming on to the gate. The bandits are running for it.</CC_HarmSeven_SetUpon>
+  <CC_HarmSeven_SetUponScared>Bandits of {BANDITS} went for {PAWN_nameDef}, a messenger of {FACTION}, at the edge of the colony's land, and ran when they saw the colony's people near.</CC_HarmSeven_SetUponScared>
+
+</LanguageData>

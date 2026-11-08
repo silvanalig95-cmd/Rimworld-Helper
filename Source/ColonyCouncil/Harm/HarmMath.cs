@@ -28,7 +28,9 @@ namespace ColonyCouncil
         Crack,
         Scratch,
         /// <summary>An animal's bite (harm, part 6: the wild one too close), named for the animal that gave it.</summary>
-        Bite
+        Bite,
+        /// <summary>The game's own frostbite (harm, part 7: an ice mage's working gone wrong).</summary>
+        Frostbite
     }
 
     /// <summary>Where on the body a hurt lands: a hand, an arm, a foot, a leg, the torso, or any of the arms, legs and torso.</summary>
@@ -72,7 +74,11 @@ namespace ColonyCouncil
         /// <summary>Long hours, a harvest push, a building season: a work injury now and then on a long day.</summary>
         TiredHands,
         /// <summary>Banked fires: in a hard frost, a chill for the frail in a cold bedroom (Harm/Catching.cs).</summary>
-        ColdNights
+        ColdNights,
+        /// <summary>Open gates (harm, part 7): now and then a stranger takes advantage, a thief at the stores or a drunk in the yard (Harm/GateTroubles.cs).</summary>
+        Gates,
+        /// <summary>One faith for the colony (harm, part 7): a devout of another faith may come to blows at an evening of faith (Harm/Tempers.cs).</summary>
+        OneFaith
     }
 
     /// <summary>The work a long day's slip comes at (Harm/WorkHurts.cs), by the job's work type.</summary>

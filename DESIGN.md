@@ -2432,7 +2432,8 @@ the game's side is `Harm.PassOf`.
 - **A later kind plugs in** with one line in `HarmKinds` (its key, label, system and base rate from the balance model,
   `founding` false, added to `All`), a case in `Harm.SystemOn` if its system is new, its rolls and hurts naming it, and its
   source in the balance model's harm mode (`Tools/Balance/HarmSim.cs`, `PartFourDay` shows the pattern). The budget shares
-  itself among however many kinds are on (about 95 once the review is built: each then at about a fifth of its own rate).
+  itself among however many kinds are on (100 now the review is built, each at about 31% of its own rate: the later kinds
+  are smaller on the whole than the first).
   The model prints each kind's measured base rate beside the registry's, flagging any a quarter off.
 
 ### Drills that bruise (1.2.1, decrees)
@@ -2841,37 +2842,108 @@ effect (`Council_Dilemmas_Health.xml`), `DilemmaEffect_TooClose` in three encoun
 the "hold the way in" project's description, the militia's risk line and the calendar's bonfire way. One new Harmony
 patch: `Patch_TakingDownHurts` (a prefix and postfix on `JobDriver_Deconstruct.FinishedRemoving`).
 
+### Harm, part 7: tempers in the colony, visitors and outsiders, personal stories (7 November 2026)
+
+The last of the three batches of the review's remaining proposals, after the player's "all suggestions please": with it all
+94 proposals of the review are built. Twenty-eight more kinds within the shared budget, each under its system's setting (the
+outsiders' fistfights with the deeper hooks, as the guest's night has them), the pure rules in `Harm/HarmSevenMath.cs`
+(`HarmSevenTests`), the hub `Harm/HarmSeven.cs` on the harm book's hour and slices (no new Sched slot), the rest in
+`Tempers.cs`, `GateTroubles.cs` and `Stories.cs`. Three proposals hurt nobody of the colony and stay outside the budget, as the
+forecast that can be wrong does: the nemesis seeking the one it hurt (the raid's or the beast's own attack, aimed), the lost
+child found hurt (a neighbour's child) and the courier set upon at the edge (their courier, in place of the cut on the road
+they always came in with); they take the setting and the storyteller's lean alone. What waits is in `HarmBook.waiting`
+(`HarmWaiting` "speaker", "passed", "wronged", "leak", "gamble", "rank", "challenge", "heir", and the markers "altar", "gates",
+"creek" that keep a decree's or a rush's one roll once: no new saved collection); the rest is session memory. Every fight is
+the game's own social fight through the service, or the outsiders' own fistfight, bout or duel; a letter only for the
+challenge by letter (one of Rimfolk's letters, by the people's means); a message only for the bandits at the edge (as the
+game warns of enemies on the land); the rest is seen on the map, in the line said and a few words over them
+(`HarmFour.Mote`). The pools are in `Rimfolk_HarmSeven_Lines.xml`, the words in `Rimfolk_HarmSeven.xml`, the two walks' jobs
+in `Defs/Misc/Rimfolk_HarmSeven.xml` (`JobDriver_HarmWalk`); dev mode's "Harm seven: ..." (`Harm/HarmSevenDebug.cs`) brings
+each about past its rate, never past the cap.
+
+| Kind (review) | Where | Rate (its own) | Prevention | Seen |
+|---|---|---|---|---|
+| The peacemaker's sit-down goes wrong (1.1.2) | `Tempers.cs`, the peacemaker's mediation | 1 sit-down in 10 at a rivalry of 70, nothing at 30 | the peacemaker's Social, waiting for the pair to cool; half with no hot temper | the game's fight at the table, the peacemaker stepping between (a punch 1 time in 3) |
+| Words with the speaker (1.3.1) | `Tempers.cs`, a broken promise | a fifth, the bitter and hot-tempered, demanding stakes only | keep promises; a speaker of good Social talks them down | the walk over, the words by the age, a fight or a calm answer |
+| The thing that went to someone else (1.3.2) | `Tempers.cs`, feeling passed over | the jealous or abrasive, a week: 2 sharp words at the game's chance for a pair at -20 | grant both, the peacemaker's word | the sharp word when they meet, sometimes a fight |
+| A meeting that boils over (1.5.1) | `Tempers.cs`, the meeting decided | 1 meeting in 12 with two rivals who both pitched | the peacemaker at the table (half), the chair's Social | chairs pushed back, the fight |
+| Friends stand by (3.5.2) | `Tempers.cs`, any social fight | 1 fight in 6 with a close friend near, a blow 1 time in 2 | not preventable | the run over, the blow, the two pulled apart |
+| Said to their face (3.7.1) | `Tempers.cs`, gossip told in front | 1 telling in 10 to a hot-tempered subject | discreet tellers (only a hothead or a rival tells it in front) | the words, then the fight |
+| Found out by the wronged one (3.9.1) | `Tempers.cs`, a secret let slip | 1 in 4 of those that wronged the colony (`wrongsColony`) | told by its owner first, the peacemaker (half) | the walk to the owner, the words, the fight |
+| Told by the wrong friend (3.9.2) | `Tempers.cs`, a confidence betrayed | 1 leak in 5, blows half the time | not preventable | the keeper finding the friend, hard words |
+| A rival in love comes to blows (3.10.1) | `Tempers.cs`, the rivals' stage | 1 story in 4 | not preventable | the shove, the one they both like watching (thinks less of the starter) |
+| Words at the altar (3.13.1) | `Tempers.cs`, the one faith's evening | once after the decree, 1 time in 3 | another answer to the faiths' question; named on the decree's card | the interruption, the fight with the speaker |
+| The feast that ends in a fistfight (4.1.3) | `Tempers.cs`, a day's table quarrel | 1 quarrel in 4 with drink | no drink for the day | the quarrel, the fight |
+| The toast's second round (4.7.3) | `Tempers.cs`, Vanilla Brewing Expanded | 1 toast in 3 in plenty; two rivals who took it, 1 in 4 | stock kept low, a toast with tea | the second cups, a fight within the hour |
+| The soldier's nightmare (3.12.2) | `Tempers.cs`, a nightmare that shook them | 1 in 20 of a soldier's or outlaw's past, in a shared room | a bedroom of their own | the shout, the roommate holding an arm |
+| Open gates, and who walks in (1.2.4) | `GateTroubles.cs`, the decree's visitors | once a decree, half the time | the warden of guests, the on-guard decree (half each); named on the decree's card | a thief at the stores (chased off, a fight half the time if caught) or a drinker's fight |
+| The gambler's game turns (2.2.2) | `GateTroubles.cs`, `DilemmaEffect_GamblerTurns` | 1 game in 6, a hot-tempered loser | the one game against the colony's best, no gambling; named under the answer | the cheat caught, the fistfight, the gambler gone |
+| The barber's nick (2.5.3) | `GateTroubles.cs`, each cut | 1 cut in 30, twice for a poor barber | declining the barber; a spacer's clippers never nick | a dab of blood on the shoulder, a laugh |
+| The guest of rank's enemy (2.6.2) | `GateTroubles.cs`, a dignitary's visit | 1 visit in 6 | the guest's own guard takes it, refusing | the challenger at the gate, a duel or a bout |
+| A fistfight that draws a crowd (2.8.2) | `GateTroubles.cs`, hard words come to blows | 1 fistfight in 5, one more pair | the warden near (half), few tempers about | the brawl, the marshal breaking it up |
+| First blood, not stopped (2.8.3) | `GateTroubles.cs`, the duel's referee | 1 duel in 20 with a bloodthirsty fighter | the yield terms from the start | the duel going on, the onlookers pulling them apart |
+| A challenge by letter (2.9.1) | `GateTroubles.cs`, a notable slighted or a duel lost | 1 in 4 held: the letter, the challenger | a letter of greetings or condolences, a good word or a gift; refusing | the letter by the people's means, the challenger at the gate, the duel |
+| The heir's grudge (2.9.2) | `GateTroubles.cs`, a succession | 1 heir in 3 of a wronged head; 1 visit in 5 a fistfight | condolences, a good word or a gift | the guards' words, a fistfight |
+| A trader of the hated people (3.8.1) | `GateTroubles.cs`, the sworn people at peace | 1 visit in 4 | the avenger away, the vendetta laid down | the avenger's walk over, the fistfight |
+| Zeal at the gate (3.13.2) | `GateTroubles.cs`, a visitor of another faith | 1 visit in 10, the outsiders' fistfight chance after | the best-behavior decree (half) | the hard words, a fight or a cold answer |
+| Hungry hands in the fields (2.3.2) | `GateTroubles.cs`, a famine near | 1 night in 15; met, struck 1 time in 2 | famine bread, a night watch, the fields lit | figures in the fields at night, the struggle, the sack dropped |
+| A brawl at the creek (2.3.3) | `GateTroubles.cs`, two prospecting parties | once a rush, half the time; one of ours near caught | keep away, the marshal | the shouting, the brawl, a bruise |
+| The worst night, alone (3.10.2) | `Stories.cs`, getting clean | half the time the friend is away, a drug in reach | the friend at their side, the drug forbidden | the walk to the stores, the game's own binge |
+| First steps alone (3.10.3) | `Stories.cs`, the new leg | 1 in 3 alone by the gate | the friend's walk at their side | the fall, someone helping them up |
+| A working gone wrong (4.8.1) | `Stories.cs`, the job `Rimfolk_PracticeWalk`, A RimWorld of Magic | 1 practice in 25, half with the teacher | the teacher there | the dawn practice, a burn, the game's frostbite or a shock |
+| The nemesis seeks the one they hurt (2.10.1) | `Stories.cs`, outside the budget | once a return in a fight | behind cover | the push at them, a taunt |
+| The lost child, found hurt (2.6.1) | `Stories.cs`, outside the budget | about half of those found after a night out | a search sent out early | frostnip, a chill or an ankle (a child's scraped knee) |
+| Set upon at the edge (2.7.1) | `Stories.cs`, outside the budget | half of the waylaid messengers | anyone of ours near where they come in | bandits at the edge, the courier's cut, the bandits running |
+
+The ages: the speaker's word by the age; the thief and the drinker at the gate by it (a wanderer, a cutpurse, a grifter, a con
+artist); the barber's flint or razor by their people, a spacer's clippers never nicking; the challenge's letter by the people's
+means (a runner, a sealed letter, the radio, comms); the duels and bouts by the people's ways, as the outsiders' are; the rest
+the same in every age. Changes outside: `HurtKind.Frostbite` (`Harm/HarmMath.cs`, the game's own injury), `DecreeHurt.Gates`
+and `OneFaith` on the two decrees' cards, `SecretDef.wrongsColony` on six secrets, `HarmWaiting.Broken` sparing the
+markers (`HarmSeven.Unpeopled`), the meeting's comment. Hooks in other systems (one line each): `Offices/Offices.cs` (the
+sit-down), `CouncilDynamics.cs` (a broken promise, one passed over), `Ambitions/Ambitions.cs` (the meeting decided),
+`Social/Gossip/Gossip.cs` (gossip told in front), `Secrets/Secrets.cs` (a slip, a betrayal), `Arcs/ArcWorkers_Lives.cs` (the
+rivals' stage), `Setbacks/SetbackTimes.cs` (a table's quarrel), `PlayOut/PlayOutLord.cs` (the toast's look),
+`Visitors/Callers.cs` (a cut), `Outsiders/OutsiderOutcomes.cs` (hard words, a duel's end, first blood),
+`World/Notables.cs` (a succession), `Harm/Quarrels.cs` (a good word or a gift settles the grudges),
+`Missions/Workers_MissionRoad.cs` (the lost one found), `Couriers/CourierTracker.cs` (a waylaid messenger),
+`Harm/HarmSix.cs` and `HarmFour.cs` (what waits, the walks). Defs: the gambler's effect, the two jobs, the thought
+`Rimfolk_Harm_StartedTheFight`. No new Harmony patch.
+
 ### The rates (the balance model's harm mode)
 
 `dotnet run -c Release --project Tools/Balance -- --harm` plays a colony-year (60 days, 1500 runs by default) of each
 style and size with every kind of hurt from everyday life through the shared cap, the heart played hour by hour with each
 hurt's pain and each fight's hour of combat. What a kind does once it comes is the mod's arithmetic (`HarmMath`,
-`HarmTwoMath`, `HarmFourMath`, `HarmFiveMath`, `HarmSixMath`, `HarmBudgetMath`, `HeartMath`, `BeastsMath`, compiled in);
-how often a colony meets it is the mode's own table, each an estimate that says where it comes from. Three runs of the
-same colonies: "before" (the kinds built before the budget, each at its own rate), "no budget" (every kind on, parts 4 to
-6 too, each at its own rate), "budget" (every kind on, each at its pass). Alpha Skills, Giddy-Up, Hospitality, Odyssey's
-fishing and A RimWorld of Magic loaded; PokéWorld and Dubs Bad Hygiene's thirst not (PokéWorld's catch and visitor at the
-stores have their base rates set by hand). Hurts the cap counts, per colonist-year (4000 runs; harm, part 6):
+`HarmTwoMath`, `HarmFourMath`, `HarmFiveMath`, `HarmSixMath`, `HarmSevenMath`, `HarmBudgetMath`, `HeartMath`, `BeastsMath`,
+compiled in); how often a colony meets it is the mode's own table, each an estimate that says where it comes from. Three runs
+of the same colonies: "before" (the kinds built before the budget, each at its own rate), "no budget" (every kind on, parts 4
+to 7 too, each at its own rate), "budget" (every kind on, each at its pass). Alpha Skills, Giddy-Up, Hospitality, Odyssey's
+fishing, A RimWorld of Magic and Vanilla Brewing Expanded loaded; PokéWorld and Dubs Bad Hygiene's thirst not (PokéWorld's
+catch and visitor at the stores have their base rates set by hand). Hurts the cap counts, per colonist-year (4000 runs;
+harm, part 7):
 
 | | 6, well run | 6, average | 6, neglectful | 12, well run | 12, average | 12, neglectful |
 |---|---|---|---|---|---|---|
 | Before (every kind built up to 0.149.0) | 0.339 | 0.453 | 0.560 | 0.290 | 0.395 | 0.504 |
-| Every kind on, no budget | 0.862 | 1.223 | 1.667 | 0.696 | 1.016 | 1.425 |
-| Every kind on, the budget | 0.318 | 0.456 | 0.630 | 0.251 | 0.370 | 0.528 |
+| Every kind on, no budget | 0.991 | 1.374 | 1.844 | 0.793 | 1.133 | 1.567 |
+| Every kind on, the budget | 0.327 | 0.459 | 0.626 | 0.256 | 0.369 | 0.519 |
+| With parts 4 to 6 (0.161.0), the budget | 0.318 | 0.456 | 0.630 | 0.251 | 0.370 | 0.528 |
 | With parts 4 and 5 (0.155.0 to 0.159.0), the budget | 0.309 | 0.455 | 0.627 | 0.242 | 0.366 | 0.523 |
 | With part 4 alone (0.153.0), the budget | 0.311 | 0.452 | 0.618 | 0.245 | 0.368 | 0.519 |
 | The game's own beside them: a raid's wound | 1.4 | 1.7 | 2.0 | 1.4 | 1.7 | 2.0 |
 
-The average colony of six, on which the base rates are measured, keeps its total (0.453 before, 0.456 after with part
-6's twenty-three in; 0.455 with parts 4 and 5 only: part 6 would add 0.23 a colonist-year on its own, and within the
-budget the later kinds bring 0.30 where they brought 0.26, the rest giving up as much; each kind now passes at about 35%
-of its own rate). Elsewhere the budget keeps prevention's meaning: a well-run colony prevents more of the new kinds and
-ends a little below its old total (6% with six, 13% with twelve), a neglectful one a little above (13% with six, 5% with
-twelve), and a colony of twelve meets fewer of the new kinds per head (a storm bruises two at most, a games day has two
-bouts). Parts 4 to 6 would add 0.79 a colonist-year on their own and within the budget bring 0.30, the founding kinds
-giving up as much. The variety: a kind coming again within thirty days of its last falls from 0.14 to 0.10 times a
-colony-year (the average colony of six), the commonest kind (the ailments of the land and the work) from 13.6% of the
-hurts to 13.1%, the total the same. The heart's strain, its days off and the strain's mood are the same
+The average colony of six, on which the base rates are measured, keeps its total (0.453 before, 0.459 after with part
+7's twenty-eight in, within the runs' noise; 0.456 with parts 4 to 6: part 7 would add 0.15 a colonist-year on its own, and
+within the budget the later kinds bring 0.32 where they brought 0.30, the rest giving up as much; each kind now passes at
+about 31% of its own rate; no kind is a quarter off its registered rate). Elsewhere the budget keeps prevention's meaning: a
+well-run colony prevents more of the new kinds and ends a little below its old total (4% with six, 12% with twelve), a
+neglectful one a little above (12% with six, 3% with twelve), and a colony of twelve meets fewer of the new kinds per head (a
+storm bruises two at most, a games day has two bouts). Parts 4 to 7 would add 0.94 a colonist-year on their own and within
+the budget bring 0.32, the founding kinds giving up as much. Part 7's kinds are mostly fights, and a fight is two hurts the
+cap counts (both of them). The variety: a kind coming again within thirty days of its last falls from 0.12 to 0.09 times a
+colony-year (the average colony of six), the commonest kind (the ailments of the land and the work) from 12.0% of the
+hurts to 11.6% (13.1% before part 7), the total the same. The heart's strain, its days off and the strain's mood are the same
 before and after to a tenth. The beasts' summary (`BeastSim.cs`) still prints after it; their stampede is a kind in the
 budget now, their nemesis's return the game's own attack outside it.
 

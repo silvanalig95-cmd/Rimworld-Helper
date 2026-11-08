@@ -105,7 +105,7 @@ public static class HarmSixTests
             "4.1.2", "4.2.1", "4.8.2", "3.6.2", "3.7.2", "3.8.2" };
         foreach (var id in six)
             C(HarmKinds.All.Count(k => !k.founding && k.label.Contains("(" + id + ")")) == 1, $"the proposal {id} is a kind of its own");
-        var sixKinds = HarmKinds.All.Skip(Array.IndexOf(HarmKinds.All, HarmKinds.TamerBout) + 1).ToList();
+        var sixKinds = HarmKinds.All.Skip(Array.IndexOf(HarmKinds.All, HarmKinds.TamerBout) + 1).Take(Array.IndexOf(HarmKinds.All, HarmKinds.SitDown) - Array.IndexOf(HarmKinds.All, HarmKinds.TamerBout) - 1).ToList();
         C(sixKinds.Count == 23 && sixKinds.All(k => !k.founding && k.weight > 0f && k.weight < 0.05f), "the twenty-three come after the rest, none founding, each a small share");
 
         // ================= The mod's side =================
