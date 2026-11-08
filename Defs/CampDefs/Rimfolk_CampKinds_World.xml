@@ -32,10 +32,9 @@
     <roadWord>Council_Pool_RoadWord</roadWord>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Leather_Plain</li><li>Cloth</li></stuff></li>
-      <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>6</count></li>
-      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
     </structures>
+    <sleep>Hut</sleep>
+    <works><li>Chop</li><li>Hunt</li><li>Mine</li></works>
     <asks>
       <li>
         <key>watch</key>
@@ -190,9 +189,12 @@
     </situationKinds>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
-      <li><role>wall</role><defs><li>DankPyon_TentWall</li><li>Wall</li></defs><stuff><li>Cloth</li><li>WoodLog</li></stuff><count>3</count></li>
     </structures>
+    <sleep>Ring</sleep>
+    <works><li>Hunt</li><li>Gather</li><li>Chop</li></works>
+    <leaves>NoTrace</leaves>
+    <leavesWhy>deserters take their camp down before they go, so that nobody can follow them</leavesWhy>
+    <leftovers />
     <asks>
       <li>
         <key>guard</key>

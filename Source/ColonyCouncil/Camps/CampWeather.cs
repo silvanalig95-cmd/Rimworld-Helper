@@ -25,6 +25,8 @@ namespace ColonyCouncil
     {
         public string clothes;
         public bool clothesForCold, cold, windbreak, shade;
+        /// <summary>How they will sleep (CampTracker.ShelterOf): hut, huts, tents, tentbeds or ring.</summary>
+        public string shelter;
     }
 
     public static class CampWeather

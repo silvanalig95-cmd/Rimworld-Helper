@@ -45,10 +45,10 @@
     <extendChance>0.4</extendChance>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>hut</role><defs><li>DankPyon_TentWall</li></defs><stuff><li>Leather_Plain</li><li>Cloth</li></stuff><doors><li>Outland_TentDoor</li></doors></li>
-      <li><role>bed</role><defs><li>VFEC_Tent</li><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Leather_Plain</li><li>Cloth</li></stuff></li>
-      <li><role>butcher</role><defs><li>ButcherSpot</li></defs></li>
+      <li><role>butcher</role></li>
     </structures>
+    <sleep>Tents</sleep>
+    <works><li>Hunt</li><li>Chop</li><li>Gather</li><li>Craft</li></works>
     <titles>
       <li>Hunters make camp</li>
       <li>[lowtech] A hunting party</li>
@@ -217,9 +217,9 @@
     </situationKinds>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>SleepingSpot</li><li>Bedroll</li></defs><stuff><li>Cloth</li></stuff></li>
-      <li><role>wall</role><defs><li>DankPyon_TentWall</li><li>Wall</li></defs><stuff><li>Cloth</li><li>WoodLog</li></stuff><count>4</count></li>
     </structures>
+    <sleep>Hut</sleep>
+    <works><li>Gather</li><li>Chop</li><li>Fish</li></works>
     <!-- Their washing, laid out to dry by the windbreak (tribal folk's tribalwear): theirs, packed when they go. -->
     <campGoods>
       <li><defs><li>Apparel_BasicShirt</li><li>Apparel_TribalA</li></defs><stuff><li>Cloth</li></stuff><at>wall</at></li>
@@ -398,10 +398,9 @@
     </seekTexts>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>VFEC_Tent</li><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
-      <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>5</count></li>
-      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
     </structures>
+    <sleep>Tents</sleep>
+    <works><li>Mine</li><li>Chop</li></works>
     <situationKinds>
       <li>rush</li>
     </situationKinds>
@@ -564,9 +563,10 @@
     </seekTexts>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>SleepingSpot</li></defs></li>
       <li><role>spot</role><defs><li>MeditationSpot</li><li>PartySpot</li></defs></li>
     </structures>
+    <sleep>Ring</sleep>
+    <works><li>Gather</li></works>
     <situationKinds>
       <li>faith</li>
     </situationKinds>
@@ -750,11 +750,10 @@
     <extendChance>0.3</extendChance>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>hut</role><defs><li>DankPyon_TentWall</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff><doors><li>Outland_TentDoor</li></doors></li>
-      <li><role>bed</role><defs><li>VFEC_Tent</li><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
-      <li><role>stall</role><defs><li>Table1x2c</li></defs><stuff><li>WoodLog</li></stuff></li>
-      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+      <li><role>stall</role></li>
     </structures>
+    <sleep>Tents</sleep>
+    <works><li>Chop</li></works>
     <situationKinds>
       <li>trade</li>
       <li>road</li>
@@ -897,10 +896,11 @@
     <extendChance>0.3</extendChance>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>VFEC_Tent</li><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Leather_Plain</li><li>Cloth</li></stuff></li>
       <li><role>spot</role><defs><li>CraftingSpot</li></defs></li>
-      <li><role>stall</role><defs><li>Table1x2c</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>stall</role></li>
     </structures>
+    <sleep>Tents</sleep>
+    <works><li>Craft</li><li>Mine</li><li>Chop</li></works>
     <titles>
       <li>A traveling smith</li>
       <li>[medieval] A smith on the road</li>
@@ -1043,7 +1043,6 @@
     <tensionPerDay>0.6</tensionPerDay>
     <canPay>false</canPay>
     <extendChance>0.5</extendChance>
-    <leaveBuildings>true</leaveBuildings>
     <seeks>
       <li>far</li>
       <li>wonder</li>
@@ -1054,9 +1053,9 @@
     </seekTexts>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>hut</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff></li>
-      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Leather_Plain</li><li>Cloth</li></stuff></li>
     </structures>
+    <sleep>Hut</sleep>
+    <works><li>Chop</li><li>Gather</li><li>Fish</li><li>Hunt</li></works>
     <!-- Firewood stacked by the hut's door, which feeds the fire and is left with the hut. At the end of the season the
          hermit walks to the colony's door and leaves a carved bird there, in its crate. -->
     <campGoods>

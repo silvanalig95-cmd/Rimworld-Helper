@@ -29,9 +29,9 @@
     <extendChance>0.4</extendChance>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li></stuff></li>
-      <li><role>wall</role><defs><li>DankPyon_TentWall</li><li>Wall</li></defs><stuff><li>Cloth</li><li>WoodLog</li></stuff><count>3</count></li>
     </structures>
+    <sleep>Tents</sleep>
+    <works><li>Gather</li><li>Fish</li></works>
     <animals>
       <li><pokemon>true</pokemon><count>2~3</count><follow>true</follow><named>true</named></li>
     </animals>

@@ -62,11 +62,9 @@
     </seekTexts>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>hut</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff></li>
-      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Leather_Plain</li><li>Cloth</li></stuff></li>
-      <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>3</count></li>
-      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
     </structures>
+    <sleep>Hut</sleep>
+    <works><li>Chop</li><li>Gather</li></works>
     <campGoods>
       <li><defs><li>Hay</li></defs><count>60~100</count><at>pasture</at></li>
       <li><defs><li>Hay</li></defs><count>40~70</count><at>picket</at></li>

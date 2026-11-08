@@ -98,7 +98,10 @@ namespace ColonyCouncil
             return IntVec3.Invalid;
         }
 
-        /// <summary>A spot of the camp by name: stash, fire, picket, pasture, door (outside a hut's door, beside the doorway), wall (the fire side of the windbreak), or any building role.</summary>
+        /// <summary>
+        /// A spot of the camp by name: stash, fire, picket, pasture, door (outside a hut's or tent's door, beside the
+        /// doorway), wall (the fire side of the windbreak; with none, beside the shelter's door), or any building role.
+        /// </summary>
         public IntVec3 Spot(string at)
         {
             if (map == null) return IntVec3.Invalid;
@@ -109,17 +112,37 @@ namespace ColonyCouncil
                 case "fire": return FireCell;
                 case "picket": return Picket;
                 case "pasture": return Pasture;
+                case "door": return BesideDoor();
+                case "wall":
+                    if (!plans.Any(p => p.role == "wall" && !p.dropped)) return BesideDoor();
+                    break;
             }
             var mine = plans.Where(p => p.role == at && !p.dropped && p.def != null).ToList();
             if (mine.Count == 0) return FireCell;
-            // The middle of a windbreak; a standing building before one given up on.
-            var plan = mine.OrderBy(p => p.Built(map, faction) == null ? 1 : 0).ThenBy(p => p.cell.DistanceToSquared(FireCell + Away * 6)).First();
+            // A standing building before one given up on; of a windbreak, the length nearest the fire.
+            var plan = mine.OrderBy(p => p.Built(map, faction) == null ? 1 : 0).ThenBy(p => p.cell.DistanceToSquared(FireCell)).First();
             var c = plan.cell;
-            // Outside the door, to one side of the doorway; on the fire side of the windbreak.
-            if (at == "door") c = c - Away + Side;
-            else if (at == "wall") c -= Away;
+            if (at == "wall")
+            {
+                // On the fire side of the windbreak.
+                var toward = GenAdj.CardinalDirections.Select(d => c + d).Where(x => x.InBounds(map) && x.Standable(map)).OrderBy(x => x.DistanceToSquared(FireCell)).FirstOrDefault();
+                if (toward.IsValid && toward != IntVec3.Zero) return toward;
+            }
             if (!c.InBounds(map) || !c.Standable(map)) return plan.cell.InBounds(map) ? plan.cell : FireCell;
             return c;
+        }
+
+        /// <summary>Outside their shelter's door (the hut's, or the tent nearest the fire), to one side of the doorway: never inside, never on the step.</summary>
+        private IntVec3 BesideDoor()
+        {
+            var door = plans.Where(p => p.role == "door" && !p.dropped).OrderBy(p => p.cell.DistanceToSquared(FireCell)).FirstOrDefault();
+            if (door == null) return stash.IsValid ? stash : FireCell;
+            var inside = new HashSet<IntVec3>(CampSite.HutInside(plans));
+            var taken = new HashSet<IntVec3>(plans.Where(p => !p.dropped && p.def != null).SelectMany(p => p.Rect));
+            var steps = GenAdj.CardinalDirections.Select(d => door.cell + d).ToList();
+            foreach (var c in GenRadial.RadialCellsAround(door.cell, 2.3f, false).OrderBy(x => x.DistanceToSquared(door.cell)))
+                if (c.InBounds(map) && c.Standable(map) && !inside.Contains(c) && !taken.Contains(c) && !steps.Contains(c) && !c.Roofed(map)) return c;
+            return stash.IsValid ? stash : FireCell;
         }
 
         /// <summary>Where they bring their kills to be dressed: their butchering spot, else beside the fire.</summary>

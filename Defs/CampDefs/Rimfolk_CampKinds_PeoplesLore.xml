@@ -53,11 +53,10 @@
     </situationKinds>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
-      <li><role>stall</role><defs><li>Table1x2c</li></defs><stuff><li>WoodLog</li></stuff></li>
-      <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>3</count></li>
-      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+      <li><role>stall</role></li>
     </structures>
+    <sleep>Tents</sleep>
+    <works><li>Chop</li><li>Gather</li></works>
     <!-- Their pack beasts (their own caravans' kind where the land allows) tethered by the stash, with the crates and the
          fodder beside them; porters carry goods between the beasts and the stall all day. -->
     <animals>

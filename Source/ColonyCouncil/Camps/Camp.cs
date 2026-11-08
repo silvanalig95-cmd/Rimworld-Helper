@@ -474,6 +474,8 @@ namespace ColonyCouncil
             ExposeSeek();
             // A quarrel come to blows (Harm/CampBrawls.cs).
             ExposeBrawl();
+            // The day's newer work and the packing up (CampDay.cs, CampPack.cs).
+            ExposeDay();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 asksMade ??= new List<string>();

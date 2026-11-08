@@ -98,10 +98,36 @@ namespace ColonyCouncil
         public bool canPay = true;
         /// <summary>When their time is up they may ask to stay a little longer.</summary>
         public float extendChance = 0.3f;
-        /// <summary>What they build, in the order they build it.</summary>
+        /// <summary>
+        /// What they build of their own (Camps/CampKit.cs): the fire, and a kind's own pieces (a shrine's spot, a stall, a
+        /// stage). The rest (beds, the hut or tents, tables and seats, lights, the work spots, the picket, the stash) is
+        /// their people's age's kit (Defs/CampDefs/Rimfolk_CampKits.xml), laid out by CampBuildMath.
+        /// </summary>
         public List<CampStructure> structures = new List<CampStructure>();
-        /// <summary>When they leave in peace, the buildings they can't carry are left for the colony.</summary>
+        /// <summary>
+        /// How they sleep: round the fire (a war party, mourners, pilgrims), in one hut for all (settlers, a hermit, a
+        /// wardens' post) or in tents (traders, road folk: a mod's tent that is a bed, else small rooms of tent walls).
+        /// </summary>
+        public CampSleepForm sleep = CampSleepForm.Ring;
+        /// <summary>
+        /// What they do with their constructions when they go (CampPackMath.Fate): left standing, nobody's (the default),
+        /// taken down (a people whose ways leave no trace, or who don't want to be followed), or handed to the colony (a
+        /// camp hired by contract). Portable furniture they own (bedrolls, tents, stools) is always packed and carried.
+        /// </summary>
+        public CampLeaves leaves = CampLeaves.Standing;
+        /// <summary>Why this kind takes its constructions down or hands them over (for DESIGN.md and the tests; not shown).</summary>
+        public string leavesWhy;
+        /// <summary>Kept for old defs: what they leave standing is the colony's to use either way (see <see cref="leaves"/>).</summary>
         public bool leaveBuildings;
+        /// <summary>Their callings: the day's work they come to do, first first (CampDayMath.Order); the camp's common work (wood, gathering, a catch) comes after.</summary>
+        public List<CampLabour> works;
+        /// <summary>
+        /// What they may leave behind (CampPackMath.Leaves), each only when the stay made it: none listed, any that their stay
+        /// brings about.
+        /// </summary>
+        public List<Leftover> leftovers;
+        /// <summary>They set up tables and seats to eat at, for a stay of a day and a half or more.</summary>
+        public bool dines = true;
         /// <summary>
         /// World events that put this kind of camp on the road (a famine, a plague, a war: their kinds): while one
         /// runs, the camp comes <see cref="situationWeight"/> times as often, and its lines can ask for [ws:kind] and
@@ -226,7 +252,8 @@ namespace ColonyCouncil
             foreach (var e in base.ConfigErrors()) yield return e;
             if (texts.NullOrEmpty()) yield return "camp kind has no texts";
             if (titles.NullOrEmpty()) yield return "camp kind has no titles";
-            if (people.min < 1 || people.max > 8) yield return "camp size must stay within 1 to 8";
+            if (people.min < 1 || people.max > 12) yield return "camp size must stay within 1 to 12";
+            if (leaves != CampLeaves.Standing && leavesWhy.NullOrEmpty()) yield return "a camp that doesn't leave its constructions standing says why (leavesWhy)";
             if (structures.NullOrEmpty() || !structures.Any(s => s.role == "fire")) yield return "camp kind needs a fire";
             if (animals != null && animals.Sum(a => a?.count.max ?? 0) > CampLookMath.MaxAnimals) yield return "camp kind brings more than " + CampLookMath.MaxAnimals + " animals";
             if (animals != null && animals.Any(a => a == null || (a.kinds.NullOrEmpty() && !a.pack))) yield return "camp animals need kinds (or pack)";
@@ -246,10 +273,10 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// One kind of building in a camp. Roles: fire (the center), bed (one per person), wall (a windbreak), hut (walls,
-    /// a door and a roof around one bed: a tent, with a tent mod's walls), stall, light, spot (a work or prayer spot),
-    /// butcher. The first def that exists is used, built from the first material that fits it, so a tent mod's piece
-    /// listed first stands in for the plain one only while that mod is loaded.
+    /// One kind of building in a camp, by its role (CampKit.Roles, and a kind's own "spot"): fire, bed, tent (a tent that
+    /// is a bed), hut and door (a hut's walls and door), tentwall and tentdoor (a tent's), wall (a windbreak), table, seat,
+    /// light, butcher, craft, stall, picket, stash, spot. The first def that exists is used, built from the first material
+    /// that fits it, so a mod's piece listed first stands in for the plain one only while that mod is loaded.
     /// </summary>
     public class CampStructure
     {

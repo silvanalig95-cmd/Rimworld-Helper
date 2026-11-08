@@ -170,7 +170,7 @@ namespace ColonyCouncil
                 float d = c.DistanceTo(target);
                 if (d < min || d > max) continue;
                 if (c.x < margin || c.z < margin || c.x >= map.Size.x - margin || c.z >= map.Size.z - margin) continue;
-                if (!CampSite.OpenGround(c, map)) continue;
+                if (!CampSite.Buildable(c, map)) continue;
                 var h = CampTracker.HoldingAt(map);
                 if (h != null && h.map == map && h.center.IsValid && c.InHorDistOf(h.center, CampSite.CoreRadius * 2 + 10)) continue;
                 int dsq = pts.Count > 0 ? MinDistSquared(c, pts) : int.MaxValue;
@@ -180,7 +180,7 @@ namespace ColonyCouncil
                 foreach (var x in GenRadial.RadialCellsAround(c, CampSite.CoreRadius, true))
                 {
                     total++;
-                    if (CampSite.OpenGround(x, map)) open++;
+                    if (CampSite.Buildable(x, map)) open++;
                     else if (x.InBounds(map) && (map.zoneManager.ZoneAt(x) != null || (map.areaManager.Home != null && map.areaManager.Home[x])))
                     {
                         blocked = true;
@@ -936,7 +936,9 @@ namespace ColonyCouncil
                 t.stackCount = Mathf.Max(1, Mathf.RoundToInt(Rand.Range(3f, 7f) * (0.6f + (p.skills?.GetSkill(SkillDefOf.Animals)?.Level ?? 4) * 0.05f)));
                 catches.Add(t);
             }
-            workToday++;
+            // The fishers' own trips, or another camp's catch of the day (CampDay.cs).
+            if (kind.work == "fish") workToday++;
+            else dayFish++;
             int got = 0;
             foreach (var t in catches)
             {

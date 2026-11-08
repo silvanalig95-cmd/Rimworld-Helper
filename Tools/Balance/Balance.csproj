@@ -45,6 +45,7 @@
     <Compile Include="../../Source/ColonyCouncil/Harm/HarmSixMath.cs" Link="Linked/HarmSixMath.cs" />
     <!-- Harm part 7 (tempers, visitors and outsiders, personal stories): its rates, for the same model. -->
     <Compile Include="../../Source/ColonyCouncil/Harm/HarmSevenMath.cs" Link="Linked/HarmSevenMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Camps/CampPackMath.cs" Link="Linked/CampPackMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Diplomacy/FeastMath.cs" Link="Linked/FeastMath.cs" />
     <!-- Schemes against the colony (SchemeSim.cs, with &#45;&#45;schemes): the day's chance, the acts, who catches them. -->
     <Compile Include="../../Source/ColonyCouncil/Diplomacy/SchemeMath.cs" Link="Linked/SchemeMath.cs" />

@@ -17,8 +17,12 @@ namespace ColonyCouncil
         public IntVec3 cell;
         public Rot4 rot = Rot4.North;
         public bool placed;
-        /// <summary>Given up on (blocked, or nobody could build it in time).</summary>
+        /// <summary>Given up on (only for what may never be touched: the colony's, an ore, water; or nobody built it in time).</summary>
         public bool dropped;
+        /// <summary>The hut or tent it belongs to (its walls, door and beds), 0 for none; a save from before rooms had one hut, all its walls in it.</summary>
+        public int room;
+        /// <summary>Its blueprint waits for its ground to be cleared first: plain rock mined, a tree no building goes over felled.</summary>
+        public bool waiting;
 
         public CellRect Rect => GenAdj.OccupiedRect(cell, rot, def?.size ?? IntVec2.One);
 
@@ -41,17 +45,21 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref rot, "rot", Rot4.North);
             Scribe_Values.Look(ref placed, "placed");
             Scribe_Values.Look(ref dropped, "dropped");
+            Scribe_Values.Look(ref room, "room");
+            Scribe_Values.Look(ref waiting, "waiting");
         }
     }
 
     /// <summary>
-    /// Where a camp can go: open, reachable ground well away from the colony (no home area, zones or buildings of the
-    /// colony nearby), close enough that the two share the land. And how the camp is laid out around its fire.
+    /// Where a camp can go: reachable ground well away from the colony (no home area, zones or buildings of the colony
+    /// nearby), close enough that the two share the land, open or wooded (trees, bushes, chunks and plain rock are cleared,
+    /// as a player's builders would). And how the camp is laid out round its fire (CampBuildMath.Plan) and what it builds it
+    /// with (CampKit).
     /// </summary>
     public static class CampSite
     {
         /// <summary>How far the camp itself reaches from its fire.</summary>
-        public const int CoreRadius = 7;
+        public const int CoreRadius = CampBuildMath.Reach;
         /// <summary>Nearest a camp may be to the home area or any of the colony's buildings.</summary>
         public const int MinFromColony = 28;
         public const int MaxFromColony = 80;
@@ -93,7 +101,7 @@ namespace ColonyCouncil
             return best;
         }
 
-        /// <summary>Open ground for the camp: standable, unroofed, outdoors, dry, no zone, no building, no home area.</summary>
+        /// <summary>Open ground: standable, unroofed, outdoors, dry, no zone, no building, no home area (a spot to set something down on now).</summary>
         public static bool OpenGround(IntVec3 c, Map map)
         {
             if (!c.InBounds(map) || c.Fogged(map) || !c.Standable(map) || c.Roofed(map)) return false;
@@ -108,80 +116,160 @@ namespace ColonyCouncil
         /// <summary>The colony has plans for this spot: a plan drawn on it, or work marked on the ground.</summary>
         public static bool Marked(IntVec3 c, Map map) => map.planManager?.PlanAt(c) != null || map.designationManager.HasMapDesignationAt(c);
 
+        // ---------------- What a cell holds ----------------
+
+        /// <summary>Overhead rock within this of a rock they would mine: never, so no roof can come down (the game's roofs need a holder within about seven cells).</summary>
+        public const float RoofSafe = 7.9f;
+
+        /// <summary>What a cell holds, as a camp's builders see it (CampBuildMath.Fate); <paramref name="camp"/>: their own goods are theirs to move aside.</summary>
+        public static CampCell CellAt(Map map, IntVec3 c, Camp camp = null)
+        {
+            var cell = new CampCell();
+            if (!c.InBounds(map) || c.Fogged(map))
+            {
+                cell.outside = true;
+                return cell;
+            }
+            var terrain = c.GetTerrain(map);
+            if (terrain == null || terrain.IsWater || terrain.passability == Traversability.Impassable || terrain.affordances == null || !terrain.affordances.Contains(TerrainAffordanceDefOf.Light))
+                cell.badGround = true;
+            var home = map.areaManager.Home;
+            if ((home != null && home[c]) || map.zoneManager.ZoneAt(c) != null || Marked(c, map)) cell.colony = true;
+            var roof = c.GetRoof(map);
+            if (roof != null && roof.isNatural) cell.roofed = true;
+            var things = c.GetThingList(map);
+            for (int i = 0; i < things.Count; i++)
+            {
+                var t = things[i];
+                if (t.Faction == Faction.OfPlayer)
+                {
+                    cell.colony = true;
+                    continue;
+                }
+                switch (t.def.category)
+                {
+                    case ThingCategory.Building:
+                        if (t.def.mineable)
+                        {
+                            if (CampTake.PlainRock(t.def) && !RoofNear(map, c)) cell.rock = true;
+                            else cell.ore = true;
+                        }
+                        else cell.building = true;
+                        break;
+                    case ThingCategory.Plant:
+                        if (!(t is Plant p) || p.sown || p.def.plant == null || p.def.plant.treeCategory == TreeCategory.Super || map.designationManager.DesignationOn(t) != null) cell.sown = true;
+                        else if (p.def.plant.IsTree || p.def.passability == Traversability.Impassable) cell.tree = true;
+                        else if (p.def.plant.harvestWork > ThingDefOf.Plant_Dandelion.plant.harvestWork) cell.plant = true;
+                        break;
+                    case ThingCategory.Item:
+                        var f = CampTake.Facts(t, camp);
+                        if (f.theirs && !f.stored) cell.chunk = true;
+                        else if (f.stored || f.forbidden || f.home || f.zoned) cell.colony = true;
+                        else if (CampTakeMath.May(f)) cell.chunk = true;
+                        else cell.valuable = true;
+                        break;
+                }
+            }
+            return cell;
+        }
+
+        /// <summary>Any natural roof within <see cref="RoofSafe"/> of the cell.</summary>
+        private static bool RoofNear(Map map, IntVec3 c)
+        {
+            foreach (var x in GenRadial.RadialCellsAround(c, RoofSafe, true))
+                if (x.InBounds(map) && x.Roofed(map)) return true;
+            return false;
+        }
+
+        public static CellFate FateAt(Map map, IntVec3 c, Camp camp = null) => CampBuildMath.Fate(CellAt(map, c, camp));
+
+        /// <summary>The camp could build here, clearing it first if need be.</summary>
+        public static bool Buildable(IntVec3 c, Map map) => FateAt(map, c) != CellFate.Never;
+
+        // ---------------- Where ----------------
+
         /// <summary>
-        /// The best spot for a camp. <paramref name="shade"/>: hot weather, when trees around count for more (they pitch
-        /// in their shade where they can).
+        /// The best spot for a camp: open or wooded ground clear of the colony, its reach nearly all ground they can clear and
+        /// build on. <paramref name="shade"/>: hot weather, when trees around count for more (they pitch in their shade).
         /// </summary>
         public static bool TryFind(Map map, out IntVec3 center, bool shade = false)
         {
             center = IntVec3.Invalid;
             if (map == null) return false;
-            int margin = CoreRadius + 8;
+            int margin = CoreRadius + 6;
             if (map.Size.x < margin * 2 + 20 || map.Size.z < margin * 2 + 20) return false;
-            // The open ground first, so a map that is mostly mountain, fog or water still finds the little it has (a few
-            // hundred random tries over the whole map missed it nearly every day there); then, on a tight map, a spot a
-            // little nearer the colony and a little less open.
+            // The ground first, so a map that is mostly mountain, fog or water still finds the little it has; then, on a
+            // tight map, a spot a little nearer the colony and with a little less room.
             var open = OpenCells(map, margin);
             if (open.Count == 0) return false;
             var pts = ColonyPoints(map);
             return TryFindIn(map, open, pts, shade, MinFromColony, 0.8f, out center)
-                || TryFindIn(map, open, pts, shade, MinFromColonyTight, 0.7f, out center);
+                || TryFindIn(map, open, pts, shade, MinFromColonyTight, 0.65f, out center);
         }
 
         /// <summary>On a tight map (mountain, marsh, a crowded valley): how near the colony a camp may come, as a last resort.</summary>
         public const int MinFromColonyTight = 20;
 
-        /// <summary>How many open spots are weighed for a camp each time.</summary>
+        /// <summary>How many spots are weighed for a camp each time.</summary>
         private const int Tries = 400;
 
-        /// <summary>Every open cell a camp's fire could stand on, every second cell each way (inside the map's margin).</summary>
+        /// <summary>Every cell a camp's fire could stand on (ground they can walk and clear: open, grass, bushes, trees, a chunk), every third cell each way.</summary>
         private static List<IntVec3> OpenCells(Map map, int margin)
         {
             var list = new List<IntVec3>();
-            for (int x = margin; x < map.Size.x - margin; x += 2)
-                for (int z = margin; z < map.Size.z - margin; z += 2)
+            for (int x = margin; x < map.Size.x - margin; x += 3)
+                for (int z = margin; z < map.Size.z - margin; z += 3)
                 {
                     var c = new IntVec3(x, 0, z);
-                    if (OpenGround(c, map)) list.Add(c);
+                    var fate = FateAt(map, c);
+                    if (fate != CellFate.Never && fate != CellFate.Mine) list.Add(c);
                 }
             return list;
         }
 
-        private static bool TryFindIn(Map map, List<IntVec3> open, List<IntVec3> pts, bool shade, int minFrom, float openShare, out IntVec3 center)
+        private static bool TryFindIn(Map map, List<IntVec3> open, List<IntVec3> pts, bool shade, int minFrom, float roomShare, out IntVec3 center)
         {
             center = IntVec3.Invalid;
             var traverse = TraverseParms.For(TraverseMode.PassDoors, Danger.Deadly, false);
             float bestScore = float.MinValue;
             int minSq = minFrom * minFrom, maxSq = MaxFromColony * MaxFromColony;
             int tries = Mathf.Min(Tries, open.Count);
+            var h = CampTracker.HoldingAt(map);
             for (int i = 0; i < tries; i++)
             {
                 var c = open.Count <= Tries ? open[i] : open.RandomElement();
                 // Well clear of neighbours settled for good (Holding.cs).
-                var h = CampTracker.HoldingAt(map);
                 if (h != null && h.map == map && h.center.IsValid && c.InHorDistOf(h.center, CoreRadius * 2 + 10)) continue;
                 int d = pts.Count > 0 ? MinDistSquared(c, pts) : int.MaxValue;
                 if (d < minSq || (pts.Count > 0 && d > maxSq)) continue;
-                // Room for the camp: nearly all of it open ground.
-                int clear = 0, total = 0;
-                foreach (var x in GenRadial.RadialCellsAround(c, CoreRadius, true))
+                // Room for the camp: nearly all of its reach ground they can clear and build on, nothing of the colony's in it.
+                int room = 0, total = 0, clearing = 0;
+                bool colony = false;
+                foreach (var x in GenRadial.RadialCellsAround(c, CoreRadius - 1, true))
                 {
+                    // Every other cell is enough to judge the ground by.
+                    if ((x.x + x.z) % 2 != 0) continue;
                     total++;
-                    if (OpenGround(x, map)) clear++;
-                    else if (x.InBounds(map) && (map.zoneManager.ZoneAt(x) != null || (map.areaManager.Home != null && map.areaManager.Home[x])))
+                    var cell = CellAt(map, x);
+                    if (cell.colony)
                     {
-                        clear = -999;
+                        colony = true;
                         break;
                     }
+                    var fate = CampBuildMath.Fate(cell);
+                    if (fate == CellFate.Never) continue;
+                    room++;
+                    clearing += CampBuildMath.Cost(fate);
                 }
-                if (clear < total * openShare) continue;
+                if (colony || room < total * roomShare) continue;
                 if (!map.reachability.CanReachMapEdge(c, traverse) || !map.reachability.CanReachColony(c)) continue;
-                // Close enough to share the land, with trees about; a little chance for variety.
+                // Close enough to share the land, with trees about (more in the heat, for the shade), little to clear; a
+                // little chance for variety.
                 float dist = pts.Count > 0 ? Mathf.Sqrt(d) : 50f;
                 int trees = 0;
                 foreach (var x in GenRadial.RadialCellsAround(c, 14f, false))
-                    if (x.InBounds(map) && x.GetPlant(map) is Plant p && p.def.plant.IsTree) trees++;
-                float score = -Mathf.Abs(dist - 42f) * 0.6f + Mathf.Min(trees, 30) * (shade ? 0.9f : 0.3f) + Rand.Range(0f, 6f);
+                    if ((x.x + x.z) % 2 == 0 && x.InBounds(map) && x.GetPlant(map) is Plant p && p.def.plant.IsTree) trees++;
+                float score = -Mathf.Abs(dist - 42f) * 0.6f + Mathf.Min(trees, 15) * (shade ? 1.8f : 0.6f) - clearing * 0.05f + Rand.Range(0f, 6f);
                 if (score > bestScore)
                 {
                     bestScore = score;
@@ -231,6 +319,9 @@ namespace ColonyCouncil
             return Mathf.Abs(v.x) > Mathf.Abs(v.z) ? new IntVec3(v.x > 0 ? 1 : -1, 0, 0) : new IntVec3(0, 0, v.z > 0 ? 1 : -1);
         }
 
+        /// <summary>The quarter turn that sends the layout's +z (away from the colony) the way <paramref name="away"/> points.</summary>
+        public static int TurnFor(IntVec3 away) => away.x > 0 ? 1 : away.z < 0 ? 2 : away.x < 0 ? 3 : 0;
+
         /// <summary>Which way the camp lies from the colony, in words.</summary>
         public static string Direction(IntVec3 center, IntVec3 colony)
         {
@@ -244,225 +335,189 @@ namespace ColonyCouncil
 
         // ---------------- Layout ----------------
 
-        private static bool Fits(ThingDef def, ThingDef stuff, IntVec3 cell, Rot4 rot, Map map, HashSet<IntVec3> taken)
-        {
-            var rect = GenAdj.OccupiedRect(cell, rot, def.size);
-            // Nothing lying there either: nobody's things get moved aside to make room.
-            foreach (var c in rect)
-                if (!OpenGround(c, map) || taken.Contains(c) || c.GetFirstItem(map) != null) return false;
-            try
-            {
-                return GenConstruct.CanPlaceBlueprintAt(def, cell, rot, map, false, null, null, stuff).Accepted;
-            }
-            catch (Exception e)
-            {
-                // Another mod's placement rules can fail off the map being viewed: the spot just doesn't fit.
-                CouncilLog.WarnOnce("camp placement of " + def.defName + " skipped: " + e.Message);
-                return false;
-            }
-        }
-
-        private static void Take(CampPlan p, HashSet<IntVec3> taken)
-        {
-            foreach (var c in p.Rect) taken.Add(c);
-        }
-
-        private static CampPlan Plan(CampStructure s, ThingDef def, IntVec3 cell, Rot4 rot) =>
-            new CampPlan { role = s.role, def = def, stuff = s.StuffFor(def), cell = cell, rot = rot };
-
         /// <summary>Beds this close to the fire are drawn in round it, for cold nights.</summary>
         public const float CloseToFire = 3.5f;
 
-        /// <summary>Most of the camp's beds are drawn in close round its fire.</summary>
+        /// <summary>Most of the camp's beds round the fire are drawn in close to it (they sleep round it, not in a hut or tents).</summary>
         public static bool BedsClose(List<CampPlan> plans)
         {
             var fire = plans.FirstOrDefault(p => p.role == "fire");
             var beds = plans.Where(p => p.role == "bed").ToList();
-            return fire != null && beds.Count > 0 && beds.Count(b => b.cell.InHorDistOf(fire.cell, CloseToFire + 0.1f)) * 2 >= beds.Count;
+            return fire != null && beds.Count > 0 && beds.Count(b => b.cell.InHorDistOf(fire.cell, CloseToFire + 1.6f)) * 2 >= beds.Count;
         }
 
-        /// <summary>A windbreak for cold nights, for a camp whose kind builds none of its own: a few lengths of log wall.</summary>
-        private static readonly CampStructure ColdWindbreak = new CampStructure { role = "wall", defs = new List<string> { "Wall" }, stuff = new List<string> { "WoodLog" }, count = 4 };
+        /// <summary>How a kind of camp sleeps, with what this people has (a mod's tent that is a bed makes tents of the beds themselves).</summary>
+        public static CampLayoutSpec SpecFor(CampKindDef kind, int people, float days, bool cold, Faction f, out Dictionary<string, CampStructure> pieces)
+        {
+            pieces = new Dictionary<string, CampStructure>();
+            foreach (var role in CampKit.Roles)
+            {
+                var p = CampKit.Piece(kind, role, f);
+                if (p?.Def != null) pieces[role] = p;
+            }
+            // A kind's own spot (a shrine, a stage), if it has one.
+            var spot = CampKit.Piece(kind, "spot", f);
+            if (spot?.Def != null) pieces["spot"] = spot;
+            var spec = new CampLayoutSpec { sleepers = Mathf.Max(1, people), sleep = kind.sleep };
+            var bed = pieces.TryGetValue("bed", out var b) ? b.Def : null;
+            var tent = pieces.TryGetValue("tent", out var t) ? t.Def : null;
+            if (spec.sleep == CampSleepForm.Tents && tent != null && tent.IsBed)
+            {
+                spec.tentBeds = true;
+                bed = tent;
+            }
+            if (spec.sleep != CampSleepForm.Ring && (!pieces.ContainsKey(spec.sleep == CampSleepForm.Hut ? "hut" : "tentwall") || !pieces.ContainsKey(spec.sleep == CampSleepForm.Hut ? "door" : "tentdoor"))
+                && !spec.tentBeds)
+                spec.sleep = CampSleepForm.Ring;
+            if (bed != null)
+            {
+                spec.bedW = bed.size.x;
+                spec.bedD = bed.size.z;
+            }
+            spec.windbreak = cold && spec.sleep == CampSleepForm.Ring && pieces.ContainsKey("wall");
+            var table = pieces.TryGetValue("table", out var tb) ? tb.Def : null;
+            spec.tables = table == null ? 0 : CampBuildMath.TablesFor(people, days, kind.dines);
+            if (table != null)
+            {
+                spec.tableW = table.size.x;
+                spec.tableD = table.size.z;
+            }
+            spec.seats = pieces.ContainsKey("seat");
+            bool hunts = kind.huntsPerDay > 0f || (kind.works?.Contains(CampLabour.Hunt) ?? false);
+            spec.butcher = pieces.ContainsKey("butcher") && (hunts || kind.structures.Any(s => s.role == "butcher"));
+            // A crafting spot of the kit's, unless their own spot is a work table already (the smith's).
+            spec.craft = pieces.ContainsKey("craft") && (CampBuildMath.CraftFor(days) || (kind.works?.Contains(CampLabour.Craft) ?? false)) && !(spot?.Def?.IsWorkTable ?? false);
+            spec.stall = kind.structures.Any(s => s.role == "stall") && pieces.ContainsKey("stall");
+            spec.spot = kind.structures.Any(s => s.role == "spot") && pieces.ContainsKey("spot");
+            spec.picket = pieces.ContainsKey("picket") && (kind.animals?.Any(a => a != null && (a.pack || a.kinds?.Count > 0)) ?? false);
+            spec.stash = pieces.ContainsKey("stash") && days >= 3f;
+            spec.lights = CampBuildMath.LightsFor(people, pieces.ContainsKey("light"));
+            return spec;
+        }
 
         /// <summary>
-        /// The camp around its fire: beds in a ring, a windbreak or a hut on the far side, a stall toward the colony,
-        /// the stash on the far side. <paramref name="cold"/>: cold nights ahead, when the beds are drawn in close round
-        /// the fire and a windbreak (their own, or one of log walls) stands just behind them. Null when not even the fire
-        /// fits.
+        /// The camp around its fire (CampBuildMath.Plan, its +z away from the colony): tried at the spot and a few cells
+        /// round it, every way round, the layout with everything in it and least to clear taken; where nothing fits it all,
+        /// the one with most of it; a shelter that won't go anywhere, and they sleep round the fire instead. Null when not even
+        /// the fire and the beds fit. <paramref name="center"/> may move a few cells.
         /// </summary>
-        public static List<CampPlan> Layout(Map map, IntVec3 center, CampKindDef kind, int people, IntVec3 colony, out IntVec3 stash, out IntVec3 share, bool cold = false)
+        public static List<CampPlan> Layout(Map map, ref IntVec3 center, CampKindDef kind, int people, IntVec3 colony, out IntVec3 stash, out IntVec3 share, bool cold, Faction f, float days)
         {
-            var away = Away(center, colony);
-            var side = new IntVec3(away.z, 0, -away.x);
-            stash = center + away * 4 + side * 3;
-            share = center - away * 7;
-            if (!stash.InBounds(map) || !stash.Standable(map)) stash = center + away * 3;
-            if (!share.InBounds(map) || !share.Standable(map)) share = center - away * 5;
-            var plans = new List<CampPlan>();
-            var taken = new HashSet<IntVec3>();
-            // The stash and the way to it stay clear.
-            foreach (var c in GenRadial.RadialCellsAround(stash, 1.5f, true)) taken.Add(c);
-
-            var fireS = kind.structures.FirstOrDefault(s => s.role == "fire");
-            var fireDef = fireS?.Def;
-            if (fireDef == null) return null;
-            CampPlan fire = null;
-            foreach (var c in GenRadial.RadialCellsAround(center, 2f, true))
+            stash = share = IntVec3.Invalid;
+            var spec = SpecFor(kind, people, days, cold, f, out var pieces);
+            var cells = new Dictionary<IntVec3, int>();
+            int Cost(IntVec3 c)
             {
-                if (!Fits(fireDef, fireS.StuffFor(fireDef), c, Rot4.North, map, taken)) continue;
-                fire = Plan(fireS, fireDef, c, Rot4.North);
-                break;
+                if (!cells.TryGetValue(c, out int v)) cells[c] = v = CampBuildMath.Cost(FateAt(map, c));
+                return v;
             }
-            if (fire == null) return null;
-            plans.Add(fire);
-            Take(fire, taken);
-            // Room around the fire to sit and cook.
-            foreach (var c in GenRadial.RadialCellsAround(fire.cell, 1.5f, false)) taken.Add(c);
-            var fireCell = fire.cell;
-
-            var structures = kind.structures.ToList();
-            if (cold && !structures.Any(x => x.role == "wall" || x.role == "hut") && ColdWindbreak.Def != null) structures.Add(ColdWindbreak);
-            foreach (var s in structures)
+            int baseTurn = TurnFor(Away(center, colony));
+            CampLayout best = null;
+            IntVec3 bestAt = center;
+            int bestTurn = baseTurn;
+            float bestScore = float.MinValue;
+            for (int attempt = 0; attempt < 2 && (best == null || !best.Livable); attempt++)
             {
-                if (s == fireS) continue;
-                var def = s.Def;
-                if (def == null) continue;
-                try
+                if (attempt == 1)
                 {
-                    switch (s.role)
+                    // No room for the shelter anywhere here: they sleep round the fire.
+                    if (spec.sleep == CampSleepForm.Ring) break;
+                    spec.sleep = CampSleepForm.Ring;
+                    spec.tentBeds = false;
+                    if (pieces.TryGetValue("bed", out var b2) && b2.Def != null)
                     {
-                        case "bed":
-                            // One each (a hut's bed counts).
-                            int beds = (s.count > 0 ? Mathf.Min(s.count, people) : people) - plans.Count(p => p.role == "hutbed");
-                            // For cold nights as close round the fire as they fit, the rest a little further out.
-                            if (beds > 0 && cold) beds -= PlaceRing(plans, taken, s, def, map, fireCell, 2f, CloseToFire, beds, true);
-                            if (beds > 0) PlaceRing(plans, taken, s, def, map, fireCell, 2.5f, 5.5f, beds, true);
-                            break;
-                        case "wall":
-                            PlaceWall(plans, taken, s, def, map, fireCell, away, side, cold ? 4 : 6);
-                            break;
-                        case "hut":
-                            PlaceHut(plans, taken, s, def, map, fireCell, away, side, kind);
-                            break;
-                        case "stall":
-                            PlaceRing(plans, taken, s, def, map, fireCell - away * 2, 2f, 4.5f, Mathf.Max(1, s.count), false);
-                            break;
-                        default:
-                            PlaceRing(plans, taken, s, def, map, fireCell, 3.5f, 6.5f, Mathf.Max(1, s.count), false);
-                            break;
+                        spec.bedW = b2.Def.size.x;
+                        spec.bedD = b2.Def.size.z;
                     }
                 }
-                catch (Exception e)
+                foreach (var shift in new[] { IntVec3.Zero, new IntVec3(3, 0, 0), new IntVec3(-3, 0, 0), new IntVec3(0, 0, 3), new IntVec3(0, 0, -3), new IntVec3(6, 0, 0), new IntVec3(-6, 0, 0), new IntVec3(0, 0, 6), new IntVec3(0, 0, -6) })
                 {
-                    CouncilLog.ErrorOnce("camp layout " + s.role, e);
+                    var at = center + shift;
+                    if (!at.InBounds(map)) continue;
+                    var fate = FateAt(map, at);
+                    if (fate == CellFate.Never || fate == CellFate.Mine) continue;
+                    foreach (int k in new[] { baseTurn, baseTurn + 1, baseTurn + 3, baseTurn + 2 })
+                    {
+                        int turn = k % 4;
+                        var layout = CampBuildMath.Plan(spec, (x, z) =>
+                        {
+                            var (wx, wz) = CampBuildMath.Turn(x, z, turn);
+                            return Cost(new IntVec3(at.x + wx, 0, at.z + wz));
+                        });
+                        if (!layout.pieces.Any(p => p.role == "fire")) continue;
+                        float score = (layout.Livable ? 10000f : 0f) - layout.missing.Count * 500f - layout.cost - (turn == baseTurn ? 0f : 5f) - shift.LengthHorizontal * 2f;
+                        if (score <= bestScore) continue;
+                        bestScore = score;
+                        best = layout;
+                        bestAt = at;
+                        bestTurn = turn;
+                    }
+                    // Everything fits here: no need to look further.
+                    if (best != null && best.Complete) break;
                 }
             }
+            if (best == null || !best.Livable) return null;
+            center = bestAt;
+            var plans = new List<CampPlan>();
+            foreach (var p in best.pieces)
+            {
+                string role = p.role == "bed" && spec.tentBeds ? "tent" : p.role == "hutbed" ? "bed"
+                    : p.role == "hut" ? (spec.sleep == CampSleepForm.Hut ? "hut" : "tentwall")
+                    : p.role == "door" ? (spec.sleep == CampSleepForm.Hut ? "door" : "tentdoor") : p.role;
+                if (!pieces.TryGetValue(role, out var s) || s.Def == null) continue;
+                var plan = PlanFor(s, p, center, bestTurn);
+                if (plan == null) continue;
+                // The plan's role is the layout's (a hut's bed is a "hutbed", a tent that is a bed a "bed").
+                plan.role = p.role;
+                plans.Add(plan);
+            }
+            var (sx, sz) = CampBuildMath.Turn(best.stash.x, best.stash.z, bestTurn);
+            stash = new IntVec3(center.x + sx, 0, center.z + sz);
+            var (hx, hz) = CampBuildMath.Turn(0, -8, bestTurn);
+            share = new IntVec3(center.x + hx, 0, center.z + hz);
+            if (!share.InBounds(map) || !share.Standable(map)) share = CellFinder.RandomClosewalkCellNear(center + (share - center) * 2 / 3, map, 3);
             return plans;
         }
 
-        /// <summary>Up to <paramref name="count"/> of a building in a ring round a spot; how many fitted.</summary>
-        private static int PlaceRing(List<CampPlan> plans, HashSet<IntVec3> taken, CampStructure s, ThingDef def, Map map, IntVec3 around, float min, float max, int count, bool faceIn)
+        /// <summary>The piece set down on the map: where its rectangle goes once turned with the layout, and the cell and rotation the game needs for it.</summary>
+        private static CampPlan PlanFor(CampStructure s, CampPiece p, IntVec3 center, int turn)
         {
-            int placed = 0;
-            var cells = GenRadial.RadialCellsAround(around, max, true).Where(c => c.DistanceTo(around) >= min).InRandomOrder().ToList();
-            foreach (var c in cells)
-            {
-                if (placed >= count) break;
-                var rots = def.rotatable ? new[] { Rot4.North, Rot4.East, Rot4.South, Rot4.West }.InRandomOrder() : new[] { Rot4.North };
-                foreach (var rot in rots)
-                {
-                    if (!Fits(def, s.StuffFor(def), c, rot, map, taken)) continue;
-                    var p = Plan(s, def, c, rot);
-                    plans.Add(p);
-                    Take(p, taken);
-                    // A walking gap around beds and stalls.
-                    foreach (var x in p.Rect.ExpandedBy(1)) if (!taken.Contains(x) && Rand.Chance(faceIn ? 0.5f : 0.35f)) taken.Add(x);
-                    placed++;
-                    break;
-                }
-            }
-            return placed;
+            var def = s.Def;
+            var (ax, az) = CampBuildMath.Turn(p.minX, p.minZ, turn);
+            var (bx, bz) = CampBuildMath.Turn(p.maxX, p.maxZ, turn);
+            var rect = CellRect.FromLimits(center.x + Mathf.Min(ax, bx), center.z + Mathf.Min(az, bz), center.x + Mathf.Max(ax, bx), center.z + Mathf.Max(az, bz));
+            var facing = new Rot4((p.facing + turn) % 4);
+            var rots = def.rotatable ? new[] { facing, facing.Opposite, facing.Rotated(RotationDirection.Clockwise), facing.Rotated(RotationDirection.Counterclockwise) } : new[] { Rot4.North };
+            foreach (var rot in rots)
+                foreach (var c in rect)
+                    if (GenAdj.OccupiedRect(c, rot, def.size).Equals(rect))
+                        return new CampPlan { role = s.role, def = def, stuff = s.StuffFor(def), cell = c, rot = rot, room = p.room };
+            // A piece smaller than its place (a mod's round table where a 1x2 was planned): at the place's first cell.
+            var small = GenAdj.OccupiedRect(rect.minX == rect.maxX && rect.minZ == rect.maxZ ? rect.CenterCell : new IntVec3(rect.minX, 0, rect.minZ), Rot4.North, def.size);
+            if (small.Cells.All(rect.Contains)) return new CampPlan { role = s.role, def = def, stuff = s.StuffFor(def), cell = small.CenterCell, rot = Rot4.North, room = p.room };
+            return null;
         }
 
-        /// <summary>A short windbreak on the far side of the fire, <paramref name="dist"/> cells out.</summary>
-        private static void PlaceWall(List<CampPlan> plans, HashSet<IntVec3> taken, CampStructure s, ThingDef def, Map map, IntVec3 fire, IntVec3 away, IntVec3 side, int dist)
+        /// <summary>The cells under each hut's or tent's roof (inside its walls), room by room; a save from before rooms, one hut.</summary>
+        public static IEnumerable<IntVec3> HutInside(List<CampPlan> plans, int room = -1)
         {
-            int n = Mathf.Clamp(s.count, 2, 7);
-            var root = fire + away * dist;
-            var line = new List<IntVec3>();
-            for (int i = 0; i < n; i++) line.Add(root + side * (i - n / 2));
-            var stuff = s.StuffFor(def);
-            var fitting = line.Where(c => Fits(def, stuff, c, Rot4.North, map, taken)).ToList();
-            if (fitting.Count < 2) return;
-            foreach (var c in fitting)
+            foreach (var r in plans.Where(p => p.role == "hut" || p.role == "door").Select(p => p.room).Distinct())
             {
-                var p = Plan(s, def, c, Rot4.North);
-                plans.Add(p);
-                Take(p, taken);
+                if (room >= 0 && r != room) continue;
+                var walls = plans.Where(p => (p.role == "hut" || p.role == "door") && p.room == r).Select(p => p.cell).ToList();
+                if (walls.Count < 8) continue;
+                var solid = new HashSet<IntVec3>(walls);
+                int minX = walls.Min(c => c.x), maxX = walls.Max(c => c.x), minZ = walls.Min(c => c.z), maxZ = walls.Max(c => c.z);
+                for (int x = minX + 1; x < maxX; x++)
+                    for (int z = minZ + 1; z < maxZ; z++)
+                    {
+                        var c = new IntVec3(x, 0, z);
+                        if (!solid.Contains(c)) yield return c;
+                    }
             }
         }
 
-        /// <summary>
-        /// A hut: a ring of wall around a 3x3 floor with one bed, a door facing the fire, and (once built) a roof. With a
-        /// tent mod's walls (hide or cloth that holds a roof), a tent.
-        /// </summary>
-        private static void PlaceHut(List<CampPlan> plans, HashSet<IntVec3> taken, CampStructure s, ThingDef wallDef, Map map, IntVec3 fire, IntVec3 away, IntVec3 side, CampKindDef kind)
-        {
-            var mid = fire + away * 5;
-            var rect = CellRect.CenteredOn(mid, 2);
-            var stuff = s.StuffFor(wallDef);
-            var doorDef = s.DoorDef;
-            // A tent's hide walls with a wooden door, if the door can't be made of hide.
-            var doorStuff = !doorDef.MadeFromStuff ? null : stuff != null && GenStuff.AllowedStuffsFor(doorDef).Contains(stuff) ? stuff : s.StuffFor(doorDef);
-            var doorCell = mid - away * 2;
-            foreach (var c in rect)
-                if (!OpenGround(c, map) || taken.Contains(c)) return;
-            var hut = new List<CampPlan>();
-            foreach (var c in rect.EdgeCells)
-            {
-                if (c == doorCell)
-                {
-                    if (!Fits(doorDef, doorStuff, c, Rot4.North, map, taken)) return;
-                    hut.Add(new CampPlan { role = "door", def = doorDef, stuff = doorStuff, cell = c, rot = Rot4.North });
-                    continue;
-                }
-                if (!Fits(wallDef, stuff, c, Rot4.North, map, taken)) return;
-                hut.Add(new CampPlan { role = "hut", def = wallDef, stuff = stuff, cell = c, rot = Rot4.North });
-            }
-            foreach (var p in hut)
-            {
-                plans.Add(p);
-                Take(p, taken);
-            }
-            // The bed goes inside.
-            var bedS = kind.structures.FirstOrDefault(x => x.role == "bed");
-            var bedDef = bedS?.Def;
-            if (bedDef != null)
-            {
-                foreach (var rot in new[] { Rot4.North, Rot4.East, Rot4.South, Rot4.West })
-                {
-                    var c = mid;
-                    var bedRect = GenAdj.OccupiedRect(c, rot, bedDef.size);
-                    if (!bedRect.All(x => rect.ContractedBy(1).Contains(x)) || !Fits(bedDef, bedS.StuffFor(bedDef), c, rot, map, taken)) continue;
-                    var p = Plan(bedS, bedDef, c, rot);
-                    p.role = "hutbed";
-                    plans.Add(p);
-                    Take(p, taken);
-                    break;
-                }
-            }
-            foreach (var c in rect) taken.Add(c);
-        }
-
-        /// <summary>The cells under a hut's roof (inside its walls), if it has one.</summary>
-        public static IEnumerable<IntVec3> HutInside(List<CampPlan> plans)
-        {
-            var walls = plans.Where(p => p.role == "hut" || p.role == "door").Select(p => p.cell).ToList();
-            if (walls.Count < 8) yield break;
-            int minX = walls.Min(c => c.x), maxX = walls.Max(c => c.x), minZ = walls.Min(c => c.z), maxZ = walls.Max(c => c.z);
-            for (int x = minX + 1; x < maxX; x++)
-                for (int z = minZ + 1; z < maxZ; z++)
-                    yield return new IntVec3(x, 0, z);
-        }
+        /// <summary>The rooms of the camp (its huts and tents), by number.</summary>
+        public static IEnumerable<int> Rooms(List<CampPlan> plans) => plans.Where(p => p.role == "hut" || p.role == "door").Select(p => p.room).Distinct();
     }
 }

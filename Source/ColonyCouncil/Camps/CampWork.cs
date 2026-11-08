@@ -101,10 +101,12 @@ namespace ColonyCouncil
             if (given.Count > 200) given.Clear();
             var map = pawn.Map;
             int hour = GenLocalDate.HourOfDay(map);
-            bool night = hour >= 22 || hour < 6;
+            // The camper's day (CampDayMath): night in their own bed, meals at their table, work, the evening by the fire.
+            var part = CampDayMath.HourOf(hour);
+            bool night = part == CampHour.Night;
             var food = pawn.needs.food;
             var rest = pawn.needs.rest;
-            if (food != null && food.CurLevelPercentage < 0.3f && Camp.MealsOf(pawn) > 0) return Eat(camp, pawn);
+            if (food != null && food.CurLevelPercentage < CampDayMath.MealBelow(part) && Camp.MealsOf(pawn) > 0) return Eat(camp, pawn);
             // The last walk before they go comes before anything but hunger and exhaustion (CampLook.cs).
             if (pawn == camp.walker && camp.WalkActive && (rest == null || rest.CurLevelPercentage > 0.1f))
             {
@@ -120,6 +122,12 @@ namespace ColonyCouncil
             if (rest != null && (rest.CurLevelPercentage < 0.2f || (night && rest.CurLevelPercentage < 0.95f))) return Sleep(camp, pawn);
             bool adult = !pawn.DevelopmentalStage.Juvenile();
             if (!adult) return Child(camp, pawn, hour);
+            // Packing up in their last hours: bedrolls, tents and furniture uninstalled and carried (CampPack.cs).
+            if (camp.packingFor != null)
+            {
+                var pack = camp.PackJob(pawn);
+                if (pack != null) return pack;
+            }
             // An errand into the colony an ask or a request sent them on (CampRequests.cs).
             var errand = camp.ErrandJob(pawn);
             if (errand != null) return errand;
@@ -142,21 +150,19 @@ namespace ColonyCouncil
 
         // ---------------- Needs ----------------
 
-        private static Job Eat(Camp camp, Pawn pawn) =>
-            JobMaker.MakeJob(CampDefOf.Council_CampEat, SitCell(camp, pawn), camp.FireCell);
+        /// <summary>A meal: at their table where they have one (a seat facing it), else by the fire.</summary>
+        private static Job Eat(Camp camp, Pawn pawn)
+        {
+            var at = camp.SeatAtTable(pawn);
+            if (at.HasValue) return JobMaker.MakeJob(CampDefOf.Council_CampEat, at.Value.seat, at.Value.table);
+            return JobMaker.MakeJob(CampDefOf.Council_CampEat, SitCell(camp, pawn), camp.FireCell);
+        }
 
         private static Job Sleep(Camp camp, Pawn pawn)
         {
-            Building_Bed bed = null;
-            foreach (var b in camp.Buildings().OfType<Building_Bed>().OrderByDescending(b => b.OwnersForReading.Contains(pawn)))
-            {
-                if (b.Medical || b.ForPrisoners) continue;
-                if (!b.OwnersForReading.Contains(pawn) && !b.AnyUnownedSleepingSlot) continue;
-                if (!RestUtility.IsValidBedFor(b, pawn, pawn, false)) continue;
-                bed = b;
-                break;
-            }
-            if (bed != null) return JobMaker.MakeJob(JobDefOf.LayDown, bed);
+            // Their own bed: the one they hold, else a free one they claim (a bed each, CampSite.Layout).
+            var bed = camp.BedFor(pawn);
+            if (bed != null && pawn.CanReserveAndReach(bed, PathEndMode.OnCell, Danger.Some, bed.SleepingSlotsCount, 0)) return JobMaker.MakeJob(JobDefOf.LayDown, bed);
             var map = pawn.Map;
             if (!CellFinder.TryFindRandomCellNear(camp.FireCell, map, 4, c => c.Standable(map) && c != camp.FireCell && c.GetFirstPawn(map) == null && c.GetEdifice(map) == null && !c.Roofed(map), out var cell))
                 cell = pawn.Position;
@@ -196,6 +202,25 @@ namespace ColonyCouncil
             bool canHaul = !pawn.WorkTagIsDisabled(WorkTags.Hauling);
             if (!canBuild && !canHaul) return null;
             var goods = camp.Goods();
+            // Ground a plan waits on: plain rock mined, a tree felled first, as a player's builders would.
+            foreach (var plan in camp.plans.Where(x => x.waiting && !x.placed && !x.dropped).OrderBy(x => x.cell.DistanceToSquared(pawn.Position)))
+            {
+                var block = camp.Blocking(plan);
+                if (block == null || camp.Here.Any(o => o != pawn && o.CurJob?.targetA.Thing == block) || !pawn.CanReserveAndReach(block, PathEndMode.Touch, Danger.Some)) continue;
+                if (block.def.mineable && !pawn.WorkTypeIsDisabled(WorkTypeDefOf.Mining))
+                {
+                    camp.Worked(block.Position);
+                    var mine = JobMaker.MakeJob(JobDefOf.Mine, block);
+                    mine.ignoreDesignations = true;
+                    return mine;
+                }
+                if (block is Plant tree && !pawn.WorkTypeIsDisabled(WorkTypeDefOf.PlantCutting))
+                {
+                    camp.Worked(tree.Position);
+                    camp.treesFelled++;
+                    return JobMaker.MakeJob(JobDefOf.CutPlant, tree);
+                }
+            }
             foreach (var t in camp.Unfinished().OrderBy(t => t.Position.DistanceToSquared(pawn.Position)))
             {
                 if (t.Destroyed || !pawn.CanReserve(t)) continue;
@@ -208,7 +233,13 @@ namespace ColonyCouncil
                 {
                     if (!Clearable(camp, block)) continue;
                     var clear = GenConstruct.HandleBlockingThingJob(t, pawn);
-                    if (clear != null) return clear;
+                    if (clear != null)
+                    {
+                        // A tree felled or rock mined to clear the ground: what it leaves is theirs (their logs, their stone).
+                        if (clear.def == JobDefOf.CutPlant || clear.def == JobDefOf.Mine) camp.Worked(block.Position);
+                        if (clear.def == JobDefOf.CutPlant && block is Plant p && p.def.plant.IsTree) camp.treesFelled++;
+                        return clear;
+                    }
                     continue;
                 }
                 if (t is Blueprint_Build bp)
@@ -236,11 +267,12 @@ namespace ColonyCouncil
             return null;
         }
 
-        /// <summary>What they may clear off a building spot: wild plants nobody has sown or marked, and their own goods.</summary>
+        /// <summary>What they may clear off a building spot (CampTake): wild plants nobody has sown or marked, chunks and cheap things nobody owns, their own goods, plain rock.</summary>
         private static bool Clearable(Camp camp, Thing t)
         {
-            if (t.def.category == ThingCategory.Plant) return !(t is Plant p && p.sown) && t.Spawned && t.Map.designationManager.DesignationOn(t) == null;
-            return t.def.category == ThingCategory.Item && camp.Owns(t);
+            if (t.def.category == ThingCategory.Plant) return !(t is Plant p && p.sown) && t.Spawned && t.Map.designationManager.DesignationOn(t) == null && CampTake.May(t, camp);
+            if (t.def.category == ThingCategory.Item) return camp.Owns(t) || CampTake.May(t, camp);
+            return t.def.mineable && CampTake.PlainRock(t.def) && CampTake.May(t, camp);
         }
 
         private static bool Skilled(Pawn pawn, Frame f)
@@ -291,10 +323,13 @@ namespace ColonyCouncil
                 if (!cell.InBounds(map)) continue;
                 foreach (var t in GenRadial.RadialDistinctThingsAround(cell, map, 2.5f, true))
                 {
-                    // What their felling left lying there: the game drops what a stranger cuts forbidden to the colony,
-                    // so wood the colony can use (its own, cut nearby) is never taken, nor anything in its stockpiles.
+                    // What their felling, mining or gathering left lying there: the game drops what a stranger cuts or
+                    // digs forbidden to the colony, so what the colony can use (its own, cut nearby) is never taken, nor
+                    // anything in its stockpiles.
                     if (t.def.category != ThingCategory.Item || !t.def.EverHaulable || camp.Owns(t) || !t.IsForbidden(Faction.OfPlayer) || InColony(t, home)) continue;
-                    if (t.def != ThingDefOf.WoodLog && !(t.def.stuffProps?.categories?.Contains(StuffCategoryDefOf.Woody) ?? false)) continue;
+                    bool wood = t.def == ThingDefOf.WoodLog || (t.def.stuffProps?.categories?.Contains(StuffCategoryDefOf.Woody) ?? false);
+                    bool gathered = t.def.IsNutritionGivingIngestible || t.def.IsMedicine;
+                    if (!wood && !gathered && !CampTake.StoneChunk(t.def)) continue;
                     if (!pawn.CanReserveAndReach(t, PathEndMode.ClosestTouch, Danger.Some)) continue;
                     return HaulToStash(camp, pawn, t);
                 }
@@ -401,8 +436,16 @@ namespace ColonyCouncil
                 if (tree != null)
                 {
                     camp.trees.Add(tree);
+                    camp.SayLine(pawn, "chop", 0.2f);
                     return JobMaker.MakeJob(JobDefOf.CutPlant, tree);
                 }
+            }
+            // The rest of the day's work, by their kind's callings and what they're good at (CampDayMath.Order): plain rock,
+            // wild plants, a catch, something made at their spot, mending their camp.
+            foreach (var w in CampDayMath.Order(kind.works, x => Camp.SkillFor(pawn, x)))
+            {
+                var job = camp.LabourJob(pawn, w);
+                if (job != null) return job;
             }
             // Porters: a load carried between the beasts and the fire, and back (CampKindDef.campGoods carryTo).
             if (Rand.Chance(0.3f))
@@ -562,6 +605,9 @@ namespace ColonyCouncil
                 else if (def == CampDefOf.Council_CampErrand || def == CampDefOf.Council_CampErrandTo || def == CampDefOf.Council_CampErrandDig) camp.ErrandWorked(pawn, job);
                 else if (def == CampDefOf.Council_CampGather) camp.Gathered(pawn, job.targetA.Thing);
                 else if (def == CampDefOf.Council_CampMilk || def == CampDefOf.Council_CampShear) camp.Milked(pawn, job.targetA.Thing as Pawn);
+                else if (def == CampDayDefOf.Rimfolk_CampCraft) camp.Crafted(pawn);
+                else if (def == CampDayDefOf.Rimfolk_CampMend) camp.Mended(pawn, job.targetA.Thing);
+                else if (def == CampDayDefOf.Rimfolk_CampPack) camp.Packed(pawn, job.targetA.Thing as Building);
                 else camp.LandJobDone(pawn, job);
             }
             catch (Exception e)

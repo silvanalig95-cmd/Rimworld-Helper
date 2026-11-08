@@ -101,10 +101,9 @@
     </situationKinds>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
-      <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>3</count></li>
-      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
     </structures>
+    <sleep>Tents</sleep>
+    <works><li>Fish</li><li>Chop</li><li>Gather</li></works>
     <animals>
       <li><kinds><li>LabradorRetriever</li><li>Husky</li></kinds><count>1~1</count><follow>true</follow><named>true</named></li>
     </animals>
@@ -260,10 +259,9 @@
     </seeks>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
-      <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>4</count></li>
-      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
     </structures>
+    <sleep>Tents</sleep>
+    <works><li>Chop</li></works>
     <animals>
       <li><pack>true</pack><kinds><li>Muffalo</li><li>Dromedary</li><li>Donkey</li></kinds><count>1~2</count><at>picket</at></li>
     </animals>
@@ -391,9 +389,9 @@
     </situationKinds>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
-      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
     </structures>
+    <sleep>Hut</sleep>
+    <works><li>Gather</li></works>
     <titles>
       <li>Harvest hands</li>
       <li>A reaping crew</li>
@@ -535,9 +533,9 @@
     </situationKinds>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Synthread</li></stuff></li>
-      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
     </structures>
+    <sleep>Hut</sleep>
+    <works><li>Mend</li></works>
     <titles>
       <li>Spacers down by the edge</li>
       <li>A wrecked craft</li>
@@ -678,9 +676,9 @@
     </situationKinds>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
-      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
     </structures>
+    <sleep>Hut</sleep>
+    <works><li>Chop</li></works>
     <titles>
       <li>Watchers of the monolith</li>
       <li>Scholars at a distance</li>
@@ -803,10 +801,9 @@
     </situationKinds>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
-      <li><role>wall</role><defs><li>Fence</li><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>6</count></li>
-      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
     </structures>
+    <sleep>Tents</sleep>
+    <works><li>Gather</li><li>Chop</li></works>
     <!-- Beasts from far off, kept by the fence: any tame-able beast with an exotic or uncommon trade tag (the animal mods'
          beasts too), never a predator; or one of these. -->
     <animals>

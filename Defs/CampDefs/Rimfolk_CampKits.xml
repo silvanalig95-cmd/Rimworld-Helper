@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- What a camp's people build with, by their age (Source/ColonyCouncil/Camps/CampKit.cs, laid out by CampBuildMath.cs):
+       for each role the player's mods' pieces first (MayRequire, picked from the active rows of docs/player-mods/buildings.tsv
+       for the role and the age), the game's own last, which is always there. The first that exists and that the people
+       know how to build (its research within their age) is used, of the first listed material it can be made of.
+       Roles: fire; bed (a bed each); tent (a tent that is a bed, for the kinds that sleep in tents); hut and door (a hut's
+       walls and door); tentwall and tentdoor (a tent's, when no tent is a bed); wall (a windbreak); table and seat; light;
+       butcher and craft (their work spots); stall (a trader's table); picket (where pack beasts are tied); stash (a shelf
+       for their goods, for a stay of three days or more). -->
+
+  <ColonyCouncil.CampKitDef>
+    <defName>Rimfolk_CampKit_Tribal</defName>
+    <label>a tribal camp</label>
+    <age>tribal</age>
+    <parts>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Leather_Plain</li><li>Cloth</li></stuff></li>
+      <li><role>tent</role><defs><li MayRequire="oskarpotocki.vfe.classical">VFEC_Tent</li><li>Bedroll</li></defs><stuff><li>Leather_Plain</li><li>Cloth</li></stuff></li>
+      <li><role>hut</role><defs><li MayRequire="vanillaexpanded.vfearchitect">VFEArch_LogWall</li><li>Wall</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>tentwall</role><defs><li MayRequire="vanillaexpanded.vfearchitect">VFEArch_LogWall</li><li>Wall</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>door</role><defs><li MayRequire="jecrell.doorsexpanded">HeronCurtainTribal</li><li>Door</li></defs><stuff><li>Leather_Plain</li><li>Cloth</li><li>WoodLog</li></stuff></li>
+      <li><role>tentdoor</role><defs><li MayRequire="jecrell.doorsexpanded">HeronCurtainTribal</li><li>Door</li></defs><stuff><li>Leather_Plain</li><li>Cloth</li><li>WoodLog</li></stuff></li>
+      <li><role>wall</role><defs><li MayRequire="vanillaexpanded.vfearchitect">VFEArch_LogWall</li><li>Wall</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>table</role><defs><li MayRequire="sarg.alphamemes">AM_Neolithic_WoodenTable_1x2c</li><li>Table1x2c</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>seat</role><defs><li MayRequire="vanillaexpanded.vfecore">Seat_Cushion</li><li>Stool</li></defs><stuff><li>Leather_Plain</li><li>Cloth</li><li>WoodLog</li></stuff></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+      <li><role>butcher</role><defs><li>ButcherSpot</li></defs></li>
+      <li><role>craft</role><defs><li>CraftingSpot</li></defs></li>
+      <li><role>stall</role><defs><li MayRequire="sarg.alphamemes">AM_Neolithic_WoodenTable_1x2c</li><li>Table1x2c</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>picket</role><defs><li>CaravanPackingSpot</li></defs></li>
+      <li><role>stash</role><defs><li>Shelf</li></defs><stuff><li>WoodLog</li></stuff></li>
+    </parts>
+  </ColonyCouncil.CampKitDef>
+
+  <ColonyCouncil.CampKitDef>
+    <defName>Rimfolk_CampKit_Medieval</defName>
+    <label>a medieval camp</label>
+    <age>medieval</age>
+    <parts>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>tent</role><defs><li MayRequire="oskarpotocki.vfe.classical">VFEC_Tent</li><li>Bedroll</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>hut</role><defs><li MayRequire="vanillaexpanded.vfearchitect">VFEArch_LogWall</li><li>Wall</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>tentwall</role><defs><li MayRequire="oskarpotocki.vfe.medieval2">VFEM2_ClothWall</li><li>Wall</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li><li>WoodLog</li></stuff></li>
+      <li><role>door</role><defs><li>Door</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>tentdoor</role><defs><li MayRequire="jecrell.doorsexpanded">HeronCurtainTribal</li><li MayRequire="local.moredoorvariants">MDV_DoorCurtain</li><li>Door</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li><li>WoodLog</li></stuff></li>
+      <li><role>wall</role><defs><li MayRequire="oskarpotocki.vfe.medieval2">VFEM2_Palisade</li><li>Wall</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>table</role><defs><li>Table1x2c</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>seat</role><defs><li>Stool</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+      <li><role>butcher</role><defs><li>ButcherSpot</li></defs></li>
+      <li><role>craft</role><defs><li>CraftingSpot</li></defs></li>
+      <li><role>stall</role><defs><li>Table1x2c</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>picket</role><defs><li>CaravanPackingSpot</li></defs></li>
+      <li><role>stash</role><defs><li>Shelf</li></defs><stuff><li>WoodLog</li></stuff></li>
+    </parts>
+  </ColonyCouncil.CampKitDef>
+
+  <ColonyCouncil.CampKitDef>
+    <defName>Rimfolk_CampKit_Industrial</defName>
+    <label>an industrial camp</label>
+    <age>industrial</age>
+    <parts>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Synthread</li><li>Leather_Plain</li></stuff></li>
+      <li><role>tent</role><defs><li MayRequire="oskarpotocki.vfe.classical">VFEC_Tent</li><li>Bedroll</li></defs><stuff><li>Cloth</li><li>Synthread</li></stuff></li>
+      <li><role>hut</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>tentwall</role><defs><li MayRequire="oskarpotocki.vfe.medieval2">VFEM2_ClothWall</li><li>Wall</li></defs><stuff><li>Cloth</li><li>Synthread</li><li>WoodLog</li></stuff></li>
+      <li><role>door</role><defs><li>Door</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>tentdoor</role><defs><li MayRequire="local.moredoorvariants">MDV_DoorCurtain</li><li MayRequire="jecrell.doorsexpanded">HeronCurtainTribal</li><li>Door</li></defs><stuff><li>Cloth</li><li>Synthread</li><li>WoodLog</li></stuff></li>
+      <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>table</role><defs><li>Table1x2c</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>seat</role><defs><li>Stool</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>light</role><defs><li MayRequire="oskarpotocki.vanillafactionsexpanded.settlersmodule">Chemlamp</li><li>TorchLamp</li></defs></li>
+      <li><role>butcher</role><defs><li>ButcherSpot</li></defs></li>
+      <li><role>craft</role><defs><li>CraftingSpot</li></defs></li>
+      <li><role>stall</role><defs><li>Table1x2c</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>picket</role><defs><li>CaravanPackingSpot</li></defs></li>
+      <li><role>stash</role><defs><li>Shelf</li></defs><stuff><li>WoodLog</li></stuff></li>
+    </parts>
+  </ColonyCouncil.CampKitDef>
+
+  <ColonyCouncil.CampKitDef>
+    <defName>Rimfolk_CampKit_Spacer</defName>
+    <label>a spacer camp</label>
+    <age>spacer</age>
+    <parts>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Synthread</li><li>Cloth</li></stuff></li>
+      <li><role>tent</role><defs><li MayRequire="oskarpotocki.vfe.classical">VFEC_Tent</li><li>Bedroll</li></defs><stuff><li>Synthread</li><li>Cloth</li></stuff></li>
+      <li><role>hut</role><defs><li>Wall</li></defs><stuff><li>Steel</li><li>WoodLog</li></stuff></li>
+      <li><role>tentwall</role><defs><li MayRequire="oskarpotocki.vfe.medieval2">VFEM2_ClothWall</li><li>Wall</li></defs><stuff><li>Synthread</li><li>Cloth</li><li>Steel</li></stuff></li>
+      <li><role>door</role><defs><li>Door</li></defs><stuff><li>Steel</li><li>WoodLog</li></stuff></li>
+      <li><role>tentdoor</role><defs><li MayRequire="local.moredoorvariants">MDV_DoorCurtain</li><li>Door</li></defs><stuff><li>Synthread</li><li>Cloth</li><li>Steel</li></stuff></li>
+      <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>Steel</li><li>WoodLog</li></stuff></li>
+      <li><role>table</role><defs><li>Table1x2c</li></defs><stuff><li>Steel</li><li>WoodLog</li></stuff></li>
+      <li><role>seat</role><defs><li>Stool</li></defs><stuff><li>Steel</li><li>WoodLog</li></stuff></li>
+      <li><role>light</role><defs><li MayRequire="oskarpotocki.vanillafactionsexpanded.settlersmodule">Chemlamp</li><li>TorchLamp</li></defs></li>
+      <li><role>butcher</role><defs><li>ButcherSpot</li></defs></li>
+      <li><role>craft</role><defs><li>CraftingSpot</li></defs></li>
+      <li><role>stall</role><defs><li>Table1x2c</li></defs><stuff><li>Steel</li><li>WoodLog</li></stuff></li>
+      <li><role>picket</role><defs><li>CaravanPackingSpot</li></defs></li>
+      <li><role>stash</role><defs><li>Shelf</li></defs><stuff><li>Steel</li><li>WoodLog</li></stuff></li>
+    </parts>
+  </ColonyCouncil.CampKitDef>
+
+  <!-- The camp's newer work (Camps/CampDay.cs, CampPack.cs): something simple made at their crafting spot, their own
+       building mended, and packing up in their last hours (a bedroll, a tent, a stool uninstalled and carried; or, for a
+       kind that leaves no trace, a wall taken down). -->
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_CampCraft</defName>
+    <reportString>making something at the crafting spot.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>2400</ticks><progress>true</progress></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_CampMend</defName>
+    <reportString>mending TargetA.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>900</ticks><repairEffect>true</repairEffect><progress>true</progress></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_CampPack</defName>
+    <reportString>packing up TargetA.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>500</ticks><repairEffect>true</repairEffect><progress>true</progress></li>
+    </modExtensions>
+  </JobDef>
+</Defs>

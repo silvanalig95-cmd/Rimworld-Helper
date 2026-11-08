@@ -62,9 +62,9 @@
     </situationKinds>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>VFEC_Tent</li><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
-      <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>3</count></li>
     </structures>
+    <sleep>Hut</sleep>
+    <works><li>Chop</li><li>Craft</li></works>
     <animals>
       <li><pack>true</pack><kinds><li>Donkey</li><li>Muffalo</li><li>Horse</li><li>Dromedary</li></kinds><count>1~1</count><at>picket</at></li>
     </animals>
@@ -203,9 +203,10 @@
     </situationKinds>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
-      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
-      <li><role>stall</role><defs><li>Table1x2c</li></defs><stuff><li>WoodLog</li></stuff></li>
+      <li><role>stall</role></li>
     </structures>
+    <sleep>Tents</sleep>
+    <works><li>Gather</li></works>
     <animals>
       <li><pack>true</pack><kinds><li>Donkey</li><li>Alpaca</li><li>Muffalo</li></kinds><count>1~1</count><at>picket</at></li>
     </animals>
