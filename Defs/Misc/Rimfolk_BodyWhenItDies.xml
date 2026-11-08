@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Take a bleeding animal's body when it dies (Source/ColonyCouncil/Animals/BodyWhenItDies.cs). The mark over the
+    animal: nothing works on it while it lives; when it dies, its body is unforbidden and given the game's own Haul order.
+    The game draws it (the haul icon, no art of Rimfolk's own), saves it with the map, and its Cancel tool takes it off.
+  -->
+
+  <DesignationDef>
+    <defName>Rimfolk_TakeBodyWhenDead</defName>
+    <label>take the body when it dies</label>
+    <description>Nobody goes near this animal while it lives. When it dies, its body is unforbidden and marked for hauling.</description>
+    <texturePath>UI/Designators/Haul</texturePath>
+    <targetType>Thing</targetType>
+  </DesignationDef>
+
+</Defs>

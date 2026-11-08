@@ -1394,6 +1394,14 @@ An alert says when an animal's **carcass lies out fresh**: one that hasn't start
 nobody on their way to it an hour after it died. It lists each one, says when it's forbidden or past the home area, and
 a click goes to it, so it can be hauled in, butchered or buried before it spoils (a setting with the alerts).
 
+A strong wild animal that is **bleeding out** can be left to die instead of hunted: select it and press **Take the body
+when it dies** (on any bleeding animal that isn't the colony's). The haul mark shows over it and nobody goes near it while
+it lives; when it dies, however it dies, its body is unforbidden and marked for hauling, and a hauler takes it to storage
+(you are told if no storage on the map takes it). The button's tooltip says how fast it bleeds and whether it will bleed to
+death and about when, as the health tab does. If it stops bleeding, is tamed, joins the colony or leaves the map first,
+the order is cancelled and a message says why; the game's Cancel tool takes the mark off too (a setting with the
+strangers and creatures, on by default).
+
 The Overview page's card **The herd and the land** shows who leads the herd, of which line and generation, whether
 the old leader is in its last season, the beast the colony watches and what it has made of it, a shiny rumour on the
 wind (with PokéWorld) and the neighbours settled for good. The Almanac page "the colony's animals" has the numbers, and
@@ -2049,8 +2057,35 @@ RimMarket, what lies on the colony's stalls is listed beside the stores, the sto
 takes the rest out of the stall's stock in the last hours.
 
 ### The trade screen
-The game's trade screen (a trader on the map, a caravan at a town, a ship called on the comms console) is quicker to
-read (settings: **What's on, Trade screen**, each part its own switch). Nothing is traded until you press its Accept.
+Every trade (a trader or visitor on the map, a guest, a ship called on the comms console, a caravan at a town or met on
+the road) opens in **Rimfolk's own trade window** (settings: **What's on, Trade screen**, *Rimfolk's own trade
+window*, on). Its prices, counts and Accept are the game's own, so nothing is traded until you press Accept and other
+mods' prices still apply. **Game's screen** at the top switches to the game's own screen for the same trade and counts
+(Trade Helper's panel is there); a small button beside its sort menus comes back. Gifts and trades in favor stay on the
+game's screen.
+- **One table, your side on the left of the count and the trader's on the right**, as the game's arrows go: the good,
+  its kind, its market value a piece, how many you have, what they pay, the game's own count control (Shift for ten,
+  Ctrl for a hundred, the double arrows for all or none, or type a number), what they ask, how many they have, the
+  deal's grade, with Vanilla Trading Expanded its market and its trend, the mass and what the colony needs of it.
+- **Above or under, both ways:** under each price, its share of the market value and its side of the usual price for
+  your negotiator and difficulty (a trader usually pays 60% of a thing's worth and asks 140%), green when better for
+  you, orange when worse. Against market value alone a sale is always under and a purchase always over; the usual is
+  what tells a trader who pays more, or asks less, than traders do.
+- **Deal grades:** great, good, fair or poor for each side, in words and bars. A fifth better than usual is great, 7%
+  good, within 7% fair. Vanilla Trading Expanded's market moves it a step (a sale at a 60-day high or of a falling good,
+  a buy at a low or of a rising one), and so does the colony's own record (better than its best of the last 15 days,
+  or a tenth worse). Something the colony has no use for is never a good buy, and selling what it is short of or keeps
+  never a good sale. The tooltip says why, with the advice's own reasons.
+- **Best deals** on the right: the top sells and buys, a click finding each in the list. Under it, **this deal**: what
+  you sell and buy at market value and at what share of it, the net silver, how the deal stands against the usual
+  prices ("about 12% better for you"), both ways by market value, the food days at home, and Vanilla Trading Expanded's
+  warning when the trade may move a price. Each side's silver after the trade is at the foot.
+- **Sorting and overview:** click any column's header to sort, again for the other way; a search, a chip for each kind
+  of good (food, medicine, raw materials, manufactured, weapons, apparel, art and books, drugs, animals, people, other)
+  and **Only in the deal**. Fill suggested, Clear suggested, Reset, Accept and Cancel at the foot. At 1280 pixels wide
+  the mass, kind, market and trend columns give way first.
+
+The game's own screen keeps the parts it had (each its own switch under What's on, Trade screen):
 - **Sorting by price:** the two "Sort by" menus gain *trader pays*, *trader asks* (the prices for this negotiator, not
   market value), *price per kg* (for a caravan's load), *best deal* (the price against the usual one: a trader usually
   pays 60% of a thing's worth and asks 140%, moved by the negotiator; a fifth better is a good sale or a bargain) and
@@ -3705,6 +3740,15 @@ by kind ("While it lasts", "Fades in 2 days", "Their ideoligion", "Lasting") and
 The game's own **Needs** tab gets a line above its mood list with the same totals ("You can fix -15 · Will pass -11
 · Ideoligion -4 · Lifting +22"; click it to open the Mood tab), and hovering a mood there ends its usual tooltip with
 which mod it comes from and what to do about it (a setting turns both off).
+
+With Ideology, the **style mood** ("Federal-style surroundings", "Non-Federal-style surroundings") says what it comes from:
+its tooltip lists the things around the colonist now that count against their ideoligion's style, by kind and style with
+how many and the points ("Animist dining chair ×4, -20"), the biggest first, then what counts for it, the total against
+the game's threshold (10 points either way), and what would fix it. New buildings always take the main ideoligion's style
+and the game can't restyle a built thing, so it says when building them again helps and when only moving them, a
+conversion or a reform will. A colonist with the bad mood gets a button, **Show the wrong-style things**, that selects
+them on the map, and a styled thing's inspect text names the colonists whose style it goes against ("Against Federalism's
+style: Aquason, Ian"). Nothing about the mood itself changes (the setting "Wrong-style things named", on by default).
 
 ## On-screen panels and the hover card
 What you keep checking, on the map, so you don't click through every colonist. Eight small panels, painted as a

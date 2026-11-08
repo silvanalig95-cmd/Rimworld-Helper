@@ -69,6 +69,173 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     takes its walls down; the Banner's squad leaves its post to the colony. 7. "the shared budget (log)": what a camp left
     behind listed with its pass.
 
+- 0.166.0, which exact things have the wrong style (8 November 2026, the player's explicit request after a colonist's
+  "Non-Federal-style surroundings -4", Federalism with intense bigotry: "how do i even know what is having the 'wrong'
+  style? I don't see it", then "i'd appreciate if you add notes about which exact items have the wrong style, so i can
+  target these"). Not released, as the entry below. DESIGN.md "Which things have the wrong style" (after "Ideoligions in
+  the colony: the people"); README "Mood tab and Moods page" a paragraph; the Almanac's ideoligions page a section
+  (*Things in the wrong style*) and a sentence in *Settings*, no keyword changed.
+  - What, with Ideology outside classic mode: the game's style mood (`ThoughtWorker_StyleDominance`, every diversity
+    level's) gets in its tooltip the count the game never shows, worked out the game's way from the colonist's own cell:
+    what counts against them by kind and style with how many and the points ("Animist dining chair ×4, -20"), the biggest
+    first, eight lines then "and N more"; what counts for them (four lines); the total against the threshold (10, or a
+    small room's cell count); with the bad mood one line of what would fix it (new buildings take the main ideoligion's
+    style and nothing restyles a built thing: build again where that helps; else move them, convert, or reform; another's
+    own things and floors taken down or replaced). A colonist with the bad mood has the button "Show the wrong-style
+    things" (selects them on the map, the camera to the first if out of view). A styled thing (StyleDominance above 0)
+    says in its inspect text "Against Federalism's style: Aquason, Ian" for the colony's people on its map whose style it
+    goes against. No mood changed, nothing saved.
+  - Code: `Moods/StyleSurroundingsMath.cs` (pure, linked in Tests.csproj; `StyleSurroundingsTests`, "wrong-style things: ",
+    74 checks: grouping by kind and style with a building's every cell, the order, the threshold and stage, the lines and
+    "and N more", the fix line, the button, the seams), `Moods/StyleSurroundings.cs` (the count with the game's private
+    `IdeoUtility.GetStyleDominance` and `GetJoinedRooms` by `AccessTools`, the tooltip, the button, a thing's line, and the
+    patches `Patch_StyleSurroundingsTip` on `ThoughtWorker_StyleDominance.PostProcessDescription`,
+    `Patch_StyleSurroundingsGizmo` on `Pawn.GetGizmos`, `Patch_StyleSurroundingsInspect` on
+    `ThingWithComps.GetInspectString`), `Moods/StyleSurroundingsDebug.cs`, Keyed `Rimfolk_StyleSurroundings.xml`. Cached
+    by the 250-tick block (a colonist's count and tooltip, the map's ideoligions with the mood and their names, a thing's
+    line); no Sched slot.
+  - Settings: `styleNotes` ("Wrong-style things named", How you're told, On the map, on, needs the deeper hooks).
+  - Riskiest: the private game methods by name (checked against 1.6 and 1.7's reference assemblies, both there; gone, the
+    feature is off with one warning); the count is from the colonist's own cell while the game's is from a random cell
+    within 5, so near a room's far wall the two can differ a little (the dev action prints both); a building whose class
+    overrides `GetInspectString` without the base call shows no line; labels from mods' style categories and things as they
+    name themselves; the tooltip's length in the game's Needs tab with many kinds (eight and four lines at most).
+  - Try in the game (dev mode; none of it could be run here): a colony with Ideology, the main ideoligion with one style
+    (say Animist) and a colonist of another that cares about style (Diversity: bigotry or worse, a different style).
+    1. Build Animist dining chairs and a table in the dining room and put the colonist there (wait for the game's next look,
+       900 ticks): their Needs tab has "Non-...-style surroundings"; its tooltip ends with "Around ... now (dining room)",
+       "Animist dining chair ×4, -20", the table with its points (a 2x4 table counts in each of its eight cells), the total
+       and the threshold, and "New buildings take ...'s style and a built thing can't be restyled, so instead of building
+       these again, move them ...". The same tooltip in Rimfolk's Mood tab.
+    2. The colonist's button "Show the wrong-style things": the chairs and table are selected; from another room or with
+       the camera elsewhere, the camera goes to the first. Somewhere with nothing against them: the rejection message.
+    3. Select a chair: its inspect text says "Against ...'s style: " and the colonist's name.
+    4. Make the colonist's ideoligion the main one (or pick a style for it the main one shares): the fix line says to build
+       them again. A small room under 10 cells: the threshold is its cell count.
+    5. "Wrong-style things: the count around a colonist (log)...": the groups, Rimfolk's total and the game's own sum from
+       the same cell (`GetStyleDominanceFromCellsCenteredOn`): the two should agree. Classic mode or the setting off:
+       nothing of it shows.
+- 0.166.0, a bleeding animal's body taken when it dies (8 November 2026, the player's explicit request: "if i see a
+  wild animal is bleeding out, can i give a command to haul it's corpse once it's dead? not to hunt it, in case it's a
+  strong one, but just to wait for it to die. if the animal recovers from bleeind comehow, this job shouild be
+  cancelled."). Not released: no version, no What's new round, About.xml and CHANGELOG untouched (the lead numbers and
+  releases it at the merge). DESIGN.md "A bleeding animal's body taken when it dies" (and the 193 row of "Ticking");
+  README "The colony's animals" a paragraph; the Almanac's colony's animals page a section (*Waiting for a bleeding animal
+  to die*) and a phrase in *Who hunts, and what*, no keyword changed.
+  - What: the button "Take the body when it dies" on a living, spawned, bleeding animal that isn't the colony's (wild or
+    another people's). It puts Rimfolk's designation `Rimfolk_TakeBodyWhenDead` on it (the game's haul icon, drawn over
+    the animal, saved with the map, taken off by the game's Cancel), in place of a hunting or taming order. Nothing is done
+    while it lives; the colony's pets leave it out of their prey. When it dies, however it dies, its body is unforbidden
+    and given the game's own `Haul` order (unless it already lies in storage); with no storage on the map that takes it,
+    one message (the body the look target). Dropped on its own, one message naming the animal and why, when it stops
+    bleeding (aged out, tended, healed), is tamed, joins the colony or leaves the map; dropped without a word when the
+    player cancels or replaces it, or the setting or hooks are off. The tooltip: what it does, the bleeding rate, and the
+    outlook by the game's rules (it bleeds to death in about the health tab's figure, or it shouldn't: its wounds stop on
+    their own in so long, or it makes its blood up under 10% a day).
+  - Code: `Animals/BodyWhenItDiesMath.cs` (pure, linked in Tests.csproj; `BodyWhenItDiesTests`, "the body when it dies: ",
+    71 checks: the button, `Judge` and the messages, `Outlook` against hand-worked cases, the haul order, the seams),
+    `Animals/BodyWhenItDies.cs` (the DefOf, the button and its tooltip, `Put`, `MarkedMap`/`Died` for the kill, `Rare`),
+    `Animals/BodyWhenItDiesPatches.cs` (`Patch_BodyWhenItDiesKill`, a prefix and postfix on `Pawn.Kill`: the game removes
+    every order on the animal in `Thing.Destroy`, after the body is placed, so the prefix reads the mark and the postfix
+    acts once `Dead`; `Patch_BodyWhenItDiesGizmo` on `Pawn.GetGizmos`), `Animals/BodyWhenItDiesDebug.cs`,
+    `Defs/Misc/Rimfolk_BodyWhenItDies.xml`, Keyed `Rimfolk_BodyWhenItDies.xml`. One line each in `BeastBook.Rare` (the
+    short pass, every 250 ticks: no Sched slot), `PetHunts.PreyOf` and `HuntMath.WhyNotPrey` (`markedForBody`).
+  - Settings: `bodyWhenItDies` ("Take a bleeding animal's body when it dies", What's on, Strangers and creatures, on, under
+    the deeper hooks: an indented row, so the setups that switch parts off leave it be). Saved: nothing new (the designation is the game's; which marked animals were
+    wild is session memory, filled again from the marks after a load).
+  - Riskiest: the kill's prefix and postfix (another mod that stops or reworks a death: the postfix acts only once the
+    animal is `Dead` and its body spawned); taming read from the faction after the game's `SetFaction` took the order off
+    (a wild animal that another people takes over is dropped silently as "cancelled"); the storage check without a carrier
+    (`TryFindBestBetterStorageFor(corpse, null, ...)`, so reachability isn't checked: storage behind a wall counts as
+    storage); the outlook leaves out other causes of death (an infection, a predator) and wounds of other mods that bleed
+    (counted as never closing by age).
+  - Try in the game (dev mode, Debug actions, Rimfolk, "Body when it dies: ..."; none of it could be run here):
+    1. "a deep cut on an animal (bleeds out)..." on a wild boar: it bleeds (the message says the rate and when it dies).
+       Select it: the button "Take the body when it dies", its tooltip with "At this rate it bleeds to death in about ...",
+       the same figure as its health tab. Press it: the haul icon over it, the game's Cancel button on it instead.
+    2. Wait (or the game's Kill tool): the body is unforbidden with the haul icon, and a hauler takes it to a stockpile that
+       allows corpses. With no such stockpile: one message, "... has died, but no storage on the map takes its body ...".
+    3. Mark another bleeding animal, then "tend an animal's wounds (stops the bleeding)...": within 250 ticks the mark is
+       gone and "... has stopped bleeding, so the order to take its body is cancelled.". The same with "age an animal's
+       wounds past bleeding..."; tame one (the game's Tame order, or the dev tame tool): "... has been tamed ..."; one that
+       walks off the map: "... has left the map ...".
+    4. "a light cut on an animal (lives)...": the tooltip says it shouldn't bleed to death and when its wounds close.
+    5. Mark a boar a pet of the colony could hunt (Pets hunt for themselves): the pet leaves it alone. Mark one already
+       marked for hunting: the hunt order goes. The setting off: the button is gone, and marks left are dropped quietly.
+    6. "the marked animals (log)": each with its rate, the health tab's figure, when it dies or that it lives, and when its
+       wounds close. Save and load with a mark on: the mark is still there and still dropped as above.
+- 0.165.0, Rimfolk's own trade window (7 and 8 November 2026, the player's request: "i still don't really like the new trade
+  interface, i'm thinking more of a totally redone one by you, not an adjusted vanilla one. where I can see whether I'm
+  buying/selling above/under market price, what are really good deals both ways, easier sorting & overview etc"; built
+  without a proposal round). Not released: no version, no What's new round, About.xml and CHANGELOG untouched (the lead
+  numbers and releases it at the merge). New: `Trade/TradeWindow.cs` (the opening, the switch both ways, the button
+  back, `Patch_TradeWindowOpen` on `WindowStack.Add`), `Trade/Window_RimfolkTrade.cs` (the window), `Trade/TradeWindowMath.cs`
+  (pure: the grades, the shares, the sort, the sums, the best deals, the columns that fit, the chips' rows, the scroll to
+  a row, the kinds; linked in Tests.csproj), Keyed `Rimfolk_TradeWindow.xml`, `Tools/Tests/TradeWindowTests.cs` ("trade
+  window: ", 510 checks). Changed: `TradeScreen.cs` (`Trading` counts Rimfolk's window; the readouts' lines and the
+  basket's two states public for it; `Fill`/`Clear` take a null screen; the row marks stand down while Rimfolk's window
+  draws the game's row icons; the button back beside the game's sort menus in `Patch_TradeFoot`), `TradeAdvice.cs` (each
+  note keeps its usual prices, `UsualPrices`, `GainAndLoss`, `UsualFor` for people and animals), the setting, DESIGN.md
+  "The trade screen" (rewritten, the 0.150.0 bullets kept under "The game's screen and the advice"), README "The trade
+  screen", the Almanac page *the trade screen* (three new sections, prose only, no keyword changed). Nothing saved.
+  - Opening: the game's constructor sets the trade up (`TradeSession.SetupWith`), and every opener adds it with
+    `WindowStack.Add` (a trader, visitor or Hospitality guest on the map by `JobDriver_TradeWithPawn`, a ship by comms, a
+    caravan at a town, a caravan met on the road, pods at a town), so the prefix swaps the window and keeps the game's
+    own `Dialog_Trade`. Only that exact class (a mod's subclass is left), only silver (a trade in favor keeps the game's
+    screen), never gifts (gifts-only and gift mode stay the game's; "Give gifts" in the window goes there). "Game's
+    screen" (top right) takes the window off and adds that same `Dialog_Trade`, let through once; the counts are the
+    deal's, so they stay. On the game's screen a 27-pixel button right of its sort menus (x 360, where it draws no search
+    box) comes back, the game's screen taken off by `TryRemove` so its `Close` (a trader's quest) waits for the end.
+  - The window: one table with sides (the colony's count and what they pay left of the game's own
+    `DoCountAdjustInterface`, what they ask and their count right of it, as its arrows go), thirteen columns (name, kind,
+    value, ours, they pay, count, they ask, theirs, deal, market and trend with VTE's history, mass, need), rows 36 high.
+    Under each price its share of the market value (`BaseMarketValue`) and its side of the usual (the advice's), green 7%
+    better for the colony, orange 7% worse. At 1920 every column fits with about 300 pixels of name beside a 300-pixel
+    side; at 1280 the mass, kind, trend and market give way (`TradeWindowMath.Fit`, tested at both). Header clicks sort
+    (again for the other way; the last sort kept for the session), a search, kind chips, "only in the deal"; on the right
+    the best five sells and buys (a click scrolls to the row and lights it) and the deal's summary; at the foot Fill
+    suggested, Clear suggested, Reset, Accept, Cancel, each side's silver now and after. A caravan's mass, speed and food
+    are the game's strip at the top (its calculators, over every good). Accept: the game's question when the trader is
+    short, then `TryExecute`; the game's own can't-pay check and message first, since `TryExecute` flashes a
+    `Dialog_Trade` it looks up (there is none). On close a trader's quest is handed over; on opening, the game's word
+    about an impaired negotiator. Any throw while drawing: logged once and the game's screen takes over.
+  - Grades (`TradeWindowMath.Rate`): the price against the usual (a sale's price over it, a purchase's usual over the
+    price), 0.05 a step for VTE's market reason (`TradeMarketMath.Hint`) and for the colony's record (better than its
+    best of 15 days by 2%, or a tenth worse); great from 1.20 (the advice's good sale), good from 1.07, fair from 0.93,
+    else poor; a purchase not marked worth buying, or a sale of what is short or all kept, held at fair. Bars and a word;
+    people not graded. Example: steel worth 2.28 on VTE's market (20% up, 1.90 usual worth), a negotiator of +12%: they
+    pay 1.53 (67% of value, +20% on the usual 1.28), at a 60-day high and above the colony's best 1.40 of the week:
+    1.20 + 0.05 + 0.05 = 1.30, a great sell; they ask 2.81 (123%, +20% on the usual 2.34), 0.83, a poor buy.
+  - Settings: What's on, Trade screen, *Rimfolk's own trade window* (`tradeWindow`, on, first in the section, deeper
+    hooks). The game's screen's switches are as they were.
+  - Riskiest: the `WindowStack.Add` swap (another mod that adds a `Dialog_Trade` and then looks it up with
+    `WindowOfType<Dialog_Trade>` finds none while Rimfolk's window is open: the game itself only does so in
+    `TryExecute`'s can't-pay branch, handled first); a mod that patches `Dialog_Trade`'s own drawing or `PostOpen` to set
+    a trade up (none known: VTE draws nothing there, Trade Helper's panel is its drawing) does nothing in Rimfolk's
+    window; the game's screen reopened as the same instance (its `PreOpen` and `PostOpen` run again; an impaired
+    negotiator's message shows again at the switch); the caravan calculators and `CaravanUIUtility.DrawCaravanInfo`
+    called directly; the count control's text field inside a scroll view that only draws the rows in sight (as the
+    game's own screen does); the colours on dark and light themes (Rimfolk's UiKit). Hospitality's and Trade Helper's code
+    isn't in the player's files (only Hospitality's defs, a trader kind for guests): what they do on a trade was read from
+    those and Trade Helper's description, not their code.
+  - Try in the game (none of it could be run here):
+    1. A caravan or visitor at home: Rimfolk's window opens. Read a row of steel or wood: value, they pay with its share
+       and its side of the usual, they ask the same; compare a price with the game's (Game's screen, its price
+       tooltip), then come back with the button right of its sort menus and see the counts kept.
+    2. Set counts with the arrows (Shift, Ctrl), type one, press the double arrows; check "Only in the deal" and the
+       summary (sold, bought, net silver, against usual, by market value, food days); Fill suggested, Clear suggested,
+       Reset.
+    3. Click each column's header twice; type in the search; pick a kind chip; with a good hidden, click it in Best deals
+       and see the filters clear and the row light.
+    4. Sell more than the trader's silver and press Accept: the game's question; buy more than the colony's silver: the
+       game's message, the silver at the foot lit. Trade, then open the next trade and see the record's step in a deal's
+       tooltip.
+    5. An orbital trader by comms with goods near a beacon (the bought goods come by pod); a caravan at a town (the game's
+       strip at the top with mass and food after the trade); a caravan met on the road; a Hospitality guest.
+    6. With VTE: the Market and Trend columns, a good at a 60-day high graded a step up, the impact line in the summary
+       after setting a big sale. At 1280 by 720 (UI scale 1): the columns that give way, nothing overlapping.
+    7. Give gifts (the game's gift mode); a trade with the Empire's tribute collector (the game's screen); the setting off
+       (the game's screen, no button back); deeper hooks off (the same).
 - 0.164.0, harm, part 7: tempers in the colony, visitors and outsiders, personal stories (7 and 8 November 2026, the last of the three
   batches of the review's remaining proposals after the player's "all suggestions please", on the shared budget so they add
   variety and not more hurts in all). With it **every one of the review's 94 proposals is built**. Not released: no version,

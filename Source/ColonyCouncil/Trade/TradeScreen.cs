@@ -39,8 +39,9 @@ namespace ColonyCouncil
         /// <summary>Trade Helper is loaded.</summary>
         public static bool TradeHelper => tradeHelper ??= People.ModActive(TradeHelperId);
 
-        /// <summary>The game's trade screen is open on a trade (not giving gifts).</summary>
-        public static bool Trading => TradeSession.Active && TradeSession.deal != null && !TradeSession.giftMode && Find.WindowStack?.WindowOfType<Dialog_Trade>() != null;
+        /// <summary>The game's trade screen, or Rimfolk's own trade window (Trade/Window_RimfolkTrade.cs), is open on a trade (not giving gifts).</summary>
+        public static bool Trading => TradeSession.Active && TradeSession.deal != null && !TradeSession.giftMode
+                                      && (Find.WindowStack?.WindowOfType<Dialog_Trade>() != null || TradeWindow.Open != null);
 
         public static bool Silver => TradeSession.Active && TradeSession.TradeCurrency == TradeCurrency.Silver;
 
@@ -57,7 +58,8 @@ namespace ColonyCouncil
 
         // ---------------- The marks ----------------
 
-        private static readonly Color BuyColor = new Color(0.45f, 0.85f, 0.45f), SellColor = new Color(0.95f, 0.78f, 0.35f), KeepColor = new Color(0.6f, 0.78f, 1f),
+        /// <summary>The marks' colours, shared with the need column of Rimfolk's own trade window.</summary>
+        public static readonly Color BuyColor = new Color(0.45f, 0.85f, 0.45f), SellColor = new Color(0.95f, 0.78f, 0.35f), KeepColor = new Color(0.6f, 0.78f, 1f),
             WarnColor = new Color(1f, 0.45f, 0.4f);
 
         public const float MarkSize = 24f;
@@ -179,6 +181,33 @@ namespace ColonyCouncil
         private static void Readouts(Rect area)
         {
             if (area.width < 80f) return;
+            var lines = ReadoutLines();
+            if (lines.Count == 0) return;
+            var oldFont = Text.Font;
+            var oldAnchor = Text.Anchor;
+            Text.Font = GameFont.Tiny;
+            Text.Anchor = TextAnchor.MiddleRight;
+            float lh = Mathf.Min(20f, area.height / lines.Count);
+            float top = area.y + (area.height - lh * lines.Count) / 2f;
+            GUI.color = new Color(0.8f, 0.8f, 0.8f);
+            for (int i = 0; i < lines.Count; i++)
+            {
+                var r = new Rect(area.x, top + i * lh, area.width, lh);
+                Widgets.Label(r, lines[i].text.Truncate(r.width));
+                TooltipHandler.TipRegion(r, lines[i].tip);
+            }
+            GUI.color = Color.white;
+            Text.Anchor = oldAnchor;
+            Text.Font = oldFont;
+        }
+
+        /// <summary>
+        /// The readouts in words, with their tooltips: the days of food now and after the trade (a trade at home; a
+        /// caravan's own are the game's) and the silver in Vanilla Trading Expanded's banks. Shown at the foot of the
+        /// game's screen and in the deal summary of Rimfolk's own window.
+        /// </summary>
+        public static List<(string text, string tip)> ReadoutLines()
+        {
             var lines = new List<(string text, string tip)>();
             // A caravan's days of food are the game's own, at the top of the screen; at home they are Rimfolk's here.
             var notes = TradeAdvice.All;
@@ -212,23 +241,7 @@ namespace ColonyCouncil
                 }
                 if (banksLine.text != null) lines.Add(banksLine);
             }
-            if (lines.Count == 0) return;
-            var oldFont = Text.Font;
-            var oldAnchor = Text.Anchor;
-            Text.Font = GameFont.Tiny;
-            Text.Anchor = TextAnchor.MiddleRight;
-            float lh = Mathf.Min(20f, area.height / lines.Count);
-            float top = area.y + (area.height - lh * lines.Count) / 2f;
-            GUI.color = new Color(0.8f, 0.8f, 0.8f);
-            for (int i = 0; i < lines.Count; i++)
-            {
-                var r = new Rect(area.x, top + i * lh, area.width, lh);
-                Widgets.Label(r, lines[i].text.Truncate(r.width));
-                TooltipHandler.TipRegion(r, lines[i].tip);
-            }
-            GUI.color = Color.white;
-            Text.Anchor = oldAnchor;
-            Text.Font = oldFont;
+            return lines;
         }
 
         private static TradeDeal banksDeal;
@@ -260,9 +273,10 @@ namespace ColonyCouncil
                     basket.Remove(t);
         }
 
-        /// <summary>The caravan's mass, speed and food days are worked out again (the dialog's own note that counts changed).</summary>
+        /// <summary>The caravan's mass, speed and food days are worked out again (the dialog's own note that counts changed). Rimfolk's own window passes none: it sees the counts change itself.</summary>
         private static void Changed(Dialog_Trade dialog)
         {
+            if (dialog == null) return;
             try
             {
                 countChanged ??= AccessTools.Method(typeof(Dialog_Trade), "CountToTransferChanged");
@@ -276,7 +290,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Fills the suggested basket: the buys and sales marked, within the silver both sides have once what the player
-        /// set by hand is paid for (TradeAdviceMath.Fill). Rows the player set by hand are left as they are.
+        /// set by hand is paid for (TradeAdviceMath.Fill). Rows the player set by hand are left as they are. The game's
+        /// screen passes itself; Rimfolk's own window passes null.
         /// </summary>
         public static void Fill(Dialog_Trade dialog)
         {
@@ -346,6 +361,19 @@ namespace ColonyCouncil
             Changed(dialog);
         }
 
+        /// <summary>The suggested basket has rows still as it set them (Clear suggested has something to take out).</summary>
+        public static bool HasBasket
+        {
+            get
+            {
+                Prune();
+                return basket.Count > 0;
+            }
+        }
+
+        /// <summary>Something is marked to buy or sell with this trader (Fill suggested has something to put in).</summary>
+        public static bool AnySuggested => TradeAdvice.All.Values.Any(n => n.mark == TradeMark.Buy || n.mark == TradeMark.Sell);
+
         private static void UndoBasket()
         {
             foreach (var kv in basket)
@@ -403,7 +431,7 @@ namespace ColonyCouncil
     {
         public static void Postfix(Transferable trad, Rect rect, ref float curX)
         {
-            if (!(trad is Tradeable t)) return;
+            if (!(trad is Tradeable t) || TradeWindow.Drawing) return;
             bool marks = TradeScreen.MarksOn, market = TradeMarket.On;
             if (!marks && !market) return;
             try
@@ -441,12 +469,23 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>The basket's buttons and the readouts, at the foot of the screen beside the game's own buttons.</summary>
+    /// <summary>
+    /// The basket's buttons and the readouts, at the foot of the screen beside the game's own buttons; and at its top,
+    /// beside the sort menus, the button that takes this trade back to Rimfolk's own window (Trade/TradeWindow.cs).
+    /// </summary>
     [HarmonyPatch(typeof(Dialog_Trade), "FillMainRect")]
     public static class Patch_TradeFoot
     {
         public static void Postfix(Dialog_Trade __instance, Rect mainRect)
         {
+            try
+            {
+                if (TradeWindow.Takes) TradeWindow.DrawBackButton(__instance);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("trade window back button", e);
+            }
             if (!TradeScreen.BasketOn && !TradeScreen.ReadoutsOn) return;
             try
             {

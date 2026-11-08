@@ -9,14 +9,43 @@
     <label>the trade screen</label>
     <category>Council</category>
     <order>23</order>
-    <summary>The game's trade screen, quicker to read: sorts by the trade price, a mark beside what is worth selling, worth buying or kept with why, a button that fills the suggested basket, what each side has after the trade, and on a good's prices its market and the colony's own last prices. Nothing is traded until you press the game's own Accept.</summary>
-    <tip>Each part has its own switch under What's on, Trade screen. The marks, the buttons, the readouts, the market card and the trade record are deeper game hooks; the sorts are the game's own kind of sort and work without them.</tip>
-    <description>It works the same for every trade: a trader on the map, a caravan at a town, a ship called on the comms console. The advice comes from what Rimfolk already knows of the colony: the plan ahead's stock targets and food days, its shopping list, the blueprints, the journey being packed, the colonists' wishes, the drug policies and the research under way. Only what the colony has and can use counts as a need, so a tribe is told a tribe's needs.</description>
+    <summary>Every trade opens in Rimfolk's own trade window: each price against its market value and against the usual price, a grade for each side, the best deals both ways, every column sortable, and what the deal comes to. The prices, counts and Accept are the game's own, and the game's screen, with its sorts, marks and buttons, is one click away. Nothing is traded until you press Accept.</summary>
+    <tip>Rimfolk's own trade window and each part of the game's screen have their own switch under What's on, Trade screen. The window, the marks, the buttons, the readouts, the market card and the trade record are deeper game hooks; the sorts are the game's own kind of sort and work without them.</tip>
+    <description>It works the same for every trade: a trader or visitor on the map, a guest, a caravan at a town or met on the road, a ship called on the comms console. The advice comes from what Rimfolk already knows of the colony: the plan ahead's stock targets and food days, its shopping list, the blueprints, the journey being packed, the colonists' wishes, the drug policies and the research under way. Only what the colony has and can use counts as a need, so a tribe is told a tribe's needs.</description>
     <sections>
       <li>
-        <heading>Sorting by price</heading>
+        <heading>Rimfolk's trade window</heading>
         <points>
-          <li>The two "Sort by" menus gain five sorts, each the highest first: trader pays, trader asks (the prices for this negotiator, as the price columns show them, not the market value), price per kg (for a caravan's load), best deal, and suggested first.</li>
+          <li>One table, your side left of the count and the trader's right of it, as the game's arrows move a count: the good, its kind, its market value a piece, how many you have, what they pay, the game's own count control, what they ask, how many they have, the deal's grade, the market and trend with Vanilla Trading Expanded, the mass, and what the colony needs of it.</li>
+          <li>The count control is the game's: an arrow moves one, ten with Shift and a hundred with Ctrl, a double arrow all or none, and a number can be typed. Every price is the game's own for your negotiator, so the price shown is the price paid.</li>
+          <li>Game's screen, at the top, switches to the game's own trade screen for the same trade and counts; a small button beside its sort menus comes back. Trade Helper's panel and the old marks are there. Give gifts opens the game's screen in its gift mode; a trade in favor keeps the game's screen.</li>
+          <li>Accept is the game's own: it asks first when the trader is short of silver, tells you when the colony can't pay, and hands the goods over by pod or into the caravan. A caravan's mass, speed and days of food after the trade are the game's own strip at the top.</li>
+          <li>If the window can't be drawn, the game's screen takes the trade over on the same counts.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Above or under, and the grades</heading>
+        <points>
+          <li>Under each price: its share of the good's market value, and how it stands against the usual price a trader pays or asks for your negotiator and difficulty, in green when better for you and orange when worse. Against market value alone a sale is always under and a purchase always over; the usual price is what shows a trader paying more, or asking less, than traders do.</li>
+          <li>Each side gets a grade, in words and in bars (three, two, one, none): great a fifth better than the usual price, good 7% better, fair within 7% of it, poor worse.</li>
+          <li>Vanilla Trading Expanded's market moves a grade a step: up for a sale at its highest of 60 days or of a good falling fast, and for a buy at its lowest or of a good rising fast; down at the other ends. The colony's own record moves it a step too: up for a price better than its best of the last 15 days, down for one a tenth worse.</li>
+          <li>Something the colony has no use for is never a good buy however cheap, and selling what it is short of or keeps all of is never a good sale. The tooltip gives both sides' grades, why, and the advice's own reasons.</li>
+          <li>With Vanilla Trading Expanded, a Market column shows the market value now against its usual worth and against its average of the last 30 days, and a Trend column its last 30 days drawn, with the change.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Best deals, sorting and the summary</heading>
+        <points>
+          <li>Best deals, on the right: the top five sells and the top five buys graded good or great. A click finds the good in the list.</li>
+          <li>Every column's header sorts, the highest first or from A, and again the other way. A search, a chip for each kind of good the trade has (food, medicine, raw materials, manufactured, weapons, apparel, art and books, drugs, animals, people, other), and Only in the deal narrow the list.</li>
+          <li>This deal: what you sell and buy, its market value and the share of it paid; the net silver; the deal against the usual prices, as "about 12% better for you"; both ways by market value; the days of food at home after the trade; and Vanilla Trading Expanded's word when a big trade may move a price. Each side's silver now and after the trade is at the foot, beside Fill suggested, Clear suggested, Reset, Accept and Cancel.</li>
+          <li>At 1280 pixels wide the mass, kind, market and trend columns give way first; what they say stays in the tooltips and the chips.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Sorting by price on the game's screen</heading>
+        <points>
+          <li>On the game's own screen, its two "Sort by" menus gain five sorts, each the highest first: trader pays, trader asks (the prices for this negotiator, as the price columns show them, not the market value), price per kg (for a caravan's load), best deal, and suggested first.</li>
           <li>The best deal is the price against the usual one: what a trader usually pays is 60% of a thing's worth and what it asks 140%, each moved by your negotiator. A sale a fifth above the usual is a good sale; a price a fifth under it is a bargain.</li>
           <li>A good with nothing on that side (none of it to sell, or none at the trader) goes last. The caravan and transport pod windows share these menus; there Rimfolk's sorts are left out.</li>
         </points>
@@ -36,16 +65,16 @@
           <li>Worth selling (pointing down): what is beyond what the colony keeps, things no one here can use (clothes no one can wear, a weapon biocoded to someone gone, a techprint already learned, a drug taken for pleasure that no drug policy allows), the worse spares, and a price a fifth above the usual on what is beyond the need alone.</li>
           <li>Worth buying (pointing up), the most pressing first: food short of its days, medicine, feed for the animals fed from the stores, what the blueprints lack and the plan ahead's shopping list, components where machines break down, a contract that pays well, a colonist's open wish, a techprint or a book for the research under way, and a bargain on a stock the colony keeps that runs low.</li>
           <li>Kept (a pin): something of it is set aside. The pin turns red when the trade sells into it.</li>
-          <li>Each mark's tooltip says why in numbers, and how the trader's price stands against the usual.</li>
+          <li>Each mark's tooltip says why in numbers, and how the trader's price stands against the usual. In Rimfolk's window the same advice is the Need column (short, spare or kept), with the same tooltip.</li>
         </points>
       </li>
       <li>
         <heading>Fill suggested and what the trade leaves</heading>
         <points>
-          <li>Fill suggested, beside the game's Reset, puts the marked goods into the trade within the silver both sides have: the buys first, each need answered once by the cheapest for what it gives, then the sales as far as the trader's silver goes. Rows you set yourself stay as they are, and their silver counts first. Clear suggested takes it back out.</li>
+          <li>Fill suggested, at the foot of either screen, puts the marked goods into the trade within the silver both sides have: the buys first, each need answered once by the cheapest for what it gives, then the sales as far as the trader's silver goes. Rows you set yourself stay as they are, and their silver counts first. Clear suggested takes it back out.</li>
           <li>Under each side's silver: what it has after the trade, red when it runs short.</li>
           <li>At the foot of a trade at home: the days the colony's food lasts now and after the trade. A caravan's own days of food and its mass after the trade are the game's, at the top.</li>
-          <li>No letters and no messages: it is all on the trade screen. Not in gift mode; where the trader deals in favor, only the marks for need.</li>
+          <li>No letters, and no messages but the game's own: it is all on the trade screen. Not in gift mode; where the trader deals in favor, only the marks for need.</li>
         </points>
       </li>
       <li>
@@ -64,7 +93,7 @@
         <heading>With Vanilla Trading Expanded or Trade Helper</heading>
         <points>
           <li>Vanilla Trading Expanded draws nothing on the trade screen. Its world market's price against a good's usual worth counts in the best deal and the marks, so a good in demand fetches a good price and one in surplus is a bargain, and the tooltip names it. A contract on its terminal keeps the goods it asks for, and makes them worth buying where this trader's price leaves the reward a fifth ahead; the colony's own contracts are worth buying here when the trader asks less than they offer. The silver in its banks shows at the foot. Its own settings are on the page of your other mods: its market and contracts, and its price history (the market part of the card and the window, the trend line, the price change sort, what a trade does to the price, the marks' reasons).</li>
-          <li>Trade Helper widens the screen for a side panel of its own (a wish list, and lists of what is bought and sold). Rimfolk draws nothing there; with it loaded the silver after the trade is left to its lists.</li>
+          <li>Trade Helper widens the game's screen for a side panel of its own (a wish list, and lists of what is bought and sold), so it shows when you switch to the game's screen. Rimfolk draws nothing there; with it loaded the silver after the trade is left to its lists.</li>
         </points>
       </li>
     </sections>

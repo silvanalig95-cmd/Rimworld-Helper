@@ -141,6 +141,8 @@ namespace ColonyCouncil
         public AnimalSpeech speakingAnimals = AnimalSpeech.Auto;
         /// <summary>The colony's animals whose kind hunts go after prey below them in the food chain when nothing they may eat is in reach, and now and then for small game (Animals/PetHunts.cs).</summary>
         public bool petsHunt = true;
+        /// <summary>A bleeding animal that isn't the colony's gets the button "Take the body when it dies": left alone while it lives, its body hauled in once it dies (Animals/BodyWhenItDies.cs).</summary>
+        public bool bodyWhenItDies = true;
         public bool colonistMoments = true;
         /// <summary>Everyday frictions: small irritations between colonists, and with a messy or cramped home.</summary>
         public bool frictions = true;
@@ -357,6 +359,8 @@ namespace ColonyCouncil
         public bool moodInsight = true;
         public bool deepHooks = true;
         public bool needsTabHints = true;
+        /// <summary>With Ideology: the style-surroundings mood names the things that count against a colonist, a button selects them, and a styled thing names whose style it goes against (Moods/StyleSurroundings.cs).</summary>
+        public bool styleNotes = true;
         /// <summary>A line of Rimfolk's context in the game's raid, mood break and death letters.</summary>
         public bool letterNotes = true;
         /// <summary>Small badges on the colonist bar's portraits (ColonistBar/BarBadges.cs, a deeper game hook), and what they show.</summary>
@@ -531,6 +535,8 @@ namespace ColonyCouncil
         /// <summary>The frost harvest is done by itself: the plants a coming frost would kill are marked for harvest as soon as the forecast shows it (Fields/FieldWeather.cs; the player's request).</summary>
         public bool frostHarvestAuto = true;
         // ---- The trade screen (Trade/): each part its own switch ----
+        /// <summary>Rimfolk's own trade window in place of the game's trade screen, on the same trade and the game's own deal; a button there switches to the game's (Trade/TradeWindow.cs).</summary>
+        public bool tradeWindow = true;
         /// <summary>Rimfolk's sorts in the trade screen's two sort menus: what the trader pays and asks, the price a kilo, the best deal, the suggestions first (Trade/TradeSorts.cs).</summary>
         public bool tradeSorts = true;
         /// <summary>A mark beside each good worth selling, worth buying or kept, with why (Trade/TradeAdvice.cs).</summary>
@@ -753,6 +759,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref animalBonds, "animalBonds", true);
             Scribe_Values.Look(ref speakingAnimals, "speakingAnimals", AnimalSpeech.Auto);
             Scribe_Values.Look(ref petsHunt, "petsHunt", true);
+            Scribe_Values.Look(ref bodyWhenItDies, "bodyWhenItDies", true);
             Scribe_Values.Look(ref colonistMoments, "colonistMoments", true);
             Scribe_Values.Look(ref frictions, "frictions", true);
             Scribe_Values.Look(ref autonomy, "autonomy", true);
@@ -845,6 +852,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref moodInsight, "moodInsight", true);
             Scribe_Values.Look(ref deepHooks, "deepHooks", true);
             Scribe_Values.Look(ref needsTabHints, "needsTabHints", true);
+            Scribe_Values.Look(ref styleNotes, "styleNotes", true);
             Scribe_Values.Look(ref letterNotes, "letterNotes", true);
             Scribe_Values.Look(ref barBadges, "barBadges", true);
             Scribe_Values.Look(ref barBreakMark, "barBreakMark", BarBreakMark.Ring);
@@ -950,6 +958,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref fieldsByWeather, "fieldsByWeather", true);
             Scribe_Values.Look(ref frostHarvestSuggest, "frostHarvestSuggest", true);
             Scribe_Values.Look(ref frostHarvestAuto, "frostHarvestAuto", true);
+            Scribe_Values.Look(ref tradeWindow, "tradeWindow", true);
             Scribe_Values.Look(ref tradeSorts, "tradeSorts", true);
             Scribe_Values.Look(ref tradeMarks, "tradeMarks", true);
             Scribe_Values.Look(ref tradeBasket, "tradeBasket", true);

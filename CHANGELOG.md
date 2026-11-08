@@ -5,6 +5,25 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A bleeding animal's body, and the wrong-style things named
+
+*8 November 2026, version 0.166.0*
+
+- A bleeding animal that isn't yours has a new button, Take the body when it dies: nobody goes near it while it lives, your pets leave it alone, and once it dies its body is unforbidden and marked for hauling. Its tooltip says whether and about when it bleeds to death.
+- The order cancels itself with a short message if the animal stops bleeding, is tamed or leaves the map, and you are told if no storage on the map takes the body.
+- With Ideology, the tooltip of a style surroundings mood now lists what around the colonist counts against their style and for it, each kind with its style, count and points, the total against the line where the mood comes, and what would fix it.
+- A colonist with the bad style mood has a button, Show the wrong-style things, that selects them on the map, and a styled thing's info names the colonists whose style it goes against.
+
+## A trade window of Rimfolk's own
+
+*8 November 2026, version 0.165.0*
+
+- Trading now opens Rimfolk's own window in place of the game's screen: one table of every good, yours on the left of the count and the trader's on the right, with a search box, category buttons, a switch for only what is in the deal, and every column sortable by a click on its heading.
+- Each price shows its share of the good's market value and how far it is from what traders usually pay or ask with your negotiator, so a really good deal stands out both ways; with Vanilla Trading Expanded, where today's market stands and its trend as well.
+- Every row gets a grade, great, good, fair or poor, for selling or buying, shown in words and bars and weighed by the market, your own recent trades and whether the colony needs it; a best deals list beside the table jumps to the row.
+- A panel shows what you give and get, the silver both sides end with, the whole deal against usual prices and market value, food and mass for a caravan, and a warning when a big sale will push the market down.
+- Every price and count is the game's own and Accept is the game's own, so mods that change prices keep working; a button switches to the game's screen on the same deal and back, gifts use the game's screen, and a setting under What's on, Trade screen turns the window off.
+
 ## Tempers, the gate and personal stories, the last of the shared budget
 
 *8 November 2026, version 0.164.0*

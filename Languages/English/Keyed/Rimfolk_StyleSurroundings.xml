@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Which things have the wrong style (Moods/StyleSurroundings.cs, with Ideology): the setting, the mood's tooltip, the button and a thing's line. -->
+  <CC_Settings_StyleNotes>Wrong-style things named</CC_Settings_StyleNotes>
+  <CC_Settings_StyleNotes_Tip>With Ideology (not in classic mode). The game's style mood ("Federal-style surroundings", "Non-Federal-style surroundings") comes from a count it never shows: what is near a colonist in their room, plus for things in their ideoligion's style, minus for things of another style or another ideoligion's own buildings and floors. With this on, the mood's tooltip lists what counts against them around them now, by kind and style with how many and the points, what counts for them, the total against the game's threshold, and what would fix it. A colonist with the bad mood gets a button, "Show the wrong-style things", that selects them on the map, and a styled thing's inspect text names the colonists on the map whose style it goes against. Nothing about the mood itself changes. Needs the deeper game hooks.</CC_Settings_StyleNotes_Tip>
+  <CC_SetNote_StyleNotes>The style mood's tooltip names the things that count, and a button selects the wrong-style ones.</CC_SetNote_StyleNotes>
+
+  <!-- The mood's tooltip. -->
+  <CC_StyleNote_Head>Around {PAWN_nameDef} now ({ROOM}), as the game counts it:</CC_StyleNote_Head>
+  <CC_StyleNote_Outdoors>outdoors</CC_StyleNote_Outdoors>
+  <CC_StyleNote_NoRoom>{PAWN_nameDef} isn't in a room just now, so nothing counts for or against {PAWN_possessive} style.</CC_StyleNote_NoRoom>
+  <CC_StyleNote_Against>Against {IDEO}'s style:</CC_StyleNote_Against>
+  <CC_StyleNote_NothingAgainst>Nothing here goes against {IDEO}'s style.</CC_StyleNote_NothingAgainst>
+  <CC_StyleNote_For>For it:</CC_StyleNote_For>
+  <CC_StyleNote_LineMany>{0} ×{1}, {2}</CC_StyleNote_LineMany>
+  <CC_StyleNote_LineOne>{0}, {2}</CC_StyleNote_LineOne>
+  <CC_StyleNote_LineFloor>{0}, {1} cells, {2}</CC_StyleNote_LineFloor>
+  <CC_StyleNote_More>and {0} more, {1}</CC_StyleNote_More>
+  <CC_StyleNote_Total>Here in all: {0}. The bad mood comes at {1} or lower, the good one at {2} or higher.</CC_StyleNote_Total>
+  <CC_StyleNote_Styled>{STYLE} {THING}</CC_StyleNote_Styled>
+  <CC_StyleNote_OfIdeo>{IDEO}'s {THING}</CC_StyleNote_OfIdeo>
+  <CC_StyleNote_Relic>{THING} with {IDEO}'s relic</CC_StyleNote_Relic>
+
+  <!-- What would fix it: new buildings take the main ideoligion's style, and a built thing can't be restyled. -->
+  <CC_StyleNote_Fix_Own>To fix it, build these again (new buildings take {IDEO}'s style) or move them out of the rooms {PAWN_nameDef} uses.</CC_StyleNote_Fix_Own>
+  <CC_StyleNote_Fix_Shared>To fix it, build these again (new buildings take {PRIMARY}'s style, which doesn't go against {IDEO}'s) or move them out of the rooms {PAWN_nameDef} uses.</CC_StyleNote_Fix_Shared>
+  <CC_StyleNote_Fix_Plain>To fix it, move these out of the rooms {PAWN_nameDef} uses, or take them down.</CC_StyleNote_Fix_Plain>
+  <CC_StyleNote_Fix_None>New buildings take {PRIMARY}'s style and a built thing can't be restyled, so instead of building these again, move them out of the rooms {PAWN_nameDef} uses, convert {PAWN_objective} to {PRIMARY}, or reform an ideoligion so the two share a style.</CC_StyleNote_Fix_None>
+  <CC_StyleNote_Fix_Some>Built again in {PRIMARY}'s style, only the {LABELS} would stop going against {IDEO}'s; move the rest out of the rooms {PAWN_nameDef} uses, convert {PAWN_objective} to {PRIMARY}, or reform an ideoligion so the two share a style.</CC_StyleNote_Fix_Some>
+
+  <!-- The button and a thing's own line. -->
+  <CC_StyleNote_Gizmo>Show the wrong-style things</CC_StyleNote_Gizmo>
+  <CC_StyleNote_GizmoDesc>Selects the things around {PAWN_nameDef} here that go against {IDEO}'s style, so you can move them, take them down or build them again. Floors can't be selected: the mood's tooltip lists them. The game counts again about every 20 minutes of game time, from a spot near {PAWN_objective}, while {PAWN_pronoun} is awake.</CC_StyleNote_GizmoDesc>
+  <CC_StyleNote_NothingHere>Nothing around {PAWN_nameDef} here goes against {IDEO}'s style: the mood came from where {PAWN_pronoun} was when the game last counted.</CC_StyleNote_NothingHere>
+  <CC_StyleNote_OnlyFloors>Only floors go against {IDEO}'s style around {PAWN_nameDef} here, and floors can't be selected: the mood's tooltip lists them.</CC_StyleNote_OnlyFloors>
+  <CC_StyleNote_Inspect>Against {IDEO}'s style: {NAMES}</CC_StyleNote_Inspect>
+
+</LanguageData>
