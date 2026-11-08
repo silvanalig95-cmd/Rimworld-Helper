@@ -2901,6 +2901,114 @@ tending, the serious ones its immunity race with a hidden incubation (`Rimfolk_H
   and mechanites never come in the simulator's temperate colony; they take the place there of the chilblains and snow
   glare a desert never has.
 
+### The shared illness budget (the player's choice, 8 November 2026)
+
+The player asked whether the game's own rate of health problems still holds, or whether Rimfolk's illnesses stack on
+top of it ("since i lost several colonists to illness and seem to lose two more"). The answer was that the game's own
+diseases came at the game's own rate and Rimfolk's serious illnesses (about one in a colony-year or two, more when
+crowded and dirty) came on top, with frailty slowing immunity and dirty wounds raising infections. Of the three changes
+offered the player chose one: "just the shared illness budget please". Frailty, dirty wounds and the everyday ailments
+stay as they were.
+
+Rimfolk's serious illnesses and the game's own diseases now draw on one clock, so in all serious illness comes about as
+often as in plain RimWorld, and some of the cases are Rimfolk's kinds. The pure rules are
+`Ailments/IllnessBudgetMath.cs` (`IllnessBudgetTests`); the game's side is `Ailments/IllnessBudget.cs`.
+
+- **The budget is the game's own rate.** The storyteller's `StorytellerComp_Disease` for `DiseaseHuman` rolls a disease
+  on each home every `diseaseMtbDays` of the land times its disease interval (`IllnessBudgetMath.GameMeanDays`): a
+  temperate forest every 50 days at Strive to survive (1.2 a year), every 75 at Adventure story (0.8), and none with the
+  storyteller's diseases off. Its pool there is the flu, the plague and malaria (100 each), gut worms and muscle parasites
+  (50 each) and the two mechanites (30 each): two cases in three can kill.
+- **Each serious case of Rimfolk's owes a skip.** When one of Rimfolk's serious illnesses starts on a colonist (not one
+  passed on between roommates), their home owes one skip (`IllnessBudget.Owe`, from `AilmentTracker.Give` and the
+  catching clock's `IncidentWorker_Ailment.TryExecuteWorker`, once a case however many it took; a caravan's case is owed
+  by the colony they belong to, `Homes.Of`). The game's next counted disease aimed at that home is held back
+  (`Patch_IllnessBudget`, a prefix on `Storyteller.TryFire` that returns not-fired), paying the oldest debt there; only
+  one that could really have come is held (its `CanFireNow` first). The other prefixes there hold raids (a watchtower's
+  or a pen friend's word, the relay mast) and the sky's conditions (the Conclave's glass), never a disease, and a firing
+  one of them has already held is left to it (`__runOriginal`), so no debt is paid for a disease that wasn't coming. A debt is kept until it's paid or for three of the
+  game's usual gaps there, two years at least and five at most (`KeepDays`): on a temperate map 150 days, so nineteen
+  debts in twenty are paid. A year, as first sketched, would have let one in three lapse there.
+- **The game's diseases wait Rimfolk too.** When the game's own counted disease comes to a home (the same hook's
+  postfix), Rimfolk starts no serious illness there for 30 days, the gap Rimfolk's serious illnesses already kept after
+  each other (`BudgetRoom.Waiting`).
+- **Rimfolk's share is capped** (`IllnessBudgetMath.Room`): one debt at a time (`Owed`), and after a skip the game's own
+  disease comes before Rimfolk takes another (`GameTurn`, while a debt from then would still be kept). The most Rimfolk
+  can take is then one case in about three on a temperate map at Strive to survive, two in five at Adventure story, and
+  never half (`MaxShare`: one of Rimfolk's, the skip, the game's own, then the gap, which starts again with each of the
+  game's own within it), so the game's own still come.
+- **Asked after the colony's own room.** A serious illness of Rimfolk's still needs the colony's room (one kind at a
+  time, none within 30 days of the last); then the budget's room on its home: `AilmentTracker.CanGet` for every cause of
+  a colonist's day (tetanus, pneumonia, typhus, scurvy, rabies, the fevers of the land), once its own chance has come
+  up, and `TryCatching` for the catching clock's serious one, once its pick is made. A case the budget puts off is
+  counted (`putOff`) and now and then said.
+- **Crowding and dirt shift the mix.** `LifeRisks.SicknessFactor` still divides the catching clock's days for the
+  serious kinds, but each of those owes its skip like any other, so a crowded, dirty colony gets more of Rimfolk's kinds
+  that go round and spread between roommates, and no more serious illness in all. The advisor's sickness line says so
+  (`CC_Adv_Sickness_DetailShared`).
+- **What counts** (`IllnessBudgetMath.Which`): an incident of the game's `DiseaseHuman` category sent by a part of the
+  storyteller (`FiringIncident.source`), aimed at a player home, not forced, not a quest's. **Left alone:** Rimfolk's own
+  catching ailments (fired on Rimfolk's clock with no source; they owe as they start); quests' and scripted outbreaks
+  and anything forced (dev mode's Execute incident); the sicknesses Rimfolk's hurts from everyday life give through the
+  harm service (a sickness brought home, a guest's cough, the physician's catch: they share that budget); animal
+  diseases and mods' sicknesses filed under another category; a disease aimed at a caravan or a site; and what the game
+  rolls outside incidents: food poisoning, wound infections, the sickly trait's illness, a gene's or an implant's.
+- **Shown.** When a disease is held back, a line in the colony's news (`Tell.Minor`, Health, Notable) in two wordings:
+  "The council's records: the game's own flu passed the colony by this time; Rimfolk's tuberculosis, which Ana came
+  down with, took its place." When a case is put off, at most one line a home in 30 days, naming who was spared and why
+  (the game's own came lately, or Rimfolk's have had their share). The serious illness's letter, for a case the budget
+  counted, says it takes the place of one of the game's own (`CC_IllBudget_Letter`); the advisor's sickness line adds
+  the council's last record within a year.
+- **The setting.** "Serious illness shares the game's own rate" (`illnessBudget`, How hard, under Serious illnesses, on
+  by default; it needs the deeper game hooks). Off, or the hooks off, nothing is owed (the debts are let go at the next
+  daily look) and Rimfolk's serious illnesses come on top of the game's own, as before.
+- **Saved.** `AilmentTracker.budget`: one `IllnessLedger` per home (map uniqueID): the debts and what each was for
+  ("illness|name"), when the game's own last came and was last held back and what it paid for, when a case was last put
+  off and said, the counts, the last record line. Gone with the home, or once all of it is older than a debt is kept.
+  An older save has none: every home starts owing nothing.
+
+**What it comes to** (the balance model, `dotnet run -c Release --project Tools/Balance -- --illness`, `IllnessSim.cs`:
+the colony-year simulator with the colony's own room for a serious illness, the catching clock with crowding by play
+style, the serious illnesses from a colonist's day that it models (typhus, anthrax, bird fever and the like; not
+tetanus, pneumonia, rabies or scurvy, whose causes it doesn't play), and the game's own diseases on their own draws; 600
+colony-years a case, six years after the warm-up, the same seeds with the budget on and off). Serious cases a
+colony-year on a temperate forest, Rimfolk's and the game's own:
+
+| Case | Without: Rimfolk's | Without: the game's | Without: together | With: Rimfolk's | With: the game's | With: together | Held back | Put off | Rimfolk's share | The game's deadly, without / with |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 6 colonists, well run | 0.19 | 1.17 | 1.36 | 0.10 | 1.09 | 1.18 | 0.08 | 0.10 | 8 % | 0.81 / 0.76 |
+| 6 colonists, average | 0.44 | 1.21 | 1.65 | 0.17 | 1.05 | 1.22 | 0.16 | 0.32 | 14 % | 0.78 / 0.67 |
+| 6 colonists, neglectful | 1.05 | 1.22 | 2.27 | 0.34 | 0.85 | 1.20 | 0.36 | 1.66 | 29 % | 0.80 / 0.56 |
+| 12 colonists, well run | 0.28 | 1.25 | 1.53 | 0.15 | 1.10 | 1.25 | 0.14 | 0.17 | 12 % | 0.80 / 0.70 |
+| 12 colonists, average | 0.63 | 1.25 | 1.88 | 0.27 | 0.98 | 1.25 | 0.27 | 0.58 | 21 % | 0.82 / 0.64 |
+| 12 colonists, neglectful | 1.40 | 1.16 | 2.56 | 0.37 | 0.78 | 1.16 | 0.38 | 3.63 | 32 % | 0.77 / 0.53 |
+
+At Adventure story's interval (1.5, the game's own every 75 days, 0.8 a year; `--interval 1.5`):
+
+| Case | Without: Rimfolk's | Without: the game's | Without: together | With: Rimfolk's | With: the game's | With: together | Held back | Put off | Rimfolk's share | The game's deadly, without / with |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 6 colonists, well run | 0.19 | 0.78 | 0.97 | 0.12 | 0.68 | 0.79 | 0.11 | 0.09 | 15 % | 0.54 / 0.47 |
+| 6 colonists, average | 0.43 | 0.80 | 1.23 | 0.19 | 0.64 | 0.83 | 0.16 | 0.32 | 22 % | 0.53 / 0.42 |
+| 6 colonists, neglectful | 1.11 | 0.84 | 1.95 | 0.28 | 0.54 | 0.83 | 0.29 | 1.86 | 34 % | 0.54 / 0.36 |
+| 12 colonists, well run | 0.30 | 0.84 | 1.14 | 0.15 | 0.70 | 0.85 | 0.14 | 0.14 | 17 % | 0.53 / 0.43 |
+| 12 colonists, average | 0.63 | 0.81 | 1.44 | 0.24 | 0.58 | 0.82 | 0.23 | 0.56 | 30 % | 0.54 / 0.39 |
+| 12 colonists, neglectful | 1.40 | 0.77 | 2.17 | 0.28 | 0.46 | 0.74 | 0.31 | 3.78 | 38 % | 0.51 / 0.30 |
+
+With the budget, serious illness in all comes at the game's own rate on the same seeds, within a hundredth or two (1.16
+to 1.25 a colony-year at Strive to survive, 0.74 to 0.85 at Adventure story), where without it Rimfolk's came on top:
+16% to 120% more at Strive to survive, 24% to 180% more at Adventure story, the neglected colony of twelve most. Rimfolk's
+own cases fall to about half in a well-run colony (0.19 to 0.10), mostly the 30 days' wait after each of the game's
+own, and to a quarter or a third in a neglected one (1.05 to 0.34), where Rimfolk holds its whole share (29% to 32% of
+the cases at Strive to survive, against a cap of 35%; 34% to 38% at Adventure story, against 40%). The game's own come
+a little less often for it (1.17 to 1.09 a well-run colony, 1.22 to 0.85 a neglected one), so fewer of the flu, the
+plague and malaria: the game's deadly diseases fall from 0.81 to 0.76 and from 0.80 to 0.56 a colony-year. Held back
+and Rimfolk's cases match within the noise (each case pays its skip, nineteen in twenty before it lapses). A case put
+off is counted each time its roll comes up (0.1 a colony-year well run, 1.7 to 3.6 neglected, the same few nights in a
+dirty room trying again); the news says so at most once a home in 30 days. The simulator plays crowding by play style
+(`Rates.Style.barracks`, `kitchen`: nobody in barracks and a clean kitchen well run, a sixth and -0.5 average, three in
+five and -2.5 neglected), the colony's own room for a serious illness (none was modelled before; the report's "Serious,
+per colony" ran higher for it) and the game's own on their own draws, so nothing else in the year draws differently.
+
 ### Dangers on the map (the player's request, 6 November 2026)
 
 Six Rimfolk events of things that go wrong where the colony lives (`Happenings/Dangers.cs`,
@@ -3495,6 +3603,13 @@ catching clock went from 50 to 60 days. Measured on 480 runs against the code be
 with an everyday ailment, 6 colonists, 9.5%, 14.0% and 31.5% to 9.1%, 14.2% and 31.7%; 12 colonists 9.2%, 14.1% and
 30.9% to 9.0%, 13.8% and 31.3%; Rimfolk's mood within two tenths. Serious illnesses a colony-year, 6 colonists, 0.24,
 0.46 and 1.80 to 0.26, 0.53 and 2.00 (anthrax from a bad carcass, now and then bird fever).
+
+**The shared illness budget** (8 November 2026; see the section of that name under "Harm from everyday life"). Target:
+serious illness in all, Rimfolk's and the game's own together, at the game's own rate, in every play style and size,
+with the game's own still the larger part. Measured with `--illness` (600 colony-years a case): at Strive to survive on
+a temperate forest 1.16 to 1.25 a colony-year with the budget, the game's own alone 1.16 to 1.25 on the same seeds
+(1.36 to 2.56 without it); Rimfolk's share 8% to 32%, under its cap of 35%. Since the simulator now keeps the colony's
+own room for a serious illness, the main report's "Serious, per colony" reads lower when it is next written.
 
 ## Building help: how far should the mod build things itself?
 
@@ -8676,7 +8791,7 @@ on a map, in the world or in a caravan), so such a record is let go when the gam
 | Heart | one per colonist, the gone dropped hourly |
 | Character marks | a person's record (sides moved, marks, views): the colony's own people the game still knows, empty records dropped at saving; 12 marks per person (small ones go first, each let go after its keeping, turning points three times as long); what the marks watch: per person, the last 8 fights won (a year), their addictions and their last breakdown (5 days), known pawns only; skills mastered: known pawns, 800 at most |
 | Traits that change | changes made: known pawns only, 8 per person, 200 in all; what each colonist is watched for: deeds counted 240 days (12 per kind), 10 snapshots of a few records, when they were last unsettled; the once-in-a-colony changes (2 keys) |
-| Ailments | by pawn: last ailments 120 days, known pawns only; by hediff: only hediffs colonists still have; illnesses and injuries an ailment may follow: until over or healed, known pawns only |
+| Ailments | by pawn: last ailments 120 days, known pawns only; by hediff: only hediffs colonists still have; illnesses and injuries an ailment may follow: until over or healed, known pawns only; the shared illness budget: one ledger per home (a debt or two, each paid or let go within two to five years; the game's last disease and skip; the last record line), gone with the home or once all of it is older than a debt is kept |
 | Hurts from everyday life | each colonist's last Rimfolk-made hurt, pruned past three days (daily and at saving); each home's last evening drill, a map gone dropped; what the day's work counted and the evening's bouts not saved |
 | Health stories | healers, beds, convalescence, hard times not over yet: known pawns only; losses 30 days; tends 3 days; setbacks and trust lines 20 days; visits 30 days; cases while the patient lives |
 | Calendar | at most 12 days written by the colony and 8 named by the player (traditions and the founding day stay); days about people who are gone let go; days taken off by hand grow only with the player's clicks; who is away and each colonist's hunt: the colony's own only; crops grown: one per crop |

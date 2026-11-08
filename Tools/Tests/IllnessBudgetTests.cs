@@ -158,7 +158,9 @@ public static class IllnessBudgetTests
             C(rimShare <= share + 0.03, $"Rimfolk's share stays under its cap: {rimShare:P0}, at most {share:P0}");
             C(on.game >= gameRate * (1.0 - share) - 0.06, $"the game's own still come: {on.game:0.00} a year");
             C(Math.Abs(on.held - on.rimfolk) / Math.Max(0.05, on.rimfolk) < 0.08, $"every case of Rimfolk's is paid for by a skip, near enough ({on.held:0.00} held back, {on.rimfolk:0.00} cases)");
-            if (wanted <= 0.3f) C(on.rimfolk > 0.75 * off.rimfolk, $"few wanted: most of Rimfolk's still come ({on.rimfolk:0.00} of {off.rimfolk:0.00})");
+            // Few wanted: the game's own leave Rimfolk's about half their turns (the thirty days after each, e^(-30/50) of the time free).
+            if (wanted <= 0.3f)
+                C(on.rimfolk > 0.3 * off.rimfolk && on.rimfolk < 0.7 * off.rimfolk, $"few wanted: about half of Rimfolk's still come, the rest waiting out the game's own ({on.rimfolk:0.00} of {off.rimfolk:0.00})");
             if (wanted >= 8f) C(rimShare > share - 0.06, $"many wanted: Rimfolk takes nearly all of its share ({rimShare:P0})");
         }
 
