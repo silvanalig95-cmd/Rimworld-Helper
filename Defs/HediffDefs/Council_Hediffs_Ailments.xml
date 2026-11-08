@@ -64,6 +64,7 @@
     <stages>
       <li>
         <label>sniffling</label>
+        <restFallFactor>1.05</restFallFactor>
         <capMods><li><capacity>Consciousness</capacity><offset>-0.03</offset></li></capMods>
       </li>
       <li>
@@ -129,6 +130,7 @@
       <li>
         <minSeverity>0.35</minSeverity>
         <label>vomiting</label>
+        <restFallFactor>1.15</restFallFactor>
         <vomitMtbDays>0.3</vomitMtbDays>
         <painOffset>0.05</painOffset>
         <capMods>
@@ -187,6 +189,7 @@
     <stages>
       <li>
         <label>tickly cough</label>
+        <restFallFactor>1.05</restFallFactor>
         <capMods><li><capacity>Breathing</capacity><offset>-0.03</offset></li></capMods>
       </li>
       <li>
@@ -414,6 +417,7 @@
       <li>
         <minSeverity>0.3</minSeverity>
         <label>sore</label>
+        <restFallFactor>1.05</restFallFactor>
         <painOffset>0.08</painOffset>
         <statFactors><CarryingCapacity>0.8</CarryingCapacity></statFactors>
         <capMods>
@@ -424,6 +428,7 @@
       <li>
         <minSeverity>0.55</minSeverity>
         <label>thrown out</label>
+        <restFallFactor>1.1</restFallFactor>
         <painOffset>0.12</painOffset>
         <statFactors><CarryingCapacity>0.6</CarryingCapacity></statFactors>
         <capMods>
@@ -808,12 +813,14 @@
     <stages>
       <li>
         <label>twisted</label>
+        <restFallFactor>1.05</restFallFactor>
         <painOffset>0.06</painOffset>
         <capMods><li><capacity>Moving</capacity><offset>-0.1</offset></li></capMods>
       </li>
       <li>
         <minSeverity>0.4</minSeverity>
         <label>swollen</label>
+        <restFallFactor>1.1</restFallFactor>
         <painOffset>0.1</painOffset>
         <capMods><li><capacity>Moving</capacity><offset>-0.2</offset></li></capMods>
       </li>

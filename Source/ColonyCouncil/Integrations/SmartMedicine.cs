@@ -32,7 +32,7 @@ namespace ColonyCouncil
 
         private static bool looked, present, ready, saves;
         private static Type compType, fixType;
-        private static FieldInfo careField;
+        private static FieldInfo careField, ignoredField;
         private static MethodInfo originalCare;
         private static Game game;
         private static GameComponent comp, fixComp;
@@ -87,6 +87,9 @@ namespace ColonyCouncil
                         && careField.FieldType == typeof(Dictionary<Hediff, MedicalCareCategory>);
                 // The continued version saves its choices with the game; the original forgot them at each load.
                 saves = ready && compType.GetMethod("ExposeData", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly) != null;
+                // The continued version's conditions taken off bed rest by hand ("Bed rest" unticked in its menu); the original has none.
+                ignoredField = ready ? AccessTools.Field(compType, "ignoredHediffs") : null;
+                if (ignoredField != null && (ignoredField.IsStatic || ignoredField.FieldType != typeof(HashSet<Hediff>))) ignoredField = null;
                 fixType = GenTypes.GetTypeInAnyAssembly("SmartMedicine.DefaultCareFix");
                 if (fixType != null && typeof(GameComponent).IsAssignableFrom(fixType))
                 {
@@ -128,6 +131,36 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("Smart Medicine: its per-injury care", e);
                     return null;
                 }
+            }
+        }
+
+        /// <summary>
+        /// The player took this condition off bed rest with Smart Medicine (its menu on the health tab, "Bed rest" unticked):
+        /// Smart Medicine leaves it out of the game's own reasons for rest, and bed rest only when it makes sense
+        /// (Health/BedRest.cs) never counts it either.
+        /// </summary>
+        public static bool OffBedRest(Hediff h)
+        {
+            if (h == null || ignoredField == null || !Ready) return false;
+            try
+            {
+                Fresh();
+                return comp != null && ignoredField.GetValue(comp) is HashSet<Hediff> set && set.Contains(h);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("Smart Medicine: the conditions taken off bed rest", e);
+                return false;
+            }
+        }
+
+        /// <summary>Smart Medicine can take a condition off bed rest by hand (the continued version).</summary>
+        public static bool HasBedRestChoice
+        {
+            get
+            {
+                Look();
+                return ignoredField != null;
             }
         }
 

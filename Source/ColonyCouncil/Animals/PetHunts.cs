@@ -420,14 +420,32 @@ namespace ColonyCouncil
                     continue;
                 }
                 bool chasing = r.prey != null && !r.prey.Dead && r.prey.Spawned;
+                // Kept home now: the player's word ends it. While the prey lives, the chase's own rule (HuntMath.StopChase): a
+                // bite that wants tending or the prey turning on it doesn't end it; once it lies dead, the meal is eaten, as the
+                // game's own hunters do.
                 string why = WhyNot(a);
-                // Kept home now: the player's word ends it; anything else that bars a hunt ends a chase (a meal already on the
-                // ground is eaten, as the game's own hunters do).
-                bool stop = why == "kept" || why == "setting" || chasing && why != null || chasing && Strayed(a);
+                bool stop = why == "kept" || why == "setting";
+                if (!stop && chasing)
+                {
+                    bool bleedingOut = a.health != null && a.health.hediffSet.BleedRateTotal > 0f
+                                       && HealthUtility.TicksUntilDeathDueToBloodLoss(a) < HuntMath.ChaseBleedTicks;
+                    stop = HuntMath.StopChase(State(a), OtherDanger(a, r.prey), bleedingOut) != null || Strayed(a);
+                }
                 if (!stop) continue;
                 a.jobs.EndCurrentJob(JobCondition.InterruptForced);
                 runs.Remove(kv.Key);
             }
+        }
+
+        /// <summary>Danger on the map besides the prey itself (prey that turns on its hunter counts as danger to the game).</summary>
+        private static bool OtherDanger(Pawn a, Pawn prey)
+        {
+            var map = a.Map;
+            if (map == null || map.dangerWatcher.DangerRating == StoryDanger.None) return false;
+            foreach (var t in map.attackTargetsCache.TargetsHostileToColony)
+                if (t?.Thing != null && t.Thing != prey && GenHostility.IsActiveThreatToPlayer(t))
+                    return true;
+            return false;
         }
 
         /// <summary>Outside its allowed area by <see cref="HuntMath.StrayCells"/> or more.</summary>

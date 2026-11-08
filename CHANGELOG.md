@@ -5,6 +5,23 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A pet bitten on the hunt still eats
+
+*8 November 2026, version 0.168.1*
+
+- A pet hunting for food no longer gives up the moment it is bitten or its prey turns on it: a wound that wants tending or the prey fighting back is part of a hunt, and once the prey is dead it eats before going home.
+- It still breaks off for your word, being downed, badly hurt or bleeding out, or another danger on the map; setting out still needs it well and the map quiet.
+
+## Bed rest only when it makes sense
+
+*8 November 2026, version 0.168.0*
+
+- Colonists now go to bed rest only for something serious: a deep, bleeding or vital wound, wounds that bring strong pain or leave them barely able to walk or work, an illness that can kill until they are immune, or one that badly hits consciousness, moving or breathing.
+- Everything minor is worked through with its pain, slower hands and bad mood: sunburn, lice, a sprain, small tended cuts, a head cold. Some of them make a colonist sleep a little longer at night, never all day.
+- Rimfolk's own ailments rest from the stage where it fits: cholera and pneumonia from the first signs, appendicitis once inflamed, tuberculosis once wasting, a kidney stone only while passing it, a cold never.
+- The game's flu, plague, malaria and wound infection and your mods' killers still send a colonist to bed until immune; your own order to rest until healed, the council's rest when ill decree and Smart Medicine's own bed rest boxes are kept.
+- Each condition's tooltip on the health tab says whether the colonist keeps working, sleeps a little more or rests in bed and why. A new setting, Bed rest only when it makes sense, sits after Medicine by what is treated.
+
 ## Camps that build properly, keep a day and leave things behind
 
 *8 November 2026, version 0.167.0*

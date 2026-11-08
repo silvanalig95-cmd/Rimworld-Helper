@@ -340,7 +340,8 @@ namespace ColonyCouncil
     /// <summary>
     /// The gifts given as a new pawn is made (<see cref="PeopleGifts"/>): a postfix on the game's making of a fresh pawn,
     /// after its traits, gear and hediffs (and A RimWorld of Magic's own roll of a class), for the pawn kinds of Rimfolk's
-    /// peoples only; a pawn the game takes from the world and dresses again keeps what it has. Off with the deeper game hooks.
+    /// peoples and any pawn of one of their peoples (its age's arms and clothes: AgeArms.ToAge); a pawn the game takes from
+    /// the world and dresses again keeps what it has. Off with the deeper game hooks.
     /// </summary>
     [HarmonyPatch(typeof(PawnGenerator), "GenerateNewPawnInternal")]
     public static class Patch_PeopleGifts

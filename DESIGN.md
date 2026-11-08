@@ -1137,8 +1137,11 @@ game, the DLCs and the player's 29 animal mods from their own defs, `Tools/Tests
 - **Harm.** The hunt is the game's own fight, so prey fighting back can hurt a pet now and then, as it does the game's wild
   hunters; the choice of prey (smaller, much weaker, unlikely to turn on it, never venomous) keeps that small. Rimfolk rolls
   nothing of its own here, so the shared budget (`Harm/HarmBudgetMath.cs`) doesn't count it, as it doesn't count the game's
-  own predators, raids or the colony's hunters: none of it goes through `Harm`. A hunter hurt to under 0.6 of its health
-  breaks off the chase.
+  own predators, raids or the colony's hunters: none of it goes through `Harm`. Starting a hunt needs 0.6 of its health
+  and nothing to rest for; a hunt under way has its own rule (`HuntMath.StopChase`, 0.168.1, after the player's dog went
+  home hungry): a bite that wants tending or the prey turning on it (which the game counts as danger) doesn't end it, and
+  it breaks off only for the player's word, being downed, badly hurt (under 0.35 of its health), bleeding out within a
+  day, unable to fight or move, or another danger on the map. Once the prey lies dead, the meal is eaten.
 - **Seen.** At the kill, someone in view says a word (`Council_Pool_SeeHunt`, through `AnimalTempers.Remark`: the shared
   once-a-day rate of things said on screen; tagged eat or carry, hungry or sport, small or big, pack, body, Pokémon), and the
   animal's card says what it caught; the carried kill gets its person's word to it (`Council_Pool_PetBringsKill`). No letter
@@ -5297,6 +5300,209 @@ The settings `medicineByNeed` (What's on, people's lives; on by default, needs t
 (no medicine or herbal at most, under it). Saved: `GameComponent_MedicineChoice.bestByAnswer` (40 at most),
 `filled` and `handsOff` (only with Smart Medicine; pruned to the living at each save, 600 and 200 at most; the original
 Smart Medicine's forgetting at a load clears `filled`). No Sched slot: everything rides on the game's own calls.
+
+### Bed rest only when it makes sense
+
+The player's request (8 November 2026): "when does a pawn, so to say, rest with an ailment or injury or illness, and when
+can the pawn still work and do things? ... I just don't want ... if someone has a bit of a sunburn that they just stay in
+bed all day to rest and recover ... they have a negative impact normally, but they don't keep a pawn bedridden unless it
+also kind of makes sense", and their word on the first draft the same day: "pawns should only bed rest if it's a serious
+condition, they have strong pain, they are bleeding etc., not for 'minor' problems. perhaps they sleep a bit more, but not
+all day long." `Health/BedRest.cs` (the facts, the caches, the lines), its patches in `BedRestPatches.cs`, its pure rule in
+`BedRestMath.cs` (Tools/Tests, `BedRestTests`), dev actions in `BedRestDebug.cs`, Smart Medicine read by name in
+`Integrations/SmartMedicine.cs`.
+
+**How the game decides** (1.6). `HealthAIUtility.ShouldSeekMedicalRestUrgent`: down, anything to tend now
+(`HasHediffsNeedingTend`), an operation due with a doctor free, or labor. It drives the Patient work type (natural priority
+1350); a humanlike patient lies in bed to be tended by someone else (`WorkGiver_Tend.GoodLayingStatusForTend`).
+`ShouldSeekMedicalRest`: the urgent rule, or any tended wound still healing (`HasTendedAndHealingInjury`, a tended scratch
+too), or any illness that shows and builds immunity but isn't immune yet (`HasImmunizableNotImmuneHediff`, a cold too). It
+drives Bed rest (`PatientBedRest`, 1200, always on), keeps a medical bed theirs, has them fed and visited in bed, keeps them
+from meditating, sends them to a hospital bed at night, and ends the player's "rest until healed". So in the game a tended
+cut or any catching illness keeps someone in bed until healed or immune (a grower with Rimfolk's tuberculosis was in bed
+for days). What bed gives: wounds heal 8 a day standing, 12 lying down, plus the bed's own (4 for a bed, 10 for a hospital
+bed), plus 8 times the tend quality's factor when tended; immunity comes a tenth faster lying down
+(`StatPart_Resting`) and by the bed's factor in one (1.07, a hospital bed 1.11), about a fifth faster in all.
+
+**The rule** (`BedRestMath`). Bed rest, the kind that isn't urgent, only for:
+
+| What | When | Why it needs bed |
+|---|---|---|
+| A serious wound, while it heals | medicine by what is treated judges it serious (`MedicineChoiceMath.Judge` without the council's answer: heavy bleeding, bleeding out, a vital part, an organ, a deep wound) | it heals half again as fast in bed, and it is what a doctor would put to bed |
+| Wounds together | their pain, as the game feels it, at 15% or more (`StrongPain`: the game's own line past "minor pain"); or moving or manipulation at 70% or less (`PoorLevel`: the health tab's "poor") with a wound on that kind of limb | strong pain, or too lame or clumsy to work |
+| An illness that can kill | a lethal severity or a stage that threatens life, until immune (the flu, the plague, malaria, an infection, the mods' killers) | the immunity race: a fifth faster in a bed |
+| A serious stage of any illness | its pain 15% or more, or 30% or more off consciousness, moving or breathing (`SeriousDrop`, leaving it poor) | too much to work through |
+| One of Rimfolk's ailments | from the severity its def names (`restFrom` on `HediffCompProperties_Ailment`, at the start of a stage); without it, the rows above | reviewed one by one, below |
+| What the game makes urgent | down, an operation due, labor, and something to tend now, but someone with only small things to tend (nothing serious by medicine by what is treated) and not losing blood (10% a day) keeps working while no doctor is free to come (`WorkGiver_PatientGoToBedTreatment.AnyAvailableDoctorFor`, and a medical care that allows any) | to be tended, then up again |
+
+Everything else, they keep working with it: a sunburn, a cold, lice, an itchy rash, bruises, small tended cuts, a sprain,
+a strained back. Its pain, capacities, mood and work speed go on costing them, and a stage that tires them (its
+`restFallFactor` over 1) has them sleep a little more at night, to bed a little earlier and up a little later, never all
+day: no stage they work through tires them more than half as fast again (`MaxRestFallWorking`, `SleepHours`: about nine
+hours of sleep against the game's seven). The game's and other mods' conditions only ever lose rest the game would give
+(`Sends`: only what the game's own bed rest counts); one it doesn't rest for (gut worms, a carcinoma, lung rot) stays as the
+game has it. Rimfolk's own ailments follow the rule alone, so some get bed at their worst where the game gave none
+(scurvy, rabies, a torn back, a migraine, a kidney stone).
+
+**Who it leaves alone, and what stays the game's.** A baby, a creature not of flesh, a mutant: the game's own. The player's
+order to a medical bed ("Use medical bed", which sets the job's `restUntilHealed`): offered, and kept, for whatever the game
+or the rule would rest for. The council's "rest when ill" decree (`Council_Decree_SickBay`, whose words are "anyone ill or
+hurt goes to bed and stays there"): the game's rest, and the rule's on top. Another mod's reason for rest (the game's answer
+true without its own two reasons): left. Smart Medicine's own "Bed rest" box in its menu on the health tab
+(`PriorityCareSettingsComp.ignoredHediffs`): a condition unticked stays off bed rest, as Smart Medicine has it, and the rule
+never counts it either; ticked (its default), the rule decides.
+
+**Where.** A postfix on `HealthAIUtility.ShouldSeekMedicalRest` (`Patch_BedRest`), so everything that asks follows: the bed
+rest work type, staying in a medical bed (`RestUtility.IsValidBedFor`, so a patient tended for a scratch gets up after),
+being fed and visited in bed, meditating, which bed they sleep in at night, the game's records of time in bed, and
+Rimfolk's own readers (meetings, the election's sickbed, quirks, habits, the hospital's patients). Not the two HediffSet
+checks: `HasTendedAndHealingInjury` also decides, every 600 ticks, whether tended wounds heal at all, and
+`HasImmunizableNotImmuneHediff` whether a caravan gives the sick a bedroll; both stay the game's. `ShouldSeekMedicalRestUrgent`
+stays the game's, so the Patient work type is as it was. The game's notice "fully healed" asks once a wound has healed
+whether anything still keeps them in bed; under the rule a scratch no longer does, so it would come every 600 ticks while it
+heals: a transpiler on `Pawn_HealthTracker.HealthTickInterval` (`Patch_BedRestHealedNotice`) sends that one call to the
+game's own answer (`BedRest.GameRest`), and if the call isn't found the rule stays off with one warning. A prefix and
+finalizer on `Building_Bed.GetBedRestFloatMenuOption` mark the player's menu. Cheap: the patient's urgent facts are read
+once a tick and their conditions once a second or when one comes or goes (`ConditionTicks`), the doctor's look once a
+second and only for small things to tend; a guard keeps the rule out of its own reading.
+
+**Shown.** A postfix on `Hediff.GetTooltip` (`Patch_BedRestTooltip`, after medicine by what is treated's line, beside it):
+each wound that heals and each illness, ailment or lasting condition that is tended, builds immunity or is Rimfolk's says
+"Keeps working.", "Keeps working, and sleeps a little more.", "Keeps working, lying down only to be tended.", "Keeps
+working, and lies down to be tended once a doctor is free.", "Keeps working with this alone, but is in bed now for the
+flu.", "Rests in bed until it heals: a deep wound.", "Rests in bed: an illness that can kill, and bed helps the body
+fight it.", "Rests in bed at this stage (torn): it brings strong pain (18%).", or "Keeps working: you took it off bed rest
+with Smart Medicine." Humanlike patients only. A postfix on `JobDriver_LayDown.GetReport`: someone awake in bed for a
+condition says "resting: flu." where the game says "resting.". No letters or messages.
+
+**Rimfolk's ailments, one by one** (from their defs; `BedRestTests` checks each stage). Every one has its mood besides.
+
+| Ailment | Tier | The game | Now | While working (the worst stage worked through) |
+|---|---|---|---|---|
+| anthrax | serious | in bed until immune | bed from *swelling and fever* | *a black sore*: pain 5%, consciousness -5%, manipulation -5%, sleeps more (x1.1) |
+| appendicitis | serious | in bed until immune | bed from *inflamed* | *grumbling*: pain 8%, eating -10% |
+| ash lung | everyday | lies down to be tended | keeps working | *tight chest*: consciousness -5%, breathing -15%, sleeps more (x1.15) |
+| athlete's foot | everyday | lies down to be tended | keeps working | *cracked feet*: pain 3%, moving -4% |
+| bad nights | everyday | never in bed | keeps working | *nightmares*: consciousness -2%, sleeps more (x1.2) |
+| bee stings | everyday | never in bed | keeps working | *swollen hand*: pain 3%, manipulation -5% |
+| bird fever | serious | in bed until immune | bed from *dry cough* | *fever and headache*: pain 8%, consciousness -8%, breathing -5%, sleeps more (x1.15) |
+| blisters | everyday | lies down to be tended | keeps working | *broken blisters*: pain 5%, moving -8% |
+| chapped hands | everyday | lies down to be tended | keeps working | *cracked hands*: pain 3%, manipulation -6% |
+| chest cold | everyday | in bed until immune | keeps working | *hacking cough*: consciousness -5%, breathing -12%, sleeps more (x1.25) |
+| chilblains | everyday | lies down to be tended | keeps working | *swollen toes*: moving -4%, manipulation -6% |
+| cholera | serious | in bed until immune | bed throughout (until immune) | (in bed) |
+| cold sore | everyday | lies down to be tended | keeps working | *a sore lip*: pain 2%, eating -3% |
+| convalescing | everyday | never in bed | keeps working | *weak*: moving -6%, work speed x0.88, sleeps more (x1.2) |
+| dreamfever | everyday | in bed until immune | keeps working | *waking dreams*: consciousness -14%, manipulation -5%, sleeps more (x1.4) |
+| drowsy spells | everyday | never in bed | keeps working | *drowsy spells*: consciousness -5%, sleeps more (x1.2) |
+| eye strain | everyday | never in bed | keeps working | *tired eyes*: consciousness -3%, sight -5% |
+| frostnip | everyday | never in bed | keeps working | *numb fingertips*: pain 3%, manipulation -5% |
+| fume headache | everyday | never in bed | keeps working | *pounding headache*: pain 5%, consciousness -6% |
+| glassblood | serious | in bed until immune | bed from *stiffening joints* | *glittering fever*: pain 5%, consciousness -8%, manipulation -5%, sleeps more (x1.15) |
+| gout | everyday | lies down to be tended | keeps working | *gouty toe*: pain 8%, moving -15% |
+| hay fever | everyday | lies down to be tended | keeps working | *streaming eyes*: consciousness -4%, breathing -4%, sight -10%, sleeps more (x1.1) |
+| head cold | everyday | in bed until immune | keeps working | *miserable*: consciousness -8%, breathing -8%, work speed x0.95, sleeps more (x1.2) |
+| heartburn | everyday | never in bed | keeps working | *burning*: pain 4% |
+| heat rash | everyday | never in bed | keeps working | *prickly heat*: sleeps more (x1.05) |
+| hiccups | everyday | never in bed | keeps working | *hiccuping*: talking -10% |
+| hive fever | serious | in bed until immune | bed from *hive fever* | *swollen wound*: pain 8%, consciousness -3%, sleeps more (x1.1) |
+| insect bites | everyday | lies down to be tended | keeps working | *covered in bites*: consciousness -3%, sleeps more (x1.1) |
+| insomnia | everyday | lies down to be tended | keeps working | *sleepless*: consciousness -5%, sleeps more (x1.3) |
+| itching burn | everyday | lies down to be tended | keeps working | *itching*: sleeps more (x1.03) |
+| jungle rot | everyday | lies down to be tended | keeps working | *an open ulcer*: pain 10%, consciousness -3% |
+| kidney stone | serious | lies down to be tended | bed from *passing a stone* | *aching side*: pain 8% |
+| leeches | everyday | lies down to be tended | keeps working | *leeches*: pain 1% |
+| lice | everyday | lies down to be tended | keeps working | *crawling with lice*: consciousness -2%, sleeps more (x1.1) |
+| limp | everyday | lies down to be tended | keeps working | *limping*: pain 4%, moving -10% |
+| lingering cough | everyday | never in bed | keeps working | *coughing*: breathing -3%, sleeps more (x1.05) |
+| measles | serious | in bed until immune | bed from *very sick* | *rash*: pain 5%, consciousness -12%, breathing -8%, sight -10%, sleeps more (x1.3) |
+| mechanite fever | everyday | lies down to be tended | keeps working | *aching joints*: pain 6%, consciousness -10%, moving -5%, sleeps more (x1.15) |
+| meningitis | serious | in bed until immune | bed throughout (until immune) | (in bed) |
+| metal fume fever | everyday | never in bed | keeps working | *chills and fever*: pain 3%, consciousness -8%, sleeps more (x1.15) |
+| migraine | everyday | lies down to be tended | bed from *pounding* | *dull ache*: pain 8%, sight -5% |
+| motion sickness | everyday | lies down to be tended | keeps working | *travel-sick*: consciousness -6%, moving -4%, vomiting |
+| nerve pain | everyday | never in bed | keeps working | *burning*: pain 6%, sleeps more (x1.05) |
+| nosebleed | everyday | never in bed | keeps working | *bleeding nose*: breathing -4% |
+| orbit sickness | everyday | lies down to be tended | keeps working | *orbit-sick*: consciousness -5%, eating -10%, sleeps more (x1.1) |
+| pinkeye | everyday | lies down to be tended | keeps working | *red, weeping eyes*: sight -15% |
+| plague swellings | everyday | lies down to be tended | keeps working | *swollen glands*: pain 6%, moving -5%, manipulation -3% |
+| plant rash | everyday | lies down to be tended | keeps working | *blistered arms*: pain 4%, manipulation -5% |
+| pneumonia | serious | in bed until immune | bed throughout (until immune) | (in bed) |
+| pollution cough | everyday | lies down to be tended | keeps working | *pollution cough*: breathing -7%, sleeps more (x1.1) |
+| post-flu cough | everyday | lies down to be tended | keeps working | *coughing fits*: breathing -5%, sleeps more (x1.1) |
+| rabbit fever | everyday | lies down to be tended | keeps working | *swollen glands*: pain 8%, consciousness -10%, moving -5%, sleeps more (x1.2) |
+| rabies | serious | lies down to be tended | bed from *fever and tingling* | *bitten*: mood only |
+| rimrot cough | everyday | lies down to be tended | keeps working | *rattling chest*: consciousness -3%, breathing -10%, sleeps more (x1.2) |
+| ringworm | everyday | lies down to be tended | keeps working | *itchy ring*: mood only |
+| sandfly fever | everyday | never in bed | keeps working | *high fever*: pain 5%, consciousness -12%, sleeps more (x1.2) |
+| scurvy | serious | never in bed | bed from *advanced* | *bleeding gums*: pain 12%, moving -15%, manipulation -5%, eating -20%, work speed x0.85, healing x0.5, sleeps more (x1.35) |
+| shingles | serious | lies down to be tended | bed from *burning blisters* | *band of blisters*: pain 15%, sleeps more (x1.1) |
+| smoke cough | everyday | never in bed | keeps working | *coughing*: consciousness -2%, breathing -8% |
+| smoker's cough | everyday | never in bed | keeps working | *hacking cough*: breathing -5% |
+| snow blindness | everyday | lies down to be tended | keeps working | *snow-blind*: pain 4%, sight -15% |
+| sore elbow | everyday | lies down to be tended | keeps working | *tender elbow*: pain 3%, manipulation -8% |
+| sore hands | everyday | lies down to be tended | keeps working | *swollen wrists*: manipulation -10% |
+| sore knees | everyday | lies down to be tended | keeps working | *sore knees*: pain 2%, moving -6% |
+| splinter | everyday | lies down to be tended | keeps working | *a splinter in the hand*: pain 3%, manipulation -3% |
+| spore cough | everyday | lies down to be tended | keeps working | *coughing spores*: consciousness -2%, breathing -8%, sleeps more (x1.1) |
+| sprained ankle | everyday | lies down to be tended | keeps working | *swollen*: pain 10%, moving -20%, sleeps more (x1.1) |
+| stiff neck | everyday | never in bed | keeps working | *stiff*: manipulation -3% |
+| stomach bug | everyday | in bed until immune | keeps working | *the worst of it*: pain 8%, consciousness -15%, moving -15%, sleeps more (x1.3), vomiting |
+| stone-dust cough | everyday | never in bed | keeps working | *coughing dust*: breathing -8% |
+| strained back | everyday | lies down to be tended | keeps working | *thrown out*: pain 12%, moving -15%, manipulation -8%, carrying x0.6, sleeps more (x1.1) |
+| stump sores | everyday | lies down to be tended | keeps working | *raw stump*: pain 8% |
+| sunburn | everyday | lies down to be tended | keeps working | *burned*: pain 6%, sleeps more (x1.1) |
+| swamp fever | serious | in bed until immune | bed from *jaundice* | *fever and aching calves*: pain 8%, consciousness -8%, moving -8%, sleeps more (x1.2) |
+| swimmer's itch | everyday | lies down to be tended | keeps working | *itching all over*: pain 2%, sleeps more (x1.05) |
+| tetanus | serious | in bed until immune | bed from *rigid muscles* | *lockjaw*: pain 10%, manipulation -5%, eating -30%, talking -20%, sleeps more (x1.1) |
+| thin blood | everyday | lies down to be tended | keeps working | *thin blood*: moving -3%, blood pumping -5%, sleeps more (x1.1) |
+| toothache | everyday | lies down to be tended | keeps working | *throbbing*: pain 12%, consciousness -3%, eating -20% |
+| torn back | everyday | lies down to be tended | bed from *torn* | *mending*: pain 8%, moving -8%, manipulation -4%, carrying x0.8, sleeps more (x1.1) |
+| trench foot | everyday | lies down to be tended | keeps working | *swollen feet*: pain 8%, moving -12% |
+| tuberculosis | serious | in bed until immune | bed from *wasting* | *consumption*: consciousness -5%, breathing -12%, work speed x0.9, sleeps more (x1.3), hunger x1.2 |
+| typhus | serious | in bed until immune | bed from *rash* | *fever and headache*: pain 8%, consciousness -10%, sleeps more (x1.2) |
+| unease | everyday | never in bed | keeps working | *haunted*: consciousness -3%, sleeps more (x1.15) |
+| valley fever | serious | in bed until immune | bed from *aching joints* | *cough and fever*: pain 4%, consciousness -5%, breathing -5%, sleeps more (x1.15) |
+| worms | everyday | lies down to be tended | keeps working | *hungry all the time*: hunger x1.25 |
+
+The balance: none of them needed a new downside, since each keeps its pain, capacities and mood; the colds, a fever's
+first days and the strains got a modest tiredness where none was (`restFallFactor` 1.05 to 1.2: a head cold's sniffling,
+a chest cold's tickly cough, a stomach bug's vomiting, a sprained ankle, a strained and a torn back, rabbit fever, and the
+first stage of anthrax, bird fever, glassblood, hive fever, valley fever and tetanus). The serious illnesses that kill fast
+(cholera, meningitis, pneumonia) keep their bed from the first signs, as the game's flu and plague do; the others from the
+stage they are really underway (`restFrom`): appendicitis inflamed, anthrax, bird fever, glassblood, hive fever, swamp
+fever, tetanus, typhus and valley fever at their second stage, rabies once its symptoms show, measles very sick, shingles
+burning, scurvy advanced, tuberculosis wasting (treated, it never gets there: the grower works through the weeks of
+treatment, a little slower and sleeping more). The harm budget's rates are as they were: a sprain or a strained back worked
+through still risks the fall and the tear (`Harm/WorkHurts.cs`), and nobody is taken into a sickbed who wasn't.
+
+**The game's and the mods' conditions, by family** (the player's active mods, `docs/player-mods/`):
+
+| Family | The game | Now | While working |
+|---|---|---|---|
+| The game's wounds (cut, scratch, stab, bite, bruise, crack, crush, burn, frostbite, gunshot, shredded, surgical cut, the DLCs' acid, chemical and electrical burns, beam wounds, Anomaly's psychic injuries and energy bolts, Ideology's scarification, Odyssey's vacuum burn) and the mods' (A RimWorld of Magic's thirty-five spell wounds, the Vanilla Expanded frameworks' acid and lasting burns, Vanilla Races Expanded Android's EMP burns, Alpha Biomes' gangrene wound, Vanilla Factions Expanded Medieval's sting) | in bed until healed once tended, however small | a serious one in bed until it heals; small ones work (a bruise, the smallest scratch, a small cut), unless together they bring strong pain or leave a leg or the hands poor | the wound's pain (about 1.25% a point), the part's efficiency |
+| The game's catching killers: flu, plague, malaria, sleeping sickness, a wound infection (and the animals' flu and plague) | in bed until immune | the same: they can kill | (in bed) |
+| Infant illness (Biotech) | in bed until immune | the same: babies are left to the game | (in bed) |
+| Scaria infection | in bed until immune | keeps working (it can't kill, its pain stays under 15%) | pain, a lower mental break threshold, mood |
+| The game's lasting and non-catching conditions: gut worms, muscle parasites, fibrous and sensory mechanites, a carcinoma, asthma, lung rot, blood rot (Royalty), a heart attack | never in bed, only lying down to be tended | the same (the rule never adds rest to the game's) | as the game has them |
+| Dubs Bad Hygiene's cholera and dysentery, Alpha Animals' malevolent eye, swarmling implantation and virulent fungal infection, Alpha Biomes' viral abasia, Alpha Genes' shambler plague, A RimWorld of Magic's arcane sickness, Vanilla Races Expanded Fungoid's gene infection, Sometimes Raids Go Wrong's rapid ageing | in bed until immune | the same: they can kill or threaten life | (in bed) |
+| Alpha Biomes' spore allergies (an animal's too) | in bed until immune | at work while minor (breathing -20 to -25%), in bed once major (-40% and more) | breathing, a little consciousness |
+| Vanilla Gravship Expanded's exoworm infestation | in bed until immune, once found | at work through minor and wriggling, in bed once bulging (24% pain) | pain |
+| The mods' other non-catching illnesses: Alpha Biomes' bacterial gangrene and ravaging intestinal parasites, Alpha Animals' lockjaw disease, Vanilla Ideology Expanded Dryads' separation sickness, Vanilla Genetics Expanded's animal abasia, tuberculosis and muscle necrosis, Vanilla Quests Expanded Ancients' hemocollapse syndrome, Melee Animation's knocked out | never in bed, only lying down to be tended | the same | as the mods have them |
+| Hypothermia, heatstroke, blood loss, toxic buildup, malnutrition and the like (neither tended nor catching) | never in bed unless down | the same, no line | as the game has them |
+
+**Other medical mods.** Smart Medicine: its "Bed rest" box honoured (above), its field tending (a doctor tending someone
+lying or drafted where they are, `GoodLayingStatusForTend`) and its temporary tend spot when no bed is found work as they
+did. Field Medic (its stabilizing kit, a
+float menu option), Move the Patient (Rimfolk's medical triage moves patients who are resting: someone up and about with
+a tended scratch is no patient; the mod's own "Transfer to bed" for someone the rule keeps working leaves them in a bed
+they get up from, as the game does for a healthy colonist), VFE Medical's beds and facilities, Nice Health Tab (the line is
+in the condition's own tooltip), Hospitality (a guest with a tended scratch doesn't keep a medical bed): nothing to do but
+coexist. Rimfolk's carrying (`Hauling/Carrying.cs`, `InBed()`) and harm's sickbed (`Harm.Sickbed`, its own reading) are
+unchanged.
+
+The setting `restByNeed` ("Bed rest only when it makes sense", What's on, people's lives, after medicine by what is
+treated; on by default, needs the deeper hooks). Nothing saved; no Sched slot.
 
 ### Ages
 

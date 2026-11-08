@@ -464,6 +464,37 @@ namespace ColonyCouncil
             return null;
         }
 
+        /// <summary>A hunt under way goes on while the hunter's health is at least this (its start needs <see cref="MinHealth"/>).</summary>
+        public const float ChaseMinHealth = 0.35f;
+
+        /// <summary>
+        /// Why a hunt under way should end while its prey still lives, or null (the player's report, 8 November 2026: a dog
+        /// bitten in the fight went home hungry without eating). Starting a hunt asks <see cref="WhyNot"/>; once it is on, a
+        /// fresh bite that wants tending, the prey turning on the hunter (the game counts it as danger) or a hurt short of
+        /// bad doesn't end it, as a wild hunter's doesn't. It ends for the player's word, a call to follow, a group, a
+        /// mental state, being downed, unable to fight or move, badly hurt or bleeding out, or another danger on the map.
+        /// </summary>
+        public static string StopChase(HuntState s, bool otherDanger, bool bleedingOut)
+        {
+            if (!s.settingOn) return "setting";
+            if (s.keptHome) return "kept";
+            if (!s.spawned) return "away";
+            if (s.downed) return "downed";
+            if (s.drafted) return "drafted";
+            if (s.followsMaster) return "master";
+            if (s.roped || s.penned) return "penned";
+            if (s.inLord) return "group";
+            if (s.mental) return "mental";
+            if (!s.meleeAttack || !s.canMove) return "unable";
+            if (s.health < ChaseMinHealth) return "hurt";
+            if (bleedingOut) return "bleeding";
+            if (otherDanger) return "danger";
+            return null;
+        }
+
+        /// <summary>Bleeding out within this many ticks ends a chase (a day).</summary>
+        public const int ChaseBleedTicks = 60000;
+
         /// <summary>A fed hunter goes after small game about once in this many days.</summary>
         public const float SportDays = 4f;
         /// <summary>And not again within this many days.</summary>

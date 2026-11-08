@@ -70,6 +70,78 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     medicine its trader always carries it still has). 5. Turn a people hostile with most
     of the world and stop trading (or let years pass): "falling back: no trade with anyone for years, at war with most of
     the world". 6. The setting off: every card back to the age it began in, nothing moves.
+- 0.168.1, a pet bitten on the hunt still eats (8 November 2026, the player's bug report: "my pet hunted for food, got
+  slightly injured in the fight, and then started walking back to base without eating"). Cause: the hunts' watch
+  (`PetHunts.Watch`) ended a chase for any reason that bars starting one, and a fresh bite wants tending
+  (`ShouldSeekMedicalRest`, "sick") while prey that turns on its hunter raises the map's danger ("danger"), so the chase
+  was broken off before the kill and the pet went to bed hungry. Fix: `HuntMath.StopChase` (pure, tested in `HuntTests`),
+  the chase's own rule: the player's word, a call to follow, a group, a mental state, downed, unable, under 0.35 of its
+  health (`ChaseMinHealth`), bleeding out within a day (`ChaseBleedTicks`), or danger besides the prey itself
+  (`PetHunts.OtherDanger`: the map's hostile targets other than the prey). Starting a hunt is unchanged (`WhyNot`).
+  DESIGN.md (pets that hunt, Harm) and the Almanac's animals page (prose) say so. To try: a hungry dog with nothing it may
+  eat in its area, a hare or a fox near; let it be bitten and see it keep on, kill and eat before going to rest.
+- 0.168.0, bed rest only when it makes sense (8 November 2026, the player's explicit request: "when does a pawn ... rest with an
+  ailment or injury or illness, and when can the pawn still work ... I just don't want ... if someone has a bit of a
+  sunburn that they just stay in bed all day ... they have a negative impact normally, but they don't keep a pawn
+  bedridden unless it also kind of makes sense ... review our ailments and perhaps also the one already in game", and
+  their word on the first draft: "pawns should only bed rest if it's a serious condition, they have strong pain, they are
+  bleeding etc., not for 'minor' problems. perhaps they sleep a bit more, but not all day long"). Not released: no
+  version, no What's new round, About.xml and CHANGELOG untouched. DESIGN.md "Bed rest only when it makes sense" (how the
+  game decides, the rule's table, who it leaves alone, where it hooks in, the line, Rimfolk's 85 ailments one by one,
+  the game's and the mods' conditions by family, the other medical mods); README "Recovery, doctors and midwives" a
+  paragraph, the settings summary and "Optional mods"; the Almanac's hospital beds page a section (*Who rests in bed
+  (Rimfolk)*) and its ailments page a paragraph in *Medicine, rest and recovery*, no keyword changed.
+  - What: the game's `ShouldSeekMedicalRest` (any tended wound still healing, any catching illness not yet immune) is the
+    rule's: bed rest only for a serious wound while it heals (medicine by what is treated's Serious), wounds that together
+    bring strong pain (15%, the game's line past "minor pain") or leave a leg or the hands poor (70%, the health tab's
+    "poor"), an illness that can kill until immune, a stage of any illness in strong pain or 30% or more off
+    consciousness, moving or breathing, Rimfolk's ailments from their def's `restFrom`, and the game's urgent cases (down,
+    surgery, labor, something to tend; small things to tend, not losing blood, wait at work while no doctor is free). The
+    game's and mods' conditions only lose rest the game gave; Rimfolk's follow the rule alone. Babies, non-flesh and
+    mutants, the player's "rest until healed", the rest when ill decree, another mod's own reason and Smart Medicine's
+    "Bed rest" box unticked stay as the game or the player has them. A stage they work through that tires them has them
+    sleep a little more (its `restFallFactor`), at most half as fast again (about nine hours, never all day).
+  - Code: `Health/BedRestMath.cs` (pure, linked in Tests.csproj; `BedRestTests`, "bed rest: ", 387 checks: the
+    thresholds, wounds by `MedicineChoiceMath.Judge`, the game's and mods' illness families, the urgent cases, orders, the
+    decree, another mod's reason, sleeping more, every stage of all 85 of Rimfolk's ailments from their defs, the seams),
+    `Health/BedRest.cs` (the facts, a per-pawn cache a tick and a second, `GameRest`, the line, the report, `Explain`),
+    `Health/BedRestPatches.cs` (`Patch_BedRest` postfix on `HealthAIUtility.ShouldSeekMedicalRest`;
+    `Patch_BedRestHealedNotice` transpiler on `Pawn_HealthTracker.HealthTickInterval` sending the "fully healed" notice's
+    one call to the game's own answer, or the rule stays off; `Patch_BedRestOrder` prefix and finalizer on
+    `Building_Bed.GetBedRestFloatMenuOption`; `Patch_BedRestTooltip` on `Hediff.GetTooltip` after the medicine line;
+    `Patch_BedRestReport` on `JobDriver_LayDown.GetReport`), `Health/BedRestDebug.cs`, Keyed `Rimfolk_BedRest.xml`,
+    `SmartMedicineBridge.OffBedRest` (its `ignoredHediffs`). The two HediffSet checks are left alone: one also decides
+    whether tended wounds heal, the other a caravan's bedrolls. Defs: `restFrom` on `HediffCompProperties_Ailment`
+    (checked at load) for fourteen serious illnesses (appendicitis 0.25; anthrax, bird fever, glassblood, hive fever, swamp
+    fever, tetanus, typhus, valley fever 0.3; rabies 0.5, shingles 0.5, measles 0.6, tuberculosis 0.6, scurvy 0.75); a
+    modest `restFallFactor` (1.05 to 1.2) on sixteen stages worked through (the colds' first stage, the stomach bug's
+    vomiting, the sprain, the strained and torn back, rabbit fever, and six serious illnesses' first stage). No other
+    downside added: every ailment keeps its pain, capacities and mood (the table in DESIGN.md).
+  - Settings: `restByNeed` ("Bed rest only when it makes sense", What's on, people's lives, after medicine by what is
+    treated, on, needs the deeper hooks). Nothing saved; no Sched slot; no letters or messages.
+  - Riskiest: every reader of `ShouldSeekMedicalRest` follows the rule (a medical bed no longer valid for someone the rule
+    keeps working, so they get up after being tended; fed and visited only when resting; the hospital bed at night); the
+    transpiler on the health tick (by the call, not by IL around it; not found, the rule is off with a warning); the
+    "doctor free" look (the game's `AnyAvailableDoctorFor`) can have someone with a sunburn get up when the doctors go
+    to sleep and lie down again in the morning; Move the Patient's own "Transfer to bed" of someone the rule keeps working
+    leaves them in a bed they get up from, as the game does for the healthy; Smart Medicine's box read by name; Rimfolk's
+    serious illnesses' early stages now worked through rather than rested (immunity about a fifth slower for those days;
+    the tests' survival runs never counted bed); Hospitality's guests and other mods that ask the game's question.
+  - Try in the game (dev mode; none of it could be run here): 1. Debug actions, Rimfolk, "Bed rest: a test patient (a head
+    cold, a sunburn, a tended cut and bruise)...": the colonist lies down to have the sunburn tended (a doctor free), then
+    gets up and works; the health tab's tooltips say "Keeps working, and sleeps a little more." (the cold), "Keeps working,
+    lying down only to be tended." (the sunburn before tending), "Keeps working." (the cut, the bruise). Without the
+    setting (or with "Use medical bed") they stay in bed. 2. Add the flu (the game's Add hediff): they go to bed, the
+    flu's line says "Rests in bed: an illness that can kill, and bed helps the body fight it.", the cold's "Keeps working
+    with this alone, but is in bed now for the flu.", and the inspect pane "resting: flu.". 3. After a raid: a gunshot in
+    the torso rests until it heals ("Rests in bed until it heals: a wound that bleeds heavily."), a colonist with only
+    bruises and a scratch gets up once tended; several cuts with 15% pain rest. 4. "Bed rest: why each one rests or works
+    (log)...": each condition's verdict, whether the game counts it, the wounds' pain, moving and manipulation. 5. The
+    "fully healed" message comes once when the last wound closes, not every ten seconds. 6. Enact the council's rest when
+    ill decree: the cold keeps them in bed again ("Rests in bed: the council's decree to rest when ill."). 7. With Smart
+    Medicine: right-click the flu, untick "Bed rest": they get up, and the line says so. 8. A colonist with tuberculosis
+    under treatment works through it (consumption: slower, sleeping more) and goes to bed only if it reaches wasting.
+    9. "Rimfolk: check myself": the five Patch_BedRest classes applied.
 
 - 0.167.0, camps that build properly, keep a day and leave things behind (8 November 2026, the player's explicit request and bug
   report with a screenshot of a war party of three with one bedroll and four lengths of log wall, and three follow-ups the
