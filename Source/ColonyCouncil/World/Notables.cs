@@ -1127,7 +1127,7 @@ namespace ColonyCouncil
         public static string TitleOf(Notable n)
         {
             if (n == null) return "";
-            int tech = (int)(n.faction?.def?.techLevel ?? TechLevel.Industrial);
+            int tech = (int)(Peoples.TechOf(n.faction, TechLevel.Industrial));
             string era = tech <= NotableMath.Neolithic ? "Tribal" : tech == NotableMath.Medieval ? "Medieval" : tech == NotableMath.Industrial ? "Industrial" : "Spacer";
             bool female = n.pawn?.gender == Gender.Female;
             switch (n.role)

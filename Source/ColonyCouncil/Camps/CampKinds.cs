@@ -117,7 +117,7 @@ namespace ColonyCouncil
             if (f != null)
             {
                 tags.Add("their:" + Ages.Tag(Ages.Of(f)));
-                tags.Add(f.def.techLevel <= TechLevel.Medieval ? "their:lowtech" : "their:hightech");
+                tags.Add(Peoples.TechOf(f) <= TechLevel.Medieval ? "their:lowtech" : "their:hightech");
                 // One of Rimfolk's peoples, by what it lives by: their:traders, their:healers, their:herders (Peoples/).
                 Peoples.AddTags(f, tags);
             }

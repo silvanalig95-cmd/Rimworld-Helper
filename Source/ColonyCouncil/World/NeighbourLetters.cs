@@ -218,7 +218,7 @@ namespace ColonyCouncil
         /// <summary>The colony has a comms console at all (working or not).</summary>
         public static bool HasConsole(Map map) => map != null && map.listerBuildings.allBuildingsColonist.Any(b => b is Building_CommsConsole);
 
-        private static int TechOf(Faction f) => (int)(f?.def?.techLevel ?? TechLevel.Industrial);
+        private static int TechOf(Faction f) => (int)(Peoples.TechOf(f, TechLevel.Industrial));
 
         public static bool Traditional(Faction f) => NotableMath.Traditional(TechOf(f), f?.def?.HasRoyalTitles ?? false);
 

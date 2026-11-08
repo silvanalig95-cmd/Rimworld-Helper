@@ -58,6 +58,9 @@ namespace ColonyCouncil
         public static bool GenesFit(string techLevel) =>
             techLevel == "Industrial" || techLevel == "Spacer" || techLevel == "Ultra" || techLevel == "Archotech";
 
+        /// <summary>The same by the age a people lives in now (0 tribal to 3 spacer: Peoples.AgeOf), which can change over the years.</summary>
+        public static bool GenesAge(int age) => age >= 2;
+
         /// <summary>The psylink's level for a roll in [0, 1): <paramref name="min"/> to <paramref name="max"/>, at least 1 and at most the game's 6.</summary>
         public static int Levels(int min, int max, float roll)
         {

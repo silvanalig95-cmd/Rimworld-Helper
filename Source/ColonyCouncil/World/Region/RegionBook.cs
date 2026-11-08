@@ -202,6 +202,8 @@ namespace ColonyCouncil
             if (RiseFall.On) Safe("rise and fall", () => RiseFall.Daily(this, now));
             // New peoples that arise from what happened in the region (Peoples/Arising.cs), one a day at most.
             if (Arising.On) Safe("new peoples", () => Arising.Daily(now));
+            // Rimfolk's peoples' ages over the years (Peoples/PeopleAges.cs), each people on a day of its own once a season.
+            if (PeopleAges.On) Safe("the peoples' ages", () => PeopleAges.Daily(now));
             // The Wheel's towns, which move on every month or so (Peoples/WheelTowns.cs).
             if (RimfolkPatches.On) Safe("the Wheel's towns", () => WheelTowns.Daily(now));
             // The Mossborn's ledger of the colony's planting and felling (Peoples/PeoplesE.cs).

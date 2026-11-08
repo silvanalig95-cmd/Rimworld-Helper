@@ -170,6 +170,9 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleExtension">
         <calling>traders</calling>
+        <!-- Their age over the years (Peoples/PeopleAges.cs): the roads bring every new thing to a waystation first: soon, to the spacer age. -->
+        <agePace>7</agePace>
+        <ageLimit>3</ageLimit>
         <townWord>waystation</townWord>
         <townWords>waystations</townWords>
         <head>waymaster</head>
@@ -339,6 +342,23 @@
           <li><trait>Gladiator</trait><chance>0.04</chance></li>
           <li><trait>TM_Sniper</trait><chance>0.03</chance></li>
         </gifts>
+        <!-- A league of the medieval age guards its caravans with great bows, crossbows and swords; of the spacer age, with charge rifles. -->
+        <ageArms>
+          <li>
+            <ages>0~1</ages>
+            <weaponTags>
+              <li>NeolithicRangedHeavy</li>
+              <li>MedievalMeleeDecent</li>
+              <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Arbalest</li>
+            </weaponTags>
+          </li>
+          <li>
+            <ages>3~3</ages>
+            <weaponTags>
+              <li>SpacerGun</li>
+            </weaponTags>
+          </li>
+        </ageArms>
       </li>
     </modExtensions>
   </PawnKindDef>
@@ -378,6 +398,23 @@
         <gifts>
           <li><trait>TM_Sniper</trait><chance>0.08</chance></li>
         </gifts>
+        <!-- Outriders of the medieval age ride with crossbows and swords; of the spacer age, with charge rifles. -->
+        <ageArms>
+          <li>
+            <ages>0~1</ages>
+            <weaponTags>
+              <li>NeolithicRangedHeavy</li>
+              <li>MedievalMeleeAdvanced</li>
+              <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Arbalest</li>
+            </weaponTags>
+          </li>
+          <li>
+            <ages>3~3</ages>
+            <weaponTags>
+              <li>SpacerGun</li>
+            </weaponTags>
+          </li>
+        </ageArms>
       </li>
     </modExtensions>
   </PawnKindDef>

@@ -246,6 +246,7 @@
     <Compile Include="../../Source/ColonyCouncil/Peoples/PeoplesLoreMath.cs" Link="PeoplesLoreMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Peoples/PeoplesDMath.cs" Link="PeoplesDMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Peoples/PeoplesEMath.cs" Link="PeoplesEMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Peoples/PeopleAgesMath.cs" Link="PeopleAgesMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Hauling/HaulMath.cs" Link="HaulMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Things/ThingRolesMath.cs" Link="ThingRolesMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Animals/AnimalNatureMath.cs" Link="AnimalNatureMath.cs" />

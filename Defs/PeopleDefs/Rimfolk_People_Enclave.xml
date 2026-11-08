@@ -155,6 +155,9 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleExtension">
         <calling>brokers</calling>
+        <!-- Their age over the years (Peoples/PeopleAges.cs): already at the height of what anyone knows; it keeps its pad by keeping up, and falls back to the industrial age if cut off. -->
+        <agePace>8</agePace>
+        <ageLimit>3</ageLimit>
         <townWord>market</townWord>
         <townWords>markets</townWords>
         <head>pad master</head>
@@ -348,6 +351,22 @@
             <chance>0.04</chance>
           </li>
         </gifts>
+        <!-- An enclave fallen back to the industrial age issues its marshals flak and the age's rifles. -->
+        <ageArms>
+          <li>
+            <ages>2~2</ages>
+            <weaponTags>
+              <li>IndustrialGunAdvanced</li>
+              <li>Gun</li>
+            </weaponTags>
+            <apparel>
+              <li>Apparel_FlakVest</li>
+              <li>Apparel_FlakPants</li>
+              <li>Apparel_FlakJacket</li>
+              <li>Apparel_AdvancedHelmet</li>
+            </apparel>
+          </li>
+        </ageArms>
       </li>
     </modExtensions>
   </PawnKindDef>

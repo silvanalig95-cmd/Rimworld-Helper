@@ -77,7 +77,7 @@ namespace ColonyCouncil
             return false;
         }
 
-        private static bool HighTech(Faction f) => f?.def != null && f.def.techLevel >= TechLevel.Industrial;
+        private static bool HighTech(Faction f) => f?.def != null && Peoples.TechOf(f) >= TechLevel.Industrial;
 
         protected override bool CanHappen(Map map) => CommsOn(map) && Candidates(def.faction, null, map).Any(HighTech);
 

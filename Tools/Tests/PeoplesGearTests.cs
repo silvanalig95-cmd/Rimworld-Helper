@@ -454,7 +454,8 @@ public static class PeoplesGearTests
 
         // ================= Their gifts =================
 
-        var giftKinds = kindEls.Where(k => k.Descendants("li").Any(li => li.Attribute("Class")?.Value == "ColonyCouncil.PeopleKindExtension")).ToList();
+        // A kind's extension may hold only its arms for another age (the society's proctors); the gifted are those with gifts.
+        var giftKinds = kindEls.Where(k => k.Descendants("li").Any(li => li.Attribute("Class")?.Value == "ColonyCouncil.PeopleKindExtension" && li.Element("gifts") != null)).ToList();
         foreach (var k in giftKinds)
         {
             var gifts = k.Descendants("gifts").Single().Elements("li").ToList();

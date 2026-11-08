@@ -212,7 +212,7 @@ namespace ColonyCouncil
             var town = n != null ? NotableBook.TownOf(n.town) : null;
             if (town == null || home == null) return 99f;
             float tiles = Find.WorldGrid.ApproxDistanceInTiles(home.Tile, town.Tile);
-            return NotableMath.TravelDays(tiles, (int)(n.faction?.def?.techLevel ?? TechLevel.Industrial));
+            return NotableMath.TravelDays(tiles, (int)(Peoples.TechOf(n.faction, TechLevel.Industrial)));
         }
 
         /// <summary>What their people hope for at the feast.</summary>

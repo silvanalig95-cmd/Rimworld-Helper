@@ -39,7 +39,7 @@ namespace ColonyCouncil
         /// <summary>A people's age by their tech level (an undefined one by the colony's).</summary>
         public static string AgeOf(Faction f)
         {
-            var tech = f?.def?.techLevel ?? TechLevel.Undefined;
+            var tech = Peoples.TechOf(f, TechLevel.Undefined);
             if (tech == TechLevel.Undefined) tech = Faction.OfPlayer?.def?.techLevel ?? TechLevel.Neolithic;
             return CampBuildMath.AgeOf((int)tech);
         }
@@ -68,7 +68,7 @@ namespace ColonyCouncil
         public static bool Known(ThingDef def, Faction f)
         {
             if (def == null) return false;
-            int tech = (int)(f?.def?.techLevel ?? TechLevel.Medieval);
+            int tech = (int)(Peoples.TechOf(f, TechLevel.Medieval));
             if (def.researchPrerequisites != null)
                 foreach (var r in def.researchPrerequisites)
                     if (r != null && !CampBuildMath.Within((int)r.techLevel, tech)) return false;

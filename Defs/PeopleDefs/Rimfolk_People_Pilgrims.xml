@@ -160,6 +160,9 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleExtension">
         <calling>pilgrims</calling>
+        <!-- Their age over the years (Peoples/PeopleAges.cs): they keep to the old roads on foot, and a new age reaches them slowly: no further than the industrial age. -->
+        <agePace>16</agePace>
+        <ageLimit>2</ageLimit>
         <townWord>hostel</townWord>
         <townWords>hostels</townWords>
         <head>hosteller</head>
@@ -361,6 +364,16 @@
         <gifts>
           <li><trait>Ranger</trait><chance>0.06</chance></li>
         </gifts>
+        <!-- In the industrial and spacer ages the wardens' archers carry guns. -->
+        <ageArms>
+          <li>
+            <ages>2~3</ages>
+            <weaponTags>
+              <li>Gun</li>
+            </weaponTags>
+            <money>320</money>
+          </li>
+        </ageArms>
       </li>
     </modExtensions>
   </PawnKindDef>

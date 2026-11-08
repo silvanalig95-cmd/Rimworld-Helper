@@ -108,7 +108,7 @@ namespace ColonyCouncil
             foreach (var f in all)
             {
                 if (!Listed(f)) continue;
-                var r = new Row { f = f, thing = ThingRefs.Of(f), standing = RegionMap.StandingText(f), color = RegionMap.StandingColor(f), kind = f.def.LabelCap };
+                var r = new Row { f = f, thing = ThingRefs.Of(f), standing = RegionMap.StandingText(f), color = RegionMap.StandingColor(f), kind = KindLine(f) };
                 if (f.def.permanentEnemy) r.wars = "CC_Peoples_EveryonesFoe".Translate().Resolve();
                 else if (Facts.Counts(f))
                 {
@@ -131,6 +131,13 @@ namespace ColonyCouncil
             }
             // The peoples the colony has dealings with first (ties, then within reach), then allies and friends, enemies last.
             return list.OrderByDescending(r => r.dip?.weight ?? -1).ThenByDescending(r => r.f.HasGoodwill ? r.f.PlayerGoodwill : -200).ThenBy(r => r.f.Name).ToList();
+        }
+
+        /// <summary>What a people is, and for one of Rimfolk's its age and which way it is heading (Peoples/PeopleAgeWords.cs).</summary>
+        private static string KindLine(Faction f)
+        {
+            string age = PeopleAgeWords.Heading(f);
+            return age.NullOrEmpty() ? f.def.LabelCap.ToString() : f.def.LabelCap + " · " + age;
         }
 
         private static float Peoples(float w, float viewH)

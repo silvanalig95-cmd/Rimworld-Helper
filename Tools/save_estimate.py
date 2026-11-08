@@ -670,6 +670,12 @@ MODEL = {
     # of a people no longer standing first.
     "Peoples/ArisingBook.cs:arisen": ("cap", (const("Peoples/ArisingMath.cs", "MaxRecords", 24), 0.05), 320,
                                       "peoples that arose during play: one record each, one every 20 days at the most (the setting at 200%), ArisingMath.MaxRecords kept"),
+    # The peoples' ages as they change (Peoples/PeopleAges.cs): one record a people of Rimfolk's (a reference and ten
+    # values: its age now and the one it began in, its progress, when it was first heard of, looked at and last changed,
+    # its heading and why), made the first time the region's day looks at it; the fifteen at once, and one for each that
+    # arises (six standing at most); PeopleAgesMath.MaxRecords kept, a people no longer in the world dropped on saving.
+    "Peoples/PeopleAges.cs:ages": ("cap", (const("Peoples/PeopleAgesMath.cs", "MaxRecords", 40), 15), 300,
+                                   "one record a people of Rimfolk's (the fifteen at once, and each that arises), PeopleAgesMath.MaxRecords kept, gone peoples dropped"),
     # Carrying and hauling (Hauling/HaulBook.cs): one load per pawn carrying something for Rimfolk (its work's produce, a
     # material run's stock), dropped once it carries nothing and on saving for pawns gone; each holds a few kinds owed,
     # the skills and work givers of the work, the stockpile a bill picked for a kind, and a run's one or two materials.

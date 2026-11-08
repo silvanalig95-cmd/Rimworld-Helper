@@ -319,7 +319,7 @@ namespace ColonyCouncil
             HarmFour.Wait(new HarmWaiting
             {
                 what = HarmWaiting.Rematch, kind = HarmKinds.Rematch.key, pawn = c, id = x.Faction.loadID, id2 = -1, name = x.LabelShort,
-                flag = Outsiders.DuelOn && OutsiderMath.DuelFits((int)(x.Faction.def?.techLevel ?? TechLevel.Industrial), ModsConfig.RoyaltyActive, x.royalty?.MostSeniorTitle != null),
+                flag = Outsiders.DuelOn && OutsiderMath.DuelFits((int)(Peoples.TechOf(x.Faction, TechLevel.Industrial)), ModsConfig.RoyaltyActive, x.royalty?.MostSeniorTitle != null),
                 flag2 = true, made = Now - (int)(HarmFourMath.RematchAfterDays * HarmMath.DayTicks) - 1
             });
             return x.LabelShort + " of " + x.Faction.Name + " will ask " + c.LabelShort + " for a rematch within the hour, once the two are together.";

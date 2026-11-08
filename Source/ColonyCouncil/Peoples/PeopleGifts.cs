@@ -24,19 +24,24 @@ namespace ColonyCouncil
     {
         public static void Give(Pawn p)
         {
-            var ext = p?.kindDef?.GetModExtension<PeopleKindExtension>();
-            if (ext == null || ext.gifts == null && ext.ageArms == null || p.story?.traits == null || p.health?.hediffSet == null || p.Dead || p.RaceProps?.Humanlike != true) return;
+            if (p?.kindDef == null || p.story?.traits == null || p.health?.hediffSet == null || p.Dead || p.RaceProps?.Humanlike != true) return;
             if (!p.DevelopmentalStage.Adult() || p.IsMutant) return;
+            var ext = p.kindDef.GetModExtension<PeopleKindExtension>();
             int age = Peoples.AgeOf(p.Faction);
-            if (!ext.ageArms.NullOrEmpty()) AgeArms.Arm(p, ext.ageArms, age);
-            if (ext.gifts.NullOrEmpty()) return;
+            AgeArms.LastArmed = false;
+            AgeArms.LastKit = null;
+            if (ext != null && !ext.ageArms.NullOrEmpty()) AgeArms.Arm(p, ext.ageArms, age);
+            // Every age whole (Peoples/PeopleAges.cs): in an age other than the one its kind was made for, nothing of a later age.
+            if (Peoples.IsOurs(p.Faction) && age != (int)LedgerMath.AgeOf((int)p.Faction.def.techLevel)) AgeArms.ToAge(p, age, AgeArms.LastArmed, AgeArms.LastKit);
+            if (ext == null || ext.gifts.NullOrEmpty()) return;
             // A gift of another age (the tamers' Wildspeakers in the spacer age) is no share of this one.
             int i = PeoplesGearMath.Pick(ext.gifts.Select(g => g != null && PeoplesDMath.AgeFits(age, g.ages.min, g.ages.max) ? g.chance : 0f).ToList(), Rand.Value);
             if (i < 0 || ext.gifts[i] == null) return;
             var gift = ext.gifts[i];
             if (!gift.trait.NullOrEmpty()) GiveClass(p, gift.trait);
             else if (gift.psylink.max > 0) GivePsylink(p, gift);
-            else if (!gift.genes.NullOrEmpty()) GiveGenes(p, gift.genes);
+            // Genes are put in only by a people whose age has the means (one fallen back to the medieval age has lost them).
+            else if (!gift.genes.NullOrEmpty() && PeoplesGearMath.GenesAge(age)) GiveGenes(p, gift.genes);
         }
 
         // ================= Genes put in =================
@@ -215,24 +220,93 @@ namespace ColonyCouncil
     /// </summary>
     public static class AgeArms
     {
+        /// <summary>What the last <see cref="Arm"/> did: armed the pawn from its set, and the kit it wore.</summary>
+        public static bool LastArmed;
+        public static List<ThingDef> LastKit;
+
         public static void Arm(Pawn p, List<PeopleAgeArms> sets, int age)
         {
-            if (p?.equipment == null || sets.NullOrEmpty() || p.WorkTagIsDisabled(WorkTags.Violent)) return;
-            var set = sets.FirstOrDefault(a => a != null && !a.weaponTags.NullOrEmpty() && PeoplesDMath.AgeFits(age, a.ages.min, a.ages.max));
+            LastArmed = false;
+            LastKit = null;
+            if (p?.equipment == null || sets.NullOrEmpty()) return;
+            var set = sets.FirstOrDefault(a => a != null && (!a.weaponTags.NullOrEmpty() || !a.apparel.NullOrEmpty()) && PeoplesDMath.AgeFits(age, a.ages.min, a.ages.max));
             if (set == null) return;
-            if (!set.apparel.NullOrEmpty()) Kit(p, set.apparel);
+            if (!set.apparel.NullOrEmpty())
+            {
+                Kit(p, set.apparel);
+                LastKit = set.apparel;
+            }
+            if (set.weaponTags.NullOrEmpty() || p.WorkTagIsDisabled(WorkTags.Violent)) return;
+            LastArmed = ArmWith(p, set, age);
+        }
+
+        /// <summary>
+        /// One of the set's tags' weapons within its means, of no later age than the people's own where one is (a mod's
+        /// spacer rifle under the game's Gun tag stays out of an industrial people's hands), in place of what it carries.
+        /// </summary>
+        private static bool ArmWith(Pawn p, PeopleAgeArms set, int age)
+        {
             float means = set.money > 0f ? set.money : Math.Max(p.kindDef.weaponMoney.max, 150f) * 1.25f;
             var choices = DefDatabase<ThingDef>.AllDefsListForReading.Where(d => d != null && d.IsWeapon && d.equipmentType == EquipmentType.Primary && !d.weaponTags.NullOrEmpty()
                 && d.weaponTags.Any(set.weaponTags.Contains) && d.BaseMarketValue <= means && d.tradeability != Tradeability.None
                 && d.GetCompProperties<CompProperties_Biocodable>() == null).ToList();
-            if (choices.Count == 0) return;
+            var ofAge = choices.Where(d => !PeopleAgesMath.Later((int)d.techLevel, age)).ToList();
+            if (ofAge.Count > 0) choices = ofAge;
+            if (choices.Count == 0) return false;
             var def = choices.RandomElementByWeight(d => Math.Max(0.1f, d.generateCommonality));
             ThingDef stuff = null;
-            if (def.MadeFromStuff && !GenStuff.TryRandomStuffByCommonalityFor(def, out stuff, p.Faction?.def?.techLevel ?? TechLevel.Undefined)) return;
-            if (!(ThingMaker.MakeThing(def, stuff) is ThingWithComps weapon)) return;
+            if (def.MadeFromStuff && !GenStuff.TryRandomStuffByCommonalityFor(def, out stuff, Peoples.TechOf(p.Faction))) return false;
+            if (!(ThingMaker.MakeThing(def, stuff) is ThingWithComps weapon)) return false;
             weapon.TryGetComp<CompQuality>()?.SetQuality(QualityUtility.GenerateQualityGeneratingPawn(p.kindDef, def), ArtGenerationContext.Outsider);
             p.equipment.DestroyAllEquipment();
             p.equipment.AddEquipment(weapon);
+            return true;
+        }
+
+        /// <summary>
+        /// A pawn of a people living in another age than its kind was made for (risen, fallen back, or arisen there), after
+        /// its set for that age: what it wears of a later age comes off (PeopleAgesMath.Later; its people's signature piece
+        /// and its set's kit stay), and a body left bare gets the age's plain clothes (tribal wear, or a shirt and
+        /// trousers); a weapon of a later age, or a fighter's bow in an age of guns, gives way to one of the game's arms of
+        /// the age within the kind's means (PeopleAgesMath.FallbackArms). What its set armed it with stays.
+        /// </summary>
+        public static void ToAge(Pawn p, int age, bool armed, List<ThingDef> kit)
+        {
+            if (p?.apparel != null)
+            {
+                var signature = new HashSet<ThingDef>();
+                if (p.kindDef.specificApparelRequirements != null)
+                    foreach (var r in p.kindDef.specificApparelRequirements)
+                        if (r?.ApparelDef != null && r.Color != default)
+                            signature.Add(r.ApparelDef);
+                foreach (var worn in p.apparel.WornApparel.ToList())
+                {
+                    if (worn?.def == null || kit != null && kit.Contains(worn.def) || signature.Contains(worn.def) || !PeopleAgesMath.Later((int)worn.def.techLevel, age)) continue;
+                    p.apparel.Remove(worn);
+                    worn.Destroy();
+                }
+                Cover(p, age);
+            }
+            if (armed || p?.equipment?.Primary == null) return;
+            var weapon = p.equipment.Primary;
+            bool fighter = (p.kindDef.requiredWorkTags & WorkTags.Violent) != 0 && !p.WorkTagIsDisabled(WorkTags.Violent);
+            bool ranged = weapon.def.IsRangedWeapon;
+            int tech = (int)weapon.def.techLevel;
+            if (!PeopleAgesMath.Later(tech, age) && !PeopleAgesMath.BowInGunAge(tech, ranged, fighter, age)) return;
+            ArmWith(p, new PeopleAgeArms { ages = new IntRange(age, age), weaponTags = PeopleAgesMath.FallbackArms(age, fighter, ranged).ToList() }, age);
+        }
+
+        /// <summary>The body's torso and legs covered with the age's plain clothes where nothing covers them.</summary>
+        private static void Cover(Pawn p, int age)
+        {
+            foreach (string name in PeopleAgesMath.FallbackDress(age))
+            {
+                var def = DefDatabase<ThingDef>.GetNamedSilentFail(name);
+                if (def?.apparel?.bodyPartGroups == null || !def.apparel.PawnCanWear(p)) continue;
+                bool bare = def.apparel.bodyPartGroups.Any(g => (g == BodyPartGroupDefOf.Torso || g == BodyPartGroupDefOf.Legs)
+                                                                && !p.apparel.WornApparel.Any(w => w?.def?.apparel?.bodyPartGroups != null && w.def.apparel.bodyPartGroups.Contains(g)));
+                if (bare) Kit(p, new List<ThingDef> { def });
+            }
         }
 
         /// <summary>
@@ -247,7 +321,7 @@ namespace ColonyCouncil
             {
                 if (def?.apparel == null || !def.apparel.PawnCanWear(p)) continue;
                 ThingDef stuff = null;
-                if (def.MadeFromStuff && !GenStuff.TryRandomStuffByCommonalityFor(def, out stuff, p.Faction?.def?.techLevel ?? TechLevel.Undefined)) continue;
+                if (def.MadeFromStuff && !GenStuff.TryRandomStuffByCommonalityFor(def, out stuff, Peoples.TechOf(p.Faction))) continue;
                 if (!(ThingMaker.MakeThing(def, stuff) is Apparel a)) continue;
                 a.TryGetComp<CompQuality>()?.SetQuality(QualityUtility.GenerateQualityGeneratingPawn(p.kindDef, def), ArtGenerationContext.Outsider);
                 var colour = p.kindDef.specificApparelRequirements?.FirstOrDefault(r => r != null && r.ApparelDef == def && r.Color != default);
@@ -273,7 +347,7 @@ namespace ColonyCouncil
     {
         public static void Postfix(Pawn __result)
         {
-            if (__result == null || !RimfolkPatches.On || __result.kindDef?.GetModExtension<PeopleKindExtension>() == null) return;
+            if (__result == null || !RimfolkPatches.On || __result.kindDef?.GetModExtension<PeopleKindExtension>() == null && !Peoples.IsOurs(__result.Faction)) return;
             try
             {
                 PeopleGifts.Give(__result);

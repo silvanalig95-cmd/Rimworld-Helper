@@ -395,10 +395,10 @@ namespace ColonyCouncil
             if (ModsConfig.IdeologyActive) tags.Add("ideology");
             if (s.ctx.enemy == null) tags.Add("noenemy");
             // The peoples' own era, for lines about how they live (a tribe has no radio, whatever the colony has).
-            if (s.ctx.faction != null) tags.Add(s.ctx.faction.def.techLevel <= TechLevel.Medieval ? "theirLowtech" : "theirHightech");
+            if (s.ctx.faction != null) tags.Add(Peoples.TechOf(s.ctx.faction) <= TechLevel.Medieval ? "theirLowtech" : "theirHightech");
             // One of Rimfolk's peoples, by what it lives by: their:traders, their:healers, their:herders (Peoples/).
             Peoples.AddTags(s.ctx.faction, tags);
-            if (s.ctx.enemy != null) tags.Add(s.ctx.enemy.def.techLevel <= TechLevel.Medieval ? "enemyLowtech" : "enemyHightech");
+            if (s.ctx.enemy != null) tags.Add(Peoples.TechOf(s.ctx.enemy) <= TechLevel.Medieval ? "enemyLowtech" : "enemyHightech");
             // The Empire keeps its own titles and honour: lines can speak of it as itself.
             if (Ages.IsEmpire(s.ctx.faction)) tags.Add("theirEmpire");
             if (Ages.IsEmpire(s.ctx.enemy)) tags.Add("enemyEmpire");
@@ -514,7 +514,7 @@ namespace ColonyCouncil
                 var req = new PawnGenerationRequest(kind, f, PawnGenerationContext.NonPlayer, forceGenerateNewPawn: true,
                     canGeneratePawnRelations: false, mustBeCapableOfViolence: fighter, colonistRelationChanceFactor: 0f,
                     biologicalAgeRange: age ?? new FloatRange(25f, 55f), fixedGender: gender,
-                    dontGiveWeapon: !fighter && Avail.IsPreIndustrial && f != null && f.def.techLevel > TechLevel.Medieval);
+                    dontGiveWeapon: !fighter && Avail.IsPreIndustrial && f != null && Peoples.TechOf(f) > TechLevel.Medieval);
                 p = PawnGenerator.GeneratePawn(req);
             }
             catch (System.Exception e)

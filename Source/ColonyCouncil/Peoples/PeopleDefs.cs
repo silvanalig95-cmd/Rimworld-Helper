@@ -37,6 +37,16 @@ namespace ColonyCouncil
         /// is wider than its own: the river folk "0~2", the pilgrims and the scholars "1~3". Unset: its own age.
         /// </summary>
         public IntRange ariseAges = new IntRange(-1, -1);
+        /// <summary>
+        /// Their age over the years (Peoples/PeopleAges.cs, PeopleAgesMath): the years an age takes at their own pace with
+        /// nothing from the colony, the highest age they would accept by their ways (0 tribal to 3 spacer; unset, one above
+        /// the age they began in), and the lowest they fall back to (unset, one below it). A people that declines unless
+        /// supplied (the Sunken Vault's way) loses an age every <see cref="ageDeclineYears"/> without components and parts.
+        /// </summary>
+        public float agePace = 12f;
+        public int ageLimit = -1, ageFloor = -1;
+        public bool ageDeclines;
+        public float ageDeclineYears = 6f;
         /// <summary>Their towns stand by a river where the world has one (the river folk's landings), and its docks reach into the water.</summary>
         public bool byWater;
         /// <summary>Fresh fish of the land's own waters in their towns' stores, this many (Odyssey's fish; none without it).</summary>
@@ -52,6 +62,13 @@ namespace ColonyCouncil
         /// <summary>The ages a people of this template arises in, for its def's own age (PeoplesMath.AgeSpan).</summary>
         public void AriseSpan(int own, out int lo, out int hi) => PeoplesMath.AgeSpan(own, ariseAges.min, ariseAges.max, out lo, out hi);
 
+        /// <summary>Their ways in the matter of their age, for a people of this template that began in <paramref name="start"/>.</summary>
+        public AgeWays Ways(int start) => new AgeWays
+        {
+            pace = agePace, limit = PeopleAgesMath.Limit(ageLimit, start), floor = PeopleAgesMath.Floor(ageFloor, start), declines = ageDeclines,
+            declineYears = ageDeclineYears
+        };
+
         public override IEnumerable<string> ConfigErrors()
         {
             foreach (var e in base.ConfigErrors()) yield return e;
@@ -60,6 +77,9 @@ namespace ColonyCouncil
             if (caravanWeight <= 0f) yield return "caravanWeight must be above 0";
             if (ariseAges.min > ariseAges.max || ariseAges.max > 3) yield return "ariseAges is a span of the ages 0 (tribal) to 3 (spacer)";
             if (sayings != null && sayings.Any(s => s.NullOrEmpty())) yield return "a people's saying is a sentence, not empty";
+            if (float.IsNaN(agePace) || agePace <= 0f) yield return "agePace is the years an age takes, above 0";
+            if (ageLimit < -1 || ageLimit > 3 || ageFloor < -1 || ageFloor > 3) yield return "ageLimit and ageFloor are ages 0 (tribal) to 3 (spacer), or unset";
+            if (ageDeclines && (float.IsNaN(ageDeclineYears) || ageDeclineYears <= 0f)) yield return "a people that declines needs ageDeclineYears above 0";
         }
     }
 
@@ -91,7 +111,8 @@ namespace ColonyCouncil
             // A set's tags may all be a mod's (MayRequire) and so none without it: the set then arms nobody, no error.
             if (ageArms != null)
                 foreach (var a in ageArms.Where(a => a != null))
-                    if (a.weaponTags == null || PeoplesDMath.AnyAge(a.ages.min, a.ages.max) || a.ages.max > 3) yield return "arms for another age name its ages (0 to 3) and their weapon tags";
+                    if (a.weaponTags == null && a.apparel == null || PeoplesDMath.AnyAge(a.ages.min, a.ages.max) || a.ages.max > 3)
+                        yield return "arms for another age name its ages (0 to 3) and their weapon tags, or the kit worn in them";
             if (gifts.NullOrEmpty()) yield break;
             if (!PeoplesGearMath.Sound(gifts.Select(g => g?.chance ?? 0f).ToList()))
                 yield return "each gift's chance is above 0, and together no more than " + PeoplesGearMath.MaxShare;
@@ -122,7 +143,11 @@ namespace ColonyCouncil
         public IntRange ages = new IntRange(-1, -1);
     }
 
-    /// <summary>Arms for another age (<see cref="PeopleKindExtension.ageArms"/>): the ages, and the weapon tags they choose from.</summary>
+    /// <summary>
+    /// Arms for another age (<see cref="PeopleKindExtension.ageArms"/>): the ages, and the weapon tags they choose from, or
+    /// the kit worn in them, or both. A set of a kit alone dresses everyone of the kind (a road league's wayfarers of the
+    /// medieval age in tunics); its arms only those who fight.
+    /// </summary>
     public class PeopleAgeArms
     {
         public IntRange ages = new IntRange(-1, -1);

@@ -32,7 +32,7 @@ namespace ColonyCouncil
                 why = DipWords.P("CC_Dip_Why_NoHome");
                 return Way.None;
             }
-            if (NotableMath.Callable((int)f.def.techLevel) && NeighbourLetters.Console(home) != null && Caller(home, Way.Comms) != null) return Way.Comms;
+            if (NotableMath.Callable((int)Peoples.TechOf(f)) && NeighbourLetters.Console(home) != null && Caller(home, Way.Comms) != null) return Way.Comms;
             if (ThingDefOf.Campfire == null || !ThingDefOf.Campfire.IsResearchFinished)
             {
                 why = PactWords.P("CC_Pact_Why_NoFireKnown");

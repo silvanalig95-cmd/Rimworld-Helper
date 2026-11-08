@@ -15,7 +15,7 @@ namespace ColonyCouncil
     public static class Arrivals
     {
         /// <summary>Factions of the colony's own era are much likelier (a medieval colony meets medieval folk).</summary>
-        public static float TechWeight(Faction f, TechLevel tech) => Mathf.Pow(0.35f, Mathf.Abs((int)f.def.techLevel - (int)tech));
+        public static float TechWeight(Faction f, TechLevel tech) => Mathf.Pow(0.35f, Mathf.Abs((int)Peoples.TechOf(f) - (int)tech));
 
         /// <summary>
         /// A people that isn't hostile and sends visitors: settlers, villagers, traders, tribes. <paramref name="factor"/>:
@@ -53,8 +53,8 @@ namespace ColonyCouncil
             {
                 var tech = Avail.EffectiveTech;
                 var f = Find.FactionManager.AllFactionsListForReading
-                    .Where(x => !x.IsPlayer && x.def.humanlikeFaction && x.def.basicMemberKind != null && x.def.techLevel >= TechLevel.Neolithic && x.def.techLevel <= TechLevel.Medieval)
-                    .OrderBy(x => Mathf.Abs((int)x.def.techLevel - (int)tech)).FirstOrDefault();
+                    .Where(x => !x.IsPlayer && x.def.humanlikeFaction && x.def.basicMemberKind != null && Peoples.TechOf(x) >= TechLevel.Neolithic && Peoples.TechOf(x) <= TechLevel.Medieval)
+                    .OrderBy(x => Mathf.Abs((int)Peoples.TechOf(x) - (int)tech)).FirstOrDefault();
                 if (f != null) return f.def.basicMemberKind;
             }
             return Faction.OfPlayer?.def?.basicMemberKind ?? PawnKindDefOf.Colonist;
@@ -71,7 +71,7 @@ namespace ColonyCouncil
                 forceGenerateNewPawn: true, canGeneratePawnRelations: false, colonistRelationChanceFactor: 0f,
                 fixedGender: gender, fixedLastName: lastName, biologicalAgeRange: age,
                 developmentalStages: child ? DevelopmentalStage.Child : DevelopmentalStage.Adult,
-                dontGiveWeapon: child || Avail.IsPreIndustrial && (faction == null || faction.def.techLevel > TechLevel.Medieval),
+                dontGiveWeapon: child || Avail.IsPreIndustrial && (faction == null || Peoples.TechOf(faction) > TechLevel.Medieval),
                 forcedXenotype: genes?.CustomXenotype == null ? genes?.Xenotype : null,
                 forcedCustomXenotype: genes?.CustomXenotype);
             return PawnGenerator.GeneratePawn(req);

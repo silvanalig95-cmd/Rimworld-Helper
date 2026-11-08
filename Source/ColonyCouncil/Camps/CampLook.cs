@@ -552,7 +552,7 @@ namespace ColonyCouncil
         /// </summary>
         private ThingDef GoodsDef(CampGoods g)
         {
-            var tech = faction?.def?.techLevel ?? TechLevel.Undefined;
+            var tech = Peoples.TechOf(faction, TechLevel.Undefined);
             foreach (var n in g?.defs ?? new List<string>())
             {
                 var d = ThingRolesMath.TryParse(n, out var role) ? ThingRoles.From(role, faction, null, ThingRoles.Seed("camp goods", n, faction, map)) : DefDatabase<ThingDef>.GetNamedSilentFail(n);

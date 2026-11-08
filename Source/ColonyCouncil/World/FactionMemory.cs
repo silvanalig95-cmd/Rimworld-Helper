@@ -218,6 +218,11 @@ namespace ColonyCouncil
             // One of theirs at the colony (Outsiders/): a gift into their hands, a duel of honour won fairly.
             ["gaveGift"] = K(DeedSide.Favor, 5, 10f, 20),
             ["duel"] = K(DeedSide.Favor, 6, 10f, 18),
+            // Their learning (Peoples/PeopleAges.cs): books, techprints, components or tools in a gift the colony gave them
+            // (weighed by their worth), and one of theirs who stayed at the colony to learn (an apprentice of the sky, a
+            // journeyman's wander-year). Both quicken their rise toward the next age.
+            ["gaveLearning"] = K(DeedSide.Favor, 6, 10f, 30),
+            ["learnedHere"] = K(DeedSide.Favor, 10),
             // The colony's wrongs.
             ["robbed"] = K(DeedSide.Wrong, 20, 2f),
             ["attacked"] = K(DeedSide.Wrong, 6, 2f, 30),
