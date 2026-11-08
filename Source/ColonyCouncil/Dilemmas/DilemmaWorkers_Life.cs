@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using RimWorld;
 using UnityEngine;
@@ -11,26 +12,33 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaWorker_Camp : DilemmaWorker
     {
-        public static Camp CampOn(Map map)
+        /// <summary>
+        /// The camp a question can be about: of the visitors that fit, one by the day (camps side by side take turns, the
+        /// same one all day so a question and its answer agree); else the neighbours settled for good (Holding.cs), whom
+        /// the same questions can be about. <paramref name="also"/>: what else the question needs of it.
+        /// </summary>
+        public static Camp CampOn(Map map, Func<Camp, bool> also = null)
         {
             if (map == null || !CampTracker.Enabled) return null;
             var t = CampTracker.Instance;
             if (t == null) return null;
-            // The visitors first; else the neighbours settled for good (Holding.cs), whom the same questions can be about.
-            var visiting = CampTracker.VisitingAt(map);
+            var fit = CampTracker.VisitorsAt(map).Where(c => Fits(c, map) && (also == null || also(c))).ToList();
+            if (fit.Count > 0) return fit[GenDate.DaysPassed % fit.Count];
             var holding = CampTracker.HoldingAt(map);
-            var c = Fits(visiting, map) ? visiting : Fits(holding, map) ? holding : null;
-            return c;
+            return Fits(holding, map) && (also == null || also(holding)) ? holding : null;
         }
 
         private static bool Fits(Camp c, Map map) => c != null && c.map == map && c.Settled && c.CanTalk && c.faction != null;
 
-        public override bool CanHappenNow(Map map) => CampOn(map) != null && base.CanHappenNow(map);
+        /// <summary>What else this question needs of the camp (its lost child's camp: beasts, no errand).</summary>
+        protected virtual bool Also(Camp c) => true;
+
+        public override bool CanHappenNow(Map map) => CampOn(map, Also) != null && base.CanHappenNow(map);
 
         protected override bool Extra(DilemmaContext ctx)
         {
             if (!base.Extra(ctx)) return false;
-            var c = CampOn(ctx.map);
+            var c = CampOn(ctx.map, Also);
             if (c == null) return false;
             var here = c.Here;
             var x = c.leader != null && here.Contains(c.leader) ? c.leader : here.Where(p => !p.DevelopmentalStage.Juvenile()).RandomElementWithFallback();

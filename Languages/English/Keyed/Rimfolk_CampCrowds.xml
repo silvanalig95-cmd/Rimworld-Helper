@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Camps side by side, bands against a camp, old camps' sites (Source/ColonyCouncil/Camps/CampCrowds.cs, CampRaid.cs,
+       CampGround.cs): the player's requests of 8 November 2026. Camp texts take the camps' own placeholders ({NAME},
+       {FACTION}, {PLACE}, {X_nameDef}, {A_nameDef}, {COUNT}, {THING}); a band's texts also {PEOPLE} (the band's people),
+       {BAND} (what they are, by their age), {SIDE}, {GROUND} (the old site), {HOW} (how word goes, by the colony's age),
+       {CAMPERS}, {ARMED} and {DOWN}. Spoken lines are one sentence. -->
+
+  <!-- ===================== The setting ===================== -->
+
+  <CC_Settings_CampCrowd>How many camps</CC_Settings_CampCrowd>
+  <CC_Settings_CampCrowd_Tip>How often camps come, how long the land rests after one leaves, and how many may stand on it at once. The map's size caps the count: a map under 225 by 225 takes one camp at most, under 250 by 250 two, under 275 by 275 three, larger the level's full count; a map with less than three tenths of its ground open to a camp takes one fewer, with less than an eighth only one. Camps keep 32 cells between their fires, never two peoples at war with each other on the same land, and now and then a band of a people at war with a camp's people comes against it: about one camp in nine at Usual.</CC_Settings_CampCrowd_Tip>
+  <CC_CampCrowd_Rare>Rare</CC_CampCrowd_Rare>
+  <CC_CampCrowd_Rare_Tip>One camp at a time, about one a year, 22 days' rest after one leaves; a band comes against about one camp in sixteen.</CC_CampCrowd_Rare_Tip>
+  <CC_CampCrowd_Usual>Usual</CC_CampCrowd_Usual>
+  <CC_CampCrowd_Usual_Tip>One camp at a time, one or two a year, 15 days' rest after one leaves; a band comes against about one camp in nine. How camps always came.</CC_CampCrowd_Usual_Tip>
+  <CC_CampCrowd_Many>Many</CC_CampCrowd_Many>
+  <CC_CampCrowd_Many_Tip>Up to two camps at once on a map of 225 by 225 or more, four or five a year, 5 days' rest after one leaves; a band comes against about one camp in eight.</CC_CampCrowd_Many_Tip>
+  <CC_CampCrowd_Crowded>Crowded</CC_CampCrowd_Crowded>
+  <CC_CampCrowd_Crowded_Tip>Up to four camps at once on a map of 275 by 275 or more (three on 250, two on 225), about fourteen a year, a day's rest after one leaves; a band comes against about one camp in six.</CC_CampCrowd_Crowded_Tip>
+  <CC_SetNote_CampCrowd_Rare>Camps come seldom, one at a time.</CC_SetNote_CampCrowd_Rare>
+  <CC_SetNote_CampCrowd_Usual>One camp at a time, one or two a year.</CC_SetNote_CampCrowd_Usual>
+  <CC_SetNote_CampCrowd_Many>Up to two camps at once on a big enough map.</CC_SetNote_CampCrowd_Many>
+  <CC_SetNote_CampCrowd_Crowded>Up to four camps at once on a huge map, each on its own site.</CC_SetNote_CampCrowd_Crowded>
+
+  <!-- ===================== The World page and the diary ===================== -->
+
+  <CC_CampCrowd_RoomLine>At {LEVEL}, our land takes {CAP} camp(s) at once: room for {LEFT} more.</CC_CampCrowd_RoomLine>
+  <CC_CampCrowd_RoomFull>At {LEVEL}, our land takes {CAP} camp(s) at once, and they are here.</CC_CampCrowd_RoomFull>
+  <CC_CampCrowd_PanelTip>How many camps may stand at once follows the setting "How many camps" and the map: its size (one camp under 225 by 225, two under 250, three under 275, the level's full count above) and how much of its ground is open to a camp. Each camp keeps its own site, 32 cells or more from any other's fire and from an old camp's site, and two peoples at war with each other never camp here together.</CC_CampCrowd_PanelTip>
+
+  <!-- ===================== Old camps' sites ===================== -->
+
+  <CC_CampGround_Name_kind>the old camp of the {KIND}</CC_CampGround_Name_kind>
+  <CC_CampGround_Name_water>the old camp by the water</CC_CampGround_Name_water>
+  <CC_CampGround_Name_trees>the old camp in the trees</CC_CampGround_Name_trees>
+  <CC_CampGround_Name_rock>the old camp under the rocks</CC_CampGround_Name_rock>
+  <CC_CampGround_NamePlace>{NAME}, {PLACE}</CC_CampGround_NamePlace>
+  <CC_CampGround_TookOver>The {NAME} moved into {GROUND}: they took over {THING}, and build only what is missing.</CC_CampGround_TookOver>
+  <CC_CampGround_Facts>They mean to camp at {GROUND}, where {THING} still stand.</CC_CampGround_Facts>
+  <CC_CampGround_FactsTheirs>It was theirs before.</CC_CampGround_FactsTheirs>
+  <CC_CampGround_FactsBefore>Before them it was held by {WHO}.</CC_CampGround_FactsBefore>
+  <CC_CampGround_CardLine>They camp at {GROUND}, in what an earlier camp left standing.</CC_CampGround_CardLine>
+  <CC_CampGround_Claimed>{GROUND} is ours now: no camp will come back to it.</CC_CampGround_Claimed>
+  <CC_CampGround_Hold_left>the {KIND} of {PEOPLE}, days {FROM} to {TO}</CC_CampGround_Hold_left>
+  <CC_CampGround_Hold_leftDay>the {KIND} of {PEOPLE}, day {FROM}</CC_CampGround_Hold_leftDay>
+  <CC_CampGround_Hold_driven>the {KIND} of {PEOPLE}, days {FROM} to {TO}, driven off by {BY}</CC_CampGround_Hold_driven>
+  <CC_CampGround_Hold_drivenDay>the {KIND} of {PEOPLE}, day {FROM}, driven off by {BY}</CC_CampGround_Hold_drivenDay>
+  <CC_CampGround_Hold_sent>the {KIND} of {PEOPLE}, days {FROM} to {TO}, sent on their way by us</CC_CampGround_Hold_sent>
+  <CC_CampGround_Hold_sentDay>the {KIND} of {PEOPLE}, day {FROM}, sent on their way by us</CC_CampGround_Hold_sentDay>
+  <CC_CampGround_Hold_held>a band of {PEOPLE}, who took it from {BY} on day {FROM} and held it a while</CC_CampGround_Hold_held>
+  <CC_CampGround_HeldNow>the {NAME} of {FACTION} hold it now</CC_CampGround_HeldNow>
+  <CC_CampGround_Contested>A contested spot.</CC_CampGround_Contested>
+  <CC_CampGround_PanelLine>Old camps' sites on our land: {0}.</CC_CampGround_PanelLine>
+  <CC_CampGround_GaveWay>{OTHER} came for {GROUND} too; finding the {NAME} there, their {THING} made camp elsewhere, {OPLACE}.</CC_CampGround_GaveWay>
+  <CC_CampGround_GaveWaySay>The old camp was taken, so we make ours here.</CC_CampGround_GaveWaySay>
+
+  <!-- ===================== A band against a camp ===================== -->
+
+  <CC_CampRaid_Band_tribal>a war band</CC_CampRaid_Band_tribal>
+  <CC_CampRaid_Band_medieval>a company of armed men</CC_CampRaid_Band_medieval>
+  <CC_CampRaid_Band_industrial>a gang with rifles</CC_CampRaid_Band_industrial>
+  <CC_CampRaid_Band_spacer>a strike team</CC_CampRaid_Band_spacer>
+  <CC_CampRaid_How_runner>a runner</CC_CampRaid_How_runner>
+  <CC_CampRaid_How_radio>radio</CC_CampRaid_How_radio>
+
+  <CC_CampRaid_Title>{PEOPLE} against the {NAME}</CC_CampRaid_Title>
+  <CC_CampRaid_Text>{A_nameDef} has seen {BAND} of {PEOPLE} gather at the {SIDE} edge of our land, nearest the {NAME}'s camp. {PEOPLE} are at war with {FACTION}, and it is the camp they have come for: {COUNT} of them, against {CAMPERS} grown at the camp, {ARMED} of those armed.</CC_CampRaid_Text>
+  <CC_CampRaid_TextTogether>They came for {GROUND} the same day the {NAME} did.</CC_CampRaid_TextTogether>
+  <CC_CampRaid_TextClaim>{PEOPLE} held {GROUND} once, and they have come to take it back.</CC_CampRaid_TextClaim>
+  <CC_CampRaid_TextOurFoes>They are our enemies too: anyone of ours who goes near them will have a fight on their hands.</CC_CampRaid_TextOurFoes>
+  <CC_CampRaid_TextNotOurs>They have no quarrel with us, and fighting them would turn {PEOPLE} against us.</CC_CampRaid_TextNotOurs>
+
+  <CC_CampRaid_Opt_Help>Send our fighters to stand with the {NAME}</CC_CampRaid_Opt_Help>
+  <CC_CampRaid_Opt_Help_Tip>Word goes by {HOW} that help is coming, and the {NAME} stand and fight. Draft whoever you send and take them to the camp: nobody of ours fights unless you send them. {FACTION} will remember it, and so will {PEOPLE}.</CC_CampRaid_Opt_Help_Tip>
+  <CC_CampRaid_Opt_Warn>Send word to warn them, by {HOW}</CC_CampRaid_Opt_Warn>
+  <CC_CampRaid_Opt_Warn_Tip>They stand by their fire if they are strong enough, or pack what they can carry and go before the band comes.</CC_CampRaid_Opt_Warn_Tip>
+  <CC_CampRaid_Opt_Out>Stay out of it</CC_CampRaid_Opt_Out>
+  <CC_CampRaid_Opt_Out_Tip>The {NAME} find out when the band falls on them.</CC_CampRaid_Opt_Out_Tip>
+  <CC_CampRaid_NotNow>The band is gone.</CC_CampRaid_NotNow>
+  <CC_CampRaid_TooLate>The band is on them already.</CC_CampRaid_TooLate>
+
+  <CC_CampRaid_StayOut>We stay out of the fight between {PEOPLE} and {FACTION}.</CC_CampRaid_StayOut>
+  <CC_CampRaid_HelpDraft>Draft your fighters and send them to the {NAME}'s camp.</CC_CampRaid_HelpDraft>
+  <CC_CampRaid_WordRadio>We told the {NAME} over the radio.</CC_CampRaid_WordRadio>
+  <CC_CampRaid_WordRunner>{A_nameDef} runs to the {NAME}'s camp with the word.</CC_CampRaid_WordRunner>
+  <CC_CampRaid_NoRunner>Nobody of ours can get to the {NAME} with the word.</CC_CampRaid_NoRunner>
+  <CC_CampRaid_RunnerSays>A band of {PEOPLE} is gathering at the {SIDE} edge, and it is coming for you.</CC_CampRaid_RunnerSays>
+  <CC_CampRaid_WordStand>Word reached the {NAME}: they take up their arms by their fire.</CC_CampRaid_WordStand>
+  <CC_CampRaid_WordGo>Word reached the {NAME}: they pack what they can carry and go before the band comes.</CC_CampRaid_WordGo>
+  <CC_CampRaid_Moving>The band of {PEOPLE} is moving on the {NAME}'s camp.</CC_CampRaid_Moving>
+  <CC_CampRaid_SurprisedStand>{PEOPLE} are on the {NAME}: those with weapons stand by their fire.</CC_CampRaid_SurprisedStand>
+  <CC_CampRaid_SurprisedRun>{PEOPLE} are on the {NAME}: they run, leaving their camp as it stands.</CC_CampRaid_SurprisedRun>
+
+  <CC_CampRaid_EndTitle>{PEOPLE} and the {NAME}</CC_CampRaid_EndTitle>
+  <CC_CampRaid_Won>The {NAME} beat off {PEOPLE}: {DOWN} of the band went down, and the rest ran. They take up the weapons the band dropped and tend their hurt.</CC_CampRaid_Won>
+  <CC_CampRaid_Held>{PEOPLE} gave up on the {NAME}'s camp and went: neither side gave way.</CC_CampRaid_Held>
+  <CC_CampRaid_Lost>{PEOPLE} drove the {NAME} off. They fled with what they could carry; {COUNT} of theirs lie where they fell, and their camp stands as they left it.</CC_CampRaid_Lost>
+  <CC_CampRaid_LostNoDead>{PEOPLE} drove the {NAME} off. They fled with what they could carry, and their camp stands as they left it.</CC_CampRaid_LostNoDead>
+  <CC_CampRaid_Gone>The {NAME} were gone before {PEOPLE} came: the band took their empty camp, held it a while and went.</CC_CampRaid_Gone>
+
+  <CC_CampRaid_ThanksTitle>The {NAME}'s thanks</CC_CampRaid_ThanksTitle>
+  <CC_CampRaid_Thanks>{FACTION} will remember who stood with the {NAME} against {PEOPLE}: {HELPERS}.</CC_CampRaid_Thanks>
+  <CC_CampRaid_ThanksGift>One of them is carrying {GIFT} over to our gate.</CC_CampRaid_ThanksGift>
+  <CC_CampRaid_ThanksBrought>{X_nameDef} of the {NAME} set down {THING} at our gate, with their thanks for standing with them.</CC_CampRaid_ThanksBrought>
+
+  <CC_CampRaid_Say>That camp is ours to take.</CC_CampRaid_Say>
+  <CC_CampRaid_Say_2>Nobody leaves that camp before we are done with them.</CC_CampRaid_Say_2>
+  <CC_CampRaid_Say_3>We settle this with them today.</CC_CampRaid_Say_3>
+  <CC_CampRaid_Say_4>Wait for the word, then we go in.</CC_CampRaid_Say_4>
+  <CC_CampRaid_SayClaim>That was our camp long before it was theirs.</CC_CampRaid_SayClaim>
+  <CC_CampRaid_SayClaim_2>We camped there first, and we camp there again.</CC_CampRaid_SayClaim_2>
+
+  <CC_CampRaid_CardGathering>{BAND} of {PEOPLE} is gathering at the {SIDE} edge against them.</CC_CampRaid_CardGathering>
+  <CC_CampRaid_CardMoving>{PEOPLE} are on them.</CC_CampRaid_CardMoving>
+  <CC_CampRaid_CardGuard>They stand guard by their fire.</CC_CampRaid_CardGuard>
+
+  <CC_Camp_End_raided>The {NAME} from {FACTION} fled their camp {PLACE} before the band that came against them.</CC_Camp_End_raided>
+  <CC_Camp_End_warned>Warned of the band coming against them, the {NAME} from {FACTION} packed what they could carry and left their camp {PLACE}.</CC_Camp_End_warned>
+
+</LanguageData>

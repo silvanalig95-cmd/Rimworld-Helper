@@ -107,7 +107,7 @@ namespace ColonyCouncil
         public static bool CanCome(Map map, out Faction enemy, out Faction helper)
         {
             enemy = Attacker(map);
-            helper = enemy == null ? null : Helper(enemy);
+            helper = enemy == null ? null : Helper(enemy, map);
             return enemy != null && helper != null;
         }
 
@@ -127,15 +127,18 @@ namespace ColonyCouncil
             return counts.Count == 0 ? null : counts.OrderByDescending(kv => kv.Value).First().Key;
         }
 
-        /// <summary>A people at peace with the colony that can send fighters: the colony's allies first (World/Allies.cs), then those at odds with the attacker.</summary>
-        public static Faction Helper(Faction enemy)
+        /// <summary>
+        /// A people at peace with the colony that can send fighters: the colony's allies first (World/Allies.cs), then those
+        /// at odds with the attacker; never one at war with a camp on the map (their fighters would hunt it down too).
+        /// </summary>
+        public static Faction Helper(Faction enemy, Map map = null)
         {
             var tech = Avail.EffectiveTech;
             var ally = Allies.Of();
-            if (ally != null && ally != enemy && CanSendFighters(ally)) return ally;
+            if (ally != null && ally != enemy && CanSendFighters(ally) && CampCrowds.AtPeaceHere(map, ally)) return ally;
             return Find.FactionManager.AllFactionsListForReading
                 .Where(f => f != enemy && !f.IsPlayer && !f.Hidden && !f.defeated && !f.temporary && f.def.humanlikeFaction && !f.HostileTo(Faction.OfPlayer)
-                            && f.PlayerGoodwill >= 0 && CanSendFighters(f))
+                            && f.PlayerGoodwill >= 0 && CanSendFighters(f) && CampCrowds.AtPeaceHere(map, f))
                 .RandomElementByWeightWithFallback(f => CampStoryMath.HelperWeight(f.PlayerGoodwill, f.HostileTo(enemy)) * Arrivals.TechWeight(f, tech));
         }
 
@@ -237,8 +240,9 @@ namespace ColonyCouncil
             var kind = DefDatabase<CampKindDef>.GetNamedSilentFail("Council_Camp_WarParty");
             // The hurt who can't walk come along in the camp's keeping, carried in spirit; those on their feet first (the first speaks for them).
             var here = b.Here.OrderBy(p => p.Downed ? 1 : 0).ToList();
-            if (kind == null || CampTracker.VisitingAt(map) != null || here.Count == 0 || here.All(p => p.Downed) || CampWeather.Hazard(map) != null || CampWeatherMath.TooExtremeToCome(map.mapTemperature.OutdoorTemp)
-                || !CampSite.TryFind(map, out var center))
+            // With the land as full of camps as it takes, or a camp of a people at war with theirs on it, they go home.
+            if (kind == null || !CampTracker.RoomFor(map) || !CampCrowds.AtPeaceHere(map, b.faction) || here.Count == 0 || here.All(p => p.Downed) || CampWeather.Hazard(map) != null
+                || CampWeatherMath.TooExtremeToCome(map.mapTemperature.OutdoorTemp) || !CampSite.TryFind(map, out var center))
             {
                 GoHome(b, tracker, "CC_WarCamp_Gone");
                 return;
@@ -458,7 +462,7 @@ namespace ColonyCouncil
     {
         public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
         {
-            var c = CampTracker.Asked ?? CampTracker.VisitingAt(ctx?.map);
+            var c = CampTracker.About(ctx);
             if (c == null || ctx?.a == null) return;
             int n = Math.Min(3, c.Here.Count(p => p.health?.hediffSet != null && p.health.hediffSet.HasTendableHediff()));
             if (n == 0) return;
@@ -468,7 +472,7 @@ namespace ColonyCouncil
 
         public override string Unavailable(DilemmaContext ctx)
         {
-            var c = CampTracker.Asked ?? CampTracker.VisitingAt(ctx?.map);
+            var c = CampTracker.About(ctx);
             if (c == null || !c.Here.Any(p => p.health?.hediffSet != null && p.health.hediffSet.HasTendableHediff())) return "CC_CampAsk_NobodyHurt".Translate();
             if (ctx.a == null || ctx.a.WorkTagIsDisabled(WorkTags.Caring)) return "CC_CampTrouble_NoDoctor".Translate();
             return null;
@@ -476,7 +480,7 @@ namespace ColonyCouncil
 
         public override void Apply(DilemmaContext ctx)
         {
-            var c = CampTracker.Asked ?? CampTracker.VisitingAt(ctx?.map);
+            var c = CampTracker.About(ctx);
             if (c == null || ctx.a == null) return;
             var wounded = c.Here.Where(p => p.health?.hediffSet != null && p.health.hediffSet.HasTendableHediff()).OrderByDescending(p => p.health.summaryHealth.SummaryHealthPercent < 0.6f).Take(3).ToList();
             if (OutsiderTend.Send(ctx.a, wounded)) return;

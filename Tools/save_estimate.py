@@ -356,6 +356,18 @@ MODEL = {
     "Camps/CampTracker.cs:diaryCounts": ("fixed", 18, D, "how often each outcome came, one count per kind of outcome"),
     "Camps/CampMemory.cs:people": ("fixed", 24, P, "the people kept of each remembered camp, four at most (CampStoryMath.KeepPeople) per camp"),
     "Camps/WarCamp.cs:pawns": ("while", 7, P, "a war party's fighters, while it's on the map"),
+    # Camps side by side, bands against a camp, old camps' sites (Camps/CampCrowds.cs, CampRaid.cs, CampGround.cs)
+    "Camps/CampTracker.cs:camps": ("while", 4, 2600,
+                                   "per colony: the camps visiting, one at the usual level, four at most on a huge map at \"How many camps\": Crowded "
+                                   "(CampCrowdMath.MostAtOnce); each one's rows (members, plans...) are counted once above, a second to fourth adds as much again"),
+    "Camps/CampTracker.cs:raids": ("while", 1, 700, "per colony: a band against a camp, while it is on the map (one per camp at a time, seldom more than one)"),
+    "Camps/CampRaid.cs:pawns": ("while", 8, P, "per band: its fighters, eight at most (CampRaids.MakeBand), while it is on the map"),
+    "Camps/CampRaid.cs:helpers": ("while", 6, P, "per band: the colonists who fought beside the camp, while the band is on the map"),
+    "Camps/CampTracker.cs:grounds": ("fixed", const("Camps/CampGroundMath.cs", "MostSites", 6), 260,
+                                     "per colony: old camps' sites, the newest CampGroundMath.MostSites, let go once claimed, taken down or built over"),
+    "Camps/CampGround.cs:plans": ("fixed", 6 * 40, 200, "every old site's layout as it was left, its constructions and its beds' places (about forty a site, six sites)"),
+    "Camps/CampGround.cs:held": ("fixed", const("Camps/CampGroundMath.cs", "MostSites", 6) * const("Camps/CampGroundMath.cs", "MostHolders", 6), 160,
+                                 "who held each old site, the newest CampGroundMath.MostHolders of each of six sites"),
     "Happenings/Happenings.cs:regulars": ("fixed", 5, R, "visitors the colony keeps up with, five at most (RegularMath.KeepMax), forgotten after half a year away"),
     "Animals/HerdStory.cs:lineIds": ("fixed", 60, V, "animals of the herd leader's line (ids), the newest 60 (HerdStory.LineMax)"),
     "Animals/HerdStory.cs:lineGens": ("fixed", 60, V, "their generations, beside the ids"),

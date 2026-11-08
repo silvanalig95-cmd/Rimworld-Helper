@@ -12,6 +12,70 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.170.0, camps side by side, bands against a camp, old camps' sites (8 November 2026, the player's explicit requests: "my current
+  map is quite huge, so i don't mind a fair amount of camps, would like to see where this goes. perhaps camps can also get
+  attacked by enemy factions for example. maybe i can set a setting slider for different levels of amount of camps
+  possible", and the same day "they could even move into structures from previous camps and these places become
+  contested spots"). Not released: no version, no What's new round, About.xml and CHANGELOG untouched. Built on 0.167.0.
+  DESIGN.md "Camps side by side, bands against a camp, old camps' sites" (after the 0.167.0 camp section); README "Camps
+  over a stay, a year and for good" three paragraphs and the settings summary; the Almanac's camp page a section
+  (*Several camps, bands against them and old sites*), no keyword changed.
+  - What: a setting *How many camps* (Rare, Usual the default and the old behaviour, Many, Crowded): daily chance 0.03,
+    0.05, 0.12, 0.30; rest after one leaves 22, 15, 5, 1 days; at most 1, 1, 2, 4 at once. The map caps it (one camp
+    under 225 by 225, two under 250, three under 275, the full count at 275 and up; one fewer under three tenths open
+    ground, one only under an eighth). The player's 275 by 275 map takes 1, 1, 2, 4 (model: about 1,
+    1.5, 4.6, 14 camps a year). Camps keep 32 cells between fires and from old sites; peoples at war never side by side.
+    Bands: about one camp in nine at Usual (6%, 11%, 13%, 16%; 1.6 times on a contested site, at most 30%), never on the
+    first day; the game's own combat group of a people at war with the camp's, at the edge nearest the camp, gathering
+    two or three hours; the colony's choice (help: word goes and the player drafts; warn: they stand or go in time; stay
+    out, the default); the game's fight; won, they loot the band's dropped weapons and tend their own; lost, they flee and
+    their dead lie there; helped, goodwill, `sidedWith`/`tookSides` and a gift carried to the gate. Old sites: what a camp
+    leaves standing is a named site with its holders; a new camp may move in (takes over, mends, builds what is missing);
+    contested sites draw rivals and, now and then, two parties the same day (gives way, or blows).
+  - Code: `Camps/CampCrowdMath.cs`, `CampRaidMath.cs`, `CampGroundMath.cs` (pure, linked in Tests.csproj), `CampCrowds.cs`
+    (level, cap by map, apart, at peace), `CampRaid.cs` (`CampRaid`, `CampRaids`, `LordJob_CampRaid`, `LordToil_CampGuard`,
+    the camp's side: `ExposeCrowd`, `CrowdHour`, `Guard`, `AtEase`, `Aftermath`, `BringThanks`), `CampGround.cs`
+    (`CampGround`, `CampHold`, `CampGrounds`), `CampCrowdDebug.cs`. `CampTracker`: `CampHome.camps` (list) with the old
+    `camp` read in at LoadingVars, `raids`, `grounds`; `VisitorsAt`, `VisitingAt(map, fits)`, `About(ctx, fits)`,
+    `RoomFor`; the blocker's `full`; `Prepare` takes old sites and keeps peoples at war apart; `Make(..., ground)`;
+    `Start(setup, force)`. `LordJob_Camp` gains the guard toil, added last (saved groups keep their toils' places).
+    `CampLife`: `Ends` hands the fight to the band, other camps keep their wits while the only danger is a band far off;
+    `Arrived` takes over the old site; `Finish` records it. `CampPackMath`: "warned" packs an hour, by night too. Every
+    "the camp here" reader fixed (callers in Advisor, Ambitions, Arcs, Dilemmas, Happenings, Harm, Health, Heart,
+    Immersion, Interplay, PlayOut, Social, Touches, UI, Wishes, World). Defs: `Defs/CampDefs/Rimfolk_CampCrowds.xml` (the
+    letter in a threat's colour). Keyed `Rimfolk_CampCrowds.xml`, two diary keys in `Rimfolk_Camps.xml`. Tests:
+    `Tools/Tests/CampCrowdTests.cs` (577 checks); `CampTimerTests` knows the code `full`.
+  - Settings: `campCrowd` (a Choice, What's on, world events, under Camps, needs `camps`; Usual by default).
+  - Saved: `camps`, `campRaids`, `grounds` per home; a site's `plans` and `held`; a band's `pawns` and `helpers`; the
+    camp's `groundId`, `raidAt`, `raidWaits`, `raidRolled`, `guarding`, `drivenBy`, `rivalPeople`, `rivalAt`,
+    `gaveWayAt`; a plan's `reuse`. Modelled in `Tools/save_estimate.py`. The player's save (one camp, saved as `camp`)
+    loads into the list. No new Sched slot.
+  - Riskiest: `LordToil_Stage` and `LordToil_DefendPoint` driving a band hostile only to the camp (a neutral band's
+    defend duty against campers; whether it ever turns on colonists nearby; the game's goodwill when the colony fights
+    it); `GenHostility.IsActiveThreatToPlayer` for "only bands on the map"; the camp's new guard toil (the game's defend
+    duty for camp pawns, the herd kept off it); `JobDefOf.TakeInventory` for the loot and `TendPatient` by camp pawns
+    without medicine; `Building.SetFaction` on taken-over huts, doors and fires and `Lord.AddBuilding`; the runner's
+    forced `Goto` (a colonist taken off their work); the storyteller told of a band as a raid; Crowded's 0.3 a day with
+    the camp letters' own waiting (each camp's letter puts the next try off while unanswered); harder fights on a camp
+    in a hut (the band's defend duty may not break in: the fight is then held and the band goes after ten hours).
+  - Try in the game (dev mode; none of it could be run here): 1. Options: What's on, world events, *How many camps*:
+    Crowded. "Rimfolk: check myself" says how many this map takes (4 on the player's 275 by 275, with its open share).
+    2. Debug actions, Rimfolk, "Camps: another camp here now, beside those here" twice: two camps, 32 cells or more
+    apart, each its own card on the World page, letters and asks naming each. 3. "Camps: send a band against a camp
+    now...": the letter in a threat's colour (a war band, armed men, a gang with rifles or a strike team by their age);
+    the band gathers at the edge nearest that camp. Answer "Send word to warn them": a colonist sprints to the camp's
+    fire, says one line, and the camp stands guard (or packs an hour and goes); answer "Send our fighters": draft and send
+    them; check the band goes for the camp and only fights colonists when it is the colony's enemy or they attack it.
+    4. Win: campers take up the dropped weapons and tend their hurt; a letter; with your fighters there, a thanks letter
+    and a porter carrying a gift to the gate. Lose: they flee, their dead lie there, the letter says so. 5. Let a camp
+    leave: its hut and fire stand; the World page lists the old site with its history. "Camps: leave an old camp's site
+    here now..." makes one at once. 6. A new camp (or "Camps: send a rival to an old camp's site...", free site): they
+    move in, the message says what they took over, only the missing pieces get blueprints, damaged walls get mended.
+    7. The same action on a held site: a band of a people at war with the holders comes "to take it back"; won, it holds
+    the site half a day, and the history shows it. 8. Claim the site's hut with the game's claim: next day the site is
+    the colony's and no camp's site. 9. Load the player's 8 November save: its war party camp is in the list, its card
+    and asks work, it leaves as before. 10. "Camps: the camps, old sites and bands (log)".
+
 - 0.169.0, peoples whose age changes (8 November 2026, the first piece of `docs/design/peoples-third.md`, approved by the player:
   "also changing over time: do both", "our older factions should also be able to grow and develop over time to reach
   higher research levels"). Not released: no version, no What's new round, About.xml and CHANGELOG untouched. DESIGN.md

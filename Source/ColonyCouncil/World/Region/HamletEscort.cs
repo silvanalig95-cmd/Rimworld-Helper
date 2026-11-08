@@ -43,7 +43,7 @@ namespace ColonyCouncil
         {
             var kind = DefDatabase<CampKindDef>.GetNamedSilentFail(SettlersCamp);
             var tracker = CampTracker.Instance;
-            if (kind == null || tracker == null || !CampTracker.Enabled || CampTracker.VisitingAt(home) != null) return null;
+            if (kind == null || tracker == null || !CampTracker.RoomFor(home)) return null;
             try
             {
                 var given = h.Living.Where(p => !p.Spawned || p.Map == home).ToList();

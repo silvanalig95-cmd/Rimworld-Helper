@@ -239,7 +239,7 @@ namespace ColonyCouncil
     public class ArcWorker_CampRoad : ArcWorker
     {
         /// <summary>The camp visiting their home now.</summary>
-        private static Camp CampNow(Map map) => CampTracker.Enabled ? CampTracker.VisitingAt(map) : null;
+        private static Camp CampNow(Map map) => CampTracker.Enabled ? CampTracker.VisitingAt(map, c => c.Settled && c.CanTalk) : null;
 
         /// <summary>The camp of an arc (by its id), at whichever colony it visits.</summary>
         private static Camp CampOf(Arc arc) => CampTracker.Instance?.Visiting.FirstOrDefault(c => c.id.ToString() == arc.key);

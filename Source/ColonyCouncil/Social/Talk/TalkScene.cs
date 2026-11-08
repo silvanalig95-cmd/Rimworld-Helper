@@ -239,7 +239,7 @@ namespace ColonyCouncil
         /// <summary>The camp on this map, while camps are on and the camp is coming or settled and not at odds with the colony.</summary>
         private void FindCamp()
         {
-            var c = CampTracker.VisitingAt(map);
+            var c = CampTracker.VisitingAt(map, x => x.CanTalk);
             if (c == null || c.map != map || !c.CanTalk || !CampTracker.Enabled) return;
             camp = c;
             campName = Find.ActiveLanguageWorker.WithDefiniteArticle(c.Label);

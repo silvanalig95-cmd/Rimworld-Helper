@@ -25,6 +25,8 @@ namespace ColonyCouncil
                 return;
             }
             var toil = lord.CurLordToil;
+            // Their guard against a band let go by their group's own clock (half a day and more): at ease again.
+            if (guarding && !(toil is LordToil_CampGuard) && CampRaids.Against(this) == null) guarding = false;
             if (toil is LordToil_Camp && phase == CampPhase.Coming) Arrived();
             else if (toil is LordToil_DefendPoint && phase != CampPhase.Fighting) Fighting();
             else if (toil is LordToil_ExitMapAndDefendSelf && phase != CampPhase.Leaving && phase != CampPhase.Fighting) Scattered();
@@ -136,6 +138,8 @@ namespace ColonyCouncil
             KeepHerd();
             // The land kinds' hour: the harvest hands' supper, the watchers' shelter, a sale on its way (CampKindsLand.cs).
             LandHourly();
+            // A band fated to come against them, a second party for their old site (CampRaid.cs).
+            CrowdHour();
             if (phase == CampPhase.Coming)
             {
                 // Lost on the way: they give up and go.
@@ -159,8 +163,8 @@ namespace ColonyCouncil
             else PlaceWaiting();
             WatchTrade();
             // Packing up in their last hours (CampPack.cs): no new events, and once it's done they set off. A threat
-            // still sends them at once (Ends).
-            if (packingFor != null && !MapFacts.ThreatOn(map))
+            // still sends them at once (Ends), but not a band come against a camp far off (CampRaid.cs).
+            if (packingFor != null && (!MapFacts.ThreatOn(map) || CampRaids.OnlyBandsOn(map)))
             {
                 WatchPacking();
                 return;
@@ -389,8 +393,16 @@ namespace ColonyCouncil
             buildDeadline = Now + Mathf.RoundToInt(GenDate.TicksPerDay * 1.6f);
             dayKey = -1;
             Unpack();
-            foreach (var p in plans.Where(p => !p.placed && !p.dropped)) PlaceBlueprint(p);
             Note(Text("CC_Camp_Arrived"), MessageTypeDefOf.NeutralEvent, Importance.Notable, now: true);
+            // At an old camp's site, what still stands is theirs again; only what is missing is built (CampGround.cs).
+            CampGrounds.TakeOver(this);
+            foreach (var p in plans.Where(p => !p.placed && !p.dropped)) PlaceBlueprint(p);
+            // They found the old site they came for taken, and say so as they make camp here instead.
+            if (!gaveWayAt.NullOrEmpty())
+            {
+                var speaker = leader != null && Here.Contains(leader) ? leader : Here.FirstOrDefault(p => !p.DevelopmentalStage.Juvenile());
+                if (speaker != null) Arrivals.Say(speaker, CampGrounds.Says(this, "CC_CampGround_GaveWaySay", gaveWayAt));
+            }
         }
 
         /// <summary>The materials they carried go down in their stash.</summary>
@@ -807,10 +819,16 @@ namespace ColonyCouncil
         /// <summary>Whether something sends them on their way now (raid, weather, hunger, crowding, time).</summary>
         private bool Ends()
         {
+            // A band come against them: once it moves on them, or they stand guard, the fight decides (CampRaid.cs).
+            var band = CampRaids.Against(this);
+            if (band != null && (band.Moving || guarding)) return true;
             if (MapFacts.ThreatOn(map))
             {
                 // Neighbours settled for good keep to their huts and hope; what they lose is counted after (Holding.cs).
                 if (holding) return false;
+                // The only danger is a band come against a camp: their own (gathering, or beaten and going, CampRaid.cs
+                // watches it), or another camp's far off: they keep their wits about them.
+                if (CampRaids.OnlyBandsOn(map) && (CampRaids.Of(this) != null || !EnemyNear(BandWary))) return false;
                 // A war party takes up arms again, as does a camp asked to stand guard, and a people allied to the colony
                 // fights beside it; enemies come at their own camp, those of them with weapons defend it. Anyone else wants
                 // no part in the colony's fight.
@@ -883,6 +901,9 @@ namespace ColonyCouncil
 
         /// <summary>Enemies come this near their camp: they defend it rather than run through them.</summary>
         public const float DefendRadius = 22f;
+
+        /// <summary>A band come against another camp this near theirs: they go rather than be caught in it.</summary>
+        public const float BandWary = 40f;
 
         /// <summary>Any hostile to the colony (and so to them, at peace with it) up and about within <paramref name="radius"/> of their fire.</summary>
         private bool EnemyNear(float radius)
@@ -1145,6 +1166,8 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("camp clearing up", e);
             }
+            // What they left standing, nobody's, is an old camp's site that another may move into (CampGround.cs).
+            CampGrounds.Left(this);
             phase = CampPhase.Over;
             if (!told || ending == "fight") TellEnding(true);
             // Their people remember how the camp went: helped, hosted, driven off (World/FactionMemory.cs).
@@ -1214,7 +1237,9 @@ namespace ColonyCouncil
             string left = LeftWords();
             if (!left.NullOrEmpty() && !(final && ending == "fight")) text += "\n\n" + left;
             bool bad = ending == "harmed" || ending == "arrest" || ending == "fight" || ending == "fallout" || ending == "forced" || ending == "brawl";
-            Tell(Text("CC_Camp_EndTitle"), text, bad ? LetterDefOf.NegativeEvent : LetterDefOf.NeutralEvent, true, leader);
+            // Gone before a band, or driven off by it: the band's own letter tells the fight (CampRaid.cs), this only their going.
+            if (ending == "raided" || ending == "warned") Note(text, MessageTypeDefOf.NeutralEvent, Importance.Notable, now: true);
+            else Tell(Text("CC_Camp_EndTitle"), text, bad ? LetterDefOf.NegativeEvent : LetterDefOf.NeutralEvent, true, leader);
             try
             {
                 Reactions();
@@ -1236,7 +1261,7 @@ namespace ColonyCouncil
             var colonists = IncidentWorker_Happening.Colonists(map);
             // apart: the camp has gone; the friendship was made face to face at their fire (Visited, Visitors need them together).
             bool peaceful = ending == "time" || ending == "asked" || ending == "weather" || ending == "raid" || ending == "hunger" || ending == "crowded" || ending == "moved" || ending == "declined"
-                            || ending == "brawlTheirs" || ending == "unpaid";
+                            || ending == "brawlTheirs" || ending == "unpaid" || ending == "warned";
             string outcome = peaceful ? "left" : ending == "forced" ? "forced" : ending == "fight" ? "fight" : ending == "fallout" || ending == "brawl" ? "fallout" : "fled";
             var them = members.Where(m => m != null && !m.Dead && !joined.Contains(m)).ToList();
             Pawn friend = null, friendOf = null, foe = null, foeOf = null;

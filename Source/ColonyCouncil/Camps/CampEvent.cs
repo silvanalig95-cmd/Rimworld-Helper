@@ -38,11 +38,24 @@ namespace ColonyCouncil
             return true;
         }
 
-        protected override bool Begin(HappeningContext ctx, HappeningExtension ext) => CampTracker.Instance?.Start(setup) != null;
+        protected override bool Begin(HappeningContext ctx, HappeningExtension ext) => (started = CampTracker.Instance?.Start(setup)) != null;
+
+        /// <summary>The camp this event brought, while its letter is written (with camps side by side, never just "the camp here").</summary>
+        private Camp started;
+
+        /// <summary>The camp this event's letter is about: the one it brought, else the one its stranger or party belongs to, else one of its kind here.</summary>
+        private static Camp CampOfEvent(HappeningContext ctx)
+        {
+            var c = CampTracker.CampOf(ctx?.stranger);
+            if (c != null) return c;
+            foreach (var p in ctx?.group ?? new List<Pawn>())
+                if ((c = CampTracker.CampOf(p)) != null) return c;
+            return CampTracker.VisitingAt(ctx?.map, x => x.kind?.defName == ctx?.note);
+        }
 
         /// <summary>The camp's own tags for its letter: faith, the world event behind it.</summary>
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags) =>
-            CampWords.AddTags(tags, setup?.kind ?? CampTracker.VisitingAt(ctx.map)?.kind, ctx.faction, ctx.map);
+            CampWords.AddTags(tags, setup?.kind ?? DefDatabase<CampKindDef>.GetNamedSilentFail(ctx.note ?? "") ?? CampOfEvent(ctx)?.kind, ctx.faction, ctx.map);
 
         protected override void Abort(HappeningContext ctx)
         {
@@ -54,7 +67,8 @@ namespace ColonyCouncil
 
         protected override void Send(HappeningContext ctx, HappeningExtension ext)
         {
-            var camp = CampTracker.VisitingAt(ctx.map);
+            var camp = started ?? CampOfEvent(ctx);
+            started = null;
             var kind = camp?.kind;
             if (camp == null || kind == null || ext.options.NullOrEmpty())
             {
@@ -95,6 +109,9 @@ namespace ColonyCouncil
         private static string Facts(Camp c)
         {
             var parts = new List<string> { c.Text("CC_Camp_Facts", null, null, c.members.Count) };
+            // An old camp's site they mean to move into (CampGround.cs): what still stands there for them, and whose it was.
+            string ground = CampGrounds.FactsLine(c);
+            if (!ground.NullOrEmpty()) parts.Add(ground);
             // Dressed and pitched for the weather of their stay (CampWeather.cs): what they wear and build, as it is.
             var w = c.pitch;
             if (w != null)
@@ -124,13 +141,13 @@ namespace ColonyCouncil
         public override string Unavailable(HappeningContext ctx, int option)
         {
             if (option == 0) return null;
-            var camp = CampTracker.VisitingAt(ctx.map);
+            var camp = CampOfEvent(ctx);
             return camp != null && camp.CanTalk ? null : "CC_Camp_NotTalking".Translate().ToString();
         }
 
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
         {
-            var camp = CampTracker.VisitingAt(ctx.map);
+            var camp = CampOfEvent(ctx);
             if (camp == null || !camp.CanTalk) return outcome;
             switch (option)
             {

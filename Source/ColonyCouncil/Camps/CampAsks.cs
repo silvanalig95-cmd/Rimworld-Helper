@@ -211,7 +211,7 @@ namespace ColonyCouncil
         {
             var map = ctx?.map;
             if (map == null) return;
-            string label = fromCamp && count <= 1 && CampOn(map) != null ? "CC_Impact_CampBeast".Translate().Resolve() : null;
+            string label = fromCamp && count <= 1 && CampOn(ctx) != null ? "CC_Impact_CampBeast".Translate().Resolve() : null;
             if (label == null)
             {
                 var kinds = this.kinds?.Select(n => DefDatabase<PawnKindDef>.GetNamedSilentFail(n))
@@ -228,9 +228,11 @@ namespace ColonyCouncil
         /// <summary>One of the camp's own herd, when it has a beast to spare (it becomes the colony's where it grazes); a new one otherwise.</summary>
         public bool fromCamp;
 
-        private static Camp CampOn(Map map)
+        /// <summary>The camp the ask is about (the one being dealt with, its stranger's), with beasts of its own.</summary>
+        private static Camp CampOn(DilemmaContext ctx)
         {
-            var c = CampTracker.Asked ?? CampTracker.VisitingAt(map);
+            var map = ctx?.map;
+            var c = CampTracker.About(ctx, x => x.Settled && x.herd.Count > 0);
             return c != null && map != null && c.map == map && c.Settled && c.herd.Count > 0 ? c : null;
         }
 
@@ -240,14 +242,14 @@ namespace ColonyCouncil
                 .RandomElementWithFallback();
 
         public override string Unavailable(DilemmaContext ctx) =>
-            Pick(ctx.map) == null && !(fromCamp && CampOn(ctx.map) != null) ? "CC_CampAsk_NoBeast".Translate().ToString() : null;
+            Pick(ctx.map) == null && !(fromCamp && CampOn(ctx) != null) ? "CC_CampAsk_NoBeast".Translate().ToString() : null;
 
         public override void Apply(DilemmaContext ctx)
         {
             var map = ctx.map;
             if (map == null || (chance < 1f && !Rand.Chance(chance))) return;
             // A beast of the herd they brought, if they have one to spare (CampLook.cs).
-            if (fromCamp && count <= 1 && CampOn(map)?.HandOverBeast() != null) return;
+            if (fromCamp && count <= 1 && CampOn(ctx)?.HandOverBeast() != null) return;
             var kind = Pick(map);
             if (kind == null) return;
             var near = ctx.stranger != null && ctx.stranger.Spawned && ctx.stranger.Map == map ? ctx.stranger.Position

@@ -281,14 +281,20 @@ namespace ColonyCouncil
             if (home != null && home.diary.Count > 0)
                 part.Add("Camps' diary since day " + (home.diarySince + 1) + ": " + string.Join(", ", home.diaryCounts.OrderByDescending(kv => kv.Value).Select(kv => kv.Key + " " + kv.Value))
                          + ". Last days: " + string.Join("; ", home.diary.Skip(Math.Max(0, home.diary.Count - 8)).Select(d => d.TrimEnd('|'))) + ".", UiKit.Faint);
-            if (not != null) part.Add("Camps: none can come now: " + not + ".", home?.camp != null ? UiKit.Good : Color.white);
+            // How many the land takes at the setting's level ("How many camps"), and how many are here.
+            if (tracker != null)
+                part.Add("Camps: " + CampCrowds.HereAt(map) + " here; at \"How many camps\" " + CampCrowds.Level + " this map takes " + CampCrowds.CapAt(map) + " at once (" + map.Size.x + " by " + map.Size.z
+                         + ", " + (CampSite.OpenShare(map) * 100f).ToString("0") + "% of it open to a camp); " + CampGrounds.On(map).Count() + " old camp site(s), " + CampRaids.On(map).Count()
+                         + " band(s) against a camp.", UiKit.Faint);
+            if (not != null) part.Add("Camps: none can come now: " + not + ".", (home?.camps.Count ?? 0) > 0 ? UiKit.Good : Color.white);
             else
             {
                 var why = new List<string>();
                 var setup = tracker.Prepare(map, why);
                 if (setup != null)
                 {
-                    part.Add("Camps: one could come now (" + setup.kind.label + " of " + setup.faction.Name + "). Once a day, at any hour (the kind that comes follows the hour), there's a " + (CampTimer.DailyChance * 100f).ToString("0") + "% chance one does.", UiKit.Good);
+                    part.Add("Camps: one could come now (" + setup.kind.label + " of " + setup.faction.Name + (setup.ground != null ? ", into " + setup.ground.name : "") + "). Once a day, at any hour (the kind that comes follows the hour), there's a "
+                             + (TravelLand.CampChance(map) * 100f).ToString("0") + "% chance one does.", UiKit.Good);
                     CampTracker.Discard(setup);
                 }
                 else

@@ -68,6 +68,9 @@ namespace ColonyCouncil
                 case "moved":
                 case "declined":
                 case "empty":
+                // Driven off by a band of their foes, or gone before it came (CampRaid.cs): no fault of the colony's.
+                case "raided":
+                case "warned":
                     return true;
                 default:
                     return false;

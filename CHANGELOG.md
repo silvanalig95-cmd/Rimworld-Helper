@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## More camps, bands against them, and old camp sites
+
+*8 November 2026, version 0.170.0*
+
+- A new setting, How many camps, under the camps: Rare, Usual (as before), Many or Crowded sets how often camps come, how long the land rests after one leaves, and how many may stand at once, up to four on a big map; a small map or one mostly mountain or water takes fewer.
+- Several camps live side by side, each on its own site well apart, never two peoples at war together, and the World page shows a card for each and why no new one came.
+- Now and then a band of a people at war with a camp's people comes for that camp from the map's edge away from you: you are warned, and may send help, send a runner or a radio call to warn them, or stay out; they stand or flee, and the fight is the game's own.
+- If you fought beside them they thank you with goodwill and a gift carried to your gate, and the band's people remember it; a warning alone is remembered too.
+- What a camp leaves standing becomes a named site with a history of who held it; a later camp may move in, mend what stands and build only what is missing, and a site held by rivals becomes contested, where old holders come back to take it.
+
 ## Peoples whose age changes
 
 *8 November 2026, version 0.169.0*

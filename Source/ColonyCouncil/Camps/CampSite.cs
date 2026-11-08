@@ -23,6 +23,8 @@ namespace ColonyCouncil
         public int room;
         /// <summary>Its blueprint waits for its ground to be cleared first: plain rock mined, a tree no building goes over felled.</summary>
         public bool waiting;
+        /// <summary>It stands already at the old camp's site they move into (CampGround.cs): taken over as they arrive, not built.</summary>
+        public bool reuse;
 
         public CellRect Rect => GenAdj.OccupiedRect(cell, rot, def?.size ?? IntVec2.One);
 
@@ -47,6 +49,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref dropped, "dropped");
             Scribe_Values.Look(ref room, "room");
             Scribe_Values.Look(ref waiting, "waiting");
+            Scribe_Values.Look(ref reuse, "reuse");
         }
     }
 
@@ -234,12 +237,13 @@ namespace ColonyCouncil
             float bestScore = float.MinValue;
             int minSq = minFrom * minFrom, maxSq = MaxFromColony * MaxFromColony;
             int tries = Mathf.Min(Tries, open.Count);
-            var h = CampTracker.HoldingAt(map);
+            // Well clear of every camp on the land, the neighbours settled for good among them (Holding.cs), and of the old
+            // camps' sites another may come back to (CampCrowdMath.Apart): their own sites, their own fires.
+            var fires = CampCrowds.Fires(map);
             for (int i = 0; i < tries; i++)
             {
                 var c = open.Count <= Tries ? open[i] : open.RandomElement();
-                // Well clear of neighbours settled for good (Holding.cs).
-                if (h != null && h.map == map && h.center.IsValid && c.InHorDistOf(h.center, CoreRadius * 2 + 10)) continue;
+                if (!CampCrowds.Apart(map, c, fires)) continue;
                 int d = pts.Count > 0 ? MinDistSquared(c, pts) : int.MaxValue;
                 if (d < minSq || (pts.Count > 0 && d > maxSq)) continue;
                 // Room for the camp: nearly all of its reach ground they can clear and build on, nothing of the colony's in it.
@@ -291,23 +295,48 @@ namespace ColonyCouncil
         private const float ShadeRadius = CoreRadius + 1;
         private const int ShadeTrees = 6;
 
-        private static readonly Dictionary<int, (int day, bool ok)> cache = new Dictionary<int, (int, bool)>();
+        private static readonly Dictionary<int, (int day, int camps, bool ok)> cache = new Dictionary<int, (int, int, bool)>();
+        private static readonly Dictionary<int, (int day, float share)> openCache = new Dictionary<int, (int, float)>();
         private static Game cacheGame;
 
-        /// <summary>Whether a camp could go anywhere on this map (worked out once a day).</summary>
+        /// <summary>Map ids and days start over in every game.</summary>
+        private static void CheckGame()
+        {
+            if (cacheGame == Current.Game) return;
+            cacheGame = Current.Game;
+            cache.Clear();
+            openCache.Clear();
+        }
+
+        /// <summary>Whether a camp could go anywhere on this map, kept apart from the camps there (worked out once a day, and again when one comes or goes).</summary>
         public static bool AnyRoom(Map map)
         {
-            // Map ids and days start over in every game.
-            if (cacheGame != Current.Game)
-            {
-                cacheGame = Current.Game;
-                cache.Clear();
-            }
-            int day = GenDate.DaysPassed;
-            if (cache.TryGetValue(map.uniqueID, out var c) && c.day == day) return c.ok;
-            bool ok = TryFind(map, out _);
-            cache[map.uniqueID] = (day, ok);
+            CheckGame();
+            int day = GenDate.DaysPassed, camps = CampCrowds.Fires(map).Count;
+            if (cache.TryGetValue(map.uniqueID, out var c) && c.day == day && c.camps == camps) return c.ok;
+            bool ok = TryFind(map, out _) || CampGrounds.On(map).Any(g => CampGroundMath.Worth(CampGrounds.Facts(g), 1));
+            cache[map.uniqueID] = (day, camps, ok);
             return ok;
+        }
+
+        /// <summary>
+        /// The share of the map open to a camp (worked out once a day): of every third cell each way inside the margin, those a
+        /// camp's fire could stand on, ground they can walk and clear, clear of the colony's land and zones (CampCrowdMath.Cap).
+        /// </summary>
+        public static float OpenShare(Map map)
+        {
+            if (map == null) return 0f;
+            CheckGame();
+            int day = GenDate.DaysPassed;
+            if (openCache.TryGetValue(map.uniqueID, out var c) && c.day == day) return c.share;
+            int margin = CoreRadius + 6;
+            int all = 0;
+            for (int x = margin; x < map.Size.x - margin; x += 3)
+                for (int z = margin; z < map.Size.z - margin; z += 3)
+                    all++;
+            float share = all == 0 ? 0f : OpenCells(map, margin).Count / (float)all;
+            openCache[map.uniqueID] = (day, share);
+            return share;
         }
 
         /// <summary>A unit step from the colony toward the camp (which way is "away").</summary>

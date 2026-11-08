@@ -20,9 +20,16 @@ namespace ColonyCouncil
             if (p == null || !p.Spawned || !CampTracker.Enabled) return;
             try
             {
-                var camp = CampTracker.VisitingAt(p.Map);
-                if (camp == null || camp.map != p.Map || !camp.Settled || camp.Hostile || camp.warmth == null) return;
-                if (!camp.warmth.TryGetValue(p, out int w) || w < 3) return;
+                // With camps side by side, the one they know best.
+                Camp camp = null;
+                int w = 0;
+                foreach (var c in CampTracker.VisitorsAt(p.Map))
+                    if (c.Settled && !c.Hostile && c.warmth != null && c.warmth.TryGetValue(p, out int x) && x > w)
+                    {
+                        camp = c;
+                        w = x;
+                    }
+                if (camp == null || w < 3) return;
                 sink.Add(Mathf.Min(4f, 1f + 0.5f * w), "CC_Heart_Cause_CampFriends".Translate(camp.faction?.Name ?? "?"));
             }
             catch (Exception e)

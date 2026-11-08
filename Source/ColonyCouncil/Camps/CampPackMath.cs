@@ -100,6 +100,8 @@ namespace ColonyCouncil
                 case "weather":
                 case "grief":
                 case "hamlet":
+                // Warned of a band coming against their camp (CampRaid.cs): they pack what they can in an hour and go.
+                case "warned":
                     return true;
                 default:
                     return false;
@@ -110,7 +112,10 @@ namespace ColonyCouncil
         /// How long packing takes before they set off: a few hours at the end of a stay, one in bad weather or hunger, none in
         /// flight, and none for settlers the colony's caravan takes along at once (they pack as they go).
         /// </summary>
-        public static int PackHours(string ending) => !Orderly(ending) || ending == "hamlet" ? 0 : ending == "weather" || ending == "hunger" ? 1 : 3;
+        public static int PackHours(string ending) => !Orderly(ending) || ending == "hamlet" ? 0 : ending == "weather" || ending == "hunger" || ending == "warned" ? 1 : 3;
+
+        /// <summary>At night they sleep on and pack in the morning, unless a band is coming (warned).</summary>
+        public static bool WaitsForMorning(string ending) => ending != "warned";
 
         /// <summary>
         /// What becomes of a building of theirs: <paramref name="portable"/> (furniture that can be uninstalled) goes with

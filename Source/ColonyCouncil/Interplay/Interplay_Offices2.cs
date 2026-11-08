@@ -129,7 +129,7 @@ namespace ColonyCouncil
         {
             if (!Able(w) || w.Map == null || !w.Map.IsPlayerHome) return;
             // The camp at the warden's own home.
-            var camp = CampTracker.Enabled ? CampTracker.VisitingAt(w.Map) : null;
+            var camp = CampTracker.Enabled ? CampTracker.VisitingAt(w.Map, c => c.Settled && c.CanTalk) : null;
             if (camp != null && camp.map == w.Map && camp.Settled && camp.CanTalk && Ready("warden|camp|" + camp.id, 0.9f))
             {
                 var camper = camp.Here.Where(m => Together.Able(m)).InRandomOrder().FirstOrDefault();

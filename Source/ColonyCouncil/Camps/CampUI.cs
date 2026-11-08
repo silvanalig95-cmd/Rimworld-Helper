@@ -51,9 +51,10 @@ namespace ColonyCouncil
             var map = InView;
             var h = CampTracker.HoldingAt(map);
             if (h != null && h.Active && h.map != null && Find.Maps.Contains(h.map)) y = Card(h, y, w, true);
-            var c = CampTracker.VisitingAt(map);
-            if (c == null || !c.Active || c.map == null || !Find.Maps.Contains(c.map)) return NoCamp(y, w);
-            return Card(c, y, w, false);
+            // Every camp visiting the land, the first come first (camps side by side: CampCrowds.cs).
+            var here = CampTracker.VisitorsAt(map).Where(c => c.Active && c.map != null && Find.Maps.Contains(c.map)).ToList();
+            foreach (var c in here) y = Card(c, y, w, false);
+            return NoCamp(y, w, here.Count);
         }
 
         /// <summary>The colony in view: the map on screen when it's a home, else the seat (on the ground).</summary>
@@ -71,6 +72,11 @@ namespace ColonyCouncil
         {
             y += UiKit.SectionTitle(0f, y, w, (neighbours ? "CC_Holding_Section" : "CC_Camp_Section").Translate(), Icons.Visitor, UiKit.StrangerColor);
             var lines = new List<string> { neighbours ? c.HoldingLine() : c.StatusLine(), c.TermsLine() };
+            // The old camp's site they hold (CampGround.cs), and a band come against them (CampRaid.cs).
+            string ground = c.GroundPanelLine();
+            if (ground != null) lines.Add(ground);
+            string band = c.BandPanelLine();
+            if (band != null) lines.Add(band);
             if (c.Settled && c.treesFelled + c.animalsHunted > 0) lines.Add(c.TakenLine());
             if (c.trader != null) lines.Add("CC_Camp_TraderLine".Translate(c.trader.Named("X")).Resolve());
             // What brought them, read from the land (CampSeekers.cs).
@@ -110,8 +116,11 @@ namespace ColonyCouncil
             return y + h + 14f;
         }
 
-        /// <summary>No camp on the land: one faint line on why none has come, or that one could any morning.</summary>
-        private static float NoCamp(float y, float w)
+        /// <summary>
+        /// Below the camps (or none on the land): one faint line on why no other has come or that one could any day, how many
+        /// camps the land takes at the setting's level, the diary, and the old camps' sites with who held them.
+        /// </summary>
+        private static float NoCamp(float y, float w, int here)
         {
             var tracker = CampTracker.Instance;
             if (tracker == null || !CampTracker.Enabled) return y;
@@ -120,15 +129,26 @@ namespace ColonyCouncil
             var home = tracker.HomeOf(map);
             string why = UiCache.Get(home, 73, () => tracker.WhyNotForPlayer(map));
             if (why.NullOrEmpty()) return y;
-            string text = "CC_Camp_NoneLine".Translate() + " " + why;
+            string text = (here == 0 ? "CC_Camp_NoneLine".Translate().Resolve() + " " : "") + why;
+            string room = UiCache.Get(home, 76, () => CampCrowds.RoomLine(map));
+            if (!room.NullOrEmpty() && (here > 0 || CampCrowds.CapAt(map) > 1)) text += " " + room;
             string known = UiCache.Get(tracker, 74, () => CampReturns.KnownLine());
             if (!known.NullOrEmpty()) text += " " + known;
             string diary = UiCache.Get(home, 75, () => home.DiaryLine());
             if (!diary.NullOrEmpty()) text += " " + diary;
+            string sites = UiCache.Get(home, 77, () => SitesLine(map));
+            if (!sites.NullOrEmpty()) text += "\n" + sites;
             UiKit.Icon(new Rect(2f, y + 2f, 16f, 16f), Icons.Visitor, UiKit.Dim);
             float h = UiKit.Paragraph(24f, y, w - 24f, text, UiKit.Faint, GameFont.Tiny);
-            TooltipHandler.TipRegion(new Rect(0f, y, w, h), "CC_Camp_NoneTip".Translate());
+            TooltipHandler.TipRegion(new Rect(0f, y, w, h), "CC_Camp_NoneTip".Translate() + "\n\n" + "CC_CampCrowd_PanelTip".Translate());
             return y + h + 10f;
+        }
+
+        /// <summary>The old camps' sites on the land, each with who held it and how they left it (CampGround.cs).</summary>
+        private static string SitesLine(Map map)
+        {
+            var lines = CampGrounds.On(map).OrderBy(g => g.leftTick).Select(CampGrounds.HistoryLine).Where(l => !l.NullOrEmpty()).ToList();
+            return lines.Count == 0 ? null : "CC_CampGround_PanelLine".Translate(string.Join("; ", lines)).Resolve();
         }
 
         public static Color TensionColor(float t) => t >= 70f ? UiKit.Bad : t >= 40f ? UiKit.Warn : t >= 15f ? UiKit.Gold : UiKit.Good;

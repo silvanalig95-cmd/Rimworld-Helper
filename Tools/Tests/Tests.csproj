@@ -124,6 +124,9 @@
     <Compile Include="../../Source/ColonyCouncil/Camps/CampTakeMath.cs" Link="CampTakeMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Camps/CampDayMath.cs" Link="CampDayMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Camps/CampPackMath.cs" Link="CampPackMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Camps/CampCrowdMath.cs" Link="CampCrowdMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Camps/CampRaidMath.cs" Link="CampRaidMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Camps/CampGroundMath.cs" Link="CampGroundMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Animals/HerdStoryMath.cs" Link="HerdStoryMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Social/MovingOnMath.cs" Link="MovingOnMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Aspirations/GoalRewardMath.cs" Link="GoalRewardMath.cs" />

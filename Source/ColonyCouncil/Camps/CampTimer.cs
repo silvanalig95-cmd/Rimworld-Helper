@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
 using Verse;
 
@@ -8,9 +9,11 @@ namespace ColonyCouncil
     /// <summary>
     /// Camps come on their own time, not only by luck among Rimfolk's many events (where one stood among some two hundred
     /// and fifty and a colony could go years without seeing one): once a day at each colony on the ground, on its own
-    /// clock (CampHome: its own day to try, its own gap since its last camp, its own diary), while a camp could come (CampTracker.CanStartOn: none here, none gone in the last fortnight or so, never in
+    /// clock (CampHome: its own day to try, its own gap since its last camp, its own diary), while a camp could come (CampTracker.CanStartOn: room for another, none gone in the last fortnight or so, never in
     /// the first twenty days, no really extreme weather, room on the map, a friendly people) and no other question is
-    /// waiting, there's a <see cref="DailyChance"/> one makes camp. So about one in three weeks, by day, unannounced.
+    /// waiting, there's a <see cref="DailyChance"/> one makes camp. So about one in three weeks, by day, unannounced. The
+    /// setting "How many camps" (CampCrowdMath) sets the chance, the rest after a camp and how many stand at once: the
+    /// usual level is this, one at a time.
     /// <para>
     /// The day's one try comes at any hour alike, and which kind of camp comes follows the hour (CampKindDef.arrives:
     /// hunters and fishers at dawn, traders by day, minstrels toward evening, deserters by night, many at any hour). A
@@ -23,7 +26,7 @@ namespace ColonyCouncil
     /// </summary>
     public class CampTimer : GameComponent
     {
-        /// <summary>Each morning a camp could come: about three weeks' wait on average (more at a remote home: TravelLand.CampChance).</summary>
+        /// <summary>Each morning a camp could come, at the usual level: about three weeks' wait on average (more at a remote home: TravelLand.CampChance; the setting's other levels: CampCrowdMath.DailyChance).</summary>
         public const float DailyChance = 0.05f;
 
         /// <summary>How often a passing reason may put the day's try off by an hour before the day counts as shut.</summary>
@@ -106,7 +109,7 @@ namespace ColonyCouncil
             tracker.lastWhy.Clear();
             bool came = def.Worker.TryExecute(parms);
             // What brought them, when the land gave them a reason (CampSeekers.cs), goes in the diary beside the day.
-            home.Record(day, hour, came ? "came" : "failed", came ? CampTracker.VisitingAt(map)?.seeking : string.Join("; ", tracker.lastWhy));
+            home.Record(day, hour, came ? "came" : "failed", came ? CampTracker.VisitorsAt(map).LastOrDefault()?.seeking : string.Join("; ", tracker.lastWhy));
         }
 
         public override void GameComponentTick()

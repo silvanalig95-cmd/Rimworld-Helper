@@ -31,6 +31,8 @@ namespace ColonyCouncil
         /// <summary>What brought them, a reason of the land's (World/Region/TravelMath.cs), or null; and the land as it was read.</summary>
         public string seek;
         public LandReasons land;
+        /// <summary>The old camp's site they move into (CampGround.cs), or null for a fresh spot.</summary>
+        public CampGround ground;
     }
 
     /// <summary>
@@ -58,10 +60,17 @@ namespace ColonyCouncil
             set => lostAt = value;
         }
 
-        /// <summary>The camp visiting the colony's land, one at a time.</summary>
-        public Camp camp;
+        /// <summary>
+        /// The camps visiting the colony's land: one at a time at the usual level, up to four side by side on a big map at
+        /// the setting's highest (CampCrowds.cs). An older save's one camp, saved as "camp", is read into it.
+        /// </summary>
+        public List<Camp> camps = new List<Camp>();
         /// <summary>Neighbours settled on the land for good (Holding.cs): a camp kept in a slot of its own, so camps still come and go beside it.</summary>
         public Camp holding;
+        /// <summary>Bands come against a camp here, while they last (CampRaid.cs).</summary>
+        public List<CampRaid> raids = new List<CampRaid>();
+        /// <summary>Old camps' sites, their constructions still standing, and who held them (CampGround.cs), the newest CampGroundMath.MostSites.</summary>
+        public List<CampGround> grounds = new List<CampGround>();
         public int lastEndedTick = -9999999;
         /// <summary>Days since the last camp on which one could have come (the way was open and the dice were rolled), for the World page.</summary>
         public int openMornings;
@@ -115,7 +124,19 @@ namespace ColonyCouncil
         {
             Scribe_Values.Look(ref home, "home", HomesMath.None);
             Scribe_Values.Look(ref lostAt, "lostAt", ColonyStateMath.NotLost);
-            Scribe_Deep.Look(ref camp, "camp");
+            if (Scribe.mode == LoadSaveMode.Saving) camps?.RemoveAll(c => c == null);
+            Scribe_Collections.Look(ref camps, "camps", LookMode.Deep);
+            // A save from before camps side by side (0.168.0 and older): its one visiting camp, read into the list.
+            if (Scribe.mode == LoadSaveMode.LoadingVars)
+            {
+                Camp old = null;
+                Scribe_Deep.Look(ref old, "camp");
+                if (old != null)
+                {
+                    camps ??= new List<Camp>();
+                    camps.Add(old);
+                }
+            }
             Scribe_Deep.Look(ref holding, "holding");
             Scribe_Values.Look(ref lastEndedTick, "lastEndedTick", -9999999);
             Scribe_Values.Look(ref openMornings, "openMornings", 0);
@@ -127,12 +148,24 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref warBand, "warBand");
             Scribe_Values.Look(ref threatSince, "threatSince", -1);
             Scribe_Values.Look(ref threatRolled, "threatRolled");
+            if (Scribe.mode == LoadSaveMode.Saving)
+            {
+                raids?.RemoveAll(r => r == null || r.Over);
+                grounds?.RemoveAll(g => g == null);
+            }
+            Scribe_Collections.Look(ref raids, "campRaids", LookMode.Deep);
+            Scribe_Collections.Look(ref grounds, "grounds", LookMode.Deep);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (diary == null) diary = new List<string>();
                 if (diaryCounts == null) diaryCounts = new Dictionary<string, int>();
+                camps ??= new List<Camp>();
+                raids ??= new List<CampRaid>();
+                grounds ??= new List<CampGround>();
                 // A camp whose kind was removed with its mod, or whose map is gone: nothing left to keep.
-                if (camp != null && (camp.kind == null || camp.map == null)) camp = null;
+                camps.RemoveAll(c => c == null || c.kind == null || c.map == null);
+                raids.RemoveAll(r => r == null || r.map == null || r.people == null);
+                grounds.RemoveAll(g => g == null || !g.center.IsValid);
                 if (holding != null && (holding.kind == null || holding.map == null)) holding = null;
                 if (warBand != null && (warBand.map == null || warBand.faction == null)) warBand = null;
             }
@@ -166,16 +199,46 @@ namespace ColonyCouncil
         }
 
         /// <summary>The camps' state of the colony whose camp, holding or war party this is (by its map).</summary>
-        public CampHome HomeWith(Camp c) => c?.map == null ? null : homes?.FirstOrDefault(h => h != null && (h.camp == c || h.holding == c)) ?? HomeOf(c.map);
+        public CampHome HomeWith(Camp c) => c?.map == null ? null : homes?.FirstOrDefault(h => h != null && (h.camps.Contains(c) || h.holding == c)) ?? HomeOf(c.map);
 
-        /// <summary>The camp visiting this home (null for a map that isn't one, or with none there).</summary>
-        public static Camp VisitingAt(Map map)
+        /// <summary>The camps visiting this home, the first come first (none for a map that isn't one).</summary>
+        public static List<Camp> VisitorsAt(Map map)
         {
             var t = Instance;
-            if (t == null || map == null || !Homes.IsHome(map)) return null;
-            var c = t.HomeOf(map).camp;
-            return c != null && c.map == map ? c : null;
+            if (t == null || map == null || !Homes.IsHome(map)) return new List<Camp>();
+            return t.HomeOf(map).camps.Where(c => c != null && c.map == map).ToList();
         }
+
+        /// <summary>
+        /// A camp visiting this home (null for a map that isn't one, or with none there): the one being dealt with when it is
+        /// one of them, else the first come; with <paramref name="fits"/>, the first that fits it (a camp settled and at
+        /// peace, a kind of camp). With camps side by side, what asks for "the camp" names the one it means; this is for
+        /// what can be about any of them.
+        /// </summary>
+        public static Camp VisitingAt(Map map, Func<Camp, bool> fits = null)
+        {
+            var here = VisitorsAt(map);
+            if (here.Count == 0) return null;
+            var asked = Asked;
+            if (asked != null && here.Contains(asked) && (fits == null || fits(asked))) return asked;
+            return fits == null ? here[0] : here.FirstOrDefault(fits);
+        }
+
+        /// <summary>
+        /// The camp a question or its answer is about: the one being dealt with (a letter's answer, a button on its page),
+        /// else the one its stranger belongs to, else one visiting its map that fits.
+        /// </summary>
+        public static Camp About(DilemmaContext ctx, Func<Camp, bool> fits = null)
+        {
+            var asked = Asked;
+            if (asked != null && (ctx?.map == null || asked.map == ctx.map) && (fits == null || fits(asked))) return asked;
+            var own = ctx?.stranger != null ? CampOf(ctx.stranger) : null;
+            if (own != null && (fits == null || fits(own))) return own;
+            return VisitingAt(ctx?.map, fits);
+        }
+
+        /// <summary>Another camp could come to this home's map now by their number (CampCrowds: the level's count by the map's room).</summary>
+        public static bool RoomFor(Map map) => Enabled && CampCrowds.Room(map);
 
         /// <summary>The neighbours settled on this home's land (null for a map that isn't one, or with none there).</summary>
         public static Camp HoldingAt(Map map)
@@ -194,14 +257,16 @@ namespace ColonyCouncil
             return t.HomeOf(map).warBand;
         }
 
-        /// <summary>Each colony's visiting camp, in the order the homes were founded.</summary>
+        /// <summary>Each colony's visiting camps, in the order the homes were founded.</summary>
         public IEnumerable<Camp> Visiting
         {
             get
             {
                 if (homes == null) yield break;
                 foreach (var h in homes)
-                    if (h?.camp != null) yield return h.camp;
+                    if (h?.camps != null)
+                        foreach (var c in h.camps)
+                            if (c != null) yield return c;
             }
         }
 
@@ -213,14 +278,20 @@ namespace ColonyCouncil
         {
             ColonyBook.Lost(homes, lost, h =>
             {
-                h.camp = null;
+                h.camps.Clear();
                 h.holding = null;
                 h.warBand = null;
+                h.raids.Clear();
+                h.grounds.Clear();
             });
         }
 
-        /// <summary>Once a day: the camps' clocks of homes lost long enough ago are let go.</summary>
-        internal void Daily() => ColonyBook.Daily(homes, null);
+        /// <summary>Once a day: the camps' clocks of homes lost long enough ago are let go; old camps' sites claimed or gone are let go (CampGround.cs).</summary>
+        internal void Daily()
+        {
+            ColonyBook.Daily(homes, null);
+            foreach (var h in homes.ToList()) CampGrounds.Daily(h);
+        }
 
         /// <summary>A war party is gone from the colony it came to help.</summary>
         public void Forget(WarBand b)
@@ -251,7 +322,7 @@ namespace ColonyCouncil
 
         private static int Now => Find.TickManager.TicksGame;
 
-        /// <summary>The camps on the land: at each colony, the one visiting, then the neighbours settled for good.</summary>
+        /// <summary>The camps on the land: at each colony, those visiting (the first come first), then the neighbours settled for good.</summary>
         public IEnumerable<Camp> All
         {
             get
@@ -259,8 +330,11 @@ namespace ColonyCouncil
                 if (homes == null) yield break;
                 foreach (var h in homes)
                 {
-                    if (h?.camp != null) yield return h.camp;
-                    if (h?.holding != null) yield return h.holding;
+                    if (h == null) continue;
+                    if (h.camps != null)
+                        foreach (var c in h.camps)
+                            if (c != null) yield return c;
+                    if (h.holding != null) yield return h.holding;
                 }
             }
         }
@@ -293,7 +367,7 @@ namespace ColonyCouncil
             bool Fits(Camp c) => c != null && c.map == map && c.phase == CampPhase.Living && !c.Hostile;
             var own = CampOf(other);
             if (Fits(own)) return own;
-            var visiting = VisitingAt(map);
+            var visiting = VisitingAt(map, Fits);
             var holding = HoldingAt(map);
             return Fits(visiting) ? visiting : Fits(holding) ? holding : null;
         }
@@ -323,22 +397,18 @@ namespace ColonyCouncil
             if (c == null) return;
             var h = HomeWith(c);
             if (h == null) return;
-            if (h.camp == c)
-            {
-                h.camp = null;
-                h.lastEndedTick = Now;
-            }
+            if (h.camps.Remove(c)) h.lastEndedTick = Now;
             h.holding = c;
         }
 
         public static bool Enabled => S != null && S.worldEvents && S.camps;
 
         /// <summary>A camp still in one of the colonies' slots (visiting or holding).</summary>
-        private bool Kept(Camp c) => homes != null && homes.Any(h => h != null && (h.camp == c || h.holding == c));
+        private bool Kept(Camp c) => homes != null && homes.Any(h => h != null && (h.camps.Contains(c) || h.holding == c));
 
         public override void GameComponentTick()
         {
-            if (homes == null || !homes.Any(h => h != null && (h.camp != null || h.holding != null))) return;
+            if (homes == null || !homes.Any(h => h != null && (h.camps.Count > 0 || h.holding != null || h.raids.Count > 0))) return;
             int now = Now;
             if (!Sched.Every(now, Sched.RareTicks, Sched.RareCamp)) return;
             foreach (var c in All.ToList())
@@ -356,6 +426,19 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("camp", e);
                 }
             }
+            // Bands come against a camp (CampRaid.cs): watched on the camps' quarter hour.
+            foreach (var h in homes.ToList())
+            {
+                if (h?.raids == null || h.raids.Count == 0) continue;
+                try
+                {
+                    using (PassClock.Time(Pass.RareCamp)) CampRaids.Watch(h, now);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("a band against a camp", e);
+                }
+            }
         }
 
         public void Ended(Camp c)
@@ -369,8 +452,7 @@ namespace ColonyCouncil
                     h.holding = null;
                     return;
                 }
-                if (h.camp != c) continue;
-                h.camp = null;
+                if (!h.camps.Remove(c)) continue;
                 h.lastEndedTick = Now;
                 return;
             }
@@ -390,6 +472,7 @@ namespace ColonyCouncil
                 case null: return null;
                 case "off": return "the camps setting or world events are off";
                 case "here": return "a camp is here already";
+                case "full": return a + " camps are here, as many as the land takes at \"How many camps\": " + CampCrowds.Level;
                 case "nohome": return "there's no home map";
                 case "early": return "never in the first twenty days";
                 case "gap": return "the last camp left on day " + HomeOf(map).lastEndedTick / GenDate.TicksPerDay + ", and the next comes " + a + " days after";
@@ -412,19 +495,24 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The first thing that keeps a camp from coming, as a short code with up to two details (null when nothing
-        /// does): off, here, nohome, early, gap (days between), threat, weather (the temperature), hazard (its name),
-        /// era, nofriends, noroom.
+        /// does): off, here (the land takes one and one is here), full (it takes more and they are all here), nohome,
+        /// early, gap (days between), threat, weather (the temperature), hazard (its name), era, nofriends, noroom.
         /// </summary>
         public (string code, string a, string b) Blocker(Map map)
         {
             if (!Enabled) return ("off", null, null);
-            // Each home has a camp of its own at a time, and its own gap since the last.
+            // Each home has its own camps (as many at once as the setting and the map's room take: CampCrowds.cs), and its
+            // own gap since the last left.
             var home = HomeOf(map);
-            if (home.camp != null) return ("here", null, null);
+            int here = home.camps.Count(c => c != null);
+            string full = CampCrowdMath.Full(here, CampCrowds.CapAt(map));
+            if (full == "here") return ("here", null, null);
+            if (full == "full") return ("full", here.ToString(), null);
             if (map == null || !map.IsPlayerHome) return ("nohome", null, null);
             if (GenDate.DaysPassed < 20) return ("early", (20 - GenDate.DaysPassed).ToString(), null);
-            // A colony known for its hospitality hears from the road sooner (ColonyTraitDef.campGap).
-            float gap = 15f * (CharacterTracker.For(map)?.traits?.CampGap ?? 1f);
+            // A colony known for its hospitality hears from the road sooner (ColonyTraitDef.campGap); the setting's level
+            // sets the rest itself (a fortnight at the usual level).
+            float gap = CampCrowdMath.GapDays(CampCrowds.Level) * (CharacterTracker.For(map)?.traits?.CampGap ?? 1f);
             // And a remote home sooner still: the rest after a camp up to 30% shorter (World/Region/TravelLand.cs).
             gap *= TravelLand.GapFactor(map);
             if (CampStoryMath.InGap(Now, home.lastEndedTick, gap))
@@ -462,17 +550,21 @@ namespace ColonyCouncil
                 why?.Add("no kind of camp can come now");
                 return null;
             }
-            // Where to pitch: in hot weather, among trees for the shade where there are any.
+            // Where to pitch: in hot weather, among trees for the shade where there are any. An old camp's site still
+            // standing may do instead (CampGround.cs), when no fresh spot is left.
             var usual = CampWeather.StayRange(map, GenDate.TicksPerDay * 7);
             bool hot = CampWeatherMath.PitchForHeat(usual.high);
-            if (!CampSite.TryFind(map, out var center, hot))
+            bool spot = CampSite.TryFind(map, out var center, hot);
+            if (!spot && !CampGrounds.On(map).Any())
             {
                 why?.Add("no spot for a camp was found");
                 return null;
             }
             var colony = CampSite.ColonyCenter(map);
-            // People the colony knows, coming back (CampMemory.cs); else a new party.
+            // People the colony knows, coming back (CampMemory.cs); else a new party. Never a people at war with a camp
+            // here already (CampCrowds.AtPeaceHere).
             var past = CampReturns.Pick(map);
+            if (past != null && !CampCrowds.AtPeaceHere(map, past.faction)) past = null;
             // People come at the hours that fit them (CampKindDef.arrives): a returning camp out of its hours mostly comes another day.
             int hourNow = GenLocalDate.HourOfDay(map);
             if (past?.kind != null && !CampStoryMath.InHours(hourNow, past.kind.arrives.min, past.kind.arrives.max) && Rand.Chance(0.75f)) past = null;
@@ -480,8 +572,10 @@ namespace ColonyCouncil
             {
                 // Some kinds pitch by what they came for (the water, the ruins, the monolith: CampKindsLand.cs).
                 string again = CampSeek.Choose(past.kind, land);
-                var at = CampSeek.SiteFor(again, land, map, CampLand.SiteFor(past.kind, map, center, hot), hot);
-                var back = at.IsValid ? Make(map, at, colony, past.kind, past.faction, hot, why, past) : null;
+                // Back to the site they held, or another old one still standing, when it is worth it (CampGround.cs).
+                var ground = CampGrounds.Choose(map, past.kind, past.faction, again);
+                var at = ground != null ? ground.center : spot ? CampSeek.SiteFor(again, land, map, CampLand.SiteFor(past.kind, map, center, hot), hot) : IntVec3.Invalid;
+                var back = at.IsValid ? Make(map, at, colony, past.kind, past.faction, hot, why, past, null, ground) : null;
                 if (back != null)
                 {
                     back.seek = again;
@@ -495,10 +589,30 @@ namespace ColonyCouncil
                 var kind = kinds.RandomElementByWeight(k => k.WeightNow(map) * k.HourFit(hourNow) * TravelLand.SeekWeight(k, map, land) * RiseFallEffects.CampFactor(k, map));
                 // Peoples the colony did good turns for camp here more often, those with grudges less (Interplay/), and a kind
                 // one of Rimfolk's peoples favours (their drovers, their healers on the road) likelier from them (Peoples/).
-                var f = Arrivals.Friendly(x => kind.FitsFaction(x), x => Interplay.CampWeight(x) * RiseFallEffects.CampPeople(kind, map, x) * Peoples.CampFactor(kind, x));
+                // Two peoples at war never camp on the same land (CampCrowds.AtPeaceHere).
+                var f = Arrivals.Friendly(x => kind.FitsFaction(x) && CampCrowds.AtPeaceHere(map, x),
+                    x => Interplay.CampWeight(x) * RiseFallEffects.CampPeople(kind, map, x) * Peoples.CampFactor(kind, x));
                 if (f == null)
                 {
                     why?.Add(kind.label + ": no friendly people for it");
+                    continue;
+                }
+                // An old camp's site still standing, when it is worth moving into (CampGround.cs): they take it over.
+                string seekHere = CampSeek.Choose(kind, land);
+                var old = CampGrounds.Choose(map, kind, f, seekHere);
+                if (old != null)
+                {
+                    var into = Make(map, old.center, colony, kind, f, hot, why, null, null, old);
+                    if (into != null)
+                    {
+                        into.seek = seekHere;
+                        into.land = land;
+                        return into;
+                    }
+                }
+                if (!spot)
+                {
+                    why?.Add(kind.label + ": no spot for it, and no old camp's site it could move into");
                     continue;
                 }
                 var site = CampLand.SiteFor(kind, map, center, hot);
@@ -529,7 +643,7 @@ namespace ColonyCouncil
         /// </summary>
         public Camp StartKind(Map map, CampKindDef kind, Faction f, List<string> why = null)
         {
-            if (map == null || kind == null || VisitingAt(map) != null || !Enabled) return null;
+            if (map == null || kind == null || !RoomFor(map)) return null;
             if (!kind.FitsEra() || !kind.Possible || !kind.FitsMap(map) || kind.seekOnly && !TravelMath.AnyHolds(kind.seeks, TravelLand.Read(map).holds))
             {
                 why?.Add(kind.label + ": not in this era");
@@ -542,7 +656,8 @@ namespace ColonyCouncil
                 why?.Add("no spot for a camp was found");
                 return null;
             }
-            if (f == null || !kind.FitsFaction(f) || !Arrivals.Usable(f) || Arrivals.PersonKind(f) == null) f = Arrivals.Friendly(x => kind.FitsFaction(x), Interplay.CampWeight);
+            if (f == null || !kind.FitsFaction(f) || !Arrivals.Usable(f) || Arrivals.PersonKind(f) == null || !CampCrowds.AtPeaceHere(map, f))
+                f = Arrivals.Friendly(x => kind.FitsFaction(x) && CampCrowds.AtPeaceHere(map, x), Interplay.CampWeight);
             if (f == null)
             {
                 why?.Add(kind.label + ": no friendly people for it");
@@ -563,6 +678,8 @@ namespace ColonyCouncil
         /// The letter a camp's coming gets when no event sends one (a camp a world event called for): its kind's title
         /// and text, with the colonist their people remember by name (or anyone grown) as the one they spoke to.
         /// </summary>
+        public static void AnnounceCamp(Camp c) => Announce(c);
+
         private static void Announce(Camp c)
         {
             if (c?.kind == null || c.map == null) return;
@@ -588,19 +705,25 @@ namespace ColonyCouncil
         /// <summary>
         /// A camp of this kind and people at the spot: its stay, its layout for the weather, its people (those
         /// <paramref name="given"/>, else the remembered ones coming back, filled up with new ones), dressed for the
-        /// stay. Null if it can't be, with why.
+        /// stay. Null if it can't be, with why. <paramref name="ground"/>: an old camp's site they move into (CampGround.cs),
+        /// its standing pieces theirs and what is missing built anew, as many of them as its beds take.
         /// </summary>
-        public CampSetup Make(Map map, IntVec3 center, IntVec3 colony, CampKindDef kind, Faction f, bool hot, List<string> why, PastCamp past, List<Pawn> given = null)
+        public CampSetup Make(Map map, IntVec3 center, IntVec3 colony, CampKindDef kind, Faction f, bool hot, List<string> why, PastCamp past, List<Pawn> given = null,
+            CampGround ground = null)
         {
             var kept = given ?? past?.Living ?? new List<Pawn>();
             int n = given != null ? given.Count : Mathf.Clamp(Mathf.Max(kind.people.RandomInRange, kept.Count), 1, 12);
+            if (ground != null && given == null) n = CampGroundMath.People(n, ground.Beds, Mathf.Max(1, kind.people.min));
             int stay = Mathf.RoundToInt(kind.days.RandomInRange * GenDate.TicksPerDay);
             var (low, high) = CampWeather.StayRange(map, stay);
             bool cold = CampWeatherMath.PitchForCold(low);
-            var plans = CampSite.Layout(map, ref center, kind, n, colony, out var stash, out var share, cold, f, stay / (float)GenDate.TicksPerDay);
+            IntVec3 stash, share;
+            var plans = ground != null
+                ? CampGrounds.Adopt(ground, map, kind, f, n, out stash, out share)
+                : CampSite.Layout(map, ref center, kind, n, colony, out stash, out share, cold, f, stay / (float)GenDate.TicksPerDay);
             if (plans == null)
             {
-                why?.Add(kind.label + HemmedIn);
+                why?.Add(kind.label + (ground != null ? ": " + ground.name + " no longer holds a camp" : HemmedIn));
                 return null;
             }
             var pawns = given != null ? given.ToList() : MakePeople(kind, f, n, kept);
@@ -637,7 +760,7 @@ namespace ColonyCouncil
             return new CampSetup
             {
                 kind = kind, faction = f, map = map, center = center, stash = stash, share = share, colony = colony, plans = plans, pawns = pawns,
-                place = CampSite.Direction(center, colony), stayTicks = stay, low = low, high = high, past = past,
+                place = CampSite.Direction(center, colony), stayTicks = stay, low = low, high = high, past = past, ground = ground,
                 pitch = new CampPitch
                 {
                     clothes = CampWeather.Clothes(dressed),
@@ -697,13 +820,16 @@ namespace ColonyCouncil
             foreach (var p in s.pawns.Where(p => p != null && !p.Spawned)) Arrivals.Discard(p);
         }
 
-        /// <summary>They walk in from the edge nearest their spot, carrying what they need.</summary>
-        public Camp Start(CampSetup s)
+        /// <summary>
+        /// They walk in from the edge nearest their spot, carrying what they need. Not when the land holds as many camps as
+        /// it takes already (CampCrowds), unless <paramref name="force"/> (dev mode's camp beside those here).
+        /// </summary>
+        public Camp Start(CampSetup s, bool force = false)
         {
             if (s?.map == null) return null;
             var home = HomeOf(s.map);
             home.openMornings = 0;
-            if (home.camp != null) return null;
+            if (!force && !CampCrowds.Room(s.map)) return null;
             var map = s.map;
             if (!EntryNear(map, s.center, out var entry)) return null;
             foreach (var p in s.pawns)
@@ -772,11 +898,16 @@ namespace ColonyCouncil
             }
             // Mourners carry their dead in from the edge (CampDead.cs).
             c.BearDead();
-            home.camp = c;
+            home.camps.Add(c);
+            // An old camp's site they move into (CampGround.cs): held by them from now.
+            if (s.ground != null) CampGrounds.Moving(c, s.ground);
             // What the land kinds bring with them: the spacers' wrecked craft (CampKindsLand.cs).
             c.LandStarted();
             return c;
         }
+
+        /// <summary>A cell on the map's edge, open and with a way to <paramref name="center"/>, the nearest of a few tried.</summary>
+        public static bool EdgeNear(Map map, IntVec3 center, out IntVec3 entry) => EntryNear(map, center, out entry);
 
         private static bool EntryNear(Map map, IntVec3 center, out IntVec3 entry)
         {
@@ -805,7 +936,8 @@ namespace ColonyCouncil
             var adults = c.members.Where(p => !p.DevelopmentalStage.Juvenile() && p.inventory != null).ToList();
             if (adults.Count == 0) adults = c.members.Where(p => p.inventory != null).ToList();
             var totals = new Dictionary<ThingDef, int>();
-            foreach (var plan in c.plans)
+            // What stands at an old camp's site they take over needs no materials (CampGround.cs).
+            foreach (var plan in c.plans.Where(p => !p.reuse))
                 foreach (var cost in Camp.Costs(plan))
                     totals[cost.thingDef] = (totals.TryGetValue(cost.thingDef, out var n) ? n : 0) + cost.count;
             int who = 0;

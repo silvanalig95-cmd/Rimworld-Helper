@@ -51,8 +51,8 @@ namespace ColonyCouncil
         /// <summary>A home's remoteness as the rates read it (0 with the rates off, or for a map that isn't a home).</summary>
         public static float Remote(Map home) => On && home != null ? RegionTowns.Remoteness(home) : 0f;
 
-        /// <summary>A camp's daily chance at this home.</summary>
-        public static float CampChance(Map home) => TravelMath.CampChance(CampTimer.DailyChance, Remote(home), Rate);
+        /// <summary>A camp's daily chance at this home, from the setting's level ("How many camps", CampCrowds).</summary>
+        public static float CampChance(Map home) => TravelMath.CampChance(CampCrowds.DailyChance, Remote(home), Rate);
 
         /// <summary>The rest after a camp at this home, as a share of its usual length.</summary>
         public static float GapFactor(Map home) => TravelMath.GapFactor(Remote(home), Rate);

@@ -126,7 +126,7 @@ namespace ColonyCouncil
 
         private static Camp CampOn(Map map)
         {
-            var camp = CampTracker.VisitingAt(map);
+            var camp = CampTracker.VisitingAt(map, c => c.Settled && c.CanTalk);
             return camp != null && camp.map == map && camp.Settled && camp.CanTalk ? camp : null;
         }
 
