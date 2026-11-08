@@ -101,7 +101,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// "Open in its window" from the floating card: a colonist on their page in the People roster, a place on the
-        /// region map, anything else in the region window's drawer on the page that lists its kind.
+        /// region map, a people as its page on Peoples, anything else in the region window's drawer on the page that lists
+        /// its kind.
         /// </summary>
         public static void OpenInWindow(ThingRef r)
         {
@@ -116,6 +117,13 @@ namespace ColonyCouncil
             if (kind == CardKind.Place)
             {
                 ShowOnMap(r);
+                return;
+            }
+            // A people in full is its page on Peoples, chosen in the list there (UI/Region/PeoplesView.cs).
+            if (kind == CardKind.People && ThingRefs.Faction(r) is RimWorld.Faction f)
+            {
+                PeoplesView.Choose(f);
+                Pages.Open(FullPage(kind));
                 return;
             }
             Drawer.Open(RimfolkWindow.World, r, true);

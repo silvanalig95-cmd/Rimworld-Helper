@@ -384,6 +384,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {HealthTests.Run(root, Check)} claims about convalescence and healers.");
         Console.WriteLine($"Checked {SettingsTests.Run(root, Check)} things about the settings window (every field on one page, presets, keys, sizes).");
         Console.WriteLine($"Checked {ImpactHintTests.Run(root, Check)} things about the hints in words under each answer (sizes, order, length, no numbers).");
+        Console.WriteLine($"Checked {ImpactFlavourTests.Run(root, Check)} things about the flavour line under each answer (what it says, which way, no mechanics, length, variety).");
         Console.WriteLine($"Checked {AlmanacLayoutTests.Run(root, Check)} things about the Almanac's layout (columns, tables, text sizes).");
         Console.WriteLine($"Checked {LeaningTests.Run(Check)} things about leanings (how colonists are drawn to other ideoligions, and how fast).");
         Console.WriteLine($"Checked {PracticeTests.Run(Check)} things about practice (habits that grow from what colonists do, kept while lived).");
@@ -411,6 +412,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {ElectionTests.Run(root, Check)} things about elections on the map (the poll, the campaign, the hustings, the count, the planks).");
         Console.WriteLine($"Checked {FairCouncilTests.Run(root, Check)} things about a fairer council (seats named by the age, elections on a record, life goals that last, decrees and groups that mean distinct things).");
         Console.WriteLine($"Checked {LettersPetitionsTests.Run(root, Check)} things about letters that arrive in days and bring something, and shared wants as one petition.");
+        Console.WriteLine($"Checked {PeoplesScreenTests.Run(root, Check)} things about the peoples screen (the list's groups, sorts closest first, search and filters; regard, this season's trend, the web; the layout at both screens with the drawer shut and open; letters by occasion; what each act is for and costs; the seams).");
         Console.WriteLine($"Checked {PostTests.Run(root, Check)} things about the post (letters going with whoever is going their way, the regular post by the age and its pace, the mail coming in and the wait before a messenger, the range until radio: the land's cost, the range by age and means, the relay; the reach line, the words, the seams).");
         Console.WriteLine($"Checked {FellThroughTests.Run(root, Check)} things about answers that fell through in the player's save (the shearing, the sowing, the reasons told).");
         Console.WriteLine($"Checked {SaveWordsTests.Run(root, Check)} things about the words the player's save showed untrue (counts, sparks, wishes, the chronicle, the year's letter, the officers).");

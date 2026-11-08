@@ -49,6 +49,8 @@ namespace ColonyCouncil
         public string impact;
         /// <summary>The same as a hint in words without numbers (Dilemmas/ImpactHints.cs), or null (answers given before the hints came).</summary>
         public string impactHint;
+        /// <summary>The flavour line that stood under the answer (Dilemmas/ImpactFlavourMath.cs), or null (answers given before it came).</summary>
+        public string impactFlavour;
 
         public DilemmaWent Went
         {
@@ -80,6 +82,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref playNote, "playNote");
             Scribe_Values.Look(ref impact, "impact");
             Scribe_Values.Look(ref impactHint, "impactHint");
+            Scribe_Values.Look(ref impactFlavour, "impactFlavour");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 plays ??= new List<int>();
@@ -104,7 +107,8 @@ namespace ColonyCouncil
         public static List<DilemmaRecord> Records => WeekMemory.Instance?.dilemmas;
 
         /// <summary>An answer was given (or the time ran out). Never throws: the dilemma itself matters more than its record.</summary>
-        public static void Record(DilemmaContext ctx, DilemmaOption option, string told, bool risk, bool byDefault, string impact = null, string impactHint = null)
+        public static void Record(DilemmaContext ctx, DilemmaOption option, string told, bool risk, bool byDefault, string impact = null, string impactHint = null,
+            string impactFlavour = null)
         {
             try
             {
@@ -122,7 +126,8 @@ namespace ColonyCouncil
                     risk = risk,
                     byDefault = byDefault,
                     impact = impact,
-                    impactHint = impactHint
+                    impactHint = impactHint,
+                    impactFlavour = impactFlavour
                 };
                 // What the answer set going on the map this very tick.
                 var plays = PlayOutTracker.Instance?.plays;

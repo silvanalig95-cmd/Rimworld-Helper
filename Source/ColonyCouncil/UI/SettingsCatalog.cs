@@ -159,7 +159,8 @@ namespace ColonyCouncil
             ["councilPageState"] = "the filters and sort orders the council's pages remember, set on the pages themselves",
             ["lastSeenVersion"] = "the Rimfolk version the player last saw, so the letter after an update comes once (the row \"What's new letter\")",
             ["speechText"] = "the old switch for colonists speaking, kept in step with speechShows (the row \"Colonists' speech shows as\") so older settings files load",
-            ["showImpact"] = "the old switch for what each answer does, kept in step with impactShows (the row \"What each answer does\") so older settings files load",
+            ["showImpact"] = "the old switch for what each answer does, kept in step with answerImpact (the row \"What each answer does\") so older settings files load",
+            ["impactShows"] = "the choice for what each answer does before the flavour line came, kept in step with answerImpact (the row \"What each answer does\") so older settings files load",
             ["haulImported"] = "whether the standalone Harvest and Haul's settings file was read into the carrying and hauling rows, so it is done once (HaulLinks.ImportStandaloneSettings)"
         };
 
@@ -444,6 +445,8 @@ namespace ColonyCouncil
             // The post (Post/): the mailbag at the gate, carriers going that way, the regular post by the age, the range until radio.
             Toggle("post", "CC_Settings_Post", "CC_SetNote_Post", "neighbourLetters");
             Choice("postPace", "CC_Settings_PostPace", "CC_Settings_PostPace_Tip", "CC_PostPace_", "CC_SetNote_PostPace_", new[] { "Seldom", "Usual", "Often" }, "post");
+            // Letters by occasion (World/LetterOccasions.cs): the kind letters only when there is a reason to write them.
+            Toggle("letterOccasions", "CC_Settings_LetterOccasions", "CC_SetNote_LetterOccasions", "neighbourLetters");
             Toggle("outsiderTalk", "CC_Settings_OutsiderTalk", "CC_SetNote_OutsiderTalk");
             Toggle("outsiderSpar", "CC_Settings_OutsiderSpar", "CC_SetNote_OutsiderSpar", "outsiderTalk");
             Toggle("outsiderProvoke", "CC_Settings_OutsiderProvoke", "CC_SetNote_OutsiderProvoke", "outsiderTalk,deepHooks");
@@ -572,7 +575,7 @@ namespace ColonyCouncil
             Toggle("grantedLetters", "CC_Settings_GrantedLetters", "CC_SetNote_GrantedLetters");
             Toggle("whatsNewLetter", "CC_Settings_WhatsNewLetter", "CC_SetNote_WhatsNewLetter");
             Toggle("letterNotes", "CC_Settings_LetterNotes", "CC_SetNote_LetterNotes", "deepHooks");
-            Choice("impactShows", "CC_Settings_ShowImpact", "CC_Settings_ShowImpact_Tip", "CC_ImpactShows_", "CC_SetNote_ImpactShows_", new[] { "Hints", "Exact", "Off" });
+            Choice("answerImpact", "CC_Settings_ShowImpact", "CC_Settings_ShowImpact_Tip", "CC_ImpactShows_", "CC_SetNote_ImpactShows_", new[] { "Flavour", "Hints", "Exact", "Off" });
             // What shows on the map and in the game's own tabs.
             Section("CC_SetSec_OnTheMap");
             Choice("speechShows", "CC_SetLabel_SpeechShows", "CC_SetTip_SpeechShows", "CC_SpeechShows_", "CC_SetNote_SpeechShows_",

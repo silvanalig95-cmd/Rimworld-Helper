@@ -73,6 +73,17 @@ namespace ColonyCouncil
         /// <summary>Something on the map in working hours that takes people from their work.</summary>
         public bool workTime;
 
+        // For the flavour line (Dilemmas/ImpactFlavourMath.cs), set where the topic doesn't say what a line is.
+
+        /// <summary>What the line is, where its topic doesn't say: a fight, a bond, someone leaving.</summary>
+        public FlavourCue cue;
+        /// <summary>The second person of a pair ("Bea" in "Alo and Bea come to blows"), with <see cref="who"/> the first.</summary>
+        public string with;
+        /// <summary>Something on the map: when in the day it is set for, as <see cref="ImpactHints.WhenKind"/> reads it.</summary>
+        public string when;
+        /// <summary>Something on the map that people gather for.</summary>
+        public bool together;
+
         /// <summary>Good (1), a cost (-1) or neither (0), as it stands with its amount.</summary>
         public int Sign => sum && amount < 0f ? -sign : sign;
 
@@ -213,7 +224,8 @@ namespace ColonyCouncil
                     {
                         kind = l.kind, sign = l.sign, text = l.text, brief = l.brief, key = l.key, amount = l.amount, sum = l.sum,
                         signed = l.signed, chance = l.chance, each = l.each, topic = l.topic, who = l.who, about = l.about, size = l.size,
-                        stock = l.stock, days = l.days, hint = l.hint, hintFull = l.hintFull, hours = l.hours, workTime = l.workTime
+                        stock = l.stock, days = l.days, hint = l.hint, hintFull = l.hintFull, hours = l.hours, workTime = l.workTime, cue = l.cue,
+                        with = l.with, when = l.when, together = l.together
                     };
                     if (copy.key != null) byKey[copy.key] = copy;
                     else if (!seen.Add((int)copy.kind + "|" + copy.text + "|" + copy.chance.ToString(CultureInfo.InvariantCulture))) continue;

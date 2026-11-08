@@ -5,6 +5,38 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Answers say how they would land, not what they change
+
+*8 November 2026, version 0.174.0*
+
+- Under each answer of a council question, an event or a world event there is now one short line in the story's own voice about how it would land, such as "Avila would take it hard; Guido would see the council kept faith." or "Guido won't like it; it may come to a scuffle between Guido and Avila.", in place of the list of spirits, trust and sizes.
+- The line never says the opposite of what happens, names who it touches, and keeps to the weightiest one or two things, a risk to someone always among them; the wording varies from letter to letter but stays the same each time a letter opens.
+- Hovering an answer still shows the plain hint of what it does, and the setting What each answer does keeps hints in words, exact numbers or nothing for anyone who prefers them.
+
+## Your silver at a glance in the trade window
+
+*8 November 2026, version 0.173.1*
+
+- The trade window shows your silver in large at the top of its side panel, now and after the trade with an arrow between, and says plainly whether you can afford it: green with what you pay or are paid, red with how much you are short.
+- Under it, smaller, the trader's silver and whether they can pay you all they owe; the whole box lights up as the game's own does when the silver won't do.
+
+## A new diplomacy screen, and letters written for a reason
+
+*8 November 2026, version 0.173.0*
+
+- The region window's Peoples view is now a list of every people beside the chosen one's page: grouped allies, at peace and at war, with a search, filters for neighbours, mail and dealings, and a sort by closest (the default, in days on the road), regard, name or age.
+- Each people's page shows its age and which way it is heading, its regard with this season's trend and why, what they want and fear as far as you know it, and how to reach them now, with tabs for their towns (closest first), their people, your dealings and your history together.
+- A Do something with panel aims at the whole people, one of their towns or one person, and lists every act that fits, each saying what it brings, how it travels and what it costs, greyed with the reason when it isn't open.
+- Letters now wait for a reason: condolences after a loss you heard of, a warning when you know of a threat to them, an invitation when a feast or fair is near or guest beds stand empty, asking for help when food or medicine runs short, greetings at the turn of the year or after a gift; asking for news is always open. A setting, Letters by occasion, opens them all again.
+- Choosing a people lights its towns on the region map, and a small web shows who stands with whom.
+
+## A camp far off meets you at the gate
+
+*8 November 2026, version 0.172.1*
+
+- Paying a camp, sending a supper or meals, or anything else your colonists carry to a camp no longer sends them across the map when the camp is far: one of the camp walks to your gate to meet them, and the hand-over happens there.
+- Whoever of the camp is already at the gate, such as the woodcutter bringing the load of wood you bought, takes the payment there; a near camp is still met at its fire, and going over to learn from them or to help stays a walk to the camp.
+
 ## Four more peoples: the Signal Line, the Deepwell Union, the Last Republic, the Hollow Fleet
 
 *8 November 2026, version 0.172.0*

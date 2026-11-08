@@ -467,6 +467,43 @@ a scenario-only secret. Everything is set up once, a few seconds into the game, 
 Rimfolk-event battles setting, because the player picked the scenario for them, but they still need a storyteller
 that sends threats.
 
+### What each answer does: flavour under it, hints on hover (the player's request, 8 November 2026)
+
+Every answer of a dilemma, an event or a world event has a line under it (`DilemmaImpact.Option`, one place for all
+three, and the Dilemmas page's record). The player first asked for hints in words without numbers (0.54.1,
+`Dilemmas/ImpactHints.cs`); seeing them under a letter ("Guido's spirits fall noticeably and trust in the council a
+little; Guido thinks noticeably worse of Avila; a gamble: Guido's spirits fall greatly") they asked for them "more like
+flavour writing rather than exact descriptions". The setting `answerImpact` (the row "What each answer does") now has
+four ways: **Flavour** (the default), **Hints**, **Exact** and **Off**; the hints and the numbers stay as they were,
+and the flavour's hover is the hints.
+
+- **One line, how it would land.** `ImpactFlavourMath` (pure, tested in `ImpactFlavourTests`) reads the same
+  `ImpactLine`s as the hints and makes *beats*: each person's or group's spirits and trust on balance (by trust or by
+  mood, whichever weighs more; greatly is a family of its own; both ways at once for one person is mixed feelings),
+  how one comes to see another, a bond or rift, a fight, someone hurt or breaking down, an attack, the gamble (who it
+  would go badly for, that it may come to nothing, or plainly), goods from the stores or for them, what happens on the
+  map (a gathering, the work waiting), other peoples, a camp, the colony's ways, someone joining or leaving, a custom.
+  Each weighs by its size (a little 1, noticeably 2, greatly 3), how sure it is, and whether it singles someone out.
+- **What it says.** The heaviest beat, and at most one more: someone who may be hurt is always said (the harm rule's
+  "shown"), else a gamble at least 15% likely to go wrong, else the next heaviest about someone else (a small thing
+  beside a big one is left to the hover). People by name who feel it the same way are said together ("Guido and Avila
+  would take it badly"); a group going the other way from the one most touched is the many against one ("Some would
+  call it fair; Guido won't."), unless someone else by name goes that other way too. People come before things, the
+  gamble and harm last. About ninety characters at most; when two don't fit, the one that must be said.
+- **Never misleading.** Each family has a direction, and a beat is only said in its own direction's words; the tests
+  try every kind good and bad, check each family's words for the other side's words, and check four hundred made-up
+  answers against each named person's own lines.
+- **The words.** Nearly three hundred in Keyed, in some fifty families (`CC_ImpactFlavour_[family]_[n]`, `_Many_` for
+  a group where it reads differently), `{WOULD}`/`{WONT}` for "would" and "won't" or "may" and "may not". Which words
+  is picked from a number for the letter (`DilemmaImpact.SeedOf`: what and whom it is about and its text) and the
+  answer's place in it, so a letter reads the same each time it opens and its answers don't repeat each other.
+- **Cues.** Where a line's topic doesn't say what it is, the effect that describes it marks it (`ImpactLine.cue`, `with`):
+  the fight, the bonds and grudges, someone joining, leaving or banished, an attack later, a custom kept or broken; a
+  play-out's time of day and whether people gather for it (`when`, `together`).
+- **Settings.** `answerImpact` is new and saved under its own name; `impactShows`, the old choice, is kept in step so
+  an older settings file loads (its exact numbers and off carry over, its hints, the default then, become flavour), as
+  `showImpact` was before it.
+
 ## Layer 6: World events
 
 Rimfolk events happen to the colony; world events happen to the region, and last. A plague among the neighbors, a
@@ -6491,7 +6528,18 @@ written. Now (`World/LetterMath.cs`, pure and tested in `LettersPetitionsTests`;
   so does an invitation not taken up, or one taken up with nobody free to travel. A truce, a ransom, an envoy, a ward, a
   match and an oath give their own reasons (`LetterMath.OwnReasons`) and get no second one.
 
-#### How fast Rimfolk's people go (0.171.1)
+#### Where the colony and a camp meet (0.172.1)
+
+After the player's report ("i decided to pay them and my pawn started walking to the other side of the map ... my pawn
+should pay them once they are closer. these thoughts must be applied to all such kinds of events"): whatever the colony
+carries to a camp (silver paid for an ask or a land work, meals, a supper, provisions, a gift) goes to the camp's fire
+only while the camp is near (its fire within 35 cells of the colony's gate, `CampMeetMath.Far`). A camp further off sends
+the one of its people nearest the gate to meet the colonist there (`Camps/CampMeet.cs`: a walk at an errand's pace and a
+wait of two hours), and the errand waits until they come ("one of the camp is coming to the gate for it"); a camper
+already at the gate, as the one who brings the colony's load of wood, takes it. The answers' words say "the gate, where
+one of the camp meets them" for such a camp. Going to the camp to learn a craft, to visit or to help stays a walk to it.
+
+### How fast Rimfolk's people go (0.171.1)
 
 The game's "walk" urgency is half the ordinary pace and "amble" a third; the colony's own people go about their work at
 the ordinary pace ("jog"). After the player's report ("some of the npcs you create, including the earlier couriers, seem
@@ -6611,6 +6659,91 @@ neighbours' section, on, needs the letters) and **The post's pace** (`postPace`:
   the letters' 250-tick pass, the rest on their hour.
 - **Dev actions** ("Rimfolk"): the post rider now; a visitor group leaves now with the mail; every town's reach and the
   outbox (log); the mail waiting brought by a messenger now; the mail on the road here now.
+
+## The diplomacy screen: the peoples beside their page (the player's request, 8 November 2026)
+
+The player: "the diplomacy screen could be better displayed", "I don't really know which option best to choose from all
+the ones. And they should kind of ... have some motivation to do them", and on the proposal "very good, all of it! i also
+want to quickly see and sort by who's closest". Step A of `docs/design/diplomacy-screen.md` and points 10 and 11 of step 2
+of `docs/design/post-and-letters.md`: Region → Peoples is a list of peoples beside the chosen people's page, every act
+that fits a target says what it brings, how it travels and what it costs, and the kind letters wait for a reason. UI and
+occasion rules only: every act runs through its own code path as before. In `UI/Region/` (`PeoplesView`, `PeoplesList`,
+`PeoplePage`, `PeopleActs`, `PeoplesModel`) and `World/LetterOccasions.cs`; the pure rules in `PeoplesViewMath.cs`,
+`PeopleActMath.cs` and `World/LetterOccasionMath.cs` (`Tools/Tests/PeoplesScreenTests.cs`, "the peoples screen: ").
+
+- **The list** (`PeoplesList`, about 320 wide; 260 beside a narrower page; 200 with compact rows when the drawer is open
+  at the standard window: `PeoplesViewMath.ListWidth`). At its top a search (name, kind, age, towns, the people the
+  colony knows there; every word must be found), three filter chips with their counts (Neighbors: a town within the
+  region map's reach of a home; Mail: a letter on its way in by the post, a call of theirs waiting on the colony, or a
+  letter of theirs waiting in the letter stack for a choice; Dealings: ties or something under way in the diplomacy
+  model), and the sort: Closest (the default), Regard, Name, Age (tribal first), ties by the closest then the name, the
+  player's choice kept for the session (`RegionView.sort`, not reset by a new game). Then "All peoples" (what is owed
+  each way and what each remembers: `DiplomacyPanels.Owed` and `FactionMemoryPanel`, the old view's top and foot), and
+  the groups Allies, At peace and At war (a people at war with everyone always there), each folding. A row (40 high):
+  the people's icon, name, its nearest town's days at the right, a gold mark for mail; under it the stance's dot and
+  word, its age word, an arrow for this season's trend and a small regard meter (goodwill -100 to 100). The days are
+  the post's reach rule (`PostReach.Of`: the world's own travel time at the colony's means), of the town nearest by the
+  road among the three nearest in a straight line; they are worked out a couple of towns a frame and the list is put
+  in order again as they come in ("no road" last). At its foot the web: the first fourteen peoples of the list round an
+  ellipse, the colony in gold at the middle, green lines for allies and red for wars (the game's own relations between
+  them, and the colony's own), a red ring for a people at war with everyone; a dot's name on hover, a click chooses it.
+  It stays fixed at the list's foot on a 1080 screen and ends the list's scroll on a 720 one (`WebFixed`).
+- **The page** (`PeoplePage`). The header: icon and name (a link to its card), "Show on the map" (the region map with its
+  towns lit), its age as a chip with its heading and why (0.169.0, `PeopleAgeWords.Heading`) and its kind, its stance
+  as a chip, the regard meter and goodwill, and this season's trend in words with the deeds behind it ("Warming this
+  season: gave them a gift": its good turns against its wrongs in the last 15 days of the faction memory, by weight,
+  `PeoplesViewMath.Trend`). The tabs (`UiKit.Modes`, with counts): **Overview**: what they want and fear (what a people
+  of Rimfolk's honors and fears, what they hope for at a feast by their age, hard times on them, the threats to them the
+  colony knows of, their wars, what they ask of the colony now; "little is known" when nothing is), how to reach them now
+  (the nearest town and its days, the post's reach lines, who of theirs is at the colony), then "Do something with...".
+  **Towns**: each town closest first with its size (hamlet, trading post, new town or their own word for a town, and its
+  fortune), its days, its reach line and the post's range ring (`PostRing.Ring`); a click shows it on the region map
+  (`Cards.ShowOnMap`), its act button aims "Do something with..." at it. **People**: whom the colony knows of theirs by
+  name, closest town first (their regard in words, Write greyed with why, an act button), who of theirs is at the colony,
+  and a link to Faces. **Dealings**: diplomacy's own body for the people (`DiplomacyPanels.PeopleBody`: their head, pacts,
+  truces, fealty, debts each way, marriages, what is under way). **History**: what they remember of the colony
+  (strongest first) and their timeline with the colony (the world's history of theirs that names a home, the player's
+  people or one of its own), with "Their history" for the whole of it.
+- **"Do something with..."** (`PeopleActs`): the targets the whole people, a town (its picker closest first, with days)
+  and a person (a notable picker). The acts for the target, in sections: the letters by occasion (to their head, the
+  town's head or whoever the colony knows there, or the person); the acts registered on that thing's card
+  (`CardActs.registry.In`: for a people truce, pact, calling a defense pact in, fealty sworn or renounced, envoys asked
+  and sent, a feast, a match, wards asked and offered, an exchange of captives; for a town an envoy sent to it, a vassal's
+  levies and harvest, a former town asked or taken back, a journey; for a person a match proposed and a feast with them
+  among the guests); the debts of honor to call in or answer (`DiplomacyModel.CallAct`, `AnswerAct`); and someone of
+  theirs at the colony to talk with face to face ("Show them"). Each row: its words, its button (the act's own, greyed with
+  its own check's reason), what it brings, and how it travels and what it costs. Built at most once a second; one or
+  two columns by the page's width.
+- **What each is for** (post step 2, point 11; `PeopleActMath.ForKey`, `CostKey`, `Way`, `Alt`; the words in
+  `Rimfolk_PeoplesScreen.xml`): one line each, written from what the act does in code (the letters' `LetterMath.Brings`,
+  `NotableMath.OpinionShift`, `GoodwillShift`, `Grants`; `EnvoyMath.EndRegard` 12, `WardMath.HomeRegard` 20,
+  `PactMath.CartPayShare` four fifths, the rest from each act's own outcome; the tests hold the numbers to the code). Two
+  read by a setting: a truce says it keeps raids away only with "Truces keep raids away" (and the deeper hooks), a
+  warning says it makes a debt of honor only where debts of honor are kept. How it travels: a letter says the post's
+  reach line for its town (by the post rider, by relay, out of reach, by radio; without the post, by their messenger or
+  a call); an envoy or a journey by caravan with its days; a pact called in or levies from home at once; renouncing and a
+  vassal's harvest at home; face to face here.
+- **Letters by occasion** (post step 2, point 10; `LetterOccasionMath.Occasion`, `LetterOccasions.WhyNot`): asking for news
+  always; condolences after a loss heard of and a warning when a threat to them is known (the letters' own topics, as
+  before); an invitation when the home's feast with guests is planned or set, a day of the colony calendar kept with a
+  feast, games, a bonfire, gifts or a custom comes within the week, or its guest beds (Hospitality's) stand empty with
+  nobody from outside staying; asking for help when the stores hold food for under 6 days (where allies send food) or
+  less than one medicine for each colonist; greetings in the last 3 and first 7 days of the year, or within 10 days of a
+  gift the colony gave them (their memory's gift deeds). A letter open says why it fits now ("Now: after the death of
+  Ana, their mayor"); one without a reason is greyed "No reason now: ..." with what would bring one, the same in the
+  letter's window (`Dialog_NeighbourLetter` asks `LetterOccasions.WhyNot` and shows the reason beside each). The letters'
+  own checks (`NeighbourLetters.WhyNot`) are unchanged, so a feast's invitations go as before. Setting **Letters by
+  occasion** (`letterOccasions`, the neighbours' section, on, needs the letters); off, greetings, invitations and help
+  go whenever their old checks allow.
+- **The region map.** The people chosen on Peoples has its towns lit (`RegionView.lit`: a gold ring and its names; a
+  chip at the map's top left says whose and lets them go); the post's range rings stay. The map's List has a "Closest
+  first" chip (`RegionView.closest`, `RegionViewsMath.CompareClosest`): all its rows in one, nearest first.
+- **Faces** stays the view's second mode: the people known by name across every people, old foes, those who left, the
+  faces kept up with are not one people's, so they read cleaner on their own; a people's own notables are its People tab.
+  `Peoples` and `Peoples/Faces` (and `Diplomacy`) still land where they did; a people's card opened in full chooses it
+  in the list (`Cards.OpenInWindow`).
+- **Saved**: nothing. The sort and the filters are the session's, the search, the people chosen, the tab and the target
+  start afresh with a new game.
 
 ### Diplomacy
 
@@ -7593,10 +7726,11 @@ in the five-views check), its own modes and lenses parts of its address. All in 
   caravan (`CardWords.DistanceShort`), its act (a camp's Pay) and "Show" (the map with it picked); a click on the row
   opens its card in the drawer; only rows in sight are drawn; what came before (how the last camps, posts or hamlets
   went, from the history) at the foot. With no card open the List takes the whole width.
-- **Peoples** (`PeoplesView`): Peoples mode, the owed strip (`DiplomacyPanels.Owed`), a card for each people the colony
-  can know (stance, kind, wars, the world's events about it, and where 2a.1's model has it its head, ties, what is
-  under way and its acts, `DiplomacyPanels.PeopleBody`; "Their history"; a click opens the people's card), then what
-  they remember (`FactionMemoryPanel`). Faces mode: the people known by name with Write (`LettersPage.KnownSection`),
+- **Peoples** (`PeoplesView`): Peoples mode, since 8 November 2026 the list of peoples beside the chosen people's page
+  (below, "The diplomacy screen: the peoples beside their page": the owed strip and what they remember are its "All
+  peoples", each people's ties its Dealings tab). Before it was one long scroll: the owed strip, a card for each people
+  (stance, kind, wars, the world's events, its head, ties, what is under way and its acts), then what they remember.
+  Faces mode: the people known by name with Write (`LettersPage.KnownSection`),
   then who's out there by `OutGroup` (`WorldPanel.OutThereSection`: old foes, those who left, the rest, each opening
   its card) and the faces the colony keeps up with.
 - **Here and away** (`HereAndAwayView`): who is here from outside (2a.1's rows, and the camp on the colony's land,

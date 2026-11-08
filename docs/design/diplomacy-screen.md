@@ -15,6 +15,12 @@ Builds after the post's step 1 (`post-and-letters.md`): both touch the town card
 
 ## Step A: the screen
 
+*Built (8 November 2026), points 1 to 5, in `Source/ColonyCouncil/UI/Region/` (`PeoplesView`, `PeoplesList`, `PeoplePage`,
+`PeopleActs`, `PeoplesModel`; the pure rules `PeoplesViewMath`, `PeopleActMath`; DESIGN.md "The diplomacy screen: the
+peoples beside their page"). The distance is the post's reach rule (days on the road at the colony's means over the
+land's own way); "all peoples" heads the list with what is owed each way and what each remembers; Faces stays the view's
+second mode. Every act runs through its own code path; town-level dealings are step B.*
+
 1. **A list of peoples on the left**: grouped allies, neutral, at war; search; filters (neighbours, unread mail, has
    dealings); **sort by distance (closest first), by regard, by name or by age**, distance the default the player can
    change. Each row: name, a small regard bar, stance icon, **its nearest town's distance** (in days by the colony's

@@ -423,6 +423,13 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>The List all in one, closest first (its "Closest first" chip): by tiles from home, then by name, whatever the group.</summary>
+        public static int CompareClosest(RowOrder a, RowOrder b)
+        {
+            int c = a.tiles.CompareTo(b.tiles);
+            return c != 0 ? c : string.CompareOrdinal(a.name, b.name);
+        }
+
         public static int Compare(RowOrder a, RowOrder b)
         {
             int c = a.group.CompareTo(b.group);

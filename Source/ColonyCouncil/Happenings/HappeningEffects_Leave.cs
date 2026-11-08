@@ -23,8 +23,11 @@ namespace ColonyCouncil
             var who = Reached(ctx).Where(p => !p.Dead && p.Faction == Faction.OfPlayer && p.RaceProps.Humanlike && !p.Downed).ToList();
             if (who.Count == 0) return;
             string w = WhoOf(ctx, who);
-            sheet.Add(ImpactKind.People, -1, (joinFaction && ctx.faction != null ? "CC_Impact_LeaveTo" : "CC_Impact_LeaveBlessed").Translate(w, ctx.faction?.Name ?? "").Resolve(),
+            var l = sheet.Add(ImpactKind.People, -1, (joinFaction && ctx.faction != null ? "CC_Impact_LeaveTo" : "CC_Impact_LeaveBlessed").Translate(w, ctx.faction?.Name ?? "").Resolve(),
                 "CC_Impact_LeaveBrief".Translate(w).Resolve());
+            if (l == null) return;
+            l.cue = FlavourCue.Leaves;
+            l.who = w;
         }
 
         public bool joinFaction;

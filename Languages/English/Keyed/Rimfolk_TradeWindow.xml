@@ -129,6 +129,13 @@
   <!-- The foot. -->
   <CC_TradeWin_SilverOurs>Your silver {NOW}, after the trade {AFTER}</CC_TradeWin_SilverOurs>
   <CC_TradeWin_SilverTheirs>Their silver {NOW}, after the trade {AFTER}</CC_TradeWin_SilverTheirs>
+  <CC_TradeWin_WalletTitle>Your silver, now and after this trade</CC_TradeWin_WalletTitle>
+  <CC_TradeWin_WalletPay>You can afford it: you pay {COUNT}</CC_TradeWin_WalletPay>
+  <CC_TradeWin_WalletGet>You are paid {COUNT}</CC_TradeWin_WalletGet>
+  <CC_TradeWin_WalletEven>Nothing changes hands in silver</CC_TradeWin_WalletEven>
+  <CC_TradeWin_WalletShort>Not enough: {COUNT} short</CC_TradeWin_WalletShort>
+  <CC_TradeWin_WalletTheirs>The trader has {NOW}, {AFTER} after</CC_TradeWin_WalletTheirs>
+  <CC_TradeWin_WalletTheirsShort>The trader has {NOW} and is {COUNT} short of paying you</CC_TradeWin_WalletTheirsShort>
   <CC_TradeWin_SilverTip>Each side's silver now and after this trade, as the game counts it. In red or orange where a side runs short.</CC_TradeWin_SilverTip>
 
 </LanguageData>

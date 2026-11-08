@@ -63,6 +63,12 @@ public static class FieldReportTests
         // game's "walk" is half the ordinary pace; errands and trips go at the ordinary pace (Pace.Errand).
         string pace = File.ReadAllText(Path.Combine(root, "Source/ColonyCouncil/Pace.cs"));
         C(pace.Contains("Errand = LocomotionUrgency.Jog") && pace.Contains("p.mindState.duty.locomotion = Pace.Errand"), "an errand goes at the ordinary pace, a lord's travel too");
+        // "i decided to pay them and my pawn started walking to the other side of the map ... my pawn should pay them once
+        // they are closer": a camp far off meets the colony at the gate for whatever is carried to it.
+        C(CampMeetMath.MeetAtGate(CampMeetMath.Far + 1f) && !CampMeetMath.MeetAtGate(CampMeetMath.Far - 1f), "a camp past the line meets at the gate, a near one doesn't");
+        string groupsCarry = File.ReadAllText(Path.Combine(root, "Source/ColonyCouncil/PlayOut/PlayGroups.cs"));
+        int meetAt = groupsCarry.IndexOf("CampMeet.AtGate(p.map, carrier, p.other, out var met)");
+        C(meetAt > 0 && meetAt < groupsCarry.IndexOf("PlaySpots.CampHand(p.map, carrier, p.other) is Pawn hand"), "a carry to a far camp is handed over at the gate before any walk to its fire");
         foreach (var f in new[] { "Couriers/CourierJobs.cs", "Couriers/CourierLord.cs", "Couriers/CourierTracker.cs", "Post/PostRider.cs", "Post/MailWatch.cs",
                      "Post/OwnRiders.cs", "Diplomacy/EnvoyLord.cs", "Diplomacy/RansomParty.cs", "Diplomacy/MatchParty.cs", "Visitors/VisitorLord.cs",
                      "Camps/CampLord.cs", "World/NeighbourLetters.cs" })

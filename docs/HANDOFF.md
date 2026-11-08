@@ -70,6 +70,134 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     (take the child in); "the Sunken Vault falls an age now (testing)" and see the next visitor's patched suit. The asks:
     `Rimfolk_Mission_HelixGenepacks`, `Rimfolk_Mission_LatticeHands`, `Rimfolk_Mission_ChoirStay` (watch the listener at
     someone's work in the afternoon), `Rimfolk_Mission_VaultCells`.
+- 0.174.0, the answers' flavour line (8 November 2026, the player's explicit request with a screenshot of a council
+  letter, its hints under each answer: "remove these exact effect restrictions again, or make them more subtle. more like
+  flavour writing rather than exact descriptions."). Not released: no version, no What's new round, About.xml and
+  CHANGELOG untouched (the lead does that at the merge). DESIGN.md "What each answer does: flavour under it, hints on
+  hover" has all of it; README's paragraph on what each answer does and the settings summary; the Almanac's dilemmas page
+  (*What each answer does*, prose only, keywords unchanged).
+  - What: a fourth way to show what each answer does, **Flavour**, the default for new and older settings. One short line
+    under each answer, how it would land, never naming spirits, trust, opinion, a size or any mechanic: the screenshot's
+    four answers now read "Guido and Avila would go about sour for a while; it may yet turn against Guido.", "Avila would
+    take it hard; Guido would see the council kept faith.", "Guido won't like it; it may come to a scuffle between Guido
+    and Avila." and "Guido would be stung to the quick; it would brighten the day for Avila." (the test prints them). It
+    says the heaviest thing and at most one more: someone who may be hurt always (a fight, a breakdown, an injury, an
+    attack), else a gamble at least 15% likely to go wrong, else the next heaviest about someone else; people by name who
+    feel it alike together ("Guido and Avila"); the many against one ("Some would call it fair; Guido won't."); people
+    before things; at most 90 characters. Hover: the hints in words, as before. Hints, Exact and Off stay as they were.
+    The Dilemmas page's answered list shows the flavour line it had, then the hints (answers given before: the hints).
+    Every letter that shows answers goes through `DilemmaImpact.Option`: dilemmas, Rimfolk's events, world events; the
+    camps' letters (`ChoiceLetter_Camp`) never showed impacts and still don't.
+  - Code: `Dilemmas/ImpactFlavourMath.cs` (pure, linked in Tests.csproj: `FlavourCue`, `FlavourKind`, `FlavourBeat`,
+    `Beats`, `Make`, `Seed`), `ImpactFlavourTests` ("answer flavour: ", 3,494 checks: every family's words clean and going
+    its way, the screenshot's four answers, what it chooses, every kind good and bad, 400 made-up answers against each
+    named person's own lines, the length, the same words each time and different words between a letter's answers, the
+    setting). `ImpactLine` gains `cue`, `with`, `when`, `together` (copied by `ImpactMath.Merge`); `HintWords` gains `Has`
+    and `Variants` (numbered keys); `ImpactShow.Flavour` first. Cues set where the topic doesn't say: the fight and the
+    grudge and bond lines (`Dilemmas.cs`), `DilemmaImpact.Tie`, the customs (`Tradition`), joining, leaving and an attack
+    later (`HappeningEffects.cs`, `HappeningEffects_Leave.cs`), banishment (`BanishDilemmas.cs`), a play-out's time and
+    gathering (`ForHint`). `DilemmaImpact.Option` takes the answer's place (`Dilemmas.cs`, `Happenings.cs`,
+    `WorldSituation.cs`) and `SeedOf(ctx)` (the def or incident, the situation, A, B, X and the letter's text); `Record`
+    gives the flavour line too. Keyed `Rimfolk_DilemmaImpact.xml`: 292 words in 54 families (`CC_ImpactFlavour_*`),
+    `{WOULD}`/`{WONT}`, the setting's tip and notes for four ways.
+  - Settings: `answerImpact` (the row "What each answer does": Flavour, Hints in words, Exact numbers, Off). The old
+    `impactShows` stays saved and in step (Flavour saved as Hints), listed as not drawn; a file without `answerImpact`
+    takes its Exact or Off, and its Hints (the old default) as Flavour.
+  - Saved: `DilemmaRecord.impactFlavour` (a string, at most 200 characters; `Tools/save_estimate.py`'s dilemmas model
+    1,300 to 1,400 bytes a record).
+  - Riskiest (none of it could be run here): how the line reads across the game's real letters (the weights were tuned
+    on the screenshot's dilemma and made-up answers; a dilemma whose lines are mostly in their own words, topic None,
+    says only "Some good would come of it" or "It would cost the colony something"); `CanTranslate` for the numbered
+    keys (a translation without them would show no flavour line, only the hover); the line drawn under the answer by the
+    same hook as the hints (`Patch_DiaOptionImpact`), so two lines of text should fit; an older settings file with Hints
+    chosen by hand reads as Flavour (Hints was the default, so it was never written).
+  - Try in the game (dev mode; none of it could be run here): 1. Council, Decrees, "Dev: dilemma now" until a dilemma
+    comes ("the quartermaster's friends" needs a quartermaster and a rival of theirs): each answer has one line of
+    flavour under it, no two the same; hover one for the hints in words. 2. Postpone the letter and open it again from
+    the letter stack: the same lines. 3. Debug actions, Execute incident, a Rimfolk event with a gamble (`Council_Evt_*`)
+    and a world event ("Start world event..."): a line under each answer, "a gamble" or "may come to blows" where one
+    goes wrong that way. 4. Answer a dilemma, open Council, Dilemmas: hover the answer given, the flavour line then the
+    hints. 5. Settings, How you're told, What each answer does: Hints in words, Exact numbers and Off as before; then
+    Flavour again.
+- 0.173.1, your silver at a glance in the trade window (8 November 2026, the player's screenshot: "here it must be easier
+  to see how much silver i actually have and whether i can afford it, at first glance"). `Window_RimfolkTrade.Wallet`: a
+  box of 112 at the top of the side panel (the side's best deals and summary below it): the colony's silver now and after
+  in Medium with an arrow, a line in Small, green "You can afford it: you pay N" / "You are paid N" or red "Not enough: N
+  short" (the box red-tinted), and the trader's purse in Tiny, orange when short; the game's currency flash lights it.
+  Keys `CC_TradeWin_Wallet*`. The small readout at the foot stays. To try: open a trade, buy more than the colony has.
+- 0.173.0, the diplomacy screen, step A: the peoples beside each one's page, and letters by occasion (8 November 2026, step A of
+  `docs/design/diplomacy-screen.md` and points 10 and 11 of step 2 of `docs/design/post-and-letters.md`, approved by the
+  player: "very good, all of it! i also want to quickly see and sort by who's closest"; their words before: "the diplomacy
+  screen could be better displayed", "I don't really know which option best to choose from all the ones. And they should
+  kind of ... have some motivation to do them"). Not released: no version, no What's new round, About.xml and CHANGELOG
+  untouched. DESIGN.md "The diplomacy screen: the peoples beside their page" has all of it (the list, the page, "Do
+  something with...", what each is for, letters by occasion, the region map, Faces, saved); docs/design/interface.md a
+  section "The Peoples view: a list beside a page"; README a paragraph after the post's and the settings summary; the
+  Almanac's region page a section (*The peoples, closest first*), its neighbours page the letters' table and a sentence,
+  its diplomacy page a sentence (keywords unchanged); the design docs' step A and points 10 and 11 marked built.
+  - What: Region → Peoples is a list on the left (320 wide; 260 beside a narrower page; 200 with compact rows when the
+    drawer is open) and the chosen people's page on the right. The list: a search, filter chips with counts (Neighbors,
+    Mail, Dealings), the sort Closest (the default, kept for the session), Regard, Name, Age; "All peoples" (the old owed
+    strip and what they remember); the groups Allies, At peace, At war; rows with icon, name, nearest town's days by the
+    post's reach rule, a gold mark for mail, stance's dot and word, age, this season's arrow and a regard meter; the web of
+    who stands with whom at the foot (fixed at 1080, in the scroll at 720). The page: header (name as a link, show on the
+    map, age chip with its heading, kind, stance chip, regard meter, this season's trend and its deeds), tabs Overview
+    (what they want and fear, how to reach them now, "Do something with..."), Towns (closest first, size, days, reach line
+    and range ring; a click shows it on the map), People (their notables, who of theirs is here, a link to Faces), Dealings
+    (`DiplomacyPanels.PeopleBody`), History (what they remember, their timeline with the colony). "Do something with...":
+    the people, a town (picker closest first) or a person (notable picker); the letters by occasion, every act registered
+    on that thing's card (`CardActs.registry`), the debts to call in or answer, someone of theirs here face to face; each
+    with what it brings, how it travels and what it costs, greyed with its own reason. Letters by occasion: news always;
+    condolences after a loss heard of; a warning for a threat known; an invitation for the home's feast with guests, a
+    calendar gathering day within 7 days, or empty guest beds with nobody from outside staying; help when food is under
+    6 days or medicine under one a colonist; greetings in the last 3 and first 7 days of the year or within 10 days of a
+    gift given. The letter's window greys a kind letter the same way and says the reason beside it. Choosing a people
+    lights its towns on the region map (a gold ring and their names, a chip to let them go); the map's List has
+    "Closest first". Faces stays the second mode (its lists are across every people); a people's card opened in full
+    chooses it in the list.
+  - Code: `UI/Region/PeoplesView.cs` (rewritten: the header, the split, Faces), `PeoplesList.cs`, `PeoplePage.cs`,
+    `PeopleActs.cs`, `PeoplesModel.cs` (built once a second; the towns' days a couple a frame through the new
+    `PostReach.Kept`); the pure rules `PeoplesViewMath.cs`, `PeopleActMath.cs`, `World/LetterOccasionMath.cs` (linked in
+    Tests.csproj; `PeoplesScreenTests`, "the peoples screen: ", 939 checks: groups, sorts, search, filters, regard, trend,
+    the web, the layout at 1280 by 720 and 1920 by 1080 in both window sizes with the drawer shut and open, the occasions,
+    the acts' kinds, ways, keys and the numbers their lines name held to the code, the words, the seams);
+    `World/LetterOccasions.cs` (the facts from what Rimfolk tracks, kept a second a notable). `NeighboursPanel`'s dialog
+    asks `LetterOccasions.WhyNot` and shows the reason; `NeighbourLetters.WhyNot` is unchanged (a feast's invitations go by
+    it). `RegionView` keeps the sort, filters, search, chosen people, tab, target and `lit`; `RegionMapView` draws the lit
+    towns and the chip; `MapView` the "Closest first" chip (`RegionViewsMath.CompareClosest`); `Cards.OpenInWindow`
+    chooses a people. Keyed `Rimfolk_PeoplesScreen.xml`; `Rimfolk_Windows.xml`'s Peoples line and mode tip.
+  - Settings: `letterOccasions` ("Letters by occasion", the neighbours' section, on, needs the letters). Saved: nothing
+    new (the sort and filters are the session's; the rest starts afresh with a new game).
+  - Riskiest (none of it could be run here): the whole layout by eye at 1280 by 720 and 1920 by 1080, scale 1 (the widths
+    are tested, the drawing isn't: the header's chips and meter at a 346 wide page, the act rows' wrapping, the web's
+    labels); the search field's focus and the hint drawn under it; the reach days settling a couple a frame (the order may
+    shift for a second or two the first time the view opens); the card acts called with a people's, a town's or a
+    notable's ref from outside their card (each act's own `shows` and `whyNot` decide, as on the card); `ChoiceLetter` with
+    `relatedFaction` as "mail"; the greetings, invitations and help that were always open now waiting for an occasion
+    (the setting turns it off).
+  - Try in the game (dev mode; none of it could be run here): 1. Open the region window, Peoples: the list closest first,
+    each row's days ("3 days", "no road"); change the sort to Regard and back, type a town's name in the search, turn on
+    Neighbors. 2. Choose a people: its page, the age chip and heading, the regard meter and "Steady this season" (give
+    them a gift, open again: "Warming this season: ..."); "Show" on the header: the region map with its towns ringed in
+    gold and the chip "Towns of ... lit". 3. Towns tab: closest first; a click shows the town on the map. 4. Overview, "Do
+    something with...": the letters, Greetings greyed "No reason now: greetings go at the turn of the year or with a gift"
+    mid-year; Asking for news open; a town's target and a person's target change the list; Propose a pact or Offer a truce
+    opens the same letter as from the people's card. 5. Debug actions to make an occasion: drop food to a few days (Help
+    opens "Now: the stores are short of food"), plan a feast (Invitation opens), and the letter's window shows the same
+    reasons beside each purpose. 6. Settings, Letters by occasion off: greetings open again. 7. Map's List: "Closest
+    first" puts every row in one, nearest first. 8. Drawer open (click a name link) at 1010 wide: the list narrows to
+    compact rows and the page still fits.
+- 0.172.1, a camp far off meets the colony at the gate (8 November 2026, the player's report: "i had a logger event come
+  up, i decided to pay them and my pawn started walking to the other side of the map ... my pawn should pay them once
+  they are closer. these thoughts must be applied to all such kinds of events"). Cause: `CampAnswers.Pay`/`Carry` and
+  every carry to a camp (`DilemmaEffect_CarryOut` to `PlaySpot.Camp`) walked to the camp's fire wherever it stood. Fix:
+  `Camps/CampMeet.cs` and `CampMeetMath.cs` (pure, linked): a camp whose fire is over 35 cells from the gate sends its
+  person nearest the gate there (Goto at `Pace.Errand`, then a two-hour wait; kept for the session only), the carry
+  waits ("CC_Play_Why_CampComing") and is handed over at the gate; a camper already within 9 cells of it takes it (the
+  woodcutter with the bought wood). `PlayGroups` asks it before walking to the fire; `DilemmaImpact.Spot` words such a
+  camp's spot "the gate, where one of the camp meets them". Tests in `FieldReportTests`. The woodcutters' own felling
+  stays round their camp; the wood the colony buys already comes to the gate. To try: a camp far across the map, buy
+  their wood or send a supper: a camper walks to the gate, the colonist meets them there.
 - 0.172.0, release F, the first four peoples of the third round: the Signal Line, the Deepwell Union, the Last Republic and the
   Hollow Fleet (8 November 2026, step 2 of `docs/design/peoples-third.md`, approved by the player as written). Not
   released: no What's new round, About.xml and CHANGELOG untouched, no version number (the lead does that at the merge).

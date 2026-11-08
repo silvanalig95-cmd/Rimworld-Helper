@@ -410,7 +410,7 @@ public static class PeopleAgesTests
           && agesCs.Contains("Pacts.With(f)") && agesCs.Contains("FactionRelationKind.Ally") && agesCs.Contains("LedgerRuin.Fight") && agesCs.Contains("ws.history"),
             "the rule reads what Rimfolk records: the trade record, the memory, the history, the pacts, the ruins, the world events");
         C(words.Contains("global::ColonyCouncil.Tell.Letter(") && words.Contains("Ages.Form(AgeFeature.Founding") && words.Contains("CardSections.RegisterLines(CardKind.People")
-          && Read("UI/Region/PeoplesView.cs").Contains("PeopleAgeWords.Heading(f)"), "the letter through Tell, by the colony's means; their card and the region's page");
+          && Read("UI/Region/PeoplesModel.cs").Contains("PeopleAgeWords.Heading(f)"), "the letter through Tell, by the colony's means; their card and the region's page");
         C(patches.Contains("[HarmonyPatch(typeof(ThingSetMaker_TraderStock), \"Generate\"") && patches.Contains("[HarmonyPatch(typeof(FactionGiftUtility), \"GiveGiftInternal\")]")
           && Regex.Matches(patches, "!RimfolkPatches.On").Count >= 4 && patches.Contains("Finalizer"), "the traders' caps and the gifts by the game's own steps, under the deeper hooks, put back always");
         C(gifts.Contains("AgeArms.ToAge(p, age, AgeArms.LastArmed, AgeArms.LastKit)") && gifts.Contains("PeoplesGearMath.GenesAge(age)") && gifts.Contains("PeopleAgesMath.Later((int)d.techLevel, age)"),

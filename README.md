@@ -567,8 +567,16 @@ and off with "Banishment by the council" on the settings' What's on page.
 
 **What each answer does.** Every answer in a dilemma's letter, and in the letters of Rimfolk's events and world
 events, has a short line under it, and hovering it shows more, grouped by kind, with gains in green and costs in red.
-The setting **What each answer does** (How you're told page) chooses how. **Hints in words** (the default) never shows a
-number: what happens on the map and when, which way spirits and trust go and roughly how far ("a little",
+The setting **What each answer does** (How you're told page) chooses how. **Flavour** (the default since 8 November
+2026, the player's request: "more like flavour writing rather than exact descriptions") puts one short line under each
+answer, how it would land as someone at the table might say it, never naming spirits, trust, opinion, a size or any
+other mechanic: "It would mean a lot to Avila; Guido won't forget it.", "Guido and Avila may come to blows.", "Some
+would call it fair; Guido won't.", "The stores would feel it." It says the biggest thing and at most one more (someone
+who may be hurt always, a real gamble next, else someone else), by name, within about ninety characters, always the
+way things really go for them; its words are picked from nearly three hundred in some fifty families
+(`Dilemmas/ImpactFlavourMath.cs`, made from the same lines as the hints), the same for an answer each time its letter
+opens and different between the answers of one letter. Hovering the answer shows the hints. **Hints in words** never
+shows a number: what happens on the map and when, which way spirits and trust go and roughly how far ("a little",
 "noticeably", "greatly"), who by name or group, what it costs ("uses some of the stores' beer", "costs a few hours of
 work"), how likely ("may", "likely"), whether it's a gamble, and which way the colony leans
 (`Dilemmas/ImpactHints.cs`, made from the same lines as the numbers). **Exact numbers** shows who feels what and for
@@ -576,7 +584,7 @@ how long, trust, what it takes from the stores or gives, what happens on the map
 ("1 in 4"): moods show their real size for each colonist (the reward and downside strengths and each colonist's
 standards count) and goods are counted from the stores (an answer that would take the last medicine says so). **Off**
 leaves the letters as they are. It is all read from the colony as it is when the letter opens. The Dilemmas page
-shows, on hover, what each answer given was to do, in words or numbers as the setting has it. The dilemmas, the customs and the strangers' questions were rebalanced by the same reckoning:
+shows, on hover, what each answer given was to do, as flavour, words or numbers as the setting has it. The dilemmas, the customs and the strangers' questions were rebalanced by the same reckoning:
 every answer has its own upside and its own cost, and the safe or quiet answer gives the least (making a thief work it
 off costs them a disciplined mood; the omen ceremony is a gamble).
 
@@ -3261,6 +3269,21 @@ end the range in the spacer age. Each town's card says how to reach them now and
 two days on the road: by the next post rider", "far: by relay through Emberford, about seven days", "out of reach until
 you have radio"), and the region map rings the far and the out-of-reach towns.
 
+**The peoples, closest first, and what to do with each.** The region window's Peoples is a list of every people beside
+the page of the one you choose. The list has a search, filters (neighbors, mail, dealings) and a sort: closest first
+by default (their nearest town's days on the road at the colony's means, as the post reckons it), or by regard, name or
+age; each row shows their stance, a small regard meter, those days, a mark for mail and their age, grouped into allies,
+at peace and at war, with a small web of who stands with whom at the foot. The page has their age and which way it is
+heading, their stance, their regard with how it moved this season and why, and five tabs: Overview (what they honor and
+fear, what they hope for at a feast, hard times and threats on them, how to reach them now), Towns (closest first, a click
+shows it on the region map), People (whom you know of theirs by name), Dealings and History. "Do something with..." on
+the Overview aims at the whole people, one of their towns or one of their people and lists every act that fits, each
+saying what it brings, how it travels and what it costs, greyed with the reason when it can't be done now. The kind
+letters wait for a reason (the setting *Letters by occasion*, on): condolences after a loss you heard of, a warning when
+you know of a threat to them, an invitation when a feast or a gathering day is coming or the guest beds stand empty,
+asking for help when the stores are short of food or medicine, greetings at the turn of the year or with a gift, and
+asking for news always. Choosing a people lights its towns on the region map, and the map's list can sort closest first.
+
 **Talking with outsiders, and doing it by themselves.** With a colonist selected, right-click someone from outside the
 colony for "Talk with...": news of their home, a meal or a drink, a gift, a good word at home, a lesson, something
 brought next time, an invitation to stay, getting to know them, courting, faith, a practice bout, hard words, a duel,
@@ -4565,7 +4588,7 @@ The pages:
   faces, rise and fall, trading posts, hamlets, small towns' maps); **bonds with other peoples** (favors owed and
   called in; pacts and truces, with pacts of fealty, the colony sworn to a stronger neighbor or keeping vassals of
   its own, and truces keeping raids away under them; ransom, envoys, feasts with guests, marriage alliances, wards and
-  hostages, colony renown, against their nature); neighbours and letters (notables, letters, the post and its pace: Seldom, As usual or Often, talking with outsiders,
+  hostages, colony renown, against their nature); neighbours and letters (notables, letters, the post and its pace: Seldom, As usual or Often, letters by occasion, talking with outsiders,
   sparring, insults, duels, their chatter, the right-click's things done by themselves: off, free ones only or within
   limits); then the tools: journeys, many colonies (fresh starts, and newcomers for
   them, and handing a colony over), the weather (weather that changes like weather,
@@ -4585,8 +4608,8 @@ The pages:
   news goes (**Colony news**: one letter each evening by default, as it happens, or off, to the History tab only);
   the most messages and letters that only tell a day for each colony (twelve and four, past them the evening's news);
   a message for every dream, letters or messages for new and granted wishes, a letter after each update (on by
-  default; see CHANGELOG.md), the notes in the game's letters, **What each answer does** (hints in words, exact
-  numbers or off); how colonists' speech shows (bubbles with Interaction Bubbles, floating text, or off), the visual
+  default; see CHANGELOG.md), the notes in the game's letters, **What each answer does** (flavour, hints in words,
+  exact numbers or off); how colonists' speech shows (bubbles with Interaction Bubbles, floating text, or off), the visual
   and sound touches, the mood's name in a mood bubble, mood insight (and its hints in the Needs tab), the inspector's
   strain line, Rimfolk's column in the game's Social tab; the alerts (and the reminder about a defense line's shut
   gate); the slow speed buttons (and putting them back), where the council button sits in the bottom bar, the region,

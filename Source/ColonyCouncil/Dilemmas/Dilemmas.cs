@@ -610,8 +610,12 @@ namespace ColonyCouncil
                 var o = AboutOf(ctx, p);
                 if (o == null || o == p || !p.IsColonist || !o.IsColonist) continue;
                 if (!pairs.Add(p.thingIDNumber < o.thingIDNumber ? (p, o) : (o, p))) continue;
-                sheet.Add(ImpactKind.Opinion, tie == "CC_Impact_TieGrudge" ? -1 : 1, tie.Translate(p.LabelShort, o.LabelShort).Resolve(), null,
+                var l = sheet.Add(ImpactKind.Opinion, tie == "CC_Impact_TieGrudge" ? -1 : 1, tie.Translate(p.LabelShort, o.LabelShort).Resolve(), null,
                     tie + "|" + Math.Min(p.thingIDNumber, o.thingIDNumber) + "|" + Math.Max(p.thingIDNumber, o.thingIDNumber));
+                if (l == null) continue;
+                l.cue = tie == "CC_Impact_TieGrudge" ? FlavourCue.Rift : FlavourCue.Bond;
+                l.who = p.LabelShort;
+                l.with = o.LabelShort;
             }
         }
 
@@ -840,8 +844,13 @@ namespace ColonyCouncil
             var b = withStranger ? ctx?.stranger : ctx?.b;
             if (ctx?.a == null || b == null || !b.RaceProps.Humanlike) return;
             if (ctx.a.WorkTagIsDisabled(WorkTags.Violent) && b.WorkTagIsDisabled(WorkTags.Violent)) return;
-            sheet.Add(ImpactKind.Health, -1, "CC_Impact_Fight".Translate(ctx.a.LabelShort, b.LabelShort).Resolve(),
+            var l = sheet.Add(ImpactKind.Health, -1, "CC_Impact_Fight".Translate(ctx.a.LabelShort, b.LabelShort).Resolve(),
                 "CC_Impact_FightBrief".Translate(ctx.a.LabelShort, b.LabelShort).Resolve(), "fight|" + b.thingIDNumber);
+            if (l == null) return;
+            // For the flavour line: who comes to blows with whom.
+            l.cue = FlavourCue.Fight;
+            l.who = ctx.a.LabelShort;
+            l.with = b.LabelShort;
         }
 
         public override void Apply(DilemmaContext ctx)
@@ -1077,7 +1086,7 @@ namespace ColonyCouncil
                     // The default answer is always possible, so the letter can never trap the player.
                     string why = i == ctx.def.defaultOption ? null : o.effects.Select(e => e.Unavailable(ctx)).FirstOrDefault(r => r != null);
                     // What the answer does, under it and on hover (Dilemmas/DilemmaImpact.cs).
-                    yield return DilemmaImpact.Option(ctx, o, ctx.Format(o.label), why, () =>
+                    yield return DilemmaImpact.Option(ctx, o, index, ctx.Format(o.label), why, () =>
                     {
                         // The council of the colony it's about.
                         DilemmaTracker.ForQuestion(ctx)?.Resolve(this, index, false);
@@ -1350,7 +1359,7 @@ namespace ColonyCouncil
             // Whoever the answer calls on (a doctor, a talker) first, so their skill counts against the risk.
             DilemmaChoices.PickHelpers(option, ctx);
             // What it does, as it stands before it's done (the tradition too), for Council -> Dilemmas.
-            string impact = DilemmaImpact.Record(ctx, option, out string impactHint);
+            string impact = DilemmaImpact.Record(ctx, option, ctx.def.options.IndexOf(option), out string impactHint, out string impactFlavour);
             if (ctx.def.traditionOption >= 0 && comp != null) Tradition(ctx, index == ctx.def.traditionOption, comp);
             bool risk = option.riskChance > 0f && Rand.Chance(DilemmaChoices.RiskChance(option, ctx, option.riskChance));
             // What the answer sets going on the map comes first, so it can hold the moods of those taking part.
@@ -1373,7 +1382,7 @@ namespace ColonyCouncil
             string told = ctx.Format(outcome);
             // Written down for Council → Dilemmas, with what it set going on the map (UI/DilemmaLog.cs), and in the history's
             // answers' log, which the chronicle shows with what came of it (Dilemmas/Answers.cs).
-            DilemmaLog.Record(ctx, option, told, risk, byDefault, impact, impactHint);
+            DilemmaLog.Record(ctx, option, told, risk, byDefault, impact, impactHint, impactFlavour);
             Answers.Record("dilemma", ctx.def.LabelCap, ctx.Format(option.label), told, ctx.a, ctx.faction, ctx.map, byDefault, risk, plays: plays);
             // What the answer set going on the map tells its outcome when it's over; until then, only when it will be.
             if (!told.NullOrEmpty() && !PlayOuts.TellWhenDone(plays, told, byDefault ? "CC_Dilemma_NoAnswer".Translate().ToString() : null))

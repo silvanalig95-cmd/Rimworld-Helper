@@ -70,10 +70,15 @@ namespace ColonyCouncil
         public bool enableDilemmas = true;
         /// <summary>Banishment by the council (Social/Banishment.cs): a word for someone who keeps causing trouble and whom most can't stand, and banishment if it goes on.</summary>
         public bool councilBanishment = true;
-        /// <summary>The old "show what each answer does" switch, kept in step with <see cref="impactShows"/> (off when it is Off) so older settings files load.</summary>
+        /// <summary>The old "show what each answer does" switch, kept in step with <see cref="answerImpact"/> (off when it is Off) so older settings files load.</summary>
         public bool showImpact = true;
-        /// <summary>What each answer of a dilemma or an event does, under it in the letter and on the Dilemmas page: hints in words, exact numbers, or nothing (Dilemmas/DilemmaImpact.cs).</summary>
+        /// <summary>
+        /// The choice before the flavour line came (hints in words, exact numbers or off), kept in step with
+        /// <see cref="answerImpact"/> so older settings files load: their hints, the default then, read as the flavour line.
+        /// </summary>
         public ImpactShow impactShows = ImpactShow.Hints;
+        /// <summary>What each answer of a dilemma or an event does, under it in the letter and on the Dilemmas page: a line of flavour (hints on hover), hints in words, exact numbers, or nothing (Dilemmas/DilemmaImpact.cs).</summary>
+        public ImpactShow answerImpact = ImpactShow.Flavour;
         public bool annals = true;
         public bool decreeRequests = true;
         public bool anniversaries = true;
@@ -177,6 +182,8 @@ namespace ColonyCouncil
         public bool post = true;
         /// <summary>How often the regular post comes (Post/PostRider.cs): seldom, as usual, often.</summary>
         public PostPace postPace = PostPace.Usual;
+        /// <summary>Letters by occasion (World/LetterOccasions.cs): greetings, invitations and asking for help only when there is a reason.</summary>
+        public bool letterOccasions = true;
         /// <summary>The region: each town within reach has a fortune that the world's events move, shown in its panel and its people's words (World/Region/).</summary>
         public bool regionFortunes = true;
         /// <summary>The region: a new town within reach has a founder, founding families and a reason, told in the news, its talk and a letter (World/Region/).</summary>
@@ -730,11 +737,20 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref lifePressure, "lifePressure", LifePressure.Normal);
             Scribe_Values.Look(ref enableDilemmas, "enableDilemmas", true);
             Scribe_Values.Look(ref councilBanishment, "councilBanishment", true);
-            // The old switch is written from the new choice, and an old settings file with it off reads as "off" (on reads as hints).
-            if (Scribe.mode == LoadSaveMode.Saving) showImpact = impactShows != ImpactShow.Off;
+            // The old switches are written from the new choice (flavour as hints, the old default), and an old settings file
+            // with the first off reads as "off" (on reads as hints).
+            if (Scribe.mode == LoadSaveMode.Saving)
+            {
+                showImpact = answerImpact != ImpactShow.Off;
+                impactShows = answerImpact == ImpactShow.Flavour ? ImpactShow.Hints : answerImpact;
+            }
             Scribe_Values.Look(ref showImpact, "showImpact", true);
             Scribe_Values.Look(ref impactShows, "impactShows", ImpactShow.Hints);
             if (Scribe.mode == LoadSaveMode.LoadingVars && !showImpact) impactShows = ImpactShow.Off;
+            Scribe_Values.Look(ref answerImpact, "answerImpact", ImpactShow.Flavour);
+            // A file from before the flavour line has no choice of its own: exact numbers and off carry over, and its hints
+            // (the default then) become the flavour line, the default now. The flavour line is always saved as hints.
+            if (Scribe.mode == LoadSaveMode.LoadingVars && answerImpact == ImpactShow.Flavour && impactShows != ImpactShow.Hints) answerImpact = impactShows;
             Scribe_Values.Look(ref annals, "annals", true);
             Scribe_Values.Look(ref decreeRequests, "decreeRequests", true);
             Scribe_Values.Look(ref anniversaries, "anniversaries", true);
@@ -798,6 +814,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref neighbourLetters, "neighbourLetters", true);
             Scribe_Values.Look(ref post, "post", true);
             Scribe_Values.Look(ref postPace, "postPace", PostPace.Usual);
+            Scribe_Values.Look(ref letterOccasions, "letterOccasions", true);
             Scribe_Values.Look(ref regionFortunes, "regionFortunes", true);
             Scribe_Values.Look(ref regionFaces, "regionFaces", true);
             Scribe_Values.Look(ref regionStock, "regionStock", true);

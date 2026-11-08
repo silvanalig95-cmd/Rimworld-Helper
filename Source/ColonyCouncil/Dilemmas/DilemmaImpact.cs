@@ -234,20 +234,21 @@ namespace ColonyCouncil
     /// Shows what each answer does, where the player chooses (the letters of dilemmas, Rimfolk's events and world
     /// events) and on the Dilemmas page afterwards: a short line under the answer and the full list in its tooltip,
     /// grouped by kind, the same things merged, from the live moment (who is involved, what the stores hold, how each
-    /// colonist will feel it). As hints (the default) it is said in plain words without numbers (Dilemmas/ImpactHints.cs);
-    /// as exact numbers, every size, day, count and chance; off, the letters are as they were.
+    /// colonist will feel it). As flavour (the default) the line under the answer says how it would land without naming a
+    /// mechanic (Dilemmas/ImpactFlavourMath.cs) and the hints show on hover; as hints it is said in plain words without
+    /// numbers (Dilemmas/ImpactHints.cs); as exact numbers, every size, day, count and chance; off, the letters are as they were.
     /// </summary>
     public static class DilemmaImpact
     {
         /// <summary>The short line's length before the rest is left to the tooltip (two lines under an answer).</summary>
         public const int CompactChars = 190;
 
-        public static ImpactShow Mode => ColonyCouncilMod.Settings?.impactShows ?? ImpactShow.Hints;
+        public static ImpactShow Mode => ColonyCouncilMod.Settings?.answerImpact ?? ImpactShow.Flavour;
 
         public static bool On => Mode != ImpactShow.Off;
 
-        /// <summary>The words hints are made of, from the game's translations.</summary>
-        public static readonly HintWords Words = new HintWords(k => k.Translate().RawText);
+        /// <summary>The words hints and the flavour line are made of, from the game's translations.</summary>
+        public static readonly HintWords Words = new HintWords(k => k.Translate().RawText, k => k.CanTranslate());
 
         /// <summary>The lines of some effects, merged.</summary>
         public static List<ImpactLine> Of(DilemmaContext ctx, IEnumerable<DilemmaEffect> effects)
@@ -294,7 +295,9 @@ namespace ColonyCouncil
                     l.topic = HintTopic.Play;
                     l.hint ??= (play is DilemmaEffect_Gathering ? "CC_ImpactHint_PlayTogether" : "CC_ImpactHint_Play").Translate(l.brief, WhenHint(play.hours)).Resolve();
                     l.hours = (play.duration.min + play.duration.max) / 2f;
-                    l.workTime = !work && ImpactHints.InWorkHours(ImpactHints.WhenKind(play.hours.min, play.hours.max));
+                    l.when = ImpactHints.WhenKind(play.hours.min, play.hours.max);
+                    l.workTime = !work && ImpactHints.InWorkHours(l.when);
+                    l.together = play is DilemmaEffect_Gathering;
                 }
                 else if (play is DilemmaEffect_Lesson lesson && l.kind == ImpactKind.Skill && l.key != null && l.key.StartsWith("lesson|", StringComparison.Ordinal))
                 {
@@ -380,14 +383,19 @@ namespace ColonyCouncil
             if (kept)
             {
                 if (tracker.IsTradition(def))
-                    lines.Add(new ImpactLine { kind = ImpactKind.Other, sign = 1, text = "CC_Impact_TraditionKept".Translate(name).Resolve(), brief = "CC_Impact_TraditionKeptBrief".Translate(name).Resolve() });
+                    lines.Add(new ImpactLine
+                    {
+                        kind = ImpactKind.Other, sign = 1, text = "CC_Impact_TraditionKept".Translate(name).Resolve(), brief = "CC_Impact_TraditionKeptBrief".Translate(name).Resolve(),
+                        cue = FlavourCue.CustomKept, about = name
+                    });
                 else
                 {
                     int had = tracker.TraditionCount(def);
                     lines.Add(new ImpactLine
                     {
                         kind = ImpactKind.Other, sign = 1, text = "CC_Impact_TraditionToward".Translate(name, had + 1, CalendarMath.TraditionAfter).Resolve(),
-                        hint = "CC_ImpactHint_TraditionToward".Translate(name).Resolve(), hintFull = "CC_ImpactHint_TraditionTowardFull".Translate(name).Resolve()
+                        hint = "CC_ImpactHint_TraditionToward".Translate(name).Resolve(), hintFull = "CC_ImpactHint_TraditionTowardFull".Translate(name).Resolve(),
+                        cue = FlavourCue.CustomKept, about = name
                     });
                 }
             }
@@ -395,11 +403,11 @@ namespace ColonyCouncil
                 lines.Add(new ImpactLine
                 {
                     kind = ImpactKind.Other, sign = -1, text = "CC_Impact_TraditionBroken".Translate(name).Resolve(), brief = "CC_Impact_TraditionBrokenBrief".Translate(name).Resolve(),
-                    hintFull = "CC_ImpactHint_TraditionBroken".Translate(name).Resolve()
+                    hintFull = "CC_ImpactHint_TraditionBroken".Translate(name).Resolve(), cue = FlavourCue.CustomBroken, about = name
                 });
             else if (tracker.CustomDay(def) != null)
                 // Kept before, not yet a tradition: let pass, it leaves the calendar and its years start again (Calendar/CalendarCustoms.cs).
-                lines.Add(new ImpactLine { kind = ImpactKind.Other, sign = -1, text = "CC_Fest_Impact_OffCalendar".Translate(name.Named("CUSTOM")).Resolve() });
+                lines.Add(new ImpactLine { kind = ImpactKind.Other, sign = -1, text = "CC_Fest_Impact_OffCalendar".Translate(name.Named("CUSTOM")).Resolve(), cue = FlavourCue.CustomBroken, about = name });
         }
 
         // ---------------- Words ----------------
@@ -458,6 +466,18 @@ namespace ColonyCouncil
 
         /// <summary>The hint under an answer, in words without numbers (Dilemmas/ImpactHints.cs).</summary>
         public static string Hint(OptionImpact r) => ImpactHints.Line(r, Words);
+
+        /// <summary>The flavour line under an answer (Dilemmas/ImpactFlavourMath.cs): its words picked by the letter and the answer's place in it.</summary>
+        public static string Flavour(OptionImpact r, uint seed, int answer) => ImpactFlavourMath.Line(r, Words, seed, answer);
+
+        /// <summary>A letter's number for the flavour's words: what and whom it is about and its own text, the same each time it opens.</summary>
+        public static uint SeedOf(DilemmaContext ctx)
+        {
+            if (ctx == null) return 0u;
+            string Id(Pawn p) => p == null ? "" : p.thingIDNumber.ToString();
+            return ImpactFlavourMath.Seed(ctx.def?.defName ?? (ctx as HappeningContext)?.incident?.defName ?? "", (ctx as SituationContext)?.situationId.ToString() ?? "", Id(ctx.a), Id(ctx.b),
+                Id(ctx.stranger), ctx.text ?? "");
+        }
 
         /// <summary>The hint's tooltip: what the answer does in words, grouped by kind, then the gamble, without numbers.</summary>
         public static string HintFull(OptionImpact r)
@@ -572,6 +592,8 @@ namespace ColonyCouncil
         {
             if (s == PlaySpot.Person && person != null) return "CC_Impact_Spot_PersonOf".Translate(person.LabelShort).Resolve();
             if (s == PlaySpot.Stranger && ctx?.stranger != null) return "CC_Impact_Spot_PersonOf".Translate(ctx.stranger.LabelShort).Resolve();
+            // A camp far off meets the colony at the gate (Camps/CampMeet.cs).
+            if (s == PlaySpot.Camp && ctx?.map != null && CampMeet.Far(ctx.map, ctx.stranger)) return "CC_Impact_Spot_CampAtGate".Translate().Resolve();
             return ("CC_Impact_Spot_" + s).Translate().Resolve();
         }
 
@@ -584,7 +606,12 @@ namespace ColonyCouncil
             string k = ("CC_Tie_" + kind).Translate().Resolve();
             var l = sheet.Amount(ImpactKind.Opinion, kind == TieKind.Rivals ? -1 : 1, amount, "CC_Impact_Tie".Translate(a.LabelShort, b.LabelShort, k, ImpactSheet.Mark).Resolve(),
                 "CC_Impact_TieBrief".Translate(a.LabelShort, b.LabelShort, k).Resolve(), "tie|" + kind + "|" + Math.Min(a.thingIDNumber, b.thingIDNumber) + "|" + Math.Max(a.thingIDNumber, b.thingIDNumber));
-            if (l != null) l.hintFull = (amount > 0f ? "CC_ImpactHint_TieUp" : "CC_ImpactHint_TieDown").Translate(a.LabelShort, b.LabelShort, k).Resolve();
+            if (l == null) return;
+            l.hintFull = (amount > 0f ? "CC_ImpactHint_TieUp" : "CC_ImpactHint_TieDown").Translate(a.LabelShort, b.LabelShort, k).Resolve();
+            // A bond growing or a rivalry easing brings them closer; a rivalry growing or a bond fading sets them apart.
+            l.cue = (kind == TieKind.Rivals) == (amount < 0f) ? FlavourCue.Bond : FlavourCue.Rift;
+            l.who = a.LabelShort;
+            l.with = b.LabelShort;
         }
 
         /// <summary>Strain added (positive) or eased (negative), with feelings and strain on.</summary>
@@ -695,14 +722,14 @@ namespace ColonyCouncil
         /// The answer as the letter offers it: its label, greyed out with <paramref name="why"/>, and what it does under it
         /// (with the setting on).
         /// </summary>
-        public static DiaOption Option(DilemmaContext ctx, DilemmaOption o, string label, string why, Action action) =>
-            Option(ctx == null || o == null ? null : () => For(ctx, o), label, why, action);
+        public static DiaOption Option(DilemmaContext ctx, DilemmaOption o, int answer, string label, string why, Action action) =>
+            Option(ctx == null || o == null ? null : () => For(ctx, o), SeedOf(ctx), answer, label, why, action);
 
         /// <summary>A world event's answer as its letter offers it, with what it does.</summary>
-        public static DiaOption Option(SituationContext ctx, WorldSituation s, SituationOption o, string label, string why, Action action) =>
-            Option(ctx == null || o == null ? null : () => For(ctx, s, o), label, why, action);
+        public static DiaOption Option(SituationContext ctx, WorldSituation s, SituationOption o, int answer, string label, string why, Action action) =>
+            Option(ctx == null || o == null ? null : () => For(ctx, s, o), SeedOf(ctx), answer, label, why, action);
 
-        private static DiaOption Option(Func<OptionImpact> impact, string label, string why, Action action)
+        private static DiaOption Option(Func<OptionImpact> impact, uint seed, int answer, string label, string why, Action action)
         {
             DiaOption opt;
             if (On && impact != null)
@@ -718,6 +745,7 @@ namespace ColonyCouncil
                 }
                 opt = r == null || r.Empty ? new DiaOption(label)
                     : Mode == ImpactShow.Exact ? new DiaOption_Impact(label, Compact(r), Full(r))
+                    : Mode == ImpactShow.Flavour ? new DiaOption_Impact(label, Flavour(r, seed, answer), HintFull(r))
                     : new DiaOption_Impact(label, Hint(r), HintFull(r));
             }
             else opt = new DiaOption(label);
@@ -728,17 +756,20 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// What the answer given did, for the Dilemmas page: the full list as it stood when it was given, in numbers, and
-        /// the same in words (<paramref name="hint"/>), so the page can follow the setting. Never throws.
+        /// What the answer given did, for the Dilemmas page: the full list as it stood when it was given, in numbers, the
+        /// same in words (<paramref name="hint"/>) and the flavour line under it (<paramref name="flavour"/>), so the page can
+        /// follow the setting. Never throws.
         /// </summary>
-        public static string Record(DilemmaContext ctx, DilemmaOption o, out string hint)
+        public static string Record(DilemmaContext ctx, DilemmaOption o, int answer, out string hint, out string flavour)
         {
             hint = null;
+            flavour = null;
             try
             {
                 var r = For(ctx, o);
                 if (r.Empty) return null;
                 hint = Cut(HintFull(r), 1200);
+                flavour = Cut(Flavour(r, SeedOf(ctx), answer), 200);
                 return Cut(Full(r), 1600);
             }
             catch (Exception e)
@@ -757,14 +788,18 @@ namespace ColonyCouncil
             {
                 case ImpactShow.Exact: return r?.impact;
                 case ImpactShow.Hints: return r?.impactHint;
+                case ImpactShow.Flavour:
+                    // The line as it stood under the answer, then the hints, as on hover (an answer given before the flavour came: the hints).
+                    if (r == null || r.impactFlavour.NullOrEmpty()) return r?.impactHint;
+                    return r.impactHint.NullOrEmpty() ? r.impactFlavour : r.impactFlavour + "\n\n" + r.impactHint;
                 default: return null;
             }
         }
     }
 
     /// <summary>
-    /// An answer in a letter with what it does: a short line under its label (a hint in words, or the numbers), the full
-    /// list on hover. Drawn by
+    /// An answer in a letter with what it does: a short line under its label (flavour, a hint in words, or the numbers),
+    /// the hints or the full list on hover. Drawn by
     /// <see cref="Patch_DiaOptionImpact"/>; without that hook the short line is written into the label itself.
     /// </summary>
     public class DiaOption_Impact : DiaOption
