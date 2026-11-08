@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A camp far off meets you at the gate
+
+*8 November 2026, version 0.172.1*
+
+- Paying a camp, sending a supper or meals, or anything else your colonists carry to a camp no longer sends them across the map when the camp is far: one of the camp walks to your gate to meet them, and the hand-over happens there.
+- Whoever of the camp is already at the gate, such as the woodcutter bringing the load of wood you bought, takes the payment there; a near camp is still met at its fire, and going over to learn from them or to help stays a walk to the camp.
+
 ## Four more peoples: the Signal Line, the Deepwell Union, the Last Republic, the Hollow Fleet
 
 *8 November 2026, version 0.172.0*

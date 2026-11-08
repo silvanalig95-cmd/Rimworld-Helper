@@ -6462,7 +6462,18 @@ written. Now (`World/LetterMath.cs`, pure and tested in `LettersPetitionsTests`;
   so does an invitation not taken up, or one taken up with nobody free to travel. A truce, a ransom, an envoy, a ward, a
   match and an oath give their own reasons (`LetterMath.OwnReasons`) and get no second one.
 
-#### How fast Rimfolk's people go (0.171.1)
+#### Where the colony and a camp meet (0.172.1)
+
+After the player's report ("i decided to pay them and my pawn started walking to the other side of the map ... my pawn
+should pay them once they are closer. these thoughts must be applied to all such kinds of events"): whatever the colony
+carries to a camp (silver paid for an ask or a land work, meals, a supper, provisions, a gift) goes to the camp's fire
+only while the camp is near (its fire within 35 cells of the colony's gate, `CampMeetMath.Far`). A camp further off sends
+the one of its people nearest the gate to meet the colonist there (`Camps/CampMeet.cs`: a walk at an errand's pace and a
+wait of two hours), and the errand waits until they come ("one of the camp is coming to the gate for it"); a camper
+already at the gate, as the one who brings the colony's load of wood, takes it. The answers' words say "the gate, where
+one of the camp meets them" for such a camp. Going to the camp to learn a craft, to visit or to help stays a walk to it.
+
+### How fast Rimfolk's people go (0.171.1)
 
 The game's "walk" urgency is half the ordinary pace and "amble" a third; the colony's own people go about their work at
 the ordinary pace ("jog"). After the player's report ("some of the npcs you create, including the earlier couriers, seem

@@ -578,6 +578,7 @@
   <CC_Impact_Spot_Gather>a gather spot</CC_Impact_Spot_Gather>
   <CC_Impact_Spot_Grave>a grave</CC_Impact_Spot_Grave>
   <CC_Impact_Spot_Camp>the camp's fire</CC_Impact_Spot_Camp>
+  <CC_Impact_Spot_CampAtGate>the gate, where one of the camp meets them</CC_Impact_Spot_CampAtGate>
   <CC_Impact_Spot_Stranger>the visitor</CC_Impact_Spot_Stranger>
   <CC_Impact_Spot_Person>someone's side</CC_Impact_Spot_Person>
   <CC_Impact_Spot_Walk>a long walk out</CC_Impact_Spot_Walk>

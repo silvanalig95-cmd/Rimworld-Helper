@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.172.1</version>
+        <date>8 November 2026</date>
+        <title>A camp far off meets you at the gate</title>
+        <points>
+          <li>Paying a camp, sending a supper or meals, or anything else your colonists carry to a camp no longer sends them across the map when the camp is far: one of the camp walks to your gate to meet them, and the hand-over happens there.</li>
+          <li>Whoever of the camp is already at the gate, such as the woodcutter bringing the load of wood you bought, takes the payment there; a near camp is still met at its fire, and going over to learn from them or to help stays a walk to the camp.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.172.0</version>
         <date>8 November 2026</date>
         <title>Four more peoples: the Signal Line, the Deepwell Union, the Last Republic, the Hollow Fleet</title>

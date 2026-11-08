@@ -273,6 +273,7 @@
   <CC_Play_Why_GiftGone>it was gone</CC_Play_Why_GiftGone>
   <CC_Play_Why_NobodyOut>nobody was working outside</CC_Play_Why_NobodyOut>
   <CC_Play_Why_NobodyAtCamp>nobody was at the camp to take it</CC_Play_Why_NobodyAtCamp>
+  <CC_Play_Why_CampComing>one of the camp is coming to the gate for it</CC_Play_Why_CampComing>
   <CC_Play_Why_NoDead>the dead were already gone</CC_Play_Why_NoDead>
   <CC_Play_Report_Give>carrying the {0} over to {OTHER_nameDef}.</CC_Play_Report_Give>
   <CC_Play_Report_Make>making the {0}.</CC_Play_Report_Make>

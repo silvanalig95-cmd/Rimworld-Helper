@@ -12,6 +12,17 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.172.1, a camp far off meets the colony at the gate (8 November 2026, the player's report: "i had a logger event come
+  up, i decided to pay them and my pawn started walking to the other side of the map ... my pawn should pay them once
+  they are closer. these thoughts must be applied to all such kinds of events"). Cause: `CampAnswers.Pay`/`Carry` and
+  every carry to a camp (`DilemmaEffect_CarryOut` to `PlaySpot.Camp`) walked to the camp's fire wherever it stood. Fix:
+  `Camps/CampMeet.cs` and `CampMeetMath.cs` (pure, linked): a camp whose fire is over 35 cells from the gate sends its
+  person nearest the gate there (Goto at `Pace.Errand`, then a two-hour wait; kept for the session only), the carry
+  waits ("CC_Play_Why_CampComing") and is handed over at the gate; a camper already within 9 cells of it takes it (the
+  woodcutter with the bought wood). `PlayGroups` asks it before walking to the fire; `DilemmaImpact.Spot` words such a
+  camp's spot "the gate, where one of the camp meets them". Tests in `FieldReportTests`. The woodcutters' own felling
+  stays round their camp; the wood the colony buys already comes to the gate. To try: a camp far across the map, buy
+  their wood or send a supper: a camper walks to the gate, the colonist meets them there.
 - 0.172.0, release F, the first four peoples of the third round: the Signal Line, the Deepwell Union, the Last Republic and the
   Hollow Fleet (8 November 2026, step 2 of `docs/design/peoples-third.md`, approved by the player as written). Not
   released: no What's new round, About.xml and CHANGELOG untouched, no version number (the lead does that at the merge).

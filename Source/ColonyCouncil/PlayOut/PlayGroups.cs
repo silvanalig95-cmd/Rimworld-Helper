@@ -383,6 +383,18 @@ namespace ColonyCouncil
                 p.waitReason = "CC_Courier_Why_NotYet".Translate();
                 return false;
             }
+            else if (p.to == PlaySpot.Camp && CampMeet.AtGate(p.map, carrier, p.other, out var met))
+            {
+                // A camp far off meets the colony at the gate (Camps/CampMeet.cs): handed to the one of them there, or the
+                // errand waits for the one on the way.
+                if (met == null)
+                {
+                    p.waitReason = "CC_Play_Why_CampComing".Translate();
+                    return false;
+                }
+                to = met;
+                where = "CC_Play_To_Gate".Translate();
+            }
             else if (p.to == PlaySpot.Camp && PlaySpots.CampHand(p.map, carrier, p.other) is Pawn hand)
             {
                 // Down to the camp: into the hands of someone of the camp.

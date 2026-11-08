@@ -572,6 +572,8 @@ namespace ColonyCouncil
         {
             if (s == PlaySpot.Person && person != null) return "CC_Impact_Spot_PersonOf".Translate(person.LabelShort).Resolve();
             if (s == PlaySpot.Stranger && ctx?.stranger != null) return "CC_Impact_Spot_PersonOf".Translate(ctx.stranger.LabelShort).Resolve();
+            // A camp far off meets the colony at the gate (Camps/CampMeet.cs).
+            if (s == PlaySpot.Camp && ctx?.map != null && CampMeet.Far(ctx.map, ctx.stranger)) return "CC_Impact_Spot_CampAtGate".Translate().Resolve();
             return ("CC_Impact_Spot_" + s).Translate().Resolve();
         }
 
