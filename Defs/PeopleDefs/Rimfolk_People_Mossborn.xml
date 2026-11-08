@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The Mossborn (docs/design/peoples-next.md, the sixth of the eight; docs/design/peoples.md, "Release E";
+    Source/ColonyCouncil/Peoples/PeoplesE.cs): grove-keepers who hold that the forest remembers every axe, whose towns
+    grow among living trees and whose dead are buried under saplings so that the person becomes the grove. Tribal, on the
+    game's tribal parent; they arise in every age (ariseAges 0~3), and a people of their ways in the industrial or spacer
+    age keeps its bows but its thorn-guards carry hunting rifles too (ageArms). Bark-cloth of any make dyed moss green,
+    and a green wreath of leaves in the hair (Vanilla Factions Expanded - Classical's wreath, dyed): their signature;
+    everything else hand-varied. A share are plant folk of the player's mods (Vanilla Races Expanded - Phytokin's
+    animakin, gauranlenkin and poluxkin, Alpha Genes' ocularkin, the wood elves, the fungoids); a few are A RimWorld of
+    Magic's druids and rangers, and their eldest root may be a Wildspeaker (Vanilla Psycasts Expanded). Their towns are
+    houses among a grove, a seed vault and a burial grove of saplings (Rimfolk_Plan_MossGrove). Their goodwill follows the
+    colony's planting and felling, a season at a time (MossLedger, told when it moves). At the gate: saplings and a seed-carrier to
+    replant what the colony cleared (Rimfolk_Evt_MossSaplings); a sapling over a fresh grave, so the dead becomes the grove
+    (Rimfolk_Evt_MossGraveTree); with Ideology, a tree-connector who tends the colony's Gauranlen tree
+    (Rimfolk_Evt_MossTreeTend). Their ask: two planters for a grove that burned (Rimfolk_Mission_MossBurnedGrove). Their
+    founding: Elin Sedge, the charcoal-burner's widow who planted a seedling for every stump. Faith (Ideology): tree
+    connection, nature first and Alpha Memes' Gauranlen supremacy.
+  -->
+
+  <FactionDef ParentName="TribeBase">
+    <defName>Rimfolk_Mossborn</defName>
+    <label>Mossborn</label>
+    <description>Grove-keepers who live among living trees and hold that the forest remembers every axe. Their towns grow inside the groves they tend, their dead are buried under saplings so that the person becomes the grove, and every tree anyone fells owes the world a seedling, which they come to collect. They are gentle and patient, and fiercer than anyone when a forest burns.\n\nTheir ways began with a charcoal-burner's widow called Elin Sedge, after a war cut down every tree in her valley for its fires and its palisades. She walked the stumps with a sack of acorns and planted one beside each, and when the war was over she was still planting. Those who came to help her stayed among the young trees, and when she died they buried her under the last sapling she set, which still stands. A Mossborn still wears a living sprig in the hair and keeps a seed in a pocket, for the next stump.\n\nThey speak slowly and kindly and remember everything, and they think of a year as a short time. They are cooler towards a colony that strips its land and warm towards one that plants. Each grove is kept by its grove-warden, and the Mossborn by their eldest root.</description>
+    <pawnSingular>grove-keeper</pawnSingular>
+    <pawnsPlural>grove-keepers</pawnsPlural>
+    <leaderTitle>eldest root</leaderTitle>
+    <techLevel>Neolithic</techLevel>
+    <basicMemberKind>Rimfolk_Mossborn_Tender</basicMemberKind>
+    <factionNameMaker>Rimfolk_Namer_Mossborn</factionNameMaker>
+    <settlementNameMaker>Rimfolk_Namer_MossbornTown</settlementNameMaker>
+    <factionIconPath>ColonyCouncil/Peoples/Mossborn</factionIconPath>
+    <settlementTexturePath>ColonyCouncil/Peoples/MossbornTown</settlementTexturePath>
+    <colorSpectrum>
+      <li>(0.24, 0.36, 0.14)</li>
+      <li>(0.38, 0.54, 0.24)</li>
+    </colorSpectrum>
+    <hidden>false</hidden>
+    <naturalEnemy>false</naturalEnemy>
+    <permanentEnemy>false</permanentEnemy>
+    <canSiege>false</canSiege>
+    <requiredCountAtGameStart>0</requiredCountAtGameStart>
+    <startingCountAtWorldCreation>1</startingCountAtWorldCreation>
+    <maxConfigurableAtWorldCreation>9999</maxConfigurableAtWorldCreation>
+    <configurationListOrderPriority>41</configurationListOrderPriority>
+    <settlementGenerationWeight>0.5</settlementGenerationWeight>
+    <raidCommonalityFromPointsCurve Inherit="False">
+      <points>
+        <li>(0, 0.2)</li>
+      </points>
+    </raidCommonalityFromPointsCurve>
+    <xenotypeSet Inherit="False">
+      <xenotypeChances>
+        <Neanderthal MayRequire="Ludeon.RimWorld.Biotech">0.02</Neanderthal>
+        <Pigskin MayRequire="Ludeon.RimWorld.Biotech">0.02</Pigskin>
+        <VRE_Animakin MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.phytokin">0.04</VRE_Animakin>
+        <VRE_Gauranlenkin MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.phytokin">0.04</VRE_Gauranlenkin>
+        <VRE_Poluxkin MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.phytokin">0.03</VRE_Poluxkin>
+        <VRE_Ocularkin MayRequire="Ludeon.RimWorld.Biotech,sarg.alphagenes,vanillaracesexpanded.phytokin">0.02</VRE_Ocularkin>
+        <DevDesigner_XenotypeWoodElves MayRequire="Ludeon.RimWorld.Biotech,DevDesigner.Elves.Continued">0.04</DevDesigner_XenotypeWoodElves>
+        <VRE_Fungoid MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.fungoid">0.02</VRE_Fungoid>
+        <Orangutan MayRequire="Ludeon.RimWorld.Biotech,onlymonkey.awakenedapes">0.02</Orangutan>
+        <Gorilla MayRequire="Ludeon.RimWorld.Biotech,onlymonkey.awakenedapes">0.02</Gorilla>
+      </xenotypeChances>
+    </xenotypeSet>
+    <fixedIdeo>true</fixedIdeo>
+    <ideoName>The Owed Seedling</ideoName>
+    <ideoDescription>The forest remembers every axe, and every tree felled owes the world a seedling. The grove comes before the people who live in it; the great trees are the eldest of all, and those who can hear them, through the Gauranlen and its dryads, are listened to before anyone. The dead are given back to the ground under a sapling, so that each of the Mossborn becomes the grove in the end. Elin Sedge planted an acorn beside every stump of her valley after the war, and was buried under the last of them.</ideoDescription>
+    <forcedMemes>
+      <li MayRequire="Ludeon.RimWorld.Ideology">TreeConnection</li>
+      <li MayRequire="Ludeon.RimWorld.Ideology">NaturePrimacy</li>
+      <!-- The great trees and their dryads before anything: Alpha Memes' Gauranlen supremacy. -->
+      <li MayRequire="sarg.alphamemes">AM_GauranlenSupremacy</li>
+    </forcedMemes>
+    <structureMemeWeights Inherit="False">
+      <Structure_Animist MayRequire="Ludeon.RimWorld.Ideology">3</Structure_Animist>
+      <Structure_TheistEmbodied MayRequire="Ludeon.RimWorld.Ideology">1</Structure_TheistEmbodied>
+      <VME_Structure_Pantheism MayRequire="VanillaExpanded.VMemesE">2</VME_Structure_Pantheism>
+    </structureMemeWeights>
+    <styles>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Totemic</li>
+    </styles>
+    <caravanTraderKinds Inherit="False">
+      <li>Rimfolk_Caravan_Mossborn</li>
+    </caravanTraderKinds>
+    <visitorTraderKinds Inherit="False">
+      <li>Rimfolk_Visitor_Mossborn</li>
+    </visitorTraderKinds>
+    <baseTraderKinds Inherit="False">
+      <li>Rimfolk_Base_Mossborn</li>
+    </baseTraderKinds>
+    <pawnGroupMakers Inherit="False">
+      <li>
+        <!-- A fight: the thorn-guards with bows and thorned clubs, tenders behind them -->
+        <kindDef>Combat</kindDef>
+        <options>
+          <Rimfolk_Mossborn_Thorn>12</Rimfolk_Mossborn_Thorn>
+          <Rimfolk_Mossborn_Tender>4</Rimfolk_Mossborn_Tender>
+        </options>
+      </li>
+      <li>
+        <kindDef>Peaceful</kindDef>
+        <options>
+          <Rimfolk_Mossborn_Tender>18</Rimfolk_Mossborn_Tender>
+          <Rimfolk_Mossborn_SeedCarrier>5</Rimfolk_Mossborn_SeedCarrier>
+          <Rimfolk_Mossborn_Thorn>4</Rimfolk_Mossborn_Thorn>
+          <Tribal_Child MayRequire="Ludeon.RimWorld.Biotech">2</Tribal_Child>
+        </options>
+      </li>
+      <li>
+        <!-- The herb-trader's string: herbs, dyes, berries and deadfall on pack beasts -->
+        <kindDef>Trader</kindDef>
+        <traders>
+          <Rimfolk_Mossborn_HerbTrader>1</Rimfolk_Mossborn_HerbTrader>
+        </traders>
+        <carriers>
+          <Muffalo>3</Muffalo>
+          <Alpaca>3</Alpaca>
+          <Elephant>1</Elephant>
+        </carriers>
+        <guards>
+          <Rimfolk_Mossborn_Thorn>7</Rimfolk_Mossborn_Thorn>
+          <Rimfolk_Mossborn_Tender>3</Rimfolk_Mossborn_Tender>
+        </guards>
+      </li>
+      <li>
+        <kindDef>Settlement</kindDef>
+        <options>
+          <Rimfolk_Mossborn_Tender>10</Rimfolk_Mossborn_Tender>
+          <Rimfolk_Mossborn_Thorn>10</Rimfolk_Mossborn_Thorn>
+          <Rimfolk_Mossborn_SeedCarrier>4</Rimfolk_Mossborn_SeedCarrier>
+          <Rimfolk_Mossborn_HerbTrader>2</Rimfolk_Mossborn_HerbTrader>
+        </options>
+      </li>
+    </pawnGroupMakers>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleExtension">
+        <calling>grovekeepers</calling>
+        <townWord>grove</townWord>
+        <townWords>groves</townWords>
+        <head>grove-warden</head>
+        <heir>second warden</heir>
+        <envoy>seed-carrier</envoy>
+        <trader>herb-trader</trader>
+        <courier>leaf-runner</courier>
+        <couriers>leaf-runners</couriers>
+        <caravanWeight>0.8</caravanWeight>
+        <camps>
+          <li>Council_Camp_TreeSingers</li>
+          <li>Rimfolk_Camp_HerbGatherers</li>
+          <li>Council_Camp_Healers</li>
+        </camps>
+        <plan>Rimfolk_Plan_MossGrove</plan>
+        <honours>the seedling set beside the stump, an old tree left standing and a grave that grows</honours>
+        <fears>fire in the canopy, the clear-cut hillside and the axe that keeps no count</fears>
+        <sayings>
+          <li>Every tree you fell owes the world a seedling.</li>
+          <li>The forest remembers every axe.</li>
+          <li>We are here to collect.</li>
+          <li>Plant it, and be patient.</li>
+          <li>In the end we are all the grove.</li>
+        </sayings>
+        <townGoods>
+          <MedicineHerbal>12~24</MedicineHerbal>
+          <WoodLog>50~110</WoodLog>
+          <RawBerries>40~90</RawBerries>
+          <Dye>20~45</Dye>
+          <Cloth>20~40</Cloth>
+        </townGoods>
+        <ariseAges>0~3</ariseAges>
+      </li>
+    </modExtensions>
+  </FactionDef>
+
+  <!-- ===================== Their people ===================== -->
+
+  <!--
+    How alike they look (docs/design/peoples.md, "Release E"): hand-varied, around the moss. Every grove-keeper wears
+    bark-cloth of some make dyed moss green (the game's tribalwear, Vanilla Factions Expanded - Tribals' light and heavy
+    tribalwear) and, with Vanilla Factions Expanded - Classical, a green wreath of leaves in the hair; over it ponchos,
+    kilts and pelt coats (Vanilla Apparel Expanded), parkas for the cold, packs and quivers (Accessories). The
+    thorn-guards who keep the groves share bark armour (Vanilla Armour Expanded's wooden armour where it is loaded) and
+    carry bows and thorned clubs (the game's, Vanilla Weapons Expanded - Tribal's heavy club); in the industrial and
+    spacer ages hunting rifles. They carry herbs, dye or a handful of berries; a seed-carrier now and then a Gauranlen
+    seed (Ideology). A few are A RimWorld of Magic's druids and rangers; the eldest root may be a Wildspeaker (Vanilla
+    Psycasts Expanded). Without any mod: the game's tribalwear and parkas, clubs, spears, knives and bows.
+  -->
+  <PawnKindDef Name="Rimfolk_MossbornKindBase" Abstract="True">
+    <race>Human</race>
+    <defaultFactionDef>Rimfolk_Mossborn</defaultFactionDef>
+    <chemicalAddictionChance>0.02</chemicalAddictionChance>
+    <invNutrition>2.55</invNutrition>
+    <invFoodDef>RawBerries</invFoodDef>
+    <maxGenerationAge>80</maxGenerationAge>
+    <specificApparelRequirements>
+      <!-- Moss green on the bark-cloth, whatever its make, and on the wreath in the hair. -->
+      <li>
+        <apparelLayer>OnSkin</apparelLayer>
+        <bodyPartGroup>Torso</bodyPartGroup>
+        <color>(0.30, 0.44, 0.18)</color>
+        <alternateTagChoices>
+          <li><tag>Neolithic</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+      <li MayRequire="OskarPotocki.VFE.Classical"><apparelDef>VFEC_Wreath</apparelDef><color>(0.30, 0.44, 0.18)</color></li>
+    </specificApparelRequirements>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_MossbornKindBase">
+    <defName>Rimfolk_Mossborn_Tender</defName>
+    <label>grove-tender</label>
+    <combatPower>40</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Poor</itemQuality>
+    <gearHealthRange>0.5~1.3</gearHealthRange>
+    <apparelRequired>
+      <li MayRequire="OskarPotocki.VFE.Classical">VFEC_Wreath</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>Neolithic</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Neolithic</li>
+    </apparelTags>
+    <!-- No war banners among the trees. -->
+    <apparelDisallowTags>
+      <li>MedievalMilitary</li>
+    </apparelDisallowTags>
+    <apparelMoney>180~400</apparelMoney>
+    <weaponTags>
+      <li>NeolithicMeleeBasic</li>
+      <li>NeolithicRangedBasic</li>
+    </weaponTags>
+    <weaponMoney>40~120</weaponMoney>
+    <!-- Herbs, a pouch of dye, or berries from the grove. -->
+    <inventoryOptions>
+      <skipChance>0.4</skipChance>
+      <subOptionsChooseOne>
+        <li><thingDef>MedicineHerbal</thingDef><countRange>1~3</countRange><choiceChance>2</choiceChance></li>
+        <li><thingDef>Dye</thingDef><countRange>4~10</countRange></li>
+        <li><thingDef>RawBerries</thingDef><countRange>8~16</countRange></li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>10~18</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Druid</trait><chance>0.05</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_MossbornKindBase">
+    <defName>Rimfolk_Mossborn_Thorn</defName>
+    <label>thorn-guard</label>
+    <combatPower>60</combatPower>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.6~1.5</gearHealthRange>
+    <apparelRequired>
+      <li MayRequire="OskarPotocki.VFE.Classical">VFEC_Wreath</li>
+      <li MayRequire="VanillaExpanded.VARME">VAE_Apparel_WoodenArmor</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>Neolithic</li>
+    </apparelTags>
+    <apparelMoney>260~520</apparelMoney>
+    <weaponTags>
+      <li>NeolithicRangedDecent</li>
+      <li>NeolithicMeleeAdvanced</li>
+    </weaponTags>
+    <weaponMoney>90~220</weaponMoney>
+    <requiredWorkTags>Violent</requiredWorkTags>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>14~22</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Ranger</trait><chance>0.06</chance></li>
+          <li><trait>Druid</trait><chance>0.04</chance></li>
+        </gifts>
+        <!-- Hunting rifles in the industrial and spacer ages (a people of their ways that arose there). -->
+        <ageArms>
+          <li>
+            <ages>2~3</ages>
+            <weaponTags>
+              <li>Gun</li>
+            </weaponTags>
+          </li>
+        </ageArms>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_MossbornKindBase">
+    <defName>Rimfolk_Mossborn_SeedCarrier</defName>
+    <label>seed-carrier</label>
+    <combatPower>40</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.6~1.3</gearHealthRange>
+    <apparelRequired>
+      <li MayRequire="OskarPotocki.VFE.Classical">VFEC_Wreath</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>Neolithic</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Neolithic</li>
+      <li>Rimfolk_Headscarf</li>
+    </apparelTags>
+    <apparelDisallowTags>
+      <li>MedievalMilitary</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Quiver</li>
+    </apparelDisallowTags>
+    <apparelMoney>200~420</apparelMoney>
+    <weaponTags>
+      <li>NeolithicMeleeBasic</li>
+    </weaponTags>
+    <weaponMoney>40~100</weaponMoney>
+    <!-- The seed for the next stump: berries, herbs, and now and then a Gauranlen seed (Ideology). -->
+    <inventoryOptions>
+      <skipChance>0.2</skipChance>
+      <subOptionsChooseOne>
+        <li><thingDef>RawBerries</thingDef><countRange>10~20</countRange><choiceChance>2</choiceChance></li>
+        <li><thingDef>MedicineHerbal</thingDef><countRange>1~2</countRange></li>
+        <li MayRequire="Ludeon.RimWorld.Ideology"><thingDef>GauranlenSeed</thingDef><countRange>1~1</countRange><choiceChance>0.15</choiceChance></li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>10~18</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Druid</trait><chance>0.07</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_MossbornKindBase">
+    <defName>Rimfolk_Mossborn_HerbTrader</defName>
+    <label>herb-trader</label>
+    <trader>true</trader>
+    <combatPower>40</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.8~1.3</gearHealthRange>
+    <apparelRequired>
+      <li MayRequire="OskarPotocki.VFE.Classical">VFEC_Wreath</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>Neolithic</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Neolithic</li>
+      <li>Rimfolk_Beads</li>
+    </apparelTags>
+    <apparelDisallowTags>
+      <li>MedievalMilitary</li>
+    </apparelDisallowTags>
+    <apparelMoney>260~480</apparelMoney>
+    <weaponTags>
+      <li>NeolithicMeleeBasic</li>
+    </weaponTags>
+    <weaponMoney>40~90</weaponMoney>
+    <skills>
+      <li>
+        <skill>Social</skill>
+        <range>5~12</range>
+      </li>
+    </skills>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>10~16</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_MossbornKindBase">
+    <defName>Rimfolk_Mossborn_EldestRoot</defName>
+    <label>eldest root</label>
+    <combatPower>75</combatPower>
+    <factionLeader>true</factionLeader>
+    <minGenerationAge>55</minGenerationAge>
+    <itemQuality>Good</itemQuality>
+    <gearHealthRange>0.8~1.2</gearHealthRange>
+    <apparelRequired>
+      <li MayRequire="OskarPotocki.VFE.Classical">VFEC_Wreath</li>
+      <li>Apparel_Parka</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>Neolithic</li>
+    </apparelTags>
+    <apparelMoney>400~800</apparelMoney>
+    <weaponTags>
+      <li>NeolithicRangedDecent</li>
+      <li>NeolithicMeleeAdvanced</li>
+    </weaponTags>
+    <weaponMoney>100~220</weaponMoney>
+    <skills>
+      <li>
+        <skill>Social</skill>
+        <range>6~13</range>
+      </li>
+    </skills>
+    <inventoryOptions>
+      <subOptionsTakeAll>
+        <li><thingDef>MedicineHerbal</thingDef><countRange>2~3</countRange></li>
+      </subOptionsTakeAll>
+    </inventoryOptions>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>14~22</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Druid</trait><chance>0.3</chance></li>
+          <!-- One who hears the grove: Vanilla Psycasts Expanded's Wildspeaker (else the game's psycasts). -->
+          <li>
+            <psylink>1~2</psylink>
+            <paths>
+              <li>VPE_Wildspeaker</li>
+            </paths>
+            <chance>0.2</chance>
+          </li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <!-- ===================== Their traders: the herb-trader's string ===================== -->
+
+  <TraderKindDef>
+    <defName>Rimfolk_Caravan_Mossborn</defName>
+    <label>herb-trader's string</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>400~800</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineHerbal</thingDef>
+        <countRange>14~30</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Dye</thingDef>
+        <countRange>20~50</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>RawBerries</thingDef>
+        <countRange>40~100</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>WoodLog</thingDef>
+        <countRange>60~140</countRange>
+      </li>
+      <li Class="StockGenerator_Category">
+        <categoryDef>Leathers</categoryDef>
+        <thingDefCountRange>1~2</thingDefCountRange>
+        <totalPriceRange>100~250</totalPriceRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>BasicClothing</tradeTag>
+        <countRange>2~4</countRange>
+        <maxTechLevelGenerate>Neolithic</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuySingleDef"><thingDef>MedicineHerbal</thingDef></li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Visitor_Mossborn</defName>
+    <label>grove-keepers on the road</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>100~250</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineHerbal</thingDef>
+        <countRange>4~10</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Dye</thingDef>
+        <countRange>6~16</countRange>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Base_Mossborn</defName>
+    <label>grove</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>600~1100</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineHerbal</thingDef>
+        <countRange>20~40</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Dye</thingDef>
+        <countRange>30~70</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>RawBerries</thingDef>
+        <countRange>80~160</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>WoodLog</thingDef>
+        <countRange>100~220</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Cloth</thingDef>
+        <countRange>30~80</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>BasicClothing</tradeTag>
+        <countRange>3~5</countRange>
+        <maxTechLevelGenerate>Neolithic</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponRanged</tradeTag>
+        <countRange>2~4</countRange>
+        <maxTechLevelGenerate>Neolithic</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuySingleDef"><thingDef>MedicineHerbal</thingDef></li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <!-- ===================== Their names ===================== -->
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_Mossborn</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->Mossborn of the [groveThing]</li>
+        <li>r_name(p=2)->[PlaceOutlander] Grove</li>
+        <li>r_name->The [groveVirtue] Grove</li>
+        <li>r_name->Keepers of the [groveThing]</li>
+        <li>groveThing->Last Sapling</li>
+        <li>groveThing->Owed Seedling</li>
+        <li>groveThing->Acorn Sack</li>
+        <li>groveThing->Old Stump</li>
+        <li>groveThing->Green Valley</li>
+        <li>groveThing->Living Sprig</li>
+        <li>groveVirtue->Patient</li>
+        <li>groveVirtue->Mossed</li>
+        <li>groveVirtue->Deep-rooted</li>
+        <li>groveVirtue->Unfelled</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_MossbornTown</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->[PlaceOutlander] Grove</li>
+        <li>r_name(p=2)->[PlaceOutlander] Wood</li>
+        <li>r_name->[groveWord] of [PlaceOutlander]</li>
+        <li>r_name->[groveVirtue] Grove</li>
+        <li>groveWord->Seed Vault</li>
+        <li>groveWord->Burial Grove</li>
+        <li>groveWord->Green Hall</li>
+        <li>groveVirtue->Sedge's</li>
+        <li>groveVirtue->Mossback</li>
+        <li>groveVirtue->Old Oak</li>
+        <li>groveVirtue->Acorn</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>

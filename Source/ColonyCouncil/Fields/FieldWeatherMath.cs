@@ -180,7 +180,14 @@ namespace ColonyCouncil
         /// The forecast for each hour: the land's own reckoning, each condition on the map at its offset for as long as it
         /// lasts (hours; int.MaxValue for one that doesn't end), and the weather's push.
         /// </summary>
-        public static float[] Forecast(float[] baseTemp, IList<float> offsets, IList<int> hoursLeft, float[] push)
+        public static float[] Forecast(float[] baseTemp, IList<float> offsets, IList<int> hoursLeft, float[] push) => Forecast(baseTemp, offsets, hoursLeft, push, null);
+
+        /// <summary>
+        /// The same, with conditions that begin later (<paramref name="hoursFrom"/>: the hour each begins, none for one
+        /// on the map now): the Stormglass Conclave's held cold snap or heat wave, from the hour it comes, for as long as it
+        /// lasts (<paramref name="hoursLeft"/> then counts from that hour).
+        /// </summary>
+        public static float[] Forecast(float[] baseTemp, IList<float> offsets, IList<int> hoursLeft, float[] push, IList<int> hoursFrom)
         {
             int n = baseTemp?.Length ?? 0;
             var temp = new float[n];
@@ -189,7 +196,10 @@ namespace ColonyCouncil
                 float t = baseTemp[h];
                 if (offsets != null)
                     for (int i = 0; i < offsets.Count; i++)
-                        if (hoursLeft == null || i >= hoursLeft.Count || h < hoursLeft[i]) t += offsets[i];
+                    {
+                        int from = hoursFrom == null || i >= hoursFrom.Count ? 0 : Math.Max(0, hoursFrom[i]);
+                        if (h >= from && (hoursLeft == null || i >= hoursLeft.Count || h - from < hoursLeft[i])) t += offsets[i];
+                    }
                 if (push != null && h < push.Length) t += push[h];
                 temp[h] = t;
             }

@@ -984,6 +984,9 @@ namespace ColonyCouncil
                         // Release D's peoples (Peoples/PeoplesD.cs, PeoplesD2.cs): the Wardens' watch on their beast, a tamer's bout.
                         case HappeningWorker_WardensHunt.Kind: keep = HappeningWorker_WardensHunt.Hour(v, comp, now); break;
                         case HappeningWorker_TamerBout.Kind: keep = HappeningWorker_TamerBout.Hour(v, comp, now); break;
+                        // Release E's (Peoples/PeoplesE.cs): the Stormglass Conclave's watch on the sky, and its runner with a warning.
+                        case GlassWatch.Kind: keep = GlassWatch.Hour(v, comp, now); break;
+                        case GlassWatch.RunnerKind: keep = GlassWatch.RunnerHour(v, comp, now); break;
                         default: keep = false; break;
                     }
                 }

@@ -1179,7 +1179,7 @@ namespace ColonyCouncil
             var colonists = IncidentWorker_Happening.Colonists(map);
             // apart: the camp has gone; the friendship was made face to face at their fire (Visited, Visitors need them together).
             bool peaceful = ending == "time" || ending == "asked" || ending == "weather" || ending == "raid" || ending == "hunger" || ending == "crowded" || ending == "moved" || ending == "declined"
-                            || ending == "brawlTheirs";
+                            || ending == "brawlTheirs" || ending == "unpaid";
             string outcome = peaceful ? "left" : ending == "forced" ? "forced" : ending == "fight" ? "fight" : ending == "fallout" || ending == "brawl" ? "fallout" : "fled";
             var them = members.Where(m => m != null && !m.Dead && !joined.Contains(m)).ToList();
             Pawn friend = null, friendOf = null, foe = null, foeOf = null;

@@ -124,6 +124,7 @@ AG_Wretch
 AM_Artist
 AM_Bulwark
 AM_Cowboys
+AM_GauranlenSupremacy
 AM_Gladiator
 AM_Iconoclast
 AM_Monastic
@@ -140,6 +141,7 @@ VFEC_CentralRepublic
 VFEC_EasternRepublic
 VFEC_Tent
 VFEC_WesternRepublic
+VFEC_Wreath
 # Alpha Prefabs 1.6 (sarg.alphaprefabs)
 # Outland 1.5 (Outland-Core)
 Outland_TentDoor

@@ -159,6 +159,17 @@ PLAY = {
     "DilemmaEffect_StrayBack": "a stray handed over",
     "DilemmaEffect_WheelRefurbished": "handed over",
     "DilemmaEffect_WheelStrip": "a wreck stripped",
+    # Release E's peoples at the gate (Peoples/PeoplesE.cs, PeoplesE2.cs): the reader out at the fields, a rod set up
+    # indoors, saplings planted round the colony and beside a grave, a Gauranlen tree pruned, the squad's camp made, a
+    # guild commission made at the bench, a night's lodging in a warm corner.
+    "DilemmaEffect_GlassWatch": "the fields read",
+    "DilemmaEffect_GlassRod": "a rod set up",
+    "DilemmaEffect_MossPlant": "saplings planted",
+    "DilemmaEffect_MossGraveTree": "a tree by a grave",
+    "DilemmaEffect_MossTend": "a tree pruned",
+    "DilemmaEffect_BannerHire": "a camp made",
+    "DilemmaEffect_GuildCommission": "made for a visitor",
+    "DilemmaEffect_NightLodging": "a night here",
 }
 
 # Words that say people do something together, or go somewhere on the map. Deliberately wide: the list is read by hand.

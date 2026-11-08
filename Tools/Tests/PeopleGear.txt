@@ -1,4 +1,4 @@
-# The game's gear and the player's mods' gear, kinds of people, gifts and goods that Rimfolk's eleven peoples' pawn kinds
+# The game's gear and the player's mods' gear, kinds of people, gifts and goods that Rimfolk's fifteen peoples' pawn kinds
 # may name or draw on (Defs/PeopleDefs/; Tools/Tests/PeoplesGearTests.cs). Columns, tab-separated: where it comes from (core,
 # a DLC's package id, or mod:PACKAGEID), what it is (apparel, weapon, xenotype, trait, gene, item, path), its defName, its
 # apparel or weapon tags, its body parts and layers (apparel), its rough worth in silver of its cheapest stuff (the game's
@@ -52,6 +52,9 @@ core	item	Silver	-	-	-
 core	item	Steel	-	-	-
 core	item	TextBook	-	-	-
 core	item	WoodLog	-	-	-
+core	item	BlocksGranite	-	-	-
+core	item	Dye	-	-	-
+core	item	RawBerries	-	-	-
 core	weapon	Bow_Great	Neolithic,NeolithicRangedHeavy,NeolithicRangedChief	-	104
 core	weapon	Bow_Recurve	Neolithic,NeolithicRangedDecent	-	66
 core	weapon	Bow_Short	Neolithic,NeolithicRangedBasic	-	45
@@ -111,6 +114,7 @@ ludeon.rimworld.ideology	apparel	Apparel_Flophat	-	UpperHead|Overhead	34
 ludeon.rimworld.ideology	apparel	Apparel_Headwrap	Rimfolk_Headscarf	UpperHead|Overhead	35
 ludeon.rimworld.ideology	apparel	Apparel_Shadecone	-	UpperHead|Overhead	44
 ludeon.rimworld.ideology	apparel	Apparel_Tailcap	-	UpperHead|Overhead	47
+ludeon.rimworld.ideology	item	GauranlenSeed	-	-	-
 ludeon.rimworld.odyssey	item	Fish_Bass	-	-	-
 ludeon.rimworld.odyssey	item	Fish_Catfish	-	-	-
 ludeon.rimworld.odyssey	item	Fish_Salmon	-	-	-
@@ -177,6 +181,7 @@ mod:oskarpotocki.vanillafactionsexpanded.settlersmodule	weapon	VFES_Gun_DoubleBa
 mod:oskarpotocki.vanillafactionsexpanded.settlersmodule	weapon	VFES_Gun_HuntingRifle	Gun,SimpleGun	-	-
 mod:oskarpotocki.vanillafactionsexpanded.settlersmodule	weapon	VFES_Tomahawk	Neolithic,NeolithicRangedBasic	-	-
 mod:oskarpotocki.vfe.classical	weapon	VFEC_Javelin	Neolithic,ClassicalRangedJavelin	-	-
+mod:oskarpotocki.vfe.classical	apparel	VFEC_Wreath	ClassicalWreath	UpperHead|Overhead	-
 mod:oskarpotocki.vfe.deserters	weapon	VFED_Gun_ChargeCycler	Gun,SpacerGun	-	-
 mod:oskarpotocki.vfe.empire	weapon	VFEE_Gun_ChargeThumper	Gun,VFEE_SpacerGunBreach	-	-
 mod:oskarpotocki.vfe.medieval2	apparel	VFEM2_Apparel_Cap	VFEM2_Cap	UpperHead|Overhead	-
@@ -303,6 +308,7 @@ mod:sarg.alphagenes	xenotype	AG_Drakonori	-	-	-
 mod:sarg.alphagenes	xenotype	AG_Forsaken	-	-	-
 mod:sarg.alphagenes	xenotype	AG_Lapis	-	-	-
 mod:sarg.alphagenes	xenotype	AG_Nereid	-	-	-
+mod:sarg.alphagenes	xenotype	VRE_Ocularkin	-	-	-
 mod:torann.arimworldofmagic	apparel	ArchMageRobe	Arcane,SeerEliteApparel,Robe,Royal,RoyalTier6,RoyalRobe	Torso,Shoulders,Arms,Legs,Neck,Waist|Middle,Shell	-
 mod:torann.arimworldofmagic	apparel	DarkRobe	Robe,Arcane,Royal,RoyalTier2	Torso,Shoulders,Legs,Waist|Middle	-
 mod:torann.arimworldofmagic	apparel	DemonLordCloak	Arcane,SeerEliteApparel,Cape,Royal,RoyalTier2,RoyalTier5	Shoulders,Neck,Waist|TM_Cloak	-
@@ -560,3 +566,4 @@ mod:vanillaracesexpanded.phytokin	xenotype	VRE_Poluxkin	-	-	-
 mod:vanillaracesexpanded.pigskin	xenotype	VRE_Boarskin	-	-	-
 mod:vanillaracesexpanded.saurid	xenotype	VRESaurids_Saurid	-	-	-
 mod:ve.vanillachristmasexpanded	apparel	VCE_Apparel_WarmJacket	IndustrialBasic,Neolithic	Torso,Neck,Shoulders,Arms|Shell	-
+mod:sovereign.kork	xenotype	Korg	-	-	-

@@ -186,14 +186,21 @@ namespace ColonyCouncil
         /// a river takes to the boats. Release D's: survivors who stayed to bury their town's dead keep the dead of
         /// everyone after (the Quiet Bell's ways), or, in the industrial and spacer ages, put what was left on wheels and
         /// never stop (the Wheel's); a band led by one good with beasts walks the region with them as tamers, by one good
-        /// with a bow or a rifle hunts the great beasts as wardens.
+        /// with a bow or a rifle hunts the great beasts as wardens. Release E's: a band led by one with a psylink reads the
+        /// sky (the Stormglass Conclave's ways), by a fighter hires out as a free company (the Ashen Banner's), by a
+        /// crafter marks its work as a guild (the Kiln Guild's), by one good at the fields keeps a grove (the Mossborn's).
         /// </summary>
         public static string[] Leans(string kind)
         {
             switch (kind)
             {
                 case Refugees: return new[] { PeoplesMath.Fishers, PeoplesMath.Sextons, PeoplesMath.Salvagers };
-                case Exiles: return new[] { PeoplesMath.Scholars, PeoplesMath.Fishers, PeoplesMath.Tamers, PeoplesMath.Hunters };
+                case Exiles:
+                    return new[]
+                    {
+                        PeoplesMath.Scholars, PeoplesMath.Fishers, PeoplesMath.Tamers, PeoplesMath.Hunters, PeoplesMath.Seers, PeoplesMath.Mercenaries, PeoplesMath.Artisans,
+                        PeoplesMath.Grovekeepers
+                    };
                 default: return new string[0];
             }
         }
@@ -242,13 +249,30 @@ namespace ColonyCouncil
         /// dead and keep everyone's after (sextons); else, in the industrial or spacer age (<paramref name="age"/> 2 or
         /// 3), on their fated third they put what was left on wheels (salvagers).
         /// </summary>
-        public static string Lean(string kind, bool nearRiver, bool riverFated, int leaderLearning, int leaderAnimals, int leaderShooting, bool bellFated, bool wheelFated, int age)
+        public static string Lean(string kind, bool nearRiver, bool riverFated, int leaderLearning, int leaderAnimals, int leaderShooting, bool bellFated, bool wheelFated, int age) =>
+            Lean(kind, nearRiver, riverFated, leaderLearning, leaderAnimals, leaderShooting, bellFated, wheelFated, age, 0, 0, 0, 0);
+
+        /// <summary>A band's leader this good a fighter (Melee) leads a free company, this good a crafter (Crafting) a guild, this good at the fields (Plants) a grove.</summary>
+        public const int FighterLevel = 10, CrafterLevel = 10, GrowerLevel = 10;
+
+        /// <summary>
+        /// Every lean weighed, release E's too: a band of the banished led, after the learned, the beast-handler and the
+        /// good shot, by one with a psylink (<paramref name="leaderPsylink"/> 1 or more) reads the sky as seers; by a
+        /// fighter (<see cref="FighterLevel"/>) hires out as a free company; by a crafter (<see cref="CrafterLevel"/>)
+        /// marks its work as a guild; by one good at the fields (<see cref="GrowerLevel"/>) keeps a grove.
+        /// </summary>
+        public static string Lean(string kind, bool nearRiver, bool riverFated, int leaderLearning, int leaderAnimals, int leaderShooting, bool bellFated, bool wheelFated, int age,
+            int leaderMelee, int leaderPlants, int leaderCrafting, int leaderPsylink)
         {
             if (kind == Exiles)
             {
                 if (leaderLearning >= LearnedLevel) return PeoplesMath.Scholars;
                 if (leaderAnimals >= TamerLevel) return PeoplesMath.Tamers;
                 if (leaderShooting >= HunterLevel) return PeoplesMath.Hunters;
+                if (leaderPsylink >= 1) return PeoplesMath.Seers;
+                if (leaderMelee >= FighterLevel) return PeoplesMath.Mercenaries;
+                if (leaderCrafting >= CrafterLevel) return PeoplesMath.Artisans;
+                if (leaderPlants >= GrowerLevel) return PeoplesMath.Grovekeepers;
             }
             if (nearRiver && riverFated && Array.IndexOf(Leans(kind), PeoplesMath.Fishers) >= 0) return PeoplesMath.Fishers;
             if (kind == Refugees)

@@ -806,6 +806,205 @@ Not used: Vehicle Framework (a convoy needs its own vehicles' defs and pathing o
 (a mechanitor's mechs need their own group maker; they wear the headset and carry components only), Rimsenal (not in
 the player's active mods), nets for the Wardens (no net weapon among the active mods).
 
+## What was built (release E: the Stormglass Conclave, the Mossborn, the Ashen Banner and the Kiln Guild)
+
+The second four of the eight peoples of `docs/design/peoples-next.md` (the same request as release D, the player's
+words, 7 November 2026: "love all these factions, go ahead!", and "always consider the actual mods i have enabled in my
+save and mod list"; no proposal round), at release D's level: a founding story, sayings, what they honour and fear,
+titles, messengers, gear by role, faith, town plan, voice, touchpoints at the gate that play out on the map, an ask, a
+patch on the callers and world events that should come from them, names for peoples that arise in their ways and an
+Almanac page. Built only from the player's active mods (`docs/player-mods/`, the rows with `active` yes), always softly,
+with the base game's fallback. Code in `Source/ColonyCouncil/Peoples/`: `PeoplesE.cs` (helpers, the job driver, the
+Conclave, the Mossborn), `PeoplesE2.cs` (the Banner, the guild, the two hosting asks), `PeoplesEPatches.cs` (four game
+hooks), `PeoplesEMath.cs` (pure, linked into the tests: `Tools/Tests/PeoplesETests.cs`, "peoples, release E: ");
+`Camps/CampContract.cs` (a camp hired by contract); `PeopleAgeArms.apparel` (`PeopleDefs.cs`, `AgeArms.Kit` in
+`PeopleGifts.cs`: a kit for another age, worn with the arms). Defs: `Defs/PeopleDefs/Rimfolk_People_Stormglass.xml`,
+`_Mossborn.xml`, `_AshenBanner.xml`, `_KilnGuild.xml`, `Rimfolk_TownPlans_PeoplesE.xml`;
+`Defs/IncidentDefs/Rimfolk_Events_PeoplesE.xml`, `Defs/MissionDefs/Rimfolk_Missions_PeoplesE.xml`,
+`Defs/CampDefs/Rimfolk_CampKinds_PeoplesE.xml` (the squad's camp and its sentry's job),
+`Defs/FlavorPoolDefs/Rimfolk_Lines_PeoplesE.xml`, `Defs/OutsiderTalkDefs/Rimfolk_OutsiderTalks_PeoplesE.xml`,
+`Defs/ThoughtDefs/Rimfolk_Thoughts_PeoplesE.xml`, `Defs/Misc/Rimfolk_PeoplesE_Misc.xml` (the jobs, the taught reader's
+season, the rod), `Patches/Rimfolk_PeoplesE.xml`, Keyed `Rimfolk_PeoplesE.xml`; the Almanac's page *the Conclave, the
+Mossborn, the Banner and the guild*; the rod's texture `Textures/ColonyCouncil/Things/StormglassRod.png`.
+
+| | The Stormglass Conclave | The Mossborn | The Ashen Banner | The Kiln Guild |
+|---|---|---|---|---|
+| defName | `Rimfolk_Stormglass` | `Rimfolk_Mossborn` | `Rimfolk_AshenBanner` | `Rimfolk_KilnGuild` |
+| Calling | seers | grovekeepers | mercenaries | artisans |
+| Age | Industrial (outlander parent) | Tribal (tribal parent) | Medieval (tribal parent) | Medieval (tribal parent) |
+| Arises in (release B) | every age | every age | every age | every age |
+| Founding | the glassblower Hesper Lyle, whose village lost its harvest to a hail nobody saw coming, sealed a vial of rain from every storm and wrote on its cap what came after; in thirty years she read a frost in the glass a week ahead | the charcoal-burner's widow Elin Sedge walked the stumps of a valley a war had cut down and planted an acorn beside each; she lies under the last sapling she set | the quartermaster Corra Mallin would not let five hundred soldiers of a lost war scatter unpaid: she sold every banner but the one burned grey and hired the company out; the Roll is everyone lost under it | the mason Oswin Kell rebuilt the Hardwater bridge three times after the flood and cut his mark into every stone; the fourth still stands |
+| Sayings | The sky is the world thinking aloud. Every storm is written down. Never wrong, never sure. | Every tree you fell owes the world a seedling. The forest remembers every axe. In the end we are all the grove. | Paid to the day, held to the day. Every name on the Roll. No pay, no wall. | Anyone can stack stone. Mark it, and answer for it. Bad work is a lie told in stone. |
+| They honour / fear | the vial kept, the storm written down and a forecast that comes true / the hail nobody saw coming, a broken glass and a reader who is sure | the seedling set beside the stump, an old tree left standing and a grave that grows / fire in the canopy, the clear-cut hillside and the axe that keeps no count | a contract kept to its last day, a wall held and every name on the Roll / a contract broken, a name left off the Roll and a field nobody came back from | the mark cut true, a masterwork and a journeyman who comes back better / work that lies, a cold kiln and a mark on a thing nobody wanted |
+| Signature | a long coat in storm slate (the game's duster and jacket dyed) | one piece of tribal wear in moss green, and Vanilla Expanded - Classical's wreath where it is loaded | the one issued kit, ash-grey (plate, cape, flak, recon armour, Medieval 2's tabard, tribal war wear dyed), an officer's black sash | kiln ochre on a shirt, a cape or Vanilla Apparel Expanded's apron |
+| Leader, head, heir, envoy, trader | first reader, keeper of the glass, second keeper, storm-walker, vial-seller | eldest root, grove-warden, second warden, seed-carrier, herb-trader | captain of the Banner, keeper of the Roll, under-keeper, sergeant, paymaster | guildmaster, kiln-warden, second warden, journeyman, master-trader |
+| Messengers | vial-runners | leaf-runners | banner-runners | guild runners |
+| Towns | 0.35: towers | 0.5: groves | 0.4: forts | 0.45: guildhalls |
+| Caravans | 0.7 | 0.8 | 0.6 | 1.2 |
+| Raids | 0.2 | 0.2 | 0.4 | 0.2 |
+| Faith (Ideology) | The Read Sky: nature primacy (and VE Memes' astrology and elders); animist, abstract or esoteric; Islamic | The Owed Seedling: tree connection, nature primacy (and Alpha Memes' Gauranlen supremacy); animist, embodied or pantheist; totemic | The Roll: loyalist, collectivist (and Alpha Memes' bulwark); ideological, abstract or authoritarian; spikecore | The Mark: proselytizer (and VE Memes' craft culture, Alpha Memes' artist); ideological, abstract or corporate; Hindu |
+| Kinds (Biotech, a fifth or so) | genies, yttakin, highmates, Rimsenal's askbarn and uredd, Avaloi, archons, high elves | Neanderthals, pigskins, the phytokin (animakin, gauranlenkin, poluxkin, ocularkin), wood elves, fungoids, awakened orangutans and gorillas | hussars, Neanderthals, uhlans, boarskins, Venators, uredd, gorillas, korgs | dirtmoles, genies, stoneborn, orangutans, lapis, boglegs |
+| Colour | storm slate | moss green | ash grey (the sash black) | kiln ochre |
+
+**How alike they look, role by role** (uniform only where it makes sense). The Conclave wears no uniform: readers in a
+dyed long coat of the industrial age over plain clothes, wide hats and packs (Vanilla Apparel Expanded - Accessories),
+carrying herbal medicine, books and cloth; storm-walkers in a duster, flak vest, collar shirt and trousers with a gun;
+apprentices and the vial-seller freer; the first reader in a duster, with Royalty its psychic gear. The Mossborn dress
+freely in tribal wear with one piece moss green and the wreath; thorn-guards in Vanilla Armour Expanded's wooden armour
+with bows, spears and clubs; seed-carriers with a headscarf and a satchel of berries, herbs and (Ideology) a Gauranlen
+seed; the herb-trader with beads; the eldest root in a parka. The Banner is the one people in one kit: every soldier and
+shot in the same ash-grey plate, simple helmet, shirt, trousers and (Medieval 2) tabard, shots with a quiver; sergeants
+and the captain in a cape and the black sash (Biotech) over the same; the paymaster in a cape and collar shirt. The
+guild's journeymen in shirt, trousers and apron with a cap or headscarf, mallets, tools and blades (Vanilla Weapons
+Expanded's tools); guards in a cape and helmet with longswords; the guildmaster in an apron and cape with beads.
+
+**Every age** (the player's rule). `PeopleAgeArms.apparel`: a kit worn with an age's arms, made in its stuff, dyed the
+people's colour where its kind dyes that piece, worn over what clashes with it (`AgeArms.Kit`). The Banner issues every
+age's kit: tribal war wear and great clubs and spears in the tribal age, the medieval plate, flak vest, trousers and
+advanced helmet with an assault rifle in the industrial age, recon armour and helmet with a spacer gun in the spacer age
+(its shots the same with a bow, a rifle or a charge rifle). The Conclave's storm-walkers take great bows and Medieval 2's
+arbalest in the tribal and medieval ages and spacer guns in the spacer age; the Mossborn's thorn-guards guns in the
+industrial and spacer ages; the guild's guards an ikwa in the tribal age, a longsword or Bamba's forged one-handed
+blades in the industrial age and monoswords and the like (Royalty) in the spacer age.
+
+**Gifts** (`PeopleKindExtension.gifts`): the Conclave's psylinks (Royalty) on Vanilla Psycasts Expanded's Staticlord or
+Frostshaper paths, a reader 35%, the first reader 45% at two to four levels, and A RimWorld of Magic's StormBorn and
+Heart of Frost now and then (the Conclave reads the weather as the planet's psychic tide: their lore, beside the learned
+and the spacers as the peoples who have psylinks); the Mossborn's druids and rangers, the eldest root a druid one in
+three and its only psylink (a Wildspeaker's, 20%); the Banner's gladiators, paladins, snipers, super soldiers in the
+industrial and spacer ages, and commanders (the captain 30%); the guild's enchanters and geomancers (the guildmaster one
+in five), technomancers in the industrial and spacer ages. No gift over 45% of a kind.
+
+**Their towns' maps** (`Rimfolk_TownPlans_PeoplesE.xml`). The Conclave's **tower** (33 by 23): a marble-tiled library
+of five bookcases and two research benches (the record of the storms), a reading table, six beds, the store, rose and
+daylily beds, and a ring of ten steel columns (the rods). The Mossborn's **grove** (35 by 24): a hall of bedrolls and the
+store, a crafting spot, twelve graves on packed earth among oaks and birches planted for them, and thirty-two cells of
+healroot. The Banner's **fort** (37 by 25): a walled square with barracks of ten beds, the hall of the Roll (bookcases, a
+long table), a drill yard behind ten sandbags, the store, and stables for its horses. The guild's **guildhall** (37 by
+24): the workshop (a fueled smithy, a stonecutter's and a sculptor's table, a fueled stove), the hall under eight
+columns, market stalls of tables on the flagstones, four beds, the store.
+
+**Theirs at the gate** (`Rimfolk_Events_PeoplesE.xml`; each only from a people of its calling at peace with the colony,
+the deserter from any Banner still standing, each with three answers, the last always to send them on):
+
+- *A season's watch* (`HappeningWorker_GlassReading`, `DilemmaEffect_GlassWatch`): a reader offers to watch the
+  colony's sky for fifteen days (a fee of 80 to 400 silver by its wealth, `WatchFee`, carried out); the reader then walks
+  out to read the colony's biggest field before the road. While the watch runs (a visit of the happenings' tracker,
+  kind `glassWatch`), every condition of the sky the storyteller sends to that home (`PeoplesEMath.SkyIncidents`: cold
+  snap, heat wave, toxic fallout, volcanic winter, flashstorm, eclipse, Biotech's noxious haze, Odyssey's drought and
+  Vanilla Events Expanded's drought, whiteout, scorch and long night), never a quest's, is held: `Patch_GlassHold`
+  (a prefix on `Storyteller.TryFire`, never on one coming back out of the queue) puts it into the game's own incident
+  queue 18 to 30 hours on (`QueuedIncident`, with 12 hours to retry), one held at a time; a vial-runner of theirs sets
+  off for the gate at once (a visit, kind `glassRunner`, who says it over their head there) and the news letter names
+  the condition; and the colony's fields by the weather reckon the held cold or heat from that hour
+  (`GlassWatch.Ahead`, read by `FieldWeather.Forecast` through `FieldWeatherMath.Forecast`'s new hours-from list: a cold
+  snap −20 °C, a heat wave +17 °C, a volcanic winter −7 °C, for its usual length). Or a free reading of tonight's sky
+  at the gate with the colony's best hand at the fields.
+- *A rod on the roof* (`HappeningWorker_GlassRod`, `DilemmaEffect_GlassRod`): with a roofed room of nine cells or more
+  and no rod yet, a storm-walker carries a rod in to the colony's biggest room and sets it up there (`JobDriver_PeoplesE`,
+  a progress bar and sparks; `Rimfolk_StormglassRod`, the colony's, can be moved). From then a lightning strike on the
+  open ground within 18 cells of a rod strikes the rod instead (`Patch_GlassRodStrike` on
+  `WeatherEvent_LightningStrike.FireEvent`, the cell chosen as the game chooses it when it had none), and the strike's
+  blast there is skipped (`Patch_GlassRodExplosion` on `GenExplosion.DoExplosion` at that cell and map only): the bolt,
+  its sound and flash, no fire; told once a storm. The rod counts as a weather station
+  (`WeatherDynamics`' stations). The colony's builder may stand by to learn how it is grounded.
+- *Reading the glass* (`HappeningWorker_GlassLesson`, `DilemmaEffect_GlassTaught`): towards evening a reader teaches the
+  colony's best hand at the fields who isn't taught yet (a lesson from 17h); for sixty days (`Rimfolk_GlassTaught`) their
+  forecasts are 15 points nearer the truth, never past a station's (`PeoplesEMath.Taught`), and one who didn't read
+  the weather before now does. Or an hour at the gate watching the sky.
+- *Saplings for the felled* (`HappeningWorker_MossSaplings`, `DilemmaEffect_MossPlant`): once the colony has felled a
+  dozen trees in the ledger's season, a seed-carrier comes with six to fourteen saplings (`Saplings`: one for every three
+  felled) and plants them one by one on open soil round the colony, out of its home area, fields and buildings, two cells
+  apart (`MossPlanting.Cells`; the land's own wild trees that give wood, else oak, birch or poplar; sown, so they count as
+  the colony's planting), the colony's planter beside them if it likes.
+- *A tree for the dead* (`HappeningWorker_MossGraveTree`): for one of the colony in a grave who died within ten days, a
+  grove-warden plants a sapling on soil beside the grave, the colony gathered there (a vigil, its own words, and
+  `Rimfolk_Evt_GraveTree`) or one colonist with them.
+- *The tree-connector's pruning* (`HappeningWorker_MossTreeTend`, Ideology): the colony's Gauranlen tree connected to one
+  of its people, under full strength; a tree-connector prunes it a while (`Rimfolk_PeoplesE_TendTree`) and its
+  connection strength rises 15 points, never past full (`CompTreeConnection.ConnectionStrength`).
+- *The squad for the season* (`HappeningWorker_BannerHire`, `DilemmaEffect_BannerHire`, `BannerSquad`, `Camp` work
+  `contract`): with a camp able to stand (camps on, no other camp, no danger, a site, bearable weather), a sergeant and
+  two to four of the company. Hired, the first wage is carried out to the sergeant and the squad makes camp by the colony
+  for fifteen days (`Rimfolk_Camp_BannerSquad`: `fights`, so its people take up arms against any threat on the map as a
+  war party does; one of them stands watch at the gate by day, `Rimfolk_CampStandWatch`). On the fifth and the tenth day
+  the camp asks its wage by letter (the ask `wage`, `price` wage: 60 silver a soldier for five days by the Banner's age,
+  0.6 tribal to 2.4 spacer, `Wage`; paid as the ask is answered, carried out to their fire, blocked without the silver);
+  turned down or let go, they strike camp and walk (`Leave("unpaid")`, the ending `CC_Camp_End_unpaid`) and the Banner
+  thinks 8 less of the colony; kept to its end, 6 more. Or the sergeant drills the colony's best fighter for an afternoon.
+- *A deserter at dusk* (`HappeningWorker_BannerDeserter`): a soldier who ran from the Banner (the tabard left behind)
+  asks shelter at dusk: taken in (they join; the Banner, which struck the name from the Roll, thinks 3 less of the
+  colony), a warm corner for the night and the road at first light (`VisitorServices.Lodge`), or the gate stays shut.
+- *The Roll read at the grave* (`HappeningWorker_BannerRoll`): for one of the colony who died of wounds within thirty days
+  and lies in a grave, the keeper of the Roll comes; the colony gathers at the grave at dusk to hear the name read into
+  it (a vigil with its own words, `Rimfolk_Pool_PlayBannerRoll`, `Rimfolk_Evt_NameOnRoll`), or one colonist stands with
+  the keeper.
+- *A guild commission* (`HappeningWorker_GuildCommission`, `DilemmaEffect_GuildCommission`): a journeyman commissions a
+  piece from the colony's best maker (the better of its crafter and artist): a weapon or a garment of the colony's own
+  benches, or a sculpture for an artist, of quality, made from the plainest stuff in its stores whose recipe it has and
+  whose bench it has. The stuff is set apart beside the stack and the maker makes it at the bench, as the collector's
+  commission is made (`PlayMake.KeepMade`, `Callers.Commission`). Or the maker talks shop with the journeyman at the gate.
+- *The guild comes for the commission* (`HappeningWorker_GuildCollects`): the journeyman back for a finished guild piece
+  (`Callers.Due` with the guild's commissions only; the collector's own `CollectorBack` takes the rest), paying by its
+  quality (`GuildPay`: half its worth for awful work up to 3.2 times for a legend, to the nearest five): handed over, with
+  the maker hearing what the guild saw in it if the colony likes, or kept.
+- *A bid on a masterwork* (`HappeningWorker_GuildBid`): the colony's finest masterwork or legend (art or furniture
+  standing in its rooms, anything in its stores) brings the master-trader to look at it and bid 1.8 times its worth, a
+  legend 2.4 (`Bid`): sold and carried out, or kept and talked of.
+
+**Their asks** (`Rimfolk_Missions_PeoplesE.xml`, each only theirs): the Conclave's apprentice of the glass
+(`HappeningWorker_MissionGlassApprentice`, hosted as the dignitary is: a bed nobody else uses, the colony's meals; on
+each clear night from 21h they lie out under the open sky near the gate for two hours, `Rimfolk_PeoplesE_Skywatch`,
+face up, ended under a roof, and the night is counted when it's done; none at all and the stay is wasted; the colony's
+best at the fields learns for each night); the Mossborn's food and medicine for a burned grove (a delivery); the
+Banner's muster (two fighters, Melee 6, on its fort's wall for a day and a half, `MissionHands`); the guild's
+wander-year (`HappeningWorker_MissionWanderYear`: hosted; two hours a working day at the bench nearest the colony's best
+maker, `Rimfolk_PeoplesE_Bench`, the journeyman learning and the maker a little; at the end a small work of art of the
+guild's age left by the gate, good, `ThingRoles.From(ThingRole.SmallArt, ...)` of stone or wood).
+
+**The Mossborn's ledger** (`MossLedger`, from the region's day, the deeper game hooks on): the trees the colony's
+people cut on a home map (`Patch_MossFelled`, a prefix on `Plant.PlantCollected`) and the trees sown by hand that came
+up since the last look (`Plant.sown`, counted by id) are kept in the peoples' book (`ArisingBook.groveFelled`,
+`grovePlanted`, `groveSownId`, `groveSince`); every fifteen days each Mossborn people reckons them (`Shift`: thirty
+planted more than felled warms them by 5, ten by 3; twenty felled more than planted cools them by 3, sixty by 6;
+nothing for a season under ten trees) and the news says so, never cooling them below none (`Kept`).
+
+**By patch** (`Patches/Rimfolk_PeoplesE.xml`, conditional): world events that prefer a calling (a year without a summer
+the Conclave, a blight the Mossborn, a mercenary company looking for work the Banner, a great work the guild); the
+fortune teller prefers the Conclave and the art collector the guild, each with a text in their voice when they are the
+ones who came (`HappeningWorker_FortuneTeller` and `HappeningWorker_Collector` read `HappeningExtension.prefers` now).
+
+**Release B's peoples that arise may take their ways** (`ArisingMath.Lean`, its 13-argument form): a band of the
+banished, after the learned, the beast-handler and the good shot, led by one with a psylink reads the sky as seers, by a
+fighter (Melee 10) hires out as mercenaries, by a crafter (Crafting 10) keeps a guild, by one good at the fields (Plants
+10) a grove. Their words: `CC_Arise_exiles_seers`, `_mercenaries`, `_artisans`, `_grovekeepers` (each two ways), three
+names each (*Barr's Glass*, *Barr's Company*, *Barr's Mark*, *Barr's Seedling*).
+
+**Harm.** Nothing of theirs hurts anyone: the squad's fights are the game's own, against whatever attacks the colony.
+
+**Saved**: four counts in the peoples' book (`ArisingBook`, modelled in `Tools/save_estimate.py`). The watch and the
+runners are visits of the happenings' tracker; the held condition is in the game's own incident queue; the squad is a
+camp (its wages marked in the camp's own asks); the hosting asks are missions.
+
+**Softness**
+
+| Missing | What happens |
+|---|---|
+| Ideology | No fixed faiths or styles; no Gauranlen tree to tend, no Gauranlen seed carried. |
+| Biotech | Humans only; no black sash for the Banner's officers. |
+| Royalty | No psylinks; no monoswords for a spacer-age guild (their Bamba blades or longswords). |
+| Odyssey, Vanilla Events Expanded | Their conditions aren't there to foresee. |
+| A RimWorld of Magic | No classes. |
+| Vanilla Psycasts Expanded | Psylinks on the game's own way. |
+| Medieval 2, Vanilla Factions Expanded - Tribals, Vanilla Expanded - Classical, Vanilla Apparel and Armour Expanded, Vanilla Weapons Expanded, Bamba's melee | The game's own pieces: no tabard, wreath, apron, wooden armour, arbalest, tribal war wear, tools or forged blades. |
+| Camps off | No squad to hire (the drill alone). |
+| Answers play out on the map (setting) off | The rod, the saplings, the grave's tree and the pruning are done at once; the commission made at once. |
+| The deeper game hooks (setting) off | No condition held back (the watch's runner never comes), no rod drawing the lightning, no ledger; the game's own bases for their towns; no age arms, kits or gifts. |
+
+Not used: Vanilla Trade Expanded's contracts (its code isn't among the player's files, only its defs: its contract
+board needs its own UI and world objects; the squad is Rimfolk's own camp instead), Vehicle Framework, a convoy for the
+Banner (as release D), Vanilla Psycasts Expanded's Wildspeaker for the Conclave (the weather's paths fit it better).
+
 ## What could come next
 
 - Their own world events: a league's toll war, an order's plague year with the colony's help asked by name, a great

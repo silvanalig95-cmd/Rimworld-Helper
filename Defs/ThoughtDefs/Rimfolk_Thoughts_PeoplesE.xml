@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Feelings from release E's peoples at the gate (Defs/IncidentDefs/Rimfolk_Events_PeoplesE.xml): a tree the Mossborn
+       planted over a grave, a fallen colonist's name read into the Ashen Banner's Roll, and the Banner's muster for those
+       who stood a wall beside the company (Defs/MissionDefs/Rimfolk_Missions_PeoplesE.xml). Each a feeling rather than
+       a mood, as the colony's other moments are. -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_Evt_GraveTree</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>a tree over the grave</label><description>A grove-warden of the Mossborn planted a sapling beside the grave, and we stood round it while they did. It will be taller than any of us one day.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Relief</li></feelings><felt>3</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Evt_NameOnRoll</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>a name on the Roll</label><description>A keeper of the Ashen Banner read the name of the one we lost into the Roll at the grave, aloud, as they read their own. Soldiers will hear it read every year now.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Resolve</li></feelings><felt>3</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <!-- The Banner's muster (Defs/MissionDefs/Rimfolk_Missions_PeoplesE.xml): for those who went. -->
+  <ThoughtDef>
+    <defName>Rimfolk_Mission_StoodWithBanner</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>on the wall with the Banner</label><description>A day and a half on the wall of the Banner's fort with the company, keeping the watch while they mustered. They paid to the day, and wrote our names in the book of contracts kept.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.08</joy><felt>3</felt><feelings><li>Pride</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+</Defs>

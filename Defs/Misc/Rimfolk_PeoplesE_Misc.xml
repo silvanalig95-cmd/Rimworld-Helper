@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Release E's peoples at the colony's gate (Source/ColonyCouncil/Peoples/PeoplesE.cs, PeoplesE2.cs): the jobs their
+       touchpoints are seen doing on the map (JobDriver_PeoplesE), the season a weather-reader the Conclave taught reads
+       the glass, and the Conclave's rod on the colony's roof. -->
+
+  <JobDef>
+    <defName>Rimfolk_PeoplesE_SetRod</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeoplesE</driverClass>
+    <reportString>setting up the Conclave's rod.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PeoplesE_Plant</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeoplesE</driverClass>
+    <reportString>planting a sapling.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PeoplesE_GraveTree</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeoplesE</driverClass>
+    <reportString>planting a sapling beside the grave.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PeoplesE_TendTree</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeoplesE</driverClass>
+    <reportString>pruning TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PeoplesE_Bench</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeoplesE</driverClass>
+    <reportString>working at TargetA, learning.</reportString>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PeoplesE_Skywatch</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeoplesE</driverClass>
+    <reportString>watching the sky.</reportString>
+  </JobDef>
+
+  <!-- A weather-reader the Conclave taught to read the glass (Rimfolk_Evt_GlassLesson): for a season their forecasts are
+       better (Weather/WeatherDynamics.cs, PeoplesEMath.Taught), and one who didn't read the weather before now does. -->
+  <HediffDef>
+    <defName>Rimfolk_GlassTaught</defName>
+    <label>reads the glass</label>
+    <description>A reader of the Stormglass Conclave taught them to read a stormglass against the clouds. For a season their word on the weather is the Conclave's, and nearer the truth.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.62, 0.72, 0.92)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>3500000~3700000</disappearsAfterTicks>
+        <showRemainingTime>false</showRemainingTime>
+      </li>
+    </comps>
+  </HediffDef>
+
+  <!-- The Conclave's rod (Rimfolk_Evt_GlassRod): a brass rod with a sealed stormglass at its foot, set under the colony's
+       highest roof. It takes the lightning that would strike the open ground near it, harmlessly (PeoplesEPatches.cs),
+       and the colony's forecasts are as right as with a weather station. Only the Conclave sets one; it can be moved. -->
+  <ThingDef ParentName="BuildingBase">
+    <defName>Rimfolk_StormglassRod</defName>
+    <label>stormglass rod</label>
+    <description>A brass rod of the Stormglass Conclave, grounded through a coil, with a sealed vial of storm water caged at its foot. It calls the lightning that falls near it down onto itself, where it does no harm, and the glass clouds and feathers before the weather turns, so the colony reads its weather by it as well as by a weather station.</description>
+    <thingClass>Building</thingClass>
+    <graphicData>
+      <texPath>ColonyCouncil/Things/StormglassRod</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1,1)</drawSize>
+    </graphicData>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <pathCost>30</pathCost>
+    <fillPercent>0.15</fillPercent>
+    <rotatable>false</rotatable>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <thingCategories>
+      <li>BuildingsMisc</li>
+    </thingCategories>
+    <statBases>
+      <MaxHitPoints>120</MaxHitPoints>
+      <Mass>6</Mass>
+      <MarketValue>180</MarketValue>
+      <Flammability>0</Flammability>
+      <Beauty>4</Beauty>
+    </statBases>
+    <tradeability>None</tradeability>
+  </ThingDef>
+
+</Defs>

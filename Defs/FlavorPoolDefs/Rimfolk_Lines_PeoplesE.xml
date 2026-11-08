@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Release E's peoples in their own words (Source/ColonyCouncil/Peoples/PeoplesE.cs, PeoplesE2.cs; docs/design/
+    peoples.md, "Release E"), in the pools the other eleven speak in, by the tag their people give every line:
+    their:seers the Stormglass Conclave, their:grovekeepers the Mossborn, their:mercenaries the Ashen Banner,
+    their:artisans the Kiln Guild. Each in its own manner: the Conclave quiet and exact, talking of the sky as a person;
+    the Mossborn slow, kind and long-memoried; the Banner dry, plain and exact about money; the guild proud, warm and
+    blunt about work.
+    - Rimfolk_Pool_NeighbourWrites: their answer to the colony's letter or call, and their grief with it and thanks for a
+      warning. Help is promised only in a warm or cordial answer, and comes by their own messengers.
+    - Rimfolk_CourierLines: their messengers at the colony's gate. One sentence each.
+    - Rimfolk_VisitorLines: their visitors at every moment of a visit (arrive, wait, stay, pass, leave). One sentence each.
+    - Rimfolk_Pool_OutsiderSays: their words face to face: a chat, a warm parting, their faith.
+    And the words at the Banner's reading of a name into the Roll (Rimfolk_Pool_PlayBannerRoll), and the journal of the
+    colonist closest to the fallen one it was read for (Defs/IncidentDefs/Rimfolk_Events_PeoplesE.xml).
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_NeighbourWrites_PeoplesE</defName>
+    <pool>Rimfolk_Pool_NeighbourWrites</pool>
+    <lines>
+      <plain>
+        <!-- The Stormglass Conclave: the glass, the sky, the record -->
+        <li>[greetings,warm,their:seers] Your letter was read in the tower under a clear glass, {WRITER}, and a clear glass is a kind sky.</li>
+        <li>[greetings,cordial,their:seers] The tower has your letter, {WRITER}, and has written down the day it came, as it writes down everything.</li>
+        <li>[greetings,cool,their:seers] We have your letter. The glass has not made up its mind about you yet.</li>
+        <li>[news,warm,their:seers] The tower watches the whole region's sky, {WRITER}, and the roads under it. Here is what the season wrote.</li>
+        <li>[news,cordial,their:seers] Our runners carry the weather from town to town, and the news with it. This is the season's.</li>
+        <li>[help,warm,their:seers] What you asked for is coming with a vial-runner, {WRITER}, and the glass says fair roads for it.</li>
+        <li>[help,cordial,their:seers] The tower can spare it, and it is on the road with our runner.</li>
+        <li>[help,refusal,their:seers] The hail took our stores this season, {WRITER}, the way it took the first reader's. We have nothing to send, and we are sorry.</li>
+        <li>[invitation,warm,their:seers] A reader will come, and read your sky for you while they stay.</li>
+        <li>[condolences,warm,their:seers] We have sealed a vial of tonight's rain for your dead, {WRITER}, and set it on the shelf with the tower's own.</li>
+        <li>[condolences,cordial,their:seers] The Conclave is sorry for your loss, {WRITER}. Every storm is written down, and so is every grief.</li>
+        <li>[warning,warm,their:seers] Your warning reached the tower before the trouble did, {WRITER}, and for once the sky was not the first to tell us. We will not forget it.</li>
+        <li>[warning,cordial,their:seers] We have your warning, {WRITER}. The tower's shutters are down tonight.</li>
+        <!-- The Mossborn: the grove, the seedling, the long count -->
+        <li>[greetings,warm,their:grovekeepers] Your letter was read under the oldest tree in the grove, {WRITER}, and it listened as well as we did.</li>
+        <li>[greetings,cordial,their:grovekeepers] The grove has your letter, {WRITER}. We are slow to answer, but we remember.</li>
+        <li>[greetings,cool,their:grovekeepers] We have your letter. The forest remembers every axe, and we are still counting yours.</li>
+        <li>[news,warm,their:grovekeepers] The groves hear the region as trees do, {WRITER}, slowly and all of it. Here is what a season brought.</li>
+        <li>[news,cordial,their:grovekeepers] Seed-carriers walk every road, and listen on all of them. This is what they heard.</li>
+        <li>[help,warm,their:grovekeepers] What you asked for is coming with a leaf-runner, {WRITER}. Plant it, and be patient, as we say.</li>
+        <li>[help,cordial,their:grovekeepers] The grove can spare it, and a runner is bringing it.</li>
+        <li>[help,refusal,their:grovekeepers] The groves gave everything to the dry season, {WRITER}, and are only now putting out leaves again. We have nothing to send.</li>
+        <li>[invitation,warm,their:grovekeepers] A seed-carrier will come, with a sapling for your gate.</li>
+        <li>[condolences,warm,their:grovekeepers] We planted a sapling for your dead this morning, {WRITER}, beside our own. In the end we are all the grove.</li>
+        <li>[condolences,cordial,their:grovekeepers] The Mossborn are sorry for your loss, {WRITER}. A grave that grows is a grave that is not forgotten.</li>
+        <li>[warning,warm,their:grovekeepers] Your warning reached the grove in time, {WRITER}, and everyone is in among the old trees. The grove remembers who told it.</li>
+        <li>[warning,cordial,their:grovekeepers] We have your warning, {WRITER}. The grove will keep its fires low tonight.</li>
+        <!-- The Ashen Banner: the Roll, the wall, the pay -->
+        <li>[greetings,warm,their:mercenaries] Your letter was read in the hall of the Roll, {WRITER}, and the captain called it a good one, which the captain rarely does.</li>
+        <li>[greetings,cordial,their:mercenaries] The fort has your letter, {WRITER}, and has filed it with the contracts.</li>
+        <li>[greetings,cool,their:mercenaries] We have your letter. The Banner keeps its word to those who pay, and we have not settled what you are yet.</li>
+        <li>[news,warm,their:mercenaries] The company marches every road of the region in a year, {WRITER}, and hears what every town is afraid of. Here is this season's.</li>
+        <li>[news,cordial,their:mercenaries] Soldiers talk at every fire, and some of it is true. This is the part we believe.</li>
+        <li>[help,warm,their:mercenaries] What you asked for is coming with a banner-runner, {WRITER}, and nobody will bill you for it.</li>
+        <li>[help,cordial,their:mercenaries] The paymaster can spare it, and it is on the road.</li>
+        <li>[help,refusal,their:mercenaries] The company is between contracts and between meals this season, {WRITER}. There is nothing to send, and we do not promise what we cannot pay.</li>
+        <li>[invitation,warm,their:mercenaries] A sergeant will come, and look over your walls while they are there.</li>
+        <li>[condolences,warm,their:mercenaries] Your dead were read out in the hall of the Roll tonight, {WRITER}, beside our own. Every name on the Roll.</li>
+        <li>[condolences,cordial,their:mercenaries] The Banner is sorry for your loss, {WRITER}. Nobody is left on the field, and nobody is forgotten.</li>
+        <li>[warning,warm,their:mercenaries] Your warning reached the fort in time, {WRITER}, and the walls were manned when it came. The Banner owes you, and it pays.</li>
+        <li>[warning,cordial,their:mercenaries] We have your warning, {WRITER}. The watch is doubled tonight.</li>
+        <!-- The Kiln Guild: the mark, the kiln, the work -->
+        <li>[greetings,warm,their:artisans] Your letter was read in the guildhall, {WRITER}, and the kiln-warden said the hand was good, which is high praise from a mason.</li>
+        <li>[greetings,cordial,their:artisans] The guildhall has your letter, {WRITER}. Send us something well made one day, and we will talk properly.</li>
+        <li>[greetings,cool,their:artisans] We have your letter. We judge a people by its work, and have not seen yours.</li>
+        <li>[news,warm,their:artisans] Our journeymen live a year in every town of the region, {WRITER}, and write home about all of it. Here is the best.</li>
+        <li>[news,cordial,their:artisans] Every market has its talk, and our traders bring it back with the wares. This is the season's.</li>
+        <li>[help,warm,their:artisans] What you asked for is coming with a guild runner, {WRITER}, packed properly, the way we pack everything.</li>
+        <li>[help,cordial,their:artisans] The guild can spare it, and it is on the road.</li>
+        <li>[help,refusal,their:artisans] The kilns are cold for want of fuel this season, {WRITER}, and everything we have is going into them. There is nothing to send.</li>
+        <li>[invitation,warm,their:artisans] A journeyman will come, and leave a little guild work behind.</li>
+        <li>[condolences,warm,their:artisans] We cut your dead's name into the guildhall's lintel this morning, {WRITER}, with the guild's own. Good work outlasts us.</li>
+        <li>[condolences,cordial,their:artisans] The guild is sorry for your loss, {WRITER}. We mark what we make so it is remembered, and we will remember yours.</li>
+        <li>[warning,warm,their:artisans] Your warning reached the guildhall in time, {WRITER}, and the doors are barred and the kilns banked. The guild owes you, and pays well.</li>
+        <li>[warning,cordial,their:artisans] We have your warning, {WRITER}. The guildhall's doors are shut tonight.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_CourierLines_PeoplesE</defName>
+    <pool>Rimfolk_CourierLines</pool>
+    <lines>
+      <plain>
+        <li>[arrive,their:seers] Word from the tower, and the glass was clear when I left.</li>
+        <li>[leave,their:seers] The sky is turning in the west, so I will go while it lets me.</li>
+        <li>[deliver,their:seers] From the tower, sealed like a vial.</li>
+        <li>[arrive,their:grovekeepers] Word from the grove, carried slowly and carefully.</li>
+        <li>[leave,their:grovekeepers] There is a stump on the road home that needs a seed.</li>
+        <li>[deliver,their:grovekeepers] From the grove, with its patience.</li>
+        <li>[arrive,their:mercenaries] Banner-runner, with word from the fort.</li>
+        <li>[leave,their:mercenaries] I am paid to the next fort, so I will be going.</li>
+        <li>[deliver,their:mercenaries] From the paymaster, counted twice.</li>
+        <li>[arrive,their:artisans] Word from the guildhall, and the seal is the guild's own mark.</li>
+        <li>[leave,their:artisans] The kiln is lit for tomorrow, and I should be there.</li>
+        <li>[deliver,their:artisans] From the guild, packed properly.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_VisitorLines_PeoplesE</defName>
+    <pool>Rimfolk_VisitorLines</pool>
+    <lines>
+      <plain>
+        <li>[arrive,their:seers] Your sky has been busy this season, I can see it.</li>
+        <li>[wait,their:seers] The glass speaks to those who wait, so I can wait.</li>
+        <li>[stay,their:seers] A good roof, and a good view of the west.</li>
+        <li>[leave,their:seers] Keep an eye on the glass, and on the west.</li>
+        <li>[pass,their:seers] What the sky has done, it will do again.</li>
+        <li>[arrive,their:grovekeepers] Good trees on the way in, you have kept some.</li>
+        <li>[wait,their:grovekeepers] A year is a short time, so an hour is nothing.</li>
+        <li>[stay,their:grovekeepers] It smells of cut wood in here, and of supper.</li>
+        <li>[leave,their:grovekeepers] Plant something before I come again, and be patient with it.</li>
+        <li>[pass,their:grovekeepers] In the end we are all the grove.</li>
+        <li>[arrive,their:mercenaries] Good walls, I would hold these.</li>
+        <li>[wait,their:mercenaries] Soldiers wait for a living, take your time.</li>
+        <li>[stay,their:mercenaries] Dry bedding and a hot supper, that is a good billet.</li>
+        <li>[leave,their:mercenaries] Paid to the day, held to the day, and good day to you.</li>
+        <li>[pass,their:mercenaries] The wall is the work, remember that.</li>
+        <li>[arrive,their:artisans] Who built that wall, because I would like a word with them.</li>
+        <li>[wait,their:artisans] I will look at your joinery while I wait.</li>
+        <li>[stay,their:artisans] Honest work in this room, I can see the marks.</li>
+        <li>[leave,their:artisans] Mark what you make, and answer for it.</li>
+        <li>[pass,their:artisans] Anyone can stack stone, so build something people will come to see.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_OutsiderSays_PeoplesE</defName>
+    <pool>Rimfolk_Pool_OutsiderSays</pool>
+    <lines>
+      <plain>
+        <li>[chat,them,their:seers] We are rarely wrong and never sure, and the second is the harder to learn.</li>
+        <li>[endwarm,them,their:seers] When the glass clouds for you, I will send a runner, I promise.</li>
+        <li>[faithtalk,them,their:seers] Hesper Lyle sealed every storm's rain for thirty years, and the tower keeps her shelf.</li>
+        <li>[chat,them,their:grovekeepers] Every tree you fell owes the world a seedling, and we only come to collect.</li>
+        <li>[endwarm,them,their:grovekeepers] When your time comes, I hope somebody plants you a good oak.</li>
+        <li>[faithtalk,them,their:grovekeepers] Elin Sedge planted an acorn by every stump, and she lies under the last one.</li>
+        <li>[chat,them,their:mercenaries] No pay, no wall, and nobody in the company pretends otherwise.</li>
+        <li>[endwarm,them,their:mercenaries] If you ever need a wall held, send for the Banner and ask for me.</li>
+        <li>[faithtalk,them,their:mercenaries] Corra Mallin sold every banner but the grey one, and we read the Roll for her still.</li>
+        <li>[chat,them,their:artisans] Bad work is a lie told in stone, and we tell the truth for a living.</li>
+        <li>[endwarm,them,their:artisans] Make something good while I am gone, and I will come back to look at it.</li>
+        <li>[faithtalk,them,their:artisans] Oswin Kell built the Hardwater bridge four times, and the fourth still stands.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- What is said over heads when the Banner's keeper reads a fallen colonist's name into the Roll (Rimfolk_Evt_BannerRoll's
+       vigil at the grave): the keeper's words and the colony's own. One sentence each. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_PlayBannerRoll</defName>
+    <lines>
+      <plain>
+        <li>Held the wall, and is written so.</li>
+        <li>Every name on the Roll, and this one with them.</li>
+        <li>Nobody is left on the field.</li>
+        <li>Read it again, so everyone hears it.</li>
+        <li>They stood where it was hardest, and that is what the Roll is for.</li>
+        <li>I keep thinking they'll come in off the wall for supper.</li>
+        <li>Paid to the day, held to the day, and then some.</li>
+      </plain>
+      <gloomy>
+        <li>A name in a book is not the same as them here.</li>
+      </gloomy>
+      <warm>
+        <li>They would have hated the fuss, and loved the book.</li>
+      </warm>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The journal of the colonist closest to the fallen one the Banner's keeper came for (Rimfolk_Evt_BannerRoll): the
+       name read into the Roll with the colony gathered (opt0), the keeper at the grave with them (opt1), or no reading
+       (opt2). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Evt_BannerRoll</defName>
+    <lines>
+      <plain>
+        <li>[opt0] A keeper of the Ashen Banner read {DEAD}'s name into the Roll at the grave tonight, with all of us there. It is in their book now, beside soldiers from a war nobody remembers.</li>
+        <li>[opt1] I stood at {DEAD}'s grave with the keeper of the Roll. The keeper read the name once, quietly, to me.</li>
+        <li>[opt2] The Banner wanted {DEAD}'s name for their Roll and we said no. {DEAD} was ours, not theirs.</li>
+      </plain>
+      <gloomy><li>[opt0] A name read out, and then a book closed.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

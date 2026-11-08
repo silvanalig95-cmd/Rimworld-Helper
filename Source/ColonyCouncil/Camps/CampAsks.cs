@@ -68,7 +68,8 @@ namespace ColonyCouncil
         public List<string> asksMade = new List<string>();
 
         public int AskCost(CampAsk a) =>
-            a?.price == "milk" ? MilkCost() : a?.price == CatchSale ? CatchCost() : a?.price == StoneSale ? StoneCost() : a?.price == "caught" ? CaughtCost() : !(a?.price).NullOrEmpty() ? 0
+            a?.price == "milk" ? MilkCost() : a?.price == CatchSale ? CatchCost() : a?.price == StoneSale ? StoneCost() : a?.price == "caught" ? CaughtCost()
+            : a?.price == ContractWagePrice ? ContractWage() : !(a?.price).NullOrEmpty() ? 0
             : a == null || a.silver <= 0 ? 0 : CampAnswers.Round10(a.silver * LivingEvents.WealthFactor(map));
 
         /// <summary>What the ask is for, for {THING}: the herd's milk ready now ("about 26 milk for about 49 silver"); else nothing.</summary>
@@ -163,7 +164,7 @@ namespace ColonyCouncil
             var ctx = AskContext(a);
             // A set price is carried over now, and so is a beast's handed over where it stands (the beast-catchers'); goods
             // priced by what comes (the herd's milk) are paid when they're set down.
-            bool paysNow = a.price.NullOrEmpty() || a.price == "caught";
+            bool paysNow = a.price.NullOrEmpty() || a.price == "caught" || a.price == ContractWagePrice;
             string thing = AskThing(a);
             if (cost > 0 && paysNow && !CampAnswers.Pay(this, cost, ctx.a)) return null;
             asksMade.Add(a.once ? a.key : a.key + "@" + GenDate.DaysPassed);

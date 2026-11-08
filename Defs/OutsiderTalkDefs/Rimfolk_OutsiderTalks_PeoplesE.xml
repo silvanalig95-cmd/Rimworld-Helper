@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Talk with release E's peoples (docs/design/peoples.md, "Release E"; the facts service's their:CALLING tags): how their
+    ways began, what they honour, what they fear, and their work, beside release D's in Rimfolk_OutsiderTalks_PeoplesD.xml;
+    the format is in Rimfolk_OutsiderTalks_Greetings.xml's header. A founding is told as the story of their ways (the
+    first vial, the first acorn, the grey banner, the first mark), so a people that arose and took those ways can tell it
+    too. Each in its own voice: the Conclave of the glass and the sky, the Mossborn of the grove and the long count, the
+    Banner of the Roll and the pay, the guild of the mark and the work.
+  -->
+
+  <!-- ================= The Stormglass Conclave ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesE_GlassLyle</defName>
+    <topic>faith</topic>
+    <uses>chat,know</uses>
+    <when>their:seers</when>
+    <lines>
+      <li>[us] What are the little vials on your coat?</li>
+      <li>[them] Storm rain, sealed, as Hesper Lyle sealed it after hail took her village's harvest.</li>
+      <li>[us] And what did that do?</li>
+      <li>[them] She wrote what came after on each cap, and in thirty years she read frost a week ahead.</li>
+      <li>[us] All of you can do that?</li>
+      <li>[them] Some of us, some of the time, and we are rarely wrong and never sure.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesE_GlassRecord</defName>
+    <topic>honour</topic>
+    <uses>know</uses>
+    <when>their:seers</when>
+    <lines>
+      <li>[them] Every storm over the plateau in three hundred years is written down in the tower.</li>
+      <li>[us] Why keep all of it?</li>
+      <li>[them] What the sky has done, it will do again, and the record is how we know when.</li>
+      <li>[us] Is a forecast ever wrong?</li>
+      <li>[them] Often, and we write that down too.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesE_GlassFear</defName>
+    <topic>hardship</topic>
+    <uses>chat</uses>
+    <when>their:seers</when>
+    <lines>
+      <li>[us] What does a reader fear?</li>
+      <li>[them] The hail nobody saw coming, and a reader who is sure.</li>
+      <li>[us] Why a sure one?</li>
+      <li>[them] Because a sure reader stops looking, and the sky never does.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesE_GlassWork</defName>
+    <topic>work</topic>
+    <uses>chat</uses>
+    <when>their:seers</when>
+    <lines>
+      <li>[us] Do you really sell the weather?</li>
+      <li>[them] We sell a day's warning, and a day is enough to bring the harvest in.</li>
+      <li>[us] And the rods on your roofs?</li>
+      <li>[them] They call the lightning down where it does no harm, and the glass writes the storm down.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The Mossborn ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesE_MossSedge</defName>
+    <topic>faith</topic>
+    <uses>chat,know</uses>
+    <when>their:grovekeepers</when>
+    <lines>
+      <li>[us] Why do you keep a seed in your pocket?</li>
+      <li>[them] For the next stump, as Elin Sedge kept one when the war cut down her valley for its fires.</li>
+      <li>[us] What did she do?</li>
+      <li>[them] She walked the stumps with a sack of acorns and planted one beside each, for years.</li>
+      <li>[us] And then?</li>
+      <li>[them] We buried her under the last one she set, and it still stands, and so do we.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesE_MossLedger</defName>
+    <topic>honour</topic>
+    <uses>know</uses>
+    <when>their:grovekeepers</when>
+    <lines>
+      <li>[them] Every grove keeps a ledger of the trees round it, the felled and the planted.</li>
+      <li>[us] Including ours?</li>
+      <li>[them] Including yours, and we think better of a people who plant than of one who only cuts.</li>
+      <li>[us] And if we cut a great deal?</li>
+      <li>[them] Then someone comes with a sack of saplings, because we are here to collect.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesE_MossFear</defName>
+    <topic>hardship</topic>
+    <uses>chat</uses>
+    <when>their:grovekeepers</when>
+    <lines>
+      <li>[us] What do the Mossborn fear?</li>
+      <li>[them] Fire in the canopy, and a hillside cleared to the last stump.</li>
+      <li>[us] You seem so gentle about everything else.</li>
+      <li>[them] We are, until the forest burns, and then we are not.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesE_MossWork</defName>
+    <topic>work</topic>
+    <uses>chat</uses>
+    <when>their:grovekeepers</when>
+    <lines>
+      <li>[us] Do you never cut a tree at all?</li>
+      <li>[them] We take what falls, and we plant two for every one we must.</li>
+      <li>[us] Is that why your dead are buried under saplings?</li>
+      <li>[them] So the one who died becomes the grove, and in the end we are all the grove.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The Ashen Banner ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesE_BannerMallin</defName>
+    <topic>faith</topic>
+    <uses>chat,know</uses>
+    <when>their:mercenaries</when>
+    <lines>
+      <li>[us] Whose war was the Banner first raised for?</li>
+      <li>[them] A king nobody remembers, and when that war was lost Corra Mallin kept us together.</li>
+      <li>[us] What did she do?</li>
+      <li>[them] She sold every banner but the one burned grey, and hired us to the first town that paid.</li>
+      <li>[us] And the Roll?</li>
+      <li>[them] Those who stayed wrote down everyone lost under that banner, and we read it aloud still.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesE_BannerRoll</defName>
+    <topic>honour</topic>
+    <uses>know</uses>
+    <when>their:mercenaries</when>
+    <lines>
+      <li>[them] Every name on the Roll is read aloud once a year, on the night of the last battle.</li>
+      <li>[us] Only your own?</li>
+      <li>[them] Anyone who fell holding a wall beside us, because nobody is left on the field.</li>
+      <li>[us] And the black sashes?</li>
+      <li>[them] The officers wear them for the dead, so nobody forgets who the Roll is for.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesE_BannerFear</defName>
+    <topic>hardship</topic>
+    <uses>chat</uses>
+    <when>their:mercenaries</when>
+    <lines>
+      <li>[us] What does a soldier of the Banner fear?</li>
+      <li>[them] A contract broken, and a field nobody came back from.</li>
+      <li>[us] Not dying?</li>
+      <li>[them] Dying is the work, but dying with your name left off the Roll is not.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesE_BannerWork</defName>
+    <topic>work</topic>
+    <uses>chat</uses>
+    <when>their:mercenaries</when>
+    <lines>
+      <li>[us] Would you fight for anyone at all?</li>
+      <li>[them] For anyone who pays, against anyone at the wall, never past the contract's last day.</li>
+      <li>[us] And if the pay stops?</li>
+      <li>[them] Then we walk, because no pay, no wall, and everyone knows it when they sign.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The Kiln Guild ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesE_GuildKell</defName>
+    <topic>faith</topic>
+    <uses>chat,know</uses>
+    <when>their:artisans</when>
+    <lines>
+      <li>[us] What is the mark on your bracer?</li>
+      <li>[them] The guild's, from Oswin Kell, who rebuilt the Hardwater bridge three times after floods.</li>
+      <li>[us] Three times?</li>
+      <li>[them] He cut his mark into every stone of it, so the next flood would know whom to blame.</li>
+      <li>[us] Did it work?</li>
+      <li>[them] The fourth still stands, and those beside him swore to mark everything they made.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesE_GuildWanderYear</defName>
+    <topic>honour</topic>
+    <uses>know</uses>
+    <when>their:artisans</when>
+    <lines>
+      <li>[them] Every journeyman spends a wander-year among another people before they are a master.</li>
+      <li>[us] Doing what?</li>
+      <li>[them] Working at their benches, learning what they know, and leaving a little guild work behind.</li>
+      <li>[us] And when they come home?</li>
+      <li>[them] They come back better, or they go out again.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesE_GuildFear</defName>
+    <topic>hardship</topic>
+    <uses>chat</uses>
+    <when>their:artisans</when>
+    <lines>
+      <li>[us] What does the guild fear?</li>
+      <li>[them] A cold kiln, and work that lies.</li>
+      <li>[us] How does work lie?</li>
+      <li>[them] It looks sound and is not, and bad work is a lie told in stone.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesE_GuildWork</defName>
+    <topic>work</topic>
+    <uses>chat</uses>
+    <when>their:artisans</when>
+    <lines>
+      <li>[us] Why does the guild pay so well for things other people make?</li>
+      <li>[them] Because a well-made thing is worth it from anyone, and we pay by the work, not the name.</li>
+      <li>[us] Even a stranger's?</li>
+      <li>[them] Especially a stranger's, because anyone can stack stone and few can do it well.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

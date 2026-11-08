@@ -12,6 +12,47 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.163.0, release E, the second four peoples: the Stormglass Conclave, the Mossborn, the Ashen Banner and the Kiln Guild (7 and
+  8 November 2026, the player's explicit request: "love all these factions, go ahead!" and "always consider the actual
+  mods i have enabled in my save and mod list"; no proposal round). Not released: no What's new round, About.xml and
+  CHANGELOG untouched, no version number (the lead does that at the merge). docs/design/peoples.md "What was built
+  (release E)" has everything (the table, kits by role, every age, gifts, towns, each caller, the asks, the ledger, the
+  patch, softness, what was left out); README a paragraph after release D's; DESIGN.md a bullet after release D's; the
+  Almanac page *the Conclave, the Mossborn, the Banner and the guild* (`Council_Alm_C_PeoplesE`, new keywords only);
+  `docs/design/peoples-next.md` step 4 marked built.
+  - Code: `Peoples/PeoplesE.cs` (helpers, `JobDriver_PeoplesE` for the rod, the saplings, the grave's tree, the pruning,
+    the bench and the skywatch; the Conclave's watch `GlassWatch`, rod `GlassRod`, lesson; the Mossborn's saplings,
+    grave's tree, pruning, `MossLedger`), `PeoplesE2.cs` (the Banner's squad `BannerSquad`, wage, deserter, Roll; the
+    guild's commission, collection and bid; the two hosting asks), `PeoplesEPatches.cs` (four Harmony patches, each off
+    with `RimfolkPatches.On`: `Storyteller.TryFire` held into the incident queue, `WeatherEvent_LightningStrike.FireEvent`
+    and `GenExplosion.DoExplosion` for the rod, `Plant.PlantCollected` for the ledger), `PeoplesEMath.cs` (pure, linked),
+    `Camps/CampContract.cs` (a camp hired by contract: sentry, wage, unpaid ending). Touched: `PeopleDefs.cs`
+    (`PeopleAgeArms.apparel`), `PeopleGifts.cs` (`AgeArms.Kit`), `PeoplesMath.cs` (four callings), `ArisingMath.cs` and
+    `Arising.cs` (the 13-argument lean, `Psylink`), `ArisingBook.cs` (four ints: `groveFelled`, `grovePlanted`,
+    `groveSownId`, `groveSince`, modelled in `Tools/save_estimate.py`), `RegionBook.cs` (the ledger's day),
+    `Happenings.cs` (two visit kinds), `FieldWeather.cs`/`FieldWeatherMath.cs` (held conditions in the forecast),
+    `WeatherDynamics.cs` (the rod a station, the taught reader), `Callers.cs` (`Due` with a filter),
+    `Workers_Callers.cs` and `Workers_Variety.cs` (the collector and the fortune teller weigh `prefers`),
+    `CampKindsLand.cs`, `CampAsks.cs` and `CampLife.cs` (the contract's work, its wage priced as an ask, its ending
+    peaceful), `FactsMath.cs` (the squad's camp tag).
+  - Tools: `Tools/make_emblems.py` (eight glyphs, the preview sheet), the rod's texture, `Tools/DefValidator`
+    (`BuildingBase` among the vanilla parents), `Tools/Tests/PeoplesETests.cs`, the peoples' tests at fifteen,
+    `PeopleGear.txt` and `ModDefNames.txt` rows read from the catalogue and the mods' own defs.
+  - Main's 0.162.0 merged in (the DLL rebuilt); the journeyman's parting piece comes from `ThingRoles` (`SmallArt`).
+  - Not verified without the game: the held condition's retry when the queue fires it into weather the game won't allow
+    (it is let go after 12 hours), the strike moved onto a roofed cell (the bolt drawn there, no blast), the squad's camp
+    made from the pawns at the gate (`CampTracker.Make` with given people, `onMap`), Vanilla Expanded - Classical's wreath
+    worn over a tribal hat, the skywatch's lying posture on a guest.
+  - Try in the game: with the Conclave at peace, wait for the glass-reader (or fire `Rimfolk_Evt_GlassReading` from the
+    dev menu), buy the watch, then fire a cold snap from the dev menu's storyteller incidents: no cold yet, the
+    runner's letter, the runner at the gate, the cold a day later and the fields' forecast showing it; fire
+    `Rimfolk_Evt_GlassRod`, watch the storm-walker set the rod indoors, then make a storm and see strikes near it hit the
+    rod without fire. Fell a dozen trees and fire `Rimfolk_Evt_MossSaplings`; let a colonist die and fire
+    `Rimfolk_Evt_MossGraveTree`. Hire the Banner's squad (`Rimfolk_Evt_BannerHire`), watch the camp go up and a sentry
+    stand at the gate, raid yourself and see them fight, then let the fifth day's wage letter run out and see them walk.
+    Take the guild's commission (`Rimfolk_Evt_GuildCommission`), let the maker finish it, and fire
+    `Rimfolk_Evt_GuildCollects` for the pay by quality.
+
 - 0.162.0, things by what they are for: the player's mods' items in Rimfolk's picks (7 November 2026, the player's explicit
   request after the def database came: "apply this def database to all that we created so far, if there is benefit";
   no proposal round). Not released: no What's new round, About.xml and CHANGELOG untouched, no version number (the

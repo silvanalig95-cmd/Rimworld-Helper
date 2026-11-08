@@ -678,6 +678,8 @@ namespace ColonyCouncil
                 if (kind.work == "reap") ReapHourly(hour);
                 else if (kind.work == "shear") ShearHourly(hour);
                 else if (kind.work == "watch") WatchHourly(hour);
+                // A camp hired by contract (the Ashen Banner's squad: CampContract.cs).
+                else if (kind.work == "contract") ContractHourly(hour);
             }
             catch (Exception e)
             {
@@ -783,6 +785,7 @@ namespace ColonyCouncil
                     case "cut": return CutJob(p);
                     case "shear": return ShearJob(p);
                     case "catch": return CatchJob(p);
+                    case "contract": return ContractJob(p);
                     case "hull":
                         // Their pilot is at the hull most of the day (where a colonist lent to them works beside them).
                         if (hull == null || hull.Destroyed || !hull.Spawned || !Rand.Chance(p == leader ? 0.85f : 0.6f) || !p.CanReach(hull, PathEndMode.Touch, Danger.Some)) return null;
@@ -1153,6 +1156,7 @@ namespace ColonyCouncil
                 case "children": return CampLand.Children(map).Count == 0 ? "CC_CampLand_NoChildren".Translate().ToString() : null;
                 case "study": return CampLand.StudyOpen() ? null : "CC_CampLand_NoStudy".Translate().ToString();
                 case "hull": return hull == null || hull.Destroyed || !hull.Spawned ? "CC_CampLand_NoHull".Translate().ToString() : null;
+                case "wageDue": return ContractWageBlocked();
                 case "storm":
                     if (!CampLand.StormNow(map)) return "CC_CampLand_NoStorm".Translate();
                     return Hosting.Beds(map, x => Has(x), Speaker).Count == 0 ? "CC_CampLand_NoBeds".Translate().ToString() : null;

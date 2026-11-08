@@ -220,6 +220,7 @@ namespace ColonyCouncil
             if (p?.equipment == null || sets.NullOrEmpty() || p.WorkTagIsDisabled(WorkTags.Violent)) return;
             var set = sets.FirstOrDefault(a => a != null && !a.weaponTags.NullOrEmpty() && PeoplesDMath.AgeFits(age, a.ages.min, a.ages.max));
             if (set == null) return;
+            if (!set.apparel.NullOrEmpty()) Kit(p, set.apparel);
             float means = set.money > 0f ? set.money : Math.Max(p.kindDef.weaponMoney.max, 150f) * 1.25f;
             var choices = DefDatabase<ThingDef>.AllDefsListForReading.Where(d => d != null && d.IsWeapon && d.equipmentType == EquipmentType.Primary && !d.weaponTags.NullOrEmpty()
                 && d.weaponTags.Any(set.weaponTags.Contains) && d.BaseMarketValue <= means && d.tradeability != Tradeability.None
@@ -232,6 +233,33 @@ namespace ColonyCouncil
             weapon.TryGetComp<CompQuality>()?.SetQuality(QualityUtility.GenerateQualityGeneratingPawn(p.kindDef, def), ArtGenerationContext.Outsider);
             p.equipment.DestroyAllEquipment();
             p.equipment.AddEquipment(weapon);
+        }
+
+        /// <summary>
+        /// The issued kit of the age (release E's Ashen Banner): each piece made of its stuff as the game picks it for the
+        /// people's age, of the quality the kind's own would be, in the kind's colour for that piece (its
+        /// specificApparelRequirements), worn in place of whatever it can't be worn with.
+        /// </summary>
+        public static void Kit(Pawn p, List<ThingDef> pieces)
+        {
+            if (p?.apparel == null || pieces.NullOrEmpty()) return;
+            foreach (var def in pieces)
+            {
+                if (def?.apparel == null || !def.apparel.PawnCanWear(p)) continue;
+                ThingDef stuff = null;
+                if (def.MadeFromStuff && !GenStuff.TryRandomStuffByCommonalityFor(def, out stuff, p.Faction?.def?.techLevel ?? TechLevel.Undefined)) continue;
+                if (!(ThingMaker.MakeThing(def, stuff) is Apparel a)) continue;
+                a.TryGetComp<CompQuality>()?.SetQuality(QualityUtility.GenerateQualityGeneratingPawn(p.kindDef, def), ArtGenerationContext.Outsider);
+                var colour = p.kindDef.specificApparelRequirements?.FirstOrDefault(r => r != null && r.ApparelDef == def && r.Color != default);
+                if (colour != null) a.SetColor(colour.Color, false);
+                foreach (var worn in p.apparel.WornApparel.ToList())
+                    if (!ApparelUtility.CanWearTogether(def, worn.def, p.RaceProps.body))
+                    {
+                        p.apparel.Remove(worn);
+                        worn.Destroy();
+                    }
+                p.apparel.Wear(a, false);
+            }
         }
     }
 

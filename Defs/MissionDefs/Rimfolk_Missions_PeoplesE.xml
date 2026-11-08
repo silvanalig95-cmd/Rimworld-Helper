@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The asks of release E's peoples (Source/ColonyCouncil/Peoples/PeoplesE2.cs; docs/design/peoples.md, "Release E"),
+    only from a people of their calling (MissionPeople.only: none come in a world without one) and in one draw with
+    every other mission (MissionPool).
+    - The Stormglass Conclave asks the colony to host an apprentice of the glass for some days: they eat at its table,
+      sleep in a bed it has free, and lie out under the open sky near the gate on every clear night, watching it.
+    - The Mossborn ask for food and medicine after a fire in the canopy took one of their groves (a delivery; their
+      carts come for it).
+    - The Ashen Banner asks for two of the colony's best fighters to keep the watch on its fort's wall while the
+      company musters for a contract (MissionHands: a caravan of them at the fort for a day and a half).
+    - The Kiln Guild asks the colony to take a journeyman on their wander-year: some days at its table and in a bed it
+      has free, two hours a working day at the bench nearest its best maker, and a piece of guild work left by the gate.
+  -->
+
+  <!-- ===================== An apprentice of the glass ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_GlassApprentice</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>an apprentice of the glass</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionGlassApprentice</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>75</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>An apprentice of the glass</li>
+          <li>{DEAD} would study the colony's sky</li>
+        </titles>
+        <texts>
+          <li>A vial-runner of {FACTION} has come from the tower at {PLACE} with a letter from its keeper of the glass. {DEAD}, an apprentice reader, must study a sky that is not the tower's before taking the brass caps, and the Conclave asks whether the colony would host {DEAD} for some days: a place at its table, a bed nobody else is using, and the open ground near its gate on clear nights, where {DEAD} would lie out watching the sky.</li>
+          <li>[their:friend] The Stormglass Conclave has asked for {FRIEND_nameDef} by name. {DEAD}, an apprentice reader of the tower at {PLACE}, needs a sky of its own to study before taking the brass caps, and the Conclave would rather it were the colony's.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Host the apprentice</label>
+            <outcome>The runner went back to {PLACE} to say the colony will host {DEAD}.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will find {DEAD} another sky.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionPeople">
+        <only>seers</only>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>{DEAD} arrives a couple of days after the colony agrees and stays some days, eating at the colony's table (the food {DEAD} brought, when the stores have none) and sleeping in a bed nobody else is using. Every clear night {DEAD} lies out under the open sky near the gate a couple of hours, watching it, and {A_nameDef} is the better at the fields for sitting up with {DEAD}.\n\nAt the end {DEAD} leaves the Conclave's thanks, about {COUNT} silver, and {FACTION} will hear of the colony's sky. If {DEAD} never sees a clear night, the stay is wasted.</li>
+        </terms>
+        <accepted>
+          <li>The colony will host {DEAD} of {FACTION}, an apprentice of the glass, who comes to study its sky.</li>
+        </accepted>
+        <ready>
+          <li>{DEAD} is here from {PLACE}, with a notebook and a stormglass, and asking which way the colony's weather comes from.</li>
+        </ready>
+        <reminder>
+          <li>{DEAD} of {FACTION} is on the road from {PLACE}, and will want a bed and a clear night.</li>
+        </reminder>
+        <doneTitles>
+          <li>[watched] {DEAD} goes home with the colony's sky</li>
+        </doneTitles>
+        <done>
+          <li>[watched] {DEAD} has watched the colony's sky and is going home to {PLACE} with a notebook full of it. {DEAD} left {ITEM} silver as the Conclave's thanks, and {A_nameDef} has learned something of the sky from the nights they sat up.</li>
+        </done>
+        <failTitles>
+          <li>[cloudy] Not one clear night for {DEAD}</li>
+          <li>[harmed] {DEAD}</li>
+          <li>[ended] {DEAD}'s stay</li>
+        </failTitles>
+        <fail>
+          <li>[cloudy] {DEAD} is going home to {PLACE} without having seen one clear night of the colony's sky. The Conclave will send another apprentice another year, perhaps.</li>
+          <li>[harmed] {DEAD} of {FACTION} came as the colony's guest and was harmed here. {FACTION} will not forget it.</li>
+          <li>[ended] {DEAD} won't be coming to study the colony's sky after all.</li>
+        </fail>
+        <cancelled>
+          <li>{DEAD} won't be coming now that {FACTION} have broken with the colony.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A grove burned ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_MossBurned</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a grove burned</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionDelivery</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Fire in the canopy at {PLACE}</li>
+          <li>The Mossborn ask for help</li>
+        </titles>
+        <texts>
+          <li>[burned] A leaf-runner of {FACTION} has come from {PLACE} smelling of smoke, with a letter from {DEAD}, its grove-warden. Fire got into the canopy and took the old grove and the stores in it, the thing the Mossborn fear most, and the grove's people are living among the stumps while they replant. They ask the colony for food and medicine by a set day, and will pay what it is worth and more.</li>
+          <li>[burned,their:friend] The Mossborn have asked for {FRIEND_nameDef} by name. The grove at {PLACE} burned, and {DEAD}, who keeps it, would rather owe the colony than anyone while the saplings take.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>The leaf-runner went back to {PLACE} to tell {DEAD} the colony will help.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will replant the grove on what they have left.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionPeople">
+        <only>grovekeepers</only>
+      </li>
+      <li Class="ColonyCouncil.MissionDelivery">
+        <kind>mossburned</kind>
+        <restDays>60</restDays>
+        <rating>2</rating>
+        <days>6~9</days>
+        <rewardFactor>1.5</rewardFactor>
+        <goodwill>12</goodwill>
+        <penalty>6</penalty>
+        <person>45~80</person>
+        <variants>
+          <li>
+            <tag>burned</tag>
+            <goals>
+              <li><what>rawfood</what><count>80~140</count></li>
+              <li><what>medicine</what><count>4~8</count></li>
+            </goals>
+          </li>
+        </variants>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>{FACTION} are asking for {ITEM}, in the colony's stockpiles by the day the Quests tab shows, when the grove's carts come.\n\nAll of it fetches {COUNT} silver, well over its worth. At least half, and they'll take what there is at its plain worth. Less, and the grove goes short through the replanting, and the Mossborn remember it.</li>
+        </terms>
+        <accepted>
+          <li>The colony will have {ITEM} ready for the burned grove at {PLACE}, in the stockpiles for {FACTION}'s carts.</li>
+        </accepted>
+        <ready>
+          <li>The food and medicine for {PLACE} are set aside, and {FACTION}'s carts are on their way for them.</li>
+        </ready>
+        <reminder>
+          <li>{FACTION}'s carts come soon for the grove's food and medicine, and the stockpiles are still short: {ITEM}.</li>
+        </reminder>
+        <doneTitles>
+          <li>[delivered] Help for the grove at {PLACE}</li>
+          <li>[partial] Part of the help for {PLACE}</li>
+        </doneTitles>
+        <done>
+          <li>[delivered] Everything is ready, and {FACTION}'s carts are coming for it with {ITEM} silver. The saplings will take, {DEAD} writes, and the grove will remember who fed it.</li>
+          <li>[partial] Only part of it is ready. {FACTION}'s carts are coming for what there is, with its plain worth, {ITEM} silver.</li>
+        </done>
+        <failTitles>
+          <li>[missed] Nothing for the grove at {PLACE}</li>
+          <li>[cancelled] The Mossborn's ask is off</li>
+        </failTitles>
+        <fail>
+          <li>[missed] There was far too little ready for {FACTION}'s carts to be worth the road. The grove at {PLACE} will go hungry through the replanting, and {DEAD} knows who said they would help.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} have broken with the colony, and their carts will not come.</li>
+          <li>The grove at {PLACE} is gone, and nobody is left there to send for the help.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Banner's muster ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_BannerMuster</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the Banner's muster</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionHands</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The Banner musters at {PLACE}</li>
+          <li>Two for the Banner's wall</li>
+        </titles>
+        <texts>
+          <li>[muster] A banner-runner of {FACTION} has come from the fort at {PLACE} with a letter from its keeper of the Roll: the company is mustering for a contract, and while it does the fort's wall is thin. They ask the colony for two of its best fighters to keep the watch there for a day and a half, and they pay to the day, as the Banner does.</li>
+          <li>[muster,their:lowtech] A runner in the Banner's ash-grey has walked from {PLACE} to ask the colony for two good fighters. The company marches at the end of the week, the runner says, and the wall is the work, even with nobody on it.</li>
+          <li>[muster,their:friend] The Ashen Banner has asked for {FRIEND_nameDef} by name. The fort at {PLACE} needs two good fighters on its wall while the company musters, and the keeper of the Roll would rather they were the colony's.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Send fighters to {PLACE}</label>
+            <outcome>The runner went back to the fort to say the colony's fighters are coming.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will keep their wall with the soldiers they have.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionPeople">
+        <only>mercenaries</only>
+      </li>
+      <li Class="ColonyCouncil.MissionHands">
+        <kind>bannermuster</kind>
+        <restDays>60</restDays>
+        <rating>2</rating>
+        <maxTravelDays>3</maxTravelDays>
+        <skill>Melee</skill>
+        <minLevel>6</minLevel>
+        <hands>2</hands>
+        <hours>36</hours>
+        <reward>160~300</reward>
+        <gift>100</gift>
+        <xp>1200</xp>
+        <thought>Rimfolk_Mission_StoodWithBanner</thought>
+        <deed>lentHands</deed>
+        <forms>
+          <li><tag>muster</tag></li>
+        </forms>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>At least two of the colony's good fighters (Melee 6 or more), at the Banner's fort at {PLACE} by caravan (about {TALE} away), staying about a day and a half on the wall while the company musters. The caravan only needs to reach the fort and wait there.\n\nThey'll come home with about {COUNT} silver and a gift of the fort's, paid to the day, and {FACTION} will write the colony in their book of contracts kept. Half the stay earns half the silver.</li>
+        </terms>
+        <accepted>
+          <li>The colony will send fighters to {PLACE}. Form a caravan with at least two good fighters, and send it to the fort.</li>
+        </accepted>
+        <ready>
+          <li>The colony's fighters have reached the fort at {PLACE} and taken their places on the wall. Keep the caravan there while the company musters.</li>
+        </ready>
+        <reminder>
+          <li>The Banner's wall at {PLACE} is still thin, and the colony's fighters haven't come.</li>
+        </reminder>
+        <doneTitles>
+          <li>[worked] The wall at {PLACE}</li>
+          <li>[partial] Part of the watch at {PLACE}</li>
+        </doneTitles>
+        <done>
+          <li>[worked] The company has marched, and the colony's fighters are coming home from the wall at {PLACE} with silver and a gift of the fort's, paid to the day. Their names are in the Banner's book of contracts kept.</li>
+          <li>[partial] The colony's fighters had to come home before the muster was done. {FACTION} paid them for the days they stood, to the day.</li>
+        </done>
+        <failTitles>
+          <li>[missed] Nobody came to {PLACE}</li>
+        </failTitles>
+        <fail>
+          <li>[missed] No fighters came from the colony, and the Banner kept its wall thin. {FACTION} write down a contract broken as carefully as one kept.</li>
+        </fail>
+        <cancelled>
+          <li>The muster at {PLACE} no longer needs the colony: the fort, or the friendship, is gone.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A journeyman's wander-year ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_WanderYear</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a journeyman's wander-year</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionWanderYear</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>75</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A journeyman's wander-year</li>
+          <li>{DEAD} would work at the colony's benches</li>
+        </titles>
+        <texts>
+          <li>A guild runner of {FACTION} has come from the guildhall at {PLACE} with a letter from its kiln-warden. {DEAD}, a journeyman, is on the wander-year every guild hand spends among another people, and the guild asks whether the colony would take {DEAD} for some days: a place at its table, a bed nobody else is using, and a couple of hours each working day at the bench beside {A_nameDef}, learning. A journeyman leaves a little guild work behind, the letter says.</li>
+          <li>[their:friend] The Kiln Guild has asked for {FRIEND_nameDef} by name. {DEAD}, a journeyman of the guildhall at {PLACE}, is on the wander-year, and the guild would rather {DEAD} spent some of it at the colony's benches than anywhere.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Take the journeyman</label>
+            <outcome>The runner went back to {PLACE} to say the colony will take {DEAD}.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will send {DEAD} on to another people's benches.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionPeople">
+        <only>artisans</only>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>{DEAD} arrives a couple of days after the colony agrees and stays some days, eating at the colony's table (the food {DEAD} brought, when the stores have none) and sleeping in a bed nobody else is using. Each working day {DEAD} spends two hours at the bench nearest {A_nameDef}, learning, and {A_nameDef} learns a little from the questions.\n\nAt the end {DEAD} leaves a piece of guild work by the gate, carved at the colony and marked, and the guild's thanks, about {COUNT} silver. If {DEAD} never gets to a bench, the wander-year was wasted here.</li>
+        </terms>
+        <accepted>
+          <li>The colony will take {DEAD} of {FACTION}, a journeyman on the wander-year, at its benches.</li>
+        </accepted>
+        <ready>
+          <li>{DEAD} is here from {PLACE}, with a roll of tools and a bracer branded with the guild's mark, asking where the benches are.</li>
+        </ready>
+        <reminder>
+          <li>{DEAD} of {FACTION} is on the road from {PLACE}, and will want a bed and a bench.</li>
+        </reminder>
+        <doneTitles>
+          <li>[worked] {DEAD}'s wander-year at the colony</li>
+        </doneTitles>
+        <done>
+          <li>[worked] {DEAD} is going home to {PLACE} the better for the colony's benches, and has left the guild's thanks in silver and a piece of guild work by the gate, marked with the guild's mark: {ITEM}.</li>
+        </done>
+        <failTitles>
+          <li>[idle] {DEAD} never got to a bench</li>
+          <li>[harmed] {DEAD}</li>
+          <li>[ended] {DEAD}'s wander-year</li>
+        </failTitles>
+        <fail>
+          <li>[idle] {DEAD} is going home to {PLACE} without a single day at the colony's benches. The guild will hear that the wander-year was wasted here.</li>
+          <li>[harmed] {DEAD} of {FACTION} came as the colony's guest and was harmed here. {FACTION} will not forget it.</li>
+          <li>[ended] {DEAD} won't be coming to the colony's benches after all.</li>
+        </fail>
+        <cancelled>
+          <li>{DEAD} won't be coming now that {FACTION} have broken with the colony.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

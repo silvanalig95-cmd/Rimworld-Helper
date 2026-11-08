@@ -48,6 +48,12 @@ namespace ColonyCouncil
     {
         public List<ArisenPeople> arisen = new List<ArisenPeople>();
 
+        /// <summary>
+        /// The Mossborn's ledger of the colony's trees this season (Peoples/PeoplesE.cs, MossLedger): felled by its people,
+        /// planted by hand, the newest sown tree already counted (by its id), and when the season's reckoning began.
+        /// </summary>
+        public int groveFelled, grovePlanted, groveSownId, groveSince = -1;
+
         private static ArisingBook cached;
         private static Game cachedGame;
 
@@ -128,6 +134,10 @@ namespace ColonyCouncil
         {
             base.ExposeData();
             Scribe_Collections.Look(ref arisen, "arisen", LookMode.Deep);
+            Scribe_Values.Look(ref groveFelled, "groveFelled");
+            Scribe_Values.Look(ref grovePlanted, "grovePlanted");
+            Scribe_Values.Look(ref groveSownId, "groveSownId");
+            Scribe_Values.Look(ref groveSince, "groveSince", -1);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 arisen ??= new List<ArisenPeople>();

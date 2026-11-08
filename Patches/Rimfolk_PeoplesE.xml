@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+  <!--
+    Release E's peoples in more of Rimfolk's existing events (Source/ColonyCouncil/Peoples/; docs/design/peoples.md,
+    "Release E"), as release D's are in Patches/Rimfolk_PeoplesD.xml. Each patches one of Rimfolk's own defs and is
+    conditional, so it never fails: with the def gone, nothing happens. A preference never shuts another people out:
+    without a people of the calling, everything comes as before.
+    - World events that prefer a calling (SituationFactionNeed.calling: five times as likely as another people): a year
+      without a summer, the Stormglass Conclave's (whose glass saw it coming); a blight in the region, the Mossborn's; a
+      mercenary company looking for work, the Ashen Banner's; a great work being built, the Kiln Guild's.
+    - Callers that prefer a calling (HappeningExtension.prefers, read by the events' own workers): the fortune teller,
+      the Conclave's (a reader of the sky); the art collector, the Kiln Guild's. Each with a text in that people's own
+      voice ([their:CALLING]), said only when they are the ones who came.
+  -->
+
+  <!-- ===================== World events ===================== -->
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Rimfolk_WS_ColdYear"]/faction</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Rimfolk_WS_ColdYear"]/faction</xpath>
+      <value>
+        <calling>seers</calling>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Rimfolk_WS_Blight"]/faction</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Rimfolk_WS_Blight"]/faction</xpath>
+      <value>
+        <calling>grovekeepers</calling>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_Mercenaries"]/faction</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_Mercenaries"]/faction</xpath>
+      <value>
+        <calling>mercenaries</calling>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Rimfolk_WS_GreatWork"]/faction</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Rimfolk_WS_GreatWork"]/faction</xpath>
+      <value>
+        <calling>artisans</calling>
+      </value>
+    </match>
+  </Operation>
+
+  <!-- ===================== The fortune teller: the Conclave's reader ===================== -->
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/IncidentDef[defName="Council_Evt_FortuneTeller"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/IncidentDef[defName="Council_Evt_FortuneTeller"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]</xpath>
+      <value>
+        <prefers>seers</prefers>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/IncidentDef[defName="Council_Evt_FortuneTeller"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]/texts</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/IncidentDef[defName="Council_Evt_FortuneTeller"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]/texts</xpath>
+      <value>
+        <li>[their:seers] {X_nameDef}, a reader of {FACTION} with a stormglass at {X_possessive} hip, reads people as the Conclave reads the sky, {X_pronoun} says, rarely wrong and never sure: for {COUNT} silver, everyone in the colony can have their fortune read tonight against the glass.</li>
+      </value>
+    </match>
+  </Operation>
+
+  <!-- ===================== The art collector: the Kiln Guild's ===================== -->
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/IncidentDef[defName="Rimfolk_Evt_Collector"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/IncidentDef[defName="Rimfolk_Evt_Collector"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]</xpath>
+      <value>
+        <prefers>artisans</prefers>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/IncidentDef[defName="Rimfolk_Evt_Collector"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]/texts</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/IncidentDef[defName="Rimfolk_Evt_Collector"]/modExtensions/li[@Class="ColonyCouncil.HappeningExtension"]/texts</xpath>
+      <value>
+        <li>[their:artisans,maker] {X_nameDef}, who buys for the guildhall of {FACTION}, has come to see the colony's work, the guild's mark branded on a bracer. {X_pronoun} has looked at every piece and keeps coming back to "{TALE}", the {THING} {A_nameDef} made. The guild pays well for good work from anyone: {COUNT} silver for it.</li>
+        <li>[their:artisans,!maker] {X_nameDef}, who buys for the guildhall of {FACTION}, heard of the colony's work on the road and came to look, the guild's mark branded on a bracer. Bad work is a lie told in stone, {X_nameDef} says, and "{TALE}" tells none: {COUNT} silver for it.</li>
+      </value>
+    </match>
+  </Operation>
+
+</Patch>

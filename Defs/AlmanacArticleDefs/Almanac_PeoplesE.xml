@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The Almanac page on release E's peoples (Source/ColonyCouncil/Peoples/; Defs/PeopleDefs/; docs/design/peoples.md,
+       "Release E"; DESIGN.md "Rimfolk's peoples"), beside release D's (Almanac_PeoplesD.xml). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_PeoplesE</defName>
+    <label>the Conclave, the Mossborn, the Banner and the guild</label>
+    <category>Council</category>
+    <order>17</order>
+    <summary>Four more peoples, none of them anyone's enemy by nature: the Stormglass Conclave who read the region's weather, the Mossborn who keep the groves and count every tree felled, the Ashen Banner, a free company that holds walls for whoever pays, and the Kiln Guild, whose marks are on the finest work in the region. Each has its own founding, gear, faith, towns and words, and comes to the colony's gate in its own ways.</summary>
+    <tip>They are among the world's peoples when a new world is made, once each, at the game's usual chances; remove them in the world's faction list like any other people. A save made before them meets them when one of them arises during play.</tip>
+    <description>All four defend their towns and raid only when the colony has turned them hostile, by the game's own rules, and seldom then. Their notables have titles of their own, their messengers words of their own, and their towns a plan of their own when the land suits it. They arise in every age: a people of their ways that arose among an industrial town's exiles carries that age's weapons.</description>
+    <sections>
+      <li>
+        <heading>Who they are</heading>
+        <table>
+          <li>People | Lives by | Age | On the map | Their towns</li>
+          <li>The Stormglass Conclave | Reading the weather | Industrial | Long coats of any make in storm slate, brass-capped vials at the coat; storm-walkers in one kit of duster, flak vest and collar shirt | A tower of glass vessels with its library, flower beds and a ring of rods</li>
+          <li>The Mossborn | Keeping the groves | Tribal | Hides and wraps of any make with one piece in moss green, a living wreath in the hair; thorn-guards in wooden armour where it is made | A hall among oaks and birches, graves under young trees and beds of healroot</li>
+          <li>The Ashen Banner | Holding walls for pay | Medieval | One kit for every soldier: plate dyed ash-grey, helmet and tabard, an officer's black sash for the dead | A square fort with barracks, the hall of the Roll, a drill yard and stables</li>
+          <li>The Kiln Guild | Making things well | Medieval | Shirts and aprons of any make with one piece in kiln ochre, caps and headscarves; guards in cape and helmet | A guildhall with its smithy, stone and sculptor's tables, kiln and market stalls</li>
+        </table>
+        <after>With Ideology each keeps a faith of its own (the read sky, the owed seedling, the Roll, the mark) and its own style; with Biotech each has a share of other kinds of people. With Vanilla Ideology Expanded's memes and Alpha Memes their faiths take astrology and the elders, Gauranlen supremacy, the bulwark, craft culture and the artist too.</after>
+      </li>
+      <li>
+        <heading>Where their ways began</heading>
+        <text>Each keeps a founding story, a few sayings, and what it honours and fears, shown on their card and spoken in their letters, messengers, visitors and talk.</text>
+        <points>
+          <li>The Stormglass Conclave began with a glassblower called Hesper Lyle, whose village lost its harvest to a hail nobody saw coming. She sealed a vial of rain from every storm after that and wrote on its cap what came after, and in thirty years she could read a frost in the glass a week before it fell. Every reader still carries a few of the brass-capped vials.</li>
+          <li>The Mossborn began with Elin Sedge, a charcoal-burner's widow, after a war cut down every tree in her valley. She walked the stumps with a sack of acorns and planted one beside each, and they buried her under the last sapling she set. Every tree anyone fells owes the world a seedling, they say, and they come to collect.</li>
+          <li>The Ashen Banner began the winter after a lost war, when its quartermaster Corra Mallin would not let five hundred soldiers scatter unpaid. She sold every banner but one, burned grey in the last battle, and hired the company to the first town that would pay. The Roll, the name of everyone lost under that banner, is read aloud once a year.</li>
+          <li>The Kiln Guild began with a mason called Oswin Kell, who rebuilt the bridge at Hardwater three times after the flood and cut his mark into every stone of it, so the next flood would know whom to blame. The fourth bridge still stands, and the guild still marks everything it makes.</li>
+        </points>
+      </li>
+      <li>
+        <heading>What they wear, carry and know</heading>
+        <text>No two of them look alike but the Banner's soldiers: each people wears its colour on a piece or two, its soldiers one kit where it has soldiers, and its civilians whatever their age and calling would, from the game, the DLCs and the mods loaded. A few have a gift (A RimWorld of Magic's classes, a psylink).</text>
+        <points>
+          <li>The Stormglass Conclave: readers in slate coats and wide hats with Vanilla Apparel Expanded's packs, carrying herbal medicine, books and cloth; storm-walkers with guns, or great bows and Medieval 2's arbalest in the tribal and medieval ages, in the spacer age spacer guns. With Royalty many have a psylink, some on Vanilla Psycasts Expanded's Staticlord or Frostshaper paths, and the first reader the strongest; a few are StormBorn of A RimWorld of Magic.</li>
+          <li>The Mossborn: Vanilla Expanded - Classical's wreath where it is loaded, tribal wear in moss green; thorn-guards in wooden armour (Vanilla Armour Expanded) with spears and bows, guns in the industrial and spacer ages; seed-carriers with berries, herbs and, with Ideology, a Gauranlen seed. Some are druids or rangers of A RimWorld of Magic, and the eldest root may be a Wildspeaker.</li>
+          <li>The Ashen Banner: every soldier in the same kit of the age, issued, not chosen: ash-grey plate, helmet, shirt and trousers and Medieval 2's tabard in the medieval age, tribal war wear in the tribal age, flak and an assault rifle in the industrial age, recon armour and spacer guns in the spacer age. Shots carry Medieval 2's arbalest and quivers, sergeants and captains a black sash (Biotech) and better blades. A few are gladiators, paladins, snipers or commanders of A RimWorld of Magic.</li>
+          <li>The Kiln Guild: shirts, aprons (Vanilla Apparel Expanded) and caps in kiln ochre, tools and mallets (Vanilla Weapons Expanded); guards in cape and helmet with longswords, and in the industrial age Bamba's forged blades, in the spacer age monoswords and the like. A few are enchanters, geomancers or technomancers of A RimWorld of Magic.</li>
+          <li>Their kinds of people (Biotech) are a real mix and still mostly baseliners: genies, yttakin, highmates, Rimsenal's askbarn and uredd, Avaloi, archons and high elves with the Conclave; Neanderthals, pigskins, the phytokin, wood elves, fungoids and awakened apes with the Mossborn; hussars, uhlans, boarskins, Venators, uredd, apes and korgs with the Banner; dirtmoles, genies, stoneborn, lapis and boglegs with the guild.</li>
+        </points>
+      </li>
+      <li>
+        <heading>What each brings</heading>
+        <points>
+          <li>The Stormglass Conclave: a reader offers a season's watch on the colony's sky for a fee. While it runs, every cold snap, heat wave, toxic fallout, volcanic winter, flashstorm, eclipse, haze or drought the storyteller sends to the colony waits a day in the game's own queue, and a vial-runner comes to the gate with the warning first; the colony's fields that sow by the weather reckon the held cold or heat from that hour. A storm-walker may set one of their rods under the colony's highest roof: lightning that would strike the open ground within 18 cells of it strikes the rod instead, with no fire, and the colony reads its weather by it as by a weather station. At dusk a reader may teach the colony's best hand at the fields to read the glass, and for a season their forecasts are nearer the truth. They may ask the colony to host an apprentice who lies out under the sky on clear nights.</li>
+          <li>The Mossborn keep a ledger of the colony's trees: every fifteen days they reckon the trees its people felled against the trees they planted, and think warmer or cooler of the colony for it, never enough to make it an enemy. When the colony has felled a dozen or more, a seed-carrier comes with saplings of the land's own trees to plant on open soil round the colony, out of its fields and buildings. A grove-warden may plant a sapling beside the grave of one of the colony who died within ten days. With Ideology a tree-connector may prune the colony's Gauranlen tree, and its bond grows stronger. When fire takes one of their groves they ask for food and medicine.</li>
+          <li>The Ashen Banner: a sergeant comes with a squad of three to five, offering to hold the colony's walls for fifteen days. Hired, they camp by the colony and take up arms against whatever comes at it while they are there, and one of them keeps watch at the gate by day; the wage is asked by letter on the fifth and the tenth day and carried out to their fire; unpaid, the squad walks and the Banner thinks less of the colony, and a contract kept to its end pleases them. A deserter may come at dusk asking shelter, to be taken in, lodged for the night or turned away. When one of the colony dies of wounds, a keeper of the Roll may come to read the name into it at the grave at dusk. They may ask for two good fighters on their fort's wall while the company musters.</li>
+          <li>The Kiln Guild: a journeyman commissions a piece from the colony's best maker, a weapon or a garment of its benches, or a sculpture where its best hand is an artist; the maker makes it at the bench, and the journeyman comes back for it and pays by its quality, about half again for a good piece and more than three times its worth for a legendary one. When the colony has a masterwork or a legend, their master-trader may come to bid on it, well over its worth. They may ask the colony to take a journeyman on their wander-year, two hours a working day at the bench nearest its best maker, who leaves a piece of guild work by the gate. The art collector comes from them likeliest.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Their towns, and new peoples like them</heading>
+        <points>
+          <li>The Conclave's tower, the Mossborn's grove, the Banner's fort and the guild's guildhall are laid out to their plans when a town's map is made; where the land is too wet or rough for it, the game makes its own base.</li>
+          <li>The fortune teller comes from the Conclave likeliest, a reader of the sky; a year without a summer touches them first, a blight the Mossborn, a mercenary company looking for work is the Banner's, and a great work being built is the guild's.</li>
+          <li>New peoples that arise during play may take their ways: a band of the banished led by a psycaster reads the sky as the Conclave does, by a hard fighter hires out as a free company, by a good maker keeps a guild's rule, by one who knows growing things lives among the trees.</li>
+        </points>
+      </li>
+    </sections>
+    <keywords><li>stormglass conclave</li><li>mossborn</li><li>ashen banner</li><li>kiln guild</li><li>lightning rod</li><li>wander-year</li></keywords>
+    <seeAlso><li>Council_Alm_C_PeoplesD</li><li>Council_Alm_C_PeoplesC</li><li>Council_Alm_C_Peoples</li><li>Council_Alm_C_Callers</li><li>Council_Alm_C_Camps</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

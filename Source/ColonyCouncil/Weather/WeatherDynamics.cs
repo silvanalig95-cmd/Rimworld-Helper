@@ -36,7 +36,7 @@ namespace ColonyCouncil
         public static bool ForecastOn => RimfolkPatches.On && (S?.weatherForecast ?? true);
 
         /// <summary>Weather stations from other mods: with one, a forecast is nearly always right (Stormproof, Weather Control).</summary>
-        private static readonly string[] Stations = { "Stormproof_WeatherForecaster", "NCWC_WeatherStation", "NCWC_WindSock" };
+        private static readonly string[] Stations = { "Stormproof_WeatherForecaster", "NCWC_WeatherStation", "NCWC_WindSock", "Rimfolk_StormglassRod" };
 
         /// <summary>A forecast is made this many hours before the weather is due to change, at most and at least.</summary>
         private const int ForecastFromHours = 8, ForecastToHours = 2;
@@ -415,6 +415,9 @@ namespace ColonyCouncil
                 var skill = p.skills.GetSkill(SkillDefOf.Plants);
                 int level = skill == null || skill.TotallyDisabled ? 0 : skill.Level;
                 float a = Flavor.HumanAge(p);
+                // Taught to read the glass by the Stormglass Conclave (Peoples/PeoplesE.cs): a weather-reader, and the first asked.
+                bool glass = HappeningWorker_GlassLesson.IsTaught(p);
+                if (glass && !station) level += 20;
                 if (!WeatherDynamicsMath.ReadsWeather(level, a, station)) continue;
                 if (by == null || level > plants || (level == plants && a > age))
                 {
@@ -428,7 +431,10 @@ namespace ColonyCouncil
             var next = ChooseMethod.Invoke(wd, null) as WeatherDef;
             if (next == null || KindOf(next) == WeatherKind.Special) return;
             var said = next;
-            if (!Rand.Chance(WeatherDynamicsMath.ForecastAccuracy(plants, age, station)))
+            bool taught = HappeningWorker_GlassLesson.IsTaught(by);
+            float accuracy = WeatherDynamicsMath.ForecastAccuracy(taught && !station ? Mathf.Max(0, plants - 20) : plants, age, station);
+            if (taught && !station) accuracy = PeoplesEMath.Taught(accuracy);
+            if (!Rand.Chance(accuracy))
             {
                 var other = map.Biome.baseWeatherCommonalities?
                     .Where(r => r?.weather != null && Group(KindOf(r.weather)) != Group(KindOf(next)) && KindOf(r.weather) != WeatherKind.Special && Commonality(wd, r.weather) > 0f)

@@ -240,7 +240,7 @@ public static class PeoplesGearTests
                 apparelMax = Max(k.Element("apparelMoney")?.Value ?? ""), weaponMax = Max(k.Element("weaponMoney")?.Value ?? "")
             });
         }
-        C(kinds.Count >= 55 && factions.Count == 11 && kinds.All(k => factions.Any(f => Dn(f) == k.faction)), $"every kind of the eleven peoples read ({kinds.Count})");
+        C(kinds.Count >= 75 && factions.Count == 15 && kinds.All(k => factions.Any(f => Dn(f) == k.faction)), $"every kind of the fifteen peoples read ({kinds.Count})");
         string TechOf(Kind k) => factions.First(f => Dn(f) == k.faction).Element("techLevel")!.Value;
 
         // Every piece of the player's active mods under a tag the peoples use is in PeopleGear.txt, so the checks below see
@@ -266,7 +266,9 @@ public static class PeoplesGearTests
         {
             string fd = Dn(f);
             var mine = kinds.Where(k => k.faction == fd).ToList();
-            var cs = mine.SelectMany(k => k.specs).Select(s => s.Element("color")?.Value).Where(v => v != null).Select(v => Regex.Replace(v!, @"\s", "")).Distinct().ToList();
+            // The Ashen Banner's officers wear a black sash for the dead (its founding), the one colour beside a people's own.
+            bool Mourning(XElement s) => fd == "Rimfolk_AshenBanner" && s.Element("apparelDef")?.Value == "Apparel_Sash";
+            var cs = mine.SelectMany(k => k.specs).Where(s => !Mourning(s)).Select(s => s.Element("color")?.Value).Where(v => v != null).Select(v => Regex.Replace(v!, @"\s", "")).Distinct().ToList();
             C(cs.Count == 1, $"{fd}: one signature colour ({string.Join(" ", cs)})");
             if (cs.Count == 1) colours[fd] = cs[0];
             // Each kind sure to wear it, with the game and its DLCs: a piece of its colour it is given, or a coat of it whatever is picked.
@@ -294,7 +296,12 @@ public static class PeoplesGearTests
                 }
             }
         }
-        C(colours.Values.Distinct().Count() == 11, "eleven peoples, eleven colours");
+        C(colours.Values.Distinct().Count() == 15, "fifteen peoples, fifteen colours");
+        var bannerSpecs = kindEls.Where(k => (Dn(k) == "" ? k.Attribute("Name")?.Value ?? "" : Dn(k)).StartsWith("Rimfolk_AshenBanner"))
+            .SelectMany(k => k.Element("specificApparelRequirements")?.Elements("li") ?? Enumerable.Empty<XElement>()).Where(s => s.Element("color") != null).ToList();
+        C(bannerSpecs.Any(s => s.Element("apparelDef")?.Value == "Apparel_Sash")
+          && bannerSpecs.Where(s => Regex.Replace(s.Element("color")!.Value, @"\s", "") == "(0.12,0.12,0.12)").All(s => s.Element("apparelDef")?.Value == "Apparel_Sash"),
+            "the Banner's black only on its officers' sash");
 
         // ================= Every name soft and real, in the player's active mods =================
 
@@ -485,11 +492,14 @@ public static class PeoplesGearTests
             "by calling, age and faith: hospitaller priests, warden paladins, river druids, scholar arcanists, an enclave of psycasters, herd rangers, pilgrim monks, road wayfarers, quick-study scholars");
         // Medieval and tribal peoples get no psylinks; the spacers and the learned do. Release D's design names two more: the
         // Wardens' old tracker may be a Wildspeaker, and the Circuit has Wildspeakers in the spacer age (that gift of that age only).
+        // Release E's two more: the Stormglass Conclave's readers feel the weather as the planet's psychic tide (their lore,
+        // Staticlords and Frostshapers), and the Mossborn's eldest root may be a Wildspeaker.
         foreach (var f in factions)
         {
             string tech = f.Element("techLevel")!.Value;
             bool psy = kinds.Where(k => k.faction == Dn(f)).Any(k => k.def.Descendants("psylink").Any());
-            C(psy == (tech == "Industrial" && Dn(f) == "Rimfolk_Scholars" || tech == "Spacer" || Dn(f) == "Rimfolk_Wardens" || Dn(f) == "Rimfolk_Tamers"),
+            C(psy == (tech == "Industrial" && (Dn(f) == "Rimfolk_Scholars" || Dn(f) == "Rimfolk_Stormglass") || tech == "Spacer" || Dn(f) == "Rimfolk_Wardens"
+                      || Dn(f) == "Rimfolk_Tamers" || Dn(f) == "Rimfolk_Mossborn"),
                 $"{Dn(f)}: psylinks only where the age and calling have them");
             bool genes = kinds.Where(k => k.faction == Dn(f)).Any(k => k.def.Descendants("genes").Any());
             C(!genes || PeoplesGearMath.GenesFit(tech), $"{Dn(f)}: genes put in only where the age has the means");
@@ -499,6 +509,11 @@ public static class PeoplesGearTests
         C(kindEls.Where(k => Dn(k).StartsWith("Rimfolk_Wardens_")).Where(k => k.Descendants("psylink").Any()).Select(Dn).SequenceEqual(new[] { "Rimfolk_Wardens_Master" })
           && kindEls.Where(k => Dn(k).StartsWith("Rimfolk_Wardens_")).SelectMany(k => k.Descendants("paths")).SelectMany(p => p.Elements("li")).All(p => p.Value == "VPE_Wildspeaker"),
             "the Wardens' only psylink is their lantern-master's, a Wildspeaker's");
+        C(kindEls.Where(k => Dn(k).StartsWith("Rimfolk_Mossborn_")).Where(k => k.Descendants("psylink").Any()).Select(Dn).SequenceEqual(new[] { "Rimfolk_Mossborn_EldestRoot" })
+          && kindEls.Where(k => Dn(k).StartsWith("Rimfolk_Mossborn_")).SelectMany(k => k.Descendants("paths")).SelectMany(p => p.Elements("li")).All(p => p.Value == "VPE_Wildspeaker"),
+            "the Mossborn's only psylink is their eldest root's, a Wildspeaker's");
+        C(kindEls.Where(k => Dn(k).StartsWith("Rimfolk_Stormglass_")).SelectMany(k => k.Descendants("paths")).SelectMany(p => p.Elements("li"))
+              .All(p => p.Value == "VPE_Staticlord" || p.Value == "VPE_Frostshaper"), "the Conclave's psycasters on the weather's paths: Staticlords and Frostshapers");
 
         // ================= The seams =================
 

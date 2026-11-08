@@ -71,7 +71,8 @@ namespace ColonyCouncil
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {
-            ctx.faction = Arrivals.Friendly();
+            // The Kiln Guild's master-traders come likeliest, by patch (Patches/Rimfolk_PeoplesE.xml).
+            ctx.faction = Arrivals.Friendly(null, Peoples.Weigh(ext.prefers));
             var art = Art(ctx.map);
             if (ctx.faction == null || art.Count < CallerMath.MinGoodArt) return false;
             // One of the finest three, by what it's worth.
