@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- Dealings with a whole people or one of their towns (Source/ColonyCouncil/Dealings/, docs/design/diplomacy-screen.md
+       step B), pen friends, the world writing first and the chain of neighbours (docs/design/post-and-letters.md, points
+       12 to 14). -->
+
+  <!-- ===================== Who receives it, by their age ===================== -->
+  <CC_Deal_Council_Tribal>the elders of {TOWN}</CC_Deal_Council_Tribal>
+  <CC_Deal_Council_Medieval>the council of {TOWN}</CC_Deal_Council_Medieval>
+  <CC_Deal_Council_Industrial>the town council of {TOWN}</CC_Deal_Council_Industrial>
+  <CC_Deal_Council_Spacer>the governors of {TOWN}</CC_Deal_Council_Spacer>
+  <CC_Deal_Council_Empire>the court at {TOWN}</CC_Deal_Council_Empire>
+  <CC_Deal_Leaders_Tribal>the elders of {PEOPLE}</CC_Deal_Leaders_Tribal>
+  <CC_Deal_Leaders_Medieval>the leaders of {PEOPLE}</CC_Deal_Leaders_Medieval>
+  <CC_Deal_Leaders_Industrial>the leadership of {PEOPLE}</CC_Deal_Leaders_Industrial>
+  <CC_Deal_Leaders_Spacer>the governors of {PEOPLE}</CC_Deal_Leaders_Spacer>
+  <CC_Deal_Leaders_Empire>the court of {PEOPLE}</CC_Deal_Leaders_Empire>
+
+  <!-- ===================== The dealings ===================== -->
+  <CC_Deal_Supply_Ours>A supply contract: the colony delivers</CC_Deal_Supply_Ours>
+  <CC_Deal_Supply_Theirs>A supply contract: they deliver</CC_Deal_Supply_Theirs>
+  <CC_Deal_Relief>Relief for hard times</CC_Deal_Relief>
+  <CC_Deal_Proclaim_Fair>A fair day at the colony</CC_Deal_Proclaim_Fair>
+  <CC_Deal_Proclaim_Friendship>Friendship declared</CC_Deal_Proclaim_Friendship>
+  <CC_Deal_Proclaim_Terms>The colony's trade terms posted</CC_Deal_Proclaim_Terms>
+  <CC_Deal_Hire_Crew>A crew of harvest hands for the season</CC_Deal_Hire_Crew>
+  <CC_Deal_Hire_Guard>A guard detail for the season</CC_Deal_Hire_Guard>
+  <CC_Deal_Petition_Raiders>A petition about their raiders</CC_Deal_Petition_Raiders>
+  <CC_Deal_Petition_Reparations>A petition for amends</CC_Deal_Petition_Reparations>
+  <CC_Deal_Petition_Settle>A petition to settle refugees with them</CC_Deal_Petition_Settle>
+  <CC_Deal_Petition_TakeIn>An offer to take in a family of theirs</CC_Deal_Petition_TakeIn>
+  <CC_Deal_Work_Road>A road between, built together</CC_Deal_Work_Road>
+  <CC_Deal_Work_Well>A shared well, dug together</CC_Deal_Work_Well>
+  <CC_Deal_Work_Bridge>A bridge, built together</CC_Deal_Work_Bridge>
+  <CC_Deal_Work_Tower>A watchtower on the border, built together</CC_Deal_Work_Tower>
+  <CC_Deal_Market>Market rights: a stall in their town</CC_Deal_Market>
+  <CC_Deal_Invite_Feast>Their whole town invited to the colony's gathering</CC_Deal_Invite_Feast>
+  <CC_Deal_Invite_Entertainers>The colony's entertainers at their festival</CC_Deal_Invite_Entertainers>
+  <CC_Deal_Reply_News>An answer to their news</CC_Deal_Reply_News>
+  <CC_Deal_Reply_Request>An answer to their request</CC_Deal_Reply_Request>
+  <CC_Deal_Reply_Invitation>An answer to their invitation</CC_Deal_Reply_Invitation>
+
+  <!-- ===================== The acts on a card ===================== -->
+  <CC_Deal_Act_Supply>Propose a supply contract</CC_Deal_Act_Supply>
+  <CC_Deal_Act_Supply_Tip>A letter to their council: the colony's goods to them each season for their silver, or theirs to the colony for its silver. Their porters come to the gate for it, or bring it there.</CC_Deal_Act_Supply_Tip>
+  <CC_Deal_Act_Relief>Offer relief</CC_Deal_Act_Relief>
+  <CC_Deal_Act_Relief_Tip>For a town in hard times the colony has heard of: medicine or food, fetched from the gate by their porters. Their whole people remember it.</CC_Deal_Act_Relief_Tip>
+  <CC_Deal_Act_Proclaim>Make a proclamation</CC_Deal_Act_Proclaim>
+  <CC_Deal_Act_Proclaim_Tip>A fair day at the colony, friendship declared, or the colony's trade terms posted. Their council answers by letter.</CC_Deal_Act_Proclaim_Tip>
+  <CC_Deal_Act_Hire>Hire from their town</CC_Deal_Act_Hire>
+  <CC_Deal_Act_Hire_Tip>A crew of harvest hands or a guard detail for the season: they come as a group, make camp and work, their wage asked at their camp.</CC_Deal_Act_Hire_Tip>
+  <CC_Deal_Act_Petition>Petition their council</CC_Deal_Act_Petition>
+  <CC_Deal_Act_Petition_Tip>About their raiders, for amends, to settle refugees with them, or to take in a family of theirs in hard times.</CC_Deal_Act_Petition_Tip>
+  <CC_Deal_Act_Work>Propose a joint work</CC_Deal_Act_Work>
+  <CC_Deal_Act_Work_Tip>A road, a well, a bridge or a watchtower between the colony and their town, each side bringing its share. The colony's share is fetched from the gate.</CC_Deal_Act_Work_Tip>
+  <CC_Deal_Act_Market>Ask for market rights</CC_Deal_Act_Market>
+  <CC_Deal_Act_Market_Tip>A stall in their town for a fee: better terms with their traders, and their caravans come more often.</CC_Deal_Act_Market_Tip>
+  <CC_Deal_Act_Invite>Invite their town</CC_Deal_Act_Invite>
+  <CC_Deal_Act_Invite_Tip>Their whole town to the colony's coming gathering, or the colony's entertainers to their festival.</CC_Deal_Act_Invite_Tip>
+  <CC_Deal_Act_Reply>Answer their letter</CC_Deal_Act_Reply>
+  <CC_Deal_Act_Reply_Tip>They wrote to the colony and wait for an answer: it goes with the next carrier going their way.</CC_Deal_Act_Reply_Tip>
+
+  <!-- ===================== What the letter's window says ===================== -->
+  <CC_Deal_Topic>{DEAL}, to {COUNCIL}</CC_Deal_Topic>
+  <CC_Deal_Topic_Reply_News>An answer to {NAME}'s letter of news</CC_Deal_Topic_Reply_News>
+  <CC_Deal_Topic_Reply_Request>An answer to {NAME}'s request</CC_Deal_Topic_Reply_Request>
+  <CC_Deal_Topic_Reply_Invitation>An answer to {NAME}'s invitation</CC_Deal_Topic_Reply_Invitation>
+  <CC_Deal_Ask_OurLoad>{GOODS} each season, for {SILVER} silver</CC_Deal_Ask_OurLoad>
+  <CC_Deal_Ask_TheirLoad>{GOODS} each season, for {SILVER} silver</CC_Deal_Ask_TheirLoad>
+  <CC_Deal_Ask_Relief>{GOODS}, fetched from the gate</CC_Deal_Ask_Relief>
+  <CC_Deal_Ask_Share>The colony's share: {GOODS}, fetched from the gate</CC_Deal_Ask_Share>
+  <CC_Deal_Ask_Fee>A fee of {SILVER} silver: {TERMS} better terms with their traders</CC_Deal_Ask_Fee>
+  <CC_Deal_Ask_Wage>About {SILVER} silver every five days, asked at their camp</CC_Deal_Ask_Wage>
+  <CC_Letter_Purpose_Dealing>the colony's dealings with their council</CC_Letter_Purpose_Dealing>
+  <CC_Letter_PurposeCap_Dealing>A dealing with their council</CC_Letter_PurposeCap_Dealing>
+
+  <!-- ===================== Why not ===================== -->
+  <CC_Deal_Why_Off>Dealings with a whole people or town are off in the settings.</CC_Deal_Why_Off>
+  <CC_Deal_Why_War>{PEOPLE} are at war with the colony: only a petition about their raiders or for amends is heard.</CC_Deal_Why_War>
+  <CC_Deal_Why_NoOne>Nobody of theirs is known by name at {TOWN} to carry it to their council.</CC_Deal_Why_NoOne>
+  <CC_Deal_Why_NoTown>This is for one of their towns: choose a town.</CC_Deal_Why_NoTown>
+  <CC_Deal_Why_Unreachable>{TOWN} can't be reached from the colony: no road there, no relay, no radio.</CC_Deal_Why_Unreachable>
+  <CC_Deal_Why_Already>One of these is asked or under way with them already.</CC_Deal_Why_Already>
+  <CC_Deal_Why_Lately>They turned this down lately; it can be asked again in a while.</CC_Deal_Why_Lately>
+  <CC_Deal_Why_Goodwill>{PEOPLE} think too little of the colony to deal with it.</CC_Deal_Why_Goodwill>
+  <CC_Deal_Why_NoSurplus>The colony's stores have nothing to spare for a contract.</CC_Deal_Why_NoSurplus>
+  <CC_Deal_Why_NoSilver>The colony's stores hold too little silver to pay for it.</CC_Deal_Why_NoSilver>
+  <CC_Deal_Why_PayShort>The stores hold less than {SILVER} silver.</CC_Deal_Why_PayShort>
+  <CC_Deal_Why_NoHardTimes>The colony has heard of no hard times at {TOWN}.</CC_Deal_Why_NoHardTimes>
+  <CC_Deal_Why_NoRelief>The stores hold too little medicine or food to send.</CC_Deal_Why_NoRelief>
+  <CC_Deal_Why_FriendshipGoodwill>{PEOPLE} would need to think better of the colony first.</CC_Deal_Why_FriendshipGoodwill>
+  <CC_Deal_Why_NoCamps>Camps are off in the settings.</CC_Deal_Why_NoCamps>
+  <CC_Deal_Why_NoCampRoom>No camp can be pitched at the colony now: no room for it, or danger on the map.</CC_Deal_Why_NoCampRoom>
+  <CC_Deal_Why_NoCrops>The colony's fields have nothing growing to reap.</CC_Deal_Why_NoCrops>
+  <CC_Deal_Why_NotRaided>{PEOPLE} have not raided the colony lately.</CC_Deal_Why_NotRaided>
+  <CC_Deal_Why_NotWronged>{PEOPLE} have done the colony no wrong lately.</CC_Deal_Why_NotWronged>
+  <CC_Deal_Why_NoRefugees>No refugee family is camped at the colony.</CC_Deal_Why_NoRefugees>
+  <CC_Deal_Why_Built>It stands already, built together with {TOWN}.</CC_Deal_Why_Built>
+  <CC_Deal_Why_NoEnemies>The colony has no enemy for a watchtower to watch for.</CC_Deal_Why_NoEnemies>
+  <CC_Deal_Why_NoShare>The colony's stores can't bring its share.</CC_Deal_Why_NoShare>
+  <CC_Deal_Why_ShareShort>The stores hold less than {GOODS}.</CC_Deal_Why_ShareShort>
+  <CC_Deal_Why_MarketGoodwill>{PEOPLE} would need to think better of the colony to let it trade in their town.</CC_Deal_Why_MarketGoodwill>
+  <CC_Deal_Why_NoGathering>The colony has no feast, fair or gathering day coming.</CC_Deal_Why_NoGathering>
+  <CC_Deal_Why_NoGuests>They can't come as guests now.</CC_Deal_Why_NoGuests>
+  <CC_Deal_Why_NoMissions>No journey to them can be made now.</CC_Deal_Why_NoMissions>
+  <CC_Deal_Why_Nothing>Nothing can be asked of {PEOPLE} as a whole now.</CC_Deal_Why_Nothing>
+  <CC_Deal_Why_NoLetter>They have written nothing that waits for an answer.</CC_Deal_Why_NoLetter>
+
+  <!-- ===================== Their answer ===================== -->
+  <CC_Deal_Ans_Title>{COUNCIL} answer</CC_Deal_Ans_Title>
+  <CC_Deal_Ans_Moot>{COUNCIL} answer that things have changed since the letter was written, and nothing was decided.</CC_Deal_Ans_Moot>
+  <CC_Deal_Ans_Supply_Ours_Yes>{COUNCIL} agree to the contract: each season their porters come to the colony's gate with {SILVER} silver for {GOODS}, for a year. A season the stores can't spare it is a season missed, and two missed in a row end it.</CC_Deal_Ans_Supply_Ours_Yes>
+  <CC_Deal_Ans_Supply_Ours_No>{COUNCIL} decline the contract: they have no need of {GOODS} that they can't meet themselves.</CC_Deal_Ans_Supply_Ours_No>
+  <CC_Deal_Ans_Supply_Theirs_Yes>{COUNCIL} agree to the contract: each season their porters bring {GOODS} to the colony's gate and take {SILVER} silver for it, for a year. A season the colony can't pay is a season missed.</CC_Deal_Ans_Supply_Theirs_Yes>
+  <CC_Deal_Ans_Supply_Theirs_No>{COUNCIL} decline: they can't promise {GOODS} season after season.</CC_Deal_Ans_Supply_Theirs_No>
+  <CC_Deal_Ans_Relief_Yes>{COUNCIL} accept the colony's relief with thanks, and send porters to the gate for {GOODS}.</CC_Deal_Ans_Relief_Yes>
+  <CC_Deal_Ans_Relief_No>{COUNCIL} thank the colony, but will not take charity: {TOWN} will see itself through.</CC_Deal_Ans_Relief_No>
+  <CC_Deal_Ans_Proclaim_Fair_Yes>{COUNCIL} will send their traders and their folk to the colony's fair, on the morning of the day.</CC_Deal_Ans_Proclaim_Fair_Yes>
+  <CC_Deal_Ans_Proclaim_Fair_No>{COUNCIL} have nobody to spare for a fair this time.</CC_Deal_Ans_Proclaim_Fair_No>
+  <CC_Deal_Ans_Proclaim_Friendship_Yes>{COUNCIL} answer the colony's friendship with their own, and say so before all their people.</CC_Deal_Ans_Proclaim_Friendship_Yes>
+  <CC_Deal_Ans_Proclaim_Friendship_No>{COUNCIL} answer politely, and promise nothing: friendship is earned, they say, not declared.</CC_Deal_Ans_Proclaim_Friendship_No>
+  <CC_Deal_Ans_Proclaim_Terms_Yes>{COUNCIL} have read the colony's terms with interest: their traders will come by, and deal on those terms for the season.</CC_Deal_Ans_Proclaim_Terms_Yes>
+  <CC_Deal_Ans_Proclaim_Terms_No>{COUNCIL} find the colony's terms no better than what they have.</CC_Deal_Ans_Proclaim_Terms_No>
+  <CC_Deal_Ans_Hire_Crew_Yes>{COUNCIL} send a crew of harvest hands: they come as a group, make camp by the fields and reap for the season, paid in silver when they ask.</CC_Deal_Ans_Hire_Crew_Yes>
+  <CC_Deal_Ans_Hire_Crew_No>{COUNCIL} need every hand at home this season.</CC_Deal_Ans_Hire_Crew_No>
+  <CC_Deal_Ans_Hire_Guard_Yes>{COUNCIL} send a guard detail for the season: they make camp by the colony, take up arms against whatever comes at it and keep the gate by day, their wage asked at their camp every five days.</CC_Deal_Ans_Hire_Guard_Yes>
+  <CC_Deal_Ans_Hire_Guard_No>{COUNCIL} will not send their fighters to stand on another's wall.</CC_Deal_Ans_Hire_Guard_No>
+  <CC_Deal_Ans_Petition_Raiders_Yes>{COUNCIL} give their word: their raiders keep away from the colony for two seasons. If any come all the same, their word is broken.</CC_Deal_Ans_Petition_Raiders_Yes>
+  <CC_Deal_Ans_Petition_Raiders_No>{COUNCIL} answer that their raiders go where they please.</CC_Deal_Ans_Petition_Raiders_No>
+  <CC_Deal_Ans_Petition_Reparations_Yes>{COUNCIL} own the wrong, and send {SILVER} silver in amends with this answer.</CC_Deal_Ans_Petition_Reparations_Yes>
+  <CC_Deal_Ans_Petition_Reparations_No>{COUNCIL} owe the colony nothing, they say.</CC_Deal_Ans_Petition_Reparations_No>
+  <CC_Deal_Ans_Petition_Settle_Yes>{COUNCIL} will take the refugee family camped at the colony: they may pack up and come to {TOWN}.</CC_Deal_Ans_Petition_Settle_Yes>
+  <CC_Deal_Ans_Petition_Settle_No>{COUNCIL} have no room at {TOWN} for strangers.</CC_Deal_Ans_Petition_Settle_No>
+  <CC_Deal_Ans_Petition_TakeIn_Yes>{COUNCIL} thank the colony: a family of theirs sets out for it, and will make camp by the gate.</CC_Deal_Ans_Petition_TakeIn_Yes>
+  <CC_Deal_Ans_Petition_TakeIn_No>{COUNCIL} answer that their people stay with their own, hard times or not.</CC_Deal_Ans_Petition_TakeIn_No>
+  <CC_Deal_Ans_Work_Road_Yes>{COUNCIL} agree to the road: their porters fetch the colony's share, {GOODS}, from the gate, and both sides set to work on it.</CC_Deal_Ans_Work_Road_Yes>
+  <CC_Deal_Ans_Work_Road_No>{COUNCIL} see no need for a road to the colony.</CC_Deal_Ans_Work_Road_No>
+  <CC_Deal_Ans_Work_Well_Yes>{COUNCIL} agree to dig the well together: their porters fetch the colony's share, {GOODS}, from the gate.</CC_Deal_Ans_Work_Well_Yes>
+  <CC_Deal_Ans_Work_Well_No>{COUNCIL} have water enough, they say.</CC_Deal_Ans_Work_Well_No>
+  <CC_Deal_Ans_Work_Bridge_Yes>{COUNCIL} agree to the bridge: their porters fetch the colony's share, {GOODS}, from the gate.</CC_Deal_Ans_Work_Bridge_Yes>
+  <CC_Deal_Ans_Work_Bridge_No>{COUNCIL} would rather keep the river between them.</CC_Deal_Ans_Work_Bridge_No>
+  <CC_Deal_Ans_Work_Tower_Yes>{COUNCIL} agree to the watchtower: their porters fetch the colony's share, {GOODS}, from the gate, and their watch will send word of raiders coming that way.</CC_Deal_Ans_Work_Tower_Yes>
+  <CC_Deal_Ans_Work_Tower_No>{COUNCIL} keep their own watch, and want no tower of the colony's on their border.</CC_Deal_Ans_Work_Tower_No>
+  <CC_Deal_Ans_Market_Yes>{COUNCIL} grant the colony a stall in {TOWN}: their porters fetch the fee, {SILVER} silver, from the gate, and the stall opens when it is paid.</CC_Deal_Ans_Market_Yes>
+  <CC_Deal_Ans_Market_No>{COUNCIL} keep their market for their own people.</CC_Deal_Ans_Market_No>
+  <CC_Deal_Ans_Invite_Feast_Yes>{COUNCIL} accept for their town: folk of {TOWN} will come to the colony on the morning of the day.</CC_Deal_Ans_Invite_Feast_Yes>
+  <CC_Deal_Ans_Invite_Feast_No>{COUNCIL} send their regrets: nobody of {TOWN} can make the journey.</CC_Deal_Ans_Invite_Feast_No>
+  <CC_Deal_Ans_Invite_Entertainers_Yes>{COUNCIL} would be glad of the colony's entertainers at their festival, and send word of when and where.</CC_Deal_Ans_Invite_Entertainers_Yes>
+  <CC_Deal_Ans_Invite_Entertainers_No>{COUNCIL} keep their festival among their own.</CC_Deal_Ans_Invite_Entertainers_No>
+
+  <!-- ===================== What follows ===================== -->
+  <CC_Deal_Gathering_Feast>the colony's feast</CC_Deal_Gathering_Feast>
+  <CC_Deal_Gathering_Fair>the colony's fair</CC_Deal_Gathering_Fair>
+  <CC_Deal_Msg_Porters>Porters sent by {COUNCIL} are coming to the gate for {GOODS}.</CC_Deal_Msg_Porters>
+  <CC_Deal_Short>The stores no longer hold {GOODS}, so nothing went to {COUNCIL}, and it came to nothing.</CC_Deal_Short>
+  <CC_Deal_EndLabel_Kept>{DEAL}: done</CC_Deal_EndLabel_Kept>
+  <CC_Deal_EndLabel_Broken>{DEAL}: broken</CC_Deal_EndLabel_Broken>
+  <CC_Deal_EndLabel_Ended>{DEAL}: over</CC_Deal_EndLabel_Ended>
+  <CC_Deal_Relief_Kept>The colony's relief is with {COUNCIL}. Word of it will go round all of {PEOPLE}, and {TOWN} will fare a little better for it.</CC_Deal_Relief_Kept>
+  <CC_Deal_Cause_Relief>the colony's relief</CC_Deal_Cause_Relief>
+  <CC_Deal_Cause_Well>the well dug with the colony</CC_Deal_Cause_Well>
+  <CC_Deal_Cause_Bridge>the bridge built with the colony</CC_Deal_Cause_Bridge>
+  <CC_Deal_Work_Begun_Road>The colony's share is with {TOWN}, and both sides are at work on the road.</CC_Deal_Work_Begun_Road>
+  <CC_Deal_Work_Begun_Well>The colony's share is with {TOWN}, and the well is being dug.</CC_Deal_Work_Begun_Well>
+  <CC_Deal_Work_Begun_Bridge>The colony's share is with {TOWN}, and the bridge is being built.</CC_Deal_Work_Begun_Bridge>
+  <CC_Deal_Work_Begun_Tower>The colony's share is with {TOWN}, and the watchtower is going up on the border.</CC_Deal_Work_Begun_Tower>
+  <CC_Deal_Work_Built_Road>The road between the colony and {TOWN} is finished: it shows on the world map, and caravans and letters go faster that way.</CC_Deal_Work_Built_Road>
+  <CC_Deal_Work_Built_Well>The well dug together with {PEOPLE} is finished at {TOWN}. They will remember who helped dig it.</CC_Deal_Work_Built_Well>
+  <CC_Deal_Work_Built_Bridge>The bridge built together with {PEOPLE} stands. {TOWN} is the better for it, and they will remember who helped build it.</CC_Deal_Work_Built_Bridge>
+  <CC_Deal_Work_Built_Tower>The watchtower toward {TOWN} stands, manned by {PEOPLE}. When raiders come at the colony from that side, their watch will send word ahead of them.</CC_Deal_Work_Built_Tower>
+  <CC_Deal_Market_OpenLabel>A stall at {TOWN}</CC_Deal_Market_OpenLabel>
+  <CC_Deal_Market_Open>The fee is paid and the colony's stall at {TOWN} is open. Traders of {PEOPLE} give the colony {TERMS} better terms, and their caravans come more often while it stands.</CC_Deal_Market_Open>
+  <CC_Deal_Market_Over>The colony's market rights at {TOWN} have run their course; they can be asked for again.</CC_Deal_Market_Over>
+  <CC_Deal_Hire_NoCamp>No camp could be pitched at the colony, so the people {COUNCIL} would have sent stayed at home.</CC_Deal_Hire_NoCamp>
+  <CC_Deal_TakeIn_NoCamp>No camp could be pitched at the colony, so the family {COUNCIL} would have sent stayed at home.</CC_Deal_TakeIn_NoCamp>
+  <CC_Deal_Raiders_Broken>Raiders of {PEOPLE} came at the colony all the same: their word to keep them away is broken.</CC_Deal_Raiders_Broken>
+  <CC_Deal_Raiders_Over>The term {PEOPLE} gave their word for has run its course: their raiders are no longer held back.</CC_Deal_Raiders_Over>
+  <CC_Deal_Festival_NoMission>No journey to the festival at {TOWN} could be arranged now.</CC_Deal_Festival_NoMission>
+  <CC_Deal_Invite_NoGathering>The gathering {COUNCIL} were invited to is no longer coming.</CC_Deal_Invite_NoGathering>
+  <CC_Deal_Overtaken>{DEAL} with {TOWN} is over: things between them and the colony have changed.</CC_Deal_Overtaken>
+  <CC_Deal_Supply_OursDue>The season's delivery: porters sent by {COUNCIL} are coming to the gate with {SILVER} silver for {GOODS}.</CC_Deal_Supply_OursDue>
+  <CC_Deal_Supply_TheirsDue>The season's delivery: porters sent by {COUNCIL} are coming to the gate with {GOODS}, for {SILVER} silver.</CC_Deal_Supply_TheirsDue>
+  <CC_Deal_Supply_MissedLabel>A delivery missed: {TOWN}</CC_Deal_Supply_MissedLabel>
+  <CC_Deal_Supply_MissedOurs>The stores could not spare {GOODS} this season, so the delivery to {COUNCIL} was missed. Two missed in a row break the contract.</CC_Deal_Supply_MissedOurs>
+  <CC_Deal_Supply_MissedTheirs>The colony could not pay {SILVER} silver this season, so the porters of {COUNCIL} turned back with {GOODS}. Two missed in a row break the contract.</CC_Deal_Supply_MissedTheirs>
+  <CC_Deal_Supply_Broken>The contract with {COUNCIL} is broken, and all of {PEOPLE} will hear of it.</CC_Deal_Supply_Broken>
+  <CC_Deal_Supply_Kept>The year's contract with {COUNCIL} was kept to its last delivery, and {PEOPLE} think the better of the colony for it.</CC_Deal_Supply_Kept>
+  <CC_Deal_Supply_Over>The year's contract with {COUNCIL} has run its course, with a season or more missed.</CC_Deal_Supply_Over>
+  <CC_Deal_Fair_Missed>The fair's morning passed with danger at the colony, and the folk {COUNCIL} sent turned back.</CC_Deal_Fair_Missed>
+  <CC_Deal_Invite_Missed>The day passed with danger at the colony, and the folk {COUNCIL} sent turned back.</CC_Deal_Invite_Missed>
+  <CC_Deal_Fair_NoneCame>Nobody sent by {COUNCIL} could reach the colony's fair.</CC_Deal_Fair_NoneCame>
+  <CC_Deal_Invite_NoneCame>Nobody sent by {COUNCIL} could reach the colony on the day.</CC_Deal_Invite_NoneCame>
+
+  <!-- ===================== The Dealings tab and the town's card ===================== -->
+  <CC_Deal_Tab_Heading>With their towns as a whole</CC_Deal_Tab_Heading>
+  <CC_Deal_Line>{DEAL}, {WITH}{TERMS}: {STAND}</CC_Deal_Line>
+  <CC_Deal_Line_Supply>({GOODS} for {SILVER} silver)</CC_Deal_Line_Supply>
+  <CC_Deal_Stand_Asked>asked, the answer on its way</CC_Deal_Stand_Asked>
+  <CC_Deal_Stand_Agreed>agreed</CC_Deal_Stand_Agreed>
+  <CC_Deal_Stand_Refused>refused</CC_Deal_Stand_Refused>
+  <CC_Deal_Stand_Deliveries>{KEPT} of {ALL} seasons delivered, {MISSED} missed</CC_Deal_Stand_Deliveries>
+  <CC_Deal_Stand_Share>the colony's share waits for their porters</CC_Deal_Stand_Share>
+  <CC_Deal_Stand_Building>being built</CC_Deal_Stand_Building>
+  <CC_Deal_Stand_Fee>the fee waits for their porters</CC_Deal_Stand_Fee>
+  <CC_Deal_Stand_Day>set for {DATE}</CC_Deal_Stand_Day>
+  <CC_Deal_Stand_Running>under way</CC_Deal_Stand_Running>
+  <CC_Deal_Stand_Built>standing</CC_Deal_Stand_Built>
+  <CC_Deal_Stand_Kept>kept</CC_Deal_Stand_Kept>
+  <CC_Deal_Stand_Broken>broken</CC_Deal_Stand_Broken>
+  <CC_Deal_Stand_Ended>over</CC_Deal_Stand_Ended>
+  <CC_Deal_Week_Letter>{NAME} of {TOWN} wrote to the colony and waits for an answer</CC_Deal_Week_Letter>
+  <CC_Deal_Week_News>a letter of news</CC_Deal_Week_News>
+  <CC_Deal_Week_Request>a small request</CC_Deal_Week_Request>
+  <CC_Deal_Week_Invitation>an invitation to their festival</CC_Deal_Week_Invitation>
+
+  <!-- ===================== The world writes first ===================== -->
+  <CC_World_Label_News>News from {NAME}</CC_World_Label_News>
+  <CC_World_Label_Request>A request from {NAME}</CC_World_Label_Request>
+  <CC_World_Label_Invitation>An invitation from {NAME}</CC_World_Label_Invitation>
+  <CC_World_Bring>a letter from {NAME}</CC_World_Bring>
+  <CC_World_Text_News>{NAME} of {TOWN} writes unasked, with the news from their part of the world:</CC_World_Text_News>
+  <CC_World_Text_NewsQuiet>All is quiet at {TOWN}, and {NAME} hopes it is the same at the colony.</CC_World_Text_NewsQuiet>
+  <CC_World_Text_Request>{NAME} of {TOWN} writes with a small request: {PEOPLE} are short of {GOODS}, and would be grateful for it if the colony can spare it. Their porters would fetch it from the gate.</CC_World_Text_Request>
+  <CC_World_Text_Invitation>{NAME} of {TOWN} writes to invite the colony's people to their festival: a few of them, by caravan, to sit at their tables and play and stay for the day.</CC_World_Text_Invitation>
+  <CC_World_Text_Friend>It is signed as a friend signs, at the bottom of a long letter.</CC_World_Text_Friend>
+  <CC_World_HowToAnswer>{NAME} waits for the colony's answer: write back from their card, the inbox, or Peoples, "Do something with...". It goes with the next carrier going their way.</CC_World_HowToAnswer>
+  <CC_World_Note_Unanswered>wrote to the colony and heard nothing back</CC_World_Note_Unanswered>
+  <CC_World_Ask_Thanks>Thank them, and write back with the colony's own news</CC_World_Ask_Thanks>
+  <CC_World_Ask_Send>Yes: {GOODS}, for their porters to fetch from the gate</CC_World_Ask_Send>
+  <CC_World_Why_Short>The stores hold less than {GOODS}.</CC_World_Why_Short>
+  <CC_World_Ask_Decline>Decline kindly</CC_World_Ask_Decline>
+  <CC_World_Ask_Accept>Accept: a few of the colony's people will come</CC_World_Ask_Accept>
+  <CC_World_Ask_DeclineInvite>Decline with thanks</CC_World_Ask_DeclineInvite>
+  <CC_World_Ans_Moot>{NAME} answers warmly, though what they wrote about is past now.</CC_World_Ans_Moot>
+  <CC_World_Ans_News_Yes>{NAME} was glad of the colony's letter, and of its news.</CC_World_Ans_News_Yes>
+  <CC_World_Ans_News_No>{NAME} read the colony's letter.</CC_World_Ans_News_No>
+  <CC_World_Ans_Request_Yes>{NAME} thanks the colony, and sends porters to the gate for {GOODS}.</CC_World_Ans_Request_Yes>
+  <CC_World_Ans_Request_No>{NAME} understands, and asks nothing more.</CC_World_Ans_Request_No>
+  <CC_World_Ans_Invitation_Yes>{NAME} is glad the colony's people will come, and sends word of the day.</CC_World_Ans_Invitation_Yes>
+  <CC_World_Ans_Invitation_No>{NAME} is sorry, and hopes for another year.</CC_World_Ans_Invitation_No>
+
+  <!-- ===================== Pen friends ===================== -->
+  <CC_Pen_Label>A pen friend: {NAME}</CC_Pen_Label>
+  <CC_Pen_Text>The letters between the colony and {CALLED} of {TOWN} have become something more than courtesy: {NAME} writes as a friend now. While the letters keep passing, {NAME} will send word ahead of raiders whose towns lie near theirs, the traders of {PEOPLE} give the colony {TERMS} better terms, {NAME} vouches for the colony's letters to peoples beyond its reach, and after a season of friendship there will be a favor owed.</CC_Pen_Text>
+  <CC_Pen_Lapsed>The letters between the colony and {NAME} have grown few, and the friendship has cooled into courtesy.</CC_Pen_Lapsed>
+  <CC_Pen_FavourLabel>A friend's favor: {NAME}</CC_Pen_FavourLabel>
+  <CC_Pen_Favour>{NAME} writes that the colony may count on {PEOPLE} for a good turn when it needs one, for the sake of all those letters. It is a debt of honor of theirs now, to call in when the colony needs it.</CC_Pen_Favour>
+  <CC_Dip_For_penFriend>years of letters between friends</CC_Dip_For_penFriend>
+  <CC_Dip_For_builtTogether>a work built together</CC_Dip_For_builtTogether>
+
+  <!-- ===================== Word of a raid ===================== -->
+  <CC_Warn_Label>Word of raiders</CC_Warn_Label>
+  <CC_Warn_Tower>The watch on the tower toward {TOWN} saw raiders of {RAIDERS} on the move toward the colony, and {PEOPLE} sent word ahead of them. They will be at the colony within hours.</CC_Warn_Tower>
+  <CC_Warn_Friend>{NAME} of {TOWN} sends word in haste: raiders of {RAIDERS} passed near {TOWN}, heading for the colony. They will be there within hours.</CC_Warn_Friend>
+  <CC_Warn_ByRadio>The word came over the radio.</CC_Warn_ByRadio>
+  <CC_Warn_Bring>urgent word of raiders</CC_Warn_Bring>
+  <CC_Warn_Coming>A messenger of {PEOPLE} is coming in at speed with urgent word.</CC_Warn_Coming>
+
+  <!-- ===================== A chain of neighbours ===================== -->
+  <CC_Mail_Reach_Chain>Out of reach, but by introduction through {RELAY} of {PEOPLE}, who know them: about {DAYS} on the road.</CC_Mail_Reach_Chain>
+  <CC_Mail_Likely_Chain>with whoever goes {DIR} next, to be introduced on from {RELAY}</CC_Mail_Likely_Chain>
+
+  <!-- ===================== Their memory ===================== -->
+  <CC_Memory_Deed_contractKept>kept a supply contract with them</CC_Memory_Deed_contractKept>
+  <CC_Memory_Deed_contractKept_Name>kept a supply contract with {NAME}</CC_Memory_Deed_contractKept_Name>
+  <CC_Memory_Deed_contractKept_Many>kept its contracts with them, {COUNT} times</CC_Memory_Deed_contractKept_Many>
+  <CC_Memory_Deed_contractBroken>broke a contract with them</CC_Memory_Deed_contractBroken>
+  <CC_Memory_Deed_contractBroken_Name>broke a contract with {NAME}</CC_Memory_Deed_contractBroken_Name>
+  <CC_Memory_Deed_builtTogether>built something together with them</CC_Memory_Deed_builtTogether>
+  <CC_Memory_Deed_builtTogether_Name>built something together with {NAME}</CC_Memory_Deed_builtTogether_Name>
+  <CC_Memory_Deed_friendship>declared friendship with them</CC_Memory_Deed_friendship>
+  <CC_Memory_Deed_friendship_Name>declared friendship with {NAME}</CC_Memory_Deed_friendship_Name>
+
+  <!-- ===================== The settings ===================== -->
+  <CC_Settings_TownDealings>Dealings with a whole people or town</CC_Settings_TownDealings>
+  <CC_Settings_TownDealings_Tip>From a town's card, a people's card or Peoples, "Do something with...": a supply contract, relief for hard times, a fair day, friendship declared or the colony's trade terms posted, a crew or guards hired for the season, petitions about raiders, amends or refugees, a road, a well, a bridge or a watchtower built together, market rights, a town invited or the colony's entertainers sent. Each goes by letter to their council and is answered by letter, then plays out on the map. Off, none of these can be asked, and those under way end.</CC_Settings_TownDealings_Tip>
+  <CC_SetNote_TownDealings>Contracts, relief, proclamations, hires, petitions, joint works, market rights and invitations with a people's council.</CC_SetNote_TownDealings>
+  <CC_Settings_PenFriends>Pen friends</CC_Settings_PenFriends>
+  <CC_Settings_PenFriends_Tip>Three letters answered warmly or courteously within 60 days, with their regard at 30 or more, make a notable a pen friend: word ahead of raiders whose towns lie near theirs, better terms with their people's traders, the colony's letters introduced to peoples beyond its reach, and a favor after a season. It lapses when no letter passes for 90 days or their regard falls under 15.</CC_Settings_PenFriends_Tip>
+  <CC_SetNote_PenFriends>A steady exchange of letters becomes a friendship that brings something.</CC_SetNote_PenFriends>
+  <CC_Settings_WorldWrites>The world writes first</CC_Settings_WorldWrites>
+  <CC_Settings_WorldWrites_Tip>Now and then a notable who thinks well of the colony writes to it unasked, about once in two or three weeks and never with two letters waiting: news, a small request or an invitation to their festival. It comes in the post and waits for the colony's answer, which leaves with the next carrier going their way. Left unanswered half a month, they think a little less of the colony.</CC_Settings_WorldWrites_Tip>
+  <CC_SetNote_WorldWrites>Notables write first now and then, and wait for an answer.</CC_SetNote_WorldWrites>
+</LanguageData>

@@ -20,6 +20,12 @@ namespace ColonyCouncil
         /// <summary>The town a letter is relayed through when it is far (else null), and the days in all that way.</summary>
         public Settlement relay;
         public float relayDays = -1f;
+        /// <summary>
+        /// Out of reach, but a people who knows the far one introduces the colony's letters (a chain of neighbours,
+        /// post-and-letters.md, point 14): the town they go through, and the days in all (slower than a relay); else null.
+        /// </summary>
+        public Settlement chain;
+        public float chainDays = -1f;
         /// <summary>A call on the comms console reaches them now (a working console, and they have radio or a mast near).</summary>
         public bool call;
         /// <summary>They have radio (industrial or later, or a Signal Line mast near), working console or not.</summary>
@@ -225,6 +231,8 @@ namespace ColonyCouncil
                 bool relay = false;
                 if (info.range >= 0f && (info.days < 0f || info.days > info.range)) relay = FindRelay(home, town, info, ui);
                 info.band = PostMath.Band(false, info.days, info.range, relay);
+                // Out of reach: perhaps by introduction through a people who knows them (slower).
+                if (info.band == ReachBand.Cut && info.range >= 0f) FindChain(home, town, info, ui);
             }
             catch (Exception e)
             {
@@ -265,6 +273,36 @@ namespace ColonyCouncil
         }
 
         /// <summary>
+        /// A chain of neighbours (post-and-letters.md, step 2, point 14): a town of a people at peace with the colony and with
+        /// the far one, who introduces the colony's letters to them (on good terms with the colony, or a pen friend among
+        /// them: DealingMath.Introduces), within the colony's range; their way on by their own means, within twice their
+        /// range; a day there to be introduced and a day further on (DealingMath.ChainDays). The fewest days in all.
+        /// </summary>
+        private static void FindChain(Map home, Settlement town, ReachInfo info, bool ui)
+        {
+            var far = town.Faction;
+            if (far == null) return;
+            var cands = Find.WorldObjects.Settlements
+                .Where(s => s != null && s != town && !s.Destroyed && s.Faction != null && !s.Faction.IsPlayer && s.Faction != far && s.Tile.Layer == home.Tile.Layer
+                            && !s.Faction.HostileTo(Faction.OfPlayer) && s.Faction.HasGoodwill
+                            && DealingMath.Introduces(!s.Faction.HostileTo(far), s.Faction.PlayerGoodwill, PenFriends.Introduces(s.Faction))
+                            && LivingEvents.Distance(home.Tile, s.Tile) < info.tiles)
+                .OrderBy(s => LivingEvents.Distance(home.Tile, s.Tile) + LivingEvents.Distance(s.Tile, town.Tile)).Take(4).ToList();
+            float best = -1f;
+            foreach (var s in cands)
+            {
+                float there = PostMath.LegDays(WalkDays(home.Tile, s.Tile, ui), LivingEvents.Distance(home.Tile, s.Tile), info.means);
+                var theirs = PostMath.MeansOf(Ages.Of(s.Faction), false);
+                float on = PostMath.LegDays(WalkDays(s.Tile, town.Tile, ui), LivingEvents.Distance(s.Tile, town.Tile), theirs);
+                float days = DealingMath.ChainDays(there, on, info.range, PostMath.RangeDays(Ages.Of(s.Faction), false));
+                if (days < 0f || best >= 0f && days >= best) continue;
+                best = days;
+                info.chain = s;
+                info.chainDays = days;
+            }
+        }
+
+        /// <summary>
         /// Days a letter is on the road from the colony to a town by a carrier's means, the land's own way: relayed when it
         /// is far (there to the relay, a day there, and on by the relay's people), else straight there; -1 when no way.
         /// </summary>
@@ -280,6 +318,16 @@ namespace ColonyCouncil
                 float on = PostMath.LegDays(WalkDays(info.relay.Tile, town.Tile), LivingEvents.Distance(info.relay.Tile, town.Tile),
                     PostMath.MeansOf(Ages.Of(info.relay.Faction), false));
                 if (there >= 0f && on >= 0f) return there + PostMath.RelayDays + on;
+            }
+            // Out of reach but introduced through a people who knows them: there, introduced, and on by their means.
+            if (info.band == ReachBand.Cut && info.chain != null && means != LetterMeans.Shuttle)
+            {
+                relayedBy = info.chain;
+                float there = PostMath.LegDays(WalkDays(home.Tile, info.chain.Tile), LivingEvents.Distance(home.Tile, info.chain.Tile), means);
+                float on = PostMath.LegDays(WalkDays(info.chain.Tile, town.Tile), LivingEvents.Distance(info.chain.Tile, town.Tile),
+                    PostMath.MeansOf(Ages.Of(info.chain.Faction), false));
+                float chained = DealingMath.ChainDays(there, on, float.MaxValue, -1f);
+                if (chained >= 0f) return chained;
             }
             float d = PostMath.LegDays(info.walkDays, info.tiles, means);
             return d >= 0f ? d : LetterMath.LegDays(info.tiles, means);

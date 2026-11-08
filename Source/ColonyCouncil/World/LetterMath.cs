@@ -228,7 +228,7 @@ namespace ColonyCouncil
         /// </summary>
         public static bool OwnReasons(LetterPurpose p) =>
             p == LetterPurpose.Truce || p == LetterPurpose.Ransom || p == LetterPurpose.Envoy || p == LetterPurpose.Ward || p == LetterPurpose.Match
-            || p == LetterPurpose.Fealty || p == LetterPurpose.Task || p == LetterPurpose.TakeBack;
+            || p == LetterPurpose.Fealty || p == LetterPurpose.Task || p == LetterPurpose.TakeBack || p == LetterPurpose.Dealing;
 
         /// <summary>Their people's goodwill moved by so much, in words: a little (one or two), markedly (three or more).</summary>
         public static bool GoodwillMarked(int gw) => gw >= 3;

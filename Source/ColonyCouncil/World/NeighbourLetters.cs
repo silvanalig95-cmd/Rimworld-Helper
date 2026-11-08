@@ -455,6 +455,8 @@ namespace ColonyCouncil
                 map = map, created = Now, stageTick = Now, stage = c == LetterChannel.Console ? LetterStage.ToCall : LetterStage.ToWrite,
                 topic = topic?.text, topicKey = topic?.key, help = help, hostile = NotableBook.Hostile(n), bearer = bearer, bearerName = bearer?.LabelShort
             };
+            // A dealing goes to their council (Dealings/DealingLetters.cs): the letter says so.
+            if (DealingLetters.Owns(p)) l.toName = DealingLetters.ToName(n, topic?.key) ?? l.toName;
             book.letters.Add(l);
             NotableBook.Changed();
             if (rider != null && c == LetterChannel.Courier && bearer == null) OwnRiders.Send(l, rider);
@@ -1021,6 +1023,8 @@ namespace ColonyCouncil
             // A call never went by road: how far they are, at their people's means, still sets when a guest or raiders could come.
             if (l.backDays <= 0f) l.backDays = LetterMath.LegDays(Tiles(n, l.map), LetterMath.MeansOf(Ages.Of(n.faction)));
             l.tone = tone;
+            // A letter answered warmly or courteously is one of a steady exchange (Dealings/PenFriends.cs).
+            PenFriends.Exchanged(n, tone);
             float factor = NotableMath.ChannelFactor(l.purpose, l.channel, x.traditional);
             float shift = NotableMath.OpinionShift(tone, l.purpose, factor, x.lately);
             bool granted = NotableMath.Grants(x, tone);
@@ -1216,6 +1220,9 @@ namespace ColonyCouncil
 
         private static string Title(NeighbourLetter l, Notable n, string how)
         {
+            // A dealing is answered by their council (Dealings/DealingLetters.cs).
+            string council = DealingLetters.Owns(l.purpose) ? DealingLetters.Title(l, n) : null;
+            if (council != null) return council;
             string key = how == "callback" ? "CC_Call_Title_Back" : how == "word" ? "CC_Call_Title_Word"
                 : l.channel == LetterChannel.Console ? "CC_Call_Title" : "CC_Letter_Title";
             return key.Translate(n.Name.Named("NAME")).Resolve();
@@ -1282,6 +1289,8 @@ namespace ColonyCouncil
         /// </summary>
         private static void Owed(NeighbourLetter l, Notable n)
         {
+            // A dealing's answer in: agreed, it starts now (Dealings/DealingLetters.cs).
+            DealingLetters.AnswerIn(l);
             if (l == null || !l.owed || n?.faction == null) return;
             l.owed = false;
             try
@@ -1366,6 +1375,8 @@ namespace ColonyCouncil
         /// </summary>
         private static string Quote(NeighbourLetter l, Notable n, AnswerTone tone, Pawn speaker, FactSet facts, bool helpSent = false)
         {
+            // A council's answer to a dealing, or a reply's thanks, is in its own words (Dealings/DealingLetters.cs): no line of a kind letter's.
+            if (DealingLetters.Owns(l.purpose)) return null;
             var pool = DefDatabase<FlavorPoolDef>.GetNamedSilentFail(WritePool);
             if (pool == null) return null;
             var said = l.purpose == LetterPurpose.Help ? NotableMath.HelpQuoteTone(tone, helpSent) : tone;

@@ -447,6 +447,10 @@ namespace ColonyCouncil
             Choice("postPace", "CC_Settings_PostPace", "CC_Settings_PostPace_Tip", "CC_PostPace_", "CC_SetNote_PostPace_", new[] { "Seldom", "Usual", "Often" }, "post");
             // Letters by occasion (World/LetterOccasions.cs): the kind letters only when there is a reason to write them.
             Toggle("letterOccasions", "CC_Settings_LetterOccasions", "CC_SetNote_LetterOccasions", "neighbourLetters");
+            // Dealings with a whole people or town, pen friends, the world writing first (Dealings/).
+            Toggle("townDealings", "CC_Settings_TownDealings", "CC_SetNote_TownDealings", "neighbourLetters");
+            Toggle("penFriends", "CC_Settings_PenFriends", "CC_SetNote_PenFriends", "neighbourLetters");
+            Toggle("worldWrites", "CC_Settings_WorldWrites", "CC_SetNote_WorldWrites", "neighbourLetters");
             Toggle("outsiderTalk", "CC_Settings_OutsiderTalk", "CC_SetNote_OutsiderTalk");
             Toggle("outsiderSpar", "CC_Settings_OutsiderSpar", "CC_SetNote_OutsiderSpar", "outsiderTalk");
             Toggle("outsiderProvoke", "CC_Settings_OutsiderProvoke", "CC_SetNote_OutsiderProvoke", "outsiderTalk,deepHooks");

@@ -184,6 +184,12 @@ namespace ColonyCouncil
         public PostPace postPace = PostPace.Usual;
         /// <summary>Letters by occasion (World/LetterOccasions.cs): greetings, invitations and asking for help only when there is a reason.</summary>
         public bool letterOccasions = true;
+        /// <summary>Dealings with a whole people or one of their towns, received by its council (Dealings/): contracts, relief, proclamations, hires, petitions, joint works, market rights, invitations.</summary>
+        public bool townDealings = true;
+        /// <summary>Pen friends (Dealings/PenFriends.cs): a steady exchange of letters with one notable brings warnings, better terms, introductions and a favor.</summary>
+        public bool penFriends = true;
+        /// <summary>The world writes first (Dealings/WorldWrites.cs): now and then a notable writes to the colony unasked, with news, a request or an invitation that wants an answer.</summary>
+        public bool worldWrites = true;
         /// <summary>The region: each town within reach has a fortune that the world's events move, shown in its panel and its people's words (World/Region/).</summary>
         public bool regionFortunes = true;
         /// <summary>The region: a new town within reach has a founder, founding families and a reason, told in the news, its talk and a letter (World/Region/).</summary>
@@ -815,6 +821,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref post, "post", true);
             Scribe_Values.Look(ref postPace, "postPace", PostPace.Usual);
             Scribe_Values.Look(ref letterOccasions, "letterOccasions", true);
+            Scribe_Values.Look(ref townDealings, "townDealings", true);
+            Scribe_Values.Look(ref penFriends, "penFriends", true);
+            Scribe_Values.Look(ref worldWrites, "worldWrites", true);
             Scribe_Values.Look(ref regionFortunes, "regionFortunes", true);
             Scribe_Values.Look(ref regionFaces, "regionFaces", true);
             Scribe_Values.Look(ref regionStock, "regionStock", true);

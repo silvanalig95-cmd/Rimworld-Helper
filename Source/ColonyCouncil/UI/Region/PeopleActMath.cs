@@ -39,6 +39,16 @@ namespace ColonyCouncil
         Journey,
         // Someone of theirs at the colony: face to face (Outsiders/).
         FaceToFace,
+        // Dealings with a whole people or one of their towns, received by its council (Dealings/, step B), and an answer to their letter.
+        Supply,
+        Relief,
+        Proclaim,
+        Hire,
+        Petition,
+        Work,
+        Market,
+        InviteTown,
+        Reply,
         /// <summary>An act another part (or mod) put on the card: its own tip says what it is for.</summary>
         Other
     }
@@ -58,6 +68,8 @@ namespace ColonyCouncil
     public enum ActGroup : byte
     {
         Letters,
+        /// <summary>Dealings with their council or leaders as a whole (Dealings/).</summary>
+        Dealings,
         Bonds,
         People,
         Debts,
@@ -94,8 +106,40 @@ namespace ColonyCouncil
             ["vassal-level"] = PeopleActKind.Level,
             ["town-takeback-ask"] = PeopleActKind.AskBack,
             ["town-takeback"] = PeopleActKind.TakeBack,
-            ["journey"] = PeopleActKind.Journey
+            ["journey"] = PeopleActKind.Journey,
+            // Dealings with a whole people or one of their towns (Dealings/DealingActs.cs).
+            ["deal-supply"] = PeopleActKind.Supply,
+            ["deal-relief"] = PeopleActKind.Relief,
+            ["deal-proclaim"] = PeopleActKind.Proclaim,
+            ["deal-proclaim-people"] = PeopleActKind.Proclaim,
+            ["deal-hire"] = PeopleActKind.Hire,
+            ["deal-petition"] = PeopleActKind.Petition,
+            ["deal-petition-people"] = PeopleActKind.Petition,
+            ["deal-work"] = PeopleActKind.Work,
+            ["deal-market"] = PeopleActKind.Market,
+            ["deal-invite"] = PeopleActKind.InviteTown,
+            ["deal-reply"] = PeopleActKind.Reply
         };
+
+        /// <summary>A dealing with their council or leaders as a whole (Dealings/), or an answer to their letter.</summary>
+        public static bool IsDealing(PeopleActKind k) => k >= PeopleActKind.Supply && k <= PeopleActKind.Reply;
+
+        /// <summary>The act of a dealing's kind.</summary>
+        public static PeopleActKind KindOf(DealKind k)
+        {
+            switch (k)
+            {
+                case DealKind.Supply: return PeopleActKind.Supply;
+                case DealKind.Relief: return PeopleActKind.Relief;
+                case DealKind.Proclaim: return PeopleActKind.Proclaim;
+                case DealKind.Hire: return PeopleActKind.Hire;
+                case DealKind.Petition: return PeopleActKind.Petition;
+                case DealKind.Work: return PeopleActKind.Work;
+                case DealKind.Market: return PeopleActKind.Market;
+                case DealKind.Invite: return PeopleActKind.InviteTown;
+                default: return PeopleActKind.Reply;
+            }
+        }
 
         /// <summary>The card acts that belong elsewhere than a people, a town or a person's page (an envoy's bed, seeing them off: on their own card).</summary>
         public static readonly HashSet<string> Elsewhere = new HashSet<string> { "envoy-bed", "envoy-seeoff" };
@@ -151,6 +195,7 @@ namespace ColonyCouncil
         public static ActGroup GroupOf(PeopleActKind k)
         {
             if (IsLetter(k)) return ActGroup.Letters;
+            if (IsDealing(k)) return k == PeopleActKind.Reply ? ActGroup.Letters : ActGroup.Dealings;
             switch (k)
             {
                 case PeopleActKind.Truce:
@@ -197,6 +242,7 @@ namespace ColonyCouncil
                 case PeopleActKind.Other:
                 case PeopleActKind.FaceToFace:
                 case PeopleActKind.Journey:
+                case PeopleActKind.Reply:
                     return null;
                 case PeopleActKind.Greetings:
                 case PeopleActKind.Condolences:

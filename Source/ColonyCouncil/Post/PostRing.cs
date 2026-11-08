@@ -35,7 +35,7 @@ namespace ColonyCouncil
             var info = Reach(home, town);
             if (info == null || info.call || Ages.Ours >= WorldAge.Spacer) return false;
             if (info.band == ReachBand.Far) color = FarColor;
-            else if (info.band == ReachBand.Cut) color = CutColor;
+            else if (info.band == ReachBand.Cut) color = info.chain != null ? FarColor : CutColor;
             else return false;
             return true;
         }

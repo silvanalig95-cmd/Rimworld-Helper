@@ -123,9 +123,11 @@ namespace ColonyCouncil
             var map = c.map;
             var info = PostReach.Of(map, town);
             bool theirs = c.people != null && c.people == n.faction;
-            if (c.kind == PostCarrier.PostRider) return PostMath.PostServes(Ages.Of(n.faction), false) && info.band != ReachBand.Cut;
+            // Out of reach, but introduced through a people who knows them (a chain of neighbours): it goes as a relay through their town.
+            bool chain = info.band == ReachBand.Cut && info.chain != null;
+            if (c.kind == PostCarrier.PostRider) return PostMath.PostServes(Ages.Of(n.faction), false) && (info.band != ReachBand.Cut || chain);
             if (c.means == LetterMeans.Shuttle && info.band != ReachBand.Cut) return true;
-            var target = info.band == ReachBand.Far && info.relay != null && !theirs ? info.relay : town;
+            var target = info.band == ReachBand.Far && info.relay != null && !theirs ? info.relay : chain && !theirs ? info.chain : town;
             bool targetTheirs = theirs || c.people != null && target.Faction == c.people;
             float heading = Heading(map.Tile, target.Tile), tiles = LivingEvents.Distance(map.Tile, target.Tile);
             float destHeading = 0f, destTiles = 0f;
@@ -135,7 +137,7 @@ namespace ColonyCouncil
                 destTiles = LivingEvents.Distance(map.Tile, c.dest);
             }
             var way = PostMath.OnTheirWay(targetTheirs, heading, tiles, c.knowDest && c.dest.Valid, destHeading, destTiles, c.knowEdge, c.edgeHeading);
-            if (info.band == ReachBand.Cut) return way == WayWhy.Theirs || way == WayWhy.Road;
+            if (info.band == ReachBand.Cut && !chain) return way == WayWhy.Theirs || way == WayWhy.Road;
             return way != WayWhy.No;
         }
 

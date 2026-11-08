@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- A town's festival (Source/ColonyCouncil/Dealings/DealingFestival.cs, docs/design/diplomacy-screen.md step B, point 13):
+       the colony's entertainers sent to it, agreed by a letter to the town's council, or the colony's people invited by a
+       letter the town wrote first (Dealings/WorldWrites.cs). The invitation's own journey to their town and stay there
+       (Missions/Workers_MissionRemembered.cs), its words its own. Never drawn by the storyteller (base chance 0): only an
+       agreed dealing sends it, for that town's people. Texts may use {FACTION}, {PLACE} (their town), {HOST} (the town's
+       head as the ledger knows them), {TALE} (the caravan's travel time there), {COUNT} (the gift); in terms and accepted
+       lines {DAYS} the time; in endings {ITEM} what was given. Lines are tagged with the variant: entertainers (the colony
+       offered its players) or invited (the town asked), and for endings how it ended. -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_Festival</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a town's festival</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionFestival</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>3</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>[entertainers] The festival at {PLACE}</li>
+          <li>[invited] An invitation to {PLACE}'s festival</li>
+          <li>The festival at {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[entertainers] {FACTION} have set a place at their festival for the colony's entertainers, as their council promised: players, singers, whoever the colony sends, to play for {PLACE} and stay for the day. {HOST} sent the word.</li>
+          <li>[entertainers,their:lowtech] Word came from {PLACE}: the fires are being built for their festival, and the colony's players and singers are awaited, as the elders agreed.</li>
+          <li>[entertainers,their:hightech] {PLACE} has the colony's entertainers on the festival's programme, between the parade and the dance. {HOST} signed the note.</li>
+          <li>[invited] {FACTION} keep their festival at {PLACE}, and {HOST} asks the colony's people to come and sit at their tables for it, as the colony agreed in its letter.</li>
+          <li>[invited,their:lowtech] A runner from {PLACE} brought word of the festival: the drums are ready, and the colony's people are awaited, as they promised.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Send the colony's people</label>
+            <outcome>Places will be kept for the colony's people at {PLACE}.</outcome>
+          </li>
+          <li>
+            <label>Not this time</label>
+            <outcome>{FACTION} are sorry, and keep their festival all the same.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>At least two of the colony's people at {PLACE} by caravan within {DAYS} of the colony agreeing (it's about {TALE} away), staying for the festival, about half a day at the town. The caravan only needs to reach the town and wait there; whoever goes plays for them.\n\nThey go home with a gift worth about {COUNT} silver, and {FACTION} will remember who came. If no one does, they'll notice that too.</li>
+        </terms>
+        <accepted>
+          <li>The colony will send its people to {PLACE}. Form a caravan of at least two and send it there within {DAYS}.</li>
+          <li>[entertainers] The colony's entertainers will go to {PLACE}. Send a caravan of at least two there within {DAYS}.</li>
+        </accepted>
+        <ready>
+          <li>The colony's people have reached {PLACE} for the festival, and room has been made for them. Keep the caravan there until the day is over.</li>
+          <li>[entertainers] The colony's entertainers are at {PLACE}, and the crowd is gathering. Keep the caravan there until the festival is over.</li>
+        </ready>
+        <reminder>
+          <li>The festival at {PLACE} is coming, and the colony's people haven't arrived.</li>
+        </reminder>
+        <doneTitles>
+          <li>[attended] The festival at {PLACE}</li>
+          <li>[brief] A short visit to {PLACE}</li>
+        </doneTitles>
+        <done>
+          <li>[attended,entertainers] The colony's entertainers played the festival at {PLACE} to the end, and {FACTION} sent them home with gifts: {ITEM}.</li>
+          <li>[attended,invited] The colony's people kept the festival at {PLACE} with {FACTION}, and came home with gifts: {ITEM}.</li>
+          <li>[attended] The colony's people were made welcome at {PLACE}'s festival and came home with gifts: {ITEM}.</li>
+          <li>[brief] The colony's people reached {PLACE} but didn't stay to the end. {FACTION} were glad they came at all.</li>
+        </done>
+        <failTitles>
+          <li>[absent] Nobody at {PLACE}'s festival</li>
+          <li>[cancelled] The festival</li>
+        </failTitles>
+        <fail>
+          <li>[absent] {FACTION} kept their festival at {PLACE} without the colony, and noticed the empty places.</li>
+          <li>[absent] Nobody from the colony came to the festival at {PLACE}, after all that was promised.</li>
+        </fail>
+        <cancelled>
+          <li>The festival at {PLACE} is no longer awaited.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

@@ -145,9 +145,9 @@ public static class DiplomacyTests
         // Task in 2c.1: the council's business, written only by its officers (not one of the design's eight, which are the player's own letters).
         // TakeBack in stage 3's release 2b: a town the colony was asked for back (Colonies/TownTakeBack.cs), not one of stage 2's.
         var builtPurposes = DiplomacyMath.Purposes.Where(p => p != "Match" && p != "Ward" && p != "Fealty").Append("Ward").Append("Match").Append("Task").Append("Fealty")
-            .Append("TakeBack").ToArray();
+            .Append("TakeBack").Append("Dealing").ToArray();
         C(Enum.GetNames(typeof(LetterPurpose)).Reverse().Take(builtPurposes.Length).Reverse().SequenceEqual(builtPurposes),
-            "the letters' new purposes after the old ones, in the order they were built (Favour; Pact and Truce in 2a.2; Ransom and Envoy in 2a.3; Ward in 2b.3; Match in 2b.2; Task in 2c.1; Fealty in 2c.2)");
+            "the letters' new purposes after the old ones, in the order they were built (Favour; Pact and Truce in 2a.2; Ransom and Envoy in 2a.3; Ward in 2b.3; Match in 2b.2; Task in 2c.1; Fealty in 2c.2; TakeBack; Dealing with the diplomacy screen's step B)");
         var builtActs = DiplomacyMath.Acts.Where(a => a != "SpeakMatch").Append("SpeakMatch").Append("SoundOut").ToArray();
         C(Enum.GetNames(typeof(OutsiderAct)).Reverse().Take(builtActs.Length).Reverse().SequenceEqual(builtActs) && !DiplomacyMath.Acts.Contains("SoundOut"),
             "the new acts after the old ones, in the order they were built (saved by name; OfferExchange in 2a.3, SpeakMatch in 2b.2, SoundOut in 2c.1, dropped with the keeper of secrets and kept in its place: a talk under way keeps its act by number)");

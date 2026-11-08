@@ -51,11 +51,14 @@ namespace ColonyCouncil
                 if (NotableBook.Hostile(n)) return P("CC_Mail_Likely_War");
                 var info = PostReach.Of(map, town, true);
                 string dir = NeighbourLetters.Direction(map.Tile, (info.band == ReachBand.Far && info.relay != null ? info.relay : town).Tile);
-                if (info.band == ReachBand.Cut) return P("CC_Mail_Likely_Cut", town.Name.Named("TOWN"));
+                if (info.band == ReachBand.Cut && info.chain == null) return P("CC_Mail_Likely_Cut", town.Name.Named("TOWN"));
                 var going = Going(map, l);
                 if (going != null) return P("CC_Mail_Likely_Here", going.Named("CARRIER"));
                 if (PostRider.Runs(map) && PostMath.PostServes(Ages.Of(n.faction), false)) return P("CC_Mail_Likely_Post", PostName(PostRider.AgeOf(map)).Named("POST"));
                 if (info.band == ReachBand.Far && info.relay != null) return P("CC_Mail_Likely_Relay", dir.Named("DIR"), info.relay.Name.Named("RELAY"));
+                // A chain of neighbours: whoever goes toward the town that introduces it.
+                if (info.band == ReachBand.Cut && info.chain != null)
+                    return P("CC_Mail_Likely_Chain", NeighbourLetters.Direction(map.Tile, info.chain.Tile).Named("DIR"), info.chain.Name.Named("RELAY"));
                 return P("CC_Mail_Likely_Way", dir.Named("DIR"));
             }
             catch (Exception e)
@@ -166,7 +169,10 @@ namespace ColonyCouncil
                         lines.Add(P("CC_Mail_Reach_War"));
                         break;
                     case PostMath.ReachBy.OnlyGoing:
-                        lines.Add(P("CC_Mail_Reach_Cut", town.Name.Named("TOWN")));
+                        // Out of reach: by introduction through a people who knows them (slower), else only with someone going there.
+                        if (info.chain != null)
+                            lines.Add(P("CC_Mail_Reach_Chain", info.chain.Name.Named("RELAY"), (info.chain.Faction?.Name ?? "?").Named("PEOPLE"), DaysWords(info.chainDays).Named("DAYS")));
+                        else lines.Add(P("CC_Mail_Reach_Cut", town.Name.Named("TOWN")));
                         break;
                     case PostMath.ReachBy.Camped:
                         lines.Add(P("CC_Mail_Reach_Camped", People(f).Named("PEOPLE"), days.Named("DAYS")));

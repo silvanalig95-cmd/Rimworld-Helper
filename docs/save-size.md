@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 589; modelled: 589; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,593 KB** after a year, **3,057 KB** after two, **3,268 KB** after five.
+Saved collections found: 593; modelled: 593; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,606 KB** after a year, **3,081 KB** after two, **3,307 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -27,6 +27,7 @@ Rimfolk's part of the save, roughly: **2,593 KB** after a year, **3,057 KB** aft
 | `Defense/DefenseLines.cs:lines` | lines the player made (only their clicks), per map; gone with the map | fixed | 4 | 4 | 4 | 35.7 |
 | `Lives/LifeNew.cs:read` | books read, once each per reader, the newest 600 (Lives/LifeNewMath.MaxRead) | fixed | 600 | 600 | 600 | 35.2 |
 | `Persona/TraitChanges.cs:changes` | known pawns only, 8 per person, 200 at most; with their story | cap | 6 | 12 | 30 | 35.2 |
+| `Dealings/DealingBook.cs:deals` | dealings asked, under way and closed: closed ones kept 60 days (a work built together kept while it stands), DealingBook.MaxDeals at most | cap | 24 | 48 | 80 | 32.8 |
 | `Journeys/Journeys.cs:slots` | timetable hours changed for the last day (24 at most each, the night and the free hours about half), put back when they set off | fixed | 240 | 240 | 240 | 32.8 |
 | `World/FactionMemory.cs:deeds` | 12 deeds per people (12 peoples), fading out | fixed | 144 | 144 | 144 | 28.1 |
 | `Heart/HeartTracker.cs:hearts` | one per colonist, the gone dropped hourly | colonists | 20 | 20 | 20 | 27.3 |
@@ -123,6 +124,7 @@ Rimfolk's part of the save, roughly: **2,593 KB** after a year, **3,057 KB** aft
 | `Strangers/Nemeses.cs:all` | 30 that have ended | cap | 3 | 6 | 15 | 4.4 |
 | `Persona/Marks.cs:fights` | the last 8 fights won per person, a year at most | colonists | 160 | 160 | 160 | 3.9 |
 | `Animals/AnimalBook.cs:gone` | animals that left alive with their handler, AnimalNatureMath.MaxGone at most, oldest first, forgotten after 120 days | cap | 3 | 6 | 15 | 3.8 |
+| `Dealings/DealingBook.cs:friends` | one per notable the colony exchanged letters with, a friend or not yet; the gone let go daily (DealingMath.MaxFriends friends) | cap | 6 | 12 | 24 | 3.8 |
 | `Building/BuildPriority.cs:levels` | blueprints and frames with a build priority set, per map, until built or cancelled | while | 40 | 40 | 40 | 3.5 |
 | `Building/RoomRearranger.cs:orders` | per map: a room's furniture moves still to be carried out, gone once done, called off or after 15 days (Building/RoomRearranger.cs) | fixed | 30 | 30 | 30 | 3.5 |
 | `Building/Suggest/Suggestions.cs:declinedKeys` | suggestions set aside with Not this, SuggestMath.DeclinedKept at most; those for some days let go when over | fixed | 80 | 80 | 80 | 3.5 |
@@ -171,6 +173,7 @@ Rimfolk's part of the save, roughly: **2,593 KB** after a year, **3,057 KB** aft
 | `Quirks/Quirks.cs:luckyPast` | LuckyItems.MaxPast | cap | 3 | 6 | 15 | 2.2 |
 | `Dilemmas/Dilemmas.cs:traditionBreaks` | per tradition | defs | 24 | 24 | 24 | 2.1 |
 | `Weather/WeatherBook.cs:days` | WeatherMath.MaxDays: the last month, a short line a day, per home map | fixed | 30 | 30 | 30 | 2.1 |
+| `Dealings/DealingBook.cs:asks` | the world's letters waiting for an answer (DealingMath.MaxWaiting at once) and answered ones kept a month | cap | 8 | 8 | 8 | 2.0 |
 | `Aspirations/Aspirations.cs:inspiredBy` | known pawns only | known | 16 | 18 | 22 | 2.0 |
 | `Building/PersonalTouches.cs:pending` | until built or dropped | cap | 10 | 10 | 10 | 2.0 |
 | `Building/Suggest/Suggestions.cs:declinedUntil` | with the above: until when | fixed | 80 | 80 | 80 | 2.0 |
@@ -520,6 +523,7 @@ Rimfolk's part of the save, roughly: **2,593 KB** after a year, **3,057 KB** aft
 | `CouncilSettings.cs:hudPanels` | the mod's settings file, not the save: one per panel | settings | 8 | 8 | 8 | (settings file) |
 | `CouncilSettings.cs:planMaterials` | the mod's settings file, not the save | settings | 30 | 30 | 30 | (settings file) |
 | `CouncilSettings.cs:savedRooms` | the mod's settings file, not the save: rooms the player saved | settings | 10 | 10 | 10 | (settings file) |
+| `Dealings/DealingBook.cs:letters` | per notable exchanging letters: when each passed, DealingMath.MaxExchanges at most (counted under friends) | fixed | 8 | 8 | 8 | (in its record) |
 | `Defense/DefenseLine.cs:done` | per line: one per step (counted under lines) | defs | 11 | 11 | 11 | (in its record) |
 | `Defense/DefenseLine.cs:downed` | per raid: 4 at most (counted under lines) | fixed | 4 | 4 | 4 | (in its record) |
 | `Defense/DefenseLine.cs:lessons` | per raid: 3 at most (counted under lines) | fixed | 3 | 3 | 3 | (in its record) |
