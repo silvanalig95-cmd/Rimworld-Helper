@@ -154,6 +154,18 @@ namespace ColonyCouncil
         /// <summary>At most six lenses: a seventh only by replacing one.</summary>
         public const int MaxLenses = 6;
 
+        /// <summary>
+        /// A view of sections (Here and away, Peoples' Faces) in two columns side by side from this width (a window made
+        /// larger), one under the other below it, and the gap between them.
+        /// </summary>
+        public const float TwoColumnsFrom = 1100f, ColumnGap = 16f;
+
+        /// <summary>How many columns of sections a view this wide has.</summary>
+        public static int Columns(float width) => width >= TwoColumnsFrom ? 2 : 1;
+
+        /// <summary>One column's width in a view this wide.</summary>
+        public static float ColumnWidth(float width) => Columns(width) == 2 ? (width - ColumnGap) / 2f : width;
+
         /// <summary>The lenses in the order of the lens bar.</summary>
         public static readonly Lens[] Lenses = { Lens.Land, Lens.Stance, Lens.Fortunes, Lens.Threats, Lens.Trade, Lens.Ours };
 

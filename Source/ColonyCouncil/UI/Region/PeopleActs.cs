@@ -301,7 +301,7 @@ namespace ColonyCouncil
             var list = Rows(e);
             y = Targets(e, y, w);
             int cols = PeoplesViewMath.ActColumns(w);
-            float cw = cols == 1 ? w : (w - 12f) / 2f;
+            float cw = PeoplesViewMath.ActColumnWidth(w);
             ActGroup? group = null;
             int col = 0;
             float rowTop = y, rowH = 0f;
@@ -350,7 +350,7 @@ namespace ColonyCouncil
                 var r = new Rect(px, y, pw, UiKit.ModesHeight);
                 if (RegionView.target == ActTarget.Town)
                 {
-                    if (Widgets.ButtonText(r, UiKit.Fit(townName ?? NoTown, pw - 10f), true, true, e.towns.Count > 0))
+                    if (UiKit.Button(r, UiKit.Fit(townName ?? NoTown, pw - 10f), ButtonKind.Normal, e.towns.Count > 0))
                         Find.WindowStack.Add(new FloatMenu(e.towns.Select(t => new FloatMenuOption(t.s.Name + " (" + (t.daysWord ?? PeoplesModel.DaysWord(-1f)) + ")", () =>
                         {
                             RegionView.targetTown = t.s.ID;
@@ -360,7 +360,7 @@ namespace ColonyCouncil
                 else
                 {
                     var all = e.notables;
-                    if (Widgets.ButtonText(r, UiKit.Fit(personName ?? NoPerson, pw - 10f), true, true, all.Count > 0))
+                    if (UiKit.Button(r, UiKit.Fit(personName ?? NoPerson, pw - 10f), ButtonKind.Normal, all.Count > 0))
                         Find.WindowStack.Add(new FloatMenu(all.Select(x => new FloatMenuOption(NotableBook.Called(x) + (x.townName.NullOrEmpty() ? "" : ", " + x.townName), () =>
                         {
                             RegionView.targetPerson = x.id;

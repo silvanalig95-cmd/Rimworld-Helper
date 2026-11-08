@@ -109,7 +109,21 @@ namespace ColonyCouncil
             Widgets.BeginScrollView(outRect, ref scroll, view);
             try
             {
-                float y = Faces(view.width, outRect.height);
+                float y;
+                float w = view.width;
+                // A window made larger: the faces known by name beside who is out there (RegionViewsMath.Columns).
+                if (RegionViewsMath.Columns(w) == 1) y = Faces(w, outRect.height);
+                else
+                {
+                    float cw = RegionViewsMath.ColumnWidth(w), h = Mathf.Max(height, outRect.height);
+                    Widgets.BeginGroup(new Rect(0f, 0f, cw, h));
+                    float left = LettersPage.KnownSection(0f, cw, folds, scroll.y, scroll.y + outRect.height);
+                    Widgets.EndGroup();
+                    Widgets.BeginGroup(new Rect(cw + RegionViewsMath.ColumnGap, 0f, cw, h));
+                    float right = OutThere(0f, cw);
+                    Widgets.EndGroup();
+                    y = Mathf.Max(left, right);
+                }
                 height = Mathf.Max(y + 10f, 100f);
             }
             finally
@@ -120,10 +134,16 @@ namespace ColonyCouncil
 
         private static float Faces(float w, float viewH)
         {
-            var comp = CouncilGameComponent.Instance;
             float y = 0f;
             // The people the colony knows by name, each with a way to write (UI/WorldPages.cs).
             y = LettersPage.KnownSection(y, w, folds, scroll.y, scroll.y + viewH);
+            return OutThere(y, w);
+        }
+
+        /// <summary>Who is out there with the colony on their mind (old foes, those who left, the rest), and the faces that come back.</summary>
+        private static float OutThere(float y, float w)
+        {
+            var comp = CouncilGameComponent.Instance;
             y = WorldPanel.OutThereSection(y, w, comp, OutGroup.Foes, folds);
             y = WorldPanel.OutThereSection(y, w, comp, OutGroup.Left, folds);
             y = WorldPanel.OutThereSection(y, w, comp, OutGroup.Others, folds);

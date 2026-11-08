@@ -58,6 +58,7 @@ namespace ColonyCouncil
 
         private static float Search(Rect r)
         {
+            if (UiKit.OwnLook) return OwnSearch(r);
             UiKit.Icon(new Rect(r.x + 2f, r.y + 5f, 14f, 14f), Icons.Search, UiKit.Faint);
             var field = new Rect(r.x + 20f, r.y, r.width - (RegionView.query.NullOrEmpty() ? 20f : 44f), r.height);
             GUI.SetNextControlName(SearchControl);
@@ -74,6 +75,27 @@ namespace ColonyCouncil
                     GUI.FocusControl(null);
                 }
                 TooltipHandler.TipRegion(clear, ClearTip);
+            }
+            return r.yMax;
+        }
+
+        /// <summary>The search in Rimfolk's own look: one rounded field with the icon in it, its edge lit while typing, a clear button.</summary>
+        private static float OwnSearch(Rect r)
+        {
+            bool has = !RegionView.query.NullOrEmpty();
+            string q = UiKit.TextField(new Rect(r.x, r.y, r.width, r.height), RegionView.query ?? "", SearchControl, null);
+            if (q != RegionView.query) RegionView.query = q.Length > 40 ? q.Substring(0, 40) : q;
+            bool focused = GUI.GetNameOfFocusedControl() == SearchControl;
+            UiKit.Icon(new Rect(r.xMax - (has ? 40f : 20f), r.y + (r.height - 14f) / 2f, 14f, 14f), Icons.Search, focused ? UiKit.Accent : UiKit.Faint);
+            if (!has && !focused) UiKit.LabelFit(new Rect(r.x + 8f, r.y, r.width - 30f, r.height), SearchHint, UiKit.Dim, GameFont.Tiny);
+            if (has)
+            {
+                var clear = new Rect(r.xMax - 22f, r.y + (r.height - 20f) / 2f, 20f, 20f);
+                if (UiKit.IconPlate(clear, TexButton.CloseXSmall, ClearTip))
+                {
+                    RegionView.query = "";
+                    GUI.FocusControl(null);
+                }
             }
             return r.yMax;
         }
@@ -103,7 +125,7 @@ namespace ColonyCouncil
             var labels = SortLabels;
             if (compact)
             {
-                if (Widgets.ButtonText(r, UiKit.Fit("CC_PplV_SortBy".Translate(labels[(int)RegionView.sort].Named("SORT")).Resolve(), r.width - 10f)))
+                if (UiKit.Button(r, UiKit.Fit("CC_PplV_SortBy".Translate(labels[(int)RegionView.sort].Named("SORT")).Resolve(), r.width - 10f)))
                 {
                     var opts = new List<FloatMenuOption>();
                     for (int i = 0; i < labels.Length; i++)
@@ -152,10 +174,18 @@ namespace ColonyCouncil
         private static void AllRow(Rect r)
         {
             bool on = RegionView.chosen == RegionView.AllPeoples;
-            Widgets.DrawBoxSolid(r, on ? UiKit.CardSelected : Mouse.IsOver(r) ? UiKit.CardHover : UiKit.CardFill);
-            if (on) Widgets.DrawBoxSolid(new Rect(r.x, r.y, 3f, r.height), UiKit.Gold);
+            if (UiKit.OwnLook)
+            {
+                if (on) UiKit.RowLit(r, true);
+                else UiKit.RoundBox(r, Mouse.IsOver(r) ? UiKit.RaisedHover : UiKit.Raised, UiKit.Edge, SkinMath.RadiusMedium);
+            }
+            else
+            {
+                Widgets.DrawBoxSolid(r, on ? UiKit.CardSelected : Mouse.IsOver(r) ? UiKit.CardHover : UiKit.CardFill);
+                if (on) Widgets.DrawBoxSolid(new Rect(r.x, r.y, 3f, r.height), UiKit.Gold);
+            }
             UiKit.Icon(new Rect(r.x + 8f, r.y + 7f, 16f, 16f), Icons.People, on ? UiKit.Gold : UiKit.Faint);
-            UiKit.LabelFit(new Rect(r.x + 32f, r.y, r.width - 40f, r.height), AllLabel, on ? UiKit.Gold : Color.white);
+            UiKit.LabelFit(new Rect(r.x + 32f, r.y, r.width - 40f, r.height), AllLabel, on ? UiKit.Gold : UiKit.Ink);
             TooltipHandler.TipRegion(r, AllTip);
             if (!Widgets.ButtonInvisible(r, false)) return;
             SoundDefOf.Click.PlayOneShotOnCamera();
@@ -167,15 +197,11 @@ namespace ColonyCouncil
         private static void Row(Rect r, PeopleEntry e, int index, bool compact)
         {
             bool on = RegionView.chosen == e.f.loadID;
-            if (on)
-            {
-                Widgets.DrawBoxSolid(r, UiKit.CardSelected);
-                Widgets.DrawBoxSolid(new Rect(r.x, r.y, 3f, r.height), UiKit.Gold);
-            }
+            if (on) UiKit.RowLit(r, true);
             else
             {
                 UiKit.Zebra(r, index);
-                Widgets.DrawHighlightIfMouseover(r);
+                UiKit.RowHover(r);
             }
             UiKit.Picture(new Rect(r.x + 6f, r.y + 8f, 24f, 24f), null, e.f, Icons.People, UiKit.Faint);
             float x = r.x + 36f, right = r.xMax - 4f;

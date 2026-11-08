@@ -62,7 +62,8 @@ namespace ColonyCouncil
             if (cw != null && lw > 0f)
             {
                 var pr = new Rect(tx + lw + 5f, y + 4f, plate, 15f);
-                Widgets.DrawBoxSolid(pr, CardHover);
+                if (own) Round(pr, CardHover, SkinMath.RadiusCard);
+                else Widgets.DrawBoxSolid(pr, CardHover);
                 LabelFit(pr, cw, Faint, GameFont.Tiny, TextAnchor.MiddleCenter);
             }
             Divider(x, y + 22f, width);
@@ -82,7 +83,7 @@ namespace ColonyCouncil
         {
             if (count < 0) return FilterChip(r, label, on, tip);
             bool over = Mouse.IsOver(r);
-            Widgets.DrawBoxSolidWithOutline(r, on ? CardSelected : over ? CardHover : CardFill, on ? WithAlpha(Gold, 0.6f) : CardBorder, 1);
+            ChipBack(r, on, over);
             string cw = CountWord(count);
             float nw = KeptWidth(cw, GameFont.Tiny) + 2f;
             LabelFit(new Rect(r.x + 10f, r.y, Mathf.Max(0f, r.width - 18f - nw), r.height), label, on ? Gold : over ? Ink : Faint, GameFont.Tiny);
@@ -107,7 +108,7 @@ namespace ColonyCouncil
         {
             Zebra(r, index);
             bool over = Mouse.IsOver(r);
-            if (clickable && over) Widgets.DrawHighlight(r);
+            if (clickable) RowHover(r);
             bool tall = r.height >= RowPortrait - 0.5f && !sub.NullOrEmpty();
             float x = r.x + 4f;
             if (pawn != null || faction != null)
@@ -195,7 +196,8 @@ namespace ColonyCouncil
             bool can = whyNot == null;
             var old = Text.Font;
             Text.Font = GameFont.Tiny;
-            bool clicked = Widgets.ButtonText(r, Fit(label, r.width - 6f), true, true, can);
+            // Rimfolk's own look: the kit's flat button in small print; the game's button in its look.
+            bool clicked = own ? Button(r, label, ButtonKind.Normal, can, null, GameFont.Tiny) : Widgets.ButtonText(r, Fit(label, r.width - 6f), true, true, can);
             Text.Font = old;
             string t = can ? tip : whyNot;
             if (!t.NullOrEmpty()) TooltipHandler.TipRegion(r, t);

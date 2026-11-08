@@ -115,7 +115,7 @@ namespace ColonyCouncil
                 LabelFit(new Rect(right - statW, rect.y + 4f, statW, 26f), stat, statColor ?? Gold, GameFont.Small, TextAnchor.MiddleRight);
                 statW += 10f;
             }
-            LabelFit(new Rect(x, rect.y + 1f, Mathf.Max(0f, right - statW - x), 32f), title, Color.white, GameFont.Medium);
+            LabelFit(new Rect(x, rect.y + 1f, Mathf.Max(0f, right - statW - x), 32f), title, Ink, GameFont.Medium);
             float lineRight = article != null ? right + ViewHeadMath.HelpGap + ViewHeadMath.Help : right;
             // With more than one colony, the colony in view in a chip at the end of the line, a click away from another (UI/ColonyView.cs).
             float chip = ColonyView.Chip(lineRight, rect.y + 30f, Mathf.Max(0f, (lineRight - x) * 0.45f));
@@ -129,7 +129,8 @@ namespace ColonyCouncil
             if (modes) ModeButtons(x, rect.y + ViewHeadMath.ModesY, rect.xMax - x, extras);
             float lineY = rect.y + height - 5f;
             Divider(rect.x, lineY, rect.width);
-            Widgets.DrawBoxSolid(new Rect(rect.x, lineY - 1f, Mathf.Min(rect.width, 34f), 2f), WithAlpha(Gold, 0.8f));
+            if (own) Round(new Rect(rect.x, lineY - 1f, Mathf.Min(rect.width, 34f), 3f), WithAlpha(Gold, 0.9f), SkinMath.RadiusSmall);
+            else Widgets.DrawBoxSolid(new Rect(rect.x, lineY - 1f, Mathf.Min(rect.width, 34f), 2f), WithAlpha(Gold, 0.8f));
             if (!tip.NullOrEmpty()) TooltipHandler.TipRegion(new Rect(rect.x, rect.y, Mathf.Max(0f, right - rect.x), 50f), tip);
             Text.Font = GameFont.Small;
             return height;
@@ -168,9 +169,18 @@ namespace ColonyCouncil
                 var r = new Rect(modeX[i], y, modeW[i], ViewHeadMath.ModeH);
                 bool lit = i == m.lit;
                 bool over = Mouse.IsOver(r);
-                Widgets.DrawBoxSolid(r, lit ? CardSelected : over ? CardHover : CardFill);
-                if (lit) Widgets.DrawBoxSolid(new Rect(r.x, r.yMax - 2f, r.width, 2f), Gold);
-                LabelFit(r, m.labels[i], lit ? Gold : over ? Color.white : Faint, GameFont.Small, TextAnchor.MiddleCenter);
+                if (own)
+                {
+                    // Rimfolk's own look: each mode a rounded pill, the one showing raised with the accent's edge.
+                    RoundBox(r, lit ? CardSelected : over ? RaisedHover : Raised, lit ? WithAlpha(Accent, 0.75f) : over ? EdgeStrong : Edge, SkinMath.RadiusMedium);
+                    LabelFit(r, m.labels[i], lit ? Gold : over ? Ink : Faint, GameFont.Small, TextAnchor.MiddleCenter);
+                }
+                else
+                {
+                    Widgets.DrawBoxSolid(r, lit ? CardSelected : over ? CardHover : CardFill);
+                    if (lit) Widgets.DrawBoxSolid(new Rect(r.x, r.yMax - 2f, r.width, 2f), Gold);
+                    LabelFit(r, m.labels[i], lit ? Gold : over ? Ink : Faint, GameFont.Small, TextAnchor.MiddleCenter);
+                }
                 string tip = i < m.tips.Count ? m.tips[i] : null;
                 if (!tip.NullOrEmpty()) TooltipHandler.TipRegion(r, tip);
                 if (!lit && Widgets.ButtonInvisible(r, false))
@@ -188,7 +198,8 @@ namespace ColonyCouncil
         public static void HelpButton(Rect r, AlmanacArticleDef article)
         {
             bool over = Mouse.IsOver(r);
-            Widgets.DrawBoxSolidWithOutline(r, over ? CardHover : CardFill, over ? WithAlpha(Gold, 0.7f) : CardBorder);
+            if (own) RoundBox(r, over ? RaisedHover : Raised, over ? WithAlpha(Accent, 0.7f) : Edge, SkinMath.RadiusCard);
+            else Widgets.DrawBoxSolidWithOutline(r, over ? CardHover : CardFill, over ? WithAlpha(Gold, 0.7f) : CardBorder);
             LabelFit(r, "?", over ? Gold : Faint, GameFont.Small, TextAnchor.MiddleCenter);
             if (helpTipFor != article.defName)
             {

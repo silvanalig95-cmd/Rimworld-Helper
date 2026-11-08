@@ -178,8 +178,9 @@ namespace ColonyCouncil
 
     /// <summary>
     /// The building blocks every Rimfolk page is drawn with, so the pages share one look: the palette, spacing, and
-    /// helpers for page headers, cards, pills, meters, portraits and chips. Everything here stays in vanilla's visual
-    /// language (dark panels, white and gray text, small accents, tinted white icons).
+    /// helpers for page headers, cards, pills, meters, portraits and chips. Each draws in the game's visual language (dark
+    /// panels, white and gray text, small accents, tinted white icons), or, inside a window in Rimfolk's frame with
+    /// "Rimfolk's own look" on, in Rimfolk's own (rounded, flat, the mockup's palette: UI/UiKitSkin.cs).
     /// </summary>
     [StaticConstructorOnStartup]
     public static partial class UiKit
@@ -189,69 +190,158 @@ namespace ColonyCouncil
         // with these and makes no colour of its own (Tools/Tests/LookTests.cs reads every file under UI/ for one). Colour
         // carries meaning only, and always beside a word or an icon, never alone. A token made fainter (WithAlpha) or
         // quieter (Quieter) keeps its meaning. The tokens end at "End of the tokens"; nothing else in UiKit makes a colour.
+        // Each token has two values: the game's look (as Rimfolk was drawn before) and Rimfolk's own (the setting "Rimfolk's
+        // own look", docs/design/rimfolk-look.md, its palette in UI/SkinMath.cs). A window in Rimfolk's frame draws its
+        // contents in its own look (OwnLook, set by UI/WindowFrame.cs), every other place in the game's.
 
         /// <summary>Text.</summary>
-        public static readonly Color Ink = Color.white;
+        public static Color Ink => own ? own_Ink : game_Ink;
         /// <summary>Secondary text: what something is, a note, a date.</summary>
-        public static readonly Color Faint = new Color(0.7f, 0.7f, 0.7f);
+        public static Color Faint => own ? own_Faint : game_Faint;
         /// <summary>Quiet: what is out of reach, past or empty.</summary>
-        public static readonly Color Dim = new Color(0.5f, 0.5f, 0.5f);
+        public static Color Dim => own ? own_Dim : game_Dim;
         /// <summary>A section's heading.</summary>
-        public static readonly Color Heading = new Color(0.95f, 0.85f, 0.6f);
-        /// <summary>Ours, chosen, the colony; the mode or tab that shows.</summary>
-        public static readonly Color Gold = new Color(1f, 0.83f, 0.47f);
+        public static Color Heading => own ? own_Heading : game_Heading;
+        /// <summary>Ours, chosen, the colony; the mode or tab that shows. In Rimfolk's own look, its one accent.</summary>
+        public static Color Gold => own ? own_Gold : game_Gold;
         /// <summary>A name that leads to its card: a light parchment, a little warmer than the text, a dotted line under it.</summary>
-        public static readonly Color Link = new Color(0.945f, 0.863f, 0.667f);
-        public static readonly Color LinkLine = new Color(0.945f, 0.863f, 0.667f, 0.5f);
-        public static readonly Color LinkHot = new Color(1f, 0.949f, 0.812f);
-        /// <summary>A stance or a state that is good: friendly, allied, well, for.</summary>
-        public static readonly Color Warm = new Color(0.52f, 0.85f, 0.5f);
+        public static Color Link => own ? own_Link : game_Link;
+        public static Color LinkLine => own ? own_LinkLine : game_LinkLine;
+        public static Color LinkHot => own ? own_LinkHot : game_LinkHot;
+        /// <summary>A stance or a state that is good: friendly, allied, well, for (green, or the own look's blue).</summary>
+        public static Color Warm => own ? own_Warm : game_Warm;
         /// <summary>A stance neither warm nor sour: neutral or wary; what is under way.</summary>
-        public static readonly Color Cool = new Color(0.616f, 0.714f, 0.839f);
-        /// <summary>Hostile, bad, against.</summary>
-        public static readonly Color Sour = new Color(0.93f, 0.45f, 0.38f);
+        public static Color Cool => own ? own_Cool : game_Cool;
+        /// <summary>Hostile, bad, against (red, or the own look's orange).</summary>
+        public static Color Sour => own ? own_Sour : game_Sour;
         /// <summary>Needs the player soon.</summary>
-        public static readonly Color Soon = new Color(0.95f, 0.66f, 0.28f);
+        public static Color Soon => own ? own_Soon : game_Soon;
         /// <summary>Harm now: brighter than Sour, always with the warning icon.</summary>
-        public static readonly Color Danger = new Color(1f, 0.353f, 0.282f);
+        public static Color Danger => own ? own_Danger : game_Danger;
         /// <summary>Finished, kept, answered.</summary>
-        public static readonly Color Done = new Color(0.561f, 0.627f, 0.561f);
+        public static Color Done => own ? own_Done : game_Done;
         /// <summary>World events and news from afar.</summary>
-        public static readonly Color World = new Color(0.72f, 0.8f, 0.95f);
+        public static Color World => own ? own_World : game_World;
 
-        // Surfaces: translucent, so they sit on any of the game's panels (the drawer's and a preview's are solid).
-        public static readonly Color CardFill = new Color(1f, 1f, 1f, 0.035f);
-        public static readonly Color CardHover = new Color(1f, 1f, 1f, 0.07f);
-        public static readonly Color CardSelected = new Color(1f, 1f, 1f, 0.11f);
-        public static readonly Color CardBorder = new Color(1f, 1f, 1f, 0.09f);
-        public static readonly Color ZebraFill = new Color(1f, 1f, 1f, 0.03f);
-        public static readonly Color DividerColor = new Color(1f, 1f, 1f, 0.13f);
+        // Surfaces: translucent in the game's look, so they sit on any of the game's panels (the drawer's and a preview's are
+        // solid); in Rimfolk's own, the palette's panels and edges.
+        public static Color CardFill => own ? own_CardFill : game_CardFill;
+        public static Color CardHover => own ? own_CardHover : game_CardHover;
+        public static Color CardSelected => own ? own_CardSelected : game_CardSelected;
+        public static Color CardBorder => own ? own_CardBorder : game_CardBorder;
+        public static Color ZebraFill => own ? own_ZebraFill : game_ZebraFill;
+        public static Color DividerColor => own ? own_DividerColor : game_DividerColor;
         /// <summary>A meter's or a bar's dark track, and its edge.</summary>
-        public static readonly Color MeterBack = new Color(0f, 0f, 0f, 0.4f);
-        public static readonly Color MeterEdge = new Color(1f, 1f, 1f, 0.1f);
+        public static Color MeterBack => own ? own_MeterBack : game_MeterBack;
+        public static Color MeterEdge => own ? own_MeterEdge : game_MeterEdge;
         /// <summary>A dark backing under words drawn on a picture (a map's labels, its legend), and behind an icon.</summary>
-        public static readonly Color Shade = new Color(0f, 0f, 0f, 0.6f);
+        public static Color Shade => own ? own_Shade : game_Shade;
         /// <summary>The ground of a map drawn in a page, and a portrait's or a badge's disc.</summary>
-        public static readonly Color Ground = new Color(0.07f, 0.08f, 0.09f, 1f);
-        public static readonly Color PortraitBack = new Color(0.12f, 0.13f, 0.14f, 1f);
-        public static readonly Color DrawerFill = new Color(0.125f, 0.141f, 0.157f, 1f);
-        public static readonly Color PreviewFill = new Color(0.165f, 0.184f, 0.204f, 1f);
-        public static readonly Color PreviewEdge = new Color(0.298f, 0.318f, 0.341f, 1f);
+        public static Color Ground => own ? own_Ground : game_Ground;
+        public static Color PortraitBack => own ? own_PortraitBack : game_PortraitBack;
+        public static Color DrawerFill => own ? own_DrawerFill : game_DrawerFill;
+        public static Color PreviewFill => own ? own_PreviewFill : game_PreviewFill;
+        public static Color PreviewEdge => own ? own_PreviewEdge : game_PreviewEdge;
         /// <summary>The count badge's plate: the gold, darkened.</summary>
-        public static readonly Color BadgeFill = new Color(0.62f, 0.45f, 0.16f, 1f);
+        public static Color BadgeFill => own ? own_BadgeFill : game_BadgeFill;
 
-        // The names the pages used before the tokens, each now one of them, so code that reads them draws the same.
-        public static readonly Color Good = Warm;
-        public static readonly Color Bad = Sour;
-        public static readonly Color Warn = Soon;
-        public static readonly Color Info = Cool;
-        public static readonly Color Neutral = Faint;
-        public static readonly Color Quote = Ink;
-        public static readonly Color HeaderColor = Heading;
-        public static readonly Color DreamColor = Faint;
-        public static readonly Color LossColor = Faint;
-        public static readonly Color StrangerColor = Cool;
-        public static readonly Color WorldColor = World;
+        // Rimfolk's own frame and controls (UI/UiKitSkin.cs, UI/WindowFrame.cs): the same in either look, drawn only in its own.
+        /// <summary>The window's ground, a panel on it, and a card, button or field raised on the panel.</summary>
+        public static readonly Color WindowGround = Hex(SkinMath.WindowGround), Panel = Hex(SkinMath.Panel), Raised = Hex(SkinMath.Raised);
+        /// <summary>A raised thing under the mouse, and held down.</summary>
+        public static readonly Color RaisedHover = Hex(SkinMath.RaisedHover), Pressed = Hex(SkinMath.Pressed);
+        /// <summary>The faint edge around a card, a field, the window; and under the mouse.</summary>
+        public static readonly Color Edge = Hex(SkinMath.Edge), EdgeStrong = Hex(SkinMath.EdgeStrong);
+        /// <summary>The one accent (a primary button, a lit tab, a focused field), under the mouse, held, and the word on it.</summary>
+        public static readonly Color Accent = Hex(SkinMath.Accent), AccentHover = Hex(SkinMath.AccentHover), AccentPressed = Hex(SkinMath.AccentPressed),
+            AccentInk = Hex(SkinMath.AccentInk);
+        /// <summary>The soft shadow under the window and a card.</summary>
+        public static readonly Color ShadowInk = new Color(0f, 0f, 0f, 0.45f);
+        /// <summary>Plain white, for the kit's white textures and the game's icons drawn as they are.</summary>
+        public static readonly Color Plain = Color.white;
+
+        // The names the pages used before the tokens, each now one of them, so code that reads them draws the same set.
+        public static Color Good => Warm;
+        public static Color Bad => Sour;
+        public static Color Warn => Soon;
+        public static Color Info => Cool;
+        public static Color Neutral => Faint;
+        public static Color Quote => Ink;
+        public static Color HeaderColor => Heading;
+        public static Color DreamColor => Faint;
+        public static Color LossColor => Faint;
+        public static Color StrangerColor => Cool;
+        public static Color WorldColor => World;
+
+        /// <summary>Whether a window in Rimfolk's frame is drawing its contents in Rimfolk's own look now (UI/WindowFrame.cs sets it).</summary>
+        private static bool own;
+
+        // The game's look: the values Rimfolk drew with before its own.
+        private static readonly Color game_Ink = Color.white;
+        private static readonly Color game_Faint = new Color(0.7f, 0.7f, 0.7f);
+        private static readonly Color game_Dim = new Color(0.5f, 0.5f, 0.5f);
+        private static readonly Color game_Heading = new Color(0.95f, 0.85f, 0.6f);
+        private static readonly Color game_Gold = new Color(1f, 0.83f, 0.47f);
+        private static readonly Color game_Link = new Color(0.945f, 0.863f, 0.667f);
+        private static readonly Color game_LinkLine = new Color(0.945f, 0.863f, 0.667f, 0.5f);
+        private static readonly Color game_LinkHot = new Color(1f, 0.949f, 0.812f);
+        private static readonly Color game_Warm = new Color(0.52f, 0.85f, 0.5f);
+        private static readonly Color game_Cool = new Color(0.616f, 0.714f, 0.839f);
+        private static readonly Color game_Sour = new Color(0.93f, 0.45f, 0.38f);
+        private static readonly Color game_Soon = new Color(0.95f, 0.66f, 0.28f);
+        private static readonly Color game_Danger = new Color(1f, 0.353f, 0.282f);
+        private static readonly Color game_Done = new Color(0.561f, 0.627f, 0.561f);
+        private static readonly Color game_World = new Color(0.72f, 0.8f, 0.95f);
+        private static readonly Color game_CardFill = new Color(1f, 1f, 1f, 0.035f);
+        private static readonly Color game_CardHover = new Color(1f, 1f, 1f, 0.07f);
+        private static readonly Color game_CardSelected = new Color(1f, 1f, 1f, 0.11f);
+        private static readonly Color game_CardBorder = new Color(1f, 1f, 1f, 0.09f);
+        private static readonly Color game_ZebraFill = new Color(1f, 1f, 1f, 0.03f);
+        private static readonly Color game_DividerColor = new Color(1f, 1f, 1f, 0.13f);
+        private static readonly Color game_MeterBack = new Color(0f, 0f, 0f, 0.4f);
+        private static readonly Color game_MeterEdge = new Color(1f, 1f, 1f, 0.1f);
+        private static readonly Color game_Shade = new Color(0f, 0f, 0f, 0.6f);
+        private static readonly Color game_Ground = new Color(0.07f, 0.08f, 0.09f, 1f);
+        private static readonly Color game_PortraitBack = new Color(0.12f, 0.13f, 0.14f, 1f);
+        private static readonly Color game_DrawerFill = new Color(0.125f, 0.141f, 0.157f, 1f);
+        private static readonly Color game_PreviewFill = new Color(0.165f, 0.184f, 0.204f, 1f);
+        private static readonly Color game_PreviewEdge = new Color(0.298f, 0.318f, 0.341f, 1f);
+        private static readonly Color game_BadgeFill = new Color(0.62f, 0.45f, 0.16f, 1f);
+
+        // Rimfolk's own look: the mockup's palette (UI/SkinMath.cs), the stances in blue and orange.
+        private static readonly Color own_Ink = Hex(SkinMath.Ink);
+        private static readonly Color own_Faint = Hex(SkinMath.Faint);
+        private static readonly Color own_Dim = Hex(SkinMath.Dim);
+        private static readonly Color own_Heading = Hex(SkinMath.Heading);
+        private static readonly Color own_Gold = Hex(SkinMath.Accent);
+        private static readonly Color own_Link = Hex(SkinMath.Link);
+        private static readonly Color own_LinkLine = Hex(SkinMath.Link, 0.5f);
+        private static readonly Color own_LinkHot = Hex(SkinMath.LinkHot);
+        private static readonly Color own_Warm = Hex(SkinMath.Ally);
+        private static readonly Color own_Cool = Hex(SkinMath.Cool);
+        private static readonly Color own_Sour = Hex(SkinMath.Foe);
+        private static readonly Color own_Soon = Hex(SkinMath.Soon);
+        private static readonly Color own_Danger = Hex(SkinMath.Danger);
+        private static readonly Color own_Done = Hex(SkinMath.Done);
+        private static readonly Color own_World = Hex(SkinMath.World);
+        private static readonly Color own_CardFill = Hex(SkinMath.Raised, 0.55f);
+        private static readonly Color own_CardHover = Hex(SkinMath.RaisedHover);
+        private static readonly Color own_CardSelected = Hex(SkinMath.Accent, 0.13f);
+        private static readonly Color own_CardBorder = Hex(SkinMath.Edge);
+        private static readonly Color own_ZebraFill = new Color(1f, 1f, 1f, 0.022f);
+        private static readonly Color own_DividerColor = Hex(SkinMath.Edge, 0.8f);
+        private static readonly Color own_MeterBack = Hex(SkinMath.WindowGround);
+        private static readonly Color own_MeterEdge = Hex(SkinMath.Edge);
+        private static readonly Color own_Shade = Hex(SkinMath.WindowGround, 0.82f);
+        private static readonly Color own_Ground = Hex(0x141618);
+        private static readonly Color own_PortraitBack = Hex(SkinMath.Raised);
+        private static readonly Color own_DrawerFill = Hex(SkinMath.Raised);
+        private static readonly Color own_PreviewFill = Hex(SkinMath.Raised);
+        private static readonly Color own_PreviewEdge = Hex(SkinMath.EdgeStrong);
+        private static readonly Color own_BadgeFill = Hex(SkinMath.AccentPressed);
+
+        /// <summary>A palette value as a colour.</summary>
+        private static Color Hex(uint rgb, float alpha = 1f) => new Color(SkinMath.R(rgb), SkinMath.G(rgb), SkinMath.B(rgb), alpha);
 
         // ---------------- End of the tokens ----------------
 
@@ -487,7 +577,7 @@ namespace ColonyCouncil
             open = folds == null || folds.IsOpen(key);
             if (folds == null) return SectionTitle(x, y, width, text, icon, color, right);
             var hit = new Rect(x, y, width, 24f);
-            if (Mouse.IsOver(hit)) Widgets.DrawHighlight(hit);
+            RowHover(hit);
             HeadingLine(x, y, width, text, -1, right, icon, color ?? Heading, true, open);
             TooltipHandler.TipRegion(hit, open ? FoldTips.Fold : FoldTips.Unfold);
             if (Widgets.ButtonInvisible(hit, false))
@@ -534,6 +624,13 @@ namespace ColonyCouncil
         /// <summary>A subtle filled box with a border, lighter under the mouse; an optional colored stripe down the left edge.</summary>
         public static void Card(Rect r, Color? accent = null, bool selected = false, bool hover = true)
         {
+            if (own)
+            {
+                // Rimfolk's own look: a rounded raised card with a faint edge, the accent's edge round it when chosen.
+                OwnCard(r, hover && Mouse.IsOver(r), selected);
+                if (accent.HasValue) Round(new Rect(r.x + 3f, r.y + 6f, 3f, Mathf.Max(2f, r.height - 12f)), accent.Value, SkinMath.RadiusSmall);
+                return;
+            }
             var fill = selected ? CardSelected : hover && Mouse.IsOver(r) ? CardHover : CardFill;
             Widgets.DrawBoxSolidWithOutline(r, fill, CardBorder, 1);
             if (accent.HasValue) Widgets.DrawBoxSolid(new Rect(r.x, r.y, 3f, r.height), accent.Value);
@@ -548,8 +645,16 @@ namespace ColonyCouncil
         /// <summary>A flat tab: icon and label, a gold line under it when active. Returns true when clicked.</summary>
         public static bool TabButton(Rect r, string label, Texture2D icon, bool active, string tip = null)
         {
-            if (active) Widgets.DrawBoxSolid(r, CardSelected);
-            Widgets.DrawHighlightIfMouseover(r);
+            if (own)
+            {
+                if (active) Round(r, CardSelected, SkinMath.RadiusMedium);
+                else if (Mouse.IsOver(r)) Round(r, CardHover, SkinMath.RadiusMedium);
+            }
+            else
+            {
+                if (active) Widgets.DrawBoxSolid(r, CardSelected);
+                Widgets.DrawHighlightIfMouseover(r);
+            }
             var c = active ? Color.white : Faint;
             Text.Font = GameFont.Small;
             float iconSize = Mathf.Min(18f, r.height - 8f);
@@ -568,7 +673,11 @@ namespace ColonyCouncil
             Widgets.Label(new Rect(sx, r.y, tw + 6f, r.height), text);
             GUI.color = Color.white;
             Text.Anchor = TextAnchor.UpperLeft;
-            if (active) Widgets.DrawBoxSolid(new Rect(r.x, r.yMax - 2f, r.width, 2f), Gold);
+            if (active)
+            {
+                if (own) Round(new Rect(r.x + 6f, r.yMax - 2f, r.width - 12f, 2f), Gold, SkinMath.RadiusSmall);
+                else Widgets.DrawBoxSolid(new Rect(r.x, r.yMax - 2f, r.width, 2f), Gold);
+            }
             if (!tip.NullOrEmpty()) TooltipHandler.TipRegion(r, tip);
             else if (text.Length != label.Length) TooltipHandler.TipRegion(r, label);
             return Widgets.ButtonInvisible(r);
@@ -617,7 +726,8 @@ namespace ColonyCouncil
             bool dot = icon == null && Says(color);
             float w = Mathf.Min(PillWidth(label, icon, color), maxWidth);
             var r = new Rect(x, y, w, height);
-            Widgets.DrawBoxSolidWithOutline(r, CardFill, CardBorder, 1);
+            if (own) RoundBox(r, Raised, Edge, SkinMath.RadiusCard);
+            else Widgets.DrawBoxSolidWithOutline(r, CardFill, CardBorder, 1);
             float tx = r.x + 6f;
             if (icon != null)
             {
@@ -678,6 +788,15 @@ namespace ColonyCouncil
         /// <summary>A thin bar with a dark track.</summary>
         public static void Bar(Rect r, float fill, Color color)
         {
+            if (own)
+            {
+                // Rimfolk's own look: a rounded track and a rounded fill, no hard edges.
+                RoundBox(r, MeterBack, MeterEdge, SkinMath.RadiusSmall);
+                fill = Mathf.Clamp01(fill);
+                if (fill > 0f) Round(new Rect(r.x + 1f, r.y + 1f, Mathf.Max(Mathf.Min(r.height - 2f, r.width - 2f), (r.width - 2f) * fill), Mathf.Max(1f, r.height - 2f)),
+                    WithAlpha(color, 0.9f), SkinMath.RadiusSmall);
+                return;
+            }
             Widgets.DrawBoxSolidWithOutline(r, MeterBack, MeterEdge, 1);
             fill = Mathf.Clamp01(fill);
             if (fill <= 0f) return;
@@ -963,7 +1082,8 @@ namespace ColonyCouncil
             string name = Fit(f.Name ?? f.def?.label ?? "?", maxWidth - height - 12f);
             float w = Mathf.Min(maxWidth, height + 10f + Text.CalcSize(name).x);
             var r = new Rect(x, y, w, height);
-            Widgets.DrawBoxSolidWithOutline(r, WithAlpha(color, 0.1f), WithAlpha(color, 0.35f), 1);
+            if (own) RoundBox(r, WithAlpha(color, 0.1f), WithAlpha(color, 0.35f), SkinMath.RadiusMedium);
+            else Widgets.DrawBoxSolidWithOutline(r, WithAlpha(color, 0.1f), WithAlpha(color, 0.35f), 1);
             if (icon != null) Icon(new Rect(x + 3f, y + 2f, height - 4f, height - 4f), icon, color);
             var thing = link && !f.IsPlayer ? ThingRefs.Of(f) : ThingRef.None;
             bool over = !thing.IsNone && Mouse.IsOver(r);

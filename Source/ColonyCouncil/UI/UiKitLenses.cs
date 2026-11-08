@@ -92,7 +92,9 @@ namespace ColonyCouncil
         {
             if (labels == null || labels.Count == 0) return -1;
             int clicked = -1;
-            Widgets.DrawBoxSolidWithOutline(r, CardFill, CardBorder, 1);
+            // Rimfolk's own look: a segmented control, a dark well with the lit segment raised in it.
+            if (own) RoundBox(r, WindowGround, Edge, SkinMath.RadiusMedium);
+            else Widgets.DrawBoxSolidWithOutline(r, CardFill, CardBorder, 1);
             float x = r.x;
             float full = ModesWidth(labels, icons);
             float scale = full > r.width ? r.width / full : 1f;
@@ -103,17 +105,22 @@ namespace ColonyCouncil
                 var b = new Rect(x, r.y, w, r.height);
                 bool on = i == lit;
                 bool over = Mouse.IsOver(b);
-                if (on) Widgets.DrawBoxSolid(b.ContractedBy(1f), CardSelected);
+                if (own)
+                {
+                    if (on) RoundBox(b.ContractedBy(2f), Raised, EdgeStrong, SkinMath.RadiusSmall);
+                    else if (over) Round(b.ContractedBy(2f), RaisedHover, SkinMath.RadiusSmall);
+                }
+                else if (on) Widgets.DrawBoxSolid(b.ContractedBy(1f), CardSelected);
                 else if (over) Widgets.DrawBoxSolid(b.ContractedBy(1f), CardHover);
                 float tx = b.x + 9f;
-                var c = on ? Gold : over ? Color.white : Faint;
+                var c = on ? Gold : over ? Ink : Faint;
                 if (icon != null)
                 {
                     Icon(new Rect(tx, b.y + (b.height - 14f) / 2f, 14f, 14f), icon, c);
                     tx += 18f;
                 }
-                LabelFit(new Rect(tx, b.y, b.xMax - tx - 4f, b.height), labels[i], c);
-                if (i > 0) Widgets.DrawBoxSolid(new Rect(b.x, b.y + 4f, 1f, b.height - 8f), CardBorder);
+                LabelFit(new Rect(tx, b.y, b.xMax - tx - 4f, b.height), labels[i], own && on ? Ink : c);
+                if (i > 0 && !own) Widgets.DrawBoxSolid(new Rect(b.x, b.y + 4f, 1f, b.height - 8f), CardBorder);
                 if (tips != null && i < tips.Count && !tips[i].NullOrEmpty()) TooltipHandler.TipRegion(b, tips[i]);
                 if (!on && Widgets.ButtonInvisible(b, false))
                 {
@@ -154,10 +161,20 @@ namespace ColonyCouncil
                 var b = new Rect(x, r.y, w, r.height);
                 bool on = i == lit;
                 bool over = Mouse.IsOver(b);
-                if (on) Widgets.DrawBoxSolid(b, CardSelected);
-                else if (over) Widgets.DrawBoxSolid(b, CardHover);
-                if (on) Widgets.DrawBoxSolid(new Rect(b.x + 3f, b.yMax - 2f, b.width - 6f, 2f), Gold);
-                var c = on ? Gold : over ? Color.white : Faint;
+                if (own)
+                {
+                    // Rimfolk's own look: the lens in use a raised pill with the accent's line under its word.
+                    if (on) RoundBox(b, Raised, Edge, SkinMath.RadiusMedium);
+                    else if (over) Round(b, RaisedHover, SkinMath.RadiusMedium);
+                    if (on) Round(new Rect(b.x + 8f, b.yMax - 3f, b.width - 16f, 2f), Gold, SkinMath.RadiusSmall);
+                }
+                else
+                {
+                    if (on) Widgets.DrawBoxSolid(b, CardSelected);
+                    else if (over) Widgets.DrawBoxSolid(b, CardHover);
+                    if (on) Widgets.DrawBoxSolid(new Rect(b.x + 3f, b.yMax - 2f, b.width - 6f, 2f), Gold);
+                }
+                var c = on ? Gold : over ? Ink : Faint;
                 var icon = icons != null && i < icons.Count ? icons[i] : null;
                 float ix = named ? b.x + pad : b.x + (b.width - iconW) / 2f;
                 if (icon != null) Icon(new Rect(ix, b.y + (b.height - iconW) / 2f, iconW, iconW), icon, c);
@@ -200,7 +217,8 @@ namespace ColonyCouncil
                 fit++;
             }
             var strip = new Rect(r.x, r.yMax - 22f, Mathf.Min(r.width, used + 4f), 22f);
-            Widgets.DrawBoxSolid(strip, Shade);
+            if (own) Round(strip, Shade, SkinMath.RadiusMedium);
+            else Widgets.DrawBoxSolid(strip, Shade);
             float x = strip.x + 8f;
             for (int i = 0; i < fit; i++)
             {
@@ -280,11 +298,21 @@ namespace ColonyCouncil
 
         public static float FilterChipWidth(string label) => KeptWidth(label, GameFont.Tiny) + 20f;
 
+        /// <summary>
+        /// A filter chip's back: in Rimfolk's own look a pill, the accent's wash and edge while on; in the game's, the small
+        /// framed box lit while on.
+        /// </summary>
+        internal static void ChipBack(Rect r, bool on, bool over)
+        {
+            if (own) RoundBox(r, on ? CardSelected : over ? RaisedHover : Raised, on ? WithAlpha(Accent, 0.75f) : over ? EdgeStrong : Edge, SkinMath.RadiusCard);
+            else Widgets.DrawBoxSolidWithOutline(r, on ? CardSelected : over ? CardHover : CardFill, on ? WithAlpha(Gold, 0.6f) : CardBorder, 1);
+        }
+
         /// <summary>A filter chip: a word in a small frame, lit while on. Returns true when clicked.</summary>
         public static bool FilterChip(Rect r, string label, bool on, string tip = null)
         {
             bool over = Mouse.IsOver(r);
-            Widgets.DrawBoxSolidWithOutline(r, on ? CardSelected : over ? CardHover : CardFill, on ? WithAlpha(Gold, 0.6f) : CardBorder, 1);
+            ChipBack(r, on, over);
             LabelFit(new Rect(r.x + 10f, r.y, r.width - 14f, r.height), label, on ? Gold : over ? Ink : Faint, GameFont.Tiny);
             if (!tip.NullOrEmpty()) TooltipHandler.TipRegion(r, tip);
             if (!Widgets.ButtonInvisible(r, false)) return false;

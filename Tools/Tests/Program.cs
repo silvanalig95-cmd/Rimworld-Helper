@@ -456,6 +456,7 @@ for (int r = 0; r < 4; r++)
 Console.WriteLine($"Checked {LayoutTests.Run(Check)} things about Rimfolk's windows across screens (standard and large, the tabs and the corner, the drawer, the region map).");
 Console.WriteLine($"Checked {OneLookTests.Run(root, Check)} things about one look (two levels of previews and where they go, the defense window, names in the inspect tabs, the window size).");
 Console.WriteLine($"Checked {LookTests.Run(root, Check)} things about one look across every window (the tokens and no colour of a page's own, the grid, the components, names as links in the panels and the council's pages).");
+Console.WriteLine($"Checked {RimfolkLookTests.Run(root, Check)} things about Rimfolk's own look (the frame on every screen, the remembered places, text contrast, the kit's shapes, the layouts from the least window to a large one, the seams).");
 Console.WriteLine($"Checked {InboxTests.Run(root, Check)} things about one inbox and search (the sections, the one count, the rows' order, steps never a time left, following, the search, the corner).");
         Console.WriteLine($"Checked {ModsTests.Run(root, Check)} things about the player's other mods (their names, people who change).");
         Console.WriteLine($"Checked {PerfTests.Run(root, Check)} things about the caches that keep Rimfolk light (lines, facts, slices).");

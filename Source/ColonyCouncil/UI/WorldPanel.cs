@@ -228,7 +228,11 @@ namespace ColonyCouncil
                     thing = beast,
                     color = Threat,
                     group = OutGroup.Foes,
-                    click = () => CameraJumper.TryJumpAndSelect(beast)
+                    click = () =>
+                    {
+                        Pages.LeaveForMap();
+                        CameraJumper.TryJumpAndSelect(beast);
+                    }
                 });
             }
             if (ColonyCouncilMod.Settings.nemeses)

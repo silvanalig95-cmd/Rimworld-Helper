@@ -109,10 +109,10 @@ namespace ColonyCouncil
             float bx = r.x + 10f;
             if (c.CanTalk)
             {
-                if (Widgets.ButtonText(new Rect(bx, cy, 180f, 28f), "CC_Camp_Talk".Translate())) CampAnswers.Talk(c, false);
+                if (UiKit.Button(new Rect(bx, cy, 180f, 28f), "CC_Camp_Talk".Translate())) CampAnswers.Talk(c, false);
                 bx += 188f;
             }
-            if (Widgets.ButtonText(new Rect(bx, cy, 160f, 28f), "CC_Camp_Show".Translate())) CameraJumper.TryJumpAndSelect(new GlobalTargetInfo(c.center, c.map));
+            if (UiKit.Button(new Rect(bx, cy, 160f, 28f), "CC_Camp_Show".Translate())) CameraJumper.TryJumpAndSelect(new GlobalTargetInfo(c.center, c.map));
             return y + h + 14f;
         }
 

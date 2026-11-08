@@ -30,7 +30,7 @@ namespace ColonyCouncil
         {
             open = folds == null || folds.IsOpen(key);
             var hit = new Rect(x, y, width, 22f);
-            if (folds != null && Mouse.IsOver(hit)) Widgets.DrawHighlight(hit);
+            if (folds != null) RowHover(hit);
             HeadingLine(x, y, width, label, count, right, null, Heading, folds != null, open);
             if (folds != null && Widgets.ButtonInvisible(hit, false))
             {
@@ -68,7 +68,8 @@ namespace ColonyCouncil
             if (word.NullOrEmpty()) return 0f;
             float w = StateChipWidth(word, maxWidth);
             var r = new Rect(x, y, w, ChipHeight);
-            Widgets.DrawBoxSolidWithOutline(r, CardFill, CardBorder, 1);
+            if (own) RoundBox(r, Raised, Edge, SkinMath.RadiusCard);
+            else Widgets.DrawBoxSolidWithOutline(r, CardFill, CardBorder, 1);
             DiscFill(new Rect(x + 6f, y + ChipHeight / 2f - 3.5f, 7f, 7f), color);
             LabelFit(new Rect(x + 17f, y, w - 19f, ChipHeight), word, Ink, GameFont.Tiny);
             if (!tip.NullOrEmpty()) TooltipHandler.TipRegion(r, tip);
@@ -96,7 +97,8 @@ namespace ColonyCouncil
             float w = ThingChipWidth(label, maxWidth);
             var r = new Rect(x, y, w, ChipHeight);
             bool over = Mouse.IsOver(r);
-            Widgets.DrawBoxSolidWithOutline(r, over ? CardHover : CardFill, CardBorder, 1);
+            if (own) RoundBox(r, over ? RaisedHover : Raised, over ? EdgeStrong : Edge, SkinMath.RadiusCard);
+            else Widgets.DrawBoxSolidWithOutline(r, over ? CardHover : CardFill, CardBorder, 1);
             var pic = new Rect(x + 2f, y + 2f, ChipHeight - 4f, ChipHeight - 4f);
             Picture(pic, pawn, faction, icon, Faint);
             var tr = new Rect(x + ChipHeight + 2f, y, w - ChipHeight - 6f, ChipHeight);
@@ -161,7 +163,8 @@ namespace ColonyCouncil
         {
             bool can = whyNot == null;
             Text.Font = GameFont.Small;
-            bool clicked = Widgets.ButtonText(r, Fit(label, r.width - 10f), true, true, can);
+            // Rimfolk's own look: the kit's flat button, greyed when it can't be done; the game's button in its look.
+            bool clicked = own ? Button(r, label, ButtonKind.Normal, can) : Widgets.ButtonText(r, Fit(label, r.width - 10f), true, true, can);
             string t = can ? tip : whyNot;
             if (!t.NullOrEmpty()) TooltipHandler.TipRegion(r, t);
             return clicked && can;
@@ -246,11 +249,12 @@ namespace ColonyCouncil
             string s = n > 99 ? "99+" : counts[n] ??= n.ToString();
             float w = Mathf.Max(14f, KeptWidth(s, GameFont.Tiny) + 6f);
             var r = new Rect(icon.xMax - w + 5f, icon.y - 4f, w, 14f);
-            Widgets.DrawBoxSolidWithOutline(r, BadgeFill, WithAlpha(Gold, 0.9f), 1);
+            if (own) Round(r, Accent, SkinMath.RadiusCard);
+            else Widgets.DrawBoxSolidWithOutline(r, BadgeFill, WithAlpha(Gold, 0.9f), 1);
             var old = Text.Font;
             Text.Font = GameFont.Tiny;
             Text.Anchor = TextAnchor.MiddleCenter;
-            GUI.color = Color.white;
+            GUI.color = own ? AccentInk : Color.white;
             Widgets.Label(new Rect(r.x, r.y - 1f, r.width, r.height + 2f), s);
             Text.Anchor = TextAnchor.UpperLeft;
             Text.Font = old;
@@ -262,7 +266,11 @@ namespace ColonyCouncil
         public static bool IconButton(Rect r, Texture2D tex, string tip, bool active = true, Color? color = null)
         {
             bool over = active && Mouse.IsOver(r);
-            if (over) Widgets.DrawBoxSolid(r, CardHover);
+            if (over)
+            {
+                if (own) RoundBox(r, Input.GetMouseButton(0) ? Pressed : RaisedHover, Edge, SkinMath.RadiusMedium);
+                else Widgets.DrawBoxSolid(r, CardHover);
+            }
             var c = !active ? WithAlpha(Dim, 0.6f) : over ? Ink : color ?? WithAlpha(Ink, 0.7f);
             if (tex != null) Icon(r.ContractedBy(Mathf.Max(2f, r.width * 0.12f)), tex, c);
             if (!tip.NullOrEmpty()) TooltipHandler.TipRegion(r, tip);

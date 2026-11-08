@@ -24,6 +24,8 @@
     <label>region</label>
     <description>The Rimfolk map and everything beyond the colony: the region map, the neighbours and what's coming, the peoples of the world, letters and calls, journeys, world events and the world's history.</description>
     <tabWindowClass>ColonyCouncil.MainTabWindow_World</tabWindowClass>
+    <!-- The region window floats while Rimfolk's windows move and resize (UI/Window_Region.cs); the tab otherwise. -->
+    <workerClass>ColonyCouncil.MainButtonWorker_Region</workerClass>
     <order>1000</order>
     <iconPath>ColonyCouncil/Icons/World</iconPath>
   </MainButtonDef>

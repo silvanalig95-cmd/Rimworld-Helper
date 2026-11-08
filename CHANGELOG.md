@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Rimfolk's own look, and windows you can move and size
+
+*8 November 2026, version 0.178.0*
+
+- The region window now floats: drag it by its title bar, size it from any edge or corner, make it large with the button or a double-click on its title and back, and it stays open while you click on the map or pick a colonist; it opens where you last left it.
+- The trade window moves and sizes the same way, and both remember their place between games, fitted onto your screen if it changes.
+- Both wear Rimfolk's own look: a calm dark ground, rounded cards, tabs that read as tabs, flat buttons with clear hover and pressed states, a lit row for what is chosen, one amber accent, allied in blue and hostile in orange always with a word beside, and text kept easy to read.
+- A wider window shows more: two columns in Here and away and Faces, a wider list of peoples, more of each people's acts side by side.
+- Settings: Rimfolk's own look and Rimfolk's windows move and resize, both on, and Put Rimfolk's windows back; off, the windows look and sit as before. The council's windows, the Almanac and Rimfolk's dialogs follow next.
+
 ## Serious illness shares the game's own rate
 
 *8 November 2026, version 0.177.0*

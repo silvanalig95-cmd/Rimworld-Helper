@@ -26,11 +26,33 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The window is open now.</summary>
+        /// <summary>The window is open now (the region window as its tab or floating).</summary>
         public static bool Showing(RimfolkWindow w)
         {
+            if (w == RimfolkWindow.World && Window_Region.Showing) return true;
             var b = ButtonOf(w);
             return b != null && Find.MainTabsRoot?.OpenTab == b;
+        }
+
+        /// <summary>Closes the window if it shows: the floating region window, or the tab (as the tab's own button would).</summary>
+        public static void Close(RimfolkWindow w)
+        {
+            if (w == RimfolkWindow.World && Window_Region.Showing)
+            {
+                Window_Region.Shut();
+                return;
+            }
+            if (Showing(w)) Find.MainTabsRoot.EscapeCurrentTab();
+        }
+
+        /// <summary>
+        /// Off to the map (a jump to someone, a tile picked on the world): the tab open closes, and so does the floating
+        /// region window, as the tab did before it floated.
+        /// </summary>
+        public static void LeaveForMap()
+        {
+            Find.MainTabsRoot?.EscapeCurrentTab(false);
+            Window_Region.Shut(false);
         }
 
         /// <summary>A page of any of the windows (another part of Rimfolk's region pages too, and the Almanac), by its name or an old one.</summary>
@@ -132,7 +154,7 @@ namespace ColonyCouncil
             if (page == null || w == null) return;
             if (Showing(w.Value) && Current(w.Value) == page && (PagesMath.FilterOf(name) == null || Nav.FiltersOf(page) == PagesMath.FilterOf(name)))
             {
-                Find.MainTabsRoot.EscapeCurrentTab();
+                Close(w.Value);
                 return;
             }
             Open(name);
@@ -152,7 +174,7 @@ namespace ColonyCouncil
             if (!PagesMath.TrySection(name, out var w, out var section)) return;
             if (w != RimfolkWindow.Council)
             {
-                if (Showing(w)) Find.MainTabsRoot.EscapeCurrentTab();
+                if (Showing(w)) Close(w);
                 else Show(w);
                 return;
             }
@@ -164,12 +186,27 @@ namespace ColonyCouncil
             Open(MainTabWindow_Council.LastIn(section));
         }
 
-        /// <summary>Opens a window as its own button does (the region window on the map, the others where they were).</summary>
+        /// <summary>
+        /// Opens a window as its own button does (the region window on the map, the others where they were). One of the four
+        /// at a time, as the corner turns pages: the region window floats where Rimfolk's windows move, and opening it closes
+        /// another of Rimfolk's tabs; opening another closes it.
+        /// </summary>
         public static void Show(RimfolkWindow w)
         {
-            var b = ButtonOf(w);
             var root = Find.MainTabsRoot;
+            if (w == RimfolkWindow.World && Window_Region.Floats)
+            {
+                if (Window_Region.Showing || root == null) return;
+                var open = root.OpenTab;
+                if (open != null && (open == ButtonOf(RimfolkWindow.Council) || open == ButtonOf(RimfolkWindow.Defense) || open == ButtonOf(RimfolkWindow.Planning)
+                                     || open == ButtonOf(RimfolkWindow.World)))
+                    root.EscapeCurrentTab(false);
+                Window_Region.Open();
+                return;
+            }
+            var b = ButtonOf(w);
             if (b == null || root == null || root.OpenTab == b) return;
+            Window_Region.Shut(false);
             root.SetCurrentTab(b, false);
         }
 

@@ -249,6 +249,9 @@ namespace ColonyCouncil
         /// <summary>The list's width: 320 beside a roomy page, 260 narrower, 200 (compact rows) with the drawer open at the standard window.</summary>
         public const float ListWide = 320f, ListNarrow = 260f, ListCompact = 200f;
 
+        /// <summary>The list in a window made large on a big screen (a view from 1400 wide): room for longer names and their words.</summary>
+        public const float ListWider = 380f, WiderFrom = 1400f;
+
         /// <summary>Between the list and the page.</summary>
         public const float Gap = 12f;
 
@@ -256,7 +259,7 @@ namespace ColonyCouncil
         public const float RowH = 40f, WebH = 156f;
 
         /// <summary>The list's width in a view this wide.</summary>
-        public static float ListWidth(float viewWidth) => viewWidth >= 860f ? ListWide : viewWidth >= 640f ? ListNarrow : ListCompact;
+        public static float ListWidth(float viewWidth) => viewWidth >= WiderFrom ? ListWider : viewWidth >= 860f ? ListWide : viewWidth >= 640f ? ListNarrow : ListCompact;
 
         /// <summary>The page's width beside the list.</summary>
         public static float PageWidth(float viewWidth) => Math.Max(0f, viewWidth - ListWidth(viewWidth) - Gap);
@@ -276,7 +279,14 @@ namespace ColonyCouncil
         /// <summary>The search, the filter chips and the sort above the rows.</summary>
         public const float ListTop = 84f;
 
-        /// <summary>The acts' rows in two columns on a page this wide, else one.</summary>
-        public static int ActColumns(float pageWidth) => pageWidth >= 760f ? 2 : 1;
+        /// <summary>The acts' rows in two columns on a page this wide, three on a large window's page, else one.</summary>
+        public static int ActColumns(float pageWidth) => pageWidth >= 1180f ? 3 : pageWidth >= 760f ? 2 : 1;
+
+        /// <summary>One act column's width on a page this wide (12 between columns).</summary>
+        public static float ActColumnWidth(float pageWidth)
+        {
+            int n = ActColumns(pageWidth);
+            return n <= 1 ? pageWidth : (pageWidth - 12f * (n - 1)) / n;
+        }
     }
 }

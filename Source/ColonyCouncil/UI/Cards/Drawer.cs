@@ -198,9 +198,13 @@ namespace ColonyCouncil
             if (!shows) return;
             if (over && e.type == EventType.Repaint)
             {
-                GUI.color = UiKit.WithAlpha(UiKit.Ink, 0.9f);
-                Widgets.DrawShadowAround(drawerRect);
-                GUI.color = Color.white;
+                if (UiKit.OwnLook) UiKit.SoftShadow(drawerRect);
+                else
+                {
+                    GUI.color = UiKit.WithAlpha(UiKit.Ink, 0.9f);
+                    Widgets.DrawShadowAround(drawerRect);
+                    GUI.color = Color.white;
+                }
             }
             Draw(host, drawerRect, empty);
         }
@@ -211,7 +215,9 @@ namespace ColonyCouncil
         /// <summary>The drawer in its rect: the trail, the card, or what it shows with none.</summary>
         public static void Draw(DrawerHost s, Rect rect, Action<Rect> empty)
         {
-            Widgets.DrawBoxSolidWithOutline(rect, UiKit.DrawerFill, UiKit.CardBorder);
+            // Rimfolk's own look: a raised card with rounded corners; the game's, the solid panel with its edge.
+            if (UiKit.OwnLook) UiKit.RoundBox(rect, UiKit.DrawerFill, UiKit.Edge, SkinMath.RadiusCard);
+            else Widgets.DrawBoxSolidWithOutline(rect, UiKit.DrawerFill, UiKit.CardBorder);
             var inner = rect.ContractedBy(10f);
             // A card whose thing went (a town razed while it showed) stays with what was kept of it; a gone one on the
             // trail is passed over when going back.
@@ -266,7 +272,7 @@ namespace ColonyCouncil
                 float cw = Mathf.Min(Mathf.Min(Text.CalcSize(name).x, 140f), right - x);
                 if (cw <= 8f) break;
                 var cr = new Rect(x, r.y, cw, r.height);
-                if (i == s.at) UiKit.LabelFit(cr, name, Color.white, GameFont.Tiny);
+                if (i == s.at) UiKit.LabelFit(cr, name, UiKit.Ink, GameFont.Tiny);
                 else
                 {
                     bool over = Mouse.IsOver(cr);

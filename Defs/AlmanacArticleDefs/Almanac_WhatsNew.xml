@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.178.0</version>
+        <date>8 November 2026</date>
+        <title>Rimfolk's own look, and windows you can move and size</title>
+        <points>
+          <li>The region window now floats: drag it by its title bar, size it from any edge or corner, make it large with the button or a double-click on its title and back, and it stays open while you click on the map or pick a colonist; it opens where you last left it.</li>
+          <li>The trade window moves and sizes the same way, and both remember their place between games, fitted onto your screen if it changes.</li>
+          <li>Both wear Rimfolk's own look: a calm dark ground, rounded cards, tabs that read as tabs, flat buttons with clear hover and pressed states, a lit row for what is chosen, one amber accent, allied in blue and hostile in orange always with a word beside, and text kept easy to read.</li>
+          <li>A wider window shows more: two columns in Here and away and Faces, a wider list of peoples, more of each people's acts side by side.</li>
+          <li>Settings: Rimfolk's own look and Rimfolk's windows move and resize, both on, and Put Rimfolk's windows back; off, the windows look and sit as before. The council's windows, the Almanac and Rimfolk's dialogs follow next.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.177.0</version>
         <date>8 November 2026</date>
         <title>Serious illness shares the game's own rate</title>

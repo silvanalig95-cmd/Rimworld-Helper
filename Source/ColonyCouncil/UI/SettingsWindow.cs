@@ -555,6 +555,17 @@ namespace ColonyCouncil
                     if (!moved && on) TooltipHandler.TipRegion(one, "CC_SetUI_SlowButtonsHome".Translate());
                     break;
                 }
+                case "windowsPlaceReset":
+                {
+                    // Every one of Rimfolk's windows opens where it first did, at its first size (UI/WindowFrame.cs).
+                    bool any = s.windowPlaces != null && s.windowPlaces.Count > 0;
+                    if (Widgets.ButtonText(one, UiKit.Fit(t.label, oneW - 12f), true, true, on && any) && on && any)
+                    {
+                        WindowFrame.Forget();
+                        countedFrame = -1000;
+                    }
+                    break;
+                }
                 case "barArrange":
                     if (Widgets.ButtonText(one, UiKit.Fit(t.label, oneW - 12f), true, true, on) && on) Find.WindowStack.Add(new Dialog_ArrangeBar());
                     break;

@@ -61,6 +61,16 @@ switched off in the settings or put away under "more" is still a click away ther
 same place: 1010 by 720, or with **Window size** set to Large in the settings, up to 1280 by 860 on a screen with the
 room.
 
+**Rimfolk's own look.** The region window and the trade window (the council's windows next) have a look of their own:
+a calm dark ground, rounded cards with a faint edge, flat buttons that light under the mouse, tabs that read as tabs,
+one amber accent for what is chosen, and the stances in blue (allied, friendly) and orange (hostile), always with their
+word. Drag one by its title bar, size it from any edge or corner, and make it large (most of the screen) with the button
+in its title bar or a double-click on the title; each opens where you left it and as large, also after a restart. The
+region window floats beside the map: a click on the map or a colonist picked leaves it open, and its button, its key or
+the close button in its title bar shut it. "Rimfolk's own look" and "Rimfolk's windows move and resize" in the settings
+(both on) bring back the game's look and the region window as a tab at the screen's foot; "Put Rimfolk's windows back"
+opens every window where it first did.
+
 The **council** window, in four views along its top, each with its modes as small buttons under its title and a "?"
 beside the title that opens its page of the Almanac:
 
@@ -4649,7 +4659,8 @@ The pages:
   gate); the slow speed buttons (and putting them back), where the council button sits in the bottom bar, the region,
   defense and planning buttons, the count on the council button, a "more" button for the bottom bar's buttons you
   put away, which page the council window opens on (**This week** by default, or the last page), the Almanac's text
-  size, the window size, the region map's reach; names and cards (previews and their pause); the **on-screen panels**
+  size, the window size, **Rimfolk's own look** and **Rimfolk's windows move and resize** (both on) with "Put
+  Rimfolk's windows back", the region map's reach; names and cards (previews and their pause); the **on-screen panels**
   (each panel's options, lock, hiding, the game's own alert list, look, text size, the food and mood lines, putting
   them back) and the **hover card** (the game's tooltip under it too); the **badges on the colonist bar** (each kind,
   the break ring or dot and its early warning, the wish badge's threshold, size, corner and how many show).
