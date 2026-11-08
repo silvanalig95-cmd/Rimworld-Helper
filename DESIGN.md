@@ -6117,6 +6117,31 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
   `ThingRoles` (`SmallArt`). The patch: four world events, the fortune teller and the art collector prefer them
   (`FortuneTeller` and `Collector` read `HappeningExtension.prefers`). Release B's leans (`ArisingMath.Lean`, 13
   arguments: a band led by a psycaster, a fighter, a crafter or a grower). Nobody hurt.
+- **Release F: the Signal Line, the Deepwell Union, the Last Republic and the Hollow Fleet** (`Tools/Tests/PeoplesFTests.cs`,
+  "peoples, release F: "; docs/design/peoples.md, the section of that name; the first four of `docs/design/peoples-third.md`).
+  `Rimfolk_SignalLine` (industrial, outlander parent, calling `linesmen`), `Rimfolk_Deepwell` (industrial, `drillers`),
+  `Rimfolk_Republic` (industrial, `citizens`), `Rimfolk_HollowFleet` (spacer, `crew`), each arising in every age, the
+  three industrial ones rising toward the spacer age at 8, 11 and 9 years an age, from the player's active mods only; one
+  kit for the Line's linemen, the Republic's Civic Guard (every age's issue in the same navy) and the Fleet's whole crew.
+  The relay mast (`Rimfolk_RelayMast`, `CompRelayMast`, `RelayMast`): raised by a lineman on the colony's highest ground,
+  worn by thunderstorms, quiet under half its strength; while it sings (and a Line is at peace) letters by a messenger
+  or a bearer and their answers take half the days (`NeighbourLetters`, `PeoplesFMath.Relayed`), the post counts it as a
+  mast near (`PostReach.Mast`), and `Patch_LineMastWarns` (a prefix on `Storyteller.TryFire`) holds a raid the
+  storyteller sends in the game's own incident queue 2 to 4 hours behind the line's warning letter. Callers
+  (`Peoples/PeoplesF.cs`, `PeoplesF2.cs`, one job driver, `JobDriver_PeoplesF`): the mast, the wire-trader (components
+  at a fifth over their worth, or a caravan's news for fifty silver), the climb in a storm; the union's drill for a share
+  (`deepResourceGrid`, two in five to the union; the colony's hand hurt one shift in twenty, `HarmKinds.UnionDrill`), the
+  assayer's crate (set down by `Couriers.Loot`), the strike (a visit, kind `unionStrike`, called on a season's look in
+  seven; `Patch_UnionStrikeCaravans`, `Patch_UnionStrikeVisitors`, `Patch_UnionStrikeTown` stall its trade; settled at
+  the gate or after a month); the census walked bed to bed, the papers (a visit, kind `republicPapers`, a year of a
+  citizen's terms by `Patch_PapersPawnTerms` and `Patch_PapersTownTerms`, six in a hundred), the conscript (a visit,
+  kind `conscript`: a caravan of one there and back by the world's roads, the envoys' way), the radio once a season
+  (`RepublicRadio`, heard at a comms console or the mast, `Rimfolk_Thought_RadioPraised`, `_RadioDenounced`); the
+  Fleet's shuttle (Royalty's, else drop pods) with a casket to sell, its salvage (`PlayCarry.Salvage`; chunks cut where
+  they lie), the sleeper woken too late. Four asks, the patch on four world events, release B's leans
+  (`ArisingMath.Lean`, 17 arguments: survivors raise masts or keep a ship's watches, a band digs or votes). Their callers
+  come and go at an errand's pace (`LordJob_VisitOnErrand`, `PaceVisit.cs`: the game's visit with its travel on an
+  errand, used by `HappeningHelpers.Visit` for every caller). Nothing new saved.
 
 ### Peoples whose age changes
 
@@ -6127,7 +6152,7 @@ older factions should also be able to grow and develop over time to reach higher
 Rimfolk keeps a people's age now beside it and reads that wherever it asks about a people's ways and means.
 
 - **The record** (`Peoples/PeopleAges.cs`: `PeopleAgeRecord`, `PeopleAgeBook`, a game component of its own): one a people
-  of Rimfolk's (the fifteen and every one that arose in their ways), made the first time the region's day looks at it:
+  of Rimfolk's (the nineteen and every one that arose in their ways), made the first time the region's day looks at it:
   its age now (0 tribal to 3 spacer), the age it began in (`Peoples.BeganIn`: its def's, or for one that arose the age of
   what it came from, as release B gave it), its progress (-1 falls back an age, +1 rises one, starting from a head start
   of up to a fifth by its id), when it was first heard of, looked at and last changed, the age before, and its heading
@@ -6153,7 +6178,7 @@ Rimfolk keeps a people's age now beside it and reads that wherever it asks about
     years), down to its floor (the def's `ageFloor`, else one below the age it began in).
   - *The Sunken Vault's way* (the def's `ageDeclines`, `ageDeclineYears`): never rises on its own, loses an age every
     so many years unless supplied (components and tools given or sold to it, `SupplyFull` 1500 silver a year holds it).
-    No people of the fifteen has it; tested, and left for the third piece of `peoples-third.md`.
+    No people of the nineteen has it; tested, and left for the third piece of `peoples-third.md`.
   - Past +1 it rises an age (never past its limit), past -1 it falls back one (never past its floor), and its progress
     starts again from nothing.
 - **What the rule reads**, all of it what Rimfolk already records (`PeopleAges.Deeds`): the trade record's lines with the
@@ -6169,19 +6194,20 @@ Rimfolk keeps a people's age now beside it and reads that wherever it asks about
   against their towns standing; and the world's peoples at war with them (`Facts.Counts`, the colony with them).
 - **Each people's pace and limit** (years an age at its own pace, the highest age; each def has a line of why):
   the learned society 6.5, spacer; the Stormglass Conclave and the road league 7, spacer; the Kiln Guild 8 (medieval),
-  spacer; the Wheel 10, spacer; the Ashen Banner 11 (medieval), spacer; the Circuit of Tamers 12, spacer; the spacer
-  enclave 8, spacer (at the height already: the one people that can't rise, it can fall back to the industrial age); the
+  spacer; the Signal Line 8, spacer; the Last Republic 9, spacer; the Wheel 10, spacer; the Ashen Banner 11 (medieval),
+  spacer; the Deepwell Union 11, spacer; the Circuit of Tamers 12, spacer; the spacer enclave 8 and the Hollow Fleet 10,
+  spacer (at the height already: the two peoples that can't rise, they can fall back to the industrial age); the
   hospitaller order 12 (medieval), industrial (their faith keeps the flesh as it was made); the Lantern Wardens and the
   river folk 13 (medieval), industrial; the pilgrims 16 (medieval), industrial; the Quiet Bell 17 (medieval),
   industrial; the herders 20 (tribal), industrial; the Mossborn 24 (tribal), medieval.
-- **The numbers** (`PeopleAgesTests`, 400 worlds of the fifteen, each its own fate and head start, looked at every
-  season): by themselves none rises an age in 5 years and 4.8 of 15 in 10. In a typical game (the colony trades 3500
+- **The numbers** (`PeopleAgesTests`, 400 worlds of the nineteen, each its own fate and head start, looked at every
+  season): by themselves none rises an age in 5 years and 5.5 of 19 in 10. In a typical game (the colony trades 3500
   silver a year with the road league and holds a trade pact, 1500 with the guild with a small gift of tools and a
   journeyman's wander-year, 1200 with the hospitallers and is allied with them, 800 with the river folk and the society
-  with a gift of books and one of the society's masters teaching): 2.0 rise in 5 years, 4.1 in 7.5 and 6.1 in 10, and
-  half a people in 10 years (0.49, the guild) goes two ages. With all the colony's help (5000 silver a year, 1500 of
+  with a gift of books and one of the society's masters teaching): 2.0 rise in 5 years, 4.1 in 7.5 and 6.8 in 10, and
+  half a people in 10 years (0.47, the guild) goes two ages. With all the colony's help (5000 silver a year, 1500 of
   gifts, two journeymen a year, an alliance) the guild goes from the medieval to the spacer age in 10 years in every
-  world and in 7 in 77%. The herders and the Mossborn rise in none of the worlds in 10 years.
+  world and in 7 in 76%. The herders and the Mossborn rise in none of the worlds in 10 years.
 - **What follows from it.** Everything that already took the form of a people's age follows `Peoples.AgeOf`: its
   kinds' arms and kits of the age (`PeopleKindExtension.ageArms`), its gifts of the age (genes only from the industrial
   age, `PeoplesGearMath.GenesAge`), its camps' kits and what its camps know how to build (`CampKit`), its words and the

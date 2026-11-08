@@ -297,7 +297,7 @@ namespace ColonyCouncil
             var spot = DropCellFinder.TradeDropSpot(map);
             DropPodUtility.DropThingsNear(spot, map, pawns.Cast<Thing>(), 110, false, false, false, false);
             if (!RCellFinder.TryFindRandomSpotJustOutsideColony(spot, map, out var chill)) chill = spot;
-            LordMaker.MakeNewLord(f, new LordJob_VisitColony(f, chill, Mathf.RoundToInt(StayHours.RandomInRange * GenDate.TicksPerHour)), map, pawns);
+            LordMaker.MakeNewLord(f, new LordJob_VisitOnErrand(f, chill, Mathf.RoundToInt(StayHours.RandomInRange * GenDate.TicksPerHour)), map, pawns);
             if (Prefs.DevMode) Log.Message("[Rimfolk] " + f.Name + "'s lander: " + pawns.Count + " by drop pod at " + spot + ", " + kind.defName + ".");
             return true;
         }

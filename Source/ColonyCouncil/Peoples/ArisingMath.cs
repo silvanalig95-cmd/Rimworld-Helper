@@ -189,17 +189,21 @@ namespace ColonyCouncil
         /// with a bow or a rifle hunts the great beasts as wardens. Release E's: a band led by one with a psylink reads the
         /// sky (the Stormglass Conclave's ways), by a fighter hires out as a free company (the Ashen Banner's), by a
         /// crafter marks its work as a guild (the Kiln Guild's), by one good at the fields keeps a grove (the Mossborn's).
+        /// Release F's: survivors of the industrial or spacer age who kept their town's radio going raise masts (the Signal
+        /// Line's ways), survivors of a spacer town keep its watches and ranks as a ship's crew (the Hollow Fleet's); a band
+        /// led by a miner digs as a union (the Deepwell Union's), by a speaker keeps a census and holds elections (the Last
+        /// Republic's).
         /// </summary>
         public static string[] Leans(string kind)
         {
             switch (kind)
             {
-                case Refugees: return new[] { PeoplesMath.Fishers, PeoplesMath.Sextons, PeoplesMath.Salvagers };
+                case Refugees: return new[] { PeoplesMath.Fishers, PeoplesMath.Sextons, PeoplesMath.Salvagers, PeoplesMath.Linesmen, PeoplesMath.Crew };
                 case Exiles:
                     return new[]
                     {
                         PeoplesMath.Scholars, PeoplesMath.Fishers, PeoplesMath.Tamers, PeoplesMath.Hunters, PeoplesMath.Seers, PeoplesMath.Mercenaries, PeoplesMath.Artisans,
-                        PeoplesMath.Grovekeepers
+                        PeoplesMath.Grovekeepers, PeoplesMath.Drillers, PeoplesMath.Citizens
                     };
                 default: return new string[0];
             }
@@ -262,7 +266,30 @@ namespace ColonyCouncil
         /// marks its work as a guild; by one good at the fields (<see cref="GrowerLevel"/>) keeps a grove.
         /// </summary>
         public static string Lean(string kind, bool nearRiver, bool riverFated, int leaderLearning, int leaderAnimals, int leaderShooting, bool bellFated, bool wheelFated, int age,
-            int leaderMelee, int leaderPlants, int leaderCrafting, int leaderPsylink)
+            int leaderMelee, int leaderPlants, int leaderCrafting, int leaderPsylink) =>
+            Lean(kind, nearRiver, riverFated, leaderLearning, leaderAnimals, leaderShooting, bellFated, wheelFated, age, leaderMelee, leaderPlants, leaderCrafting, leaderPsylink,
+                0, 0, false, false);
+
+        /// <summary>Survivors of the industrial or spacer age who kept the radio going (the Signal Line's ways), on their fated quarter: <see cref="SaltLine"/>.</summary>
+        public const float LineChance = 0.25f;
+
+        /// <summary>Survivors of a spacer town who keep its watches as a crew (the Hollow Fleet's ways), on their fated third: <see cref="SaltCrew"/>.</summary>
+        public const float CrewChance = 0.33f;
+
+        public const int SaltLine = 707, SaltCrew = 808;
+
+        /// <summary>A band's leader this good a miner (Mining) leads a union, this good a speaker (Social) a republic of their own.</summary>
+        public const int MinerLevel = 10, SpeakerLevel = 10;
+
+        /// <summary>
+        /// Every lean weighed, release F's too: a band of the banished led, after all the others, by a miner
+        /// (<see cref="MinerLevel"/>) digs as a union; by a speaker (<see cref="SpeakerLevel"/>) keeps a census and votes as a
+        /// republic. Survivors of a fallen town, after the Bell's and the Wheel's ways: in the industrial or spacer age, on
+        /// their fated quarter, they keep the town's radio going and raise masts (linesmen); in the spacer age, on their fated
+        /// third, they keep its watches and ranks as a ship's crew.
+        /// </summary>
+        public static string Lean(string kind, bool nearRiver, bool riverFated, int leaderLearning, int leaderAnimals, int leaderShooting, bool bellFated, bool wheelFated, int age,
+            int leaderMelee, int leaderPlants, int leaderCrafting, int leaderPsylink, int leaderMining, int leaderSocial, bool lineFated, bool crewFated)
         {
             if (kind == Exiles)
             {
@@ -273,12 +300,16 @@ namespace ColonyCouncil
                 if (leaderMelee >= FighterLevel) return PeoplesMath.Mercenaries;
                 if (leaderCrafting >= CrafterLevel) return PeoplesMath.Artisans;
                 if (leaderPlants >= GrowerLevel) return PeoplesMath.Grovekeepers;
+                if (leaderMining >= MinerLevel) return PeoplesMath.Drillers;
+                if (leaderSocial >= SpeakerLevel) return PeoplesMath.Citizens;
             }
             if (nearRiver && riverFated && Array.IndexOf(Leans(kind), PeoplesMath.Fishers) >= 0) return PeoplesMath.Fishers;
             if (kind == Refugees)
             {
                 if (bellFated) return PeoplesMath.Sextons;
                 if (wheelFated && age >= 2) return PeoplesMath.Salvagers;
+                if (lineFated && age >= 2) return PeoplesMath.Linesmen;
+                if (crewFated && age >= 3) return PeoplesMath.Crew;
             }
             return null;
         }

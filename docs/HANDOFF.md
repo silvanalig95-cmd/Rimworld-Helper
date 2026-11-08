@@ -12,6 +12,69 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.172.0, release F, the first four peoples of the third round: the Signal Line, the Deepwell Union, the Last Republic and the
+  Hollow Fleet (8 November 2026, step 2 of `docs/design/peoples-third.md`, approved by the player as written). Not
+  released: no What's new round, About.xml and CHANGELOG untouched, no version number (the lead does that at the merge).
+  docs/design/peoples.md "What was built (release F)" has everything (the table, kits by role, every age, gifts, towns,
+  the mast, each caller, the asks, the patch, arising, harm, pace, softness, what was left out); README a paragraph after
+  release E's; DESIGN.md a bullet after release E's and the age numbers for nineteen; the Almanac page *the Line, the
+  union, the Republic and the Fleet* (`Council_Alm_C_PeoplesF`, new keywords only); `docs/design/peoples-third.md` step 2
+  marked built.
+  - What: four peoples (`Rimfolk_SignalLine`, `Rimfolk_Deepwell`, `Rimfolk_Republic` industrial; `Rimfolk_HollowFleet`
+    spacer), once each in a new world, never required, raiding rarely and only when wronged, each with a founding,
+    sayings, faith, emblem and town icon, a town plan, messengers, letters, visitors' and face-to-face words, four pieces
+    of talk, an ask and three callers at the gate. One kit for the Line's linemen, the Republic's Civic Guard and the
+    Fleet's crew; everyone else varied round the colour. Their ages move by 0.169.0's rule (8, 11, 9 and 10 years an age).
+  - The relay mast (`Rimfolk_RelayMast`, `CompRelayMast`, the colony's own): raised by a lineman on the colony's highest
+    ground; while it sings (above half its strength, a Line at peace) letters by a messenger or bearer and their answers
+    take half the days, the post counts a mast near, and a raid the storyteller sends comes 2 to 4 hours after the
+    line's warning letter (held in the game's own incident queue). Thunderstorms wear it; a lineman may climb it.
+  - Code: `Peoples/PeoplesF.cs` (helpers, `JobDriver_PeoplesF`, the mast, the Line's three callers, the union's drill,
+    crate and strike), `PeoplesF2.cs` (the census, papers, conscript and radio; the Fleet's shuttle, salvage and sleeper;
+    `PeoplesFDebug`), `PeoplesFPatches.cs` (six Harmony patches, each off with `RimfolkPatches.On`:
+    `Storyteller.TryFire` for the warning, the strike on `IncidentWorker_TraderCaravanArrival.FactionCanBeGroupSource`,
+    `IncidentWorker_VisitorGroup.TryConvertOnePawnToSmallTrader` and `Settlement.CanTradeNow`, the papers' terms on the
+    pawn's and the town's `TradePriceImprovementOffsetForPlayer`), `PeoplesFMath.cs` (pure, linked), `PaceVisit.cs`
+    (`LordJob_VisitOnErrand`). Touched: `PeoplesMath.cs` (four callings), `ArisingMath.cs` and `Arising.cs` (the
+    17-argument lean), `HarmBudgetMath.cs` (`HarmKinds.UnionDrill`, appended), `Happenings.cs` (three visit kinds:
+    `unionStrike`, `republicPapers`, `conscript`), `RegionBook.cs` (`PeoplesF.Daily`: strikes and the radio),
+    `NeighbourLetters.cs` (the relay on the bearer's and the messenger's legs), `PlayCarry.cs` (`salvage`),
+    `PeoplesE.cs` (`Start` at `Pace.Errand`), `HappeningHelpers.Visit` (every caller's visit at an errand's pace),
+    `Post/PostReach.cs` (the mast near: the colony's singing relay mast, `RelayMast.Working`, and a town of any people
+    of the linesmen calling, `Peoples.CallingOf`, where it matched the Signal Line's def name and any building named
+    like a mast).
+  - Settings: none new. Play-outs (on the map or at once), the deeper game hooks (the warning, the strike's stall, the
+    terms, the strike and the radio themselves), the harm setting (the drill's mishap), peoples' ages.
+  - Saved: nothing new; three visit kinds on the happenings' tracker, the mast a building.
+  - Harm: one, the colony's hand at the union's drill, one shift in twenty, a crush or bruise to a foot, through the shared
+    budget (`HarmKinds.UnionDrill`, 0.005, modelled in `Tools/Balance/HarmSim.cs`), told.
+  - Tools: `Tools/make_emblems.py` (eight glyphs, the preview sheet), the mast's texture, `Tools/Tests/PeoplesFTests.cs`,
+    the peoples' tests at nineteen (`PeoplesTests`, `PeoplesGearTests`, `PeoplesLoreTests`, `NeighboursFourTests`,
+    `PeopleAgesTests`, release C's and D's arising lists), `PeopleGear.txt` and `ModDefNames.txt` rows from the catalogue.
+  - Main's 0.171.0 and 0.171.1 merged in (the DLL rebuilt each time).
+  - Not verified without the game: the raid held for the warning (a raid the queue can't bring at its hour is let go
+    after 6 hours), the shuttle's landing and take-off (`TransportShipMaker`, the enclave's lander's way) and the crated
+    casket in its hold, the conscript's caravan out and back (the envoys' way, untried with one pawn over a season), the
+    drill split over the deep ore grid, the mast's draw size and offset on its 1x1 cell, the swap of the game's visit
+    toils for errand travel (`LordJob_VisitOnErrand.Errand`) in every caller's visit, a drill or climb loaded halfway
+    (it starts again; a drill loaded halfway brings nothing up).
+  - Try in the game (dev mode; "Rimfolk", "Peoples: release F's strikes, papers, conscript and masts (log)" shows the
+    state): with the Line at peace, fire `Rimfolk_Evt_LineMast`, watch the lineman raise the mast on the hillside; write a
+    letter and see the answer come in half the days; fire a raid from the storyteller's incidents and see the warning
+    letter first and the raid a couple of hours on; "the colony's mast in a storm, to half its strength (testing)" and
+    `Rimfolk_Evt_LineStorm` for the climb; `Rimfolk_Evt_LineWire` with components in stores. With a deep seam scanned,
+    fire `Rimfolk_Evt_UnionDrill` and take the colony's miner along; `Rimfolk_Evt_UnionGoods`; "the Deepwell Union
+    strikes now (testing)", see a caravan of theirs not come, then `Rimfolk_Evt_UnionStrike` after two days.
+    `Rimfolk_Evt_RepublicCensus`, `Rimfolk_Evt_RepublicPapers` (then trade with their caravan for the terms),
+    `Rimfolk_Evt_RepublicConscript` (send someone, watch the caravan leave; "the conscript's season is out now
+    (testing)" brings them home), "the Republic's radio now" with a comms console. For an industrial colony fire
+    `Rimfolk_Evt_FleetShuttle` (buy the casket), `Rimfolk_Evt_FleetSalvage` with a ship chunk on the ground, and
+    `Rimfolk_Evt_FleetSleeper` towards evening.
+
+  - At the merge: every visit Rimfolk makes at the gate now uses `LordJob_VisitOnErrand` (`PaceVisit.cs`): releases D
+    and E's callers (`PeoplesD.cs`, `PeoplesE.cs`, `PeoplesCallers.cs`), the towns' visitors (`Colonies/TownLife.cs`), the
+    mission roads (`Missions/Workers_MissionRoad.cs`) and the dev action, so no visitor of Rimfolk's walks at the game's
+    half-speed visit any more (0.171.1's report).
 - 0.171.1, couriers and visitors walk at a normal pace (8 November 2026, the player's report: "some of the npcs you create,
   including the earlier couriers, seem to walk only quite slowly on the map, never as fast as my colonists move"). Cause:
   42 of Rimfolk's errands and exits used the game's `LocomotionUrgency.Walk` (half the ordinary pace), and every lord's

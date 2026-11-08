@@ -41,6 +41,16 @@ Release E:
   - the Kiln Guild: a beehive kiln with its fire mouth and a flame from its chimney, a guild mark above (emblem); a
     guildhall's front with its arched door between two smoking kilns (town).
 
+Release F:
+  - the Signal Line: a lattice radio mast with its aerial, waves going out from its head each side (emblem); a mast on
+    a hill beside the relay hut (town);
+  - the Deepwell Union: two crossed picks under a miner's lamp with its flame (emblem); a headframe over the shaft, its
+    wheel at the top, a slag heap beside it (town);
+  - the Last Republic: a five-pointed star over a column on its plinth, a ribbon across it (emblem); a town hall with a
+    dome and a flag on a pole beside it (town);
+  - the Hollow Fleet: a ship's hull pointing down to the ground inside a ring, a rank chevron under it (emblem); a
+    grounded hull lying on its side beside a landing pad (town).
+
 A new people's glyphs: a function for each and a line in GLYPHS.
 
 Usage (from the repository root):
@@ -735,6 +745,159 @@ def g_kilnguild_town():
     return over(kilns, m, 10)
 
 
+# ---------------------------------------------------------------- the Signal Line
+
+def g_signalline():
+    """A lattice radio mast with its aerial, waves going out from its head each side."""
+    m = new()
+    # The mast: two legs narrowing to the top, cross-braced, on a footing.
+    line(m, [(196, 470), (246, 110)], 18)
+    line(m, [(316, 470), (266, 110)], 18)
+    for (y0, y1) in ((440, 360), (360, 280), (280, 200), (200, 130)):
+        f0 = (470 - y0) / 360.0
+        f1 = (470 - y1) / 360.0
+        xl0, xr0 = 196 + 50 * f0, 316 - 50 * f0
+        xl1, xr1 = 196 + 50 * f1, 316 - 50 * f1
+        line(m, [(xl0, y0), (xr1, y1)], 10)
+        line(m, [(xr0, y0), (xl1, y1)], 10)
+    rect(m, 160, 460, 352, 490, r=6)               # the footing
+    line(m, [(256, 116), (256, 40)], 14)           # the aerial
+    circle(m, 256, 36, 18)                         # its lamp
+    waves = new()
+    for r in (80, 130):
+        arc(waves, 256, 60, r, 150, 210, 16)
+        arc(waves, 256, 60, r, 330, 390, 16)
+    return over(waves, m, 10)
+
+
+def g_signalline_town():
+    """A mast on a hill beside the relay hut."""
+    m = new()
+    ImageDraw.Draw(m).pieslice([20, 330, 400, 620], 180, 360, fill=ON)   # the hill
+    rect(m, 0, 470, 512, 500)                       # the ground
+    # The mast on the hilltop.
+    line(m, [(180, 340), (210, 90)], 14)
+    line(m, [(240, 340), (210, 90)], 14)
+    for y in (290, 220, 150):
+        line(m, [(186, y), (234, y)], 8)
+    line(m, [(210, 96), (210, 30)], 10)
+    circle(m, 210, 28, 12)
+    # The hut with its door.
+    hut = new()
+    rect(hut, 330, 360, 480, 470)
+    poly(hut, [(316, 368), (405, 300), (494, 368)])
+    rect(hut, 390, 400, 430, 470, fill=OFF)
+    return over(hut, m, 10)
+
+
+# ---------------------------------------------------------------- the Deepwell Union
+
+def g_deepwell():
+    """Two crossed picks under a miner's lamp with its flame."""
+    m = new()
+    picks = new()
+    for (x0, y0, x1, y1, side) in ((110, 470, 360, 220, 1), (402, 470, 152, 220, -1)):
+        line(picks, [(x0, y0), (x1, y1)], 20)
+        # The pick's head: a curved bar across the end of the haft.
+        cx, cy = x1, y1
+        pts = [(cx - 110 * side, cy - 20), (cx - 40 * side, cy - 60), (cx + 40 * side, cy - 40), (cx + 120 * side, cy + 40),
+               (cx + 40 * side, cy - 10), (cx - 40 * side, cy - 25)]
+        poly(picks, pts)
+    lamp = new()
+    # The lamp: its bowl, its chimney and the flame in it.
+    rect(lamp, 206, 120, 306, 230, r=24)
+    rect(lamp, 222, 140, 290, 210, r=12, fill=OFF)
+    poly(lamp, teardrop(256, 140, 206, 18))
+    rect(lamp, 236, 80, 276, 122)
+    line(lamp, [(220, 80), (256, 30), (292, 80)], 10)  # its handle
+    return over(lamp, picks, 14)
+
+
+def g_deepwell_town():
+    """A headframe over the shaft, its wheel at the top, a slag heap beside it."""
+    m = new()
+    rect(m, 0, 460, 512, 490)                       # the ground
+    # The headframe: two legs, a brace, the wheel.
+    line(m, [(140, 460), (220, 120)], 18)
+    line(m, [(300, 460), (220, 120)], 18)
+    line(m, [(170, 330), (270, 330)], 12)
+    line(m, [(156, 400), (284, 400)], 12)
+    circle(m, 220, 112, 56)
+    circle(m, 220, 112, 36, fill=OFF)
+    circle(m, 220, 112, 12)
+    line(m, [(220, 112), (330, 460)], 8)            # the cable down the shaft
+    heap = new()
+    ImageDraw.Draw(heap).pieslice([300, 320, 512, 600], 180, 360, fill=ON)
+    return over(heap, m, 10)
+
+
+# ---------------------------------------------------------------- the Last Republic
+
+def g_republic():
+    """A five-pointed star over a column on its plinth, a ribbon across it."""
+    m = new()
+    poly(m, star(256, 110, 92, 38))
+    col = new()
+    rect(col, 196, 230, 316, 256)                   # the capital
+    rect(col, 214, 256, 298, 430)                   # the shaft
+    for x in (236, 256, 276):
+        line(col, [(x, 266), (x, 420)], 6, fill=OFF)
+    rect(col, 176, 430, 336, 470)                   # the plinth
+    m = over(col, m, 12)
+    ribbon = new()
+    poly(ribbon, [(110, 300), (402, 300), (380, 340), (402, 380), (110, 380), (132, 340)])
+    return over(ribbon, m, 12)
+
+
+def g_republic_town():
+    """A town hall with a dome and a flag on a pole beside it."""
+    m = new()
+    rect(m, 0, 460, 512, 490)                       # the ground
+    rect(m, 120, 280, 400, 460)                     # the hall
+    ImageDraw.Draw(m).pieslice([180, 160, 340, 320], 180, 360, fill=ON)  # the dome
+    rect(m, 248, 120, 264, 170)                     # its spire
+    for x in (150, 210, 290, 350):
+        rect(m, x, 320, x + 24, 440, fill=OFF)      # the columns' spaces
+    flag = new()
+    line(flag, [(450, 460), (450, 140)], 12, caps=False)
+    poly(flag, [(456, 146), (510, 160), (456, 200)])
+    return over(flag, m, 10)
+
+
+# ---------------------------------------------------------------- the Hollow Fleet
+
+def g_hollowfleet():
+    """A ship's hull pointing down to the ground inside a ring, a rank chevron under it."""
+    m = new()
+    ImageDraw.Draw(m).ellipse([40, 30, 472, 462], outline=ON, width=30)
+    ship = new()
+    # The hull, nose down: a long body narrowing to its prow, fins at its tail.
+    poly(ship, [(206, 110), (306, 110), (316, 300), (256, 380), (196, 300)])
+    poly(ship, [(206, 120), (150, 70), (196, 200)])
+    poly(ship, [(306, 120), (362, 70), (316, 200)])
+    rect(ship, 236, 160, 276, 200, r=10, fill=OFF)  # a port
+    m = over(ship, m, 12)
+    chevron = new()
+    line(chevron, [(176, 420), (256, 470), (336, 420)], 26)
+    return over(chevron, m, 10)
+
+
+def g_hollowfleet_town():
+    """A grounded hull lying on its side beside a landing pad."""
+    m = new()
+    rect(m, 0, 440, 512, 470)                       # the ground
+    # The hull lying along the ground, its nose to the left, its tail fin up.
+    poly(m, [(40, 380), (110, 300), (380, 300), (380, 440), (90, 440)])
+    poly(m, [(330, 300), (380, 220), (400, 300)])
+    for x in (150, 210, 270):
+        circle(m, x, 360, 18, fill=OFF)             # its ports
+    pad = new()
+    rect(pad, 400, 410, 510, 440)                   # the landing pad
+    line(pad, [(455, 410), (455, 340)], 10)         # its light mast
+    circle(pad, 455, 334, 12)
+    return over(pad, m, 8)
+
+
 GLYPHS = [
     ("League", g_league), ("LeagueTown", g_league_town),
     ("Order", g_order), ("OrderTown", g_order_town),
@@ -751,13 +914,18 @@ GLYPHS = [
     ("Mossborn", g_mossborn), ("MossbornTown", g_mossborn_town),
     ("AshenBanner", g_ashenbanner), ("AshenBannerTown", g_ashenbanner_town),
     ("KilnGuild", g_kilnguild), ("KilnGuildTown", g_kilnguild_town),
+    ("SignalLine", g_signalline), ("SignalLineTown", g_signalline_town),
+    ("Deepwell", g_deepwell), ("DeepwellTown", g_deepwell_town),
+    ("Republic", g_republic), ("RepublicTown", g_republic_town),
+    ("HollowFleet", g_hollowfleet), ("HollowFleetTown", g_hollowfleet_town),
 ]
 
 # The peoples' colours (the middle of each colorSpectrum in Defs/PeopleDefs/), for the preview.
 TINTS = {"League": (66, 158, 166), "Order": (234, 228, 210), "Herders": (196, 118, 66), "Pilgrims": (145, 161, 130),
          "Scholars": (143, 46, 84), "Enclave": (161, 212, 227), "RiverFolk": (28, 115, 179),
          "Wardens": (176, 50, 32), "QuietBell": (105, 105, 115), "Tamers": (125, 82, 170), "Wheel": (158, 135, 61),
-         "Stormglass": (74, 92, 130), "Mossborn": (79, 115, 48), "AshenBanner": (156, 151, 144), "KilnGuild": (214, 166, 51)}
+         "Stormglass": (74, 92, 130), "Mossborn": (79, 115, 48), "AshenBanner": (156, 151, 144), "KilnGuild": (214, 166, 51),
+         "SignalLine": (224, 120, 41), "Deepwell": (153, 28, 26), "Republic": (43, 61, 120), "HollowFleet": (102, 110, 125)}
 
 
 def to_texture(mask):

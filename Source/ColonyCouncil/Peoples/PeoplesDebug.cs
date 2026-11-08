@@ -177,7 +177,7 @@ namespace ColonyCouncil
                         Say("no one could be made.");
                         return;
                     }
-                    LordMaker.MakeNewLord(people, new LordJob_VisitColony(people, at, GenDate.TicksPerDay / 2), map, pawns);
+                    LordMaker.MakeNewLord(people, new LordJob_VisitOnErrand(people, at, GenDate.TicksPerDay / 2), map, pawns);
                     Log.Message(sb.ToString().TrimEnd());
                     Say(pawns.Count + " of " + people.Name + " here as visitors for half a day (each described in the log).");
                 }));

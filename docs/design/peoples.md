@@ -1005,6 +1005,203 @@ Not used: Vanilla Trade Expanded's contracts (its code isn't among the player's 
 board needs its own UI and world objects; the squad is Rimfolk's own camp instead), Vehicle Framework, a convoy for the
 Banner (as release D), Vanilla Psycasts Expanded's Wildspeaker for the Conclave (the weather's paths fit it better).
 
+## What was built (release F: the Signal Line, the Deepwell Union, the Last Republic and the Hollow Fleet)
+
+The first four of the eight peoples of `docs/design/peoples-third.md` (step 2 of its order of building; approved by the
+player as written, 8 November 2026), at releases D's and E's level: a founding story, sayings, what they honour and
+fear, titles, messengers, gear by role, faith, town plan, voice, touchpoints at the gate that play out on the map, an
+ask, a patch on the world events that should come from them, names for peoples that arise in their ways and an Almanac
+page; and the age they live in moves over the years by the rule of "Ages that change over time". Built only from the
+player's active mods (`docs/player-mods/`, the rows with `active` yes), always softly, with the base game's fallback.
+Code in `Source/ColonyCouncil/Peoples/`: `PeoplesF.cs` (helpers, the job driver, the relay mast, the Line, the union),
+`PeoplesF2.cs` (the Republic, the Fleet, the dev actions), `PeoplesFPatches.cs` (six game hooks), `PeoplesFMath.cs`
+(pure, linked into the tests: `Tools/Tests/PeoplesFTests.cs`, "peoples, release F: "); `Source/ColonyCouncil/PaceVisit.cs`
+(`LordJob_VisitOnErrand`: the game's visit at an errand's pace, `Pace.Errand`). Defs:
+`Defs/PeopleDefs/Rimfolk_People_SignalLine.xml`, `_Deepwell.xml`, `_Republic.xml`, `_HollowFleet.xml`,
+`Rimfolk_TownPlans_PeoplesF.xml`; `Defs/IncidentDefs/Rimfolk_Events_PeoplesF.xml`,
+`Defs/MissionDefs/Rimfolk_Missions_PeoplesF.xml`, `Defs/FlavorPoolDefs/Rimfolk_Lines_PeoplesF.xml`,
+`Defs/OutsiderTalkDefs/Rimfolk_OutsiderTalks_PeoplesF.xml`, `Defs/ThoughtDefs/Rimfolk_Thoughts_PeoplesF.xml`,
+`Defs/Misc/Rimfolk_PeoplesF_Misc.xml` (the jobs, the relay mast), `Patches/Rimfolk_PeoplesF.xml`, Keyed
+`Rimfolk_PeoplesF.xml`; the Almanac's page *the Line, the union, the Republic and the Fleet*; the mast's texture
+`Textures/ColonyCouncil/Things/RelayMast.png`.
+
+| | The Signal Line | The Deepwell Union | The Last Republic | The Hollow Fleet |
+|---|---|---|---|---|
+| defName | `Rimfolk_SignalLine` | `Rimfolk_Deepwell` | `Rimfolk_Republic` | `Rimfolk_HollowFleet` |
+| Calling | linesmen | drillers | citizens | crew |
+| Age | Industrial (outlander parent) | Industrial | Industrial | Spacer |
+| Its age over the years | 8 years an age, up to the spacer age | 11, up to the spacer age | 9, up to the spacer age | 10; at the height already, falls back when cut off |
+| Arises in (release B) | every age | every age | every age | every age |
+| Founding | after the long war cut every road, the lineman Ennis Calloway walked the hills with a coil of copper wire and raised a mast on every height he could climb, until one valley could hear the next; the first mast still stands and has never gone quiet | the night the seam under Deepwell ran dry and the owners fled, the shift-captain Marta Grieve put it to the vote in the hall, scatter or stay together; they wrote every name in a book and walked out with their picks | the winter the capital went dark, the postmaster Clement Ashdown was the most senior official still answering the radio; he read the old laws aloud every evening, issued ration cards and called an election in the spring | Captain Imre Sallow's last order, when the hull came down short of its world: keep your posts until the order comes to disembark; he died before giving it, and nobody since has had the rank |
+| Sayings | Every mast is a voice. A voice is a road nobody has to walk. Keep it singing. Say where you heard it. Silence is the only storm. | The ground keeps what it's given. We go down and ask for it back. Everyone up at the end of the shift. Put it to the vote. One book, one union. | The Republic never fell. It simply has fewer citizens than it used to. Everyone counted, everyone owed. Keep the radio on. There is a form for that. | We were promised a world. We are still waiting for orders to disembark. Holding position. Every watch is logged. The ship provides, and we provide for the ship. |
+| They honour / fear | a mast kept singing, a message passed on true and a lineman back down safe / silence on the line, a storm that takes a mast and news passed on wrong | a seam worked well, a shaft shored right and everyone up at the end of the shift / a cave-in, a boss who decides alone and a pit gone silent | the census kept, an election held on the day and a radio that never goes silent / disorder in the streets, an uncounted people and the radio gone quiet | a watch kept to its last hour, the ship in good repair and a sleeper woken among friends / the last part failing, a sleeper who wakes to strangers and the order that never comes |
+| Signature | the linemen's kit: an oilskin (duster) in signal orange over a collar shirt and trousers, Vanilla Apparel Expanded's hard hat; operators and families an orange cap or hat | the union's red on a work shirt and an armband (Biotech's sash), hard hats on the miners and shot-firers | the Civic Guard's one uniform in civic navy (shirt, trousers, flak vest, helmet); clerks and citizens a navy cap or bowler | the ship's uniform in deck grey (collar shirt and trousers) on every rank; recon armour for the ship's guard; officers a jacket and Royalty's beret |
+| Leader, head, heir, envoy, trader | chief lineman, relay-keeper, second keeper, lineman, wire-trader | union boss, shift-captain, second captain, driller, assayer | president, minister, deputy minister, census-taker, quartermaster | captain, first officer, second officer, ensign, quartermaster |
+| Messengers | line-runners | pit-runners | dispatch riders | deck-runners |
+| Towns | 0.4: relays | 0.45: pits | 0.5: towns | 0.3: hulls |
+| Caravans | 0.8 | 1 | 0.9 | 0.6 |
+| Raids | 0.2 | 0.3 | 0.3 | 0.15 |
+| Faith (Ideology) | The Open Line: collectivist (and VE Memes' progressive and trader); ideological or abstract; techist | The Union Book: collectivist, tunneler (and VE Memes' industrialism); ideological or abstract; rustic | The Republic Never Fell: loyalist (and VE Memes' republic and city builders); ideological or archist; Christian | The Ship's Watch: loyalist, transhumanist, Odyssey's shipborn; ideological or archist; techist |
+| Kinds (Biotech) | genies, hussars, highmates, starjacks, awakened androids, lapis, Avaloi (18%) | dirtmoles, Neanderthals, wasters, stoneborn, boglegs, korgs, gorillas | hussars, genies, highmates, Neanderthals, pigskins, uredd, askbarn, Venators | starjacks, genies, highmates, hussars, archons, awakened androids, askbarn, nereids (29%) |
+| Colour | signal orange | union red | civic navy | deck grey |
+
+**How alike they look, role by role** (uniform only where it makes sense). The Line's linemen and the chief lineman in
+the one kit above, with Vanilla Apparel Expanded - Accessories' utility belts and packs; relay-keepers in the oilskin
+without the hat; operators and the wire-trader in their own clothes with an orange cap. The union dresses by trade in
+work clothes with the red: miners and shot-firers in trousers, the sash and a hard hat; the shift-captain in a jacket;
+the assayer and the boss freer. The Republic's Civic Guard in its one uniform, every piece navy (and every other age's
+issue in the same navy); clerks in shirt, trousers and bowler; citizens and the quartermaster in their own clothes; the
+president in a duster. The Fleet's whole crew in the ship's uniform: deckhands as it is, the ship's guard in recon
+armour and helmet over it, engineers with Biotech's airwire headset, officers in a jacket and beret, the quartermaster
+and the captain in a duster.
+
+**Every age** (the player's rule; the age they live in now, `Peoples.AgeOf`). The Line's linemen take Vanilla Factions
+Expanded - Tribals' oiled poncho and a bow in the tribal age, a cape and a great bow in the medieval age, a charge rifle
+in the spacer age. The union's miners clubs and spears, maces, charge rifles; its shot-firers bows, great bows, charge
+rifles; its captains spears, swords and maces, charge rifles. The Civic Guard's issue: tribal war wear and great clubs,
+plate armour with spears and swords, recon armour and charge rifles. The ship's guard falls back through every earlier
+age (tribal war wear, plate with spears and swords, flak and an advanced helmet with an assault rifle), all in grey.
+
+**Gifts** (`PeopleKindExtension.gifts`): the Line's linemen A RimWorld of Magic's snipers and rangers; its operators
+technomancers and, with Royalty, a psylink of one or two levels on Vanilla Psycasts Expanded's Staticlord path (4%: the
+psychic hum in the static). The union's miners a few with mining genes put in (Biotech's dark vision and robust, 4%;
+Alpha Genes' high mining yield, 3%) and geomancers; shot-firers geomancers and inner fire. The Republic's clerks bards,
+and its propaganda officers a psylink of one or two levels as Empaths or Puppeteers (4%). The Fleet's deckhands strong
+immunity from the ship's old gene work (5%); engineers Biotech's mechlink and technomancers; officers a psylink of two to
+four levels as Skipmasters, Protectors or Technomancers (25%), the captain three to five (30%) and commanders; the
+ship's guard super soldiers and snipers.
+
+**Their towns' maps** (`Rimfolk_TownPlans_PeoplesF.xml`). The Line's **relay** (35 by 22): the mast (`Rimfolk_RelayMast`)
+on the plan's height inside a fenced yard, the hut with two comms consoles, a bunkhouse of ten beds, a mess, and the
+cable yard of shelves and the store. The union's **pit** (37 by 24): the headframe of columns over the shaft, the slag
+heap, the union hall with its bookcases (the book), a boarding house of twelve beds, the smithy and the store. The
+Republic's **town hall** (37 by 22): the hall with its radio (comms consoles), the archive of eight bookcases, the
+ration office, the guardhouse behind sandbags, four beds. The Fleet's **hull** (37 by 21): the bridge (comms consoles),
+the crew deck of nine beds, the sleepers' hold of five cryptosleep caskets, hydroponics and the landing pad.
+
+**The relay mast** (`Rimfolk_RelayMast`, the colony's own, `CompRelayMast`): it sings while it is above half its hit
+points (`PeoplesFMath.Quiet`) and a people of the linesmen is at peace with the colony (`RelayMast.Sings`). A singing
+mast at a home: the colony's letters by a messenger and by a bearer, and their answers, are on the road half the days
+(`PeoplesFMath.Relayed`, never under half a day; `NeighbourLetters.HandedToBearer` and `Handed`); a raid the storyteller
+sends to that home (big or small, never a quest's, never one coming back out of the queue) is held by
+`Patch_LineMastWarns` (a prefix on `Storyteller.TryFire`) and put into the game's own incident queue 2 to 4 hours on
+(`WarnHours`, 6 to retry), with the line's warning letter at once; the post (`Post/PostReach.Mast`) counts it as a mast
+near for its range. A thunderstorm wears it a hit point a quarter hour (`StormWear`, the comp's rare tick); under half
+its strength it is quiet until mended (told once), and its inspect line says which.
+
+**Theirs at the gate** (`Rimfolk_Events_PeoplesF.xml`; each only from a people of its calling at peace with the
+colony, each with three answers, the last always to send them on):
+
+- *A relay mast* (`HappeningWorker_LineMast`, `DilemmaEffect_LineMast`): with no mast yet, a lineman offers to raise one
+  on the colony's highest ground (`RelayMast.Site`: open, unroofed ground that bears a heavy building, 8 to 40 cells from
+  the colony's middle, the hillside first, rough ground next, the nearer the better). The lineman walks there and raises
+  it (`JobDriver_PeoplesF`, two hours, a bar and sparks), the colony's builder beside them if it likes.
+- *The wire-trader* (`HappeningWorker_LineWire`): the colony has components in its stores; the wire-trader buys four to
+  twenty at a fifth over their worth (`WirePrice`), carried out to them and paid in silver. Or the colony pays fifty
+  silver for the line's news of a caravan on the road, and the game's own trader caravan comes.
+- *A climb in the storm* (`HappeningWorker_LineStorm`, `DilemmaEffect_LineClimb`): a thunderstorm on a home whose mast
+  is worn; a lineman comes up the road through it, climbs the mast (a bar and sparks at its foot) and mends it to full
+  strength (`RelayMast.Climbed`), the colony's builder holding the line at its foot if it likes.
+- *A drill for a share* (`HappeningWorker_UnionDrill`, `DilemmaEffect_UnionDrill`, `UnionDrill`): the colony's ground
+  holds a deep seam (the game's own deep resources, `deepResourceGrid`); a drill crew comes, the driller works it six
+  hours where it lies (a bar and dust) while the crew stands by, then what came up (as much as lies there, up to about
+  700 silver's worth, to 1,400 for a richer colony, `Yield`) is split: the union's two in five into the driller's pack,
+  the colony's three in five left at the drill (`ColonyShare`), and the seam is the less by it. The colony's best miner
+  may work the rig beside them and learn; one shift in twenty the rig hurts them (below).
+- *The assayer's crate* (`HappeningWorker_UnionGoods`, `DilemmaEffect_UnionGoods`): a crate of steel (`CrateSteel`, 40 to
+  120 by the colony's wealth), components (2 to 8) and blasting goods (high-explosive shells, Settlers' dynamite where it
+  is loaded) for a tenth over their worth (`GoodsPrice`), the silver carried out and the crate set down at the gate by
+  the assayer (`Couriers.Loot`). Or the assayer walks the colony's ground with its best miner.
+- *The strike* (`UnionStrike`, `HappeningWorker_UnionStrike`, `DilemmaEffect_UnionSettle`): each union is looked at
+  once a season on its own day (`StrikeDay`), and one look in seven calls a strike (a visit, kind `unionStrike`). While
+  it runs, no caravan of theirs comes (`Patch_UnionStrikeCaravans` on
+  `IncidentWorker_TraderCaravanArrival.FactionCanBeGroupSource`), their visitors bring nothing to sell
+  (`Patch_UnionStrikeVisitors` on `IncidentWorker_VisitorGroup.TryConvertOnePawnToSmallTrader`), and their pits don't
+  trade (`Patch_UnionStrikeTown` on `Settlement.CanTradeNow`). It ends by their own vote after a month (`StrikeDays`),
+  or sooner: from the second day a shift-captain may come to the gate, and food for the picket line (60 to 160,
+  `PicketFood`) carried out, or the colony's best talker sitting with them, settles it (+8, `Rimfolk_Evt_StrikeSettled`).
+- *The census* (`HappeningWorker_RepublicCensus`, `DilemmaEffect_RepublicCensus`, `Census`): a census-taker and a guard
+  walk the colony from bed to bed (to whoever has none, where they stand), a while at each with the roll (`CensusTicks`,
+  a line over their head), and the count is written and told: the Republic thinks 3 better of the colony. The colony's
+  best talker may walk them round. Or the colony keeps its own count (-2).
+- *Citizenship papers* (`Papers`, `HappeningWorker_RepublicPapers`): taken, a visit (kind `republicPapers`) for a year
+  (sixty days): the Republic's traders, caravans and towns give the colony a citizen's terms, six in a hundred better
+  (`Patch_PapersPawnTerms`, `Patch_PapersTownTerms` on the game's own `TradePriceImprovementOffsetForPlayer`), and the
+  colony owes a duty (+5; struck, -6).
+- *A conscript for a season* (`HappeningWorker_RepublicConscript`, `Conscripts`, `JobDriver_ConscriptOut`): a sergeant
+  asks one good fighter for fifteen days' service at the Republic's town. Sent (a visit, kind `conscript`, its stake the
+  stage), the colonist takes the Guard's rations (`Hosting.Provision`), walks to the map's edge and sets out as a caravan
+  of their own (`CaravanExitMapUtility`, kept in the world as lent, `WorldLedger`), the envoys' way; at the town they
+  serve the season; then they come home by the same roads (`CaravanMaker`, `CaravanArrivalAction_Enter`) with the pay
+  (150 silver and 90 an age, `ServicePay`), the drill (shooting, and melee half) and +8. The roads' ambushes and weather
+  are the game's own; nothing of Rimfolk's hurts them. The town fallen or the Republic turned on the colony, they come
+  home sooner. Or the colony pays to be excused (120 to 480 silver by its wealth, `Exemption`), or refuses (-5, and a
+  citizen colony's papers are struck).
+- *The radio* (`RepublicRadio`, from the region's day): once a season on each Republic's own day (`RadioDay`), at a home
+  with a radio (a powered comms console, or the Line's mast singing), its evening broadcast praises a colony of citizens
+  or good friends (goodwill 40) or denounces one under none or at war (`Broadcast`), told in its voice and felt by
+  everyone at home (`Rimfolk_Thought_RadioPraised`, `_RadioDenounced`).
+- *The shuttle* (`HappeningWorker_FleetShuttle`, `DilemmaEffect_FleetShuttle`, `FleetLanding`): for an industrial or
+  spacer colony the quartermaster calls the radio; bidden, Royalty's shuttle lands by the gate (by drop pod without
+  Royalty), the quartermaster and one to three of the ship's guard (`ShuttleGuards`) step down and trade as a visiting
+  trader does. The colony may also buy a cryptosleep casket from the hull (a tenth over its worth, `CasketPrice`), which
+  comes down crated in the hold.
+- *Salvage* (`HappeningWorker_FleetSalvage`, `DilemmaEffect_FleetSalvage`, `FleetSalvage`): the colony has what the ship
+  needs (ship chunks on its ground, worth 220 each to them; persona cores and advanced components in its stores,
+  `PlayCarry.Salvage`), 150 silver's worth at least; the quartermaster pays three tenths over its worth (`SalvagePrice`):
+  the cores and parts carried out, and the deckhands cut up to three chunks apart where they lie (two hours each, a bar
+  and sparks) and carry them off. The colony's crafter may watch them.
+- *The sleeper woken too late* (`HappeningWorker_FleetSleeper`): towards evening (15h to 21h) a sleeper from the Fleet's
+  caskets, 190 to 230 years asleep (their age the older by it, still with cryptosleep sickness), asks shelter: taken in
+  (they join), a warm corner for the night, or the gate stays shut.
+
+**Their asks** (`Rimfolk_Missions_PeoplesF.xml`, each only theirs): the Line's fallen span (parts or steel, a delivery),
+the union's short shift (two good miners, Mining 6, for a day and a half), the Republic's witness at the count of its
+election (a good talker, Social 6, for a day) and the Fleet's lift (plasteel or parts).
+
+**By patch** (`Patches/Rimfolk_PeoplesF.xml`, conditional): world events that prefer a calling, five times as likely as
+another people: two peoples who want to talk (the Line's masts carry the talks), a silver rush (the union), a republic's
+vote (the Republic), exiles from a town (the Fleet: sleepers who left the hull).
+
+**Release B's peoples that arise may take their ways** (`ArisingMath.Lean`, its 17-argument form): a band of the
+banished, after all the other leans, led by a good miner (Mining 10) digs as a union, by a good talker (Social 10) keeps
+a census and votes; survivors of a fallen town, after the Bell's and the Wheel's ways, keep its radio going and raise
+masts on their fated quarter in the industrial or spacer age (`LineChance`, `SaltLine`), and keep its watches as a crew
+on their fated third in the spacer age (`CrewChance`, `SaltCrew`). Their words: `CC_Arise_refugees_linesmen`,
+`_crew`, `CC_Arise_exiles_drillers`, `_citizens` (each two ways), three names each (*the Barr Line*, *the Crew of Barr*,
+*Barr's Union*, *the Republic of Barr*, each with two other forms). Each people's rise and fall told in its own voice
+(`CC_PeopleAge_Voice_*`).
+
+**Harm.** One thing of theirs hurts anyone: the colony's hand at the union's rig, one shift in twenty
+(`AccidentChance`), a crush or a bruise to a foot of 3 to 8 (`Harm.Injure`), through the harm setting and the shared
+budget (`HarmKinds.UnionDrill`, base 0.005 a colonist-year, in the peoples' share; modelled in `Tools/Balance/HarmSim.cs`),
+told when it lands. The conscript's dangers are the world's own roads.
+
+**Their pace on the map.** Their callers come, go about their work and leave at an errand's pace (`Pace.Errand`): the
+gate's visit lord is `LordJob_VisitOnErrand` (the game's visit with its travel on an errand and its way off the map at
+the errand's pace; `HappeningHelpers.Visit` uses it for every caller), and so is the lord that keeps a caller at its
+work's spot.
+
+**Saved**: nothing new. The strike, the papers and the conscript are visits of the happenings' tracker; the mast is a
+building; the held raid is in the game's own incident queue. A drill or a climb loaded halfway starts again (a drill
+loaded halfway brings nothing up; the crew goes home on its hours).
+
+**Softness**
+
+| Missing | What happens |
+|---|---|
+| Ideology | No fixed faiths or styles. |
+| Odyssey | The Fleet's faith without shipborn. |
+| Biotech | Humans only; no sash for the union's red, no mechlink or headset, no genes. |
+| Royalty | No psylinks; the Fleet comes down by drop pod; no beret. |
+| A RimWorld of Magic, Vanilla Psycasts Expanded | No classes; psylinks on the game's own way. |
+| Vanilla Apparel Expanded (and Accessories), Vanilla Factions Expanded - Tribals, Settlers, Frontier, Non-Lethal, Alpha Genes | The game's own pieces: no hard hat, belts, poncho or tribal war wear, dynamite, lever guns, batons, mining genes. |
+| Answers play out on the map (setting) off | The mast raised, the climb, the drill, the census and the salvage done at once. |
+| The deeper game hooks (setting) off | No raid warning, no strike stalling trade, no citizen's terms, no strike called or radio heard; the game's own bases for their towns; no age arms, kits or gifts. |
+
+Not used: a radio talk window of the Line's own (the game's comms console and Rimfolk's letters carry it), real world
+ships for the Fleet (its shuttle is Royalty's, as the enclave's lander is), a vote on the colony's own matters.
+
 ## What could come next
 
 - Their own world events: a league's toll war, an order's plague year with the colony's help asked by name, a great

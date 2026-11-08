@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Release F's peoples at the colony's gate (Source/ColonyCouncil/Peoples/PeoplesF.cs, PeoplesF2.cs): the jobs their
+       touchpoints are seen doing on the map (JobDriver_PeoplesF), the conscript's walk to the edge of the map, and the
+       Signal Line's relay mast on the colony's highest ground. -->
+
+  <JobDef>
+    <defName>Rimfolk_PeoplesF_RaiseMast</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeoplesF</driverClass>
+    <reportString>raising the Line's relay mast.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PeoplesF_ClimbMast</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeoplesF</driverClass>
+    <reportString>climbing TargetA in the storm.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PeoplesF_Drill</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeoplesF</driverClass>
+    <reportString>drilling the deep ground.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PeoplesF_Count</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeoplesF</driverClass>
+    <reportString>counting the colony's people for the census.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PeoplesF_CutChunk</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeoplesF</driverClass>
+    <reportString>cutting TargetA apart for the Fleet.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PeoplesF_ConscriptOut</defName>
+    <driverClass>ColonyCouncil.JobDriver_ConscriptOut</driverClass>
+    <reportString>setting out for the Republic's service.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <!-- The Signal Line's relay mast (Rimfolk_Evt_LineMast): a lattice of steel with its aerial and its lamp, raised by a
+       lineman on the colony's highest ground. While it sings (above half its hit points, the Line at peace), the colony's
+       letters reach their readers in half the days, and the line warns of a raid a little before it comes
+       (Peoples/PeoplesFPatches.cs). A thunderstorm's wind and wet wear it (CompRelayMast), and a lineman may come to
+       climb it in one. Only the Line raises one; it can be moved, and mended as any building is. -->
+  <ThingDef ParentName="BuildingBase">
+    <defName>Rimfolk_RelayMast</defName>
+    <label>relay mast</label>
+    <description>A lattice mast of the Signal Line, painted signal orange and white, with an aerial at its head and a red lamp to warn the night. It carries the colony's letters down the line to the next mast and the next, so they reach their readers in half the time, and the linemen down the line call a warning up it when armed men are on the road. A thunderstorm's wind and wet wear it; under half its strength it goes quiet until it is mended.</description>
+    <thingClass>Building</thingClass>
+    <tickerType>Rare</tickerType>
+    <graphicData>
+      <texPath>ColonyCouncil/Things/RelayMast</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1.6,3.2)</drawSize>
+      <drawOffset>(0,0,1.0)</drawOffset>
+    </graphicData>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>Impassable</passability>
+    <fillPercent>0.2</fillPercent>
+    <rotatable>false</rotatable>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <thingCategories>
+      <li>BuildingsMisc</li>
+    </thingCategories>
+    <statBases>
+      <MaxHitPoints>220</MaxHitPoints>
+      <Mass>30</Mass>
+      <MarketValue>420</MarketValue>
+      <Flammability>0</Flammability>
+      <Beauty>-2</Beauty>
+    </statBases>
+    <tradeability>None</tradeability>
+    <comps>
+      <li Class="ColonyCouncil.CompProperties_RelayMast" />
+      <li Class="CompProperties_Glower">
+        <glowRadius>3</glowRadius>
+        <glowColor>(217,40,32,0)</glowColor>
+      </li>
+    </comps>
+  </ThingDef>
+
+</Defs>

@@ -58,7 +58,7 @@ namespace ColonyCouncil
             var here = pawns.Where(p => p != null && p.Spawned && !p.Dead && !p.Downed).ToList();
             if (here.Count == 0 || f == null) return null;
             foreach (var p in here) p.GetLord()?.RemovePawn(p);
-            return LordMaker.MakeNewLord(f, new LordJob_VisitColony(f, spot, Mathf.RoundToInt(hours * GenDate.TicksPerHour)), here[0].Map, here);
+            return LordMaker.MakeNewLord(f, new LordJob_VisitOnErrand(f, spot, Mathf.RoundToInt(hours * GenDate.TicksPerHour)), here[0].Map, here);
         }
 
         /// <summary>A line from the event's own lines with these tags, said over their head.</summary>

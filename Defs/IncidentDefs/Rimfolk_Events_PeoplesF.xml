@@ -1,0 +1,774 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Release F's four peoples at the colony's gate (Source/ColonyCouncil/Peoples/PeoplesF.cs, PeoplesF2.cs; docs/design/
+    peoples.md, "Release F"; docs/design/peoples-third.md, step 2), each only from a people of its calling at peace with the
+    colony (the late-woken sleeper from any Fleet still standing), so none come in a world without one. Every age: the
+    words take the colony's means, and every answer plays out on the map.
+    - The Signal Line: a relay mast raised on the colony's highest ground, so the colony's letters reach their readers
+      in half the days and the line warns of a raid a little before it comes; a wire-trader who buys the colony's
+      components and sells the line's news of a caravan on the road; a lineman who climbs the colony's mast in a storm.
+    - The Deepwell Union: a drill crew who drill the colony's deep seam for a share of what comes up; an assayer selling
+      steel, components and blasting goods; a shift-captain asking help to settle the union's strike.
+    - The Last Republic: a census-taker who walks the colony counting its people; citizenship papers, a citizen's terms
+      and a duty owed; a conscript for a season, who goes by the world's own roads.
+    - The Hollow Fleet: the ship's shuttle down by the gate to trade, with a cryptosleep casket from the hull; salvage
+      bought, the ship's chunks cut apart where they lie; a sleeper woken too late asking shelter at dusk.
+    The Republic's radio and the union's strikes come on the region's day (PeoplesF.Daily), not at the gate.
+  -->
+
+  <!-- ===================== The Signal Line: a relay mast ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_LineMast</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a relay mast</label>
+    <workerClass>ColonyCouncil.HappeningWorker_LineMast</workerClass>
+    <baseChance>0.9</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>22~50</ages>
+        <stayHours>10~14</stayHours>
+        <answerDays>0.4</answerDays>
+        <titles>
+          <li>A lineman with a mast</li>
+          <li>The Signal Line's relay</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a lineman of {FACTION}, has come to the gate in a signal orange oilskin, leading a mule loaded with a lattice mast in sections and a coil of wire. The Line would raise a relay mast {TALE}, {X_nameDef} says, for nothing: from then the colony's letters go down the line from mast to mast and reach their readers in half the days, and when the linemen down the line hear of armed men on the road toward the colony, they call it up the mast before they arrive.</li>
+          <li>[hill] {X_nameDef}, a lineman of {FACTION}, has been looking at the hills round the colony as {X_pronoun} came up the road, a mast in sections on the mule behind. The ground {TALE} is the best height for miles, {X_nameDef} says, and the Line would raise a relay mast there: letters down the line in half the days, and a warning called up it when raiders are on the road.</li>
+          <li>[lowtech] A lineman of {FACTION} named {X_nameDef} has walked from {PLACE} with a mule and a tall frame of metal in pieces. It is a mast, {X_nameDef} says, that talks to the next mast and the next, and the Line would raise one {TALE}: the colony's letters would travel by it in half the time, and the linemen would call a warning up it when armed men are on the road.</li>
+          <li>[their:grateful] The Signal Line thinks well of the colony, and {X_nameDef} has brought a mast from {PLACE} to raise {TALE}: letters down the line in half the days, and the line's warning of a raid, as between friends.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Let them raise the mast</label>
+            <outcome>{X_nameDef} is leading the mule up {TALE} to raise the mast.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_LineMast" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Raise it, and have {A_nameDef} learn how it is guyed</label>
+            <outcome>{X_nameDef} is raising the mast {TALE}, with {A_nameDef} beside {X_objective} learning how the guy wires are set.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_LineMast" />
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the mast raised</label><to>Stranger</to><duration>1~2</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Construction</skill><xp>300</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
+            </effects>
+            <ways><openness>1</openness><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>No masts here</label>
+            <outcome>{X_nameDef} turns the mule round and goes on to the next height.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[mast] Every mast is a voice, and this one is yours.</li>
+          <li>[mast] Keep it singing, and it will keep you.</li>
+          <li>[mast,storm] Quickly, before the wind gets up.</li>
+          <li>[thanks] Say where you heard it, if you ever hear anything.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Signal Line: the wire-trader ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_LineWire</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the wire-trader</label>
+    <workerClass>ColonyCouncil.HappeningWorker_LineWire</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>25</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>22~60</ages>
+        <stayHours>6~10</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The wire-trader</li>
+          <li>Parts for the line</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a wire-trader of {FACTION}, has come to the gate with a lineman and an empty pack. The masts eat components, {X_nameDef} says, and the colony has {TALE} in its stores: the Line would pay {COUNT} silver for them. Or for fifty silver {X_pronoun} would sell the colony what the line has heard of a trader caravan on the road nearby, and tell the caravan about the colony.</li>
+          <li>[lowtech] A wire-trader of {FACTION} named {X_nameDef} is at the gate, looking at the colony's stores. The Line needs the little machine parts the colony keeps, {TALE}, and would pay {COUNT} silver for them. Or {X_nameDef} would sell the colony the news the masts carried of traders on the road, fifty silver, and send them this way.</li>
+          <li>[their:grateful] The Signal Line thinks well of the colony, and {X_nameDef} has come from {PLACE} for the colony's components, {TALE}, at {COUNT} silver, a good price. Or the line's news of a caravan on the road nearby, fifty silver, as between friends.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Sell them the components ({COUNT} silver)</label>
+            <outcome>The components are being carried out to {X_nameDef} at the gate, and the silver carried in.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the components for {X_nameDef}</label><what>ComponentIndustrial</what><variant>true</variant></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>Buy the line's news of a caravan (50 silver)</label>
+            <outcome>The silver is going out to {X_nameDef}, who is calling the caravan's position down the line so it turns toward the colony.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the news for {X_nameDef}</label><what>silver</what><count>50</count><steward>false</steward></li>
+              <li Class="ColonyCouncil.WorldEffect_Incident"><incident>TraderCaravanArrival</incident></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>1</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>Nothing today</label>
+            <outcome>{X_nameDef} shoulders the empty pack and the two of them go back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[wire] Every part of these goes up a mast somewhere.</li>
+          <li>[wire] The masts eat parts, and you have fed one.</li>
+          <li>[news] Heard it at the ridge mast this morning, and it's true.</li>
+          <li>[news] They'll be turning your way before dark.</li>
+          <li>[thanks] Keep the parts dry, we'll be back for them.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Signal Line: a lineman in the storm ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_LineStorm</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a lineman in the storm</label>
+    <workerClass>ColonyCouncil.HappeningWorker_LineStorm</workerClass>
+    <baseChance>1.5</baseChance>
+    <minRefireDays>15</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>22~50</ages>
+        <stayHours>6~10</stayHours>
+        <answerDays>0.2</answerDays>
+        <titles>
+          <li>A lineman in the storm</li>
+          <li>Keeping the mast singing</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a lineman of {FACTION}, has come up the road through the storm, oilskin streaming, a coil of rope over one shoulder. The colony's mast is {TALE}, {X_nameDef} says, and the Line keeps every mast singing in any weather: {X_pronoun} would climb it now and make it fast.</li>
+          <li>[quiet] {X_nameDef}, a lineman of {FACTION}, came up the road through the storm because the colony's mast went quiet on the line. It is {TALE}, {X_nameDef} says, wiping the rain out of {X_possessive} eyes, and {X_pronoun} would climb it now and set it right before the wind takes it.</li>
+          <li>[lowtech] A lineman of {FACTION}, {X_nameDef}, has walked through the storm to the gate with rope and tools. The tall mast is {TALE}, {X_nameDef} says, and {X_pronoun} has climbed worse than this: {X_pronoun} would go up it now and make it fast against the wind.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Let them climb it</label>
+            <outcome>{X_nameDef} is at the foot of the mast in the rain, rope over one shoulder, starting up.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_LineClimb" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>{A_nameDef} holds the line at its foot</label>
+            <outcome>{X_nameDef} is climbing the mast in the storm, with {A_nameDef} below holding the safety line and learning how it is made fast.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_LineClimb" />
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>holding the line</label><to>Stranger</to><duration>0.5~1</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Construction</skill><xp>250</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Not in this weather</label>
+            <outcome>{X_nameDef} looks up at the mast once more and goes back down the road into the rain.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[climb] Keep it singing.</li>
+          <li>[climb] Silence is the only storm.</li>
+          <li>[climb,quiet] I'll have it talking again before the next gust.</li>
+          <li>[thanks] It will want climbing before the season is out.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Deepwell Union: the drill for a share ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_UnionDrill</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the union's drill</label>
+    <workerClass>ColonyCouncil.HappeningWorker_UnionDrill</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>12</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>22~55</ages>
+        <stayHours>10~14</stayHours>
+        <answerDays>0.4</answerDays>
+        <titles>
+          <li>The union's drill</li>
+          <li>A drill for a share</li>
+        </titles>
+        <texts>
+          <li>A drill crew of {FACTION} has come to the gate with a rig on a cart, {X_nameDef} at its head with the union's red armband on. There is {THING} deep under the colony's ground, {X_nameDef} says, and the union would drill it for a share: six hours at the seam, and of the {COUNT} that comes up, {TALE} left at the drill for the colony and the rest for the union's book.</li>
+          <li>[scanned] A drill crew of {FACTION}, {X_nameDef} doing the talking, has come to the gate: they heard the colony found {THING} deep under its ground and has no drill on it yet. Six hours of the union's rig and {COUNT} of it comes up, {TALE} left for the colony, the rest for the union.</li>
+          <li>[lowtech] {X_nameDef} and a crew of {FACTION} have dragged a strange iron rig up to the gate. There is {THING} far under the colony's ground, {X_nameDef} says, deeper than any pick can reach, and the union's rig can bring {COUNT} of it up in an afternoon: {TALE} for the colony, the rest for the union.</li>
+          <li>[their:grateful] The Deepwell Union thinks well of the colony, and {X_nameDef}'s crew has come from {PLACE} to drill the {THING} under the colony's ground: {COUNT} of it up in six hours, {TALE} for the colony, as between friends.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Let them drill for their share</label>
+            <outcome>The union's crew is setting the rig up over the seam, and {X_nameDef} has started the drill.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_UnionDrill" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Drill it, with {A_nameDef} on the rig beside them</label>
+            <outcome>{A_nameDef} is working the rig at the seam beside {X_nameDef}, learning the union's way with a drill.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_UnionDrill"><together>true</together></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Mining</skill><xp>600</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Leave the ground as it is</label>
+            <outcome>{X_nameDef} says the seam will keep, and the crew hauls the cart back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[drill] The ground keeps what it's given.</li>
+          <li>[drill] We go down and ask for it back.</li>
+          <li>[done] Everyone up at the end of the shift.</li>
+          <li>[done] Your share's on the pile, ours is in the book.</li>
+          <li>[thanks] Put it to the vote next time.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Deepwell Union: the assayer's goods ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_UnionGoods</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the union's assayer</label>
+    <workerClass>ColonyCouncil.HappeningWorker_UnionGoods</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>25</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>25~60</ages>
+        <stayHours>6~10</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The union's assayer</li>
+          <li>A crate from the pits</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, an assayer of {FACTION}, has come to the gate with a miner and a cart. The union has a crate to sell from its pits, {TALE}, for {COUNT} silver. Or {X_nameDef} would walk the colony's ground with its best miner and say what lies under it.</li>
+          <li>[seam] {X_nameDef}, an assayer of {FACTION}, has come to the gate with a crate on a cart: {TALE}, {COUNT} silver. {X_pronoun} has a nose for ground, {X_nameDef} says, and the colony's has something in it worth knowing about, if its miner would walk it with {X_objective}.</li>
+          <li>[lowtech] An assayer of {FACTION} named {X_nameDef} has come to the gate with a cart of metal and strange charges: {TALE}, all of it for {COUNT} silver. Or {X_pronoun} would walk the colony's ground and say what is under it.</li>
+          <li>[their:grateful] The Deepwell Union thinks well of the colony, and {X_nameDef} has brought it the pick of the pits' crate, {TALE}, for {COUNT} silver, as between friends.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Buy the crate ({COUNT} silver)</label>
+            <outcome>The silver is going out to {X_nameDef}, and the crate is being set down at the gate.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><label>the crate's price for {X_nameDef}</label></li>
+              <li Class="ColonyCouncil.DilemmaEffect_UnionGoods" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>{A_nameDef} walks the ground with the assayer</label>
+            <outcome>{A_nameDef} is walking the colony's ground with {X_nameDef}, who stops every few steps to crumble a handful of it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>walking the ground</label><to>Stranger</to><duration>1~2</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Mining</skill><xp>300</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not today</label>
+            <outcome>{X_nameDef} says the crate will keep, and the cart goes back down the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[sold] Mind the charges, they don't like being dropped.</li>
+          <li>[sold] Straight from the pits, weighed twice.</li>
+          <li>[ground] There's more under your feet than you think.</li>
+          <li>[thanks] One book, one union, and a cart going home full.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Deepwell Union: the strike ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_UnionStrike</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the union's strike</label>
+    <workerClass>ColonyCouncil.HappeningWorker_UnionStrike</workerClass>
+    <baseChance>2</baseChance>
+    <minRefireDays>12</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>30~60</ages>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>The union on strike</li>
+          <li>A shift-captain at the gate</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a shift-captain of {FACTION}, has come to the gate with the union's red armband on and an empty sack. The union is on strike at {PLACE}, voted on and held, and nothing has moved out of the pits since: no carts, no caravans. The picket line is hungry, {X_nameDef} says. With {COUNT} of the colony's raw food the union could hold out to a fair deal and go back; or the colony's best talker could sit down with {X_objective} and help talk it through.</li>
+          <li>[lowtech] A shift-captain of {FACTION}, {X_nameDef}, has walked from {PLACE}: the miners have laid down their picks by vote, and nobody will buy or sell until it is settled. The picket line needs food, {COUNT} of it, to hold to a fair end, or someone who can talk to both sides.</li>
+          <li>[their:grateful] The Deepwell Union thinks well of the colony, and {X_nameDef} has come to it first: the strike at {PLACE} needs {COUNT} raw food for the picket line, or a fair voice to help settle it.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Food for the picket line ({COUNT})</label>
+            <outcome>The food is being carried out to {X_nameDef}, and the strike at {PLACE} can be settled.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>rawfood</what><label>food for the picket line</label></li>
+              <li Class="ColonyCouncil.DilemmaEffect_UnionSettle" />
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>{A_nameDef} talks it through with {X_objective}</label>
+            <outcome>{A_nameDef} is sitting at the gate with {X_nameDef}, going over the union's demands and the owners' answer line by line.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>talking the strike through</label><to>Stranger</to><duration>2~3</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Social</skill><xp>300</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_UnionSettle" />
+            </effects>
+          </li>
+          <li>
+            <label>It is the union's own business</label>
+            <outcome>{X_nameDef} ties the empty sack shut and goes back to the picket line at {PLACE}. The strike goes on.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[settled] Put it to the vote, and we'll be back at the face by morning.</li>
+          <li>[settled] One book, one union, and one good neighbour.</li>
+          <li>[refused] The ground keeps what it's given, and so do some people.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Last Republic: the census ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_RepublicCensus</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the census-taker</label>
+    <workerClass>ColonyCouncil.HappeningWorker_RepublicCensus</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>28~60</ages>
+        <stayHours>10~14</stayHours>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>The census of the Republic</li>
+          <li>A census-taker at the gate</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a census-taker of {FACTION}, has come to the gate with a guard of the Civic Guard and a bound roll under one arm. The Republic counts everyone it can, {X_nameDef} says: {X_pronoun} would walk the colony from bed to bed and write its {COUNT} people into the roll, every name, as the law requires.</li>
+          <li>[citizens] {X_nameDef}, a census-taker of {FACTION}, has come for the colony's count: as citizens of the Republic, its {COUNT} people are owed a place in the roll. {X_pronoun} would walk the colony from bed to bed with the guard and write every one of them down.</li>
+          <li>[lowtech] A clerk of {FACTION} named {X_nameDef} has come to the gate with a guard and a great book. The Republic writes down everyone, {X_nameDef} says, and would walk through the colony, bed by bed, until all {COUNT} of its people are in the book.</li>
+          <li>[their:grateful] The Last Republic thinks well of the colony, and {X_nameDef} has come from {PLACE} to count its {COUNT} people into the roll, bed by bed, as a courtesy between friends.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Let them count</label>
+            <outcome>{X_nameDef} is walking the colony with the roll, stopping at every bed to write a name.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_RepublicCensus" />
+            </effects>
+          </li>
+          <li>
+            <label>Count, with {A_nameDef} showing them round</label>
+            <outcome>{A_nameDef} is walking {X_nameDef} round the colony from bed to bed, saying who sleeps where as the names go into the roll.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_RepublicCensus" />
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>showing the census-taker round</label><to>Stranger</to><duration>1~2</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Social</skill><xp>200</xp></li>
+            </effects>
+          </li>
+          <li>
+            <label>The colony keeps its own count</label>
+            <outcome>{X_nameDef} writes something in the margin of the roll, and goes back to the road with the guard.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_RepublicUncounted" />
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[count] Everyone counted, everyone owed.</li>
+          <li>[count] The Republic never fell, it simply needs a fresh count.</li>
+          <li>[stop] One more for the roll.</li>
+          <li>[stop] There is a form for that, and I have it.</li>
+          <li>[refused] An uncounted people, noted.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Last Republic: citizenship papers ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_RepublicPapers</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>citizenship papers</label>
+    <workerClass>ColonyCouncil.HappeningWorker_RepublicPapers</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>28~60</ages>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>Citizenship papers</li>
+          <li>The Republic's offer</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a clerk of {FACTION}, has come to the gate with a satchel of stamped papers. The Republic would make the colony its citizens, {X_nameDef} says, for a year: its traders would deal with the colony on a citizen's terms, {TALE} better, and in return the colony owes the Republic its duty. When the Republic calls for a conscript, a citizen answers.</li>
+          <li>[lowtech] A clerk of {FACTION} named {X_nameDef} is at the gate with papers sealed in wax. The colony could be citizens of the Republic for a year, {X_nameDef} says: better dealings with the Republic's traders, {TALE} better, and a duty to answer when the Republic calls for a fighter.</li>
+          <li>[their:grateful] The Last Republic thinks well of the colony, and {X_nameDef} has brought its citizenship papers from {PLACE}: a year of a citizen's terms with its traders, {TALE} better, and the duty that comes with them.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Take the papers</label>
+            <outcome>{X_nameDef} stamps the papers, hands them over, and writes the colony into the Republic's book of citizens.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_RepublicPapers" />
+            </effects>
+          </li>
+          <li>
+            <label>Take them, {A_nameDef} swearing for the colony</label>
+            <outcome>{A_nameDef} is at the gate with {X_nameDef}, reading the citizen's oath aloud before signing the papers for the colony.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_RepublicPapers" />
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the citizen's oath</label><to>Stranger</to><duration>0.5~1</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Social</skill><xp>200</xp></li>
+            </effects>
+          </li>
+          <li>
+            <label>The colony is its own</label>
+            <outcome>{X_nameDef} puts the papers back in the satchel, says the offer stands, and goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[papers] The Republic never fell, and now you are part of it.</li>
+          <li>[papers] Everyone counted, everyone owed.</li>
+          <li>[thanks] The offer stands, there is a form for that too.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Last Republic: a conscript for a season ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_RepublicConscript</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the Republic's call</label>
+    <workerClass>ColonyCouncil.HappeningWorker_RepublicConscript</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>28~55</ages>
+        <stayHours>8~12</stayHours>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>The Republic's call</li>
+          <li>A conscript for a season</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a sergeant of the Civic Guard of {FACTION}, has come to the gate in the Guard's navy with a list. The Republic needs one good fighter of the colony for a season at {PLACE}, {TALE} away: {A_nameDef}, by the look of things. They would serve on its walls and streets and come home with the pay and the drill, by the roads both ways, as the roads allow. Or the colony may pay {COUNT} silver to be excused.</li>
+          <li>[citizens] {X_nameDef}, a sergeant of the Civic Guard of {FACTION}, has come for the duty the colony owes as a citizen: one fighter for a season at {PLACE}, {TALE} away, and {A_nameDef} would do. They would come home with the pay and the drill, by the roads both ways. The colony may pay {COUNT} silver instead; refused outright, the Republic strikes its papers.</li>
+          <li>[lowtech] A soldier of {FACTION} named {X_nameDef} has come to the gate with a list of names: the Republic wants a fighter of the colony for a season at {PLACE}, {TALE} on foot, and has {A_nameDef} in mind. They would walk there and back on the open road, and come home paid. Or the colony pays {COUNT} silver to be left alone.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Send {A_nameDef} for the season</label>
+            <outcome>{A_nameDef} is taking the Guard's rations and setting out for {PLACE}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_RepublicConscript" />
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Pay to be excused ({COUNT} silver)</label>
+            <outcome>The silver is going out to {X_nameDef}, who strikes {A_nameDef}'s name from the list.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><label>the exemption for {X_nameDef}</label></li>
+            </effects>
+          </li>
+          <li>
+            <label>Refuse the call</label>
+            <outcome>{X_nameDef} folds the list away without a word and goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_RepublicRefused" />
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[sent] The Republic thanks you, and so will they when they're home.</li>
+          <li>[sent] Everyone counted, everyone owed.</li>
+          <li>[paid] Excused, with the Republic's receipt.</li>
+          <li>[refused] Noted, and the Republic does not forget a note.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Hollow Fleet: the shuttle ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_FleetShuttle</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the Fleet's shuttle</label>
+    <workerClass>ColonyCouncil.HappeningWorker_FleetShuttle</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>0.4</answerDays>
+        <titles>
+          <li>The Fleet's shuttle</li>
+          <li>A shuttle from the hull</li>
+        </titles>
+        <texts>
+          <li>The colony's radio has picked up a call from {FACTION}: their quartermaster asks leave to bring the ship's shuttle down by the gate with goods from the hull, and trade. They also have a cryptosleep casket from the sleepers' hold the ship can spare, for {COUNT} silver, which would come down in the shuttle's hold.</li>
+          <li>[pods] The colony's radio has picked up a call from {FACTION}: their quartermaster asks leave to come down by drop pod beside the gate with goods from the hull, and trade. A cryptosleep casket the ship can spare would come down with them, for {COUNT} silver.</li>
+          <li>[nocasket] The colony's radio has picked up a call from {FACTION}: their quartermaster asks leave to bring the ship's shuttle down by the gate with goods from the hull, and trade.</li>
+          <li>[their:grateful] {FACTION} thinks well of the colony, and their quartermaster calls on the radio to ask leave to bring the shuttle down by the gate and trade, and to offer a cryptosleep casket from the hull for {COUNT} silver, as between friends.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Bid them land and trade</label>
+            <outcome>The Fleet's quartermaster is bringing the shuttle down by the gate.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_FleetShuttle" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>Land, and buy the casket ({COUNT} silver)</label>
+            <outcome>The shuttle is coming down with the casket in its hold, and the quartermaster's runner will come for the silver.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_FleetShuttle"><casket>true</casket></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not today</label>
+            <outcome>The quartermaster logs the colony's answer, and the radio goes quiet.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Hollow Fleet: salvage ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_FleetSalvage</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the Fleet's salvage buyer</label>
+    <workerClass>ColonyCouncil.HappeningWorker_FleetSalvage</workerClass>
+    <baseChance>1.2</baseChance>
+    <minRefireDays>20</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>22~55</ages>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Salvage for the ship</li>
+          <li>The Fleet's quartermaster</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a quartermaster of {FACTION}, has come to the gate in the ship's grey with two deckhands and a sled. The ship needs what the colony has salvaged, {TALE}, and the Fleet would pay {COUNT} silver for it: the parts carried out to them, the chunks cut apart where they lie and hauled off on the sled.</li>
+          <li>[chunks] {X_nameDef}, a quartermaster of {FACTION}, has come to the gate with two deckhands and cutting gear: the colony has {TALE} lying on its ground, and every plate of it is a plate the ship lacks. {COUNT} silver for the lot, and the deckhands cut the chunks apart where they lie.</li>
+          <li>[lowtech] {X_nameDef} of {FACTION}, in a grey uniform older than anything in the colony, has come to the gate with two deckhands. They want {TALE}, fallen from the sky or kept in the colony's stores, and would pay {COUNT} silver, cutting up the big pieces where they lie.</li>
+          <li>[their:grateful] {FACTION} thinks well of the colony, and {X_nameDef} has come straight to it for {TALE}: {COUNT} silver, a fair price, as between friends.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Sell them the salvage ({COUNT} silver)</label>
+            <outcome>The salvage is going out to {X_nameDef}, the deckhands are cutting what lies on the ground, and the silver is being carried in.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_FleetSalvage" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>Sell it, and {A_nameDef} watches the cutting</label>
+            <outcome>The deckhands are cutting the chunks apart with {A_nameDef} watching how a ship comes to pieces, and the silver is being carried in.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_FleetSalvage" />
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>watching the deckhands cut</label><to>Stranger</to><duration>1~2</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Crafting</skill><xp>300</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>Keep the salvage</label>
+            <outcome>{X_nameDef} logs it as available later, and the three of them haul the empty sled back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[salvage] The ship provides, and we provide for the ship.</li>
+          <li>[salvage] One more plate, and one day she flies.</li>
+          <li>[thanks] Holding position, we will ask again.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Hollow Fleet: the sleeper woken too late ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_FleetSleeper</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a sleeper woken too late</label>
+    <workerClass>ColonyCouncil.HappeningWorker_FleetSleeper</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>20~40</ages>
+        <answerDays>0.3</answerDays>
+        <addsPeople>true</addsPeople>
+        <journal>Rimfolk_Journal_Evt_FleetSleeper</journal>
+        <titles>
+          <li>A sleeper woken too late</li>
+          <li>Out of the caskets</li>
+        </titles>
+        <texts>
+          <li>Towards evening someone has come to the gate in a ship's uniform two hundred years out of date, pale and unsteady from the long sleep: {X_nameDef}, a sleeper from the caskets of {FACTION}. They went to sleep {COUNT} years ago expecting to wake on a new world with everyone they knew, {X_nameDef} says, and woke to strangers keeping watch on a ship that never moved. The crew had no place for them. They ask the colony for shelter.</li>
+          <li>[theirfoe] Towards evening a sleeper from the caskets of {FACTION}, {X_nameDef}, has come to the gate, still sick from {COUNT} years of cryptosleep. They walked away from the hull the day they woke, {X_nameDef} says, and want nothing of the Fleet or its quarrels: only somewhere to belong.</li>
+          <li>[lowtech] Towards evening a pale stranger in strange grey clothes has come to the gate: {X_nameDef}, who says they slept {COUNT} years in a cold box in the belly of the great hull of {FACTION}, and woke to find everyone they loved dead and the ship still on the ground. They ask the colony for shelter.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Take them in</label>
+            <outcome>{X_nameDef} is coming in through the gate, holding on to the gatepost for a moment first.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Join" />
+            </effects>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>A night's shelter</label>
+            <outcome>{X_nameDef} has a warm corner for the night and will be on the road at first light.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_NightLodging" />
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>The gate stays shut</label>
+            <outcome>{X_nameDef} nods as if expecting it, and walks back into the dusk.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[taken] We were promised a world, and this will do.</li>
+          <li>[taken] Thank you, I didn't think anyone would.</li>
+          <li>[night] A warm corner is more than the ship had for me.</li>
+          <li>[refused] Holding position, then.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

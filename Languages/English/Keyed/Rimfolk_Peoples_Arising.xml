@@ -32,6 +32,10 @@
   <CC_Arise_refugees_sextons_2>They buried the town's dead one by one and rang once over every grave, as the Quiet Bell does, and they keep a grave-garden by the ruin now for everyone's.</CC_Arise_refugees_sextons_2>
   <CC_Arise_refugees_salvagers>They put what was left of the town on wheels and runners and drove it out of the ruin, and they have not stopped since: a yard on the move, buying what others throw away.</CC_Arise_refugees_salvagers>
   <CC_Arise_refugees_salvagers_2>They loaded what the fire left onto carts and rolled away from the ruin, a brass cog stitched to every shoulder, and nobody among them has voted to stop.</CC_Arise_refugees_salvagers_2>
+  <CC_Arise_refugees_linesmen>The town's radio outlived the town, and they kept it singing: they raise masts on the heights round the ruin now and carry the region's news from one to the next.</CC_Arise_refugees_linesmen>
+  <CC_Arise_refugees_linesmen_2>They dug the town's set out of the ruin and found it still worked, and they walk the hills with copper wire now, a mast on every height, so that nobody round there has to walk a road for news.</CC_Arise_refugees_linesmen_2>
+  <CC_Arise_refugees_crew>They kept the town's watches as if it were a ship still in flight, every post manned and every hour logged, and they live by its ranks now in the shell of what is left.</CC_Arise_refugees_crew>
+  <CC_Arise_refugees_crew_2>They wrote the fall of the town into its log and kept their posts, a watch on every hour as a crew keeps it, and they are waiting still for orders nobody left alive can give.</CC_Arise_refugees_crew_2>
   <CC_Arise_refugees_Cool>They are wary of the colony, as their old people were.</CC_Arise_refugees_Cool>
   <CC_Arise_refugees_CoolOurs>They remember who burned {TOWN}, and they are cool toward the colony.</CC_Arise_refugees_CoolOurs>
   <CC_Arise_refugees_Warm>They have heard the colony was a friend to {PEOPLE}, and they would be glad of its friendship too.</CC_Arise_refugees_Warm>
@@ -65,6 +69,10 @@
   <CC_Arise_exiles_mercenaries_2>{PAWN_nameDef} drilled them into a company, and they sell their swords by the season now, paid to the day and held to the day, every name of their fallen read aloud once a year.</CC_Arise_exiles_mercenaries_2>
   <CC_Arise_exiles_artisans>{PAWN_nameDef} has good hands, and they keep a workshop now where everything made is marked with their mark, and they send their young out to work at other people's benches.</CC_Arise_exiles_artisans>
   <CC_Arise_exiles_artisans_2>{PAWN_nameDef} taught them to mark what they make and answer for it, and they keep a kiln and a guild's rule now, buying good work from anyone and selling better.</CC_Arise_exiles_artisans_2>
+  <CC_Arise_exiles_drillers>{PAWN_nameDef} knows rock, and they dig as a union now, every member in the book and every shift voted on, and they drill anyone's deep ground for a share of what comes up.</CC_Arise_exiles_drillers>
+  <CC_Arise_exiles_drillers_2>{PAWN_nameDef} put it to the vote the first night, and they voted to stay together and dig: a union with a red armband for every member and a book of every shift.</CC_Arise_exiles_drillers_2>
+  <CC_Arise_exiles_citizens>{PAWN_nameDef} can talk anyone round, and they keep a census and hold elections now, every one of them counted and every one owed, as if they were a republic with cities.</CC_Arise_exiles_citizens>
+  <CC_Arise_exiles_citizens_2>{PAWN_nameDef} wrote every one of them into a roll and called a vote by the spring, and they keep a radio now that tells the region every evening what their little republic decided.</CC_Arise_exiles_citizens_2>
   <CC_Arise_exiles_grovekeepers>{PAWN_nameDef} knows growing things, and they live among the trees now, planting a seedling for every tree anyone fells and burying their dead under saplings.</CC_Arise_exiles_grovekeepers>
   <CC_Arise_exiles_grovekeepers_2>{PAWN_nameDef} taught them that the forest remembers every axe, and they keep a grove and a ledger of the trees round it now, a seed in every pocket for the next stump.</CC_Arise_exiles_grovekeepers_2>
   <CC_Arise_exiles_Cool>Those who have met {PAWN_nameDef} on the road say {PAWN_pronoun} has not forgiven the colony.</CC_Arise_exiles_Cool>
@@ -113,6 +121,12 @@
   <CC_Arise_Name_refugees_salvagers>The {WHAT} Wheel</CC_Arise_Name_refugees_salvagers>
   <CC_Arise_Name_refugees_salvagers_2>{WHAT} Wagons</CC_Arise_Name_refugees_salvagers_2>
   <CC_Arise_Name_refugees_salvagers_3>{WHAT} Brass Cog</CC_Arise_Name_refugees_salvagers_3>
+  <CC_Arise_Name_refugees_linesmen>The {WHAT} Line</CC_Arise_Name_refugees_linesmen>
+  <CC_Arise_Name_refugees_linesmen_2>{WHAT} Relays</CC_Arise_Name_refugees_linesmen_2>
+  <CC_Arise_Name_refugees_linesmen_3>{WHAT} Singing Mast</CC_Arise_Name_refugees_linesmen_3>
+  <CC_Arise_Name_refugees_crew>The Crew of {WHAT}</CC_Arise_Name_refugees_crew>
+  <CC_Arise_Name_refugees_crew_2>{WHAT} Watch</CC_Arise_Name_refugees_crew_2>
+  <CC_Arise_Name_refugees_crew_3>{WHAT} Holding Position</CC_Arise_Name_refugees_crew_3>
   <CC_Arise_Name_league_traders>{WHAT} League</CC_Arise_Name_league_traders>
   <CC_Arise_Name_league_traders_2>League of {WHAT}</CC_Arise_Name_league_traders_2>
   <CC_Arise_Name_league_traders_3>Flags of {WHAT}</CC_Arise_Name_league_traders_3>
@@ -149,6 +163,12 @@
   <CC_Arise_Name_exiles_artisans>{WHAT}'s Guild</CC_Arise_Name_exiles_artisans>
   <CC_Arise_Name_exiles_artisans_2>{WHAT}'s Kiln</CC_Arise_Name_exiles_artisans_2>
   <CC_Arise_Name_exiles_artisans_3>{WHAT}'s Mark</CC_Arise_Name_exiles_artisans_3>
+  <CC_Arise_Name_exiles_drillers>{WHAT}'s Union</CC_Arise_Name_exiles_drillers>
+  <CC_Arise_Name_exiles_drillers_2>{WHAT}'s Pit</CC_Arise_Name_exiles_drillers_2>
+  <CC_Arise_Name_exiles_drillers_3>{WHAT}'s Red Armband</CC_Arise_Name_exiles_drillers_3>
+  <CC_Arise_Name_exiles_citizens>The Republic of {WHAT}</CC_Arise_Name_exiles_citizens>
+  <CC_Arise_Name_exiles_citizens_2>{WHAT}'s Citizens</CC_Arise_Name_exiles_citizens_2>
+  <CC_Arise_Name_exiles_citizens_3>{WHAT}'s Census Roll</CC_Arise_Name_exiles_citizens_3>
   <CC_Arise_Name_exiles_grovekeepers>{WHAT}'s Grove</CC_Arise_Name_exiles_grovekeepers>
   <CC_Arise_Name_exiles_grovekeepers_2>{WHAT}'s Mossborn</CC_Arise_Name_exiles_grovekeepers_2>
   <CC_Arise_Name_exiles_grovekeepers_3>{WHAT}'s Seedling</CC_Arise_Name_exiles_grovekeepers_3>

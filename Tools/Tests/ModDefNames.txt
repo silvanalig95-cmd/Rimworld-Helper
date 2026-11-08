@@ -102,6 +102,7 @@ AG_Hover
 AG_HoverExploder
 AG_Implanted
 AG_Lapis
+AG_MiningYield_High
 AG_LightSustenance
 AG_LungRotImmunity
 AG_LungRotStrength

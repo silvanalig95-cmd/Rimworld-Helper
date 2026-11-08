@@ -257,6 +257,12 @@ namespace Balance
         /// least, most taken), and the companion's blow (PeoplesDMath.BoutBlowChance; the tests hold the two the same).
         /// </summary>
         private const float TamerBouts = 1.4f, TamerBlow = 1f / 25f;
+        /// <summary>
+        /// The Deepwell Union's drill for a share taken a colony-year (a Union at peace nearby: Rimfolk_Evt_UnionDrill, forty
+        /// days apart at least), with the colony's hand on the drill half the time, and the accident one shift in twenty
+        /// (PeoplesFMath.AccidentChance; the tests hold the two the same).
+        /// </summary>
+        private const float UnionDrills = 1.2f, UnionDrillWith = 0.5f, UnionDrillBlow = 1f / 20f;
         /// <summary>A home with a people bearing a grudge or a notable that cold within reach, and its schemes' fights a year then (SchemeSim: 0.16 to 0.21).</summary>
         private const float Schemer = 0.3f, SchemeFights = 0.18f;
         // ---- Harm, part 4 ----
@@ -1128,6 +1134,13 @@ namespace Balance
             {
                 var p = Any(y, gtb);
                 y.today.Add((13, () => Hurt(y, p, HarmKinds.TamerBout)));
+            }
+            // The union's drill (the peoples, release F): the colony's hand at the drill half the time, a mishap one shift in twenty.
+            var gud = rng("union drill");
+            if (gud.NextDouble() < UnionDrills / Days && gud.NextDouble() < UnionDrillWith && Comes(y, HarmKinds.UnionDrill, gud, UnionDrillBlow))
+            {
+                var p = Any(y, gud);
+                y.today.Add((14, () => Hurt(y, p, HarmKinds.UnionDrill)));
             }
             // Games with real contests: the bouts' real blows and the race's turned ankles.
             var gt = rng("games");

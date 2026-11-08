@@ -197,8 +197,9 @@ public static class PeoplesCTests
           && ArisingMath.Lean("refugees", true, true, 0) == "fishers" && ArisingMath.Lean("refugees", true, false, 0) == null && ArisingMath.Lean("league", true, true, 20) == null,
             "what a cause leans to: a learned leader to scholars, a river (its fated half) to the boats");
         C(ArisingMath.Wanted("refugees", "fishers").First() == "fishers" && ArisingMath.Wanted("refugees", null).SequenceEqual(new[] { "herders", "healers", "traders" })
-          && ArisingMath.Callings("exiles").SequenceEqual(new[] { "herders", "traders", "scholars", "fishers", "tamers", "hunters", "seers", "mercenaries", "artisans", "grovekeepers" }),
-            "a lean comes first, and only a cause's own leans (release D's and E's among a band's)");
+          && ArisingMath.Callings("exiles").SequenceEqual(new[] { "herders", "traders", "scholars", "fishers", "tamers", "hunters", "seers", "mercenaries", "artisans", "grovekeepers",
+                "drillers", "citizens" }),
+            "a lean comes first, and only a cause's own leans (release D's, E's and F's among a band's)");
         float share = Enumerable.Range(0, 4000).Count(i => ArisingMath.Fated(i * 7919L, ArisingMath.SaltRiver, ArisingMath.RiverChance)) / 4000f;
         C(Math.Abs(share - 0.5f) < 0.04f, $"half the causes near a river lean to it ({share:0.000})");
         // The pace and the caps are release B's, unchanged.
@@ -226,8 +227,8 @@ public static class PeoplesCTests
         C(callers.Contains("VisitorServices.Lodge(ctx.map, p, false)") && callers.Contains("LivingEvents.Schedule(LivingEvents.Shelter")
           && Read("Happenings", "Workers_Living.cs").Contains("case Shelter: HappeningWorker_PilgrimShelter.Morning(m); break;"), "each pilgrim sleeps in a warm corner indoors; the morning comes as a memo");
         C(callers.Contains("Harm.Roll(host, HarmKinds.PilgrimCough, PeoplesMath.CoughChance, HurtClass.Mild)") && callers.Contains("Harm.Ail(host, cold"), "the cough through the harm setting's cap and scale");
-        C(callers.Contains("DropPodUtility.DropThingsNear(spot, map") && callers.Contains("new LordJob_VisitColony(f, chill,") && callers.Contains("PeoplesMath.LanderAge((int)Ages.Ours)"),
-            "the lander by drop pod, trading from the factor's pack under the game's own visitors' lord, for a later age");
+        C(callers.Contains("DropPodUtility.DropThingsNear(spot, map") && callers.Contains("new LordJob_VisitOnErrand(f, chill,") && callers.Contains("PeoplesMath.LanderAge((int)Ages.Ours)"),
+            "the lander by drop pod, trading from the factor's pack under the game's own visitors' lord (at an errand's pace), for a later age");
         C(towns.Contains("LayDocks(map, Cells(map, grid, marks, \"dock\"))") && towns.Contains("TerrainDefOf.Bridge") && towns.Contains("PeoplesMath.DockSpot(water, bad, used.Count)"),
             "a landing where its docks reach the water, a jetty laid over it");
         C(towns.Contains("public static void ToTheRivers()") && Read("Peoples", "ArisingBook.cs").Contains("PeopleTowns.ToTheRivers();"), "a new world's river folk move to a river as the game starts");

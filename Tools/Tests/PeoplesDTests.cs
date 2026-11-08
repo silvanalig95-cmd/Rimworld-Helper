@@ -269,9 +269,9 @@ public static class PeoplesDTests
             int i = ArisingMath.Template(kind, age, callings, from, to, lean);
             return i < 0 ? null : callings[i];
         }
-        C(ArisingMath.Callings(ArisingMath.Refugees).SequenceEqual(new[] { "herders", "healers", "traders", "fishers", "sextons", "salvagers" })
+        C(ArisingMath.Callings(ArisingMath.Refugees).SequenceEqual(new[] { "herders", "healers", "traders", "fishers", "sextons", "salvagers", "linesmen", "crew" })
           && ArisingMath.Callings(ArisingMath.League).All(c => !Four.Contains(c)) && ArisingMath.Callings(ArisingMath.Splinter).All(c => !Four.Contains(c)),
-            "survivors may keep the Bell's ways or the Wheel's, a band the Circuit's or the Wardens'; a league or a splinter neither");
+            "survivors may keep the Bell's ways or the Wheel's (and release F's the Line's or the Fleet's), a band the Circuit's or the Wardens'; a league or a splinter neither");
         C(Enumerable.Range(0, 4).All(a => Of("refugees", a, "sextons") == "sextons" && Of("exiles", a, "tamers") == "tamers" && Of("exiles", a, "hunters") == "hunters")
           && Of("refugees", 3, "salvagers") == "salvagers", "a cause that leans to them takes their ways in any age");
         C(Enumerable.Range(0, 4).Select(a => Of("refugees", a)).SequenceEqual(new[] { "herders", "healers", "traders", "traders" }) && Of("exiles", 2) == "traders", "else as before");

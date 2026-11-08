@@ -567,3 +567,16 @@ mod:vanillaracesexpanded.pigskin	xenotype	VRE_Boarskin	-	-	-
 mod:vanillaracesexpanded.saurid	xenotype	VRESaurids_Saurid	-	-	-
 mod:ve.vanillachristmasexpanded	apparel	VCE_Apparel_WarmJacket	IndustrialBasic,Neolithic	Torso,Neck,Shoulders,Arms|Shell	-
 mod:sovereign.kork	xenotype	Korg	-	-	-
+# Release F (the Signal Line, the Deepwell Union, the Last Republic, the Hollow Fleet): the shot-firers' charges (GrenadeDestructive), the
+# miners' genes, the Republic's and the Fleet's rations.
+core	weapon	Weapon_GrenadeFrag	GrenadeDestructive,EmpireGrenadeDestructive	-	-
+mod:oskarpotocki.vanillafactionsexpanded.settlersmodule	weapon	VFES_Weapon_GrenadeDynamite	GrenadeDestructive	-	-
+mod:rimsenal.core	weapon	GD_Bobcat	GrenadeDestructive	-	-
+mod:rimsenal.core	weapon	JI_Dunder	GrenadeDestructive	-	-
+mod:rimsenal.federation	weapon	AD_FedPlasmaGrenades	GrenadeDestructive,FedGrenade	-	-
+mod:rimsenal.feral	weapon	Gun_RatStick	GrenadeDestructive,FeralGun,FeralGrenade	-	-
+mod:sarg.alphabiomes	weapon	AB_WeaponPoisonDart	GrenadeDestructive	-	-
+ludeon.rimworld.biotech	gene	DarkVision	-	-	-
+ludeon.rimworld.biotech	gene	Robust	-	-	-
+mod:sarg.alphagenes	gene	AG_MiningYield_High	-	-	-
+core	item	MealSurvivalPack	-	-	-

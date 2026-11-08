@@ -67,6 +67,15 @@
   <CC_PeopleAge_Voice_mercenaries_Fall>Their {LEADER} says the company makes do with the arms it can keep, and the Roll is read as before.</CC_PeopleAge_Voice_mercenaries_Fall>
   <CC_PeopleAge_Voice_artisans_Rise>Their {LEADER} says the journeymen brought it home from their wander-years, and the guild mark will be cut into that work too.</CC_PeopleAge_Voice_artisans_Rise>
   <CC_PeopleAge_Voice_artisans_Fall>Their {LEADER} says the guild keeps what can be made by hand, and marks it as before.</CC_PeopleAge_Voice_artisans_Fall>
+  <!-- Release F's peoples (Peoples/PeoplesF.cs, PeoplesF2.cs). -->
+  <CC_PeopleAge_Voice_linesmen_Rise>Their {LEADER} says the new ways came down the line before anyone else had heard of them, and every mast will carry them.</CC_PeopleAge_Voice_linesmen_Rise>
+  <CC_PeopleAge_Voice_linesmen_Fall>Their {LEADER} says the line will carry what it can on what it has left, and the masts are still singing.</CC_PeopleAge_Voice_linesmen_Fall>
+  <CC_PeopleAge_Voice_drillers_Rise>Their {LEADER} says the union voted to learn the new tools at the face, and everyone is still up at the end of the shift.</CC_PeopleAge_Voice_drillers_Rise>
+  <CC_PeopleAge_Voice_drillers_Fall>Their {LEADER} says the union digs with what it can mend, and the book is read as before.</CC_PeopleAge_Voice_drillers_Fall>
+  <CC_PeopleAge_Voice_citizens_Rise>Their {LEADER} says the archives have been opened at last, and the Republic calls it a restoration.</CC_PeopleAge_Voice_citizens_Rise>
+  <CC_PeopleAge_Voice_citizens_Fall>Their {LEADER} says the Republic has fewer of its old means than it used to, and has not fallen.</CC_PeopleAge_Voice_citizens_Fall>
+  <CC_PeopleAge_Voice_crew_Rise>Their {LEADER} says the ship's own logs taught them what they had forgotten, and the watch is kept as before.</CC_PeopleAge_Voice_crew_Rise>
+  <CC_PeopleAge_Voice_crew_Fall>Their {LEADER} says the last of the ship's parts have failed, and the crew holds position with what it can make.</CC_PeopleAge_Voice_crew_Fall>
 
   <!-- What of it was the colony's doing, or why they fell back. -->
   <CC_PeopleAge_Letter_trade>The colony's trade with them carried much of it to them.</CC_PeopleAge_Letter_trade>

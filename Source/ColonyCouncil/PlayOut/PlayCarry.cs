@@ -34,6 +34,15 @@ namespace ColonyCouncil
             return PeoplesDMath.Broken((float)t.HitPoints / t.MaxHitPoints, t is Apparel a && a.WornByCorpse);
         }
 
+        /// <summary>
+        /// Salvage the Hollow Fleet buys (Peoples/PeoplesF2.cs): persona cores and advanced components in the colony's
+        /// stores, the cores first.
+        /// </summary>
+        public const string Salvage = "salvage";
+
+        public static bool IsSalvage(Thing t) =>
+            t != null && t.Spawned && !t.IsForbidden(Faction.OfPlayer) && t.IsInAnyStorage() && (t.def == ThingDefOf.AIPersonaCore || t.def == ThingDefOf.ComponentSpacer);
+
         /// <summary>The kinds of an errand that carries one of each ("meals+coat"), in the order they go; null for one kind.</summary>
         public static string[] Parts(string what) => what != null && what.IndexOf('+') >= 0 ? what.Split('+') : null;
 
@@ -50,6 +59,7 @@ namespace ColonyCouncil
                 case "meals":
                 case Coat:
                 case Scrap:
+                case Salvage:
                     return null;
             }
             return what.NullOrEmpty() ? fallback : DefDatabase<ThingDef>.GetNamedSilentFail(what);
@@ -113,6 +123,8 @@ namespace ColonyCouncil
                     return map.listerThings.ThingsOfDef(ThingDefOf.ChunkSlagSteel).Concat(map.listerThings.ThingsInGroup(ThingRequestGroup.Apparel))
                         .Concat(map.listerThings.ThingsInGroup(ThingRequestGroup.Weapon)).Where(t => IsScrap(t, map)).Distinct()
                         .OrderBy(t => t.def == ThingDefOf.ChunkSlagSteel ? 0 : 1);
+                case Salvage:
+                    return map.listerThings.ThingsOfDef(ThingDefOf.AIPersonaCore).Concat(map.listerThings.ThingsOfDef(ThingDefOf.ComponentSpacer)).Where(IsSalvage);
             }
             def = def ?? DefOf(what, null);
             if (def == null) return Enumerable.Empty<Thing>();
@@ -196,6 +208,7 @@ namespace ColonyCouncil
                 case "meals": return "CC_Play_Meals".Translate();
                 case Coat: return "CC_Play_Coat".Translate();
                 case Scrap: return "CC_PeoplesD_Scrap".Translate();
+                case Salvage: return "CC_PeoplesF_Salvage".Translate();
             }
             return (def ?? DefOf(what, null))?.label ?? what ?? "";
         }

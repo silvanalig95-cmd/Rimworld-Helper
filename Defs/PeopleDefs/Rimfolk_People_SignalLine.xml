@@ -1,0 +1,651 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The Signal Line (docs/design/peoples-third.md, the first of the eight; docs/design/peoples.md, "Release F";
+    Source/ColonyCouncil/Peoples/PeoplesF.cs): keepers of a chain of radio masts across the region, raised by a lineman who
+    walked the hills with a coil of copper wire after the long war cut every road. They keep the masts standing, relay
+    news and letters, and sell what they hear. Industrial, on the game's outlander parent; they arise in every age
+    (ariseAges 0~3), and rise toward the spacer age soon, as a people of learning and trade (agePace 8). Their linesmen
+    share one kit: an oilskin (the game's duster) in signal orange, the colour of the masts, a hard hat (Vanilla Apparel
+    Expanded) and climbing gear, the tool belts and packs of Vanilla Apparel Expanded - Accessories, with rifles (the
+    game's, Vanilla Weapons Expanded - Frontier's lever guns). Operators, clerks and families dress freely around a cap or
+    hat in the same orange. A share are crafters and intellectuals (the operators and the relay-keepers by their skills,
+    A RimWorld of Magic's technomancers), and with Royalty a few hear the psychic hum in the static (a psylink on Vanilla
+    Psycasts Expanded's Staticlord path). Their towns are relays on the highest ground: a mast, a relay hut with its
+    console, a cable yard (Rimfolk_Plan_LineRelay). At the gate: a lineman raises a relay mast on the colony's highest
+    ground, and from then letters reach the colony and its neighbours sooner and the line warns of a raid a little before
+    it comes (Rimfolk_Evt_LineMast); a wire-trader buys the colony's components and sells the line's news of a caravan on
+    the road (Rimfolk_Evt_LineWire); a lineman climbs the colony's mast in a storm to keep it singing (Rimfolk_Evt_LineStorm).
+    Their ask: parts for a span that came down (Rimfolk_Mission_LineSpan). Their founding: Ennis Calloway and the first
+    coil. Faith (Ideology): the line as one (collectivist), the progressive and the trader of Vanilla Ideology Expanded.
+    Kinds of people: genies, hussars, highmates, starjacks (Odyssey), VRE's androids, Alpha Genes' lapis and the Avaloi,
+    four in five baseliners.
+  -->
+
+  <FactionDef ParentName="OutlanderFactionBase">
+    <defName>Rimfolk_SignalLine</defName>
+    <label>Signal Line</label>
+    <description>A chain of radio masts across the region, kept standing by linemen who climb them in any weather. The Line relays news and letters from town to town, sells what it hears to whoever will pay, and buys the copper and the parts that keep the masts singing. Where there is a mast on the skyline, the Line is listening.\n\nTheir ways began after the long war cut every road in the region. A lineman called Ennis Calloway walked the hills with a coil of copper wire over his shoulder and a battered set on his back, raising a mast on every height he could climb, until a voice in one valley could be heard in the next. The first mast still stands on the ridge where he raised it, and the Line has never let it fall silent. Every lineman pins a copper aerial cut from that first coil to the collar of the oilskin, and the oilskins are the signal orange of the masts.\n\nThey talk in short clear sentences, as if every word cost power, and they always say where a thing was heard. They fear silence more than storms. Each relay is kept by its relay-keeper, and the Line by its chief lineman.</description>
+    <pawnSingular>lineman</pawnSingular>
+    <pawnsPlural>linemen</pawnsPlural>
+    <leaderTitle>chief lineman</leaderTitle>
+    <techLevel>Industrial</techLevel>
+    <basicMemberKind>Rimfolk_SignalLine_Lineman</basicMemberKind>
+    <factionNameMaker>Rimfolk_Namer_SignalLine</factionNameMaker>
+    <settlementNameMaker>Rimfolk_Namer_SignalLineTown</settlementNameMaker>
+    <factionIconPath>ColonyCouncil/Peoples/SignalLine</factionIconPath>
+    <settlementTexturePath>ColonyCouncil/Peoples/SignalLineTown</settlementTexturePath>
+    <colorSpectrum>
+      <li>(0.80, 0.40, 0.12)</li>
+      <li>(0.95, 0.55, 0.20)</li>
+    </colorSpectrum>
+    <hidden>false</hidden>
+    <naturalEnemy>false</naturalEnemy>
+    <permanentEnemy>false</permanentEnemy>
+    <canSiege>false</canSiege>
+    <requiredCountAtGameStart>0</requiredCountAtGameStart>
+    <startingCountAtWorldCreation>1</startingCountAtWorldCreation>
+    <maxConfigurableAtWorldCreation>9999</maxConfigurableAtWorldCreation>
+    <configurationListOrderPriority>46</configurationListOrderPriority>
+    <settlementGenerationWeight>0.4</settlementGenerationWeight>
+    <raidCommonalityFromPointsCurve Inherit="False">
+      <points>
+        <li>(0, 0.2)</li>
+      </points>
+    </raidCommonalityFromPointsCurve>
+    <xenotypeSet Inherit="False">
+      <xenotypeChances>
+        <Genie MayRequire="Ludeon.RimWorld.Biotech">0.04</Genie>
+        <Hussar MayRequire="Ludeon.RimWorld.Biotech">0.03</Hussar>
+        <Highmate MayRequire="Ludeon.RimWorld.Biotech">0.02</Highmate>
+        <Starjack MayRequire="Ludeon.RimWorld.Biotech,Ludeon.RimWorld.Odyssey">0.03</Starjack>
+        <VREA_AndroidAwakened MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.android">0.02</VREA_AndroidAwakened>
+        <AG_Lapis MayRequire="Ludeon.RimWorld.Biotech,sarg.alphagenes">0.02</AG_Lapis>
+        <DV_Avaloi MayRequire="Ludeon.RimWorld.Biotech,det.avaloi">0.02</DV_Avaloi>
+      </xenotypeChances>
+    </xenotypeSet>
+    <fixedIdeo>true</fixedIdeo>
+    <ideoName>The Open Line</ideoName>
+    <ideoDescription>Every mast is a voice, and every voice is a road nobody has to walk. What is heard on the line belongs to everyone on it, and a message passed on is passed on true, with where it was heard. The masts are kept singing in any weather, because silence is how the region fell apart. Ennis Calloway walked the hills after the long war with a coil of copper wire and raised a mast on every height until one valley could hear the next, and the first mast he raised has never once gone quiet.</ideoDescription>
+    <forcedMemes>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Collectivist</li>
+      <!-- The line that carries every voice onward: Vanilla Ideology Expanded's progressive. -->
+      <li MayRequire="VanillaExpanded.VMemesE">VME_Progressive</li>
+      <!-- They sell what they hear: Vanilla Ideology Expanded's trader. -->
+      <li MayRequire="VanillaExpanded.VMemesE">VME_Trader</li>
+    </forcedMemes>
+    <structureMemeWeights Inherit="False">
+      <Structure_Ideological MayRequire="Ludeon.RimWorld.Ideology">3</Structure_Ideological>
+      <Structure_TheistAbstract MayRequire="Ludeon.RimWorld.Ideology">1</Structure_TheistAbstract>
+    </structureMemeWeights>
+    <styles>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Techist</li>
+    </styles>
+    <caravanTraderKinds Inherit="False">
+      <li>Rimfolk_Caravan_SignalLine</li>
+    </caravanTraderKinds>
+    <visitorTraderKinds Inherit="False">
+      <li>Rimfolk_Visitor_SignalLine</li>
+    </visitorTraderKinds>
+    <baseTraderKinds Inherit="False">
+      <li>Rimfolk_Base_SignalLine</li>
+    </baseTraderKinds>
+    <pawnGroupMakers Inherit="False">
+      <li>
+        <!-- A fight: the linemen with their rifles, an operator or two behind them -->
+        <kindDef>Combat</kindDef>
+        <options>
+          <Rimfolk_SignalLine_Lineman>12</Rimfolk_SignalLine_Lineman>
+          <Rimfolk_SignalLine_Operator>3</Rimfolk_SignalLine_Operator>
+        </options>
+      </li>
+      <li>
+        <kindDef>Peaceful</kindDef>
+        <options>
+          <Rimfolk_SignalLine_Operator>12</Rimfolk_SignalLine_Operator>
+          <Rimfolk_SignalLine_Lineman>8</Rimfolk_SignalLine_Lineman>
+          <Rimfolk_SignalLine_RelayKeeper>1</Rimfolk_SignalLine_RelayKeeper>
+          <Villager_Child MayRequire="Ludeon.RimWorld.Biotech">3</Villager_Child>
+        </options>
+      </li>
+      <li>
+        <!-- The wire-trader's mules: parts, wire, medicine and the line's own sets -->
+        <kindDef>Trader</kindDef>
+        <traders>
+          <Rimfolk_SignalLine_WireTrader>1</Rimfolk_SignalLine_WireTrader>
+        </traders>
+        <carriers>
+          <Muffalo>3</Muffalo>
+          <Donkey>3</Donkey>
+          <Horse>2</Horse>
+        </carriers>
+        <guards>
+          <Rimfolk_SignalLine_Lineman>8</Rimfolk_SignalLine_Lineman>
+          <Rimfolk_SignalLine_Operator>2</Rimfolk_SignalLine_Operator>
+        </guards>
+      </li>
+      <li>
+        <kindDef>Settlement</kindDef>
+        <options>
+          <Rimfolk_SignalLine_Lineman>12</Rimfolk_SignalLine_Lineman>
+          <Rimfolk_SignalLine_Operator>6</Rimfolk_SignalLine_Operator>
+          <Rimfolk_SignalLine_RelayKeeper>2</Rimfolk_SignalLine_RelayKeeper>
+          <Rimfolk_SignalLine_WireTrader>2</Rimfolk_SignalLine_WireTrader>
+        </options>
+      </li>
+    </pawnGroupMakers>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleExtension">
+        <calling>linesmen</calling>
+        <!-- Their age over the years (Peoples/PeopleAges.cs): everything the line hears of the world's new ways comes down it first, and they sell it on: to the spacer age, and soon. -->
+        <agePace>8</agePace>
+        <ageLimit>3</ageLimit>
+        <townWord>relay</townWord>
+        <townWords>relays</townWords>
+        <head>relay-keeper</head>
+        <heir>second keeper</heir>
+        <envoy>lineman</envoy>
+        <trader>wire-trader</trader>
+        <courier>line-runner</courier>
+        <couriers>line-runners</couriers>
+        <caravanWeight>0.8</caravanWeight>
+        <camps>
+          <li>Council_Camp_Surveyors</li>
+          <li>Rimfolk_Camp_Watchers</li>
+          <li>Council_Camp_Smith</li>
+        </camps>
+        <plan>Rimfolk_Plan_LineRelay</plan>
+        <honours>a mast kept singing, a message passed on true and a lineman back down safe</honours>
+        <fears>silence on the line, a storm that takes a mast and news passed on wrong</fears>
+        <sayings>
+          <li>Every mast is a voice.</li>
+          <li>A voice is a road nobody has to walk.</li>
+          <li>Keep it singing.</li>
+          <li>Say where you heard it.</li>
+          <li>Silence is the only storm.</li>
+        </sayings>
+        <townGoods>
+          <ComponentIndustrial>6~14</ComponentIndustrial>
+          <Steel>80~180</Steel>
+          <MedicineIndustrial>4~8</MedicineIndustrial>
+          <Chemfuel>20~60</Chemfuel>
+          <Cloth>20~50</Cloth>
+        </townGoods>
+        <herd>
+          <li>Donkey</li>
+        </herd>
+        <herdCount>2~4</herdCount>
+        <ariseAges>0~3</ariseAges>
+      </li>
+    </modExtensions>
+  </FactionDef>
+
+  <!-- ===================== Their people ===================== -->
+
+  <!--
+    How alike they look (docs/design/peoples.md, "Release F"): the linemen share one kit, the operators and families do
+    not. A lineman wears the Line's oilskin (the game's duster) in signal orange over a collar shirt and trousers, a hard
+    hat (Vanilla Apparel Expanded), and climbing gear: a tool belt or a pack (Vanilla Apparel Expanded - Accessories);
+    rifles, the game's and Frontier's lever guns, and a component or a length of steel in the pack. In another age the kit
+    takes the age's form (ageArms): an oiled poncho of hide (Vanilla Apparel Expanded) and a bow among the tribes, a waxed
+    cape and a great bow in the medieval age, a charge rifle in the spacer age. Operators, clerks and families dress as
+    they like, the game's and the mods' everyday clothes, around a cap or hat of signal orange; the relay-keepers and the
+    chief lineman wear the oilskin over their own clothes. A share are crafters and intellectuals; a few are A RimWorld of
+    Magic's technomancers and snipers, and with Royalty a few operators hear the psychic hum in the static (Staticlords).
+    Without any mod: the game's duster, shirts, trousers, hats, rifles and pistols.
+  -->
+  <PawnKindDef Name="Rimfolk_SignalLineKindBase" Abstract="True">
+    <race>Human</race>
+    <defaultFactionDef>Rimfolk_SignalLine</defaultFactionDef>
+    <chemicalAddictionChance>0.04</chemicalAddictionChance>
+    <backstoryCryptosleepCommonality>0.01</backstoryCryptosleepCommonality>
+    <invNutrition>2.55</invNutrition>
+    <specificApparelRequirements>
+      <!-- Signal orange on the oilskin, whoever wears one, and on the kit of the other ages. -->
+      <li><apparelDef>Apparel_Duster</apparelDef><color>(0.88, 0.46, 0.14)</color></li>
+      <li><apparelDef>Apparel_Cape</apparelDef><color>(0.88, 0.46, 0.14)</color></li>
+      <li MayRequire="VanillaExpanded.VAPPE"><apparelDef>VAE_Apparel_TribalPoncho</apparelDef><color>(0.88, 0.46, 0.14)</color></li>
+    </specificApparelRequirements>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_SignalLineKindBase">
+    <defName>Rimfolk_SignalLine_Lineman</defName>
+    <label>lineman</label>
+    <combatPower>60</combatPower>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.5~1.4</gearHealthRange>
+    <!-- The linemen's kit: the orange oilskin, the hard hat, the climbing gear. -->
+    <apparelRequired>
+      <li>Apparel_Duster</li>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+      <li MayRequire="VanillaExpanded.VAPPE">VAE_Headgear_Hardhat</li>
+    </apparelRequired>
+    <specificApparelRequirements>
+      <li MayRequire="VanillaExpanded.VAEAccessories">
+        <alternateTagChoices>
+          <li><tag>VAEA_Utility_Industrial</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+    </specificApparelRequirements>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+    </apparelTags>
+    <apparelMoney>500~900</apparelMoney>
+    <weaponTags>
+      <li>Gun</li>
+      <li MayRequire="VanillaExpanded.VWEFT">FrontierGunSimple</li>
+    </weaponTags>
+    <weaponMoney>200~400</weaponMoney>
+    <requiredWorkTags>Violent</requiredWorkTags>
+    <!-- Parts and steel for the masts. -->
+    <inventoryOptions>
+      <skipChance>0.5</skipChance>
+      <subOptionsChooseOne>
+        <li><thingDef>ComponentIndustrial</thingDef><countRange>1~2</countRange><choiceChance>2</choiceChance></li>
+        <li><thingDef>Steel</thingDef><countRange>10~20</countRange></li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>12~20</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>TM_Sniper</trait><chance>0.03</chance></li>
+          <li><trait>Ranger</trait><chance>0.02</chance></li>
+        </gifts>
+        <!-- The kit and the rifle of another age. -->
+        <ageArms>
+          <li>
+            <ages>0~0</ages>
+            <weaponTags>
+              <li>NeolithicRangedDecent</li>
+            </weaponTags>
+            <apparel>
+              <li MayRequire="VanillaExpanded.VAPPE">VAE_Apparel_TribalPoncho</li>
+            </apparel>
+          </li>
+          <li>
+            <ages>1~1</ages>
+            <weaponTags>
+              <li>NeolithicRangedHeavy</li>
+            </weaponTags>
+            <apparel>
+              <li>Apparel_Cape</li>
+            </apparel>
+          </li>
+          <li>
+            <ages>3~3</ages>
+            <money>1600</money>
+            <weaponTags>
+              <li>SpacerGun</li>
+            </weaponTags>
+          </li>
+        </ageArms>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_SignalLineKindBase">
+    <defName>Rimfolk_SignalLine_Operator</defName>
+    <label>operator</label>
+    <combatPower>40</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Poor</itemQuality>
+    <gearHealthRange>0.5~1.2</gearHealthRange>
+    <specificApparelRequirements>
+      <!-- The Line's badge: a cap or hat of any cut in signal orange. -->
+      <li>
+        <apparelLayer>Overhead</apparelLayer>
+        <bodyPartGroup>UpperHead</bodyPartGroup>
+        <color>(0.88, 0.46, 0.14)</color>
+        <alternateTagChoices>
+          <li><tag>IndustrialBasic</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+    </specificApparelRequirements>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li>IndustrialAdvanced</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Industrial</li>
+    </apparelTags>
+    <apparelMoney>250~550</apparelMoney>
+    <weaponTags>
+      <li>SimpleGun</li>
+    </weaponTags>
+    <weaponMoney>60~180</weaponMoney>
+    <skills>
+      <li>
+        <skill>Intellectual</skill>
+        <range>5~12</range>
+      </li>
+      <li>
+        <skill>Crafting</skill>
+        <range>4~11</range>
+      </li>
+    </skills>
+    <inventoryOptions>
+      <skipChance>0.6</skipChance>
+      <subOptionsChooseOne>
+        <li><thingDef>ComponentIndustrial</thingDef><countRange>1~1</countRange></li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <initialWillRange>1~3</initialWillRange>
+    <initialResistanceRange>10~16</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <!-- With Royalty a few hear the psychic hum in the static. -->
+          <li>
+            <psylink>1~2</psylink>
+            <paths>
+              <li>VPE_Staticlord</li>
+            </paths>
+            <chance>0.04</chance>
+          </li>
+          <li><trait>Technomancer</trait><chance>0.03</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_SignalLineKindBase">
+    <defName>Rimfolk_SignalLine_RelayKeeper</defName>
+    <label>relay-keeper</label>
+    <combatPower>45</combatPower>
+    <isFighter>false</isFighter>
+    <minGenerationAge>35</minGenerationAge>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.7~1.2</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_Duster</li>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialAdvanced</li>
+    </apparelTags>
+    <apparelMoney>400~800</apparelMoney>
+    <weaponTags>
+      <li>SimpleGun</li>
+    </weaponTags>
+    <weaponMoney>80~200</weaponMoney>
+    <skills>
+      <li>
+        <skill>Intellectual</skill>
+        <range>8~15</range>
+      </li>
+      <li>
+        <skill>Crafting</skill>
+        <range>6~12</range>
+      </li>
+    </skills>
+    <inventoryOptions>
+      <subOptionsTakeAll>
+        <li><thingDef>ComponentIndustrial</thingDef><countRange>1~2</countRange></li>
+      </subOptionsTakeAll>
+    </inventoryOptions>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>12~18</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li>
+            <psylink>1~3</psylink>
+            <paths>
+              <li>VPE_Staticlord</li>
+            </paths>
+            <chance>0.08</chance>
+          </li>
+          <li><trait>Technomancer</trait><chance>0.06</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_SignalLineKindBase">
+    <defName>Rimfolk_SignalLine_WireTrader</defName>
+    <label>wire-trader</label>
+    <trader>true</trader>
+    <combatPower>40</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.7~1.2</gearHealthRange>
+    <specificApparelRequirements>
+      <li>
+        <apparelLayer>Overhead</apparelLayer>
+        <bodyPartGroup>UpperHead</bodyPartGroup>
+        <color>(0.88, 0.46, 0.14)</color>
+        <alternateTagChoices>
+          <li><tag>IndustrialBasic</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+    </specificApparelRequirements>
+    <apparelRequired>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialAdvanced</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Industrial</li>
+    </apparelTags>
+    <apparelMoney>300~600</apparelMoney>
+    <weaponTags>
+      <li>SimpleGun</li>
+    </weaponTags>
+    <weaponMoney>80~200</weaponMoney>
+    <skills>
+      <li>
+        <skill>Social</skill>
+        <range>6~13</range>
+      </li>
+    </skills>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>10~16</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_SignalLineKindBase">
+    <defName>Rimfolk_SignalLine_Chief</defName>
+    <label>chief lineman</label>
+    <combatPower>65</combatPower>
+    <factionLeader>true</factionLeader>
+    <minGenerationAge>45</minGenerationAge>
+    <itemQuality>Good</itemQuality>
+    <gearHealthRange>0.8~1.1</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_Duster</li>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+      <li MayRequire="VanillaExpanded.VAPPE">VAE_Headgear_Hardhat</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialAdvanced</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Industrial</li>
+    </apparelTags>
+    <apparelMoney>500~900</apparelMoney>
+    <weaponTags>
+      <li>Gun</li>
+    </weaponTags>
+    <weaponMoney>200~400</weaponMoney>
+    <skills>
+      <li>
+        <skill>Construction</skill>
+        <range>8~15</range>
+      </li>
+      <li>
+        <skill>Social</skill>
+        <range>6~12</range>
+      </li>
+    </skills>
+    <inventoryOptions>
+      <subOptionsTakeAll>
+        <li><thingDef>ComponentIndustrial</thingDef><countRange>2~3</countRange></li>
+      </subOptionsTakeAll>
+    </inventoryOptions>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>14~20</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>TM_Commander</trait><chance>0.08</chance></li>
+          <li><trait>Technomancer</trait><chance>0.1</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <!-- ===================== Their traders: the wire-trader's mules ===================== -->
+
+  <TraderKindDef>
+    <defName>Rimfolk_Caravan_SignalLine</defName>
+    <label>wire-trader's mules</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>500~1000</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentIndustrial</thingDef>
+        <countRange>4~10</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Steel</thingDef>
+        <countRange>100~250</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineIndustrial</thingDef>
+        <countRange>3~8</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponRanged</tradeTag>
+        <countRange>2~4</countRange>
+        <maxTechLevelGenerate>Industrial</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>BasicClothing</tradeTag>
+        <countRange>2~5</countRange>
+        <maxTechLevelGenerate>Industrial</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_BuySingleDef">
+        <thingDef>ComponentIndustrial</thingDef>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Visitor_SignalLine</defName>
+    <label>linemen</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>150~400</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentIndustrial</thingDef>
+        <countRange>2~5</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineIndustrial</thingDef>
+        <countRange>1~3</countRange>
+      </li>
+      <li Class="StockGenerator_BuySingleDef">
+        <thingDef>ComponentIndustrial</thingDef>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Base_SignalLine</defName>
+    <label>relay</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>800~1500</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentIndustrial</thingDef>
+        <countRange>8~20</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Steel</thingDef>
+        <countRange>200~500</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineIndustrial</thingDef>
+        <countRange>6~14</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Chemfuel</thingDef>
+        <countRange>60~150</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponRanged</tradeTag>
+        <countRange>3~6</countRange>
+        <maxTechLevelGenerate>Industrial</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>BasicClothing</tradeTag>
+        <countRange>3~6</countRange>
+        <maxTechLevelGenerate>Industrial</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_BuySingleDef">
+        <thingDef>ComponentIndustrial</thingDef>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <!-- ===================== Their names ===================== -->
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_SignalLine</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->The [PlaceOutlander] Line</li>
+        <li>r_name(p=2)->The [lineVirtue] Line</li>
+        <li>r_name->Linemen of the [lineThing]</li>
+        <li>r_name->The [lineThing] Relays</li>
+        <li>lineThing->First Mast</li>
+        <li>lineThing->Copper Coil</li>
+        <li>lineThing->High Ridge</li>
+        <li>lineThing->Long Wire</li>
+        <li>lineThing->Singing Mast</li>
+        <li>lineVirtue->Open</li>
+        <li>lineVirtue->Singing</li>
+        <li>lineVirtue->Unbroken</li>
+        <li>lineVirtue->Copper</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_SignalLineTown</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->[PlaceOutlander] Relay</li>
+        <li>r_name(p=2)->[PlaceOutlander] Mast</li>
+        <li>r_name->[relayWord] of [PlaceOutlander]</li>
+        <li>r_name->[relayVirtue] Ridge</li>
+        <li>relayWord->Relay</li>
+        <li>relayWord->Mast</li>
+        <li>relayWord->Cable Yard</li>
+        <li>relayVirtue->Calloway's</li>
+        <li>relayVirtue->Singing</li>
+        <li>relayVirtue->Copper</li>
+        <li>relayVirtue->Windward</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>

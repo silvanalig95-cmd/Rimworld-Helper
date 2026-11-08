@@ -132,7 +132,7 @@ namespace ColonyCouncil
                 if (!Spawn(p, map, entry)) return null;
             IntVec3 spot = chill ?? IntVec3.Invalid;
             if (!spot.IsValid && !RCellFinder.TryFindRandomSpotJustOutsideColony(pawns[0], out spot)) spot = entry;
-            return LordMaker.MakeNewLord(f, new LordJob_VisitColony(f, spot, Mathf.RoundToInt(hours * GenDate.TicksPerHour)), map, pawns);
+            return LordMaker.MakeNewLord(f, new LordJob_VisitOnErrand(f, spot, Mathf.RoundToInt(hours * GenDate.TicksPerHour)), map, pawns);
         }
 
         /// <summary>Visitors (or a waiting stranger) leave now, on foot.</summary>

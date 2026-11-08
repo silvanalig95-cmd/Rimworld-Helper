@@ -151,5 +151,7 @@ raid, and each is listed once in a new world.
    `Source/ColonyCouncil/Peoples/PeopleAges*.cs`, `PeopleAgeWords.cs`, `PeopleAgePatches.cs`, `Tools/Tests/PeopleAgesTests.cs`;
    each people's pace and limit in its def; the Sunken Vault's way, `ageDeclines`, tested and waiting for its people in
    the third piece).
-2. New peoples, first four: the Signal Line, the Deepwell Union, the Last Republic, the Hollow Fleet.
+2. New peoples, first four: the Signal Line, the Deepwell Union, the Last Republic, the Hollow Fleet (built:
+   `docs/design/peoples.md`, "What was built (release F)"; DESIGN.md, "Release F" under Rimfolk's peoples;
+   `Source/ColonyCouncil/Peoples/PeoplesF*.cs`, `Tools/Tests/PeoplesFTests.cs`; the relay mast `Rimfolk_RelayMast`).
 3. New peoples, second four: the Helix Works, the Lattice, the Choir of the Spire, the Sunken Vault.

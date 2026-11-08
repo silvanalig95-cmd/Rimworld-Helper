@@ -334,7 +334,7 @@ namespace ColonyCouncil
             {
                 var gate = PlaySpots.GateCell(home, spawned[0]);
                 if (!gate.IsValid && !RCellFinder.TryFindRandomSpotJustOutsideColony(spawned[0], out gate)) gate = spawned[0].Position;
-                LordMaker.MakeNewLord(people, new LordJob_VisitColony(people, gate, 2 * GenDate.TicksPerDay), home, spawned);
+                LordMaker.MakeNewLord(people, new LordJob_VisitOnErrand(people, gate, 2 * GenDate.TicksPerDay), home, spawned);
                 rec.gateCame = now;
                 WorldLedger.FormerChanged();
             }

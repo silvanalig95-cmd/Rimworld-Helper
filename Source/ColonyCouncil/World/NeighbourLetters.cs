@@ -864,6 +864,8 @@ namespace ColonyCouncil
             // Carried home by one of theirs, at their people's means; the answer comes back at the colony's (Means).
             float there = LetterMath.LegDays(tiles, LetterMath.MeansOf(Ages.Of(bearer?.Faction ?? n.faction)));
             l.backDays = LetterMath.LegDays(tiles, Means);
+            // The answer comes down the Signal Line's mast, where the colony has one singing (Peoples/PeoplesF.cs): half the days.
+            if (RelayMast.Working(l.map)) l.backDays = PeoplesFMath.Relayed(l.backDays);
             l.stage = LetterStage.Travelling;
             l.stageTick = Now;
             // They set off for home when their stay ends: about half a day on.
@@ -928,6 +930,12 @@ namespace ColonyCouncil
             float tiles = Tiles(n, l.map);
             float there = LetterMath.LegDays(tiles, Means);
             l.backDays = LetterMath.LegDays(tiles, Means);
+            // Down the Signal Line's mast and back, where the colony has one singing (Peoples/PeoplesF.cs): half the days each way.
+            if (RelayMast.Working(l.map))
+            {
+                there = PeoplesFMath.Relayed(there);
+                l.backDays = PeoplesFMath.Relayed(l.backDays);
+            }
             l.stage = LetterStage.Travelling;
             l.stageTick = Now;
             l.due = Now + Mathf.RoundToInt((there + NotableMath.ReplyDays(Rand.Value)) * GenDate.TicksPerDay);
