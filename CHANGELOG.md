@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A trade window of Rimfolk's own
+
+*8 November 2026, version 0.165.0*
+
+- Trading now opens Rimfolk's own window in place of the game's screen: one table of every good, yours on the left of the count and the trader's on the right, with a search box, category buttons, a switch for only what is in the deal, and every column sortable by a click on its heading.
+- Each price shows its share of the good's market value and how far it is from what traders usually pay or ask with your negotiator, so a really good deal stands out both ways; with Vanilla Trading Expanded, where today's market stands and its trend as well.
+- Every row gets a grade, great, good, fair or poor, for selling or buying, shown in words and bars and weighed by the market, your own recent trades and whether the colony needs it; a best deals list beside the table jumps to the row.
+- A panel shows what you give and get, the silver both sides end with, the whole deal against usual prices and market value, food and mass for a caravan, and a warning when a big sale will push the market down.
+- Every price and count is the game's own and Accept is the game's own, so mods that change prices keep working; a button switches to the game's screen on the same deal and back, gifts use the game's screen, and a setting under What's on, Trade screen turns the window off.
+
 ## Tempers, the gate and personal stories, the last of the shared budget
 
 *8 November 2026, version 0.164.0*

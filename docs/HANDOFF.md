@@ -61,7 +61,78 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
        marked for hunting: the hunt order goes. The setting off: the button is gone, and marks left are dropped quietly.
     6. "the marked animals (log)": each with its rate, the health tab's figure, when it dies or that it lives, and when its
        wounds close. Save and load with a mark on: the mark is still there and still dropped as above.
-
+- 0.165.0, Rimfolk's own trade window (7 and 8 November 2026, the player's request: "i still don't really like the new trade
+  interface, i'm thinking more of a totally redone one by you, not an adjusted vanilla one. where I can see whether I'm
+  buying/selling above/under market price, what are really good deals both ways, easier sorting & overview etc"; built
+  without a proposal round). Not released: no version, no What's new round, About.xml and CHANGELOG untouched (the lead
+  numbers and releases it at the merge). New: `Trade/TradeWindow.cs` (the opening, the switch both ways, the button
+  back, `Patch_TradeWindowOpen` on `WindowStack.Add`), `Trade/Window_RimfolkTrade.cs` (the window), `Trade/TradeWindowMath.cs`
+  (pure: the grades, the shares, the sort, the sums, the best deals, the columns that fit, the chips' rows, the scroll to
+  a row, the kinds; linked in Tests.csproj), Keyed `Rimfolk_TradeWindow.xml`, `Tools/Tests/TradeWindowTests.cs` ("trade
+  window: ", 510 checks). Changed: `TradeScreen.cs` (`Trading` counts Rimfolk's window; the readouts' lines and the
+  basket's two states public for it; `Fill`/`Clear` take a null screen; the row marks stand down while Rimfolk's window
+  draws the game's row icons; the button back beside the game's sort menus in `Patch_TradeFoot`), `TradeAdvice.cs` (each
+  note keeps its usual prices, `UsualPrices`, `GainAndLoss`, `UsualFor` for people and animals), the setting, DESIGN.md
+  "The trade screen" (rewritten, the 0.150.0 bullets kept under "The game's screen and the advice"), README "The trade
+  screen", the Almanac page *the trade screen* (three new sections, prose only, no keyword changed). Nothing saved.
+  - Opening: the game's constructor sets the trade up (`TradeSession.SetupWith`), and every opener adds it with
+    `WindowStack.Add` (a trader, visitor or Hospitality guest on the map by `JobDriver_TradeWithPawn`, a ship by comms, a
+    caravan at a town, a caravan met on the road, pods at a town), so the prefix swaps the window and keeps the game's
+    own `Dialog_Trade`. Only that exact class (a mod's subclass is left), only silver (a trade in favor keeps the game's
+    screen), never gifts (gifts-only and gift mode stay the game's; "Give gifts" in the window goes there). "Game's
+    screen" (top right) takes the window off and adds that same `Dialog_Trade`, let through once; the counts are the
+    deal's, so they stay. On the game's screen a 27-pixel button right of its sort menus (x 360, where it draws no search
+    box) comes back, the game's screen taken off by `TryRemove` so its `Close` (a trader's quest) waits for the end.
+  - The window: one table with sides (the colony's count and what they pay left of the game's own
+    `DoCountAdjustInterface`, what they ask and their count right of it, as its arrows go), thirteen columns (name, kind,
+    value, ours, they pay, count, they ask, theirs, deal, market and trend with VTE's history, mass, need), rows 36 high.
+    Under each price its share of the market value (`BaseMarketValue`) and its side of the usual (the advice's), green 7%
+    better for the colony, orange 7% worse. At 1920 every column fits with about 300 pixels of name beside a 300-pixel
+    side; at 1280 the mass, kind, trend and market give way (`TradeWindowMath.Fit`, tested at both). Header clicks sort
+    (again for the other way; the last sort kept for the session), a search, kind chips, "only in the deal"; on the right
+    the best five sells and buys (a click scrolls to the row and lights it) and the deal's summary; at the foot Fill
+    suggested, Clear suggested, Reset, Accept, Cancel, each side's silver now and after. A caravan's mass, speed and food
+    are the game's strip at the top (its calculators, over every good). Accept: the game's question when the trader is
+    short, then `TryExecute`; the game's own can't-pay check and message first, since `TryExecute` flashes a
+    `Dialog_Trade` it looks up (there is none). On close a trader's quest is handed over; on opening, the game's word
+    about an impaired negotiator. Any throw while drawing: logged once and the game's screen takes over.
+  - Grades (`TradeWindowMath.Rate`): the price against the usual (a sale's price over it, a purchase's usual over the
+    price), 0.05 a step for VTE's market reason (`TradeMarketMath.Hint`) and for the colony's record (better than its
+    best of 15 days by 2%, or a tenth worse); great from 1.20 (the advice's good sale), good from 1.07, fair from 0.93,
+    else poor; a purchase not marked worth buying, or a sale of what is short or all kept, held at fair. Bars and a word;
+    people not graded. Example: steel worth 2.28 on VTE's market (20% up, 1.90 usual worth), a negotiator of +12%: they
+    pay 1.53 (67% of value, +20% on the usual 1.28), at a 60-day high and above the colony's best 1.40 of the week:
+    1.20 + 0.05 + 0.05 = 1.30, a great sell; they ask 2.81 (123%, +20% on the usual 2.34), 0.83, a poor buy.
+  - Settings: What's on, Trade screen, *Rimfolk's own trade window* (`tradeWindow`, on, first in the section, deeper
+    hooks). The game's screen's switches are as they were.
+  - Riskiest: the `WindowStack.Add` swap (another mod that adds a `Dialog_Trade` and then looks it up with
+    `WindowOfType<Dialog_Trade>` finds none while Rimfolk's window is open: the game itself only does so in
+    `TryExecute`'s can't-pay branch, handled first); a mod that patches `Dialog_Trade`'s own drawing or `PostOpen` to set
+    a trade up (none known: VTE draws nothing there, Trade Helper's panel is its drawing) does nothing in Rimfolk's
+    window; the game's screen reopened as the same instance (its `PreOpen` and `PostOpen` run again; an impaired
+    negotiator's message shows again at the switch); the caravan calculators and `CaravanUIUtility.DrawCaravanInfo`
+    called directly; the count control's text field inside a scroll view that only draws the rows in sight (as the
+    game's own screen does); the colours on dark and light themes (Rimfolk's UiKit). Hospitality's and Trade Helper's code
+    isn't in the player's files (only Hospitality's defs, a trader kind for guests): what they do on a trade was read from
+    those and Trade Helper's description, not their code.
+  - Try in the game (none of it could be run here):
+    1. A caravan or visitor at home: Rimfolk's window opens. Read a row of steel or wood: value, they pay with its share
+       and its side of the usual, they ask the same; compare a price with the game's (Game's screen, its price
+       tooltip), then come back with the button right of its sort menus and see the counts kept.
+    2. Set counts with the arrows (Shift, Ctrl), type one, press the double arrows; check "Only in the deal" and the
+       summary (sold, bought, net silver, against usual, by market value, food days); Fill suggested, Clear suggested,
+       Reset.
+    3. Click each column's header twice; type in the search; pick a kind chip; with a good hidden, click it in Best deals
+       and see the filters clear and the row light.
+    4. Sell more than the trader's silver and press Accept: the game's question; buy more than the colony's silver: the
+       game's message, the silver at the foot lit. Trade, then open the next trade and see the record's step in a deal's
+       tooltip.
+    5. An orbital trader by comms with goods near a beacon (the bought goods come by pod); a caravan at a town (the game's
+       strip at the top with mass and food after the trade); a caravan met on the road; a Hospitality guest.
+    6. With VTE: the Market and Trend columns, a good at a 60-day high graded a step up, the impact line in the summary
+       after setting a big sale. At 1280 by 720 (UI scale 1): the columns that give way, nothing overlapping.
+    7. Give gifts (the game's gift mode); a trade with the Empire's tribute collector (the game's screen); the setting off
+       (the game's screen, no button back); deeper hooks off (the same).
 - 0.164.0, harm, part 7: tempers in the colony, visitors and outsiders, personal stories (7 and 8 November 2026, the last of the three
   batches of the review's remaining proposals after the player's "all suggestions please", on the shared budget so they add
   variety and not more hurts in all). With it **every one of the review's 94 proposals is built**. Not released: no version,
