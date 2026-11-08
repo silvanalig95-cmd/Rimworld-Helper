@@ -140,7 +140,8 @@ namespace ColonyCouncil
                         x.silver = Silver(home) >= DealingMath.MarketFee(Ages.Of(f));
                         break;
                     case DealKind.Invite:
-                        x.gathering = GatheringIn(home, out _) >= 0;
+                        // A gathering far enough off for the answer to come back and their folk to set out.
+                        x.gathering = GatheringIn(home, out _) >= DealingMath.InviteMinDays;
                         x.guestsOk = !x.hostile;
                         break;
                 }
@@ -320,11 +321,17 @@ namespace ColonyCouncil
             return t.All.FirstOrDefault(c => c != null && c.map == home && c.kind?.defName == RiseFallEffects.RefugeeCamp && c.phase != CampPhase.Leaving && c.phase != CampPhase.Over);
         }
 
-        /// <summary>A camp could be pitched at the colony now: a spot for it, and nothing coming at the colony.</summary>
+        private static readonly Dictionary<int, (bool room, float at)> campRoom = new Dictionary<int, (bool, float)>();
+
+        /// <summary>A camp could be pitched at the colony now: a spot for it (looked for every ten seconds a map), and nothing coming at the colony.</summary>
         public static bool CampRoom(Map home)
         {
             if (home == null || MapFacts.ThreatOn(home)) return false;
-            return CampSite.TryFind(home, out _);
+            float t = Time.realtimeSinceStartup;
+            if (campRoom.TryGetValue(home.uniqueID, out var kept) && t - kept.at < 10f && t >= kept.at) return kept.room;
+            bool room = CampSite.TryFind(home, out _);
+            campRoom[home.uniqueID] = (room, t);
+            return room;
         }
 
         /// <summary>The colony's fields have crops growing or ripe to reap.</summary>
@@ -469,10 +476,11 @@ namespace ColonyCouncil
             {
                 string deed = DealingMath.Deed(d.kind, d.sub, how);
                 if (deed != null && f != null) FactionMemory.Note(f, deed, d.townName ?? f.Name, deed == "builtTogether" ? DealingMath.WorkWeight : 0);
-                if (f != null && f.HasGoodwill && !f.IsPlayer && !f.defeated)
+                // A contract's goodwill at its end (a hired camp's own contract moves their goodwill itself: Camps/CampContract.cs).
+                if (f != null && f.HasGoodwill && !f.IsPlayer && !f.defeated && d.kind == DealKind.Supply)
                 {
-                    if (how == DealStage.Broken && d.kind != DealKind.Petition) WorldSituationWorker.Goodwill(f, DealingMath.BrokenGoodwill);
-                    else if (how == DealStage.Kept && (d.kind == DealKind.Supply || d.kind == DealKind.Hire)) WorldSituationWorker.Goodwill(f, DealingMath.KeptGoodwill);
+                    if (how == DealStage.Broken) WorldSituationWorker.Goodwill(f, DealingMath.BrokenGoodwill);
+                    else if (how == DealStage.Kept) WorldSituationWorker.Goodwill(f, DealingMath.KeptGoodwill);
                 }
                 if (!line.NullOrEmpty())
                     Tell.Letter(NewsKind.World, Importance.Notable, d.home, W("CC_Deal_EndLabel_" + how, Label(d.kind, d.sub).Named("DEAL"), (d.townName ?? f?.Name ?? "?").Named("TOWN")), line,
@@ -729,7 +737,7 @@ namespace ColonyCouncil
                 return;
             }
             int days = GatheringIn(home, out _);
-            if (days < 0)
+            if (days < 1)
             {
                 End(d, DealStage.Ended, W("CC_Deal_Invite_NoGathering", Council(d.people, d.Town).Named("COUNCIL")));
                 return;

@@ -12,6 +12,90 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- The diplomacy screen, step B: dealings with a whole people or town, and the letters' points 12 to 14 (8 November 2026,
+  step B of `docs/design/diplomacy-screen.md` and points 12 to 14 of `docs/design/post-and-letters.md`, approved by the
+  player: "very good, all of it!"; their words: "i want to be able to do some interactions with another base/faction as a
+  whole, rather than contacting a single person", "the options should have some motivation to do them"). Not released: no
+  version, no What's new round, About.xml and CHANGELOG untouched. DESIGN.md "Dealings with a whole people or town, pen
+  friends and the world writing first" has all of it; README a paragraph after the peoples' and the settings summary; the
+  Almanac's diplomacy page a section (*With a town's council as a whole*, its table), its neighbours page a paragraph on
+  the chain and two sections (*Pen friends*, *When the world writes first*), its region page a paragraph (keywords
+  unchanged); the design docs' step B and points 12 to 14 marked built.
+  - What: eight dealings with a town's council or a people's leaders, each an act on the town's card (proclamations and
+    petitions on the people's card too) and so in "Do something with..." ("With their council as a whole"), with what it
+    brings, how it travels and what it costs, greyed with why. Each is a letter of the new purpose `Dealing` to the town's
+    head for its council ("the council of Ashford", the elders, the town council, the governors, the court at by age),
+    written by a colonist and carried as letters are (mailbag, post, rider, relay, chain, call, go-between); their answer
+    by their regard and their ways (`DealingMath.Chance`: base, regard 0.004 and goodwill 0.003 a point, their calling,
+    the Empire's pride; 0.05 to 0.95), and it plays out once the answer is in. A supply contract (the colony's surplus or
+    their goods by age, four seasons, porters at the gate both ways, two missed in a row break it); relief for a town in
+    hard times (medicine, meals or raw food fetched by their porters; fortune +8, goodwill +6, `hardship`); a fair day (their
+    caravan and visitors on the morning of a calendar gathering day, else six days on), friendship declared (+8 goodwill,
+    +6 regard), trade terms posted (their caravan, 3% for a season); harvest hands or a guard detail for the season (a
+    camp of theirs: the harvest hands taken on in silver, `Rimfolk_Camp_HiredGuard` the Banner's contract for any people,
+    wages at their fire or the gate); petitions (their raiders kept away 30 days by a patch on the choice of raiders, amends
+    in silver with the answer, a refugee camp settled with them, a family of theirs taken in as a refugee camp); joint
+    works (the share fetched from the gate, then days; the road the game's own on the world map, so caravans and the post
+    go faster; a well or a bridge +5 fortune and goodwill; each `builtTogether`, a debt of honor; a watchtower holds a raid
+    from that side 3 to 5 hours and its people's messenger walks in with word); market rights (a fee, 5% better terms for
+    60 days, their caravans more often); a town invited to the coming feast, fair or gathering day (their visitors on its
+    morning) or the colony's entertainers to their festival (`Rimfolk_Mission_Festival`, the invitation missions' journey).
+    Pen friends (three letters warm or cordial in 60 days at regard 30; word of raids near them, 2% terms, introductions,
+    a favor after a season). The world writes first (about once in two or three weeks: news, a small request, an
+    invitation; in the post, answered by letter from the inbox, the card or Peoples). A chain of neighbours for towns out of
+    reach (through a people at peace with both, goodwill 40 or a pen friend there; slower than a relay).
+  - Code: `Dealings/` (`DealingMath.cs` pure and linked; `DealingBook.cs` the saved book; `Dealings.cs` facts, the
+    council, starting and playing out; `DealingLetters.cs` the purpose; `DealingActs.cs` card acts, town lines, the
+    Dealings tab, the inbox; `PenFriends.cs` with `DealingWarnings`; `WorldWrites.cs`; `DealingFestival.cs` with
+    `HappeningWorker_MissionFestival`; `DealingPatches.cs`, four Harmony patches each off with `RimfolkPatches.On`: the
+    trade price offset on a pawn and a settlement, the choice of raiders and a raid arrived, `Storyteller.TryFire` for the
+    word of a raid; `DealingDebug.cs`). Touched: `NotableMath` (`LetterPurpose.Dealing` last, its wait 3 days, no gift),
+    `LetterMath.OwnReasons`, `DiplomacyLetters` (dispatch), `NeighbourLetters` (the council's address, `PenFriends.Exchanged`
+    after the tone, the title, no kind letter's quote, `DealingLetters.AnswerIn` in `Owed`), `NeighboursPanel` (the purpose
+    only when chosen), `Notables.cs` (`Dealings.Hourly` on the neighbours' hour), `PostReach` (`FindChain`, `chain` and
+    `chainDays`, the chain's days), `Outbox.Goes`, `PostWords` and `PostRing` (the chain's line, amber), `MailIn.FromAbroadId`,
+    `PeopleActMath` (nine acts, the group Dealings), `PeoplePage`/`PeoplesModel` (the Dealings tab and filter),
+    `FactionMemory` (`contractKept`, `contractBroken`, `builtTogether`, `friendship`), `FavourMath` (`builtTogether` a good
+    turn), `FactsMath` (the camp tag), `TellMath` (Dealings counts as world news). Defs `CampDefs/Rimfolk_CampKinds_Hired.xml`,
+    `MissionDefs/Rimfolk_Missions_Festival.xml`; Keyed `Rimfolk_Dealings.xml` and a section of `Rimfolk_PeoplesScreen.xml`.
+    Tests `Tools/Tests/DealingTests.cs` ("dealings: ", 1598 checks: kinds and topics, what is open and why not for each,
+    the answer by regard and ways, every term, the road's effect on days, what each is remembered as, pen friends'
+    thresholds, the world's letter rate simulated, the chain, the words, the seams); `DiplomacyTests` and `TownAfterTests`
+    know the purpose after TakeBack.
+  - Settings: `townDealings` ("Dealings with a whole people or town"), `penFriends`, `worldWrites` (the neighbours'
+    section, on, need the letters). Saved: `DealingBook` (a game component of its own, so an older save starts it empty):
+    `deals`, `friends` (each with `letters`), `asks`; modelled in `save_estimate.py`. No new Sched slot.
+  - Riskiest (none of it could be run here): the camp started with force beside other camps (`CampTracker.Start(setup,
+    true)`) and the harvest hands taken on by setting `reapPay` and `offerMade` at once; the refugee camp's "moved" ending
+    for refugees settled; `WorldGrid.OverlayRoad` along the world's path and `SetDirty<WorldDrawLayer_Roads>` (the road
+    drawn, the post's paths worked out again); the raid's people chosen early by the game's own `TryResolveRaidFaction`
+    (by reflection) and the raid held in the incident queue for the word; a festival mission fired for a set town through
+    the invitation mission's setup (`m.place` changed after its own `Setup`); the letter's window with a preselected dealing
+    topic, and the many topics a head can be offered; the price offset with other mods' trade changes (VTE's contracts and
+    market untouched); two prefixes on `Storyteller.TryFire` (this one stands down while the relay mast sings).
+  - Try in the game (dev mode; none of it could be run here; "Rimfolk", "Dealings: the dealings, pen friends and the
+    world's letters (log)" shows the state, "Dealings: every council agrees (testing, toggle)" makes every answer yes):
+    1. Region window, Peoples, a people at peace, Overview, "Do something with...", the town target: the section "With
+    their council as a whole" with eight acts, each saying what it brings and costs, some greyed ("The colony has heard of
+    no hard times at ..."). 2. "Propose a supply contract": the letter's window to the town's head, "What about" a contract
+    to the council of the town, "What is asked" goods each season for silver; send it, watch the writer, the mailbag
+    ("the letter to the council of ..."), the carrier; "Post: the mail on the road is here now", wait: "The council of ...
+    answer"; the Dealings tab lists it. "Dealings: what each dealing waits for, now (testing)": by day their porters come
+    to the gate with the silver and take the goods. 3. With a struggling town or a bad world event on a people: "Offer
+    relief", their porters fetch the medicine; the town's panel reads "the colony's relief". 4. "Make a proclamation", a
+    fair day: on its morning their caravan and visitors walk in. 5. "Hire from their town", a guard detail: a camp of
+    theirs walks in, a guard at the gate by day, the wage asked on the fifth day; harvest hands with crops growing. 6.
+    After a raid of theirs, "Petition their council" about their raiders; for amends, the silver comes with their
+    messenger. 7. "Propose a joint work", a road: their porters fetch the wood or steel, and after its days the road shows
+    on the world map; "Post: every town's reach and the outbox (log)" shows fewer days to that town. A watchtower: fire a
+    raid of a people whose town lies that way, see "Word of raiders" walked in and the raid a few hours on. 8. "Ask for
+    market rights": the fee fetched, then trade with their caravan for the better terms. 9. "Invite their town": with a
+    feast planned or a fair proclaimed, their folk come on its morning; the entertainers: the festival's journey offered.
+    10. "Dealings: the warmest notable a pen friend now (testing)": the pen friend's letter; "Dealings: a notable writes to
+    the colony now (testing)", "Post: the mail on the road is here now": the letter opens at the mailbag, the inbox has
+    "waits for an answer", "Answer their letter" on their card. 11. A town out of reach with a friendly people between:
+    its card says "Out of reach, but by introduction through ...", and the region map rings it amber.
+
 - 0.174.0, the answers' flavour line (8 November 2026, the player's explicit request with a screenshot of a council
   letter, its hints under each answer: "remove these exact effect restrictions again, or make them more subtle. more like
   flavour writing rather than exact descriptions."). Not released: no version, no What's new round, About.xml and

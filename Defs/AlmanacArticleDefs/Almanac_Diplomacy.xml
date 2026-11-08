@@ -141,6 +141,27 @@ Against their nature. Some of what diplomacy asks goes against a colonist's natu
         <heading>The colony's own envoy</heading>
         <text>"Send an envoy" on a people's card or one of their towns sends a colonist good with people (Social 6 or more) to live at their town for a season. The council's question says what it costs: their work is lost until they come home, and the road there and back is the world's own. They take food that keeps from the stores, walk to the edge and set out as a caravan of their own. At the town, every five days their letter brings the town's news and its notables think better of the colony, more the better the envoy's Social. At the season's end their hosts give them food for the road, their head a parting gift when they think well of the colony, and they come home better with people. "Call home" on their card brings them back sooner. The settings "Ransom" and "Envoys" in the section "Diplomacy" switch these parts off; what is under way plays out.</text>
       </li>
+      <li>
+        <heading>With a town's council as a whole</heading>
+        <text>Some business is with a whole town, not one person. A town's card, a people's card and "Do something with..." on Peoples (under the town, or the people for a proclamation or a petition) offer the dealings below; each goes by a letter of its own to their council, written by a colonist and carried as any letter is, received by the town's head for the council (or their people's head), and answered by their regard and their ways: the town head's regard of the colony and their people's goodwill each make it likelier, and their calling has its say (traders and brokers like a contract or a stall, mercenaries hire out guards gladly, healers and pilgrims take in refugees, artisans like works and festivals; the Empire takes no charity and minds being hired). Agreed or refused, the answer comes back the way letters do, and what was agreed starts when it is in. One of each kind at a time with a people, and one refused waits 15 days. At war, only a petition about their raiders or for amends is heard.</text>
+        <table>
+          <li>Dealing | What follows on the map | Remembered</li>
+          <li>A supply contract | For a year, a delivery each season: their porters fetch the colony's surplus from the stores and bring its price (four fifths of its worth), or bring their goods to the gate and take eleven tenths of their worth in silver | Each season kept, a little goodwill; kept to its end, 6 more; two missed in a row or three in all break it, 10 less</li>
+          <li>Relief | Medicine, meals or raw food for a town in hard times the colony has heard of, fetched from the gate by their porters | The town fares better (8 on its fortune), 6 goodwill, a debt of honor of theirs</li>
+          <li>A fair day | On the morning of a gathering day of the colony's calendar (else a few days on), their trader caravan and a visitor group come | Their traders and folk at the colony</li>
+          <li>Friendship declared | Taken up, at once | 8 goodwill, 6 of their head's regard, remembered</li>
+          <li>The trade terms posted | Their caravan within a few days; their traders give 3% better terms for a season | Better terms</li>
+          <li>Harvest hands or a guard detail | A group of theirs walks in and makes camp for the season: the hands reap, the guards take up arms and keep the gate by day; their wage is asked at their camp every five days | Unpaid, they walk</li>
+          <li>Their raiders | Kept away for two seasons, as a truce does | A raid of theirs all the same breaks their word</li>
+          <li>Amends | Silver with their answer, 12 a point of their wrong (100 to 600) | The wrong settled</li>
+          <li>Refugees settled with them | The refugee family camped at the colony packs and goes to their town | A favor of theirs</li>
+          <li>A family of theirs taken in | Their refugee family walks in and makes camp at the gate | Taken in at their camp, or not, as the colony decides</li>
+          <li>A road, a well, a bridge, a watchtower | The colony's share fetched from the gate, then their days of work; the road is laid on the world map, so caravans and letters go faster that way; a well or a bridge betters their town; the tower's watch sends word ahead of raiders from that side | Built together: a debt of honor of theirs</li>
+          <li>Market rights | The fee fetched from the gate; for two months 5% better terms with their traders, and their caravans come more often | Better terms</li>
+          <li>A town invited | Their folk come to the colony's coming feast, fair or gathering day, on its morning; or the colony's entertainers go to their festival by caravan, home with a gift | Remembered as a feast</li>
+        </table>
+        <after>The Dealings tab of a people on Peoples has each dealing in a line, what, with whom, its terms and where it stands, and the town's card has its own. All the better terms from dealings together are 8% at most, beside what the world market's prices already carry. The setting "Dealings with a whole people or town" in the neighbors' section switches them off; what is under way ends.</after>
+      </li>
     </sections>
     <keywords><li>debt of honor</li><li>favors owed</li><li>calling in a debt</li><li>diplomacy page</li><li>household page</li><li>owed favor</li></keywords>
     <seeAlso><li>Council_Alm_C_Neighbours</li><li>Council_Alm_C_WorldMemory</li><li>Council_Alm_C_Region</li></seeAlso>

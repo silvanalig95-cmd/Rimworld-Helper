@@ -202,14 +202,17 @@ namespace ColonyCouncil
 
         public WorldAsk Ask(int id) => asks.FirstOrDefault(a => a.id == id);
 
-        /// <summary>Closed dealings let go after a while, and the oldest closed past the cap.</summary>
+        /// <summary>A joint work built: kept while its town stands (a watchtower warns, a work is built once with each town).</summary>
+        public static bool Standing(Dealing d) => d != null && d.kind == DealKind.Work && d.stage == DealStage.Kept && d.Town != null;
+
+        /// <summary>Closed dealings let go after a while (a work built kept while it stands), and the oldest closed past the cap.</summary>
         public void Tidy(int now)
         {
-            deals.RemoveAll(d => d == null || !d.Live && d.since >= 0 && now - d.since > KeepClosedDays * DealingMath.DayTicks && now - (d.until >= 0 ? d.until : d.since) > KeepClosedDays * DealingMath.DayTicks);
-            deals.RemoveAll(d => !d.Live && d.since < 0 && d.asked >= 0 && now - d.asked > KeepClosedDays * DealingMath.DayTicks);
+            int keep = (int)(KeepClosedDays * DealingMath.DayTicks);
+            deals.RemoveAll(d => d == null || !d.Live && !Standing(d) && now - (d.until >= 0 ? d.until : d.since >= 0 ? d.since : d.asked) > keep);
             while (deals.Count > MaxDeals)
             {
-                var old = deals.Where(d => !d.Live).OrderBy(d => d.asked).FirstOrDefault();
+                var old = deals.Where(d => !d.Live && !Standing(d)).OrderBy(d => d.asked).FirstOrDefault();
                 if (old == null) break;
                 deals.Remove(old);
             }

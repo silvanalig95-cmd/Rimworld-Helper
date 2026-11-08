@@ -414,6 +414,9 @@ namespace ColonyCouncil
         /// <summary>A fair day: at least this many days after the answer (the gathering day on the calendar if one comes within the window), at most this many.</summary>
         public const int FairMinDays = 3, FairMaxDays = 15, FairDefaultDays = 6;
 
+        /// <summary>A town is invited to a gathering at least this many days off (the answer back, their folk on the road).</summary>
+        public const int InviteMinDays = 2;
+
         /// <summary>The fair's day: a gathering day on the calendar within the window, else the default.</summary>
         public static int FairIn(int gatheringIn) => gatheringIn >= FairMinDays && gatheringIn <= FairMaxDays ? gatheringIn : FairDefaultDays;
 
@@ -541,7 +544,8 @@ namespace ColonyCouncil
                         default: return null;
                     }
                 case DealKind.Work: return "builtTogether";
-                case DealKind.Invite: return sub == (byte)InviteKind.Feast ? "feast" : "entertained";
+                // The festival's own journey remembers its guests (Missions/Workers_MissionRemembered.cs).
+                case DealKind.Invite: return sub == (byte)InviteKind.Feast ? "feast" : null;
                 default: return null;
             }
         }

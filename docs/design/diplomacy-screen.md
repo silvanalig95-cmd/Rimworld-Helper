@@ -43,6 +43,17 @@ second mode. Every act runs through its own code path; town-level dealings are s
 A town's council or a people's leaders receive these, not one person; they travel by the post, the colony's rider or
 radio as letters do, and the answer comes the same way.
 
+*Built (8 November 2026), points 6 to 13, in `Source/ColonyCouncil/Dealings/` (`Dealings`, `DealingLetters`, `DealingActs`,
+`DealingBook`, `DealingFestival`, `DealingPatches`; the pure rules `DealingMath`, `Tools/Tests/DealingTests.cs`; DESIGN.md
+"Dealings with a whole people or town, pen friends and the world writing first"). One letter purpose (`Dealing`) to the
+town's head for its council, carried and answered as letters are; the answer by their regard and ways; each plays out on
+the map when the answer is in (their porters at the gate, their caravans and visitors, a camp of theirs, a road on the
+world map, word of a raid walked in). Point 9's builders and caravan escort were left out: a camp can't build the
+colony's blueprints and the game's caravans take only the colony's own; the crew is harvest hands, the guards the Ashen
+Banner's contract for any people. Point 11: a road is the game's own road on the world (caravans and the post go faster
+by the game's path), a well or a bridge betters their town and leaves them owing, a watchtower's watch sends word of
+raids from that side.*
+
 6. **Supply contracts** with a town: the colony delivers goods each season for silver, or they deliver to the colony;
    kept or broken, the whole people remembers.
 7. **Relief** for a town in hard times the colony has heard of (famine, plague, a burned quarter): food or medicine sent
