@@ -365,11 +365,18 @@ namespace ColonyCouncil
 
         private static readonly List<WindowFrame> all = new List<WindowFrame>();
 
-        /// <summary>Known to <see cref="Forget"/>; each window makes its frame once.</summary>
-        public WindowFrame Register()
+        /// <summary>
+        /// The frame of the windows of one key, made the first time and kept (a trade window is made anew each trade; its
+        /// frame, and where it was left, is the same one), known to <see cref="Forget"/>.
+        /// </summary>
+        public static WindowFrame For(string key, float minW, float minH, float bottom)
         {
-            all.Add(this);
-            return this;
+            foreach (var f in all)
+                if (f.key == key)
+                    return f;
+            var made = new WindowFrame(key, minW, minH, bottom);
+            all.Add(made);
+            return made;
         }
 
         private static FrameRect F(Rect r) => new FrameRect(r.x, r.y, r.width, r.height);
@@ -389,7 +396,7 @@ namespace ColonyCouncil
 
         protected FramedWindow(string key, float minW, float minH, float bottom)
         {
-            frame = new WindowFrame(key, minW, minH, bottom).Register();
+            frame = WindowFrame.For(key, minW, minH, bottom);
         }
 
         /// <summary>The title in the title bar.</summary>
