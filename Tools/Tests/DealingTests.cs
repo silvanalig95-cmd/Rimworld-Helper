@@ -365,11 +365,16 @@ public static class DealingTests
         C(patches.Contains("nameof(Storyteller.TryFire)") && Code("Dealings/PenFriends.cs").Contains("RelayMast.Working(map)"), "word of a raid; never where the mast already warns");
         string dealings = Code("Dealings/Dealings.cs");
         C(dealings.Contains("Couriers.CollectOrder(") && dealings.Contains("Couriers.Exchange(") && dealings.Contains("IncidentDefOf.TraderCaravanArrival")
-          && dealings.Contains("IncidentDefOf.VisitorGroup") && dealings.Contains("OverlayRoad(") && dealings.Contains("tracker.Start(setup, true)"),
+          && dealings.Contains("Arrivals.Visit(pawns, home, f, null, hours)") && dealings.Contains("OverlayRoad(") && dealings.Contains("tracker.Start(setup, true)"),
             "it plays out on the map: their porters, their caravans and visitors, a road on the world, a camp of theirs");
         C(!Regex.IsMatch(dealings + Code("Dealings/WorldWrites.cs") + Code("Dealings/PenFriends.cs"), @"Messages\.Message\(|Find\.LetterStack\.ReceiveLetter\("),
             "the player is told through Notify and Tell");
         C(!Regex.IsMatch(dealings, @"in \d+ days"), "no countdowns in its words");
+        // Rimfolk's own visitors and errands at the errand's pace (0.171.1): never the game's half-speed walk or its plain travel toil.
+        var dealingCode = Directory.GetFiles(Path.Combine(root, "Source", "ColonyCouncil", "Dealings"), "*.cs").Select(File.ReadAllText).ToList();
+        C(dealingCode.All(t => !t.Contains("LocomotionUrgency.Walk") && !t.Contains("new LordToil_Travel(") && !t.Contains("IncidentDefOf.VisitorGroup")),
+            "their folk come at an errand's pace (LordJob_VisitOnErrand), not the game's half-speed visit");
+        C(DealingMath.GuestsMin >= 2 && DealingMath.GuestsMax <= 8 && DealingMath.GuestHours >= 6f, "a few of their folk for the day");
         string settings = Code("CouncilSettings.cs"), catalog = Code("UI/SettingsCatalog.cs");
         foreach (var s in new[] { "townDealings", "penFriends", "worldWrites" })
             C(settings.Contains("public bool " + s + " = true") && settings.Contains("ref " + s + ", \"" + s + "\", true") && catalog.Contains("Toggle(\"" + s + "\""), $"the setting {s}");

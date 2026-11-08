@@ -6803,8 +6803,9 @@ options should have some motivation to do them". Step B of `docs/design/diplomac
   towns, the cause "the colony's relief" on its panel: `RegionFortunes.Move`), and `hardship` in their memory (15: a debt
   of honor of theirs). The Empire seldom takes it.
 - **Proclamations** (point 8): a fair day (the next gathering day on the colony's calendar between 3 and 15 days off, else
-  6 days on): on its morning (7 to 12) their trader caravan and a visitor group come, the game's own arrivals; a threat
-  holds it an hour at a time, past noon it is missed. Friendship declared: taken up, their goodwill +8, their head's
+  6 days on): on its morning (7 to 12) their trader caravan comes (the game's own) and three to six of their folk walk in
+  at an errand's pace and spend the day by the walls (`Dealings.Guests`: `Arrivals.Visit`, `LordJob_VisitOnErrand`); a
+  threat holds it an hour at a time, past noon it is missed. Friendship declared: taken up, their goodwill +8, their head's
   regard +6 and `friendship` in their memory. The colony's trade terms posted: their caravan within 2 to 6 days, and for a
   season their traders give the colony 3% better terms.
 - **Hiring from a town** (point 9): a crew of harvest hands (the camps' harvest hands, `Rimfolk_Camp_HarvestHands`, taken
@@ -6838,8 +6839,8 @@ options should have some motivation to do them". Step B of `docs/design/diplomac
   give the colony 5% better terms (`Patch_DealingPawnTerms`, `Patch_DealingTownTerms` on the game's own price offset, all
   of a people's dealings together at most 8%), and once a day a chance in ten of their trader caravan, six days apart.
 - **A town invited** (point 13): to the colony's coming gathering (its feast with guests, a fair it proclaimed, a calendar
-  day kept with a gathering, two days off or more): folk of the town come as the game's visitor group on its morning, and
-  `feast` is remembered. Or the colony's entertainers to their festival: the invitation missions' own journey
+  day kept with a gathering, two days off or more): three to six folk of the town walk in on its morning and spend the day
+  (as the fair's), and `feast` is remembered. Or the colony's entertainers to their festival: the invitation missions' own journey
   (`Rimfolk_Mission_Festival`, `HappeningWorker_MissionFestival`, never drawn by the storyteller): at least two by caravan,
   a day at their town, home with a gift, the colony's best at the arts leading; the mission keeps its own memory.
 - **Pen friends** (post point 12, `PenFriends`): every letter of the colony's answered warmly or courteously (any purpose,

@@ -423,6 +423,11 @@ namespace ColonyCouncil
         /// <summary>The hours of the fair's morning their traders and visitors come in.</summary>
         public const int FairHourFrom = 7, FairHourTo = 12;
 
+        /// <summary>Folk of the town at the colony for the day: so many, for so many hours.</summary>
+        public const int GuestsMin = 3, GuestsMax = 6;
+
+        public const float GuestHours = 9f;
+
         /// <summary>Raids kept away by a petition granted: two seasons.</summary>
         public const float RaidersDays = 30f;
 

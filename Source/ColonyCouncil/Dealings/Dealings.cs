@@ -947,15 +947,45 @@ namespace ColonyCouncil
                 End(d, DealStage.Ended, W(invite ? "CC_Deal_Invite_Missed" : "CC_Deal_Fair_Missed", Council(f, d.Town).Named("COUNCIL")));
                 return;
             }
+            // Their trader caravan by the game's own arrival; their folk walk in from the edge at an errand's pace and stay the day.
             bool traders = !invite && Arrival(IncidentDefOf.TraderCaravanArrival, home, f);
-            bool visitors = Arrival(IncidentDefOf.VisitorGroup, home, f);
-            d.came = traders || visitors;
+            var folk = Guests(home, f, Rand.RangeInclusive(DealingMath.GuestsMin, DealingMath.GuestsMax), DealingMath.GuestHours);
+            d.came = traders || folk != null;
             if (!d.came)
             {
                 End(d, DealStage.Ended, W(invite ? "CC_Deal_Invite_NoneCame" : "CC_Deal_Fair_NoneCame", Council(f, d.Town).Named("COUNCIL")));
                 return;
             }
-            End(d, invite ? DealStage.Kept : DealStage.Kept);
+            if (folk != null)
+                Tell.Message(NewsKind.World, Importance.Notable, home, W(invite ? "CC_Deal_Invite_Came" : "CC_Deal_Fair_Came", (d.townName ?? f.Name ?? "?").Named("TOWN")),
+                    new LookTargets(folk), MessageTypeDefOf.PositiveEvent);
+            End(d, DealStage.Kept);
+        }
+
+        /// <summary>
+        /// Folk of theirs come to the colony for the day: they walk in from the edge at an errand's pace and spend the hours
+        /// just outside the colony, the game's own visit (LordJob_VisitOnErrand); the first of them, or null when none could come.
+        /// </summary>
+        public static Pawn Guests(Map home, Faction f, int count, float hours)
+        {
+            var kind = Arrivals.PersonKind(f);
+            if (home == null || kind == null || Diplomacy.Hostile(f)) return null;
+            var pawns = new List<Pawn>();
+            try
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    var p = Arrivals.Make(kind, f);
+                    if (p != null) pawns.Add(p);
+                }
+                if (pawns.Count > 0 && Arrivals.Visit(pawns, home, f, null, hours) != null) return pawns[0];
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("dealings: their folk come", e);
+            }
+            foreach (var p in pawns.Where(p => !p.Spawned)) Arrivals.Discard(p);
+            return null;
         }
 
         // ---------------- The trade terms posted ----------------

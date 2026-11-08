@@ -30,7 +30,8 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     the Empire's pride; 0.05 to 0.95), and it plays out once the answer is in. A supply contract (the colony's surplus or
     their goods by age, four seasons, porters at the gate both ways, two missed in a row break it); relief for a town in
     hard times (medicine, meals or raw food fetched by their porters; fortune +8, goodwill +6, `hardship`); a fair day (their
-    caravan and visitors on the morning of a calendar gathering day, else six days on), friendship declared (+8 goodwill,
+    caravan and three to six of their folk at an errand's pace, `Arrivals.Visit`, on the morning of a calendar gathering
+    day, else six days on), friendship declared (+8 goodwill,
     +6 regard), trade terms posted (their caravan, 3% for a season); harvest hands or a guard detail for the season (a
     camp of theirs: the harvest hands taken on in silver, `Rimfolk_Camp_HiredGuard` the Banner's contract for any people,
     wages at their fire or the gate); petitions (their raiders kept away 30 days by a patch on the choice of raiders, amends
@@ -58,7 +59,7 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
     `FactionMemory` (`contractKept`, `contractBroken`, `builtTogether`, `friendship`), `FavourMath` (`builtTogether` a good
     turn), `FactsMath` (the camp tag), `TellMath` (Dealings counts as world news). Defs `CampDefs/Rimfolk_CampKinds_Hired.xml`,
     `MissionDefs/Rimfolk_Missions_Festival.xml`; Keyed `Rimfolk_Dealings.xml` and a section of `Rimfolk_PeoplesScreen.xml`.
-    Tests `Tools/Tests/DealingTests.cs` ("dealings: ", 1598 checks: kinds and topics, what is open and why not for each,
+    Tests `Tools/Tests/DealingTests.cs` ("dealings: ", some 1,600 checks: kinds and topics, what is open and why not for each,
     the answer by regard and ways, every term, the road's effect on days, what each is remembered as, pen friends'
     thresholds, the world's letter rate simulated, the chain, the words, the seams); `DiplomacyTests` and `TownAfterTests`
     know the purpose after TakeBack.

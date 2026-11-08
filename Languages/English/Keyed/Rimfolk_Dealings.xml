@@ -190,6 +190,8 @@
   <CC_Deal_Invite_Missed>The day passed with danger at the colony, and the folk {COUNCIL} sent turned back.</CC_Deal_Invite_Missed>
   <CC_Deal_Fair_NoneCame>Nobody sent by {COUNCIL} could reach the colony's fair.</CC_Deal_Fair_NoneCame>
   <CC_Deal_Invite_NoneCame>Nobody sent by {COUNCIL} could reach the colony on the day.</CC_Deal_Invite_NoneCame>
+  <CC_Deal_Fair_Came>Folk of {TOWN} have come for the colony's fair, and will spend the day by its walls.</CC_Deal_Fair_Came>
+  <CC_Deal_Invite_Came>Folk of {TOWN} have come for the colony's gathering, and will spend the day by its walls.</CC_Deal_Invite_Came>
 
   <!-- ===================== The Dealings tab and the town's card ===================== -->
   <CC_Deal_Tab_Heading>With their towns as a whole</CC_Deal_Tab_Heading>
