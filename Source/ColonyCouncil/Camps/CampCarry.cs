@@ -406,6 +406,10 @@ namespace ColonyCouncil
                 case "bought":
                     Note(Text("CC_CampBring_Done", p, null, n, c.def.label), MessageTypeDefOf.PositiveEvent, Importance.Notable, look);
                     return;
+                case Thanks:
+                    // Their thanks for standing with them against a band (CampRaid.cs), set down at the gate.
+                    Note(Text("CC_CampRaid_ThanksBrought", p, null, n, GenLabel.ThingLabel(c.def, null, n)), MessageTypeDefOf.PositiveEvent, Importance.Notable, look, true);
+                    return;
                 case MilkSale:
                     MilkSold(p, c, n, look);
                     return;

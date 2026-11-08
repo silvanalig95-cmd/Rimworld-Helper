@@ -24,7 +24,8 @@ namespace ColonyCouncil
 
     /// <summary>
     /// A group camped on the colony's map: who they are, where, for how long, what they've built and taken, the terms
-    /// the colony set, and how tense things are. One at a time (see <see cref="CampTracker"/>). Their everyday work is
+    /// the colony set, and how tense things are. As many at once as the setting and the map take (see <see cref="CampTracker"/>,
+    /// CampCrowds.cs), each on its own site. Their everyday work is
     /// done by the pawns themselves (<see cref="CampWork"/>); this keeps the books, tells the story and decides when
     /// they go.
     /// </summary>
@@ -291,10 +292,10 @@ namespace ColonyCouncil
             return text.Length > 220 ? text.Substring(0, 220) + "..." : text;
         }
 
-        /// <summary>A choice for the colony, by letter (see <see cref="ChoiceLetter_Camp"/>).</summary>
-        public void Ask(string what, string label, string text, Pawn pawn = null, float days = 1f, string askKey = null)
+        /// <summary>A choice for the colony, by letter (see <see cref="ChoiceLetter_Camp"/>); <paramref name="def"/>: a camp's letter of another colour (a band seen coming).</summary>
+        public void Ask(string what, string label, string text, Pawn pawn = null, float days = 1f, string askKey = null, LetterDef def = null)
         {
-            var letter = (ChoiceLetter_Camp)LetterMaker.MakeLetter(label, text, CampDefOf.Council_CampLetter, Look, faction);
+            var letter = (ChoiceLetter_Camp)LetterMaker.MakeLetter(label, text, def ?? CampDefOf.Council_CampLetter, Look, faction);
             letter.campId = id;
             letter.what = what;
             letter.pawn = pawn;
@@ -478,6 +479,8 @@ namespace ColonyCouncil
             ExposeBrawl();
             // The day's newer work and the packing up (CampDay.cs, CampPack.cs).
             ExposeDay();
+            // The old site they hold, a band fated to come against them, a second party for the site (CampRaid.cs).
+            ExposeCrowd();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 asksMade ??= new List<string>();

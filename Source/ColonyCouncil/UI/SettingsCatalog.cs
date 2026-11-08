@@ -406,6 +406,8 @@ namespace ColonyCouncil
             Section("CC_Settings_WorldEventsHeader");
             Toggle("worldEvents", "CC_Settings_WorldEvents", "CC_SetNote_WorldEvents");
             Toggle("camps", "CC_Settings_Camps", "CC_SetNote_Camps", "worldEvents");
+            // How many camps (Camps/CampCrowdMath.cs): the player's request of 8 November 2026, for a big map.
+            Choice("campCrowd", "CC_Settings_CampCrowd", "CC_Settings_CampCrowd_Tip", "CC_CampCrowd_", "CC_SetNote_CampCrowd_", new[] { "Rare", "Usual", "Many", "Crowded" }, "camps");
             Toggle("missionsAsQuests", "CC_Settings_MissionsAsQuests", "CC_SetNote_MissionsAsQuests", "worldEvents");
             Toggle("eventsFromStoryteller", "CC_Settings_EventsFromStoryteller", "CC_SetNote_EventsFromStoryteller", "worldEvents");
             Section("CC_Settings_WorldSituationsHeader");

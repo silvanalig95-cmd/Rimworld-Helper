@@ -2533,6 +2533,102 @@ the building. The kinds named Medieval Overhaul's and Outland's tent pieces, whi
   stuff, cost, research and work); rebuilt from the player's files and the 8 November save, every other table came out
   the same but `mods.tsv`'s inSave for Harvest and Haul (in the earlier save, not this one).
 
+### Camps side by side, bands against a camp, old camps' sites (the player's requests, 8 November 2026)
+
+The player's words: "my current map is quite huge, so i don't mind a fair amount of camps, would like to see where this
+goes. perhaps camps can also get attacked by enemy factions for example. maybe i can set a setting slider for different
+levels of amount of camps possible", and later the same day: "they could even move into structures from previous camps
+and these places become contested spots". Their map is 275 by 275.
+
+- **How many camps** (`campCrowd`, What's on, world events, under Camps; `Camps/CampCrowdMath.cs`, `CampCrowds.cs`). Four
+  named levels; Usual is how camps always came.
+  | Level | Daily chance | Rest after one leaves | At once (most) | A band against | A year, 275 by 275 (model) |
+  |---|---|---|---|---|---|
+  | Rare | 0.03 | 22 days | 1 | 1 camp in 16 | about 1 camp |
+  | Usual | 0.05 | 15 days | 1 | 1 in 9 | 1.5 |
+  | Many | 0.12 | 5 days | 2 | 1 in 8 | 4.6 (0.36 on the land on average) |
+  | Crowded | 0.30 | 1 day | 4 | 1 in 6 | about 14 (1.1 on the land on average, up to four) |
+  The daily chance is before a remote home's more (`TravelLand.CampChance`, up to 60%); the rest before a hospitable or
+  remote home's less. The year's figures are from a simple model (stays of three to seven days, every open day tried).
+  The map caps the count (`CampCrowdMath.Cap`): under 45,000 cells (200 by 200) one, under 57,000 (225) two, under 70,000
+  (250) three, more (275 and up) the level's full count; one fewer when less than three tenths of the map's every third
+  cell inside its margin is ground a camp's fire could stand on, clear of the colony (`CampSite.OpenShare`, once a day),
+  one only under an eighth. The blocker's "here" stays for a land of one camp; "full" is new for a land that takes more.
+- **Side by side.** `CampHome.camps` (a list, saved as `camps`) replaces the one camp; an older save's `camp` is read
+  into the list as it loads (`CampHome.ExposeData`, LoadingVars). Camps keep `CampCrowdMath.Apart` (32 cells, both reaches
+  and twelve between) between fires, and from every old site (`CampSite.TryFindIn` through `CampCrowds.Apart`): their own
+  site, their own fire. Two peoples at war never camp on the same land (`CampCrowds.AtPeaceHere` in `Prepare`, `StartKind`,
+  a returning camp, a war party's rest, and the war party that comes to help: its fighters would hunt the other camp),
+  unless one came to attack the other. What reads "the camp here" names the one it means: a camp's letter its own
+  (`campId`), a question its stranger's camp (`CampTracker.About`: the camp being dealt with, else the stranger's, else
+  one that fits), the World page a card for every camp, the camp dilemmas one by the day among those that fit (the same
+  all day, so a question and its answer agree), the fire's smoke for each, the market trips, couriers and carries by
+  the camp of whoever does them, a war party's rest and a hamlet's settlers' camp when the land has room
+  (`CampTracker.RoomFor`). `VisitingAt(map, fits)` picks the first that fits for what can be about any of them.
+- **Bands against a camp** (`Camps/CampRaid.cs`, pure `CampRaidMath.cs`). As a camp settles, one roll whether a band comes
+  in its stay (`FateChance`: the level's share; a contested site's 1.6 times, at most 0.3; none for stays under a day and
+  a half), and when: between the end of its first day and six hours before it would go. At that hour, if nothing puts it
+  off (danger on the map, packing, a hazard; up to twelve hours), a people that may (`MayAttack`: at war with the camp's
+  people, humanlike, with a combat group, not the colony nor its ally, not gone; one at war with the colony too only while
+  the storyteller sends fights, two days past the last big threat, and no truce) is picked (the one that held the site
+  before three times as likely, the colony's enemies a little less, by age). Its fighters are the game's own combat group
+  of their people (their kinds and their age's gear; Rimfolk's peoples' kits come with their kinds), eight at most, of
+  about the camp's armed strength (`Points`: 0.75 to 1.35 times, 80 to 900 points; one at war with the colony too never
+  past 0.6 of the colony's threat points). They walk in at the edge nearest the camp and farthest from the colony and
+  gather there two or three hours (`LordJob_CampRaid`: the game's staging toil), then go for the camp (the game's defend
+  duty at its fire, 20 cells), hold it a while if they win (an hour, half a day for a claim), and run when half of them
+  are down (the game's rule). One at war with the colony is told to the storyteller as a raid, so none comes on top of it.
+- **The colony's choice**: a camp's letter in a threat's colour (`Rimfolk_CampLetterDanger`), its words by the band's age
+  (a war band, a company of armed men, a gang with rifles, a strike team) and how word goes by the colony's (a runner;
+  the radio when both ages have it and the colony a comms console). Send our fighters to stand with them (word goes that
+  help comes; the player drafts whoever they send, nobody fights unless sent); send word only; stay out (the default).
+  Word by a runner is the quickest free grown colonist sprinting to the camp's fire; the camp acts when they get there.
+  Warned, the campers stand by their fire if strong enough (`Stand`: armed strength against the band, three quarters of
+  it, under half with help coming; a camp of fighters always), else pack an hour and go before the band comes (ending
+  "warned", no waiting for morning). Not warned, they find out when the band is within 22 cells, and stand or run then.
+  Standing is `LordToil_CampGuard` (added last to the camp's group, so saved groups keep their toils' places): the grown on
+  the game's defend duty at their fire, the animals about the camp.
+- **How it ends** (`Outcome`): the band down or fled, the campers won (they take up the band's dropped weapons, forbidden
+  to the colony and beside one of the band, and tend their hurt with the game's own tending); the campers down or fled,
+  or half of them down and outnumbered (`CampersBreak`), lost: they flee with what they carry, their dead lying where they
+  fell, their camp left as the 0.167.0 leaving rules leave it; gone in time, the band takes the empty camp; ten hours and
+  neither, held, and the band goes. One letter tells it. Fought beside them (a drafted colonist within 30 cells of the
+  fire while the band was on it, or near the band anywhere after answering help): 10 goodwill (5 if the camp still fell),
+  their people remember it (`sidedWith`), the band's people too (`tookSides`), and holding their camp they carry a gift of
+  their own goods (`ThingRoles` gift, 80 silver's worth and 20 more for each of the band down, six at most) to the gate.
+  Word in time: 3 goodwill and `warned`. Harming a band at peace with the colony costs goodwill with them by the game's
+  own rule, as the letter says.
+- **Old camps' sites** (`Camps/CampGround.cs`, pure `CampGroundMath.cs`). A camp that leaves constructions standing,
+  nobody's, leaves a site (`CampGrounds.Left`, from `Finish`): its layout as it was (the beds' places too), a name ("the old
+  camp by the water", "in the trees", "under the rocks", else "the old camp of the woodcutters", with the way it lies from
+  the colony when another has the same name), and who held it (people, kind, days, and left, driven off by whom, or sent
+  on by the colony), the newest six of each; six sites a home. A new camp takes one over (`Choose`: the level's reuse
+  chance, 0.5 to 0.8; a kind that pitches anywhere and leaves its constructions standing; `Worth`: fire pit or shelter
+  standing, four in ten of its constructions, beds' places for the kind's fewest, nothing the colony's, nothing of the
+  colony's near, no camp near; the people who held it before three times as likely), as many as its beds take
+  (`People`). Arriving, they take over what stands (`TakeOver`: the game's own buildings, their faction set, in their
+  group's keeping; mended by their own mend work), build anew what is missing of its shelter, fire, windbreak, lights and
+  table, a bed in each place (their own kind's where it fits), and say what they took over. Nothing is carried for what
+  stands. A site is let go once nothing of it stands, the colony claims it with the game's own claim (told once), or
+  builds up to it; or it stands for camps to come back to.
+- **Contested spots**: two peoples held it or someone was driven off (`Contested`). A band against a camp on a contested
+  site is likelier and is likelier of a people that held it ("a claim", its words); one that took it from a camp holds it
+  half a day and goes, and goes into its history. Two for one site (`TogetherChance`: never at Rare, 0.05 Usual, 0.12
+  Many, 0.18 Crowded, half again contested), an hour to three after the first moves in: at war, a band of the second
+  people comes against it (warned and shown as any band); else, with room for another camp, the second camps elsewhere,
+  its leader saying why as they arrive, the first camp's message telling it.
+- **World page**: a card for each camp (with the site it holds and a band against it), then the line on why no other has
+  come or that one could, the room at the level, the diary, and the old sites with their history.
+- **Dev actions** ("Rimfolk"): another camp here now beside those here; a band against a camp now (any camp, any people
+  that may); leave an old camp's site here now (a kind's layout, its constructions standing nobody's); a rival to an old
+  site (held: a band for it; free: a camp moves in and a second party comes); the camps, sites and bands to the log.
+- **Saved**: `CampHome.camps`, `campRaids`, `grounds` (and each site's plans and holders, each band's fighters and
+  helpers), the camp's site, fated hour, guard and rival (`Camp.ExposeCrowd`), a plan's `reuse`; modelled in
+  `Tools/save_estimate.py`. No new Sched slot: bands are watched on the camps' quarter hour, the fated hour on the camp's.
+- **Not done**: no harm kind (the band is a fight of the game's own, told to the storyteller when it is the colony's
+  enemy; colonists fight only when sent); no inspect line on the map (the World page carries it); the Banner's squad
+  (Peoples/) still waits for no camp at all.
+
 ## Harm from everyday life
 
 The player's harm rule (3 November 2026) lets Rimfolk hurt its people when it is flavourful or makes the game more

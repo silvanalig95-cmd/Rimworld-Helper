@@ -133,7 +133,7 @@ namespace ColonyCouncil
         public static bool CampOn(Map map)
         {
             if (map == null || !CampTracker.Enabled) return false;
-            var c = CampTracker.VisitingAt(map);
+            var c = CampTracker.VisitingAt(map, x => x.phase == CampPhase.Building || x.phase == CampPhase.Living);
             return c != null && c.map == map && (c.phase == CampPhase.Building || c.phase == CampPhase.Living);
         }
 

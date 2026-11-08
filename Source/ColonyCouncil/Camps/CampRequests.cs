@@ -636,7 +636,7 @@ namespace ColonyCouncil
             // The camp being dealt with first (an answer to its letter, a button on its page), else the visitors, else the neighbours.
             var asked = CampTracker.Asked;
             if (asked != null && Fits(asked, map)) return asked;
-            var visiting = CampTracker.VisitingAt(map);
+            var visiting = CampTracker.VisitingAt(map, x => Fits(x, map));
             if (Fits(visiting, map)) return visiting;
             var holding = CampTracker.HoldingAt(map);
             return Fits(holding, map) ? holding : null;

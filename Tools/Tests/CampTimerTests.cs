@@ -41,7 +41,7 @@ public static class CampTimerTests
         C(tracker.Contains("Scribe_Collections.Look(ref diary, \"diary\"") && tracker.Contains("DiaryMax"), "the diary is saved and kept short");
         // Every code the diary can hold has a word for the player.
         string keyed = File.ReadAllText(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_Camps.xml"));
-        var codes = new[] { "waiting", "lettergap", "checks", "failed", "off", "here", "nohome", "early", "gap", "threat", "weather", "hazard", "era", "nofriends", "noroom" };
+        var codes = new[] { "waiting", "lettergap", "checks", "failed", "off", "here", "full", "nohome", "early", "gap", "threat", "weather", "hazard", "era", "nofriends", "noroom" };
         foreach (var code in codes) C(keyed.Contains("<CC_Camp_Diary_" + code + ">"), $"the diary's word for {code}");
         var blockerCodes = Regex.Matches(tracker, @"return \(""([a-z]+)"",").Cast<Match>().Select(m => m.Groups[1].Value).Distinct().ToList();
         foreach (var code in blockerCodes) C(codes.Contains(code), $"the blocker {code} has a diary word");

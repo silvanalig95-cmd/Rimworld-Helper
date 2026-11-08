@@ -53,7 +53,7 @@ namespace ColonyCouncil
         public override IEnumerable<AdvisorSignal> Evaluate(Map map)
         {
             if (!CampTracker.Enabled) yield break;
-            var camp = CampTracker.VisitingAt(map);
+            var camp = CampTracker.VisitingAt(map, c => c.phase == CampPhase.Living && c.tension >= 40f) ?? CampTracker.VisitingAt(map, c => c.phase == CampPhase.Living);
             if (camp == null || camp.map != map || camp.phase != CampPhase.Living) yield break;
             var here = camp.members.Where(p => p != null && p.Spawned && !p.Dead).ToList();
             if (here.Count == 0) yield break;

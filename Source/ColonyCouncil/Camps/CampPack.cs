@@ -61,7 +61,7 @@ namespace ColonyCouncil
             packingFor = reason;
             // At night they sleep on and pack in the morning.
             int hour = GenLocalDate.HourOfDay(map);
-            int wait = CampDayMath.HourOf(hour) == CampHour.Night ? (6 - hour + 24) % 24 : 0;
+            int wait = CampDayMath.HourOf(hour) == CampHour.Night && CampPackMath.WaitsForMorning(reason) ? (6 - hour + 24) % 24 : 0;
             packUntil = Now + (wait + hours) * GenDate.TicksPerHour;
             SayLine(Here.Where(p => !p.Downed).RandomElementWithFallback(), "pack", 0.8f);
             return true;

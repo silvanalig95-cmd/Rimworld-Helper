@@ -200,6 +200,7 @@
   <CC_Camp_Diary_failed>no camp could be set up</CC_Camp_Diary_failed>
   <CC_Camp_Diary_off>camps switched off</CC_Camp_Diary_off>
   <CC_Camp_Diary_here>a camp already here</CC_Camp_Diary_here>
+  <CC_Camp_Diary_full>as many camps as the land takes</CC_Camp_Diary_full>
   <CC_Camp_Diary_nohome>no home map</CC_Camp_Diary_nohome>
   <CC_Camp_Diary_early>the first twenty days</CC_Camp_Diary_early>
   <CC_Camp_Diary_gap>the rest after a camp</CC_Camp_Diary_gap>
@@ -211,6 +212,7 @@
   <CC_Camp_Diary_noroom>nowhere far enough from the colony</CC_Camp_Diary_noroom>
   <CC_Camp_Why_off>Camps are switched off in the settings.</CC_Camp_Why_off>
   <CC_Camp_Why_here>One is here.</CC_Camp_Why_here>
+  <CC_Camp_Why_full>{0} camps are here, as many as our land takes at once.</CC_Camp_Why_full>
   <CC_Camp_Why_nohome>There is no home to camp by.</CC_Camp_Why_nohome>
   <CC_Camp_Why_early>None comes in the first twenty days; {0} to go.</CC_Camp_Why_early>
   <CC_Camp_Why_gap>The last left not long ago; the next comes {0} days after at the soonest, in {1}.</CC_Camp_Why_gap>

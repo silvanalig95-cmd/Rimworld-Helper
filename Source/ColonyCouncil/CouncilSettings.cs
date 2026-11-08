@@ -155,6 +155,8 @@ namespace ColonyCouncil
         public bool worldEventBattles = true;
         /// <summary>Groups who make camp on the colony's map for a while (Camps/).</summary>
         public bool camps = true;
+        /// <summary>How many camps: how often they come, the rest after one leaves, how many at once by the map's room (Camps/CampCrowdMath.cs). Usual is one at a time.</summary>
+        public CampCrowd campCrowd = CampCrowd.Usual;
         /// <summary>Missions a neighbor offers show up in the game's Quests tab, to accept or let expire there (else as a letter).</summary>
         public bool missionsAsQuests = true;
         public float daysBetweenWorldEvents = 4f;
@@ -774,6 +776,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref worldEvents, "worldEvents", true);
             Scribe_Values.Look(ref worldEventBattles, "worldEventBattles", true);
             Scribe_Values.Look(ref camps, "camps", true);
+            Scribe_Values.Look(ref campCrowd, "campCrowd", CampCrowd.Usual);
             Scribe_Values.Look(ref missionsAsQuests, "missionsAsQuests", true);
             Scribe_Values.Look(ref daysBetweenWorldEvents, "daysBetweenWorldEvents", 4f);
             Scribe_Values.Look(ref eventsFromStoryteller, "eventsFromStoryteller", true);

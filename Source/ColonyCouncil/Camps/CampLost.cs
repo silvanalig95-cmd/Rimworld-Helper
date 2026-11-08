@@ -160,16 +160,13 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaWorker_CampLostChild : DilemmaWorker_Camp
     {
-        public override bool CanHappenNow(Map map)
-        {
-            var c = CampOn(map);
-            return c != null && !c.ErrandSet && !c.LostActive && c.herd.Count > 0 && base.CanHappenNow(map);
-        }
+        /// <summary>A camp with a beast, nothing else of theirs under way (with camps side by side, the question picks one that has).</summary>
+        protected override bool Also(Camp c) => !c.ErrandSet && !c.LostActive && c.herd.Count > 0;
 
         protected override bool Extra(DilemmaContext ctx)
         {
             if (!base.Extra(ctx)) return false;
-            var c = CampOn(ctx.map);
+            var c = CampTracker.CampOf(ctx.stranger) ?? CampOn(ctx.map, Also);
             if (c == null) return false;
             var child = c.Here.Where(p => p.DevelopmentalStage.Child() && !p.Downed && !p.InMentalState).RandomElementWithFallback();
             var beast = c.herd.Where(a => a != null && a.Spawned && !a.Dead && !a.Downed).RandomElementWithFallback();
@@ -192,7 +189,7 @@ namespace ColonyCouncil
     {
         public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
         {
-            var c = DilemmaWorker_Camp.CampOn(ctx?.map) ?? CampTracker.VisitingAt(ctx?.map);
+            var c = CampTracker.About(ctx, x => x.LostActive);
             if (c == null || !c.LostActive) return;
             string key = "CC_Impact_Lost_" + how;
             sheet.Add(ImpactKind.People, 0, (key.CanTranslate() ? key : "CC_Impact_Lost_dawn").Translate().Resolve());
@@ -204,7 +201,7 @@ namespace ColonyCouncil
 
         public override void Apply(DilemmaContext ctx)
         {
-            var c = DilemmaWorker_Camp.CampOn(ctx?.map) ?? CampTracker.VisitingAt(ctx?.map);
+            var c = CampTracker.About(ctx, x => x.LostActive);
             if (c == null || !c.LostActive) return;
             var map = c.map;
             int now = Find.TickManager.TicksGame;
@@ -243,7 +240,7 @@ namespace ColonyCouncil
         public static void Reached(PlayOut p, Pawn by)
         {
             if (p == null || p.afterward != Search) return;
-            var c = CampTracker.VisitingAt(p.map);
+            var c = CampTracker.VisitingAt(p.map, x => x.LostActive && by.Position.InHorDistOf(x.lostCell, 5f));
             if (c == null || !c.LostActive || c.map != p.map || !by.Position.InHorDistOf(c.lostCell, 5f)) return;
             p.afterward = null;
             c.FoundLost(by);
@@ -252,7 +249,8 @@ namespace ColonyCouncil
         /// <summary>The search ended without them: the camp's own people find them now.</summary>
         public static void Fallback(PlayOut p)
         {
-            var c = CampTracker.VisitingAt(p?.map);
+            var c = CampTracker.VisitingAt(p?.map, x => x.LostActive && (p.cell == x.lostCell || !p.cell.IsValid));
+            c ??= CampTracker.VisitingAt(p?.map, x => x.LostActive);
             if (c == null || !c.LostActive) return;
             c.LostComeHomeAt(Find.TickManager.TicksGame, false);
         }

@@ -284,11 +284,14 @@ namespace ColonyCouncil
         /// <summary>A thin line of smoke from a camp's lit fire, and at night a few sparks going up. Every two seconds or so.</summary>
         private static void CampFire(Map map, CellRect view)
         {
-            var camp = CampTracker.VisitingAt(map);
-            if (camp == null || camp.map != map || !camp.Active || camp.phase == CampPhase.Coming) return;
-            var cell = camp.FireCell;
-            if (!cell.IsValid || !view.ExpandedBy(3).Contains(cell)) return;
-            FireSmoke(camp.Fire, map);
+            // Every camp's fire in view (camps side by side: each its own).
+            foreach (var camp in CampTracker.VisitorsAt(map))
+            {
+                if (camp.map != map || !camp.Active || camp.phase == CampPhase.Coming) continue;
+                var cell = camp.FireCell;
+                if (!cell.IsValid || !view.ExpandedBy(3).Contains(cell)) continue;
+                FireSmoke(camp.Fire, map);
+            }
         }
 
         /// <summary>A thin line of smoke from a lit fire, and at night now and then a few sparks going up. False when it's out.</summary>

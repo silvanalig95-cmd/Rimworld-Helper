@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 578; modelled: 578; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,494 KB** after a year, **2,955 KB** after two, **3,166 KB** after five.
+Saved collections found: 585; modelled: 585; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,559 KB** after a year, **3,020 KB** after two, **3,231 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -22,6 +22,7 @@ Rimfolk's part of the save, roughly: **2,494 KB** after a year, **2,955 KB** aft
 | `World/Ledger/WorldLedger.cs:ties` | ties between two parties: 3 of a kind per pair, 60 per kind (regard 300), TieRules.MaxTies in all; closed ones dropped after 60 days | cap | 60 | 120 | 300 | 76.2 |
 | `Persona/TraitChanges.cs:watches` | one per colonist with its deeds and ten snapshots; known pawns only | colonists | 20 | 20 | 20 | 66.4 |
 | `Social/Gossip/ReputationTracker.cs:deeds` | 10 per colonist, 220 in all, faded ones dropped | cap | 200 | 200 | 200 | 58.6 |
+| `Camps/CampGround.cs:plans` | every old site's layout as it was left, its constructions and its beds' places (about forty a site, six sites) | fixed | 240 | 240 | 240 | 46.9 |
 | `Journal.cs:everydaySeen` | 24 days | window | 480 | 480 | 480 | 42.2 |
 | `Defense/DefenseLines.cs:lines` | lines the player made (only their clicks), per map; gone with the map | fixed | 4 | 4 | 4 | 35.7 |
 | `Lives/LifeNew.cs:read` | books read, once each per reader, the newest 600 (Lives/LifeNewMath.MaxRead) | fixed | 600 | 600 | 600 | 35.2 |
@@ -67,6 +68,7 @@ Rimfolk's part of the save, roughly: **2,494 KB** after a year, **2,955 KB** aft
 | `Couriers/CourierTracker.cs:trips` | trips waiting or under way: CourierMath.MaxTrips; ended ones dropped within two days | cap | 12 | 12 | 12 | 10.5 |
 | `Happenings/Happenings.cs:memos` | memos 3 years (children's 10), used ones a day | window | 18 | 36 | 54 | 10.5 |
 | `Standing.cs:asked` | per colonist, one per wish def asked for | colonists | 300 | 300 | 300 | 10.3 |
+| `Camps/CampTracker.cs:camps` | per colony: the camps visiting, one at the usual level, four at most on a huge map at "How many camps": Crowded (CampCrowdMath.MostAtOnce); each one's rows (members, plans...) are counted once above, a second to fourth adds as much again | while | 4 | 4 | 4 | 10.2 |
 | `CouncilGameComponent.cs:nextSteps` | the colony's next steps: the plan, at most 8 proposals, done ones for 5 days, let-go ones for 15 (Building/NextSteps.cs) | fixed | 40 | 40 | 40 | 10.2 |
 | `Epithets/Epithets.cs:holdsSaved` | how each held name holds (NameMath.Pack: since, a challenger and their season, the last holder), one per name held | defs | 74 | 74 | 74 | 10.1 |
 | `Colonies/LandingRecord.cs:kit` | the starting kit's stacks (a reference, the def and stuff, how many are the kit's, where it came from), a few dozen in a crashlanding; split loads merge back on the stockpile and used-up stacks are let go; only for the first 3 days | while | 60 | 60 | 60 | 9.4 |
@@ -98,6 +100,7 @@ Rimfolk's part of the save, roughly: **2,494 KB** after a year, **2,955 KB** aft
 | `Standing.cs:standings` | one per colonist, the gone dropped daily | colonists | 20 | 20 | 20 | 5.9 |
 | `World/FactionMemory.cs:notes` | who tended or freed whom: 30 days, 60 at most, dropped when the stranger dies | window | 30 | 30 | 30 | 5.9 |
 | `Ambitions/Ambitions.cs:lastOffered` | one per ambition def | defs | 66 | 66 | 66 | 5.8 |
+| `Camps/CampGround.cs:held` | who held each old site, the newest CampGroundMath.MostHolders of each of six sites | fixed | 36 | 36 | 36 | 5.6 |
 | `Visitors/VisitorTracker.cs:trips` | visits waiting or under way: VisitorMath.MaxTrips; ended ones dropped within a day | cap | 8 | 8 | 8 | 5.5 |
 | `CouncilGameComponent.cs:cooldowns` | dropped once over | window | 60 | 60 | 60 | 5.3 |
 | `Building/Suggest/Suggestions.cs:done` | the steps done lately, SuggestMath.DoneKept at most, each with its undo and check | fixed | 20 | 20 | 20 | 5.1 |
@@ -198,6 +201,7 @@ Rimfolk's part of the save, roughly: **2,494 KB** after a year, **2,955 KB** aft
 | `Building/BuildAhead.cs:queueDefs` | with the above: what each was | fixed | 40 | 40 | 40 | 1.6 |
 | `Calendar/CalendarWatch.cs:knownCrops` | one per crop the colony has grown (crop defs) | fixed | 40 | 40 | 40 | 1.6 |
 | `Harm/Harm.cs:sick` | travellers' stays at a sick town and a sickness carried home: a caravan's people while the road home lasts (thirty days at most), then one until it shows | while | 4 | 4 | 4 | 1.6 |
+| `Camps/CampTracker.cs:grounds` | per colony: old camps' sites, the newest CampGroundMath.MostSites, let go once claimed, taken down or built over | fixed | 6 | 6 | 6 | 1.5 |
 | `Diplomacy/DiplomacyBook.cs:matches` | per home: matches under way, MatchMath.MaxPlans at most, each let go at the wedding or when called off | cap | 3 | 3 | 3 | 1.5 |
 | `World/Ledger/LedgerRegion.cs:foundings` | towns being built within reach: RegionMath.MaxFoundings, the oldest first; dropped when built or gone | cap | 6 | 6 | 6 | 1.5 |
 | `Advisor/AdvisorCore.cs:wealthHistory` | 60 days of wealth | window | 60 | 60 | 60 | 1.5 |
@@ -276,6 +280,7 @@ Rimfolk's part of the save, roughly: **2,494 KB** after a year, **2,955 KB** aft
 | `Colonies/HomesFounding.cs:asks` | those sent or kept against their wish who may ask once to move, for the season after a founding (FoundingMath.AskMoveToDays, 15 days) | while | 6 | 6 | 6 | 0.7 |
 | `PlayOut/PlayOutLord.cs:lines` | while the gathering lasts | while | 6 | 6 | 6 | 0.7 |
 | `World/Notables.cs:seen` | visitors and traders seen at the colony until they're home, 6 at most, three days | fixed | 6 | 6 | 6 | 0.7 |
+| `Camps/CampTracker.cs:raids` | per colony: a band against a camp, while it is on the map (one per camp at a time, seldom more than one) | while | 1 | 1 | 1 | 0.7 |
 | `Health/HealthTracker.cs:worst` | hard times not over yet (hunger, cold, untended illness); known pawns only | known | 6 | 6 | 8 | 0.7 |
 | `PlayOut/Stage.cs:cups` | life goals' toasts waiting for the next gathering, five days at most each (StageMath.CupLetGo) | fixed | 3 | 3 | 3 | 0.6 |
 | `Building/Suggest/SameRules.cs:pieceDefs` | with the above: what each blueprint was | fixed | 16 | 16 | 16 | 0.6 |
@@ -343,6 +348,7 @@ Rimfolk's part of the save, roughly: **2,494 KB** after a year, **2,955 KB** aft
 | `UI/WeekMemory.cs:following` | FollowMath.Max: what the player follows, only their clicks, as text forms ("p123", "t55") | fixed | 12 | 12 | 12 | 0.4 |
 | `World/WorldSituation.cs:numbers` | per situation | fixed | 4 | 4 | 4 | 0.4 |
 | `Camps/Camp.cs:willing` | while the camp stays | while | 8 | 8 | 8 | 0.3 |
+| `Camps/CampRaid.cs:pawns` | per band: its fighters, eight at most (CampRaids.MakeBand), while it is on the map | while | 8 | 8 | 8 | 0.3 |
 | `Camps/CampRequests.cs:errandPeople` | those of the camp on an errand into the colony, while it lasts | while | 8 | 8 | 8 | 0.3 |
 | `Couriers/CourierTrip.cs:things` | particular things a trip came for (a neighbour's cargo), while it lasts | while | 8 | 8 | 8 | 0.3 |
 | `PlayOut/PlayOutLord.cs:guests` | while the gathering lasts: guests from outside the colony | while | 8 | 8 | 8 | 0.3 |
@@ -364,6 +370,7 @@ Rimfolk's part of the save, roughly: **2,494 KB** after a year, **2,955 KB** aft
 | `Building/Automations.cs:doneTicks` | with the above | fixed | 20 | 20 | 20 | 0.2 |
 | `Camps/Camp.cs:prey` | while the camp stays | while | 6 | 6 | 6 | 0.2 |
 | `Camps/CampLook.cs:props` | goods the camp put out (a few stacks), pruned of the gone, while it stays | while | 6 | 6 | 6 | 0.2 |
+| `Camps/CampRaid.cs:helpers` | per band: the colonists who fought beside the camp, while the band is on the map | while | 6 | 6 | 6 | 0.2 |
 | `Epithets/Epithets.cs:founders` | those here in the colony's first two days (by ThingID) | fixed | 6 | 6 | 6 | 0.2 |
 | `Persona/Marks.cs:addictions` | the addictions they have now | colonists | 6 | 6 | 6 | 0.2 |
 | `Pressures/Pressures.cs:workKinds` | per colonist | fixed | 6 | 6 | 6 | 0.2 |

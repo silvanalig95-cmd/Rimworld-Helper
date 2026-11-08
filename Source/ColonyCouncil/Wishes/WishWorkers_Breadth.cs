@@ -94,7 +94,7 @@ namespace ColonyCouncil
     {
         private static Camp CampOn(Map map)
         {
-            var camp = CampTracker.VisitingAt(map);
+            var camp = CampTracker.VisitingAt(map, c => c.Settled && c.CanTalk);
             return camp != null && map != null && camp.map == map && camp.Settled && camp.CanTalk ? camp : null;
         }
 
@@ -127,10 +127,11 @@ namespace ColonyCouncil
             return lack != null && lack.need == need;
         }
 
+        /// <summary>The camp the wish is about, by its id (with camps side by side, never just the first one here).</summary>
         private static Camp CampOf(Wish wish)
         {
-            var camp = CampOn(wish.Beneficiary.MapHeld);
-            return camp != null && "camp" + camp.id == wish.subjectKey ? camp : null;
+            var map = wish.Beneficiary.MapHeld;
+            return CampTracker.VisitingAt(map, c => c.Settled && c.CanTalk && "camp" + c.id == wish.subjectKey);
         }
 
         public override bool IsFulfilled(Wish wish) => Warmth(CampOf(wish), wish.Beneficiary) >= wish.targetValue;

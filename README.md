@@ -2990,6 +2990,32 @@ hire, and two asks on their page, the colony's doctor for their wounded and pay 
 that the colony owes them, and the colonists remember who stood with them. A new threat while they rest sends them
 after it; a fight that drags on for two days sends them home.
 
+**How many camps, and several at once.** The setting *How many camps* (What's on, under the camps) has four levels.
+Usual is how camps always came: one at a time, a fortnight's rest after one leaves, one chance in twenty a day. Rare
+comes about once a year; Many up to two at once, four or five a year; Crowded up to four at once, about fourteen a
+year. The map caps the count: one camp on a map under 225 by 225, two under 250, three under 275, the level's full
+count on a bigger one (a 275 by 275 map at Crowded takes four), one fewer on a map mostly mountain, marsh or water.
+Each camp keeps its own site, 32 cells or more from any other's fire, and two peoples at war with each other never camp
+on the land together. Each has its own card on the World page, its own letters and asks, its own trade and errands.
+
+**A band against a camp.** About one camp in nine (a little more on a crowded land, never on their first day) has a
+band of a people at war with its own come against it. They come in at the edge nearest the camp and gather there a
+few hours, and the colony is told as they are seen, in the words of the age (a war band, armed men, a gang with
+rifles, a strike team): send our fighters to stand with them (word goes that help is coming, by a runner or over the
+radio; you draft whoever you send), send word only (they stand by their fire if they are strong enough, or pack and
+go in time), or stay out. Then the game's own fight: the band goes for the camp; one at war with the colony too is
+your enemy on the map, one at peace with you fights only the camp. Campers who win take up the band's weapons and tend
+their own; campers who lose run with what they carry, their dead lying where they fell. Stand with them and their
+people remember it (and so do the band's), and they carry a gift to your gate.
+
+**Old camps' sites.** What a camp leaves standing (a hut, its walls, the fire pit, a spot) is an old site, with a name
+("the old camp by the water") and a history of who held it and how they left. A new camp may move in: it takes over
+what stands, mends it, and builds only what is missing. A site several peoples held, or one someone was driven off, is
+contested: a rival may come for it, or two parties arrive for it on the same day (one gives way, or, at war, it comes
+to blows). Claim the buildings with the game's own claim and it is yours and no camp's site; or let it stand. The World
+page lists the sites and their history. In dev mode, **Debug actions → Rimfolk** has "Camps: ..." actions for a second
+camp, a band against a camp, an old site and a rival.
+
 **Neighbours for good.** A refugee family or a hermit whose stay of three days or more went well may ask, at their
 parting, to stay on the colony's land for good. Let settle, the camp becomes the colony's neighbours at the edge of its
 land (one such neighbour at a time; camps still come and go beside them). They live off the land round their camp,
@@ -4441,7 +4467,8 @@ The pages:
   people that come and go by hand); strangers and creatures (encounters, nemeses and their return, pets, sacred
   animals with Ideology, omen animals, the animals' temperaments, friendships and grief among animals, and whether
   animals speak: Auto, On or Off); **Rimfolk
-  events** (camps on the map, missions in the Quests tab, drawn by the storyteller or on their own timer); **world
+  events** (camps on the map and how many: Rare, Usual, Many or Crowded, missions in the Quests tab, drawn by the
+  storyteller or on their own timer); **world
   events** and whether the world's **peoples remember the colony**; the region (fortunes and their stock, new towns'
   faces, rise and fall, trading posts, hamlets, small towns' maps); **bonds with other peoples** (favors owed and
   called in; pacts and truces, with pacts of fealty, the colony sworn to a stronger neighbor or keeping vassals of

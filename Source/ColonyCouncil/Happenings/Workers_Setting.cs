@@ -195,7 +195,7 @@ namespace ColonyCouncil
         /// <summary>The camp on this map, if it will talk to the colony.</summary>
         public static Camp CampHere(Map map)
         {
-            var c = CampTracker.VisitingAt(map);
+            var c = CampTracker.VisitingAt(map, x => x.Settled && x.CanTalk && x.Here.Count > 0);
             return c != null && c.map == map && c.Settled && c.CanTalk && c.Here.Count > 0 ? c : null;
         }
 
@@ -572,7 +572,7 @@ namespace ColonyCouncil
 
         public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
         {
-            var c = CampTracker.VisitingAt(ctx?.map);
+            var c = CampTracker.About(ctx, x => x.CanTalk);
             if (c == null || ctx?.map == null || c.map != ctx.map || !c.CanTalk) return;
             if (tension != 0f) DilemmaImpact.Tension(sheet, tension);
             if (warm > 0 && ctx.a != null) sheet.Add(ImpactKind.Goodwill, 1, "CC_Impact_CampWarm".Translate(ctx.a.LabelShort).Resolve());
@@ -583,7 +583,7 @@ namespace ColonyCouncil
 
         public override void Apply(DilemmaContext ctx)
         {
-            var c = CampTracker.VisitingAt(ctx.map);
+            var c = CampTracker.About(ctx, x => x.CanTalk);
             if (c == null || ctx.map == null || c.map != ctx.map || !c.CanTalk) return;
             if (chance < 1f && !Rand.Chance(chance)) return;
             if (tension != 0f) c.AddTension(tension);

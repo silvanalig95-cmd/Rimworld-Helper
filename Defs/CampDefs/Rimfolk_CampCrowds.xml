@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- A band seen coming against a camp on the colony's land (Source/ColonyCouncil/Camps/CampRaid.cs): the camp's own
+       question, in a threat's colour. -->
+  <LetterDef>
+    <defName>Rimfolk_CampLetterDanger</defName>
+    <letterClass>ColonyCouncil.ChoiceLetter_Camp</letterClass>
+    <color>(205, 135, 75)</color>
+    <flashColor>(235, 170, 105)</flashColor>
+    <flashInterval>60</flashInterval>
+    <arriveSound>LetterArrive_BadUrgentSmall</arriveSound>
+    <bounce>true</bounce>
+  </LetterDef>
+
+</Defs>

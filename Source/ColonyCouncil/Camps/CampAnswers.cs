@@ -334,6 +334,28 @@ namespace ColonyCouncil
                     list.Add(new CampOption { label = c.Text("CC_Camp_Opt_Farewell"), act = () => null });
                     break;
                 }
+                case "raided":
+                {
+                    // A band seen coming against them (CampRaid.cs): stand with them, warn them, or stay out of it.
+                    var band = CampRaids.Against(c);
+                    string gone = band == null ? "CC_CampRaid_NotNow".Translate().ToString() : null;
+                    list.Add(new CampOption
+                    {
+                        label = CampRaids.Words(c, band, "CC_CampRaid_Opt_Help".Translate().RawText), tip = CampRaids.Words(c, band, "CC_CampRaid_Opt_Help_Tip".Translate().RawText),
+                        disabled = gone, act = () => CampRaids.Answer(c, CampRaidAnswer.Help)
+                    });
+                    list.Add(new CampOption
+                    {
+                        label = CampRaids.Words(c, band, "CC_CampRaid_Opt_Warn".Translate().RawText), tip = CampRaids.Words(c, band, "CC_CampRaid_Opt_Warn_Tip".Translate().RawText),
+                        disabled = gone ?? (band.Moving ? "CC_CampRaid_TooLate".Translate().ToString() : null), act = () => CampRaids.Answer(c, CampRaidAnswer.Warn)
+                    });
+                    list.Add(new CampOption
+                    {
+                        label = CampRaids.Words(c, band, "CC_CampRaid_Opt_Out".Translate().RawText), tip = CampRaids.Words(c, band, "CC_CampRaid_Opt_Out_Tip".Translate().RawText),
+                        act = () => CampRaids.Answer(c, CampRaidAnswer.Out)
+                    });
+                    break;
+                }
                 case "refused":
                     list.Add(new CampOption { label = c.Text("CC_Camp_Opt_AskGift", null, null, gift), disabled = NotEnough(c.map, gift), act = () => AskToLeavePaid(c, gift) });
                     list.Add(new CampOption { label = c.Text("CC_Camp_Opt_Insist"), act = () => Insist(c) });
@@ -360,6 +382,7 @@ namespace ColonyCouncil
                 case "request": return 1;
                 case "broken":
                 case "parting":
+                case "raided":
                 case "settle": return 2;
                 case "tension":
                 case "refused": return 3;

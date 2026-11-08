@@ -451,7 +451,7 @@ namespace ColonyCouncil
                         return;
                     }
                     target = c;
-                    face = (CampTracker.VisitingAt(map) ?? CampTracker.PlayCamp(map, p.other)).FireCell;
+                    face = (CampTracker.PlayCamp(map, p.other) ?? CampTracker.VisitingAt(map))?.FireCell ?? c;
                     begin = "CC_Play_Begin_Camp".Translate(v.Named("PAWN")).Resolve();
                     break;
                 }

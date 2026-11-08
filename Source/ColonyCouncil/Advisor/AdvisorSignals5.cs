@@ -137,12 +137,14 @@ namespace ColonyCouncil
         public override IEnumerable<AdvisorSignal> Evaluate(Map map)
         {
             if (!CampTracker.Enabled) yield break;
-            var camp = CampTracker.VisitingAt(map);
-            if (camp == null || camp.map != map) yield break;
+            // Every camp's questions here (camps side by side: each its own).
+            var camps = CampTracker.VisitorsAt(map);
+            if (camps.Count == 0) yield break;
             int now = Find.TickManager.TicksGame;
             foreach (var l in Find.LetterStack.LettersListForReading.OfType<ChoiceLetter_Camp>().ToList())
             {
-                if (l.resolved || l.campId != camp.id) continue;
+                var camp = camps.FirstOrDefault(c => c.id == l.campId);
+                if (l.resolved || camp == null) continue;
                 int left = l.TimeoutActive ? l.disappearAtTick - now : -1;
                 bool closing = left > 0 && left < GenDate.TicksPerDay;
                 bool waited = !l.TimeoutActive && now - l.arrivalTick > GenDate.TicksPerDay;

@@ -442,7 +442,7 @@ namespace ColonyCouncil
         /// <summary>Dev mode: the camp's sick one is catching now (past its rate).</summary>
         public static string DebugCamp(Map map)
         {
-            var sick = CampTracker.VisitingAt(map)?.sick;
+            var sick = CampTracker.VisitingAt(map, c => c.sick != null)?.sick;
             if (sick == null) return "no camp here with one of theirs lying ill (the camp's trouble).";
             Carry(CarrierKind.Camp, HarmKinds.CampFever, sick, null, (int)(HarmFiveMath.CampFeverDays * HarmMath.DayTicks), null);
             return sick.LabelShort + "'s fever is catching for three days, unless the colony's doctor sees to them.";

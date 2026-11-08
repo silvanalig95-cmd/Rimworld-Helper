@@ -21,6 +21,9 @@ namespace ColonyCouncil
         public const string MemoLeave = "CampLeave";
         public const string MemoFlee = "CampFlee";
         public const string MemoFight = "CampFight";
+        /// <summary>A band comes against the camp (CampRaid.cs): they stand guard by their fire; at ease again once it is over.</summary>
+        public const string MemoGuard = "CampGuard";
+        public const string MemoAtEase = "CampAtEase";
 
         public LordJob_Camp()
         {
@@ -66,6 +69,20 @@ namespace ColonyCouncil
             back.AddTrigger(new Trigger_TickCondition(() => lord?.Map != null && !MapFacts.ThreatOn(lord.Map)));
             back.AddTrigger(new Trigger_TicksPassed(GenDate.TicksPerHour * 12));
             graph.AddTransition(back);
+            // A band come against their camp (CampRaid.cs): they stand guard by their fire, and are at ease again once it
+            // is over (or after half a day and more). Added last, so a group saved before keeps its toils' places.
+            var guard = new LordToil_CampGuard(center);
+            graph.AddToil(guard);
+            var toGuard = new Transition(camp, guard);
+            toGuard.AddTrigger(new Trigger_Memo(MemoGuard));
+            toGuard.AddPostAction(new TransitionAction_WakeAll());
+            toGuard.AddPostAction(new TransitionAction_EndAllJobs());
+            graph.AddTransition(toGuard);
+            var atEase = new Transition(guard, camp);
+            atEase.AddTrigger(new Trigger_Memo(MemoAtEase));
+            atEase.AddTrigger(new Trigger_TicksPassed(GenDate.TicksPerHour * 14));
+            atEase.AddPostAction(new TransitionAction_EndAllJobs());
+            graph.AddTransition(atEase);
 
             // At the spot (or near enough, after a long walk).
             var arrived = new Transition(travel, camp);
@@ -76,6 +93,7 @@ namespace ColonyCouncil
             // Time to go, in their own time.
             var goes = new Transition(travel, leave);
             goes.AddSource(camp);
+            goes.AddSource(guard);
             goes.AddTrigger(new Trigger_Memo(MemoLeave));
             graph.AddTransition(goes);
 
@@ -83,6 +101,7 @@ namespace ColonyCouncil
             var scatter = new Transition(travel, flee);
             scatter.AddSources(camp, leave);
             scatter.AddSource(hunt);
+            scatter.AddSource(guard);
             scatter.AddTrigger(new Trigger_Memo(MemoFlee));
             scatter.AddTrigger(new Trigger_PawnHarmed(1f, true, Faction.OfPlayer, null, null));
             scatter.AddTrigger(new Trigger_ChanceOnPlayerHarmNPCBuilding(1f));
@@ -96,6 +115,7 @@ namespace ColonyCouncil
             var war = new Transition(travel, defend);
             war.AddSources(camp);
             war.AddSource(hunt);
+            war.AddSource(guard);
             war.AddTrigger(new Trigger_BecamePlayerEnemy());
             war.AddPreAction(new TransitionAction_Custom(() => CampBeasts.LeadOff(lord)));
             war.AddPostAction(new TransitionAction_WakeAll());

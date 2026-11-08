@@ -64,7 +64,8 @@ namespace ColonyCouncil
         /// <summary>Dust behind the camp's people as they walk in, and a word from a colonist who sees them come (once a camp).</summary>
         private void Camp(VisualTouches vt, Map map, CellRect view, int now)
         {
-            var camp = CampTracker.VisitingAt(map);
+            // The newest camp still on its way in or building (camps side by side: the one just come).
+            var camp = CampTracker.VisitorsAt(map).LastOrDefault(c => c.phase == CampPhase.Coming || c.phase == CampPhase.Building);
             if (camp == null || camp.map != map || !camp.Active || camp.members == null) return;
             bool coming = camp.phase == CampPhase.Coming;
             if (!coming && camp.phase != CampPhase.Building) return;

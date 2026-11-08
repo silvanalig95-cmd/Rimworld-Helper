@@ -145,7 +145,7 @@ namespace ColonyCouncil
             if (!base.BeatCanHappen(s, beat, map, out retry)) return false;
             if (beat.key != "settle") return true;
             var tracker = CampTracker.Instance;
-            var c = CampTracker.VisitingAt(map);
+            var c = CampTracker.VisitingAt(map, x => x.kind == Wardens);
             if (c == null || c.kind != Wardens)
             {
                 // The wardens left before the post was done (the weather, a raid): the story goes on without it.
@@ -208,7 +208,7 @@ namespace ColonyCouncil
         public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
         {
             var def = DefDatabase<CampKindDef>.GetNamedSilentFail(kind ?? "");
-            if (def == null || !CampTracker.Enabled || CampTracker.VisitingAt(SituationEffectUtil.MapOf(ctx)) != null || !Allowed(ctx)) return;
+            if (def == null || !CampTracker.Enabled || !CampTracker.RoomFor(SituationEffectUtil.MapOf(ctx)) || !Allowed(ctx)) return;
             sheet.Add(ImpactKind.People, 0, "CC_Impact_CampComes".Translate(def.label).Resolve(), "CC_Impact_CampComesBrief".Translate(def.label).Resolve());
         }
 
@@ -244,7 +244,7 @@ namespace ColonyCouncil
         public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
         {
             var map = SituationEffectUtil.MapOf(ctx);
-            var c = CampTracker.VisitingAt(map);
+            var c = CampTracker.VisitingAt(map, x => x.kind?.defName == kind);
             if (c == null || CampTracker.HoldingAt(map) != null || c.kind?.defName != kind || !c.CanTalk || !Allowed(ctx)) return;
             sheet.Add(ImpactKind.People, 1, "CC_Impact_CampSettles".Translate(c.kind.label).Resolve(), "CC_Impact_CampSettlesBrief".Translate().Resolve());
         }
@@ -255,7 +255,7 @@ namespace ColonyCouncil
         public override void Apply(DilemmaContext ctx)
         {
             var map = SituationEffectUtil.MapOf(ctx);
-            var c = CampTracker.VisitingAt(map);
+            var c = CampTracker.VisitingAt(map, x => x.kind?.defName == kind);
             if (c == null || CampTracker.HoldingAt(map) != null || c.kind?.defName != kind || !c.CanTalk || !Gate(ctx)) return;
             string told;
             try
