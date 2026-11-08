@@ -46,6 +46,7 @@
   <CC_HarmSeven_Mote_Lost_ankle>a turned ankle in the dark</CC_HarmSeven_Mote_Lost_ankle>
   <CC_HarmSeven_Mote_Lost_scrape>a scraped knee in the dark</CC_HarmSeven_Mote_Lost_scrape>
   <CC_HarmSeven_Mote_Bandits>bandits at the edge</CC_HarmSeven_Mote_Bandits>
+  <CC_HarmSeven_SetUponMissed>Bandits of {BANDITS} went for {PAWN_nameDef}, a messenger of {FACTION}, at the edge of the colony's land, and ran off without landing a blow.</CC_HarmSeven_SetUponMissed>
   <CC_HarmSeven_WorstNightReason>alone on the worst night</CC_HarmSeven_WorstNightReason>
   <CC_HarmSeven_SetUpon>{PAWN_nameDef}, a messenger of {FACTION}, was set upon by bandits of {BANDITS} at the edge of the colony's land, cut, and is coming on to the gate. The bandits are running for it.</CC_HarmSeven_SetUpon>
   <CC_HarmSeven_SetUponScared>Bandits of {BANDITS} went for {PAWN_nameDef}, a messenger of {FACTION}, at the edge of the colony's land, and ran when they saw the colony's people near.</CC_HarmSeven_SetUponScared>

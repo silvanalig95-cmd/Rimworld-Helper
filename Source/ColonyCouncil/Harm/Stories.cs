@@ -403,12 +403,13 @@ namespace ColonyCouncil
             if (bandits.Count == 0) return false;
             // One of ours near where they come in: the bandits run before they strike.
             bool helped = map.mapPawns.FreeColonistsSpawned.Any(o => HarmFour.Ours(o) && !o.Downed && o.Awake() && o.Position.InHorDistOf(entry, HarmSevenMath.SetUponHelp));
-            if (!helped && Harm.Injure(courier, HurtKind.Cut, Rand.Bool ? HurtWhere.Arm : HurtWhere.Leg, HarmSevenMath.SetUponLow, HarmSevenMath.SetUponHigh, why: null, by: bandits[0]) != null)
+            bool hurt = !helped && Harm.Injure(courier, HurtKind.Cut, Rand.Bool ? HurtWhere.Arm : HurtWhere.Leg, HarmSevenMath.SetUponLow, HarmSevenMath.SetUponHigh, why: null, by: bandits[0]) != null;
+            if (hurt)
             {
                 if (!t.letterText.NullOrEmpty()) t.letterText += "\n\n" + "CC_Letter_Waylaid".Translate(courier.Named("PAWN")).Resolve();
                 HarmFour.Say(courier, "Rimfolk_Pool_CourierSetUpon");
             }
-            else HarmFour.Say(courier, "Rimfolk_Pool_CourierSaved");
+            else if (helped) HarmFour.Say(courier, "Rimfolk_Pool_CourierSaved");
             HarmFour.Mote(bandits[0], "CC_HarmSeven_Mote_Bandits");
             try
             {
@@ -419,7 +420,7 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("harm seven: the bandits run", e);
             }
             // The game warns of enemies on the land; here a word of what happened at the edge.
-            string text = (helped ? "CC_HarmSeven_SetUponScared" : "CC_HarmSeven_SetUpon").Translate(courier.Named("PAWN"), (courier.Faction?.Name ?? "").Named("FACTION"), f.Name.Named("BANDITS")).Resolve();
+            string text = (hurt ? "CC_HarmSeven_SetUpon" : helped ? "CC_HarmSeven_SetUponScared" : "CC_HarmSeven_SetUponMissed").Translate(courier.Named("PAWN"), (courier.Faction?.Name ?? "").Named("FACTION"), f.Name.Named("BANDITS")).Resolve();
             ColonyCouncil.Tell.Message(NewsKind.World, Importance.Important, map, text, new LookTargets(bandits.Cast<Thing>().Append(courier)), MessageTypeDefOf.ThreatSmall);
             return true;
         }

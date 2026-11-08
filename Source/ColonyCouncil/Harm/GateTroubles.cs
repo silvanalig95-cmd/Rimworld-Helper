@@ -384,10 +384,16 @@ namespace ColonyCouncil
         /// <summary>The challenger at the gate: the guard takes it, or the colony's marshal is asked. True when done with.</summary>
         public static bool RankHour(HarmWaiting x, int now)
         {
+            // Done (or nothing came of the roll): kept as the visit's one look until it lapses.
+            if (x.flag) return false;
             var ch = x.other;
             var c = x.pawn;
-            if (x.flag || ch == null || ch.Dead || !ch.Spawned) return x.flag || ch == null || ch.Dead || now - x.made > HarmSevenMath.RankEnemyDays * HarmMath.DayTicks;
-            if (c == null || c.Dead || !c.Spawned || c.Map != ch.Map) return false;
+            if (ch == null || ch.Dead)
+            {
+                x.flag = true;
+                return false;
+            }
+            if (!ch.Spawned || c == null || c.Dead || !c.Spawned || c.Map != ch.Map) return false;
             Together.When("rank|" + ch.thingIDNumber, ch, c, () =>
             {
                 if (x.flag) return;
@@ -411,7 +417,7 @@ namespace ColonyCouncil
                 }
                 HarmFour.Say(c, "Rimfolk_Pool_ChallengeTaken", ch);
             }, 12f, 0f);
-            return x.flag;
+            return false;
         }
 
         // ================= A fistfight that draws a crowd (2.8.2) =================

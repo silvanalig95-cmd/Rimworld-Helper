@@ -12,6 +12,143 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- Harm, part 7: tempers in the colony, visitors and outsiders, personal stories (7 and 8 November 2026, the last of the three
+  batches of the review's remaining proposals after the player's "all suggestions please", on the shared budget so they add
+  variety and not more hurts in all). With it **every one of the review's 94 proposals is built**. Not released: no version,
+  no What's new round, About.xml and CHANGELOG untouched (the lead numbers and releases it at the merge); merged with main at
+  0.163.0. Twenty-eight kinds (1.1.2, 1.3.1, 1.3.2, 1.5.1, 3.5.2, 3.7.1, 3.9.1, 3.9.2, 3.10.1, 3.13.1, 4.1.3, 4.7.3, 3.12.2;
+  1.2.4, 2.2.2, 2.5.3, 2.6.2, 2.8.2, 2.8.3, 2.9.1, 2.9.2, 3.8.1, 3.13.2, 2.3.2, 2.3.3; 3.10.2, 3.10.3, 4.8.1) and three that
+  hurt nobody of the colony, outside the budget (2.10.1 the nemesis's aim, 2.6.1 a neighbour's lost child, 2.7.1 their
+  courier). `Harm/HarmSevenMath.cs` (the rates, `HarmSevenTests`, "harm seven: ", 966 checks; linked in Tests.csproj and
+  Balance.csproj), `Harm/HarmSeven.cs` (the hub on the harm book's hour and slices, a moment set for later), `Tempers.cs`,
+  `GateTroubles.cs` (with `DilemmaEffect_GamblerTurns` and an `Outsiders` partial: `HarmBrawl`, `Challenge`,
+  `TakesChallenge`, `FistfightChance`), `Stories.cs`, `HarmSevenDebug.cs`; `Defs/Misc/Rimfolk_HarmSeven.xml` (the jobs
+  `Rimfolk_PracticeWalk`, `Rimfolk_StoresSneak`, both `JobDriver_HarmWalk`), `Defs/FlavorPoolDefs/Rimfolk_HarmSeven_Lines.xml`
+  (51 pools, in `ImmersionTests.SpokenPools`), Keyed `Rimfolk_HarmSeven.xml`, `Defs/ThoughtDefs/Rimfolk_Thoughts_HarmSeven.xml`
+  (`Rimfolk_Harm_StartedTheFight`, an opinion only). DESIGN.md "Harm, part 7" (a table of the thirty-one) and "The rates"
+  redone; README "Hurts from everyday life" three bullets; the Almanac's ailments page (prose only, no keyword changed);
+  the review marks each built with what differs, and its Summary says it is complete.
+  - Registry (`HarmKinds`, founding false, base rates from the model at 4000 runs): sitDown 0.021, speakerWords 0.0035,
+    passedOver 0.0054, meetingBoils 0.0081, friendsStand 0.0145, saidToFace 0.020, wrongedOne 0.0043, toldByFriend 0.0056,
+    loveRivals 0.0138, altarWords 0.0031, feastFists 0.0149, secondRound 0.0052, soldierNight 0.0023, openGates 0.018,
+    gamblerTurns 0.0019, barberNick 0.0105, rankEnemy 0.0005, crowdFight 0.0018, pastFirstBlood 0.0003, letterChallenge
+    0.0014, heirGrudge 0.0008, hatedTrader 0.0035, gateZeal 0.0026, hungryHands 0.0039, creekBrawl 0.0002, worstNight
+    0.0021, firstSteps 0.0014, workingWrong 0.0058; each a system of its own in `Harm.SystemOn` (speakerWords only under
+    demanding stakes, `s.Harsh`; the outsiders' fistfights with the deeper hooks; secondRound with Vanilla Brewing
+    Expanded, `Tempers.BrewingLoaded`; workingWrong with A RimWorld of Magic, `Contests.MagicLoaded`). 100 kinds now; each
+    passes at about 31% of its own rate. Most of part 7's kinds are fights, and a fight is two hurts the cap counts.
+  - The thirty-one (rate, prevention; seen). Tempers: (1.1.2) the peacemaker's sit-down (`Offices.Mediate`), 1 in 10 at a
+    rivalry of 70, nothing at 30, less with Social, half without a hot temper; not mended that time; the peacemaker steps
+    between them and takes a punch 1 time in 3. (1.3.1) a broken promise under demanding stakes, bitter (doubtful or worse)
+    and hot-tempered, a fifth: the walk to the speaker within the day, words by the age, talked down by the speaker's Social
+    (a twentieth a level), else a fight. (1.3.2) passed over (the jealousy rule), the jealous or abrasive: for a week the
+    first two meetings a sharp word, each at the game's insult chance for a pair at -20 (0.064); the peacemaker's word
+    within two days settles it. (1.5.1) two rivals who both pitched and stayed, 1 meeting in 12, half with the peacemaker at
+    the table, the chair's Social; the meeting's comment no longer says nobody is hurt over it. (3.5.2) any social fight at
+    home, one look: a close friend (45 friendship or 60 opinion) within twelve cells, 1 in 6 runs over, a blow 1 time in 2,
+    the two pulled apart (their fight ends; "to help" left out). (3.7.1) gossip run down to its subject's face, a hot
+    temper, 1 in 10, the blows a moment after the words. (3.9.1) a secret that wronged the colony (`SecretDef.wrongsColony`
+    on six: the stores thief, the borrowed cooking, the failed apprentice, the skimmed take, the mutiny, the caravan's dice)
+    let slip: whoever heard it, 1 in 4 (half with the peacemaker), goes to the owner; never one confessed. (3.9.2) a
+    confidence betrayed: 1 leak in 5 the keeper goes to the friend, blows half the time. (3.10.1) "a rival in love" leaving
+    its rivals' stage, the words said within two hours, 1 in 4 a shove; the one they both like thinks less of the starter.
+    (3.13.1) the one-faith decree (`DecreeHurt.OneFaith`, on its card): the first evening of its faith with a devout of
+    another at home, 1 in 3 the devout comes to blows with its speaker. (4.1.3) a day's table quarrel (`SetbackTimes`) with
+    drink in one of them, 1 in 4. (4.7.3) with Vanilla Brewing Expanded, two cups of alcohol in stock for each who drank:
+    one toast in three pours a second round (the policy for joy, faith, never an addict); two rivals who both took it, 1 in
+    4 within the hour; `ToastDrinks.cs` untouched (the hook is in `PlayOutLord`). (3.12.2) a nightmare that left a soldier's
+    or outlaw's past shaken, a roommate asleep: 1 in 20 (seeded) the roommate's mildest bruise. Visitors: (1.2.4) the
+    open-gates decree (`DecreeHurt.Gates`, on its card), its first visitors one roll, half (the warden half, on guard half):
+    a thief to the stores (`Rimfolk_StoresSneak`; seen within fifteen cells, chased, the sack dropped, caught a fistfight
+    half the time; unseen, off with a stack of up to ten of something cheap) or a beer of their own and a fight in the
+    yard. (2.2.2) "let anyone play" (`DilemmaEffect_GamblerTurns` on both its outcomes, its sheet line): the evening's
+    games, 1 in 6 a cheat caught, a hot-tempered loser's fistfight, the gambler sent on. (2.5.3) the barber, 1 cut in 30
+    (twice under Artistic 6) a cut of 1 on the shoulder; a spacer people's barber never. (2.6.2) a dignitary at home, 1 in 6
+    a hothead of their own people at the gate; their guard takes it if their company has one, else the marshal (or the best
+    fighter) takes it by nature (the outsiders' duel to first blood or a bout) or refuses (two goodwill). (2.8.2) hard words
+    come to blows: 1 in 5 (half with the warden near) one more pair of tempers joins; the marshal near breaks it up. (2.8.3)
+    first blood drawn with a bloodthirsty fighter: 1 duel in 20 goes on by the yield terms, an onlooker pulls them apart.
+    (2.9.1) hard words with a notable themself, or a duel won against their people, where their ways know duels: 1 in 4
+    held; 10 to 30 days on one of Rimfolk's letters by their means (the faction's age), 2 to 5 days later the challenger at
+    the gate asks by name; taken by nature (the outsiders' duel) or refused (the notable's regard -6); a greetings or
+    condolences letter to their people since, or a good word or a gift (`Quarrels.Eased`), settles it. (2.9.2) a head whose
+    regard was -20 or worse is followed by the heir: 1 in 3 holds it four months; their visits' guards short with ours, 1
+    visit in 5 a fistfight; the same letters or a gift end it. (3.8.1) an open vendetta against a people at peace: 1 visit in
+    4 the avenger's fistfight. (3.13.2) a visitor of another faith and a devout of ours: 1 visit in 10 (half on best
+    behavior) hard words, then the outsiders' own fistfight chance. (2.3.2) a hunger world event within reach: 1 night in
+    15 two or three unarmed hungry strangers (`Arrivals.Visit`) in the fields (or the stores) for an hour; met within six
+    cells, 1 in 2 a bruise, then they flee, the sack dropped; famine bread none, a night watch half, lit fields half. (2.3.3)
+    two prospecting parties (visitor trips working "prospect") at once, once a rush (a "creek" marker), half the time a
+    brawl between them (`Harm.Fight` with no kind: theirs), one of ours within four cells caught unless the marshal gets
+    there first. Stories: (2.10.1, outside) a nemesis on the land in a fight, its victim on the field and out of cover (not
+    indoors, cover blocking under two fifths): once a return it goes for them (melee or a beast straight at them, a gun to
+    range), a taunt or the words over it; no Harm call, no return of its own. (3.10.2) "getting clean"'s worst night
+    (stage 1, eleven to two) with the friend not within eight cells and a drug of the addiction in reach: half the time the
+    game's own binge (`Binging_DrugExtreme`, else `Binging_DrugMajor`). (3.10.3) "the new leg"'s first steps (stage 0, nine
+    to five), walking near the gate without the friend: 1 in 3 a fall, someone helping them up. (4.8.1) with A RimWorld of
+    Magic, "the long discipline"'s long practice (stage 1): a fire, ice or storm mage (`InnerFire`, `HeartOfFrost`,
+    `StormBorn`) free at dawn walks out to practise (`Rimfolk_PracticeWalk`), the teacher along when free; 1 in 25 (half
+    with the teacher there) a burn, the game's frostbite (`HurtKind.Frostbite`, new) or a shock's burn. (2.6.1, outside)
+    the lost one found after a night out: about half (the setting and the lean) frostnip, a chill or an ankle; a child the
+    mildest (a scraped knee). (2.7.1, outside) a waylaid messenger (`CourierTracker`): half come in with two or three
+    bandits of a people at war at their heels; nobody of ours within 25 cells, the cut as before and the letter's line;
+    someone near, the bandits run first; the bandits run for the edge (`LordJob_ExitMapBest`), a message.
+  - Messages only where the game gives one: the fights tell themselves (the game's social fight, the outsiders' brawl's
+    end); the challenge is its own letter (`Tell.Letter`, the one in part 7); the bandits at the edge one message. The rest
+    is seen on the map (`HarmFour.Mote`, the lines). Saved: nothing new (`HarmBook.waiting`: "speaker", "passed",
+    "wronged", "leak", "gamble", "rank", "challenge", "heir", and the markers "altar", "gates", "creek", kept by
+    `HarmSeven.Unpeopled` from being dropped as broken; `HarmSix.Due`/`Lapsed` hand unknown ones to `HarmSeven`); the rest
+    session memory. No Sched slot, no new Harmony patch. Hooks, one line each: Offices (the sit-down), CouncilDynamics
+    (a broken promise, passed over), Ambitions (the meeting), Gossip (in front), Secrets (a slip, a betrayal),
+    ArcWorkers_Lives (the rivals' stage), SetbackTimes (the quarrel), PlayOutLord (the toast), Callers (a cut),
+    OutsiderOutcomes (hard words, a duel won, first blood), Notables (the succession), Quarrels (`Eased`), the lost child's
+    mission, CourierTracker. Defs: the two decrees' `hurts`, six secrets' `wrongsColony`, the gambler's effect.
+  - Rates (`Tools/Balance -- --harm --runs 4000`), hurts a colonist-year, before (every kind up to 0.149.0), every kind on
+    without the budget, with it (and at 0.161.0, parts 4 to 6, with it): 6 well run 0.339, 0.991, 0.327 (0.318); 6 average
+    0.453, 1.374, 0.459 (0.456); 6 neglectful 0.560, 1.844, 0.626 (0.630); 12 well run 0.290, 0.793, 0.256 (0.251); 12 average
+    0.395, 1.133, 0.369 (0.370); 12 neglectful 0.504, 1.567, 0.519 (0.528). The average colony of six holds within noise; no
+    kind flagged a quarter off. Part 7 alone would add 0.15 a colonist-year; within the budget the later kinds bring 0.32
+    where they brought 0.30. Variety: a kind again within thirty days 0.12 to 0.09 a colony-year; the commonest kind 12.0%
+    to 11.6% (13.1% at 0.161.0). Vanilla Brewing Expanded is in the model's game now (the second round).
+  - Try in the game (dev mode, Debug actions, Rimfolk, "Harm seven: ..."; none of it could be run here):
+    1. "the peacemaker's next sit-down comes to blows": a peacemaker and a rivalry; when the three meet, the fight, the
+       peacemaker's word, maybe a punch. "a friend steps into the next social fight": any social fight with a close friend
+       near: the run over, the two stopping.
+    2. Under demanding stakes, "the next broken promise goes to the speaker": let a promise lapse; the walk, the words, a
+       fight or a calm answer. "the next one passed over holds it...": pick a colonist; their next two meetings.
+    3. "the next council meeting boils over" with two rivals pitching; "the next gossip said to its subject's face comes to
+       blows"; "the next secret let slip brings the hearer to its owner" and "the next confidence betrayed...".
+    4. "the next rivals in love come to blows" (a "rival in love" at its rivals' stage); the one they like's opinion.
+    5. With Ideology, the one-faith decree (its card's line), then "words at the altar at the next evening of the one faith".
+    6. "the next quarrel at a day's table comes to blows" (a feast day with rivals); with Vanilla Brewing Expanded, "the next
+       toast pours a second round" and "two rivals here quarrel over the second round".
+    7. "the next soldier's nightmare strikes the roommate": two in one bedroom, one shaken by a nightmare (or wait for one).
+    8. The open-gates decree (its card's line) and "the next open gate's visitors bring a stranger": the thief's walk to the
+       stores and the chase, or the beer and the fight. Check the thief leaves with at most a small stack.
+    9. "the gambler's next evening of games turns" after letting anyone play; "the barber's next cut nicks".
+    10. "the next guest of rank draws an enemy" with a dignitary staying: with and without a guard in their company.
+    11. "the next fistfight after hard words draws a crowd" (provoke an outsider), "the next duel to first blood goes on past
+        it", "a challenge by letter for..." (the letter, then the challenger), "the next heir carries a grudge" (wait for a
+        succession), "the next visit of the hated people", "zeal at the gate at the next visit".
+    12. "hungry strangers in the fields tonight": the figures in the field, one of ours meeting them, the flight. "the
+        prospectors here come to blows" with two parties of prospectors (a silver rush's share answer and its nugget).
+    13. "the next nemesis on the land seeks the one it hurt": a raid with a nemesis, its victim in the open, then behind
+        cover; a beast nemesis back for blood.
+    14. "the next worst night of getting clean, alone", "the next first steps on a new leg fall", with A RimWorld of Magic
+        "the next mage's practice working slips".
+    15. "the next lost child is found hurt" (the mission); "the next waylaid messenger is set upon at the edge" (a letter by
+        courier to a town on a dangerous road): the bandits, the cut or the flight, the message.
+    16. "the shared budget (log)": the hundred listed with their passes (about 0.31).
+  - Riskiest: the bandits at the edge (hostile pawns spawned beside a courier with an exit lord; they shouldn't fight, but
+    the colony's drafted people can, and a hostile on the map is a threat to the game); the hungry strangers, the rank's
+    challenger and the letter's challenger made with `Arrivals.Make` and `Visit`, each given a job from a lord's visit (the
+    challenger seeking the colonist through `Together.When`, as the rematch's does); the nemesis's forced attack job (a
+    manhunting beast's own mind may take over at once); the thief's `SplitOff` into a visitor's inventory and the drinker's
+    beer made into theirs and drunk from it (`JobDefOf.Ingest` from an inventory); `MentalState_SocialFighting.otherPawn`
+    and `RecoverFromState` to pull a fight apart; the binge started by name with `TryStartMentalState` (whether the game's
+    binge picks the addiction's own drug is the game's); `CoverUtility.CalculateOverallBlockChance` for the nemesis's cover;
+    the second round's `Ingest` jobs at a toast; the soldier's nightmare waking two at once with `EndCurrentJob`; the
+    Referee's first-blood switch to yield terms mid-duel (`OutsiderOutcomes.Referee`).
 - 0.163.0, release E, the second four peoples: the Stormglass Conclave, the Mossborn, the Ashen Banner and the Kiln Guild (7 and
   8 November 2026, the player's explicit request: "love all these factions, go ahead!" and "always consider the actual
   mods i have enabled in my save and mod list"; no proposal round). Not released: no What's new round, About.xml and
