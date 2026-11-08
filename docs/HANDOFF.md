@@ -12,6 +12,52 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- Unnumbered: which exact things have the wrong style (8 November 2026, the player's explicit request after a colonist's
+  "Non-Federal-style surroundings -4", Federalism with intense bigotry: "how do i even know what is having the 'wrong'
+  style? I don't see it", then "i'd appreciate if you add notes about which exact items have the wrong style, so i can
+  target these"). Not released, as the entry below. DESIGN.md "Which things have the wrong style" (after "Ideoligions in
+  the colony: the people"); README "Mood tab and Moods page" a paragraph; the Almanac's ideoligions page a section
+  (*Things in the wrong style*) and a sentence in *Settings*, no keyword changed.
+  - What, with Ideology outside classic mode: the game's style mood (`ThoughtWorker_StyleDominance`, every diversity
+    level's) gets in its tooltip the count the game never shows, worked out the game's way from the colonist's own cell:
+    what counts against them by kind and style with how many and the points ("Animist dining chair ×4, -20"), the biggest
+    first, eight lines then "and N more"; what counts for them (four lines); the total against the threshold (10, or a
+    small room's cell count); with the bad mood one line of what would fix it (new buildings take the main ideoligion's
+    style and nothing restyles a built thing: build again where that helps; else move them, convert, or reform; another's
+    own things and floors taken down or replaced). A colonist with the bad mood has the button "Show the wrong-style
+    things" (selects them on the map, the camera to the first if out of view). A styled thing (StyleDominance above 0)
+    says in its inspect text "Against Federalism's style: Aquason, Ian" for the colony's people on its map whose style it
+    goes against. No mood changed, nothing saved.
+  - Code: `Moods/StyleSurroundingsMath.cs` (pure, linked in Tests.csproj; `StyleSurroundingsTests`, "wrong-style things: ",
+    74 checks: grouping by kind and style with a building's every cell, the order, the threshold and stage, the lines and
+    "and N more", the fix line, the button, the seams), `Moods/StyleSurroundings.cs` (the count with the game's private
+    `IdeoUtility.GetStyleDominance` and `GetJoinedRooms` by `AccessTools`, the tooltip, the button, a thing's line, and the
+    patches `Patch_StyleSurroundingsTip` on `ThoughtWorker_StyleDominance.PostProcessDescription`,
+    `Patch_StyleSurroundingsGizmo` on `Pawn.GetGizmos`, `Patch_StyleSurroundingsInspect` on
+    `ThingWithComps.GetInspectString`), `Moods/StyleSurroundingsDebug.cs`, Keyed `Rimfolk_StyleSurroundings.xml`. Cached
+    by the 250-tick block (a colonist's count and tooltip, the map's ideoligions with the mood and their names, a thing's
+    line); no Sched slot.
+  - Settings: `styleNotes` ("Wrong-style things named", How you're told, On the map, on, needs the deeper hooks).
+  - Riskiest: the private game methods by name (checked against 1.6 and 1.7's reference assemblies, both there; gone, the
+    feature is off with one warning); the count is from the colonist's own cell while the game's is from a random cell
+    within 5, so near a room's far wall the two can differ a little (the dev action prints both); a building whose class
+    overrides `GetInspectString` without the base call shows no line; labels from mods' style categories and things as they
+    name themselves; the tooltip's length in the game's Needs tab with many kinds (eight and four lines at most).
+  - Try in the game (dev mode; none of it could be run here): a colony with Ideology, the main ideoligion with one style
+    (say Animist) and a colonist of another that cares about style (Diversity: bigotry or worse, a different style).
+    1. Build Animist dining chairs and a table in the dining room and put the colonist there (wait for the game's next look,
+       900 ticks): their Needs tab has "Non-...-style surroundings"; its tooltip ends with "Around ... now (dining room)",
+       "Animist dining chair ×4, -20", the table with its points (a 2x4 table counts in each of its eight cells), the total
+       and the threshold, and "New buildings take ...'s style and a built thing can't be restyled, so instead of building
+       these again, move them ...". The same tooltip in Rimfolk's Mood tab.
+    2. The colonist's button "Show the wrong-style things": the chairs and table are selected; from another room or with
+       the camera elsewhere, the camera goes to the first. Somewhere with nothing against them: the rejection message.
+    3. Select a chair: its inspect text says "Against ...'s style: " and the colonist's name.
+    4. Make the colonist's ideoligion the main one (or pick a style for it the main one shares): the fix line says to build
+       them again. A small room under 10 cells: the threshold is its cell count.
+    5. "Wrong-style things: the count around a colonist (log)...": the groups, Rimfolk's total and the game's own sum from
+       the same cell (`GetStyleDominanceFromCellsCenteredOn`): the two should agree. Classic mode or the setting off:
+       nothing of it shows.
 - Unnumbered: a bleeding animal's body taken when it dies (8 November 2026, the player's explicit request: "if i see a
   wild animal is bleeding out, can i give a command to haul it's corpse once it's dead? not to hunt it, in case it's a
   strong one, but just to wait for it to die. if the animal recovers from bleeind comehow, this job shouild be

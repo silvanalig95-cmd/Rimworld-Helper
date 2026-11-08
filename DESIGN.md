@@ -1303,6 +1303,54 @@ always the game's own `IdeoConversionAttempt` and is told one way. Off without I
   or whom they could bring round), the mark under "what shaped them", news, the journal; the advisor's
   `Council_Adv_FaithSplit` (split 0.5 or more with three ideoligions or more, leading to the page); the Almanac page
   "ideoligions in the colony".
+
+### Which things have the wrong style (the player's question, 8 November 2026)
+
+The player had a colonist with "Non-Federal-style surroundings -4" (Federalism, intense bigotry): "how do i even know what
+is having the 'wrong' style? I don't see it", then "i'd appreciate if you add notes about which exact items have the wrong
+style, so i can target these". With Ideology outside classic mode, the game's style mood (`ThoughtWorker_StyleDominance`,
+every diversity precept's thought) comes from a sum it never shows (`Pawn_StyleObserverTracker`): every 900 ticks, awake
+and not blind, a random cell within 5 in line of sight, and over the cells within 24.9 of it that are in the colonist's
+room (and the rooms a doorway they stand in joins: `IdeoUtility.GetJoinedRooms`), not fogged, each floor (plus for one of
+their ideoligion's buildables, minus for any other that isn't buildable by default) and each thing in each cell
+(`IdeoUtility.GetStyleDominance`: its StyleDominance stat, plus for the style their ideoligion uses for that def, minus for
+another style; a relic container by its relic's ideoligion; their ideoligion's own special buildables plus, another's
+minus; plain things nothing). A building counts in every cell it covers. At 10 points either way the mood shows (a room
+under 10 cells, not a doorway: its cell count). New buildings take the main ideoligion's style (`Designator_Build`, no
+choice outside classic mode) and nothing restyles a built thing. The pure rules are `Moods/StyleSurroundingsMath.cs`
+(`StyleSurroundingsTests`); the game's side `Moods/StyleSurroundings.cs` (three patches) and `StyleSurroundingsDebug.cs`.
+
+- **The count** (`StyleSurroundings.Count`): the game's own sum from the colonist's own cell (not the game's random one):
+  the same cells, floors and rooms, each thing's points from the game's private `GetStyleDominance` and the rooms from its
+  private `GetJoinedRooms`, both reached by name (`AccessTools`, a delegate each), so the points can't drift from the
+  game's; without them the feature is off with one warning. Things are grouped by def and style (another ideoligion's own
+  things by that ideoligion, relics by theirs, floors by terrain), each thing counted once and its points summed over its
+  cells (`StyleSurroundingsMath.Group`); against them the biggest first, for them apart.
+- **The mood's tooltip** (`Patch_StyleSurroundingsTip`, a postfix on the worker's `PostProcessDescription`, so it shows
+  wherever the game or Rimfolk's Mood tab shows the mood's description): "Around Aquason now (dining room), as the game
+  counts it:", then "Against Federalism's style:" and up to eight lines ("Animist dining chair ×4, -20", "Animist table,
+  -16", "Morbid tile, 12 cells, -12", then "and N more, -X"), "For it:" up to four, "Here in all: -31. The bad mood comes at
+  -10 or lower, the good one at +10 or higher.", and with the bad mood one line of what would fix it
+  (`StyleSurroundingsMath.FixKey`, by each kind's `StyleFix`): their ideoligion is the main one, or the main one's style
+  for those things is theirs or none (plain counts nothing): build them again; it is another style: building again won't
+  help, so move them out of the rooms they use, convert them to the main ideoligion, or reform an ideoligion so the two
+  share a style; only some would help: those named (three at most); only another ideoligion's own things, relics, floors or
+  items: move them or take them down.
+- **The button** (`Patch_StyleSurroundingsGizmo` on `Pawn.GetGizmos`): "Show the wrong-style things" on a colonist with the
+  bad stage (`StyleDominanceThoughtIndex` 1) whose ideoligion has the mood (`cachedPossibleSituationalThoughts`). It counts
+  again and selects the things against them on the map (`Find.Selector`, 150 at most), the camera moved to the first when
+  it is out of view; floors can't be selected (the tooltip has them). Nothing there: a rejection message says the mood came
+  from where they were when the game last counted.
+- **A thing's own line** (`Patch_StyleSurroundingsInspect` on `ThingWithComps.GetInspectString`, with the lucky things'):
+  for a thing with StyleDominance above 0, "Against Federalism's style: Aquason, Ian" for each ideoligion with the mood
+  among the colony's free colonists and slaves on its map whose style it goes against.
+- **Cheap**: a colonist's count and tooltip at most once every 250 ticks (by the tick's 250-block, kept for 200
+  colonists), the map's ideoligions and names once every 250 ticks, a thing's line once every 250 ticks a thing; nothing
+  every frame. No mood is changed and nothing is saved. An exception switches it off for the session.
+- **Control**: the setting "Wrong-style things named" (`styleNotes`, How you're told, On the map, on, under the deeper
+  hooks); only with Ideology and not in classic mode. Dev mode: "Wrong-style things: the count around a colonist (log)"
+  writes the groups with the game's own `GetStyleDominanceFromCellsCenteredOn` from the same cell beside Rimfolk's total.
+
 ### Ideoligions and the council
 With Ideology, the council can work with the colony's ideoligions (`Faith/FaithEvenings.cs`, `Faith/FaithCouncilMath.cs`,
 `Dilemmas/DilemmaWorkers_Faith.cs`, `Decrees/DecreeFaith.cs`, `Wishes/WishWorkers_Faith.cs`). Everything moves

@@ -573,6 +573,8 @@ namespace ColonyCouncil
             Toggle("moodBubbleText", "CC_Settings_MoodBubbleText", "CC_SetNote_MoodBubbleText");
             Toggle("moodInsight", "CC_Settings_MoodInsight", "CC_SetNote_MoodInsight");
             Toggle("needsTabHints", "CC_Settings_NeedsTabHints", "CC_SetNote_NeedsTabHints", "moodInsight");
+            // Which things have the wrong style for a colonist's ideoligion (Moods/StyleSurroundings.cs, with Ideology).
+            Toggle("styleNotes", "CC_Settings_StyleNotes", "CC_SetNote_StyleNotes", "deepHooks");
             Toggle("heartInspector", "CC_Settings_HeartInspector", "CC_SetNote_HeartInspector", "heart");
             Toggle("socialTabColumn", "CC_Settings_SocialTabColumn", "CC_SetNote_SocialTabColumn", "deepHooks");
             Section("CC_Settings_Alerts");

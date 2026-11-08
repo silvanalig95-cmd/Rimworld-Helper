@@ -3727,6 +3727,15 @@ The game's own **Needs** tab gets a line above its mood list with the same total
 · Ideoligion -4 · Lifting +22"; click it to open the Mood tab), and hovering a mood there ends its usual tooltip with
 which mod it comes from and what to do about it (a setting turns both off).
 
+With Ideology, the **style mood** ("Federal-style surroundings", "Non-Federal-style surroundings") says what it comes from:
+its tooltip lists the things around the colonist now that count against their ideoligion's style, by kind and style with
+how many and the points ("Animist dining chair ×4, -20"), the biggest first, then what counts for it, the total against
+the game's threshold (10 points either way), and what would fix it. New buildings always take the main ideoligion's style
+and the game can't restyle a built thing, so it says when building them again helps and when only moving them, a
+conversion or a reform will. A colonist with the bad mood gets a button, **Show the wrong-style things**, that selects
+them on the map, and a styled thing's inspect text names the colonists whose style it goes against ("Against Federalism's
+style: Aquason, Ian"). Nothing about the mood itself changes (the setting "Wrong-style things named", on by default).
+
 ## On-screen panels and the hover card
 What you keep checking, on the map, so you don't click through every colonist. Eight small panels, painted as a
 background layer: above the map and its pawn labels, beneath everything of the game's own, so the resource list, the
