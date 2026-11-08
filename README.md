@@ -567,8 +567,16 @@ and off with "Banishment by the council" on the settings' What's on page.
 
 **What each answer does.** Every answer in a dilemma's letter, and in the letters of Rimfolk's events and world
 events, has a short line under it, and hovering it shows more, grouped by kind, with gains in green and costs in red.
-The setting **What each answer does** (How you're told page) chooses how. **Hints in words** (the default) never shows a
-number: what happens on the map and when, which way spirits and trust go and roughly how far ("a little",
+The setting **What each answer does** (How you're told page) chooses how. **Flavour** (the default since 8 November
+2026, the player's request: "more like flavour writing rather than exact descriptions") puts one short line under each
+answer, how it would land as someone at the table might say it, never naming spirits, trust, opinion, a size or any
+other mechanic: "It would mean a lot to Avila; Guido won't forget it.", "Guido and Avila may come to blows.", "Some
+would call it fair; Guido won't.", "The stores would feel it." It says the biggest thing and at most one more (someone
+who may be hurt always, a real gamble next, else someone else), by name, within about ninety characters, always the
+way things really go for them; its words are picked from nearly three hundred in some fifty families
+(`Dilemmas/ImpactFlavourMath.cs`, made from the same lines as the hints), the same for an answer each time its letter
+opens and different between the answers of one letter. Hovering the answer shows the hints. **Hints in words** never
+shows a number: what happens on the map and when, which way spirits and trust go and roughly how far ("a little",
 "noticeably", "greatly"), who by name or group, what it costs ("uses some of the stores' beer", "costs a few hours of
 work"), how likely ("may", "likely"), whether it's a gamble, and which way the colony leans
 (`Dilemmas/ImpactHints.cs`, made from the same lines as the numbers). **Exact numbers** shows who feels what and for
@@ -576,7 +584,7 @@ how long, trust, what it takes from the stores or gives, what happens on the map
 ("1 in 4"): moods show their real size for each colonist (the reward and downside strengths and each colonist's
 standards count) and goods are counted from the stores (an answer that would take the last medicine says so). **Off**
 leaves the letters as they are. It is all read from the colony as it is when the letter opens. The Dilemmas page
-shows, on hover, what each answer given was to do, in words or numbers as the setting has it. The dilemmas, the customs and the strangers' questions were rebalanced by the same reckoning:
+shows, on hover, what each answer given was to do, as flavour, words or numbers as the setting has it. The dilemmas, the customs and the strangers' questions were rebalanced by the same reckoning:
 every answer has its own upside and its own cost, and the safe or quiet answer gives the least (making a thief work it
 off costs them a disciplined mood; the omen ceremony is a gamble).
 
@@ -4574,8 +4582,8 @@ The pages:
   news goes (**Colony news**: one letter each evening by default, as it happens, or off, to the History tab only);
   the most messages and letters that only tell a day for each colony (twelve and four, past them the evening's news);
   a message for every dream, letters or messages for new and granted wishes, a letter after each update (on by
-  default; see CHANGELOG.md), the notes in the game's letters, **What each answer does** (hints in words, exact
-  numbers or off); how colonists' speech shows (bubbles with Interaction Bubbles, floating text, or off), the visual
+  default; see CHANGELOG.md), the notes in the game's letters, **What each answer does** (flavour, hints in words,
+  exact numbers or off); how colonists' speech shows (bubbles with Interaction Bubbles, floating text, or off), the visual
   and sound touches, the mood's name in a mood bubble, mood insight (and its hints in the Needs tab), the inspector's
   strain line, Rimfolk's column in the game's Social tab; the alerts (and the reminder about a defense line's shut
   gate); the slow speed buttons (and putting them back), where the council button sits in the bottom bar, the region,

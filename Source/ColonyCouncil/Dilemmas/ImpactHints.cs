@@ -6,10 +6,12 @@ using System.Text.RegularExpressions;
 
 namespace ColonyCouncil
 {
-    /// <summary>How the letters show what each answer does (the setting "Under each answer").</summary>
+    /// <summary>How the letters show what each answer does (the setting "What each answer does").</summary>
     public enum ImpactShow
     {
-        /// <summary>A hint in plain words under each answer and on hover, without numbers (the default).</summary>
+        /// <summary>A line of flavour under each answer, how it would land without naming a mechanic, and the hints on hover (the default; Dilemmas/ImpactFlavourMath.cs).</summary>
+        Flavour,
+        /// <summary>A hint in plain words under each answer and on hover, without numbers.</summary>
         Hints,
         /// <summary>Every number: sizes, days, counts and odds.</summary>
         Exact,
@@ -51,13 +53,34 @@ namespace ColonyCouncil
     public sealed class HintWords
     {
         private readonly Func<string, string> raw;
+        private readonly Func<string, bool> has;
+        private readonly Dictionary<string, int> counts = new Dictionary<string, int>();
 
-        public HintWords(Func<string, string> raw)
+        /// <param name="has">Whether a key exists (for words in numbered variants, "..._1", "..._2"); without it, a key has words when they aren't the key itself.</param>
+        public HintWords(Func<string, string> raw, Func<string, bool> has = null)
         {
             this.raw = raw;
+            this.has = has;
         }
 
         public string this[string key] => raw?.Invoke(key) ?? key;
+
+        public bool Has(string key)
+        {
+            if (has != null) return has(key);
+            string v = raw?.Invoke(key);
+            return v != null && v != key;
+        }
+
+        /// <summary>How many numbered variants a key has: "{key}_1", "{key}_2" and on, up to the first one missing.</summary>
+        public int Variants(string key)
+        {
+            if (counts.TryGetValue(key, out int n)) return n;
+            n = 0;
+            while (n < 40 && Has(key + "_" + (n + 1))) n++;
+            counts[key] = n;
+            return n;
+        }
 
         public string F(string key, params string[] args) => Fill(this[key], args);
 

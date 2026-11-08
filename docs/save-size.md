@@ -8,7 +8,7 @@ generous guesses; sizes are rough XML sizes. Caps named as constants are read fr
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
 Saved collections found: 589; modelled: 589; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,590 KB** after a year, **3,051 KB** after two, **3,262 KB** after five.
+Rimfolk's part of the save, roughly: **2,593 KB** after a year, **3,057 KB** after two, **3,268 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -18,7 +18,7 @@ Rimfolk's part of the save, roughly: **2,590 KB** after a year, **3,051 KB** aft
 | `Persona/PersonaTracker.cs:memories` | PersonaTracker.MaxMemories, 8 per pair and 3 of a kind; past it by 60 the faintest go at once; faded ones and those of people the game no longer knows dropped at saving | cap | 300 | 600 | 600 | 187.5 |
 | `Persona/PersonaTracker.cs:peopleSaved` | the colony's own people the game still knows; empty records dropped at saving | known | 33 | 36 | 45 | 159.1 |
 | `World/Notables.cs:notables` | the towns' head, heir, envoy and trader (NotableMath.MaxNear + MaxDealt towns) and NotableMath.MaxAcquaintances faces met; with their notes and regards (a save that handed colonies over has four more for each town the colony was, HandOverMath.MaxTowns at most) | fixed | 42 | 42 | 42 | 106.6 |
-| `UI/WeekMemory.cs:dilemmas` | DilemmaLog.MaxRecords; each with what the answer was to do in numbers (about 500 characters, at most 1600) and in words (about 400, at most 1200) | cap | 30 | 60 | 60 | 76.2 |
+| `UI/WeekMemory.cs:dilemmas` | DilemmaLog.MaxRecords; each with what the answer was to do in numbers (about 500 characters, at most 1600), in words (about 400, at most 1200) and the flavour line under it (about 70, at most 200) | cap | 30 | 60 | 60 | 82.0 |
 | `World/Ledger/WorldLedger.cs:ties` | ties between two parties: 3 of a kind per pair, 60 per kind (regard 300), TieRules.MaxTies in all; closed ones dropped after 60 days | cap | 60 | 120 | 300 | 76.2 |
 | `Persona/TraitChanges.cs:watches` | one per colonist with its deeds and ten snapshots; known pawns only | colonists | 20 | 20 | 20 | 66.4 |
 | `Social/Gossip/ReputationTracker.cs:deeds` | 10 per colonist, 220 in all, faded ones dropped | cap | 200 | 200 | 200 | 58.6 |
