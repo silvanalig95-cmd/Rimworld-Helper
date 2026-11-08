@@ -64,6 +64,8 @@ namespace ColonyCouncil
     public struct PreyFacts
     {
         public bool animal, humanlike, wild, penned, storied, sacred, legendary, lord, markedForTaming, mental, oddDeath, insect, venom, downed;
+        /// <summary>The player's order to take its body when it dies is on it (Animals/BodyWhenItDies.cs): it is left to bleed out.</summary>
+        public bool markedForBody;
         public FoodChain level;
         /// <summary>Its body size now (a calf is small).</summary>
         public float size;
@@ -416,6 +418,7 @@ namespace ColonyCouncil
             if (p.legendary) return "a legend";
             if (p.lord) return "in a group (a herd on the move)";
             if (p.markedForTaming) return "marked for taming";
+            if (p.markedForBody) return "left to die for its body";
             if (p.mental) return "a manhunter or in a mental state";
             if (p.oddDeath) return "it bursts, splits or vanishes when it dies";
             if (p.insect && !h.kind.insects) return "an insect";

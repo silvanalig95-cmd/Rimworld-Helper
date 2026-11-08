@@ -1162,6 +1162,49 @@ game, the DLCs and the player's 29 animal mods from their own defs, `Tools/Tests
   its own jobs and stay its own (this is the animal feeding itself); a mod that gives a hungry animal another food job
   (foraging, fishing) wins, since food found always stands.
 
+### A bleeding animal's body taken when it dies (the player's request, 8 November 2026)
+
+The player: "if i see a wild animal is bleeding out, can i give a command to haul it's corpse once it's dead? not to hunt
+it, in case it's a strong one, but just to wait for it to die. if the animal recovers from bleeind comehow, this job
+shouild be cancelled." The pure rules are `Animals/BodyWhenItDiesMath.cs` (`BodyWhenItDiesTests`); the game's side
+`Animals/BodyWhenItDies.cs`, `BodyWhenItDiesPatches.cs` and `BodyWhenItDiesDebug.cs`; the mark
+`Defs/Misc/Rimfolk_BodyWhenItDies.xml`.
+
+- **The order.** On a selected animal that isn't the colony's (wild or another people's), alive, on the map and bleeding
+  (the game's `BleedRateTotal` at its own floor of 0.0001), the button "Take the body when it dies" (`Patch_BodyWhenItDiesGizmo`,
+  a `Command_Action` on `Pawn.GetGizmos`, the game's haul icon). It puts Rimfolk's designation `Rimfolk_TakeBodyWhenDead`
+  on it (the haul icon again, no new art): the game draws it over the animal, saves it with the map, and its Cancel tool
+  (and the Cancel button that then shows on the animal) takes it off. It replaces a hunting or taming order on it, as the
+  game's own animal orders replace each other (`RemoveAllDesignationsOn`).
+- **Its tooltip** says what it does, the bleeding rate, and how it will likely go (`BodyWhenItDiesMath.Outlook`, the game's
+  rules): it bleeds to death in about the health tab's own figure (`TicksUntilDeathDueToBloodLoss`: blood left over the rate
+  now), or it shouldn't, because its wounds stop bleeding on their own first (an injury after 1.5 days, up to 3 days for a
+  wound of 30, `Hediff_Injury.AgeTicksToStopBleeding`; a missing part after 1.5 days) or because under 10% a day the blood
+  comes back (`HediffGiver_Bleeding`). The wounds are followed one by one as they close, the game's factors scaling them
+  alike.
+- **While it lives** nothing is done: nobody hunts or hauls it, the colony's pets leave it out of their prey
+  (`HuntMath.PreyFacts.markedForBody`), and Rimfolk's own hunts already skip an animal with another order on it
+  (`PlayHunt.ChooseGame`, the wishes' prey).
+- **When it dies**, however it dies (`Patch_BodyWhenItDiesKill`): the game's `Pawn.Kill` puts the body down, forbidden
+  outside the home area unless a hunter killed it or it was marked for hunting, and only after that, destroying the animal,
+  removes every order on it (`Thing.Destroy`, `RemoveAllReservationsAndDesignationsOnThis`). So the prefix reads the mark on
+  the map that holds it and the postfix, once the animal is really dead (another mod may stop a death), unforbids the body
+  and gives it the game's own `Haul` order unless it already lies in storage; a hauler takes it to the best storage by the
+  usual rules. With no storage on the map that takes it (`StoreUtility.TryFindBestBetterStorageFor`, no carrier), the
+  player is told once (`Notify.Message`, the body the look target) and the body waits, unforbidden and marked.
+- **Cancelled on its own**, looked at on the wild's short pass (`BeastBook.Rare`, every 250 ticks, no slot of its own):
+  `BodyWhenItDiesMath.Judge` drops the order with one message naming the animal and why when it stopped bleeding (its wounds
+  aged out, were tended or healed), was tamed or came over to the colony (the game takes every order off an animal that
+  changes hands, so this is read from its faction and whether it was wild when marked), or left the map (also with its
+  order still on it, carried off or walked out). Cancelled by the player, or replaced by a hunting or taming order, it is
+  dropped without a word; the setting or the deeper hooks off, every mark is dropped without a word.
+- **Saved**: nothing of its own. The mark is the game's designation; whether each marked animal was wild is session
+  memory, filled again from the marks (by the animal's faction then) on the first short pass after a load. No new Sched
+  slot, two Harmony patches.
+- **Control**: the setting "Take a bleeding animal's body when it dies" (`bodyWhenItDies`, What's on, Strangers and
+  creatures, on by default, under the deeper hooks). Harm: none of its own; the animal bleeds from what already happened on
+  the map.
+
 ### What the colony's people want, strive for and are known for: the fourth round (6 November 2026)
 
 The player's request ("do another big content update to existing mechanics"), the part about the colony's own people:
@@ -7522,7 +7565,7 @@ chains, nemeses, camps, play-outs, the fights pass and the worn-out episode read
 | 173 | A journey planned ahead (Journeys/JourneyRun.cs; only while there is one): the stage its hour has reached (a day before, the travellers' timetables shifted; the last hours begun), each traveller's next step, the hour itself and the question when someone isn't ready | per traveller: free for a step, the step's job; at the hour, each one ready or not |
 | 199 | The council window's memory: the day's trust sample, the dilemmas and answers it watches | per colonist once a day |
 | 187 | Who stands beside whom in a fight at home (only while one is on; Social/FightSides.cs), so only they remember it together and become comrades; who carries, tends or stands over someone down; and the colony's animals in it (Animals/AnimalTempers.cs, AnimalVoices.cs): a brave one goes to stand by its person, a timid one bolts from the shooting, a speaking one warns of the raiders | per fighting colonist pair on that map (close, then the same room or in sight); per named or bonded animal there that is brave, timid or speaks |
-| 193 | The wild's alphas and bosses (Beasts/BeastBook.cs; each part by its rate): an alpha fallen (its pack scattered) or tamed (its pack walking in), a big threat looked at for a manhunters' alpha, a beast nemesis badly hurt turning to run, one fled off the map kept, a sworn one's fury, each home map's herds crossing for an edge spooked into a stampede, its runners' way, those who stop to watch; its hour on the same tick of the hour (alphas' threats and sightings, beast nemeses' returns and oaths), its day in the first hour of the day (packs led by an alpha, the season's great herd) | per open alpha and its pack, per beast nemesis on a home map, per home map's exit groups of four or more wild animals; a stampede's runners against the map's pawns for an hour |
+| 193 | The wild's alphas and bosses (Beasts/BeastBook.cs; each part by its rate): an alpha fallen (its pack scattered) or tamed (its pack walking in), a big threat looked at for a manhunters' alpha, a beast nemesis badly hurt turning to run, one fled off the map kept, a sworn one's fury, each home map's herds crossing for an edge spooked into a stampede, its runners' way, those who stop to watch; the colony's pets' hunts kept to their rules, and a bleeding animal's order to take its body dropped once it stops bleeding, is tamed or leaves (Animals/); its hour on the same tick of the hour (alphas' threats and sightings, beast nemeses' returns and oaths), its day in the first hour of the day (packs led by an alpha, the season's great herd) | per open alpha and its pack, per beast nemesis on a home map, per home map's exit groups of four or more wild animals; a stampede's runners against the map's pawns for an hour |
 | 221 | Ailments: one tenth of the colonists (by ID), each once an hour; the slice at tick 2471 also carries the colony's part | the colony's serious illnesses counted (every colonist's hediffs, as before every hour's rolls), then per colonist in the slice: circumstances sampled, each ailment's counted causes rolled; diet and sweets on the first look of the day |
 | 227 | The colony's animals with powers (Animals/AnimalPowers.cs; nothing without PokéWorld, A RimWorld of Magic, Ideology or the omens' setting): the colony's typed Pokémon at home (warmth, crops, a battery, a calming, a fire), each familiar near its mage, a binding waiting; on the hour's first pass the typed Pokémon counted, newborns under a sign, omens' fates, sacred animals fallen and hunts marked; in the first hour of the day a mage's own choice | per typed Pokémon of the colony (a room, 25 cells, 9 cells, the colonists within 6, the fires); per familiar and binding; hourly per colony animal (a birth check) and per fresh corpse |
 | 211 | A neighbour's letter being written, a call under way or the comms console ringing (World/NeighbourLetters.cs; only while there is one) | per letter or call under way: the writer still at it, someone free to answer |

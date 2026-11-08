@@ -12,6 +12,56 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- Unnumbered: a bleeding animal's body taken when it dies (8 November 2026, the player's explicit request: "if i see a
+  wild animal is bleeding out, can i give a command to haul it's corpse once it's dead? not to hunt it, in case it's a
+  strong one, but just to wait for it to die. if the animal recovers from bleeind comehow, this job shouild be
+  cancelled."). Not released: no version, no What's new round, About.xml and CHANGELOG untouched (the lead numbers and
+  releases it at the merge). DESIGN.md "A bleeding animal's body taken when it dies" (and the 193 row of "Ticking");
+  README "The colony's animals" a paragraph; the Almanac's colony's animals page a section (*Waiting for a bleeding animal
+  to die*) and a phrase in *Who hunts, and what*, no keyword changed.
+  - What: the button "Take the body when it dies" on a living, spawned, bleeding animal that isn't the colony's (wild or
+    another people's). It puts Rimfolk's designation `Rimfolk_TakeBodyWhenDead` on it (the game's haul icon, drawn over
+    the animal, saved with the map, taken off by the game's Cancel), in place of a hunting or taming order. Nothing is done
+    while it lives; the colony's pets leave it out of their prey. When it dies, however it dies, its body is unforbidden
+    and given the game's own `Haul` order (unless it already lies in storage); with no storage on the map that takes it,
+    one message (the body the look target). Dropped on its own, one message naming the animal and why, when it stops
+    bleeding (aged out, tended, healed), is tamed, joins the colony or leaves the map; dropped without a word when the
+    player cancels or replaces it, or the setting or hooks are off. The tooltip: what it does, the bleeding rate, and the
+    outlook by the game's rules (it bleeds to death in about the health tab's figure, or it shouldn't: its wounds stop on
+    their own in so long, or it makes its blood up under 10% a day).
+  - Code: `Animals/BodyWhenItDiesMath.cs` (pure, linked in Tests.csproj; `BodyWhenItDiesTests`, "the body when it dies: ",
+    71 checks: the button, `Judge` and the messages, `Outlook` against hand-worked cases, the haul order, the seams),
+    `Animals/BodyWhenItDies.cs` (the DefOf, the button and its tooltip, `Put`, `MarkedMap`/`Died` for the kill, `Rare`),
+    `Animals/BodyWhenItDiesPatches.cs` (`Patch_BodyWhenItDiesKill`, a prefix and postfix on `Pawn.Kill`: the game removes
+    every order on the animal in `Thing.Destroy`, after the body is placed, so the prefix reads the mark and the postfix
+    acts once `Dead`; `Patch_BodyWhenItDiesGizmo` on `Pawn.GetGizmos`), `Animals/BodyWhenItDiesDebug.cs`,
+    `Defs/Misc/Rimfolk_BodyWhenItDies.xml`, Keyed `Rimfolk_BodyWhenItDies.xml`. One line each in `BeastBook.Rare` (the
+    short pass, every 250 ticks: no Sched slot), `PetHunts.PreyOf` and `HuntMath.WhyNotPrey` (`markedForBody`).
+  - Settings: `bodyWhenItDies` ("Take a bleeding animal's body when it dies", What's on, Strangers and creatures, on, under
+    the deeper hooks: an indented row, so the setups that switch parts off leave it be). Saved: nothing new (the designation is the game's; which marked animals were
+    wild is session memory, filled again from the marks after a load).
+  - Riskiest: the kill's prefix and postfix (another mod that stops or reworks a death: the postfix acts only once the
+    animal is `Dead` and its body spawned); taming read from the faction after the game's `SetFaction` took the order off
+    (a wild animal that another people takes over is dropped silently as "cancelled"); the storage check without a carrier
+    (`TryFindBestBetterStorageFor(corpse, null, ...)`, so reachability isn't checked: storage behind a wall counts as
+    storage); the outlook leaves out other causes of death (an infection, a predator) and wounds of other mods that bleed
+    (counted as never closing by age).
+  - Try in the game (dev mode, Debug actions, Rimfolk, "Body when it dies: ..."; none of it could be run here):
+    1. "a deep cut on an animal (bleeds out)..." on a wild boar: it bleeds (the message says the rate and when it dies).
+       Select it: the button "Take the body when it dies", its tooltip with "At this rate it bleeds to death in about ...",
+       the same figure as its health tab. Press it: the haul icon over it, the game's Cancel button on it instead.
+    2. Wait (or the game's Kill tool): the body is unforbidden with the haul icon, and a hauler takes it to a stockpile that
+       allows corpses. With no such stockpile: one message, "... has died, but no storage on the map takes its body ...".
+    3. Mark another bleeding animal, then "tend an animal's wounds (stops the bleeding)...": within 250 ticks the mark is
+       gone and "... has stopped bleeding, so the order to take its body is cancelled.". The same with "age an animal's
+       wounds past bleeding..."; tame one (the game's Tame order, or the dev tame tool): "... has been tamed ..."; one that
+       walks off the map: "... has left the map ...".
+    4. "a light cut on an animal (lives)...": the tooltip says it shouldn't bleed to death and when its wounds close.
+    5. Mark a boar a pet of the colony could hunt (Pets hunt for themselves): the pet leaves it alone. Mark one already
+       marked for hunting: the hunt order goes. The setting off: the button is gone, and marks left are dropped quietly.
+    6. "the marked animals (log)": each with its rate, the health tab's figure, when it dies or that it lives, and when its
+       wounds close. Save and load with a mark on: the mark is still there and still dropped as above.
+
 - 0.164.0, harm, part 7: tempers in the colony, visitors and outsiders, personal stories (7 and 8 November 2026, the last of the three
   batches of the review's remaining proposals after the player's "all suggestions please", on the shared budget so they add
   variety and not more hurts in all). With it **every one of the review's 94 proposals is built**. Not released: no version,

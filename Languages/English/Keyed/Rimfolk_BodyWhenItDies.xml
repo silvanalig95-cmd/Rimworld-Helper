@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Take a bleeding animal's body when it dies (Animals/BodyWhenItDies.cs): the setting, the button, its tooltip and the messages. -->
+  <CC_Settings_BodyWhenItDies>Take a bleeding animal's body when it dies</CC_Settings_BodyWhenItDies>
+  <CC_Settings_BodyWhenItDies_Tip>A button on a bleeding animal that isn't the colony's, wild or another people's: Take the body when it dies. Nobody hunts it or hauls it while it lives, so a strong one can bleed out on its own instead of being fought. When it dies, however it dies, its body is unforbidden and marked for hauling, and a hauler takes it to storage by the usual rules; if no storage on the map takes it, you are told once. If it stops bleeding (its wounds close with time, someone tends them, or they heal), is tamed, joins the colony or leaves the map first, the order is cancelled and you are told why. The mark shows over the animal, the game saves it, and the game's Cancel tool takes it off. The button's tooltip says whether the animal will bleed to death and about when, as the health tab does. Needs the deeper game hooks.</CC_Settings_BodyWhenItDies_Tip>
+  <CC_SetNote_BodyWhenItDies>A bleeding wild animal gets a button to have its body hauled in once it dies, without a hunt.</CC_SetNote_BodyWhenItDies>
+
+  <CC_BodyMark_Gizmo>Take the body when it dies</CC_BodyMark_Gizmo>
+  <CC_BodyMark_GizmoDesc>Wait for {ANIMAL_nameDef} to die instead of hunting it: nobody goes near it while it lives. When it dies, of its wounds or anything else, its body is unforbidden and marked for hauling, and a hauler takes it to storage by the usual rules. If it stops bleeding, is tamed or leaves the map first, the order is cancelled and you are told. It replaces a hunting or taming order on it, and the Cancel tool takes it off.</CC_BodyMark_GizmoDesc>
+  <CC_BodyMark_Bleeding>Bleeding: {0} a day.</CC_BodyMark_Bleeding>
+  <CC_BodyMark_Outlook_Dies>At this rate it bleeds to death in about {0}.</CC_BodyMark_Outlook_Dies>
+  <CC_BodyMark_Outlook_Lives>It shouldn't bleed to death: its wounds stop bleeding on their own in about {0}, and the order is cancelled then.</CC_BodyMark_Outlook_Lives>
+  <CC_BodyMark_Outlook_LivesSlow>It shouldn't bleed to death: it loses blood more slowly than its body makes it up.</CC_BodyMark_Outlook_LivesSlow>
+
+  <CC_BodyMark_Off_StoppedBleeding>{ANIMAL_nameDef} has stopped bleeding, so the order to take its body is cancelled.</CC_BodyMark_Off_StoppedBleeding>
+  <CC_BodyMark_Off_Tamed>{ANIMAL_nameDef} has been tamed, so the order to take its body is cancelled.</CC_BodyMark_Off_Tamed>
+  <CC_BodyMark_Off_Joined>{ANIMAL_nameDef} has joined the colony, so the order to take its body is cancelled.</CC_BodyMark_Off_Joined>
+  <CC_BodyMark_Off_LeftMap>{ANIMAL_nameDef} has left the map, so the order to take its body is cancelled.</CC_BodyMark_Off_LeftMap>
+  <CC_BodyMark_NoStorage>{ANIMAL_nameDef} has died, but no storage on the map takes its body: it is unforbidden and marked for hauling, and stays where it lies until a stockpile allows it.</CC_BodyMark_NoStorage>
+
+</LanguageData>

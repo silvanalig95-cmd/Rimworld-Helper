@@ -141,6 +141,8 @@ namespace ColonyCouncil
         public AnimalSpeech speakingAnimals = AnimalSpeech.Auto;
         /// <summary>The colony's animals whose kind hunts go after prey below them in the food chain when nothing they may eat is in reach, and now and then for small game (Animals/PetHunts.cs).</summary>
         public bool petsHunt = true;
+        /// <summary>A bleeding animal that isn't the colony's gets the button "Take the body when it dies": left alone while it lives, its body hauled in once it dies (Animals/BodyWhenItDies.cs).</summary>
+        public bool bodyWhenItDies = true;
         public bool colonistMoments = true;
         /// <summary>Everyday frictions: small irritations between colonists, and with a messy or cramped home.</summary>
         public bool frictions = true;
@@ -753,6 +755,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref animalBonds, "animalBonds", true);
             Scribe_Values.Look(ref speakingAnimals, "speakingAnimals", AnimalSpeech.Auto);
             Scribe_Values.Look(ref petsHunt, "petsHunt", true);
+            Scribe_Values.Look(ref bodyWhenItDies, "bodyWhenItDies", true);
             Scribe_Values.Look(ref colonistMoments, "colonistMoments", true);
             Scribe_Values.Look(ref frictions, "frictions", true);
             Scribe_Values.Look(ref autonomy, "autonomy", true);

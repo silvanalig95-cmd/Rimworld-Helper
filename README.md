@@ -1394,6 +1394,14 @@ An alert says when an animal's **carcass lies out fresh**: one that hasn't start
 nobody on their way to it an hour after it died. It lists each one, says when it's forbidden or past the home area, and
 a click goes to it, so it can be hauled in, butchered or buried before it spoils (a setting with the alerts).
 
+A strong wild animal that is **bleeding out** can be left to die instead of hunted: select it and press **Take the body
+when it dies** (on any bleeding animal that isn't the colony's). The haul mark shows over it and nobody goes near it while
+it lives; when it dies, however it dies, its body is unforbidden and marked for hauling, and a hauler takes it to storage
+(you are told if no storage on the map takes it). The button's tooltip says how fast it bleeds and whether it will bleed to
+death and about when, as the health tab does. If it stops bleeding, is tamed, joins the colony or leaves the map first,
+the order is cancelled and a message says why; the game's Cancel tool takes the mark off too (a setting with the
+strangers and creatures, on by default).
+
 The Overview page's card **The herd and the land** shows who leads the herd, of which line and generation, whether
 the old leader is in its last season, the beast the colony watches and what it has made of it, a shiny rumour on the
 wind (with PokéWorld) and the neighbours settled for good. The Almanac page "the colony's animals" has the numbers, and

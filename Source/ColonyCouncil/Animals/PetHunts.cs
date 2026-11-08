@@ -174,7 +174,8 @@ namespace ColonyCouncil
                 animal = r.Animal, humanlike = r.Humanlike, wild = x.Faction == null && x.HostFaction == null && !x.IsPrisoner,
                 penned = (x.roping != null && x.roping.IsRoped) || AnimalPenUtility.GetCurrentPenOf(x, false) != null,
                 storied = PackAlphas.Storied(x), sacred = SacredAnimals.HeldSacred(x), legendary = PokeWorldLegends.IsLegendary(x.def), lord = x.GetLord() != null,
-                markedForTaming = map?.designationManager?.DesignationOn(x, DesignationDefOf.Tame) != null, mental = x.InMentalState, oddDeath = k.oddDeath,
+                markedForTaming = map?.designationManager?.DesignationOn(x, DesignationDefOf.Tame) != null, markedForBody = BodyWhenItDies.Marked(x),
+                mental = x.InMentalState, oddDeath = k.oddDeath,
                 insect = r.Insect, venom = k.venom, downed = x.Downed, level = Judge(x.def).level, size = x.BodySize, might = Might(x),
                 revenge = PawnUtility.GetManhunterOnDamageChance(x, hunter)
             };

@@ -400,6 +400,8 @@ namespace ColonyCouncil
                 new[] { "Auto", "On", "Off" }, "petMoments");
             // The colony's animals hunting for themselves (Animals/PetHunts.cs): not a part of the companions' life, so on its own.
             Toggle("petsHunt", "CC_Settings_PetsHunt", "CC_SetNote_PetsHunt");
+            // A bleeding animal's body taken when it dies (Animals/BodyWhenItDies.cs): the player's own order, with the kill's hook.
+            Toggle("bodyWhenItDies", "CC_Settings_BodyWhenItDies", "CC_SetNote_BodyWhenItDies", "deepHooks");
             Section("CC_Settings_WorldEventsHeader");
             Toggle("worldEvents", "CC_Settings_WorldEvents", "CC_SetNote_WorldEvents");
             Toggle("camps", "CC_Settings_Camps", "CC_SetNote_Camps", "worldEvents");
