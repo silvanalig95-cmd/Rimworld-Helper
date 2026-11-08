@@ -1,0 +1,651 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The Deepwell Union (docs/design/peoples-third.md, the second of the eight; docs/design/peoples.md, "Release F";
+    Source/ColonyCouncil/Peoples/PeoplesF.cs): miners and drillers who struck it rich and lost it all when the seam ran
+    dry, and stayed together anyway. The union's book holds every member and every shift; a strike is called by vote, never
+    by one man. Industrial, on the game's outlander parent; they arise in every age (ariseAges 0~3), and rise toward the
+    spacer age at a middling pace, digging for whatever the new age needs (agePace 11). No uniform: hard hats (Vanilla
+    Apparel Expanded), work clothes varied by trade; their signature is the union's red, an armband (Biotech's sash, worn
+    as one) over a red work shirt of any cut. Shovels (Vanilla Weapons Expanded's tools), shotguns (the game's, Vanilla
+    Weapons Expanded's trench guns and sawn-offs) and the shot-firers' blasting charges (the game's grenades, Vanilla
+    Factions Expanded - Settlers' dynamite where it is loaded). Tough, strong miners, and a few with mining genes (Biotech's
+    dark vision and robust, Alpha Genes' high mining yield); A RimWorld of Magic's geomancers among them. Their towns are
+    pits: a headframe over the shaft, a boarding house, a slag heap and the union hall (Rimfolk_Plan_UnionPit). At the
+    gate: a drill crew offers to drill the colony's deep ground for a share of what comes up, a mining accident at the
+    game's rate if the colony's hand works the drill with them (Rimfolk_Evt_UnionDrill); an assayer sells steel,
+    components and blasting goods (Rimfolk_Evt_UnionGoods); in a strike their trade stalls (no caravans, no trade at their
+    towns, none from their visitors) until the colony helps settle it at the gate (Rimfolk_Evt_UnionStrike). Their ask: two
+    good miners for a short shift (Rimfolk_Mission_UnionShift). Their founding: Marta Grieve and the vote to stay. Faith
+    (Ideology): the union as one (collectivist), the tunnellers, and Vanilla Ideology Expanded's industrialism. Kinds of
+    people: dirtmoles, Neanderthals, wasters, the Stoneborn, boglegs, Korgs and awakened gorillas, four in five baseliners.
+  -->
+
+  <FactionDef ParentName="OutlanderFactionBase">
+    <defName>Rimfolk_Deepwell</defName>
+    <label>Deepwell Union</label>
+    <description>A union of miners and drillers who go down into the ground for whatever it keeps, and come up covered in it. They drill for anyone who will pay a share, sell steel and blasting goods to anyone who will buy, and argue about all of it in the union hall. Every member and every shift is in the union's book, and a strike is called by vote, never by one man.\n\nTheir ways began in a boomtown that struck it rich and then lost it all. The seam under Deepwell ran dry in a single season, the owners left in the night, and the shift-captain Marta Grieve called the miners into the hall and put it to a vote: scatter, or stay together and dig somewhere else. They voted to stay, wrote every name in a book, and walked out with their picks the next morning. That book is still read at every meeting, and every member still ties on the union's red armband before going down.\n\nThey are loud, blunt and loyal, quick to laugh and quick to vote. They hate a cave-in, a boss who decides alone and a silent pit. Each pit is run by its shift-captain, and the union by its union boss, elected every year.</description>
+    <pawnSingular>union miner</pawnSingular>
+    <pawnsPlural>union miners</pawnsPlural>
+    <leaderTitle>union boss</leaderTitle>
+    <techLevel>Industrial</techLevel>
+    <basicMemberKind>Rimfolk_Deepwell_Miner</basicMemberKind>
+    <factionNameMaker>Rimfolk_Namer_Deepwell</factionNameMaker>
+    <settlementNameMaker>Rimfolk_Namer_DeepwellTown</settlementNameMaker>
+    <factionIconPath>ColonyCouncil/Peoples/Deepwell</factionIconPath>
+    <settlementTexturePath>ColonyCouncil/Peoples/DeepwellTown</settlementTexturePath>
+    <colorSpectrum>
+      <li>(0.50, 0.08, 0.08)</li>
+      <li>(0.70, 0.14, 0.12)</li>
+    </colorSpectrum>
+    <hidden>false</hidden>
+    <naturalEnemy>false</naturalEnemy>
+    <permanentEnemy>false</permanentEnemy>
+    <canSiege>false</canSiege>
+    <requiredCountAtGameStart>0</requiredCountAtGameStart>
+    <startingCountAtWorldCreation>1</startingCountAtWorldCreation>
+    <maxConfigurableAtWorldCreation>9999</maxConfigurableAtWorldCreation>
+    <configurationListOrderPriority>47</configurationListOrderPriority>
+    <settlementGenerationWeight>0.45</settlementGenerationWeight>
+    <raidCommonalityFromPointsCurve Inherit="False">
+      <points>
+        <li>(0, 0.3)</li>
+      </points>
+    </raidCommonalityFromPointsCurve>
+    <xenotypeSet Inherit="False">
+      <xenotypeChances>
+        <Dirtmole MayRequire="Ludeon.RimWorld.Biotech">0.05</Dirtmole>
+        <Neanderthal MayRequire="Ludeon.RimWorld.Biotech">0.03</Neanderthal>
+        <Waster MayRequire="Ludeon.RimWorld.Biotech">0.02</Waster>
+        <Stoneborn MayRequire="Ludeon.RimWorld.Biotech,det.stoneborn">0.03</Stoneborn>
+        <DV_Bogleg MayRequire="Ludeon.RimWorld.Biotech,det.boglegs">0.02</DV_Bogleg>
+        <Korg MayRequire="Ludeon.RimWorld.Biotech,sovereign.kork">0.02</Korg>
+        <Gorilla MayRequire="Ludeon.RimWorld.Biotech,onlymonkey.awakenedapes">0.02</Gorilla>
+      </xenotypeChances>
+    </xenotypeSet>
+    <fixedIdeo>true</fixedIdeo>
+    <ideoName>The Union Book</ideoName>
+    <ideoDescription>The ground keeps what it is given, and the union goes down together to ask for it back. Every member and every shift is written in the book, nobody decides alone, and a strike is called only by vote. Work is the whole of the faith: a seam worked well, a shaft shored right, everyone up again at the end of the shift. When the seam under Deepwell ran dry and the owners fled, Marta Grieve put it to the vote in the hall, and the miners chose to stay together, so the book's first page is that vote and every name under it.</ideoDescription>
+    <forcedMemes>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Collectivist</li>
+      <!-- Those who go down into the ground: Ideology's tunnellers. -->
+      <li MayRequire="Ludeon.RimWorld.Ideology">Tunneler</li>
+      <!-- The work is the faith: Vanilla Ideology Expanded's industrialism. -->
+      <li MayRequire="VanillaExpanded.VMemesE">VME_HardcoreIndustrialism</li>
+    </forcedMemes>
+    <structureMemeWeights Inherit="False">
+      <Structure_Ideological MayRequire="Ludeon.RimWorld.Ideology">3</Structure_Ideological>
+      <Structure_TheistAbstract MayRequire="Ludeon.RimWorld.Ideology">1</Structure_TheistAbstract>
+    </structureMemeWeights>
+    <styles>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Rustic</li>
+    </styles>
+    <caravanTraderKinds Inherit="False">
+      <li>Rimfolk_Caravan_Deepwell</li>
+    </caravanTraderKinds>
+    <visitorTraderKinds Inherit="False">
+      <li>Rimfolk_Visitor_Deepwell</li>
+    </visitorTraderKinds>
+    <baseTraderKinds Inherit="False">
+      <li>Rimfolk_Base_Deepwell</li>
+    </baseTraderKinds>
+    <pawnGroupMakers Inherit="False">
+      <li>
+        <!-- A fight: miners with shovels and shotguns, the shot-firers' charges, a shift-captain -->
+        <kindDef>Combat</kindDef>
+        <options>
+          <Rimfolk_Deepwell_Miner>12</Rimfolk_Deepwell_Miner>
+          <Rimfolk_Deepwell_ShotFirer>4</Rimfolk_Deepwell_ShotFirer>
+          <Rimfolk_Deepwell_Captain>2</Rimfolk_Deepwell_Captain>
+        </options>
+      </li>
+      <li>
+        <kindDef>Peaceful</kindDef>
+        <options>
+          <Rimfolk_Deepwell_Miner>16</Rimfolk_Deepwell_Miner>
+          <Rimfolk_Deepwell_ShotFirer>2</Rimfolk_Deepwell_ShotFirer>
+          <Rimfolk_Deepwell_Captain>2</Rimfolk_Deepwell_Captain>
+          <Villager_Child MayRequire="Ludeon.RimWorld.Biotech">3</Villager_Child>
+        </options>
+      </li>
+      <li>
+        <!-- The assayer's ore carts: steel, parts, the deep's metals and blasting goods -->
+        <kindDef>Trader</kindDef>
+        <traders>
+          <Rimfolk_Deepwell_Assayer>1</Rimfolk_Deepwell_Assayer>
+        </traders>
+        <carriers>
+          <Muffalo>4</Muffalo>
+          <Yak>2</Yak>
+          <Donkey>2</Donkey>
+        </carriers>
+        <guards>
+          <Rimfolk_Deepwell_Miner>8</Rimfolk_Deepwell_Miner>
+          <Rimfolk_Deepwell_Captain>2</Rimfolk_Deepwell_Captain>
+        </guards>
+      </li>
+      <li>
+        <kindDef>Settlement</kindDef>
+        <options>
+          <Rimfolk_Deepwell_Miner>14</Rimfolk_Deepwell_Miner>
+          <Rimfolk_Deepwell_ShotFirer>4</Rimfolk_Deepwell_ShotFirer>
+          <Rimfolk_Deepwell_Captain>3</Rimfolk_Deepwell_Captain>
+          <Rimfolk_Deepwell_Assayer>2</Rimfolk_Deepwell_Assayer>
+        </options>
+      </li>
+    </pawnGroupMakers>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleExtension">
+        <calling>drillers</calling>
+        <!-- Their age over the years (Peoples/PeopleAges.cs): they dig for whatever the new age needs and learn its tools at the face, at a working pace: to the spacer age. -->
+        <agePace>11</agePace>
+        <ageLimit>3</ageLimit>
+        <townWord>pit</townWord>
+        <townWords>pits</townWords>
+        <head>shift-captain</head>
+        <heir>second captain</heir>
+        <envoy>driller</envoy>
+        <trader>assayer</trader>
+        <courier>pit-runner</courier>
+        <couriers>pit-runners</couriers>
+        <caravanWeight>1</caravanWeight>
+        <camps>
+          <li>Council_Camp_Prospectors</li>
+          <li>Rimfolk_Camp_Stonecutters</li>
+          <li>Rimfolk_Camp_Salvagers</li>
+        </camps>
+        <plan>Rimfolk_Plan_UnionPit</plan>
+        <honours>a seam worked well, a shaft shored right and everyone up at the end of the shift</honours>
+        <fears>a cave-in, a boss who decides alone and a pit gone silent</fears>
+        <sayings>
+          <li>The ground keeps what it's given.</li>
+          <li>We go down and ask for it back.</li>
+          <li>Everyone up at the end of the shift.</li>
+          <li>Put it to the vote.</li>
+          <li>One book, one union.</li>
+        </sayings>
+        <townGoods>
+          <Steel>120~260</Steel>
+          <ComponentIndustrial>4~10</ComponentIndustrial>
+          <ChunkSlagSteel>4~10</ChunkSlagSteel>
+          <Plasteel>10~30</Plasteel>
+          <Silver>60~160</Silver>
+        </townGoods>
+        <herd>
+          <li>Donkey</li>
+          <li>Muffalo</li>
+        </herd>
+        <herdCount>2~5</herdCount>
+        <ariseAges>0~3</ariseAges>
+      </li>
+    </modExtensions>
+  </FactionDef>
+
+  <!-- ===================== Their people ===================== -->
+
+  <!--
+    How alike they look (docs/design/peoples.md, "Release F"): no uniform, only the union's red. Every union miner wears a
+    red work shirt of any cut (the game's and Vanilla Apparel Expanded's), with Biotech the red sash tied as the union's
+    armband over it; miners and shot-firers a hard hat (Vanilla Apparel Expanded); the rest varied by trade, the game's
+    work clothes, gloves and packs (Vanilla Apparel Expanded - Accessories), the shift-captains in jackets, the union boss
+    in a long coat. Miners carry shovels (Vanilla Weapons Expanded's tools), knives and shotguns, the shot-firers their
+    charges (the game's grenades, Settlers' dynamite) and a pistol; in another age their tools take the age's form
+    (ageArms: clubs and spears among the tribes, maces and great bows in the medieval age, charge rifles in the spacer
+    age). Tough and strong; a few with mining genes put in (Biotech, Alpha Genes), a few A RimWorld of Magic's geomancers.
+    They carry steel or a component. Without any mod: the game's shirts, trousers, jackets, dusters, helmets, shotguns,
+    knives, pistols and grenades.
+  -->
+  <PawnKindDef Name="Rimfolk_DeepwellKindBase" Abstract="True">
+    <race>Human</race>
+    <defaultFactionDef>Rimfolk_Deepwell</defaultFactionDef>
+    <chemicalAddictionChance>0.08</chemicalAddictionChance>
+    <invNutrition>2.55</invNutrition>
+    <specificApparelRequirements>
+      <!-- The union's red: a work shirt of any cut, and with Biotech the sash tied as its armband. -->
+      <li>
+        <apparelLayer>OnSkin</apparelLayer>
+        <bodyPartGroup>Torso</bodyPartGroup>
+        <color>(0.60, 0.10, 0.10)</color>
+        <alternateTagChoices>
+          <li><tag>IndustrialBasic</tag><chance>1</chance></li>
+        </alternateTagChoices>
+      </li>
+      <li MayRequire="Ludeon.RimWorld.Biotech"><apparelDef>Apparel_Sash</apparelDef><color>(0.60, 0.10, 0.10)</color></li>
+    </specificApparelRequirements>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_DeepwellKindBase">
+    <defName>Rimfolk_Deepwell_Miner</defName>
+    <label>union miner</label>
+    <combatPower>55</combatPower>
+    <itemQuality>Poor</itemQuality>
+    <gearHealthRange>0.4~1.3</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_Pants</li>
+      <li MayRequire="Ludeon.RimWorld.Biotech">Apparel_Sash</li>
+      <li MayRequire="VanillaExpanded.VAPPE">VAE_Headgear_Hardhat</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+    </apparelTags>
+    <apparelMoney>250~550</apparelMoney>
+    <weaponTags>
+      <li>PumpShotgun</li>
+      <li>MedievalMeleeBasic</li>
+      <li MayRequire="VanillaExpanded.VWE">ToolDecent</li>
+    </weaponTags>
+    <weaponMoney>60~280</weaponMoney>
+    <requiredWorkTags>Violent</requiredWorkTags>
+    <!-- What came up at the end of the shift. -->
+    <inventoryOptions>
+      <skipChance>0.5</skipChance>
+      <subOptionsChooseOne>
+        <li><thingDef>Steel</thingDef><countRange>10~30</countRange><choiceChance>2</choiceChance></li>
+        <li><thingDef>ComponentIndustrial</thingDef><countRange>1~1</countRange></li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>14~22</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <!-- A few with the mining genes put in: eyes for the dark and a body for the face, or a nose for the seam. -->
+          <li>
+            <genes>
+              <li>DarkVision</li>
+              <li>Robust</li>
+            </genes>
+            <chance>0.04</chance>
+          </li>
+          <li>
+            <genes>
+              <li>AG_MiningYield_High</li>
+            </genes>
+            <chance>0.03</chance>
+          </li>
+          <li><trait>Geomancer</trait><chance>0.02</chance></li>
+        </gifts>
+        <!-- The tools of another age. -->
+        <ageArms>
+          <li>
+            <ages>0~0</ages>
+            <weaponTags>
+              <li>NeolithicMeleeBasic</li>
+              <li>NeolithicMeleeAdvanced</li>
+            </weaponTags>
+          </li>
+          <li>
+            <ages>1~1</ages>
+            <weaponTags>
+              <li>MedievalMeleeDecent</li>
+            </weaponTags>
+          </li>
+          <li>
+            <ages>3~3</ages>
+            <money>1600</money>
+            <weaponTags>
+              <li>SpacerGun</li>
+            </weaponTags>
+          </li>
+        </ageArms>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_DeepwellKindBase">
+    <defName>Rimfolk_Deepwell_ShotFirer</defName>
+    <label>shot-firer</label>
+    <combatPower>65</combatPower>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.5~1.3</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_Pants</li>
+      <li MayRequire="Ludeon.RimWorld.Biotech">Apparel_Sash</li>
+      <li MayRequire="VanillaExpanded.VAPPE">VAE_Headgear_Hardhat</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Industrial</li>
+    </apparelTags>
+    <apparelMoney>300~600</apparelMoney>
+    <!-- The shot-firer's charges, and a pistol for the walk home. -->
+    <weaponTags>
+      <li>GrenadeDestructive</li>
+      <li>SimpleGun</li>
+    </weaponTags>
+    <weaponMoney>100~260</weaponMoney>
+    <requiredWorkTags>Violent</requiredWorkTags>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>14~22</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Geomancer</trait><chance>0.04</chance></li>
+          <li><trait>InnerFire</trait><chance>0.02</chance></li>
+        </gifts>
+        <ageArms>
+          <li>
+            <ages>0~0</ages>
+            <weaponTags>
+              <li>NeolithicRangedBasic</li>
+            </weaponTags>
+          </li>
+          <li>
+            <ages>1~1</ages>
+            <weaponTags>
+              <li>NeolithicRangedHeavy</li>
+            </weaponTags>
+          </li>
+          <li>
+            <ages>3~3</ages>
+            <money>1600</money>
+            <weaponTags>
+              <li>SpacerGun</li>
+            </weaponTags>
+          </li>
+        </ageArms>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_DeepwellKindBase">
+    <defName>Rimfolk_Deepwell_Captain</defName>
+    <label>shift-captain</label>
+    <combatPower>75</combatPower>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.6~1.4</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_Jacket</li>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+      <li MayRequire="Ludeon.RimWorld.Biotech">Apparel_Sash</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialAdvanced</li>
+    </apparelTags>
+    <apparelMoney>450~800</apparelMoney>
+    <weaponTags>
+      <li>Gun</li>
+    </weaponTags>
+    <weaponMoney>200~400</weaponMoney>
+    <requiredWorkTags>Violent</requiredWorkTags>
+    <skills>
+      <li>
+        <skill>Mining</skill>
+        <range>8~14</range>
+      </li>
+    </skills>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>16~24</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Gladiator</trait><chance>0.04</chance></li>
+          <li><trait>TM_Commander</trait><chance>0.03</chance></li>
+        </gifts>
+        <ageArms>
+          <li>
+            <ages>0~0</ages>
+            <weaponTags>
+              <li>NeolithicMeleeAdvanced</li>
+            </weaponTags>
+          </li>
+          <li>
+            <ages>1~1</ages>
+            <weaponTags>
+              <li>MedievalMeleeDecent</li>
+              <li>MedievalMeleeAdvanced</li>
+            </weaponTags>
+          </li>
+          <li>
+            <ages>3~3</ages>
+            <money>1600</money>
+            <weaponTags>
+              <li>SpacerGun</li>
+            </weaponTags>
+          </li>
+        </ageArms>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_DeepwellKindBase">
+    <defName>Rimfolk_Deepwell_Assayer</defName>
+    <label>assayer</label>
+    <trader>true</trader>
+    <combatPower>40</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.7~1.2</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialAdvanced</li>
+    </apparelTags>
+    <apparelMoney>300~600</apparelMoney>
+    <weaponTags>
+      <li>SimpleGun</li>
+    </weaponTags>
+    <weaponMoney>80~200</weaponMoney>
+    <skills>
+      <li>
+        <skill>Social</skill>
+        <range>6~13</range>
+      </li>
+      <li>
+        <skill>Intellectual</skill>
+        <range>4~10</range>
+      </li>
+    </skills>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>10~16</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_DeepwellKindBase">
+    <defName>Rimfolk_Deepwell_Boss</defName>
+    <label>union boss</label>
+    <combatPower>65</combatPower>
+    <factionLeader>true</factionLeader>
+    <minGenerationAge>40</minGenerationAge>
+    <itemQuality>Good</itemQuality>
+    <gearHealthRange>0.8~1.1</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_Duster</li>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+      <li MayRequire="Ludeon.RimWorld.Biotech">Apparel_Sash</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialAdvanced</li>
+    </apparelTags>
+    <apparelMoney>500~900</apparelMoney>
+    <weaponTags>
+      <li>Gun</li>
+    </weaponTags>
+    <weaponMoney>200~400</weaponMoney>
+    <skills>
+      <li>
+        <skill>Mining</skill>
+        <range>10~16</range>
+      </li>
+      <li>
+        <skill>Social</skill>
+        <range>8~14</range>
+      </li>
+    </skills>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>14~20</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>TM_Commander</trait><chance>0.1</chance></li>
+          <li><trait>Geomancer</trait><chance>0.08</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <!-- ===================== Their traders: the assayer's ore carts ===================== -->
+
+  <TraderKindDef>
+    <defName>Rimfolk_Caravan_Deepwell</defName>
+    <label>assayer's ore carts</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>500~1100</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Steel</thingDef>
+        <countRange>200~500</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentIndustrial</thingDef>
+        <countRange>4~10</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Plasteel</thingDef>
+        <countRange>10~30</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Uranium</thingDef>
+        <countRange>5~20</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Shell_HighExplosive</thingDef>
+        <countRange>4~10</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponRanged</tradeTag>
+        <countRange>2~4</countRange>
+        <maxTechLevelGenerate>Industrial</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>BasicClothing</tradeTag>
+        <countRange>2~5</countRange>
+        <maxTechLevelGenerate>Industrial</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Visitor_Deepwell</defName>
+    <label>union miners</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>150~400</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Steel</thingDef>
+        <countRange>60~150</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentIndustrial</thingDef>
+        <countRange>1~4</countRange>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Base_Deepwell</defName>
+    <label>pit</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>900~1600</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Steel</thingDef>
+        <countRange>400~900</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentIndustrial</thingDef>
+        <countRange>8~18</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Plasteel</thingDef>
+        <countRange>20~60</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Uranium</thingDef>
+        <countRange>10~40</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Gold</thingDef>
+        <countRange>10~40</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Shell_HighExplosive</thingDef>
+        <countRange>8~20</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponRanged</tradeTag>
+        <countRange>3~6</countRange>
+        <maxTechLevelGenerate>Industrial</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>BasicClothing</tradeTag>
+        <countRange>3~6</countRange>
+        <maxTechLevelGenerate>Industrial</maxTechLevelGenerate>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <!-- ===================== Their names ===================== -->
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_Deepwell</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->The [PlaceOutlander] Union</li>
+        <li>r_name(p=2)->The [unionVirtue] Union</li>
+        <li>r_name->Miners of the [unionThing]</li>
+        <li>r_name->The [unionThing] Pits</li>
+        <li>unionThing->Red Armband</li>
+        <li>unionThing->Dry Seam</li>
+        <li>unionThing->Deep Well</li>
+        <li>unionThing->Union Book</li>
+        <li>unionThing->Last Shift</li>
+        <li>unionVirtue->Deepwell</li>
+        <li>unionVirtue->Undermined</li>
+        <li>unionVirtue->Red</li>
+        <li>unionVirtue->Stubborn</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_DeepwellTown</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->[PlaceOutlander] Pit</li>
+        <li>r_name(p=2)->[PlaceOutlander] Shaft</li>
+        <li>r_name->[pitWord] of [PlaceOutlander]</li>
+        <li>r_name->[pitVirtue] Seam</li>
+        <li>pitWord->Headframe</li>
+        <li>pitWord->Diggings</li>
+        <li>pitWord->Boomtown</li>
+        <li>pitVirtue->Grieve's</li>
+        <li>pitVirtue->Second</li>
+        <li>pitVirtue->Copper</li>
+        <li>pitVirtue->Lucky</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>

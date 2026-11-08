@@ -240,7 +240,7 @@ public static class PeoplesGearTests
                 apparelMax = Max(k.Element("apparelMoney")?.Value ?? ""), weaponMax = Max(k.Element("weaponMoney")?.Value ?? "")
             });
         }
-        C(kinds.Count >= 75 && factions.Count == 15 && kinds.All(k => factions.Any(f => Dn(f) == k.faction)), $"every kind of the fifteen peoples read ({kinds.Count})");
+        C(kinds.Count >= 95 && factions.Count == 19 && kinds.All(k => factions.Any(f => Dn(f) == k.faction)), $"every kind of the nineteen peoples read ({kinds.Count})");
         string TechOf(Kind k) => factions.First(f => Dn(f) == k.faction).Element("techLevel")!.Value;
 
         // Every piece of the player's active mods under a tag the peoples use is in PeopleGear.txt, so the checks below see
@@ -296,7 +296,7 @@ public static class PeoplesGearTests
                 }
             }
         }
-        C(colours.Values.Distinct().Count() == 15, "fifteen peoples, fifteen colours");
+        C(colours.Values.Distinct().Count() == 19, "nineteen peoples, nineteen colours");
         var bannerSpecs = kindEls.Where(k => (Dn(k) == "" ? k.Attribute("Name")?.Value ?? "" : Dn(k)).StartsWith("Rimfolk_AshenBanner"))
             .SelectMany(k => k.Element("specificApparelRequirements")?.Elements("li") ?? Enumerable.Empty<XElement>()).Where(s => s.Element("color") != null).ToList();
         C(bannerSpecs.Any(s => s.Element("apparelDef")?.Value == "Apparel_Sash")
@@ -494,13 +494,15 @@ public static class PeoplesGearTests
         // Medieval and tribal peoples get no psylinks; the spacers and the learned do. Release D's design names two more: the
         // Wardens' old tracker may be a Wildspeaker, and the Circuit has Wildspeakers in the spacer age (that gift of that age only).
         // Release E's two more: the Stormglass Conclave's readers feel the weather as the planet's psychic tide (their lore,
-        // Staticlords and Frostshapers), and the Mossborn's eldest root may be a Wildspeaker.
+        // Staticlords and Frostshapers), and the Mossborn's eldest root may be a Wildspeaker. Release F's two more: the Signal
+        // Line's operators who hear the psychic hum in the static (Staticlords), and the Republic's propaganda officers
+        // (Empaths and Puppeteers); the Deepwell Union none.
         foreach (var f in factions)
         {
             string tech = f.Element("techLevel")!.Value;
             bool psy = kinds.Where(k => k.faction == Dn(f)).Any(k => k.def.Descendants("psylink").Any());
-            C(psy == (tech == "Industrial" && (Dn(f) == "Rimfolk_Scholars" || Dn(f) == "Rimfolk_Stormglass") || tech == "Spacer" || Dn(f) == "Rimfolk_Wardens"
-                      || Dn(f) == "Rimfolk_Tamers" || Dn(f) == "Rimfolk_Mossborn"),
+            C(psy == (tech == "Industrial" && (Dn(f) == "Rimfolk_Scholars" || Dn(f) == "Rimfolk_Stormglass" || Dn(f) == "Rimfolk_SignalLine" || Dn(f) == "Rimfolk_Republic")
+                      || tech == "Spacer" || Dn(f) == "Rimfolk_Wardens" || Dn(f) == "Rimfolk_Tamers" || Dn(f) == "Rimfolk_Mossborn"),
                 $"{Dn(f)}: psylinks only where the age and calling have them");
             bool genes = kinds.Where(k => k.faction == Dn(f)).Any(k => k.def.Descendants("genes").Any());
             C(!genes || PeoplesGearMath.GenesFit(tech), $"{Dn(f)}: genes put in only where the age has the means");

@@ -441,7 +441,7 @@ namespace ColonyCouncil
             GenSpawn.Spawn(x, cell, map);
             if (!x.Spawned) return false;
             // Frightened, hiding near where they ended up.
-            LordMaker.MakeNewLord(m.faction, new LordJob_VisitColony(m.faction, cell, Mathf.RoundToInt((m.days + 1f) * GenDate.TicksPerDay)), map, new List<Pawn> { x });
+            LordMaker.MakeNewLord(m.faction, new LordJob_VisitOnErrand(m.faction, cell, Mathf.RoundToInt((m.days + 1f) * GenDate.TicksPerDay)), map, new List<Pawn> { x });
             return true;
         }
 
@@ -480,7 +480,7 @@ namespace ColonyCouncil
                     // They follow their finder back to the colony and wait there for their family.
                     x.GetLord()?.RemovePawn(x);
                     var spot = Avail.ColonyBuildings(map, d => d.defName == "PartySpot" || d.defName == "Campfire").FirstOrDefault()?.Position ?? finder.Position;
-                    LordMaker.MakeNewLord(m.faction, new LordJob_VisitColony(m.faction, spot, GenDate.TicksPerDay * 2), map, new List<Pawn> { x });
+                    LordMaker.MakeNewLord(m.faction, new LordJob_VisitOnErrand(m.faction, spot, GenDate.TicksPerDay * 2), map, new List<Pawn> { x });
                     string line = Line(More?.ready, m, map, null, TextUtil.DaysString(m.due - now));
                     if (!line.NullOrEmpty()) Tell.Message(NewsKind.World, Importance.Important, map, line, new LookTargets(x, finder), MessageTypeDefOf.PositiveEvent);
                     return;

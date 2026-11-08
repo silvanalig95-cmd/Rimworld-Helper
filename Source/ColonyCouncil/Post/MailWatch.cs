@@ -175,7 +175,7 @@ namespace ColonyCouncil
             foreach (var l in letters) l.packedBy = who;
             carriers[who.thingIDNumber] = c;
             var job = JobMaker.MakeJob(PostDefOf.Rimfolk_PostTake, spot);
-            job.locomotionUrgency = LocomotionUrgency.Walk;
+            job.locomotionUrgency = Pace.Errand;
             job.expiryInterval = GenDate.TicksPerHour * 3;
             job.checkOverrideOnExpire = true;
             who.jobs.StartJob(job, JobCondition.InterruptForced, null, false, true);
@@ -294,7 +294,7 @@ namespace ColonyCouncil
             if (who == null) return false;
             foreach (var i in items) i.carrier = who;
             var job = JobMaker.MakeJob(PostDefOf.Rimfolk_PostDrop, spot);
-            job.locomotionUrgency = LocomotionUrgency.Walk;
+            job.locomotionUrgency = Pace.Errand;
             job.expiryInterval = GenDate.TicksPerHour * 3;
             job.checkOverrideOnExpire = true;
             who.jobs.StartJob(job, JobCondition.InterruptForced, null, false, true);

@@ -42,7 +42,7 @@ namespace ColonyCouncil
                 if (t.Bearers.FirstOrDefault() != pawn || !CourierTracker.FetchOk(t) || x.Downed || x.InMentalState
                     || !pawn.CanReach(x, PathEndMode.Touch, Danger.Some)) return null;
                 var fetch = JobMaker.MakeJob(CourierDefOf.Council_CourierFetch, x);
-                fetch.locomotionUrgency = LocomotionUrgency.Walk;
+                fetch.locomotionUrgency = Pace.Errand;
                 return fetch;
             }
             // Unloading at the drop spot, or where they stand if they can't get there (built over, or never arrived).
@@ -62,7 +62,7 @@ namespace ColonyCouncil
                 int n = t.things.Contains(stack) ? stack.stackCount : Mathf.Min(left, stack.stackCount);
                 var job = JobMaker.MakeJob(CourierDefOf.Council_CourierLoad, stack);
                 job.count = n;
-                job.locomotionUrgency = LocomotionUrgency.Walk;
+                job.locomotionUrgency = Pace.Errand;
                 return job;
             }
             return null;
@@ -71,7 +71,7 @@ namespace ColonyCouncil
         private static Job Drop(LocalTargetInfo at)
         {
             var job = JobMaker.MakeJob(CourierDefOf.Council_CourierDrop, at);
-            job.locomotionUrgency = LocomotionUrgency.Walk;
+            job.locomotionUrgency = Pace.Errand;
             return job;
         }
 

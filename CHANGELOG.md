@@ -5,6 +5,23 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Four more peoples: the Signal Line, the Deepwell Union, the Last Republic, the Hollow Fleet
+
+*8 November 2026, version 0.172.0*
+
+- The Signal Line keeps radio masts across the region: a lineman may raise one on your high ground, and while it sings your letters travel twice as fast and a raid's warning comes a few hours before it; storms wear it down, and the linemen climb it to mend it.
+- The Deepwell Union drills the deep seam under your land for a share, its assayer leaves a crate at your gate, and now and then it strikes, stopping its trade until a shift-captain is given food or a good talker; the drill can hurt your miner, on the shared budget.
+- The Last Republic counts your people bed to bed, offers citizen's papers with better trade and a duty owed, may call a colonist up for a season's service who comes home with pay, and praises or denounces you on its radio.
+- The Hollow Fleet, a grounded colony ship's crew in ship's grey, lands a shuttle by your gate to trade, buys salvage and ship chunks, and a sleeper woken after two hundred years may ask you for shelter.
+- Each has its story, look, gear and gifts from your mods in every age it can reach, a faith, town, letters and lines in its own voice; and every visitor at your gate now walks at the normal pace, not only the newest.
+
+## Couriers and visitors walk at a normal pace
+
+*8 November 2026, version 0.171.1*
+
+- Rimfolk's couriers, post riders, envoys and parties, visitors and camps coming and going, and anyone sent on an errand now move at the ordinary pace your own colonists work at; before, most of them walked at the game's slow walk, half that speed.
+- A stroll, a wander about a camp, browsing a stall, herds and pets on their own business, a group keeping together and someone carrying another still go slowly, as they should.
+
 ## The post: letters travel with someone
 
 *8 November 2026, version 0.171.0*

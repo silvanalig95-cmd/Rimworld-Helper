@@ -12,7 +12,7 @@ using ColonyCouncil;
 /// docs/design/peoples-third.md, "Ages that change over time"; DESIGN.md, "Peoples whose age changes"): the one rule (its
 /// pace, limits and floor, the colony's quickening, being cut off, the Sunken Vault's way, the traders' caps, what counts
 /// as a gift of learning, every age whole), each people's pace and limit in its def, the rule played out over years for
-/// the fifteen (the numbers in <see cref="Summary"/>, DESIGN.md has them), every age a people can reach dressed and armed
+/// the nineteen (the numbers in <see cref="Summary"/>, DESIGN.md has them), every age a people can reach dressed and armed
 /// from the player's own mods, and the seams.
 /// </summary>
 public static class PeopleAgesTests
@@ -218,7 +218,7 @@ public static class PeopleAgesTests
         string Dn(XElement e) => e.Element("defName")?.Value ?? "";
         XElement Ext(XElement d, string cls) => d.Element("modExtensions")?.Elements("li").FirstOrDefault(li => li.Attribute("Class")?.Value == "ColonyCouncil." + cls);
         int OwnAge(XElement f) => PeopleAgesMath.AgeOfTech(f.Element("techLevel")!.Value switch { "Neolithic" => 2, "Medieval" => 3, "Industrial" => 4, _ => 5 });
-        C(factions.Count == 15, "fifteen peoples");
+        C(factions.Count == 19, "nineteen peoples");
         var paces = new Dictionary<string, float>();
         var limits = new Dictionary<string, int>();
         foreach (var f in factions)
@@ -240,14 +240,14 @@ public static class PeopleAgesTests
         }
         var byPace = paces.OrderBy(p => p.Value).Select(p => p.Key).ToList();
         C(byPace.Take(3).OrderBy(x => x).SequenceEqual(new[] { "Rimfolk_League", "Rimfolk_Scholars", "Rimfolk_Stormglass" }), "the society, the Conclave and the road league rise soonest");
-        C(byPace.Skip(13).OrderBy(x => x).SequenceEqual(new[] { "Rimfolk_Herders", "Rimfolk_Mossborn" }) && limits["Rimfolk_Mossborn"] == 1 && limits["Rimfolk_Herders"] == 2,
+        C(byPace.Skip(17).OrderBy(x => x).SequenceEqual(new[] { "Rimfolk_Herders", "Rimfolk_Mossborn" }) && limits["Rimfolk_Mossborn"] == 1 && limits["Rimfolk_Herders"] == 2,
             "the Mossborn and the herders rise latest, and not past the medieval and the industrial age");
         C(limits["Rimfolk_Order"] == 2 && limits["Rimfolk_Enclave"] == 3, "the hospitallers' faith keeps them from the spacer age; the enclave is at the height already");
-        C(!docs.Any(d => d.text.Contains("<ageDeclines>true</ageDeclines>")), "no people of the fifteen declines unless supplied (that is the Sunken Vault's, still to come)");
+        C(!docs.Any(d => d.text.Contains("<ageDeclines>true</ageDeclines>")), "no people of the nineteen declines unless supplied (that is the Sunken Vault's, still to come)");
 
         // ================= The years, played out =================
 
-        // The fifteen in a world, from their defs: each its own fate and head start (by a made-up id), looked at every season.
+        // The nineteen in a world, from their defs: each its own fate and head start (by a made-up id), looked at every season.
         var peoples = factions.Where(f => paces.ContainsKey(Dn(f))).Select(f => (name: Dn(f), own: OwnAge(f), pace: paces[Dn(f)], limit: limits[Dn(f)])).ToList();
         // A typical game: the colony trades with the road league (and holds a trade pact with it), the guild (with a
         // journeyman's wander-year and a small gift of tools), the hospitallers (allied), the river folk and the society
@@ -290,7 +290,7 @@ public static class PeopleAgesTests
         var d10 = Play(devoted, 10f);
         var d7 = Play(devoted, 7f);
         string Pct(double x) => (x * 100).ToString("0", CultureInfo.InvariantCulture) + "%";
-        Summary = $"by themselves {none5.rose:0.0} of 15 rise an age in 5 years and {none10.rose:0.0} in 10; in a typical game {t5.rose:0.0} in 5 years, {t75.rose:0.0} in 7.5 "
+        Summary = $"by themselves {none5.rose:0.0} of 19 rise an age in 5 years and {none10.rose:0.0} in 10; in a typical game {t5.rose:0.0} in 5 years, {t75.rose:0.0} in 7.5 "
                   + $"and {t10.rose:0.0} in 10 (two ages: {t10.twice:0.00}); the guild with all the colony's help goes two ages in 10 years in {Pct(d10.twice)} "
                   + $"of worlds ({Pct(d7.twice)} in 7); the herders rise in 10 years in {Pct(t10.share["Rimfolk_Herders"])}, the Mossborn in {Pct(t10.share["Rimfolk_Mossborn"])}";
         C(none5.rose <= 2 && none10.rose >= 2 && none10.rose <= 6.5, $"by themselves, a few rise over the years ({none5.rose:0.0} in 5, {none10.rose:0.0} in 10)");
@@ -387,7 +387,7 @@ public static class PeopleAgesTests
                 }
             }
         }
-        C(checkedKits > 120 && sets >= 30, $"every kind of the fifteen in every age it can reach ({checkedKits} kinds in an age, {sets} sets)");
+        C(checkedKits > 120 && sets >= 30, $"every kind of the nineteen in every age it can reach ({checkedKits} kinds in an age, {sets} sets)");
 
         // ================= The seams =================
 

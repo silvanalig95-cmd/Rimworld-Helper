@@ -503,7 +503,7 @@ namespace ColonyCouncil
                     x.SetFaction(m.faction);
                     // It walks off with their herder if it can (not down, not shut in a pen); else the herder carries it off.
                     if (!x.Downed && ReachabilityUtility.CanReachMapEdge(x))
-                        LordMaker.MakeNewLord(m.faction, new LordJob_ExitMapBest(LocomotionUrgency.Walk, false, false), x.Map, new List<Pawn> { x });
+                        LordMaker.MakeNewLord(m.faction, new LordJob_ExitMapBest(Pace.Errand, false, false), x.Map, new List<Pawn> { x });
                     else
                     {
                         x.DeSpawn();

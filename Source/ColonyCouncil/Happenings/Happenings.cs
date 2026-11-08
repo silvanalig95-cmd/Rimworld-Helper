@@ -987,6 +987,10 @@ namespace ColonyCouncil
                         // Release E's (Peoples/PeoplesE.cs): the Stormglass Conclave's watch on the sky, and its runner with a warning.
                         case GlassWatch.Kind: keep = GlassWatch.Hour(v, comp, now); break;
                         case GlassWatch.RunnerKind: keep = GlassWatch.RunnerHour(v, comp, now); break;
+                        // Release F's (Peoples/PeoplesF.cs, PeoplesF2.cs): the Deepwell Union's strike, the Republic's papers and its conscript's season.
+                        case UnionStrike.Kind: keep = UnionStrike.Hour(v, comp, now); break;
+                        case Papers.Kind: keep = Papers.Hour(v, comp, now); break;
+                        case Conscripts.Kind: keep = Conscripts.Hour(v, comp, now); break;
                         default: keep = false; break;
                     }
                 }

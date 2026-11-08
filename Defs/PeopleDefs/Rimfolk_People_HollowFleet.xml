@@ -1,0 +1,701 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The Hollow Fleet (docs/design/peoples-third.md, the fourth of the eight; docs/design/peoples.md, "Release F";
+    Source/ColonyCouncil/Peoples/PeoplesF2.cs): the crew of a colony ship that came down two hundred years ago and never
+    flew again, still keeping its watches, ranks and logs in the grounded hull, still hoping to lift. Spacer, on the game's
+    outlander parent; they arise in every age (ariseAges 0~3) and are at the height of the ages already (ageLimit 3; cut
+    off from the world they fall back to the industrial age like any people). The ship's uniform for every rank, the
+    uniform rule for a crew: a collar shirt and trousers in deck grey, worn and patched, the same on the captain as on the
+    newest deckhand; the ship's guard add recon armour and charge rifles, the officers a jacket and, with Royalty, the
+    beret of their rank, the captain a long coat. In another age the guard take the age's issue (ageArms: war shirts and
+    spears among the tribes, plate and spears in the medieval age, flak and rifles in the industrial age). A share are
+    mechanitors (Biotech's mechlink and headset) and psycasters (Royalty; Vanilla Psycasts Expanded's Skipmaster,
+    Protector and Technomancer paths), and many are not baseliners at all, from the ship's long-ago gene work: starjacks
+    (Odyssey), genies, highmates, hussars, Vanilla Races Expanded's archons and androids, Rimsenal's Åskbarns, Alpha Genes'
+    nereids; deckhands with the ship's old gene work for health. Their towns are the grounded hull itself, with its landing
+    pad and its hydroponics (Rimfolk_Plan_FleetHull). At the gate: a shuttle lands (Royalty's; else by drop pod) to trade
+    spacer goods and a cryptosleep casket from the hull (Rimfolk_Evt_FleetShuttle); the Fleet buys the ship's chunks, persona
+    cores and advanced components the colony salvages, its deckhands cutting the chunks apart where they lie
+    (Rimfolk_Evt_FleetSalvage); a sleeper from their caskets, woken too late, asks the colony for shelter
+    (Rimfolk_Evt_FleetSleeper). Their ask: plasteel and parts for the lift (Rimfolk_Mission_FleetLift). Their founding:
+    Captain Imre Sallow's last order. Faith (Ideology): loyalty to the ship (loyalist), Odyssey's shipborn and the
+    transhumanist's long-ago gene work.
+  -->
+
+  <FactionDef ParentName="OutlanderFactionBase">
+    <defName>Rimfolk_HollowFleet</defName>
+    <label>Hollow Fleet</label>
+    <description>The crew of a colony ship that came down two hundred years ago and never flew again. Their descendants still keep its watches, ranks and logs in the grounded hull, still stand their posts on decks that have not moved in generations, and still hope to lift. They come out to trade for the parts the ship needs and the salvage that falls from the sky, and they pay well for both.\n\nTheir ways began with the ship's last order. When the hull came down short of its world, Captain Imre Sallow told the crew to keep their posts until the order came to disembark, and then died before giving it. Nobody has had the rank to give it since, so the watches are still kept, the logs still written and the sleepers still sleep in their caskets below decks. Every member of the crew wears the ship's uniform in deck grey, patched by every generation that wore it before.\n\nThey are courteous, precise and a little sad, and they keep ship's time wherever they are. They fear the last part failing, a sleeper who wakes to strangers and the order that never comes. The hull is run by its first officer, and the Fleet by its captain.</description>
+    <pawnSingular>crewman</pawnSingular>
+    <pawnsPlural>crew</pawnsPlural>
+    <leaderTitle>captain</leaderTitle>
+    <techLevel>Spacer</techLevel>
+    <basicMemberKind>Rimfolk_HollowFleet_Deckhand</basicMemberKind>
+    <factionNameMaker>Rimfolk_Namer_HollowFleet</factionNameMaker>
+    <settlementNameMaker>Rimfolk_Namer_HollowFleetTown</settlementNameMaker>
+    <factionIconPath>ColonyCouncil/Peoples/HollowFleet</factionIconPath>
+    <settlementTexturePath>ColonyCouncil/Peoples/HollowFleetTown</settlementTexturePath>
+    <colorSpectrum>
+      <li>(0.30, 0.33, 0.38)</li>
+      <li>(0.50, 0.54, 0.60)</li>
+    </colorSpectrum>
+    <hidden>false</hidden>
+    <naturalEnemy>false</naturalEnemy>
+    <permanentEnemy>false</permanentEnemy>
+    <canSiege>false</canSiege>
+    <requiredCountAtGameStart>0</requiredCountAtGameStart>
+    <startingCountAtWorldCreation>1</startingCountAtWorldCreation>
+    <maxConfigurableAtWorldCreation>9999</maxConfigurableAtWorldCreation>
+    <configurationListOrderPriority>49</configurationListOrderPriority>
+    <settlementGenerationWeight>0.3</settlementGenerationWeight>
+    <backstoryFilters Inherit="False">
+      <li>
+        <categories>
+          <li>Offworld</li>
+        </categories>
+        <commonality>0.5</commonality>
+      </li>
+      <li>
+        <categories>
+          <li>Outlander</li>
+        </categories>
+        <commonality>0.5</commonality>
+      </li>
+    </backstoryFilters>
+    <raidCommonalityFromPointsCurve Inherit="False">
+      <points>
+        <li>(0, 0.15)</li>
+      </points>
+    </raidCommonalityFromPointsCurve>
+    <xenotypeSet Inherit="False">
+      <xenotypeChances>
+        <Starjack MayRequire="Ludeon.RimWorld.Biotech,Ludeon.RimWorld.Odyssey">0.06</Starjack>
+        <Genie MayRequire="Ludeon.RimWorld.Biotech">0.05</Genie>
+        <Highmate MayRequire="Ludeon.RimWorld.Biotech">0.04</Highmate>
+        <Hussar MayRequire="Ludeon.RimWorld.Biotech">0.03</Hussar>
+        <VRE_Archon MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.archon">0.03</VRE_Archon>
+        <VREA_AndroidAwakened MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.android">0.03</VREA_AndroidAwakened>
+        <Askbarn MayRequire="Ludeon.RimWorld.Biotech,rimsenal.askbarn">0.03</Askbarn>
+        <AG_Nereid MayRequire="Ludeon.RimWorld.Biotech,sarg.alphagenes">0.02</AG_Nereid>
+      </xenotypeChances>
+    </xenotypeSet>
+    <fixedIdeo>true</fixedIdeo>
+    <ideoName>The Ship's Watch</ideoName>
+    <ideoDescription>The watch is kept until the order comes. Every member of the crew has a post and a rank, and the ship is everyone aboard it, the living, the sleepers in their caskets and the dead in the log. The body was made better before the voyage, as the ship was, and the crew keeps both in good repair. Captain Imre Sallow told the crew to keep their posts until the order came to disembark, and died before he could give it, so the ship's log has been written every day for two hundred years and still ends with the words "holding position".</ideoDescription>
+    <forcedMemes>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Loyalist</li>
+      <!-- A people of the ship: Odyssey's shipborn. -->
+      <li MayRequire="Ludeon.RimWorld.Ideology,Ludeon.RimWorld.Odyssey">Shipborn</li>
+      <!-- The ship's long-ago gene work: Ideology's transhumanist. -->
+      <li MayRequire="Ludeon.RimWorld.Ideology">Transhumanist</li>
+    </forcedMemes>
+    <structureMemeWeights Inherit="False">
+      <Structure_Ideological MayRequire="Ludeon.RimWorld.Ideology">3</Structure_Ideological>
+      <Structure_Archist MayRequire="Ludeon.RimWorld.Ideology">1</Structure_Archist>
+    </structureMemeWeights>
+    <styles>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Techist</li>
+    </styles>
+    <caravanTraderKinds Inherit="False">
+      <li>Rimfolk_Caravan_HollowFleet</li>
+    </caravanTraderKinds>
+    <visitorTraderKinds Inherit="False">
+      <li>Rimfolk_Visitor_HollowFleet</li>
+    </visitorTraderKinds>
+    <baseTraderKinds Inherit="False">
+      <li>Rimfolk_Base_HollowFleet</li>
+    </baseTraderKinds>
+    <pawnGroupMakers Inherit="False">
+      <li>
+        <!-- A fight: the ship's guard in recon armour, an officer, an engineer and the mechs' link -->
+        <kindDef>Combat</kindDef>
+        <options>
+          <Rimfolk_HollowFleet_Guard>12</Rimfolk_HollowFleet_Guard>
+          <Rimfolk_HollowFleet_Deckhand>3</Rimfolk_HollowFleet_Deckhand>
+          <Rimfolk_HollowFleet_Officer>2</Rimfolk_HollowFleet_Officer>
+          <Rimfolk_HollowFleet_Engineer MayRequire="Ludeon.RimWorld.Biotech">1</Rimfolk_HollowFleet_Engineer>
+        </options>
+      </li>
+      <li>
+        <kindDef>Peaceful</kindDef>
+        <options>
+          <Rimfolk_HollowFleet_Deckhand>16</Rimfolk_HollowFleet_Deckhand>
+          <Rimfolk_HollowFleet_Guard>4</Rimfolk_HollowFleet_Guard>
+          <Rimfolk_HollowFleet_Officer>2</Rimfolk_HollowFleet_Officer>
+          <Rimfolk_HollowFleet_Engineer MayRequire="Ludeon.RimWorld.Biotech">2</Rimfolk_HollowFleet_Engineer>
+          <Villager_Child MayRequire="Ludeon.RimWorld.Biotech">2</Villager_Child>
+        </options>
+      </li>
+      <li>
+        <!-- The quartermaster's stores: spacer goods, parts and medicine from the hull -->
+        <kindDef>Trader</kindDef>
+        <traders>
+          <Rimfolk_HollowFleet_Quartermaster>1</Rimfolk_HollowFleet_Quartermaster>
+        </traders>
+        <carriers>
+          <Muffalo>3</Muffalo>
+          <Dromedary>2</Dromedary>
+        </carriers>
+        <guards>
+          <Rimfolk_HollowFleet_Guard>8</Rimfolk_HollowFleet_Guard>
+          <Rimfolk_HollowFleet_Deckhand>3</Rimfolk_HollowFleet_Deckhand>
+        </guards>
+      </li>
+      <li>
+        <kindDef>Settlement</kindDef>
+        <options>
+          <Rimfolk_HollowFleet_Guard>12</Rimfolk_HollowFleet_Guard>
+          <Rimfolk_HollowFleet_Deckhand>8</Rimfolk_HollowFleet_Deckhand>
+          <Rimfolk_HollowFleet_Officer>3</Rimfolk_HollowFleet_Officer>
+          <Rimfolk_HollowFleet_Engineer MayRequire="Ludeon.RimWorld.Biotech">2</Rimfolk_HollowFleet_Engineer>
+          <Rimfolk_HollowFleet_Quartermaster>2</Rimfolk_HollowFleet_Quartermaster>
+        </options>
+      </li>
+    </pawnGroupMakers>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleExtension">
+        <calling>crew</calling>
+        <!-- Their age over the years (Peoples/PeopleAges.cs): they came down at the height of the ages and keep the ship's knowledge in its logs; cut off from the world they lose it as any people would. -->
+        <agePace>10</agePace>
+        <ageLimit>3</ageLimit>
+        <townWord>hull</townWord>
+        <townWords>hulls</townWords>
+        <head>first officer</head>
+        <heir>second officer</heir>
+        <envoy>ensign</envoy>
+        <trader>quartermaster</trader>
+        <courier>deck-runner</courier>
+        <couriers>deck-runners</couriers>
+        <caravanWeight>0.6</caravanWeight>
+        <camps>
+          <li>Rimfolk_Camp_Spacers</li>
+          <li>Rimfolk_Camp_Salvagers</li>
+          <li>Council_Camp_Surveyors</li>
+        </camps>
+        <plan>Rimfolk_Plan_FleetHull</plan>
+        <honours>a watch kept to its last hour, the ship in good repair and a sleeper woken among friends</honours>
+        <fears>the last part failing, a sleeper who wakes to strangers and the order that never comes</fears>
+        <sayings>
+          <li>We were promised a world.</li>
+          <li>We are still waiting for orders to disembark.</li>
+          <li>Holding position.</li>
+          <li>Every watch is logged.</li>
+          <li>The ship provides, and we provide for the ship.</li>
+        </sayings>
+        <townGoods>
+          <Plasteel>30~70</Plasteel>
+          <ComponentIndustrial>6~12</ComponentIndustrial>
+          <ComponentSpacer>1~2</ComponentSpacer>
+          <MedicineIndustrial>6~12</MedicineIndustrial>
+          <MealSurvivalPack>10~20</MealSurvivalPack>
+        </townGoods>
+        <ariseAges>0~3</ariseAges>
+      </li>
+    </modExtensions>
+  </FactionDef>
+
+  <!-- ===================== Their people ===================== -->
+
+  <!--
+    How alike they look (docs/design/peoples.md, "Release F"): the ship's uniform for every rank (a crew, the uniform rule),
+    only wear, quality and patches telling them apart: a collar shirt and trousers in deck grey on everyone. Deckhands
+    wear over it whatever the hull's lockers held (the game's and the mods' everyday clothes, tool belts and packs); the
+    ship's guard recon armour and helmet dyed the same grey, a smokepop or low-shield pack, charge rifles; the engineers
+    Biotech's airwire headset over a mechlink; the officers a jacket and, with Royalty, the beret of their rank; the
+    quartermaster and the captain a long coat (the captain with the beret too). In another age the guard take the age's
+    issue (ageArms) in the same grey: war shirts and spears among the tribes, plate and spears in the medieval age, flak,
+    helmets and assault rifles in the industrial age. A share of the officers and the captain are psycasters (Royalty;
+    Vanilla Psycasts Expanded's Skipmaster, Protector and Technomancer), the engineers now and then A RimWorld of Magic's
+    technomancers, a few deckhands carry the ship's old gene work for health (Biotech). They carry packaged meals, parts
+    or medicine. Without any mod: the game's shirts, trousers, jackets, dusters, recon armour, charge rifles and pistols.
+  -->
+  <PawnKindDef Name="Rimfolk_HollowFleetKindBase" Abstract="True">
+    <race>Human</race>
+    <defaultFactionDef>Rimfolk_HollowFleet</defaultFactionDef>
+    <chemicalAddictionChance>0.03</chemicalAddictionChance>
+    <backstoryCryptosleepCommonality>0.08</backstoryCryptosleepCommonality>
+    <invNutrition>2.55</invNutrition>
+    <specificApparelRequirements>
+      <!-- The ship's uniform in deck grey, for every rank, and the guard's issue of every age in the same grey. -->
+      <li><apparelDef>Apparel_CollarShirt</apparelDef><color>(0.22, 0.24, 0.27)</color></li>
+      <li><apparelDef>Apparel_Pants</apparelDef><color>(0.22, 0.24, 0.27)</color></li>
+      <li><apparelDef>Apparel_Jacket</apparelDef><color>(0.22, 0.24, 0.27)</color></li>
+      <li><apparelDef>Apparel_Duster</apparelDef><color>(0.22, 0.24, 0.27)</color></li>
+      <li><apparelDef>Apparel_ArmorRecon</apparelDef><color>(0.22, 0.24, 0.27)</color></li>
+      <li><apparelDef>Apparel_ArmorHelmetRecon</apparelDef><color>(0.22, 0.24, 0.27)</color></li>
+      <li><apparelDef>Apparel_FlakVest</apparelDef><color>(0.22, 0.24, 0.27)</color></li>
+      <li><apparelDef>Apparel_PlateArmor</apparelDef><color>(0.22, 0.24, 0.27)</color></li>
+      <li MayRequire="OskarPotocki.VFE.Tribals"><apparelDef>VFET_Apparel_TribalWar</apparelDef><color>(0.22, 0.24, 0.27)</color></li>
+    </specificApparelRequirements>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_HollowFleetKindBase">
+    <defName>Rimfolk_HollowFleet_Deckhand</defName>
+    <label>deckhand</label>
+    <combatPower>45</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Poor</itemQuality>
+    <gearHealthRange>0.4~1.0</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Industrial</li>
+    </apparelTags>
+    <apparelMoney>300~600</apparelMoney>
+    <weaponTags>
+      <li>SimpleGun</li>
+    </weaponTags>
+    <weaponMoney>80~200</weaponMoney>
+    <inventoryOptions>
+      <skipChance>0.5</skipChance>
+      <subOptionsChooseOne>
+        <li><thingDef>MealSurvivalPack</thingDef><countRange>1~2</countRange><choiceChance>2</choiceChance></li>
+        <li><thingDef>ComponentIndustrial</thingDef><countRange>1~1</countRange></li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>12~18</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <!-- The ship's long-ago gene work, for the health of the crew. -->
+          <li>
+            <genes>
+              <li>Immunity_Strong</li>
+            </genes>
+            <chance>0.05</chance>
+          </li>
+          <li><trait>Technomancer</trait><chance>0.02</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_HollowFleetKindBase">
+    <defName>Rimfolk_HollowFleet_Guard</defName>
+    <label>ship's guard</label>
+    <combatPower>110</combatPower>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.5~1.2</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+      <li>Apparel_ArmorRecon</li>
+      <li>Apparel_ArmorHelmetRecon</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>BeltDefensePop</li>
+    </apparelTags>
+    <apparelMoney>2200~3200</apparelMoney>
+    <weaponTags>
+      <li>SpacerGun</li>
+    </weaponTags>
+    <weaponMoney>900~1500</weaponMoney>
+    <requiredWorkTags>Violent</requiredWorkTags>
+    <inventoryOptions>
+      <skipChance>0.6</skipChance>
+      <subOptionsChooseOne>
+        <li><thingDef>MealSurvivalPack</thingDef><countRange>1~2</countRange></li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>18~28</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>TM_SuperSoldier</trait><chance>0.04</chance></li>
+          <li><trait>TM_Sniper</trait><chance>0.02</chance></li>
+        </gifts>
+        <!-- The issue of another age, in the ship's grey. -->
+        <ageArms>
+          <li>
+            <ages>0~0</ages>
+            <weaponTags>
+              <li>NeolithicMeleeAdvanced</li>
+            </weaponTags>
+            <apparel>
+              <li MayRequire="OskarPotocki.VFE.Tribals">VFET_Apparel_TribalWar</li>
+            </apparel>
+          </li>
+          <li>
+            <ages>1~1</ages>
+            <weaponTags>
+              <li>Spear</li>
+              <li>MedievalMeleeAdvanced</li>
+            </weaponTags>
+            <apparel>
+              <li>Apparel_PlateArmor</li>
+            </apparel>
+          </li>
+          <li>
+            <ages>2~2</ages>
+            <money>700</money>
+            <weaponTags>
+              <li>AssaultRifle</li>
+            </weaponTags>
+            <apparel>
+              <li>Apparel_FlakVest</li>
+              <li>Apparel_AdvancedHelmet</li>
+            </apparel>
+          </li>
+        </ageArms>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_HollowFleetKindBase">
+    <defName>Rimfolk_HollowFleet_Engineer</defName>
+    <label>ship's engineer</label>
+    <combatPower>70</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.6~1.2</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+      <li MayRequire="Ludeon.RimWorld.Biotech">Apparel_AirwireHeadset</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Spacer</li>
+    </apparelTags>
+    <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
+    <apparelMoney>400~800</apparelMoney>
+    <weaponTags>
+      <li>Autopistol</li>
+      <li>SimpleGun</li>
+    </weaponTags>
+    <weaponMoney>120~300</weaponMoney>
+    <techHediffsMoney>0~0</techHediffsMoney>
+    <techHediffsRequired>
+      <li MayRequire="Ludeon.RimWorld.Biotech">Mechlink</li>
+    </techHediffsRequired>
+    <skills>
+      <li>
+        <skill>Crafting</skill>
+        <range>8~14</range>
+      </li>
+    </skills>
+    <inventoryOptions>
+      <subOptionsTakeAll>
+        <li><thingDef>ComponentIndustrial</thingDef><countRange>1~3</countRange></li>
+      </subOptionsTakeAll>
+    </inventoryOptions>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>12~18</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Technomancer</trait><chance>0.06</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_HollowFleetKindBase">
+    <defName>Rimfolk_HollowFleet_Officer</defName>
+    <label>officer</label>
+    <combatPower>80</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Good</itemQuality>
+    <gearHealthRange>0.7~1.2</gearHealthRange>
+    <!-- The officer's coat and, with Royalty, the beret of their rank over the ship's uniform. -->
+    <apparelRequired>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+      <li>Apparel_Jacket</li>
+      <li MayRequire="Ludeon.RimWorld.Royalty">Apparel_Beret</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialAdvanced</li>
+    </apparelTags>
+    <apparelMoney>500~900</apparelMoney>
+    <weaponTags>
+      <li>Autopistol</li>
+      <li>SimpleGun</li>
+    </weaponTags>
+    <weaponMoney>120~300</weaponMoney>
+    <skills>
+      <li>
+        <skill>Intellectual</skill>
+        <range>6~13</range>
+      </li>
+      <li>
+        <skill>Social</skill>
+        <range>5~11</range>
+      </li>
+    </skills>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>14~20</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li>
+            <psylink>2~4</psylink>
+            <paths>
+              <li>VPE_Skipmaster</li>
+              <li>VPE_Protector</li>
+              <li>VPE_Technomancer</li>
+            </paths>
+            <chance>0.25</chance>
+          </li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_HollowFleetKindBase">
+    <defName>Rimfolk_HollowFleet_Quartermaster</defName>
+    <label>ship's quartermaster</label>
+    <trader>true</trader>
+    <combatPower>45</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.7~1.2</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+      <li>Apparel_Duster</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialAdvanced</li>
+    </apparelTags>
+    <apparelMoney>400~800</apparelMoney>
+    <weaponTags>
+      <li>Autopistol</li>
+    </weaponTags>
+    <weaponMoney>120~260</weaponMoney>
+    <skills>
+      <li>
+        <skill>Social</skill>
+        <range>6~13</range>
+      </li>
+    </skills>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>12~18</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_HollowFleetKindBase">
+    <defName>Rimfolk_HollowFleet_Captain</defName>
+    <label>captain</label>
+    <combatPower>100</combatPower>
+    <factionLeader>true</factionLeader>
+    <minGenerationAge>45</minGenerationAge>
+    <itemQuality>Excellent</itemQuality>
+    <gearHealthRange>0.8~1.1</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+      <li>Apparel_Duster</li>
+      <li MayRequire="Ludeon.RimWorld.Royalty">Apparel_Beret</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialAdvanced</li>
+    </apparelTags>
+    <apparelMoney>800~1400</apparelMoney>
+    <weaponTags>
+      <li>SpacerGun</li>
+    </weaponTags>
+    <weaponMoney>900~1500</weaponMoney>
+    <skills>
+      <li>
+        <skill>Social</skill>
+        <range>8~14</range>
+      </li>
+      <li>
+        <skill>Intellectual</skill>
+        <range>8~14</range>
+      </li>
+    </skills>
+    <initialWillRange>4~6</initialWillRange>
+    <initialResistanceRange>18~26</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li>
+            <psylink>3~5</psylink>
+            <paths>
+              <li>VPE_Skipmaster</li>
+              <li>VPE_Protector</li>
+            </paths>
+            <chance>0.3</chance>
+          </li>
+          <li><trait>TM_Commander</trait><chance>0.1</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <!-- ===================== Their traders: the quartermaster's stores ===================== -->
+
+  <TraderKindDef>
+    <defName>Rimfolk_Caravan_HollowFleet</defName>
+    <label>ship's stores</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>700~1400</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Plasteel</thingDef>
+        <countRange>30~80</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentSpacer</thingDef>
+        <countRange>1~2</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineIndustrial</thingDef>
+        <countRange>4~10</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineUltratech</thingDef>
+        <countRange>1~3</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MealSurvivalPack</thingDef>
+        <countRange>10~30</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponRanged</tradeTag>
+        <countRange>2~4</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>Armor</tradeTag>
+        <countRange>1~3</countRange>
+      </li>
+      <li Class="StockGenerator_BuySingleDef">
+        <thingDef>AIPersonaCore</thingDef>
+      </li>
+      <li Class="StockGenerator_BuySingleDef">
+        <thingDef>ComponentSpacer</thingDef>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Visitor_HollowFleet</defName>
+    <label>crew</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>200~500</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MealSurvivalPack</thingDef>
+        <countRange>4~10</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Plasteel</thingDef>
+        <countRange>10~30</countRange>
+      </li>
+      <li Class="StockGenerator_BuySingleDef">
+        <thingDef>ComponentSpacer</thingDef>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Base_HollowFleet</defName>
+    <label>hull</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>1000~1800</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Plasteel</thingDef>
+        <countRange>60~140</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentSpacer</thingDef>
+        <countRange>2~4</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentIndustrial</thingDef>
+        <countRange>8~16</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineUltratech</thingDef>
+        <countRange>2~5</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MealSurvivalPack</thingDef>
+        <countRange>20~50</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponRanged</tradeTag>
+        <countRange>3~6</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>Armor</tradeTag>
+        <countRange>2~4</countRange>
+      </li>
+      <li Class="StockGenerator_BuySingleDef">
+        <thingDef>AIPersonaCore</thingDef>
+      </li>
+      <li Class="StockGenerator_BuySingleDef">
+        <thingDef>ComponentSpacer</thingDef>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <!-- ===================== Their names ===================== -->
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_HollowFleet</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->The Hollow Fleet of the [shipName]</li>
+        <li>r_name(p=2)->The Crew of the [shipName]</li>
+        <li>r_name->The [fleetVirtue] Fleet</li>
+        <li>r_name->The [shipName]'s Watch</li>
+        <li>shipName->Long Promise</li>
+        <li>shipName->Far Harbour</li>
+        <li>shipName->Patient Star</li>
+        <li>shipName->New Dawn</li>
+        <li>shipName->Sallow's Hope</li>
+        <li>fleetVirtue->Hollow</li>
+        <li>fleetVirtue->Grounded</li>
+        <li>fleetVirtue->Waiting</li>
+        <li>fleetVirtue->Last</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_HollowFleetTown</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->[PlaceOutlander] Hull</li>
+        <li>r_name(p=2)->[PlaceOutlander] Berth</li>
+        <li>r_name->[hullWord] [PlaceOutlander]</li>
+        <li>r_name->[hullVirtue] Deck</li>
+        <li>hullWord->Landfall</li>
+        <li>hullWord->Hold</li>
+        <li>hullWord->Section</li>
+        <li>hullVirtue->Sallow's</li>
+        <li>hullVirtue->Lower</li>
+        <li>hullVirtue->Forward</li>
+        <li>hullVirtue->Starboard</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>

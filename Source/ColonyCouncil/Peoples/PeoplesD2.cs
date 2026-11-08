@@ -469,7 +469,7 @@ namespace ColonyCouncil
             if (option == 2 && pet != null && pet.Spawned && !pet.Dead && pet.Faction != Faction.OfPlayer)
             {
                 pet.GetLord()?.RemovePawn(pet);
-                LordMaker.MakeNewLord(pet.Faction, new LordJob_ExitMapBest(LocomotionUrgency.Walk, false, true), pet.Map, new List<Pawn> { pet });
+                LordMaker.MakeNewLord(pet.Faction, new LordJob_ExitMapBest(Pace.Errand, false, true), pet.Map, new List<Pawn> { pet });
             }
             return outcome;
         }

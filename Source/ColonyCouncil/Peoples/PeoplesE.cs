@@ -63,6 +63,7 @@ namespace ColonyCouncil
         {
             if (pawn == null || def == null || !pawn.Spawned || pawn.Downed || !first.IsValid) return false;
             var job = JobMaker.MakeJob(def, first);
+            job.locomotionUrgency = Pace.Errand;
             job.count = Mathf.Max(60, ticks);
             if (!rest.NullOrEmpty()) job.targetQueueA = rest.ToList();
             pawn.jobs.StartJob(job, JobCondition.InterruptForced, null, false, true);
@@ -450,7 +451,7 @@ namespace ColonyCouncil
             if (PlayOuts.On && PeoplesE.Up(x, map) && x.CanReach(hc.spot, PathEndMode.Touch, Danger.Some))
             {
                 x.GetLord()?.RemovePawn(x);
-                Verse.AI.Group.LordMaker.MakeNewLord(x.Faction, new LordJob_VisitColony(x.Faction, hc.spot, 4 * GenDate.TicksPerHour), map, new List<Pawn> { x });
+                Verse.AI.Group.LordMaker.MakeNewLord(x.Faction, new LordJob_VisitOnErrand(x.Faction, hc.spot, 4 * GenDate.TicksPerHour), map, new List<Pawn> { x });
                 if (PeoplesE.Start(x, PeoplesE.RodJob, hc.spot, null, 1200)) return;
             }
             GlassRod.Set(x, hc.spot, map);
@@ -668,7 +669,7 @@ namespace ColonyCouncil
             {
                 // Their visit stretched while they plant, and the work itself: one sapling after another.
                 x.GetLord()?.RemovePawn(x);
-                Verse.AI.Group.LordMaker.MakeNewLord(x.Faction, new LordJob_VisitColony(x.Faction, cells[0], 8 * GenDate.TicksPerHour), map, new List<Pawn> { x });
+                Verse.AI.Group.LordMaker.MakeNewLord(x.Faction, new LordJob_VisitOnErrand(x.Faction, cells[0], 8 * GenDate.TicksPerHour), map, new List<Pawn> { x });
                 if (PeoplesE.Start(x, PeoplesE.PlantJob, cells[0], cells.Skip(1).Select(c => (LocalTargetInfo)c).ToList(), PeoplesEMath.PlantTicks)) return;
             }
             for (int i = 0; i < cells.Count; i++) MossPlanting.Planted(x, cells[i], map, i == cells.Count - 1);

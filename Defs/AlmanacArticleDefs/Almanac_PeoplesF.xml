@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The Almanac page on release F's peoples (Source/ColonyCouncil/Peoples/; Defs/PeopleDefs/; docs/design/peoples.md,
+       "Release F"; DESIGN.md "Rimfolk's peoples"), beside release E's (Almanac_PeoplesE.xml). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_PeoplesF</defName>
+    <label>the Line, the union, the Republic and the Fleet</label>
+    <category>Council</category>
+    <order>17</order>
+    <summary>Four more peoples of the later ages, none of them anyone's enemy by nature: the Signal Line, who keep a chain of radio masts across the region, the Deepwell Union, drillers who stayed together when their seam ran dry, the Last Republic, what is left of the old government, and the Hollow Fleet, the crew of a colony ship that came down two hundred years ago and still keeps its watches. Each has its own founding, gear, faith, towns and words, and comes to the colony's gate in its own ways.</summary>
+    <tip>They are among the world's peoples when a new world is made, once each, at the game's usual chances; remove them in the world's faction list like any other people. A save made before them meets them when one of them arises during play.</tip>
+    <description>All four defend their towns and raid only when the colony has turned them hostile, by the game's own rules, and seldom then. Their notables have titles of their own, their messengers words of their own, and their towns a plan of their own when the land suits it. The Line, the union and the Republic are industrial and rise toward the spacer age at their own pace; the Fleet is spacer already, and falls back if it is cut off from the world. They arise in every age: a people of their ways that arose among a tribe's exiles carries that age's weapons.</description>
+    <sections>
+      <li>
+        <heading>Who they are</heading>
+        <table>
+          <li>People | Lives by | Age | On the map | Their towns</li>
+          <li>The Signal Line | Keeping the radio masts | Industrial | Linemen in one kit: an oilskin in signal orange, a hard hat and climbing gear; operators and families in their own clothes with an orange cap or hat | A relay on the highest ground: its mast, the hut with its consoles, a bunkhouse and the cable yard</li>
+          <li>The Deepwell Union | Drilling the deep ground | Industrial | Work clothes of every trade with the union's red, an armband over a red work shirt; hard hats on the miners and shot-firers | A pit: the headframe over the shaft, the slag heap, the union hall, a boarding house and the smithy</li>
+          <li>The Last Republic | Keeping the law and the count | Industrial | The Civic Guard in one uniform of civic navy, shirt, trousers, flak vest and helmet; clerks and citizens in drab clothes with a navy cap or bowler | A town hall with the radio and its flag, the archive, the ration office and the guardhouse</li>
+          <li>The Hollow Fleet | Keeping the ship's watch | Spacer | The ship's uniform in deck grey on every rank; the ship's guard in recon armour, officers in a jacket and the beret of their rank | The grounded hull: bridge, crew deck, the sleepers' hold, hydroponics and the landing pad</li>
+        </table>
+        <after>With Ideology each keeps a faith of its own (the open line, the union book, the Republic that never fell, the ship's watch) and its own style; with Biotech each has a share of other kinds of people, the Fleet the most. With Vanilla Ideology Expanded's memes their faiths take the progressive and the trader, industrialism, the republic and the city builders too, and with Odyssey the Fleet is shipborn.</after>
+      </li>
+      <li>
+        <heading>Where their ways began</heading>
+        <text>Each keeps a founding story, a few sayings, and what it honours and fears, shown on their card and spoken in their letters, messengers, visitors and talk.</text>
+        <points>
+          <li>The Signal Line began after the long war cut every road in the region, when a lineman called Ennis Calloway walked the hills with a coil of copper wire and raised a mast on every height he could climb, until one valley could hear the next. The first mast still stands on its ridge and has never gone quiet, and every lineman pins a copper aerial from that first coil to the collar.</li>
+          <li>The Deepwell Union began the night the seam under Deepwell ran dry and the owners fled. The shift-captain Marta Grieve called the miners into the hall and put it to the vote, scatter or stay together; they voted to stay, wrote every name in a book and walked out with their picks the next morning. The book is read at every meeting, and every member wears the red armband.</li>
+          <li>The Last Republic began the winter the capital went dark, when the postmaster of a small town, Clement Ashdown, found himself the most senior official still answering the radio. He read the old laws aloud every evening, issued ration cards and called an election in the spring, and other towns answered. Every law since is dated from that broadcast.</li>
+          <li>The Hollow Fleet began with the ship's last order. When the hull came down short of its world, Captain Imre Sallow told the crew to keep their posts until the order came to disembark, and died before giving it. Nobody since has had the rank, so the watches are still kept, the log still written and the sleepers still asleep below decks.</li>
+        </points>
+      </li>
+      <li>
+        <heading>What they wear, carry and know</heading>
+        <text>Each people wears its colour on a piece or two, its soldiers one kit where it has soldiers (the Line's linemen, the Republic's Civic Guard, the Fleet's whole crew), and its civilians whatever their age and calling would, from the game, the DLCs and the mods loaded. A few have a gift (A RimWorld of Magic's classes, a psylink, genes).</text>
+        <points>
+          <li>The Signal Line: linemen carry rifles (the game's, Frontier's lever guns) and tool belts and packs (Vanilla Apparel Expanded - Accessories), with a hard hat of Vanilla Apparel Expanded; among the tribes an oiled poncho and a bow, in the medieval age a waxed cape and a great bow, in the spacer age a charge rifle. Operators and relay-keepers are crafters and intellectuals, some technomancers, and with Royalty a few hear the psychic hum in the static (Staticlords of Vanilla Psycasts Expanded).</li>
+          <li>The Deepwell Union: shovels (Vanilla Weapons Expanded's tools), knives and shotguns, the shot-firers their charges (the game's grenades, Settlers' dynamite) and a pistol; clubs and spears among the tribes, maces and great bows in the medieval age, charge rifles in the spacer age. A few have mining genes put in (Biotech's dark vision and robust, Alpha Genes' high mining yield), and a few are geomancers of A RimWorld of Magic.</li>
+          <li>The Last Republic: the Civic Guard's issue of every age in the same navy, Tribals' war shirts and spears, the game's plate and halberds, flak and rifles with Non-Lethal's batons and tasers, recon armour and charge rifles; clerks are speakers and bureaucrats, some bards of A RimWorld of Magic, and with Royalty a propaganda officer may have a psylink (Empath or Puppeteer).</li>
+          <li>The Hollow Fleet: the ship's guard with charge rifles and smokepop or low-shield packs, and the age's issue in the same grey in an earlier age; engineers with Biotech's mechlink and headset; officers and the captain often psycasters (Skipmaster, Protector, Technomancer); deckhands with the ship's old gene work for health.</li>
+          <li>Their kinds of people (Biotech) are a real mix and still mostly baseliners: genies, hussars, highmates, starjacks, androids, lapis and Avaloi with the Line; dirtmoles, Neanderthals, wasters, stoneborn, boglegs, korgs and gorillas with the union; hussars, genies, highmates, Neanderthals, pigskins, uredd, askbarn and Venators with the Republic; starjacks, genies, highmates, hussars, archons, androids, askbarn and nereids with the Fleet, nearly three in ten of them.</li>
+        </points>
+      </li>
+      <li>
+        <heading>What each brings</heading>
+        <points>
+          <li>The Signal Line: a lineman raises a relay mast on the colony's highest ground, the hillside first. While it sings (above half its strength, with the Line at peace), the colony's letters to its neighbours and their answers are on the road half the days, and a raid the storyteller sends comes a couple of hours after the line's warning letter. A thunderstorm wears the mast; under half its strength it is quiet until it is mended, and in a storm a lineman may come up the road to climb it and make it fast. A wire-trader buys the colony's components at a fifth over their worth, or sells the line's news of a caravan on the road for fifty silver, and the caravan comes. When a span comes down they ask for parts or steel.</li>
+          <li>The Deepwell Union: a drill crew drills the colony's deep seam (the game's own deep ore) for six hours where it lies; of what comes up, two in five goes with the union and the rest is left at the drill for the colony. The colony's best miner may work the rig beside them and learn, and one shift in twenty the rig hurts them, through the harm setting. An assayer sells a crate of steel, components and blasting goods. A strike, called by vote, stalls their trade: no caravans, nothing sold by their visitors, no trade at their pits, until it ends by their own vote after a month or a shift-captain at the gate is helped with food for the picket line or a good talker. They may ask for two good miners for a short shift.</li>
+          <li>The Last Republic: a census-taker walks the colony from bed to bed and writes its people into the roll, and the Republic thinks the better of a colony it can count. Its citizenship papers hold a year: its traders, caravans and towns deal with the colony on a citizen's terms, six in a hundred better, and the colony owes a duty. A sergeant may ask a conscript for a season: the colonist takes the Guard's rations, walks out and goes by the world's own roads to the Republic's town, serves fifteen days there and comes home with the pay and the drill, or not, as the roads allow; the colony may pay to be excused, and a citizen colony that refuses has its papers struck. Once a season its radio praises or denounces the colony, heard on a comms console or the Line's mast, and felt by everyone at home. They may ask for a witness at the count of their election.</li>
+          <li>The Hollow Fleet: their quartermaster calls the colony's radio (an industrial or spacer colony) and brings the ship's shuttle down by the gate to trade (by drop pod without Royalty), with a cryptosleep casket from the hull to sell. A salvage buyer pays three tenths over the worth of the ship's chunks, persona cores and advanced components the colony has, the deckhands cutting the chunks apart where they lie. A sleeper from their caskets, woken too late, may ask the colony for shelter at dusk. They may ask for plasteel or parts for the lift.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Their towns, and new peoples like them</heading>
+        <points>
+          <li>The Line's relay, the union's pit, the Republic's town hall and the Fleet's hull are laid out to their plans when a town's map is made; where the land is too wet or rough for it, the game makes its own base.</li>
+          <li>Two peoples who want to talk do it over the Line's masts likeliest, a silver rush is the union's, a republic's vote the Republic's, and exiles from a town are likeliest the Fleet's, sleepers woken too late who left the hull.</li>
+          <li>New peoples that arise during play may take their ways: a band of the banished led by a good miner digs as a union, by a good talker keeps a census and votes; survivors of an industrial or spacer town may keep its radio going and raise masts, and survivors of a spacer town may keep its watches as a crew.</li>
+        </points>
+      </li>
+    </sections>
+    <keywords><li>signal line</li><li>deepwell union</li><li>last republic</li><li>hollow fleet</li><li>relay mast</li><li>citizenship papers</li></keywords>
+    <seeAlso><li>Council_Alm_C_PeoplesE</li><li>Council_Alm_C_PeoplesD</li><li>Council_Alm_C_Peoples</li><li>Council_Alm_C_Callers</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

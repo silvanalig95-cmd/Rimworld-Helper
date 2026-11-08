@@ -410,7 +410,7 @@ namespace ColonyCouncil
                 if (gate.IsValid && p.jobs != null)
                 {
                     var job = JobMaker.MakeJob(JobDefOf.Goto, gate);
-                    job.locomotionUrgency = LocomotionUrgency.Walk;
+                    job.locomotionUrgency = Pace.Errand;
                     p.jobs.StartJob(job, JobCondition.InterruptForced);
                 }
                 Diplomacy.Write(DiplomacyMath.Freed, new List<HistoryActor>

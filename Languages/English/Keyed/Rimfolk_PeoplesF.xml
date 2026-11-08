@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Release F's peoples at the gate (Source/ColonyCouncil/Peoples/PeoplesF.cs, PeoplesF2.cs, PeoplesFPatches.cs). -->
+
+  <!-- The Signal Line: the relay mast -->
+  <CC_PeoplesF_MastSings>The mast is singing: the colony's letters go down the line in half the days, and the line warns of raids.</CC_PeoplesF_MastSings>
+  <CC_PeoplesF_MastQuiet>The mast is quiet: mend it past half its strength, with the Signal Line at peace, and it sings again.</CC_PeoplesF_MastQuiet>
+  <CC_PeoplesF_MastRaised>{PAWN} has raised the Signal Line's mast. The colony's letters go down the line now, and the line will call a warning up it when raiders are on the road.</CC_PeoplesF_MastRaised>
+  <CC_PeoplesF_MastWentQuiet>The storm has worn the colony's relay mast past half its strength, and it has gone quiet: no letters down the line and no warnings until it is mended.</CC_PeoplesF_MastWentQuiet>
+  <CC_PeoplesF_MastKept>{PAWN} has made the colony's mast fast against the storm, and it is singing again at its full strength.</CC_PeoplesF_MastKept>
+  <CC_PeoplesF_MastHill>on the hillside above the colony</CC_PeoplesF_MastHill>
+  <CC_PeoplesF_MastRise>on the highest ground near the colony</CC_PeoplesF_MastRise>
+  <CC_PeoplesF_MastThere>The colony has a mast already.</CC_PeoplesF_MastThere>
+  <CC_PeoplesF_MastGone>The colony's mast is gone.</CC_PeoplesF_MastGone>
+  <CC_PeoplesF_MastQuietNow>gone quiet, half torn down by the wind</CC_PeoplesF_MastQuietNow>
+  <CC_PeoplesF_MastWearing>shaking in the wind and losing its guy wires</CC_PeoplesF_MastWearing>
+  <CC_PeoplesF_Impact_Mast>The lineman raises a relay mast {0}. While it sings, the colony's letters reach their readers in half the days, and the line warns of a raid a little before it comes. A thunderstorm wears it; under half its strength it is quiet until mended.</CC_PeoplesF_Impact_Mast>
+  <CC_PeoplesF_Impact_MastBrief>A relay mast raised</CC_PeoplesF_Impact_MastBrief>
+  <CC_PeoplesF_RaidWarnLabel>Raiders on the road</CC_PeoplesF_RaidWarnLabel>
+  <CC_PeoplesF_RaidWarn>The linemen down the line have called it up the colony's mast: {WHO} are on the road toward the colony, armed, and coming fast. {LINE} heard it from the next mast along, and say they will be here soon. There is a little time to get ready.</CC_PeoplesF_RaidWarn>
+  <CC_PeoplesF_RaidWarnSomeone>armed men</CC_PeoplesF_RaidWarnSomeone>
+
+  <!-- The Signal Line: the wire-trader and the storm -->
+  <CC_PeoplesF_WireCount>{0} components</CC_PeoplesF_WireCount>
+  <CC_PeoplesF_WireGone>The components are no longer in the stores.</CC_PeoplesF_WireGone>
+  <CC_PeoplesF_Impact_Climb>The lineman climbs the colony's mast in the storm and makes it fast, mending it to its full strength.</CC_PeoplesF_Impact_Climb>
+  <CC_PeoplesF_Impact_ClimbBrief>The mast made fast</CC_PeoplesF_Impact_ClimbBrief>
+
+  <!-- The Deepwell Union: the drill and the goods -->
+  <CC_PeoplesF_Impact_Drill>The union's driller works the seam six hours where it lies, the crew standing by; of the {0} {1} that comes up, {2} is left at the drill for the colony and the rest goes with the union.</CC_PeoplesF_Impact_Drill>
+  <CC_PeoplesF_Impact_DrillBrief>The seam drilled for a share</CC_PeoplesF_Impact_DrillBrief>
+  <CC_PeoplesF_Impact_DrillRisk>{0} works the rig beside them: a drill is heavy work, and one shift in twenty someone at it is hurt.</CC_PeoplesF_Impact_DrillRisk>
+  <CC_PeoplesF_Impact_DrillRiskBrief>A mishap at the drill</CC_PeoplesF_Impact_DrillRiskBrief>
+  <CC_PeoplesF_Drilled>The union's drill brought up {0} {1}. The colony's share, {2}, lies at the drill; {FACTION} have the rest, and the seam is the less by it.</CC_PeoplesF_Drilled>
+  <CC_PeoplesF_DrillMishap>The rig kicked as {PAWN} worked it beside the union's crew, and caught {PAWN_objective} on the {PART}.</CC_PeoplesF_DrillMishap>
+  <CC_PeoplesF_GroundRead>{PAWN} walked the ground with the union's assayer: there is {ORE} under it, about {COUNT} of it, too deep for a pick.</CC_PeoplesF_GroundRead>
+
+  <!-- The Deepwell Union: the strike -->
+  <CC_PeoplesF_StrikeCalledLabel>{0} on strike</CC_PeoplesF_StrikeCalledLabel>
+  <CC_PeoplesF_StrikeCalled>{FACTION} have voted to strike at {TOWN}, and the union holds to its vote: nothing moves out of its pits. Until it is settled no caravan of theirs will come, their visitors bring nothing to sell, and their pits won't trade with the colony's caravans.\n\nA strike ends by the union's own vote, in time. A shift-captain may come to the colony's gate asking help to settle it sooner.</CC_PeoplesF_StrikeCalled>
+  <CC_PeoplesF_StrikeEnded>{0} have voted to end their strike, and their carts are back on the roads.</CC_PeoplesF_StrikeEnded>
+  <CC_PeoplesF_StrikeSettled>{0} have settled their strike with the colony's help, and their carts are back on the roads.</CC_PeoplesF_StrikeSettled>
+  <CC_PeoplesF_Impact_Settle>The strike of {0} is settled: their caravans, visitors' goods and pits trade again.</CC_PeoplesF_Impact_Settle>
+  <CC_PeoplesF_Impact_SettleBrief>The strike settled</CC_PeoplesF_Impact_SettleBrief>
+
+  <!-- The Last Republic: the census and the papers -->
+  <CC_PeoplesF_Impact_Census>The census-taker walks the colony from bed to bed with the roll, a while at each, and writes all {0} of its people into it.</CC_PeoplesF_Impact_Census>
+  <CC_PeoplesF_Impact_CensusBrief>The colony counted</CC_PeoplesF_Impact_CensusBrief>
+  <CC_PeoplesF_CensusLabel>Counted by {0}</CC_PeoplesF_CensusLabel>
+  <CC_PeoplesF_CensusWritten>{TAKER} has finished the census of the colony for {FACTION}, and written {COUNT} people into the Republic's roll: {NAMES}.\n\nThe Republic thinks the better of a people it can count.</CC_PeoplesF_CensusWritten>
+  <CC_PeoplesF_PapersGranted>The colony holds the citizenship papers of {0} for the year: their traders deal with it on a citizen's terms, {1} better, and it owes the Republic its duty when it calls.</CC_PeoplesF_PapersGranted>
+  <CC_PeoplesF_PapersStruck>{0} have struck the colony's citizenship papers for refusing the Republic's call.</CC_PeoplesF_PapersStruck>
+  <CC_PeoplesF_PapersLapsed>The colony's citizenship papers of {0} have run their year. The Republic may offer them again.</CC_PeoplesF_PapersLapsed>
+  <CC_PeoplesF_Impact_Papers>A year of the Republic's citizenship: its traders, its caravans and its towns deal with the colony on a citizen's terms, {0} better both ways. The duty: when the Republic asks for a conscript, refusing strikes the papers. They hold {1} days.</CC_PeoplesF_Impact_Papers>
+  <CC_PeoplesF_Impact_PapersBrief>Citizenship papers</CC_PeoplesF_Impact_PapersBrief>
+  <CC_PeoplesF_Impact_Struck>The colony's citizenship papers of {0} are struck.</CC_PeoplesF_Impact_Struck>
+  <CC_PeoplesF_Impact_StruckBrief>Papers struck</CC_PeoplesF_Impact_StruckBrief>
+
+  <!-- The Last Republic: the conscript -->
+  <CC_PeoplesF_Impact_Conscript>{0} is away {1} days in the Republic's service at {2}, and the days of the road both ways.</CC_PeoplesF_Impact_Conscript>
+  <CC_PeoplesF_Impact_ConscriptBrief>{0} away for a season</CC_PeoplesF_Impact_ConscriptBrief>
+  <CC_PeoplesF_Impact_ConscriptRoad>{0} takes the Guard's rations, walks out and goes by the world's own roads as a caravan of one, there and back: whatever the roads hold, the roads hold.</CC_PeoplesF_Impact_ConscriptRoad>
+  <CC_PeoplesF_NoConscript>Nobody can go for the Republic now.</CC_PeoplesF_NoConscript>
+  <CC_PeoplesF_ConscriptSettingOut>{PAWN} is taking the Civic Guard's rations and setting out for the Republic's service at {TOWN}.</CC_PeoplesF_ConscriptSettingOut>
+  <CC_PeoplesF_ConscriptSetOut>{PAWN} has set out for {TOWN} on the open road.</CC_PeoplesF_ConscriptSetOut>
+  <CC_PeoplesF_ConscriptStayed>{PAWN} didn't set out for the Republic's service after all.</CC_PeoplesF_ConscriptStayed>
+  <CC_PeoplesF_ConscriptThereLabel>{0} at {1}</CC_PeoplesF_ConscriptThereLabel>
+  <CC_PeoplesF_ConscriptThere>{PAWN} has reached {TOWN} and taken up the Civic Guard's uniform. {FACTION} will keep {PAWN_objective} on their walls and streets for {DAYS} days, and then send {PAWN_objective} home.</CC_PeoplesF_ConscriptThere>
+  <CC_PeoplesF_ConscriptHomewardLabel>{0} homeward</CC_PeoplesF_ConscriptHomewardLabel>
+  <CC_PeoplesF_ConscriptServed>{PAWN}'s season in the Civic Guard at {TOWN} is over. {FACTION} have paid {PAWN_objective} {PAY} silver, filled {PAWN_possessive} pack with rations and sent {PAWN_objective} home by the road.</CC_PeoplesF_ConscriptServed>
+  <CC_PeoplesF_ConscriptTownFell>{TOWN} has fallen, and {PAWN} has got out of it alive. {PAWN_pronoun} is on the road home with the rations {PAWN_pronoun} could carry.</CC_PeoplesF_ConscriptTownFell>
+  <CC_PeoplesF_ConscriptSentHome>{FACTION} have sent {PAWN} home from {TOWN} before the season was out, with rations and no pay.</CC_PeoplesF_ConscriptSentHome>
+  <CC_PeoplesF_ConscriptBack>{PAWN} is home from a season in the Republic's service, with the pay and the drill of the Civic Guard. {FACTION} think the better of the colony for it.</CC_PeoplesF_ConscriptBack>
+  <CC_PeoplesF_ConscriptBackEarly>{PAWN} is home from the Republic's service before the season was out.</CC_PeoplesF_ConscriptBackEarly>
+  <CC_PeoplesF_ConscriptLostLabel>{0} lost on the road</CC_PeoplesF_ConscriptLostLabel>
+  <CC_PeoplesF_ConscriptLost>{PAWN} died in the Republic's service, out on the world's roads. {FACTION} have written {PAWN_possessive} name in their roll of those who served.</CC_PeoplesF_ConscriptLost>
+
+  <!-- The Last Republic: its radio -->
+  <CC_PeoplesF_RadioPraiseLabel>Praised on the radio of {0}</CC_PeoplesF_RadioPraiseLabel>
+  <CC_PeoplesF_RadioPraise>The evening broadcast of {FACTION} came in clearly tonight, and it spoke of the colony by name: "{COLONY}, good neighbours of the Republic, who keep the peace and pay their dues. The Republic never fell, and it has friends." Somebody turned it up so everyone could hear.</CC_PeoplesF_RadioPraise>
+  <CC_PeoplesF_RadioDenounceLabel>Denounced on the radio of {0}</CC_PeoplesF_RadioDenounceLabel>
+  <CC_PeoplesF_RadioDenounce>The evening broadcast of {FACTION} came in clearly tonight, and it spoke of the colony by name: "{COLONY}, a disorderly people who owe the Republic and pay it nothing. Citizens are warned." The whole region heard it.</CC_PeoplesF_RadioDenounce>
+
+  <!-- The Hollow Fleet: the shuttle and the salvage -->
+  <CC_PeoplesF_NoCasket>The hull has no casket to spare.</CC_PeoplesF_NoCasket>
+  <CC_PeoplesF_ShuttleGone>The Fleet's shuttle is no longer coming.</CC_PeoplesF_ShuttleGone>
+  <CC_PeoplesF_Impact_Shuttle>The shuttle of {0} lands by the gate: their quartermaster and {1} of the ship's guard step down and trade at the gate, then walk off when they are done.</CC_PeoplesF_Impact_Shuttle>
+  <CC_PeoplesF_Impact_ShuttlePods>{0} come down by drop pod by the gate: their quartermaster and {1} of the ship's guard trade at the gate, then walk off when they are done.</CC_PeoplesF_Impact_ShuttlePods>
+  <CC_PeoplesF_Impact_ShuttleBrief>The Fleet trades at the gate</CC_PeoplesF_Impact_ShuttleBrief>
+  <CC_PeoplesF_ShuttleDown>The shuttle of {0} is coming down by the gate.</CC_PeoplesF_ShuttleDown>
+  <CC_PeoplesF_PodsDown>{0} are coming down by drop pod by the gate.</CC_PeoplesF_PodsDown>
+  <CC_PeoplesF_Salvage>persona cores and advanced components</CC_PeoplesF_Salvage>
+  <CC_PeoplesF_SalvageChunks>{0} of the ship's chunks</CC_PeoplesF_SalvageChunks>
+  <CC_PeoplesF_SalvageGone>The salvage is no longer there.</CC_PeoplesF_SalvageGone>
+  <CC_PeoplesF_NoChunks>There are no chunks to cut.</CC_PeoplesF_NoChunks>
+  <CC_PeoplesF_Impact_Cut>The deckhands cut the {0} ship's chunks apart where they lie, a while at each, and haul them off.</CC_PeoplesF_Impact_Cut>
+  <CC_PeoplesF_Impact_CutBrief>The chunks cut and hauled off</CC_PeoplesF_Impact_CutBrief>
+  <CC_PeoplesF_ChunksCut>The deckhands of {FACTION} have cut the ship's chunks apart and hauled them off.</CC_PeoplesF_ChunksCut>
+
+</LanguageData>

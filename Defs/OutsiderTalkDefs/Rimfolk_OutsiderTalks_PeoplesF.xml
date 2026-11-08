@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Talk with release F's peoples (docs/design/peoples.md, "Release F"; the facts service's their:CALLING tags): how their
+    ways began, what they honour, what they fear, and their work, beside release E's in Rimfolk_OutsiderTalks_PeoplesE.xml;
+    the format is in Rimfolk_OutsiderTalks_Greetings.xml's header. A founding is told as the story of their ways (the
+    first coil, the vote to stay, the first broadcast, the last order), so a people that arose and took those ways can
+    tell it too. Each in its own voice: the Line of the masts and the voices, the union of the vote and the shift, the
+    Republic of the law and the count, the Fleet of the watch and the log.
+  -->
+
+  <!-- ================= The Signal Line ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesF_LineCalloway</defName>
+    <topic>faith</topic>
+    <uses>chat,know</uses>
+    <when>their:linesmen</when>
+    <lines>
+      <li>[us] What is the copper pin on your collar?</li>
+      <li>[them] From the first coil Ennis Calloway carried over the hills when the long war cut the roads.</li>
+      <li>[us] What did he do with it?</li>
+      <li>[them] He raised a mast on every height he could climb, until one valley could hear the next.</li>
+      <li>[us] And the first one?</li>
+      <li>[them] Still standing on its ridge, and it has never once gone quiet.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesF_LineTrue</defName>
+    <topic>honour</topic>
+    <uses>know</uses>
+    <when>their:linesmen</when>
+    <lines>
+      <li>[them] Every message on the line is passed on true, and with where it was heard.</li>
+      <li>[us] Why does where matter?</li>
+      <li>[them] Because a thing told with the mast it was heard at is news, and without one it is rumour.</li>
+      <li>[us] And if a message is wrong?</li>
+      <li>[them] Then the line says so, and says where it went wrong.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesF_LineSilence</defName>
+    <topic>hardship</topic>
+    <uses>chat</uses>
+    <when>their:linesmen</when>
+    <lines>
+      <li>[us] Aren't you afraid up a mast in a storm?</li>
+      <li>[them] No, silence is the only storm we fear.</li>
+      <li>[us] Why silence?</li>
+      <li>[them] Because when the masts went quiet in the war, every town thought it was alone.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesF_LineWork</defName>
+    <topic>work</topic>
+    <uses>chat</uses>
+    <when>their:linesmen</when>
+    <lines>
+      <li>[us] What does a lineman do all day?</li>
+      <li>[them] Walk the line, climb the masts, and mend what the wind broke.</li>
+      <li>[us] And the operators?</li>
+      <li>[them] They listen, and pass it on, and sell what is worth selling.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The Deepwell Union ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesF_UnionGrieve</defName>
+    <topic>faith</topic>
+    <uses>chat,know</uses>
+    <when>their:drillers</when>
+    <lines>
+      <li>[us] Why does everyone wear the red band?</li>
+      <li>[them] Because of the night the seam under Deepwell ran dry and the owners fled.</li>
+      <li>[us] What happened that night?</li>
+      <li>[them] Marta Grieve called us all into the hall and put it to the vote, scatter or stay together.</li>
+      <li>[us] And you stayed.</li>
+      <li>[them] We wrote every name in a book and walked out with our picks the next morning.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesF_UnionShift</defName>
+    <topic>honour</topic>
+    <uses>know</uses>
+    <when>their:drillers</when>
+    <lines>
+      <li>[them] A seam worked well, a shaft shored right, and everyone up at the end of the shift.</li>
+      <li>[us] That's all of it?</li>
+      <li>[them] That's all of it, and it is harder than it sounds.</li>
+      <li>[us] And if someone doesn't come up?</li>
+      <li>[them] Then the whole union goes down after them.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesF_UnionFear</defName>
+    <topic>hardship</topic>
+    <uses>chat</uses>
+    <when>their:drillers</when>
+    <lines>
+      <li>[us] What does a miner fear?</li>
+      <li>[them] A cave-in, and a boss who decides alone.</li>
+      <li>[us] The second as much as the first?</li>
+      <li>[them] More, because a cave-in is quick and a bad boss is slow.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesF_UnionWork</defName>
+    <topic>work</topic>
+    <uses>chat</uses>
+    <when>their:drillers</when>
+    <lines>
+      <li>[us] Do you only dig for yourselves?</li>
+      <li>[them] We drill anyone's deep ground for a share of what comes up.</li>
+      <li>[us] And who decides the share?</li>
+      <li>[them] The union, by vote, and it is always two in five.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The Last Republic ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesF_RepublicAshdown</defName>
+    <topic>faith</topic>
+    <uses>chat,know</uses>
+    <when>their:citizens</when>
+    <lines>
+      <li>[us] Who governs the Republic now?</li>
+      <li>[them] The same laws that always did, read out first by Clement Ashdown, the postmaster.</li>
+      <li>[us] A postmaster?</li>
+      <li>[them] He was the most senior official left on the radio the winter the capital went dark.</li>
+      <li>[us] What did he do?</li>
+      <li>[them] He read out the old laws each evening and called an election, and other towns answered.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesF_RepublicCount</defName>
+    <topic>honour</topic>
+    <uses>know</uses>
+    <when>their:citizens</when>
+    <lines>
+      <li>[them] Everyone counted, everyone owed: that is the whole of the Republic.</li>
+      <li>[us] Owed what?</li>
+      <li>[them] Its protection, its rations and its vote, and the Republic is owed a duty in return.</li>
+      <li>[us] And the uncounted?</li>
+      <li>[them] They are not forgotten, only waiting for the census.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesF_RepublicFear</defName>
+    <topic>hardship</topic>
+    <uses>chat</uses>
+    <when>their:citizens</when>
+    <lines>
+      <li>[us] Has the Republic really never fallen?</li>
+      <li>[them] It simply has fewer citizens than it used to.</li>
+      <li>[us] What would make it fall?</li>
+      <li>[them] A silent radio, because a government that stops speaking stops being one.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesF_RepublicWork</defName>
+    <topic>work</topic>
+    <uses>chat</uses>
+    <when>their:citizens</when>
+    <lines>
+      <li>[us] What do the clerks do in the town hall?</li>
+      <li>[them] Count, file, stamp and broadcast, and there is a form for that.</li>
+      <li>[us] For what?</li>
+      <li>[them] For whatever you were about to ask.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The Hollow Fleet ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesF_FleetSallow</defName>
+    <topic>faith</topic>
+    <uses>chat,know</uses>
+    <when>their:crew</when>
+    <lines>
+      <li>[us] Why do you still keep watches in a ship that cannot fly?</li>
+      <li>[them] Because of the last order Captain Imre Sallow gave when the hull came down.</li>
+      <li>[us] What was it?</li>
+      <li>[them] To keep our posts until the order came to disembark.</li>
+      <li>[us] And it never came?</li>
+      <li>[them] He died before he could give it, and nobody since has had the rank.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesF_FleetLog</defName>
+    <topic>honour</topic>
+    <uses>know</uses>
+    <when>their:crew</when>
+    <lines>
+      <li>[them] Every watch is logged, every day for two hundred years.</li>
+      <li>[us] What does the log say?</li>
+      <li>[them] Most days, only that the ship is holding position.</li>
+      <li>[us] Why write it, then?</li>
+      <li>[them] So that when the order comes, it finds us at our posts.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesF_FleetFear</defName>
+    <topic>hardship</topic>
+    <uses>chat</uses>
+    <when>their:crew</when>
+    <lines>
+      <li>[us] What does the crew fear most?</li>
+      <li>[them] The last part failing, and a sleeper who wakes to strangers.</li>
+      <li>[us] Do the sleepers still wake?</li>
+      <li>[them] Now and then, and we have nothing to tell them but the date.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesF_FleetWork</defName>
+    <topic>work</topic>
+    <uses>chat</uses>
+    <when>their:crew</when>
+    <lines>
+      <li>[us] What does the Fleet trade for?</li>
+      <li>[them] Plating, parts, and anything that fell from the sky that the ship can use.</li>
+      <li>[us] And then it flies?</li>
+      <li>[them] One plate at a time, we were promised a world.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

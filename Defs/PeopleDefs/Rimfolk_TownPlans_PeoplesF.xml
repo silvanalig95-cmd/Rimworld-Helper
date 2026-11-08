@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The town plans of release F's peoples (Defs/PeopleDefs/Rimfolk_People_SignalLine.xml, _Deepwell.xml, _Republic.xml,
+    _HollowFleet.xml; docs/design/peoples.md, "Release F"), laid by the same code as the others (Peoples/PeopleTowns.cs):
+    the Signal Line's relay with its mast on the highest ground, the Deepwell Union's pit with its headframe and slag
+    heap, the Last Republic's town hall with its flag, archive, ration office and guardhouse, the Hollow Fleet's grounded
+    hull with its landing pad and hydroponics. Rows from the north; an underscore is the ground as it is.
+  -->
+
+  <ColonyCouncil.TownPlanDef>
+    <defName>Rimfolk_Plan_LineRelay</defName>
+    <label>Signal Line&apos;s relay</label>
+    <description>The Signal Line's relay on the highest ground: its mast on a footing of four posts, the relay hut of concrete with its two consoles and a table where the operators eat between watches, a bunkhouse of ten beds, a cable yard of wire, parts and steel inside a fence, and a fire where the linemen dry their oilskins.</description>
+    <wallStuff>
+      <li>Steel</li>
+      <li>BlocksGranite</li>
+      <li>WoodLog</li>
+    </wallStuff>
+    <keys>
+      <li><key>#</key><thing>Wall</thing><wall>true</wall></li>
+      <li><key>D</key><thing>Door</thing><wall>true</wall></li>
+      <li><key>c</key><thing>Column</thing><wall>true</wall></li>
+      <li><key>M</key><thing>Rimfolk_RelayMast</thing></li>
+      <li><key>f</key><thing>Fence</thing><stuff>WoodLog</stuff></li>
+      <li><key>g</key><thing>FenceGate</thing><stuff>WoodLog</stuff></li>
+      <li><key>y</key><mark>store</mark></li>
+      <li><key>S</key><thing>ShelfSmall</thing><stuff>Steel</stuff><mark>store</mark></li>
+      <li><key>,</key><floor>Concrete</floor><roof>true</roof></li>
+      <li><key>K</key><thing>CommsConsole</thing><floor>Concrete</floor><roof>true</roof></li>
+      <li><key>T</key><thing>Table2x2c</thing><stuff>WoodLog</stuff><floor>Concrete</floor><roof>true</roof></li>
+      <li><key>h</key><thing>DiningChair</thing><stuff>WoodLog</stuff><floor>Concrete</floor><roof>true</roof></li>
+      <li><key>L</key><thing>TorchLamp</thing><floor>Concrete</floor><roof>true</roof></li>
+      <li><key>x</key><floor>Concrete</floor><roof>true</roof><mark>store</mark></li>
+      <li><key>.</key><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>b</key><thing>Bed</thing><stuff>WoodLog</stuff><rot>South</rot><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>l</key><thing>TorchLamp</thing><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>F</key><thing>Campfire</thing></li>
+      <li><key>t</key><thing>TorchLamp</thing></li>
+    </keys>
+    <rows>
+      <li>___________________________________</li>
+      <li>____c_c____________________________</li>
+      <li>_____M______fffffffffgfffffffffff__</li>
+      <li>____c_c_____fyyyyyyyyyyyyyyyyyyyf__</li>
+      <li>____________fySySySySySySySySySyf__</li>
+      <li>____t_______fyyyyyyyyyyyyyyyyyyyf__</li>
+      <li>____________fffffffffffffffffffff__</li>
+      <li>___________________________________</li>
+      <li>__#############____#############___</li>
+      <li>__#,,,,,,,,,,,#____#.b.b.b.b.b.#___</li>
+      <li>__#,K,,,,,K,,,#____#...........#___</li>
+      <li>__#,,,,,,,,,,,#____#...........#___</li>
+      <li>__#,,hh,,,hh,,#____#.....l.....#___</li>
+      <li>__#,,,,,,,,,,L#____#...........#___</li>
+      <li>__#,,T,,,,T,,,#____#.b.b.b.b.b.#___</li>
+      <li>__#,,hh,,,hh,,#____#...........#___</li>
+      <li>__#,,,,,,,,,,,#____#...........#___</li>
+      <li>__#xxxxx,,,,,L#____#...........#___</li>
+      <li>__#xxxxx,,,,,,#____######D######___</li>
+      <li>__######D######____________________</li>
+      <li>________________F__________________</li>
+      <li>___________________________________</li>
+    </rows>
+  </ColonyCouncil.TownPlanDef>
+
+  <ColonyCouncil.TownPlanDef>
+    <defName>Rimfolk_Plan_UnionPit</defName>
+    <label>Deepwell Union&apos;s pit</label>
+    <description>The Deepwell Union's pit: the headframe over the shaft on its eight posts, the slag heap beside it, the union hall where the book is kept on its shelves and every vote is taken round the long tables, a boarding house of twelve beds for the shifts, the smithy and store where the tools are mended and the ore weighed, and a fire for the end of the shift.</description>
+    <wallStuff>
+      <li>BlocksGranite</li>
+      <li>WoodLog</li>
+      <li>Steel</li>
+    </wallStuff>
+    <keys>
+      <li><key>#</key><thing>Wall</thing><wall>true</wall></li>
+      <li><key>D</key><thing>Door</thing><wall>true</wall></li>
+      <li><key>c</key><thing>Column</thing><wall>true</wall></li>
+      <li><key>o</key><floor>Concrete</floor></li>
+      <li><key>p</key><floor>PackedDirt</floor><mark>store</mark></li>
+      <li><key>,</key><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>b</key><thing>Bed</thing><stuff>WoodLog</stuff><rot>South</rot><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>l</key><thing>TorchLamp</thing><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>.</key><floor>Concrete</floor><roof>true</roof></li>
+      <li><key>T</key><thing>Table2x2c</thing><stuff>WoodLog</stuff><floor>Concrete</floor><roof>true</roof></li>
+      <li><key>h</key><thing>Stool</thing><stuff>WoodLog</stuff><floor>Concrete</floor><roof>true</roof></li>
+      <li><key>B</key><thing>Bookcase</thing><stuff>WoodLog</stuff><floor>Concrete</floor><roof>true</roof></li>
+      <li><key>L</key><thing>TorchLamp</thing><floor>Concrete</floor><roof>true</roof></li>
+      <li><key>K</key><thing>FueledSmithy</thing><stuff>Steel</stuff><floor>Concrete</floor><roof>true</roof></li>
+      <li><key>S</key><thing>ShelfSmall</thing><stuff>Steel</stuff><floor>Concrete</floor><roof>true</roof><mark>store</mark></li>
+      <li><key>x</key><floor>Concrete</floor><roof>true</roof><mark>store</mark></li>
+      <li><key>F</key><thing>Campfire</thing></li>
+      <li><key>t</key><thing>TorchLamp</thing></li>
+    </keys>
+    <rows>
+      <li>_____________________________________</li>
+      <li>___c___c___c_________________________</li>
+      <li>___ooooooooo_____ppppppppppppp_______</li>
+      <li>___coooooooc____ppppppppppppppp______</li>
+      <li>___ooooooooo____ppppppppppppppp______</li>
+      <li>___c___c___c_____ppppppppppppp_______</li>
+      <li>_______t_____________________________</li>
+      <li>_____________________________________</li>
+      <li>__###############___###############__</li>
+      <li>__#.............#___#,b,b,b,b,b,b,#__</li>
+      <li>__#.B.B.B.......#___#,,,,,,,,,,,,,#__</li>
+      <li>__#.............#___#,,,,,,,,,,,,,#__</li>
+      <li>__#..h..h..h....#___#,,,,,,l,,,,,,#__</li>
+      <li>__#.h.T.hT..hT..#___#,b,b,b,b,b,b,#__</li>
+      <li>__#..h..h..h..L.#___#,,,,,,,,,,,,,#__</li>
+      <li>__#.............#___#,,,,,,,,,,,,,#__</li>
+      <li>__#######D#######___#######D#######__</li>
+      <li>_____________________________________</li>
+      <li>__#########__________F_______________</li>
+      <li>__#.K..SxS#__________________________</li>
+      <li>__#.......D__________________________</li>
+      <li>__#..xxxxx#__________________________</li>
+      <li>__#########__________________________</li>
+      <li>_____________________________________</li>
+    </rows>
+  </ColonyCouncil.TownPlanDef>
+
+  <ColonyCouncil.TownPlanDef>
+    <defName>Rimfolk_Plan_RepublicHall</defName>
+    <label>Republic&apos;s town hall</label>
+    <description>A town of the Last Republic: the town hall in marble with the radio's two consoles on the dais and the council's tables before them, the flag on its pole in the square outside, the archive of the census and the old laws on its shelves, the ration office and its store, and the Civic Guard's guardhouse with its sandbags at the door.</description>
+    <wallStuff>
+      <li>BlocksGranite</li>
+      <li>BlocksSandstone</li>
+      <li>WoodLog</li>
+    </wallStuff>
+    <keys>
+      <li><key>#</key><thing>Wall</thing><wall>true</wall></li>
+      <li><key>D</key><thing>Door</thing><wall>true</wall></li>
+      <li><key>P</key><thing>Column</thing><wall>true</wall><floor>FlagstoneGranite</floor></li>
+      <li><key>=</key><floor>FlagstoneGranite</floor></li>
+      <li><key>,</key><floor>TileMarble</floor><roof>true</roof></li>
+      <li><key>T</key><thing>Table2x2c</thing><stuff>WoodLog</stuff><floor>TileMarble</floor><roof>true</roof></li>
+      <li><key>h</key><thing>DiningChair</thing><stuff>WoodLog</stuff><floor>TileMarble</floor><roof>true</roof></li>
+      <li><key>L</key><thing>TorchLamp</thing><floor>TileMarble</floor><roof>true</roof></li>
+      <li><key>K</key><thing>CommsConsole</thing><floor>TileMarble</floor><roof>true</roof></li>
+      <li><key>B</key><thing>Bookcase</thing><stuff>WoodLog</stuff><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>.</key><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>l</key><thing>TorchLamp</thing><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>S</key><thing>ShelfSmall</thing><stuff>Steel</stuff><floor>Concrete</floor><roof>true</roof><mark>store</mark></li>
+      <li><key>x</key><floor>Concrete</floor><roof>true</roof><mark>store</mark></li>
+      <li><key>:</key><floor>Concrete</floor><roof>true</roof></li>
+      <li><key>b</key><thing>Bed</thing><stuff>WoodLog</stuff><rot>South</rot><floor>Concrete</floor><roof>true</roof></li>
+      <li><key>k</key><thing>TorchLamp</thing><floor>Concrete</floor><roof>true</roof></li>
+      <li><key>s</key><thing>Sandbags</thing></li>
+    </keys>
+    <rows>
+      <li>_____________________________________</li>
+      <li>__###############___###########______</li>
+      <li>__#,,,,,,,,,,,,,#___#.........#______</li>
+      <li>__#,,,K,,,,,K,,,#___#.B.B.B.B.#______</li>
+      <li>__#,,,,,,,,,,,,,#___#.........#______</li>
+      <li>__#,h,,h,,h,,h,L#___#.B.B.B.B.#______</li>
+      <li>__#,,T,,T,,T,,,,#___#....l....#______</li>
+      <li>__#,h,,h,,h,,h,,#___#####D#####______</li>
+      <li>__#,,,,,,,,,,,,,#____________________</li>
+      <li>__#######D#######____________________</li>
+      <li>________=========____________________</li>
+      <li>________===P=====____________________</li>
+      <li>________=========____________________</li>
+      <li>_____________________________________</li>
+      <li>__###########___###########__________</li>
+      <li>__#xSxSxSxSx#___#:b:b:b:b:#__________</li>
+      <li>__#xxxxxxxxx#___#:::::::::#__________</li>
+      <li>__#xxxxxxxxx#___#:::::::::#__________</li>
+      <li>__#xxxxxxxxx#___#::::k::::#__________</li>
+      <li>__#####D#####___####D######__________</li>
+      <li>____________________s_s______________</li>
+      <li>_____________________________________</li>
+    </rows>
+  </ColonyCouncil.TownPlanDef>
+
+  <ColonyCouncil.TownPlanDef>
+    <defName>Rimfolk_Plan_FleetHull</defName>
+    <label>Hollow Fleet&apos;s hull</label>
+    <description>The Hollow Fleet's grounded hull, its plating made into walls: the bridge with its two consoles and the officers' mess, the crew deck of nine bunks, the sleepers' hold of five cryptosleep caskets beside the ship's stores, the hydroponics bay of four basins, and the landing pad of metal plates, kept clear for a shuttle that may one day carry the order to disembark.</description>
+    <wallStuff>
+      <li>Steel</li>
+      <li>Plasteel</li>
+    </wallStuff>
+    <keys>
+      <li><key>#</key><thing>Wall</thing><wall>true</wall></li>
+      <li><key>D</key><thing>Door</thing><wall>true</wall></li>
+      <li><key>,</key><floor>MetalTile</floor><roof>true</roof></li>
+      <li><key>b</key><thing>Bed</thing><stuff>Steel</stuff><rot>South</rot><floor>MetalTile</floor><roof>true</roof></li>
+      <li><key>Z</key><thing>CryptosleepCasket</thing><rot>South</rot><floor>MetalTile</floor><roof>true</roof></li>
+      <li><key>K</key><thing>CommsConsole</thing><floor>MetalTile</floor><roof>true</roof></li>
+      <li><key>T</key><thing>Table2x2c</thing><stuff>Steel</stuff><floor>MetalTile</floor><roof>true</roof></li>
+      <li><key>h</key><thing>DiningChair</thing><stuff>Steel</stuff><floor>MetalTile</floor><roof>true</roof></li>
+      <li><key>L</key><thing>TorchLamp</thing><floor>MetalTile</floor><roof>true</roof></li>
+      <li><key>S</key><thing>ShelfSmall</thing><stuff>Steel</stuff><floor>MetalTile</floor><roof>true</roof><mark>store</mark></li>
+      <li><key>x</key><floor>MetalTile</floor><roof>true</roof><mark>store</mark></li>
+      <li><key>=</key><floor>MetalTile</floor></li>
+      <li><key>o</key><floor>SterileTile</floor><roof>true</roof></li>
+      <li><key>H</key><thing>HydroponicsBasin</thing><rot>East</rot><floor>SterileTile</floor><roof>true</roof></li>
+      <li><key>t</key><thing>TorchLamp</thing></li>
+    </keys>
+    <rows>
+      <li>_____________________________________</li>
+      <li>___###############################___</li>
+      <li>___#,,,,,,,,,#,b,b,b,b,b,b,b,b,b,#___</li>
+      <li>___#,,K,,,K,,#,,,,,,,,,,,,,,,,,,,#___</li>
+      <li>___#,,,,,,,,,D,,,,,,,,,,,,,,,,,,,#___</li>
+      <li>___#,hh,,hh,,#,,,,,,,,L,,,,,,,,,,#___</li>
+      <li>___#,,,,,,,,,#########D###########___</li>
+      <li>___#,T,,,T,,,D,,,,,,,,,,,,,,,,,,,#___</li>
+      <li>___#,hh,,hh,L#,Z,Z,Z,Z,Z,,xSxSxSx#___</li>
+      <li>___#,,,,,,,,,#,,,,,,,,,,,,xxxxxxx#___</li>
+      <li>___#######D###,,,,,,,,,,L,xxxxxxx#___</li>
+      <li>_____________#####################___</li>
+      <li>_____________________________________</li>
+      <li>___#############______=============__</li>
+      <li>___#ooooooooooo#______=============__</li>
+      <li>___#oHooooHoooo#______=============__</li>
+      <li>___#ooooooooooo#______===========t=__</li>
+      <li>___#oHooooHoooo#______=============__</li>
+      <li>___#ooooooooooo#______=============__</li>
+      <li>___######D######______=============__</li>
+      <li>_____________________________________</li>
+    </rows>
+  </ColonyCouncil.TownPlanDef>
+
+</Defs>

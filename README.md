@@ -3639,9 +3639,34 @@ likeliest. They arise in every age, the Banner's kit and every fighter's arms ch
 psycaster, a fighter, a maker or a grower may take their ways. The Almanac has a page, *the Conclave, the Mossborn,
 the Banner and the guild*.
 
+**Four more: the Line, the union, the Republic and the Fleet.** A new world also has the **Signal Line**, who keep a
+chain of radio masts across the region (industrial, linemen in signal-orange oilskins and hard hats, a relay on the
+highest ground with its mast, consoles and cable yard); the **Deepwell Union**, drillers who stayed together when
+their seam ran dry (industrial, work clothes with the union's red, a pit with its headframe, slag heap and union hall);
+the **Last Republic**, what is left of the old government (industrial, the Civic Guard in one uniform of civic navy in
+every age, a town hall with its radio, archive and guardhouse); and the **Hollow Fleet**, the crew of a colony ship that
+came down two hundred years ago and still keeps its watches (spacer, the ship's grey on every rank, the grounded hull
+with its sleepers' hold). A lineman may raise a relay mast on the colony's highest ground: while it sings, the colony's
+letters and their answers are on the road half the days and a raid comes a couple of hours after the line's warning;
+a thunderstorm wears it, and a lineman may come up the road in the storm to climb it and make it fast. Their
+wire-trader buys components or sells the news of a caravan on the road. A union drill crew drills the colony's deep
+seam for a share, two in five for them and the rest left at the drill, the colony's best miner beside them if it
+likes (one shift in twenty the rig hurts them); their assayer sells a crate of steel, components and blasting goods,
+and a strike called by vote stalls their trade until the colony helps a shift-captain settle it, or a month passes. A
+Republic census-taker walks the colony from bed to bed to count its people; its citizenship papers give a citizen's
+terms with its traders for a year and a duty owed; its sergeant may ask a conscript for a season, who goes to the
+Republic's town and comes home by the world's own roads with the pay and the drill; and its radio praises or denounces
+the colony once a season. The Fleet's quartermaster brings the ship's shuttle down by the gate to trade (with a
+cryptosleep casket to sell), buys the colony's ship chunks, persona cores and advanced components, the deckhands
+cutting the chunks apart where they lie, and a sleeper from their caskets, woken too late, may ask shelter at dusk.
+Each has its asks, faith, words and names, and two peoples who want to talk, a silver rush, a republic's vote and
+exiles from a town come from them likeliest. They arise in every age, and new peoples may take their ways: survivors
+who keep a radio going or a ship's watches, a band led by a good miner or a good talker. The Almanac has a page, *the
+Line, the union, the Republic and the Fleet*.
+
 **Peoples whose age changes.** Rimfolk's peoples don't stay in the age they began in. Each season every one of them
 moves toward the next age at a pace of its own ways: the learned society, the Stormglass Conclave and the road league
-soonest, the herders and the Mossborn latest and never past the industrial and the medieval age, the hospitallers no
+soonest, the Signal Line soon after, the herders and the Mossborn latest and never past the industrial and the medieval age, the hospitallers no
 further than the industrial age by their faith. The colony quickens them: trade with a people (twice the pace at 5000
 silver a year), gifts of books, techprints, components or tools, its young who come to learn at the colony and its
 masters who teach the colony's people, and an alliance. A people cut off from the world, with nobody's trade for years,

@@ -170,6 +170,14 @@ namespace ColonyCouncil
         /// <summary>What a camp left behind: offal that draws a predator in, embers in dry grass (Camps/CampPack.cs), the game's own beast or fire.</summary>
         public static readonly HarmKind CampLeft = new HarmKind("campLeft", "what a camp left behind (offal, embers)", "campLeft", 0.0015f, false);
 
+        // ---------------- The peoples, release F (8 November 2026) ----------------
+
+        /// <summary>
+        /// A mining accident at the Deepwell Union's drill (Peoples/PeoplesF.cs): the colony's hand who works the drill
+        /// beside the crew, one shift in twenty (PeoplesFMath.AccidentChance; Tools/Balance/HarmSim.cs, UnionDrills).
+        /// </summary>
+        public static readonly HarmKind UnionDrill = new HarmKind("unionDrill", "a mining accident at the union's drill (peoples)", "peoples", 0.005f, false);
+
         /// <summary>Every kind, in the order they were built.</summary>
         public static readonly HarmKind[] All =
         {
@@ -185,7 +193,8 @@ namespace ColonyCouncil
             SoldierNight,
             OpenGates, GamblerTurns, BarberNick, RankEnemy, CrowdFight, PastFirstBlood, LetterChallenge, HeirGrudge, HatedTrader, GateZeal, HungryHands, CreekBrawl,
             WorstNight, FirstSteps, WorkingWrong,
-            CampLeft
+            CampLeft,
+            UnionDrill
         };
 
         public static HarmKind Of(string key)

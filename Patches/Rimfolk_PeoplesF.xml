@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+  <!--
+    Release F's peoples in more of Rimfolk's existing events (Source/ColonyCouncil/Peoples/; docs/design/peoples.md,
+    "Release F"), as release E's are in Patches/Rimfolk_PeoplesE.xml. Each patches one of Rimfolk's own defs and is
+    conditional, so it never fails: with the def gone, nothing happens. A preference never shuts another people out:
+    without a people of the calling, everything comes as before.
+    - World events that prefer a calling (SituationFactionNeed.calling: five times as likely as another people): two
+      peoples who want to talk, the Signal Line's (whose masts carry the talks); a silver rush, the Deepwell Union's; a
+      republic's vote, the Last Republic's; exiles from a town, the Hollow Fleet's (sleepers woken too late who left the
+      hull). Busy orbital lanes and a ship down stay the spacer enclave's (Patches/Rimfolk_PeoplesC.xml).
+  -->
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_PeaceTalks"]/faction</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_PeaceTalks"]/faction</xpath>
+      <value>
+        <calling>linesmen</calling>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_SilverRush"]/faction</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_SilverRush"]/faction</xpath>
+      <value>
+        <calling>drillers</calling>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_RepublicVotes"]/faction</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_RepublicVotes"]/faction</xpath>
+      <value>
+        <calling>citizens</calling>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_Exiles"]/faction</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_Exiles"]/faction</xpath>
+      <value>
+        <calling>crew</calling>
+      </value>
+    </match>
+  </Operation>
+
+</Patch>

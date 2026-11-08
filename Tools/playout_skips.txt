@@ -536,3 +536,15 @@ Rimfolk_Evt_BannerRoll [option 2] a refusal: the keeper goes from the grave (Sen
 Rimfolk_Evt_GuildCommission [option 2] a refusal: the journeyman is sent home from the gate (SendAway)
 # Defs/MissionDefs/Rimfolk_Missions_PeoplesE.xml
 Rimfolk_Mission_GlassApprentice [option 0] the mission's own code: the apprentice comes later, hosted and watching the sky
+# Defs/IncidentDefs/Rimfolk_Events_PeoplesF.xml
+Rimfolk_Evt_LineWire [option 2] a refusal: the wire-trader is sent back to the road (SendAway)
+Rimfolk_Evt_UnionDrill [option 2] a refusal: the drill crew hauls its rig back to the road (SendAway)
+Rimfolk_Evt_RepublicCensus [option 0] the event's own code: the census-taker walks the colony bed to bed (DilemmaEffect_RepublicCensus)
+Rimfolk_Evt_RepublicCensus [option 2] a refusal: the census-taker is sent back to the road (SendAway)
+Rimfolk_Evt_RepublicPapers [option 2] a refusal: the clerk is sent back to the road (SendAway)
+Rimfolk_Evt_RepublicConscript [option 2] a refusal: the sergeant is sent back to the road (SendAway)
+Rimfolk_Evt_FleetSalvage [option 0] the event's own code: the salvage carried out and the chunks cut where they lie (DilemmaEffect_FleetSalvage)
+Rimfolk_Evt_FleetSalvage [option 2] a refusal: the quartermaster is sent back to the road (SendAway)
+Rimfolk_Evt_FleetSleeper [option 2] a refusal: the sleeper walks off from the gate (SendAway)
+# Defs/MissionDefs/Rimfolk_Missions_PeoplesF.xml
+Rimfolk_Mission_LineSpan [option 1] a refusal: the span is left for the Line to mend

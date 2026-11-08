@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Release F's peoples in their own words (Source/ColonyCouncil/Peoples/PeoplesF.cs, PeoplesF2.cs; docs/design/
+    peoples.md, "Release F"), in the pools the other fifteen speak in, by the tag their people give every line:
+    their:linesmen the Signal Line, their:drillers the Deepwell Union, their:citizens the Last Republic, their:crew the
+    Hollow Fleet. Each in its own manner: the Line short and clear, always saying where a thing was heard; the union
+    loud, blunt and loyal, quick to vote; the Republic formal and patient, speaking of itself as if it never fell; the
+    Fleet courteous, precise and a little sad, keeping ship's time.
+    - Rimfolk_Pool_NeighbourWrites: their answer to the colony's letter or call, and their grief with it and thanks for a
+      warning. Help is promised only in a warm or cordial answer, and comes by their own messengers.
+    - Rimfolk_CourierLines: their messengers at the colony's gate. One sentence each.
+    - Rimfolk_VisitorLines: their visitors at every moment of a visit (arrive, wait, stay, pass, leave). One sentence each.
+    - Rimfolk_Pool_OutsiderSays: their words face to face: a chat, a warm parting, their faith.
+    And the journal of the colonist who met the sleeper woken too late (Defs/IncidentDefs/Rimfolk_Events_PeoplesF.xml).
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_NeighbourWrites_PeoplesF</defName>
+    <pool>Rimfolk_Pool_NeighbourWrites</pool>
+    <lines>
+      <plain>
+        <!-- The Signal Line: the mast, the voice, where it was heard -->
+        <li>[greetings,warm,their:linesmen] Your letter came down the line clear as morning, {WRITER}, and every mast between us passed it on gladly.</li>
+        <li>[greetings,cordial,their:linesmen] The relay has your letter, {WRITER}. Heard at the ridge mast, written down at ours.</li>
+        <li>[greetings,cool,their:linesmen] We have your letter. The line carries every voice, and yours is one of them, nothing more yet.</li>
+        <li>[news,warm,their:linesmen] The masts hear the whole region, {WRITER}, and we always say where. Here is what the season sent down the line.</li>
+        <li>[news,cordial,their:linesmen] Everything that moves on the roads is heard on some mast. This is the season's, with where each part was heard.</li>
+        <li>[help,warm,their:linesmen] What you asked for is coming with a line-runner, {WRITER}. A voice is a road nobody has to walk, but some things still need carrying.</li>
+        <li>[help,cordial,their:linesmen] The relay can spare it, and a runner has it on the road.</li>
+        <li>[help,refusal,their:linesmen] The storms took three spans this season, {WRITER}, and every part we have is going up a mast. We have nothing to send.</li>
+        <li>[invitation,warm,their:linesmen] A lineman will come, and look at your heights while they are there.</li>
+        <li>[condolences,warm,their:linesmen] We put your dead's name down the whole line tonight, {WRITER}, mast to mast, so the region heard it. Every mast is a voice.</li>
+        <li>[condolences,cordial,their:linesmen] The Line is sorry for your loss, {WRITER}. We have passed the news on true, and said where it was heard.</li>
+        <li>[warning,warm,their:linesmen] Your warning reached the relay before the trouble did, {WRITER}, and we called it down the line to everyone. The Line will not forget who said it first.</li>
+        <li>[warning,cordial,their:linesmen] We have your warning, {WRITER}, and it is on the line already. Keep it singing.</li>
+        <!-- The Deepwell Union: the vote, the shift, the book -->
+        <li>[greetings,warm,their:drillers] Your letter was read out in the union hall, {WRITER}, and somebody moved we write back at once, and it carried.</li>
+        <li>[greetings,cordial,their:drillers] The union has your letter, {WRITER}. It goes in the book with everything else.</li>
+        <li>[greetings,cool,their:drillers] We have your letter. The union will put it to the vote what we think of you.</li>
+        <li>[news,warm,their:drillers] Our carts go to every town that buys steel, {WRITER}, and our miners talk in every one of them. Here is the season's.</li>
+        <li>[news,cordial,their:drillers] There's always talk at the end of a shift. This is the part worth writing down.</li>
+        <li>[help,warm,their:drillers] What you asked for is coming with a pit-runner, {WRITER}. The vote was everyone for and nobody against.</li>
+        <li>[help,cordial,their:drillers] The union can spare it, and it is on the road.</li>
+        <li>[help,refusal,their:drillers] The seam ran thin this season, {WRITER}, and the union is feeding its own first. We have nothing to send, and the vote was not easy.</li>
+        <li>[invitation,warm,their:drillers] A driller will come, and look at your ground while they are there.</li>
+        <li>[condolences,warm,their:drillers] We stood a minute at the face for your dead this morning, {WRITER}, every shift. Everyone up at the end of the shift, we say, and we are sorry yours did not come up.</li>
+        <li>[condolences,cordial,their:drillers] The union is sorry for your loss, {WRITER}. One book, one union, and your dead are in our book too.</li>
+        <li>[warning,warm,their:drillers] Your warning reached the pit in time, {WRITER}, and everyone was out of the shaft when it came. The union owes you, and it votes to pay.</li>
+        <li>[warning,cordial,their:drillers] We have your warning, {WRITER}. The headframe is manned tonight.</li>
+        <!-- The Last Republic: the law, the count, the radio -->
+        <li>[greetings,warm,their:citizens] Your letter was read at the town hall, {WRITER}, and entered in the record with the minister's own note of thanks.</li>
+        <li>[greetings,cordial,their:citizens] The Republic has your letter, {WRITER}, and has filed it, as it files everything.</li>
+        <li>[greetings,cool,their:citizens] We have your letter. The Republic has not yet decided what you are to it.</li>
+        <li>[news,warm,their:citizens] The Republic's radio hears a great deal, {WRITER}, and broadcasts some of it. Here is the season's, as the archive has it.</li>
+        <li>[news,cordial,their:citizens] Every dispatch rider brings a report, and every report is filed. These are the season's.</li>
+        <li>[help,warm,their:citizens] What you asked for is coming with a dispatch rider, {WRITER}, with the proper form attached.</li>
+        <li>[help,cordial,their:citizens] The ration office can spare it, and it is on the road.</li>
+        <li>[help,refusal,their:citizens] The ration office is short this season, {WRITER}, and the Republic's own citizens come first by law. There is nothing to send.</li>
+        <li>[invitation,warm,their:citizens] A clerk will come, with papers you may find useful.</li>
+        <li>[condolences,warm,their:citizens] The Republic read your dead's name on the evening broadcast, {WRITER}, among its own. Everyone counted, everyone owed, and everyone remembered.</li>
+        <li>[condolences,cordial,their:citizens] The Republic is sorry for your loss, {WRITER}. The name has been entered in the record.</li>
+        <li>[warning,warm,their:citizens] Your warning reached the town hall in time, {WRITER}, and the Civic Guard was on the walls when it came. The Republic never forgets a friend, and it never fell.</li>
+        <li>[warning,cordial,their:citizens] We have your warning, {WRITER}. The Guard is doubled tonight.</li>
+        <!-- The Hollow Fleet: the watch, the log, the order -->
+        <li>[greetings,warm,their:crew] Your letter was read on the bridge at the change of watch, {WRITER}, and logged with the captain's own word beside it.</li>
+        <li>[greetings,cordial,their:crew] The hull has your letter, {WRITER}. It is logged.</li>
+        <li>[greetings,cool,their:crew] We have your letter. It is logged, without comment, for now.</li>
+        <li>[news,warm,their:crew] The ship still listens to the sky, {WRITER}, and to the ground round the hull. Here is what the log holds for the season.</li>
+        <li>[news,cordial,their:crew] The watch writes down everything it sees. This is the season's log, the part that concerns you.</li>
+        <li>[help,warm,their:crew] What you asked for is coming with a deck-runner, {WRITER}. The ship provides, and we provide for the ship and its friends.</li>
+        <li>[help,cordial,their:crew] The quartermaster can spare it, and it is on its way.</li>
+        <li>[help,refusal,their:crew] Another system failed this season, {WRITER}, and everything the hull has is going into it. We have nothing to send, and the log records our regret.</li>
+        <li>[invitation,warm,their:crew] An ensign will come, in the ship's uniform, as the regulations say.</li>
+        <li>[condolences,warm,their:crew] We logged your dead at the change of watch tonight, {WRITER}, as we log our own, and the whole crew stood for them.</li>
+        <li>[condolences,cordial,their:crew] The Fleet is sorry for your loss, {WRITER}. It is logged, and it will be remembered as long as the log is kept.</li>
+        <li>[warning,warm,their:crew] Your warning reached the hull in time, {WRITER}, and every post was manned when it came. Holding position, and grateful.</li>
+        <li>[warning,cordial,their:crew] We have your warning, {WRITER}. The ship is at its stations tonight.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_CourierLines_PeoplesF</defName>
+    <pool>Rimfolk_CourierLines</pool>
+    <lines>
+      <plain>
+        <li>[arrive,their:linesmen] Word from the relay, and I'll tell you where it was heard.</li>
+        <li>[leave,their:linesmen] There's a span down past the ridge, so I'll be going.</li>
+        <li>[deliver,their:linesmen] From the relay, passed on true.</li>
+        <li>[arrive,their:drillers] Pit-runner, with word from the union hall.</li>
+        <li>[leave,their:drillers] The shift changes at dusk, and I'm on it.</li>
+        <li>[deliver,their:drillers] From the union, voted on and counted.</li>
+        <li>[arrive,their:citizens] Dispatch rider of the Republic, with a letter under seal.</li>
+        <li>[leave,their:citizens] I'm expected back at the town hall by evening, so I'll go.</li>
+        <li>[deliver,their:citizens] From the Republic, with the proper form.</li>
+        <li>[arrive,their:crew] Deck-runner from the hull, reporting with a message.</li>
+        <li>[leave,their:crew] My watch begins at the next bell, so I'll take my leave.</li>
+        <li>[deliver,their:crew] From the ship, logged and sealed.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_VisitorLines_PeoplesF</defName>
+    <pool>Rimfolk_VisitorLines</pool>
+    <lines>
+      <plain>
+        <li>[arrive,their:linesmen] Good height behind your walls, I'd put a mast on it.</li>
+        <li>[wait,their:linesmen] I've waited out worse at the top of a mast.</li>
+        <li>[stay,their:linesmen] A dry roof, and you can hear the wind in the wires from here.</li>
+        <li>[leave,their:linesmen] Keep it singing, and say where you heard it.</li>
+        <li>[pass,their:linesmen] Every mast is a voice, and every voice is a road nobody has to walk.</li>
+        <li>[arrive,their:drillers] Good rock under you, I can tell from the walls.</li>
+        <li>[wait,their:drillers] Miners wait for the cage every shift, take your time.</li>
+        <li>[stay,their:drillers] A hot supper and nobody needs a lamp, that's a good billet.</li>
+        <li>[leave,their:drillers] Everyone up at the end of the shift, and good day to you.</li>
+        <li>[pass,their:drillers] The ground keeps what it's given, remember that.</li>
+        <li>[arrive,their:citizens] Orderly streets, the Republic would approve.</li>
+        <li>[wait,their:citizens] The Republic is patient, and so am I.</li>
+        <li>[stay,their:citizens] A clean room and a quiet house, very civic.</li>
+        <li>[leave,their:citizens] The Republic never fell, and it thanks you for the bed.</li>
+        <li>[pass,their:citizens] Everyone counted, everyone owed.</li>
+        <li>[arrive,their:crew] Permission to come aboard, as we say.</li>
+        <li>[wait,their:crew] We have been waiting two hundred years, so an hour is nothing.</li>
+        <li>[stay,their:crew] A berth that doesn't hum, I could sleep a week.</li>
+        <li>[leave,their:crew] Holding position, and thank you for your hospitality.</li>
+        <li>[pass,their:crew] We were promised a world, and we are still waiting for orders to disembark.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_OutsiderSays_PeoplesF</defName>
+    <pool>Rimfolk_Pool_OutsiderSays</pool>
+    <lines>
+      <plain>
+        <li>[chat,them,their:linesmen] We fear silence more than storms, because silence is how the region fell apart.</li>
+        <li>[endwarm,them,their:linesmen] If you ever need a word carried, call it up a mast and ask for me.</li>
+        <li>[faithtalk,them,their:linesmen] Ennis Calloway walked the hills with a coil of copper, and his first mast is never quiet.</li>
+        <li>[chat,them,their:drillers] Nobody decides alone in the union, and nobody goes down alone either.</li>
+        <li>[endwarm,them,their:drillers] If your ground ever wants drilling, send for the union and ask for me.</li>
+        <li>[faithtalk,them,their:drillers] Marta Grieve put it to the vote when the seam ran dry, and we voted to stay together.</li>
+        <li>[chat,them,their:citizens] The Republic never fell, it simply has fewer citizens than it used to.</li>
+        <li>[endwarm,them,their:citizens] Come to the town hall one day, and I'll find you the right form myself.</li>
+        <li>[faithtalk,them,their:citizens] Clement Ashdown read the old laws on the radio each evening until other towns answered.</li>
+        <li>[chat,them,their:crew] We keep ship's time wherever we are, it is the only clock that never stopped.</li>
+        <li>[endwarm,them,their:crew] If the order ever comes, I'll see that your name is in the log.</li>
+        <li>[faithtalk,them,their:crew] Imre Sallow told us to keep our posts until the order came, and died before he gave it.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- The journal of the colonist who met the sleeper woken too late (Rimfolk_Evt_FleetSleeper): taken in (opt0), a
+       night's shelter (opt1), the gate shut (opt2). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Evt_FleetSleeper</defName>
+    <lines>
+      <plain>
+        <li>[opt0] A sleeper from the Fleet's caskets came to the gate at dusk, {X_nameDef}, two hundred years asleep and nobody left who knew them. We took them in. They held the gatepost a long time before they came through it.</li>
+        <li>[opt1] We gave the sleeper from the Fleet's hull a warm corner for the night. They asked me what year it was and didn't believe the answer.</li>
+        <li>[opt2] A sleeper from the Fleet's caskets asked us for shelter at dusk and we kept the gate shut. They said "holding position" as if it were an answer, and walked off.</li>
+      </plain>
+      <gloomy><li>[opt0] Everyone they knew is two hundred years dead, and now they have us.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

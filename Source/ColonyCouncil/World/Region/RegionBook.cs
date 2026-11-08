@@ -208,6 +208,7 @@ namespace ColonyCouncil
             if (RimfolkPatches.On) Safe("the Wheel's towns", () => WheelTowns.Daily(now));
             // The Mossborn's ledger of the colony's planting and felling (Peoples/PeoplesE.cs).
             if (RimfolkPatches.On) Safe("the Mossborn's ledger", () => MossLedger.Daily(now));
+            if (RimfolkPatches.On) Safe("release F's peoples: the union's strikes, the Republic's radio", () => PeoplesF.Daily(now));
             Safe("trading posts", () => TradingPosts.Daily(this, now));
             Safe("follow-ups", () => FollowUps.Daily(this, now));
             Safe("hamlets", () => Hamlets.Daily(this, now));

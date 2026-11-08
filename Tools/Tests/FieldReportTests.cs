@@ -58,6 +58,18 @@ public static class FieldReportTests
         C(!HaulMath.Stuck(0, 23 * hour, 8f) && HaulMath.Stuck(0, 25 * hour, 8f), "stuck after a day with the usual 8 hours' hold");
         C(!HaulMath.Stuck(0, 35 * hour, 12f) && HaulMath.Stuck(0, 37 * hour, 12f), "stuck after three holds when that is longer than a day");
         C(!HaulMath.Stuck(-1, 999 * hour, 8f), "an empty load is never stuck");
+
+        // "some of the npcs you create, including the earlier couriers, seem to walk only quite slowly on the map": the
+        // game's "walk" is half the ordinary pace; errands and trips go at the ordinary pace (Pace.Errand).
+        string pace = File.ReadAllText(Path.Combine(root, "Source/ColonyCouncil/Pace.cs"));
+        C(pace.Contains("Errand = LocomotionUrgency.Jog") && pace.Contains("p.mindState.duty.locomotion = Pace.Errand"), "an errand goes at the ordinary pace, a lord's travel too");
+        foreach (var f in new[] { "Couriers/CourierJobs.cs", "Couriers/CourierLord.cs", "Couriers/CourierTracker.cs", "Post/PostRider.cs", "Post/MailWatch.cs",
+                     "Post/OwnRiders.cs", "Diplomacy/EnvoyLord.cs", "Diplomacy/RansomParty.cs", "Diplomacy/MatchParty.cs", "Visitors/VisitorLord.cs",
+                     "Camps/CampLord.cs", "World/NeighbourLetters.cs" })
+        {
+            string code = File.ReadAllText(Path.Combine(root, "Source/ColonyCouncil", f));
+            C(!code.Contains("LocomotionUrgency.Walk") && !code.Contains("new LordToil_Travel("), f + ": its people go at an errand's pace, not the game's half-speed walk");
+        }
         return n;
     }
 }

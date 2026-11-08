@@ -134,15 +134,17 @@ namespace ColonyCouncil
 
         // ---------------- The colony's side ----------------
 
-        /// <summary>A Signal Line mast near the colony (one of the Line's towns within a mast's reach, or a mast of theirs raised at home), by name, softly.</summary>
+        /// <summary>
+        /// A Signal Line mast near the colony: one of the Line's towns within a mast's reach, or the relay mast their lineman
+        /// raised at home while it sings (Peoples/PeoplesF.cs: above half its strength, with the Line at peace).
+        /// </summary>
         public static bool Mast(Map home)
         {
             if (home == null) return false;
             try
             {
                 if (MastTiles(home.Tile) >= 0f) return true;
-                return home.listerBuildings.allBuildingsColonist.Any(b => b.def.defName.IndexOf("Mast", StringComparison.Ordinal) >= 0
-                                                                          && (b.def.defName.IndexOf("Signal", StringComparison.Ordinal) >= 0 || b.def.defName.IndexOf("Relay", StringComparison.Ordinal) >= 0));
+                return RelayMast.Working(home);
             }
             catch
             {
@@ -150,8 +152,8 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The Signal Line (Peoples/, being built in parallel), by its def's name: null until it is in the game.</summary>
-        private static bool SignalLine(Faction f) => f?.def?.defName != null && f.def.defName.StartsWith("Rimfolk_SignalLine", StringComparison.Ordinal) && !f.defeated;
+        /// <summary>A people that keeps masts (Peoples/PeoplesF.cs): the Signal Line, or a people that arose and took its ways.</summary>
+        private static bool SignalLine(Faction f) => f != null && !f.defeated && Peoples.CallingOf(f) == PeoplesMath.Linesmen;
 
         private static readonly Dictionary<long, (float tiles, float at)> masts = new Dictionary<long, (float, float)>();
 

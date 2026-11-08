@@ -176,7 +176,8 @@ namespace ColonyCouncil
                     parent = r.people, name = r.name, ruin = ruin, byColony = r.byColony, since = r.since,
                     lean = ArisingMath.Lean(ArisingMath.Refugees, true, ArisingMath.Fated(r.town, ArisingMath.SaltRiver, ArisingMath.RiverChance), 0, 0, 0,
                         ArisingMath.Fated(r.town, ArisingMath.SaltBell, ArisingMath.BellChance), ArisingMath.Fated(r.town, ArisingMath.SaltWheel, ArisingMath.WheelChance),
-                        (int)Ages.Of(r.people))
+                        (int)Ages.Of(r.people), 0, 0, 0, 0, 0, 0, ArisingMath.Fated(r.town, ArisingMath.SaltLine, ArisingMath.LineChance),
+                        ArisingMath.Fated(r.town, ArisingMath.SaltCrew, ArisingMath.CrewChance))
                 };
             }
             return null;
@@ -256,7 +257,8 @@ namespace ColonyCouncil
                     exile = r.pawn, record = r, name = r.Name, since = r.banishedTick,
                     lean = ArisingMath.Lean(ArisingMath.Exiles, true, ArisingMath.Fated(r.id, ArisingMath.SaltRiver, ArisingMath.RiverChance), Learning(r.pawn),
                         Skill(r.pawn, SkillDefOf.Animals), Skill(r.pawn, SkillDefOf.Shooting), false, false, (int)Ages.Ours,
-                        Skill(r.pawn, SkillDefOf.Melee), Skill(r.pawn, SkillDefOf.Plants), Skill(r.pawn, SkillDefOf.Crafting), Psylink(r.pawn))
+                        Skill(r.pawn, SkillDefOf.Melee), Skill(r.pawn, SkillDefOf.Plants), Skill(r.pawn, SkillDefOf.Crafting), Psylink(r.pawn),
+                        Skill(r.pawn, SkillDefOf.Mining), Skill(r.pawn, SkillDefOf.Social), false, false)
                 };
                 Feelings(cause, home);
                 return cause;

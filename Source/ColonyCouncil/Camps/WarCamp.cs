@@ -351,7 +351,7 @@ namespace ColonyCouncil
             graph.StartingToil = hunt;
             var hold = new LordToil_DefendPoint(entry, 10f, 6f);
             graph.AddToil(hold);
-            var leave = new LordToil_ExitMap(LocomotionUrgency.Walk, false, true);
+            var leave = new LordToil_ExitMap(Pace.Errand, false, true);
             graph.AddToil(leave);
             var flee = new LordToil_ExitMapAndDefendSelf();
             graph.AddToil(flee);

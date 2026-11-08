@@ -475,7 +475,7 @@ namespace ColonyCouncil
                     foreach (var a in left) a.SetFaction(Faction.OfPlayer);
                     return;
                 }
-                LordMaker.MakeNewLord(faction ?? left[0].Faction, new LordJob_ExitMapBest(LocomotionUrgency.Walk, false, false), map, left);
+                LordMaker.MakeNewLord(faction ?? left[0].Faction, new LordJob_ExitMapBest(Pace.Errand, false, false), map, left);
             }
             catch (Exception e)
             {

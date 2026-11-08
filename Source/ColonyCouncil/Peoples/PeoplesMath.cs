@@ -60,10 +60,18 @@ namespace ColonyCouncil
         /// </summary>
         public const string Seers = "seers", Grovekeepers = "grovekeepers", Mercenaries = "mercenaries", Artisans = "artisans";
 
+        /// <summary>
+        /// Release F's (docs/design/peoples-third.md, the first four): the Signal Line's (keepers of the radio masts), the
+        /// Deepwell Union's (drillers of the boomtowns), the Last Republic's (citizens of what is left of the old government),
+        /// the Hollow Fleet's (the colony ship's crew, still at their posts).
+        /// </summary>
+        public const string Linesmen = "linesmen", Drillers = "drillers", Citizens = "citizens", Crew = "crew";
+
         /// <summary>Every calling Rimfolk's words know. Release B's peoples take one of these.</summary>
         public static readonly string[] Callings =
         {
-            Traders, Healers, Herders, Pilgrims, Scholars, Brokers, Fishers, Hunters, Sextons, Tamers, Salvagers, Seers, Grovekeepers, Mercenaries, Artisans
+            Traders, Healers, Herders, Pilgrims, Scholars, Brokers, Fishers, Hunters, Sextons, Tamers, Salvagers, Seers, Grovekeepers, Mercenaries, Artisans,
+            Linesmen, Drillers, Citizens, Crew
         };
 
         public static bool IsCalling(string calling) => calling != null && Array.IndexOf(Callings, calling) >= 0;

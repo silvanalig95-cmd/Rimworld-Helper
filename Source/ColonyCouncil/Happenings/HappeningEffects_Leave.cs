@@ -80,7 +80,7 @@ namespace ColonyCouncil
                     {
                         if (p.Faction != to) p.SetFaction(to);
                         if (p.Spawned && p.GetLord() == null)
-                            LordMaker.MakeNewLord(to, new LordJob_ExitMapBest(LocomotionUrgency.Walk, false, true), p.Map, new List<Pawn> { p });
+                            LordMaker.MakeNewLord(to, new LordJob_ExitMapBest(Pace.Errand, false, true), p.Map, new List<Pawn> { p });
                     }
                 }
                 // Whoever came for them goes with them, in the same party off the map.
