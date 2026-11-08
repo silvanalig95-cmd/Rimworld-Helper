@@ -142,6 +142,9 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleExtension">
         <calling>tamers</calling>
+        <!-- Their age over the years (Peoples/PeopleAges.cs): the bond matters to them, not the tool, and new things come to the stables as they come: to the spacer age. -->
+        <agePace>12</agePace>
+        <ageLimit>3</ageLimit>
         <townWord>ring</townWord>
         <townWords>rings</townWords>
         <head>ring-keeper</head>

@@ -177,7 +177,7 @@ namespace ColonyCouncil
                     ModStrangers.AddTags(tags, x);
                 }
                 var f = faction ?? (x != null && x.RaceProps.Humanlike ? x.Faction : null);
-                if (f != null && !f.IsPlayer) tags.Add(f.def.techLevel <= TechLevel.Medieval ? "theirLowtech" : "theirHightech");
+                if (f != null && !f.IsPlayer) tags.Add(Peoples.TechOf(f) <= TechLevel.Medieval ? "theirLowtech" : "theirHightech");
                 // One of Rimfolk's peoples, by what it lives by: their:traders, their:healers, their:herders (Peoples/).
                 if (f != null && !f.IsPlayer) Peoples.AddTags(f, tags);
                 // What their people remember of the colony: their:grateful, their:rescued, their:grudge, their:owed (Interplay/).

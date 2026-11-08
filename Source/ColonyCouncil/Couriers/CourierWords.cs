@@ -60,7 +60,7 @@ namespace ColonyCouncil
             {
                 var lines = Lines?.lines;
                 if (lines == null) return;
-                if (f?.def != null) tags.Add(f.def.techLevel <= TechLevel.Medieval ? "theirLowtech" : "theirHightech");
+                if (f?.def != null) tags.Add(Peoples.TechOf(f) <= TechLevel.Medieval ? "theirLowtech" : "theirHightech");
                 // One of Rimfolk's peoples, by what it lives by (their:traders, their:healers, their:herders: Peoples/).
                 Peoples.AddTags(f, tags);
                 foreach (var t in Flavor.TagsFor(p)) tags.Add(t);
@@ -81,7 +81,7 @@ namespace ColonyCouncil
         private static string Noun(Faction f, bool plural)
         {
             if (Peoples.Courier(f, plural) is string own) return own;
-            var tech = f?.def?.techLevel ?? TechLevel.Industrial;
+            var tech = Peoples.TechOf(f, TechLevel.Industrial);
             string key = tech <= TechLevel.Neolithic ? "Runner" : tech == TechLevel.Medieval ? "Porter" : "Courier";
             return ("CC_Courier_" + key + (plural ? "s" : "")).Translate().Resolve();
         }

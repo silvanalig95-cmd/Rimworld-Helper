@@ -255,7 +255,7 @@ namespace ColonyCouncil
             var spot = CraftSpot();
             if (spot == null) return null;
             var goods = Goods().Where(t => !IsProp(t) && !(t is Corpse)).ToList();
-            int tech = (int)(faction?.def?.techLevel ?? TechLevel.Neolithic);
+            int tech = (int)(Peoples.TechOf(faction, TechLevel.Neolithic));
             foreach (var r in spot.def.AllRecipes.InRandomOrder())
             {
                 if (r?.products == null || r.products.Count != 1 || r.ingredients.NullOrEmpty() || r.workAmount > 12000f) continue;

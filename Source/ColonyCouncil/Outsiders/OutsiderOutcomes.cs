@@ -326,7 +326,7 @@ namespace ColonyCouncil
             var list = new List<ThingDef>();
             var f = PeopleOf(x);
             if (f == null) return list;
-            int tech = (int)f.def.techLevel;
+            int tech = (int)Peoples.TechOf(f);
             void Add(string name, int minTech)
             {
                 var d = DefDatabase<ThingDef>.GetNamedSilentFail(name);

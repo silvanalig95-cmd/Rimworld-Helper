@@ -491,7 +491,7 @@ namespace ColonyCouncil
             var town = p.town >= 0 ? NotableBook.TownOf(p.town) : null;
             if (town == null || home == null) return 2f;
             float tiles = Find.WorldGrid.ApproxDistanceInTiles(home.Tile, town.Tile);
-            return NotableMath.TravelDays(tiles, (int)(p.people?.def?.techLevel ?? TechLevel.Industrial));
+            return NotableMath.TravelDays(tiles, (int)(Peoples.TechOf(p.people, TechLevel.Industrial)));
         }
 
         /// <summary>Their town's fortune (50 when the region keeps none).</summary>

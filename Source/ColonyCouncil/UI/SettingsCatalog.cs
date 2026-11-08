@@ -421,6 +421,8 @@ namespace ColonyCouncil
             Toggle("regionChange", "CC_Settings_RegionChange", "CC_SetNote_RegionChange");
             Toggle("tradingPosts", "CC_Settings_TradingPosts", "CC_SetNote_TradingPosts");
             Toggle("hamlets", "CC_Settings_Hamlets", "CC_SetNote_Hamlets");
+            // Rimfolk's peoples rise and fall back an age over the years (Peoples/PeopleAges.cs).
+            Toggle("peopleAges", "CC_Settings_PeopleAges", "CC_SetNote_PeopleAges");
             Toggle("smallTownMaps", "CC_Settings_SmallTownMaps", "CC_SetNote_SmallTownMaps", "deepHooks");
             // The colony's bonds with other peoples (Diplomacy/): one place for each kind of bond. Fealty and vassals are
             // pacts of their own kind (decision 14), so their switch hangs under the pacts': off with them.

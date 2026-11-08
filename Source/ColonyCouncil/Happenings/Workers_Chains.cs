@@ -42,7 +42,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
-            if (ctx.enemy != null && ctx.enemy.def.techLevel <= TechLevel.Neolithic) tags.Add("tribalfoe");
+            if (ctx.enemy != null && Peoples.TechOf(ctx.enemy) <= TechLevel.Neolithic) tags.Add("tribalfoe");
         }
 
         /// <summary>Nobody to buy free if they've died or left while the colony was deciding.</summary>

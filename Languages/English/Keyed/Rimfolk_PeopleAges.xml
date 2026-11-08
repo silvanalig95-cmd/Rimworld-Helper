@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    Peoples whose age changes (Source/ColonyCouncil/Peoples/PeopleAges.cs, PeopleAgeWords.cs, PeopleAgesMath.cs;
+    docs/design/peoples-third.md, "Ages that change over time"). The letter opens with the colony's means of hearing it
+    ({MEANS}: CC_Form_Founding_*); {PEOPLE} is their name, {AGE} the age they live in now, {WAS} the one before, {LEADER}
+    their leader's title. What they learned or lost is the age's; their head's words are the calling's
+    (CC_PeopleAge_Voice_CALLING_Rise and _Fall); the last line says what the colony will see of it.
+  -->
+
+  <!-- Settings -->
+  <CC_Settings_PeopleAges>Peoples' ages change</CC_Settings_PeopleAges>
+  <CC_Settings_PeopleAges_Tip>Each of Rimfolk's peoples is looked at once a season. It moves toward the next age at a pace of its ways (the learned society, the Stormglass Conclave and the road league soonest, the herders and the Mossborn latest and not past the industrial or the medieval age), up to twice as fast for the colony's trade with it, quicker still for the colony's gifts of books, techprints, components and tools, for its people who learned at the colony and for an alliance. A people cut off from the world (no trade with anyone for years, its towns burned, at war with most of the world) falls back an age slowly instead. A letter tells each change, and their card says which way each people is heading. Their gear, arms, gifts, camps, words and traders' goods are those of the age they live in. Off: every people lives in the age it began in, and nothing moves.</CC_Settings_PeopleAges_Tip>
+  <CC_SetNote_PeopleAges>Rimfolk's peoples rise toward the next age over the years, and fall back one when cut off from the world.</CC_SetNote_PeopleAges>
+
+  <!-- The ages -->
+  <CC_PeopleAge_Age_0>tribal</CC_PeopleAge_Age_0>
+  <CC_PeopleAge_Age_1>medieval</CC_PeopleAge_Age_1>
+  <CC_PeopleAge_Age_2>industrial</CC_PeopleAge_Age_2>
+  <CC_PeopleAge_Age_3>spacer</CC_PeopleAge_Age_3>
+
+  <!-- ================= The letter ================= -->
+  <CC_PeopleAge_RiseTitle>{PEOPLE}: into the {AGE} age</CC_PeopleAge_RiseTitle>
+  <CC_PeopleAge_FallTitle>{PEOPLE}: back to the {AGE} age</CC_PeopleAge_FallTitle>
+
+  <!-- What they learned, by the age they rose into. -->
+  <CC_PeopleAge_Rise_1>{MEANS}: {PEOPLE} have learned to smelt iron and forge it, to cut stone square and to keep their laws written down, and they live in the medieval age now.</CC_PeopleAge_Rise_1>
+  <CC_PeopleAge_Rise_1_2>{MEANS}: the smiths of {PEOPLE} have learned to work iron and the masons to set stone with mortar, and they live in the medieval age now.</CC_PeopleAge_Rise_1_2>
+  <CC_PeopleAge_Rise_2>{MEANS}: {PEOPLE} have learned to bore a rifle's barrel, to keep an engine turning and to print a page, and they live in the industrial age now.</CC_PeopleAge_Rise_2>
+  <CC_PeopleAge_Rise_2_2>{MEANS}: the smiths of {PEOPLE} have learned to work steel on a lathe and to make a cartridge, and they live in the industrial age now.</CC_PeopleAge_Rise_2_2>
+  <CC_PeopleAge_Rise_3>{MEANS}: {PEOPLE} have learned to work plasteel, to fire a charge weapon and to speak across the sky, and they live in the spacer age now.</CC_PeopleAge_Rise_3>
+  <CC_PeopleAge_Rise_3_2>{MEANS}: the workshops of {PEOPLE} have learned to make what the ships above make, and they live in the spacer age now.</CC_PeopleAge_Rise_3_2>
+  <!-- What they lost, by the age they fell back to. -->
+  <CC_PeopleAge_Fall_0>{MEANS}: the forges of {PEOPLE} have gone cold and nobody is left who can read their laws, and they live as the tribes do now.</CC_PeopleAge_Fall_0>
+  <CC_PeopleAge_Fall_1>{MEANS}: the last engines of {PEOPLE} have stopped and their guns hang on the wall for want of cartridges, and they live in the medieval age again.</CC_PeopleAge_Fall_1>
+  <CC_PeopleAge_Fall_2>{MEANS}: the fabricators of {PEOPLE} have failed one by one, and they make do with what a workshop can make in the industrial age again.</CC_PeopleAge_Fall_2>
+
+  <!-- Their head's words, by their calling. -->
+  <CC_PeopleAge_Voice_traders_Rise>Their {LEADER} says the roads brought it to them first, as the roads always do.</CC_PeopleAge_Voice_traders_Rise>
+  <CC_PeopleAge_Voice_traders_Fall>Their {LEADER} says the roads have gone quiet, and a waystation forgets what no caravan brings it.</CC_PeopleAge_Voice_traders_Fall>
+  <CC_PeopleAge_Voice_healers_Rise>Their {LEADER} says the sickhouse will be the better for it, and the lamp at the gate burns on.</CC_PeopleAge_Voice_healers_Rise>
+  <CC_PeopleAge_Voice_healers_Fall>Their {LEADER} says the sickhouse makes do with herbs and clean hands again, and the lamp at the gate still burns.</CC_PeopleAge_Voice_healers_Fall>
+  <CC_PeopleAge_Voice_herders_Rise>Their {LEADER} says the herd does not care what age it is, but the young ones are glad of it.</CC_PeopleAge_Voice_herders_Rise>
+  <CC_PeopleAge_Voice_herders_Fall>Their {LEADER} says they have gone back to the old ways, which the herd never left.</CC_PeopleAge_Voice_herders_Fall>
+  <CC_PeopleAge_Voice_pilgrims_Rise>Their {LEADER} says the roads are the same roads, walked in better boots.</CC_PeopleAge_Voice_pilgrims_Rise>
+  <CC_PeopleAge_Voice_pilgrims_Fall>Their {LEADER} says the way is the way, and they walk it with less.</CC_PeopleAge_Voice_pilgrims_Fall>
+  <CC_PeopleAge_Voice_scholars_Rise>Their {LEADER} says they have copied it all twice already, and would like to ask the colony a question about it.</CC_PeopleAge_Voice_scholars_Rise>
+  <CC_PeopleAge_Voice_scholars_Fall>Their {LEADER} says that whatever they can no longer make, they have at least written down, twice.</CC_PeopleAge_Voice_scholars_Fall>
+  <CC_PeopleAge_Voice_brokers_Rise>Their {LEADER} says the new terms are better, to the last digit.</CC_PeopleAge_Voice_brokers_Rise>
+  <CC_PeopleAge_Voice_brokers_Fall>Their {LEADER} says the pad sees fewer ships, and every bargain is struck closer to the ground.</CC_PeopleAge_Voice_brokers_Fall>
+  <CC_PeopleAge_Voice_fishers_Rise>Their {LEADER} says the river has not changed, but the boats have.</CC_PeopleAge_Voice_fishers_Rise>
+  <CC_PeopleAge_Voice_fishers_Fall>Their {LEADER} says the river gives what it always gave, and they take it the old way.</CC_PeopleAge_Voice_fishers_Fall>
+  <CC_PeopleAge_Voice_hunters_Rise>Their {LEADER} says the book's empty pages will be filled faster now.</CC_PeopleAge_Voice_hunters_Rise>
+  <CC_PeopleAge_Voice_hunters_Fall>Their {LEADER} says the lanterns are still lit, whatever else has gone out.</CC_PeopleAge_Voice_hunters_Fall>
+  <CC_PeopleAge_Voice_sextons_Rise>Their {LEADER} says the dead are buried the same way in any age, and the bell is rung once for each.</CC_PeopleAge_Voice_sextons_Rise>
+  <CC_PeopleAge_Voice_sextons_Fall>Their {LEADER} says they have less than they had, and the dead are owed the same as ever.</CC_PeopleAge_Voice_sextons_Fall>
+  <CC_PeopleAge_Voice_tamers_Rise>Their {LEADER} says the bond is the same bond, and the stables are better kept.</CC_PeopleAge_Voice_tamers_Rise>
+  <CC_PeopleAge_Voice_tamers_Fall>Their {LEADER} says a bond needs no machine, and the bouts go on.</CC_PeopleAge_Voice_tamers_Fall>
+  <CC_PeopleAge_Voice_salvagers_Rise>Their {LEADER} says they had it in pieces on the yard floor before anyone else knew what it was.</CC_PeopleAge_Voice_salvagers_Rise>
+  <CC_PeopleAge_Voice_salvagers_Fall>Their {LEADER} says what they can't mend they will carry until they can, and the wheels still turn.</CC_PeopleAge_Voice_salvagers_Fall>
+  <CC_PeopleAge_Voice_seers_Rise>Their {LEADER} says the glass reads truer with the new instruments beside it.</CC_PeopleAge_Voice_seers_Rise>
+  <CC_PeopleAge_Voice_seers_Fall>Their {LEADER} says the instruments have failed, but the glass still reads the sky.</CC_PeopleAge_Voice_seers_Fall>
+  <CC_PeopleAge_Voice_grovekeepers_Rise>Their {LEADER} says the grove allows it, and every tree it costs will be paid back with a seedling.</CC_PeopleAge_Voice_grovekeepers_Rise>
+  <CC_PeopleAge_Voice_grovekeepers_Fall>Their {LEADER} says the forest is glad of it.</CC_PeopleAge_Voice_grovekeepers_Fall>
+  <CC_PeopleAge_Voice_mercenaries_Rise>Their {LEADER} says the company has drawn new arms from the quartermaster, and the Roll is read as before.</CC_PeopleAge_Voice_mercenaries_Rise>
+  <CC_PeopleAge_Voice_mercenaries_Fall>Their {LEADER} says the company makes do with the arms it can keep, and the Roll is read as before.</CC_PeopleAge_Voice_mercenaries_Fall>
+  <CC_PeopleAge_Voice_artisans_Rise>Their {LEADER} says the journeymen brought it home from their wander-years, and the guild mark will be cut into that work too.</CC_PeopleAge_Voice_artisans_Rise>
+  <CC_PeopleAge_Voice_artisans_Fall>Their {LEADER} says the guild keeps what can be made by hand, and marks it as before.</CC_PeopleAge_Voice_artisans_Fall>
+
+  <!-- What of it was the colony's doing, or why they fell back. -->
+  <CC_PeopleAge_Letter_trade>The colony's trade with them carried much of it to them.</CC_PeopleAge_Letter_trade>
+  <CC_PeopleAge_Letter_gifts>The colony's gifts of books and tools did much of it.</CC_PeopleAge_Letter_gifts>
+  <CC_PeopleAge_Letter_teaching>What theirs learned at the colony did much of it.</CC_PeopleAge_Letter_teaching>
+  <CC_PeopleAge_Letter_ally>Their alliance with the colony did much of it.</CC_PeopleAge_Letter_ally>
+  <CC_PeopleAge_Letter_pact>Their pact with the colony did its part.</CC_PeopleAge_Letter_pact>
+  <CC_PeopleAge_Letter_alone>Nobody has traded with them for years.</CC_PeopleAge_Letter_alone>
+  <CC_PeopleAge_Letter_burned>Their towns were burned.</CC_PeopleAge_Letter_burned>
+  <CC_PeopleAge_Letter_war>They are at war with most of the world.</CC_PeopleAge_Letter_war>
+  <CC_PeopleAge_Letter_unsupplied>Nobody has kept them supplied with components and parts.</CC_PeopleAge_Letter_unsupplied>
+
+  <!-- What the colony will see of it. -->
+  <CC_PeopleAge_Seen_Rise>From now on their people come to the gate armed and dressed as the {AGE} age is, their camps are built its way, and their traders carry its goods.</CC_PeopleAge_Seen_Rise>
+  <CC_PeopleAge_Seen_Fall>From now on their people come to the gate with what the {AGE} age can make, their camps are built its way, and their traders carry less than they did.</CC_PeopleAge_Seen_Fall>
+
+  <!-- The history's line. -->
+  <CC_PeopleAge_H_Rise>{PEOPLE} rose into the {AGE} age.</CC_PeopleAge_H_Rise>
+  <CC_PeopleAge_H_Fall>{PEOPLE} fell back to the {AGE} age.</CC_PeopleAge_H_Fall>
+
+  <!-- ================= Their card and the region's page ================= -->
+  <CC_PeopleAge_Heading_Rising>{AGE} age, rising: {WHY}</CC_PeopleAge_Heading_Rising>
+  <CC_PeopleAge_Heading_Falling>{AGE} age, falling back: {WHY}</CC_PeopleAge_Heading_Falling>
+  <CC_PeopleAge_Heading_Holding>{AGE} age, holding on: {WHY}</CC_PeopleAge_Heading_Holding>
+  <CC_PeopleAge_Heading_Settled>{AGE} age, {WHY}</CC_PeopleAge_Heading_Settled>
+  <CC_PeopleAge_Heading_Unseen>{AGE} age</CC_PeopleAge_Heading_Unseen>
+  <CC_PeopleAge_Card_Rose>Rose into the {AGE} age {AGO}.</CC_PeopleAge_Card_Rose>
+  <CC_PeopleAge_Card_Fell>Fell back to the {AGE} age {AGO}.</CC_PeopleAge_Card_Fell>
+  <CC_PeopleAge_Why_trade>trades with you</CC_PeopleAge_Why_trade>
+  <CC_PeopleAge_Why_gifts>has your gifts of learning</CC_PeopleAge_Why_gifts>
+  <CC_PeopleAge_Why_teaching>learns from you</CC_PeopleAge_Why_teaching>
+  <CC_PeopleAge_Why_ally>allied with you</CC_PeopleAge_Why_ally>
+  <CC_PeopleAge_Why_pact>bound to you by a pact</CC_PeopleAge_Why_pact>
+  <CC_PeopleAge_Why_years>slowly, as the years pass</CC_PeopleAge_Why_years>
+  <CC_PeopleAge_Why_alone>no trade with anyone for years</CC_PeopleAge_Why_alone>
+  <CC_PeopleAge_Why_burned>its towns burned</CC_PeopleAge_Why_burned>
+  <CC_PeopleAge_Why_war>at war with most of the world</CC_PeopleAge_Why_war>
+  <CC_PeopleAge_Why_unsupplied>short of components and parts</CC_PeopleAge_Why_unsupplied>
+  <CC_PeopleAge_Why_supplied>kept supplied with parts</CC_PeopleAge_Why_supplied>
+  <CC_PeopleAge_Why_settled>settled in its ways</CC_PeopleAge_Why_settled>
+  <CC_PeopleAge_Why_height>at the height of what anyone knows</CC_PeopleAge_Why_height>
+
+  <!-- ================= A gift of learning, as they remember it ================= -->
+  <CC_PeopleAge_Gift_books>books</CC_PeopleAge_Gift_books>
+  <CC_PeopleAge_Gift_techprints>techprints</CC_PeopleAge_Gift_techprints>
+  <CC_PeopleAge_Gift_components>components</CC_PeopleAge_Gift_components>
+  <CC_PeopleAge_Gift_tools>tools</CC_PeopleAge_Gift_tools>
+  <CC_Memory_Deed_gaveLearning>gave them books, techprints, components or tools</CC_Memory_Deed_gaveLearning>
+  <CC_Memory_Deed_gaveLearning_Name>gave them {NAME}</CC_Memory_Deed_gaveLearning_Name>
+  <CC_Memory_Deed_gaveLearning_Many>gave them books, techprints, components or tools, {COUNT} times</CC_Memory_Deed_gaveLearning_Many>
+  <CC_Memory_Deed_learnedHere>took in one of theirs to learn</CC_Memory_Deed_learnedHere>
+  <CC_Memory_Deed_learnedHere_Name>took in {NAME} to learn</CC_Memory_Deed_learnedHere_Name>
+
+</LanguageData>

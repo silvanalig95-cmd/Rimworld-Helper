@@ -206,6 +206,13 @@ namespace ColonyCouncil
         public static void MissionEnded(Mission m, MissionState state, bool wasActive)
         {
             if (m?.faction == null || !wasActive) return;
+            // One of theirs who stayed to learn (the Conclave's apprentice of the sky, the guild's wander-year) is
+            // remembered as learning at the colony, which their age reads (Peoples/PeopleAges.cs).
+            if (state == MissionState.Done && Array.IndexOf(PeopleAgesMath.LearnerMissions, m.kind) >= 0)
+            {
+                FactionMemory.Note(m.faction, "learnedHere", m.name);
+                return;
+            }
             if (Missions.Worker(m)?.OwnMemory ?? false) return;
             if (state == MissionState.Done) FactionMemory.Note(m.faction, "mission", m.title);
             else if (state == MissionState.Failed && m.outcome != "cancelled" && m.outcome != "ended") FactionMemory.Note(m.faction, "missionFailed", m.title);

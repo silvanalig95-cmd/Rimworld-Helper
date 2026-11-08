@@ -171,6 +171,9 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleExtension">
         <calling>fishers</calling>
+        <!-- Their age over the years (Peoples/PeopleAges.cs): an engine for the boats and no more; the river does not change: no further than the industrial age. -->
+        <agePace>13</agePace>
+        <ageLimit>2</ageLimit>
         <townWord>landing</townWord>
         <townWords>landings</townWords>
         <head>landing master</head>
@@ -373,6 +376,16 @@
         <gifts>
           <li><trait>Ranger</trait><chance>0.08</chance></li>
         </gifts>
+        <!-- River wardens' archers of the industrial age carry guns. -->
+        <ageArms>
+          <li>
+            <ages>2~2</ages>
+            <weaponTags>
+              <li>Gun</li>
+            </weaponTags>
+            <money>320</money>
+          </li>
+        </ageArms>
       </li>
     </modExtensions>
   </PawnKindDef>

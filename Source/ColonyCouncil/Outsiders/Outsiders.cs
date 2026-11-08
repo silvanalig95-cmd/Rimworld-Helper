@@ -352,7 +352,7 @@ namespace ColonyCouncil
                     var f = PeopleOf(x);
                     if (f == null) return false;
                     bool titled = x.royalty != null && x.royalty.AllTitlesInEffectForReading.Count > 0;
-                    return OutsiderMath.DuelFits((int)f.def.techLevel, f.def.HasRoyalTitles, titled);
+                    return OutsiderMath.DuelFits((int)Peoples.TechOf(f), f.def.HasRoyalTitles, titled);
                 }
                 default:
                     if (DiplomacyActs.Owns(act)) return DiplomacyActs.Shown(c, x, act);

@@ -235,7 +235,7 @@ public static class RansomTests
           && Regex.Matches(hooks, @"Ransoms\.On").Count == 2, "only without a powered comms console, with the deeper hooks and the setting");
         C(r.Contains("RansomMath.Fee(p.MarketValue, Rand.Value)") && r.Contains("l.StartTimeout(RansomMath.AnswerTicks)"), "the game's fee and its day to answer");
         C(r.Contains("ChoiceLetter_RansomDemand d && d.kidnapped != null"), "never one the game's own letter already asks about");
-        C(r.Contains("f.kidnapped.RemoveKidnappedPawn(p)") && r.Contains("TradeUtility.SpawnDropPod(at, map, p)") && r.Contains("(int)f.def.techLevel < (int)TechLevel.Industrial"),
+        C(r.Contains("f.kidnapped.RemoveKidnappedPawn(p)") && r.Contains("TradeUtility.SpawnDropPod(at, map, p)") && r.Contains("(int)Peoples.TechOf(f) < (int)TechLevel.Industrial"),
             "home as the game returns them: from the edge, or by pod from a people of the machine ages");
         C(text["RansomParty.cs"].Contains("class JobDriver_RansomPay") && text["RansomParty.cs"].Contains("Ransoms.Paid(Errand?.offer ?? -1, pawn, n)"),
             "the speaker carries the silver out and hands it over face to face");

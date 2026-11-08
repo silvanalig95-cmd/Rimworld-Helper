@@ -316,14 +316,14 @@ namespace ColonyCouncil
         public static void Cut(Pawn barber, Pawn p)
         {
             if (!Harm.On || barber == null || p == null || !Harm.SystemOn(HarmKinds.BarberNick.system)) return;
-            bool spacer = (barber.Faction?.def?.techLevel ?? TechLevel.Industrial) >= TechLevel.Spacer;
+            bool spacer = (Peoples.TechOf(barber.Faction, TechLevel.Industrial)) >= TechLevel.Spacer;
             bool poor = (barber.skills?.GetSkill(SkillDefOf.Artistic)?.Level ?? 10) < HarmSevenMath.PoorBarberSkill;
             bool debug = DebugBarber;
             DebugBarber = false;
             var cls = HurtClass.Mild;
             if (!(debug ? Harm.May(p, cls) : Harm.Roll(p, HarmKinds.BarberNick, HarmSevenMath.Barber(poor, spacer), cls))) return;
             if (Harm.Injure(p, HurtKind.Cut, HurtWhere.Arm, HarmSevenMath.NickLow, HarmSevenMath.NickHigh, HarmKinds.BarberNick, cls, barber) == null) return;
-            string tool = (barber.Faction?.def?.techLevel ?? TechLevel.Industrial) <= TechLevel.Neolithic ? "flint" : "razor";
+            string tool = (Peoples.TechOf(barber.Faction, TechLevel.Industrial)) <= TechLevel.Neolithic ? "flint" : "razor";
             // together: the colonist sits at the barber's stool.
             HarmFour.Say(barber, "Rimfolk_Pool_BarberNick", p, tool);
             HarmFour.Say(p, "Rimfolk_Pool_NickLaugh", barber);
@@ -515,7 +515,7 @@ namespace ColonyCouncil
             if (!Harm.On || c == null || x?.Faction == null || x.Faction.IsPlayer || !Harm.SystemOn(HarmKinds.LetterChallenge.system) || !HarmFour.Ours(c)) return;
             var notable = Outsiders.NotableOf(x);
             if (!duel && notable == null) return;
-            if (!OutsiderMath.DuelFits((int)(x.Faction.def?.techLevel ?? TechLevel.Industrial), ModsConfig.RoyaltyActive, x.royalty?.MostSeniorTitle != null)) return;
+            if (!OutsiderMath.DuelFits((int)(Peoples.TechOf(x.Faction, TechLevel.Industrial)), ModsConfig.RoyaltyActive, x.royalty?.MostSeniorTitle != null)) return;
             if (HarmSeven.WaitingOf(HarmSeven.Challenge, w => w.pawn == c && w.id == x.Faction.loadID) != null) return;
             bool debug = DebugChallenge;
             DebugChallenge = false;
@@ -557,7 +557,7 @@ namespace ColonyCouncil
                 x.count = 1;
                 x.due = now + (x.flag ? 0 : HarmSevenMath.ComesTicks(Rand.Value));
                 // A challenge by letter: Rimfolk's own letters, by their people's means (a runner, a sealed letter, the radio, comms).
-                var age = LedgerMath.AgeOf((int)(f.def?.techLevel ?? TechLevel.Industrial));
+                var age = LedgerMath.AgeOf((int)(Peoples.TechOf(f, TechLevel.Industrial)));
                 string text = ("CC_HarmSeven_Challenge_" + age).Translate(c.Named("PAWN"), (x.name ?? "?").Named("NOTABLE"), f.Name.Named("FACTION")).Resolve();
                 Tell.Letter(NewsKind.World, Importance.Notable, c.Map, "CC_HarmSeven_ChallengeTitle".Translate(c.Named("PAWN"), (x.name ?? "?").Named("NOTABLE")).Resolve(), text,
                     LetterDefOf.NeutralEvent, new LookTargets(c));
@@ -962,7 +962,7 @@ namespace ColonyCouncil
         public static bool Challenge(Pawn c, Pawn x, HarmKind kind)
         {
             if (c?.Map == null || x == null || c.Map != x.Map || Peaceful(c) || Peaceful(x)) return false;
-            bool duel = DuelOn && OutsiderMath.DuelFits((int)(x.Faction?.def?.techLevel ?? TechLevel.Industrial), ModsConfig.RoyaltyActive, x.royalty?.MostSeniorTitle != null);
+            bool duel = DuelOn && OutsiderMath.DuelFits((int)(Peoples.TechOf(x.Faction, TechLevel.Industrial)), ModsConfig.RoyaltyActive, x.royalty?.MostSeniorTitle != null);
             if (!duel && !SparOn) return false;
             var job = BeginBout(c, x, duel ? BoutKind.Duel : BoutKind.Spar, duel ? DuelTerms.FirstBlood : DuelTerms.Yield);
             var bout = BoutOf(c);

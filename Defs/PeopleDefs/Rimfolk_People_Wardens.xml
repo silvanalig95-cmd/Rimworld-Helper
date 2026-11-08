@@ -149,6 +149,9 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleExtension">
         <calling>hunters</calling>
+        <!-- Their age over the years (Peoples/PeopleAges.cs): a lantern and a book; they take the rifle for the hunt, but have no use for the sky's machines: no further than the industrial age. -->
+        <agePace>13</agePace>
+        <ageLimit>2</ageLimit>
         <townWord>lodge</townWord>
         <townWords>lodges</townWords>
         <head>keeper of the book</head>

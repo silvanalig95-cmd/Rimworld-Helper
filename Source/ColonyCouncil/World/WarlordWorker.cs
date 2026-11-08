@@ -215,7 +215,7 @@ namespace ColonyCouncil
             float p = 0f;
             if (hunters.Count > 0)
             {
-                float theirs = hunters.Sum(h => Mathf.Min(6, TownsOf(h, s.ctx.map).Count()) * Mathf.Lerp(0.8f, 1.3f, Mathf.InverseLerp(1f, 5f, (int)h.def.techLevel)));
+                float theirs = hunters.Sum(h => Mathf.Min(6, TownsOf(h, s.ctx.map).Count()) * Mathf.Lerp(0.8f, 1.3f, Mathf.InverseLerp(1f, 5f, (int)Peoples.TechOf(h))));
                 float his = Mathf.Max(1f, TownsOf(s.ctx.faction, s.ctx.map).Count()) * 1.5f;
                 p = 0.0025f * (days - 3f) * Mathf.Clamp(theirs / his, 0.4f, 2f);
             }
@@ -336,7 +336,7 @@ namespace ColonyCouncil
         {
             int theirs = TownsOf(ally, s.ctx.map).Count();
             int his = TownsOf(s.ctx.faction, s.ctx.map).Count();
-            float p = 0.55f + 0.06f * Mathf.Clamp(theirs - his, -4, 4) + 0.1f * Mathf.Clamp((int)ally.def.techLevel - (int)s.ctx.faction.def.techLevel, -2, 2);
+            float p = 0.55f + 0.06f * Mathf.Clamp(theirs - his, -4, 4) + 0.1f * Mathf.Clamp((int)Peoples.TechOf(ally) - (int)Peoples.TechOf(s.ctx.faction), -2, 2);
             if (s.Has("gifts")) p += 0.05f;
             return Mathf.Clamp(p, 0.3f, 0.8f);
         }

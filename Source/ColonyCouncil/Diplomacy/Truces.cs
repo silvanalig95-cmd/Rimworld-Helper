@@ -355,7 +355,7 @@ namespace ColonyCouncil
             var head = FavourCalls.HeadOf(f, home);
             var form = PactWords.TruceForm(home, f);
             string who = head != null ? NotableBook.Called(head) : PactWords.People(f);
-            bool call = NotableMath.Callable((int)f.def.techLevel) && NeighbourLetters.Console(home) != null;
+            bool call = NotableMath.Callable((int)Peoples.TechOf(f)) && NeighbourLetters.Console(home) != null;
             string text = PactWords.T((call ? "CC_Truce_Offer_Call" : "CC_Truce_Offer") + (ByWord(f) ? "ByWord" : ""), who.Named("WHO"), PactWords.People(f).Named("PEOPLE"), form.word.Named("WORD"),
                               form.rite.Named("RITE"), PactWords.Term(TruceTerm.Season).Named("TERM"), PactWords.Price(price, silver).Named("PRICE"))
                           + "\n\n" + PactWords.P("CC_Truce_Offer_How", PactWords.People(f).Named("PEOPLE"), FromPeaceLine(f).Named("PEACE"));

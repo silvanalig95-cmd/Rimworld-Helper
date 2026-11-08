@@ -150,6 +150,9 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleExtension">
         <calling>sextons</calling>
+        <!-- Their age over the years (Peoples/PeopleAges.cs): the dead keep to the old ways, and so do those who keep them: late, and no further than the industrial age. -->
+        <agePace>17</agePace>
+        <ageLimit>2</ageLimit>
         <townWord>grave-garden</townWord>
         <townWords>grave-gardens</townWords>
         <head>sexton</head>

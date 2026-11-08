@@ -422,8 +422,8 @@ public static class PeoplesTests
 
         string src = Path.Combine(root, "Source", "ColonyCouncil");
         string Read(params string[] parts) => File.ReadAllText(Path.Combine(new[] { src }.Concat(parts).ToArray()));
-        // Release A's code: no clock, nothing saved. Release B's peoples that arise (Peoples/Arising*.cs) keep one book (ArisingTests).
-        string peoples = string.Join("\n", Directory.GetFiles(Path.Combine(src, "Peoples"), "*.cs").Where(f => !Path.GetFileName(f).StartsWith("Arising")).Select(File.ReadAllText));
+        // Release A's code: no clock, nothing saved. Release B's peoples that arise (Peoples/Arising*.cs) keep one book (ArisingTests), and the peoples' ages as they change another (PeopleAgesTests).
+        string peoples = string.Join("\n", Directory.GetFiles(Path.Combine(src, "Peoples"), "*.cs").Where(f => !Path.GetFileName(f).StartsWith("Arising") && !Path.GetFileName(f).StartsWith("PeopleAge")).Select(File.ReadAllText));
         C(!peoples.Contains("Sched.") && !peoples.Contains("Scribe_") && !peoples.Contains("ExposeData"), "no clock of its own, nothing saved");
         C(Read("World", "Notables.cs").Contains("Peoples.Title(n.faction, \"head\", female)") && Read("World", "Region", "RegionFaces.cs").Contains("Peoples.Title(f, \"head\""),
             "notables titled by their people's ways");

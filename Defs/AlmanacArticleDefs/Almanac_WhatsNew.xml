@@ -31,6 +31,29 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.169.0</version>
+        <date>8 November 2026</date>
+        <title>Peoples whose age changes</title>
+        <points>
+          <li>Rimfolk's peoples no longer stay in the age they began in: each season every people moves a little toward the next age, at a pace set by its ways, the learned society and the Stormglass Conclave soonest, the herders and the Mossborn slowest, and each up to the highest age its ways accept.</li>
+          <li>The colony speeds them along: trade with them, gifts of books, techprints, components or tools, their people learning at your colony or teaching yours, and an alliance or pact can make a people rise up to three times faster.</li>
+          <li>A people cut off from the world, with no trade for years, its towns burned or at war with most of the world, stops rising and can slowly fall back an age.</li>
+          <li>When a people reaches a new age or falls back, a letter in its own voice says what it learned or lost and your part in it, and its page shows its age and which way it is heading and why.</li>
+          <li>Their people from then on dress and arm in the new age, the hospitallers' guards in flak with guns, the league with charge rifles as spacers, and their camps, words, messengers, ransoms and traders' goods follow; a setting, Peoples' ages change, keeps every people in its first age.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.168.1</version>
+        <date>8 November 2026</date>
+        <title>A pet bitten on the hunt still eats</title>
+        <points>
+          <li>A pet hunting for food no longer gives up the moment it is bitten or its prey turns on it: a wound that wants tending or the prey fighting back is part of a hunt, and once the prey is dead it eats before going home.</li>
+          <li>It still breaks off for your word, being downed, badly hurt or bleeding out, or another danger on the map; setting out still needs it well and the map quiet.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.168.0</version>
         <date>8 November 2026</date>
         <title>Bed rest only when it makes sense</title>

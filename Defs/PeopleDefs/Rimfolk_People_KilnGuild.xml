@@ -154,6 +154,9 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleExtension">
         <calling>artisans</calling>
+        <!-- Their age over the years (Peoples/PeopleAges.cs): the journeymen bring home every craft they see on their wander-years: soon for a medieval people, and on to the spacer age. -->
+        <agePace>8</agePace>
+        <ageLimit>3</ageLimit>
         <townWord>guildhall</townWord>
         <townWords>guildhalls</townWords>
         <head>kiln-warden</head>

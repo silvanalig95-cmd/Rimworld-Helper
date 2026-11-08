@@ -3611,6 +3611,19 @@ likeliest. They arise in every age, the Banner's kit and every fighter's arms ch
 psycaster, a fighter, a maker or a grower may take their ways. The Almanac has a page, *the Conclave, the Mossborn,
 the Banner and the guild*.
 
+**Peoples whose age changes.** Rimfolk's peoples don't stay in the age they began in. Each season every one of them
+moves toward the next age at a pace of its own ways: the learned society, the Stormglass Conclave and the road league
+soonest, the herders and the Mossborn latest and never past the industrial and the medieval age, the hospitallers no
+further than the industrial age by their faith. The colony quickens them: trade with a people (twice the pace at 5000
+silver a year), gifts of books, techprints, components or tools, its young who come to learn at the colony and its
+masters who teach the colony's people, and an alliance. A people cut off from the world, with nobody's trade for years,
+its towns burned and at war with most of the world, falls back an age instead, slowly. In a typical game of five to ten
+years a few peoples reach the next age, and a learned one the colony helps may go two. A letter in their own voice tells
+each change, what they learned or what they lost, and their card and the region's page of peoples show their age and
+which way they are heading. Their next visitors come dressed and armed as the new age is (and nothing of a later age
+among a people that fell back), their camps are built its way and their traders carry its goods. Setting: *Peoples'
+ages change* (on).
+
 ## Scenarios with stakes
 Seventeen scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Each starts the game with
 something already in motion, and a few seconds in, a letter says how things stand.

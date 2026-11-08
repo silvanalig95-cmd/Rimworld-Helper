@@ -58,6 +58,18 @@
           <li>A town of theirs, when its map is made, is laid out to their plan: the league's walled yard with stalls and a storehouse, the order's long ward of sixteen beds and its cloister, the herders' round houses and two great pens with their herd in them. Where the land is too wet or rough for it, the game makes its own base.</li>
         </points>
       </li>
+      <li>
+        <heading>Their age over the years</heading>
+        <text>All of Rimfolk's peoples, these three and the twelve others, and every people that arises in their ways, move between the ages as the years pass. Each is looked at once a season. It comes toward the next age at a pace of its own ways, faster for what the colony does with it, and falls back an age when it is cut off from the world. A letter in their own voice tells each change, and their card and the region's page of peoples say which age they live in and which way they are heading, and why.</text>
+        <points>
+          <li>Their own pace: the learned society, the Stormglass Conclave and the road league soonest, the Kiln Guild soon for a medieval people, the herders and the Mossborn latest. Each takes no more than its ways would: the hospitallers stop at the industrial age by their faith, as do the wardens, the river folk, the pilgrims and the Quiet Bell, the herders too, and the Mossborn at the medieval age. The spacer enclave is at the height of what anyone knows already.</li>
+          <li>What quickens them: trade with the colony over the year (twice the pace at 5000 silver), gifts of books, techprints, components or tools (in a caravan's gift, the trade window's gift or a pod), their young who learn at the colony (the Conclave's apprentice of the sky, the guild's journeyman on the wander-year, a ward fostered) and their masters who teach the colony's people, and an alliance or a pact. Three times their own pace at most.</li>
+          <li>What sets them back: nobody's trade for years, their towns burned in fights, and war with most of the world. One of these alone sets no people back; more of them together do, an age in five to ten years, and never more than an age below the one they began in.</li>
+          <li>In a typical game of five to ten years a few peoples reach the next age, and a learned one the colony helps a great deal may go two.</li>
+          <li>What changes with a people's age: its next visitors, traders and fighters come dressed and armed as the new age is (bows and swords for a league fallen back to the medieval age, guns for the herders in the industrial age, and nothing of a later age among a people that fell back), its camps are built the new age's way, its traders carry the new age's goods, and its words, messengers and letters take the new age's form. People of theirs already in the world keep what they have.</li>
+          <li>Setting: "Peoples' ages change", on by default. Off, every people lives in the age it began in.</li>
+        </points>
+      </li>
     </sections>
     <keywords><li>road league</li><li>hospitaller order</li><li>herding folk</li><li>waystation</li><li>sickhouse</li><li>winter grazing</li></keywords>
     <seeAlso><li>Council_Alm_C_Camps</li><li>Council_Alm_C_Callers</li><li>Council_Alm_C_Region</li></seeAlso>

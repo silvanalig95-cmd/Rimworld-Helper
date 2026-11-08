@@ -138,6 +138,9 @@
     <modExtensions>
       <li Class="ColonyCouncil.PeopleExtension">
         <calling>seers</calling>
+        <!-- Their age over the years (Peoples/PeopleAges.cs): three hundred years of storms written down, and every new instrument set beside the glass: soon, to the spacer age. -->
+        <agePace>7</agePace>
+        <ageLimit>3</ageLimit>
         <townWord>tower</townWord>
         <townWords>towers</townWords>
         <head>keeper of the glass</head>

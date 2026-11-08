@@ -5,6 +5,23 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Peoples whose age changes
+
+*8 November 2026, version 0.169.0*
+
+- Rimfolk's peoples no longer stay in the age they began in: each season every people moves a little toward the next age, at a pace set by its ways, the learned society and the Stormglass Conclave soonest, the herders and the Mossborn slowest, and each up to the highest age its ways accept.
+- The colony speeds them along: trade with them, gifts of books, techprints, components or tools, their people learning at your colony or teaching yours, and an alliance or pact can make a people rise up to three times faster.
+- A people cut off from the world, with no trade for years, its towns burned or at war with most of the world, stops rising and can slowly fall back an age.
+- When a people reaches a new age or falls back, a letter in its own voice says what it learned or lost and your part in it, and its page shows its age and which way it is heading and why.
+- Their people from then on dress and arm in the new age, the hospitallers' guards in flak with guns, the league with charge rifles as spacers, and their camps, words, messengers, ransoms and traders' goods follow; a setting, Peoples' ages change, keeps every people in its first age.
+
+## A pet bitten on the hunt still eats
+
+*8 November 2026, version 0.168.1*
+
+- A pet hunting for food no longer gives up the moment it is bitten or its prey turns on it: a wound that wants tending or the prey fighting back is part of a hunt, and once the prey is dead it eats before going home.
+- It still breaks off for your word, being downed, badly hurt or bleeding out, or another danger on the map; setting out still needs it well and the map quiet.
+
 ## Bed rest only when it makes sense
 
 *8 November 2026, version 0.168.0*

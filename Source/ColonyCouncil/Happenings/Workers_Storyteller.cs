@@ -1188,7 +1188,7 @@ namespace ColonyCouncil
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {
             ctx.a = StorytellerEvents.BestOrAny(ctx.map, SkillDefOf.Intellectual);
-            ctx.enemy = Raids.Enemy(f => f.def.techLevel >= TechLevel.Industrial) ?? Raids.Enemy();
+            ctx.enemy = Raids.Enemy(f => Peoples.TechOf(f) >= TechLevel.Industrial) ?? Raids.Enemy();
             return ctx.a != null;
         }
 
@@ -1236,7 +1236,7 @@ namespace ColonyCouncil
         private static bool Medieval => Avail.IsPreIndustrial && Avail.EffectiveTech >= TechLevel.Medieval;
 
         private static Faction Lord() =>
-            Arrivals.Friendly(f => VarietyUtil.OnGoodTerms(f) && f.def.techLevel == TechLevel.Medieval) ?? Arrivals.Friendly(VarietyUtil.OnGoodTerms);
+            Arrivals.Friendly(f => VarietyUtil.OnGoodTerms(f) && Peoples.TechOf(f) == TechLevel.Medieval) ?? Arrivals.Friendly(VarietyUtil.OnGoodTerms);
 
         protected override bool CanHappen(Map map, HappeningExtension ext) => Medieval && Lord() != null && StorytellerEvents.Adults(map).Any();
 

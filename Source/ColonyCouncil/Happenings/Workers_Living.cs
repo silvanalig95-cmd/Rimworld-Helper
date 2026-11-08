@@ -908,7 +908,7 @@ namespace ColonyCouncil
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
             tags.Add(ctx.variant == 1 ? "taken" : "killed");
-            if (ctx.enemy != null && ctx.enemy.def.techLevel <= TechLevel.Neolithic) tags.Add("tribalfoe");
+            if (ctx.enemy != null && Peoples.TechOf(ctx.enemy) <= TechLevel.Neolithic) tags.Add("tribalfoe");
         }
     }
 

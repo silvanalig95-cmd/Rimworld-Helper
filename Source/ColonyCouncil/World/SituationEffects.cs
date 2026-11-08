@@ -246,7 +246,7 @@ namespace ColonyCouncil
             if (onlyChildren) return;
             var f = ctx.faction != null && !ctx.faction.defeated ? ctx.faction : null;
             var kind = f != null ? Arrivals.PersonKind(f) : null;
-            if (kind == null || Avail.IsPreIndustrial && f.def.techLevel > TechLevel.Medieval) kind = Arrivals.JoinerKind();
+            if (kind == null || Avail.IsPreIndustrial && Peoples.TechOf(f) > TechLevel.Medieval) kind = Arrivals.JoinerKind();
             int n = count.RandomInRange;
             if (family) n = Mathf.Max(2, n);
             Pawn first = null, second = null;

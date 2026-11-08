@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 585; modelled: 585; growing without end: 0.
-Rimfolk's part of the save, roughly: **2,559 KB** after a year, **3,020 KB** after two, **3,231 KB** after five.
+Saved collections found: 586; modelled: 586; growing without end: 0.
+Rimfolk's part of the save, roughly: **2,571 KB** after a year, **3,032 KB** after two, **3,243 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -60,6 +60,7 @@ Rimfolk's part of the save, roughly: **2,559 KB** after a year, **3,020 KB** aft
 | `Annals.cs:written` | Caps.AnnalsYears written years | cap | 1 | 2 | 5 | 12.2 |
 | `Building/Suggest/SameRules.cs:marked` | per step: the things it gave an order on (taken down, trees marked, a firebreak's brush) | fixed | 300 | 300 | 300 | 11.7 |
 | `CouncilGameComponent.cs:wishes` | open wishes only (one per colonist at most) | cap | 20 | 20 | 20 | 11.7 |
+| `Peoples/PeopleAges.cs:ages` | one record a people of Rimfolk's (the fifteen at once, and each that arises), PeopleAgesMath.MaxRecords kept, gone peoples dropped | cap | 40 | 40 | 40 | 11.7 |
 | `Setbacks/SetbackTracker.cs:built` | what colonists built, while it stands and is recent | window | 60 | 60 | 60 | 11.7 |
 | `Social/Moments.cs:pairs` | pair tones forgotten after 4 quiet days or when one is gone | pairs | 95 | 95 | 95 | 11.1 |
 | `Ailments/AilmentTracker.cs:had` | known pawns only | known | 165 | 180 | 225 | 11.0 |
