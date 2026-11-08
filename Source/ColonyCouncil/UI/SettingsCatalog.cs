@@ -528,10 +528,11 @@ namespace ColonyCouncil
             Toggle("fieldsByWeather", "CC_Settings_FieldsByWeather", "CC_SetNote_FieldsByWeather", "deepHooks");
             Toggle("frostHarvestSuggest", "CC_Settings_FrostHarvest", "CC_SetNote_FrostHarvest");
             Toggle("frostHarvestAuto", "CC_Settings_FrostHarvestAuto", "CC_SetNote_FrostHarvestAuto", "frostHarvestSuggest");
-            // The trade screen (Trade/): sorts by price, the marks and the basket from what the colony needs, the readouts,
-            // the market card and window, and the colony's own trade record.
+            // The trade screen (Trade/): Rimfolk's own trade window, sorts by price, the marks and the basket from what the
+            // colony needs, the readouts, the market card and window, and the colony's own trade record.
             Section("CC_SetSec_TradeScreen");
             NoteUnder("CC_SetSec_TradeScreen_Note");
+            Toggle("tradeWindow", "CC_Settings_TradeWindow", "CC_SetNote_TradeWindow", "deepHooks");
             Toggle("tradeSorts", "CC_Settings_TradeSorts", "CC_SetNote_TradeSorts");
             Toggle("tradeMarks", "CC_Settings_TradeMarks", "CC_SetNote_TradeMarks", "deepHooks");
             Toggle("tradeBasket", "CC_Settings_TradeBasket", "CC_SetNote_TradeBasket", "deepHooks");
