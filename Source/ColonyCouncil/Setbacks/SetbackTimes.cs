@@ -161,6 +161,8 @@ namespace ColonyCouncil
             Deeds.Record("Rimfolk_Deed_TableQuarrel", starter, other, -1f, null, null, attended, false);
             News.Post("CC_Times_News_Quarrel".Translate(starter.Named("A"), other.Named("B"), dayName.Named("DAY"), over.Named("OVER")).Resolve(),
                 new LookTargets(new[] { starter, other }.Where(p => p.Spawned)), NewsKind.Colony, MessageTypeDefOf.NegativeEvent, Importance.Flavor);
+            // Harm, part 7: with drink poured, it may come to blows (Harm/Tempers.cs).
+            Tempers.TableQuarrel(starter, other);
         }
 
         /// <summary>

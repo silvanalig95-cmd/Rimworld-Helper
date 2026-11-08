@@ -1,0 +1,796 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Harm, part 7 (Source/ColonyCouncil/Harm/): said over a head, one short sentence each. Lines tagged with what happened
+    ([tribal], [medieval], [industrial], [spacer], the colony's age; [fight], [second], [guard], [colony], [flint], [razor],
+    [fire], [ice], [storm], [frost], [chill], [ankle], [scrape]) come for that and nothing else; untagged lines come for any.
+  -->
+
+  <!-- ===================== Tempers in the colony (Tempers.cs) ===================== -->
+
+  <!-- The worst pair sat down by the peacemaker, one of them going for the other instead. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SitDownBlows</defName>
+    <lines>
+      <plain>
+        <li>I've sat here long enough listening to you, {OTHER_nameDef}.</li>
+        <li>Make peace with you, {OTHER_nameDef}, after what you did?</li>
+        <li>No more talking, {OTHER_nameDef}, I've had my fill of it.</li>
+        <li>You can shake my fist instead, {OTHER_nameDef}.</li>
+        <li>Sit across from you and smile, {OTHER_nameDef}, not likely.</li>
+        <li>I said I'd try, {OTHER_nameDef}, and I've tried.</li>
+      </plain>
+      <cold><li>This was never going to work, {OTHER_nameDef}.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The peacemaker stepping between the two. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_PeacemakerBetween</defName>
+    <lines>
+      <plain>
+        <li>Enough, {OTHER_nameDef}, step back from them.</li>
+        <li>Not at my table, {OTHER_nameDef}, not like this.</li>
+        <li>Hands down, {OTHER_nameDef}, both of you.</li>
+        <li>I sat you down to talk, {OTHER_nameDef}, not to brawl.</li>
+        <li>Break it up, {OTHER_nameDef}, before somebody gets hurt.</li>
+        <li>Easy, {OTHER_nameDef}, I'm on nobody's side here.</li>
+      </plain>
+      <gloomy><li>So much for making peace, {OTHER_nameDef}.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A bitter one with a broken promise, at the speaker, by the age. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SpeakerWords</defName>
+    <lines>
+      <plain>
+        <li>You promised me, {OTHER_nameDef}, and you let it go.</li>
+        <li>The council's word is worth nothing, {OTHER_nameDef}, and you know it.</li>
+        <li>You stood up there and gave your word, {OTHER_nameDef}.</li>
+        <li>I want to hear you say why, {OTHER_nameDef}, to my face.</li>
+        <li>[tribal] You speak for the fire, {OTHER_nameDef}, so answer me.</li>
+        <li>[medieval] You speak for the hall, {OTHER_nameDef}, so answer for it.</li>
+        <li>[industrial] You chair the council, {OTHER_nameDef}, so explain yourself.</li>
+        <li>[spacer] You direct this council, {OTHER_nameDef}, and you failed me.</li>
+      </plain>
+      <blunt><li>A broken promise, {OTHER_nameDef}, and I'm here about it.</li></blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The speaker talking them down, or turning away from a fight. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SpeakerCalms</defName>
+    <lines>
+      <plain>
+        <li>You're right to be angry, {OTHER_nameDef}, and I'll make it right.</li>
+        <li>Hear me out, {OTHER_nameDef}, before you do anything.</li>
+        <li>I won't fight you over this, {OTHER_nameDef}.</li>
+        <li>Bring it to the next meeting, {OTHER_nameDef}, and I'll stand with you.</li>
+        <li>I let you down, {OTHER_nameDef}, and I know it.</li>
+        <li>Walk with me, {OTHER_nameDef}, and tell me all of it.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The peacemaker's word to one who feels passed over. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_PeacemakerWord</defName>
+    <lines>
+      <plain>
+        <li>Your turn will come, {OTHER_nameDef}, let it go for now.</li>
+        <li>It wasn't taken from you, {OTHER_nameDef}, it was only given first.</li>
+        <li>Leave them be, {OTHER_nameDef}, and I'll speak for you next time.</li>
+        <li>Nobody's against you, {OTHER_nameDef}, I promise you that.</li>
+        <li>Don't make an enemy over it, {OTHER_nameDef}.</li>
+        <li>Sit with me a while, {OTHER_nameDef}, and cool off.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The passed-over one's sharp word to the one who got what they wanted. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_PassedOver</defName>
+    <lines>
+      <plain>
+        <li>Enjoying it, {OTHER_nameDef}, the thing that should have been mine?</li>
+        <li>I asked first, {OTHER_nameDef}, and everyone knows it.</li>
+        <li>Funny how it always goes your way, {OTHER_nameDef}.</li>
+        <li>Don't look so pleased with yourself, {OTHER_nameDef}.</li>
+        <li>You didn't even want it that much, {OTHER_nameDef}.</li>
+        <li>I waited longer than you did, {OTHER_nameDef}.</li>
+      </plain>
+      <cold><li>I won't forget this, {OTHER_nameDef}.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The loser of a meeting's pitch going for the winner across the table. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_MeetingBoils</defName>
+    <lines>
+      <plain>
+        <li>Your idea, {OTHER_nameDef}, and it's the worst one here.</li>
+        <li>You talked them round, {OTHER_nameDef}, and you know it's wrong.</li>
+        <li>Sit down, {OTHER_nameDef}, you've said quite enough.</li>
+        <li>That's my plan you just took apart, {OTHER_nameDef}.</li>
+        <li>You always have to win, {OTHER_nameDef}.</li>
+        <li>Wipe that smile off, {OTHER_nameDef}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A close friend running over to a social fight. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_FriendStepsIn</defName>
+    <lines>
+      <plain>
+        <li>Hey, break it up, the both of you.</li>
+        <li>Stop it, stop it right now.</li>
+        <li>Get off them, that's enough.</li>
+        <li>Hold on, I'm coming.</li>
+        <li>Not while I'm standing here.</li>
+        <li>Pull back, the pair of you.</li>
+      </plain>
+      <blunt><li>Enough.</li></blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The friend who stepped in, having taken a blow for it. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_FriendTookBlow</defName>
+    <lines>
+      <plain>
+        <li>That one was meant for somebody else.</li>
+        <li>I got between you and look what it got me.</li>
+        <li>Worth it, if you two have stopped.</li>
+        <li>Next time I'll let you knock each other silly.</li>
+        <li>Ow, and I was only trying to help.</li>
+        <li>That's the last time I step in.</li>
+      </plain>
+      <cheerful><li>Well, at least you've stopped.</li></cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The subject of gossip told to their face, going for the teller. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SaidToFace</defName>
+    <lines>
+      <plain>
+        <li>Say that again, {OTHER_nameDef}, I dare you.</li>
+        <li>You'd tell it with me standing here, {OTHER_nameDef}?</li>
+        <li>That's not what happened, {OTHER_nameDef}, and you know it.</li>
+        <li>I'll shut that mouth for you, {OTHER_nameDef}.</li>
+        <li>Spread that about one more time, {OTHER_nameDef}.</li>
+        <li>You've got a lot of nerve, {OTHER_nameDef}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- One who heard a secret that wronged the colony, come to have it out with its owner. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_WrongedOne</defName>
+    <lines>
+      <plain>
+        <li>I heard what you did, {OTHER_nameDef}, all of it.</li>
+        <li>We trusted you, {OTHER_nameDef}, every one of us.</li>
+        <li>And you let us go on thinking otherwise, {OTHER_nameDef}.</li>
+        <li>You owe this colony, {OTHER_nameDef}, and you owe me.</li>
+        <li>How long were you going to keep that from us, {OTHER_nameDef}?</li>
+        <li>Look me in the eye, {OTHER_nameDef}, and tell me it's not true.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The keeper of a secret, come to the friend who told it. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_ToldByFriend</defName>
+    <lines>
+      <plain>
+        <li>I told you that in confidence, {OTHER_nameDef}.</li>
+        <li>Of all people, {OTHER_nameDef}, I thought you'd keep it.</li>
+        <li>Everyone knows now, {OTHER_nameDef}, and it was you.</li>
+        <li>You couldn't hold your tongue one season, {OTHER_nameDef}?</li>
+        <li>I trusted you, {OTHER_nameDef}, and that was my mistake.</li>
+        <li>Who else did you tell, {OTHER_nameDef}?</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The friend who let it slip, answering when it doesn't come to blows. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_ToldByFriendReply</defName>
+    <lines>
+      <plain>
+        <li>It slipped out, {OTHER_nameDef}, I swear it did.</li>
+        <li>I'm sorry, {OTHER_nameDef}, I never meant it to go further.</li>
+        <li>I know, {OTHER_nameDef}, I know, and I'm sorry.</li>
+        <li>I'd take it back if I could, {OTHER_nameDef}.</li>
+        <li>You've every right to be angry, {OTHER_nameDef}.</li>
+        <li>I'll make it up to you, {OTHER_nameDef}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- One of two rivals in love, the stiff words turning into a shove. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_LoveRivals</defName>
+    <lines>
+      <plain>
+        <li>Keep away from them, {OTHER_nameDef}.</li>
+        <li>You think you're good enough for them, {OTHER_nameDef}?</li>
+        <li>I saw them first, {OTHER_nameDef}.</li>
+        <li>Stop hanging about where you're not wanted, {OTHER_nameDef}.</li>
+        <li>I'm done being polite about it, {OTHER_nameDef}.</li>
+        <li>One more word about them, {OTHER_nameDef}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The one they are both fond of, watching it start. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_LovedWatches</defName>
+    <lines>
+      <plain>
+        <li>Over me, of all things, and with their fists.</li>
+        <li>Is this how they think they'll win me over.</li>
+        <li>I'm not a prize to be fought for.</li>
+        <li>Stop it, both of you, this is ridiculous.</li>
+        <li>I'll remember who threw the first punch.</li>
+        <li>Neither of them, then, if this is how it goes.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A devout of another faith interrupting the one faith's evening. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_AltarWords</defName>
+    <lines>
+      <plain>
+        <li>Your faith isn't the colony's, {OTHER_nameDef}, whatever the council says.</li>
+        <li>You preach at us every evening, {OTHER_nameDef}, and I've heard enough.</li>
+        <li>Stop pretending we all believe as you do, {OTHER_nameDef}.</li>
+        <li>My faith is as true as yours, {OTHER_nameDef}.</li>
+        <li>That altar belongs to all of us, {OTHER_nameDef}.</li>
+        <li>You won't preach me out of what I believe, {OTHER_nameDef}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A quarrel at a day's table, with drink in it, coming to blows. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_FeastFists</defName>
+    <lines>
+      <plain>
+        <li>Say that once more, {OTHER_nameDef}, go on.</li>
+        <li>You've had too much, {OTHER_nameDef}, and so have I.</li>
+        <li>Outside, {OTHER_nameDef}, right now.</li>
+        <li>I've been waiting all evening for this, {OTHER_nameDef}.</li>
+        <li>[second] Another cup and you think you're brave, {OTHER_nameDef}.</li>
+        <li>[second] You've drunk your courage, {OTHER_nameDef}, now use it.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The call for a second round at a toast. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SecondRound</defName>
+    <lines>
+      <plain>
+        <li>One more round, there's plenty to go round.</li>
+        <li>Fill them up again, the stores can spare it.</li>
+        <li>That went down well, let's have another.</li>
+        <li>Another cup for anyone who wants one.</li>
+        <li>Seems a shame to stop at one.</li>
+        <li>A second toast, and a second cup to go with it.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- One with a soldier's or an outlaw's past, waking from a nightmare swinging. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SoldierShout</defName>
+    <lines>
+      <plain>
+        <li>Get down, they're coming over the wall.</li>
+        <li>Back, get back from me.</li>
+        <li>Not again, not this time.</li>
+        <li>Who's there, who is it.</li>
+        <li>Hold the line, hold it.</li>
+        <li>Don't touch me.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The roommate who woke them, holding an arm. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SoldierStruck</defName>
+    <lines>
+      <plain>
+        <li>It's only me, it was only a dream.</li>
+        <li>Easy, you're home, you're safe here.</li>
+        <li>That arm will be black and blue by morning.</li>
+        <li>I'm not the enemy, it's me.</li>
+        <li>Wake up, you were shouting in your sleep.</li>
+        <li>Next time I'll wake you from across the room.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Visitors and outsiders (GateTroubles.cs) ===================== -->
+
+  <!-- One of the colony catching a stranger at the stores, by the age's word for them. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_ThiefSeen</defName>
+    <lines>
+      <plain>
+        <li>Hey, you, put that back.</li>
+        <li>Stop, thief, at the stores.</li>
+        <li>That's ours, drop it.</li>
+        <li>[tribal] A wanderer at our stores, stop them.</li>
+        <li>[medieval] A cutpurse at the stores, after them.</li>
+        <li>[industrial] Some grifter's at the stores, stop them.</li>
+        <li>[spacer] We've got a con artist in the stores, stop them.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A stranger through the open gate, drink in them, picking a fight. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GateDrunk</defName>
+    <lines>
+      <plain>
+        <li>You looking at me, {OTHER_nameDef}?</li>
+        <li>Open gates, they said, and here's the welcome, {OTHER_nameDef}.</li>
+        <li>I don't like your face, {OTHER_nameDef}.</li>
+        <li>Think you're better than me, {OTHER_nameDef}?</li>
+        <li>Come on then, {OTHER_nameDef}, let's see you.</li>
+        <li>[tribal] Your clan has a big mouth, {OTHER_nameDef}.</li>
+        <li>[spacer] Your little colony doesn't scare me, {OTHER_nameDef}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A cheat caught at the gambler's table. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GamblerCheat</defName>
+    <lines>
+      <plain>
+        <li>That one was up your sleeve, {OTHER_nameDef}.</li>
+        <li>Nobody rolls like that four times running, {OTHER_nameDef}.</li>
+        <li>You've been cheating us all night, {OTHER_nameDef}.</li>
+        <li>I saw that, {OTHER_nameDef}, everyone saw that.</li>
+        <li>[fight] Give it back, {OTHER_nameDef}, every coin of it.</li>
+        <li>[fight] Cheat me, will you, {OTHER_nameDef}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The barber, sorry for a nick, by the tool. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_BarberNick</defName>
+    <lines>
+      <plain>
+        <li>Sorry, {OTHER_nameDef}, you moved.</li>
+        <li>Hold still, {OTHER_nameDef}, it's only a nick.</li>
+        <li>My fault, {OTHER_nameDef}, no charge for that bit.</li>
+        <li>Barely a scratch, {OTHER_nameDef}, it'll stop in a moment.</li>
+        <li>[flint] The edge on this flint has a mind of its own, {OTHER_nameDef}.</li>
+        <li>[razor] The razor slipped, {OTHER_nameDef}, my apologies.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The one nicked, laughing it off. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_NickLaugh</defName>
+    <lines>
+      <plain>
+        <li>A dab of blood for a good cut, {OTHER_nameDef}, fair trade.</li>
+        <li>I've had worse from my own hand, {OTHER_nameDef}.</li>
+        <li>Mind the ears at least, {OTHER_nameDef}.</li>
+        <li>Is that a cut or a haircut, {OTHER_nameDef}?</li>
+        <li>No harm done, {OTHER_nameDef}, carry on.</li>
+        <li>I'll tell everyone you're very thorough, {OTHER_nameDef}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A hothead come after a guest of rank, challenging their guard or the colony's marshal. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_RankChallenge</defName>
+    <lines>
+      <plain>
+        <li>Your guest has wronged my people, {OTHER_nameDef}, and someone answers for it.</li>
+        <li>I've followed them here, {OTHER_nameDef}, and I won't leave without satisfaction.</li>
+        <li>[guard] You guard them, {OTHER_nameDef}, so you'll fight me for them.</li>
+        <li>[guard] Stand aside or stand and fight, {OTHER_nameDef}.</li>
+        <li>[colony] You keep them under your roof, {OTHER_nameDef}, so you'll answer for them.</li>
+        <li>[colony] I hear you're the one who fights here, {OTHER_nameDef}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- One of ours taking a challenge. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_ChallengeTaken</defName>
+    <lines>
+      <plain>
+        <li>Fine, {OTHER_nameDef}, let's settle it.</li>
+        <li>You came a long way for this, {OTHER_nameDef}, so you'll have it.</li>
+        <li>I accept, {OTHER_nameDef}, by your people's ways.</li>
+        <li>Name the ground, {OTHER_nameDef}, and I'll meet you on it.</li>
+        <li>Don't say I didn't warn you, {OTHER_nameDef}.</li>
+        <li>Let's get it over with, {OTHER_nameDef}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- One of ours turning a challenge down. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_ChallengeRefused</defName>
+    <lines>
+      <plain>
+        <li>I won't fight you, {OTHER_nameDef}, go home.</li>
+        <li>There's nothing to settle, {OTHER_nameDef}.</li>
+        <li>Call me what you like, {OTHER_nameDef}, I'm not fighting.</li>
+        <li>Not today, {OTHER_nameDef}, not over this.</li>
+        <li>Find someone else to bleed on, {OTHER_nameDef}.</li>
+        <li>I've better things to do, {OTHER_nameDef}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- One of each side joining a brawl after hard words. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_CrowdJoins</defName>
+    <lines>
+      <plain>
+        <li>Two can play at that, {OTHER_nameDef}.</li>
+        <li>You keep your hands off ours, {OTHER_nameDef}.</li>
+        <li>Come on then, {OTHER_nameDef}, you and me.</li>
+        <li>Nobody does that to one of us, {OTHER_nameDef}.</li>
+        <li>I've been wanting this all day, {OTHER_nameDef}.</li>
+        <li>Fair's fair, {OTHER_nameDef}, one each.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The marshal breaking up a brawl. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_MarshalBreaksUp</defName>
+    <lines>
+      <plain>
+        <li>That's enough, all of you, break it up.</li>
+        <li>Stand apart, now, every one of you.</li>
+        <li>Hands down, or you'll answer to me.</li>
+        <li>This ends here, step back.</li>
+        <li>Pull them apart, before it gets worse.</li>
+        <li>Break it up, I said.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A bloodthirsty duellist going on past first blood. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_PastFirstBlood</defName>
+    <lines>
+      <plain>
+        <li>First blood, they said, but I'm not done.</li>
+        <li>A scratch, that's nothing, keep going.</li>
+        <li>Nobody stops now, not yet.</li>
+        <li>I want to see you yield.</li>
+        <li>More, there's more in you than that.</li>
+        <li>On your knees first, then we're done.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- An onlooker pulling two duellists apart. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_PullApart</defName>
+    <lines>
+      <plain>
+        <li>That's enough, the duel's over, pull them apart.</li>
+        <li>It was first blood, you both heard it.</li>
+        <li>Grab them, before one of them kills the other.</li>
+        <li>Over, it's over, step back.</li>
+        <li>Hold them, both of you, it's done.</li>
+        <li>That was never a duel by the end.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The challenger a notable's letter sent, asking for the colonist by name. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_LetterChallenger</defName>
+    <lines>
+      <plain>
+        <li>You had the letter, {OTHER_nameDef}, and I've come to answer it.</li>
+        <li>My people's honour asks for you by name, {OTHER_nameDef}.</li>
+        <li>You know why I'm here, {OTHER_nameDef}.</li>
+        <li>The challenge stands, {OTHER_nameDef}, will you meet it?</li>
+        <li>I was sent for you, {OTHER_nameDef}, and nobody else.</li>
+        <li>Let's not keep my people waiting, {OTHER_nameDef}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- An heir's guard, short with one of ours. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HeirGuards</defName>
+    <lines>
+      <plain>
+        <li>Keep your distance, {OTHER_nameDef}, we know what your colony did.</li>
+        <li>Our new head remembers, {OTHER_nameDef}, and so do we.</li>
+        <li>Don't come any closer, {OTHER_nameDef}.</li>
+        <li>We trade with you because we must, {OTHER_nameDef}.</li>
+        <li>You've a nerve to look at us, {OTHER_nameDef}.</li>
+        <li>Mind your step around us, {OTHER_nameDef}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- An avenger, walking straight up to one of the hated people. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HatedTrader</defName>
+    <lines>
+      <plain>
+        <li>Your people did this to us, {OTHER_nameDef}.</li>
+        <li>Peace, they call it, {OTHER_nameDef}, not to me.</li>
+        <li>You've a nerve walking in here, {OTHER_nameDef}.</li>
+        <li>I swore an oath against your kind, {OTHER_nameDef}.</li>
+        <li>Trade all you like, {OTHER_nameDef}, I haven't forgotten.</li>
+        <li>Get out of my sight, {OTHER_nameDef}, or I'll put you out.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A devout of ours with hard words for a visitor of another faith. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GateZeal</defName>
+    <lines>
+      <plain>
+        <li>Your faith is a lie, {OTHER_nameDef}, and you know it.</li>
+        <li>Keep your gods outside our walls, {OTHER_nameDef}.</li>
+        <li>I won't have your sort preaching here, {OTHER_nameDef}.</li>
+        <li>You'll come to the truth one day, {OTHER_nameDef}, or you won't.</li>
+        <li>What you believe is an insult to us, {OTHER_nameDef}.</li>
+        <li>Pray to whatever you like, {OTHER_nameDef}, somewhere else.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The visitor's cold reply, when the words don't come to blows. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GateZealReply</defName>
+    <lines>
+      <plain>
+        <li>I came to trade, {OTHER_nameDef}, not to argue faith.</li>
+        <li>Your manners need work, {OTHER_nameDef}.</li>
+        <li>I'll pray for you, {OTHER_nameDef}, whether you like it or not.</li>
+        <li>We'll see whose faith holds, {OTHER_nameDef}.</li>
+        <li>Say what you like, {OTHER_nameDef}, it changes nothing.</li>
+        <li>Is this how your colony greets guests, {OTHER_nameDef}?</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- One of ours, struck by a hungry stranger in the fields at night. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HungryStruck</defName>
+    <lines>
+      <plain>
+        <li>They hit me and ran, out in the field.</li>
+        <li>Someone's in the crops, and they've a fist like a stone.</li>
+        <li>I only wanted to see who it was.</li>
+        <li>Thieves in the field, and they struck me.</li>
+        <li>They're starving out there, and desperate with it.</li>
+        <li>They dropped the sack and ran for it.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- One of ours, finding hungry strangers in the fields at night. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HungrySeen</defName>
+    <lines>
+      <plain>
+        <li>Who's there, out of the field.</li>
+        <li>There's people in the crops, hungry by the look of them.</li>
+        <li>Go on, get away from there.</li>
+        <li>Poor souls, but those are our crops.</li>
+        <li>They're running, they dropped what they took.</li>
+        <li>Figures in the field, and gone again.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A prospector shouting at another party, the brawl starting. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_CreekQuarrel</defName>
+    <lines>
+      <plain>
+        <li>That's our stretch of the creek.</li>
+        <li>Get your pans out of our water.</li>
+        <li>We staked this bend first.</li>
+        <li>Claim jumpers, the lot of you.</li>
+        <li>That nugget came out of our ground.</li>
+        <li>Clear off this creek before we clear you off.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- One of ours caught in the prospectors' brawl. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_CreekCaught</defName>
+    <lines>
+      <plain>
+        <li>I wasn't even in it, and they got me.</li>
+        <li>Their fight, my bruise, that's hardly fair.</li>
+        <li>I should have kept away from that lot.</li>
+        <li>Somebody's elbow caught me square.</li>
+        <li>Prospectors, never again.</li>
+        <li>I only came to watch.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Personal stories (Stories.cs) ===================== -->
+
+  <!-- A nemesis pushing past the others toward the one they hurt. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_NemesisSeeks</defName>
+    <lines>
+      <plain>
+        <li>I know you're out there, I came back for you.</li>
+        <li>Out of my way, I've an old debt to settle.</li>
+        <li>You remember me, don't you.</li>
+        <li>This time I finish it.</li>
+        <li>The rest of you can wait, it's that one I want.</li>
+        <li>I've thought about this every day since.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- One getting clean, alone on the worst night, on the way to the stores. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_WorstNight</defName>
+    <lines>
+      <plain>
+        <li>Just one, just to get through tonight.</li>
+        <li>Nobody's here, nobody will know.</li>
+        <li>I can't, not tonight, not alone.</li>
+        <li>I'll start again tomorrow, I swear it.</li>
+        <li>Where is everyone, I can't do this alone.</li>
+        <li>It's right there in the stores, it's always right there.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- First steps on a new leg without the friend, a fall by the gate. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_FirstStepsFall</defName>
+    <lines>
+      <plain>
+        <li>It went out from under me.</li>
+        <li>I should have waited for someone.</li>
+        <li>Down I go, and up again in a moment.</li>
+        <li>This leg doesn't know me yet.</li>
+        <li>So much for doing it on my own.</li>
+        <li>I thought I had the knack of it.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Someone near helping them up. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_FirstStepsHelp</defName>
+    <lines>
+      <plain>
+        <li>Up you come, {OTHER_nameDef}, lean on me.</li>
+        <li>Slowly, {OTHER_nameDef}, there's no hurry.</li>
+        <li>Next time take someone with you, {OTHER_nameDef}.</li>
+        <li>You're doing well, {OTHER_nameDef}, falls and all.</li>
+        <li>Steady now, {OTHER_nameDef}, I've got your arm.</li>
+        <li>Everyone falls at first, {OTHER_nameDef}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A mage's practice working slipping, by the element. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_WorkingSlips</defName>
+    <lines>
+      <plain>
+        <li>That wasn't supposed to happen.</li>
+        <li>I lost hold of it for a moment.</li>
+        <li>Too much, too fast, my own fault.</li>
+        <li>[fire] The flame came back at me.</li>
+        <li>[fire] I've singed my own hand, of all things.</li>
+        <li>[ice] The cold bit back, my fingers are numb.</li>
+        <li>[ice] I froze my own hand, how embarrassing.</li>
+        <li>[storm] It jumped up my arm before I could let go.</li>
+        <li>[storm] That one grounded through me.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The teacher's word after a working slips. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_TeacherWord</defName>
+    <lines>
+      <plain>
+        <li>Steady, {OTHER_nameDef}, you pushed too hard.</li>
+        <li>Again, {OTHER_nameDef}, but slower this time.</li>
+        <li>That's how we learn, {OTHER_nameDef}, painfully.</li>
+        <li>Let me see the hand, {OTHER_nameDef}.</li>
+        <li>You let it lead you, {OTHER_nameDef}, lead it instead.</li>
+        <li>Rest a moment, {OTHER_nameDef}, then try again.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A lost child found after a night out, hurt by it. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_LostChildHurt</defName>
+    <lines>
+      <plain>
+        <li>I was so scared out there all night.</li>
+        <li>I want to go home now, please.</li>
+        <li>I didn't know which way to go.</li>
+        <li>[frost] My fingers won't stop hurting from the cold.</li>
+        <li>[chill] I'm so cold, I can't stop shivering.</li>
+        <li>[ankle] I fell in the dark and my ankle hurts.</li>
+        <li>[scrape] I fell over in the dark and scraped my knee.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The finder, with the lost one found hurt. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_LostChildFinder</defName>
+    <lines>
+      <plain>
+        <li>There you are, {OTHER_nameDef}, you're safe now.</li>
+        <li>Come on, {OTHER_nameDef}, let's get you warm.</li>
+        <li>Your family's coming, {OTHER_nameDef}, I promise.</li>
+        <li>You did well to stay put, {OTHER_nameDef}.</li>
+        <li>[frost] Hands in my coat, {OTHER_nameDef}, they'll warm up.</li>
+        <li>[ankle] Lean on me, {OTHER_nameDef}, don't put weight on it.</li>
+        <li>[scrape] Just a scrape, {OTHER_nameDef}, it'll heal.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A courier set upon at the colony's edge, hurt. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_CourierSetUpon</defName>
+    <lines>
+      <plain>
+        <li>They came out of nowhere, right at the edge of your land.</li>
+        <li>I still have the letter, whatever they wanted.</li>
+        <li>Bandits, three of them, and one had a blade.</li>
+        <li>I'm cut, but I'm on my feet.</li>
+        <li>They ran when I shouted, after they'd cut me.</li>
+        <li>I'll make it to the gate, don't worry about me.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A courier set upon at the edge, saved by one of the colony near. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_CourierSaved</defName>
+    <lines>
+      <plain>
+        <li>They ran the moment they saw your people.</li>
+        <li>Good timing, they were nearly on me.</li>
+        <li>Bandits at your edge, and gone again.</li>
+        <li>I owe whoever was out here.</li>
+        <li>They'd have had me if you weren't close.</li>
+        <li>Not a scratch, thanks to your people.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

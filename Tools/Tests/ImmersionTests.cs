@@ -99,6 +99,19 @@ public static class ImmersionTests
         "Rimfolk_Pool_SparBegin", "Rimfolk_Pool_SparHit", "Rimfolk_Pool_SparSorry", "Rimfolk_Pool_SparEnd", "Rimfolk_Pool_DareBegin", "Rimfolk_Pool_DareDone",
         "Rimfolk_Pool_DareHurt", "Rimfolk_Pool_DareTalkedOut", "Rimfolk_Pool_DareCall", "Rimfolk_Pool_MarshalWord", "Rimfolk_Pool_CowardBreaks",
         "Rimfolk_Pool_FuryBreaks",
+        // Harm, part 7 (Harm/Tempers.cs, GateTroubles.cs, Stories.cs): tempers in the colony, visitors and outsiders, personal
+        // stories, said by those they happen to and those who step in.
+        "Rimfolk_Pool_SitDownBlows", "Rimfolk_Pool_PeacemakerBetween", "Rimfolk_Pool_SpeakerWords", "Rimfolk_Pool_SpeakerCalms", "Rimfolk_Pool_PeacemakerWord",
+        "Rimfolk_Pool_PassedOver", "Rimfolk_Pool_MeetingBoils", "Rimfolk_Pool_FriendStepsIn", "Rimfolk_Pool_FriendTookBlow", "Rimfolk_Pool_SaidToFace",
+        "Rimfolk_Pool_WrongedOne", "Rimfolk_Pool_ToldByFriend", "Rimfolk_Pool_ToldByFriendReply", "Rimfolk_Pool_LoveRivals", "Rimfolk_Pool_LovedWatches",
+        "Rimfolk_Pool_AltarWords", "Rimfolk_Pool_FeastFists", "Rimfolk_Pool_SecondRound", "Rimfolk_Pool_SoldierShout", "Rimfolk_Pool_SoldierStruck",
+        "Rimfolk_Pool_ThiefSeen", "Rimfolk_Pool_GateDrunk", "Rimfolk_Pool_GamblerCheat", "Rimfolk_Pool_BarberNick", "Rimfolk_Pool_NickLaugh",
+        "Rimfolk_Pool_RankChallenge", "Rimfolk_Pool_ChallengeTaken", "Rimfolk_Pool_ChallengeRefused", "Rimfolk_Pool_CrowdJoins", "Rimfolk_Pool_MarshalBreaksUp",
+        "Rimfolk_Pool_PastFirstBlood", "Rimfolk_Pool_PullApart", "Rimfolk_Pool_LetterChallenger", "Rimfolk_Pool_HeirGuards", "Rimfolk_Pool_HatedTrader",
+        "Rimfolk_Pool_GateZeal", "Rimfolk_Pool_GateZealReply", "Rimfolk_Pool_HungryStruck", "Rimfolk_Pool_HungrySeen", "Rimfolk_Pool_CreekQuarrel",
+        "Rimfolk_Pool_CreekCaught", "Rimfolk_Pool_NemesisSeeks", "Rimfolk_Pool_WorstNight", "Rimfolk_Pool_FirstStepsFall", "Rimfolk_Pool_FirstStepsHelp",
+        "Rimfolk_Pool_WorkingSlips", "Rimfolk_Pool_TeacherWord", "Rimfolk_Pool_LostChildHurt", "Rimfolk_Pool_LostChildFinder", "Rimfolk_Pool_CourierSetUpon",
+        "Rimfolk_Pool_CourierSaved",
         // Schemes against the colony (Diplomacy/Schemes.cs): a shout at one of theirs caught at it, their word as they go,
         // a lie in a hot temper's ear, the hot temper having it out.
         "Rimfolk_Pool_SchemeCaught", "Rimfolk_Pool_SchemeCaughtGoes", "Rimfolk_Pool_SchemeWhisper", "Rimfolk_Pool_SchemeProvoked",

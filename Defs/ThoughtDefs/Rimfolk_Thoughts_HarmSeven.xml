@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Harm, part 7 (Source/ColonyCouncil/Harm/Tempers.cs): the one two rivals in love are both fond of, who saw one of
+       them start the fight. An opinion only: no mood on top of the game's own fight. -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_Harm_StartedTheFight</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>10</durationDays>
+    <stackLimit>1</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li><label>started a fight over me</label><description>They threw the first punch, over me, as if I were a prize to be won.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>-10</baseOpinionOffset></li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

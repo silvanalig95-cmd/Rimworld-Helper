@@ -3853,7 +3853,7 @@ may. Where a choice brings the risk, its card or its answer says so first.
 
 **One shared budget.** All of Rimfolk's kinds of hurt share one budget: together they come about as often as the kinds
 built before it did, however many there are now (at 100%, about half a hurt a colonist-year in an average colony, a
-third in a careful one and three fifths in a careless one, beside a raid's wound or two). Each kind comes about a third as often as it would alone, a kind that came lately waits its turn for
+third in a careful one and three fifths in a careless one, beside a raid's wound or two). Each kind comes a little under a third as often as it would alone, a kind that came lately waits its turn for
 up to thirty days while the others come a little more often, and switching a system off takes its kinds out of the
 budget, leaving the rest as they were. The setting and the storyteller scale all of it as before, and prevention still
 counts: a careful colony meets fewer of them than a careless one.
@@ -3945,6 +3945,38 @@ counts: a careful colony meets fewer of them than a careless one.
   into a dare about once a season (a cold swim, wrestling its strongest), a cautious one talking them out of it half the
   time; someone with a coward's name, or an avenger facing the people they swore against, may break from cover in a
   fight at home, unless drafted and held.
+- **Tempers in the colony:** the peacemaker's sit-down with the worst pair can come to blows instead, the peacemaker
+  taking a punch stepping between them (a peacemaker good with people, and a pair given time to cool, make it rarer);
+  under demanding stakes, a bitter, hot-tempered one whose promise was broken may take it to the speaker's face; the
+  jealous or abrasive passed over for a wish have a sharp word for the one who got it the next times they meet (the
+  peacemaker's word settles it); two rivals who both pitched at a council meeting may shove at the table; a close friend
+  near a fight runs over to pull them apart and may take a blow; gossip told to its subject's face, a secret let slip
+  that wronged the colony, a confidence betrayed and the rivals in "a rival in love" can all come to blows; under the
+  one-faith decree (its card says so) a devout of another faith may come to blows at the named faith's evening; rivals
+  quarrelling at a day's table with drink in them, or after a toast's second round of strong drink (with Vanilla Brewing
+  Expanded), may fight; and one with a soldier's or an outlaw's past may strike out at a roommate who wakes them from a
+  nightmare (a bedroom of their own spares anyone).
+- **Visitors and outsiders:** while the gates stand open, a visitor may take advantage once (a thief at the stores,
+  chased off or off with a little, or a drink and a fight in the yard; the warden and the on-guard decree help, and the
+  decree's card says so); letting anyone play the travelling gambler can end in a cheat caught and a fistfight (the
+  answer says so); the barber's razor nicks a shoulder now and then; a guest of rank may draw a hothead of their people
+  with a challenge, which the guest's own guard takes if they have one; a fistfight after hard words may draw others of
+  both sides; a bloodthirsty duellist may not stop at first blood; a notable spoken to sharply, or whose people lost a
+  duel, may send a challenge by letter, the challenger at the gate days later (a letter of greetings or a gift first
+  settles it); the heir of a head the colony wronged may keep the grudge, their guards short with the colony; an avenger
+  may pick a fight with a visitor of the people they swore against, now at peace; a devout may have hard words with a
+  visitor of another faith; in a famine near the colony, hungry strangers come for the fields at night and may strike
+  whoever finds them (famine bread, a night watch and lit fields help); and two parties of prospectors in a rush may
+  brawl on the colony's land, catching whoever stands too near (the marshal breaks it up).
+- **Personal stories:** on "getting clean"'s worst night, with the friend away and the drug in reach, the game's own
+  binge may follow; first steps on a new leg without the friend may end in a fall by the gate; with A RimWorld of Magic, a
+  fire, ice or storm mage's dawn practice in "the long discipline" slips one time in 25 (half with the teacher there). And,
+  hurting nobody of the colony's own: a returning nemesis goes for the one it hurt if they're out from cover, a
+  neighbour's lost child found only after a night out may be hurt by it, and half the messengers waylaid on the road are
+  set upon at the colony's own edge instead, the bandits running if anyone of the colony is near.
+
+With these, every proposal of the harm review is built: 100 kinds share the budget, each coming a little under a third as
+often as it would alone.
 
 No mood is added on top of a hurt: it brings the game's pain and its own wound or illness, and the doctors tend it.
 

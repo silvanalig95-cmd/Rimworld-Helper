@@ -546,6 +546,8 @@ namespace ColonyCouncil
                             {
                                 standings.Change(p, -4f * Gentleness(p), "CC_Log_PassedOver".Translate(who.LabelShort));
                                 passedOver++;
+                                // Harm, part 7: the jealous or abrasive hold it against the one who has it (Harm/Tempers.cs).
+                                Tempers.PassedOver(p, who);
                                 social.Bump(p, who, TieKind.Rivals, 4f, "CC_TieNote_PassedOver".Translate(w.Label));
                                 string grumble = Flavor.FromPool("Council_Pool_PassedOver", p, own);
                                 if (grumble != null)
@@ -660,6 +662,8 @@ namespace ColonyCouncil
             Safe("objection", () => ResolveObjection(w, false));
 
             if (s.Harsh) MaybeSulk(w.pawn, w);
+            // Harm, part 7: a bitter, hot-tempered one may take it to the speaker (Harm/Tempers.cs).
+            if (w.promised && pen > 0f) Tempers.PromiseBroken(w.pawn);
         }
 
         /// <summary>Demanding stakes: a bitter, unhappy colonist may storm off to sulk.</summary>

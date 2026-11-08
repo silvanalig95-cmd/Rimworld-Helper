@@ -395,12 +395,14 @@
             <riskOutcome>The table was loud until late. When the last game was done, the colony's purses were lighter and {X_nameDef}'s heavier, and {A_nameDef} still can't work out how.</riskOutcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>games with {X_nameDef}</label><organizer>None</organizer><spots><li>Rec</li><li>Dining</li><li>Stranger</li></spots><hours>18~23</hours><duration>2~3</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_GamblerTurns" />
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.12</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.5</factor><by>Outsiders</by></li>
               <li Class="ColonyCouncil.WorldEffect_Silver" />
             </effects>
             <riskEffects>
               <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>games with {X_nameDef}</label><organizer>None</organizer><spots><li>Rec</li><li>Dining</li><li>Stranger</li></spots><hours>18~23</hours><duration>2~3</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_GamblerTurns" />
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.12</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.5</factor><by>Outsiders</by></li>
             </riskEffects>

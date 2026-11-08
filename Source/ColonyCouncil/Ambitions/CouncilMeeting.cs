@@ -336,7 +336,8 @@ namespace ColonyCouncil
             {
                 bool abrasive = speaker.story?.traits?.HasTrait(TraitDefOf.Abrasive) ?? false;
                 var interaction = pool == "Council_Pool_MeetingDoubt" && abrasive ? DefDatabase<InteractionDef>.GetNamedSilentFail("Insult") : InteractionDefOf.Chitchat;
-                // Never anything that could start a fist fight: nobody gets hurt over a meeting.
+                // Never the game's own insult here: the meeting's one fight, if it comes, is at its end through the harm
+                // service, between two rivals who both pitched (Harm/Tempers.cs).
                 if (interaction != null && interaction.socialFightBaseChance > 0f) interaction = InteractionDefOf.Chitchat;
                 if (interaction != null) speaker.interactions?.TryInteractWith(target.proposer, interaction);
             }

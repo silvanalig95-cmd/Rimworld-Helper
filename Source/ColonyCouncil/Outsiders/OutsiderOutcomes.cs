@@ -530,6 +530,8 @@ namespace ColonyCouncil
             Memory(x, OutsiderDefOf.Rimfolk_OutsiderInsulted, c, 0);
             Remember(c, x, OutsiderAct.Provoke, Note(OutsiderAct.Provoke, c), OutsiderMath.ProvokeRegard, OutsiderMath.ProvokeWarmth);
             if (f != null) KinMemory.Note(f, "slighted", c, x.LabelShort);
+            // Harm, part 7: a notable spoken to so may write a challenge (Harm/GateTroubles.cs).
+            GateTroubles.Slighted(c, x, false);
             float game = 0f;
             try
             {
@@ -552,6 +554,8 @@ namespace ColonyCouncil
                 if (x.MentalStateDef == MentalStateDefOf.SocialFighting)
                 {
                     if (frayed) FrayedTempers.Began(c, x);
+                    // Harm, part 7: others of both sides near may join (Harm/GateTroubles.cs).
+                    GateTroubles.Crowd(c, x);
                     return;
                 }
                 bouts.Remove(bout);
@@ -1125,6 +1129,8 @@ namespace ColonyCouncil
             {
                 lostA = Blooded(bout, a);
                 lostB = Blooded(bout, b);
+                // Harm, part 7: a bloodthirsty fighter may not stop at it (Harm/GateTroubles.cs).
+                if ((lostA || lostB) && GateTroubles.PastFirstBlood(bout)) return;
             }
             else
             {
@@ -1235,6 +1241,8 @@ namespace ColonyCouncil
             if (!c.Dead) Memory(c, OutsiderDefOf.Rimfolk_OutsiderBout, x, 1);
             bool won = bout.winner == c;
             bool lost = bout.winner == x;
+            // Harm, part 7: one of theirs beaten, their notable may write a challenge (Harm/GateTroubles.cs).
+            if (won) GateTroubles.Slighted(c, x, true);
             // Those of the colony who watched remember it.
             foreach (var w in bout.watchers)
                 if (KinMemory.Ours(w) && !w.Dead && (won || lost))

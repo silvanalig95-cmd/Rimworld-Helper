@@ -617,6 +617,8 @@ namespace ColonyCouncil
             var t = Instance?.tasks.FirstOrDefault(k => k.kind == CallerKind.Cut && k.x == by && k.pawns.Contains(p));
             if (t == null || p?.story == null) return;
             Restyle(p);
+            // Harm, part 7: now and then the razor nicks (Harm/GateTroubles.cs).
+            GateTroubles.Cut(by, p);
             t.pawns.Remove(p);
             t.done++;
             Say(by, t, "cut", 0.35f);

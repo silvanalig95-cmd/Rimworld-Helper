@@ -258,7 +258,7 @@ namespace ColonyCouncil
         {
             var book = HarmBook.Instance;
             if (book == null || x?.Faction == null || book.waiting.Count == 0) return;
-            book.waiting.RemoveAll(w => w != null && w.what == HarmWaiting.Rematch && w.id == x.Faction.loadID);
+            book.waiting.RemoveAll(w => w != null && (w.what == HarmWaiting.Rematch || w.what == HarmSeven.Challenge || w.what == HarmSeven.Heir) && w.id == x.Faction.loadID);
         }
 
         /// <summary>

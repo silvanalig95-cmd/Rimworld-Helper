@@ -197,6 +197,8 @@ namespace ColonyCouncil
                 if (serve && kind == PlayKind.Feast) Serve();
                 // A drink from the stores to raise (Integrations/ToastDrinks.cs: beer, Vanilla Brewing Expanded's wines and teas).
                 if (kind == PlayKind.Toast) ToastDrinks.Pour(lord, Map, spot, words);
+                // Harm, part 7: with strong drink in plenty, a second round, and rivals who both take it (Harm/Tempers.cs).
+                if (kind == PlayKind.Toast) Tempers.SecondRound(lord, Map, spot, words);
                 if (words) KeepStrangerAtHead();
                 // The event's visitors who reach their spot while it lasts come up too.
                 var play = Play;

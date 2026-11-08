@@ -41,7 +41,7 @@ namespace ColonyCouncil
         public HarmKind Kind => HarmKinds.Of(kind);
 
         /// <summary>Nothing left to do: who it comes to is gone (a games day and a rematch need nobody but the people).</summary>
-        public bool Broken => what == null || (what != Games && pawn == null) || pawn != null && pawn.Dead && what != Cough;
+        public bool Broken => what == null || (what != Games && !HarmSeven.Unpeopled(what) && pawn == null) || pawn != null && pawn.Dead && what != Cough;
 
         /// <summary>Its time has passed without it coming.</summary>
         public bool Lapsed(int now)

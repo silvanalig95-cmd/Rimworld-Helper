@@ -763,6 +763,8 @@ namespace ColonyCouncil
             bool gathered = !inPassing && !alone && m.invites.Count > 0;
             m.thin = gathered && m.attendees.Count < MeetingAttendance.Quorum(m.invites.Count);
             m.Vote();
+            // Harm, part 7: two rivals who both pitched, one idea winning, may come to blows at the table (Harm/Tempers.cs).
+            if (gathered) Tempers.MeetingDecided(m);
             if (!alone)
             {
                 foreach (var p in m.attendees)

@@ -231,6 +231,7 @@
     <Compile Include="../../Source/ColonyCouncil/Harm/HarmFourMath.cs" Link="HarmFourMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Harm/HarmFiveMath.cs" Link="HarmFiveMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Harm/HarmSixMath.cs" Link="HarmSixMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Harm/HarmSevenMath.cs" Link="HarmSevenMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Diplomacy/SchemeMath.cs" Link="SchemeMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Peoples/PeoplesMath.cs" Link="PeoplesMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Peoples/ArisingMath.cs" Link="ArisingMath.cs" />

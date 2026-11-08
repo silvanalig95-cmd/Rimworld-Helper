@@ -474,6 +474,8 @@ namespace ColonyCouncil
                 {
                     m.stage = 1;
                     m.a = finder;
+                    // Harm, part 7: found only after a night out, they may be hurt by it (Harm/Stories.cs).
+                    Stories.LostFound(m, x, finder);
                     m.due = now + Mathf.RoundToInt(Rand.Range(0.3f, 0.6f) * GenDate.TicksPerDay);
                     // They follow their finder back to the colony and wait there for their family.
                     x.GetLord()?.RemovePawn(x);
