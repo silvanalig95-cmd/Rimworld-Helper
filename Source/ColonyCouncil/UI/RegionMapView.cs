@@ -22,9 +22,10 @@ namespace ColonyCouncil
     public class RegionMapView
     {
         private const float HeaderH = 26f;
-        private static readonly Color MapBack = UiKit.Ground;
-        private static readonly Color LabelBack = UiKit.Shade;
-        private static readonly Color MarkBack = UiKit.WithAlpha(UiKit.Ground, 0.8f);
+        // In the look the window draws in (the game's, or Rimfolk's own).
+        private static Color MapBack => UiKit.Ground;
+        private static Color LabelBack => UiKit.Shade;
+        private static Color MarkBack => UiKit.WithAlpha(UiKit.Ground, 0.8f);
 
         // Kept for the session: the view of the last map shown.
         private static View? lastView;
@@ -132,14 +133,14 @@ namespace ColonyCouncil
             float tw = UiKit.KeptWidth(reachText, GameFont.Small) + 12f;
             var reachRect = new Rect(plus.x - tw, r.y, tw, r.height);
             var minus = new Rect(reachRect.x - bw, plus.y, bw, bw);
-            if (Widgets.ButtonImage(minus, TexButton.Minus) && reach > ReachMin) SetReach(reach - ReachStep);
-            UiKit.LabelFit(reachRect, reachText, Color.white, GameFont.Small, TextAnchor.MiddleCenter);
-            if (Widgets.ButtonImage(plus, TexButton.Plus) && reach < ReachMax) SetReach(reach + ReachStep);
+            if (UiKit.IconPlate(minus, TexButton.Minus) && reach > ReachMin) SetReach(reach - ReachStep);
+            UiKit.LabelFit(reachRect, reachText, UiKit.Ink, GameFont.Small, TextAnchor.MiddleCenter);
+            if (UiKit.IconPlate(plus, TexButton.Plus) && reach < ReachMax) SetReach(reach + ReachStep);
             TooltipHandler.TipRegion(new Rect(minus.x, r.y, plus.xMax - minus.x, r.height), "CC_Region_Reach_Tip".Translate());
             string homeLabel = "CC_Region_Home".Translate();
             float hw = Mathf.Clamp(UiKit.KeptWidth(homeLabel, GameFont.Small) + 24f, 80f, 150f);
             var home = new Rect(minus.x - 10f - hw, r.y + (r.height - 24f) / 2f, hw, 24f);
-            if (Widgets.ButtonText(home, homeLabel, active: map != null))
+            if (UiKit.Button(home, homeLabel, ButtonKind.Normal, map != null))
             {
                 view = new View(0, 0, map != null ? view.scale : 0);
                 SoundDefOf.Click.PlayOneShotOnCamera();
@@ -287,8 +288,14 @@ namespace ColonyCouncil
                 // The zoom buttons, before the map's own mouse handling so a click on them stays theirs.
                 var zin = new Rect(local.xMax - 30f, 6f, 24f, 24f);
                 var zout = new Rect(local.xMax - 30f, 34f, 24f, 24f);
-                if (Widgets.ButtonImage(zin, TexButton.Plus)) view = ZoomAt(view, w, h, w / 2, h / 2, view.scale * 1.5);
-                if (Widgets.ButtonImage(zout, TexButton.Minus)) view = ZoomAt(view, w, h, w / 2, h / 2, view.scale / 1.5);
+                if (UiKit.OwnLook)
+                {
+                    // On the map, the buttons on a dark plate of their own so they read on any land.
+                    UiKit.RoundBox(zin, UiKit.Shade, UiKit.Edge, SkinMath.RadiusMedium);
+                    UiKit.RoundBox(zout, UiKit.Shade, UiKit.Edge, SkinMath.RadiusMedium);
+                }
+                if (UiKit.IconPlate(zin, TexButton.Plus)) view = ZoomAt(view, w, h, w / 2, h / 2, view.scale * 1.5);
+                if (UiKit.IconPlate(zout, TexButton.Minus)) view = ZoomAt(view, w, h, w / 2, h / 2, view.scale / 1.5);
                 TooltipHandler.TipRegion(zin, "CC_Region_ZoomIn".Translate());
                 TooltipHandler.TipRegion(zout, "CC_Region_ZoomOut".Translate());
 
@@ -299,6 +306,13 @@ namespace ColonyCouncil
             finally
             {
                 Widgets.EndGroup();
+            }
+            if (UiKit.OwnLook)
+            {
+                // Rimfolk's own look: the map's corners rounded into the panel, a faint edge round it.
+                UiKit.CornerMask(rect, UiKit.Panel, SkinMath.RadiusCard);
+                UiKit.RoundEdge(rect, UiKit.Edge, SkinMath.RadiusCard);
+                return;
             }
             GUI.color = UiKit.CardBorder;
             Widgets.DrawBox(rect);
@@ -322,10 +336,11 @@ namespace ColonyCouncil
             }
             float w = Mathf.Min(UiKit.KeptWidth(litLabel, GameFont.Tiny) + 34f, local.width * 0.6f);
             var r = new Rect(local.x + 6f, local.y + 6f, w, 20f);
-            Widgets.DrawBoxSolidWithOutline(r, UiKit.Shade, UiKit.WithAlpha(UiKit.Gold, 0.6f));
+            if (UiKit.OwnLook) UiKit.RoundBox(r, UiKit.Shade, UiKit.WithAlpha(UiKit.Gold, 0.6f), SkinMath.RadiusCard);
+            else Widgets.DrawBoxSolidWithOutline(r, UiKit.Shade, UiKit.WithAlpha(UiKit.Gold, 0.6f));
             UiKit.LabelFit(new Rect(r.x + 6f, r.y, r.width - 26f, r.height), litLabel, UiKit.Gold, GameFont.Tiny);
             var x = new Rect(r.xMax - 18f, r.y + 3f, 14f, 14f);
-            if (Widgets.ButtonImage(x, TexButton.CloseXSmall)) RegionView.lit = null;
+            if (UiKit.IconPlate(x, TexButton.CloseXSmall)) RegionView.lit = null;
             TooltipHandler.TipRegion(r, "CC_Region_LitTip".Translate());
         }
 

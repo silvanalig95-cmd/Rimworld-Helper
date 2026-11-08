@@ -213,7 +213,7 @@ namespace ColonyCouncil
                 float h = LinkText.Height(l.title, tw) + (l.status.NullOrEmpty() ? 0f : 18f) + 6f;
                 var r = new Rect(0f, y, w, Mathf.Max(28f, h));
                 UiKit.Zebra(r, i);
-                Widgets.DrawHighlightIfMouseover(r);
+                UiKit.RowHover(r);
                 LinkText.Line(new Rect(4f, y + 3f, DateW - 6f, 20f), l.date, UiKit.Faint, GameFont.Tiny);
                 UiKit.Icon(new Rect(DateW, y + 4f, 16f, 16f), l.call ? Icons.Visitor : Icons.Journal, l.color);
                 float th = LinkText.Draw(new Rect(DateW + 22f, y + 2f, tw, 999f), l.title, Color.white);
@@ -231,7 +231,7 @@ namespace ColonyCouncil
 
         private static void DrawPerson(Rect r, Person p)
         {
-            Widgets.DrawHighlightIfMouseover(r);
+            UiKit.RowHover(r);
             // The portrait and the name lead to their card.
             var pic = new Rect(r.x + 2f, r.y + 4f, 36f, 36f);
             UiKit.Portrait(pic, p.n.pawn, p.color);
@@ -412,7 +412,7 @@ namespace ColonyCouncil
                         {
                             var row = new Rect(0f, ry, w, r.h);
                             UiKit.Zebra(row, i);
-                            Widgets.DrawHighlightIfMouseover(row);
+                            UiKit.RowHover(row);
                             LinkText.Line(new Rect(4f, ry + 2f, DateW - 6f, 20f), r.date, UiKit.Faint, GameFont.Tiny);
                             UiKit.Icon(new Rect(DateW, ry + 4f, 14f, 14f), r.icon, r.color);
                             LinkText.Draw(new Rect(DateW + 22f, ry + 2f, w - DateW - 28f, r.h), r.text, r.color);
@@ -475,9 +475,10 @@ namespace ColonyCouncil
                 if (w < 40f) break;
                 var c = new Rect(x, r.y + 1f, w, r.height - 2f);
                 bool over = Mouse.IsOver(c);
-                Widgets.DrawBoxSolidWithOutline(c, over ? UiKit.CardHover : UiKit.CardFill, UiKit.WithAlpha(UiKit.WorldColor, 0.45f), 1);
+                if (UiKit.OwnLook) UiKit.RoundBox(c, over ? UiKit.RaisedHover : UiKit.Raised, UiKit.WithAlpha(UiKit.WorldColor, 0.45f), SkinMath.RadiusCard);
+                else Widgets.DrawBoxSolidWithOutline(c, over ? UiKit.CardHover : UiKit.CardFill, UiKit.WithAlpha(UiKit.WorldColor, 0.45f), 1);
                 UiKit.DiscFill(new Rect(c.x + 7f, c.y + c.height / 2f - 3.5f, 7f, 7f), UiKit.WorldColor);
-                UiKit.LabelFit(new Rect(c.x + 18f, c.y, c.width - 22f, c.height), s.label, over ? Color.white : UiKit.WorldColor, GameFont.Tiny);
+                UiKit.LabelFit(new Rect(c.x + 18f, c.y, c.width - 22f, c.height), s.label, over ? UiKit.Ink : UiKit.WorldColor, GameFont.Tiny);
                 TooltipHandler.TipRegion(c, s.tip);
                 if (!s.thing.IsNone && Widgets.ButtonInvisible(c, false))
                 {
@@ -553,11 +554,11 @@ namespace ColonyCouncil
             var c = new Rect(b.xMax + gap, r.y, bw, r.height);
             var d = new Rect(c.xMax + gap, r.y, clearW, r.height);
             string any = "CC_WHist_Any".Translate();
-            if (Widgets.ButtonText(a, UiKit.Fit("CC_WHist_People".Translate((people.IsNone ? any : NameOf(people)).Named("WHO")).Resolve(), a.width - 12f)))
+            if (UiKit.Button(a, UiKit.Fit("CC_WHist_People".Translate((people.IsNone ? any : NameOf(people)).Named("WHO")).Resolve(), a.width - 12f)))
                 Find.WindowStack.Add(new FloatMenu(PeopleOptions()));
-            if (Widgets.ButtonText(b, UiKit.Fit("CC_WHist_Town".Translate((town.IsNone ? any : NameOf(town)).Named("WHERE")).Resolve(), b.width - 12f)))
+            if (UiKit.Button(b, UiKit.Fit("CC_WHist_Town".Translate((town.IsNone ? any : NameOf(town)).Named("WHERE")).Resolve(), b.width - 12f)))
                 Find.WindowStack.Add(new FloatMenu(TownOptions()));
-            if (Widgets.ButtonText(c, UiKit.Fit("CC_WHist_Kind".Translate((family == null ? any : KindName(family)).Named("KIND")).Resolve(), c.width - 12f)))
+            if (UiKit.Button(c, UiKit.Fit("CC_WHist_Kind".Translate((family == null ? any : KindName(family)).Named("KIND")).Resolve(), c.width - 12f)))
                 Find.WindowStack.Add(new FloatMenu(KindOptions()));
             bool set = !people.IsNone || !town.IsNone || family != null;
             if (UiKit.ActButton(d, "CC_WHist_Clear".Translate(), set ? null : ""))

@@ -151,7 +151,23 @@ namespace ColonyCouncil
         public override void PreOpen()
         {
             base.PreOpen();
-            // Its button opens it on the map itself (the lens as it was); a view asked for (a key, a link, a card) opens it there.
+            // The tab and the floating window are one window: never both.
+            Window_Region.Shut(false);
+            Opening();
+        }
+
+        public override void PostClose()
+        {
+            base.PostClose();
+            Closing();
+        }
+
+        /// <summary>
+        /// The region window opens, as the tab or floating: its button opens it on the map itself (the lens as it was); a
+        /// view asked for (a key, a link, a card) opens it there.
+        /// </summary>
+        internal static void Opening()
+        {
             if (!asked)
             {
                 page = RegionView.Map;
@@ -160,9 +176,9 @@ namespace ColonyCouncil
             asked = false;
         }
 
-        public override void PostClose()
+        /// <summary>The region window closed, as the tab or floating: the map's picture let go.</summary>
+        internal static void Closing()
         {
-            base.PostClose();
             asked = false;
             map.Release();
         }
@@ -177,15 +193,64 @@ namespace ColonyCouncil
             return null;
         }
 
-        private readonly List<WindowTab> tabs = new List<WindowTab>();
+        private static readonly List<WindowTab> tabs = new List<WindowTab>();
         /// <summary>The view or page being drawn beside the drawer, and the two drawers made once (nothing made per frame).</summary>
         private static WorldPage drawing;
         private static readonly Action<Rect> drawPage = r => drawing?.draw(r);
         private static readonly Action<Rect> drawLegend = r => map.DrawEmpty(r);
-        private static string mapTip;
+        private static readonly Action<Rect> drawCorner = r => WindowTabs.Links(r, RimfolkWindow.World);
+        private static string mapTip, title;
         private static float mapTipAt = -100f;
 
+        /// <summary>The tab drawn in Rimfolk's own look: its frame (fixed in place, as the tab is), the corner in its title bar.</summary>
+        private static readonly WindowFrame tabFrame = new WindowFrame("Region", Window_Region.LeastW, Window_Region.LeastH, WindowFrameMath.BottomBar);
+
+        protected override float Margin => WindowFrame.OwnLookOn ? 0f : base.Margin;
+
+        public override void WindowOnGUI()
+        {
+            doWindowBackground = !WindowFrame.OwnLookOn;
+            base.WindowOnGUI();
+        }
+
+        /// <summary>
+        /// The tab (the region window while Rimfolk's windows don't move): in the game's look as it always was, or in
+        /// Rimfolk's own with its frame's title bar, fixed at the screen's foot.
+        /// </summary>
         public override void DoWindowContents(Rect inRect)
+        {
+            if (!WindowFrame.OwnLookOn)
+            {
+                DrawRegion(inRect, false);
+                return;
+            }
+            bool was = UiKit.BeginOwn();
+            try
+            {
+                title ??= Pages.WindowName(RimfolkWindow.World);
+                var body = tabFrame.Draw(this, inRect, title, Icons.World, WindowTabs.LinksWidth, drawCorner, true, false);
+                Widgets.BeginGroup(body);
+                try
+                {
+                    DrawRegion(body.AtZero(), true);
+                }
+                finally
+                {
+                    Widgets.EndGroup();
+                }
+            }
+            finally
+            {
+                UiKit.EndOwn(was);
+            }
+        }
+
+        /// <summary>
+        /// The region window's contents, the tab's and the floating window's alike: the four views as tabs (with the corner
+        /// beside them, or in the title bar above with <paramref name="cornerInTitle"/>), and the view showing with its
+        /// drawer in the body under them.
+        /// </summary>
+        internal static void DrawRegion(Rect inRect, bool cornerInTitle)
         {
             var comp = CouncilGameComponent.Instance;
             var extraPage = ViewNamed(page) != null ? null : Extra(page);
@@ -199,7 +264,7 @@ namespace ColonyCouncil
                 string n = v.name;
                 tabs.Add(new WindowTab(v.Label, v.icon, n == lit, () => page = n, n == RegionView.Map ? MapTip() : null));
             }
-            var body = WindowTabs.Draw(inRect, tabs, RimfolkWindow.World);
+            var body = UiKit.OwnLook ? WindowTabs.DrawOwn(inRect, tabs) : WindowTabs.Draw(inRect, tabs, RimfolkWindow.World, !cornerInTitle);
             var content = body.ContractedBy(12f);
 
             // The next and previous page keys step through the four views here.

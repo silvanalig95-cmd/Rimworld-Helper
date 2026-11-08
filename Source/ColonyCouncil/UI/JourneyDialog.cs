@@ -1325,17 +1325,17 @@ namespace ColonyCouncil
                 var plan = JourneyBook.PlanAt(Dialog_JourneyPlan.HomeMap());
                 const float buttonsW = 180f;
                 string text = plan == null ? "CC_Journey_None".Translate().ToString() : Status(plan);
-                float h = UiKit.Paragraph(x + 4f, y, w - buttonsW - 16f, text, plan == null ? UiKit.Faint : Color.white);
+                float h = UiKit.Paragraph(x + 4f, y, w - buttonsW - 16f, text, plan == null ? UiKit.Faint : UiKit.Ink);
                 float bx = x + w - buttonsW;
                 if (plan == null)
                 {
-                    if (Widgets.ButtonText(new Rect(bx, y, buttonsW, 28f), "CC_Journey_PlanButton".Translate())) Dialog_JourneyPlan.Open();
+                    if (UiKit.Button(new Rect(bx, y, buttonsW, 28f), "CC_Journey_PlanButton".Translate())) Dialog_JourneyPlan.Open();
                     h = Mathf.Max(h, 30f);
                 }
                 else
                 {
-                    if (Widgets.ButtonText(new Rect(bx, y, buttonsW, 28f), "CC_Journey_OpenButton".Translate())) Dialog_JourneyPlan.Open(true);
-                    if (Widgets.ButtonText(new Rect(bx, y + 32f, buttonsW, 28f), "CC_Journey_CallOffButton".Translate())) JourneyRun.CallOff(plan, "CC_Journey_CalledOff");
+                    if (UiKit.Button(new Rect(bx, y, buttonsW, 28f), "CC_Journey_OpenButton".Translate())) Dialog_JourneyPlan.Open(true);
+                    if (UiKit.Button(new Rect(bx, y + 32f, buttonsW, 28f), "CC_Journey_CallOffButton".Translate(), ButtonKind.Quiet)) JourneyRun.CallOff(plan, "CC_Journey_CalledOff");
                     h = Mathf.Max(h, 62f);
                 }
                 return y + h + 14f - start;

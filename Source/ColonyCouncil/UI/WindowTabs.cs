@@ -63,20 +63,79 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The tabs along the top of <paramref name="inRect"/>, the window links in the corner, and the framed body under
-        /// them, which is returned.
+        /// The tabs along the top of <paramref name="inRect"/>, the window links in the corner (unless the window's title bar
+        /// has them, <paramref name="corner"/> off), and the framed body under them, which is returned.
         /// </summary>
-        public static Rect Draw(Rect inRect, List<WindowTab> tabs, RimfolkWindow current)
+        public static Rect Draw(Rect inRect, List<WindowTab> tabs, RimfolkWindow current, bool corner = true)
         {
             Text.Font = GameFont.Small;
             float tabH = TabDrawer.TabHeight;
             var body = new Rect(inRect.x, inRect.y + tabH, inRect.width, inRect.height - tabH);
             Widgets.DrawMenuSection(body);
-            float corner = LinksWidth;
-            var area = new Rect(body.x, body.y, Mathf.Max(WindowLayoutMath.TabsMin, body.width - corner), body.height);
+            float cornerW = corner ? LinksWidth : 0f;
+            var area = new Rect(body.x, body.y, Mathf.Max(WindowLayoutMath.TabsMin, body.width - cornerW), body.height);
             if (tabs.Count > 0) Tabs(area, tabs);
-            Links(new Rect(body.xMax - corner, inRect.y, corner, tabH), current);
+            if (corner) Links(new Rect(body.xMax - cornerW, inRect.y, cornerW, tabH), current);
             return body;
+        }
+
+        // ---------------- Rimfolk's own look ----------------
+
+        /// <summary>The own look's row of tabs: its height, the gap between tabs, and the least a tab shrinks to (its icon alone).</summary>
+        public const float OwnTabH = 34f, OwnTabGap = 4f, OwnTabLeast = 44f;
+
+        private static float[] ownNatural = new float[0], ownX = new float[0], ownW = new float[0];
+        private static readonly Dictionary<string, float> ownWidths = new Dictionary<string, float>();
+
+        /// <summary>
+        /// The tabs in Rimfolk's own look (UI/UiKitSkin.cs, OwnTab): a row of tabs that read as tabs along the top of
+        /// <paramref name="inRect"/>, the lit one joined to the panel under it, which is drawn and returned. The window's
+        /// corner is in its title bar. Each tab as wide as its word where they all fit, shrunk alike where they don't, its
+        /// icon alone (the word on hover) at the narrowest.
+        /// </summary>
+        public static Rect DrawOwn(Rect inRect, List<WindowTab> tabs)
+        {
+            var body = new Rect(inRect.x, inRect.y + OwnTabH, inRect.width, inRect.height - OwnTabH);
+            UiKit.RoundBox(body, UiKit.Panel, UiKit.Edge, SkinMath.RadiusCard);
+            int n = tabs.Count;
+            if (ownNatural.Length < n)
+            {
+                ownNatural = new float[n];
+                ownX = new float[n];
+                ownW = new float[n];
+            }
+            for (int i = 0; i < n; i++)
+            {
+                string label = tabs[i].label ?? "";
+                if (!ownWidths.TryGetValue(label, out float w))
+                {
+                    if (ownWidths.Count > 100) ownWidths.Clear();
+                    ownWidths[label] = w = SkinMath.TabWidth(UiKit.KeptWidth(label, GameFont.Small), tabs[i].icon != null);
+                }
+                ownNatural[i] = w;
+            }
+            float room = inRect.width - 2f * SkinMath.RadiusCard;
+            SkinMath.Tabs(ownNatural, n, room, OwnTabGap, OwnTabLeast, ownX, ownW);
+            // The lit tab last, so it sits over the panel's edge and joins it.
+            int litAt = -1;
+            for (int i = 0; i < n; i++)
+            {
+                if (tabs[i].selected)
+                {
+                    litAt = i;
+                    continue;
+                }
+                OneOwnTab(inRect, tabs[i], i);
+            }
+            if (litAt >= 0) OneOwnTab(inRect, tabs[litAt], litAt);
+            return body;
+        }
+
+        private static void OneOwnTab(Rect inRect, WindowTab t, int i)
+        {
+            var r = new Rect(inRect.x + SkinMath.RadiusCard + ownX[i], inRect.y + 2f, ownW[i], OwnTabH - 2f);
+            bool iconOnly = t.icon != null && UiKit.KeptWidth(t.label ?? "", GameFont.Small) + 20f + 22f > ownW[i];
+            if (UiKit.OwnTab(r, t.label, t.icon, t.selected, t.tip, iconOnly)) t.click?.Invoke();
         }
 
         private static readonly List<TabRecord> records = new List<TabRecord>();
@@ -191,8 +250,8 @@ namespace ColonyCouncil
                 x -= LinkGap;
                 bool here = w == current;
                 bool over = Mouse.IsOver(r);
-                if (here) Widgets.DrawBoxSolidWithOutline(r.ExpandedBy(2f), UiKit.CardSelected, UiKit.WithAlpha(UiKit.Gold, 0.5f));
-                else if (over) Widgets.DrawBoxSolid(r.ExpandedBy(2f), UiKit.CardHover);
+                if (here) LitBack(r.ExpandedBy(2f));
+                else if (over) HoverBack(r.ExpandedBy(2f));
                 var tex = IconOf(w);
                 var color = here ? UiKit.Gold : over ? UiKit.Ink : UiKit.WithAlpha(UiKit.Ink, 0.6f);
                 if (tex != null) UiKit.Icon(r.ContractedBy(2f), tex, color);
@@ -206,6 +265,20 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>Behind a corner icon that is lit (the window showing, the search open): rounded in Rimfolk's own look.</summary>
+        private static void LitBack(Rect r)
+        {
+            if (UiKit.OwnLook) UiKit.RoundBox(r, UiKit.CardSelected, UiKit.WithAlpha(UiKit.Gold, 0.6f), SkinMath.RadiusMedium);
+            else Widgets.DrawBoxSolidWithOutline(r, UiKit.CardSelected, UiKit.WithAlpha(UiKit.Gold, 0.5f));
+        }
+
+        /// <summary>Behind a corner icon under the mouse.</summary>
+        private static void HoverBack(Rect r)
+        {
+            if (UiKit.OwnLook) UiKit.RoundBox(r, UiKit.CardHover, UiKit.Edge, SkinMath.RadiusMedium);
+            else Widgets.DrawBoxSolid(r, UiKit.CardHover);
+        }
+
         /// <summary>The search: its icon, lit while its field is open under it; a click opens the field (the index made then) or shuts it.</summary>
         private static void SearchIcon(Rect r)
         {
@@ -215,7 +288,7 @@ namespace ColonyCouncil
                 string key = Search.KeyLabel();
                 searchTip = "CC_Corner_SearchTip".Translate().Resolve() + (key == null ? "" : " (" + key + ")");
             }
-            if (open) Widgets.DrawBoxSolidWithOutline(r.ExpandedBy(2f), UiKit.CardSelected, UiKit.WithAlpha(UiKit.Gold, 0.5f));
+            if (open) LitBack(r.ExpandedBy(2f));
             if (UiKit.IconButton(r, Icons.Search, searchTip, true, open ? UiKit.Gold : (Color?)null)) Search.Toggle(UI.GUIToScreenRect(r));
         }
 
@@ -229,7 +302,7 @@ namespace ColonyCouncil
                 inboxTipFor = n;
                 inboxTip = (n > 0 ? "CC_Corner_InboxTip".Translate(n.Named("COUNT")) : "CC_Corner_InboxTipCalm".Translate()).Resolve();
             }
-            if (here) Widgets.DrawBoxSolidWithOutline(r.ExpandedBy(2f), UiKit.CardSelected, UiKit.WithAlpha(UiKit.Gold, 0.5f));
+            if (here) LitBack(r.ExpandedBy(2f));
             if (UiKit.IconButton(r, Icons.Inbox ?? Icons.Week, inboxTip, true, here ? UiKit.Gold : (Color?)null) && !here) Pages.Open("Week");
             if (n > 0) UiKit.CountBadge(r, n);
         }
@@ -265,6 +338,13 @@ namespace ColonyCouncil
         public abstract RimfolkWindow Which { get; }
 
         public override Vector2 RequestedTabSize => WindowTabs.Size;
+
+        /// <summary>Another of the four windows opening turns the page: the floating region window closes, as the tab would.</summary>
+        public override void PreOpen()
+        {
+            base.PreOpen();
+            if (Which != RimfolkWindow.World) Window_Region.Shut(false);
+        }
 
         /// <summary>Escape closes a card's drawer first, the window second.</summary>
         public override void OnCancelKeyPressed()

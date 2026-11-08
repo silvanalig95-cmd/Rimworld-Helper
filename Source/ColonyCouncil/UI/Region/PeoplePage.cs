@@ -295,7 +295,7 @@ namespace ColonyCouncil
         private static void TownRow(Rect r, PeopleTown t, PeopleEntry e, int i)
         {
             UiKit.Zebra(r, i);
-            Widgets.DrawHighlightIfMouseover(r);
+            UiKit.RowHover(r);
             Texture2D icon = null;
             try
             {
@@ -442,7 +442,7 @@ namespace ColonyCouncil
         private static void PersonRow(Rect r, PersonLine row, int i)
         {
             UiKit.Zebra(r, i);
-            Widgets.DrawHighlightIfMouseover(r);
+            UiKit.RowHover(r);
             var n = row.n;
             var color = row.color;
             var who = row.who;

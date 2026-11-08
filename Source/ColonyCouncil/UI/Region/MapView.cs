@@ -153,8 +153,8 @@ namespace ColonyCouncil
         {
             UiKit.Zebra(r, index);
             bool open = !row.thing.IsNone && Drawer.Current(RimfolkWindow.World) == row.thing;
-            if (open) Widgets.DrawBoxSolid(r, UiKit.CardSelected);
-            else Widgets.DrawHighlightIfMouseover(r);
+            if (open) UiKit.RowLit(r);
+            else UiKit.RowHover(r);
             var pic = new Rect(r.x + 6f, r.y + 6f, 32f, 32f);
             UiKit.Picture(pic, row.pawn, row.faction, row.icon, row.tone);
             float right = r.xMax - 4f;

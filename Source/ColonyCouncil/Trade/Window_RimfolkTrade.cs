@@ -22,9 +22,11 @@ namespace ColonyCouncil
     /// sort; on the right the best deals both ways (a click finds the row) and the deal's summary; at the foot Fill
     /// suggested, Clear suggested, Reset, Accept, Cancel and each side's silver after the trade. The rules are
     /// <see cref="TradeWindowMath"/>'s; the advice, the market and the record are Trade/'s own, read here and not
-    /// worked out again. If anything fails while it draws, the game's own screen takes the trade over.
+    /// worked out again. If anything fails while it draws, the game's own screen takes the trade over. It is in Rimfolk's
+    /// frame (UI/WindowFrame.cs): moved by its title bar, sized from its edges, large and back, where it was left, and in
+    /// Rimfolk's own look while that is on (docs/design/rimfolk-look.md, stage 1); with both settings off, as it was.
     /// </summary>
-    public class Window_RimfolkTrade : Window
+    public class Window_RimfolkTrade : FramedWindow
     {
         /// <summary>One good of the trade, read once a trade (and again after Reset): what doesn't change while the window is open.</summary>
         private sealed class Row
@@ -44,6 +46,12 @@ namespace ColonyCouncil
         }
 
         private const float TopH = 52f, FootH = 44f, RowH = 36f, HeadH = 36f, ChipH = 24f, Gap = 4f, CaravanH = 40f, SideGap = 14f;
+
+        /// <summary>The least the window is sized to: the foot's buttons and the silver, the table's name and count, the side.</summary>
+        public const float LeastW = WindowFrameMath.TradeLeastW, LeastH = WindowFrameMath.TradeLeastH;
+
+        /// <summary>The top's height: the title, the negotiator and the buttons; in the frame, the title is in the title bar.</summary>
+        private static float Top => WindowFrame.Shown ? 40f : TopH;
         private const int BestMax = 5;
         private const float FlashSeconds = 1.6f;
 
@@ -77,6 +85,9 @@ namespace ColonyCouncil
         private float flashAt = -99f;
         private List<ColumnPlace> places;
         private float placesWidth = -1f;
+        /// <summary>The chips' words and widths, made once a trade.</summary>
+        private readonly List<string> chipLabels = new List<string>();
+        private readonly List<float> chipWidths = new List<float>();
 
         // The deal as it stands, worked out when a count changes.
         private DealSums sums = new DealSums();
@@ -91,11 +102,12 @@ namespace ColonyCouncil
 
         public override Vector2 InitialSize => new Vector2(Mathf.Min(UI.screenWidth - 24f, 1800f), UI.screenHeight);
 
-        public Window_RimfolkTrade(Dialog_Trade game, bool first)
+        public Window_RimfolkTrade(Dialog_Trade game, bool first) : base("Trade", LeastW, LeastH, 0f)
         {
             this.game = game;
             this.first = first;
             deal = TradeSession.deal;
+            frameTitle = W("CC_TradeWin_Title", TradeSession.trader.TraderName.Named("TRADER"));
             forcePause = true;
             absorbInputAroundWindow = true;
             closeOnAccept = false;
@@ -136,6 +148,13 @@ namespace ColonyCouncil
         }
 
         public override bool CausesMessageBackground() => true;
+
+        protected override string FrameTitle => frameTitle;
+
+        /// <summary>The title bar's words, made when the window is (the trade may end before the window closes).</summary>
+        private readonly string frameTitle;
+
+        protected override Texture2D FrameIcon => Icons.Trader;
 
         /// <summary>Closed for good (Cancel, Accept, Escape): as the game's own screen closes, a trader with a quest for the colony hands it over.</summary>
         public override void Close(bool doCloseSound = true)
@@ -178,6 +197,8 @@ namespace ColonyCouncil
                 rows.Add(Read(t, notes, book, now));
             }
             chips.Clear();
+            chipLabels.Clear();
+            chipWidths.Clear();
             chips.Add((null, rows.Count));
             chips.AddRange(rows.GroupBy(x => x.cat).OrderBy(g => (int)g.Key).Select(g => ((TradeCategory?)g.Key, g.Count())));
             if (category != null && !chips.Any(c => c.cat == category)) category = null;
@@ -371,7 +392,7 @@ namespace ColonyCouncil
 
         // ---------------- Drawing ----------------
 
-        public override void DoWindowContents(Rect inRect)
+        protected override void DoFramedContents(Rect inRect)
         {
             if (failed) return;
             // The trade ended elsewhere: nothing to show.
@@ -416,8 +437,9 @@ namespace ColonyCouncil
             float side = w >= 1500f ? 300f : 240f;
             float tableW = w - side - SideGap;
             // A switch to the game's own screen ends this window's frame.
-            if (!TopBar(new Rect(0f, 0f, w, TopH))) return;
-            float y = TopH + 4f;
+            float top = Top;
+            if (!TopBar(new Rect(0f, 0f, w, top))) return;
+            float y = top + 4f;
             if (playerIsCaravan)
             {
                 ReadCaravan();
@@ -428,8 +450,8 @@ namespace ColonyCouncil
             // The colony's silver, before and after, and whether it can pay: at the top of the side, in large (the player:
             // "it must be easier to see how much silver i actually have and whether i can afford it, at first glance").
             float walletH = currency != null ? WalletH : 0f;
-            if (walletH > 0f) Wallet(new Rect(tableW + SideGap, TopH + 4f, side, walletH));
-            Side(new Rect(tableW + SideGap, TopH + 4f + walletH + (walletH > 0f ? 8f : 0f), side, footY - TopH - 10f - walletH - (walletH > 0f ? 8f : 0f)));
+            if (walletH > 0f) Wallet(new Rect(tableW + SideGap, top + 4f, side, walletH));
+            Side(new Rect(tableW + SideGap, top + 4f + walletH + (walletH > 0f ? 8f : 0f), side, footY - top - 10f - walletH - (walletH > 0f ? 8f : 0f)));
             float filterH = Filters(new Rect(0f, y, tableW, 0f), false);
             Filters(new Rect(0f, y, tableW, filterH), true);
             y += filterH + 4f;
@@ -479,9 +501,10 @@ namespace ColonyCouncil
             // The buttons, from the right: the game's own screen, gifts, what they buy, the market.
             float x = r.xMax;
             Text.Font = GameFont.Small;
-            var toGame = new Rect(x - 150f, r.y + 6f, 150f, 32f);
+            float by = WindowFrame.Shown ? r.y + (r.height - 30f) / 2f : r.y + 6f, bh = WindowFrame.Shown ? 30f : 32f;
+            var toGame = new Rect(x - 150f, by, 150f, bh);
             x = toGame.x - 8f;
-            if (Widgets.ButtonText(toGame, W("CC_TradeWin_ToGame")))
+            if (UiKit.Button(toGame, W("CC_TradeWin_ToGame"), ButtonKind.Quiet))
             {
                 SoundDefOf.Tick_High.PlayOneShotOnCamera();
                 TradeWindow.ToGame(this, game);
@@ -491,9 +514,9 @@ namespace ColonyCouncil
             var faction = trader.Faction;
             if (faction != null && !faction.def.permanentEnemy)
             {
-                var gifts = new Rect(x - 120f, r.y + 6f, 120f, 32f);
+                var gifts = new Rect(x - 120f, by, 120f, bh);
                 x = gifts.x - 8f;
-                if (Widgets.ButtonText(gifts, W("CC_TradeWin_Gifts")))
+                if (UiKit.Button(gifts, W("CC_TradeWin_Gifts")))
                 {
                     SoundDefOf.Tick_High.PlayOneShotOnCamera();
                     TradeWindow.ToGame(this, game, true);
@@ -502,29 +525,37 @@ namespace ColonyCouncil
                 TooltipHandler.TipRegion(gifts, W("CC_TradeWin_GiftsTip", faction.Name.Named("FACTION")));
             }
             sellableIcon ??= ContentFinder<Texture2D>.Get("UI/Commands/SellableItems", false);
-            var sellable = new Rect(x - 32f, r.y + 6f, 32f, 32f);
+            var sellable = new Rect(x - bh, by, bh, bh);
             x = sellable.x - 8f;
-            if (sellableIcon != null ? Widgets.ButtonImageWithBG(sellable, sellableIcon, new Vector2(26f, 26f)) : Widgets.ButtonText(sellable, "?"))
+            bool sellableClicked = UiKit.OwnLook ? sellableIcon != null ? UiKit.IconPlate(sellable, sellableIcon) : UiKit.Button(sellable, "?")
+                : sellableIcon != null ? Widgets.ButtonImageWithBG(sellable, sellableIcon, new Vector2(26f, 26f)) : Widgets.ButtonText(sellable, "?");
+            if (sellableClicked)
                 Find.WindowStack.Add(new Dialog_SellableItems(trader));
             TooltipHandler.TipRegionByKey(sellable, "CommandShowSellableItemsDesc");
             if (TradeMarket.On)
             {
-                var mk = new Rect(x - 100f, r.y + 6f, 100f, 32f);
+                var mk = new Rect(x - 100f, by, 100f, bh);
                 x = mk.x - 8f;
-                if (Widgets.ButtonText(mk, W("CC_Trade_MarketButton")) && Find.WindowStack.WindowOfType<Window_TradeMarket>() == null)
+                if (UiKit.Button(mk, W("CC_Trade_MarketButton")) && Find.WindowStack.WindowOfType<Window_TradeMarket>() == null)
                     Find.WindowStack.Add(new Window_TradeMarket());
                 TooltipHandler.TipRegion(mk, W(TradeMarket.History ? "CC_Trade_MarketButtonTip" : "CC_Trade_MarketButtonTipNoVte"));
             }
-            // The title: who, what kind of trader, and the negotiator.
+            // The title: who, what kind of trader, and the negotiator (in the frame, the title is in its title bar above).
             float tw = Mathf.Max(60f, x - r.x - 8f);
+            string kind = trader.TraderKind?.LabelCap.ToString() ?? "";
+            string line = W("CC_TradeWin_Negotiator", kind.Named("KIND"), negotiator.LabelShort.Named("NAME"),
+                negotiator.GetStatValue(StatDefOf.TradePriceImprovement).ToStringPercent().Named("PCT"));
+            if (WindowFrame.Shown)
+            {
+                UiKit.LabelFit(new Rect(r.x + 2f, r.y, tw, r.height), line, UiKit.Faint);
+                Text.Font = GameFont.Small;
+                return true;
+            }
             Text.Font = GameFont.Medium;
             Text.Anchor = TextAnchor.UpperLeft;
             Widgets.Label(new Rect(r.x, r.y, tw, 32f), W("CC_TradeWin_Title", trader.TraderName.Named("TRADER")).Truncate(tw));
             Text.Font = GameFont.Tiny;
             GUI.color = UiKit.Faint;
-            string kind = trader.TraderKind?.LabelCap.ToString() ?? "";
-            string line = W("CC_TradeWin_Negotiator", kind.Named("KIND"), negotiator.LabelShort.Named("NAME"),
-                negotiator.GetStatValue(StatDefOf.TradePriceImprovement).ToStringPercent().Named("PCT"));
             Widgets.Label(new Rect(r.x, r.y + 32f, tw, 20f), line.Truncate(tw));
             GUI.color = Color.white;
             Text.Font = GameFont.Small;
@@ -537,23 +568,39 @@ namespace ColonyCouncil
             const float searchW = 180f, inDealW = 150f;
             var cats = chips;
             Text.Font = GameFont.Tiny;
-            var labels = cats.Select(c => (c.cat == null ? W("CC_TradeWin_Cat_All") : W("CC_TradeWin_Cat_" + c.cat.Value)) + " " + c.n.ToStringCached()).ToList();
-            var widths = labels.Select(l => Text.CalcSize(l).x + 16f).ToList();
+            if (chipLabels.Count != cats.Count)
+            {
+                // Made once a trade (the chips change only with Build).
+                chipLabels.Clear();
+                chipWidths.Clear();
+                foreach (var c in cats)
+                {
+                    string l = (c.cat == null ? W("CC_TradeWin_Cat_All") : W("CC_TradeWin_Cat_" + c.cat.Value)) + " " + c.n.ToStringCached();
+                    chipLabels.Add(l);
+                    chipWidths.Add(Text.CalcSize(l).x + 16f);
+                }
+            }
+            var labels = chipLabels;
+            var widths = chipWidths;
             float chipsX = searchW + 10f, chipsW = Mathf.Max(80f, r.width - chipsX - inDealW - 10f);
             var at = TradeWindowMath.Flow(widths, chipsW, 4f, ChipH, out float chipsH);
             float height = Mathf.Max(ChipH, chipsH) + 4f;
             if (!draw) return height;
             Text.Font = GameFont.Small;
-            search.OnGUI(new Rect(r.x, r.y + 2f, searchW, 24f), Refilter);
+            UiKit.SearchField(new Rect(r.x, r.y + 2f, searchW, 24f), search, Refilter);
             Text.Font = GameFont.Tiny;
             for (int i = 0; i < cats.Count; i++)
             {
                 var c = cats[i];
                 var cr = new Rect(r.x + chipsX + at[i].x, r.y + 2f + at[i].y, widths[i], ChipH);
                 bool on = category == c.cat;
-                Widgets.DrawBoxSolid(cr, on ? UiKit.CardSelected : UiKit.CardFill);
-                if (on) Widgets.DrawBox(cr);
-                if (Mouse.IsOver(cr)) Widgets.DrawHighlight(cr);
+                if (UiKit.OwnLook) UiKit.ChipBack(cr, on, Mouse.IsOver(cr));
+                else
+                {
+                    Widgets.DrawBoxSolid(cr, on ? UiKit.CardSelected : UiKit.CardFill);
+                    if (on) Widgets.DrawBox(cr);
+                    if (Mouse.IsOver(cr)) Widgets.DrawHighlight(cr);
+                }
                 Text.Anchor = TextAnchor.MiddleCenter;
                 GUI.color = on ? UiKit.Gold : UiKit.Ink;
                 Widgets.Label(cr, labels[i]);
@@ -569,10 +616,7 @@ namespace ColonyCouncil
             }
             Text.Font = GameFont.Small;
             var inDeal = new Rect(r.xMax - inDealW, r.y + 2f, inDealW, 24f);
-            bool was = inDealOnly;
-            Widgets.CheckboxLabeled(inDeal, W("CC_TradeWin_InDeal"), ref inDealOnly);
-            TooltipHandler.TipRegion(inDeal, W("CC_TradeWin_InDealTip"));
-            if (was != inDealOnly) Refilter();
+            if (UiKit.Toggle(inDeal, W("CC_TradeWin_InDeal"), ref inDealOnly, W("CC_TradeWin_InDealTip"))) Refilter();
             return height;
         }
 
@@ -614,8 +658,10 @@ namespace ColonyCouncil
                 string label = p.col == TradeColumn.Count ? "PositiveBuysNegativeSells".Translate().Resolve() : W(HeadKey(p.col));
                 string legend = Legend(p.col);
                 Text.Font = GameFont.Tiny;
-                Text.Anchor = p.col == TradeColumn.Name ? TextAnchor.MiddleLeft : TextAnchor.MiddleCenter;
-                var top = new Rect(cell.x + (p.col == TradeColumn.Name ? 32f : 0f), cell.y + 2f, cell.width - (p.col == TradeColumn.Name ? 32f : 0f), legend != null ? 18f : cell.height - 4f);
+                bool number = UiKit.OwnLook && Number(p.col);
+                Text.Anchor = p.col == TradeColumn.Name ? TextAnchor.MiddleLeft : number ? TextAnchor.MiddleRight : TextAnchor.MiddleCenter;
+                var top = new Rect(cell.x + (p.col == TradeColumn.Name ? 32f : 0f), cell.y + 2f, cell.width - (p.col == TradeColumn.Name ? 32f : 0f) - (number ? NumberPad + (active ? 10f : 0f) : 0f),
+                    legend != null ? 18f : cell.height - 4f);
                 GUI.color = active ? UiKit.Gold : UiKit.Heading;
                 Widgets.Label(top, label.Truncate(top.width));
                 if (legend != null)
@@ -629,7 +675,8 @@ namespace ColonyCouncil
                 {
                     var icon = sortDesc ? sortDown : sortUp;
                     if (icon != null) GUI.DrawTexture(new Rect(cell.xMax - 12f, cell.y + 4f, 10f, 10f), icon);
-                    Widgets.DrawBoxSolid(new Rect(cell.x + 2f, cell.yMax - 2f, cell.width - 4f, 2f), UiKit.Gold);
+                    if (UiKit.OwnLook) UiKit.Round(new Rect(cell.x + 4f, cell.yMax - 3f, cell.width - 8f, 3f), UiKit.Gold, SkinMath.RadiusSmall);
+                    else Widgets.DrawBoxSolid(new Rect(cell.x + 2f, cell.yMax - 2f, cell.width - 4f, 2f), UiKit.Gold);
                 }
                 string tip = p.col == TradeColumn.Count ? W("CC_TradeWin_Col_CountTip") : W(HeadKey(p.col) + "Tip");
                 if (sortable) tip += "\n\n" + W(active ? "CC_TradeWin_Sorted" : "CC_TradeWin_SortBy");
@@ -683,10 +730,12 @@ namespace ColonyCouncil
 
         private void DrawRow(Rect rect, Row r, int index)
         {
-            if (index % 2 == 1) Widgets.DrawLightHighlight(rect);
+            if (UiKit.OwnLook) UiKit.Zebra(rect, index);
+            else if (index % 2 == 1) Widgets.DrawLightHighlight(rect);
             if (r == flashRow && Time.realtimeSinceStartup - flashAt < FlashSeconds)
                 Widgets.DrawBoxSolid(rect, UiKit.WithAlpha(UiKit.Gold, 0.22f * (1f - (Time.realtimeSinceStartup - flashAt) / FlashSeconds)));
-            if (Mouse.IsOver(rect)) Widgets.DrawBoxSolid(rect, UiKit.CardHover);
+            if (UiKit.OwnLook) UiKit.RowHover(rect);
+            else if (Mouse.IsOver(rect)) Widgets.DrawBoxSolid(rect, UiKit.CardHover);
             Widgets.BeginGroup(rect);
             try
             {
@@ -705,7 +754,7 @@ namespace ColonyCouncil
                             Tiny(cell, W("CC_TradeWin_Cat_" + r.cat), UiKit.Faint);
                             break;
                         case TradeColumn.Value:
-                            Label(cell, Money(r.value), Color.white);
+                            Num(cell, Money(r.value), UiKit.Ink);
                             TooltipHandler.TipRegion(cell, new TipSignal(() => ValueTip(r), r.t.GetHashCode() ^ 0x51a7e));
                             break;
                         case TradeColumn.Ours:
@@ -733,7 +782,7 @@ namespace ColonyCouncil
                             TrendCell(cell, r);
                             break;
                         case TradeColumn.Mass:
-                            Label(cell, r.mass.ToString("0.##") + " " + "kg".Translate(), UiKit.Faint, GameFont.Tiny);
+                            Num(cell, r.mass.ToString("0.##") + " " + "kg".Translate(), UiKit.Faint, GameFont.Tiny);
                             break;
                         case TradeColumn.Need:
                             NeedCell(cell, r);
@@ -762,7 +811,35 @@ namespace ColonyCouncil
 
         private static void Tiny(Rect cell, string text, Color color) => Label(cell, text, color, GameFont.Tiny);
 
-        private static void Dash(Rect cell) => Label(cell, "-", UiKit.Dim);
+        /// <summary>Room kept at a number's right in its column (Rimfolk's own look right-aligns them).</summary>
+        private const float NumberPad = 8f;
+
+        /// <summary>The columns of numbers: right-aligned in Rimfolk's own look, centred in the game's as before.</summary>
+        private static bool Number(TradeColumn c) =>
+            c == TradeColumn.Value || c == TradeColumn.Ours || c == TradeColumn.Pay || c == TradeColumn.Ask || c == TradeColumn.Theirs || c == TradeColumn.Mass;
+
+        /// <summary>A number in its cell: right-aligned in Rimfolk's own look, centred in the game's.</summary>
+        private static void Num(Rect cell, string text, Color color, GameFont font = GameFont.Small)
+        {
+            if (!UiKit.OwnLook)
+            {
+                Label(cell, text, color, font);
+                return;
+            }
+            Text.Font = font;
+            Text.Anchor = TextAnchor.MiddleRight;
+            GUI.color = color;
+            var r = new Rect(cell.x, cell.y, cell.width - NumberPad, cell.height);
+            Widgets.Label(r, text.Truncate(r.width - 2f));
+            GUI.color = Color.white;
+            Text.Font = GameFont.Small;
+        }
+
+        private static void Dash(Rect cell)
+        {
+            if (UiKit.OwnLook) Num(cell, "-", UiKit.Dim);
+            else Label(cell, "-", UiKit.Dim);
+        }
 
         /// <summary>The icon, the name, the game's own icons for an animal or a captive, and the info card: the game's own tooltip on the name.</summary>
         private static void NameCell(Rect cell, Row r)
@@ -788,7 +865,7 @@ namespace ColonyCouncil
             Text.Font = GameFont.Small;
             Text.Anchor = TextAnchor.MiddleLeft;
             Text.WordWrap = false;
-            GUI.color = r.willTrade ? Color.white : TradeUI.NoTradeColor;
+            GUI.color = r.willTrade ? UiKit.Ink : TradeUI.NoTradeColor;
             Widgets.Label(label, r.label.Truncate(label.width));
             GUI.color = Color.white;
             Text.WordWrap = true;
@@ -819,7 +896,7 @@ namespace ColonyCouncil
                 Dash(cell);
                 return;
             }
-            Label(cell, n.ToStringCached(), Color.white);
+            Num(cell, n.ToStringCached(), UiKit.Ink);
             if (Mouse.IsOver(cell)) Widgets.DrawHighlight(cell);
             TooltipHandler.TipRegionByKey(cell, tipKey);
         }
@@ -835,15 +912,17 @@ namespace ColonyCouncil
             }
             float price = sale ? r.pay : r.ask, usual = sale ? r.usualSell : r.usualBuy;
             int better = TradeWindowMath.Better(sale, price, usual);
-            var color = better > 0 ? UiKit.Warm : better < 0 ? UiKit.Soon : Color.white;
+            var color = better > 0 ? UiKit.Warm : better < 0 ? UiKit.Soon : UiKit.Ink;
+            bool right = UiKit.OwnLook;
             Text.Font = GameFont.Small;
-            Text.Anchor = TextAnchor.MiddleCenter;
+            Text.Anchor = right ? TextAnchor.MiddleRight : TextAnchor.MiddleCenter;
             GUI.color = color;
-            Widgets.Label(new Rect(cell.x, cell.y + 1f, cell.width, 20f), Money(price));
+            Widgets.Label(new Rect(cell.x, cell.y + 1f, cell.width - (right ? NumberPad : 0f), 20f), Money(price));
             int share = TradeWindowMath.ShareOf(price, r.value);
             string a = share >= 0 ? share + "%" : "-", b = usual > 0f ? TradeWindowMath.Signed(TradeWindowMath.VsUsual(price, usual)) : "-";
             Text.Font = GameFont.Tiny;
-            float wa = Text.CalcSize(a + " · ").x, wb = Text.CalcSize(b).x, x0 = cell.x + (cell.width - wa - wb) / 2f;
+            float wa = Text.CalcSize(a + " · ").x, wb = Text.CalcSize(b).x;
+            float x0 = right ? cell.xMax - NumberPad - wa - wb : cell.x + (cell.width - wa - wb) / 2f;
             Text.Anchor = TextAnchor.UpperLeft;
             GUI.color = UiKit.Faint;
             Widgets.Label(new Rect(x0, cell.y + 19f, wa + 2f, 16f), a + " · ");
@@ -1123,7 +1202,8 @@ namespace ColonyCouncil
 
         private void Side(Rect r)
         {
-            Widgets.DrawBoxSolid(r, UiKit.CardFill);
+            if (UiKit.OwnLook) UiKit.OwnCard(r);
+            else Widgets.DrawBoxSolid(r, UiKit.CardFill);
             var view = new Rect(0f, 0f, r.width - 16f, Mathf.Max(sideHeight, r.height - 4f));
             Widgets.BeginScrollView(r.ContractedBy(2f), ref sideScroll, view);
             try
@@ -1169,7 +1249,8 @@ namespace ColonyCouncil
             {
                 var g = sale ? row.sell : row.buy;
                 var line = new Rect(x, y, w, 26f);
-                if (Mouse.IsOver(line)) Widgets.DrawHighlight(line);
+                if (UiKit.OwnLook) UiKit.RowHover(line);
+                else if (Mouse.IsOver(line)) Widgets.DrawHighlight(line);
                 try
                 {
                     Widgets.ThingIcon(new Rect(x + 2f, y + 3f, 20f, 20f), row.t.AnyThing);
@@ -1243,10 +1324,10 @@ namespace ColonyCouncil
             if (!sums.Any) return Para(x, y, w, W("CC_TradeWin_DealEmpty"), UiKit.Faint, GameFont.Tiny);
             if (sums.soldPieces > 0)
                 y = Para(x, y, w, W("CC_TradeWin_Give", sums.soldPieces.Named("COUNT"), Money(sums.soldValue).Named("VALUE"), Money(sums.soldSilver).Named("SILVER"),
-                    sums.SoldShare.ToStringPercent().Named("SHARE")), Color.white);
+                    sums.SoldShare.ToStringPercent().Named("SHARE")), UiKit.Ink);
             if (sums.boughtPieces > 0)
                 y = Para(x, y, w, W("CC_TradeWin_Get", sums.boughtPieces.Named("COUNT"), Money(sums.boughtValue).Named("VALUE"), Money(sums.boughtSilver).Named("SILVER"),
-                    sums.BoughtShare.ToStringPercent().Named("SHARE")), Color.white);
+                    sums.BoughtShare.ToStringPercent().Named("SHARE")), UiKit.Ink);
             // The net silver as the game counts it for the silver row (its own rounding of the total).
             int net = colonyAfter - colonyNow;
             y = Para(x, y, w, net == 0 ? W("CC_TradeWin_NetEven") : W(net > 0 ? "CC_TradeWin_NetIn" : "CC_TradeWin_NetOut", Mathf.Abs(net).ToStringCached().Named("COUNT")),
@@ -1257,7 +1338,7 @@ namespace ColonyCouncil
                 lean > 0 ? UiKit.Warm : lean < 0 ? UiKit.Soon : UiKit.Faint, GameFont.Small, W("CC_TradeWin_VsUsualTip"));
             y = Para(x, y, w, W("CC_TradeWin_ByValue", Money(sums.GiveWorth).Named("GIVE"), Money(sums.GetWorth).Named("GET")), UiKit.Faint, GameFont.Tiny, W("CC_TradeWin_ByValueTip"));
             if (traderAfter < 0) y = Para(x, y + 2f, w, W("CC_TradeWin_TraderShort", (-traderAfter).Named("COUNT")), UiKit.Soon, GameFont.Tiny);
-            if (colonyAfter < 0) y = Para(x, y + 2f, w, W("CC_TradeWin_ColonyShort", (-colonyAfter).Named("COUNT")), TradeScreen.WarnColor, GameFont.Tiny);
+            if (colonyAfter < 0) y = Para(x, y + 2f, w, W("CC_TradeWin_ColonyShort", (-colonyAfter).Named("COUNT")), Short, GameFont.Tiny);
             foreach (var line in readouts) y = Para(x, y + 2f, w, line.text, UiKit.Faint, GameFont.Tiny, line.tip);
             foreach (var line in impacts) y = Para(x, y + 2f, w, line, UiKit.Soon, GameFont.Tiny);
             return y;
@@ -1280,7 +1361,7 @@ namespace ColonyCouncil
                     var fill = new Rect(r.x, accept.y, bw, 40f);
                     var clear = new Rect(fill.xMax + 8f, accept.y, bw, 40f);
                     bool any = TradeScreen.AnySuggested, some = TradeScreen.HasBasket;
-                    if (Widgets.ButtonText(fill, W("CC_Trade_Fill"), active: any))
+                    if (UiKit.Button(fill, W("CC_Trade_Fill"), ButtonKind.Normal, any))
                     {
                         if (any)
                         {
@@ -1290,7 +1371,7 @@ namespace ColonyCouncil
                         else SoundDefOf.ClickReject.PlayOneShotOnCamera();
                     }
                     TooltipHandler.TipRegion(fill, W(any ? "CC_Trade_FillTip" : "CC_Trade_FillNone"));
-                    if (Widgets.ButtonText(clear, W("CC_Trade_Clear"), active: some))
+                    if (UiKit.Button(clear, W("CC_Trade_Clear"), ButtonKind.Normal, some))
                     {
                         if (some)
                         {
@@ -1302,18 +1383,18 @@ namespace ColonyCouncil
                     TooltipHandler.TipRegion(clear, W("CC_Trade_ClearTip"));
                 }
             }
-            if (Widgets.ButtonText(reset, "ResetButton".Translate()))
+            if (UiKit.Button(reset, "ResetButton".Translate(), ButtonKind.Quiet))
             {
                 SoundDefOf.Tick_Low.PlayOneShotOnCamera();
                 deal.Reset();
                 Build();
             }
-            if (Widgets.ButtonText(accept, "AcceptButton".Translate()))
+            if (UiKit.Button(accept, "AcceptButton".Translate(), ButtonKind.Primary))
             {
                 Accept();
                 Event.current.Use();
             }
-            if (Widgets.ButtonText(cancel, "CancelButton".Translate()))
+            if (UiKit.Button(cancel, "CancelButton".Translate()))
             {
                 Close();
                 Event.current.Use();
@@ -1323,6 +1404,9 @@ namespace ColonyCouncil
 
         private const float WalletH = 112f;
 
+        /// <summary>The colony short of silver: the game's red, or the own look's danger (with its words, never alone).</summary>
+        private static Color Short => UiKit.OwnLook ? UiKit.Danger : TradeScreen.WarnColor;
+
         /// <summary>
         /// The colony's purse at a glance: its silver now, an arrow, its silver after this trade, both large; under them in
         /// words and colour whether it can pay (green, or red with how much is missing), and the trader's purse
@@ -1331,7 +1415,15 @@ namespace ColonyCouncil
         private void Wallet(Rect r)
         {
             bool shortOurs = colonyAfter < 0, shortTheirs = traderAfter < 0;
-            Widgets.DrawBoxSolidWithOutline(r, shortOurs ? new Color(0.45f, 0.12f, 0.1f, 0.35f) : UiKit.CardFill, shortOurs ? TradeScreen.WarnColor : UiKit.CardBorder, 1);
+            if (UiKit.OwnLook)
+            {
+                // Rimfolk's own look: a raised card with its soft shadow, washed and edged in the warning's colour when short.
+                UiKit.SoftShadow(r, 0.7f);
+                UiKit.RoundBox(r, UiKit.Raised, shortOurs ? Short : UiKit.Edge, SkinMath.RadiusCard);
+                if (shortOurs) UiKit.Round(r.ContractedBy(1f), UiKit.WithAlpha(Short, 0.12f), SkinMath.RadiusCard);
+            }
+            else
+                Widgets.DrawBoxSolidWithOutline(r, shortOurs ? new Color(0.45f, 0.12f, 0.1f, 0.35f) : UiKit.CardFill, shortOurs ? TradeScreen.WarnColor : UiKit.CardBorder, 1);
             if (Time.time - Dialog_Trade.lastCurrencyFlashTime < 1f) GUI.DrawTexture(r, TransferableUIUtility.FlashTex);
             var inner = r.ContractedBy(10f);
             Text.Font = GameFont.Tiny;
@@ -1340,12 +1432,12 @@ namespace ColonyCouncil
             Text.Font = GameFont.Medium;
             float numY = inner.y + 18f;
             string now = colonyNow.ToStringCached(), after = colonyAfter.ToStringCached();
-            GUI.color = Color.white;
+            GUI.color = UiKit.Ink;
             float nowW = Text.CalcSize(now).x;
             Widgets.Label(new Rect(inner.x, numY, nowW + 4f, 34f), now);
             GUI.color = UiKit.Faint;
             Widgets.Label(new Rect(inner.x + nowW + 8f, numY, 30f, 34f), "\u2192");
-            GUI.color = shortOurs ? TradeScreen.WarnColor : colonyAfter < colonyNow ? UiKit.Gold : UiKit.Good;
+            GUI.color = shortOurs ? Short : colonyAfter < colonyNow ? UiKit.Gold : UiKit.Good;
             Widgets.Label(new Rect(inner.x + nowW + 38f, numY, inner.width - nowW - 38f, 34f), after);
             Text.Font = GameFont.Small;
             float lineY = numY + 34f;
@@ -1354,7 +1446,7 @@ namespace ColonyCouncil
                 : diff < 0 ? W("CC_TradeWin_WalletPay", (-diff).Named("COUNT"))
                 : diff > 0 ? W("CC_TradeWin_WalletGet", diff.Named("COUNT"))
                 : W("CC_TradeWin_WalletEven");
-            GUI.color = shortOurs ? TradeScreen.WarnColor : UiKit.Good;
+            GUI.color = shortOurs ? Short : UiKit.Good;
             Widgets.Label(new Rect(inner.x, lineY, inner.width, 22f), verdict);
             Text.Font = GameFont.Tiny;
             GUI.color = shortTheirs ? UiKit.Soon : UiKit.Faint;
@@ -1375,7 +1467,7 @@ namespace ColonyCouncil
             Text.Anchor = TextAnchor.MiddleRight;
             var top = new Rect(r.x, r.y + 2f, r.width - 4f, r.height / 2f - 2f);
             var bottom = new Rect(r.x, r.y + r.height / 2f, r.width - 4f, r.height / 2f - 2f);
-            GUI.color = colonyAfter < 0 ? TradeScreen.WarnColor : Color.white;
+            GUI.color = colonyAfter < 0 ? Short : UiKit.Ink;
             Widgets.Label(top, W("CC_TradeWin_SilverOurs", colonyNow.ToStringCached().Named("NOW"), colonyAfter.ToStringCached().Named("AFTER")).Truncate(top.width));
             GUI.color = traderAfter < 0 ? UiKit.Soon : UiKit.Faint;
             Widgets.Label(bottom, W("CC_TradeWin_SilverTheirs", traderNow.ToStringCached().Named("NOW"), traderAfter.ToStringCached().Named("AFTER")).Truncate(bottom.width));

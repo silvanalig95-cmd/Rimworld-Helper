@@ -92,7 +92,7 @@ namespace ColonyCouncil
             }
             if (t.IsMapTarget || t.HasThing)
             {
-                Find.MainTabsRoot.EscapeCurrentTab(false);
+                Pages.LeaveForMap();
                 CameraJumper.TryJumpAndSelect(t);
                 return;
             }
@@ -291,7 +291,7 @@ namespace ColonyCouncil
             m.Act(T("CC_Card_Act_Roster"), null, () => MainTabWindow_Council.OpenPerson(pawn));
             m.Act(T("CC_Card_Act_Jump"), p.Spawned ? null : T("CC_Card_Why_NotOnMap", p.LabelShort.Named("NAME")), () =>
             {
-                Find.MainTabsRoot.EscapeCurrentTab(false);
+                Pages.LeaveForMap();
                 CameraJumper.TryJumpAndSelect(pawn);
             });
         }

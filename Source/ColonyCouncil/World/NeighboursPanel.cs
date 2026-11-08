@@ -155,14 +155,14 @@ namespace ColonyCouncil
             const float btnW = 96f;
             float textW = r.xMax - x - btnW - 8f;
             if (!row.tip.NullOrEmpty()) TooltipHandler.TipRegion(new Rect(x, r.y + 20f, textW, r.height - 20f), row.tip);
-            LinkText.Line(new Rect(x, r.y + 2f, textW, 20f), row.line, Color.white);
+            LinkText.Line(new Rect(x, r.y + 2f, textW, 20f), row.line, UiKit.Ink);
             string second = row.regard + (row.knows.NullOrEmpty() || small ? "" : ". " + row.knows);
             LinkText.Line(new Rect(x, r.y + 20f, textW, 18f), second, row.regardColor, GameFont.Tiny);
             string third = row.status ?? (small ? row.knows : row.last);
             if (!third.NullOrEmpty()) LinkText.Line(new Rect(x, r.y + 36f, textW, 18f), third, row.status != null ? UiKit.Info : UiKit.Faint, GameFont.Tiny);
             var b = new Rect(r.xMax - btnW, r.y + (small ? 8f : 12f), btnW, 26f);
             bool can = row.why == null;
-            if (Widgets.ButtonText(b, "CC_Neighbours_Write".Translate(), true, true, can))
+            if (UiKit.Button(b, "CC_Neighbours_Write".Translate(), ButtonKind.Normal, can))
             {
                 if (can) Find.WindowStack.Add(new Dialog_NeighbourLetter(row.n));
             }

@@ -675,6 +675,13 @@ namespace ColonyCouncil
         public WindowSizeChoice windowSize = WindowSizeChoice.Standard;
         /// <summary>The filters and sort orders the council's pages remember, as "page.key=value" (UI/PageMemory.cs).</summary>
         public System.Collections.Generic.List<string> councilPageState = new System.Collections.Generic.List<string>();
+        // Rimfolk's own look and its window frame (docs/design/rimfolk-look.md, UI/WindowFrame.cs, UI/UiKitSkin.cs).
+        /// <summary>Rimfolk's windows in a style of their own (rounded cards, flat buttons, tabs that read as tabs); off draws the game's look.</summary>
+        public bool ownLook = true;
+        /// <summary>Rimfolk's windows move by their title bar, size from their edges and go large; the region window floats.</summary>
+        public bool windowsMove = true;
+        /// <summary>Where each of Rimfolk's windows was left and how big, as "key=x;y;w;h" (UI/WindowFrameMath.cs), set by moving them.</summary>
+        public System.Collections.Generic.List<string> windowPlaces = new System.Collections.Generic.List<string>();
 
         // On-screen panels and the hover card (Hud/). The food lines default to the advisor's own (Advisor: four days is low).
         public bool hudShown = true;
@@ -1077,6 +1084,11 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref councilPageState, "councilPageState", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit || Scribe.mode == LoadSaveMode.LoadingVars)
                 councilPageState ??= new System.Collections.Generic.List<string>();
+            Scribe_Values.Look(ref ownLook, "ownLook", true);
+            Scribe_Values.Look(ref windowsMove, "windowsMove", true);
+            Scribe_Collections.Look(ref windowPlaces, "windowPlaces", LookMode.Value);
+            if (Scribe.mode == LoadSaveMode.PostLoadInit || Scribe.mode == LoadSaveMode.LoadingVars)
+                windowPlaces ??= new System.Collections.Generic.List<string>();
             Scribe_Values.Look(ref hudShown, "hudShown", true);
             Scribe_Values.Look(ref hudLock, "hudLock", false);
             Scribe_Values.Look(ref hudHideWithTabs, "hudHideWithTabs", false);

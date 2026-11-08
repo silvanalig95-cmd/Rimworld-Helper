@@ -57,14 +57,22 @@ public static class LookTests
         int a = kit.IndexOf(open, StringComparison.Ordinal), b = kit.IndexOf(shut, StringComparison.Ordinal);
         C(a > 0 && b > a && kit.IndexOf(open, a + 1, StringComparison.Ordinal) < 0, "UiKit has one block of tokens");
         string block = a > 0 && b > a ? kit.Substring(a, b - a) : "";
-        foreach (var t in Tokens) C(Regex.IsMatch(block, @"public static readonly Color " + t + @"\b"), $"the token {t} is in the block");
+        // Each token has two values since Rimfolk's own look (docs/design/rimfolk-look.md): the game's look as before, and
+        // Rimfolk's own, chosen by whether a window in Rimfolk's frame draws in it.
+        foreach (var t in Tokens)
+        {
+            C(Regex.IsMatch(block, @"public static (readonly )?Color " + t + @"\b"), $"the token {t} is in the block");
+            C(Regex.IsMatch(block, @"public static Color " + t + @" => own \? own_" + t + @" : game_" + t + ";")
+              && Regex.IsMatch(block, @"private static readonly Color game_" + t + @" = ") && Regex.IsMatch(block, @"private static readonly Color own_" + t + @" = "),
+                $"the token {t} has the game's value and Rimfolk's own");
+        }
         // The names the pages used before are tokens now, so any code that reads them draws the same set.
         foreach (var (old, token) in new[]
                  {
                      ("Good", "Warm"), ("Bad", "Sour"), ("Warn", "Soon"), ("Info", "Cool"), ("Neutral", "Faint"), ("Quote", "Ink"), ("HeaderColor", "Heading"),
                      ("DreamColor", "Faint"), ("LossColor", "Faint"), ("StrangerColor", "Cool"), ("WorldColor", "World")
                  })
-            C(block.Contains($"public static readonly Color {old} = {token};"), $"the old name {old} is the token {token}");
+            C(block.Contains($"public static readonly Color {old} = {token};") || block.Contains($"public static Color {old} => {token};"), $"the old name {old} is the token {token}");
         // Nothing else in the kit makes a colour: outside the block, every colour is a token or a token made fainter.
         string outside = a > 0 && b > a ? kit.Substring(0, a) + kit.Substring(b) : kit;
         var kitFiles = new List<(string name, string code)> { ("UI/UiKit.cs (outside the tokens)", Code(outside)) };

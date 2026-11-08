@@ -80,7 +80,7 @@ namespace ColonyCouncil
             GUI.color = Color.white;
             if (DiplomacyLinks.Opens(r.link))
             {
-                Widgets.DrawHighlightIfMouseover(textRect);
+                UiKit.RowHover(textRect);
                 if (Widgets.ButtonInvisible(textRect)) DiplomacyLinks.Open(r.link);
             }
             if (!r.tip.NullOrEmpty()) TooltipHandler.TipRegion(textRect, r.tip);
@@ -115,7 +115,7 @@ namespace ColonyCouncil
             GUI.color = Accent;
             Widgets.Label(title, p.name);
             GUI.color = Color.white;
-            Widgets.DrawHighlightIfMouseover(title);
+            UiKit.RowHover(title);
             if (Widgets.ButtonInvisible(title)) DiplomacyLinks.Open(p.people);
             Text.Font = GameFont.Small;
             UiKit.LabelFit(new Rect(x + 12f + Mathf.Min(Text.CalcSize(p.name).x + 120f, inner * 0.6f), cy + 4f, ButtonW + 60f, 24f), p.stance, p.stanceColor);

@@ -82,24 +82,21 @@ namespace ColonyCouncil
             try
             {
                 var comp = CouncilGameComponent.Instance;
-                float y = 0f, w = view.width;
-                // Who is here from outside, and a camp on the colony's land.
-                if (dip != null) y = DiplomacyPanels.Section(y, w, DipWords.P("CC_Dip_Here_Title"), here, DipWords.P("CC_Dip_Here_None"), folds, "here");
-                y = CampPanel.Section(y, w);
-                y += 6f;
-                // What is on its way to the colony.
-                y = WorldPanel.ComingSection(y, w, comp, folds);
-                // Letters and calls on the road.
-                y = LettersPage.UnderWaySection(y, w, folds);
-                // Who of the colony's is away: people away, the journey planned, the caravans out on the land.
-                y = AwaySection(y, w);
-                // Missions offered or under way, with their progress (Missions/MissionPanel.cs).
-                y = MissionPanel.Draw(y, w);
-                y += 10f;
-                if (dip != null) y = DiplomacyPanels.Section(y, w, DipWords.P("CC_Dip_Married_Title"), dip.houses, DipWords.P("CC_Dip_Married_None"), folds, "houses");
-                // Schemes against the colony found out (Diplomacy/Schemes.cs), while schemes can come or one is still remembered.
-                if (dip != null && (Schemes.On || schemes.Count > 0))
-                    y = DiplomacyPanels.Section(y, w, "CC_Scheme_Found_Title".Translate(), schemes, "CC_Scheme_Found_None".Translate(), folds, "schemes");
+                float y, w = view.width;
+                // A window made larger shows the two halves side by side: who is here and what is coming, who is away and
+                // the missions (RegionViewsMath.Columns).
+                if (RegionViewsMath.Columns(w) == 1) y = AwayHalf(HereHalf(0f, w, comp), w);
+                else
+                {
+                    float cw = RegionViewsMath.ColumnWidth(w);
+                    Widgets.BeginGroup(new Rect(0f, 0f, cw, Mathf.Max(height, outRect.height)));
+                    float left = HereHalf(0f, cw, comp);
+                    Widgets.EndGroup();
+                    Widgets.BeginGroup(new Rect(cw + RegionViewsMath.ColumnGap, 0f, cw, Mathf.Max(height, outRect.height)));
+                    float right = AwayHalf(0f, cw);
+                    Widgets.EndGroup();
+                    y = Mathf.Max(left, right);
+                }
                 height = Mathf.Max(y + 10f, 100f);
             }
             finally
@@ -109,6 +106,34 @@ namespace ColonyCouncil
                 Text.Anchor = TextAnchor.UpperLeft;
                 GUI.color = Color.white;
             }
+        }
+
+        /// <summary>Who is here from outside and a camp on the colony's land, what is on its way, the letters and calls on the road.</summary>
+        private static float HereHalf(float y, float w, CouncilGameComponent comp)
+        {
+            // Who is here from outside, and a camp on the colony's land.
+            if (dip != null) y = DiplomacyPanels.Section(y, w, DipWords.P("CC_Dip_Here_Title"), here, DipWords.P("CC_Dip_Here_None"), folds, "here");
+            y = CampPanel.Section(y, w);
+            y += 6f;
+            // What is on its way to the colony.
+            y = WorldPanel.ComingSection(y, w, comp, folds);
+            // Letters and calls on the road.
+            return LettersPage.UnderWaySection(y, w, folds);
+        }
+
+        /// <summary>Who of the colony's is away, the missions, the houses, the schemes found out.</summary>
+        private static float AwayHalf(float y, float w)
+        {
+            // Who of the colony's is away: people away, the journey planned, the caravans out on the land.
+            y = AwaySection(y, w);
+            // Missions offered or under way, with their progress (Missions/MissionPanel.cs).
+            y = MissionPanel.Draw(y, w);
+            y += 10f;
+            if (dip != null) y = DiplomacyPanels.Section(y, w, DipWords.P("CC_Dip_Married_Title"), dip.houses, DipWords.P("CC_Dip_Married_None"), folds, "houses");
+            // Schemes against the colony found out (Diplomacy/Schemes.cs), while schemes can come or one is still remembered.
+            if (dip != null && (Schemes.On || schemes.Count > 0))
+                y = DiplomacyPanels.Section(y, w, "CC_Scheme_Found_Title".Translate(), schemes, "CC_Scheme_Found_None".Translate(), folds, "schemes");
+            return y;
         }
 
         private static void Build()
@@ -166,7 +191,7 @@ namespace ColonyCouncil
                 var a = shown[i];
                 var r = new Rect(0f, y, w, 44f);
                 UiKit.Zebra(r, i);
-                Widgets.DrawHighlightIfMouseover(r);
+                UiKit.RowHover(r);
                 UiKit.Icon(new Rect(8f, y + 12f, 20f, 20f), Icons.Trader, UiKit.Gold);
                 LinkText.Line(new Rect(36f, y + 3f, w - 80f, 22f), a.link, UiKit.HeaderColor);
                 LinkText.Line(new Rect(36f, y + 24f, w - 80f, 18f), a.line, UiKit.Faint, GameFont.Tiny);
