@@ -400,6 +400,8 @@ namespace ColonyCouncil
                 new[] { "Auto", "On", "Off" }, "petMoments");
             // The colony's animals hunting for themselves (Animals/PetHunts.cs): not a part of the companions' life, so on its own.
             Toggle("petsHunt", "CC_Settings_PetsHunt", "CC_SetNote_PetsHunt");
+            // A bleeding animal's body taken when it dies (Animals/BodyWhenItDies.cs): the player's own order, with the kill's hook.
+            Toggle("bodyWhenItDies", "CC_Settings_BodyWhenItDies", "CC_SetNote_BodyWhenItDies", "deepHooks");
             Section("CC_Settings_WorldEventsHeader");
             Toggle("worldEvents", "CC_Settings_WorldEvents", "CC_SetNote_WorldEvents");
             Toggle("camps", "CC_Settings_Camps", "CC_SetNote_Camps", "worldEvents");
@@ -571,6 +573,8 @@ namespace ColonyCouncil
             Toggle("moodBubbleText", "CC_Settings_MoodBubbleText", "CC_SetNote_MoodBubbleText");
             Toggle("moodInsight", "CC_Settings_MoodInsight", "CC_SetNote_MoodInsight");
             Toggle("needsTabHints", "CC_Settings_NeedsTabHints", "CC_SetNote_NeedsTabHints", "moodInsight");
+            // Which things have the wrong style for a colonist's ideoligion (Moods/StyleSurroundings.cs, with Ideology).
+            Toggle("styleNotes", "CC_Settings_StyleNotes", "CC_SetNote_StyleNotes", "deepHooks");
             Toggle("heartInspector", "CC_Settings_HeartInspector", "CC_SetNote_HeartInspector", "heart");
             Toggle("socialTabColumn", "CC_Settings_SocialTabColumn", "CC_SetNote_SocialTabColumn", "deepHooks");
             Section("CC_Settings_Alerts");

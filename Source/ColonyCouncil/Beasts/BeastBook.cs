@@ -132,6 +132,9 @@ namespace ColonyCouncil
             // The colony's animals hunting the wild (Animals/PetHunts.cs): the hunts under way kept to the rules, and the
             // hungry ones with nothing in reach looked at for their alert.
             Safe("pets hunting", () => PetHunts.Rare(now));
+            // Bleeding animals marked for their body when they die (Animals/BodyWhenItDies.cs): an order dropped once one
+            // stops bleeding, is tamed, joins the colony or leaves the map.
+            Safe("the body when it dies", () => BodyWhenItDies.Rare(now));
         }
 
         private void Hourly(int now)

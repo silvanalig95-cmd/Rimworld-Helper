@@ -1394,6 +1394,14 @@ An alert says when an animal's **carcass lies out fresh**: one that hasn't start
 nobody on their way to it an hour after it died. It lists each one, says when it's forbidden or past the home area, and
 a click goes to it, so it can be hauled in, butchered or buried before it spoils (a setting with the alerts).
 
+A strong wild animal that is **bleeding out** can be left to die instead of hunted: select it and press **Take the body
+when it dies** (on any bleeding animal that isn't the colony's). The haul mark shows over it and nobody goes near it while
+it lives; when it dies, however it dies, its body is unforbidden and marked for hauling, and a hauler takes it to storage
+(you are told if no storage on the map takes it). The button's tooltip says how fast it bleeds and whether it will bleed to
+death and about when, as the health tab does. If it stops bleeding, is tamed, joins the colony or leaves the map first,
+the order is cancelled and a message says why; the game's Cancel tool takes the mark off too (a setting with the
+strangers and creatures, on by default).
+
 The Overview page's card **The herd and the land** shows who leads the herd, of which line and generation, whether
 the old leader is in its last season, the beast the colony watches and what it has made of it, a shiny rumour on the
 wind (with PokéWorld) and the neighbours settled for good. The Almanac page "the colony's animals" has the numbers, and
@@ -3718,6 +3726,15 @@ by kind ("While it lasts", "Fades in 2 days", "Their ideoligion", "Lasting") and
 The game's own **Needs** tab gets a line above its mood list with the same totals ("You can fix -15 · Will pass -11
 · Ideoligion -4 · Lifting +22"; click it to open the Mood tab), and hovering a mood there ends its usual tooltip with
 which mod it comes from and what to do about it (a setting turns both off).
+
+With Ideology, the **style mood** ("Federal-style surroundings", "Non-Federal-style surroundings") says what it comes from:
+its tooltip lists the things around the colonist now that count against their ideoligion's style, by kind and style with
+how many and the points ("Animist dining chair ×4, -20"), the biggest first, then what counts for it, the total against
+the game's threshold (10 points either way), and what would fix it. New buildings always take the main ideoligion's style
+and the game can't restyle a built thing, so it says when building them again helps and when only moving them, a
+conversion or a reform will. A colonist with the bad mood gets a button, **Show the wrong-style things**, that selects
+them on the map, and a styled thing's inspect text names the colonists whose style it goes against ("Against Federalism's
+style: Aquason, Ian"). Nothing about the mood itself changes (the setting "Wrong-style things named", on by default).
 
 ## On-screen panels and the hover card
 What you keep checking, on the map, so you don't click through every colonist. Eight small panels, painted as a

@@ -1162,6 +1162,49 @@ game, the DLCs and the player's 29 animal mods from their own defs, `Tools/Tests
   its own jobs and stay its own (this is the animal feeding itself); a mod that gives a hungry animal another food job
   (foraging, fishing) wins, since food found always stands.
 
+### A bleeding animal's body taken when it dies (the player's request, 8 November 2026)
+
+The player: "if i see a wild animal is bleeding out, can i give a command to haul it's corpse once it's dead? not to hunt
+it, in case it's a strong one, but just to wait for it to die. if the animal recovers from bleeind comehow, this job
+shouild be cancelled." The pure rules are `Animals/BodyWhenItDiesMath.cs` (`BodyWhenItDiesTests`); the game's side
+`Animals/BodyWhenItDies.cs`, `BodyWhenItDiesPatches.cs` and `BodyWhenItDiesDebug.cs`; the mark
+`Defs/Misc/Rimfolk_BodyWhenItDies.xml`.
+
+- **The order.** On a selected animal that isn't the colony's (wild or another people's), alive, on the map and bleeding
+  (the game's `BleedRateTotal` at its own floor of 0.0001), the button "Take the body when it dies" (`Patch_BodyWhenItDiesGizmo`,
+  a `Command_Action` on `Pawn.GetGizmos`, the game's haul icon). It puts Rimfolk's designation `Rimfolk_TakeBodyWhenDead`
+  on it (the haul icon again, no new art): the game draws it over the animal, saves it with the map, and its Cancel tool
+  (and the Cancel button that then shows on the animal) takes it off. It replaces a hunting or taming order on it, as the
+  game's own animal orders replace each other (`RemoveAllDesignationsOn`).
+- **Its tooltip** says what it does, the bleeding rate, and how it will likely go (`BodyWhenItDiesMath.Outlook`, the game's
+  rules): it bleeds to death in about the health tab's own figure (`TicksUntilDeathDueToBloodLoss`: blood left over the rate
+  now), or it shouldn't, because its wounds stop bleeding on their own first (an injury after 1.5 days, up to 3 days for a
+  wound of 30, `Hediff_Injury.AgeTicksToStopBleeding`; a missing part after 1.5 days) or because under 10% a day the blood
+  comes back (`HediffGiver_Bleeding`). The wounds are followed one by one as they close, the game's factors scaling them
+  alike.
+- **While it lives** nothing is done: nobody hunts or hauls it, the colony's pets leave it out of their prey
+  (`HuntMath.PreyFacts.markedForBody`), and Rimfolk's own hunts already skip an animal with another order on it
+  (`PlayHunt.ChooseGame`, the wishes' prey).
+- **When it dies**, however it dies (`Patch_BodyWhenItDiesKill`): the game's `Pawn.Kill` puts the body down, forbidden
+  outside the home area unless a hunter killed it or it was marked for hunting, and only after that, destroying the animal,
+  removes every order on it (`Thing.Destroy`, `RemoveAllReservationsAndDesignationsOnThis`). So the prefix reads the mark on
+  the map that holds it and the postfix, once the animal is really dead (another mod may stop a death), unforbids the body
+  and gives it the game's own `Haul` order unless it already lies in storage; a hauler takes it to the best storage by the
+  usual rules. With no storage on the map that takes it (`StoreUtility.TryFindBestBetterStorageFor`, no carrier), the
+  player is told once (`Notify.Message`, the body the look target) and the body waits, unforbidden and marked.
+- **Cancelled on its own**, looked at on the wild's short pass (`BeastBook.Rare`, every 250 ticks, no slot of its own):
+  `BodyWhenItDiesMath.Judge` drops the order with one message naming the animal and why when it stopped bleeding (its wounds
+  aged out, were tended or healed), was tamed or came over to the colony (the game takes every order off an animal that
+  changes hands, so this is read from its faction and whether it was wild when marked), or left the map (also with its
+  order still on it, carried off or walked out). Cancelled by the player, or replaced by a hunting or taming order, it is
+  dropped without a word; the setting or the deeper hooks off, every mark is dropped without a word.
+- **Saved**: nothing of its own. The mark is the game's designation; whether each marked animal was wild is session
+  memory, filled again from the marks (by the animal's faction then) on the first short pass after a load. No new Sched
+  slot, two Harmony patches.
+- **Control**: the setting "Take a bleeding animal's body when it dies" (`bodyWhenItDies`, What's on, Strangers and
+  creatures, on by default, under the deeper hooks). Harm: none of its own; the animal bleeds from what already happened on
+  the map.
+
 ### What the colony's people want, strive for and are known for: the fourth round (6 November 2026)
 
 The player's request ("do another big content update to existing mechanics"), the part about the colony's own people:
@@ -1260,6 +1303,54 @@ always the game's own `IdeoConversionAttempt` and is told one way. Off without I
   or whom they could bring round), the mark under "what shaped them", news, the journal; the advisor's
   `Council_Adv_FaithSplit` (split 0.5 or more with three ideoligions or more, leading to the page); the Almanac page
   "ideoligions in the colony".
+
+### Which things have the wrong style (the player's question, 8 November 2026)
+
+The player had a colonist with "Non-Federal-style surroundings -4" (Federalism, intense bigotry): "how do i even know what
+is having the 'wrong' style? I don't see it", then "i'd appreciate if you add notes about which exact items have the wrong
+style, so i can target these". With Ideology outside classic mode, the game's style mood (`ThoughtWorker_StyleDominance`,
+every diversity precept's thought) comes from a sum it never shows (`Pawn_StyleObserverTracker`): every 900 ticks, awake
+and not blind, a random cell within 5 in line of sight, and over the cells within 24.9 of it that are in the colonist's
+room (and the rooms a doorway they stand in joins: `IdeoUtility.GetJoinedRooms`), not fogged, each floor (plus for one of
+their ideoligion's buildables, minus for any other that isn't buildable by default) and each thing in each cell
+(`IdeoUtility.GetStyleDominance`: its StyleDominance stat, plus for the style their ideoligion uses for that def, minus for
+another style; a relic container by its relic's ideoligion; their ideoligion's own special buildables plus, another's
+minus; plain things nothing). A building counts in every cell it covers. At 10 points either way the mood shows (a room
+under 10 cells, not a doorway: its cell count). New buildings take the main ideoligion's style (`Designator_Build`, no
+choice outside classic mode) and nothing restyles a built thing. The pure rules are `Moods/StyleSurroundingsMath.cs`
+(`StyleSurroundingsTests`); the game's side `Moods/StyleSurroundings.cs` (three patches) and `StyleSurroundingsDebug.cs`.
+
+- **The count** (`StyleSurroundings.Count`): the game's own sum from the colonist's own cell (not the game's random one):
+  the same cells, floors and rooms, each thing's points from the game's private `GetStyleDominance` and the rooms from its
+  private `GetJoinedRooms`, both reached by name (`AccessTools`, a delegate each), so the points can't drift from the
+  game's; without them the feature is off with one warning. Things are grouped by def and style (another ideoligion's own
+  things by that ideoligion, relics by theirs, floors by terrain), each thing counted once and its points summed over its
+  cells (`StyleSurroundingsMath.Group`); against them the biggest first, for them apart.
+- **The mood's tooltip** (`Patch_StyleSurroundingsTip`, a postfix on the worker's `PostProcessDescription`, so it shows
+  wherever the game or Rimfolk's Mood tab shows the mood's description): "Around Aquason now (dining room), as the game
+  counts it:", then "Against Federalism's style:" and up to eight lines ("Animist dining chair ×4, -20", "Animist table,
+  -16", "Morbid tile, 12 cells, -12", then "and N more, -X"), "For it:" up to four, "Here in all: -31. The bad mood comes at
+  -10 or lower, the good one at +10 or higher.", and with the bad mood one line of what would fix it
+  (`StyleSurroundingsMath.FixKey`, by each kind's `StyleFix`): their ideoligion is the main one, or the main one's style
+  for those things is theirs or none (plain counts nothing): build them again; it is another style: building again won't
+  help, so move them out of the rooms they use, convert them to the main ideoligion, or reform an ideoligion so the two
+  share a style; only some would help: those named (three at most); only another ideoligion's own things, relics, floors or
+  items: move them or take them down.
+- **The button** (`Patch_StyleSurroundingsGizmo` on `Pawn.GetGizmos`): "Show the wrong-style things" on a colonist with the
+  bad stage (`StyleDominanceThoughtIndex` 1) whose ideoligion has the mood (`cachedPossibleSituationalThoughts`). It counts
+  again and selects the things against them on the map (`Find.Selector`, 150 at most), the camera moved to the first when
+  it is out of view; floors can't be selected (the tooltip has them). Nothing there: a rejection message says the mood came
+  from where they were when the game last counted.
+- **A thing's own line** (`Patch_StyleSurroundingsInspect` on `ThingWithComps.GetInspectString`, with the lucky things'):
+  for a thing with StyleDominance above 0, "Against Federalism's style: Aquason, Ian" for each ideoligion with the mood
+  among the colony's free colonists and slaves on its map whose style it goes against.
+- **Cheap**: a colonist's count and tooltip at most once every 250 ticks (by the tick's 250-block, kept for 200
+  colonists), the map's ideoligions and names once every 250 ticks, a thing's line once every 250 ticks a thing; nothing
+  every frame. No mood is changed and nothing is saved. An exception switches it off for the session.
+- **Control**: the setting "Wrong-style things named" (`styleNotes`, How you're told, On the map, on, under the deeper
+  hooks); only with Ideology and not in classic mode. Dev mode: "Wrong-style things: the count around a colonist (log)"
+  writes the groups with the game's own `GetStyleDominanceFromCellsCenteredOn` from the same cell beside Rimfolk's total.
+
 ### Ideoligions and the council
 With Ideology, the council can work with the colony's ideoligions (`Faith/FaithEvenings.cs`, `Faith/FaithCouncilMath.cs`,
 `Dilemmas/DilemmaWorkers_Faith.cs`, `Decrees/DecreeFaith.cs`, `Wishes/WishWorkers_Faith.cs`). Everything moves
@@ -7605,7 +7696,7 @@ chains, nemeses, camps, play-outs, the fights pass and the worn-out episode read
 | 173 | A journey planned ahead (Journeys/JourneyRun.cs; only while there is one): the stage its hour has reached (a day before, the travellers' timetables shifted; the last hours begun), each traveller's next step, the hour itself and the question when someone isn't ready | per traveller: free for a step, the step's job; at the hour, each one ready or not |
 | 199 | The council window's memory: the day's trust sample, the dilemmas and answers it watches | per colonist once a day |
 | 187 | Who stands beside whom in a fight at home (only while one is on; Social/FightSides.cs), so only they remember it together and become comrades; who carries, tends or stands over someone down; and the colony's animals in it (Animals/AnimalTempers.cs, AnimalVoices.cs): a brave one goes to stand by its person, a timid one bolts from the shooting, a speaking one warns of the raiders | per fighting colonist pair on that map (close, then the same room or in sight); per named or bonded animal there that is brave, timid or speaks |
-| 193 | The wild's alphas and bosses (Beasts/BeastBook.cs; each part by its rate): an alpha fallen (its pack scattered) or tamed (its pack walking in), a big threat looked at for a manhunters' alpha, a beast nemesis badly hurt turning to run, one fled off the map kept, a sworn one's fury, each home map's herds crossing for an edge spooked into a stampede, its runners' way, those who stop to watch; its hour on the same tick of the hour (alphas' threats and sightings, beast nemeses' returns and oaths), its day in the first hour of the day (packs led by an alpha, the season's great herd) | per open alpha and its pack, per beast nemesis on a home map, per home map's exit groups of four or more wild animals; a stampede's runners against the map's pawns for an hour |
+| 193 | The wild's alphas and bosses (Beasts/BeastBook.cs; each part by its rate): an alpha fallen (its pack scattered) or tamed (its pack walking in), a big threat looked at for a manhunters' alpha, a beast nemesis badly hurt turning to run, one fled off the map kept, a sworn one's fury, each home map's herds crossing for an edge spooked into a stampede, its runners' way, those who stop to watch; the colony's pets' hunts kept to their rules, and a bleeding animal's order to take its body dropped once it stops bleeding, is tamed or leaves (Animals/); its hour on the same tick of the hour (alphas' threats and sightings, beast nemeses' returns and oaths), its day in the first hour of the day (packs led by an alpha, the season's great herd) | per open alpha and its pack, per beast nemesis on a home map, per home map's exit groups of four or more wild animals; a stampede's runners against the map's pawns for an hour |
 | 221 | Ailments: one tenth of the colonists (by ID), each once an hour; the slice at tick 2471 also carries the colony's part | the colony's serious illnesses counted (every colonist's hediffs, as before every hour's rolls), then per colonist in the slice: circumstances sampled, each ailment's counted causes rolled; diet and sweets on the first look of the day |
 | 227 | The colony's animals with powers (Animals/AnimalPowers.cs; nothing without PokéWorld, A RimWorld of Magic, Ideology or the omens' setting): the colony's typed Pokémon at home (warmth, crops, a battery, a calming, a fire), each familiar near its mage, a binding waiting; on the hour's first pass the typed Pokémon counted, newborns under a sign, omens' fates, sacred animals fallen and hunts marked; in the first hour of the day a mage's own choice | per typed Pokémon of the colony (a room, 25 cells, 9 cells, the colonists within 6, the fires); per familiar and binding; hourly per colony animal (a birth check) and per fresh corpse |
 | 211 | A neighbour's letter being written, a call under way or the comms console ringing (World/NeighbourLetters.cs; only while there is one) | per letter or call under way: the writer still at it, someone free to answer |

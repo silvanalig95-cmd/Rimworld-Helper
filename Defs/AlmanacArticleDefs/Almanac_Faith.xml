@@ -63,8 +63,16 @@ Rimfolk adds no belief system of its own beside the game's. It reads the game's 
         <after>Prisoners and slaves are the warden's to convert, as in the game itself.</after>
       </li>
       <li>
+        <heading>Things in the wrong style</heading>
+        <text>An ideoligion that cares about its style gives its believers a mood from what is around them: "Federal-style surroundings" when their style rules the room, "Non-Federal-style surroundings" when another does. The game never shows the count behind it. Every 900 ticks it picks a spot within 5 cells of the colonist, in their sight, and adds up what lies within 24.9 cells of it in their room (and the rooms a doorway they stand in joins): plus for a thing in their ideoligion's style for that thing, minus for a thing in another style; plus for their ideoligion's own buildings, floors and relics, minus for another ideoligion's; nothing for plain things. A building counts in every cell it covers, so a big table weighs more than a chair. At 10 points either way the mood shows, in a room under 10 cells at its cell count.
+
+Rimfolk adds the count to the mood's tooltip: what counts against them around them now, by kind and style with how many and the points ("Animist dining chair ×4, -20"), the biggest first, then what counts for them, the total against the threshold, and what would fix it. A colonist with the bad mood has a button, "Show the wrong-style things", that selects those things on the map, and a styled thing's inspect text names the colonists on the map whose style it goes against ("Against Federalism's style: Aquason, Ian").
+
+New buildings always take the colony's main ideoligion's style, and the game can't restyle a built thing. So building them again helps only when the main ideoligion's style doesn't go against the colonist's; otherwise move them out of the rooms the colonist uses, convert the colonist, or reform an ideoligion so the two share a style. Another ideoligion's floor or altar can be replaced with a plain one.</text>
+      </li>
+      <li>
         <heading>Settings</heading>
-        <text>Everything here needs Ideology, a game not in classic mode, and "Ideoligions in the colony" on (it is by default). Talks that move certainty also need "Personalities and social life" and "Moments between colonists"; crises of faith need "Personalities and social life".</text>
+        <text>Everything here needs Ideology, a game not in classic mode, and "Ideoligions in the colony" on (it is by default). Talks that move certainty also need "Personalities and social life" and "Moments between colonists"; crises of faith need "Personalities and social life". The notes on things in the wrong style need only Ideology outside classic mode and their own setting, "Wrong-style things named" (How you're told, on by default, with the deeper game hooks).</text>
       </li>
     </sections>
     <keywords><li>faith</li><li>ideoligion</li><li>ideology</li><li>certainty</li><li>conversion</li><li>convert</li><li>moral guide</li><li>devout</li><li>wavering</li><li>crisis of faith</li><li>preaching</li><li>ideoligions</li></keywords>

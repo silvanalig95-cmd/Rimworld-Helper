@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A bleeding animal's body, and the wrong-style things named
+
+*8 November 2026, version 0.166.0*
+
+- A bleeding animal that isn't yours has a new button, Take the body when it dies: nobody goes near it while it lives, your pets leave it alone, and once it dies its body is unforbidden and marked for hauling. Its tooltip says whether and about when it bleeds to death.
+- The order cancels itself with a short message if the animal stops bleeding, is tamed or leaves the map, and you are told if no storage on the map takes the body.
+- With Ideology, the tooltip of a style surroundings mood now lists what around the colonist counts against their style and for it, each kind with its style, count and points, the total against the line where the mood comes, and what would fix it.
+- A colonist with the bad style mood has a button, Show the wrong-style things, that selects them on the map, and a styled thing's info names the colonists whose style it goes against.
+
 ## A trade window of Rimfolk's own
 
 *8 November 2026, version 0.165.0*

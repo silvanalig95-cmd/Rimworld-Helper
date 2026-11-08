@@ -34,6 +34,7 @@
     <Compile Include="../../Source/ColonyCouncil/Moods/GoodLifeMath.cs" Link="GoodLifeMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Moods/SmallMomentMath.cs" Link="SmallMomentMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Moods/MoodSortMath.cs" Link="MoodSortMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Moods/StyleSurroundingsMath.cs" Link="StyleSurroundingsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/TabFitMath.cs" Link="TabFitMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/BarMoreMath.cs" Link="BarMoreMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/PagesMath.cs" Link="PagesMath.cs" />
@@ -218,6 +219,7 @@
     <Compile Include="../../Source/ColonyCouncil/Integrations/PokeWorldSoundsMath.cs" Link="PokeWorldSoundsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Animals/FreshCarcassMath.cs" Link="FreshCarcassMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Animals/HuntMath.cs" Link="HuntMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Animals/BodyWhenItDiesMath.cs" Link="BodyWhenItDiesMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Animals/BiomeAnimalsMath.cs" Link="BiomeAnimalsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/GuestGroupBedsMath.cs" Link="GuestGroupBedsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Dilemmas/YearFourMath.cs" Link="YearFourMath.cs" />

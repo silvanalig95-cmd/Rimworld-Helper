@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.166.0</version>
+        <date>8 November 2026</date>
+        <title>A bleeding animal's body, and the wrong-style things named</title>
+        <points>
+          <li>A bleeding animal that isn't yours has a new button, Take the body when it dies: nobody goes near it while it lives, your pets leave it alone, and once it dies its body is unforbidden and marked for hauling. Its tooltip says whether and about when it bleeds to death.</li>
+          <li>The order cancels itself with a short message if the animal stops bleeding, is tamed or leaves the map, and you are told if no storage on the map takes the body.</li>
+          <li>With Ideology, the tooltip of a style surroundings mood now lists what around the colonist counts against their style and for it, each kind with its style, count and points, the total against the line where the mood comes, and what would fix it.</li>
+          <li>A colonist with the bad style mood has a button, Show the wrong-style things, that selects them on the map, and a styled thing's info names the colonists whose style it goes against.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.165.0</version>
         <date>8 November 2026</date>
         <title>A trade window of Rimfolk's own</title>

@@ -423,6 +423,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {PokeWorldReviewTests.Run(root, Check)} things about PokéWorld reviewed against PokéWorld Updated (the wild ones, the slider, eight generations, every name read, the log, the shiny shown).");
         Console.WriteLine($"Checked {FreshCarcassTests.Run(root, Check)} things about the alert for fresh carcasses lying out (fresh, seen, unstored, nobody on it, an hour after).");
         Console.WriteLine($"Checked {HuntTests.Run(root, Check)} things about the colony's animals hunting for themselves (who hunts by kind, family, species and type, the food chain and the prey below it, when, the fed hunts, the alert, the seams).");
+        Console.WriteLine($"Checked {BodyWhenItDiesTests.Run(root, Check)} things about taking a bleeding animal's body when it dies (the button, the order dropped and why, the outlook by the game's rules, the haul order, the kill's patch, the setting).");
         Console.WriteLine($"Checked {BiomeAnimalsTests.Run(root, Check)} things about a land whose wild animals the game can't read (repeats merged, missing defs left out, the log's line, every reading through one helper).");
         Console.WriteLine($"Checked {GuestGroupBedsTests.Run(root, Check)} things about Hospitality's guest groups fitting the guest beds (about as many guests as free beds, one or two more now and then, the rest walking past, Hospitality's own rule with no bed at all).");
         Console.WriteLine($"Checked {FieldReportTests.Run(root, Check)} things about the player's reports (a downed beast isn't a nemesis yet; food left out for a beast goes to the beast, never to a courier).");
@@ -485,6 +486,7 @@ Console.WriteLine($"Checked {InboxTests.Run(root, Check)} things about one inbox
         Console.WriteLine($"Checked {WhatsNewTests.Run(root, Check)} things about What's new (the page, CHANGELOG.md and the version).");
         Console.WriteLine($"Checked {LogLinesTests.Run(root, Check, out int logLines)} things about the {logLines} log lines added from separate files.");
         Console.WriteLine($"Checked {MoodSortTests.Run(root, Check)} things about the compact Mood tab (its groups, rows and every hint's short action).");
+        Console.WriteLine($"Checked {StyleSurroundingsTests.Run(root, Check)} things about which things have the wrong style (grouped by kind and style, in order, the game's threshold, and N more, the fix line, the button, a thing's line, the seams).");
         Console.WriteLine($"Checked {OutsiderTests.Run(root, Check)} things about talking with outsiders (waits, talks, bonds over visits, gifts, favours, faith, bouts, duels, their lines and keys).");
         Console.WriteLine($"Checked {OutsiderTalkTests.Run(root, Check)} things about conversations with outsiders (patience, asking again, talks of their own, pieces, callbacks, the library).");
         Console.WriteLine($"Checked {OutsiderAutoTests.Run(root, Check)} things about the right-click's things done by the colonists themselves (which on which setting, the moment, the pace, the budget, what each brings, who does it, the seams).");
