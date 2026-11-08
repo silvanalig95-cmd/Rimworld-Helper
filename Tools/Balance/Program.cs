@@ -16,6 +16,8 @@
 //   dotnet run -c Release --project Tools/Balance -- --harm [--runs N] [--seed S]
 // Schemes against the colony over a home's year, by whether a grudge or a cold notable is in reach (SchemeSim.cs, printed):
 //   dotnet run -c Release --project Tools/Balance -- --schemes [--runs N] [--seed S]
+// Serious illness a colony-year, Rimfolk's and the game's own, with the shared illness budget and without (IllnessSim.cs, printed):
+//   dotnet run -c Release --project Tools/Balance -- --illness [repo root] [--runs N] [--interval F]
 
 using System.Globalization;
 using System.Text.Json;
@@ -53,6 +55,11 @@ if (args.Contains("--harm"))
 if (args.Contains("--schemes"))
 {
     SchemeSim.Run(args);
+    return;
+}
+if (args.Contains("--illness"))
+{
+    IllnessSim.Run(args);
     return;
 }
 

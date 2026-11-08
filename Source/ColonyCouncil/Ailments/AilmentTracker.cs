@@ -47,10 +47,16 @@ namespace ColonyCouncil
         /// <summary>Injury load ID: "ThingID|ailment|part index", for an injury that an ailment may follow once it has healed.</summary>
         private Dictionary<int, string> healing = new Dictionary<int, string>();
         public int lastSeriousTick = -9999999;
+        /// <summary>
+        /// Map uniqueID: that home's part of the shared illness budget (Ailments/IllnessBudget.cs): Rimfolk's serious cases
+        /// still owed a skip, when the game's own disease last came and was last held back. One per home, gone with it.
+        /// </summary>
+        private Dictionary<int, IllnessLedger> budget = new Dictionary<int, IllnessLedger>();
 
         private List<string> tmpKeys1, tmpKeys2, tmpKeys3, tmpKeys4, tmpDoctors, tmpHealing;
-        private List<int> tmpInts1, tmpInts2, tmpInts3, tmpIds, tmpHealingIds;
+        private List<int> tmpInts1, tmpInts2, tmpInts3, tmpIds, tmpHealingIds, tmpBudgetKeys;
         private List<float> tmpFloats;
+        private List<IllnessLedger> tmpBudget;
 
         // ---------------- Not saved ----------------
 
@@ -399,7 +405,8 @@ namespace ColonyCouncil
             if (info.serious)
             {
                 if (spreading) return CasesOf(def) < info.maxCases;
-                return SeriousRoom(def);
+                // The colony's own room, then the shared illness budget's on their home (a case it puts off is counted there).
+                return SeriousRoom(def) && IllnessBudget.Allows(IllnessBudget.HomeOf(p), def, p);
             }
             return EverydayCount(p) < MaxEverydayAtOnce;
         }
@@ -474,7 +481,12 @@ namespace ColonyCouncil
             Remember(p, def, now);
             if (info.serious)
             {
-                if (!spreading) lastSeriousTick = now;
+                if (!spreading)
+                {
+                    lastSeriousTick = now;
+                    // A new case, not one passed on: its home owes the game's next disease a skip (Ailments/IllnessBudget.cs).
+                    IllnessBudget.Owe(IllnessBudget.HomeOf(p), def, p);
+                }
                 seriousNow.Add(def);
                 casesNow[def] = CasesOf(def) + 1;
             }
@@ -586,6 +598,9 @@ namespace ColonyCouncil
             // Someone frail fights it slower, and steady care is what saves them (Ailments/LifeRisks.cs).
             string frail = LifeRisks.FrailNote(p);
             if (!frail.NullOrEmpty()) text += "\n\n" + frail;
+            // It counts against the game's own diseases (Ailments/IllnessBudget.cs).
+            string shared = IllnessBudget.LetterLine(IllnessBudget.HomeOf(p), h.def, p);
+            if (!shared.NullOrEmpty()) text += "\n\n" + shared;
             string label = NameOf(h.def).CapitalizeFirst() + ": " + p.LabelShortCap;
             Tell.Letter(NewsKind.Health, Importance.Important, null, label, text, LetterDefOf.NegativeEvent, new LookTargets(p));
             if (info.capped) SayOnset(p, info);
@@ -1481,7 +1496,52 @@ namespace ColonyCouncil
             }
             if (options.Count == 0) return false;
             var pick = options.RandomElementByWeight(o => o.weight);
+            // A serious one waits within the shared illness budget on this home (one it puts off is counted there).
+            if (serious && !IllnessBudget.Allows(map, pick.def.diseaseIncident, null)) return false;
             return Find.Storyteller.TryFire(new FiringIncident(pick.def, null, pick.parms));
+        }
+
+        // ---------------- The shared illness budget ----------------
+
+        /// <summary>A home's part of the shared illness budget (Ailments/IllnessBudget.cs), made when first needed.</summary>
+        public IllnessLedger Ledger(Map map, bool create)
+        {
+            if (map == null) return null;
+            budget ??= new Dictionary<int, IllnessLedger>();
+            if (budget.TryGetValue(map.uniqueID, out var b) && b != null) return b;
+            if (!create) return null;
+            b = new IllnessLedger();
+            budget[map.uniqueID] = b;
+            return b;
+        }
+
+        /// <summary>
+        /// The ledgers of homes that are gone, or with nothing left worth keeping, let go; with the budget off, nothing is
+        /// owed (as it was before it).
+        /// </summary>
+        private void PruneBudget()
+        {
+            if (budget == null || budget.Count == 0) return;
+            int now = Find.TickManager.TicksGame;
+            bool on = IllnessBudget.On;
+            foreach (int id in budget.Keys.ToList())
+            {
+                var b = budget[id];
+                var map = Find.Maps.FirstOrDefault(m => m.uniqueID == id);
+                if (b == null || map == null || !map.IsPlayerHome)
+                {
+                    budget.Remove(id);
+                    continue;
+                }
+                float keep = IllnessBudget.KeepDays(map);
+                if (!on)
+                {
+                    b.owed.Clear();
+                    b.owedFor.Clear();
+                }
+                IllnessBudgetMath.Prune(b, now, keep);
+                if (IllnessBudgetMath.Forgettable(b, now, keep)) budget.Remove(id);
+            }
         }
 
         // ---------------- Saving ----------------
@@ -1524,6 +1584,7 @@ namespace ColonyCouncil
             bitesRolled.RemoveWhere(id => !live.Contains(id));
             foreach (var k in doctors.Keys.Where(k => !live.Contains(k)).ToList()) doctors.Remove(k);
             foreach (var p in days.Keys.Where(p => p == null || p.Dead || p.Destroyed || !Eligible(p)).ToList()) days.Remove(p);
+            PruneBudget();
         }
 
         public override void ExposeData()
@@ -1552,6 +1613,8 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref carrying, "carrying", LookMode.Value);
             Scribe_Collections.Look(ref healing, "healing", LookMode.Value, LookMode.Value, ref tmpHealingIds, ref tmpHealing);
             Scribe_Values.Look(ref lastSeriousTick, "lastSeriousTick", -9999999);
+            // An older save has none: every home starts owing nothing.
+            Scribe_Collections.Look(ref budget, "illnessBudget", LookMode.Value, LookMode.Deep, ref tmpBudgetKeys, ref tmpBudget);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 last ??= new Dictionary<string, int>();
@@ -1565,6 +1628,8 @@ namespace ColonyCouncil
                 had ??= new HashSet<string>();
                 carrying ??= new HashSet<string>();
                 healing ??= new Dictionary<int, string>();
+                budget ??= new Dictionary<int, IllnessLedger>();
+                foreach (int id in budget.Where(kv => kv.Value == null).Select(kv => kv.Key).ToList()) budget.Remove(id);
             }
         }
     }

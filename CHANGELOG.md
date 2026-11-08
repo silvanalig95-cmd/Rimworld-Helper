@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Serious illness shares the game's own rate
+
+*8 November 2026, version 0.177.0*
+
+- Rimfolk's serious illnesses no longer come on top of the game's own diseases: each one Rimfolk gives holds back the game's next disease on that home, and after the game's own disease Rimfolk waits a month, so serious illness in all comes about as often as in the game without Rimfolk, some of it simply Rimfolk's kinds.
+- Crowding and a dirty kitchen still make the catching illnesses likelier, but they now change which illness comes rather than how many; Rimfolk's own stay a minority of the cases, about one in seven in an average colony.
+- The colony's news says when a disease passed the colony by and what took its place; a new setting, Serious illness shares the game's own rate, under Serious illnesses, turns it off. Everyday ailments, frailty and dirty wounds are unchanged.
+
 ## Dealings with a whole town, pen friends, and the world writing first
 
 *8 November 2026, version 0.176.0*

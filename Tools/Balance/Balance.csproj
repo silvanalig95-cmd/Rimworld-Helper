@@ -15,6 +15,9 @@
     <Compile Include="../../Source/ColonyCouncil/Moods/GoodLifeMath.cs" Link="Linked/GoodLifeMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Moods/SmallMomentMath.cs" Link="Linked/SmallMomentMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Ailments/AilmentMath.cs" Link="Linked/AilmentMath.cs" />
+    <!-- The shared illness budget and crowding (IllnessSim.cs, with &#45;&#45;illness): the rules the game keeps. -->
+    <Compile Include="../../Source/ColonyCouncil/Ailments/IllnessBudgetMath.cs" Link="Linked/IllnessBudgetMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Ailments/LifeRiskMath.cs" Link="Linked/LifeRiskMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Arcs/ArcMath.cs" Link="Linked/ArcMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Pressures/PressureMath.cs" Link="Linked/PressureMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Setbacks/SetbackMath.cs" Link="Linked/SetbackMath.cs" />

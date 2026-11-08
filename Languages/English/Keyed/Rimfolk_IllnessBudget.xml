@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The shared illness budget (Source/ColonyCouncil/Ailments/IllnessBudget.cs, IllnessBudgetMath.cs). -->
+
+  <CC_Settings_IllnessBudget>Serious illness shares the game's own rate</CC_Settings_IllnessBudget>
+  <CC_Settings_IllnessBudget_Tip>Rimfolk's serious illnesses and the game's own diseases draw on one clock, so in all serious illness comes about as often as in plain RimWorld, and some of the cases are Rimfolk's kinds. Each serious illness of Rimfolk's that starts holds back the next of the game's own diseases the storyteller sends to that home. Once the game's own has come, Rimfolk's wait 30 days there, and at most about half the cases are Rimfolk's, so the game's own still come. Crowding and dirt bring more of the kinds that go round and spread between roommates, not more in all. Left alone: a quest's outbreak, food poisoning, wound infections, animal diseases and other mods' sicknesses filed outside the game's disease category. The news says when one is held back or a case of Rimfolk's put off. Needs the deeper game hooks. Turned off, Rimfolk's serious illnesses come on top of the game's own, as before.</CC_Settings_IllnessBudget_Tip>
+  <CC_SetNote_IllnessBudget>Rimfolk's serious illnesses take the place of some of the game's own, not more in all.</CC_SetNote_IllnessBudget>
+
+  <CC_Adv_Sickness_DetailShared>More of the serious illness that comes here is the kind that goes round, about {0} times as much as in a well-kept colony: {1}. It comes no more often in all, since Rimfolk's serious illnesses share the game's own rate, but these spread between roommates. Beds of their own and a clean kitchen bring it down.</CC_Adv_Sickness_DetailShared>
+
+  <CC_IllBudget_Letter>The council's records: Rimfolk's serious illnesses share the game's own rate, and this one takes the place of one of the game's own sicknesses on this home.</CC_IllBudget_Letter>
+  <CC_IllBudget_AnIllness>a serious illness</CC_IllBudget_AnIllness>
+
+  <!-- The game's own disease held back: {DISEASE} the game's, {ILLNESS} Rimfolk's that took its place, {WHO} who had it. -->
+  <CC_IllBudget_Held>The council's records: the game's own {DISEASE} passed the colony by this time; Rimfolk's {ILLNESS}, which {WHO} came down with, took its place.</CC_IllBudget_Held>
+  <CC_IllBudget_Held_2>The council's records: a sickness from the game's own seasons, {DISEASE}, passed the colony by; {WHO}'s {ILLNESS}, one of Rimfolk's, had already taken its place.</CC_IllBudget_Held_2>
+  <CC_IllBudget_HeldAny>The council's records: the game's own {DISEASE} passed the colony by this time; Rimfolk's {ILLNESS} took its place.</CC_IllBudget_HeldAny>
+  <CC_IllBudget_HeldAny_2>The council's records: a sickness from the game's own seasons, {DISEASE}, passed the colony by; Rimfolk's {ILLNESS} had already taken its place.</CC_IllBudget_HeldAny_2>
+
+  <!-- A case of Rimfolk's put off: the game's own came lately (Waiting), or Rimfolk's have had their share (Share). -->
+  <CC_IllBudget_PutOff_Waiting>The council's records: {PAWN_nameDef} was spared {ILLNESS} this time; the game's own sicknesses came to the colony lately, and Rimfolk's wait their turn.</CC_IllBudget_PutOff_Waiting>
+  <CC_IllBudget_PutOff_Waiting_2>The council's records: {ILLNESS} passed {PAWN_nameDef} by this time; the game's own sicknesses were here lately, and Rimfolk's give them room.</CC_IllBudget_PutOff_Waiting_2>
+  <CC_IllBudget_PutOff_WaitingAny>The council's records: {ILLNESS} passed the colony by this time; the game's own sicknesses came lately, and Rimfolk's wait their turn.</CC_IllBudget_PutOff_WaitingAny>
+  <CC_IllBudget_PutOff_WaitingAny_2>The council's records: no {ILLNESS} went round this time; the game's own sicknesses were here lately, and Rimfolk's give them room.</CC_IllBudget_PutOff_WaitingAny_2>
+  <CC_IllBudget_PutOff_Share>The council's records: {PAWN_nameDef} was spared {ILLNESS} this time; Rimfolk's serious illnesses have had their share of the colony for now.</CC_IllBudget_PutOff_Share>
+  <CC_IllBudget_PutOff_Share_2>The council's records: {ILLNESS} passed {PAWN_nameDef} by this time; the game's own sicknesses have the next turn.</CC_IllBudget_PutOff_Share_2>
+  <CC_IllBudget_PutOff_ShareAny>The council's records: {ILLNESS} passed the colony by this time; Rimfolk's serious illnesses have had their share of it for now.</CC_IllBudget_PutOff_ShareAny>
+  <CC_IllBudget_PutOff_ShareAny_2>The council's records: no {ILLNESS} went round this time; the game's own sicknesses have the next turn.</CC_IllBudget_PutOff_ShareAny_2>
+
+</LanguageData>

@@ -12,6 +12,69 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.177.0, the shared illness budget (8 November 2026, the player's choice: they asked whether the game's own rate of health
+  problems still holds or Rimfolk's illnesses stack on it, "since i lost several colonists to illness and seem to lose
+  two more", and of three changes offered took one, "just the shared illness budget please"; frailty, dirty wounds and
+  the everyday ailments stay as they were). Not released: no version, no What's new round, About.xml and CHANGELOG
+  untouched (the lead does that at the merge). DESIGN.md "The shared illness budget" (under "Harm from everyday life",
+  after the ailments of the land) has all of it with the balance numbers, and "Save size"; README's paragraph after the
+  serious illnesses, the crowding sentence and the settings summary; the Almanac's ailments and illnesses page (a new
+  section, *Sharing the game's own rate*, and the crowding and settings paragraphs; prose only, keywords unchanged).
+  - What: Rimfolk's serious illnesses and the game's own diseases draw on one clock. Each serious case of Rimfolk's
+    that starts on a home (not one passed on) owes a skip: the game's next human disease the storyteller aims there is
+    held back. Once the game's own has come, Rimfolk's wait 30 days there; one debt at a time, and after a skip the
+    game's own comes before Rimfolk takes another, so Rimfolk takes at most about a third of the cases on a temperate
+    map (two fifths at Adventure story). Crowding still makes Rimfolk's catching kinds likelier, which only shifts the
+    mix. Counts: the game's `DiseaseHuman` incidents sent by the storyteller to a home, not forced, not a quest's. Left
+    alone: Rimfolk's own catching ailments, quests' and scripted outbreaks, forced ones, animal diseases, mods' sicknesses
+    filed elsewhere, caravans, food poisoning, wound infections, the sickly trait's illness, the harm service's
+    sicknesses. Shown: a news line when a disease is held back ("The council's records: the game's own flu passed the
+    colony by this time; Rimfolk's tuberculosis, which Ana came down with, took its place.") or a case put off (one a
+    home in 30 days, naming who was spared), a line in the serious illness's letter for a case the budget counted, and
+    the advisor's sickness line saying crowding shifts the mix, with the last record.
+  - Code: `Ailments/IllnessBudgetMath.cs` (pure, linked in Tests.csproj and Balance.csproj: `BudgetFiring`, `BudgetRoom`,
+    `IllnessBudgetBook`, `Which`, `GameMeanDays`, `KeepDays`, `MaxShare`, `Owe`, `Hold`, `GameCame`, `Room`, `Prune`),
+    `IllnessBudgetTests` ("illness budget: ", which incidents count, the game's rate, the debt, the cap, the reset,
+    expiry, 4,000 years played out at four rates of demand with and without, the hook, the setting, the save, the
+    words, the docs). `Ailments/IllnessBudget.cs`: `IllnessLedger`, `IllnessBudget` (`Allows`, `Owe`, `TryHold`, `Came`, the lines,
+    `Report`), `Patch_IllnessBudget` (prefix and postfix on `Storyteller.TryFire`); `Ailments/IllnessBudgetDebug.cs`. Wired in
+    `AilmentTracker` (`CanGet`, `Give`, `TryCatching`, `SeriousLetter`, `Ledger`, `PruneBudget`, saving),
+    `IncidentWorker_Ailment` (the debt, the letter line) and `AdvisorWorker_SicknessRisk`. Keyed
+    `Rimfolk_IllnessBudget.xml`. Balance: `Tools/Balance/IllnessSim.cs` (`--illness`, `--interval`, `--years`); the
+    colony-year sim now keeps the colony's own room for a serious illness, crowding on the catching clock
+    (`Rates.Style.barracks`, `kitchen`) and the game's own diseases on their own draws (`Rates.GameDiseaseMtbDays`), and
+    `Colony.MeasuredYears` (1 for the report).
+  - Settings: `illnessBudget` ("Serious illness shares the game's own rate", How hard, under Serious illnesses, on by
+    default, needs serious illnesses and the deeper game hooks). Off: nothing owed (debts let go at the next daily look),
+    as before.
+  - Saved: `AilmentTracker.budget` ("illnessBudget": map uniqueID to `IllnessLedger`, deep): the debts and what each was
+    for, the game's last disease and skip and what it paid, the last put-off, counts, the last record line; gone with the
+    home or once all of it is older than a debt is kept. An older save has none and owes nothing. `Tools/save_estimate.py`
+    models `budget`, `owed` and `owedFor`.
+  - Balance (600 colony-years a case, temperate forest, Strive to survive): serious illness in all 1.18 to 1.25 a
+    colony-year with the budget, the game's own alone 1.16 to 1.25 on the same seeds, 1.36 to 2.56 without it (16% to
+    120% more); Rimfolk's own 0.19 to 0.10 well run, 1.05 to 0.34 neglected (6 colonists), its share 8% to 32% against a
+    cap of 35%; the game's deadly ones 0.81 to 0.76 and 0.80 to 0.56. At Adventure story 0.74 to 0.85 with, 0.97 to 2.17
+    without. DESIGN.md and docs/balance-report.md have the tables.
+  - Riskiest (none of it could be run here): the hook on `Storyteller.TryFire`, the fourth prefix there (the others
+    hold raids and the sky's conditions, never a disease; this one leaves a firing another prefix held, through
+    `__runOriginal`, and pays no debt for it). ApiDiff finds it unchanged in 1.7. A storyteller mod that fires diseases
+    another way would bypass the hold: debts would then lapse after two to five years, and Rimfolk's be capped by the
+    one-at-a-time rule only;
+    `StorytellerSends` looks only for `StorytellerCompProperties_Disease`, so a modded storyteller sending diseases
+    through another part keeps debts the two-year minimum; the news lines' wording in real play (the game's disease is
+    named by its `diseaseIncident.label`, a mod's may read oddly); a put-off case's line names who was spared, so it shows
+    a roll the player never saw before; with the budget on, a well-run colony sees about half as many of Rimfolk's serious
+    illnesses as before (the 30-day wait after the game's own), which is the point but may feel like Rimfolk's went quiet.
+  - Try in the game (dev mode; none of it could be run here): 1. Debug actions, Rimfolk, "Illness budget: one of
+    Rimfolk's serious illnesses now": a serious illness's letter with the line that it takes the place of one of the
+    game's own; then "Illness budget: the ledger of every home (log)": this home owes one. 2. "Illness budget: the game's
+    own disease, as the storyteller sends it": the message says it was held back, and the news has "The council's
+    records: the game's own ... passed the colony by ...; Rimfolk's ... took its place." No disease letter. The log: owed
+    0, held back 1, room GameTurn. 3. The same action again: the game's disease comes, with its own letter; the log: room
+    Waiting. 4. With a crowded colony (most in barracks, a dirty kitchen), the advisor's "Sickness spreads easily here"
+    says it comes no more often in all and quotes the last record. 5. Settings, How hard, switch "Serious illness shares
+    the game's own rate" off: step 2 lets the game's disease come at once.
 - 0.176.0, the diplomacy screen, step B: dealings with a whole people or town, and the letters' points 12 to 14 (8 November 2026,
   step B of `docs/design/diplomacy-screen.md` and points 12 to 14 of `docs/design/post-and-letters.md`, approved by the
   player: "very good, all of it!"; their words: "i want to be able to do some interactions with another base/faction as a

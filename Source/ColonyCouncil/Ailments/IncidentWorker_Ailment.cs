@@ -115,6 +115,8 @@ namespace ColonyCouncil
                 if (!h.Visible) h.Severity = Math.Max(h.Severity, FirstVisibleSeverity(h.def));
                 tracker?.Notify_Caught(p, h);
             }
+            // A serious one owes the game's next disease on this home a skip, once for the case however many it took (Ailments/IllnessBudget.cs).
+            if (Serious) IllnessBudget.Owe(parms.target as Map ?? IllnessBudget.HomeOf(got[0]), def.diseaseIncident, got.Count == 1 ? got[0] : null);
             if (parms.sendLetter) SendLetter(parms, got, blocked, again);
             return true;
         }
@@ -152,6 +154,11 @@ namespace ColonyCouncil
             }
             string note = AilmentTracker.DoctorsNote(def.diseaseIncident);
             if (!note.NullOrEmpty()) text += "\n\n" + note;
+            if (Serious)
+            {
+                string shared = IllnessBudget.LetterLine(parms.target as Map ?? IllnessBudget.HomeOf(got[0]), def.diseaseIncident, got.Count == 1 ? got[0] : null);
+                if (!shared.NullOrEmpty()) text += "\n\n" + shared;
+            }
             if (!blocked.NullOrEmpty()) text += "\n\n" + blocked;
             string label = def.letterLabel.NullOrEmpty() ? def.diseaseIncident.LabelCap.ToString() : def.letterLabel;
             var letterDef = def.letterDef ?? (Serious ? LetterDefOf.NegativeEvent : LetterDefOf.NeutralEvent);
