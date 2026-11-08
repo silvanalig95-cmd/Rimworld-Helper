@@ -11,8 +11,8 @@ namespace ColonyCouncil
     /// Region → Map (docs/design/interface.md, "The region map as the hub"): the lens bar (Land, Stance and ties,
     /// Fortunes, Threats, Trade, Ours) and Map or List along the top, then the region map read through the lens
     /// (UI/RegionMapView.cs) or the lens's List: its rows in groups, nearest first within each (or all in one, closest
-    /// first, with its chip), every row opening its card
-    /// in the drawer, its names links, "Show" picking it on the map, and what came before at the foot. The lens's model
+    /// first, with its chip), every row opening its card in the drawer, its names links, "Show" picking it on the map, and
+    /// what came before at the foot. The lens's model
     /// (LensModel) is built at most once a second; rows are laid out once per width and drawn only in sight.
     /// </summary>
     public static class MapView

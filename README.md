@@ -3261,6 +3261,21 @@ end the range in the spacer age. Each town's card says how to reach them now and
 two days on the road: by the next post rider", "far: by relay through Emberford, about seven days", "out of reach until
 you have radio"), and the region map rings the far and the out-of-reach towns.
 
+**The peoples, closest first, and what to do with each.** The region window's Peoples is a list of every people beside
+the page of the one you choose. The list has a search, filters (neighbors, mail, dealings) and a sort: closest first
+by default (their nearest town's days on the road at the colony's means, as the post reckons it), or by regard, name or
+age; each row shows their stance, a small regard meter, those days, a mark for mail and their age, grouped into allies,
+at peace and at war, with a small web of who stands with whom at the foot. The page has their age and which way it is
+heading, their stance, their regard with how it moved this season and why, and five tabs: Overview (what they honor and
+fear, what they hope for at a feast, hard times and threats on them, how to reach them now), Towns (closest first, a click
+shows it on the region map), People (whom you know of theirs by name), Dealings and History. "Do something with..." on
+the Overview aims at the whole people, one of their towns or one of their people and lists every act that fits, each
+saying what it brings, how it travels and what it costs, greyed with the reason when it can't be done now. The kind
+letters wait for a reason (the setting *Letters by occasion*, on): condolences after a loss you heard of, a warning when
+you know of a threat to them, an invitation when a feast or a gathering day is coming or the guest beds stand empty,
+asking for help when the stores are short of food or medicine, greetings at the turn of the year or with a gift, and
+asking for news always. Choosing a people lights its towns on the region map, and the map's list can sort closest first.
+
 **Talking with outsiders, and doing it by themselves.** With a colonist selected, right-click someone from outside the
 colony for "Talk with...": news of their home, a meal or a drink, a gift, a good word at home, a lesson, something
 brought next time, an invitation to stay, getting to know them, courting, faith, a practice bout, hard words, a duel,
@@ -4539,7 +4554,7 @@ The pages:
   faces, rise and fall, trading posts, hamlets, small towns' maps); **bonds with other peoples** (favors owed and
   called in; pacts and truces, with pacts of fealty, the colony sworn to a stronger neighbor or keeping vassals of
   its own, and truces keeping raids away under them; ransom, envoys, feasts with guests, marriage alliances, wards and
-  hostages, colony renown, against their nature); neighbours and letters (notables, letters, the post and its pace: Seldom, As usual or Often, talking with outsiders,
+  hostages, colony renown, against their nature); neighbours and letters (notables, letters, the post and its pace: Seldom, As usual or Often, letters by occasion, talking with outsiders,
   sparring, insults, duels, their chatter, the right-click's things done by themselves: off, free ones only or within
   limits); then the tools: journeys, many colonies (fresh starts, and newcomers for
   them, and handing a colony over), the weather (weather that changes like weather,

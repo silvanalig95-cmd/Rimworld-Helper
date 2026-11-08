@@ -327,7 +327,8 @@ namespace ColonyCouncil
                     for (int j = i + 1; j < nodes.Count; j++)
                     {
                         var b = nodes[j].e;
-                        var k = a.f.RelationKindWith(b.f);
+                        // The game's relation between the two, quietly (a pair with none is merely at peace).
+                        var k = a.f.RelationWith(b.f, true)?.kind ?? FactionRelationKind.Neutral;
                         int rel = k == FactionRelationKind.Ally ? 1 : k == FactionRelationKind.Hostile ? -1 : 0;
                         var tie = PeoplesViewMath.TieOf(rel, a.facts.permanentEnemy, b.facts.permanentEnemy);
                         if (tie != WebTie.None) ties.Add((j, i, tie));

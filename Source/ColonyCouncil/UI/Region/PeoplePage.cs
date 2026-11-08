@@ -94,7 +94,16 @@ namespace ColonyCouncil
                 Pages.Open(RegionView.Map);
             }
             right = show.x - 8f;
-            UiKit.NameLink(new Rect(x, r.y, Mathf.Max(0f, right - x), 34f), e.name, e.thing, GameFont.Medium);
+            // Their name, a link to their card in the drawer (drawn here in the view's title size).
+            var nameRect = new Rect(x, r.y, Mathf.Max(0f, right - x), 34f);
+            bool over = Mouse.IsOver(nameRect);
+            UiKit.LabelFit(nameRect, e.name, over ? UiKit.LinkHot : UiKit.Link, GameFont.Medium);
+            if (over) Previews.Hover(e.thing, nameRect);
+            if (Widgets.ButtonInvisible(nameRect, false))
+            {
+                Cards.Click();
+                Cards.Open(e.thing);
+            }
             // Their age and which way it is heading, and their kind.
             float y = r.y + 36f;
             float cx = x + UiKit.StateChip(x, y, e.ageWord.CapitalizeFirst(), UiKit.Cool, 140f, AgeTip) + 6f;

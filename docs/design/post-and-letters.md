@@ -56,6 +56,13 @@ by name and falls back to leading the beast; Vehicle Framework is not used (the 
 
 ## Step 2: why write (options with a reason)
 
+*Points 10 and 11 built (8 November 2026) with the diplomacy screen's step A: the occasions in
+`World/LetterOccasionMath.cs` (pure, tested) and `LetterOccasions.cs`, read by the letter's window and by "Do something
+with..." on the Peoples view, the setting "Letters by occasion"; what each act is for and costs in
+`UI/Region/PeopleActMath.cs` and `Rimfolk_PeoplesScreen.xml` (DESIGN.md "The diplomacy screen: the peoples beside their
+page"). The invitation's "the colony would like visitors" is guest beds (Hospitality's) standing empty with nobody from
+outside staying; "a fair" is a day of the colony calendar kept with a gathering. Points 12 to 14 are still to come.*
+
 10. **Letters by occasion.** A town's card shows what could be written now and why: condolences only after a loss heard
    of, a warning when a threat to them is known, an invitation when there is a feast or fair to come, asking for help
    when the colony is short, greetings at the turn of the year or with a gift. Those without a reason are greyed with it.

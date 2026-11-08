@@ -338,7 +338,7 @@ public static class PeoplesScreenTests
         C(model.Contains("RegionTowns.Reach") && model.Contains("PostBook.Instance") && model.Contains("FavourAsks.Waiting()"), "neighbors by the region's reach; mail from the post, their calls and the letter stack");
         C(model.Contains("FactionMemory.Text(d)") && model.Contains("GenDate.TicksPerSeason"), "this season's trend and its reasons from what they remember");
         C(list.Contains("Widgets.TextField(") && list.Contains("UiKit.FilterChip(") && list.Contains("UiKit.Modes(r, labels, (int)RegionView.sort"), "the list's search, chips and sort");
-        C(list.Contains("PeoplesViewMath.WebFixed(rect.height)") && list.Contains("a.f.RelationKindWith(b.f)"), "the web's place by the layout's rule, its lines from the game's relations");
+        C(list.Contains("PeoplesViewMath.WebFixed(rect.height)") && list.Contains("a.f.RelationWith(b.f, true)"), "the web's place by the layout's rule, its lines from the game's relations");
         C(page.Contains("DiplomacyPanels.PeopleBody(") && page.Contains("DiplomacyPanels.Owed(y, w, dip, folds)") && page.Contains("FactionMemoryPanel.Draw(y, w)"),
             "Dealings is diplomacy's own body; all peoples has the owed strip and their memories");
         C(page.Contains("Cards.ShowOnMap(t.s)") && page.Contains("PostRing.Ring("), "a town's row shows it on the region map, its range ring from the post's hook");
