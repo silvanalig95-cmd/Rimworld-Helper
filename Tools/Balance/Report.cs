@@ -316,6 +316,10 @@ namespace Balance
             foreach (var k in ailKeys)
                 sb.AppendLine($"| {k.Replace("Council_Ail_", "")} | " + string.Join(" | ", sixAll.Select(r => r.summary.ailmentsBy.GetValueOrDefault(k).ToString("0.0"))) + " |");
             sb.AppendLine();
+            sb.AppendLine("\"Serious, per colony\" above is Rimfolk's serious illnesses as the settings ship, sharing the game's own rate. Those");
+            sb.AppendLine("and the game's own diseases, with the shared illness budget and without it, over six years a colony, are");
+            sb.AppendLine("`dotnet run -c Release --project Tools/Balance -- --illness` (IllnessSim.cs; DESIGN.md, \"The shared illness budget\").");
+            sb.AppendLine();
 
             // ---------------- Presets ----------------
             sb.AppendLine("## The presets");

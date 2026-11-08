@@ -28,6 +28,7 @@
     <Compile Include="../../Source/ColonyCouncil/Ailments/AilmentMath.cs" Link="AilmentMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Ailments/AilmentCauseMath.cs" Link="AilmentCauseMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Ailments/LifeRiskMath.cs" Link="LifeRiskMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Ailments/IllnessBudgetMath.cs" Link="IllnessBudgetMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Health/HealthMath.cs" Link="HealthMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Health/BodyMath.cs" Link="BodyMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/LineMemory.cs" Link="LineMemory.cs" />

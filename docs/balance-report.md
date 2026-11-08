@@ -327,6 +327,34 @@ What fills the time (days per colonist per year, 6 colonists):
 | BadNights | 0.2 | 0.3 | 0.2 |
 | Chilblains | 0.2 | 0.3 | 0.2 |
 
+"Serious, per colony" above is Rimfolk's serious illnesses as measured before the shared illness budget. Those and the
+game's own diseases, with the budget and without it, over six years a colony, are
+`dotnet run -c Release --project Tools/Balance -- --illness` (IllnessSim.cs; DESIGN.md, "The shared illness budget"),
+measured on 8 November 2026 (600 colony-years a case, the same seeds with it and without; written here by hand until
+the report is next written).
+
+A temperate forest at Strive to survive (the game's own every 50 days, 1.2 a year; Rimfolk's share at most 35%):
+
+| Case | Without: Rimfolk's | Without: the game's | Without: together | With: Rimfolk's | With: the game's | With: together | Held back | Put off | Rimfolk's share | The game's deadly, without / with |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 6 colonists, well run | 0.19 | 1.17 | 1.36 | 0.10 | 1.09 | 1.18 | 0.08 | 0.10 | 8 % | 0.81 / 0.76 |
+| 6 colonists, average | 0.44 | 1.21 | 1.65 | 0.17 | 1.05 | 1.22 | 0.16 | 0.32 | 14 % | 0.78 / 0.67 |
+| 6 colonists, neglectful | 1.05 | 1.22 | 2.27 | 0.34 | 0.85 | 1.20 | 0.36 | 1.66 | 29 % | 0.80 / 0.56 |
+| 12 colonists, well run | 0.28 | 1.25 | 1.53 | 0.15 | 1.10 | 1.25 | 0.14 | 0.17 | 12 % | 0.80 / 0.70 |
+| 12 colonists, average | 0.63 | 1.25 | 1.88 | 0.27 | 0.98 | 1.25 | 0.27 | 0.58 | 21 % | 0.82 / 0.64 |
+| 12 colonists, neglectful | 1.40 | 1.16 | 2.56 | 0.37 | 0.78 | 1.16 | 0.38 | 3.63 | 32 % | 0.77 / 0.53 |
+
+At Adventure story's interval (`--interval 1.5`: every 75 days, 0.8 a year; Rimfolk's share at most 40%):
+
+| Case | Without: Rimfolk's | Without: the game's | Without: together | With: Rimfolk's | With: the game's | With: together | Held back | Put off | Rimfolk's share | The game's deadly, without / with |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 6 colonists, well run | 0.19 | 0.78 | 0.97 | 0.12 | 0.68 | 0.79 | 0.11 | 0.09 | 15 % | 0.54 / 0.47 |
+| 6 colonists, average | 0.43 | 0.80 | 1.23 | 0.19 | 0.64 | 0.83 | 0.16 | 0.32 | 22 % | 0.53 / 0.42 |
+| 6 colonists, neglectful | 1.11 | 0.84 | 1.95 | 0.28 | 0.54 | 0.83 | 0.29 | 1.86 | 34 % | 0.54 / 0.36 |
+| 12 colonists, well run | 0.30 | 0.84 | 1.14 | 0.15 | 0.70 | 0.85 | 0.14 | 0.14 | 17 % | 0.53 / 0.43 |
+| 12 colonists, average | 0.63 | 0.81 | 1.44 | 0.24 | 0.58 | 0.82 | 0.23 | 0.56 | 30 % | 0.54 / 0.39 |
+| 12 colonists, neglectful | 1.40 | 0.77 | 2.17 | 0.28 | 0.46 | 0.74 | 0.31 | 3.78 | 38 % | 0.51 / 0.30 |
+
 ## The presets
 
 The style presets of the settings window, applied as the window applies them (6 colonists).

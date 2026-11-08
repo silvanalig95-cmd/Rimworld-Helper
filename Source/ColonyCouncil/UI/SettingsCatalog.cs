@@ -307,6 +307,8 @@ namespace ColonyCouncil
             Section("CC_Settings_AilmentsHeader");
             Slider("ailmentFrequency", "CC_Settings_AilmentFrequency", "CC_SetNote_AilmentFrequency", 0.25f, 2f, 0.05f, "%", "ailments");
             Toggle("seriousIllnesses", "CC_Settings_SeriousIllnesses", "CC_SetNote_SeriousIllnesses", "ailments");
+            // The shared illness budget (Ailments/IllnessBudget.cs): Rimfolk's serious illnesses take a share of the game's own rate.
+            Toggle("illnessBudget", "CC_Settings_IllnessBudget", "CC_SetNote_IllnessBudget", "seriousIllnesses,deepHooks");
             Section("CC_SetSec_LifeRisks");
             Toggle("crowdedSickness", "CC_Settings_CrowdedSickness", "CC_SetNote_CrowdedSickness", "seriousIllnesses");
             Toggle("frailty", "CC_Settings_Frailty", "CC_SetNote_Frailty");
