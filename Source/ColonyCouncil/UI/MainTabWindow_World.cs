@@ -47,7 +47,9 @@ namespace ColonyCouncil
     /// what is on its way, letters on the road, who of the colony's is away, missions, houses) and History (the world's
     /// history with its scope, the world's events running as a strip, letters lately). It opens on the map unless something
     /// asked for another view. The ten pages it had before forward to their view, mode or lens (UI/PagesMath.cs); a page
-    /// another mod adds with <see cref="Register"/> shows under History's More until it finds its place in a view.
+    /// another mod adds with <see cref="Register"/> shows under History's More until it finds its place in a view. While
+    /// Rimfolk's windows move and resize, the region button opens the same contents as a floating window in Rimfolk's
+    /// frame (UI/Window_Region.cs, <see cref="DrawRegion"/> for both); this tab is the region window with that setting off.
     /// </summary>
     public class MainTabWindow_World : RimfolkTabWindow
     {

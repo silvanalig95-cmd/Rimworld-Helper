@@ -196,6 +196,7 @@ MODEL = {
     "CouncilSettings.cs:planMaterials": ("settings", 30, 40, "the mod's settings file, not the save"),
     "CouncilSettings.cs:barPutAway": ("settings", 40, 30, "the mod's settings file, not the save: the bottom bar's buttons put away, one name each"),
     "CouncilSettings.cs:councilPageState": ("settings", 30, 40, "the mod's settings file, not the save"),
+    "CouncilSettings.cs:windowPlaces": ("settings", 4, 50, "the mod's settings file, not the save: one line per window of Rimfolk's that was moved or sized (UI/WindowFrame.cs)"),
     # The on-screen panels (Hud/): their layout in the settings file, the mood trend in the save
     "CouncilSettings.cs:hudPanels": ("settings", 8, 400, "the mod's settings file, not the save: one per panel"),
     "Hud/HudPanelState.cs:hidden": ("settings", 3, 30, "per panel: the rows or columns switched off (settings file)"),

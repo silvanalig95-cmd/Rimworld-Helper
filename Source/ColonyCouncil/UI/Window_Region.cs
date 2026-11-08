@@ -76,12 +76,6 @@ namespace ColonyCouncil
             MainTabWindow_World.Opening();
         }
 
-        public override void PostOpen()
-        {
-            base.PostOpen();
-            SoundDefOf.TabOpen.PlayOneShotOnCamera();
-        }
-
         public override void PostClose()
         {
             base.PostClose();
@@ -118,7 +112,9 @@ namespace ColonyCouncil
             }
             if (Window_Region.Floats)
             {
+                // As the game's tab button sounds; opened from the corner or by an address it opens quietly, as the tab did.
                 Pages.Show(RimfolkWindow.World);
+                SoundDefOf.TabOpen.PlayOneShotOnCamera();
                 return;
             }
             base.Activate();

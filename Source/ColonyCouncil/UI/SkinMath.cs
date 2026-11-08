@@ -121,7 +121,8 @@ namespace ColonyCouncil
             float centre = side / 2f, half = side / 2f - inset;
             if (half <= 0f) return 0f;
             float r = Math.Max(0f, Math.Min(radius - inset, half));
-            if (topOnly && y > centre) r = 0f;
+            // A tab's lower half is open at the foot (it joins the panel under it): only its sides bound it.
+            if (topOnly && y > centre) return Clamp01(0.5f - (Math.Abs(x - centre) - half));
             return Clamp01(0.5f - Distance(x - centre, y - centre, half, r));
         }
 

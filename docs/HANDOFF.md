@@ -12,6 +12,85 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- Rimfolk's own look, stage 1: the window frame and the style kit, on the region window and the trade window (8 November
+  2026, stage 1 of `docs/design/rimfolk-look.md`, the player's explicit request: "for the rimfolk uis, please also dont be
+  withheld by the vanilla ui, for example for the diplomacy screen, i'd love to move the window around, make it larger
+  etc. you really don't have to stick to the rimworld design theme if you can otherwise make all uis clearer, better to
+  use, better looking, modern etc.", after the diplomacy screen's mockup). Not released: no version, no What's new round,
+  About.xml and CHANGELOG untouched. DESIGN.md "Rimfolk's own look, stage 1: the window frame and the style kit" has all
+  of it (and a sentence in "Rimfolk's windows"); `docs/design/interface.md` "The look" (the new style, the own look's
+  palette, components 16 to 19, the frame and the textures in "What it takes"); `docs/design/rimfolk-look.md` stage 1
+  marked built and what stage 2 needs; README a paragraph after the four windows and the settings summary; the Almanac's
+  guide a paragraph (prose only, keywords unchanged).
+  - What: **the frame** (`UI/WindowFrame.cs`, rules in `UI/WindowFrameMath.cs`): a drawn title bar (icon, title, the
+    window's tools, large, close), dragged by it, sized from every edge (6 in) and corner (16 along), down to the
+    window's least, never off the screen; large (about 92% of the screen, above the bottom bar for the region window)
+    with the button or a double-click on the title, and back; each window's place kept in the settings by its key
+    (`windowPlaces`, "Region=x;y;w;h", ";L;" with the way back when large), fitted to the screen it opens on and
+    refitted when the resolution or interface scale changes. The mouse is followed from the window's `WindowOnGUI` by
+    polling (`Input.GetMouseButton(0)`, `UI.MousePositionOnUIInverted`). `FramedWindow` wires it to a plain window
+    (margin 0, no game background, the contents in a group at zero). **The region window floats** (`UI/Window_Region.cs`):
+    a plain window of the interface layer, opened by the region button's new worker (`MainButtonWorker_Region`), left
+    open by a click on the map or a selection, the tab (`MainTabWindow_World`) only with the setting off. The choice:
+    a main tab could have been dragged (only `SetInitialSizeAndPosition` anchors it), but the game closes a main tab on
+    any map click (`MainTabsRoot.HandleLowPriorityShortcuts`) and on any selection (the selector opens the inspect pane),
+    so a window moved aside to see the map would close the moment the map is used. Both draw the same contents
+    (`MainTabWindow_World.DrawRegion`); `Pages.Showing`, `Show`, `Close`, `OpenOrClose`, `OpenOrCloseSection` and the new
+    `LeaveForMap` know it; opening another of the four closes it (`RimfolkTabWindow.PreOpen`) and it closes another of
+    Rimfolk's tabs, as the corner turns pages; the corner is in its title bar. **The kit** (`UI/UiKitSkin.cs`, shapes in
+    `UI/SkinMath.cs`): rounded fills, edges, tab tops, corner masks (radii 4, 6, 8, 10) and a soft shadow made once at
+    load, drawn as 9-slices; `Button` (normal, primary, quiet), `IconPlate`, `TextField`, `SearchField` (the game's quick
+    search), `Toggle`, `OwnTab`, `RowLit`, `RowHover`, `OwnCard`, `CornerMask`, and the scrollbars' styles swapped while a
+    framed window draws. The tokens are properties now, the game's value or the mockup's (`UiKit.BeginOwn`/`EndOwn` round
+    a framed window's contents): Warm the mockup's blue, Sour its orange, Gold its amber; every text colour 4.5:1 or more
+    on the window, a panel and a card. The kit's components (cards, chips, filter chips, modes, the lens bar, the view
+    header's modes and "?", meters, the count badge, icon buttons, acts) draw rounded in the look and exactly as before
+    in the game's. **Applied**: the region window (own tabs `WindowTabs.DrawOwn` on a rounded panel; the map's corners
+    rounded with a mask, its zoom on plates; rows lit with the accent's edge; Peoples' search one field; the drawer a
+    rounded card; the History filters, the journey's, the camp's and the faces' buttons the kit's) and the trade window
+    (a `FramedWindow` "Trade", least 980 by 560: the title in the title bar, the search, chips and the switch the kit's,
+    numbers right-aligned in the look, the side and the silver box raised cards, Accept primary, Reset quiet; its chips'
+    words made once a trade now). Wider windows show more: Here and away and Faces in two columns from 1100
+    (`RegionViewsMath.Columns`), Peoples' list 380 from a view of 1400, its acts in three columns from a page of 1180.
+  - Code: new `UI/WindowFrame.cs` (with `FramedWindow`), `UI/WindowFrameMath.cs` and `UI/SkinMath.cs` (pure, linked in
+    Tests.csproj), `UI/UiKitSkin.cs`, `UI/Window_Region.cs` (with `MainButtonWorker_Region`). Touched: `UI/UiKit.cs` (the
+    token block), `UiKitCards`, `UiKitLook`, `UiKitLenses`, `UiKitViews`, `WindowTabs` (`DrawOwn`, the corner's lit
+    backs, `Draw(..., corner)`, `RimfolkTabWindow.PreOpen`), `MainTabWindow_World` (`Opening`, `Closing`, `DrawRegion`, the
+    tab in the look), `Pages`, `Cards/Cards.cs` and `Colonies/FoundingWindow.cs` (`LeaveForMap`), `Cards/Drawer.cs`,
+    `RegionMapView`, `Region/` (MapView, PeoplesList, PeoplePage, PeopleActs, PeoplesView, PeoplesViewMath,
+    HereAndAwayView), `RegionViewsMath`, `WorldPages`, `WorldPanel`, `JourneyDialog` (its panel's buttons),
+    `Camps/CampUI.cs`, `World/NeighboursPanel.cs` (Write), `Diplomacy/DiplomacyPanels.cs` (hovers), `Hud/HudManager.cs`
+    (the floating window counts as a big tab), `Trade/Window_RimfolkTrade.cs`, `Defs/Misc/Council_Misc.xml` (the worker).
+  - Settings: `ownLook` ("Rimfolk's own look", on), `windowsMove` ("Rimfolk's windows move and resize", on), the action
+    "Put Rimfolk's windows back" (`windowPlaces`), on How you're told beside the window size; Keyed
+    `Rimfolk_OwnLook.xml`. Saved: nothing in the game (`windowPlaces` is the settings file's, modelled in
+    `save_estimate.py`). No Harmony patch, no Sched slot.
+  - Tests: `Tools/Tests/RimfolkLookTests.cs` ("Rimfolk's own look: ", some 17,700 checks: the frame on fourteen screens at
+    five scales, the place written, read, refused and fitted, contrast, the shapes and 9-slices, the tabs, the layouts
+    from the least window to 92% of 4K, the seams); `LookTests` reads each token as two-valued.
+  - Riskiest (none of it could be run here): following the mouse by polling while the title bar or an edge is held (the
+    window should never lag, stick to the mouse after a let-go, or jump); the scrollbars' styles mutated and put back
+    each frame (any exception and they stay the game's); the floating region window beside the game's tabs, the inspect
+    pane and dialogs (which is on top; Escape going to the topmost); the 9-slices at interface scales between 1 and 2
+    (a texel seam at a piece's edge); the text fields' focus and typing with the game's own keys (WASD while typing in
+    the search); the corner mask matching the panel's colour; a framed window's contents in a group (tooltips and
+    previews placed right).
+  - Try in the game (none of it could be run here): 1. Open the region window from its button: a floating window in the
+    middle with a dark title bar ("Region", the corner's icons, a square and an X), the four views as tabs above a
+    rounded panel. 2. Drag it by the title bar to the right half; click on the map, pick a colonist, open the Work tab:
+    it stays. 3. Size it from the left edge and from the bottom right corner (the edge lights amber under the mouse);
+    try to make it smaller than it allows. 4. Double-click the title: it fills most of the screen; Peoples shows a
+    wider list and three columns of acts, Here and away two columns; double-click again: back where it was. 5. Close it
+    with the X, reopen it from its button and with the region map's key: where you left it; restart the game: still
+    there. 6. In the region window, press Escape with a card open (the drawer closes), then again (the window closes).
+    7. From its corner open the council: the region window closes, the council opens as before; from the council's
+    corner back to the region. 8. On a card in its drawer, "Jump to" a colonist: the window closes and the camera
+    jumps. 9. Trade with a caravan: "Trade with ..." in the title bar, rounded chips, the switch "Only in the deal",
+    numbers right-aligned, the silver box a card (make the colony short of silver: it turns red with its words), Accept
+    in amber; drag and size it, close and trade again: where you left it. 10. Settings, How you're told: turn "Rimfolk's
+    own look" off (the game's look, the frame's title bar plain) and "Rimfolk's windows move and resize" off (the region
+    window is the tab at the screen's foot again, the trade window as before); "Put Rimfolk's windows back". 11. Change
+    the interface scale or the resolution with the window open: it stays on the screen.
 - 0.176.0, the diplomacy screen, step B: dealings with a whole people or town, and the letters' points 12 to 14 (8 November 2026,
   step B of `docs/design/diplomacy-screen.md` and points 12 to 14 of `docs/design/post-and-letters.md`, approved by the
   player: "very good, all of it!"; their words: "i want to be able to do some interactions with another base/faction as a

@@ -386,9 +386,18 @@ In code: `MainTabWindow_World.Register` stays only to forward old addresses; new
 
 ### The look
 
-The game's frame stays (its windows, tabs, fonts, the dark section), so Rimfolk sits in RimWorld as it does now; inside
-it, one stricter grammar. Rimfolk already has most of the parts (`UiKit`'s cards, chips, pills, meters, section
-titles, empty states, `Folds`); this names them, gives each one measure, and draws them the same way everywhere.
+Rimfolk's windows have a look of their own since 8 November 2026 (the player: "you really don't have to stick to the
+rimworld design theme if you can otherwise make all uis clearer, better to use, better looking, modern etc.";
+`docs/design/rimfolk-look.md`): a frame of Rimfolk's own (a drawn title bar with the title, the window's tools, large
+and close; moved by its title bar, sized from its edges, large at about 92% of the screen, remembered between games),
+a calm dark slate ground, rounded raised cards with a faint edge and a soft shadow, flat buttons with hover and
+pressed states, tabs that read as tabs, segmented modes, pills for chips, a switch, a text field whose focus shows, a
+chosen row lit by the accent's edge, slim scrollbars, one amber accent and the stances in blue and orange, always with
+their word. The game's look stays as a setting ("Rimfolk's own look" off), drawn exactly as before. Stage 1 (built) is
+the frame and the kit on the region and trade windows; stage 2 the council's windows, Planning, Defenses, the Almanac
+and Rimfolk's dialogs. Underneath, one stricter grammar either way: Rimfolk already had most of the parts (`UiKit`'s
+cards, chips, pills, meters, section titles, empty states, `Folds`); this names them, gives each one measure, and
+draws them the same way everywhere.
 
 #### Spacing and sizes
 
@@ -423,6 +432,18 @@ Colour carries meaning only, and always beside a word or an icon, never alone (f
 The page accents (the Peoples page's violet, the posts' tan) give way to these: a view needs no colour of its own when
 its icon and title say what it is.
 
+In Rimfolk's own look each token takes the mockup's palette (`UI/SkinMath.cs`; every text colour at least 4.5:1 on the
+window, a panel and a card, tested):
+
+| Token | Rimfolk's own |
+|---|---|
+| Ink, Faint, Dim, Heading | #ece8df, #b0aa9c, #9c968a, #e8d5a6 |
+| Gold (the one accent) | #e0a845; a primary button's word on it #17191b |
+| Link, LinkHot | #eed8a4, #fff1cf |
+| Warm, Cool, Sour | allied and friendly blue #6aa6dc, neutral #a9b1ba, hostile orange #e08a45 |
+| Soon, Danger, Done, World | #e6c35c, #f27466, #9db89f, #b4a7e2 |
+| Surfaces | the window #17191b, a panel #212427, a card #2a2e32 (under the mouse #33383d, held #1b1d20), edges #3a3f44 (#4f565c under the mouse) |
+
 #### Components
 
 Each in `UiKit` with a measure and a draw, so layout is worked out once per width:
@@ -442,6 +463,17 @@ Each in `UiKit` with a measure and a draw, so layout is worked out once per widt
 13. **Drawer**: the trail, the card, its acts at the foot.
 14. **Preview**: a small card at a link, entered to keep it.
 15. **Filter chips** and **count badge**.
+
+Rimfolk's own look adds (`UI/UiKitSkin.cs`, `UI/WindowFrame.cs`; each draws the game's look when the setting is off):
+
+16. **Window frame**: the title bar (36 high: icon, title, the window's tools, large, close), the edges' grips (6, a
+    corner 16), the body inset 10; its rules in `WindowFrameMath`.
+17. **Surfaces**: a rounded fill, edge and box (radii 4, 6, 8, 10), a tab's rounded top, a corner mask, a soft shadow,
+    a card (`OwnCard`).
+18. **Button**: normal, primary (the accent) and quiet; hover, held, greyed with why; `IconPlate` for a square one.
+19. **Segmented control** (the modes), **tabs** (`OwnTab`, the lit one joined to its panel), **switch** (`Toggle`),
+    **text field** and **search field** (the accent's edge while focused), **lit row** (`RowLit`, the accent's edge) and
+    `RowHover`, **scrollbars** that blend in.
 
 #### Icons
 
@@ -475,6 +507,18 @@ is drawn today.
   so every caller, key and other mod that asks `Pages.Open` for an old name lands in the right place.
 - **Saved.** Only the followed things (at most twelve refs); a model goes into `Tools/save_estimate.py`. Lens, modes,
   folds and the drawer's state are kept in the settings file like `PageMemory`, or for the session.
+
+- **The frame and the floating window.** `WindowFrame` is held by a window and called from its hooks: it places the
+  window in `SetInitialSizeAndPosition` (the remembered place fitted to this screen) and `Notify_ResolutionChanged`,
+  follows the mouse in `WindowOnGUI` before the game's `GUI.Window` (polling the button and the mouse, so a fast drag
+  never loses the window), and draws the title bar and the grips in the window's contents with margin 0 and no game
+  background. The region window floats as a plain `Window` (the interface layer, not closed by clicks outside it)
+  rather than a main tab, because the game closes a main tab on any click on the map and whenever something is
+  selected; it stays one of the four windows through `Pages` (DESIGN.md, "Rimfolk's own look, stage 1").
+- **Textures.** The rounded shapes are a few white textures made once at load (two texels a unit) and drawn as 9-slices
+  with `GUI.DrawTextureWithTexCoords`, tinted by `GUI.color`: nine draws a shape, nothing made per frame. The scrollbars
+  are the game's own styles with their thumb and track swapped while a framed window draws, put back after. The
+  tokens are properties choosing the game's value or the own look's, set around a framed window's contents.
 
 #### Performance
 

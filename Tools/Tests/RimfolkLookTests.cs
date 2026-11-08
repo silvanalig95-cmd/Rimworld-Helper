@@ -194,6 +194,8 @@ public static class RimfolkLookTests
             C(symmetric, $"radius {radius}: the same at every corner");
             C(SkinMath.Ring(s / 2, s / 2, s, r, k) == 0f && SkinMath.Ring(s / 2, 0, s, r, k) > 0.4f, $"radius {radius}: the edge is a ring, empty in the middle");
             C(SkinMath.Coverage(0, s - 1, s, r, 0f, true) > 0.95f && SkinMath.Coverage(0, 0, s, r, 0f, true) < 0.05f, $"radius {radius}: a tab is rounded at its top only");
+            C(SkinMath.Ring(s / 2, s - 1, s, r, k, true) == 0f && SkinMath.Ring(0, s - 1, s, r, k, true) > 0.4f && SkinMath.Ring(s / 2, 0, s, r, k, true) > 0.4f,
+                $"radius {radius}: a tab's edge runs along its top and sides, open at its foot where it joins the panel");
             // Smooth: no texel jumps from empty to full along the corner's diagonal.
             float last = 0f;
             bool smooth = true;

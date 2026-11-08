@@ -178,8 +178,9 @@ namespace ColonyCouncil
 
     /// <summary>
     /// The building blocks every Rimfolk page is drawn with, so the pages share one look: the palette, spacing, and
-    /// helpers for page headers, cards, pills, meters, portraits and chips. Everything here stays in vanilla's visual
-    /// language (dark panels, white and gray text, small accents, tinted white icons).
+    /// helpers for page headers, cards, pills, meters, portraits and chips. Each draws in the game's visual language (dark
+    /// panels, white and gray text, small accents, tinted white icons), or, inside a window in Rimfolk's frame with
+    /// "Rimfolk's own look" on, in Rimfolk's own (rounded, flat, the mockup's palette: UI/UiKitSkin.cs).
     /// </summary>
     [StaticConstructorOnStartup]
     public static partial class UiKit

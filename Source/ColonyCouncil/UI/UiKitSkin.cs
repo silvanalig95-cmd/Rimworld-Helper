@@ -224,12 +224,13 @@ namespace ColonyCouncil
         /// primary in the accent, a quiet one without a fill until the mouse is on it), greyed when it can't be used; in the
         /// game's, the game's own button. Returns true when used.
         /// </summary>
-        public static bool Button(Rect r, string label, ButtonKind kind = ButtonKind.Normal, bool active = true, string tip = null, GameFont font = GameFont.Small)
+        public static bool Button(Rect r, string label, ButtonKind kind = ButtonKind.Normal, bool active = true, string tip = null, GameFont? font = null)
         {
             if (!own)
             {
+                // The game's button in the font in use, as the pages drew it before (or the one asked for).
                 var oldFont = Text.Font;
-                Text.Font = font;
+                if (font.HasValue) Text.Font = font.Value;
                 bool clicked = Widgets.ButtonText(r, label, true, true, active);
                 Text.Font = oldFont;
                 if (!tip.NullOrEmpty()) TooltipHandler.TipRegion(r, tip);
@@ -240,10 +241,10 @@ namespace ColonyCouncil
             Color fill, edge, ink;
             switch (kind)
             {
-                case ButtonKind.Primary:
-                    fill = !active ? WithAlpha(Accent, 0.3f) : held ? AccentPressed : over ? AccentHover : Accent;
+                case ButtonKind.Primary when active:
+                    fill = held ? AccentPressed : over ? AccentHover : Accent;
                     edge = Color.clear;
-                    ink = active ? AccentInk : WithAlpha(AccentInk, 0.7f);
+                    ink = AccentInk;
                     break;
                 case ButtonKind.Quiet:
                     fill = !active ? Color.clear : held ? Pressed : over ? RaisedHover : Color.clear;
@@ -258,7 +259,7 @@ namespace ColonyCouncil
             }
             if (fill.a > 0.001f || edge.a > 0.001f) RoundBox(r, fill, edge, SkinMath.RadiusMedium);
             var old = Text.Font;
-            Text.Font = font;
+            if (font.HasValue) Text.Font = font.Value;
             string s = Fit(label, r.width - 12f);
             Text.Anchor = TextAnchor.MiddleCenter;
             GUI.color = ink;

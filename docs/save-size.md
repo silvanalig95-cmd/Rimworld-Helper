@@ -7,7 +7,7 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 593; modelled: 593; growing without end: 0.
+Saved collections found: 594; modelled: 594; growing without end: 0.
 Rimfolk's part of the save, roughly: **2,606 KB** after a year, **3,081 KB** after two, **3,307 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
@@ -523,6 +523,7 @@ Rimfolk's part of the save, roughly: **2,606 KB** after a year, **3,081 KB** aft
 | `CouncilSettings.cs:hudPanels` | the mod's settings file, not the save: one per panel | settings | 8 | 8 | 8 | (settings file) |
 | `CouncilSettings.cs:planMaterials` | the mod's settings file, not the save | settings | 30 | 30 | 30 | (settings file) |
 | `CouncilSettings.cs:savedRooms` | the mod's settings file, not the save: rooms the player saved | settings | 10 | 10 | 10 | (settings file) |
+| `CouncilSettings.cs:windowPlaces` | the mod's settings file, not the save: one line per window of Rimfolk's that was moved or sized (UI/WindowFrame.cs) | settings | 4 | 4 | 4 | (settings file) |
 | `Dealings/DealingBook.cs:letters` | per notable exchanging letters: when each passed, DealingMath.MaxExchanges at most (counted under friends) | fixed | 8 | 8 | 8 | (in its record) |
 | `Defense/DefenseLine.cs:done` | per line: one per step (counted under lines) | defs | 11 | 11 | 11 | (in its record) |
 | `Defense/DefenseLine.cs:downed` | per raid: 4 at most (counted under lines) | fixed | 4 | 4 | 4 | (in its record) |
