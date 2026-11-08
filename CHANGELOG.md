@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A pet bitten on the hunt still eats
+
+*8 November 2026, version 0.168.1*
+
+- A pet hunting for food no longer gives up the moment it is bitten or its prey turns on it: a wound that wants tending or the prey fighting back is part of a hunt, and once the prey is dead it eats before going home.
+- It still breaks off for your word, being downed, badly hurt or bleeding out, or another danger on the map; setting out still needs it well and the map quiet.
+
 ## Bed rest only when it makes sense
 
 *8 November 2026, version 0.168.0*

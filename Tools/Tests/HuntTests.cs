@@ -251,6 +251,18 @@ public static class HuntTests
         C(W(s => { s.health = 0.5f; return s; }) == "hurt", "not hurt");
         C(W(s => { s.danger = true; return s; }) == "danger", "not with danger on the map");
         C(W(s => { s.meleeAttack = false; return s; }) == "unable", "not without an attack");
+        // A hunt under way (the player's report: a dog bitten in the fight went home hungry).
+        string S(Func<HuntState, HuntState> f, bool other = false, bool bleed = false) => HuntMath.StopChase(f(ok), other, bleed);
+        C(S(s => s) == null, "a hunt under way goes on");
+        C(S(s => { s.medicalRest = true; return s; }) == null, "a bite that wants tending doesn't end a chase");
+        C(S(s => { s.danger = true; return s; }) == null, "the prey turning on its hunter (the game's danger) doesn't end it");
+        C(S(s => { s.health = 0.5f; return s; }) == null && S(s => { s.health = 0.3f; return s; }) == "hurt", "hurt short of bad goes on; badly hurt stops");
+        C(S(s => s, bleed: true) == "bleeding" && S(s => s, other: true) == "danger", "bleeding out, or another danger on the map, stops it");
+        C(S(s => { s.drafted = true; return s; }) == "drafted" && S(s => { s.keptHome = true; return s; }) == "kept" && S(s => { s.downed = true; return s; }) == "downed",
+            "the player's word and being downed stop it");
+        C(HuntMath.ChaseMinHealth < HuntMath.MinHealth, "a chase holds on past the health a hunt needs to start");
+        string watch = File.ReadAllText(Path.Combine(Root(), "Source/ColonyCouncil/Animals/PetHunts.cs"));
+        C(watch.Contains("HuntMath.StopChase(State(a), OtherDanger(a, r.prey)"), "the hunts' watch asks the chase's own rule, not the start's");
         float hour = HuntMath.SportHourChance();
         C(Math.Abs(hour - 1f / 96f) < 1e-5f && HuntMath.SportHourChance(0f) == 0f, "a fed hunter sets out about once in four days");
         C(!HuntMath.SportReady(0, 2000, 60000) && HuntMath.SportReady(0, 90000, 60000) && HuntMath.SportReady(-1, 5, 60000), "and not again within a day and a half");
@@ -293,6 +305,13 @@ public static class HuntTests
         string defs = File.ReadAllText(Path.Combine(root, "Defs", "Misc", "Rimfolk_PetHunts.xml"));
         C(defs.Contains("<defName>Rimfolk_PetBringsKill</defName>") && defs.Contains("ColonyCouncil.JobDriver_PetBringsKill"), "the carry home's job");
         return n;
+    }
+
+    private static string Root()
+    {
+        string root = Directory.GetCurrentDirectory();
+        while (root != null && !Directory.Exists(Path.Combine(root, "Defs", "RoomTemplateDefs"))) root = Path.GetDirectoryName(root);
+        return root;
     }
 
     private static float Num(string s) => float.Parse(s.StartsWith(".") ? "0" + s : s, System.Globalization.CultureInfo.InvariantCulture);

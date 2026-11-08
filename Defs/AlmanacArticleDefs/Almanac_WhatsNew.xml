@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.168.1</version>
+        <date>8 November 2026</date>
+        <title>A pet bitten on the hunt still eats</title>
+        <points>
+          <li>A pet hunting for food no longer gives up the moment it is bitten or its prey turns on it: a wound that wants tending or the prey fighting back is part of a hunt, and once the prey is dead it eats before going home.</li>
+          <li>It still breaks off for your word, being downed, badly hurt or bleeding out, or another danger on the map; setting out still needs it well and the map quiet.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.168.0</version>
         <date>8 November 2026</date>
         <title>Bed rest only when it makes sense</title>

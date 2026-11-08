@@ -1137,8 +1137,11 @@ game, the DLCs and the player's 29 animal mods from their own defs, `Tools/Tests
 - **Harm.** The hunt is the game's own fight, so prey fighting back can hurt a pet now and then, as it does the game's wild
   hunters; the choice of prey (smaller, much weaker, unlikely to turn on it, never venomous) keeps that small. Rimfolk rolls
   nothing of its own here, so the shared budget (`Harm/HarmBudgetMath.cs`) doesn't count it, as it doesn't count the game's
-  own predators, raids or the colony's hunters: none of it goes through `Harm`. A hunter hurt to under 0.6 of its health
-  breaks off the chase.
+  own predators, raids or the colony's hunters: none of it goes through `Harm`. Starting a hunt needs 0.6 of its health
+  and nothing to rest for; a hunt under way has its own rule (`HuntMath.StopChase`, 0.168.1, after the player's dog went
+  home hungry): a bite that wants tending or the prey turning on it (which the game counts as danger) doesn't end it, and
+  it breaks off only for the player's word, being downed, badly hurt (under 0.35 of its health), bleeding out within a
+  day, unable to fight or move, or another danger on the map. Once the prey lies dead, the meal is eaten.
 - **Seen.** At the kill, someone in view says a word (`Council_Pool_SeeHunt`, through `AnimalTempers.Remark`: the shared
   once-a-day rate of things said on screen; tagged eat or carry, hungry or sport, small or big, pack, body, Pokémon), and the
   animal's card says what it caught; the carried kill gets its person's word to it (`Council_Pool_PetBringsKill`). No letter

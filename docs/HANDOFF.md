@@ -12,6 +12,16 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- 0.168.1, a pet bitten on the hunt still eats (8 November 2026, the player's bug report: "my pet hunted for food, got
+  slightly injured in the fight, and then started walking back to base without eating"). Cause: the hunts' watch
+  (`PetHunts.Watch`) ended a chase for any reason that bars starting one, and a fresh bite wants tending
+  (`ShouldSeekMedicalRest`, "sick") while prey that turns on its hunter raises the map's danger ("danger"), so the chase
+  was broken off before the kill and the pet went to bed hungry. Fix: `HuntMath.StopChase` (pure, tested in `HuntTests`),
+  the chase's own rule: the player's word, a call to follow, a group, a mental state, downed, unable, under 0.35 of its
+  health (`ChaseMinHealth`), bleeding out within a day (`ChaseBleedTicks`), or danger besides the prey itself
+  (`PetHunts.OtherDanger`: the map's hostile targets other than the prey). Starting a hunt is unchanged (`WhyNot`).
+  DESIGN.md (pets that hunt, Harm) and the Almanac's animals page (prose) say so. To try: a hungry dog with nothing it may
+  eat in its area, a hare or a fox near; let it be bitten and see it keep on, kill and eat before going to rest.
 - 0.168.0, bed rest only when it makes sense (8 November 2026, the player's explicit request: "when does a pawn ... rest with an
   ailment or injury or illness, and when can the pawn still work ... I just don't want ... if someone has a bit of a
   sunburn that they just stay in bed all day ... they have a negative impact normally, but they don't keep a pawn
