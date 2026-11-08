@@ -61,7 +61,13 @@ namespace ColonyCouncil
         /// <summary>Asking to swear fealty to their people, their terms by their ways (Diplomacy/FealtyLetters.cs, release 2c.2).</summary>
         Fealty,
         /// <summary>Asking a town the colony was for it back, to be the colony's home again (Colonies/TownTakeBack.cs, stage 3 release 2b): to its head only.</summary>
-        TakeBack
+        TakeBack,
+        /// <summary>
+        /// A dealing with a town's council or a people's leaders as a whole (a contract, relief, a proclamation, a hire, a
+        /// petition, a joint work, market rights, an invitation: Dealings/DealingLetters.cs, the diplomacy screen's step B),
+        /// or the colony's answer to a letter the world wrote first (Dealings/WorldWrites.cs): to the town's head, for its council.
+        /// </summary>
+        Dealing
     }
 
     /// <summary>How the words go: a letter carried by hand, or a call over a comms console.</summary>
@@ -295,6 +301,8 @@ namespace ColonyCouncil
                 case LetterPurpose.Warning: return 3f;
                 case LetterPurpose.News: return 5f;
                 case LetterPurpose.Invitation: return 15f;
+                // A dealing waits on its own rules (Dealings/DealingMath.cs: one of each kind at a time, a while after a refusal).
+                case LetterPurpose.Dealing: return 3f;
                 default: return 20f;
             }
         }
@@ -408,7 +416,7 @@ namespace ColonyCouncil
         /// <summary>A warm answer from someone who thinks well of the colony now and then comes with a small gift.</summary>
         public static bool Gift(AnswerTone t, LetterPurpose p, int opinion, float roll)
         {
-            if (t != AnswerTone.Warm || opinion < 35 || p == LetterPurpose.Help || p == LetterPurpose.Invitation) return false;
+            if (t != AnswerTone.Warm || opinion < 35 || p == LetterPurpose.Help || p == LetterPurpose.Invitation || p == LetterPurpose.Dealing) return false;
             return Clamp01(roll) < (p == LetterPurpose.Warning ? 0.5f : 0.35f);
         }
 

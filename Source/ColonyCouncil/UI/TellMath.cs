@@ -136,6 +136,7 @@ namespace ColonyCouncil
                 case "Outsiders":
                 case "Couriers":
                 case "Post":
+                case "Dealings":
                 case "Strangers":
                 case "Visitors":
                 case "Missions":

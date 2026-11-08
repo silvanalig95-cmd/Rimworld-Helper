@@ -51,9 +51,13 @@ namespace ColonyCouncil
         /// on the road from their town by their people's means over the land's own way (Post/PostReach.cs), then waiting for
         /// whoever comes. False: the post is off; the caller tells it as before.
         /// </summary>
-        public static bool FromAbroad(Map map, Faction from, Settlement town, string label, string text, LetterDef def, string bringLabel = null)
+        public static bool FromAbroad(Map map, Faction from, Settlement town, string label, string text, LetterDef def, string bringLabel = null) =>
+            FromAbroadId(map, from, town, label, text, def, bringLabel) >= 0;
+
+        /// <summary>As <see cref="FromAbroad"/>, with its number in the post (to know when it opened), or -1 when the post is off.</summary>
+        public static int FromAbroadId(Map map, Faction from, Settlement town, string label, string text, LetterDef def, string bringLabel = null)
         {
-            if (!PostBook.On || map == null) return false;
+            if (!PostBook.On || map == null) return -1;
             float days = 1f;
             try
             {
@@ -65,7 +69,7 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("post: a letter from abroad", e);
             }
-            return Add(map, from, town, label, text, def, null, null, -1, Now + (int)(days * GenDate.TicksPerDay), PostUrgency.Ordinary, bringLabel ?? label) >= 0;
+            return Add(map, from, town, label, text, def, null, null, -1, Now + (int)(days * GenDate.TicksPerDay), PostUrgency.Ordinary, bringLabel ?? label);
         }
 
         /// <summary>Mail in the region and waiting for someone to bring it the rest of the way (not on its way with a carrier).</summary>

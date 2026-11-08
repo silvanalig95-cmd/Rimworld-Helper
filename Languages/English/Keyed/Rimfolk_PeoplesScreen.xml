@@ -207,4 +207,24 @@
   <CC_Region_ClosestFirst>Closest first</CC_Region_ClosestFirst>
   <CC_Region_ClosestFirst_Tip>The list all in one, nearest first, rather than in its groups.</CC_Region_ClosestFirst_Tip>
 
+  <!-- Step B: dealings with a whole people or one of their towns, received by its council (Source/ColonyCouncil/Dealings/). -->
+  <CC_PplAct_Group_Dealings>With their council as a whole</CC_PplAct_Group_Dealings>
+  <CC_PplAct_For_Supply>A year's contract with the town: the colony's surplus to them each season for their silver, or their goods to the colony for its silver. Each season kept warms their whole people; two missed in a row break it, and they remember that too.</CC_PplAct_For_Supply>
+  <CC_PplAct_Cost_Supply>The goods or the silver each season, carried to or from the gate by their porters.</CC_PplAct_Cost_Supply>
+  <CC_PplAct_For_Relief>Medicine or food for a town in hard times: its fortune a little better, their goodwill warmer, and a debt of honor their whole people remember.</CC_PplAct_For_Relief>
+  <CC_PplAct_Cost_Relief>The medicine or food, fetched from the gate by their porters.</CC_PplAct_Cost_Relief>
+  <CC_PplAct_For_Proclaim>A fair day brings their traders and folk to the colony on its morning; friendship declared and taken up warms their goodwill and their head's regard; trade terms posted bring their caravan and better terms with their traders for a season.</CC_PplAct_For_Proclaim>
+  <CC_PplAct_Cost_Proclaim>About an hour of a writer's time.</CC_PplAct_Cost_Proclaim>
+  <CC_PplAct_For_Hire>A crew of harvest hands that reaps the colony's fields, or a guard detail camped by the colony that takes up arms against what comes at it, for the season.</CC_PplAct_For_Hire>
+  <CC_PplAct_Cost_Hire>Their wage, asked at their camp every five days; left unpaid, they walk.</CC_PplAct_Cost_Hire>
+  <CC_PplAct_For_Petition>Their raiders kept away for two seasons, amends in silver for a wrong, a refugee family settled with them, or a family of theirs taken in, by their regard and their ways.</CC_PplAct_For_Petition>
+  <CC_PplAct_Cost_Petition>About an hour of a writer's time, and a refusal now and then.</CC_PplAct_Cost_Petition>
+  <CC_PplAct_For_Work>A road the world's own caravans and the post go faster on, a well or a bridge that betters their town and leaves them owing the colony, or a watchtower whose watch sends word of raiders coming that way.</CC_PplAct_For_Work>
+  <CC_PplAct_Cost_Work>The colony's share of wood, steel or stone, fetched from the gate by their porters.</CC_PplAct_Cost_Work>
+  <CC_PplAct_For_Market>A stall in their town for two months: better terms with all their traders, and their caravans come to the colony more often.</CC_PplAct_For_Market>
+  <CC_PplAct_Cost_Market>A fee in silver, fetched from the gate by their porters.</CC_PplAct_Cost_Market>
+  <CC_PplAct_For_InviteTown>Folk of their town at the colony's coming feast, fair or gathering day, or a few of the colony's people at their festival by caravan, home with a gift.</CC_PplAct_For_InviteTown>
+  <CC_PplAct_Cost_InviteTown>About an hour of a writer's time; for their festival, a caravan of the colony's people away for the journey.</CC_PplAct_Cost_InviteTown>
+  <CC_PplAct_For_Reply>They wrote first and wait for an answer: a reply warms them and counts toward a steady exchange; a request granted is a favor done.</CC_PplAct_For_Reply>
+
 </LanguageData>

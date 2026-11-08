@@ -318,7 +318,14 @@ namespace ColonyCouncil
             ["trapped"] = K(DeedSide.TheirWrong, 12),
             ["truceBroken"] = K(DeedSide.TheirWrong, 20),
             ["schemedUs"] = K(DeedSide.TheirWrong, 12),
-            ["protected"] = K(DeedSide.TheirFavor, 10)
+            ["protected"] = K(DeedSide.TheirFavor, 10),
+            // Dealings with a whole people or one of their towns (Dealings/): a supply contract's seasons kept (merged by
+            // the season), one broken, a joint work built together (a well, a bridge, a road, a watchtower), a friendship
+            // declared and taken up.
+            ["contractKept"] = K(DeedSide.Favor, 3, 20f, 16),
+            ["contractBroken"] = K(DeedSide.Wrong, 15),
+            ["builtTogether"] = K(DeedSide.Favor, 12),
+            ["friendship"] = K(DeedSide.Favor, 6)
         };
 
         public static DeedKind KindOf(string kind) => kind != null && Kinds.TryGetValue(kind, out var k) ? k : null;

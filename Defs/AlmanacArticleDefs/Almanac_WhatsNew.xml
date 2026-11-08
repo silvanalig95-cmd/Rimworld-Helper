@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.176.0</version>
+        <date>8 November 2026</date>
+        <title>Dealings with a whole town, pen friends, and the world writing first</title>
+        <points>
+          <li>A town's card and the Peoples page now offer dealings with its council as a whole, sent as a letter by the post, your rider, a relay or radio, and answered by their regard and their ways: a supply contract delivered each season at your gate, relief for a town in hard times, a fair day or friendship proclaimed, your trade terms posted, and market rights for a stall in their town with better terms.</li>
+          <li>You can hire harvest hands or a guard detail from a town for a season, who camp and work for you and are paid at their fire, and petition a council about its raiders, for amends, or to settle refugees with them or take theirs in.</li>
+          <li>Joint works with a neighbour: a real road between you that caravans and the post travel faster, a well or a bridge that raises their fortunes, or a watchtower that warns of raiders from that side; and you can invite a whole town to your feast or send your entertainers to their festival.</li>
+          <li>A steady exchange of letters with one of their notables makes a pen friend, who warns of raids from near them, eases trade, introduces you further off and may do you a favour; peoples now also write to you first now and then with news, a request or an invitation, answered when the next carrier passes.</li>
+          <li>A town beyond your reach can be reached through a people at peace with both, a little slower, and the map rings it so.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.175.0</version>
         <date>8 November 2026</date>
         <title>The last four peoples: the Helix Works, the Lattice, the Choir of the Spire, the Sunken Vault</title>

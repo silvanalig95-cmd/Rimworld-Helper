@@ -116,6 +116,8 @@ namespace ColonyCouncil
             string first = null;
             foreach (LetterPurpose p in Enum.GetValues(typeof(LetterPurpose)))
             {
+                // A dealing with their council is asked from its own acts (Dealings/DealingActs.cs).
+                if (DealingLetters.Owns(p)) continue;
                 string why = NeighbourLetters.WhyNot(n, p);
                 if (why == null) return null;
                 first ??= why;
@@ -304,9 +306,9 @@ namespace ColonyCouncil
             doCloseX = true;
             closeOnClickedOutside = true;
             absorbInputAroundWindow = true;
-            // The first purpose that can be written, and a letter by hand when a messenger can come.
+            // The first purpose that can be written (a dealing only when chosen for it), and a letter by hand when a messenger can come.
             foreach (LetterPurpose p in Enum.GetValues(typeof(LetterPurpose)))
-                if (LetterOccasions.WhyNot(n, p) == null)
+                if (!DealingLetters.Owns(p) && LetterOccasions.WhyNot(n, p) == null)
                 {
                     purpose = p;
                     break;
@@ -380,7 +382,8 @@ namespace ColonyCouncil
             {
                 // A purpose no longer written (the council's business, retired) is never offered, nor asking for a town back of
                 // anyone but the head of a town the colony was (Colonies/TownTakeBack.cs).
-                if (NotableMath.Retired(p) || TownLetters.Owns(p) && !TownLetters.Shows(to)) continue;
+                // A dealing with their council only when the window was opened for one (Dealings/DealingActs.cs).
+                if (NotableMath.Retired(p) || TownLetters.Owns(p) && !TownLetters.Shows(to) || DealingLetters.Owns(p) && purpose != p) continue;
                 string why = whyNot.TryGetValue(p, out var w) ? w : null;
                 var row = new Rect(inRect.x + 10f, y, 220f, 24f);
                 if (Widgets.RadioButtonLabeled(row, ("CC_Letter_PurposeCap_" + p).Translate(), purpose == p, why != null) && why == null)
@@ -510,7 +513,7 @@ namespace ColonyCouncil
             topicIndex = 0;
             if (LetterOccasions.WhyNot(n, purpose) != null)
                 foreach (LetterPurpose p in Enum.GetValues(typeof(LetterPurpose)))
-                    if (LetterOccasions.WhyNot(n, p) == null)
+                    if (!DealingLetters.Owns(p) && LetterOccasions.WhyNot(n, p) == null)
                     {
                         purpose = p;
                         break;

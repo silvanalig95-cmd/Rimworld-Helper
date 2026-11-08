@@ -33,7 +33,7 @@ namespace ColonyCouncil
         /// <summary>A purpose this frame answers for.</summary>
         public static bool Owns(LetterPurpose p) =>
             p == LetterPurpose.Favour || p == LetterPurpose.Pact || p == LetterPurpose.Truce || p == LetterPurpose.Ransom || p == LetterPurpose.Envoy || MatchLetters.Owns(p) || WardLetters.Owns(p)
-            || FealtyLetters.Owns(p) || TownLetters.Owns(p);
+            || FealtyLetters.Owns(p) || TownLetters.Owns(p) || DealingLetters.Owns(p);
 
         private static Map Home => HappeningTracker.HomeMap() ?? Homes.Seat;
 
@@ -46,6 +46,8 @@ namespace ColonyCouncil
         public static string WhyNot(Notable n, LetterPurpose p)
         {
             if (!Owns(p) || n == null) return null;
+            // A dealing with their council, or an answer to a letter they wrote first (Dealings/DealingLetters.cs).
+            if (DealingLetters.Owns(p)) return DealingLetters.WhyNot(n, Home);
             // Fealty sworn to their people (release 2c.2, FealtyLetters.cs).
             if (FealtyLetters.Owns(p)) return FealtyLetters.WhyNot(n, Home);
             // A town the colony was asked for back (stage 3 release 2b, Colonies/TownTakeBack.cs).
@@ -72,6 +74,7 @@ namespace ColonyCouncil
         public static List<LetterTopic> Topics(Notable n, LetterPurpose p)
         {
             if (p == LetterPurpose.Favour) return Topics(n);
+            if (DealingLetters.Owns(p)) return DealingLetters.Topics(n, Home);
             if (FealtyLetters.Owns(p)) return FealtyLetters.Topics(n, Home);
             if (TownLetters.Owns(p)) return TownLetters.Topics(n);
             if (RansomLetters.Owns(p)) return RansomLetters.Topics(n, p, Home);
@@ -139,7 +142,9 @@ namespace ColonyCouncil
         public static List<FavourCalls.Option> Asks(string topicKey, Map map)
         {
             if (asksFor == topicKey && Time.realtimeSinceStartup - asksAt < 0.5f) return asks;
-            if (topicKey != null && topicKey.StartsWith(TrucePrefix, StringComparison.Ordinal)) asks = TruceAsks(topicKey, map);
+            if (topicKey != null && (topicKey.StartsWith(DealingMath.Prefix, StringComparison.Ordinal) || topicKey.StartsWith(DealingLetters.ReplyPrefix, StringComparison.Ordinal)))
+                asks = DealingLetters.Asks(topicKey, map ?? Home);
+            else if (topicKey != null && topicKey.StartsWith(TrucePrefix, StringComparison.Ordinal)) asks = TruceAsks(topicKey, map);
             else if (topicKey != null && topicKey.StartsWith(PactPrefix, StringComparison.Ordinal)) asks = CartAsks(topicKey, map);
             else if (topicKey != null && topicKey.StartsWith(MatchMath.TopicPrefix, StringComparison.Ordinal)) asks = MatchLetters.Asks(topicKey, map ?? Home);
             else if (topicKey == WardMath.AskTopic || topicKey == WardMath.SendTopic) asks = WardLetters.Asks(topicKey, map ?? Home);
@@ -364,6 +369,12 @@ namespace ColonyCouncil
                 if (WardLetters.Owns(l.purpose))
                 {
                     a.line = WardLetters.Read(l, n, l.map ?? Home, ref tone);
+                    return a;
+                }
+                // A dealing with their council, or the colony's answer to their letter (Dealings/DealingLetters.cs).
+                if (DealingLetters.Owns(l.purpose))
+                {
+                    a.line = DealingLetters.Read(l, n, l.map ?? Home, ref tone, a.things);
                     return a;
                 }
                 // A town the colony was asked for back (stage 3 release 2b): their yes or no.

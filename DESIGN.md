@@ -6745,6 +6745,136 @@ occasion rules only: every act runs through its own code path as before. In `UI/
 - **Saved**: nothing. The sort and the filters are the session's, the search, the people chosen, the tab and the target
   start afresh with a new game.
 
+## Dealings with a whole people or town, pen friends and the world writing first (the player's request, 8 November 2026)
+
+The player: "i want to be able to do some interactions with another base/faction as a whole, rather than contacting a
+single person. like some business is just targeted at their whole base and they can receive it as such", and on letters
+"when am I going to send a letter to another guy on the other side of the world just asking like to chit chat? ... the
+options should have some motivation to do them". Step B of `docs/design/diplomacy-screen.md` (points 6 to 13) and points
+12 to 14 of step 2 of `docs/design/post-and-letters.md`, approved by the player ("very good, all of it!"). In
+`Source/ColonyCouncil/Dealings/`; the pure rules in `DealingMath.cs` (`Tools/Tests/DealingTests.cs`, "dealings: ").
+
+- **One letter purpose for all of it** (`LetterPurpose.Dealing`, the last of the purposes so saved letters keep their
+  places; `DealingLetters`, called through `DiplomacyLetters` as the other stage 2 purposes are). A dealing is a letter to
+  the town's council (or a people's leaders, for a proclamation or a petition to them as a whole), received by the town's
+  head (or whoever of theirs the colony knows there; for the people, their head: `Dealings.Receiver`), addressed in its
+  words to "the council of Ashford" by their age (the elders of a tribe's town, the town council of an industrial one, the
+  governors of a spacer one, the court at an Empire's town). Its topic keeps what it is (`deal:Supply:0:1234`: the kind,
+  its sub-kind, the town or -1) and its help field the terms (`terms:RawCorn:75`). It is written by a colonist and goes as
+  every letter does: the mailbag and whoever goes that way, the post, the colony's own rider, a relay, a chain of
+  neighbours, a call on the console, a go-between for a people at war; the answer comes back the same way (in the post,
+  with the rider, by their messenger when it carries silver). The purpose shows in the letter's window only when it was
+  opened for a dealing; the general "Write" never picks it.
+- **Offered** from a town's card (an act for each of the eight, `DealingActs`), a people's card (proclamations and
+  petitions to their leaders) and so on Peoples, "Do something with..." (`UI/Region/PeopleActs.cs`, the section "With
+  their council as a whole"; `PeopleActMath` has the eight acts and Reply, by letter, each with what it brings and costs).
+  An act is greyed with the first reason none of its kinds is open (`DealingMath.WhyNot`, kept a second), or the letters'
+  own (one letter at a time to each, too many open, the head at the colony). The letter's window lists every dealing open
+  with that council under "What about" and the terms under "What is asked", each greyed with why.
+- **Their answer** (`DealingLetters.Read`): agreed or refused by `DealingMath.Chance`: the dealing's own base, their
+  head's regard (0.004 a point) and their people's goodwill (0.003), their ways (`DealingMath.Ways`: traders and brokers
+  like contracts and stalls, mercenaries hire out guards, healers and pilgrims take in refugees, artisans like joint works
+  and festivals; the Empire takes no charity and minds friendship, contracts, hires and amends), between 0.05 and 0.95.
+  Agreed, the tone is never worse than cool; refused, a refusal. Their words are the council's own line for each kind,
+  yes and no (`CC_Deal_Ans_*`), not a kind letter's quote; the letter's title "The council of Ashford answer". The
+  dealing is written in the book when they read it (stage Asked), and starts when their answer is in at the colony
+  (`NeighbourLetters.Owed` calls `DealingLetters.AnswerIn`): set down at the mailbag, brought by the rider, the messenger's
+  trip settled, the call ended. A letter overtaken by events (the town no longer theirs, a war) is answered without a yes
+  or a no.
+- **What is open** (`DealingMath.WhyNot` over `Dealings.Facts`): not with the setting off; at war only a petition about
+  their raiders or for amends; someone of theirs known by name there to receive it; a way to reach them; one of each kind
+  at a time with them; not within 15 days of a refusal; goodwill 0 or more (relief any, a petition any, friendship 20,
+  market rights 10). Each kind's own below.
+- **A supply contract** (point 6): the colony delivers (its most plentiful goods, the trade pact's cart: `Pacts.CartGoods`,
+  paid four fifths of their worth) or they deliver (by their age: potatoes, rice, wood, cloth; steel and granite blocks from
+  the medieval age; herbal medicine, or industrial medicine and components from the industrial; a load worth 220 to 500
+  silver by their age, paid eleven tenths of its worth). Four seasons, the first two days after the answer, then every 15,
+  by day (8 to 15) and never with a threat on the map: the colony's goods are fetched from the stores by their porters,
+  who bring the silver (`Couriers.CollectOrder`); their goods come to the gate and their porters take the silver
+  (`Couriers.Exchange`); without the couriers, at once as before. Short at the season: missed (a letter); two missed in a
+  row or three in all break it (goodwill -10, their memory's `contractBroken`); each season kept +1 goodwill and
+  `contractKept` (merged by 20 days); kept to its end +6 and `contractKept`. Vanilla Trading Expanded's contracts stay its
+  own (on its trading terminal; Rimfolk's trade screen only reads them, `Integrations/VanillaTrading.cs`), untouched;
+  Rimfolk's contract is a dealing with a town by letter, its deliveries by porters at the gate, and its better terms are
+  the game's price offset, beside the market value VTE moves.
+- **Relief** (point 7): for a town in hard times the colony has heard of (a bad world event on their people, or the town
+  struggling by its fortune: `Dealings.HardTimes`), the colony's most plentiful medicine (6), meals (15) or raw food (75),
+  fetched from the gate by their porters. Once with them: their goodwill +6, the town's fortune +8 (half at their other
+  towns, the cause "the colony's relief" on its panel: `RegionFortunes.Move`), and `hardship` in their memory (15: a debt
+  of honor of theirs). The Empire seldom takes it.
+- **Proclamations** (point 8): a fair day (the next gathering day on the colony's calendar between 3 and 15 days off, else
+  6 days on): on its morning (7 to 12) their trader caravan comes (the game's own) and three to six of their folk walk in
+  at an errand's pace and spend the day by the walls (`Dealings.Guests`: `Arrivals.Visit`, `LordJob_VisitOnErrand`); a
+  threat holds it an hour at a time, past noon it is missed. Friendship declared: taken up, their goodwill +8, their head's
+  regard +6 and `friendship` in their memory. The colony's trade terms posted: their caravan within 2 to 6 days, and for a
+  season their traders give the colony 3% better terms.
+- **Hiring from a town** (point 9): a crew of harvest hands (the camps' harvest hands, `Rimfolk_Camp_HarvestHands`, taken
+  on by the letter, paid in silver when they ask; only with crops growing) or a guard detail (`Rimfolk_Camp_HiredGuard`:
+  the Ashen Banner's contract, `Camps/CampContract.cs`, for any people; it takes up arms against what comes at the colony,
+  keeps the gate by day, and asks its wage every five days, paid at its fire or met at the gate when far: `CampMeet`). Each
+  walks in as a group and makes camp for the season beside any camps there (`Dealings.StartCamp`, `CampTracker.Start`
+  with force). Its wage is about `PeoplesEMath.Wage` for four or five by their age. Left unpaid they walk (broken); at
+  the season's end, kept. Builders and a caravan escort were left out: a camp can't build the colony's blueprints, and
+  the game's caravans take only the colony's own.
+- **Petitions to their council** (point 10): about their raiders (after a raid of theirs in 60 days): granted, their raids
+  are kept away for two seasons (`Patch_DealingRaiders` on the game's choice of raiders, as a truce's); a raid of theirs
+  all the same breaks their word (`brokeWord`). For amends (a wrong of theirs in 60 days: raids, the colony's dead, a
+  raiders' camp): granted, 12 silver a point of the wrong by their age (100 to 600) comes with their answer and the wrongs
+  are settled in their memory. To settle a refugee family camped at the colony with them: their camp packs and walks off
+  (`sheltered` remembered by the refugees' people). To take in a family of theirs in hard times: their refugee family walks
+  in and makes camp at the gate (the camps' refugee family, with its own asks).
+- **Joint works** (point 11): a road, a well, a bridge, a watchtower. The colony's share (wood, then steel, for a road or a
+  bridge; stone blocks for a well or a tower, wood for a tribe; a road's by its tiles, 80 to 300) is fetched from the gate
+  by their porters, then the work takes its days (a road one for every two tiles, 5 to 15; a well 6; a bridge 8; a tower
+  6). The road is the game's own road laid along the world's path from the colony to the town (`WorldGrid.OverlayRoad`, a
+  dirt path, a dirt road or a stone road by the earlier of the two ages), drawn on the world map: the world's caravans and
+  the post's days go by the game's own path over it (`PostReach` worked out again). A well or a bridge: their town's
+  fortune +5, goodwill +5. Each built: `builtTogether` in their memory (12: a debt of honor of theirs, `FavourMath`). A
+  watchtower toward their town: while it stands (the town theirs, at peace), a raid the storyteller sends of a people
+  whose nearest town lies within 60 degrees of the way to it is held 3 to 5 hours in the game's own queue, and the word
+  comes now (`DealingWarnings`, `Patch_DealingWarns` on `Storyteller.TryFire`): their messenger walks in with it, or over
+  the radio when both have one. The raid's people is the game's own choice (its `TryResolveRaidFaction`), made now. Not
+  while the colony's relay mast sings: the mast's own warning has it.
+- **Market rights** (point 12): a fee (200 to 600 silver by their age) fetched from the gate; for 60 days their traders
+  give the colony 5% better terms (`Patch_DealingPawnTerms`, `Patch_DealingTownTerms` on the game's own price offset, all
+  of a people's dealings together at most 8%), and once a day a chance in ten of their trader caravan, six days apart.
+- **A town invited** (point 13): to the colony's coming gathering (its feast with guests, a fair it proclaimed, a calendar
+  day kept with a gathering, two days off or more): three to six folk of the town walk in on its morning and spend the day
+  (as the fair's), and `feast` is remembered. Or the colony's entertainers to their festival: the invitation missions' own journey
+  (`Rimfolk_Mission_Festival`, `HappeningWorker_MissionFestival`, never drawn by the storyteller): at least two by caravan,
+  a day at their town, home with a gift, the colony's best at the arts leading; the mission keeps its own memory.
+- **Pen friends** (post point 12, `PenFriends`): every letter of the colony's answered warmly or courteously (any purpose,
+  `NeighbourLetters.Read`) is one of an exchange with that notable; three within 60 days with their regard at 30 make a pen
+  friend (a letter says what it brings), which holds while a letter passes within 90 days and their regard stays at 15.
+  A pen friend: their messenger walks in with word of a raid by a people whose nearest town lies within 20 tiles of
+  theirs, the raid held 3 to 5 hours (once in 10 days); 2% better terms with their people's traders; their people
+  introduce the colony's letters to peoples beyond its reach (below); and after a season, once in 60 days, a favor (a debt
+  of honor of theirs, `FavoursOwed.Make`, "years of letters between friends"). Twelve friends at most, the coolest lapse.
+- **The world writes first** (post point 13, `WorldWrites`): once a day, with a notable at peace who thinks 10 or more of
+  the colony, a chance of 0.06, 0.02 more for each pen friend, 0.14 at most, never within 6 days of the last and never with
+  two waiting (`DealingMath.WriteChance`; simulated, a letter every 10 to 25 days). Pen friends write three times as often
+  as others. News (their town's and region's, the facts service's), a small request by their age (3 medicine, 60 wood, 30
+  cloth, 40 steel) or an invitation to their festival (where its journey can be made). It comes in the post from their
+  town (`MailIn.FromAbroadId`) and opens at the mailbag; it waits for an answer, in the inbox ("Needs you"), on their card
+  ("Answer their letter") and on Peoples. The answer is a Dealing letter (`reply:ID`), leaving with the next carrier going
+  their way; read, their regard +4 (a request granted +6), and their thanks in, a request granted brings their porters
+  for it (`favorDone`), an invitation accepted is the festival's journey. Unanswered 15 days, their regard -3.
+- **A chain of neighbours** (post point 14, `PostReach.FindChain`): a town out of reach may be reached by introduction
+  through a people at peace with the colony and with the far one, on good terms with the colony (goodwill 40) or with a
+  pen friend among them (goodwill 0): their town within the colony's range, a day there to be introduced and a day further
+  on, and on by their means within twice their own range (`DealingMath.ChainDays`: slower than a relay). The letter goes
+  with whoever goes toward their town, or the post; its reach line says "by introduction through ...", the region map
+  rings it amber.
+- **Shown** on the Dealings tab ("With their towns as a whole": each in a line, what, with whom, its terms, where it
+  stands, never a time left; `DealingActs.Draw`), counted in the tab and the Dealings filter; on the town's card; in the
+  inbox's Under way. Every age: the councils, the goods, the roads and the words by the age; the Empire keeps its court.
+- **Settings** (the neighbours' section, each on and needing the letters): *Dealings with a whole people or town*
+  (`townDealings`), *Pen friends* (`penFriends`), *The world writes first* (`worldWrites`). The deeper game hooks off: no
+  better terms, no raids kept away, no word of raids.
+- **Saved** (`DealingBook`, a game component of its own: an older save starts it empty): the dealings (closed ones kept
+  60 days, a work built kept while it stands, 80 at most), the pen friends (with their letters' ticks, eight at most each),
+  the world's letters waiting (two at once). Modelled in `Tools/save_estimate.py`.
+
 ### Diplomacy
 
 Stage 2's base and its first item, favours owed and called in (docs/design/stage2-diplomacy.md, release 2a.1):

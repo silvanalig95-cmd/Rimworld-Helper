@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Dealings with a whole town, pen friends, and the world writing first
+
+*8 November 2026, version 0.176.0*
+
+- A town's card and the Peoples page now offer dealings with its council as a whole, sent as a letter by the post, your rider, a relay or radio, and answered by their regard and their ways: a supply contract delivered each season at your gate, relief for a town in hard times, a fair day or friendship proclaimed, your trade terms posted, and market rights for a stall in their town with better terms.
+- You can hire harvest hands or a guard detail from a town for a season, who camp and work for you and are paid at their fire, and petition a council about its raiders, for amends, or to settle refugees with them or take theirs in.
+- Joint works with a neighbour: a real road between you that caravans and the post travel faster, a well or a bridge that raises their fortunes, or a watchtower that warns of raiders from that side; and you can invite a whole town to your feast or send your entertainers to their festival.
+- A steady exchange of letters with one of their notables makes a pen friend, who warns of raids from near them, eases trade, introduces you further off and may do you a favour; peoples now also write to you first now and then with news, a request or an invitation, answered when the next carrier passes.
+- A town beyond your reach can be reached through a people at peace with both, a little slower, and the map rings it so.
+
 ## The last four peoples: the Helix Works, the Lattice, the Choir of the Spire, the Sunken Vault
 
 *8 November 2026, version 0.175.0*
