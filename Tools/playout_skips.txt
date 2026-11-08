@@ -548,3 +548,26 @@ Rimfolk_Evt_FleetSalvage [option 2] a refusal: the quartermaster is sent back to
 Rimfolk_Evt_FleetSleeper [option 2] a refusal: the sleeper walks off from the gate (SendAway)
 # Defs/MissionDefs/Rimfolk_Missions_PeoplesF.xml
 Rimfolk_Mission_LineSpan [option 1] a refusal: the span is left for the Line to mend
+# Defs/IncidentDefs/Rimfolk_Events_PeoplesG.xml
+Rimfolk_Evt_HelixSample [option 2] a refusal: the sample-buyer is sent back to the road (SendAway)
+Rimfolk_Evt_HelixGeneWork [option 2] a refusal: the sequencer is sent back to the road (SendAway)
+Rimfolk_Evt_HelixCase [option 2] a refusal: the vat-keeper is sent back to the road (SendAway)
+Rimfolk_Evt_HelixBatch [option 2] a refusal: the vat-keeper and the batch are sent back to the road (SendAway)
+Rimfolk_Evt_LatticeRepair [option 2] a refusal: the mech-tender is sent back to the road (SendAway)
+Rimfolk_Evt_LatticeParts [option 0] the event's own code: the parts carried out to the part-trader (DilemmaEffect_LatticeParts, Couriers.TakeFor)
+Rimfolk_Evt_LatticeParts [option 2] a refusal: the part-trader is sent back to the road (SendAway)
+Rimfolk_Evt_LatticeTurret [option 2] a refusal: the engineer is sent back to the road (SendAway)
+Rimfolk_Evt_ChoirListening [option 0] the event's own code: the listeners walk in and sit in a ring in the colony's middle (DilemmaEffect_ChoirListen)
+Rimfolk_Evt_ChoirListening [option 1] the event's own code: the listeners and the colonist sit in the ring (DilemmaEffect_ChoirListen, together)
+Rimfolk_Evt_ChoirListening [option 2] a refusal: the listeners are sent back to the road (SendAway)
+Rimfolk_Evt_ChoirArt [option 0] the event's own code: the art carried out to the keeper, the good set down at the gate (DilemmaEffect_ChoirArt)
+Rimfolk_Evt_ChoirArt [option 2] a refusal: the keeper is sent back to the road (SendAway)
+Rimfolk_Evt_VaultBarter [option 2] a refusal: the technician is sent back to the road (SendAway)
+Rimfolk_Evt_VaultCraft [option 0] the event's own code: the teacher and the technician at the bench (DilemmaEffect_VaultTeach)
+Rimfolk_Evt_VaultCraft [option 1] the event's own code: the teacher, the technician and the second colonist at the bench (DilemmaEffect_VaultTeach, withB)
+Rimfolk_Evt_VaultCraft [option 2] a refusal: the technician is sent back to the road (SendAway)
+Rimfolk_Evt_VaultChild [option 2] a refusal: the scout takes the child home (SendAway)
+# Defs/MissionDefs/Rimfolk_Missions_PeoplesG.xml
+Rimfolk_Mission_HelixGenepacks [option 1] a refusal: the lab waits for a caravan
+Rimfolk_Mission_LatticeHands [option 1] a refusal: the Lattice mends the line with its own hands
+Rimfolk_Mission_ChoirStay [option 0] the mission's own code: the listener comes later, hosted and watching someone at work each afternoon

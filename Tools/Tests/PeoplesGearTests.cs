@@ -240,7 +240,7 @@ public static class PeoplesGearTests
                 apparelMax = Max(k.Element("apparelMoney")?.Value ?? ""), weaponMax = Max(k.Element("weaponMoney")?.Value ?? "")
             });
         }
-        C(kinds.Count >= 95 && factions.Count == 19 && kinds.All(k => factions.Any(f => Dn(f) == k.faction)), $"every kind of the nineteen peoples read ({kinds.Count})");
+        C(kinds.Count >= 120 && factions.Count == 23 && kinds.All(k => factions.Any(f => Dn(f) == k.faction)), $"every kind of the twenty-three peoples read ({kinds.Count})");
         string TechOf(Kind k) => factions.First(f => Dn(f) == k.faction).Element("techLevel")!.Value;
 
         // Every piece of the player's active mods under a tag the peoples use is in PeopleGear.txt, so the checks below see
@@ -296,7 +296,7 @@ public static class PeoplesGearTests
                 }
             }
         }
-        C(colours.Values.Distinct().Count() == 19, "nineteen peoples, nineteen colours");
+        C(colours.Values.Distinct().Count() == 23, "twenty-three peoples, twenty-three colours");
         var bannerSpecs = kindEls.Where(k => (Dn(k) == "" ? k.Attribute("Name")?.Value ?? "" : Dn(k)).StartsWith("Rimfolk_AshenBanner"))
             .SelectMany(k => k.Element("specificApparelRequirements")?.Elements("li") ?? Enumerable.Empty<XElement>()).Where(s => s.Element("color") != null).ToList();
         C(bannerSpecs.Any(s => s.Element("apparelDef")?.Value == "Apparel_Sash")
@@ -448,7 +448,10 @@ public static class PeoplesGearTests
             }
             C(f.Element("xenotypeSet")?.Attribute("Inherit")?.Value == "False", $"{fd}: its own mix, none of its parent's");
             C(xs.Count >= 6 && sources.Count >= 3, $"{fd}: a real mix of kinds of people ({xs.Count} from {sources.Count} sources)");
-            C(sum <= 0.35f && sum >= 0.15f, $"{fd}: baseliners common enough that it reads as one people ({1 - sum:0.00})");
+            // The Helix Works are mostly their own work (docs/design/peoples-third.md), drawn from every kind of people in the player's mods.
+            if (fd == "Rimfolk_HelixWorks")
+                C(sum >= 0.5f && sum <= 0.8f && xs.Count >= 25 && sources.Count >= 10, $"{fd}: mostly not baseliners, from every source ({sum:0.00}, {xs.Count} from {sources.Count} sources)");
+            else C(sum <= 0.35f && sum >= 0.15f, $"{fd}: baseliners common enough that it reads as one people ({1 - sum:0.00})");
             C(xs.Count(x => Req(x) == Biotech.ToLowerInvariant()) >= 2, $"{fd}: Biotech alone still gives it a mix");
         }
 
@@ -496,7 +499,7 @@ public static class PeoplesGearTests
         // Release E's two more: the Stormglass Conclave's readers feel the weather as the planet's psychic tide (their lore,
         // Staticlords and Frostshapers), and the Mossborn's eldest root may be a Wildspeaker. Release F's two more: the Signal
         // Line's operators who hear the psychic hum in the static (Staticlords), and the Republic's propaganda officers
-        // (Empaths and Puppeteers); the Deepwell Union none.
+        // (Empaths and Puppeteers); the Deepwell Union none. Release G's four are all of the spacer age.
         foreach (var f in factions)
         {
             string tech = f.Element("techLevel")!.Value;

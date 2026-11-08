@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The town plans of release G's peoples (Defs/PeopleDefs/Rimfolk_People_HelixWorks.xml, _Lattice.xml, _Choir.xml,
+    _SunkenVault.xml; docs/design/peoples.md, "Release G"), laid by the same code as the others (Peoples/PeopleTowns.cs),
+    only the base game's buildings so they stand without any DLC: the Helix Works' gene lab with its benches, the vat
+    hall's cradles and a quiet garden; the Lattice's charging yards with the control tower, the gestation hall's benches
+    and the batteries under the turrets; the Choir of the Spire's ring of quiet halls round a pale monolith; the Sunken
+    Vault's door in the hillside, the vault behind it and a surface camp growing round it. Rows from the north; an
+    underscore is the ground as it is.
+  -->
+
+  <ColonyCouncil.TownPlanDef>
+    <defName>Rimfolk_Plan_HelixLab</defName>
+    <label>Helix Works&apos; lab</label>
+    <description>The Helix Works' gene lab: a sterile hall with two research benches where the sequencers work and the vat hall's cradles where the newly grown wake, the Works' stores of medicine, a house of quarters with its table, and a quiet garden of roses round two willows where the editors walk between edits.</description>
+    <wallStuff>
+      <li>Steel</li>
+      <li>Plasteel</li>
+      <li>BlocksMarble</li>
+    </wallStuff>
+    <keys>
+      <li><key>#</key><thing>Wall</thing><wall>true</wall></li>
+      <li><key>D</key><thing>Door</thing><wall>true</wall></li>
+      <li><key>,</key><floor>SterileTile</floor><roof>true</roof></li>
+      <li><key>R</key><thing>HiTechResearchBench</thing><stuff>Steel</stuff><floor>SterileTile</floor><roof>true</roof></li>
+      <li><key>H</key><thing>HospitalBed</thing><stuff>Steel</stuff><rot>South</rot><floor>SterileTile</floor><roof>true</roof></li>
+      <li><key>L</key><thing>TorchLamp</thing><floor>SterileTile</floor><roof>true</roof></li>
+      <li><key>S</key><thing>ShelfSmall</thing><stuff>Steel</stuff><floor>SterileTile</floor><roof>true</roof><mark>store</mark></li>
+      <li><key>x</key><floor>SterileTile</floor><roof>true</roof><mark>store</mark></li>
+      <li><key>.</key><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>b</key><thing>Bed</thing><stuff>WoodLog</stuff><rot>South</rot><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>T</key><thing>Table2x2c</thing><stuff>WoodLog</stuff><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>h</key><thing>DiningChair</thing><stuff>WoodLog</stuff><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>l</key><thing>TorchLamp</thing><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>r</key><mark>plant:Plant_Rose</mark></li>
+      <li><key>w</key><mark>plant:Plant_TreeWillow</mark></li>
+      <li><key>t</key><thing>TorchLamp</thing></li>
+    </keys>
+    <rows>
+      <li>____________________________________</li>
+      <li>__###############______##########___</li>
+      <li>__#,,,,,,,,,,,,,#______#.b.b.b.b#___</li>
+      <li>__#,,R,,,,,R,,,L#______#........#___</li>
+      <li>__#,,,,,,,,,,,,,#______#...l....#___</li>
+      <li>__#,,,,,,,,,,,,,D______#........#___</li>
+      <li>__#,H,H,H,H,,,,,#______#.T..T...#___</li>
+      <li>__#,,,,,,,,,SxSx#______#.hh.hh..#___</li>
+      <li>__#,,,,,,,,,xxxx#______####D#####___</li>
+      <li>__#######D#######___________________</li>
+      <li>____________________________________</li>
+      <li>_____rrrrrr______t______rrrrrr______</li>
+      <li>_____r_ww_r_____________r_ww_r______</li>
+      <li>_____rrrrrr______t______rrrrrr______</li>
+      <li>____________________________________</li>
+    </rows>
+  </ColonyCouncil.TownPlanDef>
+
+  <ColonyCouncil.TownPlanDef>
+    <defName>Rimfolk_Plan_LatticeYards</defName>
+    <label>Lattice&apos;s charging yards</label>
+    <description>The Lattice's charging yards: the control tower with its console where the node keeps the lattice, the gestation hall with its machining benches and its stores of parts, a bunkhouse of eight beds, and the yard of batteries on concrete, a turret at each corner of it.</description>
+    <wallStuff>
+      <li>Steel</li>
+      <li>Plasteel</li>
+    </wallStuff>
+    <keys>
+      <li><key>#</key><thing>Wall</thing><wall>true</wall></li>
+      <li><key>D</key><thing>Door</thing><wall>true</wall></li>
+      <li><key>,</key><floor>MetalTile</floor><roof>true</roof></li>
+      <li><key>K</key><thing>CommsConsole</thing><floor>MetalTile</floor><roof>true</roof></li>
+      <li><key>M</key><thing>TableMachining</thing><floor>MetalTile</floor><roof>true</roof></li>
+      <li><key>L</key><thing>TorchLamp</thing><floor>MetalTile</floor><roof>true</roof></li>
+      <li><key>S</key><thing>ShelfSmall</thing><stuff>Steel</stuff><floor>MetalTile</floor><roof>true</roof><mark>store</mark></li>
+      <li><key>x</key><floor>MetalTile</floor><roof>true</roof><mark>store</mark></li>
+      <li><key>.</key><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>b</key><thing>Bed</thing><stuff>Steel</stuff><rot>South</rot><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>=</key><floor>Concrete</floor></li>
+      <li><key>B</key><thing>Battery</thing><floor>Concrete</floor></li>
+      <li><key>u</key><thing>Turret_MiniTurret</thing><floor>Concrete</floor></li>
+    </keys>
+    <rows>
+      <li>______________________________________</li>
+      <li>__#######___###########_#############_</li>
+      <li>__#,,,,,#___#.........#_#,,,,,,,,,,,#_</li>
+      <li>__#,,K,,#___#.b.b.b.b.#_#,M,,,M,,,,L#_</li>
+      <li>__#,,,,,#___#.........#_#,,,,,,,,,,,#_</li>
+      <li>__#,,,,,#___#.b.b.b.b.#_#,,,,,,SxSxS#_</li>
+      <li>__#,,,,L#___#.........#_#,,,,,,xxxxx#_</li>
+      <li>__###D###___#####D#####_######D######_</li>
+      <li>______________________________________</li>
+      <li>_____u==================u_____________</li>
+      <li>_____====================_____________</li>
+      <li>_____==B===B===B===B=====_____________</li>
+      <li>_____====================_____________</li>
+      <li>_____====================_____________</li>
+      <li>_____==B===B===B===B=====_____________</li>
+      <li>_____u==================u_____________</li>
+      <li>______________________________________</li>
+    </rows>
+  </ColonyCouncil.TownPlanDef>
+
+  <ColonyCouncil.TownPlanDef>
+    <defName>Rimfolk_Plan_ChoirRing</defName>
+    <label>Choir of the Spire&apos;s ring</label>
+    <description>The Choir of the Spire's ring: a pale monolith on a floor of marble in the middle, a ring of columns round it where the listeners sit, and the quiet halls round the ring, two of sleeping mats, one of books where the hum is written down, and one of stores.</description>
+    <wallStuff>
+      <li>BlocksMarble</li>
+      <li>BlocksLimestone</li>
+      <li>WoodLog</li>
+    </wallStuff>
+    <keys>
+      <li><key>#</key><thing>Wall</thing><wall>true</wall></li>
+      <li><key>D</key><thing>Door</thing><wall>true</wall></li>
+      <li><key>m</key><floor>FlagstoneMarble</floor></li>
+      <li><key>O</key><thing>SculptureGrand</thing><stuff>BlocksMarble</stuff><floor>FlagstoneMarble</floor></li>
+      <li><key>c</key><thing>Column</thing><stuff>BlocksMarble</stuff><floor>FlagstoneMarble</floor></li>
+      <li><key>.</key><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>b</key><thing>Bedroll</thing><stuff>Cloth</stuff><rot>South</rot><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>K</key><thing>Bookcase</thing><stuff>WoodLog</stuff><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>l</key><thing>TorchLamp</thing><floor>WoodPlankFloor</floor><roof>true</roof></li>
+      <li><key>S</key><thing>ShelfSmall</thing><stuff>WoodLog</stuff><floor>WoodPlankFloor</floor><roof>true</roof><mark>store</mark></li>
+      <li><key>x</key><floor>WoodPlankFloor</floor><roof>true</roof><mark>store</mark></li>
+      <li><key>t</key><thing>TorchLamp</thing></li>
+    </keys>
+    <rows>
+      <li>_____________________________________</li>
+      <li>__#######___________________#######__</li>
+      <li>__#.b.b.#___________________#.b.b.#__</li>
+      <li>__#.....#______mmmmmmm______#.....#__</li>
+      <li>__#..l..#_____mc_mmm_cm_____#..l..#__</li>
+      <li>__#.b.b.#____mm_mmmmm_mm____#.b.b.#__</li>
+      <li>__#.....D____mmmmmmmmmmm____D.....#__</li>
+      <li>__#######____mmmmmOmmmmm____#######__</li>
+      <li>_____________mmmmmmmmmmm_____________</li>
+      <li>__#######____mm_mmmmm_mm____#######__</li>
+      <li>__#.K.K.#_____mc_mmm_cm_____#SxSxS#__</li>
+      <li>__#.....#______mmmmmmm______#xxxxx#__</li>
+      <li>__#..l..D___________________D.....#__</li>
+      <li>__#######_________t_________#######__</li>
+      <li>_____________________________________</li>
+    </rows>
+  </ColonyCouncil.TownPlanDef>
+
+  <ColonyCouncil.TownPlanDef>
+    <defName>Rimfolk_Plan_VaultDoor</defName>
+    <label>Sunken Vault&apos;s door</label>
+    <description>The Sunken Vault's door: the vault itself behind a wall of plasteel, its door kept shut, with the dwellers' bunks, the console that still talks to nobody, the batteries that keep the last of the lights on and the stores of what still works; and outside it the surface camp growing round the door, bedrolls round two fires, a potato field and a fence against the open ground.</description>
+    <wallStuff>
+      <li>Plasteel</li>
+      <li>Steel</li>
+      <li>BlocksGranite</li>
+    </wallStuff>
+    <keys>
+      <li><key>#</key><thing>Wall</thing><wall>true</wall></li>
+      <li><key>A</key><thing>Autodoor</thing><stuff>Steel</stuff><wall>true</wall></li>
+      <li><key>,</key><floor>MetalTile</floor><roof>true</roof></li>
+      <li><key>b</key><thing>Bed</thing><stuff>Steel</stuff><rot>South</rot><floor>MetalTile</floor><roof>true</roof></li>
+      <li><key>K</key><thing>CommsConsole</thing><floor>MetalTile</floor><roof>true</roof></li>
+      <li><key>B</key><thing>Battery</thing><floor>MetalTile</floor><roof>true</roof></li>
+      <li><key>L</key><thing>TorchLamp</thing><floor>MetalTile</floor><roof>true</roof></li>
+      <li><key>S</key><thing>ShelfSmall</thing><stuff>Steel</stuff><floor>MetalTile</floor><roof>true</roof><mark>store</mark></li>
+      <li><key>x</key><floor>MetalTile</floor><roof>true</roof><mark>store</mark></li>
+      <li><key>e</key><thing>Bedroll</thing><stuff>Cloth</stuff><rot>South</rot></li>
+      <li><key>F</key><thing>Campfire</thing></li>
+      <li><key>f</key><thing>Fence</thing><stuff>WoodLog</stuff></li>
+      <li><key>g</key><thing>FenceGate</thing><stuff>WoodLog</stuff></li>
+      <li><key>p</key><mark>plant:Plant_Potato</mark></li>
+      <li><key>o</key><floor>Concrete</floor></li>
+    </keys>
+    <rows>
+      <li>____________________________________</li>
+      <li>__##########################________</li>
+      <li>__#,b,b,b,b,b,b,#,,,,,,,,,,#________</li>
+      <li>__#,,,,,,,,,,,,,#,,K,,,,,B,#________</li>
+      <li>__#,,,,,,,L,,,,,#,,,,,,,,,,#________</li>
+      <li>__#,b,b,b,b,b,b,A,,,,,,,,,,#________</li>
+      <li>__#,,,,,,,,,,,,,#,SxSxSxS,L#________</li>
+      <li>__#,,,,,,,,,,,,,#,xxxxxxx,,#________</li>
+      <li>__#######A##################________</li>
+      <li>____________________________________</li>
+      <li>__ffffffffgffffffffffffffff_________</li>
+      <li>__f_e_e_e_________________f_________</li>
+      <li>__f_o_o_o_F___pppppppppp__f_________</li>
+      <li>__f_______________________f_________</li>
+      <li>__f_e_e_e_____pppppppppp__f_________</li>
+      <li>__f_o_o_o_F_______________f_________</li>
+      <li>__fffffffffffffffffffffffff_________</li>
+      <li>____________________________________</li>
+    </rows>
+  </ColonyCouncil.TownPlanDef>
+
+</Defs>

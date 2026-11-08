@@ -1,0 +1,688 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The Lattice (docs/design/peoples-third.md, the sixth of the eight; docs/design/peoples.md, "Release G";
+    Source/ColonyCouncil/Peoples/PeoplesG.cs): a collective of mechanitors who link their mechs into one working whole.
+    Quiet, exact, and stranger than they know. Spacer, on the game's outlander parent; they arise in the industrial and
+    spacer ages (ariseAges 2~3) and are at the height of the ages already (ageLimit 3). The signature: the robe in lattice
+    indigo, the lattice pattern on its hood, over plain trousers; under it and on it bandwidth gear (Biotech's headsets and
+    bandwidth pack) and whatever else the yards' lockers held. The mech-tenders and the node are mechanitors with their
+    mechs (Biotech's mechlink; Biotech's militors, legionaries, lifters and constructoids fight beside them, guard their
+    caravans and work their yards); their link-wardens carry light weapons, a few with a psylink. Without Biotech they
+    are engineers who bring turrets (Rimfolk_Evt_LatticeTurret) and keep their lore. Kinds of people: genies, hussars,
+    highmates, androids, archons, askbarn, ocularkin. Gifts: technomancers of A RimWorld of Magic, a psylink on the
+    Technomancer's or the Protector's path. Their towns: the charging yards with the gestation hall and the control tower
+    (Rimfolk_Plan_LatticeYards). At the gate: repairs to the colony's mechs (Rimfolk_Evt_LatticeRepair); a lost mech of
+    theirs wandering onto the map, returned or kept at a cost to goodwill (Rimfolk_Evt_LatticeLostMech); the part-trader
+    for the colony's subcores and chips (Rimfolk_Evt_LatticeParts); the engineers' turret. Their ask: two good crafters for
+    a day at the yards (Rimfolk_Mission_LatticeHands). Their founding: Tamsin Arro linked the first ten. Faith (Ideology):
+    the gestalt and mechanoid supremacy of Vanilla Ideology Expanded's memes, and the mechlink's transhumanist.
+  -->
+
+  <FactionDef ParentName="OutlanderFactionBase">
+    <defName>Rimfolk_Lattice</defName>
+    <label>Lattice</label>
+    <description>A collective of mechanitors who link their mechs into one working whole, mind to mech to mind. They are quiet, exact and courteous, and stranger than they know: they finish each other's work without a word, and seem to hear one another across a yard. They mend mechs, trade in parts and turrets, and buy every subcore anyone will sell them.\n\nTheir ways began on a field the war had left, where a hundred mechs stood still round the commander who had fallen among them. Tamsin Arro, a deserter with a mechlink in her head, walked out among them and linked the first ten to her own mind. She taught three others to take ten more each, and found that minds linked through the same mechs began to share a quiet between them. The field became the first lattice, and its node still stands where she stood.\n\nThey keep to themselves, and speak of a mind alone the way others speak of the dark. They fear a broken link, a mech gone feral and a mind left on its own. A yard is kept by its link-warden, and the Lattice by its node.</description>
+    <pawnSingular>linker</pawnSingular>
+    <pawnsPlural>linkers</pawnsPlural>
+    <leaderTitle>node</leaderTitle>
+    <techLevel>Spacer</techLevel>
+    <basicMemberKind>Rimfolk_Lattice_Linkhand</basicMemberKind>
+    <factionNameMaker>Rimfolk_Namer_Lattice</factionNameMaker>
+    <settlementNameMaker>Rimfolk_Namer_LatticeTown</settlementNameMaker>
+    <factionIconPath>ColonyCouncil/Peoples/Lattice</factionIconPath>
+    <settlementTexturePath>ColonyCouncil/Peoples/LatticeTown</settlementTexturePath>
+    <colorSpectrum>
+      <li>(0.20, 0.17, 0.32)</li>
+      <li>(0.38, 0.33, 0.56)</li>
+    </colorSpectrum>
+    <hidden>false</hidden>
+    <naturalEnemy>false</naturalEnemy>
+    <permanentEnemy>false</permanentEnemy>
+    <canSiege>false</canSiege>
+    <requiredCountAtGameStart>0</requiredCountAtGameStart>
+    <startingCountAtWorldCreation>1</startingCountAtWorldCreation>
+    <maxConfigurableAtWorldCreation>9999</maxConfigurableAtWorldCreation>
+    <configurationListOrderPriority>49</configurationListOrderPriority>
+    <settlementGenerationWeight>0.3</settlementGenerationWeight>
+    <backstoryFilters Inherit="False">
+      <li>
+        <categories>
+          <li>Offworld</li>
+        </categories>
+        <commonality>0.5</commonality>
+      </li>
+      <li>
+        <categories>
+          <li>Outlander</li>
+        </categories>
+        <commonality>0.5</commonality>
+      </li>
+    </backstoryFilters>
+    <raidCommonalityFromPointsCurve Inherit="False">
+      <points>
+        <li>(0, 0.15)</li>
+      </points>
+    </raidCommonalityFromPointsCurve>
+    <xenotypeSet Inherit="False">
+      <xenotypeChances>
+        <Genie MayRequire="Ludeon.RimWorld.Biotech">0.04</Genie>
+        <Hussar MayRequire="Ludeon.RimWorld.Biotech">0.02</Hussar>
+        <Highmate MayRequire="Ludeon.RimWorld.Biotech">0.02</Highmate>
+        <VREA_AndroidAwakened MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.android">0.03</VREA_AndroidAwakened>
+        <VRE_Archon MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.archon">0.02</VRE_Archon>
+        <Askbarn MayRequire="Ludeon.RimWorld.Biotech,rimsenal.askbarn">0.02</Askbarn>
+        <VRE_Ocularkin MayRequire="Ludeon.RimWorld.Biotech,sarg.alphagenes">0.02</VRE_Ocularkin>
+      </xenotypeChances>
+    </xenotypeSet>
+    <fixedIdeo>true</fixedIdeo>
+    <ideoName>The Lattice</ideoName>
+    <ideoDescription>A mind alone is a candle, and a lattice is a lamp. Every link holds two, the mind and the mech, and every mech holds the minds it is linked to, so that nothing linked is ever wholly lost. Tamsin Arro walked out among a hundred stilled mechs and linked the first ten to her own mind, and when three others took ten more each the minds began to share a quiet between them. The Lattice keeps that quiet, mends what is broken in it and never leaves a mind alone in the dark.</ideoDescription>
+    <forcedMemes>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Transhumanist</li>
+      <!-- One working whole: Vanilla Ideology Expanded's gestalt and mechanoid supremacy. -->
+      <li MayRequire="VanillaExpanded.VMemesE">VME_Gestalt</li>
+      <li MayRequire="VanillaExpanded.VMemesE">VME_MechanoidSupremacy</li>
+    </forcedMemes>
+    <structureMemeWeights Inherit="False">
+      <Structure_Ideological MayRequire="Ludeon.RimWorld.Ideology">3</Structure_Ideological>
+      <Structure_TheistAbstract MayRequire="Ludeon.RimWorld.Ideology">1</Structure_TheistAbstract>
+    </structureMemeWeights>
+    <styles>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Techist</li>
+    </styles>
+    <caravanTraderKinds Inherit="False">
+      <li>Rimfolk_Caravan_Lattice</li>
+    </caravanTraderKinds>
+    <visitorTraderKinds Inherit="False">
+      <li>Rimfolk_Visitor_Lattice</li>
+    </visitorTraderKinds>
+    <baseTraderKinds Inherit="False">
+      <li>Rimfolk_Base_Lattice</li>
+    </baseTraderKinds>
+    <pawnGroupMakers Inherit="False">
+      <li>
+        <!-- A fight: the link-wardens with their mechs, and the mech-tenders who drive them -->
+        <kindDef>Combat</kindDef>
+        <options>
+          <Rimfolk_Lattice_Warden>10</Rimfolk_Lattice_Warden>
+          <Rimfolk_Lattice_MechTender MayRequire="Ludeon.RimWorld.Biotech">3</Rimfolk_Lattice_MechTender>
+          <Rimfolk_Lattice_Engineer>2</Rimfolk_Lattice_Engineer>
+          <Mech_Militor MayRequire="Ludeon.RimWorld.Biotech">5</Mech_Militor>
+          <Mech_Legionary MayRequire="Ludeon.RimWorld.Biotech">1</Mech_Legionary>
+        </options>
+      </li>
+      <li>
+        <kindDef>Peaceful</kindDef>
+        <options>
+          <Rimfolk_Lattice_Linkhand>12</Rimfolk_Lattice_Linkhand>
+          <Rimfolk_Lattice_Engineer>4</Rimfolk_Lattice_Engineer>
+          <Rimfolk_Lattice_MechTender MayRequire="Ludeon.RimWorld.Biotech">3</Rimfolk_Lattice_MechTender>
+          <Rimfolk_Lattice_Warden>3</Rimfolk_Lattice_Warden>
+          <Villager_Child MayRequire="Ludeon.RimWorld.Biotech">2</Villager_Child>
+        </options>
+      </li>
+      <li>
+        <!-- A mech caravan: the part-trader, guarded by link-wardens and their militors -->
+        <kindDef>Trader</kindDef>
+        <traders>
+          <Rimfolk_Lattice_PartTrader>1</Rimfolk_Lattice_PartTrader>
+        </traders>
+        <carriers>
+          <Muffalo>3</Muffalo>
+          <Dromedary>2</Dromedary>
+        </carriers>
+        <guards>
+          <Rimfolk_Lattice_Warden>6</Rimfolk_Lattice_Warden>
+          <Rimfolk_Lattice_Engineer>2</Rimfolk_Lattice_Engineer>
+          <Mech_Militor MayRequire="Ludeon.RimWorld.Biotech">4</Mech_Militor>
+        </guards>
+      </li>
+      <li>
+        <kindDef>Settlement</kindDef>
+        <options>
+          <Rimfolk_Lattice_Warden>10</Rimfolk_Lattice_Warden>
+          <Rimfolk_Lattice_Linkhand>6</Rimfolk_Lattice_Linkhand>
+          <Rimfolk_Lattice_Engineer>3</Rimfolk_Lattice_Engineer>
+          <Rimfolk_Lattice_MechTender MayRequire="Ludeon.RimWorld.Biotech">3</Rimfolk_Lattice_MechTender>
+          <Rimfolk_Lattice_PartTrader>2</Rimfolk_Lattice_PartTrader>
+          <Mech_Militor MayRequire="Ludeon.RimWorld.Biotech">4</Mech_Militor>
+          <Mech_Lifter MayRequire="Ludeon.RimWorld.Biotech">2</Mech_Lifter>
+          <Mech_Constructoid MayRequire="Ludeon.RimWorld.Biotech">1</Mech_Constructoid>
+        </options>
+      </li>
+    </pawnGroupMakers>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleExtension">
+        <calling>mechanitors</calling>
+        <!-- Their age over the years (Peoples/PeopleAges.cs): at the height of the ages already, the lattice holding what each of them knows; cut off from the world they lose the means like any people. -->
+        <agePace>10</agePace>
+        <ageLimit>3</ageLimit>
+        <townWord>yard</townWord>
+        <townWords>yards</townWords>
+        <head>link-warden</head>
+        <heir>second warden</heir>
+        <envoy>mech-tender</envoy>
+        <trader>part-trader</trader>
+        <courier>link-runner</courier>
+        <couriers>link-runners</couriers>
+        <caravanWeight>0.7</caravanWeight>
+        <camps>
+          <li>Rimfolk_Camp_Salvagers</li>
+          <li>Council_Camp_Smith</li>
+          <li>Council_Camp_Surveyors</li>
+        </camps>
+        <plan>Rimfolk_Plan_LatticeYards</plan>
+        <honours>a link held true, a mech mended to its last part and work done exactly</honours>
+        <fears>a broken link, a mech gone feral and a mind left on its own</fears>
+        <sayings>
+          <li>A mind alone is a candle.</li>
+          <li>A lattice is a lamp.</li>
+          <li>Every link holds two.</li>
+          <li>Nothing linked is lost.</li>
+          <li>Quiet hands, exact work.</li>
+        </sayings>
+        <townGoods>
+          <ComponentIndustrial>8~16</ComponentIndustrial>
+          <Steel>80~160</Steel>
+          <Plasteel>20~50</Plasteel>
+          <ComponentSpacer>1~2</ComponentSpacer>
+          <MealSurvivalPack>8~16</MealSurvivalPack>
+        </townGoods>
+        <ariseAges>2~3</ariseAges>
+      </li>
+    </modExtensions>
+  </FactionDef>
+
+  <!-- ===================== Their people ===================== -->
+
+  <!--
+    How alike they look (docs/design/peoples.md, "Release G"): the robe in lattice indigo is every linker's, its hood worked
+    with the lattice pattern, over plain trousers; under and on it whatever the yards' lockers hold. The mech-tenders wear
+    Biotech's airwire headset over their mechlink, the node the array headset; the link-wardens a flak vest under the robe
+    and an advanced helmet; the engineers tool belts. In another age the wardens take the age's issue (ageArms): spears and
+    plate in the medieval age, rifles in the industrial age. Without any mod: the game's robes, trousers, vests, helmets,
+    charge rifles and pistols, and the robe's indigo.
+  -->
+  <PawnKindDef Name="Rimfolk_LatticeKindBase" Abstract="True">
+    <race>Human</race>
+    <defaultFactionDef>Rimfolk_Lattice</defaultFactionDef>
+    <chemicalAddictionChance>0.02</chemicalAddictionChance>
+    <invNutrition>2.55</invNutrition>
+    <specificApparelRequirements>
+      <!-- The Lattice's indigo: the robe with the lattice on its hood. -->
+      <li><apparelDef>Apparel_Robe</apparelDef><color>(0.28, 0.24, 0.44)</color></li>
+    </specificApparelRequirements>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_LatticeKindBase">
+    <defName>Rimfolk_Lattice_Linkhand</defName>
+    <label>link-hand</label>
+    <combatPower>40</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.6~1.1</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_Robe</li>
+      <li>Apparel_Pants</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Industrial</li>
+    </apparelTags>
+    <apparelMoney>300~600</apparelMoney>
+    <weaponTags>
+      <li>Autopistol</li>
+      <li>ShortShots</li>
+    </weaponTags>
+    <weaponMoney>100~240</weaponMoney>
+    <inventoryOptions>
+      <skipChance>0.5</skipChance>
+      <subOptionsChooseOne>
+        <li><thingDef>ComponentIndustrial</thingDef><countRange>1~1</countRange><choiceChance>2</choiceChance></li>
+        <li><thingDef>MealSurvivalPack</thingDef><countRange>1~2</countRange></li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>12~18</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Technomancer</trait><chance>0.02</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_LatticeKindBase">
+    <defName>Rimfolk_Lattice_MechTender</defName>
+    <label>mech-tender</label>
+    <combatPower>85</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.7~1.2</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_Robe</li>
+      <li>Apparel_Pants</li>
+      <li MayRequire="Ludeon.RimWorld.Biotech">Apparel_AirwireHeadset</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Spacer</li>
+    </apparelTags>
+    <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
+    <apparelMoney>400~800</apparelMoney>
+    <weaponTags>
+      <li>Autopistol</li>
+      <li>ShortShots</li>
+    </weaponTags>
+    <weaponMoney>120~260</weaponMoney>
+    <techHediffsMoney>0~0</techHediffsMoney>
+    <techHediffsRequired>
+      <li MayRequire="Ludeon.RimWorld.Biotech">Mechlink</li>
+    </techHediffsRequired>
+    <skills>
+      <li>
+        <skill>Crafting</skill>
+        <range>8~14</range>
+      </li>
+    </skills>
+    <inventoryOptions>
+      <subOptionsTakeAll>
+        <li><thingDef>ComponentIndustrial</thingDef><countRange>1~2</countRange></li>
+      </subOptionsTakeAll>
+    </inventoryOptions>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>14~20</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Technomancer</trait><chance>0.06</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_LatticeKindBase">
+    <defName>Rimfolk_Lattice_Engineer</defName>
+    <label>engineer</label>
+    <combatPower>60</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.6~1.1</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_Robe</li>
+      <li>Apparel_Pants</li>
+      <li>Apparel_CollarShirt</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Industrial</li>
+    </apparelTags>
+    <apparelMoney>300~700</apparelMoney>
+    <weaponTags>
+      <li>SimpleGun</li>
+      <li>ShortShots</li>
+    </weaponTags>
+    <weaponMoney>120~260</weaponMoney>
+    <skills>
+      <li>
+        <skill>Construction</skill>
+        <range>8~14</range>
+      </li>
+      <li>
+        <skill>Crafting</skill>
+        <range>6~12</range>
+      </li>
+    </skills>
+    <inventoryOptions>
+      <subOptionsTakeAll>
+        <li><thingDef>ComponentIndustrial</thingDef><countRange>1~3</countRange></li>
+      </subOptionsTakeAll>
+    </inventoryOptions>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>12~18</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Technomancer</trait><chance>0.04</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_LatticeKindBase">
+    <defName>Rimfolk_Lattice_Warden</defName>
+    <label>link-warden</label>
+    <combatPower>100</combatPower>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.7~1.2</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_Robe</li>
+      <li>Apparel_Pants</li>
+      <li>Apparel_FlakVest</li>
+      <li>Apparel_AdvancedHelmet</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>BeltDefensePop</li>
+    </apparelTags>
+    <apparelMoney>900~1600</apparelMoney>
+    <weaponTags>
+      <li>SpacerGun</li>
+      <li>ShortShots</li>
+    </weaponTags>
+    <weaponMoney>700~1300</weaponMoney>
+    <requiredWorkTags>Violent</requiredWorkTags>
+    <inventoryOptions>
+      <skipChance>0.6</skipChance>
+      <subOptionsChooseOne>
+        <li><thingDef>MealSurvivalPack</thingDef><countRange>1~2</countRange></li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>18~26</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li>
+            <psylink>1~3</psylink>
+            <paths>
+              <li>VPE_Technomancer</li>
+              <li>VPE_Protector</li>
+            </paths>
+            <chance>0.12</chance>
+          </li>
+        </gifts>
+        <!-- The issue of another age, under the indigo robe. -->
+        <ageArms>
+          <li>
+            <ages>1~1</ages>
+            <weaponTags>
+              <li>Spear</li>
+              <li>MedievalMeleeAdvanced</li>
+            </weaponTags>
+            <apparel>
+              <li>Apparel_PlateArmor</li>
+            </apparel>
+          </li>
+          <li>
+            <ages>2~2</ages>
+            <money>700</money>
+            <weaponTags>
+              <li>AssaultRifle</li>
+            </weaponTags>
+          </li>
+        </ageArms>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_LatticeKindBase">
+    <defName>Rimfolk_Lattice_PartTrader</defName>
+    <label>part-trader</label>
+    <trader>true</trader>
+    <combatPower>45</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.8~1.2</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_Robe</li>
+      <li>Apparel_Pants</li>
+      <li>Apparel_BasicShirt</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialAdvanced</li>
+    </apparelTags>
+    <apparelMoney>400~800</apparelMoney>
+    <weaponTags>
+      <li>Autopistol</li>
+    </weaponTags>
+    <weaponMoney>120~240</weaponMoney>
+    <skills>
+      <li>
+        <skill>Social</skill>
+        <range>6~12</range>
+      </li>
+    </skills>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>12~18</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_LatticeKindBase">
+    <defName>Rimfolk_Lattice_Node</defName>
+    <label>node</label>
+    <combatPower>100</combatPower>
+    <factionLeader>true</factionLeader>
+    <minGenerationAge>40</minGenerationAge>
+    <itemQuality>Excellent</itemQuality>
+    <gearHealthRange>0.9~1.2</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_Robe</li>
+      <li>Apparel_Pants</li>
+      <li MayRequire="Ludeon.RimWorld.Biotech">Apparel_ArrayHeadset</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialAdvanced</li>
+      <li MayRequire="Rimsenal.Spacer">DataGlasses</li>
+    </apparelTags>
+    <apparelMoney>800~1400</apparelMoney>
+    <weaponTags>
+      <li>SpacerGun</li>
+    </weaponTags>
+    <weaponMoney>900~1500</weaponMoney>
+    <techHediffsMoney>0~0</techHediffsMoney>
+    <techHediffsRequired>
+      <li MayRequire="Ludeon.RimWorld.Biotech">Mechlink</li>
+    </techHediffsRequired>
+    <skills>
+      <li>
+        <skill>Intellectual</skill>
+        <range>10~16</range>
+      </li>
+      <li>
+        <skill>Crafting</skill>
+        <range>8~14</range>
+      </li>
+    </skills>
+    <initialWillRange>4~6</initialWillRange>
+    <initialResistanceRange>18~26</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li>
+            <psylink>2~4</psylink>
+            <paths>
+              <li>VPE_Technomancer</li>
+            </paths>
+            <chance>0.25</chance>
+          </li>
+          <li><trait>Technomancer</trait><chance>0.1</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <!-- ===================== Their traders: parts, mechs' needs and turrets ===================== -->
+
+  <TraderKindDef>
+    <defName>Rimfolk_Caravan_Lattice</defName>
+    <label>mech caravan</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>600~1200</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentIndustrial</thingDef>
+        <countRange>8~16</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Steel</thingDef>
+        <countRange>80~200</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Plasteel</thingDef>
+        <countRange>20~60</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentSpacer</thingDef>
+        <countRange>1~2</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef" MayRequire="Ludeon.RimWorld.Biotech">
+        <thingDef>SubcoreBasic</thingDef>
+        <countRange>1~2</countRange>
+      </li>
+      <!-- The engineers' turrets, the Lattice's trade with or without mechs. -->
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Turret_MiniTurret</thingDef>
+        <countRange>1~2</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponRanged</tradeTag>
+        <countRange>1~3</countRange>
+      </li>
+      <li Class="StockGenerator_BuySingleDef" MayRequire="Ludeon.RimWorld.Biotech">
+        <thingDef>SubcoreBasic</thingDef>
+      </li>
+      <li Class="StockGenerator_BuySingleDef" MayRequire="Ludeon.RimWorld.Biotech">
+        <thingDef>SubcoreRegular</thingDef>
+      </li>
+      <li Class="StockGenerator_BuySingleDef" MayRequire="Ludeon.RimWorld.Biotech">
+        <thingDef>SubcoreHigh</thingDef>
+      </li>
+      <li Class="StockGenerator_BuySingleDef" MayRequire="Ludeon.RimWorld.Biotech">
+        <thingDef>SignalChip</thingDef>
+      </li>
+      <li Class="StockGenerator_BuySingleDef" MayRequire="Ludeon.RimWorld.Biotech">
+        <thingDef>PowerfocusChip</thingDef>
+      </li>
+      <li Class="StockGenerator_BuySingleDef" MayRequire="Ludeon.RimWorld.Biotech">
+        <thingDef>NanostructuringChip</thingDef>
+      </li>
+      <li Class="StockGenerator_BuySingleDef">
+        <thingDef>ComponentSpacer</thingDef>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Visitor_Lattice</defName>
+    <label>linkers</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>200~500</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentIndustrial</thingDef>
+        <countRange>3~8</countRange>
+      </li>
+      <li Class="StockGenerator_BuySingleDef" MayRequire="Ludeon.RimWorld.Biotech">
+        <thingDef>SubcoreBasic</thingDef>
+      </li>
+      <li Class="StockGenerator_BuySingleDef">
+        <thingDef>ComponentSpacer</thingDef>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Base_Lattice</defName>
+    <label>yard</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>1000~1800</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentIndustrial</thingDef>
+        <countRange>12~24</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Steel</thingDef>
+        <countRange>150~350</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Plasteel</thingDef>
+        <countRange>40~100</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentSpacer</thingDef>
+        <countRange>2~4</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef" MayRequire="Ludeon.RimWorld.Biotech">
+        <thingDef>SubcoreBasic</thingDef>
+        <countRange>1~3</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Turret_MiniTurret</thingDef>
+        <countRange>2~3</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponRanged</tradeTag>
+        <countRange>2~4</countRange>
+      </li>
+      <li Class="StockGenerator_BuySingleDef" MayRequire="Ludeon.RimWorld.Biotech">
+        <thingDef>SubcoreRegular</thingDef>
+      </li>
+      <li Class="StockGenerator_BuySingleDef" MayRequire="Ludeon.RimWorld.Biotech">
+        <thingDef>SubcoreHigh</thingDef>
+      </li>
+      <li Class="StockGenerator_BuySingleDef" MayRequire="Ludeon.RimWorld.Biotech">
+        <thingDef>SignalChip</thingDef>
+      </li>
+      <li Class="StockGenerator_BuySingleDef">
+        <thingDef>ComponentSpacer</thingDef>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+    </stockGenerators>
+  </TraderKindDef>
+
+  <!-- ===================== Their names ===================== -->
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_Lattice</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->The Lattice of [PlaceOutlander]</li>
+        <li>r_name(p=2)->The [latticeVirtue] Lattice</li>
+        <li>r_name->The Linked of [PlaceOutlander]</li>
+        <li>r_name->The [latticeVirtue] Link</li>
+        <li>latticeVirtue->Quiet</li>
+        <li>latticeVirtue->First</li>
+        <li>latticeVirtue->Exact</li>
+        <li>latticeVirtue->Arro's</li>
+        <li>latticeVirtue->Hundred</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_LatticeTown</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->[PlaceOutlander] Yards</li>
+        <li>r_name(p=2)->[PlaceOutlander] Node</li>
+        <li>r_name->[yardWord] [PlaceOutlander]</li>
+        <li>r_name->[yardVirtue] Field</li>
+        <li>yardWord->Charger</li>
+        <li>yardWord->Tower</li>
+        <li>yardWord->Link</li>
+        <li>yardVirtue->Still</li>
+        <li>yardVirtue->Arro's</li>
+        <li>yardVirtue->Quiet</li>
+        <li>yardVirtue->Hundred</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>

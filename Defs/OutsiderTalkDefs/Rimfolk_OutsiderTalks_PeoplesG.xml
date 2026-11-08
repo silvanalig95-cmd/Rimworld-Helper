@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Talk with release G's peoples (docs/design/peoples.md, "Release G"; the facts service's their:CALLING tags): how their
+    ways began, what they honour, what they fear, and their work, beside release F's in Rimfolk_OutsiderTalks_PeoplesF.xml;
+    the format is in Rimfolk_OutsiderTalks_Greetings.xml's header. A founding is told as the story of their ways (the
+    vats kept warm, the first ten linked, the night at the Spire, the seal broken), so a people that arose and took those
+    ways can tell it too. Each in its own voice: the Works of the edit and the ledger, the Lattice of the link and the
+    quiet, the Choir of the hum and the listening, the Vault of the seal and the count.
+  -->
+
+  <!-- ================= The Helix Works ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesG_HelixVenn</defName>
+    <topic>faith</topic>
+    <uses>chat,know</uses>
+    <when>their:editors</when>
+    <lines>
+      <li>[us] What is the little helix pin on your collar?</li>
+      <li>[them] It is the first mark in the Works' ledger, Orla Venn's.</li>
+      <li>[us] Who was she?</li>
+      <li>[them] The eldest the lab ever grew, who kept the vats warm when the founders fled.</li>
+      <li>[us] And then?</li>
+      <li>[them] She read their notes aloud to the rest of us and taught us to edit what we were given.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesG_HelixAsk</defName>
+    <topic>honour</topic>
+    <uses>know</uses>
+    <when>their:editors</when>
+    <lines>
+      <li>[them] We never change anything in a body without asking whose it is.</li>
+      <li>[us] Even a child's?</li>
+      <li>[them] A child chooses their own genes when they are old enough to choose, and not before.</li>
+      <li>[us] And if someone asks for something cruel?</li>
+      <li>[them] Then we say no, and mark that we said it.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesG_HelixBatch</defName>
+    <topic>hardship</topic>
+    <uses>chat</uses>
+    <when>their:editors</when>
+    <lines>
+      <li>[us] What frightens a gene-crafter?</li>
+      <li>[them] A batch gone wrong, more than anything.</li>
+      <li>[us] What happens to them?</li>
+      <li>[them] We look after them, every one, because we made them and they did not ask to be made.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesG_HelixWork</defName>
+    <topic>work</topic>
+    <uses>chat</uses>
+    <when>their:editors</when>
+    <lines>
+      <li>[us] What does an editor do all day?</li>
+      <li>[them] Read a genome twice, change one line of it, and write down why.</li>
+      <li>[us] Only one line?</li>
+      <li>[them] Read twice, cut once, and most days that is enough.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The Lattice ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesG_LatticeArro</defName>
+    <topic>faith</topic>
+    <uses>chat,know</uses>
+    <when>their:mechanitors</when>
+    <lines>
+      <li>[us] Why is there a lattice on your hood?</li>
+      <li>[them] For the first lattice, where a hundred mechs stood still round their fallen commander.</li>
+      <li>[us] Who linked them?</li>
+      <li>[them] Tamsin Arro, a deserter with a mechlink, who walked out among them and took the first ten.</li>
+      <li>[us] Only ten?</li>
+      <li>[them] Then she taught three others to take ten each, and their minds began to share a quiet.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesG_LatticeLink</defName>
+    <topic>honour</topic>
+    <uses>know</uses>
+    <when>their:mechanitors</when>
+    <lines>
+      <li>[them] Every link holds two, the mind and the mech.</li>
+      <li>[us] And when the mech is broken?</li>
+      <li>[them] Then we mend it to its last part, because a little of a mind is in it.</li>
+      <li>[us] And when the mind is gone?</li>
+      <li>[them] The mech holds what it can of them, and nothing linked is lost.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesG_LatticeAlone</defName>
+    <topic>hardship</topic>
+    <uses>chat</uses>
+    <when>their:mechanitors</when>
+    <lines>
+      <li>[us] What is it like, being linked to so many?</li>
+      <li>[them] Quiet, mostly, and warm.</li>
+      <li>[us] And being cut off?</li>
+      <li>[them] A mind alone is a candle, and the dark is very large.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesG_LatticeWork</defName>
+    <topic>work</topic>
+    <uses>chat</uses>
+    <when>their:mechanitors</when>
+    <lines>
+      <li>[us] What do the yards do?</li>
+      <li>[them] Grow mechs, charge them, mend them and send them where they are needed.</li>
+      <li>[us] Who decides where?</li>
+      <li>[them] The node, though by the time the node says it we have mostly already gone.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The Choir of the Spire ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesG_ChoirRuen</defName>
+    <topic>faith</topic>
+    <uses>chat,know</uses>
+    <when>their:listeners</when>
+    <lines>
+      <li>[us] How did your people come to the Spire?</li>
+      <li>[them] A herder called Ilsabet Ruen lay down one night at its foot and woke able to hear it.</li>
+      <li>[us] Hear what?</li>
+      <li>[them] The hum, which is the Spire thinking.</li>
+      <li>[us] And the others?</li>
+      <li>[them] They came to sit with her, and their children were born hearing it too.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesG_ChoirListen</defName>
+    <topic>honour</topic>
+    <uses>know</uses>
+    <when>their:listeners</when>
+    <lines>
+      <li>[them] Listen first, before you speak, before you judge, before you do anything.</li>
+      <li>[us] Is that why you came to our gate?</li>
+      <li>[them] We came to hear what your colony sounds like.</li>
+      <li>[us] What does it sound like?</li>
+      <li>[them] Louder than it thinks, and kinder.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesG_ChoirVoid</defName>
+    <topic>hardship</topic>
+    <uses>chat</uses>
+    <when>their:listeners</when>
+    <lines>
+      <li>[us] Is there anything you won't listen to?</li>
+      <li>[them] The void, because it listens back.</li>
+      <li>[us] What happens if you do?</li>
+      <li>[them] Then you hear yourself from the other side, and you never quite stop.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesG_ChoirOrdinary</defName>
+    <topic>work</topic>
+    <uses>chat</uses>
+    <when>their:listeners</when>
+    <lines>
+      <li>[us] What do the Choir do, besides listen?</li>
+      <li>[them] Very little, and we try to do it well.</li>
+      <li>[us] Doesn't that get dull?</li>
+      <li>[them] Some of us leave the ring for a while to learn what it is to be ordinary.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <!-- ================= The Sunken Vault ================= -->
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesG_VaultCrane</defName>
+    <topic>faith</topic>
+    <uses>chat,know</uses>
+    <when>their:vaultfolk</when>
+    <lines>
+      <li>[us] What is the number on your back?</li>
+      <li>[them] The vault's, from the door, which Overseer Hollis Crane opened.</li>
+      <li>[us] Why did she open it?</li>
+      <li>[them] The water ran short, generations after the doors were sealed, and the council chose her.</li>
+      <li>[us] What was it like?</li>
+      <li>[them] She walked out first, and half of us went back below for a week.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesG_VaultCount</defName>
+    <topic>honour</topic>
+    <uses>know</uses>
+    <when>their:vaultfolk</when>
+    <lines>
+      <li>[them] Every cell counts, and every part that still works.</li>
+      <li>[us] Why count them so often?</li>
+      <li>[them] Because every year there are fewer, and nobody alive can make more.</li>
+      <li>[us] Can't you learn?</li>
+      <li>[them] That is why we ask other peoples to teach us what we lost.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesG_VaultSky</defName>
+    <topic>hardship</topic>
+    <uses>chat</uses>
+    <when>their:vaultfolk</when>
+    <lines>
+      <li>[us] Do you miss it below?</li>
+      <li>[them] I miss having a ceiling.</li>
+      <li>[us] The sky frightens you?</li>
+      <li>[them] There is nothing over it, and nobody told us that before we came up.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+  <ColonyCouncil.OutsiderTalkDef>
+    <defName>Rimfolk_OT_PeoplesG_VaultWork</defName>
+    <topic>work</topic>
+    <uses>chat</uses>
+    <when>their:vaultfolk</when>
+    <lines>
+      <li>[us] What does a technician do?</li>
+      <li>[them] Keep the last machines running a little longer than they should.</li>
+      <li>[us] And the scouts?</li>
+      <li>[them] Walk the surface, a little further every season, and try not to look up too much.</li>
+    </lines>
+  </ColonyCouncil.OutsiderTalkDef>
+
+</Defs>

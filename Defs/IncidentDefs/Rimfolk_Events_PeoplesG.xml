@@ -1,0 +1,886 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Release G's four peoples at the colony's gate (Source/ColonyCouncil/Peoples/PeoplesG.cs, PeoplesG2.cs; docs/design/
+    peoples.md, "Release G"; docs/design/peoples-third.md, step 3), each only from a people of its calling at peace with the
+    colony, so none come in a world without one. Every age: the words take the colony's means, and every answer plays out
+    on the map.
+    - The Helix Works: a sample-buyer asking for a sample from a colonist with rare genes, a small blood draw done where
+      they stand; a sequencer offering gene work, one of the Works' genes written into a colonist; a vat-keeper with a case
+      of medicine and drugs (their trade without Biotech too); a vat-keeper with a batch gone wrong, sick with a gene fault,
+      asking the colony's doctor.
+    - The Lattice: a mech-tender mending the colony's hurt mechs; a lost mech of theirs wandering onto the map, returned
+      by a link-warden or kept at a cost to goodwill; a part-trader for the colony's subcores and chips; an engineer
+      raising a turret by the gate (their trade without Biotech too).
+    - The Choir of the Spire: listeners who sit in the colony's middle and listen to it, a calm for some and an unease for
+      others; the keeper of the hum, trading the Spire's goods for the colony's art.
+    - The Sunken Vault: a technician with the vault's last spacer goods, wanting components and food; a technician asking
+      to be taught a lost craft at the colony's bench; a vault-born child who has never seen a sky, asking to stay.
+    The Helix Works' sample, gene work and batch, and the Lattice's repairs, lost mech and part-trader, want Biotech.
+  -->
+
+  <!-- ===================== The Helix Works: a sample ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_HelixSample</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a sample for the Works</label>
+    <workerClass>ColonyCouncil.HappeningWorker_HelixSample</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>12</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <mods>
+          <li>Ludeon.RimWorld.Biotech</li>
+        </mods>
+        <ages>24~55</ages>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A sample for the Works</li>
+          <li>The sample-buyer</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a sample-buyer of {FACTION}, has come to the gate in a mint-white lab coat with a vat-keeper and a small case of glass. The Works have heard that {B_nameDef} carries {TALE}, and they would pay {COUNT} silver for a sample: a little blood from the arm, drawn where {B_pronoun} stands, and nothing more.</li>
+          <li>[archite] {X_nameDef} of {FACTION} has come to the gate with a case of glass and a careful smile. Nobody makes archite genes any more, {X_pronoun} says, and {B_nameDef} carries {TALE}. The Works would pay {COUNT} silver for a little of {B_possessive} blood, drawn from the arm where {B_pronoun} stands.</li>
+          <li>[lowtech] Two strangers in clean white coats have come to the gate from {PLACE}: {X_nameDef} of {FACTION} and a companion with a case of little glass bottles. They say {B_nameDef}'s blood is rare, {TALE}, and they would pay {COUNT} silver for a few drops of it from the arm.</li>
+          <li>[their:grateful] The Helix Works think well of the colony, and {X_nameDef} has come from {PLACE} to ask, as between friends, for a sample of {B_nameDef}'s blood: {B_pronoun} carries {TALE}. The Works would pay {COUNT} silver for a little of it.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let them take the sample ({COUNT} silver)</label>
+            <outcome>{B_nameDef} is waiting while {X_nameDef} comes over with the case of glass.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_HelixSample" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Take the sample, with {A_nameDef} watching how it is done</label>
+            <outcome>{X_nameDef} is drawing {B_nameDef}'s sample, and {A_nameDef} is at the case asking what each bottle is for.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_HelixSample" />
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the sample drawn</label><to>Stranger</to><duration>1~2</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Medicine</skill><xp>300</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
+            </effects>
+            <ways><openness>1</openness><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Nobody's blood is for sale</label>
+            <outcome>{X_nameDef} closes the case without a word of complaint and the two of them go back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[sample] Hold still, it will be over before you notice.</li>
+          <li>[sample] A little from the arm, and you keep the rest.</li>
+          <li>[sample,archite] Nobody alive could make what you carry.</li>
+          <li>[done] There, and thank you for asking nothing strange of us.</li>
+          <li>[done] Marked and sealed, and back to the lab with it.</li>
+          <li>[thanks] Ask before you change it, we say, and you have answered.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Helix Works: gene work ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_HelixGeneWork</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>gene work at the gate</label>
+    <workerClass>ColonyCouncil.HappeningWorker_HelixGeneWork</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <mods>
+          <li>Ludeon.RimWorld.Biotech</li>
+        </mods>
+        <ages>28~60</ages>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Gene work at the gate</li>
+          <li>A sequencer of the Works</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a sequencer of {FACTION}, has come to the gate with a case of the Works' instruments. The Works offer the colony a gene of their own lab, {TALE}, written into {B_nameDef} where {B_pronoun} stands: two hours with the instruments, the gene as a xenogene, and the game's own wait before another. {X_pronoun} asks {COUNT} silver, or one of the colony's genepacks, which the Works buy.</li>
+          <li>[genepack] {X_nameDef} of {FACTION} has heard the colony keeps genepacks, and would write a gene of the Works' own, {TALE}, into {B_nameDef} for one of them, or for {COUNT} silver. Two hours with the instruments where {B_pronoun} stands, {X_nameDef} says, and nothing changed but what was asked.</li>
+          <li>[their:grateful] The Helix Works think well of the colony, and {X_nameDef} has come from {PLACE} offering {B_nameDef} a gene of their own lab, {TALE}, for {COUNT} silver or a genepack, as between friends.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Write it in ({COUNT} silver)</label>
+            <outcome>The silver is going out to {X_nameDef}, who is walking over to {B_nameDef} with the instruments.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for {X_nameDef}</label><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_HelixGene" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Pay with a genepack</label>
+            <outcome>A genepack is going out to {X_nameDef}, who is walking over to {B_nameDef} with the instruments.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a genepack for {X_nameDef}</label><what>Genepack</what><count>1</count><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_HelixGene" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>No gene work here</label>
+            <outcome>{X_nameDef} marks the colony's answer in a little book and goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[gene] Nothing changed but what you asked for.</li>
+          <li>[gene] Every body is a draft, and this is one line of yours.</li>
+          <li>[thanks] Mark the change, if you ever make one yourselves.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Helix Works: the vat-keeper's case ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_HelixCase</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the vat-keeper's case</label>
+    <workerClass>ColonyCouncil.HappeningWorker_HelixCase</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>25</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>24~60</ages>
+        <stayHours>6~10</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The vat-keeper's case</li>
+          <li>Medicine from the Works</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a vat-keeper of {FACTION}, has come to the gate with a guard and a long case on a strap: the Works' own medicine and drugs, {TALE}, for {COUNT} silver, carried out to them and the case left at the gate.</li>
+          <li>[nogenes] {X_nameDef} of {FACTION} has come to the gate in a mint-white coat with a case of the Works' medicine and drugs, {TALE}. The Works keep their old lore, {X_pronoun} says, even where nobody writes genes any more, and the case is {COUNT} silver.</li>
+          <li>[lowtech] A healer in a clean white coat has come to the gate from {PLACE}, {X_nameDef} of {FACTION}, with a case of medicines nobody here could make: {TALE}, for {COUNT} silver.</li>
+          <li>[their:grateful] The Helix Works think well of the colony, and {X_nameDef} has brought a case of their medicine and drugs from {PLACE}, {TALE}, for {COUNT} silver, a friend's price.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Buy the case ({COUNT} silver)</label>
+            <outcome>The silver is going out to {X_nameDef}, and the case will be left at the gate.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for {X_nameDef}</label><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_PeoplesGCrate" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>Buy it, and let {A_nameDef} go through it with them</label>
+            <outcome>{A_nameDef} is at the gate with {X_nameDef}, going through the case bottle by bottle.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for {X_nameDef}</label><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_PeoplesGCrate" />
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the case gone through</label><to>Stranger</to><duration>1~2</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Medicine</skill><xp>300</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Nothing today</label>
+            <outcome>{X_nameDef} shoulders the case and the two of them go back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[sold] Read twice, cut once, and dose by the label.</li>
+          <li>[sold] Clean hands, and you will need less of it.</li>
+          <li>[thanks] The vats are warm and the road is long, so good day to you.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Helix Works: a batch gone wrong ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_HelixBatch</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a batch gone wrong</label>
+    <workerClass>ColonyCouncil.HappeningWorker_HelixBatch</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <mods>
+          <li>Ludeon.RimWorld.Biotech</li>
+        </mods>
+        <ages>30~60</ages>
+        <stayHours>10~16</stayHours>
+        <answerDays>0.4</answerDays>
+        <journal>Rimfolk_Journal_Evt_HelixBatch</journal>
+        <titles>
+          <li>A batch gone wrong</li>
+          <li>The Works ask for a doctor</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a vat-keeper of {FACTION}, has come to the gate with {COUNT} of the Works' vat-grown, young and feverish, leaning on one another. A batch has gone wrong, {X_nameDef} says: their genes don't keep to the pattern they were written with, and the lab is too far. The Works ask whether the colony's doctor would see to them here, or spare some medicine ({TALE}) for the road home.</li>
+          <li>[one] {X_nameDef}, a vat-keeper of {FACTION}, has come to the gate with one of the Works' vat-grown, young and feverish, barely on {X_possessive} feet. A gene fault, {X_nameDef} says, from a batch that went wrong. The Works ask whether the colony's doctor would see to them here, or spare some medicine ({TALE}).</li>
+          <li>[their:grateful] The Helix Works think well of the colony, and {X_nameDef} has brought {COUNT} of their vat-grown from {PLACE}, sick with a gene fault, to the one doctor the Works trust on the road.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>{A_nameDef} will see to them here</label>
+            <outcome>{A_nameDef} is fetching medicine to see to the Works' vat-grown where they stand.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_HelixBatch" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>8</amount></li>
+            </effects>
+            <ways><mercy>1</mercy><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Give them medicine for the road ({TALE})</label>
+            <outcome>The medicine is being carried out to {X_nameDef} for the road home.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the medicine for {X_nameDef}</label><what>medicine</what><variant>true</variant></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>5</amount></li>
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>The gate stays shut</label>
+            <outcome>{X_nameDef} gets the vat-grown back on their feet and they go slowly back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[tended] A batch gone wrong is the worst thing we know, and you made it smaller.</li>
+          <li>[tended] The Works will write your doctor's name in the ledger.</li>
+          <li>[refused] Then we will carry them, as we always have.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Lattice: repairs ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_LatticeRepair</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a mech-tender at the gate</label>
+    <workerClass>ColonyCouncil.HappeningWorker_LatticeRepair</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>25</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <mods>
+          <li>Ludeon.RimWorld.Biotech</li>
+        </mods>
+        <ages>25~60</ages>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A mech-tender at the gate</li>
+          <li>The Lattice would mend your mechs</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a mech-tender of {FACTION}, has come to the gate in an indigo robe with a roll of tools. The colony's mechs are hurt, {TALE}, {X_pronoun} says, quietly, as if {X_pronoun} could hear them, and the Lattice would mend them one by one where they stand, for {COUNT} silver or one of the colony's basic subcores.</li>
+          <li>[one] {X_nameDef}, a mech-tender of {FACTION}, has stopped at the gate and is looking at one of the colony's mechs the way a doctor looks at a limp. It is hurt, {TALE}, and the Lattice would mend it where it stands for {COUNT} silver or a basic subcore.</li>
+          <li>[their:grateful] The Lattice thinks well of the colony, and {X_nameDef} has come from {PLACE} to mend the colony's hurt mechs, {TALE}, for {COUNT} silver or a subcore, as between friends.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Mend them ({COUNT} silver)</label>
+            <outcome>The silver is going out to {X_nameDef}, who is walking over to the first of the mechs.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for {X_nameDef}</label><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_LatticeRepair" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>Mend them for a basic subcore</label>
+            <outcome>A subcore is going out to {X_nameDef}, who is walking over to the first of the mechs.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a subcore for {X_nameDef}</label><what>SubcoreBasic</what><count>1</count><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_LatticeRepair" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>Our mechs will do</label>
+            <outcome>{X_nameDef} looks at the mechs a moment longer and goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[mend] Quiet hands, exact work.</li>
+          <li>[mend] Nothing linked is lost, even out here.</li>
+          <li>[thanks] A mind alone is a candle, so keep yours lit.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Lattice: a lost mech ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_LatticeLostMech</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a lost mech</label>
+    <workerClass>ColonyCouncil.HappeningWorker_LatticeLostMech</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <mods>
+          <li>Ludeon.RimWorld.Biotech</li>
+        </mods>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>A lost mech</li>
+          <li>A mech of the Lattice's</li>
+        </titles>
+        <texts>
+          <li>A {THING} has wandered onto the colony's ground with the Lattice's indigo mark on its plating: one of the mechs of {FACTION}, its link to them broken somewhere on the road, drifting with nobody's mind behind it. The Lattice would come for it if the colony sent word. The colony could also keep it, with {A_nameDef} to oversee it, though the Lattice would not forgive that soon.</li>
+          <li>[nomechanitor] A {THING} has wandered onto the colony's ground with the Lattice's indigo mark on its plating: one of the mechs of {FACTION}, its link to them broken, drifting with nobody's mind behind it. The colony has nobody who could take it on, but it could send word, and the Lattice would come for it.</li>
+          <li>[their:grateful] A {THING} of {FACTION}'s has wandered onto the colony's ground, its link to them broken. The Lattice thinks well of the colony, and would come for it gladly if word were sent.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Send word, and let them come for it</label>
+            <outcome>Word has gone to {FACTION}, and a link-warden is on the road to fetch the {THING} home.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_LatticeReturn" />
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Keep it, with {A_nameDef} to oversee it</label>
+            <outcome>The {THING} is the colony's now, and {A_nameDef} has taken it on. {FACTION} will hear of it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_LatticeKeep" />
+            </effects>
+          </li>
+          <li>
+            <label>Let it find its own way home</label>
+            <outcome>The {THING} turns slowly and wanders off the way it came.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_LatticeMechHome" />
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[relinked] There you are, and nothing linked is lost.</li>
+          <li>[relinked] Every link holds two, and this one holds again.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Lattice: the part-trader ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_LatticeParts</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the part-trader</label>
+    <workerClass>ColonyCouncil.HappeningWorker_LatticeParts</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>12</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <mods>
+          <li>Ludeon.RimWorld.Biotech</li>
+        </mods>
+        <ages>25~60</ages>
+        <stayHours>6~10</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The part-trader</li>
+          <li>Subcores for the Lattice</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a part-trader of {FACTION}, has come to the gate with a link-warden and an empty case. The Lattice buys every subcore and chip anyone will sell, and the colony has {TALE} in its stores: {COUNT} silver for the lot, a fifth over their worth.</li>
+          <li>[their:grateful] The Lattice thinks well of the colony, and {X_nameDef} has come from {PLACE} for the colony's subcores and chips, {TALE}, at {COUNT} silver, a friend's price.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Sell them the parts ({COUNT} silver)</label>
+            <outcome>The parts are being carried out to {X_nameDef} at the gate, and the silver carried in.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_LatticeParts" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>Sell them, and have {A_nameDef} look at their tools</label>
+            <outcome>The parts are going out to {X_nameDef}, and {A_nameDef} is at the gate turning the Lattice's tools over in {A_possessive} hands.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_LatticeParts" />
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the Lattice's tools</label><to>Stranger</to><duration>1~2</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Crafting</skill><xp>300</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Nothing to sell</label>
+            <outcome>{X_nameDef} closes the empty case and the two of them go back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[parts] Every subcore holds a little of a mind, so we keep them close.</li>
+          <li>[thanks] Quiet hands, exact work, and good day to you.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Lattice: the engineers' turret ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_LatticeTurret</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a turret for the gate</label>
+    <workerClass>ColonyCouncil.HappeningWorker_LatticeTurret</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>25~60</ages>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A turret for the gate</li>
+          <li>The Lattice's engineer</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, an engineer of {FACTION}, has come to the gate with a {THING} in pieces on a cart. The Lattice would raise it beside the colony's gate for {COUNT} silver, {X_pronoun} says: it wants the colony's power to fire, and it will watch the road all night.</li>
+          <li>[nomechs] {X_nameDef}, an engineer of {FACTION} in an indigo robe, has come to the gate with a {THING} in pieces. The Lattice keeps its lore and its yards even where nobody links a mech, {X_pronoun} says, and it raises turrets instead: this one by the gate, for {COUNT} silver, on the colony's power.</li>
+          <li>[their:grateful] The Lattice thinks well of the colony, and {X_nameDef} has brought a {THING} from {PLACE} to raise beside the gate, {COUNT} silver, a friend's price.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Raise it by the gate ({COUNT} silver)</label>
+            <outcome>The silver is going out to {X_nameDef}, who is wheeling the cart to the gate.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for {X_nameDef}</label><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_LatticeTurret" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>Raise it, with {A_nameDef} beside them</label>
+            <outcome>{X_nameDef} is raising the turret by the gate, with {A_nameDef} holding the pieces and asking how they go together.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for {X_nameDef}</label><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_LatticeTurret" />
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the turret raised</label><to>Stranger</to><duration>1~2</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Construction</skill><xp>300</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>No turrets</label>
+            <outcome>{X_nameDef} turns the cart round and goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[turret] It will watch the road so your minds can rest.</li>
+          <li>[turret] Exact work, and it will stay exact.</li>
+          <li>[thanks] A lattice is a lamp, and you know where to find ours.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Choir of the Spire: the listening ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_ChoirListening</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the Choir listens</label>
+    <workerClass>ColonyCouncil.HappeningWorker_ChoirListening</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>22~70</ages>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.4</answerDays>
+        <journal>Rimfolk_Journal_Evt_ChoirListening</journal>
+        <titles>
+          <li>The Choir listens</li>
+          <li>Listeners at the gate</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a cantor of {FACTION}, has come to the gate in a pale robe with the listeners of {X_possessive} ring. They would sit a while in the middle of the colony and listen to it, {X_nameDef} says, softly, the way they listen to the Spire. Afterwards some at home will feel a calm and some an unease, {TALE}, and {X_pronoun} cannot say which.</li>
+          <li>[void] {X_nameDef}, a cantor of {FACTION}, has come to the gate with the listeners of {X_possessive} ring, and keeps looking past the colony at nothing. They would sit a while in its middle and listen, {X_nameDef} says, though the void is listening too this season, {TALE}, and more of the colony will feel uneasy for it.</li>
+          <li>[lowtech] Pale strangers in long robes have come to the gate from {PLACE}: {X_nameDef} and the listeners of {FACTION}, who speak so softly that everyone leans in. They would sit in the middle of the colony and listen to it a while, they say, and afterwards some will feel a calm and some an unease.</li>
+          <li>[their:grateful] The Choir of the Spire thinks well of the colony, and {X_nameDef} has come from {PLACE} with the listeners of {X_possessive} ring to sit in its middle and listen, as they would for friends. Some will feel a calm afterwards, and some an unease, {TALE}.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Let them listen</label>
+            <outcome>The listeners are walking in to sit in the middle of the colony.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_ChoirListen" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Let them listen, and {A_nameDef} sits with them</label>
+            <outcome>The listeners are walking in to sit in the middle of the colony, and {A_nameDef} is going to sit with them.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_ChoirListen"><together>true</together></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
+            </effects>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>Not today</label>
+            <outcome>{X_nameDef} bows a little, as if the answer were also something heard, and the listeners go back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[listen] Listen first, we always say.</li>
+          <li>[listen] Your colony hums too, did you know that.</li>
+          <li>[heard] We heard you, and you are louder than you think.</li>
+          <li>[heard] The hum is not silence, and yours is a good one.</li>
+          <li>[void] Something else was listening, so keep your doors shut tonight.</li>
+          <li>[thanks] Be ordinary, if you can, it is a gift.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Choir of the Spire: art for the Spire's goods ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_ChoirArt</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the keeper of the hum</label>
+    <workerClass>ColonyCouncil.HappeningWorker_ChoirArt</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>30~70</ages>
+        <stayHours>6~10</stayHours>
+        <answerDays>0.5</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The keeper of the hum</li>
+          <li>The Spire's goods for art</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, the keeper of the hum of {FACTION}, has come to the gate and asked, very politely, to see the colony's art. The Choir have nothing they love more, {X_pronoun} says, and for {TALE} they would give the Spire's {THING}, set down at the gate.</li>
+          <li>[one] {X_nameDef}, the keeper of the hum of {FACTION}, has heard of a piece of the colony's art, {TALE}, and has come to ask for it. For it the Choir would give the Spire's {THING}, set down at the gate.</li>
+          <li>[lowtech] A pale stranger in a long robe, {X_nameDef} of {FACTION}, has come to the gate to look at the colony's carvings. For {TALE} the stranger would leave a strange thing of the Spire's, the {THING}, at the gate.</li>
+          <li>[their:grateful] The Choir of the Spire thinks well of the colony, and {X_nameDef} has come from {PLACE} to ask for {TALE}, and leave the Spire's {THING} for it.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Trade the art for the {THING}</label>
+            <outcome>The art is being carried out to {X_nameDef}, and the {THING} will be left at the gate.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_ChoirArt" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>Trade, and let {A_nameDef} talk with them about the work</label>
+            <outcome>The art is going out to {X_nameDef}, and {A_nameDef} is at the gate talking with {X_objective} about how it was made.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_ChoirArt" />
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the work talked over</label><to>Stranger</to><duration>1~2</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Artistic</skill><xp>300</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>The art stays</label>
+            <outcome>{X_nameDef} looks at the art a long moment, thanks the colony for it anyway, and goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[art] Whoever made this was listening to something.</li>
+          <li>[art] The Spire will like this, I think.</li>
+          <li>[thanks] Listen first, and thank you for letting me look.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Sunken Vault: the last spacer goods ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_VaultBarter</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the vault's last goods</label>
+    <workerClass>ColonyCouncil.HappeningWorker_VaultBarter</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>25</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>22~60</ages>
+        <stayHours>6~10</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The vault's last goods</li>
+          <li>A technician of the vault</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a technician of {FACTION}, has come up the road in an olive vault suit with a surface-scout and a crate: the last of the vault's spacer goods, {TALE}. The vault can't make what it carries, {X_pronoun} says, and every year a little more of it stops working. For the crate they want {COUNT} components and some food, carried out to them.</li>
+          <li>[fallen] {X_nameDef}, a technician of {FACTION}, has come up the road with a crate that is lighter than it used to be: {TALE}, nearly the last of what still works. The vault wants {COUNT} components and some food for it, {X_nameDef} says, and the vault remembers who keeps the lights on below.</li>
+          <li>[lowtech] A stranger in a patched olive suit with a number on the back has come to the gate from {PLACE}: {X_nameDef} of {FACTION}, with a crate of strange old things, {TALE}. For them {X_pronoun} wants {COUNT} of the little machine parts and some food.</li>
+          <li>[their:grateful] The Sunken Vault thinks well of the colony, and {X_nameDef} has brought the vault's crate from {PLACE}, {TALE}, for {COUNT} components and some food, as between friends.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Trade {COUNT} components and some food for the crate</label>
+            <outcome>The components and the food are being carried out to {X_nameDef}, and the crate will be left at the gate.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the components for {X_nameDef}</label><what>ComponentIndustrial</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for {X_nameDef}</label><what>rawfood</what><variant>true</variant></li>
+              <li Class="ColonyCouncil.DilemmaEffect_PeoplesGCrate" />
+              <li Class="ColonyCouncil.DilemmaEffect_VaultSupply" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>Give them the components and the food, and keep nothing of theirs</label>
+            <outcome>The components and the food are being carried out to {X_nameDef}, who stands holding the crate and doesn't know what to say.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the components for {X_nameDef}</label><what>ComponentIndustrial</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for {X_nameDef}</label><what>rawfood</what><variant>true</variant></li>
+              <li Class="ColonyCouncil.DilemmaEffect_VaultSupply"><gift>true</gift></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>8</amount></li>
+            </effects>
+            <ways><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>Nothing to spare</label>
+            <outcome>{X_nameDef} counts the crate twice, as if it might have changed, and the two of them go back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[barter] Every cell counts, and you have just bought us a season.</li>
+          <li>[barter] It still works, mostly, so mind the seal.</li>
+          <li>[gift] The vault will remember this, below and above.</li>
+          <li>[thanks] Number off, and good day to you.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Sunken Vault: a lost craft ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_VaultCraft</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a craft the vault lost</label>
+    <workerClass>ColonyCouncil.HappeningWorker_VaultCraft</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>12</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>20~50</ages>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>A craft the vault lost</li>
+          <li>Teach us the {TALE}</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a technician of {FACTION}, has come to the gate with a notebook full of drawings of machines nobody in the vault can make any more. The vault has lost the work of a {TALE}, {X_pronoun} says: the last who knew it died below, and the manual is mould. {X_nameDef} asks whether {A_nameDef} would teach {X_objective} at the colony's {TALE} for a few hours.</li>
+          <li>[alone] {X_nameDef}, a technician of {FACTION}, has come to the gate to ask the colony for a craft the vault has lost: the work of a {TALE}. {A_nameDef} is the one who keeps the colony's, and {X_nameDef} asks for a few hours beside {A_objective} at it.</li>
+          <li>[lowtech] A stranger in a patched olive suit, {X_nameDef} of {FACTION}, has come to the gate with a notebook of drawings. {X_pronoun} has heard the colony works a {TALE}, and asks {A_nameDef} to show {X_objective} how, for the vault lost the way of it long ago.</li>
+          <li>[their:grateful] The Sunken Vault thinks well of the colony, and {X_nameDef} has come from {PLACE} to ask {A_nameDef} to teach {X_objective} the work of the colony's {TALE}, which the vault lost below.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>{A_nameDef} will teach them at the {TALE}</label>
+            <outcome>{X_nameDef} is following {A_nameDef} to the {TALE}, notebook open.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_VaultTeach" />
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Crafting</skill><xp>200</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
+            </effects>
+            <ways><openness>1</openness><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Teach them, with {B_nameDef} learning it again beside them</label>
+            <outcome>{X_nameDef} and {B_nameDef} are following {A_nameDef} to the {TALE}, both of them asking questions.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_VaultTeach"><withB>true</withB></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Crafting</skill><xp>200</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Crafting</skill><xp>500</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>5</amount></li>
+            </effects>
+            <ways><openness>1</openness><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Not today</label>
+            <outcome>{X_nameDef} closes the notebook carefully and goes back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[teach] Show me slowly, and I will write it all down.</li>
+          <li>[teach] The last of us who knew this died below.</li>
+          <li>[learned] Now the vault can make it again, and it needn't carry it.</li>
+          <li>[learned] I have it, and I will teach it to everyone below.</li>
+          <li>[thanks] Mind the seal, and thank you for listening.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Sunken Vault: the child who never saw a sky ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_VaultChild</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a child who never saw a sky</label>
+    <workerClass>ColonyCouncil.HappeningWorker_VaultChild</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.4</answerDays>
+        <addsPeople>true</addsPeople>
+        <journal>Rimfolk_Journal_Evt_VaultChild</journal>
+        <titles>
+          <li>A child who never saw a sky</li>
+          <li>The sky over the gate</li>
+        </titles>
+        <texts>
+          <li>A surface-scout of {FACTION} has come up the road with a vault-born child, {X_nameDef}, who had never seen a sky until this week and keeps stopping to look up at it. {X_nameDef} has asked the scout, and now asks the colony, whether {X_pronoun} might stay here above, under it, instead of going back down. The scout says the vault would let {X_objective} go.</li>
+          <li>[night] A surface-scout of {FACTION} has come up the road at night with a vault-born child, {X_nameDef}, who has stopped at the colony's gate to stare at the stars and won't move. {X_nameDef} had never seen a sky until this week, and asks whether {X_pronoun} might stay up here under it, with the colony.</li>
+          <li>[youth] A surface-scout of {FACTION} has come up the road with {X_nameDef}, vault-born and not yet grown, who had never seen a sky until this week and keeps looking up at it. {X_nameDef} asks whether {X_pronoun} might stay above with the colony instead of going back below.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Let {X_nameDef} stay</label>
+            <outcome>{X_nameDef} is coming in through the gate, still looking up.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Join" />
+              <li Class="ColonyCouncil.DilemmaEffect_VaultSky" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>A while under the sky, then home</label>
+            <outcome>{X_nameDef} is standing in the open by the gate, looking up, and the scout is waiting.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_VaultSky" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Send them home</label>
+            <outcome>The scout takes {X_nameDef}'s hand, and {X_nameDef} looks up all the way back to the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[stay] Look after them, they have never been up here before.</li>
+          <li>[sky] Take your time, the sky isn't going anywhere.</li>
+          <li>[refused] Come on, the doors close at dusk.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

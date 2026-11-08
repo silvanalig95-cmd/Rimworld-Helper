@@ -6179,6 +6179,32 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
   (`ArisingMath.Lean`, 17 arguments: survivors raise masts or keep a ship's watches, a band digs or votes). Their callers
   come and go at an errand's pace (`LordJob_VisitOnErrand`, `PaceVisit.cs`: the game's visit with its travel on an
   errand, used by `HappeningHelpers.Visit` for every caller). Nothing new saved.
+- **Release G: the Helix Works, the Lattice, the Choir of the Spire and the Sunken Vault** (`Tools/Tests/PeoplesGTests.cs`,
+  "peoples, release G: "; docs/design/peoples.md, the section of that name; the second four of `docs/design/peoples-third.md`).
+  `Rimfolk_HelixWorks` (spacer, outlander parent, calling `editors`), `Rimfolk_Lattice` (spacer, `mechanitors`),
+  `Rimfolk_Choir` (spacer with the archotech's flavour, `listeners`), `Rimfolk_SunkenVault` (spacer, `vaultfolk`), from
+  the player's active mods only, the first three at the height already (paces 9, 10 and 16, falling back only when cut
+  off), the Vault the first people with `ageDeclines` (an age about every 4 years unsupplied, floor medieval, its vault
+  suit patched with each age's pieces in its kinds' `ageArms`). The Works' kinds the most varied of all (34 xenotypes,
+  about six in ten not baseliners); the Choir without armour. Callers (`Peoples/PeoplesG.cs`, `PeoplesG2.cs`, one job
+  driver, `JobDriver_PeoplesG`, which keeps the one worked on still with a forced wait; `PeoplesGMath`): the Works'
+  sample (the colonist with the rarest genes, `PeoplesGMath.Rarity`, a draw of `HediffDefOf.BloodLoss` 0.08, paid at
+  the gate), gene work (one of ten gentle genes the colonist lacks and conflicts with nothing, `AddGene` as a xenogene
+  with the game's xenogerm mark), the vat-keeper's case (medicine and drugs, with or without Biotech), the batch gone
+  wrong (`Rimfolk_GeneFault` on the Works' own vat-grown, tended with `OutsiderTend`); the Lattice's repairs (the game's
+  `MechRepairUtility`), its lost mech (relinked and walked home by a link-warden, or kept by a mechanitor who can take
+  it, `CanControlMech`, as its overseer, -15), its part-trader (`PlayCarry.MechParts`), its turret (a mini-turret
+  raised at the gate, with or without Biotech); the Choir's listening (three hours in a ring at the gathering spot,
+  then `Rimfolk_Thought_ChoirCalm` or `_ChoirUnease` for everyone at home by `PeoplesGMath.Felt`: psychic sensitivity
+  and the void's stirring, `Find.Anomaly.Level`), its keeper of the hum (`PlayCarry.Art` for the Spire's goods); the
+  Vault's last goods for components and food, the lost craft taught at the colony's bench (`learnedHere`), and the
+  child who never saw a sky (`DilemmaEffect_Join`). The Vault's supply is the peoples' memory's `gaveLearning`
+  (`VaultSupply.Noted`: its barter, a gift, a craft taught, its ask of power cells by `Patch_FactionMemory.MissionEnded`,
+  kind `vaultcells`). Four asks (the Choir's listener's stay a `HappeningWorker_MissionHost`, an hour each afternoon
+  beside someone at their work, `Rimfolk_Thought_ChoirFollowed`), the patch on four world events, release B's leans
+  (`ArisingMath.Lean`, 20 arguments: a band led by a psycaster of four or more listens, by a surgeon edits, by a
+  mechanitor links; survivors on a fated quarter, `SaltVault`, come up from a shelter). Their callers at an errand's
+  pace (`PeoplesG.Errand`, `LordJob_ExitMapBest` at `Pace.Errand` home). Nothing new saved; no harm rolled.
 
 ### Peoples whose age changes
 
@@ -6189,7 +6215,7 @@ older factions should also be able to grow and develop over time to reach higher
 Rimfolk keeps a people's age now beside it and reads that wherever it asks about a people's ways and means.
 
 - **The record** (`Peoples/PeopleAges.cs`: `PeopleAgeRecord`, `PeopleAgeBook`, a game component of its own): one a people
-  of Rimfolk's (the nineteen and every one that arose in their ways), made the first time the region's day looks at it:
+  of Rimfolk's (the twenty-three and every one that arose in their ways), made the first time the region's day looks at it:
   its age now (0 tribal to 3 spacer), the age it began in (`Peoples.BeganIn`: its def's, or for one that arose the age of
   what it came from, as release B gave it), its progress (-1 falls back an age, +1 rises one, starting from a head start
   of up to a fifth by its id), when it was first heard of, looked at and last changed, the age before, and its heading
@@ -6215,7 +6241,9 @@ Rimfolk keeps a people's age now beside it and reads that wherever it asks about
     years), down to its floor (the def's `ageFloor`, else one below the age it began in).
   - *The Sunken Vault's way* (the def's `ageDeclines`, `ageDeclineYears`): never rises on its own, loses an age every
     so many years unless supplied (components and tools given or sold to it, `SupplyFull` 1500 silver a year holds it).
-    No people of the nineteen has it; tested, and left for the third piece of `peoples-third.md`.
+    The Sunken Vault's own (release G): an age in about 4 years unsupplied, never below the medieval age; its supply is
+    the peoples' memory's `gaveLearning` (`VaultSupply.Noted`): the components and food of its barter, given or sold, a
+    lost craft taught at the colony and its ask of power cells.
   - Past +1 it rises an age (never past its limit), past -1 it falls back one (never past its floor), and its progress
     starts again from nothing.
 - **What the rule reads**, all of it what Rimfolk already records (`PeopleAges.Deeds`): the trade record's lines with the
@@ -6232,19 +6260,20 @@ Rimfolk keeps a people's age now beside it and reads that wherever it asks about
 - **Each people's pace and limit** (years an age at its own pace, the highest age; each def has a line of why):
   the learned society 6.5, spacer; the Stormglass Conclave and the road league 7, spacer; the Kiln Guild 8 (medieval),
   spacer; the Signal Line 8, spacer; the Last Republic 9, spacer; the Wheel 10, spacer; the Ashen Banner 11 (medieval),
-  spacer; the Deepwell Union 11, spacer; the Circuit of Tamers 12, spacer; the spacer enclave 8 and the Hollow Fleet 10,
-  spacer (at the height already: the two peoples that can't rise, they can fall back to the industrial age); the
+  spacer; the Deepwell Union 11, spacer; the Circuit of Tamers 12, spacer; the spacer enclave 8, the Helix Works 9, the
+  Hollow Fleet and the Lattice 10 and the Choir of the Spire 16, spacer (at the height already: the peoples that can't
+  rise, they can fall back to the industrial age); the Sunken Vault 12, spacer (it falls by its ways, above); the
   hospitaller order 12 (medieval), industrial (their faith keeps the flesh as it was made); the Lantern Wardens and the
   river folk 13 (medieval), industrial; the pilgrims 16 (medieval), industrial; the Quiet Bell 17 (medieval),
   industrial; the herders 20 (tribal), industrial; the Mossborn 24 (tribal), medieval.
-- **The numbers** (`PeopleAgesTests`, 400 worlds of the nineteen, each its own fate and head start, looked at every
-  season): by themselves none rises an age in 5 years and 5.5 of 19 in 10. In a typical game (the colony trades 3500
+- **The numbers** (`PeopleAgesTests`, 400 worlds of the twenty-three, each its own fate and head start, looked at every
+  season): by themselves none rises an age in 5 years and 5.5 of 23 in 10. In a typical game (the colony trades 3500
   silver a year with the road league and holds a trade pact, 1500 with the guild with a small gift of tools and a
   journeyman's wander-year, 1200 with the hospitallers and is allied with them, 800 with the river folk and the society
-  with a gift of books and one of the society's masters teaching): 2.0 rise in 5 years, 4.1 in 7.5 and 6.8 in 10, and
-  half a people in 10 years (0.47, the guild) goes two ages. With all the colony's help (5000 silver a year, 1500 of
+  with a gift of books and one of the society's masters teaching): 2.1 rise in 5 years, 4.1 in 7.5 and 6.8 in 10, and
+  half a people in 10 years (0.45, the guild) goes two ages. With all the colony's help (5000 silver a year, 1500 of
   gifts, two journeymen a year, an alliance) the guild goes from the medieval to the spacer age in 10 years in every
-  world and in 7 in 76%. The herders and the Mossborn rise in none of the worlds in 10 years.
+  world and in 7 in 75%. The herders and the Mossborn rise in none of the worlds in 10 years.
 - **What follows from it.** Everything that already took the form of a people's age follows `Peoples.AgeOf`: its
   kinds' arms and kits of the age (`PeopleKindExtension.ageArms`), its gifts of the age (genes only from the industrial
   age, `PeoplesGearMath.GenesAge`), its camps' kits and what its camps know how to build (`CampKit`), its words and the

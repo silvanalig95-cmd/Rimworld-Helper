@@ -67,11 +67,18 @@ namespace ColonyCouncil
         /// </summary>
         public const string Linesmen = "linesmen", Drillers = "drillers", Citizens = "citizens", Crew = "crew";
 
+        /// <summary>
+        /// Release G's (docs/design/peoples-third.md, the second four): the Helix Works' (gene-crafters, the editors of
+        /// every body), the Lattice's (mechanitors who link their mechs into one whole), the Choir of the Spire's (listeners
+        /// at the archotech), the Sunken Vault's (the shelter's folk come up into a world that didn't wait for them).
+        /// </summary>
+        public const string Editors = "editors", Mechanitors = "mechanitors", Listeners = "listeners", Vaultfolk = "vaultfolk";
+
         /// <summary>Every calling Rimfolk's words know. Release B's peoples take one of these.</summary>
         public static readonly string[] Callings =
         {
             Traders, Healers, Herders, Pilgrims, Scholars, Brokers, Fishers, Hunters, Sextons, Tamers, Salvagers, Seers, Grovekeepers, Mercenaries, Artisans,
-            Linesmen, Drillers, Citizens, Crew
+            Linesmen, Drillers, Citizens, Crew, Editors, Mechanitors, Listeners, Vaultfolk
         };
 
         public static bool IsCalling(string calling) => calling != null && Array.IndexOf(Callings, calling) >= 0;

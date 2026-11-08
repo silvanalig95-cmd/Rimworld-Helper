@@ -213,6 +213,8 @@ namespace ColonyCouncil
                 FactionMemory.Note(m.faction, "learnedHere", m.name);
                 return;
             }
+            // Parts delivered to a people that declines unless supplied (the Sunken Vault) keep its age (Peoples/PeoplesG2.cs).
+            if (state == MissionState.Done && m.kind == VaultSupply.MissionKind) VaultSupply.Noted(m.faction, m.reward, m.title);
             if (Missions.Worker(m)?.OwnMemory ?? false) return;
             if (state == MissionState.Done) FactionMemory.Note(m.faction, "mission", m.title);
             else if (state == MissionState.Failed && m.outcome != "cancelled" && m.outcome != "ended") FactionMemory.Note(m.faction, "missionFailed", m.title);

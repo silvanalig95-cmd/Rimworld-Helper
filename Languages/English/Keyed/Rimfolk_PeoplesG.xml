@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Release G's peoples at the gate (Source/ColonyCouncil/Peoples/PeoplesG.cs, PeoplesG2.cs). -->
+
+  <!-- The Helix Works: the sample -->
+  <CC_PeoplesG_RareArchite>the archite gene of {0}</CC_PeoplesG_RareArchite>
+  <CC_PeoplesG_RareXeno>the genes of the {0} kind, which the Works can read</CC_PeoplesG_RareXeno>
+  <CC_PeoplesG_DonorGone>The one they asked for is no longer here.</CC_PeoplesG_DonorGone>
+  <CC_PeoplesG_Impact_Sample>{0} keeps still where they are, and the sample-buyer walks over and draws a little blood from the arm, below anything that would weaken them, gone in a few hours. The Works pay at the gate.</CC_PeoplesG_Impact_Sample>
+  <CC_PeoplesG_Impact_SampleBrief>A small blood draw for the Works</CC_PeoplesG_Impact_SampleBrief>
+  <CC_PeoplesG_Drawn>{BUYER} has drawn a little blood from {PAWN}'s arm for the Helix Works, and paid {COUNT} silver for it.</CC_PeoplesG_Drawn>
+
+  <!-- The Helix Works: gene work -->
+  <CC_PeoplesG_TakerGone>The one the gene was for is no longer here.</CC_PeoplesG_TakerGone>
+  <CC_PeoplesG_GeneTaken>That gene would no longer take.</CC_PeoplesG_GeneTaken>
+  <CC_PeoplesG_Impact_Gene>{0} keeps still while the sequencer works on them two hours, and carries the Works' gene {1} from then, as a xenogene; no other xenogerm until it has settled.</CC_PeoplesG_Impact_Gene>
+  <CC_PeoplesG_Impact_GeneBrief>A gene written in</CC_PeoplesG_Impact_GeneBrief>
+  <CC_PeoplesG_GeneWritten>{SEQ} has written the Works' gene {GENE} into {PAWN}. It will be a while before anything else can be written in.</CC_PeoplesG_GeneWritten>
+
+  <!-- The Helix Works: the batch gone wrong -->
+  <CC_PeoplesG_Impact_Batch>{0} sees to the {1} of the Works' sick vat-grown where they stand, a medicine from the stores for each.</CC_PeoplesG_Impact_Batch>
+  <CC_PeoplesG_Impact_BatchBrief>The Works' batch tended</CC_PeoplesG_Impact_BatchBrief>
+
+  <!-- The Lattice: repairs, the lost mech, parts and the turret -->
+  <CC_PeoplesG_HurtMechs>{0} of them, with {1} wounds between them</CC_PeoplesG_HurtMechs>
+  <CC_PeoplesG_NothingHurt>The colony's mechs no longer need mending.</CC_PeoplesG_NothingHurt>
+  <CC_PeoplesG_Impact_Repair>The mech-tender goes from mech to mech and mends each where it stands, {0} of them, each kept still at its turn.</CC_PeoplesG_Impact_Repair>
+  <CC_PeoplesG_Impact_RepairBrief>The colony's mechs mended</CC_PeoplesG_Impact_RepairBrief>
+  <CC_PeoplesG_Mended>{PAWN} of the Lattice has mended the colony's mechs and is going home.</CC_PeoplesG_Mended>
+  <CC_PeoplesG_MechGone>The lost mech is no longer here.</CC_PeoplesG_MechGone>
+  <CC_PeoplesG_NoKeeper>The colony has no mechanitor with the bandwidth to take it on.</CC_PeoplesG_NoKeeper>
+  <CC_PeoplesG_Impact_Return>A link-warden of the Lattice walks in to the {0}, relinks it and walks it home.</CC_PeoplesG_Impact_Return>
+  <CC_PeoplesG_Impact_ReturnBrief>The mech walked home</CC_PeoplesG_Impact_ReturnBrief>
+  <CC_PeoplesG_Impact_Keep>The {0} is the colony's, with {1} to oversee it.</CC_PeoplesG_Impact_Keep>
+  <CC_PeoplesG_Impact_KeepBrief>A mech kept</CC_PeoplesG_Impact_KeepBrief>
+  <CC_PeoplesG_Impact_MechHome>The {0} wanders off the map the way it came.</CC_PeoplesG_Impact_MechHome>
+  <CC_PeoplesG_Impact_MechHomeBrief>The mech lets go</CC_PeoplesG_Impact_MechHomeBrief>
+  <CC_PeoplesG_Relinked>{PAWN} of the Lattice has relinked the {MECH}, and the two of them are walking home together.</CC_PeoplesG_Relinked>
+  <CC_PeoplesG_Kept>The {MECH} is the colony's now, and {PAWN} oversees it. {FACTION} will not forgive it soon.</CC_PeoplesG_Kept>
+  <CC_PeoplesG_MechParts>subcores and mech chips</CC_PeoplesG_MechParts>
+  <CC_PeoplesG_PartsGone>The subcores and chips are no longer in the stores.</CC_PeoplesG_PartsGone>
+  <CC_PeoplesG_NoTurretSite>There is no clear ground by the gate for it.</CC_PeoplesG_NoTurretSite>
+  <CC_PeoplesG_Impact_Turret>The engineer raises a {0} by the gate, the colony's from then on; it wants the colony's power to fire.</CC_PeoplesG_Impact_Turret>
+  <CC_PeoplesG_Impact_TurretBrief>A turret by the gate</CC_PeoplesG_Impact_TurretBrief>
+  <CC_PeoplesG_TurretRaised>{PAWN} of the Lattice has raised a turret by the gate. Connect it to the colony's power and it will watch the road.</CC_PeoplesG_TurretRaised>
+
+  <!-- The Choir of the Spire: the listening, the art, the stay -->
+  <CC_PeoplesG_ListenHum>the psychically sensitive the most</CC_PeoplesG_ListenHum>
+  <CC_PeoplesG_ListenVoid>since the monolith woke</CC_PeoplesG_ListenVoid>
+  <CC_PeoplesG_Impact_Listen>The listeners sit in a ring in the colony's middle for a few hours, and then the colony feels it.</CC_PeoplesG_Impact_Listen>
+  <CC_PeoplesG_Impact_ListenBrief>The Choir listens</CC_PeoplesG_Impact_ListenBrief>
+  <CC_PeoplesG_Impact_ListenFelt>The {0} others at home feel a calm (+4) or an unease (-3) afterwards, the psychically sensitive the most, the psychically deaf nothing.</CC_PeoplesG_Impact_ListenFelt>
+  <CC_PeoplesG_Impact_ListenFeltBrief>A calm for some, an unease for others</CC_PeoplesG_Impact_ListenFeltBrief>
+  <CC_PeoplesG_Nobody>nobody</CC_PeoplesG_Nobody>
+  <CC_PeoplesG_Heard>The listeners of {FACTION} have heard the colony. A calm came over {CALM}; an unease over {UNEASY}.</CC_PeoplesG_Heard>
+  <CC_PeoplesG_Art>packed art</CC_PeoplesG_Art>
+  <CC_PeoplesG_ArtGone>The art they asked for is no longer packed in the stores.</CC_PeoplesG_ArtGone>
+  <CC_PeoplesG_OrdinarySays>So that is what this is for.</CC_PeoplesG_OrdinarySays>
+  <CC_PeoplesG_Stay_Coming>{0} of the Choir is on the road to the colony.</CC_PeoplesG_Stay_Coming>
+  <CC_PeoplesG_Stay_Staying>{0} of the Choir is staying at the colony: {1} afternoons beside its people at work so far.</CC_PeoplesG_Stay_Staying>
+
+  <!-- The Sunken Vault: supply, the craft and the child -->
+  <CC_PeoplesG_Impact_Supply>{0} remember the components and food as supply: given parts, the vault holds its age instead of falling back.</CC_PeoplesG_Impact_Supply>
+  <CC_PeoplesG_Impact_SupplyGift>{0} remember the components and food as a friend's supply, and more of it: given parts, the vault holds its age instead of falling back.</CC_PeoplesG_Impact_SupplyGift>
+  <CC_PeoplesG_Impact_SupplyBrief>The vault supplied</CC_PeoplesG_Impact_SupplyBrief>
+  <CC_PeoplesG_BenchGone>The bench is no longer there.</CC_PeoplesG_BenchGone>
+  <CC_PeoplesG_Impact_Teach>{0} teaches the vault's technician at the {1} for a few hours; the vault can make it again, and remembers who taught it.</CC_PeoplesG_Impact_Teach>
+  <CC_PeoplesG_Impact_TeachBrief>A lost craft taught</CC_PeoplesG_Impact_TeachBrief>
+  <CC_PeoplesG_CraftLearned>{PAWN} of {FACTION} has learned the work of the {CRAFT} again, and is taking it home to the vault.</CC_PeoplesG_CraftLearned>
+  <CC_PeoplesG_Impact_Sky>{0} stands in the open by the gate a while, looking up.</CC_PeoplesG_Impact_Sky>
+  <CC_PeoplesG_Impact_SkyBrief>A first sky</CC_PeoplesG_Impact_SkyBrief>
+  <CC_PeoplesG_SkySays>It doesn't stop anywhere.</CC_PeoplesG_SkySays>
+  <CC_PeoplesG_SawTheSky>{PAWN_nameDef} has stood under the open sky a long while, and keeps looking up.</CC_PeoplesG_SawTheSky>
+
+</LanguageData>
