@@ -270,7 +270,8 @@ public static class PagesTests
         {
             string text = File.ReadAllText(Path.Combine(src, "UI", cls + ".cs"));
             C(Regex.IsMatch(text, @"class " + cls + @" : RimfolkTabWindow"), $"{cls} is one of the four windows (the same size and place)");
-            C(text.Contains("WindowTabs.Draw("), $"{cls} has the other windows in its corner");
+            // WindowTabs.DrawFor: the game's tabs with the corner beside them, or Rimfolk's with the corner in the title bar (stage 2).
+            C(text.Contains("WindowTabs.DrawFor("), $"{cls} has the other windows in its corner");
         }
 
         // The rooms and planning buttons made one, once.
