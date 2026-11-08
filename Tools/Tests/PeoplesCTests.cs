@@ -198,8 +198,8 @@ public static class PeoplesCTests
             "what a cause leans to: a learned leader to scholars, a river (its fated half) to the boats");
         C(ArisingMath.Wanted("refugees", "fishers").First() == "fishers" && ArisingMath.Wanted("refugees", null).SequenceEqual(new[] { "herders", "healers", "traders" })
           && ArisingMath.Callings("exiles").SequenceEqual(new[] { "herders", "traders", "scholars", "fishers", "tamers", "hunters", "seers", "mercenaries", "artisans", "grovekeepers",
-                "drillers", "citizens" }),
-            "a lean comes first, and only a cause's own leans (release D's, E's and F's among a band's)");
+                "drillers", "citizens", "listeners", "editors", "mechanitors" }),
+            "a lean comes first, and only a cause's own leans (release D's, E's, F's and G's among a band's)");
         float share = Enumerable.Range(0, 4000).Count(i => ArisingMath.Fated(i * 7919L, ArisingMath.SaltRiver, ArisingMath.RiverChance)) / 4000f;
         C(Math.Abs(share - 0.5f) < 0.04f, $"half the causes near a river lean to it ({share:0.000})");
         // The pace and the caps are release B's, unchanged.

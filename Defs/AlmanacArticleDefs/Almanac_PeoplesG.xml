@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The Almanac page on release G's peoples (Source/ColonyCouncil/Peoples/; Defs/PeopleDefs/; docs/design/peoples.md,
+       "Release G"; DESIGN.md "Rimfolk's peoples"), beside release F's (Almanac_PeoplesF.xml). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_PeoplesG</defName>
+    <label>the Works, the Lattice, the Choir and the Vault</label>
+    <category>Council</category>
+    <order>18</order>
+    <summary>Four more peoples of the spacer age, none of them anyone's enemy by nature: the Helix Works, gene-crafters who are mostly their own work, the Lattice, mechanitors who link their mechs into one working whole, the Choir of the Spire, listeners at an archotech spire who barely use what it gave them, and the Sunken Vault, the people of a shelter that opened into a world that had not waited, who fall back an age every few years unless someone keeps them supplied. Each has its own founding, gear, faith, towns and words, and comes to the colony's gate in its own ways.</summary>
+    <tip>They are among the world's peoples when a new world is made, once each, at the game's usual chances; remove them in the world's faction list like any other people. A save made before them meets them when one of them arises during play. The Works' gene work and the Lattice's mechs want Biotech; without it the Works trade medicine and drugs and the Lattice come as engineers with turrets.</tip>
+    <description>All four defend their towns and raid only when the colony has turned them hostile, by the game's own rules, and seldom then; the Choir hardly ever. Their notables have titles of their own, their messengers words of their own, and their towns a plan of their own when the land suits it. The Works, the Lattice and the Choir are at the height of the ages already and fall back only if they are cut off from the world. The Vault cannot make what it carries: it falls an age about every four years with nothing, never lower than the medieval age, and holds its age for every component and part the colony sells or gives it.</description>
+    <sections>
+      <li>
+        <heading>Who they are</heading>
+        <table>
+          <li>People | Lives by | Age | On the map | Their towns</li>
+          <li>The Helix Works | Editing genes | Spacer | The lab coat in clinic mint over a mint shirt, the helix pin on the collar; lab guards in mint recon armour; under it whatever they like | A gene lab with its benches, the vat hall's cradles, quarters and a quiet garden</li>
+          <li>The Lattice | Linking mechs | Spacer | The robe in lattice indigo, the lattice on its hood, bandwidth gear on the mech-tenders; link-wardens with a vest under it; mechs beside them | The charging yards: a control tower, the gestation hall, a bunkhouse and a yard of batteries under turrets</li>
+          <li>The Choir of the Spire | Listening | Spacer, with the archotech's flavour | Pale robes in spire lilac on everyone, nothing else alike, no armour at all | A ring of quiet halls round a pale monolith</li>
+          <li>The Sunken Vault | Keeping the last machines going | Spacer, falling | The vault suit in vault olive with the vault's number on the back, worn thin; security in recon armour; patched with whatever is at hand in a poorer age | The vault door in a hillside, the vault behind it, and a surface camp growing round it</li>
+        </table>
+        <after>With Ideology each keeps a faith of its own (the living draft, the lattice, the hum, the seal) and its own style. With Biotech the Works are mostly not baseliners at all, drawn from every kind of people in the mods loaded, and the others have a share of other kinds of people. With Vanilla Ideology Expanded's memes their faiths take the progressive and healthcare, the gestalt and mechanoid supremacy, psychic focus and the scrapper too, and with Alpha Memes the Choir is monastic.</after>
+      </li>
+      <li>
+        <heading>Where their ways began</heading>
+        <text>Each keeps a founding story, a few sayings, and what it honours and fears, shown on their card and spoken in their letters, messengers, visitors and talk.</text>
+        <points>
+          <li>The Helix Works began when the lab's founders fled a plague in the vats and left the vats running. The eldest of the lab's own grown, Orla Venn, kept them warm through the winter, read the founders' notes aloud to the others they had made, and taught them to edit what they were given. Her genome is the first entry in the Works' ledger.</li>
+          <li>The Lattice began on a field the war had left, where a hundred mechs stood still round their fallen commander. Tamsin Arro, a deserter with a mechlink, walked out among them and linked the first ten to her own mind, then taught three others to take ten each, and their minds began to share a quiet. The node still stands where she stood.</li>
+          <li>The Choir of the Spire began when a herder called Ilsabet Ruen lay down one night at the foot of the Spire and woke able to hear it think. Others came to sit with her, their children were born hearing it, and they built their halls in a ring round it so that someone is always listening.</li>
+          <li>The Sunken Vault began when the vault's water ran short, generations after the doors were sealed. The vault's council chose Overseer Hollis Crane to open them, and she broke the seal and walked out first. Half of them went back below for a week, and every dweller still wears the vault's number on the back of the suit.</li>
+        </points>
+      </li>
+      <li>
+        <heading>What they wear, carry and know</heading>
+        <text>Each people wears its colour on a piece or two, its soldiers one kit where it has soldiers, and its civilians whatever their age and calling would, from the game, the DLCs and the mods loaded. A share have a gift (A RimWorld of Magic's classes, a psylink, genes).</text>
+        <points>
+          <li>The Helix Works: lab guards with charge rifles (and Rimsenal's spacer pistols), sequencers and vat-keepers with pistols and the Works' instruments, a mechanitor or two with Biotech's mechlink and headset. Genes put in by their own hands (quick study, strong immunity, fast wound healing, robust), now and then a psylink (Harmonist, Empath), a chief editor who may be a chronomancer.</li>
+          <li>The Lattice: mech-tenders and the node with Biotech's mechlink and their mechs (militors, legionaries, lifters, constructoids), link-wardens with light weapons and now and then a psylink (Technomancer, Protector), engineers with tool belts and components; technomancers of A RimWorld of Magic among them.</li>
+          <li>The Choir of the Spire: most are psycasters (Royalty; Vanilla Psycasts Expanded's Empath, Harmonist, Archotechist, Protector, Puppeteer and Staticlord paths), cantors in the eltex of the psychic, a few bards and psionics; archite genes with Biotech (perfect immunity, ageless). Their wardens of the quiet carry only a light blade and fight with the mind.</li>
+          <li>The Sunken Vault: security with charge rifles at first, then flak and rifles, then plate and spears as the vault falls; dwellers with pistols, medics, technicians, surface-scouts with rifles; technomancers, super soldiers and rangers of A RimWorld of Magic, an overseer who may be a Protector.</li>
+          <li>Their kinds of people (Biotech): nearly every kind in the mods loaded with the Works, about six in ten of them; genies, hussars, highmates, androids, archons, askbarn and ocularkin with the Lattice; highmates, genies, archons, animusen, ocularkin, high elves, court fairies and Avaloi with the Choir; dirtmoles, stoneborn, insectors, korgs, genies, pigskins and wasters with the Vault.</li>
+        </points>
+      </li>
+      <li>
+        <heading>At the colony's gate</heading>
+        <points>
+          <li>The Helix Works: a sample-buyer asks for a sample from the colonist whose genes are rarest (an archite gene, or a xenotype's own genes) and pays for it, a small blood draw from the arm done where they stand, below anything that would weaken them and gone in a few hours; the colony's doctor may watch. A sequencer writes one of the Works' gentle genes into a colonist for silver or a genepack. A vat-keeper sells a case of medicine, glitterworld medicine and penoxycyline, and brings a batch of their vat-grown gone wrong, sick with a gene fault, for the colony's doctor to tend at the gate or medicine for the road. They may ask for genepacks, or medicine.</li>
+          <li>The Lattice: a mech-tender mends the colony's hurt mechs one by one for silver or a basic subcore. A lost mech of theirs wanders onto the map: send word and a link-warden walks in, relinks it and walks it home, and the Lattice thinks the better of the colony; or keep it with the colony's mechanitor as its overseer, which costs fifteen of their goodwill; or let it find its own way home. A part-trader buys the colony's subcores and chips at a fifth over their worth, and an engineer raises a turret by the gate. They may ask for two good crafters for a day at their yards.</li>
+          <li>The Choir of the Spire: listeners sit in a ring in the colony's middle for a few hours, and then everyone at home feels it: a calm for most, an unease for one in five, more for the psychically sensitive and more still when the void stirs, nothing for the psychically deaf. Someone may sit with them and come away the calmer. The keeper of the hum takes the colony's packed art for one of the Spire's goods (a psychic pulser, an archite capsule, a healer mech serum, a harmonizer or eltex), set down at the gate. One of their listeners may stay some days to learn what it is to be ordinary, an hour each afternoon beside someone at their work.</li>
+          <li>The Sunken Vault: a technician trades the vault's last spacer goods for components and food, or the colony gives them for nothing and the vault remembers it as a friend's supply. A technician asks to be taught a craft the vault has lost, at the colony's bench, and the vault can make it again. A vault-born child who has never seen a sky asks to stay: taken in, they are the colony's, a person joining as anyone does; or they stand under the sky a while before going home. They may ask for components to keep the vault's last machines going.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Their towns, and new peoples like them</heading>
+        <points>
+          <li>The Works' lab, the Lattice's yards, the Choir's ring and the Vault's door are laid out to their plans when a town's map is made; where the land is too wet or rough for it, the game makes its own base.</li>
+          <li>A famous healer on the roads is likeliest the Works', a town rebuilding the Lattice's, a season of wild magic the Choir's, and a new town the Vault's, a surface camp grown round a vault door.</li>
+          <li>New peoples that arise during play may take their ways: a band of the banished led in the spacer age by a strong psycaster listens as a choir, by a surgeon edits genes as a works, by a mechanitor links its mechs as a lattice; survivors of an industrial or spacer town who sat out its fall in its shelter come up again as vaultfolk.</li>
+        </points>
+      </li>
+    </sections>
+    <keywords><li>helix works</li><li>lattice</li><li>choir of the spire</li><li>sunken vault</li><li>gene work</li><li>lost mech</li></keywords>
+    <seeAlso><li>Council_Alm_C_PeoplesF</li><li>Council_Alm_C_PeoplesE</li><li>Council_Alm_C_Peoples</li><li>Council_Alm_C_Callers</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

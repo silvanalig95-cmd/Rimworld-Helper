@@ -3709,18 +3709,44 @@ exiles from a town come from them likeliest. They arise in every age, and new pe
 who keep a radio going or a ship's watches, a band led by a good miner or a good talker. The Almanac has a page, *the
 Line, the union, the Republic and the Fleet*.
 
+**Four more: the Works, the Lattice, the Choir and the Vault.** A new world also has the **Helix Works**, gene-crafters
+of the lab their founders fled (spacer, a lab coat over a shirt in clinic mint, the most varied kinds of people of all,
+a lab with its vat hall and quiet garden); the **Lattice**, mechanitors whose minds share a quiet with their mechs
+(spacer, an indigo robe with the lattice on its hood, charging yards with a control tower and turrets); the **Choir of
+the Spire**, listeners at an archotech's hum (spacer, a pale lilac robe and no armour at all, psycasters and archite
+genes, a ring of quiet halls round a pale monolith); and the **Sunken Vault**, the people of a shelter that opened at
+last (spacer and falling, a vault suit of olive with the vault's number on the back, patched with whatever each age has
+at hand, a vault door behind plasteel walls with a surface camp outside it). With Biotech the Works ask the colonist
+with the rarest genes for a sample, a little blood drawn at the gate for silver; a sequencer offers a gentle gene a
+colonist lacks and writes it in where they stand; and a vat-keeper brings a batch of their vat-grown gone wrong for the
+colony's doctor to see to. Without it they trade medicine and drugs, their vat-keeper's case set down at the gate. A
+Lattice mech-tender mends the colony's hurt mechs one by one; one of their mechs may wander onto the map, to be walked
+home by a link-warden or kept by a mechanitor of the colony's at a cost to their goodwill; their part-trader buys
+subcores and chips; and their engineers raise a mini-turret at the gate of an industrial or spacer colony, with or
+without Biotech. A Choir cantor and their listeners sit in a ring at the colony's gathering spot for three hours, and
+after it everyone at home feels calm, or uneasy, more often the psychically sensitive and when the void stirs; their
+keeper of the hum trades the Spire's psychic and archotech goods for the colony's art. The Vault's technician trades its
+last spacer goods for components and food and asks to be taught a craft the vault lost, and a surface-scout may bring a
+vault-born child who never saw a sky and asks to stay. The Vault falls an age every few years unless the colony supplies
+it. Each has its asks (genepacks, two crafters for a day at the yards, a listener who stays a few days to learn what it
+is to be ordinary, power cells for the vault), faith, words and names, and a famous healer, a town rebuilding, a season
+of wild magic and a new town come from them likeliest. New peoples may take their ways: a band led by a strong
+psycaster, a surgeon or a mechanitor, survivors who sat out their town's fall in its shelter. The Almanac has a page,
+*the Works, the Lattice, the Choir and the Vault*.
+
 **Peoples whose age changes.** Rimfolk's peoples don't stay in the age they began in. Each season every one of them
 moves toward the next age at a pace of its own ways: the learned society, the Stormglass Conclave and the road league
-soonest, the Signal Line soon after, the herders and the Mossborn latest and never past the industrial and the medieval age, the hospitallers no
-further than the industrial age by their faith. The colony quickens them: trade with a people (twice the pace at 5000
-silver a year), gifts of books, techprints, components or tools, its young who come to learn at the colony and its
-masters who teach the colony's people, and an alliance. A people cut off from the world, with nobody's trade for years,
-its towns burned and at war with most of the world, falls back an age instead, slowly. In a typical game of five to ten
-years a few peoples reach the next age, and a learned one the colony helps may go two. A letter in their own voice tells
-each change, what they learned or what they lost, and their card and the region's page of peoples show their age and
-which way they are heading. Their next visitors come dressed and armed as the new age is (and nothing of a later age
-among a people that fell back), their camps are built its way and their traders carry its goods. Setting: *Peoples'
-ages change* (on).
+soonest, the Signal Line soon after, the herders and the Mossborn latest and never past the industrial and the medieval
+age, the hospitallers no further than the industrial age by their faith. The colony quickens them: trade with a people
+(twice the pace at 5000 silver a year), gifts of books, techprints, components or tools, its young who come to learn at
+the colony and its masters who teach the colony's people, and an alliance. A people cut off from the world, with
+nobody's trade for years, its towns burned and at war with most of the world, falls back an age instead, slowly. The
+Sunken Vault falls by its ways, an age in about four years, unless the colony supplies it with components and food, a
+craft taught or the power cells it asks for. In a typical game of five to ten years a few peoples reach the next age,
+and a learned one the colony helps may go two. A letter in their own voice tells each change, what they learned or what
+they lost, and their card and the region's page of peoples show their age and which way they are heading. Their next
+visitors come dressed and armed as the new age is (and nothing of a later age among a people that fell back), their
+camps are built its way and their traders carry its goods. Setting: *Peoples' ages change* (on).
 
 ## Scenarios with stakes
 Seventeen scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Each starts the game with

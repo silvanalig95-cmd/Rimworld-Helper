@@ -43,6 +43,23 @@ namespace ColonyCouncil
         public static bool IsSalvage(Thing t) =>
             t != null && t.Spawned && !t.IsForbidden(Faction.OfPlayer) && t.IsInAnyStorage() && (t.def == ThingDefOf.AIPersonaCore || t.def == ThingDefOf.ComponentSpacer);
 
+        /// <summary>
+        /// The mech parts the Lattice's part-trader buys (Peoples/PeoplesG.cs): Biotech's subcores and mech chips in the
+        /// colony's stores, the dearest first.
+        /// </summary>
+        public const string MechParts = "mechparts";
+
+        public static readonly string[] MechPartDefs = { "SubcoreHigh", "SubcoreRegular", "SubcoreBasic", "NanostructuringChip", "PowerfocusChip", "SignalChip" };
+
+        public static bool IsMechPart(Thing t) =>
+            t != null && t.Spawned && !t.IsForbidden(Faction.OfPlayer) && t.IsInAnyStorage() && System.Array.IndexOf(MechPartDefs, t.def.defName) >= 0;
+
+        /// <summary>
+        /// Art the Choir of the Spire takes for its goods (Peoples/PeoplesG2.cs): sculptures packed up and ready to carry, as
+        /// a mission's art is (Missions.Matching), the dearest first.
+        /// </summary>
+        public const string Art = "art";
+
         /// <summary>The kinds of an errand that carries one of each ("meals+coat"), in the order they go; null for one kind.</summary>
         public static string[] Parts(string what) => what != null && what.IndexOf('+') >= 0 ? what.Split('+') : null;
 
@@ -60,6 +77,8 @@ namespace ColonyCouncil
                 case Coat:
                 case Scrap:
                 case Salvage:
+                case MechParts:
+                case Art:
                     return null;
             }
             return what.NullOrEmpty() ? fallback : DefDatabase<ThingDef>.GetNamedSilentFail(what);
@@ -125,6 +144,10 @@ namespace ColonyCouncil
                         .OrderBy(t => t.def == ThingDefOf.ChunkSlagSteel ? 0 : 1);
                 case Salvage:
                     return map.listerThings.ThingsOfDef(ThingDefOf.AIPersonaCore).Concat(map.listerThings.ThingsOfDef(ThingDefOf.ComponentSpacer)).Where(IsSalvage);
+                case MechParts:
+                    return MechPartDefs.Select(n => DefDatabase<ThingDef>.GetNamedSilentFail(n)).Where(d => d != null).SelectMany(d => map.listerThings.ThingsOfDef(d)).Where(IsMechPart);
+                case Art:
+                    return Missions.Matching(map, "art").OrderByDescending(t => t.MarketValue);
             }
             def = def ?? DefOf(what, null);
             if (def == null) return Enumerable.Empty<Thing>();
@@ -209,6 +232,8 @@ namespace ColonyCouncil
                 case Coat: return "CC_Play_Coat".Translate();
                 case Scrap: return "CC_PeoplesD_Scrap".Translate();
                 case Salvage: return "CC_PeoplesF_Salvage".Translate();
+                case MechParts: return "CC_PeoplesG_MechParts".Translate();
+                case Art: return "CC_PeoplesG_Art".Translate();
             }
             return (def ?? DefOf(what, null))?.label ?? what ?? "";
         }

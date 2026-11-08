@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+  <!--
+    Release G's peoples in more of Rimfolk's existing events (Source/ColonyCouncil/Peoples/; docs/design/peoples.md,
+    "Release G"), as release F's are in Patches/Rimfolk_PeoplesF.xml. Each patches one of Rimfolk's own defs and is
+    conditional, so it never fails: with the def gone, nothing happens. A preference never shuts another people out:
+    without a people of the calling, everything comes as before.
+    - World events that prefer a calling (SituationFactionNeed.calling: five times as likely as another people): a famous
+      healer on the roads, the Helix Works' (a sequencer of theirs); a town rebuilding, the Lattice's (whose mechs carry
+      the stone); a season of wild magic, the Choir of the Spire's (whose listeners feel it first); a new town, the Sunken
+      Vault's (a surface camp grown round a vault door).
+  -->
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_Healer"]/faction</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_Healer"]/faction</xpath>
+      <value>
+        <calling>editors</calling>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_Rebuilding"]/faction</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_Rebuilding"]/faction</xpath>
+      <value>
+        <calling>mechanitors</calling>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_WildMagic"]/faction</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_WildMagic"]/faction</xpath>
+      <value>
+        <calling>listeners</calling>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_NewTown"]/faction</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ColonyCouncil.WorldSituationDef[defName="Council_WS_NewTown"]/faction</xpath>
+      <value>
+        <calling>vaultfolk</calling>
+      </value>
+    </match>
+  </Operation>
+
+</Patch>

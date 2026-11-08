@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Feelings from release G's peoples (Defs/IncidentDefs/Rimfolk_Events_PeoplesG.xml, Defs/MissionDefs/
+       Rimfolk_Missions_PeoplesG.xml, Peoples/PeoplesG2.cs): the Choir of the Spire's listening, a calm for some and an
+       unease for others (real moods, as the design asks: "shown as moods"), the listener who watched someone at their work,
+       a hand lent at the Lattice's charging yards, and the Helix Works' thanks. -->
+
+  <!-- The Choir's listening (ChoirListening.Heard): felt by everyone at home but the psychically deaf. -->
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_ChoirCalm</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>1.5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>a calm from the Choir</label><description>The Choir of the Spire sat in the middle of the colony and listened to it, and something in me went quiet. I keep noticing how still my hands are.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_ChoirUnease</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>an unease from the Choir</label><description>The Choir of the Spire sat in the middle of the colony and listened, and I felt it listen to me. Something was listening back through them, and I can't shake it.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- The listener's stay (HappeningWorker_MissionChoirStay.Followed): for the one they watched at work. -->
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_ChoirFollowed</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>watched at work by a listener</label><description>The listener from the Choir stood beside me for an hour while I worked, asking what each thing was for. Nobody has ever found my work so interesting.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Pride</li></feelings><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <!-- The Lattice's hands at the charging yards (Defs/MissionDefs/Rimfolk_Missions_PeoplesG.xml): for the crafters who went. -->
+  <ThoughtDef>
+    <defName>Rimfolk_Mission_HandsWithLattice</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>a day in the Lattice's yards</label><description>A whole day at the Lattice's charging yards, with a hundred mechs moving round us as if they were one thing. Quiet, exact people, and strange.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Curiosity</li></feelings><felt>3</felt></li></modExtensions>
+  </ThoughtDef>
+
+</Defs>

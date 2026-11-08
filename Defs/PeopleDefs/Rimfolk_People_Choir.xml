@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The Choir of the Spire (docs/design/peoples-third.md, the seventh of the eight; docs/design/peoples.md, "Release G";
+    Source/ColonyCouncil/Peoples/PeoplesG2.cs): a people living in the shadow of an archotech spire, changed by it over
+    generations, calm, kind and unsettling. Beyond spacer by the design; in Rimfolk's ages that is the spacer age with the
+    archotech's flavour (techLevel Spacer, ageLimit 3). They arise in every age (ariseAges 0~3: the Spire was there before
+    any of the ages). Their technology is beyond anything else in the region, and they barely use it. The look: pale robes
+    in spire lilac, everyone the same pale and nothing else alike, and no armour at all; their cantors with Royalty the
+    eltex of the psychic. Most are psycasters (Royalty; Vanilla Psycasts Expanded's Harmonist, Empath, Archotechist,
+    Protector, Puppeteer and Staticlord paths), A RimWorld of Magic's bards and psionics among them, archite genes with
+    Biotech; they rarely fight, and when they do it is with the mind. With Anomaly they know things about the void that
+    others don't, and say so. Kinds of people: highmates, genies, archons, animusen, ocularkin, high elves, court fairies,
+    Avaloi. Their towns: a ring of quiet halls round a monolith (Rimfolk_Plan_ChoirRing). At the gate: they come to listen
+    to the colony, a calm for some and unease for others, shown as moods (Rimfolk_Evt_ChoirListening); they trade psychic
+    gear and rare archotech goods for the colony's art (Rimfolk_Evt_ChoirArt). Their ask: one of them stays a while to
+    learn what it is to be ordinary (Rimfolk_Mission_ChoirStay). Their founding: Ilsabet Ruen slept at the Spire's foot.
+    Faith (Ideology): the Spire thinking (collectivist), Vanilla Ideology Expanded's psychic focus and Alpha Memes' monastic.
+  -->
+
+  <FactionDef ParentName="OutlanderFactionBase">
+    <defName>Rimfolk_Choir</defName>
+    <label>Choir of the Spire</label>
+    <description>A people living in the shadow of an archotech spire, changed by it over generations: calm, kind and unsettling. Most of them can touch other minds, and many of them hear the Spire itself, a hum under everything that they say is the Spire thinking. Their technology is beyond anything else in the region, and they barely use it. They trade psychic gear and rare things of the Spire for art, which they love, and they come to listen to other peoples.\n\nTheir ways began when a herder called Ilsabet Ruen lay down one night at the foot of the Spire and woke able to hear it. She came back every night after that, and others came to sit with her, and in a few years their children were born hearing it too. They built their halls in a ring round the Spire so that someone is always listening, and the first voice still sits where she slept.\n\nThey are gentle, slow to anger and quick to notice what others feel. They fear the hum going silent, a mind that shouts and the void that listens back. A ring is led by its cantor, and the Choir by its first voice.</description>
+    <pawnSingular>listener</pawnSingular>
+    <pawnsPlural>listeners</pawnsPlural>
+    <leaderTitle>first voice</leaderTitle>
+    <techLevel>Spacer</techLevel>
+    <basicMemberKind>Rimfolk_Choir_Listener</basicMemberKind>
+    <factionNameMaker>Rimfolk_Namer_Choir</factionNameMaker>
+    <settlementNameMaker>Rimfolk_Namer_ChoirTown</settlementNameMaker>
+    <factionIconPath>ColonyCouncil/Peoples/Choir</factionIconPath>
+    <settlementTexturePath>ColonyCouncil/Peoples/ChoirTown</settlementTexturePath>
+    <colorSpectrum>
+      <li>(0.74, 0.70, 0.86)</li>
+      <li>(0.94, 0.92, 0.98)</li>
+    </colorSpectrum>
+    <hidden>false</hidden>
+    <naturalEnemy>false</naturalEnemy>
+    <permanentEnemy>false</permanentEnemy>
+    <canSiege>false</canSiege>
+    <requiredCountAtGameStart>0</requiredCountAtGameStart>
+    <startingCountAtWorldCreation>1</startingCountAtWorldCreation>
+    <maxConfigurableAtWorldCreation>9999</maxConfigurableAtWorldCreation>
+    <configurationListOrderPriority>49</configurationListOrderPriority>
+    <settlementGenerationWeight>0.25</settlementGenerationWeight>
+    <backstoryFilters Inherit="False">
+      <li>
+        <categories>
+          <li>Outlander</li>
+        </categories>
+        <commonality>0.7</commonality>
+      </li>
+      <li>
+        <categories>
+          <li>Offworld</li>
+        </categories>
+        <commonality>0.3</commonality>
+      </li>
+    </backstoryFilters>
+    <!-- They rarely fight: the fewest raids of any of Rimfolk's peoples, and only when wronged. -->
+    <raidCommonalityFromPointsCurve Inherit="False">
+      <points>
+        <li>(0, 0.06)</li>
+      </points>
+    </raidCommonalityFromPointsCurve>
+    <xenotypeSet Inherit="False">
+      <xenotypeChances>
+        <Highmate MayRequire="Ludeon.RimWorld.Biotech">0.04</Highmate>
+        <Genie MayRequire="Ludeon.RimWorld.Biotech">0.02</Genie>
+        <VRE_Archon MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.archon">0.05</VRE_Archon>
+        <AG_Animusen MayRequire="Ludeon.RimWorld.Biotech,sarg.alphagenes">0.03</AG_Animusen>
+        <VRE_Ocularkin MayRequire="Ludeon.RimWorld.Biotech,sarg.alphagenes">0.02</VRE_Ocularkin>
+        <DevDesigner_XenotypeHighElves MayRequire="Ludeon.RimWorld.Biotech,devdesigner.elves.continued">0.02</DevDesigner_XenotypeHighElves>
+        <FG_CourtFairy MayRequire="Ludeon.RimWorld.Biotech,homebrew.fairycore">0.01</FG_CourtFairy>
+        <DV_Avaloi MayRequire="Ludeon.RimWorld.Biotech,det.avaloi">0.02</DV_Avaloi>
+      </xenotypeChances>
+    </xenotypeSet>
+    <fixedIdeo>true</fixedIdeo>
+    <ideoName>The Hum</ideoName>
+    <ideoDescription>The Spire is thinking, and the Choir is what it thinks about. Under everything there is a hum, and a mind that is quiet enough can hear it; the Choir keeps quiet so that someone always does. Ilsabet Ruen lay down at the Spire's foot one night and woke hearing it, and she came back every night after until others sat with her and their children were born hearing it too. Nobody shouts in the halls of the ring, nobody leaves a stranger unheard, and nobody listens to the void, which listens back.</ideoDescription>
+    <forcedMemes>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Collectivist</li>
+      <!-- A choir of minds, kept quiet: Vanilla Ideology Expanded's psychic focus and Alpha Memes' monastic. -->
+      <li MayRequire="VanillaExpanded.VMemesE">VME_PsychicFocus</li>
+      <li MayRequire="sarg.alphamemes">AM_Monastic</li>
+    </forcedMemes>
+    <structureMemeWeights Inherit="False">
+      <Structure_TheistEmbodied MayRequire="Ludeon.RimWorld.Ideology">3</Structure_TheistEmbodied>
+      <Structure_TheistAbstract MayRequire="Ludeon.RimWorld.Ideology">1</Structure_TheistAbstract>
+    </structureMemeWeights>
+    <styles>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Buddhist</li>
+    </styles>
+    <caravanTraderKinds Inherit="False">
+      <li>Rimfolk_Caravan_Choir</li>
+    </caravanTraderKinds>
+    <visitorTraderKinds Inherit="False">
+      <li>Rimfolk_Visitor_Choir</li>
+    </visitorTraderKinds>
+    <baseTraderKinds Inherit="False">
+      <li>Rimfolk_Base_Choir</li>
+    </baseTraderKinds>
+    <pawnGroupMakers Inherit="False">
+      <li>
+        <!-- A fight: the wardens of the quiet, who fight with the mind, and the cantors -->
+        <kindDef>Combat</kindDef>
+        <options>
+          <Rimfolk_Choir_QuietWarden>10</Rimfolk_Choir_QuietWarden>
+          <Rimfolk_Choir_Cantor>4</Rimfolk_Choir_Cantor>
+          <Rimfolk_Choir_Listener>2</Rimfolk_Choir_Listener>
+        </options>
+      </li>
+      <li>
+        <kindDef>Peaceful</kindDef>
+        <options>
+          <Rimfolk_Choir_Listener>14</Rimfolk_Choir_Listener>
+          <Rimfolk_Choir_Cantor>4</Rimfolk_Choir_Cantor>
+          <Rimfolk_Choir_QuietWarden>2</Rimfolk_Choir_QuietWarden>
+          <Villager_Child MayRequire="Ludeon.RimWorld.Biotech">3</Villager_Child>
+        </options>
+      </li>
+      <li>
+        <!-- The keeper of the hum, with the Spire's goods -->
+        <kindDef>Trader</kindDef>
+        <traders>
+          <Rimfolk_Choir_Keeper>1</Rimfolk_Choir_Keeper>
+        </traders>
+        <carriers>
+          <Muffalo>2</Muffalo>
+          <Alpaca>3</Alpaca>
+        </carriers>
+        <guards>
+          <Rimfolk_Choir_QuietWarden>6</Rimfolk_Choir_QuietWarden>
+          <Rimfolk_Choir_Listener>3</Rimfolk_Choir_Listener>
+        </guards>
+      </li>
+      <li>
+        <kindDef>Settlement</kindDef>
+        <options>
+          <Rimfolk_Choir_QuietWarden>10</Rimfolk_Choir_QuietWarden>
+          <Rimfolk_Choir_Listener>8</Rimfolk_Choir_Listener>
+          <Rimfolk_Choir_Cantor>4</Rimfolk_Choir_Cantor>
+          <Rimfolk_Choir_Keeper>1</Rimfolk_Choir_Keeper>
+        </options>
+      </li>
+    </pawnGroupMakers>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleExtension">
+        <calling>listeners</calling>
+        <!-- Their age over the years (Peoples/PeopleAges.cs): beyond the ages by what the Spire knows, and slow to change what they use; cut off from the world they fall back like any people. -->
+        <agePace>16</agePace>
+        <ageLimit>3</ageLimit>
+        <townWord>ring</townWord>
+        <townWords>rings</townWords>
+        <head>cantor</head>
+        <heir>second cantor</heir>
+        <envoy>listener</envoy>
+        <trader>keeper of the hum</trader>
+        <courier>hum-walker</courier>
+        <couriers>hum-walkers</couriers>
+        <caravanWeight>0.4</caravanWeight>
+        <camps>
+          <li>Council_Camp_Pilgrims</li>
+          <li>Council_Camp_Hermit</li>
+          <li>Council_Camp_Minstrels</li>
+        </camps>
+        <plan>Rimfolk_Plan_ChoirRing</plan>
+        <honours>a quiet mind, a song held with others and a stranger who listened</honours>
+        <fears>the hum going silent, a mind that shouts and the void that listens back</fears>
+        <sayings>
+          <li>The Spire is thinking.</li>
+          <li>We are what it thinks about.</li>
+          <li>Listen first.</li>
+          <li>The hum is not silence.</li>
+          <li>Be ordinary, if you can.</li>
+        </sayings>
+        <townGoods>
+          <MedicineIndustrial>4~10</MedicineIndustrial>
+          <Cloth>40~90</Cloth>
+          <MealSurvivalPack>8~16</MealSurvivalPack>
+          <Silver>80~200</Silver>
+        </townGoods>
+        <ariseAges>0~3</ariseAges>
+      </li>
+    </modExtensions>
+  </FactionDef>
+
+  <!-- ===================== Their people ===================== -->
+
+  <!--
+    How alike they look (docs/design/peoples.md, "Release G"): the pale robe in spire lilac on every one of them, and
+    nothing else alike: under it whatever they wear, shirts and trousers of the game and the mods, with Royalty the eltex
+    of a cantor's or a warden's psychic gear. No armour on anyone (no armour tags; the wardens fight with the mind and a
+    light blade). Most are psycasters; a few cantors bards of A RimWorld of Magic, a few wardens its psionics; the first
+    voice and some cantors with an archite gene (Biotech), the listeners now and then psy-sensitive by birth. In another age
+    their wardens carry the age's own blades (the every-age pass). Without any mod: the game's robes, shirts and trousers,
+    knives, and the robe's lilac.
+  -->
+  <PawnKindDef Name="Rimfolk_ChoirKindBase" Abstract="True">
+    <race>Human</race>
+    <defaultFactionDef>Rimfolk_Choir</defaultFactionDef>
+    <chemicalAddictionChance>0</chemicalAddictionChance>
+    <invNutrition>2.0</invNutrition>
+    <specificApparelRequirements>
+      <!-- The Choir's pale lilac: the robe, and the eltex robe a cantor may wear instead. -->
+      <li><apparelDef>Apparel_Robe</apparelDef><color>(0.88, 0.86, 0.95)</color></li>
+      <li MayRequire="Ludeon.RimWorld.Royalty"><apparelDef>Apparel_PsyfocusRobe</apparelDef><color>(0.88, 0.86, 0.95)</color></li>
+    </specificApparelRequirements>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_ChoirKindBase">
+    <defName>Rimfolk_Choir_Listener</defName>
+    <label>listener</label>
+    <combatPower>40</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.7~1.1</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_Robe</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+    </apparelTags>
+    <apparelMoney>200~500</apparelMoney>
+    <weaponMoney>0~0</weaponMoney>
+    <inventoryOptions>
+      <skipChance>0.6</skipChance>
+      <subOptionsChooseOne>
+        <li><thingDef>MealSurvivalPack</thingDef><countRange>1~1</countRange></li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>14~20</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li>
+            <psylink>1~2</psylink>
+            <paths>
+              <li>VPE_Empath</li>
+              <li>VPE_Harmonist</li>
+            </paths>
+            <chance>0.35</chance>
+          </li>
+          <li>
+            <genes>
+              <li>PsychicAbility_Enhanced</li>
+            </genes>
+            <chance>0.1</chance>
+          </li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_ChoirKindBase">
+    <defName>Rimfolk_Choir_Cantor</defName>
+    <label>cantor</label>
+    <combatPower>70</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Good</itemQuality>
+    <gearHealthRange>0.8~1.2</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_Robe</li>
+      <li>Apparel_BasicShirt</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li MayRequire="Ludeon.RimWorld.Royalty">Psychic</li>
+    </apparelTags>
+    <apparelMoney>600~1100</apparelMoney>
+    <weaponMoney>0~0</weaponMoney>
+    <skills>
+      <li>
+        <skill>Social</skill>
+        <range>6~12</range>
+      </li>
+      <li>
+        <skill>Artistic</skill>
+        <range>4~10</range>
+      </li>
+    </skills>
+    <initialWillRange>4~6</initialWillRange>
+    <initialResistanceRange>16~24</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li>
+            <psylink>2~4</psylink>
+            <paths>
+              <li>VPE_Harmonist</li>
+              <li>VPE_Empath</li>
+              <li>VPE_Archotechist</li>
+            </paths>
+            <chance>0.45</chance>
+          </li>
+          <li>
+            <genes>
+              <li>PerfectImmunity</li>
+            </genes>
+            <chance>0.05</chance>
+          </li>
+          <li><trait>TM_Bard</trait><chance>0.04</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_ChoirKindBase">
+    <defName>Rimfolk_Choir_QuietWarden</defName>
+    <label>warden of the quiet</label>
+    <combatPower>90</combatPower>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.8~1.2</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_Robe</li>
+      <li>Apparel_Pants</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li MayRequire="Ludeon.RimWorld.Royalty">Psychic</li>
+    </apparelTags>
+    <apparelMoney>400~900</apparelMoney>
+    <weaponTags>
+      <li>MedievalMeleeBasic</li>
+    </weaponTags>
+    <weaponMoney>50~200</weaponMoney>
+    <requiredWorkTags>Violent</requiredWorkTags>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>18~26</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <!-- They fight with the mind. -->
+          <li>
+            <psylink>3~5</psylink>
+            <paths>
+              <li>VPE_Protector</li>
+              <li>VPE_Puppeteer</li>
+              <li>VPE_Staticlord</li>
+            </paths>
+            <chance>0.5</chance>
+          </li>
+          <li><trait>TM_Psionic</trait><chance>0.05</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_ChoirKindBase">
+    <defName>Rimfolk_Choir_Keeper</defName>
+    <label>keeper of the hum</label>
+    <trader>true</trader>
+    <combatPower>45</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Good</itemQuality>
+    <gearHealthRange>0.8~1.2</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_Robe</li>
+      <li>Apparel_CollarShirt</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialAdvanced</li>
+    </apparelTags>
+    <apparelMoney>400~800</apparelMoney>
+    <weaponMoney>0~0</weaponMoney>
+    <skills>
+      <li>
+        <skill>Social</skill>
+        <range>6~12</range>
+      </li>
+    </skills>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>14~20</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_ChoirKindBase">
+    <defName>Rimfolk_Choir_FirstVoice</defName>
+    <label>first voice</label>
+    <combatPower>110</combatPower>
+    <factionLeader>true</factionLeader>
+    <minGenerationAge>50</minGenerationAge>
+    <itemQuality>Excellent</itemQuality>
+    <gearHealthRange>0.9~1.2</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_Robe</li>
+      <li>Apparel_Pants</li>
+      <li>Apparel_CollarShirt</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialAdvanced</li>
+      <li MayRequire="Ludeon.RimWorld.Royalty">Psychic</li>
+    </apparelTags>
+    <apparelMoney>800~1400</apparelMoney>
+    <weaponMoney>0~0</weaponMoney>
+    <skills>
+      <li>
+        <skill>Social</skill>
+        <range>10~16</range>
+      </li>
+      <li>
+        <skill>Intellectual</skill>
+        <range>6~12</range>
+      </li>
+    </skills>
+    <initialWillRange>5~7</initialWillRange>
+    <initialResistanceRange>20~30</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li>
+            <psylink>4~6</psylink>
+            <paths>
+              <li>VPE_Archotechist</li>
+              <li>VPE_Harmonist</li>
+            </paths>
+            <chance>0.45</chance>
+          </li>
+          <!-- An archite gene the Spire left in them. -->
+          <li>
+            <genes>
+              <li>Ageless</li>
+            </genes>
+            <chance>0.1</chance>
+          </li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <!-- ===================== Their traders: the Spire's goods for art ===================== -->
+
+  <TraderKindDef>
+    <defName>Rimfolk_Caravan_Choir</defName>
+    <label>keeper's goods</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>400~900</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>PsychicSoothePulser</thingDef>
+        <countRange>0~1</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>PsychicAnimalPulser</thingDef>
+        <countRange>0~1</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MechSerumHealer</thingDef>
+        <countRange>0~1</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef" MayRequire="Ludeon.RimWorld.Biotech">
+        <thingDef>ArchiteCapsule</thingDef>
+        <countRange>0~1</countRange>
+      </li>
+      <li Class="StockGenerator_Tag" MayRequire="Ludeon.RimWorld.Royalty">
+        <tradeTag>PsychicApparel</tradeTag>
+        <thingDefCountRange>1~2</thingDefCountRange>
+        <countRange>1~2</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineIndustrial</thingDef>
+        <countRange>3~8</countRange>
+      </li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Visitor_Choir</defName>
+    <label>listeners</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>150~400</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineIndustrial</thingDef>
+        <countRange>1~4</countRange>
+      </li>
+      <li Class="StockGenerator_Tag" MayRequire="Ludeon.RimWorld.Royalty">
+        <tradeTag>PsychicApparel</tradeTag>
+        <thingDefCountRange>1~1</thingDefCountRange>
+        <countRange>1~1</countRange>
+      </li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Base_Choir</defName>
+    <label>ring</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>800~1500</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>PsychicSoothePulser</thingDef>
+        <countRange>0~1</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>PsychicAnimalPulser</thingDef>
+        <countRange>0~1</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MechSerumHealer</thingDef>
+        <countRange>1~1</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>PsychicAmplifier</thingDef>
+        <countRange>0~1</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef" MayRequire="Ludeon.RimWorld.Biotech">
+        <thingDef>ArchiteCapsule</thingDef>
+        <countRange>0~1</countRange>
+      </li>
+      <li Class="StockGenerator_Tag" MayRequire="Ludeon.RimWorld.Royalty">
+        <tradeTag>PsychicApparel</tradeTag>
+        <thingDefCountRange>1~3</thingDefCountRange>
+        <countRange>1~2</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Cloth</thingDef>
+        <countRange>40~100</countRange>
+      </li>
+      <li Class="StockGenerator_BuyTradeTag"><tag>Art</tag></li>
+    </stockGenerators>
+  </TraderKindDef>
+
+  <!-- ===================== Their names ===================== -->
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_Choir</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->The Choir of the [spireName]</li>
+        <li>r_name(p=2)->The [choirVirtue] Choir</li>
+        <li>r_name->The Listeners of [PlaceOutlander]</li>
+        <li>r_name->The Ring of the [spireName]</li>
+        <li>spireName->Spire</li>
+        <li>spireName->Pale Spire</li>
+        <li>spireName->Thinking Spire</li>
+        <li>spireName->Humming Spire</li>
+        <li>choirVirtue->Quiet</li>
+        <li>choirVirtue->Pale</li>
+        <li>choirVirtue->Listening</li>
+        <li>choirVirtue->Ruen's</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_ChoirTown</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->[PlaceOutlander] Ring</li>
+        <li>r_name(p=2)->[PlaceOutlander] Halls</li>
+        <li>r_name->[ringWord] [PlaceOutlander]</li>
+        <li>r_name->[ringVirtue] Hall</li>
+        <li>ringWord->Hum</li>
+        <li>ringWord->Stillwater</li>
+        <li>ringWord->Spirefoot</li>
+        <li>ringVirtue->Quiet</li>
+        <li>ringVirtue->Ruen's</li>
+        <li>ringVirtue->Listening</li>
+        <li>ringVirtue->Pale</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>
