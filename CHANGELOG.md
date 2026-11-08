@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Four more peoples: the Conclave, the Mossborn, the Banner and the guild
+
+*8 November 2026, version 0.163.0*
+
+- Four new peoples join the region, each with its founding story, sayings, faith, town, emblem, titles, letters and talk in its own voice, and each in the form of its age.
+- The Stormglass Conclave reads the weather: for a fee a seer foresees the season's next cold snap or heat wave a day early, a runner brings the warning to your gate and your fields plan for it, and a storm-walker can set a lightning rod under your highest roof that takes the strikes nearby without fire.
+- The Mossborn keep a ledger of the trees you fell and the ones you plant and grow warmer or cooler by it; a seed-carrier plants saplings round a colony that cleared a dozen trees, a sapling by a fresh grave, and with Ideology a tree-connector prunes your Gauranlen tree.
+- The Ashen Banner wear one issued kit in every age; you can hire a squad that camps by your walls for fifteen days and fights what comes, a sentry at your gate by day, paid by letter at their fire, and they walk if the wage never comes.
+- The Kiln Guild commissions work from your crafters and pays by its quality, bids on your masterworks, and sends a journeyman for a wander-year at your benches who leaves a piece of their own behind.
+- Their gear and gifts draw from your enabled mods: Vanilla Psycasts Expanded's Staticlords and Frostshapers, A RimWorld of Magic's druids, rangers, enchanters and geomancers, Medieval 2's arbalests and tabards, Vanilla Expanded - Classical's wreaths, with vanilla in their place when a mod is missing.
+
 ## Your mods' things in Rimfolk's gifts, feasts and finds
 
 *7 November 2026, version 0.162.0*

@@ -12,7 +12,7 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
-- Release E, the second four peoples: the Stormglass Conclave, the Mossborn, the Ashen Banner and the Kiln Guild (7 and
+- 0.163.0, release E, the second four peoples: the Stormglass Conclave, the Mossborn, the Ashen Banner and the Kiln Guild (7 and
   8 November 2026, the player's explicit request: "love all these factions, go ahead!" and "always consider the actual
   mods i have enabled in my save and mod list"; no proposal round). Not released: no What's new round, About.xml and
   CHANGELOG untouched, no version number (the lead does that at the merge). docs/design/peoples.md "What was built
