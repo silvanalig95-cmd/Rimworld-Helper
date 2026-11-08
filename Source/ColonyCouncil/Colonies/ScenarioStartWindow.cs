@@ -14,7 +14,7 @@ namespace ColonyCouncil
     /// isn't carried because it changes the whole game, and what never comes. A whole new scenario on its own page is what
     /// a new game is for, and the window says so.
     /// </summary>
-    public class Dialog_ScenarioStart : Window
+    public class Dialog_ScenarioStart : FramedWindow
     {
         private readonly Action<string> chosen;
         private readonly bool oldLeftBehind, partyGoes;
@@ -26,7 +26,14 @@ namespace ColonyCouncil
 
         public override Vector2 InitialSize => new Vector2(Mathf.Min(960f, UI.screenWidth - 40f), Mathf.Min(720f, UI.screenHeight - 40f));
 
-        public Dialog_ScenarioStart(string current, bool oldLeftBehind, bool partyGoes, Action<string> chosen)
+        private static string title;
+
+        protected override string FrameTitle => title ??= "CC_ScenStart_ListTitle".Translate().Resolve();
+
+        protected override Texture2D FrameIcon => Icons.Colony;
+
+        /// <summary>In Rimfolk's frame (key "ScenarioStart"), its title in the title bar; wider, the list takes more of it.</summary>
+        public Dialog_ScenarioStart(string current, bool oldLeftBehind, bool partyGoes, Action<string> chosen) : base("ScenarioStart")
         {
             this.chosen = chosen;
             this.oldLeftBehind = oldLeftBehind;
@@ -50,17 +57,13 @@ namespace ColonyCouncil
             }
         }
 
-        public override void DoWindowContents(Rect inRect)
+        protected override void DoFramedContents(Rect inRect)
         {
             try
             {
-                Text.Font = GameFont.Medium;
-                Widgets.Label(new Rect(inRect.x, inRect.y, inRect.width - 40f, 34f), "CC_ScenStart_ListTitle".Translate());
-                Text.Font = GameFont.Small;
-                UiKit.LabelFit(new Rect(inRect.x, inRect.y + 32f, inRect.width, 22f), "CC_ScenStart_ListLine".Translate().Resolve(), UiKit.Faint, GameFont.Tiny);
-                float top = inRect.y + 60f;
+                float top = TitleAndLine(inRect, FrameTitle, "CC_ScenStart_ListLine".Translate().Resolve(), GameFont.Tiny);
                 const float bottomH = 44f;
-                float leftW = Mathf.Clamp(inRect.width * 0.32f, 220f, 320f);
+                float leftW = Mathf.Clamp(inRect.width * 0.32f, 220f, inRect.width >= FramedWindowsMath.JourneyWideFrom ? 420f : 320f);
                 var left = new Rect(inRect.x, top, leftW, inRect.height - (top - inRect.y) - bottomH);
                 var right = new Rect(left.xMax + 14f, top, inRect.width - leftW - 14f, left.height);
                 DrawList(left);
@@ -81,7 +84,7 @@ namespace ColonyCouncil
 
         private void DrawList(Rect rect)
         {
-            Widgets.DrawMenuSection(rect);
+            UiKit.Section(rect);
             var outer = rect.ContractedBy(4f);
             var view = new Rect(0f, 0f, outer.width - 16f, Mathf.Max(leftH, outer.height));
             Widgets.BeginScrollView(outer, ref scrollLeft, view);
@@ -97,8 +100,12 @@ namespace ColonyCouncil
                     y += 22f;
                 }
                 var row = new Rect(0f, y, view.width, 26f);
-                if (e.key == selected) Widgets.DrawHighlightSelected(row);
-                Widgets.DrawHighlightIfMouseover(row);
+                if (UiKit.OwnLook) UiKit.ListRow(row, e.key == selected);
+                else
+                {
+                    if (e.key == selected) Widgets.DrawHighlightSelected(row);
+                    Widgets.DrawHighlightIfMouseover(row);
+                }
                 UiKit.LabelFit(new Rect(8f, y, view.width - 12f, 26f), e.scenario.name ?? "?", Color.white);
                 if (Widgets.ButtonInvisible(row))
                 {
@@ -144,13 +151,13 @@ namespace ColonyCouncil
         {
             var confirm = new Rect(rect.xMax - 220f, rect.y, 220f, rect.height);
             bool can = Selected != null;
-            if (Widgets.ButtonText(confirm, "CC_ScenStart_Choose".Translate(), true, true, can) && can)
+            if (UiKit.Button(confirm, "CC_ScenStart_Choose".Translate(), ButtonKind.Primary, can))
             {
                 chosen?.Invoke(selected);
                 Close();
                 return;
             }
-            if (Widgets.ButtonText(new Rect(confirm.x - 170f, rect.y, 160f, rect.height), "CloseButton".Translate())) Close();
+            if (UiKit.Button(new Rect(confirm.x - 170f, rect.y, 160f, rect.height), "CloseButton".Translate())) Close();
         }
     }
 }

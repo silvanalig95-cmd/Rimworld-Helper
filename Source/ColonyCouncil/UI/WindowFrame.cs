@@ -441,6 +441,38 @@ namespace ColonyCouncil
         /// <summary>The frame draws the title in its bar: a window that draws its own title at the top of its contents leaves it out.</summary>
         protected static bool TitleInBar => WindowFrame.Shown;
 
+        /// <summary>
+        /// A dialog's title at the top of its contents as the game's dialogs draw it (Medium, <paramref name="height"/> high,
+        /// <paramref name="clear"/> left clear at its right for the game's close cross), unless the frame has it in its bar.
+        /// Returns where the contents start: <paramref name="under"/> below the top, or just under the frame's bar.
+        /// </summary>
+        protected static float TitleTop(Rect inRect, string title, float clear = 30f, float under = 38f, float height = 34f)
+        {
+            if (TitleInBar) return inRect.y + 4f;
+            Text.Font = GameFont.Medium;
+            Widgets.Label(new Rect(inRect.x, inRect.y, inRect.width - clear, height), title);
+            Text.Font = GameFont.Small;
+            return inRect.y + under;
+        }
+
+        /// <summary>
+        /// A dialog's title with its quiet line under it (the founding, landing and hand-over windows'): the title unless the
+        /// frame has it in its bar, then the line. Returns where the contents start.
+        /// </summary>
+        protected static float TitleAndLine(Rect inRect, string title, string line, GameFont lineFont = GameFont.Small)
+        {
+            float lineY = inRect.y + 2f;
+            if (!TitleInBar)
+            {
+                Text.Font = GameFont.Medium;
+                Widgets.Label(new Rect(inRect.x, inRect.y, inRect.width - 40f, 34f), title);
+                Text.Font = GameFont.Small;
+                lineY = inRect.y + 32f;
+            }
+            UiKit.LabelFit(new Rect(inRect.x, lineY, inRect.width, 22f), line, UiKit.Faint, lineFont);
+            return lineY + 28f;
+        }
+
         /// <summary>The window's margin without the frame: the game's, unless the window had one of its own.</summary>
         protected virtual float UnframedMargin => StandardMargin;
 

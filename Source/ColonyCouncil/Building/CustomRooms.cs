@@ -411,14 +411,20 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>Asks for a saved room's name.</summary>
-    public class Dialog_NameRoom : Window
+    /// <summary>Asks for a saved room's name. In Rimfolk's frame (key "NameRoom").</summary>
+    public class Dialog_NameRoom : FramedWindow
     {
         private string name;
         private readonly System.Action<string> done;
         private bool focused;
 
-        public Dialog_NameRoom(string suggested, System.Action<string> done)
+        private static string title;
+
+        protected override string FrameTitle => title ??= "CC_Yours_NamePrompt".Translate().Resolve();
+
+        protected override Texture2D FrameIcon => Icons.Rooms;
+
+        public Dialog_NameRoom(string suggested, System.Action<string> done) : base("NameRoom")
         {
             name = suggested ?? "";
             this.done = done;
@@ -429,20 +435,26 @@ namespace ColonyCouncil
             closeOnAccept = false;
         }
 
-        public override Vector2 InitialSize => new Vector2(360f, 160f);
+        /// <summary>As it was, or with the frame's title bar the prompt's room (the prompt is the title).</summary>
+        public override Vector2 InitialSize => new Vector2(360f, WindowFrame.Shown ? 160f + WindowFrameMath.TitleH - 28f : 160f);
 
-        public override void DoWindowContents(Rect inRect)
+        protected override void DoFramedContents(Rect inRect)
         {
             Text.Font = GameFont.Small;
-            Widgets.Label(new Rect(0f, 0f, inRect.width, 28f), "CC_Yours_NamePrompt".Translate());
-            GUI.SetNextControlName("RimfolkRoomName");
-            name = Widgets.TextField(new Rect(0f, 32f, inRect.width, 32f), name, CustomRooms.MaxNameLength);
+            // The prompt, unless it is the frame's title.
+            float top = 0f;
+            if (!TitleInBar)
+            {
+                Widgets.Label(new Rect(0f, 0f, inRect.width, 28f), "CC_Yours_NamePrompt".Translate());
+                top = 32f;
+            }
+            name = UiKit.TextField(new Rect(0f, top, inRect.width, 32f), name, "RimfolkRoomName", null, CustomRooms.MaxNameLength);
             if (!focused)
             {
                 UI.FocusControl("RimfolkRoomName", this);
                 focused = true;
             }
-            if (Widgets.ButtonText(new Rect(inRect.width / 2f - 70f, inRect.height - 38f, 140f, 34f), "OK".Translate()) || KeyBindingDefOf.Accept.KeyDownEvent)
+            if (UiKit.Button(new Rect(inRect.width / 2f - 70f, inRect.height - 38f, 140f, 34f), "OK".Translate(), ButtonKind.Primary) || KeyBindingDefOf.Accept.KeyDownEvent)
                 Accept();
         }
 

@@ -241,15 +241,19 @@ namespace ColonyCouncil
         /// <summary>The least room worth a scrolling area for the checklist; less than that, it opens in its own window.</summary>
         private const float MinScroll = 100f;
 
-        /// <summary>The whole checklist for one guest in a window of its own, for when the tab has no room for it.</summary>
-        public class Window_GuestCheck : Window
+        /// <summary>The whole checklist for one guest in a window of its own, for when the tab has no room for it. In Rimfolk's frame (key "GuestCheck").</summary>
+        public class Window_GuestCheck : FramedWindow
         {
             private readonly Pawn guest;
             private Vector2 scrollPos;
 
             public override Vector2 InitialSize => new Vector2(520f, Mathf.Min(620f, UI.screenHeight - 80f));
 
-            public Window_GuestCheck(Pawn guest)
+            protected override string FrameTitle => "CC_GuestCheck_Title".Translate(guest.Named("PAWN")).Resolve();
+
+            protected override Texture2D FrameIcon => Icons.Visitor;
+
+            public Window_GuestCheck(Pawn guest) : base("GuestCheck")
             {
                 this.guest = guest;
                 doCloseX = true;
@@ -259,7 +263,7 @@ namespace ColonyCouncil
                 preventCameraMotion = false;
             }
 
-            public override void DoWindowContents(Rect inRect)
+            protected override void DoFramedContents(Rect inRect)
             {
                 if (guest == null || guest.Destroyed || guest.Dead)
                 {
@@ -267,11 +271,9 @@ namespace ColonyCouncil
                     return;
                 }
                 var c = Of(guest);
-                Text.Font = GameFont.Medium;
-                Widgets.Label(new Rect(0f, 0f, inRect.width - 30f, 34f), "CC_GuestCheck_Title".Translate(guest.Named("PAWN")));
-                Text.Font = GameFont.Small;
+                float top = TitleTop(inRect, FrameTitle, 30f, 40f);
                 if (c.verdictText.NullOrEmpty()) return;
-                var outer = new Rect(0f, 40f, inRect.width, inRect.height - 40f);
+                var outer = new Rect(0f, top, inRect.width, inRect.height - top);
                 var view = new Rect(0f, 0f, outer.width - 16f, BodyHeight(c, guest, outer.width - 16f));
                 Widgets.BeginScrollView(outer, ref scrollPos, view);
                 DrawBody(view, c, guest);

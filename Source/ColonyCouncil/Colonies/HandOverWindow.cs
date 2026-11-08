@@ -18,7 +18,7 @@ namespace ColonyCouncil
     /// who go go (another home, a fresh start in the same act, or a caravan the player forms). "Put it to the meeting"
     /// sets it going: the colony's meeting votes first.
     /// </summary>
-    public class Dialog_HandOver : Window
+    public class Dialog_HandOver : FramedWindow
     {
         private readonly Map home;
         /// <summary>A fresh start in the same act (the founding window's third choice): its party goes, to its place.</summary>
@@ -39,7 +39,12 @@ namespace ColonyCouncil
 
         public override Vector2 InitialSize => new Vector2(Mathf.Min(1040f, UI.screenWidth - 40f), Mathf.Min(800f, UI.screenHeight - 40f));
 
-        public Dialog_HandOver(Map home, FoundingPlan founding = null)
+        protected override string FrameTitle => "CC_HandOver_Title".Translate(Homes.Name(home).Named("HOME")).Resolve();
+
+        protected override Texture2D FrameIcon => Icons.Colony;
+
+        /// <summary>In Rimfolk's frame (key "HandOver"), its title in the title bar; wider, who stays takes more of it.</summary>
+        public Dialog_HandOver(Map home, FoundingPlan founding = null) : base("HandOver")
         {
             this.home = home;
             this.founding = founding;
@@ -132,7 +137,7 @@ namespace ColonyCouncil
             return null;
         }
 
-        public override void DoWindowContents(Rect inRect)
+        protected override void DoFramedContents(Rect inRect)
         {
             if (home == null || !Homes.IsHome(home))
             {
@@ -140,13 +145,9 @@ namespace ColonyCouncil
                 return;
             }
             Refresh();
-            Text.Font = GameFont.Medium;
-            Widgets.Label(new Rect(inRect.x, inRect.y, inRect.width - 40f, 34f), "CC_HandOver_Title".Translate(Homes.Name(home).Named("HOME")).Resolve());
-            Text.Font = GameFont.Small;
-            UiKit.LabelFit(new Rect(inRect.x, inRect.y + 32f, inRect.width, 22f), "CC_HandOver_Subtitle".Translate(HandOvers.Form(null).word.Named("FORM")).Resolve(), UiKit.Faint);
-            float top = inRect.y + 60f;
+            float top = TitleAndLine(inRect, FrameTitle, "CC_HandOver_Subtitle".Translate(HandOvers.Form(null).word.Named("FORM")).Resolve());
             const float bottomH = 44f;
-            float leftW = Mathf.Clamp(inRect.width * 0.44f, 300f, 460f);
+            float leftW = Mathf.Clamp(inRect.width * 0.44f, 300f, inRect.width >= FramedWindowsMath.JourneyWideFrom ? 600f : 460f);
             var left = new Rect(inRect.x, top, leftW, inRect.height - (top - inRect.y) - bottomH);
             var right = new Rect(left.xMax + 14f, top, inRect.width - leftW - 14f, left.height);
             try
@@ -183,7 +184,7 @@ namespace ColonyCouncil
                 var row = new Rect(0f, y, w, 40f);
                 bool goes = going.Contains(r.pawn);
                 if (!goes) Widgets.DrawBoxSolid(row, UiKit.WithAlpha(UiKit.Gold, 0.08f));
-                Widgets.DrawHighlightIfMouseover(row);
+                UiKit.RowHover(row);
                 UiKit.Portrait(new Rect(row.x + 28f, row.y + 3f, 34f, 34f), r.pawn, goes ? UiKit.Dim : UiKit.Gold);
                 Widgets.CheckboxDraw(row.x + 2f, row.y + 8f, !goes, r.cant != null || founding != null, 24f);
                 string name = r.pawn.LabelShort + (r.grown ? "" : " " + "CC_Found_Child".Translate().Resolve());
@@ -236,7 +237,7 @@ namespace ColonyCouncil
             var second = Second;
             float labelW = Mathf.Min(150f, w * 0.35f);
             UiKit.LabelFit(new Rect(4f, y, labelW, 26f), "CC_HandOver_TheHead".Translate(HeadTitle().Named("TITLE")).Resolve(), Color.white);
-            if (Widgets.ButtonText(new Rect(labelW + 8f, y, w - labelW - 12f, 26f), head?.LabelShort ?? "CC_HandOver_Nobody".Translate().Resolve(), true, true, grown.Count > 0))
+            if (UiKit.Button(new Rect(labelW + 8f, y, w - labelW - 12f, 26f), head?.LabelShort ?? "CC_HandOver_Nobody".Translate().Resolve(), ButtonKind.Normal, grown.Count > 0))
                 Find.WindowStack.Add(new FloatMenu(grown.Select(p => new FloatMenuOption(p.LabelShort, () =>
                 {
                     pickedHead = p;
@@ -245,7 +246,7 @@ namespace ColonyCouncil
                 })).ToList()));
             y += 28f;
             UiKit.LabelFit(new Rect(4f, y, labelW, 26f), "CC_HandOver_TheSecond".Translate(HandOvers.SecondTitle(age).Named("TITLE")).Resolve(), Color.white);
-            if (Widgets.ButtonText(new Rect(labelW + 8f, y, w - labelW - 12f, 26f), second?.LabelShort ?? "CC_HandOver_Nobody".Translate().Resolve(), true, true, grown.Count > 1))
+            if (UiKit.Button(new Rect(labelW + 8f, y, w - labelW - 12f, 26f), second?.LabelShort ?? "CC_HandOver_Nobody".Translate().Resolve(), ButtonKind.Normal, grown.Count > 1))
                 Find.WindowStack.Add(new FloatMenu(grown.Where(p => p != head).Select(p => new FloatMenuOption(p.LabelShort, () =>
                 {
                     pickedSecond = p;
@@ -254,7 +255,7 @@ namespace ColonyCouncil
             y += 28f;
             y += UiKit.Paragraph(4f, y, w - 8f, "CC_HandOver_HeadLine".Translate().Resolve(), UiKit.Faint, GameFont.Tiny) + 6f;
             UiKit.LabelFit(new Rect(4f, y, labelW, 26f), "CC_HandOver_TheName".Translate().Resolve(), Color.white);
-            peopleName = Widgets.TextField(new Rect(labelW + 8f, y, w - labelW - 12f, 26f), peopleName ?? "", HandOverMath.MaxNameLength + 10);
+            peopleName = UiKit.TextField(new Rect(labelW + 8f, y, w - labelW - 12f, 26f), peopleName ?? "", "RimfolkHandOverName", null, HandOverMath.MaxNameLength + 10);
             y += 28f;
             y += UiKit.Paragraph(4f, y, w - 8f, "CC_HandOver_NameLine".Translate(KindLabel().Named("KIND")).Resolve(), UiKit.Faint, GameFont.Tiny) + 10f;
             return y;
@@ -310,7 +311,7 @@ namespace ColonyCouncil
                     y += UiKit.Paragraph(4f, y, w - 8f, "CC_HandOver_WhereFoundLine".Translate().Resolve(), UiKit.Faint, GameFont.Tiny) + 2f;
                     var b = new Rect(4f, y, Mathf.Min(260f, w - 8f), 26f);
                     string why = Foundings.WhyNot(home);
-                    if (Widgets.ButtonText(b, "CC_HandOver_FoundInstead".Translate(), true, true, why == null) && why == null)
+                    if (UiKit.Button(b, "CC_HandOver_FoundInstead".Translate(), ButtonKind.Normal, why == null))
                     {
                         Close();
                         FoundingPlace.Pick(home, true);
@@ -384,12 +385,12 @@ namespace ColonyCouncil
                 TooltipHandler.TipRegion(confirm, why);
                 UiKit.LabelFit(new Rect(rect.x, rect.y, rect.width - 440f, rect.height), why, UiKit.Warn, GameFont.Tiny);
             }
-            if (Widgets.ButtonText(confirm, "CC_HandOver_Confirm".Translate(), true, true, why == null) && why == null)
+            if (UiKit.Button(confirm, "CC_HandOver_Confirm".Translate(), ButtonKind.Primary, why == null))
             {
                 Confirm();
                 return;
             }
-            if (Widgets.ButtonText(new Rect(confirm.x - 170f, rect.y, 160f, rect.height), "CloseButton".Translate())) Close();
+            if (UiKit.Button(new Rect(confirm.x - 170f, rect.y, 160f, rect.height), "CloseButton".Translate())) Close();
         }
 
         private void Confirm()

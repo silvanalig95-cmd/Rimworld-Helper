@@ -406,8 +406,11 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>The colony news, read: a heading for each kind of news and a line for each piece, with "Go there" where it has a place.</summary>
-    public class Dialog_News : Window
+    /// <summary>
+    /// The colony news, read: a heading for each kind of news and a line for each piece, with "Go there" where it has a
+    /// place. In Rimfolk's frame (key "News"), the letter's title in the title bar (the letter itself stays the game's).
+    /// </summary>
+    public class Dialog_News : FramedWindow
     {
         private const float GoWidth = 84f;
 
@@ -418,7 +421,11 @@ namespace ColonyCouncil
         private float unreadAt = -1f;
         private string unreadLabel;
 
-        public Dialog_News(ChoiceLetter_News letter)
+        protected override string FrameTitle => letter.Label.CapitalizeFirst();
+
+        protected override Texture2D FrameIcon => Icons.Chronicle;
+
+        public Dialog_News(ChoiceLetter_News letter) : base("News")
         {
             this.letter = letter;
             forcePause = true;
@@ -429,13 +436,9 @@ namespace ColonyCouncil
 
         public override Vector2 InitialSize => new Vector2(640f, Mathf.Min(660f, UI.screenHeight - 40f));
 
-        public override void DoWindowContents(Rect inRect)
+        protected override void DoFramedContents(Rect inRect)
         {
-            float y = inRect.y;
-            Text.Font = GameFont.Medium;
-            Widgets.Label(new Rect(inRect.x, y, inRect.width - 30f, 36f), letter.Label.CapitalizeFirst());
-            Text.Font = GameFont.Small;
-            y += 38f;
+            float y = TitleTop(inRect, FrameTitle, 30f, 38f, 36f);
             y += UiKit.Paragraph(inRect.x, y, inRect.width, "CC_News_Intro".Translate(), UiKit.Faint, GameFont.Tiny) + 6f;
 
             var outer = new Rect(inRect.x, y, inRect.width, inRect.yMax - y - CloseButSize.y - 12f);
@@ -463,7 +466,7 @@ namespace ColonyCouncil
             Widgets.EndScrollView();
 
             var close = new Rect(inRect.x + (inRect.width - CloseButSize.x) / 2f, inRect.yMax - CloseButSize.y, CloseButSize.x, CloseButSize.y);
-            if (Widgets.ButtonText(close, "CloseButton".Translate()))
+            if (UiKit.Button(close, "CloseButton".Translate()))
             {
                 letter.PutAway();
                 Close();
@@ -479,7 +482,7 @@ namespace ColonyCouncil
             if (unread > 1)
             {
                 var all = new Rect(inRect.x, inRect.yMax - CloseButSize.y, Mathf.Min(220f, close.x - inRect.x - 10f), CloseButSize.y);
-                if (all.width >= 120f && Widgets.ButtonText(all, unreadLabel))
+                if (all.width >= 120f && UiKit.Button(all, unreadLabel))
                 {
                     News.PutAllAway();
                     WeekPanel.Dirty();
@@ -507,7 +510,7 @@ namespace ColonyCouncil
             if (go)
             {
                 var b = new Rect(width - GoWidth, y + (h - 24f) / 2f, GoWidth, 24f);
-                if (Widgets.ButtonText(b, "CC_News_Go".Translate()))
+                if (UiKit.Button(b, "CC_News_Go".Translate()))
                 {
                     var target = item.look.TryGetPrimaryTarget();
                     Close();
