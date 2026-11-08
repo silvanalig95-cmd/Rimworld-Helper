@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Release G's peoples at the colony's gate (Source/ColonyCouncil/Peoples/PeoplesG.cs, PeoplesG2.cs): the jobs their
+       touchpoints are seen doing on the map (JobDriver_PeoplesG), and the gene fault of the Helix Works' batch gone
+       wrong. -->
+
+  <JobDef>
+    <defName>Rimfolk_PeoplesG_Draw</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeoplesG</driverClass>
+    <reportString>drawing a little blood from TargetA for the Works.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PeoplesG_GeneWork</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeoplesG</driverClass>
+    <reportString>writing a gene into TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PeoplesG_Repair</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeoplesG</driverClass>
+    <reportString>mending TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PeoplesG_Relink</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeoplesG</driverClass>
+    <reportString>relinking TargetA to the Lattice.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PeoplesG_RaiseTurret</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeoplesG</driverClass>
+    <reportString>raising a turret by the gate.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PeoplesG_Listen</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeoplesG</driverClass>
+    <reportString>listening to the colony.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PeoplesG_Ordinary</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeoplesG</driverClass>
+    <reportString>watching TargetA at their work.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PeoplesG_Teach</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeoplesG</driverClass>
+    <reportString>going over a lost craft at TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PeoplesG_Sky</defName>
+    <driverClass>ColonyCouncil.JobDriver_PeoplesG</driverClass>
+    <reportString>looking up at the sky.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <!-- The Helix Works' batch gone wrong (Rimfolk_Evt_HelixBatch): a fault in the genes of their vat-grown, put on the
+       Works' own visitors when they come, never on the colony's people. It wants tending, eases on its own over days, and
+       eases fast once tended; it never kills. -->
+  <HediffDef>
+    <defName>Rimfolk_GeneFault</defName>
+    <label>gene fault</label>
+    <description>A fault in a vat-grown body's genes, from a batch of the Helix Works that went wrong: the cells don't keep to the pattern they were written with. It leaves them weak and feverish, eases slowly on its own, and eases quickly once it is tended.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.80, 0.55, 0.85)</defaultLabelColor>
+    <initialSeverity>0.45</initialSeverity>
+    <maxSeverity>0.9</maxSeverity>
+    <tendable>true</tendable>
+    <makesSickThought>true</makesSickThought>
+    <comps>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>18</baseTendDurationHours>
+        <severityPerDayTended>-0.5</severityPerDayTended>
+      </li>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.06</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>minor</label>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-0.05</offset>
+          </li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.3</minSeverity>
+        <label>serious</label>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <offset>-0.1</offset>
+          </li>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.05</offset>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+</Defs>

@@ -1202,6 +1202,206 @@ loaded halfway brings nothing up; the crew goes home on its hours).
 Not used: a radio talk window of the Line's own (the game's comms console and Rimfolk's letters carry it), real world
 ships for the Fleet (its shuttle is Royalty's, as the enclave's lander is), a vote on the colony's own matters.
 
+## What was built (release G: the Helix Works, the Lattice, the Choir of the Spire and the Sunken Vault)
+
+The second four of the eight peoples of `docs/design/peoples-third.md` (step 3 of its order of building; approved by the
+player as written, 8 November 2026: "i love all your faction proposals!"), at release F's level: a founding story,
+sayings, what they honour and fear, titles, messengers, gear by role, faith, town plan, voice, touchpoints at the gate
+that play out on the map, an ask, a patch on the world events that should come from them, names for peoples that arise
+in their ways and an Almanac page; and the age they live in moves over the years by the rule of "Ages that change over
+time", the Sunken Vault by its own way down. Built only from the player's active mods (`docs/player-mods/`, the rows
+with `active` yes), always softly, with the base game's fallback. Code in `Source/ColonyCouncil/Peoples/`: `PeoplesG.cs`
+(helpers, the job driver, the Works, the Lattice), `PeoplesG2.cs` (the Choir, the Vault, the dev actions), `PeoplesGMath.cs`
+(pure, linked into the tests: `Tools/Tests/PeoplesGTests.cs`, "peoples, release G: "). No game hook of their own. Defs:
+`Defs/PeopleDefs/Rimfolk_People_HelixWorks.xml`, `_Lattice.xml`, `_Choir.xml`, `_SunkenVault.xml`,
+`Rimfolk_TownPlans_PeoplesG.xml`; `Defs/IncidentDefs/Rimfolk_Events_PeoplesG.xml`, `Defs/MissionDefs/Rimfolk_Missions_PeoplesG.xml`,
+`Defs/FlavorPoolDefs/Rimfolk_Lines_PeoplesG.xml`, `Defs/OutsiderTalkDefs/Rimfolk_OutsiderTalks_PeoplesG.xml`,
+`Defs/ThoughtDefs/Rimfolk_Thoughts_PeoplesG.xml`, `Defs/Misc/Rimfolk_PeoplesG_Misc.xml` (the jobs, the gene fault),
+`Patches/Rimfolk_PeoplesG.xml`, Keyed `Rimfolk_PeoplesG.xml`; the Almanac's page *the Works, the Lattice, the Choir and
+the Vault*.
+
+| | The Helix Works | The Lattice | The Choir of the Spire | The Sunken Vault |
+|---|---|---|---|---|
+| defName | `Rimfolk_HelixWorks` | `Rimfolk_Lattice` | `Rimfolk_Choir` | `Rimfolk_SunkenVault` |
+| Calling | editors | mechanitors | listeners | vaultfolk |
+| Age | Spacer (outlander parent) | Spacer | Spacer, with the archotech's flavour (beyond spacer by the design) | Spacer, falling |
+| Its age over the years | 9; at the height already, falls back when cut off | 10; the same | 16; the same | declines: an age about every 4 years unsupplied (`ageDeclines`, `ageDeclineYears` 4), never below the medieval age (`ageFloor` 1), held by components and parts |
+| Arises in (release B) | industrial and spacer | industrial and spacer | every age | industrial and spacer |
+| Founding | the lab's founders fled a plague in the vats and left them running; the eldest of the lab's own grown, Orla Venn, kept them warm, read the founders' notes aloud to the others they had made and taught them to edit what they were given; her genome is the first entry in the ledger | on a field the war had left a hundred mechs stood still round their fallen commander; Tamsin Arro, a deserter with a mechlink, linked the first ten to her own mind and taught three others to take ten each, and their minds began to share a quiet | a herder called Ilsabet Ruen lay down one night at the foot of the Spire and woke able to hear it think; others came to sit with her, their children were born hearing it, and they built a ring of halls so that someone is always listening | the vault's water ran short generations after the doors were sealed; the council chose Overseer Hollis Crane to open them, and she broke the seal and walked out first; half of them went back below for a week |
+| Sayings | Every body is a draft. We are only editors. Ask before you change it. Mark the change. Read twice, cut once. | A mind alone is a candle. A lattice is a lamp. Every link holds two. Nothing linked is lost. Quiet hands, exact work. | The Spire is thinking. We are what it thinks about. Listen first. The hum is not silence. Be ordinary, if you can. | The doors opened. The world we were waiting for didn't come with them. Every cell counts. Number off. Mind the seal. |
+| They honour / fear | a clean edit, a child who chose their own genes and a sample freely given / a batch gone wrong, a change made without asking and the vats going cold | a link held true, a mech mended to its last part and work done exactly / a broken link, a mech gone feral and a mind left on its own | a quiet mind, a song held with others and a stranger who listened / the hum going silent, a mind that shouts and the void that listens back | a part kept working, a number answered at the roll call and a craft learned again / the last cell going dark, a door that will not close and the sky with nothing over it |
+| Signature | the lab coat in clinic mint (Anomaly's, Vanilla Apparel Expanded's) over a mint collar shirt with the helix pin; the lab guard in mint recon armour | the robe in lattice indigo, the lattice worked on its hood; bandwidth gear (Biotech's headsets) on the mech-tenders and the node | the pale robe in spire lilac (and Royalty's eltex robe in the same lilac) on everyone, nothing else alike, no armour at all | the vault suit in vault olive (collar shirt and trousers of the one cloth, the vault's number on the back), worn thin; the overseer's jacket of the same olive |
+| Leader, head, heir, envoy, trader | chief editor, sequencer, second sequencer, vat-keeper, sample-buyer | node, link-warden, second warden, mech-tender, part-trader | first voice, cantor, second cantor, listener, keeper of the hum | overseer, warden, deputy warden, surface-scout, technician |
+| Messengers | lab-runners | link-runners | hum-walkers | surface-runners |
+| Towns | 0.3: labs | 0.3: yards | 0.25: rings | 0.25: vaults |
+| Caravans | 0.6 | 0.7 | 0.4 | 0.6 |
+| Raids | 0.12 | 0.15 | 0.06 (the fewest) | 0.15 |
+| Faith (Ideology) | The Living Draft: transhumanist (and VE Memes' progressive and healthcare); ideological or archist; techist | The Lattice: transhumanist (and VE Memes' gestalt and mechanoid supremacy); ideological or abstract; techist | The Hum: collectivist (and VE Memes' psychic focus, Alpha Memes' monastic); embodied or abstract; Buddhist | The Seal: tunneler, loyalist (and VE Memes' scrapper); archist or ideological; techist |
+| Kinds (Biotech) | 34 kinds from every source of the player's mods, about six in ten not baseliners (genies, highmates, hussars, Alpha Genes' helixan and seven more, Odyssey's starjacks, Vanilla Races Expanded's archons, androids and five more, askbarn, uredd, Avaloi, Venators, stoneborn, boglegs, korgs, chimps, pixies, Eevees) | genies, hussars, highmates, androids, archons, askbarn, ocularkin (17%) | highmates, genies, archons, animusen, ocularkin, high elves, court fairies, Avaloi (21%) | dirtmoles, genies, pigskins, wasters, stoneborn, insectors, korgs (18%) |
+| Colour | clinic mint | lattice indigo | spire lilac | vault olive |
+
+**How alike they look, role by role** (uniform only where it makes sense). The Works' every kind wears the mint shirt;
+the sequencers, vat-keepers, sample-buyers and the chief editor the lab coat over it (Anomaly's; Vanilla Apparel
+Expanded's lab coat in the same mint when the game picks it), the vat-keepers Vanilla Apparel Expanded's surgical mask;
+lab hands and the vat-grown only the shirt and whatever the lab's lockers held; the lab guard recon armour and helmet in
+mint with charge rifles (and Rimsenal's spacer pistols under the same tag); the lab's mechanitor Biotech's airwire headset
+over a mechlink. The Lattice's every kind the indigo robe over trousers: link-hands in their own clothes under it,
+mech-tenders the airwire headset over a mechlink, engineers tool belts and a shirt, link-wardens a flak vest and advanced
+helmet under it with charge rifles or a machine pistol, the part-trader a plain shirt, the node Biotech's array headset
+over a mechlink. The Choir's every kind the lilac robe and nothing of armour: listeners in whatever they wear under it,
+cantors and wardens of the quiet Royalty's eltex, the keeper of the hum and the first voice a shirt beneath. The Vault's
+every kind the vault suit: dwellers as it is, worn thin, with tool belts; security recon armour over it with charge
+rifles; surface-scouts a duster over it with rifles; medics the surgical mask; technicians tool packs; the overseer the
+olive jacket and the vault's last charge rifle.
+
+**Every age** (the player's rule; the age they live in now, `Peoples.AgeOf`). The Works' lab guard and the Lattice's
+link-wardens take the age's issue when their people fall back (plate and spears in the medieval age, flak and assault
+rifles in the industrial age). The Vault, which falls by its ways, patches its suit with whatever is at hand: its
+dwellers a parka over it in the industrial age, a cape in the medieval age; its security flak, a duster and assault
+rifles, then plate, a cape and spears. Everyone else takes the every-age pass (`AgeArms.ToAge`).
+
+**Gifts** (`PeopleKindExtension.gifts`): the Works' lab hands strong immunity or robust (genes put in by the hands before
+them), sequencers quick study and now and then a psylink (Harmonist, Empath), vat-keepers fast wound healing and a priest
+of A RimWorld of Magic, the vat-grown superclotting, the lab guard fast wound healing or a super soldier, the lab's
+mechanitor a technomancer, the chief editor super-strong immunity and superfast wound healing, a psylink of two to four
+levels (20%) or a chronomancer. The Lattice's link-hands, engineers and mech-tenders technomancers, link-wardens a
+psylink of one to three levels on the Technomancer's or Protector's path (12%), the node a Technomancer's psylink of two
+to four (25%). The Choir's listeners a psylink of one or two as Empaths or Harmonists (35%) or psy-sensitive by birth,
+cantors two to four (Harmonist, Empath, Archotechist, 45%), the archite gene of perfect immunity or a bard's class,
+wardens of the quiet three to five (Protector, Puppeteer, Staticlord, half of them) or a psionic's class, the first voice
+four to six (Archotechist, Harmonist) or the archite gene of agelessness. The Vault's dwellers technomancers, security
+super soldiers, scouts rangers, medics strong immunity, the overseer a Protector's psylink of one to three (15%).
+
+**Their towns' maps** (`Rimfolk_TownPlans_PeoplesG.xml`, only the base game's buildings). The Works' **lab** (36 by 15):
+the sterile hall with two hi-tech research benches, the vat hall's four cradles (hospital beds), the stores, quarters of
+eight beds with a table, and a quiet garden of roses round two willows. The Lattice's **yards** (38 by 17): the control
+tower with its console, the gestation hall with two machining benches and the stores of parts, a bunkhouse of eight
+beds, and a yard of eight batteries on concrete under four mini-turrets. The Choir's **ring** (37 by 15): a pale monolith
+(a grand marble sculpture) on marble flagstones among four columns, and four quiet halls round it, two of sleeping mats,
+one of books, one of stores. The Vault's **door** (36 by 18): the vault behind plasteel walls and autodoors, twelve
+bunks, the console that talks to nobody, a battery, its stores; and outside it the surface camp, six bedrolls round two
+fires and two potato fields inside a fence.
+
+**Theirs at the gate** (`Rimfolk_Events_PeoplesG.xml`; each only from a people of its calling at peace with the colony,
+each with three answers, the last always to send them on). The Works' sample, gene work and batch, and the Lattice's
+repairs, lost mech and part-trader want Biotech (`HappeningExtension.mods`); the vat-keeper's case and the engineers'
+turret come with or without it, as the design asks ("without Biotech they trade medicine and drugs" and "come as
+engineers with turrets").
+
+- *A sample for the Works* (`HappeningWorker_HelixSample`, `DilemmaEffect_HelixSample`, `HelixSample`): the colonist
+  whose genes are rarest to the Works (`PeoplesGMath.Rarity`: an archite gene three, a xenotype's own genes one each to
+  twelve, a plain baseliner nothing; three or more is worth a sample) is asked for a sample at 80 silver and 25 a point
+  (at most 680). Taken, the colonist keeps still where they are (a forced wait), the sample-buyer walks over and draws it
+  (a bar and the healing cross), a little blood from the arm (`HediffDefOf.BloodLoss` 0.08, below the game's first stage
+  at 0.15, gone in a few hours: the colony's answer, not a mishap, so not a harm roll), and pays at the gate. The colony's
+  doctor may watch (+Medicine).
+- *Gene work at the gate* (`HappeningWorker_HelixGeneWork`, `DilemmaEffect_HelixGene`, `HelixGenes`): a sequencer offers
+  one of the Works' gentle Biotech genes (strong immunity, fast wound healing, superclotting, strong stomach, tox
+  resistance, robust, dark vision, cold or heat tolerance, reduced pain) the colonist lacks and that conflicts with nothing
+  they carry, for 180 silver, 90 for each point of metabolism and 40 of complexity, or a genepack; the colonist keeps still
+  while the sequencer works on them two hours, then carries it as a xenogene with the game's own xenogerm mark (no other
+  until it settles).
+- *The vat-keeper's case* (`HappeningWorker_HelixCase`, `DilemmaEffect_PeoplesGCrate`): medicine (4 to 12), glitterworld
+  medicine (1 or 2) and penoxycyline (3 to 8) by the colony's wealth, a tenth over their worth, the case set down at the
+  gate; the colony's doctor may go through it with them (+Medicine).
+- *A batch gone wrong* (`HappeningWorker_HelixBatch`, `DilemmaEffect_HelixBatch`): one to three of the Works' vat-grown
+  come with a vat-keeper, sick with a gene fault (`Rimfolk_GeneFault`, tendable, never lethal, put only on them). The
+  colony's doctor sees to each where they stand, a medicine from the stores for each (`OutsiderTend`, the colony's way of
+  tending a stranger at the gate), or two medicine each go out with them; the Works think 8 better of a colony that tended
+  them, 5 for the medicine.
+- *A mech-tender at the gate* (`HappeningWorker_LatticeRepair`, `DilemmaEffect_LatticeRepair`, `LatticeRepair`): the
+  colony's hurt mechs (the game's own `MechRepairUtility.CanRepair`, six at most) mended one by one where they stand, each
+  kept still at its turn (sparks and a bar), the game's own repair run until it wants none; 40 silver a mech and 15 a
+  wound (at most 600), or a basic subcore.
+- *A lost mech* (`HappeningWorker_LatticeLostMech`, `LatticeLost`): a lifter, constructoid, cleansweeper or paramedic of
+  theirs wanders onto the map and drifts near the colony's edge. Send word: a link-warden walks in from the edge to it,
+  relinks it (sparks and a bar) and the two walk home together, the Lattice +6 (`DilemmaEffect_LatticeReturn`). Keep it:
+  only with a mechanitor of the colony's who can take it on (`MechanitorUtility.CanControlMech`, the game's own test of
+  bandwidth), its overseer from then (`PawnRelationDefOf.Overseer`), the Lattice -15 (`DilemmaEffect_LatticeKeep`). Or
+  let it find its own way home.
+- *The part-trader* (`HappeningWorker_LatticeParts`, `DilemmaEffect_LatticeParts`, `PlayCarry.MechParts`): the colony's
+  subcores and mech chips (150 silver's worth at least) carried out and paid a fifth over their worth; the colony's
+  crafter may look at their tools (+Crafting).
+- *A turret for the gate* (`HappeningWorker_LatticeTurret`, `DilemmaEffect_LatticeTurret`, `LatticeTurret`): for an
+  industrial or spacer colony, an engineer raises a mini-turret on clear ground a few cells in from the gate (two hours,
+  sparks and a bar), the colony's from then and on the colony's power, at its worth and a tenth; the colony's builder may
+  help (+Construction).
+- *The Choir listens* (`HappeningWorker_ChoirListening`, `DilemmaEffect_ChoirListen`, `ChoirListening`): a cantor and one
+  or two listeners sit in a ring round the colony's gathering spot (or its middle) for three hours (the meditation's mark
+  over them), and then everyone at home feels it (`PeoplesGMath.Felt`): the psychically deaf nothing, the rest an unease
+  one time in five, more for the psychically sensitive (a third more for each point over the ordinary), more still when
+  the void stirs (Anomaly: the monolith awake, `Find.Anomaly.Level`), never past three in five; a calm otherwise.
+  Shown as moods (`Rimfolk_Thought_ChoirCalm` +4 for a day and a half, `_ChoirUnease` -3 for a day) and told by name. The
+  colony's most sensitive may sit with them: always calm, and a psycaster's focus the fuller.
+- *The keeper of the hum* (`HappeningWorker_ChoirArt`, `DilemmaEffect_ChoirArt`, `ChoirGoods`, `PlayCarry.Art`): the
+  colony's art packed up (two pieces at most, the dearest, 300 silver's worth at least) for one of the Spire's goods (a
+  psychic soothe or animal pulser, an archite capsule, a psychic harmonizer or sensitizer, a healer mech serum, an eltex
+  skullcap, whatever the game and the DLCs have), the dearest no more than a quarter over the art's worth, set down at the
+  gate; the colony's artist may talk the work over with them (+Artistic).
+- *The vault's last goods* (`HappeningWorker_VaultBarter`, `DilemmaEffect_VaultSupply`): a technician's crate of the
+  vault's last spacer goods, fewer the further it has fallen (glitterworld medicine, an advanced component, a charge rifle
+  at the spacer age), for 4 to 12 components and 40 to 120 raw food by the colony's wealth, carried out; or the colony
+  gives them for nothing (+8). Either way the vault remembers it as supply (`VaultSupply.Noted`, half again as much for
+  the gift).
+- *A craft the vault lost* (`HappeningWorker_VaultCraft`, `DilemmaEffect_VaultTeach`, `VaultCraft`): the colony's best
+  crafter teaches their technician at the bench where they work (`WanderYear.Bench`) for three hours, another colonist
+  learning it again beside them if the colony likes; the vault remembers it as supply worth 300 silver and as one of
+  theirs who learned at the colony (`learnedHere`), and the technician takes it home.
+- *A child who never saw a sky* (`HappeningWorker_VaultChild`, `DilemmaEffect_VaultSky`, `VaultChild`): a surface-scout
+  comes with a vault-born child (nine to twelve with Biotech, else a youth of fifteen to seventeen) who keeps looking up
+  and asks to stay. Taken in, the child joins the colony as anyone does (`DilemmaEffect_Join`; the colony is the family,
+  nothing of houses or lines), stands under the open sky by the gate a while and says so, and the scout goes home alone;
+  or the child stands under the sky a while before going home with the scout; or they are sent home.
+
+**Their asks** (`Rimfolk_Missions_PeoplesG.xml`, each only theirs): the Works' genepacks (medicine where the colony has
+none or there is no Biotech, `MissionGoalSpec.instead`), the Lattice's two good crafters (Crafting 6) for a day at the
+yards (`Rimfolk_Mission_LatticeHands`, a day they remember, `Rimfolk_Mission_HandsWithLattice`), the Choir's listener
+who stays four to six days to learn what it is to be ordinary (`HappeningWorker_MissionChoirStay`, hosted at the
+colony's table and in a bed of its own; each afternoon an hour beside someone of the colony at their work, the one they
+watched a little prouder, `Rimfolk_Thought_ChoirFollowed`), the Vault's power cells (components, or steel and components
+for the seal), which keep its age as supply does (`Patch_FactionMemory.MissionEnded`, kind `vaultcells`).
+
+**By patch** (`Patches/Rimfolk_PeoplesG.xml`, conditional): world events that prefer a calling, five times as likely as
+another people: a famous healer (the Works), a town rebuilding (the Lattice), a season of wild magic (the Choir), a new
+town (the Vault).
+
+**Release B's peoples that arise may take their ways** (`ArisingMath.Lean`, its 20-argument form): a band of the
+banished led in the spacer age by one with a psylink of four or more listens as a choir (before the seers, who take any
+psylink), after all the others by a surgeon (Medicine 10) in the spacer age edits genes as a works, by a mechanitor (a
+mechlink) in the industrial age or later links its mechs as a lattice; survivors of an industrial or spacer town, after
+the Line's and the crew's ways, on their fated quarter (`VaultChance`, `SaltVault`) sat out its fall in its shelter and
+come up again as vaultfolk. Their words: `CC_Arise_refugees_vaultfolk`, `CC_Arise_exiles_listeners`, `_editors`,
+`_mechanitors` (each two ways), three names each (*the Barr Shelter*, *the Choir of Barr*, *Barr's Works*, *Barr's
+Lattice*, each with two other forms). Each people's rise and fall told in its own voice (`CC_PeopleAge_Voice_*`).
+
+**Harm.** Nothing of theirs rolls a harm. The sample's draw is the colony's answer and is shown, a little blood below
+anything the game counts as weakening; the gene fault is the Works' own batch's, never the colony's.
+
+**Their pace on the map.** Their callers come and go at an errand's pace (`LordJob_VisitOnErrand`, `Pace.Errand`): the
+gate's visit lord, the lord that keeps one of them at their work's spot (`PeoplesG.Errand`), and their way home
+(`LordJob_ExitMapBest` at an errand's pace, a mech with its link-warden).
+
+**Saved**: nothing new. What is under way waits on the job that does it (a sample, a gene, a mending, a listening or a
+lesson loaded halfway starts again or is let go; their visitors go home on their hours); the vault's supply is a memory
+of the peoples' memory.
+
+**Softness**
+
+| Missing | What happens |
+|---|---|
+| Biotech | Humans only; no sample, gene work, batch, mech repairs, lost mech or part-trader; the Works trade medicine and drugs (the case, their stock), the Lattice come as engineers with turrets; no mechs in their groups, no mechlinks, headsets or genes; the vault's child is a youth. |
+| Ideology | No fixed faiths or styles. |
+| Royalty | No psylinks; no eltex robes, the Choir's goods without the harmonizer, sensitizer or skullcap. |
+| Anomaly | The Works without Anomaly's lab coat (Vanilla Apparel Expanded's, or the mint shirt); the Choir's listening never with the void's stirring. |
+| Vanilla Psycasts Expanded, A RimWorld of Magic | Psylinks on the game's own way; no classes. |
+| Vanilla Apparel Expanded (and Accessories), Rimsenal, Alpha Memes, VE Memes, the xenotypes' mods | The game's own pieces and kinds of people; fewer memes. |
+| Answers play out on the map (setting) off | The draw, the gene, the mending, the relinking, the turret, the listening, the lesson and the sky done at once. |
+| The deeper game hooks (setting) off | The game's own bases for their towns; no age arms, kits or gifts. |
+
+Not used: the game's xenogerm items in their stock (an empty xenogerm would be worthless; the gene work at the gate is
+the Works' trade in them), a growth vat or a mech gestator in their towns (not the base game's), real archotech
+structures for the Choir (the Spire is their story; Rimfolk's ages end at spacer).
+
 ## What could come next
 
 - Their own world events: a league's toll war, an order's plague year with the colony's help asked by name, a great

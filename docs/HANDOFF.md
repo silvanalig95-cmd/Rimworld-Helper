@@ -12,6 +12,64 @@ tree at once, alongside whatever runs. Each piece is merged as its own release, 
 
 ## State (5 November 2026)
 
+- Release G, the second four peoples of the third round: the Helix Works, the Lattice, the Choir of the Spire and the
+  Sunken Vault (8 November 2026, step 3 of `docs/design/peoples-third.md`, approved by the player as written). Not
+  released: no What's new round, About.xml and CHANGELOG untouched, no version number (the lead does that at the merge).
+  docs/design/peoples.md "What was built (release G)" has everything (the table, the look by role, every age, gifts,
+  towns, each caller at the gate, the asks, the patch, arising, harm, pace, softness, what was left out); README a
+  paragraph after release F's and the Vault's way in the ages paragraph; DESIGN.md a bullet after release F's and the
+  ages section at twenty-three (the Vault's own way, paces, the numbers); the Almanac page *the Works, the Lattice, the
+  Choir and the Vault* (`Council_Alm_C_PeoplesG`, new keywords only); `docs/design/peoples-third.md` step 3 marked built.
+  - What: four spacer peoples (`Rimfolk_HelixWorks` editors, `Rimfolk_Lattice` mechanitors, `Rimfolk_Choir` listeners,
+    `Rimfolk_SunkenVault` vaultfolk), once each in a new world, never required, raiding rarely (the Choir least), each
+    with a founding (Orla Venn, Tamsin Arro, Ilsabet Ruen, Overseer Hollis Crane), sayings, faith, emblem and town icon,
+    a town plan (lab, yards, ring, vault door), messengers, letters, visitors' and face-to-face words, four pieces of
+    talk, an ask, and three or four callers at the gate. A signature piece in one colour for each (mint lab coat, indigo
+    robe, lilac robe, olive vault suit), the rest varied by role; the Works' kinds the most varied of all (34 xenotypes);
+    the Choir without armour. The Works, the Lattice and the Choir are at the height already (paces 9, 10, 16); the Vault
+    is the first people with 0.169.0's `ageDeclines` (an age in about 4 years unless supplied, floor medieval), its suit
+    patched with each age's pieces.
+  - At the gate: the Works' sample (the colonist with the rarest genes, a little blood drawn, paid), gene work (a gentle
+    gene written in as a xenogene), the vat-keeper's case (medicine and drugs, also without Biotech), the batch gone wrong
+    (their own vat-grown with a gene fault, tended); the Lattice's repairs of the colony's mechs, the lost mech (relinked
+    and walked home, or kept by a mechanitor who can take it, -15), the part-trader (subcores and chips), the turret
+    (a mini-turret raised at the gate, also without Biotech); the Choir's listening (three hours in a ring, then calm or
+    unease for everyone at home, shown as moods, more unease for the psychically sensitive and when the void stirs), the
+    keeper of the hum (art for the Spire's goods); the Vault's last goods (for components and food), the lost craft
+    (taught at the colony's bench), the child who never saw a sky (joins as anyone does). The Vault's supply is the
+    peoples' memory's `gaveLearning`.
+  - Code: `Peoples/PeoplesG.cs` (helpers, `JobDriver_PeoplesG` with a forced wait for the one worked on, the Works, the
+    Lattice), `PeoplesG2.cs` (the Choir, the Vault, the listener's stay `HappeningWorker_MissionChoirStay`,
+    `PeoplesGDebug`), `PeoplesGMath.cs` (pure, linked). Touched: `PeoplesMath.cs` (four callings), `ArisingMath.cs` and
+    `Arising.cs` (the 20-argument lean: a psycaster of four, a surgeon, a mechanitor; survivors on a fated quarter to the
+    Vault), `PlayCarry.cs` (`mechparts`, `art`), `World/Patch_FactionMemory.cs` (the Vault's ask of power cells counts as
+    supply, kind `vaultcells`). No Harmony patch, no Sched slot.
+  - Settings: none new. Play-outs (on the map or at once), the deeper game hooks (age arms, kits, gifts, town maps),
+    peoples' ages.
+  - Saved: nothing new (the vault's supply is a memory in the peoples' memory).
+  - Harm: none rolled. The sample's draw is the colony's answer, `BloodLoss` 0.08 (below the game's first stage), shown;
+    the gene fault is only on the Works' own vat-grown.
+  - Tools: `Tools/make_emblems.py` (eight glyphs, the preview sheet), `Tools/Tests/PeoplesGTests.cs`, the peoples' tests at
+    twenty-three (`PeoplesTests`, `PeoplesGearTests`, `PeoplesLoreTests`, `NeighboursFourTests`, `PeopleAgesTests`,
+    release C's and D's arising lists), `PeopleGear.txt` and `ModDefNames.txt` rows from the catalogue, 21 play-out skips.
+  - Not verified without the game: the forced wait holding a colonist (or a mech) still while the visitor works on
+    them, `AddGene` as a xenogene with the xenogerm mark on a colonist mid-game, the game's mech
+    repair run to the end in one go (`MechRepairUtility.RepairTick`, capped), a lost mech of theirs wandering then relinked
+    and leaving with its warden, a kept mech's overseer set (`PawnRelationDefOf.Overseer`) and its bandwidth, the
+    mini-turret's blueprint spot by the gate and its power, the listening ring round the gathering spot and the moods'
+    spread, the art packed by `PlayCarry.Art`, the vault child's join and look at the sky, a job loaded halfway (it starts
+    again or is let go).
+  - Try in the game (dev mode; "Rimfolk", "Peoples: release G's rare genes, mechs, art and the vault's supply (log)"
+    shows the state): with Biotech and the Works at peace, fire `Rimfolk_Evt_HelixSample` (a colonist with a xenotype),
+    watch the sample-buyer draw it, see the blood loss; `Rimfolk_Evt_HelixGeneWork` and check the new xenogene;
+    `Rimfolk_Evt_HelixCase`, `Rimfolk_Evt_HelixBatch` (see the doctor tend each). With a mechanitor and a hurt mech,
+    `Rimfolk_Evt_LatticeRepair`; `Rimfolk_Evt_LatticeLostMech` and answer each way; `Rimfolk_Evt_LatticeParts` with a
+    subcore in stores; `Rimfolk_Evt_LatticeTurret` for an industrial colony. `Rimfolk_Evt_ChoirListening` and look at the
+    moods ("the Choir's listening heard now, without them (testing)" for the moods alone); `Rimfolk_Evt_ChoirArt` with a
+    sculpture in stores. `Rimfolk_Evt_VaultBarter` with components, `Rimfolk_Evt_VaultCraft`, `Rimfolk_Evt_VaultChild`
+    (take the child in); "the Sunken Vault falls an age now (testing)" and see the next visitor's patched suit. The asks:
+    `Rimfolk_Mission_HelixGenepacks`, `Rimfolk_Mission_LatticeHands`, `Rimfolk_Mission_ChoirStay` (watch the listener at
+    someone's work in the afternoon), `Rimfolk_Mission_VaultCells`.
 - 0.172.0, release F, the first four peoples of the third round: the Signal Line, the Deepwell Union, the Last Republic and the
   Hollow Fleet (8 November 2026, step 2 of `docs/design/peoples-third.md`, approved by the player as written). Not
   released: no What's new round, About.xml and CHANGELOG untouched, no version number (the lead does that at the merge).

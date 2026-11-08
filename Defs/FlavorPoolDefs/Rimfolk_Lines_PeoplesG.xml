@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Release G's peoples in their own words (Source/ColonyCouncil/Peoples/PeoplesG.cs, PeoplesG2.cs; docs/design/
+    peoples.md, "Release G"), in the pools the other nineteen speak in, by the tag their people give every line:
+    their:editors the Helix Works, their:mechanitors the Lattice, their:listeners the Choir of the Spire, their:vaultfolk
+    the Sunken Vault. Each in its own manner: the Works curious and exact, always asking first and marking every change;
+    the Lattice quiet and plural, speaking of minds and links; the Choir soft and strange, hearing more than is said; the
+    Vault careful and a little afraid of the open, counting everything twice.
+    - Rimfolk_Pool_NeighbourWrites: their answer to the colony's letter or call, and their grief with it and thanks for a
+      warning. Help is promised only in a warm or cordial answer, and comes by their own messengers.
+    - Rimfolk_CourierLines: their messengers at the colony's gate. One sentence each.
+    - Rimfolk_VisitorLines: their visitors at every moment of a visit (arrive, wait, stay, pass, leave). One sentence each.
+    - Rimfolk_Pool_OutsiderSays: their words face to face: a chat, a warm parting, their faith.
+    And the journals of the colonists who saw to the Works' batch, heard the Choir listen, and met the child who never saw a
+    sky (Defs/IncidentDefs/Rimfolk_Events_PeoplesG.xml).
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_NeighbourWrites_PeoplesG</defName>
+    <pool>Rimfolk_Pool_NeighbourWrites</pool>
+    <lines>
+      <plain>
+        <!-- The Helix Works: the ledger, the edit, asking first -->
+        <li>[greetings,warm,their:editors] Your letter was read aloud at the vats, {WRITER}, and written into the ledger beside the day's edits. Every body is a draft, and so is every friendship.</li>
+        <li>[greetings,cordial,their:editors] The Works have your letter, {WRITER}. It is marked and filed with the rest.</li>
+        <li>[greetings,cool,their:editors] We have your letter. The Works have not yet decided what to make of you, and we never change anything in haste.</li>
+        <li>[news,warm,their:editors] Our runners hear a great deal in the towns that buy our medicine, {WRITER}. Here is the season's, read twice before we wrote it down.</li>
+        <li>[news,cordial,their:editors] Everything that comes past the lab is noted. This is the part that concerns you.</li>
+        <li>[help,warm,their:editors] What you asked for is coming with a lab-runner, {WRITER}. We are only editors, but we can spare it.</li>
+        <li>[help,cordial,their:editors] The lab can spare it, and a runner has it on the road.</li>
+        <li>[help,refusal,their:editors] A batch went wrong this season, {WRITER}, and everything the lab has is going to the vat hall. We have nothing to send.</li>
+        <li>[invitation,warm,their:editors] A sequencer will come, and ask before touching anything.</li>
+        <li>[condolences,warm,their:editors] We wrote your dead's name into the ledger tonight, {WRITER}, on the page we keep for those who were never ours to change. We are sorry.</li>
+        <li>[condolences,cordial,their:editors] The Works are sorry for your loss, {WRITER}. The name is marked in the ledger.</li>
+        <li>[warning,warm,their:editors] Your warning reached the lab before the trouble did, {WRITER}, and the vats were sealed when it came. The Works mark who keeps them safe.</li>
+        <li>[warning,cordial,their:editors] We have your warning, {WRITER}, and the vat hall is locked tonight.</li>
+        <!-- The Lattice: the link, the quiet, the many minds -->
+        <li>[greetings,warm,their:mechanitors] Your letter came to the yards, {WRITER}, and the whole lattice read it at once. We were glad of it, all of us.</li>
+        <li>[greetings,cordial,their:mechanitors] The node has your letter, {WRITER}, and so the lattice has it.</li>
+        <li>[greetings,cool,their:mechanitors] We have your letter. The lattice is quiet about you for now.</li>
+        <li>[news,warm,their:mechanitors] A lattice hears a great deal through its mechs on the roads, {WRITER}. Here is the season's, exactly as it came.</li>
+        <li>[news,cordial,their:mechanitors] The yards' mechs walk every road. This is what they saw that concerns you.</li>
+        <li>[help,warm,their:mechanitors] What you asked for is coming with a link-runner, {WRITER}. A mind alone is a candle, and we would not leave yours alone.</li>
+        <li>[help,cordial,their:mechanitors] The yards can spare it, and a runner has it on the road.</li>
+        <li>[help,refusal,their:mechanitors] A whole line came in broken this season, {WRITER}, and every part we have is in the benches. We have nothing to send.</li>
+        <li>[invitation,warm,their:mechanitors] A mech-tender will come, and look at your mechs while they are there.</li>
+        <li>[condolences,warm,their:mechanitors] The lattice held a quiet for your dead tonight, {WRITER}, every mind together. Nothing linked is lost, and we hold them with you.</li>
+        <li>[condolences,cordial,their:mechanitors] The Lattice is sorry for your loss, {WRITER}. We felt it, a little, through the quiet.</li>
+        <li>[warning,warm,their:mechanitors] Your warning reached the yards in time, {WRITER}, and every mech was at its post when the trouble came. The lattice remembers who warned it.</li>
+        <li>[warning,cordial,their:mechanitors] We have your warning, {WRITER}. The yards are linked and watching tonight.</li>
+        <!-- The Choir of the Spire: the hum, the listening -->
+        <li>[greetings,warm,their:listeners] We heard your letter before it came, {WRITER}, a little, the way we hear the Spire. It was a kind one.</li>
+        <li>[greetings,cordial,their:listeners] The ring has your letter, {WRITER}. We listened to it, and we will answer.</li>
+        <li>[greetings,cool,their:listeners] We have your letter. We are still listening to what it meant.</li>
+        <li>[news,warm,their:listeners] The Spire is thinking, {WRITER}, and some of what it thinks is about the roads. Here is the season's, as gently as we can put it.</li>
+        <li>[news,cordial,their:listeners] Listen first, we say. This is what we heard this season.</li>
+        <li>[help,warm,their:listeners] What you asked for is coming with a hum-walker, {WRITER}. We heard that you needed it.</li>
+        <li>[help,cordial,their:listeners] The ring can spare it, and a hum-walker has it on the road.</li>
+        <li>[help,refusal,their:listeners] The hum was uneasy this season, {WRITER}, and the ring keeps everything close. We have nothing to send, and we are sorry.</li>
+        <li>[invitation,warm,their:listeners] A listener will come, and sit with you a while.</li>
+        <li>[condolences,warm,their:listeners] We sat in the ring for your dead tonight, {WRITER}, and listened for them. The hum is not silence, and they are in it.</li>
+        <li>[condolences,cordial,their:listeners] The Choir is sorry for your loss, {WRITER}. We felt it go quiet.</li>
+        <li>[warning,warm,their:listeners] Your warning reached the ring in time, {WRITER}, and the halls were shut when the trouble came. We will not forget who called to us.</li>
+        <li>[warning,cordial,their:listeners] We have your warning, {WRITER}. The ring is listening tonight.</li>
+        <!-- The Sunken Vault: the seal, the count, the light -->
+        <li>[greetings,warm,their:vaultfolk] Your letter was read at the roll call, {WRITER}, and everyone answered their number twice for it. The vault is glad of friends above.</li>
+        <li>[greetings,cordial,their:vaultfolk] The vault has your letter, {WRITER}. It is filed below with the others.</li>
+        <li>[greetings,cool,their:vaultfolk] We have your letter. The overseer will decide what we think of you.</li>
+        <li>[news,warm,their:vaultfolk] Our surface-scouts walk further every season, {WRITER}. Here is what they saw, counted twice.</li>
+        <li>[news,cordial,their:vaultfolk] The scouts bring back what they see above. This is the part that concerns you.</li>
+        <li>[help,warm,their:vaultfolk] What you asked for is coming with a surface-runner, {WRITER}. Every cell counts, but some things count more.</li>
+        <li>[help,cordial,their:vaultfolk] The vault can spare it, and a runner has it on the road.</li>
+        <li>[help,refusal,their:vaultfolk] Another corridor went dark this season, {WRITER}, and everything we have is keeping the rest lit. We have nothing to send.</li>
+        <li>[invitation,warm,their:vaultfolk] A surface-scout will come, and try not to look up too much.</li>
+        <li>[condolences,warm,their:vaultfolk] We read your dead's name at the roll call tonight, {WRITER}, and nobody answered it, as is our way. The doors opened for them too, once.</li>
+        <li>[condolences,cordial,their:vaultfolk] The vault is sorry for your loss, {WRITER}. The name is filed below.</li>
+        <li>[warning,warm,their:vaultfolk] Your warning reached the vault in time, {WRITER}, and the door was sealed when the trouble came. Mind the seal, we say, and you did it for us.</li>
+        <li>[warning,cordial,their:vaultfolk] We have your warning, {WRITER}. The door is shut tonight.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_CourierLines_PeoplesG</defName>
+    <pool>Rimfolk_CourierLines</pool>
+    <lines>
+      <plain>
+        <li>[arrive,their:editors] Lab-runner of the Works, with a letter marked and sealed.</li>
+        <li>[leave,their:editors] The vats want turning by dusk, so I'll be going.</li>
+        <li>[deliver,their:editors] From the lab, read twice before it was sent.</li>
+        <li>[arrive,their:mechanitors] Link-runner from the yards, and the lattice sends its greeting.</li>
+        <li>[leave,their:mechanitors] The yards are calling me back, quietly.</li>
+        <li>[deliver,their:mechanitors] From the node, exactly as written.</li>
+        <li>[arrive,their:listeners] A hum-walker from the ring, and I heard you were expecting me.</li>
+        <li>[leave,their:listeners] The ring is listening for me, so I'll go.</li>
+        <li>[deliver,their:listeners] From the Choir, with the hum of the ring on it.</li>
+        <li>[arrive,their:vaultfolk] Surface-runner from the vault, with a letter counted twice.</li>
+        <li>[leave,their:vaultfolk] The doors close at dusk, and I mean to be inside them.</li>
+        <li>[deliver,their:vaultfolk] From the vault, with the overseer's seal.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_VisitorLines_PeoplesG</defName>
+    <pool>Rimfolk_VisitorLines</pool>
+    <lines>
+      <plain>
+        <li>[arrive,their:editors] What a lot of different people you have here, the Works would approve.</li>
+        <li>[wait,their:editors] We wait for vats to finish all the time, so take your time.</li>
+        <li>[stay,their:editors] A clean room and a quiet one, I could edit all night in here.</li>
+        <li>[leave,their:editors] Ask before you change anything, and thank you for the bed.</li>
+        <li>[pass,their:editors] Every body is a draft, and we are only editors.</li>
+        <li>[arrive,their:mechanitors] Your colony is very loud, in a mind, but it's a friendly loud.</li>
+        <li>[wait,their:mechanitors] The lattice is patient, so I am patient.</li>
+        <li>[stay,their:mechanitors] A quiet room, and I can still hear the yards from here.</li>
+        <li>[leave,their:mechanitors] Every link holds two, and thank you for the bed.</li>
+        <li>[pass,their:mechanitors] A mind alone is a candle, and a lattice is a lamp.</li>
+        <li>[arrive,their:listeners] Your colony hums, did you know that.</li>
+        <li>[wait,their:listeners] Waiting is only listening with your feet still.</li>
+        <li>[stay,their:listeners] A quiet corner and a quiet night, thank you.</li>
+        <li>[leave,their:listeners] Be ordinary, if you can, it suits you.</li>
+        <li>[pass,their:listeners] The Spire is thinking, and we are what it thinks about.</li>
+        <li>[arrive,their:vaultfolk] Walls and a roof, oh, that is a relief.</li>
+        <li>[wait,their:vaultfolk] We waited generations below, so this is nothing.</li>
+        <li>[stay,their:vaultfolk] A ceiling overhead, I might actually sleep tonight.</li>
+        <li>[leave,their:vaultfolk] Mind the seal, and thank you for the bed.</li>
+        <li>[pass,their:vaultfolk] The doors opened, and the world we were waiting for didn't come with them.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_OutsiderSays_PeoplesG</defName>
+    <pool>Rimfolk_Pool_OutsiderSays</pool>
+    <lines>
+      <plain>
+        <li>[chat,them,their:editors] We never change anything in a body without asking whose it is.</li>
+        <li>[endwarm,them,their:editors] If you ever want a line of yours changed, ask the Works and ask for me.</li>
+        <li>[faithtalk,them,their:editors] Orla Venn kept the vats warm when the founders fled, and taught us to edit.</li>
+        <li>[chat,them,their:mechanitors] We speak of a mind alone the way you speak of the dark.</li>
+        <li>[endwarm,them,their:mechanitors] If your mechs ever need mending, send to the yards and ask for me.</li>
+        <li>[faithtalk,them,their:mechanitors] Tamsin Arro walked among a hundred stilled mechs and linked the first ten to her own mind.</li>
+        <li>[chat,them,their:listeners] You are louder than you think, everyone is.</li>
+        <li>[endwarm,them,their:listeners] If you ever want a quiet mind, come and sit in the ring with me.</li>
+        <li>[faithtalk,them,their:listeners] Ilsabet Ruen slept at the foot of the Spire and woke able to hear it think.</li>
+        <li>[chat,them,their:vaultfolk] I still can't sleep without a ceiling, and I was born forty years ago.</li>
+        <li>[endwarm,them,their:vaultfolk] If you ever need a door that holds, ask the vault for me.</li>
+        <li>[faithtalk,them,their:vaultfolk] Hollis Crane broke the seal when the water ran short, and walked out first.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- The journal of the colonist who met the Works' batch gone wrong (Rimfolk_Evt_HelixBatch): seen to here (opt0),
+       medicine sent with them (opt1), the gate shut (opt2). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Evt_HelixBatch</defName>
+    <lines>
+      <plain>
+        <li>[opt0] The Helix Works brought us a batch of their vat-grown gone wrong, feverish and barely standing, and I saw to them at the gate. One of them asked me if I was made too.</li>
+        <li>[opt1] We sent the Works' sick vat-grown home with medicine. The vat-keeper thanked us as if we had done far more.</li>
+        <li>[opt2] The Works brought their sick vat-grown to the gate and we kept it shut. They carried each other back to the road.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The journal of the colonist who heard the Choir listen (Rimfolk_Evt_ChoirListening): let listen (opt0), sat with
+       them (opt1), sent on (opt2). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Evt_ChoirListening</defName>
+    <lines>
+      <plain>
+        <li>[opt0] The Choir of the Spire sat in the middle of the colony for hours, just listening. Some of us came away calm and some of us couldn't sleep.</li>
+        <li>[opt1] I sat with the Choir while they listened to the colony, and for an hour I could hear something under everything, like a held note.</li>
+        <li>[opt2] Listeners from the Choir asked to sit in the colony and listen to it, and we sent them on. They didn't seem to mind; they said they had heard enough at the gate.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The journal of the colonist who met the vault-born child (Rimfolk_Evt_VaultChild): taken in (opt0), a while under the
+       sky (opt1), sent home (opt2). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Evt_VaultChild</defName>
+    <lines>
+      <plain>
+        <li>[opt0] A vault-born child came up the road who had never seen a sky, {X_nameDef}, and asked to stay with us under it. We said yes. {X_nameDef} stood in the open a long while before coming in.</li>
+        <li>[opt1] A vault-born child stood by our gate and looked up at the sky until the scout took them home. They asked whether it ever stops.</li>
+        <li>[opt2] A vault-born child asked to stay with us under the sky, and we sent them home with the scout. They looked up all the way back to the road.</li>
+      </plain>
+      <gloomy><li>[opt2] They looked up all the way back to the road.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

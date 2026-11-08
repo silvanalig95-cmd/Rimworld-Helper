@@ -580,3 +580,22 @@ ludeon.rimworld.biotech	gene	DarkVision	-	-	-
 ludeon.rimworld.biotech	gene	Robust	-	-	-
 mod:sarg.alphagenes	gene	AG_MiningYield_High	-	-	-
 core	item	MealSurvivalPack	-	-	-
+# Release G (the Helix Works, the Lattice, the Choir of the Spire, the Sunken Vault): the Works' kinds of people from every
+# source, their lab coat and genes; the Lattice's array headset; the Choir's psy-sensitive and archite genes, its court fairies.
+mod:sarg.alphagenes	xenotype	AG_Helixien	-	-	-
+mod:sarg.alphagenes	xenotype	AG_Fleetkind	-	-	-
+mod:sarg.alphagenes	xenotype	AG_Efreet	-	-	-
+mod:vanillaracesexpanded.insector	xenotype	VRE_Insector	-	-	-
+mod:vanillaracesexpanded.lycanthrope	xenotype	VRE_Lycan	-	-	-
+mod:onlymonkey.awakenedapes	xenotype	Chimp	-	-	-
+mod:homebrew.fairycore	xenotype	FG_PixieFairy	-	-	-
+mod:nialation.pawsofinterest	xenotype	PoI_Eevee	-	-	-
+ludeon.rimworld.anomaly	apparel	Apparel_LabCoat	-	Torso,Neck,Shoulders,Arms|Shell	-
+ludeon.rimworld.biotech	gene	Superclotting	-	-	-
+ludeon.rimworld.biotech	gene	Immunity_SuperStrong	-	-	-
+ludeon.rimworld.biotech	gene	WoundHealing_SuperFast	-	-	-
+ludeon.rimworld.biotech	apparel	Apparel_ArrayHeadset	-	UpperHead|Overhead	-
+mod:homebrew.fairycore	xenotype	FG_CourtFairy	-	-	-
+ludeon.rimworld.biotech	gene	PsychicAbility_Enhanced	-	-	-
+ludeon.rimworld.biotech	gene	PerfectImmunity	-	-	-
+ludeon.rimworld.biotech	gene	Ageless	-	-	-

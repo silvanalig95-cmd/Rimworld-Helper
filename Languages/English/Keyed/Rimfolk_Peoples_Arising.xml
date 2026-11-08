@@ -36,6 +36,8 @@
   <CC_Arise_refugees_linesmen_2>They dug the town's set out of the ruin and found it still worked, and they walk the hills with copper wire now, a mast on every height, so that nobody round there has to walk a road for news.</CC_Arise_refugees_linesmen_2>
   <CC_Arise_refugees_crew>They kept the town's watches as if it were a ship still in flight, every post manned and every hour logged, and they live by its ranks now in the shell of what is left.</CC_Arise_refugees_crew>
   <CC_Arise_refugees_crew_2>They wrote the fall of the town into its log and kept their posts, a watch on every hour as a crew keeps it, and they are waiting still for orders nobody left alive can give.</CC_Arise_refugees_crew_2>
+  <CC_Arise_refugees_vaultfolk>They sat out the town's fall below it, in the shelter under the square, and came up again weeks later into a world that had moved on: they keep the shelter's door now and count everything twice.</CC_Arise_refugees_vaultfolk>
+  <CC_Arise_refugees_vaultfolk_2>They sealed themselves into the town's shelter as it burned and opened it again when the smoke was gone, and they live by the door now, numbered and careful, trading what they took below with them.</CC_Arise_refugees_vaultfolk_2>
   <CC_Arise_refugees_Cool>They are wary of the colony, as their old people were.</CC_Arise_refugees_Cool>
   <CC_Arise_refugees_CoolOurs>They remember who burned {TOWN}, and they are cool toward the colony.</CC_Arise_refugees_CoolOurs>
   <CC_Arise_refugees_Warm>They have heard the colony was a friend to {PEOPLE}, and they would be glad of its friendship too.</CC_Arise_refugees_Warm>
@@ -75,6 +77,12 @@
   <CC_Arise_exiles_citizens_2>{PAWN_nameDef} wrote every one of them into a roll and called a vote by the spring, and they keep a radio now that tells the region every evening what their little republic decided.</CC_Arise_exiles_citizens_2>
   <CC_Arise_exiles_grovekeepers>{PAWN_nameDef} knows growing things, and they live among the trees now, planting a seedling for every tree anyone fells and burying their dead under saplings.</CC_Arise_exiles_grovekeepers>
   <CC_Arise_exiles_grovekeepers_2>{PAWN_nameDef} taught them that the forest remembers every axe, and they keep a grove and a ledger of the trees round it now, a seed in every pocket for the next stump.</CC_Arise_exiles_grovekeepers_2>
+  <CC_Arise_exiles_listeners>{PAWN_nameDef} hears more than anyone should, and they sit in a ring now and listen to the land and to each other, so quiet that strangers lean in to hear them.</CC_Arise_exiles_listeners>
+  <CC_Arise_exiles_listeners_2>{PAWN_nameDef} taught them to listen before they speak, and they keep a ring of quiet halls now, where someone is always listening to the hum under everything.</CC_Arise_exiles_listeners_2>
+  <CC_Arise_exiles_editors>{PAWN_nameDef} knows the body better than anyone, and they keep a lab now where every change to a body is asked for first and written down after.</CC_Arise_exiles_editors>
+  <CC_Arise_exiles_editors_2>{PAWN_nameDef} wrote the first entry of their ledger with {PAWN_possessive} own genome, and they edit what they were given now, each one writing the next.</CC_Arise_exiles_editors_2>
+  <CC_Arise_exiles_mechanitors>{PAWN_nameDef} brought {PAWN_possessive} mechlink and a handful of mechs, and they link their minds through them now, a little lattice working as one.</CC_Arise_exiles_mechanitors>
+  <CC_Arise_exiles_mechanitors_2>{PAWN_nameDef} linked the first mechs to {PAWN_possessive} own mind and taught the rest to take more, and none of them is ever left alone in the quiet.</CC_Arise_exiles_mechanitors_2>
   <CC_Arise_exiles_Cool>Those who have met {PAWN_nameDef} on the road say {PAWN_pronoun} has not forgiven the colony.</CC_Arise_exiles_Cool>
   <CC_Arise_exiles_CoolGlad>{PAWN_nameDef} has not forgotten who was glad to see {PAWN_objective} go, they say.</CC_Arise_exiles_CoolGlad>
   <CC_Arise_exiles_Warm>{PAWN_nameDef} bears the colony no grudge, they say.</CC_Arise_exiles_Warm>
@@ -127,6 +135,9 @@
   <CC_Arise_Name_refugees_crew>The Crew of {WHAT}</CC_Arise_Name_refugees_crew>
   <CC_Arise_Name_refugees_crew_2>{WHAT} Watch</CC_Arise_Name_refugees_crew_2>
   <CC_Arise_Name_refugees_crew_3>{WHAT} Holding Position</CC_Arise_Name_refugees_crew_3>
+  <CC_Arise_Name_refugees_vaultfolk>The {WHAT} Shelter</CC_Arise_Name_refugees_vaultfolk>
+  <CC_Arise_Name_refugees_vaultfolk_2>{WHAT} Below</CC_Arise_Name_refugees_vaultfolk_2>
+  <CC_Arise_Name_refugees_vaultfolk_3>{WHAT} Broken Seal</CC_Arise_Name_refugees_vaultfolk_3>
   <CC_Arise_Name_league_traders>{WHAT} League</CC_Arise_Name_league_traders>
   <CC_Arise_Name_league_traders_2>League of {WHAT}</CC_Arise_Name_league_traders_2>
   <CC_Arise_Name_league_traders_3>Flags of {WHAT}</CC_Arise_Name_league_traders_3>
@@ -172,6 +183,15 @@
   <CC_Arise_Name_exiles_grovekeepers>{WHAT}'s Grove</CC_Arise_Name_exiles_grovekeepers>
   <CC_Arise_Name_exiles_grovekeepers_2>{WHAT}'s Mossborn</CC_Arise_Name_exiles_grovekeepers_2>
   <CC_Arise_Name_exiles_grovekeepers_3>{WHAT}'s Seedling</CC_Arise_Name_exiles_grovekeepers_3>
+  <CC_Arise_Name_exiles_listeners>The Choir of {WHAT}</CC_Arise_Name_exiles_listeners>
+  <CC_Arise_Name_exiles_listeners_2>{WHAT}'s Ring</CC_Arise_Name_exiles_listeners_2>
+  <CC_Arise_Name_exiles_listeners_3>{WHAT}'s Quiet Hum</CC_Arise_Name_exiles_listeners_3>
+  <CC_Arise_Name_exiles_editors>{WHAT}'s Works</CC_Arise_Name_exiles_editors>
+  <CC_Arise_Name_exiles_editors_2>{WHAT}'s Lab</CC_Arise_Name_exiles_editors_2>
+  <CC_Arise_Name_exiles_editors_3>{WHAT}'s Living Draft</CC_Arise_Name_exiles_editors_3>
+  <CC_Arise_Name_exiles_mechanitors>{WHAT}'s Lattice</CC_Arise_Name_exiles_mechanitors>
+  <CC_Arise_Name_exiles_mechanitors_2>{WHAT}'s Linked</CC_Arise_Name_exiles_mechanitors_2>
+  <CC_Arise_Name_exiles_mechanitors_3>{WHAT}'s Quiet Yard</CC_Arise_Name_exiles_mechanitors_3>
   <CC_Arise_TownName_Refugees>New {TOWN}</CC_Arise_TownName_Refugees>
 
   <!-- ================= The history, and their cards ({FROM}: what they came from) ================= -->

@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The Sunken Vault (docs/design/peoples-third.md, the eighth of the eight; docs/design/peoples.md, "Release G";
+    Source/ColonyCouncil/Peoples/PeoplesG2.cs): a sealed shelter whose people came up after generations below, with spacer
+    gear and failing power cells. They cannot make what they carry, and every year a little more of it stops working.
+    Spacer, on the game's outlander parent, and the one people that declines unless supplied (ageDeclines, 0.169.0's
+    rule: an age about every four years with nothing, held by the components and parts the colony sells or gives them;
+    never below the medieval age, ageFloor 1). They arise in the industrial and spacer ages (ariseAges 2~3: a shelter
+    opened). The look: the vault suit in vault olive, a collar shirt and trousers of the one cloth with the vault's number
+    on the back, worn and patched; in a later, poorer age patched with whatever is at hand (ageArms: a duster or a parka
+    over it in the industrial age, a cape in the medieval age). Their security in recon armour with charge rifles at
+    first, then flak and rifles, then plate and spears. A share are intellectuals and medics. Kinds of people: dirtmoles,
+    stoneborn, insectors, korgs, genies, pigskins, wasters, vault-born every one. Gifts: a psylink for the overseer now
+    and then (Protector), technomancers, super soldiers and rangers of A RimWorld of Magic, strong immunity in the medics.
+    Their towns: the vault door in the hillside with a surface camp growing round it (Rimfolk_Plan_VaultDoor). At the
+    gate: their last spacer goods for components and food (Rimfolk_Evt_VaultBarter); a craft they have lost, taught at the
+    colony's bench (Rimfolk_Evt_VaultCraft); a vault-born child who has never seen a sky asks to stay
+    (Rimfolk_Evt_VaultChild). Their ask: power cells, components for the vault's last machines
+    (Rimfolk_Mission_VaultCells). Their founding: Overseer Hollis Crane broke the seal. Faith (Ideology): the vault below
+    (tunneler), the overseer's word (loyalist) and Vanilla Ideology Expanded's scrapper.
+  -->
+
+  <FactionDef ParentName="OutlanderFactionBase">
+    <defName>Rimfolk_SunkenVault</defName>
+    <label>Sunken Vault</label>
+    <description>The people of a sealed shelter that opened after generations below, who came up into a world that had not waited for them. They carry spacer gear their great-grandparents made and nobody alive can mend, and every year a little more of it stops working. They trade the last of it for components and food, ask other peoples to teach them the crafts they lost, and remember who kept them supplied.\n\nTheir ways began when the vault's water ran short, generations after the doors were sealed. The vault's council chose Overseer Hollis Crane to open them, and she broke the seal and walked out first into the light. Nobody had told them what the sky would be like, and half of them went back below for a week. The vault took its number from the door, and every dweller still wears it on the back of the suit.\n\nThey are careful, polite and a little afraid of open ground, and they count everything twice. They fear the last cell going dark, a door that will not close and the sky with nothing over it. A vault is kept by its warden, and the people by their overseer.</description>
+    <pawnSingular>dweller</pawnSingular>
+    <pawnsPlural>dwellers</pawnsPlural>
+    <leaderTitle>overseer</leaderTitle>
+    <techLevel>Spacer</techLevel>
+    <basicMemberKind>Rimfolk_SunkenVault_Dweller</basicMemberKind>
+    <factionNameMaker>Rimfolk_Namer_SunkenVault</factionNameMaker>
+    <settlementNameMaker>Rimfolk_Namer_SunkenVaultTown</settlementNameMaker>
+    <factionIconPath>ColonyCouncil/Peoples/SunkenVault</factionIconPath>
+    <settlementTexturePath>ColonyCouncil/Peoples/SunkenVaultTown</settlementTexturePath>
+    <colorSpectrum>
+      <li>(0.32, 0.34, 0.22)</li>
+      <li>(0.52, 0.54, 0.36)</li>
+    </colorSpectrum>
+    <hidden>false</hidden>
+    <naturalEnemy>false</naturalEnemy>
+    <permanentEnemy>false</permanentEnemy>
+    <canSiege>false</canSiege>
+    <requiredCountAtGameStart>0</requiredCountAtGameStart>
+    <startingCountAtWorldCreation>1</startingCountAtWorldCreation>
+    <maxConfigurableAtWorldCreation>9999</maxConfigurableAtWorldCreation>
+    <configurationListOrderPriority>49</configurationListOrderPriority>
+    <settlementGenerationWeight>0.25</settlementGenerationWeight>
+    <backstoryFilters Inherit="False">
+      <li>
+        <categories>
+          <li>Outlander</li>
+        </categories>
+        <commonality>0.7</commonality>
+      </li>
+      <li>
+        <categories>
+          <li>Offworld</li>
+        </categories>
+        <commonality>0.3</commonality>
+      </li>
+    </backstoryFilters>
+    <raidCommonalityFromPointsCurve Inherit="False">
+      <points>
+        <li>(0, 0.15)</li>
+      </points>
+    </raidCommonalityFromPointsCurve>
+    <xenotypeSet Inherit="False">
+      <xenotypeChances>
+        <Dirtmole MayRequire="Ludeon.RimWorld.Biotech">0.05</Dirtmole>
+        <Genie MayRequire="Ludeon.RimWorld.Biotech">0.02</Genie>
+        <Pigskin MayRequire="Ludeon.RimWorld.Biotech">0.02</Pigskin>
+        <Waster MayRequire="Ludeon.RimWorld.Biotech">0.02</Waster>
+        <Stoneborn MayRequire="Ludeon.RimWorld.Biotech,det.stoneborn">0.03</Stoneborn>
+        <VRE_Insector MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.insector">0.02</VRE_Insector>
+        <Korg MayRequire="Ludeon.RimWorld.Biotech,sovereign.kork">0.02</Korg>
+      </xenotypeChances>
+    </xenotypeSet>
+    <fixedIdeo>true</fixedIdeo>
+    <ideoName>The Seal</ideoName>
+    <ideoDescription>The doors opened, and the world they were waiting for didn't come with them. The vault kept them alive for generations below, every cell counted and every part kept going, and the overseer's word kept the count. When the water ran short the vault's council chose Overseer Hollis Crane to break the seal, and she walked out first into a world that had not waited. The dwellers mend what they can, trade what they must, and never forget a people who helped keep the lights on below.</ideoDescription>
+    <forcedMemes>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Tunneler</li>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Loyalist</li>
+      <!-- Patched with whatever is at hand: Vanilla Ideology Expanded's scrapper. -->
+      <li MayRequire="VanillaExpanded.VMemesE">VME_Scrapper</li>
+    </forcedMemes>
+    <structureMemeWeights Inherit="False">
+      <Structure_Archist MayRequire="Ludeon.RimWorld.Ideology">3</Structure_Archist>
+      <Structure_Ideological MayRequire="Ludeon.RimWorld.Ideology">1</Structure_Ideological>
+    </structureMemeWeights>
+    <styles>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Techist</li>
+    </styles>
+    <caravanTraderKinds Inherit="False">
+      <li>Rimfolk_Caravan_SunkenVault</li>
+    </caravanTraderKinds>
+    <visitorTraderKinds Inherit="False">
+      <li>Rimfolk_Visitor_SunkenVault</li>
+    </visitorTraderKinds>
+    <baseTraderKinds Inherit="False">
+      <li>Rimfolk_Base_SunkenVault</li>
+    </baseTraderKinds>
+    <pawnGroupMakers Inherit="False">
+      <li>
+        <!-- A fight: the vault's security, a surface-scout and the dwellers who stand with them -->
+        <kindDef>Combat</kindDef>
+        <options>
+          <Rimfolk_SunkenVault_Security>12</Rimfolk_SunkenVault_Security>
+          <Rimfolk_SunkenVault_Scout>4</Rimfolk_SunkenVault_Scout>
+          <Rimfolk_SunkenVault_Dweller>3</Rimfolk_SunkenVault_Dweller>
+        </options>
+      </li>
+      <li>
+        <kindDef>Peaceful</kindDef>
+        <options>
+          <Rimfolk_SunkenVault_Dweller>14</Rimfolk_SunkenVault_Dweller>
+          <Rimfolk_SunkenVault_Medic>3</Rimfolk_SunkenVault_Medic>
+          <Rimfolk_SunkenVault_Scout>3</Rimfolk_SunkenVault_Scout>
+          <Rimfolk_SunkenVault_Security>3</Rimfolk_SunkenVault_Security>
+          <Villager_Child MayRequire="Ludeon.RimWorld.Biotech">3</Villager_Child>
+        </options>
+      </li>
+      <li>
+        <!-- The technician's crates: the vault's last spacer goods -->
+        <kindDef>Trader</kindDef>
+        <traders>
+          <Rimfolk_SunkenVault_Technician>1</Rimfolk_SunkenVault_Technician>
+        </traders>
+        <carriers>
+          <Muffalo>3</Muffalo>
+          <Donkey>2</Donkey>
+        </carriers>
+        <guards>
+          <Rimfolk_SunkenVault_Security>6</Rimfolk_SunkenVault_Security>
+          <Rimfolk_SunkenVault_Scout>3</Rimfolk_SunkenVault_Scout>
+        </guards>
+      </li>
+      <li>
+        <kindDef>Settlement</kindDef>
+        <options>
+          <Rimfolk_SunkenVault_Security>12</Rimfolk_SunkenVault_Security>
+          <Rimfolk_SunkenVault_Dweller>8</Rimfolk_SunkenVault_Dweller>
+          <Rimfolk_SunkenVault_Scout>3</Rimfolk_SunkenVault_Scout>
+          <Rimfolk_SunkenVault_Medic>2</Rimfolk_SunkenVault_Medic>
+          <Rimfolk_SunkenVault_Technician>2</Rimfolk_SunkenVault_Technician>
+        </options>
+      </li>
+    </pawnGroupMakers>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleExtension">
+        <calling>vaultfolk</calling>
+        <!-- Their age over the years (Peoples/PeopleAges.cs): they cannot make what they carry, so they fall an age about every four years unless the colony (or anyone) keeps them in components and parts, and never rise on their own; at worst they keep the medieval crafts. -->
+        <agePace>12</agePace>
+        <ageLimit>3</ageLimit>
+        <ageFloor>1</ageFloor>
+        <ageDeclines>true</ageDeclines>
+        <ageDeclineYears>4</ageDeclineYears>
+        <townWord>vault</townWord>
+        <townWords>vaults</townWords>
+        <head>warden</head>
+        <heir>deputy warden</heir>
+        <envoy>surface-scout</envoy>
+        <trader>technician</trader>
+        <courier>surface-runner</courier>
+        <couriers>surface-runners</couriers>
+        <caravanWeight>0.6</caravanWeight>
+        <camps>
+          <li>Council_Camp_Refugees</li>
+          <li>Council_Camp_Prospectors</li>
+          <li>Rimfolk_Camp_Salvagers</li>
+        </camps>
+        <plan>Rimfolk_Plan_VaultDoor</plan>
+        <honours>a part kept working, a number answered at the roll call and a craft learned again</honours>
+        <fears>the last cell going dark, a door that will not close and the sky with nothing over it</fears>
+        <sayings>
+          <li>The doors opened.</li>
+          <li>The world we were waiting for didn't come with them.</li>
+          <li>Every cell counts.</li>
+          <li>Number off.</li>
+          <li>Mind the seal.</li>
+        </sayings>
+        <townGoods>
+          <MealSurvivalPack>12~24</MealSurvivalPack>
+          <MedicineUltratech>1~2</MedicineUltratech>
+          <ComponentSpacer>1~1</ComponentSpacer>
+          <Plasteel>10~30</Plasteel>
+        </townGoods>
+        <ariseAges>2~3</ariseAges>
+      </li>
+    </modExtensions>
+  </FactionDef>
+
+  <!-- ===================== Their people ===================== -->
+
+  <!--
+    How alike they look (docs/design/peoples.md, "Release G"): the vault suit, a collar shirt and trousers of the one olive
+    cloth with the vault's number on the back, on everyone, worn thin (low gear health); the security in recon armour over
+    it, the overseer a jacket of the same olive, the scouts something for the weather over the suit. In a later, poorer age
+    the suit is patched with whatever is at hand (ageArms): a duster or a parka in the industrial age, a cape in the
+    medieval age; and the security take the age's issue: flak and rifles, then plate and spears. Without any mod: the
+    game's shirts, trousers, jackets, recon armour, charge rifles and pistols, and the suit's olive.
+  -->
+  <PawnKindDef Name="Rimfolk_SunkenVaultKindBase" Abstract="True">
+    <race>Human</race>
+    <defaultFactionDef>Rimfolk_SunkenVault</defaultFactionDef>
+    <chemicalAddictionChance>0.03</chemicalAddictionChance>
+    <invNutrition>2.55</invNutrition>
+    <specificApparelRequirements>
+      <!-- The vault suit in vault olive: the shirt and the trousers, and the overseer's jacket. -->
+      <li><apparelDef>Apparel_CollarShirt</apparelDef><color>(0.42, 0.44, 0.28)</color></li>
+      <li><apparelDef>Apparel_Pants</apparelDef><color>(0.42, 0.44, 0.28)</color></li>
+      <li><apparelDef>Apparel_Jacket</apparelDef><color>(0.42, 0.44, 0.28)</color></li>
+    </specificApparelRequirements>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_SunkenVaultKindBase">
+    <defName>Rimfolk_SunkenVault_Dweller</defName>
+    <label>dweller</label>
+    <combatPower>40</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Poor</itemQuality>
+    <gearHealthRange>0.3~0.8</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Industrial</li>
+    </apparelTags>
+    <apparelMoney>200~450</apparelMoney>
+    <weaponTags>
+      <li>Autopistol</li>
+      <li>SimpleGun</li>
+    </weaponTags>
+    <weaponMoney>80~200</weaponMoney>
+    <inventoryOptions>
+      <skipChance>0.5</skipChance>
+      <subOptionsChooseOne>
+        <li><thingDef>MealSurvivalPack</thingDef><countRange>1~2</countRange><choiceChance>2</choiceChance></li>
+        <li><thingDef>ComponentIndustrial</thingDef><countRange>1~1</countRange></li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>10~16</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Technomancer</trait><chance>0.02</chance></li>
+        </gifts>
+        <!-- Patched with whatever is at hand. -->
+        <ageArms>
+          <li>
+            <ages>1~1</ages>
+            <apparel>
+              <li>Apparel_Cape</li>
+            </apparel>
+          </li>
+          <li>
+            <ages>2~2</ages>
+            <apparel>
+              <li>Apparel_Parka</li>
+            </apparel>
+          </li>
+        </ageArms>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_SunkenVaultKindBase">
+    <defName>Rimfolk_SunkenVault_Security</defName>
+    <label>vault security</label>
+    <combatPower>100</combatPower>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.4~0.9</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+      <li>Apparel_ArmorRecon</li>
+      <li>Apparel_ArmorHelmetRecon</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>BeltDefensePop</li>
+    </apparelTags>
+    <apparelMoney>2000~3000</apparelMoney>
+    <weaponTags>
+      <li>SpacerGun</li>
+    </weaponTags>
+    <weaponMoney>900~1500</weaponMoney>
+    <requiredWorkTags>Violent</requiredWorkTags>
+    <inventoryOptions>
+      <skipChance>0.6</skipChance>
+      <subOptionsChooseOne>
+        <li><thingDef>MealSurvivalPack</thingDef><countRange>1~2</countRange></li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>16~24</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>TM_SuperSoldier</trait><chance>0.03</chance></li>
+        </gifts>
+        <!-- What they can make, once what they carried has stopped working. -->
+        <ageArms>
+          <li>
+            <ages>1~1</ages>
+            <weaponTags>
+              <li>Spear</li>
+              <li>MedievalMeleeAdvanced</li>
+            </weaponTags>
+            <apparel>
+              <li>Apparel_PlateArmor</li>
+              <li>Apparel_Cape</li>
+            </apparel>
+          </li>
+          <li>
+            <ages>2~2</ages>
+            <money>700</money>
+            <weaponTags>
+              <li>AssaultRifle</li>
+            </weaponTags>
+            <apparel>
+              <li>Apparel_FlakVest</li>
+              <li>Apparel_Duster</li>
+            </apparel>
+          </li>
+        </ageArms>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_SunkenVaultKindBase">
+    <defName>Rimfolk_SunkenVault_Scout</defName>
+    <label>surface-scout</label>
+    <combatPower>70</combatPower>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.5~1.0</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+      <li>Apparel_Duster</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Industrial</li>
+    </apparelTags>
+    <apparelMoney>400~800</apparelMoney>
+    <weaponTags>
+      <li>SimpleGun</li>
+      <li>ShortShots</li>
+    </weaponTags>
+    <weaponMoney>150~350</weaponMoney>
+    <requiredWorkTags>Violent</requiredWorkTags>
+    <skills>
+      <li>
+        <skill>Shooting</skill>
+        <range>6~12</range>
+      </li>
+    </skills>
+    <inventoryOptions>
+      <skipChance>0.5</skipChance>
+      <subOptionsChooseOne>
+        <li><thingDef>MealSurvivalPack</thingDef><countRange>1~3</countRange></li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>14~20</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Ranger</trait><chance>0.04</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_SunkenVaultKindBase">
+    <defName>Rimfolk_SunkenVault_Medic</defName>
+    <label>vault medic</label>
+    <combatPower>45</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.5~1.0</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+      <li MayRequire="VanillaExpanded.VAPPE">VAE_Headgear_SurgicalMask</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+    </apparelTags>
+    <apparelMoney>300~600</apparelMoney>
+    <weaponTags>
+      <li>Autopistol</li>
+    </weaponTags>
+    <weaponMoney>100~200</weaponMoney>
+    <skills>
+      <li>
+        <skill>Medicine</skill>
+        <range>8~14</range>
+      </li>
+    </skills>
+    <inventoryOptions>
+      <subOptionsTakeAll>
+        <li><thingDef>MedicineIndustrial</thingDef><countRange>1~2</countRange></li>
+      </subOptionsTakeAll>
+    </inventoryOptions>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>12~18</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li>
+            <genes>
+              <li>Immunity_Strong</li>
+            </genes>
+            <chance>0.04</chance>
+          </li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_SunkenVaultKindBase">
+    <defName>Rimfolk_SunkenVault_Technician</defName>
+    <label>technician</label>
+    <trader>true</trader>
+    <combatPower>45</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.5~1.0</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Spacer</li>
+    </apparelTags>
+    <apparelMoney>300~600</apparelMoney>
+    <weaponTags>
+      <li>Autopistol</li>
+    </weaponTags>
+    <weaponMoney>100~200</weaponMoney>
+    <skills>
+      <li>
+        <skill>Crafting</skill>
+        <range>6~12</range>
+      </li>
+      <li>
+        <skill>Intellectual</skill>
+        <range>6~12</range>
+      </li>
+    </skills>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>12~18</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_SunkenVaultKindBase">
+    <defName>Rimfolk_SunkenVault_Overseer</defName>
+    <label>overseer</label>
+    <combatPower>90</combatPower>
+    <factionLeader>true</factionLeader>
+    <minGenerationAge>40</minGenerationAge>
+    <itemQuality>Good</itemQuality>
+    <gearHealthRange>0.6~1.1</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+      <li>Apparel_Jacket</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialAdvanced</li>
+    </apparelTags>
+    <apparelMoney>600~1100</apparelMoney>
+    <weaponTags>
+      <li>SpacerGun</li>
+    </weaponTags>
+    <weaponMoney>900~1500</weaponMoney>
+    <skills>
+      <li>
+        <skill>Social</skill>
+        <range>8~14</range>
+      </li>
+      <li>
+        <skill>Intellectual</skill>
+        <range>6~12</range>
+      </li>
+    </skills>
+    <initialWillRange>4~6</initialWillRange>
+    <initialResistanceRange>18~26</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li>
+            <psylink>1~3</psylink>
+            <paths>
+              <li>VPE_Protector</li>
+            </paths>
+            <chance>0.15</chance>
+          </li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <!-- ===================== Their traders: the vault's last spacer goods ===================== -->
+
+  <TraderKindDef>
+    <defName>Rimfolk_Caravan_SunkenVault</defName>
+    <label>vault's crates</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>300~700</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineUltratech</thingDef>
+        <countRange>1~3</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentSpacer</thingDef>
+        <countRange>0~1</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MealSurvivalPack</thingDef>
+        <countRange>10~25</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponRanged</tradeTag>
+        <countRange>1~2</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>Armor</tradeTag>
+        <countRange>1~2</countRange>
+      </li>
+      <li Class="StockGenerator_BuySingleDef">
+        <thingDef>ComponentIndustrial</thingDef>
+      </li>
+      <li Class="StockGenerator_BuySingleDef">
+        <thingDef>ComponentSpacer</thingDef>
+      </li>
+      <li Class="StockGenerator_BuySingleDef">
+        <thingDef>Steel</thingDef>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Visitor_SunkenVault</defName>
+    <label>dwellers</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>100~300</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MealSurvivalPack</thingDef>
+        <countRange>4~10</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineUltratech</thingDef>
+        <countRange>0~1</countRange>
+      </li>
+      <li Class="StockGenerator_BuySingleDef">
+        <thingDef>ComponentIndustrial</thingDef>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Base_SunkenVault</defName>
+    <label>vault</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>600~1200</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineUltratech</thingDef>
+        <countRange>2~4</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentSpacer</thingDef>
+        <countRange>1~2</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Plasteel</thingDef>
+        <countRange>20~60</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MealSurvivalPack</thingDef>
+        <countRange>20~40</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponRanged</tradeTag>
+        <countRange>2~4</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>Armor</tradeTag>
+        <countRange>1~3</countRange>
+      </li>
+      <li Class="StockGenerator_BuySingleDef">
+        <thingDef>ComponentIndustrial</thingDef>
+      </li>
+      <li Class="StockGenerator_BuySingleDef">
+        <thingDef>ComponentSpacer</thingDef>
+      </li>
+      <li Class="StockGenerator_BuySingleDef">
+        <thingDef>Steel</thingDef>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+    </stockGenerators>
+  </TraderKindDef>
+
+  <!-- ===================== Their names ===================== -->
+
+  <!-- The vault's number is its own, on every dweller's back: the people named by it. -->
+  <RulePackDef>
+    <defName>Rimfolk_Namer_SunkenVault</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->The Sunken Vault [vaultNumber]</li>
+        <li>r_name(p=2)->The Dwellers of Vault [vaultNumber]</li>
+        <li>r_name->The [vaultVirtue] Vault</li>
+        <li>r_name->Vault [vaultNumber] of [PlaceOutlander]</li>
+        <li>vaultNumber->Seven</li>
+        <li>vaultNumber->Twelve</li>
+        <li>vaultNumber->Nineteen</li>
+        <li>vaultNumber->Thirty-Four</li>
+        <li>vaultNumber->Fifty-One</li>
+        <li>vaultVirtue->Sunken</li>
+        <li>vaultVirtue->Open</li>
+        <li>vaultVirtue->Deep</li>
+        <li>vaultVirtue->Crane's</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_SunkenVaultTown</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->[PlaceOutlander] Door</li>
+        <li>r_name(p=2)->[PlaceOutlander] Shelter</li>
+        <li>r_name->[vaultWord] [PlaceOutlander]</li>
+        <li>r_name->[vaultVirtue] Seal</li>
+        <li>vaultWord->Hatch</li>
+        <li>vaultWord->Topside</li>
+        <li>vaultWord->Shaft</li>
+        <li>vaultVirtue->Broken</li>
+        <li>vaultVirtue->Crane's</li>
+        <li>vaultVirtue->Lower</li>
+        <li>vaultVirtue->Upper</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>

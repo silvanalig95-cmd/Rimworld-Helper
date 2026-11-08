@@ -51,6 +51,16 @@ Release F:
   - the Hollow Fleet: a ship's hull pointing down to the ground inside a ring, a rank chevron under it (emblem); a
     grounded hull lying on its side beside a landing pad (town).
 
+Release G:
+  - the Helix Works: a double helix with its rungs (emblem); a lab with a round vat beside it and a leaf of the quiet
+    garden (town);
+  - the Lattice: a lattice of nine nodes linked to their neighbours, the middle one the node (emblem); a control tower
+    beside the gestation hall over a row of batteries (town);
+  - the Choir of the Spire: a slender spire inside the rings of its hum (emblem); a pale monolith in a ring of small
+    halls (town);
+  - the Sunken Vault: a square hatch with its wheel, set in a hill (emblem); a door in a hillside with two
+    tents of the surface camp beside it (town).
+
 A new people's glyphs: a function for each and a line in GLYPHS.
 
 Usage (from the repository root):
@@ -66,7 +76,7 @@ import sys
 from PIL import Image, ImageDraw, ImageFont
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from make_icons import arc, bezier, circle, ellipse, grow, leaf, line, minus, over, poly, rect, star, union  # noqa: E402
+from make_icons import arc, bezier, circle, ellipse, grow, leaf, line, minus, over, poly, rect, ring, star, union  # noqa: E402
 
 S = 512  # drawing size (4x)
 OUT = 128  # texture size
@@ -898,6 +908,141 @@ def g_hollowfleet_town():
     return over(pad, m, 8)
 
 
+# ---------------------------------------------------------------- the Helix Works
+
+def g_helixworks():
+    """A double helix with its rungs."""
+    m = new()
+    top, bottom, amp = 40, 472, 104
+    a, b = [], []
+    for i in range(0, 61):
+        t = i / 60.0
+        y = top + (bottom - top) * t
+        x = 256 + amp * math.sin(t * 2 * math.pi * 1.5)
+        a.append((x, y))
+        b.append((512 - x, y))
+    for i in range(1, 10):
+        t = i / 10.0
+        y = top + (bottom - top) * t
+        x = 256 + amp * math.sin(t * 2 * math.pi * 1.5)
+        if abs(x - 256) > 30:
+            line(m, [(x, y), (512 - x, y)], 18)
+    strands = new()
+    line(strands, a, 34)
+    line(strands, b, 34)
+    return over(strands, m, 10)
+
+
+def g_helixworks_town():
+    """A lab with a round vat beside it and a leaf of the quiet garden."""
+    m = new()
+    rect(m, 0, 450, 512, 480)                       # the ground
+    rect(m, 60, 250, 300, 450)                      # the lab
+    rect(m, 40, 230, 320, 260)                      # its flat roof
+    for x in (100, 170, 240):
+        rect(m, x, 300, x + 36, 360, fill=OFF)      # its windows
+    vat = new()
+    rect(vat, 340, 210, 450, 450, r=40)             # the vat
+    ImageDraw.Draw(vat).ellipse([340, 180, 450, 240], fill=ON)
+    rect(vat, 370, 270, 420, 400, r=20, fill=OFF)   # its glass
+    m = over(vat, m, 10)
+    poly(m, leaf((470, 448), (500, 330), 40, 0.3))  # the garden
+    return m
+
+
+# ---------------------------------------------------------------- the Lattice
+
+def g_lattice():
+    """A lattice of nine nodes linked to their neighbours, the middle one the node."""
+    m = new()
+    pts = [(116 + 140 * c, 116 + 140 * r) for r in range(3) for c in range(3)]
+    links = new()
+    for i, (x, y) in enumerate(pts):
+        for j, (x2, y2) in enumerate(pts):
+            if j <= i:
+                continue
+            if abs(x - x2) + abs(y - y2) == 140 or (abs(x - x2) == 140 and abs(y - y2) == 140 and (i == 4 or j == 4)):
+                line(links, [(x, y), (x2, y2)], 18)
+    nodes = new()
+    for i, (x, y) in enumerate(pts):
+        circle(nodes, x, y, 62 if i == 4 else 40)
+    return over(nodes, links, 12)
+
+
+def g_lattice_town():
+    """A control tower beside the gestation hall over a row of batteries."""
+    m = new()
+    rect(m, 0, 450, 512, 480)                       # the ground
+    rect(m, 70, 120, 140, 450)                      # the tower
+    rect(m, 40, 80, 170, 150, r=12)                 # its cab
+    rect(m, 70, 98, 140, 128, fill=OFF)             # its window
+    hall = new()
+    poly(hall, [(190, 450), (190, 290), (330, 230), (470, 290), (470, 450)])
+    rect(hall, 300, 360, 360, 450, fill=OFF)        # its door
+    m = over(hall, m, 10)
+    cells = new()
+    for x in (200, 260, 400):
+        rect(cells, x, 400, x + 40, 450)            # batteries before it
+    return over(cells, m, 8)
+
+
+# ---------------------------------------------------------------- the Choir of the Spire
+
+def g_choir():
+    """A slender spire inside the rings of its hum."""
+    hum = new()
+    ring(hum, 256, 210, 112, 20)
+    ring(hum, 256, 210, 178, 20)
+    m = new()
+    poly(m, [(256, 30), (300, 440), (212, 440)])    # the spire
+    rect(m, 168, 440, 344, 472, r=8)                # its foot
+    return over(m, hum, 16)
+
+
+def g_choir_town():
+    """A pale monolith in a ring of small halls."""
+    m = new()
+    rect(m, 0, 450, 512, 480)                       # the ground
+    poly(m, [(226, 450), (226, 150), (256, 100), (286, 150), (286, 450)])  # the monolith
+    halls = new()
+    for x, y in ((40, 330), (120, 280), (370, 280), (450, 330)):
+        rect(halls, x - 34, y, x + 34, 450)
+        poly(halls, [(x - 44, y + 4), (x, y - 40), (x + 44, y + 4)])
+    return over(m, halls, 12)
+
+
+# ---------------------------------------------------------------- the Sunken Vault
+
+def g_sunkenvault():
+    """A square hatch with its wheel, set in a hill."""
+    m = new()
+    ImageDraw.Draw(m).pieslice([16, 150, 496, 630], 180, 360, fill=ON)  # the hill
+    rect(m, 0, 380, 512, 392, fill=OFF)
+    hatch = new()
+    rect(hatch, 146, 200, 366, 420, r=22)
+    rect(hatch, 172, 226, 340, 394, r=12, fill=OFF)
+    circle(hatch, 256, 310, 64)                     # the wheel
+    circle(hatch, 256, 310, 38, fill=OFF)
+    for deg in (0, 90, 180, 270):
+        a = math.radians(deg)
+        line(hatch, [(256 + 26 * math.cos(a), 310 + 26 * math.sin(a)), (256 + 80 * math.cos(a), 310 + 80 * math.sin(a))], 16)
+    circle(hatch, 256, 310, 14)
+    return over(hatch, m, 14)
+
+
+def g_sunkenvault_town():
+    """A door in a hillside with two tents of the surface camp beside it."""
+    m = new()
+    rect(m, 0, 450, 512, 480)                       # the ground
+    ImageDraw.Draw(m).pieslice([20, 220, 380, 680], 180, 360, fill=ON)  # the hillside
+    rect(m, 150, 330, 250, 450, r=16, fill=OFF)     # the door
+    rect(m, 170, 350, 230, 450, r=8)
+    camp = new()
+    poly(camp, [(330, 450), (395, 340), (460, 450)])
+    poly(camp, [(420, 450), (470, 370), (512, 450)])
+    return over(camp, m, 10)
+
+
 GLYPHS = [
     ("League", g_league), ("LeagueTown", g_league_town),
     ("Order", g_order), ("OrderTown", g_order_town),
@@ -918,6 +1063,10 @@ GLYPHS = [
     ("Deepwell", g_deepwell), ("DeepwellTown", g_deepwell_town),
     ("Republic", g_republic), ("RepublicTown", g_republic_town),
     ("HollowFleet", g_hollowfleet), ("HollowFleetTown", g_hollowfleet_town),
+    ("HelixWorks", g_helixworks), ("HelixWorksTown", g_helixworks_town),
+    ("Lattice", g_lattice), ("LatticeTown", g_lattice_town),
+    ("Choir", g_choir), ("ChoirTown", g_choir_town),
+    ("SunkenVault", g_sunkenvault), ("SunkenVaultTown", g_sunkenvault_town),
 ]
 
 # The peoples' colours (the middle of each colorSpectrum in Defs/PeopleDefs/), for the preview.
@@ -925,7 +1074,8 @@ TINTS = {"League": (66, 158, 166), "Order": (234, 228, 210), "Herders": (196, 11
          "Scholars": (143, 46, 84), "Enclave": (161, 212, 227), "RiverFolk": (28, 115, 179),
          "Wardens": (176, 50, 32), "QuietBell": (105, 105, 115), "Tamers": (125, 82, 170), "Wheel": (158, 135, 61),
          "Stormglass": (74, 92, 130), "Mossborn": (79, 115, 48), "AshenBanner": (156, 151, 144), "KilnGuild": (214, 166, 51),
-         "SignalLine": (224, 120, 41), "Deepwell": (153, 28, 26), "Republic": (43, 61, 120), "HollowFleet": (102, 110, 125)}
+         "SignalLine": (224, 120, 41), "Deepwell": (153, 28, 26), "Republic": (43, 61, 120), "HollowFleet": (102, 110, 125),
+         "HelixWorks": (189, 227, 214), "Lattice": (74, 64, 112), "Choir": (214, 207, 235), "SunkenVault": (107, 112, 74)}
 
 
 def to_texture(mask):
