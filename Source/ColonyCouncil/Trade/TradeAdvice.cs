@@ -20,6 +20,8 @@ namespace ColonyCouncil
         public float perUnit = 1f;
         /// <summary>The price against the usual: a sale's and a purchase's (1 as usual; more is better), where the row has that side.</summary>
         public float sellDeal = 1f, buyDeal = 1f;
+        /// <summary>The usual prices a piece for this negotiator and difficulty (TradeAdviceMath's usual, Vanilla Trading Expanded's market divided out); 0 outside a silver trade.</summary>
+        public float usualSell, usualBuy;
         public bool canSell, canBuy;
         /// <summary>Of what the colony has of it in all, the pieces set aside for its plans (a sale that cuts into them is warned).</summary>
         public int have, setAside;
@@ -146,6 +148,35 @@ namespace ColonyCouncil
             return W(higher ? "CC_Trade_Usual_Above" : "CC_Trade_Usual_Below", share.Named("PCT"));
         }
 
+        /// <summary>
+        /// The usual prices a piece of a thing for a negotiator's gain and the difficulty's loss: the game's 60% and 140% of
+        /// its worth (TradeAdviceMath), its worth being its market value with Vanilla Trading Expanded's market change
+        /// (<paramref name="factor"/>) divided out.
+        /// </summary>
+        public static void UsualPrices(Thing thing, float factor, float gain, float loss, out float sell, out float buy)
+        {
+            float worth = (thing?.MarketValue ?? 0f) / Mathf.Max(0.01f, factor);
+            sell = TradeAdviceMath.UsualSell(worth, gain, loss);
+            buy = TradeAdviceMath.UsualBuy(worth, gain, loss);
+        }
+
+        /// <summary>The open trade's negotiator gain (their price improvement and the trader's offset for the colony) and the difficulty's loss, as the game prices with them.</summary>
+        public static void GainAndLoss(out float gain, out float loss)
+        {
+            var negotiator = TradeSession.playerNegotiator;
+            gain = negotiator != null && TradeSession.Active ? negotiator.GetStatValue(StatDefOf.TradePriceImprovement) + TradeSession.trader.TradePriceImprovementOffsetForPlayer : 0f;
+            loss = Find.Storyteller?.difficulty?.tradePriceFactorLoss ?? 0f;
+        }
+
+        /// <summary>The usual prices a piece of a row the advice doesn't read (people and animals), for the open trade.</summary>
+        public static void UsualFor(Tradeable t, out float sell, out float buy)
+        {
+            sell = buy = 0f;
+            if (t == null || !t.HasAnyThing || !TradeSession.Active || TradeSession.TradeCurrency != TradeCurrency.Silver) return;
+            GainAndLoss(out float gain, out float loss);
+            UsualPrices(t.AnyThing, VanillaTrading.WorldFactor(t.ThingDef), gain, loss, out sell, out buy);
+        }
+
         /// <summary>One reading of the colony and the trader: builds every row's note.</summary>
         private sealed class Reading
         {
@@ -180,8 +211,7 @@ namespace ColonyCouncil
                 needs = home != null ? ColonyNeeds.For(home) : null;
                 view = home != null ? Ahead.For(home) : null;
                 silver = TradeSession.TradeCurrency == TradeCurrency.Silver;
-                gain = negotiator.GetStatValue(StatDefOf.TradePriceImprovement) + TradeSession.trader.TradePriceImprovementOffsetForPlayer;
-                loss = Find.Storyteller?.difficulty?.tradePriceFactorLoss ?? 0f;
+                GainAndLoss(out gain, out loss);
                 if (home != null) people.AddRange(ColonyNeeds.Hands(home));
                 if (caravan != null)
                 {
@@ -331,9 +361,9 @@ namespace ColonyCouncil
                 n.aside.AddRange(why);
                 if (!silver) return n;
                 float factor = WorldOf(d);
-                float worth = thing.MarketValue / Mathf.Max(0.01f, factor);
-                if (n.canSell) n.sellDeal = TradeAdviceMath.SellDeal(t.GetPriceFor(TradeAction.PlayerSells), TradeAdviceMath.UsualSell(worth, gain, loss));
-                if (n.canBuy) n.buyDeal = TradeAdviceMath.BuyDeal(t.GetPriceFor(TradeAction.PlayerBuys), TradeAdviceMath.UsualBuy(worth, gain, loss));
+                UsualPrices(thing, factor, gain, loss, out n.usualSell, out n.usualBuy);
+                if (n.canSell) n.sellDeal = TradeAdviceMath.SellDeal(t.GetPriceFor(TradeAction.PlayerSells), n.usualSell);
+                if (n.canBuy) n.buyDeal = TradeAdviceMath.BuyDeal(t.GetPriceFor(TradeAction.PlayerBuys), n.usualBuy);
                 if (Mathf.Abs(factor - 1f) >= TradeAdviceMath.WorldShift)
                 {
                     int pct = Mathf.Abs(TradeAdviceMath.PercentOff(factor));

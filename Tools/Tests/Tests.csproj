@@ -14,6 +14,7 @@
     <Compile Include="../../Source/ColonyCouncil/Visitors/VisitorTradeMath.cs" Link="VisitorTradeMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Trade/TradeAdviceMath.cs" Link="TradeAdviceMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Trade/TradeMarketMath.cs" Link="TradeMarketMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Trade/TradeWindowMath.cs" Link="TradeWindowMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/TemplateLayout.cs" Link="TemplateLayout.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/ThemeMath.cs" Link="ThemeMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/LightMath.cs" Link="LightMath.cs" />
