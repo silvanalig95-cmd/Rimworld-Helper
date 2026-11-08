@@ -316,7 +316,9 @@
             <ages>2~2</ages>
             <money>900</money>
             <weaponTags>
-              <li MayRequire="bamba.allbambamelee.tiered">Rimfolk_FineBlade</li>
+              <li>MedievalMeleeAdvanced</li>
+              <!-- Bamba's forged one-handed blades and maces, the money keeping each age to its own tier. -->
+              <li MayRequire="bamba.allbambamelee.tiered">CE_OneHandedWeapon</li>
             </weaponTags>
           </li>
           <li>
@@ -324,7 +326,7 @@
             <money>2600</money>
             <weaponTags>
               <li MayRequire="Ludeon.RimWorld.Royalty">UltratechMelee</li>
-              <li MayRequire="bamba.allbambamelee.tiered">Rimfolk_FineBlade</li>
+              <li MayRequire="bamba.allbambamelee.tiered">CE_OneHandedWeapon</li>
             </weaponTags>
           </li>
         </ageArms>
@@ -429,6 +431,8 @@
     <apparelTags>
       <li MayRequire="OskarPotocki.VFE.Medieval2">VFEM2_Cap</li>
       <li>Rimfolk_Beads</li>
+      <li>Rimfolk_Skullcap</li>
+      <li>Rimfolk_Headscarf</li>
     </apparelTags>
     <apparelMoney>700~1300</apparelMoney>
     <weaponTags>

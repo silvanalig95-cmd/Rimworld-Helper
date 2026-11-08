@@ -3512,6 +3512,30 @@ come from them likeliest. They arise in every age with that age's weapons, and n
 survivors who stay to bury their town's dead, a later town's survivors who put what is left on wheels, a band led by
 one good with beasts or by a good shot. The Almanac has a page, *wardens, the Bell, the Circuit and the Wheel*.
 
+**Four more: the Conclave, the Mossborn, the Banner and the guild.** A new world also has the **Stormglass Conclave**,
+weather-seers who read storms in sealed vials of rain (industrial, long coats in storm slate, a tower of glass with its
+library and a ring of rods); the **Mossborn**, who keep the groves and count every tree felled (tribal, moss green and
+a living wreath, a hall among young trees over their graves); the **Ashen Banner**, a free company that holds walls for
+whoever pays (medieval, the one people in one issued kit, ash-grey in every age, an officer's black sash for the dead;
+square forts with the hall of the Roll); and the **Kiln Guild**, whose marks are on the finest work in the region
+(medieval, kiln ochre aprons and caps, guildhalls with their smithy, stone and sculptor's tables). A Conclave reader may
+sell the colony a season's watch on its sky: every cold snap, heat wave, fallout or other hard turn of the sky the
+storyteller sends waits a day, a vial-runner comes to the gate with the warning first, and the fields that sow by the
+weather reckon it in. A storm-walker may set a rod under the colony's highest roof that takes the lightning falling
+within 18 cells of it, with no fire, and reads the weather like a station; a reader may teach the colony's best hand at
+the fields to read the glass for a season. The Mossborn keep a ledger of the colony's trees and think warmer or cooler
+of it every fifteen days, never enough to make it an enemy; after a dozen felled a seed-carrier plants saplings round
+the colony, a grove-warden plants a tree beside a fresh grave, and with Ideology a tree-connector prunes the colony's
+Gauranlen tree. A Banner sergeant may offer a squad to camp by the colony for fifteen days and fight whatever comes at
+it, the wage asked by letter every five days; unpaid, they walk. A deserter may ask shelter at dusk, and a keeper of
+the Roll reads a fallen colonist's name into it at the grave. The guild commissions a weapon, garment or sculpture
+from the colony's best maker and pays by its quality, bids well over the worth of a masterwork, and the Conclave and
+the guild may each ask the colony to host one of their young: an apprentice who lies out under the clear night sky, a
+journeyman on the wander-year at the colony's benches. The fortune teller and the art collector come from them
+likeliest. They arise in every age, the Banner's kit and every fighter's arms changing with it, and a band led by a
+psycaster, a fighter, a maker or a grower may take their ways. The Almanac has a page, *the Conclave, the Mossborn,
+the Banner and the guild*.
+
 ## Scenarios with stakes
 Seventeen scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Each starts the game with
 something already in motion, and a few seconds in, a letter says how things stand.

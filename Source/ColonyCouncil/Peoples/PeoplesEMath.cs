@@ -150,9 +150,6 @@ namespace ColonyCouncil
 
         public static float Tended(float strength) => float.IsNaN(strength) ? TendStrength : Math.Min(1f, Math.Max(0f, strength) + TendStrength);
 
-        /// <summary>Planters for a grove that burned: how long the work there lasts.</summary>
-        public const int GroveHours = 36;
-
         // ================= The Ashen Banner: the squad and its wages =================
 
         /// <summary>A squad of three to five, a sergeant among them, hired for a season and paid every five days.</summary>

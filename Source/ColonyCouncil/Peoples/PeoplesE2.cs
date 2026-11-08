@@ -848,14 +848,20 @@ namespace ColonyCouncil
             Speech.Say(pawn, "CC_PeoplesE_WanderSays".Translate().Resolve());
         }
 
-        /// <summary>The journeyman's piece left by the gate: a small sculpture of their own making, good, their mark on it.</summary>
+        /// <summary>
+        /// The journeyman's piece left by the gate: a small work of art of the guild's age (Things/ThingRoles.cs, SmallArt: a
+        /// small sculpture, or a mod's statue or pottery), of stone or wood where it takes a material, good, their mark on it.
+        /// </summary>
         public static Thing LeavePiece(Pawn x, Map map)
         {
             if (x == null || map == null) return null;
-            var def = DefDatabase<ThingDef>.GetNamedSilentFail("SculptureSmall");
+            var stuffs = new[] { "BlocksMarble", "BlocksGranite", "WoodLog" }.Select(n => DefDatabase<ThingDef>.GetNamedSilentFail(n)).Where(s => s?.stuffProps != null).ToList();
+            bool Takes(ThingDef d) => !d.MadeFromStuff || stuffs.Any(s => s.stuffProps.CanMake(d));
+            var def = ThingRoles.From(ThingRole.SmallArt, x.Faction, map, 0, d => d.Minifiable && Takes(d));
             if (def == null) return null;
-            string stuff = new[] { "BlocksMarble", "BlocksGranite", "WoodLog" }.FirstOrDefault(n => DefDatabase<ThingDef>.GetNamedSilentFail(n) != null);
-            var made = DilemmaEffect_Made.Make(def, stuff, (QualityCategory)PeoplesEMath.LeftQuality, x, SkillDefOf.Artistic);
+            string stuff = def.MadeFromStuff ? stuffs.FirstOrDefault(s => s.stuffProps.CanMake(def))?.defName : null;
+            // Guild work, good: the quality the guild sends its journeymen out with, whoever's hands it was.
+            var made = DilemmaEffect_Made.Make(def, stuff, (QualityCategory)PeoplesEMath.LeftQuality, x, null);
             if (made == null) return null;
             var gate = PeoplesD.GateSpot(map) ?? (x.Spawned ? x.Position : CampSite.ColonyCenter(map));
             var packed = made.def.Minifiable ? made.MakeMinified() : made;

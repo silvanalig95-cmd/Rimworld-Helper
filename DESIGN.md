@@ -5435,6 +5435,28 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
   vet prefer them: `Undertakers.People`, `Tinker.People`), release B's leans (`ArisingMath.Lean`: survivors to the Bell on
   a fated quarter, `SaltBell`, or in a later age to the Wheel on a fated third, `SaltWheel`; a band led by one good with
   beasts to the Circuit, by a good shot to the Wardens). Nothing saved.
+- **Release E: the Stormglass Conclave, the Mossborn, the Ashen Banner and the Kiln Guild** (`Tools/Tests/PeoplesETests.cs`,
+  "peoples, release E: "; docs/design/peoples.md, the section of that name; the second four of `docs/design/peoples-next.md`).
+  `Rimfolk_Stormglass` (industrial, outlander parent, calling `seers`), `Rimfolk_Mossborn` (tribal, `grovekeepers`),
+  `Rimfolk_AshenBanner` (medieval, tribal parent, `mercenaries`), `Rimfolk_KilnGuild` (medieval, tribal parent,
+  `artisans`), each arising in every age, from the player's active mods only. `PeopleAgeArms.apparel` (`AgeArms.Kit`): an
+  age's kit worn with its arms, the Banner's one issued kit in every age. Callers (`Peoples/PeoplesE.cs`, `PeoplesE2.cs`,
+  one job driver, `JobDriver_PeoplesE`): the Conclave's watch (a visit, kind `glassWatch`; `Patch_GlassHold`, a prefix on
+  `Storyteller.TryFire`, puts a sky condition the storyteller sends into the game's own incident queue 18 to 30 hours on,
+  a runner, kind `glassRunner`, at the gate with the warning; `GlassWatch.Ahead` into `FieldWeather.Forecast`), its rod
+  (`Rimfolk_StormglassRod`; `Patch_GlassRodStrike` and `Patch_GlassRodExplosion` take the strike within 18 cells, no
+  blast; a weather station in `WeatherDynamics`) and its lesson (`Rimfolk_GlassTaught`, `PeoplesEMath.Taught`); the
+  Mossborn's saplings, grave's tree and Gauranlen tree pruned (`CompTreeConnection.ConnectionStrength`), and their
+  ledger (`MossLedger`: `Patch_MossFelled` on `Plant.PlantCollected`, sown trees counted by `Plant.sown` and id, four
+  counts in `ArisingBook`, reckoned every fifteen days from `RegionBook.Daily`, `WorldSituationWorker.Goodwill`, never
+  below none); the Banner's squad (`BannerSquad`, a camp `Rimfolk_Camp_BannerSquad` with `fights` and work `contract`,
+  `Camps/CampContract.cs`: a sentry at the gate by day, the wage an ask priced `wage` on the fifth and the tenth day,
+  `Leave("unpaid")`), its deserter, its Roll at a grave; the guild's commission (`PlayMake.KeepMade`, `Callers.Commission`,
+  collected only by `HappeningWorker_GuildCollects`: `Callers.Due` takes a filter now), its pay by quality, its bid. Two
+  hosting asks (`HappeningWorker_MissionHost`): the apprentice's skywatch and the wander-year's bench, its piece by
+  `ThingRoles` (`SmallArt`). The patch: four world events, the fortune teller and the art collector prefer them
+  (`FortuneTeller` and `Collector` read `HappeningExtension.prefers`). Release B's leans (`ArisingMath.Lean`, 13
+  arguments: a band led by a psycaster, a fighter, a crafter or a grower). Nobody hurt.
 
 ### The colony's animals with powers
 

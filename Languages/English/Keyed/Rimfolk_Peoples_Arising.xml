@@ -59,6 +59,14 @@
   <CC_Arise_exiles_tamers_2>{PAWN_nameDef} taught them that a bond is not a leash, and they keep bout-rings and stables now, a token on their sashes for every bout won fairly.</CC_Arise_exiles_tamers_2>
   <CC_Arise_exiles_hunters>{PAWN_nameDef} is a fine shot, and they follow the region's great beasts now, lighting a lantern at every crossroads where one took someone.</CC_Arise_exiles_hunters>
   <CC_Arise_exiles_hunters_2>{PAWN_nameDef} taught them to track and to keep a book of every beast run down, and they keep lanterns lit at the crossroads until each page has its ending.</CC_Arise_exiles_hunters_2>
+  <CC_Arise_exiles_seers>{PAWN_nameDef} can feel the weather turn before it does, and they read the region's sky now, a sealed vial of rain kept for every storm and a runner at any gate the glass warns of.</CC_Arise_exiles_seers>
+  <CC_Arise_exiles_seers_2>{PAWN_nameDef} taught them to read the clouds against the glass, and they keep a tower of brass-capped vials now and sell the region a day's warning of its weather.</CC_Arise_exiles_seers_2>
+  <CC_Arise_exiles_mercenaries>{PAWN_nameDef} is a hard fighter, and they hire out as a free company now, holding any wall for a season for whoever pays and keeping a roll of everyone they lose.</CC_Arise_exiles_mercenaries>
+  <CC_Arise_exiles_mercenaries_2>{PAWN_nameDef} drilled them into a company, and they sell their swords by the season now, paid to the day and held to the day, every name of their fallen read aloud once a year.</CC_Arise_exiles_mercenaries_2>
+  <CC_Arise_exiles_artisans>{PAWN_nameDef} has good hands, and they keep a workshop now where everything made is marked with their mark, and they send their young out to work at other people's benches.</CC_Arise_exiles_artisans>
+  <CC_Arise_exiles_artisans_2>{PAWN_nameDef} taught them to mark what they make and answer for it, and they keep a kiln and a guild's rule now, buying good work from anyone and selling better.</CC_Arise_exiles_artisans_2>
+  <CC_Arise_exiles_grovekeepers>{PAWN_nameDef} knows growing things, and they live among the trees now, planting a seedling for every tree anyone fells and burying their dead under saplings.</CC_Arise_exiles_grovekeepers>
+  <CC_Arise_exiles_grovekeepers_2>{PAWN_nameDef} taught them that the forest remembers every axe, and they keep a grove and a ledger of the trees round it now, a seed in every pocket for the next stump.</CC_Arise_exiles_grovekeepers_2>
   <CC_Arise_exiles_Cool>Those who have met {PAWN_nameDef} on the road say {PAWN_pronoun} has not forgiven the colony.</CC_Arise_exiles_Cool>
   <CC_Arise_exiles_CoolGlad>{PAWN_nameDef} has not forgotten who was glad to see {PAWN_objective} go, they say.</CC_Arise_exiles_CoolGlad>
   <CC_Arise_exiles_Warm>{PAWN_nameDef} bears the colony no grudge, they say.</CC_Arise_exiles_Warm>
@@ -132,6 +140,18 @@
   <CC_Arise_Name_exiles_hunters>{WHAT}'s Wardens</CC_Arise_Name_exiles_hunters>
   <CC_Arise_Name_exiles_hunters_2>{WHAT}'s Lanterns</CC_Arise_Name_exiles_hunters_2>
   <CC_Arise_Name_exiles_hunters_3>{WHAT}'s Lantern</CC_Arise_Name_exiles_hunters_3>
+  <CC_Arise_Name_exiles_seers>{WHAT}'s Glass</CC_Arise_Name_exiles_seers>
+  <CC_Arise_Name_exiles_seers_2>{WHAT}'s Readers</CC_Arise_Name_exiles_seers_2>
+  <CC_Arise_Name_exiles_seers_3>{WHAT}'s Vial</CC_Arise_Name_exiles_seers_3>
+  <CC_Arise_Name_exiles_mercenaries>{WHAT}'s Company</CC_Arise_Name_exiles_mercenaries>
+  <CC_Arise_Name_exiles_mercenaries_2>{WHAT}'s Banner</CC_Arise_Name_exiles_mercenaries_2>
+  <CC_Arise_Name_exiles_mercenaries_3>{WHAT}'s Roll</CC_Arise_Name_exiles_mercenaries_3>
+  <CC_Arise_Name_exiles_artisans>{WHAT}'s Guild</CC_Arise_Name_exiles_artisans>
+  <CC_Arise_Name_exiles_artisans_2>{WHAT}'s Kiln</CC_Arise_Name_exiles_artisans_2>
+  <CC_Arise_Name_exiles_artisans_3>{WHAT}'s Mark</CC_Arise_Name_exiles_artisans_3>
+  <CC_Arise_Name_exiles_grovekeepers>{WHAT}'s Grove</CC_Arise_Name_exiles_grovekeepers>
+  <CC_Arise_Name_exiles_grovekeepers_2>{WHAT}'s Mossborn</CC_Arise_Name_exiles_grovekeepers_2>
+  <CC_Arise_Name_exiles_grovekeepers_3>{WHAT}'s Seedling</CC_Arise_Name_exiles_grovekeepers_3>
   <CC_Arise_TownName_Refugees>New {TOWN}</CC_Arise_TownName_Refugees>
 
   <!-- ================= The history, and their cards ({FROM}: what they came from) ================= -->

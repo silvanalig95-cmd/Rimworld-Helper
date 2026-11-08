@@ -139,16 +139,16 @@
       <plain>
         <li>[chat,them,their:seers] We are rarely wrong and never sure, and the second is the harder to learn.</li>
         <li>[endwarm,them,their:seers] When the glass clouds for you, I will send a runner, I promise.</li>
-        <li>[faithtalk,them,their:seers] Hesper Lyle sealed the rain of every storm for thirty years, and the tower still keeps her shelf.</li>
+        <li>[faithtalk,them,their:seers] Hesper Lyle sealed every storm's rain for thirty years, and the tower keeps her shelf.</li>
         <li>[chat,them,their:grovekeepers] Every tree you fell owes the world a seedling, and we only come to collect.</li>
         <li>[endwarm,them,their:grovekeepers] When your time comes, I hope somebody plants you a good oak.</li>
-        <li>[faithtalk,them,their:grovekeepers] Elin Sedge planted an acorn beside every stump in her valley, and she lies under the last one still.</li>
+        <li>[faithtalk,them,their:grovekeepers] Elin Sedge planted an acorn by every stump, and she lies under the last one.</li>
         <li>[chat,them,their:mercenaries] No pay, no wall, and nobody in the company pretends otherwise.</li>
         <li>[endwarm,them,their:mercenaries] If you ever need a wall held, send for the Banner and ask for me.</li>
-        <li>[faithtalk,them,their:mercenaries] Corra Mallin sold every banner but the grey one so five hundred of us would not starve, and we read the Roll for her still.</li>
+        <li>[faithtalk,them,their:mercenaries] Corra Mallin sold every banner but the grey one, and we read the Roll for her still.</li>
         <li>[chat,them,their:artisans] Bad work is a lie told in stone, and we tell the truth for a living.</li>
         <li>[endwarm,them,their:artisans] Make something good while I am gone, and I will come back to look at it.</li>
-        <li>[faithtalk,them,their:artisans] Oswin Kell built the Hardwater bridge four times and marked every stone, and the fourth still stands.</li>
+        <li>[faithtalk,them,their:artisans] Oswin Kell built the Hardwater bridge four times, and the fourth still stands.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>

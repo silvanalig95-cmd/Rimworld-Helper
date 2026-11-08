@@ -19,9 +19,9 @@
     <when>their:seers</when>
     <lines>
       <li>[us] What are the little vials on your coat?</li>
-      <li>[them] Rain from storms, sealed, the way Hesper Lyle sealed them after the hail took her village's harvest.</li>
+      <li>[them] Storm rain, sealed, as Hesper Lyle sealed it after hail took her village's harvest.</li>
       <li>[us] And what did that do?</li>
-      <li>[them] She wrote on each cap what came after, and in thirty years she could read a frost in the glass a week ahead.</li>
+      <li>[them] She wrote what came after on each cap, and in thirty years she read frost a week ahead.</li>
       <li>[us] All of you can do that?</li>
       <li>[them] Some of us, some of the time, and we are rarely wrong and never sure.</li>
     </lines>
@@ -33,7 +33,7 @@
     <uses>know</uses>
     <when>their:seers</when>
     <lines>
-      <li>[them] Every storm that has crossed the plateau in three hundred years is written down in the tower.</li>
+      <li>[them] Every storm over the plateau in three hundred years is written down in the tower.</li>
       <li>[us] Why keep all of it?</li>
       <li>[them] What the sky has done, it will do again, and the record is how we know when.</li>
       <li>[us] Is a forecast ever wrong?</li>
@@ -63,7 +63,7 @@
       <li>[us] Do you really sell the weather?</li>
       <li>[them] We sell a day's warning, and a day is enough to bring the harvest in.</li>
       <li>[us] And the rods on your roofs?</li>
-      <li>[them] They call the lightning down where it does no harm, and the glass at their feet writes the storm down.</li>
+      <li>[them] They call the lightning down where it does no harm, and the glass writes the storm down.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 
@@ -78,7 +78,7 @@
       <li>[us] Why do you keep a seed in your pocket?</li>
       <li>[them] For the next stump, as Elin Sedge kept one when the war cut down her valley for its fires.</li>
       <li>[us] What did she do?</li>
-      <li>[them] She walked the stumps with a sack of acorns and planted one beside each, and she was still planting when the war was over.</li>
+      <li>[them] She walked the stumps with a sack of acorns and planted one beside each, for years.</li>
       <li>[us] And then?</li>
       <li>[them] We buried her under the last one she set, and it still stands, and so do we.</li>
     </lines>
@@ -90,7 +90,7 @@
     <uses>know</uses>
     <when>their:grovekeepers</when>
     <lines>
-      <li>[them] Every grove keeps a ledger of the trees round it, the ones that fell and the ones that were planted.</li>
+      <li>[them] Every grove keeps a ledger of the trees round it, the felled and the planted.</li>
       <li>[us] Including ours?</li>
       <li>[them] Including yours, and we think better of a people who plant than of one who only cuts.</li>
       <li>[us] And if we cut a great deal?</li>
@@ -133,11 +133,11 @@
     <when>their:mercenaries</when>
     <lines>
       <li>[us] Whose war was the Banner first raised for?</li>
-      <li>[them] A king nobody remembers, and when the war was lost Corra Mallin, the quartermaster, would not let five hundred of us scatter unpaid.</li>
+      <li>[them] A king nobody remembers, and when that war was lost Corra Mallin kept us together.</li>
       <li>[us] What did she do?</li>
-      <li>[them] She sold every banner but one, burned grey in the last battle, and hired us to the first town that would pay.</li>
+      <li>[them] She sold every banner but the one burned grey, and hired us to the first town that paid.</li>
       <li>[us] And the Roll?</li>
-      <li>[them] Those who stayed with her wrote down everyone lost under that banner, and we read it aloud still.</li>
+      <li>[them] Those who stayed wrote down everyone lost under that banner, and we read it aloud still.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 
@@ -149,7 +149,7 @@
     <lines>
       <li>[them] Every name on the Roll is read aloud once a year, on the night of the last battle.</li>
       <li>[us] Only your own?</li>
-      <li>[them] Anyone who fell holding a wall beside us, of any people, because nobody is left on the field.</li>
+      <li>[them] Anyone who fell holding a wall beside us, because nobody is left on the field.</li>
       <li>[us] And the black sashes?</li>
       <li>[them] The officers wear them for the dead, so nobody forgets who the Roll is for.</li>
     </lines>
@@ -175,7 +175,7 @@
     <when>their:mercenaries</when>
     <lines>
       <li>[us] Would you fight for anyone at all?</li>
-      <li>[them] For anyone who pays, against anyone who comes at the wall, and never past the contract's last day.</li>
+      <li>[them] For anyone who pays, against anyone at the wall, never past the contract's last day.</li>
       <li>[us] And if the pay stops?</li>
       <li>[them] Then we walk, because no pay, no wall, and everyone knows it when they sign.</li>
     </lines>
@@ -190,11 +190,11 @@
     <when>their:artisans</when>
     <lines>
       <li>[us] What is the mark on your bracer?</li>
-      <li>[them] The guild's, and it began with Oswin Kell, who rebuilt the Hardwater bridge after the flood three times.</li>
+      <li>[them] The guild's, from Oswin Kell, who rebuilt the Hardwater bridge three times after floods.</li>
       <li>[us] Three times?</li>
       <li>[them] He cut his mark into every stone of it, so the next flood would know whom to blame.</li>
       <li>[us] Did it work?</li>
-      <li>[them] The fourth bridge still stands, and those who built it beside him swore to mark everything they made.</li>
+      <li>[them] The fourth still stands, and those beside him swore to mark everything they made.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 
@@ -204,7 +204,7 @@
     <uses>know</uses>
     <when>their:artisans</when>
     <lines>
-      <li>[them] Every journeyman spends a wander-year living among another people before they are a master.</li>
+      <li>[them] Every journeyman spends a wander-year among another people before they are a master.</li>
       <li>[us] Doing what?</li>
       <li>[them] Working at their benches, learning what they know, and leaving a little guild work behind.</li>
       <li>[us] And when they come home?</li>

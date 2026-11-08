@@ -133,7 +133,9 @@ public static class PeoplesDTests
             .Where(c => c.Length > 5 && c[1] == "weapon" && c[5] != "-").ToDictionary(c => c[2], c => F(c[5]));
         float Worth((string def, string mod, bool active, string[] tags, string worth) w) =>
             float.TryParse(w.worth, NumberStyles.Float, CultureInfo.InvariantCulture, out var v) && v > 0f ? v : gearWorth.TryGetValue(w.def, out var g) ? g : float.NaN;
-        var armed = all.Where(e => e.Name.LocalName == "PawnKindDef" && Ext(e, "PeopleKindExtension")?.Element("ageArms") != null).ToList();
+        // Release D's own (release E's are PeoplesETests').
+        string[] dPeoples = Four.Select(c => Dn(factions[c]) + "_").ToArray();
+        var armed = all.Where(e => e.Name.LocalName == "PawnKindDef" && dPeoples.Any(p => Dn(e).StartsWith(p)) && Ext(e, "PeopleKindExtension")?.Element("ageArms") != null).ToList();
         C(armed.Select(Dn).OrderBy(x => x).SequenceEqual(new[] { "Rimfolk_QuietBell_Gravewarden", "Rimfolk_Tamers_Ranger", "Rimfolk_Tamers_Ringwarden", "Rimfolk_Wardens_Tracker", "Rimfolk_Wheel_Guard" }),
             "the trackers', the gravewardens', the rangers', the ring-wardens' and the yard guards' arms change with the age");
         foreach (var k in armed)

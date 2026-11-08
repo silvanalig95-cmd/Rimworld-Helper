@@ -82,8 +82,9 @@ namespace ColonyCouncil
             "them:camp:Woodcutters", "them:camp:HerbGatherers", "them:camp:Stonecutters", "them:camp:Shearers", "them:camp:Catchers", "them:camp:Teacher",
             "them:camp:Wounded",
             // The herding folk's winter grazing (Peoples/, Defs/CampDefs/Rimfolk_CampKinds_Peoples.xml), and the road league's
-            // caravan wintering by the colony's wall (Rimfolk_CampKinds_PeoplesLore.xml).
-            "them:camp:WinterHerd", "them:camp:LeagueWinter"
+            // caravan wintering by the colony's wall (Rimfolk_CampKinds_PeoplesLore.xml); the Ashen Banner's squad hired for
+            // the season (Rimfolk_CampKinds_PeoplesE.xml).
+            "them:camp:WinterHerd", "them:camp:LeagueWinter", "them:camp:BannerSquad"
         };
 
         /// <summary>The tag for one of a camp of this kind: them:camp: and the kind's defName without its Council_Camp_ or Rimfolk_Camp_ ("them:camp:SaltCaravan").</summary>

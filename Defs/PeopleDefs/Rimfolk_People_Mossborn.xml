@@ -306,6 +306,7 @@
     <apparelTags>
       <li>Neolithic</li>
       <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Neolithic</li>
+      <li>Rimfolk_Headscarf</li>
     </apparelTags>
     <apparelDisallowTags>
       <li>MedievalMilitary</li>
@@ -350,6 +351,7 @@
     <apparelTags>
       <li>Neolithic</li>
       <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Neolithic</li>
+      <li>Rimfolk_Beads</li>
     </apparelTags>
     <apparelDisallowTags>
       <li>MedievalMilitary</li>

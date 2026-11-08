@@ -776,7 +776,8 @@ namespace ColonyCouncil
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {
-            ctx.faction = Arrivals.Friendly();
+            // The calling it prefers likeliest (the Stormglass Conclave's readers: Patches/Rimfolk_PeoplesE.xml).
+            ctx.faction = Arrivals.Friendly(null, Peoples.Weigh(ext.prefers));
             if (ctx.faction == null) return false;
             MakeGroup(ctx, ext, 1, ext.ages);
             var pawns = Colonists(ctx.map).Where(p => !p.DevelopmentalStage.Baby()).ToList();

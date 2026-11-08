@@ -31,8 +31,9 @@ public static class PeoplesTests
 
         // ================= What they live by =================
 
-        C(PeoplesMath.Callings.SequenceEqual(new[] { "traders", "healers", "herders", "pilgrims", "scholars", "brokers", "fishers", "hunters", "sextons", "tamers", "salvagers" }),
-            "eleven callings: the road league's, the hospitallers', the herders'; the pilgrims', the scholars', the enclave's brokers', the river folk's; the Wardens' hunters, the Bell's sextons, the Circuit's tamers, the Wheel's salvagers");
+        C(PeoplesMath.Callings.SequenceEqual(new[] { "traders", "healers", "herders", "pilgrims", "scholars", "brokers", "fishers", "hunters", "sextons", "tamers", "salvagers",
+                "seers", "grovekeepers", "mercenaries", "artisans" }),
+            "fifteen callings: the road league's, the hospitallers', the herders'; the pilgrims', the scholars', the enclave's brokers', the river folk's; the Wardens' hunters, the Bell's sextons, the Circuit's tamers, the Wheel's salvagers; the Conclave's seers, the Mossborn's grovekeepers, the Banner's mercenaries, the guild's artisans");
         C(PeoplesMath.Tags.SequenceEqual(PeoplesMath.Callings.Select(c => "their:" + c)) && PeoplesMath.Tag("healers") == "their:healers" && PeoplesMath.Tag("fishers") == "their:fishers",
             "each gives Rimfolk's lines a tag of its own");
         C(PeoplesMath.Tag(null) == null && PeoplesMath.Tag("pirates") == null && !PeoplesMath.IsCalling("") && PeoplesMath.IsCalling("herders"), "any other people gives none");
@@ -117,7 +118,7 @@ public static class PeoplesTests
         string Dn(XElement e) => e.Element("defName")?.Value ?? "";
         var kindNames = kinds.Select(Dn).Where(x => x != "").ToHashSet();
         var traderNames = traders.Select(Dn).ToHashSet();
-        C(factions.Count == 11, "eleven peoples: release A's three, release C's four and release D's four");
+        C(factions.Count == 15, "fifteen peoples: release A's three, release C's four, release D's four and release E's four");
         var campNames = Directory.GetFiles(Path.Combine(root, "Defs", "CampDefs"), "*.xml").SelectMany(f => XDocument.Load(f).Root!.Elements("ColonyCouncil.CampKindDef"))
             .Select(Dn).ToHashSet();
         // Kinds the peoples borrow from the game: its mercenaries, its children (Biotech), Ideology's work camps, its pack beasts.
@@ -184,7 +185,7 @@ public static class PeoplesTests
             C(!string.IsNullOrEmpty(f.Element("leaderTitle")?.Value) && f.Element("factionNameMaker")?.Value.StartsWith("Rimfolk_Namer_") == true
               && f.Element("settlementNameMaker")?.Value.StartsWith("Rimfolk_Namer_") == true, $"{name}: its leader's title, its own names and its towns'");
         }
-        C(callings.Distinct().Count() == 11 && callings.Count == 11 && callings.All(PeoplesMath.IsCalling), "one people for each calling");
+        C(callings.Distinct().Count() == 15 && callings.Count == 15 && callings.All(PeoplesMath.IsCalling), "one people for each calling");
         C(weights["traders"] == 3f && weights["traders"] > weights["herders"] && weights["herders"] > weights["healers"], "the league's many caravans, the herders' half again");
         C(towns["traders"] < towns["herders"] && towns["herders"] < towns["healers"] && towns["traders"] < 1f, "the league's few towns");
 
@@ -230,9 +231,11 @@ public static class PeoplesTests
             // Release D's: the Bell's graves and sarcophagi, the Wardens' butcher's and hide-scraper's spots, the Circuit's
             // hatchery boxes, the Wheel's smithy, machining table and tailor's bench.
             ["Grave"] = (1, 2), ["Sarcophagus"] = (1, 2), ["ButcherSpot"] = (1, 1), ["CraftingSpot"] = (1, 1), ["AnimalSleepingBox"] = (1, 1),
-            ["FueledSmithy"] = (3, 1), ["TableMachining"] = (3, 1), ["HandTailoringBench"] = (3, 1)
+            ["FueledSmithy"] = (3, 1), ["TableMachining"] = (3, 1), ["HandTailoringBench"] = (3, 1),
+            // Release E's: the Banner's sandbags in the drill yard, the guild's stonecutter's and sculptor's tables and its stove.
+            ["Sandbags"] = (1, 1), ["TableStonecutter"] = (3, 1), ["TableSculpting"] = (3, 1), ["FueledStove"] = (3, 1)
         };
-        C(plans.Count == 11, "a plan for each people's towns");
+        C(plans.Count == 15, "a plan for each people's towns");
         foreach (var p in plans)
         {
             string name = Dn(p);
@@ -359,7 +362,13 @@ public static class PeoplesTests
             Path.Combine(root, "Defs", "MissionDefs", "Rimfolk_Missions_PeoplesD.xml"), Path.Combine(root, "Defs", "IncidentDefs", "Rimfolk_Events_PeoplesD.xml"),
             Path.Combine(root, "Defs", "FlavorPoolDefs", "Rimfolk_Lines_PeoplesD.xml"), Path.Combine(root, "Defs", "OutsiderTalkDefs", "Rimfolk_OutsiderTalks_PeoplesD.xml"),
             Path.Combine(root, "Defs", "ThoughtDefs", "Rimfolk_Thoughts_PeoplesD.xml"), Path.Combine(root, "Patches", "Rimfolk_PeoplesD.xml"),
-            Path.Combine(root, "Defs", "AlmanacArticleDefs", "Almanac_PeoplesD.xml"), Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_PeoplesD.xml")
+            Path.Combine(root, "Defs", "AlmanacArticleDefs", "Almanac_PeoplesD.xml"), Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_PeoplesD.xml"),
+            // Release E's.
+            Path.Combine(root, "Defs", "MissionDefs", "Rimfolk_Missions_PeoplesE.xml"), Path.Combine(root, "Defs", "IncidentDefs", "Rimfolk_Events_PeoplesE.xml"),
+            Path.Combine(root, "Defs", "FlavorPoolDefs", "Rimfolk_Lines_PeoplesE.xml"), Path.Combine(root, "Defs", "OutsiderTalkDefs", "Rimfolk_OutsiderTalks_PeoplesE.xml"),
+            Path.Combine(root, "Defs", "ThoughtDefs", "Rimfolk_Thoughts_PeoplesE.xml"), Path.Combine(root, "Patches", "Rimfolk_PeoplesE.xml"),
+            Path.Combine(root, "Defs", "AlmanacArticleDefs", "Almanac_PeoplesE.xml"), Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_PeoplesE.xml"),
+            Path.Combine(root, "Defs", "CampDefs", "Rimfolk_CampKinds_PeoplesE.xml"), Path.Combine(root, "Defs", "Misc", "Rimfolk_PeoplesE_Misc.xml")
         }).ToList();
         foreach (var f in textFiles)
         {
@@ -368,8 +377,8 @@ public static class PeoplesTests
             C(texts.All(t => !t.Contains('—') && !t.Contains('!')), $"{Path.GetFileName(f)}: no em dashes and no exclamation marks");
             C(texts.All(t => !Regex.IsMatch(t, @"\bin \d+ (days?|hours?)\b")), $"{Path.GetFileName(f)}: no countdowns");
         }
-        // Release A's lines, release C's and release D's, each in a file of its own.
-        var lines = new[] { "Rimfolk_Lines_Peoples.xml", "Rimfolk_Lines_PeoplesC.xml", "Rimfolk_Lines_PeoplesD.xml" }
+        // Release A's lines, release C's, release D's and release E's, each in a file of its own.
+        var lines = new[] { "Rimfolk_Lines_Peoples.xml", "Rimfolk_Lines_PeoplesC.xml", "Rimfolk_Lines_PeoplesD.xml", "Rimfolk_Lines_PeoplesE.xml" }
             .SelectMany(f => XDocument.Load(Path.Combine(root, "Defs", "FlavorPoolDefs", f)).Root!.Elements("ColonyCouncil.FlavorExtensionDef")).ToList();
         IEnumerable<XElement> Pool(string pool) => lines.Where(l => l.Element("pool")!.Value == pool).SelectMany(l => l.Descendants("li"));
         foreach (var calling in PeoplesMath.Callings)
@@ -384,7 +393,7 @@ public static class PeoplesTests
             C(Regex.Matches(body, @"[.?]").Count == 1 && body.EndsWith("."), $"a messenger's line is one sentence: {body}");
         }
         C(Pool("Rimfolk_Pool_NeighbourWrites").Where(li => li.Value.StartsWith("[help,cool") || li.Value.StartsWith("[help,curt")).Count() == 0, "help is promised only in a warm or cordial answer");
-        var talks = new[] { "Rimfolk_OutsiderTalks_NewPeoples.xml", "Rimfolk_OutsiderTalks_PeoplesC.xml", "Rimfolk_OutsiderTalks_PeoplesD.xml" }
+        var talks = new[] { "Rimfolk_OutsiderTalks_NewPeoples.xml", "Rimfolk_OutsiderTalks_PeoplesC.xml", "Rimfolk_OutsiderTalks_PeoplesD.xml", "Rimfolk_OutsiderTalks_PeoplesE.xml" }
             .SelectMany(f => XDocument.Load(Path.Combine(root, "Defs", "OutsiderTalkDefs", f)).Root!.Elements("ColonyCouncil.OutsiderTalkDef")).ToList();
         foreach (var calling in PeoplesMath.Callings)
             C(talks.Count(t => (t.Element("when")?.Value ?? "").Contains(PeoplesMath.Tag(calling)!)) >= 3, $"three pieces of talk for the {calling}");
@@ -394,7 +403,8 @@ public static class PeoplesTests
         // ================= The emblems =================
 
         foreach (var png in new[] { "League", "LeagueTown", "Order", "OrderTown", "Herders", "HerdersTown", "Pilgrims", "PilgrimsTown", "Scholars", "ScholarsTown",
-                     "Enclave", "EnclaveTown", "RiverFolk", "RiverFolkTown", "Wardens", "WardensTown", "QuietBell", "QuietBellTown", "Tamers", "TamersTown", "Wheel", "WheelTown" })
+                     "Enclave", "EnclaveTown", "RiverFolk", "RiverFolkTown", "Wardens", "WardensTown", "QuietBell", "QuietBellTown", "Tamers", "TamersTown", "Wheel", "WheelTown",
+                     "Stormglass", "StormglassTown", "Mossborn", "MossbornTown", "AshenBanner", "AshenBannerTown", "KilnGuild", "KilnGuildTown" })
         {
             string path = Path.Combine(root, "Textures", "ColonyCouncil", "Peoples", png + ".png");
             bool ok = File.Exists(path);

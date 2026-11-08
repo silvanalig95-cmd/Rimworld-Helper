@@ -526,3 +526,13 @@ Rimfolk_Evt_WheelScrap [option 2] a refusal: the scrap-runner is sent home from 
 # Defs/MissionDefs/Rimfolk_Missions_PeoplesD.xml
 Rimfolk_Mission_BellShrouds [option 1] a refusal: the burying is the Bell's, far away
 Rimfolk_Mission_WheelAxle [option 1] a refusal: the mending is the Wheel's, far away
+# Defs/IncidentDefs/Rimfolk_Events_PeoplesE.xml
+Rimfolk_Evt_GlassReading [option 2] a refusal: the reader is sent home from the gate (SendAway)
+Rimfolk_Evt_GlassRod [option 2] a refusal: the storm-walker is sent home from the gate (SendAway)
+Rimfolk_Evt_MossGraveTree [option 2] a refusal: the grove-warden goes from the grave (SendAway); the grave is left as it is
+Rimfolk_Evt_BannerHire [option 2] a refusal: the squad is sent home from the gate (SendAway)
+Rimfolk_Evt_BannerDeserter [option 2] a refusal: the deserter is sent off from the gate (SendAway)
+Rimfolk_Evt_BannerRoll [option 2] a refusal: the keeper goes from the grave (SendAway); the colony keeps its own names
+Rimfolk_Evt_GuildCommission [option 2] a refusal: the journeyman is sent home from the gate (SendAway)
+# Defs/MissionDefs/Rimfolk_Missions_PeoplesE.xml
+Rimfolk_Mission_GlassApprentice [option 0] the mission's own code: the apprentice comes later, hosted and watching the sky
