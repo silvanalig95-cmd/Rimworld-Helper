@@ -77,6 +77,16 @@
   <CC_PeopleAge_Voice_crew_Rise>Their {LEADER} says the ship's own logs taught them what they had forgotten, and the watch is kept as before.</CC_PeopleAge_Voice_crew_Rise>
   <CC_PeopleAge_Voice_crew_Fall>Their {LEADER} says the last of the ship's parts have failed, and the crew holds position with what it can make.</CC_PeopleAge_Voice_crew_Fall>
 
+  <!-- Release G's peoples (Peoples/PeoplesG.cs, PeoplesG2.cs). -->
+  <CC_PeopleAge_Voice_editors_Rise>Their {LEADER} says the ledger holds a new kind of edit now, asked for and marked as every edit is.</CC_PeopleAge_Voice_editors_Rise>
+  <CC_PeopleAge_Voice_editors_Fall>Their {LEADER} says the Works edit with what instruments still work, and ask first as before.</CC_PeopleAge_Voice_editors_Fall>
+  <CC_PeopleAge_Voice_mechanitors_Rise>Their {LEADER} says the lattice learned it all at once, every mind together, and the yards are humming with it.</CC_PeopleAge_Voice_mechanitors_Rise>
+  <CC_PeopleAge_Voice_mechanitors_Fall>Their {LEADER} says the lattice keeps what links it can, and no mind is left alone.</CC_PeopleAge_Voice_mechanitors_Fall>
+  <CC_PeopleAge_Voice_listeners_Rise>Their {LEADER} says the Spire thought of something new, and the Choir has been listening to it.</CC_PeopleAge_Voice_listeners_Rise>
+  <CC_PeopleAge_Voice_listeners_Fall>Their {LEADER} says the Choir uses less of what the Spire gave, and listens as before.</CC_PeopleAge_Voice_listeners_Fall>
+  <CC_PeopleAge_Voice_vaultfolk_Rise>Their {LEADER} says the vault has its old machines working again, every cell counted, and remembers who sent the parts.</CC_PeopleAge_Voice_vaultfolk_Rise>
+  <CC_PeopleAge_Voice_vaultfolk_Fall>Their {LEADER} says another of the vault's machines has stopped for good, and the dwellers make do with what they can make.</CC_PeopleAge_Voice_vaultfolk_Fall>
+
   <!-- What of it was the colony's doing, or why they fell back. -->
   <CC_PeopleAge_Letter_trade>The colony's trade with them carried much of it to them.</CC_PeopleAge_Letter_trade>
   <CC_PeopleAge_Letter_gifts>The colony's gifts of books and tools did much of it.</CC_PeopleAge_Letter_gifts>

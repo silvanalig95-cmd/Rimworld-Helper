@@ -192,18 +192,21 @@ namespace ColonyCouncil
         /// Release F's: survivors of the industrial or spacer age who kept their town's radio going raise masts (the Signal
         /// Line's ways), survivors of a spacer town keep its watches and ranks as a ship's crew (the Hollow Fleet's); a band
         /// led by a miner digs as a union (the Deepwell Union's), by a speaker keeps a census and holds elections (the Last
-        /// Republic's).
+        /// Republic's). Release G's: survivors of an industrial or spacer town who sat out its fall in its shelter come up
+        /// again as vaultfolk (the Sunken Vault's ways); a band led by a strong psycaster of the spacer age listens as a choir
+        /// (the Choir of the Spire's), by a surgeon of the spacer age edits genes (the Helix Works'), by a mechanitor links its
+        /// mechs as a lattice (the Lattice's).
         /// </summary>
         public static string[] Leans(string kind)
         {
             switch (kind)
             {
-                case Refugees: return new[] { PeoplesMath.Fishers, PeoplesMath.Sextons, PeoplesMath.Salvagers, PeoplesMath.Linesmen, PeoplesMath.Crew };
+                case Refugees: return new[] { PeoplesMath.Fishers, PeoplesMath.Sextons, PeoplesMath.Salvagers, PeoplesMath.Linesmen, PeoplesMath.Crew, PeoplesMath.Vaultfolk };
                 case Exiles:
                     return new[]
                     {
                         PeoplesMath.Scholars, PeoplesMath.Fishers, PeoplesMath.Tamers, PeoplesMath.Hunters, PeoplesMath.Seers, PeoplesMath.Mercenaries, PeoplesMath.Artisans,
-                        PeoplesMath.Grovekeepers, PeoplesMath.Drillers, PeoplesMath.Citizens
+                        PeoplesMath.Grovekeepers, PeoplesMath.Drillers, PeoplesMath.Citizens, PeoplesMath.Listeners, PeoplesMath.Editors, PeoplesMath.Mechanitors
                     };
                 default: return new string[0];
             }
@@ -289,19 +292,47 @@ namespace ColonyCouncil
         /// third, they keep its watches and ranks as a ship's crew.
         /// </summary>
         public static string Lean(string kind, bool nearRiver, bool riverFated, int leaderLearning, int leaderAnimals, int leaderShooting, bool bellFated, bool wheelFated, int age,
-            int leaderMelee, int leaderPlants, int leaderCrafting, int leaderPsylink, int leaderMining, int leaderSocial, bool lineFated, bool crewFated)
+            int leaderMelee, int leaderPlants, int leaderCrafting, int leaderPsylink, int leaderMining, int leaderSocial, bool lineFated, bool crewFated) =>
+            Lean(kind, nearRiver, riverFated, leaderLearning, leaderAnimals, leaderShooting, bellFated, wheelFated, age, leaderMelee, leaderPlants, leaderCrafting, leaderPsylink,
+                leaderMining, leaderSocial, lineFated, crewFated, 0, false, false);
+
+        /// <summary>Survivors of an industrial or spacer town who sat out its fall in its shelter and came up again (the Sunken Vault's ways), on their fated quarter: <see cref="SaltVault"/>.</summary>
+        public const float VaultChance = 0.25f;
+
+        public const int SaltVault = 909;
+
+        /// <summary>
+        /// A band's leader this good a surgeon (Medicine) in the spacer age edits genes as a works; one whose psylink is this
+        /// strong in the spacer age listens as a choir.
+        /// </summary>
+        public const int SurgeonLevel = 10, ChoirPsylink = 4;
+
+        /// <summary>
+        /// Every lean weighed, release G's too: a band of the banished led, after the beast-handler and the good shot, by one
+        /// whose psylink is strong (<see cref="ChoirPsylink"/>) in the spacer age listens as a choir (before the seers, who
+        /// take any psylink); after all the others, by a surgeon (<see cref="SurgeonLevel"/>) in the spacer age edits genes as
+        /// a works; by a mechanitor (<paramref name="leaderMechlink"/>) in the industrial age or later links its mechs as a
+        /// lattice. Survivors of a fallen town, after the Line's and the crew's ways: in the industrial or spacer age, on their
+        /// fated quarter, they sat out its fall in its shelter and came up again as vaultfolk.
+        /// </summary>
+        public static string Lean(string kind, bool nearRiver, bool riverFated, int leaderLearning, int leaderAnimals, int leaderShooting, bool bellFated, bool wheelFated, int age,
+            int leaderMelee, int leaderPlants, int leaderCrafting, int leaderPsylink, int leaderMining, int leaderSocial, bool lineFated, bool crewFated,
+            int leaderMedicine, bool leaderMechlink, bool vaultFated)
         {
             if (kind == Exiles)
             {
                 if (leaderLearning >= LearnedLevel) return PeoplesMath.Scholars;
                 if (leaderAnimals >= TamerLevel) return PeoplesMath.Tamers;
                 if (leaderShooting >= HunterLevel) return PeoplesMath.Hunters;
+                if (leaderPsylink >= ChoirPsylink && age >= 3) return PeoplesMath.Listeners;
                 if (leaderPsylink >= 1) return PeoplesMath.Seers;
                 if (leaderMelee >= FighterLevel) return PeoplesMath.Mercenaries;
                 if (leaderCrafting >= CrafterLevel) return PeoplesMath.Artisans;
                 if (leaderPlants >= GrowerLevel) return PeoplesMath.Grovekeepers;
                 if (leaderMining >= MinerLevel) return PeoplesMath.Drillers;
                 if (leaderSocial >= SpeakerLevel) return PeoplesMath.Citizens;
+                if (leaderMedicine >= SurgeonLevel && age >= 3) return PeoplesMath.Editors;
+                if (leaderMechlink && age >= 2) return PeoplesMath.Mechanitors;
             }
             if (nearRiver && riverFated && Array.IndexOf(Leans(kind), PeoplesMath.Fishers) >= 0) return PeoplesMath.Fishers;
             if (kind == Refugees)
@@ -310,6 +341,7 @@ namespace ColonyCouncil
                 if (wheelFated && age >= 2) return PeoplesMath.Salvagers;
                 if (lineFated && age >= 2) return PeoplesMath.Linesmen;
                 if (crewFated && age >= 3) return PeoplesMath.Crew;
+                if (vaultFated && age >= 2) return PeoplesMath.Vaultfolk;
             }
             return null;
         }

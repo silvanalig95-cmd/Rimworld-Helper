@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Release G's peoples' asks (Source/ColonyCouncil/Peoples/; docs/design/peoples.md, "Release G"), each only from a
+    people of its calling (MissionPeople.only) and each a small share of the missions' one draw (MissionPool): the Helix
+    Works' genepacks (medicine where the colony has none to give, or no Biotech), the Lattice's two good crafters for a
+    day at its charging yards, the Choir of the Spire's listener who stays a while to learn what it is to be ordinary
+    (hosted), the Sunken Vault's power cells, components for the vault's last machines, which keep its age as the
+    colony's supply does.
+  -->
+
+  <!-- ===================== The Helix Works: genepacks ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_HelixGenepacks</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>genepacks for the Works</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionDelivery</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The Works ask for genepacks</li>
+          <li>Material for the vats at {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[genes] A lab-runner of {FACTION} has come from the lab at {PLACE} with a letter from {DEAD}, its sequencer: the Works are short of genepacks to write from, and the next batch waits on them. They ask the colony for genepacks by a set day, and the Works pay well for anything they can read.</li>
+          <li>[medicine] {DEAD}, sequencer at {PLACE}, sends a lab-runner of {FACTION}: a fever is going through the lab's young and the vat hall is short of medicine. They ask the colony for medicine by a set day, at a good price.</li>
+          <li>[genes,their:friend] The Helix Works have asked for {FRIEND_nameDef} by name. The lab at {PLACE} is short of genepacks, and {DEAD} would rather read the colony's than anyone's.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>The lab-runner went back to {PLACE} to tell {DEAD} the colony will have it ready.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will wait for the next caravan that carries what the lab needs.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionPeople">
+        <only>editors</only>
+      </li>
+      <li Class="ColonyCouncil.MissionDelivery">
+        <kind>helixgenepacks</kind>
+        <restDays>60</restDays>
+        <rating>2</rating>
+        <days>6~9</days>
+        <rewardFactor>1.5</rewardFactor>
+        <goodwill>12</goodwill>
+        <penalty>6</penalty>
+        <person>35~65</person>
+        <variants>
+          <li>
+            <tag>genes</tag>
+            <goals>
+              <li><what>Genepack</what><count>1~3</count><instead>medicine</instead><insteadCount>8~14</insteadCount></li>
+            </goals>
+          </li>
+          <li>
+            <tag>medicine</tag>
+            <goals>
+              <li><what>medicine</what><count>10~18</count></li>
+            </goals>
+          </li>
+        </variants>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>{FACTION} are asking for {ITEM}, in the colony's stockpiles by the day the Quests tab shows, when the Works' runners come for it.\n\nAll of it fetches {COUNT} silver, well over its worth. At least half, and they'll take what there is at its plain worth. Less, and the lab at {PLACE} waits, and the Works mark who promised.</li>
+        </terms>
+        <accepted>
+          <li>The colony will have {ITEM} ready for the Works' lab at {PLACE}, in the stockpiles for {FACTION}'s runners.</li>
+        </accepted>
+        <ready>
+          <li>The goods for {PLACE} are set aside, and {FACTION}'s runners are on their way for them.</li>
+        </ready>
+        <reminder>
+          <li>{FACTION}'s runners come soon from the lab, and the stockpiles are still short: {ITEM}.</li>
+        </reminder>
+        <doneTitles>
+          <li>[delivered] Material for {PLACE}</li>
+          <li>[partial] Part of the order for {PLACE}</li>
+        </doneTitles>
+        <done>
+          <li>[delivered] {FACTION}'s runners are coming for the colony's goods, with {ITEM} silver for them. The vats at {PLACE} will be warm again before long.</li>
+          <li>[partial] Only part of it is ready. {FACTION}'s runners are coming for what there is, with its plain worth, {ITEM} silver.</li>
+        </done>
+        <failTitles>
+          <li>[missed] Nothing for {PLACE}</li>
+          <li>[cancelled] The Works' ask is off</li>
+        </failTitles>
+        <fail>
+          <li>[missed] There was far too little ready for {FACTION}'s runners to be worth the road. The lab at {PLACE} waits, and {DEAD} has marked who said they would help.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} have broken with the colony, and their runners will not come.</li>
+          <li>The lab at {PLACE} is gone, and nobody is left there to send for the goods.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Lattice: hands at the yards ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_LatticeHands</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>hands for the Lattice's yards</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionHands</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>The Lattice is short at {PLACE}</li>
+          <li>Two crafters for the yards</li>
+        </titles>
+        <texts>
+          <li>[yards] A link-runner of {FACTION} has come from the charging yards at {PLACE} with a letter from its link-warden: a whole line of mechs came in broken from a field, more than the yards can mend in time. They ask the colony for two good crafters for a day at the benches, paid by the day, as the Lattice pays.</li>
+          <li>[yards,their:lowtech] A runner in an indigo robe has walked from {PLACE} to ask the colony for two who are good with their hands. The Lattice has more broken machines than menders, the runner says, and only for a day.</li>
+          <li>[yards,their:friend] The Lattice has asked for {FRIEND_nameDef} by name. The yards at {PLACE} are two crafters short, and the link-warden would rather they were the colony's.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Send crafters to {PLACE}</label>
+            <outcome>The runner went back to the yards to say the colony's crafters are coming.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will mend the line with the hands they have.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionPeople">
+        <only>mechanitors</only>
+      </li>
+      <li Class="ColonyCouncil.MissionHands">
+        <kind>latticehands</kind>
+        <restDays>60</restDays>
+        <rating>2</rating>
+        <maxTravelDays>3</maxTravelDays>
+        <skill>Crafting</skill>
+        <minLevel>6</minLevel>
+        <work>Crafting</work>
+        <hands>2</hands>
+        <hours>24</hours>
+        <reward>160~300</reward>
+        <gift>100</gift>
+        <xp>1000</xp>
+        <thought>Rimfolk_Mission_HandsWithLattice</thought>
+        <deed>lentHands</deed>
+        <forms>
+          <li><tag>yards</tag></li>
+        </forms>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>At least two of the colony's good crafters (Crafting 6 or more), at the Lattice's yards at {PLACE} by caravan (about {TALE} away), staying about a day at the benches. The caravan only needs to reach the yards and wait there.\n\nThey'll come home with about {COUNT} silver and a gift of the yards', paid by the day, and {FACTION} will remember the colony's hands. Half the stay earns half the silver.</li>
+        </terms>
+        <accepted>
+          <li>The colony will send crafters to {PLACE}. Form a caravan with at least two good crafters, and send it to the yards.</li>
+        </accepted>
+        <ready>
+          <li>The colony's crafters have reached the yards at {PLACE} and gone to the benches among the broken mechs. Keep the caravan there while the line is mended.</li>
+        </ready>
+        <reminder>
+          <li>The Lattice's yards at {PLACE} are still short, and the colony's crafters haven't come.</li>
+        </reminder>
+        <doneTitles>
+          <li>[worked] A day at the yards at {PLACE}</li>
+          <li>[partial] Part of a day at {PLACE}</li>
+        </doneTitles>
+        <done>
+          <li>[worked] The line is mended, and the colony's crafters are coming home from {PLACE} with silver and a gift of the yards'. The Lattice will remember their hands.</li>
+          <li>[partial] The colony's crafters had to leave before the line was mended. {FACTION} paid them for the hours they put in.</li>
+        </done>
+        <failTitles>
+          <li>[missed] Nobody came to {PLACE}</li>
+        </failTitles>
+        <fail>
+          <li>[missed] No crafters came from the colony, and the broken line at {PLACE} waited. {FACTION} say nothing about it, which is how they say it.</li>
+        </fail>
+        <cancelled>
+          <li>The yards at {PLACE} no longer need the colony: the yards, or the friendship, are gone.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Choir of the Spire: a listener's stay ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_ChoirStay</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a listener who would be ordinary</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionChoirStay</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>75</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A listener who would be ordinary</li>
+          <li>{DEAD} would stay a while</li>
+        </titles>
+        <texts>
+          <li>A hum-walker of {FACTION} has come from the ring at {PLACE} with a letter from its cantor. {DEAD}, one of their listeners, would stay some days at the colony to learn what it is to be ordinary: a place at its table, a bed nobody else is using, and an hour each afternoon beside someone of the colony at their work, watching. The Choir would send its thanks.</li>
+          <li>[their:friend] The Choir of the Spire has asked for {FRIEND_nameDef} by name. {DEAD}, a listener of the ring at {PLACE}, would learn what it is to be ordinary, and would rather learn it among the colony than anywhere.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Take the listener</label>
+            <outcome>The hum-walker went back to {PLACE} to say the colony will take {DEAD}.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will send {DEAD} to learn it among another people.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionPeople">
+        <only>listeners</only>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>{DEAD} arrives a couple of days after the colony agrees and stays some days, eating at the colony's table (the food {DEAD} brought, when the stores have none) and sleeping in a bed nobody else is using. Each afternoon {DEAD} spends an hour beside someone of the colony at their work, watching and asking what each thing is for.\n\nAt the end {DEAD} goes home with the Choir's thanks, about {COUNT} silver. If {DEAD} never gets to stand beside anyone at work, the stay was wasted here.</li>
+        </terms>
+        <accepted>
+          <li>The colony will take {DEAD} of {FACTION}, a listener who would learn what it is to be ordinary.</li>
+        </accepted>
+        <ready>
+          <li>{DEAD} is here from {PLACE} in a pale robe, looking at everything as if it were the first of its kind.</li>
+        </ready>
+        <reminder>
+          <li>{DEAD} of {FACTION} is on the road from {PLACE}, and will want a bed and someone to watch at work.</li>
+        </reminder>
+        <doneTitles>
+          <li>[stayed] {DEAD}'s stay at the colony</li>
+        </doneTitles>
+        <done>
+          <li>[stayed] {DEAD} is going home to {PLACE} after {ITEM} afternoons beside the colony's people at their work, and has left the Choir's thanks in silver. {DEAD} says it was the strangest and the best thing in a long time.</li>
+        </done>
+        <failTitles>
+          <li>[idle] {DEAD} never watched anyone at work</li>
+          <li>[harmed] {DEAD}</li>
+          <li>[ended] {DEAD}'s stay</li>
+        </failTitles>
+        <fail>
+          <li>[idle] {DEAD} is going home to {PLACE} without a single afternoon beside anyone at work. The Choir will hear that the stay was wasted here.</li>
+          <li>[harmed] {DEAD} of {FACTION} came as the colony's guest and was harmed here. {FACTION} will not forget it.</li>
+          <li>[ended] {DEAD} won't be coming to the colony after all.</li>
+        </fail>
+        <cancelled>
+          <li>{DEAD} won't be coming now that {FACTION} have broken with the colony.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The Sunken Vault: power cells ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_VaultCells</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>power cells for the vault</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionDelivery</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Power cells for the vault</li>
+          <li>The lights at {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[cells] A surface-runner of {FACTION} has come from the vault at {PLACE} with a letter from {DEAD}, its warden: the vault's power cells are failing one by one, and the lights below go out a corridor at a time. They ask the colony for machine parts by a set day to keep the last of them going, and the vault pays what it can and remembers the rest.</li>
+          <li>[seal] {DEAD}, warden at {PLACE}, sends a surface-runner of {FACTION}: the vault door won't close any more, and the seal wants steel and parts before the winter. They ask the colony for them by a set day.</li>
+          <li>[cells,their:friend] The Sunken Vault has asked for {FRIEND_nameDef} by name. The cells at {PLACE} are failing, and {DEAD} would rather the colony kept the lights on than anyone.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>The surface-runner went back to {PLACE} to tell {DEAD} the colony will have it ready.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will keep the lights on as long as they can with what they have.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionPeople">
+        <only>vaultfolk</only>
+      </li>
+      <li Class="ColonyCouncil.MissionDelivery">
+        <kind>vaultcells</kind>
+        <restDays>60</restDays>
+        <rating>2</rating>
+        <days>6~9</days>
+        <rewardFactor>1.4</rewardFactor>
+        <goodwill>14</goodwill>
+        <penalty>6</penalty>
+        <person>35~65</person>
+        <variants>
+          <li>
+            <tag>cells</tag>
+            <goals>
+              <li><what>ComponentIndustrial</what><count>6~12</count></li>
+            </goals>
+          </li>
+          <li>
+            <tag>seal</tag>
+            <goals>
+              <li><what>Steel</what><count>60~140</count></li>
+              <li><what>ComponentIndustrial</what><count>2~4</count></li>
+            </goals>
+          </li>
+        </variants>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>{FACTION} are asking for {ITEM}, in the colony's stockpiles by the day the Quests tab shows, when the vault's runners come for it.\n\nAll of it fetches {COUNT} silver, more than its worth, and the vault remembers its suppliers: what it is given keeps it from falling back. At least half, and they'll take what there is at its plain worth. Less, and the lights at {PLACE} go out another corridor.</li>
+        </terms>
+        <accepted>
+          <li>The colony will have {ITEM} ready for the vault at {PLACE}, in the stockpiles for {FACTION}'s runners.</li>
+        </accepted>
+        <ready>
+          <li>The goods for {PLACE} are set aside, and {FACTION}'s runners are on their way for them.</li>
+        </ready>
+        <reminder>
+          <li>{FACTION}'s runners come soon from the vault, and the stockpiles are still short: {ITEM}.</li>
+        </reminder>
+        <doneTitles>
+          <li>[delivered] Parts for {PLACE}</li>
+          <li>[partial] Part of the parts for {PLACE}</li>
+        </doneTitles>
+        <done>
+          <li>[delivered] {FACTION}'s runners are coming for the colony's goods, with {ITEM} silver for them. The lights at {PLACE} will stay on below a while longer.</li>
+          <li>[partial] Only part of it is ready. {FACTION}'s runners are coming for what there is, with its plain worth, {ITEM} silver.</li>
+        </done>
+        <failTitles>
+          <li>[missed] Nothing for {PLACE}</li>
+          <li>[cancelled] The vault's ask is off</li>
+        </failTitles>
+        <fail>
+          <li>[missed] There was far too little ready for {FACTION}'s runners to be worth the road. Another corridor at {PLACE} has gone dark, and {DEAD} has written down who said they would help.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} have broken with the colony, and their runners will not come.</li>
+          <li>The vault at {PLACE} is gone, and nobody is left there to send for the goods.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

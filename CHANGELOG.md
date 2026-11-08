@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The last four peoples: the Helix Works, the Lattice, the Choir of the Spire, the Sunken Vault
+
+*8 November 2026, version 0.175.0*
+
+- The Helix Works, gene-crafters in clinic mint, buy a blood sample from your colonist with the rarest genes, write a gentle gene into someone for a price, leave a case of medicine at your gate, and now and then ask your doctor to see to their vat-grown when a batch goes wrong.
+- The Lattice, mechanitors in indigo, mend your hurt mechs, buy subcores and chips, can raise a small turret at your gate, and when one of their mechs wanders onto your land you may give it back or keep it.
+- The Choir of the Spire, calm psycasters from beside an archotech spire, sit in a ring and listen to your colony, which leaves some calmer and others uneasy; they trade psychic and archotech goods for art, and a listener may stay a few days to watch your people work.
+- The Sunken Vault came up from a shelter with spacer gear it cannot make: its people slip back an age every few years unless someone keeps them supplied, trade their last spacer goods for components and food, ask you to teach a lost craft, and a vault-born child who has never seen the sky may ask to stay.
+- Each has its story, look, gear and gifts from your mods, a faith, town, letters and its own voice; with them every age has peoples of its own, and peoples arising in play can take their ways too.
+
 ## Answers say how they would land, not what they change
 
 *8 November 2026, version 0.174.0*

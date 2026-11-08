@@ -1,0 +1,799 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The Helix Works (docs/design/peoples-third.md, the fifth of the eight; docs/design/peoples.md, "Release G";
+    Source/ColonyCouncil/Peoples/PeoplesG.cs): a guild of geneticists who outlived the lab that made them and kept working,
+    most of them their own work. Spacer, on the game's outlander parent; they arise in the industrial and spacer ages
+    (ariseAges 2~3: gene work wants the means) and are at the height of the ages already (ageLimit 3; cut off from the
+    world they fall back to the industrial age like any people). The signature: the lab coat in clinic mint (Anomaly's lab
+    coat, Vanilla Apparel Expanded's), over a mint collar shirt with the helix pin; what is under it varies freely. The
+    lab guard in recon armour of the same mint with charge rifles (and Rimsenal's spacer pistols under the same tag); a
+    mechanitor or two among them (Biotech's mechlink and headset). Mostly not baseliners at all, drawn from every kind of
+    people in the player's mods (the one people of Rimfolk's with more of other kinds than baseliners): Biotech's, Odyssey's,
+    Alpha Genes', the Vanilla Races Expanded, Rimsenal's, the boglegs', Avaloi, Venators, stoneborn, korgs, the apes',
+    the fairies' and the Paws of Interest's. Gifts: genes put in by their own hands (quick study, strong immunity, fast
+    wound healing, robust), a psylink now and then (Harmonist, Empath), and a chronomancer of A RimWorld of Magic for a
+    chief editor. Their towns: the gene lab, the vat hall and a quiet garden (Rimfolk_Plan_HelixLab). At the gate: a sample
+    from a colonist with rare genes, a small blood draw shown (Rimfolk_Evt_HelixSample); gene work, one of their genes
+    written into a colonist (Rimfolk_Evt_HelixGeneWork); the vat-keeper's case of medicine and drugs, their trade without
+    Biotech too (Rimfolk_Evt_HelixCase); a batch gone wrong asking the colony's help (Rimfolk_Evt_HelixBatch). Their ask:
+    genepacks, or medicine without Biotech (Rimfolk_Mission_HelixGenepacks). Their founding: Orla Venn kept the vats warm.
+    Faith (Ideology): every body a draft (transhumanist), Vanilla Ideology Expanded's progressive and healthcare.
+  -->
+
+  <FactionDef ParentName="OutlanderFactionBase">
+    <defName>Rimfolk_HelixWorks</defName>
+    <label>Helix Works</label>
+    <description>A guild of geneticists who outlived the lab that made them, and kept working. Most of them are their own work: their bodies written and rewritten by the hands of the ones before, so that hardly any two of them are the same kind of person. They sell gene work and medicine, buy genepacks, and pay well for a sample of anything rare.\n\nTheir ways began when the lab's founders fled a plague in the vats and left the vats running. The eldest of the lab's own grown, Orla Venn, kept the vats warm through the winter and read the founders' notes aloud to the others they had made. She taught them to edit what they were given, each one writing the next, and called the lab the Helix Works. Her genome is the first entry in the Works' ledger, with every change she made to it.\n\nThey are curious, patient and exact, and they ask before they change anything. They fear a batch gone wrong, a change made without asking and the vats going cold. A lab is run by its sequencer, and the Works by their chief editor.</description>
+    <pawnSingular>editor</pawnSingular>
+    <pawnsPlural>editors</pawnsPlural>
+    <leaderTitle>chief editor</leaderTitle>
+    <techLevel>Spacer</techLevel>
+    <basicMemberKind>Rimfolk_HelixWorks_LabHand</basicMemberKind>
+    <factionNameMaker>Rimfolk_Namer_HelixWorks</factionNameMaker>
+    <settlementNameMaker>Rimfolk_Namer_HelixWorksTown</settlementNameMaker>
+    <factionIconPath>ColonyCouncil/Peoples/HelixWorks</factionIconPath>
+    <settlementTexturePath>ColonyCouncil/Peoples/HelixWorksTown</settlementTexturePath>
+    <colorSpectrum>
+      <li>(0.62, 0.82, 0.76)</li>
+      <li>(0.86, 0.96, 0.92)</li>
+    </colorSpectrum>
+    <hidden>false</hidden>
+    <naturalEnemy>false</naturalEnemy>
+    <permanentEnemy>false</permanentEnemy>
+    <canSiege>false</canSiege>
+    <requiredCountAtGameStart>0</requiredCountAtGameStart>
+    <startingCountAtWorldCreation>1</startingCountAtWorldCreation>
+    <maxConfigurableAtWorldCreation>9999</maxConfigurableAtWorldCreation>
+    <configurationListOrderPriority>49</configurationListOrderPriority>
+    <settlementGenerationWeight>0.3</settlementGenerationWeight>
+    <backstoryFilters Inherit="False">
+      <li>
+        <categories>
+          <li>Offworld</li>
+        </categories>
+        <commonality>0.6</commonality>
+      </li>
+      <li>
+        <categories>
+          <li>Outlander</li>
+        </categories>
+        <commonality>0.4</commonality>
+      </li>
+    </backstoryFilters>
+    <raidCommonalityFromPointsCurve Inherit="False">
+      <points>
+        <li>(0, 0.12)</li>
+      </points>
+    </raidCommonalityFromPointsCurve>
+    <!-- Mostly their own work: every kind of people in the player's mods, baseliners only about four in ten. -->
+    <xenotypeSet Inherit="False">
+      <xenotypeChances>
+        <Genie MayRequire="Ludeon.RimWorld.Biotech">0.04</Genie>
+        <Highmate MayRequire="Ludeon.RimWorld.Biotech">0.04</Highmate>
+        <Hussar MayRequire="Ludeon.RimWorld.Biotech">0.03</Hussar>
+        <Pigskin MayRequire="Ludeon.RimWorld.Biotech">0.02</Pigskin>
+        <Neanderthal MayRequire="Ludeon.RimWorld.Biotech">0.02</Neanderthal>
+        <Impid MayRequire="Ludeon.RimWorld.Biotech">0.02</Impid>
+        <Yttakin MayRequire="Ludeon.RimWorld.Biotech">0.02</Yttakin>
+        <Dirtmole MayRequire="Ludeon.RimWorld.Biotech">0.02</Dirtmole>
+        <Waster MayRequire="Ludeon.RimWorld.Biotech">0.02</Waster>
+        <Starjack MayRequire="Ludeon.RimWorld.Biotech,Ludeon.RimWorld.Odyssey">0.02</Starjack>
+        <AG_Helixien MayRequire="Ludeon.RimWorld.Biotech,sarg.alphagenes">0.04</AG_Helixien>
+        <AG_Lapis MayRequire="Ludeon.RimWorld.Biotech,sarg.alphagenes">0.02</AG_Lapis>
+        <AG_Nereid MayRequire="Ludeon.RimWorld.Biotech,sarg.alphagenes">0.02</AG_Nereid>
+        <AG_Animusen MayRequire="Ludeon.RimWorld.Biotech,sarg.alphagenes">0.02</AG_Animusen>
+        <AG_Fleetkind MayRequire="Ludeon.RimWorld.Biotech,sarg.alphagenes">0.02</AG_Fleetkind>
+        <AG_Drakonori MayRequire="Ludeon.RimWorld.Biotech,sarg.alphagenes">0.01</AG_Drakonori>
+        <AG_Efreet MayRequire="Ludeon.RimWorld.Biotech,sarg.alphagenes">0.01</AG_Efreet>
+        <VRE_Ocularkin MayRequire="Ludeon.RimWorld.Biotech,sarg.alphagenes">0.02</VRE_Ocularkin>
+        <VRE_Archon MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.archon">0.02</VRE_Archon>
+        <VREA_AndroidAwakened MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.android">0.02</VREA_AndroidAwakened>
+        <VRE_Insector MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.insector">0.01</VRE_Insector>
+        <VRE_Lycan MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.lycanthrope">0.01</VRE_Lycan>
+        <VRE_Animakin MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.phytokin">0.01</VRE_Animakin>
+        <VRESaurids_Saurid MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.saurid">0.01</VRESaurids_Saurid>
+        <VREH_Uhlan MayRequire="Ludeon.RimWorld.Biotech,vanillaracesexpanded.hussar">0.01</VREH_Uhlan>
+        <Askbarn MayRequire="Ludeon.RimWorld.Biotech,rimsenal.askbarn">0.02</Askbarn>
+        <Uredd MayRequire="Ludeon.RimWorld.Biotech,rimsenal.askbarn">0.01</Uredd>
+        <DV_Avaloi MayRequire="Ludeon.RimWorld.Biotech,det.avaloi">0.01</DV_Avaloi>
+        <DV_Venator MayRequire="Ludeon.RimWorld.Biotech,det.venators">0.01</DV_Venator>
+        <Stoneborn MayRequire="Ludeon.RimWorld.Biotech,det.stoneborn">0.01</Stoneborn>
+        <DV_Bogleg MayRequire="Ludeon.RimWorld.Biotech,det.boglegs">0.01</DV_Bogleg>
+        <Korg MayRequire="Ludeon.RimWorld.Biotech,sovereign.kork">0.01</Korg>
+        <Chimp MayRequire="Ludeon.RimWorld.Biotech,onlymonkey.awakenedapes">0.01</Chimp>
+        <FG_PixieFairy MayRequire="Ludeon.RimWorld.Biotech,homebrew.fairycore">0.01</FG_PixieFairy>
+        <PoI_Eevee MayRequire="Ludeon.RimWorld.Biotech,nialation.pawsofinterest">0.01</PoI_Eevee>
+      </xenotypeChances>
+    </xenotypeSet>
+    <fixedIdeo>true</fixedIdeo>
+    <ideoName>The Living Draft</ideoName>
+    <ideoDescription>Every body is a draft, and the Works are only editors. A body is given, not chosen, and the kindest thing one person can do for another is to ask what they would change and help them change it. Orla Venn, the eldest of the lab's own grown, kept the vats warm when the founders fled and read their notes aloud to the others they had made, and every editor since has written into the ledger what they changed and why. Nothing is changed without asking, and a change is always marked.</ideoDescription>
+    <forcedMemes>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Transhumanist</li>
+      <!-- The editors ask what they would change, then change it: Vanilla Ideology Expanded's progressive and healthcare. -->
+      <li MayRequire="VanillaExpanded.VMemesE">VME_Progressive</li>
+      <li MayRequire="VanillaExpanded.VMemesE">VME_Healthcare</li>
+    </forcedMemes>
+    <structureMemeWeights Inherit="False">
+      <Structure_Ideological MayRequire="Ludeon.RimWorld.Ideology">3</Structure_Ideological>
+      <Structure_Archist MayRequire="Ludeon.RimWorld.Ideology">1</Structure_Archist>
+    </structureMemeWeights>
+    <styles>
+      <li MayRequire="Ludeon.RimWorld.Ideology">Techist</li>
+    </styles>
+    <caravanTraderKinds Inherit="False">
+      <li>Rimfolk_Caravan_HelixWorks</li>
+    </caravanTraderKinds>
+    <visitorTraderKinds Inherit="False">
+      <li>Rimfolk_Visitor_HelixWorks</li>
+    </visitorTraderKinds>
+    <baseTraderKinds Inherit="False">
+      <li>Rimfolk_Base_HelixWorks</li>
+    </baseTraderKinds>
+    <pawnGroupMakers Inherit="False">
+      <li>
+        <!-- A fight: the lab guard, a sequencer and the lab's mechanitor -->
+        <kindDef>Combat</kindDef>
+        <options>
+          <Rimfolk_HelixWorks_Guard>12</Rimfolk_HelixWorks_Guard>
+          <Rimfolk_HelixWorks_LabHand>3</Rimfolk_HelixWorks_LabHand>
+          <Rimfolk_HelixWorks_Sequencer>2</Rimfolk_HelixWorks_Sequencer>
+          <Rimfolk_HelixWorks_Mechanitor MayRequire="Ludeon.RimWorld.Biotech">1</Rimfolk_HelixWorks_Mechanitor>
+        </options>
+      </li>
+      <li>
+        <kindDef>Peaceful</kindDef>
+        <options>
+          <Rimfolk_HelixWorks_LabHand>10</Rimfolk_HelixWorks_LabHand>
+          <Rimfolk_HelixWorks_Sequencer>4</Rimfolk_HelixWorks_Sequencer>
+          <Rimfolk_HelixWorks_VatKeeper>3</Rimfolk_HelixWorks_VatKeeper>
+          <Rimfolk_HelixWorks_Vatborn>3</Rimfolk_HelixWorks_Vatborn>
+          <Rimfolk_HelixWorks_Guard>3</Rimfolk_HelixWorks_Guard>
+          <Rimfolk_HelixWorks_Mechanitor MayRequire="Ludeon.RimWorld.Biotech">1</Rimfolk_HelixWorks_Mechanitor>
+          <Villager_Child MayRequire="Ludeon.RimWorld.Biotech">2</Villager_Child>
+        </options>
+      </li>
+      <li>
+        <!-- The sample-buyer's cases: medicine, drugs and the Works' genepacks -->
+        <kindDef>Trader</kindDef>
+        <traders>
+          <Rimfolk_HelixWorks_SampleBuyer>1</Rimfolk_HelixWorks_SampleBuyer>
+        </traders>
+        <carriers>
+          <Muffalo>3</Muffalo>
+          <Alpaca>2</Alpaca>
+        </carriers>
+        <guards>
+          <Rimfolk_HelixWorks_Guard>8</Rimfolk_HelixWorks_Guard>
+          <Rimfolk_HelixWorks_VatKeeper>2</Rimfolk_HelixWorks_VatKeeper>
+        </guards>
+      </li>
+      <li>
+        <kindDef>Settlement</kindDef>
+        <options>
+          <Rimfolk_HelixWorks_Guard>12</Rimfolk_HelixWorks_Guard>
+          <Rimfolk_HelixWorks_LabHand>6</Rimfolk_HelixWorks_LabHand>
+          <Rimfolk_HelixWorks_Sequencer>3</Rimfolk_HelixWorks_Sequencer>
+          <Rimfolk_HelixWorks_VatKeeper>2</Rimfolk_HelixWorks_VatKeeper>
+          <Rimfolk_HelixWorks_Vatborn>2</Rimfolk_HelixWorks_Vatborn>
+          <Rimfolk_HelixWorks_Mechanitor MayRequire="Ludeon.RimWorld.Biotech">2</Rimfolk_HelixWorks_Mechanitor>
+          <Rimfolk_HelixWorks_SampleBuyer>2</Rimfolk_HelixWorks_SampleBuyer>
+        </options>
+      </li>
+    </pawnGroupMakers>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleExtension">
+        <calling>editors</calling>
+        <!-- Their age over the years (Peoples/PeopleAges.cs): at the height of the ages already, their knowledge written in the ledger; cut off from the world they lose the means like any people. -->
+        <agePace>9</agePace>
+        <ageLimit>3</ageLimit>
+        <townWord>lab</townWord>
+        <townWords>labs</townWords>
+        <head>sequencer</head>
+        <heir>second sequencer</heir>
+        <envoy>vat-keeper</envoy>
+        <trader>sample-buyer</trader>
+        <courier>lab-runner</courier>
+        <couriers>lab-runners</couriers>
+        <caravanWeight>0.6</caravanWeight>
+        <camps>
+          <li>Council_Camp_Healers</li>
+          <li>Rimfolk_Camp_Spacers</li>
+          <li>Rimfolk_Camp_HerbGatherers</li>
+        </camps>
+        <plan>Rimfolk_Plan_HelixLab</plan>
+        <honours>a clean edit, a child who chose their own genes and a sample freely given</honours>
+        <fears>a batch gone wrong, a change made without asking and the vats going cold</fears>
+        <sayings>
+          <li>Every body is a draft.</li>
+          <li>We are only editors.</li>
+          <li>Ask before you change it.</li>
+          <li>Mark the change.</li>
+          <li>Read twice, cut once.</li>
+        </sayings>
+        <townGoods>
+          <MedicineIndustrial>8~16</MedicineIndustrial>
+          <MedicineUltratech>1~3</MedicineUltratech>
+          <Penoxycyline>4~10</Penoxycyline>
+          <ComponentIndustrial>3~6</ComponentIndustrial>
+          <MealSurvivalPack>8~16</MealSurvivalPack>
+        </townGoods>
+        <ariseAges>2~3</ariseAges>
+      </li>
+    </modExtensions>
+  </FactionDef>
+
+  <!-- ===================== Their people ===================== -->
+
+  <!--
+    How alike they look (docs/design/peoples.md, "Release G"): the lab coat in clinic mint over a mint collar shirt, the
+    helix pin on the collar, is the Works' signature; under it, and on the lab hands who wear only the shirt, whatever the
+    lab's lockers held (the game's and the mods' everyday clothes, tool belts, glasses). The vat-keeper adds Vanilla
+    Apparel Expanded's surgical mask, the guard recon armour of the same mint over the shirt, the mechanitor Biotech's
+    airwire headset over a mechlink. In another age the guard take the age's issue (ageArms): plate and spears in the
+    medieval age, flak and rifles in the industrial age. Without any mod: the game's shirts, trousers, recon armour, charge
+    rifles and pistols, and the shirt's mint.
+  -->
+  <PawnKindDef Name="Rimfolk_HelixWorksKindBase" Abstract="True">
+    <race>Human</race>
+    <defaultFactionDef>Rimfolk_HelixWorks</defaultFactionDef>
+    <chemicalAddictionChance>0.02</chemicalAddictionChance>
+    <invNutrition>2.55</invNutrition>
+    <specificApparelRequirements>
+      <!-- The clinic mint of the Works: the lab coat, the collar shirt under it, the guard's recon armour. -->
+      <li><apparelDef>Apparel_CollarShirt</apparelDef><color>(0.80, 0.93, 0.88)</color></li>
+      <li MayRequire="Ludeon.RimWorld.Anomaly"><apparelDef>Apparel_LabCoat</apparelDef><color>(0.80, 0.93, 0.88)</color></li>
+      <li MayRequire="VanillaExpanded.VAPPE"><apparelDef>VAE_Apparel_LabCoat</apparelDef><color>(0.80, 0.93, 0.88)</color></li>
+      <li><apparelDef>Apparel_ArmorRecon</apparelDef><color>(0.80, 0.93, 0.88)</color></li>
+      <li><apparelDef>Apparel_ArmorHelmetRecon</apparelDef><color>(0.80, 0.93, 0.88)</color></li>
+    </specificApparelRequirements>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_HelixWorksKindBase">
+    <defName>Rimfolk_HelixWorks_LabHand</defName>
+    <label>lab hand</label>
+    <combatPower>40</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.6~1.1</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Spacer</li>
+    </apparelTags>
+    <apparelMoney>300~600</apparelMoney>
+    <weaponTags>
+      <li>Autopistol</li>
+      <li>ShortShots</li>
+    </weaponTags>
+    <weaponMoney>100~240</weaponMoney>
+    <inventoryOptions>
+      <skipChance>0.5</skipChance>
+      <subOptionsChooseOne>
+        <li><thingDef>MedicineIndustrial</thingDef><countRange>1~2</countRange><choiceChance>2</choiceChance></li>
+        <li><thingDef>MealSurvivalPack</thingDef><countRange>1~2</countRange></li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>12~18</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <!-- Written in by the hands before them. -->
+          <li>
+            <genes>
+              <li>Immunity_Strong</li>
+            </genes>
+            <chance>0.06</chance>
+          </li>
+          <li>
+            <genes>
+              <li>Robust</li>
+            </genes>
+            <chance>0.04</chance>
+          </li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_HelixWorksKindBase">
+    <defName>Rimfolk_HelixWorks_Sequencer</defName>
+    <label>sequencer</label>
+    <combatPower>55</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Good</itemQuality>
+    <gearHealthRange>0.8~1.2</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+      <li MayRequire="Ludeon.RimWorld.Anomaly">Apparel_LabCoat</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li>IndustrialAdvanced</li>
+      <li MayRequire="Rimsenal.Spacer">DataGlasses</li>
+    </apparelTags>
+    <apparelMoney>500~900</apparelMoney>
+    <weaponTags>
+      <li>Autopistol</li>
+      <li>ShortShots</li>
+    </weaponTags>
+    <weaponMoney>120~260</weaponMoney>
+    <skills>
+      <li>
+        <skill>Intellectual</skill>
+        <range>8~14</range>
+      </li>
+      <li>
+        <skill>Medicine</skill>
+        <range>6~12</range>
+      </li>
+    </skills>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>14~20</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li>
+            <genes>
+              <li>Learning_Fast</li>
+            </genes>
+            <chance>0.1</chance>
+          </li>
+          <li>
+            <psylink>1~2</psylink>
+            <paths>
+              <li>VPE_Harmonist</li>
+              <li>VPE_Empath</li>
+            </paths>
+            <chance>0.05</chance>
+          </li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_HelixWorksKindBase">
+    <defName>Rimfolk_HelixWorks_VatKeeper</defName>
+    <label>vat-keeper</label>
+    <combatPower>45</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.7~1.2</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+      <li MayRequire="Ludeon.RimWorld.Anomaly">Apparel_LabCoat</li>
+      <li MayRequire="VanillaExpanded.VAPPE">VAE_Headgear_SurgicalMask</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+    </apparelTags>
+    <apparelMoney>400~700</apparelMoney>
+    <weaponTags>
+      <li>Autopistol</li>
+      <li>SimpleGun</li>
+    </weaponTags>
+    <weaponMoney>100~220</weaponMoney>
+    <skills>
+      <li>
+        <skill>Medicine</skill>
+        <range>8~14</range>
+      </li>
+    </skills>
+    <inventoryOptions>
+      <subOptionsTakeAll>
+        <li><thingDef>MedicineIndustrial</thingDef><countRange>1~2</countRange></li>
+      </subOptionsTakeAll>
+    </inventoryOptions>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>12~18</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li>
+            <genes>
+              <li>WoundHealing_Fast</li>
+            </genes>
+            <chance>0.06</chance>
+          </li>
+          <li><trait>Priest</trait><chance>0.02</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_HelixWorksKindBase">
+    <defName>Rimfolk_HelixWorks_Vatborn</defName>
+    <label>vat-grown</label>
+    <combatPower>35</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Poor</itemQuality>
+    <gearHealthRange>0.6~1.0</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+    </apparelTags>
+    <apparelMoney>200~400</apparelMoney>
+    <weaponMoney>0~0</weaponMoney>
+    <initialWillRange>1~3</initialWillRange>
+    <initialResistanceRange>8~14</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li>
+            <genes>
+              <li>Superclotting</li>
+            </genes>
+            <chance>0.05</chance>
+          </li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_HelixWorksKindBase">
+    <defName>Rimfolk_HelixWorks_Guard</defName>
+    <label>lab guard</label>
+    <combatPower>110</combatPower>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.7~1.2</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+      <li>Apparel_ArmorRecon</li>
+      <li>Apparel_ArmorHelmetRecon</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>BeltDefensePop</li>
+    </apparelTags>
+    <apparelMoney>2200~3200</apparelMoney>
+    <weaponTags>
+      <li>SpacerGun</li>
+    </weaponTags>
+    <weaponMoney>900~1500</weaponMoney>
+    <requiredWorkTags>Violent</requiredWorkTags>
+    <inventoryOptions>
+      <skipChance>0.6</skipChance>
+      <subOptionsChooseOne>
+        <li><thingDef>MealSurvivalPack</thingDef><countRange>1~2</countRange></li>
+      </subOptionsChooseOne>
+    </inventoryOptions>
+    <initialWillRange>3~5</initialWillRange>
+    <initialResistanceRange>18~26</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li>
+            <genes>
+              <li>WoundHealing_Fast</li>
+            </genes>
+            <chance>0.05</chance>
+          </li>
+          <li><trait>TM_SuperSoldier</trait><chance>0.03</chance></li>
+        </gifts>
+        <!-- The issue of another age, in the lab's mint. -->
+        <ageArms>
+          <li>
+            <ages>1~1</ages>
+            <weaponTags>
+              <li>Spear</li>
+              <li>MedievalMeleeAdvanced</li>
+            </weaponTags>
+            <apparel>
+              <li>Apparel_PlateArmor</li>
+            </apparel>
+          </li>
+          <li>
+            <ages>2~2</ages>
+            <money>700</money>
+            <weaponTags>
+              <li>AssaultRifle</li>
+            </weaponTags>
+            <apparel>
+              <li>Apparel_FlakVest</li>
+              <li>Apparel_AdvancedHelmet</li>
+            </apparel>
+          </li>
+        </ageArms>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_HelixWorksKindBase">
+    <defName>Rimfolk_HelixWorks_Mechanitor</defName>
+    <label>lab mechanitor</label>
+    <combatPower>75</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.7~1.2</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+      <li MayRequire="Ludeon.RimWorld.Biotech">Apparel_AirwireHeadset</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialBasic</li>
+      <li MayRequire="VanillaExpanded.VAEAccessories">VAEA_Utility_Spacer</li>
+    </apparelTags>
+    <apparelAllowHeadgearChance>0</apparelAllowHeadgearChance>
+    <apparelMoney>400~800</apparelMoney>
+    <weaponTags>
+      <li>Autopistol</li>
+      <li>ShortShots</li>
+    </weaponTags>
+    <weaponMoney>120~260</weaponMoney>
+    <techHediffsMoney>0~0</techHediffsMoney>
+    <techHediffsRequired>
+      <li MayRequire="Ludeon.RimWorld.Biotech">Mechlink</li>
+    </techHediffsRequired>
+    <skills>
+      <li>
+        <skill>Crafting</skill>
+        <range>6~12</range>
+      </li>
+    </skills>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>12~18</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <li><trait>Technomancer</trait><chance>0.05</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_HelixWorksKindBase">
+    <defName>Rimfolk_HelixWorks_SampleBuyer</defName>
+    <label>sample-buyer</label>
+    <trader>true</trader>
+    <combatPower>45</combatPower>
+    <isFighter>false</isFighter>
+    <itemQuality>Normal</itemQuality>
+    <gearHealthRange>0.8~1.2</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+      <li MayRequire="Ludeon.RimWorld.Anomaly">Apparel_LabCoat</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialAdvanced</li>
+    </apparelTags>
+    <apparelMoney>400~800</apparelMoney>
+    <weaponTags>
+      <li>Autopistol</li>
+    </weaponTags>
+    <weaponMoney>120~240</weaponMoney>
+    <skills>
+      <li>
+        <skill>Social</skill>
+        <range>6~12</range>
+      </li>
+    </skills>
+    <initialWillRange>2~4</initialWillRange>
+    <initialResistanceRange>12~18</initialResistanceRange>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="Rimfolk_HelixWorksKindBase">
+    <defName>Rimfolk_HelixWorks_ChiefEditor</defName>
+    <label>chief editor</label>
+    <combatPower>90</combatPower>
+    <factionLeader>true</factionLeader>
+    <minGenerationAge>40</minGenerationAge>
+    <itemQuality>Excellent</itemQuality>
+    <gearHealthRange>0.9~1.2</gearHealthRange>
+    <apparelRequired>
+      <li>Apparel_CollarShirt</li>
+      <li>Apparel_Pants</li>
+      <li MayRequire="Ludeon.RimWorld.Anomaly">Apparel_LabCoat</li>
+    </apparelRequired>
+    <apparelTags>
+      <li>IndustrialAdvanced</li>
+      <li MayRequire="Rimsenal.Spacer">DataGlasses</li>
+    </apparelTags>
+    <apparelMoney>800~1400</apparelMoney>
+    <weaponTags>
+      <li>SpacerGun</li>
+    </weaponTags>
+    <weaponMoney>900~1500</weaponMoney>
+    <skills>
+      <li>
+        <skill>Intellectual</skill>
+        <range>10~16</range>
+      </li>
+      <li>
+        <skill>Medicine</skill>
+        <range>8~14</range>
+      </li>
+    </skills>
+    <initialWillRange>4~6</initialWillRange>
+    <initialResistanceRange>18~26</initialResistanceRange>
+    <modExtensions>
+      <li Class="ColonyCouncil.PeopleKindExtension">
+        <gifts>
+          <!-- Their own best work. -->
+          <li>
+            <genes>
+              <li>Immunity_SuperStrong</li>
+              <li>WoundHealing_SuperFast</li>
+            </genes>
+            <chance>0.15</chance>
+          </li>
+          <li>
+            <psylink>2~4</psylink>
+            <paths>
+              <li>VPE_Harmonist</li>
+              <li>VPE_Empath</li>
+            </paths>
+            <chance>0.2</chance>
+          </li>
+          <li><trait>Chronomancer</trait><chance>0.05</chance></li>
+        </gifts>
+      </li>
+    </modExtensions>
+  </PawnKindDef>
+
+  <!-- ===================== Their traders: the Works' cases ===================== -->
+
+  <TraderKindDef>
+    <defName>Rimfolk_Caravan_HelixWorks</defName>
+    <label>Works' cases</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>600~1200</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineIndustrial</thingDef>
+        <countRange>8~16</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineUltratech</thingDef>
+        <countRange>2~4</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Penoxycyline</thingDef>
+        <countRange>5~12</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>WakeUp</thingDef>
+        <countRange>2~6</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef" MayRequire="Ludeon.RimWorld.Biotech">
+        <thingDef>Genepack</thingDef>
+        <countRange>2~4</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MealSurvivalPack</thingDef>
+        <countRange>8~20</countRange>
+      </li>
+      <li Class="StockGenerator_BuySingleDef" MayRequire="Ludeon.RimWorld.Biotech">
+        <thingDef>Genepack</thingDef>
+      </li>
+      <li Class="StockGenerator_BuySingleDef">
+        <thingDef>MedicineHerbal</thingDef>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Visitor_HelixWorks</defName>
+    <label>editors</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>200~500</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineIndustrial</thingDef>
+        <countRange>3~8</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Penoxycyline</thingDef>
+        <countRange>2~5</countRange>
+      </li>
+      <li Class="StockGenerator_BuySingleDef" MayRequire="Ludeon.RimWorld.Biotech">
+        <thingDef>Genepack</thingDef>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+    </stockGenerators>
+  </TraderKindDef>
+
+  <TraderKindDef>
+    <defName>Rimfolk_Base_HelixWorks</defName>
+    <label>lab</label>
+    <stockGenerators>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Silver</thingDef>
+        <countRange>1000~1800</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineIndustrial</thingDef>
+        <countRange>12~24</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>MedicineUltratech</thingDef>
+        <countRange>3~6</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>Penoxycyline</thingDef>
+        <countRange>8~16</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef" MayRequire="Ludeon.RimWorld.Biotech">
+        <thingDef>Genepack</thingDef>
+        <countRange>3~6</countRange>
+      </li>
+      <li Class="StockGenerator_SingleDef">
+        <thingDef>ComponentIndustrial</thingDef>
+        <countRange>4~10</countRange>
+      </li>
+      <li Class="StockGenerator_MarketValue">
+        <tradeTag>WeaponRanged</tradeTag>
+        <countRange>1~3</countRange>
+      </li>
+      <li Class="StockGenerator_BuySingleDef" MayRequire="Ludeon.RimWorld.Biotech">
+        <thingDef>Genepack</thingDef>
+      </li>
+      <li Class="StockGenerator_BuySingleDef">
+        <thingDef>MedicineHerbal</thingDef>
+      </li>
+      <li Class="StockGenerator_BuyExpensiveSimple" />
+    </stockGenerators>
+  </TraderKindDef>
+
+  <!-- ===================== Their names ===================== -->
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_HelixWorks</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->The Helix Works of [PlaceOutlander]</li>
+        <li>r_name(p=2)->The [helixVirtue] Helix</li>
+        <li>r_name->The Works at [PlaceOutlander]</li>
+        <li>r_name->The [helixVirtue] Draft</li>
+        <li>helixVirtue->Living</li>
+        <li>helixVirtue->Second</li>
+        <li>helixVirtue->Patient</li>
+        <li>helixVirtue->Marked</li>
+        <li>helixVirtue->Venn's</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_Namer_HelixWorksTown</defName>
+    <include>
+      <li>OutlanderPlaceNameUtility</li>
+    </include>
+    <rulePack>
+      <rulesStrings>
+        <li>r_name(p=3)->[PlaceOutlander] Lab</li>
+        <li>r_name(p=2)->[PlaceOutlander] Vats</li>
+        <li>r_name->[labWord] [PlaceOutlander]</li>
+        <li>r_name->[labVirtue] Garden</li>
+        <li>labWord->Ledger</li>
+        <li>labWord->Sequence</li>
+        <li>labWord->Cradle</li>
+        <li>labVirtue->Quiet</li>
+        <li>labVirtue->Venn's</li>
+        <li>labVirtue->Clean</li>
+        <li>labVirtue->Second</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>
